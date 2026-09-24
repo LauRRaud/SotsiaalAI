@@ -30,6 +30,16 @@ const baseConfig = {
   outputFileTracingIncludes: {
     "/api/admin/rag/v2/intake": ["./lib/rag-v2/pdf-worker.js", "./node_modules/pdfjs-dist/**/*", "./node_modules/@napi-rs/canvas*/**/*"],
   },
+  // Route tracing followed dynamic paths into local data folders: 377 routes listed tens of
+  // thousands of files from tmp/, Andmebaasi/ and Arhiiv/, including local service credentials.
+  // This keeps them out of the trace lists that a standalone build would copy. It does not stop
+  // Next 16.3 Turbopack from reading them while tracing the proxy: an unreadable file there still
+  // fails the build (24.09), which scripts/deploy-server.mjs repairs before building. The app
+  // runs with next start from the checkout, so excluding these folders changes no runtime read.
+  outputFileTracingExcludes: {
+    "*": ["./tmp/**", "./Andmebaasi/**", "./Arhiiv/**", "./docs/**", "./tests/**", "./reports/**",
+      "./output/**", "./eval/**", "./logs/**", "./deploy-build-logs/**"],
+  },
 
   compiler: { styledComponents: true },
 
