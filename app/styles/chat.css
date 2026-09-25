@@ -1569,6 +1569,20 @@ button[aria-controls="chat-window-scroll"] {
 .panel-scrim[data-conversation="1"] form:has(#chat-input) button[type="submit"]:active {
   scale: 0.9;
 }
+/* HOVER = KIIRMENÜÜ NUPP (omanik 25.09: pill on kiirmenüü kujundusega, „ring
+   ei peagi tekkima, kiirmenüü hoveril on teised efektid"). Sama vastus mis
+   .gc-shortcut:hover (carousel.css): hele ikoon ja õrn hele taust nupu
+   ringis — valgus, mitte liikumine: ei suurenemist, serva ega kuma.
+   :is() annab kõigile häälvestluse päästiku (klass + 2 atribuuti)
+   spetsiifika, seega võidab see plokk ülalolevad hover-reeglid. */
+.panel-scrim[data-conversation="1"] form:has(#chat-input)
+  :is(button[data-recording], button[data-recording-cancel], button[type="submit"].conv-voice-mode-trigger[data-voice-mode-trigger="true"], button[type="submit"]):is(:hover, :focus-visible):not(:disabled),
+.panel-scrim[data-conversation="1"] form:has(#chat-input) > div:first-child button:is(:hover, :focus-visible):not(:disabled) {
+  color: var(--room-text);
+  background: rgba(248, 248, 248, 0.055);
+  scale: none;
+  filter: none;
+}
 .panel-scrim[data-conversation="1"] form:has(#chat-input) button[type="submit"][data-empty-disabled="true"] {
   opacity: 0.4;
   filter: none;
@@ -2638,9 +2652,11 @@ html[data-contrast="hc"] .room-call-details {
   box-shadow: none !important;
 }
 
+/* Hover ja aktiivne = kiirmenüü nupp (.gc-shortcut): taust, mitte serv
+   (omanik 25.09: „ring ei peagi tekkima"). */
 .panel-scrim[data-conversation="1"] form.chat-composer[data-room-mode="true"] .chat-composer__room-tools :is(.room-call-controls > button, button.conv-ai-target):hover:not(:disabled) {
-  border-color: color-mix(in srgb, var(--text-warm) 16%, transparent) !important;
-  background: color-mix(in srgb, var(--text-warm) 7%, transparent) !important;
+  color: var(--room-text) !important;
+  background: rgba(248, 248, 248, 0.055) !important;
 }
 
 .panel-scrim[data-conversation="1"] form.chat-composer[data-room-mode="true"] .chat-composer__room-tools .room-call-icon > svg {
@@ -2650,8 +2666,7 @@ html[data-contrast="hc"] .room-call-details {
 
 .panel-scrim[data-conversation="1"] form.chat-composer[data-room-mode="true"] .chat-composer__room-tools button.conv-ai-target[data-active="true"] {
   color: #fff !important;
-  border-color: color-mix(in srgb, var(--text-warm) 30%, transparent) !important;
-  background: transparent !important;
+  background: rgba(248, 248, 248, 0.075) !important;
 }
 
 .panel-scrim[data-conversation="1"] .room-call-active-dot {

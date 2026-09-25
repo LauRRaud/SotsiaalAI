@@ -630,7 +630,8 @@
 
    Omaniku 2. voor (25.09): „kestvus imelikult lühike, ikoonid liiguvad
    vasakule ja paremale, puudu blur efekt, mis mujal".
-   - 1400 → 2400 ms, hoitakse 15–70% (~1,3 s).
+   - 1400 → 2400 → 4400 ms (omanik 25.09: „2 sekundit kauem"): hoitakse
+     8–84% (~3,3 s); sisse- ja väljaminek jäävad ~0,35 / ~0,7 s.
    - Kasvab iga KAART oma keskme ümber (.gc-card), mitte rida: rea `scale`
      lükkas servakaardid ~22 px külgedele (mõõdetud päris laual).
      .gc-item EI SOBI: tal on gc-ignite, mis taaskäivituks, kui rida
@@ -644,46 +645,46 @@
    backdrop-filter) backdrop root'i ja klaas kaotaks animatsiooni ajaks
    toa. `scale` on transform ja backdrop root'i ei loo. */
 @keyframes gc-zone-focus-a {
-  15%,
-  70% { scale: 1.04; }
+  8%,
+  84% { scale: 1.04; }
 }
 @keyframes gc-zone-focus-b {
-  15%,
-  70% { scale: 1.04; }
+  8%,
+  84% { scale: 1.04; }
 }
 @keyframes gc-zone-recede-glass-a {
-  15%,
-  70% { filter: blur(2.5px); }
+  8%,
+  84% { filter: blur(2.5px); }
 }
 @keyframes gc-zone-recede-glass-b {
-  15%,
-  70% { filter: blur(2.5px); }
+  8%,
+  84% { filter: blur(2.5px); }
 }
 @keyframes gc-zone-recede-a {
-  15%,
-  70% { filter: blur(2.5px); opacity: calc(var(--gc-item-alpha, 1) * 0.55); }
+  8%,
+  84% { filter: blur(2.5px); opacity: calc(var(--gc-item-alpha, 1) * 0.55); }
 }
 @keyframes gc-zone-recede-b {
-  15%,
-  70% { filter: blur(2.5px); opacity: calc(var(--gc-item-alpha, 1) * 0.55); }
+  8%,
+  84% { filter: blur(2.5px); opacity: calc(var(--gc-item-alpha, 1) * 0.55); }
 }
 .gc[data-desk="1"] .gc-tier[data-jump="a"] .gc-card {
-  animation: gc-zone-focus-a 2400ms var(--ease-soft);
+  animation: gc-zone-focus-a 4400ms var(--ease-soft);
 }
 .gc[data-desk="1"] .gc-tier[data-jump="b"] .gc-card {
-  animation: gc-zone-focus-b 2400ms var(--ease-soft);
+  animation: gc-zone-focus-b 4400ms var(--ease-soft);
 }
 .gc[data-desk="1"] .gc-desk:has(> .gc-tier[data-jump="a"]) > .gc-tier:not([data-jump]) .gc-card-surface {
-  animation: gc-zone-recede-glass-a 2400ms var(--ease-soft);
+  animation: gc-zone-recede-glass-a 4400ms var(--ease-soft);
 }
 .gc[data-desk="1"] .gc-desk:has(> .gc-tier[data-jump="b"]) > .gc-tier:not([data-jump]) .gc-card-surface {
-  animation: gc-zone-recede-glass-b 2400ms var(--ease-soft);
+  animation: gc-zone-recede-glass-b 4400ms var(--ease-soft);
 }
 .gc[data-desk="1"] .gc-desk:has(> .gc-tier[data-jump="a"]) > .gc-tier:not([data-jump]) :is(.gc-icon, .gc-label, .gc-card-badge, .gc-tier-name) {
-  animation: gc-zone-recede-a 2400ms var(--ease-soft);
+  animation: gc-zone-recede-a 4400ms var(--ease-soft);
 }
 .gc[data-desk="1"] .gc-desk:has(> .gc-tier[data-jump="b"]) > .gc-tier:not([data-jump]) :is(.gc-icon, .gc-label, .gc-card-badge, .gc-tier-name) {
-  animation: gc-zone-recede-b 2400ms var(--ease-soft);
+  animation: gc-zone-recede-b 4400ms var(--ease-soft);
 }
 html[data-reduce-motion="1"] .gc[data-desk="1"] .gc-tier[data-jump] .gc-card,
 html[data-reduce-motion="1"] .gc[data-desk="1"] .gc-desk:has(> .gc-tier[data-jump]) > .gc-tier:not([data-jump]) :is(.gc-card-surface, .gc-icon, .gc-label, .gc-card-badge, .gc-tier-name) {
