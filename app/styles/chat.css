@@ -816,17 +816,20 @@ button[aria-controls="chat-window-scroll"] {
     conv-stage-enter 1050ms var(--ease-drift) backwards,
     conv-arm 1ms step-end 2400ms forwards;
 }
-/* Sisenemine liigub `top`-nihkega, MITTE transformiga (omanik 25.09:
-   „tervituse teksti taga blur muster muutub"). Mullide härmatis on
-   `background-attachment: fixed` (--room-frost-*, tokens.css), ja CSS
-   Transforms'i reegli järgi muutub `fixed` `scroll`-iks igal elemendil,
-   mille ENDA või VANEMA peal on transform: animatsiooni ajal kinnitus
-   hägune tuba mulli külge ja hüppas lõpus tagasi toa kohale. Suhteline
-   nihe ei ole transform, seega härmatis püsib esimesest kaadrist paigas. */
+/* Sisenemine = AINULT hajumine ja hägu, ilma liikumiseta (omanik 25.09:
+   „tervituse teksti taga blur muster muutub"). Mullide härmatis on toa
+   eelhägustatud koopia, kinnitatud ekraani külge (`background-attachment:
+   fixed`, --room-frost-*, tokens.css). Iga mulli liikumine näitab tema sees
+   teist tükki tuba:
+   - transform (varem) lülitas `fixed`-i CSS Transforms'i reegli järgi
+     `scroll`-iks ja muster hüppas animatsiooni lõpus;
+   - `top`/`left`-nihe (vahepeal) animeerus väärtuseni `auto`, mida ei saa
+     interpoleerida — mull hüppas poolnähtavana 32 px (mõõdetud päris
+     vestluses, 1380 ms).
+   Paigal seisev mull hoiab mustri esimesest kaadrist lõpuni samana. */
 @keyframes conv-stage-enter {
   from {
     opacity: 0;
-    top: 2.6rem;
     filter: blur(7px);
   }
   62% {
@@ -947,14 +950,12 @@ button[aria-controls="chat-window-scroll"] {
     (120ms + (620ms - min(calc(var(--msg-ri, 0) * 78ms), 620ms)))
   );
 }
-/* Nihe `left`/`top`-iga, mitte transformiga — vt conv-stage-enter:
-   transform lülitaks mulli härmatise `fixed`-kinnituse välja. */
+/* Ilma nihketa — vt conv-stage-enter: liikuv mull vahetaks härmatise
+   mustrit. */
 @keyframes conv-msg-launch {
   from {
     opacity: 0;
     filter: blur(9px);
-    left: -1.1rem;
-    top: 2rem;
   }
   58% {
     filter: blur(0);
@@ -964,8 +965,6 @@ button[aria-controls="chat-window-scroll"] {
   from {
     opacity: 0;
     filter: blur(9px);
-    left: 1.6rem;
-    top: 1.9rem;
   }
   58% {
     filter: blur(0);
