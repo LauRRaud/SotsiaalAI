@@ -24,21 +24,14 @@
   border: 0;
 }
 
-/* Häälpinna kate: pehme udu ilma servadeta. Kastiks teeks ta alles raam ja
-   nurgaraadius. */
-.voice-mode::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  /* Kate on servadeta, aga LÄBIPAISTMATU: pooleldi läbipaistva katte alt
-     luges vestluse tekst läbi — ka 0.957 alfa jättis ta loetavaks.
-     „Ilma kastita" ei tähenda „läbi paistev": kaob raam ja nurgaraadius,
-     mitte kate ise. */
-  background: radial-gradient(76% 60% at 50% 36%, #0d0d10, #08080a 70%);
-  -webkit-backdrop-filter: blur(26px);
-  backdrop-filter: blur(26px);
+/* Häälpinnal EI OLE katet (omanik 25.09: „helivestluse peale kaob ruum
+   üldse ära"). Varem peitis vestluse teksti läbipaistmatu must kate, mis
+   täitis kogu paneeli ja kustutas toa. Nüüd peidetakse vestluse sisu ise
+   (mullid, komposer, teated) ning tuba jääb häälvestluse taha nähtavaks.
+   `visibility` hoiab paigutuse alles, nii et tagasi tulles ei hüppa midagi,
+   ja võtab peidetud sisu ka ekraanilugeja puust — häälpind on aria-modal. */
+.panel-scrim [data-chat-container][data-voice-active="true"] > :not(.voice-mode) {
+  visibility: hidden;
 }
 
 .voice-mode__caption {
@@ -78,12 +71,31 @@
 }
 
 /* ⓘ vahetab pinna sisu, ei ava modaali — sama komme nagu mujal platvormil. */
+/* Info-tekst seisab otse maali ees, seega kannab ta sama härmas klaasi
+   mis vestluse AI-mull (--room-frost-*, tokens.css): eelhägustatud tuba
+   ekraani külge kinnitatuna + suitsutoon. Päris backdrop-filter siin ei
+   hägustaks tuba — paneel on backdrop root. */
 .voice-mode__info {
   z-index: 2;
   grid-row: 1 / -1;
   align-self: center;
   width: min(34rem, 92%);
   margin: 0 auto;
+  padding: clamp(1.1rem, 2.4vw, 1.6rem) clamp(1.2rem, 2.8vw, 1.9rem);
+  border-radius: 1.35rem;
+  background:
+    linear-gradient(165deg, rgba(14, 16, 20, 0.56) 0%, rgba(10, 12, 16, 0.62) 100%),
+    var(--room-frost-image);
+  background-repeat: no-repeat;
+  background-attachment: scroll, fixed;
+  background-size: auto, var(--room-frost-size);
+  background-position: 0 0, var(--room-frost-position);
+  box-shadow:
+    inset 0 1px 0 rgba(242, 242, 242, 0.1),
+    0 18px 44px rgba(5, 5, 5, 0.3);
+}
+.voice-mode__info > :last-child {
+  margin-bottom: 0;
 }
 
 .voice-mode__info h2 {
@@ -143,10 +155,10 @@
   }
 }
 
-html[data-contrast="hc"] .voice-mode::before {
+html[data-contrast="hc"] .voice-mode__info {
   background: #080808;
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
+  border: 1px solid #ffffff;
+  box-shadow: none;
 }
 
 html[data-reduce-motion="1"] .voice-mode,

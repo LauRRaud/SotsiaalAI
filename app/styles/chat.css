@@ -335,9 +335,14 @@ form:has(#chat-input) > div:has(#chat-input) > div:has(#chat-input) > div:not(:h
   caret-color: var(--text-warm);
   line-height: 1.45;
 }
-/* Kohatäiteteksti ei kuvata (tellija otsus); sr-silt on olemas */
+/* Kohatäiteteksti ei kuvata (tellija otsus); sr-silt on olemas.
+   Vari on samuti null: vestluses kannab #chat-input loetavuse text-shadow'd,
+   mille kohatäide pärib — nähtamatu tekst joonistas lahtri taha tumeda laigu,
+   ja fookusel (lahter kasvab kohatäite kõrguseks) teise rea laigu juurde
+   (omanik 25.09). */
 #chat-input::placeholder {
   color: transparent;
+  text-shadow: none;
 }
 #chat-input:focus {
   outline: none;
