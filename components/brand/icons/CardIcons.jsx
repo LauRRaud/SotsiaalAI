@@ -198,18 +198,16 @@ export const ChatCardIcon = (props) => (
   </Svg>
 );
 
-/* Ruumid — kaks inimest (tellija etalon; kuju ChatIcons.jsx RoomsIcon-ist).
-   Optiline normeerimine: toorkuju diagonaal on 28,8 ühikut, komplekti
-   mediaan 21,1 — ilma kahandamata loeb ta naabritest 1,36× suuremana.
+/* Ruumid — kaks inimest: kinnise kehaga esimene, teine kaarena taga.
+   Joonistatud otse sisualasse 3–21 (omanik 25.09: kaardiikoonid ühtse
+   ruudustiku järgi uuesti), seega ei vaja ta enam scale-normeerimist.
    Sama kuju kannab ka MentorIcon, seega mõõt tuleb ühest kohast. */
 export const RoomsCardIcon = (props) => (
   <Svg {...props}>
-    <ScaledGroup s={0.733} transform="translate(12 12) scale(0.733) translate(-11.8 -12.09)">
-      <path {...Ps(0.733)} d="M6.41 13.79h5.4c2.1 0 3.7 1 4.3 2.6.5 1.3.4 2.5.2 3.4-.5 2-2.9 2.6-7.2 2.6s-6.7-.6-7.2-2.6c-.2-.9-.3-2.1.2-3.4.6-1.6 2.2-2.6 4.3-2.6Z" />
-      <circle {...Ps(0.733)} cx="9.11" cy="5.79" r="4" />
-      <path {...Ps(0.733)} d="M21.86 18.88V17c0-1.71-1.53-3.21-3.72-3.64" />
-      <path {...Ps(0.733)} d="M15.4 2.76c1.91.02 3.44 1.64 3.41 3.62s-1.59 3.56-3.5 3.53" />
-    </ScaledGroup>
+    <circle {...P} cx="9" cy="8" r="3.5" />
+    <path {...P} d="M3.5 20v-1.25A4.25 4.25 0 0 1 7.75 14.5h2.5a4.25 4.25 0 0 1 4.25 4.25V20Z" />
+    <path {...P} d="M15.5 4.7a3.5 3.5 0 0 1 0 6.6" />
+    <path {...P} d="M17.5 14.7a4.25 4.25 0 0 1 3 4.05V20" />
   </Svg>
 );
 
@@ -291,17 +289,18 @@ export const AdminSlidersIcon = (props) => (
 /* Abisoovid — kõnemull südamega (abi küsimine) */
 export const HelpRequestIcon = (props) => (
   <Svg {...props}>
-    <path {...P} d="M12 4.2c-4.4 0-7.7 2.9-7.7 6.6 0 2.1 1.1 3.9 2.9 5.1l-.6 3.6 3.6-1.9c.6.1 1.2.2 1.8.2 4.4 0 7.7-2.9 7.7-6.6S16.4 4.2 12 4.2Z" />
-    <path {...P} d="M12 13.4s-2.7-1.6-2.7-3.3c0-.9.7-1.6 1.5-1.6.5 0 .95.25 1.2.65.25-.4.7-.65 1.2-.65.8 0 1.5.7 1.5 1.6 0 1.7-2.7 3.3-2.7 3.3Z" />
+    <path {...P} d="M12 4a8 8 0 1 1-3.9 15L4 20l1.05-4A8 8 0 0 1 12 4Z" />
+    <path {...P} d="M12 14.6s-2.8-1.7-2.8-3.7a1.55 1.55 0 0 1 2.8-.95 1.55 1.55 0 0 1 2.8.95c0 2-2.8 3.7-2.8 3.7Z" />
   </Svg>
 );
 
 /* Abipakkumised — käsi hoiab südant (abi pakkumine) */
 export const HelpOfferIcon = (props) => (
   <Svg {...props}>
-    <path {...P} d="M12 10.6s-3.1-1.9-3.1-3.9c0-1.05.8-1.9 1.75-1.9.55 0 1.05.3 1.35.75.3-.45.8-.75 1.35-.75.95 0 1.75.85 1.75 1.9 0 2-3.1 3.9-3.1 3.9Z" />
-    <path {...P} d="M4.4 14.6h2.9c.7 0 2.1.5 3 .9.9.4 2.4.4 3.2 0l3.2-1.5a1.4 1.4 0 0 1 1.9.6c.35.7.05 1.5-.65 1.85l-4.6 2.35c-1 .5-2.6.55-3.6.1l-5.3-2.3" />
-    <path {...P} d="M4.4 13v6.5" />
+    <path {...P} d="M12 11s-2.8-1.7-2.8-3.7a1.55 1.55 0 0 1 2.8-.95 1.55 1.55 0 0 1 2.8.95C14.8 9.3 12 11 12 11Z" />
+    <path {...P} d="M3.5 13.5v7" />
+    <path {...P} d="M3.5 14.5h3.2c.8 0 1.6.15 2.35.45l2.75 1.1a1.35 1.35 0 0 1-.9 2.55L8.5 18" />
+    <path {...P} d="M3.5 19.5h4.3c.5 0 1 .08 1.5.24l1.9.6c.95.3 2 .2 2.85-.3l5.2-3.05a1.4 1.4 0 0 0-1.4-2.42L14.5 16.3" />
   </Svg>
 );
 
@@ -310,88 +309,81 @@ export const HelpOfferIcon = (props) => (
    see on juba Juhtumite (CaseWorkIcon) kuju. */
 export const DocumentsIcon = (props) => (
   <Svg {...props}>
-    <path {...P} d="M7.9 4.6h8.2a1.8 1.8 0 0 1 1.8 1.8v11.8a1.8 1.8 0 0 1-1.8 1.8H7.9a1.8 1.8 0 0 1-1.8-1.8V6.4a1.8 1.8 0 0 1 1.8-1.8Z" />
-    <path {...P} d="M9.2 11.4h5.6M9.2 14.6h3.8" />
-    <path {...P} d="M13.4 3v5a1.4 1.4 0 0 0 2.8 0V4.2" />
+    <rect {...P} x="5" y="4" width="14" height="17" rx="2.5" />
+    <path {...P} d="M8.5 12.5h7M8.5 16h4.5" />
+    <path {...P} d="M13.5 2.5v5a1.5 1.5 0 0 0 3 0V4" />
   </Svg>
 );
 
 /* Koosta dokument — leht pliiatsiga */
 export const ComposeDocIcon = (props) => (
   <Svg {...props}>
-    <path {...P} d="M12.6 4H7.9a1.8 1.8 0 0 0-1.8 1.8v12.4A1.8 1.8 0 0 0 7.9 20h8.2a1.8 1.8 0 0 0 1.8-1.8v-5" />
-    <path {...P} d="m14.3 11.2 5.1-5.1a1.35 1.35 0 0 0-1.9-1.9l-5.1 5.1-.5 2.4 2.4-.5Z" />
-    <path {...P} d="M9.3 15.9h5.4" />
+    <path {...P} d="M12.5 4H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5.5" />
+    <path {...P} d="M17.6 3.9a1.65 1.65 0 0 1 2.35 2.35L13.4 12.8l-3.15.85.85-3.15Z" />
+    <path {...P} d="M9 16.5h6" />
   </Svg>
 );
 
 /* Pöördumised — postkast saabuva noolega */
 export const InquiryIcon = (props) => (
   <Svg {...props}>
-    <path {...P} d="M3.9 13.2h4.3l1.3 2h5l1.3-2h4.3" />
-    <path {...P} d="M5.7 6.8h12.6l1.8 6.4v4.9a1.7 1.7 0 0 1-1.7 1.7H5.6a1.7 1.7 0 0 1-1.7-1.7v-4.9l1.8-6.4Z" />
+    <rect {...P} x="3.5" y="4.5" width="17" height="15" rx="2.5" />
+    <path {...P} d="M3.5 13h4.5l1.5 2.5h5l1.5-2.5h4.5" />
   </Svg>
 );
 
-/* Kutsu osaleja — terviklik inimene (suletud kere) + pluss ülal paremal.
-   Kuju on ChatIcons.jsx AddPersonIcon'ist, mis oli varem kutsemodaali
-   ikoon ja jäi kasutusest välja (omanik 25.07: "mul kunagi oli teine
-   ikoon sellele... inimene oli kujutatud alt kinnisena"). Varasem
-   siinne glüüf oli lahtise kaarega poolik kuju ja pluss all paremal. */
+/* Kutsu osaleja — terviklik inimene (alt kinnine keha, omanik 25.07) +
+   pluss üleval paremal. Joonistatud otse sisualasse (25.09), ilma
+   scale-normeerimiseta. */
 export const InvitePersonIcon = (props) => (
-  /* Optiline normeerimine: toorkuju diagonaal on 27,1 ühikut, komplekti
-     mediaan 21,1 — nii nagu on, loeks ta naabritest 1,28× suuremana.
-     Transform tsentreerib kuju (kese 13,47 / 13,30) ja kahandab sihile. */
   <Svg {...props}>
-    <ScaledGroup s={0.778} transform="translate(12 12) scale(0.778) translate(-13.47 -13.3)">
-      <path {...Ps(0.778)} d="M9.3 15H14.7C16.8 15 18.4 16 19 17.6C19.5 18.9 19.4 20.1 19.2 21C18.7 23 16.3 23.6 12 23.6C7.7 23.6 5.3 23 4.8 21C4.6 20.1 4.5 18.9 5 17.6C5.6 16 7.2 15 9.3 15Z" />
-      <circle {...Ps(0.778)} cx="12" cy="7" r="4" />
-      <path {...Ps(0.778)} d="M20.2 8.7V12.9" />
-      <path {...Ps(0.778)} d="M18.1 10.8H22.3" />
-    </ScaledGroup>
+    <circle {...P} cx="9.5" cy="8" r="3.5" />
+    <path {...P} d="M4 20v-1.25A4.25 4.25 0 0 1 8.25 14.5h2.5A4.25 4.25 0 0 1 15 18.75V20Z" />
+    <path {...P} d="M19 6.5v5M16.5 9h5" />
   </Svg>
 );
 
 /* Kovisioon — kolm inimest ringis (grupi ühine töö) */
 export const KovisionIcon = (props) => (
   <Svg {...props}>
-    <circle {...P} cx="12" cy="5.9" r="2" />
-    <circle {...P} cx="6.1" cy="15.7" r="2" />
-    <circle {...P} cx="17.9" cy="15.7" r="2" />
-    <path {...P} d="M9.1 7.9a8.2 8.2 0 0 0-2.5 5.1M14.9 7.9a8.2 8.2 0 0 1 2.5 5.1M9 17.9a8.4 8.4 0 0 0 6 0" />
+    <circle {...P} cx="12" cy="5.5" r="2" />
+    <circle {...P} cx="5.5" cy="17" r="2" />
+    <circle {...P} cx="18.5" cy="17" r="2" />
+    <path {...P} d="M9.8 6.2a7.5 7.5 0 0 0-4.9 8.4M14.2 6.2a7.5 7.5 0 0 1 4.9 8.4M7.9 18.6a7.5 7.5 0 0 0 8.2 0" />
   </Svg>
 );
 
 /* Tööheaolu — süda pulsijoonega */
 export const WellbeingIcon = (props) => (
   <Svg {...props}>
-    <path {...P} d="M12 19.6s-7.6-4.6-7.6-9.5c0-2.5 1.9-4.4 4.2-4.4 1.4 0 2.7.7 3.4 1.9.7-1.2 2-1.9 3.4-1.9 2.3 0 4.2 1.9 4.2 4.4 0 4.9-7.6 9.5-7.6 9.5Z" />
-    <path {...P} d="M7.4 12h2.4l1.2-2.4 1.9 4.2 1.3-1.8h2.4" />
+    <path {...P} d="M12 20s-8-4.7-8-10.2a4.3 4.3 0 0 1 8-2.2 4.3 4.3 0 0 1 8 2.2C20 15.3 12 20 12 20Z" />
+    <path {...P} d="M6 12.5h2.6l1.4-2.3 2.4 4.6 1.4-2.3H18" />
   </Svg>
 );
 
 /* Materjalid — kihiline kogu (andmebaas) */
 export const MaterialsIcon = (props) => (
   <Svg {...props}>
-    <path {...P} d="m12 4.2 8 3.7-8 3.7-8-3.7 8-3.7Z" />
-    <path {...P} d="m5 11.6 7 3.2 7-3.2M5 15.5l7 3.2 7-3.2" />
+    <path {...P} d="M12 3.5 3.5 8 12 12.5 20.5 8Z" />
+    <path {...P} d="M3.5 12 12 16.5 20.5 12" />
+    <path {...P} d="M3.5 16 12 20.5 20.5 16" />
   </Svg>
 );
 
 /* Teenusekaart — kaardinõel */
 export const ServiceMapIcon = (props) => (
   <Svg {...props}>
-    <path {...P} d="M12 20.6s6.4-6 6.4-10.4a6.4 6.4 0 1 0-12.8 0C5.6 14.6 12 20.6 12 20.6Z" />
-    <circle {...P} cx="12" cy="10" r="2.3" />
+    <path {...P} d="M12 21s-6.5-5.55-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.45 12 21 12 21Z" />
+    <circle {...P} cx="12" cy="10" r="2.4" />
   </Svg>
 );
 
 /* Teekond — punktiirrada peatuspunktidega */
 export const JourneyPathIcon = (props) => (
   <Svg {...props}>
-    <circle {...P} cx="5.6" cy="18.2" r="1.9" />
-    <circle {...P} cx="18.4" cy="5.8" r="1.9" />
-    <path {...P} strokeDasharray="0.1 3.1" d="M7.4 16.6C10.5 14 8 11.5 11 9.6c2.6-1.6 4.4-1.6 5.6-2.5" />
+    <circle {...P} cx="6" cy="18" r="2" />
+    <circle {...P} cx="18" cy="6" r="2" />
+    <path {...P} d="M8 18h5.5a3.5 3.5 0 0 0 0-7h-3a3.5 3.5 0 0 1 0-7H16" />
   </Svg>
 );
 
@@ -426,16 +418,16 @@ export const BestPracticeIcon = (props) => (
 /* Isiklik otsing — luup */
 export const SearchIcon = (props) => (
   <Svg {...props}>
-    <circle {...P} cx="10.5" cy="10.5" r="5.6" />
-    <path {...P} d="m14.7 14.7 5 5" />
+    <circle {...P} cx="10.5" cy="10.5" r="6.5" />
+    <path {...P} d="m15.3 15.3 5.2 5.2" />
   </Svg>
 );
 
 /* Supervisioon — järelevalve/peegeldus: silm (ülevaade) */
 export const SupervisionIcon = (props) => (
   <Svg {...props}>
-    <path {...P} d="M3.4 12s3.5-5.2 8.6-5.2S20.6 12 20.6 12 17.1 17.2 12 17.2 3.4 12 3.4 12Z" />
-    <circle {...P} cx="12" cy="12" r="2.3" />
+    <path {...P} d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z" />
+    <circle {...P} cx="12" cy="12" r="3" />
   </Svg>
 );
 
@@ -448,28 +440,28 @@ export const MentorIcon = (props) => <RoomsCardIcon {...props} />;
 /* Välitöö — kodukülastus (maja avatud uksega) */
 export const FieldIcon = (props) => (
   <Svg {...props}>
-    <path {...P} d="M4 11.4 12 4.6l8 6.8" />
-    <path {...P} d="M5.8 10v9.4h12.4V10" />
-    <path {...P} d="M10.2 19.4v-4.9h3.6v4.9" />
+    <path {...P} d="M4 10.5 12 4l8 6.5" />
+    <path {...P} d="M5.75 9.2V20h12.5V9.2" />
+    <path {...P} d="M10 20v-5h4v5" />
   </Svg>
 );
 
 /* Refleksioon (Meetodipeegel) — käepeegel */
 export const ReflectionIcon = (props) => (
   <Svg {...props}>
-    <circle {...P} cx="12" cy="9.4" r="5.5" />
-    <path {...P} d="M12 14.9v4.7" />
-    <path {...P} d="M9.4 8.1a3.7 3.7 0 0 1 2.6-1.6" />
+    <circle {...P} cx="12" cy="9" r="5.5" />
+    <path {...P} d="M12 14.5V21" />
+    <path {...P} d="M9.3 7.4a3 3 0 0 1 2.2-1.9" />
   </Svg>
 );
 
 /* Teenuseprofiil — teenuseosutaja kaart (ID-kaart) */
 export const ServiceProfileIcon = (props) => (
   <Svg {...props}>
-    <rect {...P} x="4" y="5.2" width="16" height="13.6" rx="2" />
-    <circle {...P} cx="9.4" cy="10.6" r="2.1" />
-    <path {...P} d="M6.4 16.4c.4-1.7 1.6-2.6 3-2.6s2.6.9 3 2.6" />
-    <path {...P} d="M14.6 9.6h3.2M14.6 12.4h3.2M14.6 15.2h2.2" />
+    <rect {...P} x="3" y="5" width="18" height="14" rx="2.5" />
+    <circle {...P} cx="8.5" cy="10.3" r="2" />
+    <path {...P} d="M5.6 15.8a3.1 3.1 0 0 1 5.8 0" />
+    <path {...P} d="M14.5 10h4M14.5 13.5h3" />
   </Svg>
 );
 
@@ -478,10 +470,9 @@ export const ServiceProfileIcon = (props) => (
    arvestus, mitte loetav dokument, ja märk on just see kinnitus. */
 export const ServiceLogIcon = (props) => (
   <Svg {...props}>
-    <rect {...P} x="5.4" y="3.8" width="13.2" height="16.4" rx="2" />
-    <path {...P} d="M8.8 3.8v2.6M15.2 3.8v2.6" />
-    <path {...P} d="M8.6 10.4h6.8" />
-    <path {...P} d="M8.6 16.2 10.6 18.2l4.4-4.6" />
+    <rect {...P} x="5" y="4.5" width="14" height="16" rx="2.5" />
+    <rect {...P} x="9" y="3" width="6" height="3.2" rx="1.2" />
+    <path {...P} d="m9 13.5 2 2 4-4" />
   </Svg>
 );
 
@@ -493,18 +484,17 @@ export const ServiceLogIcon = (props) => (
    Kaust, mitte inimene: juhtum on töötaja töökorraldus, mitte kliendikirje. */
 export const CaseWorkIcon = (props) => (
   <Svg {...props}>
-    <path {...P} d="M3.9 7.2a1.9 1.9 0 0 1 1.9-1.9h3.1l1.8 2.1h7.4a1.9 1.9 0 0 1 1.9 1.9v7.6a1.9 1.9 0 0 1-1.9 1.9H5.8a1.9 1.9 0 0 1-1.9-1.9V7.2Z" />
-    <path {...P} d="M8.3 12.5h5.4" />
-    <path {...P} d="M8.3 15.2h3.2" />
+    <path {...P} d="M3.5 7.5a2 2 0 0 1 2-2h3.6c.6 0 1.15.27 1.53.73L11.8 7.8h6.7a2 2 0 0 1 2 2v8.2a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2Z" />
+    <path {...P} d="M9 14h6" />
   </Svg>
 );
 
 export const OrgIcon = (props) => (
   <Svg {...props}>
-    <path {...P} d="M4 20h16" />
-    <path {...P} d="M5.6 20V8.4l6.4-3.8 6.4 3.8V20" />
-    <path {...P} d="M9.4 20v-4.6a2.6 2.6 0 0 1 5.2 0V20" />
-    <path {...P} d="M8.8 10.8h1.6M13.6 10.8h1.6" />
+    <path {...P} d="M3.5 20.5h17" />
+    <path {...P} d="M5.5 20.5V9.5L12 4.5l6.5 5v11" />
+    <path {...P} d="M10.25 20.5v-4.5h3.5v4.5" />
+    <path {...P} d="M9.5 11.5h.01M14.5 11.5h.01" />
   </Svg>
 );
 
@@ -513,10 +503,10 @@ export const OrgIcon = (props) => (
    glüüf peab näitama, et jagatu jääb minu ringi sisse. */
 export const SharingsIcon = (props) => (
   <Svg {...props}>
-    <circle {...P} cx="6.6" cy="12" r="2.3" />
-    <circle {...P} cx="17" cy="6.6" r="2.3" />
-    <circle {...P} cx="17" cy="17.4" r="2.3" />
-    <path {...P} d="m8.7 10.9 6.2-3.2M8.7 13.1l6.2 3.2" />
+    <circle {...P} cx="17.5" cy="5.5" r="2.5" />
+    <circle {...P} cx="6.5" cy="12" r="2.5" />
+    <circle {...P} cx="17.5" cy="18.5" r="2.5" />
+    <path {...P} d="m8.7 10.7 6.6-3.9M8.7 13.3l6.6 3.9" />
   </Svg>
 );
 
@@ -529,103 +519,97 @@ export const SharingsIcon = (props) => (
 /* Minu kirjed — kell tagasikeerava noolega (varasem kirje) */
 export const WellbeingRecordsIcon = (props) => (
   <Svg {...props}>
-    <path {...P} d="M4.6 12a7.4 7.4 0 1 0 2.3-5.4" />
-    <path {...P} d="M4.4 4.4v3.9h3.9" />
-    <path {...P} d="M12 8.3V12l2.6 1.6" />
+    <path {...P} d="M4.3 9A8.5 8.5 0 1 1 3.5 12.8" />
+    <path {...P} d="M3.8 4.5v4.8h4.8" />
+    <path {...P} d="M12 7.5V12l3 2" />
   </Svg>
 );
 
 /* Kiirkontroll — lühike nimekiri linnukesega */
 export const WellbeingCheckIcon = (props) => (
   <Svg {...props}>
-    <path {...P} d="M8.6 4.9h6.8a1.7 1.7 0 0 1 1.7 1.7v11.8a1.7 1.7 0 0 1-1.7 1.7H8.6a1.7 1.7 0 0 1-1.7-1.7V6.6a1.7 1.7 0 0 1 1.7-1.7Z" />
-    <path {...P} d="M10 4.9V4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v.9" />
-    <path {...P} d="m9.9 13 1.6 1.6 3.1-3.4" />
+    <rect {...P} x="6.5" y="5" width="11" height="16" rx="2.5" />
+    <path {...P} d="M10 3h4" />
+    <path {...P} d="m9.5 13 2 2 3.5-3.5" />
   </Svg>
 );
 
 /* Ülevaade — trendijoon telgedel (nädala ja kuu muster) */
 export const WellbeingOverviewIcon = (props) => (
   <Svg {...props}>
-    <path {...P} d="M4.2 19.4h15.6" />
-    <path {...P} d="M4.2 19.4V5" />
-    <path {...P} d="m6.6 15.4 3.5-4.1 2.9 2.3 5.3-6" />
-    <path {...P} d="M15.4 7.6h3v3" />
+    <path {...P} d="M4 4v16h16" />
+    <path {...P} d="m7.5 15 3.5-4 3 2.5 5-6" />
+    <path {...P} d="M16 7.5h3v3" />
   </Svg>
 );
 
 /* Raske juhtum — kõnemull hüüumärgiga (koormav vestlus) */
 export const WellbeingHardCaseIcon = (props) => (
   <Svg {...props}>
-    <path {...P} d="M4.4 6.3a1.9 1.9 0 0 1 1.9-1.9h11.4a1.9 1.9 0 0 1 1.9 1.9v7.2a1.9 1.9 0 0 1-1.9 1.9H9.5l-4 3.6.3-3.6H6.3a1.9 1.9 0 0 1-1.9-1.9V6.3Z" />
-    <path {...P} d="M12 7.6v3.1" />
-    <path {...P} d="M12 12.85v.05" />
+    <path {...P} d="M5.5 4.5h13a2.5 2.5 0 0 1 2.5 2.5v8a2.5 2.5 0 0 1-2.5 2.5h-8L6 21v-3.5h-.5A2.5 2.5 0 0 1 3 15V7a2.5 2.5 0 0 1 2.5-2.5Z" />
+    <path {...P} d="M12 8v3.8M12 14.5h.01" />
   </Svg>
 );
 
 /* Töövägivald — stoppmärk hüüumärgiga (oht, peatu) */
 export const WellbeingViolenceIcon = (props) => (
   <Svg {...props}>
-    <path {...P} d="M8.7 3.6h6.6l4.1 4.1v6.6l-4.1 4.1H8.7l-4.1-4.1V7.7l4.1-4.1Z" />
-    <path {...P} d="M12 7.9v3.6" />
-    <path {...P} d="M12 14.15v.05" />
+    <path {...P} d="M8.3 3.5h7.4l4.8 4.8v7.4l-4.8 4.8H8.3l-4.8-4.8V8.3Z" />
+    <path {...P} d="M12 8v4.3M12 15.5h.01" />
   </Svg>
 );
 
 /* Taastumine — päike tõusmas horisondi kohale (jõuvarude taastumine) */
 export const WellbeingRecoveryIcon = (props) => (
   <Svg {...props}>
-    <path {...P} d="M3.6 18.2h16.8" />
-    <path {...P} d="M6.9 18.2a5.1 5.1 0 0 1 10.2 0" />
-    <path {...P} d="M12 4.2v2.3M5.7 7l1.6 1.6M18.3 7l-1.6 1.6" />
+    <path {...P} d="M3.5 18.5h17" />
+    <path {...P} d="M7.5 18.5a4.5 4.5 0 0 1 9 0" />
+    <path {...P} d="M12 4.5V7M5.6 8.6l1.75 1.75M18.4 8.6l-1.75 1.75" />
   </Svg>
 );
 
 /* Tööpiirid — kalender kellaga (tööaeg ja kättesaadavus) */
 export const WellbeingBoundariesIcon = (props) => (
   <Svg {...props}>
-    <path {...P} d="M4.5 7.4a1.8 1.8 0 0 1 1.8-1.8h11.4a1.8 1.8 0 0 1 1.8 1.8v10.3a1.8 1.8 0 0 1-1.8 1.8H6.3a1.8 1.8 0 0 1-1.8-1.8V7.4Z" />
-    <path {...P} d="M8.3 3.6v3.6M15.7 3.6v3.6M4.5 10.4h15" />
-    <path {...P} d="M12 12.9v2.4l1.7 1" />
+    <rect {...P} x="4" y="5.5" width="16" height="15" rx="2.5" />
+    <path {...P} d="M4 10h16" />
+    <path {...P} d="M8.5 3.5v4M15.5 3.5v4" />
+    <path {...P} d="M12 13v2.6l1.9 1.2" />
   </Svg>
 );
 
 /* Katkestused — vaigistatud kell (töörahu katkeb) */
 export const WellbeingInterruptionsIcon = (props) => (
   <Svg {...props}>
-    <path {...P} d="M17.6 15.4V10a5.6 5.6 0 0 0-4.2-5.4" />
-    <path {...P} d="M6.4 10.6V10a5.6 5.6 0 0 1 3-5" />
-    <path {...P} d="M5.2 15.4h13.6" />
-    <path {...P} d="M10.4 18.4a1.9 1.9 0 0 0 3.2 0" />
-    <path {...P} d="m4.2 4.2 15.6 15.6" />
+    <path {...P} d="M6 16.5c1-1.1 1.5-2.6 1.5-4.4v-1.6a4.5 4.5 0 0 1 9 0v1.6c0 1.8.5 3.3 1.5 4.4Z" />
+    <path {...P} d="M10.3 19.5a2 2 0 0 0 3.4 0" />
+    <path {...P} d="m4 4 16 16" />
   </Svg>
 );
 
 /* Tööprotsessid — kaks sammu ühte koondumas (mis võtab aja ära) */
 export const WellbeingProcessIcon = (props) => (
   <Svg {...props}>
-    <rect {...P} x="3.6" y="4.2" width="5.4" height="4.4" rx="1.2" />
-    <rect {...P} x="15" y="4.2" width="5.4" height="4.4" rx="1.2" />
-    <rect {...P} x="9.3" y="15.4" width="5.4" height="4.4" rx="1.2" />
-    <path {...P} d="M6.3 8.6v3.1h11.4V8.6" />
-    <path {...P} d="M12 11.7v3.7" />
+    <rect {...P} x="3.5" y="3.5" width="6.5" height="5" rx="1.5" />
+    <rect {...P} x="14" y="3.5" width="6.5" height="5" rx="1.5" />
+    <rect {...P} x="8.75" y="15.5" width="6.5" height="5" rx="1.5" />
+    <path {...P} d="M6.75 8.5v2.75h10.5V8.5M12 11.25v4.25" />
   </Svg>
 );
 
 /* Rollipiirid — märk linnukesega (selge roll ja vastutus) */
 export const WellbeingRoleIcon = (props) => (
   <Svg {...props}>
-    <path {...P} d="M12 3.6 9.9 5.9l-3.1.2-.2 3.1L4.3 11.3l1.5 2.7-.7 3 3 .7 1.9 2.4 2.8-1.3 2.8 1.3 1.9-2.4 3-.7-.7-3 1.5-2.7-2.3-2.1-.2-3.1-3.1-.2L12 3.6Z" />
-    <path {...P} d="m9.9 11.9 1.6 1.6 3.1-3.3" />
+    <path {...P} d="M12 3.4 14.72 5.44 18.08 5.92 18.56 9.28 20.6 12 18.56 14.72 18.08 18.08 14.72 18.56 12 20.6 9.28 18.56 5.92 18.08 5.44 14.72 3.4 12 5.44 9.28 5.92 5.92 9.28 5.44Z" />
+    <path {...P} d="m9 12 2 2 4-4" />
   </Svg>
 );
 
 /* Alustaja tugi — avatud raamat linnukesega (esimesed 100 päeva) */
 export const WellbeingStarterIcon = (props) => (
   <Svg {...props}>
-    <path {...P} d="M12 6.9C10.7 5.7 8.9 5.1 6.7 5.1c-.9 0-1.7.1-2.5.3v11.9c.8-.2 1.6-.3 2.5-.3 2.2 0 4 .6 5.3 1.8" />
-    <path {...P} d="M12 6.9c1.3-1.2 3.1-1.8 5.3-1.8.9 0 1.7.1 2.5.3v7.5" />
-    <path {...P} d="M12 6.9v11.9" />
-    <path {...P} d="m15.4 18.1 1.6 1.6 3.1-3.4" />
+    <path {...P} d="M12 6.5C10.3 5.2 8 4.5 5.5 4.5h-2v13h2c2.5 0 4.8.7 6.5 2 1.7-1.3 4-2 6.5-2h2v-13h-2c-2.5 0-4.8.7-6.5 2Z" />
+    <path {...P} d="M12 6.5v13" />
+    <path {...P} d="m14.8 12.2 1.5 1.5 2.7-2.7" />
   </Svg>
 );
