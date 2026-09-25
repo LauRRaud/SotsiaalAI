@@ -549,9 +549,17 @@
    pool plaati seisis tühjana (omanik: „ikoonid suht väikesed, aga palju tühja
    ruumi"). Kordaja 0,55 jätab sildile ja vahedele ruumi; `clamp` hoiab
    väikese akna ja väga tiheda rea servajuhud. */
+/* 0,55 → 0,506 ja lagi 6 → 5,5rem (omanik 25.09: „ikoonid on liiga
+   suured"). 25.09 ümber joonistatud glüüfid täidavad sisuala 3–21 ja on
+   mõõdetult 8,7 % suuremad kui vanad (keskmine diagonaal 22,95 vs 21,12
+   ühikut), seega kast kahaneb 0,92 korda. Joon kasvab sama suhtega
+   (1,25 → 1,36), et nähtav joonepaksus jääks samaks. */
 .gc[data-desk="1"] .gc-icon svg {
-  width: clamp(2.4rem, calc(var(--desk-card-h) * 0.55), 6rem);
-  height: clamp(2.4rem, calc(var(--desk-card-h) * 0.55), 6rem);
+  width: clamp(2.2rem, calc(var(--desk-card-h) * 0.506), 5.5rem);
+  height: clamp(2.2rem, calc(var(--desk-card-h) * 0.506), 5.5rem);
+}
+.gc[data-desk="1"] .gc-icon svg * {
+  stroke-width: calc(1.36 / var(--icon-scale, 1));
 }
 /* Silt on kaardi PÕHISISU, mitte allkiri: 288 px laiusel plaadil oli
    14,7 px tekst kadunud (omanik 25.07). Tähevahe kahaneb suuruse
