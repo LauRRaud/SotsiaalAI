@@ -594,26 +594,53 @@
 .gc[data-desk="1"] .gc-card:focus-visible .gc-haze {
   transition: background 380ms var(--ease-soft);
 }
-/* Doki tsooninupu vastus: rea kaardid tõusevad lainena korraks ette ja
-   laskuvad tagasi (GlassCarousel jumpPulse). Ühekordne — laud ei jää
-   muutunuks. Kaks sama sisuga nime, et kordusvajutus alustaks uuesti. */
-@keyframes gc-zone-pulse-a {
-  40% { transform: translateZ(40px); }
+/* Doki tsooninupu vastus = TERAVUSTAMINE (omanik 25.09: „teised
+   hägustuvad, fookuses olev läheb veidi suuremaks"; asendab 23.09
+   kaardilaine). Valitud rida kasvab korraks, ülejäänud read hägustuvad ja
+   tuhmuvad, siis taastub kõik. Ühekordne ja ainult doki vajutusel
+   (GlassCarousel jumpPulse) — 03.08 otsus kehtib: hiire all liigub ainult
+   üks kaart, laud ei muutu püsivalt. Kaks sama sisuga nime (a/b), et
+   kordusvajutus alustaks uuesti; nimi vahetub ka teistel ridadel, sest
+   :has() valib nad sama atribuudi järgi.
+   Hägu ja tuhmus käivad kaardi KIHTIDEL, mitte kaardil ega real: filter
+   või opacity < 1 vanemal teeks temast härmatise (.gc-card-surface
+   backdrop-filter) backdrop root'i ja klaas kaotaks animatsiooni ajaks
+   toa. Mõõt käib real `scale`-iga — transform backdrop root'i ei loo. */
+@keyframes gc-zone-focus-a {
+  22%,
+  68% { scale: 1.04; }
 }
-@keyframes gc-zone-pulse-b {
-  40% { transform: translateZ(40px); }
+@keyframes gc-zone-focus-b {
+  22%,
+  68% { scale: 1.04; }
 }
-.gc[data-desk="1"] .gc-tier[data-jump="a"] .gc-card {
-  animation: gc-zone-pulse-a 620ms var(--ease-soft) calc(var(--i, 0) * 55ms);
+@keyframes gc-zone-recede-a {
+  22%,
+  68% { filter: blur(3px); opacity: calc(var(--gc-item-alpha, 1) * 0.45); }
 }
-.gc[data-desk="1"] .gc-tier[data-jump="b"] .gc-card {
-  animation: gc-zone-pulse-b 620ms var(--ease-soft) calc(var(--i, 0) * 55ms);
+@keyframes gc-zone-recede-b {
+  22%,
+  68% { filter: blur(3px); opacity: calc(var(--gc-item-alpha, 1) * 0.45); }
 }
-html[data-reduce-motion="1"] .gc[data-desk="1"] .gc-tier[data-jump] .gc-card {
+.gc[data-desk="1"] .gc-tier[data-jump="a"] {
+  animation: gc-zone-focus-a 1400ms var(--ease-soft);
+}
+.gc[data-desk="1"] .gc-tier[data-jump="b"] {
+  animation: gc-zone-focus-b 1400ms var(--ease-soft);
+}
+.gc[data-desk="1"] .gc-desk:has(> .gc-tier[data-jump="a"]) > .gc-tier:not([data-jump]) :is(.gc-card > *, .gc-tier-name) {
+  animation: gc-zone-recede-a 1400ms var(--ease-soft);
+}
+.gc[data-desk="1"] .gc-desk:has(> .gc-tier[data-jump="b"]) > .gc-tier:not([data-jump]) :is(.gc-card > *, .gc-tier-name) {
+  animation: gc-zone-recede-b 1400ms var(--ease-soft);
+}
+html[data-reduce-motion="1"] .gc[data-desk="1"] .gc-tier[data-jump],
+html[data-reduce-motion="1"] .gc[data-desk="1"] .gc-desk:has(> .gc-tier[data-jump]) > .gc-tier:not([data-jump]) :is(.gc-card > *, .gc-tier-name) {
   animation: none;
 }
 @media (prefers-reduced-motion: reduce) {
-  .gc[data-desk="1"] .gc-tier[data-jump] .gc-card {
+  .gc[data-desk="1"] .gc-tier[data-jump],
+  .gc[data-desk="1"] .gc-desk:has(> .gc-tier[data-jump]) > .gc-tier:not([data-jump]) :is(.gc-card > *, .gc-tier-name) {
     animation: none;
   }
 }
