@@ -621,51 +621,77 @@
 }
 /* Doki tsooninupu vastus = TERAVUSTAMINE (omanik 25.09: „teised
    hägustuvad, fookuses olev läheb veidi suuremaks"; asendab 23.09
-   kaardilaine). Valitud rida kasvab korraks, ülejäänud read hägustuvad ja
-   tuhmuvad, siis taastub kõik. Ühekordne ja ainult doki vajutusel
+   kaardilaine). Valitud rea kaardid kasvavad korraks, ülejäänud read
+   hägustuvad, siis taastub kõik. Ühekordne ja ainult doki vajutusel
    (GlassCarousel jumpPulse) — 03.08 otsus kehtib: hiire all liigub ainult
    üks kaart, laud ei muutu püsivalt. Kaks sama sisuga nime (a/b), et
    kordusvajutus alustaks uuesti; nimi vahetub ka teistel ridadel, sest
    :has() valib nad sama atribuudi järgi.
+
+   Omaniku 2. voor (25.09): „kestvus imelikult lühike, ikoonid liiguvad
+   vasakule ja paremale, puudu blur efekt, mis mujal".
+   - 1400 → 2400 ms, hoitakse 15–70% (~1,3 s).
+   - Kasvab iga KAART oma keskme ümber (.gc-card), mitte rida: rea `scale`
+     lükkas servakaardid ~22 px külgedele (mõõdetud päris laual).
+     .gc-item EI SOBI: tal on gc-ignite, mis taaskäivituks, kui rida
+     valikust välja langeb, ja kaardid vilguksid nähtamatuks.
+   - Klaas EI tuhmu: pinna opacity 0,45 tegi kaardi läbipaistvaks ja tema
+     tagant paistis terav maal, seega hägu tundus puuduvat. Nüüd sama
+     retsept mis kaardilehe külgkaartidel (.room[data-card-page] allpool):
+     hägu kaardi osadel, pind jääb täiesti härmas. Tuhmub ainult sisu.
    Hägu ja tuhmus käivad kaardi KIHTIDEL, mitte kaardil ega real: filter
    või opacity < 1 vanemal teeks temast härmatise (.gc-card-surface
    backdrop-filter) backdrop root'i ja klaas kaotaks animatsiooni ajaks
-   toa. Mõõt käib real `scale`-iga — transform backdrop root'i ei loo. */
+   toa. `scale` on transform ja backdrop root'i ei loo. */
 @keyframes gc-zone-focus-a {
-  22%,
-  68% { scale: 1.04; }
+  15%,
+  70% { scale: 1.04; }
 }
 @keyframes gc-zone-focus-b {
-  22%,
-  68% { scale: 1.04; }
+  15%,
+  70% { scale: 1.04; }
+}
+@keyframes gc-zone-recede-glass-a {
+  15%,
+  70% { filter: blur(2.5px); }
+}
+@keyframes gc-zone-recede-glass-b {
+  15%,
+  70% { filter: blur(2.5px); }
 }
 @keyframes gc-zone-recede-a {
-  22%,
-  68% { filter: blur(3px); opacity: calc(var(--gc-item-alpha, 1) * 0.45); }
+  15%,
+  70% { filter: blur(2.5px); opacity: calc(var(--gc-item-alpha, 1) * 0.55); }
 }
 @keyframes gc-zone-recede-b {
-  22%,
-  68% { filter: blur(3px); opacity: calc(var(--gc-item-alpha, 1) * 0.45); }
+  15%,
+  70% { filter: blur(2.5px); opacity: calc(var(--gc-item-alpha, 1) * 0.55); }
 }
-.gc[data-desk="1"] .gc-tier[data-jump="a"] {
-  animation: gc-zone-focus-a 1400ms var(--ease-soft);
+.gc[data-desk="1"] .gc-tier[data-jump="a"] .gc-card {
+  animation: gc-zone-focus-a 2400ms var(--ease-soft);
 }
-.gc[data-desk="1"] .gc-tier[data-jump="b"] {
-  animation: gc-zone-focus-b 1400ms var(--ease-soft);
+.gc[data-desk="1"] .gc-tier[data-jump="b"] .gc-card {
+  animation: gc-zone-focus-b 2400ms var(--ease-soft);
 }
-.gc[data-desk="1"] .gc-desk:has(> .gc-tier[data-jump="a"]) > .gc-tier:not([data-jump]) :is(.gc-card > *, .gc-tier-name) {
-  animation: gc-zone-recede-a 1400ms var(--ease-soft);
+.gc[data-desk="1"] .gc-desk:has(> .gc-tier[data-jump="a"]) > .gc-tier:not([data-jump]) .gc-card-surface {
+  animation: gc-zone-recede-glass-a 2400ms var(--ease-soft);
 }
-.gc[data-desk="1"] .gc-desk:has(> .gc-tier[data-jump="b"]) > .gc-tier:not([data-jump]) :is(.gc-card > *, .gc-tier-name) {
-  animation: gc-zone-recede-b 1400ms var(--ease-soft);
+.gc[data-desk="1"] .gc-desk:has(> .gc-tier[data-jump="b"]) > .gc-tier:not([data-jump]) .gc-card-surface {
+  animation: gc-zone-recede-glass-b 2400ms var(--ease-soft);
 }
-html[data-reduce-motion="1"] .gc[data-desk="1"] .gc-tier[data-jump],
-html[data-reduce-motion="1"] .gc[data-desk="1"] .gc-desk:has(> .gc-tier[data-jump]) > .gc-tier:not([data-jump]) :is(.gc-card > *, .gc-tier-name) {
+.gc[data-desk="1"] .gc-desk:has(> .gc-tier[data-jump="a"]) > .gc-tier:not([data-jump]) :is(.gc-icon, .gc-label, .gc-card-badge, .gc-tier-name) {
+  animation: gc-zone-recede-a 2400ms var(--ease-soft);
+}
+.gc[data-desk="1"] .gc-desk:has(> .gc-tier[data-jump="b"]) > .gc-tier:not([data-jump]) :is(.gc-icon, .gc-label, .gc-card-badge, .gc-tier-name) {
+  animation: gc-zone-recede-b 2400ms var(--ease-soft);
+}
+html[data-reduce-motion="1"] .gc[data-desk="1"] .gc-tier[data-jump] .gc-card,
+html[data-reduce-motion="1"] .gc[data-desk="1"] .gc-desk:has(> .gc-tier[data-jump]) > .gc-tier:not([data-jump]) :is(.gc-card-surface, .gc-icon, .gc-label, .gc-card-badge, .gc-tier-name) {
   animation: none;
 }
 @media (prefers-reduced-motion: reduce) {
-  .gc[data-desk="1"] .gc-tier[data-jump],
-  .gc[data-desk="1"] .gc-desk:has(> .gc-tier[data-jump]) > .gc-tier:not([data-jump]) :is(.gc-card > *, .gc-tier-name) {
+  .gc[data-desk="1"] .gc-tier[data-jump] .gc-card,
+  .gc[data-desk="1"] .gc-desk:has(> .gc-tier[data-jump]) > .gc-tier:not([data-jump]) :is(.gc-card-surface, .gc-icon, .gc-label, .gc-card-badge, .gc-tier-name) {
     animation: none;
   }
 }
