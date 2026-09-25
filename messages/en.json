@@ -2833,6 +2833,17 @@
     "human_confirmed": "Human confirmed"
   },
   "chat": {
+    "composer_tip": {
+      "voice": "Voice",
+      "dictate": "Dictate",
+      "stop_recording": "Stop",
+      "discard": "Discard",
+      "send": "Send",
+      "stop_answer": "Stop",
+      "exit_mode": "Exit",
+      "upload": "Document",
+      "dictation_paid": "Paid"
+    },
     "diagnostics": {
       "decision_title": "Why did the system decide this?",
       "decision_boundary": "These are recorded decision inputs and conditions, not a guarantee of root cause. If source years conflict, compare the question's measurement period with the publication year. History counts describe this request's selection, not the entire conversation.",
