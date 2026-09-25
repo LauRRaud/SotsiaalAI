@@ -253,10 +253,15 @@ export default function ChatComposer({
     }
 
     node.style.height = "auto";
-    const nextHeight = Math.max(minHeight, Math.min(node.scrollHeight, maxHeight));
-    const contentHeight = Math.max(0, node.scrollHeight - paddingTop - paddingBottom);
+    // Tühja välja scrollHeight sisaldab kohatäidet. Kohatäide on nähtamatu
+    // (chat.css), aga pikk tekst murdus mitmeks reaks ja fookusel kasvas
+    // väli nende kõrguseks: kursor hüppas üles ja nähtamatu teksti vari
+    // joonistas teise laigu (omanik 25.09). Tühi väli jääb üherealiseks.
+    const measuredHeight = currentDraftLength ? node.scrollHeight : minHeight;
+    const nextHeight = Math.max(minHeight, Math.min(measuredHeight, maxHeight));
+    const contentHeight = Math.max(0, measuredHeight - paddingTop - paddingBottom);
     const lineCount = Math.max(1, Math.round(contentHeight / lineHeight));
-    const scrollLocked = node.scrollHeight > maxHeight;
+    const scrollLocked = measuredHeight > maxHeight;
     let nextExpanded;
 
     if (composerExpanded) {
