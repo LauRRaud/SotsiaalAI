@@ -696,6 +696,21 @@ html[data-reduce-motion="1"] .gc[data-desk="1"] .gc-desk:has(> .gc-tier[data-jum
     animation: none;
   }
 }
+/* PUHKEOLEKUS ILMA TRANSFORMITA (omanik 25.09: ikoonide „kvaliteet on
+   väga halb, servad koledad"). Kaardi baastransform on rotateX/rotateY/
+   scale ka siis, kui kalle on 0, ja 900 px perspektiivi all võib Chrome
+   hoida sellist kaarti 3D-kihis, mille ta rasterdab bitmapiks ja
+   murdosalise ekraaniskaala (125 %, 150 %) juures venitab — jooned
+   pehmenevad ja servad sakivad. Puhkeolekus joonistub kaart nüüd tavalise
+   vektorina; transform tuleb alles hoveril. isolation hoiab kaardi
+   virnastuskonteksti, mida tema lapsed (z-index 1/2) vajavad — see ei tee
+   temast härmatise backdrop root'i. */
+.gc[data-desk="1"] .gc-card {
+  isolation: isolate;
+}
+.gc[data-desk="1"] .gc-card:not(:hover):not(:focus-visible) {
+  transform: none;
+}
 /* Valitud kaardi silt ja ikoon lähevad täistooni. */
 .gc[data-desk="1"] .gc-card:hover,
 .gc[data-desk="1"] .gc-card:focus-visible {
@@ -970,7 +985,9 @@ html:not([data-contrast="hc"])[data-display-mode="fullscreen"] .gc-card-surface:
   height: clamp(4rem, 5.6vw, 5.3rem);
 }
 .gc-icon svg * {
-  stroke-width: 1.25;
+  /* --icon-scale: vähendatud rühm (CardIcons ScaledGroup) saab sama
+     nähtava joone mis naabrid. */
+  stroke-width: calc(1.25 / var(--icon-scale, 1));
 }
 .gc-item[data-center="0"] .gc-icon {
   color: var(--room-text-soft);
@@ -1605,7 +1622,9 @@ html[data-reduce-motion="1"] .gc-shortcut-menu > * {
   height: 1.35rem;
 }
 .gc-shortcut-icon svg * {
-  stroke-width: 1.45;
+  /* --icon-scale: vähendatud rühm (CardIcons ScaledGroup) saab sama
+     nähtava joone mis naabrid. */
+  stroke-width: calc(1.45 / var(--icon-scale, 1));
 }
 .gc-shortcut-mark {
   width: 0.45rem;

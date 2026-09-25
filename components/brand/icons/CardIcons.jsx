@@ -12,6 +12,19 @@ const P = {
   strokeLinejoin: "round",
 };
 
+/* Optiliselt vähendatud rühm (translate + scale). Scale kahandab ka joont,
+   seega said need ikoonid naabritest peenema joone (omanik 25.09: „osad
+   ikoonid teise paksusega"). Kompensatsioon kahes kohas:
+   - atribuut 1.5 / s taastab vaikejoone;
+   - `--icon-scale` laseb CSS-i ülekirjutustel (carousel.css .gc-icon ja
+     .gc-shortcut-icon) jagada sama arvuga: calc(1.25 / var(--icon-scale)). */
+const ScaledGroup = ({ s, transform, children }) => (
+  <g transform={transform} style={{ "--icon-scale": s }}>
+    {children}
+  </g>
+);
+const Ps = (s) => ({ ...P, strokeWidth: Math.round((1.5 / s) * 1000) / 1000 });
+
 const Svg = ({ children, ...props }) => (
   <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" {...props}>
     {children}
@@ -134,13 +147,13 @@ export const LanguageAccessIcon = (props) => (
    kasvas koos ikooniga mitme piksli paksuseks. */
 export const AccountGearIcon = (props) => (
   <Svg {...props}>
-    <g transform="translate(12 12) scale(0.9) translate(-12 -12)">
-    <circle {...P} cx="12" cy="12" r="2.9" />
+    <ScaledGroup s={0.9} transform="translate(12 12) scale(0.9) translate(-12 -12)">
+    <circle {...Ps(0.9)} cx="12" cy="12" r="2.9" />
     <path
-      {...P}
+      {...Ps(0.9)}
       d="M18.8 14.7a1.6 1.6 0 0 0 .32 1.77l.05.05a1.94 1.94 0 1 1-2.74 2.74l-.05-.05a1.6 1.6 0 0 0-1.77-.32 1.6 1.6 0 0 0-.97 1.47v.14a1.94 1.94 0 1 1-3.88 0v-.08a1.6 1.6 0 0 0-1.05-1.47 1.6 1.6 0 0 0-1.77.32l-.05.05a1.94 1.94 0 1 1-2.74-2.74l.05-.05a1.6 1.6 0 0 0 .32-1.77 1.6 1.6 0 0 0-1.47-.97h-.14a1.94 1.94 0 1 1 0-3.88h.08A1.6 1.6 0 0 0 4.46 8.8a1.6 1.6 0 0 0-.32-1.77l-.05-.05a1.94 1.94 0 1 1 2.74-2.74l.05.05a1.6 1.6 0 0 0 1.77.32h.07a1.6 1.6 0 0 0 .97-1.47v-.14a1.94 1.94 0 1 1 3.88 0v.08a1.6 1.6 0 0 0 .97 1.46c.6.26 1.28.13 1.77-.31l.05-.05a1.94 1.94 0 1 1 2.74 2.74l-.05.05a1.6 1.6 0 0 0-.32 1.77v.07a1.6 1.6 0 0 0 1.47.97h.14a1.94 1.94 0 1 1 0 3.88h-.08a1.6 1.6 0 0 0-1.46.97Z"
     />
-    </g>
+    </ScaledGroup>
   </Svg>
 );
 
@@ -191,12 +204,12 @@ export const ChatCardIcon = (props) => (
    Sama kuju kannab ka MentorIcon, seega mõõt tuleb ühest kohast. */
 export const RoomsCardIcon = (props) => (
   <Svg {...props}>
-    <g transform="translate(12 12) scale(0.733) translate(-11.8 -12.09)">
-      <path {...P} d="M6.41 13.79h5.4c2.1 0 3.7 1 4.3 2.6.5 1.3.4 2.5.2 3.4-.5 2-2.9 2.6-7.2 2.6s-6.7-.6-7.2-2.6c-.2-.9-.3-2.1.2-3.4.6-1.6 2.2-2.6 4.3-2.6Z" />
-      <circle {...P} cx="9.11" cy="5.79" r="4" />
-      <path {...P} d="M21.86 18.88V17c0-1.71-1.53-3.21-3.72-3.64" />
-      <path {...P} d="M15.4 2.76c1.91.02 3.44 1.64 3.41 3.62s-1.59 3.56-3.5 3.53" />
-    </g>
+    <ScaledGroup s={0.733} transform="translate(12 12) scale(0.733) translate(-11.8 -12.09)">
+      <path {...Ps(0.733)} d="M6.41 13.79h5.4c2.1 0 3.7 1 4.3 2.6.5 1.3.4 2.5.2 3.4-.5 2-2.9 2.6-7.2 2.6s-6.7-.6-7.2-2.6c-.2-.9-.3-2.1.2-3.4.6-1.6 2.2-2.6 4.3-2.6Z" />
+      <circle {...Ps(0.733)} cx="9.11" cy="5.79" r="4" />
+      <path {...Ps(0.733)} d="M21.86 18.88V17c0-1.71-1.53-3.21-3.72-3.64" />
+      <path {...Ps(0.733)} d="M15.4 2.76c1.91.02 3.44 1.64 3.41 3.62s-1.59 3.56-3.5 3.53" />
+    </ScaledGroup>
   </Svg>
 );
 
@@ -330,12 +343,12 @@ export const InvitePersonIcon = (props) => (
      mediaan 21,1 — nii nagu on, loeks ta naabritest 1,28× suuremana.
      Transform tsentreerib kuju (kese 13,47 / 13,30) ja kahandab sihile. */
   <Svg {...props}>
-    <g transform="translate(12 12) scale(0.778) translate(-13.47 -13.3)">
-      <path {...P} d="M9.3 15H14.7C16.8 15 18.4 16 19 17.6C19.5 18.9 19.4 20.1 19.2 21C18.7 23 16.3 23.6 12 23.6C7.7 23.6 5.3 23 4.8 21C4.6 20.1 4.5 18.9 5 17.6C5.6 16 7.2 15 9.3 15Z" />
-      <circle {...P} cx="12" cy="7" r="4" />
-      <path {...P} d="M20.2 8.7V12.9" />
-      <path {...P} d="M18.1 10.8H22.3" />
-    </g>
+    <ScaledGroup s={0.778} transform="translate(12 12) scale(0.778) translate(-13.47 -13.3)">
+      <path {...Ps(0.778)} d="M9.3 15H14.7C16.8 15 18.4 16 19 17.6C19.5 18.9 19.4 20.1 19.2 21C18.7 23 16.3 23.6 12 23.6C7.7 23.6 5.3 23 4.8 21C4.6 20.1 4.5 18.9 5 17.6C5.6 16 7.2 15 9.3 15Z" />
+      <circle {...Ps(0.778)} cx="12" cy="7" r="4" />
+      <path {...Ps(0.778)} d="M20.2 8.7V12.9" />
+      <path {...Ps(0.778)} d="M18.1 10.8H22.3" />
+    </ScaledGroup>
   </Svg>
 );
 
