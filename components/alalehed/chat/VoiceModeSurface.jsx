@@ -107,7 +107,9 @@ export default function VoiceModeSurface({ t, voice, onClose }) {
       data-state={voice.status}
       data-info-open={infoOpen ? "true" : undefined}
       role="dialog"
-      aria-modal="true"
+      /* Mitte-modaalne: vestluse mullid jäävad häälvestluse ajal nähtavaks
+         ja peavad jääma ka ekraanilugejale kättesaadavaks (omanik 25.09). */
+      aria-modal="false"
       aria-label={read("chat.voice.eyebrow", "Häälvestlus")}
     >
       {infoOpen ? (
