@@ -205,9 +205,9 @@ export const ChatCardIcon = (props) => (
 export const RoomsCardIcon = (props) => (
   <Svg {...props}>
     <circle {...P} cx="9" cy="8" r="3.5" />
-    <path {...P} d="M3.5 20v-1.25A4.25 4.25 0 0 1 7.75 14.5h2.5a4.25 4.25 0 0 1 4.25 4.25V20Z" />
+    <path {...P} d="M7.75 14.5h2.5a4.25 4.25 0 0 1 4.25 4.25 1.75 1.75 0 0 1-1.75 1.75h-7.5a1.75 1.75 0 0 1-1.75-1.75 4.25 4.25 0 0 1 4.25-4.25Z" />
     <path {...P} d="M15.5 4.7a3.5 3.5 0 0 1 0 6.6" />
-    <path {...P} d="M17.5 14.7a4.25 4.25 0 0 1 3 4.05V20" />
+    <path {...P} d="M17.5 14.7a4.25 4.25 0 0 1 3 4.05 1.75 1.75 0 0 1-1.75 1.75" />
   </Svg>
 );
 
@@ -332,13 +332,14 @@ export const InquiryIcon = (props) => (
   </Svg>
 );
 
-/* Kutsu osaleja — terviklik inimene (alt kinnine keha, omanik 25.07) +
+/* Kutsu osaleja — terviklik inimene (alt kinnine ja ümar keha, omanik 25.07
+   ja 25.09: „need ei olnud alt sirgete servadega") +
    pluss üleval paremal. Joonistatud otse sisualasse (25.09), ilma
    scale-normeerimiseta. */
 export const InvitePersonIcon = (props) => (
   <Svg {...props}>
     <circle {...P} cx="9.5" cy="8" r="3.5" />
-    <path {...P} d="M4 20v-1.25A4.25 4.25 0 0 1 8.25 14.5h2.5A4.25 4.25 0 0 1 15 18.75V20Z" />
+    <path {...P} d="M8.25 14.5h2.5A4.25 4.25 0 0 1 15 18.75a1.75 1.75 0 0 1-1.75 1.75h-7.5A1.75 1.75 0 0 1 4 18.75a4.25 4.25 0 0 1 4.25-4.25Z" />
     <path {...P} d="M19 6.5v5M16.5 9h5" />
   </Svg>
 );
