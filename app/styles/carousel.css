@@ -974,6 +974,23 @@ html:not([data-contrast="hc"])[data-display-mode="fullscreen"] .gc-card-surface:
   place-items: center;
   color: var(--room-text); /* sama värv mis tekstil (tellija) */
 }
+/* Rasterdatud ikoon (GlassCard CardIcon): mask samas ruudustiku lahtris,
+   mille mõõdu annab inline-SVG. Kui mask on valmis, jääb SVG kasti
+   hoidma, aga nähtamatuks — joonistab pilt. */
+.gc-icon > * {
+  grid-area: 1 / 1;
+}
+.gc-icon[data-raster="1"] > svg {
+  visibility: hidden;
+}
+.gc-icon-raster {
+  align-self: stretch;
+  justify-self: stretch;
+  background: currentColor;
+  -webkit-mask: var(--gc-icon-mask) center / contain no-repeat;
+  mask: var(--gc-icon-mask) center / contain no-repeat;
+  pointer-events: none;
+}
 /* Tellija 07.07: ikoonid VEEL suuremad ja õhulisemad — mõõt üles,
    kontuurijoon peenemaks (stroke 1.5 → 1.25 CSS-iga üle presentats.
    atribuudi; kõik CardIcons glüüfid on joonepõhised, ka PIN-täpid).
