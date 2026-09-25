@@ -2549,43 +2549,52 @@ html[data-contrast="hc"] .room-call-details {
 
 /* Kiirmenüü sarnane klaassilt: sama info ilmub hover'il ja
    klaviatuurifookuses; brauseri kandilist title-silti neil nuppudel pole. */
-.panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] button[data-tooltip] {
+/* NUPU SILT = KIIRMENÜÜ VIHJE (omanik 25.09, pilt doki „HALDUS"-sildist):
+   hoveril tõuseb nupu kohale sama klaaspill mis .gc-shortcut-tooltip
+   (carousel.css) — sama toon, hägu, sisehelk, kiri ja 90 ms viide. Kehtib
+   KÕIGILE komposeri nuppudele (+, mikrofon, häälvestlus/saada, ruumi
+   tööriistad); varem said sildi ainult ruumi nupud ja tavavestluses oli
+   brauseri `title`. */
+.panel-scrim[data-conversation="1"] .chat-composer button[data-tooltip] {
   position: relative;
 }
 
-.panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] button[data-tooltip]::after {
+.panel-scrim[data-conversation="1"] .chat-composer button[data-tooltip]::after {
   content: attr(data-tooltip);
   position: absolute;
   left: 50%;
-  bottom: calc(100% + 0.65rem);
+  bottom: calc(100% + 0.55rem);
   z-index: var(--z-modal, 50);
   width: max-content;
-  max-width: min(15rem, calc(100vw - 2rem));
-  padding: 0.48rem 0.72rem;
-  border: 1px solid color-mix(in srgb, var(--text-warm) 17%, transparent);
+  max-width: min(13rem, calc(100vw - 2rem));
+  padding: 0.5rem 0.95rem;
+  border: 0;
   border-radius: 999px;
-  color: var(--text-warm);
-  background: rgba(25, 25, 25, 0.94);
-  box-shadow: 0 0.7rem 1.7rem rgba(0, 0, 0, 0.3);
+  color: var(--room-text);
+  background: var(--control-glass-bg);
+  -webkit-backdrop-filter: var(--control-glass-blur);
+  backdrop-filter: var(--control-glass-blur);
+  box-shadow: inset 0 1px rgba(247, 247, 247, 0.08);
   font-family: var(--font-ui);
-  font-size: 0.72rem;
-  font-weight: 650;
+  font-size: 0.8rem;
+  font-weight: 520;
   line-height: 1.2;
-  letter-spacing: 0.055em;
+  letter-spacing: 0.1em;
   text-align: center;
   text-transform: uppercase;
   white-space: normal;
   pointer-events: none;
   opacity: 0;
-  translate: -50% 0.3rem;
+  translate: -50% 0.25rem;
   transition:
-    opacity var(--dur-fast, 180ms) var(--ease-soft, ease),
-    translate var(--dur-fast, 180ms) var(--ease-soft, ease);
+    opacity 200ms var(--ease-soft, ease),
+    translate 240ms var(--ease-soft, ease);
 }
 
-.panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] button[data-tooltip]:is(:hover, :focus-visible)::after {
+.panel-scrim[data-conversation="1"] .chat-composer button[data-tooltip]:is(:hover, :focus-visible):not([aria-expanded="true"])::after {
   opacity: 1;
   translate: -50% 0;
+  transition-delay: 90ms;
 }
 
 /* Pikk tühikuteta tekst ei tohi määrata flex-elemendi miinimumlaiust ega
@@ -2635,9 +2644,12 @@ html[data-contrast="hc"] .room-call-details {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] button[data-tooltip]::after {
+  .panel-scrim[data-conversation="1"] .chat-composer button[data-tooltip]::after {
     transition: none;
   }
+}
+html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] .chat-composer button[data-tooltip]::after {
+  transition: none;
 }
 
 /* Hiline kihita leping: vanad #chat-input-põhised nupureeglid ei tohi
