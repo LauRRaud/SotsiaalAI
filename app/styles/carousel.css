@@ -554,12 +554,15 @@
    mõõdetult 8,7 % suuremad kui vanad (keskmine diagonaal 22,95 vs 21,12
    ühikut), seega kast kahaneb 0,92 korda. Joon kasvab sama suhtega
    (1,25 → 1,36), et nähtav joonepaksus jääks samaks. */
+/* 2. voor (omanik 25.09: „ikka kuidagi suured"): veel 15 % väiksemaks,
+   0,506 → 0,43, lagi 5,5 → 4,7rem. Joon kasvab osaliselt (1,36 → 1,5):
+   nähtav joon ~4,6 px, et väiksem ikoon ei muutuks raskeks ega peeneks. */
 .gc[data-desk="1"] .gc-icon svg {
-  width: clamp(2.2rem, calc(var(--desk-card-h) * 0.506), 5.5rem);
-  height: clamp(2.2rem, calc(var(--desk-card-h) * 0.506), 5.5rem);
+  width: clamp(2rem, calc(var(--desk-card-h) * 0.43), 4.7rem);
+  height: clamp(2rem, calc(var(--desk-card-h) * 0.43), 4.7rem);
 }
 .gc[data-desk="1"] .gc-icon svg * {
-  stroke-width: calc(1.36 / var(--icon-scale, 1));
+  stroke-width: calc(1.5 / var(--icon-scale, 1));
 }
 /* Silt on kaardi PÕHISISU, mitte allkiri: 288 px laiusel plaadil oli
    14,7 px tekst kadunud (omanik 25.07). Tähevahe kahaneb suuruse
