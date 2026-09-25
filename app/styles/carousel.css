@@ -182,9 +182,12 @@
      rida on keskel JA nimi on ekraanil, igal laiusel. */
   --desk-cols: 5; /* suurima astme kaartide arv; GlassCarousel kirjutab üle */
   --desk-track: calc(100vw - 2 * var(--desk-pad-x) - 2 * var(--desk-gutter));
+  /* Teine piir kitseneb ALLA 5 veeru (omanik 25.09, tööheaolu laud 4
+     veergu: „kaardid vist veidi laiad"): 4 → 13.4vw, 3 → 12.3vw. 5+ veergu
+     jääb 14.5vw peale, töölaud ei muutu. */
   --gc-w: min(
     19rem,
-    14.5vw,
+    calc(14.5vw - max(0, 5 - var(--desk-cols)) * 1.1vw),
     calc(
       (var(--desk-track) - (var(--desk-cols) - 1) * var(--desk-gap-x)) /
         var(--desk-cols)
@@ -214,7 +217,18 @@
      kattumist ega doki alla jooksmist ei teki kummalgi. */
   /* Omanik 23.09: töölaua kaardid veidi suuremaks — kalle 0.17 → 0.19 teeb
      7 veeru kaardi ~9% kõrgemaks (1920×860 mahub dokini ära). */
-  --desk-card-ratio: max(1.08, calc(1.62 - (var(--desk-cols) - 5) * 0.19)); /* laius : kõrgus */
+  /* Lagi 1.5 ALLA 5 veeru (omanik 25.09): 4 veeru valem andis 1.81 ehk
+     278×154 px plaadi, kuhu ikoon ja silt vaevu mahtusid ja ikoon surus
+     ülaserva vastu. Koos kitsama laiusega on 4 veeru kaart nüüd ~257×171,
+     sama kõrge kui töölaua kaart. 5+ veeru puhul on teine liige ≥ 11.5 ja
+     `min()` jätab valemi puutumata. */
+  --desk-card-ratio: max(
+    1.08,
+    min(
+      calc(1.62 - (var(--desk-cols) - 5) * 0.19),
+      calc(1.5 + max(0, var(--desk-cols) - 4) * 10)
+    )
+  ); /* laius : kõrgus */
   /* Kaardi KÕRGUS nimega muutujana. Sama arv, mille `aspect-ratio` niikuinii
      välja arvutab — aga nimetatuna saab kaardi SISU (ikoon) temast lähtuda.
      Just see puudus: ikoon tuli `3.5vw`-st ja jäi 67 px peale ka siis, kui
@@ -568,7 +582,14 @@
 .gc[data-desk="1"] .gc-label {
   /* 9.4cqi: töölaua 7 veeru kaardil jõuab silt sama 1.3rem laeni mis
      tööheaolu 4 veeru kaardil (omanik 23.09: töölaual tekst liiga väike). */
-  font-size: clamp(0.8rem, 9.4cqi, 1.3rem);
+  /* Lagi langeb ALLA 5 veeru (omanik 25.09: tööheaolu 4 veeru laia kaardi
+     silt oli töölaua omast liiga palju suurem): 4 veergu → 1.22rem, sama
+     mõõt mis töölaua pikkadel siltidel. 5+ veergu jääb 1.3rem. */
+  font-size: clamp(
+    0.8rem,
+    min(9.4cqi, calc(1.3rem - max(0, 5 - var(--desk-cols)) * 0.08rem)),
+    1.3rem
+  );
   letter-spacing: 0.09em;
   padding: 0 0.6em 0 calc(0.6em + 0.09em);
 }
@@ -576,7 +597,11 @@
    tekstid võiks veel suuremad olla"). Ruumi annab kitsam tähevahe ja
    polster: ORGANISATSIOONID täidab ~91% kaardi laiusest. */
 .gc[data-desk="1"] .gc-label[data-long="1"] {
-  font-size: clamp(0.72rem, 8.6cqi, 1.22rem);
+  font-size: clamp(
+    0.72rem,
+    min(8.6cqi, calc(1.22rem - max(0, 5 - var(--desk-cols)) * 0.08rem)),
+    1.22rem
+  );
   letter-spacing: 0.04em;
   padding: 0 0.5em 0 calc(0.5em + 0.04em);
 }
