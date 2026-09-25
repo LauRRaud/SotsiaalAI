@@ -701,9 +701,15 @@ html[data-reduce-motion="1"] .gc[data-desk="1"] .gc-desk:has(> .gc-tier[data-jum
 .gc[data-desk="1"] .gc-card:focus-visible {
   /* translateZ ÜKSI kirjutas kursorikalde üle (see reegel on 0,2,1, kalde
      oma 0,1,0) — ja just hover on hetk, mil kallet vaja on. Kaks liigutust
-     ühes transformis: kaart tuleb ette JA kaldub kursori järgi. */
-  transform: translateZ(46px) rotateX(var(--tilt-x, 0deg))
-    rotateY(var(--tilt-y, 0deg)) scale(var(--tilt-scale, 1));
+     ühes transformis: kaart tuleb ette JA kaldub kursori järgi.
+     Ettetulek on SCALE, mitte translateZ (omanik 25.09: hoveril ikoonid
+     „halva kvaliteediga ja servad koledad"). translateZ(46px) 900 px
+     perspektiivis suurendab kaarti projektsiooniga 900 / 854 = 1,054 korda,
+     aga Chrome rasterdab kihi 1× mõõdus ja venitab bitmapi — jooned
+     pehmenesid. scale() komponenti arvestab Chrome rastri mõõdus, seega
+     sama suurendus joonistub teravalt. */
+  transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg))
+    scale(calc(var(--tilt-scale, 1) * 1.054));
 }
 .gc[data-desk="1"] .gc-card:hover .gc-icon,
 .gc[data-desk="1"] .gc-card:hover .gc-label,
