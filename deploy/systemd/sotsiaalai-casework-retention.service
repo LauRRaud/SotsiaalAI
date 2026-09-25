@@ -47,7 +47,9 @@ NoNewPrivileges=true
 PrivateTmp=true
 ProtectSystem=strict
 ProtectHome=read-only
-ReadWritePaths=/home/ubuntu/apps/sotsiaalai/.next/cache /var/lock
+# `-`: deploy kustutab .next/cache pärast igat buildi. Ilma selleta keeldus systemd töö
+# käivitamisest (226/NAMESPACE) — 20.–25.09 jäi säilitustöö 110 korda tegemata.
+ReadWritePaths=-/home/ubuntu/apps/sotsiaalai/.next/cache /var/lock
 
 [Install]
 WantedBy=multi-user.target
