@@ -216,7 +216,10 @@
   --track-caps: 0.24em; /* paneelisildid (pildid 8/11) */
   --fs-hero: clamp(1.7rem, 1.1rem + 2.6vw, 3.1rem);
   --fs-title: clamp(1.35rem, 1.05rem + 1.3vw, 2rem);
-  --fs-body: 1rem;
+  /* 1 → 1,0625 rem (omanik 25.09: „osad tekstid veidi väikesed, nõksa
+     suuremaks"). Kehtib kogu keha- ja paneelitekstile; nupud (--fs-small)
+     ja väljad (--input-font-size) jäävad samaks. */
+  --fs-body: 1.0625rem;
   --fs-small: 0.875rem;
   --fs-micro: 0.78rem;
 
