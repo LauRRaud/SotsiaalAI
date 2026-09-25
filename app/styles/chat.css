@@ -1380,19 +1380,50 @@ button[aria-controls="chat-window-scroll"] {
    lähedal (tellija 12.07: tekst oli joonest liiga kõrgel). */
 .panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > div:has(#chat-input) {
   position: relative;
-  align-items: flex-end;
+  /* Ühel real on tekst nuppudega SAMAL keskjoonel (omanik 25.09: „tekst
+     üksikul real on kuidagi all"); varem flex-end, sest tekst pidi
+     kuldjoone lähedal istuma. */
+  align-items: center;
   gap: 0.3rem;
-  /* Sümmeetriline polster pilli sees (varem 0.15 üleval, sest tekst pidi
-     kuldjoone lähedal istuma). */
   padding: var(--conv-strip-pad-b) 0.45rem var(--conv-strip-pad-b) 3.3rem;
   border: 0;
-  border-radius: 999px;
+  /* Raadius = üherealise riba poolkõrgus (~57 px), mitte 999px: ühel real
+     on riba ikka pill, aga mitmel real ümarate nurkadega ristkülik —
+     999px tegi kõrgest ribast kapsli, mille otsad lõikasid ikoonid ja
+     teksti (omanik 25.09). */
+  border-radius: 1.8rem;
   /* ::before-pill vajab oma kihti triibu sees. */
   isolation: isolate;
   background: none;
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
   box-shadow: none;
+}
+/* MITMEREALINE (data-expanded, ChatComposer: fookus + rohkem kui üks rida):
+   tekst saab TERVE laiuse, nupud liiguvad tema alla paremale ja + jääb
+   vasakusse alanurka (ta on vormi suhtes absoluutne). Varem seisid nupud
+   teksti kõrval kogu kõrguse ulatuses ja nende kohale jäi tühi veerg
+   (omanik 25.09: „imelik tühi koht jääb inputi sees paremal pool"). */
+.panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > div:has(#chat-input)[data-expanded="true"] {
+  flex-wrap: wrap;
+  row-gap: 0.15rem;
+  padding-left: 1.2rem;
+}
+.panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > div:has(#chat-input)[data-expanded="true"] > div:has(> #chat-input) {
+  flex: 1 1 100%;
+  /* Tekstil mõlemal pool sama õhk (vasak 1.2rem triibu polster). */
+  padding-right: 0.75rem;
+}
+.panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > div:has(#chat-input)[data-expanded="true"] > div:has(> #chat-input) + * {
+  margin-left: auto;
+}
+/* Ruumikomposer on ruudustik (1fr auto auto): tekst üle kõigi veergude,
+   tööriistad ja nupud teise ritta paremale. */
+.panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] .chat-composer__input-bar[data-expanded="true"] > .chat-composer__field {
+  grid-column: 1 / -1;
+}
+.panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] .chat-composer__input-bar[data-expanded="true"] > .chat-composer__field + * {
+  grid-column: 2;
 }
 /* Fookusel EI tõuse ega helenda (tellija 12.07: "tõuseb tõksuga üles ja
    taha tekib heledus — võta ära"). Triip jääb paigale, kursor näitab fookust. */
@@ -2447,7 +2478,8 @@ html[data-contrast="hc"] .room-call-details {
   min-width: 0;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto auto;
-  align-items: end;
+  /* Üks rida keskjoonel nagu tavakomposeris (25.09). */
+  align-items: center;
   gap: 0.28rem;
 }
 

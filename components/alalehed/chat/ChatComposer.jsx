@@ -891,7 +891,7 @@ export default function ChatComposer({
 
       <div className="chat-composer__body">
         {privacyPromptNode}
-        <div className="chat-composer__input-bar" ref={inputBarRef} onMouseDown={handleInputBarMouseDown}>
+        <div className="chat-composer__input-bar" ref={inputBarRef} onMouseDown={handleInputBarMouseDown} data-expanded={composerExpanded && inputFocused ? "true" : undefined}>
           {inputBarChildren}
         </div>
         {showCharCounter ? (
