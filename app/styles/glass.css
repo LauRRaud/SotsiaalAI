@@ -67,10 +67,10 @@
     text-align: center;
     text-overflow: ellipsis;
     font-size: var(--input-font-size);
-    /* Üherealine väli = nupu kuju (omanik 23.09: „lahtritele oleks saanud
-       ka selle kujunduse teha"): pill, mitte 14 px nurk — sama täide, serv
-       ja sisehelk tulid juba --input-* tokenitest. Textarea jääb välja. */
-    border-radius: 999px;
+    /* Kuju tuleb baasreegli --input-radius'est (ümarate nurkadega
+       ristkülik). 23.09 proovitud pill võeti 25.09 tagasi (omanik: „lahtrid
+       võiks olla ristkülikud, ümaramate nurkadega, nupud samad"). Materjal
+       jääb nupuga ühiseks; eristab ainult kuju. */
     /* Välja kõrguse PÄRIS tegija ei olnud polster, vaid päritud reavahe
        1.55 (proosa oma): kiri × 1,55 tegi ühest reast 31 px ja väljast
        51 px klotsi. Üherealisel väljal ei ole reavahet vaja.
