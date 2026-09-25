@@ -2833,6 +2833,17 @@
     "human_confirmed": "Inimese kinnitatud"
   },
   "chat": {
+    "composer_tip": {
+      "voice": "Häälvestlus",
+      "dictate": "Dikteeri",
+      "stop_recording": "Lõpeta",
+      "discard": "Katkesta",
+      "send": "Saada",
+      "stop_answer": "Peata",
+      "exit_mode": "Välju",
+      "upload": "Dokument",
+      "dictation_paid": "Tasuline"
+    },
     "diagnostics": {
       "decision_title": "Miks süsteem nii otsustas?",
       "decision_boundary": "Need on salvestatud otsuse sisendid ja tingimused, mitte automaatne algpõhjuse garantii. Allikaaastate vastuolu korral võrdle küsimuse perioodi ja artikli ilmumisaastat. Ajaloo arvud kirjeldavad selle päringu valikut, mitte vestluse kogupikkust.",
