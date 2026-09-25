@@ -1304,21 +1304,9 @@ button[aria-controls="chat-window-scroll"] {
    paremal mikrofon + saada. Joon hingab alati ja tõmbab energiat sisse,
    kui AI genereerib. */
 
-/* Õrn loetavus-udu triibu taga — pehme tumendus ILMA kastiservata,
-   et tekst püsiks loetav ruumi ees. */
-.panel-scrim[data-conversation="1"] form:has(#chat-input)::before {
-  content: "";
-  position: absolute;
-  left: -3%;
-  right: -3%;
-  top: 0.1rem;
-  bottom: -0.5rem;
-  border-radius: 50%;
-  background: radial-gradient(120% 150% at 50% 58%, rgba(8, 8, 8, 0.5), rgba(8, 8, 8, 0.2) 46%, transparent 72%);
-  filter: blur(9px);
-  pointer-events: none;
-  z-index: -1;
-}
+/* Triibu taga EI OLE tumedat udu (omanik 25.09: „võta see tume taust
+   sõnumi saatmise tagant ära"). Loetavuse annab #chat-input'i enda
+   text-shadow, mis kehtib ainult kirjutatud tekstile. */
 /* Tööriistad (+) — lihtsalt SUUR ikoon triibu vasakus otsas, ilma klaasnupu
    taustata (tellija 12.07: "vasakul otsas on lihtsalt + ikoon", ikoonid
    julgelt suuremad). Bottom joondab + mikrofoni/saada põhjaga (mitte

@@ -22,15 +22,24 @@
   color: var(--voice-pearl);
   background: none;
   border: 0;
+  /* Pind laotub sõnumite peale, aga ei tohi neid kerimast takistada —
+     klõpsu vajab ainult info-vaade (allpool). */
+  pointer-events: none;
 }
 
 /* Häälpinnal EI OLE katet (omanik 25.09: „helivestluse peale kaob ruum
-   üldse ära"). Varem peitis vestluse teksti läbipaistmatu must kate, mis
-   täitis kogu paneeli ja kustutas toa. Nüüd peidetakse vestluse sisu ise
-   (mullid, komposer, teated) ning tuba jääb häälvestluse taha nähtavaks.
-   `visibility` hoiab paigutuse alles, nii et tagasi tulles ei hüppa midagi,
-   ja võtab peidetud sisu ka ekraanilugeja puust — häälpind on aria-modal. */
-.panel-scrim [data-chat-container][data-voice-active="true"] > :not(.voice-mode) {
+   üldse ära"). Häälvestluse kõne ja vastus jõuavad vestlusse tavaliste
+   sõnumitena (ChatBody handleVoiceTranscript → handleSendMessage), seega
+   JÄÄVAD MULLID NÄHTAVAKS ja vestlus kuvatakse reaalajas (omanik 25.09).
+   Peidetakse ainult komposer, teated ja muud juhtnupud (kõik peale
+   <main>-i). `visibility` hoiab paigutuse alles: komposeri koht jääb
+   olekureale ja tagasi tulles ei hüppa midagi. */
+.panel-scrim [data-chat-container][data-voice-active="true"] > :not(.voice-mode, main) {
+  visibility: hidden;
+}
+/* ⓘ-info vahetab pinna sisu: selle ajaks lähevad ka mullid ära, muidu
+   jookseksid kaks teksti üksteise peale. */
+.panel-scrim [data-chat-container][data-voice-active="true"]:has(> .voice-mode[data-info-open="true"]) > main {
   visibility: hidden;
 }
 
@@ -77,6 +86,7 @@
    hägustaks tuba — paneel on backdrop root. */
 .voice-mode__info {
   z-index: 2;
+  pointer-events: auto;
   grid-row: 1 / -1;
   align-self: center;
   width: min(34rem, 92%);
