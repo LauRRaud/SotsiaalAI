@@ -1283,29 +1283,58 @@ button[aria-controls="chat-window-scroll"] {
      ta on absoluutselt positsioneeritud VORMI suhtes, mitte triibu suhtes
      (vt > div:first-child allpool). Ilma selle sidemeta jäi + triibust
      välja rippuma, kui polstrit muudeti. */
+  --conv-composer-pad-t: clamp(0.25rem, 0.8lvh, 0.5rem);
   --conv-composer-pad-b: clamp(0.6rem, 1.7lvh, 1.05rem);
-  --conv-strip-pad-b: 0.32rem;
-  padding: clamp(0.25rem, 0.8lvh, 0.5rem) 0 var(--conv-composer-pad-b);
+  --conv-strip-pad-b: 0.42rem;
+  padding: var(--conv-composer-pad-t) 0 var(--conv-composer-pad-b);
+  /* Vorm ise ainult tõuseb; hajumine ja hägu käivad elementidel, mis EI
+     OLE pilli (triibu ::before) vanemad, ja pillil endal. Hajuv vanem
+     (opacity < 1, filter) oleks pilli härmatise backdrop root ja hägu
+     hüppaks sisse alles lõpus — sama põhjus, miks dokk hajub lastega
+     (carousel.css .gc-shortcut-menu). */
   animation: conv-composer-rise 760ms var(--ease-drift) 320ms backwards;
+}
+.panel-scrim[data-conversation="1"] form:has(#chat-input) > :not(div:has(#chat-input)),
+.panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > :not(div:has(#chat-input)),
+.panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > div:has(#chat-input) > *,
+.panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > div:has(#chat-input)::before {
+  animation: conv-composer-fade 760ms var(--ease-drift) 320ms backwards;
 }
 @keyframes conv-composer-rise {
   from {
-    opacity: 0;
     transform: translateY(2.3rem);
+  }
+}
+@keyframes conv-composer-fade {
+  from {
+    opacity: 0;
     filter: blur(5px);
   }
   70% {
     filter: blur(0);
   }
 }
-/* ---------- Sisend = KULDNE VALGUSTRIIP (tellija 12.07) ----------
-   Ei ole enam tume klaaskast, vaid hõljuv valgusjoon: vasakul otsas +,
-   paremal mikrofon + saada. Joon hingab alati ja tõmbab energiat sisse,
-   kui AI genereerib. */
-
-/* Triibu taga EI OLE tumedat udu (omanik 25.09: „võta see tume taust
-   sõnumi saatmise tagant ära"). Loetavuse annab #chat-input'i enda
-   text-shadow, mis kehtib ainult kirjutatud tekstile. */
+/* ---------- Sisend = KIIRMENÜÜ PILL (omanik 25.09) ----------
+   „Vestluse lehel võiks all olla teksti sisestamise input ja muu
+   kiirmenüü kujundusega." Sama tume klaas mis dokil (--control-glass-*,
+   carousel.css .gc-shortcut-menu::before): vasakul +, keskel tekst,
+   paremal mikrofon ja häälvestlus/saada. Varasem kuldne valgusjoon
+   (12.07) jääb alles ainult genereerimise pulsina (::after allpool).
+   Pill on TRIIBU (.chat-composer__input-bar) ::before, mitte vormi oma:
+   vormis on triibu kohal ka privaatsusteade ja märgiloendur, mis ei kuulu
+   pilli sisse. */
+.panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > div:has(#chat-input)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--control-glass-bg);
+  -webkit-backdrop-filter: var(--control-glass-blur);
+  backdrop-filter: var(--control-glass-blur);
+  box-shadow: inset 0 1px rgba(247, 247, 247, 0.08);
+  pointer-events: none;
+}
 /* Tööriistad (+) — lihtsalt SUUR ikoon triibu vasakus otsas, ilma klaasnupu
    taustata (tellija 12.07: "vasakul otsas on lihtsalt + ikoon", ikoonid
    julgelt suuremad). Bottom joondab + mikrofoni/saada põhjaga (mitte
@@ -1353,9 +1382,13 @@ button[aria-controls="chat-window-scroll"] {
   position: relative;
   align-items: flex-end;
   gap: 0.3rem;
-  padding: 0.15rem 0.35rem var(--conv-strip-pad-b) 3.3rem;
+  /* Sümmeetriline polster pilli sees (varem 0.15 üleval, sest tekst pidi
+     kuldjoone lähedal istuma). */
+  padding: var(--conv-strip-pad-b) 0.45rem var(--conv-strip-pad-b) 3.3rem;
   border: 0;
-  border-radius: 0;
+  border-radius: 999px;
+  /* ::before-pill vajab oma kihti triibu sees. */
+  isolation: isolate;
   background: none;
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
@@ -1384,23 +1417,17 @@ button[aria-controls="chat-window-scroll"] {
   -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%);
   mask-image: linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%);
   pointer-events: none;
-  animation: conv-strip-breathe 5s ease-in-out infinite;
-  transition: box-shadow var(--dur-fast) var(--ease-soft);
-}
-@keyframes conv-strip-breathe {
-  0%,
-  100% {
-    box-shadow: 0 0 8px rgba(182, 182, 182, 0.22);
-  }
-  50% {
-    box-shadow: 0 0 16px rgba(182, 182, 182, 0.46);
-  }
+  /* Puhkeasendis peidus: pill kannab nüüd sisendi kuju (25.09). Joon
+     ilmub ainult genereerimise pulsina (reegel allpool). */
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease-soft);
 }
 /* (Fookuse eredam kuma EEMALDATUD — tellija 12.07: "taha tekib heledus".
    Joon jääb fookusel oma tavalisse rahulikku hingamisse.) */
 /* Genereerimise ajal jookseb joonel energiapulss saatja poole —
    sinu signaal on teel (tellija: "mõtleb ajal ja on efektiga"). */
 .panel-scrim[data-conversation="1"] form:has(#chat-input):has(button[data-loader-active="true"]) > div:has(#chat-input) > div:has(#chat-input)::after {
+  opacity: 1;
   background:
     linear-gradient(90deg, transparent 0%, transparent 39%, rgba(232, 232, 232, 0.78) 50%, transparent 61%, transparent 100%) 180% 0 / 220% 100% no-repeat,
     linear-gradient(90deg, transparent, rgba(212, 212, 212, 0.42) 12%, rgba(229, 229, 229, 0.72) 50%, rgba(212, 212, 212, 0.42) 88%, transparent);
@@ -1657,6 +1684,10 @@ html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] [role="article"
 html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] > span[aria-label]::after,
 html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] form:has(#chat-input),
 html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] form:has(#chat-input)::before,
+html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] form:has(#chat-input) > *,
+html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > *,
+html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > div:has(#chat-input) > *,
+html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > div:has(#chat-input)::before,
 html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > div:has(#chat-input)::after,
 html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] form:has(#chat-input) button[data-recording="true"],
 html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] form:has(#chat-input) button[type="submit"][data-loader-active="true"],
@@ -1677,6 +1708,10 @@ html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] [role="article"
   .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] > span[aria-label]::after,
   .panel-scrim[data-conversation="1"] form:has(#chat-input),
   .panel-scrim[data-conversation="1"] form:has(#chat-input)::before,
+  .panel-scrim[data-conversation="1"] form:has(#chat-input) > *,
+  .panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > *,
+  .panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > div:has(#chat-input) > *,
+  .panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > div:has(#chat-input)::before,
   .panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > div:has(#chat-input)::after,
   .panel-scrim[data-conversation="1"] form:has(#chat-input) button[data-recording="true"],
   .panel-scrim[data-conversation="1"] form:has(#chat-input) button[type="submit"][data-loader-active="true"],
