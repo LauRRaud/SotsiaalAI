@@ -106,6 +106,12 @@ test('real PostgreSQL/Qdrant: resumable EstNLTK index serves canonical evidence,
       assert.equal((await postgres.units(tenant, plan.generation_id, documents)).length, 8);
       assert.equal((await postgres.bundles(tenant, plan.generation_id, documents)).length, 8);
       assert(!sql.some(text => text.includes('SELECT version_id,id,data')), 'verified source objects were loaded again');
+      // Unchanged verified bundles and directories come from this process's caches, not the heavy columns.
+      assert(!sql.some(text => text.includes('SELECT v.*')), 'a cached bundle was loaded again');
+      const generation = await postgres.active(tenant);
+      await postgres.retrievalDirectory(tenant, generation, documents); sql.length = 0;
+      await postgres.retrievalDirectory(tenant, generation, documents);
+      assert(!sql.some(text => text.includes('d.retrieval_directory,d.retrieval_hash')), 'a cached directory was loaded again');
     } finally { postgres.analyzer = analyzer; postgres.pool.query = query; }
     const denied = await retrieve({ postgres, qdrant, embedding, policy, context, query: { text: 'astronoomiast', language: 'et', method: 'lexical' } });
     assert.equal(denied.state, 'empty');
@@ -121,6 +127,14 @@ test('real PostgreSQL/Qdrant: resumable EstNLTK index serves canonical evidence,
     assert.equal(resumed.reused, true);
     await postgres.pool.query("UPDATE rag_v2_unit SET morphology='{}' WHERE tenant=$1 AND generation_id=$2", [tenant, plan.generation_id]);
     await assert.rejects(postgres.units(tenant, plan.generation_id, documents), { code: 'index_morphology_integrity_failed' });
+    // A changed row (new xmin) leaves the caches: a tampered bundle or directory fails its full check.
+    const active = await postgres.active(tenant);
+    await postgres.pool.query(`UPDATE rag_v2_generation_document SET retrieval_directory=jsonb_set(retrieval_directory,'{units}','[]'::jsonb)
+      WHERE tenant=$1 AND generation_id=$2 AND document_id=$3`, [tenant, active.id, documents[0]]);
+    await assert.rejects(postgres.retrievalDirectory(tenant, active, documents), { code: 'retrieval_directory_integrity_failed' });
+    await postgres.pool.query(`UPDATE rag_v2_version SET bundle=jsonb_set(bundle,'{chunks,0,source_text}','"tampered"'::jsonb)
+      WHERE tenant=$1 AND document_id=$2`, [tenant, documents[1]]);
+    await assert.rejects(postgres.bundles(tenant, active.id, [documents[1]]), { code: 'source_integrity_failed' });
   } finally {
     const generations = (await postgres.pool.query('SELECT * FROM rag_v2_generation WHERE tenant=$1', [tenant])).rows;
     for (const generation of generations) await qdrant.request(qdrant.route(generation), 'DELETE').catch(error => { if (error.status !== 404) throw error; });
