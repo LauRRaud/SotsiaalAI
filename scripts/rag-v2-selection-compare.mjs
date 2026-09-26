@@ -10,7 +10,7 @@ import { execFileSync } from 'node:child_process';
 import { fail, hash, id, stable } from '../lib/rag-v2/contracts.js';
 import { readJson } from '../lib/rag-v2/catalog.js';
 import { loadSnapshot } from '../lib/rag-v2/search/snapshot.js';
-import { StoredEmbedding } from '../lib/rag-v2/search/pilot-runner.js';
+import { ledgerFiles, StoredEmbedding } from '../lib/rag-v2/search/pilot-runner.js';
 import { indexUnit } from '../lib/rag-v2/search/embedding.js';
 import { LocalPolicy } from '../lib/rag-v2/search/policy.js';
 import { retrieve } from '../lib/rag-v2/search/retrieval.js';
@@ -49,7 +49,7 @@ try {
   if (!v.output) fail('output_required');
   const out = path.resolve(v.output), privateRoot = await fs.realpath('tmp');
   if (!out.startsWith(privateRoot + path.sep) || await fs.stat(out).then(() => true, e => { if (e.code === 'ENOENT') return false; throw e; })) fail('new_private_output_required');
-  const inputs = [v.results, v.questions, v.anchors, v.corpus, v.rubric, v.decisions, path.join(v.vectors, 'ledger.json')].map(p => path.resolve(p));
+  const inputs = [v.results, v.questions, v.anchors, v.corpus, v.rubric, v.decisions, ...await ledgerFiles(v.vectors)].map(p => path.resolve(p));
   if (inputs.some(p => p === out || p.startsWith(out + path.sep))) fail('output_overlaps_input');
   const before = await Promise.all(inputs.map(async p => ({ path: p, sha256: hash(await fs.readFile(p)) })));
   const [results, questions, groups, cm, rubric, decisions] = await Promise.all([v.results, v.questions, v.anchors, v.corpus, v.rubric, v.decisions].map(readJson));
@@ -73,8 +73,11 @@ try {
   const units = snapshot.bundles.flatMap(b => b.chunks.map(c => indexUnit(c, b, embedding.config)));
   const context = { tenant: cm.tenant, subject: 'recorded-selection-review', usage: 'development_only' };
   const policy = new LocalPolicy({ tenants: { [cm.tenant]: { [context.subject]: Object.keys(snapshot.documents) } } });
-  const profiles = RETRIEVAL_PROFILE_IDS.map(retrievalProfile);
-  for (const profile of profiles) assertProfileGeneration(profile, generation);
+  // The replay queries one profile; it must match the recorded generation. Other profiles are
+  // listed with their compatibility: they need other lexical indexes (ADR-024), not this one.
+  assertProfileGeneration(retrievalProfile('hybrid-ranked-first-neighbors-v1'), generation);
+  const compatible = profile => { try { assertProfileGeneration(profile, generation); return true; } catch { return false; } };
+  const profiles = RETRIEVAL_PROFILE_IDS.map(retrievalProfile).map(profile => ({ ...profile, compatible_with_generation: compatible(profile) }));
   const rows = [], changes = [], unseen = new Map(); let reproduced = 0, unchangedWithHybrid = 0;
 
   for (const question of questions.cases) {

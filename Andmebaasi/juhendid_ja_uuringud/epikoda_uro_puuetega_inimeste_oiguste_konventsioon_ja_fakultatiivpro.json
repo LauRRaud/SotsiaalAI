@@ -141,5 +141,51 @@
       }
     }
   ],
-  "review_status": "metadata_conversion_pending"
+  "review_status": "metadata_conversion_pending",
+  "title": "ÜRO puuetega inimeste õiguste konventsioon ja puuetega inimeste õigused Eestis",
+  "year": 2013,
+  "authority": "Eesti Puuetega Inimeste Koda",
+  "authors": [
+    "Karin Hanga"
+  ],
+  "historical": true,
+  "metadata_confirmations": [
+    {
+      "field": "title",
+      "value": "ÜRO puuetega inimeste õiguste konventsioon ja puuetega inimeste õigused Eestis",
+      "confirmed_by": "Claude Opus 5.5, allikakontroll dokumendist (omaniku korraldus 25.09.2026)",
+      "confirmed_at": "2026-09-25",
+      "basis": "lk 1: pealkiri ja „Eesti Puuetega Inimeste Koda, 2013“; lk 2: „Väljaandja: Eesti Puuetega Inimeste Koda, 2013“, „Koostaja: Karin Hanga“; 2013. aasta toetussummad (ajalooline)"
+    },
+    {
+      "field": "year",
+      "value": 2013,
+      "confirmed_by": "Claude Opus 5.5, allikakontroll dokumendist (omaniku korraldus 25.09.2026)",
+      "confirmed_at": "2026-09-25",
+      "basis": "lk 1: pealkiri ja „Eesti Puuetega Inimeste Koda, 2013“; lk 2: „Väljaandja: Eesti Puuetega Inimeste Koda, 2013“, „Koostaja: Karin Hanga“; 2013. aasta toetussummad (ajalooline)"
+    },
+    {
+      "field": "authority",
+      "value": "Eesti Puuetega Inimeste Koda",
+      "confirmed_by": "Claude Opus 5.5, allikakontroll dokumendist (omaniku korraldus 25.09.2026)",
+      "confirmed_at": "2026-09-25",
+      "basis": "lk 1: pealkiri ja „Eesti Puuetega Inimeste Koda, 2013“; lk 2: „Väljaandja: Eesti Puuetega Inimeste Koda, 2013“, „Koostaja: Karin Hanga“; 2013. aasta toetussummad (ajalooline)"
+    },
+    {
+      "field": "authors",
+      "value": [
+        "Karin Hanga"
+      ],
+      "confirmed_by": "Claude Opus 5.5, allikakontroll dokumendist (omaniku korraldus 25.09.2026)",
+      "confirmed_at": "2026-09-25",
+      "basis": "lk 1: pealkiri ja „Eesti Puuetega Inimeste Koda, 2013“; lk 2: „Väljaandja: Eesti Puuetega Inimeste Koda, 2013“, „Koostaja: Karin Hanga“; 2013. aasta toetussummad (ajalooline)"
+    },
+    {
+      "field": "historical",
+      "value": true,
+      "confirmed_by": "Claude Opus 5.5, allikakontroll dokumendist (omaniku korraldus 25.09.2026)",
+      "confirmed_at": "2026-09-25",
+      "basis": "lk 1: pealkiri ja „Eesti Puuetega Inimeste Koda, 2013“; lk 2: „Väljaandja: Eesti Puuetega Inimeste Koda, 2013“, „Koostaja: Karin Hanga“; 2013. aasta toetussummad (ajalooline)"
+    }
+  ]
 }

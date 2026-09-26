@@ -16,7 +16,9 @@ import { anchorCoverage, resolveAnchorGroups, validateEvaluationQuestions } from
 import { QdrantIndex } from '../lib/rag-v2/search/qdrant.js';
 import { artifactProvenance } from '../lib/rag-v2/search/artifact-provenance.js';
 import { pilotReport } from '../lib/rag-v2/search/pilot-report.js';
-import { buildMultiSourcePlan, multiSourceLedgerRoot } from '../lib/rag-v2/search/multi-source-plan.js';
+import { buildCorpusEmbeddingPlan, buildMultiSourcePlan, multiSourceLedgerRoot } from '../lib/rag-v2/search/multi-source-plan.js';
+import { ingest } from '../lib/rag-v2/ingestion.js';
+import { loadSnapshot } from '../lib/rag-v2/search/snapshot.js';
 
 let root, attempts = 0;
 const savedFetch = globalThis.fetch, savedConnect = net.Socket.prototype.connect;
@@ -70,12 +72,110 @@ test('E-04/13: successful vectors persist; restart does not reset counters or re
   await saved.embed('hello world');await saved.embed('hello world');assert.equal(calls,2);
   const reusable=await reusableEmbeddingCatalog([first.directory],context.tenant);assert.equal(reusable.receipts.size,2);
   assert.equal(reusable.embedding.provenance,'test_transport');await reusable.embedding.embed('hello world');assert.equal(calls,2);
-  const ledgerFile=path.join(first.directory,'ledger.json'),ledger=JSON.parse(await fs.readFile(ledgerFile,'utf8'));
-  ledger.transport='openai_https';await fs.writeFile(ledgerFile,JSON.stringify(ledger));
+  const journalFile=path.join(first.directory,'ledger.jsonl'),[header,...events]=(await fs.readFile(journalFile,'utf8')).trim().split('\n');
+  await fs.writeFile(journalFile,[JSON.stringify({...JSON.parse(header),transport:'openai_https'}),...events,''].join('\n'));
   const credentialFreeReuse=await runPilot({...opts,transport:undefined,apiKey:undefined});
   assert.equal(credentialFreeReuse.api_attempts_this_run,0);assert.equal(calls,2);
   await assert.rejects(saved.embed('not saved'),/stored_embedding_missing/);
   await assert.rejects(StoredEmbedding.load(first.directory,'other'),/complete_real_pilot_required/);
+});
+test('E-04/13: the ledger is an append-only journal whose replay equals the finished run',async()=>{
+  const opts=await options('journal');const first=await runPilot(opts),journalFile=path.join(first.directory,'ledger.jsonl');
+  const lines=(await fs.readFile(journalFile,'utf8')).split('\n');assert.equal(lines.pop(),'');
+  assert.deepEqual(lines.slice(1).map(l=>JSON.parse(l).event),['reserved','succeeded','reserved','succeeded','complete']);
+  assert.deepEqual(await fs.readdir(first.directory).then(f=>f.filter(n=>n.startsWith('ledger')).sort()),['ledger.jsonl']);
+  const second=await runPilot(opts);assert.equal(hash(stable(second.ledger)),hash(stable(first.ledger)));
+  const saved=await StoredEmbedding.load(first.directory,context.tenant);assert.equal(hash(stable(saved.ledger)),hash(stable(first.ledger)));
+  // A crash while appending the last line leaves a torn line; it is cut off and the run finishes without sending.
+  await fs.writeFile(journalFile,[...lines.slice(0,-1),'{"event":"compl'].join('\n'));let calls=0;
+  const resumed=await runPilot({...opts,transport:async args=>{calls++;return success(args);}});
+  assert.equal(resumed.state,'complete');assert.equal(calls,0);assert.equal(hash(stable(resumed.ledger)),hash(stable(first.ledger)));
+  const repaired=(await fs.readFile(journalFile,'utf8')).split('\n');assert.equal(repaired.pop(),'');
+  assert.deepEqual(repaired.slice(0,-1),lines.slice(0,-1));assert.equal(JSON.parse(repaired.at(-1)).event,'complete');
+});
+test('E-05: a reservation synced before a crash stays reserved and is never resent',async()=>{
+  const opts=await options('crash');const done=await runPilot(opts),journalFile=path.join(done.directory,'ledger.jsonl');
+  const lines=(await fs.readFile(journalFile,'utf8')).trim().split('\n');
+  await fs.writeFile(journalFile,[...lines.slice(0,2),''].join('\n'));let calls=0;
+  const after=await runPilot({...opts,transport:async args=>{calls++;return success(args);}});
+  assert.equal(after.state,'stopped_unknown');assert.equal(calls,0);assert.equal(after.ledger.reserved_attempts,1);assert.equal(after.ledger.entries[0].status,'reserved');
+  await assert.rejects(StoredEmbedding.load(done.directory,context.tenant),/complete_real_pilot_required/);
+});
+test('E-04/13: tampered, reordered or foreign journal lines are rejected',async()=>{
+  const opts=await options('tamper');const done=await runPilot(opts),journalFile=path.join(done.directory,'ledger.jsonl');
+  const [header,...events]=(await fs.readFile(journalFile,'utf8')).trim().split('\n'),parsed=events.map(e=>JSON.parse(e));
+  const write=list=>fs.writeFile(journalFile,[header,...list.map(e=>typeof e==='string'?e:JSON.stringify(e)),''].join('\n'));
+  for(const list of [[parsed[1],parsed[0],...parsed.slice(2)],[parsed[0],parsed[0],...parsed.slice(1)],[...parsed,parsed[3]],
+    [{...parsed[0],reserved_tokens:'7'},...parsed.slice(1)],[{...parsed[0],event:'refunded'},...parsed.slice(1)],['not json',...events]]) {
+    await write(list);
+    await assert.rejects(runPilot(opts),/pilot_ledger_integrity_failed/);
+    await assert.rejects(StoredEmbedding.load(done.directory,context.tenant),/pilot_ledger_integrity_failed/);
+  }
+  await write([{...parsed[0],reserved_tokens:parsed[0].reserved_tokens+1},...parsed.slice(1)]);
+  await assert.rejects(runPilot(opts),/pilot_ledger_integrity_failed/);
+  // A complete journal must cover every manifest input with its own hash and tokens.
+  await assert.rejects(StoredEmbedding.load(done.directory,context.tenant),/pilot_ledger_integrity_failed/);
+  await write(parsed);const manifestFile=path.join(done.directory,'manifest.json'),manifest=JSON.parse(await fs.readFile(manifestFile,'utf8'));
+  await fs.writeFile(manifestFile,JSON.stringify({...manifest,source_plan_id:'other'}));
+  await assert.rejects(StoredEmbedding.load(done.directory,context.tenant),/pilot_ledger_integrity_failed/);
+});
+test('E-04/13: an earlier complete ledger.json is reused without sending; an incomplete one is never extended',async()=>{
+  const opts=await options('legacy');const done=await runPilot(opts);
+  const legacy={...done.ledger,schema_version:'rag-v2/pilot-ledger-1'};
+  await fs.rm(path.join(done.directory,'ledger.jsonl'));await fs.rm(path.join(done.directory,'manifest.json'));
+  await fs.writeFile(path.join(done.directory,'ledger.json'),JSON.stringify(legacy));let calls=0;
+  const reused=await runPilot({...opts,transport:async args=>{calls++;return success(args);}});
+  assert.equal(reused.state,'complete');assert.equal(calls,0);
+  assert.equal((await StoredEmbedding.load(done.directory,context.tenant)).vectors.size,2);
+  await fs.writeFile(path.join(done.directory,'ledger.json'),JSON.stringify({...legacy,state:'running',entries:legacy.entries.slice(0,1),reserved_attempts:1}));
+  await assert.rejects(runPilot({...opts,transport:async args=>{calls++;return success(args);}}),/legacy_pilot_ledger_incomplete/);assert.equal(calls,0);
+  // A complete-looking ledger whose first entry is repeated in place of the second is not complete.
+  await fs.writeFile(path.join(done.directory,'ledger.json'),JSON.stringify({...legacy,entries:[legacy.entries[0],legacy.entries[0]]}));
+  await assert.rejects(runPilot({...opts,transport:async args=>{calls++;return success(args);}}),/pilot_ledger_integrity_failed/);assert.equal(calls,0);
+});
+test('E-05: a failing progress report ends the run but never turns a recorded success into an unknown outcome',async()=>{
+  const opts=await options('progress-failure');let calls=0;const counting=async args=>{calls++;return success(args);};
+  await assert.rejects(runPilot({...opts,transport:counting,onProgress:()=>{throw new Error('synthetic_progress_failure');}}),/synthetic_progress_failure/);
+  const journalFile=path.join(root,'progress-failure',id('pilot',opts.prepared.manifest.tenant,opts.prepared.manifest_sha256),'ledger.jsonl');
+  assert.deepEqual((await fs.readFile(journalFile,'utf8')).trim().split('\n').slice(1).map(l=>JSON.parse(l).event),['reserved','succeeded']);
+  const resumed=await runPilot({...opts,transport:counting});assert.equal(resumed.state,'complete');assert.equal(calls,2);
+  assert.equal((await StoredEmbedding.load(resumed.directory,context.tenant)).vectors.size,2);
+});
+test('E-05: a hard stop after a reservation leaves no blocking lock; the reservation is never resent; live locks stay busy',async()=>{
+  const opts=await options('hard-stop'),{transport:_t,...plain}=opts;
+  const optionsFile=path.join(root,'hard-stop-options.json'),child=path.join(root,'hard-stop-child.mjs');
+  await fs.writeFile(optionsFile,JSON.stringify(plain));
+  await fs.writeFile(child,`import fs from 'node:fs';\nimport { runPilot } from ${JSON.stringify(new URL('../lib/rag-v2/search/pilot-runner.js',import.meta.url).href)};\n`
+    +`const o=JSON.parse(fs.readFileSync(${JSON.stringify(optionsFile)},'utf8'));\n`
+    +`await runPilot({...o,policy:{allowed:async()=>({documents:['doc']})},transport:async()=>process.exit(73)});\nprocess.exit(74);\n`);
+  const {spawnSync}=await import('node:child_process');
+  assert.equal(spawnSync(process.execPath,[child],{stdio:'ignore'}).status,73);
+  const directory=path.join(root,'hard-stop',id('pilot',opts.prepared.manifest.tenant,opts.prepared.manifest_sha256));
+  assert.ok(JSON.parse(await fs.readFile(path.join(directory,'pilot.lock'),'utf8')).pid>0);
+  let calls=0;const after=await runPilot({...opts,transport:async args=>{calls++;return success(args);}});
+  assert.equal(after.state,'stopped_unknown');assert.equal(calls,0);assert.equal(after.ledger.entries[0].status,'reserved');
+  await assert.rejects(fs.access(path.join(directory,'pilot.lock')));await assert.rejects(fs.access(path.join(directory,'pilot.lock.takeover')));
+  const os=await import('node:os');
+  for(const owner of [{pid:process.pid,host:os.hostname()},{pid:999999999,host:'another-host'},{}]){
+    await fs.writeFile(path.join(directory,'pilot.lock'),JSON.stringify(owner));
+    await assert.rejects(runPilot(opts),/pilot_busy/);
+  }
+  await fs.unlink(path.join(directory,'pilot.lock'));
+});
+test('E-04/13: a complete journal must cover every manifest input',async()=>{
+  const opts=await options('coverage');const done=await runPilot(opts),journalFile=path.join(done.directory,'ledger.jsonl');
+  const [header,...events]=(await fs.readFile(journalFile,'utf8')).trim().split('\n');
+  const kept=events.filter(e=>{const v=JSON.parse(e);return v.event==='complete'||v.input_id===JSON.parse(events[0]).input_id;});
+  await fs.writeFile(journalFile,[header,...kept,''].join('\n'));
+  await assert.rejects(runPilot(opts),/pilot_ledger_integrity_failed/);
+  await assert.rejects(StoredEmbedding.load(done.directory,context.tenant),/pilot_ledger_integrity_failed/);
+});
+test('E-04/07: changes to the caller\'s plan during a run cannot change what is sent',async()=>{
+  const opts=await options('mutation'),sent=[],original=opts.prepared.inputs.map(input=>input.text);
+  const run=await runPilot({...opts,transport:async args=>{sent.push(args.text);return success(args);},onProgress:()=>{
+    const next=opts.prepared.inputs[1];next.text='swapped text';next.input_hash=hash(next.text);next.tokens=tokenCount(next.text);}});
+  assert.equal(run.state,'complete');assert.deepEqual(sent,original);
+  assert.equal((await StoredEmbedding.load(run.directory,context.tenant)).vectors.size,2);
 });
 test('E-05: timeout reserves budget permanently and never automatically retries unknown input',async()=>{
   const opts=await options('unknown');let calls=0;opts.transport=async()=>{calls++;throw Object.assign(new Error('timeout'),{code:'ETIMEDOUT'});};
@@ -122,14 +222,14 @@ test('E-08/09: compact context preserves source text and conditions with scoped 
       authority:{value:'editorial',provenance:[{kind:'metadata',path:'/authority'}],review_state:'imported_not_verified'},
       valid_from:{value:null,provenance:[{kind:'normalization_policy'}],review_state:'imported_not_verified'},
       valid_to:{value:null,provenance:[{kind:'normalization_policy'}],review_state:'imported_not_verified'}},
-    search_aids:{legacy_description:{value:'Unverified long description'}},limitations:[{code:'reference_list_not_visible',span_ids:['long-span-id']},{code:'description_not_verified',detail:'Unverified long description'}]};
+    search_aids:{legacy_description:{value:'Unverified long description'}},limitations:[{code:'reference_list_not_visible',span_ids:['long-span-id']},{code:'description_not_verified',detail:'Unverified long description'},{code:'layout_coverage_limit',detail:'Processing note'},{code:'pdf_glyph_char_codes_recovered'}]};
   const packet={tenant:context.tenant,query_id:'query-one',generation_id:'g',evidence:[entry,{...entry,evidence_id:'e2',unit_id:'u2',chunk_id:'c2',source_text:'Helista 112.'}]};
   const p=modelProjection(packet.evidence,packet);packet.reference_map=p.references;
   assert.equal(p.context.evidence[0].text,entry.source_text);assert.equal(Object.keys(p.context.sources).length,1);
   assert.ok(!JSON.stringify(p.context).includes('long-span-id'));assert.ok(!JSON.stringify(p.context).includes('Unverified long description'));
   assert.equal(p.context.sources.D1.source_type.value,'journal_article');assert.equal(p.context.sources.D1.source_type.review_state,'imported_not_verified');
   assert.equal(p.context.sources.D1.valid_to.value,null);
-  assert.equal(p.context.sources.D1.limitations[0].code,'reference_list_not_visible');
+  assert.deepEqual(p.context.sources.D1.limitations,[{code:'reference_list_not_visible'}]);
   const sourceResolver=async expected=>expected;
   assert.equal((await resolveModelReference({packet,reference:'S1',queryId:packet.query_id,context,policy,sourceResolver})).span_ids[0],'long-span-id');
   await assert.rejects(resolveModelReference({packet,reference:'S1',queryId:'other',context,policy}),/reference_scope_mismatch/);
@@ -202,6 +302,25 @@ test('M2 multi-source: exact egress plan reuses verified hashes and never serial
   const changed=buildMultiSourcePlan({snapshot,questionSets:[{name:'set',questions:{cases:[{...questions.cases[0],query:'changed'}]}}],reuseCatalog,baseline:first.plan});
   assert.equal(changed.matches_baseline,false);assert.deepEqual(changed.differences,['egress_manifest']);
   assert.equal(multiSourceLedgerRoot(path.join(root,'private')),path.resolve(root,'private','rag-v2-multi-source','usage'));
+});
+test('M2 corpus plan: reading one published bundle at a time gives the exact multi-source plan',async()=>{
+  const inputRoot=path.join(root,'corpus-plan'),storeRoot=path.join(inputRoot,'store'),tenant='corpus-plan',ids=[];
+  const profile={id:'generic-fixtures',version:'1',months:[],categoryLabels:[]},rights={access:'local_private',usage:'development_only'};
+  await fs.mkdir(inputRoot,{recursive:true});
+  for(const name of ['one','two']){
+    await fs.writeFile(path.join(inputRoot,`${name}.pdf`),`%PDF-1.4 ${name}`);
+    const lines=[`Document ${name} heading`,`First paragraph of document ${name} describes a fictional service.`];
+    const parsed={pages:[{pdf_page:1,parser_page_index:0,view:[0,0,600,800],items:lines.map((text,i)=>({text,x:50,y:700-i*14,width:400,height:11,item_index:i}))}]};
+    const {bundle}=await ingest({tenant,inputRoot,storeRoot,profile,rights,metadata:{document_id:name,title:`Fixture ${name}`,source_type:'fixture',
+      language:'en',source_path:`${name}.pdf`,source_format:'pdf'}},{parsePdf:async()=>parsed});
+    ids.push(bundle.document.id);
+  }
+  const questionSets=[{name:'set',questions:{cases:[{id:'q',family:'f',split:'control',language:'en',query:'fictional service',expected_support:'full'}]}}];
+  const inMemory=buildMultiSourcePlan({snapshot:await loadSnapshot(storeRoot,tenant,ids),questionSets,price});
+  const streamed=await buildCorpusEmbeddingPlan({storeRoot,tenant,documents:[...ids].reverse(),questionSets,price});
+  assert.equal(streamed.manifest_sha256,inMemory.manifest_sha256);assert.deepEqual(streamed.plan,inMemory.plan);assert.deepEqual(streamed.inputs,inMemory.inputs);
+  assert.equal(streamed.plan.document_count,2);assert.equal(streamed.plan.all_input_count,3);
+  await assert.rejects(buildCorpusEmbeddingPlan({storeRoot,tenant,documents:['document_missing'],questionSets}),/document_not_in_source_generation/);
 });
 test('Audit: Qdrant timeout remains a service failure eligible for explicit lexical degradation',async()=>{
   const previous=globalThis.fetch;

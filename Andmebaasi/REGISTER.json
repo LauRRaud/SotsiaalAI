@@ -13075,7 +13075,7 @@
       "path": "ajakiri_sotsiaaltoo/25-1/sotsiaaltoo-1-2025-artikkel-09-laps-oigus-kasvada-peres.json",
       "category": "ajakiri",
       "role": "metadata",
-      "sha256": "8cb1fc5694b6c77594c23cc78903a573eded96aa85c28aa8798e9abb00b5923b",
+      "sha256": "07590b5d017015fd077c2ed047887477f650cd1de71d8a04666896b6650a2a66",
       "original_path": "ajakiri_sotsiaaltoo/25-1/sotsiaaltoo-1-2025-artikkel-09-laps-oigus-kasvada-peres.json"
     },
     {
@@ -13160,7 +13160,7 @@
       "path": "ajakiri_sotsiaaltoo/25-1/sotsiaaltoo-1-2025-artikkel-14-volanoustamisteenus-2018-2023.json",
       "category": "ajakiri",
       "role": "metadata",
-      "sha256": "272d1c584b2f84eb11aab346a1d250a5f9ec47705b6ec5eced2e5ad6398906ef",
+      "sha256": "5a381f0bc27391845e8f2009b725429d4e254277a9e623eb5a97219727e9a002",
       "original_path": "ajakiri_sotsiaaltoo/25-1/sotsiaaltoo-1-2025-artikkel-14-volanoustamisteenus-2018-2023.json"
     },
     {
@@ -15223,7 +15223,7 @@
       "path": "juhendid_ja_uuringud/paasteamet_hoolekande_ja_tervishoiuasutuste_tuleohutus_pdf.json",
       "category": "juhendid_ja_uuringud",
       "role": "metadata",
-      "sha256": "b5c645be1463b136a6ba6df8c44b04966aa485407467ff57dad71edbc0a298b8"
+      "sha256": "dd2420e811d9ee2f81c77310757a36999a6c8506d4839b0341ba67963d98e6cc"
     },
     {
       "path": "juhendid_ja_uuringud/peaasi_ee_koolilaste_ja_noorte_vaimne_tervis.pdf",
@@ -15245,7 +15245,7 @@
       "path": "juhendid_ja_uuringud/peaasi_ee_koolilaste_ja_noorte_vaimne_tervis.json",
       "category": "juhendid_ja_uuringud",
       "role": "metadata",
-      "sha256": "d188919489e2141540bcaec6aaef2fdf0de97d4661733ea83970d3c8b8e2647c"
+      "sha256": "d80e6ec657755fcf159c5c1f365a92fbaff7e3eea06d8d0cb0cb0d1b3fd9a65b"
     },
     {
       "path": "juhendid_ja_uuringud/sotsiaalkindlustusamet_seksuaalvagivalla_kriisiabikeskusi_tutvustav_voldik_est.pdf",
@@ -15287,7 +15287,7 @@
       "path": "juhendid_ja_uuringud/tarkvanem_tooleht_abikusimused_vestluseks_algkoolilapsega.json",
       "category": "juhendid_ja_uuringud",
       "role": "metadata",
-      "sha256": "53100e135bd42119d45a5cda8c86c37ff026bda877c55233e6c036a5ae21101a"
+      "sha256": "ed5797b8f925c989cf5a2460b38d6c8290ca05fa892e17953b0905e19f5974f5"
     },
     {
       "path": "juhendid_ja_uuringud/harno_opitulemuste_vahendamine_asendamine_ja_kohustusliku_oppeaine.pdf",
@@ -15309,7 +15309,7 @@
       "path": "juhendid_ja_uuringud/harno_opitulemuste_vahendamine_asendamine_ja_kohustusliku_oppeaine.json",
       "category": "juhendid_ja_uuringud",
       "role": "metadata",
-      "sha256": "e8c16279d94cb19d8363760aa8e448d0fefcf33f0b6f674676fd62e58c341ff4"
+      "sha256": "146e2869a666d85ab92a1ce7fa5cb93c21e83c3a4a5e50cf8b4ca0a6fadf8e6f"
     },
     {
       "path": "juhendid_ja_uuringud/aki_isikuandmed_sotsiaalhoolekande_ja_tervishoiusektoris.pdf",
@@ -15643,7 +15643,7 @@
       "path": "juhendid_ja_uuringud/epikoda_uro_puuetega_inimeste_oiguste_konventsioon_ja_fakultatiivpro.json",
       "category": "juhendid_ja_uuringud",
       "role": "metadata",
-      "sha256": "64c3841d612f6bab3e07c69373dd8e5efa6033c36c528a983a98612f8c854318"
+      "sha256": "16e709bcab2726d4f7a1e70d761060d00e23bbb6603a103192d9a39771134925"
     },
     {
       "path": "juhendid_ja_uuringud/harno_4_sammu_markamiseks_ja_sekkumiseks_opetajale.pdf",
@@ -16924,7 +16924,7 @@
       "path": "juhendid_ja_uuringud/riigikontroll_koduteenuste_korraldus.json",
       "category": "juhendid_ja_uuringud",
       "role": "metadata",
-      "sha256": "b5622965c5589ae727a2c7c6e73e2a764748a17e964b5486e515039dd87ba206"
+      "sha256": "cc983177a44633c9a5bf08c5c52e5308bd47ac6857c882a2b934808758ffa849"
     },
     {
       "path": "juhendid_ja_uuringud/riigikontroll_omavalitsuste_tegevus_erivajadustega_inimeste_toetamisel.pdf",
@@ -16945,7 +16945,7 @@
       "path": "juhendid_ja_uuringud/riigikontroll_omavalitsuste_tegevus_erivajadustega_inimeste_toetamisel.json",
       "category": "juhendid_ja_uuringud",
       "role": "metadata",
-      "sha256": "a21c68f381cc80c85d41036a007bfe9891c78e745bf68cfd1d2cc8a63d0af8dd"
+      "sha256": "04bfcac50b4c499d9a09a6f0a2bd83cf24a7043ed71252eae7f78d4a25ce8539"
     },
     {
       "path": "juhendid_ja_uuringud/riigikontroll_toimetulekutoetuse_kui_riikliku_sotsiaalabi_korraldus.pdf",
@@ -16966,7 +16966,7 @@
       "path": "juhendid_ja_uuringud/riigikontroll_toimetulekutoetuse_kui_riikliku_sotsiaalabi_korraldus.json",
       "category": "juhendid_ja_uuringud",
       "role": "metadata",
-      "sha256": "b1075d1ef535ed0ce080e1afe0ec4a31c1483230c564e5f5aed1a8cc74c914ce"
+      "sha256": "f8f4ab45ed85af6bfa704721504c29ec2568caae386a1b75a9ee461c6b375239"
     },
     {
       "path": "juhendid_ja_uuringud/riigikontroll_toovoime_vahenemise_ennetamine.pdf",
@@ -16987,7 +16987,7 @@
       "path": "juhendid_ja_uuringud/riigikontroll_toovoime_vahenemise_ennetamine.json",
       "category": "juhendid_ja_uuringud",
       "role": "metadata",
-      "sha256": "1d8779488136499ceef23851923458b39445bca56ffa7e56e3bcb994d41785ba"
+      "sha256": "9341a3a1ef9dd655ac5c5d970ef82474098c28d12d467f95292139e54cf1d965"
     },
     {
       "path": "juhendid_ja_uuringud/riigikontroll_ulevaade_erihoolekandeteenuste_kattesaadavusest.pdf",
@@ -17342,7 +17342,7 @@
       "path": "juhendid_ja_uuringud/sotsiaalkindlustusamet_rehabilitatsiooni_teenuseosutajate_infopaeva_materjal.json",
       "category": "juhendid_ja_uuringud",
       "role": "metadata",
-      "sha256": "be1c1f1920ac102fefb2072bf3a97f809300afeb63b135fa8398e69eb077fadb"
+      "sha256": "6e9c84fc3bebd47e4d7837fdc7a5dcdd1dc0db80a830a0738ab249f84ee2eeee"
     },
     {
       "path": "juhendid_ja_uuringud/sotsiaalkindlustusamet_riskihindamine_lahisuhtevagivalla_juhtumites_tervishoiutoota.pdf",
@@ -18746,7 +18746,7 @@
       "path": "juhendid_ja_uuringud/vordoigusvolinik_arvamus_toovoimetuslehe_teemal.json",
       "category": "juhendid_ja_uuringud",
       "role": "metadata",
-      "sha256": "b5e45b7b73e939946fe68c3dc97e9a59e1c2ec632f3f9acaee97702fff22eb76"
+      "sha256": "783cb992440189dedddc9fea2c0834515ad6b7723cd24fd44d44adc08c9afb89"
     },
     {
       "path": "juhendid_ja_uuringud/vordoigusvolinik_juhendmaterjal_karjaarispetsialistidele.pdf",
@@ -20533,7 +20533,7 @@
       "path": "KOV/tallinn/tallinn.json",
       "category": "KOV",
       "role": "source",
-      "sha256": "58bb03e4271ee1a987a5ff7a2f0b2cb9cdd9c6d69c8aba40c19e13dbc0b97222",
+      "sha256": "a2588efe2b6be08aa134f85f7edbae3c24679f372cdb192b052091eb236cb327",
       "original_path": "KOV/tallinn/tallinn.json",
       "title": "Tallinna linn",
       "items": 85

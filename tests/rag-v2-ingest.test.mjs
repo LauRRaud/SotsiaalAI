@@ -66,7 +66,7 @@ test('I-01: supplied PDF, identity, metadata and original bytes are preserved', 
   assert.deepEqual(b.document.legacy_metadata, original);
   assert.notEqual(b.document.id, b.version.id);
   assert.equal(hash(await fs.readFile(path.join(sample.output, 'original.pdf'))), 'a41995721ca13aa78898116ccef466aedf3576e26bb30fce3c145f4d8b87828b');
-  assert.equal(hash(await fs.readFile(path.join(sample.output, 'metadata.json'))), 'd090594afae2c24541ab71ed63a86d013c999ab519606597d145395023eccd5a');
+  assert.equal(hash(await fs.readFile(path.join(sample.output, 'metadata.json'))), hash(await fs.readFile(path.join(inputRoot, metadataFile))));
 });
 test('I-02: two distinct synthetic articles sharing issue docId survive', async () => {
   const a = await ingest(await synthetic('article-a'), { parsePdf: async () => fixture('Synthetic article A') });
@@ -91,7 +91,7 @@ test('I-03: publication, PDF creation, imported check and legal validity remain 
 test('I-04: each exact source range resolves; OTT is on PDF page 3', provided, () => {
   const b = sample.bundle;
   assert.deepEqual(b.document.fields.pdf_page_range.value, [1, 13]);
-  assert.equal(b.document.fields.journal_page_range.value, null);
+  assert.equal(b.document.fields.journal_page_range.value, original.pageRange ?? null);
   for (const s of b.spans) {
     assert.equal(s.pdf_page, s.parser_page_index + 1);
     assert.equal(b.pages[s.parser_page_index].raw_text.slice(s.start, s.end), s.source_text);
@@ -143,7 +143,8 @@ test('I-09: missing bibliography is a hash-bound reviewed coverage limit', provi
 test('I-10: active/historical/BOTH never grant public or cross-tenant access', provided, async () => {
   const d = sample.bundle.document;
   assert.equal(d.fields.historical.value, true); assert.equal(d.fields.source_status.value, 'active');
-  assert.equal(d.fields.audience.value, 'BOTH'); assert.deepEqual(d.rights, rights);
+  assert.deepEqual(d.fields.audience.value, ['CLIENT', 'SOCIAL_WORKER']); assert.equal(d.fields.audience.provenance[0].raw, 'BOTH');
+  assert.deepEqual(d.rights, rights);
   const other = await ingest(options({ tenant: 'other-tenant' }));
   assert.notEqual(other.bundle.document.id, d.id);
   assert.ok(other.bundle.spans.every(s => s.tenant_id === 'other-tenant'));
@@ -164,7 +165,10 @@ test('I-13: no text and partly scanned documents do not publish an empty success
   const opts = await synthetic('empty');
   const blank = fixture(); blank.pages[0].items = [];
   await assert.rejects(ingest(opts, { parsePdf: async () => blank }), /needs_ocr/);
-  const mixed = fixture(); mixed.pages.push({ ...blank.pages[0], pdf_page: 2, parser_page_index: 1 });
+  // A text-free page inside the document (not a cover) may be unread scanned text.
+  const mixed = fixture(), text = mixed.pages[0];
+  mixed.pages.push({ ...text, pdf_page: 2, parser_page_index: 1 }, { ...blank.pages[0], pdf_page: 3, parser_page_index: 2 },
+    { ...text, pdf_page: 4, parser_page_index: 3 }, { ...text, pdf_page: 5, parser_page_index: 4 });
   await assert.rejects(ingest(opts, { parsePdf: async () => mixed }), /partial_text_needs_review/);
 });
 test('I-14: failure before publish preserves active generation and restart recovers staged version', async () => {
@@ -181,6 +185,21 @@ test('I-14: failure before publish preserves active generation and restart recov
   assert.notEqual(second.bundle.version.id, first.bundle.version.id);
   assert.equal(second.bundle.document.id, first.bundle.document.id);
   assert.equal((await loadVersion(dir, first.bundle.version.id)).chunks[0].source_text, first.bundle.chunks[0].source_text);
+});
+test('a briefly locked staging directory (Windows EPERM) is renamed after a retry; a lasting lock still fails', async () => {
+  const rename = fs.rename;
+  let failures = 0, limit = 2;
+  fs.rename = async (from, to) => {
+    if (failures < limit && path.basename(String(from)).startsWith('staging-')) { failures++; throw Object.assign(new Error('locked'), { code: 'EPERM' }); }
+    return rename(from, to);
+  };
+  try {
+    const result = await ingest(await synthetic('locked-staging'), { parsePdf: async () => fixture('Synthetic locked staging text') });
+    assert.equal(failures, 2); assert.equal(result.reused, false);
+    failures = 0; limit = Infinity;
+    await assert.rejects(ingest(await synthetic('locked-for-good'), { parsePdf: async () => fixture('Synthetic lasting lock text') }));
+    assert.equal(failures, 6);
+  } finally { fs.rename = rename; }
 });
 test('I-15: path traversal and absolute paths rejected; Unicode names work', provided, async () => {
   for (const source_path of ['../secret.txt', 'C:\\secret.txt', '/etc/passwd']) {

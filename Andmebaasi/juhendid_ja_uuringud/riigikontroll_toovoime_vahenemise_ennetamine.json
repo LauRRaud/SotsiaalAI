@@ -147,5 +147,23 @@
       }
     }
   ],
-  "review_status": "metadata_conversion_pending"
+  "review_status": "metadata_conversion_pending",
+  "year": 2023,
+  "publication_date": "2023-09-25",
+  "metadata_confirmations": [
+    {
+      "field": "year",
+      "value": 2023,
+      "confirmed_by": "Claude Opus 5.5, allikakontroll dokumendist (omaniku korraldus 25.09.2026)",
+      "confirmed_at": "2026-09-25",
+      "basis": "lk 1: „Riigikontrolli aruanne Riigikogule, Tallinn, 25. september 2023“"
+    },
+    {
+      "field": "publication_date",
+      "value": "2023-09-25",
+      "confirmed_by": "Claude Opus 5.5, allikakontroll dokumendist (omaniku korraldus 25.09.2026)",
+      "confirmed_at": "2026-09-25",
+      "basis": "lk 1: „Riigikontrolli aruanne Riigikogule, Tallinn, 25. september 2023“"
+    }
+  ]
 }

@@ -175,5 +175,31 @@
       }
     }
   ],
-  "review_status": "metadata_conversion_pending"
+  "review_status": "metadata_conversion_pending",
+  "authority": "Tarkvanem",
+  "source_type": "information_material",
+  "collection_id": "organization_guidelines",
+  "metadata_confirmations": [
+    {
+      "field": "authority",
+      "value": "Tarkvanem",
+      "confirmed_by": "Claude Opus 5.5, allikakontroll dokumendist (omaniku korraldus 25.09.2026)",
+      "confirmed_at": "2026-09-25",
+      "basis": "lk 1: „Praktiline nõu lapsevanemale – tarkvanem.ee“ (tõendatud allikanimi). Väljaandjaorganisatsiooni seos KONTROLLIMATA: tarkvanem.ee lehel on Sotsiaalkindlustusameti logo ja kontaktaadress, kuid väljaandja lauset pole; ei omistata. 11/11 Tarkvanema dokumenti `information_material`, 7/11 `organization_guidelines`"
+    },
+    {
+      "field": "source_type",
+      "value": "information_material",
+      "confirmed_by": "Claude Opus 5.5, allikakontroll dokumendist (omaniku korraldus 25.09.2026)",
+      "confirmed_at": "2026-09-25",
+      "basis": "lk 1: „Praktiline nõu lapsevanemale – tarkvanem.ee“ (tõendatud allikanimi). Väljaandjaorganisatsiooni seos KONTROLLIMATA: tarkvanem.ee lehel on Sotsiaalkindlustusameti logo ja kontaktaadress, kuid väljaandja lauset pole; ei omistata. 11/11 Tarkvanema dokumenti `information_material`, 7/11 `organization_guidelines`"
+    },
+    {
+      "field": "collection_id",
+      "value": "organization_guidelines",
+      "confirmed_by": "Claude Opus 5.5, allikakontroll dokumendist (omaniku korraldus 25.09.2026)",
+      "confirmed_at": "2026-09-25",
+      "basis": "lk 1: „Praktiline nõu lapsevanemale – tarkvanem.ee“ (tõendatud allikanimi). Väljaandjaorganisatsiooni seos KONTROLLIMATA: tarkvanem.ee lehel on Sotsiaalkindlustusameti logo ja kontaktaadress, kuid väljaandja lauset pole; ei omistata. 11/11 Tarkvanema dokumenti `information_material`, 7/11 `organization_guidelines`"
+    }
+  ]
 }

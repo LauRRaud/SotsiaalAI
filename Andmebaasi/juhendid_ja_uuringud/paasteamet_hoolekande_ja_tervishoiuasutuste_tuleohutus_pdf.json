@@ -178,5 +178,42 @@
       }
     }
   ],
-  "review_status": "metadata_conversion_pending"
+  "review_status": "metadata_conversion_pending",
+  "year": 2020,
+  "authors": [
+    "Jaak Jaanso"
+  ],
+  "collection_id": "national_guidelines",
+  "metadata_confirmations": [
+    {
+      "field": "year",
+      "value": 2020,
+      "confirmed_by": "Claude Opus 5.5, allikakontroll dokumendist (omaniku korraldus 25.09.2026)",
+      "confirmed_at": "2026-09-25",
+      "basis": "lk 1: „Koostas: Jaak Jaanso, nõunik, Lääne päästekeskus, Pärnu 2020“; kuupäeva 2024-03-03 dokumendis ei ole; 7/10 Päästeameti dokumenti `national_guidelines`"
+    },
+    {
+      "field": "authors",
+      "value": [
+        "Jaak Jaanso"
+      ],
+      "confirmed_by": "Claude Opus 5.5, allikakontroll dokumendist (omaniku korraldus 25.09.2026)",
+      "confirmed_at": "2026-09-25",
+      "basis": "lk 1: „Koostas: Jaak Jaanso, nõunik, Lääne päästekeskus, Pärnu 2020“; kuupäeva 2024-03-03 dokumendis ei ole; 7/10 Päästeameti dokumenti `national_guidelines`"
+    },
+    {
+      "field": "collection_id",
+      "value": "national_guidelines",
+      "confirmed_by": "Claude Opus 5.5, allikakontroll dokumendist (omaniku korraldus 25.09.2026)",
+      "confirmed_at": "2026-09-25",
+      "basis": "lk 1: „Koostas: Jaak Jaanso, nõunik, Lääne päästekeskus, Pärnu 2020“; kuupäeva 2024-03-03 dokumendis ei ole; 7/10 Päästeameti dokumenti `national_guidelines`"
+    },
+    {
+      "field": "publication_date",
+      "absent": true,
+      "confirmed_by": "Claude Opus 5.5, allikakontroll dokumendist (omaniku korraldus 25.09.2026)",
+      "confirmed_at": "2026-09-25",
+      "basis": "lk 1: „Koostas: Jaak Jaanso, nõunik, Lääne päästekeskus, Pärnu 2020“; kuupäeva 2024-03-03 dokumendis ei ole; 7/10 Päästeameti dokumenti `national_guidelines`"
+    }
+  ]
 }
