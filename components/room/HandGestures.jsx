@@ -251,10 +251,20 @@ export default function HandGestures({ onStop, t }) {
         // Rusikas ja tema järelvaikus ei ole tõmme: käsi ainult sulgub/avaneb.
         const still = pinched || closed.quiet;
         for (const event of swipe.update({ t: now, hand, pinched: still })) {
-          /* Kaardid liiguvad käe suunas: käsi vasakule → rida nihkub
-             vasakule ja paremalt tuleb järgmine kaart (nagu näpuga vedu). */
-          if (event.axis === "x") sendHand({ action: "step", dir: -event.dir });
-          else scrollBy(event.dir, event.travel);
+          /* Paan ütleb, mis suund tuvastati — nii näeb kasutaja kohe, kas
+             kaamera sai liigutusest aru (omanik 26.09: „ei saa aru, kas
+             vasakule või paremale"). */
+          if (event.type === "unclear") {
+            say("room.hands_unclear");
+          } else if (event.axis === "x") {
+            /* Kaardid liiguvad käe suunas: käsi vasakule → rida nihkub
+               vasakule ja paremalt tuleb järgmine kaart (nagu näpuga vedu). */
+            sendHand({ action: "step", dir: -event.dir });
+            say(event.dir < 0 ? "room.hands_swipe_left" : "room.hands_swipe_right");
+          } else {
+            scrollBy(event.dir, event.travel);
+            say(event.dir > 0 ? "room.hands_swipe_down" : "room.hands_swipe_up");
+          }
         }
         if (Boolean(landmarks) !== seen) {
           seen = Boolean(landmarks);
