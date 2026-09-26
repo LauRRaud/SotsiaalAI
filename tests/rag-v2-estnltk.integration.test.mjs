@@ -91,6 +91,22 @@ test('real PostgreSQL/Qdrant: resumable EstNLTK index serves canonical evidence,
       assert(!JSON.stringify(packet.model_context).includes('vmet')); assert.equal(packet.measurements.generation_calls, 0);
     }
     assert.equal(embedding.calls, callsBefore);
+    // Codex lexical audit 26.09.2026: the plain rank finds the same inflected form, and an unchanged
+    // read of a verified document neither re-analyses its morphology nor reloads its source objects.
+    const plain = await retrieve({ postgres, qdrant, embedding, policy, context,
+      query: { text: 'koduteenuseid', language: 'et', method: 'lexical', lexicalRank: 'ts-rank-v1', lexicalStopwords: 'rag-v2/query-stopwords-1' } });
+    assert.equal(plain.state, 'ok', plain.error); assert.equal(plain.evidence[0].document_id, documents[4]);
+    assert.equal(plain.selection_config.lexical_rank, 'ts-rank-v1');
+    await assert.rejects(postgres.lexical(tenant, plan.generation_id, documents, 'lapsele', 5, null, { rank: 'bm25' }), { code: 'unsupported_lexical_rank' });
+    await postgres.units(tenant, plan.generation_id, documents); await postgres.bundles(tenant, plan.generation_id, documents);
+    const analyzer = postgres.analyzer, query = postgres.pool.query, sql = [];
+    postgres.analyzer = { async analyze() { throw Object.assign(new Error('unexpected_reanalysis'), { code: 'unexpected_reanalysis' }); } };
+    postgres.pool.query = (text, ...rest) => { sql.push(String(text)); return query.call(postgres.pool, text, ...rest); };
+    try {
+      assert.equal((await postgres.units(tenant, plan.generation_id, documents)).length, 8);
+      assert.equal((await postgres.bundles(tenant, plan.generation_id, documents)).length, 8);
+      assert(!sql.some(text => text.includes('SELECT version_id,id,data')), 'verified source objects were loaded again');
+    } finally { postgres.analyzer = analyzer; postgres.pool.query = query; }
     const denied = await retrieve({ postgres, qdrant, embedding, policy, context, query: { text: 'astronoomiast', language: 'et', method: 'lexical' } });
     assert.equal(denied.state, 'empty');
     assert.equal((await postgres.lexical(tenant, plan.generation_id, [documents[0]], 'lapsele', 5)).length, 0);
