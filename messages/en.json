@@ -8138,7 +8138,7 @@
     "hands_starting": "Waiting for camera permission…",
     "hands_loading": "Loading hand tracking…",
     "hands_show": "Show your hand to the camera.",
-    "hands_hint": "Move your hand once to the left or right to move the cards. Hold your hand still and pinch to open. Make a fist to go back. In a window, move it up or down to scroll.",
+    "hands_hint": "Move your hand once to the left or right to move the cards. Touch thumb and index finger with the other fingers curled to open. Hold a fist to go back. In a window, move it up or down to scroll.",
     "hands_denied": "No camera permission. Allow the camera in your browser settings.",
     "hands_unavailable": "No camera found, or it is in use.",
     "hands_unsupported": "This browser does not support hand tracking.",

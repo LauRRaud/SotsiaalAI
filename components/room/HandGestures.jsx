@@ -249,7 +249,8 @@ export default function HandGestures({ onStop, t }) {
            kerida. */
         const moving = swipe.moving(now);
         const { pinched, tap } = pinch.update({ t: now, hand, blocked: closed.quiet || moving });
-        const nextShape = closed.fist ? "fist" : pinched ? "pinch" : "";
+        // Näpistuse poos võib olla ka rusikas; kuni ta on näpistus, näita seda.
+        const nextShape = pinched ? "pinch" : closed.fist ? "fist" : "";
         if (nextShape !== shape) {
           shape = nextShape;
           setGesture(shape);
@@ -260,7 +261,7 @@ export default function HandGestures({ onStop, t }) {
         }
         if (tap) sendHand({ action: "open" });
         // Rusikas ja tema järelvaikus ei ole tõmme: käsi ainult sulgub/avaneb.
-        const still = pinched || closed.quiet;
+        const still = pinched || closed.fist || closed.quiet;
         for (const event of swipe.update({ t: now, hand, pinched: still })) {
           /* Paan ütleb, mis suund tuvastati — nii näeb kasutaja kohe, kas
              kaamera sai liigutusest aru (omanik 26.09: „ei saa aru, kas
