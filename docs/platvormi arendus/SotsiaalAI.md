@@ -92,6 +92,32 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**26.09 Koguvalik v25 on kohalikus RAG v2 store'is; ost ootab järelkontrolli — [audit](../audits/rag-v2-claude-ingest-audit-2026-09-25.md), [ostueelne ülevaade §11–12](../audits/rag-v2-claude-prepurchase-review-2026-09-25.md#12-codexi-v22-järelkontroll-ja-v25-2609-õhtu).**
+Pärast Claude'i ja Codexi auditeid ja parandusi (`source-structure-v25`) on avaldatud 5999 allikat
+(ajakiri 892, juhendid 174, õigusaktid 59, KOV 4874). v14–v15 parandasid Codexi leiud: viiteloendi järel
+ja ees olev tekst saab õige sektsiooni, korduv päis ei ole pealkiri ning kõrvuti veergude kast loetakse
+lahtri kaupa (279 lehte). v16–v25 parandasid Codexi R01–R03:
+- kommentaar, infokastid, lõpumärkused ning loendi alla trükitud selgitavad joonealused jäävad otsingusse;
+- viiteloendid jäävad välja ka ilma aastata sulgudes (Vancouveri stiil, seaduste ja kohtulahendite
+  loendid, nummerdatud ja arhiiviloendid).
+
+14 allika metaandmed on parandatud dokumentide järgi. EPIKoda 2013 ja Võrdõigusvolinik 2016 on
+ajaloolised ja ostuvalikust esialgu väljas. Sisukatvuse kontroll võrdleb v15, v14 ja v13 store'iga ning
+tõendab bibliograafiat ainult katkematus välja jäetud ridade jadas. Codexi vastunäide tuvastatakse
+kaona; kaotatud sisu 0 ja 652 rida on käsitsi märgistatud.
+
+Ostuplaan: 5997 dokumenti, 14,92 M tokenit, 0,13 USD/1M juures 1,94 USD (`17d3ffa5…`). See on külmutatud
+järelkontrolliks ja ootab omaniku kinnitust (manifest ja kulupiir). Hind kontrollitakse vahetult enne
+ostu.
+
+Lahtine:
+- sõnaline järjestus võtab kogu korpusel 11–36 s päringu kohta
+  ([ADR-029](../rag-v2/adr-029-lexical-ranking-at-corpus-scale.md) ettepanek) — ostu see ei takista, kogu
+  korpuse piloot ootab;
+- kolmel lehel on veerud segunenud;
+- COVID-juhendi algoritmiskeemil pole tekstikihti (OCR);
+- umbes 20 rida viiteid on otsingus (§11–12).
+
 **24.09 Vestluskäigu stsenaariumid — [aruanne](../rag-v2/dialogue-scenarios-2026-09-24.md).**
 Kuus mitmepöördelist vestlust päris KOV-andmetel (Kose, Harku, Tallinn) päris
 pilooditeenusega ühisel rajal, ainult vastusmudel asendatud: 6/6 läbis (täpsustus,

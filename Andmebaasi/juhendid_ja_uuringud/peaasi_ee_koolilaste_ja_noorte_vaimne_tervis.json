@@ -180,5 +180,15 @@
       }
     }
   ],
-  "review_status": "metadata_conversion_pending"
+  "review_status": "metadata_conversion_pending",
+  "collection_id": "organization_materials",
+  "metadata_confirmations": [
+    {
+      "field": "collection_id",
+      "value": "organization_materials",
+      "confirmed_by": "Claude Opus 5.5, allikakontroll dokumendist (omaniku korraldus 25.09.2026)",
+      "confirmed_at": "2026-09-25",
+      "basis": "lk 1: „Materjal on koostatud MTÜ Peaasjad ja Eesti Õpetajate Liidu koostöös“ (MTÜ materjal); aastat 2014 dokumendis pole"
+    }
+  ]
 }

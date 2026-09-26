@@ -17,7 +17,7 @@ export type Scope = { tenant_id: string; document_version_id: Id };
 export type Provenance = {
   kind: string; path?: string; span_ids?: Id[]; asset_hash?: string; version?: string;
   reason?: string; basis?: string; method?: string; raw?: string | null;
-  timezone?: string; removed_span_ids?: Id[];
+  timezone?: string; removed_span_ids?: Id[]; confirmed_by?: string; confirmed_at?: string;
 };
 export type Field<T = unknown> = {
   value: T; provenance: Provenance[]; review_state?: string;
@@ -42,16 +42,19 @@ export interface DocumentVersion {
 export interface SourceSpan extends Scope {
   id: Id; pdf_page: number | null; parser_page_index: number | null; source_unit_index?: number; start: number; end: number;
   bbox: number[]; item_indices: number[]; source_text: string; retrieval_text: string;
-  transformation: 'whitespace_only' | 'decoded_source_text' | 'pdf_nul_to_replacement_character_then_whitespace';
-  parent_section_id: Id; block_id: Id; height: number; y: number; rotation?: number; reading_lane?: number;
+  transformation: 'whitespace_only' | 'decoded_source_text' | 'pdf_nul_to_replacement_character_then_whitespace'
+    | 'pdf_glyph_char_code_recovered_then_whitespace';
+  parent_section_id: Id; block_id: Id; height: number; y: number; rotation?: number; reading_lane?: number; anchor_only?: boolean;
 }
 export interface Section extends Scope {
   id: Id; title: string | null; parent_id: Id | null; span_ids: Id[]; record_key?: string;
+  /** Set on a reference list found before chunking; its lines stay source text only. */
+  role?: 'reference_list';
 }
 export interface Chunk extends Scope {
   id: Id; ordinal: number; parent_section_id: Id; section_path: string[];
   span_ids: Id[]; pdf_pages: number[]; source_locations?: SourceLocation[]; record_key?: string | null; source_text: string; retrieval_text: string;
-  retrieval_mapping: { prefix_length: number; body_span_ids: Id[]; operation: 'join_normalized_lines_with_block_breaks' };
+  retrieval_mapping: { prefix_length: number; body_span_ids: Id[]; operation: 'join_dehyphenated_lines_with_block_breaks' };
   embedding_input_hash: string; index_version: string; previous_id: Id | null; next_id: Id | null;
 }
 export interface Relation extends Scope {

@@ -1,0 +1,23 @@
+{
+  "normalization": "source-structure-v25",
+  "chunking": "structure-blocks-v19",
+  "parser": "pdfjs-dist@5.4.296",
+  "files": [
+    "lib/rag-v2/adapters/municipal-record.js",
+    "lib/rag-v2/chunking.js",
+    "lib/rag-v2/contracts.js",
+    "lib/rag-v2/ingestion.js",
+    "lib/rag-v2/knowledge.js",
+    "lib/rag-v2/metadata-adapter.js",
+    "lib/rag-v2/metadata-values.js",
+    "lib/rag-v2/normalize.js",
+    "lib/rag-v2/parser.js",
+    "lib/rag-v2/pdf-layout.js",
+    "lib/rag-v2/pdf-worker.js",
+    "lib/rag-v2/registered-source.js",
+    "lib/rag-v2/source-locations.js",
+    "lib/rag-v2/structured-record.js",
+    "lib/rag-v2/text-source.js"
+  ],
+  "sha256": "aa9b917b2280f182110609d97c5b4e42e1619b7f473ee88792aba53ead2eb4f5"
+}

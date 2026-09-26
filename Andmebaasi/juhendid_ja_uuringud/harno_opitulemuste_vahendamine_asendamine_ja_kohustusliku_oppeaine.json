@@ -178,5 +178,23 @@
       }
     }
   ],
-  "review_status": "metadata_conversion_pending"
+  "review_status": "metadata_conversion_pending",
+  "authority": "HARNO",
+  "collection_id": "national_guidelines",
+  "metadata_confirmations": [
+    {
+      "field": "authority",
+      "value": "HARNO",
+      "confirmed_by": "Claude Opus 5.5, allikakontroll dokumendist (omaniku korraldus 25.09.2026)",
+      "confirmed_at": "2026-09-25",
+      "basis": "lk 2: „Väljaandja: Harno“; 10 muud HARNO dokumenti kasutavad „HARNO“ ja 9 neist `national_guidelines`"
+    },
+    {
+      "field": "collection_id",
+      "value": "national_guidelines",
+      "confirmed_by": "Claude Opus 5.5, allikakontroll dokumendist (omaniku korraldus 25.09.2026)",
+      "confirmed_at": "2026-09-25",
+      "basis": "lk 2: „Väljaandja: Harno“; 10 muud HARNO dokumenti kasutavad „HARNO“ ja 9 neist `national_guidelines`"
+    }
+  ]
 }

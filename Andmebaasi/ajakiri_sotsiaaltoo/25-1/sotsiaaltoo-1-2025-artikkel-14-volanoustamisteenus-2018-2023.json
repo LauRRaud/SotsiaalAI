@@ -37,5 +37,14 @@
     "previous_source_original_path": null,
     "reference_stored_source_sha256": "61519156ceeca02580deb9064844626c182ee6121ff90bf3944f41b8ee7bb52a",
     "reference_stored_source_mime_type": "application/pdf"
-  }
+  },
+  "metadata_confirmations": [
+    {
+      "field": "year",
+      "value": 2025,
+      "confirmed_by": "Claude Opus 5.5, allikakontroll dokumendist (omaniku korraldus 25.09.2026)",
+      "confirmed_at": "2026-09-25",
+      "basis": "lk 5: „Artikkel ilmus ajakirjas Sotsiaaltöö 1/2025“; lk 1 veebikuupäev „Uurimus/analüüs 09. detsember 2024“ jääb kandidaadiks"
+    }
+  ]
 }

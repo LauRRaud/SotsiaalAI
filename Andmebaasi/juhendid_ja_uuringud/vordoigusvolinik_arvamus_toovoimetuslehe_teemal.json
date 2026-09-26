@@ -148,5 +148,31 @@
       }
     }
   ],
-  "review_status": "metadata_conversion_pending"
+  "review_status": "metadata_conversion_pending",
+  "year": 2016,
+  "publication_date": "2016-01-18",
+  "historical": true,
+  "metadata_confirmations": [
+    {
+      "field": "year",
+      "value": 2016,
+      "confirmed_by": "Claude Opus 5.5, allikakontroll dokumendist (omaniku korraldus 25.09.2026)",
+      "confirmed_at": "2026-09-25",
+      "basis": "lk 1: „Tallinn 18. jaanuar 2016“; sisu käsitleb olukorda enne 01.07.2016 muudatusi (ajalooline)"
+    },
+    {
+      "field": "publication_date",
+      "value": "2016-01-18",
+      "confirmed_by": "Claude Opus 5.5, allikakontroll dokumendist (omaniku korraldus 25.09.2026)",
+      "confirmed_at": "2026-09-25",
+      "basis": "lk 1: „Tallinn 18. jaanuar 2016“; sisu käsitleb olukorda enne 01.07.2016 muudatusi (ajalooline)"
+    },
+    {
+      "field": "historical",
+      "value": true,
+      "confirmed_by": "Claude Opus 5.5, allikakontroll dokumendist (omaniku korraldus 25.09.2026)",
+      "confirmed_at": "2026-09-25",
+      "basis": "lk 1: „Tallinn 18. jaanuar 2016“; sisu käsitleb olukorda enne 01.07.2016 muudatusi (ajalooline)"
+    }
+  ]
 }

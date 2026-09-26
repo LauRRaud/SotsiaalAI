@@ -176,7 +176,9 @@ test('M2.1-13, R-01/R-04: real article lexical evidence preserves exact page 3 a
   assert.equal(lex.length, 1);
   const answer = await query(tenant, 'OTT', { language: 'et' });
   assert.equal(answer.state, 'ok');
-  const item = answer.evidence.find(e => e.unit_id === lex[0].id); assert.ok(item); assert.deepEqual(item.pdf_pages, [3]);
+  const item = answer.evidence.find(e => e.unit_id === lex[0].id); assert.ok(item); assert.equal(item.pdf_pages[0], 3);
+  // A chunk may continue onto the next page; the span carrying the quote stays on its exact page.
+  assert.equal(item.span_ids.map(s => sample.bundles[0].spans.find(x => x.id === s)).find(s => s.source_text.includes('OTT-süsteem')).pdf_page, 3);
   assert.ok(item.source_text.includes('OTT-süsteem')); assert.ok(item.source_text.includes('läbipaistmatus'));
   const bundle = sample.bundles[0];
   assert.equal(item.source_text, item.span_ids.map(s => bundle.spans.find(x => x.id === s).source_text).join('\n'));
@@ -269,29 +271,32 @@ test('E-01/07/11/13: four local routes use the same stored 3072-dimensional fixt
   const baseline = evaluationPlan(sample, questions), prepared = buildPilotManifest(sample, questions, baseline);
   // 12420 -> 12429 since ad44c302e (08.09): a paragraph continuing on the next PDF page is no longer
   // split between two chunks mid-sentence; it moves whole into the next section's chunk.
+  // 12429 -> 11532 tokens (25 -> 26 inputs) with source-structure-v12: retrieval text joins PDF lines
+  // as running text, keeps headings in the prefix only and leaves the reference list out.
   const texts = sample.bundles.flatMap(b => b.chunks.map(c => c.source_text));
   for (const joined of ['millega tuleb\neriti arvestada', 'Katselahenduse\nväljatöötamisel', 'analüüsivad\nnäoilmeid']) {
     assert(texts.some(text => text.includes(joined)), joined);
   }
-  assert.equal(prepared.matches_baseline, true); assert.equal(prepared.manifest.total_input_tokens, 12429);
+  assert.equal(prepared.matches_baseline, true); assert.equal(prepared.manifest.total_input_tokens, 11532);
+  assert.equal(prepared.manifest.max_api_attempts, 26);
   const now = new Date().toISOString();
   const price = { input_per_million:'0.13',currency:'USD',version:'synthetic-local-price',source:'https://developers.openai.com/api/docs/models/text-embedding-3-large',checked_at:now };
   const approval = {schema_version:'rag-v2/pilot-approval-1',state:'approved',material_egress_approved:true,spend_cap_approved:true,
     approved_by:'synthetic-test-owner',approved_at:now,approval_basis:'Synthetic transport fixture only',source_plan_id:prepared.manifest.source_plan_id,
     egress_manifest_sha256:prepared.manifest_sha256,tenant:sample.tenant,config:prepared.manifest.config,files:prepared.manifest.files,
-    max_api_attempts:25,max_total_input_tokens:12429,retries:0,generation_calls:0,currency:'USD',approved_spend_cap:'0.05'};
+    max_api_attempts:26,max_total_input_tokens:11532,retries:0,generation_calls:0,currency:'USD',approved_spend_cap:'0.05'};
   let transportCalls = 0;
   const run = await runPilot({prepared,approval,price,policy,context:context(sample.tenant),root:path.join(tmp,'synthetic-pilot'),execute:true,
     transport:async({text,config})=>{transportCalls++;return {body:{model:config.model,data:[{object:'embedding',index:0,embedding:Array.from({length:3072},(_,i)=>i===0?1:0)}],
       usage:{prompt_tokens:tokenCount(text),total_tokens:tokenCount(text)}},request_id:'synthetic-provider-response'};} });
-  assert.equal(run.state,'complete');assert.equal(transportCalls,25);
+  assert.equal(run.state,'complete');assert.equal(transportCalls,26);
   const saved = await StoredEmbedding.load(run.directory,sample.tenant);
   const previous = await postgres.active(sample.tenant);
   await indexSnapshot({snapshot:sample,postgres,qdrant,embedding:saved});
   const generation = await postgres.active(sample.tenant);assert.notEqual(previous.collection,generation.collection);assert.ok(generation.collection.startsWith('ragv2_real_'));
   assert.ok(previous.collection.startsWith('ragv2_mock_'));await qdrant.request(qdrant.route(previous));
   const result = await evaluateRetrieval({snapshot:sample,questions,groups,postgres,qdrant,embedding:saved,policy,context:context(sample.tenant)});
-  assert.equal(result.rows.length,36);assert.equal(transportCalls,25);assert.equal(result.semantic_claim,'NOT_PROVEN_test_mechanics_only');
+  assert.equal(result.rows.length,36);assert.equal(transportCalls,26);assert.equal(result.semantic_claim,'NOT_PROVEN_test_mechanics_only');
   for(const row of result.rows) {
     assert.notEqual(row.state,'error');assert.ok(row.final_count<=5);assert.ok(row.measurements.model_context_tokens<=6000);
     assert.ok(row.packet.evidence.every(e=>e.source_text!=='Sotsiaaltöö'));

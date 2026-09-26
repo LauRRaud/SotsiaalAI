@@ -27,14 +27,15 @@ test('R2: compact catalogue keeps each source’s declared status and validity; 
 });
 
 test('R2: a warning shared by every source is listed once; a source-specific warning stays with its source', () => {
-  const shared = { code: 'collected_listing', detail: 'Kogutud valla lehelt' };
+  const shared = { code: 'collected_package_text', detail: 'Kogutud valla lehelt' };
+  // Processing notes (description_not_verified, layout_coverage_limit) never reach the model.
   const evidence = [
-    compactEntry(entry('a', {}, [shared, { code: 'description_not_verified' }, { code: 'amount_changed', detail: '2024 määr' }])),
-    compactEntry(entry('b', {}, [shared, { code: 'amount_changed', detail: '2025 määr' }])),
+    compactEntry(entry('a', {}, [shared, { code: 'description_not_verified' }, { code: 'metadata_candidate_conflict', detail: '2024 määr' }])),
+    compactEntry(entry('b', {}, [shared, { code: 'layout_coverage_limit', detail: 'Processing note' }, { code: 'metadata_candidate_conflict', detail: '2025 määr' }])),
     compactEntry(entry('c', {}, [shared])),
   ];
   assert.deepEqual(shareLimitations(evidence), [shared]);
-  assert.deepEqual(evidence.map(e => e.limitations), [[{ code: 'amount_changed', detail: '2024 määr' }], [{ code: 'amount_changed', detail: '2025 määr' }], []]);
+  assert.deepEqual(evidence.map(e => e.limitations), [[{ code: 'metadata_candidate_conflict', detail: '2024 määr' }], [{ code: 'metadata_candidate_conflict', detail: '2025 määr' }], []]);
   const { context } = modelProjection(evidence, records(evidence));
   assert.deepEqual(Object.values(context.sources).map(s => (s.limitations || []).map(w => w.detail)), [['2024 määr'], ['2025 määr'], []]);
   assert.deepEqual(shareLimitations([]), []);

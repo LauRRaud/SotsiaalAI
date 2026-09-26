@@ -148,5 +148,23 @@
       }
     }
   ],
-  "review_status": "metadata_conversion_pending"
+  "review_status": "metadata_conversion_pending",
+  "year": 2024,
+  "publication_date": "2024-05-16",
+  "metadata_confirmations": [
+    {
+      "field": "year",
+      "value": 2024,
+      "confirmed_by": "Claude Opus 5.5, allikakontroll dokumendist (omaniku korraldus 25.09.2026)",
+      "confirmed_at": "2026-09-25",
+      "basis": "lk 1: „Riigikontrolli aruanne Riigikogule, Tallinn, 16. mai 2024“ (lk 46 „xx. aprill 2024“ on mustandi jääk)"
+    },
+    {
+      "field": "publication_date",
+      "value": "2024-05-16",
+      "confirmed_by": "Claude Opus 5.5, allikakontroll dokumendist (omaniku korraldus 25.09.2026)",
+      "confirmed_at": "2026-09-25",
+      "basis": "lk 1: „Riigikontrolli aruanne Riigikogule, Tallinn, 16. mai 2024“ (lk 46 „xx. aprill 2024“ on mustandi jääk)"
+    }
+  ]
 }
