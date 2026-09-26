@@ -4,8 +4,8 @@
  * HandGestures — kaamera kui vabatahtlik ruumiline sisend
  * (ruumilise-kogemuse-lahtekoht §9.3, grammatika omanik 26.09).
  *
- * Sülearvuti või telefoni esikaamera tuvastab käe (MediaPipe Hand
- * Landmarker, brauseris):
+ * Sülearvuti või telefoni esikaamera tuvastab käe (MediaPipe Gesture
+ * Recognizer, brauseris: käepunktid + treenitud žestiotsus):
  * - käsi vasakule / paremale → menüü kaardid liiguvad käe suunas;
  * - näpistus → avab fookuses oleva kaardi;
  * - käsi alla / üles → avatud akna tekst kerib alla / üles;
@@ -42,14 +42,14 @@ const DETECT_MS = 40;
 
 let visionPromise = null;
 function loadVision() {
-  if (window.Vision?.HandLandmarker) return Promise.resolve(window.Vision);
+  if (window.Vision?.GestureRecognizer) return Promise.resolve(window.Vision);
   if (!visionPromise) {
     visionPromise = new Promise((resolve, reject) => {
       const script = document.createElement("script");
       script.src = `${VENDOR}/vision_bundle.js`;
       script.async = true;
       script.onload = () =>
-        window.Vision?.HandLandmarker ? resolve(window.Vision) : reject(new Error("vision_missing"));
+        window.Vision?.GestureRecognizer ? resolve(window.Vision) : reject(new Error("vision_missing"));
       script.onerror = () => reject(new Error("vision_load_failed"));
       document.head.appendChild(script);
     }).catch((error) => {
@@ -62,10 +62,10 @@ function loadVision() {
 
 /* Mudel laetakse lehe eluea jooksul üks kord: väljalülitus peatab kaamera,
    aga uuesti sisselülitamine ei pea wasm'i ja mudelit uuesti kompileerima. */
-let landmarkerPromise = null;
-function loadLandmarker() {
-  if (!landmarkerPromise) {
-    landmarkerPromise = loadVision()
+let recognizerPromise = null;
+function loadRecognizer() {
+  if (!recognizerPromise) {
+    recognizerPromise = loadVision()
       .then((Vision) => {
         const fileset = {
           wasmLoaderPath: `${VENDOR}/vision_wasm_internal.js`,
@@ -75,19 +75,22 @@ function loadLandmarker() {
            (SwiftShader — sinna langeb Chrome ka musta nimekirja GPU korral)
            ei visanud viga, vaid tagastas igas kaadris „kätt ei ole":
            kaamera töötaks, aga žestid oleksid vaikselt surnud. CPU leidis
-           samalt kaadrilt käe. Kaadrisagedus on piiratud (DETECT_MS). */
-        return Vision.HandLandmarker.createFromOptions(fileset, {
-          baseOptions: { modelAssetPath: `${VENDOR}/hand_landmarker.task`, delegate: "CPU" },
+           samalt kaadrilt käe. Kaadrisagedus on piiratud (DETECT_MS).
+           Gesture Recognizer, mitte ainult Hand Landmarker: sama käepunktide
+           mudel on tema sees, lisaks treenitud žestiotsus — rusikas ei
+           sõltu siis enam ühe foto järgi seatud lävedest (omanik 26.09). */
+        return Vision.GestureRecognizer.createFromOptions(fileset, {
+          baseOptions: { modelAssetPath: `${VENDOR}/gesture_recognizer.task`, delegate: "CPU" },
           runningMode: "VIDEO",
           numHands: 1,
         });
       })
       .catch((error) => {
-        landmarkerPromise = null;
+        recognizerPromise = null;
         throw error;
       });
   }
-  return landmarkerPromise;
+  return recognizerPromise;
 }
 
 function sendHand(detail) {
@@ -213,7 +216,7 @@ export default function HandGestures({ onStop, t }) {
       if (video) video.srcObject = null;
     };
 
-    const run = (landmarker) => {
+    const run = (recognizer) => {
       const tick = () => {
         frameId = requestAnimationFrame(tick);
         const now = performance.now();
@@ -222,15 +225,18 @@ export default function HandGestures({ onStop, t }) {
         lastVideoTime = video.currentTime;
         lastDetect = now;
         let landmarks = null;
+        let gesture = null;
         try {
-          landmarks = landmarker.detectForVideo(video, now)?.landmarks?.[0] || null;
+          const result = recognizer.recognizeForVideo(video, now);
+          landmarks = result?.landmarks?.[0] || null;
+          gesture = result?.gestures?.[0]?.[0] || null;
         } catch {
           return;
         }
         let hand = null;
         if (landmarks) {
           const aspect = (video.videoWidth || 4) / (video.videoHeight || 3);
-          hand = { ...palmPoint(landmarks), ...handShape(landmarks, aspect) };
+          hand = { ...palmPoint(landmarks), ...handShape(landmarks, aspect, gesture) };
         }
         const closed = fist.update({ t: now, hand });
         if (closed.back) {
@@ -281,7 +287,7 @@ export default function HandGestures({ onStop, t }) {
       }
       setStatus("starting");
       // Mudel laeb samal ajal, kui brauser luba küsib.
-      const model = loadLandmarker();
+      const model = loadRecognizer();
       model.catch(() => {});
       try {
         stream = await navigator.mediaDevices.getUserMedia({
@@ -308,9 +314,9 @@ export default function HandGestures({ onStop, t }) {
         await video.play();
       } catch {}
       setStatus("loading");
-      let landmarker;
+      let recognizer;
       try {
-        landmarker = await model;
+        recognizer = await model;
       } catch {
         if (cancelled) return;
         stopStream();
@@ -319,7 +325,7 @@ export default function HandGestures({ onStop, t }) {
       }
       if (cancelled) return;
       setStatus("ready");
-      run(landmarker);
+      run(recognizer);
     };
 
     start();
@@ -361,6 +367,7 @@ export default function HandGestures({ onStop, t }) {
         </p>
         {debug && metrics ? (
           <p className="hand-cam-note" data-debug="1">
+            {metrics.label || "–"} {metrics.score.toFixed(2)} ·{" "}
             {metrics.curls.map((c) => c.toFixed(2)).join(" ")} · {metrics.thumb.toFixed(2)} ·{" "}
             {metrics.pinch.toFixed(2)}
           </p>

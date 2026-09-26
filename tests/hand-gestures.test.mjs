@@ -84,6 +84,23 @@ test("a looser fist than the sample photo still counts, a pinch with curled fing
   assert.ok(shape.ratio < 0.3, `pinch still reads as a pinch (ratio ${shape.ratio})`);
 });
 
+test("the gesture model decides the fist; measurements only fill in when it has no answer", () => {
+  const [{ landmarks, aspect }] = photoHands("victory");
+  // Geometry says V-sign, but the model sees a fist (e.g. a loose fist at an angle): fist
+  const byModel = handShape(landmarks, aspect, { categoryName: "Closed_Fist", score: 0.62 });
+  assert.equal(byModel.fist, true);
+  assert.equal(byModel.ratio, Number.POSITIVE_INFINITY, "a fist is never a pinch");
+  // A weak Closed_Fist guess does not override the measurements
+  assert.equal(handShape(landmarks, aspect, { categoryName: "Closed_Fist", score: 0.3 }).fist, false);
+
+  const [fist] = photoHands("fist");
+  // The model is sure it is another gesture: not a fist, whatever the measurements say
+  assert.equal(handShape(fist.landmarks, fist.aspect, { categoryName: "Thumb_Up", score: 0.8 }).fist, false);
+  // "None" or no model answer: the measurements decide
+  assert.equal(handShape(fist.landmarks, fist.aspect, { categoryName: "None", score: 0.9 }).fist, true);
+  assert.equal(handShape(fist.landmarks, fist.aspect, null).fist, true);
+});
+
 test("thumbs up/down, pointing, victory and open hands are neither fist nor pinch", () => {
   for (const name of ["thumbs_up", "thumbs_down", "pointing_up", "victory", "woman_hands"]) {
     for (const { landmarks, aspect } of photoHands(name)) {
