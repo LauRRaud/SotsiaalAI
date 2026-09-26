@@ -2845,6 +2845,7 @@
       "dictation_paid": "Paid"
     },
     "message_tip": {
+      "more": "Options",
       "diagnostics": "Diagnostics",
       "listen": "Listen",
       "copy": "Copy",

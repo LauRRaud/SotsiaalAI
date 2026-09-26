@@ -2,6 +2,8 @@
 
 import { memo, useEffect, useMemo, useRef, useState } from "react";
 import { parseAssistantMarkdownBlocks } from "@/lib/chat/messageMarkdown";
+import MessageActionsMenu from "./MessageActionsMenu";
+
 
 function splitGraphemes(text) {
   if (!text) return [];
@@ -128,13 +130,6 @@ const ChatMessageItem = memo(function ChatMessageItem({
     const value = typeof t === "function" ? t(`chat.message_tip.${key}`) : "";
     return value && value !== `chat.message_tip.${key}` ? value : fallback;
   };
-  const diagnosticButton = isAssistant && !isStreaming && onShowDiagnostics ? (
-    <button type="button" aria-label={t("chat.diagnostics.open")} data-tooltip={tipLabel("diagnostics", "Diagnostika")} onClick={() => onShowDiagnostics(diagnosticRef || "missing")}>
-      <svg aria-hidden="true" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M4 5h16M4 12h16M4 19h16" /><circle cx="8" cy="5" r="2" /><circle cx="16" cy="12" r="2" /><circle cx="10" cy="19" r="2" />
-      </svg>
-    </button>
-  ) : null;
   const isOwn = role === "user";
   /* Pöördindeks (0 = uusim) juhib sisenemis-kaskaadi viidet chat.css-is;
      CSS piirab efekti min()-iga, seega suur indeks on ohutu. */
@@ -268,21 +263,6 @@ const ChatMessageItem = memo(function ChatMessageItem({
         ? (tr("chat.error.generic") || (locale === "en" ? "Something went wrong." : locale === "ru" ? "Что-то пошло не так." : "Midagi läks valesti."))
         : ""
     : "";
-  const retryButton = canRetry ? (
-    <button
-      type="button"
-      aria-label={retryLabel}
-      data-tooltip={tipLabel("retry", retryLabel)}
-      onClick={() => onRetry?.(messageId)}
-      disabled={retryPending}
-      data-chat-retry="true"
-    >
-      <svg aria-hidden="true" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M3 12a9 9 0 1 0 3-6.7L3 8" />
-        <path d="M3 3v5h5" />
-      </svg>
-    </button>
-  ) : null;
   const handleCopy = async () => {
     const value = String(text || "").trim();
     if (!value || typeof navigator === "undefined") return;
@@ -295,6 +275,51 @@ const ChatMessageItem = memo(function ChatMessageItem({
     if (!value) return;
     onSpeak?.(value);
   };
+  const hasText = Boolean(String(text || "").trim());
+  const messageActions = [];
+  if (isAssistant && (hasText || canRetry)) {
+    if (canRetry) {
+      messageActions.push({
+        key: "retry",
+        label: tipLabel("retry", retryLabel),
+        ariaLabel: retryLabel,
+        disabled: retryPending,
+        onSelect: () => onRetry?.(messageId)
+      });
+    }
+    if (hasText) {
+      messageActions.push({
+        key: "listen",
+        label: tipLabel("listen", "Kuula"),
+        ariaLabel: listenLabel,
+        disabled: !voiceEnabled || !canSpeak,
+        speaking: isSpeaking,
+        onSelect: handleSpeak
+      });
+      messageActions.push({
+        key: "copy",
+        label: tipLabel("copy", copyLabel),
+        ariaLabel: copyLabel,
+        onSelect: handleCopy
+      });
+      if (hasMessageSources) {
+        messageActions.push({
+          key: "sources",
+          label: tipLabel("sources", sourcesLabel),
+          ariaLabel: sourcesLabel,
+          onSelect: () => onShowSources?.(messageSources)
+        });
+      }
+    }
+    if (!isStreaming && onShowDiagnostics) {
+      messageActions.push({
+        key: "diagnostics",
+        label: tipLabel("diagnostics", "Diagnostika"),
+        ariaLabel: t("chat.diagnostics.open"),
+        onSelect: () => onShowDiagnostics(diagnosticRef || "missing")
+      });
+    }
+  }
   const toggleUserTimestamp = () => {
     if (!messageTime) return;
     setUserTimeVisible(prev => !prev);
@@ -399,53 +424,18 @@ const ChatMessageItem = memo(function ChatMessageItem({
           {interruptedNotice}
         </p>
       ) : null}
-      {canRetry && !String(text || "").trim() ? (
+      {messageActions.length ? (
+        /* Välimine rööbas on mulli kõrgune; sisemine ⋯ on sticky ja sõidab
+           pika vastuse lugemisel kaasa. Kõik tegevused on ühe nupu taga,
+           et ikoonid ei segaks teksti lugemist (omanik 26.09). */
         <span data-msg-rail="">
           <div aria-label={actionsLabel}>
-            {retryButton}
-            {diagnosticButton}
-          </div>
-        </span>
-      ) : null}
-      {isAssistant && String(text || "").trim() ? (
-        /* Välimine rööbas on mulli kõrgune; sisemine nupuveerg on sticky
-           ja sõidab pika vastuse lugemisel kaasa (omanik 26.09). */
-        <span data-msg-rail="">
-          <div aria-label={actionsLabel}>
-            {retryButton}
-            {diagnosticButton}
-            <button
-              type="button"
-              aria-label={listenLabel}
-              data-tooltip={tipLabel("listen", "Kuula")}
-              onClick={handleSpeak}
-              disabled={!voiceEnabled || !canSpeak}
-              data-speaking={isSpeaking ? "true" : "false"}
-            >
-              <svg aria-hidden="true" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M11 5 6 9H2v6h4l5 4z" />
-                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
-              </svg>
-            </button>
-            <button
-              type="button"
-              aria-label={copyLabel}
-              data-tooltip={tipLabel("copy", copyLabel)}
-              onClick={handleCopy}
-            >
-              <svg aria-hidden="true" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="9" y="9" width="10" height="10" rx="2" />
-                <path d="M5 15H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1" />
-              </svg>
-            </button>
-            {hasMessageSources ? (
-              <button
-                type="button"
-                aria-label={sourcesLabel}
-                data-tooltip={tipLabel("sources", sourcesLabel)}
-                onClick={() => onShowSources?.(messageSources)}
-              />
-            ) : null}
+            <MessageActionsMenu
+              label={actionsLabel}
+              tip={tipLabel("more", "Valikud")}
+              actions={messageActions}
+              speaking={isSpeaking}
+            />
           </div>
         </span>
       ) : null}
