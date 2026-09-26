@@ -2844,6 +2844,13 @@
       "upload": "Document",
       "dictation_paid": "Paid"
     },
+    "message_tip": {
+      "diagnostics": "Diagnostics",
+      "listen": "Listen",
+      "copy": "Copy",
+      "sources": "Sources",
+      "retry": "Retry"
+    },
     "diagnostics": {
       "decision_title": "Why did the system decide this?",
       "decision_boundary": "These are recorded decision inputs and conditions, not a guarantee of root cause. If source years conflict, compare the question's measurement period with the publication year. History counts describe this request's selection, not the entire conversation.",

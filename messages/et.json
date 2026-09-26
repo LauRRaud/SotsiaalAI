@@ -2844,6 +2844,13 @@
       "upload": "Dokument",
       "dictation_paid": "Tasuline"
     },
+    "message_tip": {
+      "diagnostics": "Diagnostika",
+      "listen": "Kuula",
+      "copy": "Kopeeri",
+      "sources": "Allikad",
+      "retry": "Uuesti"
+    },
     "diagnostics": {
       "decision_title": "Miks süsteem nii otsustas?",
       "decision_boundary": "Need on salvestatud otsuse sisendid ja tingimused, mitte automaatne algpõhjuse garantii. Allikaaastate vastuolu korral võrdle küsimuse perioodi ja artikli ilmumisaastat. Ajaloo arvud kirjeldavad selle päringu valikut, mitte vestluse kogupikkust.",
