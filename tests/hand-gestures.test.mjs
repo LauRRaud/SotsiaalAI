@@ -118,9 +118,48 @@ test("palmPoint mirrors the front camera so the hand moves the way the user sees
 
 test("a short still pinch taps on release", () => {
   const tracker = createPinchTracker();
-  const ratios = [0.9, 0.2, 0.2, 0.2, 0.9, 0.9];
+  const ratios = [0.9, 0.2, 0.2, 0.2, 0.2, 0.2, 0.9, 0.9];
   const taps = ratios.map((ratio, i) => tracker.update({ t: i * FRAME_MS, hand: { x: 0.5, y: 0.5, ratio } }).tap);
-  assert.deepEqual(taps, [false, false, false, false, false, true]);
+  assert.deepEqual(taps, [false, false, false, false, false, false, false, true]);
+});
+
+test("fingers touching for a blurred frame or two are not a pinch", () => {
+  // Owner 26.09: "waving, it thought I was pinching"
+  const tracker = createPinchTracker();
+  const ratios = [0.9, 0.2, 0.2, 0.2, 0.9, 0.9, 0.9];
+  const taps = ratios.map((ratio, i) => tracker.update({ t: i * FRAME_MS, hand: { x: 0.5, y: 0.5, ratio } }).tap);
+  assert.equal(taps.includes(true), false);
+});
+
+test("fingers closing at the turning point of a wave do not open anything", () => {
+  const swipe = createSwipeTracker();
+  const pinch = createPinchTracker();
+  const wave = [];
+  for (let i = 0; i < 3; i++) wave.push(...line([0.4, 0.5], [0.6, 0.5], 5), ...still(0.6, 0.5, 6), ...line([0.6, 0.5], [0.4, 0.5], 5), ...still(0.4, 0.5, 6));
+  const path = [...still(0.4, 0.5, 12), ...wave, ...still(0.4, 0.5, 20)];
+  let taps = 0;
+  path.forEach(([x, y], i) => {
+    const t = i * FRAME_MS;
+    // At every turning point (hand still for 6 frames) the fingers touch for 5 frames
+    const turning = i >= 12 && i < 12 + wave.length && [0, 1, 2, 3, 4].includes((i - 12) % 11 - 5);
+    const hand = { x, y, ratio: turning ? 0.2 : 0.9 };
+    const { pinched, tap } = pinch.update({ t, hand, blocked: swipe.moving(t) });
+    taps += tap ? 1 : 0;
+    swipe.update({ t, hand, pinched });
+  });
+  assert.equal(taps, 0);
+  // the same finger movement on a hand held still is a real pinch
+  const still2 = createSwipeTracker();
+  const pinch2 = createPinchTracker();
+  let real = 0;
+  for (let i = 0; i < 40; i++) {
+    const t = i * FRAME_MS;
+    const hand = { x: 0.5, y: 0.5, ratio: i >= 20 && i < 25 ? 0.2 : 0.9 };
+    const { pinched, tap } = pinch2.update({ t, hand, blocked: still2.moving(t) });
+    real += tap ? 1 : 0;
+    still2.update({ t, hand, pinched });
+  }
+  assert.equal(real, 1);
 });
 
 test("one noisy frame neither presses nor releases", () => {
@@ -311,7 +350,7 @@ test("opening a fist passes through a pinch shape but does not open anything", (
   assert.equal(taps, 0);
   // a real pinch a moment later still works
   for (let i = 0; i < 20; i++) frame(false, 0.9);
-  for (let i = 0; i < 3; i++) frame(false, 0.2);
+  for (let i = 0; i < 5; i++) frame(false, 0.2);
   for (let i = 0; i < 3; i++) frame(false, 0.9);
   assert.equal(taps, 1);
 });

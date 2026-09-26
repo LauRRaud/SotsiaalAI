@@ -243,7 +243,12 @@ export default function HandGestures({ onStop, t }) {
           const outcome = goBack();
           say(outcome === "none" ? "room.hands_no_back" : outcome === "draft" ? "room.hands_kept_draft" : "room.hands_did_back");
         }
-        const { pinched, tap } = pinch.update({ t: now, hand, blocked: closed.quiet });
+        /* Liikuv käsi ei näpista: lehvitades lähevad sõrmed hetkeks kokku ja
+           see avas kaarte (omanik 26.09). `moving` tuleb eelmisest kaadrist —
+           tõmme omakorda vajab selle kaadri näpistust, et näpistades mitte
+           kerida. */
+        const moving = swipe.moving(now);
+        const { pinched, tap } = pinch.update({ t: now, hand, blocked: closed.quiet || moving });
         const nextShape = closed.fist ? "fist" : pinched ? "pinch" : "";
         if (nextShape !== shape) {
           shape = nextShape;
