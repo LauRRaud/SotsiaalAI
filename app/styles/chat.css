@@ -1109,24 +1109,12 @@ button[aria-controls="chat-window-scroll"] {
 .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"]:has(> [data-msg-rail] > div[aria-label]) {
   --msg-rail-btn: 2.1rem;
   --msg-rail-pad: 0.4rem;
-  padding-right: calc(var(--msg-rail-btn) + 1.3rem);
+  padding-right: calc(var(--msg-rail-btn) + 0.9rem);
   min-height: calc(var(--msg-rail-btn) + var(--msg-rail-pad) * 2);
   /* Kohustuslik: selgesõnaline min-height asendab flex-elemendi automaatse
      miinimumi (sisu kõrguse) ja täis kerimisveerus surus flex pika vastuse
      mulli tema tekstist madalamaks — tekst jooksis klaasist välja. */
   flex-shrink: 0;
-}
-.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"]:has(> [data-msg-rail] > div[aria-label] > button:nth-of-type(2)) {
-  min-height: calc(var(--msg-rail-btn) * 2 + var(--msg-rail-pad) * 2);
-}
-.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"]:has(> [data-msg-rail] > div[aria-label] > button:nth-of-type(3)) {
-  min-height: calc(var(--msg-rail-btn) * 3 + var(--msg-rail-pad) * 2);
-}
-.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"]:has(> [data-msg-rail] > div[aria-label] > button:nth-of-type(4)) {
-  min-height: calc(var(--msg-rail-btn) * 4 + var(--msg-rail-pad) * 2);
-}
-.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"]:has(> [data-msg-rail] > div[aria-label] > button:nth-of-type(5)) {
-  min-height: calc(var(--msg-rail-btn) * 5 + var(--msg-rail-pad) * 2);
 }
 /* Välimine rööbas: mulli kõrgune tulp paremas servas. */
 .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] > [data-msg-rail] {
@@ -1138,19 +1126,7 @@ button[aria-controls="chat-window-scroll"] {
   width: calc(var(--msg-rail-btn, 2.1rem) + 0.6rem);
   z-index: 1;
 }
-/* Õrn juuksejoon eraldab rööpa tekstist; hääbub otstes, et mitte lõigata
-   mulli klaasi kaheks. */
-.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] > [data-msg-rail]::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.9rem;
-  bottom: 0.9rem;
-  width: 1px;
-  background: linear-gradient(transparent, rgba(242, 242, 242, 0.1) 22%, rgba(242, 242, 242, 0.1) 78%, transparent);
-  pointer-events: none;
-}
-/* Nupuveerg on sticky: pika vastuse lugemisel sõidab ta kerimisel kaasa
+/* ⋯ nupp on sticky: pika vastuse lugemisel sõidab ta kerimisel kaasa
    ja jääb nähtavaks seni, kuni mull ise on ekraanil (omanik 26.09). */
 .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] > [data-msg-rail] > div[aria-label] {
   position: sticky;
@@ -1160,7 +1136,9 @@ button[aria-controls="chat-window-scroll"] {
   align-items: center;
   gap: 0;
   margin: 0;
-  padding: var(--msg-rail-pad, 0.4rem) 0.3rem;
+  /* Ülapolster joondab ⋯ esimese tekstireaga (mulli polster 0,82em +
+     pool reakõrgust). */
+  padding: 0.62rem 0.3rem var(--msg-rail-pad, 0.4rem);
   opacity: 1;
   pointer-events: auto;
   transition: opacity var(--dur-fast) var(--ease-soft);
@@ -1221,6 +1199,77 @@ button[aria-controls="chat-window-scroll"] {
   margin-top: 0.28rem;
   white-space: nowrap;
 }
+/* ⋯ menüü: sama klaas mis doki kiirmenüül ja komposeri siltidel. Elab
+   popover-kihis (MessageActionsMenu), seega kerimisveeru mask ega
+   perspektiiv teda ei lõika; asukoha annab skript (top/left). */
+.panel-scrim[data-conversation="1"] [data-msg-menu] {
+  position: fixed;
+  inset: auto;
+  margin: 0;
+  display: grid;
+  gap: 0.1rem;
+  min-width: 11rem;
+  padding: 0.35rem;
+  border: 0;
+  border-radius: 1.1rem;
+  color: var(--room-text);
+  background: var(--control-glass-bg);
+  -webkit-backdrop-filter: var(--control-glass-blur);
+  backdrop-filter: var(--control-glass-blur);
+  box-shadow:
+    inset 0 1px rgba(247, 247, 247, 0.08),
+    0 18px 44px rgba(5, 5, 5, 0.34);
+  overflow: visible;
+}
+.panel-scrim[data-conversation="1"] [data-msg-menu]:not(:popover-open):not([data-open="true"]) {
+  display: none;
+}
+/* Popover'ita brauser: absoluutne ⋯ nupu all. */
+.panel-scrim[data-conversation="1"] [data-msg-menu][data-open="true"]:not([popover]) {
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  right: 0;
+  z-index: var(--z-modal, 50);
+}
+.panel-scrim[data-conversation="1"] [data-msg-menu] > button[role="menuitem"] {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-block-size: 2.5rem;
+  margin: 0;
+  padding: 0.45rem 0.9rem;
+  border: 0;
+  border-radius: 0.8rem;
+  background: transparent;
+  color: var(--room-text);
+  font-family: var(--font-ui);
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease-soft);
+}
+.panel-scrim[data-conversation="1"] [data-msg-menu] > button[role="menuitem"]:is(:hover, :focus-visible) {
+  background: rgba(248, 248, 248, 0.055);
+  outline: none;
+}
+.panel-scrim[data-conversation="1"] [data-msg-menu] > button[role="menuitem"]:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+.panel-scrim[data-conversation="1"] [data-msg-menu] > button[role="menuitem"]:disabled {
+  opacity: 0.42;
+  cursor: default;
+}
+.panel-scrim[data-conversation="1"] [data-msg-menu] > button[role="menuitem"][data-speaking="true"] {
+  color: var(--dusk-sunset);
+}
+html[data-contrast="hc"] .panel-scrim[data-conversation="1"] [data-msg-menu] {
+  background: #080808;
+  border: 1px solid #ffffff;
+  box-shadow: none;
+}
+
 /* Rööpa nuppude silt: sama klaaspill mis komposeri nuppudel, aga nupust
    VASAKUL — üleval kataks ta naabernuppu. */
 .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] > [data-msg-rail] button[data-tooltip] {
@@ -1255,7 +1304,7 @@ button[aria-controls="chat-window-scroll"] {
     opacity 200ms var(--ease-soft, ease),
     translate 240ms var(--ease-soft, ease);
 }
-.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] > [data-msg-rail] button[data-tooltip]:is(:hover, :focus-visible)::after {
+.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] > [data-msg-rail] button[data-tooltip]:is(:hover, :focus-visible):not([aria-expanded="true"])::after {
   opacity: 1;
   translate: 0 -50%;
   transition-delay: 90ms;

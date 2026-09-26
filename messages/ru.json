@@ -2845,6 +2845,7 @@
       "dictation_paid": "Платно"
     },
     "message_tip": {
+      "more": "Действия",
       "diagnostics": "Диагностика",
       "listen": "Слушать",
       "copy": "Копировать",

@@ -2845,6 +2845,7 @@
       "dictation_paid": "Tasuline"
     },
     "message_tip": {
+      "more": "Valikud",
       "diagnostics": "Diagnostika",
       "listen": "Kuula",
       "copy": "Kopeeri",
