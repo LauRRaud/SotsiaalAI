@@ -25,12 +25,20 @@
 import { useEffect, useRef, useState } from "react";
 import {
   HAND_EVENT,
+  SWIPE_DEFAULTS,
   createFistTracker,
   createPinchTracker,
   createSwipeTracker,
   handShape,
   palmPoint,
 } from "@/lib/handGestures";
+
+/* Lehvitamise aken eelvaatel: sama keskosa, millest välja pühkimine loeb
+   (SWIPE_DEFAULTS.edgeX/edgeY). Sümmeetriline, seega peegeldus ei muuda. */
+const WINDOW_STYLE = {
+  "--hand-window-x": `${SWIPE_DEFAULTS.edgeX * 100}%`,
+  "--hand-window-y": `${SWIPE_DEFAULTS.edgeY * 100}%`,
+};
 
 const VENDOR = "/vendor/mediapipe";
 /* Käe tõmbe ja lehe kerimise suhe: veerandi kaadri kõrgune tõmme kerib
@@ -180,6 +188,9 @@ export default function HandGestures({ onStop, t }) {
   );
   const [metrics, setMetrics] = useState(null);
   useEffect(() => () => window.clearTimeout(noticeTimer.current), []);
+  /* Eelvaate kuju tuleb voost: telefoni esikaamera annab sageli püstise
+     pildi, ja raam peab olema sealsamas, kus aken pildil päriselt on. */
+  const [viewAspect, setViewAspect] = useState(null);
   const [pageVisible, setPageVisible] = useState(
     () => typeof document === "undefined" || document.visibilityState !== "hidden"
   );
@@ -361,7 +372,20 @@ export default function HandGestures({ onStop, t }) {
       data-live={live ? "1" : "0"}
       data-hand={status === "ready" && handSeen ? "1" : "0"}
     >
-      <video ref={videoRef} className="hand-cam-video" muted playsInline aria-hidden="true" />
+      <span className="hand-cam-view" style={viewAspect ? { aspectRatio: viewAspect } : undefined}>
+        <video
+          ref={videoRef}
+          className="hand-cam-video"
+          muted
+          playsInline
+          aria-hidden="true"
+          onLoadedMetadata={(e) => {
+            const { videoWidth, videoHeight } = e.currentTarget;
+            if (videoWidth && videoHeight) setViewAspect(`${videoWidth} / ${videoHeight}`);
+          }}
+        />
+        <span className="hand-cam-window" style={WINDOW_STYLE} aria-hidden="true" />
+      </span>
       <div className="hand-cam-body">
         <p className="hand-cam-title">
           <span className="hand-cam-dot" aria-hidden="true" />
