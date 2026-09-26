@@ -96,3 +96,32 @@ test('M4-C approval: dialogue needs its own contract and egress grant; old v3 re
   await write({ ...dialogue, dialogueVersion: 'unknown' }, { dialogueEgress: true });
   await assert.rejects(readPilotConfig('tester'), { code: 'unsupported_dialogue_version' });
 });
+
+test('an open development chat: search assist needs the unified route; attempt caps rise only for dynamic questions', async t => {
+  const original = { ...process.env }, dir = await fs.mkdtemp(path.join(os.tmpdir(), 'm4-assist-')), file = path.join(dir, 'config.json');
+  t.after(async () => { await fs.unlink(file); await fs.rmdir(dir); for (const key of Object.keys(process.env)) if (!(key in original)) delete process.env[key]; Object.assign(process.env, original); });
+  process.env.M4_PILOT_CONFIG = file; process.env.M4_PILOT_ENABLED = '1'; process.env.OPENAI_MODEL = 'gpt-6-luna'; process.env.OPENAI_API_KEY = 'synthetic-no-network';
+  const { SEARCH_ASSIST_VERSION } = await import('../lib/rag-v2/pilot/search-assist.js');
+  const unified = { id: 'synthetic-open-chat', tenant: 'test', users: ['tester'], mode: 'real', usage: 'development_only', expiresAt: null, retentionHours: null,
+    timeoutMs: 1000, documents: { doc: 'v1' }, profileId: 'hybrid-estnltk-chat-v1',
+    embedding: embeddingConfig({ embedding_mode: 'real', provider: 'openai', model: 'text-embedding-3-large', dimensions: 3072, endpoint: 'https://api.openai.com/v1/embeddings' }),
+    model: 'gpt-6-luna', endpoint: 'https://api.openai.com/v1/responses', accountProject: 'proj_synthetic', modelContract: 'responses-strict-reasoning-v1',
+    reasoning: 'medium', maxInputTokens: 300000, maxOutputTokens: 4096, generationId: 'test-generation', implementationHash: (await implementationManifest()).hash,
+    dialogueVersion: DIALOGUE_VERSION, promptVersion: DIALOGUE_PROMPT_VERSION, questionVersion: DIALOGUE_SEARCH_VERSION,
+    dialogueStateVersion: TYPED_DIALOGUE_STATE_VERSION, dialogueStateSchemaHash: digest(TYPED_DIALOGUE_ANSWER_SCHEMA),
+    retrievalRouting: UNIFIED_RETRIEVAL_VERSION, recordCatalogue: RECORD_RETRIEVAL_VERSION, searchAssist: SEARCH_ASSIST_VERSION,
+    prices: { embeddingInput: 130, answerInput: 125, answerOutput: 500 }, questionPolicy: { mode: 'bounded_dynamic' },
+    budget: { attempts: 4000, embeddingAttempts: 2000, answerAttempts: 2000, tokens: 400000000, nanoUsd: 3000000000 } };
+  const write = async plan => fs.writeFile(file, JSON.stringify({ ...plan, approval: { approvedBy: 'synthetic-config-test', approvedAt: new Date().toISOString(),
+    planHash: digest(plan), queryAndSourceEgress: true, dialogueEgress: true, dynamicQuestions: true } }));
+  await write(unified);
+  assert.equal((await readPilotConfig('tester')).searchAssist, SEARCH_ASSIST_VERSION);
+  const { retrievalRouting: _routing, recordCatalogue: _catalogue, ...withoutRoute } = unified;
+  await write(withoutRoute);
+  await assert.rejects(readPilotConfig('tester'), { code: 'invalid_search_assist_plan' });
+  await write({ ...unified, searchAssist: 'rag-v2/search-assist-0' });
+  await assert.rejects(readPilotConfig('tester'), { code: 'unsupported_search_assist' });
+  // A fixed-question run keeps its small attempt caps.
+  await write({ ...unified, questionPolicy: { mode: 'locked', inputs: [{ question: 'Q', contextMode: 'new', language: 'et' }] } });
+  await assert.rejects(readPilotConfig('tester'), { code: 'stage_budget_not_configured' });
+});

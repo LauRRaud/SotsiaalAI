@@ -227,8 +227,9 @@ test('E-08/09: compact context preserves source text and conditions with scoped 
   const p=modelProjection(packet.evidence,packet);packet.reference_map=p.references;
   assert.equal(p.context.evidence[0].text,entry.source_text);assert.equal(Object.keys(p.context.sources).length,1);
   assert.ok(!JSON.stringify(p.context).includes('long-span-id'));assert.ok(!JSON.stringify(p.context).includes('Unverified long description'));
-  assert.equal(p.context.sources.D1.source_type.value,'journal_article');assert.equal(p.context.sources.D1.source_type.review_state,'imported_not_verified');
-  assert.equal(p.context.sources.D1.valid_to.value,null);
+  // Cards carry declared values only; provenance and review states stay in the audit packet (json-2).
+  assert.equal(p.context.sources.D1.source_type,'journal_article');assert.equal(p.context.sources.D1.authority,'editorial');
+  assert.equal(p.context.sources.D1.valid_to,undefined);assert.ok(!JSON.stringify(p.context).includes('provenance'));assert.ok(!JSON.stringify(p.context).includes('review_state'));
   assert.deepEqual(p.context.sources.D1.limitations,[{code:'reference_list_not_visible'}]);
   const sourceResolver=async expected=>expected;
   assert.equal((await resolveModelReference({packet,reference:'S1',queryId:packet.query_id,context,policy,sourceResolver})).span_ids[0],'long-span-id');

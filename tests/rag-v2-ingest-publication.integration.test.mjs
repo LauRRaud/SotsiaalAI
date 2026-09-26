@@ -182,7 +182,7 @@ test('registered municipal packages and zoned XML pass review/publication and st
       query: { text: 'koduteenuseid', language: 'et', method: 'lexical', semanticGraph: true, contextMode: 'compact', filters: { region: municipality } } });
     assert.equal(packet.state, 'ok', packet.error); assert(packet.evidence.length);
     assert(packet.evidence.every(e => e.source_metadata.municipality_id.value === municipality));
-    assert(Object.values(packet.model_context.sources).every(s => s.municipality_id.value === municipality));
+    assert(Object.values(packet.model_context.sources).every(s => s.municipality_id === municipality));
     assert(packet.evidence.every(e => e.source_locations.some(location => location.kind === 'json')));
   }
   assert.equal(embedding.calls, callsBefore);
