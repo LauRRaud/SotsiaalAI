@@ -4,6 +4,51 @@ import { memo, useEffect, useMemo, useRef, useState } from "react";
 import { parseAssistantMarkdownBlocks } from "@/lib/chat/messageMarkdown";
 import MessageActionsMenu from "./MessageActionsMenu";
 
+const ICON_PROPS = {
+  "aria-hidden": "true",
+  width: 20,
+  height: 20,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.75,
+  strokeLinecap: "round",
+  strokeLinejoin: "round"
+};
+const RETRY_ICON = (
+  <svg {...ICON_PROPS}>
+    <path d="M3 12a9 9 0 1 0 3-6.7L3 8" />
+    <path d="M3 3v5h5" />
+  </svg>
+);
+const LISTEN_ICON = (
+  <svg {...ICON_PROPS}>
+    <path d="M11 5 6 9H2v6h4l5 4z" />
+    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
+  </svg>
+);
+const COPY_ICON = (
+  <svg {...ICON_PROPS}>
+    <rect x="9" y="9" width="10" height="10" rx="2" />
+    <path d="M5 15H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1" />
+  </svg>
+);
+const SOURCES_ICON = (
+  <svg {...ICON_PROPS}>
+    <path d="M12 3.5 3.5 8 12 12.5 20.5 8Z" />
+    <path d="M3.5 12 12 16.5 20.5 12" />
+    <path d="M3.5 16 12 20.5 20.5 16" />
+  </svg>
+);
+const DIAGNOSTICS_ICON = (
+  <svg {...ICON_PROPS}>
+    <path d="M4 5h16M4 12h16M4 19h16" />
+    <circle cx="8" cy="5" r="2" />
+    <circle cx="16" cy="12" r="2" />
+    <circle cx="10" cy="19" r="2" />
+  </svg>
+);
+
 
 function splitGraphemes(text) {
   if (!text) return [];
@@ -284,7 +329,8 @@ const ChatMessageItem = memo(function ChatMessageItem({
         label: tipLabel("retry", retryLabel),
         ariaLabel: retryLabel,
         disabled: retryPending,
-        onSelect: () => onRetry?.(messageId)
+        onSelect: () => onRetry?.(messageId),
+        icon: RETRY_ICON
       });
     }
     if (hasText) {
@@ -294,20 +340,23 @@ const ChatMessageItem = memo(function ChatMessageItem({
         ariaLabel: listenLabel,
         disabled: !voiceEnabled || !canSpeak,
         speaking: isSpeaking,
-        onSelect: handleSpeak
+        onSelect: handleSpeak,
+        icon: LISTEN_ICON
       });
       messageActions.push({
         key: "copy",
         label: tipLabel("copy", copyLabel),
         ariaLabel: copyLabel,
-        onSelect: handleCopy
+        onSelect: handleCopy,
+        icon: COPY_ICON
       });
       if (hasMessageSources) {
         messageActions.push({
           key: "sources",
           label: tipLabel("sources", sourcesLabel),
           ariaLabel: sourcesLabel,
-          onSelect: () => onShowSources?.(messageSources)
+          onSelect: () => onShowSources?.(messageSources),
+          icon: SOURCES_ICON
         });
       }
     }
@@ -316,7 +365,8 @@ const ChatMessageItem = memo(function ChatMessageItem({
         key: "diagnostics",
         label: tipLabel("diagnostics", "Diagnostika"),
         ariaLabel: t("chat.diagnostics.open"),
-        onSelect: () => onShowDiagnostics(diagnosticRef || "missing")
+        onSelect: () => onShowDiagnostics(diagnosticRef || "missing"),
+        icon: DIAGNOSTICS_ICON
       });
     }
   }
