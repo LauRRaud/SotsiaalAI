@@ -1446,6 +1446,19 @@ html[data-reduce-transparency="1"] .hand-cam {
   background: var(--room-text-dim);
   box-shadow: none;
 }
+/* Tuvastatud kuju (näpistus / rusikas) pealkirja taga: kasutaja näeb,
+   kas kaamera tema žesti üldse nägi, enne kui midagi juhtub. */
+.hand-cam-gesture {
+  padding: 0.05rem 0.45rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 999px;
+  background: var(--glass-cell-bg-hover);
+  color: var(--room-text);
+  letter-spacing: 0.06em;
+}
+.hand-cam-note[data-debug="1"] {
+  font-variant-numeric: tabular-nums;
+}
 .hand-cam-text {
   margin: 0;
   font-size: 0.9rem;

@@ -110,16 +110,20 @@ function scrollTarget() {
 
 /* Rusikas = tagasi, ja ainult juba olemasolevaid väljapääse pidi:
    1) info-modaali dokk (Kontakt/Paigalda) — tal on oma tagasi-nool;
-   2) muu modaal või avatud leht — Esc, täpselt nagu klaviatuuril. Esc
-      saadetakse fookuses elemendile, nii et samad kaitsed kehtivad: nt
-      kirjutamise ajal ei sulge Esc lehte ja pooleli tekst jääb alles;
+   2) muu modaal või avatud leht — Esc. Esc saadetakse lehele (body), mitte
+      fookuses elemendile: vestluses on tekstikast kohe fookuses ja leht
+      eirab Esc'i kirjutamise ajal, nii et rusikas ei teinud seal midagi
+      (omanik 26.09: „rusikas ei töötanud"). Hoitud rusikas on tahtlik
+      žest, mitte kogemata vajutatud klahv. Pooleli teksti see siiski ei
+      viska: kui fookuses väljas on tekst, jääb leht lahti;
    3) alammenüü (Töölaud, Profiil jne) — karusselli tagasi-nool.
-   Peamenüüs ei tee rusikas midagi: välja logimine ei ole žest. */
+   Peamenüüs ei tee rusikas midagi: välja logimine ei ole žest.
+   Tagastab, mis juhtus — paan ütleb selle kasutajale. */
 function goBack() {
   const overModal = document.querySelector('.room-dock-wrap[data-over-modal="1"] .gc-shortcut--back');
   if (overModal) {
     overModal.click();
-    return;
+    return "back";
   }
   const room = document.querySelector(".room");
   const layered =
@@ -127,14 +131,20 @@ function goBack() {
     room?.dataset.a11yOpen === "1" ||
     document.documentElement.getAttribute("data-room-mode") === "panel";
   if (layered) {
-    const target = document.activeElement || document.body;
-    target.dispatchEvent(
+    const el = document.activeElement;
+    const field = el?.matches?.("input:not([type=hidden]), textarea") || el?.isContentEditable;
+    const draft = field && (el.isContentEditable ? el.textContent : el.value)?.trim();
+    if (draft && room?.dataset.loginOpen !== "1") return "draft";
+    document.body.dispatchEvent(
       new KeyboardEvent("keydown", { key: "Escape", code: "Escape", bubbles: true, cancelable: true })
     );
-    return;
+    return "back";
   }
   const wrap = document.querySelector(".room-carousel-wrap");
-  if (wrap && !wrap.inert) wrap.querySelector(".gc-shortcut--back")?.click();
+  const back = wrap && !wrap.inert ? wrap.querySelector(".gc-shortcut--back") : null;
+  if (!back) return "none";
+  back.click();
+  return "back";
 }
 
 function scrollBy(dir, travel) {
@@ -153,6 +163,20 @@ export default function HandGestures({ onStop, t }) {
   // starting | loading | ready | denied | unavailable | unsupported
   const [status, setStatus] = useState("starting");
   const [handSeen, setHandSeen] = useState(false);
+  /* Mis kuju käsi parajasti on ("pinch" | "fist" | "") ja mis viimane rusikas
+     tegi. Ilma selleta ei saanud kasutaja teada, kas rusikat üldse nähti
+     (omanik 26.09: „rusikas ei töötanud"). */
+  const [gesture, setGesture] = useState("");
+  const [notice, setNotice] = useState(null);
+  const noticeTimer = useRef(0);
+  /* `?kaed` aadressireal näitab mõõte — läve saab päris kaamera ees
+     kalibreerida ilma arendustööriistadeta. Komponent sünnib alati kliendis
+     (lüliti vajutusest), seega võib aadressi lugeda kohe. */
+  const [debug] = useState(
+    () => typeof window !== "undefined" && new URLSearchParams(window.location.search).has("kaed")
+  );
+  const [metrics, setMetrics] = useState(null);
+  useEffect(() => () => window.clearTimeout(noticeTimer.current), []);
   const [pageVisible, setPageVisible] = useState(
     () => typeof document === "undefined" || document.visibilityState !== "hidden"
   );
@@ -171,7 +195,14 @@ export default function HandGestures({ onStop, t }) {
     let frameId = 0;
     let lastVideoTime = -1;
     let lastDetect = 0;
+    let lastMetrics = 0;
     let seen = false;
+    let shape = "";
+    const say = (key) => {
+      setNotice(key);
+      window.clearTimeout(noticeTimer.current);
+      noticeTimer.current = window.setTimeout(() => setNotice(null), 1800);
+    };
     const pinch = createPinchTracker();
     const swipe = createSwipeTracker();
     const fist = createFistTracker();
@@ -202,8 +233,20 @@ export default function HandGestures({ onStop, t }) {
           hand = { ...palmPoint(landmarks), ...handShape(landmarks, aspect) };
         }
         const closed = fist.update({ t: now, hand });
-        if (closed.back) goBack();
+        if (closed.back) {
+          const outcome = goBack();
+          say(outcome === "none" ? "room.hands_no_back" : outcome === "draft" ? "room.hands_kept_draft" : "room.hands_did_back");
+        }
         const { pinched, tap } = pinch.update({ t: now, hand, blocked: closed.quiet });
+        const nextShape = closed.fist ? "fist" : pinched ? "pinch" : "";
+        if (nextShape !== shape) {
+          shape = nextShape;
+          setGesture(shape);
+        }
+        if (debug && hand?.metrics && now - lastMetrics > 200) {
+          lastMetrics = now;
+          setMetrics(hand.metrics);
+        }
         if (tap) sendHand({ action: "open" });
         // Rusikas ja tema järelvaikus ei ole tõmme: käsi ainult sulgub/avaneb.
         const still = pinched || closed.quiet;
@@ -277,12 +320,16 @@ export default function HandGestures({ onStop, t }) {
       pinch.reset();
       swipe.reset();
       fist.reset();
+      setGesture("");
     };
-  }, [pageVisible]);
+  }, [pageVisible, debug]);
 
   const live = status === "starting" || status === "loading" || status === "ready";
-  const message =
-    status === "ready" ? t(handSeen ? "room.hands_hint" : "room.hands_show") : t(`room.hands_${status}`);
+  const message = notice
+    ? t(notice)
+    : status === "ready"
+      ? t(handSeen ? "room.hands_hint" : "room.hands_show")
+      : t(`room.hands_${status}`);
 
   return (
     <div
@@ -297,11 +344,19 @@ export default function HandGestures({ onStop, t }) {
         <p className="hand-cam-title">
           <span className="hand-cam-dot" aria-hidden="true" />
           {t("room.hands_camera")}
+          {gesture ? <span className="hand-cam-gesture">{t(`room.hands_gesture_${gesture}`)}</span> : null}
         </p>
         <p className="hand-cam-text" role="status">
           {message}
         </p>
-        <p className="hand-cam-note">{t("room.hands_local")}</p>
+        {debug && metrics ? (
+          <p className="hand-cam-note" data-debug="1">
+            {metrics.curls.map((c) => c.toFixed(2)).join(" ")} · {metrics.thumb.toFixed(2)} ·{" "}
+            {metrics.pinch.toFixed(2)}
+          </p>
+        ) : (
+          <p className="hand-cam-note">{t("room.hands_local")}</p>
+        )}
       </div>
       <button
         type="button"

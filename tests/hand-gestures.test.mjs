@@ -62,7 +62,26 @@ test("pinchRatio does not depend on how far the hand is from the camera", () => 
 test("a real fist is a fist and never a pinch, although its fingertips touch", () => {
   const [{ landmarks, aspect }] = photoHands("fist");
   assert.ok(pinchRatio(landmarks, aspect) < 0.3, "raw pinch measure alone would call it a pinch");
-  assert.deepEqual(handShape(landmarks, aspect), { fist: true, ratio: Number.POSITIVE_INFINITY });
+  const shape = handShape(landmarks, aspect);
+  assert.equal(shape.fist, true);
+  assert.equal(shape.ratio, Number.POSITIVE_INFINITY);
+});
+
+test("a looser fist than the sample photo still counts, a pinch with curled fingers does not", () => {
+  const [{ landmarks, aspect }] = photoHands("fist");
+  const wrist = landmarks[0];
+  // Loosen the fist: each fingertip ~25 % further from the wrist (middle, ring, pinky ≈ 1.05)
+  const loose = landmarks.map((p, i) =>
+    [12, 16, 20].includes(i) ? { x: wrist.x + (p.x - wrist.x) * 1.25, y: wrist.y + (p.y - wrist.y) * 1.25, z: p.z * 1.25 } : p
+  );
+  assert.equal(handShape(loose, aspect).fist, true);
+  // Same hand, but the index reaches out to meet the thumb in front of the palm: a pinch, never a fist
+  const [thumbTip, indexBase] = [landmarks[4], landmarks[5]];
+  const reach = { x: indexBase.x + (indexBase.x - wrist.x) * 0.5, y: indexBase.y + (indexBase.y - wrist.y) * 0.5, z: 0 };
+  const pinching = loose.map((p, i) => (i === 8 || i === 4 ? { ...reach } : i === 3 ? { x: (thumbTip.x + reach.x) / 2, y: (thumbTip.y + reach.y) / 2, z: 0 } : p));
+  const shape = handShape(pinching, aspect);
+  assert.equal(shape.fist, false);
+  assert.ok(shape.ratio < 0.3, `pinch still reads as a pinch (ratio ${shape.ratio})`);
 });
 
 test("thumbs up/down, pointing, victory and open hands are neither fist nor pinch", () => {
