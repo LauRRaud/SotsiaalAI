@@ -485,6 +485,7 @@ const ChatMessageItem = memo(function ChatMessageItem({
               tip={tipLabel("more", "Valikud")}
               actions={messageActions}
               speaking={isSpeaking}
+              time={messageTime}
             />
           </div>
         </span>

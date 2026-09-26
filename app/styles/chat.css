@@ -1206,11 +1206,12 @@ button[aria-controls="chat-window-scroll"] {
 }
 /* ⋯ ikooniriba: ⋯ vajutus tekitab ikoonid väikese klaaspillina nupu alla
    (omanik 26.09). Sama klaas mis doki kiirmenüül ja komposeri siltidel.
-   Elab popover-kihis (MessageActionsMenu), seega kerimisveeru mask ega
-   perspektiiv teda ei lõika; asukoha annab skript (top/left). */
-.panel-scrim[data-conversation="1"] [data-msg-menu] {
+   Portaalitud body'sse (MessageActionsMenu), seega kerimisveeru mask ega
+   perspektiiv teda ei lõika; asukoha annab skript (top/left). z-index
+   jääb saidi kursorist (LiquidCursor) allapoole. */
+body > [data-msg-menu] {
   position: fixed;
-  inset: auto;
+  z-index: var(--z-modal, 50);
   margin: 0;
   display: flex;
   align-items: center;
@@ -1233,20 +1234,17 @@ button[aria-controls="chat-window-scroll"] {
     0 14px 34px rgba(5, 5, 5, 0.3);
   overflow: visible;
 }
-.panel-scrim[data-conversation="1"] [data-msg-menu]:not(:popover-open):not([data-open="true"]) {
-  display: none;
-}
-.panel-scrim[data-conversation="1"] [data-msg-menu]:is(:popover-open, [data-open="true"]) {
+body > [data-msg-menu] {
   animation: msg-strip-in 220ms var(--ease-soft, ease) both;
 }
 /* Ikoonid tekivad ükshaaval paremalt vasakule — ⋯ poolt edasi. */
-.panel-scrim[data-conversation="1"] [data-msg-menu]:is(:popover-open, [data-open="true"]) > button[role="menuitem"] {
+body > [data-msg-menu] > button[role="menuitem"] {
   animation: msg-strip-icon-in 260ms var(--ease-soft, ease) both;
 }
-.panel-scrim[data-conversation="1"] [data-msg-menu] > button[role="menuitem"]:nth-last-child(2) { animation-delay: 40ms; }
-.panel-scrim[data-conversation="1"] [data-msg-menu] > button[role="menuitem"]:nth-last-child(3) { animation-delay: 80ms; }
-.panel-scrim[data-conversation="1"] [data-msg-menu] > button[role="menuitem"]:nth-last-child(4) { animation-delay: 120ms; }
-.panel-scrim[data-conversation="1"] [data-msg-menu] > button[role="menuitem"]:nth-last-child(5) { animation-delay: 160ms; }
+body > [data-msg-menu] > button[role="menuitem"]:nth-last-child(2) { animation-delay: 40ms; }
+body > [data-msg-menu] > button[role="menuitem"]:nth-last-child(3) { animation-delay: 80ms; }
+body > [data-msg-menu] > button[role="menuitem"]:nth-last-child(4) { animation-delay: 120ms; }
+body > [data-msg-menu] > button[role="menuitem"]:nth-last-child(5) { animation-delay: 160ms; }
 @keyframes msg-strip-in {
   from {
     opacity: 0;
@@ -1259,14 +1257,7 @@ button[aria-controls="chat-window-scroll"] {
     scale: 0.7;
   }
 }
-/* Popover'ita brauser: absoluutne ⋯ nupu all. */
-.panel-scrim[data-conversation="1"] [data-msg-menu][data-open="true"]:not([popover]) {
-  position: absolute;
-  top: calc(100% + 0.35rem);
-  right: 0;
-  z-index: var(--z-modal, 50);
-}
-.panel-scrim[data-conversation="1"] [data-msg-menu] > button[role="menuitem"] {
+body > [data-msg-menu] > button[role="menuitem"] {
   position: relative;
   display: grid;
   place-items: center;
@@ -1283,27 +1274,50 @@ button[aria-controls="chat-window-scroll"] {
 }
 /* chat.css üldreegel peidab menüüridade ikoonid (tekstimenüüd) — siin
    ongi ikoon ainus sisu. */
-.panel-scrim[data-conversation="1"] [data-msg-menu] > button[role="menuitem"] svg {
+body > [data-msg-menu] > button[role="menuitem"] svg {
   display: block;
   width: 1.15rem;
   height: 1.15rem;
 }
-.panel-scrim[data-conversation="1"] [data-msg-menu] > button[role="menuitem"]:is(:hover, :focus-visible) {
+body > [data-msg-menu] > button[role="menuitem"]:is(:hover, :focus-visible) {
   background: rgba(248, 248, 248, 0.08);
   outline: none;
 }
-.panel-scrim[data-conversation="1"] [data-msg-menu] > button[role="menuitem"]:focus-visible {
+body > [data-msg-menu] > button[role="menuitem"]:focus-visible {
   box-shadow: var(--focus-ring);
 }
-.panel-scrim[data-conversation="1"] [data-msg-menu] > button[role="menuitem"]:disabled {
+body > [data-msg-menu] > button[role="menuitem"]:disabled {
   opacity: 0.38;
   cursor: default;
 }
-.panel-scrim[data-conversation="1"] [data-msg-menu] > button[role="menuitem"][data-speaking="true"] {
+body > [data-msg-menu] > button[role="menuitem"][data-speaking="true"] {
   color: var(--dusk-sunset);
 }
+/* Kellaaeg riba lõpus: vaikne tekst, õrna joonega ikoonidest eraldatud. */
+body > [data-msg-menu] > [data-msg-menu-time] {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  margin-left: 0.2rem;
+  padding: 0 0.75rem 0 0.7rem;
+  border-left: 1px solid rgba(242, 242, 242, 0.12);
+  color: var(--text-dim);
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  animation: msg-strip-icon-in 260ms var(--ease-soft, ease) both;
+  animation-delay: 60ms;
+}
+body > [data-msg-menu] > [data-msg-menu-time] time {
+  position: static;
+  margin: 0;
+  color: inherit;
+  font-size: inherit;
+}
 /* Ikooni nimi: sama klaaspill, riba ALL (üleval kataks ta teksti). */
-.panel-scrim[data-conversation="1"] [data-msg-menu] > button[data-tooltip]::after {
+body > [data-msg-menu] > button[data-tooltip]::after {
   content: attr(data-tooltip);
   position: absolute;
   left: 50%;
@@ -1330,25 +1344,25 @@ button[aria-controls="chat-window-scroll"] {
     opacity 200ms var(--ease-soft, ease),
     translate 240ms var(--ease-soft, ease);
 }
-.panel-scrim[data-conversation="1"] [data-msg-menu] > button[data-tooltip]:is(:hover, :focus-visible)::after {
+body > [data-msg-menu] > button[data-tooltip]:is(:hover, :focus-visible)::after {
   opacity: 1;
   translate: -50% 0;
   transition-delay: 90ms;
 }
 @media (prefers-reduced-motion: reduce) {
-  .panel-scrim[data-conversation="1"] [data-msg-menu],
-  .panel-scrim[data-conversation="1"] [data-msg-menu] > button {
+  body > [data-msg-menu],
+  body > [data-msg-menu] > button {
     animation: none !important;
   }
-  .panel-scrim[data-conversation="1"] [data-msg-menu] > button[data-tooltip]::after {
+  body > [data-msg-menu] > button[data-tooltip]::after {
     transition: none;
   }
 }
-html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] [data-msg-menu],
-html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] [data-msg-menu] > button {
+html[data-reduce-motion="1"] body > [data-msg-menu],
+html[data-reduce-motion="1"] body > [data-msg-menu] > button {
   animation: none !important;
 }
-html[data-contrast="hc"] .panel-scrim[data-conversation="1"] [data-msg-menu] {
+html[data-contrast="hc"] body > [data-msg-menu] {
   background: #080808;
   border: 1px solid #ffffff;
   box-shadow: none;
