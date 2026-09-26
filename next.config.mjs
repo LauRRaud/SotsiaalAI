@@ -85,8 +85,10 @@ const baseConfig = {
        * endiselt tema enda käest küsitavaks — päis ei anna asukohta, ta ainult
        * lõpetab keeldumise enne küsimist.
        *
-       * `camera=()` jääb: kaamerat me ei kasuta. */
-      { key: "Permissions-Policy", value: "camera=(), microphone=(self), geolocation=(self)" },
+       * `camera=(self)` samal põhjusel: ruumi käežestid (HandGestures) vajavad
+       * esikaamerat. Kaamera käivitub ainult kasutaja lülitist, kaadrid
+       * töödeldakse brauseris ega lahku seadmest. */
+      { key: "Permissions-Policy", value: "camera=(self), microphone=(self), geolocation=(self)" },
     ];
     if (process.env.NODE_ENV === "production") {
       headers.push({

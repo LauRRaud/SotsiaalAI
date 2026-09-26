@@ -1372,4 +1372,156 @@ html[data-reduce-motion="1"] .room-walk-audio {
   .room-topbar .room-quickbar-arrow svg { filter: none; }
 }
 
+
+/* ---------- Käežestid (HandGestures) ----------
+   Nurgas alati nähtav: kaamera töötab ainult siis, kui see plaat on ees
+   (lokaalsed-mudelid §11: kasutaja näeb alati, kas süsteem vaatab).
+   Eelvaade on peegelpilt, nii et käsi liigub pildil samas suunas kui
+   kursor ekraanil. */
+.hand-cam {
+  position: fixed;
+  top: max(0.9rem, env(safe-area-inset-top));
+  left: max(0.9rem, env(safe-area-inset-left));
+  z-index: var(--z-floating);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: min(23rem, calc(100vw - 1.8rem));
+  padding: 0.55rem;
+  border: 1px solid var(--glass-border-soft);
+  border-radius: 1.1rem;
+  background: rgba(18, 15, 12, 0.62);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+  color: var(--room-text);
+  font-family: var(--font-ui);
+}
+html[data-reduce-transparency="1"] .hand-cam {
+  background: var(--glass-bg-strong);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+.hand-cam-video {
+  flex: none;
+  width: 6.5rem;
+  aspect-ratio: 4 / 3;
+  border-radius: 0.7rem;
+  object-fit: cover;
+  background: rgba(0, 0, 0, 0.4);
+  transform: scaleX(-1);
+}
+.hand-cam[data-live="0"] .hand-cam-video {
+  display: none;
+}
+.hand-cam-body {
+  display: grid;
+  gap: 0.2rem;
+  min-width: 0;
+}
+.hand-cam-title {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
+  color: var(--room-text-soft);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.hand-cam-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #e0574f;
+  box-shadow: 0 0 0 3px rgba(224, 87, 79, 0.22);
+}
+/* Käsi on pildis ja žestid loevad: punane „kaamera töötab" muutub
+   roheliseks. Nii näeb kasutaja ilma teksti lugemata, kas ta on kaadris. */
+.hand-cam[data-hand="1"] .hand-cam-dot {
+  background: #5fbf7a;
+  box-shadow: 0 0 0 3px rgba(95, 191, 122, 0.24);
+}
+.hand-cam[data-live="0"] .hand-cam-dot {
+  background: var(--room-text-dim);
+  box-shadow: none;
+}
+.hand-cam-text {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+.hand-cam-note {
+  margin: 0;
+  color: var(--room-text-dim);
+  font-size: 0.75rem;
+}
+.hand-cam-stop {
+  display: grid;
+  flex: none;
+  place-items: center;
+  align-self: flex-start;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--room-text-soft);
+  cursor: pointer;
+  transition:
+    color var(--dur-fast) var(--ease-soft),
+    background-color var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft);
+}
+.hand-cam-stop svg {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+.hand-cam-stop:hover,
+.hand-cam-stop:focus-visible {
+  border-color: var(--glass-cell-border);
+  background: var(--glass-cell-bg-hover);
+  color: var(--room-text);
+}
+/* Ülariba käepide (288 px) ja avatud juhtpaneel (480 × 96 px) on ekraani
+   keskel. Alla ~1280 px ulatub paan nende alla ja kattis käepideme — juhtnuppe
+   ei saanud kaamera ajal enam avada (mõõdetud 390 ja 800 px). Seepärast
+   seisab paan seal käepideme all ja astub avatud paneeli eest alla. Paan on
+   ülariba õde (RoomStage), nii et `~` näeb paneeli olekut. */
+@media (max-width: 1280px) {
+  .hand-cam {
+    top: calc(env(safe-area-inset-top) + 2.4rem);
+    transition: top var(--dur-fast) var(--ease-soft);
+  }
+  .room-topbar[data-open="1"] ~ .hand-cam {
+    top: calc(env(safe-area-inset-top) + 6.3rem);
+  }
+}
+@media (max-width: 1280px) and (hover: hover) and (pointer: fine) {
+  .room-topbar:hover ~ .hand-cam,
+  .room-topbar:focus-within ~ .hand-cam {
+    top: calc(env(safe-area-inset-top) + 6.3rem);
+  }
+}
+@media (max-width: 768px) {
+  .hand-cam {
+    top: calc(env(safe-area-inset-top) + 3.1rem);
+  }
+}
+@media (max-width: 600px) {
+  .hand-cam {
+    gap: 0.55rem;
+    padding: 0.4rem;
+  }
+  .hand-cam-video {
+    width: 4rem;
+  }
+  .hand-cam-text {
+    font-size: 0.8rem;
+  }
+  .hand-cam-note {
+    display: none;
+  }
+}
+
 }

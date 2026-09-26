@@ -109,6 +109,7 @@ import GlassCarousel from "@/components/room/GlassCarousel";
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
 import PendingInviteBanner from "@/components/invites/PendingInviteBanner";
 import RoomQuickbar from "@/components/room/RoomQuickbar";
+import HandGestures from "@/components/room/HandGestures";
 import VeilArt, { VEIL_EFFECTS } from "@/components/room/VeilArt";
 import GlassButton from "@/components/glass/GlassButton";
 import Button from "@/components/ui/Button";
@@ -405,6 +406,27 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
   const [power, setPower] = useState(() =>
     isHome && !shouldResumeHome ? "standby" : "on"
   );
+  /* Kaamera käežestid (HandGestures). Alati väljas, kuni kasutaja ise
+     ülaribalt sisse lülitab — olekut ei jäeta meelde, seega laadimine ega
+     uus seanss ei käivita kaamerat kunagi iseenesest. Nupp ilmub alles
+     siis, kui brauser üldse kaamerat pakub (HTTPS/localhost). */
+  const [handsOn, setHandsOn] = useState(false);
+  const [handsAvailable, setHandsAvailable] = useState(false);
+  useEffect(() => {
+    setHandsAvailable(Boolean(window.isSecureContext && navigator.mediaDevices?.getUserMedia));
+  }, []);
+  /* Lüliti sulgeb ka ülariba: avatud ülariba lukustab karusselli (GlassCarousel
+     roomInteractive) ja puutel jääks ta pärast vajutust lahti — kaamera
+     töötaks, aga ükski käeliigutus ei liigutaks kaarte. */
+  const toggleHands = useCallback(() => {
+    setHandsOn((on) => !on);
+    setTopbarOpen(false);
+  }, []);
+  const stopHands = useCallback(() => setHandsOn(false), []);
+  // Ooterežiim ja väljalogimine kustutavad ruumi — kaamera läheb koos sellega.
+  useEffect(() => {
+    if (power !== "on") setHandsOn(false);
+  }, [power]);
 
   const stageRef = useRef(null);
   const veilRef = useRef(null);
@@ -2011,15 +2033,18 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       <RoomQuickbar
         ambientOn={ambientOn}
         containerRef={topbarRef}
+        handsOn={handsOn}
         onNextAmbient={nextAmbient}
         onOpenAccessibility={() => a11y?.openModal?.()}
         onPowerOff={powerOff}
         onToggleAmbient={toggleAmbient}
+        onToggleHands={handsAvailable ? toggleHands : null}
         onToggleOpen={() => setTopbarOpen((value) => !value)}
         open={topbarOpen}
         t={t}
         visible={showQuickbar}
       />
+      {handsOn ? <HandGestures onStop={stopHands} t={t} /> : null}
     </>
   );
 }

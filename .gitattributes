@@ -11,6 +11,8 @@ tests/fixtures/expected/*.md text eol=lf
 # Source corpora and archives retain original bytes for recorded source hashes.
 Andmebaasi/** -text -whitespace
 Arhiiv/** -text -whitespace
+# Vendored MediaPipe build: original bytes, hashes in its README.md.
+public/vendor/mediapipe/** -text -whitespace
 *.pdf binary
 *.fbx binary
 *.docx binary

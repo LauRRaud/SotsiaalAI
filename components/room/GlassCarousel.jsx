@@ -6,7 +6,8 @@
  * Ringjas: fookuspaneel keskel, üks külgmine kummalgi pool nähtav,
  * ülejäänud rea peidus. Pööramine: nooleklahvid ja hiirerullik (terve
  * ekraani ulatuses, kui kaardid on avatud), servanupud, lohistus,
- * svaip. Klikk/Enter avab keskmise; klikk külgmisel pöörab keskele.
+ * svaip ja kaamera käežest (käe tõmme + näpistus, vt HandGestures).
+ * Klikk/Enter avab keskmise; klikk külgmisel pöörab keskele.
  * Üks 3D-tasand: perspective vanemal, kaardid otse selle all (iOS).
  *
  * SÜGAVUSLAUD (zones): töölaud ja tööheaolu EI ole karussell ega
@@ -21,6 +22,7 @@ import GlassCard from "@/components/glass/GlassCard";
 import ChevronIcon from "@/components/brand/icons/ChevronIcon";
 import RoleViewSwitcher from "@/components/workspace/RoleViewSwitcher";
 import useQuickMenuMotion, { useQuickMenuIndex } from "@/components/ui/useQuickMenuMotion";
+import { HAND_EVENT } from "@/lib/handGestures";
 
 /* Sama brauserivaate eluea jooksul hoitav kiire mälu. sessionStorage on
    endiselt püsiv varuvariant (F5 ja route-remount), kuid seda saab lugeda
@@ -613,6 +615,23 @@ export default function GlassCarousel({
       window.removeEventListener("wheel", onWheel);
     };
   }, [isDesk, roomInteractive, step, stepZoneFocus]);
+
+  /* Kaamera käežestid (HandGestures): käe tõmme vasakule/paremale pöörab
+     ühe kaardi (sama sammulukk mis rullikul ja nooltel), näpistus avab
+     keskmise kaardi täpselt nagu Enter — läbi sama handleActivate'i.
+     Ruumi värav kehtib ka siin: modal, avatud paneel ja ülariba lukustavad
+     karusselli ka käe eest. */
+  useEffect(() => {
+    if (dockOnly || isDesk) return undefined;
+    const onHand = (e) => {
+      const { action, dir } = e.detail || {};
+      if (drag.current.on || !roomInteractive()) return;
+      if (action === "step") step(dir < 0 ? -1 : 1);
+      else if (action === "open") itemRefs.current[activeRef.current]?.click?.();
+    };
+    window.addEventListener(HAND_EVENT, onHand);
+    return () => window.removeEventListener(HAND_EVENT, onHand);
+  }, [dockOnly, isDesk, roomInteractive, step]);
 
   const handleActivate = useCallback(
     (e, item, i) => {

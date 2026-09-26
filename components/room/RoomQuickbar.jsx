@@ -17,10 +17,14 @@ import {
 export default function RoomQuickbar({
   ambientOn,
   containerRef,
+  handsOn = false,
   onNextAmbient,
   onOpenAccessibility,
   onPowerOff,
   onToggleAmbient,
+  /* null = seadmel pole kaamerat või leht pole turvalises kontekstis:
+     siis nuppu ei ole, mitte ei ole katkine nupp. */
+  onToggleHands = null,
   onToggleOpen,
   open,
   t,
@@ -147,6 +151,30 @@ export default function RoomQuickbar({
             >
               <path d="M7 6.5 15 12 7 17.5V6.5Z" />
               <path d="M17.5 6.6v10.8" />
+            </svg>
+          </IconButton>
+        ) : null}
+        {onToggleHands ? (
+          <IconButton
+            layoutClassName="room-quick-btn"
+            aria-label={t(handsOn ? "room.hands_off" : "room.hands_on")}
+            aria-pressed={handsOn}
+            data-on={handsOn ? "1" : "0"}
+            onClick={onToggleHands}
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M18 11V6a2 2 0 0 0-4 0" />
+              <path d="M14 10V4a2 2 0 0 0-4 0v2" />
+              <path d="M10 10.5V6a2 2 0 0 0-4 0v8" />
+              <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-6-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" />
             </svg>
           </IconButton>
         ) : null}
