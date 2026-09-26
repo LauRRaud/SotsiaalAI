@@ -137,7 +137,7 @@ test("a long or moving pinch opens nothing", () => {
 });
 
 test("a quick move to the left is one horizontal swipe", () => {
-  const frames = motion([...still(0.6, 0.5, 12), ...line([0.6, 0.5], [0.35, 0.52], 6), ...still(0.35, 0.52, 4)]);
+  const frames = motion([...still(0.6, 0.5, 12), ...line([0.6, 0.5], [0.35, 0.52], 6), ...still(0.35, 0.52, 10)]);
   const events = swipes(frames);
   assert.equal(events.length, 1);
   assert.equal(events[0].axis, "x");
@@ -146,9 +146,9 @@ test("a quick move to the left is one horizontal swipe", () => {
 });
 
 test("hand down scrolls down, hand up scrolls up", () => {
-  const down = swipes(motion([...still(0.5, 0.3, 12), ...line([0.5, 0.3], [0.51, 0.55], 6), ...still(0.51, 0.55, 4)]));
+  const down = swipes(motion([...still(0.5, 0.3, 12), ...line([0.5, 0.3], [0.51, 0.55], 6), ...still(0.51, 0.55, 10)]));
   assert.deepEqual(down.map((e) => [e.axis, e.dir]), [["y", 1]]);
-  const up = swipes(motion([...still(0.5, 0.6, 12), ...line([0.5, 0.6], [0.5, 0.35], 6), ...still(0.5, 0.35, 4)]));
+  const up = swipes(motion([...still(0.5, 0.6, 12), ...line([0.5, 0.6], [0.5, 0.35], 6), ...still(0.5, 0.35, 10)]));
   assert.deepEqual(up.map((e) => [e.axis, e.dir]), [["y", -1]]);
 });
 
@@ -156,25 +156,65 @@ test("the return stroke after a swipe is ignored, a second swipe the same way co
   const path = [
     ...still(0.7, 0.5, 12),
     ...line([0.7, 0.5], [0.4, 0.5], 6),
-    ...still(0.4, 0.5, 2),
+    ...still(0.4, 0.5, 10),
     // hand comes back just as fast
     ...line([0.4, 0.5], [0.7, 0.5], 6),
-    ...still(0.7, 0.5, 2),
+    ...still(0.7, 0.5, 10),
     ...line([0.7, 0.5], [0.4, 0.5], 6),
-    ...still(0.4, 0.5, 5),
+    ...still(0.4, 0.5, 10),
   ];
   const events = swipes(motion(path));
   assert.deepEqual(events.map((e) => e.dir), [-1, -1]);
   assert.ok(events.every((e) => e.travel > 0.25), "travel is measured from where the hand rested");
 });
 
+test("a wind-up to the right before a swipe to the left is a swipe to the left", () => {
+  // Owner 26.09: waving left or right, "it doesn't understand which way".
+  const frames = motion([
+    ...still(0.5, 0.5, 12),
+    ...line([0.5, 0.5], [0.6, 0.5], 4), // wind-up: 0.1 in 130 ms (~0.75/s, quick but not a swipe)
+    ...line([0.6, 0.5], [0.62, 0.5], 2),
+    ...line([0.62, 0.5], [0.3, 0.5], 5), // the swipe: 0.32 in 165 ms (~2/s)
+    ...still(0.3, 0.5, 10),
+  ]);
+  assert.deepEqual(swipes(frames).map((e) => [e.axis, e.dir]), [["x", -1]]);
+  const fastWindUp = motion([
+    ...still(0.5, 0.5, 12),
+    ...line([0.5, 0.5], [0.62, 0.5], 3), // wind-up fast enough to start a gesture (~1.2/s)
+    ...line([0.62, 0.5], [0.3, 0.5], 4), // swipe ~2.4/s
+    ...still(0.3, 0.5, 10),
+  ]);
+  assert.deepEqual(swipes(fastWindUp).map((e) => [e.axis, e.dir]), [["x", -1]]);
+});
+
+test("a flick out and back counts in the direction of the faster outward stroke", () => {
+  const frames = motion([
+    ...still(0.6, 0.5, 12),
+    ...line([0.6, 0.5], [0.35, 0.5], 4), // out left ~1.9/s
+    ...line([0.35, 0.5], [0.58, 0.5], 8), // back ~0.9/s
+    ...still(0.58, 0.5, 10),
+  ]);
+  assert.deepEqual(swipes(frames).map((e) => [e.axis, e.dir]), [["x", -1]]);
+});
+
+test("waving back and forth is not a direction and says so", () => {
+  const wave = [];
+  for (let i = 0; i < 3; i++) wave.push(...line([0.4, 0.5], [0.6, 0.5], 5), ...line([0.6, 0.5], [0.4, 0.5], 5));
+  const events = swipes(motion([...still(0.4, 0.5, 12), ...wave, ...still(0.4, 0.5, 10)]));
+  assert.deepEqual(events.map((e) => e.type), ["unclear"]);
+  // a long vehement wave is just waving: nothing at all
+  const long = [];
+  for (let i = 0; i < 8; i++) long.push(...line([0.4, 0.5], [0.6, 0.5], 4), ...line([0.6, 0.5], [0.4, 0.5], 4));
+  assert.deepEqual(swipes(motion([...still(0.4, 0.5, 12), ...long, ...still(0.4, 0.5, 10)])), []);
+});
+
 test("slow drift, a diagonal and a raised hand are not swipes", () => {
   const drift = swipes(motion([...still(0.5, 0.5, 12), ...line([0.5, 0.5], [0.3, 0.5], 40)]));
   assert.deepEqual(drift, []);
-  const diagonal = swipes(motion([...still(0.6, 0.3, 12), ...line([0.6, 0.3], [0.4, 0.5], 6), ...still(0.4, 0.5, 4)]));
+  const diagonal = swipes(motion([...still(0.6, 0.3, 12), ...line([0.6, 0.3], [0.4, 0.5], 6), ...still(0.4, 0.5, 10)]));
   assert.deepEqual(diagonal, []);
   // hand enters the frame already moving upwards
-  const raised = swipes(motion([...line([0.5, 0.9], [0.5, 0.6], 6), ...still(0.5, 0.6, 4)]));
+  const raised = swipes(motion([...line([0.5, 0.9], [0.5, 0.6], 6), ...still(0.5, 0.6, 10)]));
   assert.deepEqual(raised, []);
 });
 
@@ -186,7 +226,7 @@ test("a hand that leaves the frame mid-stroke or moves while pinched does nothin
   // hand comes back later, resting: the old stroke does not fire
   const back = motion(still(0.5, 0.6, 12), { start: 40 * FRAME_MS });
   assert.deepEqual(swipes(back, tracker), []);
-  const pinchedMove = motion([...still(0.6, 0.5, 12), ...line([0.6, 0.5], [0.3, 0.5], 6), ...still(0.3, 0.5, 4)], {
+  const pinchedMove = motion([...still(0.6, 0.5, 12), ...line([0.6, 0.5], [0.3, 0.5], 6), ...still(0.3, 0.5, 10)], {
     pinched: true,
   });
   assert.deepEqual(swipes(pinchedMove), []);
@@ -195,13 +235,13 @@ test("a hand that leaves the frame mid-stroke or moves while pinched does nothin
 test("the same swipe counts at 8 frames per second as at 30", () => {
   const slow = [];
   // 0,3 kaadrit veerand sekundiga — sama kiirus mis 30 kaadri testides
-  const path = [...still(0.6, 0.5, 4), ...line([0.6, 0.5], [0.3, 0.5], 2), ...still(0.3, 0.5, 3)];
+  const path = [...still(0.6, 0.5, 4), ...line([0.6, 0.5], [0.3, 0.5], 2), ...still(0.3, 0.5, 4)];
   path.forEach(([x, y], i) => slow.push({ t: i * 125, hand: { x, y } }));
   assert.deepEqual(swipes(slow).map((e) => [e.axis, e.dir]), [["x", -1]]);
 });
 
 test("a swipe survives the model losing the blurred hand for a moment", () => {
-  const frames = motion([...still(0.6, 0.5, 12), ...line([0.6, 0.5], [0.3, 0.5], 6), ...still(0.3, 0.5, 5)]);
+  const frames = motion([...still(0.6, 0.5, 12), ...line([0.6, 0.5], [0.3, 0.5], 6), ...still(0.3, 0.5, 10)]);
   frames[14] = { t: frames[14].t, hand: null };
   frames[15] = { t: frames[15].t, hand: null };
   assert.deepEqual(swipes(frames).map((e) => [e.axis, e.dir]), [["x", -1]]);
