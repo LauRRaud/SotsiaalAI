@@ -3,7 +3,9 @@
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 
 /* AI-sõnumi tegevused ühe ⋯ nupu taga (omanik 26.09: „kui liiga palju
-   ikoone, siis veidi segab teksti lugemist"). Menüü avaneb brauseri
+   ikoone, siis veidi segab teksti lugemist"). ⋯ vajutus TEKITAB ikoonid
+   väikese klaasribana nupu alla (omanik 26.09: „võiks olla ikkagi
+   ikoonid, mis tekivad"); iga ikooni nimi on klaassildis. Riba avaneb brauseri
    popover-kihis: kerimisveeru mask ja perspektiiv ei lõika ega nihuta
    teda, Esc ja väljaspool klõps sulgevad ta ise. Vanemas brauseris, kus
    popover'it pole, jääb ta absoluutseks nupu alla (data-open). */
@@ -114,10 +116,10 @@ export default function MessageActionsMenu({ label, tip, actions, speaking = fal
       event.preventDefault();
       event.stopPropagation();
       close(true);
-    } else if (event.key === "ArrowDown") {
+    } else if (event.key === "ArrowRight" || event.key === "ArrowDown") {
       event.preventDefault();
       focusItem(index + 1);
-    } else if (event.key === "ArrowUp") {
+    } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
       event.preventDefault();
       focusItem(index - 1);
     } else if (event.key === "Home") {
@@ -155,6 +157,7 @@ export default function MessageActionsMenu({ label, tip, actions, speaking = fal
         id={menuId}
         role="menu"
         aria-label={label}
+        aria-orientation="horizontal"
         popover={supportsPopover ? "auto" : undefined}
         data-msg-menu=""
         data-esc-scope=""
@@ -167,7 +170,8 @@ export default function MessageActionsMenu({ label, tip, actions, speaking = fal
             key={action.key}
             type="button"
             role="menuitem"
-            aria-label={action.ariaLabel || undefined}
+            aria-label={action.ariaLabel || action.label}
+            data-tooltip={action.label}
             disabled={action.disabled}
             data-speaking={action.speaking ? "true" : undefined}
             onClick={() => {
@@ -175,7 +179,7 @@ export default function MessageActionsMenu({ label, tip, actions, speaking = fal
               action.onSelect?.();
             }}
           >
-            {action.label}
+            {action.icon}
           </button>
         ))}
       </div>
