@@ -101,6 +101,42 @@ test("the gesture model decides the fist; measurements only fill in when it has 
   assert.equal(handShape(fist.landmarks, fist.aspect, null).fist, true);
 });
 
+test("a pinch is thumb and index meeting with the other fingers curled, never an open hand", () => {
+  // Owner 26.09: "a pinch is two extended fingers coming together, the rest of the hand a fist"
+  const [pointing] = photoHands("pointing_up"); // index out, middle/ring/pinky curled
+  const meet = (points) => points.map((p, i) => (i === 4 ? { ...points[8] } : p));
+  const pinch = handShape(meet(pointing.landmarks), pointing.aspect);
+  assert.ok(pinch.ratio < 0.3, `pinch pose reads as a pinch (ratio ${pinch.ratio})`);
+  assert.equal(pinch.fist, false);
+  // Open hand with thumb on the index tip (OK sign, or fingers brushing while waving): not a pinch
+  for (const { landmarks, aspect } of photoHands("woman_hands")) {
+    assert.equal(handShape(meet(landmarks), aspect).ratio, Number.POSITIVE_INFINITY);
+  }
+});
+
+test("a fist-like pinch pose is a pinch when short and a fist when held", () => {
+  const run = (frames) => {
+    const fist = createFistTracker();
+    const pinch = createPinchTracker();
+    let taps = 0;
+    let backs = 0;
+    let t = 0;
+    const step = (hand) => {
+      const closed = fist.update({ t, hand });
+      backs += closed.back ? 1 : 0;
+      taps += pinch.update({ t, hand, blocked: closed.quiet }).tap ? 1 : 0;
+      t += FRAME_MS;
+    };
+    for (let i = 0; i < 10; i++) step({ x: 0.5, y: 0.5, ratio: 0.9, fist: false });
+    // the model calls the pinch pose a fist; the geometry says pinch
+    for (let i = 0; i < frames; i++) step({ x: 0.5, y: 0.5, ratio: 0.2, fist: true });
+    for (let i = 0; i < 20; i++) step({ x: 0.5, y: 0.5, ratio: 0.9, fist: false });
+    return { taps, backs };
+  };
+  assert.deepEqual(run(8), { taps: 1, backs: 0 }, "~260 ms: pinch opens");
+  assert.deepEqual(run(30), { taps: 0, backs: 1 }, "~1 s: fist goes back");
+});
+
 test("thumbs up/down, pointing, victory and open hands are neither fist nor pinch", () => {
   for (const name of ["thumbs_up", "thumbs_down", "pointing_up", "victory", "woman_hands"]) {
     for (const { landmarks, aspect } of photoHands(name)) {
@@ -324,12 +360,12 @@ test("a new fist needs an open hand in between; one flickering frame is not an o
   const run = (isFist, ms) => {
     for (const end = t + ms; t < end; t += FRAME_MS) backs += fist.update({ t, hand: { fist: isFist } }).back ? 1 : 0;
   };
-  run(true, 500);
+  run(true, 800);
   run(false, FRAME_MS); // one noisy frame
-  run(true, 500);
+  run(true, 800);
   assert.equal(backs, 1);
   run(false, 300);
-  run(true, 500);
+  run(true, 800);
   assert.equal(backs, 2);
 });
 
@@ -344,7 +380,7 @@ test("opening a fist passes through a pinch shape but does not open anything", (
     taps += pinch.update({ t, hand, blocked: quiet }).tap ? 1 : 0;
     t += FRAME_MS;
   };
-  for (let i = 0; i < 15; i++) frame(true, Number.POSITIVE_INFINITY);
+  for (let i = 0; i < 25; i++) frame(true, Number.POSITIVE_INFINITY);
   for (let i = 0; i < 4; i++) frame(false, 0.2); // fingers opening, thumb meets the index
   for (let i = 0; i < 4; i++) frame(false, 0.9);
   assert.equal(taps, 0);
