@@ -27,6 +27,7 @@ import { TYPED_DIALOGUE_STATE_VERSION } from '../lib/rag-v2/pilot/dialogue-state
 import { UNIFIED_RETRIEVAL_VERSION } from '../lib/rag-v2/pilot/retrieval-plan.js';
 import { PilotService } from '../lib/rag-v2/pilot/service.js';
 import { PilotStore } from '../lib/rag-v2/pilot/store.js';
+import { SEARCH_ASSIST_VERSION } from '../lib/rag-v2/pilot/search-assist.js';
 
 const appUrl = new URL(process.env.M4_TEST_DATABASE_URL || 'postgres://invalid/invalid');
 if (!['localhost', '127.0.0.1'].includes(appUrl.hostname) || appUrl.pathname !== '/sotsiaal_ai_m4_dev') throw Error('isolated app database required');
@@ -110,7 +111,7 @@ after(async () => {
   }
 });
 
-async function fixture(t) {
+async function fixture(t, { assist = false } = {}) {
   const user = await db.user.create({ data: { email: `unified-${randomUUID()}@example.invalid` } });
   const conv = await db.conversation.create({ data: { userId: user.id, role: 'CLIENT', metadata: { m4: true }, expiresAt: null } });
   const config = { id: randomUUID(), configHash: randomUUID(), tenant, mode: 'real', users: [user.id], generationId: generation.id,
@@ -119,16 +120,23 @@ async function fixture(t) {
     dialogueStateVersion: TYPED_DIALOGUE_STATE_VERSION, retrievalRouting: UNIFIED_RETRIEVAL_VERSION,
     embedding: embedding.config, model: 'synthetic-transport', reasoning: 'medium', maxInputTokens: 128000, maxOutputTokens: 4096,
     retentionHours: null, expiresAt: null, prices: { embeddingInput: 1, answerInput: 1, answerOutput: 1 },
-    budget: { attempts: 16, embeddingAttempts: 8, answerAttempts: 8, tokens: 3000000, nanoUsd: 3000000 } };
+    budget: { attempts: 16, embeddingAttempts: 8, answerAttempts: 8, tokens: 3000000, nanoUsd: 3000000 },
+    ...(assist ? { searchAssist: SEARCH_ASSIST_VERSION } : {}) };
   t.after(async () => { await db.user.delete({ where: { id: user.id } }); await db.m4PilotLedger.deleteMany({ where: { id: config.id } }); });
   class Catalog extends IngestBatchQueue { constructor() { super(connections.postgresUrl); } }
   const adapters = runtimeAdapters(async () => config, user.id, { Catalog, loadRegions: async () => regions,
     authorizeContact: async ({ record }) => record.aliases.includes('contact') });
-  const calls = [], inputs = [];
+  const calls = [], inputs = [], assistCalls = { failRerank: false, rerankInputs: [] };
   let state = { facts: [], needs: [], unknowns: [], region: { id: null, status: 'unknown', support: [] }, periods: [], language_hint: 'et' };
   const service = new PilotService({ store: new PilotStore(db), readConfig: async () => config, adapters, call: async ({ stage, body }) => {
     calls.push(stage);
-    if (stage === 'embedding') return { value: await embedding.embed(body.input), usage: { input: 20, output: 0 } };
+    if (stage === 'embedding') return { value: Array.isArray(body.input) ? await Promise.all(body.input.map(text => embedding.embed(text))) : await embedding.embed(body.input), usage: { input: 20, output: 0 } };
+    if (stage === 'plan') return { value: { queries: ['journal-2014 sotsiaalne tugi', '  journal-2014 sotsiaalne tugi  '] }, usage: { input: 10, output: 5 } };
+    if (stage === 'rerank') {
+      if (assistCalls.failRerank) throw Object.assign(new Error('provider_http_error'), { code: 'provider_http_error', status: 502 });
+      const { passages } = JSON.parse(body.input[0].content); assistCalls.rerankInputs.push(passages);
+      return { value: { useful: passages.filter(passage => passage.title === 'journal-2014').map(passage => passage.id).slice(0, 1) }, usage: { input: 30, output: 5 } };
+    }
     const input = JSON.parse(body.input[0].content); inputs.push(input);
     const periods = input.evidence.retrieval.lanes.filter(lane => lane.kind === 'publication_period');
     const refs = periods.length ? periods.flatMap(lane => lane.refs.slice(0, 1))
@@ -138,7 +146,7 @@ async function fixture(t) {
       limitations: [], clarification: refs.length ? null : 'Millist ajavahemikku silmas pead?', dialogue_state: structuredClone(state) },
     usage: { input: 20, output: 40 }, requestId: 'synthetic-unified-answer' };
   } });
-  return { config, service, adapters, calls, inputs, setState: value => { state = value; },
+  return { config, service, adapters, calls, inputs, assistCalls, setState: value => { state = value; },
     run: (question, contextMode = 'same') => service.run(user.id, { question, contextMode, convId: conv.id, clientTurnKey: randomUUID(), language: 'et' }),
     row: id => db.m4PilotTurn.findUnique({ where: { id } }), empty: () => ({ ...state, region: { id: null, status: 'unknown', support: [] }, periods: [] }) };
 }
@@ -189,4 +197,28 @@ test('empty period stays explicit and revoking an unselected counted document bl
   delete f.config.documents[unseen.document.id];
   await assert.rejects(f.service.restore(row), { code: 'unified_scope_changed' });
   assert.deepEqual(f.calls, ['embedding', 'answer']);
+});
+
+test('search assist: planned queries share one embedding request, the answer model selects the knowledge evidence, a failed selection keeps the fused order', async t => {
+  const f = await fixture(t, { assist: true });
+  const first = await f.run('Mida kirjeldavad allikad sotsiaalse toe kohta?', 'new');
+  assert.deepEqual(f.calls, ['plan', 'embedding', 'rerank', 'answer']);
+  const row = await f.row(first.id);
+  // The duplicate planned query collapses; the stored audit names the queries and the selection.
+  assert.deepEqual(row.payload.searchAssist.queries, ['journal-2014 sotsiaalne tugi']);
+  assert.equal(row.payload.searchAssist.rerank.selected.length, 1);
+  assert(f.assistCalls.rerankInputs[0].length > 1 && f.assistCalls.rerankInputs[0].every(passage => passage.text && passage.title));
+  const knowledge = f.inputs[0].evidence.retrieval.lanes.find(lane => lane.kind === 'knowledge');
+  assert.equal(knowledge.refs.length, 1);
+  assert.match(f.inputs[0].evidence.evidence.find(entry => entry.ref === knowledge.refs[0]).text, /journal-2014/);
+  assert.equal(row.payload.events.filter(event => ['plan', 'rerank'].includes(event.stage)).length, 2);
+  // A provider failure in the selection leaves the fused order; the turn still answers and says why.
+  f.assistCalls.failRerank = true;
+  const second = await f.run('Mida veel kirjeldatakse?');
+  assert.deepEqual(f.calls.slice(4), ['plan', 'embedding', 'rerank', 'answer']);
+  const fallback = await f.row(second.id);
+  assert.equal(fallback.state, 'completed');
+  assert.deepEqual(fallback.payload.searchAssist.failures, [{ stage: 'rerank', code: 'provider_http_error' }]);
+  assert(f.inputs[1].evidence.retrieval.lanes.find(lane => lane.kind === 'knowledge').refs.length > 1);
+  assert.equal((await f.service.restore(fallback)).state, 'completed');
 });

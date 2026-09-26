@@ -50,10 +50,10 @@ test('ADR-025: record evidence reaches the model as ref, source and text only; t
   assert.equal(context.sources.D1.title, undefined, 'the record title is not repeated on its source card');
   assert.deepEqual(references.S1.source_locations, [{ kind: 'json', path: '/items/0/title', record_id: 'record-a' }]);
   assert.equal(scope.record_context.entries[0].record_id, 'record-a', 'the packet keeps the full record context');
-  // Non-record evidence keeps its full projection.
+  // Non-record evidence keeps its title, pages and declared values (no provenance or review state).
   const article = { ...evidence[0], selection: { reason: 'ranked', ranks: {}, rrf_contributions: {}, rrf_score: 1 }, pdf_pages: [3] };
   const plain = modelProjection([article], { tenant: 't' }).context;
   assert.deepEqual(plain.evidence[0].pdf_pages, [3]);
   assert.equal(plain.sources.D1.title, 'Toetus a');
-  assert.deepEqual(plain.sources.D1.source_type, { value: 'municipal_benefit' });
+  assert.equal(plain.sources.D1.source_type, 'municipal_benefit');
 });

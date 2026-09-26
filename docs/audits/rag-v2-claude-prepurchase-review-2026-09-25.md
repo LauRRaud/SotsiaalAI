@@ -742,3 +742,65 @@ Tõendites on lisaks:
 - kõik käsitsi loetud read (`read-by-hand.txt`).
 
 v22 külmutus jääb alles, sest Codex vaatas selle üle.
+
+## 13. Ost serveris (26.09)
+
+Omanik otsustas, et ost ja edasine töö käivad serveris serveri võtmega.
+
+**Ettevalmistus**
+- Kood läks PR-iga [LauRRaud/SotsiaalAI#186](https://github.com/LauRRaud/SotsiaalAI/pull/186) (commit `7328ce90a`, rebase'itud `main`'i peale).
+- Sama commit'i koopia ja valmis v25 andmed (store 4,8 GB, plaan, poliitika, hind) kopeeriti serverisse eraldi kausta `tmp/rag-v2-v25/`. Kõik 48 011 faili klappisid kontrollsummaga ja töötluse sõrmejälg oli serveris sama.
+- Serveri võrguvaba eelkontroll andis sama manifesti `17d3ffa5…`.
+- Hind kontrolliti uuesti: 0,13 USD / 1M, 26.09 12:15 UTC.
+- Võti jõudis protsessi root-kaitsega env-failist toru kaudu, mitte käsurea ega ketta kaudu.
+
+**Esimene katse (manifest `17d3ffa5…`, kulupiir 3,00 USD)** peatus pärast 236 õnnestunud päringut
+(0,014 USD). Põhjus oli OpenAI teatatud tokenite arv 2872 plaanitud 2868 asemel
+(`embedding_usage_mismatch`) ühes sisendis, mille dokument „Evaluation of the impact of the MARAC
+networking model“ on **tervenisti loetamatu**:
+- katkise fondikodeeringu tõttu on 18% selle tekstist juhtmärgid ja tokeneid on 1,66 märgi kohta;
+- kogu korpuse skannimine leidis ainult selle ühe sellise dokumendi (209 tükki, 655 616 tokenit);
+- 86 muud tükki, kus on üksik juhtmärk (näiteks täpi asemel), on korras ja kolm neist olid juba õnnestunud.
+
+Sisu on korpuses eestikeelse MARAC-i aruandena.
+
+**Teine katse (manifest `da6f1a6a…`, kulupiir 9,00 USD, omaniku kinnitus 26.09).** Plaan on sama v25 ilma
+selle dokumendita: poliitika `tmp/rag-v2-corpus-index-v25b`, 5996 dokumenti, 29 145 sisendit, 14 267 618
+tokenit. Kontrollitud, et see on täpselt vana plaan, millest on eemaldatud selle dokumendi 209 sisendit
+(järjekord, failid ja seadistus on samad).
+
+**Ost lõppes 14:01–16:01 UTC olekuga `complete`:**
+- 29 145 / 29 145 päringut õnnestus, 0 teadmata;
+- 14 267 618 tokenit, kulu **1,854790 USD** (koos esimese katsega umbes 1,87 USD);
+- vektorid asuvad serveris kaustas `tmp/rag-v2-v25/tmp/rag-v2-corpus-embeddings/usage/pilot_706b7844…`: 29 145 faili, 3072 mõõdet, 1,8 GB.
+
+**Järgmised sammud** (igaüks eraldi omaniku loaga):
+1. indeksi ehitamine serveri Qdranti ja PostgreSQL-i;
+2. aktiveerimine.
+
+Hiljem:
+- ingliskeelse MARAC-i PDF-i OCR;
+- kiirem ostuskript, mis saadab mitu sisendit ühes päringus ja mitu päringut korraga (omanikule on tähtis kiirus, mitte päringupõhine arvestus).
+
+**Indeks (26.09, omaniku luba).** Serveris ehitati indeks ostetud vektoritest (`rag-v2-index-batch.mjs
+--vectors`, EstNLTK 1.7.5 `/opt/sotsiaalai/rag-v2-estnltk-1.7.5`, ilma OpenAI võtmeta):
+- tulemus: generatsioon `search_generation_ea2676840568…`, olek `ready`;
+- 5996 dokumenti, 29 183 ühikut (38 identse tekstiga tükki jagavad vektorit);
+- 0 välist embeddingu kutset, 0 näidisvektorit;
+- töö kontrollis iga dokumendi PostgreSQL-is ja Qdrantis üle ning aktiveeris selle **ainult rentnikul
+  `sotsiaalai-corpus`**.
+
+Vestlus kasutab rentnikku `sotsiaalai-development` (aktiivne `search_generation_cce615…`), mida ei muudetud.
+Esimene jooks peatus disainipäraselt 1000 partii piiril (991 dokumenti) ja jätkati samast kohast piiriga
+10 000. Serveri ketas on pärast indeksit 93% täis (3,8 GB vaba).
+
+**Proovitest (26.09, tasuta, 0 OpenAI kutset).** `tmp/rag-v2-v25/smoke-test.mjs` serveris.
+- **Vektorotsing on korras:** salvestatud vektor päringuna leiab esimesena iseenda (skoor 1,0) ja naabrid
+  skooriga 0,71–0,94 on sisult lähedased.
+- **Sõnaline otsing (EstNLTK) võtab kogu korpusel 10–15 s** ja kaks päringut viiest („Mis on koduteenus ja
+  kes seda korraldab?“, „Mis on MARAC-i võrgustiku mudel?“) ületasid 15-sekundilise piiri
+  (`lexical_service_failed`). Hübriidotsingus teeb see kogu päringu vigaseks. Ka järjestus on kohati nõrk
+  (toimetulekutoetuse päringu esimene tulemus ei ole asjakohane).
+
+See on [ADR-029](../rag-v2/adr-029-lexical-ranking-at-corpus-scale.md) kitsaskoht. **Vestlust ei viida
+korpusele enne, kui see on lahendatud.** Uut embeddinguostu see ei vaja.
