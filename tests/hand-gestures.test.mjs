@@ -284,7 +284,7 @@ test("a flick out and back counts in the direction of the faster outward stroke"
     ...still(0.6, 0.5, 12),
     ...line([0.6, 0.5], [0.35, 0.5], 4), // out left ~1.9/s
     ...line([0.35, 0.5], [0.58, 0.5], 8), // back ~0.9/s
-    ...still(0.58, 0.5, 10),
+    ...still(0.58, 0.5, 20), // after a return the tracker waits a moment: a third stroke would be waving
   ]);
   assert.deepEqual(swipes(frames).map((e) => [e.axis, e.dir]), [["x", -1]]);
 });
@@ -294,10 +294,106 @@ test("waving back and forth is not a direction and says so", () => {
   for (let i = 0; i < 3; i++) wave.push(...line([0.4, 0.5], [0.6, 0.5], 5), ...line([0.6, 0.5], [0.4, 0.5], 5));
   const events = swipes(motion([...still(0.4, 0.5, 12), ...wave, ...still(0.4, 0.5, 10)]));
   assert.deepEqual(events.map((e) => e.type), ["unclear"]);
-  // a long vehement wave is just waving: nothing at all
+  // a long vehement wave is just waving: one "unclear" at most, never a swipe
   const long = [];
   for (let i = 0; i < 8; i++) long.push(...line([0.4, 0.5], [0.6, 0.5], 4), ...line([0.6, 0.5], [0.4, 0.5], 4));
-  assert.deepEqual(swipes(motion([...still(0.4, 0.5, 12), ...long, ...still(0.4, 0.5, 10)])), []);
+  const longEvents = swipes(motion([...still(0.4, 0.5, 12), ...long, ...still(0.4, 0.5, 10)]));
+  assert.ok(longEvents.every((e) => e.type === "unclear") && longEvents.length <= 1, JSON.stringify(longEvents));
+});
+
+/* Päris käsi: kaarjas (küünarnukk on pöördetelg), sujuva kiirendusega,
+   ja pärast tõmmet ei jää ta seisma — laskub või triivib. Omanik 26.09:
+   „vasakule ja paremale, üles ja alla ei tööta". */
+const ease = (a, b, n, arc = 0) =>
+  Array.from({ length: n }, (_, i) => {
+    const e = (1 - Math.cos((Math.PI * (i + 1)) / n)) / 2;
+    return [a[0] + (b[0] - a[0]) * e, a[1] + (b[1] - a[1]) * e - arc * Math.sin(Math.PI * e)];
+  });
+const drift = (a, v, n) => Array.from({ length: n }, (_, i) => [a[0] + (v[0] * (i + 1) * FRAME_MS) / 1000, a[1] + (v[1] * (i + 1) * FRAME_MS) / 1000]);
+const noisy = (frames, sigma = 0.004) => {
+  let seed = 11;
+  const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+  const gauss = () => Math.sqrt(-2 * Math.log(rnd() || 1e-9)) * Math.cos(2 * Math.PI * rnd());
+  return frames.map((f) => (f.hand ? { ...f, hand: { x: f.hand.x + gauss() * sigma, y: f.hand.y + gauss() * sigma } } : f));
+};
+const kinds = (events) => events.map((e) => (e.type === "swipe" ? e.axis + (e.dir > 0 ? "+" : "-") : e.type));
+
+test("a real hand swipe counts although the hand never stops afterwards", () => {
+  const arc = ease([0.62, 0.5], [0.38, 0.5], 9, 0.06);
+  // swipe, then the hand is lowered out of the frame
+  const lowered = [...motion([...still(0.62, 0.5, 20), ...arc, ...ease([0.38, 0.5], [0.33, 1.1], 15)]), ...Array.from({ length: 20 }, (_, i) => ({ t: (44 + i) * FRAME_MS, hand: null }))];
+  assert.deepEqual(kinds(swipes(noisy(lowered))), ["x-"]);
+  // swipe, then a slow drift for a second
+  const drifting = motion([...still(0.62, 0.5, 20), ...arc, ...drift([0.38, 0.5], [-0.2, 0.2], 30), ...still(0.32, 0.56, 20)]);
+  assert.deepEqual(kinds(swipes(noisy(drifting))), ["x-"]);
+  // down, then back up more slowly
+  const downUp = motion([...still(0.5, 0.35, 20), ...ease([0.5, 0.35], [0.52, 0.62], 8), ...ease([0.52, 0.62], [0.5, 0.37], 16), ...still(0.5, 0.37, 20)]);
+  assert.deepEqual(kinds(swipes(noisy(downUp))), ["y+"]);
+});
+
+test("sweeping through the waving window counts in the direction the hand went", () => {
+  // Owner 26.09: the hand comes in from one side and goes out the other
+  const entering = (from, to, n) => [
+    ...motion(ease(from, to, n)),
+  ];
+  const leftToRight = [...Array.from({ length: 5 }, (_, i) => ({ t: i * FRAME_MS, hand: null })), ...entering([0.1, 0.5], [0.95, 0.5], 12).map((f) => ({ ...f, t: f.t + 5 * FRAME_MS })), ...Array.from({ length: 15 }, (_, i) => ({ t: (17 + i) * FRAME_MS, hand: null }))];
+  assert.deepEqual(kinds(swipes(noisy(leftToRight))), ["x+"]);
+  // comes in from the right and stops in the middle: a swipe to the left
+  const inFromRight = [...entering([0.92, 0.5], [0.45, 0.5], 10), ...motion(still(0.45, 0.5, 15), { start: 10 * FRAME_MS })];
+  assert.deepEqual(kinds(swipes(noisy(inFromRight))), ["x-"]);
+  // leaving the window is enough: the hand does not have to leave the camera's view
+  const outOfWindow = motion([...still(0.5, 0.5, 20), ...ease([0.5, 0.5], [0.85, 0.5], 9), ...still(0.85, 0.5, 20)]);
+  assert.deepEqual(kinds(swipes(noisy(outOfWindow))), ["x+"]);
+  // top to bottom, edge to edge: scrolls down
+  const topToBottom = motion([...still(0.5, 0.12, 20), ...ease([0.5, 0.12], [0.52, 0.9], 12), ...still(0.52, 0.9, 20)]);
+  assert.deepEqual(kinds(swipes(noisy(topToBottom))), ["y+"]);
+});
+
+test("a fast sweep counts even when the blurred hand is lost in the middle of the frame", () => {
+  // Measured in the browser: the model saw a fast sweep only at x 0.87 and 0.41, then lost it.
+  const frames = [
+    { t: 0, hand: null },
+    { t: 270, hand: { x: 0.866, y: 0.557 } },
+    { t: 546, hand: { x: 0.409, y: 0.562 } },
+    ...Array.from({ length: 20 }, (_, i) => ({ t: 636 + i * 90, hand: null })),
+  ];
+  assert.deepEqual(kinds(swipes(frames)), ["x-"]);
+  // the same loss after a short movement, or a vertical one (lowering), counts for nothing
+  const short = [{ t: 0, hand: { x: 0.6, y: 0.5 } }, ...motion(still(0.6, 0.5, 12), { start: 33 }), { t: 460, hand: { x: 0.5, y: 0.5 } }, ...Array.from({ length: 20 }, (_, i) => ({ t: 550 + i * 90, hand: null }))];
+  assert.deepEqual(swipes(short), []);
+  const down = [...motion(still(0.5, 0.4, 12)), { t: 430, hand: { x: 0.5, y: 0.75 } }, ...Array.from({ length: 20 }, (_, i) => ({ t: 520 + i * 90, hand: null }))];
+  assert.deepEqual(swipes(down), []);
+});
+
+test("imperfect, partial movements count by their main direction", () => {
+  // Owner 26.09: "people don't do it perfectly, even partial movements should count"
+  const shortSlantedLeft = motion([...still(0.55, 0.5, 20), ...ease([0.55, 0.5], [0.45, 0.43], 8), ...still(0.45, 0.43, 20)]);
+  assert.deepEqual(kinds(swipes(noisy(shortSlantedLeft))), ["x-"]);
+  const shortUp = motion([...still(0.5, 0.55, 20), ...ease([0.5, 0.55], [0.54, 0.48], 7), ...still(0.54, 0.48, 20)]);
+  assert.deepEqual(kinds(swipes(noisy(shortUp))), ["y-"]);
+  const slowerRight = motion([...still(0.4, 0.5, 20), ...ease([0.4, 0.5], [0.55, 0.52], 14), ...still(0.55, 0.52, 20)]);
+  assert.deepEqual(kinds(swipes(noisy(slowerRight))), ["x+"]);
+});
+
+test("a downward swipe that ends low in the frame still scrolls; the hand did not leave", () => {
+  const low = motion([...still(0.5, 0.45, 20), ...ease([0.5, 0.45], [0.51, 0.86], 9), ...still(0.51, 0.86, 20)]);
+  assert.deepEqual(kinds(swipes(noisy(low))), ["y+"]);
+});
+
+test("lowering the hand out through a bottom corner after a side swipe keeps the swipe", () => {
+  // The hand ends right of the window and is lowered out: it left at the bottom, not the right
+  const frames = [
+    ...motion([...still(0.55, 0.5, 20), ...ease([0.55, 0.5], [0.82, 0.55], 11), ...ease([0.82, 0.55], [0.84, 1.05], 12)]),
+    ...Array.from({ length: 20 }, (_, i) => ({ t: (43 + i) * FRAME_MS, hand: null })),
+  ];
+  assert.deepEqual(kinds(swipes(noisy(frames))), ["x+"]);
+});
+
+test("raising the hand into the window or lowering it out does not scroll", () => {
+  const raised = motion([...ease([0.5, 0.97], [0.5, 0.5], 10), ...still(0.5, 0.5, 20)]);
+  assert.deepEqual(swipes(noisy(raised)), []);
+  const lowered = [...motion([...still(0.5, 0.5, 20), ...ease([0.5, 0.5], [0.5, 1.05], 10)]), ...Array.from({ length: 15 }, (_, i) => ({ t: (30 + i) * FRAME_MS, hand: null }))];
+  assert.deepEqual(swipes(noisy(lowered)), []);
 });
 
 test("slow drift, a diagonal and a raised hand are not swipes", () => {
