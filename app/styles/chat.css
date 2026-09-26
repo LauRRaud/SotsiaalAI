@@ -1100,31 +1100,64 @@ button[aria-controls="chat-window-scroll"] {
   color: var(--text-dim);
 }
 
-/* ---------- Assistendi tegevusrida: vaiksed ikoon-orbid ----------
-   Kuula / kopeeri / allikad on MULLI SEES, tema viimane rida (omanik 23.09:
-   „vii tekstimulli sisse"). Varem seisid nad mulli all (absoluutne,
-   top: 100%) ja mull reserveeris neile 3,25rem varu. Negatiivne vasak- ja
-   alamarginaal: nupu 44 px tabamusala ulatub mulli polstrisse, aga glüüf
-   joondub teksti vasaku servaga ega jäta mulli alla tühja riba. */
+/* ---------- Assistendi tegevusrida: vertikaalne rööbas paremas servas ----------
+   Kuula / kopeeri / allikad seisavad MULLI SEES paremas servas ülalt alla
+   (omanik 26.09: „ikoonid vertikaalselt paremas servas"). Varem olid nad
+   mulli viimane rida ja lisasid igale vastusele tühja riba. Rööbas on
+   absoluutne, mull hoiab talle parempoolse polstri; min-height nuppude
+   arvu järgi, et lühike vastus rööpast lühemaks ei jääks. */
+.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"]:has(> div[aria-label]) {
+  --msg-rail-btn: 2.1rem;
+  --msg-rail-pad: 0.4rem;
+  padding-right: calc(var(--msg-rail-btn) + 1.3rem);
+  min-height: calc(var(--msg-rail-btn) + var(--msg-rail-pad) * 2);
+}
+.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"]:has(> div[aria-label] > button:nth-of-type(2)) {
+  min-height: calc(var(--msg-rail-btn) * 2 + var(--msg-rail-pad) * 2);
+}
+.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"]:has(> div[aria-label] > button:nth-of-type(3)) {
+  min-height: calc(var(--msg-rail-btn) * 3 + var(--msg-rail-pad) * 2);
+}
+.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"]:has(> div[aria-label] > button:nth-of-type(4)) {
+  min-height: calc(var(--msg-rail-btn) * 4 + var(--msg-rail-pad) * 2);
+}
+.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"]:has(> div[aria-label] > button:nth-of-type(5)) {
+  min-height: calc(var(--msg-rail-btn) * 5 + var(--msg-rail-pad) * 2);
+}
 .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] > div[aria-label] {
-  position: static;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.15rem;
-  margin: 0.25rem 0 -0.6rem -0.82rem;
-  padding-top: 0;
+  gap: 0;
+  margin: 0;
+  padding: var(--msg-rail-pad, 0.4rem) 0.3rem;
   opacity: 1;
   pointer-events: auto;
   z-index: 1;
   transition: opacity var(--dur-fast) var(--ease-soft);
 }
+/* Õrn juuksejoon eraldab rööpa tekstist; hääbub otstes, et mitte lõigata
+   mulli klaasi kaheks. */
+.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] > div[aria-label]::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.9rem;
+  bottom: 0.9rem;
+  width: 1px;
+  background: linear-gradient(transparent, rgba(242, 242, 242, 0.1) 22%, rgba(242, 242, 242, 0.1) 78%, transparent);
+  pointer-events: none;
+}
 .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] > div[aria-label] > button {
   display: grid;
   place-items: center;
-  width: 2rem;
-  height: 2rem;
-  min-inline-size: var(--hit-target-min);
-  min-block-size: var(--hit-target-min);
+  flex: none;
+  width: var(--msg-rail-btn, 2.1rem);
+  height: var(--msg-rail-btn, 2.1rem);
   padding: 0;
   margin: 0;
   border: 0;
@@ -1166,8 +1199,13 @@ button[aria-controls="chat-window-scroll"] {
     scale: 1.12;
   }
 }
+/* Kellaaeg on rööpa all, mulli taga paremas nurgas — nagu kasutaja mullil. */
 .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] > div[aria-label] time {
-  margin-left: 0.45rem;
+  position: absolute;
+  top: 100%;
+  right: 0.35rem;
+  margin-top: 0.28rem;
+  white-space: nowrap;
 }
 
 /* ---------- Mõtlemisolek: üks vaikne S, ilma nähtava sildi ja mullita ---------- */
