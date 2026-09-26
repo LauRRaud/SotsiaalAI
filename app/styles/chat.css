@@ -1122,23 +1122,28 @@ button[aria-controls="chat-window-scroll"] {
   top: 0;
   right: 0;
   bottom: 0;
-  display: block;
+  /* ⋯ istub ALUMISES nurgas (omanik 26.09) — vastuse lõpus, kus lugemine
+     lõpeb ja tegevust vaja läheb. */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   width: calc(var(--msg-rail-btn, 2.1rem) + 0.6rem);
   z-index: 1;
 }
-/* ⋯ nupp on sticky: pika vastuse lugemisel sõidab ta kerimisel kaasa
-   ja jääb nähtavaks seni, kuni mull ise on ekraanil (omanik 26.09). */
+/* ⋯ nupp on sticky ALT: pika vastuse lugemisel püsib ta vaateala
+   allservas ja jääb nähtavaks seni, kuni mull ise on ekraanil
+   (omanik 26.09). Nihe hoiab ta alumisest hääbumisvööndist väljas. */
 .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] > [data-msg-rail] > div[aria-label] {
   position: sticky;
-  top: var(--msg-rail-sticky-top, 0.75rem);
+  bottom: var(--msg-rail-sticky-bottom, 1.5rem);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0;
   margin: 0;
-  /* Ülapolster joondab ⋯ esimese tekstireaga (mulli polster 0,82em +
+  /* Alapolster joondab ⋯ viimase tekstireaga (mulli polster 0,82em +
      pool reakõrgust). */
-  padding: 0.62rem 0.3rem var(--msg-rail-pad, 0.4rem);
+  padding: var(--msg-rail-pad, 0.4rem) 0.3rem 0.62rem;
   opacity: 1;
   pointer-events: auto;
   transition: opacity var(--dur-fast) var(--ease-soft);
