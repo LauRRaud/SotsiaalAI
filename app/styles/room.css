@@ -46,7 +46,7 @@
      pelgalt suitsu hägusa toa vastu (omanik 25.09: muster muutub). */
   background:
     var(--room-frost-image) 0 0 / 1px 1px no-repeat,
-    url("/room/tuba-hamar.webp") 50% 40% / cover no-repeat;
+    url("/room/tuba-hamar-2x.webp") 50% 40% / cover no-repeat;
   opacity: 0;
   transition: opacity 1600ms var(--ease-soft);
 }
