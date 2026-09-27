@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <oigusakt id="ee4a42db-9430-4895-a487-164b45066587" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<metaandmed>
-		<seisund/>
 		<valjaandja>Kiili Vallavolikogu</valjaandja>
 		<dokumentLiik>määrus</dokumentLiik>
 		<tekstiliik>terviktekst</tekstiliik>
-	
 		<dokumentEtapp>avaldamine</dokumentEtapp>
 		<dokumentStaatus>avaldatud</dokumentStaatus>
 		<vastuvoetud>
-			<tavatekst/>
 			<aktikuupaev>2021-10-07</aktikuupaev>
 			<avaldamismarge>
 				<RTosa id="b247c0b1-8632-4372-b64c-6ed372ee0fe7">RT IV</RTosa>
@@ -19,18 +16,25 @@
 			</avaldamismarge>
 			<joustumine>2021-10-25</joustumine>
 			<aktiNr>7</aktiNr>
-		
 		</vastuvoetud>
-		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2024-05-29</avaldamineKuupaev><RTaasta>2024</RTaasta><RTartikkel>10</RTartikkel><aktViide>429052024010</aktViide></avaldamismarge><kehtivus>
-			<kehtivuseAlgus>2024-06-01</kehtivuseAlgus>
-		<kehtivuseLopp>2026-07-02+03:00</kehtivuseLopp></kehtivus>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2026-06-30+03:00</avaldamineKuupaev>
+			<RTaasta>2026</RTaasta>
+			<RTartikkel>40</RTartikkel>
+			<aktViide>430062026040</aktViide>
+		</avaldamismarge>
+		<kehtivus>
+			<kehtivuseAlgus>2026-07-03</kehtivuseAlgus>
+			<kehtivuseLopp>2026-12-31</kehtivuseLopp>
+		</kehtivus>
 		<versioon>
 			<dokumentVersioon>1</dokumentVersioon>
-			<dokumentVersioonKuupaev>2024-05-27</dokumentVersioonKuupaev>
+			<dokumentVersioonKuupaev>2026-06-25</dokumentVersioonKuupaev>
 		</versioon>
 		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
-		<globaalID>429052024010</globaalID>
-		<metaandmedVersioon>22</metaandmedVersioon>
+		<globaalID>430062026040</globaalID>
+		<metaandmedVersioon>26</metaandmedVersioon>
 		<metaandmedVersioonKuupaev>2026-06-29</metaandmedVersioonKuupaev>
 		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
 		<terviktekstiGrupiID>1052793</terviktekstiGrupiID>
@@ -61,6 +65,13 @@
 			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
 			<metaandmedVersioon>17</metaandmedVersioon>
 			<metaandmedVersioonKuupaev>2023-07-07</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>21</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2024-05-28</metaandmedVersioonKuupaev>
 			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
 		</versiooniMuutus>
 	</metaandmed>
@@ -98,6 +109,17 @@
 			<aktViide id="f6f5bae4-cfe6-4c68-8a6b-d81d37d9a0e0">429052024002</aktViide>
 		</avaldamismarge>
 		<joustumine id="2f42037a-6c72-493e-9de7-2803b26b44e9">2024-06-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="67de47b9-7f40-46c5-8709-ad84032bf146">
+		<aktikuupaev id="c323893c-7af5-49d4-a02c-2f34df9be0ad">2026-06-18</aktikuupaev>
+		<avaldamismarge id="8a33ab47-3d60-410a-b4b5-0c705e22fcec">
+			<RTosa id="ca72d51e-3de9-4df8-a162-d2591728f3f5">RT IV</RTosa>
+			<avaldamineKuupaev id="fc1bbe0c-11a0-4d53-b037-397597fa37d9">2026-06-30</avaldamineKuupaev>
+			<RTartikkel id="d2e0b72e-e8d6-43d0-a4e0-a2cfa42d93f2">14</RTartikkel>
+			<aktViide id="de03c780-34ff-4ebb-b17f-77cdb88686c7">430062026014</aktViide>
+		</avaldamismarge>
+		<joustumine id="7800e741-6646-45f3-a59b-63169dc4feb2">2026-07-03</joustumine>
+		<tavatekst>, osaliselt 01.01.2027</tavatekst>
 	</muutmismarge>
 	<sisu id="9c404913-4fda-43e4-836f-192c5b99ec3e">
 		<preambul id="b6c0e1e0-92bf-4d43-aa9d-ba4adab70904">
@@ -488,8 +510,17 @@
 						<loigeNr id="3a51cac5-f24c-4a76-b802-a78f3731bf5f">5</loigeNr>
 						<kuvatavNr id="2781495f-f836-4aa2-b4c7-24736052fc08"><![CDATA[(5)]]></kuvatavNr>
 						<sisuTekst id="5ac6a8eb-6b94-415e-a0ad-678e26e396a5">
-							<tavatekst id="1d2c0a5e-c508-4c65-8cb6-ab082c8f779f">Kui taotlejal on tuvastatud puue, lisatakse taotlusele Sotsiaalkindlustusameti otsus puude raskusastme tuvastamise kohta ning rehabilitatsiooniplaan selle olemasolul.</tavatekst>
+							<tavatekst id="1d2c0a5e-c508-4c65-8cb6-ab082c8f779f">Kui taotlejal on olemas rehabilitatsiooniplaan, siis vajadusel lisatakse see taotlusele.</tavatekst>
 						</sisuTekst>
+						<muutmismarge id="235304b8-387d-426b-9daf-a10bf3cf82b7">
+							<avaldamismarge id="686e2d17-ce67-4f53-9bc4-c2bd1bfab379">
+								<RTosa id="68bf1c84-17f1-47a8-b7b3-fed433be1eae">RT IV</RTosa>
+								<avaldamineKuupaev id="58ccfe30-87f9-4556-9223-400636a85ff1">2026-06-30</avaldamineKuupaev>
+								<RTartikkel id="6a517465-5d6b-473d-971c-a3ada3b0ccc1">14</RTartikkel>
+								<aktViide id="9619fa77-d8d3-42fd-8167-9c8330ddc452">430062026014</aktViide>
+							</avaldamismarge>
+							<joustumine id="72deeb52-85f2-41dd-931e-2797a964c605">2026-07-03</joustumine>
+						</muutmismarge>
 					</loige>
 					<loige id="para8lg6">
 						<loigeNr id="4a903a08-13aa-432b-9b36-514d2fffcd7c">6</loigeNr>
@@ -1168,9 +1199,17 @@
 						<loige id="para17lg8">
 							<loigeNr id="fd6c465d-f109-4c06-b1fe-a02a5b21a71c">8</loigeNr>
 							<kuvatavNr id="b1a45667-cb47-4854-a06c-a40f38a1aefe"><![CDATA[(8)]]></kuvatavNr>
-							<sisuTekst id="485edc60-5336-4485-8042-67257f86aefb">
-								<tavatekst id="28124afd-7bae-4307-a27c-2783fa68a782">Haldusakti alusel sõlmitakse kolmepoolne leping teenuseosutaja, teenuse saaja või tema eestkostja ja Vallavalitsuse vahel, määrates selles muuhulgas kindlaks isiku kõrvalabi vajadusest tulenevad toimingud, mis tagavad isiku turvalisuse ja toimetuleku hooldusteenuse kasutamise ajal.</tavatekst>
-							</sisuTekst>
+							
+							<muutmismarge id="9189b563-214a-4daf-baab-b9b735f5fe19">
+								<tavatekst id="f45cc959-c337-40ef-b0e2-6fc66135e901">Kehtetu - </tavatekst>
+								<avaldamismarge id="81e0627a-edc0-44dd-994c-4f59d6d107df">
+									<RTosa id="8c018333-30a4-4253-a73c-e64290ba04f1">RT IV</RTosa>
+									<avaldamineKuupaev id="1683f4bd-04f4-4888-8ef3-c91e0d547735">2026-06-30</avaldamineKuupaev>
+									<RTartikkel id="b3781c22-83e5-425a-936f-10917fa4cebb">14</RTartikkel>
+									<aktViide id="26d55542-38a3-491b-b4f9-bcc19f444416">430062026014</aktViide>
+								</avaldamismarge>
+								<joustumine id="c3802782-eb25-465d-9c13-22961299abc3">2026-07-03</joustumine>
+							</muutmismarge>
 						</loige>
 					</paragrahv>
 					<paragrahv id="para17b1">
@@ -1972,15 +2011,33 @@
 							<loigeNr id="7747d9ae-f5ef-44c4-a88d-21da668a95d0">3</loigeNr>
 							<kuvatavNr id="fdefe8ca-ea70-4449-b08e-8be4d04a53e0"><![CDATA[(3)]]></kuvatavNr>
 							<sisuTekst id="9fa68dfb-2f8c-43eb-aae9-8dcd18c22500">
-								<tavatekst id="cbad23de-e5c4-4fc1-b490-2cce1793fdbc">Üürileping sõlmitakse tähtajaga kuni üks aasta.</tavatekst>
+								<tavatekst id="cbad23de-e5c4-4fc1-b490-2cce1793fdbc">Üürileping sõlmitakse tähtajaga kuni üks aasta. Erandkorras võib üürilepingut pikendada kuni viieks aastaks.</tavatekst>
 							</sisuTekst>
+							<muutmismarge id="bcafe4d7-5e17-42f7-9255-fca79fadc76e">
+								<avaldamismarge id="a4a12557-6da8-4a31-9861-160128fc2b4c">
+									<RTosa id="7259975f-6891-4516-92e4-d4e2a38432fa">RT IV</RTosa>
+									<avaldamineKuupaev id="596a4ecd-cc47-4a04-9419-9c377d0b23b5">2026-06-30</avaldamineKuupaev>
+									<RTartikkel id="9b0c3f7e-fdc6-4589-950a-ba8005e4f132">14</RTartikkel>
+									<aktViide id="82305337-4aa7-4838-9325-a2dc3f2fa100">430062026014</aktViide>
+								</avaldamismarge>
+								<joustumine id="e3786906-78b8-4222-9758-bcd602ce6e58">2026-07-03</joustumine>
+							</muutmismarge>
 						</loige>
 						<loige id="para33lg4">
 							<loigeNr id="91a44d50-6340-4565-8964-92d2bf43a638">4</loigeNr>
 							<kuvatavNr id="08d02175-4b82-4f55-ab76-7b3e37f6a92b"><![CDATA[(4)]]></kuvatavNr>
 							<sisuTekst id="c523de62-fe31-4abf-b3e7-f3af8e8417a8">
-								<tavatekst id="4e27f862-193a-419d-9da4-ccfb96d0cafa">Üürilepingu tähtaja lõppemisel pikendatakse üürilepingut taotleja põhjendatud taotluse ja Vallavalitsuse haldusakti alusel üheks aastaks.</tavatekst>
+								<tavatekst id="4e27f862-193a-419d-9da4-ccfb96d0cafa">Üürilepingu tähtaja lõppemisel pikendatakse üürilepingut taotleja põhjendatud taotluse ja Vallavalitsuse protokollilise otsuse alusel.</tavatekst>
 							</sisuTekst>
+							<muutmismarge id="31b380f2-3a55-4f01-b336-6ebc88a63a37">
+								<avaldamismarge id="2be22691-f432-47f1-817f-5840bd5b6197">
+									<RTosa id="b017177a-5953-4aed-a14e-4d3b177e83cd">RT IV</RTosa>
+									<avaldamineKuupaev id="62de0277-62af-4aa9-864e-d090dcf77968">2026-06-30</avaldamineKuupaev>
+									<RTartikkel id="2272a7ad-5382-4c51-8e7d-933b5531b5eb">14</RTartikkel>
+									<aktViide id="21f08e36-9f36-495a-a1d2-dcab62abeac3">430062026014</aktViide>
+								</avaldamismarge>
+								<joustumine id="41c84991-8ec8-4935-8e58-6b50853916f0">2026-07-03</joustumine>
+							</muutmismarge>
 						</loige>
 						<loige id="para33lg5">
 							<loigeNr id="b5e3bf75-d395-4e3c-83f0-f30de8d4ef9a">5</loigeNr>
@@ -2084,93 +2141,139 @@
 				<jaotis id="133c4810-70c8-40c7-92c1-511a09aa7f41">
 					<jaotisNr id="35a3037d-799b-4bdf-80af-5c4534038922">11</jaotisNr>
 					<kuvatavNr id="79f58f53-f43e-43de-8cc4-2e9607b8e58b"><![CDATA[11. jaotis]]></kuvatavNr>
-					<jaotisPealkiri id="6c02c50b-b46b-4fda-8115-35c0352b0c36">Lapsehoiuteenus suure hooldus- ja abivajadusega lapsele</jaotisPealkiri>
-					<muutmismarge id="74d3318a-cf07-458c-9bd8-59c4411816ab">
-						<avaldamismarge id="7a8116f7-9151-4cdd-b6cf-852e1cfbc2a8">
-							<RTosa id="c5b3b8f2-d2a0-4615-abfc-385785c0f974">RT IV</RTosa>
-							<avaldamineKuupaev id="5273cc42-7db0-413a-b919-7b3cabeef604">2024-05-29</avaldamineKuupaev>
-							<RTartikkel id="91299c86-1404-4311-9ccf-1bcefd3c857d">2</RTartikkel>
-							<aktViide id="f4717ecd-fbd9-44b0-86a8-e527a7e60b15">429052024002</aktViide>
+					<jaotisPealkiri id="6c02c50b-b46b-4fda-8115-35c0352b0c36">Suure hooldus- ja abivajadusega lapse hoiu teenus</jaotisPealkiri>
+					<muutmismarge id="ddaadeac-943e-4119-aef1-be37a0576f40">
+						<avaldamismarge id="9e39da5a-1ca5-410d-940a-7fb2044c4d06">
+							<RTosa id="6fb4928c-caf2-4e06-b28b-94cd7281c56a">RT IV</RTosa>
+							<avaldamineKuupaev id="627161ac-8f93-474f-9193-107de59598e2">2026-06-30</avaldamineKuupaev>
+							<RTartikkel id="8cc193ad-cad7-4d8f-aba1-12b92a5c1f7a">14</RTartikkel>
+							<aktViide id="bfa39827-3544-44de-a10c-f00be11cfe86">430062026014</aktViide>
 						</avaldamismarge>
-						<joustumine id="1567b00b-f9f7-469c-8abe-2cb028fbe268">2024-06-01</joustumine>
+						<joustumine id="95c43e83-f444-4e24-8921-ad2c1267c213">2026-07-03</joustumine>
 					</muutmismarge>
 					<paragrahv id="para37">
 						<paragrahvNr id="2ed2e38b-9a38-47e3-9e3e-46a8991c0cf1">37</paragrahvNr>
 						<kuvatavNr id="40639d07-5b4e-4290-a0a1-0a5bc514fb70"><![CDATA[§ 37. ]]></kuvatavNr>
-						<paragrahvPealkiri id="df88005a-bfc0-44ca-8ab4-1965171f9bbc">Lapsehoiuteenuse eesmärk ja sisu</paragrahvPealkiri>
+						<paragrahvPealkiri id="df88005a-bfc0-44ca-8ab4-1965171f9bbc">Hoiu teenuse eesmärk ja sisu</paragrahvPealkiri>
+						<muutmismarge id="3fc4c7ca-98d9-4585-9d15-2c93fe4a1267">
+							<avaldamismarge id="ca35b8e5-08d1-4ca8-a1e7-2b224e2a073e">
+								<RTosa id="dea65f8e-93f9-4ab2-b8f5-70c6ce970016">RT IV</RTosa>
+								<avaldamineKuupaev id="a0694070-56a4-41ff-829b-726909caf24c">2026-06-30</avaldamineKuupaev>
+								<RTartikkel id="0f21a850-7b8d-4728-a38c-3218c53cce8c">14</RTartikkel>
+								<aktViide id="c7b96440-22b3-4d31-8f7d-cc940da48ed5">430062026014</aktViide>
+							</avaldamismarge>
+							<joustumine id="a2e683c1-cee0-444a-b12f-6058cf01fef4">2026-07-03</joustumine>
+						</muutmismarge>
 						<loige id="para37lg1">
 							<loigeNr id="3d5a89c1-fd90-4f51-bd0d-9f9fca8e30f5"/>
 							<kuvatavNr id="ca5428d9-f79f-4f90-853c-059655b22fa8"/>
 							<sisuTekst id="a9d4de3e-791b-4fac-be82-f399f49dfe2e">
-								<tavatekst id="18f20648-6566-4301-9ae6-cd8bfb3d6bb4">Lapsehoiuteenuse eesmärk on toetada suure hooldus- ja abivajadusega last kasvatava isiku toimetulekut või töötamist või vähendada lapse erivajadusest tulenevat hoolduskoormust.</tavatekst>
+								<tavatekst id="18f20648-6566-4301-9ae6-cd8bfb3d6bb4">Suure hooldus- ja abivajadusega lapse hoiu teenuse (edaspidi hoiuteenus) eesmärk on vähendada suure hooldus- ja abivajadusega last kasvatava isiku hoolduskoormust, soodustada tema toimetulekut või töötamist ning toetada lapse heaolu ja arengut.</tavatekst>
 							</sisuTekst>
-							<muutmismarge id="a683e5e7-9d2a-4f6d-951d-017e7423c5cd">
-								<avaldamismarge id="ae327636-9fb5-4da0-acb4-627df6c7faca">
-									<RTosa id="c6b801a4-b362-4e9d-802f-09658a750fe9">RT IV</RTosa>
-									<avaldamineKuupaev id="28a3649a-021d-4ae7-9b65-b68b575d5400">2024-05-29</avaldamineKuupaev>
-									<RTartikkel id="63d8530a-f784-4b5b-b945-245b653b0950">2</RTartikkel>
-									<aktViide id="a155a2d0-c6de-4bff-89d6-40db904425a3">429052024002</aktViide>
+							<muutmismarge id="a0d9a52e-55f3-44b8-887e-a60740b6aa19">
+								<avaldamismarge id="ef0110b3-30d3-482f-8c97-ea0aba11e8ed">
+									<RTosa id="4d32130b-005e-4298-90c5-f552efdfa4d8">RT IV</RTosa>
+									<avaldamineKuupaev id="7559e542-d0ad-416f-b093-7ee6ebcd15ca">2026-06-30</avaldamineKuupaev>
+									<RTartikkel id="e6f210b2-4a7d-4981-a5cf-dd5db050b3f6">14</RTartikkel>
+									<aktViide id="a773067f-54ad-42ea-b89e-34b711954601">430062026014</aktViide>
 								</avaldamismarge>
-								<joustumine id="7e71155d-6cf8-4314-b3ce-25db26cda51f">2024-06-01</joustumine>
+								<joustumine id="76830213-5262-4c1c-9a7a-2aca11f6bdca">2026-07-03</joustumine>
 							</muutmismarge>
 						</loige>
 					</paragrahv>
 					<paragrahv id="para38">
 						<paragrahvNr id="7147e5ab-95e0-49e0-9901-a8f84a7c6557">38</paragrahvNr>
 						<kuvatavNr id="cc59e264-1e84-43cd-ae5c-3b0c47af9344"><![CDATA[§ 38. ]]></kuvatavNr>
-						<paragrahvPealkiri id="b401d1f5-53a2-47cd-91bd-7e62fc12cc14">Lapsehoiuteenuse osutamise korraldamine</paragrahvPealkiri>
+						<paragrahvPealkiri id="b401d1f5-53a2-47cd-91bd-7e62fc12cc14">Hoiuteenuse osutamise korraldamine</paragrahvPealkiri>
+						<muutmismarge id="d7f29aa5-eb10-41e2-aafc-675c2e06ba39">
+							<avaldamismarge id="5b6634aa-5264-4e5e-9985-84dd99137d56">
+								<RTosa id="bfd68710-d600-4c00-8647-c91c81537a57">RT IV</RTosa>
+								<avaldamineKuupaev id="24753041-d8f7-41c4-89af-0d548cccdab7">2026-06-30</avaldamineKuupaev>
+								<RTartikkel id="b7425079-4a42-418d-8fb7-ad540aaf0657">14</RTartikkel>
+								<aktViide id="defff591-097b-4ee2-8a0f-cf5fca76e065">430062026014</aktViide>
+							</avaldamismarge>
+							<joustumine id="c862afbb-697f-47af-a345-a1e2908a1051">2026-07-03</joustumine>
+						</muutmismarge>
 						<loige id="para38lg1">
 							<loigeNr id="336b219e-6569-4984-970f-9b992fd4cdc8">1</loigeNr>
 							<kuvatavNr id="88dda2b1-ff46-49d2-9a1c-06bada2e0b59"><![CDATA[(1)]]></kuvatavNr>
 							<sisuTekst id="75d7e1c1-16d5-48a6-ac43-5876df06af7f">
-								<tavatekst id="70fbe133-57a9-4e92-9f1b-1d1e70e890a0">Lapsehoiuteenust võimaldatakse kuni 18-aastasele suure hooldus- ja abivajadusega lapsele.</tavatekst>
+								<tavatekst id="70fbe133-57a9-4e92-9f1b-1d1e70e890a0"> Suure hooldus- ja abivajadusega laps on lastekaitseseaduse tähenduses abivajav laps, kes vajab oma vaimse või füüsilise tervise seisundi tõttu eakohasega võrreldes keskmisest enam hooldust, järelevalvet ja muud tuge.</tavatekst>
 							</sisuTekst>
-							<muutmismarge id="8a24eef1-4fe0-4ed6-92f1-c8d316d8362a">
-								<avaldamismarge id="e0ee2b2f-abbf-4383-b817-0e7c4f5e468f">
-									<RTosa id="d8c5201e-03a1-45de-8186-70811ee7043e">RT IV</RTosa>
-									<avaldamineKuupaev id="83aae478-239c-45ef-8e30-a0a3d79e7fb3">2024-05-29</avaldamineKuupaev>
-									<RTartikkel id="cdb31cce-fe07-4b9a-a722-b7c968a64090">2</RTartikkel>
-									<aktViide id="56043bb1-d76d-4306-bcb5-02c351fd26f4">429052024002</aktViide>
+							<muutmismarge id="a5021e57-df0d-4e39-a7e1-8d90986e1c5b">
+								<avaldamismarge id="86ec7721-369e-4ad9-82ce-7e6adf9236d5">
+									<RTosa id="fb85010e-3d6b-4c52-8e60-437b6b5b082c">RT IV</RTosa>
+									<avaldamineKuupaev id="2fe648dd-0bb2-4a08-8bda-514384e858bc">2026-06-30</avaldamineKuupaev>
+									<RTartikkel id="b097f151-ba39-46be-9821-e824e0a83a8c">14</RTartikkel>
+									<aktViide id="bdf0b57d-a07d-4163-8ff6-e8b16b6e7d4d">430062026014</aktViide>
 								</avaldamismarge>
-								<joustumine id="c685abd9-efd8-45e1-ac0b-ad4bb0695a7e">2024-06-01</joustumine>
+								<joustumine id="53ff05c0-6744-49d1-b6fb-5155cf68b0c5">2026-07-03</joustumine>
 							</muutmismarge>
 						</loige>
 						<loige id="para38lg2">
 							<loigeNr id="d85bd2d6-7d47-4b28-8e96-64a7f33b2a36">2</loigeNr>
 							<kuvatavNr id="a1f145bf-32cc-45cc-879f-8abba1eec903"><![CDATA[(2)]]></kuvatavNr>
 							<sisuTekst id="aaca01ea-b5a4-44b8-a594-ac74c6a019ac">
-								<tavatekst id="e74721b1-6989-48f8-99b5-5b343ff1b8f1">Lapsehoiuteenuse määramisel lähtutakse lapse hooldusvajadusest ja lapsele osutatavate muude teenuste mahust.</tavatekst>
+								<tavatekst id="e74721b1-6989-48f8-99b5-5b343ff1b8f1"> Hoiuteenuse määramisel lähtutakse lapse hooldusvajadusest ja lapsele osutavate muude teenuste mahust. Hoiuteenust osutatakse haridusasutuse õppe- ja kasvatustegevuse välisel ajal.</tavatekst>
 							</sisuTekst>
+							<muutmismarge id="52d7503c-b4b3-409b-b74f-12fb5a42fc55">
+								<avaldamismarge id="f98e81c0-f760-4d5d-b488-05d929f26f22">
+									<RTosa id="f2cffb5b-9480-4a74-bc53-5a48bf15e194">RT IV</RTosa>
+									<avaldamineKuupaev id="41f8e87a-1f79-4610-aaa2-ebb30044f55a">2026-06-30</avaldamineKuupaev>
+									<RTartikkel id="bd945a7d-30d8-4a78-99f5-82441a94f34f">14</RTartikkel>
+									<aktViide id="0fd8ebcb-8d35-4ea5-889f-e7164a96c427">430062026014</aktViide>
+								</avaldamismarge>
+								<joustumine id="91888f0d-ba46-4633-aec3-21f7c89f8ee4">2026-07-03</joustumine>
+							</muutmismarge>
 						</loige>
 						<loige id="para38lg3">
 							<loigeNr id="6b3c553f-95c6-467a-9bd4-83440907d247">3</loigeNr>
 							<kuvatavNr id="6f473e85-1d3a-446f-9d9b-a1eb2392e3b9"><![CDATA[(3)]]></kuvatavNr>
 							<sisuTekst id="61b1ed77-f7bf-4a08-bcf7-c219fe4bdbbe">
-								<tavatekst id="fd69ab9a-f538-4642-a69d-7c6ce1f0c88a">Lapsehoiuteenuse vajadust hinnatakse iga lapse puhul eraldi.</tavatekst>
+								<tavatekst id="fd69ab9a-f538-4642-a69d-7c6ce1f0c88a"> Suure hooldus- ja abivajadusega lapse ja teda kasvatava isiku abivajadust hinnatakse iga juhtumi osas eraldi, et selgitada välja hoiuteenuse vajadus ja maht.</tavatekst>
 							</sisuTekst>
+							<muutmismarge id="0074db95-45b5-41d6-851e-8bad16bd4191">
+								<avaldamismarge id="c44eaa72-47cb-4cb3-b141-24064029dcac">
+									<RTosa id="6439ae95-cf3d-45ea-81d5-d598b76ffe47">RT IV</RTosa>
+									<avaldamineKuupaev id="f62406cf-8119-4c74-b092-b7f89ef5cb3e">2026-06-30</avaldamineKuupaev>
+									<RTartikkel id="7ef08b8f-2554-4a90-9317-171cd806c138">14</RTartikkel>
+									<aktViide id="964acb5c-2653-47fb-a864-ba9e3d32b3c6">430062026014</aktViide>
+								</avaldamismarge>
+								<joustumine id="227b5f37-f603-4807-9f04-2b1608c6cd5b">2026-07-03</joustumine>
+								
+							</muutmismarge>
 						</loige>
 						<loige id="para38lg4">
 							<loigeNr id="42b6a69d-686f-4443-b8a0-fd7b85c2aa0b">4</loigeNr>
 							<kuvatavNr id="eed11548-840a-4ebb-a5c9-193d5eeddddc"><![CDATA[(4)]]></kuvatavNr>
 							<sisuTekst id="f0e2720a-d516-4ac6-8d81-f275f2cdc824">
-								<tavatekst id="4355c899-a577-48a8-80a8-7ce22b998696">Suure hooldus- ja abivajadusega lapsele tagatakse lapsehoiuteenuse selle kalendriaasta lõpuni, mil laps sai 18-aastaseks.</tavatekst>
+								<tavatekst id="4355c899-a577-48a8-80a8-7ce22b998696"> Lapsel on õigus saada hoiuteenust kuni 18-aastaseks saamiseni. Põhikoolis, gümnaasiumis või kutseõppe tasemeõppes õppivale või Haridus- ja Teadusministeeriumi hallatava riigiasutuse statsionaarse õppega täienduskoolituse kursuse nimekirja arvatud keskhariduseta lapsele tagatakse hoiuteenus jooksva õppeaasta või täienduskoolituse kursuse lõppemiseni või õpilase kooli või täienduskoolituse kursuse nimekirjast väljaarvamiseni.</tavatekst>
 							</sisuTekst>
-							<muutmismarge id="9db53d55-0e06-4a22-b79a-8177deb913fc">
-								<avaldamismarge id="1955883e-0176-4114-bf64-ea0705716f92">
-									<RTosa id="8272d66b-b219-4f91-aef6-50a77319b7d6">RT IV</RTosa>
-									<avaldamineKuupaev id="fc5fcbe6-8fb1-42ce-a02f-0c3060ad4a9c">2024-05-29</avaldamineKuupaev>
-									<RTartikkel id="564b5cb8-996d-47a1-882c-0650e05698ae">2</RTartikkel>
-									<aktViide id="9a1769e0-2ff5-488b-beed-bcbc278eed95">429052024002</aktViide>
+							<muutmismarge id="d03795d4-03eb-4e27-8710-d13b3c034f13">
+								<avaldamismarge id="8a53b0f2-61cd-436c-926b-178fc36dc1e9">
+									<RTosa id="3cc1def4-def4-485c-8ac0-24a651187878">RT IV</RTosa>
+									<avaldamineKuupaev id="2809de7e-6996-4402-93d9-6a622113c1ca">2026-06-30</avaldamineKuupaev>
+									<RTartikkel id="7da27ca0-3e14-4fa9-abd6-1a8c5e6509b1">14</RTartikkel>
+									<aktViide id="fdbb8c3d-ddec-4a17-93d0-fdf5c3d8da3f">430062026014</aktViide>
 								</avaldamismarge>
-								<joustumine id="bfd424fc-f4e2-4022-9d91-a9dd66d64770">2024-06-01</joustumine>
+								<joustumine id="ca4f3086-f09c-4adf-b4ee-39fa899fff5e">2026-07-03</joustumine>
 							</muutmismarge>
 						</loige>
 						<loige id="para38lg5">
 							<loigeNr id="c28c8fa5-03e0-4861-9e6c-98fefb173b14">5</loigeNr>
 							<kuvatavNr id="38817fe8-4d73-4d0c-a483-1b7c0c448606"><![CDATA[(5)]]></kuvatavNr>
 							<sisuTekst id="8d97a481-173f-4c92-b05f-0c3bae2421e0">
-								<tavatekst id="cc94e5fe-1240-4df0-916b-8bd049b03959">Lapsehoiuteenuse eest teenuse saajalt tasu võtmine otsustatakse käesoleva määruse § 11 alusel.</tavatekst>
+								<tavatekst id="cc94e5fe-1240-4df0-916b-8bd049b03959">Hoiuteenuse eest teenuse saajalt tasu võtmine otsustatakse käesoleva määruse § 11 alusel</tavatekst>
 							</sisuTekst>
+							<muutmismarge id="23b16c7a-edda-496c-b89a-9c3195a2458b">
+								<avaldamismarge id="9baa11d7-baa3-40bf-8d19-03855952ea4b">
+									<RTosa id="44dc7306-762a-4144-a0a8-cb81bb9a68b9">RT IV</RTosa>
+									<avaldamineKuupaev id="3d6825fc-85f8-4b8e-99bf-0560689378dd">2026-06-30</avaldamineKuupaev>
+									<RTartikkel id="d835fe44-8041-4023-a23f-7d23dd42efa6">14</RTartikkel>
+									<aktViide id="be254505-15d8-43ac-9fa5-7a91a91a49df">430062026014</aktViide>
+								</avaldamismarge>
+								<joustumine id="9fcd71a0-08be-4ff3-84b7-24f32310fa75">2026-07-03</joustumine>
+							</muutmismarge>
 						</loige>
 					</paragrahv>
 				</jaotis>
@@ -2757,8 +2860,17 @@
 							<alampunktNr id="90f8613f-2c10-489c-a2c4-74e7a8df1dd8">3</alampunktNr>
 							<kuvatavNr id="aeab88f5-7832-4bb0-ace0-8104e5130474"><![CDATA[3) ]]></kuvatavNr>
 							<sisuTekst id="dd4f10d4-b851-4f43-bc16-5503eed05d1c">
-								<tavatekst id="7798b112-0e7a-42fa-b96f-b54ee88fdbc2">hariduslike erivajadustega õpilase sõidutoetus.</tavatekst>
+								<tavatekst id="7798b112-0e7a-42fa-b96f-b54ee88fdbc2">haridusliku erivajadusega õpilase sõidutoetus.</tavatekst>
 							</sisuTekst>
+							<muutmismarge id="7d522b60-935c-4952-876e-22ec67f3a2cb">
+								<avaldamismarge id="b9d84f6e-d89f-4c54-abc3-2209872c60e7">
+									<RTosa id="a8c606f6-276a-46b0-b7c6-56d14a8cf463">RT IV</RTosa>
+									<avaldamineKuupaev id="0a50617d-7c27-4381-b199-aae27c20e4ab">2026-06-30</avaldamineKuupaev>
+									<RTartikkel id="0eaf9341-2e03-4fba-9e1f-5d8dd46f65ef">14</RTartikkel>
+									<aktViide id="8f45906a-29e9-4c7a-aeb3-e9de8d91c44e">430062026014</aktViide>
+								</avaldamismarge>
+								<joustumine id="22780790-8aa6-48a3-8422-ea691c743e23">2026-07-03</joustumine>
+							</muutmismarge>
 						</alampunkt>
 					</loige>
 					<loige id="para47lg5">
@@ -3025,8 +3137,17 @@
 							<alampunktNr id="38def8da-b8eb-48d4-9de7-a359733611f5">2</alampunktNr>
 							<kuvatavNr id="44f7e98b-0d6d-4d74-ab88-6d91502fc438"><![CDATA[2) ]]></kuvatavNr>
 							<sisuTekst id="bfe91ce1-3d4b-4334-b038-ab11f474a653">
-								<tavatekst id="6f27d8df-5b98-4fc2-afcd-71b66d33f247"> laps ei kasuta kohta koolieelses lasteasutuses ega lapsehoius ning ei saa lapsehoiu- või eralasteaiateenuse toetust (edaspidi koolieelne lasteasutus);</tavatekst>
+								<tavatekst id="6f27d8df-5b98-4fc2-afcd-71b66d33f247">laps ei kasuta kohta eralastehoius ega eralasteaias ning ei saa eralastehoiu- või lasteaia kohatasu toetust lapsevanemale;</tavatekst>
 							</sisuTekst>
+							<muutmismarge id="71e08cca-5a07-445d-a077-64a43e4c9c1b">
+								<avaldamismarge id="e58c4d65-e4e3-45c9-a232-2fe2f73e59f2">
+									<RTosa id="51382ba8-acc4-4a30-9ca9-c4ecff397b70">RT IV</RTosa>
+									<avaldamineKuupaev id="b40af870-dbf4-4f42-9654-54d1c2eb7976">2026-06-30</avaldamineKuupaev>
+									<RTartikkel id="a762ef64-4306-4016-a687-49ae31384d0d">14</RTartikkel>
+									<aktViide id="f6f5b219-a2cb-4104-b559-80c2adb379a3">430062026014</aktViide>
+								</avaldamismarge>
+								<joustumine id="999d9945-55eb-4dd2-b411-f26d5a32ddce">2026-07-03</joustumine>
+							</muutmismarge>
 						</alampunkt>
 						<alampunkt id="para52b1lg2p3">
 							<alampunktNr id="2430f252-b49b-4f9c-8e49-1a4a638d8fcc">3</alampunktNr>
@@ -3219,7 +3340,6 @@
 						<alampunkt id="para57lg1p2">
 							<alampunktNr id="97ac7f23-3078-420d-985f-321b3b06d5ba">2</alampunktNr>
 							<kuvatavNr id="66a562b4-58ba-4a00-8d79-f0d45efed46f"><![CDATA[2) ]]></kuvatavNr>
-							
 							<muutmismarge id="9ac01c2f-f276-43f6-9629-78d892a6b871">
 								<tavatekst id="354a9086-61b5-44c1-971d-0b2b438a41dd">kehtetu - </tavatekst>
 								<avaldamismarge id="fc3ca939-297c-4e01-a24d-f09f75e37f49">
@@ -3249,24 +3369,33 @@
 							<alampunktNr id="7a282ab2-f32a-4ddd-8ae9-619ff2c217fc">2</alampunktNr>
 							<kuvatavNr id="19ceebd1-6e6e-4d21-8bcb-24d8f74cb490"><![CDATA[2) ]]></kuvatavNr>
 							<sisuTekst id="1bd84f00-7ab4-45b4-94e2-c6ed999c3baa">
-								<tavatekst id="053e7c02-1752-4d70-9e93-32722629067e">4- ja enamalapselistele peredele. Juhul, kui 4- ja enamalapselises peres kasvab vähemalt üks laps, kellel on määratud puue, makstakse toetust kahekordses määras.“</tavatekst>
+								<tavatekst id="053e7c02-1752-4d70-9e93-32722629067e">4- ja enamalapselistele peredele;</tavatekst>
 							</sisuTekst>
-							<muutmismarge id="4b55db30-edcc-4c7b-9f6f-42422800585d">
-								<avaldamismarge id="9a239567-941f-4557-b93e-818e671522d4">
-									<RTosa id="7c4ee8a9-b75e-4343-91fb-63ca470d6e68">RT IV</RTosa>
-									<avaldamineKuupaev id="0503a987-6d4d-4b78-91c9-e20e6170eaae">2024-05-29</avaldamineKuupaev>
-									<RTartikkel id="66742fc0-2760-4cee-bb78-65000101f34d">2</RTartikkel>
-									<aktViide id="492248b1-ff8c-4251-b563-0d74eeff7acf">429052024002</aktViide>
+							<muutmismarge id="0d965e30-6234-424b-9578-f977200ac132">
+								<avaldamismarge id="485013b3-7006-4fab-8868-3fd9d73ab799">
+									<RTosa id="4deb532d-a52f-4128-9e9f-b550202372ea">RT IV</RTosa>
+									<avaldamineKuupaev id="3ac9482a-8035-4af3-a0b6-4b30f4488c32">2026-06-30</avaldamineKuupaev>
+									<RTartikkel id="dd45e259-353a-46f6-93d5-01ad4ba6a6f1">14</RTartikkel>
+									<aktViide id="1d8411b9-532c-4151-b93f-bc744c8e645e">430062026014</aktViide>
 								</avaldamismarge>
-								<joustumine id="0ba31acc-9df0-4e26-a0d8-44df72977f68">2024-06-01</joustumine>
+								<joustumine id="12df17fd-f576-4110-b8c1-0370ce399f59">2026-07-03</joustumine>
 							</muutmismarge>
 						</alampunkt>
 						<alampunkt id="para57lg2p3">
 							<alampunktNr id="02901480-85eb-435b-adee-f0703e51cdf6">3</alampunktNr>
 							<kuvatavNr id="b445f861-939d-4cbf-a4c1-144ac4ae59e2"><![CDATA[3) ]]></kuvatavNr>
 							<sisuTekst id="9c304605-56ab-4bb2-a167-e56517f1e053">
-								<tavatekst id="1b94dc3b-3c65-454c-b603-d1f418391129">eestkoste- ja hooldusperedele. Juhul kui eestkoste- või hooldusperes kasvab vähemalt üks laps, kellel on tuvastatud puue, makstakse toetust kahekordses määras;</tavatekst>
+								<tavatekst id="1b94dc3b-3c65-454c-b603-d1f418391129">eestkoste- ja hooldusperedele;</tavatekst>
 							</sisuTekst>
+							<muutmismarge id="51d639aa-d171-4085-84b3-436f567d50f8">
+								<avaldamismarge id="3917124e-e39e-4837-b271-cf47ca99e5e6">
+									<RTosa id="ca8c41c5-ffaf-4e8b-861b-f797c061df47">RT IV</RTosa>
+									<avaldamineKuupaev id="62830afd-50d2-401d-99a4-816415abc3a4">2026-06-30</avaldamineKuupaev>
+									<RTartikkel id="8b9b785e-966c-41d8-bb67-7a19f5324a27">14</RTartikkel>
+									<aktViide id="8fd73961-a2de-4a6a-a37f-4fb8a19ffc17">430062026014</aktViide>
+								</avaldamismarge>
+								<joustumine id="090766ec-8c87-402e-b241-5276e1da1af8">2026-07-03</joustumine>
+							</muutmismarge>
 						</alampunkt>
 						<alampunkt id="para57lg2p4">
 							<alampunktNr id="d1e46e2a-2d7e-4e50-b260-7ed87f0eada7">4</alampunktNr>
@@ -3295,7 +3424,6 @@
 					<loige id="para57lg4">
 						<loigeNr id="a3f3190a-0e58-4d88-adea-f0fb55bc0d5d">4</loigeNr>
 						<kuvatavNr id="428ad918-d3d6-45e8-b7c1-e419b5fdd6be"><![CDATA[(4)]]></kuvatavNr>
-						
 						<muutmismarge id="993c0f97-7d1d-4a06-9687-53cd9df5878a">
 							<tavatekst id="8e28278c-d02d-47ca-9580-95ca45ddbb78">Kehtetu - </tavatekst>
 							<avaldamismarge id="56902049-e158-4e9d-ab3d-ed666d3098a0">
@@ -3310,7 +3438,6 @@
 					<loige id="para57lg5">
 						<loigeNr id="af35aa24-48ec-47e1-9a3b-01c3bd4971ea">5</loigeNr>
 						<kuvatavNr id="800aac84-c31a-4bde-81c4-c9645bacc02d"><![CDATA[(5)]]></kuvatavNr>
-						
 						<muutmismarge id="ba3bbd08-6157-4ae2-8880-9be57e4ee961">
 							<tavatekst id="dc1c80c2-16fc-4b1e-8135-54f357434c96">Kehtetu - </tavatekst>
 							<avaldamismarge id="c3d2f862-1d60-4769-af33-00c1c0f6886c">
@@ -3325,7 +3452,6 @@
 					<loige id="para57lg6">
 						<loigeNr id="e1a07acd-bc88-4fd4-8302-90bfbb493716">6</loigeNr>
 						<kuvatavNr id="f4e18ba0-c03a-4da3-80f3-cf1f88b6d8c1"><![CDATA[(6)]]></kuvatavNr>
-						
 						<muutmismarge id="55a718e3-657c-4332-b0a5-17c7ad5ee4dd">
 							<tavatekst id="2827e0ca-c716-494f-b1f1-f7d6fe68aa3f">Kehtetu - </tavatekst>
 							<avaldamismarge id="423b38c7-4862-4a98-9649-fb916cae9b68">
@@ -3340,7 +3466,6 @@
 					<loige id="para57lg7">
 						<loigeNr id="beb3cf2b-cffc-4863-85ab-e0c032b5d12b">7</loigeNr>
 						<kuvatavNr id="0cd0097e-f2d6-48fe-b217-1bae1fc14e4c"><![CDATA[(7)]]></kuvatavNr>
-						
 						<muutmismarge id="5bd4679f-9c8a-41ea-8b8d-29d76a1fc0a8">
 							<tavatekst id="97bfb740-50a7-40f3-81ff-72fff2f38b54">Kehtetu - </tavatekst>
 							<avaldamismarge id="768de8de-1575-4b45-bfdd-11e370e231a2">
@@ -3366,6 +3491,22 @@
 								<aktViide id="ac7ece30-6947-49b0-a944-ff89da62a0b0">408072023058</aktViide>
 							</avaldamismarge>
 							<joustumine id="70348ffb-f6ca-4e78-b496-90a48012ec35">2023-07-11</joustumine>
+						</muutmismarge>
+					</loige>
+					<loige id="para57lg9">
+						<loigeNr id="7d6a6356-bbbc-4303-9af2-79843f744c0e">9</loigeNr>
+						<kuvatavNr id="5d0aa4ae-695c-481a-a0f8-2fb67af4394d"><![CDATA[(9)]]></kuvatavNr>
+						<sisuTekst id="487e804a-a722-4114-a9a2-78dd96d32582">
+							<tavatekst id="a7ce0949-6dc0-4b38-8af6-c7cd87236650">Taotlejal on õigus ühekordset rahalist jõulutoetust taotleda kõigi § 57 lg 2 p 1-4 väljatoodud tingimuste eest, millele ta vastab.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="4866a371-4d0e-44ef-87d7-6ad95d64cf11">
+							<avaldamismarge id="947fe1f7-c210-453d-8d6d-9236403fe037">
+								<RTosa id="7188d863-b9fa-4707-8f8f-c56d96712b12">RT IV</RTosa>
+								<avaldamineKuupaev id="7cc90d21-45f2-4f5b-bfdf-4e667e935439">2026-06-30</avaldamineKuupaev>
+								<RTartikkel id="312a5842-9375-4bd0-9012-7431971aa314">14</RTartikkel>
+								<aktViide id="85b4bfaf-5959-4695-a6f7-665574a2cc58">430062026014</aktViide>
+							</avaldamismarge>
+							<joustumine id="fa59583f-39eb-47f2-b246-33a7d71beb2a">2026-07-03</joustumine>
 						</muutmismarge>
 					</loige>
 				</paragrahv>
@@ -3554,8 +3695,7 @@
 							<alampunktNr id="be92ab3b-052c-4639-8d18-54fa1d9b69c4">5</alampunktNr>
 							<kuvatavNr id="146ee909-ca93-4edb-9de0-5145ff7f035e"><![CDATA[5) ]]></kuvatavNr>
 							<sisuTekst id="0577c24f-80f1-4672-b63c-157e870d4d94">
-								<tavatekst id="1fdd5fff-f044-414b-8590-61374df41be4">taotleja või tema leibkonna liige on töövõimeline 18- aastane kuni vanaduspensioniealine isik, kes ei tööta ega õpi ning on rohkem kui ühel korral ilma mõjuva põhjuseta keeldunud osalemast tööturuteenuses või ametiasutuse korraldatavas iseseisvale toimetulekule suunatud sotsiaalteenuses ega ole muul viisil aktiivne oma toimetulekuvõime parandamisel;<reavahetus/>
-								</tavatekst>
+								<tavatekst id="1fdd5fff-f044-414b-8590-61374df41be4">taotleja või tema leibkonna liige on töövõimeline 18- aastane kuni vanaduspensioniealine isik, kes ei tööta ega õpi ning on rohkem kui ühel korral ilma mõjuva põhjuseta keeldunud osalemast tööturuteenuses või ametiasutuse korraldatavas iseseisvale toimetulekule suunatud sotsiaalteenuses ega ole muul viisil aktiivne oma toimetulekuvõime parandamisel;<reavahetus/></tavatekst>
 							</sisuTekst>
 						</alampunkt>
 						<alampunkt id="para59lg10p6">
@@ -3776,22 +3916,49 @@
 						<loigeNr id="278f9480-6d12-4c29-b968-00d4103e4639">1</loigeNr>
 						<kuvatavNr id="de35ab40-fcdb-4f47-9e54-d39ac6b70742"><![CDATA[(1)]]></kuvatavNr>
 						<sisuTekst id="16c6bdd4-83ba-47b0-9630-9d8568bb6f21">
-							<tavatekst id="4cfafda8-545b-4d09-a36f-e4a0182b997f">Toetus on ette nähtud sõidukulude hüvitamiseks Kiili valla haridusliku erivajadusega lapsele, kes käib põhikooli- ja gümnaasiumiseaduse alusel moodustatud nõustamiskomisjoni soovitusel koolieelse lasteasutuse sobitus- või erirühmas või koolis, mis asub väljaspool Kiili valla haldusterritooriumi.</tavatekst>
+							<tavatekst id="4cfafda8-545b-4d09-a36f-e4a0182b997f">Toetus on ette nähtud sõidukulude hüvitamiseks Kiili valla haridusliku erivajadusega lapsele, kes käib põhikooli- ja gümnaasiumiseaduse alusel moodustatud nõustamiskomisjoni soovitusel lastehoiu või lasteaia väiksemas rühmas või koolis, mis asub väljaspool Kiili valla haldusterritooriumi.</tavatekst>
 						</sisuTekst>
+						<muutmismarge id="a9337a86-3849-4ba9-b5fa-16513a2b5330">
+							<avaldamismarge id="5f600d23-41ec-4cec-ae6c-14093046ce2f">
+								<RTosa id="426d3356-d2a3-442d-8065-bdc8df8f52d7">RT IV</RTosa>
+								<avaldamineKuupaev id="0b7ff52b-d080-4466-8854-a2a4d132a902">2026-06-30</avaldamineKuupaev>
+								<RTartikkel id="3b58129e-290d-4bbd-82fd-53856a43555e">14</RTartikkel>
+								<aktViide id="26a504f8-dde7-496a-8213-98fbf679671a">430062026014</aktViide>
+							</avaldamismarge>
+							<joustumine id="349e8cc6-b647-4332-8342-7e9c6bc5120f">2026-07-03</joustumine>
+						</muutmismarge>
 					</loige>
 					<loige id="para62lg2">
 						<loigeNr id="abbee8df-7b60-4fe4-ac6f-43be2a820e65">2</loigeNr>
 						<kuvatavNr id="f7290e0a-d0f0-4dd9-95a2-c28918fdb165"><![CDATA[(2)]]></kuvatavNr>
 						<sisuTekst id="1c4a7d43-3d68-4095-aed4-97305a0e086e">
-							<tavatekst id="d32d7307-34e8-4b34-9496-2c0839d25bd7">Sõidukulud hüvitatakse juhul, kui koolieelne lasteasutus või kool ei jää Harjumaa bussiliinide nr 116, 116A, 116B ja 164 teeninduspiirkonda või laps ei saa erivajadusest tulenevalt ühistransporti kasutada ning puudub korraldatud transport.</tavatekst>
+							<tavatekst id="d32d7307-34e8-4b34-9496-2c0839d25bd7">Sõidukulud hüvitatakse juhul, kui lasteaed, lastehoid või kool ei jää Kiili valda läbivate Harjumaa bussiliinide teeninduspiirkonda või laps ei saa erivajadusest tulenevalt ühistransporti kasutada ning puudub korraldatud transport.</tavatekst>
 						</sisuTekst>
+						<muutmismarge id="36281981-11b1-405e-8ac3-fc177a143b66">
+							<avaldamismarge id="9e280bbc-bc50-4162-9f5e-1942d4211b85">
+								<RTosa id="90c3458e-4210-4a58-bcb3-892e3059295e">RT IV</RTosa>
+								<avaldamineKuupaev id="8522d241-025b-40f8-b63d-4ae63071f391">2026-06-30</avaldamineKuupaev>
+								<RTartikkel id="f4586236-6cae-47bf-8a04-ee1100c9d7f2">14</RTartikkel>
+								<aktViide id="8194e0a3-c2d5-432f-95d7-0a0fd0c76f09">430062026014</aktViide>
+							</avaldamismarge>
+							<joustumine id="f40826a2-6dcf-4a29-b3f7-188e8073f9e4">2026-07-03</joustumine>
+						</muutmismarge>
 					</loige>
 					<loige id="para62lg3">
 						<loigeNr id="460bbf46-9c01-45be-b38d-fa7645ae52da">3</loigeNr>
 						<kuvatavNr id="90267935-f0ad-4391-bc00-1d12804c5675"><![CDATA[(3)]]></kuvatavNr>
 						<sisuTekst id="208d772c-f338-4d8c-ade5-8382ccf6c1c8">
-							<tavatekst id="498b9420-83de-4aa2-a163-5835502efa17">Sõidukulud hüvitatakse lapsevanema, eestkostja või hoolduspere vanema taotluse alusel, millele lisatakse tõend haridusliku erivajadusega lapse koolieelses lasteasutuses käimise või õppimise kohta.</tavatekst>
+							<tavatekst id="498b9420-83de-4aa2-a163-5835502efa17">Sõidukulud hüvitatakse lapsevanema, eestkostja või hoolduspere vanema taotluse alusel, millele lisatakse tõend haridusliku erivajadusega lapse lastehoius, lasteaias käimise või koolis õppimise kohta.</tavatekst>
 						</sisuTekst>
+						<muutmismarge id="88e85518-201d-4419-b5f0-640a46e3f09c">
+							<avaldamismarge id="597502a0-a60e-48a6-977d-1540f85f139d">
+								<RTosa id="a85dc0e0-513f-4a66-b51b-879eb1e16543">RT IV</RTosa>
+								<avaldamineKuupaev id="da961b91-78d2-4baa-bb8d-f2261b32e3dd">2026-06-30</avaldamineKuupaev>
+								<RTartikkel id="8cd375b4-9ca0-4737-a80c-2466ed9ceb02">14</RTartikkel>
+								<aktViide id="b9c9162e-9593-4ca4-9592-2dd864e58d6b">430062026014</aktViide>
+							</avaldamismarge>
+							<joustumine id="cc52c0ac-dea5-4152-9791-aa08e3c353fa">2026-07-03</joustumine>
+						</muutmismarge>
 					</loige>
 					<loige id="para62lg4">
 						<loigeNr id="782da5fa-2de0-40f8-9a1c-653aa1a82dba">4</loigeNr>
@@ -3958,27 +4125,16 @@
 					<paragrahvNr id="c931a2fc-efdd-4f17-a8d7-2c5fb689f0c7">67</paragrahvNr>
 					<kuvatavNr id="2869cf71-d5de-4d96-9d09-f56df0c6395b"><![CDATA[§ 67. ]]></kuvatavNr>
 					<paragrahvPealkiri id="9bbbcc7a-ea3a-4b68-808d-08fde6113bb1">Matuse korraldamise kulude katmise toetuse kasutamine</paragrahvPealkiri>
-					<loige id="para67lg1">
-						<loigeNr id="36000d93-da23-40df-8037-29f39d0c18ee"/>
-						<kuvatavNr id="2d471918-d20b-4f97-a5fe-b10354db7d63"/>
-						<sisuTekst id="ac62e6a8-db16-4107-bf43-c292249f5c16">
-							<tavatekst id="2687d95c-4af1-45be-ada6-394475640d94">Riigieelarvest Kiili vallale määratud matuse korraldamise kulude katmise toetuse vahendeid kasutab Vallavalitsus:</tavatekst>
-						</sisuTekst>
-						<alampunkt id="para67lg1p1">
-							<alampunktNr id="07e9244d-39e9-4b8e-bedf-7210e2c8788c">1</alampunktNr>
-							<kuvatavNr id="c64aff84-5f31-4e72-bc54-4a7c3b227c3d"><![CDATA[1) ]]></kuvatavNr>
-							<sisuTekst id="4c7b7244-c821-42ff-bec0-e3a2e2efcaf5">
-								<tavatekst id="53eee043-0a63-4321-9582-0e25c8185fd3">matusetoetuse maksmiseks käesolevas määruses sätestatud korras;</tavatekst>
-							</sisuTekst>
-						</alampunkt>
-						<alampunkt id="para67lg1p2">
-							<alampunktNr id="b84f8b0b-12f4-4c78-94c0-e6bd418864de">2</alampunktNr>
-							<kuvatavNr id="d0b9e982-6cb5-48b9-9177-ce197255f286"><![CDATA[2) ]]></kuvatavNr>
-							<sisuTekst id="9594c581-8854-4439-aefe-026346aa93f1">
-								<tavatekst id="0eb1e356-6cff-45e6-8d81-7abc05d814f6">Kiili valla poolt korraldatud matuse kulude katmiseks.</tavatekst>
-							</sisuTekst>
-						</alampunkt>
-					</loige>
+					<muutmismarge id="62aae696-5bdf-46bc-85fb-d95880019844">
+						<tavatekst id="ebb430a5-cb8e-4f6a-a957-027ea503d967">Kehtetu - </tavatekst>
+						<avaldamismarge id="d0460edf-2bce-41e1-be9b-84c18c1a8be6">
+							<RTosa id="955f0e5a-3aa1-42a4-afc2-1972d5306fd9">RT IV</RTosa>
+							<avaldamineKuupaev id="af738b3e-38e0-4e38-b69f-ac1e0f39cade">2026-06-30</avaldamineKuupaev>
+							<RTartikkel id="fd6b5c2b-493f-4fe5-a8ce-0505e17110e8">14</RTartikkel>
+							<aktViide id="8b32eebd-359b-44ee-b174-fd65660bdda5">430062026014</aktViide>
+						</avaldamismarge>
+						<joustumine id="ac3ae560-66d5-4dc1-8029-754baff169dc">2026-07-03</joustumine>
+					</muutmismarge>
 				</paragrahv>
 				<paragrahv id="para67b1">
 					<paragrahvNr id="e102c7b3-6955-4528-a070-6c69ac241620" ylaIndeks="1">67</paragrahvNr>

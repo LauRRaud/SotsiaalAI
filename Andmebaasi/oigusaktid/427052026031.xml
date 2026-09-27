@@ -17,16 +17,16 @@
 			<joustumine>2023-07-01</joustumine>
 			<aktiNr>29</aktiNr>
 		</vastuvoetud>
-		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2024-08-31</avaldamineKuupaev><RTaasta>2024</RTaasta><RTartikkel>12</RTartikkel><aktViide>431082024012</aktViide></avaldamismarge><kehtivus>
-			<kehtivuseAlgus>2024-09-03</kehtivuseAlgus>
-		<kehtivuseLopp>2026-05-29+03:00</kehtivuseLopp></kehtivus>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-05-27</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>31</RTartikkel><aktViide>427052026031</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2026-05-30</kehtivuseAlgus>
+		</kehtivus>
 		<versioon>
 			<dokumentVersioon>1</dokumentVersioon>
-			<dokumentVersioonKuupaev>2024-08-28</dokumentVersioonKuupaev>
+			<dokumentVersioonKuupaev>2026-05-25</dokumentVersioonKuupaev>
 		</versioon>
 		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
-		<globaalID>431082024012</globaalID>
-		<metaandmedVersioon>13</metaandmedVersioon>
+		<globaalID>427052026031</globaalID>
+		<metaandmedVersioon>17</metaandmedVersioon>
 		<metaandmedVersioonKuupaev>2026-05-26</metaandmedVersioonKuupaev>
 		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
 		<terviktekstiGrupiID>1056916</terviktekstiGrupiID>
@@ -53,6 +53,16 @@
 			<aktViide id="4f07a963-fd70-429f-8b5d-45c7f58ec658">431082024004</aktViide>
 		</avaldamismarge>
 		<joustumine id="4067473d-c250-4c61-b5a1-9f55648271ee">2024-09-03</joustumine>
+	</muutmismarge>
+	<muutmismarge id="adcd3522-a07a-4feb-8cc0-59dca1c2b752">
+		<aktikuupaev id="25234aaa-cb78-4140-882d-9647f6e500cf">2026-05-19</aktikuupaev>
+		<avaldamismarge id="185d2ec1-2e8d-40d5-b9b7-2d61acbdafeb">
+			<RTosa id="d36acf36-b258-46a6-97d7-70ad1feb4e39">RT IV</RTosa>
+			<avaldamineKuupaev id="d3205f51-fe31-48a3-95a3-e6a514f80f2d">2026-05-27</avaldamineKuupaev>
+			<RTartikkel id="847a8837-fdc4-4a5d-9bd6-62ca932228e7">14</RTartikkel>
+			<aktViide id="1c961e31-dcca-434d-be18-38de7412f48f">427052026014</aktViide>
+		</avaldamismarge>
+		<joustumine id="b39861dd-cae4-413f-8bed-16ef175ce7cc">2026-05-30</joustumine>
 	</muutmismarge>
 	<sisu id="771b378f-8921-422f-84db-f058f76db084">
 		<preambul id="df0b5824-d782-4736-b515-a8a3998e90e1">
@@ -1451,7 +1461,7 @@
 					<alampunktNr id="3f32c833-5da3-4468-910d-cab800ca7975">1</alampunktNr>
 					<kuvatavNr id="b7c20318-e0c8-4317-a560-f352d7c1a759"><![CDATA[1) ]]></kuvatavNr>
 					<muutmismarge id="6b2a04b1-3381-4301-9e1e-b537540d4889">
-						<tavatekst id="68723295-4924-4a81-8fb6-af0750ec9d4b">Kehtetu -</tavatekst>
+						<tavatekst id="68723295-4924-4a81-8fb6-af0750ec9d4b">kehtetu -</tavatekst>
 						<avaldamismarge id="ce5fb4e6-f0d2-44cb-82cb-446aaf379623">
 							<RTosa id="e16b03db-3fb3-4246-95d2-8ad547f26d32">RT IV</RTosa>
 							<avaldamineKuupaev id="1a8b41ac-0003-4824-9235-45525db60a91">2024-08-31</avaldamineKuupaev>
@@ -2386,16 +2396,16 @@
 				<loigeNr id="ad36358e-1bb9-45e7-8455-4c27a480cedd">3</loigeNr>
 				<kuvatavNr id="9682703a-0ffd-4fcc-a17a-3a895dda79a6"><![CDATA[(3)]]></kuvatavNr>
 				<sisuTekst id="bd64af5c-3b4e-46dc-9b4a-dfddf4d548ad">
-					<tavatekst id="fd29a95c-3d9b-443e-9f67-a6cef44a3039">Puudega, suure hooldus- ja abivajadusega lapsele tagatakse lapsehoiuteenus kuni lapse 18 aastaseks saamise kalendriaasta lõpuni.</tavatekst>
+					<tavatekst id="fd29a95c-3d9b-443e-9f67-a6cef44a3039">Suure hooldus- ja abivajadusega lapsel on õigus saada lapsehoiuteenust kuni 18-aastaseks saamiseni. Põhikoolis, gümnaasiumis või kutseõppe tasemeõppes õppivale või Haridus- ja Teadusministeeriumi hallatava riigiasutuse statsionaarse õppega täienduskoolituse kursuse nimekirja arvatud keskhariduseta lapsele tagatakse lapsehoiuteenus jooksva õppeaasta või täienduskoolituse kursuse lõppemiseni või õpilase kooli või täienduskoolituse kursuse nimekirjast väljaarvamiseni.</tavatekst>
 				</sisuTekst>
-				<muutmismarge id="9631912d-9fa4-4558-8037-86e80a6619e2">
-					<avaldamismarge id="7b7b2b95-0eef-42ef-bded-c3c31ff3be52">
-						<RTosa id="06a9148b-aa94-4708-bd93-9a687261ec39">RT IV</RTosa>
-						<avaldamineKuupaev id="f4e5ae4e-5218-4b7f-b619-3ef025a80254">2024-08-31</avaldamineKuupaev>
-						<RTartikkel id="52222aa0-4022-4f7c-81be-3093f4f0d4d2">4</RTartikkel>
-						<aktViide id="e49294c1-2fa5-4a24-a27d-af2bab41e6f9">431082024004</aktViide>
+				<muutmismarge id="2924f48e-1a24-42bd-8ec9-2b1200d4f86c">
+					<avaldamismarge id="b51bb33b-ddff-492d-a376-ea452609b8b3">
+						<RTosa id="dcb32219-fac9-43fa-aec4-07077f7df08e">RT IV</RTosa>
+						<avaldamineKuupaev id="0f255bec-b535-4284-adff-5971a2817cb2">2026-05-27</avaldamineKuupaev>
+						<RTartikkel id="80d4710b-132b-43f2-8b76-38f5585e8daa">14</RTartikkel>
+						<aktViide id="beed844f-7839-44b9-9df4-24d0e12319d8">427052026014</aktViide>
 					</avaldamismarge>
-					<joustumine id="fc14c446-ec7d-46d8-82be-8f09eac36f82">2024-09-03</joustumine>
+					<joustumine id="65bb51d2-6368-4253-93b5-43bf0b94edc7">2026-05-30</joustumine>
 				</muutmismarge>
 			</loige>
 			<loige id="para38lg4">
@@ -2587,8 +2597,7 @@
 		<paragrahv id="para41">
 			<paragrahvNr id="de920687-f16e-40ed-a59b-2b35c7e47033">41</paragrahvNr>
 			<kuvatavNr id="7204c29f-167f-464f-a561-bc24c8f791a9"><![CDATA[§ 41. ]]></kuvatavNr>
-			
-			<paragrahvPealkiri>Vaidlustamine</paragrahvPealkiri>
+			<paragrahvPealkiri id="f201c540-17b7-44d4-aae6-a5952f8d028f">Vaidlustamine</paragrahvPealkiri>
 			<muutmismarge id="5082c51b-a0f4-414c-bd42-ac71789d647b">
 				<tavatekst id="ee7de3e0-b264-492e-9525-b3c00df0496e">Kehtetu -</tavatekst>
 				<avaldamismarge id="fab0da4b-564e-41f3-8171-0177d4739899">

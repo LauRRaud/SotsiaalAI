@@ -1,93 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <oigusakt id="8c65913e-32f1-4212-b944-df50db3cbac7" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<metaandmed>
-		<valjaandja>Kanepi Vallavolikogu</valjaandja>
-		<dokumentLiik>määrus</dokumentLiik>
-		<tekstiliik>terviktekst</tekstiliik>
-		<dokumentEtapp>avaldamine</dokumentEtapp>
-		<dokumentStaatus>avaldatud</dokumentStaatus>
-		<vastuvoetud>
-			<aktikuupaev>2018-01-23</aktikuupaev>
-			<avaldamismarge>
-				<RTosa id="071ea9ae-1319-4dc0-92e6-5969fc2157b9">RT IV</RTosa>
-				<avaldamineKuupaev id="309333e1-5ea4-460c-9758-3c8131adbca0">2018-02-07</avaldamineKuupaev>
-				<RTartikkel id="bf9f0f9f-72a3-448c-8c12-d68de52bb698">7</RTartikkel>
-				<aktViide id="247955a4-6e93-43a1-8aa5-fb212660d947">407022018007</aktViide>
-			</avaldamismarge>
-			<joustumine>2018-02-10</joustumine>
-			<aktiNr>5</aktiNr>
-		</vastuvoetud>
-		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-10-28</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>16</RTartikkel><aktViide>428102025016</aktViide></avaldamismarge><kehtivus>
-			<kehtivuseAlgus>2026-01-01</kehtivuseAlgus>
-		<kehtivuseLopp>2026-05-29+03:00</kehtivuseLopp></kehtivus>
-		<versioon>
-			<dokumentVersioon>1</dokumentVersioon>
-			<dokumentVersioonKuupaev>2025-10-24</dokumentVersioonKuupaev>
-		</versioon>
-		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
-		<globaalID>428102025016</globaalID>
-		<metaandmedVersioon>43</metaandmedVersioon>
-		<metaandmedVersioonKuupaev>2026-05-26</metaandmedVersioonKuupaev>
-		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
-		<terviktekstiGrupiID>1041893</terviktekstiGrupiID>
-		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
-		<versiooniMuutus>
+ 
+ <valjaandja>Kanepi Vallavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2018-01-23</aktikuupaev>
+  <avaldamismarge>
+	<RTosa id="071ea9ae-1319-4dc0-92e6-5969fc2157b9">RT IV</RTosa>
+	<avaldamineKuupaev id="309333e1-5ea4-460c-9758-3c8131adbca0">2018-02-07</avaldamineKuupaev>
+	
+	
+	<RTartikkel id="bf9f0f9f-72a3-448c-8c12-d68de52bb698">7</RTartikkel>
+	<aktViide id="247955a4-6e93-43a1-8aa5-fb212660d947">407022018007</aktViide>
+  </avaldamismarge>
+  <joustumine>2018-02-10</joustumine>
+  <aktiNr>5</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-05-27</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>38</RTartikkel><aktViide>427052026038</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2026-05-30</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2026-05-26</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>427052026038</globaalID>
+ <metaandmedVersioon>47</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2026-05-26</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ <terviktekstiGrupiID>1041893</terviktekstiGrupiID>
+ <eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus>
 			<dokumentEtapp>avaldamine</dokumentEtapp>
 			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
 			<metaandmedVersioon>1</metaandmedVersioon>
 			<metaandmedVersioonKuupaev>2018-01-30</metaandmedVersioonKuupaev>
 			<metaandmedVersioonPohjustaja>Katrin Slungin</metaandmedVersioonPohjustaja>
-		</versiooniMuutus>
-		<versiooniMuutus>
+		</versiooniMuutus><versiooniMuutus>
 			<dokumentEtapp>avaldamine</dokumentEtapp>
 			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
 			<metaandmedVersioon>6</metaandmedVersioon>
 			<metaandmedVersioonKuupaev>2018-02-06</metaandmedVersioonKuupaev>
 			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
-		</versiooniMuutus>
-		<versiooniMuutus>
+		</versiooniMuutus><versiooniMuutus>
 			<dokumentEtapp>avaldamine</dokumentEtapp>
 			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
 			<metaandmedVersioon>11</metaandmedVersioon>
 			<metaandmedVersioonKuupaev>2019-10-14</metaandmedVersioonKuupaev>
 			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
-		</versiooniMuutus>
-		<versiooniMuutus>
+		</versiooniMuutus><versiooniMuutus>
 			<dokumentEtapp>avaldamine</dokumentEtapp>
 			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
 			<metaandmedVersioon>16</metaandmedVersioon>
 			<metaandmedVersioonKuupaev>2021-01-26</metaandmedVersioonKuupaev>
 			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
-		</versiooniMuutus>
-		<versiooniMuutus>
+		</versiooniMuutus><versiooniMuutus>
 			<dokumentEtapp>avaldamine</dokumentEtapp>
 			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
 			<metaandmedVersioon>21</metaandmedVersioon>
 			<metaandmedVersioonKuupaev>2023-01-27</metaandmedVersioonKuupaev>
 			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
-		</versiooniMuutus>
-		<versiooniMuutus>
+		</versiooniMuutus><versiooniMuutus>
 			<dokumentEtapp>avaldamine</dokumentEtapp>
 			<dokumentStaatus>avaldatud</dokumentStaatus>
 			<metaandmedVersioon>26</metaandmedVersioon>
 			<metaandmedVersioonKuupaev>2024-12-02</metaandmedVersioonKuupaev>
 			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
-		</versiooniMuutus>
-		<versiooniMuutus>
+		</versiooniMuutus><versiooniMuutus>
 			<dokumentEtapp>avaldamine</dokumentEtapp>
 			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
 			<metaandmedVersioon>32</metaandmedVersioon>
 			<metaandmedVersioonKuupaev>2024-12-03</metaandmedVersioonKuupaev>
 			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
-		</versiooniMuutus>
-		<versiooniMuutus>
+		</versiooniMuutus><versiooniMuutus>
 			<dokumentEtapp>avaldamine</dokumentEtapp>
 			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
 			<metaandmedVersioon>37</metaandmedVersioon>
 			<metaandmedVersioonKuupaev>2025-03-03</metaandmedVersioonKuupaev>
 			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
-		</versiooniMuutus>
-	</metaandmed>
+		</versiooniMuutus></metaandmed>
 	<aktinimi id="6defad3f-84bb-43b4-985b-3d1a77183653">
 		<nimi id="d9310d4f-1fd2-49cc-8fb4-ad6a81a49a1f">
 			<pealkiri id="2cac6824-5bde-4d96-afd4-70d27008c689">Sotsiaalhoolekandelise abi andmise kord</pealkiri>
@@ -163,7 +171,7 @@
 		</avaldamismarge>
 		<joustumine id="96886e53-8f6a-4b04-9509-3fc64a4757a4">2026-01-01</joustumine>
 	</muutmismarge>
-	<sisu id="3c4ab96a-a5ec-4e43-8d18-d09cf739c955">
+	<muutmismarge id="22102687-2304-468f-a75f-4d09acf03e00"><aktikuupaev id="110060a6-3b10-48c8-bb79-8fb2ff97e0cd">2026-05-20</aktikuupaev><avaldamismarge id="542347bd-932b-49e8-b675-a7e4cce3e753"><RTosa id="3e49db1b-037a-4085-81ce-4c256443e2db">RT IV</RTosa><avaldamineKuupaev id="d6a31556-139d-443d-ba58-cf0683778247">2026-05-27</avaldamineKuupaev><RTartikkel id="5ef7cd30-0b00-4f03-b3a9-186c6f028b69">20</RTartikkel><aktViide id="d456997f-be34-402f-a228-44a478f545af">427052026020</aktViide></avaldamismarge><joustumine id="1282fe7d-a131-40c9-a8e7-3565c7f854b1">2026-05-30</joustumine></muutmismarge><sisu id="3c4ab96a-a5ec-4e43-8d18-d09cf739c955">
 		<preambul id="569c020c-8efc-44b2-8aeb-db3dd32028be">
 			<tavatekst id="eb466a82-1ebe-41ea-b9e1-b51960564981">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 6 lõike 1, § 22 lõike 1 punkti 5 ja sotsiaalhoolekande seaduse § 14 alusel.</tavatekst>
 		</preambul>
@@ -2531,8 +2539,8 @@
 			<jagu id="59d09d03-59c9-477b-a56b-d8150a2784fc">
 				<jaguNr id="6f3984af-5651-4681-9940-a629b6ae6def">12</jaguNr>
 				<kuvatavNr id="6e439570-6c34-4693-9cb6-6d068cfc9904"><![CDATA[12. jagu]]></kuvatavNr>
-				<jaguPealkiri id="434ab059-934f-46c1-98ed-ed2c8dc34c30">Lapsehoiuteenus</jaguPealkiri>
-				<paragrahv id="para43">
+				<jaguPealkiri id="434ab059-934f-46c1-98ed-ed2c8dc34c30"> Suure hooldus-ja abivajadusega lapse hoiu teenus</jaguPealkiri>
+				<muutmismarge id="d1c65b34-5abb-44c7-a0b7-e5c43cc56053"><avaldamismarge id="0c4cbe31-9837-4aff-9df0-d9c935ef887e"><RTosa id="e9c3ddb8-a406-4446-9246-0678523306bd">RT IV</RTosa><avaldamineKuupaev id="30bf7551-5b12-4886-a0e0-9dd3c818167a">2026-05-27</avaldamineKuupaev><RTartikkel id="74a5bcfb-624d-4031-ae53-823b7fae2386">20</RTartikkel><aktViide id="91d3c038-b912-4476-898a-aceafe83ad7c">427052026020</aktViide></avaldamismarge><joustumine id="8d2a027f-237f-4349-8a78-8bc6d875d004">2026-05-30</joustumine></muutmismarge><paragrahv id="para43">
 					<paragrahvNr id="29da17de-953c-4051-940b-cfb21363d916">43</paragrahvNr>
 					<kuvatavNr id="993b81de-68f6-4f2b-9011-456d0f73634a"><![CDATA[§ 43. ]]></kuvatavNr>
 					<paragrahvPealkiri id="a728202e-57c6-40df-9fd5-25d9234ab765">Lapsehoiuteenuse eesmärk ja sisu</paragrahvPealkiri>
@@ -2540,9 +2548,9 @@
 						<loigeNr id="d014c1ff-23d9-4ce6-a947-3c3f15f9d74b">1</loigeNr>
 						<kuvatavNr id="4e807057-3f0f-4da4-91ad-ef5e920f8710"><![CDATA[(1)]]></kuvatavNr>
 						<sisuTekst id="8a4c2bf5-8c38-4d2f-8658-0cad24e2a845">
-							<tavatekst id="9e98edb8-3448-401f-98ce-6a2698d517b6">Lapsehoiuteenus on puudega lapse hooldusõigust omava isiku või sotsiaalhoolekande seadus § 129 lõikes 1 nimetatut hooldaja toimetulekut või töötamist toetav teenus, mille osutamise vältel tagab nimetatud isikute asemel lapse hooldamise, arendamise ja turvalisuse lapsehoiuteenuse osutaja.</tavatekst>
+							<tavatekst id="9e98edb8-3448-401f-98ce-6a2698d517b6">Lapse hoiu teenus on suure hooldus-ja abivajadusega last kasvatava isiku hoolduskoormuse vähendamist, toimetulekut või töötamist soodustav ja lapse heaolu ning arengut toetav teenus, mille osutamise vältel tagab lapse hooldamise, arendamise ja turvalisuse lapsehoiuteenuse osutaja. Suure hooldus- ja abivajadusega laps on lastekaitseseaduse tähenduses abivajav laps, kes vajab oma vaimse või füüsilise terviseseisundi tõttu eakohasega võrreldes keskmisest enam hooldust, järelevalvet ja muud tuge.</tavatekst>
 						</sisuTekst>
-					</loige>
+					<muutmismarge id="893befec-7c08-4544-965e-12536b3938d8"><avaldamismarge id="2b11e3c0-2017-4e3e-b7cb-9d767c64f2e0"><RTosa id="afeba1b8-a5c3-4200-b1bc-9d9be8cc052b">RT IV</RTosa><avaldamineKuupaev id="55a84d6b-4fd7-4e44-b9e7-3d4ee48f3128">2026-05-27</avaldamineKuupaev><RTartikkel id="196a4efe-7a8d-4b79-b2b4-b30854dbb929">20</RTartikkel><aktViide id="e243e81e-4631-496d-a784-3965ad6ebccd">427052026020</aktViide></avaldamismarge><joustumine id="6e5f1a81-c1de-4e07-be43-16e4ab9ab36e">2026-05-30</joustumine></muutmismarge></loige>
 					<loige id="para43lg2">
 						<loigeNr id="7f3df1a8-6b79-42fe-ac75-63b3e9b41f51">2</loigeNr>
 						<kuvatavNr id="a2b9a49f-c845-4538-8392-41584285c252"><![CDATA[(2)]]></kuvatavNr>

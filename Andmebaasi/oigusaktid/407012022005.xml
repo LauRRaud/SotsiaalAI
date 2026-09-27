@@ -26,16 +26,16 @@
 		</avaldamismarge>
 		<kehtivus>
 			<kehtivuseAlgus>2022-01-10+02:00</kehtivuseAlgus>
-		</kehtivus>
+		<kehtivuseLopp>2026-08-31+03:00</kehtivuseLopp></kehtivus>
 		<versioon>
 			<dokumentVersioon>1</dokumentVersioon>
 			<dokumentVersioonKuupaev>2022-01-04</dokumentVersioonKuupaev>
 		</versioon>
 		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
 		<globaalID>407012022005</globaalID>
-		<metaandmedVersioon>19</metaandmedVersioon>
-		<metaandmedVersioonKuupaev>2025-05-05</metaandmedVersioonKuupaev>
-		<metaandmedVersioonPohjustaja>Marike Võime</metaandmedVersioonPohjustaja>
+		<metaandmedVersioon>20</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2026-08-28</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
 		<terviktekstiGrupiID>1043022</terviktekstiGrupiID>
 		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
 		<versiooniMuutus>
