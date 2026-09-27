@@ -113,6 +113,7 @@ sudo -n chown root:ubuntu <out>; sudo -n systemctl restart sotsiaalai-frontend
 - Tehtud 27.09 ([ADR-032](adr-032-national-law-reserve-and-plan-restart.md)): HMS jõuab vaidlustamise küsimusel valijani riikliku õiguse reservi kaudu (B9 sai HMS-i kahel jooksul kolmest); vana vestluse „Jätkan sama teemat“ ei anna pärast plaani uuendust enam `context_unavailable` viga.
 - Vestluse kiirus: esimese pöörde külm allikakontroll (27.09 B9 ~45 s) on [ADR-033](adr-033-warm-up-at-server-start.md)-ga serveri käivitusel. Vastuse mudel (~10 s, `medium`) jääb põrandaks; vastuse voogedastus on tegemata.
 - Tehtud 27.09: XML-i toores `<sup>` ja muutmismärked ([ADR-034](adr-034-riigi-teataja-xml-cleanup.md), korpus v27); B7 vastuse lõpus korduvad viited (PR #203).
+- **Muudatusepõhine indekseerimine** ([ADR-036](adr-036-version-index.md)): kood on valmis; esimene `versions-v1` põlvkond ehitatakse serveris üks kord täies mahus, järgmised töötlevad ainult uusi või muutunud dokumente. Vestlus vajab uue põlvkonna järel endiselt plaani ümberehitust (järgmine etapp).
 - **Õigusaktide aastavahetus:** SHS on kaetud kuni 31.12.2026 (v29, [ADR-035](adr-035-record-links-and-shs-versions.md)). SHS-i 2027. aasta tekst (RT 111072026121 jt), HMS ja Riigilõivuseaduse järgmine tekst tuleb lisada enne 31.12.2026, muidu jäävad need kehtivusreegli järel tõendist välja.
 - Tallinna hooldajatoetuse kirje ja korra vastuolu (aruanne 3.3), E3.2 „tädi vajab sama“ (isikute eraldatus, omaniku otsus).
 - Kirjete töötlus v26 (kontakti-ID-d indeksitekstist välja) ja kasutajapõhine hõivatuse värav enne mitme kasutaja kasutust.
@@ -158,6 +159,7 @@ sudo -n chown root:ubuntu <out>; sudo -n systemctl restart sotsiaalai-frontend
 - [ADR-033](adr-033-warm-up-at-server-start.md) (27.09.2026): teadmusallikate soojendus algab serveri käivitusel (`instrumentation.js` → `warmPilotAtStart()`), riiklikud õigustekstid esimesena; `preflight` jääb varuks.
 - [ADR-034](adr-034-riigi-teataja-xml-cleanup.md) (27.09.2026): Riigi Teataja XML-i puhastus (`source-structure-v26`) ja korpus v27; uuesti sisestati ainult 61 XML-akti, vektoreid osteti 1359 (0,075 USD).
 - [ADR-035](adr-035-record-links-and-shs-versions.md) (27.09.2026): allikaregistri lingid 576 lingita KOV-kirjele (korpus v28, ost 0) ja SHS-i kehtivad redaktsioonid 12.06–30.09 ning 01.12–31.12.2026 (korpus v29, 0,006 USD); kontrollikuupäeva juhis v12 lükati mõõtmise järel tagasi.
+- [ADR-036](adr-036-version-index.md) (27.09.2026): muudatusepõhine indekseerimine. Tekstiosad ja punktid kuuluvad dokumendiversioonile ja otsinguseadistusele (`versions-v1`); uus põlvkond töötleb ainult uued või muutunud versioonid ja loetleb ülejäänud.
 
 ### Runbook ja aruanded
 
