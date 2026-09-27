@@ -191,12 +191,12 @@
     },
     {
       "municipality_id": "johvi_vald",
-      "municipality_name": "JĆµhvi vald",
+      "municipality_name": "Jõhvi vald",
       "source_path": "../oigusaktid/423122025040.xml",
       "sha256": "24b8b14f5d3201351304ca8ba79057e1a877bff68c713f80bda2dce2f08790fa",
       "review_status": "validate_actual_xml_identity_and_version_before_ingest",
       "legacy_metadata": {
-        "municipality_name": "JĆµhvi vald",
+        "municipality_name": "Jõhvi vald",
         "municipality_id": "johvi_vald",
         "slug": "johvi-vald",
         "web_doc_id": "kov-johvi-vald",

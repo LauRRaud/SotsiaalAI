@@ -22280,7 +22280,7 @@
       "path": "register/kov_oigusaktid.json",
       "category": "register",
       "role": "source_register",
-      "sha256": "104a5c85e29c0bf589290071528e12464e514ffeb6462a1e22421cc348543585"
+      "sha256": "f594d950af087d7f751ecb72125ad828ac42765b620a554e93567ea204880e79"
     },
     {
       "path": "oigusaktid/103062026023.xml",
