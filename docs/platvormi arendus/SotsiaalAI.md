@@ -96,9 +96,15 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 (`versions-v1`). Kahe õigusteksti lisamisel töötles indeks 2 dokumenti 47 sekundiga. Vanade
 dokumentide read ja punktid jäid muutumata ning vestlus vastas töö ajal. v30 andis v29-ga
 identsed otsingutulemused. PR #212 tegi ostuplaani ja vektoriarhiivide lugemise
-muudatusepõhiseks (ostuplaan 2 min → 4,4 s); see vajab veel koodiülevaatust ning ostu ja
-indeksi töö mõõtmist uute dokumentidega. Avatud: 60 000 tekstiosa mahupiir ja vestlusplaani
-vahetus iga uue põlvkonnaga. [Mõõtmised](../rag-v2/adr-036-version-index.md#mõõtmine-serveris-27092026).
+muudatusepõhiseks (ostuplaan 2 min → 4,4 s); #212 kohalik koodiülevaatus ei leidnud uut
+regressiooni (50/50 sihttesti). Ostu ja indeksi töö aeg uute dokumentidega on veel mõõtmata.
+Ülevaatuse leitud väljalaske puudus (aegunud plaan andis deploy's ainult hoiatuse, kuigi
+vestlus keeldus vastamast) on [ADR-037](../rag-v2/adr-037-release-chat-plan.md)-ga lahendatud:
+väljalase läheb käiku ainult uuele koodile sobiva kinnitatud plaaniga, muidu taastub eelmine
+kood koos oma plaaniga (tõendatud päris deploy-skriptiga kohalikus liivakastis; serveris
+esimese väljalaskega). Avatud: 60 000 tekstiosa mahupiir ja vestlusplaani vahetus iga uue
+indeksipõlvkonnaga. [Ülevaatus](../audits/rag-v2-codex-review-2026-09-27.md#5-pr-212-koodiülevaatus-ja-väljalaskeraja-puudus),
+[serverimõõtmised](../rag-v2/adr-036-version-index.md#mõõtmine-serveris-27092026).
 
 **27.09 Versioonipõhise indeksi kohalik ülevaatus (Codex, #209–#211).** Uut kinnitatud
 koodiviga ei leitud; 24 sihttesti läbisid, sh päris EstNLTK-ga vana/uue otsingu
@@ -2485,8 +2491,14 @@ vanu punkte kirjutamata. Serveris mõõdeti hiljem: v31 lisas kaks dokumenti 47 
 vanade ridade ja punktide räsid ei muutunud ning v30 andis v29-ga identsed tulemused
 ([ADR-036](../rag-v2/adr-036-version-index.md#mõõtmine-serveris-27092026)). Ülevaatuses
 leitud ettevalmistuse piir (kogu ostuplaan ja vektoriarhiivide lugemine) on PR #212-s
-parandatud ja vajab veel koodiülevaatust. Põlvkonna ülempiir on 60 000 tekstiosa ning
-vestlus vajab iga uue põlvkonnaga uut plaani ja taaskäivitust.
+parandatud; #212 kohalik ülevaatus läbis 50/50 sihttesti ega leidnud uut regressiooni.
+Uute dokumentide ostu/indeksi serveriaeg on veel mõõtmata. Põlvkonna ülempiir on
+60 000 tekstiosa ning vestlus vajab iga uue põlvkonnaga uut plaani ja taaskäivitust.
+Eraldi kinnitatud väljalaskepuudus: aegunud plaan andis deploy's ainult hoiatuse ja
+HTTP-tervisekontroll võis läbida, kuigi vestlus ei vastanud. Lahendus
+[ADR-037](../rag-v2/adr-037-release-chat-plan.md): deploy uuendab plaani uuele koodile
+(sama kinnituse ulatus), kontrollib seda mudelikutseta enne põhimigratsiooni ja taastab
+ebaõnnestumisel eelmise koodi koos plaaniga. [#212 ülevaatus ja väljalaskerada](../audits/rag-v2-codex-review-2026-09-27.md#5-pr-212-koodiülevaatus-ja-väljalaskeraja-puudus).
 [Ülevaatuse ulatus ja tõendid](../audits/rag-v2-codex-review-2026-09-27.md#4-commitide-209211-kohalik-ülevaatus-versioonipõhine-indeks).
 
 **Ühine artikli/KOV/perioodi tõendivalik (23.09, kohalik teostus).** [ADR-019](../rag-v2/adr-019-unified-retrieval-and-periods.md): üldteadmiste tekstivalik, piirkonna kontrollitud kirjete kataloog ja kuni kaks ajakirjade avaldamisperioodi jõuavad samasse vastusekutsesse. Üks päringuvektor taaskasutatakse tekstivalikutes; planeerimismudeli lisakutset ei ole. Seisu v2 eristab avaldamist, sündmust ja kehtivust; numbrilised ajad on esialgsed kandidaadid ning üldteadmiste rada jääb ajaliselt piiramata. Perioodidel on eraldi tõendikvoot ja lubatud indekseeritud dokumentide katvus, mitte unikaalsete artiklite ega teemade esinemissageduse loendus. S-viited, kirjete seosed ja graaf teisendatakse ühisesse paketti. Kogu loendatud ulatust kontrollitakse uuesti ka taastamisel, sealhulgas valimata dokumendi ligipääsu kadumist. Uus loendiskeem vajab uut indeksipõlvkonda, vanad vektorid taaskasutatakse ja v1 põlvkond jääb loetavaks. 69 eri sihttesti läbisid; seitse pööret päris kohaliku PostgreSQL/Qdranti/EstNLTK ja eraldatud vestlusandmebaasiga tegid 7 embedding'u ja 7 vastusekutset testadapterile. Tasulisi kutseid 0. Konfiguratsioon on valikuline, serveris aktiveerimine `not_run`, semantiline kvaliteet `NOT_PROVEN`. Järgmine kohalik ühik on artiklitõendi fookuse säilitamine jätkupöördes; kogu korpuse deduplitseerimine, mahutöö/admini ühendus ja ammendav ajaline süntees jäävad eraldi tööks.

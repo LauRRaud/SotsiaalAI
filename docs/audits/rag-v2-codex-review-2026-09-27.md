@@ -221,3 +221,58 @@ hiljem ([ADR-036, „Mõõtmine serveris“](../rag-v2/adr-036-version-index.md#
   dokumentidega.
 - Piirid 2 (60 000 tekstiosa) ja 3 (vestlusplaani vahetus) kehtivad endiselt.
 
+## 5. PR #212 koodiülevaatus ja väljalaskeraja puudus
+
+27.09.2026, Codex. Üle vaadatud `3282a44d0..da69c0eaa` koodimuudatused:
+vektorite vajaduspõhine lugemine (`pilot-runner.js`), valmis versioonide
+väljajätmine ostuplaanist (`multi-source-plan.js`) ja ostukäsu `--indexed` rada.
+Serverisse selles kontrollis ei ühendutud; serveri ajad ja katkestuse ajavahemik
+on omaniku edastatud tööaruandest ning ADR-036-st.
+
+**Koodimuudatuse järeldus:** uut kinnitatud regressiooni ei leitud.
+Vektorifaili sisu ja räsi kontrollitakse esimesel kasutusel; eri arhiivide
+kattuvad vektorid võrreldakse endiselt. Välja jäetavad versioonid küsitakse
+tenant'i ja sihtseadistuse järgi `ready` kirjetest; nende arv ja loendi räsi
+kuuluvad kinnitatava manifesti identiteeti. Muutunud manifest ei saa kasutada
+vana ostukinnitust. Ostu CLI vajab `--indexed` lippu nii plaanis kui täitmises.
+
+**Kohalikud kontrollid:**
+
+- `tests/rag-v2-pilot.test.mjs`, `tests/rag-v2-admin-intake.test.mjs` ja
+  `tests/rag-v2-index-jobs.integration.test.mjs`: kokku **50/50**, sh
+  vajaduspõhine lugemine, kasutusel avastatav rikutud vektor, muutumatu
+  pearaamatu korduskasutus, kulu-/kinnituspiirid, ligipääsu tagasivõtmine,
+  indekseerimise jätkamine ja sünteetiliste pärisrežiimi vektorite CLI.
+- `TZ=UTC`; EstNLTK jaoks olemasolev
+  `tmp/rag-v2-estnltk-env/Scripts/python.exe`; integratsioonitestidel päris
+  kohalik PostgreSQL ja Qdrant. Väliseid mudelikutseid **0**.
+- Nelja muudetud JS/MJS-faili sihtlint ja commit'i `git diff --check` läbisid.
+
+4,4 s / 4,7 s mõõdavad muutusteta korpuse ostu- ja indeksiplaani. #212 järel
+uute dokumentidega ostu ja indeksi töö serveriaeg jääb eraldi mõõtmiseks;
+testadapterite läbimine seda ei tõenda.
+
+**Oluline olemasolev väljalaskeraja puudus (ei tekkinud PR #212-s):**
+
+- `scripts/deploy-server.mjs:277–288` tuvastab aegunud/vigase vestlusplaani,
+  kuid väljastab ainult hoiatuse ja jätkab väljalaset.
+- `lib/rag-v2/pilot/config.js:98–101` keeldub uue vastuse käivitamisest, kui
+  plaani `implementationHash` ei vasta jooksvale koodile.
+- `.github/workflows/deploy.yml:92–96` kontrollib ainult `/api/health`-i ja
+  avalehe HTTP-edu. `/api/health` kontrollib põhiandmebaasi `SELECT 1` päringut,
+  mitte vestlusplaani sobivust. Seetõttu võib deploy olla roheline ajal, mil
+  vestlus ei vasta.
+
+Omaniku aruande järgi oli pärast #212 väljalaset umbes 21:08–21:27 Eesti aja
+järgi vestlus ilma sobiva plaanita, sest väline jälgimisskript ei märganud
+deploy lõppu. Ajad ei ole selles ülevaatuses sõltumatult mõõdetud, kuid koodis
+kirjeldatud puudus on kinnitatud. Pelgalt jälgimisskripti parandamine ei seo
+uut koodi ja sobivat plaani üheks kontrollitud väljalaskeks.
+
+Järgmine töö: kontrollida kinnitatud plaani, koodi ja aktiivse indeksi
+kooskõla mudelikutseta ning teha see kasutuselevõtu kohustuslikuks kontrolliks.
+Sobiva plaani puudumisel peab säilima töötav koodi/plaani/indeksi komplekt;
+kontroll tuleb siduda olemasoleva tingimusliku tagasipöördumisrajaga ja tõendada
+vana komplekti taastumine. Ainult hoiatuse muutmine veateateks ei ole selle
+vastuvõtutõend. Kinnituse ulatust ja kulupiiri ei nõrgendata. Käesolev ülevaatus
+seda parandust ei teosta.
