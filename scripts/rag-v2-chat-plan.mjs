@@ -23,10 +23,10 @@ import { ANSWER_ENDPOINT } from '../lib/rag-v2/pilot/provider.js';
 import { SEARCH_ASSIST_VERSION } from '../lib/rag-v2/pilot/search-assist.js';
 
 const { values } = parseArgs({ options: { tenant: { type: 'string' }, profile: { type: 'string' }, template: { type: 'string' },
-  out: { type: 'string' }, 'budget-usd': { type: 'string' }, basis: { type: 'string' }, 'rag-env': { type: 'string', default: '/etc/sotsiaalai/rag.env' },
+  out: { type: 'string' }, 'budget-usd': { type: 'string' }, basis: { type: 'string' }, reasoning: { type: 'string', default: 'low' }, 'rag-env': { type: 'string', default: '/etc/sotsiaalai/rag.env' },
   activate: { type: 'boolean', default: false } } });
 const usd = Number(values['budget-usd']);
-if (!values.tenant || !values.profile || !values.template || !values.out?.startsWith('/etc/sotsiaalai/') || !(usd > 0 && usd <= 10) || !values.basis) {
+if (!['low', 'medium', 'high'].includes(values.reasoning) || !values.tenant || !values.profile || !values.template || !values.out?.startsWith('/etc/sotsiaalai/') || !(usd > 0 && usd <= 10) || !values.basis) {
   throw Error('usage: --tenant --profile --template --out /etc/sotsiaalai/<file> --budget-usd <0-10] --basis <text> [--activate]');
 }
 const template = JSON.parse(await fs.readFile(values.template, 'utf8'));
@@ -44,7 +44,8 @@ try {
     tenant: values.tenant, usage: 'development_only', users: template.users, expiresAt: null, retentionHours: null, timeoutMs: 60000,
     documents, generationId: generation.id, profileId: profile.id, embedding: embeddingConfig(generation.config.embedding),
     model: 'gpt-6-luna', endpoint: ANSWER_ENDPOINT, accountProject: template.accountProject, modelContract: 'responses-strict-reasoning-v1',
-    reasoning: 'medium', maxInputTokens: 300000, maxOutputTokens: 4096, implementationHash: (await implementationManifest()).hash,
+    // low: 2-3 s answers instead of 5-7 s with the same facts and refs (owner's latency test, 27.09.2026).
+    reasoning: values.reasoning, maxInputTokens: 300000, maxOutputTokens: 4096, implementationHash: (await implementationManifest()).hash,
     dialogueVersion: DIALOGUE_VERSION, promptVersion: DIALOGUE_PROMPT_VERSION, questionVersion: DIALOGUE_SEARCH_VERSION,
     dialogueStateVersion: TYPED_DIALOGUE_STATE_VERSION, dialogueStateSchemaHash: digest(TYPED_DIALOGUE_ANSWER_SCHEMA),
     retrievalRouting: UNIFIED_RETRIEVAL_VERSION, recordCatalogue: RECORD_RETRIEVAL_VERSION, searchAssist: SEARCH_ASSIST_VERSION,
