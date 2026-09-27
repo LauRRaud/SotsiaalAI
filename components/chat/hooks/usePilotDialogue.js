@@ -3,6 +3,9 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { readPilotIntentContext } from '@/lib/chat/m4PilotIntent';
 
 const INITIAL = Object.freeze({ contextMode: 'same' });
+// With nothing to continue under the current chat plan (a new conversation, or one whose earlier turns
+// belong to an earlier plan and are hidden after its rebuild), the default choice is a new topic.
+const NEW_TOPIC = Object.freeze({ contextMode: 'new' });
 
 export function usePilotDialogue({ enabled, convId }) {
   const [loaded, setLoaded] = useState(null), [choice, setChoice] = useState(null);
@@ -31,9 +34,10 @@ export function usePilotDialogue({ enabled, convId }) {
     }
     return invalidate;
   }, [enabled, convId, refresh, invalidate]);
-  return { enabled, data: loaded?.convId === convId ? loaded.value : null,
+  const data = loaded?.convId === convId ? loaded.value : null, chosen = choice?.convId === convId ? choice.value : INITIAL;
+  return { enabled, data,
     ready: !enabled || !convId || loaded?.convId === convId && !!loaded.value,
     error: loaded?.convId === convId && loaded.error,
-    selection: choice?.convId === convId ? choice.value : INITIAL,
+    selection: chosen === INITIAL && data && !data.active ? NEW_TOPIC : chosen,
     select: value => setChoice({ convId, value }), refresh };
 }

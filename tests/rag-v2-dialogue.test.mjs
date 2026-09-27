@@ -57,6 +57,22 @@ test('dialogue contract: limits reject without clipping; expired head never fall
   assert.throws(() => dialogueInput({ ...full, userTurns: [{ text: 'a '.repeat(9100) }], selection: {} }), { code: 'context_dialogue_budget_exceeded' });
 });
 
+test('dialogue contract: after a chat plan rebuild "same" starts a new topic, while an expired head of this plan still fails', () => {
+  // The conversation's head names a turn of the earlier plan; this plan has no turn in the conversation yet.
+  const earlier = { configHash: 'earlier-plan', turnId: 'turn-old-0001', revision: 7 };
+  const same = acceptDialogue(config, { question: 'Aga hind?', contextMode: 'same' }, [], earlier, 'new-turn-1');
+  assert.equal(same.context.scopeId, 'new-turn-1'); assert.equal(same.context.personId, 'new-turn-1');
+  assert.equal(same.context.selection, 'new_scope'); assert.equal(same.context.revision, 1);
+  assert.equal(same.selection.headFromEarlierPlan, true); assert.deepEqual(same.sourceTurnIds, []);
+  assert.equal(acceptDialogue(config, { question: 'Uus', contextMode: 'new' }, [], earlier, 'new-turn-2').selection.headFromEarlierPlan, undefined);
+  // Nothing to correct and no earlier topic to name under this plan.
+  assert.throws(() => acceptDialogue(config, { question: 'Parandus', contextMode: 'correction' }, [], earlier, 'new-turn-3'), { code: 'context_required' });
+  assert.throws(() => acceptDialogue(config, { question: 'Jätk', contextMode: 'same', contextTurnId: 'turn-old-0001' }, [], earlier, 'new-turn-4'), { code: 'context_reference_unavailable' });
+  // This plan already has turns here: a head of another plan is ambiguous and still fails.
+  const f = accepted('et'); f.next('Esimene', 'new');
+  assert.throws(() => acceptDialogue(config, { question: 'Jätk', contextMode: 'same' }, f.rows, earlier, 'new-turn-5'), { code: 'context_unavailable' });
+});
+
 test('synthetic guarantee: old assistant is explicitly unverified dialogue, its references cannot become current evidence', () => {
   const f = accepted('en'); f.next('What help is available?', 'new');
   const current = f.next('Explain the second point.');
