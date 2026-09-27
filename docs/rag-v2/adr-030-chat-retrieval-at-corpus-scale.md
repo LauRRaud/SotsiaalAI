@@ -62,6 +62,15 @@ Vektori kaal 1 ja 100 kandidaati kaotasid. Ainult sõnaotsingul oli tulemus 6/25
 
 **Kulu:** otsinguabi mõõtmised maksid 0,15 USD, umbes 0,003 USD pöördumise kohta. Hinnatud küsimuste vektorid maksid 0,0004 USD.
 
+**Ajaloo laadimine (vastuvõtutest G5, 27.09.2026):** vestluse avamisel kontrollitakse iga varasema pöördumise viited uuesti. 64 pöördumisega vestluse kontroll võttis serveris soojas protsessis 20,2 s, külmas 37 s. Aeg kulus neljale asjale:
+
+- ligi 1 MB suuruse kinnitatud plaani lugemisele ja räsimisele mitu korda pöördumise kohta;
+- kogu paketi BPE-tokeniseerimisele, kuigi kontroll loeb ainult viiteid;
+- 6000 dokumendi massiivi ruutkeerukusega `includes`-filtrile;
+- aktiivse põlvkonna (6000 dokumendi hetktõmmis) ja 6000 kataloogirea uuesti lugemisele.
+
+Nüüd loetakse plaan ja põlvkond mällu reaversiooni järgi. Muutumatu kataloogi kohta küsitakse andmebaasilt üks räsirida. Viitekontroll tokeneid ei loe. Tulemus sama vestlusega: soe 3,3 s (umbes 50 ms pöördumise kohta), külm 18 s. Muudetud rida (uus xmin) läheb endiselt täiskontrolli; seda katab integratsioonitest.
+
 ## Piirid
 
 - Ankurmõõdik on range: mitmeosalise olukorraküsimuse vastus võib tugineda ka muule sobivale lõigule. Vastuse enda kvaliteeti mõõdab vestluse test.
