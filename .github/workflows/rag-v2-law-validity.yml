@@ -1,0 +1,76 @@
+name: rag-v2-law-validity
+
+# ADR-038: aktiivse korpuse õigusaktide kehtivus Riigi Teataja vastu kord kuus, 25. kuupäeval (enne kuuvahetuse
+# jõustumisi, nt RLS-i 31.10.2026). Muudatus või ülevaatust vajav koht avab või täiendab ühe issue; puhas kontroll
+# sulgeb selle. Päringu tõrge (exit 20) või käivitusviga teeb töö punaseks. Midagi ei avaldata: allikad lähevad
+# korpusesse tavalise vastuvõtu- ja indeksiraja kaudu.
+on:
+  schedule:
+    - cron: '15 4 25 * *' # 25. kuupäeval 04:15 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: rag-v2-law-validity
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24
+
+      - name: Compare the indexed legal acts with Riigi Teataja
+        id: check
+        run: |
+          set +e
+          node scripts/rag-v2-law-validity.mjs check --manifest docs/rag-v2/legal-acts-in-index.json --out law-validity
+          echo "exit=$?" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: always()
+        with:
+          name: law-validity
+          path: law-validity/
+          if-no-files-found: ignore
+          retention-days: 90
+
+      - name: Report on the issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          EXIT: ${{ steps.check.outputs.exit }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          OWNER: ${{ github.repository_owner }}
+        run: |
+          title='RAG v2: õigusaktide kehtivus Riigi Teatajas'
+          number=$(gh issue list --state open --search "\"$title\" in:title" --json number,title \
+            --jq "map(select(.title == \"$title\")) | .[0].number // empty")
+          report=$(ls law-validity/law-validity-*.md 2>/dev/null | head -n 1)
+          if [ "$EXIT" = 0 ]; then
+            if [ -n "$number" ]; then gh issue close "$number" --comment "Kontroll $(date -u +%F): muutusi ega ülevaatust vajavaid kohti pole. $RUN_URL"; fi
+            exit 0
+          fi
+          case "$EXIT" in
+            10) headline='Riigi Teataja andmetes on korpusega võrreldes muudatusi või ülevaatust vajavaid kohti.' ;;
+            20) headline='Osa päringuid Riigi Teatajasse ebaõnnestus: nende gruppide kohta pole teada, kas midagi muutus.' ;;
+            *) headline="Kontroll ei käivitunud (exit $EXIT). Vaata töö logi." ;;
+          esac
+          {
+            echo "@$OWNER $headline"
+            echo
+            echo "Töö ja aruanne (JSON): $RUN_URL"
+            echo
+            if [ -n "$report" ]; then head -c 60000 "$report"; fi
+          } > issue-body.md
+          if [ -n "$number" ]; then gh issue comment "$number" --body-file issue-body.md
+          else gh issue create --title "$title" --body-file issue-body.md; fi
+          if [ "$EXIT" != 10 ]; then echo "::error title=Law validity check::exit $EXIT"; exit 1; fi

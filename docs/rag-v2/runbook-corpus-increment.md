@@ -33,6 +33,7 @@ Näidetes on v26 väärtused. Mõisted:
 Riigi Teataja õigusakti puhul:
 
 - Leia redaktsioonid API-st, näiteks `https://www.riigiteataja.ee/api/oigusakt_otsing/1/otsi?pealkiri=Sotsiaalhoolekande%20seadus&limiit=300`.
+  - Tulemuse järjekord muutub iga päringuga. Mitmel lehel tulemusi korduvad ja osa jääb puudu. Kitsenda päringut väljaandjaga (`valjaandja=`) või kasuta kehtivuse kontrolli ([ADR-038](adr-038-law-validity-check.md)): see küsib lehti uuesti, kuni `kokku` täitub.
   - Kuupäevafilter selles API-s ei tööta. Filtreeri tulemust ise: `pealkiri`, `tekst: "terviktekst"`, `kehtivus.algus` ja `kehtivus.lopp`.
 - Võta üks redaktsioon korraga: praegu kehtiv või kohe jõustuv. Kaks sama seaduse redaktsiooni teeksid otsingus peaaegu kattuvad lõigud ja võtaksid valikus kohti.
   - v26-s võeti 01.10–30.11.2026 kehtiv tekst `130062026065`. 30.09-ni kehtinud tekstist erines see ainult eriolukorra sätete ja ühe juhtumiplaani lõike poolest.
@@ -217,11 +218,20 @@ Vastus on `current`, `stale` või `invalid`. Deploy kasutab põhjalikumat kontro
 - Otsingu mõju saab mõõta skriptidega `law-check.mjs` ja `assist-eval-v26.mjs` (serveris `/home/ubuntu/rag-v2-work/eval-*`).
   - Mõõtmine on tasuline: Luna plaan, valik ja päringute vektorid, umbes 0,1 USD 52 küsimuse jooksu kohta. See kuulub omaniku kulupiiri alla.
 - Vana põlvkonda ja hoidla koopiat ei kustutata ilma omaniku otsuseta. Varukoopiaid veel ei tehta.
+- **Uuenda õigusaktide manifest** ([ADR-038](adr-038-law-validity-check.md)) ja lisa see PR-iga. Muidu kontrollib igakuine töö eelmist korpust. Kontroll on tasuta ja loeb ainult RT avalikke andmeid:
+
+  ```bash
+  node scripts/rag-v2-law-validity.mjs manifest --store tmp/rag-v2-corpus-store-v25 --policy tmp/rag-v2-corpus-index-v32/policy.json \n    --input-root Andmebaasi --out docs/rag-v2/legal-acts-in-index.json
+  node scripts/rag-v2-law-validity.mjs check --manifest docs/rag-v2/legal-acts-in-index.json --out tmp/law-validity
+  ```
+
+  Exit 0: muutusi pole. Exit 10: vaata aruande leide. Exit 20: mõni päring ebaõnnestus. Puuduvate redaktsioonide XML-id saab `--download <kaust>` valikuga; need lähevad sammudest 1–9 läbi nagu iga teine allikas.
 
 ## Seotud
 
 - [ADR-012](adr-012-resumable-indexing.md): jätkatav indekseerimine.
 - [ADR-036](adr-036-version-index.md): muudatusepõhine indekseerimine (indeksiread kuuluvad dokumendiversioonile).
+- [ADR-038](adr-038-law-validity-check.md): õigusaktide kehtivuse igakuine kontroll Riigi Teataja vastu.
 - [ADR-030](adr-030-chat-retrieval-at-corpus-scale.md): vestlus kogu korpusel.
 - [ADR-031](adr-031-source-level-and-answer-completeness.md): allika tase ja vastuse täielikkus.
 - Vastuvõtutest: [`docs/audits/rag-v2-chat-acceptance-2026-09-27.md`](../audits/rag-v2-chat-acceptance-2026-09-27.md).

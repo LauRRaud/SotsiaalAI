@@ -117,12 +117,17 @@ sudo -n chown root:ubuntu <out>; sudo -n systemctl restart sotsiaalai-frontend
 - Vestluse kiirus: esimese pöörde külm allikakontroll (27.09 B9 ~45 s) on [ADR-033](adr-033-warm-up-at-server-start.md)-ga serveri käivitusel. Vastuse mudel (~10 s, `medium`) jääb põrandaks; vastuse voogedastus on tegemata.
 - Tehtud 27.09: XML-i toores `<sup>` ja muutmismärked ([ADR-034](adr-034-riigi-teataja-xml-cleanup.md), korpus v27); B7 vastuse lõpus korduvad viited (PR #203).
 - **Muudatusepõhine indekseerimine** ([ADR-036](adr-036-version-index.md)): serveris kasutusel alates v30; v32 lisas 39 dokumenti 2 min 43 s-ga. Avatud: mahupiir 60 000 tekstiosa põlvkonna kohta (mõõta ja tõsta), vestluse automaatne üleminek uuele põlvkonnale (tooteotsus), lisamise taustatöö.
-- **Õigusaktide kehtivuse kontroll:** RT metaandmed muutuvad pärast allalaadimist (27.09 oli 17 indekseeritud akti aegunud). Tasuta kontroll (`law-validity-audit.mjs`, töökaustas) tuleb teha regulaarselt, eriti enne kuu vahetust.
-- **Õigusaktide aastavahetus:** SHS on kaetud kuni 31.01.2027 ja HMS alates 2027 (v31). Riigilõivuseaduse 2027. aasta tekst tuleb lisada enne 31.12.2026 ja SHS-i veebruari tekst enne 31.01.2027, muidu jäävad need kehtivusreegli järel tõendist välja.
+- **Õigusaktide kehtivuse kontroll** ([ADR-038](adr-038-law-validity-check.md)): RT muudab kehtivusaegu pärast allalaadimist (27.09 oli 17 indekseeritud akti aegunud).
+  - GitHub Actions võrdleb aktiivse korpuse akte RT-ga iga kuu 25. kuupäeval. Leiud lähevad ühte issue'sse.
+  - Esimene jooks 27.09 leidis 2 muutust, mõlemad juba teada: RLS-i 31.10.2026 lünk ja SHS-i 2027. aasta redaktsioonid alates 01.02.
+  - Manifest tehakse uuesti iga korpuse avaldamisel (runbook, samm 10).
+- **Õigusaktide aastavahetus:**
+  - SHS on kaetud kuni 31.01.2027 ja HMS alates 2027 (v31).
+  - RLS on kaetud kuni 2027. aastani (v32), välja arvatud 31.10.2026. Selle päeva teksti pole RT avaldanud.
+  - SHS-i veebruari tekst tuleb lisada enne 31.01.2027, muidu jääb see kehtivusreegli tõttu tõendist välja.
 - Tallinna hooldajatoetuse kirje ja korra vastuolu (aruanne 3.3), E3.2 „tädi vajab sama“ (isikute eraldatus, omaniku otsus).
 - Kirjete töötlus v26 (kontakti-ID-d indeksitekstist välja) ja kasutajapõhine hõivatuse värav enne mitme kasutaja kasutust.
 - Dialoogistsenaariumide integratsioonitest vajab v25 kirjeüksuste vektoreid.
-- SHS uus redaktsioon enne 30.11.2026.
 
 ## Dokumentide kaart
 
@@ -165,6 +170,7 @@ sudo -n chown root:ubuntu <out>; sudo -n systemctl restart sotsiaalai-frontend
 - [ADR-035](adr-035-record-links-and-shs-versions.md) (27.09.2026): allikaregistri lingid 576 lingita KOV-kirjele (korpus v28, ost 0) ja SHS-i kehtivad redaktsioonid 12.06–30.09 ning 01.12–31.12.2026 (korpus v29, 0,006 USD); kontrollikuupäeva juhis v12 lükati mõõtmise järel tagasi.
 - [ADR-037](adr-037-release-chat-plan.md) (27.09.2026): väljalase ja vestlusplaan lähevad käiku koos. Deploy uuendab aegunud plaani uuele koodile (sama kinnituse ulatus), kontrollib seda mudelikutseta enne põhimigratsiooni ja taastab ebaõnnestumisel eelmise koodi koos plaaniga.
 - [ADR-036](adr-036-version-index.md) (27.09.2026): muudatusepõhine indekseerimine. Tekstiosad ja punktid kuuluvad dokumendiversioonile ja otsinguseadistusele (`versions-v1`); uus põlvkond töötleb ainult uued või muutunud versioonid ja loetleb ülejäänud.
+- [ADR-038](adr-038-law-validity-check.md) (27.09.2026): õigusaktide kehtivuse igakuine kontroll Riigi Teataja vastu. Kontroll võrdleb akti-ID-sid ja kehtivusi, vaatab kõik redaktsioonid ja kehtetuks tunnistamise märked ning teatab lüngad ja kattuvused päeva täpsusega. Leiud lähevad issue'sse, päringu tõrge teeb töö punaseks.
 
 ### Runbook ja aruanded
 

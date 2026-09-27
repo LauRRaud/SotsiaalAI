@@ -361,3 +361,45 @@ eelmine töötav komplekt” ei vasta koodile.
 - **v32 serveris** ([ADR-036](../rag-v2/adr-036-version-index.md#mõõtmine-serveris-27092026)): ostuplaan 6,5 s,
   ost 79 s (303 sisendit, 0,016 USD), indeksi plaan 6,0 s, indeksi töö 61 s (5985 dokumenti nimekirja, 39 uut);
   v31 räsid muutumata; Tallinna küsimus tsiteeris 01.07.2026 määrasid.
+
+## 7. PR #217 eelarveparanduse järelkontroll
+
+27.09.2026, Codex. Kontrollitud liidetud commit `89948b43d`; kohalik
+`13a54a50f` on kontrollitud koodi ja testide osas sama. Serverisse ei ühendutud.
+
+**Varasem P1 on kontrollitud paranduse ulatuses lahendatud.** `renewChatPlan`
+kannab `budgetLedger`-iga edasi algse kinnitatud plaani päeviku ka teise
+uuenduse järel. `PilotStore` kasutab sama võtit lukustamiseks, broneerimiseks,
+piiride kontrolliks ja broneeringut ületava tegeliku kulu arvestuseks.
+
+- `rag-v2-chat-plan.test.mjs` ja `deploy-plan-release.test.mjs`: **9/9**.
+  Kuluarvestuse test lubab 3 USD kasutuse järel samasse päevikusse 1 USD
+  ning lükkab järgmise broneeringu tagasi; uuendused jagavad lukuvõtit.
+- Algse sõltumatu sondi järelkontroll: 4 USD ammendatud eelarve korral
+  keelduvad algne plaan, esimene uuendus ja teine uuendus uutest
+  broneeringutest. Alles on **üks päevik ja 4 USD**; väliseid kutseid 0.
+  Sond: `tmp/rag-v2-commit-review-2026-09-27/release-budget-fixed-probe.mjs`.
+- Kuue muudetud JS/MJS-faili sihtlint ja commitivahemiku diff-kontroll läbisid.
+  Uut kinnitatud regressiooni ei leitud. Päris andmebaasi samaaegsete uuendatud
+  plaanide koormuskatset selles järelkontrollis ei tehtud.
+
+Omaniku edastatud serveriaruandes uuendas #217 plaani automaatselt,
+`ready` läbis ja vestluspöörde kulu läks v32 kinnitatud plaani `…-1937`
+päevikusse (0,0201 → 0,0357 USD), uut päevikut ei tekkinud. Need on
+edastatud serveritõendid, mitte selle järelkontrolli sõltumatu serverimõõtmine.
+
+RLS-i 31.10.2026 katvuse leid jääb avatuks. Järgmine põhjendatud töö on
+aktiivse korpuse akti-ID-de ja kehtivuste korratav võrdlus RT-ga, järglaste
+leidmine kõigilt tulemuselehtedelt ning redaktsioonide piiripäevade ja
+vahele jäävate päevade raport. RT päringu tõrge või leidmata järglane peab
+jääma eristatavaks kinnitatud muutumatusest. Ajastus ja allikamuudatuste
+avaldamine ei ole selle ülevaatuse käigus teostatud.
+
+### Hilisem töö (lisatud 27.09 hilisõhtul, Claude)
+
+Selle järelkontrolli ulatus ei muutu. Kehtivuskontroll on tehtud [ADR-038](../rag-v2/adr-038-law-validity-check.md)-ga ja ootab koodiülevaatust.
+
+- **Tööriist:** manifest aktiivse korpuse 87 aktist 64 grupis. Kontroll võrdleb iga akti praegust kehtivust, grupi kõiki redaktsioone ja kehtetuks tunnistamise märkeid, lünki ja kattuvusi päeva täpsusega.
+- **Otsingu-API lehed pole stabiilsed:** 521 tulemuse teine leht kordas 20 esimese lehe akti. Kontroll küsib lehti uuesti, kuni `kokku` täitub. Kui see ei täitu, on tulemus tõrge, mitte muutumatus.
+- **Ajastus:** omanik otsustas, et kontroll käib kord kuus. GitHub Actions jookseb 25. kuupäeval, järgmine jooks on 25.10, enne RLS-i 31.10. Leiud lähevad issue'sse, tõrge teeb töö punaseks.
+- **Esimene jooks v32 peal:** 62/64 gruppi muutumata ja 0 päringutõrget. Leitud olid RLS-i 31.10.2026 lünk ning SHS-i 2027. aasta redaktsioonid alates 01.02, mida korpuses pole.
