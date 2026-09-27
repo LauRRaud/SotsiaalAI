@@ -11,23 +11,22 @@
 			<avaldamismarge>
 				<RTosa id="196171c3-1886-4e06-bd09-2bce8f6e493c">RT IV</RTosa>
 				<avaldamineKuupaev id="a85bd1cb-6be2-4eee-84d2-22fd2ab6e0ce">2026-01-29</avaldamineKuupaev>
-				<RTaasta id="99da9133-9f33-47a1-9f9e-3aecd20f90ff">2026</RTaasta>
 				<RTartikkel id="6a5e9865-dbac-48a2-9edc-0e4946109304">13</RTartikkel>
 				<aktViide id="1e51c5cf-448d-48be-aed4-e4ea077c7c65">429012026013</aktViide>
 			</avaldamismarge>
 			<joustumine>2026-02-01</joustumine>
 			<aktiNr>5</aktiNr>
 		</vastuvoetud>
-		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-03-25</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>40</RTartikkel><aktViide>425032026040</aktViide></avaldamismarge><kehtivus>
-			<kehtivuseAlgus>2026-03-28</kehtivuseAlgus>
-		<kehtivuseLopp>2026-08-20+03:00</kehtivuseLopp></kehtivus>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-08-18</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>33</RTartikkel><aktViide>418082026033</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2026-08-21</kehtivuseAlgus>
+		</kehtivus>
 		<versioon>
 			<dokumentVersioon>1</dokumentVersioon>
-			<dokumentVersioonKuupaev>2026-03-23</dokumentVersioonKuupaev>
+			<dokumentVersioonKuupaev>2026-08-17</dokumentVersioonKuupaev>
 		</versioon>
 		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
-		<globaalID>425032026040</globaalID>
-		<metaandmedVersioon>13</metaandmedVersioon>
+		<globaalID>418082026033</globaalID>
+		<metaandmedVersioon>17</metaandmedVersioon>
 		<metaandmedVersioonKuupaev>2026-08-17</metaandmedVersioonKuupaev>
 		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
 		<terviktekstiGrupiID>1062686</terviktekstiGrupiID>
@@ -46,6 +45,13 @@
 			<metaandmedVersioonKuupaev>2026-03-22</metaandmedVersioonKuupaev>
 			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
 		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>12</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2026-03-24</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
 	</metaandmed>
 	<aktinimi id="1e961ea3-ef6c-4d57-b809-e0f127a62c90">
 		<nimi id="cc027fb3-acce-454f-81f3-1faab00acec2">
@@ -62,6 +68,17 @@
 		</avaldamismarge>
 		<joustumine id="9fbd4451-70e6-4eee-8194-40d76cd4f47e">2026-03-28</joustumine>
 		<aktiNr id="c18200d4-d8e9-42b3-9c08-f42b388e6e81">9</aktiNr>
+	</muutmismarge>
+	<muutmismarge id="8b85328e-88a1-4ddf-82d4-5ff8a4854b51">
+		<aktikuupaev id="9a77c17d-c9d2-4a6d-92ba-77e40be7428c">2026-08-13</aktikuupaev>
+		<avaldamismarge id="72c53331-b22f-4477-bbe8-ee5317d4176f">
+			<RTosa id="3df83d81-529a-45a9-adbe-f69fb80f7f8c">RT IV</RTosa>
+			<avaldamineKuupaev id="06eba494-0514-49f5-8916-00bfc951a98e">2026-08-18</avaldamineKuupaev>
+			<RTartikkel id="baa3e323-387d-4bfd-b49b-e58aa4a7d26d">26</RTartikkel>
+			<aktViide id="a52d9fd7-b3cf-404d-8c5c-e8fa4a7e6081">418082026026</aktViide>
+		</avaldamismarge>
+		<joustumine id="dbed453e-0fc5-4621-9296-a458546a55a1">2026-08-21</joustumine>
+		<aktiNr id="f0f33496-3e5e-4a7f-b3d6-5daef089d079">19</aktiNr>
 	</muutmismarge>
 	<sisu id="8587bf9d-0158-411d-ab01-957e6f822956">
 		<preambul id="3145c7b9-fe58-4282-a649-6c86c97d4974">
@@ -1845,8 +1862,50 @@
 								<alampunktNr id="539480e8-e020-436c-a24c-0e33821ff0ee">3</alampunktNr>
 								<kuvatavNr id="63ef774b-2d20-4dd3-bbab-06ef288fc04f"><![CDATA[3) ]]></kuvatavNr>
 								<sisuTekst id="1e9f38fe-1f57-4477-87c8-ba8f42167905">
-									<tavatekst id="a802fe2a-7199-46c3-a0ac-5c0c07deaeeb">info plaanitava kohanduse kohta ja võimalusel kohandamise maksumuse kalkulatsioon vähemalt kahelt töövõtjalt.</tavatekst>
+									<tavatekst id="a802fe2a-7199-46c3-a0ac-5c0c07deaeeb">info ja vajalikkuse põhjendus plaanitava kohanduse kohta ning kohandamise maksumuse kalkulatsioon vähemalt kahelt töövõtjalt;info ja vajalikkuse põhjendus plaanitava kohanduse kohta ning kohandamise maksumuse kalkulatsioon vähemalt kahelt töövõtjalt;</tavatekst>
 								</sisuTekst>
+								<muutmismarge id="137730a0-814e-4639-9071-a4810d32cde7">
+									<avaldamismarge id="c51a753c-4a5d-468b-921a-7c63861c6b0c">
+										<RTosa id="6f3b9fe3-22d2-4eb5-b733-a057511a3dbb">RT IV</RTosa>
+										<avaldamineKuupaev id="0cb484a0-db5f-4437-abea-d5ba36f1e1c8">2026-08-18</avaldamineKuupaev>
+										<RTartikkel id="682e98a1-26c5-4bb1-8c95-ca0e8a9828fb">26</RTartikkel>
+										<aktViide id="e84160d4-b3f0-4255-bb85-a5e2c332affe">418082026026</aktViide>
+									</avaldamismarge>
+									<joustumine id="dbcab743-70c4-48f5-91a2-45ff3547f836">2026-08-21</joustumine>
+								</muutmismarge>
+							</alampunkt>
+							<alampunkt id="para34lg2p4">
+								<alampunktNr id="37843e01-0e53-41e5-aeb0-8dfa22f2f336">4</alampunktNr>
+								<kuvatavNr id="24867f50-d3c4-4451-8383-8909ec2046ca"><![CDATA[4) ]]></kuvatavNr>
+								<sisuTekst id="ca68931e-62c0-4eb8-aca3-26460d888e22">
+									<tavatekst id="56d07145-6277-4103-8583-6956048c168d">korteriühistu nõusolek, kui eluruumi kohandamisega seonduvad tööd seda nõuavad või need teostatakse väljaspool eluruumi;</tavatekst>
+								</sisuTekst>
+								<muutmismarge id="9ae23f11-9b4d-4988-8923-8bd870bafaba">
+									<avaldamismarge id="604f8e8a-0d28-4514-998f-34e1d02b56ec">
+										<RTosa id="713b3818-b4a8-4fee-a48e-82780a63cffb">RT IV</RTosa>
+										<avaldamineKuupaev id="3b2bd776-e032-4586-9a0e-ded4a8821f3e">2026-08-18</avaldamineKuupaev>
+										<RTartikkel id="d9d6517e-2315-4978-909b-7cd3f3566648">26</RTartikkel>
+										<aktViide id="5a2362d1-4d23-4fca-991f-a32a39f70d58">418082026026</aktViide>
+									</avaldamismarge>
+									<joustumine id="4c65dbc1-c578-4b0a-a5b2-ac3c5c5b0897">2026-08-21</joustumine>
+								</muutmismarge>
+							</alampunkt>
+							<alampunkt id="para34lg2p5">
+								<alampunktNr id="40abc73e-f8e6-4395-923f-467bf0166f0d">5</alampunktNr>
+								<kuvatavNr id="ca70a722-909d-47ac-80b2-02a4b2d05362"><![CDATA[5) ]]></kuvatavNr>
+								<sisuTekst id="9488103b-c3ac-4984-8c79-fe8c2bd9d389">
+									<tavatekst id="9b7489d9-33be-48ab-bf00-304e4c6de6fb">taotleja kinnitus selle kohta, et tal endal on vahendid kohanduse maksumuse tasumiseks, mis ületab käesoleva määruse paragrahvi 37 lõikes 5 nimetatud toetuse suurust.</tavatekst>
+								</sisuTekst>
+								<muutmismarge id="9d176e15-8211-49fa-9801-1d53f8151c92">
+									<avaldamismarge id="77117cd5-9d76-4b51-b4ec-465654bab830">
+										<RTosa id="72221ac1-a353-4587-b534-68707007d55b">RT IV</RTosa>
+										<avaldamineKuupaev id="ea52b24f-0c56-4e09-9358-fae6c3f2eb7f">2026-08-18</avaldamineKuupaev>
+										<RTartikkel id="508b46a0-c550-45c1-ae28-235e420e59ba">26</RTartikkel>
+										<aktViide id="54a6282b-0661-46ff-8b53-859fdbe2bb9b">418082026026</aktViide>
+									</avaldamismarge>
+									<joustumine id="834afb17-3a2d-42fe-8e9c-d17bee316dd8">2026-08-21</joustumine>
+									<aktiNr id="749f53d5-51b7-4ea1-be8f-90ee36326524">19</aktiNr>
+								</muutmismarge>
 							</alampunkt>
 						</loige>
 					</paragrahv>
@@ -1891,7 +1950,7 @@
 							<loigeNr id="e17db2e7-d730-4bca-aa73-bb3e3c568110">1</loigeNr>
 							<kuvatavNr id="55c40210-1782-48b1-9664-07bb3e72441c"><![CDATA[(1)]]></kuvatavNr>
 							<sisuTekst id="5904f98d-ab57-44c3-bc12-71b29a5501f3">
-								<tavatekst id="b2e5113b-3f91-4be5-b258-a59e39820718">Eluruumi tagamise teenuse osutamiseks sõlmitakse vallavalitsuse haldusakti alusel isikuga kirjalik üürileping, milles määratakse kindlaks eluruumi kasutamise tingimused. Üürileping sõlmitakse üldjuhul 15 tööpäeva jooksul vallavalitsuse haldusakti taotlejale teatavakstegemisest arvates. Nimetatud tähtaja jooksul mõjuva põhjuseta üürilepingu sõlmimata jätmisel taotleja poolt on vallavalitsusel õigust unnistada vastav haldusakt kehtetuks.</tavatekst>
+								<tavatekst id="b2e5113b-3f91-4be5-b258-a59e39820718">Eluruumi tagamise teenuse osutamiseks sõlmitakse vallavalitsuse haldusakti alusel isikuga kirjalik üürileping, milles määratakse kindlaks eluruumi kasutamise tingimused. Üürileping sõlmitakse üldjuhul 15 tööpäeva jooksul vallavalitsuse haldusakti taotlejale teatavakstegemisest arvates. Nimetatud tähtaja jooksul mõjuva põhjuseta üürilepingu sõlmimata jätmisel taotleja poolt on vallavalitsusel õigus tunnistada vastav haldusakt kehtetuks.</tavatekst>
 							</sisuTekst>
 						</loige>
 						<loige id="para36lg2">
@@ -1973,8 +2032,141 @@
 							<loigeNr id="012fdded-ee5d-46ce-a17d-ac74c255df4a">4</loigeNr>
 							<kuvatavNr id="6e300dab-03d9-409d-bfca-098640a7dcf1"><![CDATA[(4)]]></kuvatavNr>
 							<sisuTekst id="acde1f62-7a37-47a9-b63d-a18430c64f00">
-								<tavatekst id="08565f15-4443-41c7-a87d-6729f1049108">Eluruumi kohandamise teenuse osutamisel otsustatakse teenuse saajalt tasu võtmine vallavalitsuse haldusaktiga.</tavatekst>
+								<tavatekst id="08565f15-4443-41c7-a87d-6729f1049108">Eluruumi kohandamise teenuse osutamine otsustatakse vallavalitsuse korraldusega.</tavatekst>
 							</sisuTekst>
+							<muutmismarge id="3ff99fcb-9d91-413a-b1ca-b22d07ed8310">
+								<avaldamismarge id="59bafd30-d552-4ba8-9138-20f8395f8bc6">
+									<RTosa id="345acd85-4cfe-49bb-9086-0fcb5cf9f4c3">RT IV</RTosa>
+									<avaldamineKuupaev id="cbe19337-7ff3-43c3-9d36-afe24326f657">2026-08-18</avaldamineKuupaev>
+									<RTartikkel id="4f713716-111d-4120-888c-094212c64715">26</RTartikkel>
+									<aktViide id="48b54d16-7730-4ec5-8c89-aa6045d3ff65">418082026026</aktViide>
+								</avaldamismarge>
+								<joustumine id="15cfed8f-8eee-4508-96f1-a0db8a265919">2026-08-21</joustumine>
+							</muutmismarge>
+						</loige>
+						<loige id="para37lg5">
+							<loigeNr id="e951c1c9-cc5d-4d4d-a22e-c3f0b7a39dd5">5</loigeNr>
+							<kuvatavNr id="13a5cb5a-e03d-467e-8d33-46821feb1ad3"><![CDATA[(5)]]></kuvatavNr>
+							<sisuTekst id="9cd0b935-70eb-44bf-956c-87c5bb7223bb">
+								<tavatekst id="e98df28d-f5b7-4e16-a915-7c5e76977bbd">Eluruumi kohandamise teenuse tagamiseks vajaliku toetuse maksimaalne suurus on 85 protsenti kohandamise maksumusest, kuid mitte rohkem kui 2000 eurot taotleja kohta.</tavatekst>
+							</sisuTekst>
+							<muutmismarge id="f0031cbe-ded7-4bc2-a496-fd71a56bd8c0">
+								<avaldamismarge id="7ecb31a0-11c3-4159-ac04-bb3bac2f93ab">
+									<RTosa id="edd0fbf4-eb7a-42b0-825f-9cdcc1f7308a">RT IV</RTosa>
+									<avaldamineKuupaev id="bec27436-d00e-4021-a17b-e742cf13e7bc">2026-08-18</avaldamineKuupaev>
+									<RTartikkel id="711a3408-a038-4897-9af0-17089402ca6c">26</RTartikkel>
+									<aktViide id="a935d155-f621-492b-8b13-22a9c79eb7d8">418082026026</aktViide>
+								</avaldamismarge>
+								<joustumine id="ce1e6adc-8e7e-480b-8a28-d22fa1ed6b08">2026-08-21</joustumine>
+								<aktiNr id="701d03c7-09b5-4ac4-b337-99b503f3a823">19</aktiNr>
+							</muutmismarge>
+						</loige>
+						<loige id="para37lg6">
+							<loigeNr id="312b0d52-c864-4b27-ab69-9adad0edf9f4">6</loigeNr>
+							<kuvatavNr id="67198472-31aa-4903-b7a4-e25a2d297d50"><![CDATA[(6)]]></kuvatavNr>
+							<sisuTekst id="d9381e4d-2fc0-4084-90d4-138a1915a293">
+								<tavatekst id="8fd3f078-a400-401d-aaae-abf0259cfc80">Ühel isikul on võimalik eluruumi kohandamiseks saada toetust üks kord kolme kalendriaasta jooksul.</tavatekst>
+							</sisuTekst>
+							<muutmismarge id="8658b6cf-f4b5-4c2f-ab1a-8a4025f144d6">
+								<avaldamismarge id="814cdddf-98db-45ed-90a1-23a82595551b">
+									<RTosa id="8564548f-3acd-4dc1-99b2-54214463086a">RT IV</RTosa>
+									<avaldamineKuupaev id="e0aaa2e1-dbd5-43bf-b515-b39195bb9ab7">2026-08-18</avaldamineKuupaev>
+									<RTartikkel id="2837b04c-134d-48e3-8d2e-cb50e7884376">26</RTartikkel>
+									<aktViide id="e37122eb-0685-4c8f-8471-961eaa76aab8">418082026026</aktViide>
+								</avaldamismarge>
+								<joustumine id="7fba03c8-f2df-4b41-b50c-8bff162b4fb5">2026-08-21</joustumine>
+								<aktiNr id="7371d8a4-2103-4fbf-8f4f-3966dd6f5c58">19</aktiNr>
+							</muutmismarge>
+						</loige>
+						<loige id="para37lg7">
+							<loigeNr id="c6a429ea-a7c9-48f6-a074-8c5d84030ba0">7</loigeNr>
+							<kuvatavNr id="240b3a26-dc14-44b4-9aac-1d588a50f1a8"><![CDATA[(7)]]></kuvatavNr>
+							<sisuTekst id="f4fb4ce7-d1d9-4017-b978-7f24a39a1501">
+								<tavatekst id="704178a2-1ead-4e69-b174-9190183e8520">Eluruumi kohandamise teenuse tagamiseks vajaliku toetuse kasutamise aeg on kuni kuus kuud taotluse rahuldamise otsusest. Mõjuval põhjusel võivad toetuse saaja, vallavalitsus ja tööde teostaja leppida kokku pikemas tähtajas, kuid mitte rohkem kui kaksteist kuud.</tavatekst>
+							</sisuTekst>
+							<muutmismarge id="ad258016-077e-46a4-a226-168ed147a150">
+								<avaldamismarge id="79db606a-c92a-4e91-9142-ae466ab52b47">
+									<RTosa id="d611df9f-5002-405b-b187-d3d7938b6f4e">RT IV</RTosa>
+									<avaldamineKuupaev id="46d70db0-01c9-45ae-921c-b3d779904ad1">2026-08-18</avaldamineKuupaev>
+									<RTartikkel id="0c9616ed-36c6-4f3e-ab01-8dfba5d9e6c4">26</RTartikkel>
+									<aktViide id="d08f68e0-c90c-439d-a145-7c20dd31b047">418082026026</aktViide>
+								</avaldamismarge>
+								<joustumine id="2f9a922d-b9cd-4be5-95be-71516d08ad55">2026-08-21</joustumine>
+								<aktiNr id="4578674a-ede4-4f7b-9382-e57f1f61617a">19</aktiNr>
+							</muutmismarge>
+						</loige>
+						<loige id="para37lg8">
+							<loigeNr id="ac68c14a-25c9-4968-8f02-d341e44f0784">8</loigeNr>
+							<kuvatavNr id="505b2704-ff85-419e-a536-a1bdeb586b5b"><![CDATA[(8)]]></kuvatavNr>
+							<sisuTekst id="1ce27c49-8992-4720-8fff-80fe45b0ae15">
+								<tavatekst id="26968280-f3a0-4653-b851-cf6acfa34afa">Vähemalt 10 tööpäeva jooksul pärast korralduse teatavakstegemist sõlmitakse Anija valla, teenuse saaja või tema esindaja ning eluruumi kohandamise ehitustööde tegijaga (töövõtja) kolmepoolne leping, milles märgitakse muuhulgas:</tavatekst>
+							</sisuTekst>
+							
+							<alampunkt id="para37lg8p1">
+								<alampunktNr id="71f06019-06fd-4ef0-abc7-0277715b4573">1</alampunktNr>
+								<kuvatavNr id="06fd2062-ec03-4ade-8d97-dc05aafeedb2"><![CDATA[1) ]]></kuvatavNr>
+								<sisuTekst id="26d6882c-5756-4069-9626-ac3ce623fbc0">
+									<tavatekst id="8fe489d9-8a5f-4984-9a2c-6a52a81aea12">eluruumi kohandamiseks vajalikud tööd;</tavatekst>
+								</sisuTekst>
+							</alampunkt>
+							<alampunkt id="para37lg8p2">
+								<alampunktNr id="75749744-c38b-40ff-8a0e-df49046a4e43">2</alampunktNr>
+								<kuvatavNr id="da64c5a5-b42f-48fd-8bb4-e537fc72147a"><![CDATA[2) ]]></kuvatavNr>
+								<sisuTekst id="753cf256-f71c-44af-808e-09c7139bba21">
+									<tavatekst id="a58fa754-34e1-4049-a24c-4079cfe4e5ae"> tööde teostamise lõpptähtpäev;</tavatekst>
+								</sisuTekst>
+							</alampunkt>
+							<alampunkt id="para37lg8p3">
+								<alampunktNr id="684241ea-074e-45ff-8974-1d17feb6dbee">3</alampunktNr>
+								<kuvatavNr id="396aac60-f959-4a2f-9841-09756d582391"><![CDATA[3) ]]></kuvatavNr>
+								<sisuTekst id="e9e597b7-c859-4705-abe9-77b39b3c2a6c">
+									<tavatekst id="f0dbbb79-22c4-48af-9aed-87467f19ac75">tööde rahastamise kord.</tavatekst>
+								</sisuTekst>
+								<muutmismarge id="7ab9d95b-19a4-4c69-9e9d-c34b00fc3df6">
+								<avaldamismarge id="9e1eec73-100c-4890-a9c9-9818fe3642b2">
+									<RTosa id="678d0501-1130-4b44-824b-5fe6189db0c8">RT IV</RTosa>
+									<avaldamineKuupaev id="52a3023a-8f1c-4311-a0d1-746962bf898c">2026-08-18</avaldamineKuupaev>
+									<RTartikkel id="283b1378-6e27-4074-b422-95401105ccff">26</RTartikkel>
+									<aktViide id="095f3e23-e3ce-4bba-9fe1-12bdf06b58eb">418082026026</aktViide>
+								</avaldamismarge>
+								<joustumine id="9a0cf944-bb1d-4771-8133-12235cc7e3ab">2026-08-21</joustumine>
+								<aktiNr id="ed93eda9-f94f-4aec-8474-bf9581558498">19</aktiNr>
+							</muutmismarge>
+							</alampunkt>
+						</loige>
+						<loige id="para37lg9">
+							<loigeNr id="e1cbbe4b-f8ea-4adc-80c7-edb7301796fe">9</loigeNr>
+							<kuvatavNr id="f60cb492-29cf-4360-beaa-955d17fc5030"><![CDATA[(9)]]></kuvatavNr>
+							<sisuTekst id="2fafb4e6-0756-4e1a-a2db-be174deaf6b1">
+								<tavatekst id="5cd33974-783c-44d6-8573-9367f601a475">Eluruumi kohandamise teenuseks eraldatud toetus makstakse välja töövõtja arvelduskontole kümne tööpäeva jooksul pärast tööde valmimist ning tööde ülevõtmise akti ja kuludokumentide esitamist ning vajaduse korral valla spetsialistide paikvaatluse läbiviimist.</tavatekst>
+							</sisuTekst>
+							<muutmismarge id="b8570af6-aeb3-40b4-b7a9-0fd679312c41">
+								<avaldamismarge id="d81495c3-5e93-4fdc-a677-843961def962">
+									<RTosa id="412df0e9-d3bb-410f-bff1-ce6d282fbb4a">RT IV</RTosa>
+									<avaldamineKuupaev id="66b583db-2ae8-42e0-9156-23082062c0fb">2026-08-18</avaldamineKuupaev>
+									<RTartikkel id="cdd67fb0-06f7-4749-90dd-e13373679cab">26</RTartikkel>
+									<aktViide id="0d2adb50-9d77-4b97-9236-047c70cb0991">418082026026</aktViide>
+								</avaldamismarge>
+								<joustumine id="509a2098-20b7-45cf-9e49-74780e4fb6b6">2026-08-21</joustumine>
+								<aktiNr id="ba2a1de1-b1ea-4171-bb00-1250b7bfec0d">19</aktiNr>
+							</muutmismarge>
+						</loige>
+						<loige id="para37lg10">
+							<loigeNr id="c3ec6e6c-7392-415c-b4fa-0aeacd57bd84">10</loigeNr>
+							<kuvatavNr id="d79d3826-0423-4847-90b1-d68b3e923139"><![CDATA[(10)]]></kuvatavNr>
+							<sisuTekst id="68a8ee9e-e418-492b-88cb-9877973315e4">
+								<tavatekst id="9e22f7f2-b2bc-4442-9104-2c0a6c1f4b86">Eluruumi kohandamise teenust ei osutata olukorras, kus eluruumi on võimalik kasutada ebamõistlikult lühikese aja (alla 5 aasta) vältel tulenevalt eluruumi lepingulise kasutusõiguse tähtajast, tehnilisest seisukorrast või muudest asjaoludest.</tavatekst>
+							</sisuTekst>
+							<muutmismarge id="5a86d521-b875-4dbb-8e70-849b971e92dd">
+								<avaldamismarge id="84e1b923-4c3b-485a-aaa2-a5faaf42fd5f">
+									<RTosa id="864377d7-5df3-4403-9538-14166b9087d4">RT IV</RTosa>
+									<avaldamineKuupaev id="b8d7086a-ade8-4fdb-a380-d63385c3caf5">2026-08-18</avaldamineKuupaev>
+									<RTartikkel id="06415fca-3f05-4fda-807f-eb5797e4b18c">26</RTartikkel>
+									<aktViide id="eff8ab57-95ee-4002-a39f-9f827b7b9a25">418082026026</aktViide>
+								</avaldamismarge>
+								<joustumine id="b726c3db-b9ad-42ce-aa2c-14124b07377e">2026-08-21</joustumine>
+								<aktiNr id="5d66392d-d65d-46b9-831b-6fce127a6a1c">19</aktiNr>
+							</muutmismarge>
 						</loige>
 					</paragrahv>
 					<paragrahv id="para38">
@@ -2683,6 +2875,23 @@
 								<sisuTekst id="a95e333e-7086-4214-90cd-f2ab22f99c1b">
 									<tavatekst id="10ea19d1-27d9-438f-813c-0de0bb87d6de">päevakeskuse teenus eakale või puudega isikule;</tavatekst>
 								</sisuTekst>
+							</alampunkt>
+							<alampunkt id="para50lg2p12b1">
+								<alampunktNr id="aef8877f-0fa2-4331-a2b6-1960a57a11b2" ylaIndeks="1">12</alampunktNr>
+								<kuvatavNr id="59fb3e98-27ea-4268-934b-5ab1d4198595"><![CDATA[12<sup>1</sup>) ]]></kuvatavNr>
+								<sisuTekst id="ee6c238b-d345-48b1-9538-171645a1bd4c">
+									<tavatekst id="d9fc8bbc-45a1-4be2-98d2-66a07b956fd5">häirenuputeenus;</tavatekst>
+								</sisuTekst>
+								<muutmismarge id="e63245a2-6b8a-432b-a189-6455e91dec28">
+									<avaldamismarge id="34f6e8b3-cf8f-4809-9f3f-0fb95476087e">
+										<RTosa id="f9ab48c5-91fb-46e5-965d-bf8b9930030a">RT IV</RTosa>
+										<avaldamineKuupaev id="6d5e66f5-bfb4-4d24-ab5b-b178b809625b">2026-08-18</avaldamineKuupaev>
+										<RTartikkel id="71b257cf-a575-46a0-9768-128bae36ed78">26</RTartikkel>
+										<aktViide id="96ba5e9f-c4f0-4453-b8b9-27b0b0b95732">418082026026</aktViide>
+									</avaldamismarge>
+									<joustumine id="a0bc0118-8d6b-470d-8e7f-42a55d7cd14d">2026-08-21</joustumine>
+									<aktiNr id="5dbb600a-6043-40e7-89cf-707ac5c46651">19</aktiNr>
+								</muutmismarge>
 							</alampunkt>
 							<alampunkt id="para50lg2p13">
 								<alampunktNr id="f92722c1-5d23-4c03-93bf-36e941bfa7a6">13</alampunktNr>

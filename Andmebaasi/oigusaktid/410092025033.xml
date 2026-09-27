@@ -19,15 +19,15 @@
 		</vastuvoetud>
 		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-09-10</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>33</RTartikkel><aktViide>410092025033</aktViide></avaldamismarge><kehtivus>
 			<kehtivuseAlgus>2025-09-13</kehtivuseAlgus>
-		</kehtivus>
+		<kehtivuseLopp>2026-06-13+03:00</kehtivuseLopp></kehtivus>
 		<versioon>
 			<dokumentVersioon>1</dokumentVersioon>
 			<dokumentVersioonKuupaev>2021-10-13</dokumentVersioonKuupaev>
 		</versioon>
 		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
 		<globaalID>410092025033</globaalID>
-		<metaandmedVersioon>29</metaandmedVersioon>
-		<metaandmedVersioonKuupaev>2025-09-09</metaandmedVersioonKuupaev>
+		<metaandmedVersioon>30</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2026-06-10</metaandmedVersioonKuupaev>
 		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
 		<terviktekstiGrupiID>1052760</terviktekstiGrupiID>
 	</metaandmed>

@@ -19,16 +19,16 @@
 		</vastuvoetud>
 		<avaldamismarge><RTosa>RT I</RTosa><avaldamineKuupaev>2025-08-29</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>9</RTartikkel><aktViide>129082025009</aktViide></avaldamismarge><kehtivus>
 			<kehtivuseAlgus>2025-09-01</kehtivuseAlgus>
-		</kehtivus>
+		<kehtivuseLopp>2026-09-30+03:00</kehtivuseLopp></kehtivus>
 		<versioon>
 			<dokumentVersioon>1</dokumentVersioon>
 			<dokumentVersioonKuupaev>2025-08-28</dokumentVersioonKuupaev>
 		</versioon>
 		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
 		<globaalID>129082025009</globaalID>
-		<metaandmedVersioon>55</metaandmedVersioon>
-		<metaandmedVersioonKuupaev>2025-08-28</metaandmedVersioonKuupaev>
-		<metaandmedVersioonPohjustaja>Maret Mauer</metaandmedVersioonPohjustaja>
+		<metaandmedVersioon>56</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2026-09-25</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Birgit Aitsam</metaandmedVersioonPohjustaja>
 		<terviktekstiGrupiID>1032376</terviktekstiGrupiID>
 		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
 	</metaandmed>

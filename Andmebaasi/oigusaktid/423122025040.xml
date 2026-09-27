@@ -24,14 +24,14 @@
  
  
  
- <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-12-23</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>40</RTartikkel><aktViide>423122025040</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2026-01-01+02:00</kehtivuseAlgus></kehtivus><versioon>
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-12-23</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>40</RTartikkel><aktViide>423122025040</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2026-01-01+02:00</kehtivuseAlgus><kehtivuseLopp>2026-09-30+03:00</kehtivuseLopp></kehtivus><versioon>
   <dokumentVersioon>1</dokumentVersioon>
   <dokumentVersioonKuupaev>2025-12-19</dokumentVersioonKuupaev>
  </versioon>
  <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
  <globaalID>423122025040</globaalID>
- <metaandmedVersioon>6</metaandmedVersioon>
- <metaandmedVersioonKuupaev>2025-12-22</metaandmedVersioonKuupaev>
+ <metaandmedVersioon>7</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2026-09-25</metaandmedVersioonKuupaev>
  <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
  
  <terviktekstiGrupiID>1062514</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>

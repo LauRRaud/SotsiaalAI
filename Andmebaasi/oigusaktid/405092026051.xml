@@ -17,16 +17,16 @@
 			<joustumine>2021-01-03</joustumine>
 			<aktiNr>144</aktiNr>
 		</vastuvoetud>
-		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-03-07</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>24</RTartikkel><aktViide>407032025024</aktViide></avaldamismarge><kehtivus>
-			<kehtivuseAlgus>2025-03-10</kehtivuseAlgus>
-		<kehtivuseLopp>2026-09-07+03:00</kehtivuseLopp></kehtivus>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-09-05</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>51</RTartikkel><aktViide>405092026051</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2026-09-08</kehtivuseAlgus>
+		</kehtivus>
 		<versioon>
 			<dokumentVersioon>1</dokumentVersioon>
-			<dokumentVersioonKuupaev>2025-03-05</dokumentVersioonKuupaev>
+			<dokumentVersioonKuupaev>2026-09-02</dokumentVersioonKuupaev>
 		</versioon>
 		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
-		<globaalID>407032025024</globaalID>
-		<metaandmedVersioon>31</metaandmedVersioon>
+		<globaalID>405092026051</globaalID>
+		<metaandmedVersioon>35</metaandmedVersioon>
 		<metaandmedVersioonKuupaev>2026-09-04</metaandmedVersioonKuupaev>
 		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
 		<terviktekstiGrupiID>1051053</terviktekstiGrupiID>
@@ -129,6 +129,17 @@
 		</avaldamismarge>
 		<joustumine id="419ae68a-8547-4e12-ae0e-40cabf259a83">2025-03-10</joustumine>
 		<tavatekst id="9f490839-f532-4ae0-ac75-3efd46c265a9">, rakendatakse alates 01.01.2025</tavatekst>
+	</muutmismarge>
+	<muutmismarge id="314ab8c7-db59-4559-9b69-c5253452549d">
+		<aktikuupaev id="06eec57c-9e85-41ab-a201-aa46b41585b2">2026-08-27</aktikuupaev>
+		<avaldamismarge id="8fc7e042-3452-4d43-8bb7-0edf83b6ec5a">
+			<RTosa id="b55ebc81-4a0f-454f-afda-c6f4f6bf2f12">RT IV</RTosa>
+			<avaldamineKuupaev id="27543a2d-d592-45b3-9cca-2c2a2b1e06b7">2026-09-05</avaldamineKuupaev>
+			<RTartikkel id="8c8528bf-169e-49b5-8f32-1d5d0ce239e9">19</RTartikkel>
+			<aktViide id="b0a3ad77-cd62-4db6-995b-b48f56b7b1c7">405092026019</aktViide>
+		</avaldamismarge>
+		<joustumine id="5030bf01-c519-40f1-9f84-b90a91512a77">2026-09-08</joustumine>
+		<tavatekst id="65d3df8d-9903-4887-bba1-0ac7d7a15afc">, rakendatakse alates 01.08.2026</tavatekst>
 	</muutmismarge>
 	<sisu id="d20e7965-33b4-4a9e-b9cd-fa80c19e05db">
 		<preambul id="37220d29-1f63-4847-b196-54ac0d962659">
@@ -1264,8 +1275,25 @@
 						<alampunktNr id="d8949372-2aa3-40a0-b36d-ad1e8a1a3194">11</alampunktNr>
 						<kuvatavNr id="2c64a991-2305-4419-8542-cd75b3b52d3b"><![CDATA[11) ]]></kuvatavNr>
 						<sisuTekst id="cf1c333f-200d-431b-b80e-d5c487103016">
-							<tavatekst id="feca08d3-0318-4eae-8403-e1e65ca7292e">päevahoiuteenus täisealisele puudega isikule.</tavatekst>
+							<tavatekst id="feca08d3-0318-4eae-8403-e1e65ca7292e">päevahoiuteenus täisealisele puudega isikule;</tavatekst>
 						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para21lg2p12">
+						<alampunktNr id="470a4424-4cab-435b-8799-b0374c191af5">12</alampunktNr>
+						<kuvatavNr id="398befd3-8757-4a4e-80c8-3997e9b387f9"><![CDATA[12) ]]></kuvatavNr>
+						<sisuTekst id="20024a33-2fc3-4a1b-a570-44a8f4cf0e0a">
+							<tavatekst id="f83e6ecf-b357-4f0f-9a61-a7414ebb3e19">projektipõhised teenused.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="7bf7e526-0e0c-4097-8275-d135c2633e4b">
+							<avaldamismarge id="b0a9fdd1-7fe8-4e61-84f0-2b57a28b13be">
+								<RTosa id="37e2d790-54ca-419e-8c4a-933e86e7edf5">RT IV</RTosa>
+								<avaldamineKuupaev id="2e92a14f-cc60-4ca6-98ef-44186d816d8b">2026-09-05</avaldamineKuupaev>
+								<RTartikkel id="808aeb47-0653-467b-91b7-73b16696f53d">19</RTartikkel>
+								<aktViide id="ec66295a-ddf4-4c81-b5a3-05cfba41bdd9">405092026019</aktViide>
+							</avaldamismarge>
+							<joustumine id="14bd0123-6fd0-4855-abfd-eff282ac7eb4">2026-09-08</joustumine>
+							<tavatekst id="bb22166d-45fd-4c5e-9478-b32a2c114afa">, rakendatakse alates 01.08.2026</tavatekst>
+						</muutmismarge>
 					</alampunkt>
 				</loige>
 				<loige id="para21lg3">
@@ -1396,13 +1424,6 @@
 					<kuvatavNr id="f8a58693-2482-4a08-9995-fd89371bcf82"><![CDATA[(3)]]></kuvatavNr>
 					<sisuTekst id="46b05eec-4a20-4273-9a86-883985985d8c">
 						<tavatekst id="2b6b6f20-7781-4e94-a514-a754d4d5b23c">Teenuse taotlejat teavitatakse otsusest 5 tööpäeva jooksul kirjalikult või muul kokkulepitud viisil.</tavatekst>
-					</sisuTekst>
-				</loige>
-				<loige id="para24lg4">
-					<loigeNr id="6555ae6c-42da-4afe-a825-ebb66618ffdb">4</loigeNr>
-					<kuvatavNr id="7206301a-63f8-40ef-b6f9-f76c09115f17"><![CDATA[(4)]]></kuvatavNr>
-					<sisuTekst id="713c23b9-e723-48a6-a63e-349c633f3521">
-						<tavatekst id="eb48187a-6c43-44bf-a252-6bfb9adfe555">Lõike tekst</tavatekst>
 					</sisuTekst>
 				</loige>
 			</paragrahv>

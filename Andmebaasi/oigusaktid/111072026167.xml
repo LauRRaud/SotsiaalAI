@@ -18,25 +18,19 @@
 			<joustumine>2015-01-01</joustumine>
 			<tavatekst>, osaliselt 01.01.2018</tavatekst>
 		</vastuvoetud>
-		<avaldamismarge>
-			<RTosa>RT I</RTosa>
-			<avaldamineKuupaev>2026-04-09+03:00</avaldamineKuupaev>
-			<RTaasta>2026</RTaasta>
-			<RTartikkel>3</RTartikkel>
-			<aktViide>109042026003</aktViide>
-		</avaldamismarge>
-		<kehtivus>
-			<kehtivuseAlgus>2026-04-10</kehtivuseAlgus>
-			<kehtivuseLopp>2026-06-11+03:00</kehtivuseLopp>
+		
+		<avaldamismarge><RTosa>RT I</RTosa><avaldamineKuupaev>2026-07-11</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>167</RTartikkel><aktViide>111072026167</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2026-11-01</kehtivuseAlgus>
+			<kehtivuseLopp>2026-12-31</kehtivuseLopp>
 		</kehtivus>
 		<versioon>
 			<dokumentVersioon>1</dokumentVersioon>
 			<dokumentVersioonKuupaev>2021-06-20</dokumentVersioonKuupaev>
 		</versioon>
 		<skeemiNimi>tyviseadus_1_10.02.2010.xsd</skeemiNimi>
-		<globaalID>109042026003</globaalID>
-		<metaandmedVersioon>323</metaandmedVersioon>
-		<metaandmedVersioonKuupaev>2026-06-02</metaandmedVersioonKuupaev>
+		<globaalID>111072026167</globaalID>
+		<metaandmedVersioon>328</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2026-07-11</metaandmedVersioonKuupaev>
 		<metaandmedVersioonPohjustaja>Maret Mauer</metaandmedVersioonPohjustaja>
 		<terviktekstiGrupiID>1027446</terviktekstiGrupiID>
 		<eesmark>Tüviseaduse raamskeem XML struktuuri koostamiseks</eesmark>
@@ -1525,7 +1519,6 @@
 		</avaldamismarge>
 		<joustumine>2026-04-10</joustumine>
 	</muutmismarge>
-	
 	<muutmismarge>
 		<aktikuupaev>2026-05-07</aktikuupaev>
 		<avaldamismarge>
@@ -1536,8 +1529,57 @@
 		</avaldamismarge>
 		<joustumine>2026-05-07</joustumine>
 		<tavatekst> - Riigikohtu põhiseaduslikkuse järelevalve kolleegiumi otsus tunnistab riigilõivuseaduse § 298⁴ lõiked 2 ja 3 põhiseadusvastaseks ja kehtetuks osas, milles need kehtestavad riigilõivude tasumise kohustuse sigarite tootjatele ja importijatele.</tavatekst>
-	</muutmismarge>	
-	
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2026-05-18</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2026-06-03</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>103062026001</aktViide>
+		</avaldamismarge>
+		<joustumine>2026-06-12</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2026-06-16</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2026-07-03</avaldamineKuupaev>
+			<RTartikkel>4</RTartikkel>
+			<aktViide>103072026004</aktViide>
+		</avaldamismarge>
+		<joustumine>2026-11-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2026-06-17</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2026-07-09</avaldamineKuupaev>
+			<RTartikkel>9</RTartikkel>
+			<aktViide>109072026009</aktViide>
+		</avaldamismarge>
+		<joustumine>2026-07-19</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2026-06-17</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2026-07-11</avaldamineKuupaev>
+			<RTartikkel>3</RTartikkel>
+			<aktViide>111072026003</aktViide>
+		</avaldamismarge>
+		<joustumine>2026-08-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2026-06-17</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2026-07-11</avaldamineKuupaev>
+			<RTartikkel>10</RTartikkel>
+			<aktViide>111072026010</aktViide>
+		</avaldamismarge>
+		<joustumine>2026-11-01</joustumine>
+	</muutmismarge>
 	<sisu>
 		<osa id="o1">
 			<osaNr>1</osaNr>
@@ -1681,7 +1723,7 @@
 							<viide>
 								<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
 								<viideURID>
-									<viideURI><![CDATA[./dyn=109042026003&id=112022019005]]></viideURI>
+									<viideURI><![CDATA[./dyn=111072026167&id=112022019005]]></viideURI>
 								</viideURID>
 							</viide>
 							<tavatekst> määrusega.</tavatekst>
@@ -2457,6 +2499,7 @@
 							<sisuTekst id="2b59343f-eae1-4155-ab9f-16595368ad5d">
 								<tavatekst id="9cb0b819-3430-45bb-b93a-7e010b890b59">kehavigastuse või muu terviserikkega, samuti toitja surmaga tekitatud kahju hüvitamise hagi või kaebuse läbivaatamine;</tavatekst>
 							</sisuTekst>
+							
 						</alampunkt>
 						<alampunkt id="para22lg1p13">
 							<alampunktNr id="c1b14b77-d1bc-4aaa-bf19-cf32ac52d7c8">13</alampunktNr>
@@ -2499,16 +2542,16 @@
 							<alampunktNr id="a768396d-7d5b-40e3-84d0-21ecfe3a0fff">15</alampunktNr>
 							<kuvatavNr id="93af1e27-eb02-4fb6-a0a3-2ee8832c7b26"><![CDATA[15) ]]></kuvatavNr>
 							<sisuTekst id="8c1fc595-5192-4bad-81f2-ed8beeded491">
-								<tavatekst>kannatanu varalise kahju hüvitamise tsiviilhagi läbivaatamine kriminaalmenetluses, samuti tsiviilkohtumenetluses, kui tsiviilhagi jäeti kriminaalmenetluses läbi vaatamata kriminaalmenetluse seadustiku § 244<sup>1</sup> alusel.</tavatekst>
+								<tavatekst>kannatanu varalise kahju hüvitamise tsiviilhagi läbivaatamine kriminaalmenetluses, samuti tsiviilkohtumenetluses, kui tsiviilhagi jäeti kriminaalmenetluses läbi vaatamata kriminaalmenetluse seadustiku § 235<sup>2</sup>, 244<sup>1</sup> või 263<sup>1</sup> alusel.</tavatekst>
 							</sisuTekst>
-							<muutmismarge id="b6f6d74e-4522-4a4e-aff2-308fa18ca7ee">
-								<avaldamismarge id="b97d7477-bea9-47ad-98d7-5e33079ab50c">
-									<RTosa id="5a459995-058c-440e-ab7f-69a6cd26ed36">RT I</RTosa>
-									<avaldamineKuupaev id="b19cc06c-714b-4453-87be-7b5cbecfbc3f">2016-01-06</avaldamineKuupaev>
-									<RTartikkel id="53255715-da6d-4ec5-9874-92884b3652ff">5</RTartikkel>
-									<aktViide id="0237bd43-6542-4781-ab0b-702e34a34a46">106012016005</aktViide>
+							<muutmismarge>
+								<avaldamismarge>
+									<RTosa>RT I</RTosa>
+									<avaldamineKuupaev>2026-07-11</avaldamineKuupaev>
+									<RTartikkel>10</RTartikkel>
+									<aktViide>111072026010</aktViide>
 								</avaldamismarge>
-								<joustumine id="fb447aef-94af-4237-a751-a2aa54803a9d">2017-01-01</joustumine>
+								<joustumine>2026-11-01</joustumine>
 							</muutmismarge>
 						</alampunkt>
 					</loige>
@@ -3650,7 +3693,16 @@
 						<loigeNr id="1a87b0d2-e032-4167-9d76-d6308b286429">2</loigeNr>
 						<kuvatavNr id="4907ee11-6533-4b0d-9420-a47e480d5849"><![CDATA[(2)]]></kuvatavNr>
 						<sisuTekst id="f3f5c3a5-8f80-4d7f-a763-73b124d60759">
-							<tavatekst id="98b88644-4a99-47a6-a06e-eefe3c850b9b">Politsei- ja Piirivalveametil ning konsulaarametnikul on õigus isiku majanduslikust olukorrast lähtuvalt või riigiasutuse või kohaliku omavalitsuse üksuse organi põhjendatud taotluse alusel vabastada isik käesoleva seaduse §-s 270 sätestatud riigilõivu tasumisest või vähendada tasutava riigilõivu määra.</tavatekst>
+							<tavatekst id="98b88644-4a99-47a6-a06e-eefe3c850b9b">Politsei- ja Piirivalveametil ning konsulaarametnikul on õigus isiku majanduslikust olukorrast lähtuvalt või riigiasutuse või kohaliku omavalitsuse üksuse organi põhjendatud taotluse alusel vabastada isik käesoleva seaduse §-s 270 või §-s 276<sup>2</sup> sätestatud riigilõivu tasumisest või vähendada tasutava riigilõivu määra.</tavatekst>
+							<muutmismarge>
+								<avaldamismarge>
+									<RTosa>RT I</RTosa>
+									<avaldamineKuupaev>2026-06-03</avaldamineKuupaev>
+									<RTartikkel>1</RTartikkel>
+									<aktViide>103062026001</aktViide>
+								</avaldamismarge>
+								<joustumine>2026-06-12</joustumine>
+							</muutmismarge>
 						</sisuTekst>
 					</loige>
 				</paragrahv>
@@ -3660,7 +3712,16 @@
 					<paragrahvPealkiri id="d8e7ca4c-368d-45fb-8c28-ce608c6f8a5d">Euroopa Liidu kodaniku seaduse alusel tehtava toimingu eest riigilõivu tasumisest vabastamine ja riigilõivumäära vähendamine</paragrahvPealkiri>
 					<loige id="para36lg1">
 						<sisuTekst id="bc65eab7-7de5-4d2e-9e4d-1edb33087475">
-							<tavatekst id="3143b512-923b-433e-aa62-4b13181ff08e">Politsei- ja Piirivalveametil ning konsulaarametnikul on õigus isiku majanduslikust olukorrast lähtuvalt vabastada isik käesoleva seaduse §-s 271 sätestatud riigilõivu tasumisest või vähendada tasutava riigilõivu määra.</tavatekst>
+							<tavatekst id="3143b512-923b-433e-aa62-4b13181ff08e">Politsei- ja Piirivalveametil ning konsulaarametnikul on õigus isiku majanduslikust olukorrast lähtuvalt vabastada isik käesoleva seaduse §-s 271 või §-s 276<sup>2</sup> sätestatud riigilõivu tasumisest või vähendada tasutava riigilõivu määra.</tavatekst>
+							<muutmismarge>
+								<avaldamismarge>
+									<RTosa>RT I</RTosa>
+									<avaldamineKuupaev>2026-06-03</avaldamineKuupaev>
+									<RTartikkel>1</RTartikkel>
+									<aktViide>103062026001</aktViide>
+								</avaldamismarge>
+								<joustumine>2026-06-12</joustumine>
+							</muutmismarge>
 						</sisuTekst>
 					</loige>
 				</paragrahv>
@@ -3728,7 +3789,16 @@
 						<loigeNr id="03f24144-5ee0-4b71-97dc-904f975388a2">1</loigeNr>
 						<kuvatavNr id="cf478bcf-b08b-4554-bf97-dbdd37521719"><![CDATA[(1)]]></kuvatavNr>
 						<sisuTekst id="f123e131-c7e4-43d1-9070-69888c968766">
-							<tavatekst id="71db2b36-3cf0-48a5-8331-d99deb462a2c">Politsei- ja Piirivalveametil ning konsulaarametnikul on õigus isiku majanduslikust olukorrast lähtuvalt või riigiasutuse või kohaliku omavalitsuse üksuse organi põhjendatud taotluse alusel vabastada isik käesoleva seaduse §-s 272 sätestatud riigilõivu tasumisest või vähendada tasutava riigilõivu määra.</tavatekst>
+							<tavatekst id="71db2b36-3cf0-48a5-8331-d99deb462a2c">Politsei- ja Piirivalveametil ning konsulaarametnikul on õigus isiku majanduslikust olukorrast lähtuvalt või riigiasutuse või kohaliku omavalitsuse üksuse organi põhjendatud taotluse alusel vabastada isik käesoleva seaduse §-s 272 või §-s 276<sup>2</sup> sätestatud riigilõivu tasumisest või vähendada tasutava riigilõivu määra.</tavatekst>
+							<muutmismarge>
+								<avaldamismarge>
+									<RTosa>RT I</RTosa>
+									<avaldamineKuupaev>2026-06-03</avaldamineKuupaev>
+									<RTartikkel>1</RTartikkel>
+									<aktViide>103062026001</aktViide>
+								</avaldamismarge>
+								<joustumine>2026-06-12</joustumine>
+							</muutmismarge>
 						</sisuTekst>
 					</loige>
 					<loige id="para38lg2">
@@ -3950,7 +4020,16 @@
 						<loigeNr id="ec521ac7-19e0-4625-8960-3b9f1f004490">4</loigeNr>
 						<kuvatavNr id="9f06d6a6-c99a-4361-add5-ad841a487f89"><![CDATA[(4)]]></kuvatavNr>
 						<sisuTekst id="4e468832-0a3e-4b96-adac-4cc49e571e50">
-							<tavatekst id="7933520b-b811-46ac-8df6-ac0f00bcb3a5">Politsei- ja Piirivalveametil on õigus isiku majanduslikust olukorrast lähtuvalt või riigiasutuse või kohaliku omavalitsuse üksuse organi põhjendatud taotluse alusel või välislepingus ette nähtud juhul vabastada isik käesoleva seaduse § 273 lõikes 1, 4, 5 või 7, § 274 lõikes 1, 4 või 5, §-s 275 või § 276 lõikes 4 sätestatud riigilõivu tasumisest või vähendada tasutava riigilõivu määra.</tavatekst>
+							<tavatekst id="7933520b-b811-46ac-8df6-ac0f00bcb3a5">Politsei- ja Piirivalveametil on õigus isiku majanduslikust olukorrast lähtuvalt või riigiasutuse või kohaliku omavalitsuse üksuse organi põhjendatud taotluse alusel või välislepingus ette nähtud juhul vabastada isik käesoleva seaduse § 273 lõikes 1, 4, 5 või 7, § 274 lõikes 1, 4 või 5, §-s 275, § 276 lõikes 4 või §-s 276<sup>2</sup> sätestatud riigilõivu tasumisest või vähendada tasutava riigilõivu määra.</tavatekst>
+							<muutmismarge>
+								<avaldamismarge>
+									<RTosa>RT I</RTosa>
+									<avaldamineKuupaev>2026-06-03</avaldamineKuupaev>
+									<RTartikkel>1</RTartikkel>
+									<aktViide>103062026001</aktViide>
+								</avaldamismarge>
+								<joustumine>2026-06-12</joustumine>
+							</muutmismarge>
 						</sisuTekst>
 					</loige>
 					<loige id="para39lg5">
@@ -11773,6 +11852,43 @@
 										<tavatekst>Kui pärast laeva kontrollimist peetakse laev kinni, tasub reeder uue kontrollimise eest riigilõivu käesoleva paragrahvi lõikes 1 sätestatud määras.</tavatekst>
 									</sisuTekst>
 								</loige>
+								<loige id="para142b47lg3b1">
+									<loigeNr ylaIndeks="1">3</loigeNr>
+									<kuvatavNr><![CDATA[(3<sup>1</sup>)]]></kuvatavNr>
+									<sisuTekst>
+										<tavatekst>Sise- või territoriaalmeres asuva laeva kinnipidamise järel tehtava laevakontrolli eest tasutakse riigilõivu järgmiselt:</tavatekst>
+									</sisuTekst>
+									<alampunkt id="para142b47lg3b1p1">
+										<alampunktNr>1</alampunktNr>
+										<kuvatavNr><![CDATA[1) ]]></kuvatavNr>
+										<sisuTekst>
+											<tavatekst>laev, mille kogumahutavus on alla 500 – 700 eurot;</tavatekst>
+										</sisuTekst>
+									</alampunkt>
+									<alampunkt id="para142b47lg3b1p2">
+										<alampunktNr>2</alampunktNr>
+										<kuvatavNr><![CDATA[2) ]]></kuvatavNr>
+										<sisuTekst>
+											<tavatekst>laev, mille kogumahutavus on 500–2999, ja reisilaev, mis veab alla 400 reisija – 2300 eurot;</tavatekst>
+										</sisuTekst>
+									</alampunkt>
+									<alampunkt id="para142b47lg3b1p3">
+										<alampunktNr>3</alampunktNr>
+										<kuvatavNr><![CDATA[3) ]]></kuvatavNr>
+										<sisuTekst>
+											<tavatekst>laev, mille kogumahutavus on 3000 või rohkem, ja reisilaev, mis veab vähemalt 400 reisijat – 3400 eurot.</tavatekst>
+										</sisuTekst>
+										<muutmismarge>
+											<avaldamismarge>
+												<RTosa>RT I</RTosa>
+												<avaldamineKuupaev>2026-07-09</avaldamineKuupaev>
+												<RTartikkel>9</RTartikkel>
+												<aktViide>109072026009</aktViide>
+											</avaldamismarge>
+											<joustumine>2026-07-19</joustumine>
+										</muutmismarge>
+									</alampunkt>
+								</loige>
 								<loige id="para142b47lg4">
 									<loigeNr>4</loigeNr>
 									<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
@@ -11789,6 +11905,7 @@
 										<joustumine>2023-07-01</joustumine>
 									</muutmismarge>
 								</loige>
+								
 							</paragrahv>
 							<paragrahv id="para142b48">
 								<paragrahvNr ylaIndeks="48">142</paragrahvNr>
@@ -20146,41 +20263,29 @@
 						<kuvatavNr><![CDATA[9. jaotis]]></kuvatavNr>
 						<jaotisPealkiri>Alkoholiseaduse alusel tehtavad toimingud</jaotisPealkiri>
 						<muutmismarge>
+							<tavatekst>Kehtetu - </tavatekst>
 							<avaldamismarge>
 								<RTosa>RT I</RTosa>
-								<avaldamineKuupaev>2023-06-30</avaldamineKuupaev>
-								<RTartikkel>1</RTartikkel>
-								<aktViide>130062023001</aktViide>
+								<avaldamineKuupaev>2026-07-03</avaldamineKuupaev>
+								<RTartikkel>4</RTartikkel>
+								<aktViide>103072026004</aktViide>
 							</avaldamismarge>
-							<joustumine>2023-07-01</joustumine>
+							<joustumine>2026-11-01</joustumine>
 						</muutmismarge>
 						<paragrahv id="para261b32">
 							<paragrahvNr ylaIndeks="32">261</paragrahvNr>
 							<kuvatavNr><![CDATA[§ 261<sup>32</sup>. ]]></kuvatavNr>
 							<paragrahvPealkiri>Riikliku alkoholiregistri toimingud</paragrahvPealkiri>
-							<loige id="para261b32lg1">
-								<loigeNr>1</loigeNr>
-								<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
-								<sisuTekst>
-									<tavatekst>Alkoholi registrisse kandmise taotluse läbivaatamise eest tasutakse riigilõivu 10 eurot.</tavatekst>
-								</sisuTekst>
-							</loige>
-							<loige id="para261b32lg2">
-								<loigeNr>2</loigeNr>
-								<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
-								<sisuTekst>
-									<tavatekst>Registrikande kehtivusaja pikendamise taotluse läbivaatamise eest tasutakse riigilõivu 4 eurot.</tavatekst>
-								</sisuTekst>
-								<muutmismarge>
-									<avaldamismarge>
-										<RTosa>RT I</RTosa>
-										<avaldamineKuupaev>2023-06-30</avaldamineKuupaev>
-										<RTartikkel>1</RTartikkel>
-										<aktViide>130062023001</aktViide>
-									</avaldamismarge>
-									<joustumine>2023-07-01</joustumine>
-								</muutmismarge>
-							</loige>
+							<muutmismarge>
+								<tavatekst>Kehtetu - </tavatekst>
+								<avaldamismarge>
+									<RTosa>RT I</RTosa>
+									<avaldamineKuupaev>2026-07-03</avaldamineKuupaev>
+									<RTartikkel>4</RTartikkel>
+									<aktViide>103072026004</aktViide>
+								</avaldamismarge>
+								<joustumine>2026-11-01</joustumine>
+							</muutmismarge>
 						</paragrahv>
 					</jaotis>
 				</jagu>
@@ -21923,6 +22028,41 @@
 										<aktViide>108072025002</aktViide>
 									</avaldamismarge>
 									<joustumine>2025-07-18</joustumine>
+								</muutmismarge>
+							</loige>
+						</paragrahv>
+					</jaotis>
+					<jaotis id="jaotis1111">
+						<jaotisNr>5</jaotisNr>
+						<kuvatavNr><![CDATA[5. jaotis]]></kuvatavNr>
+						<jaotisPealkiri>Politsei- ja Piirivalveameti väljastatavad tõendid</jaotisPealkiri>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2026-06-03</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>103062026001</aktViide>
+							</avaldamismarge>
+							<joustumine>2026-06-12</joustumine>
+						</muutmismarge>
+						<paragrahv id="para276b2">
+							<paragrahvNr ylaIndeks="2">276</paragrahvNr>
+							<kuvatavNr><![CDATA[§ 276<sup>2</sup>. ]]></kuvatavNr>
+							<paragrahvPealkiri>Tõendi väljastamine</paragrahvPealkiri>
+							<loige id="para276b2lg1">
+								<loigeNr/>
+								<kuvatavNr/>
+								<sisuTekst>
+									<tavatekst>Isiku õigustatud huvi korral kodakondsuse seaduse, Euroopa Liidu kodaniku seaduse, isikut tõendavate dokumentide seaduse ja välismaalaste seaduse alusel läbiviidavas menetluses kogutud andmete väljastamise taotluse läbivaatamise ning tõendi väljastamise eest tasutakse riigilõivu 30 eurot.</tavatekst>
+								</sisuTekst>
+								<muutmismarge>
+									<avaldamismarge>
+										<RTosa>RT I</RTosa>
+										<avaldamineKuupaev>2026-06-03</avaldamineKuupaev>
+										<RTartikkel>1</RTartikkel>
+										<aktViide>103062026001</aktViide>
+									</avaldamismarge>
+									<joustumine>2026-06-12</joustumine>
 								</muutmismarge>
 							</loige>
 						</paragrahv>
@@ -23823,16 +23963,16 @@
 								<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
 								<sisuTekst>
 									<tavatekst>Tubakatoote ja tubakatootega seonduva toote teate muudatuse eest tasutakse riigilõivu 740 eurot.</tavatekst>
-										<muutmismarge>
-		<avaldamismarge>
-			<RTosa>RT I</RTosa>
-			<avaldamineKuupaev>2026-05-12</avaldamineKuupaev>
-			<RTartikkel>47</RTartikkel>
-			<aktViide>112052026047</aktViide>
-		</avaldamismarge>
-		<joustumine>2026-05-07</joustumine>
-		<tavatekst> - Riigikohtu põhiseaduslikkuse järelevalve kolleegiumi otsus tunnistab riigilõivuseaduse § 298⁴ lõiked 2 ja 3 põhiseadusvastaseks ja kehtetuks osas, milles need kehtestavad riigilõivude tasumise kohustuse sigarite tootjatele ja importijatele.</tavatekst>
-	</muutmismarge>
+									<muutmismarge>
+										<avaldamismarge>
+											<RTosa>RT I</RTosa>
+											<avaldamineKuupaev>2026-05-12</avaldamineKuupaev>
+											<RTartikkel>47</RTartikkel>
+											<aktViide>112052026047</aktViide>
+										</avaldamismarge>
+										<joustumine>2026-05-07</joustumine>
+										<tavatekst> - Riigikohtu põhiseaduslikkuse järelevalve kolleegiumi otsus tunnistab riigilõivuseaduse § 298⁴ lõiked 2 ja 3 põhiseadusvastaseks ja kehtetuks osas, milles need kehtestavad riigilõivude tasumise kohustuse sigarite tootjatele ja importijatele.</tavatekst>
+									</muutmismarge>
 								</sisuTekst>
 							</loige>
 							<loige id="para298b4lg3">
@@ -23840,16 +23980,16 @@
 								<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
 								<sisuTekst>
 									<tavatekst>Tubakatoote ja tubakatootega seonduva toote teate avaldamise ja hoidmise eest tasutakse aastas riigilõivu 100 eurot.</tavatekst>
-										<muutmismarge>
-		<avaldamismarge>
-			<RTosa>RT I</RTosa>
-			<avaldamineKuupaev>2026-05-12</avaldamineKuupaev>
-			<RTartikkel>47</RTartikkel>
-			<aktViide>112052026047</aktViide>
-		</avaldamismarge>
-		<joustumine>2026-05-07</joustumine>
-		<tavatekst> - Riigikohtu põhiseaduslikkuse järelevalve kolleegiumi otsus tunnistab riigilõivuseaduse § 298⁴ lõiked 2 ja 3 põhiseadusvastaseks ja kehtetuks osas, milles need kehtestavad riigilõivude tasumise kohustuse sigarite tootjatele ja importijatele.</tavatekst>
-	</muutmismarge>
+									<muutmismarge>
+										<avaldamismarge>
+											<RTosa>RT I</RTosa>
+											<avaldamineKuupaev>2026-05-12</avaldamineKuupaev>
+											<RTartikkel>47</RTartikkel>
+											<aktViide>112052026047</aktViide>
+										</avaldamismarge>
+										<joustumine>2026-05-07</joustumine>
+										<tavatekst> - Riigikohtu põhiseaduslikkuse järelevalve kolleegiumi otsus tunnistab riigilõivuseaduse § 298⁴ lõiked 2 ja 3 põhiseadusvastaseks ja kehtetuks osas, milles need kehtestavad riigilõivude tasumise kohustuse sigarite tootjatele ja importijatele.</tavatekst>
+									</muutmismarge>
 								</sisuTekst>
 								<muutmismarge>
 									<avaldamismarge>
@@ -24805,6 +24945,22 @@
 								<joustumine id="fe0b1009-a35a-4a8d-90c2-a83c02f21b9f">2015-07-01</joustumine>
 							</muutmismarge>
 						</loige>
+						<loige id="para331b1lg4">
+							<loigeNr>4</loigeNr>
+							<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>Hoonet teenindava abihoone ehitusloa taotluse läbivaatamise eest tasutakse riigilõivu käesoleva paragrahvi lõikes 1 või 2 sätestatud määras vastavalt sellele, kas abihoone teenindab elamut või mitteelamut.</tavatekst>
+							</sisuTekst>
+							<muutmismarge>
+								<avaldamismarge>
+									<RTosa>RT I</RTosa>
+									<avaldamineKuupaev>2026-07-11</avaldamineKuupaev>
+									<RTartikkel>3</RTartikkel>
+									<aktViide>111072026003</aktViide>
+								</avaldamismarge>
+								<joustumine>2026-08-01</joustumine>
+							</muutmismarge>
+						</loige>
 					</paragrahv>
 					<paragrahv id="para331b2">
 						<paragrahvNr id="cf9913fe-e33d-41a6-8823-cfb7a9f15844" ylaIndeks="2">331</paragrahvNr>
@@ -24814,16 +24970,16 @@
 							<loigeNr id="1a81f8a6-969a-4773-a9ce-c8f733381da9">1</loigeNr>
 							<kuvatavNr id="c901f013-49fa-4b5a-981a-da2d95531ffc"><![CDATA[(1)]]></kuvatavNr>
 							<sisuTekst id="b5dddc4f-3cb7-4d4b-9211-dd32324090bb">
-								<tavatekst id="52e03fa8-036e-4a89-950a-22675a8b3f67">Auditikohustusliku surveseadme või gaasipaigaldise, jaotusvõrgu elektrirajatise, side- ja telekommunikatsiooniehitise, kanalisatsiooniehitise, pinnaveehaarde, puurkaevu, puuraugu, spordi- või puhkerajatise, supelranda teenindava kaldaga püsivalt ühendamata spordi- või puhkerajatise ning erirajatise ehitusloa taotluse läbivaatamise eest tasutakse riigilõivu 30 eurot. Nimetatud rajatiste lammutamiseks vajaliku ehitusloa taotluse läbivaatamise eest tasutakse riigilõivu 30 eurot.</tavatekst>
+								<tavatekst id="52e03fa8-036e-4a89-950a-22675a8b3f67">Auditikohustusliku surveseadme või gaasipaigaldise, jaotusvõrgu elektrirajatise, side- ja telekommunikatsiooniehitise, kanalisatsiooniehitise, pinnaveehaarde, puurkaevu, spordi- või puhkerajatise, supelranda teenindava kaldaga püsivalt ühendamata spordi- või puhkerajatise ning erirajatise ehitusloa taotluse läbivaatamise eest tasutakse riigilõivu 30 eurot. Nimetatud rajatiste lammutamiseks vajaliku ehitusloa taotluse läbivaatamise eest tasutakse riigilõivu 30 eurot.</tavatekst>
 							</sisuTekst>
-							<muutmismarge id="71928883-a0b9-4259-bc45-7682ef11c21f">
-								<avaldamismarge id="74228614-c3fe-4351-9e2d-7ebbe94c5a2e">
-									<RTosa id="8f790c25-8751-42a9-937d-d276c95a5552">RT I</RTosa>
-									<avaldamineKuupaev id="a69e8300-e71b-4d72-b9b6-67c97c714fda">2020-10-30</avaldamineKuupaev>
-									<RTartikkel id="48b71f6f-5ed2-4a9f-b73b-0023300fbf23">1</RTartikkel>
-									<aktViide id="22aada85-02d2-4811-b7dc-9694419c84d4">130102020001</aktViide>
+							<muutmismarge>
+								<avaldamismarge>
+									<RTosa>RT I</RTosa>
+									<avaldamineKuupaev>2026-07-11</avaldamineKuupaev>
+									<RTartikkel>3</RTartikkel>
+									<aktViide>111072026003</aktViide>
 								</avaldamismarge>
-								<joustumine id="cbcf345c-0b5e-4f3d-b24a-63ed899de10d">2020-10-31</joustumine>
+								<joustumine>2026-08-01</joustumine>
 							</muutmismarge>
 						</loige>
 						<loige id="para331b2lg2">
@@ -24891,6 +25047,22 @@
 									<aktViide id="a355aa39-b0f0-4e9f-875a-148701318447">123032015003</aktViide>
 								</avaldamismarge>
 								<joustumine id="adb723d9-694e-46bf-857e-2b65978eb94b">2015-07-01</joustumine>
+							</muutmismarge>
+						</loige>
+						<loige id="para331b3lg4">
+							<loigeNr>4</loigeNr>
+							<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+							<sisuTekst>
+								<tavatekst>Hoonet teenindava abihoone kasutusloa taotluse läbivaatamise eest tasutakse riigilõivu käesoleva paragrahvi lõikes 1 või 2 sätestatud määras vastavalt sellele, kas abihoone teenindab elamut või mitteelamut.</tavatekst>
+							</sisuTekst>
+							<muutmismarge>
+								<avaldamismarge>
+									<RTosa>RT I</RTosa>
+									<avaldamineKuupaev>2026-07-11</avaldamineKuupaev>
+									<RTartikkel>3</RTartikkel>
+									<aktViide>111072026003</aktViide>
+								</avaldamismarge>
+								<joustumine>2026-08-01</joustumine>
 							</muutmismarge>
 						</loige>
 					</paragrahv>
@@ -24963,22 +25135,16 @@
 						<paragrahvNr id="0c238df2-5f50-4b8d-98a7-12fc3adbea47" ylaIndeks="6">331</paragrahvNr>
 						<kuvatavNr id="c918d608-6eae-4810-9421-28a59eb8507f"><![CDATA[§ 331<sup>6</sup>. ]]></kuvatavNr>
 						<paragrahvPealkiri id="24b4bf70-0c03-4a85-b608-deaf394105fe">Enne ehitusseadustiku jõustumist ebaseaduslikult ehitatud ehitise ehitisregistrisse kandmine</paragrahvPealkiri>
-						<loige id="para331b6lg1">
-							<loigeNr id="c5977c77-f070-4639-a674-c806271e49b1"/>
-							<kuvatavNr id="3841efc9-2d66-497a-83e2-5a4890f5037c"/>
-							<sisuTekst id="06e227b4-0f3d-4475-8407-a38a381b4362">
-								<tavatekst id="b703f864-9344-4a24-9455-0bf16a389ab6">Enne ehitusseadustiku jõustumist ebaseaduslikult ehitatud ehitise ehitisregistrisse kandmise eest tasutakse riigilõivu 500 eurot. Ehitisregistrisse kandmisel ei ole vajalik täiendavalt tasuda riigilõivu ehitus- või kasutusloa eest.</tavatekst>
-							</sisuTekst>
-							<muutmismarge id="7dda02b3-ffec-4b6f-a970-1c4ae7ef7b8f">
-								<avaldamismarge id="69879e70-7964-4a9e-8b23-b03db780530b">
-									<RTosa id="a6144837-5503-4616-bf6a-dd257c90e5dc">RT I</RTosa>
-									<avaldamineKuupaev id="987fdf26-18ca-47d4-ae28-5a3e2d7dae53">2015-03-23</avaldamineKuupaev>
-									<RTartikkel id="bdb4a315-278e-4a63-83d9-68bedef3ede4">3</RTartikkel>
-									<aktViide id="966aba0d-7ead-44d7-93e6-c591b86c3d83">123032015003</aktViide>
+							<muutmismarge>
+								<tavatekst>Kehtetu - </tavatekst>
+								<avaldamismarge>
+									<RTosa>RT I</RTosa>
+									<avaldamineKuupaev>2026-07-11</avaldamineKuupaev>
+									<RTartikkel>3</RTartikkel>
+									<aktViide>111072026003</aktViide>
 								</avaldamismarge>
-								<joustumine id="c8fdc4b5-1387-45e0-beef-e70e7d1de1ff">2015-07-01</joustumine>
+								<joustumine>2026-08-01</joustumine>
 							</muutmismarge>
-						</loige>
 					</paragrahv>
 					<paragrahv id="para331b7">
 						<paragrahvNr id="fe93328f-6a24-4e21-9096-1064bcf938f1" ylaIndeks="7">331</paragrahvNr>

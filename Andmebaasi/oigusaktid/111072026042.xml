@@ -19,23 +19,18 @@
 			<joustumine>2016-01-01</joustumine>
 			<tavatekst>, osaliselt 01.01.2020</tavatekst>
 		</vastuvoetud>
-		<avaldamismarge>
-			<RTosa>RT I</RTosa>
-			<avaldamineKuupaev>2024-12-31+02:00</avaldamineKuupaev>
-			<RTaasta>2024</RTaasta>
-			<RTartikkel>23</RTartikkel>
-			<aktViide>131122024023</aktViide>
-		</avaldamismarge>
-		<kehtivus>
-			<kehtivuseAlgus>2025-01-10</kehtivuseAlgus>
-		<kehtivuseLopp>2026-09-30+03:00</kehtivuseLopp></kehtivus>
+		
+		<avaldamismarge><RTosa>RT I</RTosa><avaldamineKuupaev>2026-07-11</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>42</RTartikkel><aktViide>111072026042</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2026-10-01</kehtivuseAlgus>
+			<kehtivuseLopp>2026-12-31</kehtivuseLopp>
+		</kehtivus>
 		<versioon>
 			<dokumentVersioon>1</dokumentVersioon>
 			<dokumentVersioonKuupaev>2014-11-28</dokumentVersioonKuupaev>
 		</versioon>
 		<skeemiNimi>tyviseadus_1_10.02.2010.xsd</skeemiNimi>
-		<globaalID>131122024023</globaalID>
-		<metaandmedVersioon>41</metaandmedVersioon>
+		<globaalID>111072026042</globaalID>
+		<metaandmedVersioon>43</metaandmedVersioon>
 		<metaandmedVersioonKuupaev>2026-07-10</metaandmedVersioonKuupaev>
 		<metaandmedVersioonPohjustaja>Maret Mauer</metaandmedVersioonPohjustaja>
 		<terviktekstiGrupiID>1026887</terviktekstiGrupiID>
@@ -138,7 +133,7 @@
 		</avaldamismarge>
 		<joustumine>2023-04-01</joustumine>
 	</muutmismarge>
-		<muutmismarge>
+	<muutmismarge>
 		<aktikuupaev>2024-12-11</aktikuupaev>
 		<avaldamismarge>
 			<RTosa>RT I</RTosa>
@@ -159,6 +154,16 @@
 		</avaldamismarge>
 		<joustumine>2025-01-01</joustumine>
 		<tavatekst>, osaliselt 10.01.2025</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2026-06-02</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2026-06-30</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>130062026001</aktViide>
+		</avaldamismarge>
+		<joustumine>2026-10-01</joustumine>
 	</muutmismarge>
 	<sisu>
 		<peatykk id="ptk1">
@@ -447,7 +452,7 @@
 						<viide>
 							<kuvatavTekst><![CDATA[Vabariigi Valitsus]]></kuvatavTekst>
 							<viideURID>
-								<viideURI><![CDATA[./dyn=131122024023&id=109112022019]]></viideURI>
+								<viideURI><![CDATA[./dyn=111072026042&id=109112022019]]></viideURI>
 							</viideURID>
 						</viide>
 						<tavatekst> määrusega.</tavatekst>
@@ -769,7 +774,7 @@
 						<viide>
 							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
 							<viideURID>
-								<viideURI><![CDATA[./dyn=131122024023&id=128122024019]]></viideURI>
+								<viideURI><![CDATA[./dyn=111072026042&id=128122024019]]></viideURI>
 							</viideURID>
 						</viide>
 						<tavatekst> määrusega.</tavatekst>
@@ -1035,6 +1040,39 @@
 						</avaldamismarge>
 						<joustumine>2022-10-01</joustumine>
 						<tavatekst>; lapsega töötava isiku käesoleva seaduse nõuetele vastavuse regulaarse kontrollimise tähtaja kulgemist arvestatakse alates 2023. aasta 1. jaanuarist.</tavatekst>
+					</muutmismarge>
+				</loige>
+				
+				<loige id="para20lg3b1">
+					<loigeNr ylaIndeks="1">3</loigeNr>
+					<kuvatavNr><![CDATA[(3<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui lapsega töötamist võimaldav isik või vastava tegevusloa väljastaja ei saa käesoleva paragrahvi lõigetes 1–2 sätestatud piirangutest kinnipidamist enne isiku töölevõtmist või tegevusloa väljastamist kriisiolukorra tõttu kontrollida ning kui isiku töölevõtmisega või tegevusloa väljastamisega viivitamine takistaks otseselt kriisiolukorra lahendamist või inimeste elu ja tervise kaitsmist vahetu ohu korral, võib isiku tööle võtta või tegevusloa väljastada, kui isik on andnud kirjalikku taasesitamist võimaldavas vormis kinnituse selle kohta, et tal puuduvad lõigetes 1–2 nimetatud piirangud lastega töötamiseks. Sellisel juhul on lapsega töötamist võimaldav isik või vastava tegevusloa väljastaja kohustatud kontrollima käesoleva paragrahvi lõigetes 1–2 sätestatud piirangutest kinnipidamist viivitamata pärast seda takistanud asjaolude äralangemist või vahetu ohu tõrjumist.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2026-06-30</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>130062026001</aktViide>
+						</avaldamismarge>
+						<joustumine>2026-10-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para20lg3b2">
+					<loigeNr ylaIndeks="2">3</loigeNr>
+					<kuvatavNr><![CDATA[(3<sup>2</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kriisiolukord käesoleva seaduse tähenduses on kriisiolukord kriisiolukorra ja riigikaitse seaduse tähenduses.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2026-06-30</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>130062026001</aktViide>
+						</avaldamismarge>
+						<joustumine>2026-10-01</joustumine>
 					</muutmismarge>
 				</loige>
 				<loige id="para20lg4">
@@ -1583,6 +1621,22 @@
 						<tavatekst>Lastekaitsetöötaja või lapsega töötav isik peab lapse abivajaduse hindamisse kaasama lapse ja last kasvatava isiku või lasteasutuse, kus laps viibib.</tavatekst>
 					</sisuTekst>
 				</loige>
+				<loige id="para28lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sellise kriisiolukorra ajal, mis mõjutab oluliselt lastekaitsetööd kohaliku omavalitsuse üksuses, hindab lastekaitsetöötaja lapse abivajadust käesoleva paragrahvi alusel, lähtudes nendest meetmetest, mida on kriisiolukorraga kaasnevaid asjaolusid arvestades võimalik lapse abistamiseks kohaldada.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2026-06-30</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>130062026001</aktViide>
+						</avaldamismarge>
+						<joustumine>2026-10-01</joustumine>
+					</muutmismarge>
+				</loige>
 			</paragrahv>
 			<paragrahv id="para29">
 				<paragrahvNr>29</paragrahvNr>
@@ -1722,7 +1776,7 @@
 						<viide>
 							<kuvatavTekst><![CDATA[käesoleva paragrahvi lõike 5 alusel]]></kuvatavTekst>
 							<viideURID>
-								<viideURI><![CDATA[./dyn=131122024023&id=128062022029]]></viideURI>
+								<viideURI><![CDATA[./dyn=111072026042&id=128062022029]]></viideURI>
 							</viideURID>
 						</viide>
 						<tavatekst> kehtestatud määruses.</tavatekst>
@@ -1736,7 +1790,7 @@
 						<viide>
 							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
 							<viideURID>
-								<viideURI><![CDATA[./dyn=131122024023&id=128062022029]]></viideURI>
+								<viideURI><![CDATA[./dyn=111072026042&id=128062022029]]></viideURI>
 							</viideURID>
 						</viide>
 						<tavatekst> määrusega.</tavatekst>
@@ -1985,7 +2039,7 @@
 						<viide>
 							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
 							<viideURID>
-								<viideURI><![CDATA[./dyn=131122024023&id=116022023001]]></viideURI>
+								<viideURI><![CDATA[./dyn=111072026042&id=116022023001]]></viideURI>
 							</viideURID>
 						</viide>
 						<tavatekst> määrusega.</tavatekst>

@@ -1,0 +1,783 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="8a91ffda-ada9-4a15-b5dc-20433a2e2b95" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Põlva Vallavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>algtekst-terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2026-05-21</aktikuupaev>
+			<aktiNr>8</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2026-05-26+03:00</avaldamineKuupaev>
+			<RTaasta>2026</RTaasta>
+			<RTartikkel>9</RTartikkel>
+			<aktViide>426052026009</aktViide>
+		</avaldamismarge>
+		<kehtivus>
+			<kehtivuseAlgus>2026-05-29+03:00</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2026-05-22</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>426052026009</globaalID>
+		<metaandmedVersioon>7</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2026-07-30</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Marike Võime</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1063564</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2026-05-22</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Liia Sulg</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="eb30779a-f1a9-4e5e-9db5-03e758b4c091">
+		<nimi id="d11bec38-4803-4c57-afd2-950fab44b72d">
+			<pealkiri id="f7580244-f8c5-4f90-9d5d-418f07f061f1">Sotsiaaltoetuste määramise ja maksmise kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<sisu id="bf29f66f-f45f-42e1-8964-269b397e7525">
+		<preambul id="d4478777-a48e-4747-8aa4-86885cb804e2">
+			<tavatekst id="cbe2d99d-594a-4a6d-87fe-dd75ec671407">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkt 5 ja sotsiaalhoolekande seaduse § 14 alusel.</tavatekst>
+		</preambul>
+		<peatykk id="69d45e64-ef96-4ca4-96a0-acd9e009002e">
+			<peatykkNr id="52b62b1d-4d80-4661-b131-ea114cb8f89b">1</peatykkNr>
+			<kuvatavNr id="68894216-e058-4955-bb45-ce9212262d2c"><![CDATA[1. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="ad1953f4-4d80-4c87-8a15-8f5e456eea18">Üldsätted</peatykkPealkiri>
+			<paragrahv id="para1">
+				<paragrahvNr id="0a3f4b71-e09f-40df-9389-495986280961">1</paragrahvNr>
+				<kuvatavNr id="af6d58ab-7f7c-4a6c-af9d-2abe3ff79a33"><![CDATA[§ 1. ]]></kuvatavNr>
+				<paragrahvPealkiri id="1efc1585-64e4-4b7c-9e2a-ff607d1633a8">Reguleerimisala</paragrahvPealkiri>
+				<loige id="para1lg1">
+					<loigeNr id="43a7b917-9fe6-4a05-9e20-f24c918837c5">1</loigeNr>
+					<kuvatavNr id="dc746a14-718e-412d-941a-df29ea9708f9"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="35829b0c-07d2-44e9-ba0d-95a5122ece0d">
+						<tavatekst id="52500756-6018-41f5-b7a5-33dcc1cc2b3d">Määrusega kehtestatakse Põlva valla elanikele valla eelarve vahenditest makstavate sotsiaaltoetuste (edaspidi <i>toetus</i>) liigid ning toetuse taotlemise, määramise ja maksmise tingimused ja kord.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para1lg2">
+					<loigeNr id="5bc23884-8ebc-493d-88d4-680367150c3e">2</loigeNr>
+					<kuvatavNr id="9482f8cd-7c1c-4205-b18f-d32a7d413c20"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="b03a7372-0920-48a2-b605-4f15aca7ca80">
+						<tavatekst id="ac4699d8-c632-4df0-9ff8-a399f621c809">Määruses ettenähtud haldusmenetlusele kohaldatakse haldusmenetluse seadust, arvestades sotsiaalseadustiku üldosa seaduses sätestatud erisusi.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para1lg3">
+					<loigeNr id="dc02b547-b8d7-4b9c-b385-5f967e34e331">3</loigeNr>
+					<kuvatavNr id="2fec4588-99b6-4e69-aee5-9dafde6a5e0e"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="330c9ce9-59aa-4ac4-b211-478b6ab5df95">
+						<tavatekst id="40a1c9ac-0059-46cb-94c8-1c3ff1a47ed3">Toimetulekupiir käesoleva korra tähenduses on Riigikogu poolt riigieelarvega kehtestatud toimetulekupiir, mille suurus sõltub perekonna liikmete arvust ning sellest, kas tegemist on täisealiste või alaealiste liikmetega.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para2">
+				<paragrahvNr id="217af8ac-280f-47f8-bde8-68f069da47be">2</paragrahvNr>
+				<kuvatavNr id="e44342b3-768d-4dee-8efd-442e59770c84"><![CDATA[§ 2. ]]></kuvatavNr>
+				<paragrahvPealkiri id="dfebcd12-ca2f-4dff-b4d7-77cacf7adac7">Toetuste eesmärk</paragrahvPealkiri>
+				<loige id="para2lg1">
+					<loigeNr id="f5d53815-32d3-4ac0-960a-3a331746c15c"/>
+					<kuvatavNr id="d9be290a-e4af-4a73-b0a2-7fd8f537f9f4"/>
+					<sisuTekst id="d69a7490-2ef7-4c6f-98ac-fbfef8a0382b">
+						<tavatekst id="099b6c92-a011-4847-a586-2e6f0ea7441c">Toetust makstakse valla elanikele toimetulekuraskuste ennetamiseks, kõrvaldamiseks või kergendamiseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para3">
+				<paragrahvNr id="3f316fef-5b36-45c4-8d8d-2142953880b5">3</paragrahvNr>
+				<kuvatavNr id="bed0eb51-8bc5-45f7-aef5-9b6c73d13a40"><![CDATA[§ 3. ]]></kuvatavNr>
+				<paragrahvPealkiri id="3f00d01a-8d5d-4ce7-8bd1-f724ccda7ce7">Õigustatud isikud</paragrahvPealkiri>
+				<loige id="para3lg1">
+					<loigeNr id="169cf8bc-8964-49a3-a86f-94ba7b779dae">1</loigeNr>
+					<kuvatavNr id="56f4a4df-617f-4076-af20-ec0deaae7da6"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="a6170412-ab2e-4d04-b9dc-1081508be4d6">
+						<tavatekst id="9701e4dd-2d2c-4898-88e2-6187732cbdbb">Toetus määratakse isikule, kelle tegelik ja rahvastikuregistrijärgne elukoht on Põlva vald, samuti sotsiaalhoolekande seaduse § 5 lõigetes 2–5 nimetatud juhtudel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para3lg2">
+					<loigeNr id="ea13a30d-5ef3-44bf-9ea2-85cc98a46720">2</loigeNr>
+					<kuvatavNr id="84564ec7-165b-4271-ad11-dcdbd8097a3d"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="dbc0062c-e64f-460b-9d1f-1405f99eafab">
+						<tavatekst id="c2222127-0871-4e55-8205-25231bd62b61">Toetus määratakse taotlejale, kelle taotlemisele eelnenud kalendrikuu netosissetulek perekonnaliikme kohta on alla riiklikult kehtestatud toimetulekupiiri 2,5-kordset määra.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para3lg3">
+					<loigeNr id="90c8bd68-96f7-449d-8b1d-8f27ddeb5674">3</loigeNr>
+					<kuvatavNr id="7f2897cc-a118-44db-9eea-272acf62b953"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="09a29245-4d74-464c-841e-db5d6a0d1277">
+						<tavatekst id="15868cab-3964-4af7-b806-09f783b51c8e">Erandkorras võib ühekordse toetuse määrata isikule või perele, kelle taotlemisele eelnenud kalendrikuu netosissetulek perekonnaliikme kohta on üle riiklikult kehtestatud toimetulekupiiri 2,5-kordse määra.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para4">
+				<paragrahvNr id="6941d5ae-4f1e-4e83-aef2-112789e4db08">4</paragrahvNr>
+				<kuvatavNr id="3c04e1cb-fb1c-4d46-9101-b9de7f3c9d25"><![CDATA[§ 4. ]]></kuvatavNr>
+				<paragrahvPealkiri id="e6d4ab2a-a003-495b-acd3-b90f31b2894f">Toetuse taotlemise tähtaeg</paragrahvPealkiri>
+				<loige id="para4lg1">
+					<loigeNr id="71a87206-bd08-4eba-994a-17f1dcbfe592"/>
+					<kuvatavNr id="886308c3-9bf5-4445-ab36-9c0e0815808e"/>
+					<sisuTekst id="a8a92164-70f4-4d51-b4a8-ea2c015825b7">
+						<tavatekst id="28be185b-66f1-4bbe-879e-2ac5b77f6f28">Toetust on õigustaotleda kolme kuu jooksul pärast nende kulutuste tegemist, milleks toetust taotletakse või pärast sündmust, mille korral toetust makstakse.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="a827661e-e99e-4fd8-be04-e72b1d6ba8b4">
+			<peatykkNr id="099fac97-8803-4efe-b53f-c4fa5abaf0a6">2</peatykkNr>
+			<kuvatavNr id="9c170c70-00ac-4ae3-b89b-2b93b5389f97"><![CDATA[2. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="e8231d28-2130-465d-a86b-d7b6deac6ded">Toetuse liigid ja kirjeldus</peatykkPealkiri>
+			<paragrahv id="para5">
+				<paragrahvNr id="ec6c5e4b-c58f-450a-b16c-27df36ed9403">5</paragrahvNr>
+				<kuvatavNr id="44df6a09-1aca-42a1-b246-25bbba287e78"><![CDATA[§ 5. ]]></kuvatavNr>
+				<paragrahvPealkiri id="7af20f17-e707-47c4-bdc6-3a60743f11ec">Toetuse liigid</paragrahvPealkiri>
+				<loige id="para5lg1">
+					<loigeNr id="766cb0e1-12d2-4dac-a131-b92ad07ef2d9"/>
+					<kuvatavNr id="af86a8fb-479a-4f1b-a04e-4a4d7a3b46d3"/>
+					<sisuTekst id="2b4b0fba-6e78-45b2-b967-71a4010d8272">
+						<tavatekst id="6d1147d6-1f2f-475f-a378-dad1b1dc266e">Toetused on:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para5lg1p1">
+						<alampunktNr id="6c45ddf9-4707-4eb1-b429-f53a49196668">1</alampunktNr>
+						<kuvatavNr id="c6f60f54-83b3-4046-a021-12b8c8910d90"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="f5643d9f-3234-41bc-8d78-4481128cae03">
+							<tavatekst id="9bb65010-11d3-4203-a333-dddea3bdbf95">koolitoetus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg1p2">
+						<alampunktNr id="8fb95b8b-9537-47eb-b20d-d6956ed2d1b0">2</alampunktNr>
+						<kuvatavNr id="564faf53-600b-4c82-81ea-cfe3da9a9e24"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="e7e57ac0-3a87-4834-a3a6-b3696a7eb249">
+							<tavatekst id="d0c4d85f-b7dd-49a2-a17d-6a4df3d83d39">huvialase tegevuse toetus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg1p3">
+						<alampunktNr id="44d9ed9b-dc14-46a6-a665-16ec847942b6">3</alampunktNr>
+						<kuvatavNr id="fa9a50de-4407-421f-8122-8abd79da8569"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="31bc34ac-6536-4ea1-8997-b784dc2ca3c2">
+							<tavatekst id="be9986c3-9be0-4c5f-a58b-aea37bfbeaa0">lasteaia toidukulutoetus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg1p4">
+						<alampunktNr id="592096ed-0f7c-4ac3-b279-69767dd54504">4</alampunktNr>
+						<kuvatavNr id="9aaaf9b2-f076-419a-a668-ac36bb1347ad"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="7d7fa201-4b97-4769-ad51-11069a886fbf">
+							<tavatekst id="87cf3974-78e5-4f7f-911e-3526c5342d85">ravi- ja invaabivahendite toetus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg1p5">
+						<alampunktNr id="00f38ff9-eb59-4601-a971-53a36928a8c6">5</alampunktNr>
+						<kuvatavNr id="165e6ffa-135f-41eb-a749-387dcd26730a"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="f768d6e8-c543-4cf1-929e-0ab642476044">
+							<tavatekst id="7dff58d0-d3b4-4623-8838-0e04027c0e91">küttetoetus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg1p6">
+						<alampunktNr id="8ece193f-198e-4f2c-9d7e-b5870d2d2484">6</alampunktNr>
+						<kuvatavNr id="0035f1c8-4ab6-4afc-be74-abc1bb74a879"><![CDATA[6) ]]></kuvatavNr>
+						<sisuTekst id="dda73dec-bee3-4a58-8cd9-8c054e385879">
+							<tavatekst id="18248e28-1b62-40de-b482-66009567edf5">ühekordne toetus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg1p7">
+						<alampunktNr id="acdead41-8c46-40b8-96ba-87a94036ed0d">7</alampunktNr>
+						<kuvatavNr id="2d6ef2dc-3951-4c80-aa1c-3f41ffe5b098"><![CDATA[7) ]]></kuvatavNr>
+						<sisuTekst id="ca347889-640f-4100-a81a-f6c21fc06724">
+							<tavatekst id="4fa0d122-78db-478a-9d38-71c22cf26e54">vältimatu abi toetus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg1p8">
+						<alampunktNr id="8f99b265-6b3f-4db1-84a6-c88b686ddde3">8</alampunktNr>
+						<kuvatavNr id="d39bf983-92b2-4dcf-8a59-e7e33084ce7e"><![CDATA[8) ]]></kuvatavNr>
+						<sisuTekst id="6de0dbe5-a4f6-4c52-ab01-f8302aba222d">
+							<tavatekst id="090aa28a-9309-416c-9401-64bed13c2b35">vanaduspensionäri ja osalise töövõimega inimese jõulutoetus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg1p9">
+						<alampunktNr id="dbddc9fe-f72c-4a06-9578-2651e53337b4">9</alampunktNr>
+						<kuvatavNr id="91880eba-e56c-408b-8cfc-b51381254733"><![CDATA[9) ]]></kuvatavNr>
+						<sisuTekst id="b3247c84-4f8a-4ebd-9f62-6bd8cf069cb3">
+							<tavatekst id="5b419cb2-8c73-483b-8b6a-ae87dfaf9ada">toimetulekutoetus.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para6">
+				<paragrahvNr id="9ea598e6-109f-48e4-9749-8d9bf0994059">6</paragrahvNr>
+				<kuvatavNr id="457b6a65-8e0a-49d2-8c35-cbdc0f5a589d"><![CDATA[§ 6. ]]></kuvatavNr>
+				<paragrahvPealkiri id="8f71c085-707e-49a7-a338-c515ab69fef0">Koolitoetus</paragrahvPealkiri>
+				<loige id="para6lg1">
+					<loigeNr id="49676aa1-c815-45ce-b4bc-a41a5ce412c3"/>
+					<kuvatavNr id="b994f480-3aab-46d4-9fa9-c81d81e5071b"/>
+					<sisuTekst id="e74541ad-03a0-427b-81a7-3d3dbda5405d">
+						<tavatekst id="2f49ce59-b74b-40a5-9481-a0fe6ab6ecb4">Toetus määratakse õpilase koolitarvete, riiete, jalanõude ja muude vajalike kulude hüvitamiseks valitsuse poolt kehtestatud määras.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para7">
+				<paragrahvNr id="7e2130d3-0e22-4a01-8cb5-21c9013258bd">7</paragrahvNr>
+				<kuvatavNr id="3995edd5-e51a-4516-ae89-d87cb5bfab80"><![CDATA[§ 7. ]]></kuvatavNr>
+				<paragrahvPealkiri id="7c60a87c-44d4-4589-8317-850370e8c29c">Huvialase tegevuse toetus</paragrahvPealkiri>
+				<loige id="para7lg1">
+					<loigeNr id="c22de88b-e69a-43c1-ad14-a55e2b926c5c"/>
+					<kuvatavNr id="15c2860b-b694-4af6-b504-83adf74e8b8d"/>
+					<sisuTekst id="a2709da7-7186-4ec2-a24c-7778c007e893">
+						<tavatekst id="d374306c-e566-49b1-bad5-f56e51c0fd13">Toetus määratakse huvikooli või huvitegevuse (sh laste- ja noortelaagri) kulude osaliseks või täielikuks hüvitamiseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para8">
+				<paragrahvNr id="95a7ff35-d000-4b7d-bc42-21fbe6420500">8</paragrahvNr>
+				<kuvatavNr id="660cf514-1ba6-4bc8-8745-4ecd002c1e55"><![CDATA[§ 8. ]]></kuvatavNr>
+				<paragrahvPealkiri id="c158e5c8-a997-4df4-8bfd-abd82fb7f66b">Lasteaia toidukulutoetus</paragrahvPealkiri>
+				<loige id="para8lg1">
+					<loigeNr id="c46a0b93-36d8-4bd1-97c6-29f55c92eda4">1</loigeNr>
+					<kuvatavNr id="24e7188e-4b2d-4375-910e-5863e8856a86"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="86ba5000-de9c-4a7d-8230-a0134a96aaa1">
+						<tavatekst id="672d1fd2-d9c5-44b6-8905-0bb8653f8caa">Toetus määratakse Põlva valla haldusterritooriumil asuva munitsipaallasteaia toidukulu päevamaksumuse täielikuks või osaliseks hüvitamiseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para8lg2">
+					<loigeNr id="4cd3286b-ad7b-4e01-a5e0-95942722572e">2</loigeNr>
+					<kuvatavNr id="13ba00aa-5bc2-4bc9-a8bb-6e701596bdf5"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="7ce9db6b-06d4-4e6e-94a1-04a64121832f">
+						<tavatekst id="c6825c08-88e8-4b04-b842-782c109a1fb9">Toetus määratakse kuni kaks korda aastas perioodiks 1. september kuni 31. jaanuar ja 1. veebruar kuni 31. august. Taotlus esitatakse vastavalt 15. septembriks või 15. jaanuariks.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para9">
+				<paragrahvNr id="b091c6f8-6c93-4b53-a1f6-95c98b37c224">9</paragrahvNr>
+				<kuvatavNr id="cb8e7473-44b6-4416-bb2f-152a42d03897"><![CDATA[§ 9. ]]></kuvatavNr>
+				<paragrahvPealkiri id="10017c18-3d70-4695-98b7-1618dec622b6">Ravi- ja invaabivahendite toetus</paragrahvPealkiri>
+				<loige id="para9lg1">
+					<loigeNr id="fd48a5b4-b84d-4345-9932-531f153033d7">1</loigeNr>
+					<kuvatavNr id="1c170877-5045-4da0-839f-5463e53c6793"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="3742705c-5c58-4d88-8267-f4ec034bfa72">
+						<tavatekst id="f7810165-d1fe-4ba9-8db6-8e68bf315f68">Toetus määratakse isikule retseptiravimite ostmise kulude osaliseks hüvitamiseks kuludokumentide alusel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para9lg2">
+					<loigeNr id="b3fe992b-4ad4-435b-9ac2-d6f0b08a37ad">2</loigeNr>
+					<kuvatavNr id="3a03b084-0554-407a-b5e6-f931e0fd9946"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="4c68231d-6841-4cf0-bb2c-75374d45fa1f">
+						<tavatekst id="37737c24-27c6-41d8-8af9-fddac89ad364">Toetus prillide soetamiseks määratakse prilliklaaside maksumuse osaliseks hüvitamiseks kuni 24-aastasele tasemeõppes õppivale noorele kuludokumendi alusel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para9lg3">
+					<loigeNr id="7ad377d0-8563-4370-ada4-5f46697ec465">3</loigeNr>
+					<kuvatavNr id="c06bd9c8-5e64-4949-8480-c6f49090de57"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="b3c4b1fe-9398-4717-b081-7183ea46962b">
+						<tavatekst id="84beca86-d3fa-4de9-8049-cd7caef9c7a5">Toetus invatehniliste abivahendite ostmiseks või rentimiseks määratakse haiguse või puude tõttu abivahendit vajavale isikule omaosaluse kulude osaliseks hüvitamiseks kulu tõendava dokumendi alusel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para9lg4">
+					<loigeNr id="2479da79-0818-45d5-8261-29db46a0c9b6">4</loigeNr>
+					<kuvatavNr id="8b89e06b-da3e-4028-9f0f-d6cd72d6e150"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="396217e9-12a1-401c-80e0-c34510875c5a">
+						<tavatekst id="6df0f82e-0d5c-4cde-944a-9ea5235f5351">Isikule, kes viibib üldhooldusteenusel ning kelle üldhooldusteenuse kohamaksumuse puudujääva osa tasub omavalitsus, võib vajaduse korral määrata toetuse ravimite ja invatehniliste abivahendite soetamiseks kuludokumendi alusel, arvestamata sissetuleku piiri. Põhjendatud juhtudel hüvitatakse kulud täies ulatuses.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para9lg5">
+					<loigeNr id="1b94e871-4383-41ba-9fe0-66328c8b23d9">5</loigeNr>
+					<kuvatavNr id="b23cf0e3-3f3f-4c47-829e-f7c8785f6922"><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst id="2233318c-62aa-4f51-a875-05b3e1bd1111">
+						<tavatekst id="0e0b8adf-b66c-4c17-87c7-1d221f6338c7">Ravikindlustuseta isikute ravikulud kompenseeritakse tingimusel, et enne raviasutusse pöördumist on Põlva Vallavalitsus väljastanud ravikindlustuseta isikule garantiikirja kulude kompenseerimise kohta.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para10">
+				<paragrahvNr id="2a1dd175-fbb9-4cb7-938d-2c33fffbec60">10</paragrahvNr>
+				<kuvatavNr id="7b73d109-758d-4561-b7fd-0c66050584fa"><![CDATA[§ 10. ]]></kuvatavNr>
+				<paragrahvPealkiri id="92546d3f-a9cc-4eb6-9b38-bb7c482fa5ac">Küttetoetus</paragrahvPealkiri>
+				<loige id="para10lg1">
+					<loigeNr id="af9ad036-27d8-4319-ae64-8f2fb5ad0c41">1</loigeNr>
+					<kuvatavNr id="57324d15-7416-4046-8353-9fa9b3aa89ed"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="840b0a97-e7fb-48a7-b6f2-378ae0321da8">
+						<tavatekst id="01858c6d-e91e-4ca8-a0d7-c0b5c85f9d5b">Küttetoetus on üks kord aastas makstav toetus, mida makstakse küttematerjali (puit, brikett jm) ostmiseks autonoomse küttesüsteemiga eluruumi kasutajale eluruumi küttekulude kompenseerimiseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para10lg2">
+					<loigeNr id="60770097-de9c-42f2-a85b-65b24831005d">2</loigeNr>
+					<kuvatavNr id="4723cc63-e2d7-493d-95c3-f043b8d748c3"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="88743570-e3d2-49d4-adf5-b5deee900989">
+						<tavatekst id="323f4f7d-0fda-42bb-aeb1-7a7301a8996e">Toetus määratakse üksi elavale vanadus- või töövõimetuspensionärile või töövõimetoetuse saajale.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para10lg3">
+					<loigeNr id="dd6fcca1-dcab-4b45-990a-6277e6cced15">3</loigeNr>
+					<kuvatavNr id="e3f31656-08fc-426f-8d9c-81f5cef619b7"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="df456cba-cdd9-4541-88d4-76881f8ba432">
+						<tavatekst id="2f511652-735b-442b-8998-8795a75eecdf">Erandkorras võib sotsiaalabikomisjoni ettepanekul toetuse määrata toimetulekuraskustes isikule või perekonnale.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para10lg4">
+					<loigeNr id="8081b87e-a68c-497c-ae55-9e0ad1e3e4eb">4</loigeNr>
+					<kuvatavNr id="777ba1f2-ec34-4cba-838f-f2996eec4c72"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="d1637890-2fbb-401b-bae1-711038eb2b4c">
+						<tavatekst id="3ee625fa-1cdb-474d-9777-92742c9d125b">Küttetoetuse määra kehtestab valitsus.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para10lg5">
+					<loigeNr id="0ad93d62-9183-4093-ad3b-417eb9cde314">5</loigeNr>
+					<kuvatavNr id="69f566ad-31a5-4dc7-8227-fafd1d453c00"><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst id="18d71944-2272-4993-99bc-4840037aba5c">
+						<tavatekst id="85fe3829-780d-4f47-b4cc-39a25fcadd93">Korduva abivajaduse ilmnemisel hinnatakse taotleja toimetulekut ning vajaduse korral kaalutakse muud liiki toetuse määramist.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para11">
+				<paragrahvNr id="5fc82b9b-10e2-498b-aba9-63b9fae7bef8">11</paragrahvNr>
+				<kuvatavNr id="5ca49f98-6dd9-4b68-9e91-a1283de155a3"><![CDATA[§ 11. ]]></kuvatavNr>
+				<paragrahvPealkiri id="e6a12453-0606-4501-ba3b-59bc101daf3d">Ühekordne toetus</paragrahvPealkiri>
+				<loige id="para11lg1">
+					<loigeNr id="b4333abc-bb0a-47c5-842d-a6a0d8ff4e52"/>
+					<kuvatavNr id="c4efbfec-1f17-438a-b51c-d2121abaf869"/>
+					<sisuTekst id="d6231853-b602-4481-b32e-69eb2ecdb306">
+						<tavatekst id="9fcdacaf-e617-4337-aaac-3fde3b7d8dd4">Toetus määratakse käesolevas määruses määratlemata juhtudel muude ettenägemata vajalike kulutuste osaliseks või täielikuks katmiseks või raskesse majanduslikku seisu sattunud isiku või pere sotsiaalselt abitust olukorrast välja aitamiseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para12">
+				<paragrahvNr id="ac23e16f-fc32-41fb-b19e-1a6bad308010">12</paragrahvNr>
+				<kuvatavNr id="07a248b4-3ee2-4367-b169-e00c7b27a88d"><![CDATA[§ 12. ]]></kuvatavNr>
+				<paragrahvPealkiri id="8c1c445f-f940-467d-b99e-949c689ed379">Vältimatu abi toetus</paragrahvPealkiri>
+				<loige id="para12lg1">
+					<loigeNr id="1045e4a5-16c3-403f-8cc7-bd1bc362e04a">1</loigeNr>
+					<kuvatavNr id="ab8b5462-6e92-4f32-8bdb-4e9ff81a1384"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="aa83e876-3e7a-4a93-a0ca-6a2f77ff61d9">
+						<tavatekst id="456b3387-5ed9-4ceb-923c-19515533e25d">Vältimatu abi toetus määratakse isikule või perekonnale, kes on sattunud sotsiaalselt abitusse olukorda elatusvahendite kaotuse või puudumise tõttu, tagades talle vähemalt toidu, riietuse ja ajutise majutuse.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para12lg2">
+					<loigeNr id="484b396b-6f23-455f-a1d7-1ad8ac9ddb40">2</loigeNr>
+					<kuvatavNr id="150edc3a-75d4-4abe-94a4-deab364c34bb"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="2235bd7a-216b-41bf-8f51-dc491b0b6d9f">
+						<tavatekst id="dd5fe137-6e10-4d96-a37b-c9457d00a65d">Vältimatut abi osutatakse isikule kas teenuse, esemelise abi või rahalise toetuse näol.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para12lg3">
+					<loigeNr id="b94ab0ff-fa83-4d3d-8210-b8fd1232ce9b">3</loigeNr>
+					<kuvatavNr id="43d4d12f-8d93-4401-a8f9-35a8da49836e"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="466b9c22-e36d-464f-966f-0a5bb7d77b18">
+						<tavatekst id="a20b915d-ad72-4d4b-ab35-6ece0ba06e41">Vältimatu abi toetuse määramisel ei võeta arvesse käesoleva määruse § 3 lõikes 2 sätestatut.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para13">
+				<paragrahvNr id="0e49d21c-2fd7-4b42-bc80-208feebafe3f">13</paragrahvNr>
+				<kuvatavNr id="5d3f54fd-7bde-433c-b5ed-561618b0a3f8"><![CDATA[§ 13. ]]></kuvatavNr>
+				<paragrahvPealkiri id="421159d3-14a4-439b-a693-4aee446f7850">Vanaduspensionäri ja osalise töövõimega inimese jõulutoetus</paragrahvPealkiri>
+				<loige id="para13lg1">
+					<loigeNr id="f7de524b-eaca-4294-893f-e7a9c70d011f">1</loigeNr>
+					<kuvatavNr id="a748543a-11a9-4e91-ae30-f5d50139105e"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="533e1ee8-8b49-4354-b26f-0ac4e8231557">
+						<tavatekst id="a4c7e0a8-75d6-46e9-a001-f4f41e095956">Toetust määratakse ja makstakse vanaduspensionärile ja osalise töövõimega inimesele, kelle tulu on väiksem või võrdne 2,5-kordse toimetulekutoetuse määraga.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para13lg2">
+					<loigeNr id="279b5565-2901-461a-992a-ab4caa92bbd5">2</loigeNr>
+					<kuvatavNr id="fe337fae-715b-4d33-bdb2-2051443c9db7"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="d84da144-cb12-4143-b723-43176fd65c64">
+						<tavatekst id="0aec50d7-c158-4175-bee0-31cf08419bdf">Toetuse avaldusi võetakse vastu 1. novembrist kuni 1. detsembrini.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para14">
+				<paragrahvNr id="ddb7b127-a4da-4a40-bae7-185e42475aa7">14</paragrahvNr>
+				<kuvatavNr id="808ef99d-900b-451d-94ce-beb5874d6e44"><![CDATA[§ 14. ]]></kuvatavNr>
+				<paragrahvPealkiri id="5685916b-0b33-4e3c-ba78-846bba370cb6">Toimetulekutoetus</paragrahvPealkiri>
+				<loige id="para14lg1">
+					<loigeNr id="9cc0c0a7-1822-4ac4-9deb-a538be27ec91">1</loigeNr>
+					<kuvatavNr id="ae6d35af-41af-4cd9-b98c-e5b7f1919651"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="36d90a9e-df34-4e21-8ac6-8fa7ca5d5477">
+						<tavatekst id="27af2f31-30e0-4ee0-8d89-0abdf5ff1ae1">Toimetulekutoetust määratakse ja makstakse sotsiaalhoolekande seadusega kehtestatud ulatuses, tingimustel ja korras.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para14lg2">
+					<loigeNr id="dc7b74bd-abc7-41dd-9ff1-a29fffb13c92">2</loigeNr>
+					<kuvatavNr id="ace7f69b-2d31-4c3a-939e-4e4cbc681d61"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="09daf5b7-bd2b-4476-bba6-0fed4db98b2c">
+						<tavatekst id="a6fbdf9d-fab2-4c0b-8885-83c935522d20">Otsuse toimetulekutoetuse määramise kohta teeb sotsiaalosakonna ametnik.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para14lg3">
+					<loigeNr id="be6947da-1a38-4f5a-ac45-79831034d9dd">3</loigeNr>
+					<kuvatavNr id="a1154064-8c65-4c9d-aa0d-e0cc0887b4f9"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="ba04dd08-960b-4664-b744-3740e288e8ea">
+						<tavatekst id="4dc5e09a-1b3c-4b94-8564-d2dfff94d451">Otsuse toimetulekutoetuse määramata jätmise või toimetulekutoetuse summa vähendamise osas teeb sotsiaalosakonna juhataja või teda asendav ametnik, arvestades sotsiaalabikomisjoni ettepanekut.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="7dd1ff65-f0d1-4af0-ac29-b474ad02238e">
+			<peatykkNr id="86392b2a-e0ce-4082-918b-cae53c33968e">3</peatykkNr>
+			<kuvatavNr id="553baad8-fe28-4f73-bba2-9652a0c991cb"><![CDATA[3. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="8d8e9ce3-aebc-4e8b-8bbb-5f49847996da">Toetuse taotlemine, määramine ja maksmine</peatykkPealkiri>
+			<paragrahv id="para15">
+				<paragrahvNr id="9c9a4060-0afc-4ea8-a75e-35d52f01f4b3">15</paragrahvNr>
+				<kuvatavNr id="269e7a63-f3db-4b9f-ad63-43b78188839a"><![CDATA[§ 15. ]]></kuvatavNr>
+				<paragrahvPealkiri id="b08f8f58-5790-4aec-8985-921d8fc5682e">Toetuse taotlemine</paragrahvPealkiri>
+				<loige id="para15lg1">
+					<loigeNr id="ae8a213f-20f4-4823-8131-f75e7dec2451">1</loigeNr>
+					<kuvatavNr id="f26e843e-61f5-4b60-a727-8411b09eba67"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="f023dc6e-8881-4e5a-8208-bc251c233b8b">
+						<tavatekst id="53250478-b4d7-4f0a-aa5a-8b68c7da0190">Toetuse saamiseks esitab õigustatud isik, tema eestkostja, hooldaja või muu isik valitsusele taotluse.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para15lg2">
+					<loigeNr id="9911c47f-e849-4cac-b440-16cce81ae5d6">2</loigeNr>
+					<kuvatavNr id="96b3bbf5-ba69-4718-8127-4f43c5cdd3cf"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="2dd2067a-30ec-442f-96b1-60edbcb103fe">
+						<tavatekst id="ee911ed1-bd56-41d2-9013-241322f2a0b7">Taotluses märgitakse järgmised andmed:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para15lg2p1">
+						<alampunktNr id="df8dddce-abc1-49ea-8831-bc6046c5f6d0">1</alampunktNr>
+						<kuvatavNr id="7c04ef39-a5d6-442e-9d15-13bbb7ca18a5"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="4d1df85a-8da6-430c-821a-f545679385ec">
+							<tavatekst id="a93b6ff8-8cc1-4bc0-99a9-4c550557fd6e">taotleja ees- ja perekonnanimi, isikukood ning kontaktandmed (aadress, telefon, elektronposti aadress);</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para15lg2p2">
+						<alampunktNr id="9c105aa6-961e-41f9-b167-ee0790ed1a30">2</alampunktNr>
+						<kuvatavNr id="05eb5e7d-bed0-411f-9ca9-e61d462a1b45"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="14a55bbc-9870-478b-a270-5b2503a9a849">
+							<tavatekst id="6c7591b6-3900-4cf6-8600-40eb75c4fb57">olemasolul taotleja esindaja(te) kontaktandmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para15lg2p3">
+						<alampunktNr id="f308ddbb-2382-41a0-90c2-1a020479b7a6">3</alampunktNr>
+						<kuvatavNr id="59d734b8-6104-4de6-88f1-80a8b99b14dc"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="fcfada4f-4fa7-4acf-bc28-465ff846f3e2">
+							<tavatekst id="cccb7a7d-44b8-4e39-80b5-ed5bb6271b17">toetuse vajaduse põhjendus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para15lg2p4">
+						<alampunktNr id="6e5b7d9e-db14-4c18-b820-f09b45261ee7">4</alampunktNr>
+						<kuvatavNr id="77f12e06-bf3a-43fa-b810-34e0dde6581b"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="0dddba6d-a548-4e90-8be4-ff2291ea9097">
+							<tavatekst id="35a59d51-0a86-42f4-9b15-3618ef0babc0">andmed taotleja ja tema pereliikmete taotlemisele eelnenud kuu sissetulekute kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para15lg2p5">
+						<alampunktNr id="f49a2b82-498b-42cf-a0ee-986b5f89cce5">5</alampunktNr>
+						<kuvatavNr id="c02d5b18-e4f0-478e-91ce-6a956e49560e"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="9e3e7da1-f85e-4a69-aee6-4c2289690168">
+							<tavatekst id="9f984c5c-c9a3-4447-bb86-89c493c70e80">toetuse maksmise viis ning vajadusel pangakonto number;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para15lg2p6">
+						<alampunktNr id="48ab954d-1035-487a-a8cf-a185870ee490">6</alampunktNr>
+						<kuvatavNr id="491332ab-ca04-425f-b981-c4c14e055c14"><![CDATA[6) ]]></kuvatavNr>
+						<sisuTekst id="c5c52c25-2c7a-4f5d-9a75-07c6d3919a37">
+							<tavatekst id="fe87a8fb-395a-4725-b88a-b93fc742341c">isiku kinnitus perekonnaseaduse järgi kohustatud ülalpidajate olemasolu või nende puudumise kohta.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para15lg3">
+					<loigeNr id="a9bdbd7b-33d4-46e7-af74-9c0a55493bad">3</loigeNr>
+					<kuvatavNr id="f0367e92-fbd9-4d16-bf8f-a9240d8ed794"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="a24cb142-e76a-40d0-b577-e7d15276064e">
+						<tavatekst id="8024e47e-98e8-49a9-9226-6029a785a612">Taotluse menetlejal on vajaduse korral õigusteha täiendavaid päringuid ning küsida täiendavaid andmeid ja/või dokumente toetuse vajaduse väljaselgitamiseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para16">
+				<paragrahvNr id="48e3809a-94c5-42c3-884a-a3a0991ff546">16</paragrahvNr>
+				<kuvatavNr id="1b38b44c-c7a5-4976-b073-28fc973f0b07"><![CDATA[§ 16. ]]></kuvatavNr>
+				<paragrahvPealkiri id="f2c80335-a7c4-49ff-8201-4140d3441602">Toetuse määramine</paragrahvPealkiri>
+				<loige id="para16lg1">
+					<loigeNr id="09d182a4-e3db-4312-a5fe-773f49cb88ba">1</loigeNr>
+					<kuvatavNr id="d69e7afd-80e1-49ed-9739-a13243107f13"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="233f7f1c-84a3-452f-9a3c-12378d995ee2">
+						<tavatekst id="36972fd3-e93f-4b98-969a-7e73142811ad">Toetuse määramisel lähtutakse taotleja vajadusest, valla eelarves kalendriaastaks toetuste maksmiseks ette nähtud rahalistest vahenditest ning taotleja ja tema perekonnaliikmete sissetulekust, varanduslikust seisust ja eluasemekuludest.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para16lg2">
+					<loigeNr id="d7e5f489-cbdf-4bb3-90e7-2dc2f5842e46">2</loigeNr>
+					<kuvatavNr id="68069425-f922-41e3-81ed-448374ed7c61"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="7f8d0cb8-7fbb-4e1b-b891-3b829ee7fdc6">
+						<tavatekst id="da70d866-b8e0-4038-bed4-63b84ff18a84">Perekonna sissetuleku hulka arvestatakse taotlejast eraldi elava perekonnaliikme sissetulekud juhul, kui ta on taotlejaga abielus või vabaabielus ning on perekonnaseaduse järgi kohustatud ülal pidama taotleja alaealisi lapsi.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para16lg3">
+					<loigeNr id="ca3eb763-8ba0-4f9a-92a1-d225f70d5425">3</loigeNr>
+					<kuvatavNr id="cd0ded38-83ea-4e7a-993b-0b3607454271"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="8c22ce12-6c58-4274-93b7-e95ebe4255f8">
+						<tavatekst id="a69ea7e1-f236-4e21-973f-ef5f4e4cbf17">Toetuse määramisel ei arvata sissetulekute hulka:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para16lg3p1">
+						<alampunktNr id="5d76776a-b808-4def-86b8-ac4cc6a3639f">1</alampunktNr>
+						<kuvatavNr id="e21fe1ed-072f-4603-9211-39d86e498dd5"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="e814308a-23f8-4cba-abb3-8fb3996c5c33">
+							<tavatekst id="072bb8e4-35e3-4363-ab87-48a922596c21">riigieelarve vahenditest makstavaid ühekordseid sotsiaaltoetusi;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para16lg3p2">
+						<alampunktNr id="f601b9cf-ec06-45de-9169-71df6a30a119">2</alampunktNr>
+						<kuvatavNr id="cb3196bd-fff1-4384-ae04-604434526c36"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="5b968afc-8f10-4931-a781-f70678678470">
+							<tavatekst id="ab4487c4-7429-4d53-84c3-5dcfd97be639">vallaeelarve vahenditest makstavaid sotsiaaltoetusi;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para16lg3p3">
+						<alampunktNr id="fea10a30-699e-43be-8bf1-0816b4e04bd8">3</alampunktNr>
+						<kuvatavNr id="01a291d6-53f0-466d-ab04-44321b5f041b"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="592915f5-09b2-4d90-9e02-ed694efa1cfd">
+							<tavatekst id="c04492d4-b35d-4b25-9d7f-7cbed1a5849d">puuetega inimeste sotsiaaltoetuste seaduse alusel makstud toetusi;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para16lg3p4">
+						<alampunktNr id="eff15631-ec31-4cb3-b85e-c6a8d9aedc52">4</alampunktNr>
+						<kuvatavNr id="46576c9a-9a4b-4e66-b919-a215b753eb76"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="849e68fb-945d-4879-9ec0-488629f64776">
+							<tavatekst id="31ec1263-78f7-47fb-b363-5a443f5fd010">riigi tagatisel antud õppelaenu;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para16lg3p5">
+						<alampunktNr id="467b54a4-db73-45f3-8977-b2d8b95d21a3">5</alampunktNr>
+						<kuvatavNr id="4c9d1503-0def-446a-9598-3aa54baa8292"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="8e76005b-c41b-4f1a-a6d1-87397c92b921">
+							<tavatekst id="ea6fc70b-69a5-4e97-9aea-12b9d9171fa7">tööturuteenuste ja -toetuste seaduse alusel makstavat stipendiumi ning sõidu- ja majutustoetust;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para16lg3p6">
+						<alampunktNr id="45ccd316-2395-4544-a8da-a02668da5a2b">6</alampunktNr>
+						<kuvatavNr id="d2c2c417-52a6-4068-b9df-0a690d0baaad"><![CDATA[6) ]]></kuvatavNr>
+						<sisuTekst id="3a264457-b70e-47a9-a286-63eafbdaf203">
+							<tavatekst id="45c7e1ba-3914-435c-8b42-09b17e84bfc0">õppetoetuste ja õppelaenu seaduse alusel makstavat vajaduspõhist õppetoetust.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para16lg4">
+					<loigeNr id="a937ae59-57df-4c48-9c6a-2497dfd14fcf">4</loigeNr>
+					<kuvatavNr id="a8e5c811-5387-41c1-b843-eefe6de68407"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="31451cae-08b9-4023-b5e8-5be034106d95">
+						<tavatekst id="8438eb13-be22-4756-8ebf-7563df248168">Käesoleva paragrahvi lõikes 3 nimetatud rahalisi vahendeid ei jäeta sissetulekuna arvestamata ulatuses, milles need on ette nähtud sama kulu katmiseks, mille hüvitamiseks toetust taotletakse. Eelpool nimetatud põhimõtet ei kohaldata toimetulekutoetuse puhul.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para16lg5">
+					<loigeNr id="449cb8e4-f8f7-41e4-b03b-a8a170496308">5</loigeNr>
+					<kuvatavNr id="a4e8469b-5db3-48fa-ad2c-ae7069bdc868"><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst id="b7d65a6b-4afe-40fe-bd9a-6deb27194f27">
+						<tavatekst id="df91bc98-bb7b-4b2e-95ff-9a9c5100edea">Otsuse toetuse määramise või määramisest keeldumise kohta, mis on 1000 eurot või väiksem, teeb sotsiaalosakonna juhataja või teda asendav ametnik kümne tööpäeva jooksul nõuetekohase taotluse esitamisest.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para16lg6">
+					<loigeNr id="ead995c9-85b0-400b-8849-4ac833710f98">6</loigeNr>
+					<kuvatavNr id="3d5bb4e6-8eb9-467b-9464-871b5ffc7ad7"><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst id="8632084f-319f-48b4-ac82-a28da2778c30">
+						<tavatekst id="105142ac-2f1e-4376-a093-f50e78a7e90f">Otsuse toetuse määramise või määramisest keeldumise kohta, mis on suurem kui 1000 eurot, teeb valitsus kümne tööpäeva jooksul nõuetekohase taotluse esitamisest.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para16lg7">
+					<loigeNr id="6246cb24-a347-4b99-83ee-7cf58ee11e4f">7</loigeNr>
+					<kuvatavNr id="f98ee6f3-142c-4a2d-ac53-5e252294ba07"><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst id="44083112-a2e7-4091-b31b-b74b31c6f143">
+						<tavatekst id="20bd6a42-c85d-4700-b3b6-b048da3398e2">Sotsiaalabikomisjon teeb ettepaneku toetuse määramise või määramisest keeldumise kohta.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para16lg8">
+					<loigeNr id="792e3ffc-346d-4246-8863-7e616d2bece0">8</loigeNr>
+					<kuvatavNr id="0c2ebfe3-2da7-492c-abce-026e0c1d0db7"><![CDATA[(8)]]></kuvatavNr>
+					<sisuTekst id="1d2ac8e7-b1dd-4d43-b387-0ff2f0314067">
+						<tavatekst id="59e15275-2817-49d7-93ce-0df13bd1f67f">Toetuse taotluse rahuldamisel loetakse sellekohane otsus taotlejale teatavaks tehtuks toetuse väljamakse tegemisega.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para17">
+				<paragrahvNr id="e372a508-0aeb-44f6-a055-def0c923930f">17</paragrahvNr>
+				<kuvatavNr id="c63157e5-9dcc-41be-beb8-f0885c8cf7b5"><![CDATA[§ 17. ]]></kuvatavNr>
+				<paragrahvPealkiri id="1080972c-97a9-48b6-9433-0a8bf527a374">Toetuse määramisest keeldumise alused</paragrahvPealkiri>
+				<loige id="para17lg1">
+					<loigeNr id="31ab632d-ed87-4e5d-b1a5-0f2abf6b6bcc"/>
+					<kuvatavNr id="681351aa-74f4-40de-b74e-09c88bcd4504"/>
+					<sisuTekst id="a35111b1-b524-411d-a44a-4571e753bba4">
+						<tavatekst id="ba8dd2cb-66b6-43af-8b00-ab91c5bb63db">Toetuse määramisest võib keelduda juhul, kui esineb vähemalt üks järgmistest asjaoludest:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para17lg1p1">
+						<alampunktNr id="b1296a73-7942-475a-8abc-f307a49bcfb2">1</alampunktNr>
+						<kuvatavNr id="1aca1e99-8747-4abd-a679-f64c99283733"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="a97c4097-dd36-41b8-b2a4-31948818df0b">
+							<tavatekst id="051c7944-5597-4829-a867-b681c28851b3">valitsusele ei ole esitatud kõiki teadaolevaid tõeseid ja täielikke andmed, dokumente ja muid tõendeid, mis on vajalikud toetuse määramise otsustamisel;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para17lg1p2">
+						<alampunktNr id="292b7a3c-042f-4fa8-a821-0e1cbd5e9c2e">2</alampunktNr>
+						<kuvatavNr id="179dab05-d7c3-4922-a146-4ae4b8369ae4"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="89857945-8a38-454a-8b0a-b0526bea09d7">
+							<tavatekst id="3fd03d2e-3c20-46f3-ac9a-b4065437cbe7">taotleja ei võimalda toetuse vajadust kontrollida;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para17lg1p3">
+						<alampunktNr id="b705540d-1932-40da-816b-255e9b4f5ed4">3</alampunktNr>
+						<kuvatavNr id="be680ca3-32b3-4331-9f08-01a8f34ace78"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="1c0ee954-844b-4fb3-86dc-2ec355de71fe">
+							<tavatekst id="7aa22c78-f0ad-4766-b8d3-44d05e285a06">taotleja ei ole teavitanud valitsust viivitamata toetuse saamise õigust ja toetuse määramist mõjutavatest asjaoludest ja asjaolude muutumisest;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para17lg1p4">
+						<alampunktNr id="9fd4efcc-cdc0-4cf3-a446-ced66f6d2e8b">4</alampunktNr>
+						<kuvatavNr id="9d75c4f1-81df-4b42-9e6b-148bf793c16e"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="2b672b4b-776a-4d7c-a562-1407864bba62">
+							<tavatekst id="f9e6d4c6-d979-49a5-9d77-f73c61dd2cd3">taotleja või tema perekonna omandis või kasutuses olevate vahendite abil on võimalik tagada tema või perekonna toimetulek;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para17lg1p5">
+						<alampunktNr id="7e82495f-fe86-4ee1-b788-03da2c9d9fba">5</alampunktNr>
+						<kuvatavNr id="215b1c95-27ac-4bf7-887d-cd83761bcd1b"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="77a6ad90-8267-43a5-aa91-1b8175b7d0c0">
+							<tavatekst id="41221f99-d6a6-494a-beda-f30006d78453">taotleja või tema perekonnaliige on töövõimeline 18-aastane kuni vanaduspensioniealine isik, kes ei tööta ega õpi ning on rohkem kui kahel korral mõjuva põhjuseta keeldunud osalemast vallavalitsuse või Töötukassa poolt pakutaval toimetulekut või tööle saamist abistaval teenusel või rehabilitatsiooniprotsessis;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para17lg1p6">
+						<alampunktNr id="c946c743-04c7-4b83-b947-1fc6f4ccf8c1">6</alampunktNr>
+						<kuvatavNr id="1fbc270f-a6d2-4927-97bb-04d66ce3766b"><![CDATA[6) ]]></kuvatavNr>
+						<sisuTekst id="3ee25571-dbc2-43ee-94e2-40949a5735bb">
+							<tavatekst id="63326727-a320-48ad-83ea-7996df3ed0ce">toetuse vajadust on võimalik või otstarbekas katta muu abiga;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para17lg1p7">
+						<alampunktNr id="aa37d544-0c70-46d5-933f-14234793692a">7</alampunktNr>
+						<kuvatavNr id="7707ada6-3af9-47fd-8012-7b0b0094c70a"><![CDATA[7) ]]></kuvatavNr>
+						<sisuTekst id="b3a3240b-6a9c-4184-b3c4-3485645e412c">
+							<tavatekst id="56b82bde-e21a-4316-b022-2b38d5673eed">taotleja on eelnevalt eraldatud toetust kasutanud mittesihipäraselt;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para17lg1p8">
+						<alampunktNr id="fe3b8ea0-5239-4ffd-8807-f2e31fd10857">8</alampunktNr>
+						<kuvatavNr id="69baa8c9-81a7-4257-b477-41147b26db8f"><![CDATA[8) ]]></kuvatavNr>
+						<sisuTekst id="d55db40e-571d-4d59-8ea0-eab5dd8de8da">
+							<tavatekst id="f2d46038-b397-4d98-a889-d1189e3fb55c">taotletav toetus ei ole seotud isiku või perekonna toimetulekuraskuste ennetamise, kõrvaldamise või kergendamisega;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para17lg1p9">
+						<alampunktNr id="12c13628-e782-458b-9bd6-4aa2d3623a66">9</alampunktNr>
+						<kuvatavNr id="9f448907-3123-4ba7-91ad-e981013a2a0e"><![CDATA[9) ]]></kuvatavNr>
+						<sisuTekst id="e76a6adc-2f72-4707-889b-299a0d1a22fc">
+							<tavatekst id="6dc70db8-fa67-4ead-8344-c38edfe2c376">taotlejal või temaga koos elaval ülalpidamist saama õigustatud lapsel või muul abi vajaval alanejal või ülenejal sugulasel, kes ei ole võimeline ennast ise ülal pidama, on õigus saada elatist, kuid taotleja keeldub elatise saamise kohta dokumenti esitamast või elatist sisse nõudmast;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para17lg1p10">
+						<alampunktNr id="c8172759-a2c7-4faa-b2f1-f35580c62da1">10</alampunktNr>
+						<kuvatavNr id="fdc378cd-1240-4840-8f63-04c0e52b32fa"><![CDATA[10) ]]></kuvatavNr>
+						<sisuTekst id="1bd7bda2-32e5-4de2-a6b3-2e578ab5ef01">
+							<tavatekst id="58da5218-bd47-44f4-887f-0bbf20939b5a">taotleja ei vasta käesoleva määruse §-s 3 nimetatud tingimustele;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para17lg1p11">
+						<alampunktNr id="89cb7d93-cf25-42c9-a4f6-563fdfd15a8d">11</alampunktNr>
+						<kuvatavNr id="74d9bb4f-2261-4e01-8f77-3f50c2a47cab"><![CDATA[11) ]]></kuvatavNr>
+						<sisuTekst id="072273b2-0282-4c5c-97f8-b907a110dc90">
+							<tavatekst id="ea5e875a-e9e2-435f-847e-0e09360a0980">esineb muu põhjendatud asjaolu, mis välistab toetuse andmise.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para18">
+				<paragrahvNr id="f3615fb9-1cb3-4a94-84fd-e4c009d9960b">18</paragrahvNr>
+				<kuvatavNr id="a4dc19df-c405-427b-bad8-0f531bef184f"><![CDATA[§ 18. ]]></kuvatavNr>
+				<paragrahvPealkiri id="c6d44f90-0b7b-4cf1-b14a-237d6a2cb1fa">Toetuse maksmine</paragrahvPealkiri>
+				<loige id="para18lg1">
+					<loigeNr id="b19c5a02-ddc4-4df8-b8e8-641883a5612b">1</loigeNr>
+					<kuvatavNr id="39f86edd-6e8f-40ae-a341-52ec424ada8d"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="5c8e11ea-cab6-477e-8bf1-74d8ddcd8343">
+						<tavatekst id="373cf4ab-5367-4ec8-a25c-193e096cab36">Toetus makstakse välja 30 kalendripäeva jooksul toetuse andmise otsuse tegemisest arvates taotluses näidatud pangakontole või sularahas.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para18lg2">
+					<loigeNr id="75745fd5-5c6c-45bc-b2c6-1cfbf255f44c">2</loigeNr>
+					<kuvatavNr id="6ccc507a-6383-4c91-9848-433b0412ba6f"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="830019d1-d326-442e-9006-be467029e184">
+						<tavatekst id="580309bc-7962-4d04-bb6b-848c6e98e05c">Toetuse võib kanda kolmanda isiku pangakontole toetuse saaja kirjaliku taotluse alusel.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para19">
+				<paragrahvNr id="31623f6a-6433-4e82-9ebf-dddd8109583c">19</paragrahvNr>
+				<kuvatavNr id="a73aac38-1d48-47c6-b6a4-cad21b1e098b"><![CDATA[§ 19. ]]></kuvatavNr>
+				<paragrahvPealkiri id="0fa47c27-8388-408f-8e1d-6b0e5a340725">Alusetult saadud toetuse tagasinõudmine</paragrahvPealkiri>
+				<loige id="para19lg1">
+					<loigeNr id="2308e5a2-5637-4581-943f-6095667a0511"/>
+					<kuvatavNr id="a316b799-dc9c-430e-8142-5453a9d7b049"/>
+					<sisuTekst id="56e04221-d324-4484-afea-23d905504cf1">
+						<tavatekst id="0e3bc980-57d0-44e3-a40e-460a5bec3c02">Alusetult saadud toetuse tagasinõudmine toimub sotsiaalseadustiku üldosa seaduse paragrahvides 31–35 sätestatud korras.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="78b8f837-7799-4a23-90b2-fdd3af49a4db">
+			<peatykkNr id="64ce5bb0-f6c4-40fa-bc22-aae470f010a9">4</peatykkNr>
+			<kuvatavNr id="058fa335-c87b-4c11-a297-81d057105222"><![CDATA[4. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="82c4e8ad-d9cf-4a60-bdee-5a3620f63b90">Rakendussätted</peatykkPealkiri>
+			<paragrahv id="para20">
+				<paragrahvNr id="63ba8b09-961b-48cd-b70f-271979481bdc">20</paragrahvNr>
+				<kuvatavNr id="8d2399da-9eb0-4f54-ac28-fe733077b280"><![CDATA[§ 20. ]]></kuvatavNr>
+				<paragrahvPealkiri id="502eecb3-69ed-4396-8990-bcebd651082f">Dokumendivormide kinnitamine</paragrahvPealkiri>
+				<loige id="para20lg1">
+					<loigeNr id="2c3e8e0d-b521-4da6-8255-bc531b4d5d65"/>
+					<kuvatavNr id="3e99b256-c0e8-4648-894a-d5d97b36dd5b"/>
+					<sisuTekst id="9b61a298-277f-4481-b794-c9b49889b927">
+						<tavatekst id="6dfe6e1a-a501-4988-93c5-8fc48cc0de7b">Vallavalitsus võib kinnitada määruse rakendamiseks vajalike dokumentide vormid.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para21">
+				<paragrahvNr id="3c12470f-98d4-4016-b62e-6fa86d6228c6">21</paragrahvNr>
+				<kuvatavNr id="0bde69e9-55b3-4d9b-b0f7-598f1ea5cb67"><![CDATA[§ 21. ]]></kuvatavNr>
+				<paragrahvPealkiri id="091af48b-6476-4370-b8ee-ccd7104f8bcc">Järelevalve</paragrahvPealkiri>
+				<loige id="para21lg1">
+					<loigeNr id="d704c584-fea3-4923-bc65-39dee258bc91">1</loigeNr>
+					<kuvatavNr id="20388d39-e747-4ba0-98a1-a4eea97c2cbc"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="4c9be952-932f-441d-8072-795e6180556e">
+						<tavatekst id="4ddce628-1a2d-4d94-b56e-73595ce3d214">Täitevorgan teostab teenistuslikku järelevalvet, kontrollides määrusega kehtestatud nõuete täitmist, haldusaktide õiguspärasust ja tegevuse otstarbekust.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para21lg2">
+					<loigeNr id="3433ce32-d4a1-4b91-a6cf-996216f5c6a2">2</loigeNr>
+					<kuvatavNr id="4907f73c-e2ea-4ec8-94e4-5f23b3578302"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="dc8ee33a-fec2-44f1-8438-d24e5cbd9158">
+						<tavatekst id="cfef5482-7546-4e19-a8b0-a2ed67da5c0c">Haldusjärelevalvet sotsiaalhoolekande seaduse alusel antud kohaliku omavalitsuse üksuse haldusaktide õiguspärasuse ning sotsiaalteenuste ja muu abi kvaliteedi, samuti riigi poolt sotsiaalhoolekandeks eraldatud sihtotstarbeliste vahendite kasutamise üle teostab Sotsiaalkindlustusamet.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para22">
+				<paragrahvNr id="37cce982-18d0-4b87-afb6-bc04f9d7dd8d">22</paragrahvNr>
+				<kuvatavNr id="1b19cb74-4655-440f-a531-5dc8b7e9fd86"><![CDATA[§ 22. ]]></kuvatavNr>
+				<paragrahvPealkiri id="829932d5-92f1-4f9f-bb21-348ca8d0ba19">Määruse kehtetuks tunnistamine</paragrahvPealkiri>
+				<loige id="para22lg1">
+					<loigeNr id="058b42bd-4bd3-4458-b186-060b74b93862"/>
+					<kuvatavNr id="0d8414ce-4212-474d-8682-6f6b5b74060b"/>
+					<sisuTekst id="ec747b82-8b35-4441-acb5-d3ad223e6119">
+						<tavatekst id="06c6ec16-6398-41de-bb45-3b0c367c68c1">Põlva Vallavolikogu 28. märtsi 2024. a määrus nr 3 "Sotsiaaltoetuste määramise ja maksmise kord" tunnistatakse kehtetuks.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para23">
+				<paragrahvNr id="514b90b5-4135-46a6-b049-3a4207b7546c">23</paragrahvNr>
+				<kuvatavNr id="8a527d02-2e21-4c77-abb6-b5dceb10cb0e"><![CDATA[§ 23. ]]></kuvatavNr>
+				<paragrahvPealkiri id="ae38e8d0-7ad7-4d8c-87c9-471beca3d237">Määruse jõustumine</paragrahvPealkiri>
+				<loige id="para23lg1">
+					<loigeNr id="569db896-999d-4f7d-a42d-3610145cbea5"/>
+					<kuvatavNr id="e54aa7cb-d462-4d31-9c41-363188cf1ef1"/>
+					<sisuTekst id="1ac0057a-77c5-4f09-bfd7-9cb7eedceb9d">
+						<tavatekst id="7462ca65-98b2-4850-bcab-fa90c8e6ffc4">Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+	</sisu>
+	<allkiri id="9d8917d1-4954-4f97-8200-0aca1737e781">
+		<allkiriKoht id="8e535060-5fd8-4f74-a618-646d49b73d76"/>
+		<allkirjastaja id="7c37a647-a155-4d53-93f5-874f06ab56db">
+			<ametinimetus id="481de25f-9acc-406a-8629-62ed107dfe6e">Volikogu esimees</ametinimetus>
+			<eesnimi id="be840587-3220-42e0-9fe5-cd48728dd995">Indrek</eesnimi>
+			<perekonnanimi id="ef1c0a3a-1e7f-484c-a629-612c9ed9bfac">Käo</perekonnanimi>
+		</allkirjastaja>
+	</allkiri>
+</oigusakt>

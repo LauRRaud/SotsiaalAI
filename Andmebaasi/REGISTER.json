@@ -26,8 +26,8 @@
       "sources": 1
     },
     "oigusaktid": {
-      "files": 110,
-      "sources": 110
+      "files": 132,
+      "sources": 132
     },
     "register": {
       "files": 2,
@@ -21110,7 +21110,7 @@
       "path": "oigusaktid/405042024007.xml",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "c795f9616822aa6a1171b9ba66d81892aa9db881b23f37c272f3ea2641eabba9",
+      "sha256": "624a05f1e9152773dc02b95dad7cfd354ba2fe030a67c2ad99cf8abd5ce92f54",
       "original_path": "KOV/kov_rt/405042024007.xml",
       "duplicate_original_paths": [
         "KOV/kov_rt/405042024007.xml"
@@ -21231,7 +21231,7 @@
       "path": "oigusaktid/407012022005.xml",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "a72553acdd668add92697fc6c6a319bb9f9702106dcb2af23390aa97d64f3ab7",
+      "sha256": "a67e951077155ac655627a813603c07042c061966e88c91285b188cafe1ea8c9",
       "original_path": "KOV/kov_rt/407012022005.xml",
       "duplicate_original_paths": [
         "KOV/kov_rt/407012022005.xml"
@@ -21242,7 +21242,7 @@
       "path": "oigusaktid/407032025024.xml",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "0af253c715d02349356ff57225270cd21dc5473889d79cf06d9d4967290dc72f",
+      "sha256": "69cf267bc40fbb9fbca69157afaf704cad64e838f85affb485cfaefc3d006a7a",
       "original_path": "KOV/kov_rt/407032025024.xml",
       "duplicate_original_paths": [
         "KOV/kov_rt/407032025024.xml"
@@ -21540,7 +21540,7 @@
       "path": "oigusaktid/423122025040.xml",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "24b8b14f5d3201351304ca8ba79057e1a877bff68c713f80bda2dce2f08790fa",
+      "sha256": "7b14de4b0dd2a3d2fabc6ceab1067bf59cba4b5f2c81216a86a9f6b072004bba",
       "original_path": "KOV/kov_rt/423122025040.xml",
       "duplicate_original_paths": [
         "KOV/kov_rt/423122025040.xml"
@@ -21562,7 +21562,7 @@
       "path": "oigusaktid/425032026040.xml",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "abd2bcef322cbc8e6cd77fb7716ad74280a8ec0024ad6a67d79a69a1556c1237",
+      "sha256": "dae98e671d5c8311d53c35ad17ae0c4da715ff101051d8fe534fc9c936db627a",
       "original_path": "KOV/kov_rt/425032026040.xml",
       "duplicate_original_paths": [
         "KOV/kov_rt/425032026040.xml"
@@ -21650,7 +21650,7 @@
       "path": "oigusaktid/428102025016.xml",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "79b47ee2e0a5d3b777e17249bb9fa8126596e4e00af037e8c195da8a44215971",
+      "sha256": "5383836c8abb05fc633d18d4b8bd746208d4b4a4b4307792d82c360f6ec6d0dd",
       "original_path": "KOV/kov_rt/428102025016.xml",
       "duplicate_original_paths": [
         "KOV/kov_rt/428102025016.xml"
@@ -21672,7 +21672,7 @@
       "path": "oigusaktid/428122024131.xml",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "d6c816f988d875e099c294abdd4c1059dd7a36ebdde1f03ee4ec7f04164a2aa1",
+      "sha256": "a239cdf380d87d27640b8e37e70377c352d2ea3a183e0548d643e56f191ba680",
       "original_path": "KOV/kov_rt/428122024131.xml",
       "duplicate_original_paths": [
         "KOV/kov_rt/428122024131.xml"
@@ -21705,7 +21705,7 @@
       "path": "oigusaktid/429052024010.xml",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "24d26b87d9f672de5c2e57d871015a6dde42c58424de2d6fe4b59ad1767e8627",
+      "sha256": "694dfec5b1ea37cfa1ed363631751c08ee7402d35c474c019a60b9f5b63e40b5",
       "original_path": "KOV/kov_rt/429052024010.xml",
       "duplicate_original_paths": [
         "KOV/kov_rt/429052024010.xml"
@@ -21771,7 +21771,7 @@
       "path": "oigusaktid/431082024012.xml",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "ef1eda2c69038961b59d3e9034fcc04011d8f4dc4c715ef2bf6a0dd4c622ed44",
+      "sha256": "dd38d719a876d8f14327140f8edd27cda3f3e29fc2b6ebeffb99d046123d1a64",
       "original_path": "KOV/kov_rt/431082024012.xml",
       "duplicate_original_paths": [
         "KOV/kov_rt/431082024012.xml"
@@ -21826,7 +21826,7 @@
       "path": "oigusaktid/109042026003.xml",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "41c9faf3b6689cbc18cb805db94854bf2662a5d32a4657323265754a8095ebcb",
+      "sha256": "7fda69785ce5fe1e6ac679ef17251e7b0da828427573ba284c96088eda366b35",
       "original_path": "KOV/Seadused_rt/109042026003.akt",
       "duplicate_original_paths": [
         "KOV/Seadused_rt/109042026003.akt"
@@ -21837,7 +21837,7 @@
       "path": "oigusaktid/129082025009.xml",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "aa5e49714f02dc3d9a2c0cccb5aab983fc573e09753af1a0f9259eb3ac12d9f0",
+      "sha256": "6d0e5a41a8b5f8b834b92ce8ea474bb2558ca95a972e9b4c683b6d2de779b8e6",
       "original_path": "KOV/Seadused_rt/129082025009.akt",
       "duplicate_original_paths": [
         "KOV/Seadused_rt/129082025009.akt"
@@ -21848,7 +21848,7 @@
       "path": "oigusaktid/130122025036.xml",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "0e705138322e7c6350d2fdfe0a0c99bd1ef3e8b8baa5f7fac77ae8f340268cbb",
+      "sha256": "e93d6e40fc2bed951890a539e74ee2dab790e08ded01059ddab5da875d94279b",
       "original_path": "KOV/Seadused_rt/130122025036.akt",
       "duplicate_original_paths": [
         "KOV/Seadused_rt/130122025036.akt"
@@ -21859,7 +21859,7 @@
       "path": "oigusaktid/131122024023.xml",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "b0da3ac9942265b74305f75c305ef78b1482cfc7eb5a28635f414e916d226552",
+      "sha256": "4e98dd93a1fd5ba5758cb67d144e921081e0ca3099210a9cbc5dfb3dc120e9d9",
       "original_path": "KOV/Seadused_rt/131122024023.akt",
       "duplicate_original_paths": [
         "KOV/Seadused_rt/131122024023.akt"
@@ -21870,7 +21870,7 @@
       "path": "oigusaktid/410092025031.xml",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "1e3f181d4e6fda01a636fbbcb3376954dd2d2cbad283595976036aea7d8d4ddf",
+      "sha256": "fca5169d15dc52317c3e0c2002bc66e0bf604cf4b3a54446ed4b65b362305b85",
       "original_path": "KOV/Seadused_rt/410092025031.akt",
       "duplicate_original_paths": [
         "KOV/Seadused_rt/410092025031.akt"
@@ -21881,7 +21881,7 @@
       "path": "oigusaktid/410092025033.xml",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "3fa12e817e61deef9bbac6451e030dba6f2c948e4976a958d1fabbdd9dfd063c",
+      "sha256": "a6583d928e78074765995f7fb99a615aaf449c8e9b5b2d919c707fae22c8784c",
       "original_path": "KOV/Seadused_rt/410092025033.akt",
       "duplicate_original_paths": [
         "KOV/Seadused_rt/410092025033.akt"
@@ -21892,7 +21892,7 @@
       "path": "oigusaktid/412042025015.xml",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "b6d8cbde87a62e0e26b426414baa16eb132fdf48fd0f55a015b728d382f39d48",
+      "sha256": "91bf5cdbcf34f9997f9bd889ce6a307ed5073f3ad3d4a9ec3cb5e37e30269592",
       "original_path": "KOV/Seadused_rt/412042025015.akt",
       "duplicate_original_paths": [
         "KOV/Seadused_rt/412042025015.akt"
@@ -21903,7 +21903,7 @@
       "path": "oigusaktid/413022026026.xml",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "fb14ca163175bc384686d0bbb934987cd1834c865927d411675c1c3917f4fe9f",
+      "sha256": "e8dd02c88169650dac257fe1b812bb27681e74aac77e9e152c5ef8d8ad6590f1",
       "original_path": "KOV/Seadused_rt/413022026026.akt",
       "duplicate_original_paths": [
         "KOV/Seadused_rt/413022026026.akt"
@@ -22312,6 +22312,182 @@
       "role": "source",
       "sha256": "5942686edb4eee128a316140d47b4ba68a9dff048cc3e3d05a1b6f3b2cd7c869",
       "original_path": "riigiteataja.ee/et/akt/109072026076.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/111072026166.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "53a945389f36d3c4b89278924d1c3032da4564b6c8e1bb1ebdd4819d727907cd",
+      "original_path": "riigiteataja.ee/et/akt/111072026166.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/111072026167.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "e0f122dec3d064f77614104850a580a666a17db07267cd44ea26bf9ccc56bc54",
+      "original_path": "riigiteataja.ee/et/akt/111072026167.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/111072026168.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "9e0058f6fb2cbb84a48e198bce739fea515c605f91a020ab26721d2d87ae6507",
+      "original_path": "riigiteataja.ee/et/akt/111072026168.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/111072026169.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "77c81756674ac77028c6326619361d3e2833b3cd02cb1dd38f0e937485d635fe",
+      "original_path": "riigiteataja.ee/et/akt/111072026169.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/130062026031.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "11481ba52218fc898836ab3c922e61acf662bcbb9717ef988a6c067aadb366b9",
+      "original_path": "riigiteataja.ee/et/akt/130062026031.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/111072026042.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "18732e2b5b1f4a732e0788fc9d9fc87efd65af29d26b4ca2fde5820114e7fce4",
+      "original_path": "riigiteataja.ee/et/akt/111072026042.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/111072026043.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "c03ad10a75c88dfe775e41c04b3535bf9b78ffadea8c37f290c467411c6f0dd2",
+      "original_path": "riigiteataja.ee/et/akt/111072026043.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/126092026005.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "f1131403e9ea9492403edb0d25ec254b12cf7747362b4e7e73e2ca50b0c52120",
+      "original_path": "riigiteataja.ee/et/akt/126092026005.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/405092026051.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "b0bdcce909771566382fe7b42fe0a4b9d05364bd1b2703f265a1f2b292f25d93",
+      "original_path": "riigiteataja.ee/et/akt/405092026051.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/426092026047.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "0294838a6ebd827ef71101ec33a894cf07dc8a85b5199f2af7e03e5c59ad5cb7",
+      "original_path": "riigiteataja.ee/et/akt/426092026047.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/418082026033.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "08eebd7448920621ccdc1907f7eef60d7869fe0d00bc7dad68dbe5cf5afdf9e7",
+      "original_path": "riigiteataja.ee/et/akt/418082026033.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/427052026038.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "7672dbfc55974413aa0430d20d8cbaca9d12f0eb5c0e215f173c6750bf5322fb",
+      "original_path": "riigiteataja.ee/et/akt/427052026038.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/430062026040.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "a76be6a783ee8fe3906955ef0434e939eba74cf2594e44f04a9aa98a653c73cb",
+      "original_path": "riigiteataja.ee/et/akt/430062026040.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/430062026041.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "01bc9edf042738e32e0750793751040bcb0d4bfdff78c7c718797b4fd14b7b22",
+      "original_path": "riigiteataja.ee/et/akt/430062026041.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/427052026031.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "b435cacab48d3d02588e2fb21e3504c661baea2110c1b98f9959bfcf20b3a408",
+      "original_path": "riigiteataja.ee/et/akt/427052026031.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/423052026004.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "bec82745462642ff6adfd9e2a6d36ada3995188d45b1a0ef37f31412065e6251",
+      "original_path": "riigiteataja.ee/et/akt/423052026004.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/417062026033.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "74a4d24d38928a4103c0f9b2595790583eb53e83decf3bfdc03b88106fc1a7c9",
+      "original_path": "riigiteataja.ee/et/akt/417062026033.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/411062026102.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "26e2cb0a08eecc4b492e9c3c3828d54bb8ba379427b75bd33cc031ce23f5eddc",
+      "original_path": "riigiteataja.ee/et/akt/411062026102.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/419062026027.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "6095baf7d3a3418ae5de7cc8dd1d5daddd54f4a6dbceb0dd5c192318f05e6367",
+      "original_path": "riigiteataja.ee/et/akt/419062026027.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/426052026009.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "c071afe75fad477b524620ea4de9582bd2757fe3db30abfd661e7aeb3b781320",
+      "original_path": "riigiteataja.ee/et/akt/426052026009.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/429082026027.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "ef17c02d68b0eb2d0b6132cfe90b034087009e91eea9885c1796337fbe0e94aa",
+      "original_path": "riigiteataja.ee/et/akt/429082026027.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/403072026003.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "76e82a033f3cdfffe50580db0d3535e0d4038c5d82df16bd33323a73779763a7",
+      "original_path": "riigiteataja.ee/et/akt/403072026003.xml",
       "review_status": "version_and_jurisdiction_validation_pending"
     },
     {

@@ -19,15 +19,15 @@
 		</vastuvoetud>
 		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-04-12</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>15</RTartikkel><aktViide>412042025015</aktViide></avaldamismarge><kehtivus>
 			<kehtivuseAlgus>2025-05-01</kehtivuseAlgus>
-		</kehtivus>
+		<kehtivuseLopp>2026-06-30+03:00</kehtivuseLopp></kehtivus>
 		<versioon>
 			<dokumentVersioon>1</dokumentVersioon>
 			<dokumentVersioonKuupaev>2025-04-09</dokumentVersioonKuupaev>
 		</versioon>
 		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
 		<globaalID>412042025015</globaalID>
-		<metaandmedVersioon>9</metaandmedVersioon>
-		<metaandmedVersioonKuupaev>2025-04-11</metaandmedVersioonKuupaev>
+		<metaandmedVersioon>10</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2026-06-18</metaandmedVersioonKuupaev>
 		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
 		<terviktekstiGrupiID>1033406</terviktekstiGrupiID>
 		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>

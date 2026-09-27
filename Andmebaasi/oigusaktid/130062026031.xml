@@ -10,31 +10,31 @@
 		<vastuvoetud>
 			<aktikuupaev>2015-12-09</aktikuupaev>
 			<avaldamismarge>
-				<RTosa id="c9854a43-7f56-4d75-8677-01ec7fc411a7">RT I</RTosa>
-				<avaldamineKuupaev id="3b426b0e-29db-4575-8925-6666c1092d5d">2015-12-30</avaldamineKuupaev>
-				<RTartikkel id="a99a2445-78e5-4e8a-a3cf-9d74d4f94c5d">3</RTartikkel>
-				<aktViide id="3b959ef3-6f08-492c-922a-8e535e8f8208">130122015003</aktViide>
+				<RTosa>RT I</RTosa>
+				<avaldamineKuupaev>2015-12-30</avaldamineKuupaev>
+				<RTartikkel>3</RTartikkel>
+				<aktViide>130122015003</aktViide>
 			</avaldamismarge>
 			<joustumine>2016-01-01</joustumine>
 		</vastuvoetud>
-		<avaldamismarge><RTosa>RT I</RTosa><avaldamineKuupaev>2025-12-30</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>36</RTartikkel><aktViide>130122025036</aktViide></avaldamismarge><kehtivus>
-			<kehtivuseAlgus>2026-01-09</kehtivuseAlgus>
-		<kehtivuseLopp>2026-09-30+03:00</kehtivuseLopp></kehtivus>
+		<avaldamismarge><RTosa>RT I</RTosa><avaldamineKuupaev>2026-06-30</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>31</RTartikkel><aktViide>130062026031</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2026-10-01</kehtivuseAlgus>
+		</kehtivus>
 		<versioon>
 			<dokumentVersioon>1</dokumentVersioon>
 			<dokumentVersioonKuupaev>2025-12-22</dokumentVersioonKuupaev>
 		</versioon>
 		<skeemiNimi>tyviseadus_1_10.02.2010.xsd</skeemiNimi>
-		<globaalID>130122025036</globaalID>
-		<metaandmedVersioon>30</metaandmedVersioon>
+		<globaalID>130062026031</globaalID>
+		<metaandmedVersioon>32</metaandmedVersioon>
 		<metaandmedVersioonKuupaev>2026-06-29</metaandmedVersioonKuupaev>
 		<metaandmedVersioonPohjustaja>Maret Mauer</metaandmedVersioonPohjustaja>
 		<terviktekstiGrupiID>1032299</terviktekstiGrupiID>
 		<eesmark>Tüviseaduse raamskeem XML struktuuri koostamiseks</eesmark>
 	</metaandmed>
-	<aktinimi id="8b5861e5-519a-4f87-8ea9-b2c966118e75">
-		<nimi id="91adeb10-a823-4da0-94a6-d4b01018b33a">
-			<pealkiri id="702c46c0-1584-4224-ada6-1a755a7959b2">Sotsiaalseadustiku üldosa seadus</pealkiri>
+	<aktinimi>
+		<nimi>
+			<pealkiri>Sotsiaalseadustiku üldosa seadus</pealkiri>
 		</nimi>
 	</aktinimi>
 	<muutmismarge id="dd7f5ac1-eefd-4a01-ac9d-42514a1384f6">
@@ -105,13 +105,23 @@
 			<RTartikkel id="e68532d8-59c0-453f-9599-aa9aaa7c58c4">3</RTartikkel>
 			<aktViide id="0843c74a-0376-4683-b0ed-779f8947d3e3">130122025003</aktViide>
 		</avaldamismarge>
-		<joustumine id="133f9fe9-3c67-4ce3-95db-9e5f88bb4442">2026-01-09</joustumine>
+		<joustumine>2026-01-09</joustumine>
 	</muutmismarge>
-	<sisu id="9af49f04-36b8-45bb-90d5-e89ed3adde0b">
+	<muutmismarge>
+		<aktikuupaev>2026-06-02</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2026-06-30</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>130062026001</aktViide>
+		</avaldamismarge>
+		<joustumine>2026-10-01</joustumine>
+	</muutmismarge>
+	<sisu>
 		<peatykk id="ptk1">
-			<peatykkNr id="21ec8c10-2338-4907-8676-45e3a5e00e27">1</peatykkNr>
-			<kuvatavNr id="6b430bc7-8b02-4d23-b5a6-e544596e9bf7"><![CDATA[1. peatükk]]></kuvatavNr>
-			<peatykkPealkiri id="4376f52b-c867-49bd-8a06-e63ad4d50da7">Üldsätted</peatykkPealkiri>
+			<peatykkNr>1</peatykkNr>
+			<kuvatavNr><![CDATA[1. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Üldsätted</peatykkPealkiri>
 			<jagu id="jg1">
 				<jaguNr id="cc091017-4a67-4748-9b00-b307306d4479">1</jaguNr>
 				<kuvatavNr id="a59165e6-e5f3-4862-aa18-c095c32d7d91"><![CDATA[1. jagu]]></kuvatavNr>
@@ -1318,34 +1328,76 @@
 					</loige>
 				</paragrahv>
 				<paragrahv id="para29">
-					<paragrahvNr id="a6e6e8c3-fd06-4800-8b6b-c41996cba130">29</paragrahvNr>
-					<kuvatavNr id="dee86d5f-95d4-479a-87b3-78a5ef78d472"><![CDATA[§ 29. ]]></kuvatavNr>
-					<paragrahvPealkiri id="81553ea4-b588-44c1-9cd4-8067a8823f3c">Mitterahalise hüvitise andmine</paragrahvPealkiri>
+					<paragrahvNr>29</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 29. ]]></kuvatavNr>
+					<paragrahvPealkiri>Mitterahalise hüvitise andmine</paragrahvPealkiri>
 					<loige id="para29lg1">
-						<loigeNr id="3edc88e2-112b-4e35-9877-f1b3055030c2"/>
-						<kuvatavNr id="5427ed96-9827-409f-943f-a6563315fa46"/>
-						<sisuTekst id="ca44e9bc-c27f-409c-9fb5-c8d0c0d4e1c0">
-							<tavatekst id="4b68d7d1-2f7e-4a1f-b759-c1be95aeb847">Mitterahalist hüvitist antakse seaduses sätestatud alustel.</tavatekst>
+						<loigeNr/>
+						<kuvatavNr/>
+						<sisuTekst>
+							<tavatekst>Mitterahalist hüvitist antakse seaduses sätestatud alustel.</tavatekst>
 						</sisuTekst>
 					</loige>
 				</paragrahv>
 				<paragrahv id="para30">
-					<paragrahvNr id="a0d0ff8d-de7f-4396-8b59-4f52e8ba6936">30</paragrahvNr>
-					<kuvatavNr id="7684c167-298c-4ffb-b34b-c566cf94b870"><![CDATA[§ 30. ]]></kuvatavNr>
-					<paragrahvPealkiri id="eaf043a5-5858-4ec4-be6c-bc2f41a4b01a">Hüvitise andja õigused ja kohustused</paragrahvPealkiri>
+					<paragrahvNr>30</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 30. ]]></kuvatavNr>
+					<paragrahvPealkiri>Hüvitise andja õigused ja kohustused</paragrahvPealkiri>
 					<loige id="para30lg1">
-						<loigeNr id="80c6075d-2f1a-4252-b055-ede3c7ef0b91">1</loigeNr>
-						<kuvatavNr id="87c3ad94-e92d-4a3f-ae89-7482a0cf10d3"><![CDATA[(1)]]></kuvatavNr>
-						<sisuTekst id="4a5582f2-16d7-4e99-b842-c3f30a60f238">
-							<tavatekst id="51f18dde-d0f9-47e8-be21-fb73731b2833">Hüvitise taotlemisel ja andmisel ei või hüvitise andja nõuda isikult andmeid ja tõendeid, mille isik on hüvitise andjale esitanud varem, kui isik kinnitab esitatud andmete õigsust ja hüvitise andja kohustus andmeid säilitada ei ole lõppenud, välja arvatud juhul, kui hüvitise andja juurdepääs andmetele on objektiivselt võimatu või oluliselt raskendatud või kui seadus ei sätesta teisiti.</tavatekst>
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Hüvitise taotlemisel ja andmisel ei või hüvitise andja nõuda isikult andmeid ja tõendeid, mille isik on hüvitise andjale esitanud varem, kui isik kinnitab esitatud andmete õigsust ja hüvitise andja kohustus andmeid säilitada ei ole lõppenud, välja arvatud juhul, kui hüvitise andja juurdepääs andmetele on objektiivselt võimatu või oluliselt raskendatud või kui seadus ei sätesta teisiti.</tavatekst>
 						</sisuTekst>
 					</loige>
 					<loige id="para30lg2">
-						<loigeNr id="512b9901-2c81-4186-8720-62108b662789">2</loigeNr>
-						<kuvatavNr id="5f8d88d4-a0cc-4763-a10a-48ac0eb6009b"><![CDATA[(2)]]></kuvatavNr>
-						<sisuTekst id="4cee8740-9ed9-4658-8ae7-fac32cf173ab">
-							<tavatekst id="67947bec-c6d7-4177-972b-eb1b58683a8a">Hüvitise taotlemisel ja andmisel on hüvitise andjal põhjendatud kahtluse korral hüvitise saamise õiguse olemasolu või hüvitise ulatuse kohta õigus kontrollida hüvitise andmise aluseks olevaid asjaolusid, sealhulgas hüvitise taotlemise käigus esitatud andmete, dokumentide ja muude tõendite õigsust.</tavatekst>
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Hüvitise taotlemisel ja andmisel on hüvitise andjal põhjendatud kahtluse korral hüvitise saamise õiguse olemasolu või hüvitise ulatuse kohta õigus kontrollida hüvitise andmise aluseks olevaid asjaolusid, sealhulgas hüvitise taotlemise käigus esitatud andmete, dokumentide ja muude tõendite õigsust.</tavatekst>
 						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para30b1">
+					<paragrahvNr ylaIndeks="1">30</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 30<sup>1</sup>. ]]></kuvatavNr>
+					<paragrahvPealkiri>Hüvitise andmine kriisiolukorra ajal</paragrahvPealkiri>
+					<loige id="para30b1lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Kriisiolukorra ajal on hüvitise andjal õigus laiendada nende isikute ringi, kellele võimaldatakse seaduses sätestatud rahalise hüvitise riigi kulul kojukannet, kui see on kriisiolukorra tõttu vajalik.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para30b1lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Kriisiolukorra tõttu Eestist ajutiselt eemal viibiv isik loetakse Eestis elavaks isikuks käesoleva seaduse § 3 lõike 1 tähenduses.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para30b1lg3">
+						<loigeNr>3</loigeNr>
+						<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Kriisiolukord käesoleva paragrahvi tähenduses on kriisiolukord kriisiolukorra ja riigikaitse seaduse tähenduses.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para30b1lg4">
+						<loigeNr>4</loigeNr>
+						<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Erakorralise või sõjaseisukorra ajal võib hüvitise andja anda sama hüvitise puhul hüvitise andmise või hüvitise andmisest keeldumise haldusakti korraga mitmele hüvitise saamise õigust omavale isikule.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2026-06-30</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>130062026001</aktViide>
+							</avaldamismarge>
+							<joustumine>2026-10-01</joustumine>
+						</muutmismarge>
 					</loige>
 				</paragrahv>
 			</jagu>
@@ -1669,7 +1721,7 @@
 						<viide id="d23d4c23-2b14-47e0-9479-fd2352b7b239">
 							<kuvatavTekst id="1dc62639-e34b-402a-9119-3a005f879078"><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
 							<viideURID id="ffd4a0cb-46e2-4de4-bf70-23119c386f4b">
-								<viideURI id="717e6ed8-653d-4fb0-9fac-469a85ac903f"><![CDATA[./dyn=130122025036&id=107032019007]]></viideURI>
+								<viideURI id="717e6ed8-653d-4fb0-9fac-469a85ac903f"><![CDATA[./dyn=130062026031&id=107032019007]]></viideURI>
 							</viideURID>
 						</viide>
 						<tavatekst id="18f4f6ee-b1e1-46bc-8110-42e34d8ad9e7"> määrusega, milles sätestatakse:</tavatekst>
