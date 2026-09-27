@@ -7,6 +7,7 @@ import { spawnSync } from 'node:child_process';
 import { digest } from '../lib/rag-v2/pilot/contracts.js';
 import { activateChatPlan, approvedChatPlan, approvedScope, codeContract, newChatPlan, preflightChatPlan, renewChatPlan,
   RELEASE_RENEWAL } from '../lib/rag-v2/pilot/chat-plan.js';
+import { PilotStore } from '../lib/rag-v2/pilot/store.js';
 
 // ADR-037: a release renews the approved chat plan for its code; everything the owner approved stays the same.
 const embedding = { embedding_mode: 'real', provider: 'openai', model: 'text-embedding-3-large', dimensions: 3072,
@@ -90,4 +91,31 @@ test('the release command reports a plan it cannot use without printing it, and 
     const ready = run(['ready']);
     assert.equal(ready.status, 1); assert.match(ready.stderr, /pilot_disabled/);
   } finally { await fs.rm(dir, { recursive: true, force: true }); }
+});
+
+// Codex review 27.09.2026 (P1): a renewal had a new ledger, so each release restored the budget already used.
+test('a renewal keeps spending against the approved plan ledger, so a release never restores a used budget', async () => {
+  const previous = await plan(), renewed = await renewChatPlan(previous, { release: 'da69c0e' }), again = await renewChatPlan(renewed, { release: 'abcdef1' });
+  assert.equal(previous.budgetLedger, undefined); assert.equal(renewed.budgetLedger, previous.id); assert.equal(again.budgetLedger, previous.id);
+  const config = value => ({ ...value, configHash: digest(value) });
+  const ledgers = new Map([[previous.id, { id: previous.id, configHash: config(previous).configHash,
+    totals: { attempts: 1, tokens: 100, nanoUsd: 3e9, embeddingAttempts: 0, answerAttempts: 1 } }]]);
+  const row = { id: 'turn', payload: { userId: 'owner-user', convId: 'conversation', events: [] }, expiresAt: null }, locks = [];
+  const tx = { $executeRaw: async (strings, key) => { locks.push(key); }, $queryRaw: async () => [],
+    conversation: { findUnique: async () => ({ userId: 'owner-user', metadata: { m4: true } }) },
+    m4PilotTurn: { findUnique: async () => row, update: async ({ data }) => ({ ...row, ...data }) },
+    m4PilotLedger: { findUnique: async ({ where }) => ledgers.get(where.id) || null,
+      upsert: async ({ where, create, update }) => { ledgers.set(where.id, ledgers.has(where.id) ? { ...ledgers.get(where.id), ...update } : create); },
+      update: async ({ where, data }) => { ledgers.set(where.id, { ...ledgers.get(where.id), ...data }); } } };
+  const store = new PilotStore({ $transaction: async fn => fn(tx) });
+  // 3 of 4 USD used under the approved plan: the renewal may reserve 1 more, in the same ledger, and then no more.
+  await store.reserve(config(again), row, 'answer', { tokens: 1, nanoUsd: 1e9 }, {});
+  assert.equal(ledgers.get(previous.id).totals.nanoUsd, 4e9); assert.equal(ledgers.has(again.id), false);
+  assert(locks.every(key => key === `m4/${previous.id}`));
+  await assert.rejects(store.reserve(config(renewed), { ...row, payload: { ...row.payload, events: [] } }, 'answer', { tokens: 1, nanoUsd: 1 }, {}),
+    { code: 'pilot_budget_exhausted' });
+  // Another plan that does not name the ledger cannot use it.
+  const stranger = { ...previous, reasoning: 'high' };
+  ledgers.set(stranger.id, { ...ledgers.get(previous.id), configHash: 'other' });
+  await assert.rejects(store.reserve(config(stranger), row, 'answer', { tokens: 1, nanoUsd: 1 }, {}), { code: 'ledger_plan_conflict' });
 });

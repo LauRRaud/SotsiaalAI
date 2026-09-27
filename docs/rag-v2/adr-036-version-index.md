@@ -84,6 +84,20 @@ Muutmata:
 - **Kehtivus:** 27.09 seisuga on uued tekstid `not_yet_in_force`. 15.01.2027 seisuga jäävad tõendiks SHS 2027 ja HMS 2027, vanad on `expired`. Samas kontrollis ilmnes, et Riigilõivuseadusel pole 2027. aasta teksti.
 - **Ketas:** v30 ja v31 read on koos 616 MB (`rag_v2_version_unit`) ja üks Qdranti kollektsioon. Vana viisiga oli iga põlvkond ~1 GB. Vanad põlvkonnad v25b–v29 kustutati omaniku loal ja `rag_v2_unit` kirjutati ümber (2,8 GB → 1,8 MB): vaba ruum 8,2 → 12 GB.
 
+- **v32** = v31 + 17 õigusakti Riigi Teataja praeguse kehtivusega ja 22 järelteksti (PR #215, Jõhvi nimi #216), esimene lisamine #212 rajal (`run-v32.sh`, 27.09 19:35–19:38 UTC, kokku 2 min 43 s):
+
+  | Samm | Aeg | Märkus |
+  |---|---:|---|
+  | ostuplaan `--indexed` | 6,5 s | loeti 39 dokumenti, 5985 indeksis valmis dokumenti jäeti vahele; 1354 sisendit, 1051 korduvkasutust |
+  | ost | 79 s | 303 sisendit, 123 308 tokenit, 0,016 USD (üks päring sisendi kohta) |
+  | indeksi plaan | 6,0 s | `documents_to_index` 39, `units_to_index` 3819 |
+  | indeksi töö | 61 s | 5985 dokumenti (28 927 tekstiosa) nimekirja, 39 töödeldud ja valmis märgitud |
+  | vestlusplaan | 6 s | uus põlvkond, käsitsi rada: `…20260927x.json` (id …-1937) |
+
+  - v31 sõrmejäljed pärast v32 lisamist muutumata (`eeea3598…`, `9fe8aab9…`, `272038b3…`); jagatud tabel ja kollektsioon 30 081 → 33 900.
+  - Kehtivus (`validity-v32.mjs`): igal kontrollitud kuupäeval (27.09, 01.10, 30.10, 31.10, 01.11, 15.01.2027, 15.07.2027) jääb igast aktist üks redaktsioon. Erand: **31.10.2026 pole ühtki Riigilõivuseaduse teksti**, sest RT ametlikes andmetes lõpeb 111072026166 30.10 ja 111072026167 algab 01.11.
+  - Elav kontroll: „Millised on Tallinna sotsiaaltoetuste määrad praegu?“ tsiteeris ainult 01.07.2026 kehtima hakanud määrasid.
+
 ## Järelparandused (Codexi ülevaatus 27.09.2026)
 
 Codexi ülevaatus (27.09.2026, PR-id #209–#211) leidis, et kirjutamine on muudatusepõhine, aga ettevalmistus veel mitte. v31 mõõtmine kinnitas seda: 5 min 46 s-st kulus ~4 min ostuplaanile ja ostule. Samal päeval parandatud:

@@ -8,8 +8,19 @@ import { spawnSync } from 'node:child_process';
 // ADR-037: the real generated deploy script, run against a local git remote with stand-ins for sudo, systemctl, npm
 // and npx that record every call. A release whose chat plan check fails must bring back the previous code, build and
 // plan; a release with a renewed plan activates it after the main migration and checks it after the restart.
-const bash = spawnSync('bash', ['-c', 'echo ok'], { encoding: 'utf8' });
-const skip = bash.stdout?.trim() !== 'ok' ? 'bash is not available' : false;
+// A Bash that runs the script like the server does. On Windows 'bash' may be WSL's, which cannot use these paths:
+// take Git Bash (GIT_BASH, the default install, or a 'bash' that reports MSYS/MINGW).
+function findBash() {
+  const candidates = process.platform === 'win32'
+    ? [process.env.GIT_BASH, 'C:\\Program Files\\Git\\bin\\bash.exe', 'bash'].filter(Boolean) : ['bash'];
+  for (const candidate of candidates) {
+    const probe = spawnSync(candidate, ['-c', 'uname -s'], { encoding: 'utf8' });
+    if (probe.status === 0 && (process.platform !== 'win32' || /MINGW|MSYS|CYGWIN/.test(probe.stdout))) return candidate;
+  }
+  return null;
+}
+const BASH = findBash();
+const skip = BASH ? false : 'no suitable bash (on Windows: Git Bash)';
 
 const STUBS = {
   sudo: `#!/usr/bin/env bash
@@ -80,7 +91,7 @@ async function sandbox(nextMode) {
   const script = spawnSync(process.execPath, ['scripts/deploy-server.mjs', '--print-script'], { encoding: 'utf8',
     env: { ...process.env, DEPLOY_APP_DIR: posix(app), DEPLOY_FRONTEND_ENV: posix(frontendEnv), DEPLOY_RAG_ENV: posix(ragEnv) } }).stdout;
   const calls = path.join(root, 'calls.log'); await fs.writeFile(calls, '');
-  const run = spawnSync('bash', ['-s'], { input: script, encoding: 'utf8', timeout: 120000,
+  const run = spawnSync(BASH, ['-s'], { input: script, encoding: 'utf8', timeout: 120000,
     env: { ...process.env, PATH: `${bin}${path.delimiter}${process.env.PATH}`, HOME: path.join(root, 'home'), CALLS: mixed(calls), PLAN_DIR: mixed(plans) } });
   return { root, app, previous, next, ragEnv, run, calls: (await fs.readFile(calls, 'utf8')).trim().split('\n'),
     cleanup: () => fs.rm(root, { recursive: true, force: true }) };
