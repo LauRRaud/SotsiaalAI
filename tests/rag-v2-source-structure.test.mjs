@@ -879,6 +879,27 @@ test('a confirmed absence empties a field and keeps every candidate as supersede
   assert.equal(field.value, null); assert.equal(field.review_state, 'confirmed'); assert.equal(field.provenance.at(-1).reason, 'confirmed_absent');
 });
 
+test('a municipal record without its own link gets the pages its source keys name in the verified register; its own link wins', async () => {
+  const dir = path.join(root, 'record-links'); await fs.mkdir(path.join(dir, 'KOV', 'fiktiiv-vald'), { recursive: true });
+  const item = (id, extra = {}) => ({ id, canonical_item_id: id, itemType: 'contact', municipality_id: 'fiktiiv_vald', name: `Kontakt ${id}`,
+    role: 'Sotsiaaltöötaja', sourceKeys: ['kontakt_page', 'home', 'missing'], ...extra });
+  const pkg = JSON.stringify({ municipality: 'Fiktiiv vald', items: [item('c1'), item('c2', { officialUrl: 'https://fiktiiv.example/own' })] });
+  const register = JSON.stringify({ sources: [{ key: 'kontakt_page', url: 'https://fiktiiv.example/kontaktid' }, { key: 'home', url: 'https://fiktiiv.example/' },
+    { key: 'insecure', url: 'http://fiktiiv.example/' }] });
+  await fs.writeFile(path.join(dir, 'KOV', 'fiktiiv-vald', 'fiktiiv-vald.json'), pkg);
+  await fs.writeFile(path.join(dir, 'KOV', 'fiktiiv-vald', 'fiktiiv-vald.sources.json'), register);
+  const writeRegistry = registerHash => fs.writeFile(path.join(dir, 'REGISTER.json'), JSON.stringify({ entries: [
+    { role: 'source_register', path: 'KOV/fiktiiv-vald/fiktiiv-vald.sources.json', sha256: registerHash }] }));
+  const read = id => registeredSource(dir, { role: 'source', path: 'KOV/fiktiiv-vald/fiktiiv-vald.json', sha256: hash(pkg) }, { itemId: id });
+  await writeRegistry(hash(register));
+  assert.deepEqual((await read('c1')).source_urls, ['https://fiktiiv.example/kontaktid', 'https://fiktiiv.example/']);
+  assert.equal((await read('c2')).source_urls, undefined, 'the record\'s own link is not replaced');
+  await fs.writeFile(path.join(dir, 'REGISTER.json'), JSON.stringify({ entries: [] }));
+  assert.equal((await read('c1')).source_urls, undefined, 'an unregistered register gives no links');
+  await writeRegistry('0'.repeat(64));
+  await assert.rejects(read('c1'), { code: 'registry_source_hash_mismatch' });
+});
+
 test('a legal act takes its jurisdiction from the verified register, else from an unambiguous issuer; a changed register is re-read', async () => {
   const dir = path.join(root, 'jurisdiction'); await fs.mkdir(path.join(dir, 'register'), { recursive: true });
   const act = (issuer, id) => xml.replace('Fixture issuer', issuer).replace('fixture-123', id);
