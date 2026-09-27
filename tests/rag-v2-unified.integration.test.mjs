@@ -221,4 +221,12 @@ test('search assist: planned queries share one embedding request, the answer mod
   assert.deepEqual(fallback.payload.searchAssist.failures, [{ stage: 'rerank', code: 'provider_http_error' }]);
   assert(f.inputs[1].evidence.retrieval.lanes.find(lane => lane.kind === 'knowledge').refs.length > 1);
   assert.equal((await f.service.restore(fallback)).state, 'completed');
+  // The failed call keeps its reservation but is not an unknown call: the next turn is not blocked.
+  assert.equal(fallback.payload.events.find(event => event.stage === 'rerank').state, 'provider_failed');
+  f.assistCalls.failRerank = false;
+  assert.equal((await f.row((await f.run('Ja veel?')).id)).state, 'completed');
+  // A turn stopped between assist calls counts as running: no second turn starts beside it.
+  await db.m4PilotTurn.update({ where: { id: fallback.id }, data: { state: 'rerank_sent' } });
+  await assert.rejects(f.run('Uus küsimus?'), { code: 'pilot_busy_or_unknown' });
+  await db.m4PilotTurn.update({ where: { id: fallback.id }, data: { state: 'completed' } });
 });
