@@ -319,7 +319,7 @@ test('F07: an unknown answer outcome retains its pre-send packet and cannot beco
 
 test('v4 real DB: bare citation rejection preserves exact audit and never retries on restore', async t => {
   const f = await fixture(t), call = f.service.call;
-  const text = 'Supported claim. S1';
+  const text = 'S1 supports this claim.';
   f.service.call = async input => {
     const result = await call(input);
     if (input.stage === 'answer') result.value.blocks[0].text = text;
