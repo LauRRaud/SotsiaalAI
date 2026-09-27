@@ -59,6 +59,8 @@ Teostus Claude Opus 5.5, 27.09.2026. Aluseks aktiivne korpus v27 (`search_genera
 
 Kehtivusreegel valib hiljem õige redaktsiooni kuupäeva järgi ise; vana redaktsiooni pole vaja käsitsi eemaldada. A tasub teha ainult siis, kui SHS-i on vaja enne 01.10.
 
+**Tehtud 27.09.2026 (korpus v29, [ADR-035](../rag-v2/adr-035-record-links-and-shs-versions.md)):** nii A kui B lisati korpusesse. Uusi sisendeid oli 83 (46 777 tokenit), kulu 0,006 USD.
+
 ## 2. Õige omavalitsuse allikad
 
 **Etapp:**
