@@ -403,3 +403,79 @@ Selle järelkontrolli ulatus ei muutu. Kehtivuskontroll on tehtud [ADR-038](../r
 - **Otsingu-API lehed pole stabiilsed:** 521 tulemuse teine leht kordas 20 esimese lehe akti. Kontroll küsib lehti uuesti, kuni `kokku` täitub. Kui see ei täitu, on tulemus tõrge, mitte muutumatus.
 - **Ajastus:** omanik otsustas, et kontroll käib kord kuus. GitHub Actions jookseb 25. kuupäeval, järgmine jooks on 25.10, enne RLS-i 31.10. Leiud lähevad issue'sse, tõrge teeb töö punaseks.
 - **Esimene jooks v32 peal:** 62/64 gruppi muutumata ja 0 päringutõrget. Leitud olid RLS-i 31.10.2026 lünk ning SHS-i 2027. aasta redaktsioonid alates 01.02, mida korpuses pole.
+
+## 8. PR #218 kehtivuskontrolli koodiülevaatus
+
+27.09.2026, Codex. Kontrollitud liidetud commit `556d6c067`; kohalik
+`7af66c592` on kontrollitud koodi, testide ja workflow osas sama. PR on
+`origin/main`-is. Avalikke RT päringuid, GitHubi workflow käivitamist ega
+issue kirjutamist selles ülevaatuses ei tehtud. Esimese pärisjooksu 62/64
+tulemus on teostaja aruanne, mitte siin korratud mõõtmine.
+
+**P1 — korpuses olev võimalik asendaja vaigistab lõppeva grupi hoiatuse.**
+
+- `lib/rag-v2/law-validity.js:70–72` loeb kõik `in_corpus` kandidaadid
+  tõendatud asendajateks. Nende kandidaadiks saamiseks piisab samast
+  väljaandjast, otsingusõnast ja algusest vana grupi lõpu lähedal
+  (`scripts/rag-v2-law-validity.mjs:128–142`); ametlikku asendusseost pole vaja.
+- Sõltumatus katses lõppes sotsiaalabi kord 26.09 ja korpuses oli 27.09
+  alanud teise grupi sotsiaalosakonna töökorralduse akt. `analyseGroup`
+  andis `unchanged`, tühja `review` ja märkuse `replaced_in_corpus`.
+  Kui muid leide pole, ei ava selline tulemus issue't või sulgeb olemasoleva.
+- Võimalik asendaja peab jääma inimese ülevaatusele ka siis, kui fail on
+  juba korpuses. Hoiatuse vaigistamiseks on vaja kinnitatud seost, näiteks
+  ametlikku viidet või ülevaatuse tulemust. Ka praeguse ühiktesti vastav
+  ootus kinnitab liiga nõrka tingimust ja vajab muutmist.
+
+**P2 — täiendav otsing muudab tuvastatud kehtetuks tunnistamise kirje tavaliseks tekstiks.**
+
+- `scripts/rag-v2-law-validity.mjs:118–119` lisab puuduvale tühjale RT kirjele
+  `repealed`/`repealed_by`. Kui kehtetuks tunnistanud akti korpuses pole,
+  järgneb asendajate otsing. Rida 133 asendab sama akti `version(act)`
+  objektiga ja kaotab need tunnused, sealhulgas vahemälust saadud otsingul.
+- CLI katse kohaliku HTTP-serveriga: vana tekst lõpeb 26.09, 27.09 algab
+  tühi `Kehtetu` kirje viitega korpuses puuduvale aktile. Tulemuseks on
+  tühja kirje kohta `missing_version`, **puudub `group_repealed`** ja
+  ülevaatuse nimekiri on tühi. Nii võib allalaadimiseks soovitatud tekst
+  olla just see tühi kirje, mida tööriist pidi eristama.
+- Otsingutulemuste liitmine peab säilitama kontrollitud XML-ist saadud
+  tunnused või tuleb lõplik liikmete loend uuesti klassifitseerida.
+
+**P2 — kõiki 404 vastuseid ei märgita päringutõrkeks.**
+
+- Puuduva avaldatud redaktsiooni XML-i 404 annab `currentText`-ist `null`,
+  mille read 118–119 jätavad tõrketa. Otsingu 404 muutub real 66 nulli
+  valikulise lugemise tõttu täielikuks nulltulemuseks. Indekseeritud akti
+  enda 404 käsitletakse samas õigesti real 108.
+- Mõlemad CLI katsed läbisid: puuduva redaktsiooni XML-i 404 andis
+  `changed`, otsingu 404 andis `review`; **mõlemal exit 10 ja `errors: []`**.
+  Workflow jätab exit 10 korral töö roheliseks. See ei täida lubadust,
+  et ebaõnnestunud päring annab `fetch_failed` ja exit 20.
+- 404 tuleb käsitleda kutsuja kontekstis ning otsingu vastuse struktuur
+  valideerida enne selle tühjaks täielikuks tulemuseks lugemist.
+
+**Kontrollid ja piirid:**
+
+- Uue faili `tests/rag-v2-law-validity.test.mjs` **3/3 testi** läbisid,
+  sealhulgas 503 ja mittetäielike lehtede tõrkerajad. Need ei kata ülaltoodut.
+- Kolme muudetud JS/MJS-faili sihtlint ja commitivahemiku diff-kontroll läbisid.
+- Sõltumatu sond `tmp/rag-v2-commit-review-2026-09-27/law-monitor-probe.mjs`
+  kordab nelja juhtu: tõendamata kandidaat, kadunud `repealed`, XML-i 404
+  ja otsingu 404. JSON-raportid on sama kausta `law-monitor-fixtures/` all.
+  Sisendid on sünteetilised, võrk piirdus kohaliku HTTP-serveriga.
+- Git-manifestis on 87 akti, 64 gruppi, puuduv akti-ID 0 ja puuduv grupi-ID 1
+  (eraldi akti rada). Ajakava on iga kuu 25. päeval 04:15 UTC.
+  Ajastatud töö ja GitHubi teavituse tegelik käivitumine on siin `not_run`.
+- Kord kuus töötamine ja manifesti käsitsi uuendamine on dokumenteeritud
+  valikud. Kuine kontroll saab hinnata selle käivitumise ajaks avaldatud
+  muudatusi; hiljem avaldatud redaktsioon ei pruugi jõustumise eel nähtavale jõuda.
+
+### Parandused pärast ülevaatust (lisatud 27.09 öösel, Claude)
+
+Ülaltoodud leiud kehtivad commit'i `556d6c067` kohta. Parandused on [ADR-038](../rag-v2/adr-038-law-validity-check.md#parandused-pärast-codexi-ülevaatust-218)-s ja järgmises PR-is.
+
+- **P1:** märkuse `replaced_in_corpus` annab ainult RT kehtetuks tunnistamise märke viide korpuses olevale aktile. Korpuses olev lähedane kandidaat jääb ülevaatusele. Ühiktesti ootus on muudetud.
+- **P2 (kehtetuks tunnistamise märge):** asendajate otsing ei kirjuta juba loetud redaktsiooni üle. Uued redaktsioonid loetakse XML-ist samamoodi.
+- **P2 (404):** avaldatud redaktsiooni või kandidaadi XML-i 404, otsingu 404 ja vastus ilma `kokku`/`aktid` väljadeta annavad `fetch_failed` ja exit 20. `--download` tõrked jõuavad aruandesse.
+- **Testid:** sõltumatu sondi neli juhtu on nüüd `tests/rag-v2-law-validity.test.mjs`-is. Vana koodiga annab sama test Codexi tulemused: P1 `unchanged` märkusega, P2 `missing_version:451`, 404 ilma tõrgeteta. Uue koodiga on tulemused `review`, `group_repealed` ja `fetch_failed` (`not_found`, `not_found`, `invalid_response`).
+- **Pärisjooks v32 peal pärast parandust:** 62/64 muutumata, 2 muutunud, 0 päringutõrget. Kolm märkust põhinevad RT ametlikul viitel.

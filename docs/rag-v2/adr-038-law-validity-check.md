@@ -38,11 +38,12 @@ Kontroll (`check`) loeb ainult avalikke andmeid ja ei muuda midagi. Iga grupi ko
   - korpuses indekseeritud kehtivusega: `corpus_gap` ja `corpus_overlap`. Aegunud lõppkuupäev tuleb siin nähtavale kattuvusena.
 - **Kehtetuks tunnistamine.** RT avaldab siis viimase „redaktsiooni“, millel pole teksti: `<sisu/>` on tühi, märge on „Kehtetu“ ja viide näitab kehtetuks tunnistanud akti.
   - Grupp lõpeb sellele eelneval päeval.
-  - Kui kehtetuks tunnistanud akt on korpuses, tuleb aruandesse märkus (`replaced_in_corpus`).
+  - Kui kehtetuks tunnistanud akt on korpuses, tuleb aruandesse märkus (`replaced_in_corpus`). See on ainus seos, mis hoiatuse vaigistab, sest see on RT ametlik viide.
   - Kui seda akti korpuses pole, vajab asi ülevaatust (`group_repealed`).
 - **Grupp, mis lõpeb järglaseta** 400 päeva jooksul või viimase 180 päeva jooksul, vajab ülevaatust (`group_ends`).
   - Kontroll näitab ka sama väljaandja sotsiaalvaldkonna akte, mis algavad 3 päeva enne kuni 10 päeva pärast grupi lõppu (`replacement_candidate`, lõigete arvuga).
-  - Need on ainult kandidaadid. Nende hulgas võib olla ka tühi kehtetuks tunnistamise märge. Korpusesse lisab need inimene.
+  - Need on ainult kandidaadid. Nende hulgas võib olla ka tühi kehtetuks tunnistamise märge (`repeal_stub`). Korpusesse lisab need inimene.
+  - Kandidaat jääb ülevaatusele ka siis, kui see on juba korpuses (`in_corpus`). Lähedane algus ei tõenda, et akt asendab lõppenud gruppi (Codexi #218 ülevaatus, P1).
 
 ### Riigi Teataja otsingu eripärad
 
@@ -61,7 +62,11 @@ Kontroll (`check`) loeb ainult avalikke andmeid ja ei muuda midagi. Iga grupi ko
   - `unchanged`: muutust ei ole;
   - `changed`: on leide;
   - `review`: vajab ülevaatust;
-  - `fetch_failed`: päringu tõrge. Selleks loetakse päringut, mis ei õnnestunud kolme katsega, puuduvat akti XML-i (404) ja mittetäielikku otsingut.
+  - `fetch_failed`: päringu tõrge. Selleks loetakse:
+    - päringut, mis ei õnnestunud kolme katsega;
+    - iga 404 vastust, mida kontroll vajab: indekseeritud või avaldatud redaktsiooni XML, kandidaadi XML, otsing ja `--download`;
+    - otsinguvastust ilma koguarvu või aktide loendita (`invalid_response`);
+    - mittetäielikku otsingut.
 - Tõrkega grupp ei saa kunagi olekut `unchanged`.
 - Väljumiskood on 0, kui muutusi pole, 10, kui on leide või ülevaatust, ja 20, kui mõni päring ebaõnnestus.
 
@@ -88,18 +93,30 @@ Kontroll (`check`) loeb ainult avalikke andmeid ja ei muuda midagi. Iga grupi ko
 - **Põlva, Kehtna ja Kohila** vanad korrad on kehtetuks tunnistatud. Kehtetuks tunnistanud aktid on korpuses (`426052026009`, `403072026003`, `429082026027`), nii et aruandes on nende kohta märkused.
 - Tööriista esimene versioon ei küsinud lehti uuesti ega tundnud kehtetuks tunnistamise märget ära. See andis 14 otsingumööda, 3 näilist kattuvust ja 3 näilist puuduvat redaktsiooni. Need olid tööriista vead, mitte korpuse omad. Parandatud versioon annab ülaltoodud tulemuse.
 
+## Parandused pärast Codexi ülevaatust (#218)
+
+Codex leidis liidetud #218-st kolm viga ([aruanne, jaotis 8](../audits/rag-v2-codex-review-2026-09-27.md#8-pr-218-kehtivuskontrolli-koodiülevaatus)). Kõik kolm on parandatud.
+
+- **P1:** korpuses olev kandidaat vaigistas lõppeva grupi hoiatuse. Nüüd annab märkuse ainult RT kehtetuks tunnistamise märke viide. Kandidaat jääb ülevaatusele.
+- **P2:** asendajate otsing leidis sama grupi uuesti ja kirjutas kehtetuks tunnistamise märke tavaliseks redaktsiooniks üle. Kontroll soovitas siis tühja kirjet puuduva tekstina. Nüüd säilib iga redaktsiooni kohta XML-ist loetu, ja otsingu leitud uued redaktsioonid loetakse samuti.
+- **P2:** puuduva redaktsiooni XML-i 404 ja otsingu 404 andsid `changed` või `review`, exit 10 ja tühja tõrkeloendi. Nüüd on need `fetch_failed` ja exit 20. Otsinguvastus peab sisaldama koguarvu ja aktide loendit. `--download` tõrked jõuavad enne kirjutamist aruandesse.
+
+Samad neli juhtu on testides. Enne parandust andis vana kood testi RT asendaja vastu Codexi kirjeldatud tulemused, parandatud kood mitte. Pärisjooks v32 peal pärast parandust: 62 muutumata, 2 muutunud, 0 päringutõrget. Põlva, Kehtna ja Kohila märkused põhinevad RT ametlikul viitel.
+
 ## Kontroll
 
 `tests/rag-v2-law-validity.test.mjs` on osa `npm test`-ist ega kasuta võrku. See kontrollib:
 
 - **katvust:** RLS-i üks katmata päev, enne tänast alanud lünk, aegunud lõppkuupäev kattuvusena ning lõpp horisondi sees ja selle taga;
-- **grupi analüüsi:** muutunud kehtivus, puuduvad redaktsioonid, lõppev grupp koos kandidaatidega, korpuses olev asendaja (märkus, mitte ülevaatus), kehtetuks tunnistamise märge ning otsingu kaks korda antud sama akt;
+- **grupi analüüsi:** muutunud kehtivus, puuduvad redaktsioonid, lõppev grupp koos kandidaatidega, korpuses olev lähedane kandidaat (ülevaatus, mitte märkus), kehtetuks tunnistamise märge (märkus ainult siis, kui kehtetuks tunnistanud akt on korpuses) ning otsingu kaks korda antud sama akt;
 - **käsurida kohaliku RT asendaja vastu,** mis annab otsingu tulemused igal päringul uues järjekorras:
   - muutumata allikas annab exit 0;
   - RLS-i 31.10 lünk annab exit 10 ja kirjutab aruanded;
   - 520 tulemust kahel lehel leitakse kõik;
   - korpuses oleva aktiga kehtetuks tunnistatud grupp on märkus;
-  - 503 ja lehed, mis kunagi kokku ei tule, annavad `fetch_failed` ja exit 20.
+  - korpuses olev teise grupi akt, mis algab järgmisel päeval, jääb kandidaadiks (`review`);
+  - kehtetuks tunnistamise märge, mille viidatud akti korpuses pole, jääb märkeks ka pärast asendajate otsingut (`group_repealed`, mitte `missing_version`);
+  - 503, lehed, mis kunagi kokku ei tule, avaldatud redaktsiooni XML-i 404, otsingu 404 ja vastus ilma koguarvuta annavad `fetch_failed` ja exit 20.
 
 ## Piirid
 
@@ -109,3 +126,5 @@ Kontroll (`check`) loeb ainult avalikke andmeid ja ei muuda midagi. Iga grupi ko
 - Muutmisakti ilma grupita (Haljala `423012026003`) kontrollitakse ainult akti enda kehtivuse järgi.
 - Vaadatakse 400 päeva ette. SHS-i 2028. ja 2029. aasta redaktsioonid jäävad sellest välja.
 - RT otsingu-API käitumine võib muutuda. Mittetäielik tulemus annab siis tõrke, mitte vaikse möödalaskmise.
+- Kuine kontroll näeb ainult neid muudatusi, mis on avaldatud jooksu ajaks. Kuu lõpus avaldatud ja kohe jõustuv redaktsioon ei pruugi enne jõustumist nähtavale tulla.
+- Grupp, mis lõpeb ilma RT kehtetuks tunnistamise viiteta, jääb ülevaatusele iga kuu kuni 180 päeva pärast lõppu. Ülevaatuse tulemuse salvestamist, mis hoiatuse vaigistaks, ei ole.

@@ -114,7 +114,13 @@ RLS-i redaktsioonireas on RT ametlikes andmetes 31.10.2026 katmata; see päev j�
 kuni RT avaldab selle redaktsiooni. Õigusaktide kehtivuse kontroll on repos
 ([ADR-038](../rag-v2/adr-038-law-validity-check.md)). GitHub Actions jookseb iga kuu 25. kuupäeval ja
 kontrollib RLS-i piiripäeva uuesti 25.10. Esimene jooks v32 peal andis 62/64 gruppi muutumata ja 0 päringutõrget;
-SHS-i 2027. aasta tekstid alates 01.02 tuleb lisada enne 31.01.2027. Avatud: 60 000 tekstiosa mahupiir ja
+SHS-i 2027. aasta tekstid alates 01.02 tuleb lisada enne 31.01.2027. #218 kohalik ülevaatus leidis
+kolm parandatavat kohta: tõendamata asendajakandidaat vaigistab hoiatuse, kordusotsing kaotab
+kehtetuks tunnistamise tunnused ning osa 404 vastuseid ei anna tõrkeseisu. 3/3 olemasolevat
+sihttesti läbivad; puudused on eraldi kohalike katsetega korratud. [#218 ülevaatus](../audits/rag-v2-codex-review-2026-09-27.md#8-pr-218-kehtivuskontrolli-koodiülevaatus).
+Parandused on ADR-038-s: märkus ainult RT ametliku kehtetuks tunnistamise viitega, märke tunnused säilivad
+ja iga 404 on tõrge. Pärisjooks pärast parandust: 62/64 muutumata, 0 päringutõrget.
+Avatud: 60 000 tekstiosa mahupiir ja
 vestlusplaani vahetus iga uue indeksipõlvkonnaga. [Uus ülevaatus](../audits/rag-v2-codex-review-2026-09-27.md#6-pr-214216-plaani-uuendus-ja-õigusaktide-värskendus),
 [serverimõõtmised](../rag-v2/adr-036-version-index.md#mõõtmine-serveris-27092026).
 
