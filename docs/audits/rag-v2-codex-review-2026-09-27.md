@@ -276,3 +276,88 @@ kontroll tuleb siduda olemasoleva tingimusliku tagasipöördumisrajaga ja tõend
 vana komplekti taastumine. Ainult hoiatuse muutmine veateateks ei ole selle
 vastuvõtutõend. Kinnituse ulatust ja kulupiiri ei nõrgendata. Käesolev ülevaatus
 seda parandust ei teosta.
+
+## 6. PR #214–#216: plaani uuendus ja õigusaktide värskendus
+
+27.09.2026, Codex. Kontrollitud #214 (`6f9461638`, kohalik sama koodiga
+`9ca966755`), #215 (`cad6ef67f`) ja #216 (`c5f5657da`). `origin/main` toodi
+üle ja kontrolli hetkel osutas see `c5f5657da`-le. Kohalikku haru ei vahetatud.
+Serverisse ei ühendutud; #214 eduka deploy ja vestluspöörde kohta on omaniku
+edastatud aruanne. v32 ostu/indeksi töö tulemus ja serveris kasutuselevõtt
+on selle ülevaatuse ulatuses **NOT_PROVEN**.
+
+**P1 — automaatne uuendus taastab juba kasutatud eelarve.**
+
+- `lib/rag-v2/pilot/chat-plan.js:68` annab uuendusele uue `id`, kuid kopeerib
+  eelmise plaani kogu eelarve. `PilotStore.reserve` (`store.js:102–117`)
+  otsib kulupäevikut selle uue id järgi ja alustab puuduva päeviku korral
+  nullist. `renewedFrom` ei kanna kulu ega reserveeringuid edasi.
+- Sõltumatu katse käivitas päris `renewChatPlan`-i ja `PilotStore.reserve`-i
+  mälus oleva andmebaasiadapteriga: vana plaani 4 USD piir oli ammendatud
+  ja uus 1 USD broneering lükati õigesti tagasi. Automaatse uuenduse järel
+  sama broneering lubati: kahe päeviku summa **5 USD**, kinnitatud piir
+  endiselt **4 USD**. Väliseid kutseid 0; tegu pole serveri tegeliku kuluga.
+- Arvulise eelarve võrdsus (`approvedScope`) ei tõenda allesjäänud eelarve
+  säilimist. Vajalik on uuenduste ühine eelarvearvestus või varasemate kulude
+  ja pooleliolevate broneeringute ülekandmine. Üksnes vana id säilitamine
+  pole piisav, sest päevik kontrollib ka muutuvat `configHash`-i.
+- Korratav sond: `tmp/rag-v2-commit-review-2026-09-27/release-budget-probe.mjs`
+  (kohalik ignoreeritud kontrollifail, mitte tootekoodi muudatus).
+
+**P2 — RLS-i lisatavas redaktsioonireas puudub 31.10.2026 katvus.**
+
+- Lisatud `111072026166.xml:24` lõpeb `2026-10-30`; järgmine,
+  `111072026167`, algab `2026-11-01`. Sama tagastasid kontrollimisel RT
+  ametlikud [esimese](https://www.riigiteataja.ee/et/akt/111072026166.xml)
+  ja [järgmise](https://www.riigiteataja.ee/et/akt/111072026167.xml) redaktsiooni
+  XML-id (HTTP 200). See on allikaandmete lahknevus, mitte tõend vale impordi kohta.
+- Päris `legalValidityScope` sai sisendiks v32 kohaliku ülevaatuse
+  `oigusaktid-b/review.json` viis RLS-i dokumenti: 30.10 jääb üks,
+  **31.10 jääb null**, 01.11 jääb üks redaktsioon. Aruandes kavandatud
+  viiel kuupäeval on selles partiis igaühel üks sobiv RLS-i tekst;
+  need kuupäevad ei tuvasta vahele jäävat päeva.
+- Enne pideva katvuse kinnitamist tuleb selgitada 31.10 ametlik redaktsioon
+  ning lisada piiripäevade kontroll. XML-i lõppkuupäeva ei tohi tõendita
+  pikendada. Kõik registrifailid ei võrdu aktiivse korpusega: registris on
+  ka vana sama akti-ID-ga koopia; seda ei kasutatud partii katvuse tõendina.
+
+**Tagasipöörde täpsustus.** #214 taastab vana koodi, buildi ja muutmata
+`rag.env`-i plaani eelkontrolli vea korral enne põhiandmebaasi migratsiooni.
+Pärast migratsiooni/taaskäivitust ebaõnnestuv `ready` annab exit 9, kuid jätab
+uue koodi ja plaani serverisse. Samuti jätkab `unready active_index_mismatch`
+deploy'd hoiatusega. Need on ADR-037-s dokumenteeritud piirid, mitte selles
+ülevaatuses avastatud uued regressioonid. Üldväide „iga vea korral taastub
+eelmine töötav komplekt” ei vasta koodile.
+
+**Läbinud kontrollid.**
+
+- #214 kolm testifaili: **10/10**, sh päris kohaliku PostgreSQL/Qdranti ja
+  EstNLTK-ga uuendamine ning tegelik deploy-skript asendatud süsteemikäskudega.
+  Esimene deploy-testide käivitus kasutas ekslikult WSL-i Bashi; Git Bashi
+  asetamine PATH-is esimeseks kõrvaldas `/c/...` rajavea, kõik neli läbivad.
+- Seitsme JS/MJS-faili sihtlint ja commitivahemiku `git diff --check` läbisid.
+- #215: **39/39 XML-i** räsi ja akti-ID vastavad registrile; 17 muudetud
+  faili normaliseeritud `sisu`-tekst on varasemaga sama, 22 uut faili
+  sisaldavad sisulisi paragrahve. Õigusaktide loendur on 132.
+- #216: registrifaili räsi vastab `REGISTER.json`-ile; päris
+  `registeredSource` seob kõik partii 27 KOV-i teksti omavalitsusega ja
+  jätab 12 riiklikku teksti KOV-ita. Mõlemad Jõhvi tekstid on `johvi_vald`,
+  nimi „Jõhvi vald”, seose alus `issuer_name`.
+- Andme- ja piiripäevade sondid on samas kohalikus kontrollikaustas:
+  `legal-data-probe.py`, `legal-runtime-probe.mjs`. Tasulisi mudelikutseid 0.
+
+### Parandused ja serveritulemus pärast ülevaatust (lisatud 27.09 õhtul, Claude)
+
+Ülaltoodud leiud ja `NOT_PROVEN` kehtivad selle ülevaatuse ulatuses.
+
+- **P1 parandatud:** uuendatud plaan nimetab kinnitatud plaani kulupäeviku (`budgetLedger`) ning `PilotStore`
+  broneerib, lukustab ja arvestab selle järgi ([ADR-037](../rag-v2/adr-037-release-chat-plan.md)). Test kordab
+  ülevaatuse sondi: 3 USD kulutatud kinnitatud plaanil → uuendus saab broneerida 1 USD samasse päevikusse ja
+  siis mitte midagi; võõras plaan päevikut kasutada ei saa.
+- **P2:** 31.10.2026 katmata RLS-i päev on RT ametlikes andmetes (vt ülal). v32 kehtivuskontroll lisab
+  piiripäevad 30.10, 31.10 ja 01.11: 31.10 pole ühtki RLS-i teksti, teistel päevadel üks. Lõppkuupäeva ei pikendata;
+  RT kontrollitakse enne 31.10 uuesti.
+- **Deploy-testid** valivad Windowsis nüüd Git Bashi ka siis, kui PATH-is on esimesena WSL-i `bash`.
+- **v32 serveris** ([ADR-036](../rag-v2/adr-036-version-index.md#mõõtmine-serveris-27092026)): ostuplaan 6,5 s,
+  ost 79 s (303 sisendit, 0,016 USD), indeksi plaan 6,0 s, indeksi töö 61 s (5985 dokumenti nimekirja, 39 uut);
+  v31 räsid muutumata; Tallinna küsimus tsiteeris 01.07.2026 määrasid.

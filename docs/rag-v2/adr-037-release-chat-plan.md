@@ -25,6 +25,7 @@ Kinnitatud vestlusplaan on seotud täpse koodiga (`implementationHash`, [ADR-028
   3. Pärast põhimigratsiooni ja enne taaskäivitust aktiveeritakse uuendatud plaan (`rag.env` koopiaga). Kui väljalase peatub hiljem ja kood jääb (andmebaas liikus edasi), aktiveerib tagasipöördumise rada uuendatud plaani, sest uus kood töötab ainult sellega.
   4. Pärast taaskäivitust `ready`: seadistus ja eelkontroll sama plaaniga. Kui see ei läbi, on deploy punane (`::error`). Tagasi pöörduda sel hetkel ei saa, sest põhiandmebaas on migreeritud.
 - **RAG-kataloogi migratsioonid peavad eelmise väljalaske töös hoidma:** tabeleid ja veerge lisatakse, mitte ei eemaldata ega nimetata ümber. Muidu ei saaks peatunud väljalase eelmist koodi taastada.
+- **Eelarve jätkub** (Codexi ülevaatus, P1): uuendatud plaan nimetab kinnitatud plaani kulupäeviku (`budgetLedger`, ahelas alati esimene plaan). `PilotStore` broneerib, lukustab ja arvestab selle päeviku järgi, nii et uuendus ei taasta juba kasutatud eelarvet. Päevikut, mille teine plaan lõi, saab kasutada ainult plaan, mis seda kinnitatult nimetab (`ledger_plan_conflict`). Käsitsi tehtud uus plaan saab uue päeviku ja uue kinnitatud eelarve.
 - `scripts/rag-v2-chat-plan.mjs` jääb uue plaani tegemiseks, näiteks uue indeksipõlvkonna, teise eelarve või mudeli jaoks. See kasutab sama teeki (`newChatPlan`, `preflightChatPlan`, `activateChatPlan`).
 
 ## Kontroll
@@ -41,5 +42,5 @@ Kinnitatud vestlusplaan on seotud täpse koodiga (`implementationHash`, [ADR-028
 
 - Uuendus hoiab indeksipõlvkonna. Uus põlvkond vajab endiselt uut plaani (`rag-v2-chat-plan.mjs`). Automaatne üleminek on järgmine etapp.
 - Mudeli, eelarve, kasutajate või hindade muutus vajab uut plaani. Kui näiteks `OPENAI_MODEL` muutub, ei läbi uuendus kontrolli ja väljalase pöördub tagasi.
-- Kui `ready` pärast taaskäivitust ebaõnnestub, jääb uus kood tööle (deploy punane). Varasem `prepare` teeb sama kontrolli, nii et see tähendab vahepealset muutust keskkonnas.
+- Tagasipöördumine katab ainult `prepare` vea (enne põhimigratsiooni). Kui `ready` pärast taaskäivitust ebaõnnestub, jääb uus kood koos uuendatud plaaniga tööle ja deploy on punane. Varasem `prepare` teeb sama kontrolli, nii et see tähendab vahepealset muutust keskkonnas. `unready` (plaan polnud ka enne väljalaset töökorras) jätkab väljalaset hoiatusega.
 - Iga uuendus jätab `/etc/sotsiaalai/` alla uue plaanifaili ja `rag.env` koopia. Koristus on käsitsi.

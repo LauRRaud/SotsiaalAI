@@ -99,11 +99,17 @@ identsed otsingutulemused. PR #212 tegi ostuplaani ja vektoriarhiivide lugemise
 muudatusepõhiseks (ostuplaan 2 min → 4,4 s); #212 kohalik koodiülevaatus ei leidnud uut
 regressiooni (50/50 sihttesti). Ostu ja indeksi töö aeg uute dokumentidega on veel mõõtmata.
 Ülevaatuse leitud väljalaske puudus (aegunud plaan andis deploy's ainult hoiatuse, kuigi
-vestlus keeldus vastamast) on [ADR-037](../rag-v2/adr-037-release-chat-plan.md)-ga lahendatud:
-väljalase läheb käiku ainult uuele koodile sobiva kinnitatud plaaniga, muidu taastub eelmine
-kood koos oma plaaniga (tõendatud päris deploy-skriptiga kohalikus liivakastis; serveris
-esimese väljalaskega). Avatud: 60 000 tekstiosa mahupiir ja vestlusplaani vahetus iga uue
-indeksipõlvkonnaga. [Ülevaatus](../audits/rag-v2-codex-review-2026-09-27.md#5-pr-212-koodiülevaatus-ja-väljalaskeraja-puudus),
+vestlus keeldus vastamast) sai [ADR-037](../rag-v2/adr-037-release-chat-plan.md)-ga automaatse
+plaani uuenduse. #214 kohalik kontroll 10/10; eelkontrolli viga taastab vana väljalaske,
+pärast põhimigratsiooni ebaõnnestuv `ready` jätab uue väljalaske alles. Codex leidis
+uuenduses eelarvevea: uus plaani-ID alustas kuluarvestust nullist, nii et 4 USD piir
+ei säilinud üle uuenduste. Parandus: uuendatud plaan jätkab kinnitatud plaani kulupäevikut
+(`budgetLedger`, ADR-037). #215–#216 39 XML-i ja Jõhvi seos kontrollitud. v32 serveris:
+39 dokumenti, ostuplaan 6,5 s, ost 79 s (0,016 USD), indeksi töö 61 s, v31 räsid muutumata,
+Tallinna vastus tsiteeris 01.07.2026 toetuste määrasid ([ADR-036](../rag-v2/adr-036-version-index.md)).
+RLS-i redaktsioonireas on RT ametlikes andmetes 31.10.2026 katmata; see päev jääb tõendita
+kuni RT avaldab selle redaktsiooni. Avatud: RLS-i piiripäeva uus kontroll enne 31.10, 60 000
+tekstiosa mahupiir ja vestlusplaani vahetus iga uue indeksipõlvkonnaga. [Uus ülevaatus](../audits/rag-v2-codex-review-2026-09-27.md#6-pr-214216-plaani-uuendus-ja-õigusaktide-värskendus),
 [serverimõõtmised](../rag-v2/adr-036-version-index.md#mõõtmine-serveris-27092026).
 
 **27.09 Versioonipõhise indeksi kohalik ülevaatus (Codex, #209–#211).** Uut kinnitatud
@@ -2497,8 +2503,14 @@ Uute dokumentide ostu/indeksi serveriaeg on veel mõõtmata. Põlvkonna ülempii
 Eraldi kinnitatud väljalaskepuudus: aegunud plaan andis deploy's ainult hoiatuse ja
 HTTP-tervisekontroll võis läbida, kuigi vestlus ei vastanud. Lahendus
 [ADR-037](../rag-v2/adr-037-release-chat-plan.md): deploy uuendab plaani uuele koodile
-(sama kinnituse ulatus), kontrollib seda mudelikutseta enne põhimigratsiooni ja taastab
-ebaõnnestumisel eelmise koodi koos plaaniga. [#212 ülevaatus ja väljalaskerada](../audits/rag-v2-codex-review-2026-09-27.md#5-pr-212-koodiülevaatus-ja-väljalaskeraja-puudus).
+(samad plaaniväljade piirid), kontrollib seda mudelikutseta enne põhimigratsiooni ja taastab
+eelkontrolli vea korral eelmise koodi koos plaaniga; hilisem `ready`-viga jätab uue väljalaske
+alles. #214–#216 kohalik ülevaatus: 10/10 sihttesti, 39 XML-i räsid ja 27 KOV-i teksti
+piirkonnaseosed korras. Uuendusega nullist alanud eelarvearvestus on parandatud: uuendatud
+plaan jätkab kinnitatud plaani kulupäevikut. RLS-i redaktsioonireas pole RT andmetes 31.10.2026
+katvust. v32 serveritulemus oli selles ülevaatuses `NOT_PROVEN` ja on hiljem mõõdetud
+(ADR-036: 39 dokumenti, indeksi töö 61 s, v31 räsid muutumata).
+[#214–#216 ülevaatus](../audits/rag-v2-codex-review-2026-09-27.md#6-pr-214216-plaani-uuendus-ja-õigusaktide-värskendus).
 [Ülevaatuse ulatus ja tõendid](../audits/rag-v2-codex-review-2026-09-27.md#4-commitide-209211-kohalik-ülevaatus-versioonipõhine-indeks).
 
 **Ühine artikli/KOV/perioodi tõendivalik (23.09, kohalik teostus).** [ADR-019](../rag-v2/adr-019-unified-retrieval-and-periods.md): üldteadmiste tekstivalik, piirkonna kontrollitud kirjete kataloog ja kuni kaks ajakirjade avaldamisperioodi jõuavad samasse vastusekutsesse. Üks päringuvektor taaskasutatakse tekstivalikutes; planeerimismudeli lisakutset ei ole. Seisu v2 eristab avaldamist, sündmust ja kehtivust; numbrilised ajad on esialgsed kandidaadid ning üldteadmiste rada jääb ajaliselt piiramata. Perioodidel on eraldi tõendikvoot ja lubatud indekseeritud dokumentide katvus, mitte unikaalsete artiklite ega teemade esinemissageduse loendus. S-viited, kirjete seosed ja graaf teisendatakse ühisesse paketti. Kogu loendatud ulatust kontrollitakse uuesti ka taastamisel, sealhulgas valimata dokumendi ligipääsu kadumist. Uus loendiskeem vajab uut indeksipõlvkonda, vanad vektorid taaskasutatakse ja v1 põlvkond jääb loetavaks. 69 eri sihttesti läbisid; seitse pööret päris kohaliku PostgreSQL/Qdranti/EstNLTK ja eraldatud vestlusandmebaasiga tegid 7 embedding'u ja 7 vastusekutset testadapterile. Tasulisi kutseid 0. Konfiguratsioon on valikuline, serveris aktiveerimine `not_run`, semantiline kvaliteet `NOT_PROVEN`. Järgmine kohalik ühik on artiklitõendi fookuse säilitamine jätkupöördes; kogu korpuse deduplitseerimine, mahutöö/admini ühendus ja ammendav ajaline süntees jäävad eraldi tööks.
