@@ -6,7 +6,7 @@ import { renderAnswer } from '../lib/rag-v2/pilot/presentation.js';
 const answer = { kind: 'grounded', blocks: [{ text: 'Supported claim.', factual: true, refs: ['S1'] }], limitations: [], clarification: null };
 
 test('v4 rejects bare or grouped references in all visible fields without rewriting the draft', () => {
-  for (const text of ['Supported claim. S1', 'S1 ütleb, et see on soovitus.', 'S1 and S2 support this.', 'Allikas S99.', '[S1, S2]', 'Источник: S2.', 'S1/S2', '(S1)', '„S1“']) {
+  for (const text of ['S1 ütleb, et see on soovitus.', 'S1 and S2 support this.', 'Allikas S99.', '[S1, S2]', 'Источник: S2.', 'S1/S2', '(S1)', '„S1“']) {
     for (const field of ['block', 'limitation', 'clarification']) {
       const draft = structuredClone(answer);
       if (field === 'block') draft.blocks[0].text = text;
@@ -22,6 +22,23 @@ test('v4 rejects bare or grouped references in all visible fields without rewrit
       assert.equal(JSON.stringify(draft), before);
     }
   }
+});
+
+test('v4 removes only a block-final run of its own refs after a finished sentence (acceptance B7); everything else still fails', () => {
+  const block = (text, refs = ['S1', 'S2']) => ({ ...answer, blocks: [{ ...answer.blocks[0], text, refs }] });
+  for (const [text, clean] of [['Puue peab olema tuvastatud. S1, S2', 'Puue peab olema tuvastatud.'], ['Vali abi, mis vastab. [S2]', 'Vali abi, mis vastab.'],
+    ['Supported claim. S1', 'Supported claim.'], ['Kas see sobib? (S1; S2)', 'Kas see sobib?']]) {
+    const draft = block(text), before = JSON.stringify(draft);
+    assert.equal(validateAnswer(draft, ['S1', 'S2']).blocks[0].text, clean, text);
+    assert.equal(JSON.stringify(draft), before, 'the draft itself is not changed');
+  }
+  for (const text of ['The device is called S1.', 'Supported claim. S3', 'Supported claim. S1 and S2 agree.', 'Rule S1 applies. S2', 'S1', 'S1. S2']) {
+    assert.throws(() => validateAnswer(block(text, text.includes('S3') ? ['S1'] : ['S1', 'S2']), ['S1', 'S2', 'S3']), { code: 'inline_answer_reference' }, text);
+  }
+  for (const field of ['limitations', 'clarification']) {
+    assert.throws(() => validateAnswer({ ...answer, [field]: field === 'limitations' ? ['Limit. S1'] : 'Question? S1' }, ['S1']), { code: 'inline_answer_reference' });
+  }
+  for (const version of ['m4-text-refs-2', 'm4-text-refs-3']) assert.equal(validateAnswer(block('Claim. S1', ['S1']), ['S1'], version).blocks[0].text, 'Claim. S1');
 });
 
 test('v4 keeps embedded source codes and renders refs once; ambiguous standalone codes fail without deletion', () => {
