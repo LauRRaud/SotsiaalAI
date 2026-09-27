@@ -1060,6 +1060,10 @@ test('the pilot transport and HTML export preserve generic references and reject
   const packet = await adapters.search(config, { hash: 'fixture' });
   assert.deepEqual(packet.reference_map.S1.source_locations, bundle.chunks[0].source_locations);
   await adapters.canonical(config, packet, 'S1');
+  // The source view's original address comes from the verified document (https only), never the model.
+  const links = await adapters.sourceLinks(config, packet.reference_map.S1);
+  assert(Array.isArray(links) && links.length <= 3 && links.every(url => url.startsWith('https://')));
+  await assert.rejects(adapters.sourceLinks(config, { ...packet.reference_map.S1, document_version_id: 'version_other' }), /reference_access_denied/u);
   const row = { id: 'generic-restore', state: 'completed', configHash: config.configHash, expiresAt: null,
     payload: { packet, question: 'A source question', query: { language: 'en', tokens: 4 }, events: [],
       answer: { kind: 'partial', blocks: [{ text: 'The source has a statement.', refs: ['S1'], factual: true }], limitations: [], clarification: null } } };
