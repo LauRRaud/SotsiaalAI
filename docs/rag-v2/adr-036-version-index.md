@@ -90,6 +90,10 @@ Codexi ülevaatus (27.09.2026, PR-id #209–#211) leidis, et kirjutamine on muud
 
 - **Vektorid loetakse vajaduse järel.** `reusableEmbeddingCatalog` kontrollib pearaamatud kohe ja loeb vektorifaili koos räsikontrolliga siis, kui selle sisendit esimest korda küsitakse. Kahes arhiivis ostetud sisendi vektorid võrreldakse ikka. `StoredEmbedding.load` loeb vaikimisi endiselt kõik.
 - **Muudatusepõhine ostuplaan** (`--indexed`, koos `--connections` ja `--lexical`): dokumendid, mille versioon on sihtseadistusega juba valmis märgitud, jäetakse lugemata ja planeerimata. Manifest (`indexed_versions`) nimetab väljajäetud versioonide arvu ja räsi, nii et kinnitus katab ka väljajätmise. Plaan ja ost peavad mõlemad lippu kasutama.
+- **Mõõdetud pärast PR #212 deploy'd** (v31 korpus, midagi uut; `after-212.sh`, tasuta):
+  - ostuplaan `--indexed`: **4,4 s** (6002 dokumenti valmis, loetud 0, sisendeid 0); v31 käigus 2 min 0 s;
+  - indeksi plaan: **4,7 s** (`documents_to_index` 0); v31 käigus 39 s;
+  - ostu ja indeksi töö aega uute dokumentidega pole veel mõõdetud (järgmine lisamine). Mõlemad loevad nüüd ainult uute tekstiosade vektorid.
 
 ## Piirid ja järgmised sammud
 

@@ -92,6 +92,20 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**27.09 Muudatusepõhine indeks serveris (ADR-036, PR #210–#212).** Aktiivne on korpus v31
+(`versions-v1`). Kahe õigusteksti lisamisel töötles indeks 2 dokumenti 47 sekundiga. Vanade
+dokumentide read ja punktid jäid muutumata ning vestlus vastas töö ajal. v30 andis v29-ga
+identsed otsingutulemused. PR #212 tegi ostuplaani ja vektoriarhiivide lugemise
+muudatusepõhiseks (ostuplaan 2 min → 4,4 s); see vajab veel koodiülevaatust ning ostu ja
+indeksi töö mõõtmist uute dokumentidega. Avatud: 60 000 tekstiosa mahupiir ja vestlusplaani
+vahetus iga uue põlvkonnaga. [Mõõtmised](../rag-v2/adr-036-version-index.md#mõõtmine-serveris-27092026).
+
+**27.09 Versioonipõhise indeksi kohalik ülevaatus (Codex, #209–#211).** Uut kinnitatud
+koodiviga ei leitud; 24 sihttesti läbisid, sh päris EstNLTK-ga vana/uue otsingu
+võrdlus ning kahe dokumendi lisamine ilma vanade dokumentide impordi ja
+punktikirjutusteta. Serveri v30/v31 seis oli selle kontrolli ulatuses `NOT_PROVEN`
+ja mõõdeti hiljem (eelmine lõik). [Tõendid ja piirid](../audits/rag-v2-codex-review-2026-09-27.md#4-commitide-209211-kohalik-ülevaatus-versioonipõhine-indeks).
+
 **27.09 RAG v2 vestlus korpusel v27; Codexi kontrolli parandused — [aruanne](../audits/rag-v2-codex-review-2026-09-27.md), [RAG v2 seis](../rag-v2/README.md#praegune-seis-27092026).**
 
 sotsiaal.ai/vestlus vastab korpusest v27: 5998 dokumenti, indeks `search_generation_23e445…`, plaan `m4-corpus-chat-20260927o`.
@@ -2460,6 +2474,20 @@ sisselülitamisele" reegli puhas rakendus. Vt „Lüliti" S2-s ja „Mis avab" S
 ### Tehtud
 
 **Vestlus ja teadmusbaas.**
+
+**Muudatusepõhine indeks (27.09, kohalik ülevaatus ja serverimõõtmine).** PR #210 (`1b69078a5`,
+[ADR-036](../rag-v2/adr-036-version-index.md)) hoiab tekstiosi ja punkte
+dokumendiversiooni ning otsinguseadistuse kaupa; uus põlvkond loetleb valmis
+versioonid. 24 sihttesti läbisid, uut kinnitatud koodiviga ei leitud. Kohalik
+päris EstNLTK/PostgreSQL/Qdranti kontroll tõendas väikese valimi vana/uue
+otsingu võrdsust ja kahe dokumendi lisamist vanu dokumente importimata ning
+vanu punkte kirjutamata. Serveris mõõdeti hiljem: v31 lisas kaks dokumenti 47 s-ga,
+vanade ridade ja punktide räsid ei muutunud ning v30 andis v29-ga identsed tulemused
+([ADR-036](../rag-v2/adr-036-version-index.md#mõõtmine-serveris-27092026)). Ülevaatuses
+leitud ettevalmistuse piir (kogu ostuplaan ja vektoriarhiivide lugemine) on PR #212-s
+parandatud ja vajab veel koodiülevaatust. Põlvkonna ülempiir on 60 000 tekstiosa ning
+vestlus vajab iga uue põlvkonnaga uut plaani ja taaskäivitust.
+[Ülevaatuse ulatus ja tõendid](../audits/rag-v2-codex-review-2026-09-27.md#4-commitide-209211-kohalik-ülevaatus-versioonipõhine-indeks).
 
 **Ühine artikli/KOV/perioodi tõendivalik (23.09, kohalik teostus).** [ADR-019](../rag-v2/adr-019-unified-retrieval-and-periods.md): üldteadmiste tekstivalik, piirkonna kontrollitud kirjete kataloog ja kuni kaks ajakirjade avaldamisperioodi jõuavad samasse vastusekutsesse. Üks päringuvektor taaskasutatakse tekstivalikutes; planeerimismudeli lisakutset ei ole. Seisu v2 eristab avaldamist, sündmust ja kehtivust; numbrilised ajad on esialgsed kandidaadid ning üldteadmiste rada jääb ajaliselt piiramata. Perioodidel on eraldi tõendikvoot ja lubatud indekseeritud dokumentide katvus, mitte unikaalsete artiklite ega teemade esinemissageduse loendus. S-viited, kirjete seosed ja graaf teisendatakse ühisesse paketti. Kogu loendatud ulatust kontrollitakse uuesti ka taastamisel, sealhulgas valimata dokumendi ligipääsu kadumist. Uus loendiskeem vajab uut indeksipõlvkonda, vanad vektorid taaskasutatakse ja v1 põlvkond jääb loetavaks. 69 eri sihttesti läbisid; seitse pööret päris kohaliku PostgreSQL/Qdranti/EstNLTK ja eraldatud vestlusandmebaasiga tegid 7 embedding'u ja 7 vastusekutset testadapterile. Tasulisi kutseid 0. Konfiguratsioon on valikuline, serveris aktiveerimine `not_run`, semantiline kvaliteet `NOT_PROVEN`. Järgmine kohalik ühik on artiklitõendi fookuse säilitamine jätkupöördes; kogu korpuse deduplitseerimine, mahutöö/admini ühendus ja ammendav ajaline süntees jäävad eraldi tööks.
 
