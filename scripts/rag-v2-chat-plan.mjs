@@ -23,7 +23,7 @@ import { ANSWER_ENDPOINT } from '../lib/rag-v2/pilot/provider.js';
 import { SEARCH_ASSIST_VERSION } from '../lib/rag-v2/pilot/search-assist.js';
 
 const { values } = parseArgs({ options: { tenant: { type: 'string' }, profile: { type: 'string' }, template: { type: 'string' },
-  out: { type: 'string' }, 'budget-usd': { type: 'string' }, basis: { type: 'string' }, reasoning: { type: 'string', default: 'low' }, 'rag-env': { type: 'string', default: '/etc/sotsiaalai/rag.env' },
+  out: { type: 'string' }, 'budget-usd': { type: 'string' }, basis: { type: 'string' }, reasoning: { type: 'string', default: 'medium' }, 'rag-env': { type: 'string', default: '/etc/sotsiaalai/rag.env' },
   activate: { type: 'boolean', default: false } } });
 const usd = Number(values['budget-usd']);
 if (!['low', 'medium', 'high'].includes(values.reasoning) || !values.tenant || !values.profile || !values.template || !values.out?.startsWith('/etc/sotsiaalai/') || !(usd > 0 && usd <= 10) || !values.basis) {
@@ -44,7 +44,7 @@ try {
     tenant: values.tenant, usage: 'development_only', users: template.users, expiresAt: null, retentionHours: null, timeoutMs: 60000,
     documents, generationId: generation.id, profileId: profile.id, embedding: embeddingConfig(generation.config.embedding),
     model: 'gpt-6-luna', endpoint: ANSWER_ENDPOINT, accountProject: template.accountProject, modelContract: 'responses-strict-reasoning-v1',
-    // low: 2-3 s answers instead of 5-7 s with the same facts and refs (owner's latency test, 27.09.2026).
+    // medium by the owner's decision (27.09.2026): low was 2.5x faster but gave weaker answers.
     reasoning: values.reasoning, maxInputTokens: 300000, maxOutputTokens: 4096, implementationHash: (await implementationManifest()).hash,
     dialogueVersion: DIALOGUE_VERSION, promptVersion: DIALOGUE_PROMPT_VERSION, questionVersion: DIALOGUE_SEARCH_VERSION,
     dialogueStateVersion: TYPED_DIALOGUE_STATE_VERSION, dialogueStateSchemaHash: digest(TYPED_DIALOGUE_ANSWER_SCHEMA),
