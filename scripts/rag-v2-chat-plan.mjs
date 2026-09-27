@@ -38,7 +38,9 @@ try {
   const generation = await postgres.active(values.tenant);
   const documents = Object.fromEntries(Object.entries(generation.snapshot.documents).map(([doc, entry]) => [doc, entry.version_id]));
   const nanoUsd = Math.round(usd * 1e9);
-  const unsigned = { id: `m4-${values.tenant}-chat-${new Date().toISOString().slice(0, 10).replaceAll('-', '')}`, mode: 'real',
+  // A plan's ledger is keyed by its id: every plan needs its own, so the id carries the minute.
+  const stamp = new Date().toISOString().slice(0, 16).replace(/[-:]/g, '').replace('T', '-');
+  const unsigned = { id: `m4-${values.tenant}-chat-${stamp}`, mode: 'real',
     tenant: values.tenant, usage: 'development_only', users: template.users, expiresAt: null, retentionHours: null, timeoutMs: 60000,
     documents, generationId: generation.id, profileId: profile.id, embedding: embeddingConfig(generation.config.embedding),
     model: 'gpt-6-luna', endpoint: ANSWER_ENDPOINT, accountProject: template.accountProject, modelContract: 'responses-strict-reasoning-v1',
