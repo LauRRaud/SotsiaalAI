@@ -1,0 +1,1189 @@
+{
+  "schema_version": "rag-v2/legal-acts-in-index-1",
+  "generated_at": "2026-09-27T20:04:27.568Z",
+  "tenant": "sotsiaalai-corpus",
+  "store_generation": "generation_35b726dea835df195927c57f32de2566f04665047dcf73b57b41262e60080903",
+  "policy_documents": 6024,
+  "acts": [
+    {
+      "document_id": "document_00b6ffec42890532bbe8f5616bfc38a9cea2136ec8619d16a002a3cc5296344e",
+      "version_id": "version_323de7c35c4e775cec2d9af3c8c5047d1c80c54fbca859b57d3b764c167b5e34",
+      "globaal_id": "423052026004",
+      "group": "1055418",
+      "title": "Sotsiaaltoetuste määrad",
+      "issuer": "Tallinna Linnavalitsus",
+      "regions": [
+        "tallinn"
+      ],
+      "source_path": "oigusaktid/423052026004.xml",
+      "index_from": "2026-07-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_023f7254a08d614c87128244ed1ce6378163c2b8bba07bfdb8b33624563f0cce",
+      "version_id": "version_8d41a41b3a8d8a4dc89d0e24334c03a6a9ca7916efd43cb48116e7772736efd7",
+      "globaal_id": "412122024021",
+      "group": "1045127",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Kohtla-Järve Linnavolikogu",
+      "regions": [
+        "kohtla_jarve_linn"
+      ],
+      "source_path": "oigusaktid/412122024021.xml",
+      "index_from": "2024-12-15",
+      "index_to": null
+    },
+    {
+      "document_id": "document_04769e49f9b2963e4f01e7223b04bc257e18c8c4f3b1ae15f9bfff004f122d78",
+      "version_id": "version_ad7203da3856bf6601f4873ff3c0543c69db4468f2ea8acd76dd9f5b317b34b9",
+      "globaal_id": "411062026102",
+      "group": "1052760",
+      "title": "Sotsiaaltoetuste maksmise tingimused ja kord",
+      "issuer": "Tallinna Linnavolikogu",
+      "regions": [
+        "tallinn"
+      ],
+      "source_path": "oigusaktid/411062026102.xml",
+      "index_from": "2026-06-14",
+      "index_to": null
+    },
+    {
+      "document_id": "document_0791f3d43c509b621fdf012ca9ee5c6f5b2f178dbf40f0428520186eebcc39cc",
+      "version_id": "version_73584ccce6bb07be1d9b388b4552f283d3259a7faaad244c283aa8b6466b656d",
+      "globaal_id": "417062026033",
+      "group": "1052761",
+      "title": "Sotsiaalteenuste osutamise tingimused ja kord",
+      "issuer": "Tallinna Linnavolikogu",
+      "regions": [
+        "tallinn"
+      ],
+      "source_path": "oigusaktid/417062026033.xml",
+      "index_from": "2026-06-20",
+      "index_to": null
+    },
+    {
+      "document_id": "document_0bf1a4b8424a1f8e70efd217138c5f6f29c6a39dcd96506d33e90922c706464a",
+      "version_id": "version_cd550e55ec024269e0381cbbbd1534b64759543ccdfc1cb22b5b54b5fc4364f0",
+      "globaal_id": "423052025002",
+      "group": "1060986",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Hiiumaa Vallavolikogu",
+      "regions": [
+        "hiiumaa_vald"
+      ],
+      "source_path": "oigusaktid/423052025002.xml",
+      "index_from": "2025-08-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_129560b8d24293e47333d922d75b24b00736ba9d5fb53acc9a281d19945bfbfe",
+      "version_id": "version_256bf9c164229d2003ad4d641b35fc77ea3bb6fcd3807c733797da92c7a9d31f",
+      "globaal_id": "413022026026",
+      "group": "1055418",
+      "title": "Sotsiaaltoetuste määrad",
+      "issuer": "Tallinna Linnavalitsus",
+      "regions": [
+        "tallinn"
+      ],
+      "source_path": "oigusaktid/413022026026.xml",
+      "index_from": "2026-02-16",
+      "index_to": "2026-06-30"
+    },
+    {
+      "document_id": "document_133f309f5fcc052aa11a79cbfca5d3127d0d8ca632cc4bcbe799d099d2def54f",
+      "version_id": "version_904ebf9985bbf314ed491c497560bbf558582e85cb7388c70f842aecdec67f51",
+      "globaal_id": "428122024013",
+      "group": "1060112",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Kambja Vallavolikogu",
+      "regions": [
+        "kambja_vald"
+      ],
+      "source_path": "oigusaktid/428122024013.xml",
+      "index_from": "2025-01-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_1d4842e2789a189c05fcf4df8317df856db42d12bd28b82549eeda6442d8d31a",
+      "version_id": "version_351e947e2027eb0b384f801e3257e59af98d570fff23279d67423b13e36ecff4",
+      "globaal_id": "426052026009",
+      "group": "1063564",
+      "title": "Sotsiaaltoetuste määramise ja maksmise kord",
+      "issuer": "Põlva Vallavolikogu",
+      "regions": [
+        "polva_vald"
+      ],
+      "source_path": "oigusaktid/426052026009.xml",
+      "index_from": "2026-05-29",
+      "index_to": null
+    },
+    {
+      "document_id": "document_1fae74055bc1374c2d3c8395d034f8ff159fa415604fd7ea0afd02f0451a1e82",
+      "version_id": "version_9f62c76c9b4df54348d3bd8b01b515a2126208a1ccc705d8b7a1cc39de9f954e",
+      "globaal_id": "431052025006",
+      "group": "1056428",
+      "title": "Viimsi valla sotsiaalteenuste osutamise tingimused ja kord",
+      "issuer": "Viimsi Vallavolikogu",
+      "regions": [
+        "viimsi_vald"
+      ],
+      "source_path": "oigusaktid/431052025006.xml",
+      "index_from": "2025-06-03",
+      "index_to": null
+    },
+    {
+      "document_id": "document_2056eca70950ed945ed9e80cfdc3f24a213d974d76bbd066574df9cc93a11a94",
+      "version_id": "version_3db4d2af5c718ffef7e789ca57300bc5236dc2b33d0bc968f5dfc3804a3b5eb2",
+      "globaal_id": "111072026166",
+      "group": "1027446",
+      "title": "Riigilõivuseadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/111072026166.xml",
+      "index_from": "2026-08-01",
+      "index_to": "2026-10-30"
+    },
+    {
+      "document_id": "document_25dc2c86924954241c2bcc02f7a28bbb54540bdca2c5e13cd2228f5eae2c5447",
+      "version_id": "version_b3084187ceec8fa7dbea1261c993489ff9ebff37900519b5ec401e1f5895b2a0",
+      "globaal_id": "419062026027",
+      "group": "1033406",
+      "title": "Sotsiaalhoolekande seaduse, lastekaitseseaduse, sotsiaalseadustiku üldosa seaduse ja riigilõivuseadusega kohaliku omavalitsuse üksuse pädevusse antud ülesannete delegeerimine",
+      "issuer": "Tallinna Linnavolikogu",
+      "regions": [
+        "tallinn"
+      ],
+      "source_path": "oigusaktid/419062026027.xml",
+      "index_from": "2026-07-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_26a1b65b0bf5ef434394c8c2c4d23ae8954a64e78a01a02664ac9d3896684660",
+      "version_id": "version_a4c747227ef026a3474cc214fbe9ee7123ae0ad60c6ba03b9a96488c23a276d0",
+      "globaal_id": "405042025014",
+      "group": "1051623",
+      "title": "Sotsiaalteenuste osutamise üldine kord",
+      "issuer": "Haapsalu Linnavolikogu",
+      "regions": [
+        "haapsalu_linn"
+      ],
+      "source_path": "oigusaktid/405042025014.xml",
+      "index_from": "2025-04-08",
+      "index_to": null
+    },
+    {
+      "document_id": "document_2a9817540d0711f03b341ecd915c7b834a712461791a5cdba9d97a916419ec3f",
+      "version_id": "version_951d2ec130a8e3042240754a62b9a66ecc59733521cb6d168b169fa9b3c8d5a6",
+      "globaal_id": "403052025002",
+      "group": "1060911",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Viljandi Linnavolikogu",
+      "regions": [
+        "viljandi_linn"
+      ],
+      "source_path": "oigusaktid/403052025002.xml",
+      "index_from": "2025-05-06",
+      "index_to": null
+    },
+    {
+      "document_id": "document_2cf8838b86cf04d869998fddf28caede81cc9962a34a3c2e0bb991e7d5a4aabc",
+      "version_id": "version_2b6fae28ce93ddbe4411f3cee14b10318da690ed37b5213261daa42502b12ec2",
+      "globaal_id": "417092025023",
+      "group": "1061837",
+      "title": "Raasiku valla sotsiaalhoolekandelise abi osutamise kord",
+      "issuer": "Raasiku Vallavolikogu",
+      "regions": [
+        "raasiku_vald"
+      ],
+      "source_path": "oigusaktid/417092025023.xml",
+      "index_from": "2025-09-20",
+      "index_to": null
+    },
+    {
+      "document_id": "document_2deaadf75c8f53a4eb75c2ebfe937c50eb30bee9b2c9870f268e4ae2d3d3b0f8",
+      "version_id": "version_3fa5fc7b238bccab187db87bcbc88cefaecc7c1f7fb62ea0a23e5a07027ec2a6",
+      "globaal_id": "405042024007",
+      "group": "1058674",
+      "title": "Sotsiaaltoetuste määramise ja maksmise kord",
+      "issuer": "Põlva Vallavolikogu",
+      "regions": [
+        "polva_vald"
+      ],
+      "source_path": "oigusaktid/405042024007.xml",
+      "index_from": "2024-04-08",
+      "index_to": "2026-05-28"
+    },
+    {
+      "document_id": "document_2fe557ae8dee59eadc6af5130c87257769e9842645ce57b4101274026fc01c61",
+      "version_id": "version_4fa78cf065fe4dba3fad03f2ad731c8144d629cf53758cf1972d903905618104",
+      "globaal_id": "103062026023",
+      "group": "1032355",
+      "title": "Sotsiaalhoolekande seadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/103062026023.xml",
+      "index_from": "2026-06-12",
+      "index_to": "2026-09-30"
+    },
+    {
+      "document_id": "document_374cd588741690b880f37a5fbb94f2e33794435de17fb2397e692d70c8b8ad52",
+      "version_id": "version_27a3641b091acd5a460cab46625854949d28185b34c5c8e5c1dcff53aa975425",
+      "globaal_id": "419052023006",
+      "group": "1053354",
+      "title": "Sotsiaalhoolekandelise abi andmise kord Jõelähtme vallas",
+      "issuer": "Jõelähtme Vallavolikogu",
+      "regions": [
+        "joelahtme_vald"
+      ],
+      "source_path": "oigusaktid/419052023006.xml",
+      "index_from": "2023-07-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_3af11d027e455979480ae68ba5ca990116495d177f7534d3b591893d290355fb",
+      "version_id": "version_dcaff305aa34e1553d5e6453823a81030374a7a8efc363b97d5345d380a890b4",
+      "globaal_id": "427052026031",
+      "group": "1056916",
+      "title": "Sotsiaalteenuste osutamise kord Rae vallas",
+      "issuer": "Rae Vallavolikogu",
+      "regions": [
+        "rae_vald"
+      ],
+      "source_path": "oigusaktid/427052026031.xml",
+      "index_from": "2026-05-30",
+      "index_to": null
+    },
+    {
+      "document_id": "document_3b0d6a449946b566cc7d669edcc15e507a4fc4c76a204de6f1cffa7afa41bee5",
+      "version_id": "version_5c1b39a127ebdaacb1ad4d80eade687a80615a1a08e301b0b3ac1c93f937c928",
+      "globaal_id": "429032018015",
+      "group": "1042551",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Räpina Vallavolikogu",
+      "regions": [
+        "rapina_vald"
+      ],
+      "source_path": "oigusaktid/429032018015.xml",
+      "index_from": "2018-04-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_3ba412b5308af3586755a89f44b092b2aaf691634266ba77801e087fd143b2ef",
+      "version_id": "version_9763a5fbb2901f4620309af25c1a1b59ecdd360517a5d143de10619e0de2d845",
+      "globaal_id": "426022025038",
+      "group": "1053107",
+      "title": "Toimetulekutoetuse määramisel aluseks võetavate eluasemekulude piirmäärad",
+      "issuer": "Tallinna Linnavolikogu",
+      "regions": [
+        "tallinn"
+      ],
+      "source_path": "oigusaktid/426022025038.xml",
+      "index_from": "2025-03-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_3f8444114d01a3b3c77048b417b1f420e636160a79dd672f4e691a0502194a13",
+      "version_id": "version_d1c320b246fa374b2b054b80200fb44f8beaa4cce3b732cf0bcc64f48bdb663e",
+      "globaal_id": "403072026003",
+      "group": "1063891",
+      "title": "Sotsiaalhoolekandelise abi andmise tingimused ja kord",
+      "issuer": "Kehtna Vallavolikogu",
+      "regions": [
+        "kehtna_vald"
+      ],
+      "source_path": "oigusaktid/403072026003.xml",
+      "index_from": "2026-07-06",
+      "index_to": null
+    },
+    {
+      "document_id": "document_3f92784f8e586f856232a34eb163813425d76c189a335098d9e43e9493c91e20",
+      "version_id": "version_0576d2e48079bc1b4786c93e451195922b0544b78f98ff22692d3372df9d9666",
+      "globaal_id": "425042025047",
+      "group": "1052687",
+      "title": "Eestkoste seadmise ja teostamise kord",
+      "issuer": "Tallinna Linnavalitsus",
+      "regions": [
+        "tallinn"
+      ],
+      "source_path": "oigusaktid/425042025047.xml",
+      "index_from": "2025-05-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_40156a94894415822074aa3636ce12a1b4ffafae0a6d66d140d40d161b1b12fe",
+      "version_id": "version_0b87776abaa4edb087c9d8f0d7422860a90480f84dbb278c661ad9965a47035a",
+      "globaal_id": "410092025031",
+      "group": "1052761",
+      "title": "Sotsiaalteenuste osutamise tingimused ja kord",
+      "issuer": "Tallinna Linnavolikogu",
+      "regions": [
+        "tallinn"
+      ],
+      "source_path": "oigusaktid/410092025031.xml",
+      "index_from": "2026-01-01",
+      "index_to": "2026-06-13"
+    },
+    {
+      "document_id": "document_4036168851799aa070d2c58b8fcb855f3cd76676bb511c9a0ce0b8128c11e4dd",
+      "version_id": "version_20449e98f394e0f1f395f0a94b5ecd65fc47b7fa4db3d993196872ebd6438939",
+      "globaal_id": "411102025024",
+      "group": "1041531",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Setomaa Vallavolikogu",
+      "regions": [
+        "setomaa_vald"
+      ],
+      "source_path": "oigusaktid/411102025024.xml",
+      "index_from": "2025-10-14",
+      "index_to": null
+    },
+    {
+      "document_id": "document_41d06b5f2784216a24c6d1720bb15f16ab5af00b8eb0717e64d2060460dfa3d3",
+      "version_id": "version_29f77d56b9009eebea05dbe7e5892bf3dcd82363d0375ec609d33ae54418a48c",
+      "globaal_id": "111072026120",
+      "group": "1032355",
+      "title": "Sotsiaalhoolekande seadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/111072026120.xml",
+      "index_from": "2026-12-01",
+      "index_to": "2026-12-31"
+    },
+    {
+      "document_id": "document_499dc0949f78657d021b4659528265514bf353fcb19919b3f4387e278218d415",
+      "version_id": "version_cc25922fc9f7588849b10cbe5ad63281577a9ef65ca014933afd60beb1e780ad",
+      "globaal_id": "111072026167",
+      "group": "1027446",
+      "title": "Riigilõivuseadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/111072026167.xml",
+      "index_from": "2026-11-01",
+      "index_to": "2026-12-31"
+    },
+    {
+      "document_id": "document_4a0892e6bd41ea5358b487800f52420acf04fdd45b8aba2335c763c813619708",
+      "version_id": "version_2e1af91ef79f9495c94279c9350c89c1aeaade74cbb35eb276265799fe4d63ad",
+      "globaal_id": "126092026005",
+      "group": "1032376",
+      "title": "Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi andmed",
+      "issuer": "Sotsiaalkaitseminister",
+      "regions": [],
+      "source_path": "oigusaktid/126092026005.xml",
+      "index_from": "2026-10-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_4c0caf29f7d52521a7f7d21f3fa50bd030ba2bd92a18f0682874ff97a1b5497f",
+      "version_id": "version_94c5f3a6894d43c53ac48bd041df76a36b1715384d39e58cd4c1cf440747bca5",
+      "globaal_id": "406062023041",
+      "group": "1054338",
+      "title": "Sotsiaalhoolekandelise abi andmise kord Kuusalu vallas",
+      "issuer": "Kuusalu Vallavolikogu",
+      "regions": [
+        "kuusalu_vald"
+      ],
+      "source_path": "oigusaktid/406062023041.xml",
+      "index_from": "2023-07-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_4ca80a2d66e3b2b7851fb4bec1ea6dd32ebebb990fbbb600af40a631350f50fb",
+      "version_id": "version_403f70b88c1c9532e95b2d66a74f8e73a47b8958db2be2d911aedffa4aafbc3a",
+      "globaal_id": "429082026027",
+      "group": "1064314",
+      "title": "Sotsiaalteenuste osutamise tingimused ja kord",
+      "issuer": "Kohila Vallavolikogu",
+      "regions": [
+        "kohila_vald"
+      ],
+      "source_path": "oigusaktid/429082026027.xml",
+      "index_from": "2026-09-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_4ce5188d5c67940fd1d1ffbd50ec36645a7b57bcbcf7728a4239de74d7c5cb64",
+      "version_id": "version_97e43fa04b99a20579a553685b631c0d66877f503d9cb2654794900b16391193",
+      "globaal_id": "431122019067",
+      "group": "1028549",
+      "title": "Narva linna Sotsiaalabiameti põhimäärus",
+      "issuer": "Narva Linnavolikogu",
+      "regions": [
+        "narva_linn"
+      ],
+      "source_path": "oigusaktid/431122019067.xml",
+      "index_from": "2020-01-03",
+      "index_to": null
+    },
+    {
+      "document_id": "document_5248ee1334256f95748bc68d5d9d10380debdaaee9459ca884993a8525f6ec6b",
+      "version_id": "version_861be434d41605fe57b2cc7d2f532af44f99a76b9eb3fae71368d259539888b2",
+      "globaal_id": "428062025051",
+      "group": "1051240",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Antsla Vallavolikogu",
+      "regions": [
+        "antsla_vald"
+      ],
+      "source_path": "oigusaktid/428062025051.xml",
+      "index_from": "2025-07-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_52a87c3410469639a83b83f9c2eb9641f39c5d7c45d5799f84d71b0d9c6dedf1",
+      "version_id": "version_9f0dce9101ffe845bc48f817fdfc472bbd6fd9d85898a4217ed4cf1aac5defdc",
+      "globaal_id": "423012026003",
+      "group": null,
+      "title": "Haljala Vallavolikogu 19.11.2024 määruse nr 72 „Haljala valla sotsiaalhoolekandelise abi andmise tingimused ja kord” muutmine",
+      "issuer": "Haljala Vallavolikogu",
+      "regions": [
+        "haljala_vald"
+      ],
+      "source_path": "oigusaktid/423012026003.xml",
+      "index_from": "2026-01-26",
+      "index_to": null
+    },
+    {
+      "document_id": "document_54b8e5436f0f38cc36a3f5c8143b5139b4d7624dec68b838b57d30fab04c0db6",
+      "version_id": "version_8157ade751f69f14c4f0acefb08e7f2a3ab088ebc07acfecb0f2eaee3b49fdf3",
+      "globaal_id": "111072026121",
+      "group": "1032355",
+      "title": "Sotsiaalhoolekande seadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/111072026121.xml",
+      "index_from": "2027-01-01",
+      "index_to": "2027-01-31"
+    },
+    {
+      "document_id": "document_56afc65dd386b3ca88344c32c4d2296df0eb8a57661b9975df263414ae4889c8",
+      "version_id": "version_b2453fd9372d3e8a434cce1dc806072311fc70d18ba9753c576c1f505a597a09",
+      "globaal_id": "425032026040",
+      "group": "1062686",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Anija Vallavolikogu",
+      "regions": [
+        "anija_vald"
+      ],
+      "source_path": "oigusaktid/425032026040.xml",
+      "index_from": "2026-03-28",
+      "index_to": "2026-08-20"
+    },
+    {
+      "document_id": "document_57ca3d59cb69ab6202c6cbcbc4ba24ba0e874006aa473187fbed8943ec72d4a7",
+      "version_id": "version_2058fd95a1e8772ed0d40a6d7696be8f262b475579570f952a2601653bbb5d1f",
+      "globaal_id": "429032025041",
+      "group": "1050674",
+      "title": "Sotsiaalhoolekandelise abi andmise kord Keila linnas",
+      "issuer": "Keila Linnavolikogu",
+      "regions": [
+        "keila_linn"
+      ],
+      "source_path": "oigusaktid/429032025041.xml",
+      "index_from": "2025-04-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_5c47d10bd2c3d61358e97fd0220b1ff06cd434aafcb37329081997821c77f878",
+      "version_id": "version_e88cdf9663af7faac56fc1fe27a3ed6a62c7ae170ba65a7ebc62672906bbfc5f",
+      "globaal_id": "427052026038",
+      "group": "1041893",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Kanepi Vallavolikogu",
+      "regions": [
+        "kanepi_vald"
+      ],
+      "source_path": "oigusaktid/427052026038.xml",
+      "index_from": "2026-05-30",
+      "index_to": null
+    },
+    {
+      "document_id": "document_6142489bf560f9cf825e7ae885fec4168688504329f27330160652b3cd7e0cfe",
+      "version_id": "version_9db7166f2ba6db38e0eb9c3aafbc7d2f4e95cfcbe2990371f19a250701e01d75",
+      "globaal_id": "111072026043",
+      "group": "1026887",
+      "title": "Lastekaitseseadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/111072026043.xml",
+      "index_from": "2027-01-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_64d66d15573d6813ab122f69c175234157f916f5dc9ec75f08afe5e4b0141686",
+      "version_id": "version_71ce918b1a8a098b470e0745916d4e7f7bae75b235cf4785545c2a73e999b697",
+      "globaal_id": "417072025017",
+      "group": "1044552",
+      "title": "Sotsiaalteenuste osutamise tingimused ja kord",
+      "issuer": "Lääne-Nigula Vallavolikogu",
+      "regions": [
+        "laane_nigula_vald"
+      ],
+      "source_path": "oigusaktid/417072025017.xml",
+      "index_from": "2025-07-20",
+      "index_to": null
+    },
+    {
+      "document_id": "document_6c340374a5eb7dd07afae5b68ca2b60311c10fc6cf1aebcffb48abca5481168d",
+      "version_id": "version_74f6069dea05be93b78329afd792e26ed7f8984943c8127b4f905fc8fd309faf",
+      "globaal_id": "431122025034",
+      "group": "1041462",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Paide Linnavolikogu",
+      "regions": [
+        "paide_linn"
+      ],
+      "source_path": "oigusaktid/431122025034.xml",
+      "index_from": "2026-04-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_6edbe7df292b2d7dc98e7e87b0191cacf70206120a10a2d38662d8d470d90922",
+      "version_id": "version_768eaa78474fabe2bbffbe8bef1ef5320a482d5806267ae6953c64a350620ba2",
+      "globaal_id": "418082026033",
+      "group": "1062686",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Anija Vallavolikogu",
+      "regions": [
+        "anija_vald"
+      ],
+      "source_path": "oigusaktid/418082026033.xml",
+      "index_from": "2026-08-21",
+      "index_to": null
+    },
+    {
+      "document_id": "document_702c57efc367c6d927013811d18d1337616495620c2dacafa360da36b5ea477d",
+      "version_id": "version_196285f7bad14aa31ba77499504327a21860800aa5453747b48ddd1ff61dab4e",
+      "globaal_id": "404072025017",
+      "group": "1034262",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Harku Vallavolikogu",
+      "regions": [
+        "harku_vald"
+      ],
+      "source_path": "oigusaktid/404072025017.xml",
+      "index_from": "2025-09-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_702e34970561cbb6fb8ec17f48553e2f141d6bb5d161cddf33c02f59bb73fef3",
+      "version_id": "version_8502a4a510fc2c12c1a0ac58f1343ea6cad2b72e20f1f5a831ac20911626faed",
+      "globaal_id": "404022026032",
+      "group": "1041856",
+      "title": "Sotsiaaltoetuste maksmise ja sotsiaalhoolekandelise abi andmise kord Narva-Jõesuu linnas",
+      "issuer": "Narva-Jõesuu Linnavolikogu",
+      "regions": [
+        "narva_joesuu_linn"
+      ],
+      "source_path": "oigusaktid/404022026032.xml",
+      "index_from": "2026-02-07",
+      "index_to": null
+    },
+    {
+      "document_id": "document_728b8d7cf774ad3bfe22cb34ed058436e601b56cec106774616c5d5443aee425",
+      "version_id": "version_09858e0b8c565f92f229b5f2680dc7675f8bfc97d047ea9e51277d9b24e8f791",
+      "globaal_id": "426032025019",
+      "group": "1052759",
+      "title": "Rakvere linna sotsiaalteenused",
+      "issuer": "Rakvere Linnavolikogu",
+      "regions": [
+        "rakvere_linn"
+      ],
+      "source_path": "oigusaktid/426032025019.xml",
+      "index_from": "2025-03-29",
+      "index_to": null
+    },
+    {
+      "document_id": "document_72c3c0ca4926feb8e0f96c2cec7cb3a6dcd94d41001935863980de494bab7c46",
+      "version_id": "version_03630d648c8181813f8d293b80bc0ea15a362374777f83a52d8a7d054c59e808",
+      "globaal_id": "423122025040",
+      "group": "1062514",
+      "title": "Sotsiaalhoolekandelise abi andmise kord Jõhvi vallas",
+      "issuer": "Jõhvi Vallavolikogu",
+      "regions": [
+        "johvi_vald"
+      ],
+      "source_path": "oigusaktid/423122025040.xml",
+      "index_from": "2026-01-01",
+      "index_to": "2026-09-30"
+    },
+    {
+      "document_id": "document_7329ecc80869da45263d88230da369e5d0281ab24282d0a5489024697bc0059e",
+      "version_id": "version_6c369c7903a42bf1b1bd9fd584650f9aa1d344b8334ee4c3c14482e1dc486a32",
+      "globaal_id": "410042021014",
+      "group": "1051679",
+      "title": "Võlanõustamisteenuse ja teiste toetavate sotsiaalteenuste korraldamise ja osutamise kord",
+      "issuer": "Viljandi Vallavolikogu",
+      "regions": [
+        "viljandi_vald"
+      ],
+      "source_path": "oigusaktid/410042021014.xml",
+      "index_from": "2021-04-13",
+      "index_to": null
+    },
+    {
+      "document_id": "document_758e5c1b0bc0bb21fcfca24ec21e7a24cb9454a915c048a51fbdaac2284c464b",
+      "version_id": "version_07b0429c6907aed92ac06d980580a7dbec5117d2ee1771534f4a5bcb00ce97d0",
+      "globaal_id": "430042025039",
+      "group": "1058295",
+      "title": "Saue valla sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Saue Vallavolikogu",
+      "regions": [
+        "saue_vald"
+      ],
+      "source_path": "oigusaktid/430042025039.xml",
+      "index_from": "2025-05-03",
+      "index_to": null
+    },
+    {
+      "document_id": "document_7787b0c8c9cd167ff1f9c6fc61791ef00f73be139a58544f922a9b0c2c15f7eb",
+      "version_id": "version_6fc9287152f8587a7c036702102c0e0573e5c74f98161f6c3c572435b6981a88",
+      "globaal_id": "405092026051",
+      "group": "1051053",
+      "title": "Sotsiaalhoolekandelise abi andmise kord Alutaguse vallas",
+      "issuer": "Alutaguse Vallavolikogu",
+      "regions": [
+        "alutaguse_vald"
+      ],
+      "source_path": "oigusaktid/405092026051.xml",
+      "index_from": "2026-09-08",
+      "index_to": null
+    },
+    {
+      "document_id": "document_7a856448839c28621cb1ef4b0329bf1587c81f1b41d30b96971f1b09e4f90f5e",
+      "version_id": "version_5fde3985d4bd183d557e42d7fe399c956c71250f6eac97c524a2f76028647103",
+      "globaal_id": "426092026047",
+      "group": "1062514",
+      "title": "Sotsiaalhoolekandelise abi andmise kord Jõhvi vallas",
+      "issuer": "Jõhvi Vallavolikogu",
+      "regions": [
+        "johvi_vald"
+      ],
+      "source_path": "oigusaktid/426092026047.xml",
+      "index_from": "2026-10-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_7bc08e4d57743ae10bdc1547093811a6e2f18ca63bb2c0056f2636adfb334f3e",
+      "version_id": "version_f0941bd9ed30efdcf342e85f822a07fad5a70d107dbb4eb1d65a8d007d38a374",
+      "globaal_id": "111072026169",
+      "group": "1027446",
+      "title": "Riigilõivuseadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/111072026169.xml",
+      "index_from": "2027-07-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_7ce8d87251a08b1f7037e30253e0e0248895f160ebdf173445a59ed30881b10a",
+      "version_id": "version_34b8c4a46224ef5f60cdf61c589ed5b3d7526751f7adf12ed3cf397bbd18b029",
+      "globaal_id": "417092025025",
+      "group": "1050366",
+      "title": "Raasiku valla sotsiaaltoetuste ja toetuste piirmäärade ja ühekordselt makstavate toetuste suuruse kehtestamine",
+      "issuer": "Raasiku Vallavolikogu",
+      "regions": [
+        "raasiku_vald"
+      ],
+      "source_path": "oigusaktid/417092025025.xml",
+      "index_from": "2025-09-20",
+      "index_to": null
+    },
+    {
+      "document_id": "document_7d36c574f16b3d1383022f5704802bfdaffb4dd3181cddeeea1e4b8ebcdee23f",
+      "version_id": "version_277dc8e6ecab3045463d0a9ea088d698906e3f98bb5e03abeb564b21bd5e3c4e",
+      "globaal_id": "430062026040",
+      "group": "1052793",
+      "title": "Sotsiaalhoolekandelise abi andmise kord Kiili vallas",
+      "issuer": "Kiili Vallavolikogu",
+      "regions": [
+        "kiili_vald"
+      ],
+      "source_path": "oigusaktid/430062026040.xml",
+      "index_from": "2026-07-03",
+      "index_to": "2026-12-31"
+    },
+    {
+      "document_id": "document_7e43477320e342495fcd5e708ff197a14ccea877b7996c289e35fba33a325d11",
+      "version_id": "version_2a52cf2befee92de64a9c5245de195ddd649d977b8b7c76b1fbb62b5766a5e54",
+      "globaal_id": "109042026003",
+      "group": "1027446",
+      "title": "Riigilõivuseadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/109042026003.xml",
+      "index_from": "2026-04-10",
+      "index_to": "2026-06-11"
+    },
+    {
+      "document_id": "document_810322b67a0145baea5458c1f3f8fc7c426c394eaf71a28fb70a9c71f53d9035",
+      "version_id": "version_fe5625ca8ff2c0c3b7885e5bf059ac759f133e7c083d35a9f47f8cf8ab975bcb",
+      "globaal_id": "111072026168",
+      "group": "1027446",
+      "title": "Riigilõivuseadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/111072026168.xml",
+      "index_from": "2027-01-01",
+      "index_to": "2027-06-30"
+    },
+    {
+      "document_id": "document_81e346f69d5034c475c0da6dff2ba4b6cebe0d62d5276572b97c125182be8483",
+      "version_id": "version_b475a151a70947323e094165a112546767b485e1df0b0e4dfbe30a56640f844c",
+      "globaal_id": "428122024131",
+      "group": "1056879",
+      "title": "Sotsiaalhoolekandelise abi andmise tingimused ja kord",
+      "issuer": "Kehtna Vallavolikogu",
+      "regions": [
+        "kehtna_vald"
+      ],
+      "source_path": "oigusaktid/428122024131.xml",
+      "index_from": "2025-01-01",
+      "index_to": "2026-07-05"
+    },
+    {
+      "document_id": "document_85c4f7222655bb4153f1228e3cc21560b6b616c021a9d09c6a01338eab699eff",
+      "version_id": "version_379b1fdae907ddc21f8d2f340194a668eab43672f6f90c4b3c5f532731f84fdd",
+      "globaal_id": "424042026003",
+      "group": "1063349",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Kastre Vallavolikogu",
+      "regions": [
+        "kastre_vald"
+      ],
+      "source_path": "oigusaktid/424042026003.xml",
+      "index_from": "2026-06-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_8b723fa5ba39c3f1c50654ff047ad8ecd82106390e46231a91cc5ad67321a63c",
+      "version_id": "version_82ef748fc6d9fd081a289209a18c23e05328c236cc83777aa5955fa67daedadb",
+      "globaal_id": "412042025015",
+      "group": "1033406",
+      "title": "Sotsiaalhoolekande seaduse, lastekaitseseaduse, sotsiaalseadustiku üldosa seaduse ja riigilõivuseadusega kohaliku omavalitsuse üksuse pädevusse antud ülesannete delegeerimine",
+      "issuer": "Tallinna Linnavolikogu",
+      "regions": [
+        "tallinn"
+      ],
+      "source_path": "oigusaktid/412042025015.xml",
+      "index_from": "2025-05-01",
+      "index_to": "2026-06-30"
+    },
+    {
+      "document_id": "document_9009ad0d34f62879572f790fae7fa9e62c367220ddf2cd2a902f5810f810ddbe",
+      "version_id": "version_e6c334260f3ec7310cfa6e197e567f6413e56fd9511e1a46c31aad10fa5b3869",
+      "globaal_id": "406122024017",
+      "group": "1059974",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Väike-Maarja Vallavolikogu",
+      "regions": [
+        "vaike_maarja_vald"
+      ],
+      "source_path": "oigusaktid/406122024017.xml",
+      "index_from": "2024-12-09",
+      "index_to": null
+    },
+    {
+      "document_id": "document_94ebcbe2787130f92e785981b58f679d8fb9097c737f5fe5221f36f20eaa21e5",
+      "version_id": "version_8223504cd22349474dae53b43c287ff2db469a4f718199c683a84ccf731cccd1",
+      "globaal_id": "406022025035",
+      "group": "1049430",
+      "title": "Sotsiaalhoolekandelise abi andmise tingimused ja kord",
+      "issuer": "Kihnu Vallavolikogu",
+      "regions": [
+        "kihnu_vald"
+      ],
+      "source_path": "oigusaktid/406022025035.xml",
+      "index_from": "2025-02-09",
+      "index_to": null
+    },
+    {
+      "document_id": "document_98065a84f5ab452c766802b24ef8952ee66acf48cc00c1b4667c6189f057b76c",
+      "version_id": "version_ef34c10955f10cb5c63fd13828be593df79df8d993db87c9862a1682e4bda3b1",
+      "globaal_id": "428122024033",
+      "group": "1060128",
+      "title": "Tallinna Lastekodu põhimäärus",
+      "issuer": "Tallinna Linnavalitsus",
+      "regions": [
+        "tallinn"
+      ],
+      "source_path": "oigusaktid/428122024033.xml",
+      "index_from": "2025-01-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_99b5a60487ec57432dfec8ba69bd87278efbd2b31d9573c005bb37fb730f527a",
+      "version_id": "version_5d9b688b161a5f5a8dbecffc81af8bf3dd42dcea5605e9c0d840fb179fde7df4",
+      "globaal_id": "426052023059",
+      "group": "1041276",
+      "title": "Sotsiaalhoolekandelise abi andmise kord Elva vallas",
+      "issuer": "Elva Vallavolikogu",
+      "regions": [
+        "elva_vald"
+      ],
+      "source_path": "oigusaktid/426052023059.xml",
+      "index_from": "2023-05-29",
+      "index_to": null
+    },
+    {
+      "document_id": "document_a1735735d038c1e9cadea3bbcb499d37564c06332c3b70f9bc60546a27ede0f7",
+      "version_id": "version_e7b53bef9880e0d528ee395117ce2780c2cc4f90b8fbf5032672d148a65a97d0",
+      "globaal_id": "411042018011",
+      "group": "1042744",
+      "title": "Sotsiaalteenuste osutamise kord",
+      "issuer": "Peipsiääre Vallavolikogu",
+      "regions": [
+        "peipsiaare_vald"
+      ],
+      "source_path": "oigusaktid/411042018011.xml",
+      "index_from": "2018-04-14",
+      "index_to": null
+    },
+    {
+      "document_id": "document_a66b6f4f0c1b79ccf9f054b93112bc4d50c8fc4b8654e76b5747aa8d0ec62732",
+      "version_id": "version_d5c8187aceae755acbc9416c0e3c468750596e0159e9f7390c46dbdd83ee7dad",
+      "globaal_id": "407032025024",
+      "group": "1051053",
+      "title": "Sotsiaalhoolekandelise abi andmise kord Alutaguse vallas",
+      "issuer": "Alutaguse Vallavolikogu",
+      "regions": [
+        "alutaguse_vald"
+      ],
+      "source_path": "oigusaktid/407032025024.xml",
+      "index_from": "2025-03-10",
+      "index_to": "2026-09-07"
+    },
+    {
+      "document_id": "document_a6d740ad5f826e294bc7df1fa2333fcf116be29c08968360a61d941a51a9484f",
+      "version_id": "version_66b19b2e3cbf0148077ebb97ea528f09b59f1ebe31cf11587e4b6c698bbbafd6",
+      "globaal_id": "412092023017",
+      "group": "1046985",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Saaremaa Vallavolikogu",
+      "regions": [
+        "saaremaa_vald"
+      ],
+      "source_path": "oigusaktid/412092023017.xml",
+      "index_from": "2023-09-15",
+      "index_to": null
+    },
+    {
+      "document_id": "document_a795aa44d9c570fcd152d2d9bf713808223bd7334f2070cccb5cd5c48ac22213",
+      "version_id": "version_9d4a264018d772e276dd65b20747b00288a6994ba35f1204b85c213a909d6712",
+      "globaal_id": "410032026002",
+      "group": "1060100",
+      "title": "Sotsiaalhoolekandeabi andmise kord Rõuge vallas",
+      "issuer": "Rõuge Vallavolikogu",
+      "regions": [
+        "rouge_vald"
+      ],
+      "source_path": "oigusaktid/410032026002.xml",
+      "index_from": "2026-03-13",
+      "index_to": null
+    },
+    {
+      "document_id": "document_a8741f141c90dbc57ab6ad054a1a8f95883bec80c854fd1fb83ed268b4f139a8",
+      "version_id": "version_db967e766450cc3fa3542f28cb6d60f3ac5c40883a4fb1050e9ad49b7748cdec",
+      "globaal_id": "406112024020",
+      "group": "1045073",
+      "title": "Sotsiaalhoolekandelise abi andmise kord Jõgeva vallas",
+      "issuer": "Jõgeva Vallavolikogu",
+      "regions": [
+        "jogeva_vald"
+      ],
+      "source_path": "oigusaktid/406112024020.xml",
+      "index_from": "2025-01-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_ae0c90e47b6de61e562751c6578edb2696672be8954968c387afe3a9e44c25b5",
+      "version_id": "version_2a1aad6795032ae7ba17522d7274f96255b195cf501fc2478147030aa59b7ad0",
+      "globaal_id": "130122025036",
+      "group": "1032299",
+      "title": "Sotsiaalseadustiku üldosa seadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/130122025036.xml",
+      "index_from": "2026-01-09",
+      "index_to": "2026-09-30"
+    },
+    {
+      "document_id": "document_b79c33f8454a5438c12601bd6d459a04984c8d43d1c4963190307ff5b6f2ae21",
+      "version_id": "version_b82c35e3ff8f1d206a03fd28caf7ebad38e0b38aae8c4969217b74d9f0e3cb4a",
+      "globaal_id": "407042026033",
+      "group": "1051994",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Järva Vallavolikogu",
+      "regions": [
+        "jarva_vald"
+      ],
+      "source_path": "oigusaktid/407042026033.xml",
+      "index_from": "2026-04-10",
+      "index_to": null
+    },
+    {
+      "document_id": "document_be501bccbab06135a97e269ced9bbcee44968b4d226869f032dcf4994c3aa4aa",
+      "version_id": "version_0a15d788425431416715b5bea4984f06bdb52bfff0b832336471029e0222ffb3",
+      "globaal_id": "429052024010",
+      "group": "1052793",
+      "title": "Sotsiaalhoolekandelise abi andmise kord Kiili vallas",
+      "issuer": "Kiili Vallavolikogu",
+      "regions": [
+        "kiili_vald"
+      ],
+      "source_path": "oigusaktid/429052024010.xml",
+      "index_from": "2024-06-01",
+      "index_to": "2026-07-02"
+    },
+    {
+      "document_id": "document_c32255b376cda0db1ac63e945ee75bed5b75c967b11d63699a789b53485f97f3",
+      "version_id": "version_be74ff15291669240b77b110303953266a88d1a7d24188ecfbec83954b8a555c",
+      "globaal_id": "130062026065",
+      "group": "1032355",
+      "title": "Sotsiaalhoolekande seadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/130062026065.xml",
+      "index_from": "2026-10-01",
+      "index_to": "2026-11-30"
+    },
+    {
+      "document_id": "document_c779eb5fc1ee4b5aecd76521c0ef28c84eb84fba1bd649c28406acb0984aedcb",
+      "version_id": "version_da502d7a6c13a0f24af1fb23b48ab73088fb157733416a3e4a4a87f8d3c57e9e",
+      "globaal_id": "107052025017",
+      "group": "339043",
+      "title": "Perekonnaseadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/107052025017.xml",
+      "index_from": "2025-01-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_c7c02fa7f9f7686df11e0a84d92aa9895193a950d7fe420f5e871a57a911b8ea",
+      "version_id": "version_323a3cfe297deb04b05579ac62734ebee1881cc5637148563f9e4d7a70a8978c",
+      "globaal_id": "418032026007",
+      "group": "1054059",
+      "title": "Sotsiaalteenuste osutamise kord",
+      "issuer": "Loksa Linnavolikogu",
+      "regions": [
+        "loksa_linn"
+      ],
+      "source_path": "oigusaktid/418032026007.xml",
+      "index_from": "2026-03-21",
+      "index_to": null
+    },
+    {
+      "document_id": "document_c7c4c5aa62c6ad68882bf53f036a237de415cda277e68b84a1543a0d6c5ffc60",
+      "version_id": "version_9b557accc18d43c584a1807f64e013a200c41df481f9f74f5b00b94a663fdffb",
+      "globaal_id": "431122024038",
+      "group": "1051851",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Kadrina Vallavolikogu",
+      "regions": [
+        "kadrina_vald"
+      ],
+      "source_path": "oigusaktid/431122024038.xml",
+      "index_from": "2025-01-03",
+      "index_to": null
+    },
+    {
+      "document_id": "document_cc39afd08d15b952839f6bf784ed5d3cf02a73c465ac57f719c6b582a0949c36",
+      "version_id": "version_45cc9c64b9918a18d002d9242c41eb1570b310dfa3a94946aecf3004f63a27f2",
+      "globaal_id": "430062026041",
+      "group": "1052793",
+      "title": "Sotsiaalhoolekandelise abi andmise kord Kiili vallas",
+      "issuer": "Kiili Vallavolikogu",
+      "regions": [
+        "kiili_vald"
+      ],
+      "source_path": "oigusaktid/430062026041.xml",
+      "index_from": "2027-01-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_d180fd5fb89d26a8e66a8a0f82667fec99f91e6892dc8fcec434bd711ec179a7",
+      "version_id": "version_99000f4635bae04d4f40bc14f8085d87343e69eb6bf0101eaf7f12bd809589c8",
+      "globaal_id": "129082025009",
+      "group": "1032376",
+      "title": "Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi andmed",
+      "issuer": "Sotsiaalkaitseminister",
+      "regions": [],
+      "source_path": "oigusaktid/129082025009.xml",
+      "index_from": "2025-09-01",
+      "index_to": "2026-09-30"
+    },
+    {
+      "document_id": "document_d540beb842ac36ff7ec854f6b3b379e6ea52c20e43488c10442d485c559fcc54",
+      "version_id": "version_71e0dbc03f319ef238f92ddaf16914a4c76e213dbc3166546d51ee48fd9556ac",
+      "globaal_id": "410092025033",
+      "group": "1052760",
+      "title": "Sotsiaaltoetuste maksmise tingimused ja kord",
+      "issuer": "Tallinna Linnavolikogu",
+      "regions": [
+        "tallinn"
+      ],
+      "source_path": "oigusaktid/410092025033.xml",
+      "index_from": "2025-09-13",
+      "index_to": "2026-06-13"
+    },
+    {
+      "document_id": "document_d64f2fad7dd67025bd6c77c91269a61e59443c99afc34d243b096d8fd6b9cc69",
+      "version_id": "version_b68b00da555eaa6e3e7aae63d687528c527784495fb826d27be8a8dd70c6ca41",
+      "globaal_id": "403042025040",
+      "group": "1055700",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Häädemeeste Vallavolikogu",
+      "regions": [
+        "haademeeste_vald"
+      ],
+      "source_path": "oigusaktid/403042025040.xml",
+      "index_from": "2025-04-06",
+      "index_to": null
+    },
+    {
+      "document_id": "document_d965143779b80298b88acd8c0a901855a9d35311c9265fa8df7e60f1163bef9d",
+      "version_id": "version_991d1ecf167e33793a72119807681ec5aa963001b439b8bd667514298de5b587",
+      "globaal_id": "111072026042",
+      "group": "1026887",
+      "title": "Lastekaitseseadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/111072026042.xml",
+      "index_from": "2026-10-01",
+      "index_to": "2026-12-31"
+    },
+    {
+      "document_id": "document_db6295dc196047e71a82e952b16936d20182ecb4b9f37ac416cbc4ca31d504bc",
+      "version_id": "version_bf87373255890d417cebf2006d8393dcda43b3c8ba5bb59972313b2144f7cb23",
+      "globaal_id": "109072026076",
+      "group": "153445",
+      "title": "Haldusmenetluse seadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/109072026076.xml",
+      "index_from": "2027-01-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_e0d47b974b2166e1800a1945551de3aea22d26044f8a8166b36a0486daf5cbd4",
+      "version_id": "version_33059cfd5c717233aa276c8f32c69748ed1459fa8bef52a050a50bf513726118",
+      "globaal_id": "130062026031",
+      "group": "1032299",
+      "title": "Sotsiaalseadustiku üldosa seadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/130062026031.xml",
+      "index_from": "2026-10-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_e31a57766ffc985581f559a7dec35bb95ef5a4e97c05189b89a1039e1ad06cfa",
+      "version_id": "version_82dfb95f0ae014ec1370acfe0a41d18ef5f2c050d6cbdc8cfd7a8ba25ab617a9",
+      "globaal_id": "422032022006",
+      "group": "1042096",
+      "title": "Sotsiaalhoolekandelise abi andmise tingimused ja kord Ruhnu vallas",
+      "issuer": "Ruhnu Vallavolikogu",
+      "regions": [
+        "ruhnu_vald"
+      ],
+      "source_path": "oigusaktid/422032022006.xml",
+      "index_from": "2022-03-25",
+      "index_to": null
+    },
+    {
+      "document_id": "document_e4aa1654a760269c1f547f6d5a388dffc6d82c5c805dec2cc650ce4954f4e680",
+      "version_id": "version_547a32e7633b295067b8d52d253385f8e46b54983f6a373e120aaf891b699392",
+      "globaal_id": "428102025016",
+      "group": "1041893",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Kanepi Vallavolikogu",
+      "regions": [
+        "kanepi_vald"
+      ],
+      "source_path": "oigusaktid/428102025016.xml",
+      "index_from": "2026-01-01",
+      "index_to": "2026-05-29"
+    },
+    {
+      "document_id": "document_e51b5fb428fb19e84e0a6849922b117855b19954ebe7c96af74ff6b1092f56e8",
+      "version_id": "version_b1c45cf867327593088dc6e007b845bb012dbd518354dcbc1109696efb8be017",
+      "globaal_id": "106072023031",
+      "group": "153445",
+      "title": "Haldusmenetluse seadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/106072023031.xml",
+      "index_from": "2024-01-01",
+      "index_to": "2026-12-31"
+    },
+    {
+      "document_id": "document_e8d605b2f0f123f8cdba704b85070848b8cbcb566e8511f0c6f7a382a7f26c5f",
+      "version_id": "version_3bf551f97f5630a9893453fe5ecce00021a5fa7d7c969965b1fdcffe61e2f6c4",
+      "globaal_id": "131122024023",
+      "group": "1026887",
+      "title": "Lastekaitseseadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/131122024023.xml",
+      "index_from": "2025-01-10",
+      "index_to": "2026-09-30"
+    },
+    {
+      "document_id": "document_ef2202c6477e71a7ad3e251a2ba089ef99cfa619c57ade5c8d9a24b0465e36cb",
+      "version_id": "version_dd996c9588c78b17ca58d00fdaa5bd06b335ab61b49f88dd0384a80ab75d705b",
+      "globaal_id": "431082024012",
+      "group": "1056916",
+      "title": "Sotsiaalteenuste osutamise kord Rae vallas",
+      "issuer": "Rae Vallavolikogu",
+      "regions": [
+        "rae_vald"
+      ],
+      "source_path": "oigusaktid/431082024012.xml",
+      "index_from": "2024-09-03",
+      "index_to": "2026-05-29"
+    },
+    {
+      "document_id": "document_ef48e44933a6ab0fb49958c5a068882fc840f2949dd20e99d93b9c3e418620e1",
+      "version_id": "version_faa8769615029d8d783a9e9eb53870a0295fe32ef6a60dba19e9d220fe771fb9",
+      "globaal_id": "407012022005",
+      "group": "1043022",
+      "title": "Kohila valla poolt korraldatavate sotsiaalteenuste osutamise kord",
+      "issuer": "Kohila Vallavolikogu",
+      "regions": [
+        "kohila_vald"
+      ],
+      "source_path": "oigusaktid/407012022005.xml",
+      "index_from": "2022-01-10",
+      "index_to": "2026-08-31"
+    },
+    {
+      "document_id": "document_fb5efaff1652bb2001c33d543389146eff7d0b81ffe32ff7da37ebfb0021714e",
+      "version_id": "version_ab7d175aac9123d9b27745d99af1b170ead59354b2adb951c78070e936c692b3",
+      "globaal_id": "403042024076",
+      "group": "1054254",
+      "title": "Sotsiaalhoolekandelise abi andmise kord Vormsi vallas",
+      "issuer": "Vormsi Vallavolikogu",
+      "regions": [
+        "vormsi_vald"
+      ],
+      "source_path": "oigusaktid/403042024076.xml",
+      "index_from": "2024-04-06",
+      "index_to": null
+    },
+    {
+      "document_id": "document_fcf16ae0d32720628993bd9756899b554d821ce45f1584a24315aab11c000d20",
+      "version_id": "version_8a0f7298d4f58a9c3ea5b84b9bb62f88a85a34b1869fa1db04d0112a6bd6611b",
+      "globaal_id": "412042025007",
+      "group": "1052751",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Tallinna Linnavolikogu",
+      "regions": [
+        "tallinn"
+      ],
+      "source_path": "oigusaktid/412042025007.xml",
+      "index_from": "2025-05-01",
+      "index_to": null
+    }
+  ]
+}

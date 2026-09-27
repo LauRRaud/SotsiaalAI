@@ -92,24 +92,30 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**27.09 Muudatusepõhine indeks serveris (ADR-036, PR #210–#212).** Aktiivne on korpus v31
-(`versions-v1`). Kahe õigusteksti lisamisel töötles indeks 2 dokumenti 47 sekundiga. Vanade
+**27.09 Muudatusepõhine indeks serveris (ADR-036, PR #210–#217).** Serveriaruande järgi on
+aktiivne korpus v32 (`versions-v1`, 32 746 tekstiosa). v31 lisamisel töötles indeks kaks
+õigusteksti 47 sekundiga. Vanade
 dokumentide read ja punktid jäid muutumata ning vestlus vastas töö ajal. v30 andis v29-ga
 identsed otsingutulemused. PR #212 tegi ostuplaani ja vektoriarhiivide lugemise
 muudatusepõhiseks (ostuplaan 2 min → 4,4 s); #212 kohalik koodiülevaatus ei leidnud uut
-regressiooni (50/50 sihttesti). Ostu ja indeksi töö aeg uute dokumentidega on veel mõõtmata.
+regressiooni (50/50 sihttesti). v32 ostu ja indeksi töö serveriajad on mõõdetud (allpool).
 Ülevaatuse leitud väljalaske puudus (aegunud plaan andis deploy's ainult hoiatuse, kuigi
 vestlus keeldus vastamast) sai [ADR-037](../rag-v2/adr-037-release-chat-plan.md)-ga automaatse
 plaani uuenduse. #214 kohalik kontroll 10/10; eelkontrolli viga taastab vana väljalaske,
 pärast põhimigratsiooni ebaõnnestuv `ready` jätab uue väljalaske alles. Codex leidis
 uuenduses eelarvevea: uus plaani-ID alustas kuluarvestust nullist, nii et 4 USD piir
 ei säilinud üle uuenduste. Parandus: uuendatud plaan jätkab kinnitatud plaani kulupäevikut
-(`budgetLedger`, ADR-037). #215–#216 39 XML-i ja Jõhvi seos kontrollitud. v32 serveris:
+(`budgetLedger`, ADR-037). #217 Codexi järelkontroll: 9/9 testi ja sõltumatu ammendatud
+eelarve sond läbivad; P1 lahendatud. [Järelkontroll](../audits/rag-v2-codex-review-2026-09-27.md#7-pr-217-eelarveparanduse-järelkontroll).
+#215–#216 39 XML-i ja Jõhvi seos kontrollitud. v32 serveris:
 39 dokumenti, ostuplaan 6,5 s, ost 79 s (0,016 USD), indeksi töö 61 s, v31 räsid muutumata,
 Tallinna vastus tsiteeris 01.07.2026 toetuste määrasid ([ADR-036](../rag-v2/adr-036-version-index.md)).
 RLS-i redaktsioonireas on RT ametlikes andmetes 31.10.2026 katmata; see päev jääb tõendita
-kuni RT avaldab selle redaktsiooni. Avatud: RLS-i piiripäeva uus kontroll enne 31.10, 60 000
-tekstiosa mahupiir ja vestlusplaani vahetus iga uue indeksipõlvkonnaga. [Uus ülevaatus](../audits/rag-v2-codex-review-2026-09-27.md#6-pr-214216-plaani-uuendus-ja-õigusaktide-värskendus),
+kuni RT avaldab selle redaktsiooni. Õigusaktide kehtivuse kontroll on repos
+([ADR-038](../rag-v2/adr-038-law-validity-check.md)). GitHub Actions jookseb iga kuu 25. kuupäeval ja
+kontrollib RLS-i piiripäeva uuesti 25.10. Esimene jooks v32 peal andis 62/64 gruppi muutumata ja 0 päringutõrget;
+SHS-i 2027. aasta tekstid alates 01.02 tuleb lisada enne 31.01.2027. Avatud: 60 000 tekstiosa mahupiir ja
+vestlusplaani vahetus iga uue indeksipõlvkonnaga. [Uus ülevaatus](../audits/rag-v2-codex-review-2026-09-27.md#6-pr-214216-plaani-uuendus-ja-õigusaktide-värskendus),
 [serverimõõtmised](../rag-v2/adr-036-version-index.md#mõõtmine-serveris-27092026).
 
 **27.09 Versioonipõhise indeksi kohalik ülevaatus (Codex, #209–#211).** Uut kinnitatud
