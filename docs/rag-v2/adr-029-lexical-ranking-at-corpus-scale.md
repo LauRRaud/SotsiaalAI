@@ -3,6 +3,11 @@
 25.09.2026. Ettepanek, Claude Opus 5.5. Otsust ega koodimuudatust veel ei ole; kood on
 järelkontrolliks külmutatud (`tmp/rag-v2-freeze-v12-2026-09-25`).
 
+Hiljem (27.09.2026): BM25 on endiselt tegemata. Vestlus sai kogu korpuse jaoks kiirema sõnalise
+järjestuse teist teed ([ADR-030](adr-030-chat-retrieval-at-corpus-scale.md)):
+- vestluse profiil `hybrid-estnltk-chat-v1` kasutab lihtsat `ts_rank`-i (`ts-rank-v1`, PR #187);
+- otsinguabi päringud lähevad ühe ühendatud sõnalise päringuna (PR #193).
+
 ## Mida see muudab ja mida mitte
 
 **Muudab ainult otsinguindeksit ja sõnalist järjestamist:** Postgres'i ühikutabeli sõnalised

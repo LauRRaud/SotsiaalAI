@@ -9,7 +9,7 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | KOV | 78 | 234 | 78 KOV-i põhipaketti koos metaandmete ja allikaloenditega. |
 | kontaktid | 0 | 10 | Kontaktide otsingumaterjal; kattuvus KOV-pakettidega vajab ühendamist. |
 | organisatsioonid | 1 | 3 | Organisatsiooni korjatud sisu ja allikad. |
-| oigusaktid | 104 | 104 | XML-aktid, sh eri redaktsioonid; kehtivus tuleb vastuvõtul kontrollida. |
+| oigusaktid | 106 | 106 | XML-aktid, sh eri redaktsioonid; kehtivus tuleb vastuvõtul kontrollida. |
 | register | 0 | 2 | Kavandatud allikate register, mitte teadmistekst. |
 | taastatud_allikad | 0 | 22 | Serveri vanast indeksist taastatud tekst. Enne importi võrrelda põhipakettidega. |
 
@@ -1279,6 +1279,8 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | 129082025009.xml | [oigusaktid/129082025009.xml](<oigusaktid/129082025009.xml>) |
 | 130122025036.xml | [oigusaktid/130122025036.xml](<oigusaktid/130122025036.xml>) |
 | 131122024023.xml | [oigusaktid/131122024023.xml](<oigusaktid/131122024023.xml>) |
+| 130062026065.xml | [oigusaktid/130062026065.xml](<oigusaktid/130062026065.xml>) |
+| 106072023031.xml | [oigusaktid/106072023031.xml](<oigusaktid/106072023031.xml>) |
 | 410092025031.xml | [oigusaktid/410092025031.xml](<oigusaktid/410092025031.xml>) |
 | 410092025033.xml | [oigusaktid/410092025033.xml](<oigusaktid/410092025033.xml>) |
 | 412042025015.xml | [oigusaktid/412042025015.xml](<oigusaktid/412042025015.xml>) |

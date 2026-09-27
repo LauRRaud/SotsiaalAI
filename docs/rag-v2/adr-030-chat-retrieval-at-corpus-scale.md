@@ -71,6 +71,17 @@ Vektori kaal 1 ja 100 kandidaati kaotasid. Ainult sõnaotsingul oli tulemus 6/25
 
 Nüüd loetakse plaan ja põlvkond mällu reaversiooni järgi. Muutumatu kataloogi kohta küsitakse andmebaasilt üks räsirida. Viitekontroll tokeneid ei loe. Tulemus sama vestlusega: soe 3,3 s (umbes 50 ms pöördumise kohta), külm 18 s. Muudetud rida (uus xmin) läheb endiselt täiskontrolli; seda katab integratsioonitest.
 
+**Korpus v26 (27.09.2026):** korpusesse lisati Sotsiaalhoolekande seadus (01.10–30.11.2026 kehtiv tekst) ja Haldusmenetluse seadus. Enne oli korpuses ainult viis riiklikku õigusakti, seega üldisele reegliküsimusele tuli vana artikkel või mõne teise omavalitsuse kord. Vektorid maksid 0,024 USD (408 uut sisendit), indeks `search_generation_10b4ff…` on 5998 dokumendi ja 29 591 lõiguga. Käik on [runbookis](runbook-corpus-increment.md).
+
+Samal otsinguabil (search-assist-2) vastuvõtutesti 12 üldküsimusel (`tmp/rag-v2-dev-2026-09-27/law-main-v25.json` vs `law-main-v26.json`):
+- B1, B4, B6, B8 ja F4 said nüüd Sotsiaalhoolekande seaduse;
+- B8 sai enne üheksa omavalitsuse korda;
+- teiste omavalitsuste kordi oli üldküsimustel 15 asemel 6.
+
+52 küsimuse komplektis (48 vastatavat) v26 peal: kõik õiged lõigud 34, vähemalt üks 44, õige dokument 45. Tõendeid 4 vastuseta küsimusel oli 0 (`assist-main-v26.json`). Varasemate numbritega see otse võrreldav pole, sest indeks ja kood on teised.
+
+Allika taseme ja vastuse terviklikkuse järgmised sammud on [ADR-031](adr-031-source-level-and-answer-completeness.md)-s.
+
 ## Piirid
 
 - Ankurmõõdik on range: mitmeosalise olukorraküsimuse vastus võib tugineda ka muule sobivale lõigule. Vastuse enda kvaliteeti mõõdab vestluse test.
