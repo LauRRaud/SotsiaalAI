@@ -138,3 +138,24 @@ test('pool reserve input is bounded', () => {
   assert.deepEqual(validateQuery({ ...base, poolReserve: { documents: ['b', 'a', 'b'], size: 2 } }).poolReserve, { documents: ['a', 'b'], size: 2, perDocument: 2 });
   assert.deepEqual(validateQuery({ ...base, poolReserve: { documents: ['a'], size: 6, perDocument: 2 } }).poolReserve, { documents: ['a'], size: 6, perDocument: 2 });
 });
+
+test('ADR-033: the warm-up verifies national legal texts first, once per generation, and the start warm-up needs an enabled real plan', async () => {
+  const { warmKnowledgeSources, warmPilotAtStart } = await import('../lib/rag-v2/pilot/retrieval.js');
+  const f = fixture(), directories = await f.postgres.retrievalDirectory(), warmed = [];
+  const postgres = { warm: async (tenant, generationId, ids) => { warmed.push({ tenant, generationId, ids }); } };
+  const generationId = `warm-test-${Date.now()}`;
+  assert.equal(warmKnowledgeSources(postgres, tenant, generationId, directories), true);
+  assert.equal(warmKnowledgeSources(postgres, tenant, generationId, directories), false, 'a second call in the same process does not warm again');
+  await new Promise(resolve => setImmediate(resolve));
+  assert.deepEqual(warmed, [{ tenant, generationId, ids: ['law', 'act', 'municipal', 'guide'] }]);
+  for (const env of [{}, { M4_PILOT_ENABLED: '0', M4_PILOT_CONFIG: 'x', RAG_V2_POSTGRES_URL: 'x' }, { M4_PILOT_ENABLED: '1', RAG_V2_POSTGRES_URL: 'x' }]) {
+    assert.equal(await warmPilotAtStart({ env }), false);
+  }
+  // A test-mode plan is not warmed; nothing connects to a database.
+  const { mkdtemp, writeFile, rm } = await import('node:fs/promises'), os = await import('node:os'), path = await import('node:path');
+  const dir = await mkdtemp(path.join(os.tmpdir(), 'rag-v2-warm-')), file = path.join(dir, 'plan.json');
+  try {
+    await writeFile(file, JSON.stringify({ mode: 'test', tenant, documents: { law: 'law-v1' } }));
+    assert.equal(await warmPilotAtStart({ env: { M4_PILOT_ENABLED: '1', M4_PILOT_CONFIG: file, RAG_V2_POSTGRES_URL: 'postgres://127.0.0.1:1/none' } }), false);
+  } finally { await rm(dir, { recursive: true, force: true }); }
+});

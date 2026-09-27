@@ -76,7 +76,7 @@ sudo -n chown root:ubuntu <out>; sudo -n systemctl restart sotsiaalai-frontend
 - `--activate` varundab `rag.env`-i ja seab `M4_PILOT_ENABLED`, `M4_PILOT_CONFIG` ja `RAG_V2_ESTNLTK_IDLE_MS=3600000`.
 - Plaani ID-s on minutitempel. Iga plaan saab oma kulupäeviku.
 - Vestluse ajalugu filtreeritakse plaani `configHash` järgi. Pärast ümberehitust vanemad pöörded peituvad, kuid ei kustu. Sellise vestluse järgmine sõnum alustab uue teema ka valikuga „Jätkan sama teemat“ ([ADR-032](adr-032-national-law-reserve-and-plan-restart.md)).
-- Pärast taaskäivitust soojendab server kirjeteta allikad mällu (PR #188 ajal 1122 allikat, ~5 min).
+- Pärast taaskäivitust soojendab server kirjeteta allikad mällu (1124 allikat, ~4,7 min), riiklikud õigustekstid esimesena. Soojendus algab serveri käivitusel (`instrumentation.js`, [ADR-033](adr-033-warm-up-at-server-start.md)), mitte esimesel küsimusel. Logis: `[rag-v2] start warm-up started`, siis `[rag-v2] warmed … sources`.
 
 ### Kus mis asub
 
@@ -100,7 +100,7 @@ sudo -n chown root:ubuntu <out>; sudo -n systemctl restart sotsiaalai-frontend
 
 - BM25 sõnaline järjestus ([ADR-029](adr-029-lexical-ranking-at-corpus-scale.md)) on ettepanek, tegemata.
 - Tehtud 27.09 ([ADR-032](adr-032-national-law-reserve-and-plan-restart.md)): HMS jõuab vaidlustamise küsimusel valijani riikliku õiguse reservi kaudu (B9 sai HMS-i kahel jooksul kolmest); vana vestluse „Jätkan sama teemat“ ei anna pärast plaani uuendust enam `context_unavailable` viga.
-- Vestluse kiirus (27.09 B9): esimene pööre pärast restarti ~45 s (külm allikate soojendus), järgmine ~17 s, millest vastus ~10 s. Ideed: soojendus serveri käivitusel, vastuse voogedastus.
+- Vestluse kiirus: esimese pöörde külm allikakontroll (27.09 B9 ~45 s) on [ADR-033](adr-033-warm-up-at-server-start.md)-ga serveri käivitusel. Vastuse mudel (~10 s, `medium`) jääb põrandaks; vastuse voogedastus on tegemata.
 - XML-i toores `<sup>` ja muutmismärked (aruande parandus 5). See muudab töötlust, seega kontrolli enne uute embedding-sisendite ulatust.
 - Tallinna hooldajatoetuse kirje ja korra vastuolu (aruanne 3.3), E3.2 „tädi vajab sama“ (isikute eraldatus, omaniku otsus), B7 reasisesed viited.
 - Kirjete töötlus v26 (kontakti-ID-d indeksitekstist välja) ja kasutajapõhine hõivatuse värav enne mitme kasutaja kasutust.
@@ -143,6 +143,7 @@ sudo -n chown root:ubuntu <out>; sudo -n systemctl restart sotsiaalai-frontend
 - [ADR-030](adr-030-chat-retrieval-at-corpus-scale.md) (27.09.2026): vestlus kogu korpusel. Kirje tõend on väljavõte, kaardid on saledad, profiil on `hybrid-estnltk-chat-v1`, otsinguabi teeb plaani ja valiku, vestlusplaani teeb `scripts/rag-v2-chat-plan.mjs`. Lisaks kiirus ja ajaloo laadimine.
 - [ADR-031](adr-031-source-level-and-answer-completeness.md) (27.09.2026): allika tase ja vastuse terviklikkus. Korpus v26 (SHS, HMS), `m4-grounded-dialogue-9`, kriisiriba, allikavaate link algallikale ja vastuse oma hääl (`m4-grounded-answer-11`). `rag-v2/search-assist-3` jääb katseks.
 - [ADR-032](adr-032-national-law-reserve-and-plan-restart.md) (27.09.2026): riikliku õiguse reserv valiku kandidaatides (`poolReserve`, 6 kohta, aktist kuni 2) ja „Jätkan sama teemat“ pärast vestlusplaani uuendust alustab uue teema.
+- [ADR-033](adr-033-warm-up-at-server-start.md) (27.09.2026): teadmusallikate soojendus algab serveri käivitusel (`instrumentation.js` → `warmPilotAtStart()`), riiklikud õigustekstid esimesena; `preflight` jääb varuks.
 
 ### Runbook ja aruanded
 
