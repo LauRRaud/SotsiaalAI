@@ -122,3 +122,21 @@ Kehtivusreegel valib hiljem õige redaktsiooni kuupäeva järgi ise; vana redakt
 - **Edasi:** `assist-eval-v26.mjs` salvestab nüüd plaani vektorid (`PLAN_VECTORS_OUT`) ja võrdlus võtab need `--plan-vectors` kaudu. Järgmine hindamisjooks on seega täielikult korratav ilma uue ostuta. Otsingut testküsimuste ega oodatud dokumendi-ID-de järgi ei kohandatud.
 
 **Failid:** `tmp/rag-v2-dev-2026-09-27/compare-plans-v26.json`, `compare-plans-v27.json`, `compare-laws03-*.json` (ka serveris `/home/ubuntu/rag-v2-work/eval-files/`).
+
+## Serveri kontroll pärast deploy'd (PR #205, plaan `m4-corpus-chat-20260927p`)
+
+Deploy `f0a8e8ab`, plaan `…-1230` (`m4-grounded-dialogue-11`, värskus `current`), soojendus 279 s. Kontroll oli ainult lugemine (`scope-check.mjs`): päris indeks v27, päris omavalitsuste register ja EstNLTK, mudeli- ja embedding-kutseid 0.
+
+| Kontroll | Tulemus |
+|---|---|
+| Kehtivus 27.09.2026 | 1124 teadmusdokumendist jääb 1123; välja jääb ainult Sotsiaalhoolekande seadus 2026-10-01..2026-11-30 (`not_yet_in_force`) |
+| Kehtivus 01.10.2026 | välja ei jää midagi |
+| Täna + küsitud 2023 | sama mis täna; tänast õigust ei eemaldata |
+| „Mu isa elab Narvas …“ | `narva_linn`; omavalitsuse tekstidest jääb ainult Narva oma, 53 teise omavalitsuse korda välja |
+| „Ta elab Narva-Jõesuus.“ | `narva_joesuu_linn`; ainult Narva-Jõesuu oma |
+| „Ema elab Tartus.“ | `ambiguous_region` [`tartu_linn`, `tartu_vald`]; korpuses pole kummagi korda, seega ei jää ühtegi |
+| „Elan Tartu vallas.“ | `tartu_vald`; korda pole, seega ei jää ühtegi |
+| Omavalitsust nimetamata küsimus | ühtegi omavalitsuse korda |
+| F3 vene keeles, plaani päring „Narva eakate koduteenus ja hooldus“ | `search_plan_region` `narva_linn`; Narva-Jõesuu kord jääb välja |
+
+F3 plaani päring oli selles kontrollis käsitsi antud. Päris plaani kirjutab otsinguabi; kas see nime alati hoiab, on mõõtmata (vt 2).
