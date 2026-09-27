@@ -4,17 +4,19 @@ SotsiaalAI allikapõhise otsingu ja vestluse dokumentatsioon. Esimene osa kirjel
 
 ## Praegune seis (27.09.2026)
 
-Seis on kirja pandud 27.09.2026 ~20:00 EEST. Hilisemad muudatused on ADR-ides ja [runbookis](runbook-corpus-increment.md).
+Seis on kirja pandud 27.09.2026 ~21:15 EEST. Hilisemad muudatused on ADR-ides ja [runbookis](runbook-corpus-increment.md).
 
 ### Mis RAG v2 praegu on
 
-- **Korpus.** Tenant `sotsiaalai-corpus`, korpus v29: 6000 dokumenti, 29 716 otsinguühikut. Indeksipõlvkond `search_generation_b06f5f…` on aktiivne alates 27.09.2026 kell 19:45 EEST.
+- **Korpus.** Tenant `sotsiaalai-corpus`, korpus v31: 6002 dokumenti, 30 081 otsinguühikut. Indeksipõlvkond `search_generation_0e082e…` (salvestusviis `versions-v1`, [ADR-036](adr-036-version-index.md)) on aktiivne alates 27.09.2026 kell 20:58 EEST. Varuks on v30 (`search_generation_ef3a2d…`); vanemad põlvkonnad on kustutatud.
   - v26 = v25b (5996 dokumenti: 1122 teadmusdokumenti ja 4874 omavalitsuse kirjet) + kaks riiklikku seadust.
   - v27 = v26, kus 61 Riigi Teataja XML-akti on töödeldud puhastatud adapteriga (`source-structure-v26`: muutmismärked välja, `§ 15¹`, kehtetud paragrahvid välja; [ADR-034](adr-034-riigi-teataja-xml-cleanup.md)).
   - v28 = v27, kus 576 omavalitsuse kirjet ilma oma lingita said lingi oma omavalitsuse registreeritud allikaregistrist (`source-structure-v27`); v29 = v28 + kaks SHS-i redaktsiooni ([ADR-035](adr-035-record-links-and-shs-versions.md)).
-  - Sotsiaalhoolekande seadus (SHS): RT 103062026023 (12.06–30.09.2026), RT 130062026065 (01.10–30.11.2026) ja RT 111072026120 (01.12–31.12.2026). Kehtivusreegel valib kuupäeva järgi. 2027. aasta tekst tuleb lisada enne 31.12.2026.
-  - Haldusmenetluse seadus (HMS), RT 106072023031, kehtib 01.01.2024–31.12.2026.
-- **Vestlus.** sotsiaal.ai/vestlus vastab sellest korpusest kinnitatud vestlusplaani järgi. Plaan on JSON-fail `/etc/sotsiaalai/` all. Selle koostab ja lülitab sisse `scripts/rag-v2-chat-plan.mjs`. Plaan seob tenant'i, indeksipõlvkonna, otsinguprofiili, juhiste ja otsinguabi versioonid, mudeli, rahalise lae ning koodi räsi (`implementationHash`). 27.09.2026 kell 19:45 sai aktiivseks `/etc/sotsiaalai/m4-corpus-chat-20260927s.json` (id …-1645, `main` `2769c706`).
+  - v30 = v29 esimese `versions-v1` põlvkonnana (üks täisehitus, 31 min); v31 = v30 + SHS 2027 ja HMS 2027 (PR #211), esimene muudatusepõhine lisamine: töödeldi 2 dokumenti, indeksi töö 47 s ([ADR-036](adr-036-version-index.md)).
+  - Sotsiaalhoolekande seadus (SHS): RT 103062026023 (12.06–30.09.2026), RT 130062026065 (01.10–30.11.2026), RT 111072026120 (01.12–31.12.2026) ja RT 111072026121 (01.01–31.01.2027). Kehtivusreegel valib kuupäeva järgi. Veebruari 2027 tekst tuleb lisada enne 31.01.2027.
+  - Haldusmenetluse seadus (HMS): RT 106072023031 (01.01.2024–31.12.2026) ja RT 109072026076 (alates 01.01.2027).
+  - Riigilõivuseadusel pole 2027. aasta teksti; see tuleb lisada enne 31.12.2026.
+- **Vestlus.** sotsiaal.ai/vestlus vastab sellest korpusest kinnitatud vestlusplaani järgi. Plaan on JSON-fail `/etc/sotsiaalai/` all. Selle koostab ja lülitab sisse `scripts/rag-v2-chat-plan.mjs`. Plaan seob tenant'i, indeksipõlvkonna, otsinguprofiili, juhiste ja otsinguabi versioonid, mudeli, rahalise lae ning koodi räsi (`implementationHash`). 27.09.2026 kell 20:58 sai aktiivseks `/etc/sotsiaalai/m4-corpus-chat-20260927v.json` (id …-1758, v31, `main` `3282a44d`). Iga `lib/rag-v2` deploy ja iga uus põlvkond vajab uut plaani.
 - **Vastuvõtutest.** [27.09.2026 aruanne](../audits/rag-v2-chat-acceptance-2026-09-27.md): 71 küsimust; 50 õiget, 11 osaliselt õiget, 7 põhjendatud vastamata jätmist, 3 tehnilist probleemi, valeks hinnatud vastuseid 0. Parandused on [ADR-031](adr-031-source-level-and-answer-completeness.md)-s.
 
 ### Üks vestluspööre
@@ -113,8 +115,8 @@ sudo -n chown root:ubuntu <out>; sudo -n systemctl restart sotsiaalai-frontend
 - Tehtud 27.09 ([ADR-032](adr-032-national-law-reserve-and-plan-restart.md)): HMS jõuab vaidlustamise küsimusel valijani riikliku õiguse reservi kaudu (B9 sai HMS-i kahel jooksul kolmest); vana vestluse „Jätkan sama teemat“ ei anna pärast plaani uuendust enam `context_unavailable` viga.
 - Vestluse kiirus: esimese pöörde külm allikakontroll (27.09 B9 ~45 s) on [ADR-033](adr-033-warm-up-at-server-start.md)-ga serveri käivitusel. Vastuse mudel (~10 s, `medium`) jääb põrandaks; vastuse voogedastus on tegemata.
 - Tehtud 27.09: XML-i toores `<sup>` ja muutmismärked ([ADR-034](adr-034-riigi-teataja-xml-cleanup.md), korpus v27); B7 vastuse lõpus korduvad viited (PR #203).
-- **Muudatusepõhine indekseerimine** ([ADR-036](adr-036-version-index.md)): kood on valmis; esimene `versions-v1` põlvkond ehitatakse serveris üks kord täies mahus, järgmised töötlevad ainult uusi või muutunud dokumente. Vestlus vajab uue põlvkonna järel endiselt plaani ümberehitust (järgmine etapp).
-- **Õigusaktide aastavahetus:** SHS on kaetud kuni 31.12.2026 (v29, [ADR-035](adr-035-record-links-and-shs-versions.md)). SHS-i 2027. aasta tekst (RT 111072026121 jt), HMS ja Riigilõivuseaduse järgmine tekst tuleb lisada enne 31.12.2026, muidu jäävad need kehtivusreegli järel tõendist välja.
+- **Muudatusepõhine indekseerimine** ([ADR-036](adr-036-version-index.md)): serveris kasutusel alates v30/v31; ostuplaan (`--indexed`) ja vektoriarhiivid (vajaduse järel) on muudatusepõhised. Avatud: mahupiir 60 000 tekstiosa põlvkonna kohta (mõõta ja tõsta), vestluse automaatne üleminek uuele põlvkonnale, lisamise taustatöö.
+- **Õigusaktide aastavahetus:** SHS on kaetud kuni 31.01.2027 ja HMS alates 2027 (v31). Riigilõivuseaduse 2027. aasta tekst tuleb lisada enne 31.12.2026 ja SHS-i veebruari tekst enne 31.01.2027, muidu jäävad need kehtivusreegli järel tõendist välja.
 - Tallinna hooldajatoetuse kirje ja korra vastuolu (aruanne 3.3), E3.2 „tädi vajab sama“ (isikute eraldatus, omaniku otsus).
 - Kirjete töötlus v26 (kontakti-ID-d indeksitekstist välja) ja kasutajapõhine hõivatuse värav enne mitme kasutaja kasutust.
 - Dialoogistsenaariumide integratsioonitest vajab v25 kirjeüksuste vektoreid.

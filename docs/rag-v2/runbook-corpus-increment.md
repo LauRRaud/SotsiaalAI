@@ -136,6 +136,8 @@ node scripts/rag-v2-corpus-embeddings.mjs --mode plan --development-only --store
   --output tmp/rag-v2-corpus-embeddings/plan-<uus>
 ```
 
+- **`--indexed`** (koos `--connections /home/ubuntu/apps/sotsiaalai/tmp/rag-v2-services/connections.json`; [ADR-036](adr-036-version-index.md)): dokumendid, mille versioon on indeksis sama seadistusega juba valmis, jäetakse lugemata ja planeerimata. Kasuta sama lippu nii plaanis kui ostus, muidu ost ei vasta kinnitatud plaanile.
+- Vektoriarhiive (`--reuse`, `--vectors`) loetakse vajaduse järel: pearaamat kohe, vektorifail siis, kui seda sisendit vaja on.
 - `--reuse` peab loetlema **kõik** varem ostetud usage-kaustad, iga ühe oma võtmega (v26 järel v25b `pilot_706b…` ja v26 `pilot_3053…`). Puuduva kausta sisendid läheksid uuesti ostu.
 - v26 plaanis oli 29 553 sisendit, neist 29 145 taaskasutatud ja 408 uut: 184 658 tokenit, 0,024 USD, manifest `a444c77e…`.
 - `--output` kaust ei tohi olemas olla: nii plaan kui ka ost loovad selle ja kirjutavad failid `wx`-lipuga.

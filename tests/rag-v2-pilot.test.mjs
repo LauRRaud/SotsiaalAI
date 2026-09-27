@@ -79,6 +79,19 @@ test('E-04/13: successful vectors persist; restart does not reset counters or re
   await assert.rejects(saved.embed('not saved'),/stored_embedding_missing/);
   await assert.rejects(StoredEmbedding.load(first.directory,'other'),/complete_real_pilot_required/);
 });
+test('E-04/13: a reuse catalog reads a vector file only when its input is embedded, and checks it then',async()=>{
+  const opts=await options('lazy');const done=await runPilot(opts);assert.equal(done.state,'complete');
+  const entry=done.ledger.entries.find(e=>e.input_hash===hash('A😀B')),file=path.join(done.directory,entry.vector_file);
+  const saved=await fs.readFile(file,'utf8'),record=JSON.parse(saved);record.vector[0]=0.5;await fs.writeFile(file,JSON.stringify(record));
+  // The whole-ledger load checks every file at once; the catalog only the ones it is asked for.
+  await assert.rejects(StoredEmbedding.load(done.directory,context.tenant),/stored_vector_integrity_failed/);
+  const catalog=await reusableEmbeddingCatalog([done.directory],context.tenant);
+  assert.equal(catalog.receipts.size,2);assert.equal(catalog.vectors.size,0);
+  await catalog.embedding.embed('hello world');assert.equal(catalog.vectors.size,1);
+  await assert.rejects(catalog.embedding.embed('A😀B'),/stored_vector_integrity_failed/);
+  await fs.writeFile(file,saved);
+  assert.equal((await catalog.embedding.embed('A😀B'))[0],1);assert.equal(catalog.embedding.reads,2);
+});
 test('E-04/13: the ledger is an append-only journal whose replay equals the finished run',async()=>{
   const opts=await options('journal');const first=await runPilot(opts),journalFile=path.join(first.directory,'ledger.jsonl');
   const lines=(await fs.readFile(journalFile,'utf8')).split('\n');assert.equal(lines.pop(),'');
@@ -322,6 +335,19 @@ test('M2 corpus plan: reading one published bundle at a time gives the exact mul
   assert.equal(streamed.manifest_sha256,inMemory.manifest_sha256);assert.deepEqual(streamed.plan,inMemory.plan);assert.deepEqual(streamed.inputs,inMemory.inputs);
   assert.equal(streamed.plan.document_count,2);assert.equal(streamed.plan.all_input_count,3);
   await assert.rejects(buildCorpusEmbeddingPlan({storeRoot,tenant,documents:['document_missing'],questionSets}),/document_not_in_source_generation/);
+  // ADR-036: a version already sealed in the index under the target config is neither read nor planned.
+  const configId=`search_config_${'c'.repeat(64)}`,one=inMemory.plan.egress_manifest.files.find(file=>file.document_id===ids[0]);
+  let asked;const sealed=item=>({sealedItems:async(config,versions)=>{asked={config,versions};return new Map(item?[[one.version_id,item]]:[]);},config_id:configId});
+  const incremental=await buildCorpusEmbeddingPlan({storeRoot,tenant,documents:ids,questionSets,price,indexed:sealed({document_id:ids[0],version_id:one.version_id,units:1})});
+  assert.equal(asked.config,configId);assert.equal(asked.versions.length,2);
+  assert.equal(incremental.plan.document_count,1);assert.equal(incremental.plan.indexed_document_count,1);assert.equal(incremental.plan.all_input_count,2);
+  assert.deepEqual(incremental.manifest.files.map(file=>file.document_id),[ids[1]]);
+  assert.deepEqual(incremental.manifest.indexed_versions,{config_id:configId,versions:1,versions_sha256:hash(stable([one.version_id]))});
+  assert.notEqual(incremental.manifest_sha256,streamed.manifest_sha256);
+  // A seal of another document, or none, leaves the plan whole apart from recording that nothing was left out.
+  const other=await buildCorpusEmbeddingPlan({storeRoot,tenant,documents:ids,questionSets,price,indexed:sealed({document_id:ids[1],version_id:one.version_id,units:1})});
+  assert.equal(other.plan.document_count,2);assert.equal(other.manifest.indexed_versions.versions,0);
+  await assert.rejects(buildCorpusEmbeddingPlan({storeRoot,tenant,documents:ids,questionSets,indexed:{config_id:'bad',sealedItems:async()=>new Map()}}),/invalid_indexed_versions/);
 });
 test('Audit: Qdrant timeout remains a service failure eligible for explicit lexical degradation',async()=>{
   const previous=globalThis.fetch;

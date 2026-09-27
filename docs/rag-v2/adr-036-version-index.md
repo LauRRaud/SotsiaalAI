@@ -61,10 +61,40 @@ Muutmata:
   - CLI: plaan näitab ainult töödeldavaid dokumente.
 - Olemasolevad indekseerimistöö testid (vana salvestusviis ja CLI uuega) läbivad.
 
+## Mõõtmine serveris (27.09.2026)
+
+- **v30** = v29 korpus esimese `versions-v1` põlvkonnana (`search_generation_ef3a2d…`), täisehitus ühe korra:
+  - plaan 2 min 18 s, töö 31 min (6000 dokumenti, 29 716 tekstiosa, kõik vahemälust, 6000 valmimismärki);
+  - v29 vana viisiga: plaan 2 min 7 s, töö 43,5 min.
+  - **Samad tulemused:** v29 (`generation`) ja v30 (`versions-v1`) andsid 4 sõnalisele päringule, 3 vektorpäringule ja 200 dokumendi tekstiosadele identsed ID-d ja skoorid (`layout-compare.mjs`, mudelikutseta). Päringuajad olid sama suurusjärku.
+- **v31** = v30 + SHS 01.01–31.01.2027 (RT 111072026121) ja HMS alates 01.01.2027 (RT 109072026076), PR #211 (`search_generation_0e082e…`, 6002 dokumenti, 30 081 tekstiosa). Kogu serverikäik `run-v31.sh` kestis 5 min 46 s:
+
+  | Samm | Aeg | Märkus |
+  |---|---:|---|
+  | ostuplaan | 2 min 0 s | luges veel kogu korpuse: 29 313 sisendit, neist 48 uued |
+  | ost | 2 min 11 s | 48 sisendit, 26 864 tokenit, 0,0035 USD; aeg kulus arhiivide laadimisele |
+  | indeksi plaan | 39 s | `documents_to_index` 2, `units_to_index` 365 |
+  | indeksi töö | 47 s | 6000 dokumenti nimekirja (29 716 tekstiosa), 2 töödeldud ja valmis märgitud |
+  | vestlusplaan | 9 s | `…20260927v.json` (id …-1758) |
+
+- **Vanu ridu ega punkte ei kirjutatud** (`version-proof.mjs`, v30 enne ja pärast v31 lisamist):
+  - tekstiosa ridade reaversioonide räsi `a0eabd46…`, valmimismärkide räsi `65267eb4…`, 29 716 punkti payload'ide räsiga `4136b317…`: kõik muutumatud;
+  - jagatud tabel ja kollektsioon kasvasid 29 716 → 30 081 (+365).
+- **Vestlus töötas lisamise ajal:** pööre 17:57:37–17:58:04 UTC vastas v30 põlvkonnalt, indeksi töö käis 17:57:30–17:58:17.
+- **Kehtivus:** 27.09 seisuga on uued tekstid `not_yet_in_force`. 15.01.2027 seisuga jäävad tõendiks SHS 2027 ja HMS 2027, vanad on `expired`. Samas kontrollis ilmnes, et Riigilõivuseadusel pole 2027. aasta teksti.
+- **Ketas:** v30 ja v31 read on koos 616 MB (`rag_v2_version_unit`) ja üks Qdranti kollektsioon. Vana viisiga oli iga põlvkond ~1 GB. Vanad põlvkonnad v25b–v29 kustutati omaniku loal ja `rag_v2_unit` kirjutati ümber (2,8 GB → 1,8 MB): vaba ruum 8,2 → 12 GB.
+
+## Järelparandused (Codexi ülevaatus 27.09.2026)
+
+Codexi ülevaatus (27.09.2026, PR-id #209–#211) leidis, et kirjutamine on muudatusepõhine, aga ettevalmistus veel mitte. v31 mõõtmine kinnitas seda: 5 min 46 s-st kulus ~4 min ostuplaanile ja ostule. Samal päeval parandatud:
+
+- **Vektorid loetakse vajaduse järel.** `reusableEmbeddingCatalog` kontrollib pearaamatud kohe ja loeb vektorifaili koos räsikontrolliga siis, kui selle sisendit esimest korda küsitakse. Kahes arhiivis ostetud sisendi vektorid võrreldakse ikka. `StoredEmbedding.load` loeb vaikimisi endiselt kõik.
+- **Muudatusepõhine ostuplaan** (`--indexed`, koos `--connections` ja `--lexical`): dokumendid, mille versioon on sihtseadistusega juba valmis märgitud, jäetakse lugemata ja planeerimata. Manifest (`indexed_versions`) nimetab väljajäetud versioonide arvu ja räsi, nii et kinnitus katab ka väljajätmise. Plaan ja ost peavad mõlemad lippu kasutama.
+
 ## Piirid ja järgmised sammud
 
-- Vanade versioonide read ja punktid jäävad jagatud tabelisse ja kollektsiooni, kuni koristus need eemaldab. Koristus (versioonid, mida ükski säilitatav põlvkond ei loetle) on tegemata ja vajab omaniku nõusolekut, nagu vanade põlvkondade kustutamine.
+- **Mahupiir** (`capacity.js`): 10 000 dokumenti ja 60 000 tekstiosa põlvkonna kohta, seatud 25.09 vana viisi mõõtmiste järgi. Mitusada pikka õigusakti (nt 300 × 250 tekstiosa) sinna ei mahu. Piiri tõstmiseks tuleb mõõta vestluspöörde kulu suurema põlvkonnaga: kataloog, sõnaline päring ja täpne vektoriotsing (`exact: true`) kasvavad põlvkonna suurusega.
+- Vanade versioonide read ja punktid jäävad jagatud tabelisse ja kollektsiooni, kuni koristus need eemaldab. Koristus (versioonid, mida ükski säilitatav põlvkond ei loetle) on tegemata.
 - Valmis versioonidele jäävad lugemisaegsed kontrollid. Täielik kontroll on `--mode verify`; seda tasub käivitada hooldustööna.
 - Vestlus võtab uue põlvkonna kasutusse alles plaani ümberehituse ja taaskäivitusega (järgmine etapp).
 - Lisamise automaatne taustatöö on eraldi etapp. Sisestuse ülevaatus ja embeddingu kulu kinnitus jäävad inimese otsustada.
-- Esimene `versions-v1` põlvkond ehitatakse serveris üks kord täies mahus. Kiirus mõõdetakse siis ja kantakse siia.
