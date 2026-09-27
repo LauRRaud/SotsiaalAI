@@ -168,9 +168,9 @@ test('question relevance orders, never filters, the catalogue: the matching reco
   assert.equal(plain.record_context.relevant_summaries, 0);
   assert.equal(asked.record_context.selection, 'question_relevance');
   const five = asked.record_context.entries.find(entry => entry.record_id === 'harku_vald:service_5');
-  assert.equal(five.detail, 'relevant_summary');
-  assert(five.fields.summary.refs.length);
-  assert(asked.record_context.relevant_summaries >= 1);
+  // The closest records are shown in full (amount, conditions, application) while every title fits.
+  assert.equal(five.detail, 'relevant_detail');
+  assert(five.fields.summary.refs.length && five.fields.conditions.refs.length);
   assert.equal(asked.record_context.listed_count, asked.record_context.catalogue_count);
   // Below the titles budget the stable order drops the last ID; relevance keeps the asked-for record.
   const budget = { contextTokens: plain.measurements.model_context_tokens - 40 };
@@ -196,7 +196,7 @@ test('ADR-026: the query vector ranks a service the wording never names; lexical
   assert.deepEqual(lexicalOnly.record_context.relevance_channels, []);
   assert.deepEqual(withVector.record_context.relevance_channels, ['vector']);
   assert.equal(lexicalOnly.record_context.entries.find(e => e.record_id === 'harku_vald:service_3').detail, 'catalogue');
-  assert.equal(withVector.record_context.entries.find(e => e.record_id === 'harku_vald:service_3').detail, 'relevant_summary');
+  assert.equal(withVector.record_context.entries.find(e => e.record_id === 'harku_vald:service_3').detail, 'relevant_detail');
   assert.equal(withVector.record_context.listed_count, withVector.record_context.catalogue_count);
   // A content question with a vector still ranks by the vector only; the lexical channel is the fallback.
   const both = await source({ qdrant }).retrieve(query({ question: 'Näidisteenus 5', queryVector, limits: budget }));
