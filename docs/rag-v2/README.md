@@ -12,7 +12,7 @@ Seis on kirja pandud 27.09.2026 ~12:30 EEST. Hilisemad muudatused on ADR-ides ja
   - v26 = v25b (5996 dokumenti: 1122 teadmusdokumenti ja 4874 omavalitsuse kirjet) + kaks riiklikku seadust.
   - Sotsiaalhoolekande seadus (SHS), RT 130062026065, kehtib 01.10.2026–30.11.2026. Uus redaktsioon tuleb korpusesse tuua enne 30.11.2026.
   - Haldusmenetluse seadus (HMS), RT 106072023031, kehtib 01.01.2024–31.12.2026.
-- **Vestlus.** sotsiaal.ai/vestlus vastab sellest korpusest kinnitatud vestlusplaani järgi. Plaan on JSON-fail `/etc/sotsiaalai/` all. Selle koostab ja lülitab sisse `scripts/rag-v2-chat-plan.mjs`. Plaan seob tenant'i, indeksipõlvkonna, otsinguprofiili, juhiste ja otsinguabi versioonid, mudeli, rahalise lae ning koodi räsi (`implementationHash`). 27.09.2026 kell 11:10 oli aktiivne `/etc/sotsiaalai/m4-corpus-chat-20260927j.json` (`main` `164fc720`, PR #196).
+- **Vestlus.** sotsiaal.ai/vestlus vastab sellest korpusest kinnitatud vestlusplaani järgi. Plaan on JSON-fail `/etc/sotsiaalai/` all. Selle koostab ja lülitab sisse `scripts/rag-v2-chat-plan.mjs`. Plaan seob tenant'i, indeksipõlvkonna, otsinguprofiili, juhiste ja otsinguabi versioonid, mudeli, rahalise lae ning koodi räsi (`implementationHash`). 27.09.2026 kell 12:35 oli aktiivne `/etc/sotsiaalai/m4-corpus-chat-20260927l.json` (`main` `68b4c378`, PR #199).
 - **Vastuvõtutest.** [27.09.2026 aruanne](../audits/rag-v2-chat-acceptance-2026-09-27.md): 71 küsimust; 50 õiget, 11 osaliselt õiget, 7 põhjendatud vastamata jätmist, 3 tehnilist probleemi, valeks hinnatud vastuseid 0. Parandused on [ADR-031](adr-031-source-level-and-answer-completeness.md)-s.
 
 ### Üks vestluspööre
@@ -31,7 +31,7 @@ Versioonid 27.09.2026:
 - PR #195 (`40ddeed4`): ajaloo laadimine ~6× kiirem, vestluse piiri teade.
 - PR #196 (`164fc720`, serveris 27.09): `m4-grounded-dialogue-9`, kriisiriba ja allikavaate link algallikale; otsinguabi jääb `rag-v2/search-assist-2`.
 - PR #197 (`claude/rag-v2-answer-voice`, avatud 27.09): vastuse oma hääl, `m4-grounded-answer-11` ja `m4-grounded-dialogue-10`.
-- PR (`claude/rag-v2-national-law-reserve`, 27.09): riikliku õiguse reserv valikus ja vana vestluse jätk pärast plaani uuendust ([ADR-032](adr-032-national-law-reserve-and-plan-restart.md)).
+- PR #199 (`68b4c378`, serveris 27.09 12:31): riikliku õiguse reserv valikus ja vana vestluse jätk pärast plaani uuendust ([ADR-032](adr-032-national-law-reserve-and-plan-restart.md)). Vestlusplaan `/etc/sotsiaalai/m4-corpus-chat-20260927l.json` (id …-0932). Elav B9 tsiteeris SÜS-i ja HMS-i.
 - `rag-v2/search-assist-3` on katse harus `claude/rag-v2-answer-quality` ja tootmisse ei lähe. 52 küsimuse komplektis v26 peal (48 vastatavat) oli search-assist-2 tulemus: kõik ankrud 34, vähemalt üks ankur 44, õige dokument 45. search-assist-3 tulemus: 32, 43 ja 46. -3 kaotas ankruid ajakirjaküsimustel. Failid: `tmp/rag-v2-dev-2026-09-27/assist-main-v26.json` ja `assist-quality-v26.json`.
 
 ### Andmevoog
