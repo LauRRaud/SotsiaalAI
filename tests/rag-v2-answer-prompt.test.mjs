@@ -21,9 +21,11 @@ const GUARDRAILS = [
 ];
 
 test('prompt v10 keeps every v9 guardrail in each answer language, and v9 plans stay readable only', () => {
-  assert.equal(PROMPT_VERSION, 'm4-grounded-answer-10');
+  assert.equal(PROMPT_VERSION, 'm4-grounded-answer-11');
+  assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-10'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-9'));
-  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-9');
+  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-10');
+  assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-9'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-8'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-6'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-7'));
@@ -47,7 +49,7 @@ test('prompt v10 states the voice for the answer language, a good answer, and th
     assert.match(prompt, /the application separately shows verified emergency contacts/);
     assert.match(prompt, /do not repeat the same sympathy formula in every turn/);
   }
-  const sections = ['ROLE.', 'LANGUAGE AND VOICE.', 'INPUT SAFETY.', 'A GOOD ANSWER.', 'CLARIFYING.', 'EVIDENCE.', 'SOURCE TYPES AND TIME.', 'LIMITS OF THE EVIDENCE.', 'OUTPUT.'];
+  const sections = ['ROLE.', 'LANGUAGE AND VOICE.', 'ANSWER VOICE.', 'INPUT SAFETY.', 'A GOOD ANSWER.', 'CLARIFYING.', 'EVIDENCE.', 'SOURCE TYPES AND TIME.', 'LIMITS OF THE EVIDENCE.', 'OUTPUT.'];
   const lines = answerInstructions('et').split('\n');
   assert.deepEqual(lines.slice(1).map(line => sections.find(section => line.startsWith(section))), sections);
 });
@@ -65,6 +67,16 @@ test('dialogue prompt v9: numbers keep their conditions, limitations add no fact
   const config = { model: 'gpt-6-luna', maxOutputTokens: 4096, reasoning: 'medium' };
   const et = dialogueRequest(config, 'Kui palju maksan?', { evidence: [] }, 'et', {}).instructions;
   for (const phrase of ['what it is calculated from, any cap or maximum', 'limitations and clarification add no facts',
-    'establish neither the national rule nor that the rule differs', 'does not presuppose which authority', 'alusta, küsi, ära osta']) assert.ok(et.includes(phrase), phrase);
+    'establish neither the national rule nor that the rule differs', 'does not presuppose which authority', 'alusta, küsi, pöördu, ära osta']) assert.ok(et.includes(phrase), phrase);
   assert.ok(!dialogueRequest(config, 'How much?', { evidence: [] }, 'en', {}).instructions.includes('ära osta'));
+});
+
+test('answer-11: Luna answers in her own voice and names scope, not sources', () => {
+  for (const language of ['et', 'en', 'ru']) {
+    const prompt = answerInstructions(language);
+    for (const phrase of ['You are the one answering', 'Do not narrate the sources', 'no author names or document titles in the text',
+      'whose local rule it is', 'Limitations and the clarification use the same voice']) assert.ok(prompt.includes(phrase), `${language}: ${phrase}`);
+    assert.ok(!prompt.includes('Refer to a source by its title or author in prose'));
+    assert.ok(!prompt.includes('Attribute an article position to its author'));
+  }
 });
