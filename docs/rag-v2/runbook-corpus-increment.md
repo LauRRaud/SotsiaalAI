@@ -194,7 +194,7 @@ sudo -n chown root:ubuntu /etc/sotsiaalai/<uus unikaalne nimi>.json
 sudo -n systemctl restart sotsiaalai-frontend
 ```
 
-Plaan aegub ka iga deployga, mis muudab implementatsiooni manifesti faile (`implementationManifest()`, `lib/rag-v2/pilot/provenance.js`). Nende hulgas on:
+Iga väljalase, mis muudab implementatsiooni manifesti faile (`implementationManifest()`, `lib/rag-v2/pilot/provenance.js`), teeb plaani aegunuks. Deploy uuendab selle ise ([ADR-037](adr-037-release-chat-plan.md)); käsitsi tuleb plaan teha ainult uue põlvkonna, eelarve või mudeli jaoks. Manifestis on:
 
 - `lib/rag-v2/**`, `lib/auth/**`, `app/api/chat/pilot/**`, `app/rag-pilot/**`;
 - `lib/chat/m4Pilot*.js`, `app/api/chat/route.js`, `app/vestlus/page.js`, `app/chat-source/page.jsx`;
@@ -207,7 +207,7 @@ Värskust saab kontrollida rakenduse kaustas, sest skript võrdleb plaani jooksv
 sudo -n cat <plaan> | node scripts/rag-v2-plan-freshness.mjs
 ```
 
-Vastus on `current`, `stale` või `invalid`. Deploy teeb sama kontrolli ja kirjutab tulemuse logisse. Vestluse ajalugu on plaani järgi filtreeritud: pärast uut plaani vanemaid pöördumisi enam ei näidata, aga neid ei kustutata.
+Vastus on `current`, `stale` või `invalid`. Deploy kasutab põhjalikumat kontrolli (`scripts/rag-v2-plan-release.mjs prepare`, vt ADR-037); logis on `RAG v2 chat plan matches this release`, `… renewed for this release: <fail>` või hoiatus `… unready`. Vestluse ajalugu on plaani järgi filtreeritud: pärast uut plaani vanemaid pöördumisi enam ei näidata, aga neid ei kustutata.
 
 ## 10. Kontroll ja koristus
 

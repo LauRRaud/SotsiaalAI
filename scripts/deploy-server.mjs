@@ -49,6 +49,21 @@ build_log=""
 artifact_backup=""
 previous_rev=""
 deps_installed="0"
+artifact_restored="0"
+pilot_plan_state="disabled"
+pilot_plan_next=""
+pilot_plan_activated="0"
+
+# The chat plan's release check (ADR-037) from the release's own checkout, with the env files it runs with.
+pilot_plan_release() {
+  sudo -n "$(command -v node)" --env-file="$FRONTEND_ENV" --env-file="$RAG_ENV" --import ./scripts/register-node-source-loader.mjs \
+    scripts/rag-v2-plan-release.mjs "$@"
+}
+activate_pilot_plan() {
+  pilot_plan_release activate --plan "$pilot_plan_next" --rag-env "$RAG_ENV" >/dev/null
+  pilot_plan_activated="1"
+  echo "[deploy:server] Chat plan renewed for this release is active: $pilot_plan_next"
+}
 
 restore_frontend_on_failure() {
   status="$?"
@@ -77,8 +92,14 @@ restore_frontend_on_failure() {
       fi
       rm -rf -- "$APP_DIR/.next"
       tar -xzf "$artifact_backup" -C "$APP_DIR"
+      artifact_restored="1"
+      # rag.env was not touched before this point: the previous code comes back with its own chat plan.
     elif [ "$database_unchanged" = "0" ]; then
       echo "[deploy:server] Migration state changed; keeping the validated candidate artifact" >&2
+    fi
+    # The candidate code stays (the database moved on): it runs only with the plan renewed for it.
+    if [ "$artifact_restored" = "0" ] && [ -n "$pilot_plan_next" ] && [ "$pilot_plan_activated" = "0" ]; then
+      activate_pilot_plan || echo "[deploy:server] Could not activate the chat plan renewed for this release" >&2
     fi
     if [ "$frontend_masked_for_build" = "1" ]; then
       sudo systemctl unmask --runtime sotsiaalai-frontend.service || true
@@ -256,6 +277,48 @@ else
   npm run db:migrate:preflight
 fi
 
+# The RAG v2 pilot catalogue is a separate database with its own migrations. Without
+# this step the 23.09 migrations stayed unapplied on the server while the code needed them.
+# They run before the main schema so the chat plan below is checked against this release's
+# catalogue while a failure can still restore the previous release. A catalogue migration must
+# therefore keep the previous release working: add tables and columns, never remove or rename.
+if [ -n "\${RAG_V2_POSTGRES_URL:-}" ]; then
+  echo "[deploy:server] Applying RAG v2 catalogue migrations with bounded locks"
+  RAG_V2_DATABASE_URL="$RAG_V2_POSTGRES_URL" PGOPTIONS="\${PGOPTIONS:-} -c lock_timeout=5s -c statement_timeout=15min" \\
+    npx prisma migrate deploy --config prisma/rag-v2/prisma.config.mjs
+fi
+
+# An approved chat plan is bound to the exact runtime code (implementationHash, ADR-028); a stale one
+# stopped every answer after a release (24.09 unnoticed, 27.09 for 20 minutes). A release goes live
+# only with a plan that runs on its code (ADR-037): the active plan when it still matches, or its
+# renewal for this code (same users, budget, egress approval and index generation), checked here
+# without a model call against the active index. If neither passes, the release stops before the
+# main schema changes and the exit trap restores the previous code with its unchanged plan. A plan
+# that could not run before this release either (unreadable, unapproved, index moved) is reported
+# and does not block the release.
+if [ "\${M4_PILOT_ENABLED:-}" = "1" ] && [ -n "\${M4_PILOT_CONFIG:-}" ]; then
+  if ! pilot_plan_result="$(pilot_plan_release prepare --release "$(git rev-parse --short HEAD)")"; then
+    echo "[deploy:server] No chat plan runs on this release; restoring the previous release and its plan" >&2
+    echo "::error title=RAG v2 chat plan::No approved chat plan passes the checks for this release. The previous release and its plan were restored."
+    exit 8
+  fi
+  pilot_plan_state="\${pilot_plan_result%% *}"
+  case "$pilot_plan_state" in
+    current) echo "[deploy:server] RAG v2 chat plan matches this release" ;;
+    renewed)
+      pilot_plan_next="\${pilot_plan_result#renewed }"
+      sudo -n chown "root:$deploy_user" "$pilot_plan_next"
+      echo "[deploy:server] RAG v2 chat plan renewed for this release: $pilot_plan_next" ;;
+    unready)
+      echo "[deploy:server] WARNING: RAG v2 chat plan could not run before this release either ($pilot_plan_result); the chat needs a new plan" >&2
+      echo "::warning title=RAG v2 chat plan unready::$pilot_plan_result (not caused by this release). The chat gives no new answers until a new plan is approved." ;;
+    disabled) ;;
+    *)
+      echo "[deploy:server] Unexpected chat plan check result; restoring the previous release" >&2
+      exit 8 ;;
+  esac
+fi
+
 echo "[deploy:server] Applying Prisma migrations with bounded locks"
 migration_state_file="$(mktemp "$APP_DIR/.migration-state.XXXXXX")"
 rm -f -- "$migration_state_file"
@@ -265,28 +328,6 @@ PGOPTIONS="\${PGOPTIONS:-} -c lock_timeout=5s -c statement_timeout=15min" npx pr
 schema_migrated="1"
 rm -f -- "$migration_state_file"
 migration_state_file=""
-
-# The RAG v2 pilot catalogue is a separate database with its own migrations. Without
-# this step the 23.09 migrations stayed unapplied on the server while the code needed them.
-if [ -n "\${RAG_V2_POSTGRES_URL:-}" ]; then
-  echo "[deploy:server] Applying RAG v2 catalogue migrations with bounded locks"
-  RAG_V2_DATABASE_URL="$RAG_V2_POSTGRES_URL" PGOPTIONS="\${PGOPTIONS:-} -c lock_timeout=5s -c statement_timeout=15min" \\
-    npx prisma migrate deploy --config prisma/rag-v2/prisma.config.mjs
-fi
-
-# An approved chat pilot plan is bound to the exact runtime code (implementationHash).
-# A release that changes that code stops new pilot answers until a new plan is approved;
-# on 24.09 that happened unnoticed (ADR-028). Say so in the log and as a GitHub warning.
-if [ "\${M4_PILOT_ENABLED:-}" = "1" ] && [ -n "\${M4_PILOT_CONFIG:-}" ]; then
-  pilot_plan_state="$( (sudo -n cat -- "$M4_PILOT_CONFIG" 2>/dev/null || true) | node scripts/rag-v2-plan-freshness.mjs 2>/dev/null || true)"
-  [ -n "$pilot_plan_state" ] || pilot_plan_state="invalid"
-  if [ "$pilot_plan_state" = "current" ]; then
-    echo "[deploy:server] RAG v2 pilot plan matches this release"
-  else
-    echo "[deploy:server] WARNING: RAG v2 pilot plan is $pilot_plan_state for this release; the chat pilot gives no new answers until a new plan is approved" >&2
-    echo "::warning title=RAG v2 pilot plan $pilot_plan_state::The approved chat pilot plan does not match this release. New pilot answers stay stopped until a new plan is approved."
-  fi
-fi
 
 # HALLATAVAD AJASTUSED (SOL-CW-14). Unit-failid elavad repositooriumis
 # (\`deploy/systemd/\`), sest ajastus, mis elab ainult ühe masina crontabis, ei ole
@@ -343,10 +384,25 @@ for retired_unit in sotsiaalai-rag-master-source-check.timer sotsiaalai-rag-mast
   fi
 done
 
+if [ -n "$pilot_plan_next" ]; then
+  activate_pilot_plan
+fi
+
 sudo systemctl restart sotsiaalai-frontend.service
 frontend_stopped_for_build="0"
 
 systemctl is-active sotsiaalai-frontend.service
+
+# The service reads the plan the same way: this release can answer, or the deploy is red.
+if [ "$pilot_plan_state" = "current" ] || [ "$pilot_plan_state" = "renewed" ]; then
+  if pilot_plan_release ready >/dev/null; then
+    echo "[deploy:server] RAG v2 chat plan ready on this release"
+  else
+    echo "[deploy:server] RAG v2 chat plan is not ready after the restart" >&2
+    echo "::error title=RAG v2 chat plan not ready::The chat plan passed before the restart but not after it. The chat gives no new answers."
+    exit 9
+  fi
+fi
 
 if [ -d "$BACKUP_DIR" ]; then
   if [ "$SKIP_BUILD" != "1" ] && [ -d "$APP_DIR/.next" ]; then

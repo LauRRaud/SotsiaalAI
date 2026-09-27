@@ -74,9 +74,9 @@ Täpsed käsud, lõksud ja kontrollid on [runbookis](runbook-corpus-increment.md
 
 PR-id liidetakse ja paigaldatakse automaatselt pärast quality-gate'i. Käsitsi deploy'd ei tehta.
 
-Plaan kannab koodi räsi, mille arvutab `implementationManifest()` (`lib/rag-v2/pilot/provenance.js`). Räsi katab muu hulgas `lib/rag-v2/**`, `lib/chat/m4Pilot*.js`, vestluse kasutajaliidese failid, `app/chat-source/page.jsx` ja `messages/*.json`. Kui deploy muudab mõnda neist, ei anna vana plaan uusi vastuseid (`implementation_approval_mismatch`). `scripts/deploy-server.mjs` kontrollib seda `scripts/rag-v2-plan-freshness.mjs`-iga ja annab hoiatuse.
+Plaan kannab koodi räsi, mille arvutab `implementationManifest()` (`lib/rag-v2/pilot/provenance.js`). Räsi katab muu hulgas `lib/rag-v2/**`, `lib/chat/m4Pilot*.js`, vestluse kasutajaliidese failid, `app/chat-source/page.jsx` ja `messages/*.json`. Kui väljalase muudab mõnda neist, ei anna vana plaan uusi vastuseid (`implementation_approval_mismatch`). Alates [ADR-037](adr-037-release-chat-plan.md)-st uuendab deploy plaani ise: sama kinnituse ulatus ja indeksipõlvkond, uue koodi räsi. Kontroll käib mudelikutseta enne põhiandmebaasi migratsiooni. Kui ükski plaan uue koodiga ei läbi, taastub eelmine väljalase koos oma plaaniga.
 
-Pärast sellist deploy'd ehita plaan serveris rakenduse juurkaustas uuesti:
+Uue indeksipõlvkonna, eelarve või mudeli jaoks ehita plaan serveris rakenduse juurkaustas käsitsi:
 
 ```sh
 sudo -n node --env-file=/etc/sotsiaalai/frontend.env --env-file=/etc/sotsiaalai/rag.env --import ./scripts/register-node-source-loader.mjs \
@@ -161,6 +161,7 @@ sudo -n chown root:ubuntu <out>; sudo -n systemctl restart sotsiaalai-frontend
 - [ADR-033](adr-033-warm-up-at-server-start.md) (27.09.2026): teadmusallikate soojendus algab serveri käivitusel (`instrumentation.js` → `warmPilotAtStart()`), riiklikud õigustekstid esimesena; `preflight` jääb varuks.
 - [ADR-034](adr-034-riigi-teataja-xml-cleanup.md) (27.09.2026): Riigi Teataja XML-i puhastus (`source-structure-v26`) ja korpus v27; uuesti sisestati ainult 61 XML-akti, vektoreid osteti 1359 (0,075 USD).
 - [ADR-035](adr-035-record-links-and-shs-versions.md) (27.09.2026): allikaregistri lingid 576 lingita KOV-kirjele (korpus v28, ost 0) ja SHS-i kehtivad redaktsioonid 12.06–30.09 ning 01.12–31.12.2026 (korpus v29, 0,006 USD); kontrollikuupäeva juhis v12 lükati mõõtmise järel tagasi.
+- [ADR-037](adr-037-release-chat-plan.md) (27.09.2026): väljalase ja vestlusplaan lähevad käiku koos. Deploy uuendab aegunud plaani uuele koodile (sama kinnituse ulatus), kontrollib seda mudelikutseta enne põhimigratsiooni ja taastab ebaõnnestumisel eelmise koodi koos plaaniga.
 - [ADR-036](adr-036-version-index.md) (27.09.2026): muudatusepõhine indekseerimine. Tekstiosad ja punktid kuuluvad dokumendiversioonile ja otsinguseadistusele (`versions-v1`); uus põlvkond töötleb ainult uued või muutunud versioonid ja loetleb ülejäänud.
 
 ### Runbook ja aruanded
