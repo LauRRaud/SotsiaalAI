@@ -142,3 +142,82 @@ Deploy `f0a8e8ab`, plaan `…-1230` (`m4-grounded-dialogue-11`, värskus `curren
 | F3 vene keeles, plaani päring „Narva eakate koduteenus ja hooldus“ | `search_plan_region` `narva_linn`; Narva-Jõesuu kord jääb välja |
 
 F3 plaani päring oli selles kontrollis käsitsi antud. Päris plaani kirjutab otsinguabi; kas see nime alati hoiab, on mõõtmata (vt 2).
+
+## 4. Commit'ide #209–#211 kohalik ülevaatus: versioonipõhine indeks
+
+27.09.2026. Vaadatud kohalik vahemik `2769c706b..3282a44d0`: dokumentatsioon
+`891712b4e`, indeksi muudatus `1b69078a5` ja kaks registreeritud õigusteksti
+`3282a44d0`. Serverit ega `origin/main`-i selles ülevaatuses ei mõõdetud.
+
+**Järeldus:** vaadatud muudatuses uut kinnitatud käitumisviga ei leitud.
+`versions-v1` teeb indeksi kirjutamise dokumendiversioonipõhiseks. Terve
+sisestus-/ostu-/indekseerimisvoo ajakulu ei sõltu veel ainult lisatud tekstist.
+
+### Kontrollitud
+
+- `tests/rag-v2-version-index.integration.test.mjs`: 5/5 päris kohaliku PostgreSQL-i
+  ja Qdrantiga. Lisamine, eemaldamine, versioonide eraldatus, katkestusest
+  jätkamine, rikutud punkti/valmimismärgi tuvastus ning CLI. Selle faili
+  morfoloogiaprofiil on `MORPHOLOGY_LEXICAL`, mitte EstNLTK.
+- `tests/rag-v2-index-jobs.integration.test.mjs`: 11/11 ja
+  `tests/rag-v2-knowledge.test.mjs`: 7/7. Esimesel käivitamisel peatusid kaks
+  CLI-testi veaga `morphology_unavailable`; olemasoleva keskkonna
+  `tmp/rag-v2-estnltk-env/Scripts/python.exe` määramise järel läbisid mõlemad.
+- Täiendav sõltumatu kontroll päris EstNLTK-ga:
+  `tmp/rag-v2-commit-review-2026-09-27/version-index-probe.test.mjs`, 1/1.
+  Kolme sünteetilise dokumendi vana ja uue salvestusviisi tekstiosad olid võrdsed;
+  kolm fikseeritud päringut andsid identsed sõnalised ning vektortulemused koos
+  skooridega. Uue indeksi ehitamisel analüüsiti morfoloogiat üks kord.
+  Kahe dokumendi / kahe tekstiosa lisamisel oli vanade dokumentide
+  `importSnapshot`-kutseid **0**, vanade punktide `upsert`-kirjutusi **0**,
+  uusi dokumendiimporte **2** ning morfoloogia sisendtekste **6**
+  (pealkiri, sisu ja otsinguabi iga uue tekstiosa kohta).
+- Kokku 24 eristuvat testi; ajavöönd `TZ=UTC`. Kõik vektorid olid testadapterist
+  või sünteetilisest salvestatud pearaamatust. Väliseid mudelikutseid **0**.
+- Muudetud JS/MJS-failide sihtlint, `prisma validate --schema prisma/rag-v2/schema.prisma`
+  ja commit'ide `git diff --check` läbisid.
+- Kahe uue XML-i failiräsid vastavad registrile. XML-i metaandmed vastavad
+  commit'i kirjeldatud kehtivusvahemikele: SHS 01.01–31.01.2027, HMS alates
+  01.01.2027. Väline õiguslik sisukontroll ei olnud selle koodiülevaatuse ulatuses.
+
+### Alles jäävad piirid (ei ole uued regressioonid)
+
+1. **Ostu ettevalmistus loeb endiselt kogu valiku.**
+   `buildCorpusEmbeddingPlan` (`lib/rag-v2/search/multi-source-plan.js`) laeb
+   iga poliitikasse kuuluva dokumendi ja koostab selle embedding-sisendid uuesti.
+   Nii ostuskript kui ka indeksi CLI laadivad `reusableEmbeddingCatalog` kaudu
+   kõik etteantud arhiivide vektorifailid mällu enne muudatuste töötlemist.
+   Seega vanu indeksiridu ja punkte ei kirjutata, kuid kogu käsureavoo käivituskulu
+   ning mälukulu kasvavad endiselt arhiivi/valiku mahuga. Edasi on vaja
+   muudatusepõhist ostuplaani ja vajaduspõhist vektoriarhiivi lugemist.
+2. **Mahupiir on 10 000 dokumenti / 60 000 tekstiosa terve põlvkonna kohta.**
+   `lib/rag-v2/search/capacity.js` ei muutunud. Vestluses toodud näide
+   300 × 250 = 75 000 uuest tekstiosast ei mahu praeguse piiriga indeksisse;
+   väiksemate portsjonitena avaldamine ei tõsta kogu põlvkonna ülempiiri.
+3. **Avaldamise järel vajab vestlus endiselt uut plaani ja taaskäivitust.**
+   Automaatne taustatöö ning katkestuseta vestlusse kasutuselevõtt on ADR-036-s
+   õigesti märgitud järgmiste etappidena; see commit neid ei teosta.
+
+Serveri v30/v31 tulemused, tegeliku korpuse otsingu võrdsus, lisamise kiirus ja
+kettaruumi vabastamine on selles ülevaatuses `NOT_PROVEN`. Väikese valimi
+testvektorite võrdsus tõendab salvestus- ja otsingumehhanismi, mitte pärismudeli
+semantilist kvaliteeti. Rakenduse koodi, tootmisandmeid ja serveriseadistust ei
+muudetud.
+
+### Hilisem serveritõend (lisatud 27.09 õhtul, Claude)
+
+Ülaltoodud järeldus ja `NOT_PROVEN` kehtivad selle kohaliku ülevaatuse ulatuses. Serveris mõõdeti
+hiljem ([ADR-036, „Mõõtmine serveris“](../rag-v2/adr-036-version-index.md#mõõtmine-serveris-27092026)):
+
+- v30 (v29 korpus esimese `versions-v1` põlvkonnana) andis v29-ga identsed sõnalised ja vektortulemused
+  koos skooridega (4 + 3 päringut ja 200 dokumendi tekstiosad).
+- v31 lisas kaks õigusteksti: indeksi töö 47 s (6000 dokumenti nimekirja, 2 töödeldud).
+  v30 tekstiosa ridade, valmimismärkide ja punktide räsid olid enne ja pärast samad.
+  Vestlus vastas töö ajal v30-lt.
+- Vanad põlvkonnad kustutati omaniku loal; vaba kettaruum 8,2 → 12 GB.
+- Piir 1 (ettevalmistus) on PR #212-s parandatud: vektoriarhiive loetakse vajaduse järel ja ostuplaan
+  jätab indeksis valmis versioonid välja. Mõõdetud: ostuplaan 2 min → 4,4 s, indeksi plaan 39 s → 4,7 s
+  (v31 korpus, midagi uut). PR #212 vajab veel eraldi koodiülevaatust ja ostu/indeksi töö aega uute
+  dokumentidega.
+- Piirid 2 (60 000 tekstiosa) ja 3 (vestlusplaani vahetus) kehtivad endiselt.
+
