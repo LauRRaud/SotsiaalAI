@@ -42,6 +42,13 @@ Serveris värskes protsessis aktiivse plaaniga `m4-corpus-chat-20260927l` (`warm
 
 Kontrolli pärast deploy'd serveri logist: `[rag-v2] start warm-up started` ja mõne minuti pärast `[rag-v2] warmed 1124 sources in … s`.
 
+**Elav kontroll 27.09.2026, PR #201 (`5b09e80e`) ja plaan `m4-corpus-chat-20260927m` (id …-1000):**
+- Logi: taaskäivitus 13:00:48, `[rag-v2] start warm-up started` 13:00:50, `[rag-v2] warmed 1124 sources in 288 s` 13:05:37.
+- Esimene pööre pärast soojendust (B9, uus vestlus, `fe5de48d`): **23,3 s**, otsingufaas 12,0 s, vastus 7,8 s. Enne seda muudatust oli sama esimene pööre 42,7 s (otsing 29,4 s).
+- Kohe järgmine sama küsimus uues vestluses (`220e02f2`): 12,7 s, otsing 4,0 s.
+- Teine elav kontroll pärast indeksi v27 aktiveerimist ja plaani `o` taaskäivitust (soojendus 14:14–14:19, pööre 14:23, `0f581b28`): esimene pööre selles protsessis **14,1 s**, otsing 4,0 s, sama mis soe pööre.
+- 13:08 kontrollis jäi esimesse pöördesse veel ~8 s külma tööd, 14:23 kontrollis mitte. Kandidaadid, mõõtmata: täis-bundle'id (soojendus kontrollib, aga ei hoia neid LRU vahemälus: `cache: false`), omavalitsuse kataloogi ja piirkondade esimene laadimine, Postgres'i paralleelse sõnalise päringu esimene jooks.
+
 ## Piirid
 
 - Soojendus võtab mitu minutit. Selle aja sees esitatud küsimus võistleb endiselt soojendusega.

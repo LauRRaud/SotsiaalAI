@@ -4,15 +4,16 @@ SotsiaalAI allikapõhise otsingu ja vestluse dokumentatsioon. Esimene osa kirjel
 
 ## Praegune seis (27.09.2026)
 
-Seis on kirja pandud 27.09.2026 ~12:30 EEST. Hilisemad muudatused on ADR-ides ja [runbookis](runbook-corpus-increment.md).
+Seis on kirja pandud 27.09.2026 ~14:40 EEST. Hilisemad muudatused on ADR-ides ja [runbookis](runbook-corpus-increment.md).
 
 ### Mis RAG v2 praegu on
 
-- **Korpus.** Tenant `sotsiaalai-corpus`, korpus v26: 5998 dokumenti, 29 591 otsinguühikut. Indeksipõlvkond `search_generation_10b4ff…` on aktiivne alates 27.09.2026 kell 09:41 EEST.
+- **Korpus.** Tenant `sotsiaalai-corpus`, korpus v27: 5998 dokumenti, 29 220 otsinguühikut. Indeksipõlvkond `search_generation_23e445…` on aktiivne alates 27.09.2026 kell 14:14 EEST.
   - v26 = v25b (5996 dokumenti: 1122 teadmusdokumenti ja 4874 omavalitsuse kirjet) + kaks riiklikku seadust.
+  - v27 = v26, kus 61 Riigi Teataja XML-akti on töödeldud puhastatud adapteriga (`source-structure-v26`: muutmismärked välja, `§ 15¹`, kehtetud paragrahvid välja; [ADR-034](adr-034-riigi-teataja-xml-cleanup.md)).
   - Sotsiaalhoolekande seadus (SHS), RT 130062026065, kehtib 01.10.2026–30.11.2026. Uus redaktsioon tuleb korpusesse tuua enne 30.11.2026.
   - Haldusmenetluse seadus (HMS), RT 106072023031, kehtib 01.01.2024–31.12.2026.
-- **Vestlus.** sotsiaal.ai/vestlus vastab sellest korpusest kinnitatud vestlusplaani järgi. Plaan on JSON-fail `/etc/sotsiaalai/` all. Selle koostab ja lülitab sisse `scripts/rag-v2-chat-plan.mjs`. Plaan seob tenant'i, indeksipõlvkonna, otsinguprofiili, juhiste ja otsinguabi versioonid, mudeli, rahalise lae ning koodi räsi (`implementationHash`). 27.09.2026 kell 12:35 oli aktiivne `/etc/sotsiaalai/m4-corpus-chat-20260927l.json` (`main` `68b4c378`, PR #199).
+- **Vestlus.** sotsiaal.ai/vestlus vastab sellest korpusest kinnitatud vestlusplaani järgi. Plaan on JSON-fail `/etc/sotsiaalai/` all. Selle koostab ja lülitab sisse `scripts/rag-v2-chat-plan.mjs`. Plaan seob tenant'i, indeksipõlvkonna, otsinguprofiili, juhiste ja otsinguabi versioonid, mudeli, rahalise lae ning koodi räsi (`implementationHash`). 27.09.2026 kell 14:14 oli aktiivne `/etc/sotsiaalai/m4-corpus-chat-20260927o.json` (id …-1114, `main` `6085b84e`, PR #203).
 - **Vastuvõtutest.** [27.09.2026 aruanne](../audits/rag-v2-chat-acceptance-2026-09-27.md): 71 küsimust; 50 õiget, 11 osaliselt õiget, 7 põhjendatud vastamata jätmist, 3 tehnilist probleemi, valeks hinnatud vastuseid 0. Parandused on [ADR-031](adr-031-source-level-and-answer-completeness.md)-s.
 
 ### Üks vestluspööre
@@ -32,6 +33,9 @@ Versioonid 27.09.2026:
 - PR #196 (`164fc720`, serveris 27.09): `m4-grounded-dialogue-9`, kriisiriba ja allikavaate link algallikale; otsinguabi jääb `rag-v2/search-assist-2`.
 - PR #197 (`claude/rag-v2-answer-voice`, avatud 27.09): vastuse oma hääl, `m4-grounded-answer-11` ja `m4-grounded-dialogue-10`.
 - PR #199 (`68b4c378`, serveris 27.09 12:31): riikliku õiguse reserv valikus ja vana vestluse jätk pärast plaani uuendust ([ADR-032](adr-032-national-law-reserve-and-plan-restart.md)). Vestlusplaan `/etc/sotsiaalai/m4-corpus-chat-20260927l.json` (id …-0932). Elav B9 tsiteeris SÜS-i ja HMS-i.
+- PR #201 (`5b09e80e`): allikate soojendus serveri käivitusel (`instrumentation.js`, [ADR-033](adr-033-warm-up-at-server-start.md)). Esimene pööre pärast taaskäivitust 42,7 s → 14–23 s.
+- PR #202 (`d3302061`): Riigi Teataja XML-i puhastus, töötlussilt `source-structure-v26`; korpus v27 ([ADR-034](adr-034-riigi-teataja-xml-cleanup.md)).
+- PR #203 (`6085b84e`): plokk, mis lõpeb oma viidete kordusega („… tuvastatud. S1, S2“), avaldatakse; enne lükati terve vastus tagasi (vastuvõtutest B7, `inline_answer_reference`).
 - `rag-v2/search-assist-3` on katse harus `claude/rag-v2-answer-quality` ja tootmisse ei lähe. 52 küsimuse komplektis v26 peal (48 vastatavat) oli search-assist-2 tulemus: kõik ankrud 34, vähemalt üks ankur 44, õige dokument 45. search-assist-3 tulemus: 32, 43 ja 46. -3 kaotas ankruid ajakirjaküsimustel. Failid: `tmp/rag-v2-dev-2026-09-27/assist-main-v26.json` ja `assist-quality-v26.json`.
 
 ### Andmevoog
@@ -101,8 +105,8 @@ sudo -n chown root:ubuntu <out>; sudo -n systemctl restart sotsiaalai-frontend
 - BM25 sõnaline järjestus ([ADR-029](adr-029-lexical-ranking-at-corpus-scale.md)) on ettepanek, tegemata.
 - Tehtud 27.09 ([ADR-032](adr-032-national-law-reserve-and-plan-restart.md)): HMS jõuab vaidlustamise küsimusel valijani riikliku õiguse reservi kaudu (B9 sai HMS-i kahel jooksul kolmest); vana vestluse „Jätkan sama teemat“ ei anna pärast plaani uuendust enam `context_unavailable` viga.
 - Vestluse kiirus: esimese pöörde külm allikakontroll (27.09 B9 ~45 s) on [ADR-033](adr-033-warm-up-at-server-start.md)-ga serveri käivitusel. Vastuse mudel (~10 s, `medium`) jääb põrandaks; vastuse voogedastus on tegemata.
-- XML-i toores `<sup>` ja muutmismärked (aruande parandus 5). See muudab töötlust, seega kontrolli enne uute embedding-sisendite ulatust.
-- Tallinna hooldajatoetuse kirje ja korra vastuolu (aruanne 3.3), E3.2 „tädi vajab sama“ (isikute eraldatus, omaniku otsus), B7 reasisesed viited.
+- Tehtud 27.09: XML-i toores `<sup>` ja muutmismärked ([ADR-034](adr-034-riigi-teataja-xml-cleanup.md), korpus v27); B7 vastuse lõpus korduvad viited (PR #203).
+- Tallinna hooldajatoetuse kirje ja korra vastuolu (aruanne 3.3), E3.2 „tädi vajab sama“ (isikute eraldatus, omaniku otsus).
 - Kirjete töötlus v26 (kontakti-ID-d indeksitekstist välja) ja kasutajapõhine hõivatuse värav enne mitme kasutaja kasutust.
 - Dialoogistsenaariumide integratsioonitest vajab v25 kirjeüksuste vektoreid.
 - SHS uus redaktsioon enne 30.11.2026.
@@ -144,6 +148,7 @@ sudo -n chown root:ubuntu <out>; sudo -n systemctl restart sotsiaalai-frontend
 - [ADR-031](adr-031-source-level-and-answer-completeness.md) (27.09.2026): allika tase ja vastuse terviklikkus. Korpus v26 (SHS, HMS), `m4-grounded-dialogue-9`, kriisiriba, allikavaate link algallikale ja vastuse oma hääl (`m4-grounded-answer-11`). `rag-v2/search-assist-3` jääb katseks.
 - [ADR-032](adr-032-national-law-reserve-and-plan-restart.md) (27.09.2026): riikliku õiguse reserv valiku kandidaatides (`poolReserve`, 6 kohta, aktist kuni 2) ja „Jätkan sama teemat“ pärast vestlusplaani uuendust alustab uue teema.
 - [ADR-033](adr-033-warm-up-at-server-start.md) (27.09.2026): teadmusallikate soojendus algab serveri käivitusel (`instrumentation.js` → `warmPilotAtStart()`), riiklikud õigustekstid esimesena; `preflight` jääb varuks.
+- [ADR-034](adr-034-riigi-teataja-xml-cleanup.md) (27.09.2026): Riigi Teataja XML-i puhastus (`source-structure-v26`) ja korpus v27; uuesti sisestati ainult 61 XML-akti, vektoreid osteti 1359 (0,075 USD).
 
 ### Runbook ja aruanded
 

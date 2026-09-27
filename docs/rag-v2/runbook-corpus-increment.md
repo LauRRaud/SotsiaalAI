@@ -90,6 +90,16 @@ node scripts/rag-v2-ingest-batch.mjs --mode publish --development-only --manifes
 
 Avaldamine teeb hoidlasse uue allikapõlvkonna. v26-s oli see `generation_d54d29…` ja rühmas 408 lõiku. Uute dokumentide ID-d on `review.json` kirjete väljal `document_id`.
 
+### Töötluse muutus, mis puudutab ainult üht vormingut
+
+Näide v27 ([ADR-034](adr-034-riigi-teataja-xml-cleanup.md)): Riigi Teataja XML-i adapteri muutus, silt `source-structure-v25` → `v26`.
+
+- Uued versioonid on vaja ainult dokumentidele, mille väljund muutub. Otsing ja indeks töötlussilte ei kontrolli; iga versioon kannab oma silte.
+- Vali ainult need allikad. v27-s tuli valik v25 partii `oigusaktid/plan.json` kirjete `metadata_json.source_path` väljast pluss v26 `selection.json`: 61 akti.
+- Dokumendi ID ei muutu, seega eelmine indeksi poliitika sobib. Kontrolli, et iga poliitika dokument on hoidla uues peas.
+- Serverisse saada ainult uued `versions/<id>/` kaustad, `active.json` ja `publications/` (v27: 197 MB). Tee enne serveri pea varukoopia.
+- Serveri koodi kopeerimine töökausta käib pärast deploy'd: deploy'i `npm ci` vahetab `node_modules`-i, millele töökausta sümlink viitab, ja poole peal käivitatud Node'i protsess ei leia pakette.
+
 ## 4. Indeksi poliitika
 
 - Uus poliitika on eelmine poliitika pluss uute dokumentide ID-d, sorteeritult. Näiteks `tmp/rag-v2-corpus-index-v26/policy.json` sai 5998 dokumenti.
