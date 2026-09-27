@@ -4,16 +4,17 @@ SotsiaalAI allikapõhise otsingu ja vestluse dokumentatsioon. Esimene osa kirjel
 
 ## Praegune seis (27.09.2026)
 
-Seis on kirja pandud 27.09.2026 ~14:40 EEST. Hilisemad muudatused on ADR-ides ja [runbookis](runbook-corpus-increment.md).
+Seis on kirja pandud 27.09.2026 ~20:00 EEST. Hilisemad muudatused on ADR-ides ja [runbookis](runbook-corpus-increment.md).
 
 ### Mis RAG v2 praegu on
 
-- **Korpus.** Tenant `sotsiaalai-corpus`, korpus v27: 5998 dokumenti, 29 220 otsinguühikut. Indeksipõlvkond `search_generation_23e445…` on aktiivne alates 27.09.2026 kell 14:14 EEST.
+- **Korpus.** Tenant `sotsiaalai-corpus`, korpus v29: 6000 dokumenti, 29 716 otsinguühikut. Indeksipõlvkond `search_generation_b06f5f…` on aktiivne alates 27.09.2026 kell 19:45 EEST.
   - v26 = v25b (5996 dokumenti: 1122 teadmusdokumenti ja 4874 omavalitsuse kirjet) + kaks riiklikku seadust.
   - v27 = v26, kus 61 Riigi Teataja XML-akti on töödeldud puhastatud adapteriga (`source-structure-v26`: muutmismärked välja, `§ 15¹`, kehtetud paragrahvid välja; [ADR-034](adr-034-riigi-teataja-xml-cleanup.md)).
-  - Sotsiaalhoolekande seadus (SHS), RT 130062026065, kehtib 01.10.2026–30.11.2026. Uus redaktsioon tuleb korpusesse tuua enne 30.11.2026.
+  - v28 = v27, kus 576 omavalitsuse kirjet ilma oma lingita said lingi oma omavalitsuse registreeritud allikaregistrist (`source-structure-v27`); v29 = v28 + kaks SHS-i redaktsiooni ([ADR-035](adr-035-record-links-and-shs-versions.md)).
+  - Sotsiaalhoolekande seadus (SHS): RT 103062026023 (12.06–30.09.2026), RT 130062026065 (01.10–30.11.2026) ja RT 111072026120 (01.12–31.12.2026). Kehtivusreegel valib kuupäeva järgi. 2027. aasta tekst tuleb lisada enne 31.12.2026.
   - Haldusmenetluse seadus (HMS), RT 106072023031, kehtib 01.01.2024–31.12.2026.
-- **Vestlus.** sotsiaal.ai/vestlus vastab sellest korpusest kinnitatud vestlusplaani järgi. Plaan on JSON-fail `/etc/sotsiaalai/` all. Selle koostab ja lülitab sisse `scripts/rag-v2-chat-plan.mjs`. Plaan seob tenant'i, indeksipõlvkonna, otsinguprofiili, juhiste ja otsinguabi versioonid, mudeli, rahalise lae ning koodi räsi (`implementationHash`). 27.09.2026 kell 14:14 oli aktiivne `/etc/sotsiaalai/m4-corpus-chat-20260927o.json` (id …-1114, `main` `6085b84e`, PR #203).
+- **Vestlus.** sotsiaal.ai/vestlus vastab sellest korpusest kinnitatud vestlusplaani järgi. Plaan on JSON-fail `/etc/sotsiaalai/` all. Selle koostab ja lülitab sisse `scripts/rag-v2-chat-plan.mjs`. Plaan seob tenant'i, indeksipõlvkonna, otsinguprofiili, juhiste ja otsinguabi versioonid, mudeli, rahalise lae ning koodi räsi (`implementationHash`). 27.09.2026 kell 19:45 sai aktiivseks `/etc/sotsiaalai/m4-corpus-chat-20260927s.json` (id …-1645, `main` `2769c706`).
 - **Vastuvõtutest.** [27.09.2026 aruanne](../audits/rag-v2-chat-acceptance-2026-09-27.md): 71 küsimust; 50 õiget, 11 osaliselt õiget, 7 põhjendatud vastamata jätmist, 3 tehnilist probleemi, valeks hinnatud vastuseid 0. Parandused on [ADR-031](adr-031-source-level-and-answer-completeness.md)-s.
 
 ### Üks vestluspööre
@@ -39,6 +40,8 @@ Versioonid 27.09.2026:
 - PR #199 (`68b4c378`, serveris 27.09 12:31): riikliku õiguse reserv valikus ja vana vestluse jätk pärast plaani uuendust ([ADR-032](adr-032-national-law-reserve-and-plan-restart.md)). Vestlusplaan `/etc/sotsiaalai/m4-corpus-chat-20260927l.json` (id …-0932). Elav B9 tsiteeris SÜS-i ja HMS-i.
 - PR #201 (`5b09e80e`): allikate soojendus serveri käivitusel (`instrumentation.js`, [ADR-033](adr-033-warm-up-at-server-start.md)). Esimene pööre pärast taaskäivitust 42,7 s → 14–23 s.
 - PR #202 (`d3302061`): Riigi Teataja XML-i puhastus, töötlussilt `source-structure-v26`; korpus v27 ([ADR-034](adr-034-riigi-teataja-xml-cleanup.md)).
+- PR #205 (`f0a8e8ab`): õigusakt ainult küsitud kuupäeval kehtivas redaktsioonis, omavalitsuse tekst ainult nimetatud omavalitsuse kohta ([Codexi kontroll](../audits/rag-v2-codex-review-2026-09-27.md)); `m4-grounded-dialogue-11`.
+- PR #207 (`818daf07`): allikaregistri lingid lingita omavalitsuse kirjetele; PR #208 (`2769c706`): SHS-i kehtivad redaktsioonid registris ([ADR-035](adr-035-record-links-and-shs-versions.md)).
 - PR #203 (`6085b84e`): plokk, mis lõpeb oma viidete kordusega („… tuvastatud. S1, S2“), avaldatakse; enne lükati terve vastus tagasi (vastuvõtutest B7, `inline_answer_reference`).
 - `rag-v2/search-assist-3` on katse harus `claude/rag-v2-answer-quality` ja tootmisse ei lähe. 52 küsimuse komplektis v26 peal (48 vastatavat) oli search-assist-2 tulemus: kõik ankrud 34, vähemalt üks ankur 44, õige dokument 45. search-assist-3 tulemus: 32, 43 ja 46. -3 kaotas ankruid ajakirjaküsimustel. Failid: `tmp/rag-v2-dev-2026-09-27/assist-main-v26.json` ja `assist-quality-v26.json`.
 
@@ -110,7 +113,7 @@ sudo -n chown root:ubuntu <out>; sudo -n systemctl restart sotsiaalai-frontend
 - Tehtud 27.09 ([ADR-032](adr-032-national-law-reserve-and-plan-restart.md)): HMS jõuab vaidlustamise küsimusel valijani riikliku õiguse reservi kaudu (B9 sai HMS-i kahel jooksul kolmest); vana vestluse „Jätkan sama teemat“ ei anna pärast plaani uuendust enam `context_unavailable` viga.
 - Vestluse kiirus: esimese pöörde külm allikakontroll (27.09 B9 ~45 s) on [ADR-033](adr-033-warm-up-at-server-start.md)-ga serveri käivitusel. Vastuse mudel (~10 s, `medium`) jääb põrandaks; vastuse voogedastus on tegemata.
 - Tehtud 27.09: XML-i toores `<sup>` ja muutmismärked ([ADR-034](adr-034-riigi-teataja-xml-cleanup.md), korpus v27); B7 vastuse lõpus korduvad viited (PR #203).
-- **Sotsiaalhoolekande seadus 27.–30.09:** korpuses on ainult 01.10–30.11 redaktsioon. Kehtivusreegli järel on SHS kuni 30.09 tõendist väljas ja vastus ütleb seda. Lisamise plaan ja kulu (≤ 0,002 USD) on [Codexi kontrolli aruandes](../audits/rag-v2-codex-review-2026-09-27.md#1-õigusaktide-kehtivus). Järgmine redaktsioon tuleb lisada enne 30.11; HMS ja Riigilõivuseadus kehtivad kuni 31.12.2026.
+- **Õigusaktide aastavahetus:** SHS on kaetud kuni 31.12.2026 (v29, [ADR-035](adr-035-record-links-and-shs-versions.md)). SHS-i 2027. aasta tekst (RT 111072026121 jt), HMS ja Riigilõivuseaduse järgmine tekst tuleb lisada enne 31.12.2026, muidu jäävad need kehtivusreegli järel tõendist välja.
 - Tallinna hooldajatoetuse kirje ja korra vastuolu (aruanne 3.3), E3.2 „tädi vajab sama“ (isikute eraldatus, omaniku otsus).
 - Kirjete töötlus v26 (kontakti-ID-d indeksitekstist välja) ja kasutajapõhine hõivatuse värav enne mitme kasutaja kasutust.
 - Dialoogistsenaariumide integratsioonitest vajab v25 kirjeüksuste vektoreid.
@@ -154,6 +157,7 @@ sudo -n chown root:ubuntu <out>; sudo -n systemctl restart sotsiaalai-frontend
 - [ADR-032](adr-032-national-law-reserve-and-plan-restart.md) (27.09.2026): riikliku õiguse reserv valiku kandidaatides (`poolReserve`, 6 kohta, aktist kuni 2) ja „Jätkan sama teemat“ pärast vestlusplaani uuendust alustab uue teema.
 - [ADR-033](adr-033-warm-up-at-server-start.md) (27.09.2026): teadmusallikate soojendus algab serveri käivitusel (`instrumentation.js` → `warmPilotAtStart()`), riiklikud õigustekstid esimesena; `preflight` jääb varuks.
 - [ADR-034](adr-034-riigi-teataja-xml-cleanup.md) (27.09.2026): Riigi Teataja XML-i puhastus (`source-structure-v26`) ja korpus v27; uuesti sisestati ainult 61 XML-akti, vektoreid osteti 1359 (0,075 USD).
+- [ADR-035](adr-035-record-links-and-shs-versions.md) (27.09.2026): allikaregistri lingid 576 lingita KOV-kirjele (korpus v28, ost 0) ja SHS-i kehtivad redaktsioonid 12.06–30.09 ning 01.12–31.12.2026 (korpus v29, 0,006 USD); kontrollikuupäeva juhis v12 lükati mõõtmise järel tagasi.
 
 ### Runbook ja aruanded
 
