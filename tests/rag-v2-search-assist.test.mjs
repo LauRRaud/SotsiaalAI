@@ -71,3 +71,16 @@ test('the chat profile keeps the vector2 fast-lexical choices with nine seeds in
   // Earlier profiles keep their exact budgets.
   assert.equal(retrievalProfile('hybrid-estnltk-vector2-fast-lexical-dependencies-v1').query.limits.topK, 5);
 });
+
+test('search-assist-2: the plan names the message language, and the answer follows it', async () => {
+  const { planLanguage, SEARCH_ASSIST_VERSIONS } = await import('../lib/rag-v2/pilot/search-assist.js');
+  const plan = queryPlanRequest(config, ['My mother needs help at home.'], 'et');
+  assert.deepEqual(plan.text.format.schema.required, ['queries', 'language']);
+  assert.deepEqual(plan.text.format.schema.properties.language.enum, ['et', 'en', 'ru']);
+  assert.equal(planLanguage({ searchAssist: SEARCH_ASSIST_VERSION }, { queries: [], language: 'en' }), 'en');
+  assert.equal(planLanguage({ searchAssist: SEARCH_ASSIST_VERSION }, { queries: [], language: 'de' }), null);
+  assert.equal(planLanguage({ searchAssist: SEARCH_ASSIST_VERSION }, { queries: [] }), null);
+  // A plan approved for search-assist-1 keeps the interface language.
+  assert.equal(planLanguage({ searchAssist: 'rag-v2/search-assist-1' }, { queries: [], language: 'en' }), null);
+  assert.deepEqual(SEARCH_ASSIST_VERSIONS, ['rag-v2/search-assist-1', 'rag-v2/search-assist-2']);
+});

@@ -95,6 +95,7 @@ test('source panel label carries the checkable origin: authors, journal, issue, 
     { ref: 'S2', title: 'Koduteenus', pages: [], used: false }] }, 'conv');
   assert.equal(result.sources[0].label, 'S1 · Tehisintellekt sotsiaaltöös · Laur Raudsoo · Sotsiaaltöö 2/2025, lk 3–6 · Vastuses kasutatud');
   assert.equal(result.sources[0].journalTitle, 'Sotsiaaltöö');
-  // A source without bibliographic fields keeps the old label.
-  assert.equal(result.sources[1].label, 'S2 · Koduteenus · Ainult otsingus leitud');
+  // Only cited sources reach the reader's list; an uncited catalogue record stays in the audit.
+  assert.deepEqual(result.sources.map(source => source.label.split(' · ')[0]), ['S1']);
+  assert.deepEqual(result.displayed_sources, result.sources);
 });
