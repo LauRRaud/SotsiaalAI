@@ -335,6 +335,19 @@ test('M2 corpus plan: reading one published bundle at a time gives the exact mul
   assert.equal(streamed.manifest_sha256,inMemory.manifest_sha256);assert.deepEqual(streamed.plan,inMemory.plan);assert.deepEqual(streamed.inputs,inMemory.inputs);
   assert.equal(streamed.plan.document_count,2);assert.equal(streamed.plan.all_input_count,3);
   await assert.rejects(buildCorpusEmbeddingPlan({storeRoot,tenant,documents:['document_missing'],questionSets}),/document_not_in_source_generation/);
+  // ADR-036: a version already sealed in the index under the target config is neither read nor planned.
+  const configId=`search_config_${'c'.repeat(64)}`,one=inMemory.plan.egress_manifest.files.find(file=>file.document_id===ids[0]);
+  let asked;const sealed=item=>({sealedItems:async(config,versions)=>{asked={config,versions};return new Map(item?[[one.version_id,item]]:[]);},config_id:configId});
+  const incremental=await buildCorpusEmbeddingPlan({storeRoot,tenant,documents:ids,questionSets,price,indexed:sealed({document_id:ids[0],version_id:one.version_id,units:1})});
+  assert.equal(asked.config,configId);assert.equal(asked.versions.length,2);
+  assert.equal(incremental.plan.document_count,1);assert.equal(incremental.plan.indexed_document_count,1);assert.equal(incremental.plan.all_input_count,2);
+  assert.deepEqual(incremental.manifest.files.map(file=>file.document_id),[ids[1]]);
+  assert.deepEqual(incremental.manifest.indexed_versions,{config_id:configId,versions:1,versions_sha256:hash(stable([one.version_id]))});
+  assert.notEqual(incremental.manifest_sha256,streamed.manifest_sha256);
+  // A seal of another document, or none, leaves the plan whole apart from recording that nothing was left out.
+  const other=await buildCorpusEmbeddingPlan({storeRoot,tenant,documents:ids,questionSets,price,indexed:sealed({document_id:ids[1],version_id:one.version_id,units:1})});
+  assert.equal(other.plan.document_count,2);assert.equal(other.manifest.indexed_versions.versions,0);
+  await assert.rejects(buildCorpusEmbeddingPlan({storeRoot,tenant,documents:ids,questionSets,indexed:{config_id:'bad',sealedItems:async()=>new Map()}}),/invalid_indexed_versions/);
 });
 test('Audit: Qdrant timeout remains a service failure eligible for explicit lexical degradation',async()=>{
   const previous=globalThis.fetch;

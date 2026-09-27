@@ -7,6 +7,8 @@
 // rag-v2-index-batch.mjs reads with --vectors. Source text is never written to the plan files.
 //   node scripts/rag-v2-corpus-embeddings.mjs --mode plan --store S --tenant T --subject U --policy P --output tmp/DIR [--price F] [--reuse DIR] [--questions F]
 //   node scripts/rag-v2-corpus-embeddings.mjs --mode execute ... --baseline tmp/DIR/embedding-plan.json --approval F --price F --output tmp/DIR2
+// --indexed (with --connections, --lexical): documents whose version is already sealed in the versions-v1 index under
+// the target search config are left out (ADR-036); plan and execute must both use it.
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
@@ -17,7 +19,10 @@ import { fail } from '../lib/rag-v2/contracts.js';
 import { FilePolicy } from '../lib/rag-v2/search/policy.js';
 import { buildCorpusEmbeddingPlan } from '../lib/rag-v2/search/multi-source-plan.js';
 import { reusableEmbeddingCatalog, runPilot } from '../lib/rag-v2/search/pilot-runner.js';
-import { costNanos, formatUsd } from '../lib/rag-v2/search/pilot-manifest.js';
+import { costNanos, formatUsd, realEmbeddingConfig } from '../lib/rag-v2/search/pilot-manifest.js';
+import { searchConfig } from '../lib/rag-v2/search/indexing.js';
+import { ESTNLTK_LEXICAL } from '../lib/rag-v2/search/morphology.js';
+import { IndexJobStore } from '../lib/rag-v2/search/index-jobs-postgres.js';
 
 dotenv.config({ path: '.env.local', quiet: true });
 const tmpRoot = path.resolve('tmp');
@@ -28,11 +33,14 @@ function privatePath(value) {
 }
 const writeNew = (file, value) => fs.writeFile(file, `${JSON.stringify(value, null, 2)}\n`, { flag: 'wx', mode: 0o600 });
 
+let catalog;
 try {
   const { values } = parseArgs({ options: {
     mode: { type: 'string' }, store: { type: 'string' }, tenant: { type: 'string' }, subject: { type: 'string' }, policy: { type: 'string' },
     output: { type: 'string' }, price: { type: 'string' }, reuse: { type: 'string', multiple: true, default: [] },
     questions: { type: 'string', multiple: true, default: [] }, baseline: { type: 'string' }, approval: { type: 'string' },
+    indexed: { type: 'boolean', default: false }, connections: { type: 'string', default: 'tmp/rag-v2-services/connections.json' },
+    lexical: { type: 'string', default: ESTNLTK_LEXICAL },
     'development-only': { type: 'boolean', default: false },
   } });
   if (!['plan', 'execute'].includes(values.mode) || !values['development-only'] || !values.store || !values.tenant || !values.subject
@@ -46,9 +54,13 @@ try {
   const reuseDirectories = values.reuse.map(value => path.resolve(value));
   const reuseCatalog = reuseDirectories.length ? await reusableEmbeddingCatalog(reuseDirectories, context.tenant) : null;
   const price = values.price ? await readJson(values.price) : null, baseline = values.baseline ? await readJson(values.baseline) : null;
-  const prepared = await buildCorpusEmbeddingPlan({ storeRoot, tenant: context.tenant, documents, questionSets, reuseCatalog, price, baseline });
+  // Reads only which versions are sealed; nothing is written to the index database.
+  if (values.indexed) catalog = new IndexJobStore((await readJson(values.connections)).postgresUrl);
+  const indexed = values.indexed ? { config_id: searchConfig(reuseCatalog?.config ?? realEmbeddingConfig(), values.lexical).id,
+    sealedItems: (configId, versions) => catalog.sealedItems(context.tenant, configId, versions) } : null;
+  const prepared = await buildCorpusEmbeddingPlan({ storeRoot, tenant: context.tenant, documents, questionSets, reuseCatalog, price, baseline, indexed });
   const summary = { schema_version: 'rag-v2/corpus-embedding-run-1', mode: values.mode, state: 'prepared_not_authorized_not_run',
-    documents: prepared.plan.document_count, all_inputs: prepared.plan.all_input_count, reusable_inputs: prepared.plan.reusable_input_count,
+    documents: prepared.plan.document_count, indexed_documents: prepared.plan.indexed_document_count ?? 0, all_inputs: prepared.plan.all_input_count, reusable_inputs: prepared.plan.reusable_input_count,
     external_inputs: prepared.plan.external_input_count, max_external_input_tokens: prepared.plan.max_total_input_tokens,
     max_api_attempts: prepared.plan.max_api_attempts, estimated_external_cost_usd: prepared.plan.estimated_external_cost_usd,
     egress_manifest_sha256: prepared.manifest_sha256, matches_baseline: prepared.matches_baseline, differences: prepared.differences,
@@ -85,4 +97,4 @@ try {
 } catch (error) {
   console.error(JSON.stringify({ ok: false, code: typeof error.code === 'string' && /^[a-z][a-z0-9_]+$/.test(error.code) ? error.code : 'corpus_embedding_cli_failed' }));
   process.exitCode = 1;
-}
+} finally { await catalog?.close(); }
