@@ -14,7 +14,8 @@ export default function PilotContextControls({ dialogue, disabled = false, t: tr
     <summary>{t('dialogueControls')}{scope ? ` · ${t('personNumber', { number: scope.person })}` : ''}</summary>
     <p role="status">{dialogue.error ? t('contextUnavailable') : !dialogue.ready ? t('contextLoading')
       : scope ? t('activeContext', { topic: scope.title, count: scope.userTurns, max: data.limits.scopeTurns, revision: scope.correctionRevision })
-        : continuing && data?.unavailable ? t('contextUnavailable') : t('emptyContext')}</p>
+        : data?.unavailable && !data.scopes.length ? t('contextRestarted')
+          : continuing && data?.unavailable ? t('contextUnavailable') : t('emptyContext')}</p>
     {scope?.latestCorrection && <p>{t('latestCorrection', { text: scope.latestCorrection })}</p>}
     <div className={styles.fields}>
       <label htmlFor={`${id}-mode`}>{t('context')}<select id={`${id}-mode`} disabled={disabled || !dialogue.ready} value={selection.contextMode}

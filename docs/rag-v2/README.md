@@ -23,6 +23,7 @@ Seis on kirja pandud 27.09.2026 ~12:30 EEST. Hilisemad muudatused on ADR-ides ja
    - omavalitsuse kataloog `rag-v2/record-catalogue-2`, 12 000 tokenit; küsimusele lähimad 3 kirjet on täies mahus (`relevant_detail`);
    - kuni 2 perioodirada ajakirjaartiklitele avaldamisaja järgi.
 3. **Valik (rerank).** Mudel loeb 30 parimat liidetud kandidaati (`RERANK_POOL`) ja jätab alles kuni 9 lõiku. Plaan ja valik kasutavad `reasoning: low`. Provideri viga jätab liidetud järjestuse ja märgib põhjuse.
+   - Riikliku õiguse reserv ([ADR-032](adr-032-national-law-reserve-and-plan-restart.md)): 7 riiklikku õigusteksti (`valid_from`, ilma `regions`-ita) otsitakse eraldi samade päringutega. Kuni 6 nende parimat lõiku, ühest aktist kuni 2, lisatakse valija hulga lõppu, kui neid 30 hulgas pole. Valija otsustab, kas need jäävad.
 4. **Vastus.** Mudel `gpt-6-luna`, arutlustase `medium`. See on skripti vaikeväärtus ja omaniku otsus 27.09.2026: `low` oli 2,5× kiirem, kuid vastused olid nõrgemad. Juhised on põhijuhis ([ADR-028](adr-028-production-answer-prompt.md)) ja vestlusjuhis; PR #196 järel `m4-grounded-answer-10` ja `m4-grounded-dialogue-9`, PR #197 järel `m4-grounded-answer-11` ja `m4-grounded-dialogue-10` (Luna vastab oma häälega, allikatest ei jutustata; [ADR-031](adr-031-source-level-and-answer-completeness.md)). Server kontrollib viited kanooniliselt enne avaldamist. Allikate paneel näitab ainult viidatud allikaid.
 
 Versioonid 27.09.2026:
@@ -30,6 +31,7 @@ Versioonid 27.09.2026:
 - PR #195 (`40ddeed4`): ajaloo laadimine ~6× kiirem, vestluse piiri teade.
 - PR #196 (`164fc720`, serveris 27.09): `m4-grounded-dialogue-9`, kriisiriba ja allikavaate link algallikale; otsinguabi jääb `rag-v2/search-assist-2`.
 - PR #197 (`claude/rag-v2-answer-voice`, avatud 27.09): vastuse oma hääl, `m4-grounded-answer-11` ja `m4-grounded-dialogue-10`.
+- PR (`claude/rag-v2-national-law-reserve`, 27.09): riikliku õiguse reserv valikus ja vana vestluse jätk pärast plaani uuendust ([ADR-032](adr-032-national-law-reserve-and-plan-restart.md)).
 - `rag-v2/search-assist-3` on katse harus `claude/rag-v2-answer-quality` ja tootmisse ei lähe. 52 küsimuse komplektis v26 peal (48 vastatavat) oli search-assist-2 tulemus: kõik ankrud 34, vähemalt üks ankur 44, õige dokument 45. search-assist-3 tulemus: 32, 43 ja 46. -3 kaotas ankruid ajakirjaküsimustel. Failid: `tmp/rag-v2-dev-2026-09-27/assist-main-v26.json` ja `assist-quality-v26.json`.
 
 ### Andmevoog
@@ -73,7 +75,7 @@ sudo -n chown root:ubuntu <out>; sudo -n systemctl restart sotsiaalai-frontend
 - `--out` peab olema uus fail `/etc/sotsiaalai/` all. Olemasolevat faili üle ei kirjutata.
 - `--activate` varundab `rag.env`-i ja seab `M4_PILOT_ENABLED`, `M4_PILOT_CONFIG` ja `RAG_V2_ESTNLTK_IDLE_MS=3600000`.
 - Plaani ID-s on minutitempel. Iga plaan saab oma kulupäeviku.
-- Vestluse ajalugu filtreeritakse plaani `configHash` järgi. Pärast ümberehitust vanemad pöörded peituvad, kuid ei kustu.
+- Vestluse ajalugu filtreeritakse plaani `configHash` järgi. Pärast ümberehitust vanemad pöörded peituvad, kuid ei kustu. Sellise vestluse järgmine sõnum alustab uue teema ka valikuga „Jätkan sama teemat“ ([ADR-032](adr-032-national-law-reserve-and-plan-restart.md)).
 - Pärast taaskäivitust soojendab server kirjeteta allikad mällu (PR #188 ajal 1122 allikat, ~5 min).
 
 ### Kus mis asub
@@ -97,7 +99,8 @@ sudo -n chown root:ubuntu <out>; sudo -n systemctl restart sotsiaalai-frontend
 ### Lahtised tööd (27.09.2026)
 
 - BM25 sõnaline järjestus ([ADR-029](adr-029-lexical-ranking-at-corpus-scale.md)) on ettepanek, tegemata.
-- HMS ei jõua vaidlustamise küsimusel tõendisse. Hüpotees: 54 omavalitsuse korra sarnased vaidelõigud täidavad 30 kandidaadi hulga. Võimalik üldine lahendus on väike riikliku õiguse rada oma kvoodiga; tegemata.
+- Tehtud 27.09 ([ADR-032](adr-032-national-law-reserve-and-plan-restart.md)): HMS jõuab vaidlustamise küsimusel valijani riikliku õiguse reservi kaudu (B9 sai HMS-i kahel jooksul kolmest); vana vestluse „Jätkan sama teemat“ ei anna pärast plaani uuendust enam `context_unavailable` viga.
+- Vestluse kiirus (27.09 B9): esimene pööre pärast restarti ~45 s (külm allikate soojendus), järgmine ~17 s, millest vastus ~10 s. Ideed: soojendus serveri käivitusel, vastuse voogedastus.
 - XML-i toores `<sup>` ja muutmismärked (aruande parandus 5). See muudab töötlust, seega kontrolli enne uute embedding-sisendite ulatust.
 - Tallinna hooldajatoetuse kirje ja korra vastuolu (aruanne 3.3), E3.2 „tädi vajab sama“ (isikute eraldatus, omaniku otsus), B7 reasisesed viited.
 - Kirjete töötlus v26 (kontakti-ID-d indeksitekstist välja) ja kasutajapõhine hõivatuse värav enne mitme kasutaja kasutust.
@@ -139,6 +142,7 @@ sudo -n chown root:ubuntu <out>; sudo -n systemctl restart sotsiaalai-frontend
 - [ADR-029](adr-029-lexical-ranking-at-corpus-scale.md) (25.09.2026, ettepanek): sõnaline järjestus korpuse mahul, soovitus on BM25 termitabel PostgreSQL-is koos keelepõhiste tüvedega. BM25 on tegemata; vestluse kiirem sõnaline järjestus (lihtne `ts_rank`, PR #187) ja üks ühendatud sõnaline päring (PR #193) tulid ADR-030 käigus.
 - [ADR-030](adr-030-chat-retrieval-at-corpus-scale.md) (27.09.2026): vestlus kogu korpusel. Kirje tõend on väljavõte, kaardid on saledad, profiil on `hybrid-estnltk-chat-v1`, otsinguabi teeb plaani ja valiku, vestlusplaani teeb `scripts/rag-v2-chat-plan.mjs`. Lisaks kiirus ja ajaloo laadimine.
 - [ADR-031](adr-031-source-level-and-answer-completeness.md) (27.09.2026): allika tase ja vastuse terviklikkus. Korpus v26 (SHS, HMS), `m4-grounded-dialogue-9`, kriisiriba, allikavaate link algallikale ja vastuse oma hääl (`m4-grounded-answer-11`). `rag-v2/search-assist-3` jääb katseks.
+- [ADR-032](adr-032-national-law-reserve-and-plan-restart.md) (27.09.2026): riikliku õiguse reserv valiku kandidaatides (`poolReserve`, 6 kohta, aktist kuni 2) ja „Jätkan sama teemat“ pärast vestlusplaani uuendust alustab uue teema.
 
 ### Runbook ja aruanded
 
