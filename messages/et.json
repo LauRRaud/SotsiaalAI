@@ -18,6 +18,7 @@
     "contextLoading": "Laadin aktiivse teema konteksti…",
     "contextUnavailable": "Valitud varasem kontekst pole kättesaadav. Vali lubatud teema või alusta uut teemat vajalike asjaoludega.",
     "contextLimit": "Teema konteksti maht on täis või tekst liiga pikk. Lühenda uut sõnumit või alusta uut teemat vajalike asjaoludega. Seniseid asjaolusid vaikselt ei kärbita.",
+    "conversationLimit": "See vestlus on jõudnud küsimuste ülempiirini. Sinu sõnumit ei saadetud: alusta uut vestlust ja kirjuta vajalikud asjaolud uuesti.",
     "contextFailed": "Sõnum võeti vastu, kuid vastust ei avaldatud, sest valitud konteksti ei saanud kasutada. Teema-, isiku- või parandusvalik säilis. Vajadusel alusta uut teemat.",
     "reloadContext": "Laadi kontekst uuesti",
     "referenceFailed": "Vastust ei avaldatud, sest allikaviidete kontroll ebaõnnestus. Uut vastamiskatset ei tehtud.",

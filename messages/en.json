@@ -18,6 +18,7 @@
     "contextLoading": "Loading the active topic context…",
     "contextUnavailable": "The selected earlier context is unavailable. Select an accessible topic or start a new topic with the necessary circumstances.",
     "contextLimit": "The topic context is full or the text is too long. Shorten the new message or start a new topic with the necessary circumstances. Earlier circumstances are never silently clipped.",
+    "conversationLimit": "This conversation has reached its question limit. Your message was not sent: start a new conversation and include the relevant circumstances again.",
     "contextFailed": "Your message was accepted, but no answer was published because the selected context could not be used. The topic, person or correction selection was retained. Start a new topic if necessary.",
     "reloadContext": "Reload context",
     "referenceFailed": "The answer was not published because source reference validation failed. No new answer attempt was made.",

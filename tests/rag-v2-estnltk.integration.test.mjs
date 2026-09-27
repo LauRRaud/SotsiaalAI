@@ -109,9 +109,13 @@ test('real PostgreSQL/Qdrant: resumable EstNLTK index serves canonical evidence,
       // Unchanged verified bundles and directories come from this process's caches, not the heavy columns.
       assert(!sql.some(text => text.includes('SELECT v.*')), 'a cached bundle was loaded again');
       const generation = await postgres.active(tenant);
-      await postgres.retrievalDirectory(tenant, generation, documents); sql.length = 0;
-      await postgres.retrievalDirectory(tenant, generation, documents);
-      assert(!sql.some(text => text.includes('d.retrieval_directory,d.retrieval_hash')), 'a cached directory was loaded again');
+      const directories = await postgres.retrievalDirectory(tenant, generation, documents); sql.length = 0;
+      // An unchanged generation row and directory list are the same objects, read from one small row each.
+      assert.equal(await postgres.active(tenant), generation);
+      assert(Object.isFrozen(generation.snapshot.documents));
+      assert.equal(await postgres.retrievalDirectory(tenant, generation, documents), directories);
+      assert(!sql.some(text => text.includes('d.retrieval_directory,d.retrieval_hash') || text.includes('AS directory_row') || text.includes('SELECT *')),
+        'a cached directory list or generation row was loaded again');
     } finally { postgres.analyzer = analyzer; postgres.pool.query = query; }
     const denied = await retrieve({ postgres, qdrant, embedding, policy, context, query: { text: 'astronoomiast', language: 'et', method: 'lexical' } });
     assert.equal(denied.state, 'empty');
