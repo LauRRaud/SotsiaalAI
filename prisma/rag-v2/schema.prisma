@@ -41,6 +41,7 @@ model RagV2Generation {
   collection String
   state String @default("staged")
   expected_count Int
+  layout String @default("generation")
   @@id([tenant, id])
   @@unique([sequence])
   @@map("rag_v2_generation")
@@ -80,6 +81,40 @@ model RagV2Unit {
   morphology_vector Unsupported("tsvector")?
   @@id([tenant, generation_id, id])
   @@map("rag_v2_unit")
+}
+// ADR-036: rows of one document version under one search config, shared by the generations that list it.
+model RagV2VersionIndex {
+  tenant String
+  config_id String
+  version_id String
+  document_id String
+  item Json
+  retrieval_directory Json
+  retrieval_hash String
+  morphology_hash String
+  state String @default("staged")
+  @@id([tenant, config_id, version_id])
+  @@map("rag_v2_version_index")
+}
+model RagV2VersionUnit {
+  tenant String
+  config_id String
+  id String
+  document_id String
+  version_id String
+  chunk_id String
+  ordinal Int
+  data Json
+  title String
+  authors String
+  body String
+  search_aids String
+  morphology Json
+  search_vector Unsupported("tsvector")?
+  morphology_vector Unsupported("tsvector")?
+  @@id([tenant, config_id, id])
+  @@index([tenant, config_id, version_id], map: "rag_v2_version_unit_version_idx")
+  @@map("rag_v2_version_unit")
 }
 model RagV2VectorCache {
   tenant String

@@ -24,7 +24,7 @@ Näidetes on v26 väärtused. Mõisted:
 - **Serveri töökaust** on `/home/ubuntu/rag-v2-work/rag-v2-v25`. Seal on hoidla koopia, ostetud vektorid, plaanid, kinnitused ja käivitusskriptid.
   - `/home/ubuntu/rag-v2-work/node_modules` on sümlink rakenduse `node_modules`-ile, sest rakenduse kaustast väljas Node seda muidu ei leia.
   - Enne uut käiku kopeeri töökausta rakenduse praegune kood: `cp -r /home/ubuntu/apps/sotsiaalai/{lib,scripts,package.json} /home/ubuntu/rag-v2-work/rag-v2-v25/`.
-- **Ketas:** uus indeksipõlvkond võtab umbes 0,6 GB Postgres'is ja 0,45 GB Qdrant'is, seega iga alles jäetud põlvkond umbes 1 GB. Hoidla koopia on 4,8 GB. Kontrolli enne `df -h /`. 27.09 suurendati ketas 58 GB-ni.
+- **Ketas:** vana salvestusviisiga (`generation`) võttis iga indeksipõlvkond umbes 0,6 GB Postgres'is ja 0,45 GB Qdrant'is, kokku ~1 GB. Uue viisiga (`versions-v1`, [ADR-036](adr-036-version-index.md)) lisab uus põlvkond ainult uute versioonide read ja punktid ning nimekirja. Hoidla koopia on 4,8 GB. Kontrolli enne `df -h /`. 27.09 suurendati ketas 58 GB-ni.
 - Abiskriptid (`run-v26.sh`, `make-approval-v26.mjs`, `law-check.mjs`, `assist-eval-v26.mjs` jt) on gitist väljas: `tmp/rag-v2-dev-2026-09-27/` ja serveri töökaustas. Nende v26 teed ja nimed tuleb uue käigu jaoks muuta.
   - `run-v26.sh` kasutas veel vana kausta `$A/tmp/rag-v2-v25`. Serveris on see muudetud, aga sülearvuti koopias mitte.
 
@@ -168,9 +168,13 @@ env -u OPENAI_API_KEY RAG_V2_ESTNLTK_PYTHON=/opt/sotsiaalai/rag-v2-estnltk-1.7.5
 
 Sama käsk `--mode run` lisavõtmetega `--connections /home/ubuntu/apps/sotsiaalai/tmp/rag-v2-services/connections.json --batch-size 100 --max-batches 10000`.
 
+- **Salvestusviis** ([ADR-036](adr-036-version-index.md)): vaikimisi `--layout versions-v1`. Selle seadistusega juba indekseeritud versioone ei töödelda uuesti, vaid lisatakse uue põlvkonna nimekirja. Plaani käsk vajab siis ka `--connections` võtit (loeb valmis versioonid) ja näitab `documents_to_index` ning `units_to_index`. Vana viis on `--layout generation`.
+- Iga plaan kirjutatakse uude faili (`--manifest`); olemasolevat plaanifaili üle ei kirjutata.
+- Täielik hoolduskontroll on `--mode verify` samade võtmetega. See loeb kõik dokumendid läbi, analüüsib morfoloogia uuesti ja võrdleb iga punkti vektoriga. Midagi ei avalda.
+
 - **`--vectors` peab olema antud.** Ilma selleta kasutab töö testvektoreid.
 - Võtit ei anta: vektorid tulevad kontrollitud pearaamatust ja väliskutseid on 0.
-- v26-s kestis import 5998 dokumendiga umbes 33 minutit. Aktiveerimisele eelnev täiskontroll analüüsib morfoloogia uuesti ja võttis umbes 10 minutit.
+- Vana viisiga kestis täisehitus v26-s 5998 dokumendiga umbes 33 minutit ja aktiveerimisele eelnev täiskontroll (morfoloogia uuesti) veel umbes 10 minutit; v29 kokku 43,5 minutit. Uue viisiga tehakse täiskontroll iga versiooni valmimisel ilma morfoloogia teise analüüsita ja aktiveerimisel kontrollitakse nimekirja, valmimismärke ja arve.
 - **Aktiveerimine** toimub ainult siis, kui kõik dokumendid on töödeldud ja kontrollitud. Väljundis peab olema `"state": "ready"`.
   - Pooleli jäänud töö jätkub sama `run` käsuga ([ADR-012](adr-012-resumable-indexing.md)). `--max-batches` ülempiir on 10 000.
   - Seisu näitab `--mode status` samade võtmetega. v26-s oli tulemus `search_generation_10b4ff…`: 29 591 lõiku, neist 29 183 vahemälust.
@@ -215,6 +219,7 @@ Vastus on `current`, `stale` või `invalid`. Deploy teeb sama kontrolli ja kirju
 ## Seotud
 
 - [ADR-012](adr-012-resumable-indexing.md): jätkatav indekseerimine.
+- [ADR-036](adr-036-version-index.md): muudatusepõhine indekseerimine (indeksiread kuuluvad dokumendiversioonile).
 - [ADR-030](adr-030-chat-retrieval-at-corpus-scale.md): vestlus kogu korpusel.
 - [ADR-031](adr-031-source-level-and-answer-completeness.md): allika tase ja vastuse täielikkus.
 - Vastuvõtutest: [`docs/audits/rag-v2-chat-acceptance-2026-09-27.md`](../audits/rag-v2-chat-acceptance-2026-09-27.md).
