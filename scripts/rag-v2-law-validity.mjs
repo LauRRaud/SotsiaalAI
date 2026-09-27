@@ -20,7 +20,8 @@ const PAGE = 500, MAX_PAGES = 30, ROUNDS = 8, PAUSE_MS = Number(process.env.RAG_
 const pause = () => new Promise(resolve => setTimeout(resolve, PAUSE_MS));
 const tag = (xml, name) => (xml.match(new RegExp(`<${name}[^>]*>([^<]*)</${name}>`)) || [])[1]?.trim() ?? null;
 
-/** GET with three attempts for network errors, timeouts and 5xx; a 404 is an answer, not a failure. */
+/** GET with three attempts for network errors, timeouts and 5xx. A 404 returns null: the caller decides, and for an act
+ *  or a search that Riigi Teataja itself listed, it is a failed request (`not_found`). */
 async function get(url, errors, { json = false } = {}) {
   let last;
   for (let attempt = 1; attempt <= 3; attempt++) {
@@ -61,10 +62,16 @@ async function search(query, errors) {
   let total = Infinity;
   for (let round = 1; round <= ROUNDS && acts.size < total; round++) {
     for (let page = 1; (page - 1) * PAGE < total && page <= MAX_PAGES; page++) {
-      const result = await get(`${BASE}/api/oigusakt_otsing/1/otsi?${params}&leht=${page}&limiit=${PAGE}`, errors, { json: true });
+      const url = `${BASE}/api/oigusakt_otsing/1/otsi?${params}&leht=${page}&limiit=${PAGE}`, result = await get(url, errors, { json: true });
       if (result === undefined) return undefined;
-      total = result?.metaandmed?.kokku ?? 0;
-      for (const act of result?.aktid || []) acts.set(String(act.globaalID), act);
+      // Only an answer with a total and a list of acts (empty when nothing matches) is a result; anything else, a 404
+      // included, is a failure and never an empty result.
+      if (!Number.isInteger(result?.metaandmed?.kokku) || !Array.isArray(result?.aktid)) {
+        errors.push({ url: url.replace(BASE, ''), error: result === null ? 'not_found' : 'invalid_response' });
+        return undefined;
+      }
+      total = result.metaandmed.kokku;
+      for (const act of result.aktid) acts.set(String(act.globaalID), act);
     }
   }
   const found = { query: params, acts: [...acts.values()], total, complete: acts.size >= total };
@@ -112,12 +119,19 @@ async function checkGroup(group, acts, { today, horizon, indexed }) {
     ? { members: acts.filter(a => current[a.globaal_id]).map(a => ({ globaal_id: a.globaal_id, from: current[a.globaal_id].from, to: current[a.globaal_id].to })), searched: true }
     : await groupVersions(group, acts, errors) ?? { members: [], searched: false };
   const members = new Map(found.members.map(v => [v.globaal_id, v]));
-  // Published versions the corpus lacks: a text to add, or the repeal stub that ends the group.
-  for (const v of members.values()) {
-    if (indexed.has(v.globaal_id) || (v.to ?? '9999-12-31') < today || v.from > horizon) continue;
-    const text = await currentText(v.globaal_id, errors);
-    if (text?.repealed) Object.assign(v, { repealed: true, repealed_by: text.repealed_by, repealed_by_in_corpus: indexed.has(text.repealed_by) });
-  }
+  // Published versions the corpus lacks: a text to add, or the repeal stub that ends the group. Each is read once; a
+  // version found again by a later search keeps what its XML showed.
+  const classified = new Set();
+  const classify = async () => {
+    for (const v of members.values()) {
+      if (classified.has(v.globaal_id) || indexed.has(v.globaal_id) || (v.to ?? '9999-12-31') < today || v.from > horizon) continue;
+      classified.add(v.globaal_id);
+      const text = await currentText(v.globaal_id, errors);
+      if (text === null) errors.push({ url: `/et/akt/${v.globaal_id}.xml`, error: 'not_found' });
+      if (text?.repealed) Object.assign(v, { repealed: true, repealed_by: text.repealed_by, repealed_by_in_corpus: indexed.has(text.repealed_by) });
+    }
+  };
+  await classify();
   const replacements = [];
   const endsOn = () => coverage([...members.values()].filter(v => !v.repealed).map(v => ({ id: v.globaal_id, from: v.from, to: v.to })), { from: today, to: horizon }).ends_on;
   const replacedByStub = [...members.values()].some(v => v.repealed && v.repealed_by_in_corpus);
@@ -130,16 +144,19 @@ async function checkGroup(group, acts, { today, horizon, indexed }) {
       if (result && !result.complete) errors.push({ url: `/api/oigusakt_otsing?${result.query}`, error: 'incomplete_results' });
       for (const act of result?.acts || []) {
         if (!published(act)) continue;
-        if (String(act.terviktekstID) === group) members.set(String(act.globaalID), version(act));
-        else pool.set(String(act.globaalID), version(act));
+        if (String(act.terviktekstID) !== group) pool.set(String(act.globaalID), version(act));
+        else if (!members.has(String(act.globaalID))) members.set(String(act.globaalID), version(act));
       }
     }
+    await classify();
     const ends = endsOn();
     for (const candidate of ends ? pool.values() : []) {
       if (!candidate.from || candidate.from < addDays(ends, -3) || candidate.from > addDays(ends, 10)) continue;
+      // A candidate stays a candidate even when the corpus has it: starting near the end proves no replacement.
       const inCorpus = indexed.has(candidate.globaal_id);
-      const text = inCorpus ? null : await currentText(candidate.globaal_id, errors);
-      replacements.push({ ...candidate, in_corpus: inCorpus, paragraphs: inCorpus ? undefined : text?.paragraphs ?? null });
+      const text = inCorpus ? undefined : await currentText(candidate.globaal_id, errors);
+      if (text === null) errors.push({ url: `/et/akt/${candidate.globaal_id}.xml`, error: 'not_found' });
+      replacements.push({ ...candidate, in_corpus: inCorpus, ...(inCorpus ? {} : { paragraphs: text?.paragraphs ?? null }), ...(text?.repealed ? { repeal_stub: true } : {}) });
     }
   }
   const versions = [...members.values()].sort((a, b) => a.from.localeCompare(b.from));
@@ -214,6 +231,15 @@ try {
       const result = await checkGroup(group, acts, { today, horizon, indexed });
       groups.push({ ...result, status: groupStatus(result) });
     }
+    if (values.download) {
+      await fs.mkdir(values.download, { recursive: true });
+      for (const group of groups) for (const finding of group.findings.filter(f => f.kind === 'missing_version')) {
+        const xml = await get(`${BASE}/et/akt/${finding.globaal_id}.xml`, group.errors);
+        if (xml === null) group.errors.push({ url: `/et/akt/${finding.globaal_id}.xml`, error: 'not_found' });
+        if (xml) await fs.writeFile(path.join(values.download, `${finding.globaal_id}.xml`), xml);
+      }
+      for (const group of groups) group.status = groupStatus(group);
+    }
     const summary = {};
     for (const group of groups) summary[group.status] = (summary[group.status] || 0) + 1;
     const report = { schema_version: 'rag-v2/law-validity-report-1', today, horizon, acts: manifest.acts.length,
@@ -221,13 +247,6 @@ try {
     await fs.mkdir(values.out, { recursive: true });
     await fs.writeFile(path.join(values.out, `law-validity-${today}.json`), `${JSON.stringify(report, null, 2)}\n`);
     await fs.writeFile(path.join(values.out, `law-validity-${today}.md`), `${markdown(report)}\n`);
-    if (values.download) {
-      await fs.mkdir(values.download, { recursive: true });
-      for (const group of groups) for (const finding of group.findings.filter(f => f.kind === 'missing_version')) {
-        const xml = await get(`${BASE}/et/akt/${finding.globaal_id}.xml`, group.errors);
-        if (xml) await fs.writeFile(path.join(values.download, `${finding.globaal_id}.xml`), xml);
-      }
-    }
     const code = exitCode(groups);
     console.log(JSON.stringify({ today, groups: groups.length, summary, exit: code }));
     process.exitCode = code;
