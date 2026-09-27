@@ -126,5 +126,11 @@ Serveris 26 hiljutist piloodivestlust aktiivse plaani `m4-corpus-chat-20260927k`
 
 ## Staatus
 
-- Harul `claude/rag-v2-national-law-reserve`, PR järgmisena. Muudatus puudutab `lib/rag-v2`-te ja `messages/*.json`-i, seega pärast deploy'd tuleb vestlusplaan uuesti ehitada ([runbook](runbook-corpus-increment.md)).
+- **Serveris:** PR #199 (`68b4c378`) liideti ja paigaldati 27.09.2026 kell 12:31 EEST (build ~40 s, selle aja teenus seisis). Vestlusplaan ehitati uuesti: `/etc/sotsiaalai/m4-corpus-chat-20260927l.json`, id `m4-sotsiaalai-corpus-chat-20260927-0932`, `implementationHash` `580525ad496d`; `rag-v2-plan-freshness.mjs` ütleb `current`.
+- **Elav kontroll 27.09.2026 (plaan l), vana vestlus `conv-22f39324…` (pea plaanist k):**
+  - Kliendi vaikevalik oli „Uus teema“ ja olekurida näitas `contextRestarted` teadet.
+  - Valik muudeti käsitsi „Jätkan sama teemat“ peale (nagu vana klient saadaks) ja saadeti B9. Viga ei tulnud: pööre `84a797ad` `contextMode` `same`, `selection` `new_scope`, `headFromEarlierPlan: true`.
+  - Valija luges 36 kandidaati ja jättis 4, neist üks reservist (P36). Vastuse allikad: S1 Sotsiaalseadustiku üldosa seadus, S2 Haldusmenetluse seadus, S3 artikkel „Vana inimene igatseb koju tagasi“. Vastus andis riikliku vaidetee: vaie otsuse teinud haldusorganile, üldjuhul 30 päeva jooksul teadasaamisest, sotsiaalkaitse vaie lahendatakse 30 päevaga; oma häälega, sina-vormis, täpsustusküsimusega otsuse kuupäeva kohta.
+  - Pööre kestis 42,7 s, otsing 33,3 s: esimene pööre pärast restarti (allikate külm soojendus, sama mis 27.09 hommikul). Valik 2,6 s (10 769 sisendtokenit), vastus 9,0 s.
+  - Serveri kontroll `stale-head-check.mjs` plaani l all: 26 vestlusest 13 pea on eelmisest plaanist ja 13-l pead pole; kõik alustavad „sama“ valikuga uue teema.
 - Plaani ümberehitus paneb kõik olemasolevad vestlused „eelmise plaani pea“ seisu; selle ADR-i jaotis 2 lahendab just selle.
