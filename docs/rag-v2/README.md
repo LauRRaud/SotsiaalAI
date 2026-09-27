@@ -21,6 +21,10 @@ Seis on kirja pandud 27.09.2026 ~14:40 EEST. Hilisemad muudatused on ADR-ides ja
 1. **Päringuplaan.** Otsinguabi (`lib/rag-v2/pilot/search-assist.js`) laseb vastusemudelil kirjutada kuni 3 lühikest eestikeelset otsingupäringut ja määrata sõnumi keele. Vastus tuleb selles keeles.
 2. **Ühine otsing** `rag-v2/unified-retrieval-1` (`lib/rag-v2/search/unified.js`), konteksti lagi 32 000 tokenit:
    - teadmusrada: profiil `hybrid-estnltk-chat-v1` (`lib/rag-v2/search/profiles.js`), EstNLTK sõnaline kanal ja vektor RRF-iga, vektori kaal 2, 9 seemet, 10 000 tokenit;
+   - teadmusraja ulatus ([Codexi kontroll 27.09](../audits/rag-v2-codex-review-2026-09-27.md)):
+     - õigusakt jääb ainult redaktsioonis, mis kehtib Eesti tänasel kuupäeval või kasutaja küsitud perioodil (`lib/rag-v2/search/legal-validity.js`; puuduv kuupäev ≠ kehtiv);
+     - omavalitsuse enda tekst jääb ainult vestluses nimetatud omavalitsuse kohta; kirillitsas nimi loetakse otsinguabi päringutest;
+     - välja jäänu on `evidence.retrieval.scope` all;
    - omavalitsuse kataloog `rag-v2/record-catalogue-2`, 12 000 tokenit; küsimusele lähimad 3 kirjet on täies mahus (`relevant_detail`);
    - kuni 2 perioodirada ajakirjaartiklitele avaldamisaja järgi.
 3. **Valik (rerank).** Mudel loeb 30 parimat liidetud kandidaati (`RERANK_POOL`) ja jätab alles kuni 9 lõiku. Plaan ja valik kasutavad `reasoning: low`. Provideri viga jätab liidetud järjestuse ja märgib põhjuse.
@@ -106,6 +110,7 @@ sudo -n chown root:ubuntu <out>; sudo -n systemctl restart sotsiaalai-frontend
 - Tehtud 27.09 ([ADR-032](adr-032-national-law-reserve-and-plan-restart.md)): HMS jõuab vaidlustamise küsimusel valijani riikliku õiguse reservi kaudu (B9 sai HMS-i kahel jooksul kolmest); vana vestluse „Jätkan sama teemat“ ei anna pärast plaani uuendust enam `context_unavailable` viga.
 - Vestluse kiirus: esimese pöörde külm allikakontroll (27.09 B9 ~45 s) on [ADR-033](adr-033-warm-up-at-server-start.md)-ga serveri käivitusel. Vastuse mudel (~10 s, `medium`) jääb põrandaks; vastuse voogedastus on tegemata.
 - Tehtud 27.09: XML-i toores `<sup>` ja muutmismärked ([ADR-034](adr-034-riigi-teataja-xml-cleanup.md), korpus v27); B7 vastuse lõpus korduvad viited (PR #203).
+- **Sotsiaalhoolekande seadus 27.–30.09:** korpuses on ainult 01.10–30.11 redaktsioon. Kehtivusreegli järel on SHS kuni 30.09 tõendist väljas ja vastus ütleb seda. Lisamise plaan ja kulu (≤ 0,002 USD) on [Codexi kontrolli aruandes](../audits/rag-v2-codex-review-2026-09-27.md#1-õigusaktide-kehtivus). Järgmine redaktsioon tuleb lisada enne 30.11; HMS ja Riigilõivuseadus kehtivad kuni 31.12.2026.
 - Tallinna hooldajatoetuse kirje ja korra vastuolu (aruanne 3.3), E3.2 „tädi vajab sama“ (isikute eraldatus, omaniku otsus).
 - Kirjete töötlus v26 (kontakti-ID-d indeksitekstist välja) ja kasutajapõhine hõivatuse värav enne mitme kasutaja kasutust.
 - Dialoogistsenaariumide integratsioonitest vajab v25 kirjeüksuste vektoreid.
@@ -154,6 +159,7 @@ sudo -n chown root:ubuntu <out>; sudo -n systemctl restart sotsiaalai-frontend
 
 - [runbook-corpus-increment.md](runbook-corpus-increment.md): korpuse täiendamine allikast vestlusplaanini, koos käskude ja lõksudega.
 - [Vestluse vastuvõtutest 27.09.2026](../audits/rag-v2-chat-acceptance-2026-09-27.md): 71 küsimust kasutajaliideses. ADR-031 järgib selle parandusi 2, 4 ja 6.
+- [Codexi kontrolli leiud 27.09.2026](../audits/rag-v2-codex-review-2026-09-27.md): õigusaktide kehtivus, omavalitsuse ulatus ja v26/v27 fikseeritud sisendiga võrdlus (`scripts/rag-v2-generation-compare.mjs`).
 - [repository-audit.md](repository-audit.md): M0 repositooriumi kaart (05.09.2026).
 - [dialogue-scenarios-2026-09-24.md](dialogue-scenarios-2026-09-24.md): vestluskäigu stsenaariumid (24.09.2026).
 - `journal-*`, `ingest-runtime-snapshot-2026-09-07.json`, `m1-source-acceptance-2026-09-08.json`, `release-integration-2026-09-08.json`, `server-corpus-comparison-2026-09-07.json`: 07.–08.09.2026 mõõtmis- ja võrdlusfailid.
