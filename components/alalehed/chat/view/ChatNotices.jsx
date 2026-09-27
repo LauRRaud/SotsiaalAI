@@ -32,6 +32,15 @@ function roomOriginText(t, origin) {
   return textByType[type] || label || textByType.UNKNOWN;
 }
 
+// Kriisiriba numbrid (112, 116 111, 116 006 …) on helistatavad lingid: klaviatuuri ja telefoniga
+// ühe liigutusega kätte (vastuvõtutest 27.09.2026). Tekst on rakenduse enda tõlge, mitte mudeli oma.
+const CRISIS_PHONE = /\b(112|11\d \d{3})\b/gu;
+export function crisisTextWithLinks(text) {
+  return String(text || "").split(CRISIS_PHONE).map((part, index) => index % 2
+    ? <a key={index} href={`tel:${part.replace(/\s/gu, "")}`}>{part}</a>
+    : part);
+}
+
 function shouldShowRoomOriginPrivacy(origin) {
   return ["PRE_INQUIRY", "SERVICE_PROVIDER_INQUIRY", "JOURNEY"].includes(String(origin?.type || "").trim().toUpperCase());
 }
@@ -60,8 +69,8 @@ export function ChatTopNotices({
       <span>{roomOriginText(t, roomOrigin)}</span>
       <span> {readText(t, "rooms.origin.privacyNote", "Ruumi liikmed näevad ainult ruumis jagatud infot ja kasutaja kinnitatud eelinfot. Privaatset Teekonda ega assistendivestlust ei jagata automaatselt.")}</span>
     </div> : null}
-    {isCrisis ? <div role="alert">
-      {crisisText}
+    {isCrisis ? <div role="alert" className="chat-crisis-notice">
+      {crisisTextWithLinks(crisisText)}
     </div> : null}
     {errorBanner ? <div role="alert">
       {errorBanner}

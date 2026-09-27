@@ -62,6 +62,7 @@
     "waiting": "Vastus ilmub pärast allikaviidete kontrolli ja salvestamist.",
     "source": "Allikakoht",
     "closeSource": "Sulge allikas",
+    "original": "Algallikas",
     "version": "Dokumendiversioon",
     "sourceHint": "Viite avamisel kontrollitakse ligipääsu uuesti. Siin avaneb täpne algtekst koos allikakohaga.",
     "error": "Päring ebaõnnestus ({code}). Sama kavatsuse kordamine ei tee uut mudelikatset.",

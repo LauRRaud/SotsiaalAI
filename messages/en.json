@@ -62,6 +62,7 @@
     "waiting": "The answer appears after reference checks and persistence.",
     "source": "Source passage",
     "closeSource": "Close source",
+    "original": "Original source",
     "version": "Document version",
     "sourceHint": "Access is checked again when opening a reference. The exact source passage and its location appear here.",
     "error": "Request failed ({code}). Repeating the same intent does not make another model attempt.",
