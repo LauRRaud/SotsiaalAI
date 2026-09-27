@@ -23,8 +23,9 @@ const GUARDRAILS = [
 test('prompt v10 keeps every v9 guardrail in each answer language, and v9 plans stay readable only', () => {
   assert.equal(PROMPT_VERSION, 'm4-grounded-answer-10');
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-9'));
-  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-7');
+  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-8');
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-6'));
+  assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-7'));
   for (const language of ['et', 'en', 'ru']) {
     const prompt = answerInstructions(language);
     for (const guardrail of GUARDRAILS) assert.ok(prompt.includes(guardrail), `${language}: missing "${guardrail}"`);
