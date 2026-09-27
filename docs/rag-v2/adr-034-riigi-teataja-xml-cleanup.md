@@ -59,7 +59,12 @@ Hinnastaadium `eval-reserve`, riikliku õiguse reserv sees ([ADR-032](adr-032-na
 - Järjekindel erinevus on ainult `laws-03` (Lastekaitseseadus § 27 ja § 28, 2/2 → 0/2). Nende tükkide tekst ja embedding-sisend on v26-s ja v27-s samad; muutus ainult järjekorranumber, sest eespool olevad kehtetud tükid kadusid. Valija valis sama hulga seest teisiti.
 - Kõik 21 muudetud aktide ankrut on uutes tükkides sõna-sõnalt alles.
 - Muud erinevused on ühe jooksu kõikumised (`journal-*`).
-- Järeldus: ankrumõõdikus paranemist pole; kahe jooksu keskmine on 3 võrra madalam, mis jääb müra piiresse. Puhastuse väärtus on teksti kvaliteet: mudeli kontekstis pole numbrimüra ega `<sup>`-i ning paragrahvid on tsiteeritaval kujul.
+- Järeldus (parandatud 27.09 Codexi kontrolli järel): otsast lõpuni jooksudes on v27 kahe jooksu keskmine 3 ankrut madalam. Nende jooksude põhjal jäi põhjus eristamata, sest jooksuti muutusid ka mudeli otsingupäringud ja valik. Väide „müra piires“ polnud tõendatud.
+- Fikseeritud sisendiga võrdlus ([Codexi kontrolli aruanne](../audits/rag-v2-codex-review-2026-09-27.md#3-v26-ja-v27-kvaliteedivõrdlus), `scripts/rag-v2-generation-compare.mjs`) kasutas sama koodi, samu plaani päringuid ja salvestatud küsimuse vektoreid, mudeli- ja embedding-kutseid 0.
+  - Tulemus: valija hulga ankrukatvus 32/48 mõlemas põlvkonnas mõlema plaaniga; sulandatud top-9 28 vs 28 ja 26 vs 28.
+  - `laws-03` on mõlemas põlvkonnas identne.
+  - Korpuse mõju ei ilmnenud. Plaani päringute vektorkanal jäi kontrollimata, sest neid vektoreid polnud salvestatud.
+- Puhastuse väärtus on teksti kvaliteet: mudeli kontekstis pole numbrimüra ega `<sup>`-i ning paragrahvid on tsiteeritaval kujul.
 
 **Elav kontroll** (plaan `o`, 27.09 14:23 EEST, pööre `0f581b28`): B9 vastas 14,1 s-ga (otsing 4,0 s), allikad Sotsiaalseadustiku üldosa seadus, Haldusmenetluse seadus ja artikkel. Vaie haldusorganile, 30-päevane lahendamise tähtaeg, halduskohus. Vaide esitamise tähtaega valitud lõikudes polnud ja vastus ütles seda.
 

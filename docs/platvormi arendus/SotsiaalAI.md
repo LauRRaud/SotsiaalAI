@@ -92,6 +92,29 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**27.09 RAG v2 vestlus korpusel v27; Codexi kontrolli parandused — [aruanne](../audits/rag-v2-codex-review-2026-09-27.md), [RAG v2 seis](../rag-v2/README.md#praegune-seis-27092026).**
+
+sotsiaal.ai/vestlus vastab korpusest v27: 5998 dokumenti, indeks `search_generation_23e445…`, plaan `m4-corpus-chat-20260927o`.
+
+27.09 lisandus:
+- riiklike seaduste reserv valikus ([ADR-032](../rag-v2/adr-032-national-law-reserve-and-plan-restart.md)) ja vana vestluse jätk pärast plaani uuendust;
+- allikate soojendus serveri käivitusel ([ADR-033](../rag-v2/adr-033-warm-up-at-server-start.md)): esimene pööre 42,7 s → 14–23 s;
+- Riigi Teataja XML-i puhastus ja korpus v27 ([ADR-034](../rag-v2/adr-034-riigi-teataja-xml-cleanup.md)), vektorid 0,075 USD;
+- B7: plokk, mis lõpeb oma viidete kordusega, avaldatakse.
+
+Codexi kontrolli parandused (kood ja kohalikud testid, tasulisi kutseid 0):
+- **Kehtivus:** õigusakt jääb tõendiks ainult redaktsioonis, mis kehtib Eesti tänasel kuupäeval või küsitud perioodil. Puuduv kuupäev ei tähenda kehtivat ja puudujääk nimetatakse.
+  - Mõju: SHS (korpuses 01.10–30.11 redaktsioon) on kuni 30.09 tõendist väljas.
+  - Täna kehtiva redaktsiooni lisamine maksaks ≤ 0,002 USD.
+- **Omavalitsus:** teadmusrajal on omavalitsuse enda tekst ainult nimetatud omavalitsuse kohta (Narva ≠ Narva-Jõesuu, Tartu linn/vald).
+- **v26/v27:** fikseeritud sisendiga võrdluses korpuse mõju ankrukatvusele ei ilmnenud (32/48 mõlemal). ADR-034 järeldus on parandatud.
+
+Lahtine:
+- SHS järgmine redaktsioon enne 30.11;
+- Tallinna hooldajatoetuse kirje vastuolu ja E3.2;
+- vastuse voogedastus;
+- BM25 ([ADR-029](../rag-v2/adr-029-lexical-ranking-at-corpus-scale.md)).
+
 **26.09 Koguvalik v25 on kohalikus RAG v2 store'is; ost ootab järelkontrolli — [audit](../audits/rag-v2-claude-ingest-audit-2026-09-25.md), [ostueelne ülevaade §11–12](../audits/rag-v2-claude-prepurchase-review-2026-09-25.md#12-codexi-v22-järelkontroll-ja-v25-2609-õhtu).**
 Pärast Claude'i ja Codexi auditeid ja parandusi (`source-structure-v25`) on avaldatud 5999 allikat
 (ajakiri 892, juhendid 174, õigusaktid 59, KOV 4874). v14–v15 parandasid Codexi leiud: viiteloendi järel
