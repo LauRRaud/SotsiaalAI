@@ -1,8 +1,161 @@
-# Kohaliku RAG v2 sissevõtu kasutamine
+# RAG v2
+
+SotsiaalAI allikapõhise otsingu ja vestluse dokumentatsioon. Esimene osa kirjeldab 27.09.2026 seisu ja töövoogu. Teine osa loetleb otsused ja aruanded. Kolmas osa on septembri alguse kohaliku sissevõtu ja M2 kasutusjuhend; see kehtib ajaloolise ja kohaliku arenduse osana.
+
+## Praegune seis (27.09.2026)
+
+Seis on kirja pandud 27.09.2026 ~12:30 EEST. Hilisemad muudatused on ADR-ides ja [runbookis](runbook-corpus-increment.md).
+
+### Mis RAG v2 praegu on
+
+- **Korpus.** Tenant `sotsiaalai-corpus`, korpus v26: 5998 dokumenti, 29 591 otsinguühikut. Indeksipõlvkond `search_generation_10b4ff…` on aktiivne alates 27.09.2026 kell 09:41 EEST.
+  - v26 = v25b (5996 dokumenti: 1122 teadmusdokumenti ja 4874 omavalitsuse kirjet) + kaks riiklikku seadust.
+  - Sotsiaalhoolekande seadus (SHS), RT 130062026065, kehtib 01.10.2026–30.11.2026. Uus redaktsioon tuleb korpusesse tuua enne 30.11.2026.
+  - Haldusmenetluse seadus (HMS), RT 106072023031, kehtib 01.01.2024–31.12.2026.
+- **Vestlus.** sotsiaal.ai/vestlus vastab sellest korpusest kinnitatud vestlusplaani järgi. Plaan on JSON-fail `/etc/sotsiaalai/` all. Selle koostab ja lülitab sisse `scripts/rag-v2-chat-plan.mjs`. Plaan seob tenant'i, indeksipõlvkonna, otsinguprofiili, juhiste ja otsinguabi versioonid, mudeli, rahalise lae ning koodi räsi (`implementationHash`). 27.09.2026 kell 11:10 oli aktiivne `/etc/sotsiaalai/m4-corpus-chat-20260927j.json` (`main` `164fc720`, PR #196).
+- **Vastuvõtutest.** [27.09.2026 aruanne](../audits/rag-v2-chat-acceptance-2026-09-27.md): 71 küsimust; 50 õiget, 11 osaliselt õiget, 7 põhjendatud vastamata jätmist, 3 tehnilist probleemi, valeks hinnatud vastuseid 0. Parandused on [ADR-031](adr-031-source-level-and-answer-completeness.md)-s.
+
+### Üks vestluspööre
+
+1. **Päringuplaan.** Otsinguabi (`lib/rag-v2/pilot/search-assist.js`) laseb vastusemudelil kirjutada kuni 3 lühikest eestikeelset otsingupäringut ja määrata sõnumi keele. Vastus tuleb selles keeles.
+2. **Ühine otsing** `rag-v2/unified-retrieval-1` (`lib/rag-v2/search/unified.js`), konteksti lagi 32 000 tokenit:
+   - teadmusrada: profiil `hybrid-estnltk-chat-v1` (`lib/rag-v2/search/profiles.js`), EstNLTK sõnaline kanal ja vektor RRF-iga, vektori kaal 2, 9 seemet, 10 000 tokenit;
+   - omavalitsuse kataloog `rag-v2/record-catalogue-2`, 12 000 tokenit; küsimusele lähimad 3 kirjet on täies mahus (`relevant_detail`);
+   - kuni 2 perioodirada ajakirjaartiklitele avaldamisaja järgi.
+3. **Valik (rerank).** Mudel loeb 30 parimat liidetud kandidaati (`RERANK_POOL`) ja jätab alles kuni 9 lõiku. Plaan ja valik kasutavad `reasoning: low`. Provideri viga jätab liidetud järjestuse ja märgib põhjuse.
+4. **Vastus.** Mudel `gpt-6-luna`, arutlustase `medium`. See on skripti vaikeväärtus ja omaniku otsus 27.09.2026: `low` oli 2,5× kiirem, kuid vastused olid nõrgemad. Juhised on põhijuhis ([ADR-028](adr-028-production-answer-prompt.md)) ja vestlusjuhis; PR #196 järel `m4-grounded-answer-10` ja `m4-grounded-dialogue-9`, PR #197 järel `m4-grounded-answer-11` ja `m4-grounded-dialogue-10` (Luna vastab oma häälega, allikatest ei jutustata; [ADR-031](adr-031-source-level-and-answer-completeness.md)). Server kontrollib viited kanooniliselt enne avaldamist. Allikate paneel näitab ainult viidatud allikaid.
+
+Versioonid 27.09.2026:
+
+- PR #195 (`40ddeed4`): ajaloo laadimine ~6× kiirem, vestluse piiri teade.
+- PR #196 (`164fc720`, serveris 27.09): `m4-grounded-dialogue-9`, kriisiriba ja allikavaate link algallikale; otsinguabi jääb `rag-v2/search-assist-2`.
+- PR #197 (`claude/rag-v2-answer-voice`, avatud 27.09): vastuse oma hääl, `m4-grounded-answer-11` ja `m4-grounded-dialogue-10`.
+- `rag-v2/search-assist-3` on katse harus `claude/rag-v2-answer-quality` ja tootmisse ei lähe. 52 küsimuse komplektis v26 peal (48 vastatavat) oli search-assist-2 tulemus: kõik ankrud 34, vähemalt üks ankur 44, õige dokument 45. search-assist-3 tulemus: 32, 43 ja 46. -3 kaotas ankruid ajakirjaküsimustel. Failid: `tmp/rag-v2-dev-2026-09-27/assist-main-v26.json` ja `assist-quality-v26.json`.
+
+### Andmevoog
+
+```text
+Andmebaasi/ + Andmebaasi/REGISTER.json
+  -> sissevõtupartiid (scripts/rag-v2-ingest-batch.mjs)
+  -> kohalik korpusehoidla (tmp/rag-v2-corpus-store-v25)
+  -> hoidla koopia serverisse
+  -> embedding'ute ost serveris (scripts/rag-v2-corpus-embeddings.mjs)
+  -> indeksipõlvkond PostgreSQL-is ja Qdrantis (scripts/rag-v2-index-batch.mjs)
+  -> vestlusplaan (scripts/rag-v2-chat-plan.mjs)
+```
+
+1. **Allikad.** Algfailid on Gitis `Andmebaasi/` all. `Andmebaasi/REGISTER.json` kirjeldab iga faili: kategooria, roll, sha256 ja ülevaatuse seis. v26 seaduste XML-id ja registrikirjed on harus `claude/rag-v2-national-laws` (27.09 push'imata).
+2. **Sissevõtt kohalikult.** `scripts/rag-v2-ingest-batch.mjs`: valik, `--mode plan`, `run`, `review`, täidetud ülevaatus, `publish`. Avaldamine loob kohalikus hoidlas uue muutumatu põlvkonna. Partii järjekord vajab kohalikku PostgreSQL-i (`scripts/rag-v2-local.mjs up`). Mudelikutseid pole.
+   - Töötluskoodi muutus nõuab uusi töötlussilte (`scripts/rag-v2-processing-fingerprint.mjs`) ja uut sissevõttu. Vektorid on seotud sisendi räsiga, seega ostetakse ainult muutunud sisendid.
+3. **Koopia serverisse.** Hoidla (v26: 4,8 GB) kopeeritakse serveri töökausta `/home/ubuntu/rag-v2-work/rag-v2-v25`. Serveri koopia jääb alles, sest ilma selleta ei saa uuesti indekseerida. **Mitte rakenduse kausta** (`/home/ubuntu/apps/sotsiaalai/tmp/` jms): Next.js build loeb ka `tmp/`-i ja 27.09.2026 aegus deploy selle tõttu kaks korda.
+4. **Embedding'ute ost.** `scripts/rag-v2-corpus-embeddings.mjs --mode plan` koos `--reuse <varasem usage-kaust>` arvestab ainult uued sisendid. v26: 408 uut, 29 145 taaskasutatud, 0,024 USD.
+   - Ost (`--mode execute`) vajab omaniku loakirjet, sama `--reuse` väärtust ja uut `--output` kausta. Ilma `--reuse`-ta ei vasta plaan baseline'ile ja midagi ei osteta.
+5. **Indeks.** `scripts/rag-v2-index-batch.mjs --mode plan`, siis `--mode run` iga vajaliku `--vectors` kaustaga. v26 import võttis ~33 min ja kontroll ~10 min. Uus põlvkond saab aktiivseks alles pärast kontrolli.
+6. **Vestlusplaan.** Plaan on seotud põlvkonna ID-ga. Uue indeksi aktiveerimine peatab vestluse, kuni plaan on uuesti ehitatud.
+
+Täpsed käsud, lõksud ja kontrollid on [runbookis](runbook-corpus-increment.md).
+
+### Pärast deploy'd
+
+PR-id liidetakse ja paigaldatakse automaatselt pärast quality-gate'i. Käsitsi deploy'd ei tehta.
+
+Plaan kannab koodi räsi, mille arvutab `implementationManifest()` (`lib/rag-v2/pilot/provenance.js`). Räsi katab muu hulgas `lib/rag-v2/**`, `lib/chat/m4Pilot*.js`, vestluse kasutajaliidese failid, `app/chat-source/page.jsx` ja `messages/*.json`. Kui deploy muudab mõnda neist, ei anna vana plaan uusi vastuseid (`implementation_approval_mismatch`). `scripts/deploy-server.mjs` kontrollib seda `scripts/rag-v2-plan-freshness.mjs`-iga ja annab hoiatuse.
+
+Pärast sellist deploy'd ehita plaan serveris rakenduse juurkaustas uuesti:
+
+```sh
+sudo -n node --env-file=/etc/sotsiaalai/frontend.env --env-file=/etc/sotsiaalai/rag.env --import ./scripts/register-node-source-loader.mjs \
+  scripts/rag-v2-chat-plan.mjs --tenant sotsiaalai-corpus --profile hybrid-estnltk-chat-v1 --reasoning medium \
+  --template /etc/sotsiaalai/m4-luna6-20260923.json --out /etc/sotsiaalai/<uus-unikaalne-nimi>.json --budget-usd 4 --basis "..." --activate
+sudo -n chown root:ubuntu <out>; sudo -n systemctl restart sotsiaalai-frontend
+```
+
+- `--out` peab olema uus fail `/etc/sotsiaalai/` all. Olemasolevat faili üle ei kirjutata.
+- `--activate` varundab `rag.env`-i ja seab `M4_PILOT_ENABLED`, `M4_PILOT_CONFIG` ja `RAG_V2_ESTNLTK_IDLE_MS=3600000`.
+- Plaani ID-s on minutitempel. Iga plaan saab oma kulupäeviku.
+- Vestluse ajalugu filtreeritakse plaani `configHash` järgi. Pärast ümberehitust vanemad pöörded peituvad, kuid ei kustu.
+- Pärast taaskäivitust soojendab server kirjeteta allikad mällu (PR #188 ajal 1122 allikat, ~5 min).
+
+### Kus mis asub
+
+| Mis | Kus |
+| --- | --- |
+| Sissevõtu tuum | `lib/rag-v2/` (`ingestion.js`, `parser.js`, `chunking.js`, `ingest-batch.js`, `ingest-publication.js`); KOV-adapterid `lib/rag-v2/adapters/` |
+| Otsing | `lib/rag-v2/search/` (`postgres.js`, `qdrant.js`, `estnltk.js`, `profiles.js`, `retrieval.js`, `unified.js`, `structured-record-source.js`) |
+| Vestluse tuum | `lib/rag-v2/pilot/` (`config.js`, `dialogue.js`, `search-assist.js`, `contracts.js`, `retrieval.js`, `provenance.js`) |
+| HTTP ja kasutajaliides | `lib/chat/m4PilotServer.js`, `lib/chat/m4PilotClientContract.js`, `lib/chat/m4PilotIntent.js`; `app/vestlus/page.js`, `app/chat-source/page.jsx`, `components/alalehed/chat/` |
+| CLI-d | `scripts/rag-v2-*.mjs` |
+| Testid | `tests/rag-v2-*.test.mjs`; integratsioonitestid vajavad kohalikku PostgreSQL-i ja Qdranti |
+| Otsused | see kaust, vt [dokumentide kaart](#dokumentide-kaart) |
+| Allikad | `Andmebaasi/` ja `Andmebaasi/REGISTER.json` (Gitis) |
+| Kohalik töö (`tmp/`, Gitis pole) | hoidla `tmp/rag-v2-corpus-store-v25` (vana pea varu `tmp/rag-v2-corpus-store-v25-backup-20260927`), partiid `tmp/rag-v2-corpus-batches-v26/`, indeksipoliitika `tmp/rag-v2-corpus-index-v26/policy.json` |
+| Serveri töökaust | `/home/ubuntu/rag-v2-work/rag-v2-v25` (enne 27.09 `/home/ubuntu/apps/sotsiaalai/tmp/rag-v2-v25`): `run-v26.sh`, hoidla koopia `tmp/rag-v2-corpus-store-v25`, ostud ja vektorid `tmp/rag-v2-corpus-embeddings/usage/` |
+| Serveri seadistus | `/etc/sotsiaalai/rag.env` (RAG v2 ühendused ja lülitid), `/etc/sotsiaalai/frontend.env`, vestlusplaanid `/etc/sotsiaalai/*.json`; SSH alias `sotsiaalai` |
+| Serveri abiskriptid | rakenduse juurkaustast: `tmp/turn-status.mjs`, `tmp/chat-spend.mjs`, `tmp/restore-time.mjs`; hindamisetapid (sümlingid rakendusele, oma `lib`) `/home/ubuntu/rag-v2-work/eval-*`, tulemused `/home/ubuntu/rag-v2-work/eval-files/` |
+| Arendustööriistad | `tmp/rag-v2-dev-2026-09-27/`: `law-check.mjs` (valitud allikad küsimuse kohta), `replay.mjs` (vastuse kordus salvestatud pööretel), `assist-eval-v26.mjs` (52 küsimust), `run-v26.sh`, `make-approval-v26.mjs`, `job.mjs`, `sizes.mjs`; seis `FACTS.md` ja `HANDOFF.md` |
+
+### Lahtised tööd (27.09.2026)
+
+- BM25 sõnaline järjestus ([ADR-029](adr-029-lexical-ranking-at-corpus-scale.md)) on ettepanek, tegemata.
+- HMS ei jõua vaidlustamise küsimusel tõendisse. Hüpotees: 54 omavalitsuse korra sarnased vaidelõigud täidavad 30 kandidaadi hulga. Võimalik üldine lahendus on väike riikliku õiguse rada oma kvoodiga; tegemata.
+- XML-i toores `<sup>` ja muutmismärked (aruande parandus 5). See muudab töötlust, seega kontrolli enne uute embedding-sisendite ulatust.
+- Tallinna hooldajatoetuse kirje ja korra vastuolu (aruanne 3.3), E3.2 „tädi vajab sama“ (isikute eraldatus, omaniku otsus), B7 reasisesed viited.
+- Kirjete töötlus v26 (kontakti-ID-d indeksitekstist välja) ja kasutajapõhine hõivatuse värav enne mitme kasutaja kasutust.
+- Dialoogistsenaariumide integratsioonitest vajab v25 kirjeüksuste vektoreid.
+- SHS uus redaktsioon enne 30.11.2026.
+
+## Dokumentide kaart
+
+### Otsused (ADR)
+
+- [ADR-001](adr-001-local-ingestion.md) (05.09.2026, M1): eraldatav Node ESM tuum `lib/rag-v2`, PDF.js lapsprotsessis ja privaatne failihoidla. Andmemudel (`SourceAsset`, `DocumentVersion`, `SourceSpan`, `Chunk`) säilitab päritolu ja täpsed allikakohad.
+- [ADR-002](adr-002-local-hybrid-search.md) (05.09.2026, M2.1): kohalik hübriidotsing eraldi PostgreSQL-i ja Qdranti compose-projektis, Prisma migratsioonid eraldi andmebaasile, muutumatud põlvkonnad, 8191-tokenine sisendipiir ja testvektorid.
+- [ADR-003](adr-003-approved-embedding-pilot.md) (05.09.2026, M2.2): kompaktne mudelikontekst (`modelProjection()`, `reference_map`) ja omaniku loaga piiratud pärisembedding'u piloot: manifest, loakirje ja kulupäevik.
+- [ADR-004](adr-004-multi-source-evaluation.md) (05.09.2026, M2): mitme allika kvaliteedikatse väikesel päriskorpusel. Ankrud on ainult hindajas, küsimused jagunevad arendus- ja kontrollosaks, vektoreid taaskasutatakse ainult kontrollitud ledger'ist.
+- [ADR-005](adr-005-ranked-first-profiles.md) (05.09.2026, M2.3): versioonitud kontekstiprofiilid, kus põhileiud on eelisjärjekorras (`lib/rag-v2/search/profiles.js`). Naabrid saavad ainult vaba mahtu.
+- [ADR-006](adr-006-private-http-pilot.md) (06.09.2026, M4): piiratud HTTP-sisepiloot. Serveri plaan (`M4_PILOT_ENABLED`, `M4_PILOT_CONFIG`), nimelised kasutajad, `M4PilotTurn` ja `M4PilotLedger`, Luna Responses API adapter ja kanooniline viitekontroll.
+- [ADR-007](adr-007-source-dependencies.md) (07.09.2026, M3): valikulisest `metadata.knowledge` sisendist tehakse allikasse ankurdatud väited ja sõltuvused. Sõltuvusprofiil toob sihtväite teksti kaasa. Seis on `source_anchored_unreviewed`.
+- [ADR-008](adr-008-source-knowledge-preparation.md) (07.09.2026, M3): haldaja koostab mudeliga väidete ja seoste mustandi. Valik salvestub uue muutumatu dokumendiversioonina.
+- [ADR-009](adr-009-corpus-rebuild.md) (07.09.2026): kogu `Andmebaasi/` uus ingest. Algfailid jäävad, uus tuletatud andmekiht tekib nende kõrvale.
+- [ADR-010](adr-010-source-structure-and-chunking.md) (07.09.2026): allika struktuur, metaandmed ja tekstiosad. Algfail on muutumatu, allikakoht on ühine PDF-ile, HTML-ile, XML-ile ja JSON-ile, tükeldus järgib struktuuri, vormingu tähendus on adapteris.
+- [ADR-011](adr-011-resumable-intake-and-language-search.md) (23.09.2026): jätkatav sissevõtupartii PostgreSQL-is (`planIngestBatch`) ja ET/EN/RU tüvesid kasutav tekstiotsingu indeks. Tõend: [adr-011-local-evidence.json](adr-011-local-evidence.json).
+- [ADR-012](adr-012-resumable-indexing.md) (23.09.2026): jätkatav indekseerimine (`planIndexJob`). Plaan on külmutatud, töö käib väikeste portsjonitena, poolik põlvkond ei asenda aktiivset.
+- [ADR-013](adr-013-selective-retrieval.md) (23.09.2026): valikuline allikalaadimine. Põlvkonnas on dokumentide loend `rag-v2/retrieval-directory-1`; päring laeb ainult kandidaatide allikad.
+- [ADR-014](adr-014-estnltk-retrieval.md) (23.09.2026): EstNLTK leksikaalne leping `pg-estnltk175-et-snowball311-en-ru-v1` päringus ja indeksis. Uute plaanide vaikeprofiil on `hybrid-estnltk-dependencies-v1`.
+- [ADR-015](adr-015-opus-review-followup.md) (23.09.2026): KOV-i metaandmete tähendus (pealkiri, kuupäevad, `regions`), piirkonnafilter, vestluspäring ja lugemismaht pärast Opuse ülevaatust.
+- [ADR-016](adr-016-structured-municipal-dialogue.md) (23.09.2026): struktureeritud KOV-kataloog (`StructuredRecordSource`, `rag-v2/structured-record-1`) on vestluse tõend. Kirjed on terviklikud, mitte top-k.
+- [ADR-017](adr-017-verified-contact-export.md) (23.09.2026): kontrollitud kontaktiregistri kirjest saab uus muutumatu JSON-allikas (`prepareMunicipalContactExport()`).
+- [ADR-018](adr-018-quoted-dialogue-state.md) (23.09.2026): vestluse seis (`dialogue_state`) tuleb samast vastusekutsest. Faktid kannavad kasutaja tsitaati, parandus asendab varasema kirje.
+- [ADR-019](adr-019-unified-retrieval-and-periods.md) (23.09.2026): ühine tõendivalik. Teadmised, KOV-kataloog ja kuni kaks perioodi on ühes paketis ja ühes vastusekutses.
+- [ADR-020](adr-020-municipality-scope-bibliography-periods.md) (24.09.2026): omavalitsus tuvastatakse kanoonilise nime järgi, artikli bibliograafia saab aasta, ajakirja, numbri ja leheküljed, perioodifilter kasutab aastat (`rag-v2/retrieval-directory-3`).
+- [ADR-021](adr-021-compact-municipal-catalogue.md) (24.09.2026): kompaktne ja kohanduv KOV-kataloog `rag-v2/record-catalogue-2`: täisvaade, pealkirjade vaade või märgitud osaline loend.
+- [ADR-022](adr-022-vector-weighted-hybrid-profile.md) (24.09.2026): RRF-i kanalikaalud on päringu parameeter. Profiil `hybrid-estnltk-vector2-dependencies-v1` annab vektorile kaalu 2.
+- [ADR-023](adr-023-question-ranked-municipal-catalogue.md) (24.09.2026): KOV-kataloog järjestatakse küsimuse järgi. Asjakohasemad kirjed saavad kokkuvõtte.
+- [ADR-024](adr-024-query-stopwords.md) (24.09.2026): päringu üldsõnad (`rag-v2/query-stopwords-1`). Kataloogis alati sees, põhiotsingus mõõdetud ja välja lülitatud.
+- [ADR-025](adr-025-compact-record-model-context.md) (24.09.2026): KOV-kataloogi kompaktne mudelivaade. Auditipakett jääb täielikuks.
+- [ADR-026](adr-026-semantic-municipal-catalogue.md) (24.09.2026): KOV-kataloogi järjestab pöörde päringuvektor, kui see on olemas. RRF lükati kataloogis tagasi.
+- [ADR-027](adr-027-multi-source-retention.md) (24.09.2026): dokumendipiirang ja vektori lisakoht lükati tagasi. Soovitus on vektor ×2 ja 6 seemet; otsingu valikukood ei muutunud.
+- [ADR-028](adr-028-production-answer-prompt.md) (24.09.2026): tootmise vastusjuhis `m4-grounded-answer-10`. `rag.env` on RAG v2 seadistusfail. Deploy kontrollib plaani värskust.
+- [ADR-029](adr-029-lexical-ranking-at-corpus-scale.md) (25.09.2026, ettepanek): sõnaline järjestus korpuse mahul, soovitus on BM25 termitabel PostgreSQL-is koos keelepõhiste tüvedega. BM25 on tegemata; vestluse kiirem sõnaline järjestus (lihtne `ts_rank`, PR #187) ja üks ühendatud sõnaline päring (PR #193) tulid ADR-030 käigus.
+- [ADR-030](adr-030-chat-retrieval-at-corpus-scale.md) (27.09.2026): vestlus kogu korpusel. Kirje tõend on väljavõte, kaardid on saledad, profiil on `hybrid-estnltk-chat-v1`, otsinguabi teeb plaani ja valiku, vestlusplaani teeb `scripts/rag-v2-chat-plan.mjs`. Lisaks kiirus ja ajaloo laadimine.
+- [ADR-031](adr-031-source-level-and-answer-completeness.md) (27.09.2026): allika tase ja vastuse terviklikkus. Korpus v26 (SHS, HMS), `m4-grounded-dialogue-9`, kriisiriba, allikavaate link algallikale ja vastuse oma hääl (`m4-grounded-answer-11`). `rag-v2/search-assist-3` jääb katseks.
+
+### Runbook ja aruanded
+
+- [runbook-corpus-increment.md](runbook-corpus-increment.md): korpuse täiendamine allikast vestlusplaanini, koos käskude ja lõksudega.
+- [Vestluse vastuvõtutest 27.09.2026](../audits/rag-v2-chat-acceptance-2026-09-27.md): 71 küsimust kasutajaliideses. ADR-031 järgib selle parandusi 2, 4 ja 6.
+- [repository-audit.md](repository-audit.md): M0 repositooriumi kaart (05.09.2026).
+- [dialogue-scenarios-2026-09-24.md](dialogue-scenarios-2026-09-24.md): vestluskäigu stsenaariumid (24.09.2026).
+- `journal-*`, `ingest-runtime-snapshot-2026-09-07.json`, `m1-source-acceptance-2026-09-08.json`, `release-integration-2026-09-08.json`, `server-corpus-comparison-2026-09-07.json`: 07.–08.09.2026 mõõtmis- ja võrdlusfailid.
+- Teised RAG v2 auditid: `docs/audits/rag-v2-*.md`.
+
+## Kohalik sissevõtt ja M2 (september 2026, ajalooline kasutusjuhend)
+
+See osa oli varem faili pealkirja „Kohaliku RAG v2 sissevõtu kasutamine“ all. See kirjeldab septembri alguse kohalikku sissevõtu CLI-d ning M2 katseid. Käsud kehtivad kohaliku arenduse jaoks. Korpuse praegune töövoog on ülal ja runbookis.
 
 See CLI võtab ühe haldaja PDF-i ja JSON-metaandmed vastu ilma väliste mudelikutseteta. Tehniline kaart: [M0 audit](repository-audit.md); andme- ja avaldamisleping: [ADR-001](adr-001-local-ingestion.md); tüübid: `lib/rag-v2/types.d.ts`; käitusaegne valideerimine: `lib/rag-v2/contracts.js`. Aktiivne seis asub ainult [SotsiaalAI.md](../platvormi%20arendus/SotsiaalAI.md) S1.0-s.
 
-## Käivitamine
+### Käivitamine
 
 Node 24 ja `npm ci` repositooriumi lukufaili põhjal. Järgmine PowerShelli käsk on põhikausta `SotsiaalAI` jaoks. Sama CLI läbis näidise sissevõtu parandustööpuus enne koodi muutmata integreerimist `main`-i. Sisendeid ei pea teise tööpuusse kopeerima.
 
@@ -16,7 +169,7 @@ node scripts/rag-v2-ingest.mjs --input-root 'docs/CODEX_RAG_GRAPH_v0_1/rag-spec-
 
 Väljundkonsool näitab ainult töö tunnuseid, mahtusid, hoiatuste koode ning väljundkausta. Vead ei väljasta lähtefaili sisu. CLI tagastab vea korral väljumiskoodi 1. `--development-only` kirjeldab selle kohaliku töö kasutuspiiri; see ei loo avaldamisluba ega anna kasutajale platvormi admini õigusi.
 
-## Väljundi lugemine
+### Väljundi lugemine
 
 `<store>/tenant_<hash>/active.json` on aktiivse põlvkonna manifest. Selle `documents` kaart viitab `versions/version_<hash>/` muutmatutele versioonidele:
 
@@ -32,7 +185,7 @@ Väljundkonsool näitab ainult töö tunnuseid, mahtusid, hoiatuste koode ning v
 
 `jobs/<attempt>.json` eristab `received`, `validated`, `parsed`, `staged`, `published`, `failed`. Kordusimport võib juba kontrollitud versiooni taaskasutada ilma parserita. `usable_with_warnings` on sisulise kvaliteedi seis, mis ei võrdu töö avaldamisoleku ega kõigi väidete kinnitamisega.
 
-## Taaskäivitamine ja taastamine
+### Taaskäivitamine ja taastamine
 
 Tavalise vea järel paranda sisend ja käivita sama käsk uuesti. Aktiivset manifesti ei muudeta enne kõigi uue versiooni osade valmimist. Vanad versioonid säilivad, et varem antud viide ei muutuks vaikselt uueks tekstiks. Kustutamise/säilituse ning kliendi ligipääsu tühistamise API lisandub enne pärisandmetega ühendamist.
 
@@ -40,7 +193,7 @@ Kui protsess katkestati jõuga ja CLI ütleb `catalog_busy`, kontrolli täpsest 
 
 Enne hoidla failitaseme varundamist peata selle CLI kirjutused ja kopeeri **kogu** tenant-kaust privaatsesse asukohta. Taastamisel säilita versioonid, originaalid, manifest ja tööjäljed koos. Kontrolli taastatud versioonide räsid `loadVersion()` abil enne kasutamist. See on M1 lokaalne protseduur; päris varundus-taastamiskatse ja tootmise reindekseerimine on M6 vastuvõtuväravad ning selle tööga `NOT_PROVEN`.
 
-## Sihttestid ja tõendi piir
+### Sihttestid ja tõendi piir
 
 ```powershell
 $env:TZ = 'UTC'
@@ -61,7 +214,7 @@ git diff --check
 
 Peatüki lõpus kasutatakse projekti tavalist `npm run build` käsku (sisaldab `i18n:check`). Prisma valideerimist pole selle ploki tõttu vaja, sest skeemi ega migratsioone ei muudeta. Autenditud admini-, kasutaja-, privaatsus- ja DB-radu see test ei tõenda ega asenda admini käsitsi RAG-enesetesti.
 
-## M2.1: kohalik PostgreSQL + Qdrant
+### M2.1: kohalik PostgreSQL + Qdrant
 
 [ADR-002](adr-002-local-hybrid-search.md) kirjeldab põlvkondi, õigusi, tokenipiiri, kanaleid ja tõendi piire. Otsingutuuma kood on `lib/rag-v2/search/`; HTTP-otsing, chat ja admini enesetesti `retired` olek jäävad selle plokiga muutmata.
 
@@ -124,7 +277,7 @@ git diff --check
 npm run build
 ```
 
-## M2.2 prooviplaani valmistamine ilma väliskutseteta
+### M2.2 prooviplaani valmistamine ilma väliskutseteta
 
 ```powershell
 node scripts/rag-v2-evaluation-plan.mjs --store tmp/rag-v2-sample --tenant sotsiaalai-development --subject operator --policy tmp/rag-v2-services/sample-policy.json --output tmp/rag-v2-query/m2-2-plan.json
@@ -134,7 +287,7 @@ node scripts/rag-v2-evaluation-plan.mjs --store tmp/rag-v2-sample --tenant sotsi
 
 Plaan arvestab `text-embedding-3-large`, 3072 mõõdet, iga sisendi tegelikke tokeneid, külma vahemälu ja ühte katset sisendi kohta, ilma korduskatseteta. Genereerivaid kutseid on 0. Valikuline `--prices FILE.json` võtab `input_per_million`, `currency` ja `version` väljad; hinnata on rahaline kulu **teadmata**, mitte null. Hinnang ei ole omaniku kinnitatud kulupiir. Enne päris M2.2 käivitust peab omanik kinnitama nii plaanis nimetatud materjalide saatmise välisele teenusele kui ka konkreetse kulupiiri. Selle plaani generaatoris pole välist mudeliadapterit ega käivituskäsku.
 
-## M2.2 ehitus, audit ja piiratud piloot
+### M2.2 ehitus, audit ja piiratud piloot
 
 [ADR-003](adr-003-approved-embedding-pilot.md) määrab täieliku auditi, kompaktse mudelikonteksti, struktuurse rolli ning loa-/kulupäeviku lepingu. Varasem ettevalmistusgeneraator jääb alles; päriskatse eraldi käsk on `scripts/rag-v2-pilot.mjs`.
 
@@ -171,7 +324,7 @@ npm run build
 
 Tavalised testid kasutavad välise transpordi asendust, kuid PostgreSQL/Qdrant integratsioon on päris. API-kulu arvestatakse ainult eraldi lubatud käivitusel. M2.2 lisas olemasolevale integratsioonitestile 3072-mõõtmelise transpordifikstuuri, nelja raja võrdluse ja tegeliku Qdranti vektorisisu rikkumise kontrolli. Testtranspordiga tulemus ei saa semantilise kvaliteedi kinnitust.
 
-### 05.09 piiratud pärispiloodi tulemus
+#### 05.09 piiratud pärispiloodi tulemus
 
 Serveris tehtud kinnitatud piloot kasutas 16 muutmata tekstiosa ja 9 küsimust. Kõik 25 `text-embedding-3-large` katset õnnestusid ühe saatmisega sisendi kohta; lokaalne ja API raporteeritud tokeniarv oli 12 420 ning hinnaga 0,13 USD miljoni sisendtokeni kohta oli arvestuslik kulu 0,001614600 USD. Genereerivaid ja Luna kutseid oli 0. Korduskäivitus kasutas räsiga kontrollitud salvestatud vektoreid ning tegi 0 uut API-katset.
 
@@ -179,7 +332,7 @@ Kuue ET/EN/RU sisuküsimuse nõutud allikakohad olid hübriidraja lõppkonteksti
 
 Serveri käitus kasutab sama koodi GitHubist. Kohalikud algmaterjalid ja privaatsed loakirjed/väljundid viiakse serveri privaatsesse `tmp/` hoidlasse eraldi; neid ei avaldata Git-repositooriumis. Serveri `OPENAI_API_KEY` jääb `/etc/sotsiaalai/frontend.env` seadistusse. Uued konteinerid on seotud ainult loopback-portidega; olemasolev platvormi andmebaas jäi eraldi. Vana RAG-i/research-worker'i teenused on `inactive/disabled` ning frontendi unit ei sõltu neist enam. Rakenduse chat ja käsitsi enesetest jäävad M4 ühenduseni ausalt `retired` olekusse.
 
-## M2 mitme allika järelkatse
+### M2 mitme allika järelkatse
 
 [ADR-004](adr-004-multi-source-evaluation.md) kirjeldab hindaja ja vektorite taaskasutuse piiri. Valitud korpus, küsimused, arendus-/kontrolljaotus ning ankrurühmad on `tests/evaluation/multi-source/` all; alg-PDF-e sinna ei kopeerita. Korpuse JSON ei anna väljasaatmisluba.
 
