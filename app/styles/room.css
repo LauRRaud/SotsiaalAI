@@ -976,16 +976,72 @@ html[data-contrast="hc"] .room-quickbar {
   width: 1.7rem;
   height: 1.7rem;
 }
+/* Hover = alumise kiirmenüü nupp (.gc-shortcut, carousel.css): ainult
+   heledam täide, ilma servata (omanik 28.09: „hover peab olema selline
+   nuppudel nagu alumise kiirmenüü omal, ilma servata"). */
 .glass-iconbtn.room-quick-btn:hover,
 .glass-iconbtn.room-quick-btn:focus-visible {
   color: var(--room-text);
-  background-color: var(--glass-cell-bg-hover);
-  border-color: var(--glass-cell-border);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.16);
+  background-color: rgba(248, 248, 248, 0.055);
+  border-color: transparent;
+  box-shadow: none;
+  outline: none;
+}
+.glass-iconbtn.room-quick-btn:focus-visible {
+  box-shadow: var(--focus-ring);
 }
 .glass-iconbtn.room-quick-btn:active {
   background-color: rgba(0, 0, 0, 0.14);
+  border-color: transparent;
   box-shadow: inset 0 1.5px 4px rgba(0, 0, 0, 0.2);
+}
+/* Nime silt = kiirmenüü vihje (.gc-shortcut-tooltip): sama pill, toon,
+   hägu ja kiri, aga nupu ALL, sest menüü on ekraani ülaservas (omanik
+   28.09: „alla poole tulema tekstimull"). Puutel silte ei ole. */
+.room-quick-tip {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 0.55rem);
+  translate: -50% -0.25rem;
+  width: max-content;
+  max-width: 13rem;
+  padding: 0.5rem 0.95rem;
+  border-radius: 999px;
+  background: var(--control-glass-bg);
+  -webkit-backdrop-filter: var(--control-glass-blur);
+  backdrop-filter: var(--control-glass-blur);
+  box-shadow: inset 0 1px rgba(247, 247, 247, 0.08);
+  color: var(--room-text);
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 520;
+  letter-spacing: 0.1em;
+  line-height: 1.3;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: normal;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 200ms var(--ease-soft),
+    translate 240ms var(--ease-soft);
+}
+.glass-iconbtn.room-quick-btn:hover .room-quick-tip,
+.glass-iconbtn.room-quick-btn:focus-visible .room-quick-tip {
+  translate: -50% 0;
+  opacity: 1;
+  transition-delay: 90ms;
+}
+html[data-contrast="hc"] .room-quick-tip {
+  border: 1px solid #ffffff;
+}
+html[data-reduce-motion="1"] .room-quick-tip {
+  transition: none;
+}
+@media (pointer: coarse) {
+  .room-quick-tip {
+    display: none;
+  }
 }
 .glass-iconbtn.room-quick-btn[data-on="0"] {
   color: var(--room-text-dim);
@@ -1381,7 +1437,8 @@ html[data-reduce-motion="1"] .room-walk-audio {
    kaadris. */
 .hand-cam {
   position: fixed;
-  top: calc(env(safe-area-inset-top) + 3.1rem);
+  /* Otse käepideme all (puutel 2.75rem sihtala; 3.1rem jättis vahe). */
+  top: calc(env(safe-area-inset-top) + 2.85rem);
   left: 50%;
   translate: -50% 0;
   z-index: var(--z-floating);
@@ -1389,8 +1446,8 @@ html[data-reduce-motion="1"] .room-walk-audio {
   align-items: center;
   gap: 0.5rem;
   max-width: min(26rem, calc(100vw - 1.5rem));
-  min-height: 2.6rem;
-  padding: 0.2rem 0.25rem 0.2rem 0.85rem;
+  min-height: 2.5rem;
+  padding: 0.15rem 0.15rem 0.15rem 0.85rem;
   border: 1px solid var(--glass-border-soft);
   border-radius: 999px;
   background: rgba(18, 15, 12, 0.62);
@@ -1493,16 +1550,51 @@ html[data-reduce-transparency="1"] .hand-cam {
   background: var(--glass-cell-bg-hover);
   color: var(--room-text);
 }
+/* Info ja väljalülitus üks paar riba otsas: ühtlased ringid ilma vaheta,
+   ikoon sama suur kui kiirmenüüs (varem 1.25rem ringis, rist kaugel). */
+.hand-cam-actions {
+  display: flex;
+  flex: none;
+  align-items: center;
+}
+.hand-cam-actions .hand-cam-btn svg {
+  width: 1.45rem;
+  height: 1.45rem;
+}
 /* Kiirriba käepide ja avatud juhtpaneel on ekraani keskel: riba seisab
-   käepideme all ja astub avatud paneeli eest alla. Riba on ülariba õde
-   (RoomStage), nii et `~` näeb paneeli olekut. */
+   käepideme all ja astub avatud paneeli (ja tema nimesiltide) eest alla.
+   Riba on ülariba õde (RoomStage), nii et `~` näeb paneeli olekut. */
 .room-topbar[data-open="1"] ~ .hand-cam {
   top: calc(env(safe-area-inset-top) + 6.6rem);
 }
 @media (hover: hover) and (pointer: fine) {
+  .hand-cam {
+    top: calc(env(safe-area-inset-top) + 2rem);
+  }
+  .room-topbar[data-open="1"] ~ .hand-cam,
   .room-topbar:hover ~ .hand-cam,
   .room-topbar:focus-within ~ .hand-cam {
-    top: calc(env(safe-area-inset-top) + 6.6rem);
+    top: calc(env(safe-area-inset-top) + 8.6rem);
+  }
+}
+/* Laial hiireekraanil seisab riba KÄEPIDEMEGA SAMAS REAS, tema vasakul
+   pool, mitte all (omanik 28.09: „liigutamise menüüriba liiga all … peaks
+   üleval pool olema, mitte menüükaardil"). Käepideme all jäi ta madalal
+   ekraanil keskmise kaardi peale: 1366×657 algab kaart 65 px, 1280×600
+   54 px kõrgusel. 12rem = kuue nupuga avatud paneeli pool laiust + vahe;
+   parem serv 4.5rem hoiab ta vestluse nurgaorbidest (☰) eemal. */
+@media (hover: hover) and (pointer: fine) and (min-width: 1100px) {
+  .hand-cam,
+  .room-topbar[data-open="1"] ~ .hand-cam,
+  .room-topbar:hover ~ .hand-cam,
+  .room-topbar:focus-within ~ .hand-cam {
+    top: calc(env(safe-area-inset-top) + 0.45rem);
+  }
+  .hand-cam {
+    left: auto;
+    right: calc(50% + 12rem);
+    translate: none;
+    max-width: calc(50% - 16.5rem);
   }
 }
 @media (max-width: 600px) {

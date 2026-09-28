@@ -134,6 +134,7 @@ export default function RoomQuickbar({
               <path d="m15.4 9.6 4.8 4.8m0-4.8-4.8 4.8" />
             )}
           </svg>
+          <span className="room-quick-tip" aria-hidden="true">{t("accessibility.ambient")}</span>
         </IconButton>
         {ambientOn ? (
           <IconButton
@@ -153,6 +154,7 @@ export default function RoomQuickbar({
               <path d="M7 6.5 15 12 7 17.5V6.5Z" />
               <path d="M17.5 6.6v10.8" />
             </svg>
+            <span className="room-quick-tip" aria-hidden="true">{t("room.sound_next")}</span>
           </IconButton>
         ) : null}
         {onToggleHands ? (
@@ -164,6 +166,7 @@ export default function RoomQuickbar({
             onClick={onToggleHands}
           >
             <HandGestureIcon />
+            <span className="room-quick-tip" aria-hidden="true">{t("room.hands_camera")}</span>
           </IconButton>
         ) : null}
         <IconButton
@@ -172,6 +175,7 @@ export default function RoomQuickbar({
           onClick={onOpenAccessibility}
         >
           <LanguageAccessIcon />
+          <span className="room-quick-tip" aria-hidden="true">{t("room.settings_open")}</span>
         </IconButton>
         <IconButton
           layoutClassName="room-quick-btn"
@@ -179,6 +183,7 @@ export default function RoomQuickbar({
           onClick={onPowerOff}
         >
           <PowerIcon />
+          <span className="room-quick-tip" aria-hidden="true">{t("room.power_off")}</span>
         </IconButton>
       </div>
     </div>

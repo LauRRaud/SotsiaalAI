@@ -147,6 +147,42 @@ test("thumbs up/down, pointing, victory and open hands are neither fist nor pinc
   }
 });
 
+/* Käsi keeratud ümber oma pikitelje (ranne → keskmise sõrme alus), nagu
+   peopesa kaamera poolt küljele pöörates. x ja z on kaadri laiuse, y
+   kõrguse mõõdus, seega pööre käib laiuse ühikutes. */
+function turnAboutPalm(landmarks, aspect, degrees) {
+  const p = landmarks.map(({ x, y, z }) => [x * aspect, y, (z || 0) * aspect]);
+  const o = p[0];
+  const k = [0, 1, 2].map((i) => p[9][i] - o[i]);
+  const n = Math.hypot(...k);
+  const [kx, ky, kz] = k.map((v) => v / n);
+  const th = (degrees * Math.PI) / 180;
+  const c = Math.cos(th);
+  const s = Math.sin(th);
+  return p.map((q) => {
+    const [vx, vy, vz] = [0, 1, 2].map((i) => q[i] - o[i]);
+    const dot = kx * vx + ky * vy + kz * vz;
+    const cross = [ky * vz - kz * vy, kz * vx - kx * vz, kx * vy - ky * vx];
+    const r = [vx, vy, vz].map((v, i) => v * c + cross[i] * s + [kx, ky, kz][i] * dot * (1 - c));
+    return { x: (r[0] + o[0]) / aspect, y: r[1] + o[1], z: (r[2] + o[2]) / aspect };
+  });
+}
+
+test("a hand turned edge-on to the camera reads as edge; palm or back to the camera does not", () => {
+  // Owner 28.09: left/right is done with the open hand's side to the camera
+  for (const name of ["woman_hands", "pointing_up", "victory", "thumbs_up", "fist"]) {
+    for (const { landmarks, aspect } of photoHands(name)) {
+      const shape = handShape(landmarks, aspect);
+      assert.equal(shape.edge, false, `${name} faces the camera (across ${shape.metrics.across.toFixed(2)})`);
+    }
+  }
+  for (const [name, index, degrees] of [["woman_hands", 0, 75], ["woman_hands", 1, 75], ["pointing_up", 0, 75], ["victory", 0, -90]]) {
+    const { landmarks, aspect } = photoHands(name)[index];
+    const shape = handShape(turnAboutPalm(landmarks, aspect, degrees), aspect);
+    assert.equal(shape.edge, true, `${name} turned ${degrees}° is edge-on (across ${shape.metrics.across.toFixed(2)})`);
+  }
+});
+
 test("palmPoint mirrors the front camera so the hand moves the way the user sees it", () => {
   assert.deepEqual(palmPoint(hand({ x: 0.2, y: 0.4 })), { x: 0.8, y: 0.4 });
   assert.deepEqual(palmPoint(hand({ x: 0.2, y: 0.4 }), { mirror: false }), { x: 0.2, y: 0.4 });
@@ -242,6 +278,20 @@ test("hand down scrolls down, hand up scrolls up", () => {
   assert.deepEqual(down.map((e) => [e.axis, e.dir]), [["y", 1]]);
   const up = swipes(motion([...still(0.5, 0.6, 12), ...line([0.5, 0.6], [0.5, 0.35], 6), ...still(0.5, 0.35, 10)]));
   assert.deepEqual(up.map((e) => [e.axis, e.dir]), [["y", -1]]);
+});
+
+test("left and right need the hand's side to the camera; up and down do not", () => {
+  const withEdge = (frames, edge) => frames.map((f) => ({ ...f, hand: { ...f.hand, edge } }));
+  const kinds = (events) => events.map((e) => (e.type === "swipe" ? e.axis + (e.dir > 0 ? "+" : "-") : `${e.type}:${e.hint}`));
+  const across = motion([...still(0.6, 0.5, 12), ...line([0.6, 0.5], [0.35, 0.52], 6), ...still(0.35, 0.52, 10)]);
+  // Palm to the camera moves nothing; the bar tells how to turn the hand
+  assert.deepEqual(kinds(swipes(withEdge(across, false))), ["hint:edge"]);
+  assert.deepEqual(kinds(swipes(withEdge(across, true))), ["x-"]);
+  // The hand turns and blurs during a fast stroke: some palm-on frames still count
+  const mixed = across.map((f, i) => ({ ...f, hand: { ...f.hand, edge: i % 3 !== 0 } }));
+  assert.deepEqual(kinds(swipes(mixed)), ["x-"]);
+  const down = motion([...still(0.5, 0.3, 12), ...line([0.5, 0.3], [0.51, 0.55], 6), ...still(0.51, 0.55, 10)]);
+  assert.deepEqual(kinds(swipes(withEdge(down, false))), ["y+"]);
 });
 
 test("the return stroke after a swipe is ignored, a second swipe the same way counts", () => {
