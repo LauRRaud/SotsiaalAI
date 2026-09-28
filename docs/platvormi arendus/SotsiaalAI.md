@@ -139,6 +139,17 @@ mõõdetud `law-on-dates` 4/4. **Avatud otsus:** 808 KOV-paketi kontaktist ei an
 paketi ID ja registrikirje vahel puudub seos. ADR-017 eksport aeguks iganädalase `checkedAt` ülekirjutuse
 tõttu. Variandid A/B/C ja 384 kandidaati on [aruandes](../audits/rag-v2-conversation-eval-2026-09-28.md#omavalitsuse-kontaktid-kataloog-ei-anna-ühtegi-kontaktisikut).
 
+**28.09 #236–#240 järelkontroll (Codex).** Serveris kinnitatud #240, v33 ja vastuse piir 8192;
+kataloogi v2 tulemus on 38/40, mitte sõltumatu sisulise õigsuse tõend. 46/46 sihttesti läbivad,
+kuid sondid leidsid kolm puudust: tegevuse eitus eemaldab KOV-i, punktidega kuupäevavahemik
+kaotab vahepealsed redaktsioonid ja hindaja lubab kehtivust tõendada teise seadusega.
+ADR-043 broneeringu selgitus vajab parandust; omaniku sõnul ei ole kulu töö takistus.
+Kontaktide soovitus on B koos säiliva värskusekontrolli ja
+seoste ülevaatusega. [Leiud ja tõendid](../audits/rag-v2-codex-review-2026-09-27.md#14-pr-ide-236240-järelkontroll-2809).
+**28.09 parandused (Opus):** [ADR-044](../rag-v2/adr-044-date-ranges-and-place-negation.md) parandab vahemiku, tegevuse eituse ja
+akti kaupa hindamise; kataloog v3 nõuab 31.10 kohta ausat lünka ilma tasuta; ADR-043 broneeringulause on parandatud.
+Jooksu 3 vaatlused uue hindajaga: 38/40.
+
 **28.09 Otsingu jõudluse kontroll (#222 kood).** Kanalite ajad mõõdetakse otsingus,
 kuid need kaovad ühise paketi koostamisel ja puuduvad salvestatud pöörde auditist.
 Järgmine mõõtmise samm on nende edasikandmine ja salvestamine: tehtud [ADR-039](../rag-v2/adr-039-search-timings.md)-ga (`timings.search`). Suure `eligibleIds`

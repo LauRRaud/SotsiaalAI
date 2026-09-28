@@ -925,3 +925,98 @@ ja allika avaldamisaasta ei tohi automaatselt saada küsitud õiguse kuupäevaks
 Puuduva redaktsiooni korral peab vastus puudujääki tunnistama; oodatud teksti
 puudumist ei parandata testi lihtsalt lõdvendades. Esmase käitumise saab
 tõendada kohalike testadapteritega; tasuline kordusjooks ei ole arenduse eeltingimus.
+
+## 14. PR-ide #236–#240 järelkontroll (28.09)
+
+Üle vaadatud kohalik vahemik `11f6882bb..6c3665624`, Opuse aruanne ja
+kataloogi v2 tootmisjooks. **38/40 on hindaja tulemus, mitte sõltumatu kinnitus
+38 vastuse sisulisele õigsusele.** V1 ja v2 ootusi muudeti, mistõttu 31/40 → 38/40
+ei ole muutumatu mõõdikuga võrdlus. Codex ei teinud uut tasulist jooksu.
+
+Serveri ainult lugemise kontroll **15:49 UTC** kinnitas #240 väljalaske
+`7f1291238af802ed52a2be2a3ac72902c5750024`, aktiivse plaani
+`m4-sotsiaalai-corpus-chat-20260928-1342`, v33 põlvkonna ja vastuse piiri
+**8192 tokenit**. Qdranti ja `system.slice` runtime `memory.low` on mõlemal **0**.
+Viimsi katsepöörde `e21d921f-9012-42c1-ba64-58c3f32fb957` arvulised väljad
+kinnitavad lõpetatud vastuse: 4177 väljundtokenit, neist 2924 arutlust.
+See üks vastus ületas varasema 4096 piiri; sama küsimuse iga korduse täpset
+tokenivajadust sellest ei järeldu.
+
+### Kolm kohalikult korratud puudust
+
+1. **[P2] Eitusreegel eemaldab ka jaatatud omavalitsuse.**
+   `lib/rag-v2/pilot/record-scope.js:48–50` käsitleb iga kolme eelneva sõna
+   sees olevat eitust kohanime eitusena. „Ma ei saa Tallinnas abi.” ja
+   „Ma ei tea. Elan Tallinnas.” annavad `region_required_after_negation`,
+   `region: null`; „Elan Tallinnas.” annab Tallinna. Esimeses näites eitatakse
+   abi saamist, teises on eitus teises lauses. Kaob omavalitsuse kataloog ja
+   teadmiste raja KOV-ulatus; query-plan'i asukohavaru seda olekut ei paranda.
+   Parandus peab eristama koha eitamist tegevuse eitamisest ning säilitama
+   lausepiirid. Sond kasutas äratuntud kohanimedega morfoloogia testadapterit;
+   päris EstNLTK rada ei korratud, sest kohalikus Pythonis moodul puudub.
+2. **[P2] Punktidega kuupäevavahemik muutub kaheks üksikuks päevaks.**
+   `lib/rag-v2/pilot/retrieval-plan.js:46–52` korjab ja maskeerib kuupäevad
+   enne vahemike käsitlemist. „Mis muutus 01.01.2027–31.03.2027?” lubab
+   ainult 01.01 ja 31.03, seega jääb üksnes veebruaris kehtiv redaktsioon
+   välja. Sama küsimuse ISO-vahemik `2027-01-01–2027-03-31` lubab selle
+   redaktsiooni. Vahemik tuleb tuvastada enne üksikkuupäevi; sihttest peab
+   kontrollima ka vahemiku keskel kehtivat redaktsiooni.
+3. **[P2] Hindaja kuupäevakontroll võib läbida vale seaduseredaktsiooniga.**
+   `lib/rag-v2/pilot/conversation-eval.js:58–64` seob kuupäeva suvalise
+   leitud/viidatud õigusaktiga, mitte sama aktiga, mille pealkirja oodatakse.
+   Sondis olid oodatud SHS-i vale, 2026. aasta redaktsioon ning teine,
+   2027. aastal kehtiv seadus: nii `evidence`, `cited`, `found_valid_on` kui
+   ka `valid_on` läbisid. Vajalik on akti identiteedi ja küsitud kehtivuse
+   ühine kontroll. See ei tõenda viga jooksu 3 konkreetses kuupäevavastuses:
+   aruandes on seal sobiv SHS-i/RLS-i redaktsioon.
+
+Lisaks läbib RLS-i puuduva redaktsiooni praeguse `must`-mustri sünteetiline,
+väljamõeldud tasuga tekst „31. oktoobril on tasu 999 eurot. Sinu pensioni suurust
+ei saa kinnitada.” Muster leiab teisest lausest ebakindluse, kuid ei kontrolli,
+kas see käib küsitud õigusliku tõendi puudumise kohta. See on hindaja
+negatiivne kontrollnäide, mitte tegelik vastus ega väide tasu suuruse kohta.
+
+### Eelarvekirjeldus ei vasta arvestusele
+
+Omaniku täpsustus selle ülevaatuse ajal: kulu ei ole töö jätkamise takistus.
+Paranduste järjekorra määrab vastuste õigsus.
+
+**ADR-043 väide „broneering vabaneb pärast kutset” on vale.**
+`lib/rag-v2/pilot/store.js:141–156` säilitab konservatiivse broneeringu;
+kasutus lisab üksnes võimalikku ülekulu, automaatset tagastust ei ole.
+Serveris oli aktiivse plaani 40 pöörde hinnanguline kasutus **0,19613405 USD**,
+reservatsioonide summa ja kulupäevik mõlemad **0,86897155 USD** (160 kutset).
+Need on eri arvestused, mitte teenusepakkuja arve sõltumatu kontroll.
+Suurem väljundipiir võib seega sama kinnitatud rahapiiri juures lubada vähem
+pöördeid ka siis, kui vastuste hinnanguline kulu on väike. Parandada tuleb
+ADR-i selgitus; reservatsiooni vabastamine oleks eraldi käitumismuudatus,
+mis peab arvestama teadmata tulemusega kutseid.
+
+### Kontaktide järgmine samm
+
+Kood toetab Opuse **varianti B**: siduda eksport stabiilse ID, revisjoni ja
+kontaktisisu kontrollsummaga, jättes üksnes vaatlusaja sellest sidumisest välja.
+Praegu sisaldub `checked_at` nii otseses võrdluses kui ka projektsiooni räsis;
+ühe võrdluse eemaldamisest ei piisa. Sondis muutis ainult kontrollkuupäeva
+värskendamine sama revisjoni ja sisuga kontakti seose kehtetuks.
+Registri jooksva värskuse, avaldamisloa, tühistamise ja omavalitsuse kontrollid
+peavad säilima; ekspordi ajalooline kontrollaeg tuleb neist eristada.
+
+Serverisse salvestatud kandidaatide fail kinnitas 384 ühest nimevastet,
+20 mitmest vastet ja 404 vasteta kontakti; 164 ühisel vastel oli ka sama URL.
+Need on ülevaadatavad kandidaadid, mitte lubatud kontaktiseosed. Enne eksporti
+tuleb kontrollida ametlikku allikat ja kontakti sobivust teenusega. Kogu
+808 kontakti autoriseerimist Codex uuesti ei käivitanud; 0/808 on Opuse
+aruande mõõtmine. Automaatset nimede järgi avaldamist see ülevaatus ei õigusta.
+
+### Kontrolli ulatus
+
+UTC all läbisid **46/46** testi failides `rag-v2-legal-scope`, `rag-v2-unified`,
+`rag-v2-conversation-eval`, `rag-v2-pool-reserve`, `rag-v2-search-assist`,
+`rag-v2-chat-plan` ja `rag-v2-pilot-config`. Võrguta sondid ja arvulised
+serveriväljavõtted asuvad kohalikus ignoreeritud kaustas
+`tmp/rag-v2-review-236-240/` (`probes.mjs`, `probes.json`, `server-status.json`,
+`answer-metrics.json`). Sondide käsk:
+`node --import ./scripts/register-node-source-loader.mjs tmp/rag-v2-review-236-240/probes.mjs`.
+Tootekoodi ja tootmisseadeid ei muudetud, tasulisi kutseid ega uusi vestluspöördeid
+ei tehtud. Dokumentatsioonile kontrolliti `git diff --check`.

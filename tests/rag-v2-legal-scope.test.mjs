@@ -206,3 +206,27 @@ test('a negated place is left out when another one is affirmed; a turn that only
   // Without a negation both full names stay candidates, as before.
   assert.deepEqual((await scopeOf('Tartu vallas ja Tartu linnas')).candidates, ['tartu_linn', 'tartu_vald']);
 });
+
+test('ADR-044: a negated action keeps the place; a negation never reaches over a sentence or comma (Codex review 28.09)', async () => {
+  for (const text of ['Ma ei saa Tallinnas abi.', 'Ma ei tea. Elan Tallinnas.', 'Ma ei tea, elan Tallinnas.', 'Ma ei leia Tallinnas tööd.', 'Tallinnas ei ole koduteenust?']) {
+    assert.equal((await scopeOf(text)).region, 'tallinn', text);
+  }
+  for (const text of ['Ma pole enam Tallinnas.', 'Tegelikult ei ela ma enam Tallinnas.', "I don't live in Tallinn.", 'I am not in Tallinn.']) {
+    assert.deepEqual(await scopeOf(text), { state: 'region_required_after_negation', region: null }, text);
+  }
+  assert.equal((await scopeOf('I live in Narva, not in Tallinn.')).region, 'narva_linn');
+});
+
+test('ADR-044: a range of days or months is one period, so a version in force only in between stays', () => {
+  for (const text of ['Mis muutus 01.01.2027–31.03.2027?', 'Mis muutus 01.01.2027 - 31.03.2027?', 'Mis muutus 01.01.–31.03.2027?',
+    'Mis muutus 1. jaanuarist kuni 31. märtsini 2027?', 'Mis muutus jaanuarist märtsini 2027?', 'Mis muutus 2027-01-01–2027-03-31?']) {
+    assert.deepEqual(keptOn(text), ['shs-now', 'shs-jan27', 'shs-feb27', 'rls-aug'], text);
+    assert.deepEqual(firstTurn(text).legalPeriods.map(p => [p.from, p.to]), [['2027-01-01', '2027-03-31']], text);
+  }
+  // Two dates without a dash or "kuni" stay two days (a comparison), and a reversed range is not a date.
+  assert.deepEqual(keptOn('Võrdle 1. jaanuaril 2027 ja 1. aprillil 2027.'), ['shs-now', 'shs-jan27', 'shs-apr27', 'rls-aug']);
+  assert.deepEqual(firstTurn('31.03.2027–01.01.2027').legalPeriods, []);
+  // A day range is a legal period, not a publication period of journals; a year range stays both.
+  assert.deepEqual(firstTurn('01.01.–31.03.2027').publicationCandidates, []);
+  assert.equal(firstTurn('2020 kuni 2022').publicationCandidates.length, 1);
+});

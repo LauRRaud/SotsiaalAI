@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Whole conversations on the live chat plan (tests/evaluation/dialogue/scenarios-corpus-2.json): each scenario in its own
+// Whole conversations on the live chat plan (tests/evaluation/dialogue/scenarios-corpus-3.json): each scenario in its own
 // conversation of the plan's first user ("Hindamine <id>", visible in the chat), every turn through the real service, so
 // search, model and checks are the production ones. Paid: the plan's model and ledger; --max-usd stops the run before
 // a scenario would start above it. The report names for every turn what failed: search, answer or state.
@@ -12,7 +12,7 @@ import { parseArgs } from 'node:util';
 import { randomUUID } from 'node:crypto';
 import { checkTurn, validateCatalogue } from '../lib/rag-v2/pilot/conversation-eval.js';
 
-const { values } = parseArgs({ options: { scenarios: { type: 'string', default: 'tests/evaluation/dialogue/scenarios-corpus-2.json' }, out: { type: 'string' },
+const { values } = parseArgs({ options: { scenarios: { type: 'string', default: 'tests/evaluation/dialogue/scenarios-corpus-3.json' }, out: { type: 'string' },
   only: { type: 'string' }, 'max-usd': { type: 'string', default: '1.5' }, 'dry-run': { type: 'boolean', default: false },
   legal: { type: 'string', default: 'docs/rag-v2/legal-acts-in-index.json' } } });
 const catalogue = JSON.parse(await fs.readFile(values.scenarios, 'utf8'));
