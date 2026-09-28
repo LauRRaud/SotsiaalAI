@@ -46,6 +46,7 @@ Hindamise otsingukontroll ei märganud seda, sest `evidence` võrdles ainult pea
     - 2027. aasta jaanuar viitab RLS 01.01–30.06.2027;
     - 31.10.2026 kohta tunnistab vastus, et ei saa kinnitada.
   - Kulu 0,015 USD.
+  - Kogu kataloog v2 sama koodiga andis 37/40, kõik kuupäevapöörded läbisid. Ülejäänud kolm puudust ei ole seotud redaktsioonide valikuga, vt [aruanne](../audits/rag-v2-conversation-eval-2026-09-28.md#kataloogi-2-versioon-uue-koodiga-toortulemus-3740).
 
 ## Piirid
 
