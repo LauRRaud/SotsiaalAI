@@ -52,6 +52,31 @@
 
 - **Vastendus vajab ülevaatust enne eksporti.** Nime järgi automaatset avaldamist see otsus ei luba. Ametlik allikas ja kontakti sobivus teenusega kontrollitakse.
 - **Kandidaadid on serveris** (`rag-v2-work/eval-files/contact-candidates-2026-09-28.json`, mitte repos): 384 ühest nimevastet 60 omavalitsuses, 20 mitmest ja 404 vasteta.
+- **Ülevaatetabel on serveris** (`rag-v2-work/eval-files/contact-review-2026-09-28/`, mitte repos, sest seal on nimed).
+  - Iga rea kohta on seal:
+    - paketikontakt (nimi, roll, osakond);
+    - registrikirje (ID, olek, tüüp, roll, osakond, telefoni ja e-posti olemasolu);
+    - mõlemad ametlikud lehed;
+    - kontaktile viitavad teenused;
+    - ettepanek ja sobivuse põhjendus;
+    - tühjad veerud operaatori otsuse ja märkuse jaoks.
+  - Ettepanek ei ole otsus. „Ettepanek: lisada“ on ainult siis, kui roll kattub, ametlik leht on sama või sama omavalitsuse domeenis, registris on telefon või e-post ja vähemalt üks teenus viitab kontaktile. Muu on „kontrolli“, koos põhjusega.
+  - Tulemus: 139 „ettepanek: lisada“ ja 245 „kontrolli“. Kõik 384 registrikirjet on praegu kontrollitud ja ükski paketifail pole pärast indekseerimist muutunud.
+  - Harku on eraldi (`review-harku_vald.csv`, `mapping-draft-harku_vald.json`): 7 ettepanekut ja 1 „kontrolli“, sest ükski teenus ei viita sellele kontaktile.
+  - Ülejäänud on kuni 100-realistes vastenduse mustandites (`mapping-draft-1…4.json`).
+- **Kogu rada Harku andmetega, kohalik katse 28.09.**
+  - Kasutati päris Harku paketti ja 8 kontrollitud registrikirjet. Need kopeeriti kohalikku eraldatud testiandmebaasi ja kustutati pärast katset.
+  - Rada:
+    1. eksport: 8 kontakti, seos 2, `official_contact`, igaühel roll, telefon ja e-post;
+    2. partii: 62 kirjet ilma takistusteta, paketikontaktide asemel eksporditud kontaktid;
+    3. indeks eraldi katsetenant'is näidisvektoritega;
+    4. Harku kataloog, kui fookuses on Toidupank.
+  - Kataloog andis sotsiaalhoolekandespetsialisti koos nime, rolli, osakonna, telefoni, e-posti ja ametliku lehega. Just seda küsis vestlus „Kellele ma saan helistada?“.
+  - Kontrollid:
+    - iganädalase kontrolli järel oli 8/8 lubatud;
+    - muudetud telefoniga või muudetud rolliga kontakt kukkus välja (7/8);
+    - taastamise järel oli taas 8/8.
+  - Tootmises ei muudetud midagi ja mudelikutseid ei tehtud.
 - **Järjekord pärast ülevaatust:**
   1. eksport (`scripts/rag-v2-contact-export.mjs`, kuni 100 kontakti korraga);
   2. partii ülevaatus ja avaldamine;

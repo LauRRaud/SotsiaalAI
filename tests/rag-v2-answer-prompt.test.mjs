@@ -24,7 +24,8 @@ test('prompt v10 keeps every v9 guardrail in each answer language, and v9 plans 
   assert.equal(PROMPT_VERSION, 'm4-grounded-answer-11');
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-10'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-9'));
-  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-11');
+  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-12');
+  assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-11'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-10'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-9'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-8'));
@@ -67,7 +68,9 @@ test('answer and dialogue requests carry the same v10 base instructions; the que
 test('dialogue prompt v9: numbers keep their conditions, limitations add no facts, and Estonian advice stays in the sina form', () => {
   const config = { model: 'gpt-6-luna', maxOutputTokens: 4096, reasoning: 'medium' };
   const et = dialogueRequest(config, 'Kui palju maksan?', { evidence: [] }, 'et', {}).instructions;
-  for (const phrase of ['what it is calculated from, any cap or maximum', 'limitations and clarification add no facts',
+  // v12 (ADR-046): a cost condition stated in any evidence excerpt stays with the number, with its own citation.
+  for (const phrase of ['what it is calculated from, any cap or maximum', 'what the person pays themselves', 'citing the excerpt that states each',
+    'never left out when any evidence excerpt states it', 'limitations and clarification add no facts',
     'establish neither the national rule nor that the rule differs', 'does not presuppose which authority', 'alusta, küsi, pöördu, ära osta']) assert.ok(et.includes(phrase), phrase);
   assert.ok(!dialogueRequest(config, 'How much?', { evidence: [] }, 'en', {}).instructions.includes('ära osta'));
 });

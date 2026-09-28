@@ -141,6 +141,21 @@ Codex leidis kolm puudust ja kaks ebatäpsust. Kõik on parandatud [ADR-044-ga](
 
 Jooksu 3 salvestatud vaatlused hinnati uue hindajaga uuesti ilma mudelikutseta: v2-ga ja v3-ga **38/40**. Kuupäevapööretes on viidatud küsitud päeval kehtivad SHS-i ja RLS-i redaktsioonid. See on endiselt hindaja tulemus, mitte iga vastuse sõltumatu sisuline kinnitus. Samuti on 31/40 → 38/40 muutunud ootustega võrdlus, nagu Codex märkis.
 
+## Jooks 4 (kataloog v3, tootmine) ja kulutingimused (ADR-046)
+
+- **Jooks 4 tootmisplaaniga pärast #241 ja #242:** 38/40.
+  - #243 väljalase jooksu ajal katkestas 13 pööret (`implementation_approval_mismatch`, mudelikulu 0). Need jooksutati uuendatud plaaniga uuesti (jooks 4b).
+  - Järele jäid kontaktisik ja kuuldeaparaadi piirhind.
+- **Kulutingimused:** [ADR-046](../rag-v2/adr-046-cost-conditions.md).
+  - Uus sihtkataloog sisaldab viie toetuse või teenuse kulutingimust.
+  - Otsinguplaan toob nüüd summa kujunemise lõigud.
+  - Vastus ei seo kuuldeaparaadi osalust piirhinnaga ka siis, kui SHS-i piirhinna säte on tõendis (0/7). See jääb avatuks, variandid on ADR-is.
+  - Terve kataloog v4 uue koodiga: 38/40, regressioonita.
+- **Kontaktid:** tabel ja Harku katse on kirjas [ADR-045-s](../rag-v2/adr-045-contact-binding-content.md#mis-jääb-operaatorile).
+  - Ülevaatetabelis on 139 ettepanekut ja 245 „kontrolli“.
+  - Kohalik katse Harku andmetega läbis kogu raja. Toidupanga kontaktina tuli välja sotsiaalhoolekandespetsialist koos telefoni ja e-postiga.
+  - Avaldamine ootab operaatori otsust.
+
 ## Omavalitsuse kontaktid: kataloog ei anna ühtegi kontaktisikut
 
 Leid 4 („Kellele helistada“) osutus laiemaks kui üks stsenaarium. Mõõtmine tehti serveris ainult lugemisega, kontaktandmeid aruandesse ei kopeeritud.
