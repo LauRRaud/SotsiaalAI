@@ -1999,10 +1999,18 @@ html[data-reduce-motion="1"] .gc-shortcut-tooltip {
    maha sulanud (omanik 23.09). Elemendi oma filter tema härmatist ei
    katkesta. Sügavuslaual jääb hägu mähisele (.gc-desk'i filter lamestaks
    astmed, vt ülal) — seal puudub härmatis naastes hetkeks. 1.5 px nagu
-   ruumi-laval. */
-.room:is([data-login-open="1"], [data-info-open="1"], [data-card-page="1"]) .gc-list :is(.gc-card-surface, .gc-icon, .gc-label, .gc-card-badge),
-.room:is([data-login-open="1"], [data-info-open="1"], [data-card-page="1"]) .room-carousel-wrap:has(.gc-desk) {
-  filter: blur(1.5px);
+   ruumi-laval.
+   AINULT seal, kus karussell akna taga paistab. Telefonis on mähis avatud
+   akna ajal opacity 0 (allpool), seega hägu ei näinud keegi. Naastes sulas
+   ta aga kaardi osadelt ~1 s jooksul ära ning iOS joonistas filtriga
+   3D-kaardi valesti: härmatist ei olnud ja ikoon ning silt olid kaardi
+   ülanurgas väikesed, kuni üleminek lõppes (omanik 28.09, Uuenda PIN →
+   menüü). Tingimus on alloleva mobiiliploki täpne vastand. */
+@media (min-width: 769px) and (pointer: fine), (min-width: 769px) and (pointer: none) {
+  .room:is([data-login-open="1"], [data-info-open="1"], [data-card-page="1"]) .gc-list :is(.gc-card-surface, .gc-icon, .gc-label, .gc-card-badge),
+  .room:is([data-login-open="1"], [data-info-open="1"], [data-card-page="1"]) .room-carousel-wrap:has(.gc-desk) {
+    filter: blur(1.5px);
+  }
 }
 
 /* Mobiili avatud akna taga ei paista karussell läbi. */

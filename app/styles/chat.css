@@ -88,6 +88,24 @@
   position: relative;
   isolation: isolate;
 }
+/* Telefoni püstvaates seisab vestluse komposer TÄPSELT kiirmenüü kõrgusel
+   (omanik 28.09: „imelikult üleval, peaks olema sama kõrgel kui kiirmenüü",
+   nii PWA kui brauser). Kiirmenüü alaserv on --dock-portrait-bottom
+   nähtava ekraani alaservast (carousel.css). Komposer elab 100lvh paneeli
+   sees, seega:
+   + brauseri tööriistariba kate (lvh − dvh), et mõõt algaks nähtavast servast;
+   − paneeli sisu alapolster ja vormi enda alapolster, mis istuvad riba ja
+     konteineri serva vahel.
+   Varem oli siin „max(kodunupp, riba) + 2.5rem“ ja pill jäi kiirmenüüst
+   ~50 px kõrgemale. Klaviatuuri rada (inline --chat-composer-inset) ei muutu. */
+@media (pointer: coarse) and (orientation: portrait) {
+  .panel-scrim[data-conversation="1"][data-chat="1"] [data-chat-container] {
+    --chat-composer-rest-inset: calc(
+      var(--dock-portrait-bottom) + var(--chat-browser-chrome, 0px) -
+        var(--conv-panel-pad-b) - var(--conv-composer-pad-b)
+    );
+  }
+}
 
 [data-chat-container] > main {
   position: relative;
@@ -1520,18 +1538,22 @@ html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] [role="article"
 }
 
 /* ---------- Sisend: hõljuv valguskapsel ---------- */
-.panel-scrim[data-conversation="1"] form:has(#chat-input) {
-  width: min(37rem, calc(100% - clamp(1rem, 3vw, 2rem)));
-  margin-inline: auto;
-  /* Ülapolster väike; ALApolster tõstetud (omanik 23.07: "paneeliplokk peaks
-     üleval pool olema") → komposeriplokk ei liibu enam paneeli põranda vastu.
-     NB: alapolster elab MUUTUJAS, sest +-nupp peab sellega arvestama —
-     ta on absoluutselt positsioneeritud VORMI suhtes, mitte triibu suhtes
-     (vt > div:first-child allpool). Ilma selle sidemeta jäi + triibust
-     välja rippuma, kui polstrit muudeti. */
+/* Ülapolster väike; ALApolster tõstetud (omanik 23.07: "paneeliplokk peaks
+   üleval pool olema") → komposeriplokk ei liibu enam paneeli põranda vastu.
+   NB: alapolster elab MUUTUJAS, sest +-nupp peab sellega arvestama —
+   ta on absoluutselt positsioneeritud VORMI suhtes, mitte triibu suhtes
+   (vt > div:first-child allpool). Ilma selle sidemeta jäi + triibust
+   välja rippuma, kui polstrit muudeti. Muutujad on paneeli tasemel, mitte
+   vormil: vestluse konteiner arvutab nendega telefonis komposeri kõrguse
+   (--chat-composer-rest-inset allpool). */
+.panel-scrim[data-conversation="1"] {
   --conv-composer-pad-t: clamp(0.25rem, 0.8lvh, 0.5rem);
   --conv-composer-pad-b: clamp(0.6rem, 1.7lvh, 1.05rem);
   --conv-strip-pad-b: 0.42rem;
+}
+.panel-scrim[data-conversation="1"] form:has(#chat-input) {
+  width: min(37rem, calc(100% - clamp(1rem, 3vw, 2rem)));
+  margin-inline: auto;
   padding: var(--conv-composer-pad-t) 0 var(--conv-composer-pad-b);
   /* Vorm ise ainult tõuseb; hajumine ja hägu käivad elementidel, mis EI
      OLE pilli (triibu ::before) vanemad, ja pillil endal. Hajuv vanem
