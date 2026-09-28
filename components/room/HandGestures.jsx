@@ -88,6 +88,7 @@ function loadVision() {
 let recognizerPromise = null;
 function loadRecognizer() {
   if (!recognizerPromise) {
+    routeMediaPipeInfo();
     recognizerPromise = loadVision()
       .then((Vision) => {
         const fileset = {
@@ -114,6 +115,28 @@ function loadRecognizer() {
       });
   }
   return recognizerPromise;
+}
+
+/* MediaPipe'i wasm kirjutab oma teaberead stderr'i ehk console.error'isse
+   („INFO: Created TensorFlow Lite XNNPACK delegate for CPU." esimesel
+   tuvastusel). See ei ole viga, aga Next'i arendusrežiim näitab seda
+   punase veaaknana (omanik 28.09). Wasm seob console.error'i endale
+   LAADIMISE hetkel (console.error.bind), seega peab suunamine olema paigas
+   enne tuvastaja loomist; hilisem ajutine asendus teda ei mõjuta. Ainult
+   „INFO:"-ga algavad read lähevad console.info'sse, kõik muu jääb
+   console.error'isse. */
+let infoRouted = false;
+function routeMediaPipeInfo() {
+  if (infoRouted) return;
+  infoRouted = true;
+  const error = console.error;
+  console.error = function routedError(...args) {
+    if (typeof args[0] === "string" && args[0].startsWith("INFO:")) {
+      console.info(...args);
+      return;
+    }
+    error.apply(this, args);
+  };
 }
 
 function sendHand(detail) {
