@@ -1,9 +1,9 @@
 {
   "schema_version": "rag-v2/legal-acts-in-index-1",
-  "generated_at": "2026-09-27T20:04:27.568Z",
+  "generated_at": "2026-09-28T06:30:31.524Z",
   "tenant": "sotsiaalai-corpus",
-  "store_generation": "generation_35b726dea835df195927c57f32de2566f04665047dcf73b57b41262e60080903",
-  "policy_documents": 6024,
+  "store_generation": "generation_9b5163f9e8de1b0c883a3581fd7175fdd2df017e4de30105fb78ef8db0fc2fe7",
+  "policy_documents": 6026,
   "acts": [
     {
       "document_id": "document_00b6ffec42890532bbe8f5616bfc38a9cea2136ec8619d16a002a3cc5296344e",
@@ -988,6 +988,18 @@
       "index_to": null
     },
     {
+      "document_id": "document_c7db5224ab443116d9f9dfb9686f2e95c125fe661eff9ed0fa075ab84d235f28",
+      "version_id": "version_5f63ca53906e0a5436d83c2bb77dc590a8c3dcf6fda85b590af254836ba574ca",
+      "globaal_id": "111072026123",
+      "group": "1032355",
+      "title": "Sotsiaalhoolekande seadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/111072026123.xml",
+      "index_from": "2027-04-01",
+      "index_to": "2027-12-31"
+    },
+    {
       "document_id": "document_cc39afd08d15b952839f6bf784ed5d3cf02a73c465ac57f719c6b582a0949c36",
       "version_id": "version_45cc9c64b9918a18d002d9242c41eb1570b310dfa3a94946aecf3004f63a27f2",
       "globaal_id": "430062026041",
@@ -1052,6 +1064,18 @@
       "source_path": "oigusaktid/111072026042.xml",
       "index_from": "2026-10-01",
       "index_to": "2026-12-31"
+    },
+    {
+      "document_id": "document_d9e7b9017eb175b355334d66c985724acbe21f9348137b0dcf816b78e1f95f56",
+      "version_id": "version_52cb1b1d0c336a87e73ff13b632b22fa90af4ac3212fc0c3bbe4094d1f31194f",
+      "globaal_id": "111072026122",
+      "group": "1032355",
+      "title": "Sotsiaalhoolekande seadus",
+      "issuer": "Riigikogu",
+      "regions": [],
+      "source_path": "oigusaktid/111072026122.xml",
+      "index_from": "2027-02-01",
+      "index_to": "2027-03-31"
     },
     {
       "document_id": "document_db6295dc196047e71a82e952b16936d20182ecb4b9f37ac416cbc4ca31d504bc",

@@ -53,6 +53,9 @@ Riigi Teataja õigusakti puhul:
 
 Sisestuse järjekord vajab kohalikku PostgreSQL-i: `node scripts/rag-v2-local.mjs up`, ühendus on failis `tmp/rag-v2-services/connections.json`. Ilma selleta annavad `run`, `review` ja `publish` ainult vea `batch_cli_failed`.
 
+- Kui `docker ps` ei näita Postgres'i juures `127.0.0.1:55432->5432`, on port tõenäoliselt Windowsi Hyper-V reserveeritud vahemikus. See juhtub mõnikord pärast taaskäivitust; kontrolli käsuga `netsh int ipv4 show excludedportrange protocol=tcp`. Omanik vabastab selle administraatori PowerShellis käskudega `net stop winnat` ja `net start winnat`, seejärel käivita uuesti `up`.
+- Teist porti kasutada ei saa: kohaliku arenduse kaitse lubab ainult `127.0.0.1:55432` (`local_postgres_required`).
+
 Tee enne hoidla aktiivse pea varukoopia:
 
 ```bash
