@@ -1514,40 +1514,91 @@ html[data-reduce-transparency="1"] .hand-cam {
     font-size: 0.84rem;
   }
 }
-/* Juhend (RoomStage'i info-kaart): žest ja tema toime. Kaardil on kindel
-   mõõt (glass.css .glass-modal-shell), seega veidi väiksem kiri kui
-   leivatekstil, et neli žesti mahuksid kerimata. */
+/* Juhend (RoomStage'i info-aken). Oma mõõt, mitte kaardi oma: kaardi
+   kujus (glass.css .glass-modal-shell, laius --gc-w, suhe 0,72) oli ta
+   telefonis kitsas ja kerimisega (omanik 28.09: „teateaken on kole ja
+   väike"). Laiem aken, kõrgus sisu järgi; pikk sisu kerib kesta sees
+   (sama max-height mis baasil). */
+/* Aken seisab kaamera olekuriba (.hand-cam, all 6.2rem ülaservast) ja
+   doki vahel ning on SELLE vahemiku keskel: top + bottom + fit-content +
+   margin auto. Olekuriba peab juhendi ajalgi näha olema — kaamera töötab. */
+.glass-modal-shell.hand-guide-shell {
+  top: calc(env(safe-area-inset-top, 0px) + 6.2rem);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 6rem);
+  height: fit-content;
+  margin-block: auto;
+  transform: translateX(-50%);
+  width: min(34rem, calc(100vw - 1.5rem));
+  aspect-ratio: auto;
+  padding: clamp(1.3rem, 3lvh, 1.9rem) clamp(1rem, 4vw, 1.8rem) clamp(1.1rem, 2.6lvh, 1.6rem);
+}
+.hand-guide-shell .glass-modal-title {
+  margin-bottom: 0.75em;
+}
 .hand-guide {
   display: grid;
-  gap: 0.6rem;
+  gap: 0.45rem;
   margin: 0 0 0.9rem;
-  font-size: 0.97rem;
+  padding: 0;
+  list-style: none;
   text-align: left;
 }
-.hand-guide-actions {
-  display: flex;
-  justify-content: center;
-  margin-top: 0.4rem;
-}
+/* Rida: pilt vasakul üle kahe rea, nimi ja toime paremal. */
 .hand-guide-row {
   display: grid;
-  gap: 0.15rem;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  column-gap: 0.8rem;
+  align-items: center;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 1rem;
+  background: var(--glass-cell-bg);
 }
-.hand-guide dt {
+.hand-guide-icon {
+  grid-row: 1 / span 2;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--glass-cell-bg-hover);
   color: var(--room-text);
+}
+.hand-guide-icon svg {
+  width: 1.45rem;
+  height: 1.45rem;
+}
+.hand-guide-title {
+  align-self: end;
+  color: var(--room-text);
+  font-size: 1rem;
   font-weight: 560;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
 }
-.hand-guide dd {
-  margin: 0;
+.hand-guide-text {
+  align-self: start;
   color: var(--room-text-soft);
-  line-height: 1.4;
+  font-size: 0.93rem;
+  line-height: 1.35;
 }
-.hand-guide-note {
-  margin: 0 0 0.5rem;
+.hand-guide-notes {
+  display: grid;
+  gap: 0.3rem;
+  margin: 0 0 1rem;
+}
+/* Kaks klassi: .glass-modal-body p (1.15em alla) jääks muidu peale. */
+.hand-guide-notes .hand-guide-note {
+  margin: 0;
   color: var(--room-text-dim);
   font-size: 0.85rem;
   line-height: 1.4;
   text-align: left;
+}
+.hand-guide-actions {
+  display: flex;
+}
+.hand-guide-actions > * {
+  flex: 1 1 auto;
 }
 }

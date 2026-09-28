@@ -1987,13 +1987,15 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         <InstallAppLink variant="card" showWhenUnavailable showInstalledState />
       </GlassModal>
 
-      {/* Käežestide juhend — info-kaart nagu Kontakt: karussell taandub tema
-          taga ja dokis on tagasi-nool. */}
+      {/* Käežestide juhend — info-aken nagu Kontakt: karussell taandub tema
+          taga ja dokis on tagasi-nool. Ristita (omanik 28.09: „ei pea olema
+          sulge nupuga"): sulgeb „Selge", Esc, väljaklõps ja rusikas. */}
       <GlassModal
         open={openInfoModal === "hands"}
         onClose={() => setOpenInfoModal(null)}
         title={t("room.hands_camera")}
         contentClassName="hand-guide-shell"
+        hideClose
       >
         <HandGestureGuide t={t} onDone={() => setOpenInfoModal(null)} />
       </GlassModal>

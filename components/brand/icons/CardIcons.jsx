@@ -72,13 +72,13 @@ export const InstallIcon = (props) => (
   </Svg>
 );
 
-/* Käežestid — pühkiv sõrm kahe noolega kaare all (omanik 28.09: tõstetud
-   käe kuju ei meeldinud). Kaar = liigutus vasakule-paremale. */
+/* Käežestid — lehvitav käsi, liikumiskaared mõlemal pool (omanik 28.09:
+   endine tõstetud käsi ei meeldinud; viiest variandist valis „C"). */
 export const HandGestureIcon = (props) => (
   <Svg {...props}>
-    <path {...P} d="M5 7.2C7.1 5.4 9.4 4.5 12 4.5s4.9.9 7 2.7" />
-    <path {...P} d="M5 7.2 4.7 4.8M5 7.2l2.4-.1M19 7.2l.3-2.4M19 7.2l-2.4-.1" />
-    <path {...P} d="M10.4 20.5l-3-3.3a1.4 1.4 0 0 1 2.1-1.9l.9.9v-5.4a1.4 1.4 0 0 1 2.8 0v3.4l2.9.6a1.7 1.7 0 0 1 1.3 1.9l-.5 3.8" />
+    <path {...P} d="M9 12.5V6.5a1.5 1.5 0 0 1 3 0v5M12 11V5.5a1.5 1.5 0 0 1 3 0v6" />
+    <path {...P} d="M15 11.5V8a1.5 1.5 0 0 1 3 0v5.5a6.5 6.5 0 0 1-6.5 6.5h-.8a5.5 5.5 0 0 1-4.2-2L4.2 14.9a1.5 1.5 0 0 1 2.3-1.9L9 15.5v-3" />
+    <path {...P} d="M20 4.5c.9.8 1.4 1.8 1.5 3M3.8 5.5c.3-1.2 1-2.1 2-2.8" />
   </Svg>
 );
 

@@ -183,20 +183,53 @@ function scrollBy(dir, travel) {
   });
 }
 
-/** Juhendi sisu RoomStage'i info-kaardile. */
+/* Iga žest oma pildiga: pühkimine ↔, kerimine ↕, näpistus = kaks
+   noolt ühte punkti, rusikas. Joon sama mis CardIcons'il. */
+const GUIDE_ICONS = {
+  swipe: <path d="M4 12h16M7.5 8.5 4 12l3.5 3.5M16.5 8.5 20 12l-3.5 3.5" />,
+  scroll: <path d="M12 4v16M8.5 7.5 12 4l3.5 3.5M8.5 16.5 12 20l3.5-3.5" />,
+  pinch: (
+    <>
+      <circle cx="12" cy="12" r="1.4" />
+      <path d="M5 5l4.5 4.5M9.5 5.5v4h-4M19 19l-4.5-4.5M14.5 18.5v-4h4" />
+    </>
+  ),
+  fist: (
+    <>
+      <rect x="6.5" y="7" width="11" height="8.5" rx="3" />
+      <path d="M9.3 7v3.2M12 7v3.2M14.7 7v3.2M8.5 15.5v2a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-2" />
+    </>
+  ),
+};
+
+/** Juhendi sisu RoomStage'i info-aknale. */
 export function HandGestureGuide({ t, onDone }) {
   return (
     <>
-      <dl className="hand-guide">
+      <ul className="hand-guide">
         {["swipe", "scroll", "pinch", "fist"].map((key) => (
-          <div key={key} className="hand-guide-row">
-            <dt>{t(`room.hands_guide_${key}_title`)}</dt>
-            <dd>{t(`room.hands_guide_${key}`)}</dd>
-          </div>
+          <li key={key} className="hand-guide-row">
+            <span className="hand-guide-icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                {GUIDE_ICONS[key]}
+              </svg>
+            </span>
+            <span className="hand-guide-title">{t(`room.hands_guide_${key}_title`)}</span>
+            <span className="hand-guide-text">{t(`room.hands_guide_${key}`)}</span>
+          </li>
         ))}
-      </dl>
-      <p className="hand-guide-note">{t("room.hands_guide_tip")}</p>
-      <p className="hand-guide-note">{t("room.hands_local")}</p>
+      </ul>
+      <div className="hand-guide-notes">
+        <p className="hand-guide-note">{t("room.hands_guide_tip")}</p>
+        <p className="hand-guide-note">{t("room.hands_local")}</p>
+      </div>
       <div className="hand-guide-actions">
         <Button type="button" onClick={onDone}>
           {t("room.hands_guide_done")}
