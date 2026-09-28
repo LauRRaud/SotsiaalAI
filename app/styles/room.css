@@ -977,6 +977,12 @@ html[data-contrast="hc"] .room-quickbar {
   width: var(--icon-size);
   height: var(--icon-size);
 }
+/* Sama joon mis kiirmenüüs (carousel.css .gc-shortcut-icon: 1.75, et
+   kaared ei astenduks 125% ekraanil). Kehtib ka kaamera riba nuppudele. */
+.glass-iconbtn.room-quick-btn svg *,
+.hand-cam-btn svg * {
+  stroke-width: calc(1.75 / var(--icon-scale, 1));
+}
 /* Hover = alumise kiirmenüü nupp (.gc-shortcut, carousel.css): ainult
    heledam täide, ilma servata (omanik 28.09: „hover peab olema selline
    nuppudel nagu alumise kiirmenüü omal, ilma servata"). */
