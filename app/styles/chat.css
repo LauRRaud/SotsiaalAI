@@ -170,6 +170,29 @@
 [role="article"][data-role]:focus-visible {
   box-shadow: var(--focus-ring);
 }
+/* Viide vastuses („[S37, S21]“) avab allikapaneeli nende allikatega: sama värv
+   mis tekst, väiksem ja punktiirjoonega, et see loeks viitena, mitte nupuna. */
+[role="article"][data-role="ai"] button[data-source-ref] {
+  font: inherit;
+  font-size: 0.82em;
+  color: inherit;
+  opacity: 0.72;
+  background: none;
+  border: 0;
+  border-radius: 0.3em;
+  padding: 0 0.1em;
+  margin: 0;
+  cursor: pointer;
+  text-decoration: underline dotted;
+  text-underline-offset: 0.22em;
+}
+[role="article"][data-role="ai"] button[data-source-ref]:hover {
+  opacity: 1;
+}
+[role="article"][data-role="ai"] button[data-source-ref]:focus-visible {
+  opacity: 1;
+  box-shadow: var(--focus-ring);
+}
 
 /* Sõnumi tegevusrida (Kopeeri / Kuula) — vaikne, mulli all */
 [role="article"][data-role] [aria-label] > button {
