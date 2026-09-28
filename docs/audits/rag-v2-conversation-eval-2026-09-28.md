@@ -78,3 +78,64 @@ Codexi ülevaatuse järgi jääb toortulemus 31/40 kehtima. Ümberhinnang on era
 3. Abivahendi määruse kaotuse koht kandidaatides või rerank'is.
 4. Omavalitsuse üldkontakt.
 5. Kataloogi 2. versioon ja kogu vestluste komplekti kordamine.
+
+## Kordus pärast ADR-041 ja Tartu eitust (#236, #237), 28.09 õhtul
+
+Tootmises oli plaan `…-1253-r84fa17edc`. Kordasin ainult kaht stsenaariumi, kulu 0,021 USD.
+
+- **`tartu-parish-not-city`: passed.** Piirkond on `tartu_vald`; vastus annab Tartu valla sotsiaaltranspordi avalduse ja teenuseosutaja.
+- **`law-on-dates`: otsing on nüüd õige, valik veel mitte.**
+  - Kehtivusreegel lubas 1.3.2027 kohta SHS-i 01.02–31.03.2027 ja 2027. aasta jaanuari kohta RLS-i 01.01–30.06.2027. Kumbki pole enam välistatud.
+  - Tõendisse jõudis ikkagi ainult tänane redaktsioon.
+  - Jälgisin rerank'i kandidaate. Kandidaatide hulgas on sama pealkirjaga SHS-i redaktsioonid (34 lõigust 9), aga lõigul polnud kehtivusaega ja rerank ei teadnud tänast kuupäeva.
+  - Otsingukontroll `evidence` ei märganud seda, sest võrdles ainult pealkirja.
+  - **Parandus:** [ADR-042](../rag-v2/adr-042-rerank-law-versions.md). Rerank'i lõigul on `valid_from`/`valid_to`, sisendis on `today`, ja juhis ütleb, kumba redaktsiooni hoida. Hindamisse lisandus `found_valid_on`.
+  - Enne PR-i mõõtsin eraldi aktiveerimata plaaniga: `law-on-dates` 4/4 (vt ADR-042).
+
+## Kataloogi 2. versioon uue koodiga: toortulemus 37/40
+
+- **Kataloog:** `scenarios-corpus-2.json` sisaldab samu 16 vestlust ja 40 pööret. Parandatud on ainult ümberhinnangus liiga kitsaks leitud kontrollid, ja seaduse pöördeid kontrollib nüüd `found_valid_on`.
+  - `money-harku-contact` 3 lubab ka toidupanka;
+  - Kose parandusest on `must_not` eemaldatud;
+  - vaide tähtaja algus nõuab mustrit `teada`;
+  - hooldekodu mustrisse lisandus `hooldustöötaja`;
+  - `law-on-dates` 4 nõuab ausat puudujäägi tunnistamist;
+  - kuuldeaparaadi puhul sobib abivahendi määrus või teatmik, piirhind on endiselt nõutud.
+- **Käivitus:** ADR-042 kood töötas eraldi koopias kahe aktiveerimata plaaniga, kulu 0,21 USD, [aruanne](rag-v2-conversation-eval-2026-09-28-run2.md).
+  - Esimese plaani 0,5 USD piir täitus halvima juhu broneeringutega 22 pöörde järel, seega jooksutasin ülejäänud üheksa vestlust teise plaaniga.
+- **Tulemus 37/40.** Kõik kuupäeva-, Tartu-, paranduse-, uue isiku-, kriisi- ja kolimispöörded läbisid.
+- **Järele jäi kolm puudust:**
+  1. **`money-harku-contact` 3 (`state`):** kontaktisikut pole. See on allpool kirjeldatud kataloogi puudus, mitte selle vestluse viga.
+  2. **`vague-then-details` 2 (`provider_incomplete`):** vastust ei tulnud.
+     - Viimsi kataloogiga oli sisendis 21 056 tokenit; mudel kasutas kõik 4096 väljunditokenit arutluseks.
+     - 7 päeva jooksul on 194 vastusekutsest nii läinud 1. Väljundi 99. protsentiil on 3855, seega on 4096 lagi liiga lähedal.
+     - Lagi on plaanis ja omaniku kinnitatud. Väljalaske plaaniuuendus (ADR-037) seda ei muuda: vaja on koodimuudatust ja uut plaani. Teen selle eraldi PR-iga.
+  3. **`hearing-aid-cap` 1 (`answer`):** vastus annab õige esimese sammu ja SKA erandi tee, aga ei maini piirhinda.
+     - Tõendis oli piirhinnast juttu kahes lõigus: teatmiku „Piirhinna suurendamiseks“ ja SHS-i „piirhinna ulatuses“.
+     - Seega on see vastuse täielikkuse puudus. Seadme piirhinna tabel on määruse lisa, mida XML-tekst ei sisalda.
+
+## Omavalitsuse kontaktid: kataloog ei anna ühtegi kontaktisikut
+
+Leid 4 („Kellele helistada“) osutus laiemaks kui üks stsenaarium. Mõõtmine tehti serveris ainult lugemisega, kontaktandmeid aruandesse ei kopeeritud.
+
+- **Kataloogi 808 paketikontaktist ei läbi `authorizeContact`-i ükski**, üheski 76 omavalitsusest. Registris on praegu kontrollitud kontakte 739 (avaldatud 1197).
+- **Põhjus:** paketikontakti ja registrikirje vahel puudub seos.
+  - Ilma sidumiseta (`registry_binding`) otsib `authorizeContact` registrist kirjet, mille `sourceDocId` on paketi ID.
+  - Kontrollitud registrikirjetest 626-l 739-st on `sourceDocId` tühi, näiteks kõigil Harku omaniku volitatud taastamise kirjetel (`OFFICIAL_KOV_CONTACT`).
+  - Ülejäänud 113 kirje `sourceDocId` ei vasta ühegi paketikontakti ID-le.
+  - Pealegi erineb nimi või URL. Näiteks Harku paketis on `harku.ee/…/sotsiaal-ja-tervishoiuosakonna-kontaktid`, registris `www.harku.ee/…/kontakt/…`.
+- **Paketikontaktidel pole telefoni ega e-posti** (0/808). Isegi lubatud paketikirje annaks ainult nime ja ametikoha. Kanalid on registris, mida iganädalane veebikontroll kinnitab.
+- **ADR-017 sild (registrist eksport) oli mõeldud selleks, aga seda pole kordagi käivitatud.** Sellel on ka ajapiirang:
+  - eksporditud `registry_binding` nõuab registri `checkedAt`-i täpset vastet;
+  - iganädalane kontroll kirjutab kinnitatud kirjete `checkedAt` üle (`lib/admin/rag/contactRegistry/databaseService.js`);
+  - seega aeguks eksport hiljemalt 7 päevaga ja iga nädal oleks vaja uut allikaversiooni, indeksit ja plaani.
+- **Kandidaadid ülevaatuseks** on serveris `rag-v2-work/eval-files/contact-candidates-2026-09-28.json`. Neid pole repos, sest seal on nimed.
+  - Kandidaadi reegel: sama omavalitsus, täpselt sama nimi ja registrikirje kontrollitud.
+  - Üheselt sobib 384 kontakti 60 omavalitsuses. 20 on mitmetähenduslikud ja 404 jaoks kandidaati pole.
+  - 164 kandidaadi allikaleht on sama, ülejäänutel erineb URL-i kuju.
+- **Otsust vajab omanik/Codex.** Variandid:
+  - **A. ADR-017 eksport nagu praegu:** igal nädalal uus eksport, allikaversioon, indeks ja plaan. Minu hinnangul liiga raske.
+  - **B. Seo registrikirje ID ja revisjoniga, mitte kontrolliajaga.** Värskust kontrolliks siis ainult jooksev 90 päeva reegel, mida otsing, vastuse saatmine ja taastamine niikuinii kordavad. Eksport oleks vaja teha ainult uue revisjoni korral. See muudab ADR-017 lepingut: vaja on uut ADR-i, vastenduse ülevaatust (384 kandidaati) ja ühte uut indeksi generatsiooni.
+  - **C. Otsene registrirada vestluses:** omavalitsuse kontrollitud kontaktid tuleksid päringu ajal registrist, ilma indeksita. See on uus allikaliik ja muudab viidete ning taastamise mudelit kõige rohkem.
+  - Soovitan B-d, aga vastenduse sisuline ülevaatus on ADR-017 järgi operaatori otsus. Seepärast ei avaldanud ma kontaktide eksporti ise.
+- **Kuni selle otsuseni** ütleb vestlus ausalt, et kontaktisikut ei saa anda, ja suunab omavalitsuse ametlikule lehele. Kataloogi v2 ootus `contacts` jääb alles, sest see on päris puudus, mitte liiga kitsas kontroll.

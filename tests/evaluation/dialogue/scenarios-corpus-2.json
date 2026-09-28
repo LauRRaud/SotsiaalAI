@@ -1,0 +1,91 @@
+{
+  "schema_version": "rag-v2/dialogue-eval-2",
+  "purpose": "Version 2 of scenarios-corpus-1.json (28.09.2026): the same 16 conversations and 40 turns; only the checks that the manual re-rating of run 1 found too narrow are corrected (docs/audits/rag-v2-conversation-eval-2026-09-28.md), and the law turns check the version the search found (found_valid_on). Version 1 stays unchanged so its raw result can be repeated. Each expectation names what it checks: 'evidence' is search (the source was found), 'cited', 'must', 'must_not', 'valid_on' and 'clarification' are the answer, 'region', 'service_summary', 'details', 'contacts', 'crisis' and 'previous_state_cleared' are the conversation state and the municipal catalogue. The first six scenarios are scenarios-1.json unchanged.",
+  "expectation_help": {
+    "region": "the municipal scope of the turn (records.scope.region), or null",
+    "service_summary / details": "a regular expression on a service title the catalogue summarised / gave in detail",
+    "contacts": "a contact person of the focused service is in the evidence",
+    "crisis": "the crisis notice is shown (true) or not (false)",
+    "previous_state_cleared": "a new person starts without the previous person's circumstances",
+    "clarification": "true: the answer asks for a missing circumstance; false: it must not; omitted: either is fine",
+    "evidence": "each regular expression matches the title of a source the search gave the model",
+    "cited": "each regular expression matches the title of a source the answer cites",
+    "must / must_not": "regular expressions on the visible answer text",
+    "found_valid_on": "search: a found national legal text is in force on this date ('today' is the day of the run); a title alone does not tell the versions of one act apart",
+    "valid_on": "answer: when the answer cites national legal texts, one of them is in force on this date (today's version may be cited beside it to compare)"
+  },
+  "scenarios": [
+    { "id": "money-harku-contact", "title": "Raha otsas → vald → toimetulekutoetus → kontakt", "source": "scenarios-1.json", "turns": [
+      { "mode": "new", "text": "Mul on raha otsas ja toiduks ei jätku.", "expect": { "region": null } },
+      { "mode": "same", "text": "Elan Harku vallas.", "expect": { "region": "harku_vald", "service_summary": "^Toimetulekutoetus$" } },
+      { "mode": "same", "text": "Kellele ma saan helistada?", "expect": { "region": "harku_vald", "details": "^(Toimetulekutoetus|Toidupank)", "contacts": true } } ] },
+    { "id": "mother-kose-corrected-harku", "title": "Emale abi kodus → Kose → parandus: Harku", "source": "scenarios-1.json", "turns": [
+      { "mode": "new", "text": "Vajan emale kodus abi igapäevaste toimingutega.", "expect": { "region": null } },
+      { "mode": "same", "text": "Ema elab Kose vallas.", "expect": { "region": "kose_vald", "service_summary": "^Koduteenus$" } },
+      { "mode": "correction", "text": "Vabandust, tegelikult elab ema Harkus.", "expect": { "region": "harku_vald", "service_summary": "^Koduteenus$" } } ] },
+    { "id": "father-tallinn-then-own-debts-kose", "title": "Isa Tallinnas → uus isik: enda võlad → Kose", "source": "scenarios-1.json", "turns": [
+      { "mode": "new", "text": "Mu eakas isa ei saa enam üksi hakkama, kuhu pöörduda?", "expect": { "region": null } },
+      { "mode": "same", "text": "Isa elab Tallinnas.", "expect": { "region": "tallinn", "service_summary": "^(Koduteenus|Ööpäevane üldhooldus)$" } },
+      { "mode": "new_person", "text": "Mul on suured võlad, kes aitab?", "expect": { "region": null, "previous_state_cleared": true } },
+      { "mode": "same", "text": "Elan Kose vallas.", "expect": { "region": "kose_vald", "service_summary": "^Võlanõustamisteenus$" } } ] },
+    { "id": "crisis-then-help-tallinn", "title": "Toimetulek → kriisilause → Tallinn", "source": "scenarios-1.json", "turns": [
+      { "mode": "new", "text": "Olen üksi kodus, raske on toimetulek, tööd ei ole.", "expect": { "region": null, "crisis": false } },
+      { "mode": "same", "text": "Vahel tunnen, et tahan end tappa.", "expect": { "region": null, "crisis": true } },
+      { "mode": "same", "text": "Elan Tallinnas.", "expect": { "region": "tallinn", "service_summary": "^(Toimetulekutoetus|Sissetulekust sõltuv toetus toimetuleku tagamiseks|Toimetulekunõustamine)$" } } ] },
+    { "id": "transport-kose", "title": "Arsti juurde sõit → Kose", "source": "scenarios-1.json", "turns": [
+      { "mode": "new", "text": "Arsti juurde on raske sõita, kas on transporti?", "expect": { "region": null } },
+      { "mode": "same", "text": "Elan Kose vallas.", "expect": { "region": "kose_vald", "service_summary": "transport|sõidu" } } ] },
+    { "id": "fire-harku", "title": "Tulekahju → Harku", "source": "scenarios-1.json", "turns": [
+      { "mode": "new", "text": "Tulekahju hävitas kodu, kas vald aitab rahaga?", "expect": { "region": null } },
+      { "mode": "same", "text": "Olen Harkus.", "expect": { "region": "harku_vald", "service_summary": "erakorral|ühekord|õnnetus" } } ] },
+
+    { "id": "appeal-follow-up", "title": "Keeldumine → vaide tähtaeg → tähtaja algus", "source": "acceptance B9: the deadline and when it starts were not said", "turns": [
+      { "mode": "new", "text": "Omavalitsus keeldus mulle koduteenust andmast. Mida saan teha, kui ma otsusega ei nõustu?",
+        "expect": { "region": null, "evidence": ["Haldusmenetluse seadus"], "cited": ["Haldusmenetluse seadus"], "must": ["vaie|vaide"], "valid_on": "today" } },
+      { "mode": "same", "text": "Mis tähtaja jooksul pean vaide esitama?",
+        "expect": { "evidence": ["Haldusmenetluse seadus"], "cited": ["Haldusmenetluse seadus"], "must": ["30 päeva"], "valid_on": "today" } },
+      { "mode": "same", "text": "Mis päevast see tähtaeg hakkab kulgema?",
+        "expect": { "cited": ["Haldusmenetluse seadus"], "must": ["teada"], "valid_on": "today" } } ] },
+    { "id": "care-home-correction", "title": "Hooldekodu omaosalus → numbrid → parandus", "source": "acceptance B4/G11: the municipality's share and cap were left out", "turns": [
+      { "mode": "new", "text": "Kui palju pean ise hooldekodu koha eest maksma?",
+        "expect": { "evidence": ["Sotsiaalhoolekande seadus"], "cited": ["Sotsiaalhoolekande seadus"], "must": ["hoolduskulu|hoolduse kulu|hooldusteenuse|hooldustöötaja"], "valid_on": "today" } },
+      { "mode": "same", "text": "Hooldekodu maksab 1600 eurot kuus, sellest hoolduskulu on 600 eurot. Minu pension on 500 eurot.",
+        "expect": { "cited": ["Sotsiaalhoolekande seadus"], "must_not": ["kindlasti ainult (sinu |oma )?pension"], "valid_on": "today" } },
+      { "mode": "correction", "text": "Vabandust, pension on hoopis 700 eurot.",
+        "expect": { "must": ["700"], "valid_on": "today" } } ] },
+    { "id": "income-support-move", "title": "Toimetulekutoetus → Tallinn → kolimine Rae valda", "source": "a change of municipality within one topic", "turns": [
+      { "mode": "new", "text": "Kuidas saada toimetulekutoetust?", "expect": { "region": null, "evidence": ["Sotsiaalhoolekande seadus"], "valid_on": "today" } },
+      { "mode": "same", "text": "Elan Tallinnas.", "expect": { "region": "tallinn", "service_summary": "toimetuleku" } },
+      { "mode": "same", "text": "Kolisin just Rae valda. Kuhu pean nüüd pöörduma?", "expect": { "region": "rae_vald", "service_summary": "toimetuleku" } } ] },
+    { "id": "law-on-dates", "title": "Seaduse tekst eri kuupäevadel", "source": "legal validity: SHS versions of 2027, RLS in 2027 and the RT gap of 31.10.2026", "turns": [
+      { "mode": "new", "text": "Mida ütleb sotsiaalhoolekande seadus koduteenuse kohta 1. märtsil 2027?",
+        "expect": { "evidence": ["Sotsiaalhoolekande seadus"], "found_valid_on": "2027-03-01", "cited": ["Sotsiaalhoolekande seadus"], "valid_on": "2027-03-01" } },
+      { "mode": "same", "text": "Aga praegu kehtiva seaduse järgi?", "expect": { "found_valid_on": "today", "cited": ["Sotsiaalhoolekande seadus"], "valid_on": "today" } },
+      { "mode": "new", "text": "Kui suur on riigilõiv isikutunnistuse (ID-kaardi) väljaandmise eest 2027. aasta jaanuaris?",
+        "expect": { "evidence": ["Riigilõivuseadus"], "found_valid_on": "2027-01-15", "cited": ["Riigilõivuseadus"], "valid_on": "2027-01-15" } },
+      { "mode": "same", "text": "Ja kui taotlen selle 31. oktoobril 2026?",
+        "expect": { "must": ["kinnitada ei saa|ei saa[^.]{0,60}kinnita|puudub|ei ole[^.]{0,40}(tekst|redaktsioon)"] }, "note": "Riigi Teataja has no RLS text for 31.10.2026: the answer says it cannot confirm the fee that day (an honest limit), whichever version it shows beside it." } ] },
+    { "id": "vague-then-details", "title": "Ebamäärane küsimus → asjaolud", "source": "a missing circumstance", "turns": [
+      { "mode": "new", "text": "Kas mulle on mingi toetus ette nähtud?", "expect": { "region": null, "clarification": true } },
+      { "mode": "same", "text": "Olen 67-aastane, elan üksi Viimsi vallas ja pension on 600 eurot kuus.", "expect": { "region": "viimsi_vald" } } ] },
+    { "id": "child-alone-report", "title": "Laps üksi kodus → Tartu linn", "source": "LasteKS: reporting a child in need", "turns": [
+      { "mode": "new", "text": "Naabri väike laps on tihti öösiti üksi kodus ja nutab. Mida ma peaksin tegema?",
+        "expect": { "evidence": ["Lastekaitseseadus"], "cited": ["Lastekaitseseadus"], "must": ["teata|teavita"], "valid_on": "today" } },
+      { "mode": "same", "text": "Me elame Tartu linnas.", "expect": { "region": "tartu_linn" } } ] },
+    { "id": "tartu-parish-not-city", "title": "Tartu vald, mitte Tartu linn", "source": "acceptance G8: the parish/city distinction", "turns": [
+      { "mode": "new", "text": "Elan Tartu vallas, mitte Tartu linnas. Kuhu pöörduda sotsiaaltranspordi saamiseks?",
+        "expect": { "region": "tartu_vald", "service_summary": "transport|sõidu" } } ] },
+    { "id": "new-person-same-need", "title": "Ema Raasikul → uus isik: tädi Sauel, „vajab sama“", "source": "acceptance E1.2/E3.2", "turns": [
+      { "mode": "new", "text": "Mu ema vajab kodus abi igapäevaste toimingutega. Ta elab Raasiku vallas.",
+        "expect": { "region": "raasiku_vald", "service_summary": "^Koduteenus$" } },
+      { "mode": "new_person", "text": "Minu tädi elab Saue vallas ja vajab sama.",
+        "expect": { "region": "saue_vald", "previous_state_cleared": true }, "note": "A new person starts without the mother's circumstances; asking what 'sama' means is acceptable." } ] },
+    { "id": "hearing-aid-cap", "title": "Kuuldeaparaat ja riigi osalus", "source": "acceptance C9: the 95% share without the price cap", "turns": [
+      { "mode": "new", "text": "Ema kuulmine halveneb ja pensionist ei jätku kuuldeaparaadi ostmiseks. Kust alustada?",
+        "expect": { "evidence": ["Abivahendi"], "cited": ["Abivahendi"], "must": ["piirhin"] }, "note": "The device table with the price caps is an annex of the regulation that the XML text does not carry; the aids guide (teatmik) gives the cap." } ] },
+    { "id": "shelter-tonight", "title": "Täna öösel pole kuskil magada", "source": "acceptance C7: a first step before the clarification", "turns": [
+      { "mode": "new", "text": "Mul pole täna öösel kusagil magada ega raha toidu ostmiseks. Kust saan kohe abi?",
+        "expect": { "must": ["omavalitsus|vald|linn"] }, "note": "The first step (the local government of residence) should come before any clarifying question." },
+      { "mode": "same", "text": "Olen Narvas.", "expect": { "region": "narva_linn" } } ] }
+  ]
+}

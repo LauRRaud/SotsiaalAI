@@ -35,7 +35,7 @@ function source(doc, count, text, fields = {}) {
       { id: `parent-${c.id}`, type: 'PARENT_SECTION', from_id: c.id, to_id: `${doc}-section` }]) };
 }
 
-function fixture({ lawFirst = false } = {}) {
+function fixture({ lawFirst = false, first = null } = {}) {
   const embedding = new MockEmbedding(), config = searchConfig(embedding.config);
   // Forty municipal passages on appeals outrank every passage of the national law in both channels.
   const municipal = source('municipal', 40, 'A municipal regulation on contesting a benefit decision, paragraph',
@@ -51,7 +51,7 @@ function fixture({ lawFirst = false } = {}) {
   const generation = { id: id('search_generation', tenant, snapshot, config), config, snapshot };
   const units = bundles.flatMap(b => b.chunks.map(c => indexUnit(c, b, embedding.config)));
   const ranked = ['municipal', 'guide', 'law', 'act'], byDoc = doc => units.filter(u => u.document_id === doc);
-  const order = (lawFirst ? ['law', 'act', 'municipal', 'guide'] : ranked).flatMap(byDoc);
+  const order = (first || (lawFirst ? ['law', 'act', 'municipal', 'guide'] : ranked)).flatMap(byDoc);
   const calls = { lexical: [], vector: [] };
   const rows = (docs, limit, ids) => order.filter(u => docs.includes(u.document_id) && (!ids || ids.includes(u.id))).slice(0, limit)
     .map((u, i) => ({ ...u, score: 100 - i }));
@@ -103,6 +103,16 @@ test('reserved places put the national law before the reranker when municipal pa
   const spread = await f.run({ poolReserve: { documents: ['law', 'act'], size: 4, perDocument: 2 } }, { rerank });
   assert.deepEqual(seen[2].slice(RERANK_POOL).map(p => p.title), ['Title law', 'Title law', 'Title act', 'Title act']);
   assert.deepEqual(spread.rerank.reserved.length, 4);
+});
+
+test('ADR-042: a legal act\'s passages tell the reranker their version\'s validity; other sources carry none', async () => {
+  const seen = [], rerank = async passages => { seen.push(passages); return ['P1']; };
+  await fixture({ first: ['guide', 'law', 'act', 'municipal'] }).run({}, { rerank });
+  const byTitle = Object.fromEntries(seen[0].map(p => [p.title, p]));
+  assert.deepEqual([byTitle['Title law'].valid_from, byTitle['Title law'].valid_to], ['2024-01-01', '2026-12-31']);
+  assert.deepEqual([byTitle['Title act'].valid_from, byTitle['Title act'].valid_to], ['2025-01-01', null], 'an open end is null');
+  assert.deepEqual([byTitle['Title municipal'].valid_from, byTitle['Title municipal'].valid_to], ['2024-01-01', null], 'a municipal regulation is a legal act too');
+  assert(!('valid_from' in byTitle['Title guide']) && !('valid_to' in byTitle['Title guide']));
 });
 
 test('the reserve adds only candidates outside the pool and is unused without a reranker', async () => {

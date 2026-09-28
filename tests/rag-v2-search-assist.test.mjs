@@ -18,6 +18,11 @@ test('search assist: both model calls are strict, low-effort, unstored JSON requ
   assert.equal(rerank.text.format.schema.properties.useful.maxItems, SEARCH_ASSIST_LIMITS.selected);
   // Instructions never carry the user's text; the request data is a separate, untrusted JSON input.
   assert(!plan.instructions.includes('üürivõlg') && /untrusted data/.test(plan.instructions) && /untrusted data/.test(rerank.instructions));
+  // ADR-042: today's date is the reference for "now" among a legal act's versions.
+  assert.deepEqual(Object.keys(JSON.parse(rerank.input[0].content)), ['messages', 'passages']);
+  const dated = rerankRequest(config, ['küsimus'], passages, '2026-09-28');
+  assert.equal(JSON.parse(dated.input[0].content).today, '2026-09-28');
+  assert.match(dated.instructions, /valid_from and valid_to/);
 });
 
 test('search assist: planned queries are trimmed, distinct and differ from the search text; malformed plans and selections are refused', () => {
