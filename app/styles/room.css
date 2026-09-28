@@ -855,6 +855,12 @@ html[data-reduce-motion="1"] .scroll-frames::after {
      ei ole midagi ajastada — riba lihtsalt libiseb sisse ja välja. */
   transition: transform var(--dur-med) var(--ease-soft);
 }
+/* Sama toon mis ruumi kiirmenüül (carousel.css .gc-shortcuts >
+   .gc-shortcut-menu::before): sooja seina ees on vaja jahedamat ja
+   veidi tihedamat tooni, et paneel ei paistaks pruunina. */
+html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .room-quickbar::before {
+  background: rgba(16, 22, 28, 0.7);
+}
 html[data-reduce-motion="1"] .room-topbar .room-quickbar {
   transition: none;
 }
