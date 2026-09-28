@@ -24,7 +24,8 @@ test('prompt v10 keeps every v9 guardrail in each answer language, and v9 plans 
   assert.equal(PROMPT_VERSION, 'm4-grounded-answer-11');
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-10'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-9'));
-  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-13');
+  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-14');
+  assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-13'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-12'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-11'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-10'));
@@ -77,7 +78,9 @@ test('dialogue prompt v9: numbers keep their conditions, limitations add no fact
   // v13: with municipal records the sources list carries each source's date; the answer does not repeat it.
   const records = dialogueRequest({ ...config, recordCatalogue: 'rag-v2/record-catalogue-2' }, 'Kellele helistada?', { evidence: [] }, 'et', {}).instructions;
   assert.ok(records.includes('The sources list shows when each source was collected or checked'));
-  assert.ok(records.includes('confirm the details with the municipality'));
+  // v14: a record's currency is not a limitation of the answer; a step may carry a short clause.
+  assert.ok(records.includes('is not a limitation of this answer'));
+  assert.ok(records.includes('täpsusta enne vallast'));
   assert.ok(!et.includes('The sources list shows when each source'), 'only the record catalogue prompt carries it');
 });
 

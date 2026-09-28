@@ -30,3 +30,17 @@
   - allikateta vastuses nuppe ei olnud ja tekst jäi samaks.
 - `npm test` läbis ja ESLint on puhas.
 - Pärast väljalaset kontrollitakse aknas, et nupp avab paneeli ja lõpulauset enam pole.
+
+## Täiendus: prompt 14 (28.09.2026 hilisõhtu)
+
+Pärast prompti 13 kadus kuupäev, aga mudel kirjutas sama ettevaatuslause ilma selleta vastuse piirangutesse: „Ma ei saa nende andmete põhjal kinnitada, kas teenuse korraldus on praegu samasugune; küsi see vallavalitsusest üle.“ Omanik pidas seda imelikuks lauseks.
+
+- **Dialoogi prompt `m4-grounded-dialogue-14`:**
+  - kirje võimalik vananemine ei ole vastuse piirang, sest allikate loend näitab kuupäeva;
+  - mudel ei kirjuta piirangut ega lauset kirje kuupäevast, ajakohasusest või sellest, et praegust korraldust ei saa kinnitada;
+  - ainult siis, kui samm sõltub muutuvast üksikasjast (tasu, aadress, lahtiolekuaeg), võib sammu lõppu panna lühikese märkuse, näiteks „täpsusta enne vallast“.
+  - Sisulised piirangud jäävad, näiteks kas inimene kuulub sihtrühma.
+- **Mõõtmine enne PR-i:** sihtkataloogis [`scenarios-municipal-tone-1.json`](../../tests/evaluation/dialogue/scenarios-municipal-tone-1.json) on kuus omavalitsuse küsimust (Tartu vald, Kose, Harku) ja kumbagi prompti jooksutati kaks korda.
+  - Prompt 13 tootmisplaaniga: 5 vastust 12-st sisaldasid ajakohasuse lauset või kogumise kuupäeva.
+  - Prompt 14 eraldi koopias aktiveerimata plaaniga: 0 vastust 12-st.
+  - Omavalitsus ja kontaktid olid õiged mõlemal juhul.
