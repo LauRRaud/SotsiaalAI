@@ -2143,10 +2143,15 @@ html[data-contrast="hc"] .gc-shortcut[data-on="1"] {
 
 /* Shared screen anchors for menu navigation, independent of card/stage size.
    Pricing arrows live outside its perspective stage so fixed means viewport. */
+/* Noole kaugus tuleb külgkaardi TEGELIKUST servast: 3D-pööratud külgkaart
+   ulatub keskjoonest 1.42 kaardilaiust (mõõdetud 900–1920 px). Varem
+   arvestati 1.56-ga ja vahe kasvas laia ekraaniga (16 → 47 px). Omanik
+   28.09: „nõksa kaartidele lähemale, 3–4 mm" → vahe on nüüd ~32 px (15 px
+   ehk ~3.5 mm lähemal) 1280–1920 px ekraanil; kitsamal jääb endiseks. */
 :root {
   --menu-arrow-y: 46dvh;
   --menu-arrow-size: 3.6rem;
-  --menu-arrow-edge: max(1rem, calc(50vw - var(--gc-w) * 1.56 - 0.9rem - 3.6rem));
+  --menu-arrow-edge: max(1rem, calc(50vw - var(--gc-w) * 1.42 - 3rem - 3.6rem));
 }
 :is(.gc[data-visible], .pc) :is(.gc-arrow, .pc-arrow) {
   position: fixed;
