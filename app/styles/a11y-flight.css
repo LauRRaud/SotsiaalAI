@@ -199,8 +199,17 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) [role="dialog
   margin: 0;
   justify-items: stretch;
 }
+/* Nupurivi on jaama PIKIMA valiku laiune, mitte jaama (20rem) laiune
+   (omanik 28.09: „nuppude laius võiks olla palju kitsam"). Rivi sees on
+   kõik nupud endiselt ühe laiusega (vt ülal). Alampiir 12rem hoiab
+   lühikeste siltidega jaamad (keel, teema, kontrast, teksti suurus) ühe
+   laiusega; ainult pika sildiga jaamad (ekraani profiil 260px, liikumine
+   274px) on laiemad. Kitsal ekraanil ei lähe rivi jaamast laiemaks. */
 .a11f-plane .csp-step > div {
-  width: 100%;
+  justify-self: center;
+  width: max-content;
+  min-width: min(12rem, 100%);
+  max-width: 100%;
 }
 /* Sektsiooni nimi on nüüd jaama pealkiri, mitte nimekirja vahepealkiri:
    veidi suurem ja hingavam, kuid sama caps-keel mis varem. */
