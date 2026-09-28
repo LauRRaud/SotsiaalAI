@@ -14,12 +14,21 @@ import Input from "@/components/ui/Input";
 import AppLink from "@/components/ui/Link";
 import Checkbox from "@/components/ui/Checkbox";
 import Form from "@/components/ui/Form";
-/* Kinnituslingi leht kuulab seda kanalit: kui PIN-i aken on samas brauseris
-   elus, ei hüppa ta rakendusse, vaid jääb „valmis" teate peale. Nii jääb
-   rakendus lahti ÜHTE aknasse — sellesse, kus sisselogimist alustati.
-   Kanal on sama-päritolu ja sama-brauseri, seega kuulutuse kohalejõudmine
-   ONGI tõend, et teine aken on siinsamas. Teisel seadmel kuulutust ei tule. */
-const LOGIN_TAB_CHANNEL = "sotsiaalai-login";
+import {
+  LOGIN_HANDOFF_MESSAGE,
+  LOGIN_HANDOFF_PREFS_KEY,
+  LOGIN_TAB_CHANNEL,
+  loginAttemptMarker
+} from "@/lib/auth/loginHandoff";
+/* Kui see brauser alustas katset, lõpetab samas brauseris avatud kinnituslink
+   sisselogimise ise (omanik 28.09). Mobiilis magab see aken siis taustal. Kui
+   inimene tuleb siia hiljem tagasi, on katse juba tarbitud. Sel juhul ei näita
+   me viga, vaid laeme akna sisselogituna uuesti. */
+function forgetLoginHandoffPrefs() {
+  try {
+    window.localStorage.removeItem(LOGIN_HANDOFF_PREFS_KEY);
+  } catch {}
+}
 const MODAL_FOCUSABLE_SELECTOR = [
   "a[href]",
   "button:not([disabled])",
@@ -157,6 +166,7 @@ export default function LoginModal({
   const emailHintIdRef = useRef(`login-email-hint-${Math.random().toString(36).slice(2, 10)}`);
   const pinHintIdRef = useRef(`login-pin-hint-${Math.random().toString(36).slice(2, 10)}`);
   const loginCompletionStartedRef = useRef(false);
+  const handoffPausedUntilRef = useRef(0);
   const touchStartRef = useRef(null);
   const suppressNativeBlurSubmitRef = useRef(false);
   const zeroLongPressTimerRef = useRef(null);
@@ -548,6 +558,7 @@ export default function LoginModal({
       setError(t("auth.login.error.generic"));
       return false;
     }
+    forgetLoginHandoffPrefs();
     markPinSuccess();
     if (typeof onAuthSuccess === "function") {
       onAuthSuccess();
@@ -571,6 +582,27 @@ export default function LoginModal({
     t,
     managedByExternalAuthSuccess
   ]);
+  /* Katse lõpetati teises aknas (samas brauseris avatud kinnituslink). Sessiooni
+     küpsis on brauseriülene, nii et siin piisab akna uuesti laadimisest. Täislaadimine,
+     mitte router.refresh(): SessionProvider ei loe sessiooni fookuse peale uuesti. */
+  const resumeInSignedInWindow = useCallback(async () => {
+    try {
+      const res = await fetch("/api/auth/session", {
+        credentials: "same-origin",
+        cache: "no-store"
+      });
+      const data = res.ok ? await res.json().catch(() => null) : null;
+      if (!data?.user) return false;
+    } catch {
+      return false;
+    }
+    loginCompletionStartedRef.current = true;
+    forgetLoginHandoffPrefs();
+    setError("");
+    if (suppressRedirect) window.location.reload();
+    else window.location.replace(nextUrl);
+    return true;
+  }, [nextUrl, suppressRedirect]);
   const submitPinStep = useCallback(async () => {
     setError("");
     setInfo("");
@@ -850,6 +882,24 @@ export default function LoginModal({
     t,
     tempToken
   ]);
+  /* Kinnitusleht lõpetab sisselogimise samas brauseris ise. Tal on vaja selle
+     akna valikut „jäta seade meelde“, seadme nime ja sihtlehte. Kirjutame need
+     sama päritolu localStorage'isse kohe, kui valik muutub, sest mobiilis
+     jääb see aken taustale magama ega saa hiljem enam midagi öelda. */
+  useEffect(() => {
+    if (!isOtpStep || !open || !tempToken) return;
+    try {
+      window.localStorage.setItem(LOGIN_HANDOFF_PREFS_KEY, JSON.stringify({
+        attempt: loginAttemptMarker(tempToken),
+        remember: rememberDevice,
+        name: rememberDevice ? deviceName : "",
+        next: suppressRedirect ? `${window.location.pathname}${window.location.search}` : nextUrl
+      }));
+    } catch {}
+  }, [deviceName, isOtpStep, nextUrl, open, rememberDevice, suppressRedirect, tempToken]);
+  /* Kui see aken on ärkvel (lauaarvuti), ei hakka ta kinnituslehega sama katset
+     lõpetama. Ta ootab, kuni kinnitusleht teatab tulemusest. Kui teadet ei tule
+     (leht suleti), jätkab ta 15 s pärast ise. */
   useEffect(() => {
     if (!isOtpStep || !open) return undefined;
     if (typeof BroadcastChannel === "undefined") return undefined;
@@ -859,18 +909,21 @@ export default function LoginModal({
     } catch {
       return undefined;
     }
-    const announce = () => {
-      try {
-        channel.postMessage({ type: "login-pin-tab" });
-      } catch {}
+    channel.onmessage = event => {
+      const type = event?.data?.type;
+      if (type === LOGIN_HANDOFF_MESSAGE.finishing) {
+        handoffPausedUntilRef.current = Date.now() + 15000;
+      } else if (type === LOGIN_HANDOFF_MESSAGE.failed) {
+        handoffPausedUntilRef.current = 0;
+      } else if (type === LOGIN_HANDOFF_MESSAGE.complete) {
+        handoffPausedUntilRef.current = 0;
+        resumeInSignedInWindow();
+      }
     };
-    announce();
-    const intervalId = window.setInterval(announce, 500);
     return () => {
-      window.clearInterval(intervalId);
       channel.close();
     };
-  }, [isOtpStep, open]);
+  }, [isOtpStep, open, resumeInSignedInWindow]);
   useEffect(() => {
     if (!isOtpStep || !tempToken || !open || otpLoading) return undefined;
     let stopped = false;
@@ -878,6 +931,7 @@ export default function LoginModal({
 
     const checkStatus = async () => {
       if (stopped || loginCompletionStartedRef.current) return;
+      if (Date.now() < handoffPausedUntilRef.current) return;
       try {
         const res = await fetch("/api/auth/login-status", {
           method: "POST",
@@ -892,6 +946,8 @@ export default function LoginModal({
         const payload = await res.json().catch(() => ({}));
         if (stopped || loginCompletionStartedRef.current) return;
         if (!res.ok) {
+          // Tarbitud katse: kinnitusleht lõpetas sisselogimise teises aknas.
+          if (payload?.code === "TOKEN_INVALID" && await resumeInSignedInWindow()) return;
           setError(resolveAuthApiMessage(payload, "auth.login.error.generic"));
           return;
         }
@@ -899,7 +955,8 @@ export default function LoginModal({
           loginCompletionStartedRef.current = true;
           setInfo(t("auth.login.email_link_verified"));
           const ok = await submitOtpStep();
-          if (!ok) loginCompletionStartedRef.current = false;
+          // Kaotus võidujooksus kinnituslehega: sessioon võib juba olemas olla.
+          if (!ok && !(await resumeInSignedInWindow())) loginCompletionStartedRef.current = false;
         }
       } catch (err) {
         console.error("login-status error", err);
@@ -927,6 +984,7 @@ export default function LoginModal({
     open,
     otpLoading,
     resolveAuthApiMessage,
+    resumeInSignedInWindow,
     submitOtpStep,
     t,
     tempToken
@@ -964,10 +1022,12 @@ export default function LoginModal({
     }
   };
   const resetToPinStep = () => {
+    forgetLoginHandoffPrefs();
     setStep("pin");
     setPinValue("");
     setTempToken("");
     loginCompletionStartedRef.current = false;
+    handoffPausedUntilRef.current = 0;
     setOtpExpiresAt(null);
     setInfo("");
     setError("");

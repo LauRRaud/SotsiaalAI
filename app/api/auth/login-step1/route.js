@@ -22,11 +22,13 @@ import {
 import { getMailer } from "@/lib/mailer";
 import {
   buildLoginConfirmUrl,
+  buildPendingLoginCookie,
   sendLoginLinkEmail
 } from "@/lib/auth/login-email-link";
 import { consumeRateLimit } from "@/lib/rate-limit";
 import { getTrustedRequestIp } from "@/lib/request-ip";
 import { authenticatePinAttempt } from "@/lib/auth/pinLoginAttempt";
+import { validateJsonMutationRequest } from "@/lib/security/jsonMutationRequest";
 import { serverT, normalizeServerLocale } from "@/lib/i18n/serverMessages";
 
 const LOGIN_STEP1_RATE_LIMIT_WINDOW_MS = Number(
@@ -355,13 +357,23 @@ export async function POST(request) {
       locale
     );
 
-    return json({
+    const response = json({
       status: "need_2fa",
       temp_login_token: token,
       email_mask: maskEmail(user.email),
       otp_expires_at: expiresAt.toISOString(),
       otp_reason: otpReason
     });
+    // Märgib selle brauseri katse alustajaks: kui kinnituslink avaneb siinsamas,
+    // lõpetab kinnitusleht sisselogimise ise (vt `buildPendingLoginCookie`).
+    // Ainult rakenduse enda fetch'ile. Võõra saidi vormi-POST istutaks muidu
+    // ohvri brauserisse ründaja konto katse ja ründaja kinnituslink logiks ohvri
+    // vaikselt ründaja kontosse (login CSRF).
+    if (validateJsonMutationRequest(request)) {
+      const pending = buildPendingLoginCookie(token);
+      response.cookies.set(pending.name, pending.value, pending.options);
+    }
+    return response;
   } catch (error) {
     console.error("login-step1 error", safeError(error));
     return errorJson("api.auth.login.step1_failed", 500, locale, {

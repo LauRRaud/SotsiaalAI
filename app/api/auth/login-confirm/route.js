@@ -3,9 +3,12 @@ export const runtime = "nodejs";
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import {
+  PENDING_LOGIN_COOKIE_NAME,
+  clearedPendingLoginCookie,
   confirmLoginEmailLink,
   describeLoginEmailConfirmation
 } from "@/lib/auth/login-email-link";
+import { AUTO_CONFIRM_SCRIPT, SIGN_IN_SCRIPT } from "@/lib/auth/loginConfirmScripts";
 import { normalizeServerLocale } from "@/lib/i18n/serverMessages";
 import { safeError } from "@/lib/privacy/safeError";
 
@@ -14,12 +17,27 @@ const NO_STORE_HEADERS = {
   Pragma: "no-cache"
 };
 
+/* Lehe kujud:
+   - `confirm`: link avati VÕÕRAS brauseris või seadmes (või skanner). Näitame
+     katse kirjeldust ja nuppu. Kinnitab alles POST.
+   - `confirm` + autoSubmit: link avati samas brauseris, kus PIN sisestati.
+     Sama leht vajutab nuppu ise, nii et inimene näeb ainult „Sisenen“.
+   - `signin`: kinnitus on tehtud samas brauseris ja leht lõpetab sisselogimise
+     ise (omanik 28.09: e-kirja nupp viib otse sisse). Varem ootas leht 15 s,
+     kuni PIN-aken seda teeb, ja saatis inimese siis seda akent otsima.
+     Mobiilis PIN-aken taustal magab, seega see ootamine ei lõppenud kunagi.
+   - `ok`: kinnitus on tehtud teises brauseris või seadmes. Siin brauseris
+     sessiooni teha ei saa (see oleks postkasti omanikule sisselogimine ilma
+     PIN-ita), seega on see lõppteade ilma ootamise ja nuputa. Endine „Ava
+     SotsiaalAI“ viis siin väljalogitud avalehele. */
 const COPY = {
   et: {
     okTitle: "Sisenemine kinnitatud",
-    okBody: "Kinnitus on antud. Mine tagasi aknasse, kus sisestasid PIN-koodi — sisselogimine jätkub seal. E-kirja aken võib kasutada teist brauserit.",
+    okBody: "Sisselogimine jätkub aknas, kus sisestasid PIN-koodi. Selle akna võid sulgeda.",
     waitBody: "Avan SotsiaalAI …",
-    handoffBody: "Mine tagasi aknasse, kus sisestasid PIN-koodi — sisselogimine jätkub sinna naastes. Ära alusta uut sisselogimist.",
+    signinFallbackTitle: "Sisselogimine ei õnnestunud",
+    signinFallbackBody:
+      "Kinnitus on antud, aga siin aknas sisse logida ei saanud. Mine tagasi aknasse, kus sisestasid PIN-koodi — sisselogimine lõpeb seal.",
     invalidTitle: "Kinnituslink ei kehti",
     invalidBody: "Link on aegunud või juba kasutatud. Palun alusta sisselogimist uuesti.",
     openLabel: "Ava SotsiaalAI",
@@ -33,9 +51,11 @@ const COPY = {
   },
   en: {
     okTitle: "Sign-in confirmed",
-    okBody: "Confirmation received. Return to the window where you entered your PIN to continue signing in. The email window may use a different browser.",
+    okBody: "Sign-in continues in the window where you entered your PIN. You can close this window.",
     waitBody: "Opening SotsiaalAI …",
-    handoffBody: "Return to the window where you entered your PIN — sign-in continues when you return. Do not start a new sign-in.",
+    signinFallbackTitle: "Sign-in did not finish",
+    signinFallbackBody:
+      "Confirmation received, but signing in failed in this window. Return to the window where you entered your PIN — sign-in finishes there.",
     invalidTitle: "Confirmation link is invalid",
     invalidBody: "The link has expired or has already been used. Please start sign-in again.",
     openLabel: "Open SotsiaalAI",
@@ -49,9 +69,11 @@ const COPY = {
   },
   ru: {
     okTitle: "Вход подтвержден",
-    okBody: "Подтверждение получено. Вернитесь в окно, где вы ввели PIN-код, чтобы продолжить вход. Письмо могло открыться в другом браузере.",
+    okBody: "Вход продолжится в окне, где вы ввели PIN-код. Это окно можно закрыть.",
     waitBody: "Открываю SotsiaalAI …",
-    handoffBody: "Вернитесь в окно, где вы ввели PIN-код — вход продолжится после возвращения. Не начинайте вход заново.",
+    signinFallbackTitle: "Вход не завершён",
+    signinFallbackBody:
+      "Подтверждение получено, но войти в этом окне не удалось. Вернитесь в окно, где вы ввели PIN-код, — вход завершится там.",
     invalidTitle: "Ссылка подтверждения недействительна",
     invalidBody: "Ссылка устарела или уже использована. Начните вход заново.",
     openLabel: "Открыть SotsiaalAI",
@@ -65,96 +87,9 @@ const COPY = {
   }
 };
 
-/* Isesuunamine: see leht oli tupik. Mobiilil avab e-kirja link uue saki
-   (Gmail annab lingi Safarile ehk SAMASSE brauserisse), kasutaja luges
-   teate ära ja pidi käsitsi veel „Ava SotsiaalAI" vajutama (omanik 28.07).
-   Sessiooni ei tee see leht ise — küpsise paneb ESIMENE aken, kus PIN
-   sisestati: seal käib `/api/auth/login-status` poll iga 2 s ja lõpetab
-   sisselogimise ~2–4 s jooksul pärast lingi avamist. Seega ei tohi kohe
-   `/` peale hüpata (satuks välja logitud avalehele) — leht ootab, kuni
-   küpsis on päriselt olemas (`/api/auth/session` annab `user`), ja alles
-   siis suunab. Nupp jääb alles kahe päris juhtumi jaoks: (1) JS väljas —
-   ta on HTML-is nähtav ja skript peidab ta alles siis, kui ise tööle
-   hakkab; (2) link avati TEISES brauseris või seadmes (PIN sülearvutis,
-   kiri telefonis) — seal seda küpsist kunagi ei tule, seega pärast
-   ooteakent tuleb tagasi vana teade koos nupuga.
-   `location.replace`, mitte `href`: kinnituslink on ühekordne ja ei tohi
-   tagasi-nupuga uuesti käiku minna.
-   Kanalikuulamine (omanik 10.08): küpsis on brauseriülene, seega SAMAS
-   brauseris said mõlemad aknad rakenduse ette — kaks akent sama asjaga.
-   Kumbagi ei saa skriptiga sulgeda (mõlema avas kasutaja), nii et ainus
-   viis ühe akna juurde jõuda on, et see leht ise ei liigu. PIN-i aken
-   kuulutab OTP-sammu ajal `sotsiaalai-login` kanalis iga 0,5 s. Kanal on
-   sama-päritolu ja sama-brauseri, seega kuulutuse KOHALEJÕUDMINE ongi
-   tõend, et rakendus avaneb juba mujal — siis jääme siia paigale JA nupp
-   KAOB (omanik 10.08): teine aken on juba sees, siin nupu vajutamine annaks
-   ainult teise samasuguse akna. Tekst saadab kasutaja tagasi sinna, kus ta
-   sisselogimist alustas. Kuulutust ootame 1,2 s (aken kuulutab 0,5 s takti);
-   kui seda ei tule — teine seade, teine brauser või aken kinni — käib kõik
-   nagu enne ja nupp jääb alles, sest siis on ta ainus tee edasi. */
-const REDIRECT_SCRIPT = `(function () {
-  var msg = document.getElementById("lc-msg");
-  var btn = document.getElementById("lc-open");
-  if (!msg || !btn) return;
-  var home = btn.getAttribute("href");
-  var settled = msg.textContent;
-  var deadline = Date.now() + 15000;
-  var timer = null;
-  var pinTabAlive = false;
-  var channel = null;
-  try { channel = new BroadcastChannel("sotsiaalai-login"); } catch (e) { channel = null; }
-  function giveUp() {
-    if (timer) clearTimeout(timer);
-    msg.textContent = settled;
-    btn.hidden = false;
-    document.body.removeAttribute("data-waiting");
-  }
-  function handOff() {
-    if (timer) clearTimeout(timer);
-    msg.textContent = msg.getAttribute("data-handoff") || settled;
-    btn.hidden = true;
-    document.body.removeAttribute("data-waiting");
-  }
-  function again() {
-    if (Date.now() >= deadline) { giveUp(); return; }
-    timer = setTimeout(poll, 700);
-  }
-  function poll() {
-    if (pinTabAlive) return;
-    fetch("/api/auth/session", { credentials: "same-origin", cache: "no-store" })
-      .then(function (res) { return res.ok ? res.json() : null; })
-      .then(function (data) {
-        if (pinTabAlive) return;
-        if (data && data.user) { window.location.replace(home); return; }
-        again();
-      })
-      .catch(again);
-  }
-  function startWaiting() {
-    msg.textContent = msg.getAttribute("data-waiting") || settled;
-    btn.hidden = true;
-    document.body.setAttribute("data-waiting", "1");
-    poll();
-  }
-  // Avalehele tohib minna alles siis, kui selles brauseris on sessioon.
-  btn.addEventListener("click", function (event) {
-    event.preventDefault();
-    fetch("/api/auth/session", { credentials: "same-origin", cache: "no-store" })
-      .then(function (res) { return res.ok ? res.json() : null; })
-      .then(function (data) {
-        if (data && data.user) { window.location.replace(home); return; }
-        giveUp();
-      }).catch(giveUp);
-  });
-  if (!channel) { startWaiting(); return; }
-  channel.addEventListener("message", function (event) {
-    if (!event || !event.data || event.data.type !== "login-pin-tab") return;
-    pinTabAlive = true;
-    handOff();
-    try { channel.close(); } catch (e) {}
-  });
-  setTimeout(function () { if (!pinTabAlive) startWaiting(); }, 1200);
-})();`;
+function readPendingLoginToken(request) {
+  return String(request?.cookies?.get?.(PENDING_LOGIN_COOKIE_NAME)?.value || "").trim();
+}
 
 function escapeHtml(value) {
   return String(value || "")
@@ -164,12 +99,35 @@ function escapeHtml(value) {
     .replace(/"/g, "&quot;");
 }
 
-function htmlResponse(locale, variant, homeUrl, { token = "", attempt = null } = {}) {
+function htmlResponse(
+  locale,
+  variant,
+  homeUrl,
+  { token = "", attempt = null, autoSubmit = false, pendingLoginToken = "" } = {}
+) {
   const copy = COPY[locale] || COPY.et;
-  const ok = variant === "ok";
+  const signingIn = variant === "signin";
+  const ok = variant === "ok" || signingIn;
   const confirming = variant === "confirm";
-  const title = confirming ? copy.confirmTitle : ok ? copy.okTitle : copy.invalidTitle;
-  const body = confirming ? copy.confirmBody : ok ? copy.okBody : copy.invalidBody;
+  const autoConfirming = confirming && autoSubmit;
+  const waits = signingIn || autoConfirming;
+  // `signin` renderdab tõrketeate. Skript peidab selle ootamise ajaks ja näitab
+  // ainult siis, kui sisselogimine siin ei õnnestu. JS-ita on see õige lõppseis.
+  const title = confirming
+    ? copy.confirmTitle
+    : signingIn
+      ? copy.signinFallbackTitle
+      : ok
+        ? copy.okTitle
+        : copy.invalidTitle;
+  const body = confirming
+    ? copy.confirmBody
+    : signingIn
+      ? copy.signinFallbackBody
+      : ok
+        ? copy.okBody
+        : copy.invalidBody;
+  const script = signingIn ? SIGN_IN_SCRIPT : autoConfirming ? AUTO_CONFIRM_SCRIPT : "";
   // Kontekst on siin turvamehhanismi tuum, mitte kaunistus: PIN-sisselogimist
   // alustab ründaja OMA brauseris ja kirja saab konto omanik — ainus, mis teda
   // aitab, on näha võõrast seadet ENNE nupuvajutust.
@@ -325,14 +283,21 @@ function htmlResponse(locale, variant, homeUrl, { token = "", attempt = null } =
          CSS-i. [hidden] üksi ei võida inline-flex'i: ilma selle reeglita
          jääks nupp ooteajaks nähtavale. */
       .button[hidden] { display: none; }
-      /* Ootel olek vajab liikumist, muidu loeb „Avan …" kinnijooksmisena.
-         Kolm punkti, mitte spinner: sama vaikne keel mis dokil. */
+      /* Ootel olek vajab liikumist, muidu loeb ta kinnijooksmisena.
+         Kolm punkti, mitte spinner: sama vaikne keel mis dokil. Teksti ootel
+         olekus ei ole (omanik 28.09: eraldi sisselogimise teadet vaja ei ole,
+         rakenduse avanemine on see teade). Tekst ilmub ainult tõrke korral,
+         kui skript data-waiting'u maha võtab. */
       .dots {
         display: none;
         gap: 0.42rem;
         margin-top: 0.5rem;
       }
       body[data-waiting] .dots { display: inline-flex; }
+      body[data-waiting] h1,
+      body[data-waiting] #lc-msg,
+      body[data-waiting] .facts,
+      body[data-waiting] form { display: none; }
       .dots i {
         width: 0.42rem;
         height: 0.42rem;
@@ -352,22 +317,32 @@ function htmlResponse(locale, variant, homeUrl, { token = "", attempt = null } =
     </style>
   </head>
   <body>
-    <main>
+    <main id="lc"${
+      signingIn
+        ? ` data-token="${escapeHtml(pendingLoginToken)}" data-locale="${escapeHtml(locale)}"`
+        : ""
+    }>
       <h1>${escapeHtml(title)}</h1>
-      <p id="lc-msg" aria-live="polite"${ok ? ` data-waiting="${escapeHtml(copy.waitBody)}" data-handoff="${escapeHtml(copy.handoffBody)}"` : ""}>${escapeHtml(body)}</p>
+      <p id="lc-msg" aria-live="polite">${escapeHtml(body)}</p>
       ${facts ? `<dl class="facts">${facts}</dl>` : ""}
       ${
         confirming
-          ? `<form method="POST" action="/api/auth/login-confirm"><input type="hidden" name="token" value="${escapeHtml(
+          ? `<form id="lc-form" method="POST" action="/api/auth/login-confirm"><input type="hidden" name="token" value="${escapeHtml(
               token
             )}" /><input type="hidden" name="locale" value="${escapeHtml(
               locale
-            )}" /><button class="button" type="submit">${escapeHtml(copy.confirmAction)}</button></form>`
-          : `<a class="button" id="lc-open" href="${escapeHtml(homeUrl)}">${escapeHtml(copy.openLabel)}</a>`
+            )}" /><button class="button" id="lc-submit" type="submit">${escapeHtml(copy.confirmAction)}</button></form>`
+          : variant === "invalid"
+            ? `<a class="button" id="lc-open" href="${escapeHtml(homeUrl)}">${escapeHtml(copy.openLabel)}</a>`
+            : ""
       }
-      ${ok ? '<span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>' : ""}
+      ${
+        waits
+          ? `<span class="dots" role="status" aria-label="${escapeHtml(copy.waitBody)}"><i></i><i></i><i></i></span>`
+          : ""
+      }
     </main>
-    ${ok ? `<script>${REDIRECT_SCRIPT}</script>` : ""}
+    ${script ? `<script>${script}</script>` : ""}
   </body>
 </html>`, {
     status: variant === "invalid" ? 400 : 200,
@@ -388,6 +363,11 @@ function htmlResponse(locale, variant, homeUrl, { token = "", attempt = null } =
  * e-posti vahetuse kinnitus — ja siin on ta rangem: auto-submit'i EI OLE, sest
  * skanner ei ole ainus oht. Ohver ise võib lingi uudishimust avada ja peab siis
  * nägema, KELLE katset ta kinnitab.
+ *
+ * Erand on ainult sama brauser (omanik 28.09). Kui päring kannab selle katse PIN-i
+ * sisestanud brauseri küpsist, vajutab leht nuppu ise ja inimene jõuab otse
+ * rakendusse. Skanner ja ohvri brauser seda küpsist ei saada. Ka siis kinnitab
+ * alles POST, GET jääb lugemiseks.
  */
 export async function GET(request) {
   const url = new URL(request.url);
@@ -398,12 +378,18 @@ export async function GET(request) {
   if (!token) return htmlResponse(locale, "invalid", homeUrl);
 
   try {
-    const described = await describeLoginEmailConfirmation({ db: prisma, token, locale });
+    const described = await describeLoginEmailConfirmation({
+      db: prisma,
+      token,
+      pendingLoginToken: readPendingLoginToken(request),
+      locale
+    });
     if (!described.ok) return htmlResponse(locale, "invalid", homeUrl);
 
     return htmlResponse(locale, "confirm", homeUrl, {
       token,
-      attempt: described.attempt
+      attempt: described.attempt,
+      autoSubmit: described.sameBrowser
     });
   } catch (error) {
     console.error("login-confirm page error", safeError(error), { locale });
@@ -411,7 +397,10 @@ export async function GET(request) {
   }
 }
 
-/** Kinnitus ise. Siia jõuab ainult päris brauseri teadlik nupuvajutus. */
+/**
+ * Kinnitus ise. Siia jõuab päris brauseri nupuvajutus. Võõras brauser vajutab
+ * nuppu teadlikult, PIN-i sisestanud brauseris vajutab seda leht ise.
+ */
 export async function POST(request) {
   const contentType = String(request.headers.get("content-type") || "");
   let fields = {};
@@ -432,8 +421,17 @@ export async function POST(request) {
   if (!token) return htmlResponse(locale, "invalid", homeUrl);
 
   try {
-    const result = await confirmLoginEmailLink({ db: prisma, token });
-    return htmlResponse(locale, result.ok ? "ok" : "invalid", homeUrl);
+    const pendingLoginToken = readPendingLoginToken(request);
+    const result = await confirmLoginEmailLink({ db: prisma, token, pendingLoginToken });
+    if (!result.ok) return htmlResponse(locale, "invalid", homeUrl);
+    if (!result.sameBrowser) return htmlResponse(locale, "ok", homeUrl);
+
+    // PIN-i sisestanud brauser: leht lõpetab sisselogimise ise. Token läheb lehele
+    // ainult selle brauseri enda küpsisest. Küpsise roll on sellega täidetud.
+    const response = htmlResponse(locale, "signin", homeUrl, { pendingLoginToken });
+    const cleared = clearedPendingLoginCookie();
+    response.cookies.set(cleared.name, cleared.value, cleared.options);
+    return response;
   } catch (error) {
     console.error("login-confirm error", safeError(error), { locale });
     return htmlResponse(locale, "invalid", homeUrl);
