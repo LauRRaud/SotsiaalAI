@@ -6,7 +6,7 @@
      nähtavalt üle rea (transform ilma üleminekuta);
    — fookuskaardi kuma süttib VIITEGA pärast settimist (mitte kahel
      kaardil korraga);
-   — valmis klaasimaterjali serv silutakse pärast maski; sisu jääb teravaks;
+   — klaasi taga olev ruum on hägune, kaardi väliskontuur jääb teravaks;
    — kaartidel kontuurikoon + nimi;
    — käivitusfaasid: klaasid enne (faas 1), sisu järele (faas 2).
    Üks 3D-tasand: perspective siin, kaardid otse all (iOS).
@@ -36,7 +36,7 @@
 .gc-item {
   position: absolute;
   left: 50%;
-  top: 46%;
+  top: var(--gc-card-y, 46%);
   width: var(--gc-w);
   aspect-ratio: 0.72;
   margin: 0;
@@ -814,7 +814,7 @@ html[data-reduce-motion="1"] .gc-item {
      tume toon ilma suure läiketa; ruum kumab selgelt läbi.
      ÜKS ühine ilme (tokens.css --card-glass-*), jagatud kaardilehe
      paneeliga (panel.css) — ei mingeid koopiaid. */
-  /* Eraldi materjalikiht jätab ikooni ja teksti silumisest välja. */
+  /* Eraldi materjalikiht hoiab klaasitausta ikoonist ja tekstist lahus. */
   background: transparent;
   border: none;
   box-shadow: none;
@@ -859,14 +859,10 @@ html[data-reduce-motion="1"] .gc-item {
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  /* Filter peab olema maski VANEMAL: samal pseudokihil rakenduks blur
-     enne maski ning 0.8px rõngas lõigataks seejärel uuesti teravaks.
-     Täide, inset-helgid ja maskitud serv silutakse ühe komposiidina,
-     et nende kattuvad subpikslilised ääred ei vilguks pööramisel eraldi.
-     Klaasi tokenid, kursorikalle ja sisu renderdus jäävad samaks. */
-  /* 0.75 → 0.35 px (omanik 23.09: „servad on hägused"). Silub endiselt
-     pööramisel vilkuvaid subpikslilisi ääri, aga serv jääb teravaks. */
-  filter: blur(0.35px);
+  /* Vana maskitud randi ja sisehelkide eelfilter pehmendas kaardi
+     väliskontuuri ka pärast nende eemaldamist. Nagu avatud paneelil,
+     hägustame ainult kaardi taga olevat ruumi, mitte materjalikihti. */
+  filter: none;
   /* Härmatis: fotoruum pehmeneb klaasi taga, nii et kaart loeb klaasina,
      mitte toonitud kilena. Töötab ka hajumise ajal, sest ükski vanem ei
      hajugi opacity'ga (--gc-item-alpha, tokens.css). */
@@ -883,11 +879,6 @@ html[data-reduce-motion="1"] .gc-card-surface {
 .room-quickbar .gc-card-surface {
   display: none;
 }
-/* Laual kaart ei pöörle — silumist ei ole vaja, serv jääb täiesti teravaks. */
-.gc[data-desk="1"] .gc-card-surface {
-  filter: none;
-}
-
 .gc-card-surface::before {
   content: "";
   position: absolute;
@@ -923,31 +914,6 @@ html:not([data-contrast="hc"]) .gc-card > .gc-card-surface::after {
 html:not([data-contrast="hc"]) .gc-card > .gc-card-surface::before {
   background: var(--card-glass-bg);
   box-shadow: none;
-}
-
-/* iOS-i standalone-komposiitor võib 3D-teisenduse sees vanemale pandud
-   filtrikihi ära tasandada: PWA-s kaovad siis klaasi peegeldused, kuigi
-   sama pind Safari vahekaardil säilib. Silu seal kaks materjalikihti
-   eraldi. Sisu jääb endiselt filtrist välja ja brauserirežiimi renderdus
-   ei muutu. */
-html:not([data-contrast="hc"])[data-display-mode="standalone"] .gc-card-surface,
-html:not([data-contrast="hc"])[data-display-mode="fullscreen"] .gc-card-surface {
-  filter: none;
-}
-html:not([data-contrast="hc"])[data-display-mode="standalone"] .gc-card-surface::before,
-html:not([data-contrast="hc"])[data-display-mode="standalone"] .gc-card-surface::after,
-html:not([data-contrast="hc"])[data-display-mode="fullscreen"] .gc-card-surface::before,
-html:not([data-contrast="hc"])[data-display-mode="fullscreen"] .gc-card-surface::after {
-  filter: blur(0.5px);
-}
-@media (display-mode: standalone), (display-mode: fullscreen) {
-  html:not([data-contrast="hc"]) .gc-card-surface {
-    filter: none;
-  }
-  html:not([data-contrast="hc"]) .gc-card-surface::before,
-  html:not([data-contrast="hc"]) .gc-card-surface::after {
-    filter: blur(0.5px);
-  }
 }
 
 /* Kaugusudu — ruumi enda õhk kaardi ja silma vahel. See ASENDAB varasema
@@ -1829,12 +1795,10 @@ html[data-reduce-motion="1"] .gc-shortcut-tooltip {
 @media (max-width: 768px) {
   :root {
     --gc-w: min(60vw, 16.5rem); /* rem: allub ekraaniprofiilile */
+    --gc-card-y: 44%;
   }
   .gc-list {
     --gc-spacing: calc(var(--gc-w) * 1.01);
-  }
-  .gc-item {
-    top: 44%;
   }
   .gc-arrow {
     display: none; /* svaip + punktid */
@@ -2049,8 +2013,11 @@ html[data-contrast="hc"] .gc-shortcut[data-on="1"] {
 }
 
 @media (pointer: coarse) {
-  .gc:not([data-desk="1"]) {
+  /* Menüü ja avatud vormikaart jagavad ka kohalikke puutevaate mõõte. */
+  .gc:not([data-desk="1"]),
+  .panel-scrim[data-compact="1"] {
     --gc-w: min(72vw, 21rem, calc((100dvh - 10rem) * 0.72));
+    --gc-card-y: 46%;
   }
   .gc:not([data-desk="1"]) .gc-list {
     touch-action: pinch-zoom;
@@ -2058,7 +2025,6 @@ html[data-contrast="hc"] .gc-shortcut[data-on="1"] {
        pika sildi ekraani serva tagant väljas. */
     --gc-spacing: calc(var(--gc-w) * 1.01);
   }
-  .gc:not([data-desk="1"]) .gc-item { top: 46%; }
   .gc:not([data-desk="1"]) .gc-icon svg {
     width: clamp(4.5rem, 20vw, 5.75rem);
     height: clamp(4.5rem, 20vw, 5.75rem);
@@ -2082,7 +2048,8 @@ html[data-contrast="hc"] .gc-shortcut[data-on="1"] {
   }
 }
 @media (pointer: coarse) and (orientation: landscape) {
-  .gc:not([data-desk="1"]) {
+  .gc:not([data-desk="1"]),
+  .panel-scrim[data-compact="1"] {
     /* Sama paigutus brauseris ja PWA-s: kaart täidab ülariba ning doki
        vahele jääva ala. Turvaala vähendab kaarti, mitte ei tõsta dokki
        kaardi peale. Doki kõrgus = puutenupp + mõlema serva polster. */
@@ -2090,9 +2057,9 @@ html[data-contrast="hc"] .gc-shortcut[data-on="1"] {
     --gc-landscape-dock-bottom: max(0.2rem, calc(env(safe-area-inset-bottom, 0px) - 0.42rem));
     --gc-landscape-bottom: calc(var(--gc-landscape-dock-bottom) + 2.75rem + 0.84rem + 0.75rem);
     --gc-landscape-center: calc((100% + var(--gc-landscape-top) - var(--gc-landscape-bottom)) / 2);
+    --gc-card-y: var(--gc-landscape-center);
     --gc-w: min(26vw, calc((100dvh - var(--gc-landscape-top) - var(--gc-landscape-bottom)) * 0.72));
   }
-  .gc:not([data-desk="1"]) .gc-item,
   .gc:not([data-desk="1"]) .gc-arrow {
     top: var(--gc-landscape-center);
   }

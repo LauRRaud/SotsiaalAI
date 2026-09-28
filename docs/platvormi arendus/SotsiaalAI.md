@@ -4047,6 +4047,20 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 
 ## S10. Avalik pind ja release
 
+**Kaartide teravus ja kompaktse vormi püsiv mõõt (28.09, kohalik / GitHubi ülevaatuseks).**
+Karusselli materjalikihi vana 0,35 px servafilter ja PWA 0,5 px pseudokihi
+filtrid on eemaldatud; 8 px taustahärmatis ning kaartide liikumine säilivad.
+PIN-i, e-posti ja teiste kompaktsete paneelide laius ning keskpunkt kasutavad
+menüüga samu kohanduvaid väärtusi. Varasem mobiili 88vw / 0,78 erand on
+eemaldatud; raam säilitab 0,72 küljesuhte ning pikk sisu kerib selle sees.
+Kohalik Chromium: kuus ekraani-/sisendiprofiili (1360×850 kuni 320×568,
+sh kaks rõhtvaadet); PIN-vorm sünteetilise brauserisessiooniga, päris kontot
+ega vormi saatmist kasutamata. Menüü ja avatud kaardi piiride erinevus
+alla 0,04 CSS px; Salvesta on kerides kättesaadav ja pikk teade ei kasvata raami.
+Lisaks kontrollitud svaip, hiirekalle, kõrgkontrast ning standalone/fullscreen
+stiilid. `git diff --check` läbis. Päris iOS `NOT_PROVEN`.
+Omaniku juhisel tootmisse ei avaldata ega `main`-i ühendata.
+
 ### Tehtud
 
 **Klaaspindade järelparanduste väljalase (23.09, serveris `00fb25ac0`).**
