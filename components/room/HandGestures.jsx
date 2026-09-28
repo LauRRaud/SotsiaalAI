@@ -15,17 +15,19 @@
  * - käivitub ainult kasutaja lülitist, luba küsib brauser;
  * - kaadrid ei lahku seadmest, mudel ja wasm tulevad omalt päritolult
  *   (public/vendor/mediapipe) — ükski päring ei lähe kolmandale osapoolele;
- * - kaamera töötab ainult nähtaval vahelehel ja nurgas on alati näha, et
- *   ta töötab (eelvaade + väljalülitus);
+ * - kaamera töötab ainult nähtaval vahelehel ja üleval on alati näha, et
+ *   ta töötab (olekuriba punase/rohelise täpi ja väljalülitusega). Kaamerapilti
+ *   ekraanil ei näidata (omanik 28.09: „ei meeldi, et kaamerapilt on nurgas");
+ *   video element on olemas ainult tuvastuse sisendina;
  * - žest ainult liigub, kerib, avab menüükaardi ja läheb tagasi — ükski
  *   žest ei saada, kustuta ega kinnita midagi; kõik jääb tehtavaks ka
  *   hiire, puute ja klaviatuuriga.
  */
 
 import { useEffect, useRef, useState } from "react";
+import Button from "@/components/ui/Button";
 import {
   HAND_EVENT,
-  SWIPE_DEFAULTS,
   createFistTracker,
   createPinchTracker,
   createSwipeTracker,
@@ -33,12 +35,24 @@ import {
   palmPoint,
 } from "@/lib/handGestures";
 
-/* Lehvitamise aken eelvaatel: sama keskosa, millest välja pühkimine loeb
-   (SWIPE_DEFAULTS.edgeX/edgeY). Sümmeetriline, seega peegeldus ei muuda. */
-const WINDOW_STYLE = {
-  "--hand-window-x": `${SWIPE_DEFAULTS.edgeX * 100}%`,
-  "--hand-window-y": `${SWIPE_DEFAULTS.edgeY * 100}%`,
-};
+/* Juhend avaneb esimesel sisselülitamisel ise (omanik 28.09: „esmateavitusel
+   juhend"); hiljem olekuriba i-nupust. Ta on ruumi info-kaart (RoomStage
+   openInfoModal "hands"): karussell taandub ja lukustub tema taga, dokis on
+   tagasi-nool, hoitud rusikas sulgeb ta sama tee kaudu (goBack) ja üles-alla
+   tõmme kerib teda. */
+const GUIDE_SEEN_KEY = "sotsiaalai:hands:guide-seen";
+function guideSeen() {
+  try {
+    return window.localStorage.getItem(GUIDE_SEEN_KEY) === "1";
+  } catch {
+    return true;
+  }
+}
+function markGuideSeen() {
+  try {
+    window.localStorage.setItem(GUIDE_SEEN_KEY, "1");
+  } catch {}
+}
 
 const VENDOR = "/vendor/mediapipe";
 /* Käe tõmbe ja lehe kerimise suhe: veerandi kaadri kõrgune tõmme kerib
@@ -169,7 +183,30 @@ function scrollBy(dir, travel) {
   });
 }
 
-export default function HandGestures({ onStop, t }) {
+/** Juhendi sisu RoomStage'i info-kaardile. */
+export function HandGestureGuide({ t, onDone }) {
+  return (
+    <>
+      <dl className="hand-guide">
+        {["swipe", "scroll", "pinch", "fist"].map((key) => (
+          <div key={key} className="hand-guide-row">
+            <dt>{t(`room.hands_guide_${key}_title`)}</dt>
+            <dd>{t(`room.hands_guide_${key}`)}</dd>
+          </div>
+        ))}
+      </dl>
+      <p className="hand-guide-note">{t("room.hands_guide_tip")}</p>
+      <p className="hand-guide-note">{t("room.hands_local")}</p>
+      <div className="hand-guide-actions">
+        <Button type="button" onClick={onDone}>
+          {t("room.hands_guide_done")}
+        </Button>
+      </div>
+    </>
+  );
+}
+
+export default function HandGestures({ onStop, onOpenGuide, t }) {
   const videoRef = useRef(null);
   // starting | loading | ready | denied | unavailable | unsupported
   const [status, setStatus] = useState("starting");
@@ -188,9 +225,13 @@ export default function HandGestures({ onStop, t }) {
   );
   const [metrics, setMetrics] = useState(null);
   useEffect(() => () => window.clearTimeout(noticeTimer.current), []);
-  /* Eelvaate kuju tuleb voost: telefoni esikaamera annab sageli püstise
-     pildi, ja raam peab olema sealsamas, kus aken pildil päriselt on. */
-  const [viewAspect, setViewAspect] = useState(null);
+  useEffect(() => {
+    if (guideSeen()) return;
+    markGuideSeen();
+    onOpenGuide?.();
+    // Ainult esimesel sisselülitamisel.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const [pageVisible, setPageVisible] = useState(
     () => typeof document === "undefined" || document.visibilityState !== "hidden"
   );
@@ -274,12 +315,10 @@ export default function HandGestures({ onStop, t }) {
         // Rusikas ja tema järelvaikus ei ole tõmme: käsi ainult sulgub/avaneb.
         const still = pinched || closed.fist || closed.quiet;
         for (const event of swipe.update({ t: now, hand, pinched: still })) {
-          /* Paan ütleb, mis suund tuvastati — nii näeb kasutaja kohe, kas
+          /* Riba ütleb, mis suund tuvastati — nii näeb kasutaja kohe, kas
              kaamera sai liigutusest aru (omanik 26.09: „ei saa aru, kas
              vasakule või paremale"). */
-          if (event.type === "unclear") {
-            say("room.hands_unclear");
-          } else if (event.axis === "x") {
+          if (event.axis === "x") {
             /* Kaardid liiguvad käe suunas: käsi vasakule → rida nihkub
                vasakule ja paremalt tuleb järgmine kaart (nagu näpuga vedu). */
             sendHand({ action: "step", dir: -event.dir });
@@ -361,68 +400,57 @@ export default function HandGestures({ onStop, t }) {
   const message = notice
     ? t(notice)
     : status === "ready"
-      ? t(handSeen ? "room.hands_hint" : "room.hands_show")
+      ? t(handSeen ? "room.hands_seen" : "room.hands_show")
       : t(`room.hands_${status}`);
 
   return (
-    <div
-      className="hand-cam"
-      data-room-ui
-      data-status={status}
-      data-live={live ? "1" : "0"}
-      data-hand={status === "ready" && handSeen ? "1" : "0"}
-    >
-      <span className="hand-cam-view" style={viewAspect ? { aspectRatio: viewAspect } : undefined}>
-        <video
-          ref={videoRef}
-          className="hand-cam-video"
-          muted
-          playsInline
-          aria-hidden="true"
-          onLoadedMetadata={(e) => {
-            const { videoWidth, videoHeight } = e.currentTarget;
-            if (videoWidth && videoHeight) setViewAspect(`${videoWidth} / ${videoHeight}`);
-          }}
-        />
-        <span className="hand-cam-window" style={WINDOW_STYLE} aria-hidden="true" />
-      </span>
-      <div className="hand-cam-body">
-        <p className="hand-cam-title">
-          <span className="hand-cam-dot" aria-hidden="true" />
-          {t("room.hands_camera")}
-          {gesture ? <span className="hand-cam-gesture">{t(`room.hands_gesture_${gesture}`)}</span> : null}
-        </p>
-        <p className="hand-cam-text" role="status">
-          {message}
-        </p>
-        {debug && metrics ? (
-          <p className="hand-cam-note" data-debug="1">
-            {metrics.label || "–"} {metrics.score.toFixed(2)} ·{" "}
-            {metrics.curls.map((c) => c.toFixed(2)).join(" ")} · {metrics.thumb.toFixed(2)} ·{" "}
-            {metrics.pinch.toFixed(2)}
-          </p>
-        ) : (
-          <p className="hand-cam-note">{t("room.hands_local")}</p>
-        )}
-      </div>
-      <button
-        type="button"
-        className="hand-cam-stop"
-        aria-label={t("room.hands_off")}
-        title={t("room.hands_off")}
-        onClick={onStop}
+    <>
+      <div
+        className="hand-cam"
+        data-room-ui
+        data-status={status}
+        data-live={live ? "1" : "0"}
+        data-hand={status === "ready" && handSeen ? "1" : "0"}
       >
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.6"
-          strokeLinecap="round"
-          aria-hidden="true"
+        {/* Tuvastuse sisend, mitte pilt: nähtamatu, aga renderdatud — ilma
+            renderduseta ei anna osa brausereid kaadreid edasi. */}
+        <span className="hand-cam-feed" aria-hidden="true">
+          <video ref={videoRef} className="hand-cam-video" muted playsInline />
+        </span>
+        <span className="hand-cam-dot" aria-hidden="true" />
+        <span className="sr-only">{t("room.hands_camera")}</span>
+        {gesture ? <span className="hand-cam-gesture">{t(`room.hands_gesture_${gesture}`)}</span> : null}
+        <p className="hand-cam-text" role="status">
+          {debug && metrics
+            ? `${metrics.label || "–"} ${metrics.score.toFixed(2)} · ${metrics.curls.map((c) => c.toFixed(2)).join(" ")} · ${metrics.thumb.toFixed(2)} · ${metrics.pinch.toFixed(2)}`
+            : message}
+        </p>
+        <button
+          type="button"
+          className="hand-cam-btn"
+          aria-label={t("room.hands_info")}
+          title={t("room.hands_info")}
+          aria-haspopup="dialog"
+          onClick={() => onOpenGuide?.()}
         >
-          <path d="M7 7l10 10M17 7 7 17" />
-        </svg>
-      </button>
-    </div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="8.5" />
+            <path d="M12 11v5.2" />
+            <path d="M12 7.8v.01" />
+          </svg>
+        </button>
+        <button
+          type="button"
+          className="hand-cam-btn"
+          aria-label={t("room.hands_off")}
+          title={t("room.hands_off")}
+          onClick={onStop}
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true">
+            <path d="M7.5 7.5l9 9M16.5 7.5l-9 9" />
+          </svg>
+        </button>
+      </div>
+    </>
   );
 }

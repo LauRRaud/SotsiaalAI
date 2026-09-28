@@ -41,6 +41,7 @@ import {
   PricingTagIcon,
   InstallIcon,
   ContactMailIcon,
+  HandGestureIcon,
   LoginKeyIcon,
   AnalyticsIcon,
   RagDbIcon,
@@ -109,7 +110,7 @@ import GlassCarousel from "@/components/room/GlassCarousel";
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
 import PendingInviteBanner from "@/components/invites/PendingInviteBanner";
 import RoomQuickbar from "@/components/room/RoomQuickbar";
-import HandGestures from "@/components/room/HandGestures";
+import HandGestures, { HandGestureGuide } from "@/components/room/HandGestures";
 import VeilArt, { VEIL_EFFECTS } from "@/components/room/VeilArt";
 import GlassButton from "@/components/glass/GlassButton";
 import Button from "@/components/ui/Button";
@@ -332,7 +333,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
   const [veilReady, setVeilReady] = useState(false);
   const [walkDone, setWalkDone] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
-  const [openInfoModal, setOpenInfoModal] = useState(null); // "kontakt" | "paigalda"
+  const [openInfoModal, setOpenInfoModal] = useState(null); // "kontakt" | "paigalda" | "hands"
   /* Ülariba avatakse KLÕPSUST (mitte ainult hoverist) — puuteseadmetel
      on hover kättesaamatu. Nool on päris nupp; väljast-klõps/Esc sulgeb. */
   const [topbarOpen, setTopbarOpen] = useState(false);
@@ -423,6 +424,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     setTopbarOpen(false);
   }, []);
   const stopHands = useCallback(() => setHandsOn(false), []);
+  const openHandsGuide = useCallback(() => setOpenInfoModal("hands"), []);
   // Ooterežiim ja väljalogimine kustutavad ruumi — kaamera läheb koos sellega.
   useEffect(() => {
     if (power !== "on") setHandsOn(false);
@@ -1514,7 +1516,9 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     const current =
       openInfoModal === "kontakt"
         ? { key: "kontakt", label: t("about.contact.title"), icon: <ContactMailIcon /> }
-        : { key: "paigalda", label: t("room.install_card"), icon: <InstallIcon /> };
+        : openInfoModal === "hands"
+          ? { key: "hands", label: t("room.hands_camera"), icon: <HandGestureIcon /> }
+          : { key: "paigalda", label: t("room.install_card"), icon: <InstallIcon /> };
     return {
       current,
       back: {
@@ -1982,6 +1986,17 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       >
         <InstallAppLink variant="card" showWhenUnavailable showInstalledState />
       </GlassModal>
+
+      {/* Käežestide juhend — info-kaart nagu Kontakt: karussell taandub tema
+          taga ja dokis on tagasi-nool. */}
+      <GlassModal
+        open={openInfoModal === "hands"}
+        onClose={() => setOpenInfoModal(null)}
+        title={t("room.hands_camera")}
+        contentClassName="hand-guide-shell"
+      >
+        <HandGestureGuide t={t} onDone={() => setOpenInfoModal(null)} />
+      </GlassModal>
       </div>
       {/* Avatud akna dokk — sama komponent, ainult kiirmenüü osa.
           Elab .room'ist VÄLJASPOOL, ja see ei ole paigutuse maitseasi:
@@ -2044,7 +2059,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         t={t}
         visible={showQuickbar}
       />
-      {handsOn ? <HandGestures onStop={stopHands} t={t} /> : null}
+      {handsOn ? <HandGestures onStop={stopHands} onOpenGuide={openHandsGuide} t={t} /> : null}
     </>
   );
 }

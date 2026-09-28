@@ -257,7 +257,31 @@ test("the return stroke after a swipe is ignored, a second swipe the same way co
   ];
   const events = swipes(motion(path));
   assert.deepEqual(events.map((e) => e.dir), [-1, -1]);
-  assert.ok(events.every((e) => e.travel > 0.25), "travel is measured from where the hand rested");
+  // A long sideways swipe counts mid-movement, measured from where the hand rested.
+  assert.ok(events.every((e) => e.travel >= 0.2), JSON.stringify(events));
+});
+
+/* Omanik 28.09: „vasakule ja paremale, üles ja alla ei tööta". Vana loogika
+   võrdles tõmmet järgneva käe tagasitoomisega kiiruse järgi; sama kiire
+   tagasitoomine tühistas tõmbe (lehvitamine) või pööras suuna ümber. */
+test("a swipe followed by an equally fast return counts once, in the swipe's direction", () => {
+  for (const [from, to] of [
+    [[0.65, 0.5], [0.4, 0.5]],
+    [[0.4, 0.5], [0.65, 0.5]],
+    [[0.5, 0.35], [0.5, 0.58]],
+    [[0.5, 0.6], [0.5, 0.38]],
+  ]) {
+    const frames = motion([...still(...from, 20), ...ease(from, to, 8), ...still(...to, 4), ...ease(to, from, 8), ...still(...from, 20)]);
+    const axis = from[0] !== to[0] ? "x" : "y";
+    const dir = (axis === "x" ? to[0] - from[0] : to[1] - from[1]) > 0 ? "+" : "-";
+    assert.deepEqual(kinds(swipes(noisy(frames))), [axis + dir], JSON.stringify([from, to]));
+  }
+});
+
+test("a short swipe with a quick, even faster return still counts in the swipe's direction", () => {
+  // 0.12 out in ~200 ms, back in ~130 ms without a pause: the return is not a wind-up, it is not longer
+  const frames = motion([...still(0.55, 0.5, 20), ...ease([0.55, 0.5], [0.43, 0.5], 6), ...ease([0.43, 0.5], [0.54, 0.5], 4), ...still(0.54, 0.5, 20)]);
+  assert.deepEqual(kinds(swipes(noisy(frames))), ["x-"]);
 });
 
 test("a wind-up to the right before a swipe to the left is a swipe to the left", () => {
@@ -289,16 +313,14 @@ test("a flick out and back counts in the direction of the faster outward stroke"
   assert.deepEqual(swipes(frames).map((e) => [e.axis, e.dir]), [["x", -1]]);
 });
 
-test("waving back and forth is not a direction and says so", () => {
+test("waving back and forth moves one step at most, in the direction it started", () => {
+  // The first movement decides (28.09); waving on does not keep stepping the cards.
   const wave = [];
   for (let i = 0; i < 3; i++) wave.push(...line([0.4, 0.5], [0.6, 0.5], 5), ...line([0.6, 0.5], [0.4, 0.5], 5));
-  const events = swipes(motion([...still(0.4, 0.5, 12), ...wave, ...still(0.4, 0.5, 10)]));
-  assert.deepEqual(events.map((e) => e.type), ["unclear"]);
-  // a long vehement wave is just waving: one "unclear" at most, never a swipe
+  assert.deepEqual(kinds(swipes(motion([...still(0.4, 0.5, 12), ...wave, ...still(0.4, 0.5, 10)]))), ["x+"]);
   const long = [];
   for (let i = 0; i < 8; i++) long.push(...line([0.4, 0.5], [0.6, 0.5], 4), ...line([0.6, 0.5], [0.4, 0.5], 4));
-  const longEvents = swipes(motion([...still(0.4, 0.5, 12), ...long, ...still(0.4, 0.5, 10)]));
-  assert.ok(longEvents.every((e) => e.type === "unclear") && longEvents.length <= 1, JSON.stringify(longEvents));
+  assert.deepEqual(kinds(swipes(motion([...still(0.4, 0.5, 12), ...long, ...still(0.4, 0.5, 10)]))), ["x+"]);
 });
 
 /* Päris käsi: kaarjas (küünarnukk on pöördetelg), sujuva kiirendusega,
