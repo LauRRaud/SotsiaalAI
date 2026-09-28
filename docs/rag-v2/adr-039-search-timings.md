@@ -42,6 +42,27 @@ Codexi kontrolli järgi on need suunavad, mitte tõestus.
   - 91% vastete arv on kogu katsetabelist.
 - **Mälu:** mälusurve on usutav põhjus, aga tõendatud see ei ole. PostgreSQL kasutab lisaks `shared_buffers`-ile ka operatsioonisüsteemi vahemälu, ja `memory.low` kaitseb mälu ainult võimaluste piires.
 
+## Tulemus 28.09: külm Qdrant pärast deploy'd ja algsoojendus
+
+Salvestatud ajad näitasid põhjust. Kõik pöörded on sama küsimusega; `merged` on otsingu enda kestus. Loendurid ja tagasipööre on Codexi kirjas ([audit, jaotised 10 ja 11](../audits/rag-v2-codex-review-2026-09-27.md#11-ajutise-mälukaitse-võrdluskatse-225-peal-2809)).
+
+| Pööre | Olukord | `merged` | Qdranti `vector_server` |
+|---|---|---:|---:|
+| 28.09 07:49 UTC | 7,5 min pärast #224 restarti, algsoojendus lõppenud | 11,9 s | 8,45–8,51 s |
+| 08:24 ja 08:40 UTC | soe; teine 15 min 52 s pärast esimest, deploy'd vahepeal polnud | 4,1 / 3,4 s | 0,18–0,23 s |
+| 09:14 UTC | #226 deploy järel, ajutine mälukaitse sees (`system.slice` 1500M, Qdrant 1G) | 12,6 s | 8,41–8,43 s |
+
+- **Jõudeolek ei tee otsingut aeglaseks, deploy teeb.** Rakenduse ehitus tõrjub Qdranti vektorid failivahemälust välja: Qdranti `file` 334 → 10,6 MiB, `memory.events.low` +119. Kolmandas pöördes luges Qdrant kettalt 306 MiB ja I/O ooteaeg kasvas 6,4 s; PostgreSQL-il oli see 37 ms.
+- **PostgreSQL oli pärast algsoojendust soe** (rerank 2,7 s, lexical 1,2 s): [ADR-033](adr-033-warm-up-at-server-start.md) loeb teadmusallikad uuesti. Vektoreid algsoojendus ei puudutanud.
+- **Proovitud mälukaitse ehitust ei üle elanud.** Suuremat kaitset ega swap'i ei katsetatud. Ajutine kaitse võetakse tagasi 28.09 kell 13:24 EEST.
+
+**Otsus: Qdranti algsoojendus** (`QdrantIndex.warm`, `warmPilotAtStart`).
+
+- Pärast teadmusallikate soojendust teeb algsoojendus ühe täpse vektorpäringu kinnitatud plaani aktiivsete dokumendiversioonide ulatuses. Vektoriks võetakse üks sama ulatuse salvestatud vektor, embeddingu kutset pole.
+- Nii loeb Qdrant vektorid pärast iga restarti ühe korra mällu, enne esimest küsimust.
+- Viga ainult logitakse. Logis on `[rag-v2] warmed vectors of N sources in X s`.
+- Mõju kinnitab esimene deploy-järgne pööre algsoojenduse lõppedes: `vector_server` peaks olema umbes 0,2 s, mitte 8,4 s.
+
 ## Järgmised sammud
 
 1. **Aeglased pöörded:** pärast väljalaset vaata aeglaste pöörete `timings.search` välja. Sealt näeb, kas aeg kulub Qdrantis (`vector_server`), sõnalises päringus või mujal.
@@ -52,6 +73,10 @@ Codexi kontrolli järgi on need suunavad, mitte tõestus.
 4. **Mahupiir:** sadu dokumente mahub praegusse piiri, näiteks 34 405 + 500 × 40 = 54 405 < 60 000. Otsingukiirus sellel mahul vajab siiski kontrolli. Tekstiosade piiri tõstmine 80–100 tuhandele jääb ettepanekuks, kuni sammud 1–3 on tehtud ja tegelikud filtrid ning samaaegsed päringud kontrollitud. 10 000 dokumendi piiri see ei muuda.
 
 ## Kontroll
+
+- **Qdranti algsoojendus:**
+  - `tests/rag-v2-unified.integration.test.mjs`: päris `warmPilotAtStart` loeb plaani vektorid ühe päringuga pärast allikaid ja ainult korra; tühi dokumendiloend ei tee päringut.
+  - `tests/rag-v2-pool-reserve.test.mjs`: `then` käivitub alles pärast allikaid, ja kui allikate soojendus ebaõnnestub, siis üldse mitte.
 
 - **`tests/rag-v2-unified.integration.test.mjs`** (päris PostgreSQL, Qdrant ja EstNLTK):
   - pöörde auditis on `timings.search`, sammud on õiges järjekorras ja täisarvulised;

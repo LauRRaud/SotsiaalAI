@@ -148,6 +148,17 @@ test('ADR-033: the warm-up verifies national legal texts first, once per generat
   assert.equal(warmKnowledgeSources(postgres, tenant, generationId, directories), false, 'a second call in the same process does not warm again');
   await new Promise(resolve => setImmediate(resolve));
   assert.deepEqual(warmed, [{ tenant, generationId, ids: ['law', 'act', 'municipal', 'guide'] }]);
+  // `then` (the start warm-up's vectors) runs after the sources, and only once they are warmed.
+  const order = [], later = `${generationId}-then`;
+  const slow = { warm: async () => { await new Promise(resolve => setTimeout(resolve, 20)); order.push('sources'); } };
+  assert.equal(warmKnowledgeSources(slow, tenant, later, directories, { then: async () => { order.push('vectors'); } }), true);
+  await new Promise(resolve => setTimeout(resolve, 60));
+  assert.deepEqual(order, ['sources', 'vectors']);
+  const failed = [], broken = `${generationId}-failed`;
+  assert.equal(warmKnowledgeSources({ warm: async () => { throw Object.assign(new Error('x'), { code: 'boom' }); } }, tenant, broken, directories,
+    { then: async () => { failed.push('vectors'); } }), true);
+  await new Promise(resolve => setTimeout(resolve, 20));
+  assert.deepEqual(failed, [], 'no vector warm-up after failed sources');
   for (const env of [{}, { M4_PILOT_ENABLED: '0', M4_PILOT_CONFIG: 'x', RAG_V2_POSTGRES_URL: 'x' }, { M4_PILOT_ENABLED: '1', RAG_V2_POSTGRES_URL: 'x' }]) {
     assert.equal(await warmPilotAtStart({ env }), false);
   }

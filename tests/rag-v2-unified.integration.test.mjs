@@ -21,7 +21,8 @@ import { retrievalProfile } from '../lib/rag-v2/search/profiles.js';
 import { RECORD_RETRIEVAL_VERSION } from '../lib/rag-v2/search/structured-record-source.js';
 import { hash } from '../lib/rag-v2/contracts.js';
 import { LEGACY_DISCOVERY_SCHEMA } from '../lib/rag-v2/search/discovery.js';
-import { runtimeAdapters } from '../lib/rag-v2/pilot/retrieval.js';
+import { runtimeAdapters, warmPilotAtStart } from '../lib/rag-v2/pilot/retrieval.js';
+import { processCatalog } from '../lib/rag-v2/search/postgres.js';
 import { DIALOGUE_VERSION } from '../lib/rag-v2/pilot/dialogue.js';
 import { TYPED_DIALOGUE_STATE_VERSION } from '../lib/rag-v2/pilot/dialogue-state.js';
 import { UNIFIED_RETRIEVAL_VERSION } from '../lib/rag-v2/pilot/retrieval-plan.js';
@@ -242,4 +243,24 @@ test('search assist: planned queries share one embedding request, the answer mod
   await db.m4PilotTurn.update({ where: { id: fallback.id }, data: { state: 'rerank_sent' } });
   await assert.rejects(f.run('Uus küsimus?'), { code: 'pilot_busy_or_unknown' });
   await db.m4PilotTurn.update({ where: { id: fallback.id }, data: { state: 'completed' } });
+});
+
+test('ADR-039: the start warm-up reads the vectors of the plan once, after its sources, with a stored vector', async () => {
+  const warmed = [];
+  class RecordingQdrant extends QdrantIndex {
+    async warm(target, documents) { const queries = await super.warm(target, documents); warmed.push({ generation: target.id, documents: documents.length, queries }); return queries; }
+  }
+  const documents = Object.fromEntries(snapshot.bundles.map(bundle => [bundle.document.id, bundle.version.id]));
+  const file = path.join(root, `warm-plan-${randomUUID()}.json`);
+  await fs.writeFile(file, JSON.stringify({ mode: 'real', tenant, generationId: generation.id, documents, retrievalRouting: UNIFIED_RETRIEVAL_VERSION }));
+  const env = { M4_PILOT_ENABLED: '1', M4_PILOT_CONFIG: file, RAG_V2_POSTGRES_URL: connections.postgresUrl,
+    RAG_V2_QDRANT_URL: connections.qdrantUrl, RAG_V2_QDRANT_KEY: connections.qdrantKey };
+  try {
+    assert.equal(await warmPilotAtStart({ env, Qdrant: RecordingQdrant }), true);
+    for (let i = 0; i < 600 && !warmed.length; i++) await new Promise(resolve => setTimeout(resolve, 100));
+    assert.deepEqual(warmed, [{ generation: generation.id, documents: Object.keys(documents).length, queries: 1 }]);
+    // Once per process and generation: a second start does not warm again.
+    assert.equal(await warmPilotAtStart({ env, Qdrant: RecordingQdrant }), false);
+    assert.equal(await new QdrantIndex(connections.qdrantUrl, connections.qdrantKey).warm(generation, []), 0);
+  } finally { await processCatalog(connections.postgresUrl).close(); }
 });

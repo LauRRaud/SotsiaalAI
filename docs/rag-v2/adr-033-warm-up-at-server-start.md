@@ -55,3 +55,4 @@ Kontrolli pärast deploy'd serveri logist: `[rag-v2] start warm-up started` ja m
 - Vastuse mudeli aeg (~9–10 s, `medium`) jääb põrandaks; vastuse voogedastus kasutajaliidesesse on tegemata.
 - `instrumentation.js` ei kuulu implementatsiooni räsisse; `lib/rag-v2/pilot/retrieval.js` kuulub, seega vajab deploy vestlusplaani ümberehitust.
 - Soojendus kasutab sama EstNLTK protsessi, mis vestlus.
+- **Täiendus 28.09 ([ADR-039](adr-039-search-timings.md)):** deploy ehitus tõrjub Qdranti vektorid failivahemälust välja. Pärast allikaid loeb algsoojendus nüüd ka plaani vektorid ühe täpse päringuga. Enne seda ootas esimene küsimus Qdrantis 8,4 s päringu kohta.

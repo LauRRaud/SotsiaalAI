@@ -136,6 +136,29 @@ Opuse 1×/2×/4× aruandes on soojas katses sõnaline otsing kallim kui vektorot
 ID-loendi eemaldamise võit on 28–109 ms. Kohaliku sondi dokumendivalik erineb
 vestluse filtritest ja 91% vastete loendus ei kasuta sama ulatust. Mahupiiri
 tõstmine vajab nende piirangute arvestamist; 1 GB PostgreSQLi puhver on veel katseettepanek.
+#224 kannab nüüd Qdranti serveriaja pöörde auditisse. 28.09 serveri eelkontroll:
+`memory_recursiveprot` on aktiivne, vanema ja mõlema RAG-konteineri kaitse null;
+vanemgrupi kaitse katse võib mõjutada ka PostgreSQLi. `rerank`-aja jääk sisaldab
+lisaks lugemisele morfoloogia/tervikluse kontrolli. Kontrolli ajal oli serveris
+juba #225 (käivitus 11:04 EEST). Mäluseadeid ei muudetud; katse ja tagasipööre
+on [ette valmistatud](../audits/rag-v2-codex-review-2026-09-27.md#10-pr-224-ajamõõdikud-ja-mälukaitse-katse-eelkontroll-2809).
+**28.09 kell 11:23 EEST algas omaniku kinnitatud võrdluskatse:** #225 peal
+salvestatakse Qdranti/PostgreSQLi cgroup'i loendureid iga sekund. Esmalt Opuse
+sama küsimus ja kordus ≥15 min jõudeoleku järel ilma kaitseta; alles selle
+baasmõõtmise järel runtime-kaitse `system.slice=1500M`, Qdrant `1G` ja sama kordus.
+Kaitseta baas läbis: 15 min 51,8 s pausi järel Qdrant 183–229 ms, otsing 3,42 s,
+jõudeoleku ajal failivahemälu kadu ei mõõdetud. **11:41:04 EEST rakendus ajutine
+kaitse**, restarti ei tehtud. Omaniku täpsustus: järgmine võrdlus tehakse deploy
+järgselt. Salvestus kattis #226 deploy: kaitse püsis, kuid Qdranti `file` langes
+334,4 → 10,6 MiB ja `memory.events.low` kasvas 119 võrra. Seega see kaitse ei
+säilitanud ehituse ajal faililehti. Kolmas pööre kell 12:14 EEST, umbes 10 min
+pärast algsoojenduse lõppu: Qdrant **8,41–8,43 s**, otsing **12,60 s**;
+Qdranti kettalugemine **306 MiB**, I/O PSI `some` kasv **6,4 s**. Pööre jäi
+kavandatud 6–8 minuti aknast välja. Opus lisab Qdranti algsoojenduse olemasoleva
+vektoriga; selle mõju vajab esimese väljalaskejärgse pöörde tõendit.
+Ajutise kaitse tagasivõtmine on ajastatud **28.09 kell 13:24 EEST**, pärast
+salvestuse lõppu; praegu on kaitse veel peal. Suurema swapi/kaitse mõju ei mõõdetud.
+[Katse ja loendurid](../audits/rag-v2-codex-review-2026-09-27.md#11-ajutise-mälukaitse-võrdluskatse-225-peal-2809).
 [Kontrolli ulatus](../audits/rag-v2-codex-review-2026-09-27.md#9-otsingu-ajamõõtmise-ja-mäluväidete-kontroll-2809).
 
 **27.09 Versioonipõhise indeksi kohalik ülevaatus (Codex, #209–#211).** Uut kinnitatud
