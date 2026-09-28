@@ -154,8 +154,14 @@ järgselt. Salvestus kattis #226 deploy: kaitse püsis, kuid Qdranti `file` lang
 säilitanud ehituse ajal faililehti. Kolmas pööre kell 12:14 EEST, umbes 10 min
 pärast algsoojenduse lõppu: Qdrant **8,41–8,43 s**, otsing **12,60 s**;
 Qdranti kettalugemine **306 MiB**, I/O PSI `some` kasv **6,4 s**. Pööre jäi
-kavandatud 6–8 minuti aknast välja. Opus lisab Qdranti algsoojenduse olemasoleva
-vektoriga; selle mõju vajab esimese väljalaskejärgse pöörde tõendit.
+kavandatud 6–8 minuti aknast välja. **#228 algsoojendus on serveris mõõdetud:**
+pärast 301 s allikasoojendust luges Qdrant vektorid 11 sekundiga; umbes 10 min
+hilisem sama küsimus andis vektoriotsingu **80–123 ms**, kogu otsingu **5,00 s**
+ja ainult **192 KiB** Qdranti kettalugemist. Rerank'i 2,54 sekundist oli mudeli
+aeg 2,21 s. Tulemus kehtib pärast soojenduse lõppu; varasem saabuv küsimus võib
+endiselt külm olla. Codexi ülevaatuses üks P2: Qdranti soojenduse tõrge jääb
+tehtuks märgituks ega saa samas protsessis korduskatset; võrguta sond kinnitas.
+[#228 tõend ja leid](../audits/rag-v2-codex-review-2026-09-27.md#12-pr-228-qdranti-algsoojenduse-järelkontroll-2809).
 Ajutise kaitse tagasivõtmine on ajastatud **28.09 kell 13:24 EEST**, pärast
 salvestuse lõppu; praegu on kaitse veel peal. Suurema swapi/kaitse mõju ei mõõdetud.
 [Katse ja loendurid](../audits/rag-v2-codex-review-2026-09-27.md#11-ajutise-mälukaitse-võrdluskatse-225-peal-2809).

@@ -786,9 +786,9 @@ tee Qdranti päringut. Teostuses tuleb kontrollida:
 - tõrge ei takista vestlust ega märgi ebaõnnestunud soojendust lõplikult tehtuks;
   olemasolev korduskatse ja sama töö paralleelsete käivituste vältimine säilivad.
 
-Koodiparanduse tulemus on veel `NOT_PROVEN`: pärast väljalaset tuleb võrrelda
-algsoojenduse lõppu, esimese sama küsimuse Qdranti serveriaega ja loendureid.
-Vastuvõtutõend on tegelik esimene kasutajapööre, mitte ainult soojenduspäringu edu.
+Selles etapis oli koodiparanduse tulemus veel `NOT_PROVEN`; #228 väljalaske
+järgnev kontroll on §12 all. Vastuvõtutõendiks valiti tegelik esimene
+kasutajapööre pärast algsoojendust, mitte ainult soojenduspäringu edu.
 
 Ajutise kaitse tagasivõtmine on ajastatud **28.09 kell 10:24 UTC / 13:24 EEST**,
 pärast salvestaja kavandatud lõppu 10:23:25 UTC. Ühekordne Codexi järeltegevus
@@ -797,3 +797,76 @@ pärast salvestaja kavandatud lõppu 10:23:25 UTC. Ühekordne Codexi järeltegev
 Skript taastab ainult kahe muudetud `memory.low` välja algse nullväärtuse,
 kontrollides aega, konteinerite identiteete ja oodatud kaitseväärtusi.
 Lugemiskontroll 09:28:05.936 UTC läbis; tagasivõtmine **ei ole veel tehtud**.
+
+## 12. PR #228: Qdranti algsoojenduse järelkontroll (28.09)
+
+Serverist kontrollitud väljalase `f4025522a9fd25a4b883ca22ecf34d4e165e6341`,
+frontend PID `2843358`, käivitus **09:45:49 UTC**. Kohalik ülevaadatud
+teostuscommit `958dc2169`; [PR #228](https://github.com/LauRRaud/SotsiaalAI/pull/228).
+Teenus oli kontrolli ajal aktiivne; Codex väljalaset ega vestluspööret ei käivitanud.
+
+### Kettalugemine toimus enne küsimust
+
+Serveri journal kinnitab järjestust: 1152 allika soojendus lõppes
+**09:50:54.156571 UTC** (301 s); 6026 allika vektorite soojendus lõppes
+**09:51:05.200953 UTC** (11 s). Vektorisoojenduse loenduriaknas
+09:50:53.637–09:51:05.637 UTC luges Qdrant kettalt **416,5 MiB** ning selle
+`file` kasvas **9,3 → 424,9 MiB**; I/O PSI `some` kasvas 8,10 s.
+Järgmise 610 sekundi proovides, kuni küsimuse alguseni, püsis `file`
+445 566 976 B juures ja Qdranti kettalugemise loendur ei kasvanud.
+
+Opuse sama küsimuse pööre `e187b7f1-a746-4a87-9bf8-f49328ba22ac` oli `completed`.
+Auditi **`createdAt` on 10:01:15.478 UTC**; kasutajaliidese saatmise ajamärk
+oli Opuse teatel umbes 10:01:13 UTC. Vastus salvestati **10:01:36.565 UTC**.
+Algsoojenduse lõpust auditi pöörde alguseni oli 10 min 10,3 s.
+
+| Mõõdik | #226, vektorisoojenduseta | #228, pärast vektorisoojendust |
+| --- | --- | --- |
+| Otsing ise (`since_start_ms.merged`) | 12 595 ms | **5001 ms** |
+| Põhiotsingu Qdranti serveriajad | 8407–8428 ms | **80–123 ms** |
+| Qdranti kettalugemine pöördeaknas | 306,0 MiB | **192 KiB** |
+| Qdranti I/O PSI `some` kasv | 6395 ms | **1,412 ms** |
+| Qdranti faililehtede refault | 75 659 | **0** |
+| Sõnaline otsing | 1167 ms | 1219 ms |
+| `rerank` | 2692 ms | 2535 ms |
+| `rerank`-mudelikutse | 2441 ms | **2209 ms** |
+| `rerank`-jääk väljaspool mudelikutset | 251 ms | **326 ms** |
+
+#228 pöörde loenduriaken on 10:01:14.637–10:01:36.637 UTC, 23 proovi.
+PostgreSQL luges 19,8 MiB, I/O PSI `some` kasv oli 53 ms. Mõlemas võrdluses
+olid ajutised kaitseväärtused veel 1500M/1G. Soojenduse ajal toimunud lugemine
+ja järgnenud soe küsimus kinnitavad paranduse toimimist selles katses;
+soojendusejärgset püsimist ilma kaitseta pole siin veel eraldi mõõdetud.
+
+**Ulatus:** tõendatud on esimene mõõdetud küsimus pärast algsoojenduse lõppu.
+Soojendus töötab taustal ja ei sulge vestlust umbes 5 min 16 s kestnud käivituse
+ettevalmistuse ajaks; enne lõppu saabuv küsimus võib endiselt oodata külma
+otsingu või konkureeriva soojenduse järel. Väide, et soojendus jõuab alati
+valmis enne ühtegi küsimust, ei tulene teostusest. Ka 2,54 s `rerank`-aeg ei
+tähenda 1–1,5 s kohalikku kitsaskohta: selles pöördes kulus mudelile 2,21 s.
+
+### Koodiülevaatus: üks taastumise puudus
+
+**[P2] Ebaõnnestunud vektorisoojendus jääb tehtuks märgituks.**
+`lib/rag-v2/pilot/retrieval.js:46` püüab `qdrant.warm()` tõrke kinni ja
+lõpetab edukalt. Seetõttu ei käivitu `warmKnowledgeSources` veakäsitluse
+`warming.delete(generationId)`: sama põlvkonna järgmine `warmPilotAtStart`
+tagastab `false`. Ka `preflight` ei anna vektorisoojenduse callback'i kaasa.
+Ajutine Qdranti timeout või ühendusviga jätab seega vektorite soojenduse selle
+protsessi jaoks korduseta ja esimene tegelik küsimus võib taas teha külma lugemise.
+Vestluse sisulist tulemust see ei blokeeri. Parandada tuleb vektorisoojenduse
+eraldi ebaõnnestumise/korduskatse rada, säilitades taustatöö ja korduvkäivituse piiri.
+
+Kohalik võrguta sond `tmp/rag-v2-memory-protection-20260928/probe-vector-retry.mjs`
+kasutas päris `warmPilotAtStart` funktsiooni ja testadaptereid: esimene käivitus
+`true`, sünteetiline Qdranti tõrge, teine käivitus `false`, vektorisoojenduse
+katseid **1**. Muudatus ei sisalda selle juhu testi. Olemasolev
+`tests/rag-v2-pool-reserve.test.mjs` läbis UTC all **6/6**; integratsioonitesti
+Codex selles järelkontrollis uuesti ei käivitanud. Tootekoodi ei muudetud.
+
+Arvulised auditiväljad ja loendurid on kaustas
+`tmp/rag-v2-memory-protection-20260928/`: `vector-warmup-turn.json`,
+`vector-warmup-counters.json`, `deploy-228-vector-warmup-counters.json`,
+`deploy-228-warmed-gap-counters.json`, `deploy-228-warmup.txt`.
+Sõnalise otsingu järgmine mahukatse peab kasutama vestluse tegelikke filtreid;
+60 000 tekstiosa piiri tõstmist see üksik pööre veel ei tõenda.

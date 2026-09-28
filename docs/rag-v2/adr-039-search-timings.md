@@ -62,6 +62,15 @@ Salvestatud ajad näitasid põhjust. Kõik pöörded on sama küsimusega; `merge
 - Nii loeb Qdrant vektorid pärast iga restarti ühe korra mällu, enne esimest küsimust.
 - Viga ainult logitakse. Logis on `[rag-v2] warmed vectors of N sources in X s`.
 - Mõju kinnitab esimene deploy-järgne pööre algsoojenduse lõppedes: `vector_server` peaks olema umbes 0,2 s, mitte 8,4 s.
+- **Kinnitatud #228 peal (28.09):** algsoojendus lõppes kell 12:51:05 EEST (`warmed vectors of 6026 sources in 11 s`). Selle ajal luges Qdrant kettalt 416,5 MiB.
+  - Umbes 10 minutit hiljem küsiti sama küsimust: `merged` 5,0 s, `vector_server` 80–123 ms. Küsimuse ajal luges Qdrant kettalt ainult 192 KiB.
+  - Rerank'i 2,54 s-st kulus mudelikutsele 2,21 s.
+  - Ajutine mälukaitse oli mõõtmise ajal veel peal, aga #226 katses ei hoidnud see üksi ehitust üle. Soojendusejärgset püsimist ilma kaitseta pole eraldi mõõdetud.
+- **Piir:** tõendatud on küsimus, mis tuleb pärast algsoojenduse lõppu. Käivitus võtab umbes 5 min 16 s ja selle ajal esitatud küsimus võib endiselt oodata külma otsingu järel.
+- **Korduskatse** (Codexi #228 ülevaatus, P2): vektorisoojendusel on protsessi ja põlvkonna kohta oma olek: `running`, `done` või `failed`.
+  - Kui soojendus ebaõnnestub (Qdrant pole veel üleval, aegumine), proovib järgmine käivitus või esimese pöörde `preflight` seda uuesti.
+  - Allikaid selleks uuesti ei soojendata, ja sama tööd ei tehta kunagi kaks korda korraga.
+  - Kui `preflight` alustab allikate soojendust (algsoojendus jäi vahele), järgnevad vektorid ka siis allikatele.
 
 ## Järgmised sammud
 
@@ -73,6 +82,10 @@ Salvestatud ajad näitasid põhjust. Kõik pöörded on sama küsimusega; `merge
 4. **Mahupiir:** sadu dokumente mahub praegusse piiri, näiteks 34 405 + 500 × 40 = 54 405 < 60 000. Otsingukiirus sellel mahul vajab siiski kontrolli. Tekstiosade piiri tõstmine 80–100 tuhandele jääb ettepanekuks, kuni sammud 1–3 on tehtud ja tegelikud filtrid ning samaaegsed päringud kontrollitud. 10 000 dokumendi piiri see ei muuda.
 
 ## Kontroll
+
+- **Korduskatse:** `tests/rag-v2-vector-warm-up.test.mjs` (võrguta, päris `warmPilotAtStart`):
+  - ebaõnnestunud vektorisoojendust proovitakse uuesti, käimasolevat ega lõpetatut mitte;
+  - teine käivitus proovib vektoreid uuesti ilma allikaid uuesti soojendamata.
 
 - **Qdranti algsoojendus:**
   - `tests/rag-v2-unified.integration.test.mjs`: päris `warmPilotAtStart` loeb plaani vektorid ühe päringuga pärast allikaid ja ainult korra; tühi dokumendiloend ei tee päringut.
