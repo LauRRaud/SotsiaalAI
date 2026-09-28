@@ -23,6 +23,8 @@ test('search assist: both model calls are strict, low-effort, unstored JSON requ
   const dated = rerankRequest(config, ['küsimus'], passages, '2026-09-28');
   assert.equal(JSON.parse(dated.input[0].content).today, '2026-09-28');
   assert.match(dated.instructions, /valid_from and valid_to/);
+  // ADR-046: a cost question keeps the passages that set the amount, not only the one that names a share.
+  assert.match(dated.instructions, /its base, a cap or price limit, the person's own share and the exceptions/);
 });
 
 test('search assist: planned queries are trimmed, distinct and differ from the search text; malformed plans and selections are refused', () => {

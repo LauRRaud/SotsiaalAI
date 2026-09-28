@@ -1,0 +1,25 @@
+{
+  "schema_version": "rag-v2/dialogue-eval-2",
+  "purpose": "Targeted checks for ADR-046 (28.09.2026): a condition in the evidence that changes what the person pays or receives (a price cap, the person's own share, a threshold, the municipality's share) must reach the answer, across different benefits and services, not only the hearing aid of acceptance C9. Written before any run; each turn is run on the code before and after the change.",
+  "expectation_help": {
+    "evidence": "each regular expression matches the title of a source the search gave the model",
+    "must": "regular expressions on the visible answer text"
+  },
+  "scenarios": [
+    { "id": "cost-hearing-aid", "title": "Kuuldeaparaat: riigi osalus ja piirhind", "source": "acceptance C9; conversation runs 1-3", "turns": [
+      { "mode": "new", "text": "Ema kuulmine halveneb ja pensionist ei jätku kuuldeaparaadi ostmiseks. Kust alustada?",
+        "expect": { "evidence": ["Abivahendi"], "must": ["piirhin"] } } ] },
+    { "id": "cost-wheelchair", "title": "Ratastool: omaosalus piirhinnast", "source": "aids guide: the own share of mobility aids is 10 per cent of the price cap", "turns": [
+      { "mode": "new", "text": "Olen vanaduspensionär ja vajan ratastooli. Kui palju pean selle eest ise maksma?",
+        "expect": { "evidence": ["Abivahendi"], "must": ["piirhin", "omaosal|ise maks|tasud ise|maksad ise"] } } ] },
+    { "id": "cost-child-glasses", "title": "Lapse prillid: riigi osalus ja piirhind", "source": "aids guide: vision aids and children's share", "turns": [
+      { "mode": "new", "text": "Lapsel on vaja prille. Kui palju riik prillide eest maksab?",
+        "expect": { "evidence": ["Abivahendi"], "must": ["piirhin|piirmäär"] } } ] },
+    { "id": "cost-income-support", "title": "Toimetulekutoetuse suurus: toimetulekupiir ja eluasemekulud", "source": "SHS: the subsistence level and housing costs set the amount", "turns": [
+      { "mode": "new", "text": "Minu pension on 400 eurot kuus ja üür 300 eurot. Kui palju toimetulekutoetust ma saaksin?",
+        "expect": { "evidence": ["Sotsiaalhoolekande seadus"], "must": ["toimetulekupiir", "eluasemekul|eluruumi kul|elamiskul"] } } ] },
+    { "id": "cost-care-home", "title": "Hooldekodu: omavalitsuse osa ja selle piir", "source": "SHS: the municipality's share of care costs and the pension-based limit", "turns": [
+      { "mode": "new", "text": "Kui palju pean ise hooldekodu koha eest maksma?",
+        "expect": { "evidence": ["Sotsiaalhoolekande seadus"], "must": ["hoolduskul|hooldustöötaja", "keskmi\\S* vanaduspension|piirmäär"] } } ] }
+  ]
+}

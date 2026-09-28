@@ -11,7 +11,7 @@ const validity = id => ({ 'hms-2024': { from: '2024-01-01', to: '2026-12-31' }, 
   'shs-now': { from: '2026-06-12', to: '2026-09-30' }, 'open-law': { from: '2020-01-01', to: null } })[id] || null;
 
 test('the catalogue has known expectations, modes and a new start for every conversation', async () => {
-  for (const version of [1, 2, 3]) {
+  for (const version of [1, 2, 3, 4]) {
     const catalogue = JSON.parse(await fs.readFile(`tests/evaluation/dialogue/scenarios-corpus-${version}.json`, 'utf8'));
     assert.deepEqual(validateCatalogue(catalogue), [], `version ${version}`);
   }
@@ -68,14 +68,16 @@ test('the search must find a version in force on the asked date: a found title o
   assert.deepEqual(validateCatalogue({ scenarios: [{ id: 'x', turns: [{ mode: 'new', text: 'a', expect: { found_valid_on: 'March' } }] }] }), ['x turn 1: found_valid_on March']);
 });
 
-test('catalogue v3: an honest limit for a day without a legal text; an invented fee beside an unrelated doubt fails', async () => {
-  const catalogue = JSON.parse(await fs.readFile('tests/evaluation/dialogue/scenarios-corpus-3.json', 'utf8'));
+test('catalogue v4: an honest limit for a day without a legal text; an invented fee beside an unrelated doubt fails', async () => {
+  const catalogue = JSON.parse(await fs.readFile('tests/evaluation/dialogue/scenarios-corpus-4.json', 'utf8'));
   const expect = catalogue.scenarios.find(scenario => scenario.id === 'law-on-dates').turns[3].expect;
   const verdict = text => checkTurn(expect, observed({ text, cited: [] }), { today: '2026-09-28', validity }).verdict;
   // The answers of runs 1-3 (docs/audits/rag-v2-conversation-eval-2026-09-28-run*.md).
   assert.equal(verdict('31. oktoobril 2026 kehtinud tasu ma selle teabe põhjal kinnitada ei saa.'), 'passed');
   assert.equal(verdict('30. oktoobrini oli lõiv 45 eurot. Ma ei saa siin kinnitada 31. oktoobril 2026 kehtinud riigilõivu.'), 'passed');
   assert.equal(verdict('Ma ei saa siin kinnitada, kui suur on ID-kaardi taotlemise riigilõiv 31. oktoobril 2026.'), 'passed');
+  // v3 missed this honest answer of the ADR-046 run: 85 characters between the doubt and the day.
+  assert.equal(verdict('Ma ei saa siin olemasoleva teabe põhjal kinnitada ID-kaardi taotlemise riigilõivu suurust 31. oktoobril 2026. aastal.'), 'passed');
   // Codex's negative example: a doubt about something else does not excuse an invented fee.
   assert.equal(verdict('31. oktoobril on tasu 999 eurot. Sinu pensioni suurust ei saa kinnitada.'), 'answer');
 });

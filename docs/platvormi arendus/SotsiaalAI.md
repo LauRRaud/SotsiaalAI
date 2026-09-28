@@ -149,6 +149,9 @@ seoste ülevaatusega. [Leiud ja tõendid](../audits/rag-v2-codex-review-2026-09-
 **28.09 parandused (Opus):** [ADR-044](../rag-v2/adr-044-date-ranges-and-place-negation.md) parandab vahemiku, tegevuse eituse ja
 akti kaupa hindamise; kataloog v3 nõuab 31.10 kohta ausat lünka ilma tasuta; ADR-043 broneeringulause on parandatud.
 Jooksu 3 vaatlused uue hindajaga: 38/40.
+**28.09 õhtu (Opus):** kontaktide variant B on valmis ([ADR-045](../rag-v2/adr-045-contact-binding-content.md), #242/#243: seos ID, revisjoni,
+sisu ja registri rolliga). Ülevaatetabel ja Harku katse on valmis, **avaldamine ootab operaatori otsust**. [ADR-046](../rag-v2/adr-046-cost-conditions.md):
+otsing toob kulutingimused, aga kuuldeaparaadi vastus ei seo osalust piirhinnaga (allikalünk, otsus omanikul/Codexil). Terve kataloog v4: 38/40.
 
 **28.09 Otsingu jõudluse kontroll (#222 kood).** Kanalite ajad mõõdetakse otsingus,
 kuid need kaovad ühise paketi koostamisel ja puuduvad salvestatud pöörde auditist.

@@ -180,6 +180,7 @@ sudo -n chown root:ubuntu <out>; sudo -n systemctl restart sotsiaalai-frontend
 - [ADR-043](adr-043-answer-output-room.md) (28.09.2026): uus vestlusplaan annab vastusemudelile 8192 väljunditokenit (seni 4096), sest arutlus kulutas suure kataloogisisendi korral kogu lae; uuendus hoiab kinnitatud plaani lae, uus lagi vajab uut plaani.
 - [ADR-044](adr-044-date-ranges-and-place-negation.md) (28.09.2026): päevade või kuude vahemik on üks periood (vahepealne redaktsioon jääb alles); koha eitus ainult partikli või eitatud elamise tegusõnaga, mitte üle lause piiri; hindaja hindab iga õigusakti kehtivust eraldi, kataloog v3.
 - [ADR-045](adr-045-contact-binding-content.md) (28.09.2026): kontaktiekspordi seos on registrikirje ID, revisjon ja sisu räsi, mitte kontrolliaeg (uus kontroll ei tühista muutumata kontakti); jooksev värskusreegel jääb; eksport hoiab paketi allikaliigi, et asendada paketikontakti versioon.
+- [ADR-046](adr-046-cost-conditions.md) (28.09.2026): kulu mõjutav tingimus — otsinguplaan teeb päringu summa kujunemise kohta, rerank hoiab aluse, lae, omaosaluse ja erandid, vastus (dialogue-12) toob tingimuse numbri juurde mistahes tõendilõigust. Otsingu mõju tõendatud; kuuldeaparaadi piirhind jääb avatuks (allikalünk), terve kataloog v4 38/40.
 
 ### Runbook ja aruanded
 
