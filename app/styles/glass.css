@@ -194,9 +194,10 @@
      ilme paneelis tuleb äärest + ülaserva läikest + gradiendist (mitte blurist).
      Sama html:not(...) värav + kõrgem spetsiifilisus (.panel esivanem) kui
      bend-reeglil → tühistab nii tavalise bluri kui #lg-bend'i. ÜKS koht, mitte
-     override iga elemendi peal. Sisselogimise kest on sama härmas klaas
-     (login.css, 28.09), seega kehtib reegel ka seal. */
-  html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) :is(.panel, .login-modal-shell) :where(.glass-btn, .glass-iconbtn, button[data-variant], a[data-variant], .login-keypad-btn, label[data-control-type], [role="radio"], input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only), textarea, select, .dd-trigger, .workspace-dashboard-card) {
+     override iga elemendi peal. Sisselogimise kest ja info-kaart on sama
+     härmas klaas (login.css ja .glass-modal-shell, 28.09), seega kehtib
+     reegel ka seal. */
+  html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) :is(.panel, .login-modal-shell, .glass-modal-shell) :where(.glass-btn, .glass-iconbtn, button[data-variant], a[data-variant], .login-keypad-btn, label[data-control-type], [role="radio"], input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only), textarea, select, .dd-trigger, .workspace-dashboard-card) {
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
@@ -456,10 +457,24 @@
        "imelik kuma", mis eristas seda akent ülejäänud kaartidest
        (omanik 26.07). Kaart ei helenda; ta on matt ja selge servaga. */
     background: var(--card-glass-bg);
+    /* Härmatis nagu kaardil ja avatud kaardil (omanik 28.09: sisselogimise
+       kaardil oli sama viga — ainult toon, ruum paistis teravana läbi). Kest
+       ise, mitte ::before: kest kerib, ja kerides jääks ::before sisu alt ära. */
+    -webkit-backdrop-filter: blur(var(--card-glass-blur));
+    backdrop-filter: blur(var(--card-glass-blur));
     border: none;
     box-shadow: var(--card-glass-shadow);
     color: var(--room-text);
     animation: none;
+  }
+  /* Sama proov mis kaartidel (carousel.css, panel.css 23.09): ei läiget,
+     klaasiserva ega varju. Kõrgkontrastis jääb serv alles. */
+  html:not([data-contrast="hc"]) .glass-modal-shell {
+    box-shadow: none;
+  }
+  html:not([data-contrast="hc"]) .glass-modal-shell::before,
+  html:not([data-contrast="hc"]) .glass-modal-shell::after {
+    content: none;
   }
   @media (max-height: 44rem) {
     .glass-modal-shell {

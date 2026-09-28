@@ -521,7 +521,13 @@ export default function GlassCarousel({
   /* Ühised väravad: kas ruum on üldse selles seisus, kus rullik ja nooled
      tohivad midagi liigutada. Kehtib NII karussellile (pöörab kaarti) kui
      lauale (vahetab rea fookust). */
-  const roomInteractive = useCallback(() => {
+  /* `pointer: false` = sisend ei tule hiirest ega sõrmest (kaamera käežestid).
+     Siis ei loe ülariba hover ega fookus: puutel jääb ülariba pärast
+     käežestide sisselülitamist `:hover`-olekusse ja arvutis jääb hiir sageli
+     ülariba kohale — mõlemal juhul ignoreeris karussell iga käeliigutust
+     (omanik 28.09: „menüüs ei tahtnud need töötada"). Avatud ülariba
+     lukustab endiselt. */
+  const roomInteractive = useCallback(({ pointer = true } = {}) => {
     const root = navRef.current;
     if (!root) return false;
     const wrap = root.closest(".room-carousel-wrap");
@@ -540,8 +546,7 @@ export default function GlassCarousel({
     if (
       topbar &&
       (topbar.dataset.open === "1" ||
-        topbar.matches?.(":hover") ||
-        topbar.matches?.(":focus-within"))
+        (pointer && (topbar.matches?.(":hover") || topbar.matches?.(":focus-within"))))
     ) {
       return false;
     }
@@ -625,7 +630,7 @@ export default function GlassCarousel({
     if (dockOnly || isDesk) return undefined;
     const onHand = (e) => {
       const { action, dir } = e.detail || {};
-      if (drag.current.on || !roomInteractive()) return;
+      if (drag.current.on || !roomInteractive({ pointer: false })) return;
       if (action === "step") step(dir < 0 ? -1 : 1);
       else if (action === "open") itemRefs.current[activeRef.current]?.click?.();
     };

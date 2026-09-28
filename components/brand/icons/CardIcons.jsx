@@ -72,6 +72,16 @@ export const InstallIcon = (props) => (
   </Svg>
 );
 
+/* Käežestid — pühkiv sõrm kahe noolega kaare all (omanik 28.09: tõstetud
+   käe kuju ei meeldinud). Kaar = liigutus vasakule-paremale. */
+export const HandGestureIcon = (props) => (
+  <Svg {...props}>
+    <path {...P} d="M5 7.2C7.1 5.4 9.4 4.5 12 4.5s4.9.9 7 2.7" />
+    <path {...P} d="M5 7.2 4.7 4.8M5 7.2l2.4-.1M19 7.2l.3-2.4M19 7.2l-2.4-.1" />
+    <path {...P} d="M10.4 20.5l-3-3.3a1.4 1.4 0 0 1 2.1-1.9l.9.9v-5.4a1.4 1.4 0 0 1 2.8 0v3.4l2.9.6a1.7 1.7 0 0 1 1.3 1.9l-.5 3.8" />
+  </Svg>
+);
+
 /* Kontakt — ümbrik */
 export const ContactMailIcon = (props) => (
   <Svg {...props}>
