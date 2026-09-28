@@ -69,10 +69,26 @@
      seetõttu ainus, mis omaniku silmis "õige" tundus — nüüd on ta päris
      token, mitte lähedane koopia. */
   background: var(--card-glass-bg);
+  /* Härmatis nagu kaardil ja avatud kaardil (omanik 28.09: „login modalil
+     on ka vale klaaspaneel"). Siin oli ainult toon ilma härmatiseta, seega
+     paistis ruum kesta taga teravana ja kest luges heleda kilena. Kest ise,
+     mitte ::before: kest kerib (overflow-y), ja kerides jääks ::before-kiht
+     sisu alt ära. Fikseeritud järglasi kestas ei ole. */
+  -webkit-backdrop-filter: blur(var(--card-glass-blur));
+  backdrop-filter: blur(var(--card-glass-blur));
   border: none;
   box-shadow: var(--card-glass-shadow);
   color: var(--room-text);
   animation: none;
+}
+/* Sama proov mis kaartidel ja kaardilehel (carousel.css, panel.css 23.09):
+   ei servaläiget, klaasiserva ega varju. Kõrgkontrastis jääb serv alles. */
+html:not([data-contrast="hc"]) .login-modal-shell {
+  box-shadow: none;
+}
+html:not([data-contrast="hc"]) .login-modal-shell::before,
+html:not([data-contrast="hc"]) .login-modal-shell::after {
+  content: none;
 }
 .login-modal-shell::before {
   content: "";
