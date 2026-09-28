@@ -82,3 +82,36 @@
   2. partii ülevaatus ja avaldamine;
   3. indeksi uus põlvkond;
   4. uus vestlusplaan.
+
+## Avaldamine 28.09.2026 õhtul
+
+Omanik andis korralduse „vaata siis üle ja pane andmebaasi“, seega tegi ülevaatuse Claude Opus 5.5 reeglite järgi. Otsus ja põhjus on iga rea juures serveris failis `rag-v2-work/eval-files/contact-review-2026-09-28/review-decided.csv`, mitte repos, sest seal on nimed.
+
+- **Lisati, kui kõik tingimused kehtivad:**
+  - registrikirje on praegu veebikontrolliga kinnitatud, st ametlik leht näitab seda inimest nende kanalitega;
+  - registris on telefon või e-post;
+  - paketi ja registri roll on piirkonna täpsustuse eemaldamise järel sama või üks sisaldab teist;
+  - paketi leht puudub või on registriga sama domeeni all.
+- **384 kandidaadist lisati 377 ja jäeti välja 7:**
+  - kahel pole registris telefoni ega e-posti;
+  - viiel on roll muutunud: Lääne-Harjus kaks, Pärnus üks ja Türil kaks. Nende paketi teenuseseosed võivad olla vananenud.
+  - Kose üks rida lisati ülevaataja otsusega: sama roll eri kirjapildis.
+- **Harku kõigepealt (v34).**
+  - 8 kontakti eksporditi, avaldati lokaalses salves ja kopeeriti serverisse.
+  - Indeksi põlvkond on `620eca9d` ja plaan `…-1851`; vektorid maksid 0,0003 USD.
+  - Aknas andis „Mul on raha otsas ja toiduks ei jätku. Elan Harku vallas.“ sotsiaalhoolekandespetsialisti koos telefoni ja e-postiga.
+- **Ülejäänud (v35).**
+  - Avaldati 368 kontakti. Üks jäi välja, sest tema paketidokumenti aktiivses salves pole; avaldamine oleks loonud uue dokumendi väljaspool indeksi poliitikat.
+  - Indeksi põlvkond on `7ec6f9a3` ja plaan `/etc/sotsiaalai/m4-corpus-chat-20260928d.json` (`…-1909`); vektorid maksid 0,015 USD.
+  - Salve pea on `a575880c`, sama lokaalselt ja serveris.
+- **Tulemus:** vestlus annab nüüd **376 kontrollitud kontakti 60 omavalitsusest**, varem mitte ühtegi. Ilma seoseta jääb 432 paketikontakti: 404 ilma kandidaadita, 20 mitmetähendusliku kandidaadiga, 7 välja jäetud ja 1 salvest puuduv.
+- **Aken pärast v35:**
+  - Tartu valla sotsiaaltransport: kaks kontakti, teenuse osutaja ja hind;
+  - Kose sama vestluse jätkuna: kaks kontakti ja taotlemise kord;
+  - Tartu valla kiire abi puhtas vestluses: varjupaigateenus, vältimatu abi ja kaks kontakti.
+  - Esimene tekst tuli 13–28 s järel.
+- **Tööülesanded:**
+  - Ülevaatust ei saa üle kirjutada, sest `writeJson` kasutab `wx`-i.
+  - Ülevaatus aegub iga avaldamisega, seega tehti partiid ükshaaval uute failinimedega.
+  - Serverisse kopeeriti `.tgz`-ina `scp`-ga ja kontrollsummaga, sest torustatud `tar` üle ssh katkes korra poole peal.
+- **Leid Codexile, kahe inimese ulatus.** Ühes vestluses „Elan Tartu vallas …“ → „naabrimees … elab Kose vallas“ → „Teine asi: mul pole täna öösel kusagil magada …“ jäi kataloogi ulatuseks Kose, sest ulatus järgib viimast mainimist. Vastus rääkis aga kasutaja enda Tartu vallast, seega kontakte ei tulnud. Omavalitsus tuleks siduda inimesega (dialoogi olek), mitte viimase mainimisega.

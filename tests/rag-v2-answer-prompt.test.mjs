@@ -24,7 +24,8 @@ test('prompt v10 keeps every v9 guardrail in each answer language, and v9 plans 
   assert.equal(PROMPT_VERSION, 'm4-grounded-answer-11');
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-10'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-9'));
-  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-12');
+  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-13');
+  assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-12'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-11'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-10'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-9'));
@@ -73,6 +74,11 @@ test('dialogue prompt v9: numbers keep their conditions, limitations add no fact
     'never left out when any evidence excerpt states it', 'limitations and clarification add no facts',
     'establish neither the national rule nor that the rule differs', 'does not presuppose which authority', 'alusta, küsi, pöördu, ära osta']) assert.ok(et.includes(phrase), phrase);
   assert.ok(!dialogueRequest(config, 'How much?', { evidence: [] }, 'en', {}).instructions.includes('ära osta'));
+  // v13: with municipal records the sources list carries each source's date; the answer does not repeat it.
+  const records = dialogueRequest({ ...config, recordCatalogue: 'rag-v2/record-catalogue-2' }, 'Kellele helistada?', { evidence: [] }, 'et', {}).instructions;
+  assert.ok(records.includes('The sources list shows when each source was collected or checked'));
+  assert.ok(records.includes('confirm the details with the municipality'));
+  assert.ok(!et.includes('The sources list shows when each source'), 'only the record catalogue prompt carries it');
 });
 
 test('answer-11: Luna answers in her own voice and names scope, not sources', () => {

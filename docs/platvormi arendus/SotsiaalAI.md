@@ -152,6 +152,11 @@ Jooksu 3 vaatlused uue hindajaga: 38/40.
 **28.09 õhtu (Opus):** kontaktide variant B on valmis ([ADR-045](../rag-v2/adr-045-contact-binding-content.md), #242/#243: seos ID, revisjoni,
 sisu ja registri rolliga). Ülevaatetabel ja Harku katse on valmis, **avaldamine ootab operaatori otsust**. [ADR-046](../rag-v2/adr-046-cost-conditions.md):
 otsing toob kulutingimused, aga kuuldeaparaadi vastus ei seo osalust piirhinnaga (allikalünk, otsus omanikul/Codexil). Terve kataloog v4: 38/40.
+**28.09 hilisõhtu (Opus):** omaniku korraldusel on kontaktid avaldatud: 377 ülevaatusest läbi, v34 Harku ja v35 ülejäänud.
+Vestlus annab nüüd 376 kontrollitud kontakti 60 omavalitsusest ([ADR-045 avaldamine](../rag-v2/adr-045-contact-binding-content.md#avaldamine-28092026-õhtul)).
+[ADR-047](../rag-v2/adr-047-source-refs-and-dates.md): viited vastuses on klikitavad, allika kuupäev on paneelis ja korduv lõpulause kadus.
+Avatud: kahe inimese vestluses jääb kataloog viimati mainitud omavalitsusele (omavalitsus tuleb siduda inimesega);
+esimene tekst tuleb aknas 13–28 s järel.
 
 **28.09 Otsingu jõudluse kontroll (#222 kood).** Kanalite ajad mõõdetakse otsingus,
 kuid need kaovad ühise paketi koostamisel ja puuduvad salvestatud pöörde auditist.

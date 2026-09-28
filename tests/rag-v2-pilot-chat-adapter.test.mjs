@@ -98,4 +98,11 @@ test('source panel label carries the checkable origin: authors, journal, issue, 
   // Only cited sources reach the reader's list; an uncited catalogue record stays in the audit.
   assert.deepEqual(result.sources.map(source => source.label.split(' · ')[0]), ['S1']);
   assert.deepEqual(result.displayed_sources, result.sources);
+  // A municipality's record shows when it was collected or checked, so the answer need not repeat it.
+  const record = pilotChatResult({ id: 't', state: 'completed', question: 'Q', answer, sources: [
+    { ref: 'S1', title: 'Sotsiaaltransporditeenus', checked: '2026-04-30', pages: [], used: true }] }, 'conv');
+  assert.equal(record.sources[0].label, 'S1 · Sotsiaaltransporditeenus · kontrollitud 30.04.2026 · Vastuses kasutatud');
+  const unknown = pilotChatResult({ id: 't', state: 'completed', question: 'Q', answer, sources: [
+    { ref: 'S1', title: 'Koduteenus', checked: 'eile', pages: [], used: true }] }, 'conv');
+  assert.equal(unknown.sources[0].label, 'S1 · Koduteenus · Vastuses kasutatud');
 });

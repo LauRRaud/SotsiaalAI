@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useEffect, useMemo, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { parseAssistantMarkdownBlocks } from "@/lib/chat/messageMarkdown";
 import MessageActionsMenu from "./MessageActionsMenu";
 
@@ -104,7 +104,36 @@ function renderInlineMarkdown(text, keyPrefix) {
     .replace(/__([^_\n][\s\S]*?[^_\n])__/g, "$1");
 }
 
-function AssistantMarkdown({ text }) {
+// A reference group in an answer ("[S37, S21]") opens the sources panel at those sources; the text stays the same, so
+// copying and listening do not change.
+const REF_GROUP = /\[(S\d+(?:\s*,\s*S\d+)*)\]/g;
+function renderInlineWithRefs(text, keyPrefix, onRefs) {
+  const source = renderInlineMarkdown(text, keyPrefix);
+  if (!onRefs) return source;
+  const parts = [];
+  let last = 0;
+  for (const match of source.matchAll(REF_GROUP)) {
+    if (match.index > last) parts.push(source.slice(last, match.index));
+    const refs = match[1].split(/\s*,\s*/);
+    parts.push(
+      <button
+        key={`${keyPrefix}-ref-${match.index}`}
+        type="button"
+        data-source-ref=""
+        aria-label={`Ava allikad ${refs.join(", ")}`}
+        onClick={event => { event.stopPropagation(); onRefs(refs); }}
+        onKeyDown={event => event.stopPropagation()}
+      >
+        {match[0]}
+      </button>
+    );
+    last = match.index + match[0].length;
+  }
+  if (last < source.length) parts.push(source.slice(last));
+  return parts;
+}
+
+function AssistantMarkdown({ text, onRefs = null }) {
   const blocks = useMemo(() => parseAssistantMarkdownBlocks(text), [text]);
 
   if (!blocks.length) return null;
@@ -121,7 +150,7 @@ function AssistantMarkdown({ text }) {
             >
               {block.items.map((item, itemIndex) => (
                 <li key={`${block.type}-${index}-${itemIndex}`}>
-                  {renderInlineMarkdown(item, `${block.type}-${index}-${itemIndex}`)}
+                  {renderInlineWithRefs(item, `${block.type}-${index}-${itemIndex}`, onRefs)}
                 </li>
               ))}
             </ListTag>
@@ -130,7 +159,7 @@ function AssistantMarkdown({ text }) {
 
         return (
           <p key={`paragraph-${index}`}>
-            {renderInlineMarkdown(block.text, `paragraph-${index}`)}
+            {renderInlineWithRefs(block.text, `paragraph-${index}`, onRefs)}
           </p>
         );
       })}
@@ -296,6 +325,12 @@ const ChatMessageItem = memo(function ChatMessageItem({
   const sourcesLabel = tr("chat.sources.heading") || "Allikad";
   const actionsLabel = locale === "en" ? "Message actions" : locale === "ru" ? "Действия с сообщением" : "Sõnumi tegevused";
   const hasMessageSources = Array.isArray(messageSources) && messageSources.length > 0;
+  // A pilot source's id ends with its ref ("<turn>/S37") and its label starts with it ("S37 · …").
+  const openRefs = useCallback(refs => {
+    const picked = messageSources.filter(source => refs.some(ref => String(source?.id || source?.key || "").endsWith(`/${ref}`)
+      || String(source?.label || "").startsWith(`${ref} ·`)));
+    onShowSources?.(picked.length ? picked : messageSources);
+  }, [messageSources, onShowSources]);
   const normalizedCompletionStatus = String(completionStatus || "").toUpperCase();
   const canRetry = isAssistant
     && typeof onRetry === "function"
@@ -438,7 +473,7 @@ const ChatMessageItem = memo(function ChatMessageItem({
       </span>
 
       {text ? (
-        <AssistantMarkdown text={visibleText} />
+        <AssistantMarkdown text={visibleText} onRefs={hasMessageSources && onShowSources ? openRefs : null} />
       ) : null}
       {showThinking ? (
         <span role="status" aria-live="polite" aria-label={thinkingLabel} />
