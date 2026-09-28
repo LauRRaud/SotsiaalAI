@@ -114,6 +114,21 @@ Tootmises oli plaan `…-1253-r84fa17edc`. Kordasin ainult kaht stsenaariumi, ku
      - Tõendis oli piirhinnast juttu kahes lõigus: teatmiku „Piirhinna suurendamiseks“ ja SHS-i „piirhinna ulatuses“.
      - Seega on see vastuse täielikkuse puudus. Seadme piirhinna tabel on määruse lisa, mida XML-tekst ei sisalda.
 
+## Kordus tootmisplaaniga pärast #238 ja #239: toortulemus 38/40
+
+- **Plaan `…20260928-1342`**, uus kinnitatud plaan väljundi laega 8192 ([ADR-043](../rag-v2/adr-043-answer-output-room.md)).
+  - See tehti ja aktiveeriti pärast #239 väljalaset `rag-v2-chat-plan.mjs`-iga, sest väljalaske uuendus hoidis 4096.
+  - Kulu 0,196 USD, [aruanne](rag-v2-conversation-eval-2026-09-28-run3.md).
+- **Tulemus 38/40.**
+  - `vague-then-details` 2 (Viimsi kataloog) läbis. Väljundit kulus 4177 tokenit, sellest arutlust 2924. Vana 4096 lae korral oleks see jälle katkenud.
+  - Kõik kuupäevapöörded läbisid ka tootmisplaaniga.
+- **Järele jäi kaks puudust:**
+  - `money-harku-contact` 3: kontaktisik, vt allpool;
+  - `hearing-aid-cap` 1: piirhinda ei mainita, kuigi kõik kolm allikat (SHS, abivahendi määrus ja teatmik) on viidatud.
+- **Stiil:** hearing-aid vastus kasutas seekord teie-vormi („Alustage“, „pöörduge“), kuigi reegel on sina-vorm.
+  - Kolmes käivituses on selliseid vastuseid 120-st 2, mõlemad kolmanda isiku (ema) kohta.
+  - Kataloogis pole selle kohta veel kontrolli.
+
 ## Omavalitsuse kontaktid: kataloog ei anna ühtegi kontaktisikut
 
 Leid 4 („Kellele helistada“) osutus laiemaks kui üks stsenaarium. Mõõtmine tehti serveris ainult lugemisega, kontaktandmeid aruandesse ei kopeeritud.
