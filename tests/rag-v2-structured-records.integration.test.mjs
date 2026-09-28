@@ -371,7 +371,7 @@ test('verified registry export bridges explicit package IDs, publishes anchored 
     { id: `package-service-${i}`, canonical_item_id: `service:${i}`, itemType: 'service', title: 'Synthetic home service',
       summary: 'Fictional assistance at home.', conditions: { income: { amount: 123, currency: 'EUR' }, resident: true },
       municipality_id: municipality.slug.replaceAll('-', '_'), relatedContacts: [`package-contact-${i}`] },
-    { id: `package-contact-${i}`, canonical_item_id: `contact:${i}`, itemType: 'contact', name: 'Old collected name',
+    { id: `package-contact-${i}`, canonical_item_id: `contact:${i}`, itemType: 'contact', source_type: 'official_contact', name: 'Old collected name',
       municipality_id: municipality.slug.replaceAll('-', '_'), role: 'OUTDATED_ROLE_SENTINEL', phone: 'OUTDATED_PHONE_SENTINEL',
       checked_at: '2000-01-01', relatedTo: [`package-service-${i}`] },
   ]) };
@@ -411,6 +411,14 @@ test('verified registry export bridges explicit package IDs, publishes anchored 
   await assert.rejects(promisify(execFile)(process.execPath, cliArgs, cliOptions), error => /contact_export_destination_exists/.test(error.stderr));
   const exportedBytes = JSON.stringify(exported), exportedFile = 'verified-contacts.json';
   await fs.writeFile(path.join(root, exportedFile), exportedBytes);
+  // ADR-045: the export keeps the package contact's source type and ID, so it is the same document, and publishing it
+  // replaces the package contact's version; two records with one alias would stop the municipality's catalogue.
+  assert.equal(exported.items[0].source_type, 'official_contact');
+  await assert.rejects(planIngestBatch({ tenant: exportTenant, inputRoot: root, rights: { access: 'local_private', usage: 'development_only' },
+    profile: { id: 'generic', version: '1', months: [], categoryLabels: [] }, inputs: [
+      await registeredSource(root, { role: 'source', path: file, sha256: hash(originalBytes) }, { itemId: 'package-contact-0' }),
+      await registeredSource(root, { role: 'source', path: exportedFile, sha256: hash(exportedBytes) }, { itemId: 'package-contact-0' })] }),
+  { code: 'batch_document_conflict' });
   const inputs = [];
   for (let i = 0; i < 2; i++) {
     inputs.push(await registeredSource(root, { role: 'source', path: file, sha256: hash(originalBytes) }, { itemId: `package-service-${i}` }));
@@ -443,7 +451,7 @@ test('verified registry export bridges explicit package IDs, publishes anchored 
   assert.equal(contact.fields.phone.value, '+372 0000001');
   assert.equal(contact.fields.email.value, 'alpha@example.invalid');
   assert(packet.record_context.relations.some(link => link.to === contact.key && link.refs.length));
-  assert.doesNotMatch(JSON.stringify(packet), /0000002|beta@example|OUTDATED_|projection_sha256|registry_binding|different-register-id/);
+  assert.doesNotMatch(JSON.stringify(packet), /0000002|beta@example|OUTDATED_|content_sha256|projection_sha256|registry_binding|different-register-id/);
   await resolveModelReferences({ packet, context: exportedContext, policy: exportedPolicy,
     sourceResolver: refs => postgres.canonicalReferences(refs) });
   const bundle = exportedSnapshot.bundles.find(bundle => bundle.document.fields.structured_record?.value.id === 'contact:0');
@@ -459,6 +467,13 @@ test('verified registry export bridges explicit package IDs, publishes anchored 
     .every(chunk => structuralRole(chunk, bundle).evidence_eligible === false));
   const forged = structuredClone(bundle); forged.document.fields.structured_record.value.bindings.service_map.value.entry_id = contacts[1].id;
   assert.throws(() => validateBundle(forged), { code: 'record_binding_source_mismatch' });
+  // ADR-045: the weekly re-check of the same revision and content keeps the export; only the live check time moves.
+  const rechecked = new Date();
+  await db.serviceMapEntry.update({ where: { id: contacts[0].id }, data: { checkedAt: rechecked } });
+  meta.contactDecisionObservedAt[contacts[0].id] = rechecked.toISOString();
+  await db.dataAuditLog.update({ where: { id: audit.id }, data: { meta } });
+  assert.equal(await adapter.authorizeContact({ record }), true);
+  assert(!record.fields.checked_at || record.fields.checked_at.value === exported.items[0].checked_at, 'the record keeps the export\'s check time');
   // A modified registry value invalidates the exported snapshot even if a writer
   // incorrectly forgot to increment its revision.
   await db.serviceMapEntry.update({ where: { id: contacts[0].id }, data: { phone: '+372 0000099' } });
@@ -480,7 +495,7 @@ test('verified registry export bridges explicit package IDs, publishes anchored 
   assert.equal(await adapter.authorizeContact({ record }), false); // Newly verified revision still needs a new immutable export.
   const newer = await prepare();
   assert.equal(newer.items[0].registry_binding.revision, 2);
-  assert.notEqual(newer.items[0].registry_binding.projection_sha256, exported.items[0].registry_binding.projection_sha256);
+  assert.notEqual(newer.items[0].registry_binding.content_sha256, exported.items[0].registry_binding.content_sha256);
   let reads = 0;
   const racingDb = { dataAuditLog: db.dataAuditLog, serviceMapEntry: { async findFirst(args) {
     const result = await db.serviceMapEntry.findFirst(args);
