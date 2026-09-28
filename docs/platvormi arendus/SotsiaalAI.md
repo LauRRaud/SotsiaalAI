@@ -132,6 +132,12 @@ on järgmine soovitatud parandus, kuid aastakandidaat lubab juba tulevasi
 redaktsioone: täpne päev/kuu, „praegu” lähtestus ja õige redaktsiooni valik
 vajavad eraldi kontrolli. Hindaja `valid_on` ei erista ajaloolist viidet valest
 kehtivusväitest. [Diagnoosi täpsustus](../audits/rag-v2-codex-review-2026-09-27.md#13-40-vestluspöörde-aruande-ja-kuupäevadiagnoosi-ülevaatus-2809).
+**28.09 kordus pärast #236/#237 (Opus).** Tartu vald on nüüd õige. Kuupäevade puhul lubas kehtivusreegel õige
+redaktsiooni, aga rerank ei näinud lõigu kehtivust ega tänast päeva ja valis tänase redaktsiooni.
+[ADR-042](../rag-v2/adr-042-rerank-law-versions.md) lisab `valid_from`/`valid_to` ja `today`; aktiveerimata plaaniga
+mõõdetud `law-on-dates` 4/4. **Avatud otsus:** 808 KOV-paketi kontaktist ei anna vestlus ühtegi, sest
+paketi ID ja registrikirje vahel puudub seos. ADR-017 eksport aeguks iganädalase `checkedAt` ülekirjutuse
+tõttu. Variandid A/B/C ja 384 kandidaati on [aruandes](../audits/rag-v2-conversation-eval-2026-09-28.md#omavalitsuse-kontaktid-kataloog-ei-anna-ühtegi-kontaktisikut).
 
 **28.09 Otsingu jõudluse kontroll (#222 kood).** Kanalite ajad mõõdetakse otsingus,
 kuid need kaovad ühise paketi koostamisel ja puuduvad salvestatud pöörde auditist.
