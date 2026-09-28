@@ -1695,53 +1695,57 @@ html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] [role="article"
 }
 /* Fookusel EI tõuse ega helenda (tellija 12.07: "tõuseb tõksuga üles ja
    taha tekib heledus — võta ära"). Triip jääb paigale, kursor näitab fookust. */
-/* KULDJOON — alati nähtav, hingab pehmelt (tellija 12.07: "kuldne triip
-   ... on efektiga"). Katab peaaegu kogu triibu laiuse. */
-.panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > div:has(#chat-input)::after {
-  content: "";
-  position: absolute;
-  left: 0.4rem;
-  right: 0.4rem;
-  bottom: 0.1rem;
-  height: 2px;
-  border-radius: 999px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(212, 212, 212, 0.5) 12%,
-    rgba(229, 229, 229, 0.85) 50%,
-    rgba(212, 212, 212, 0.5) 88%,
-    transparent
-  );
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%);
-  mask-image: linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%);
-  pointer-events: none;
-  /* Puhkeasendis peidus: pill kannab nüüd sisendi kuju (25.09). Joon
-     ilmub ainult genereerimise pulsina (reegel allpool). */
-  opacity: 0;
-  transition: opacity var(--dur-fast) var(--ease-soft);
-}
-/* (Fookuse eredam kuma EEMALDATUD — tellija 12.07: "taha tekib heledus".
-   Joon jääb fookusel oma tavalisse rahulikku hingamisse.) */
-/* Genereerimise ajal jookseb joonel energiapulss saatja poole —
-   sinu signaal on teel (tellija: "mõtleb ajal ja on efektiga"). */
-.panel-scrim[data-conversation="1"] form:has(#chat-input):has(button[data-loader-active="true"]) > div:has(#chat-input) > div:has(#chat-input)::after {
-  opacity: 1;
+/* (Pilli alaserva valgusjoon ja tema genereerimise pulss EEMALDATUD —
+   omanik 28.09: „lahtri alumine serv heleda kriipsuna liigub mõtlemise
+   ajal, see võta ära". Mõtlemist näitab saatmisnupp ja mulli S-täht.) */
+/* Hiirega seadmel kannab pill toa EELHÄGUSTATUD koopiat, mitte päris
+   backdrop-filterit (omanik 28.09, arvuti: „kui ma hiirt liigutan, siis
+   tekivad sõnumi sisestuse lahtrisse tumedad kriipsud"). Hiire liikudes
+   muutub lehel ainult kohandatud kursor (LiquidCursor, oma kiht); tema
+   kahjustusala joonistab brauser uuesti ainult osaliselt, ja pilli hägu
+   loeb selle servast VANA kaadri pilli — iga ülejoonistus jätab tumeda
+   vöö. Eelhägustatud pilt ei loe tausta üldse, seega pole midagi valesti
+   lugeda. Sama võte mis vestlusmullidel (--room-frost-*, tokens.css);
+   toon on sama --control-glass-bg. Puutel kursorit ei ole ja iOS ei toeta
+   fixed tausta, seega seal jääb päris hägu. Vorm tõuseb sisse `top`-iga,
+   mitte transformiga: transform teeks fixed-tausta scroll-iks ja muster
+   hüppaks tõusu lõpus (vt conv-stage-enter). */
+html.liquid-cursor-on:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > div:has(#chat-input)::before {
   background:
-    linear-gradient(90deg, transparent 0%, transparent 39%, rgba(232, 232, 232, 0.78) 50%, transparent 61%, transparent 100%) 180% 0 / 220% 100% no-repeat,
-    linear-gradient(90deg, transparent, rgba(212, 212, 212, 0.42) 12%, rgba(229, 229, 229, 0.72) 50%, rgba(212, 212, 212, 0.42) 88%, transparent);
-  box-shadow: 0 0 11px rgba(182, 182, 182, 0.3);
-  /* Läige püsib trajektoori jooksul joone lähedal. Vana 180% → -80%
-     vahemik jättis ta pikaks ajaks ekraanilt välja ja nähtav osa sähvatas
-     seejärel liiga kiiresti läbi. */
-  animation: conv-energy 2.4s linear infinite;
+    linear-gradient(var(--control-glass-bg), var(--control-glass-bg)),
+    var(--room-frost-image);
+  background-repeat: no-repeat;
+  background-attachment: scroll, fixed;
+  background-size: auto, var(--room-frost-size);
+  background-position: 0 0, var(--room-frost-position);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
-@keyframes conv-energy {
+/* Sama tõus nihkega: tavaasendis on vorm voos (relative) ja liigub
+   `top`-iga; kitsas aknas on ta ChatComposeri inline'iga absolute ja
+   ankurdatud `bottom`-iga, mille tõus peab samast avaldisest lähtuma
+   (siin on `to` inline'i väärtus ise, seega interpoleerub). */
+html.liquid-cursor-on:not([data-contrast="hc"]):not([data-reduce-transparency="1"]):not([data-reduce-motion="1"]) .panel-scrim[data-conversation="1"] form:has(#chat-input) {
+  animation-name: conv-composer-rise-top;
+}
+@media (max-width: 768px) {
+  html.liquid-cursor-on:not([data-contrast="hc"]):not([data-reduce-transparency="1"]):not([data-reduce-motion="1"]) .panel-scrim[data-conversation="1"] form:has(#chat-input) {
+    animation-name: conv-composer-rise-bottom;
+  }
+}
+/* `to` on kohustuslik: vormi enda `top` on `auto`, ja `auto`-ni ei
+   interpoleerita — ilma selleta hüppas pill poole pealt 37 px (mõõdetud). */
+@keyframes conv-composer-rise-top {
   from {
-    background-position: 108% 0, 0 0;
+    top: 2.3rem;
   }
   to {
-    background-position: -8% 0, 0 0;
+    top: 0;
+  }
+}
+@keyframes conv-composer-rise-bottom {
+  from {
+    bottom: calc(var(--chat-composer-inset, 2.5rem) + var(--chat-vk-offset, 0px) - 2.3rem);
   }
 }
 .panel-scrim[data-conversation="1"] #chat-input {
@@ -2001,7 +2005,6 @@ html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] form:has(#chat-
 html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > *,
 html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > div:has(#chat-input) > *,
 html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > div:has(#chat-input)::before,
-html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > div:has(#chat-input)::after,
 html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] form:has(#chat-input) button[data-recording="true"],
 html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] form:has(#chat-input) button[type="submit"][data-loader-active="true"],
 html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] button[aria-controls="chat-window-scroll"],
@@ -2025,7 +2028,6 @@ html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] [role="article"
   .panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > *,
   .panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > div:has(#chat-input) > *,
   .panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > div:has(#chat-input)::before,
-  .panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > div:has(#chat-input)::after,
   .panel-scrim[data-conversation="1"] form:has(#chat-input) button[data-recording="true"],
   .panel-scrim[data-conversation="1"] form:has(#chat-input) button[type="submit"][data-loader-active="true"],
   .panel-scrim[data-conversation="1"] button[aria-controls="chat-window-scroll"],
