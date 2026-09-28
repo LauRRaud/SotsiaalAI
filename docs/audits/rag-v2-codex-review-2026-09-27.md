@@ -881,3 +881,47 @@ Arvulised auditiväljad ja loendurid on kaustas
 `deploy-228-warmed-gap-counters.json`, `deploy-228-warmup.txt`.
 Sõnalise otsingu järgmine mahukatse peab kasutama vestluse tegelikke filtreid;
 60 000 tekstiosa piiri tõstmist see üksik pööre veel ei tõenda.
+
+## 13. 40 vestluspöörde aruande ja kuupäevadiagnoosi ülevaatus (28.09)
+
+Loetud `tmp/rag-v2-dev-2026-09-28/conversations/conversation-eval.md` ja JSON,
+hindaja ning jooksu kataloog. Algne automaatne tulemus on **31/40**:
+1 otsingu-, 6 vastuse- ja 2 olekuviga; aruande hinnanguline kulu **0,1915 USD**.
+Opuse käsitsi ümberhindamise **34/40** tuleb säilitada eraldi algtulemusest
+koos iga muudetud hinnangu põhjendusega. Codex ei teinud uut tasulist jooksu
+ega kinnitanud siin kõigi 40 vastuse sisulist õigsust.
+
+**Kuupäevaparandus on põhjendatud esimene suund, kuid nimetatud algpõhjus
+vajab täpsustust.** `retrievalPlan` lisab `basis: unspecified` arvulised
+kandidaadid juba `legalPeriods` hulka. Võrguta kontroll päris funktsioonidega
+`retrievalPlan`, `legalReference` ja `legalValidityScope` näitas:
+
+- „1. märtsil 2027” muutub perioodiks **2027-01-01…2027-12-31**;
+- „2027. aasta jaanuaris” muutub samuti kogu aastaks;
+- sünteetilised tänane, 2027. aasta veebruari–märtsi ja aprilli redaktsioon
+  jäävad kõik lubatuks. Märgistus `numeric_candidates_not_confirmed_intent`
+  ei lülita küsitud aastat õigusakti filtrist välja.
+
+Seetõttu ei piisa seletusest „kasutati ainult tänast kuupäeva, sest kandidaat
+polnud kinnitatud”. Täpne päev/kuu jääb tõesti eristamata, kuid tegelike
+allikaversioonidega tuleb jälgida rada **lubatud redaktsioon → otsingukandidaadid
+→ rerank'i valik → mudeli tõend**. „Praegu” varasema perioodi tühistamist kood
+eraldi ei käsitle; ilma uue arvulise kandidaadi või correction-režiimita võetakse
+eelmine mudeli periood. Need on eraldi kontrollitavad käitumised.
+
+**Hindaja `valid_on` ei erista ajaloolist võrdlusviidet valest kehtivusväitest.**
+`lib/rag-v2/pilot/conversation-eval.js:51` kontrollib kõigi viidatud õigusaktide
+kehtivust ühe kuupäeva vastu ega vaata, millise ajavahemiku kohta vastus
+neid kasutab. `law-on-dates` neljas vastus ütleb varasema redaktsiooni
+lõpukuupäeva ja tunnistab 31.10 kohta tõendi puudumist, kuid saab ikkagi sama
+kehtivusvea. See vajab eraldi sisulist hinnangut; seda ei saa üksnes praeguse
+kontrolli põhjal lugeda valeks väiteks 31.10 kehtinud õiguse kohta.
+Ka allika pealkirja leidmine ei tõenda õige redaktsiooni jõudmist tõendisse.
+
+Kuupäevaraja vastuvõtukontroll peab hõlmama esimeses pöördes täpset päeva ja
+kuuvahemikku, tagasipöördumist tänasesse („praegu kehtiva seaduse järgi”),
+kuupäeva parandust ja kahe perioodi võrdlust. Sünnikuupäev, kohtumise kuupäev
+ja allika avaldamisaasta ei tohi automaatselt saada küsitud õiguse kuupäevaks.
+Puuduva redaktsiooni korral peab vastus puudujääki tunnistama; oodatud teksti
+puudumist ei parandata testi lihtsalt lõdvendades. Esmase käitumise saab
+tõendada kohalike testadapteritega; tasuline kordusjooks ei ole arenduse eeltingimus.

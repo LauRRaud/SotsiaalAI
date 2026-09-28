@@ -154,3 +154,43 @@ test('merged packet: knowledge evidence outside the kept documents stops the ans
     assert.throws(() => mergeUnifiedPackets({ tenant: 't', generationId: 'g', directories, plan, lanes: lane(doc), scope }), { code: 'unified_lane_scope_mismatch' });
   }
 });
+
+// ADR-041 (Codex's cases after the 28.09 conversation run): the date in the question itself, day or month exact.
+const shsVersions = [row('shs-now', { from: '2026-06-12', to: '2026-09-30' }), row('shs-oct', { from: '2026-10-01', to: '2026-11-30' }),
+  row('shs-jan27', { from: '2027-01-01', to: '2027-01-31' }), row('shs-feb27', { from: '2027-02-01', to: '2027-03-31' }),
+  row('shs-apr27', { from: '2027-04-01', to: '2027-12-31' }), row('rls-aug', { from: '2026-08-01', to: '2026-10-30' }), row('rls-nov', { from: '2026-11-01', to: '2026-12-31' })];
+const firstTurn = text => retrievalPlan({ scopeTurns: [{ turnId: 'first', text, mode: 'new' }], previousState: null });
+const keptOn = (text, asOf = '2026-09-28') => legalValidityScope(shsVersions, legalReference(asOf, firstTurn(text).legalPeriods)).eligible.map(r => r.document_id);
+
+test('an exact day or month in the first question keeps the version in force then beside today\'s, not the whole year', () => {
+  assert.deepEqual(keptOn('Mida ütleb sotsiaalhoolekande seadus koduteenuse kohta 1. märtsil 2027?'), ['shs-now', 'shs-feb27', 'rls-aug']);
+  assert.deepEqual(keptOn('Kui suur on riigilõiv 2027. aasta jaanuaris?'), ['shs-now', 'shs-jan27', 'rls-aug']);
+  assert.deepEqual(keptOn('Seisuga 01.03.2027'), ['shs-now', 'shs-feb27', 'rls-aug']);
+  // A bare year is still the whole year.
+  assert.deepEqual(keptOn('Mis muutub 2027. aastal?'), ['shs-now', 'shs-jan27', 'shs-feb27', 'shs-apr27', 'rls-aug']);
+  // A day or month is not a publication period of journals.
+  assert.deepEqual(firstTurn('1. märtsil 2027').publicationCandidates, []);
+});
+
+test('"now" drops an earlier period, also one the model recorded, and a date in the same question still wins', () => {
+  const recorded = { version: TYPED_DIALOGUE_STATE_VERSION, sourceTurnIds: ['first'], value: { periods: [
+    { from: '2027-03-01', to: '2027-03-01', basis: 'validity', support: [{ turn: 1, quote: '1. märtsil 2027' }] }] } };
+  const next = text => retrievalPlan({ previousState: recorded, scopeTurns: [{ turnId: 'first', text: 'Mida ütleb seadus 1. märtsil 2027?', mode: 'new' },
+    { turnId: 'second', text, mode: 'same' }] });
+  assert.equal(next('Selgita lihtsamalt.').legalPeriods[0].from, '2027-03-01', 'without "now" the recorded period stays');
+  for (const text of ['Aga praegu kehtiva seaduse järgi?', 'Ja täna?', 'What applies now?', 'А сейчас?']) {
+    assert.deepEqual([next(text).temporal.state, next(text).legalPeriods], ['now', []], text);
+  }
+  assert.deepEqual(next('Mis muutub 1. oktoobril 2026 võrreldes praegusega?').legalPeriods.map(p => p.from), ['2026-10-01']);
+});
+
+test('a birth date or an appointment never removes today\'s law; two periods of a comparison stay; a missing version stays visible', () => {
+  assert.ok(keptOn('Olen sündinud 1. märtsil 1958. Mis toetus mulle kehtib?').includes('shs-now'));
+  assert.ok(keptOn('Mul on aeg sotsiaaltöötaja juures 5. oktoobril 2026.').includes('shs-now'));
+  assert.deepEqual(keptOn('Võrdle koduteenust 1. märtsil 2027 ja 1. mail 2027.'), ['shs-now', 'shs-feb27', 'shs-apr27', 'rls-aug']);
+  // 31.10.2026 has no RLS text: nothing kept covers that day, so the answer has to say the text is missing.
+  const reference = legalReference('2026-09-28', firstTurn('Kui suur on riigilõiv 31. oktoobril 2026?').legalPeriods);
+  const rls = legalValidityScope(shsVersions, reference).eligible.filter(r => r.document_id.startsWith('rls'));
+  assert.deepEqual(rls.map(r => r.document_id), ['rls-aug']);
+  assert.equal(validityState(declaredValidity(rls[0].fields), '2026-10-31'), 'expired');
+});

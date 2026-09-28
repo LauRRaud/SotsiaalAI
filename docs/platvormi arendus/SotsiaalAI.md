@@ -126,6 +126,13 @@ Avatud: 60 000 tekstiosa mahupiir ja
 vestlusplaani vahetus iga uue indeksipõlvkonnaga. [Uus ülevaatus](../audits/rag-v2-codex-review-2026-09-27.md#6-pr-214216-plaani-uuendus-ja-õigusaktide-värskendus),
 [serverimõõtmised](../rag-v2/adr-036-version-index.md#mõõtmine-serveris-27092026).
 
+**28.09 Vestluskvaliteedi aruande ülevaatus (Codex).** 40 pöörde algtulemus
+31/40; Opuse käsitsi ümberhinnang 34/40 tuleb säilitada eraldi. Kuupäevarada
+on järgmine soovitatud parandus, kuid aastakandidaat lubab juba tulevasi
+redaktsioone: täpne päev/kuu, „praegu” lähtestus ja õige redaktsiooni valik
+vajavad eraldi kontrolli. Hindaja `valid_on` ei erista ajaloolist viidet valest
+kehtivusväitest. [Diagnoosi täpsustus](../audits/rag-v2-codex-review-2026-09-27.md#13-40-vestluspöörde-aruande-ja-kuupäevadiagnoosi-ülevaatus-2809).
+
 **28.09 Otsingu jõudluse kontroll (#222 kood).** Kanalite ajad mõõdetakse otsingus,
 kuid need kaovad ühise paketi koostamisel ja puuduvad salvestatud pöörde auditist.
 Järgmine mõõtmise samm on nende edasikandmine ja salvestamine: tehtud [ADR-039](../rag-v2/adr-039-search-timings.md)-ga (`timings.search`). Suure `eligibleIds`
