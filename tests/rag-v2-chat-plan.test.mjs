@@ -41,6 +41,10 @@ test('a renewal keeps everything the owner approved and takes only the code fiel
   assert.equal(renewed.authorizationBasis.renewal.from, previous.id);
   // A renewed plan renews again the same way.
   assert(approvedChatPlan(await renewChatPlan(renewed, { release: 'abcdef1' })));
+  // ADR-043: the output bound is approved content. A new plan gets 8192; a renewal keeps the approved plan's bound.
+  assert.equal((await plan()).maxOutputTokens, 8192);
+  const bounded = earlier({ ...await plan(), maxOutputTokens: 4096 });
+  assert.equal((await renewChatPlan(bounded, { release: 'da69c0e' })).maxOutputTokens, 4096);
 });
 
 test('only an approved open development plan is renewed, and only for a named release', async () => {

@@ -39,6 +39,13 @@ test('pilot switch, per-user grant, expiry, real-model config and approval gates
   const approved = { ...real, approval: { approvedBy: 'synthetic-unit-test', approvedAt: new Date().toISOString(), planHash: digest(real), queryAndSourceEgress: true, dynamicQuestions: false } };
   await fs.writeFile(file, JSON.stringify(approved));
   assert.equal((await readPilotConfig('tester')).mode, 'real'); // Configuration only: no service/transport invocation.
+  // ADR-043: reasoning shares the output bound, so a plan may allow up to 16384 output tokens, not more.
+  for (const [maxOutputTokens, ok] of [[8192, true], [16384, true], [16385, false]]) {
+    const plan = { ...real, maxOutputTokens };
+    await fs.writeFile(file, JSON.stringify({ ...plan, approval: { ...approved.approval, planHash: digest(plan) } }));
+    if (ok) assert.equal((await readPilotConfig('tester')).maxOutputTokens, maxOutputTokens);
+    else await assert.rejects(readPilotConfig('tester'), { code: 'not_configured' });
+  }
   process.env.OPENAI_MODEL = 'gpt-5.6-luna';
   await assert.rejects(readPilotConfig('tester'), { code: 'not_configured' });
   process.env.OPENAI_MODEL = 'gpt-6-luna';
