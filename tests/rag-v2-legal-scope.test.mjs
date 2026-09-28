@@ -81,7 +81,7 @@ const regions = [
   { region: 'narva_linn', names: ['Narva linn', 'Narva'] }, { region: 'narva_joesuu_linn', names: ['Narva-Jõesuu linn', 'Narva-Jõesuu'] },
   { region: 'tartu_linn', names: ['Tartu linn', 'Tartu'] }, { region: 'tartu_vald', names: ['Tartu vald', 'Tartu'] },
   { region: 'tallinn', names: ['Tallinn'] }];
-const lemmas = { narvas: 'narva', 'narva-jõesuus': 'narva-jõesuu', tartus: 'tartu', tartu: 'tartu', vallas: 'vald', linnas: 'linn' };
+const lemmas = { narvas: 'narva', 'narva-jõesuus': 'narva-jõesuu', tartus: 'tartu', tartu: 'tartu', vallas: 'vald', linnas: 'linn', tallinnas: 'tallinn' };
 const analyzer = { analyze: async words => words.map(word => `vmet${lemmas[word.toLowerCase()] ?? word.toLowerCase()}`) };
 const scopeOf = text => resolveRecordScope([{ turnId: 't1', text, mode: 'same' }], regions, analyzer);
 const municipal = [row('national-act', { from: '2024-01-01', open: true }), row('article'),
@@ -193,4 +193,16 @@ test('a birth date or an appointment never removes today\'s law; two periods of 
   const rls = legalValidityScope(shsVersions, reference).eligible.filter(r => r.document_id.startsWith('rls'));
   assert.deepEqual(rls.map(r => r.document_id), ['rls-aug']);
   assert.equal(validityState(declaredValidity(rls[0].fields), '2026-10-31'), 'expired');
+});
+
+test('a negated place is left out when another one is affirmed; a turn that only negates selects none (Codex G8)', async () => {
+  assert.equal((await scopeOf('Elan Tartu vallas, mitte Tartu linnas.')).region, 'tartu_vald');
+  assert.equal((await scopeOf('Mitte Tartu linnas, vaid Tartu vallas.')).region, 'tartu_vald');
+  assert.equal((await scopeOf('Ma ei ela Tallinnas vaid Narvas.')).region, 'narva_linn');
+  assert.deepEqual(await scopeOf('Ma ei ela enam Tallinnas.'), { state: 'region_required_after_negation', region: null });
+  // An earlier mention is not found again after the user negated the place.
+  const turns = [{ turnId: 't1', text: 'Elan Tallinnas.', mode: 'new' }, { turnId: 't2', text: 'Tegelikult ei ela ma Tallinnas.', mode: 'same' }];
+  assert.equal((await resolveRecordScope(turns, regions, analyzer)).region, null);
+  // Without a negation both full names stay candidates, as before.
+  assert.deepEqual((await scopeOf('Tartu vallas ja Tartu linnas')).candidates, ['tartu_linn', 'tartu_vald']);
 });

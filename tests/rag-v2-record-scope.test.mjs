@@ -30,3 +30,9 @@ test('ordinary words that share a reading or compound part with a municipality d
   // municipality name) still matches. The answer model must treat it as tentative.
   assert.equal((await scope('Kas kanepi tarvitamine on ohtlik?')).region, 'kanepi_vald');
 });
+
+test('with real morphology a negated place is left out: Tartu vald, not Tartu linn (acceptance G8)', async () => {
+  for (const [text, region] of [['Elan Tartu vallas, mitte Tartu linnas.', 'tartu_vald'], ['Ema ei ela Tallinnas, vaid Harku vallas.', 'harku_vald'],
+    ['Me elame Tartu linnas, mitte Tartu vallas.', 'tartu_linn']]) assert.equal((await scope(text)).region, region, text);
+  assert.equal((await scope('Ma ei ela enam Tallinnas.')).state, 'region_required_after_negation');
+});
