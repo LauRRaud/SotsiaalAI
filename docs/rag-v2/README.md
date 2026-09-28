@@ -179,6 +179,7 @@ sudo -n chown root:ubuntu <out>; sudo -n systemctl restart sotsiaalai-frontend
 - [ADR-042](adr-042-rerank-law-versions.md) (28.09.2026): rerank näeb õigusakti lõigu kehtivust (`valid_from`, `valid_to`) ja tänast kuupäeva ning hoiab küsitud päeval kehtivat redaktsiooni; hindamise `found_valid_on` eristab sama pealkirjaga redaktsioone.
 - [ADR-043](adr-043-answer-output-room.md) (28.09.2026): uus vestlusplaan annab vastusemudelile 8192 väljunditokenit (seni 4096), sest arutlus kulutas suure kataloogisisendi korral kogu lae; uuendus hoiab kinnitatud plaani lae, uus lagi vajab uut plaani.
 - [ADR-044](adr-044-date-ranges-and-place-negation.md) (28.09.2026): päevade või kuude vahemik on üks periood (vahepealne redaktsioon jääb alles); koha eitus ainult partikli või eitatud elamise tegusõnaga, mitte üle lause piiri; hindaja hindab iga õigusakti kehtivust eraldi, kataloog v3.
+- [ADR-045](adr-045-contact-binding-content.md) (28.09.2026): kontaktiekspordi seos on registrikirje ID, revisjon ja sisu räsi, mitte kontrolliaeg (uus kontroll ei tühista muutumata kontakti); jooksev värskusreegel jääb; eksport hoiab paketi allikaliigi, et asendada paketikontakti versioon.
 
 ### Runbook ja aruanded
 
