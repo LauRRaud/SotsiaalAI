@@ -272,6 +272,11 @@ html:has(.panel-scrim:not([data-canvas="1"]):not([data-conversation="1"])) body 
 .panel-scrim[data-conversation="1"] .panel::after {
   content: none;
 }
+/* Alapolster on muutujas, sest vestluse komposer arvestab telefonis
+   sellega oma kõrgust (chat.css --chat-composer-rest-inset). */
+.panel-scrim[data-conversation="1"][data-chat="1"] {
+  --conv-panel-pad-b: clamp(0.5rem, 1.4lvh, 1rem);
+}
 /* [data-conversation][data-chat] tõstab spetsiifilisust (0,4,0), et
    võita chat.css `.panel-scrim[data-chat] .panel-body` reegel (0,3,0),
    mis muidu sunnib padding-top: 3.8–4.6rem. */
@@ -281,7 +286,7 @@ html:has(.panel-scrim:not([data-canvas="1"]):not([data-conversation="1"])) body 
      kompaktne; nurga-orbid on läbipaistev klaas, mille alt sõnum võib
      õrnalt läbi paista (maski pehmendus katab). */
   padding: clamp(1.4rem, 3lvh, 2rem) clamp(1rem, 3vw, 2.6rem)
-    clamp(0.5rem, 1.4lvh, 1rem);
+    var(--conv-panel-pad-b);
   overflow: hidden;
   scrollbar-gutter: auto;
 }
