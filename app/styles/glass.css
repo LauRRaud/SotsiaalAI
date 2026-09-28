@@ -97,6 +97,21 @@
     background-color: var(--input-bg-focus);
     box-shadow: var(--input-highlight), var(--input-focus-glow), var(--input-shadow);
   }
+  /* Automaattäide (omanik 28.09: varem valitud e-post tegi lahtri kollaseks).
+     Brauseri enda stiil (WebKit #FAFFBD + must tekst, Chrome sinakas) on
+     `!important` ja autorireegel seda üle ei kirjuta. Kaskaadis on aga
+     üleminekuväärtus kõrgemal kui brauseri `!important`. Nii jääb väli
+     lõputu ülemineku algusesse, st oma klaastooni. Tekst tuleb
+     -webkit-text-fill-color'ist, mida brauseri stiil ei puuduta. Läige
+     (background-image) hoitakse samamoodi, kus allow-discrete töötab. */
+  :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only), textarea, select):is(:-webkit-autofill, :autofill) {
+    -webkit-text-fill-color: var(--input-text);
+    caret-color: var(--input-text);
+    transition-property: background-color, color, background-image;
+    transition-duration: 600000s;
+    transition-delay: 0s;
+    transition-behavior: allow-discrete;
+  }
   /* Vormivälja servahelgi lõuend — üks kogu dokumendi peale, positsioneerib
      end kursori all oleva välja kohale (components/glass/SpecularHighlight).
      `fixed` + transform, sest ta elab body's ja peab järgima ekraanikoordinaati.
@@ -179,8 +194,9 @@
      ilme paneelis tuleb äärest + ülaserva läikest + gradiendist (mitte blurist).
      Sama html:not(...) värav + kõrgem spetsiifilisus (.panel esivanem) kui
      bend-reeglil → tühistab nii tavalise bluri kui #lg-bend'i. ÜKS koht, mitte
-     override iga elemendi peal. */
-  html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .panel :where(.glass-btn, .glass-iconbtn, button[data-variant], a[data-variant], .login-keypad-btn, label[data-control-type], [role="radio"], input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only), textarea, select, .dd-trigger, .workspace-dashboard-card) {
+     override iga elemendi peal. Sisselogimise kest on sama härmas klaas
+     (login.css, 28.09), seega kehtib reegel ka seal. */
+  html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) :is(.panel, .login-modal-shell) :where(.glass-btn, .glass-iconbtn, button[data-variant], a[data-variant], .login-keypad-btn, label[data-control-type], [role="radio"], input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only), textarea, select, .dd-trigger, .workspace-dashboard-card) {
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
@@ -281,6 +297,9 @@
     backdrop-filter: blur(var(--input-blur));
     border: var(--input-border);
     box-shadow: var(--input-highlight), var(--input-shadow);
+    /* iOS joonistab puudutatud nupule oma poolläbipaistva halli kihi, mis
+       luges vajutusel „läbipaistvaks minekuna“. Vajutuse ilme tuleb :active'ist. */
+    -webkit-tap-highlight-color: transparent;
     transition:
       background-color var(--dur-fast) var(--ease-soft),
       border-color var(--dur-fast) var(--ease-soft),
@@ -300,18 +319,20 @@
        liiga tugevalt või mattis kursorihelgi. Tagasiside annab nüüd
        AINULT specular-helk, mis liigub kursoriga. */
   }
-  /* Pressed: surub sisse, heledus väheneb */
+  /* Pressed: TUMEDAM, täpselt nagu valitud väli (omanik 28.09: „nupp peab
+     vajutades tumedamaks minema, nii nagu input lahtrid valides"). Varem oli
+     siin rgba(0, 0, 0, 0.14). See on nupu 0,55 täitest palju läbipaistvam, nii et
+     vajutatud nupp muutus läbipaistvaks, mitte tumedaks. Toon, ääris ja kuma
+     tulevad välja fookuse tokenitest, et nupp ja väli ei triiviks lahku. */
   .glass-btn:active,
   button[data-variant]:active,
   a[data-variant]:active,
   .glass-iconbtn:active,
   .login-keypad-btn:active {
-    background-color: rgba(0, 0, 0, 0.14);
+    background-color: var(--input-bg-focus);
+    border: var(--input-border-focus);
     scale: 0.975;
-    box-shadow:
-      inset 0 1.5px 4px rgba(0, 0, 0, 0.22),
-      inset 0 -1px 1px rgba(255, 255, 255, 0.08),
-      0 3px 12px rgba(0, 0, 0, 0.22);
+    box-shadow: var(--input-highlight), var(--input-focus-glow), var(--input-shadow);
   }
   /* Disabled: tuhm ja vähekontrastne */
   .glass-btn:disabled,
@@ -344,11 +365,8 @@
        liiga tugevalt või mattis kursorihelgi. Tagasiside annab nüüd
        AINULT specular-helk, mis liigub kursoriga. */
   }
-  .glass-btn[data-variant="primary"]:active,
-  button[data-variant="primary"]:active {
-    background-color: rgba(0, 0, 0, 0.16);
-    scale: 0.975;
-  }
+  /* Primary vajutub samamoodi kui baasnupp (tumedam, ülal). Oma
+     rgba(0, 0, 0, 0.16) tegi temastki vajutusel läbipaistva. */
 
   /* Valitud / aktiivne olek data-variant-nuppudel — ÜKS koht (tellija
      reegel 2026-07-06): sammunav (aria-current), lülitiread (aria-pressed),

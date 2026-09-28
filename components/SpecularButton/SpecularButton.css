@@ -112,6 +112,16 @@ button.specular-button[data-variant]:hover {
   border: var(--input-border-hover);
 }
 
+/* Vajutus: tumedam nagu valitud väli (omanik 28.09: „nupp peab vajutades
+   tumedamaks minema, nii nagu input lahtrid valides"). Peab olema siin, mitte
+   ainult glass.css-is: see fail on kihiväline, nii et ülalolev baasreegel
+   võidaks glass.css-i @layer components :active'i ja nupp ei muutuks. */
+button.specular-button[data-variant]:active:not(:disabled) {
+  background-color: var(--input-bg-focus);
+  border: var(--input-border-focus);
+  box-shadow: var(--input-highlight), var(--input-focus-glow), var(--input-shadow);
+}
+
 /* Retain the shared translucent material, hover and pointer shine.
    Only backdrop resampling is disabled inside the moving pricing carousel. */
 button.specular-button.pc-cta[data-variant] {
