@@ -120,6 +120,8 @@ kehtetuks tunnistamise tunnused ning osa 404 vastuseid ei anna tõrkeseisu. 3/3 
 sihttesti läbivad; puudused on eraldi kohalike katsetega korratud. [#218 ülevaatus](../audits/rag-v2-codex-review-2026-09-27.md#8-pr-218-kehtivuskontrolli-koodiülevaatus).
 Parandused on ADR-038-s: märkus ainult RT ametliku kehtetuks tunnistamise viitega, märke tunnused säilivad
 ja iga 404 on tõrge. Pärisjooks pärast parandust: 62/64 muutumata, 0 päringutõrget.
+**28.09 v33:** kuise kontrolli esimene GitHubi jooks avas issue #220. SHS-i redaktsioonid 01.02–31.12.2027 lisati
+korpusesse (65 s, 0,0068 USD, v32 räsid muutumata); kontrollist jäi alles ainult RLS-i 31.10.2026 lünk.
 Avatud: 60 000 tekstiosa mahupiir ja
 vestlusplaani vahetus iga uue indeksipõlvkonnaga. [Uus ülevaatus](../audits/rag-v2-codex-review-2026-09-27.md#6-pr-214216-plaani-uuendus-ja-õigusaktide-värskendus),
 [serverimõõtmised](../rag-v2/adr-036-version-index.md#mõõtmine-serveris-27092026).

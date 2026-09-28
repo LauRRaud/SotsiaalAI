@@ -98,6 +98,25 @@ Muutmata:
   - Kehtivus (`validity-v32.mjs`): igal kontrollitud kuupäeval (27.09, 01.10, 30.10, 31.10, 01.11, 15.01.2027, 15.07.2027) jääb igast aktist üks redaktsioon. Erand: **31.10.2026 pole ühtki Riigilõivuseaduse teksti**, sest RT ametlikes andmetes lõpeb 111072026166 30.10 ja 111072026167 algab 01.11.
   - Elav kontroll: „Millised on Tallinna sotsiaaltoetuste määrad praegu?“ tsiteeris ainult 01.07.2026 kehtima hakanud määrasid.
 
+- **v33** = v32 + SHS 01.02–31.03.2027 (`111072026122`) ja 01.04–31.12.2027 (`111072026123`). Need olid kehtivuskontrolli leid ([ADR-038](adr-038-law-validity-check.md)). Käivitati `run-v33.sh`-ga 28.09 06:28:17–06:29:23 UTC, kokku 65 s:
+
+  | Samm | Aeg | Märkus |
+  |---|---:|---|
+  | ostuplaan `--indexed` | 4,7 s | loeti 2 dokumenti, 6024 indeksis valmis dokumenti jäeti vahele; 301 sisendit, neist 210 korduvkasutus |
+  | ost | 29 s | 91 sisendit, 52 244 tokenit, 0,0068 USD |
+  | indeksi plaan | 4,7 s | `documents_to_index` 2, `units_to_index` 505 |
+  | indeksi töö | 16 s | 6024 dokumenti (32 746 tekstiosa) läks nimekirja, 2 dokumenti töödeldi ja märgiti valmis |
+  | vestlusplaan | 6 s | uus põlvkond, käsitsi rada: `…20260928a.json` (id …-0629) |
+
+  - Sisestus sülearvutis: 2 teksti, 252 ja 253 lõiku, töötlus 1,3 s. Kohalik andmebaas vajas pärast arvuti taaskäivitust Windowsi portide reserveeringu vabastamist (`net stop/start winnat`): port 55432 oli Hyper-V vahemikus.
+  - v32 sõrmejäljed jäid pärast v33 lisamist muutumata (`39ec4c8f…`, `bc8ef680…`, `e293c398…`). Jagatud tabel ja kollektsioon kasvasid 33 900 → 34 405.
+  - Kehtivus (`validity-v33.mjs`): igal kontrollitud päeval jääb tõendiks üks SHS-i tekst:
+    - 28.09: 12.06–30.09.2026;
+    - 31.01.2027: 01.01–31.01;
+    - 01.02 ja 31.03: 01.02–31.03;
+    - 01.04 ja 31.12: 01.04–31.12;
+    - 01.01.2028: ükski, sest 2028. aasta tekst pole korpuses.
+
 ## Järelparandused (Codexi ülevaatus 27.09.2026)
 
 Codexi ülevaatus (27.09.2026, PR-id #209–#211) leidis, et kirjutamine on muudatusepõhine, aga ettevalmistus veel mitte. v31 mõõtmine kinnitas seda: 5 min 46 s-st kulus ~4 min ostuplaanile ja ostule. Samal päeval parandatud:
