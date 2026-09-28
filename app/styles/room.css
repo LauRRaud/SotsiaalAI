@@ -1550,12 +1550,24 @@ html[data-reduce-transparency="1"] .hand-cam {
   background: var(--glass-cell-bg-hover);
   color: var(--room-text);
 }
-/* Info ja väljalülitus üks paar riba otsas: ühtlased ringid ilma vaheta,
-   ikoon sama suur kui kiirmenüüs (varem 1.25rem ringis, rist kaugel). */
+/* Info ja väljalülitus üks tihe paar teksti järel (omanik 28.09: „sulge
+   rist ka lähemale, ikoonid kuidagi lahus … info ikoon ka vasakule").
+   Ringid olid kõrvuti, aga kumbki glüüf seisis oma ringi keskel ja risti
+   ümber oli palju tühja: glüüfide vahe oli ~20 px. Nüüd on nupud kitsad
+   pillid, teine astub esimese serva peale (tabamusala jääb ≥ 24 px) ja
+   paar astub teksti poole. */
 .hand-cam-actions {
   display: flex;
   flex: none;
   align-items: center;
+  margin-left: -0.2rem;
+}
+.hand-cam-actions .hand-cam-btn {
+  width: 1.95rem;
+  border-radius: 999px;
+}
+.hand-cam-actions .hand-cam-btn + .hand-cam-btn {
+  margin-left: -0.3rem;
 }
 .hand-cam-actions .hand-cam-btn svg {
   width: 1.45rem;
@@ -1585,6 +1597,9 @@ html[data-reduce-transparency="1"] .hand-cam {
   .hand-cam-btn {
     width: 1.95rem;
     height: 1.95rem;
+  }
+  .hand-cam-actions .hand-cam-btn {
+    width: 1.7rem;
   }
   .hand-cam-actions .hand-cam-btn svg {
     width: 1.3rem;
@@ -1686,10 +1701,10 @@ html[data-reduce-transparency="1"] .hand-cam {
   line-height: 1.4;
   text-align: left;
 }
+/* „Selge" = tavaline nupp oma sisu mõõtu, keskel (omanik 28.09: täislaiuses
+   nupp oli liiga lai, „peaks olema ümber nupu nagu default"). */
 .hand-guide-actions {
   display: flex;
-}
-.hand-guide-actions > * {
-  flex: 1 1 auto;
+  justify-content: center;
 }
 }

@@ -184,21 +184,24 @@ function scrollBy(dir, travel) {
   });
 }
 
-/* Iga žest oma pildiga: pühkimine ↔, kerimine ↕, näpistus = kaks
-   noolt ühte punkti, rusikas. Joon sama mis CardIcons'il. */
+/* Iga žest oma pildiga: pühkimine ↔, kerimine ↕; näpistus ja rusikas on
+   käed samas joonestiilis mis kiirmenüü lehvitav käsi (HandGestureIcon) —
+   omanik 28.09: noolepaar ja kast olid „veidi imelikud". Näpistus = pöial
+   ja nimetissõrm kohtuvad otstest (🤏), rusikas = tõstetud rusikas. */
 const GUIDE_ICONS = {
   swipe: <path d="M4 12h16M7.5 8.5 4 12l3.5 3.5M16.5 8.5 20 12l-3.5 3.5" />,
   scroll: <path d="M12 4v16M8.5 7.5 12 4l3.5 3.5M8.5 16.5 12 20l3.5-3.5" />,
   pinch: (
     <>
-      <circle cx="12" cy="12" r="1.4" />
-      <path d="M5 5l4.5 4.5M9.5 5.5v4h-4M19 19l-4.5-4.5M14.5 18.5v-4h4" />
+      <path d="M9.5 8h7.3a1.6 1.6 0 0 1 .4 3.15L12 12.3 17.3 13.5a1.6 1.6 0 0 1-.5 3.1H12.5" />
+      <path d="M9.5 8A4.5 4.5 0 0 0 5 12.5v1a5.5 5.5 0 0 0 5.5 5.5h.2a1.9 1.9 0 0 0 1.8-2.4" />
+      <path d="M20 9.5l1.5-.8M20.3 12.4h1.7M20 15.3l1.5.8" />
     </>
   ),
   fist: (
     <>
-      <rect x="6.5" y="7" width="11" height="8.5" rx="3" />
-      <path d="M9.3 7v3.2M12 7v3.2M14.7 7v3.2M8.5 15.5v2a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-2" />
+      <path d="M7.5 9.5V8a1.5 1.5 0 0 1 3 0v1.5M10.5 9V7.5a1.5 1.5 0 0 1 3 0V9M13.5 9.5V8a1.5 1.5 0 0 1 3 0v2.5" />
+      <path d="M16.5 10a1.5 1.5 0 0 1 3 0v3.5a6.5 6.5 0 0 1-6.5 6.5h-1.5A5 5 0 0 1 6.5 15v-3.5a2 2 0 0 1 2-2h3a1.8 1.8 0 0 1 0 3.6H9.5" />
     </>
   ),
 };
@@ -484,7 +487,7 @@ export default function HandGestures({ onStop, onOpenGuide, t }) {
             onClick={onStop}
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
-              <path d="M7.5 7.5l9 9M16.5 7.5l-9 9" />
+              <path d="M6.5 6.5l11 11M17.5 6.5l-11 11" />
             </svg>
           </button>
         </span>
