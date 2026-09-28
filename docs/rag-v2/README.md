@@ -173,6 +173,7 @@ sudo -n chown root:ubuntu <out>; sudo -n systemctl restart sotsiaalai-frontend
 - [ADR-037](adr-037-release-chat-plan.md) (27.09.2026): väljalase ja vestlusplaan lähevad käiku koos. Deploy uuendab aegunud plaani uuele koodile (sama kinnituse ulatus), kontrollib seda mudelikutseta enne põhimigratsiooni ja taastab ebaõnnestumisel eelmise koodi koos plaaniga.
 - [ADR-036](adr-036-version-index.md) (27.09.2026): muudatusepõhine indekseerimine. Tekstiosad ja punktid kuuluvad dokumendiversioonile ja otsinguseadistusele (`versions-v1`); uus põlvkond töötleb ainult uued või muutunud versioonid ja loetleb ülejäänud.
 - [ADR-038](adr-038-law-validity-check.md) (27.09.2026): õigusaktide kehtivuse igakuine kontroll Riigi Teataja vastu. Kontroll võrdleb akti-ID-sid ja kehtivusi, vaatab kõik redaktsioonid ja kehtetuks tunnistamise märked ning teatab lüngad ja kattuvused päeva täpsusega. Leiud lähevad issue'sse, päringu tõrge teeb töö punaseks.
+- [ADR-039](adr-039-search-timings.md) (28.09.2026): vestluse otsingu ajakulu jääb pöördega alles (`timings.search`: sammud otsingu algusest, radade ajad, Qdranti enda aeg). Seal on ka esialgsed mahumõõtmised koos Codexi piirangutega ja järgmised sammud mahupiiri juurde.
 
 ### Runbook ja aruanded
 
