@@ -808,12 +808,15 @@ html[data-reduce-motion="1"] .scroll-frames::after {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  /* Sümmeetriline polster — kompaktne tasakaalus pill. Ikoone EI peideta enam
-     asukohaga (imelik kõrge kuju), vaid opacity'ga: paneel võib olla normaalse
-     kujuga ja ikoonid ilmuvad alles kui paneel on väljas (tellija 07.07). */
-  padding: 0.45rem 0.95rem;
-  border-radius: 1.5rem;
+  /* KUJU = alumine kiirmenüü (omanik 28.09: „kas ülemise peidetud paneeli
+     kuju saaks olla selline nagu kiirmenüül?"): täispill, sama polster
+     (0.42rem), 44 px nupud 0.2rem vahedega (carousel.css .gc-shortcut-menu
+     ja .gc-shortcut-track). Varem 1.5rem ümarusega kast, 0.95rem
+     külgpolster ja 50 px nupud 0.5rem vahedega. Ikoonid ilmuvad endiselt
+     alles väljas oleval paneelil (opacity, tellija 07.07). */
+  gap: 0.2rem;
+  padding: 0.42rem;
+  border-radius: 999px;
   /* Taustahägu on piiratud ::before-kihile, kaartidega ühine materjal
      asub selle kohal. Ikoonid ei kuulu kummagi filtrikihi sisse. */
   background: transparent;
@@ -837,8 +840,8 @@ html[data-reduce-motion="1"] .scroll-frames::after {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  -webkit-clip-path: inset(0 round 1.5rem);
-  clip-path: inset(0 round 1.5rem);
+  -webkit-clip-path: inset(0 round 999px);
+  clip-path: inset(0 round 999px);
   background: var(--control-glass-bg);
   -webkit-backdrop-filter: var(--control-glass-blur);
   backdrop-filter: var(--control-glass-blur);
@@ -924,8 +927,8 @@ html[data-contrast="hc"] .room-quickbar {
 .glass-iconbtn.room-quick-btn {
   position: relative;
   z-index: 1;
-  width: 3.1rem;
-  height: 3.1rem;
+  width: var(--hit-target-min, 2.75rem);
+  height: var(--hit-target-min, 2.75rem);
   /* Ikoon = kiirmenüü ikoon (2.75rem × 0.68 = 29.9 px), mitte oma 1.7rem. */
   --icon-size: calc(var(--hit-target-min, 2.75rem) * 0.68);
   color: var(--room-text-soft);
@@ -1574,14 +1577,14 @@ html[data-reduce-transparency="1"] .hand-cam {
   align-items: center;
   gap: 0.15rem;
 }
-/* Avatud juhtpaneel (ülaservast 0.3rem + 4rem) katab käepideme all
+/* Avatud juhtpaneel (ülaservast 0.3rem + 3.59rem) katab käepideme all
    seisva riba: riba astub paneeli alla, mitte kaugemale. Paneeli
    nimesildid (.room-quick-tip) joonistuvad riba PEALE, mitte ei lükka
    teda alla (omanik 28.09: „hover tekstid lükkavad liiga alla"; enne
    seisis riba avatud menüü ajal 8.6rem ehk 138 px kõrgusel). Riba on
    ülariba õde (RoomStage), nii et `~` näeb paneeli olekut. */
 .room-topbar[data-open="1"] ~ .hand-cam {
-  top: calc(env(safe-area-inset-top) + 4.7rem);
+  top: calc(env(safe-area-inset-top) + 4.3rem);
 }
 /* Hiirega: riba ripub peidetud menüü käepideme (nähtav 1.55rem) ALL,
    keskel, nagu telefonis (omanik 28.09: „peaks olema peidetud menüü
@@ -1593,7 +1596,7 @@ html[data-reduce-transparency="1"] .hand-cam {
   .room-topbar[data-open="1"] ~ .hand-cam,
   .room-topbar:hover ~ .hand-cam,
   .room-topbar:focus-within ~ .hand-cam {
-    top: calc(env(safe-area-inset-top) + 4.7rem);
+    top: calc(env(safe-area-inset-top) + 4.3rem);
   }
   /* Nimesildid on ülariba sees (tema kiht 31), riba kiht on 70: ilma
      selleta jääks silt riba taha. Ainult hoveri/fookuse ajal — modaali
