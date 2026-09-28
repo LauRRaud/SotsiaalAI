@@ -129,6 +129,18 @@ Tootmises oli plaan `…-1253-r84fa17edc`. Kordasin ainult kaht stsenaariumi, ku
   - Kolmes käivituses on selliseid vastuseid 120-st 2, mõlemad kolmanda isiku (ema) kohta.
   - Kataloogis pole selle kohta veel kontrolli.
 
+## Codexi järelkontroll (§14) ja parandused
+
+Codex leidis kolm puudust ja kaks ebatäpsust. Kõik on parandatud [ADR-044-ga](../rag-v2/adr-044-date-ranges-and-place-negation.md) ja [ADR-043](../rag-v2/adr-043-answer-output-room.md) selgitusega.
+
+- **Kuupäevavahemik** oli kaks üksikut päeva, nüüd on see üks periood.
+- **Tegevuse eitus** eemaldas omavalitsuse. Nüüd eitab koht ainult partikli või eitatud elamise tegusõnaga ja mitte üle lause piiri.
+- **Hindaja** lubas teisel seadusel kehtivust tõendada. Nüüd hinnatakse iga akti eraldi.
+- **31.10 aususe muster** lubas väljamõeldud tasu. See on kataloogis v3 rangem; v2 jääb muutmata, sest seda on kaks korda jooksutatud.
+- **Broneering:** ADR-043 väide, et broneering vabaneb, oli vale.
+
+Jooksu 3 salvestatud vaatlused hinnati uue hindajaga uuesti ilma mudelikutseta: v2-ga ja v3-ga **38/40**. Kuupäevapööretes on viidatud küsitud päeval kehtivad SHS-i ja RLS-i redaktsioonid. See on endiselt hindaja tulemus, mitte iga vastuse sõltumatu sisuline kinnitus. Samuti on 31/40 → 38/40 muutunud ootustega võrdlus, nagu Codex märkis.
+
 ## Omavalitsuse kontaktid: kataloog ei anna ühtegi kontaktisikut
 
 Leid 4 („Kellele helistada“) osutus laiemaks kui üks stsenaarium. Mõõtmine tehti serveris ainult lugemisega, kontaktandmeid aruandesse ei kopeeritud.

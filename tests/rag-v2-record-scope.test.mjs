@@ -35,4 +35,11 @@ test('with real morphology a negated place is left out: Tartu vald, not Tartu li
   for (const [text, region] of [['Elan Tartu vallas, mitte Tartu linnas.', 'tartu_vald'], ['Ema ei ela Tallinnas, vaid Harku vallas.', 'harku_vald'],
     ['Me elame Tartu linnas, mitte Tartu vallas.', 'tartu_linn']]) assert.equal((await scope(text)).region, region, text);
   assert.equal((await scope('Ma ei ela enam Tallinnas.')).state, 'region_required_after_negation');
+  // ADR-044: a negated action keeps the place, and a negation stops at a sentence or comma (Codex review 28.09).
+  for (const text of ['Ma ei saa Tallinnas abi.', 'Ma ei tea. Elan Tallinnas.', 'Ma ei leia Tallinnas tööd, elan seal.']) {
+    assert.equal((await scope(text)).region, 'tallinn', text);
+  }
+  for (const text of ['Ma pole enam Tallinnas.', 'Tegelikult ei ela ma enam Tallinnas.']) {
+    assert.equal((await scope(text)).state, 'region_required_after_negation', text);
+  }
 });

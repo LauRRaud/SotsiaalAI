@@ -26,7 +26,11 @@ Suure kataloogisisendiga (üle 18 000 tokeni) on arutluse mediaan 1148, väiksem
 
 - `newChatPlan` annab uuele plaanile `maxOutputTokens: 8192` (seni 4096). Plaani lugemine lubab kuni 16384.
 - **Lagi on omaniku kinnitatud plaani sisu.** Väljalaske plaaniuuendus ([ADR-037](adr-037-release-chat-plan.md)) jätab kehtiva plaani lae samaks. Uus lagi kehtib alles uue kinnitatud plaaniga, mis tehakse `scripts/rag-v2-chat-plan.mjs` kaudu nagu v33 puhul.
-- **Hind ei muutu:** kasutatud tokenite eest makstakse nagu seni. Kasvab ainult pöörde broneering, `maxOutputTokens × answerOutput`. Plaani rahapiir jääb samaks ja broneering vabaneb pärast kutset.
+- **Teenusepakkujale makstakse kasutatud tokenite eest nagu seni, aga plaani kulupäevik on konservatiivne.**
+  - Iga kutse broneering (`inputBound × answerInput + maxOutputTokens × answerOutput`) jääb päevikusse. Kasutamata osa ei tagastata, ülekulu lisandub (`lib/rag-v2/pilot/store.js`, `usage()`).
+  - Uue laega kasvab iga vastusekutse broneering 4096 × 500 nano-USD = 0,002 USD võrra.
+  - Codexi kontrollis oli 40 pöörde broneeringute summa 0,869 USD (160 kutset), hinnanguline kasutus aga 0,196 USD. Seega mahub 4 USD kinnitatud piiri sisse umbes 180 pööret, mitte 4 USD väärt kasutust.
+  - Codex 28.09: varasem lause „broneering vabaneb pärast kutset“ oli vale. Broneeringu vabastamine oleks eraldi käitumismuudatus, mis peab arvestama teadmata tulemusega kutseid.
 - Arutluse tase jääb `medium`.
 
 ## Kontroll
