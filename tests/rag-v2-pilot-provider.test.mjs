@@ -89,3 +89,46 @@ test('F13/F14: server target language reaches the actual transport and all visib
   }
   assert.throws(() => answerRequest(config, 'Question', null, 'de'), { code: 'invalid_language' });
 });
+
+// ADR-040: a streamed answer shows its text pieces as they arrive; the complete response passes the same checks and
+// the same usage accounting, and a stream without its complete response stays unknown (reserved), never a success.
+const sse = (events, split = 0) => {
+  const bytes = new TextEncoder().encode(events.map(e => `event: ${e.type}\ndata: ${JSON.stringify(e)}\n\n`).join(''));
+  return new Response(new ReadableStream({ start(controller) {
+    if (!split) controller.enqueue(bytes); else for (let i = 0; i < bytes.length; i += split) controller.enqueue(bytes.slice(i, i + split));
+    controller.close();
+  } }), { headers: { 'content-type': 'text/event-stream', 'x-request-id': 'stream-response' } });
+};
+const deltas = text => Array.from({ length: Math.ceil(text.length / 7) }, (_, i) => ({ type: 'response.output_text.delta', output_index: 1, content_index: 0, delta: text.slice(i * 7, i * 7 + 7) }));
+const streamed = (final, type = 'response.completed') => [{ type: 'response.created', response: { status: 'in_progress' } }, ...deltas(JSON.stringify(answer)), ...(final ? [{ type, response: final }] : [])];
+const streamBody = () => ({ ...answerRequest(config, 'question', null, 'et'), stream: true });
+
+test('a streamed answer passes its text pieces on and returns the same checked value, usage and request id', async () => {
+  for (const split of [0, 1, 13]) {
+    let sent, shown = '';
+    const result = await providerCall({ stage: 'answer', body: streamBody(), config, apiKey: 'synthetic', onText: text => { shown += text; },
+      transport: async (url, options) => { sent = JSON.parse(options.body); return sse(streamed(good), split); } });
+    assert.equal(sent.stream, true);
+    assert.equal(shown, JSON.stringify(answer), `split ${split}`);
+    assert.deepEqual(result.value, answer);
+    assert.deepEqual([result.usage.input, result.usage.output, result.usage.reasoning, result.requestId], [100, 50, 20, 'stream-response']);
+    assert.equal(result.timings.streaming, true);
+    assert(result.timings.firstTextMs >= result.timings.firstDataMs && result.timings.completeResponseMs >= result.timings.firstTextMs);
+  }
+});
+
+test('a stream without its complete response, a failed or foreign response and an oversized stream never become success', async () => {
+  const call = (events, extra = {}) => providerCall({ stage: 'answer', body: streamBody(), config, apiKey: 'synthetic', transport: async () => sse(events), ...extra });
+  await assert.rejects(call(streamed(null)), error => {
+    assert.equal(error.code, 'provider_usage_unknown'); assert.equal(error.usage, undefined);
+    assert.equal(error.draftText, JSON.stringify(answer), 'the text that did arrive stays the bounded draft'); return true;
+  });
+  await assert.rejects(call(streamed({ ...good, status: 'failed' }, 'response.failed')), error => { assert.equal(error.code, 'provider_incomplete'); assert.equal(error.usage.output, 50); return true; });
+  await assert.rejects(call(streamed({ ...good, model: 'another-model' })), error => { assert.equal(error.code, 'answer_model_mismatch'); assert.equal(error.usage.output, 50); return true; });
+  await assert.rejects(call([{ type: 'error', code: 'server_error' }]), { code: 'provider_usage_unknown' });
+  const huge = [{ type: 'response.output_text.delta', delta: 'x'.repeat(8_100_000) }];
+  await assert.rejects(call(huge), { code: 'provider_body_too_large' });
+  // The reader's own failure (the browser went away) changes nothing about the answer.
+  const result = await call(streamed(good), { onText: () => { throw new Error('reader gone'); } });
+  assert.deepEqual(result.value, answer);
+});

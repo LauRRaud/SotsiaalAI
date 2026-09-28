@@ -796,7 +796,18 @@ pärast salvestaja kavandatud lõppu 10:23:25 UTC. Ühekordne Codexi järeltegev
 `tmp/rag-v2-memory-protection-20260928/rollback-protection.py --apply`.
 Skript taastab ainult kahe muudetud `memory.low` välja algse nullväärtuse,
 kontrollides aega, konteinerite identiteete ja oodatud kaitseväärtusi.
-Lugemiskontroll 09:28:05.936 UTC läbis; tagasivõtmine **ei ole veel tehtud**.
+Lugemiskontroll 09:28:05.936 UTC läbis. **Tagasivõtmine tehtud 28.09 kell
+10:24:52.511 UTC / 13:24:52.511 EEST**: sysfs kinnitas `system.slice memory.low`
+**1 572 864 000 → 0 B** ja Qdranti scope'i `memory.low` **1 073 741 824 → 0 B**.
+PostgreSQLi enda `memory.low` jäi nulliks. Konteinerite identiteedid vastasid
+katsele ning frontend PID `2913323` ja töökoopia `ab5c7c2b2` jäid muutmise
+ajal samaks; tagasivõtmine restarti ei teinud. SSH väljumiskood oli 0.
+Enne/pärast tõend: `tmp/rag-v2-memory-protection-20260928/protection-rollback.jsonl`.
+
+Salvestaja lõpetas ise väljumiskoodiga 0: viimane proov `sequence=7199`
+(7200 proovi kokku) oli **10:23:23.637 UTC**. Salvestusfaili maht
+17 982 848 B ja muutmisaeg püsisid enne/pärast tagasivõtmist samad.
+Swap'i, PostgreSQLi seadistust ega püsiseadeid ei muudetud. Katse on lõpetatud.
 
 ## 12. PR #228: Qdranti algsoojenduse järelkontroll (28.09)
 

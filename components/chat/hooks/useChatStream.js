@@ -6,6 +6,7 @@ import { createLatestRequestGate, withRequestTimeout } from "@/lib/client/latest
 import { buildIntentSignature, resolveIntentKey } from "@/lib/usage/intentKey";
 import { ensureConversationBeforeSend } from "@/lib/chat/conversationBootstrap";
 import { rememberPilotIntent, forgetPilotIntent } from '@/lib/chat/m4PilotIntent';
+import { pilotExchange } from '@/lib/chat/m4PilotStream';
 import { detectCrisis } from "@/lib/chat/safety";
 
 function formatI18n(template, values) {
@@ -1622,10 +1623,11 @@ export function useChatStream(config) {
     }
     const runStream = async () => {
       try {
-        const res = await fetch("/api/chat", {
+        const requestInit = {
           method: "POST",
           headers: {
-            ...(cfg.pilotEnabled ? { 'x-rag-pilot': '1', 'x-rag-pilot-format': 'chat' } : {}),
+            // The pilot shows its answer while it is written and replaces it with the checked answer (ADR-040).
+            ...(cfg.pilotEnabled ? { 'x-rag-pilot': '1', 'x-rag-pilot-format': 'chat', Accept: 'text/event-stream' } : {}),
             "Content-Type": "application/json"
           },
           body: JSON.stringify(cfg.pilotEnabled ? {
@@ -1669,12 +1671,23 @@ export function useChatStream(config) {
               : {})
           }),
           signal: controller.signal
-        });
+        };
+        // A lost pilot stream is asked again with the same turn key; the server never starts a second answer.
+        const pilot = cfg.pilotEnabled ? await pilotExchange(() => fetch("/api/chat", requestInit), {
+          createReader: cfg.createSSEReader || defaultCreateSSEReader,
+          onText: text => { visibleText += text; doPushVisibleText(); },
+          onRestart: () => { visibleText = ""; doPushVisibleText(); }
+        }) : null;
+        if (pilot?.lost) throw createLocalizedError("chat.error.stream_incomplete");
+        const res = pilot ? pilot.response : await fetch("/api/chat", requestInit);
 
         clearTimeout(clientTimeout);
 
-        let parsedBody = null;
-        let parsedBodyLoaded = false;
+        // A pilot stream's last event is the reply the JSON path sends: the same handling follows.
+        const status = pilot?.done ? pilot.done.status : res.status;
+        const statusOk = status >= 200 && status < 300;
+        let parsedBody = pilot?.done ? pilot.done.body : null;
+        let parsedBodyLoaded = Boolean(pilot?.done);
         const readJsonBody = async () => {
           if (parsedBodyLoaded) return parsedBody;
           parsedBodyLoaded = true;
@@ -1685,7 +1698,7 @@ export function useChatStream(config) {
           }
           return parsedBody;
         };
-        if (res.status === 401) {
+        if (status === 401) {
           cfg.mutateMessage?.(streamingMessageId, msg => ({
             ...msg,
             text: tr("chat.room.auth_required"),
@@ -1706,7 +1719,7 @@ export function useChatStream(config) {
           return true;
         }
 
-        if (res.status === 403) {
+        if (status === 403) {
           const data = await readJsonBody();
           if (data?.requireSubscription && data?.redirect && typeof window !== "undefined") {
             cfg.mutateMessage?.(streamingMessageId, msg => ({
@@ -1722,7 +1735,7 @@ export function useChatStream(config) {
           throw createLocalizedError(key || (cfg.isRoomMode ? "chat.room.blocked" : "api.common.forbidden"));
         }
 
-        if (res.status === 429) {
+        if (status === 429) {
           const data = await readJsonBody();
           const key = readApiErrorKey(data);
           if (key) {
@@ -1739,11 +1752,11 @@ export function useChatStream(config) {
 
         const contentType = res.headers.get("content-type") || "";
 
-        if (!contentType.includes("text/event-stream")) {
+        if (pilot?.done || !contentType.includes("text/event-stream")) {
           const data = await readJsonBody();
           if (cfg.pilotDialogueEnabled && data?.pilotContext) pilotContextAccepted = true;
 
-          if (!res.ok) {
+          if (!statusOk) {
             throw createLocalizedError(readApiErrorKey(data) || "chat.error.no_response");
           }
 

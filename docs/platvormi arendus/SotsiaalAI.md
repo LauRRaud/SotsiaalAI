@@ -162,8 +162,9 @@ aeg 2,21 s. Tulemus kehtib pärast soojenduse lõppu; varasem saabuv küsimus v�
 endiselt külm olla. Codexi ülevaatuses üks P2: Qdranti soojenduse tõrge jääb
 tehtuks märgituks ega saa samas protsessis korduskatset; võrguta sond kinnitas.
 [#228 tõend ja leid](../audits/rag-v2-codex-review-2026-09-27.md#12-pr-228-qdranti-algsoojenduse-järelkontroll-2809).
-Ajutise kaitse tagasivõtmine on ajastatud **28.09 kell 13:24 EEST**, pärast
-salvestuse lõppu; praegu on kaitse veel peal. Suurema swapi/kaitse mõju ei mõõdetud.
+**Ajutine kaitse eemaldati 28.09 kell 13:24:52 EEST**: `system.slice` ja Qdranti
+`memory.low` on sysfs-ist kontrollitult taas 0, restarti ei tehtud. Salvestaja
+lõpetas ise 7200 prooviga kell 13:23:23 EEST. Suurema swapi/kaitse mõju ei mõõdetud.
 [Katse ja loendurid](../audits/rag-v2-codex-review-2026-09-27.md#11-ajutise-mälukaitse-võrdluskatse-225-peal-2809).
 [Kontrolli ulatus](../audits/rag-v2-codex-review-2026-09-27.md#9-otsingu-ajamõõtmise-ja-mäluväidete-kontroll-2809).
 
