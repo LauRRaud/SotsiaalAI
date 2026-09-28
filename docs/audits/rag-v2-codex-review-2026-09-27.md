@@ -554,3 +554,246 @@ Opuse edastatud tulemus; mõõtmisi ei korratud. Käituskoodi ja serveriseadeid 
   seejärel optimeerida sõnalist kandidaatide valikut ning tõsta tõendatud piiri.
   Sagedaste sõnade eemaldamine muudab leitavaid kandidaate ja vajab ka
   olemasoleva mitmekeelse otsinguvalimi tulemuste kontrolli.
+
+## 10. PR #224 ajamõõdikud ja mälukaitse katse eelkontroll (28.09)
+
+Codex kontrollis PR #224 koodi (`de02dfb84`, merge `94d68afb6`) ja luges serveri
+cgroup'i metaandmeid 28.09 kell 08:15 UTC. Serveri seadeid ei muudetud, päris
+vestluspöördeid ega tasulisi kutseid ei tehtud. Opuse nelja pöörde ajatabelit
+ei loetud sõltumatult andmebaasist ega korratud.
+
+- **Qdranti enda aeg on nüüd eristatav.** `QdrantIndex.query()` kannab vastuse
+  `time` sekunditest millisekunditesse (`server_ms`); `retrieve()` säilitab selle
+  kanali `*_server` väljal ja piloot salvestab radade ajad `timings.search` alla.
+  8-sekundiline `vector_server` paigutab viivituse Qdranti päringu teenindusse.
+  See ei erista iseenesest kettalugemist, protsessori tööd ega ooteaega.
+  Neli paralleelset 8-sekundilist päringut ei tähenda 32-sekundilist faasi.
+- **`rerank` miinus mudelikutse ei võrdu PostgreSQLi kettalugemise ajaga.**
+  Vahemikku kuuluvad kandidaatide koostamine, `postgres.units()`, teksti ja
+  tervikluse kontrollid ning hook'i õiguste/raamatupidamise sammud. `units()`
+  loeb kandidaatide dokumentide kõik tekstiosad ning kontrollib esmakordselt
+  loetud või muudetud ridade morfoloogiat (`search/postgres.js:350–371`). Uue
+  sõnastuse valitud uued dokumendid võivad käivitada selle töö. Võrdluskatses
+  tuleb hoida otsingusisend/ulatus samana ja mõõta lugemine ning kontroll eraldi.
+- **Tegelik hierarhia:** cgroup v2, kernel 6.8.0-142-generic,
+  mount-valik `memory_recursiveprot`; mõlemad konteinerid asuvad otse
+  `/system.slice/docker-<ID>.scope` all. `memory.low=0` nii vanemal kui ka
+  Qdrantil/PostgreSQLil; `memory.high` ja `memory.max` on piiramatud.
+  Qdranti `memory.current` oli 399 425 536 B, sellest `file` 350 646 272 B;
+  PostgreSQLi `file` oli 3 917 017 088 B. Saadaolev RAM oli 6 819 656 KiB
+  ja jooksva mälusurve keskmised nullid. Need on hetkenäidud, mitte tõend
+  varasema päringu oleku kohta. Lehevigade/I/O loendurid on kumulatiivsed.
+- **Pakutud käsud sobivad pööratavaks katseks, kuid ei isoleeri ainult Qdranti.**
+  `system.slice MemoryLow=1500M` kaitseb vanemgruppi ja aktiivse
+  `memory_recursiveprot` tõttu võivad sellest kasu saada ka teised lapsed.
+  Qdranti eraldi `MemoryLow=1G` määrab talle täiendava selgesõnalise kaitse,
+  kuid väide „PostgreSQL jääb kaitseta ja aeglaseks” ei ole tagatud.
+  [Kerneli lepingu kirjeldus](https://www.kernel.org/doc/html/v6.8/admin-guide/cgroup-v2.html#mounting).
+- **Katse protokoll:** fikseerida väljalase/PID-id ja algsed kaitseväärtused;
+  soojendada sama otsing, oodata vähemalt 15 minutit ning korrata seda ilma
+  otsingut vahele jätva tulemuste taaskasutuseta. Võrrelda `vector_server` aega
+  ning sama akna `io.stat rbytes`, `pgmajfault`, `workingset_refault_file` ja
+  PSI muutusi. Üksnes RSS-i langus või kasutatud swap ei tõenda põhjuslikkust.
+- **Väljalase oli kontrolli ajaks muutunud:** serveri HEAD `88adf2564` (#225),
+  teenus aktiivne, viimane käivitus 11:04:22 EEST. #224 mõõtmistele järgneva
+  katse puhul tuleb arvestada seda uut käivitust.
+
+Ettevalmistatud ajutine seadistus (ei käivitatud):
+
+```bash
+qdrant_scope="docker-$(sudo docker inspect -f '{{.Id}}' sotsiaalai-rag-v2-qdrant-1).scope"
+systemctl show system.slice "$qdrant_scope" -p ControlGroup -p MemoryLow
+sudo systemctl set-property --runtime system.slice MemoryLow=1500M
+sudo systemctl set-property --runtime "$qdrant_scope" MemoryLow=1G
+systemctl show system.slice "$qdrant_scope" -p MemoryLow
+```
+
+Tagasipööre juhul, kui vahetult enne katset on mõlemad algväärtused endiselt null:
+
+```bash
+sudo systemctl set-property --runtime "$qdrant_scope" MemoryLow=0
+sudo systemctl set-property --runtime system.slice MemoryLow=0
+```
+
+Katse ei vaja teenuse/konteineri taaskäivitust. Runtime-seadistus ei jää üle
+serveri taaskäivituse ning konteineri taasloomisel tekib uus scope. Püsiv
+seadistus ja PostgreSQLi puhvri muutmine on eraldi sammud.
+
+## 11. Ajutise mälukaitse võrdluskatse #225 peal (28.09)
+
+Omanik kinnitas järjekorra: Opus küsib sama algse sõnastusega küsimuse, kordab
+seda vähemalt 15 min jõudeoleku järel; Codex salvestab loendurid ning rakendab
+alles seejärel ajutise kaitse. Seejärel korratakse sama kaitsega. Päris
+vestluspöörded teeb Opus; Codex loeb ainult operatiivseid ajamõõdikuid.
+
+**Mõõtmismeetod.** Alates 08:23:24.634 UTC (11:23 EEST) loetakse iga sekund
+Qdranti ja RAG-PostgreSQLi cgroup'ide `memory.stat`, `memory.current`,
+`memory.swap.current`, `memory.events`, `cpu.stat`, `io.stat`, mälu/I/O PSI
+ning kaitseväärtused; kord minutis kontrollitakse väljalaset ja teenuse PID-d.
+Tulemused salvestatakse sülearvutisse
+`tmp/rag-v2-memory-protection-20260928/cgroup-samples.jsonl`. Jõudeoleku baasis
+püsis #225 `88adf2564`, frontend PID `2641170` ja samad konteinerid.
+Pöörde auditist loetakse ainult ID, ajad, olek ja numbrilised mõõdikud.
+Ajatsoonita Prisma veerud teisendatakse SQL-is `AT TIME ZONE 'UTC'` abil;
+serveri kohaliku ajavööndi järgi tõlgendamine annaks ekslikult kolm tundi varasema aja.
+
+### Kaitseta baas
+
+| Mõõdik | Soojendus | Pärast jõudeolekut |
+| --- | --- | --- |
+| M4PilotTurn ID | `60e915fb-b877-4796-9681-1692e26c5351` | `420f38ec-8f2c-4c73-bfc6-347b95bf89c8` |
+| Algus UTC | 08:24:02.784 | 08:40:13.354 |
+| Vastuse salvestus UTC | 08:24:21.583 | 08:40:33.687 |
+| Otsing ise (`since_start_ms.merged`) | 4089 ms | 3416 ms |
+| Põhiotsingu Qdranti serveriaeg | 202–234 ms | 183–229 ms |
+| Sõnaline otsing | 1265 ms | 1202 ms |
+| `rerank` / selle mudelikutse | 2257 / 1887 ms | 1570 / 1288 ms |
+| Qdranti kettalugemine pöördeaknas | 280 KiB | 24 KiB |
+| PostgreSQLi kettalugemine pöördeaknas | 124 KiB | 40 KiB |
+| Qdranti / PostgreSQLi `pgmajfault` kasv | 29 / 6 | 5 / 0 |
+| Qdranti / PostgreSQLi `workingset_refault_file` kasv | 0 / 18 | 0 / 4 |
+
+Paus esimese salvestusest teise alguseni oli **15 min 51,771 s**. Jõudeaknas
+(08:24:21.637–08:40:12.637 UTC) oli Qdranti `file` kogu aeg 350 646 272 B;
+mõlema RAG-konteineri kettalugemine, faililehtede refault ja `pgscan` ei kasvanud.
+Mõlema päringuakna memory PSI kasv oli null. Väljalase/PID püsisid samad ja
+salvestuse suurim intervall oli 1,001 s. Loendurid hõlmavad kogu konteineri
+tööd vastavas aknas, mitte üksiku SQL-päringu eraldatud kulu.
+
+**Baasi järeldus:** sellel katsel ei põhjustanud ≥15 min jõudeolek aeglustumist
+ega RAG-i failivahemälu kadu. Varasem väide automaatsest külmaks muutumisest
+jõudeoleku tõttu ei leidnud kinnitust. See ei tõenda veel, milline deploy samm
+või muu koormus varasema aeglustumise põhjustas.
+
+### Kaitse rakendamine
+
+**08:41:04.418 UTC** (11:41:04 EEST) rakendas Codex omaniku kinnitatud
+runtime-seadistuse pärast baaspöörde lõppu:
+
+- `system.slice memory.low`: 0 → **1 572 864 000 B** (`1500M`);
+- Qdranti scope `memory.low`: 0 → **1 073 741 824 B** (`1G`);
+- PostgreSQLi enda `memory.low`: **0**, muutmata;
+- #225, frontend PID ja mõlema konteineri ID püsisid samad; restarti ei tehtud.
+
+Rakendusskript kontrollis enne muutmist algväärtusi, väljalaset ja PID-sid ning
+valideeris pärast tegelikke cgroup'i väärtusi; tõrke korral oleks taastanud
+algse nullkaitse. Enne/pärast tõend on
+`tmp/rag-v2-memory-protection-20260928/protection-apply.jsonl`.
+Omanik muutis pärast sooja jõudeolekubaasi järgmise etapi väljalaskejärgseks
+katseks: kaitse peab säilima deploy ajal, seejärel sama küsimus 6–8 min pärast
+teenuse käivitust ja alles pärast algsoojenduse lõppu. Kaitsega jõudeoleku
+kahte lisapööret ei tehtud.
+
+### #226 deploy kaitse olemasolul
+
+Taustal töötanud salvestaja kattis juba järgmise väljalaske #226 (`5d371a30c`),
+[deploy 36400433684](https://github.com/LauRRaud/SotsiaalAI/actions/runs/36400433684).
+Codex seda väljalaset ei käivitanud. Mõlema konteineri scope/ID ja seatud kaitse
+säilisid; muutus frontend PID `2747238`-ks. Teenuse käivitus **08:59:02 UTC**;
+algsoojendus algas 08:59:05.563 UTC.
+
+| Etapp / UTC | Qdranti `file` | PostgreSQLi `file` |
+| --- | --- | --- |
+| Enne sõltuvuste paigaldust, 08:57:40.637 | 334,4 MiB | 3735,5 MiB |
+| Ehituse eel, 08:58:08.637 | 277,5 MiB | 2729,0 MiB |
+| Ehituse järel, 08:58:53.637 | 10,6 MiB | 134,5 MiB |
+| Pärast käivitust, 08:59:59.637 | 10,6 MiB | 728,0 MiB |
+
+Deploy logi: `npm ci` algus 08:57:41.014, build'i logi algus 08:58:09.882,
+kompileerimine lõppes 08:58:47.610, järgnev migratsioonieelkontroll algas
+08:58:53.646. Qdranti esimene suur faililehtede langus oli 08:57:57.637;
+suurem kadu jätkus ehituse ajal. Konkreetsete alamkäskude eraldatud põhjuslikkust
+see üks mõõtmisaken ei tõenda.
+
+08:57:39.637–08:59:14.637 UTC aknas:
+
+- Qdranti `file` vähenes **339 550 208 B** ehk **323,8 MiB** (~96,8%).
+  `pgsteal` +84 698, `pgscan` +88 863, **`memory.events.low` +119**.
+  `memory.low` oli kõikides proovides 1 GiB ja `system.slice` kaitse 1500 MiB.
+- PostgreSQLi `file` miinimum oli 140 910 592 B (~134,4 MiB);
+  mõõtmisakna lõpuks hakkas algsoojendus seda juba taastama. `pgsteal` +921 954.
+- Proovide suurim vahe oli 1,002 s. OOM-/OOM-kill-loendurid ei kasvanud.
+- [Kerneli definitsiooni](https://www.kernel.org/doc/html/v6.8/admin-guide/cgroup-v2.html#memory-interface-files)
+  järgi näitab `memory.events.low` tagasivõtmist ka allpool kaitsepiiri.
+  See on otsene tõend, et **1500M/1G best-effort-kaitse ei säilitanud selle
+  deploy ajal Qdranti faililehti**. Algpõhjus, miks efektiivne kaitse ei piisanud,
+  on eraldi uurimise küsimus; suurem `memory.low` või `memory.min` pole rakendatud.
+
+Arvutatud loendurivahed: `tmp/rag-v2-memory-protection-20260928/deploy-226-counters.json`;
+deploy ajamärgid: samas kaustas `deploy-226-markers.txt`.
+
+**Algsoojendus lõppes 09:04:11.172 UTC**: 1152 allikat, 306 s
+(`deploy-226-warmup.json`). Kell 09:07:33 UTC oli Qdranti `file` endiselt
+10,6 MiB ning pärast soojenduse lõppu uusi suuri kettalugemisi polnud.
+
+### Kolmas pööre: külm Qdrant pärast kaitsega deploy'd
+
+Opuse sama küsimuse pööre `f141e02c-d43a-4195-9bcb-116d29175776` algas
+**09:14:07.819 UTC**, vastus salvestati **09:14:38.374 UTC**, olek `completed`.
+Codex kontrollis ajad ja arvulised mõõdikud pöörde auditist küsimust/vastust lugemata.
+**Kõrvalekalle protokollist:** pööre algas 15 min 5,8 s pärast teenuse käivitust
+ja 9 min 56,6 s pärast algsoojenduse lõppu, väljaspool kavandatud 6–8 minuti akent.
+Väljalase oli kogu pöördeaknas #226; konteinerid ja kaitseväärtused püsisid samad.
+
+| Mõõdik | Kolmas pööre, kaitsega pärast deploy'd |
+| --- | --- |
+| Otsing ise (`since_start_ms.merged`) | **12 595 ms** |
+| Põhiotsingu Qdranti serveriajad | **8428 / 8420 / 8407 / 8409 ms** |
+| Sõnaline otsing | 1167 ms |
+| `rerank` / selle mudelikutse | 2692 / 2441 ms |
+| Qdranti kettalugemine | **320 868 352 B (306,0 MiB)** |
+| Qdranti `file` | **10,6 → 316,5 MiB** |
+| Qdranti `pgmajfault` / `workingset_refault_file` kasv | **92 122 / 75 659** |
+| Qdranti I/O PSI `some` / `full` kasv | **6,395 / 5,798 s** |
+| PostgreSQLi kettalugemine / I/O PSI `some` kasv | 17,4 MiB / 0,037 s |
+| Qdranti / PostgreSQLi CPU-aeg | 3,33 / 4,42 s |
+
+Loendurite aken on 09:14:07.637–09:14:38.637 UTC, 32 proovi, vahe 1 s.
+Need on konteineri koguloendurid kogu pöördeaknas; PSI ei ole üksiku päringu
+eraldatud kestus ja nelja paralleelse vektorpäringu aegu ei summeerita.
+Pöörde ajal `pgscan`, `pgsteal` ega `memory.events.low` enam ei kasvanud:
+Qdrant luges varem eemaldatud lehed tagasi. PostgreSQLi `rerank`-jääk pärast
+mudelikutset oli umbes 251 ms, mis ei viita selle pöörde varasemale mitmesekundilisele
+allikate laadimise/kontrollimise viivitusele.
+
+**Järeldus:** selle deploy järel oli Qdrant vaatamata 1500M/1G kaitsele külm.
+Kettalugemine, failivahemälu taastumine, lehevead ja I/O-ooted toetavad nüüd
+otseselt vahemälust eemaldatud vektorite tagasilugemise seletust. Kaitseta soojades
+pööretes oli Qdranti serveriaeg 0,18–0,23 s; kaitsega deploy järel 8,41–8,43 s.
+See katse ei tõenda, et suurem swap või teine kaitsepiir ei saaks aidata;
+nende mõju ei mõõdetud. Samuti ei tõenda üks soe jõudeolekukatse, et muu
+taustakoormuse ajal ei saaks vahemälu tühjeneda.
+
+Arvulised auditiväljad: `tmp/rag-v2-memory-protection-20260928/protected-postdeploy-turn.json`;
+loendurivahed: samas kaustas `protected-postdeploy-counters.json`;
+kolme pöörde võrdlus on korratav skriptiga `compare.mjs`.
+
+### Järgmine katse ja ajutise kaitse lõpetamine
+
+Opus valmistab ette ADR-033 algsoojenduse täiendust olemasoleva salvestatud
+Qdranti vektoriga, mudelikutset tegemata. Praegune
+`warmKnowledgeSources` soojendab PostgreSQLi allikaid ja tekstiosi, kuid ei
+tee Qdranti päringut. Teostuses tuleb kontrollida:
+
+- lähtevektor ja otsingu ulatus on kinnitatud plaani ning aktiivse põlvkonna
+  dokumentide versioonide ühisosas; jagatud kollektsiooni vanad versioonid
+  jäävad välja;
+- täpne otsing katab plaani vajaliku dokumentide ulatuse, mitte ainult
+  lähtevektori dokumenti või üht punkti;
+- Qdranti soojendus toimub pärast PostgreSQLi soojendust ning selle lõpp,
+  kestus ja tõrge on eraldi tuvastatavad; taustatöö ei tähenda, et enne selle
+  lõppu saabunud kasutaja päring oleks juba soe;
+- tõrge ei takista vestlust ega märgi ebaõnnestunud soojendust lõplikult tehtuks;
+  olemasolev korduskatse ja sama töö paralleelsete käivituste vältimine säilivad.
+
+Koodiparanduse tulemus on veel `NOT_PROVEN`: pärast väljalaset tuleb võrrelda
+algsoojenduse lõppu, esimese sama küsimuse Qdranti serveriaega ja loendureid.
+Vastuvõtutõend on tegelik esimene kasutajapööre, mitte ainult soojenduspäringu edu.
+
+Ajutise kaitse tagasivõtmine on ajastatud **28.09 kell 10:24 UTC / 13:24 EEST**,
+pärast salvestaja kavandatud lõppu 10:23:25 UTC. Ühekordne Codexi järeltegevus
+`rag-ajutise-m-lukaitse-tagasiv-tmine` käivitab ette valmistatud
+`tmp/rag-v2-memory-protection-20260928/rollback-protection.py --apply`.
+Skript taastab ainult kahe muudetud `memory.low` välja algse nullväärtuse,
+kontrollides aega, konteinerite identiteete ja oodatud kaitseväärtusi.
+Lugemiskontroll 09:28:05.936 UTC läbis; tagasivõtmine **ei ole veel tehtud**.
