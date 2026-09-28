@@ -360,7 +360,7 @@ test('verified registry export bridges explicit package IDs, publishes anchored 
     municipalities.push(municipality);
     contacts.push(await db.serviceMapEntry.create({ data: { title: 'Same synthetic contact name', type: 'KOV_SOCIAL_CONTACT',
       municipalityId: municipality.id, status: 'PUBLISHED', sourceNamespace: 'OFFICIAL_KOV_CONTACT', sourceDocId: `different-register-id-${area}`,
-      checkedAt, revision: 1, phone: area === 'alpha' ? '+372 0000001' : '+372 0000002',
+      checkedAt, revision: 1, phone: area === 'alpha' ? '+372 0000001' : '+372 0000002', description: 'Roll: synthetic specialist Osakond: Synthetic department',
       email: `${area}@example.invalid`, sourceUrl: `https://example.invalid/${area}/contact` } }));
   }
   const meta = { contactVerificationVersion: 4, verifiedContactIds: contacts.map(row => row.id),
@@ -397,6 +397,8 @@ test('verified registry export bridges explicit package IDs, publishes anchored 
   assert.equal(exported.items[0].registry_binding.source_record.sha256, hash(originalBytes));
   assert.equal(exported.items[0].registry_binding.source_record.pointer, '/items/1');
   assert.equal(exported.items[0].email, 'alpha@example.invalid');
+  // ADR-045: the role comes from the register, never from the collected package.
+  assert.deepEqual([exported.items[0].role, exported.items[0].department], ['synthetic specialist', 'Synthetic department']);
   const mappingFile = path.join(root, 'contact-mapping.json'), cliOut = path.join(root, 'cli-export');
   await fs.writeFile(mappingFile, JSON.stringify(mapping));
   const cliArgs = ['scripts/rag-v2-contact-export.mjs', '--mapping', mappingFile, '--input-root', root, '--out', cliOut];
@@ -474,6 +476,11 @@ test('verified registry export bridges explicit package IDs, publishes anchored 
   await db.dataAuditLog.update({ where: { id: audit.id }, data: { meta } });
   assert.equal(await adapter.authorizeContact({ record }), true);
   assert(!record.fields.checked_at || record.fields.checked_at.value === exported.items[0].checked_at, 'the record keeps the export\'s check time');
+  // A new role in the register ends the binding like a new channel, also without a new revision.
+  await db.serviceMapEntry.update({ where: { id: contacts[0].id }, data: { description: 'Roll: synthetic manager Osakond: Synthetic department' } });
+  assert.equal(await adapter.authorizeContact({ record }), false);
+  await db.serviceMapEntry.update({ where: { id: contacts[0].id }, data: { description: 'Roll: synthetic specialist Osakond: Synthetic department' } });
+  assert.equal(await adapter.authorizeContact({ record }), true);
   // A modified registry value invalidates the exported snapshot even if a writer
   // incorrectly forgot to increment its revision.
   await db.serviceMapEntry.update({ where: { id: contacts[0].id }, data: { phone: '+372 0000099' } });

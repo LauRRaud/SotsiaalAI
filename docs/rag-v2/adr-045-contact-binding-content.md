@@ -15,8 +15,13 @@
 
 ## Otsus
 
-- **Seose versioon 2** (`sotsiaalai/verified-contact-binding-2`) seob registrikirje ID, revisjoni ja sisu räsi (`content_sha256`). Sisu räsi arvutatakse ID-st, revisjonist, päritolust, omavalitsusest, nimest, telefonist, e-postist ja ametlikust URL-ist, ilma kontrolliajata.
+- **Seose versioon 2** (`sotsiaalai/verified-contact-binding-2`) seob registrikirje ID, revisjoni ja sisu räsi (`content_sha256`). Sisu räsi arvutatakse ID-st, revisjonist, päritolust, omavalitsusest, nimest, telefonist, e-postist, ametlikust URL-ist ning registri tüübist ja kirjeldusest, ilma kontrolliajata.
+  - Kirjelduses on registri roll: „Roll: … Osakond: …“.
   - `checked_at` jääb seosesse ja kirjesse ajaloona: kontroll, mida eksport luges.
+- **Roll tuleb registrist** (Codex 28.09: teenuserolli muutus peab seose lõpetama).
+  - Eksport kannab registri kirjeldusest loetud rolli ja osakonda, kui kirjeldus on kujul „Roll: … Osakond: …“. Paketi vana rolli ei kanta.
+  - Seose kontroll nõuab, et kirje roll ja osakond vastaksid registrile täpselt.
+  - Uus roll lõpetab seose nagu uus telefoninumber, ka ilma revisjoni tõstmata.
 - **Jooksev kontroll jääb samaks:** `readVerifiedMunicipalContact` ehk registri värskusreegel.
   - Kontrollitud kirje tohib olla kuni 90 päeva vana, sama revisjoni ja kontrollajaga.
   - Kirje peab olema avaldatud, ilma eemaldamismärketa, lubatud päritoluga, ametliku URL-iga ja aktiivse omavalitsuse all.
@@ -31,11 +36,14 @@
 
 - **`tests/rag-v2-contact-binding.test.mjs`** (uus, andmebaasita):
   - Codexi sond, kus liigub ainult kontrolliaeg: seos jääb kehtima;
-  - kaheksa sisu või identiteedi muutust kehtetustavad seose;
+  - kümme sisu, rolli või identiteedi muutust kehtetustavad seose;
+  - kirje peab kandma registri rolli, mitte paketi vana rolli;
+  - rolli loetakse ainult kujust „Roll: … Osakond: …“;
   - võltsitud räsi või kirje kontrolliaeg ei seo;
   - versioon 1 vajab endiselt sama kontrolliaega.
 - **`tests/rag-v2-structured-records.integration.test.mjs`**, päris PostgreSQL, Qdrant, Prisma register ja EstNLTK, 9/9:
   - sama revisjoni ja sisu uus kontroll hoiab ekspordi;
+  - eksport kannab registri rolli; uus roll lõpetab seose ja endine roll taastab selle;
   - muudetud telefon ilma revisjonita, uus revisjon ja ekspordi ajal eemaldatud kirje kehtetustavad nagu seni;
   - paketikontakt ja selle eksport on sama dokument (`batch_document_conflict`).
 - `npm test` läbis.
