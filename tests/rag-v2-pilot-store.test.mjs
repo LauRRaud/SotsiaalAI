@@ -448,3 +448,45 @@ test('fixed packet comparison skips embedding/search, binds the packet and prese
   await assert.rejects(f.service.run(f.user.id, { ...f.input, clientTurnKey: randomUUID() }), { code: 'fixed_packet_manifest_mismatch' });
   assert.deepEqual(f.calls, ['answer']);
 });
+
+// ADR-040: the fake answer arrives as a stream (its JSON in small pieces to onText) before the complete result.
+const streamedCall = (f, change = value => value) => {
+  const call = f.service.call;
+  return async input => {
+    const result = await call(input);
+    if (input.stage !== 'answer') return result;
+    result.value = change(result.value);
+    const json = JSON.stringify(result.value);
+    for (let i = 0; i < json.length; i += 9) { input.onText?.(json.slice(i, i + 9)); await new Promise(resolve => setImmediate(resolve)); }
+    return result;
+  };
+};
+test('ADR-040 real DB: a streamed answer shows its text first and is published after the same checks and accounting', async t => {
+  const f = await fixture(t), shown = [];
+  f.service.call = streamedCall(f);
+  const turn = await f.service.run(f.user.id, f.input, { onAnswerText: text => shown.push(text) });
+  assert.equal(turn.state, 'completed');
+  assert.equal(shown.join(''), 'Allikatekst\n\nPiiratud', 'the provisional text is the visible text without references');
+  assert.match(turn.answer.blocks[0].text, /Allikatekst/);
+  const row = await db.m4PilotTurn.findUnique({ where: { id: turn.id } });
+  assert.equal(row.payload.requestAudit.body.stream, true, 'the audited request says it was streamed');
+  const phases = row.payload.timings.phases;
+  assert(Number.isInteger(phases.first_text) && phases.first_text <= phases.answered && row.payload.timings.validatedDraftMs >= phases.answered);
+  assert.deepEqual(row.payload.events.map(e => [e.stage, e.state, e.usage?.output]), [['embedding', 'response_received', 0], ['answer', 'response_received', 100]]);
+  assert.deepEqual(f.calls, ['embedding', 'answer'], 'one answer call');
+  // A reader that went away changes nothing: the turn is checked and published.
+  const g = await fixture(t);
+  g.service.call = streamedCall(g);
+  assert.equal((await g.service.run(g.user.id, g.input, { onAnswerText: () => { throw new Error('reader gone'); } })).state, 'completed');
+});
+test('ADR-040 real DB: a streamed answer that fails validation is withheld whole after its text was shown', async t => {
+  const f = await fixture(t), shown = [];
+  f.service.call = streamedCall(f, value => ({ ...value, blocks: [{ ...value.blocks[0], refs: ['S99'] }] }));
+  await assert.rejects(f.service.run(f.user.id, f.input, { onAnswerText: text => shown.push(text) }), { code: 'invalid_answer_reference' });
+  assert.equal(shown.join(''), 'Allikatekst\n\nPiiratud');
+  const row = await db.m4PilotTurn.findFirst({ where: { chatTurn: { conversationId: f.conv.id } } });
+  assert.equal(row.state, 'answer_rejected');
+  assert.equal(row.payload.answer, undefined);
+  assert.equal(await db.conversationMessage.count({ where: { conversationId: f.conv.id } }), 0);
+  assert.deepEqual(f.calls, ['embedding', 'answer'], 'no repair call');
+});
