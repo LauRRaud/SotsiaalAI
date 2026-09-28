@@ -1636,7 +1636,10 @@ html[data-reduce-transparency="1"] .hand-cam {
   transform: translateX(-50%);
   width: min(34rem, calc(100vw - 1.5rem));
   aspect-ratio: auto;
-  padding: clamp(1.3rem, 3lvh, 1.9rem) clamp(1rem, 4vw, 1.8rem) clamp(1.1rem, 2.6lvh, 1.6rem);
+  /* Alumine polster ≥ 1.4rem: „Selge" nupu läikekiht (SpecularButton)
+     ulatub 20 px + lõuend 2 px nupust välja, ja väiksema polstriga keris
+     aken 2–4 px (mõõdetud 375 px ja 1536×730). */
+  padding: clamp(1.3rem, 3lvh, 1.9rem) clamp(1rem, 4vw, 1.8rem) clamp(1.4rem, 3lvh, 1.7rem);
 }
 .hand-guide-shell .glass-modal-title {
   margin-bottom: 0.75em;
@@ -1694,12 +1697,16 @@ html[data-reduce-transparency="1"] .hand-cam {
   margin: 0 0 1rem;
 }
 /* Kaks klassi: .glass-modal-body p (1.15em alla) jääks muidu peale. */
+/* Märkused on üherealised (omanik 28.09: „siin võiks olla ühes reas"):
+   tekst on lühike, 375 px telefonini mahub ta ühele reale. Kui kuskil
+   ikka murdub, murdub ühtlaselt, mitte üks sõna teisele reale. */
 .hand-guide-notes .hand-guide-note {
   margin: 0;
   color: var(--room-text-dim);
   font-size: 0.85rem;
   line-height: 1.4;
   text-align: left;
+  text-wrap: balance;
 }
 /* „Selge" = tavaline nupp oma sisu mõõtu, keskel (omanik 28.09: täislaiuses
    nupp oli liiga lai, „peaks olema ümber nupu nagu default"). */
