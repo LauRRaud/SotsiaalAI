@@ -33,4 +33,7 @@ Suure kataloogisisendiga (üle 18 000 tokeni) on arutluse mediaan 1148, väiksem
 
 - `tests/rag-v2-pilot-config.test.mjs`: 8192 ja 16384 on lubatud, 16385 mitte.
 - `tests/rag-v2-chat-plan.test.mjs`: uus plaan saab 8192; uuendus hoiab kinnitatud 4096.
-- Päris vestluses tuleb pärast uut plaani korrata `vague-then-details`.
+- **Päris vestluses (28.09):** väljalaske järel tehti ja aktiveeriti plaan `…20260928-1342` (`/etc/sotsiaalai/m4-corpus-chat-20260928b.json`).
+  - Kataloogi v2 kordus andis 38/40.
+  - `vague-then-details` 2 läbis. Väljundit kulus 4177 tokenit, sellest arutlust 2924, seega vana lae korral oleks see katkenud.
+  - [Aruanne](../audits/rag-v2-conversation-eval-2026-09-28-run3.md).
