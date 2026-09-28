@@ -150,3 +150,17 @@ test('a stored unified packet from a v2 directory generation stays restorable af
   assert.throws(() => mergeUnifiedPackets({ tenant: 'test', generationId: 'generation', directories: v2, plan, lanes: [] }), { code: 'unified_directory_required' });
   assert.throws(() => checkUnifiedDirectory(stored, [v2[0], directory('record', null, 'service')]), { code: 'unified_directory_required' });
 });
+
+test('ADR-041: days and months in words or digits (ET, EN, RU) are exact periods; the year inside them is not counted again', () => {
+  const periods = text => dateCandidates(text, 1).periods.map(({ from, to, precision }) => [from, to, precision ?? null]);
+  assert.deepEqual(periods('1. märtsil 2027'), [['2027-03-01', '2027-03-01', 'day']]);
+  assert.deepEqual(periods('31. oktoobril 2026'), [['2026-10-31', '2026-10-31', 'day']]);
+  assert.deepEqual(periods('2027. aasta jaanuaris'), [['2027-01-01', '2027-01-31', 'month']]);
+  assert.deepEqual(periods('veebruaris 2028'), [['2028-02-01', '2028-02-29', 'month']]);
+  assert.deepEqual(periods('01.03.2027 ja 1.4.2027'), [['2027-03-01', '2027-03-01', 'day'], ['2027-04-01', '2027-04-01', 'day']]);
+  assert.deepEqual(periods('March 1, 2027'), [['2027-03-01', '2027-03-01', 'day']]);
+  assert.deepEqual(periods('1 марта 2027 года'), [['2027-03-01', '2027-03-01', 'day']]);
+  assert.deepEqual(periods('1. märtsil 2027 või 2028'), [['2027-03-01', '2027-03-01', 'day'], ['2028-01-01', '2028-12-31', null]]);
+  assert.equal(dateCandidates('31. veebruaril 2027', 1).state, 'invalid_date_candidate');
+  assert.equal(dateCandidates('Helista 55 12 2027', 1).periods[0].precision, undefined, 'digits that are not a date stay a year candidate');
+});
