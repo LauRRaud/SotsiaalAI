@@ -25,6 +25,7 @@
  */
 
 import { useEffect, useRef, useState } from "react";
+import { AboutInfoIcon } from "@/components/brand/icons/CardIcons";
 import Button from "@/components/ui/Button";
 import {
   HAND_EVENT,
@@ -350,8 +351,11 @@ export default function HandGestures({ onStop, onOpenGuide, t }) {
         for (const event of swipe.update({ t: now, hand, pinched: still })) {
           /* Riba ütleb, mis suund tuvastati — nii näeb kasutaja kohe, kas
              kaamera sai liigutusest aru (omanik 26.09: „ei saa aru, kas
-             vasakule või paremale"). */
-          if (event.axis === "x") {
+             vasakule või paremale"). Peopesaga tehtud külgtõmme ei liiguta
+             midagi, aga riba ütleb, kuidas kätt keerata. */
+          if (event.type === "hint") {
+            say("room.hands_turn_side");
+          } else if (event.axis === "x") {
             /* Kaardid liiguvad käe suunas: käsi vasakule → rida nihkub
                vasakule ja paremalt tuleb järgmine kaart (nagu näpuga vedu). */
             sendHand({ action: "step", dir: -event.dir });
@@ -455,34 +459,35 @@ export default function HandGestures({ onStop, onOpenGuide, t }) {
         {gesture ? <span className="hand-cam-gesture">{t(`room.hands_gesture_${gesture}`)}</span> : null}
         <p className="hand-cam-text" role="status">
           {debug && metrics
-            ? `${metrics.label || "–"} ${metrics.score.toFixed(2)} · ${metrics.curls.map((c) => c.toFixed(2)).join(" ")} · ${metrics.thumb.toFixed(2)} · ${metrics.pinch.toFixed(2)}`
+            ? `${metrics.label || "–"} ${metrics.score.toFixed(2)} · ${metrics.curls.map((c) => c.toFixed(2)).join(" ")} · ${metrics.thumb.toFixed(2)} · ${metrics.pinch.toFixed(2)} · ↔${metrics.across.toFixed(2)}`
             : message}
         </p>
-        <button
-          type="button"
-          className="hand-cam-btn"
-          aria-label={t("room.hands_info")}
-          title={t("room.hands_info")}
-          aria-haspopup="dialog"
-          onClick={() => onOpenGuide?.()}
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="8.5" />
-            <path d="M12 11v5.2" />
-            <path d="M12 7.8v.01" />
-          </svg>
-        </button>
-        <button
-          type="button"
-          className="hand-cam-btn"
-          aria-label={t("room.hands_off")}
-          title={t("room.hands_off")}
-          onClick={onStop}
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true">
-            <path d="M7.5 7.5l9 9M16.5 7.5l-9 9" />
-          </svg>
-        </button>
+        {/* Info ja väljalülitus on üks paar riba otsas, mitte laiali
+            (omanik 28.09: „info ikoon väike ja kole, sulge rist liiga
+            kaugel"). Info = sama glüüf mis doki info-nupul. */}
+        <span className="hand-cam-actions">
+          <button
+            type="button"
+            className="hand-cam-btn"
+            aria-label={t("room.hands_info")}
+            title={t("room.hands_info")}
+            aria-haspopup="dialog"
+            onClick={() => onOpenGuide?.()}
+          >
+            <AboutInfoIcon />
+          </button>
+          <button
+            type="button"
+            className="hand-cam-btn"
+            aria-label={t("room.hands_off")}
+            title={t("room.hands_off")}
+            onClick={onStop}
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
+              <path d="M7.5 7.5l9 9M16.5 7.5l-9 9" />
+            </svg>
+          </button>
+        </span>
       </div>
     </>
   );
