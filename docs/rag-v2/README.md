@@ -177,6 +177,7 @@ sudo -n chown root:ubuntu <out>; sudo -n systemctl restart sotsiaalai-frontend
 - [ADR-040](adr-040-answer-streaming.md) (28.09.2026): vastus ilmub kirjutamise ajal (`Accept: text/event-stream`), kinnitatud vastus asendab selle samade vastuse- ja viitekontrollidega; mudelikutse on ikka üks. Katkestus, vigane vastus ja taasühendumine on testitud, `first_text` mõõdetakse eraldi.
 - [ADR-041](adr-041-exact-dates.md) (28.09.2026): täpne päev või kuu küsimuses (sõnade või numbritega, eesti, inglise ja vene keeles) lisab sel ajal kehtiva redaktsiooni tänase kõrvale, mitte kogu aastat; „praegu“ tühistab varasema perioodi. Aluseks on [vestluste hindamine](../audits/rag-v2-conversation-eval-2026-09-28.md) (16 vestlust, 40 pööret, toortulemus 31/40).
 - [ADR-042](adr-042-rerank-law-versions.md) (28.09.2026): rerank näeb õigusakti lõigu kehtivust (`valid_from`, `valid_to`) ja tänast kuupäeva ning hoiab küsitud päeval kehtivat redaktsiooni; hindamise `found_valid_on` eristab sama pealkirjaga redaktsioone.
+- [ADR-043](adr-043-answer-output-room.md) (28.09.2026): uus vestlusplaan annab vastusemudelile 8192 väljunditokenit (seni 4096), sest arutlus kulutas suure kataloogisisendi korral kogu lae; uuendus hoiab kinnitatud plaani lae, uus lagi vajab uut plaani.
 
 ### Runbook ja aruanded
 
