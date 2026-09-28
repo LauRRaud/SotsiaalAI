@@ -1232,6 +1232,16 @@ html:not([data-contrast="hc"]) :is(.gc, .pc) .glass-iconbtn:is(.gc-arrow, .pc-ar
   box-shadow: inset 0 1px rgba(247, 247, 247, 0.08);
   pointer-events: none;
 }
+/* Ruumi kiirmenüü = ülemise juhtpaneeli TOON (omanik 28.09: „kas ülemine
+   paneel on teist värvi kui alumine? kui jah, pane alumine ka selliseks").
+   Materjal oli sama (--control-glass-bg 0.62 + blur 8px), aga klaas
+   paistab läbi: ülemine seisab tumeda sooja seina ees ja nägi välja
+   rgb(60,40,27), alumine heleda vaiba ees rgb(75,64,60) — hallikas.
+   Vaiba ees annab sama pruuni see tihedam soe toon (mõõdetud, vt PR).
+   Kõrgkontrast ja vähendatud läbipaistvus jäävad tokeni omale. */
+html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .gc-shortcuts > .gc-shortcut-menu::before {
+  background: rgba(30, 13, 1, 0.8);
+}
 .room[data-power="on"][data-cards-ready="1"] .gc-arrow {
   --gc-nav-opacity: 0.85;
   --gc-nav-pointer: auto;
