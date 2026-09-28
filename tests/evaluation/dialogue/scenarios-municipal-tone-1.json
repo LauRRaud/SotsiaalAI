@@ -1,0 +1,28 @@
+{
+  "schema_version": "rag-v2/dialogue-eval-2",
+  "purpose": "Targeted check for dialogue prompt 14 (28.09.2026): a municipal answer gives the service, its contacts and the step, without a limitation or closing sentence about whether collected records are still current (the owner found 'Ma ei saa nende andmete põhjal kinnitada, kas teenuse korraldus on praegu samasugune; küsi see vallavalitsusest üle' odd). Written before any run; run on the code before and after the change.",
+  "expectation_help": {
+    "region": "the municipal scope of the turn",
+    "must / must_not": "regular expressions on the visible answer text; must_not catches a currency caveat or a collection date in the answer"
+  },
+  "scenarios": [
+    { "id": "tone-tartu-transport", "title": "Tartu vald, sotsiaaltransport", "source": "window check 28.09", "turns": [
+      { "mode": "new", "text": "Elan Tartu vallas, mitte Tartu linnas. Kuhu pöörduda sotsiaaltranspordi saamiseks?",
+        "expect": { "region": "tartu_vald", "must": ["tartuvald\\.ee|\\d{3} ?\\d{4}"], "must_not": ["ei saa[^.]{0,120}(kinnita|öelda)[^.]{0,120}(praegu|kehti|samasugune|ajakohane|kättesaadav)", "(kogutud|kontrollitud|pärinevad)[^.]{0,40}\\d{1,2}\\.\\d{1,2}\\.\\d{4}"] } } ] },
+    { "id": "tone-kose-transport", "title": "Kose vald, sõit arsti juurde", "source": "window check 28.09", "turns": [
+      { "mode": "new", "text": "Mu naabrimees vajab transporti arsti juurde, ta elab Kose vallas. Kellele ta saab helistada?",
+        "expect": { "region": "kose_vald", "must": ["\\d{3} ?\\d{4}"], "must_not": ["ei saa[^.]{0,120}(kinnita|öelda)[^.]{0,120}(praegu|kehti|samasugune|ajakohane|kättesaadav)", "(kogutud|kontrollitud|pärinevad)[^.]{0,40}\\d{1,2}\\.\\d{1,2}\\.\\d{4}"] } } ] },
+    { "id": "tone-harku-food", "title": "Harku vald, toit", "source": "window check 28.09", "turns": [
+      { "mode": "new", "text": "Mul on raha otsas ja toiduks ei jätku. Elan Harku vallas.",
+        "expect": { "region": "harku_vald", "must": ["harku\\.ee|\\d{3} ?\\d{4}"], "must_not": ["ei saa[^.]{0,120}(kinnita|öelda)[^.]{0,120}(praegu|kehti|samasugune|ajakohane|kättesaadav)", "(kogutud|kontrollitud|pärinevad)[^.]{0,40}\\d{1,2}\\.\\d{1,2}\\.\\d{4}"] } } ] },
+    { "id": "tone-tartu-shelter", "title": "Tartu vald, täna pole kus magada", "source": "window check 28.09", "turns": [
+      { "mode": "new", "text": "Elan Tartu vallas. Mul pole täna öösel kusagil magada ega raha toidu ostmiseks. Kust saan kohe abi?",
+        "expect": { "region": "tartu_vald", "must": ["\\d{3} ?\\d{4}"], "must_not": ["(kogutud|kontrollitud|pärinevad)[^.]{0,40}\\d{1,2}\\.\\d{1,2}\\.\\d{4}"] } } ] },
+    { "id": "tone-harku-home-care", "title": "Harku vald, koduteenus emale", "source": "catalogue scenario", "turns": [
+      { "mode": "new", "text": "Vajan emale kodus abi igapäevaste toimingutega. Ema elab Harku vallas.",
+        "expect": { "region": "harku_vald", "must_not": ["ei saa[^.]{0,120}(kinnita|öelda)[^.]{0,120}(praegu|kehti|samasugune|ajakohane|kättesaadav)", "(kogutud|kontrollitud|pärinevad)[^.]{0,40}\\d{1,2}\\.\\d{1,2}\\.\\d{4}"] } } ] },
+    { "id": "tone-tartu-home-care", "title": "Tartu vald, koduteenus", "source": "catalogue scenario", "turns": [
+      { "mode": "new", "text": "Kuidas saada koduteenust Tartu vallas?",
+        "expect": { "region": "tartu_vald", "must_not": ["ei saa[^.]{0,120}(kinnita|öelda)[^.]{0,120}(praegu|kehti|samasugune|ajakohane|kättesaadav)", "(kogutud|kontrollitud|pärinevad)[^.]{0,40}\\d{1,2}\\.\\d{1,2}\\.\\d{4}"] } } ] }
+  ]
+}
