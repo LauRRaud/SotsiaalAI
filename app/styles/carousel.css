@@ -1160,6 +1160,19 @@ html:not([data-contrast="hc"]) :is(.gc, .pc) .glass-iconbtn:is(.gc-arrow, .pc-ar
   border: 0;
   box-shadow: inset 0 1px rgba(247, 247, 247, 0.08);
 }
+/* Ruumi menüü nooled = ülemise paneeli toon (omanik 28.09, pärast kiirmenüü
+   ja ülemise paneeli ühtlustamist: „aga vasakule ja paremale noole nupp
+   menüüs?"). Nooled seisavad tumeda oranžika puidu ees; tokeni 0.62 lasi
+   selle läbi ja nool oli pruun: vasak rgb(41,20,10), parem rgb(25,14,10).
+   Jahe toon rgba(16,22,28) kustutab pruuni (nagu room.css .room-quickbar).
+   Tihedus 0.82, sest nupp ise on puhkeolekus opacity 0.85 (see hoiab
+   chevroni kiirmenüü ikoonidega sama heledana, efektiivselt ~0.78):
+   0.85 x 0.82 ~ 0.7, sama läbipaistvus kui paneelidel. Mõõdetud 1536x730:
+   vasak rgb(34,24,22), parem rgb(24,21,22). Hinnastuse nool (.pc-arrow)
+   ja kõrgkontrast / vähendatud läbipaistvus jäävad tokeni omale. */
+html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .gc .glass-iconbtn.gc-arrow {
+  background: rgba(16, 22, 28, 0.82);
+}
 /* Optiline tsentreering (tellija): chevroni KOLMNURGA raskuskese
    nupu keskele — bbox-keskjoondus jätab tipu keskele ja keha kõrvale.
    Kolmnurga raskuskese on 1/6 glüüfi laiusest tipu poolt eemal.
