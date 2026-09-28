@@ -126,6 +126,18 @@ Avatud: 60 000 tekstiosa mahupiir ja
 vestlusplaani vahetus iga uue indeksipõlvkonnaga. [Uus ülevaatus](../audits/rag-v2-codex-review-2026-09-27.md#6-pr-214216-plaani-uuendus-ja-õigusaktide-värskendus),
 [serverimõõtmised](../rag-v2/adr-036-version-index.md#mõõtmine-serveris-27092026).
 
+**28.09 Otsingu jõudluse kontroll (#222 kood).** Kanalite ajad mõõdetakse otsingus,
+kuid need kaovad ühise paketi koostamisel ja puuduvad salvestatud pöörde auditist.
+Järgmine mõõtmise samm on nende edasikandmine ja salvestamine: tehtud [ADR-039](../rag-v2/adr-039-search-timings.md)-ga (`timings.search`). Suure `eligibleIds`
+loendi optimeerimine peab säilitama tekstiosa rollipiiri enne kandidaatide valikut;
+sünteetiline mahukatse seda veel ei tõenda. `exact: true` jätab kvantimise vahele.
+Serveri mälusurve põhjus ja 1,7 GB lisavaru mõju vajavad päringuaegset tõendit.
+Opuse 1×/2×/4× aruandes on soojas katses sõnaline otsing kallim kui vektorotsing;
+ID-loendi eemaldamise võit on 28–109 ms. Kohaliku sondi dokumendivalik erineb
+vestluse filtritest ja 91% vastete loendus ei kasuta sama ulatust. Mahupiiri
+tõstmine vajab nende piirangute arvestamist; 1 GB PostgreSQLi puhver on veel katseettepanek.
+[Kontrolli ulatus](../audits/rag-v2-codex-review-2026-09-27.md#9-otsingu-ajamõõtmise-ja-mäluväidete-kontroll-2809).
+
 **27.09 Versioonipõhise indeksi kohalik ülevaatus (Codex, #209–#211).** Uut kinnitatud
 koodiviga ei leitud; 24 sihttesti läbisid, sh päris EstNLTK-ga vana/uue otsingu
 võrdlus ning kahe dokumendi lisamine ilma vanade dokumentide impordi ja

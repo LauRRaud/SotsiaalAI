@@ -180,6 +180,19 @@ test('one dialogue moves from journals to local support to two publication perio
   for (const input of f.inputs.slice(5)) assert.equal(input.evidence.retrieval.lanes.filter(lane => lane.kind === 'publication_period').length, 0);
   assert.doesNotMatch(JSON.stringify(f.inputs), /DO_NOT_EXPOSE|private-journal/);
   const row = await f.row(comparison.id);
+  // Where the search spent its time stays with the turn (search-timings-1), never in what the model reads or in the
+  // evidence packet: steps as milliseconds since the search started, each lane's own timings (lanes are not summed).
+  const timings = row.payload.timings.search;
+  assert.equal(timings.version, 'rag-v2/search-timings-1');
+  // jsonb keeps its own key order: the steps are checked by name, each at or after the one before.
+  const order = ['directory', 'scope', 'knowledge_and_records', 'periods', 'merged'], since = timings.since_start_ms;
+  assert.deepEqual(Object.keys(since).sort(), [...order].sort());
+  assert(order.every((step, index) => Number.isInteger(since[step]) && since[step] >= (index ? since[order[index - 1]] : 0)), JSON.stringify(since));
+  assert.deepEqual(Object.keys(timings.lanes).sort(), ['knowledge', 'period_1', 'period_2', 'records']);
+  assert(Object.values(timings.lanes).flatMap(Object.values).every(ms => Number.isInteger(ms) && ms >= 0));
+  // The vector channel also keeps Qdrant's own time for the query.
+  for (const name of ['lane', 'lexical', 'vector', 'vector_server', 'total']) assert(Number.isInteger(timings.lanes.knowledge[name]), name);
+  assert.doesNotMatch(JSON.stringify(f.inputs) + JSON.stringify(row.payload.packet), /search_timings|since_start_ms|vector_server/);
   for (const block of row.payload.answer.blocks) for (const ref of block.refs) {
     assert.equal((await f.adapters.canonical(f.config, row.payload.packet, ref)).evidence_id, row.payload.packet.reference_map[ref].evidence_id);
   }

@@ -479,3 +479,78 @@ tulemus on teostaja aruanne, mitte siin korratud mõõtmine.
 - **P2 (404):** avaldatud redaktsiooni või kandidaadi XML-i 404, otsingu 404 ja vastus ilma `kokku`/`aktid` väljadeta annavad `fetch_failed` ja exit 20. `--download` tõrked jõuavad aruandesse.
 - **Testid:** sõltumatu sondi neli juhtu on nüüd `tests/rag-v2-law-validity.test.mjs`-is. Vana koodiga annab sama test Codexi tulemused: P1 `unchanged` märkusega, P2 `missing_version:451`, 404 ilma tõrgeteta. Uue koodiga on tulemused `review`, `group_repealed` ja `fetch_failed` (`not_found`, `not_found`, `invalid_response`).
 - **Pärisjooks v32 peal pärast parandust:** 62/64 muutumata, 2 muutunud, 0 päringutõrget. Kolm märkust põhinevad RT ametlikul viitel.
+
+## 9. Otsingu ajamõõtmise ja mäluväidete kontroll (28.09)
+
+Codex, kohalik `main` `784737c77` (#222). Loetud praegust otsingurada ja
+kohalikku `tmp/rag-v2-dev-2026-09-28/qdrant-scale-bench.mjs` sondi. Serveri
+mäluseadeid ega andmeid ei muudetud; uusi koormuskatseid ei käivitatud.
+Edastatud serverimõõtmiste sõltumatu kordus on `not_run`.
+
+- **Kanalite ajad on olemas, kuid kaovad enne salvestamist.**
+  `search/retrieval.js` täidab `measurements.timings_ms`-i. `mergeUnifiedPackets`
+  (`search/unified.js:137–141`) jätab need välja ja tagastab mudeliprojektsiooni
+  mõõdikud. `pilot/service.js:210–213` ei kopeeri `measurements` välja
+  salvestatavasse paketti. Vajalik on ajad edasi kanda otsinguradade kaupa ning
+  salvestada need tehnilisse auditisse. Ajad ei pea jõudma mudeli sisendisse.
+- **Praegused kanaliajad pole ainult andmebaasi täitmisaeg.** Vektori mõõtmine
+  hõlmab ka päringuvektori lugemist, filtrite koostamist, serialiseerimist,
+  transporti ja vastuse töötlemist; leksikaalne mõõtmine ka morfoloogiat.
+  Kanalid jooksevad paralleelselt, seega nende aegu ei liideta pöörde kestuseks.
+- **ID-loendi eemaldamine vajab samaväärset piirangut.** Dokumentide ja
+  versioonide piirid on eraldi SQL-i/Qdranti filtrites; `eligibleIds` välistab
+  lisaks `document_label`, `record_binding` ja `record_links` rolliga tükid.
+  Lihtne loendi eemaldamine võib muuta kandidaate või anda
+  `channel_result_outside_scope`. Kohalik mahusond lubab kõiki valitud
+  dokumentide tükke, seega ei tõenda selle kahe päringu võrdsus päris korpuse
+  samaväärsust. Võimalik katse: sama ulatuse sees väiksem välistatud ID-de loend,
+  filtreerides endiselt enne kandidaatide `LIMIT`-it.
+- **`exact: true` ei kasuta int8 kvantimist.** Seda kinnitab
+  [Qdrant 1.19.1 lähtekood](https://github.com/qdrant/qdrant/blob/v1.19.1/lib/segment/src/index/vector_index_search_common.rs#L15-L24).
+- **`memory.low` on parima võimaliku kaitse piir, mitte RAM-i reserveerimine
+  ega andmete eellaadimine.** Toime sõltub ülemistest cgroup'idest;
+  `memory_recursiveprot` korral saab alampuu kaitset pärida ilma iga lehe
+  eraldi piirita. Väide, et mõlemad väärtused peavad alati olema mittenullid,
+  vajab serveri tegeliku hierarhia ja mount-valikute täpsustust.
+  [Linuxi dokumentatsioon](https://www.kernel.org/doc/html/v6.12/admin-guide/cgroup-v2.html#memory-interface-files).
+- **128 MB `shared_buffers` võrreldes 653 MB tabeliga ei tõenda I/O-pudelikaela.**
+  PostgreSQL kasutab lisaks operatsioonisüsteemi vahemälu
+  ([dokumentatsioon](https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-SHARED-BUFFERS)).
+  1,7 GB vaba mälu võimalikku mõju tuleb hinnata sama päringu ajal mõõdetud
+  kanalite aegade, I/O, lehevigade ja mälusurvega; sülearvuti 1×/2×/4× katse
+  näitab selle masina skaleerumist, mitte serveri külma päringu kindlat aega.
+
+### 9.1. Opuse 1×/2×/4× mõõtmisaruande järelkontroll (28.09)
+
+Loetud lisatud mõõtmisaruanne ja kohalik
+`tmp/rag-v2-dev-2026-09-28/lexical/lexical-scale-bench.mjs`. Ajatabel on
+Opuse edastatud tulemus; mõõtmisi ei korratud. Käituskoodi ja serveriseadeid ei muudetud.
+
+- Aruande järgi annab Qdranti ID-loendi eemaldamine 1× mahul 92 → 64 ms ja
+  4× mahul 209 → 100 ms: vastavalt 28 ja 109 ms. See ei selgita üksi kirjeldatud
+  mitmesekundilist aeglustumist. Sõnaline päring on soojas katses kulukam
+  (1× umbes 1 s, 4× umbes 3 s). Mälu kui külma päringu põhjuse tõend jääb lahtiseks.
+- Sõnaline sond kasutab tootmisega sama `ts_rank` + 0,35 morfoloogiakaalu ning
+  samu kolme paralleeltöötaja planeerimisseadeid. Dokumendivalik on aga
+  `HAVING count(*) > 1`; päris rada kasutab `record_kind`, õigusi, kehtivust ja
+  piirkonda ning tõendikõlblike tekstiosade loendit. Seega ei ole see kogu
+  vestluse otsingurada täpselt kordav katse.
+- `matched_rows_long_query` loetakse kogu katsetabelist, ilma ajastatud päringu
+  dokumendi- ja tekstiosafiltrita. Väidet „91% vestluspäringu ulatusest” tuleb
+  kontrollida sama ulatuse lugeja ja nimetajaga. Sond ajastab päringud järjest;
+  ühe päringu paralleeltöötajad ei tõenda mitme samaaegse pöörde jõudlust.
+- `shared_buffers=1GB` on katsetatav seadistus, mitte 653 MB tabelimahust
+  järelduv vajadus. See suurendab puhvrit 896 MiB võrra, kuid kogu PostgreSQLi
+  mälu sisaldab ka muud; Qdranti `memory.low` omakorda ei eralda uut gigabaiti.
+  Mõju tuleb võrrelda samade päringutega enne ja pärast iga eraldi muudatust.
+- Piirid on koodis kinnitatud: indeks 10 000 dokumenti / 60 000 tekstiosa,
+  ühine kataloog 10 000 dokumenti, reservpäring kuni 100 dokumenti
+  (`search/capacity.js`, `search/unified.js`, `search/ranking.js`). Ainult
+  tekstiosade piiri tõstmine ei nõua kataloogi dokumendipiiri tõstmist.
+  34 405 tekstiosa ja 6026 dokumendi korral mahub arvuliselt juurde 500 × 40
+  tekstiosa (kokku 54 405 / 6526); see ei ole uue mahu latentsuse garantii.
+- Soovitatud järjekord: säilitada kanalite ajad auditis, korrata katse päris
+  filtritega ja päringuaegse I/O/mälumõõtmisega, katsetada mäluseadeid eraldi,
+  seejärel optimeerida sõnalist kandidaatide valikut ning tõsta tõendatud piiri.
+  Sagedaste sõnade eemaldamine muudab leitavaid kandidaate ja vajab ka
+  olemasoleva mitmekeelse otsinguvalimi tulemuste kontrolli.
