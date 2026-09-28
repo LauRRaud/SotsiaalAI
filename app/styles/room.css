@@ -926,7 +926,8 @@ html[data-contrast="hc"] .room-quickbar {
   z-index: 1;
   width: 3.1rem;
   height: 3.1rem;
-  --icon-size: 1.7rem;
+  /* Ikoon = kiirmenüü ikoon (2.75rem × 0.68 = 29.9 px), mitte oma 1.7rem. */
+  --icon-size: calc(var(--hit-target-min, 2.75rem) * 0.68);
   color: var(--room-text-soft);
   background-color: transparent;
   background-image: none;
@@ -973,8 +974,8 @@ html[data-contrast="hc"] .room-quickbar {
   }
 }
 .glass-iconbtn.room-quick-btn svg {
-  width: 1.7rem;
-  height: 1.7rem;
+  width: var(--icon-size);
+  height: var(--icon-size);
 }
 /* Hover = alumise kiirmenüü nupp (.gc-shortcut, carousel.css): ainult
    heledam täide, ilma servata (omanik 28.09: „hover peab olema selline
@@ -1442,12 +1443,16 @@ html[data-reduce-motion="1"] .room-walk-audio {
   left: 50%;
   translate: -50% 0;
   z-index: var(--z-floating);
+  /* Ikoonid SAMA suured kui kiirmenüüs (carousel.css: nupp 2.75rem,
+     ikoon 0.68 sellest = 29.9 px) — omanik 28.09: „kontrolli, kas …
+     ikoonid on sama suured kui kiirmenüü ikoonid". Olid 20.8–23.2 px. */
+  --hand-cam-icon: calc(var(--hit-target-min, 2.75rem) * 0.68);
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  max-width: min(26rem, calc(100vw - 1.5rem));
-  min-height: 2.5rem;
-  padding: 0.15rem 0.15rem 0.15rem 0.85rem;
+  gap: 0.55rem;
+  max-width: min(28rem, calc(100vw - 1.5rem));
+  min-height: calc(var(--hit-target-min, 2.75rem) + 0.3rem);
+  padding: 0.15rem 0.2rem 0.15rem 1rem;
   border: 1px solid var(--glass-border-soft);
   border-radius: 999px;
   background: rgba(18, 15, 12, 0.62);
@@ -1482,8 +1487,8 @@ html[data-reduce-transparency="1"] .hand-cam {
 }
 .hand-cam-dot {
   flex: none;
-  width: 0.55rem;
-  height: 0.55rem;
+  width: 0.62rem;
+  height: 0.62rem;
   border-radius: 50%;
   background: #e0574f;
   box-shadow: 0 0 0 3px rgba(224, 87, 79, 0.22);
@@ -1516,7 +1521,7 @@ html[data-reduce-transparency="1"] .hand-cam {
   min-width: 0;
   margin: 0;
   overflow: hidden;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   line-height: 1.3;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1526,8 +1531,8 @@ html[data-reduce-transparency="1"] .hand-cam {
   display: grid;
   flex: none;
   place-items: center;
-  width: 2.2rem;
-  height: 2.2rem;
+  width: var(--hit-target-min, 2.75rem);
+  height: var(--hit-target-min, 2.75rem);
   padding: 0;
   border: 1px solid transparent;
   border-radius: 50%;
@@ -1541,83 +1546,64 @@ html[data-reduce-transparency="1"] .hand-cam {
     border-color var(--dur-fast) var(--ease-soft);
 }
 .hand-cam-btn svg {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: var(--hand-cam-icon);
+  height: var(--hand-cam-icon);
 }
+/* Hover = kiirmenüü nupp: heledam täide, ilma servata. */
 .hand-cam-btn:hover,
 .hand-cam-btn:focus-visible {
-  border-color: var(--glass-cell-border);
-  background: var(--glass-cell-bg-hover);
+  background: rgba(248, 248, 248, 0.055);
   color: var(--room-text);
+  outline: none;
 }
-/* Info ja väljalülitus üks tihe paar teksti järel (omanik 28.09: „sulge
-   rist ka lähemale, ikoonid kuidagi lahus … info ikoon ka vasakule").
-   Ringid olid kõrvuti, aga kumbki glüüf seisis oma ringi keskel ja risti
-   ümber oli palju tühja: glüüfide vahe oli ~20 px. Nüüd on nupud kitsad
-   pillid, teine astub esimese serva peale (tabamusala jääb ≥ 24 px) ja
-   paar astub teksti poole. */
+.hand-cam-btn:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+/* Info ja väljalülitus: paar riba otsas, kiirmenüü nuppude mõõdus ja
+   vahega (omanik 28.09: „tee see suuremaks ja võid ikoonidele ka suurema
+   vahe teha"). Vahepealne tihe, kattuv paar oli 1.7rem pillidest. */
 .hand-cam-actions {
   display: flex;
   flex: none;
   align-items: center;
-  margin-left: -0.2rem;
+  gap: 0.15rem;
 }
-.hand-cam-actions .hand-cam-btn {
-  width: 1.95rem;
-  border-radius: 999px;
-}
-.hand-cam-actions .hand-cam-btn + .hand-cam-btn {
-  margin-left: -0.3rem;
-}
-.hand-cam-actions .hand-cam-btn svg {
-  width: 1.45rem;
-  height: 1.45rem;
-}
-/* Kiirriba käepide ja avatud juhtpaneel on ekraani keskel: riba seisab
-   käepideme all ja astub avatud paneeli (ja tema nimesiltide) eest alla.
-   Riba on ülariba õde (RoomStage), nii et `~` näeb paneeli olekut. */
+/* Avatud juhtpaneel (ülaservast 0.3rem + 4rem) katab käepideme all
+   seisva riba: riba astub paneeli alla, mitte kaugemale. Paneeli
+   nimesildid (.room-quick-tip) joonistuvad riba PEALE, mitte ei lükka
+   teda alla (omanik 28.09: „hover tekstid lükkavad liiga alla"; enne
+   seisis riba avatud menüü ajal 8.6rem ehk 138 px kõrgusel). Riba on
+   ülariba õde (RoomStage), nii et `~` näeb paneeli olekut. */
 .room-topbar[data-open="1"] ~ .hand-cam {
-  top: calc(env(safe-area-inset-top) + 6.6rem);
+  top: calc(env(safe-area-inset-top) + 4.7rem);
 }
 /* Hiirega: riba ripub peidetud menüü käepideme (nähtav 1.55rem) ALL,
-   keskel, nagu telefonis (omanik 28.09: „peaks olema peidetud menüü all,
-   mobiilis ka seal" — vahepealne koht käepideme kõrval oli vale). Madalam
-   kui puutel, et ta mahuks käepideme ja keskmise kaardi vahele ka
-   madalal ekraanil (1366×657 algab kaart 65 px kõrgusel). */
+   keskel, nagu telefonis (omanik 28.09: „peaks olema peidetud menüü
+   all, mobiilis ka seal"). */
 @media (hover: hover) and (pointer: fine) {
   .hand-cam {
     top: calc(env(safe-area-inset-top) + 1.8rem);
-    gap: 0.4rem;
-    min-height: 2.1rem;
-    padding: 0.05rem 0.1rem 0.05rem 0.75rem;
-  }
-  .hand-cam-text {
-    font-size: 0.86rem;
-  }
-  .hand-cam-btn {
-    width: 1.95rem;
-    height: 1.95rem;
-  }
-  .hand-cam-actions .hand-cam-btn {
-    width: 1.7rem;
-  }
-  .hand-cam-actions .hand-cam-btn svg {
-    width: 1.3rem;
-    height: 1.3rem;
   }
   .room-topbar[data-open="1"] ~ .hand-cam,
   .room-topbar:hover ~ .hand-cam,
   .room-topbar:focus-within ~ .hand-cam {
-    top: calc(env(safe-area-inset-top) + 8.6rem);
+    top: calc(env(safe-area-inset-top) + 4.7rem);
+  }
+  /* Nimesildid on ülariba sees (tema kiht 31), riba kiht on 70: ilma
+     selleta jääks silt riba taha. Ainult hoveri/fookuse ajal — modaali
+     all ei saa ülariba hoverit ega fookust saada. */
+  .room-topbar:hover,
+  .room-topbar:focus-within {
+    z-index: calc(var(--z-floating) + 1);
   }
 }
 @media (max-width: 600px) {
   .hand-cam {
-    gap: 0.4rem;
-    padding-left: 0.7rem;
+    gap: 0.45rem;
+    padding-left: 0.85rem;
   }
   .hand-cam-text {
-    font-size: 0.84rem;
+    font-size: 0.9rem;
   }
 }
 /* Juhend (RoomStage'i info-aken). Oma mõõt, mitte kaardi oma: kaardi
