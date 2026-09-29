@@ -1,0 +1,25 @@
+{
+  "document_id": "riigiteataja:126092026005:lisa:abivahendite_loetelu",
+  "title": "Abivahendite loetelu: määruse „Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi andmed“ lisa (sotsiaalministri 24.09.2026 määruse nr 37 sõnastuses)",
+  "source_type": "legal_act",
+  "language": "et",
+  "authority": "Sotsiaalkaitseminister",
+  "valid_from": "2026-10-01",
+  "publication_date": "2026-09-26",
+  "jurisdiction_level": "national",
+  "country": "EE",
+  "source_url": "https://www.riigiteataja.ee/akt/126092026005",
+  "source_path": "oigusaktid/lisad/126092026005-abivahendite-loetelu.json",
+  "source_format": "json",
+  "rt_annex": {
+    "xml_path": "oigusaktid/126092026005.xml",
+    "xml_sha256": "f1131403e9ea9492403edb0d25ec254b12cf7747362b4e7e73e2ca50b0c52120",
+    "act_reference": "126092026005",
+    "file_name": "SOM_24092026_m37_lisa.pdf",
+    "pdf_sha256": "11f05d9e50835bf9d13677e9b3f5aec59101ecd0c17318050f3e05b5975bf2a0",
+    "table": "abivahendite_loetelu",
+    "extractor": "rag-v2/rt-annex-table-1",
+    "rows": 327,
+    "pages": 17
+  }
+}

@@ -131,4 +131,4 @@ Kolm esimest on sihttestides ja teises sihtkataloogis (`scenarios-two-people-2.j
   - **Olek jäi alles sagedamini:**
     - v2 plaanidel lükati täna tagasi 15/50 jätkupööret (30%), v3 plaanidel 4/39 (10%).
     - v3 ülejäänud põhjused: `fact_superseded_by`, `needs_based_on` ja üks `previous_fact_dropped`. Need kuuluvad faktide elutsükli avatud töö juurde.
-  - Kulu: umbes 0,5 USD. Kõik mõõtmised 29.09 kokku umbes 1,0 USD.
+  - Kulu plaani hinnatabeli järgi umbes 0,5 USD ja kõik mõõtmised 29.09 kokku umbes 1,0 USD. Need on ettevaatlikud hinnangud. Tegelik OpenAI kulu oli 27.–29.09 kokku 0,57 USD (krediidisaldo 7,72 → 7,15 USD).

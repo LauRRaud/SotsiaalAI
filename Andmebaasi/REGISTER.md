@@ -9,7 +9,7 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | KOV | 78 | 234 | 78 KOV-i põhipaketti koos metaandmete ja allikaloenditega. |
 | kontaktid | 0 | 10 | Kontaktide otsingumaterjal; kattuvus KOV-pakettidega vajab ühendamist. |
 | organisatsioonid | 1 | 3 | Organisatsiooni korjatud sisu ja allikad. |
-| oigusaktid | 134 | 134 | XML-aktid, sh eri redaktsioonid; kehtivus tuleb vastuvõtul kontrollida. |
+| oigusaktid | 136 | 138 | XML-aktid, sh eri redaktsioonid; kehtivus tuleb vastuvõtul kontrollida. Kaks akti lisast tuletatud tabelit (`lisad/`, ADR-050). |
 | register | 0 | 2 | Kavandatud allikate register, mitte teadmistekst. |
 | taastatud_allikad | 0 | 22 | Serveri vanast indeksist taastatud tekst. Enne importi võrrelda põhipakettidega. |
 
@@ -1293,6 +1293,10 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | 111072026042.xml | [oigusaktid/111072026042.xml](<oigusaktid/111072026042.xml>) |
 | 111072026043.xml | [oigusaktid/111072026043.xml](<oigusaktid/111072026043.xml>) |
 | 126092026005.xml | [oigusaktid/126092026005.xml](<oigusaktid/126092026005.xml>) |
+| 129082025009-abivahendite-loetelu.json | [oigusaktid/lisad/129082025009-abivahendite-loetelu.json](<oigusaktid/lisad/129082025009-abivahendite-loetelu.json>) |
+| 129082025009-abivahendite-loetelu.meta.json | [oigusaktid/lisad/129082025009-abivahendite-loetelu.meta.json](<oigusaktid/lisad/129082025009-abivahendite-loetelu.meta.json>) |
+| 126092026005-abivahendite-loetelu.json | [oigusaktid/lisad/126092026005-abivahendite-loetelu.json](<oigusaktid/lisad/126092026005-abivahendite-loetelu.json>) |
+| 126092026005-abivahendite-loetelu.meta.json | [oigusaktid/lisad/126092026005-abivahendite-loetelu.meta.json](<oigusaktid/lisad/126092026005-abivahendite-loetelu.meta.json>) |
 | 405092026051.xml | [oigusaktid/405092026051.xml](<oigusaktid/405092026051.xml>) |
 | 426092026047.xml | [oigusaktid/426092026047.xml](<oigusaktid/426092026047.xml>) |
 | 418082026033.xml | [oigusaktid/418082026033.xml](<oigusaktid/418082026033.xml>) |
