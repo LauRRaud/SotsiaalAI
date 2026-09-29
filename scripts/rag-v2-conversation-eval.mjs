@@ -75,7 +75,9 @@ function observe(row, error) {
     text, kind: answer?.kind ?? null, clarification: Boolean(answer?.clarification) || answer?.kind === 'clarification',
     stateRegion: payload.dialogueState?.value ? focusRegion(payload.dialogueState.value)?.id ?? null : null,
     person: payload.searchAssist?.person ?? null, scopePerson: records.scope?.person ?? null,
-    stateFallback: payload.dialogueStateFallback?.code ?? null,
+    // State v4 never falls back as a whole; a missing model state is its own drop (ADR-051).
+    stateFallback: payload.dialogueStateFallback?.code ?? (payload.dialogueState?.value?.model?.accepted === false ? 'state_missing' : null),
+    stateDropped: payload.dialogueState?.value?.model?.dropped?.map(item => item.reason) ?? [],
     personRegions: Object.fromEntries((payload.dialogueState?.value?.people || []).map(entry => [entry.person.trim().toLowerCase(), entry.region.id])),
     timings: { searched: payload.timings?.phases?.searched ?? null, answered: payload.timings?.phases?.answered ?? null,
       search: payload.timings?.search?.since_start_ms?.merged ?? null, total: payload.timings?.validatedDraftMs ?? null },
