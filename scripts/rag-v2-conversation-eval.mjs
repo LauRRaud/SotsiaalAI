@@ -86,6 +86,11 @@ function observe(row, error) {
     // conversations are deleted.
     queries: payload.searchAssist?.queries ?? [],
     rerank: rerankOf(payload.searchAssist?.rerank),
+    // A rejected answer's check (code, path, the value it refused) and the references it was allowed, read before the
+    // run's conversations are deleted.
+    validation: payload.responseAudit?.validation?.valid === false ? { code: payload.responseAudit.validation.code, path: payload.responseAudit.validation.path,
+      received: typeof payload.responseAudit.validation.received === 'string' ? payload.responseAudit.validation.received.slice(0, 300) : payload.responseAudit.validation.received ?? null,
+      allowed: (payload.responseAudit.validation.allowedReferences || []).length } : null,
   };
 }
 function rerankOf(rerank) {
@@ -111,8 +116,10 @@ try {
       const row = result?.id ? await prisma.m4PilotTurn.findUnique({ where: { id: result.id } }) : null;
       const observed = observe(row, error);
       spent += observed.usd;
+      // The evidence texts are read by the checks only; the report keeps titles, not the sources' text.
+      const evidenceTexts = (row?.payload?.packet?.evidence || []).map(evidence => evidence.source_text || '');
       turns.push({ mode: turn.mode, text: turn.text, expect: turn.expect || {}, note: turn.note, turn_id: row?.id ?? null, observed,
-        ...checkTurn(turn.expect, observed, { today, validity: id => legal.get(id) || null }) });
+        ...checkTurn(turn.expect, { ...observed, evidenceTexts }, { today, validity: id => legal.get(id) || null }) });
       console.error(JSON.stringify({ scenario: scenario.id, turn: turns.length, verdict: turns.at(-1).verdict, usd: +spent.toFixed(4) }));
     }
     report.scenarios.push({ id: scenario.id, title: scenario.title, source: scenario.source, conversation: conversation.id, turns });

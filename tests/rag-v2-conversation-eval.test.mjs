@@ -100,3 +100,13 @@ test('the saved state is judged too (Codex F5): a right catalogue with a wrong o
     assert.deepEqual(validateCatalogue(catalogue), [], `two people ${version}`);
   }
 });
+
+test('ADR-054: a condition\'s exact phrase must be in the evidence text; other whitespace is the same text', async () => {
+  const expect = { evidence_text: ['Vaie haldusaktile või toimingule tuleb esitada 30 päeva jooksul'] };
+  const found = observed({ evidenceTexts: ['Vaide esitamise tähtaeg\nVaie haldusaktile või toimingule tuleb\nesitada 30 päeva jooksul, kui seadus ei sätesta teisiti.'] });
+  assert.equal(checkTurn(expect, found, { today: '2026-09-29' }).verdict, 'passed');
+  const missing = checkTurn(expect, observed({ evidenceTexts: ['Vaide läbivaatamise tähtaeg on 10 päeva.'] }), { today: '2026-09-29' });
+  assert.equal(missing.verdict, 'search');
+  assert.equal(checkTurn(expect, observed(), { today: '2026-09-29' }).verdict, 'search');
+  assert.deepEqual(validateCatalogue(JSON.parse(await fs.readFile('tests/evaluation/dialogue/scenarios-coverage-1.json', 'utf8'))), []);
+});
