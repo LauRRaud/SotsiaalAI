@@ -1,6 +1,6 @@
 # ADR-048 — Kuhu kulub aeg enne vastuse esimest teksti
 
-29.09.2026. Mõõtmine ja ettepanek: Claude Opus 5.5 omaniku päevaplaani järgi („mõõda, kuhu 13–28 s enne esimest teksti kulub; kavanda lahendus koos Codexiga ja mõõda enne PR-i“). **Otsus on veel tegemata:** vastuse arutluse tase on omaniku otsus, lahendus vajab Codexi ülevaatust.
+29.09.2026. Mõõtmine ja ettepanek: Claude Opus 5.5 omaniku päevaplaani järgi („mõõda, kuhu 13–28 s enne esimest teksti kulub; kavanda lahendus koos Codexiga ja mõõda enne PR-i“). **Omaniku otsus 29.09: vastuse arutlus jääb `medium`-iks.** Muud kiirendused (allpool) vajavad Codexi ülevaatust.
 
 ## Mõõtmine
 
@@ -30,7 +30,7 @@ Esimesed kolm sammu võtavad kokku umbes 8 s ja on ühtlased. **Kogu erinevus tu
 
 ### 3. Sama päringu kordus: teenustase ja arutluse tase
 
-Kaheksa kataloogipöörde salvestatud vastusepäring (`requestAudit.body`) saadeti uuesti voona, igaüks kolmel kujul. Kulu umbes 0,04 USD.
+Kaheksa kataloogipöörde salvestatud vastusepäring (`requestAudit.body`) saadeti uuesti voona, igaüks kolmel kujul. Kulu umbes 0,04 USD plaani hinnatabeli järgi (hinnang, tegelik arve on mitu korda väiksem).
 
 Codex arvutas tulemuse uuesti esimese tekstidelta järgi, kõigil 24 real sama mõõdikuga ([analüüs, 7.2](../audits/rag-v2-system-analysis-2026-09-29.md#72-lõpetatud-24-kutse-võrdlus-täpsustab-esialgseid-numbreid)):
 
@@ -55,7 +55,7 @@ Mõlemad jooksud tehti `eval-full` koopiast, mille `lib` on sama mis tootmises (
 | Kogu pööre kontrollitud vastuseni, mediaan / P90 | 18,6 / 32,0 s | 12,5 / 19,7 s |
 | Vastuse pikkus, mediaan | 652 märki | 750 märki |
 | Täpsustava küsimusega vastuseid | 23 | 16 |
-| Kulu | 0,198 USD | 0,177 USD |
+| Kulu plaani hinnatabeli järgi (hinnang) | 0,198 USD | 0,177 USD |
 
 - `medium` kukkus läbi ainult kuuldeaparaadi piirhinnas (ADR-046 allikalünk). **See on päeva baas:** eile oli 38/40, sest kontaktisik puudus enne v35.
 - `low` lisaks:
@@ -72,7 +72,7 @@ Mõlemad jooksud tehti `eval-full` koopiast, mille `lib` on sama mis tootmises (
 
 ## Ettepanek Codexile ja omanikule
 
-1. **Vastuse arutluse tase (omaniku otsus).** Mõõdetud vahetus: `low` 37/40 ja 6 s kiirem, `medium` 39/40.
+1. **Vastuse arutluse tase: otsustatud, `medium` jääb** (omanik 29.09). Mõõdetud vahetus oli `low` 37/40 ja 6 s kiirem, `medium` 39/40.
    - Enne otsust tasub vastuseid kõrvuti lugeda: mõlema jooksu vastused on serveris `rag-v2-work/eval-files/corpus4-{base,low}-0929/conversation-eval.md`.
    - Vahevariant oleks `low` ainult lihtsamatele pööretele. Keerukuse hindamine enne vastust on aga uus otsus ja uus viga; selle kasuks praegu tõendit pole.
 2. **Olekutekst ootamise ajal (ilma mudelimuutuseta).** Praegu näeb kasutaja 8–20 s ainult ooteanimatsiooni. Voos saab saata sammu teate: „Otsin allikaid…“ → „Valin sobivaid lõike…“ → „Koostan vastust…“.
@@ -87,4 +87,6 @@ Mõlemad jooksud tehti `eval-full` koopiast, mille `lib` on sama mis tootmises (
 ## Kontroll
 
 - Mõõteskriptid lugesid ainult aegu, olekuid ja tokenite arve. Korduskatse saatis salvestatud hindamiskataloogi päringud, mitte kasutaja vestlusi.
-- Kulu 29.09 hommikul: korduskatse umbes 0,04 USD, kaks kataloogijooksu 0,375 USD.
+- Kulu 29.09 hommikul plaani hinnatabeli järgi: korduskatse umbes 0,04 USD, kaks kataloogijooksu 0,375 USD. Need on hinnangud.
+  - Tabel on eelarvelagede jaoks ettevaatlik: sisendi hinnas on vahemällu kirjutamise lisa ja vahemälust loetud sisendi soodustust pole.
+  - Tegelik OpenAI kulu oli 27.–29.09 kokku 0,57 USD (API krediidisaldo 7,72 → 7,15 USD, omaniku platvormi vaade).
