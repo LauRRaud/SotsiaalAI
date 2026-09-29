@@ -1,0 +1,12 @@
+{
+  "title": "Avaldus sünnitoetuse osa taotlemiseks: Tori Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise tingimused ja kord“ lisa",
+  "extractor": "rag-v2/rt-annex-text-1",
+  "table": "text",
+  "items": [
+    {
+      "id": "lk-1",
+      "title": "Avaldus sünnitoetuse osa taotlemiseks: Tori Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise tingimused ja kord“ lisa",
+      "text": "Lisa 1\nTori Vallavolikogu 20.04.2016\nmääruse nr 6 juurde\nTORI VALLAVALITSUSELE\nAVALDUS\nSÜNNITOETUSE ___ OSA TAOTLEMISEKS\nTaotleja ees- ja perekonnanimi__________________________________________________\n___________________________________________________________________________\nIsikukood\nElukoht____________________________________________________________________\nKontakttelefon ______________________________________________________________\nPalun kanda minu lapse ________________________________________________________\nees- ja perekonnanimi\n________________________________ sünnitoetus minu arveldusarvele nr _____________\nisikukood\n_____________________________________ , _________________ panka\n_______________________________\nKuupäev\n_______________________________\nallkiri"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "document_id": "riigiteataja:404052016003:lisa:lisa2",
+  "title": "Avaldus peretoetuse taotlemiseks: Tori Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise tingimused ja kord“ lisa",
+  "source_type": "legal_act",
+  "language": "et",
+  "authority": "Tori Vallavolikogu",
+  "valid_from": "2016-05-07+03:00",
+  "valid_to": "2017-05-05+03:00",
+  "publication_date": "2016-05-04",
+  "source_url": "https://www.riigiteataja.ee/akt/404052016003",
+  "source_path": "oigusaktid/lisad/404052016003-lisa-2.json",
+  "source_format": "json",
+  "rt_annex": {
+    "xml_path": "oigusaktid/404052016003.xml",
+    "xml_sha256": "aa1cae37e245c1629a85e02a45d430aa7f5b9bb7b7347aed36bff81d36839057",
+    "act_reference": "404052016003",
+    "file_name": "Lisa2.pdf",
+    "pdf_sha256": "2c9969773c89504a7276396d560374374c41dfc65c3c338ab08fcedda8e867a7",
+    "table": "text",
+    "extractor": "rag-v2/rt-annex-text-1",
+    "heading": "Avaldus peretoetuse taotlemiseks",
+    "pages": 2
+  }
+}

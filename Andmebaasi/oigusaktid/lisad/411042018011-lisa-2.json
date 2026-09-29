@@ -1,0 +1,17 @@
+{
+  "title": "Kliendi tagasiside teenusele: Peipsiääre Vallavolikogu määruse „Sotsiaalteenuste osutamise kord“ lisa",
+  "extractor": "rag-v2/rt-annex-text-1",
+  "table": "text",
+  "items": [
+    {
+      "id": "lk-1",
+      "title": "Kliendi tagasiside teenusele: Peipsiääre Vallavolikogu määruse „Sotsiaalteenuste osutamise kord“ lisa, lk 1",
+      "text": "Peipsiääre Vallavolikogu\n28. märtsi 2018 määruse 17\nLisa 2\nKLIENDI TAGASISIDE TEENUSELE\nKäesoleva küsimustiku abil saadud andmed annavad ülevaate osutatava teenuse\npeamistest rahulolu ja rahulolematuse põhjustest. Nendest lähtuvalt on võimalik\nkujundada ja parendada teenuse pakkumist. Teie arvamus on väga oluline ja\noleme tänulikud tagasiside eest.\nTäitmise aeg „ “ 20 ___a.\nSugu: mees naine Vanus:\n1. Te saate (mis teenust?):\n2. Millisest allikast saite infot teenuse kohta?\nKohaliku omavalitsuse üksuselt Lähedastelt Naabritelt\nOtsisin ise Ajalehest Teenuse osutajalt\nMuu:\n3. Kas saite enne teenuse saamist piisavalt vajalikku infot? Jah Ei\nKui vastasite eitavalt, millisest infost tundsite kõige enam puudust?\n4. Kuidas hindate alljärgnevaid väiteid?\n1 2 3 4 5\nEi ole Ei ole Ei Olen Olen\nVäited üldse üldiselt oska üldiselt väga\nrahul rahul öelda rahul rahul\n4.1. Esmane kohtumine teenuse\nosutajaga\n4.2. Teenuse taotlemise protsess\n4.3. Teenuse osutaja üldine\nteenindus\n4.4. Teenuse osutaja asjatund-\nlikkus\n4.5. Kaasatus teenuse arendami-\nsesse"
+    },
+    {
+      "id": "lk-2",
+      "title": "Kliendi tagasiside teenusele: Peipsiääre Vallavolikogu määruse „Sotsiaalteenuste osutamise kord“ lisa, lk 2",
+      "text": "Peipsiääre Vallavolikogu\n28. märtsi 2018 määruse 17\nLisa 2\n5. Kuivõrd nõustute alljärgnevate väidetega?\n1 2 3 4 5\nEi Ei Ei Nõustun Nõustun\nMinu tugiisik/ isiklik abistaja/ nõustu nõustu oska enamasti täielikult\nsotsiaalhooldaja/hooldustöötaja üldse üldiselt öelda\non:\n5.1. usaldusväärne\n5.2. hea suhtleja\n5.3. hooliv\n5.4. asjatundlik/ kompetentne\n5.5. lugupidav\n5.6. usin, hoolas\n5.7. turvatunnet pakkuv\n5.8. viisakas\n5.9. mõistev\n6. Kas Teie elukvaliteet teenuse kasutamisel on:\nparanenud jäänud samaks läinud kehvemaks\nPalun põhjendage:\n7. Kuidas on saadud teenus(ed) aidanud kaasa Teie toimetulekule?\n8. Milliseid teenuseid vajaksite veel?\n9. Teie ettepanekud:\nSuured tänud vastamast!"
+    }
+  ]
+}

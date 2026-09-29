@@ -1,0 +1,23 @@
+{
+  "document_id": "riigiteataja:419052023006:lisa:lisa",
+  "title": "Sotsiaalhoolekandelise abi taotlus: Jõelähtme Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise kord Jõelähtme vallas“ lisa",
+  "source_type": "legal_act",
+  "language": "et",
+  "authority": "Jõelähtme Vallavolikogu",
+  "valid_from": "2023-07-01",
+  "publication_date": "2023-05-19",
+  "source_url": "https://www.riigiteataja.ee/akt/419052023006",
+  "source_path": "oigusaktid/lisad/419052023006-lisa.json",
+  "source_format": "json",
+  "rt_annex": {
+    "xml_path": "oigusaktid/419052023006.xml",
+    "xml_sha256": "d130e8bc1ca1667a0d04658a7c3a33e7fdd04db2f72bc3697aa0b373f2438071",
+    "act_reference": "419052023006",
+    "file_name": "Lisa.pdf",
+    "pdf_sha256": "adbff61aaf626a394abcb4e63e0f3f626ce94447dcddbea7f556b5b0590bd8f9",
+    "table": "text",
+    "extractor": "rag-v2/rt-annex-text-1",
+    "heading": "Sotsiaalhoolekandelise abi taotlus",
+    "pages": 1
+  }
+}

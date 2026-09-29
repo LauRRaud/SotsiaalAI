@@ -1,0 +1,23 @@
+{
+  "document_id": "riigiteataja:411042018011:lisa:lisa-1",
+  "title": "Hindamisinstrument hooldusvajaduse ja sotsiaalteenuste määramiseks: Peipsiääre Vallavolikogu määruse „Sotsiaalteenuste osutamise kord“ lisa",
+  "source_type": "legal_act",
+  "language": "et",
+  "authority": "Peipsiääre Vallavolikogu",
+  "valid_from": "2018-04-14+03:00",
+  "publication_date": "2018-04-11",
+  "source_url": "https://www.riigiteataja.ee/akt/411042018011",
+  "source_path": "oigusaktid/lisad/411042018011-lisa-1.json",
+  "source_format": "json",
+  "rt_annex": {
+    "xml_path": "oigusaktid/411042018011.xml",
+    "xml_sha256": "824d42d13bdeb216a7cac8e1cfbcd1691d27b834a1c18c1dcc2ff51e8fe937b5",
+    "act_reference": "411042018011",
+    "file_name": "Lisa 1.pdf",
+    "pdf_sha256": "2e6d7895a0c0c3e18494caf194d01ce59ebeeeb191bf7efb1485d0d416fc145e",
+    "table": "text",
+    "extractor": "rag-v2/rt-annex-text-1",
+    "heading": "Hindamisinstrument hooldusvajaduse ja sotsiaalteenuste määramiseks",
+    "pages": 11
+  }
+}

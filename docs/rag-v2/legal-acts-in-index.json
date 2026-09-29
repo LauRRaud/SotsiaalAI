@@ -1,9 +1,9 @@
 {
   "schema_version": "rag-v2/legal-acts-in-index-1",
-  "generated_at": "2026-09-28T06:30:31.524Z",
+  "generated_at": "2026-09-29T12:58:03.960Z",
   "tenant": "sotsiaalai-corpus",
-  "store_generation": "generation_9b5163f9e8de1b0c883a3581fd7175fdd2df017e4de30105fb78ef8db0fc2fe7",
-  "policy_documents": 6026,
+  "store_generation": "generation_189ef281e054405e0af9026cbc82f2f3a9f68bb08d854fb5fa2a6a241a324e1b",
+  "policy_documents": 6037,
   "acts": [
     {
       "document_id": "document_00b6ffec42890532bbe8f5616bfc38a9cea2136ec8619d16a002a3cc5296344e",
