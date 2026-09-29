@@ -1,0 +1,18 @@
+{
+  "schema_version": "rag-v2/dialogue-eval-2",
+  "purpose": "Codex review of ADR-049 (29.09.2026): two failure paths it reproduced with synthetic states, now with the real plan and answer model. A request about the user whose own place is unknown must not get the mother's municipality, while a call made for the mother keeps hers; another person's place named in the user's own request must not replace the user's known municipality. Written before any run; run on the code before and after the change.",
+  "expectation_help": {
+    "region": "the municipal scope of the turn (the catalogue); null when the person the request is about has no known municipality"
+  },
+  "scenarios": [
+    { "id": "mother-kose-then-self-unknown", "title": "Ema Kose vallas, kasutaja enda koht teadmata", "source": "Codex review 29.09", "turns": [
+      { "mode": "new", "text": "Mu ema elab Kose vallas ja vajab koduteenust.", "expect": { "region": "kose_vald" } },
+      { "mode": "same", "text": "Kellele ma helistan?", "expect": { "region": "kose_vald" } },
+      { "mode": "same", "text": "Aga mul endal on ka raske. Kust saan mina oma elukohas abi?", "expect": { "region": null } }
+    ] },
+    { "id": "self-harku-names-neighbour-kose", "title": "Kasutaja Harku vallas nimetab naabri Kose valda", "source": "Codex review 29.09", "turns": [
+      { "mode": "new", "text": "Elan Harku vallas ja mul on raske toime tulla.", "expect": { "region": "harku_vald" } },
+      { "mode": "same", "text": "Naabri omavalitsus on Kose vald. Millist abi saan mina oma vallast?", "expect": { "region": "harku_vald" } }
+    ] }
+  ]
+}

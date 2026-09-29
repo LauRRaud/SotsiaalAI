@@ -24,7 +24,7 @@ const afterNeighbour = () => stateAudit(state([fact('võlad', 'self', 1, 'mul on
 
 test('a request about the user keeps the user\'s municipality, not the neighbour\'s mentioned last (owner report 28.09)', async () => {
   const previous = afterNeighbour();
-  const scope = person => resolveRecordScope(turns(TEXTS), directory, analyzer, previous, person);
+  const scope = person => resolveRecordScope(turns(TEXTS), directory, analyzer, previous, { person });
   assert.deepEqual(await scope('user'), { state: 'person_region', region: 'tartu_vald', person: 'user', interpretation: 'source_scope_only_not_confirmed_residence' });
   assert.equal((await scope('naabrimees')).region, 'kose_vald');
   // Someone the state does not know gets none: never another person's.
@@ -34,27 +34,54 @@ test('a request about the user keeps the user\'s municipality, not the neighbour
     assert.deepEqual(await scope(person), { state: 'dialogue_region', region: 'kose_vald', person: 'naabrimees', interpretation: 'source_scope_only_not_confirmed_residence' });
   }
   assert.equal(focusRegion(previous.value).id, 'kose_vald');
-  // A known person without a municipality ("Kellele ma helistan?" about the mother's help reads as the user's) falls
-  // back to the person the conversation was about, instead of losing the catalogue.
-  const motherOnly = stateAudit(state([fact('koduabi', 'other', 1, 'ta vajab koduabi')], [{ person: 'user', region: unknown },
-    { person: 'ema', region: region('kose_vald', 1, 'Ema elab Kose vallas') }], 'ema'), accepted(['Ema elab Kose vallas, ta vajab koduabi.']), PERSON_DIALOGUE_STATE_VERSION);
-  assert.equal((await resolveRecordScope(turns(['Ema elab Kose vallas, ta vajab koduabi.', 'Kellele ma helistan?']), directory, analyzer, motherOnly, 'user')).region, 'kose_vald');
 });
 
-test('a place in the current message still wins; the person comes before an older message whose state was not kept', async () => {
+test('Codex review 29.09: a known person without a municipality, or another person\'s place in the message, never gives the wrong one', async () => {
+  // The mother in Kose vald, the user's own place unknown. "Kust saan mina enda elukohas abi?" is about the user.
+  const first = 'Minu ema omavalitsus on Kose vald.';
+  const mother = stateAudit(state([], [{ person: 'user', region: unknown }, { person: 'ema', region: region('kose_vald', 1, first) }], 'ema'),
+    accepted([first]), PERSON_DIALOGUE_STATE_VERSION);
+  const own = turns([first, 'Kust saan mina enda elukohas abi?']);
+  assert.deepEqual(await resolveRecordScope(own, directory, analyzer, mother, { person: 'user' }), { state: 'region_required', region: null, person: 'user' });
+  // A call made for the mother ("Kellele ma helistan?") is about the mother's need; the plan names her.
+  assert.equal((await resolveRecordScope(turns([first, 'Kellele ma helistan?']), directory, analyzer, mother, { person: 'ema' })).region, 'kose_vald');
+  // The user in Harku vald names the neighbour's Kose vald while asking about their own: the plan's queries keep the
+  // user's place, so the named place is the neighbour's.
+  const self = 'Minu omavalitsus on Harku vald.';
+  const user = stateAudit(state([], [{ person: 'user', region: region('harku_vald', 1, self) }], 'user'), accepted([self]), PERSON_DIALOGUE_STATE_VERSION);
+  const mixed = turns([self, 'Naabri omavalitsus on Kose vald. Millist abi saan mina oma vallast?']);
+  assert.equal((await resolveRecordScope(mixed, directory, analyzer, user, { person: 'user', planQueries: ['sotsiaalabi Harku vald'] })).region, 'harku_vald');
+  // A move: the plan's queries keep the new place, so the mention wins; without queries it wins as before.
+  const moved = turns([self, 'Kolisin, elan nüüd Kose vald piirkonnas. Kes aitab?']);
+  assert.equal((await resolveRecordScope(moved, directory, analyzer, user, { person: 'user', planQueries: ['toimetulekutoetus Kose vald'] })).region, 'kose_vald');
+  assert.equal((await resolveRecordScope(mixed, directory, analyzer, user, { person: 'user' })).region, 'kose_vald');
+  // A negation around a short quote: the whole sentence is read, so "Kose vald" does not anchor Kose.
+  const negation = 'Minu elukoht ei ole Kose vald.';
+  const negated = state([], [{ person: 'user', region: region('kose_vald', 1, 'Kose vald') }], 'user');
+  await assert.rejects(validateStateRegion(negated, context, analyzer, accepted([negation]).userTurns), { code: 'dialogue_state_region_unanchored' });
+  // Two municipalities in one sentence anchor either one.
+  const both = 'Elan Harku vald piirkonnas, ema elab Kose vald piirkonnas.';
+  await validateStateRegion(state([], [{ person: 'user', region: region('harku_vald', 1, 'Harku vald') }, { person: 'ema', region: region('kose_vald', 1, 'Kose vald') }], 'user'),
+    context, analyzer, accepted([both]).userTurns);
+});
+
+test('a place in the current message still wins; a known municipality of the person comes before an older unremembered message', async () => {
   const previous = afterNeighbour();
   const moved = [...TEXTS.slice(0, 2), 'Kolisin eile Harku valda, mul pole kusagil magada.'];
-  assert.equal((await resolveRecordScope(turns([...TEXTS.slice(0, 2), 'Elan nüüd Harku vallas.']), directory, analyzer, previous, 'user')).region, 'harku_vald');
-  assert.equal((await resolveRecordScope(turns(moved), directory, { analyze: async words => words.map(word => `vmet${word.toLowerCase()}${word === 'valda' ? ' vmetvald' : ''}`) }, previous, 'user')).region, 'harku_vald');
+  assert.equal((await resolveRecordScope(turns([...TEXTS.slice(0, 2), 'Elan nüüd Harku vallas.']), directory, analyzer, previous, { person: 'user' })).region, 'harku_vald');
+  assert.equal((await resolveRecordScope(turns(moved), directory, { analyze: async words => words.map(word => `vmet${word.toLowerCase()}${word === 'valda' ? ' vmetvald' : ''}`) }, previous, { person: 'user' })).region, 'harku_vald');
   // The neighbour's turn lost its state: only the user's first turn is remembered. Before ADR-049 the scan of the
   // unremembered turns found Kose vald for the user's own request.
   const first = stateAudit(state([fact('võlad', 'self', 1, 'mul on võlad')], [{ person: 'user', region: region('tartu_vald', 1, 'Elan Tartu vallas') }], 'user'),
     accepted(TEXTS.slice(0, 1)), PERSON_DIALOGUE_STATE_VERSION);
-  assert.equal((await resolveRecordScope(turns(TEXTS), directory, analyzer, first, 'user')).region, 'tartu_vald');
-  assert.equal((await resolveRecordScope(turns(TEXTS), directory, analyzer, first, 'unclear')).region, 'kose_vald');
+  assert.equal((await resolveRecordScope(turns(TEXTS), directory, analyzer, first, { person: 'user' })).region, 'tartu_vald');
+  assert.equal((await resolveRecordScope(turns(TEXTS), directory, analyzer, first, { person: 'unclear' })).region, 'kose_vald');
+  // Without a known municipality of the person, the unremembered turn may still say where they are.
+  const nothing = stateAudit(state([], [{ person: 'user', region: unknown }], 'user'), accepted(['Mul on võlad.']), PERSON_DIALOGUE_STATE_VERSION);
+  assert.equal((await resolveRecordScope(turns(['Mul on võlad.', 'Elan Harku vallas.', 'Kes aitab?']), directory, analyzer, nothing, { person: 'user' })).region, 'harku_vald');
   // A typed state v2 has one region and no persons: the plan's person changes nothing.
   const v2 = { ...first, version: TYPED_DIALOGUE_STATE_VERSION, value: { region: region('tartu_vald', 1, 'Elan Tartu vallas') } };
-  assert.equal((await resolveRecordScope(turns(TEXTS), directory, analyzer, v2, 'user')).region, 'kose_vald');
+  assert.equal((await resolveRecordScope(turns(TEXTS), directory, analyzer, v2, { person: 'user' })).region, 'kose_vald');
 });
 
 test('state v3: each person\'s own region, one focus; a person the model left out keeps their region', async () => {
@@ -63,7 +90,7 @@ test('state v3: each person\'s own region, one focus; a person the model left ou
   const value = state(facts, [{ person: 'user', region: region('tartu_vald', 1, 'Elan Tartu vallas') }], 'user');
   const validated = validateDialogueState(value, input, context, previous, PERSON_DIALOGUE_STATE_VERSION);
   assert.deepEqual(validated.people.map(entry => [entry.person, entry.region.id]), [['user', 'tartu_vald'], ['naabrimees', 'kose_vald']]);
-  await validateStateRegion(validated, context, analyzer);
+  await validateStateRegion(validated, context, analyzer, input.userTurns);
   const invalid = (change, reason) => assert.throws(() => validateDialogueState({ ...value, ...change }, input, context, previous, PERSON_DIALOGUE_STATE_VERSION),
     error => error.code === 'invalid_dialogue_state' && error.reason === reason);
   invalid({ focus: 'ema' }, 'focus_person');
