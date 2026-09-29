@@ -1,0 +1,24 @@
+{
+  "document_id": "riigiteataja:404052016003:lisa:lisa3",
+  "title": "Avaldus I klassi astuja toetuse taotlemiseks: Tori Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise tingimused ja kord“ lisa",
+  "source_type": "legal_act",
+  "language": "et",
+  "authority": "Tori Vallavolikogu",
+  "valid_from": "2016-05-07+03:00",
+  "valid_to": "2017-05-05+03:00",
+  "publication_date": "2016-05-04",
+  "source_url": "https://www.riigiteataja.ee/akt/404052016003",
+  "source_path": "oigusaktid/lisad/404052016003-lisa-3.json",
+  "source_format": "json",
+  "rt_annex": {
+    "xml_path": "oigusaktid/404052016003.xml",
+    "xml_sha256": "aa1cae37e245c1629a85e02a45d430aa7f5b9bb7b7347aed36bff81d36839057",
+    "act_reference": "404052016003",
+    "file_name": "Lisa3.pdf",
+    "pdf_sha256": "978db03c670cad0ef3b3337be2411db05b9fbc7ab4753690bdf7f67ace46404d",
+    "table": "text",
+    "extractor": "rag-v2/rt-annex-text-1",
+    "heading": "Avaldus I klassi astuja toetuse taotlemiseks",
+    "pages": 1
+  }
+}

@@ -9,7 +9,7 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | KOV | 78 | 234 | 78 KOV-i põhipaketti koos metaandmete ja allikaloenditega. |
 | kontaktid | 0 | 10 | Kontaktide otsingumaterjal; kattuvus KOV-pakettidega vajab ühendamist. |
 | organisatsioonid | 1 | 3 | Organisatsiooni korjatud sisu ja allikad. |
-| oigusaktid | 136 | 138 | XML-aktid, sh eri redaktsioonid; kehtivus tuleb vastuvõtul kontrollida. Kaks akti lisast tuletatud tabelit (`lisad/`, ADR-050). |
+| oigusaktid | 145 | 156 | XML-aktid, sh eri redaktsioonid; kehtivus tuleb vastuvõtul kontrollida. Aktide lisadest tuletatud allikad (`lisad/`): kaks tabelit (ADR-050) ja üheksa omavalitsuse lisa teksti (ADR-053). |
 | register | 0 | 2 | Kavandatud allikate register, mitte teadmistekst. |
 | taastatud_allikad | 0 | 22 | Serveri vanast indeksist taastatud tekst. Enne importi võrrelda põhipakettidega. |
 
@@ -1297,6 +1297,24 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | 129082025009-abivahendite-loetelu.meta.json | [oigusaktid/lisad/129082025009-abivahendite-loetelu.meta.json](<oigusaktid/lisad/129082025009-abivahendite-loetelu.meta.json>) |
 | 126092026005-abivahendite-loetelu.json | [oigusaktid/lisad/126092026005-abivahendite-loetelu.json](<oigusaktid/lisad/126092026005-abivahendite-loetelu.json>) |
 | 126092026005-abivahendite-loetelu.meta.json | [oigusaktid/lisad/126092026005-abivahendite-loetelu.meta.json](<oigusaktid/lisad/126092026005-abivahendite-loetelu.meta.json>) |
+| 404072025017-lisa.json | [oigusaktid/lisad/404072025017-lisa.json](<oigusaktid/lisad/404072025017-lisa.json>) |
+| 404072025017-lisa.meta.json | [oigusaktid/lisad/404072025017-lisa.meta.json](<oigusaktid/lisad/404072025017-lisa.meta.json>) |
+| 403042025042-lisa.json | [oigusaktid/lisad/403042025042-lisa.json](<oigusaktid/lisad/403042025042-lisa.json>) |
+| 403042025042-lisa.meta.json | [oigusaktid/lisad/403042025042-lisa.meta.json](<oigusaktid/lisad/403042025042-lisa.meta.json>) |
+| 419052023006-lisa.json | [oigusaktid/lisad/419052023006-lisa.json](<oigusaktid/lisad/419052023006-lisa.json>) |
+| 419052023006-lisa.meta.json | [oigusaktid/lisad/419052023006-lisa.meta.json](<oigusaktid/lisad/419052023006-lisa.meta.json>) |
+| 411042018011-lisa-1.json | [oigusaktid/lisad/411042018011-lisa-1.json](<oigusaktid/lisad/411042018011-lisa-1.json>) |
+| 411042018011-lisa-1.meta.json | [oigusaktid/lisad/411042018011-lisa-1.meta.json](<oigusaktid/lisad/411042018011-lisa-1.meta.json>) |
+| 411042018011-lisa-2.json | [oigusaktid/lisad/411042018011-lisa-2.json](<oigusaktid/lisad/411042018011-lisa-2.json>) |
+| 411042018011-lisa-2.meta.json | [oigusaktid/lisad/411042018011-lisa-2.meta.json](<oigusaktid/lisad/411042018011-lisa-2.meta.json>) |
+| 404052016003-lisa-1.json | [oigusaktid/lisad/404052016003-lisa-1.json](<oigusaktid/lisad/404052016003-lisa-1.json>) |
+| 404052016003-lisa-1.meta.json | [oigusaktid/lisad/404052016003-lisa-1.meta.json](<oigusaktid/lisad/404052016003-lisa-1.meta.json>) |
+| 404052016003-lisa-2.json | [oigusaktid/lisad/404052016003-lisa-2.json](<oigusaktid/lisad/404052016003-lisa-2.json>) |
+| 404052016003-lisa-2.meta.json | [oigusaktid/lisad/404052016003-lisa-2.meta.json](<oigusaktid/lisad/404052016003-lisa-2.meta.json>) |
+| 404052016003-lisa-3.json | [oigusaktid/lisad/404052016003-lisa-3.json](<oigusaktid/lisad/404052016003-lisa-3.json>) |
+| 404052016003-lisa-3.meta.json | [oigusaktid/lisad/404052016003-lisa-3.meta.json](<oigusaktid/lisad/404052016003-lisa-3.meta.json>) |
+| 407052021021-lisa.json | [oigusaktid/lisad/407052021021-lisa.json](<oigusaktid/lisad/407052021021-lisa.json>) |
+| 407052021021-lisa.meta.json | [oigusaktid/lisad/407052021021-lisa.meta.json](<oigusaktid/lisad/407052021021-lisa.meta.json>) |
 | 405092026051.xml | [oigusaktid/405092026051.xml](<oigusaktid/405092026051.xml>) |
 | 426092026047.xml | [oigusaktid/426092026047.xml](<oigusaktid/426092026047.xml>) |
 | 418082026033.xml | [oigusaktid/418082026033.xml](<oigusaktid/418082026033.xml>) |

@@ -1,0 +1,22 @@
+{
+  "schema_version": "rag-v2/dialogue-eval-2",
+  "purpose": "Targeted check for ADR-053 (29.09.2026): a municipality's rates, application form and assessment instrument that exist only in the annex PDF of its act. Written before any run on corpus v37. Kose is left out: its act version with the rates ended on 02.05.2026 and no later version is in the corpus.",
+  "expectation_help": {
+    "evidence": "the annex is among the found sources",
+    "must": "the answer gives the annex's amount or content"
+  },
+  "scenarios": [
+    { "id": "harku-birth-grant", "title": "Harku sünnitoetuse suurus", "source": "ADR-053", "turns": [
+      { "mode": "new", "text": "Elan Harku vallas ja mul sündis laps. Kui suur on valla sünnitoetus?", "expect": { "region": "harku_vald", "evidence": ["Harku valla eelarvest makstavate sotsiaaltoetuste määrad"], "cited": ["Harku valla eelarvest makstavate sotsiaaltoetuste määrad"], "must": ["500"] } }
+    ] },
+    { "id": "harku-income-threshold", "title": "Harku toimetulekupiir valla toetustele", "source": "ADR-053", "turns": [
+      { "mode": "new", "text": "Elan Harku vallas üksi ja mu sissetulek on väike. Millise sissetuleku korral saan valla sotsiaaltoetust?", "expect": { "region": "harku_vald", "evidence": ["Harku valla eelarvest makstavate sotsiaaltoetuste määrad"], "must": ["600"] } }
+    ] },
+    { "id": "joelahtme-application", "title": "Jõelähtme sotsiaalabi taotlus", "source": "ADR-053", "turns": [
+      { "mode": "new", "text": "Elan Jõelähtme vallas. Kuidas taotleda sotsiaalhoolekandelist abi ja mida taotluses tuleb kirjutada?", "expect": { "region": "joelahtme_vald", "evidence": ["Sotsiaalhoolekandelise abi taotlus"], "must": ["sissetulek"] } }
+    ] },
+    { "id": "peipsiaare-assessment", "title": "Peipsiääre hooldusvajaduse hindamine", "source": "ADR-053", "turns": [
+      { "mode": "new", "text": "Mu ema elab Peipsiääre vallas ja ei tule enam kodus toime. Kuidas vald tema hooldusvajadust hindab?", "expect": { "region": "peipsiaare_vald", "evidence": ["Hindamisinstrument hooldusvajaduse"] } }
+    ] }
+  ]
+}

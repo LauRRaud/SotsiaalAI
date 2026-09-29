@@ -1,0 +1,24 @@
+{
+  "document_id": "riigiteataja:403042025042:lisa:m80-lisa",
+  "title": "Kose valla sotsiaaleelarvest makstavate toetuste määrad: Kose Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise kord“ lisa",
+  "source_type": "legal_act",
+  "language": "et",
+  "authority": "Kose Vallavolikogu",
+  "valid_from": "2025-07-01",
+  "valid_to": "2026-05-02+03:00",
+  "publication_date": "2025-04-03+03:00",
+  "source_url": "https://www.riigiteataja.ee/akt/403042025042",
+  "source_path": "oigusaktid/lisad/403042025042-lisa.json",
+  "source_format": "json",
+  "rt_annex": {
+    "xml_path": "oigusaktid/403042025042.xml",
+    "xml_sha256": "a3d4582ecd83c3959cd93fdc84b54e8631bf4f95a6e848c20402cdca1611140d",
+    "act_reference": "403042025042",
+    "file_name": "M80-Lisa.pdf",
+    "pdf_sha256": "1a305d1255e635d957ba45439e68543ff8b18bfb61bf364d62e550cae1d60825",
+    "table": "text",
+    "extractor": "rag-v2/rt-annex-text-1",
+    "heading": "Kose valla sotsiaaleelarvest makstavate toetuste määrad",
+    "pages": 1
+  }
+}

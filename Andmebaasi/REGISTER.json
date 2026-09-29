@@ -26,8 +26,8 @@
       "sources": 1
     },
     "oigusaktid": {
-      "files": 138,
-      "sources": 136
+      "files": 156,
+      "sources": 145
     },
     "register": {
       "files": 2,
@@ -22557,6 +22557,168 @@
       "role": "metadata",
       "sha256": "6c42b21f273ba5313f3b6c7f60b71a0272eb5e5a41cbcb96e496435fffce369b",
       "original_path": "oigusaktid/lisad/126092026005-abivahendite-loetelu.meta.json"
+    },
+    {
+      "path": "oigusaktid/lisad/404072025017-lisa.json",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "4b78c2b5fd2f4fc6fd0370b36b0b6260662fe63d43ce963c6c5e87fd5247fc8f",
+      "original_path": "oigusaktid/404072025017.xml#lisa:vvk_2025_m_14_Lisa.pdf",
+      "review_status": "derived_annex_text_checked",
+      "title": "Harku valla eelarvest makstavate sotsiaaltoetuste määrad ja piirmäärad: Harku Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise kord“ lisa",
+      "document_id": "riigiteataja:404072025017:lisa:vvk-2025-m-14-lisa",
+      "metadata_path": "oigusaktid/lisad/404072025017-lisa.meta.json"
+    },
+    {
+      "path": "oigusaktid/lisad/404072025017-lisa.meta.json",
+      "category": "oigusaktid",
+      "role": "metadata",
+      "sha256": "6b592dc056f3df6348da414e1278cae20726d8e6585727f7df88e2378a8157a5",
+      "original_path": "oigusaktid/lisad/404072025017-lisa.meta.json"
+    },
+    {
+      "path": "oigusaktid/lisad/403042025042-lisa.json",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "cbd7bf6bc32418b8cb676425eac9e0483f006e17777d634c54fcde53e54d7eef",
+      "original_path": "oigusaktid/403042025042.xml#lisa:M80-Lisa.pdf",
+      "review_status": "derived_annex_text_checked",
+      "title": "Kose valla sotsiaaleelarvest makstavate toetuste määrad: Kose Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise kord“ lisa",
+      "document_id": "riigiteataja:403042025042:lisa:m80-lisa",
+      "metadata_path": "oigusaktid/lisad/403042025042-lisa.meta.json"
+    },
+    {
+      "path": "oigusaktid/lisad/403042025042-lisa.meta.json",
+      "category": "oigusaktid",
+      "role": "metadata",
+      "sha256": "17e6829462d7f473a90c2148f520fe4897e4c0e73bc81ec96d8aa74c70d32ead",
+      "original_path": "oigusaktid/lisad/403042025042-lisa.meta.json"
+    },
+    {
+      "path": "oigusaktid/lisad/419052023006-lisa.json",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "535e33891bfa51bd7ba7eb0c93299e5828632c715fc335b6d347e2970780abf7",
+      "original_path": "oigusaktid/419052023006.xml#lisa:Lisa.pdf",
+      "review_status": "derived_annex_text_checked",
+      "title": "Sotsiaalhoolekandelise abi taotlus: Jõelähtme Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise kord Jõelähtme vallas“ lisa",
+      "document_id": "riigiteataja:419052023006:lisa:lisa",
+      "metadata_path": "oigusaktid/lisad/419052023006-lisa.meta.json"
+    },
+    {
+      "path": "oigusaktid/lisad/419052023006-lisa.meta.json",
+      "category": "oigusaktid",
+      "role": "metadata",
+      "sha256": "b95039fbbe4937e1d64e75a9996108f2d891889a3f99f5ad5580dff075b31771",
+      "original_path": "oigusaktid/lisad/419052023006-lisa.meta.json"
+    },
+    {
+      "path": "oigusaktid/lisad/411042018011-lisa-1.json",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "62af0d0b1247dfd52a32e36618614c02317c7881a6bd622ab94967d80e57b976",
+      "original_path": "oigusaktid/411042018011.xml#lisa:Lisa 1.pdf",
+      "review_status": "derived_annex_text_checked",
+      "title": "Hindamisinstrument hooldusvajaduse ja sotsiaalteenuste määramiseks: Peipsiääre Vallavolikogu määruse „Sotsiaalteenuste osutamise kord“ lisa",
+      "document_id": "riigiteataja:411042018011:lisa:lisa-1",
+      "metadata_path": "oigusaktid/lisad/411042018011-lisa-1.meta.json"
+    },
+    {
+      "path": "oigusaktid/lisad/411042018011-lisa-1.meta.json",
+      "category": "oigusaktid",
+      "role": "metadata",
+      "sha256": "adfec9a42620b4d1dd7a932f110a23df5b117941074d068d3fb7cfc868038273",
+      "original_path": "oigusaktid/lisad/411042018011-lisa-1.meta.json"
+    },
+    {
+      "path": "oigusaktid/lisad/411042018011-lisa-2.json",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "4d6ff12470ba44e958787f1c70c27c28d206e2add4cae28d6c5d22a96fc0699f",
+      "original_path": "oigusaktid/411042018011.xml#lisa:Lisa 2.pdf",
+      "review_status": "derived_annex_text_checked",
+      "title": "Kliendi tagasiside teenusele: Peipsiääre Vallavolikogu määruse „Sotsiaalteenuste osutamise kord“ lisa",
+      "document_id": "riigiteataja:411042018011:lisa:lisa-2",
+      "metadata_path": "oigusaktid/lisad/411042018011-lisa-2.meta.json"
+    },
+    {
+      "path": "oigusaktid/lisad/411042018011-lisa-2.meta.json",
+      "category": "oigusaktid",
+      "role": "metadata",
+      "sha256": "13b27b8ed2ad15f39091fee712cd557ab26532c9c51b98f956a43eb2723fe530",
+      "original_path": "oigusaktid/lisad/411042018011-lisa-2.meta.json"
+    },
+    {
+      "path": "oigusaktid/lisad/404052016003-lisa-1.json",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "c05dbf986239747a27e3c644d846ae015b45f6f4b4e5feca5d0f4a6f54582fa1",
+      "original_path": "oigusaktid/404052016003.xml#lisa:Lisa1.pdf",
+      "review_status": "derived_annex_text_checked",
+      "title": "Avaldus sünnitoetuse osa taotlemiseks: Tori Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise tingimused ja kord“ lisa",
+      "document_id": "riigiteataja:404052016003:lisa:lisa1",
+      "metadata_path": "oigusaktid/lisad/404052016003-lisa-1.meta.json"
+    },
+    {
+      "path": "oigusaktid/lisad/404052016003-lisa-1.meta.json",
+      "category": "oigusaktid",
+      "role": "metadata",
+      "sha256": "bfe2fb6edc7579a87e783521b058e9b20993547c712aa790c645c8c0a16f94cb",
+      "original_path": "oigusaktid/lisad/404052016003-lisa-1.meta.json"
+    },
+    {
+      "path": "oigusaktid/lisad/404052016003-lisa-2.json",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "68495b790a81d92d683696ddfb77744d243a4f0d4aa2645d586940ab0eb00000",
+      "original_path": "oigusaktid/404052016003.xml#lisa:Lisa2.pdf",
+      "review_status": "derived_annex_text_checked",
+      "title": "Avaldus peretoetuse taotlemiseks: Tori Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise tingimused ja kord“ lisa",
+      "document_id": "riigiteataja:404052016003:lisa:lisa2",
+      "metadata_path": "oigusaktid/lisad/404052016003-lisa-2.meta.json"
+    },
+    {
+      "path": "oigusaktid/lisad/404052016003-lisa-2.meta.json",
+      "category": "oigusaktid",
+      "role": "metadata",
+      "sha256": "adcb00159125348f5518082f3d4ce7855b692ffbaaae221194cd454553a4f324",
+      "original_path": "oigusaktid/lisad/404052016003-lisa-2.meta.json"
+    },
+    {
+      "path": "oigusaktid/lisad/404052016003-lisa-3.json",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "cf7bd40557a5344ac3e2c23dccd0422a9cf308f3bc19bb63137296f12170da88",
+      "original_path": "oigusaktid/404052016003.xml#lisa:Lisa3.pdf",
+      "review_status": "derived_annex_text_checked",
+      "title": "Avaldus I klassi astuja toetuse taotlemiseks: Tori Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise tingimused ja kord“ lisa",
+      "document_id": "riigiteataja:404052016003:lisa:lisa3",
+      "metadata_path": "oigusaktid/lisad/404052016003-lisa-3.meta.json"
+    },
+    {
+      "path": "oigusaktid/lisad/404052016003-lisa-3.meta.json",
+      "category": "oigusaktid",
+      "role": "metadata",
+      "sha256": "6a607f7dad50a5668945e520b5224b17a2dd0d988797f13ce597b01d8823284b",
+      "original_path": "oigusaktid/lisad/404052016003-lisa-3.meta.json"
+    },
+    {
+      "path": "oigusaktid/lisad/407052021021-lisa.json",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "09ddf9a2e855b2046b2d35f4d209b0bf76ecd3530e57b94fbd6300e0c2d871b0",
+      "original_path": "oigusaktid/407052021021.xml#lisa:LuunjaVVK_m7_Lisa.pdf",
+      "review_status": "derived_annex_text_checked",
+      "title": "Vallaeelarvest makstavate sotsiaaltoetuste määrad: Luunja Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise kord“ lisa",
+      "document_id": "riigiteataja:407052021021:lisa:luunjavvk-m7-lisa",
+      "metadata_path": "oigusaktid/lisad/407052021021-lisa.meta.json"
+    },
+    {
+      "path": "oigusaktid/lisad/407052021021-lisa.meta.json",
+      "category": "oigusaktid",
+      "role": "metadata",
+      "sha256": "7a8718eff4fc823a43ea8d62ae28771d28ae63c735653ec8e83bc8a02d7386c6",
+      "original_path": "oigusaktid/lisad/407052021021-lisa.meta.json"
     }
   ],
   "original_path_base": "../Arhiiv/Andmebaasi_2026-09-07/Andmebaasi"

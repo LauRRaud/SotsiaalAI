@@ -1,0 +1,12 @@
+{
+  "title": "Avaldus I klassi astuja toetuse taotlemiseks: Tori Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise tingimused ja kord“ lisa",
+  "extractor": "rag-v2/rt-annex-text-1",
+  "table": "text",
+  "items": [
+    {
+      "id": "lk-1",
+      "title": "Avaldus I klassi astuja toetuse taotlemiseks: Tori Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise tingimused ja kord“ lisa",
+      "text": "Lisa 3\nTori Vallavolikogu 20.04.2016\nmääruse nr juurde\nTORI VALLAVALITSUSELE\nAVALDUS\nI KLASSI ASTUJA TOETUSE TAOTLEMISEKS\nTaotleja andmed\nEesnimi Perekonnanimi\nIsikukood Telefon\nElukoht\nI klassi astuva õpilase andmed\nEesnimi Perekonnanimi\nIsikukood Kool\nElukoht\nToetus palun maksta:\nTaotleja arvele Arve nr\nTeise inimese arvele Nimi\nIsikukood\nArve nr\nKuupäev __________________________ Allkiri ___________________________"
+    }
+  ]
+}
