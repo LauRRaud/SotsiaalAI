@@ -778,14 +778,15 @@ test('XML: superscript numbers read as the act is cited, amendment notes are lef
   const note = (text = '') => `<muutmismarge>${text ? `<tavatekst>${text}</tavatekst>` : ''}<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-04-03</avaldamineKuupaev><RTartikkel>17</RTartikkel><aktViide>403042025017</aktViide></avaldamismarge><joustumine>2025-04-06</joustumine></muutmismarge>`;
   const act = xml.replace(/<sisu>.*<\/sisu>/su, '<sisu><peatykk><kuvatavNr><![CDATA[7<sup>1</sup>.]]></kuvatavNr><peatykkPealkiri>Fictional division</peatykkPealkiri>'
     + '<paragrahv id="p1"><paragrahvNr ylaIndeks="1">15</paragrahvNr><kuvatavNr><![CDATA[§ 15<sup>1</sup>.]]></kuvatavNr><paragrahvPealkiri>Garden care</paragrahvPealkiri>'
-    + `<loige><kuvatavNr>(1)</kuvatavNr><sisuTekst><tavatekst>The fictional garden is watered <b>daily</b>.</tavatekst></sisuTekst>${note()}</loige>`
+    + `<loige><kuvatavNr>(1)</kuvatavNr><sisuTekst><tavatekst>The fictional garden is watered <b>daily</b> as § 45<sup>9</sup> and § 45<sup>16</sup> say.</tavatekst></sisuTekst>${note()}</loige>`
     + `<loige><kuvatavNr>(2)</kuvatavNr>${note('Kehtetu - ')}</loige></paragrahv>`
     + `<paragrahv id="p2"><kuvatavNr><![CDATA[§ 16.]]></kuvatavNr><paragrahvPealkiri>Old greenhouse</paragrahvPealkiri>${note('Kehtetu - ')}</paragrahv>`
     + `${note('Kehtetu - ')}</peatykk></sisu>`);
   const { bundle } = await ingest(await source('xml-amendments', 'xml', act));
   const text = bundle.chunks.map(chunk => chunk.source_text).join('\n'), retrieval = bundle.chunks.map(chunk => chunk.retrieval_text).join('\n');
   assert.equal(bundle.chunks.length, 1, 'the wholly repealed § 16 and the division-level repeal note make no text');
-  assert.match(text, /^§ 15¹\.\n\nGarden care\n\n\(1\)\n\nThe fictional garden is watered daily\.\n\n\(2\)\nKehtetu\.$/u);
+  // The body's superscript element reads as cited too (§ 45⁹, not § 459).
+  assert.match(text, /^§ 15¹\.\n\nGarden care\n\n\(1\)\n\nThe fictional garden is watered daily as § 45⁹ and § 45¹⁶ say\.\n\n\(2\)\nKehtetu\.$/u);
   assert.match(retrieval, /7¹\. Fictional division > § 15¹\. Garden care/u);
   for (const noise of ['<sup>', '<b>', 'RT IV', '403042025017', '2025-04-06', 'Old greenhouse']) assert(!`${text}\n${retrieval}`.includes(noise), noise);
   exactLocations(bundle);
