@@ -92,6 +92,22 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**29.09 (Opus): kiirus, kahe inimese vestlus, kontaktid.**
+- **Kiirus** ([ADR-048](../rag-v2/adr-048-answer-speed.md)): enne esimest teksti on umbes 8 s eeltööd (plaan, embedding, otsing koos rerank'iga) ja 5–20 s vastuse arutlust. Prioriteedi soov ei muutnud teenustaset (API annab juba `fast`). Kataloogis v4 andis `low` 37/40, vastuse faas 11,2 → 3,9 s; `medium` andis 39/40.
+  - Arutluse taseme otsus on omanikul, lahenduse ettepanek läheb Codexile.
+  - Päeva baas: tootmises kataloog v4 39/40.
+- **Kahe inimese vestlus** ([ADR-049](../rag-v2/adr-049-person-bound-municipality.md)): olek v3 hoiab iga inimese omavalitsust eraldi. Otsinguplaan nimetab abivajaja, dialoogi prompt on 15. Server kannab edasi ümber nimetatud fakti ja välja jäetud isiku; 28.09 lükati tagasi 33% jätkupööretest.
+  - Sihtkataloogid: tootmiskoodil 5/8 ja 3/5, pärast 8/8 ja 5/5. v4: 38/40, kõik omavalitsused samad mis baasjooksus. Olek lükati tagasi 10% jätkupööretest (v2-s 30%).
+  - Codexi neljast v3 veateest on kolm parandatud.
+  - Avatud: kuuluvuse kontroll, faktide elutsükkel, hindaja ootused olekule ning sama omavalitsus teadmusotsingule ja kataloogile.
+- **Kontaktid** ([ADR-045 lisa](../rag-v2/adr-045-contact-binding-content.md#sidumata-kontaktid-29092026)): 424 sidumata kontakti:
+  - 186 registrireal puudub viimane kinnitus;
+  - 162 isikut registris pole;
+  - 51 on omavalitsustest, kus pole ühtki kinnitatud rida;
+  - 20 on sama inimese topeltread.
+  - Avaldamine ühe partiina pärast 04.10 kontrolli.
+- **Kuuldeaparaadi piirhind** ([ADR-046 leid](../rag-v2/adr-046-cost-conditions.md#leid-2909-lisa-on-rt-xml-is-juba-olemas)): määruse lisa, kus on iga abivahendi piirhind ja määr, on RT XML-is PDF-ina juba olemas. Soovitus on lugeda see struktureeritud kirjeteks; otsus jääb Codexi kavale ja omanikule.
+
 **27.09 Muudatusepõhine indeks serveris (ADR-036, PR #210–#217).** Serveriaruande järgi on
 aktiivne korpus v32 (`versions-v1`, 32 746 tekstiosa). v31 lisamisel töötles indeks kaks
 õigusteksti 47 sekundiga. Vanade
