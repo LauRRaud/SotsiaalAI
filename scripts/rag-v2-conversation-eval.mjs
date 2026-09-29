@@ -75,6 +75,8 @@ function observe(row, error) {
     text, kind: answer?.kind ?? null, clarification: Boolean(answer?.clarification) || answer?.kind === 'clarification',
     stateRegion: payload.dialogueState?.value ? focusRegion(payload.dialogueState.value)?.id ?? null : null,
     person: payload.searchAssist?.person ?? null, scopePerson: records.scope?.person ?? null,
+    stateFallback: payload.dialogueStateFallback?.code ?? null,
+    personRegions: Object.fromEntries((payload.dialogueState?.value?.people || []).map(entry => [entry.person.trim().toLowerCase(), entry.region.id])),
     timings: { searched: payload.timings?.phases?.searched ?? null, answered: payload.timings?.phases?.answered ?? null,
       search: payload.timings?.search?.since_start_ms?.merged ?? null, total: payload.timings?.validatedDraftMs ?? null },
     usd: events.reduce((sum, event) => sum + (event.estimatedNanoUsd || 0), 0) / 1e9,
@@ -109,16 +111,20 @@ try {
   report.estimated_usd = +spent.toFixed(4);
   const all = report.scenarios.flatMap(scenario => scenario.turns);
   report.summary = Object.fromEntries(['passed', 'search', 'answer', 'state'].map(verdict => [verdict, all.filter(turn => turn.verdict === verdict).length]));
+  // Rejected model states are counted on every run, expected or not: a lost state hides behind a right catalogue.
+  report.states = { continuing: all.filter(turn => turn.observed?.previousStateCleared === false).length,
+    rejected: all.filter(turn => turn.observed?.stateFallback).length };
   await fs.writeFile(path.join(values.out, 'conversation-eval.json'), `${JSON.stringify(report, null, 2)}\n`);
   await fs.writeFile(path.join(values.out, 'conversation-eval.md'), `${markdown(report)}\n`);
   await prisma.$disconnect();
 }
-console.log(JSON.stringify({ summary: report.summary, estimated_usd: report.estimated_usd, stopped: report.stopped || null }));
+console.log(JSON.stringify({ summary: report.summary, states: report.states, estimated_usd: report.estimated_usd, stopped: report.stopped || null }));
 process.exit(0);
 
 function markdown(r) {
   const lines = [`# Vestluste hindamine ${r.today}`, '', `Plaan ${r.plan}, indeks ${r.generation}, mudel ${r.model} (${r.reasoning}). `
-    + `Hinnanguline kulu ${r.estimated_usd} USD.${r.stopped ? ` Peatatud: ${r.stopped}.` : ''}`, '',
+    + `Kulu plaani hinnatabeli järgi (hinnang) ${r.estimated_usd} USD.${r.stopped ? ` Peatatud: ${r.stopped}.` : ''}`, '',
+  `Jätkupöördeid ${r.states?.continuing ?? '-'}, neist mudeli uus olek tagasi lükatud ${r.states?.rejected ?? '-'}.`, '',
   '| Tulemus | Pöördeid |', '|---|---:|', ...Object.entries(r.summary).map(([verdict, n]) => `| ${verdict} | ${n} |`), ''];
   for (const scenario of r.scenarios) {
     lines.push(`## ${scenario.title} (\`${scenario.id}\`)`, '', `Allikas: ${scenario.source}. Vestlus: \`${scenario.conversation}\`.`, '');

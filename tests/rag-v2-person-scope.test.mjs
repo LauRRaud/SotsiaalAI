@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { resolveRecordScope, focusRegion } from '../lib/rag-v2/pilot/record-scope.js';
+import { resolveRecordScope, focusRegion, knowledgeRegionScope } from '../lib/rag-v2/pilot/record-scope.js';
 import { PERSON_DIALOGUE_STATE_VERSION, TYPED_DIALOGUE_STATE_VERSION, validateDialogueState, validateStateRegion, stateAudit,
   PERSON_DIALOGUE_ANSWER_SCHEMA, previousStateFor, projectDialogueAnswer } from '../lib/rag-v2/pilot/dialogue-state.js';
 
@@ -138,4 +138,16 @@ test('state v3 keeps what the model may only repeat: an earlier topic and an omi
   delete v2previous.value.people; delete v2previous.value.focus;
   const v2value = { facts: [{ ...previous.value.facts[0], topic: 'võlaprobleem' }, previous.value.facts[1]], needs: [], unknowns: [], language_hint: 'et', periods: [], region: unknown };
   assert.throws(() => validateDialogueState(v2value, input, context, v2previous, TYPED_DIALOGUE_STATE_VERSION), error => error.reason === 'previous_fact_dropped');
+});
+
+test('a place only the search plan read selects both lanes and keeps the person (Codex F4)', async () => {
+  // "Я живу в Кose" is not read by the resolver; the plan's Estonian query names Kose vald for the user.
+  const bound = { state: 'region_required', region: null, person: 'user' };
+  assert.deepEqual(await knowledgeRegionScope(bound, ['toimetulekutoetus Kose vallas'], directory, analyzer),
+    { state: 'search_plan_region', region: 'kose_vald', person: 'user', interpretation: 'source_scope_only_not_confirmed_residence' });
+  assert.deepEqual(await knowledgeRegionScope({ state: 'region_required', region: null }, ['abi Kose vallas ja Harku vallas'], directory, analyzer),
+    { state: 'search_plan_ambiguous_region', region: null, candidates: ['harku_vald', 'kose_vald'] });
+  // A resolved or negated scope is never replaced by the plan.
+  const mentioned = { state: 'mentioned_region', region: 'tartu_vald' };
+  assert.equal(await knowledgeRegionScope(mentioned, ['abi Kose vallas'], directory, analyzer), mentioned);
 });
