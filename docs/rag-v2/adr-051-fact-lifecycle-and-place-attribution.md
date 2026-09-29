@@ -90,3 +90,32 @@
 - `tests/rag-v2-search-assist.test.mjs`: plaani `people`, vabateksti isik ja `places`.
 - `tests/rag-v2-dialogue-config.test.mjs`: v4 käivitub, v2 ja v3 on ainult loetavad.
 - Serveris enne PR-i: sihtkataloogid ja kataloog v4 aktiveerimata plaaniga (tulemused allpool).
+
+### Tulemused serveris, 29.09.2026
+
+Korpus v36, `eval-full` koopia ja aktiveerimata plaanid. Iga koodimuudatus sai uue plaani:
+
+- **j:** olek v4;
+- **k:** 12 uut fakti sõnumi kohta, osalised viited, naabri laps;
+- **l:** järelejõudmine;
+- **m:** üks isik.
+
+| Kataloog | Tootmiskood (v3) | j | k | l | m |
+|---|---:|---:|---:|---:|---:|
+| `scenarios-two-people-1` | 8/8 | 8/8 | 8/8 | 7/8 | 8/8 ja 8/8 |
+| `scenarios-two-people-2` | 5/5 | 5/5 | 5/5 | 5/5 | 5/5 |
+| `scenarios-memory-1` (kirjutatud enne jooksu) | 4/8, olek tagasi 3/6 | 7/8 | 5/8 | 8/8 | 7/8 |
+| Kataloog v4 | 39/40, olek tagasi 10% | 39/40 | 38/40 | 38/40 | **40/40** |
+
+- **Tagasi lükatud olekud:** v4-s 0 kõigis jooksudes (kataloogis v4 0/21 jätkupööret).
+- **Omavalitsused:** samad mis päeva baasis, välja arvatud `child-alone-report` T2. Seal saab naabri laps nüüd kasutaja Tartu linna, nagu kataloog ootab.
+- **Vead ja parandused:**
+  - **j → k.** `child-alone-report` T2 (naabri lapsel polnud kohta) läbib pärast naabri lause lisamist.
+  - **k: T1 vastus lükati tagasi.** `many-circumstances` T1 vastus lükati tagasi (`invalid_answer_reference`, vastusemudel). T2-l polnud siis eelmist olekut ja kasutaja Kose jäi olekust välja. Sellest tuli järelejõudmine: l ja m läbivad.
+  - **l: liidetud silt.** `mother-harku-then-self-tallinn` T4 sai isikuks „user ja ema“. Sellest tuli juhis „üks isik“; m-is kaks korda 8/8, liidetud silte pole.
+  - **Korduv vastuse kontroll (j, k, m).** `debts-corrected-and-retracted` T3: parandatud summat 5000 vastuses ei korrata, kuigi olek on õige ja midagi ei jäetud välja.
+  - **Varasemad kõikumised (k ja l).**
+    - `care-home-correction` T3 „700“: 5 viga 21 varasemast jooksust.
+    - Esimese pöörde otsing `care-home-correction` T1 ja `appeal-follow-up` T1: esimene pööre olekut ei kasuta; appeal T1 kukkus ka 29.09 hommikul.
+- **Plaani sond** (5 kõnet): `place_messages` 2 korral leidis plaan varasema sõnumi koha ja hilisema eituse. 1 korral nimetas ta mõnikord ka varasema sõnumi koha. Selle jätab välja serveri tsitaadikontroll, sest piiri hoiab server, mitte plaan.
+- **Kulu:** raportite `estimated_usd` on plaani hinnatabeli hinnang, mitte arve. Tegelik kulu on OpenAI platvormil.
