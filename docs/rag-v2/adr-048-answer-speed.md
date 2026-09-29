@@ -75,7 +75,7 @@ Mõlemad jooksud tehti `eval-full` koopiast, mille `lib` on sama mis tootmises (
 1. **Vastuse arutluse tase: otsustatud, `medium` jääb** (omanik 29.09). Mõõdetud vahetus oli `low` 37/40 ja 6 s kiirem, `medium` 39/40.
    - Enne otsust tasub vastuseid kõrvuti lugeda: mõlema jooksu vastused on serveris `rag-v2-work/eval-files/corpus4-{base,low}-0929/conversation-eval.md`.
    - Vahevariant oleks `low` ainult lihtsamatele pööretele. Keerukuse hindamine enne vastust on aga uus otsus ja uus viga; selle kasuks praegu tõendit pole.
-2. **Olekutekst ootamise ajal (ilma mudelimuutuseta).** Praegu näeb kasutaja 8–20 s ainult ooteanimatsiooni. Voos saab saata sammu teate: „Otsin allikaid…“ → „Valin sobivaid lõike…“ → „Koostan vastust…“.
+2. **Olekutekst ootamise ajal (ilma mudelimuutuseta). Omaniku otsus 29.09: jääb tegemata; ooteseis jääb vaikseks pöörlevaks S-iks ilma nähtava sildita** (`app/styles/chat.css`, tellija soov 12.07). Praegu näeb kasutaja 8–20 s ainult ooteanimatsiooni. Voos saab saata sammu teate: „Otsin allikaid…“ → „Valin sobivaid lõike…“ → „Koostan vastust…“.
    - Teenus teab juba samme (`reached('planned' | 'embedded' | 'searched')`), rerank'i algus on otsingu konksus.
    - See ei lühenda aega, aga kasutaja näeb, et töö käib. Vajab `delta`/`done` kõrvale uut sündmust ja kolme keele tõlkeid.
 3. **Mida mitte teha:**
