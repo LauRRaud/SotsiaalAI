@@ -36,7 +36,7 @@ Valikuline adminiseadistus sisaldab järgmisi välju:
 | --- | --- |
 | `enabled` | `true`; välja puudumine tähendab väljalülitatud funktsiooni. |
 | `model`, `accountProject`, `reasoning` | Mudel, serveri projekt ning `low/medium/high`; brauser neid ei määra. |
-| `timeoutMs`, `maxOutputTokens` | 5000–120000 ms ja 256–16000 väljunditokenit. |
+| `timeoutMs`, `maxOutputTokens` | 5000–600000 ms (ADR-054: pikk partiikõne serveris) ja 256–16000 väljunditokenit. |
 | `maxDocumentInputTokens` | Ühe dokumendi konservatiivse sisendreservi piir, 1024–200000. |
 | `maxApiAttempts`, `maxInputTokens`, `maxSpendUsd` | Selle adminiseadistuse ühised katsete, sisendreservi ja USD kulupiirid. |
 | `prices.input`, `prices.output` | Seadistaja kontrollitud positiivne täisarv nano-USD/token; näidishinda runtime ei eelda. |

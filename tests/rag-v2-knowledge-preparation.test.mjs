@@ -5,7 +5,7 @@ import path from 'node:path';
 import os from 'node:os';
 import net from 'node:net';
 import { hash, id, validateBundle } from '../lib/rag-v2/contracts.js';
-import { knowledgePreparationDraft, knowledgePreparationPlan, validateKnowledgePreparationConfig } from '../lib/rag-v2/knowledge-preparation.js';
+import { knowledgePreparationDraft, knowledgePreparationPlan, knowledgePreparationParts, knowledgePartsDraft, validateKnowledgePreparationConfig } from '../lib/rag-v2/knowledge-preparation.js';
 import { IntakeService } from '../lib/rag-v2/admin/intake.js';
 import { validateAdminConfig } from '../lib/rag-v2/admin/config.js';
 import { LocalPolicy } from '../lib/rag-v2/search/policy.js';
@@ -182,4 +182,53 @@ test('source replacement and live access revocation prevent stale preparation or
   await assert.rejects(revoked.service.prepareKnowledge(active.job_id, active.knowledge_preparation.plan.hash), { code: 'forbidden' });
   await assert.rejects(revoked.service.get(active.job_id), { code: 'forbidden' });
   assert.equal(revoked.state.calls, 1);
+});
+
+test('ADR-054: a large document is prepared in parts with the document\'s own fragment ids; a whole one keeps its plan', async () => {
+  const f = await fixture(); await f.prepare();
+  const bundle = await f.bundle(), config = f.config.knowledgePreparation;
+  const whole = knowledgePreparationParts(bundle, config, { partBytes: 100000 });
+  assert.equal(whole.length, 1);
+  assert.equal(whole[0].hash, knowledgePreparationPlan(bundle, config).hash);
+  const parts = knowledgePreparationParts(bundle, config, { partBytes: 400 });
+  assert(parts.length > 1);
+  assert.deepEqual(parts.map(plan => plan.manifest.part.index), parts.map((_, i) => i + 1));
+  assert(parts.every(plan => plan.manifest.part.count === parts.length));
+  assert.deepEqual(parts.flatMap(plan => plan.sources.map(source => source.source_id)), ['T1', 'T2', 'T3', 'T4']);
+  assert.match(parts[0].body.instructions, new RegExp(`part 1 of ${parts.length} of one document`));
+  assert.match(parts[0].body.instructions, new RegExp(`at most ${Math.floor(256 / parts.length)} cards`));
+  assert.throws(() => knowledgePreparationParts(bundle, config, { partBytes: 10 }), { code: 'knowledge_preparation_part_invalid' });
+});
+
+test('ADR-054: a batch draft keeps what the source shows, counts what it leaves out, and uses its own keys', async () => {
+  const f = await fixture(); await f.prepare();
+  const bundle = await f.bundle(), parts = knowledgePreparationParts(bundle, f.config.knowledgePreparation, { partBytes: 400 });
+  // Each part cites only its own fragments; one card's quote is not in its fragment, so the relation needing it goes too.
+  const valueFor = plan => {
+    const sources = JSON.parse(plan.body.input).sources;
+    const cards = sources.map(source => ({ key: `k${source.pdf_page}`, kind: source.pdf_page === 1 ? 'assertion' : 'condition', statement: pages[source.pdf_page - 1],
+      subject: null, predicate: null, object: null, scope: 'Fictional document example only', anchors: [{ source_id: source.source_id, quote: pages[source.pdf_page - 1] }] }));
+    return { cards, dependencies: [], unresolved: [] };
+  };
+  const values = parts.map(valueFor);
+  const first = values[0];
+  first.cards.push({ ...first.cards[0], key: 'bad', anchors: [{ source_id: first.cards[0].anchors[0].source_id, quote: 'not in the fragment' }] });
+  first.dependencies.push({ key: 'needs-bad', type: 'REQUIRES', from: first.cards[0].key, targets: [{ key: 'bad' }], operator: 'all',
+    scope: 'Fictional document example only', anchors: first.cards[0].anchors });
+  first.unresolved.push({ from: 'bad', statement: 'An unspecified condition.', reason: 'Not in the fragment.', anchors: first.cards[0].anchors });
+  const draft = knowledgePartsDraft(parts.map((plan, i) => ({ plan, value: values[i] })), bundle);
+  assert.equal(draft.knowledge.cards.length, 4);
+  assert.deepEqual(draft.knowledge.cards.map(card => card.key).slice(0, 1), ['p1-c1']);
+  assert.deepEqual(draft.dropped, { card_anchor: 1, dependency_card_left_out: 1, unresolved_card_left_out: 1 });
+  assert.equal(draft.knowledge.gaps[0].from, null);
+  for (const card of draft.knowledge.cards) for (const anchor of card.anchors) {
+    assert.equal(bundle.pages[anchor.pdf_page - 1].raw_text.slice(anchor.start, anchor.start + anchor.quote.length), anchor.quote);
+  }
+  assert.deepEqual(draft.missing_parts, []);
+  // A part whose request failed is missing and reported; the others still count.
+  const partial = knowledgePartsDraft(parts.slice(1).map((plan, i) => ({ plan, value: values[i + 1] })), bundle);
+  assert.deepEqual(partial.missing_parts, [1]);
+  assert(partial.knowledge.cards.every(card => !card.key.startsWith('p1-')));
+  // Parts out of order, or another version's plan, stop the draft.
+  assert.throws(() => knowledgePartsDraft(parts.map((plan, i) => ({ plan, value: values[i] })).reverse(), bundle), { code: 'knowledge_preparation_scope_changed' });
 });
