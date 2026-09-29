@@ -7,7 +7,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { PrismaClient } from '../generated/prisma/client.ts';
 import { PrismaPg } from '@prisma/adapter-pg';
-import { PilotStore } from '../lib/rag-v2/pilot/store.js';
+import { PilotStore, PILOT_TURN_LIMITS } from '../lib/rag-v2/pilot/store.js';
 import { PilotService } from '../lib/rag-v2/pilot/service.js';
 import { digest, buildQuestion, ANSWER_VERSION } from '../lib/rag-v2/pilot/contracts.js';
 import { embeddingConfig } from '../lib/rag-v2/search/embedding.js';
@@ -96,7 +96,36 @@ test('real DB: timeout/restarted service never resends unknown work and retains 
     } finally { await db.$disconnect(); }
   `], { encoding: 'utf8', windowsHide: true, env: { ...process.env, M4_RESTART_CASE: JSON.stringify({ config: f.config, userId: f.user.id, input: f.input }) } });
   assert.equal(JSON.parse(child.trim()).state, 'unknown');
-  await assert.rejects(restarted.run(f.user.id, { ...f.input, clientTurnKey: randomUUID() }), { code: 'pilot_busy_or_unknown' });
+  // ADR-052: the unknown turn blocks no one. A new turn runs its own call (here the same timeout); the unknown turn's
+  // work is never sent again and its reservation stays in the ledger.
+  await assert.rejects(restarted.run(f.user.id, { ...f.input, clientTurnKey: randomUUID() }), /timeout/);
+  assert.deepEqual(f.calls, ['timeout', 'timeout']);
+  assert.equal((await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id, inputHash: digest({ tenant: f.config.tenant, userId: f.user.id, ...f.input }) } })).state, 'unknown');
+  assert.ok((await db.m4PilotLedger.findUnique({ where: { id: f.config.id } })).totals.nanoUsd > before.totals.nanoUsd);
+});
+test('ADR-052 real DB: a turn orders its own conversation, the pilot runs a few at once, and a lost turn closes without a resend', async t => {
+  const f = await fixture(t);
+  const conversation = () => db.conversation.create({ data: { userId: f.user.id, role: 'CLIENT', metadata: { m4: true }, expiresAt: new Date(Date.now() + 3600000) } });
+  const claim = convId => f.store.claim(f.config, f.user.id, { ...f.input, convId, clientTurnKey: randomUUID() });
+  // A turn in progress: the same conversation waits, another conversation goes on, up to the pilot's limit.
+  const first = (await claim(f.conv.id)).row;
+  await assert.rejects(claim(f.conv.id), { code: 'conversation_busy' });
+  for (let i = 1; i < PILOT_TURN_LIMITS.concurrent; i++) await claim((await conversation()).id);
+  await assert.rejects(claim((await conversation()).id), { code: 'pilot_busy' });
+  // Lost processes: no write for longer than the limit. A turn that sent a call becomes unknown, one that sent none stops.
+  const sent = await f.store.reserve(f.config, first, 'embedding', { tokens: 10, nanoUsd: 10 }, {});
+  await f.store.sent(f.config, sent, 'embedding');
+  const ledger = (await db.m4PilotLedger.findUnique({ where: { id: f.config.id } })).totals;
+  await db.$executeRaw`UPDATE "M4PilotTurn" SET "updatedAt" = now() - interval '6 minutes' WHERE "pilotId" = ${f.config.id}`;
+  const next = await claim(f.conv.id);
+  assert.equal(next.fresh, true);
+  const rows = await db.m4PilotTurn.findMany({ where: { pilotId: f.config.id, id: { not: next.row.id } } });
+  assert.deepEqual(rows.map(row => row.state).sort(), ['stopped', 'stopped', 'unknown']);
+  assert.ok(rows.every(row => row.payload.error === 'turn_abandoned'));
+  assert.equal(rows.find(row => row.id === first.id).payload.abandoned.state, 'embedding_sent');
+  // The unknown call's reservation stays spent; nothing was sent again.
+  assert.deepEqual((await db.m4PilotLedger.findUnique({ where: { id: f.config.id } })).totals, ledger);
+  assert.deepEqual(f.calls, []);
 });
 test('real DB: budget reservation is locked across concurrent claimers and survives conversation deletion', async t => {
   const f = await fixture(t, { budget: { attempts: 1, embeddingAttempts: 8, answerAttempts: 8, tokens: 200000, nanoUsd: 200000 } });
