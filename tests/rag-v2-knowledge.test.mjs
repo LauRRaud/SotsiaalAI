@@ -13,6 +13,7 @@ import { PostgresCatalog } from '../lib/rag-v2/search/postgres.js';
 import { retrievalProfile, queryForProfile } from '../lib/rag-v2/search/profiles.js';
 import { retrieve } from '../lib/rag-v2/search/retrieval.js';
 import { dependencyContext } from '../lib/rag-v2/search/dependencies.js';
+import { validateQuery } from '../lib/rag-v2/search/ranking.js';
 
 let root, base, guide;
 const tenant = 'knowledge-synthetic', rights = { access: 'local_private', usage: 'development_only' };
@@ -231,4 +232,25 @@ test('an anchored unresolved dependency remains visible in retrieval and is remo
     assert(!JSON.stringify(late.model_context).includes(quote));
     assert(!JSON.stringify(late.model_context).includes(knowledge.gaps[0].statement));
   } finally { base = previous; }
+});
+
+test('ADR-054: a profile\'s dependency budget lets the graph add sources the ranked seeds could not crowd out, and only the graph', async () => {
+  // The seed alone is about 111 tokens and the three graph sources bring it to about 606. A 512-token budget keeps
+  // 256 for text after the marker's room: the seed fits and the graph's sources do not all fit.
+  const query = extra => { const value = queryForProfile(retrievalProfile('vector-source-dependencies-v1'), { text: 'planting activity', language: 'en' });
+    value.limits.contextTokens = 512; Object.assign(value.limits, extra); return value; };
+  const tight = await searchFixture().run(undefined, { query: query({}) });
+  assert(tight.measurements.dependency_additions < 3);
+  assert(tight.selection_trace.some(entry => entry.reason === 'context_budget'));
+  const room = await searchFixture().run(undefined, { query: query({ dependencyContextTokens: 1000 }) });
+  assert.equal(room.evidence[0].chunk_id, tight.evidence[0].chunk_id);
+  assert.equal(room.measurements.dependency_additions, 3);
+  assert.equal(room.model_context.dependencies.known_context, 'included');
+  // The chat's graph profile keeps the chat's ranked seeds and budget and adds only room for the graph.
+  const v1 = retrievalProfile('hybrid-estnltk-chat-v1').query, v2 = retrievalProfile('hybrid-estnltk-chat-v2').query;
+  assert.deepEqual({ ...v2, finalLimit: v1.finalLimit, limits: { ...v2.limits, perDocument: v1.limits.perDocument, dependencyContextTokens: undefined } },
+    { ...v1, limits: { ...v1.limits, dependencyContextTokens: undefined } });
+  assert.deepEqual([v2.finalLimit, v2.limits.perDocument, v2.limits.dependencyContextTokens], [13, 13, 3000]);
+  assert.equal(validateQuery({ text: 'x', language: 'en', limits: { dependencyContextTokens: 3000 } }).limits.dependencyContextTokens, 3000);
+  assert.throws(() => validateQuery({ text: 'x', language: 'en', limits: { dependencyContextTokens: 20000 } }), { code: 'invalid_query_limit' });
 });
