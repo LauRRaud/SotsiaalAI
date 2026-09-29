@@ -187,16 +187,20 @@ test('source replacement and live access revocation prevent stale preparation or
 test('ADR-054: a large document is prepared in parts with the document\'s own fragment ids; a whole one keeps its plan', async () => {
   const f = await fixture(); await f.prepare();
   const bundle = await f.bundle(), config = f.config.knowledgePreparation;
+  // A small document is one batch request, 1 of 1, whose items fit the output; the administrator's request is unchanged.
   const whole = knowledgePreparationParts(bundle, config, { partBytes: 100000 });
   assert.equal(whole.length, 1);
-  assert.equal(whole[0].hash, knowledgePreparationPlan(bundle, config).hash);
+  assert.deepEqual(whole[0].manifest.part, { index: 1, count: 1, first_source_id: 'T1', last_source_id: 'T4' });
+  assert.match(whole[0].body.instructions, /at most 40 cards, 60 dependencies/);
+  assert.doesNotMatch(whole[0].body.instructions, /part 1 of 1/);
+  assert.match(knowledgePreparationPlan(bundle, config).body.instructions, /at most 256 cards, 512 dependencies/);
   const parts = knowledgePreparationParts(bundle, config, { partBytes: 400 });
   assert(parts.length > 1);
   assert.deepEqual(parts.map(plan => plan.manifest.part.index), parts.map((_, i) => i + 1));
   assert(parts.every(plan => plan.manifest.part.count === parts.length));
   assert.deepEqual(parts.flatMap(plan => plan.sources.map(source => source.source_id)), ['T1', 'T2', 'T3', 'T4']);
   assert.match(parts[0].body.instructions, new RegExp(`part 1 of ${parts.length} of one document`));
-  assert.match(parts[0].body.instructions, new RegExp(`at most ${Math.floor(256 / parts.length)} cards`));
+  assert.match(parts[0].body.instructions, new RegExp(`at most ${Math.min(40, Math.floor(256 / parts.length))} cards`));
   assert.throws(() => knowledgePreparationParts(bundle, config, { partBytes: 10 }), { code: 'knowledge_preparation_part_invalid' });
 });
 
@@ -225,6 +229,12 @@ test('ADR-054: a batch draft keeps what the source shows, counts what it leaves 
     assert.equal(bundle.pages[anchor.pdf_page - 1].raw_text.slice(anchor.start, anchor.start + anchor.quote.length), anchor.quote);
   }
   assert.deepEqual(draft.missing_parts, []);
+  // A quote whose words the source separates by other whitespace anchors the source's own text; only a unique match does.
+  const spaced = structuredClone(values);
+  const fragment = spaced[0].cards[0].anchors[0];
+  fragment.quote = fragment.quote.replace(' ', '  \n');
+  const loose = knowledgePartsDraft(parts.map((plan, i) => ({ plan, value: spaced[i] })), bundle);
+  assert.equal(loose.knowledge.cards[0].anchors[0].quote, values[0].cards[0].anchors[0].quote);
   // A part whose request failed is missing and reported; the others still count.
   const partial = knowledgePartsDraft(parts.slice(1).map((plan, i) => ({ plan, value: values[i + 1] })), bundle);
   assert.deepEqual(partial.missing_parts, [1]);
