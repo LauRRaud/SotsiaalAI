@@ -11,7 +11,7 @@ test('search assist: both model calls are strict, low-effort, unstored JSON requ
   const plan = queryPlanRequest(config, ['Elan Tallinnas ja üürivõlg kasvab.'], 'et');
   assert.equal(plan.store, false); assert.equal(plan.reasoning.effort, 'low'); assert.equal(plan.text.format.strict, true);
   assert.equal(plan.text.format.schema.properties.queries.maxItems, SEARCH_ASSIST_LIMITS.queries);
-  assert.deepEqual(JSON.parse(plan.input[0].content), { language: 'et', messages: ['Elan Tallinnas ja üürivõlg kasvab.'], people: ['user'] });
+  assert.deepEqual(JSON.parse(plan.input[0].content), { language: 'et', messages: ['Elan Tallinnas ja üürivõlg kasvab.'], people: ['user'], place_messages: 1 });
   const passages = [{ id: 'P1', title: 'A', text: 'x' }, { id: 'P2', title: 'B', text: 'y' }];
   const rerank = rerankRequest(config, ['küsimus'], passages);
   assert.deepEqual(rerank.text.format.schema.properties.useful.items.enum, ['P1', 'P2']);
@@ -100,11 +100,15 @@ test('search-assist-4 (ADR-051): the plan names whose need the message is about 
   assert.deepEqual(JSON.parse(plan.input[0].content).people, ['user', 'naabrimees']);
   // The user is always listed; the person is free text, so someone new keeps their own label.
   assert.deepEqual(JSON.parse(queryPlanRequest(config, messages, 'et').input[0].content).people, ['user']);
+  // Places come from the current message, or from every message the saved state has not read, within the messages given.
+  assert.equal(JSON.parse(plan.input[0].content).place_messages, 1);
+  assert.equal(JSON.parse(queryPlanRequest(config, messages, 'et', [], 2).input[0].content).place_messages, 2);
+  assert.equal(JSON.parse(queryPlanRequest(config, messages, 'et', [], 9).input[0].content).place_messages, 3);
   const schema = plan.text.format.schema.properties;
   assert.equal(schema.person.enum, undefined);
   assert.deepEqual(schema.places.items.properties.relation.enum, ['lives', 'not', 'other']);
   assert.match(plan.instructions, /do not put another person's place into a query about someone else/);
-  assert.match(plan.instructions, /quote is the place name exactly as the current message writes it/);
+  assert.match(plan.instructions, /quote is the place name exactly as that message writes it/);
   const current = { searchAssist: SEARCH_ASSIST_VERSION };
   assert.equal(planPerson(current, { person: ' naabrimees ' }), 'naabrimees');
   assert.equal(planPerson(current, { person: '' }), null);

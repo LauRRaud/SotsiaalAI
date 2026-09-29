@@ -25,10 +25,11 @@
   - `periods` ja `language_hint`.
 - **Server hoiab olekut:**
   - fakte püsivate ID-dega (`F1`, `F2`, …) ja olekuga `current`, `superseded`, `retracted` või `archived`;
-  - kuni 16 kehtivat fakti. Üle selle lähevad vanimad ajalukku (`archived`) ja ajalugu hoiab 48 uusimat.
+  - kuni 12 uut fakti sõnumi kohta ja kuni 16 kehtivat fakti. Üle selle lähevad vanimad ajalukku (`archived`) ja ajalugu hoiab 96 uusimat (8 pööret × 12).
   - Mudel näeb **aktiivset vaadet**: kehtivad faktid ID-dega, isikud ja fookus, mitte ajalugu.
 - **Üksus korraga, mitte kõik või mitte midagi:**
-  - välja jäetakse tsiteerimata fakt, olematu või juba asendatud fakti asendus, vigane viide ja vigane periood (siis jääb eelmine);
+  - välja jäetakse tsiteerimata fakt, olematu või juba asendatud fakti asendus ja vigane periood (siis jääb eelmine);
+  - vajadus või lahtine küsimus jääb alles, kui tal on vähemalt üks kehtiv viide; välja jäetud viide on kirjas kui `reference_dropped`;
   - põhjus on kirjas `model.dropped`;
   - puuduv või vigane mudeli olek jätab eelmise mudeliosa alles (`model.accepted: false`), aga serveri osa liigub edasi;
   - **olek ei jää kunagi tervikuna maha.**
@@ -40,7 +41,12 @@
   - tsitaadi, täpselt nagu sõnumis;
   - isiku (`user`, teadaolev silt või uus silt kasutaja sõnadega);
   - seose: `lives`, `not` või `other`.
+- Kui abivajaja elab koos isikuga, kelle koha sõnum annab, või tema naabruses (pereliige, naaber, naabri laps), saab ta sama koha. Mujal elav sugulane seda ei saa.
 - Plaan nimetab ka **abivajaja** (`person`) vabatekstina, nii et uus inimene saab kohe oma sildi.
+- **Järelejõudmine:** plaan loeb kohti kõigist sõnumitest, mida salvestatud olek pole näinud (`place_messages`).
+  - Tavaliselt on see ainult praegune sõnum.
+  - Pärast pööret, mille olek jäi salvestamata (näiteks vastus lükati tagasi), jõuavad ka selle pöörde sõnumi kohad järgmisse olekusse.
+  - Iga koht saab selle sõnumi numbri, kust tsitaat pärineb. Hilisem sõnum võidab, ka siis, kui see ütleb, et isik seal enam ei ela.
 - **Server võtab ainult selle, mida sõnum ise näitab:**
   - tsitaat on sõnumi tekst ja nimetab ühe omavalitsuse;
   - lause tsitaadi ümber otsustab eituse. „Minu elukoht ei ole Kose vald“ ei ole elukoht, ükskõik mida plaan ütleb;
@@ -74,10 +80,12 @@
 - `tests/rag-v2-dialogue-state-4.test.mjs`:
   - ID-d, parandus ja tagasivõtmine;
   - üksikute osade väljajätmine koos põhjusega, puuduv mudeli olek, kordusfakt;
-  - 8 × 6 fakti: 16 kehtivat, ajalugu ≤ 48, väljajätmisi pole;
+  - 8 × 12 fakti: 16 kehtivat, ajalugu ≤ 96, väljajätmisi pole;
+  - osaliselt kehtivate viidetega vajadus jääb alles;
   - v4 projektsioon ja eelmise oleku ahel;
   - kohtade kontroll: tsitaat, üks omavalitsus, eitus lausest;
-  - Codexi juhtumid kataloogi ulatuses.
+  - Codexi juhtumid kataloogi ulatuses;
+  - järelejõudmine: salvestamata pöörde kohad, hilisem sõnum võidab.
 - `tests/rag-v2-dialogue-store.test.mjs` (päris andmebaas): kolm v4 pööret teenuse kaudu. Mudel näeb aktiivset vaadet ID-dega ja vigane mudeli olek jätab faktid alles.
 - `tests/rag-v2-search-assist.test.mjs`: plaani `people`, vabateksti isik ja `places`.
 - `tests/rag-v2-dialogue-config.test.mjs`: v4 käivitub, v2 ja v3 on ainult loetavad.

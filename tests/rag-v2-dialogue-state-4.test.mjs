@@ -129,3 +129,24 @@ test('Codex review 29.09: the catalogue follows the person the message is about,
   assert.equal(await scope(user, [], 'unclear', 'Aga edasi?'), null);
   assert.equal(await scope(user, [], 'user', 'Elan Tartu vallas.'), null);
 });
+
+test('after a turn whose state was not kept, the places of its message still reach the next state, the latest message first', async () => {
+  // Turn 1 named the user's Kose vald but its answer was rejected; turn 2 names no place.
+  const unread = [{ turn: 1, text: 'Olen 78-aastane ja elan üksi Kose vallas. Poeg elab Tartu vallas.' }, { turn: 2, text: 'Lisaks kukkusin eile kodus.' }];
+  const places = await checkedPlaces([{ quote: 'Tartu vallas', person: 'poeg', relation: 'lives' }, { quote: 'Kose vallas', person: 'user', relation: 'lives' },
+    { quote: 'Tartus', person: 'user', relation: 'lives' }], unread, directory, analyzer);
+  assert.deepEqual(places.map(place => [place.person, place.region, place.turn]), [['poeg', 'tartu_vald', 1], ['user', 'kose_vald', 1]]);
+  assert.deepEqual(nextPeople(null, places, 2).map(entry => [entry.person, entry.region.id, entry.region.support[0].turn]),
+    [['user', 'kose_vald', 1], ['poeg', 'tartu_vald', 1]]);
+  const scope = (list, text) => placeScope({ previousValue: null, places: list, person: 'user', turn: { turnId: 't2', text, mode: 'same' }, turnNumber: 2, directory, analyzer });
+  assert.equal((await scope(places, 'Lisaks kukkusin eile kodus.')).region, 'kose_vald');
+  // A later message moves the user, or says they no longer live there: the later message wins.
+  const moved = await checkedPlaces([{ quote: 'Kose vallas', person: 'user', relation: 'lives' }, { quote: 'Harku valda', person: 'user', relation: 'lives' }],
+    [{ turn: 1, text: 'Elan Kose vallas.' }, { turn: 2, text: 'Kolisin eile Harku valda.' }], directory, analyzer);
+  assert.equal((await scope(moved, 'Kolisin eile Harku valda.')).region, 'harku_vald');
+  assert.equal(nextPeople(null, moved, 2)[0].region.id, 'harku_vald');
+  const left = await checkedPlaces([{ quote: 'Kose vallas', person: 'user', relation: 'lives' }, { quote: 'Kose vallas', person: 'user', relation: 'not' }],
+    [{ turn: 1, text: 'Elan Kose vallas.' }, { turn: 2, text: 'Ma ei ela enam Kose vallas.' }], directory, analyzer);
+  assert.deepEqual(left.map(place => [place.relation, place.turn]), [['not', 2], ['not', 2]]);
+  assert.deepEqual(await scope(left, 'Ma ei ela enam Kose vallas.'), { state: 'region_required', region: null, person: 'user' });
+});
