@@ -82,7 +82,16 @@ function observe(row, error) {
     timings: { searched: payload.timings?.phases?.searched ?? null, answered: payload.timings?.phases?.answered ?? null,
       search: payload.timings?.search?.since_start_ms?.merged ?? null, total: payload.timings?.validatedDraftMs ?? null },
     usd: events.reduce((sum, event) => sum + (event.estimatedNanoUsd || 0), 0) / 1e9,
+    // The search plan and the rerank's candidates and choice: why a search check failed, read before the run's
+    // conversations are deleted.
+    queries: payload.searchAssist?.queries ?? [],
+    rerank: rerankOf(payload.searchAssist?.rerank),
   };
+}
+function rerankOf(rerank) {
+  if (!rerank) return null;
+  const title = id => rerank.candidates.find(candidate => candidate.id === id)?.title || id;
+  return { candidates: rerank.candidates.map(candidate => candidate.title), selected: rerank.selected.map(title) };
 }
 
 await fs.mkdir(values.out, { recursive: true });
@@ -137,6 +146,11 @@ function markdown(r) {
       lines.push(`- Piirkond ${o.region ?? '-'} (olek ${o.stateRegion ?? '-'}), vastuse liik ${o.kind ?? '-'}, täpsustus ${o.clarification}; otsing ${o.timings.search ?? '-'} ms, kokku ${o.timings.total ?? '-'} ms, ${o.usd.toFixed(4)} USD`);
       lines.push(`- Leitud allikad (${o.evidenceTitles.length}): ${o.evidenceTitles.slice(0, 12).join('; ') || '-'}${o.evidenceTitles.length > 12 ? ' …' : ''}`);
       lines.push(`- Viidatud: ${o.cited.map(source => source.title).join('; ') || '-'}`);
+      if (turn.verdict === 'search' && o.queries) {
+        lines.push(`- Otsinguplaan: ${o.queries.join(' | ') || '-'}`);
+        if (o.rerank) lines.push(`- Rerank valis ${o.rerank.selected.length}/${o.rerank.candidates.length}: ${o.rerank.selected.join('; ') || '-'}`,
+          `- Rerank'i kandidaadid: ${[...new Set(o.rerank.candidates)].join('; ')}`);
+      }
       for (const check of turn.checks) lines.push(`- ${check.ok ? 'OK' : '**VIGA**'} ${check.kind}/${check.key}: ${check.detail}`);
       lines.push('', '> ' + (o.text || `(vastust pole: ${o.error || o.state})`).replace(/\n/g, '\n> '), '');
     }

@@ -92,19 +92,27 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**29.09 (Opus): kiirus, kahe inimese vestlus, piirhind, mälu, kontaktid.**
+**29.09 (Opus): kiirus, kahe inimese vestlus, piirhind, mälu, lisad, kontaktid.** Omanik 29.09: arendus jätkub ja Codex vaatab koodi üle, kui kõik arendustööd on tehtud; ülevaatamiseks ADR-048…053 ja PR-id #255–#262.
 - **Kiirus** ([ADR-048](../rag-v2/adr-048-answer-speed.md)): enne esimest teksti on umbes 8 s eeltööd (plaan, embedding, otsing koos rerank'iga) ja 5–20 s vastuse arutlust. Prioriteedi soov teenustaset ei muutnud.
   - Omaniku otsus: arutlus jääb `medium` (kataloogis v4 andis `low` 37/40, `medium` 39/40).
-  - Ootamise ajal näidatav olekutekst on ADR-048 ettepanek; lahendus läheb Codexi kavale.
+  - Omaniku otsus: ooteolek jääb vaikseks pöörlevaks S-iks, sammude teksti ei lisata.
 - **Kulud:** plaani hinnatabeli järgi arvutatud summad (`estimated_usd`) on hinnangud ja jäid tegelikust suuremaks. Tegelik kulu tuleb OpenAI platvormilt: 27.09 kuni 29.09 päevani 0,57 USD (krediit 7,72 → 7,15).
 - **Kahe inimese vestlus** ([ADR-049](../rag-v2/adr-049-person-bound-municipality.md), #255): otsinguplaan nimetab abivajaja ja iga inimene hoiab oma omavalitsust. Sihtkataloogid tootmiskoodil 5/8 ja 3/5, pärast 8/8 ja 5/5.
 - **Kuuldeaparaadi piirhind** ([ADR-050](../rag-v2/adr-050-rt-annex-tables.md), #256, #257): abivahendite määruse lisa loetakse RT XML-ist struktureeritud ridadeks (kehtiv 325 rida, 01.10 kehtima hakkav 327). Korpus v36 on tootmises, kulukataloog 5/5.
+- **Omavalitsuste lisad** ([ADR-053](../rag-v2/adr-053-rt-annex-texts.md), #261): üheksa omavalitsuse akti lisa teksti RT XML-ist.
+  - Sisu: Harku ja Kose toetuste määrad, Harku toimetulekupiir 600 eurot, Jõelähtme ja Tori taotlusvormid, Peipsiääre hindamisinstrument.
+  - Korpus v37 (indeks `c5c32ff9`) on tootmises. Lisade kataloog 4/4, kataloog v4 40/40.
 - **Hindaja ja üks omavalitsus** (#258): hindaja kontrollib ka salvestatud olekut (`state_region`, `person_regions`, `person`, `state_kept`). Teadmusotsing ja kataloog saavad sama omavalitsuse.
 - **Mälu ja kuuluvus** ([ADR-051](../rag-v2/adr-051-fact-lifecycle-and-place-attribution.md)): olek v4.
   - Mudel kirjutab ainult muutused ja server hoiab fakte püsivate ID-dega. Vigane üksik osa jäetakse välja, aga olek ei lükku kunagi tervikuna tagasi.
   - Kohtade kuuluvuse annab otsinguplaan. Server kontrollib tsitaati ja eitust ning kataloog ja olek kasutavad sama lugemist.
   - Pärast pööret, mille olek jäi salvestamata, loetakse järgmises ka selle pöörde sõnumi kohad.
   - Tulemused aktiveerimata plaaniga: mälukataloog 4/8 → 7/8 ja 8/8 (tagasi lükatud olekud 3/6 → 0), kahe inimese kataloogid 8/8 ja 5/5, kataloog v4 40/40 (0/21 olekut tagasi).
+  - Dialoogi prompt 17: parandatud summa („pension on hoopis 700 eurot“) on vastuses kasutatud ja nimetatud. Mälukataloog 8/8 kahel korral, varem kukkus see kontroll kolmes jooksus viiest.
+- **Pöördejärjekord** ([ADR-052](../rag-v2/adr-052-pilot-turn-concurrency.md), #260):
+  - vestluses on korraga üks pööre ja piloodis kuni kolm;
+  - kaotatud protsessi pööre suletakse 5 minuti pärast ilma uue kutseta;
+  - `unknown` ei blokeeri enam kogu piloodi.
 - **Kontaktid** ([ADR-045 lisa](../rag-v2/adr-045-contact-binding-content.md#sidumata-kontaktid-29092026)): 424 sidumata kontakti:
   - 186 registrireal puudub viimane kinnitus;
   - 162 isikut registris pole;
@@ -113,9 +121,9 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
   - Avaldamine ühe partiina pärast 04.10 kontrolli; siis kontrollida ka, et 376 avaldatut on endiselt lubatud.
 - **Avatud:**
   - 01.10: kontrollida, et vastused tsiteerivad uut SHS-i ja uut abivahendite määrust (piirhinnad 500 ja 850 eurot);
-  - ootamise olekutekst (Codex);
-  - semantiline graaf (Codex F6);
-  - testplaanide koristus: `/etc/sotsiaalai/m4-eval-full-20260929{a..m}.json`.
+  - semantiline graaf (Codex F6). Allikapõhine kaartide ettevalmistus (ADR-008) on halduri vaates olemas, aga korpuse partiitoru puudub. Esmalt väike valim ja katvuse võrdlus graafiga ja ilma;
+  - Codexi punkt 5 (sisendi dubleerimine): ajavõit on hüpotees, suurim osa on teenusekataloog;
+  - testplaanide koristus: `/etc/sotsiaalai/m4-eval-full-20260929{a..o}.json`.
 
 **27.09 Muudatusepõhine indeks serveris (ADR-036, PR #210–#217).** Serveriaruande järgi on
 aktiivne korpus v32 (`versions-v1`, 32 746 tekstiosa). v31 lisamisel töötles indeks kaks
