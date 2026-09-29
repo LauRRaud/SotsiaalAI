@@ -519,3 +519,58 @@ test('ADR-040 real DB: a streamed answer that fails validation is withheld whole
   assert.equal(await db.conversationMessage.count({ where: { conversationId: f.conv.id } }), 0);
   assert.deepEqual(f.calls, ['embedding', 'answer'], 'no repair call');
 });
+
+test('Codex J4 real DB: a validated answer waiting for publication keeps its conversation\'s order, with no model call to publish it', async t => {
+  const f = await fixture(t);
+  const store = new PilotStore(db), publish = store.publish.bind(store);
+  let down = true;
+  store.publish = async (...args) => { if (down) { down = false; throw Object.assign(Error('publication down'), { code: 'publish_failed' }); } return publish(...args); };
+  const service = new PilotService({ ...f.service, store });
+  await assert.rejects(service.run(f.user.id, f.input));
+  const first = await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id } });
+  assert.equal(first.state, 'needs_recovery');
+  // The same conversation waits for it; nothing else does.
+  await assert.rejects(store.claim(f.config, f.user.id, { ...f.input, clientTurnKey: randomUUID() }), { code: 'conversation_recovery_pending' });
+  // The next turn publishes it first and asks the model only for itself.
+  const calls = f.calls.length;
+  const second = await service.run(f.user.id, { ...f.input, clientTurnKey: randomUUID(), question: 'Teine küsimus' });
+  assert.equal(second.state, 'completed');
+  assert.equal((await db.m4PilotTurn.findUnique({ where: { id: first.id } })).state, 'completed');
+  assert.deepEqual(f.calls.slice(calls), ['embedding', 'answer']);
+  const messages = await db.conversationMessage.findMany({ where: { conversationId: f.conv.id }, orderBy: [{ createdAt: 'asc' }, { id: 'asc' }] });
+  assert.deepEqual(messages.map(message => message.metadata.m4TurnId), [first.id, first.id, second.id, second.id]);
+});
+
+test('Codex J4 real DB: a failed publication keeps the next question from the model; a late answer never lands after a younger one', async t => {
+  const f = await fixture(t);
+  const store = new PilotStore(db), publish = store.publish.bind(store);
+  let down = true;
+  store.publish = async (...args) => { if (down) throw Object.assign(Error('publication down'), { code: 'publish_failed' }); return publish(...args); };
+  const service = new PilotService({ ...f.service, store });
+  await assert.rejects(service.run(f.user.id, f.input));
+  const first = await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id } });
+  const calls = f.calls.length;
+  await assert.rejects(service.run(f.user.id, { ...f.input, clientTurnKey: randomUUID(), question: 'Teine küsimus' }), { code: 'conversation_recovery_failed' });
+  assert.equal(f.calls.length, calls);
+  // A turn left waiting from before this rule: a younger turn of the conversation was published, so the old one is not.
+  down = false;
+  await db.m4PilotTurn.update({ where: { id: first.id }, data: { state: 'stopped' } });
+  const second = await service.run(f.user.id, { ...f.input, clientTurnKey: randomUUID(), question: 'Kolmas küsimus' });
+  assert.equal(second.state, 'completed');
+  const late = await db.m4PilotTurn.update({ where: { id: first.id }, data: { state: 'needs_recovery' } });
+  await assert.rejects(service.recover(late), { code: 'turn_superseded' });
+  assert.equal(await db.conversationMessage.count({ where: { conversationId: f.conv.id, metadata: { path: ['m4TurnId'], equals: first.id } } }), 0);
+});
+
+test('Codex J4 real DB: two recoveries at once publish a waiting answer once', async t => {
+  const f = await fixture(t);
+  const store = new PilotStore(db), publish = store.publish.bind(store);
+  let down = true;
+  store.publish = async (...args) => { if (down) { down = false; throw Object.assign(Error('publication down'), { code: 'publish_failed' }); } return publish(...args); };
+  const service = new PilotService({ ...f.service, store });
+  await assert.rejects(service.run(f.user.id, f.input));
+  const waiting = await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id } });
+  const [a, b] = await Promise.all([service.recover(waiting), service.recover(waiting)]);
+  assert.deepEqual([a.state, b.state], ['completed', 'completed']);
+  assert.equal(await db.conversationMessage.count({ where: { conversationId: f.conv.id } }), 2);
+});

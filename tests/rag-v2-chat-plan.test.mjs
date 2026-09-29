@@ -4,7 +4,7 @@ import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
-import { digest } from '../lib/rag-v2/pilot/contracts.js';
+import { budgetLedgerId, digest } from '../lib/rag-v2/pilot/contracts.js';
 import { activateChatPlan, approvedChatPlan, approvedScope, codeContract, newChatPlan, preflightChatPlan, renewChatPlan,
   RELEASE_RENEWAL } from '../lib/rag-v2/pilot/chat-plan.js';
 import { PilotStore } from '../lib/rag-v2/pilot/store.js';
@@ -32,7 +32,8 @@ test('a renewal keeps everything the owner approved and takes only the code fiel
   assert(approvedChatPlan(renewed));
   assert.equal(approvedScope(renewed), approvedScope(previous));
   for (const [key, value] of Object.entries(code)) assert.deepEqual(renewed[key], value, key);
-  assert.equal(renewed.id, 'm4-sotsiaalai-corpus-chat-20260927-183100-rda69c0e');
+  assert.match(renewed.id, /^m4-sotsiaalai-corpus-chat-20260927-183100-[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}-rda69c0e$/);
+  assert.equal(renewed.budgetLedger, budgetLedgerId(previous));
   assert.deepEqual(renewed.approval.renewedFrom, { id: previous.id, planHash: previous.approval.planHash });
   assert.equal(renewed.approval.authorization, RELEASE_RENEWAL);
   assert.equal(renewed.approval.approvedBy, 'owner-user');
@@ -122,4 +123,19 @@ test('a renewal keeps spending against the approved plan ledger, so a release ne
   const stranger = { ...previous, reasoning: 'high' };
   ledgers.set(stranger.id, { ...ledgers.get(previous.id), configHash: 'other' });
   await assert.rejects(store.reserve(config(stranger), row, 'answer', { tokens: 1, nanoUsd: 1 }, {}), { code: 'ledger_plan_conflict' });
+});
+
+test('Codex J6: plans made at the same instant get their own ids and ledgers; the plan file is never overwritten', async () => {
+  const plans = await Promise.all([plan(), plan(), newChatPlan({ generation, tenant: 'sotsiaalai-corpus', profileId: 'hybrid-estnltk-chat-v2',
+    users: ['owner-user'], accountProject: 'proj_synthetic', prices: { embeddingInput: 130, answerInput: 125, answerOutput: 500 }, reasoning: 'medium',
+    nanoUsd: 4e9, basis: 'Synthetic owner instruction', now })]);
+  assert.equal(new Set(plans.map(item => item.id)).size, 3);
+  assert.equal(new Set(plans.map(item => budgetLedgerId(item))).size, 3);
+  assert(plans.every(item => approvedChatPlan(item) && item.id.startsWith('m4-sotsiaalai-corpus-chat-20260927-183000-')));
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'rag-v2-chat-plan-')), file = path.join(dir, 'plan.json');
+  try {
+    await fs.writeFile(file, 'existing', { flag: 'wx' });
+    await assert.rejects(fs.writeFile(file, JSON.stringify(plans[0]), { flag: 'wx' }), { code: 'EEXIST' });
+    assert.equal(await fs.readFile(file, 'utf8'), 'existing');
+  } finally { await fs.rm(dir, { recursive: true, force: true }); }
 });
