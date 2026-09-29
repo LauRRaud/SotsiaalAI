@@ -1,0 +1,335 @@
+{
+  "schema_version": "rag-v2/registered-knowledge-1",
+  "source_path": "oigusaktid/lisad/404072025017-lisa.json",
+  "source_sha256": "4b78c2b5fd2f4fc6fd0370b36b0b6260662fe63d43ce963c6c5e87fd5247fc8f",
+  "preparation": {
+    "schema_version": "rag-v2/knowledge-preparation-1",
+    "model": "gpt-6-luna",
+    "reasoning": "medium",
+    "batch": "4f99919b2c05e40936d666abe522e19e11deebc892423409b8b9cc6445ae10cd",
+    "plan_hashes": [
+      "2317c60bcddde44faeb5e3c7b9ed1fe72c179ab320dfe5e41f76a0e2a110e16e"
+    ],
+    "draft_hash": "1c15c0163348edfd8c76225339ce4f7459ab2d92a8b01e1d7d88c677bc4edfb6",
+    "source_version_id": "version_9a5786a4e0f43a34dfad99f6bb4a26b16a3fde5b65b925fa4f9238a77c61f246",
+    "verification_state": "source_anchored_unreviewed",
+    "dropped": {},
+    "missing_parts": [],
+    "usage": {
+      "input": 1626,
+      "output": 3447,
+      "reasoning": 653
+    }
+  },
+  "knowledge": {
+    "schema_version": "rag-v2/knowledge-input-2",
+    "cards": [
+      {
+        "key": "p1-c1",
+        "kind": "assertion",
+        "statement": "Toimetuleku piirmäär Harku vallas on 600 eurot kuus ühe pereliikme kohta (netosissetulek).",
+        "scope": "Harku Vallavolikogu määruse lisa „Harku valla eelarvest makstavate sotsiaaltoetuste määrad ja piirmäärad“.",
+        "subject": "Toimetuleku piirmäär Harku vallas",
+        "predicate": "on",
+        "object": "600 eurot kuus ühe pereliikme kohta (netosissetulek)",
+        "anchors": [
+          {
+            "source_unit_index": 1,
+            "start": 223,
+            "quote": "Toimetuleku piirmäär Harku vallas on 600 eurot kuus ühe pereliikme kohta (netosissetulek)."
+          }
+        ]
+      },
+      {
+        "key": "p1-c2",
+        "kind": "assertion",
+        "statement": "Sünnitoetuse määr on 500 eurot.",
+        "scope": "Harku valla eelarvest makstavate sotsiaaltoetuste määrad ja piirmäärad dokumendi lisas.",
+        "subject": "sünnitoetus",
+        "predicate": "määr",
+        "object": "500 eurot",
+        "anchors": [
+          {
+            "source_unit_index": 1,
+            "start": 397,
+            "quote": "1) sünnitoetus - 500 eurot;"
+          }
+        ]
+      },
+      {
+        "key": "p1-c3",
+        "kind": "assertion",
+        "statement": "Esmakordselt koolimineva lapse toetuse määr on 175 eurot.",
+        "scope": "Harku valla eelarvest makstavate sotsiaaltoetuste määrad ja piirmäärad dokumendi lisas.",
+        "subject": "esmakordselt koolimineva lapse toetus",
+        "predicate": "määr",
+        "object": "175 eurot",
+        "anchors": [
+          {
+            "source_unit_index": 1,
+            "start": 425,
+            "quote": "2) esmakordselt koolimineva lapse toetus – 175 eurot;"
+          }
+        ]
+      },
+      {
+        "key": "p1-c4",
+        "kind": "assertion",
+        "statement": "Eestkostel või peres hooldamisel oleva lapse koolitoetuse määr on 100 eurot.",
+        "scope": "Harku valla eelarvest makstavate sotsiaaltoetuste määrad ja piirmäärad dokumendi lisas.",
+        "subject": "eestkostel või peres hooldamisel oleva lapse koolitoetus",
+        "predicate": "määr",
+        "object": "100 eurot",
+        "anchors": [
+          {
+            "source_unit_index": 1,
+            "start": 479,
+            "quote": "3) eestkostel või peres hooldamisel oleva lapse koolitoetus - 100 eurot;"
+          }
+        ]
+      },
+      {
+        "key": "p1-c5",
+        "kind": "assertion",
+        "statement": "Ravi- ja rehabilitatsioonitoetus alla 16-aastasele puudega lapsele on kuni 110 eurot kalendriaastas.",
+        "scope": "Harku valla eelarvest makstavate sotsiaaltoetuste määrad ja piirmäärad dokumendi lisas.",
+        "subject": "ravi- ja rehabilitatsioonitoetus alla 16-aastastele puudega lapsele",
+        "predicate": "määr",
+        "object": "kuni 110 eurot kalendriaastas",
+        "anchors": [
+          {
+            "source_unit_index": 1,
+            "start": 552,
+            "quote": "4) ravi- ja rehabilitatsioonitoetus alla 16-aastastele puudega lapsele- kuni 110 eurot\nkalendriaastas;"
+          }
+        ]
+      },
+      {
+        "key": "p1-c6",
+        "kind": "assertion",
+        "statement": "Ravi- ja rehabilitatsioonitoetus üle 16-aastasele puudega isikule, kes on mittetöötav töövõimetoetuse ja/või vanaduspensioni saaja, on kuni 100 eurot kalendriaastas.",
+        "scope": "Harku valla eelarvest makstavate sotsiaaltoetuste määrad ja piirmäärad dokumendi lisas.",
+        "subject": "ravi- ja rehabilitatsioonitoetus üle 16-aastasele puudega isikule, mittetöötavale töövõimetoetuse ja/või vanadusepensioni saajale",
+        "predicate": "määr",
+        "object": "kuni 100 eurot kalendriaastas",
+        "anchors": [
+          {
+            "source_unit_index": 1,
+            "start": 655,
+            "quote": "5) ravi- ja rehabilitatsioonitoetus üle 16-aastasele puudega isikule, mittetöötavale\ntöövõimetoetuse ja/või vanadusepensioni saajale - kuni 100 eurot kalendriaastas;"
+          }
+        ]
+      },
+      {
+        "key": "p1-c7",
+        "kind": "assertion",
+        "statement": "Põhikooli või gümnaasiumi lõpetamisel makstava koolitoetuse määr on 150 eurot.",
+        "scope": "Harku valla eelarvest makstavate sotsiaaltoetuste määrad ja piirmäärad dokumendi lisas.",
+        "subject": "koolitoetus põhikooli või gümnaasiumi lõpetamisel",
+        "predicate": "määr",
+        "object": "150 eurot",
+        "anchors": [
+          {
+            "source_unit_index": 1,
+            "start": 821,
+            "quote": "6) koolitoetus põhikooli või gümnaasiumi lõpetamisel - 150 eurot;"
+          }
+        ]
+      },
+      {
+        "key": "p1-c8",
+        "kind": "assertion",
+        "statement": "Koolitarvete ja kooliriiete soetamiseks mõeldud koolitoetuse määr on 160 eurot, kui üldhariduskoolis, kutsekoolis, kutsekeskkoolis või tehnikumis õpib vähemalt kaks last.",
+        "scope": "Harku valla eelarvest makstavate sotsiaaltoetuste määrad ja piirmäärad dokumendi lisas.",
+        "subject": "koolitoetus koolitarvete ja kooliriiete soetamiseks, kui üldhariduskoolis, kutsekoolis, kutsekeskkoolis või tehnikumis õpib vähemalt kaks last",
+        "predicate": "määr",
+        "object": "160 eurot",
+        "anchors": [
+          {
+            "source_unit_index": 1,
+            "start": 887,
+            "quote": "7) koolitoetus koolitarvete ja kooliriiete soetamiseks, kui üldhariduskoolis, kutsekoolis,\nkutsekeskkoolis või tehnikumis õpib vähemalt kaks last - 160 eurot;"
+          }
+        ]
+      },
+      {
+        "key": "p1-c9",
+        "kind": "assertion",
+        "statement": "Koolitarvete ja kooliriiete soetamiseks mõeldud koolitoetuse määr on 100 eurot, kui üldhariduskoolis, kutsekoolis, kutsekeskkoolis või tehnikumis õpib üks laps.",
+        "scope": "Harku valla eelarvest makstavate sotsiaaltoetuste määrad ja piirmäärad dokumendi lisas.",
+        "subject": "koolitoetus koolitarvete ja kooliriiete soetamiseks, kui üldhariduskoolis, kutsekoolis, kutsekeskkoolis või tehnikumis õpib üks laps",
+        "predicate": "määr",
+        "object": "100 eurot",
+        "anchors": [
+          {
+            "source_unit_index": 1,
+            "start": 1046,
+            "quote": "8) koolitoetus koolitarvete ja kooliriiete soetamiseks, kui üldhariduskoolis, kutsekoolis,\nkutsekeskkoolis või tehnikumis õpib üks laps - 100 eurot;"
+          }
+        ]
+      },
+      {
+        "key": "p1-c10",
+        "kind": "assertion",
+        "statement": "Koolieelses lasteasutuses või lapsehoius käiva lapse toidutoetuse määr on 43 eurot.",
+        "scope": "Harku valla eelarvest makstavate sotsiaaltoetuste määrad ja piirmäärad dokumendi lisas.",
+        "subject": "toidutoetus koolieelses lasteasutuses või lapsehoius käivale lapsele",
+        "predicate": "määr",
+        "object": "43 eurot",
+        "anchors": [
+          {
+            "source_unit_index": 1,
+            "start": 1195,
+            "quote": "9) toidutoetus koolieelses lasteasutuses või lapsehoius käivale lapsele - 43 eurot;"
+          }
+        ]
+      },
+      {
+        "key": "p1-c11",
+        "kind": "assertion",
+        "statement": "Põhikoolis, gümnaasiumis või kutseõppeasutuses õppiva lapse toidutoetuse määr on 25 eurot.",
+        "scope": "Harku valla eelarvest makstavate sotsiaaltoetuste määrad ja piirmäärad dokumendi lisas.",
+        "subject": "toidutoetus põhikoolis, gümnaasiumis või kutseõppeasutuses õppivale lapsele",
+        "predicate": "määr",
+        "object": "25 eurot",
+        "anchors": [
+          {
+            "source_unit_index": 1,
+            "start": 1279,
+            "quote": "10) toidutoetus põhikoolis, gümnaasiumis või kutseõppeasutuses õppivale lapsele – 25 eurot;"
+          }
+        ]
+      },
+      {
+        "key": "p1-c12",
+        "kind": "assertion",
+        "statement": "Elatusvahendite puudumisel makstava toidutoetuse määr on 60 eurot.",
+        "scope": "Harku valla eelarvest makstavate sotsiaaltoetuste määrad ja piirmäärad dokumendi lisas.",
+        "subject": "toidutoetus elatusvahendite puudumisel",
+        "predicate": "määr",
+        "object": "60 eurot",
+        "anchors": [
+          {
+            "source_unit_index": 1,
+            "start": 1371,
+            "quote": "11) toidutoetus elatusvahendite puudumisel - 60 eurot;"
+          }
+        ]
+      },
+      {
+        "key": "p1-c13",
+        "kind": "assertion",
+        "statement": "Paljulapselise pere toetuse määr on 90 eurot lapse kohta.",
+        "scope": "Harku valla eelarvest makstavate sotsiaaltoetuste määrad ja piirmäärad dokumendi lisas.",
+        "subject": "paljulapselise pere toetus",
+        "predicate": "määr",
+        "object": "90 eurot lapse kohta",
+        "anchors": [
+          {
+            "source_unit_index": 1,
+            "start": 1426,
+            "quote": "12) paljulapselise pere toetus - 90 eurot lapse kohta;"
+          }
+        ]
+      },
+      {
+        "key": "p1-c14",
+        "kind": "assertion",
+        "statement": "Kinnipidamiskohast vabanenule mõeldud ühekordse sotsiaaltoetuse määr on 30 eurot.",
+        "scope": "Harku valla eelarvest makstavate sotsiaaltoetuste määrad ja piirmäärad dokumendi lisas.",
+        "subject": "ühekordne sotsiaaltoetus kinnipidamiskohast vabanenule",
+        "predicate": "määr",
+        "object": "30 eurot",
+        "anchors": [
+          {
+            "source_unit_index": 1,
+            "start": 1481,
+            "quote": "13) ühekordne sotsiaaltoetus kinnipidamiskohast vabanenule - 30 eurot;"
+          }
+        ]
+      },
+      {
+        "key": "p1-c15",
+        "kind": "assertion",
+        "statement": "Küttetoetuse määr on kuni 300 eurot.",
+        "scope": "Harku valla eelarvest makstavate sotsiaaltoetuste määrad ja piirmäärad dokumendi lisas.",
+        "subject": "küttetoetus",
+        "predicate": "määr",
+        "object": "kuni 300 eurot",
+        "anchors": [
+          {
+            "source_unit_index": 1,
+            "start": 1552,
+            "quote": "14) küttetoetus - kuni 300 eurot;"
+          }
+        ]
+      },
+      {
+        "key": "p1-c16",
+        "kind": "assertion",
+        "statement": "Tähtpäevatoetuse määr on 50 eurot.",
+        "scope": "Harku valla eelarvest makstavate sotsiaaltoetuste määrad ja piirmäärad dokumendi lisas.",
+        "subject": "tähtpäevatoetus",
+        "predicate": "määr",
+        "object": "50 eurot",
+        "anchors": [
+          {
+            "source_unit_index": 1,
+            "start": 1586,
+            "quote": "15) tähtpäevatoetus - 50 eurot;"
+          }
+        ]
+      },
+      {
+        "key": "p1-c17",
+        "kind": "assertion",
+        "statement": "Matusetoetuse määr on 400 eurot.",
+        "scope": "Harku valla eelarvest makstavate sotsiaaltoetuste määrad ja piirmäärad dokumendi lisas.",
+        "subject": "matusetoetus",
+        "predicate": "määr",
+        "object": "400 eurot",
+        "anchors": [
+          {
+            "source_unit_index": 1,
+            "start": 1618,
+            "quote": "16) matusetoetus – 400 eurot;"
+          }
+        ]
+      },
+      {
+        "key": "p1-c18",
+        "kind": "assertion",
+        "statement": "Nägemise parandamise toetuse määr on kuni 100 eurot.",
+        "scope": "Harku valla eelarvest makstavate sotsiaaltoetuste määrad ja piirmäärad dokumendi lisas.",
+        "subject": "nägemise parandamise toetus",
+        "predicate": "määr",
+        "object": "kuni 100 eurot",
+        "anchors": [
+          {
+            "source_unit_index": 1,
+            "start": 1648,
+            "quote": "17) nägemise parandamise toetus - kuni 100 eurot;"
+          }
+        ]
+      },
+      {
+        "key": "p1-c19",
+        "kind": "assertion",
+        "statement": "Koduse lapse toetuse määr on 400 eurot.",
+        "scope": "Harku valla eelarvest makstavate sotsiaaltoetuste määrad ja piirmäärad dokumendi lisas.",
+        "subject": "koduse lapse toetus",
+        "predicate": "määr",
+        "object": "400 eurot",
+        "anchors": [
+          {
+            "source_unit_index": 1,
+            "start": 1698,
+            "quote": "18) koduse lapse toetus – 400 eurot."
+          }
+        ]
+      }
+    ],
+    "dependencies": [],
+    "gaps": []
+  }
+}

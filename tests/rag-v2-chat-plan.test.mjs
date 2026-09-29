@@ -32,7 +32,7 @@ test('a renewal keeps everything the owner approved and takes only the code fiel
   assert(approvedChatPlan(renewed));
   assert.equal(approvedScope(renewed), approvedScope(previous));
   for (const [key, value] of Object.entries(code)) assert.deepEqual(renewed[key], value, key);
-  assert.equal(renewed.id, 'm4-sotsiaalai-corpus-chat-20260927-1831-rda69c0e');
+  assert.equal(renewed.id, 'm4-sotsiaalai-corpus-chat-20260927-183100-rda69c0e');
   assert.deepEqual(renewed.approval.renewedFrom, { id: previous.id, planHash: previous.approval.planHash });
   assert.equal(renewed.approval.authorization, RELEASE_RENEWAL);
   assert.equal(renewed.approval.approvedBy, 'owner-user');

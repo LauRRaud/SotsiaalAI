@@ -1,0 +1,2336 @@
+{
+  "schema_version": "rag-v2/registered-knowledge-1",
+  "source_path": "oigusaktid/404072025017.xml",
+  "source_sha256": "b28d9a6cddc5ed0349eed436a586e8b4381764c8bc0d00f1b6776cd6835114a7",
+  "preparation": {
+    "schema_version": "rag-v2/knowledge-preparation-1",
+    "model": "gpt-6-luna",
+    "reasoning": "medium",
+    "batch": "5abc84cb07d4b0da75d19b01a10d435a9a76bae1e4ae8aa27ef75309c3c88f81",
+    "plan_hashes": [
+      "4314f179cde941c12382f424481dca51dde21553754925a1bdc0479ecbfe904f",
+      "2a9bbc6b9c9863c9ce20d14c10ec013177e87e825dd35fc86adc1492557c2c1e",
+      "47a44cd18436033f2003e5f60784bb5e4e1c55ab48ded98b977b8ddddc1f51bd"
+    ],
+    "draft_hash": "8f9bc0d0114b9e2d2ff23b6c9e0696820414ed9b86037b44f9cbc42f2b3d4b5c",
+    "source_version_id": "version_196285f7bad14aa31ba77499504327a21860800aa5453747b48ddd1ff61dab4e",
+    "verification_state": "source_anchored_unreviewed",
+    "dropped": {
+      "card_limit": 8,
+      "dependency_card_left_out": 3,
+      "unresolved_anchor": 1
+    },
+    "missing_parts": [],
+    "usage": {
+      "input": 29381,
+      "output": 27065,
+      "reasoning": 1795
+    }
+  },
+  "knowledge": {
+    "schema_version": "rag-v2/knowledge-input-2",
+    "cards": [
+      {
+        "key": "p1-c1",
+        "kind": "definition",
+        "statement": "Vältimatu sotsiaalabi on sotsiaalabi isikule, kes on sattunud sotsiaalselt abitusse olukorda elatusvahendite kaotuse või puudumise tõttu.",
+        "scope": "Määruses kasutatav mõiste.",
+        "subject": "Vältimatu sotsiaalabi",
+        "predicate": "on",
+        "object": "sotsiaalabi isikule, kes on sattunud sotsiaalselt abitusse olukorda elatusvahendite kaotuse või puudumise tõttu",
+        "anchors": [
+          {
+            "source_unit_index": 2,
+            "start": 41,
+            "quote": "Vältimatu sotsiaalabi on sotsiaalabi isikule, kes on sattunud sotsiaalselt abitusse olukorda elatusvahendite kaotuse või puudumise tõttu."
+          }
+        ]
+      },
+      {
+        "key": "p1-c2",
+        "kind": "definition",
+        "statement": "Harku valla elanik on isik, kelle rahvastikuregistrijärgne elukoht on Harku vald.",
+        "scope": "Määruses kasutatav mõiste.",
+        "subject": "Harku valla elanik",
+        "predicate": "on",
+        "object": "isik, kelle rahvastikuregistrijärgne elukoht on Harku vald",
+        "anchors": [
+          {
+            "source_unit_index": 2,
+            "start": 185,
+            "quote": "Harku valla elanik on isik, kelle rahvastikuregistrijärgne elukoht on Harku vald."
+          }
+        ]
+      },
+      {
+        "key": "p1-c3",
+        "kind": "definition",
+        "statement": "Üksikvanem on isik, kelle lapse teine vanem on surnud või kelle lapse sünnikandes puudub märge isa kohta.",
+        "scope": "Määruses kasutatav mõiste.",
+        "subject": "Üksikvanem",
+        "predicate": "on",
+        "object": "isik, kelle lapse teine vanem on surnud või kelle lapse sünnikandes puudub märge isa kohta",
+        "anchors": [
+          {
+            "source_unit_index": 2,
+            "start": 273,
+            "quote": "Üksikvanem on isik, kelle lapse teine vanem on surnud või kelle lapse sünnikandes puudub märge isa kohta."
+          }
+        ]
+      },
+      {
+        "key": "p1-c4",
+        "kind": "definition",
+        "statement": "Pere on abielus või abielulistes suhetes olevad samas eluruumis elavad isikud, nende lapsed ja vanemad või muud üht või enamat tuluallikat ühiselt kasutavad või ühise majapidamisega isikud.",
+        "scope": "Määruses kasutatav mõiste.",
+        "subject": "Pere",
+        "predicate": "on",
+        "object": "abielus või abielulistes suhetes olevad samas eluruumis elavad isikud, nende lapsed ja vanemad või muud üht või enamat tuluallikat ühiselt kasutavad või ühise majapidamisega isikud",
+        "anchors": [
+          {
+            "source_unit_index": 2,
+            "start": 385,
+            "quote": "Pere on abielus või abielulistes suhetes olevad samas eluruumis elavad isikud, nende lapsed ja vanemad või muud üht või enamat tuluallikat ühiselt kasutavad või ühise majapidamisega isikud."
+          }
+        ]
+      },
+      {
+        "key": "p1-c5",
+        "kind": "definition",
+        "statement": "Toetus on rahaline hüvitis.",
+        "scope": "Määruses kasutatav mõiste.",
+        "subject": "Toetus",
+        "predicate": "on",
+        "object": "rahaline hüvitis",
+        "anchors": [
+          {
+            "source_unit_index": 2,
+            "start": 626,
+            "quote": "Toetus on rahaline hüvitis."
+          }
+        ]
+      },
+      {
+        "key": "p1-c6",
+        "kind": "definition",
+        "statement": "Teenus on mitterahaline hüvitis või soodustus.",
+        "scope": "Määruses kasutatav mõiste.",
+        "subject": "Teenus",
+        "predicate": "on",
+        "object": "mitterahaline hüvitis või soodustus",
+        "anchors": [
+          {
+            "source_unit_index": 2,
+            "start": 660,
+            "quote": "Teenus on mitterahaline hüvitis või soodustus."
+          }
+        ]
+      },
+      {
+        "key": "p1-c7",
+        "kind": "assertion",
+        "statement": "Toetusele ja teenusele on õigus abivajaval isikul, kes on Harku valla elanik.",
+        "scope": "Määruse järgi Harku vallas.",
+        "subject": "abivajav isik, kes on Harku valla elanik",
+        "predicate": "on õigus",
+        "object": "toetusele ja teenusele",
+        "anchors": [
+          {
+            "source_unit_index": 4,
+            "start": 56,
+            "quote": "Toetusele ja teenusele on õigus abivajaval isikul, kes on Harku valla elanik."
+          }
+        ]
+      },
+      {
+        "key": "p1-c8",
+        "kind": "exception",
+        "statement": "Erandkorras võib sotsiaalhoolekandelise abi saajaks olla isik, kes vajab vältimatut sotsiaalabi.",
+        "scope": "Erand tavapärasele toetuse ja teenuse õigust omavate isikute sättele.",
+        "subject": "isik, kes vajab vältimatut sotsiaalabi",
+        "predicate": "võib erandkorras olla",
+        "object": "sotsiaalhoolekandelise abi saaja",
+        "anchors": [
+          {
+            "source_unit_index": 4,
+            "start": 140,
+            "quote": "Erandkorras võib sotsiaalhoolekandelise abi saajaks olla isik, kes vajab vältimatut sotsiaalabi."
+          }
+        ]
+      },
+      {
+        "key": "p1-c9",
+        "kind": "condition",
+        "statement": "Toetuse või teenuse saamise taotlus koos taotlust põhjendavate dokumentidega esitatakse Harku Vallavalitsusele kirjalikus või kirjalikku taasesitamist võimaldavas vormis.",
+        "scope": "Määruses sätestatud taotlemise üldkord.",
+        "subject": "toetuse või teenuse saamise taotlus koos taotlust põhjendavate dokumentidega",
+        "predicate": "esitatakse Harku Vallavalitsusele",
+        "object": "kirjalikus või kirjalikku taasesitamist võimaldavas vormis",
+        "anchors": [
+          {
+            "source_unit_index": 5,
+            "start": 89,
+            "quote": "Taotlus toetuse või teenuse saamiseks koos taotlust põhjendavate dokumentidega esitatakse Harku Vallavalitsusele (edaspidi vallavalitsus) kirjalikus või kirjalikku taasesitamist võimaldavas vormis."
+          }
+        ]
+      },
+      {
+        "key": "p1-c10",
+        "kind": "condition",
+        "statement": "Kui taotlusega on esitamata nõutud andmed või dokumendid või taotluses on muid puudusi, võib ametnik määrata puuduste kõrvaldamiseks tähtaja ja selgitab, et tähtajaks kõrvaldamata jätmisel võidakse taotlus jätta läbi vaatamata ning isiku õigus hüvitise saamisele lõpeb.",
+        "scope": "Osakonna ametniku õigus ja kohustus taotluse menetlemisel; kirjeldatud tagajärg sõltub puuduste tähtajaks kõrvaldamata jätmisest.",
+        "subject": "taotluse esitaja",
+        "predicate": "võib saada",
+        "object": "tähtaja puuduste kõrvaldamiseks",
+        "anchors": [
+          {
+            "source_unit_index": 5,
+            "start": 558,
+            "quote": "määrata taotluse esitajale tähtaeg puuduste kõrvaldamiseks, kui taotlusega on esitamata nõutud andmed või dokumendid või kui taotluses on muid puudusi ning selgitada, et tähtajaks puuduste kõrvaldamata jätmisel võidakse jätta taotlus läbi vaatamata ning sellisel juhul isiku õigus hüvitise saamisele lõpeb"
+          }
+        ]
+      },
+      {
+        "key": "p1-c11",
+        "kind": "condition",
+        "statement": "Tulude varjamise või muude valeandmete esitamise korral võib osakonna ametnik taotluse menetlemise lõpetada.",
+        "scope": "Kui tuvastatakse tulude varjamine või muude valeandmete esitamine.",
+        "subject": "osakonna ametnik",
+        "predicate": "võib lõpetada",
+        "object": "taotluse menetlemise",
+        "anchors": [
+          {
+            "source_unit_index": 5,
+            "start": 1147,
+            "quote": "tulude varjamise või muude valeandmete esitamise korral lõpetada taotluse menetlemine"
+          }
+        ]
+      },
+      {
+        "key": "p1-c12",
+        "kind": "condition",
+        "statement": "Hüvitise andmise otsustab vallavalitsus või osakond või osakonna ametnik haldusaktiga kümne tööpäeva jooksul alates nõuetekohase taotluse esitamisest, kui määruses ei ole sätestatud teisiti.",
+        "scope": "Kui määruses ei ole sätestatud teisiti. Määruses sätestamata juhtudel otsustab hüvitise andmise vallavalitsus korraldusega.",
+        "subject": "vallavalitsus või osakond või osakonna ametnik",
+        "predicate": "otsustab haldusaktiga",
+        "object": "hüvitise andmise kümne tööpäeva jooksul alates nõuetekohase taotluse esitamisest",
+        "anchors": [
+          {
+            "source_unit_index": 5,
+            "start": 1660,
+            "quote": "Hüvitise andmise otsustab vallavalitsus või osakond või osakonna ametnik haldusaktiga kümne tööpäeva jooksul alates nõuetekohase taotluse esitamisest, kui määruses ei ole sätestatud teisiti."
+          },
+          {
+            "source_unit_index": 5,
+            "start": 1851,
+            "quote": "Määruses sätestamata juhtudel otsustab hüvitise andmise vallavalitsus korraldusega."
+          }
+        ]
+      },
+      {
+        "key": "p1-c13",
+        "kind": "exception",
+        "statement": "Vallavalitsusel on õigus erandkorras kaalutletud otsuse alusel määrata ja maksta toetusi või osutada teenuseid, mida käesolev määrus ei reguleeri.",
+        "scope": "Vajalik on kaalutletud otsus.",
+        "subject": "vallavalitsus",
+        "predicate": "võib erandkorras määrata ja maksta või osutada",
+        "object": "käesoleva määrusega reguleerimata toetusi või teenuseid",
+        "anchors": [
+          {
+            "source_unit_index": 5,
+            "start": 1941,
+            "quote": "Vallavalitsusel on õigus erandkorras kaalutletud otsuse alusel määrata ja maksta toetusi või osutada teenuseid, mida ei ole reguleeritud käesoleva määrusega."
+          }
+        ]
+      },
+      {
+        "key": "p1-c14",
+        "kind": "condition",
+        "statement": "Vähekindlustatud isikutele ja peredele hüvitise määramisel hinnatakse isiku või pere materiaalset olukorda ja abivajadust tulude alusel.",
+        "scope": "Hüvitise määramisel vähekindlustatud isikutele ja peredele.",
+        "subject": "hüvitise määramine vähekindlustatud isikutele ja peredele",
+        "predicate": "lähtub hindamisest",
+        "object": "isiku või pere materiaalne olukord ja abivajadus tulude alusel",
+        "anchors": [
+          {
+            "source_unit_index": 5,
+            "start": 1517,
+            "quote": "Hüvitise määramisel vähekindlustatud isikutele ja peredele hinnatakse isiku või pere materiaalset olukorda ja abivajadust tulude alusel."
+          }
+        ]
+      },
+      {
+        "key": "p1-c15",
+        "kind": "assertion",
+        "statement": "Harku valla eelarvest rahastatava teenuse, toetuse, vältimatu sotsiaalabi või muu abi ning toimetulekutoetuse ja vajaduspõhise peretoetuse otsusega mittenõustumise korral on taotlejal õigus esitada haldusmenetluse seaduses sätestatud korras vaie Harku Vallavalitsusele või kaebus halduskohtusse.",
+        "scope": "Harku valla eelarvest rahastatava teenuse, toetuse, vältimatu sotsiaalabi või muu abi ning toimetulekutoetuse ja vajaduspõhise peretoetuse otsus; vaie esitatakse haldusmenetluse seaduses sätestatud korras.",
+        "subject": "taotleja, kes ei nõustu nimetatud otsusega",
+        "predicate": "võib esitada",
+        "object": "vaide Harku Vallavalitsusele või kaebuse halduskohtusse",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 202,
+            "quote": "Harku valla eelarvest rahastatava teenuse, toetuse, vältimatu sotsiaalabi või muu abi ning toimetulekutoetuse ja vajaduspõhise peretoetuse otsusega mittenõustumise korral on taotlejal õigus esitada haldusmenetluse seaduses sätestatud korras vaie Harku Vallavalitsusele või kaebus halduskohtusse."
+          }
+        ]
+      },
+      {
+        "key": "p1-c16",
+        "kind": "condition",
+        "statement": "Vaie lahendatakse 30 päeva jooksul vaide vallavalitsusele esitamisest arvates; vaide läbivaatamise tähtaega võib haldusmenetluse seaduses sätestatud korras pikendada.",
+        "scope": "Vaide läbivaatamise tähtaega võib haldusmenetluse seaduses sätestatud korras pikendada.",
+        "subject": "vaie",
+        "predicate": "lahendatakse",
+        "object": "30 päeva jooksul vaide vallavalitsusele esitamisest arvates",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 504,
+            "quote": "Vaie lahendatakse 30 päeva jooksul vaide vallavalitsusele esitamisest arvates. Vaide läbivaatamise tähtaega võib pikendada haldusmenetluse seaduses sätestatud korras."
+          }
+        ]
+      },
+      {
+        "key": "p1-c17",
+        "kind": "condition",
+        "statement": "Teenuste võimaldamisel võetakse aluseks isiku tegelik toimetulekuvõime ning sellest tulenev kõrvalabi vajaduse ulatus; rehabilitatsiooni- või hooldusplaani olemasolul lähtutakse teenuste osutamisel vastavast plaanist.",
+        "scope": "Kui rehabilitatsiooni- või hooldusplaan on olemas, lähtutakse teenuste osutamisel sellest plaanist.",
+        "subject": "teenuste võimaldamine ja osutamine",
+        "predicate": "lähtub",
+        "object": "isiku tegelik toimetulekuvõime, kõrvalabi vajaduse ulatus ning olemasolu korral rehabilitatsiooni- või hooldusplaan",
+        "anchors": [
+          {
+            "source_unit_index": 6,
+            "start": 49,
+            "quote": "Teenuste võimaldamisel võetakse aluseks isiku tegelik toimetulekuvõime ning sellest tulenevalt kõrvalabi vajaduse ulatus. Rehabilitatsiooniplaani või hooldusplaani olemasolu korral lähtutakse teenuste osutamisel rehabilitatsiooniplaanist või hooldusplaanist."
+          }
+        ]
+      },
+      {
+        "key": "p1-c18",
+        "kind": "condition",
+        "statement": "Teenust osutatakse abivajava isiku nõusolekul.",
+        "scope": "Üldine teenuse osutamise tingimus.",
+        "subject": "teenuse osutamine",
+        "predicate": "eeldab",
+        "object": "abivajava isiku nõusolekut",
+        "anchors": [
+          {
+            "source_unit_index": 6,
+            "start": 928,
+            "quote": "Teenust osutatakse abivajava isiku nõusolekul."
+          }
+        ]
+      },
+      {
+        "key": "p1-c19",
+        "kind": "condition",
+        "statement": "Teenuseid võib isikule osutada vallavalitsus või vallavalitsuse hallatav asutus või muu juriidilisest või füüsilisest isikust ettevõtja, kelle teenus vastab sotsiaalhoolekande seaduses kehtestatud nõuetele.",
+        "scope": "Sättes nimetatud teenuse osutajad on vallavalitsus, vallavalitsuse hallatav asutus või muu juriidilisest või füüsilisest isikust ettevõtja.",
+        "subject": "teenuse osutaja",
+        "predicate": "peab vastama",
+        "object": "sotsiaalhoolekande seaduses kehtestatud nõuetele",
+        "anchors": [
+          {
+            "source_unit_index": 7,
+            "start": 51,
+            "quote": "Teenuseid võib isikule osutada vallavalitsus või vallavalitsuse hallatav asutus, muu juriidilisest või füüsilisest isikust ettevõtja, kelle teenus vastab sotsiaalhoolekande seaduses (edaspidi SHS) kehtestatud nõuetele."
+          }
+        ]
+      },
+      {
+        "key": "p1-c20",
+        "kind": "condition",
+        "statement": "Kui teenust finantseeritakse osaliselt või täielikult Harku valla eelarvest, on teenuse osutamise aluseks haldusleping või haldusakt, kui määruses ei ole sätestatud teisiti.",
+        "scope": "Kui määruses ei ole sätestatud teisiti.",
+        "subject": "osaliselt või täielikult Harku valla eelarvest finantseeritav teenus",
+        "predicate": "osutamise aluseks on",
+        "object": "haldusleping või haldusakt",
+        "anchors": [
+          {
+            "source_unit_index": 7,
+            "start": 276,
+            "quote": "Juhul, kui teenust finantseeritakse osaliselt või täielikult Harku valla eelarvest, on teenuse osutamise aluseks haldusleping või haldusakt kui määruses ei ole sätestatud teisiti."
+          }
+        ]
+      },
+      {
+        "key": "p1-c21",
+        "kind": "condition",
+        "statement": "Teenuse osutamise eest võib võtta tasu. Isikult võetava tasu suurus oleneb teenuse mahust, teenuse maksumusest ning teenust saava isiku ja tema perekonna majanduslikust olukorrast, sealhulgas likviidse vara olemasolust, kui õigusaktides ei ole sätestatud teisiti; tasu suurus ei tohi olla teenuse saamise takistuseks.",
+        "scope": "Tasu võib võtta, kui õigusaktides ei ole sätestatud teisiti; tasu suurus ei tohi takistada teenuse saamist.",
+        "subject": "teenuse eest võetav tasu",
+        "predicate": "sõltub",
+        "object": "teenuse mahust, maksumusest ning teenust saava isiku ja tema perekonna majanduslikust olukorrast, sealhulgas likviidse vara olemasolust",
+        "anchors": [
+          {
+            "source_unit_index": 8,
+            "start": 522,
+            "quote": "Teenuse osutamise eest võib võtta tasu. Isikult võetava tasu suurus oleneb teenuse mahust, teenuse maksumusest ning teenust saava isiku ja tema perekonna majanduslikust olukorrast, sealhulgas likviidse vara olemasolust, kui õigusaktides ei ole sätestatud teisti. Tasu suurus ei tohi olla teenuse saamise takistuseks."
+          }
+        ]
+      },
+      {
+        "key": "p1-c22",
+        "kind": "definition",
+        "statement": "Koduteenus on kõrvalabi vajava täisealise isiku iseseisva ja turvalise toimetuleku tagamine kodustes tingimustes, säilitades ja parandades tema elukvaliteeti.",
+        "scope": "Koduteenuse määratluses on eesmärgiks ka isiku elukvaliteedi säilitamine ja parandamine.",
+        "subject": "Koduteenus",
+        "predicate": "on",
+        "object": "kõrvalabi vajava täisealise isiku iseseisva ja turvalise toimetuleku tagamine kodustes tingimustes",
+        "anchors": [
+          {
+            "source_unit_index": 11,
+            "start": 30,
+            "quote": "Koduteenus on kõrvalabi vajava täisealise isiku iseseisva ja turvalise toimetuleku tagamine kodustes tingimustes, säilitades ja parandades tema elukvaliteeti."
+          }
+        ]
+      },
+      {
+        "key": "p1-c23",
+        "kind": "exception",
+        "statement": "Koduteenust ei tohi vahetult osutada isik, kelle karistatus tahtlikult toimepandud kuriteo eest võib ohtu seada teenust saama õigustatud isiku elu, tervise ja vara.",
+        "scope": "Koduteenuse vahetu osutamine.",
+        "subject": "isik, kelle karistatus tahtlikult toimepandud kuriteo eest võib ohtu seada teenust saama õigustatud isiku elu, tervise ja vara",
+        "predicate": "ei tohi vahetult osutada",
+        "object": "koduteenust",
+        "anchors": [
+          {
+            "source_unit_index": 12,
+            "start": 586,
+            "quote": "Teenust ei tohi vahetult osutada isik, kelle karistatus tahtlikult toimepandud kuriteo eest võib ohtu seada teenust saama õigustatud isiku elu, tervise ja vara."
+          }
+        ]
+      },
+      {
+        "key": "p1-c24",
+        "kind": "condition",
+        "statement": "Isikliku abistaja teenuse taotlusele tuleb lisada rehabilitatsiooniplaani koopia.",
+        "scope": "Isikliku abistaja teenuse taotlemine.",
+        "subject": "isikliku abistaja teenuse taotlus",
+        "predicate": "peab sisaldama lisana",
+        "object": "rehabilitatsiooniplaani koopiat",
+        "anchors": [
+          {
+            "source_unit_index": 18,
+            "start": 270,
+            "quote": "Teenuse taotlusele tuleb lisada rehabilitatsiooniplaani koopia."
+          }
+        ]
+      },
+      {
+        "key": "p1-c25",
+        "kind": "assertion",
+        "statement": "Isikliku abistaja teenuse saajal on õigus valida teenust vahetult osutavat isikut ning enne isiku kindlaksmääramist temaga sobivuse hindamiseks kohtuda; soovi korral abistab osakonna ametnik isiku leidmisel.",
+        "scope": "Teenuse saaja soovil abistab osakonna ametnik teenust vahetult osutava isiku leidmisel; teenuse saajal on õigus enne isiku kindlaksmääramist temaga kohtuda.",
+        "subject": "isikliku abistaja teenuse saaja",
+        "predicate": "on õigus valida",
+        "object": "teenust vahetult osutav isik",
+        "anchors": [
+          {
+            "source_unit_index": 18,
+            "start": 560,
+            "quote": "Teenuse saajal on õigus valida teenust vahetult osutavat isikut."
+          },
+          {
+            "source_unit_index": 18,
+            "start": 730,
+            "quote": "Teenuse saajal on õigus enne teenust vahetult osutava isiku kindlaksmääramist omavahelise sobivuse hindamiseks temaga kohtuda."
+          }
+        ]
+      },
+      {
+        "key": "p1-c26",
+        "kind": "definition",
+        "statement": "Täisealise isiku hooldus on isiku taotluse alusel hoolduse seadmine täisealisele isikule, kes vaimse või kehalise puude tõttu vajab abi oma õiguste teostamiseks ja kohustuste täitmiseks.",
+        "scope": "Määruses kasutatav täisealise isiku hoolduse määratlus.",
+        "subject": "Täisealise isiku hooldus",
+        "predicate": "on",
+        "object": "isiku taotluse alusel hoolduse seadmine täisealisele isikule, kes vaimse või kehalise puude tõttu vajab abi oma õiguste teostamiseks ja kohustuste täitmiseks",
+        "anchors": [
+          {
+            "source_unit_index": 20,
+            "start": 44,
+            "quote": "Täisealise isiku hooldus on isiku taotluse alusel hoolduse seadmine täisealisele isikule, kes vaimse või kehalise puude tõttu vajab abi oma õiguste teostamiseks ja kohustuste täitmiseks."
+          }
+        ]
+      },
+      {
+        "key": "p1-c27",
+        "kind": "condition",
+        "statement": "Hooldaja määratakse hooldatava nõusolekul; hooldajaks saab määrata üksnes täisealise ja teovõimelise isiku. Üks hooldaja võib üldreeglina hooldada kuni kolme hooldatavat.",
+        "scope": "Üks hooldaja võib üldreeglina hooldada kuni kolme hooldatavat.",
+        "subject": "hooldaja määramine",
+        "predicate": "eeldab",
+        "object": "hooldatava nõusolekut ja hooldajaks määratava isiku täisealisust ning teovõimelisust",
+        "anchors": [
+          {
+            "source_unit_index": 21,
+            "start": 335,
+            "quote": "Hooldaja määratakse hooldatava nõusolekul. Üks hooldaja võib üldreeglina hooldada kuni kolme hooldatavat."
+          },
+          {
+            "source_unit_index": 21,
+            "start": 447,
+            "quote": "Hooldajaks saab määrata üksnes täisealise ja teovõimelise isiku."
+          }
+        ]
+      },
+      {
+        "key": "p1-c28",
+        "kind": "exception",
+        "statement": "Hooldajaks ei määrata isikut, kes on raske või sügava puudega või karistusregistris arvel.",
+        "scope": "Hooldajaks määramise välistused.",
+        "subject": "raske või sügava puudega või karistusregistris arvel olev isik",
+        "predicate": "ei määrata",
+        "object": "hooldajaks",
+        "anchors": [
+          {
+            "source_unit_index": 21,
+            "start": 518,
+            "quote": "Hooldajaks ei määrata isikut, kes:"
+          },
+          {
+            "source_unit_index": 21,
+            "start": 558,
+            "quote": "on raske või sügava puudega;"
+          },
+          {
+            "source_unit_index": 21,
+            "start": 592,
+            "quote": "karistusregistris arvel."
+          }
+        ]
+      },
+      {
+        "key": "p1-c29",
+        "kind": "exception",
+        "statement": "Hooldust ei seata, kui hooldust taotleva isiku funktsioonihäiret on võimalik abivahendi või tugiteenusega kompenseerida; isikul puudub tegelik abi- ja hooldusvajadus; potentsiaalne hooldaja ei ole võimeline hooldama; hooldatav või hooldaja ei nõustu hoolduse seadmise või hooldaja määramisega; või esineb muu määruses märgitud põhjus.",
+        "scope": "Loetletud on viis määruses nimetatud hoolduse seadmata jätmise alust.",
+        "subject": "hooldus",
+        "predicate": "ei seata",
+        "object": "nimetatud asjaolude esinemisel",
+        "anchors": [
+          {
+            "source_unit_index": 21,
+            "start": 623,
+            "quote": "Hooldust ei seata juhul, kui:"
+          },
+          {
+            "source_unit_index": 21,
+            "start": 658,
+            "quote": "hooldust taotleva isiku funktsioonihäiret on võimalik abivahendiga või tugiteenusega kompenseerida;"
+          },
+          {
+            "source_unit_index": 21,
+            "start": 763,
+            "quote": "isikul ei ole tegelikku abi- ja hooldusvajadust;"
+          },
+          {
+            "source_unit_index": 21,
+            "start": 817,
+            "quote": "potentsiaalne hooldaja ei ole võimeline abivajavat isikut hooldama;"
+          },
+          {
+            "source_unit_index": 21,
+            "start": 890,
+            "quote": "hooldatav või hooldaja ei ole nõus hoolduse seadmise või hooldaja määramisega;"
+          }
+        ]
+      },
+      {
+        "key": "p1-c30",
+        "kind": "condition",
+        "statement": "Hooldus lõpetatakse hooldatava taotluse alusel või hoolduse seadmise aluse äralangemisel; aluse äralangemise näidetena nimetatakse muu hulgas teise omavalitsusse elama asumist, ööpäevast hoolekandeasutust, hooldusvajaduse vähenemist, surma, hooldaja suutmatust või kohustuste täitmata jätmist ning § 21 lõike 5 nõuetele mittevastamist.",
+        "scope": "Otsuse teeb osakond. Loetelus on ka muud § 21¹ lõikes 2 nimetatud alused.",
+        "subject": "hooldus",
+        "predicate": "lõpetatakse",
+        "object": "hooldatava taotluse alusel või hoolduse seadmise aluse äralangemisel",
+        "anchors": [
+          {
+            "source_unit_index": 22,
+            "start": 34,
+            "quote": "Hooldus lõpetatakse hooldatava taotluse alusel või hoolduse seadmise aluse äralangemisel."
+          },
+          {
+            "source_unit_index": 22,
+            "start": 363,
+            "quote": "hooldusvajaduse vähenemine;"
+          },
+          {
+            "source_unit_index": 22,
+            "start": 485,
+            "quote": "hooldaja suutmatus hooldust korraldada;"
+          },
+          {
+            "source_unit_index": 22,
+            "start": 530,
+            "quote": "hooldaja ei täida või loobub temale hooldaja määramise otsusega pandud kohustustest;"
+          }
+        ]
+      },
+      {
+        "key": "p1-c31",
+        "kind": "definition",
+        "statement": "Eluruumi tagamine on sotsiaalmajanduslikust olukorrast tulenevalt enda ja oma pere vajadustele vastavat eluruumi tagada mitte suutva isiku kindlustamine eluruumi kasutamise võimalusega.",
+        "scope": "Määruses kasutatav eluruumi tagamise määratlus.",
+        "subject": "Eluruumi tagamine",
+        "predicate": "on",
+        "object": "eluruumi kasutamise võimalusega kindlustamine isikule, kes ei suuda sotsiaalmajandusliku olukorra tõttu enda ja oma pere vajadustele vastavat eluruumi tagada",
+        "anchors": [
+          {
+            "source_unit_index": 23,
+            "start": 31,
+            "quote": "Eluruumi tagamine on isiku, kes ei ole sotsiaalmajanduslikust olukorrast tulenevalt võimeline enda ja oma pere vajadustele vastavat eluruumi tagama, kindlustamine eluruumi kasutamise võimalusega."
+          }
+        ]
+      },
+      {
+        "key": "p1-c32",
+        "kind": "condition",
+        "statement": "Eluruumi tagamise taotluse menetlemisel hinnatakse esmalt taotleja ja tema pere abivajadust; kasutusse antava eluruumi vastavust isiku ja pere põhjendatud vajadustele ning pere suurusele hinnatakse eluruumi kasutusse andmisel.",
+        "scope": "Eluruumi kasutusse andmisel hinnatakse lisaks eluruumi vastavust põhjendatud vajadustele ja pere suurusele.",
+        "subject": "eluruumi tagamise taotluse menetlemine",
+        "predicate": "hõlmab",
+        "object": "esmalt taotleja ja tema pere abivajaduse hindamist",
+        "anchors": [
+          {
+            "source_unit_index": 25,
+            "start": 244,
+            "quote": "Taotluse menetlemisel hinnatakse esmalt eluruumi tagamist taotleva isiku ja tema pere abivajadust."
+          },
+          {
+            "source_unit_index": 25,
+            "start": 349,
+            "quote": "Eluruumi kasutusse andmisel hinnatakse eluruumi vastavust isiku ja tema pere põhjendatud vajadustele ning pere suurusele."
+          }
+        ]
+      },
+      {
+        "key": "p1-c33",
+        "kind": "condition",
+        "statement": "Sama eluruumi kasutamise võimalust võib pakkuda ainult isikutele, kes soovivad ühes eluruumis elada.",
+        "scope": "Eluruumi tagamine.",
+        "subject": "sama eluruumi kasutamise võimaluse pakkumine",
+        "predicate": "on lubatud ainult",
+        "object": "isikutele, kes soovivad ühes eluruumis elada",
+        "anchors": [
+          {
+            "source_unit_index": 25,
+            "start": 477,
+            "quote": "Sama eluruumi kasutamise võimalust võib pakkuda ainult isikutele, kes soovivad ühes eluruumis elada."
+          }
+        ]
+      },
+      {
+        "key": "p1-c34",
+        "kind": "condition",
+        "statement": "Eluruumi kasutusse andmise korralduse alusel sõlmitakse üürileping 30 päeva jooksul korralduse isikule teatavakstegemisest; isiku loobumisel võib vallavalitsus korralduse kehtetuks tunnistada.",
+        "scope": "Isiku loobumisel üürilepingu sõlmimisest võib vallavalitsus korralduse kehtetuks tunnistada.",
+        "subject": "üürilepingu sõlmimine",
+        "predicate": "toimub",
+        "object": "30 päeva jooksul eluruumi kasutusse andmise korralduse teatavakstegemisest",
+        "anchors": [
+          {
+            "source_unit_index": 26,
+            "start": 109,
+            "quote": "Üürileping sõlmitakse 30 päeva jooksul eluruumi kasutusse andmise korralduse isikule teatavakstegemisest."
+          },
+          {
+            "source_unit_index": 26,
+            "start": 215,
+            "quote": "Isiku loobumisel üürilepingu sõlmimisest võib vallavalitsus tunnistada eelnimetatud korralduse kehtetuks."
+          }
+        ]
+      },
+      {
+        "key": "p1-c35",
+        "kind": "condition",
+        "statement": "Kui üldhooldusteenuse saaja sissetulek on madalam kui Statistikaameti avaldatud eelarveaastale eelnenud aasta teise kvartali keskmise vanaduspensioni suurus, kaetakse Harku valla eelarvest teenuse saaja tasutavate kulude ja tema sissetuleku vahe, kuid mitte rohkem kui nimetatud keskmise vanaduspensioni suuruse ja sissetuleku vahe.",
+        "scope": "Rakendub, kui saaja sissetulek on väiksem nimetatud keskmisest vanaduspensionist; katte ülempiir on selle pensionisumma ja saaja sissetuleku vahe. Sissetulekuna arvestatakse sätte loetelus nimetatud pensione ja tulusid.",
+        "subject": "Harku valla eelarvest",
+        "predicate": "kaetakse",
+        "object": "teenuse saaja tasutavate kulude ja sissetuleku vahe",
+        "anchors": [
+          {
+            "source_unit_index": 31,
+            "start": 447,
+            "quote": "Kui üldhooldusteenuse saaja sissetulek on madalam kui Statistikaameti avaldatud eelarveaastale eelnenud aasta teise kvartali keskmise vanaduspensioni suurus, kaetakse Harku valla eelarvest teenuse saaja tasutavate kulude ja teenuse saaja sissetuleku vahe, kuid mitte rohkem kui eelmise aasta teise kvartali keskmise vanaduspensioni suuruse ja teenuse saaja sissetuleku vahe."
+          }
+        ]
+      },
+      {
+        "key": "p1-c36",
+        "kind": "condition",
+        "statement": "Kui üldhooldusteenuse saajal puudub § 27 lõikes 3 loetletud sissetulekute kõrval muu likviidne vara ja puuduvad ülalpidamiseks kohustatud isikud, kaetakse Harku valla eelarvest § 27 lõike 2 kohased saaja kulud, sealhulgas igapäevaraha, mille tasumiseks tal vahendeid puuduvad.",
+        "scope": "Eeldab, et saajal puudub muu likviidne vara ja puuduvad ülalpidamiseks kohustatud isikud.",
+        "subject": "Harku valla eelarvest",
+        "predicate": "kaetakse",
+        "object": "üldhooldusteenuse saaja § 27 lõike 2 kohased kulud, sealhulgas igapäevaraha, mille tasumiseks tal vahendeid puuduvad",
+        "anchors": [
+          {
+            "source_unit_index": 31,
+            "start": 1215,
+            "quote": "Kui üldhooldusteenuse saajal puudub käesoleva paragrahvi lõikes 3 loetletud sissetulekute kõrval muu likviidne vara ja puuduvad ülalpidamiseks kohustatud isikud, kaetakse Harku valla eelarvest käesoleva paragrahvi lõike 2 kohased teenuse saaja kulud, sealhulgas teenuse saaja igapäevaraha, mille eest tasumiseks teenuse saajal vahendid puuduvad."
+          }
+        ]
+      },
+      {
+        "key": "p1-c37",
+        "kind": "condition",
+        "statement": "Kui üldhooldusteenuse saaja ja tema ülalpidamiseks kohustatud isikud enda sõnul ei suuda tasuda saaja kanda olevaid kulusid, hindab osakond saaja ja ülalpidajate varalist seisundit ning võib põhjendatud juhul katta need kulud osaliselt Harku valla eelarvest.",
+        "scope": "Eeldus on nende sõnul kulude tasumise või igapäevaraha võimaldamise võimatus; põhjendatud juhul võib osakond kulud osaliselt katta.",
+        "subject": "osakond",
+        "predicate": "hindab",
+        "object": "üldhooldusteenuse saaja ja tema ülalpidajate varalist seisundit",
+        "anchors": [
+          {
+            "source_unit_index": 31,
+            "start": 1567,
+            "quote": "Kui üldhooldusteenuse saaja ja tema ülalpidamiseks kohustatud isikud ei suuda enda sõnul tasuda käesoleva paragrahvi lõike 2 kohaselt teenuse saaja kanda olevaid kulusid, sealhulgas võimaldada teenuse saajale igapäevaraha, hindab osakond teenuse saaja ja tema ülalpidajate varalist seisundit, otsustades põhjendatud juhul katta käesoleva paragrahvi lõike 2 kohased kulud osaliselt Harku valla eelarvest."
+          }
+        ]
+      },
+      {
+        "key": "p1-c38",
+        "kind": "condition",
+        "statement": "Kui üldhooldusteenuse saajal või tema ülalpidamiseks kohustatud isikutel on tasumiseks vara, kuid selle käsutamine on takistustega seotud või aeganõudev, kaetakse Harku valla eelarvest teenuse osutamiseks puuduolevas ulatuses § 27 lõike 2 kohased saaja kulud, sealhulgas igapäevaraha; osakond võib hiljem nõuda kaetud kulude hüvitamist saajalt või tema ülalpidamiseks kohustatud isikutelt.",
+        "scope": "Eeldab vara olemasolu, mille käsutamine on takistustega seotud või aeganõudev; osakond võib edaspidi hüvitamist nõuda.",
+        "subject": "Harku valla eelarvest",
+        "predicate": "kaetakse",
+        "object": "teenuse osutamiseks puuduolevas ulatuses saaja § 27 lõike 2 kohased kulud, sealhulgas igapäevaraha",
+        "anchors": [
+          {
+            "source_unit_index": 31,
+            "start": 1977,
+            "quote": "Kui üldhooldusteenuse saajal või tema ülalpidamiseks kohustatud isikutel on vara üldhooldusteenuse eest tasumiseks, kuid vara käsutamine on seotud takistustega või on aegavõttev, kaetakse Harku valla eelarvest käesoleva paragrahvi lõike 2 kohased teenuse saaja kulud, sealhulgas teenuse saaja igapäevaraha, teenuse osutamiseks puuduolevas ulatuses."
+          },
+          {
+            "source_unit_index": 31,
+            "start": 2326,
+            "quote": "Osakond võib edaspidi nõuda teenuse saajalt või tema ülalpidamiseks kohustatud isikutelt Harku valla eelarvest kaetud kulude hüvitamist."
+          }
+        ]
+      },
+      {
+        "key": "p1-c39",
+        "kind": "condition",
+        "statement": "Kui üldhooldusteenuse saajal puudub teenuse eest tasumiseks vara ja tema ülalpidamiseks kohustatud isikud ei ole kättesaadavad, kaetakse Harku valla eelarvest teenuse osutamiseks puuduolevas ulatuses § 27 lõike 2 kohased saaja kulud, sealhulgas igapäevaraha; osakond võib hiljem nõuda kaetud kulude hüvitamist ülalpidamiseks kohustatud isikutelt.",
+        "scope": "Eeldab saajal tasumiseks vara puudumist ning ülalpidamiseks kohustatud isikute kättesaamatust.",
+        "subject": "Harku valla eelarvest",
+        "predicate": "kaetakse",
+        "object": "teenuse osutamiseks puuduolevas ulatuses saaja § 27 lõike 2 kohased kulud, sealhulgas igapäevaraha",
+        "anchors": [
+          {
+            "source_unit_index": 31,
+            "start": 2469,
+            "quote": "Kui üldhooldusteenuse saajal puudub vara üldhooldusteenuse eest tasumiseks ning tema ülalpidamiseks kohustatud isikud ei ole kättesaadavad, kaetakse Harku valla eelarvest käesoleva paragrahvi lõike 2 kohased teenuse saaja kulud, sealhulgas teenuse saaja igapäevaraha, teenuse osutamiseks puuduolevas ulatuses."
+          }
+        ]
+      },
+      {
+        "key": "p1-c40",
+        "kind": "definition",
+        "statement": "Turvakoduteenus on eluaseme, turvalise keskkonna ja esmase abi ajutine tagamine lapsele, kes vajab abi tema hooldamises esinevate puuduste tõttu, mis ohustavad tema elu, tervist või arengut, ning täisealisele isikule, kes vajab turvalist keskkonda.",
+        "scope": "Lapse puhul on aluseks hooldamise puudused, mis ohustavad tema elu, tervist või arengut.",
+        "subject": "Turvakoduteenus",
+        "predicate": "on",
+        "object": "eluaseme, turvalise keskkonna ja esmase abi ajutine tagamine nimetatud lapsele ning turvalist keskkonda vajavale täisealisele isikule",
+        "anchors": [
+          {
+            "source_unit_index": 32,
+            "start": 35,
+            "quote": "Turvakoduteenus on eluaseme, turvalise keskkonna ja esmase abi ajutine tagamine lapsele, kes vajab abi tema hooldamises esinevate puuduste tõttu, mis ohustavad tema elu, tervist või arengut ning täisealisele isikule, kes vajab turvalist keskkonda."
+          }
+        ]
+      },
+      {
+        "key": "p2-c1",
+        "kind": "assertion",
+        "statement": "Asendushooldusteenus tagatakse lõikes 1 nimetatud tingimustel lapsele kuni 18-aastaseks saamiseni.",
+        "scope": "§ 34⁸ lõige 1.",
+        "subject": "Asendushooldusteenus",
+        "predicate": "tagatakse lapsele kuni",
+        "object": "18-aastaseks saamiseni",
+        "anchors": [
+          {
+            "source_unit_index": 45,
+            "start": 42,
+            "quote": "Asendushooldusteenus tagatakse lapsele kuni 18-aastaseks saamiseni, kui:"
+          }
+        ]
+      },
+      {
+        "key": "p2-c2",
+        "kind": "condition",
+        "statement": "Teenuse saamise tingimus on, et lapse vanem on surnud, vanemale on piiratud teovõime tõttu määratud eestkostja, vanema hooldusõigus on peatatud, piiratud või täielikult ära võetud või laps on vanemast eraldatud.",
+        "scope": "§ 34⁸ lõige 1; loetletud asjaolud on alternatiivid.",
+        "subject": "Lapse asendushooldusteenuse saamine",
+        "predicate": "eeldab vähemalt üht järgmistest asjaoludest",
+        "object": "vanema surm, eestkostja määramine, hooldusõiguse peatamine või piiramine või lapse vanemast eraldamine",
+        "anchors": [
+          {
+            "source_unit_index": 45,
+            "start": 116,
+            "quote": "1)\n\nlapse vanem on surnud;\n\n2)\n\nlapse vanemale on tema piiratud teovõime tõttu määratud eestkostja;\n\n3)\n\nvanema hooldusõigus lapse suhtes on peatatud, seda on piiratud või see on täielikult ära võetud;\n\n4)\n\nlaps on vanemast eraldatud."
+          }
+        ]
+      },
+      {
+        "key": "p2-c3",
+        "kind": "assertion",
+        "statement": "Lõikes 1 nimetatud lapse asendushooldusteenust tagatakse õppimise korral § 34⁸ lõikes 2 sätestatud tähtaegadel.",
+        "scope": "§ 34⁸ lõige 2.",
+        "subject": "Asendushooldusteenus",
+        "predicate": "tagatakse õppivale lõikes 1 nimetatud lapsele",
+        "object": "§ 34⁸ lõikes 2 sätestatud tähtaegadel",
+        "anchors": [
+          {
+            "source_unit_index": 45,
+            "start": 357,
+            "quote": "Kui käesoleva paragrahvi lõikes 1 nimetatud laps on enne 18-aastaseks saamist asunud õppima ja jätkab õppimist statsionaarses õppes või tervislikel näidustustel muus õppevormis põhikoolis, gümnaasiumis või kutseõppe tasemeõppes, siis tagatakse asendushooldusteenus:"
+          }
+        ]
+      },
+      {
+        "key": "p2-c4",
+        "kind": "condition",
+        "statement": "Õppimise alusel teenuse jätkamiseks peab lõikes 1 nimetatud laps olema enne 18-aastaseks saamist õppima asunud ning jätkama statsionaarset õpet või tervislikel näidustustel muud õppevormi põhikoolis, gümnaasiumis või kutseõppe tasemeõppes.",
+        "scope": "§ 34⁸ lõige 2.",
+        "subject": "Asendushooldusteenuse jätkamine õppimise alusel",
+        "predicate": "eeldab",
+        "object": "enne 18. eluaastat õppima asumist ja nimetatud õppe jätkamist",
+        "anchors": [
+          {
+            "source_unit_index": 45,
+            "start": 357,
+            "quote": "Kui käesoleva paragrahvi lõikes 1 nimetatud laps on enne 18-aastaseks saamist asunud õppima ja jätkab õppimist statsionaarses õppes või tervislikel näidustustel muus õppevormis põhikoolis, gümnaasiumis või kutseõppe tasemeõppes"
+          }
+        ]
+      },
+      {
+        "key": "p2-c5",
+        "kind": "assertion",
+        "statement": "Abivajavale lapsele võib asendushooldusteenuse tagada kuni 90 päevaks või periooditi.",
+        "scope": "§ 34⁸ lõige 3; teenuse tagamine on kaalutluslik.",
+        "subject": "Asendushooldusteenus",
+        "predicate": "võib olla tagatud abivajavale lapsele",
+        "object": "kuni 90 päeva või periooditi",
+        "anchors": [
+          {
+            "source_unit_index": 45,
+            "start": 941,
+            "quote": "Asendushooldusteenuse võib tagada abivajavale lapsele, kelle hooldusõiguslik vanem või füüsilisest isikust eestkostja on andnud nõusoleku, et asendushooldusteenust osutatakse kuni 90 päeva või periooditi."
+          }
+        ]
+      },
+      {
+        "key": "p2-c6",
+        "kind": "condition",
+        "statement": "Lühiajalise või perioodilise asendushooldusteenuse tagamiseks peab hooldusõiguslik vanem või füüsilisest isikust eestkostja olema andnud nõusoleku.",
+        "scope": "§ 34⁸ lõige 3.",
+        "subject": "Kuni 90-päevane või perioodiline asendushooldusteenus",
+        "predicate": "eeldab",
+        "object": "hooldusõigusliku vanema või füüsilisest isikust eestkostja nõusolekut",
+        "anchors": [
+          {
+            "source_unit_index": 45,
+            "start": 996,
+            "quote": "kelle hooldusõiguslik vanem või füüsilisest isikust eestkostja on andnud nõusoleku"
+          }
+        ]
+      },
+      {
+        "key": "p2-c7",
+        "kind": "assertion",
+        "statement": "Asendushooldusteenust osutatakse laste heaolu spetsialisti ettepanekul või isiku taotluse alusel.",
+        "scope": "§ 34⁹ lõige 1.",
+        "subject": "Asendushooldusteenuse osutamine",
+        "predicate": "toimub",
+        "object": "laste heaolu spetsialisti ettepanekul või isiku taotluse alusel",
+        "anchors": [
+          {
+            "source_unit_index": 46,
+            "start": 59,
+            "quote": "Asendushooldusteenust osutatakse laste heaolu spetsialisti ettepanekul või isiku taotluse alusel."
+          }
+        ]
+      },
+      {
+        "key": "p2-c8",
+        "kind": "assertion",
+        "statement": "Laste heaolu spetsialist külastab asendushooldusel olevat last tema õiguste tagamise ja heaolu hindamise eesmärgil vähemalt kaks korda aastas.",
+        "scope": "§ 34⁹ lõige 2 punkt 5.",
+        "subject": "Laste heaolu spetsialist",
+        "predicate": "külastab asendushooldusel olevat last vähemalt",
+        "object": "kaks korda aastas",
+        "anchors": [
+          {
+            "source_unit_index": 46,
+            "start": 647,
+            "quote": "külastab asendushooldusel olevat last tema õiguste tagamise ja lapse heaolu hindamise eesmärgil vähemalt kaks korda aastas"
+          }
+        ]
+      },
+      {
+        "key": "p2-c9",
+        "kind": "assertion",
+        "statement": "Asendushooldusteenust rahastatakse Harku valla eelarvest ning asendushooldusel oleva lapse sissetulekutest.",
+        "scope": "§ 34¹⁰ lõige 1.",
+        "subject": "Asendushooldusteenus",
+        "predicate": "rahastatakse",
+        "object": "Harku valla eelarvest ning asendushooldusel oleva lapse sissetulekutest",
+        "anchors": [
+          {
+            "source_unit_index": 47,
+            "start": 30,
+            "quote": "Asendushooldusteenust rahastatakse Harku valla eelarvest ning asendushooldusel oleva lapse sissetulekutest."
+          }
+        ]
+      },
+      {
+        "key": "p2-c10",
+        "kind": "assertion",
+        "statement": "Asendushooldusel oleva lapse isiklike kulude katteks peab iga kuu tegema kulutusi keskmiselt 240 euro ulatuses ja vähemalt 2880 eurot aastas.",
+        "scope": "§ 34¹⁰ lõige 2.",
+        "subject": "Asendushooldusel oleva lapse isiklike kulude katteks tehtavad kulutused",
+        "predicate": "peavad olema keskmiselt kuus ja vähemalt aastas",
+        "object": "240 eurot kuus ja 2880 eurot aastas",
+        "anchors": [
+          {
+            "source_unit_index": 47,
+            "start": 144,
+            "quote": "Lapse isiklike kulude katteks peab iga kuu tegema kulutusi keskmiselt 240 euro ulatuses ja vähemalt 2880 eurot aastas."
+          }
+        ]
+      },
+      {
+        "key": "p2-c11",
+        "kind": "definition",
+        "statement": "Järelhooldusteenus on Harku valla korraldatav sotsiaalteenus, mille eesmärk on asendushoolduselt ja eestkostelt lahkuva isiku iseseisva toimetuleku ja õpingute jätkamise toetamine.",
+        "scope": "§ 34¹¹ lõige 1.",
+        "subject": "Järelhooldusteenus",
+        "predicate": "on eesmärgiga",
+        "object": "toetada asendushoolduselt ja eestkostelt lahkuva isiku iseseisvat toimetulekut ja õpingute jätkamist",
+        "anchors": [
+          {
+            "source_unit_index": 48,
+            "start": 51,
+            "quote": "Järelhooldusteenus on Harku valla korraldatav sotsiaalteenus, mille eesmärk on asendushoolduselt ja eestkostelt lahkuva isiku iseseisva toimetuleku ja õpingute jätkamise toetamine."
+          }
+        ]
+      },
+      {
+        "key": "p2-c12",
+        "kind": "assertion",
+        "statement": "Järelhooldusteenust osutatakse juhtumiplaani alusel ning Harku vald tagab isikule eluaseme ja vajaduspõhised tugiteenused ning toetused.",
+        "scope": "§ 34¹¹ lõige 2; teenuse osutamine lähtub juhtumiplaanist.",
+        "subject": "Harku vald",
+        "predicate": "tagab järelhooldusteenuse saajale",
+        "object": "eluaseme ning vajaduspõhised tugiteenused ja toetused",
+        "anchors": [
+          {
+            "source_unit_index": 48,
+            "start": 238,
+            "quote": "Järelhooldusteenust osutatakse lähtuvalt juhtumiplaanist, mille alusel Harku vald tagab isikule eluaseme ning vajaduspõhised tugiteenused ja toetused."
+          }
+        ]
+      },
+      {
+        "key": "p2-c13",
+        "kind": "assertion",
+        "statement": "Järelhooldusteenus tagatakse lõikes 1 kirjeldatud täisealisele isikule § 34¹² lõikes 1 sätestatud tähtaegadeks.",
+        "scope": "§ 34¹² lõige 1.",
+        "subject": "Järelhooldusteenus",
+        "predicate": "tagatakse tingimustele vastavale täisealisele isikule",
+        "object": "esmase õppekava nominaalaja lõpuni või § 34¹² lõikes 1 sätestatud muude tähtaegadeni, kuid mitte kauem kui 25-aastaseks saamiseni",
+        "anchors": [
+          {
+            "source_unit_index": 49,
+            "start": 41,
+            "quote": "Järelhooldusteenus tagatakse määruse § 348 lõike 1 alusel asendushooldusel viibivale täisealisele isikule, kes pärast põhi-, kesk-, kutse- või kõrghariduse omandamist jätkab järgmisel õppeaastal õppimist kutseõppe tasemeõppes, rakenduskõrgharidusõppes, ülikooli bakalaureuse- või magistriõppes või bakalaureuse- ja magistriõppe integreeritud õppes:"
+          }
+        ]
+      },
+      {
+        "key": "p2-c14",
+        "kind": "assertion",
+        "statement": "Isikule, kes kuni täisealiseks saamiseni viibis asendushooldusel või eestkostel, võib järelhooldusteenuse tagada kuni 25-aastaseks saamiseni.",
+        "scope": "§ 34¹² lõige 3; teenuse tagamine on kaalutluslik.",
+        "subject": "Järelhooldusteenus",
+        "predicate": "võib olla tagatud asendushooldusel või eestkostel olnud isikule kuni",
+        "object": "25-aastaseks saamiseni",
+        "anchors": [
+          {
+            "source_unit_index": 49,
+            "start": 830,
+            "quote": "Isikule, kes kuni täisealiseks saamiseni viibis asendushooldusel või eestkostel, võib tagada järelhooldusteenuse kuni isiku 25-aastaseks saamiseni."
+          }
+        ]
+      },
+      {
+        "key": "p2-c15",
+        "kind": "assertion",
+        "statement": "Järelhooldusteenust osutatakse laste heaolu spetsialisti ettepanekul või isiku taotluse alusel.",
+        "scope": "§ 34¹³ lõige 1.",
+        "subject": "Järelhooldusteenuse osutamine",
+        "predicate": "toimub",
+        "object": "laste heaolu spetsialisti ettepanekul või isiku taotluse alusel",
+        "anchors": [
+          {
+            "source_unit_index": 50,
+            "start": 45,
+            "quote": "Järelhooldusteenust osutatakse laste heaolu spetsialisti ettepanekul või isiku taotluse alusel."
+          }
+        ]
+      },
+      {
+        "key": "p2-c16",
+        "kind": "assertion",
+        "statement": "Järelhooldusteenusel oleva täisealise isiku isiklike kulude katteks peab iga kuu tegema kulutusi keskmiselt 240 euro ulatuses ja vähemalt 2880 eurot aastas.",
+        "scope": "§ 34¹⁴ lõige 2.",
+        "subject": "Järelhooldusteenusel oleva täisealise isiku isiklike kulude katteks tehtavad kulutused",
+        "predicate": "peavad olema keskmiselt kuus ja vähemalt aastas",
+        "object": "240 eurot kuus ja 2880 eurot aastas",
+        "anchors": [
+          {
+            "source_unit_index": 51,
+            "start": 157,
+            "quote": "Teenuse saaja isiklike kulude katteks peab iga kuu tegema kulutusi keskmiselt 240 euro ulatuses ja vähemalt 2880 eurot aastas."
+          }
+        ]
+      },
+      {
+        "key": "p2-c17",
+        "kind": "assertion",
+        "statement": "Toetuse taotlemisel ja saamisel peab isik esitama kõik teadaolevad tõesed ja täielikud vajalikud andmed, dokumendid ja tõendid, viivitamata teatama toetuse saamise õigust või toetuse andmist mõjutavatest asjaoludest ja nende muutumisest ning kasutama toetust sihtotstarbeliselt.",
+        "scope": "§ 36 punktid 1–3.",
+        "subject": "Toetust taotlev või saav isik",
+        "predicate": "on kohustatud",
+        "object": "esitama tõesed ja täielikud vajalikud andmed, teatama mõjutavatest asjaoludest ja kasutama toetust sihtotstarbeliselt",
+        "anchors": [
+          {
+            "source_unit_index": 54,
+            "start": 114,
+            "quote": "esitama toetuse andjale kõik teadaolevad tõesed ja täielikud andmed, dokumendid ja muud tõendid, mis on vajalikud toetuse saamise õiguse väljaselgitamiseks"
+          },
+          {
+            "source_unit_index": 54,
+            "start": 346,
+            "quote": "teavitama toetuse andjat viivitamata toetuse saamise õigust ja toetuse andmist mõjutavatest asjaoludest ja asjaolude muutumisest"
+          },
+          {
+            "source_unit_index": 54,
+            "start": 481,
+            "quote": "kasutama saadud toetust sihtotstarbeliselt."
+          }
+        ]
+      },
+      {
+        "key": "p2-c18",
+        "kind": "assertion",
+        "statement": "Toetus makstakse välja 30 kalendripäeva jooksul toetuse andmise otsuse tegemisest arvates.",
+        "scope": "§ 37 lõige 2.",
+        "subject": "Toetus",
+        "predicate": "makstakse välja",
+        "object": "30 kalendripäeva jooksul toetuse andmise otsuse tegemisest",
+        "anchors": [
+          {
+            "source_unit_index": 55,
+            "start": 108,
+            "quote": "Toetus makstakse välja 30 kalendripäeva jooksul arvates toetuse andmise otsuse tegemisest."
+          }
+        ]
+      },
+      {
+        "key": "p2-c19",
+        "kind": "assertion",
+        "statement": "Vallavalitsus peatab toetuse maksmise, kui isiku arvelduskontole kantud rahaline hüvitis laekub vallavalitsusele tagasi kahel järjestikusel kuul.",
+        "scope": "§ 37 lõige 4.",
+        "subject": "Vallavalitsus",
+        "predicate": "peatab toetuse maksmise, kui hüvitis laekub tagasi",
+        "object": "kahel järjestikusel kuul",
+        "anchors": [
+          {
+            "source_unit_index": 55,
+            "start": 666,
+            "quote": "Vallavalitsus peatab toetuse maksmise, kui isiku arvelduskontole kantud rahaline hüvitis laekub vallavalitsusele tagasi kahel järjestikusel kuul."
+          }
+        ]
+      },
+      {
+        "key": "p2-c20",
+        "kind": "definition",
+        "statement": "Toetused jagunevad tulust sõltuvateks toetusteks ja tulust mittesõltuvateks toetusteks. Tulust sõltuvaid toetusi makstakse vähekindlustatud isikule või perele toimetuleku parandamiseks; tulust mittesõltuvaid toetusi makstakse isikule või perele toimetuleku soodustamiseks, kui taotluse eeltingimused on täidetud.",
+        "scope": "§ 38 lõiked 1–3.",
+        "subject": "Toetused",
+        "predicate": "jagunevad",
+        "object": "tulust sõltuvateks ja tulust mittesõltuvateks toetusteks",
+        "anchors": [
+          {
+            "source_unit_index": 56,
+            "start": 29,
+            "quote": "Toetused jagunevad tulust sõltuvateks toetusteks ja tulust mittesõltuvateks toetusteks."
+          },
+          {
+            "source_unit_index": 56,
+            "start": 228,
+            "quote": "Tulust mittesõltuvaid toetusi makstakse isikule/perele toimetuleku soodustamiseks, kui tal on täidetud toetuse taotlemiseks seatud eeltingimused."
+          }
+        ]
+      },
+      {
+        "key": "p2-c21",
+        "kind": "condition",
+        "statement": "Sünnitoetuse saamiseks peab laps olema registreeritud valla elanikuks 30 päeva jooksul või mõjuvatel põhjustel 60 päeva jooksul sünnist arvates ning taotleja peab olema olnud valla elanik lapse sünnile eelnenud aasta 31. detsembri seisuga.",
+        "scope": "§ 41 lõige 1; mõjukatel põhjustel on registreerimise tähtaeg 60 päeva.",
+        "subject": "Sünnitoetuse saamine",
+        "predicate": "eeldab",
+        "object": "lapse õigeaegset vallaelanikuks registreerimist ja taotleja vallaelaniku staatust eelnenud aasta 31. detsembril",
+        "anchors": [
+          {
+            "source_unit_index": 59,
+            "start": 106,
+            "quote": "laps on registreeritud valla elanikuks 30 päeva jooksul või mõjuvatel põhjustel 60 päeva jooksul sünnist arvates ja"
+          },
+          {
+            "source_unit_index": 59,
+            "start": 227,
+            "quote": "taotleja on olnud valla elanik lapse sünnile eelnenud aasta 31. detsembri seisuga."
+          }
+        ]
+      },
+      {
+        "key": "p2-c22",
+        "kind": "condition",
+        "statement": "Lapse lapsendanud vanemale antakse sünnitoetust, kui laps on registreeritud valla elanikuks, taotleja oli valla elanik lapsendamisele eelnenud aasta 31. detsembri seisuga ning lapsendamise protsessiga alustati enne lapse 1-aastaseks saamist ja seda tõendavad dokumendid esitati vallavalitsusele.",
+        "scope": "§ 41 lõige 4; tingimused on kumulatiivsed.",
+        "subject": "Lapsendanud vanemale sünnitoetuse andmine",
+        "predicate": "eeldab",
+        "object": "§ 41 lõikes 4 nimetatud elukoha- ja lapsendamisprotsessi tingimuste täitmist",
+        "anchors": [
+          {
+            "source_unit_index": 59,
+            "start": 553,
+            "quote": "Lapse lapsendanud vanemale antakse sünnitoetust, kui on täidetud kõik alljärgnevad tingimused:"
+          },
+          {
+            "source_unit_index": 59,
+            "start": 786,
+            "quote": "lapse lapsendamise protsessiga on alustatud enne lapse 1- aastaseks saamist ja seda kinnitavad dokumendid on esitatud vallavalitsusele."
+          }
+        ]
+      },
+      {
+        "key": "p2-c23",
+        "kind": "assertion",
+        "statement": "Mitmikute sünni puhul antakse sünnitoetust kehtestatud määras igale vastsündinule ning lisaks igaühele eraldi 50% ühekordsest sünnitoetuse määrast.",
+        "scope": "§ 41 lõige 3.",
+        "subject": "Sünnitoetus mitmikute sünni puhul",
+        "predicate": "sisaldab igale vastsündinule lisaks",
+        "object": "50% ühekordsest sünnitoetuse määrast",
+        "anchors": [
+          {
+            "source_unit_index": 59,
+            "start": 381,
+            "quote": "Mitmikute sünni puhul antakse sünnitoetust kehtestatud määras igale vastsündinule, millele lisandub mitmikutele igaühele eraldi 50% ühekordsest sünnitoetuse määrast."
+          }
+        ]
+      },
+      {
+        "key": "p2-c24",
+        "kind": "assertion",
+        "statement": "Esmakordselt koolimineva lapse toetust antakse taotluse alusel ühele lapse vanematest, kui vanem ja laps olid valla elanikud koolimineku aastale eelneva aasta 31. detsembri seisuga.",
+        "scope": "§ 43 lõige 1; taotlus esitatakse koolimineku aastal 1. augustist 30. novembrini.",
+        "subject": "Esmakordselt koolimineva lapse toetus",
+        "predicate": "antakse taotluse alusel ühele vanematest, kui",
+        "object": "vanem ja laps olid valla elanikud eelneva aasta 31. detsembril",
+        "anchors": [
+          {
+            "source_unit_index": 60,
+            "start": 51,
+            "quote": "Esmakordselt kooli mineva lapse toetust antakse taotluse alusel ühele lapse vanematest kui vanem ja laps on olnud valla elanikud lapse kooliminemise aastale eelneva aasta 31. detsembri seisuga."
+          }
+        ]
+      },
+      {
+        "key": "p2-c25",
+        "kind": "condition",
+        "statement": "Eestkostel või peres hooldamisel oleva lapse koolitoetust antakse taotluse alusel vanemliku hoolitsuseta alaealise lapse eestkostjale, lapse peres hooldajale või kasuvanemale tingimusel, et laps on valla elanik; laps peab õppima põhikoolis, gümnaasiumis või põhikooli baasil kutseõppeasutuses.",
+        "scope": "§ 45 lõiked 1–2; toetust antakse kuni lapse 20-aastaseks saamiseni.",
+        "subject": "Eestkostel või peres hooldamisel oleva lapse koolitoetus",
+        "predicate": "eeldab",
+        "object": "lapse vallaelaniku staatust ja nimetatud õppeasutuses õppimist",
+        "anchors": [
+          {
+            "source_unit_index": 62,
+            "start": 70,
+            "quote": "Eestkostel või peres hooldamisel oleva lapse koolitoetust antakse taotluse alusel vanemliku hoolitsuseta alaealise lapse eestkostjale või lapse peres hooldajale või lapse kasuvanemale tingimusel, et laps on valla elanik."
+          },
+          {
+            "source_unit_index": 62,
+            "start": 297,
+            "quote": "Toetust antakse, kui laps õpib põhikoolis või gümnaasiumis või põhikooli baasil kutseõppeasutuses."
+          }
+        ]
+      },
+      {
+        "key": "p2-c26",
+        "kind": "condition",
+        "statement": "Puudega lapse hooldaja toetust antakse taotluse alusel igakuiselt puudega last hooldavale vanemale, vanemaga abielus olevale isikule või lapse eestkostjale, kes ei tööta täistööajaga puudega lapse hooldamise tõttu.",
+        "scope": "§ 46 lõige 1.",
+        "subject": "Puudega lapse hooldaja toetuse saamine",
+        "predicate": "eeldab",
+        "object": "loetletud hooldaja staatust ja täistööajaga mittetöötamist lapse hooldamise tõttu",
+        "anchors": [
+          {
+            "source_unit_index": 63,
+            "start": 43,
+            "quote": "Puudega lapse hooldaja toetust antakse taotluse alusel igakuiselt puudega last hooldavale järgmisele isikule, kes ei tööta täistööajaga puudega lapse hooldamise tõttu:"
+          },
+          {
+            "source_unit_index": 63,
+            "start": 212,
+            "quote": "1)\n\nvanem;\n\n2)\n\nvanemaga abielus olev isik;\n\n3)\n\nlapse eestkostja."
+          }
+        ]
+      },
+      {
+        "key": "p2-c27",
+        "kind": "condition",
+        "statement": "Keskmise puudega lapse hooldamisel antakse toetust lapse 3-aastaseks saamisest kuni 16-aastaseks saamiseni; raske või sügava puudega lapse hooldamisel lapse 3-aastaseks saamisest kuni 18-aastaseks saamiseni.",
+        "scope": "§ 46 lõige 2; § 46 lõige 4 sätestab toetuse määramise ülempiirid ja kehtivusaja.",
+        "subject": "Puudega lapse hooldaja toetuse maksmise periood",
+        "predicate": "on",
+        "object": "keskmise puude korral 3–16-aastaseks saamiseni ja raske või sügava puude korral 3–18-aastaseks saamiseni",
+        "anchors": [
+          {
+            "source_unit_index": 63,
+            "start": 285,
+            "quote": "Keskmise puudega lapse hooldamisel antakse toetust alates lapse kolmandast eluaastast kuni lapse 16-aastaseks saamiseni. Raske või sügava puudega lapse hooldamisel antakse toetust alates lapse kolmandast eluaastast kuni lapse 18-aastaseks saamiseni."
+          }
+        ]
+      },
+      {
+        "key": "p2-c28",
+        "kind": "assertion",
+        "statement": "Puudega lapse transpordi toetust antakse taotluse alusel lapse transportimiseks kooli- ja koolieelsesse lasteasutusse, rehabilitatsiooniasutusse, päevakeskusesse, puuetega laste laagrisse ja muudel vajalikel juhtudel; üldjuhul kuni 19-aastaseks saamiseni ning põhjendatud erandjuhul ka vanemale isikule.",
+        "scope": "§ 47 lõiked 1–2; põhjendatud erandjuhul võib toetust anda vanemale kui 19-aastasele isikule.",
+        "subject": "Puudega lapse transpordi toetus",
+        "predicate": "antakse",
+        "object": "nimetatud sihtkohtadesse transportimiseks üldjuhul kuni 19-aastaseks saamiseni",
+        "anchors": [
+          {
+            "source_unit_index": 64,
+            "start": 45,
+            "quote": "Puudega lapse transpordi toetust antakse taotluse alusel puudega lapse transportimiseks kooli- ja koolieelsesse lasteasutusse, rehabilitatsiooniasutusse, päevakeskusesse, puuetega laste laagrisse ja muudel vajalikel juhtudel."
+          },
+          {
+            "source_unit_index": 64,
+            "start": 277,
+            "quote": "Toetust antakse üldjuhul kuni lapse 19-aastaseks saamiseni ja põhjendatud erandjuhul ka vanemale kui 19-aastasele isikule."
+          }
+        ]
+      },
+      {
+        "key": "p2-c29",
+        "kind": "exception",
+        "statement": "Puudega lapse transpordi toetust ei anta, kui lapse transportimise vajadus on rahuldatav sotsiaaltransporditeenuse osutamisega.",
+        "scope": "§ 47 lõige 2¹.",
+        "subject": "Puudega lapse transpordi toetuse andmine",
+        "predicate": "ei toimu, kui vajadus on rahuldatav",
+        "object": "sotsiaaltransporditeenuse osutamisega",
+        "anchors": [
+          {
+            "source_unit_index": 64,
+            "start": 407,
+            "quote": "Toetust ei anta kui lapse transportimise vajadus on rahuldatav sotsiaaltransporditeenuse osutamisega."
+          }
+        ]
+      },
+      {
+        "key": "p2-c30",
+        "kind": "condition",
+        "statement": "Küttetoetust antakse üks kord aastas taotluse alusel puudega isikule, vanaduspensionärile või töövõimetoetust saavale isikule küttepuude ja briketi ostmiseks kantud kulude hüvitamiseks, kui isik kasutab ahjuküttega eluruumi, elab üksi ning tema sissetulek on madalam eelmise aasta teise kvartali keskmisest vanaduspensionist.",
+        "scope": "§ 53 lõiked 1–3; sissetulekuna arvestatakse nimetatud pensione, töövõimetoetust ja sotsiaalmaksuga maksustatavat tulu; üksi elamine tuvastatakse rahvastikuregistri alusel.",
+        "subject": "Küttetoetuse saamine",
+        "predicate": "eeldab kõigi järgmiste tingimuste täitmist",
+        "object": "abikõlblikku isikurühma kuulumist, ahjuküttega eluruumi kasutamist, üksi elamist ja sissetuleku piirmäära täitmist",
+        "anchors": [
+          {
+            "source_unit_index": 69,
+            "start": 25,
+            "quote": "Küttetoetust antakse üks kord aastas taotluse alusel puudega isikule või vanaduspensionärile või töövõimetoetust saavale isikule küttepuude ja briketi ostmiseks kantud kulude hüvitamiseks järgmiste tingimuste esinemisel:"
+          },
+          {
+            "source_unit_index": 69,
+            "start": 251,
+            "quote": "isik kasutab ahjuküttega eluruumi;\n\n2)\n\nisik elab üksi;\n\n3)\n\nisiku sissetulek on madalam eelmise aasta teise kvartali keskmisest vanaduspensionist."
+          }
+        ]
+      },
+      {
+        "key": "p2-c31",
+        "kind": "assertion",
+        "statement": "Ühekordset toetust antakse taotluse alusel loetletud juhtudel, sealhulgas õnnetusjuhtumi või kriisiolukorra tõttu raskesse majanduslikku olukorda sattunule, kinnipidamiskohast vabanenule ning muudel ettenägematutel asjaoludel.",
+        "scope": "§ 55 lõige 1; toetuse määra või otsustaja kohta kehtivad lõigetes 2–4 sätestatud erisused.",
+        "subject": "Ühekordne toetus",
+        "predicate": "antakse taotluse alusel",
+        "object": "§ 55 lõikes 1 nimetatud juhtudel",
+        "anchors": [
+          {
+            "source_unit_index": 71,
+            "start": 30,
+            "quote": "Ühekordset toetust antakse taotluse alusel:"
+          },
+          {
+            "source_unit_index": 71,
+            "start": 79,
+            "quote": "õnnetusjuhtumi või kriisiolukorra puhul (pereliikme raske haigus, loodusõnnetus, tulekahju, vargus või muu ettenägematu asjaolu), mille tõttu on satutud raskesse majanduslikku olukorda"
+          }
+        ]
+      },
+      {
+        "key": "p2-c32",
+        "kind": "condition",
+        "statement": "Koduse lapse toetuse taotlemiseks peab lapse ja ühe vanema elukoht rahvastikuregistri järgi olema Harku vallas vähemalt arveldamisele kuuluva kuu 10. kuupäeva seisuga ning kogu arveldamisperioodi jooksul; laps ei tohi olla ühegi munitsipaal- või eralasteaia nimekirjas ja tema eest ei tohi maksta lapsehoiutoetust.",
+        "scope": "§ 58¹ lõige 1; taotlejaks võib olla lapsevanem, eestkostja või lepinguline hooldaja.",
+        "subject": "Koduse lapse toetuse saamine",
+        "predicate": "eeldab",
+        "object": "elukohatingimuse ja lasteaias või lapsehoiutoetuses osalemise tingimuse täitmist",
+        "anchors": [
+          {
+            "source_unit_index": 75,
+            "start": 161,
+            "quote": "lapse, kelle jaoks toetust taotletakse ja tema ühe vanema elukoht rahvastikuregistri andmetel on Harku vallas vähemalt arveldamisele kuuluva kuu 10. kuupäeva seisuga ning on seda kogu arveldamisele kuuluva perioodi jooksul"
+          },
+          {
+            "source_unit_index": 75,
+            "start": 390,
+            "quote": "laps, kelle jaoks toetust taotletakse, ei ole kantud ühegi munitsipaal- või eralasteaia nimekirja ja lapse eest ei maksta lapsehoiutoetust."
+          }
+        ]
+      },
+      {
+        "key": "p2-c33",
+        "kind": "assertion",
+        "statement": "Koduse lapse toetust saab taotleda lapse 1,5-aastaseks saamisest kuni 3-aastaseks saamiseni; kui laps saab 3-aastaseks õppeaasta sees, makstakse toetust õppeaasta lõpuni.",
+        "scope": "§ 58¹ lõige 2.",
+        "subject": "Koduse lapse toetuse taotlemise ja maksmise õigus",
+        "predicate": "kehtib lapse vanusevahemikus",
+        "object": "1,5-aastaseks saamisest kuni 3-aastaseks saamiseni, õppeaasta-sisese 3-aastaseks saamise korral õppeaasta lõpuni",
+        "anchors": [
+          {
+            "source_unit_index": 75,
+            "start": 536,
+            "quote": "Õigus toetust taotleda on alates lapse 1,5-aastaseks saamisest kuni lapse 3-aastaseks saamiseni. Juhul kui laps saab 3- aastaseks õppeaasta sees, makstakse toetust õppeaasta lõpuni."
+          }
+        ]
+      },
+      {
+        "key": "p2-c34",
+        "kind": "condition",
+        "statement": "Pere tulust sõltuvat toetust antakse isikule, kelle ühe kuu sissetulek on väiksem kui määruse lisas kehtestatud toimetuleku piirmäär, või perele, kelle ühe kuu sissetulek pereliikme kohta on sellest piirmäärast väiksem.",
+        "scope": "§ 59 lõige 1; arvestus põhineb taotlusele eelnenud kolmel kuul pangakontole laekunud sissetulekutel, arvestamata sotsiaalhoolekande seaduse § 133 lõikes 2 loetletud sissetulekuid.",
+        "subject": "Pere tulust sõltuva toetuse saamine",
+        "predicate": "eeldab",
+        "object": "isiku või pere sissetuleku jäämist määruse lisas kehtestatud toimetuleku piirmäärast allapoole",
+        "anchors": [
+          {
+            "source_unit_index": 77,
+            "start": 87,
+            "quote": "isikule, kelle sissetulek ühes kuus on väiksem kui määruse lisas kehtestatud toimetuleku piirmäär;"
+          },
+          {
+            "source_unit_index": 77,
+            "start": 191,
+            "quote": "perele, kelle sissetulek ühes kuus ühe pereliikme kohta on väiksem kui määruse lisas kehtestatud toimetuleku piirmäär."
+          }
+        ]
+      },
+      {
+        "key": "p2-c35",
+        "kind": "exception",
+        "statement": "Toetuse andmisel hinnatakse lisaks sissetuleku tingimustele, kas taotleja toimetulek on parandatav ainult tema vahenditest, mille suurus nähtub pangakonto väljavõtte algsaldost; kui vahendid hinnatakse piisavaks, võib toetuse andmata jätta.",
+        "scope": "§ 59 lõige 3.",
+        "subject": "Pere tulust sõltuva toetuse andmine",
+        "predicate": "võib jääda ära, kui",
+        "object": "taotleja enda vahendid hinnatakse toimetuleku parandamiseks piisavaks",
+        "anchors": [
+          {
+            "source_unit_index": 77,
+            "start": 818,
+            "quote": "Hinnates toetuse taotleja vahendid tema toimetuleku parandamiseks piisavaks, võib jätta toetuse andmata."
+          }
+        ]
+      },
+      {
+        "key": "p2-c36",
+        "kind": "definition",
+        "statement": "Isiku ühe kuu sissetuleku arvutamiseks liidetakse taotluse esitamisele eelnenud kolme kuu sissetulekud ja jagatakse tulemus kolmega.",
+        "scope": "§ 59¹ lõige 1.",
+        "subject": "Isiku ühe kuu sissetulek",
+        "predicate": "arvutatakse",
+        "object": "taotlusele eelnenud kolme kuu sissetulekute summa jagamisel kolmega",
+        "anchors": [
+          {
+            "source_unit_index": 78,
+            "start": 45,
+            "quote": "Isiku ühe kuu sissetuleku arvutamiseks liidetakse isiku sissetulekud taotluse esitamisele eelnenud kolmes kuus ning jagatakse kolmega."
+          }
+        ]
+      },
+      {
+        "key": "p2-c37",
+        "kind": "definition",
+        "statement": "Pere ühe kuu sissetuleku ühe pereliikme kohta arvutamiseks liidetakse pereliikmete taotlusele eelnenud kolme kuu sissetulekud, jagatakse summa kolmega ning saadud tulemus pereliikmete arvuga.",
+        "scope": "§ 59¹ lõige 2.",
+        "subject": "Pere ühe kuu sissetulek ühe pereliikme kohta",
+        "predicate": "arvutatakse",
+        "object": "kolme kuu sissetulekute summa jagamisel kolmega ja pereliikmete arvuga",
+        "anchors": [
+          {
+            "source_unit_index": 78,
+            "start": 186,
+            "quote": "Pere ühe kuu sissetuleku ühe pereliikme kohta arvutamiseks liidetakse pereliikmete sissetulekud taotluse esitamisele eelnenud kolmes kuus ning jagatakse kolmega. Saadud tulemus jagatakse pereliikmete arvuga."
+          }
+        ]
+      },
+      {
+        "key": "p2-c38",
+        "kind": "assertion",
+        "statement": "Toidutoetust antakse vähekindlustatud isikule või perele lapse toiduraha hüvitamiseks lasteaias või lapsehoius 1. septembrist 30. juunini ning põhikoolis, gümnaasiumis või kutseõppeasutuses 1. septembrist 31. maini; elatusvahendite puudumisel antakse toetust kuni toetusvajaduse äralangemiseni.",
+        "scope": "§ 61 lõige 1; toetuse määrab osakond taotluse laekumise kuule järgnevast kuust.",
+        "subject": "Toidutoetus",
+        "predicate": "antakse vähekindlustatud isikule või perele",
+        "object": "lapse toiduraha hüvitamiseks või elatusvahendite puudumisel kuni toetusvajaduse äralangemiseni",
+        "anchors": [
+          {
+            "source_unit_index": 80,
+            "start": 25,
+            "quote": "Toidutoetust antakse vähekindlustatud isikule/perele:"
+          },
+          {
+            "source_unit_index": 80,
+            "start": 353,
+            "quote": "elatusvahendite puudumisel kuni toetusvajaduse ära langemiseni."
+          }
+        ]
+      },
+      {
+        "key": "p2-c39",
+        "kind": "condition",
+        "statement": "Matusetoetust antakse taotluse alusel matuse korraldajale, kui lahkunu oli Harku valla elanik; kui lahkunul puudus rahvastikuregistris elukoha aadress, makstakse toetus matuse korraldajale, kelle rahvastikuregistrijärgne elukoht on Harku vald. Taotlus tuleb esitada kuue kuu jooksul lahkunu surmakuupäevast.",
+        "scope": "§ 57 lõiked 1, 1¹ ja 3.",
+        "subject": "Matusetoetuse saamine",
+        "predicate": "eeldab",
+        "object": "§ 57 lõigetes 1–1¹ nimetatud elukoha seost ja kuue kuu taotlustähtaega",
+        "anchors": [
+          {
+            "source_unit_index": 73,
+            "start": 26,
+            "quote": "Matusetoetust antakse taotluse alusel matuse korraldajale, kui lahkunu oli Harku valla elanik."
+          },
+          {
+            "source_unit_index": 73,
+            "start": 128,
+            "quote": "Juhul kui lahkunul puudus rahvastikuregistris elukoha aadress, makstakse matusetoetust matuse korraldajale, kelle rahvastikuregistrijärgne elukoht on Harku vald."
+          },
+          {
+            "source_unit_index": 73,
+            "start": 450,
+            "quote": "Toetust on võimalik taotleda 6 kuu jooksul lahkunu surmakuupäevast arvates."
+          }
+        ]
+      },
+      {
+        "key": "p2-c40",
+        "kind": "assertion",
+        "statement": "Jõulutoetust antakse taotluse alusel loetletud isikutele ja peredele; perele antakse toetus ühekordselt ka mitme samaaegse aluse korral ning siis lähtutakse suuremat toetust võimaldavast alusest.",
+        "scope": "§ 58 lõiked 1–2; loetletud alused hõlmavad 70-aastast ja vanemat pensioni saavat isikut, vähemalt kolme lapsega peret, üksikvanemat, eestkoste- ja kasuperet ning puudega lapsega peret.",
+        "subject": "Jõulutoetus",
+        "predicate": "antakse ühekordselt perele mitme samaaegse aluse korral",
+        "object": "suuremat toetust võimaldava aluse järgi",
+        "anchors": [
+          {
+            "source_unit_index": 74,
+            "start": 242,
+            "quote": "Jõulutoetust antakse perele ühekordselt ka juhul, kui esineb samaaegselt mitu käesoleva paragrahvi lõikes 1 sätestatud õiguslikku alust jõulutoetuse andmiseks. Sellisel juhul lähtutakse alusest, mis võimaldab määrata suuremat toetust."
+          }
+        ]
+      },
+      {
+        "key": "p3-c1",
+        "kind": "assertion",
+        "statement": "Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist.",
+        "scope": "§ 73. Määruse jõustumine.",
+        "subject": "Määrus",
+        "predicate": "jõustub",
+        "object": "kolmandal päeval pärast Riigi Teatajas avaldamist",
+        "anchors": [
+          {
+            "source_unit_index": 92,
+            "start": 27,
+            "quote": "Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist."
+          }
+        ]
+      }
+    ],
+    "dependencies": [
+      {
+        "key": "p1-d1",
+        "type": "DEFINES",
+        "from": "p1-c2",
+        "targets": [
+          {
+            "key": "p1-c7"
+          }
+        ],
+        "operator": "all",
+        "scope": "Määratlus selgitab õigussättes kasutatud Harku valla elaniku mõistet.",
+        "anchors": [
+          {
+            "source_unit_index": 2,
+            "start": 185,
+            "quote": "Harku valla elanik on isik, kelle rahvastikuregistrijärgne elukoht on Harku vald."
+          }
+        ]
+      },
+      {
+        "key": "p1-d2",
+        "type": "EXCEPTION_TO",
+        "from": "p1-c8",
+        "targets": [
+          {
+            "key": "p1-c7"
+          }
+        ],
+        "operator": "all",
+        "scope": "Tavapärase õigust omavate isikute sätte erandkord.",
+        "anchors": [
+          {
+            "source_unit_index": 4,
+            "start": 140,
+            "quote": "Erandkorras võib sotsiaalhoolekandelise abi saajaks olla isik, kes vajab vältimatut sotsiaalabi."
+          }
+        ]
+      },
+      {
+        "key": "p1-d3",
+        "type": "DEFINES",
+        "from": "p1-c1",
+        "targets": [
+          {
+            "key": "p1-c8"
+          }
+        ],
+        "operator": "all",
+        "scope": "Vältimatu sotsiaalabi mõiste selgitab erandis kasutatud terminit.",
+        "anchors": [
+          {
+            "source_unit_index": 2,
+            "start": 41,
+            "quote": "Vältimatu sotsiaalabi on sotsiaalabi isikule, kes on sattunud sotsiaalselt abitusse olukorda elatusvahendite kaotuse või puudumise tõttu."
+          }
+        ]
+      },
+      {
+        "key": "p1-d4",
+        "type": "REQUIRES",
+        "from": "p1-c9",
+        "targets": [
+          {
+            "key": "p1-c7"
+          }
+        ],
+        "operator": "all",
+        "scope": "Taotluse esitamise nõue on toetuse või teenuse taotlemise kord; ei laienda ega piira eraldi õiguse tingimusi.",
+        "anchors": [
+          {
+            "source_unit_index": 5,
+            "start": 89,
+            "quote": "Taotlus toetuse või teenuse saamiseks koos taotlust põhjendavate dokumentidega esitatakse Harku Vallavalitsusele (edaspidi vallavalitsus) kirjalikus või kirjalikku taasesitamist võimaldavas vormis."
+          }
+        ]
+      },
+      {
+        "key": "p1-d5",
+        "type": "QUALIFIES",
+        "from": "p1-c10",
+        "targets": [
+          {
+            "key": "p1-c12"
+          }
+        ],
+        "operator": "all",
+        "scope": "Puuduste kõrvaldamata jätmisel võib taotluse läbi vaatamata jätta ning hüvitise saamise õigus lõpeb; tähtaeg määratakse puuduste kõrvaldamiseks.",
+        "anchors": [
+          {
+            "source_unit_index": 5,
+            "start": 728,
+            "quote": "tähtajaks puuduste kõrvaldamata jätmisel võidakse jätta taotlus läbi vaatamata ning sellisel juhul isiku õigus hüvitise saamisele lõpeb"
+          }
+        ]
+      },
+      {
+        "key": "p1-d6",
+        "type": "REQUIRES",
+        "from": "p1-c12",
+        "targets": [
+          {
+            "key": "p1-c9"
+          }
+        ],
+        "operator": "all",
+        "scope": "Kümne tööpäeva tähtaeg algab nõuetekohase taotluse esitamisest.",
+        "anchors": [
+          {
+            "source_unit_index": 5,
+            "start": 1746,
+            "quote": "kümne tööpäeva jooksul alates nõuetekohase taotluse esitamisest"
+          }
+        ]
+      },
+      {
+        "key": "p1-d7",
+        "type": "QUALIFIES",
+        "from": "p1-c14",
+        "targets": [
+          {
+            "key": "p1-c12"
+          }
+        ],
+        "operator": "all",
+        "scope": "Hüvitise määramisel vähekindlustatud isikutele ja peredele hinnatakse materiaalset olukorda ja abivajadust tulude alusel.",
+        "anchors": [
+          {
+            "source_unit_index": 5,
+            "start": 1517,
+            "quote": "Hüvitise määramisel vähekindlustatud isikutele ja peredele hinnatakse isiku või pere materiaalset olukorda ja abivajadust tulude alusel."
+          }
+        ]
+      },
+      {
+        "key": "p1-d8",
+        "type": "REQUIRES",
+        "from": "p1-c16",
+        "targets": [
+          {
+            "key": "p1-c15"
+          }
+        ],
+        "operator": "all",
+        "scope": "30 päeva tähtaeg puudutab Harku Vallavalitsusele esitatud vaiet.",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 504,
+            "quote": "Vaie lahendatakse 30 päeva jooksul vaide vallavalitsusele esitamisest arvates."
+          }
+        ]
+      },
+      {
+        "key": "p1-d9",
+        "type": "QUALIFIES",
+        "from": "p1-c17",
+        "targets": [
+          {
+            "key": "p1-c7"
+          }
+        ],
+        "operator": "all",
+        "scope": "Tegelik toimetulekuvõime ja kõrvalabi vajadus on teenuste võimaldamise alused, mitte residentide õiguse asendus.",
+        "anchors": [
+          {
+            "source_unit_index": 6,
+            "start": 49,
+            "quote": "Teenuste võimaldamisel võetakse aluseks isiku tegelik toimetulekuvõime ning sellest tulenevalt kõrvalabi vajaduse ulatus."
+          }
+        ]
+      },
+      {
+        "key": "p1-d10",
+        "type": "REQUIRES",
+        "from": "p1-c18",
+        "targets": [
+          {
+            "key": "p1-c17"
+          }
+        ],
+        "operator": "all",
+        "scope": "Teenust osutatakse nõusolekul; hindamise ja plaanide alused teenuste võimaldamisel on sätestatud eraldi.",
+        "anchors": [
+          {
+            "source_unit_index": 6,
+            "start": 928,
+            "quote": "Teenust osutatakse abivajava isiku nõusolekul."
+          }
+        ]
+      },
+      {
+        "key": "p1-d11",
+        "type": "EXCEPTION_TO",
+        "from": "p1-c23",
+        "targets": [
+          {
+            "key": "p1-c22"
+          }
+        ],
+        "operator": "all",
+        "scope": "Välistus puudutab koduteenuse vahetut osutajat.",
+        "anchors": [
+          {
+            "source_unit_index": 12,
+            "start": 586,
+            "quote": "Teenust ei tohi vahetult osutada isik, kelle karistatus tahtlikult toimepandud kuriteo eest võib ohtu seada teenust saama õigustatud isiku elu, tervise ja vara."
+          }
+        ]
+      },
+      {
+        "key": "p1-d12",
+        "type": "REQUIRES",
+        "from": "p1-c27",
+        "targets": [
+          {
+            "key": "p1-c26"
+          }
+        ],
+        "operator": "all",
+        "scope": "Täisealise isiku hoolduse seadmise ja hooldaja määramise tingimused.",
+        "anchors": [
+          {
+            "source_unit_index": 21,
+            "start": 335,
+            "quote": "Hooldaja määratakse hooldatava nõusolekul."
+          }
+        ]
+      },
+      {
+        "key": "p1-d13",
+        "type": "QUALIFIES",
+        "from": "p1-c28",
+        "targets": [
+          {
+            "key": "p1-c27"
+          }
+        ],
+        "operator": "all",
+        "scope": "Need on täiendavad välistused hooldajaks määramisel.",
+        "anchors": [
+          {
+            "source_unit_index": 21,
+            "start": 518,
+            "quote": "Hooldajaks ei määrata isikut, kes:"
+          }
+        ]
+      },
+      {
+        "key": "p1-d14",
+        "type": "QUALIFIES",
+        "from": "p1-c29",
+        "targets": [
+          {
+            "key": "p1-c26"
+          }
+        ],
+        "operator": "all",
+        "scope": "Loetletud asjaoludel hooldust ei seata.",
+        "anchors": [
+          {
+            "source_unit_index": 21,
+            "start": 623,
+            "quote": "Hooldust ei seata juhul, kui:"
+          }
+        ]
+      },
+      {
+        "key": "p1-d15",
+        "type": "REQUIRES",
+        "from": "p1-c30",
+        "targets": [
+          {
+            "key": "p1-c26"
+          }
+        ],
+        "operator": "all",
+        "scope": "Hoolduse lõpetamise alused ja osakonna otsus.",
+        "anchors": [
+          {
+            "source_unit_index": 22,
+            "start": 34,
+            "quote": "Hooldus lõpetatakse hooldatava taotluse alusel või hoolduse seadmise aluse äralangemisel."
+          }
+        ]
+      },
+      {
+        "key": "p1-d16",
+        "type": "DEFINES",
+        "from": "p1-c31",
+        "targets": [
+          {
+            "key": "p1-c32"
+          }
+        ],
+        "operator": "all",
+        "scope": "Eluruumi tagamise määratlus on taotluse ja hindamise teenuse nimetus.",
+        "anchors": [
+          {
+            "source_unit_index": 23,
+            "start": 31,
+            "quote": "Eluruumi tagamine on isiku, kes ei ole sotsiaalmajanduslikust olukorrast tulenevalt võimeline enda ja oma pere vajadustele vastavat eluruumi tagama, kindlustamine eluruumi kasutamise võimalusega."
+          }
+        ]
+      },
+      {
+        "key": "p1-d17",
+        "type": "REQUIRES",
+        "from": "p1-c32",
+        "targets": [
+          {
+            "key": "p1-c9"
+          }
+        ],
+        "operator": "all",
+        "scope": "Eluruumi tagamise taotlus menetletakse § 5 järgi, arvestades § 23 erisusi.",
+        "anchors": [
+          {
+            "source_unit_index": 25,
+            "start": 85,
+            "quote": "Eluruumi tagamise taotlemine, taotluse menetlemine ja teenuse määramine toimub määruse §-s 5 sätestatud viisil, arvestades käesoleva paragrahvi erisusi."
+          }
+        ]
+      },
+      {
+        "key": "p1-d18",
+        "type": "QUALIFIES",
+        "from": "p1-c33",
+        "targets": [
+          {
+            "key": "p1-c31"
+          }
+        ],
+        "operator": "all",
+        "scope": "Sama eluruumi kasutamise võimaluse pakkumise piirang.",
+        "anchors": [
+          {
+            "source_unit_index": 25,
+            "start": 477,
+            "quote": "Sama eluruumi kasutamise võimalust võib pakkuda ainult isikutele, kes soovivad ühes eluruumis elada."
+          }
+        ]
+      },
+      {
+        "key": "p1-d19",
+        "type": "REQUIRES",
+        "from": "p1-c34",
+        "targets": [
+          {
+            "key": "p1-c32"
+          }
+        ],
+        "operator": "all",
+        "scope": "Leping sõlmitakse eluruumi kasutusse andmise korralduse alusel.",
+        "anchors": [
+          {
+            "source_unit_index": 26,
+            "start": 35,
+            "quote": "Eluruumi kasutusse andmise korralduse alusel sõlmitakse üürileping."
+          }
+        ]
+      },
+      {
+        "key": "p1-d20",
+        "type": "REQUIRES",
+        "from": "p1-c35",
+        "targets": [
+          {
+            "key": "p1-c14"
+          }
+        ],
+        "operator": "all",
+        "scope": "Üldhooldusteenuse kulude katte arvutamisel kasutatakse teenuse saaja sissetulekut; konkreetne sissetuleku loetelu on T33-s.",
+        "anchors": [
+          {
+            "source_unit_index": 31,
+            "start": 822,
+            "quote": "Sissetulekuna arvestatakse teenuse saaja riiklik pension, kogumispension kogumispensionide seaduse tähenduses, töövõimetoetus töövõimetoetuse seaduse tähenduses ja sotsiaalmaksuga maksustatav tulu sotsiaalmaksuseaduse tähenduses."
+          }
+        ]
+      },
+      {
+        "key": "p1-d21",
+        "type": "QUALIFIES",
+        "from": "p1-c36",
+        "targets": [
+          {
+            "key": "p1-c35"
+          }
+        ],
+        "operator": "all",
+        "scope": "Puuduva muu likviidse vara ja ülalpidamiseks kohustatud isikute puudumise korral nähakse ette eraldi kulude katmine.",
+        "anchors": [
+          {
+            "source_unit_index": 31,
+            "start": 1215,
+            "quote": "Kui üldhooldusteenuse saajal puudub käesoleva paragrahvi lõikes 3 loetletud sissetulekute kõrval muu likviidne vara ja puuduvad ülalpidamiseks kohustatud isikud"
+          }
+        ]
+      },
+      {
+        "key": "p1-d22",
+        "type": "QUALIFIES",
+        "from": "p1-c37",
+        "targets": [
+          {
+            "key": "p1-c35"
+          }
+        ],
+        "operator": "all",
+        "scope": "Osakond võib põhjendatud juhul osaliselt katta kulud pärast varalise seisundi hindamist.",
+        "anchors": [
+          {
+            "source_unit_index": 31,
+            "start": 1790,
+            "quote": "hindab osakond teenuse saaja ja tema ülalpidajate varalist seisundit, otsustades põhjendatud juhul katta käesoleva paragrahvi lõike 2 kohased kulud osaliselt Harku valla eelarvest."
+          }
+        ]
+      },
+      {
+        "key": "p1-d23",
+        "type": "QUALIFIES",
+        "from": "p1-c38",
+        "targets": [
+          {
+            "key": "p1-c35"
+          }
+        ],
+        "operator": "all",
+        "scope": "Ajutine katmine vara käsutamise takistuse või aeganõudvuse korral; hilisem hüvitamise nõue võib järgneda.",
+        "anchors": [
+          {
+            "source_unit_index": 31,
+            "start": 2098,
+            "quote": "vara käsutamine on seotud takistustega või on aegavõttev"
+          }
+        ]
+      },
+      {
+        "key": "p1-d24",
+        "type": "QUALIFIES",
+        "from": "p1-c39",
+        "targets": [
+          {
+            "key": "p1-c35"
+          }
+        ],
+        "operator": "all",
+        "scope": "Eraldi katmise alus, kui vara puudub ja ülalpidamiseks kohustatud isikud pole kättesaadavad.",
+        "anchors": [
+          {
+            "source_unit_index": 31,
+            "start": 2469,
+            "quote": "Kui üldhooldusteenuse saajal puudub vara üldhooldusteenuse eest tasumiseks ning tema ülalpidamiseks kohustatud isikud ei ole kättesaadavad"
+          }
+        ]
+      },
+      {
+        "key": "p2-d1",
+        "type": "REQUIRES",
+        "from": "p2-c1",
+        "targets": [
+          {
+            "key": "p2-c2"
+          }
+        ],
+        "operator": "any",
+        "scope": "Teenuse saamise eelduseks on üks § 34⁸ lõikes 1 loetletud asjaolu.",
+        "anchors": [
+          {
+            "source_unit_index": 45,
+            "start": 42,
+            "quote": "Asendushooldusteenus tagatakse lapsele kuni 18-aastaseks saamiseni, kui:"
+          },
+          {
+            "source_unit_index": 45,
+            "start": 319,
+            "quote": "4)\n\nlaps on vanemast eraldatud."
+          }
+        ]
+      },
+      {
+        "key": "p2-d2",
+        "type": "REQUIRES",
+        "from": "p2-c3",
+        "targets": [
+          {
+            "key": "p2-c4"
+          }
+        ],
+        "operator": "all",
+        "scope": "Õppimise alusel teenuse tagamiseks peavad tingimused olema täidetud.",
+        "anchors": [
+          {
+            "source_unit_index": 45,
+            "start": 357,
+            "quote": "Kui käesoleva paragrahvi lõikes 1 nimetatud laps on enne 18-aastaseks saamist asunud õppima ja jätkab õppimist statsionaarses õppes või tervislikel näidustustel muus õppevormis põhikoolis, gümnaasiumis või kutseõppe tasemeõppes"
+          }
+        ]
+      },
+      {
+        "key": "p2-d3",
+        "type": "REQUIRES",
+        "from": "p2-c5",
+        "targets": [
+          {
+            "key": "p2-c6"
+          }
+        ],
+        "operator": "all",
+        "scope": "Nõusolek on sõnaselgelt nõutud lühiajalise või perioodilise teenuse korral.",
+        "anchors": [
+          {
+            "source_unit_index": 45,
+            "start": 996,
+            "quote": "kelle hooldusõiguslik vanem või füüsilisest isikust eestkostja on andnud nõusoleku"
+          }
+        ]
+      },
+      {
+        "key": "p2-d4",
+        "type": "QUALIFIES",
+        "from": "p2-c11",
+        "targets": [
+          {
+            "key": "p2-c12"
+          }
+        ],
+        "operator": "all",
+        "scope": "Järelhooldusteenuse eesmärgi kõrval kirjeldab määrus teenuse sisu juhtumiplaani alusel.",
+        "anchors": [
+          {
+            "source_unit_index": 48,
+            "start": 238,
+            "quote": "Järelhooldusteenust osutatakse lähtuvalt juhtumiplaanist, mille alusel Harku vald tagab isikule eluaseme ning vajaduspõhised tugiteenused ja toetused."
+          }
+        ]
+      },
+      {
+        "key": "p2-d5",
+        "type": "EXCEPTION_TO",
+        "from": "p2-c29",
+        "targets": [
+          {
+            "key": "p2-c28"
+          }
+        ],
+        "operator": "all",
+        "scope": "Välistus kehtib, kui vajaduse saab rahuldada sotsiaaltransporditeenusega.",
+        "anchors": [
+          {
+            "source_unit_index": 64,
+            "start": 407,
+            "quote": "Toetust ei anta kui lapse transportimise vajadus on rahuldatav sotsiaaltransporditeenuse osutamisega."
+          }
+        ]
+      },
+      {
+        "key": "p2-d6",
+        "type": "REQUIRES",
+        "from": "p2-c23",
+        "targets": [
+          {
+            "key": "p2-c21"
+          }
+        ],
+        "operator": "all",
+        "scope": "Mitmikute sünni erisäte kirjeldab toetuse suurendamist; üldised sünnitoetuse saamise tingimused on § 41 lõikes 1.",
+        "anchors": [
+          {
+            "source_unit_index": 59,
+            "start": 381,
+            "quote": "Mitmikute sünni puhul antakse sünnitoetust kehtestatud määras igale vastsündinule, millele lisandub mitmikutele igaühele eraldi 50% ühekordsest sünnitoetuse määrast."
+          }
+        ]
+      },
+      {
+        "key": "p2-d7",
+        "type": "QUALIFIES",
+        "from": "p2-c22",
+        "targets": [
+          {
+            "key": "p2-c21"
+          }
+        ],
+        "operator": "all",
+        "scope": "Lapsendaja sünnitoetuse saamise eritingimused on § 41 lõikes 4; lõige 6 nimetab lõike 4 juhu taotlustähtaja erandina.",
+        "anchors": [
+          {
+            "source_unit_index": 59,
+            "start": 553,
+            "quote": "Lapse lapsendanud vanemale antakse sünnitoetust, kui on täidetud kõik alljärgnevad tingimused:"
+          }
+        ]
+      },
+      {
+        "key": "p2-d8",
+        "type": "REQUIRES",
+        "from": "p2-c25",
+        "targets": [
+          {
+            "key": "p2-c25"
+          }
+        ],
+        "operator": "all",
+        "scope": "Sama kaart koondab toetuse saamise tingimused.",
+        "anchors": [
+          {
+            "source_unit_index": 62,
+            "start": 297,
+            "quote": "Toetust antakse, kui laps õpib põhikoolis või gümnaasiumis või põhikooli baasil kutseõppeasutuses."
+          }
+        ]
+      },
+      {
+        "key": "p2-d9",
+        "type": "QUALIFIES",
+        "from": "p2-c27",
+        "targets": [
+          {
+            "key": "p2-c26"
+          }
+        ],
+        "operator": "all",
+        "scope": "Vanusevahemik täpsustab hooldajatoetuse maksmise kestust ning ei asenda lõike 1 tingimusi.",
+        "anchors": [
+          {
+            "source_unit_index": 63,
+            "start": 285,
+            "quote": "Keskmise puudega lapse hooldamisel antakse toetust alates lapse kolmandast eluaastast kuni lapse 16-aastaseks saamiseni."
+          }
+        ]
+      },
+      {
+        "key": "p2-d10",
+        "type": "QUALIFIES",
+        "from": "p2-c33",
+        "targets": [
+          {
+            "key": "p2-c32"
+          }
+        ],
+        "operator": "all",
+        "scope": "Vanusepiirid kehtivad koos § 58¹ lõike 1 elukoha ja lastehoiu tingimustega.",
+        "anchors": [
+          {
+            "source_unit_index": 75,
+            "start": 536,
+            "quote": "Õigus toetust taotleda on alates lapse 1,5-aastaseks saamisest kuni lapse 3-aastaseks saamiseni."
+          }
+        ]
+      },
+      {
+        "key": "p2-d11",
+        "type": "DEFINES",
+        "from": "p2-c36",
+        "targets": [
+          {
+            "key": "p2-c34"
+          }
+        ],
+        "operator": "all",
+        "scope": "Arvutusmeetod täpsustab isiku ühe kuu sissetuleku määramist.",
+        "anchors": [
+          {
+            "source_unit_index": 78,
+            "start": 45,
+            "quote": "Isiku ühe kuu sissetuleku arvutamiseks liidetakse isiku sissetulekud taotluse esitamisele eelnenud kolmes kuus ning jagatakse kolmega."
+          }
+        ]
+      },
+      {
+        "key": "p2-d12",
+        "type": "DEFINES",
+        "from": "p2-c37",
+        "targets": [
+          {
+            "key": "p2-c34"
+          }
+        ],
+        "operator": "all",
+        "scope": "Arvutusmeetod täpsustab pere ühe kuu sissetuleku ühe pereliikme kohta määramist.",
+        "anchors": [
+          {
+            "source_unit_index": 78,
+            "start": 348,
+            "quote": "Saadud tulemus jagatakse pereliikmete arvuga."
+          }
+        ]
+      },
+      {
+        "key": "p2-d13",
+        "type": "QUALIFIES",
+        "from": "p2-c35",
+        "targets": [
+          {
+            "key": "p2-c34"
+          }
+        ],
+        "operator": "all",
+        "scope": "Sissetuleku alampiiri täitmisest lisaks hinnatakse taotleja enda vahendeid ning piisavaks hinnatuna võib toetuse andmata jätta.",
+        "anchors": [
+          {
+            "source_unit_index": 77,
+            "start": 582,
+            "quote": "Lisaks käesoleva paragrahvi lõikes 1 sätestatule hinnatakse toetuse andmise otsustamisel, kas toetuse taotleja toimetulek on parandatav ainult toetuse taotleja vahenditest"
+          }
+        ]
+      }
+    ],
+    "gaps": [
+      {
+        "key": "p1-g1",
+        "from": "p1-c19",
+        "statement": "Teenuse osutaja teenus peab vastama sotsiaalhoolekande seaduses kehtestatud nõuetele; nende nõuete sisu ei ole selles fragmendis toodud.",
+        "reason": "Nõuded on viidatud välisele õigusaktile, mida supplied fragments ei sisalda.",
+        "anchors": [
+          {
+            "source_unit_index": 7,
+            "start": 185,
+            "quote": "kelle teenus vastab sotsiaalhoolekande seaduses (edaspidi SHS) kehtestatud nõuetele"
+          }
+        ]
+      },
+      {
+        "key": "p1-g2",
+        "from": null,
+        "statement": "Harku vallas osutatavate muude vajaduspõhiste sotsiaalteenuste loetelu on määruse §-s 35.",
+        "reason": "§ 35 loetelu ega selle tingimused ei sisaldu esitatud osas.",
+        "anchors": [
+          {
+            "source_unit_index": 10,
+            "start": 641,
+            "quote": "Nimetatud teenused on loetletud määruse §-s 35."
+          }
+        ]
+      },
+      {
+        "key": "p1-g3",
+        "from": null,
+        "statement": "Turvakoduteenuse osutaja peab vastama SHS § 32 nõuetele.",
+        "reason": "Viidatud SHS § 32 nõuded ei sisaldu esitatud fragmentides.",
+        "anchors": [
+          {
+            "source_unit_index": 41,
+            "start": 33,
+            "quote": "Varjupaigateenuse osutaja peab vastama SHS § 32 nõuetele."
+          }
+        ]
+      },
+      {
+        "key": "p1-g4",
+        "from": "p1-c23",
+        "statement": "Teenust ei tohi vahetult osutada isik, kelle karistatus tahtlikult toimepandud kuriteo eest võib ohtu seada teenust saama õigustatud isiku elu, tervise ja vara.",
+        "reason": "Sõnastus ütleb „Teenust“, kuid eraldi määruse lõige ei nimeta selles tsitaadis teenuse nimetust; seos koduteenusega on samas § 12-s, kuid täpne ulatus vajab ülevaatust.",
+        "anchors": [
+          {
+            "source_unit_index": 12,
+            "start": 586,
+            "quote": "Teenust ei tohi vahetult osutada isik, kelle karistatus tahtlikult toimepandud kuriteo eest võib ohtu seada teenust saama õigustatud isiku elu, tervise ja vara."
+          }
+        ]
+      },
+      {
+        "key": "p1-g5",
+        "from": null,
+        "statement": "Tugiisikuteenust ei tohi vahetult osutada sotsiaalhoolekande seaduse § 25 lõikes 2 nimetatud isik.",
+        "reason": "Viidatud isikute ringi ei saa tuvastada antud fragmentidest.",
+        "anchors": [
+          {
+            "source_unit_index": 15,
+            "start": 256,
+            "quote": "Teenust ei tohi vahetult osutada sotsiaalhoolekande seaduse § 25 lõikes 2 nimetatud isik."
+          }
+        ]
+      },
+      {
+        "key": "p1-g6",
+        "from": null,
+        "statement": "Isikliku abistaja teenust ei tohi vahetult osutada sotsiaalhoolekande seaduse § 29 lõikes 2 nimetatud isik.",
+        "reason": "Viidatud isikute ringi ei saa tuvastada antud fragmentidest.",
+        "anchors": [
+          {
+            "source_unit_index": 18,
+            "start": 863,
+            "quote": "Teenust ei tohi vahetult osutada sotsiaalhoolekande seaduse § 29 lõikes 2 nimetatud isik."
+          }
+        ]
+      },
+      {
+        "key": "p1-g7",
+        "from": null,
+        "statement": "Hooldaja ei vasta hoolduse lõpetamise alusena määruse § 21 lõike 5 nõuetele.",
+        "reason": "§ 21 lõike 5 tekst on esitatud, kuid ristviite rakendumine koos hoolduse lõpetamise alusega on seotud § 21¹ lõike 2 punktiga 10; märgitud kui kontrollitav viide.",
+        "anchors": [
+          {
+            "source_unit_index": 22,
+            "start": 621,
+            "quote": "hooldaja ei vasta käesoleva määruse § 21 lg 5 nõuetele."
+          }
+        ]
+      },
+      {
+        "key": "p2-g1",
+        "from": "p2-c3",
+        "statement": "Teenuse lõppemise ajad õppimise eri juhtudel (§ 34⁸ lõike 2 punktid 1–3) sõltuvad hariduse omandamisest, õpingute katkestamisest või 19-aastaseks saamisest.",
+        "reason": "Lõikes 2 on tähtaegade valikud seotud hariduse omandamise ja õppimise jätkumise täpse kuluga; esitatud fragment ei täpsusta, milline olukord iga õppija puhul kohaldub.",
+        "anchors": [
+          {
+            "source_unit_index": 45,
+            "start": 624,
+            "quote": "1)\n\nhariduse omandamise korral kuni järgmise õppeaasta alguseni, kuid mitte kauem kui järgmise õppeaasta alguseni sel aastal, kui laps sai 19-aastaseks;\n\n2)\n\nõpingute katkestamiseni, kuid mitte kauem kui lapse 19-aastaseks saamiseni, või\n\n3)\n\nlapse 19-aastaseks saamise korral kuni järgmise õppeaasta alguseni."
+          }
+        ]
+      },
+      {
+        "key": "p2-g2",
+        "from": "p2-c14",
+        "statement": "Määruse § 348 lõike 1 ja lõike 2 tingimuste võimalik seos järelhooldusteenuse üldise kaalutlusliku tagamisega.",
+        "reason": "§ 34¹² lõige 3 nimetab asendushooldusel või eestkostel viibimist, kuid viidatud § 348 tingimusi ei ole fragmentides.",
+        "anchors": [
+          {
+            "source_unit_index": 49,
+            "start": 830,
+            "quote": "Isikule, kes kuni täisealiseks saamiseni viibis asendushooldusel või eestkostel, võib tagada järelhooldusteenuse kuni isiku 25-aastaseks saamiseni."
+          }
+        ]
+      },
+      {
+        "key": "p2-g3",
+        "from": "p2-c18",
+        "statement": "Toetuse maksmise viis sõltub isiku soovist; kolmanda isiku kontole maksmiseks on nõutud kirjalik, digitaalselt allkirjastatud või notariaalselt tõestatud avaldus.",
+        "reason": "Makseviiside üksikasjad on § 37 lõikes 3, kuid iga valiku rakendamise asjaolud võivad sõltuda teises paragrahvis sätestatust.",
+        "anchors": [
+          {
+            "source_unit_index": 55,
+            "start": 205,
+            "quote": "Vastavalt isiku soovile makstakse toetus:"
+          }
+        ]
+      },
+      {
+        "key": "p2-g4",
+        "from": "p2-c34",
+        "statement": "Sotsiaalhoolekande seaduse § 133 lõike 2 sissetulekute loetelu määrab, milliseid laekumisi sissetuleku arvutamisel ei arvestata.",
+        "reason": "Viidatud seadusesäte ei sisaldu esitatud fragmentides; loetelu ei saa siit taastada.",
+        "anchors": [
+          {
+            "source_unit_index": 77,
+            "start": 316,
+            "quote": "Isiku või pere sissetulek ühes kuus leitakse taotluse esitamisele eelnenud kolmel kuul pangakontole laekunud sissetulekute põhjal. Isiku või pere ühe kuu sissetuleku leidmisel ei võeta arvesse sotsiaalhoolekande seaduse § 133 lõikes 2 loetletud sissetulekuid."
+          }
+        ]
+      }
+    ]
+  }
+}

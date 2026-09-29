@@ -1,0 +1,171 @@
+{
+  "schema_version": "rag-v2/dialogue-eval-2",
+  "purpose": "ADR-054 (29.09.2026): the coverage questions (tests/evaluation/knowledge/coverage-1.json) in the whole chat, with the search plan, rerank and graph as the chat runs them: is the exact condition or exception text in the evidence the answer was given? Written before any run of this form.",
+  "expectation_help": {
+    "evidence_text": "the exact source phrase is in the evidence packet"
+  },
+  "scenarios": [
+    {
+      "id": "toimetulek-care-home",
+      "title": "Ema elab hooldekodus. Kas ta saab toimetulekutoetust?",
+      "source": "ADR-054",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Ema elab hooldekodus. Kas ta saab toimetulekutoetust?",
+          "expect": {
+            "evidence_text": [
+              "Toimetulekutoetust ei määrata isikule, kellele osutatakse väljaspool kodu ööpäevaringselt osutatavat üldhooldusteenust"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "toimetulek-retroactive",
+      "title": "Kas toimetulekutoetust saab eelmiste kuude eest tagantjärele?",
+      "source": "ADR-054",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Kas toimetulekutoetust saab eelmiste kuude eest tagantjärele?",
+          "expect": {
+            "evidence_text": [
+              "Eelnevate kuude eest toimetulekutoetust tagasiulatuvalt ei määrata"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "toimetulek-income",
+      "title": "Kas toimetulekutoetuse arvestamisel loetakse sissetulekuks valla makstud ühekordset toetust?",
+      "source": "ADR-054",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Kas toimetulekutoetuse arvestamisel loetakse sissetulekuks valla makstud ühekordset toetust?",
+          "expect": {
+            "evidence_text": [
+              "Toimetulekutoetuse arvestamisel ei arvata üksi elava isiku või perekonna sissetulekute hulka"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "care-home-funding",
+      "title": "Kuidas rahastatakse hooldekodu kohta, kui vald on vajaduse välja selgitanud?",
+      "source": "ADR-054",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Kuidas rahastatakse hooldekodu kohta, kui vald on vajaduse välja selgitanud?",
+          "expect": {
+            "evidence_text": [
+              "rahastatakse teenuskoha maksumust teenuse saaja"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "appeal-start",
+      "title": "Mis ajast hakkab vaide esitamise tähtaeg jooksma?",
+      "source": "ADR-054",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Mis ajast hakkab vaide esitamise tähtaeg jooksma?",
+          "expect": {
+            "evidence_text": [
+              "arvates päevast, millal isik vaidlustatavast haldusaktist või toimingust teada sai"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "appeal-extension",
+      "title": "Kas vaide läbivaatamise tähtaega saab pikendada?",
+      "source": "ADR-054",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Kas vaide läbivaatamise tähtaega saab pikendada?",
+          "expect": {
+            "evidence_text": [
+              "võib vaiet läbivaatav haldusorgan vaide läbivaatamise tähtaega pikendada kuni 30 päeva võrra"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "assistive-not-listed",
+      "title": "Kas riik võib tasuda abivahendi eest, mida abivahendite loetelus ei ole?",
+      "source": "ADR-054",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Kas riik võib tasuda abivahendi eest, mida abivahendite loetelus ei ole?",
+          "expect": {
+            "evidence_text": [
+              "võib erandkorras võtta tasu maksmise kohustuse üle abivahendi eest, mille nimetus ei ole kantud abivahendite loetellu"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "assistive-own-share",
+      "title": "Kui palju pean abivahendi ostmisel ise maksma?",
+      "source": "ADR-054",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Kui palju pean abivahendi ostmisel ise maksma?",
+          "expect": {
+            "evidence_text": [
+              "Isiku omaosalus müügitehingu korral on abivahendi maksumuse ja riigi osaluse summa vahe, kuid mitte väiksem kui 7 eurot"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "harku-threshold",
+      "title": "Mis on Harku valla toimetulekupiir valla sotsiaaltoetuste jaoks?",
+      "source": "ADR-054",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Mis on Harku valla toimetulekupiir valla sotsiaaltoetuste jaoks?",
+          "expect": {
+            "evidence_text": [
+              "Toimetuleku piirmäär Harku vallas on 600 eurot kuus"
+            ],
+            "region": "harku_vald"
+          }
+        }
+      ]
+    },
+    {
+      "id": "harku-childcare",
+      "title": "Elan Harku vallas. Millal saab lapsehoiu toetust?",
+      "source": "ADR-054",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Elan Harku vallas. Millal saab lapsehoiu toetust?",
+          "expect": {
+            "evidence_text": [
+              "ei ole kantud ühegi munitsipaal- või eralasteaia nimekirja"
+            ],
+            "region": "harku_vald"
+          }
+        }
+      ]
+    }
+  ]
+}

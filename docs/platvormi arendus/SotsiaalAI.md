@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**29.09 (Opus): kiirus, kahe inimese vestlus, piirhind, mälu, lisad, kontaktid.** Omanik 29.09: arendus jätkub ja Codex vaatab koodi üle, kui kõik arendustööd on tehtud; ülevaatamiseks ADR-048…053 ja PR-id #255–#262.
+**29.09 (Opus): kiirus, kahe inimese vestlus, piirhind, mälu, lisad, semantiline graaf, kontaktid.** Omanik 29.09: arendus jätkub ja Codex vaatab koodi üle, kui kõik arendustööd on tehtud; ülevaatamiseks ADR-048…054 ja PR-id #255–#263.
 - **Kiirus** ([ADR-048](../rag-v2/adr-048-answer-speed.md)): enne esimest teksti on umbes 8 s eeltööd (plaan, embedding, otsing koos rerank'iga) ja 5–20 s vastuse arutlust. Prioriteedi soov teenustaset ei muutnud.
   - Omaniku otsus: arutlus jääb `medium` (kataloogis v4 andis `low` 37/40, `medium` 39/40).
   - Omaniku otsus: ooteolek jääb vaikseks pöörlevaks S-iks, sammude teksti ei lisata.
@@ -109,6 +109,12 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
   - Pärast pööret, mille olek jäi salvestamata, loetakse järgmises ka selle pöörde sõnumi kohad.
   - Tulemused aktiveerimata plaaniga: mälukataloog 4/8 → 7/8 ja 8/8 (tagasi lükatud olekud 3/6 → 0), kahe inimese kataloogid 8/8 ja 5/5, kataloog v4 40/40 (0/21 olekut tagasi).
   - Dialoogi prompt 17: parandatud summa („pension on hoopis 700 eurot“) on vastuses kasutatud ja nimetatud. Mälukataloog 8/8 kahel korral, varem kukkus see kontroll kolmes jooksus viiest.
+- **Semantilise graafi piloot** ([ADR-054](../rag-v2/adr-054-semantic-graph-pilot.md), RAG Graph teekaardi M3): allikapõhised kaardid partiina.
+  - 7 dokumenti (SHS kaks redaktsiooni, HMS, abivahendite määrus, Harku kord ja lisa): 780 kaarti, 282 seost, plaani hinnaga umbes 0,35 USD.
+  - Korpus v38 (indeks `4b050698`, 0 embeddingut).
+  - **Tulemus: vestluse täisahelas oli katvus 10/10 juba ilma graafi lisandusteta.** Ilma otsinguplaanita tõstis graaf katvuse 7/10 → 8/10 (profiil v2).
+  - Otsus: vestlus jääb profiilile v1. `hybrid-estnltk-chat-v2` on mõõdetud, aga tootmisse ei lähe. Kaarte ei laiendata kogu korpusele enne, kui raskem küsimustik näitab kasu.
+  - Järgmine mõõdik: tingimus teises paragrahvis või dokumendis. Võrdluses on kaardid, akti enda ristviited (deterministlikud) ja sama jao naabrid.
 - **Pöördejärjekord** ([ADR-052](../rag-v2/adr-052-pilot-turn-concurrency.md), #260):
   - vestluses on korraga üks pööre ja piloodis kuni kolm;
   - kaotatud protsessi pööre suletakse 5 minuti pärast ilma uue kutseta;
@@ -121,9 +127,9 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
   - Avaldamine ühe partiina pärast 04.10 kontrolli; siis kontrollida ka, et 376 avaldatut on endiselt lubatud.
 - **Avatud:**
   - 01.10: kontrollida, et vastused tsiteerivad uut SHS-i ja uut abivahendite määrust (piirhinnad 500 ja 850 eurot);
-  - semantiline graaf (Codex F6). Allikapõhine kaartide ettevalmistus (ADR-008) on halduri vaates olemas, aga korpuse partiitoru puudub. Esmalt väike valim ja katvuse võrdlus graafiga ja ilma;
+  - semantiline graaf: raskem küsimustik ja ristviidete katse (ADR-054);
   - Codexi punkt 5 (sisendi dubleerimine): ajavõit on hüpotees, suurim osa on teenusekataloog;
-  - testplaanide koristus: `/etc/sotsiaalai/m4-eval-full-20260929{a..o}.json`.
+  - testplaanide koristus: `/etc/sotsiaalai/m4-eval-full-20260929{a..w}.json`; serveri töökaust `/home/ubuntu/rag-v2-work/knowledge-pilot`.
 
 **27.09 Muudatusepõhine indeks serveris (ADR-036, PR #210–#217).** Serveriaruande järgi on
 aktiivne korpus v32 (`versions-v1`, 32 746 tekstiosa). v31 lisamisel töötles indeks kaks

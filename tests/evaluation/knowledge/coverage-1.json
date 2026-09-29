@@ -1,0 +1,26 @@
+{
+  "schema_version": "rag-v2/knowledge-coverage-1",
+  "purpose": "ADR-054 (29.09.2026): does the evidence packet carry the condition or exception a question depends on, with and without the semantic graph? Each phrase is the act's exact text, checked in the corpus before any run. The same chat retrieval runs on the index without cards (v37) and with them (v38); no search plan or rerank, so the graph is the only difference.",
+  "questions": [
+    { "id": "toimetulek-care-home", "text": "Ema elab hooldekodus. Kas ta saab toimetulekutoetust?",
+      "expect": "Toimetulekutoetust ei määrata isikule, kellele osutatakse väljaspool kodu ööpäevaringselt osutatavat üldhooldusteenust" },
+    { "id": "toimetulek-retroactive", "text": "Kas toimetulekutoetust saab eelmiste kuude eest tagantjärele?",
+      "expect": "Eelnevate kuude eest toimetulekutoetust tagasiulatuvalt ei määrata" },
+    { "id": "toimetulek-income", "text": "Kas toimetulekutoetuse arvestamisel loetakse sissetulekuks valla makstud ühekordset toetust?",
+      "expect": "Toimetulekutoetuse arvestamisel ei arvata üksi elava isiku või perekonna sissetulekute hulka" },
+    { "id": "care-home-funding", "text": "Kuidas rahastatakse hooldekodu kohta, kui vald on vajaduse välja selgitanud?",
+      "expect": "rahastatakse teenuskoha maksumust teenuse saaja" },
+    { "id": "appeal-start", "text": "Mis ajast hakkab vaide esitamise tähtaeg jooksma?",
+      "expect": "arvates päevast, millal isik vaidlustatavast haldusaktist või toimingust teada sai" },
+    { "id": "appeal-extension", "text": "Kas vaide läbivaatamise tähtaega saab pikendada?",
+      "expect": "võib vaiet läbivaatav haldusorgan vaide läbivaatamise tähtaega pikendada kuni 30 päeva võrra" },
+    { "id": "assistive-not-listed", "text": "Kas riik võib tasuda abivahendi eest, mida abivahendite loetelus ei ole?",
+      "expect": "võib erandkorras võtta tasu maksmise kohustuse üle abivahendi eest, mille nimetus ei ole kantud abivahendite loetellu" },
+    { "id": "assistive-own-share", "text": "Kui palju pean abivahendi ostmisel ise maksma?",
+      "expect": "Isiku omaosalus müügitehingu korral on abivahendi maksumuse ja riigi osaluse summa vahe, kuid mitte väiksem kui 7 eurot" },
+    { "id": "harku-threshold", "text": "Mis on Harku valla toimetulekupiir valla sotsiaaltoetuste jaoks?",
+      "expect": "Toimetuleku piirmäär Harku vallas on 600 eurot kuus" },
+    { "id": "harku-childcare", "text": "Elan Harku vallas. Millal saab lapsehoiu toetust?",
+      "expect": "ei ole kantud ühegi munitsipaal- või eralasteaia nimekirja" }
+  ]
+}

@@ -1,0 +1,849 @@
+{
+  "schema_version": "rag-v2/registered-knowledge-1",
+  "source_path": "oigusaktid/126092026005.xml",
+  "source_sha256": "f1131403e9ea9492403edb0d25ec254b12cf7747362b4e7e73e2ca50b0c52120",
+  "preparation": {
+    "schema_version": "rag-v2/knowledge-preparation-1",
+    "model": "gpt-6-luna",
+    "reasoning": "medium",
+    "batch": "4f99919b2c05e40936d666abe522e19e11deebc892423409b8b9cc6445ae10cd",
+    "plan_hashes": [
+      "374a3688fc85316ea43a93cb0a28781059bbd2b3e126aebd64a42c2d409988eb"
+    ],
+    "draft_hash": "5681aa80ed0223a57adf8b168f92114488737763ccf231566832d53bb48b3dfe",
+    "source_version_id": "version_2e1af91ef79f9495c94279c9350c89c1aeaade74cbb35eb276265799fe4d63ad",
+    "verification_state": "source_anchored_unreviewed",
+    "dropped": {
+      "card_anchor": 1,
+      "dependency_card_left_out": 2,
+      "dependency_invalid": 1
+    },
+    "missing_parts": [],
+    "usage": {
+      "input": 6325,
+      "output": 9179,
+      "reasoning": 516
+    }
+  },
+  "knowledge": {
+    "schema_version": "rag-v2/knowledge-input-2",
+    "cards": [
+      {
+        "key": "p1-c1",
+        "kind": "assertion",
+        "statement": "Isik esitab riigi poolt abivahendi eest tasu maksmise kohustuse ülevõtmise taotlemisel taotleja ees- ja perekonnanime ning isikukoodi, kontaktandmed ja otsuse kättesaamise viisi.",
+        "scope": "Riigi poolt abivahendi eest tasu maksmise kohustuse ülevõtmise taotlemine.",
+        "subject": "Isik",
+        "predicate": "esitab taotlemisel",
+        "object": "taotleja nimi ja isikukood, kontaktandmed ning otsuse kättesaamise viis",
+        "anchors": [
+          {
+            "source_unit_index": 3,
+            "start": 91,
+            "quote": "Isik esitab abivahendi eest tasu maksmise kohustuse riigi poolt ülevõtmise taotlemisel järgmised andmed:"
+          }
+        ]
+      },
+      {
+        "key": "p1-c2",
+        "kind": "exception",
+        "statement": "Riikliku pensionikindlustuse seaduse §-s 7 sätestatud vanaduspensioniikka jõudnud isik on uriini absorbeerivate abivahendite puhul § 2 lõikes 2 sätestatud tõendi või rehabilitatsiooniplaani esitamise kohustusest välja arvatud.",
+        "scope": "Vanaduspensioniiga on määratletud riikliku pensionikindlustuse seaduse §-s 7.",
+        "subject": "Vanaduspensioniikka jõudnud isik",
+        "predicate": "on tõendi või rehabilitatsiooniplaani esitamise kohustusest välja arvatud",
+        "object": "uriini absorbeerivate abivahendite puhul",
+        "anchors": [
+          {
+            "source_unit_index": 3,
+            "start": 384,
+            "quote": "välja arvatud riikliku pensionikindlustuse seaduse §-s 7 sätestatud vanaduspensioniikka jõudnud isik uriini absorbeerivate abivahendite puhul"
+          }
+        ]
+      },
+      {
+        "key": "p1-c3",
+        "kind": "condition",
+        "statement": "Tõendil või rehabilitatsiooniplaanis märgitakse toote ISO-kood; selle puudumisel märgitakse nimetus või kirjeldus, mis võimaldab abivahendi ISO-koodi täpsusega kindlaks määrata.",
+        "scope": "Abivahendi vajaduse tõendi või rehabilitatsiooniplaani sisu.",
+        "subject": "Tõend või rehabilitatsiooniplaan",
+        "predicate": "sisaldab",
+        "object": "toote ISO-koodi või selle puudumisel ISO-koodi täpsusega määramist võimaldavat nimetust või kirjeldust",
+        "anchors": [
+          {
+            "source_unit_index": 3,
+            "start": 712,
+            "quote": "Tõendil või rehabilitatsiooniplaanis on märgitud toote ISO-kood, selle puudumise korral nimetus või kirjeldus, mis võimaldab abivahendi ISO-koodi täpsusega kindlaks määrata."
+          }
+        ]
+      },
+      {
+        "key": "p1-c4",
+        "kind": "definition",
+        "statement": "Abivahendi kasutamise vajaduse võib tuvastada ja sellekohase tõendi väljastada arst, õde, ämmaemand, kvalifikatsiooninõuetele vastav rehabilitatsiooni- või tervishoiuteenuse osutaja juures töötav füsioterapeut või tegevusterapeut, 7. või 8. taseme kutsega logopeed, audioloogia magistrikraadiga audioloog või rehabilitatsioonimeeskond rehabilitatsiooniplaanina.",
+        "scope": "Füsioterapeudi ja tegevusterapeudi kvalifikatsiooni ning töötamise tingimused, logopeedi kutsetase ja audioloogi magistrikraad on sätestatud § 2 lõike 2¹ punktides 4–7.",
+        "subject": "Abivahendi kasutamise vajaduse tuvastajad ja tõendi väljastajad",
+        "predicate": "on",
+        "object": "§ 2 lõike 2¹ punktides 1–8 nimetatud isikud ja rehabilitatsioonimeeskond rehabilitatsiooniplaanina",
+        "anchors": [
+          {
+            "source_unit_index": 3,
+            "start": 893,
+            "quote": "Abivahendi kasutamise vajaduse võib tuvastada ja sellekohase tõendi väljastada:"
+          },
+          {
+            "source_unit_index": 3,
+            "start": 1015,
+            "quote": "füsioterapeut, kellel on füsioterapeudi kutse või riiklikult tunnustatud kõrgharidus füsioteraapias või sellele vastav kvalifikatsioon ja kes töötab tõendi väljastamise hetkel füsioterapeudina rehabilitatsiooni- või tervishoiuteenuse osutaja juures;"
+          },
+          {
+            "source_unit_index": 3,
+            "start": 1270,
+            "quote": "tegevusterapeut, kellel on tegevusterapeudi kutse või riiklikult tunnustatud kõrgharidus tegevusteraapias või sellele vastav kvalifikatsioon ja kes töötab tõendi väljastamise hetkel tegevusterapeudina rehabilitatsiooni- või tervishoiuteenuse osutaja juures;"
+          },
+          {
+            "source_unit_index": 3,
+            "start": 1533,
+            "quote": "logopeed, kellel on logopeedi 7. või 8. taseme kutse;"
+          },
+          {
+            "source_unit_index": 3,
+            "start": 1592,
+            "quote": "audioloog, kellel on magistrikraad audioloogias;"
+          },
+          {
+            "source_unit_index": 3,
+            "start": 1646,
+            "quote": "rehabilitatsioonimeeskond rehabilitatsiooniplaanina."
+          }
+        ]
+      },
+      {
+        "key": "p1-c5",
+        "kind": "assertion",
+        "statement": "Abivahendi tõendit on õigus väljastada § 2 lõikes 2¹ nimetatud isikutel.",
+        "scope": "Määruse § 2¹ lõige 1.",
+        "subject": "§ 2 lõikes 2¹ nimetatud isikud",
+        "predicate": "on õigus väljastada",
+        "object": "abivahendi tõend",
+        "anchors": [
+          {
+            "source_unit_index": 4,
+            "start": 30,
+            "quote": "Abivahendi tõendit on õigus väljastada § 2 lõikes 21 nimetatud isikutel."
+          }
+        ]
+      },
+      {
+        "key": "p1-c6",
+        "kind": "definition",
+        "statement": "Abivahendi tõendile kantakse isiku üldandmed, tõendi väljastaja andmed, abivahendi andmed, määramise põhjus diagnoosist või funktsioonihäirest lähtuvalt ning tõendi allkirjastaja ja allkirjastamise aeg.",
+        "scope": "Andmekoosseis hõlmab § 2¹ lõike 2 punktides 1–5 nimetatud andmeid.",
+        "subject": "Abivahendi tõend",
+        "predicate": "sisaldab",
+        "object": "§ 2¹ lõikes 2 loetletud andmeid",
+        "anchors": [
+          {
+            "source_unit_index": 4,
+            "start": 109,
+            "quote": "Abivahendi tõendile kantakse järgmised andmed:"
+          }
+        ]
+      },
+      {
+        "key": "p1-c7",
+        "kind": "assertion",
+        "statement": "Sotsiaalkindlustusamet võib erandkorras isiku taotluse alusel omaosalust vähendada kuni viie protsendini, kuid mitte alla 7 euro, kui isiku majanduslik olukord ei võimalda omaosalust tasuda.",
+        "scope": "Eeldus: isiku majanduslik olukord ei võimalda omaosalust tasuda.",
+        "subject": "Sotsiaalkindlustusamet",
+        "predicate": "võib erandkorras isiku taotluse alusel vähendada",
+        "object": "omaosalust kuni viie protsendini, kuid mitte alla 7 euro",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 66,
+            "quote": "Sotsiaalkindlustusamet võib erandkorras isiku taotluse alusel omaosalust vähendada kuni viie protsendini, kuid mitte alla 7 euro, kui isiku majanduslik olukord ei võimalda omaosalust tasuda."
+          }
+        ]
+      },
+      {
+        "key": "p1-c8",
+        "kind": "condition",
+        "statement": "Omaosaluse vähendamise erandi eelduseks on, et isiku majanduslik olukord ei võimalda omaosalust tasuda.",
+        "scope": "Sotsiaalkindlustusameti õigus omaosalust erandkorras vähendada § 7 lõike 1 alusel.",
+        "subject": "Isiku majanduslik olukord",
+        "predicate": "ei võimalda",
+        "object": "omaosalust tasuda",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 196,
+            "quote": "kui isiku majanduslik olukord ei võimalda omaosalust tasuda."
+          }
+        ]
+      },
+      {
+        "key": "p1-c9",
+        "kind": "assertion",
+        "statement": "Sotsiaalkindlustusamet võib erandkorras võtta uue abivahendi eest tasu maksmise kohustuse üle enne sama ISO-koodiga abivahendi kasutusaja lõppu, kui abivahend on muutunud kasutajale ebasobivaks tervislikel või kasutajast mitteolenevatel põhjustel.",
+        "scope": "Ebasobivuse põhjuseks peab olema tervislik põhjus või kasutajast mitteolenev põhjus; allikas toob näiteks kuulmise või nägemise halvenemise ning kasvamise lapseeas või õnnetusjuhtumis hävimise.",
+        "subject": "Sotsiaalkindlustusamet",
+        "predicate": "võib erandkorras võtta üle enne kasutusaja lõppu",
+        "object": "uue sama ISO-koodiga abivahendi eest tasu maksmise kohustuse",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 263,
+            "quote": "Sotsiaalkindlustusamet võib erandkorras võtta uue abivahendi eest tasu maksmise kohustuse üle enne isikule hüvitatud sama ISO-koodiga abivahendi kasutusaja lõppu, kui abivahend on muutunud kasutajale ebasobivaks:"
+          }
+        ]
+      },
+      {
+        "key": "p1-c10",
+        "kind": "condition",
+        "statement": "Sama ISO-koodiga uue abivahendi eest tasu maksmise kohustuse ennetähtaegse ülevõtmise üheks võimalikuks põhjuseks on tervislik põhjus, näiteks kuulmise või nägemise halvenemine.",
+        "scope": "§ 7 lõike 2 punkt 1.",
+        "subject": "Abivahendi ebasobivaks muutumine",
+        "predicate": "võib tuleneda",
+        "object": "tervislikust põhjusest, näiteks kuulmise või nägemise halvenemisest",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 481,
+            "quote": "tervislikel põhjustel (näiteks kuulmise või nägemise halvenemine);"
+          }
+        ]
+      },
+      {
+        "key": "p1-c11",
+        "kind": "condition",
+        "statement": "Sama ISO-koodiga uue abivahendi eest tasu maksmise kohustuse ennetähtaegse ülevõtmise üheks võimalikuks põhjuseks on kasutajast mitteolenev põhjus, näiteks lapseeas kasvamine või abivahendi hävimine õnnetusjuhtumi tagajärjel.",
+        "scope": "§ 7 lõike 2 punkt 2.",
+        "subject": "Abivahendi ebasobivaks muutumine",
+        "predicate": "võib tuleneda",
+        "object": "kasutajast mitteolenevast põhjusest",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 553,
+            "quote": "kasutajast mitteolenevatel põhjustel (näiteks kasvamine lapseeas või hävimine õnnetusjuhtumi tagajärjel)."
+          }
+        ]
+      },
+      {
+        "key": "p1-c12",
+        "kind": "assertion",
+        "statement": "Sotsiaalkindlustusamet võib erandkorras võtta tasu maksmise kohustuse üle abivahendi eest, mille nimetus ei ole kantud abivahendite loetellu.",
+        "scope": "§ 7 lõige 3.",
+        "subject": "Sotsiaalkindlustusamet",
+        "predicate": "võib erandkorras võtta üle",
+        "object": "tasu maksmise kohustuse loetelusse kandmata nimetusega abivahendi eest",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 665,
+            "quote": "Sotsiaalkindlustusamet võib erandkorras võtta tasu maksmise kohustuse üle abivahendi eest, mille nimetus ei ole kantud abivahendite loetellu."
+          }
+        ]
+      },
+      {
+        "key": "p1-c13",
+        "kind": "assertion",
+        "statement": "Sotsiaalkindlustusamet võib erandkorras abivahendi kasutusaja jooksul suurendada abivahendile kehtestatud piirlimiiti, kui isikul on diagnoosist või funktsioonihäirest tulenev põhjendatud vajadus kasutada piirlimiidist suuremat kogust.",
+        "scope": "Eeldus: diagnoosist või funktsioonihäirest tulenev põhjendatud vajadus kasutada suuremat kogust; otsustamine toimub abivahendi kasutusaja jooksul.",
+        "subject": "Sotsiaalkindlustusamet",
+        "predicate": "võib erandkorras suurendada",
+        "object": "abivahendile kehtestatud piirlimiiti",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 813,
+            "quote": "Sotsiaalkindlustusamet võib erandkorras abivahendi kasutusaja jooksul abivahendile kehtestatud piirlimiiti suurendada, kui isikul on diagnoosist või funktsioonihäirest tulenev põhjendatud vajadus kasutada piirlimiidist suuremat kogust."
+          }
+        ]
+      },
+      {
+        "key": "p1-c14",
+        "kind": "condition",
+        "statement": "Piirlimiidi suurendamiseks peab isikul olema diagnoosist või funktsioonihäirest tulenev põhjendatud vajadus kasutada piirlimiidist suuremat kogust.",
+        "scope": "Abivahendi kasutusaja jooksul piirlimiidi erandkorras suurendamine § 7 lõike 4 alusel.",
+        "subject": "Isik",
+        "predicate": "vajab põhjendatult",
+        "object": "diagnoosist või funktsioonihäirest tulenevalt piirlimiidist suuremat kogust",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 932,
+            "quote": "kui isikul on diagnoosist või funktsioonihäirest tulenev põhjendatud vajadus kasutada piirlimiidist suuremat kogust."
+          }
+        ]
+      },
+      {
+        "key": "p1-c15",
+        "kind": "assertion",
+        "statement": "Sotsiaalkindlustusamet võib erandkorras otsustada abivahendile kehtestatud piirhinna muutmise, kui sobiva funktsionaalsusega abivahendit ei ole võimalik piirhinnasiseselt leida.",
+        "scope": "Eeldus: sobiva funktsionaalsusega abivahendit ei ole võimalik piirhinnasiseselt leida.",
+        "subject": "Sotsiaalkindlustusamet",
+        "predicate": "võib erandkorras otsustada muutmise",
+        "object": "abivahendile kehtestatud piirhind",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 1055,
+            "quote": "Sotsiaalkindlustusamet võib erandkorras otsustada abivahendile kehtestatud piirhinna muutmise, kui sobiva funktsionaalsusega abivahendit ei ole võimalik piirhinnasiseselt leida."
+          }
+        ]
+      },
+      {
+        "key": "p1-c16",
+        "kind": "condition",
+        "statement": "Piirhinna muutmise erandi tingimus on, et sobiva funktsionaalsusega abivahendit ei ole võimalik kehtiva piirhinna piires leida.",
+        "scope": "Abivahendile kehtestatud piirhinna erandkorras muutmine § 7 lõike 5 alusel.",
+        "subject": "Sobiva funktsionaalsusega abivahend",
+        "predicate": "ei ole võimalik leida",
+        "object": "piirhinnasiseselt",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 1150,
+            "quote": "kui sobiva funktsionaalsusega abivahendit ei ole võimalik piirhinnasiseselt leida."
+          }
+        ]
+      },
+      {
+        "key": "p1-c17",
+        "kind": "assertion",
+        "statement": "Sotsiaalkindlustusamet võib erandkorras otsustada abivahendile kehtestatud müügi- või üüritehingu nõude muutmise lühiajalise vajaduse, pikaajalise vajaduse või isiku terviseseisundist tulenevatel põhjustel.",
+        "scope": "§ 7 lõike 6 punktides 1–3 nimetatud põhjused.",
+        "subject": "Sotsiaalkindlustusamet",
+        "predicate": "võib erandkorras otsustada muutmise",
+        "object": "abivahendile kehtestatud müügi- või üüritehingu nõue",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 1239,
+            "quote": "Sotsiaalkindlustusamet võib erandkorras otsustada abivahendile kehtestatud müügi- või üüritehingu nõude muutmise:"
+          }
+        ]
+      },
+      {
+        "key": "p1-c18",
+        "kind": "condition",
+        "statement": "Müügi- või üüritehingu nõude muutmise erandi üheks aluseks on lühiajaline vajadus, mille tõttu ei ole otstarbekas abivahendit osta.",
+        "scope": "§ 7 lõike 6 punkt 1.",
+        "subject": "Lühiajaline vajadus",
+        "predicate": "muudab ebaotstarbekaks",
+        "object": "abivahendi ostmise",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 1358,
+            "quote": "kui lühiajalise vajaduse tõttu ei ole otstarbekas abivahendit osta;"
+          }
+        ]
+      },
+      {
+        "key": "p1-c19",
+        "kind": "condition",
+        "statement": "Müügi- või üüritehingu nõude muutmise erandi üheks aluseks on pikaajaline vajadus, mille tõttu ei ole majanduslikult otstarbekas abivahendit üürida.",
+        "scope": "§ 7 lõike 6 punkt 2.",
+        "subject": "Pikaajaline vajadus",
+        "predicate": "muudab majanduslikult ebaotstarbekaks",
+        "object": "abivahendi üürimise",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 1431,
+            "quote": "kui pikaajalise vajaduse tõttu ei ole majanduslikult otstarbekas abivahendit üürida;"
+          }
+        ]
+      },
+      {
+        "key": "p1-c20",
+        "kind": "condition",
+        "statement": "Müügi- või üüritehingu nõude muutmise erandi üheks aluseks võivad olla isiku terviseseisundist tulenevad põhjused.",
+        "scope": "§ 7 lõike 6 punkt 3.",
+        "subject": "Isiku terviseseisundist tulenevad põhjused",
+        "predicate": "võivad olla aluseks",
+        "object": "abivahendi müügi- või üüritehingu nõude muutmisele",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 1521,
+            "quote": "isiku terviseseisundist tulenevatel põhjustel."
+          }
+        ]
+      },
+      {
+        "key": "p1-c21",
+        "kind": "condition",
+        "statement": "Tasu maksmise kohustuse ülevõtmise erandi taotlemiseks lisab isik taotlusele hinnapakkumuse(d), kui taotletakse piirhinna ühekordset tõstmist, loeteluvälist abivahendit või abivahendit, millele ei ole piirhinda kehtestatud: vähemalt kaks ühestel alustel võrreldavat hinnapakkumust; kui abivahendit pakub ainult üks teenuseosutaja, lisatakse üks hinnapakkumus.",
+        "scope": "§ 7 lõike 7 punkt 1; loeteluvälise abivahendi, piirhinna ühekordse tõstmise ja piirhinnata abivahendi taotlemine.",
+        "subject": "Isik",
+        "predicate": "lisab erandi taotlusele",
+        "object": "asjakohase(d) hinnapakkumuse(d)",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 1657,
+            "quote": "abivahendite loetelus abivahendile kehtestatud piirhinna ühekordse tõstmise või loeteluvälise abivahendi taotlemiseks või kui abivahendile ei ole kehtestatud piirhinda, vähemalt kaks ühestel alustel võrreldavat hinnapakkumust (kui abivahendit pakub ainult üks teenuseosutaja, lisatakse vaid üks hinnapakkumus);"
+          }
+        ]
+      },
+      {
+        "key": "p1-c22",
+        "kind": "condition",
+        "statement": "Enne kasutusaja lõppu sama ISO-koodi ja nimetusega abivahendi taotlemiseks lisab isik erandi taotlusele selgitused ja põhjendused uue abivahendi vajaduse kohta.",
+        "scope": "Enne abivahendi kasutusaja lõppu sama ISO-koodi ja nimetusega abivahendi taotlemine.",
+        "subject": "Isik",
+        "predicate": "lisab erandi taotlusele",
+        "object": "selgitused ja põhjendused uue abivahendi vajaduse kohta",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 1973,
+            "quote": "enne abivahendi kasutusaja lõppu sama ISO-koodi ja nimetusega abivahendi taotlemiseks selgitused ja põhjendused uue abivahendi vajaduse kohta;"
+          }
+        ]
+      },
+      {
+        "key": "p1-c23",
+        "kind": "condition",
+        "statement": "Omaosaluse vähendamise taotlemiseks lisab isik taotlusele selgitused ja põhjendused omaosaluse vähendamise vajaduse kohta.",
+        "scope": "Tasu maksmise kohustuse ülevõtmise erandi taotlus § 7 lõike 7 alusel.",
+        "subject": "Isik",
+        "predicate": "lisab omaosaluse vähendamise taotlusele",
+        "object": "selgitused ja põhjendused omaosaluse vähendamise vajaduse kohta",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 2121,
+            "quote": "abivahendi omaosaluse vähendamiseks selgitused ja põhjendused omaosaluse vähendamise vajaduse kohta;"
+          }
+        ]
+      },
+      {
+        "key": "p1-c24",
+        "kind": "condition",
+        "statement": "Erandi taotlusele lisatakse § 2 lõikes 2 nimetatud abivahendi vajaduse tõend, välja arvatud juhul, kui vajadus tuleb tuvastada ja tõend väljastada üks kord ning sama abivahendi eest on riigi poolt tasu maksmise kohustus juba varem üle võetud.",
+        "scope": "Erandi taotluse lisad; erand kehtib üks kord tuvastatava vajaduse ja sama abivahendi eest juba varem üle võetud riikliku tasumiskohustuse korral.",
+        "subject": "Erandi taotlus",
+        "predicate": "sisaldab",
+        "object": "§ 2 lõikes 2 nimetatud abivahendi vajaduse tõendit, välja arvatud sätestatud juhul",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 2227,
+            "quote": "paragrahvi 2 lõikes 2 nimetatud tõendi abivahendi vajaduse kohta, välja arvatud juhul, kui abivahendi vajadust on vaja tuvastada ja tõend väljastada üks kord ning sama abivahendi eest on riigi poolt tasu maksmise kohustus juba varem üle võetud;"
+          }
+        ]
+      },
+      {
+        "key": "p1-c25",
+        "kind": "condition",
+        "statement": "Loeteluvälise abivahendi taotlemiseks lisab isik erandi taotlusele vastava abivahendi valdkonnaga seotud § 2 lõikes 2¹ nimetatud spetsialisti tõendi abivahendi vajaduse kohta.",
+        "scope": "Loeteluvälise abivahendi taotlemine § 7 lõike 7 punkti 5 alusel.",
+        "subject": "Isik",
+        "predicate": "lisab loeteluvälise abivahendi taotlusele",
+        "object": "vastava valdkonnaga seotud § 2 lõikes 2¹ nimetatud spetsialisti tõendi vajaduse kohta",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 2477,
+            "quote": "loeteluvälise abivahendi taotlemiseks vastava abivahendi valdkonnaga seotud § 2 lõikes 21 nimetatud spetsialisti tõendi abivahendi vajaduse kohta."
+          }
+        ]
+      },
+      {
+        "key": "p1-c26",
+        "kind": "exception",
+        "statement": "Sotsiaalkindlustusamet võtab tasu maksmise kohustuse üle ilma korduva abivahendi vajaduse tuvastamiseta määruse lisas nimetatud juhtudel.",
+        "scope": "Ainult määruse lisas nimetatud juhtudel; lisa sisu ei ole esitatud.",
+        "subject": "Sotsiaalkindlustusamet",
+        "predicate": "võtab tasu maksmise kohustuse üle ilma",
+        "object": "abivahendi vajaduse korduva tuvastamiseta",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 2630,
+            "quote": "Sotsiaalkindlustusamet võtab tasu maksmise kohustuse üle ilma korduva abivahendi vajaduse tuvastamiseta määruse lisas nimetatud juhtudel."
+          }
+        ]
+      },
+      {
+        "key": "p1-c27",
+        "kind": "assertion",
+        "statement": "Teenuseosutaja säilitab abivahendi üürimisel hoolduse raames välja vahetatud elektroonilisi komponente ja muid osi, mille maksumus ületab 100 eurot, kolm kuud; garantiiremondi käigus ja muude kui riigieelarveliste vahendite eest välja vahetatud osi ei ole vaja säilitada.",
+        "scope": "Välja arvatud garantiiremondi käigus ja muude kui riigieelarveliste vahendite eest välja vahetatud osad.",
+        "subject": "Teenuseosutaja",
+        "predicate": "säilitab kolm kuud",
+        "object": "hoolduse raames välja vahetatud elektroonilisi komponente ja muid üle 100 euro maksvaid osi",
+        "anchors": [
+          {
+            "source_unit_index": 6,
+            "start": 32,
+            "quote": "Teenuseosutaja säilitab abivahendi üürimisel hoolduse raames välja vahetatud elektroonilisi komponente ja muid osi, mille maksumus ületab 100 eurot, kolm kuud."
+          },
+          {
+            "source_unit_index": 6,
+            "start": 192,
+            "quote": "Garantiiremondi käigus ja muude kui riigieelarveliste vahendite eest välja vahetatud osi ei ole vaja säilitada."
+          }
+        ]
+      },
+      {
+        "key": "p1-c28",
+        "kind": "assertion",
+        "statement": "Teenuseosutaja tagab liikumisabivahendit kasutavale isikule üürimise ajal tehtavate hooldustööde ajaks asendustoote.",
+        "scope": "Liikumisabivahendi üürimise ajal tehtavad hooldustööd.",
+        "subject": "Teenuseosutaja",
+        "predicate": "tagab",
+        "object": "liikumisabivahendit kasutavale isikule hooldustööde ajaks asendustoote",
+        "anchors": [
+          {
+            "source_unit_index": 6,
+            "start": 310,
+            "quote": "Teenuseosutaja tagab liikumisabivahendit kasutavale isikule üürimise ajal tehtavate hooldustööde ajaks asendustoote."
+          }
+        ]
+      },
+      {
+        "key": "p1-c29",
+        "kind": "assertion",
+        "statement": "Abivahendi üürimisel kinnitab isik teenuseosutaja poolt hooldustööde tegemist allkirjaga.",
+        "scope": "Abivahendi üürimine.",
+        "subject": "Isik",
+        "predicate": "kinnitab allkirjaga",
+        "object": "teenuseosutaja poolt hooldustööde tegemise",
+        "anchors": [
+          {
+            "source_unit_index": 6,
+            "start": 433,
+            "quote": "Abivahendi üürimisel kinnitab isik hooldustööde tegemist teenuseosutaja poolt allkirjaga."
+          }
+        ]
+      },
+      {
+        "key": "p1-c30",
+        "kind": "assertion",
+        "statement": "Teenuseosutaja säilitab määruses abivahendile kehtestatud kasutusaja jooksul kirjalikku taasesitamist võimaldavas vormis andmed hoolduse raames tehtud tööde, tööde teostamise kuupäeva ja isiku allkirja kohta.",
+        "scope": "Üüritav abivahend; kestus on määruses abivahendile kehtestatud kasutusaeg.",
+        "subject": "Teenuseosutaja",
+        "predicate": "säilitab kasutusaja jooksul",
+        "object": "kirjalikku taasesitamist võimaldavas vormis andmed hooldustööde, nende kuupäeva ja isiku allkirja kohta",
+        "anchors": [
+          {
+            "source_unit_index": 6,
+            "start": 529,
+            "quote": "Teenuseosutaja säilitab käesolevas määruses abivahendile kehtestatud kasutusaja jooksul kirjalikku taasesitamist võimaldavas vormis üüritava abivahendi hooldustööde kohta järgmised andmed:"
+          }
+        ]
+      },
+      {
+        "key": "p1-c31",
+        "kind": "assertion",
+        "statement": "Teenuseosutaja on kohustatud sobitama ja kohandama abivahendi vastavalt kasutaja individuaalsetele eripäradele.",
+        "scope": "Abivahendi sobitamine ja kohandamine.",
+        "subject": "Teenuseosutaja",
+        "predicate": "on kohustatud sobitama ja kohandama",
+        "object": "abivahendi vastavalt kasutaja individuaalsetele eripäradele",
+        "anchors": [
+          {
+            "source_unit_index": 7,
+            "start": 49,
+            "quote": "Teenuseosutaja on kohustatud sobitama ja kohandama abivahendi vastavalt kasutaja individuaalsetele eripäradele."
+          }
+        ]
+      },
+      {
+        "key": "p1-c32",
+        "kind": "assertion",
+        "statement": "Vaidluse korral on teenuseosutajal ja kasutajal õigus pöörduda Sotsiaalkindlustusameti poole eksperdiarvamuse saamiseks, et tagada kasutajale sobivad ja kulutõhusad abivahendi kohandused.",
+        "scope": "Eesmärk on tagada kasutajale sobivad ja kulutõhusad abivahendi kohandused.",
+        "subject": "Teenuseosutaja ja kasutaja",
+        "predicate": "on vaidluse korral õigus pöörduda",
+        "object": "Sotsiaalkindlustusameti poole eksperdiarvamuse saamiseks",
+        "anchors": [
+          {
+            "source_unit_index": 7,
+            "start": 167,
+            "quote": "Vaidluse korral on teenuseosutajal ja kasutajal õigus pöörduda Sotsiaalkindlustusameti poole eksperdiarvamuse saamiseks, et tagada kasutajale sobivad ja kulutõhusad abivahendi kohandused."
+          }
+        ]
+      },
+      {
+        "key": "p1-c33",
+        "kind": "assertion",
+        "statement": "Teenuseosutaja on kohustatud kasutajale või tema esindajale selgitama abivahendi õige ja eesmärgipärase kasutamise tingimusi, hooldamise tingimusi, ohutingimusi ning üürimise korral kohustusliku hoolduse tingimusi ja sagedust.",
+        "scope": "Üürimise korral lisanduvad kohustusliku hoolduse tingimused ja sagedus.",
+        "subject": "Teenuseosutaja",
+        "predicate": "on kohustatud selgitama",
+        "object": "kasutajale või tema esindajale abivahendi kasutamise, hooldamise ja ohutuse tingimusi ning üürimisel kohustusliku hoolduse tingimusi ja sagedust",
+        "anchors": [
+          {
+            "source_unit_index": 8,
+            "start": 40,
+            "quote": "Teenuseosutaja on kohustatud kasutajale või tema esindajale selgitama:"
+          }
+        ]
+      }
+    ],
+    "dependencies": [
+      {
+        "key": "p1-d1",
+        "type": "DEFINES",
+        "from": "p1-c4",
+        "targets": [
+          {
+            "key": "p1-c5"
+          }
+        ],
+        "operator": "all",
+        "scope": "Määratleb § 2 lõikes 2¹ nimetatud isikud, kellele § 2¹ lõige 1 annab tõendi väljastamise õiguse.",
+        "anchors": [
+          {
+            "source_unit_index": 4,
+            "start": 30,
+            "quote": "Abivahendi tõendit on õigus väljastada § 2 lõikes 21 nimetatud isikutel."
+          },
+          {
+            "source_unit_index": 3,
+            "start": 893,
+            "quote": "Abivahendi kasutamise vajaduse võib tuvastada ja sellekohase tõendi väljastada:"
+          }
+        ]
+      },
+      {
+        "key": "p1-d2",
+        "type": "QUALIFIES",
+        "from": "p1-c8",
+        "targets": [
+          {
+            "key": "p1-c7"
+          }
+        ],
+        "operator": "all",
+        "scope": "Omaosaluse vähendamise õigus on seotud selles tingimuses nimetatud majandusliku olukorraga.",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 196,
+            "quote": "kui isiku majanduslik olukord ei võimalda omaosalust tasuda."
+          }
+        ]
+      },
+      {
+        "key": "p1-d3",
+        "type": "QUALIFIES",
+        "from": "p1-c10",
+        "targets": [
+          {
+            "key": "p1-c9"
+          }
+        ],
+        "operator": "all",
+        "scope": "Üks § 7 lõike 2 punktis 1 nimetatud võimalik põhjus.",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 481,
+            "quote": "tervislikel põhjustel (näiteks kuulmise või nägemise halvenemine);"
+          }
+        ]
+      },
+      {
+        "key": "p1-d4",
+        "type": "QUALIFIES",
+        "from": "p1-c11",
+        "targets": [
+          {
+            "key": "p1-c9"
+          }
+        ],
+        "operator": "all",
+        "scope": "Üks § 7 lõike 2 punktis 2 nimetatud võimalik põhjus.",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 553,
+            "quote": "kasutajast mitteolenevatel põhjustel (näiteks kasvamine lapseeas või hävimine õnnetusjuhtumi tagajärjel)."
+          }
+        ]
+      },
+      {
+        "key": "p1-d5",
+        "type": "QUALIFIES",
+        "from": "p1-c14",
+        "targets": [
+          {
+            "key": "p1-c13"
+          }
+        ],
+        "operator": "all",
+        "scope": "Piirlimiidi suurendamise tingimus.",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 932,
+            "quote": "kui isikul on diagnoosist või funktsioonihäirest tulenev põhjendatud vajadus kasutada piirlimiidist suuremat kogust."
+          }
+        ]
+      },
+      {
+        "key": "p1-d6",
+        "type": "QUALIFIES",
+        "from": "p1-c16",
+        "targets": [
+          {
+            "key": "p1-c15"
+          }
+        ],
+        "operator": "all",
+        "scope": "Piirhinna muutmise tingimus.",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 1150,
+            "quote": "kui sobiva funktsionaalsusega abivahendit ei ole võimalik piirhinnasiseselt leida."
+          }
+        ]
+      },
+      {
+        "key": "p1-d7",
+        "type": "QUALIFIES",
+        "from": "p1-c18",
+        "targets": [
+          {
+            "key": "p1-c17"
+          }
+        ],
+        "operator": "all",
+        "scope": "Üks § 7 lõike 6 punktis 1 nimetatud alustest.",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 1358,
+            "quote": "kui lühiajalise vajaduse tõttu ei ole otstarbekas abivahendit osta;"
+          }
+        ]
+      },
+      {
+        "key": "p1-d8",
+        "type": "QUALIFIES",
+        "from": "p1-c19",
+        "targets": [
+          {
+            "key": "p1-c17"
+          }
+        ],
+        "operator": "all",
+        "scope": "Üks § 7 lõike 6 punktis 2 nimetatud alustest.",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 1431,
+            "quote": "kui pikaajalise vajaduse tõttu ei ole majanduslikult otstarbekas abivahendit üürida;"
+          }
+        ]
+      },
+      {
+        "key": "p1-d9",
+        "type": "QUALIFIES",
+        "from": "p1-c20",
+        "targets": [
+          {
+            "key": "p1-c17"
+          }
+        ],
+        "operator": "all",
+        "scope": "Üks § 7 lõike 6 punktis 3 nimetatud alustest.",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 1521,
+            "quote": "isiku terviseseisundist tulenevatel põhjustel."
+          }
+        ]
+      },
+      {
+        "key": "p1-d10",
+        "type": "REQUIRES",
+        "from": "p1-c9",
+        "targets": [
+          {
+            "key": "p1-c22"
+          }
+        ],
+        "operator": "all",
+        "scope": "Enne kasutusaja lõppu sama ISO-koodi ja nimetusega abivahendi taotlemise korral nõutav lisadokument.",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 1973,
+            "quote": "enne abivahendi kasutusaja lõppu sama ISO-koodi ja nimetusega abivahendi taotlemiseks selgitused ja põhjendused uue abivahendi vajaduse kohta;"
+          }
+        ]
+      },
+      {
+        "key": "p1-d11",
+        "type": "REQUIRES",
+        "from": "p1-c7",
+        "targets": [
+          {
+            "key": "p1-c23"
+          }
+        ],
+        "operator": "all",
+        "scope": "Omaosaluse vähendamise erandi taotlemiseks lisatav põhjendus.",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 2121,
+            "quote": "abivahendi omaosaluse vähendamiseks selgitused ja põhjendused omaosaluse vähendamise vajaduse kohta;"
+          }
+        ]
+      },
+      {
+        "key": "p1-d12",
+        "type": "REQUIRES",
+        "from": "p1-c12",
+        "targets": [
+          {
+            "key": "p1-c21"
+          },
+          {
+            "key": "p1-c25"
+          }
+        ],
+        "operator": "all",
+        "scope": "Loeteluvälise abivahendi taotlemisel nõutakse taotlusele hinnapakkumusi ja vastava valdkonnaga seotud spetsialisti tõendit; hinnapakkumuse arv sõltub § 7 lõike 7 punktis 1 sätestatust.",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 1657,
+            "quote": "abivahendite loetelus abivahendile kehtestatud piirhinna ühekordse tõstmise või loeteluvälise abivahendi taotlemiseks"
+          },
+          {
+            "source_unit_index": 9,
+            "start": 2477,
+            "quote": "loeteluvälise abivahendi taotlemiseks vastava abivahendi valdkonnaga seotud § 2 lõikes 21 nimetatud spetsialisti tõendi abivahendi vajaduse kohta."
+          }
+        ]
+      }
+    ],
+    "gaps": [
+      {
+        "key": "p1-g1",
+        "from": "p1-c26",
+        "statement": "Erandkorras võtab Sotsiaalkindlustusamet kohustuse üle ilma korduva vajaduse tuvastamiseta määruse lisas nimetatud juhtudel, kuid lisa nimetatud juhud ei sisaldu esitatud fragmentides.",
+        "reason": "Erandi kohaldamisjuhte määratlev lisa puudub; neid ei saa fragmentide põhjal tuvastada.",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 2630,
+            "quote": "Sotsiaalkindlustusamet võtab tasu maksmise kohustuse üle ilma korduva abivahendi vajaduse tuvastamiseta määruse lisas nimetatud juhtudel."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,8 +1,8 @@
 {
   "schema_version": "rag-v2/legal-acts-in-index-1",
-  "generated_at": "2026-09-29T12:58:03.960Z",
+  "generated_at": "2026-09-29T19:08:19.967Z",
   "tenant": "sotsiaalai-corpus",
-  "store_generation": "generation_189ef281e054405e0af9026cbc82f2f3a9f68bb08d854fb5fa2a6a241a324e1b",
+  "store_generation": "generation_c1efd2f41d724a97045ba93d26e3f3a1eb18aa795cbb1b677cb1c2630db75d32",
   "policy_documents": 6037,
   "acts": [
     {
@@ -215,7 +215,7 @@
     },
     {
       "document_id": "document_2fe557ae8dee59eadc6af5130c87257769e9842645ce57b4101274026fc01c61",
-      "version_id": "version_4fa78cf065fe4dba3fad03f2ad731c8144d629cf53758cf1972d903905618104",
+      "version_id": "version_b4bde64aafc918f3b5f0730aaa6e362f1674d4e9281c104453a8ddf3b5243c62",
       "globaal_id": "103062026023",
       "group": "1032355",
       "title": "Sotsiaalhoolekande seadus",
@@ -363,7 +363,7 @@
     },
     {
       "document_id": "document_4a0892e6bd41ea5358b487800f52420acf04fdd45b8aba2335c763c813619708",
-      "version_id": "version_2e1af91ef79f9495c94279c9350c89c1aeaade74cbb35eb276265799fe4d63ad",
+      "version_id": "version_6ce5806a86bf5dc3ffd3282e8a29dfbfdf0653cdffc40915c84777126a3f4a74",
       "globaal_id": "126092026005",
       "group": "1032376",
       "title": "Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi andmed",
@@ -553,7 +553,7 @@
     },
     {
       "document_id": "document_702c57efc367c6d927013811d18d1337616495620c2dacafa360da36b5ea477d",
-      "version_id": "version_196285f7bad14aa31ba77499504327a21860800aa5453747b48ddd1ff61dab4e",
+      "version_id": "version_ed8fd4328aacc769f698c360c192c7d90fac679bf452b6a969e92fb1a27a41c2",
       "globaal_id": "404072025017",
       "group": "1034262",
       "title": "Sotsiaalhoolekandelise abi andmise kord",
@@ -937,7 +937,7 @@
     },
     {
       "document_id": "document_c32255b376cda0db1ac63e945ee75bed5b75c967b11d63699a789b53485f97f3",
-      "version_id": "version_be74ff15291669240b77b110303953266a88d1a7d24188ecfbec83954b8a555c",
+      "version_id": "version_87feaea65af1be965c680e2c3aab2ed04258259711d8e0ba317dbc60240ec029",
       "globaal_id": "130062026065",
       "group": "1032355",
       "title": "Sotsiaalhoolekande seadus",
@@ -1015,7 +1015,7 @@
     },
     {
       "document_id": "document_d180fd5fb89d26a8e66a8a0f82667fec99f91e6892dc8fcec434bd711ec179a7",
-      "version_id": "version_99000f4635bae04d4f40bc14f8085d87343e69eb6bf0101eaf7f12bd809589c8",
+      "version_id": "version_d78710bee731458959659145869daf7b43788472d88cd482d2ca13ef25cc5486",
       "globaal_id": "129082025009",
       "group": "1032376",
       "title": "Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi andmed",
@@ -1131,7 +1131,7 @@
     },
     {
       "document_id": "document_e51b5fb428fb19e84e0a6849922b117855b19954ebe7c96af74ff6b1092f56e8",
-      "version_id": "version_b1c45cf867327593088dc6e007b845bb012dbd518354dcbc1109696efb8be017",
+      "version_id": "version_28d7492c76e90ba0c0a72c1047bc53b0fefb9101fb55b953d7f6948f7c396d93",
       "globaal_id": "106072023031",
       "group": "153445",
       "title": "Haldusmenetluse seadus",
