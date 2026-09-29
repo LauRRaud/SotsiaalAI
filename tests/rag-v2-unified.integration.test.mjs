@@ -239,9 +239,9 @@ test('search assist: planned queries share one embedding request, the answer mod
   assert.equal(fallback.payload.events.find(event => event.stage === 'rerank').state, 'provider_failed');
   f.assistCalls.failRerank = false;
   assert.equal((await f.row((await f.run('Ja veel?')).id)).state, 'completed');
-  // A turn stopped between assist calls counts as running: no second turn starts beside it.
+  // A turn stopped between assist calls counts as running: no second turn of its conversation starts beside it (ADR-052).
   await db.m4PilotTurn.update({ where: { id: fallback.id }, data: { state: 'rerank_sent' } });
-  await assert.rejects(f.run('Uus küsimus?'), { code: 'pilot_busy_or_unknown' });
+  await assert.rejects(f.run('Uus küsimus?'), { code: 'conversation_busy' });
   await db.m4PilotTurn.update({ where: { id: fallback.id }, data: { state: 'completed' } });
 });
 
