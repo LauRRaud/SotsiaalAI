@@ -26,8 +26,8 @@
       "sources": 1
     },
     "oigusaktid": {
-      "files": 134,
-      "sources": 134
+      "files": 138,
+      "sources": 136
     },
     "register": {
       "files": 2,
@@ -22521,6 +22521,42 @@
       "sha256": "12b6db27da2ecdc75cf785f1a1c68453d15598080949cfc7f04b1af0c6969059",
       "original_path": "riigiteataja.ee/et/akt/106072023031.xml",
       "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/lisad/129082025009-abivahendite-loetelu.json",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "d76280b8bb79e2df942244c8e2f23adaa9c73a293c51a3d6d914ee3969775188",
+      "original_path": "oigusaktid/129082025009.xml#lisa:SOM_m43_lisa.pdf",
+      "review_status": "derived_annex_table_checked",
+      "title": "Abivahendite loetelu: määruse „Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi andmed“ lisa (sotsiaalministri 27.08.2025 määruse nr 43 sõnastuses)",
+      "document_id": "riigiteataja:129082025009:lisa:abivahendite_loetelu",
+      "metadata_path": "oigusaktid/lisad/129082025009-abivahendite-loetelu.meta.json"
+    },
+    {
+      "path": "oigusaktid/lisad/129082025009-abivahendite-loetelu.meta.json",
+      "category": "oigusaktid",
+      "role": "metadata",
+      "sha256": "749de6c643345e00561ea4ad4e449f2901e36202cbe9eecf6275f1168818c98d",
+      "original_path": "oigusaktid/lisad/129082025009-abivahendite-loetelu.meta.json"
+    },
+    {
+      "path": "oigusaktid/lisad/126092026005-abivahendite-loetelu.json",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "116b3667dabce14458ada73d7fb585d0e274626f1a2888677051f8120452ffe8",
+      "original_path": "oigusaktid/126092026005.xml#lisa:SOM_24092026_m37_lisa.pdf",
+      "review_status": "derived_annex_table_checked",
+      "title": "Abivahendite loetelu: määruse „Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi andmed“ lisa (sotsiaalministri 24.09.2026 määruse nr 37 sõnastuses)",
+      "document_id": "riigiteataja:126092026005:lisa:abivahendite_loetelu",
+      "metadata_path": "oigusaktid/lisad/126092026005-abivahendite-loetelu.meta.json"
+    },
+    {
+      "path": "oigusaktid/lisad/126092026005-abivahendite-loetelu.meta.json",
+      "category": "oigusaktid",
+      "role": "metadata",
+      "sha256": "6c42b21f273ba5313f3b6c7f60b71a0272eb5e5a41cbcb96e496435fffce369b",
+      "original_path": "oigusaktid/lisad/126092026005-abivahendite-loetelu.meta.json"
     }
   ],
   "original_path_base": "../Arhiiv/Andmebaasi_2026-09-07/Andmebaasi"
