@@ -1,0 +1,2901 @@
+{
+  "schema_version": "rag-v2/registered-knowledge-1",
+  "source_path": "oigusaktid/106072023031.xml",
+  "source_sha256": "12b6db27da2ecdc75cf785f1a1c68453d15598080949cfc7f04b1af0c6969059",
+  "preparation": {
+    "schema_version": "rag-v2/knowledge-preparation-1",
+    "model": "gpt-6-luna",
+    "reasoning": "medium",
+    "batch": "4f99919b2c05e40936d666abe522e19e11deebc892423409b8b9cc6445ae10cd",
+    "plan_hashes": [
+      "1956c60dcc4802d9c9570d9a164d38b8eb9b58e4a63e9b42d093d4cc99a3b696",
+      "95a982b8d2f9ed4c5f8c56a7c7d2bbd0dfaf65bdb39dd454224bef3f107df574",
+      "de42800f28c2baa6253b0da84a751b427f308a07540faf079bea768ccafe9d90"
+    ],
+    "draft_hash": "61c6596591d3c3d03af65b638e55f1aaf09568d58ca3de22290617fd212189e3",
+    "source_version_id": "version_b1c45cf867327593088dc6e007b845bb012dbd518354dcbc1109696efb8be017",
+    "verification_state": "source_anchored_unreviewed",
+    "dropped": {
+      "card_anchor": 2,
+      "card_invalid": 5,
+      "card_limit": 20,
+      "dependency_card_left_out": 11,
+      "unresolved_card_left_out": 1
+    },
+    "missing_parts": [],
+    "usage": {
+      "input": 34092,
+      "output": 36210,
+      "reasoning": 1653
+    }
+  },
+  "knowledge": {
+    "schema_version": "rag-v2/knowledge-input-2",
+    "cards": [
+      {
+        "key": "p1-c1",
+        "kind": "assertion",
+        "statement": "Seadus on suunatud isiku õiguste kaitse tagamisele ühtlase, isiku osalust ja kohtulikku kontrolli võimaldava haldusmenetluse korra loomise teel.",
+        "scope": "§ 1",
+        "subject": "Käesolev seadus",
+        "predicate": "on suunatud",
+        "object": "isiku õiguste kaitse tagamisele ühtlase, isiku osalust ja kohtulikku kontrolli võimaldava haldusmenetluse korra loomise teel",
+        "anchors": [
+          {
+            "source_unit_index": 0,
+            "start": 24,
+            "quote": "Käesolev seadus on suunatud isiku õiguste kaitse tagamisele ühtlase, isiku osalust ja kohtulikku kontrolli võimaldava haldusmenetluse korra loomise teel."
+          }
+        ]
+      },
+      {
+        "key": "p1-c2",
+        "kind": "definition",
+        "statement": "Haldusmenetlus on haldusorgani tegevus määruse või haldusakti andmisel, toimingu sooritamisel või halduslepingu sõlmimisel.",
+        "scope": "Käesoleva seaduse § 2 lõige 1",
+        "subject": "Haldusmenetlus",
+        "predicate": "on",
+        "object": "haldusorgani tegevus määruse või haldusakti andmisel, toimingu sooritamisel või halduslepingu sõlmimisel",
+        "anchors": [
+          {
+            "source_unit_index": 1,
+            "start": 35,
+            "quote": "Haldusmenetlus on haldusorgani (§ 8) tegevus määruse (§ 88) või haldusakti (§-d 51 ja 52) andmisel, toimingu (§ 106) sooritamisel või halduslepingu (§ 95) sõlmimisel."
+          }
+        ]
+      },
+      {
+        "key": "p1-c3",
+        "kind": "exception",
+        "statement": "Tööstusomandi esemele õiguskaitse andmise menetlus, riigihangete teostamine ja vaidlustuste lahendamine riigihangete seaduse tähenduses ning väärteomenetlus ja süütegude kohtueelne uurimine ei ole haldusmenetlus käesoleva seaduse tähenduses.",
+        "scope": "Käesoleva seaduse § 2 lõige 2",
+        "subject": "Loetletud menetlused",
+        "predicate": "ei ole",
+        "object": "haldusmenetlus käesoleva seaduse tähenduses",
+        "anchors": [
+          {
+            "source_unit_index": 1,
+            "start": 208,
+            "quote": "Tööstusomandi esemele õiguskaitse andmise menetlus, riigihangete teostamine ja vaidlustuste lahendamine riigihangete seaduse tähenduses ning väärteomenetlus ja süütegude kohtueelne uurimine ei ole haldusmenetlus käesoleva seaduse tähenduses."
+          }
+        ]
+      },
+      {
+        "key": "p1-c4",
+        "kind": "assertion",
+        "statement": "Haldusmenetluses võib isiku põhiõigusi ja -vabadusi ning muid subjektiivseid õigusi piirata ainult seaduse alusel.",
+        "scope": "Haldusmenetlus",
+        "subject": "Haldusmenetluses isiku põhiõiguste ja -vabaduste ning muude subjektiivsete õiguste piiramine",
+        "predicate": "on lubatud ainult",
+        "object": "seaduse alusel",
+        "anchors": [
+          {
+            "source_unit_index": 2,
+            "start": 27,
+            "quote": "Haldusmenetluses võib piirata isiku põhiõigusi ja -vabadusi ning tema muid subjektiivseid õigusi ainult seaduse alusel."
+          }
+        ]
+      },
+      {
+        "key": "p1-c5",
+        "kind": "assertion",
+        "statement": "Halduse õigusakt ja toiming peab olema kohane, vajalik ning seatud eesmärgi suhtes proportsionaalne.",
+        "scope": "§ 3 lõige 2",
+        "subject": "Halduse õigusakt ja toiming",
+        "predicate": "peab olema",
+        "object": "kohane, vajalik ning seatud eesmärgi suhtes proportsionaalne",
+        "anchors": [
+          {
+            "source_unit_index": 2,
+            "start": 153,
+            "quote": "Halduse õigusakt ja toiming peab olema kohane, vajalik ning proportsionaalne seatud eesmärgi suhtes."
+          }
+        ]
+      },
+      {
+        "key": "p1-c6",
+        "kind": "definition",
+        "statement": "Kaalutlusõigus (diskretsioon) on haldusorganile seadusega antud volitus kaaluda otsustuse tegemist või valida erinevate otsustuste vahel.",
+        "scope": "§ 4 lõige 1",
+        "subject": "Kaalutlusõigus (diskretsioon)",
+        "predicate": "on",
+        "object": "haldusorganile seadusega antud volitus kaaluda otsustuse tegemist või valida erinevate otsustuste vahel",
+        "anchors": [
+          {
+            "source_unit_index": 3,
+            "start": 27,
+            "quote": "Kaalutlusõigus (diskretsioon) on haldusorganile seadusega antud volitus kaaluda otsustuse tegemist või valida erinevate otsustuste vahel."
+          }
+        ]
+      },
+      {
+        "key": "p1-c7",
+        "kind": "condition",
+        "statement": "Kaalutlusõigust tuleb teostada kooskõlas volituse piiride, kaalutlusõiguse eesmärgi ning õiguse üldpõhimõtetega, arvestades olulisi asjaolusid ning kaaludes põhjendatud huve.",
+        "scope": "Kaalutlusõiguse teostamine",
+        "subject": "Haldusorgan",
+        "predicate": "peab kaalutlusõigust teostama",
+        "object": "kooskõlas volituse piiride, kaalutlusõiguse eesmärgi ning õiguse üldpõhimõtetega, arvestades olulisi asjaolusid ning kaaludes põhjendatud huve",
+        "anchors": [
+          {
+            "source_unit_index": 3,
+            "start": 171,
+            "quote": "Kaalutlusõigust tuleb teostada kooskõlas volituse piiride, kaalutlusõiguse eesmärgi ning õiguse üldpõhimõtetega, arvestades olulisi asjaolusid ning kaaludes põhjendatud huve."
+          }
+        ]
+      },
+      {
+        "key": "p1-c8",
+        "kind": "assertion",
+        "statement": "Menetlustoimingu vormi ja muud haldusmenetluse üksikasjad määrab haldusorgan kaalutlusõiguse alusel, kui seaduse või määrusega ei ole sätestatud teisiti.",
+        "scope": "Kui seaduse või määrusega ei ole sätestatud teisiti",
+        "subject": "Haldusorgan",
+        "predicate": "määrab menetlustoimingu vormi ja muud haldusmenetluse üksikasjad",
+        "object": "kaalutlusõiguse alusel",
+        "anchors": [
+          {
+            "source_unit_index": 4,
+            "start": 44,
+            "quote": "Menetlustoimingu vormi ja muud haldusmenetluse üksikasjad määrab haldusorgan kaalutlusõiguse alusel, kui seaduse või määrusega ei ole sätestatud teisiti."
+          }
+        ]
+      },
+      {
+        "key": "p1-c9",
+        "kind": "assertion",
+        "statement": "Haldusmenetlus viiakse läbi eesmärgipäraselt ja efektiivselt, võimalikult lihtsalt ja kiirelt, vältides üleliigseid kulutusi ja ebameeldivusi isikutele.",
+        "scope": "§ 5 lõige 2",
+        "subject": "Haldusmenetlus",
+        "predicate": "viiakse läbi",
+        "object": "eesmärgipäraselt ja efektiivselt, võimalikult lihtsalt ja kiirelt, vältides üleliigseid kulutusi ja ebameeldivusi isikutele",
+        "anchors": [
+          {
+            "source_unit_index": 4,
+            "start": 204,
+            "quote": "Haldusmenetlus viiakse läbi eesmärgipäraselt ja efektiivselt, samuti võimalikult lihtsalt ja kiirelt, vältides üleliigseid kulutusi ja ebameeldivusi isikutele."
+          }
+        ]
+      },
+      {
+        "key": "p1-c10",
+        "kind": "condition",
+        "statement": "Menetlustoimingute sooritamise eest võib haldusorgan tasu võtta üksnes seaduses sätestatud juhtudel ja suuruses.",
+        "scope": "Menetlustoimingute sooritamine",
+        "subject": "Haldusorgan",
+        "predicate": "võib võtta menetlustoimingute sooritamise eest tasu üksnes",
+        "object": "seaduses sätestatud juhtudel ja suuruses",
+        "anchors": [
+          {
+            "source_unit_index": 4,
+            "start": 370,
+            "quote": "Menetlustoimingute sooritamise eest võib haldusorgan tasu võtta üksnes seaduses sätestatud juhtudel ja suuruses."
+          }
+        ]
+      },
+      {
+        "key": "p1-c11",
+        "kind": "assertion",
+        "statement": "Menetlustoimingud viiakse läbi viivituseta, kuid mitte hiljem kui seaduses või määruses sätestatud tähtaja jooksul.",
+        "scope": "§ 5 lõige 4",
+        "subject": "Menetlustoimingud",
+        "predicate": "viiakse läbi",
+        "object": "viivituseta, kuid mitte hiljem kui seaduses või määruses sätestatud tähtaja jooksul",
+        "anchors": [
+          {
+            "source_unit_index": 4,
+            "start": 489,
+            "quote": "Menetlustoimingud viiakse läbi viivituseta, kuid mitte hiljem kui seaduses või määruses sätestatud tähtaja jooksul."
+          }
+        ]
+      },
+      {
+        "key": "p1-c12",
+        "kind": "assertion",
+        "statement": "Kui haldusmenetlust reguleerivad õigusnormid muutuvad menetluse ajal, kohaldatakse menetluse alguses kehtinud õigusnorme.",
+        "scope": "Menetluse kestel muutuvad õigusnormid",
+        "subject": "Menetluse ajal muutunud haldusmenetlust reguleerivad õigusnormid",
+        "predicate": "kohaldatakse",
+        "object": "menetluse alguses kehtinud õigusnorme",
+        "anchors": [
+          {
+            "source_unit_index": 4,
+            "start": 611,
+            "quote": "Kui haldusmenetlust reguleerivad õigusnormid muutuvad menetluse ajal, kohaldatakse menetluse alguses kehtinud õigusnorme."
+          }
+        ]
+      },
+      {
+        "key": "p1-c13",
+        "kind": "assertion",
+        "statement": "Haldusorgan on kohustatud välja selgitama menetletavas asjas olulise tähendusega asjaolud ja vajaduse korral koguma selleks tõendeid oma algatusel.",
+        "scope": "Menetletav asi",
+        "subject": "Haldusorgan",
+        "predicate": "on kohustatud välja selgitama",
+        "object": "menetletavas asjas olulise tähendusega asjaolud ning vajaduse korral koguma tõendeid oma algatusel",
+        "anchors": [
+          {
+            "source_unit_index": 5,
+            "start": 23,
+            "quote": "Haldusorgan on kohustatud välja selgitama menetletavas asjas olulise tähendusega asjaolud ja vajaduse korral koguma selleks tõendeid oma algatusel."
+          }
+        ]
+      },
+      {
+        "key": "p1-c14",
+        "kind": "assertion",
+        "statement": "Haldusmenetlus on avalik.",
+        "scope": "§ 7 lõige 1",
+        "subject": "Haldusmenetlus",
+        "predicate": "on",
+        "object": "avalik",
+        "anchors": [
+          {
+            "source_unit_index": 6,
+            "start": 37,
+            "quote": "Haldusmenetlus on avalik."
+          }
+        ]
+      },
+      {
+        "key": "p1-c15",
+        "kind": "condition",
+        "statement": "Haldusorgan võib haldusmenetluses isikuandmeid menetletavas asjas vajalike asjaolude kohta töödelda haldusakti andmise, toimingu tegemise või halduslepingu sõlmimise eesmärgil, kui seadusega või selle alusel antud õigusaktidega ei ole ette nähtud teisiti.",
+        "scope": "Kui seadusega või selle alusel antud õigusaktidega ei ole ette nähtud teisiti",
+        "subject": "Haldusorgan",
+        "predicate": "võib töödelda isikuandmeid",
+        "object": "menetletavas asjas vajalike asjaolude kohta haldusakti andmise, toimingu tegemise või halduslepingu sõlmimise eesmärgil",
+        "anchors": [
+          {
+            "source_unit_index": 6,
+            "start": 953,
+            "quote": "Haldusorgan võib haldusmenetluses haldusakti andmise, toimingu tegemise või halduslepingu sõlmimise eesmärgil töödelda isikuandmeid menetletavas asjas vajalike asjaolude kohta, kui seadusega või selle alusel antud õigusaktidega ei ole ette nähtud teisiti."
+          }
+        ]
+      },
+      {
+        "key": "p1-c16",
+        "kind": "definition",
+        "statement": "Haldusorgan on seadusega, selle alusel antud määrusega või halduslepinguga avaliku halduse ülesandeid täitma volitatud asutus, kogu või isik.",
+        "scope": "§ 8 lõige 1",
+        "subject": "Haldusorgan",
+        "predicate": "on",
+        "object": "seadusega, selle alusel antud määrusega või halduslepinguga avaliku halduse ülesandeid täitma volitatud asutus, kogu või isik",
+        "anchors": [
+          {
+            "source_unit_index": 7,
+            "start": 24,
+            "quote": "Haldusorgan on seadusega, selle alusel antud määrusega või halduslepinguga avaliku halduse ülesandeid täitma volitatud asutus, kogu või isik."
+          }
+        ]
+      },
+      {
+        "key": "p1-c17",
+        "kind": "condition",
+        "statement": "Kui sama haldusmenetluse asi on mitme haldusorgani pädevuses, menetleb taotlusega algatatud asja haldusorgan, kellele esitati esimesena taotlus; haldusorgani initsiatiivil algatatud asja menetleb esimesena asja algatamist tinginud või tingivaid asjaolusid teada saanud haldusorgan.",
+        "scope": "Sama haldusmenetluse asi on mitme haldusorgani pädevuses",
+        "subject": "Haldusorgan",
+        "predicate": "viib mitme haldusorgani pädevuses oleva asja menetluse läbi",
+        "object": "taotlusega algatamisel taotluse esimesena saanud haldusorgan; haldusorgani initsiatiivil algatamisel asjaoludest esimesena teada saanud haldusorgan",
+        "anchors": [
+          {
+            "source_unit_index": 8,
+            "start": 36,
+            "quote": "Kui sama haldusmenetluse asi on mitme haldusorgani pädevuses, viib:"
+          },
+          {
+            "source_unit_index": 8,
+            "start": 109,
+            "quote": "haldusorganile taotluse esitamisega algava haldusmenetluse läbi haldusorgan, kellele on esimesena esitatud taotlus haldusmenetluse algatamiseks;"
+          }
+        ]
+      },
+      {
+        "key": "p1-c18",
+        "kind": "assertion",
+        "statement": "Haldusorgani pädevuse muutumisel peab asja menetlusse võtnud haldusorgan viima menetluse lõpule; kui haldusorgani tegevus lõpetatakse, läheb asja lahendamine üle pädevale haldusorganile.",
+        "scope": "Haldusorgani pädevuse muutumine; haldusorgani tegevuse lõpetamisel läheb asja lahendamine üle pädevale haldusorganile",
+        "subject": "Asja menetlusse võtnud haldusorgan",
+        "predicate": "peab pädevuse muutumisel",
+        "object": "menetluse lõpule viima",
+        "anchors": [
+          {
+            "source_unit_index": 8,
+            "start": 727,
+            "quote": "Haldusorgani pädevuse muutumisel peab asja menetlusse võtnud haldusorgan viima menetluse lõpule."
+          }
+        ]
+      },
+      {
+        "key": "p1-c19",
+        "kind": "condition",
+        "statement": "Haldusorgani nimel tegutsev isik ei või haldusmenetlusest osa võtta, kui ta on asjas menetlusosaline või menetlusosalise esindaja; seotud nimetatud sugulase, abikaasa, registreeritud elukaaslase, hõimlase või perekonnaliikmena; tööalases, teenistuslikus või muus sõltuvuses; isiklikult huvitatud asja lahendist või esinevad muud erapooletuses kahtlust tekitavad asjaolud.",
+        "scope": "Käesoleva seaduse § 10 lõige 1",
+        "subject": "Haldusorgani nimel tegutsev isik",
+        "predicate": "ei või haldusmenetlusest osa võtta",
+        "object": "§ 10 lõikes 1 loetletud menetlusosaluse, lähedase suhte, sõltuvuse või erapooletuses kahtlust tekitava huvi või asjaolu korral",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 584,
+            "quote": "ta on muul viisil isiklikult huvitatud asja lahendist või kui muud asjaolud tekitavad kahtlust tema erapooletuses."
+          }
+        ]
+      },
+      {
+        "key": "p1-c20",
+        "kind": "definition",
+        "statement": "Perekonnaliige käesoleva seaduse tähenduses on isik, kes elab menetlusosalisega koos ja kellel on menetlusosalisega ühine majapidamine.",
+        "scope": "§ 10 lõige 2",
+        "subject": "Perekonnaliige käesoleva seaduse tähenduses",
+        "predicate": "on",
+        "object": "isik, kes elab menetlusosalisega koos ja neil on ühine majapidamine",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 705,
+            "quote": "Perekonnaliige käesoleva seaduse tähenduses on isik, kes elab menetlusosalisega koos ja neil on ühine majapidamine."
+          }
+        ]
+      },
+      {
+        "key": "p1-c21",
+        "kind": "exception",
+        "statement": "Isikut ei taandata, kui teda ei ole võimalik asendada.",
+        "scope": "§ 10 lõige 5",
+        "subject": "Isik",
+        "predicate": "ei taandata",
+        "object": "kui teda ei ole võimalik asendada",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 1461,
+            "quote": "Isikut ei taandata, kui teda ei ole võimalik asendada."
+          }
+        ]
+      },
+      {
+        "key": "p1-c22",
+        "kind": "exception",
+        "statement": "§ 10 ei rakendata Vabariigi Valitsuse ning kohaliku omavalitsuse volikogu ja valitsuse liikmete suhtes.",
+        "scope": "§ 10 lõige 6",
+        "subject": "§ 10",
+        "predicate": "ei rakendata",
+        "object": "Vabariigi Valitsuse ning kohaliku omavalitsuse volikogu ja valitsuse liikmete suhtes",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 1522,
+            "quote": "Käesolevat paragrahvi ei rakendata Vabariigi Valitsuse ning kohaliku omavalitsuse volikogu ja valitsuse liikmete suhtes."
+          }
+        ]
+      },
+      {
+        "key": "p1-c23",
+        "kind": "condition",
+        "statement": "Alaealine ja muu piiratud teovõimega isik ei või haldusmenetluses iseseisvalt menetlustoiminguid teha, kui seadusega ei ole ette nähtud teisiti; seadusjärgse esinduse tagab haldusorgan.",
+        "scope": "Välja arvatud juhul, kui seadusega on ette nähtud teisiti; seadusjärgse esinduse tagab haldusorgan",
+        "subject": "Alaealine ja muu piiratud teovõimega isik",
+        "predicate": "ei või iseseisvalt menetlustoiminguid teha",
+        "object": "haldusmenetluses",
+        "anchors": [
+          {
+            "source_unit_index": 11,
+            "start": 148,
+            "quote": "Alaealine ja muu piiratud teovõimega isik ei või haldusmenetluses iseseisvalt menetlustoiminguid teha, kui seadusega ei ole ette nähtud teisiti."
+          }
+        ]
+      },
+      {
+        "key": "p1-c24",
+        "kind": "assertion",
+        "statement": "Menetlusosalisel on õigus kasutada haldusmenetluses esindajat; esindaja võib teha menetlustoiminguid, mida menetlusosaline ei pea seaduse järgi isiklikult tegema.",
+        "scope": "Seadusest tulenevalt isiklikult tehtavate menetlustoimingute erandiga",
+        "subject": "Menetlusosaline",
+        "predicate": "võib kasutada",
+        "object": "haldusmenetluses esindajat",
+        "anchors": [
+          {
+            "source_unit_index": 12,
+            "start": 49,
+            "quote": "Menetlusosalisel on õigus kasutada haldusmenetluses esindajat."
+          }
+        ]
+      },
+      {
+        "key": "p1-c25",
+        "kind": "condition",
+        "statement": "Esindusõigus antakse haldusmenetluses kirjaliku volitusega.",
+        "scope": "Haldusmenetlus",
+        "subject": "Esindusõigus",
+        "predicate": "antakse",
+        "object": "kirjaliku volitusega",
+        "anchors": [
+          {
+            "source_unit_index": 12,
+            "start": 253,
+            "quote": "Esindusõigus antakse haldusmenetluses kirjaliku volitusega."
+          }
+        ]
+      },
+      {
+        "key": "p1-c26",
+        "kind": "assertion",
+        "statement": "Haldusmenetluse algatamiseks või menetluse käigus esitatakse haldusorganile taotlus vabas vormis; seadusega või selle alusel võib taotlusele ette näha kohustusliku vormi.",
+        "scope": "Seadusega või selle alusel võib ette näha kohustusliku vormi",
+        "subject": "Taotlus",
+        "predicate": "esitatakse",
+        "object": "haldusorganile vabas vormis",
+        "anchors": [
+          {
+            "source_unit_index": 13,
+            "start": 21,
+            "quote": "Haldusmenetluse algatamiseks või haldusmenetluse käigus esitatakse haldusorganile avaldus (taotlus) vabas vormis."
+          }
+        ]
+      },
+      {
+        "key": "p1-c27",
+        "kind": "condition",
+        "statement": "Kirjalik taotlus peab sisaldama esitaja nime, selgelt sõnastatud sisu, esitamise kuupäeva ja taotleja allkirja, kättetoimetamise soovitavat viisi ning selleks vajalikke kontaktandmeid ja muid õigusaktidega ettenähtud andmeid.",
+        "scope": "Kirjalik taotlus",
+        "subject": "Kirjalik taotlus",
+        "predicate": "peab sisaldama",
+        "object": "esitaja nime, selgelt sõnastatud sisu, esitamise kuupäeva ja allkirja, kättetoimetamise viisi ning kontaktandmeid ja muid õigusaktidega ettenähtud andmeid",
+        "anchors": [
+          {
+            "source_unit_index": 13,
+            "start": 368,
+            "quote": "Kirjalik taotlus peab sisaldama:"
+          }
+        ]
+      },
+      {
+        "key": "p1-c28",
+        "kind": "exception",
+        "statement": "Elektrooniliselt edastatud taotlusele ei pea digitaalallkirja ega e-templit lisama, kui taotlus esitatakse elektroonilise kanali kaudu ning haldusorgan on taotluse esitaja turvalisel viisil tuvastanud.",
+        "scope": "Elektrooniline taotlus",
+        "subject": "Digitaalallkirja ja e-templi lisamise kohustus",
+        "predicate": "ei kehti",
+        "object": "elektroonilise kanali kaudu esitatud ja turvaliselt tuvastatud esitaja taotluse puhul",
+        "anchors": [
+          {
+            "source_unit_index": 13,
+            "start": 766,
+            "quote": "Digitaalallkirja ja e-templit ei pea lisama, kui taotlus on esitatud elektroonilise kanali kaudu ning haldusorgan on taotluse esitaja turvalisel viisil tuvastanud."
+          }
+        ]
+      },
+      {
+        "key": "p1-c29",
+        "kind": "condition",
+        "statement": "Haldusorgan tagastab taotluse läbi vaatamata, kui taotluse esitamise tähtaeg on möödunud ja seda ei ennistata või muudel seadusega ettenähtud juhtudel.",
+        "scope": "Taotluse läbi vaatamata jätmine",
+        "subject": "Haldusorgan",
+        "predicate": "tagastab taotluse läbi vaatamata",
+        "object": "kui tähtaeg on möödunud ja seda ei ennistata või muul seadusega ettenähtud juhul",
+        "anchors": [
+          {
+            "source_unit_index": 13,
+            "start": 1011,
+            "quote": "Haldusorgan tagastab taotluse läbi vaatamata:"
+          }
+        ]
+      },
+      {
+        "key": "p1-c30",
+        "kind": "assertion",
+        "statement": "Taotleja võib oma taotluse igal ajal tagasi võtta enne haldusmenetluse lõppemist.",
+        "scope": "Enne haldusmenetluse lõppemist",
+        "subject": "Taotleja",
+        "predicate": "võib tagasi võtta",
+        "object": "oma taotluse",
+        "anchors": [
+          {
+            "source_unit_index": 13,
+            "start": 1321,
+            "quote": "Taotleja võib enne haldusmenetluse lõppemist oma taotluse igal ajal tagasi võtta."
+          }
+        ]
+      },
+      {
+        "key": "p1-c31",
+        "kind": "assertion",
+        "statement": "Haldusorgan on kohustatud talle esitatud taotluse vastu võtma, sõltumata selle puudustest, kui seadusega ei ole sätestatud teisiti.",
+        "scope": "Kui seadusega ei ole sätestatud teisiti",
+        "subject": "Haldusorgan",
+        "predicate": "on kohustatud vastu võtma",
+        "object": "talle esitatud taotluse sõltumata selle puudustest",
+        "anchors": [
+          {
+            "source_unit_index": 14,
+            "start": 32,
+            "quote": "Haldusorgan on kohustatud talle esitatud taotluse vastu võtma, sõltumata selle puudustest, kui seadusega ei ole sätestatud teisiti."
+          }
+        ]
+      },
+      {
+        "key": "p1-c32",
+        "kind": "condition",
+        "statement": "Nõutud andmete või dokumentide esitamata jätmisel või muude taotluse puuduste korral määrab haldusorgan esimesel võimalusel tähtaja puuduste kõrvaldamiseks ning selgitab, et tähtajaks kõrvaldamata jätmisel võib taotluse läbi vaatamata jätta.",
+        "scope": "Kui taotluses puuduvad nõutud andmed või dokumendid või esinevad muud puudused; tähtajaks kõrvaldamata jätmisel võib taotluse läbi vaatamata jätta",
+        "subject": "Haldusorgan",
+        "predicate": "määrab taotluse esitajale puuduste kõrvaldamiseks tähtaja",
+        "object": "esimesel võimalusel",
+        "anchors": [
+          {
+            "source_unit_index": 14,
+            "start": 170,
+            "quote": "Kui isik jätab koos taotlusega esitamata nõutud andmed või dokumendid või kui taotluses on muid puudusi, määrab haldusorgan taotluse esitajale esimesel võimalusel tähtaja puuduste kõrvaldamiseks"
+          }
+        ]
+      },
+      {
+        "key": "p1-c33",
+        "kind": "assertion",
+        "statement": "Kui puudus kõrvaldatakse määratud tähtaja jooksul, loetakse taotlus tähtaegselt esitatuks; kui puudust ei kõrvaldata tähtaegselt, võib haldusorgan jätta taotluse läbi vaatamata.",
+        "scope": "Puuduse tähtaegne kõrvaldamine; tähtajaks kõrvaldamata jätmisel võib haldusorgan taotluse läbi vaatamata jätta",
+        "subject": "Taotlus",
+        "predicate": "loetakse tähtaegselt esitatuks",
+        "object": "kui puudus kõrvaldatakse määratud tähtaja jooksul",
+        "anchors": [
+          {
+            "source_unit_index": 14,
+            "start": 478,
+            "quote": "Kui puudus kõrvaldatakse määratud tähtaja jooksul, loetakse taotlus tähtaegselt esitatuks."
+          }
+        ]
+      },
+      {
+        "key": "p1-c34",
+        "kind": "condition",
+        "statement": "Kui menetlusosaline või tema esindaja ei valda asja menetlemise keelt, kaasatakse menetlusosalise taotlusel asja menetlemisele tõlk.",
+        "scope": "Menetlusosaline või tema esindaja ei valda asja menetlemise keelt",
+        "subject": "Haldusorgan",
+        "predicate": "kaasab asja menetlemisele tõlgi",
+        "object": "menetlusosalise taotlusel",
+        "anchors": [
+          {
+            "source_unit_index": 20,
+            "start": 18,
+            "quote": "Kui menetlusosaline või tema esindaja ei valda keelt, milles asja menetletakse, kaasatakse menetlusosalise taotlusel asja menetlemisele tõlk."
+          }
+        ]
+      },
+      {
+        "key": "p1-c35",
+        "kind": "assertion",
+        "statement": "Tõlgi kaasamise kulud katab tõlgi kaasamist taotlenud menetlusosaline, kui seaduse või määrusega ei ole sätestatud teisiti või kui haldusorgan ei otsusta teisiti.",
+        "scope": "Välja arvatud juhul, kui seaduse või määrusega on sätestatud teisiti või haldusorgan otsustab teisiti",
+        "subject": "Tõlgi kaasamist taotlenud menetlusosaline",
+        "predicate": "katab",
+        "object": "tõlgi kaasamise kulud",
+        "anchors": [
+          {
+            "source_unit_index": 20,
+            "start": 166,
+            "quote": "Tõlgi kaasamise kulud katab tõlgi kaasamist taotlenud menetlusosaline, kui seaduse või määrusega ei ole sätestatud teisiti või kui haldusorgan ei otsusta teisiti."
+          }
+        ]
+      },
+      {
+        "key": "p1-c36",
+        "kind": "assertion",
+        "statement": "Haldusakt, kutse, teade või muu dokument toimetatakse menetlusosalisele kätte postiga, dokumendi väljastanud haldusorgani poolt või elektrooniliselt; seaduses sätestatud juhtudel antakse dokument allkirja vastu kätte või avaldatakse ajalehes.",
+        "scope": "Seaduses sätestatud juhtudel antakse allkirja vastu või avaldatakse ajalehes; kättetoimetamine on nõutav, kui seadus või määrus seda ette näeb, muul juhul piisab vabas vormis teatavakstegemisest",
+        "subject": "Haldusakt, kutse, teade või muu dokument",
+        "predicate": "toimetatakse menetlusosalisele kätte",
+        "object": "postiga, dokumendi väljastanud haldusorgani poolt või elektrooniliselt",
+        "anchors": [
+          {
+            "source_unit_index": 24,
+            "start": 37,
+            "quote": "Haldusakt, kutse, teade või muu dokument toimetatakse menetlusosalisele kätte postiga, dokumendi väljastanud haldusorgani poolt või elektrooniliselt."
+          }
+        ]
+      },
+      {
+        "key": "p1-c37",
+        "kind": "assertion",
+        "statement": "Kui menetlusosalisel on esindaja või ta on määranud dokumentide vastuvõtmiseks isiku, võib dokumendi kätte toimetada üksnes sellele esindajale või määratud isikule ning dokument loetakse ka menetlusosalisele kättetoimetatuks; mitme sellise isiku korral piisab ühele kättetoimetamisest.",
+        "scope": "Kui esindajaid või määratud isikuid on mitu, piisab ühele neist kättetoimetamisest",
+        "subject": "Dokument",
+        "predicate": "toimetatakse kätte",
+        "object": "üksnes menetlusosalise esindajale või dokumentide vastuvõtmiseks määratud isikule",
+        "anchors": [
+          {
+            "source_unit_index": 24,
+            "start": 325,
+            "quote": "Kui menetlusosalisel on esindaja või menetlusosaline on määranud dokumentide vastuvõtmiseks isiku, võib dokumendi kätte toimetada üksnes esindajale või dokumentide vastuvõtmiseks määratud isikule ning dokument loetakse ka menetlusosalisele kättetoimetatuks."
+          }
+        ]
+      },
+      {
+        "key": "p1-c38",
+        "kind": "assertion",
+        "statement": "Postiga saadetud dokument loetakse menetlusosalisele kättetoimetatuks, kui see toimetatakse tema elu- või asukoha aadressile või antakse talle postiasutuses allkirja vastu üle; aadressi muutusest teatamata jätmisel loetakse kättetoimetatuks viimasele haldusorganile teadaolevale aadressile saadetud dokument.",
+        "scope": "Aadressi muutusest teatamata jätmisel saadetakse dokument viimasele haldusorganile teadaolevale aadressile ja sellega loetakse dokument kättetoimetatuks",
+        "subject": "Postiga saadetud dokument",
+        "predicate": "loetakse menetlusosalisele kättetoimetatuks",
+        "object": "kui see toimetatakse elu- või asukoha aadressile või antakse postiasutuses allkirja vastu üle",
+        "anchors": [
+          {
+            "source_unit_index": 25,
+            "start": 300,
+            "quote": "Dokument loetakse menetlusosalisele kättetoimetatuks, kui see on kohale toimetatud menetlusosalise elu- või asukoha aadressil või kui see on menetlusosalisele postiasutuses allkirja vastu üle antud."
+          }
+        ]
+      },
+      {
+        "key": "p1-c39",
+        "kind": "assertion",
+        "statement": "Elektrooniliselt kättesaadavaks tehtud või edastatud dokument loetakse kättetoimetatuks, kui infosüsteem registreerib avamise või vastuvõtmise, adressaat kinnitab kättesaamist või dokument või selle kättesaadavaks tegemise teade saadetakse § 27 lõike 2 punktides 3 või 4 nimetatud aadressile.",
+        "scope": "Infosüsteemi registreering; adressaadi kinnitus; või punktides 3 ja 4 nimetatud registrisse kantud või avaldatud elektronposti aadress",
+        "subject": "Elektrooniliselt kättesaadavaks tehtud või edastatud dokument",
+        "predicate": "loetakse kättetoimetatuks",
+        "object": "§ 27 lõike 2 punktides 1–4 nimetatud juhtudel",
+        "anchors": [
+          {
+            "source_unit_index": 26,
+            "start": 351,
+            "quote": "Elektrooniliselt kättesaadavaks tehtud või edastatud dokument loetakse kättetoimetatuks järgmistel juhtudel:"
+          }
+        ]
+      },
+      {
+        "key": "p1-c40",
+        "kind": "condition",
+        "statement": "Dokumendi resolutiivosa avaldatakse üleriigilise levikuga ajalehes või seaduses sätestatud juhtudel Ametlikes Teadaannetes, kui dokument tuleb kätte toimetada enam kui sajale isikule; aadressiandmed puuduvad või kättetoimetamine ei ole muul viisil võimalik; või haldusakt tuleb avalikult teatavaks teha ega kuulu avaldamisele Riigi Teatajas.",
+        "scope": "§ 31 lõike 1 punktides 1–3 nimetatud tingimustel; kohaliku elu küsimuse korral võib avaldada kohalikus lehes",
+        "subject": "Dokumendi resolutiivosa",
+        "predicate": "avaldatakse",
+        "object": "üleriigilise levikuga ajalehes või seaduses sätestatud juhtudel Ametlikes Teadaannetes",
+        "anchors": [
+          {
+            "source_unit_index": 30,
+            "start": 43,
+            "quote": "Dokumendi resolutiivosa avaldatakse üleriigilise levikuga ajalehes või seaduses sätestatud juhtudel ametlikus väljaandes Ametlikud Teadaanded, kui:"
+          }
+        ]
+      },
+      {
+        "key": "p2-c1",
+        "kind": "assertion",
+        "statement": "Kui haldusakti või toimingut ei ole võimalik anda või sooritada ettenähtud tähtaja jooksul, peab haldusorgan viivituseta teatavaks tegema tõenäolise aja ning tähtajast mittekinnipidamise põhjuse.",
+        "scope": "Kui haldusakti või toimingut ei ole võimalik ettenähtud tähtaja jooksul anda või sooritada.",
+        "subject": "haldusorgan",
+        "predicate": "peab viivituseta teatavaks tegema",
+        "object": "haldusakti andmise või toimingu sooritamise tõenäolise aja ja tähtajast mittekinnipidamise põhjuse",
+        "anchors": [
+          {
+            "source_unit_index": 40,
+            "start": 44,
+            "quote": "Kui haldusakti või toimingut ei ole võimalik anda või sooritada ettenähtud tähtaja jooksul, peab haldusorgan viivituseta tegema teatavaks haldusakti andmise või toimingu sooritamise tõenäolise aja ning näitama ettenähtud tähtajast mittekinnipidamise põhjuse."
+          }
+        ]
+      },
+      {
+        "key": "p2-c2",
+        "kind": "assertion",
+        "statement": "Haldusorgani kutse peale on isik kohustatud ilmuma kutses märgitud ajal kutses ettenähtud kohta.",
+        "scope": "Haldusorgani kutse peale.",
+        "subject": "isik",
+        "predicate": "on kohustatud ilmuma",
+        "object": "kutses märgitud ajal kutses ettenähtud kohta",
+        "anchors": [
+          {
+            "source_unit_index": 41,
+            "start": 49,
+            "quote": "Haldusorgani kutse peale on isik kohustatud ilmuma kutses märgitud ajal kutses ettenähtud kohta."
+          }
+        ]
+      },
+      {
+        "key": "p2-c3",
+        "kind": "condition",
+        "statement": "Kui menetlusosalisel ei ole mõjuval põhjusel võimalik kutse peale ilmuda, peab ta sellest viivitamata teatama haldusorganile; põhjuse mõjuvuse üle otsustab haldusorgan, teatades sellest viivitamata menetlusosalisele.",
+        "scope": "Kutsele ilmumata jäämise mõjuva põhjuse korral.",
+        "subject": "menetlusosaline",
+        "predicate": "peab viivitamata teatama",
+        "object": "haldusorganile, et tal ei ole mõjuval põhjusel võimalik kutse peale ilmuda",
+        "anchors": [
+          {
+            "source_unit_index": 41,
+            "start": 152,
+            "quote": "Kui menetlusosalisel ei ole mõjuval põhjusel võimalik kutse peale ilmuda, peab ta sellest viivitamata teatama haldusorganile. Põhjuse mõjuvuse üle otsustab haldusorgan, teatades sellest viivitamata menetlusosalisele."
+          }
+        ]
+      },
+      {
+        "key": "p2-c4",
+        "kind": "assertion",
+        "statement": "Kui menetlusosaline jääb menetlustoimingule mõjuva põhjuseta ilmumata, lahendab haldusorgan asja tema kohalolekuta.",
+        "scope": "Kui menetlusosaline jääb menetlustoimingule mõjuva põhjuseta ilmumata.",
+        "subject": "haldusorgan",
+        "predicate": "lahendab asja",
+        "object": "menetlusosalise kohalolekuta",
+        "anchors": [
+          {
+            "source_unit_index": 41,
+            "start": 375,
+            "quote": "Kui menetlusosaline jääb menetlustoimingule mõjuva põhjuseta ilmumata, lahendab haldusorgan asja tema kohalolekuta."
+          }
+        ]
+      },
+      {
+        "key": "p2-c5",
+        "kind": "assertion",
+        "statement": "Kui taotluse esitanud isik jääb menetlustoimingule mõjuva põhjuseta ilmumata, võib haldusorgan jätta taotluse läbi vaatamata ja lõpetada haldusmenetluse.",
+        "scope": "Taotluse esitanud isiku mõjuva põhjuseta ilmumata jäämisel menetlustoimingule.",
+        "subject": "haldusorgan",
+        "predicate": "võib jätta läbi vaatamata ja lõpetada",
+        "object": "taotluse ja haldusmenetluse",
+        "anchors": [
+          {
+            "source_unit_index": 41,
+            "start": 497,
+            "quote": "Kui haldusakti andmiseks või toimingu sooritamiseks taotluse esitanud isik jääb menetlustoimingule mõjuva põhjuseta ilmumata, võib haldusorgan jätta taotluse läbi vaatamata ja lõpetada haldusmenetluse."
+          }
+        ]
+      },
+      {
+        "key": "p2-c6",
+        "kind": "assertion",
+        "statement": "Haldusorgan uuendab menetlusosalise taotlusel haldusmenetluse § 44 lõikes 1 nimetatud asjaoludel.",
+        "scope": "§ 44 lõikes 1 nimetatud aluste esinemisel.",
+        "subject": "haldusorgan",
+        "predicate": "uuendab menetlusosalise taotlusel",
+        "object": "haldusmenetluse",
+        "anchors": [
+          {
+            "source_unit_index": 43,
+            "start": 34,
+            "quote": "Haldusorgan uuendab menetlusosalise taotlusel haldusmenetluse, kui:"
+          }
+        ]
+      },
+      {
+        "key": "p2-c7",
+        "kind": "condition",
+        "statement": "Uuendamise alused on: kestvalt õigusi piirava haldusakti andmise aluseks olnud asjaolu või õigusnormi äralangemine; uued olulised tõendid, mis ei olnud isikule menetluse ajal teada; jõustunud kohtuotsusega tuvastatud pettus, ähvardus, muu haldusorgani õigusvastane mõjutamine või kuritegu menetluses; või jõustunud kohtuotsuse tühistamine, millel haldusakt põhines.",
+        "scope": "Menetluse uuendamine menetlusosalise taotlusel.",
+        "anchors": [
+          {
+            "source_unit_index": 43,
+            "start": 107,
+            "quote": "taotluse esitaja õigusi kestvalt piirava haldusakti andmise aluseks olnud asjaolu või õigusnorm on ära langenud;"
+          },
+          {
+            "source_unit_index": 43,
+            "start": 225,
+            "quote": "asjas ilmnevad uued olulised tõendid, mis ei olnud isikule haldusmenetluse ajal teada;"
+          },
+          {
+            "source_unit_index": 43,
+            "start": 587,
+            "quote": "jõustunud kohtuotsusega on tühistatud kohtuotsus, millel haldusakt põhines."
+          }
+        ]
+      },
+      {
+        "key": "p2-c8",
+        "kind": "condition",
+        "statement": "Haldusmenetluse asja arutatakse istungil vastanduvate huvide korral, kui see ei põhjusta menetluse ülemäärast venimist; seaduse või määrusega ettenähtud juhtudel; või haldusorgani otsusel, kui see on vajalik asja kiireks ja õigeks lahendamiseks.",
+        "scope": "Istungil asja arutamine.",
+        "anchors": [
+          {
+            "source_unit_index": 44,
+            "start": 84,
+            "quote": "menetlusosaliste vastanduvate huvide korral, kui see ei põhjusta menetluse ülemäärast venimist;"
+          },
+          {
+            "source_unit_index": 44,
+            "start": 233,
+            "quote": "juhtudel, kui see on haldusorgani otsusel vajalik asja kiireks ja õigeks lahendamiseks."
+          }
+        ]
+      },
+      {
+        "key": "p2-c9",
+        "kind": "assertion",
+        "statement": "Seaduses sätestatud juhtudel viiakse haldusmenetlus õigusakti andmiseks läbi avatud menetlusena. Muudel juhtudel võib haldusorgan seda teha, kui see on asja lahendamiseks vajalik ega kahjusta oluliselt menetlusosaliste huve.",
+        "scope": "Õigusakti andmise haldusmenetlus; muudel juhtudel kehtivad nimetatud vajalikkuse ja huvide kahjustamise tingimused.",
+        "subject": "haldusorgan",
+        "predicate": "võib viia avatud menetluse läbi",
+        "object": "muudel juhtudel",
+        "anchors": [
+          {
+            "source_unit_index": 45,
+            "start": 42,
+            "quote": "Seaduses sätestatud juhtudel viiakse haldusmenetlus õigusakti andmiseks läbi avatud menetlusena. Kui see on vajalik asja lahendamiseks ega kahjusta oluliselt menetlusosaliste huve, võib haldusorgan viia avatud menetluse läbi ka muudel juhtudel."
+          }
+        ]
+      },
+      {
+        "key": "p2-c10",
+        "kind": "condition",
+        "statement": "Kui avatud menetluse läbiviimine on õigusakti andmiseks kohustuslik, viiakse avatud menetlus läbi ka õigusakti muutmiseks ja kehtetuks tunnistamiseks.",
+        "scope": "Kui avatud menetlus on õigusakti andmiseks kohustuslik.",
+        "subject": "haldusorgan",
+        "predicate": "viib läbi avatud menetluse",
+        "object": "õigusakti muutmiseks ja kehtetuks tunnistamiseks",
+        "anchors": [
+          {
+            "source_unit_index": 45,
+            "start": 293,
+            "quote": "Kui avatud menetluse läbiviimine on kohustuslik õigusakti andmiseks, viiakse avatud menetlus läbi ka õigusakti muutmiseks ja kehtetuks tunnistamiseks."
+          }
+        ]
+      },
+      {
+        "key": "p2-c11",
+        "kind": "exception",
+        "statement": "Ilmselgelt põhjendamatu taotluse võib haldusorgan jätta rahuldamata avatud menetlust läbi viimata, kuid taotluse esitaja arvamus ja vastuväited tuleb ära kuulata.",
+        "scope": "Taotluse esitaja arvamus ja vastuväited tuleb sel juhul ära kuulata.",
+        "subject": "haldusorgan",
+        "predicate": "võib jätta rahuldamata avatud menetlust läbi viimata",
+        "object": "ilmselgelt põhjendamatu taotluse",
+        "anchors": [
+          {
+            "source_unit_index": 45,
+            "start": 450,
+            "quote": "Ilmselgelt põhjendamatu taotluse võib haldusorgan jätta rahuldamata avatud menetlust läbi viimata. Taotluse esitaja arvamus ja vastuväited tuleb sel juhul ära kuulata."
+          }
+        ]
+      },
+      {
+        "key": "p2-c12",
+        "kind": "assertion",
+        "statement": "Avatud menetluse algatamise teate avaldamise kulud kannab taotleja.",
+        "scope": "Avatud menetluses.",
+        "subject": "taotleja",
+        "predicate": "kannab",
+        "object": "menetluse algatamise teate avaldamise kulud",
+        "anchors": [
+          {
+            "source_unit_index": 46,
+            "start": 911,
+            "quote": "Teate avaldamise kulud kannab taotleja."
+          }
+        ]
+      },
+      {
+        "key": "p2-c13",
+        "kind": "assertion",
+        "statement": "Ettepanekute ja vastuväidete esitamise tähtaeg ei või olla lühem kui kaks nädalat väljapaneku algusest; kui menetluse algatamisest teatatakse pärast väljapaneku algust, ei või tähtaeg olla lühem kui kaks nädalat teatamisest.",
+        "scope": "Tähtaega arvestatakse väljapaneku algusest või hilisema algatamisteate korral teatamisest.",
+        "subject": "ettepanekute ja vastuväidete esitamise tähtaeg",
+        "predicate": "ei või olla lühem kui",
+        "object": "kaks nädalat",
+        "anchors": [
+          {
+            "source_unit_index": 48,
+            "start": 307,
+            "quote": "Haldusorgan määrab ettepanekute ja vastuväidete esitamiseks tähtaja, mis ei või olla lühem kui kaks nädalat väljapaneku algusest arvates. Kui menetluse algatamisest teatatakse pärast väljapaneku algust, ei või tähtaeg olla lühem kui kaks nädalat teatamisest arvates."
+          }
+        ]
+      },
+      {
+        "key": "p2-c14",
+        "kind": "condition",
+        "statement": "Kui eelnõu või taotlust muudetakse pärast väljapanekut isiku kahjuks, teavitab haldusorgan teda ning annab võimaluse eelnõu või taotlusega tutvuda ja esitada selle kohta ettepanekuid ja vastuväiteid.",
+        "scope": "Kui pärast väljapanekut muudetakse eelnõu või taotlust isiku kahjuks, kelle õigusi see puudutab.",
+        "subject": "haldusorgan",
+        "predicate": "annab isikule võimaluse tutvuda ja esitada ettepanekuid ning vastuväiteid",
+        "object": "muudetud eelnõu või taotluse kohta",
+        "anchors": [
+          {
+            "source_unit_index": 48,
+            "start": 730,
+            "quote": "Kui eelnõu või taotlust muudetakse pärast väljapanekut isiku kahjuks, kelle õigusi eelnõu või taotlus puudutab, teavitab haldusorgan teda sellest ning annab talle võimaluse tutvuda eelnõu või taotlusega ja esitada selle kohta ettepanekuid ja vastuväiteid."
+          }
+        ]
+      },
+      {
+        "key": "p2-c15",
+        "kind": "assertion",
+        "statement": "Avatud menetluse korral otsustab haldusorgan õigusakti andmise pärast asja arutamist avalikul istungil; menetlusosalisel on õigus istungil asja kohta suuliselt arvamust avaldada.",
+        "scope": "Avatud menetluse avalikul istungil.",
+        "subject": "menetlusosaline",
+        "predicate": "tal on õigus avaldada suuliselt arvamust",
+        "object": "avalikul istungil asja kohta",
+        "anchors": [
+          {
+            "source_unit_index": 49,
+            "start": 46,
+            "quote": "Avatud menetluse korral otsustab haldusorgan õigusakti andmise pärast asja arutamist avalikul istungil. Istungist teatab haldusorgan käesoleva seaduse §-s 47 ettenähtud korras. Menetlusosalisel on õigus avaldada istungil asja kohta suuliselt arvamust."
+          }
+        ]
+      },
+      {
+        "key": "p2-c16",
+        "kind": "condition",
+        "statement": "Menetlusosaline loetakse avalikul istungil arutamisest loobunuks, kui haldusorgan on teinud ettepaneku asja arutamiseks ilma avaliku istungita ning menetlusosaline ei ole ettepanekute ja vastuväidete esitamise tähtajaks esitanud selle suhtes vastuväiteid.",
+        "scope": "Kui haldusorgan on ettepaneku teinud väljapaneku alguses või menetlusest teatamisel ja tähtajaks vastuväiteid ei esitata.",
+        "subject": "menetlusosaline",
+        "predicate": "loetakse loobunuks",
+        "object": "asja arutamisest avalikul istungil",
+        "anchors": [
+          {
+            "source_unit_index": 49,
+            "start": 556,
+            "quote": "Menetlusosaline loetakse asja arutamisest avalikul istungil loobunuks, kui haldusorgan on väljapaneku alguses või menetlusest teatamisel teinud ettepaneku asja arutamiseks ilma avalikku istungit läbi viimata ja menetlusosaline ei ole ettepanekute ja vastuväidete esitamise tähtajaks esitanud selle suhtes vastuväiteid."
+          }
+        ]
+      },
+      {
+        "key": "p2-c17",
+        "kind": "definition",
+        "statement": "Haldusakt on haldusorgani poolt haldusülesannete täitmisel avalikõiguslikus suhtes üksikjuhtumi reguleerimiseks antud korraldus, otsus, ettekirjutus, käskkiri või muu õigusakt, mis on suunatud isiku õiguste või kohustuste tekitamisele, muutmisele või lõpetamisele.",
+        "scope": "Haldusülesannete täitmisel avalikõiguslikus suhtes.",
+        "subject": "haldusakt",
+        "predicate": "on",
+        "object": "haldusorgani õigusakt üksikjuhtumi reguleerimiseks, mis on suunatud isiku õiguste või kohustuste tekitamisele, muutmisele või lõpetamisele",
+        "anchors": [
+          {
+            "source_unit_index": 50,
+            "start": 31,
+            "quote": "Haldusakt on haldusorgani poolt haldusülesannete täitmisel avalikõiguslikus suhtes üksikjuhtumi reguleerimiseks antud, isiku õiguste või kohustuste tekitamisele, muutmisele või lõpetamisele suunatud korraldus, otsus, ettekirjutus, käskkiri või muu õigusakt."
+          }
+        ]
+      },
+      {
+        "key": "p2-c18",
+        "kind": "assertion",
+        "statement": "Haldusaktile võib kehtestada kõrvaltingimuse seaduses või määruses sätestatud juhul, kui kõrvaltingimuseta tuleks haldusakt jätta andmata, või kui haldusakti andmine tuleb otsustada kaalutlusõiguse alusel.",
+        "scope": "§ 53 lõikes 2 loetletud juhtudel.",
+        "subject": "haldusorgan",
+        "predicate": "võib kehtestada",
+        "object": "haldusaktile kõrvaltingimuse",
+        "anchors": [
+          {
+            "source_unit_index": 52,
+            "start": 441,
+            "quote": "Haldusaktile võib kehtestada kõrvaltingimuse:"
+          },
+          {
+            "source_unit_index": 52,
+            "start": 537,
+            "quote": "kui kõrvaltingimuseta tuleks haldusakt jätta andmata;"
+          }
+        ]
+      },
+      {
+        "key": "p2-c19",
+        "kind": "definition",
+        "statement": "Haldusakt on õiguspärane, kui selle on andnud pädev haldusorgan andmise hetkel kehtiva õiguse alusel ja sellega kooskõlas, see on proportsionaalne, kaalutlusvigadeta ning vastab vorminõuetele.",
+        "scope": "Haldusakti andmise hetkel kehtinud õigus.",
+        "subject": "haldusakt",
+        "predicate": "on õiguspärane, kui",
+        "object": "selle on andnud pädev haldusorgan kehtiva õiguse alusel ja sellega kooskõlas, see on proportsionaalne, kaalutlusvigadeta ning vastab vorminõuetele",
+        "anchors": [
+          {
+            "source_unit_index": 53,
+            "start": 42,
+            "quote": "Haldusakt on õiguspärane, kui ta on antud pädeva haldusorgani poolt andmise hetkel kehtiva õiguse alusel ja sellega kooskõlas, proportsionaalne, kaalutlusvigadeta ning vastab vorminõuetele."
+          }
+        ]
+      },
+      {
+        "key": "p2-c20",
+        "kind": "assertion",
+        "statement": "Kirjalik haldusakt ja soodustava haldusakti andmisest keeldumine peab olema kirjalikult põhjendatud; põhjenduses tuleb märkida haldusakti faktiline ja õiguslik alus ning kaalutlusõiguse alusel antud haldusakti puhul ka kaalutlused.",
+        "scope": "Faktilist alust ei pea näitama, kui adressaadi taotlus rahuldati ning kolmanda isiku õigusi ega vabadusi ei piirata.",
+        "subject": "haldusorgan",
+        "predicate": "peab kirjalikult põhjendama",
+        "object": "kirjaliku haldusakti ja soodustava haldusakti andmisest keeldumise",
+        "anchors": [
+          {
+            "source_unit_index": 55,
+            "start": 37,
+            "quote": "Kirjalik haldusakt ja soodustava haldusakti andmisest keeldumine peab olema kirjalikult põhjendatud."
+          },
+          {
+            "source_unit_index": 55,
+            "start": 269,
+            "quote": "Haldusakti põhjenduses tuleb märkida haldusakti andmise faktiline ja õiguslik alus."
+          }
+        ]
+      },
+      {
+        "key": "p2-c21",
+        "kind": "exception",
+        "statement": "Vaidlustamisviite puudumine ei mõjuta haldusakti kehtivust ega vaidlustamise tähtaega ega too kaasa muid õiguslikke tagajärgi.",
+        "scope": "Vaidlustamisviite puudumine haldusaktis.",
+        "subject": "vaidlustamisviite puudumine",
+        "predicate": "ei mõjuta",
+        "object": "haldusakti kehtivust ega vaidlustamise tähtaega ega too kaasa muid õiguslikke tagajärgi",
+        "anchors": [
+          {
+            "source_unit_index": 56,
+            "start": 133,
+            "quote": "Vaidlustamisviite puudumine ei mõjuta haldusakti kehtivust, vaidlustamise tähtaega ega too kaasa muid õiguslikke tagajärgi."
+          }
+        ]
+      },
+      {
+        "key": "p2-c22",
+        "kind": "exception",
+        "statement": "Haldusakti kehtetuks tunnistamist ei saa nõuda üksnes menetlus- või vorminõuete rikkumise tõttu, kui rikkumised ei võinud mõjutada asja otsustamist.",
+        "scope": "Kui nimetatud rikkumised ei võinud mõjutada asja otsustamist.",
+        "subject": "isik",
+        "predicate": "ei saa nõuda haldusakti kehtetuks tunnistamist üksnes",
+        "object": "menetlus- või vorminõuete rikkumise tõttu",
+        "anchors": [
+          {
+            "source_unit_index": 57,
+            "start": 54,
+            "quote": "Haldusakti kehtetuks tunnistamist ei saa nõuda üksnes põhjusel, et haldusakti andmisel rikuti menetlusnõudeid või et haldusakt ei vasta vorminõuetele, kui eelnimetatud rikkumised ei võinud mõjutada asja otsustamist."
+          }
+        ]
+      },
+      {
+        "key": "p2-c23",
+        "kind": "assertion",
+        "statement": "Haldusakt kehtib adressaadile teatavaks tegemisest või kättetoimetamisest alates, kui haldusaktis ei ole ette nähtud hilisemat kehtima hakkamist. Kui seaduses ei ole sätestatud teisiti, hakkab avalikult teatavaks tehtud haldusakt kehtima 10. päeval pärast avaldamist.",
+        "scope": "Haldusaktis võib olla ette nähtud hilisem kehtima hakkamine; avalikult teatavaks tehtud akti puhul kehtib seaduse teistsuguse sätte puudumisel 10. päeva reegel.",
+        "subject": "haldusakt",
+        "predicate": "kehtib alates",
+        "object": "adressaadile teatavaks tegemisest või kättetoimetamisest",
+        "anchors": [
+          {
+            "source_unit_index": 60,
+            "start": 32,
+            "quote": "Haldusakt kehtib adressaadile teatavaks tegemisest või kättetoimetamisest alates, kui haldusaktis ei ole ette nähtud hilisemat kehtima hakkamist."
+          }
+        ]
+      },
+      {
+        "key": "p2-c24",
+        "kind": "definition",
+        "statement": "Tühine haldusakt on kehtetu algusest peale. Haldusakt on tühine, kui sellest ei selgu haldusakti andnud haldusorgan või adressaat, selle on andnud pädevuseta haldusorgan, see kohustab toime panema õigusrikkumise või sellest ei selgu õigused ja kohustused või seda pole muul objektiivsel põhjusel võimalik täita.",
+        "scope": "Tühisuse alused on loetletud § 63 lõikes 2.",
+        "subject": "tühine haldusakt",
+        "predicate": "on",
+        "object": "algusest peale kehtetu haldusakt",
+        "anchors": [
+          {
+            "source_unit_index": 62,
+            "start": 30,
+            "quote": "Tühine haldusakt on kehtetu algusest peale."
+          },
+          {
+            "source_unit_index": 62,
+            "start": 208,
+            "quote": "seda ei ole andnud pädev haldusorgan;"
+          }
+        ]
+      },
+      {
+        "key": "p2-c25",
+        "kind": "assertion",
+        "statement": "Haldusorgan otsustab haldusakti kehtetuks tunnistamise kaalutlusõiguse kohaselt, kui seadus ei keela kehtetuks tunnistamist ega kohusta seda tegema.",
+        "scope": "Seadus võib kehtetuks tunnistamise keelata või selle kohustuslikuks teha.",
+        "subject": "haldusorgan",
+        "predicate": "otsustab kaalutlusõiguse kohaselt",
+        "object": "haldusakti kehtetuks tunnistamise",
+        "anchors": [
+          {
+            "source_unit_index": 63,
+            "start": 280,
+            "quote": "Haldusorgan otsustab haldusakti kehtetuks tunnistamise kaalutlusõiguse kohaselt, kui seadus ei keela haldusakti kehtetuks tunnistada või ei kohusta haldusakti kehtetuks tunnistama."
+          }
+        ]
+      },
+      {
+        "key": "p2-c26",
+        "kind": "assertion",
+        "statement": "Andmise ajal õigusvastase haldusakti võib isiku kasuks tunnistada kehtetuks edasiulatuvalt või tagasiulatuvalt. Kestvalt õigusi piirava haldusakti aluse äralangemisel õiguslike või faktiliste asjaolude muutumise tõttu tuleb haldusakt isiku taotlusel tunnistada kehtetuks asjaolude muutumisest alates.",
+        "scope": "Õigusvastase akti puhul võib kehtetuks tunnistamine olla edasi- või tagasiulatuv; aluse äralangemise juhu kohta kehtib taotluse korral kohustus.",
+        "subject": "haldusorgan",
+        "predicate": "võib isiku kasuks kehtetuks tunnistada",
+        "object": "andmise ajal õigusvastase haldusakti",
+        "anchors": [
+          {
+            "source_unit_index": 64,
+            "start": 49,
+            "quote": "Haldusakti, mis andmise ajal oli õigusvastane, võib isiku kasuks tunnistada kehtetuks nii edasiulatuvalt kui ka tagasiulatuvalt."
+          },
+          {
+            "source_unit_index": 64,
+            "start": 398,
+            "quote": "Kui langeb ära kestvalt õigusi piirava haldusakti andmise alus õiguslike või faktiliste asjaolude muutumise tõttu, tuleb haldusakt isiku taotlusel tunnistada kehtetuks asjaolude muutumisest alates."
+          }
+        ]
+      },
+      {
+        "key": "p2-c27",
+        "kind": "assertion",
+        "statement": "Õigusvastase haldusakti võib isiku kahjuks kehtetuks tunnistada edasi- või tagasiulatuvalt, arvestades §-s 67 sätestatut ja kui seadus ei sätesta teisiti. Andmise ajal õiguspärase haldusakti võib isiku kahjuks edasiulatuvalt kehtetuks tunnistada § 66 lõikes 2 loetletud alustel.",
+        "scope": "Kehtetuks tunnistamisel arvestatakse §-s 67 sätestatut; õigusvastase akti puhul võib seadus sätestada teisiti.",
+        "subject": "haldusorgan",
+        "predicate": "võib isiku kahjuks kehtetuks tunnistada",
+        "object": "õigusvastase haldusakti edasi- või tagasiulatuvalt või õiguspärase haldusakti edasiulatuvalt",
+        "anchors": [
+          {
+            "source_unit_index": 65,
+            "start": 50,
+            "quote": "Õigusvastase haldusakti võib, arvestades käesoleva seaduse §-s 67 sätestatut, isiku kahjuks kehtetuks tunnistada nii edasiulatuvalt kui ka tagasiulatuvalt, kui seadus ei sätesta teisiti."
+          },
+          {
+            "source_unit_index": 65,
+            "start": 243,
+            "quote": "Haldusakti, mis andmise ajal oli õiguspärane, võib tunnistada isiku kahjuks edasiulatuvalt kehtetuks, kui:"
+          }
+        ]
+      },
+      {
+        "key": "p2-c28",
+        "kind": "condition",
+        "statement": "Andmise ajal õiguspärase haldusakti võib isiku kahjuks edasiulatuvalt kehtetuks tunnistada, kui see on seadusega lubatud või haldusaktis ette nähtud; kui hiljem muutunud faktiliste asjaolude või õigusnormi tõttu oleks akti võinud jätta andmata ja avalik huvi kaalub üles isiku usalduse; kui isik ei ole täitnud lisakohustust; või kui isik ei kasuta üleantud raha või asja eesmärgipäraselt.",
+        "scope": "Õiguspärase haldusakti kehtetuks tunnistamine isiku kahjuks § 66 lõike 2 alusel.",
+        "anchors": [
+          {
+            "source_unit_index": 65,
+            "start": 355,
+            "quote": "see on lubatud seadusega või kui selleks on jäetud võimalus haldusaktis;"
+          },
+          {
+            "source_unit_index": 65,
+            "start": 757,
+            "quote": "isik ei kasuta haldusakti alusel üleantud raha või asja eesmärgipäraselt."
+          }
+        ]
+      },
+      {
+        "key": "p2-c29",
+        "kind": "condition",
+        "statement": "Isiku kahjuks kehtetuks tunnistamist otsustades arvestab haldusorgan isiku usaldust, avalikku huvi ja haldusaktiga koormatud isiku huvi. Haldusakti ei tohi isiku kahjuks kehtetuks tunnistada, kui isik on usalduse tõttu kasutanud vara, teinud varakäsutustehingu või muul viisil muutnud elukorraldust ning tema kehtima jäämise huvi kaalub üles avaliku huvi kehtetuks tunnistamiseks.",
+        "scope": "Haldusakti isiku kahjuks kehtetuks tunnistamise otsustamisel.",
+        "subject": "haldusorgan",
+        "predicate": "arvestab",
+        "object": "isiku usaldust, avalikku huvi ja haldusaktiga koormatud isiku huvi",
+        "anchors": [
+          {
+            "source_unit_index": 66,
+            "start": 34,
+            "quote": "Isiku kahjuks haldusakti kehtetuks tunnistamist otsustades arvestab haldusorgan peale käesoleva seaduse § 64 lõikes 3 sätestatu ka isiku usaldust, et haldusakt jääb kehtima, avalikku huvi ja haldusaktiga koormatud isiku huvi, et haldusakt tunnistataks kehtetuks."
+          },
+          {
+            "source_unit_index": 66,
+            "start": 303,
+            "quote": "Haldusakti ei tohi tunnistada kehtetuks isiku kahjuks, kui isik on haldusakti kehtima jäämist usaldades kasutanud ära haldusakti alusel saadud vara"
+          }
+        ]
+      },
+      {
+        "key": "p2-c30",
+        "kind": "assertion",
+        "statement": "Kui haldusakt tunnistatakse ülekaaluka avaliku huvi tõttu isiku kahjuks kehtetuks, hüvitatakse isikule varaline kahju, mis tal haldusakti kehtima jäämise usaldamise tõttu on tekkinud või kindlasti tekib.",
+        "scope": "Kui kehtetuks tunnistamine toimub ülekaaluka avaliku huvi tõttu.",
+        "subject": "isik",
+        "predicate": "hüvitatakse",
+        "object": "varaline kahju, mis on tekkinud või kindlasti tekib haldusakti kehtima jäämise usaldamise tõttu",
+        "anchors": [
+          {
+            "source_unit_index": 66,
+            "start": 644,
+            "quote": "Kui ülekaalukast avalikust huvist tulenevalt tunnistatakse haldusakt isiku kahjuks kehtetuks, hüvitatakse isikule varaline kahju, mis tal haldusakti kehtima jäämise usaldamise tõttu on tekkinud või kindlasti tekib."
+          }
+        ]
+      },
+      {
+        "key": "p2-c31",
+        "kind": "exception",
+        "statement": "Isik ei saa kehtetuks tunnistamisel tugineda usaldusele § 67 lõikes 4 loetletud juhtudel, sealhulgas kui kehtetuks tunnistamise võimalus on seaduses või haldusaktis ette nähtud, lisakohustus on täitmata, vara ei ole eesmärgipäraselt kasutatud, isik oli õigusvastasusest teadlik või haldusakt saadi ebaõigete või mittetäielike andmete, pettuse, ähvarduse või muu õigusvastase mõjutamise tulemusena.",
+        "scope": "§ 67 lõikes 4 loetletud juhtudel; lõikes 5 on sätestatud ebaõigete andmete kohta erand.",
+        "subject": "isik",
+        "predicate": "ei saa tugineda",
+        "object": "usaldusele haldusakti kehtetuks tunnistamisel",
+        "anchors": [
+          {
+            "source_unit_index": 66,
+            "start": 865,
+            "quote": "Isik ei saa haldusakti kehtetuks tunnistamisel tugineda usaldusele, kui:"
+          },
+          {
+            "source_unit_index": 66,
+            "start": 1461,
+            "quote": "haldusakt on antud isiku esitatud ebaõigete või mittetäielike andmete alusel või pettuse või ähvardusega või muul viisil haldusorgani õigusvastase mõjutamise tulemusena."
+          }
+        ]
+      },
+      {
+        "key": "p2-c32",
+        "kind": "assertion",
+        "statement": "Isikul on õigus taotleda haldusakti kehtetuks tunnistamist üksnes juhul, kui ta võib taotleda § 44 alusel haldusmenetluse uuendamist.",
+        "scope": "Haldusakti kehtetuks tunnistamise taotlemine.",
+        "subject": "isik",
+        "predicate": "on õigus taotleda haldusakti kehtetuks tunnistamist üksnes juhul",
+        "object": "kui ta võib taotleda § 44 alusel haldusmenetluse uuendamist",
+        "anchors": [
+          {
+            "source_unit_index": 67,
+            "start": 62,
+            "quote": "Isikul on õigus taotleda haldusakti kehtetuks tunnistamist üksnes juhul, kui ta võib taotleda käesoleva seaduse § 44 alusel haldusmenetluse uuendamist."
+          }
+        ]
+      },
+      {
+        "key": "p2-c33",
+        "kind": "assertion",
+        "statement": "Isik, kes leiab, et haldusaktiga või haldusmenetluse käigus on rikutud tema õigusi või piiratud tema vabadusi, võib esitada vaide.",
+        "scope": "Haldusakti või haldusmenetluse käigus toimunud rikkumise või piiramise korral.",
+        "subject": "isik, kes leiab, et tema õigusi on rikutud või vabadusi piiratud",
+        "predicate": "võib esitada",
+        "object": "vaide",
+        "anchors": [
+          {
+            "source_unit_index": 70,
+            "start": 45,
+            "quote": "Isik, kes leiab, et haldusaktiga või haldusmenetluse käigus on rikutud tema õigusi või piiratud tema vabadusi, võib esitada vaide."
+          }
+        ]
+      },
+      {
+        "key": "p2-c34",
+        "kind": "definition",
+        "statement": "Vaidemenetluse korras võib nõuda haldusakti või selle osa kehtetuks tunnistamist, kui seadus ei piira osalist vaidlustamist, või ettekirjutust haldusakti andmiseks, asja uueks otsustamiseks või toimingu sooritamiseks. Haldusmenetluse toiming vaidlustatakse koos haldusaktiga, välja arvatud seaduses nimetatud eraldi vaidlustatavad toimingud.",
+        "scope": "§ 72 lõigetes 1–3 sätestatud vaidlustamise esemed ja erandid.",
+        "subject": "vaidemenetluse ese",
+        "predicate": "võib hõlmata",
+        "object": "haldusakti või selle osa kehtetuks tunnistamist või ettekirjutust",
+        "anchors": [
+          {
+            "source_unit_index": 71,
+            "start": 32,
+            "quote": "Vaidemenetluse korras võib nõuda:"
+          },
+          {
+            "source_unit_index": 71,
+            "start": 313,
+            "quote": "Haldusmenetluse toiming vaidlustatakse koos haldusaktiga (sisulise otsusega)."
+          }
+        ]
+      },
+      {
+        "key": "p2-c35",
+        "kind": "assertion",
+        "statement": "Vaie haldusaktile või toimingule tuleb esitada 30 päeva jooksul päevast, millal isik vaidlustatavast haldusaktist või toimingust teada sai või oleks pidanud teada saama, kui seadus ei sätesta teisiti.",
+        "scope": "Kui seadus ei sätesta teisiti.",
+        "subject": "isik",
+        "predicate": "peab esitama vaide",
+        "object": "30 päeva jooksul päevast, mil ta sai või oleks pidanud saama vaidlustatavast haldusaktist või toimingust teada",
+        "anchors": [
+          {
+            "source_unit_index": 74,
+            "start": 32,
+            "quote": "Vaie haldusaktile või toimingule tuleb esitada 30 päeva jooksul, kui seadus ei sätesta teisiti, arvates päevast, millal isik vaidlustatavast haldusaktist või toimingust teada sai või oleks pidanud teada saama."
+          }
+        ]
+      },
+      {
+        "key": "p2-c36",
+        "kind": "condition",
+        "statement": "Vaide esitamise tähtaja võib ennistada §-s 34 sätestatud tingimustel.",
+        "scope": "§-s 34 sätestatud tingimustel; nende tingimuste sisu ei sisaldu selles dokumendiosas.",
+        "subject": "haldusorgan",
+        "predicate": "võib ennistada",
+        "object": "vaide esitamise tähtaja",
+        "anchors": [
+          {
+            "source_unit_index": 76,
+            "start": 34,
+            "quote": "Vaide esitamise tähtaja võib ennistada käesoleva seaduse §-s 34 sätestatud tingimustel."
+          }
+        ]
+      },
+      {
+        "key": "p2-c37",
+        "kind": "assertion",
+        "statement": "Kui vaie vastab seaduses sätestatud nõuetele, edastab haldusorgan selle koos vajalike dokumentidega seitsme päeva jooksul vaide saamisest haldusorganile, kes teostab vaide aluseks oleva akti andnud või toimingu sooritanud haldusorgani üle teenistuslikku järelevalvet.",
+        "scope": "Kui vaie vastab seaduses sätestatud nõuetele.",
+        "subject": "haldusorgan",
+        "predicate": "edastab vaide ja vajalikud dokumendid",
+        "object": "teenistuslikku järelevalvet teostavale haldusorganile seitsme päeva jooksul vaide saamisest",
+        "anchors": [
+          {
+            "source_unit_index": 79,
+            "start": 30,
+            "quote": "Kui vaie vastab käesolevas seaduses sätestatud nõuetele, edastab haldusorgan vaide koos vajalike dokumentidega vaide saamisest alates seitsme päeva jooksul haldusorganile"
+          }
+        ]
+      },
+      {
+        "key": "p2-c38",
+        "kind": "assertion",
+        "statement": "Vaiet lahendav haldusorgan võib haldusakti täitmise peatada, kui see on vajalik avaliku huvi, haldusakti adressaadi või kolmanda isiku õiguste kaitseks.",
+        "scope": "Kui peatamine on vajalik nimetatud huvide või õiguste kaitseks.",
+        "subject": "vaiet lahendav haldusorgan",
+        "predicate": "võib peatada",
+        "object": "haldusakti täitmise",
+        "anchors": [
+          {
+            "source_unit_index": 80,
+            "start": 38,
+            "quote": "Vaiet lahendav haldusorgan võib haldusakti täitmise peatada, kui see on vajalik avaliku huvi, haldusakti adressaadi või kolmanda isiku õiguste kaitseks."
+          }
+        ]
+      },
+      {
+        "key": "p2-c39",
+        "kind": "assertion",
+        "statement": "Kui seadus ei sätesta teisiti, lahendatakse vaie 10 päeva jooksul vaide edastamisest vaiet läbivaatavale haldusorganile. Täiendava uurimise vajaduse korral võib haldusorgan tähtaega pikendada kuni 30 päeva võrra ning pikendamisest teatatakse vaide esitajale.",
+        "scope": "Seaduses sätestatud teisiti korral kehtib erisäte; täiendava uurimise vajadusel võib tähtaega pikendada kuni 30 päeva võrra.",
+        "subject": "vaiet läbivaatav haldusorgan",
+        "predicate": "lahendab vaide",
+        "object": "10 päeva jooksul vaide edastamisest",
+        "anchors": [
+          {
+            "source_unit_index": 83,
+            "start": 41,
+            "quote": "Kui seadus ei sätesta teisiti, lahendatakse vaie 10 päeva jooksul, arvates vaide edastamisest vaiet läbivaatavale haldusorganile."
+          },
+          {
+            "source_unit_index": 83,
+            "start": 177,
+            "quote": "Kui vaiet on vaja täiendavalt uurida, võib vaiet läbivaatav haldusorgan vaide läbivaatamise tähtaega pikendada kuni 30 päeva võrra."
+          }
+        ]
+      },
+      {
+        "key": "p2-c40",
+        "kind": "assertion",
+        "statement": "Vaide sisuliselt lahendamisel võib haldusorgan vaideotsusega vaide rahuldada ja haldusakti täielikult või osaliselt kehtetuks tunnistada ning faktilised tagajärjed kõrvaldada; teha ettekirjutuse haldusakti andmiseks, toimingu sooritamiseks, asja uueks otsustamiseks või toimingu tagasitäitmiseks; või jätta vaide rahuldamata.",
+        "scope": "Vaide sisulisel lahendamisel.",
+        "subject": "haldusorgan",
+        "predicate": "võib vaideotsusega",
+        "object": "vaide rahuldada, kehtetuks tunnistada, ettekirjutuse teha või vaide rahuldamata jätta",
+        "anchors": [
+          {
+            "source_unit_index": 84,
+            "start": 52,
+            "quote": "Vaiet sisuliselt lahendades on haldusorganil õigus vaideotsusega:"
+          },
+          {
+            "source_unit_index": 84,
+            "start": 404,
+            "quote": "jätta vaie rahuldamata."
+          }
+        ]
+      },
+      {
+        "key": "p3-c1",
+        "kind": "assertion",
+        "statement": "Vaideotsus vormistatakse kirjalikult ja selles märgitakse resolutsioon vaide lahendamise kohta.",
+        "scope": "Vaideotsus.",
+        "subject": "Vaideotsus",
+        "predicate": "vormistatakse kirjalikult ja selles märgitakse",
+        "object": "resolutsioon vaide lahendamise kohta",
+        "anchors": [
+          {
+            "source_unit_index": 85,
+            "start": 24,
+            "quote": "Vaideotsus vormistatakse kirjalikult ja selles märgitakse resolutsioon vaide lahendamise kohta."
+          }
+        ]
+      },
+      {
+        "key": "p3-c2",
+        "kind": "assertion",
+        "statement": "Vaideotsus toimetatakse vaide esitajale ja kolmandale isikule kätte.",
+        "scope": "Vaideotsuse kättetoimetamine.",
+        "subject": "Vaideotsus",
+        "predicate": "toimetatakse kätte",
+        "object": "vaide esitajale ja kolmandale isikule",
+        "anchors": [
+          {
+            "source_unit_index": 85,
+            "start": 120,
+            "quote": "Vaideotsus toimetatakse vaide esitajale ja kolmandale isikule kätte."
+          }
+        ]
+      },
+      {
+        "key": "p3-c3",
+        "kind": "condition",
+        "statement": "Vaide rahuldamata jätmisel peab vaideotsus lisaks kirjaliku vormi ja resolutsiooni nõuetele olema põhjendatud ning sisaldama selgitust halduskohtule kaebuse esitamise kohta.",
+        "scope": "Vaide rahuldamata jätmine.",
+        "subject": "Vaideotsus",
+        "predicate": "peab vaide rahuldamata jätmisel olema",
+        "object": "põhjendatud ja sisaldama selgitust halduskohtule kaebuse esitamise kohta",
+        "anchors": [
+          {
+            "source_unit_index": 85,
+            "start": 195,
+            "quote": "Vaide rahuldamata jätmisel peab vaideotsus lisaks käesoleva paragrahvi lõikes 1 sätestatud nõuetele olema põhjendatud ja sisaldama selgitust halduskohtule kaebuse esitamise kohta."
+          }
+        ]
+      },
+      {
+        "key": "p3-c4",
+        "kind": "assertion",
+        "statement": "Vaide tagastamine haldusorgani poolt vormistatakse § 86 lõigete 1 ja 2 kohaselt.",
+        "scope": "Haldusorgani poolt vaide tagastamine.",
+        "subject": "Haldusorgani poolt vaide tagastamine",
+        "predicate": "vormistatakse",
+        "object": "§ 86 lõigete 1 ja 2 kohaselt",
+        "anchors": [
+          {
+            "source_unit_index": 85,
+            "start": 381,
+            "quote": "Käesoleva paragrahvi lõigete 1 ja 2 kohaselt vormistatakse ka vaide tagastamine haldusorgani poolt."
+          }
+        ]
+      },
+      {
+        "key": "p3-c5",
+        "kind": "assertion",
+        "statement": "Isikul, kelle vaie jäi rahuldamata või kelle õigusi vaidemenetluses rikuti, on õigus pöörduda kaebusega halduskohtusse halduskohtumenetluse seadustikus sätestatud tingimustel ja korras.",
+        "scope": "Halduskohtumenetluse seadustikus sätestatud tingimustel ja korras.",
+        "subject": "Isik, kelle vaie jäi rahuldamata või kelle õigusi vaidemenetluses rikuti",
+        "predicate": "on õigus pöörduda kaebusega",
+        "object": "halduskohtusse",
+        "anchors": [
+          {
+            "source_unit_index": 86,
+            "start": 34,
+            "quote": "Isikul, kelle vaie jäi rahuldamata või kelle õigusi vaidemenetluses rikuti, on õigus pöörduda halduskohtumenetluse seadustikus sätestatud tingimustel ja korras kaebusega halduskohtusse."
+          }
+        ]
+      },
+      {
+        "key": "p3-c6",
+        "kind": "condition",
+        "statement": "Kaebuse esitamise õiguse üks alus on see, et isiku vaie jäi rahuldamata.",
+        "scope": "§ 87 lõikes 1 nimetatud halduskohtusse pöördumise õigus.",
+        "subject": "Isiku vaie",
+        "predicate": "jäi",
+        "object": "rahuldamata",
+        "anchors": [
+          {
+            "source_unit_index": 86,
+            "start": 42,
+            "quote": "kelle vaie jäi rahuldamata"
+          }
+        ]
+      },
+      {
+        "key": "p3-c7",
+        "kind": "condition",
+        "statement": "Kaebuse esitamise õiguse üks alus on see, et isiku õigusi rikuti vaidemenetluses.",
+        "scope": "§ 87 lõikes 1 nimetatud halduskohtusse pöördumise õigus.",
+        "subject": "Isiku õigused",
+        "predicate": "rikuti",
+        "object": "vaidemenetluses",
+        "anchors": [
+          {
+            "source_unit_index": 86,
+            "start": 73,
+            "quote": "kelle õigusi vaidemenetluses rikuti"
+          }
+        ]
+      },
+      {
+        "key": "p3-c8",
+        "kind": "assertion",
+        "statement": "Vaideotsuse tühistamist võib halduskohtule esitatavas kaebuses nõuda koos nõudega, mis jäeti vaideotsusega osaliselt või täielikult rahuldamata.",
+        "scope": "Halduskohtule esitatav kaebus.",
+        "subject": "Vaideotsuse tühistamine",
+        "predicate": "võib nõuda kaebuses koos",
+        "object": "nõudega, mis jäeti vaideotsusega osaliselt või täielikult rahuldamata",
+        "anchors": [
+          {
+            "source_unit_index": 86,
+            "start": 301,
+            "quote": "koos nõudega, mis jäeti vaideotsusega osaliselt või täielikult rahuldamata"
+          }
+        ]
+      },
+      {
+        "key": "p3-c9",
+        "kind": "assertion",
+        "statement": "Vaideotsuse tühistamist võib halduskohtule esitatavas kaebuses nõuda sõltumata osaliselt või täielikult rahuldamata jäetud nõude esitamisest, kui vaideotsusega rikuti isiku õigusi muul viisil kui vaide osaline või täielik rahuldamata jätmine.",
+        "scope": "Halduskohtule esitatav kaebus.",
+        "subject": "Vaideotsuse tühistamine",
+        "predicate": "võib nõuda sõltumata rahuldamata jäetud nõude esitamisest, kui",
+        "object": "vaideotsusega rikuti isiku õigusi muul viisil kui vaide osaline või täielik rahuldamata jätmine",
+        "anchors": [
+          {
+            "source_unit_index": 86,
+            "start": 386,
+            "quote": "sõltumata käesoleva lõike punktis 1 nimetatud nõude esitamisest, kui vaideotsusega on isiku õigusi rikutud muul viisil kui vaide osaline või täielik rahuldamata jätmine."
+          }
+        ]
+      },
+      {
+        "key": "p3-c10",
+        "kind": "definition",
+        "statement": "Määrus on õigusakt, mille haldusorgan annab piiritlemata arvu juhtude reguleerimiseks.",
+        "scope": "Määruse mõiste.",
+        "subject": "Määrus",
+        "predicate": "on",
+        "object": "õigusakt, mille haldusorgan annab piiritlemata arvu juhtude reguleerimiseks",
+        "anchors": [
+          {
+            "source_unit_index": 87,
+            "start": 15,
+            "quote": "Määrus on õigusakt, mille haldusorgan annab piiritlemata arvu juhtude reguleerimiseks."
+          }
+        ]
+      },
+      {
+        "key": "p3-c11",
+        "kind": "assertion",
+        "statement": "Määrus on õiguspärane, kui see on kooskõlas kehtiva õigusega, vastab vorminõuetele ja selle on seaduses ettenähtud korras volitusnormi alusel andnud volitusnormis nimetatud haldusorgan.",
+        "scope": "Määruse õiguspärasus.",
+        "subject": "Määrus",
+        "predicate": "on õiguspärane, kui",
+        "object": "see on kooskõlas kehtiva õigusega, vastab vorminõuetele ja selle on seaduses ettenähtud korras volitusnormi alusel andnud volitusnormis nimetatud haldusorgan",
+        "anchors": [
+          {
+            "source_unit_index": 88,
+            "start": 34,
+            "quote": "Määrus on õiguspärane, kui see on kooskõlas kehtiva õigusega, vastab vorminõuetele ja kui selle on seaduses ettenähtud korras volitusnormi alusel andnud volitusnormis nimetatud haldusorgan."
+          }
+        ]
+      },
+      {
+        "key": "p3-c12",
+        "kind": "assertion",
+        "statement": "Määruse andmisele ei kohaldata haldusmenetluse seaduse 1. osas sätestatut, välja arvatud 1. peatüki 1. ja 2. jao ning 3. peatüki sätted.",
+        "scope": "Määruse andmine.",
+        "subject": "Määruse andmine",
+        "predicate": "ei kohaldata",
+        "object": "haldusmenetluse seaduse 1. osas sätestatut, välja arvatud 1. peatüki 1. ja 2. jao ning 3. peatüki sätted",
+        "anchors": [
+          {
+            "source_unit_index": 88,
+            "start": 230,
+            "quote": "Määruse andmisele ei kohaldata käesoleva seaduse 1. osas sätestatut, välja arvatud 1. peatüki 1. ja 2. jao ning 3. peatüki sätted."
+          }
+        ]
+      },
+      {
+        "key": "p3-c13",
+        "kind": "condition",
+        "statement": "Määruse võib anda ainult seaduses sisalduva volitusnormi olemasolul ja kooskõlas volitusnormi piiride, mõtte ja eesmärgiga.",
+        "scope": "§ 90 lõike 1 üldreegel.",
+        "subject": "Määruse andmine",
+        "predicate": "eeldab",
+        "object": "seaduses sisalduva volitusnormi olemasolu ning kooskõla volitusnormi piiride, mõtte ja eesmärgiga",
+        "anchors": [
+          {
+            "source_unit_index": 89,
+            "start": 25,
+            "quote": "Määruse võib anda ainult seaduses sisalduva volitusnormi olemasolul ja kooskõlas volitusnormi piiride, mõtte ja eesmärgiga."
+          }
+        ]
+      },
+      {
+        "key": "p3-c14",
+        "kind": "exception",
+        "statement": "Kohaliku elu küsimuse korraldamiseks võib kohaliku omavalitsuse organ anda määruse volitusnormita, välja arvatud juhul, kui seaduses on volitusnorm olemas.",
+        "scope": "Kohaliku elu küsimuse korraldamine.",
+        "subject": "Kohaliku omavalitsuse organ",
+        "predicate": "võib kohaliku elu küsimuse korraldamiseks anda määruse",
+        "object": "volitusnormita, välja arvatud juhul, kui seaduses on volitusnorm olemas",
+        "anchors": [
+          {
+            "source_unit_index": 89,
+            "start": 155,
+            "quote": "Kohaliku elu küsimuse korraldamiseks võib kohaliku omavalitsuse organ anda määruse volitusnormita, välja arvatud juhul, kui seaduses on volitusnorm olemas."
+          }
+        ]
+      },
+      {
+        "key": "p3-c15",
+        "kind": "exception",
+        "statement": "Volitusnormita antud määruse kehtetuks tunnistamisel haldusorgani poolt ei kohaldata § 90 lõiget 1.",
+        "scope": "Haldusorgani tehtav volitusnormita antud määruse kehtetuks tunnistamine.",
+        "subject": "Volitusnormita antud määruse kehtetuks tunnistamine haldusorgani poolt",
+        "predicate": "ei kohaldata",
+        "object": "§ 90 lõiget 1",
+        "anchors": [
+          {
+            "source_unit_index": 89,
+            "start": 317,
+            "quote": "Käesoleva paragrahvi lõiget 1 ei kohaldata volitusnormita antud määruse kehtetuks tunnistamisel haldusorgani poolt."
+          }
+        ]
+      },
+      {
+        "key": "p3-c16",
+        "kind": "condition",
+        "statement": "Määruse andmiseks volitatud haldusorgan võib määruse andmise teisele haldusorganile edasi volitada ainult juhul, kui see võimalus on volitusnormis ette nähtud.",
+        "scope": "Määruse andmise edasivolitus.",
+        "subject": "Määruse andmiseks volitatud haldusorgan",
+        "predicate": "võib määruse andmise teisele haldusorganile edasi volitada ainult juhul, kui",
+        "object": "see võimalus on volitusnormis ette nähtud",
+        "anchors": [
+          {
+            "source_unit_index": 90,
+            "start": 26,
+            "quote": "Haldusorgan, keda on volitatud määrust andma, võib määruse andmise teisele haldusorganile edasi volitada ainult juhul, kui see võimalus on volitusnormis ette nähtud."
+          }
+        ]
+      },
+      {
+        "key": "p3-c17",
+        "kind": "condition",
+        "statement": "Kui küsimuse otsustamine on seadusega antud kohaliku omavalitsuse pädevusse, võib volikogu igal konkreetsel juhul määruse andmise vallavalitsusele edasi volitada, kui küsimus ei ole seadusega antud volikogu ainupädevusse.",
+        "scope": "Küsimuse otsustamine on seadusega antud kohaliku omavalitsuse pädevusse.",
+        "subject": "Valla- või linnavolikogu",
+        "predicate": "võib määruse andmise valla- või linnavalitsusele edasi volitada, kui",
+        "object": "küsimus ei ole seadusega antud valla- või linnavolikogu ainupädevusse",
+        "anchors": [
+          {
+            "source_unit_index": 90,
+            "start": 198,
+            "quote": "Kui küsimuse otsustamine on seadusega antud kohaliku omavalitsuse pädevusse, siis igal konkreetsel juhul, kui küsimus ei ole seadusega antud valla- või linnavolikogu ainupädevusse, võib valla- või linnavolikogu määruse andmise edasi volitada valla- või linnavalitsusele."
+          }
+        ]
+      },
+      {
+        "key": "p3-c18",
+        "kind": "assertion",
+        "statement": "Määrus antakse kirjalikult; kirjalikus vormis määruse võib anda elektrooniliselt ning elektroonilise määruse suhtes kohaldatakse kirjalikule määrusele esitatavaid nõudeid, arvestades elektroonilisest vormist tingitud erisusi.",
+        "scope": "Määruse vorm.",
+        "subject": "Määrus",
+        "predicate": "antakse",
+        "object": "kirjalikult; kirjalikus vormis määruse võib anda elektrooniliselt",
+        "anchors": [
+          {
+            "source_unit_index": 91,
+            "start": 26,
+            "quote": "Määrus antakse kirjalikult. Kirjalikus vormis määruse võib anda elektrooniliselt."
+          },
+          {
+            "source_unit_index": 91,
+            "start": 108,
+            "quote": "Elektroonilise määruse suhtes kohaldatakse kirjalikule määrusele esitatavaid nõudeid, arvestades dokumendi elektroonilisest vormist tingitud erisusi."
+          }
+        ]
+      },
+      {
+        "key": "p3-c19",
+        "kind": "condition",
+        "statement": "Määruses tuleb viidata selle andmise aluseks olevale volitusnormile; edasivolituse alusel antud määruses tuleb viidata ka edasivolitusele. Seda nõuet ei kohaldata volitusnormita antud määruse kehtetuks tunnistamise suhtes.",
+        "scope": "Volitusnormita antud määruse kehtetuks tunnistamine on viitamisnõude erand.",
+        "subject": "Määrus",
+        "predicate": "peab viitama",
+        "object": "määruse andmise aluseks olevale volitusnormile ja edasivolituse alusel andmise korral ka edasivolitusele",
+        "anchors": [
+          {
+            "source_unit_index": 91,
+            "start": 264,
+            "quote": "Määruses tuleb viidata määruse andmise aluseks olevale volitusnormile."
+          },
+          {
+            "source_unit_index": 91,
+            "start": 335,
+            "quote": "Kui määruse annab haldusorgan edasivolituse alusel, tuleb viidata ka edasivolitusele. Seda nõuet ei kohaldata volitusnormita antud määruse kehtetuks tunnistamise suhtes."
+          }
+        ]
+      },
+      {
+        "key": "p3-c20",
+        "kind": "condition",
+        "statement": "Määruses märgitakse selle andnud haldusorgani nimetus ning määruse andmise kuupäev ja number, ja määrus pealkirjastatakse.",
+        "scope": "Määruse vorminõuded.",
+        "subject": "Määrus",
+        "predicate": "peab sisaldama",
+        "object": "selle andnud haldusorgani nimetust, andmise kuupäeva ja numbrit ning pealkirja",
+        "anchors": [
+          {
+            "source_unit_index": 91,
+            "start": 511,
+            "quote": "Määruses märgitakse selle andnud haldusorgani nimetus ning määruse andmise kuupäev ja number. Määrus pealkirjastatakse."
+          }
+        ]
+      },
+      {
+        "key": "p3-c21",
+        "kind": "condition",
+        "statement": "Määrust muutes või kehtetuks tunnistades tuleb määruses nimetada muudetava või kehtetuks tunnistatava määruse pealkiri ja number, andmise kuupäev ning avaldamismärge.",
+        "scope": "Määruse muutmine või kehtetuks tunnistamine.",
+        "subject": "Määrust muutev või kehtetuks tunnistav määrus",
+        "predicate": "peab nimetama",
+        "object": "muudetava või kehtetuks tunnistatava määruse pealkirja, numbri, andmise kuupäeva ja avaldamismärke",
+        "anchors": [
+          {
+            "source_unit_index": 91,
+            "start": 637,
+            "quote": "Määrust muutvas või kehtetuks tunnistavas määruses tuleb nimetada ka muudetava või kehtetuks tunnistatava määruse pealkiri ja number ning määruse andmise kuupäev ja määruse avaldamismärge."
+          }
+        ]
+      },
+      {
+        "key": "p3-c22",
+        "kind": "condition",
+        "statement": "Määrusele kirjutatakse alla ja see avaldatakse seaduses ettenähtud korras.",
+        "scope": "Määruse vormistamine ja avaldamine.",
+        "subject": "Määrus",
+        "predicate": "allkirjastatakse ja avaldatakse",
+        "object": "seaduses ettenähtud korras",
+        "anchors": [
+          {
+            "source_unit_index": 91,
+            "start": 832,
+            "quote": "Määrusele kirjutatakse alla ja määrus avaldatakse seaduses ettenähtud korras."
+          }
+        ]
+      },
+      {
+        "key": "p3-c23",
+        "kind": "assertion",
+        "statement": "Määrus kehtib kuni haldusorgan või Riigikohus tunnistab selle kehtetuks, kehtivusaja lõppemiseni või volitusnormi kehtetuks tunnistamiseni.",
+        "scope": "Määruse kehtivuse kestus.",
+        "subject": "Määrus",
+        "predicate": "kehtib kuni",
+        "object": "selle kehtetuks tunnistamiseni haldusorgani või Riigikohtu poolt, kehtivusaja lõppemiseni või volitusnormi kehtetuks tunnistamiseni",
+        "anchors": [
+          {
+            "source_unit_index": 92,
+            "start": 42,
+            "quote": "Määrus kehtib, kuni selle tunnistab kehtetuks haldusorgan või Riigikohus või kehtivusaja lõppemiseni või volitusnormi kehtetuks tunnistamiseni."
+          }
+        ]
+      },
+      {
+        "key": "p3-c24",
+        "kind": "assertion",
+        "statement": "Määrus hakkab kehtima kolmandal päeval pärast kehtivas korras avaldamist, kui seaduses või määruses endas ei ole sätestatud hilisemat tähtpäeva; seaduses ettenähtud juhul jõustub määrus sellest varem.",
+        "scope": "Määruse jõustumine.",
+        "subject": "Määrus",
+        "predicate": "hakkab kehtima",
+        "object": "kolmandal päeval pärast kehtivas korras avaldamist, kui hilisemat tähtpäeva ei ole sätestatud, või seaduses ettenähtud juhul varem",
+        "anchors": [
+          {
+            "source_unit_index": 92,
+            "start": 192,
+            "quote": "Määrus hakkab kehtima (jõustub) kolmandal päeval pärast kehtivas korras avaldamist, kui seaduses või määruses endas ei ole sätestatud hilisemat tähtpäeva. Seaduses ettenähtud juhul jõustub määrus käesolevas lõikes sätestatust varem."
+          }
+        ]
+      },
+      {
+        "key": "p3-c25",
+        "kind": "condition",
+        "statement": "Kui määrus on antud volitusnormi alusel, mis sisaldub väljakuulutatud, kuid veel jõustumata seaduses, ei jõustu määrus enne seaduse jõustumist.",
+        "scope": "Volitusnorm sisaldub Vabariigi Presidendi poolt väljakuulutatud, kuid veel jõustumata seaduses.",
+        "subject": "Määrus",
+        "predicate": "ei jõustu enne",
+        "object": "volitusnormi sisaldava seaduse jõustumist",
+        "anchors": [
+          {
+            "source_unit_index": 92,
+            "start": 431,
+            "quote": "Kui määrus on antud volitusnormi alusel, mis sisaldub Vabariigi Presidendi poolt väljakuulutatud, kuid veel jõustumata seaduses, ei jõustu määrus enne seaduse jõustumist."
+          }
+        ]
+      },
+      {
+        "key": "p3-c26",
+        "kind": "assertion",
+        "statement": "Kui määrus on tühine, loetakse, et see ei ole kunagi kehtinud, ja tühist määrust ei rakendata.",
+        "scope": "Tühise määruse tagajärjed.",
+        "subject": "Tühine määrus",
+        "predicate": "loetakse ja rakendatakse",
+        "object": "et see ei ole kunagi kehtinud; tühist määrust ei rakendata",
+        "anchors": [
+          {
+            "source_unit_index": 93,
+            "start": 29,
+            "quote": "Kui määrus on tühine, siis loetakse, et ta ei ole kunagi kehtinud."
+          },
+          {
+            "source_unit_index": 93,
+            "start": 225,
+            "quote": "Tühist määrust ei rakendata."
+          }
+        ]
+      },
+      {
+        "key": "p3-c27",
+        "kind": "definition",
+        "statement": "Haldusleping on kokkulepe, mis reguleerib haldusõigussuhteid; selle võib sõlmida üksikjuhtumi või piiritlemata arvu juhtumite reguleerimiseks.",
+        "scope": "Halduslepingu mõiste ja reguleeritavate juhtumite arv.",
+        "subject": "Haldusleping",
+        "predicate": "on",
+        "object": "kokkulepe, mis reguleerib haldusõigussuhteid",
+        "anchors": [
+          {
+            "source_unit_index": 94,
+            "start": 29,
+            "quote": "Haldusleping on kokkulepe, mis reguleerib haldusõigussuhteid. Halduslepingu võib sõlmida kas üksikjuhtumi või piiritlemata arvu juhtumite reguleerimiseks."
+          }
+        ]
+      },
+      {
+        "key": "p3-c28",
+        "kind": "condition",
+        "statement": "Vähemalt üks halduslepingu pool on riik, kohaliku omavalitsuse üksus, muu avalik-õiguslik juriidiline isik või eraõiguslik juriidiline isik või füüsiline isik, kes täidab seaduse alusel avaliku halduse ülesandeid.",
+        "scope": "Halduslepingu pooled.",
+        "subject": "Vähemalt üks halduslepingu pool",
+        "predicate": "on",
+        "object": "riik, kohaliku omavalitsuse üksus, muu avalik-õiguslik juriidiline isik või seaduse alusel avaliku halduse ülesandeid täitev eraõiguslik juriidiline isik või füüsiline isik",
+        "anchors": [
+          {
+            "source_unit_index": 95,
+            "start": 34,
+            "quote": "Vähemalt üks halduslepingu pool on riik, kohaliku omavalitsuse üksus, muu avalik-õiguslik juriidiline isik, eraõiguslik juriidiline isik või füüsiline isik, kes seaduse alusel täidab avaliku halduse ülesandeid."
+          }
+        ]
+      },
+      {
+        "key": "p3-c29",
+        "kind": "assertion",
+        "statement": "Riigi või kohaliku omavalitsuse üksuse nimel sõlmib halduslepingu haldusorgan, kelle pädevuses on täita halduslepingu esemeks olev ülesanne.",
+        "scope": "Riigi või kohaliku omavalitsuse üksuse nimel sõlmitav haldusleping.",
+        "subject": "Haldusorgan, kelle pädevuses on täita halduslepingu esemeks olev ülesanne",
+        "predicate": "sõlmib halduslepingu",
+        "object": "riigi või kohaliku omavalitsuse üksuse nimel",
+        "anchors": [
+          {
+            "source_unit_index": 95,
+            "start": 251,
+            "quote": "Riigi või kohaliku omavalitsuse üksuse nimel sõlmib halduslepingu haldusorgan, kelle pädevuses on täita halduslepingu esemeks olev ülesanne."
+          }
+        ]
+      },
+      {
+        "key": "p3-c30",
+        "kind": "condition",
+        "statement": "Piiritlemata arvu juhtumite reguleerimiseks võib halduslepingu sõlmida vaid seaduses sisalduva volitusnormi alusel.",
+        "scope": "Piiritlemata arvu juhtumite reguleerimine.",
+        "subject": "Piiritlemata arvu juhtumite reguleerimiseks halduslepingu sõlmimine",
+        "predicate": "eeldab",
+        "object": "seaduses sisalduvat volitusnormi",
+        "anchors": [
+          {
+            "source_unit_index": 96,
+            "start": 47,
+            "quote": "Piiritlemata arvu juhtumite reguleerimiseks võib sõlmida halduslepingu vaid seaduses sisalduva volitusnormi alusel."
+          }
+        ]
+      },
+      {
+        "key": "p3-c31",
+        "kind": "condition",
+        "statement": "Haldusorgan võib halduslepingu sõlmida üksnes oma pädevuse piirides ega või võtta lepinguga endale pädevust ületavaid kohustusi.",
+        "scope": "Haldusorgani halduslepingu sõlmimine ja lepingulised kohustused.",
+        "subject": "Haldusorgan",
+        "predicate": "võib sõlmida halduslepingu ja võtta kohustusi",
+        "object": "üksnes oma pädevuse piirides",
+        "anchors": [
+          {
+            "source_unit_index": 96,
+            "start": 169,
+            "quote": "Haldusorgan võib sõlmida halduslepingu üksnes oma pädevuse piirides. Haldusorgan ei või võtta endale halduslepinguga kohustusi, mis ületavad tema pädevuse."
+          }
+        ]
+      },
+      {
+        "key": "p3-c32",
+        "kind": "condition",
+        "statement": "Haldusorgan võib haldusakti asemel sõlmida üksikjuhtumi reguleerimiseks halduslepingu isikuga, kellele haldusakt muidu suunataks, kui seadus või määrus ei näe otseselt ette üksnes haldusakti andmist.",
+        "scope": "Leping sõlmitakse isikuga, kellele haldusakt oleks muidu suunatud.",
+        "subject": "Haldusorgan",
+        "predicate": "võib haldusakti asemel sõlmida halduslepingu, kui",
+        "object": "leping reguleerib üksikjuhtumit ning seadus või määrus ei näe otseselt ette üksnes haldusakti andmist",
+        "anchors": [
+          {
+            "source_unit_index": 97,
+            "start": 63,
+            "quote": "Haldusorgan võib haldusakti andmise asemel sõlmida üksikjuhtumi reguleerimiseks halduslepingu isikuga, kellele haldusakt oleks muidu suunatud, kui seadus või määrus ei näe otseselt ette üksnes haldusakti andmist."
+          }
+        ]
+      },
+      {
+        "key": "p3-c33",
+        "kind": "condition",
+        "statement": "Haldusakti andmise asemel sõlmitud halduslepinguga isikule pandavad kohustused peavad olema vastavuses lepingu eesmärgi ja lepingust tulenevate haldusorgani kohustustega.",
+        "scope": "Haldusakti andmise asemel sõlmitud haldusleping.",
+        "subject": "Isikule halduslepinguga pandavad kohustused",
+        "predicate": "peavad olema vastavuses",
+        "object": "lepingu eesmärgi ja lepingust tulenevate haldusorgani kohustustega",
+        "anchors": [
+          {
+            "source_unit_index": 97,
+            "start": 282,
+            "quote": "Haldusakti andmise asemel sõlmitud halduslepinguga isikule pandavad kohustused peavad olema vastavuses lepingu eesmärgiga ja lepingust tulenevate haldusorgani kohustustega."
+          }
+        ]
+      },
+      {
+        "key": "p3-c34",
+        "kind": "assertion",
+        "statement": "Üksikjuhtumi reguleerimiseks halduslepingu sõlmimisele kohaldatakse haldusmenetluse seaduse 1. osas sätestatut niivõrd, kuivõrd see ei ole vastuolus halduslepingu olemusega; piiritlemata arvu juhtumite reguleerimiseks sõlmitakse haldusleping tsiviilõiguslike lepingute sõlmimiseks ettenähtud korras. Haldusleping sõlmitakse kirjalikult.",
+        "scope": "Sõlmimise kord sõltub reguleeritavate juhtumite arvust.",
+        "subject": "Halduslepingu sõlmimine",
+        "predicate": "toimub",
+        "object": "üksikjuhtumi puhul haldusmenetluse seaduse 1. osa kohaldamisel, vastuolu korral halduslepingu olemusega seda kohaldamata; piiritlemata juhtumite puhul tsiviilõiguslike lepingute sõlmimise korras; kirjalikult",
+        "anchors": [
+          {
+            "source_unit_index": 98,
+            "start": 37,
+            "quote": "Üksikjuhtumi reguleerimiseks halduslepingu sõlmimisele kohaldatakse käesoleva seaduse 1. osas sätestatut niivõrd, kuivõrd see ei ole vastuolus halduslepingu olemusega."
+          },
+          {
+            "source_unit_index": 98,
+            "start": 211,
+            "quote": "Piiritlemata arvu juhtumite reguleerimiseks sõlmitakse haldusleping tsiviilõiguslike lepingute sõlmimiseks ettenähtud korras."
+          },
+          {
+            "source_unit_index": 98,
+            "start": 343,
+            "quote": "Haldusleping sõlmitakse kirjalikult."
+          }
+        ]
+      },
+      {
+        "key": "p3-c35",
+        "kind": "assertion",
+        "statement": "Haldusleping on õiguspärane, kui see vastab §-des 54–57 või §-des 89–91 ja § 92 lõikes 2 sätestatud nõuetele; neid nõudeid kohaldatakse niivõrd, kuivõrd need ei ole vastuolus halduslepingu olemusega.",
+        "scope": "Halduslepingu õiguspärasuse nõuded.",
+        "subject": "Haldusleping",
+        "predicate": "on õiguspärane, kui",
+        "object": "see vastab §-des 54–57 või §-des 89–91 ja § 92 lõikes 2 sätestatud nõuetele niivõrd, kuivõrd need ei ole vastuolus halduslepingu olemusega",
+        "anchors": [
+          {
+            "source_unit_index": 99,
+            "start": 36,
+            "quote": "Haldusleping on õiguspärane, kui ta vastab käesoleva seaduse §-des 54–57 või §-des 89–91 ja § 92 lõikes 2 sätestatud nõuetele. Nimetatud nõudeid kohaldatakse halduslepingule niivõrd, kuivõrd need ei ole vastuolus halduslepingu olemusega."
+          }
+        ]
+      },
+      {
+        "key": "p3-c36",
+        "kind": "assertion",
+        "statement": "Üksikjuhtumit reguleeriv haldusleping jõustub tsiviilõiguslike lepingute jõustumiseks ettenähtud korras.",
+        "scope": "Üksikjuhtumi haldusleping.",
+        "subject": "Üksikjuhtumit reguleeriv haldusleping",
+        "predicate": "jõustub",
+        "object": "tsiviilõiguslike lepingute jõustumiseks ettenähtud korras",
+        "anchors": [
+          {
+            "source_unit_index": 100,
+            "start": 39,
+            "quote": "Üksikjuhtumit reguleeriv haldusleping jõustub tsiviilõiguslike lepingute jõustumiseks ettenähtud korras."
+          }
+        ]
+      },
+      {
+        "key": "p3-c37",
+        "kind": "condition",
+        "statement": "Kui üksikjuhtumit reguleeriv haldusleping piirab kolmanda isiku õigusi, jõustub leping alates sellest, kui kolmas isik annab sellekohase kirjaliku nõusoleku.",
+        "scope": "Kolmanda isiku õigusi piirav üksikjuhtumi haldusleping.",
+        "subject": "Üksikjuhtumit reguleeriv haldusleping, mis piirab kolmanda isiku õigusi",
+        "predicate": "jõustub alates",
+        "object": "kolmanda isiku sellekohase kirjaliku nõusoleku andmisest",
+        "anchors": [
+          {
+            "source_unit_index": 100,
+            "start": 150,
+            "quote": "Kui käesoleva paragrahvi lõikes 1 sätestatud haldusleping piirab kolmanda isiku õigusi, jõustub leping alates kolmanda isiku poolt sellekohase kirjaliku nõusoleku andmisest."
+          }
+        ]
+      },
+      {
+        "key": "p3-c38",
+        "kind": "condition",
+        "statement": "Kui teise haldusorgani nõusolekul antava haldusakti asemel sõlmitakse haldusleping, ei jõustu leping enne teise haldusorgani nõusoleku saamist.",
+        "scope": "Haldusleping sõlmitakse nõusolekut eeldava haldusakti andmise asemel.",
+        "subject": "Teise haldusorgani nõusolekul antava haldusakti asemel sõlmitud haldusleping",
+        "predicate": "ei jõustu enne",
+        "object": "teise haldusorgani nõusoleku saamist",
+        "anchors": [
+          {
+            "source_unit_index": 100,
+            "start": 330,
+            "quote": "Kui teise haldusorgani nõusolekul antava haldusakti andmise asemel sõlmitakse haldusleping, ei jõustu see enne teise haldusorgani nõusoleku saamist."
+          }
+        ]
+      },
+      {
+        "key": "p3-c39",
+        "kind": "assertion",
+        "statement": "Piiritlemata arvu juhtumeid reguleeriv haldusleping jõustub määruse jõustumiseks ettenähtud korras.",
+        "scope": "Piiritlemata arvu juhtumeid reguleeriv haldusleping.",
+        "subject": "Piiritlemata arvu juhtumeid reguleeriv haldusleping",
+        "predicate": "jõustub",
+        "object": "määruse jõustumiseks ettenähtud korras",
+        "anchors": [
+          {
+            "source_unit_index": 100,
+            "start": 485,
+            "quote": "Piiritlemata arvu juhtumeid reguleeriv haldusleping jõustub määruse jõustumiseks ettenähtud korras."
+          }
+        ]
+      },
+      {
+        "key": "p3-c40",
+        "kind": "condition",
+        "statement": "Haldusorgan võib halduslepingut ühepoolselt muuta või lõpetada, kui see on tingimata vajalik ülekaaluka avaliku huvi raske kahjustamise vältimiseks.",
+        "scope": "Halduslepingu ühepoolne muutmine või lõpetamine.",
+        "subject": "Haldusorgan",
+        "predicate": "võib halduslepingut ühepoolselt muuta või lõpetada, kui",
+        "object": "see on tingimata vajalik ülekaaluka avaliku huvi raske kahjustamise vältimiseks",
+        "anchors": [
+          {
+            "source_unit_index": 101,
+            "start": 193,
+            "quote": "Haldusorgan võib halduslepingut ühepoolselt muuta või halduslepingu lõpetada, kui see on tingimata vajalik, et vältida ülekaaluka avaliku huvi rasket kahjustamist."
+          }
+        ]
+      }
+    ],
+    "dependencies": [
+      {
+        "key": "p1-d1",
+        "type": "REQUIRES",
+        "from": "p1-c6",
+        "targets": [
+          {
+            "key": "p1-c7"
+          }
+        ],
+        "operator": "all",
+        "scope": "Kaalutlusõiguse teostamise nõuded",
+        "anchors": [
+          {
+            "source_unit_index": 3,
+            "start": 171,
+            "quote": "Kaalutlusõigust tuleb teostada kooskõlas volituse piiride, kaalutlusõiguse eesmärgi ning õiguse üldpõhimõtetega, arvestades olulisi asjaolusid ning kaaludes põhjendatud huve."
+          }
+        ]
+      },
+      {
+        "key": "p1-d2",
+        "type": "QUALIFIES",
+        "from": "p1-c8",
+        "targets": [
+          {
+            "key": "p1-c6"
+          }
+        ],
+        "operator": "all",
+        "scope": "Menetlustoimingu vormi ja haldusmenetluse üksikasjade määramisel kaalutlusõigusliku aluse kasutamine",
+        "anchors": [
+          {
+            "source_unit_index": 4,
+            "start": 44,
+            "quote": "Menetlustoimingu vormi ja muud haldusmenetluse üksikasjad määrab haldusorgan kaalutlusõiguse alusel, kui seaduse või määrusega ei ole sätestatud teisiti."
+          }
+        ]
+      },
+      {
+        "key": "p1-d3",
+        "type": "QUALIFIES",
+        "from": "p1-c10",
+        "targets": [
+          {
+            "key": "p1-c9"
+          }
+        ],
+        "operator": "all",
+        "scope": "Menetlustoimingute tasustamine",
+        "anchors": [
+          {
+            "source_unit_index": 4,
+            "start": 370,
+            "quote": "Menetlustoimingute sooritamise eest võib haldusorgan tasu võtta üksnes seaduses sätestatud juhtudel ja suuruses."
+          }
+        ]
+      },
+      {
+        "key": "p1-d4",
+        "type": "QUALIFIES",
+        "from": "p1-c15",
+        "targets": [
+          {
+            "key": "p1-c14"
+          }
+        ],
+        "operator": "all",
+        "scope": "Isikuandmete töötlemise täpsustus",
+        "anchors": [
+          {
+            "source_unit_index": 6,
+            "start": 953,
+            "quote": "Haldusorgan võib haldusmenetluses haldusakti andmise, toimingu tegemise või halduslepingu sõlmimise eesmärgil töödelda isikuandmeid menetletavas asjas vajalike asjaolude kohta, kui seadusega või selle alusel antud õigusaktidega ei ole ette nähtud teisiti."
+          }
+        ]
+      },
+      {
+        "key": "p1-d5",
+        "type": "DEFINES",
+        "from": "p1-c20",
+        "targets": [
+          {
+            "key": "p1-c19"
+          }
+        ],
+        "operator": "all",
+        "scope": "Perekonnaliikme mõiste § 10 lõike 1 seose puhul",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 705,
+            "quote": "Perekonnaliige käesoleva seaduse tähenduses on isik, kes elab menetlusosalisega koos ja neil on ühine majapidamine."
+          }
+        ]
+      },
+      {
+        "key": "p1-d6",
+        "type": "EXCEPTION_TO",
+        "from": "p1-c21",
+        "targets": [
+          {
+            "key": "p1-c19"
+          }
+        ],
+        "operator": "all",
+        "scope": "Taandamine § 10 lõikes 1 nimetatud asjaolude korral",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 1461,
+            "quote": "Isikut ei taandata, kui teda ei ole võimalik asendada."
+          }
+        ]
+      },
+      {
+        "key": "p1-d7",
+        "type": "EXCEPTION_TO",
+        "from": "p1-c22",
+        "targets": [
+          {
+            "key": "p1-c19"
+          }
+        ],
+        "operator": "all",
+        "scope": "§ 10 kohaldamisala",
+        "anchors": [
+          {
+            "source_unit_index": 9,
+            "start": 1522,
+            "quote": "Käesolevat paragrahvi ei rakendata Vabariigi Valitsuse ning kohaliku omavalitsuse volikogu ja valitsuse liikmete suhtes."
+          }
+        ]
+      },
+      {
+        "key": "p1-d8",
+        "type": "QUALIFIES",
+        "from": "p1-c23",
+        "targets": [
+          {
+            "key": "p1-c2"
+          }
+        ],
+        "operator": "all",
+        "scope": "Alaealise ja muu piiratud teovõimega isiku iseseisev menetlustoimingute tegemine haldusmenetluses",
+        "anchors": [
+          {
+            "source_unit_index": 11,
+            "start": 148,
+            "quote": "Alaealine ja muu piiratud teovõimega isik ei või haldusmenetluses iseseisvalt menetlustoiminguid teha, kui seadusega ei ole ette nähtud teisiti."
+          }
+        ]
+      },
+      {
+        "key": "p1-d9",
+        "type": "REQUIRES",
+        "from": "p1-c24",
+        "targets": [
+          {
+            "key": "p1-c25"
+          }
+        ],
+        "operator": "all",
+        "scope": "Esindusõiguse andmine",
+        "anchors": [
+          {
+            "source_unit_index": 12,
+            "start": 253,
+            "quote": "Esindusõigus antakse haldusmenetluses kirjaliku volitusega."
+          }
+        ]
+      },
+      {
+        "key": "p1-d10",
+        "type": "REQUIRES",
+        "from": "p1-c26",
+        "targets": [
+          {
+            "key": "p1-c27"
+          }
+        ],
+        "operator": "all",
+        "scope": "Kirjaliku taotluse sisu",
+        "anchors": [
+          {
+            "source_unit_index": 13,
+            "start": 368,
+            "quote": "Kirjalik taotlus peab sisaldama:"
+          }
+        ]
+      },
+      {
+        "key": "p1-d11",
+        "type": "EXCEPTION_TO",
+        "from": "p1-c28",
+        "targets": [
+          {
+            "key": "p1-c27"
+          }
+        ],
+        "operator": "all",
+        "scope": "Elektroonilise taotluse digitaalallkirja ja e-templi nõue",
+        "anchors": [
+          {
+            "source_unit_index": 13,
+            "start": 766,
+            "quote": "Digitaalallkirja ja e-templit ei pea lisama, kui taotlus on esitatud elektroonilise kanali kaudu ning haldusorgan on taotluse esitaja turvalisel viisil tuvastanud."
+          }
+        ]
+      },
+      {
+        "key": "p1-d12",
+        "type": "REQUIRES",
+        "from": "p1-c31",
+        "targets": [
+          {
+            "key": "p1-c32"
+          }
+        ],
+        "operator": "all",
+        "scope": "Puudustega taotluse menetlemine ja puuduste kõrvaldamise tähtaja määramine",
+        "anchors": [
+          {
+            "source_unit_index": 14,
+            "start": 170,
+            "quote": "Kui isik jätab koos taotlusega esitamata nõutud andmed või dokumendid või kui taotluses on muid puudusi, määrab haldusorgan taotluse esitajale esimesel võimalusel tähtaja puuduste kõrvaldamiseks"
+          }
+        ]
+      },
+      {
+        "key": "p1-d13",
+        "type": "QUALIFIES",
+        "from": "p1-c33",
+        "targets": [
+          {
+            "key": "p1-c32"
+          }
+        ],
+        "operator": "all",
+        "scope": "Puuduste määratud tähtaja jooksul või tähtajaks kõrvaldamata jätmise tagajärg",
+        "anchors": [
+          {
+            "source_unit_index": 14,
+            "start": 478,
+            "quote": "Kui puudus kõrvaldatakse määratud tähtaja jooksul, loetakse taotlus tähtaegselt esitatuks."
+          }
+        ]
+      },
+      {
+        "key": "p1-d14",
+        "type": "QUALIFIES",
+        "from": "p1-c35",
+        "targets": [
+          {
+            "key": "p1-c34"
+          }
+        ],
+        "operator": "all",
+        "scope": "Tõlgi kaasamise kulude kandmine",
+        "anchors": [
+          {
+            "source_unit_index": 20,
+            "start": 166,
+            "quote": "Tõlgi kaasamise kulud katab tõlgi kaasamist taotlenud menetlusosaline, kui seaduse või määrusega ei ole sätestatud teisiti või kui haldusorgan ei otsusta teisiti."
+          }
+        ]
+      },
+      {
+        "key": "p1-d15",
+        "type": "QUALIFIES",
+        "from": "p1-c37",
+        "targets": [
+          {
+            "key": "p1-c36"
+          }
+        ],
+        "operator": "all",
+        "scope": "Dokumendi kättetoimetamine esindajale või määratud isikule",
+        "anchors": [
+          {
+            "source_unit_index": 24,
+            "start": 325,
+            "quote": "Kui menetlusosalisel on esindaja või menetlusosaline on määranud dokumentide vastuvõtmiseks isiku, võib dokumendi kätte toimetada üksnes esindajale või dokumentide vastuvõtmiseks määratud isikule ning dokument loetakse ka menetlusosalisele kättetoimetatuks."
+          }
+        ]
+      },
+      {
+        "key": "p2-d1",
+        "type": "REQUIRES",
+        "from": "p2-c6",
+        "targets": [
+          {
+            "key": "p2-c7"
+          }
+        ],
+        "operator": "any",
+        "scope": "Menetluse uuendamiseks peab esinema vähemalt üks § 44 lõike 1 alus; menetlusosalise taotlus on samuti nõutav.",
+        "anchors": [
+          {
+            "source_unit_index": 43,
+            "start": 34,
+            "quote": "Haldusorgan uuendab menetlusosalise taotlusel haldusmenetluse, kui:"
+          }
+        ]
+      },
+      {
+        "key": "p2-d2",
+        "type": "QUALIFIES",
+        "from": "p2-c10",
+        "targets": [
+          {
+            "key": "p2-c9"
+          }
+        ],
+        "operator": "all",
+        "scope": "Avatud menetluse kohustus õigusakti muutmisel ja kehtetuks tunnistamisel.",
+        "anchors": [
+          {
+            "source_unit_index": 45,
+            "start": 293,
+            "quote": "Kui avatud menetluse läbiviimine on kohustuslik õigusakti andmiseks, viiakse avatud menetlus läbi ka õigusakti muutmiseks ja kehtetuks tunnistamiseks."
+          }
+        ]
+      },
+      {
+        "key": "p2-d3",
+        "type": "EXCEPTION_TO",
+        "from": "p2-c11",
+        "targets": [
+          {
+            "key": "p2-c9"
+          }
+        ],
+        "operator": "all",
+        "scope": "Ilmselgelt põhjendamatu taotluse rahuldamata jätmisel võib avatud menetluse ära jätta, kuid arvamus ja vastuväited kuulatakse ära.",
+        "anchors": [
+          {
+            "source_unit_index": 45,
+            "start": 450,
+            "quote": "Ilmselgelt põhjendamatu taotluse võib haldusorgan jätta rahuldamata avatud menetlust läbi viimata."
+          }
+        ]
+      },
+      {
+        "key": "p2-d4",
+        "type": "QUALIFIES",
+        "from": "p2-c18",
+        "targets": [
+          {
+            "key": "p2-c19"
+          }
+        ],
+        "operator": "all",
+        "scope": "Kõrvaltingimuse kehtestamise alused.",
+        "anchors": [
+          {
+            "source_unit_index": 52,
+            "start": 441,
+            "quote": "Haldusaktile võib kehtestada kõrvaltingimuse:"
+          }
+        ]
+      },
+      {
+        "key": "p2-d5",
+        "type": "QUALIFIES",
+        "from": "p2-c20",
+        "targets": [
+          {
+            "key": "p2-c19"
+          }
+        ],
+        "operator": "all",
+        "scope": "Haldusakti põhjendamise nõuded.",
+        "anchors": [
+          {
+            "source_unit_index": 55,
+            "start": 269,
+            "quote": "Haldusakti põhjenduses tuleb märkida haldusakti andmise faktiline ja õiguslik alus."
+          }
+        ]
+      },
+      {
+        "key": "p2-d6",
+        "type": "EXCEPTION_TO",
+        "from": "p2-c21",
+        "targets": [
+          {
+            "key": "p2-c23"
+          }
+        ],
+        "operator": "all",
+        "scope": "Vaidlustamisviite puudumine ei muuda haldusakti kehtivust ega vaidlustamise tähtaega.",
+        "anchors": [
+          {
+            "source_unit_index": 56,
+            "start": 133,
+            "quote": "Vaidlustamisviite puudumine ei mõjuta haldusakti kehtivust, vaidlustamise tähtaega"
+          }
+        ]
+      },
+      {
+        "key": "p2-d7",
+        "type": "EXCEPTION_TO",
+        "from": "p2-c22",
+        "targets": [
+          {
+            "key": "p2-c19"
+          }
+        ],
+        "operator": "all",
+        "scope": "Menetlus- ja vormirikkumine ei anna nimetatud tingimusel iseseisvat alust kehtetuks tunnistamise nõudmiseks.",
+        "anchors": [
+          {
+            "source_unit_index": 57,
+            "start": 54,
+            "quote": "Haldusakti kehtetuks tunnistamist ei saa nõuda üksnes põhjusel"
+          }
+        ]
+      },
+      {
+        "key": "p2-d8",
+        "type": "QUALIFIES",
+        "from": "p2-c25",
+        "targets": [
+          {
+            "key": "p2-c26"
+          },
+          {
+            "key": "p2-c27"
+          }
+        ],
+        "operator": "all",
+        "scope": "Kehtetuks tunnistamise üldine kaalutlusõigus ja seadusest tulenevad erandid.",
+        "anchors": [
+          {
+            "source_unit_index": 63,
+            "start": 280,
+            "quote": "Haldusorgan otsustab haldusakti kehtetuks tunnistamise kaalutlusõiguse kohaselt"
+          }
+        ]
+      },
+      {
+        "key": "p2-d9",
+        "type": "REQUIRES",
+        "from": "p2-c27",
+        "targets": [
+          {
+            "key": "p2-c28"
+          }
+        ],
+        "operator": "any",
+        "scope": "Õiguspärase haldusakti isiku kahjuks kehtetuks tunnistamiseks peab esinema üks § 66 lõike 2 alustest.",
+        "anchors": [
+          {
+            "source_unit_index": 65,
+            "start": 243,
+            "quote": "Haldusakti, mis andmise ajal oli õiguspärane, võib tunnistada isiku kahjuks edasiulatuvalt kehtetuks, kui:"
+          }
+        ]
+      },
+      {
+        "key": "p2-d10",
+        "type": "QUALIFIES",
+        "from": "p2-c29",
+        "targets": [
+          {
+            "key": "p2-c27"
+          }
+        ],
+        "operator": "all",
+        "scope": "Isiku kahjuks kehtetuks tunnistamisel tuleb arvestada usaldust ja nimetatud huve.",
+        "anchors": [
+          {
+            "source_unit_index": 66,
+            "start": 34,
+            "quote": "Isiku kahjuks haldusakti kehtetuks tunnistamist otsustades arvestab haldusorgan"
+          }
+        ]
+      },
+      {
+        "key": "p2-d11",
+        "type": "EXCEPTION_TO",
+        "from": "p2-c31",
+        "targets": [
+          {
+            "key": "p2-c29"
+          }
+        ],
+        "operator": "all",
+        "scope": "§ 67 lõikes 4 nimetatud juhtudel ei saa isik usaldusele tugineda.",
+        "anchors": [
+          {
+            "source_unit_index": 66,
+            "start": 865,
+            "quote": "Isik ei saa haldusakti kehtetuks tunnistamisel tugineda usaldusele, kui:"
+          }
+        ]
+      },
+      {
+        "key": "p2-d12",
+        "type": "REQUIRES",
+        "from": "p2-c32",
+        "targets": [
+          {
+            "key": "p2-c6"
+          }
+        ],
+        "operator": "all",
+        "scope": "Kehtetuks tunnistamise taotluse õigus on piiratud § 44 uuendamistaotluse esitamise võimalusega.",
+        "anchors": [
+          {
+            "source_unit_index": 67,
+            "start": 62,
+            "quote": "Isikul on õigus taotleda haldusakti kehtetuks tunnistamist üksnes juhul, kui ta võib taotleda käesoleva seaduse § 44 alusel haldusmenetluse uuendamist."
+          }
+        ]
+      },
+      {
+        "key": "p2-d13",
+        "type": "QUALIFIES",
+        "from": "p2-c35",
+        "targets": [
+          {
+            "key": "p2-c33"
+          }
+        ],
+        "operator": "all",
+        "scope": "Vaide esitamise tähtaeg.",
+        "anchors": [
+          {
+            "source_unit_index": 74,
+            "start": 32,
+            "quote": "Vaie haldusaktile või toimingule tuleb esitada 30 päeva jooksul"
+          }
+        ]
+      },
+      {
+        "key": "p2-d14",
+        "type": "QUALIFIES",
+        "from": "p2-c36",
+        "targets": [
+          {
+            "key": "p2-c35"
+          }
+        ],
+        "operator": "all",
+        "scope": "Tähtaja ennistamise tingimused viidatakse §-le 34, mille sisu ei sisaldu käesolevas osas.",
+        "anchors": [
+          {
+            "source_unit_index": 76,
+            "start": 34,
+            "quote": "Vaide esitamise tähtaja võib ennistada käesoleva seaduse §-s 34 sätestatud tingimustel."
+          }
+        ]
+      },
+      {
+        "key": "p3-d1",
+        "type": "QUALIFIES",
+        "from": "p3-c3",
+        "targets": [
+          {
+            "key": "p3-c1"
+          }
+        ],
+        "operator": "all",
+        "scope": "Vaide rahuldamata jätmisel lisanduvad § 86 lõikes 1 nimetatud nõuetele põhjendamise ja kaebuse esitamise selgituse nõuded.",
+        "anchors": [
+          {
+            "source_unit_index": 85,
+            "start": 238,
+            "quote": "lisaks käesoleva paragrahvi lõikes 1 sätestatud nõuetele olema põhjendatud ja sisaldama selgitust halduskohtule kaebuse esitamise kohta."
+          }
+        ]
+      },
+      {
+        "key": "p3-d2",
+        "type": "REQUIRES",
+        "from": "p3-c4",
+        "targets": [
+          {
+            "key": "p3-c1"
+          },
+          {
+            "key": "p3-c3"
+          }
+        ],
+        "operator": "all",
+        "scope": "Vaide tagastamine vormistatakse § 86 lõigete 1 ja 2 kohaselt.",
+        "anchors": [
+          {
+            "source_unit_index": 85,
+            "start": 381,
+            "quote": "Käesoleva paragrahvi lõigete 1 ja 2 kohaselt vormistatakse ka vaide tagastamine haldusorgani poolt."
+          }
+        ]
+      },
+      {
+        "key": "p3-d3",
+        "type": "REQUIRES",
+        "from": "p3-c5",
+        "targets": [
+          {
+            "key": "p3-c6"
+          },
+          {
+            "key": "p3-c7"
+          }
+        ],
+        "operator": "any",
+        "scope": "Kaebuse esitamise õiguse alused on vaide rahuldamata jäämine või õiguste rikkumine vaidemenetluses.",
+        "anchors": [
+          {
+            "source_unit_index": 86,
+            "start": 42,
+            "quote": "kelle vaie jäi rahuldamata või kelle õigusi vaidemenetluses rikuti"
+          }
+        ]
+      },
+      {
+        "key": "p3-d4",
+        "type": "REQUIRES",
+        "from": "p3-c11",
+        "targets": [
+          {
+            "key": "p3-c13"
+          },
+          {
+            "key": "p3-c20"
+          }
+        ],
+        "operator": "all",
+        "scope": "Õiguspärasuse nõuded hõlmavad kehtiva õigusega kooskõla, vorminõudeid ning volitusnormi ja volitatud haldusorgani nõudeid.",
+        "anchors": [
+          {
+            "source_unit_index": 88,
+            "start": 68,
+            "quote": "kooskõlas kehtiva õigusega, vastab vorminõuetele ja kui selle on seaduses ettenähtud korras volitusnormi alusel andnud volitusnormis nimetatud haldusorgan."
+          }
+        ]
+      },
+      {
+        "key": "p3-d5",
+        "type": "EXCEPTION_TO",
+        "from": "p3-c14",
+        "targets": [
+          {
+            "key": "p3-c13"
+          }
+        ],
+        "operator": "all",
+        "scope": "Kohaliku elu küsimuse korraldamiseks kohaliku omavalitsuse organi määruse andmisel on volitusnormita andmine lubatud, välja arvatud kui seaduses on volitusnorm olemas.",
+        "anchors": [
+          {
+            "source_unit_index": 89,
+            "start": 155,
+            "quote": "Kohaliku elu küsimuse korraldamiseks võib kohaliku omavalitsuse organ anda määruse volitusnormita, välja arvatud juhul, kui seaduses on volitusnorm olemas."
+          }
+        ]
+      },
+      {
+        "key": "p3-d6",
+        "type": "EXCEPTION_TO",
+        "from": "p3-c15",
+        "targets": [
+          {
+            "key": "p3-c13"
+          }
+        ],
+        "operator": "all",
+        "scope": "§ 90 lõiget 1 ei kohaldata volitusnormita antud määruse kehtetuks tunnistamisel haldusorgani poolt.",
+        "anchors": [
+          {
+            "source_unit_index": 89,
+            "start": 317,
+            "quote": "Käesoleva paragrahvi lõiget 1 ei kohaldata volitusnormita antud määruse kehtetuks tunnistamisel haldusorgani poolt."
+          }
+        ]
+      },
+      {
+        "key": "p3-d7",
+        "type": "REQUIRES",
+        "from": "p3-c16",
+        "targets": [
+          {
+            "key": "p3-c13"
+          }
+        ],
+        "operator": "all",
+        "scope": "Edasivolitus on lubatud ainult juhul, kui võimalus on volitusnormis ette nähtud.",
+        "anchors": [
+          {
+            "source_unit_index": 90,
+            "start": 131,
+            "quote": "ainult juhul, kui see võimalus on volitusnormis ette nähtud."
+          }
+        ]
+      },
+      {
+        "key": "p3-d8",
+        "type": "REQUIRES",
+        "from": "p3-c17",
+        "targets": [
+          {
+            "key": "p3-c31"
+          }
+        ],
+        "operator": "all",
+        "scope": "Küsimuse otsustamine peab olema seadusega antud kohaliku omavalitsuse pädevusse ning küsimus ei tohi kuuluda volikogu ainupädevusse.",
+        "anchors": [
+          {
+            "source_unit_index": 90,
+            "start": 198,
+            "quote": "Kui küsimuse otsustamine on seadusega antud kohaliku omavalitsuse pädevusse, siis igal konkreetsel juhul, kui küsimus ei ole seadusega antud valla- või linnavolikogu ainupädevusse"
+          }
+        ]
+      },
+      {
+        "key": "p3-d9",
+        "type": "REQUIRES",
+        "from": "p3-c30",
+        "targets": [
+          {
+            "key": "p3-c13"
+          }
+        ],
+        "operator": "all",
+        "scope": "Piiritlemata juhtumite halduslepingu sõlmimiseks peab olema seaduses sisalduv volitusnorm.",
+        "anchors": [
+          {
+            "source_unit_index": 96,
+            "start": 118,
+            "quote": "vaid seaduses sisalduva volitusnormi alusel."
+          }
+        ]
+      },
+      {
+        "key": "p3-d10",
+        "type": "QUALIFIES",
+        "from": "p3-c33",
+        "targets": [
+          {
+            "key": "p3-c32"
+          }
+        ],
+        "operator": "all",
+        "scope": "Haldusakti asendava lepingu kohustused peavad vastama lepingu eesmärgile ja haldusorgani lepingulistele kohustustele.",
+        "anchors": [
+          {
+            "source_unit_index": 97,
+            "start": 282,
+            "quote": "Haldusakti andmise asemel sõlmitud halduslepinguga isikule pandavad kohustused peavad olema vastavuses lepingu eesmärgiga ja lepingust tulenevate haldusorgani kohustustega."
+          }
+        ]
+      },
+      {
+        "key": "p3-d11",
+        "type": "QUALIFIES",
+        "from": "p3-c35",
+        "targets": [
+          {
+            "key": "p3-c27"
+          }
+        ],
+        "operator": "all",
+        "scope": "Nimetatud õiguspärasuse nõudeid kohaldatakse halduslepingule ulatuses, milles need ei ole vastuolus halduslepingu olemusega.",
+        "anchors": [
+          {
+            "source_unit_index": 99,
+            "start": 163,
+            "quote": "Nimetatud nõudeid kohaldatakse halduslepingule niivõrd, kuivõrd need ei ole vastuolus halduslepingu olemusega."
+          }
+        ]
+      },
+      {
+        "key": "p3-d12",
+        "type": "QUALIFIES",
+        "from": "p3-c37",
+        "targets": [
+          {
+            "key": "p3-c36"
+          }
+        ],
+        "operator": "all",
+        "scope": "Kolmanda isiku õigusi piirava üksikjuhtumi halduslepingu jõustumise eritingimus.",
+        "anchors": [
+          {
+            "source_unit_index": 100,
+            "start": 150,
+            "quote": "Kui käesoleva paragrahvi lõikes 1 sätestatud haldusleping piirab kolmanda isiku õigusi, jõustub leping alates kolmanda isiku poolt sellekohase kirjaliku nõusoleku andmisest."
+          }
+        ]
+      },
+      {
+        "key": "p3-d13",
+        "type": "QUALIFIES",
+        "from": "p3-c38",
+        "targets": [
+          {
+            "key": "p3-c36"
+          }
+        ],
+        "operator": "all",
+        "scope": "Teise haldusorgani nõusolekut eeldava haldusakti asemel sõlmitud lepingu jõustumise tingimus.",
+        "anchors": [
+          {
+            "source_unit_index": 100,
+            "start": 422,
+            "quote": "ei jõustu see enne teise haldusorgani nõusoleku saamist."
+          }
+        ]
+      }
+    ],
+    "gaps": [
+      {
+        "key": "p2-g1",
+        "from": "p2-c6",
+        "statement": "Menetluse uuendamise taotlus tuleb esitada § 44 lõikes 3 sätestatud tähtajal ja korras; teiste osade võimalikud asjakohased sätted ei sisaldu selles dokumendiosas.",
+        "reason": "See osa annab ühekuulise tähtaja, kuid uuendamise muude tingimuste võimalik täpsustus võib paikneda teises dokumendiosas.",
+        "anchors": [
+          {
+            "source_unit_index": 43,
+            "start": 792,
+            "quote": "Haldusmenetluse uuendamise taotlus tuleb esitada haldusmenetluse läbiviinud haldusorganile ühe kuu jooksul haldusmenetluse uuendamise asjaolude teadasaamisest alates."
+          }
+        ]
+      },
+      {
+        "key": "p2-g2",
+        "from": "p2-c36",
+        "statement": "Vaide esitamise tähtaja ennistamise tingimused on sätestatud §-s 34.",
+        "reason": "§ 34 tingimuste sisu ei ole selle dokumendiosa fragmentides esitatud.",
+        "anchors": [
+          {
+            "source_unit_index": 76,
+            "start": 34,
+            "quote": "Vaide esitamise tähtaja võib ennistada käesoleva seaduse §-s 34 sätestatud tingimustel."
+          }
+        ]
+      },
+      {
+        "key": "p2-g3",
+        "from": null,
+        "statement": "Vaide tagastamise tõttu edasikaebamise kord tuleb selgitada, kuid korra sisu siin ei esitata.",
+        "reason": "§ 79 lõige 3 kohustab selgitama edasikaebamise korda, kuid ei kirjelda seda.",
+        "anchors": [
+          {
+            "source_unit_index": 78,
+            "start": 606,
+            "quote": "Teates tuleb vaide tagastamist põhjendada ning selgitada edasikaebamise korda."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -10,6 +10,7 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | kontaktid | 0 | 10 | Kontaktide otsingumaterjal; kattuvus KOV-pakettidega vajab ühendamist. |
 | organisatsioonid | 1 | 3 | Organisatsiooni korjatud sisu ja allikad. |
 | oigusaktid | 145 | 156 | XML-aktid, sh eri redaktsioonid; kehtivus tuleb vastuvõtul kontrollida. Aktide lisadest tuletatud allikad (`lisad/`): kaks tabelit (ADR-050) ja üheksa omavalitsuse lisa teksti (ADR-053). |
+| teadmised | 0 | 7 | Allikapõhised teadmiskaardid (tingimused, erandid, mõisted ja nende seosed) valitud allikatele; iga fail on seotud oma allika räsiga (ADR-054). |
 | register | 0 | 2 | Kavandatud allikate register, mitte teadmistekst. |
 | taastatud_allikad | 0 | 22 | Serveri vanast indeksist taastatud tekst. Enne importi võrrelda põhipakettidega. |
 
@@ -1315,6 +1316,13 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | 404052016003-lisa-3.meta.json | [oigusaktid/lisad/404052016003-lisa-3.meta.json](<oigusaktid/lisad/404052016003-lisa-3.meta.json>) |
 | 407052021021-lisa.json | [oigusaktid/lisad/407052021021-lisa.json](<oigusaktid/lisad/407052021021-lisa.json>) |
 | 407052021021-lisa.meta.json | [oigusaktid/lisad/407052021021-lisa.meta.json](<oigusaktid/lisad/407052021021-lisa.meta.json>) |
+| 103062026023.knowledge.json | [teadmised/103062026023.knowledge.json](<teadmised/103062026023.knowledge.json>) |
+| 106072023031.knowledge.json | [teadmised/106072023031.knowledge.json](<teadmised/106072023031.knowledge.json>) |
+| 126092026005.knowledge.json | [teadmised/126092026005.knowledge.json](<teadmised/126092026005.knowledge.json>) |
+| 129082025009.knowledge.json | [teadmised/129082025009.knowledge.json](<teadmised/129082025009.knowledge.json>) |
+| 130062026065.knowledge.json | [teadmised/130062026065.knowledge.json](<teadmised/130062026065.knowledge.json>) |
+| 404072025017-lisa.knowledge.json | [teadmised/404072025017-lisa.knowledge.json](<teadmised/404072025017-lisa.knowledge.json>) |
+| 404072025017.knowledge.json | [teadmised/404072025017.knowledge.json](<teadmised/404072025017.knowledge.json>) |
 | 405092026051.xml | [oigusaktid/405092026051.xml](<oigusaktid/405092026051.xml>) |
 | 426092026047.xml | [oigusaktid/426092026047.xml](<oigusaktid/426092026047.xml>) |
 | 418082026033.xml | [oigusaktid/418082026033.xml](<oigusaktid/418082026033.xml>) |

@@ -36,6 +36,10 @@
     "taastatud_allikad": {
       "files": 22,
       "sources": 0
+    },
+    "teadmised": {
+      "files": 7,
+      "sources": 0
     }
   },
   "entries": [
@@ -21071,7 +21075,8 @@
       "duplicate_original_paths": [
         "KOV/kov_rt/404072025017.xml"
       ],
-      "review_status": "version_and_jurisdiction_validation_pending"
+      "review_status": "version_and_jurisdiction_validation_pending",
+      "knowledge_path": "teadmised/404072025017.knowledge.json"
     },
     {
       "path": "oigusaktid/404122020026.xml",
@@ -21842,7 +21847,8 @@
       "duplicate_original_paths": [
         "KOV/Seadused_rt/129082025009.akt"
       ],
-      "review_status": "version_and_jurisdiction_validation_pending"
+      "review_status": "version_and_jurisdiction_validation_pending",
+      "knowledge_path": "teadmised/129082025009.knowledge.json"
     },
     {
       "path": "oigusaktid/130122025036.xml",
@@ -22288,7 +22294,8 @@
       "role": "source",
       "sha256": "5e90ee632d23d0cf6e9c03ac6c59cce101446f8de9ed741cbc4a490f022b3f3f",
       "original_path": "riigiteataja.ee/et/akt/103062026023.xml",
-      "review_status": "version_and_jurisdiction_validation_pending"
+      "review_status": "version_and_jurisdiction_validation_pending",
+      "knowledge_path": "teadmised/103062026023.knowledge.json"
     },
     {
       "path": "oigusaktid/111072026120.xml",
@@ -22392,7 +22399,8 @@
       "role": "source",
       "sha256": "f1131403e9ea9492403edb0d25ec254b12cf7747362b4e7e73e2ca50b0c52120",
       "original_path": "riigiteataja.ee/et/akt/126092026005.xml",
-      "review_status": "version_and_jurisdiction_validation_pending"
+      "review_status": "version_and_jurisdiction_validation_pending",
+      "knowledge_path": "teadmised/126092026005.knowledge.json"
     },
     {
       "path": "oigusaktid/405092026051.xml",
@@ -22512,7 +22520,8 @@
       "role": "source",
       "sha256": "1a3bfd322dc14471631632b735295c3c3a5a8cfe12ac647759b6f7502010eb35",
       "original_path": "riigiteataja.ee/et/akt/130062026065.xml",
-      "review_status": "version_and_jurisdiction_validation_pending"
+      "review_status": "version_and_jurisdiction_validation_pending",
+      "knowledge_path": "teadmised/130062026065.knowledge.json"
     },
     {
       "path": "oigusaktid/106072023031.xml",
@@ -22520,7 +22529,8 @@
       "role": "source",
       "sha256": "12b6db27da2ecdc75cf785f1a1c68453d15598080949cfc7f04b1af0c6969059",
       "original_path": "riigiteataja.ee/et/akt/106072023031.xml",
-      "review_status": "version_and_jurisdiction_validation_pending"
+      "review_status": "version_and_jurisdiction_validation_pending",
+      "knowledge_path": "teadmised/106072023031.knowledge.json"
     },
     {
       "path": "oigusaktid/lisad/129082025009-abivahendite-loetelu.json",
@@ -22567,7 +22577,8 @@
       "review_status": "derived_annex_text_checked",
       "title": "Harku valla eelarvest makstavate sotsiaaltoetuste määrad ja piirmäärad: Harku Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise kord“ lisa",
       "document_id": "riigiteataja:404072025017:lisa:vvk-2025-m-14-lisa",
-      "metadata_path": "oigusaktid/lisad/404072025017-lisa.meta.json"
+      "metadata_path": "oigusaktid/lisad/404072025017-lisa.meta.json",
+      "knowledge_path": "teadmised/404072025017-lisa.knowledge.json"
     },
     {
       "path": "oigusaktid/lisad/404072025017-lisa.meta.json",
@@ -22719,6 +22730,55 @@
       "role": "metadata",
       "sha256": "7a8718eff4fc823a43ea8d62ae28771d28ae63c735653ec8e83bc8a02d7386c6",
       "original_path": "oigusaktid/lisad/407052021021-lisa.meta.json"
+    },
+    {
+      "path": "teadmised/103062026023.knowledge.json",
+      "category": "teadmised",
+      "role": "knowledge",
+      "sha256": "4278943ffa22c0136b366200effd0649086cd7e57c7800f09fbde55eb2e48569",
+      "source_path": "oigusaktid/103062026023.xml"
+    },
+    {
+      "path": "teadmised/106072023031.knowledge.json",
+      "category": "teadmised",
+      "role": "knowledge",
+      "sha256": "9461aeee5a418876facc7c4fcfaca7435fe8bd32ab197b005d5556e7279cada0",
+      "source_path": "oigusaktid/106072023031.xml"
+    },
+    {
+      "path": "teadmised/126092026005.knowledge.json",
+      "category": "teadmised",
+      "role": "knowledge",
+      "sha256": "d0e01e0ae6daf2a6c0a9409db7897113f1ff2e6b2ce9ffbbade6f4e506306978",
+      "source_path": "oigusaktid/126092026005.xml"
+    },
+    {
+      "path": "teadmised/129082025009.knowledge.json",
+      "category": "teadmised",
+      "role": "knowledge",
+      "sha256": "3c7e2d2aea22e8bdc24f18472281b23a9f2917ea1ba967b46b769321010f78e6",
+      "source_path": "oigusaktid/129082025009.xml"
+    },
+    {
+      "path": "teadmised/130062026065.knowledge.json",
+      "category": "teadmised",
+      "role": "knowledge",
+      "sha256": "6017e5d57a18b5c6a1c2c40cdaef6121b79fc8b2e5f7d8f74d4ce2968c8a1792",
+      "source_path": "oigusaktid/130062026065.xml"
+    },
+    {
+      "path": "teadmised/404072025017-lisa.knowledge.json",
+      "category": "teadmised",
+      "role": "knowledge",
+      "sha256": "e8e58297949ed8ca9a785c4711ced5007675a124343baad872ff335e1b4f267f",
+      "source_path": "oigusaktid/lisad/404072025017-lisa.json"
+    },
+    {
+      "path": "teadmised/404072025017.knowledge.json",
+      "category": "teadmised",
+      "role": "knowledge",
+      "sha256": "67e944b1f146f8148a0b806b68d002ec8bace9e41c153b12365488e47545a11a",
+      "source_path": "oigusaktid/404072025017.xml"
     }
   ],
   "original_path_base": "../Arhiiv/Andmebaasi_2026-09-07/Andmebaasi"
