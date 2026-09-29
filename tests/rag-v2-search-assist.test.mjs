@@ -90,7 +90,7 @@ test('search-assist-2: the plan names the message language, and the answer follo
   // A plan approved for search-assist-1 keeps the interface language.
   assert.equal(planLanguage({ searchAssist: 'rag-v2/search-assist-1' }, { queries: [], language: 'en' }), null);
   assert.equal(planLanguage({ searchAssist: 'rag-v2/search-assist-2' }, { queries: [], language: 'en' }), 'en');
-  assert.deepEqual(SEARCH_ASSIST_VERSIONS, ['rag-v2/search-assist-1', 'rag-v2/search-assist-2', 'rag-v2/search-assist-3', 'rag-v2/search-assist-4']);
+  assert.deepEqual(SEARCH_ASSIST_VERSIONS, ['rag-v2/search-assist-1', 'rag-v2/search-assist-2', 'rag-v2/search-assist-3', 'rag-v2/search-assist-4', 'rag-v2/search-assist-5']);
 });
 
 test('search-assist-4 (ADR-051): the plan names whose need the message is about and whose each named place is', async () => {
@@ -108,7 +108,13 @@ test('search-assist-4 (ADR-051): the plan names whose need the message is about 
   assert.equal(schema.person.enum, undefined);
   assert.deepEqual(schema.places.items.properties.relation.enum, ['lives', 'not', 'other']);
   assert.match(plan.instructions, /do not put another person's place into a query about someone else/);
-  assert.match(plan.instructions, /quote is the place name exactly as that message writes it/);
+  // search-assist-5 (Codex J2): a place names its message and quotes the clause with the person and the relation.
+  assert.match(plan.instructions, /turn is the number of the message it is in/);
+  assert.match(plan.instructions, /quote is the clause that shows the person and the relation/);
+  assert.deepEqual(schema.places.items.required, ['turn', 'quote', 'name', 'person', 'relation']);
+  // A place in another script carries its Estonian name, which the server links to a word of the clause.
+  assert.match(plan.instructions, /"Kose vald" for "в Козе"/);
+  assert.match(plan.instructions, /a village or district keeps its own name/);
   assert.match(plan.instructions, /person is always one person/);
   const current = { searchAssist: SEARCH_ASSIST_VERSION };
   assert.equal(planPerson(current, { person: ' naabrimees ' }), 'naabrimees');

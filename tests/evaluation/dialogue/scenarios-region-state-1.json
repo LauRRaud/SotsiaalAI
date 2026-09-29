@@ -1,0 +1,31 @@
+{
+  "schema_version": "rag-v2/dialogue-eval-2",
+  "purpose": "Codex follow-up review 29.09 (J1-J3), state v5: one reading of each person's municipality for both search lanes and the saved state. A negated place stays negated even when a search query names it, a clause of the person decides and not another sentence with the same place, two places of one person stay ambiguous, a move replaces the old place, and a place in another script is linked to the user's own word. Written before any run; run on the code before (v4) and after (v5) the change.",
+  "expectation_help": {
+    "region": "the municipal scope of the turn (the catalogue and the knowledge lane's municipal texts); null when the person the request is about has no one known municipality",
+    "state_region / person_regions": "the saved dialogue state: the focus person's region and the user's own region (\"user\")"
+  },
+  "scenarios": [
+    { "id": "negated-user-mother-kose", "title": "Kasutaja ei ela Koses, ema elab", "source": "Codex J2", "turns": [
+      { "mode": "new", "text": "Mina ei ela Kose vallas. Minu ema elab Kose vallas ja vajab koduteenust.", "expect": { "region": "kose_vald", "state_region": "kose_vald", "person_regions": { "user": null } } },
+      { "mode": "same", "text": "Aga mina ise? Kust mina oma elukohas abi saan, kui mul on võlad?", "expect": { "region": null, "person_regions": { "user": null } } }
+    ] },
+    { "id": "moved-away-no-new-place", "title": "Kolis Kosest ära, uus koht teadmata", "source": "Codex J1", "turns": [
+      { "mode": "new", "text": "Elasin Kose vallas, aga enam ma seal ei ela. Kust ma saan abi, kui mul pole raha üüri maksta?", "expect": { "region": null, "person_regions": { "user": null } } },
+      { "mode": "same", "text": "Kas Kose vallas on mingi toetus, mida ma veel saaksin?", "expect": { "person_regions": { "user": null } } }
+    ] },
+    { "id": "two-homes-ambiguous", "title": "Kaks kodu, piirkond jääb lahtiseks", "source": "Codex J3", "turns": [
+      { "mode": "new", "text": "Elan nii Harku vallas kui ka Kose vallas, mul on kaks kodu. Millist abi ma saan koduseks hoolduseks?", "expect": { "region": null, "person_regions": { "user": null } } },
+      { "mode": "same", "text": "Kuhu ma pöörduma peaksin?", "expect": { "region": null, "person_regions": { "user": null } } }
+    ] },
+    { "id": "moved-kose-to-harku", "title": "Kolimine Kosest Harkusse", "source": "Codex J3", "turns": [
+      { "mode": "new", "text": "Elan Kose vallas ja mul on raske toime tulla.", "expect": { "region": "kose_vald", "person_regions": { "user": "kose_vald" } } },
+      { "mode": "same", "text": "Ma ei ela enam Kose vallas, elan nüüd Harku vallas.", "expect": { "region": "harku_vald", "person_regions": { "user": "harku_vald" } } },
+      { "mode": "same", "text": "Kust ma saan toimetulekutoetust taotleda?", "expect": { "region": "harku_vald", "person_regions": { "user": "harku_vald" }, "must": ["Harku"] } }
+    ] },
+    { "id": "russian-mother-kose-self-tallinn", "title": "Venekeelne: ema Kose vallas, kasutaja Tallinnas", "source": "Codex J1-J3 (another script)", "turns": [
+      { "mode": "new", "text": "Моя мама живёт в Козе, ей нужна помощь по дому.", "expect": { "region": "kose_vald", "state_region": "kose_vald" } },
+      { "mode": "same", "text": "А я сама живу в Таллинне. Куда мне обратиться за помощью для себя?", "expect": { "region": "tallinn", "person_regions": { "user": "tallinn" } } }
+    ] }
+  ]
+}

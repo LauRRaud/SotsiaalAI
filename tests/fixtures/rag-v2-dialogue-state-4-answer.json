@@ -1,0 +1,277 @@
+{
+ "made_with": "21aabc81b",
+ "version": "m4-dialogue-state-4",
+ "draft": {
+  "kind": "grounded",
+  "blocks": [
+   {
+    "text": "Pöörduge Kose valla sotsiaaltöötaja poole.",
+    "factual": true,
+    "refs": [
+     "S1"
+    ]
+   }
+  ],
+  "limitations": [],
+  "clarification": null,
+  "dialogue_state": {
+   "new_facts": [
+    {
+     "topic": "ema elukoht",
+     "person": "ema",
+     "support": [
+      {
+       "turn": 2,
+       "quote": "Mu ema elab Kose vallas."
+      }
+     ]
+    }
+   ],
+   "superseded": [],
+   "needs": [
+    {
+     "candidate": "Koduteenus emale",
+     "based_on": [
+      "N1"
+     ]
+    }
+   ],
+   "unknowns": [],
+   "periods": [],
+   "language_hint": "et"
+  }
+ },
+ "packet": {
+  "tenant": "m4c-test",
+  "query_id": "q",
+  "reference_map": {
+   "S1": {
+    "document_id": "doc",
+    "document_version_id": "v1",
+    "evidence_id": "e1",
+    "pdf_pages": [
+     1
+    ]
+   }
+  },
+  "evidence": [
+   {
+    "evidence_id": "e1",
+    "source_text": "Source",
+    "bibliography": {
+     "title": "Source"
+    }
+   }
+  ],
+  "model_context": {
+   "evidence": [
+    {
+     "ref": "S1",
+     "text": "Source"
+    }
+   ]
+  }
+ },
+ "contextAudit": {
+  "context": {
+   "scopeId": "topic",
+   "personId": "person"
+  },
+  "selection": {},
+  "userTurns": [
+   {
+    "turnId": "t1",
+    "text": "Elan Tartu vallas ja mul on võlad.",
+    "mode": "new",
+    "correctionOf": null
+   },
+   {
+    "turnId": "t2",
+    "text": "Mu ema elab Kose vallas. Kuhu ta pöörduda saab?",
+    "mode": "same",
+    "correctionOf": null
+   }
+  ]
+ },
+ "stateContext": {
+  "regions": [
+   {
+    "region": "kose_vald",
+    "names": [
+     "Kose vald"
+    ]
+   },
+   {
+    "region": "tartu_vald",
+    "names": [
+     "Tartu vald"
+    ]
+   }
+  ]
+ },
+ "previous": {
+  "version": "m4-dialogue-state-4",
+  "scopeId": "topic",
+  "personId": "person",
+  "sourceTurnIds": [
+   "t1"
+  ],
+  "inputHash": "a1ef8481cd2bdac2b50a958ddc42fe62c5221140b047bb169b8d75fa12ebede6",
+  "value": {
+   "facts": [
+    {
+     "id": "F1",
+     "topic": "võlad",
+     "person": "user",
+     "status": "current",
+     "support": [
+      {
+       "turn": 1,
+       "quote": "mul on võlad"
+      }
+     ],
+     "superseded_by": null
+    }
+   ],
+   "needs": [],
+   "unknowns": [],
+   "periods": [],
+   "language_hint": "et",
+   "people": [
+    {
+     "person": "user",
+     "region": {
+      "id": "tartu_vald",
+      "status": "reported",
+      "support": [
+       {
+        "turn": 1,
+        "quote": "Elan Tartu vallas ja mul on võlad."
+       }
+      ]
+     }
+    }
+   ],
+   "focus": "user",
+   "model": {
+    "accepted": true,
+    "dropped": []
+   }
+  },
+  "hash": "7a96489996054324170b0eab1b0eb40f56b1b2af2f06b1f8d4849f99885a3208"
+ },
+ "server": {
+  "places": [
+   {
+    "person": "ema",
+    "region": "kose_vald",
+    "relation": "lives",
+    "quote": "Kose vallas",
+    "sentence": "Mu ema elab Kose vallas.",
+    "turn": 2
+   }
+  ],
+  "person": "ema"
+ },
+ "expected": {
+  "answer": {
+   "kind": "grounded",
+   "blocks": [
+    {
+     "text": "Pöörduge Kose valla sotsiaaltöötaja poole.",
+     "factual": true,
+     "refs": [
+      "S1"
+     ]
+    }
+   ],
+   "limitations": [],
+   "clarification": null
+  },
+  "audit": {
+   "version": "m4-dialogue-state-4",
+   "scopeId": "topic",
+   "personId": "person",
+   "sourceTurnIds": [
+    "t1",
+    "t2"
+   ],
+   "inputHash": "fd8dfdd3108224af4e53a244f210b29e5d003f2cf1a310b52267594453a4f205",
+   "value": {
+    "facts": [
+     {
+      "id": "F1",
+      "topic": "võlad",
+      "person": "user",
+      "status": "current",
+      "support": [
+       {
+        "turn": 1,
+        "quote": "mul on võlad"
+       }
+      ],
+      "superseded_by": null
+     },
+     {
+      "id": "F2",
+      "topic": "ema elukoht",
+      "person": "ema",
+      "status": "current",
+      "support": [
+       {
+        "turn": 2,
+        "quote": "Mu ema elab Kose vallas."
+       }
+      ],
+      "superseded_by": null
+     }
+    ],
+    "needs": [
+     {
+      "candidate": "Koduteenus emale",
+      "based_on": [
+       "F2"
+      ]
+     }
+    ],
+    "unknowns": [],
+    "periods": [],
+    "language_hint": "et",
+    "people": [
+     {
+      "person": "user",
+      "region": {
+       "id": "tartu_vald",
+       "status": "reported",
+       "support": [
+        {
+         "turn": 1,
+         "quote": "Elan Tartu vallas ja mul on võlad."
+        }
+       ]
+      }
+     },
+     {
+      "person": "ema",
+      "region": {
+       "id": "kose_vald",
+       "status": "reported",
+       "support": [
+        {
+         "turn": 2,
+         "quote": "Mu ema elab Kose vallas."
+        }
+       ]
+      }
+     }
+    ],
+    "focus": "ema",
+    "model": {
+     "accepted": true,
+     "dropped": []
+    }
+   },
+   "hash": "dc393d2fdacd1386ce55b454ac104a294a1686b8b5e2ca53ba2462ac5e040320"
+  }
+ }
+}

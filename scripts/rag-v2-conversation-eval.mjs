@@ -78,6 +78,11 @@ function observe(row, error) {
     // State v4 never falls back as a whole; a missing model state is its own drop (ADR-051).
     stateFallback: payload.dialogueStateFallback?.code ?? (payload.dialogueState?.value?.model?.accepted === false ? 'state_missing' : null),
     stateDropped: payload.dialogueState?.value?.model?.dropped?.map(item => item.reason) ?? [],
+    // The fact lifecycle checks (Codex 7.6): the saved facts with their status and quotes, and every left-out item.
+    facts: (payload.dialogueState?.value?.facts || []).map(({ id, person, status, support }) => ({ id, person, status, support })),
+    dropped: payload.dialogueState?.value?.model?.dropped ?? [],
+    // The plan's checked places (state v5: turn, person, region, relation or why unresolved): a place the plan left out shows here.
+    places: (payload.searchAssist?.places || []).map(({ turn, person, region, relation, reason }) => ({ turn, person, region, relation, ...(reason ? { reason } : {}) })),
     personRegions: Object.fromEntries((payload.dialogueState?.value?.people || []).map(entry => [entry.person.trim().toLowerCase(), entry.region.id])),
     timings: { searched: payload.timings?.phases?.searched ?? null, answered: payload.timings?.phases?.answered ?? null,
       search: payload.timings?.search?.since_start_ms?.merged ?? null, total: payload.timings?.validatedDraftMs ?? null },
