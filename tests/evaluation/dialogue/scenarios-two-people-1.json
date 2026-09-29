@@ -1,21 +1,116 @@
 {
   "schema_version": "rag-v2/dialogue-eval-2",
-  "purpose": "Targeted check for ADR-049 (29.09.2026): in one conversation about two people each keeps their own municipality. The owner's window test 28.09: the user in Tartu vald, the neighbour in Kose vald, then 'Teine asi: mul pole täna kusagil magada' got the Kose catalogue. Written before any run; run on the code before and after the change.",
+  "purpose": "Targeted check for ADR-049 (29.09.2026): in one conversation about two people each keeps their own municipality. The owner's window test 28.09: the user in Tartu vald, the neighbour in Kose vald, then 'Teine asi: mul pole täna kusagil magada' got the Kose catalogue. Written before any run; run on the code before and after the change. State expectations added 29.09 after ADR-049 (Codex F5): a right catalogue no longer hides a wrong or rejected state.",
   "expectation_help": {
-    "region": "the municipal scope of the turn (the catalogue); a request about the user keeps the user's municipality, one about the neighbour or the mother keeps theirs"
+    "region": "the municipal scope of the turn (the catalogue); a request about the user keeps the user's municipality, one about the neighbour or the mother keeps theirs",
+    "state_region / person_regions / person / state_kept": "the saved dialogue state (F5, 29.09): the focus person's region, the user's own region (\"user\"), whose need the plan read, and that the model's new state was not rejected"
   },
   "scenarios": [
-    { "id": "neighbour-kose-then-own-shelter", "title": "Kasutaja Tartu vallas, naaber Kose vallas, siis kasutaja enda ööbimine", "source": "window check 28.09", "turns": [
-      { "mode": "new", "text": "Elan Tartu vallas ja mul on suured võlad. Kes aitab?", "expect": { "region": "tartu_vald" } },
-      { "mode": "same", "text": "Mu naabrimees on eakas ja elab Kose vallas. Ta ei saa enam üksi hakkama, kuhu ta pöörduda saab?", "expect": { "region": "kose_vald" } },
-      { "mode": "same", "text": "Teine asi: mul pole täna kusagil magada.", "expect": { "region": "tartu_vald", "must_not": ["Kose"] } },
-      { "mode": "same", "text": "Aga naabrimees, kas talle saab koju abi tellida?", "expect": { "region": "kose_vald" } }
-    ] },
-    { "id": "mother-harku-then-self-tallinn", "title": "Ema Harku vallas, kasutaja Tallinnas", "source": "ADR-049", "turns": [
-      { "mode": "new", "text": "Mu ema elab Harku vallas ja vajab abi, et kodus toime tulla.", "expect": { "region": "harku_vald" } },
-      { "mode": "same", "text": "Kui palju see talle maksma läheb?", "expect": { "region": "harku_vald" } },
-      { "mode": "same", "text": "Ma ise elan Tallinnas ja jäin töötuks. Kas mina saan toimetulekutoetust?", "expect": { "region": "tallinn" } },
-      { "mode": "same", "text": "Ja ema, kas tema saaks sotsiaaltransporti?", "expect": { "region": "harku_vald" } }
-    ] }
+    {
+      "id": "neighbour-kose-then-own-shelter",
+      "title": "Kasutaja Tartu vallas, naaber Kose vallas, siis kasutaja enda ööbimine",
+      "source": "window check 28.09",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Elan Tartu vallas ja mul on suured võlad. Kes aitab?",
+          "expect": {
+            "region": "tartu_vald",
+            "state_region": "tartu_vald",
+            "person_regions": {
+              "user": "tartu_vald"
+            }
+          }
+        },
+        {
+          "mode": "same",
+          "text": "Mu naabrimees on eakas ja elab Kose vallas. Ta ei saa enam üksi hakkama, kuhu ta pöörduda saab?",
+          "expect": {
+            "region": "kose_vald",
+            "state_region": "kose_vald",
+            "person_regions": {
+              "user": "tartu_vald"
+            },
+            "state_kept": true
+          }
+        },
+        {
+          "mode": "same",
+          "text": "Teine asi: mul pole täna kusagil magada.",
+          "expect": {
+            "region": "tartu_vald",
+            "must_not": [
+              "Kose"
+            ],
+            "person": "user",
+            "state_region": "tartu_vald",
+            "person_regions": {
+              "user": "tartu_vald"
+            },
+            "state_kept": true
+          }
+        },
+        {
+          "mode": "same",
+          "text": "Aga naabrimees, kas talle saab koju abi tellida?",
+          "expect": {
+            "region": "kose_vald",
+            "state_region": "kose_vald",
+            "person_regions": {
+              "user": "tartu_vald"
+            },
+            "state_kept": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "mother-harku-then-self-tallinn",
+      "title": "Ema Harku vallas, kasutaja Tallinnas",
+      "source": "ADR-049",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Mu ema elab Harku vallas ja vajab abi, et kodus toime tulla.",
+          "expect": {
+            "region": "harku_vald",
+            "state_region": "harku_vald"
+          }
+        },
+        {
+          "mode": "same",
+          "text": "Kui palju see talle maksma läheb?",
+          "expect": {
+            "region": "harku_vald",
+            "state_region": "harku_vald",
+            "state_kept": true
+          }
+        },
+        {
+          "mode": "same",
+          "text": "Ma ise elan Tallinnas ja jäin töötuks. Kas mina saan toimetulekutoetust?",
+          "expect": {
+            "region": "tallinn",
+            "person": "user",
+            "person_regions": {
+              "user": "tallinn"
+            },
+            "state_kept": true
+          }
+        },
+        {
+          "mode": "same",
+          "text": "Ja ema, kas tema saaks sotsiaaltransporti?",
+          "expect": {
+            "region": "harku_vald",
+            "state_region": "harku_vald",
+            "person_regions": {
+              "user": "tallinn"
+            },
+            "state_kept": true
+          }
+        }
+      ]
+    }
   ]
 }

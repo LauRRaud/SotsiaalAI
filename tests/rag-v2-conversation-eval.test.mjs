@@ -81,3 +81,22 @@ test('catalogue v4: an honest limit for a day without a legal text; an invented 
   // Codex's negative example: a doubt about something else does not excuse an invented fee.
   assert.equal(verdict('31. oktoobril on tasu 999 eurot. Sinu pensioni suurust ei saa kinnitada.'), 'answer');
 });
+
+test('the saved state is judged too (Codex F5): a right catalogue with a wrong or rejected state is a state failure', async () => {
+  const expect = { region: 'harku_vald', state_region: 'harku_vald', person_regions: { user: 'harku_vald' }, person: 'user', state_kept: true };
+  const kept = observed({ stateRegion: 'harku_vald', personRegions: { user: 'harku_vald' }, person: 'user', stateFallback: null });
+  assert.equal(checkTurn(expect, kept).verdict, 'passed');
+  // Codex's synthetic turn: the catalogue is Harku, the saved state Kose, and the model's new state was rejected.
+  const hidden = checkTurn(expect, observed({ stateRegion: 'kose_vald', personRegions: { user: 'kose_vald' }, person: 'user', stateFallback: 'invalid_dialogue_state' }));
+  assert.equal(hidden.verdict, 'state');
+  assert.deepEqual(hidden.checks.filter(check => !check.ok).map(check => check.key), ['state_region', 'person_regions', 'state_kept']);
+  assert.equal(checkTurn({ person: 'ema' }, kept).verdict, 'state');
+  // A person the state does not list has no region.
+  assert.equal(checkTurn({ person_regions: { user: null } }, observed({ personRegions: { ema: 'kose_vald' } })).verdict, 'passed');
+  assert.deepEqual(validateCatalogue({ scenarios: [{ id: 'x', turns: [{ mode: 'new', text: 'a', expect: { person_regions: {}, state_kept: false } }] }] }),
+    ['x turn 1: person_regions needs persons', 'x turn 1: state_kept is true or absent']);
+  for (const version of [1, 2]) {
+    const catalogue = JSON.parse(await fs.readFile(`tests/evaluation/dialogue/scenarios-two-people-${version}.json`, 'utf8'));
+    assert.deepEqual(validateCatalogue(catalogue), [], `two people ${version}`);
+  }
+});
