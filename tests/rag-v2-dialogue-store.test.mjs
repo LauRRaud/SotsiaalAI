@@ -7,7 +7,7 @@ import { PilotStore } from '../lib/rag-v2/pilot/store.js';
 import { PilotService } from '../lib/rag-v2/pilot/service.js';
 import { DIALOGUE_VERSION, DIALOGUE_LIMITS } from '../lib/rag-v2/pilot/dialogue.js';
 import { embeddingConfig } from '../lib/rag-v2/search/embedding.js';
-import { DIALOGUE_STATE_VERSION } from '../lib/rag-v2/pilot/dialogue-state.js';
+import { DIALOGUE_STATE_VERSION, PERSON_DIALOGUE_STATE_VERSION } from '../lib/rag-v2/pilot/dialogue-state.js';
 
 const url = new URL(process.env.M4_TEST_DATABASE_URL || 'postgres://invalid/invalid');
 if (!['localhost', '127.0.0.1'].includes(url.hostname) || url.pathname !== '/sotsiaal_ai_m4_dev') throw Error('explicit isolated M4_TEST_DATABASE_URL required');
@@ -17,11 +17,11 @@ const originalFetch = globalThis.fetch;
 globalThis.fetch = async () => { throw Error('NETWORK_FORBIDDEN_IN_TEST'); };
 test.after(() => { globalThis.fetch = originalFetch; });
 
-async function fixture(t, stateFor = null) {
+async function fixture(t, stateFor = null, stateVersion = DIALOGUE_STATE_VERSION) {
   const user = await db.user.create({ data: { email: `m4c-${randomUUID()}@example.invalid` } });
   const conv = await db.conversation.create({ data: { userId: user.id, role: 'CLIENT', metadata: { m4: true }, expiresAt: null } });
   const config = { id: randomUUID(), configHash: randomUUID(), tenant: 'm4c-test', mode: 'real', users: [user.id], documents: { doc: 'v1' },
-    dialogueVersion: DIALOGUE_VERSION, ...(stateFor ? { dialogueStateVersion: DIALOGUE_STATE_VERSION } : {}),
+    dialogueVersion: DIALOGUE_VERSION, ...(stateFor ? { dialogueStateVersion: stateVersion } : {}),
     embedding: embeddingConfig({ embedding_mode: 'real', provider: 'openai', model: 'text-embedding-3-large', dimensions: 3072, endpoint: 'https://api.openai.com/v1/embeddings' }),
     model: 'gpt-5.6-luna', reasoning: 'low', maxInputTokens: 64000, maxOutputTokens: 1000, expiresAt: null, retentionHours: null,
     prices: { embeddingInput: 1, answerInput: 1, answerOutput: 1 }, budget: { attempts: 24, embeddingAttempts: 12, answerAttempts: 12, tokens: 1000000, nanoUsd: 1000000 } };
@@ -101,6 +101,27 @@ test('dialogue state DB: one call per turn, old answer selection keeps newer cor
   assert.deepEqual((await f.row(back.id)).payload.dialogue.previousState, corrected);
   assert.equal(f.calls.length, 6);
   assert(f.calls.every(call => call.stage === 'answer'));
+});
+
+test('dialogue state DB (ADR-049): a v3 state with persons is the memory of the next turn; a renamed topic and a left-out person are carried', async t => {
+  const person = (label, facts) => ({ facts, needs: [], unknowns: [], language_hint: 'et', periods: [], people: [{ person: label, region: { id: null, status: 'unknown', support: [] } }], focus: label });
+  const debts = userFact('debts', 1, 'Mul on võlad.');
+  let draft = person('user', [debts]);
+  const f = await fixture(t, () => draft, PERSON_DIALOGUE_STATE_VERSION);
+  await f.run('Mul on võlad.', 'new');
+  // The neighbour's turn: the model renames the user's fact and lists only the neighbour.
+  draft = person('naabrimees', [{ ...debts, topic: 'rahamured' }, { ...userFact('neighbour help', 2, 'Naaber vajab abi.'), subject: 'other' }]);
+  const second = await f.run('Naaber vajab abi.');
+  const kept = (await f.row(second.id)).payload;
+  assert.equal(kept.dialogueStateFallback, undefined);
+  assert.equal(kept.dialogueState.version, PERSON_DIALOGUE_STATE_VERSION);
+  assert.equal(kept.dialogueState.value.facts[0].topic, 'debts');
+  assert.deepEqual(kept.dialogueState.value.people.map(entry => entry.person), ['naabrimees', 'user']);
+  draft = { ...kept.dialogueState.value, focus: 'user' };
+  const third = await f.run('Mul pole kusagil magada.');
+  const next = (await f.row(third.id)).payload;
+  assert.deepEqual(next.dialogue.previousState, kept.dialogueState.value);
+  assert.equal(next.dialogueState.value.focus, 'user');
 });
 
 test('dialogue state DB: invalid model state publishes the validated answer but never replaces memory; the correction survives into the next turn', async t => {

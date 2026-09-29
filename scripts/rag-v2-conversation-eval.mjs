@@ -35,6 +35,7 @@ const { municipalDirectoryAdapter } = await import('../lib/rag-v2/adapters/munic
 const { pilotExpiry } = await import('../lib/rag-v2/pilot/lifetime.js');
 const { renderAnswer } = await import('../lib/rag-v2/pilot/presentation.js');
 const { detectCrisis } = await import('../lib/chat/safety.js');
+const { focusRegion } = await import('../lib/rag-v2/pilot/record-scope.js');
 
 const plan = JSON.parse(await fs.readFile(process.env.M4_PILOT_CONFIG, 'utf8'));
 const userId = plan.users[0];
@@ -72,7 +73,8 @@ function observe(row, error) {
     found: [...new Map(packet.evidence.map(evidence => [evidence.document_id, { title: evidence.bibliography?.title || '', documentId: evidence.document_id }])).values()],
     cited: [...new Map(cited.map(source => [source.documentId, source])).values()],
     text, kind: answer?.kind ?? null, clarification: Boolean(answer?.clarification) || answer?.kind === 'clarification',
-    stateRegion: payload.dialogueState?.value?.region?.id ?? null,
+    stateRegion: payload.dialogueState?.value ? focusRegion(payload.dialogueState.value)?.id ?? null : null,
+    person: payload.searchAssist?.person ?? null, scopePerson: records.scope?.person ?? null,
     timings: { searched: payload.timings?.phases?.searched ?? null, answered: payload.timings?.phases?.answered ?? null,
       search: payload.timings?.search?.since_start_ms?.merged ?? null, total: payload.timings?.validatedDraftMs ?? null },
     usd: events.reduce((sum, event) => sum + (event.estimatedNanoUsd || 0), 0) / 1e9,
