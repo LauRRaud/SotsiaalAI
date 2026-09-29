@@ -10,7 +10,7 @@ import { PROMPT_VERSION, QUESTION_VERSION, digest } from '../lib/rag-v2/pilot/co
 import { DIALOGUE_VERSION, DIALOGUE_PROMPT_VERSION, DIALOGUE_SEARCH_VERSION } from '../lib/rag-v2/pilot/dialogue.js';
 import { RECORD_RETRIEVAL_VERSION } from '../lib/rag-v2/search/structured-record-source.js';
 import { DIALOGUE_STATE_VERSION, DIALOGUE_ANSWER_SCHEMA, TYPED_DIALOGUE_STATE_VERSION, TYPED_DIALOGUE_ANSWER_SCHEMA, PERSON_DIALOGUE_STATE_VERSION,
-  PERSON_DIALOGUE_ANSWER_SCHEMA } from '../lib/rag-v2/pilot/dialogue-state.js';
+  PERSON_DIALOGUE_ANSWER_SCHEMA, FACT_STATE_VERSION, FACT_STATE_ANSWER_SCHEMA } from '../lib/rag-v2/pilot/dialogue-state.js';
 import { UNIFIED_RETRIEVAL_VERSION } from '../lib/rag-v2/pilot/retrieval-plan.js';
 
 test('M4-C approval: dialogue needs its own contract and egress grant; old v3 remains readable and fixed-packet/reuse experiments cannot activate it', async t => {
@@ -37,14 +37,16 @@ test('M4-C approval: dialogue needs its own contract and egress grant; old v3 re
   const withState = { ...dialogue, dialogueStateVersion: DIALOGUE_STATE_VERSION, dialogueStateSchemaHash: digest(DIALOGUE_ANSWER_SCHEMA) };
   await write(withState, { dialogueEgress: true });
   assert.equal((await readPilotConfig('tester')).dialogueStateVersion, DIALOGUE_STATE_VERSION);
-  const unified = { ...withState, dialogueStateVersion: PERSON_DIALOGUE_STATE_VERSION, dialogueStateSchemaHash: digest(PERSON_DIALOGUE_ANSWER_SCHEMA),
+  const unified = { ...withState, dialogueStateVersion: FACT_STATE_VERSION, dialogueStateSchemaHash: digest(FACT_STATE_ANSWER_SCHEMA),
     retrievalRouting: UNIFIED_RETRIEVAL_VERSION, recordCatalogue: RECORD_RETRIEVAL_VERSION };
   await write(unified, { dialogueEgress: true });
   assert.equal((await readPilotConfig('tester')).retrievalRouting, UNIFIED_RETRIEVAL_VERSION);
-  // ADR-049: a unified plan with the typed state v2 restores its turns but cannot start a new model call.
-  await write({ ...unified, dialogueStateVersion: TYPED_DIALOGUE_STATE_VERSION, dialogueStateSchemaHash: digest(TYPED_DIALOGUE_ANSWER_SCHEMA) }, { dialogueEgress: true });
-  assert.equal((await readPilotConfig('tester', { purpose: 'read' })).dialogueStateVersion, TYPED_DIALOGUE_STATE_VERSION);
-  await assert.rejects(readPilotConfig('tester'), { code: 'invalid_unified_retrieval_plan' });
+  // ADR-049, ADR-051: a unified plan with the typed state v2 or v3 restores its turns but cannot start a new model call.
+  for (const [version, schema] of [[TYPED_DIALOGUE_STATE_VERSION, TYPED_DIALOGUE_ANSWER_SCHEMA], [PERSON_DIALOGUE_STATE_VERSION, PERSON_DIALOGUE_ANSWER_SCHEMA]]) {
+    await write({ ...unified, dialogueStateVersion: version, dialogueStateSchemaHash: digest(schema) }, { dialogueEgress: true });
+    assert.equal((await readPilotConfig('tester', { purpose: 'read' })).dialogueStateVersion, version);
+    await assert.rejects(readPilotConfig('tester'), { code: 'invalid_unified_retrieval_plan' });
+  }
   for (const change of [{ recordCatalogue: undefined }, { dialogueStateVersion: undefined },
     { budget: { ...unified.budget, embeddingAttempts: 0 } }, { mode: 'test' }]) {
     await write({ ...unified, ...change }, { dialogueEgress: true });
@@ -113,7 +115,7 @@ test('an open development chat: search assist needs the unified route; attempt c
     model: 'gpt-6-luna', endpoint: 'https://api.openai.com/v1/responses', accountProject: 'proj_synthetic', modelContract: 'responses-strict-reasoning-v1',
     reasoning: 'medium', maxInputTokens: 300000, maxOutputTokens: 4096, generationId: 'test-generation', implementationHash: (await implementationManifest()).hash,
     dialogueVersion: DIALOGUE_VERSION, promptVersion: DIALOGUE_PROMPT_VERSION, questionVersion: DIALOGUE_SEARCH_VERSION,
-    dialogueStateVersion: PERSON_DIALOGUE_STATE_VERSION, dialogueStateSchemaHash: digest(PERSON_DIALOGUE_ANSWER_SCHEMA),
+    dialogueStateVersion: FACT_STATE_VERSION, dialogueStateSchemaHash: digest(FACT_STATE_ANSWER_SCHEMA),
     retrievalRouting: UNIFIED_RETRIEVAL_VERSION, recordCatalogue: RECORD_RETRIEVAL_VERSION, searchAssist: SEARCH_ASSIST_VERSION,
     prices: { embeddingInput: 130, answerInput: 125, answerOutput: 500 }, questionPolicy: { mode: 'bounded_dynamic' },
     budget: { attempts: 4000, embeddingAttempts: 2000, answerAttempts: 2000, tokens: 400000000, nanoUsd: 3000000000 } };

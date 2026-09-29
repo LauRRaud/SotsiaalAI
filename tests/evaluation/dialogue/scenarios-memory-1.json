@@ -1,0 +1,23 @@
+{
+  "schema_version": "rag-v2/dialogue-eval-2",
+  "purpose": "Targeted check for ADR-051 (29.09.2026): the dialogue state keeps its memory through corrections, a retraction and more than twelve facts. Before v4 a renamed topic, a dropped fact or a thirteenth fact rejected the whole new state (Codex F3). Written before any run; run on the code before and after the change.",
+  "expectation_help": {
+    "state_kept": "the model's new state was kept (v1-v3: not rejected; v4: the model wrote a state)",
+    "person_regions": "the user's own municipality in the saved state",
+    "must": "the answer uses the corrected amount or circumstance"
+  },
+  "scenarios": [
+    { "id": "debts-corrected-and-retracted", "title": "Võlad: summa parandus ja elukorralduse tagasivõtmine", "source": "ADR-051", "turns": [
+      { "mode": "new", "text": "Mul on võlad ja elan üksi Harku vallas.", "expect": { "region": "harku_vald", "person_regions": { "user": "harku_vald" } } },
+      { "mode": "same", "text": "Võlgu on umbes 3000 eurot ja pank nõuab tagasimaksmist.", "expect": { "state_kept": true, "person_regions": { "user": "harku_vald" } } },
+      { "mode": "correction", "text": "Vabandust, võlgu on hoopis 5000 eurot.", "expect": { "state_kept": true, "must": ["5000|5 000"] } },
+      { "mode": "same", "text": "Tegelikult ma ei ela üksi, elan koos tütrega.", "expect": { "state_kept": true } },
+      { "mode": "same", "text": "Kes saab mind aidata?", "expect": { "region": "harku_vald", "state_kept": true, "must": ["võlanõusta"] } }
+    ] },
+    { "id": "many-circumstances", "title": "Üle kaheteistkümne asjaolu", "source": "ADR-051", "turns": [
+      { "mode": "new", "text": "Olen 78-aastane ja elan üksi Kose vallas. Pension on 700 eurot. Mul on diabeet ja kõrge vererõhk. Trepist ma enam käia ei saa. Poeg elab Tallinnas ja käib harva. Naaber aitab poes käia. Kodus pole vannituba. Talvel on küte kallis. Mul on kuuldeaparaat. Mul on raske puue. Arsti juurde on pikk tee.", "expect": { "region": "kose_vald", "person_regions": { "user": "kose_vald" } } },
+      { "mode": "same", "text": "Lisaks on mul võlg elektrifirmale ja ma kukkusin eile kodus.", "expect": { "state_kept": true, "person_regions": { "user": "kose_vald" } } },
+      { "mode": "same", "text": "Mis abi ma saan?", "expect": { "region": "kose_vald", "state_kept": true } }
+    ] }
+  ]
+}

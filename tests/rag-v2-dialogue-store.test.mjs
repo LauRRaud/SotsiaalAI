@@ -7,7 +7,7 @@ import { PilotStore } from '../lib/rag-v2/pilot/store.js';
 import { PilotService } from '../lib/rag-v2/pilot/service.js';
 import { DIALOGUE_VERSION, DIALOGUE_LIMITS } from '../lib/rag-v2/pilot/dialogue.js';
 import { embeddingConfig } from '../lib/rag-v2/search/embedding.js';
-import { DIALOGUE_STATE_VERSION, PERSON_DIALOGUE_STATE_VERSION } from '../lib/rag-v2/pilot/dialogue-state.js';
+import { DIALOGUE_STATE_VERSION, PERSON_DIALOGUE_STATE_VERSION, FACT_STATE_VERSION } from '../lib/rag-v2/pilot/dialogue-state.js';
 
 const url = new URL(process.env.M4_TEST_DATABASE_URL || 'postgres://invalid/invalid');
 if (!['localhost', '127.0.0.1'].includes(url.hostname) || url.pathname !== '/sotsiaal_ai_m4_dev') throw Error('explicit isolated M4_TEST_DATABASE_URL required');
@@ -124,6 +124,29 @@ test('dialogue state DB (ADR-049): a v3 state with persons is the memory of the 
   assert.equal(next.dialogueState.value.focus, 'user');
 });
 
+test('dialogue state DB (ADR-051): v4 records changes; the next turn sees current facts with ids; a broken model state still advances', async t => {
+  const inputs = [];
+  let draft = { new_facts: [{ topic: 'võlad', person: 'user', support: [{ turn: 1, quote: 'Mul on võlad.' }] }], superseded: [], needs: [], unknowns: [], periods: [], language_hint: 'et' };
+  const f = await fixture(t, dialogue => { inputs.push(dialogue); return draft; }, FACT_STATE_VERSION);
+  await f.run('Mul on võlad.', 'new');
+  draft = { new_facts: [{ topic: 'võlad', person: 'user', support: [{ turn: 2, quote: 'Võlgu on 3000 eurot.' }] }], superseded: [{ fact: 'F1', by: 'N1' }],
+    needs: [{ candidate: 'Võlanõustamine', based_on: ['N1'] }], unknowns: [], periods: [], language_hint: 'et' };
+  const second = await f.run('Võlgu on 3000 eurot.');
+  const kept = (await f.row(second.id)).payload;
+  assert.equal(kept.dialogueStateFallback, undefined);
+  assert.deepEqual(kept.dialogueState.value.facts.map(entry => [entry.id, entry.status]), [['F1', 'superseded'], ['F2', 'current']]);
+  assert.deepEqual(kept.dialogueState.value.needs, [{ candidate: 'Võlanõustamine', based_on: ['F2'] }]);
+  // The model sees the active view: the current fact with its id, not the replaced one.
+  assert.deepEqual(inputs[1].previousState.facts.map(entry => entry.id), ['F1']);
+  draft = 'broken';
+  const third = await f.run('Mul pole kusagil magada.');
+  const next = (await f.row(third.id)).payload;
+  assert.deepEqual(inputs[2].previousState.facts.map(entry => entry.id), ['F2']);
+  assert.equal(next.dialogueState.value.model.accepted, false);
+  assert.deepEqual(next.dialogueState.sourceTurnIds.length, 3);
+  assert.deepEqual(next.dialogueState.value.facts.map(entry => entry.id), ['F1', 'F2']);
+});
+
 test('dialogue state DB: invalid model state publishes the validated answer but never replaces memory; the correction survives into the next turn', async t => {
   let draft = dialogueState([userFact('work', 1, 'Tööd ei ole.')]);
   const f = await fixture(t, () => draft);
@@ -228,7 +251,8 @@ test('M4-C real DB: failed person switch cannot fall back to the last successful
   f.fail(false); const next = await f.run('Aga hind?');
   const row = await f.row(next.id);
   assert.notEqual(next.context.personId, old.context.personId);
-  assert.doesNotMatch(JSON.stringify(row.payload.dialogue), /67|Harku|abielus/);
+  // A word-bounded age: the random ids in the dialogue can contain "67".
+  assert.doesNotMatch(JSON.stringify(row.payload.dialogue), /\b67\b|Harku|abielus/);
   assert.equal(row.payload.dialogue.publishedAssistant, null);
   assert.match(row.payload.query.text, /30, Tartu/);
 });
