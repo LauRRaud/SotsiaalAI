@@ -41,13 +41,18 @@ test('a bad item is left out and named; the rest of the state advances (no whole
   assert.equal(kept.people[0].region.id, 'harku_vald');
   assert.deepEqual(kept.model, { accepted: false, dropped: [{ kind: 'state', reason: 'state_missing' }] });
   // The same person and quotes as a current fact is not a new fact; a reference to it still resolves.
+  // A need keeps its valid references; a reference to a fact the schema did not let in is left out (eval 29.09: N7-N12).
+  const partial = mergeFactState(null, { new_facts: [fact('võlad', 'user', 1, 'Mul on võlad.')], superseded: [],
+    needs: [{ candidate: 'Võlanõustamine', based_on: ['N1', 'N7'] }], unknowns: [], periods: [], language_hint: 'et' }, turns(t), { people: [], focus: 'user' });
+  assert.deepEqual(partial.needs, [{ candidate: 'Võlanõustamine', based_on: ['F1'] }]);
+  assert.deepEqual(partial.model.dropped, [{ kind: 'needs', reason: 'reference_dropped' }]);
   const again = mergeFactState(merged, { new_facts: [fact('võlaprobleem', 'user', 1, 'Mul on võlad.')], superseded: [],
     needs: [{ candidate: 'Võlanõustamine', based_on: ['N1'] }], unknowns: [], periods: [], language_hint: 'et' }, turns([...t, 'Jah.']), { people: [], focus: 'user' });
   assert.deepEqual(again.facts.map(entry => [entry.id, entry.topic]), [['F1', 'võlad']]);
   assert.deepEqual(again.needs, [{ candidate: 'Võlanõustamine', based_on: ['F1'] }]);
 });
 
-test('bounded memory without a dead end: past 16 current facts the oldest move to history, which keeps the newest 48', () => {
+test('bounded memory without a dead end: past 16 current facts the oldest move to history; the eight turns of a scope fit the history', () => {
   const texts = Array.from({ length: 8 }, (_, i) => Array.from({ length: 6 }, (_, k) => `Asjaolu ${i * 6 + k + 1}.`).join(' '));
   let state = null;
   for (let turn = 1; turn <= 8; turn++) {
