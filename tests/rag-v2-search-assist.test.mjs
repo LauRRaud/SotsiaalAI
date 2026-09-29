@@ -11,7 +11,7 @@ test('search assist: both model calls are strict, low-effort, unstored JSON requ
   const plan = queryPlanRequest(config, ['Elan Tallinnas ja üürivõlg kasvab.'], 'et');
   assert.equal(plan.store, false); assert.equal(plan.reasoning.effort, 'low'); assert.equal(plan.text.format.strict, true);
   assert.equal(plan.text.format.schema.properties.queries.maxItems, SEARCH_ASSIST_LIMITS.queries);
-  assert.deepEqual(JSON.parse(plan.input[0].content), { language: 'et', messages: ['Elan Tallinnas ja üürivõlg kasvab.'] });
+  assert.deepEqual(JSON.parse(plan.input[0].content), { language: 'et', messages: ['Elan Tallinnas ja üürivõlg kasvab.'], people: ['user'] });
   const passages = [{ id: 'P1', title: 'A', text: 'x' }, { id: 'P2', title: 'B', text: 'y' }];
   const rerank = rerankRequest(config, ['küsimus'], passages);
   assert.deepEqual(rerank.text.format.schema.properties.useful.items.enum, ['P1', 'P2']);
@@ -82,12 +82,31 @@ test('the chat profile keeps the vector2 fast-lexical choices with nine seeds in
 test('search-assist-2: the plan names the message language, and the answer follows it', async () => {
   const { planLanguage, SEARCH_ASSIST_VERSIONS } = await import('../lib/rag-v2/pilot/search-assist.js');
   const plan = queryPlanRequest(config, ['My mother needs help at home.'], 'et');
-  assert.deepEqual(plan.text.format.schema.required, ['queries', 'language']);
+  assert.deepEqual(plan.text.format.schema.required, ['queries', 'language', 'person']);
   assert.deepEqual(plan.text.format.schema.properties.language.enum, ['et', 'en', 'ru']);
   assert.equal(planLanguage({ searchAssist: SEARCH_ASSIST_VERSION }, { queries: [], language: 'en' }), 'en');
   assert.equal(planLanguage({ searchAssist: SEARCH_ASSIST_VERSION }, { queries: [], language: 'de' }), null);
   assert.equal(planLanguage({ searchAssist: SEARCH_ASSIST_VERSION }, { queries: [] }), null);
   // A plan approved for search-assist-1 keeps the interface language.
   assert.equal(planLanguage({ searchAssist: 'rag-v2/search-assist-1' }, { queries: [], language: 'en' }), null);
-  assert.deepEqual(SEARCH_ASSIST_VERSIONS, ['rag-v2/search-assist-1', 'rag-v2/search-assist-2']);
+  assert.equal(planLanguage({ searchAssist: 'rag-v2/search-assist-2' }, { queries: [], language: 'en' }), 'en');
+  assert.deepEqual(SEARCH_ASSIST_VERSIONS, ['rag-v2/search-assist-1', 'rag-v2/search-assist-2', 'rag-v2/search-assist-3']);
+});
+
+test('search-assist-3 (ADR-049): the plan names whom the current message is about, only among the known persons', async () => {
+  const { planPerson } = await import('../lib/rag-v2/pilot/search-assist.js');
+  const messages = ['Elan Tartu vallas.', 'Naabrimees elab Kose vallas.', 'Teine asi: mul pole täna kusagil magada.'];
+  const plan = queryPlanRequest(config, messages, 'et', ['user', 'naabrimees']);
+  assert.deepEqual(JSON.parse(plan.input[0].content).people, ['user', 'naabrimees']);
+  assert.deepEqual(plan.text.format.schema.properties.person.enum, ['user', 'naabrimees', 'other', 'unclear']);
+  assert.match(plan.instructions, /do not put another person's place into a query about someone else/);
+  // The user is always a choice; a state without people offers only the user, someone new or nobody in particular.
+  assert.deepEqual(queryPlanRequest(config, messages, 'et').text.format.schema.properties.person.enum, ['user', 'other', 'unclear']);
+  const current = { searchAssist: SEARCH_ASSIST_VERSION };
+  assert.equal(planPerson(current, { person: 'user' }, ['naabrimees']), 'user');
+  assert.equal(planPerson(current, { person: 'naabrimees' }, ['naabrimees']), 'naabrimees');
+  assert.equal(planPerson(current, { person: 'ema' }, ['naabrimees']), null);
+  assert.equal(planPerson(current, {}, []), null);
+  // An older plan names nobody, so the scope falls back as before.
+  assert.equal(planPerson({ searchAssist: 'rag-v2/search-assist-2' }, { person: 'user' }, []), null);
 });
