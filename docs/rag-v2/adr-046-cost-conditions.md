@@ -67,3 +67,21 @@ Sihtkataloog, 5 pööret käivituse kohta, kuuldeaparaat (KA) ja ratastool (RT):
 - **Omaniku või Codexi otsuseks on kaks varianti:**
   1. **Allikas:** lisada määruse lisa (abivahendite loetelu piirhinna ja piirmääraga) või SKA ametlik selgitus piirhinna kohta. Uued dokumendid ootavad Codexi kava järgi.
   2. **Vastuse kontroll ilma teise mudelikutseta:** kui tõend nimetab piirhinda ja vastus annab osaluse ilma selleta, märgib hindaja selle ja vastus saab piirangulause. See vajab eraldi kavandamist, sest lisatav tekst peab tulema tõendist.
+
+## Leid 29.09: lisa on RT XML-is juba olemas
+
+Claude Opus 5.5 kontrollis variandi 1 teostatavust. Midagi ei muudetud.
+
+- **Mõlema kehtiva redaktsiooni RT XML sisaldab lisa base64-kodeeritud PDF-ina** (`<fail failNimi="…_lisa.pdf">`). Seda PDF-i korpus praegu ei loe.
+  - Redaktsioon 01.09.2025–30.09.2026: `Andmebaasi/oigusaktid/129082025009.xml`.
+  - Redaktsioon alates 01.10.2026: `126092026005.xml`, lisa `SOM_24092026_m37_lisa.pdf`.
+- **Lisa tabelis on iga abivahendi kohta:**
+  - ISO-kood ja nimetus;
+  - kasutusaeg ning müük või üür;
+  - koguse piirlimiit ja soodustuse määr;
+  - **piirhind**, tingimused ja tõendi väljastaja.
+  - `pdftotext -layout` annab loetavad read. Näiteks kõrvasisesed kuulmisabivahendid on 90% ning piirhind 500,00 või 850,00 vastavalt alagrupile.
+- **Soovitus: variant 1 selle lisaga, mitte uue välisallikaga.**
+  - Lisa read lähevad struktureeritud kirjeteks, mitte vabaks tekstiks. Iga rida on eraldi tõend koodi, nimetuse, määra, piirhinna ja tingimustega.
+  - Kehtivus tuleb redaktsioonilt, nii et 30.09/1.10 vahetus kehtib ka piirhindadele.
+  - Tabeli parsimine vajab kontrolli: veerud murduvad ridadele, kõiki ridu tuleb võrrelda PDF-iga. Uue dokumendiliigi otsus jääb Codexi kavale ja omanikule.

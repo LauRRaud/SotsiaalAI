@@ -32,14 +32,17 @@ Esimesed kolm sammu võtavad kokku umbes 8 s ja on ühtlased. **Kogu erinevus tu
 
 Kaheksa kataloogipöörde salvestatud vastusepäring (`requestAudit.body`) saadeti uuesti voona, igaüks kolmel kujul. Kulu umbes 0,04 USD.
 
-| Kuju | Esimene tekst, mediaan | Maksimum | Arutlustokeneid, mediaan |
-|---|---:|---:|---:|
-| kinnitatud keha (`medium`) | 6,0 s | 14,9 s | 845 |
-| `service_tier: "priority"` | 6,9 s | 20,9 s | 862 |
-| `reasoning.effort: "low"` | 2,0 s | 3,5 s | 139 |
+Codex arvutas tulemuse uuesti esimese tekstidelta järgi, kõigil 24 real sama mõõdikuga ([analüüs, 7.2](../audits/rag-v2-system-analysis-2026-09-29.md#72-lõpetatud-24-kutse-võrdlus-täpsustab-esialgseid-numbreid)):
 
-- **Prioriteetne teenindus ei aita:** API vastas igal kutsel `service_tier: "fast"`, ka ilma seadeta. Ajad on müra piires samad.
-- Sama päringu arutlus kõigub kordusel tugevalt: üks keha andis 2466 ja 3334 arutlustokenit.
+| Kuju | Esimene tekstidelta, mediaan | Vahemik | Kutse lõpuni, mediaan | Arutlustokeneid, mediaan |
+|---|---:|---:|---:|---:|
+| kinnitatud keha (`medium`) | 5,94 s | 2,65–14,78 s | 7,94 s | 810,5 |
+| `service_tier: "priority"` | 5,91 s | 2,67–20,80 s | 8,22 s | 747,5 |
+| `reasoning.effort: "low"` | 1,52 s | 0,65–3,41 s | 3,50 s | 69,5 |
+
+- **Prioriteedi soov ei muutnud midagi.** API vastas igal kutsel `service_tier: "fast"`, ka ilma seadeta. See pole kahe teenustaseme võrdlus, vaid näitab, et see projekt saab juba sama taseme.
+- Jooksja logis `effort` väljale algse keha taseme ka `low` variandil. Rühmitus käib variandi nime järgi.
+- Sama päringu arutlus kõigub kordusel tugevalt: üks keha andis 2466 ja 3334 arutlustokenit. N = 8 ei anna usaldusväärset sabahinnangut.
 
 ### 4. Kataloog v4 terviklikult, 29.09
 
@@ -63,7 +66,8 @@ Mõlemad jooksud tehti `eval-full` koopiast, mille `lib` on sama mis tootmises (
 ## Järeldus
 
 - Esimese tekstini kulub umbes 8 s ühtlast eeltööd (plaan, embedding, otsing koos rerank'iga) ja 5–20 s vastusemudeli arutlust.
-- Suurim ja ainus suur hoob on vastuse arutluse tase: `low` lühendab esimese tekstini jõudmist mediaanis umbes 4–5 s ja sabas üle 10 s. Kogu vastus valmib mediaanis 6 s varem.
+- Suurim hoob on vastuse arutluse tase: `low` lühendab esimese tekstini jõudmist mediaanis umbes 4–5 s ja sabas üle 10 s. Kogu vastus valmib mediaanis 6 s varem.
+- `low` ei lahenda isiku ega otsingu ulatuse vigu (Codex). Ka väga kiire vastusemudeli korral jääb umbes 8 s eeltööd.
 - Ülejäänud hoovad on väikesed või riskantsed (allpool).
 
 ## Ettepanek Codexile ja omanikule
@@ -75,7 +79,7 @@ Mõlemad jooksud tehti `eval-full` koopiast, mille `lib` on sama mis tootmises (
    - Teenus teab juba samme (`reached('planned' | 'embedded' | 'searched')`), rerank'i algus on otsingu konksus.
    - See ei lühenda aega, aga kasutaja näeb, et töö käib. Vajab `delta`/`done` kõrvale uut sündmust ja kolme keele tõlkeid.
 3. **Mida mitte teha:**
-   - **Prioriteetne teenindus** — ei mõju (vt 3).
+   - **Prioriteetne teenindus** — soov ei muutnud teenustaset (vt 3).
    - **Rerank'i vahelejätmine selge otsingu korral** säästaks 1–2,5 s. Rerank valib aga seaduse õige redaktsiooni (ADR-042) ja kulutingimused (ADR-046), nii et see oleks kvaliteedirisk.
    - **Plaani ja embeddingu rööbitamine** säästaks kuni umbes 1 s: küsimuse enda vektori saaks arvutada plaani ajal, aga plaani päringud vajavad ikka teist embeddingut. Sõnaline päring kasutab plaani päringuid, nii et otsingut ei saa enne plaani alustada.
 4. **Hiljem, eraldi töö:** sõnaline otsing võtab 1,2–2,3 s ühe PostgreSQL-i päringuna. Selle kiirendamine ei muuda tulemusi, aga vajab andmebaasipoolset mõõtmist (ADR-039).
