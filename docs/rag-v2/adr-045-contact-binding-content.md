@@ -115,3 +115,23 @@ Omanik andis korralduse „vaata siis üle ja pane andmebaasi“, seega tegi ül
   - Ülevaatus aegub iga avaldamisega, seega tehti partiid ükshaaval uute failinimedega.
   - Serverisse kopeeriti `.tgz`-ina `scp`-ga ja kontrollsummaga, sest torustatud `tar` üle ssh katkes korra poole peal.
 - **Leid Codexile, kahe inimese ulatus.** Ühes vestluses „Elan Tartu vallas …“ → „naabrimees … elab Kose vallas“ → „Teine asi: mul pole täna öösel kusagil magada …“ jäi kataloogi ulatuseks Kose, sest ulatus järgib viimast mainimist. Vastus rääkis aga kasutaja enda Tartu vallast, seega kontakte ei tulnud. Omavalitsus tuleks siduda inimesega (dialoogi olek), mitte viimase mainimisega.
+
+## Sidumata kontaktid, 29.09.2026
+
+Claude Opus 5.5 vaatas läbi, miks 424 paketikontakti (404 ilma kandidaadita ja 20 mitmetähenduslikku) ei saanud ühte kinnitatud registririda. Analüüs ainult luges andmeid, midagi ei avaldatud. Reeglid on samad mis kandidaatide skriptil: sama omavalitsus, sama nimi, registririda praegu kinnitatud. Rea kaupa tabelid on serveris, sest seal on nimed: `rag-v2-work/eval-files/contact-gaps-2026-09-29.csv` ja `contact-ambiguous-2026-09-29.csv`.
+
+| Põhjus | Kontakte | Mida see tähendab |
+|---|---:|---|
+| Registris sama nimega rida, mis pole viimases kontrollis kinnitatud | 186 | Rida on avaldatud, aga viimane registrikontroll pole seda kinnitanud: inimest ametlikult lehelt ei leitud või kontroll jäi tegemata. 183 rida uuendati viimati augustis. Neid on 56 omavalitsuses, nii et need on üksikisikud, mitte terved lehed. |
+| Isikut selle omavalitsuse registris pole | 162 | 58 omavalitsust (Häädemeeste 10, Vinni 8, Haapsalu 8). Paketi kontakt võib olla vananenud või pole register seda rolli kogunud. |
+| Omavalitsusel pole ühtki kinnitatud registririda | 51 | 13 omavalitsust: Narva-Jõesuu 15, Väike-Maarja 12, Rakvere vald 4, Põhja-Sakala 4 jt. Vaja on registri kontrolli, mitte seost. |
+| Mitmetähenduslik: mitu kinnitatud rida sama nimega | 20 | **Kõik 20 on sama inimese topeltread:** telefon ja e-post on ridadel identsed, 17 juhul ka roll. |
+| Sama perekonnanimi, teine eesnimi | 3 | Tõenäoliselt eri inimene. |
+| Kirjapilt erineb (täpitähed, sidekriips, järjekord) | 1 | |
+| Sama nimi teises omavalitsuses | 1 | |
+
+**Ettepanek** (otsus operaatorilt või Codexilt):
+
+- **20 topeltrida:** seo kinnitatud reaga, mille roll vastab paketi rollile. Kui neid on mitu, siis viimati kontrollitud reaga. Kanalid on samad, nii et vestluse vastus ei muutu. Register võiks topeltread ise ühendada.
+- **186 kinnitamata rida:** oota 04.10 iganädalast kontrolli. Kui inimene on lehel tagasi, saab reast kandidaat. Kui ei, on paketi kontakt vananenud ja seda ei avaldata.
+- **Avalda ühe partiina pärast 04.10:** 20 topeltrida ja uuesti kinnitatud read koos. Kontroll peab ka kinnitama, et 376 avaldatud kontakti on endiselt lubatud (seos 2 peab kontrolliaja muutust taluma). Nii piisab ühest uuest indeksipõlvkonnast ja käsitsi plaanist.
