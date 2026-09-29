@@ -42,7 +42,7 @@
   - isiku (`user`, teadaolev silt või uus silt kasutaja sõnadega);
   - seose: `lives`, `not` või `other`.
 - Kui abivajaja elab koos isikuga, kelle koha sõnum annab, või tema naabruses (pereliige, naaber, naabri laps), saab ta sama koha. Mujal elav sugulane seda ei saa.
-- Plaan nimetab ka **abivajaja** (`person`) vabatekstina, nii et uus inimene saab kohe oma sildi.
+- Plaan nimetab ka **abivajaja** (`person`) vabatekstina, nii et uus inimene saab kohe oma sildi. Isik on alati üks inimene; silte ei liideta (mõõtmisel tuli kord „user ja ema“, mille fookusel omavalitsust polnud).
 - **Järelejõudmine:** plaan loeb kohti kõigist sõnumitest, mida salvestatud olek pole näinud (`place_messages`).
   - Tavaliselt on see ainult praegune sõnum.
   - Pärast pööret, mille olek jäi salvestamata (näiteks vastus lükati tagasi), jõuavad ka selle pöörde sõnumi kohad järgmisse olekusse.

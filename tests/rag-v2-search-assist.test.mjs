@@ -109,6 +109,7 @@ test('search-assist-4 (ADR-051): the plan names whose need the message is about 
   assert.deepEqual(schema.places.items.properties.relation.enum, ['lives', 'not', 'other']);
   assert.match(plan.instructions, /do not put another person's place into a query about someone else/);
   assert.match(plan.instructions, /quote is the place name exactly as that message writes it/);
+  assert.match(plan.instructions, /person is always one person/);
   const current = { searchAssist: SEARCH_ASSIST_VERSION };
   assert.equal(planPerson(current, { person: ' naabrimees ' }), 'naabrimees');
   assert.equal(planPerson(current, { person: '' }), null);
