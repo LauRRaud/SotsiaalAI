@@ -6,7 +6,7 @@ import { MockEmbedding, indexUnit } from '../lib/rag-v2/search/embedding.js';
 import { searchConfig } from '../lib/rag-v2/search/indexing.js';
 import { LocalPolicy } from '../lib/rag-v2/search/policy.js';
 import { retrieve } from '../lib/rag-v2/search/retrieval.js';
-import { retrievalProfile, queryForProfile, GRAPH_EXPERIMENT_PROFILES, CHAT_PROFILE, CHAT_GRAPH_PROFILE } from '../lib/rag-v2/search/profiles.js';
+import { retrievalProfile, queryForProfile, GRAPH_EXPERIMENT_PROFILES, CHAT_PROFILE, CHAT_GRAPH_PROFILE, CHAT_REFERENCES_PROFILE } from '../lib/rag-v2/search/profiles.js';
 
 const savedFetch = globalThis.fetch, savedConnect = net.Socket.prototype.connect;
 let network = 0;
@@ -19,10 +19,12 @@ after(() => { globalThis.fetch = savedFetch; net.Socket.prototype.connect = save
 // A fictional act of five sections; § 1 names an exception in § 4, which the search does not rank. With numbers, the
 // sections are § 1, § 1¹, § 2, § 11 and § 12, and § 1 names "§ 11": ambiguous (§ 1¹ that lost its superscript?) unless the
 // version keeps its superscripts (ADR-056).
-function fixture({ numbers = null, versionFields = {} } = {}) {
+function fixture({ numbers = null, versionFields = {}, padding = 0 } = {}) {
   const tenant = 'graph-experiment', doc = 'act', version = 'act-v1', embedding = new MockEmbedding(), config = searchConfig(embedding.config);
   const texts = [`Toetust saab täisealine isik, välja arvatud käesoleva seaduse § ${numbers ? '11' : '4'} lõikes 2 nimetatud isik.`, 'Toetus makstakse kord kuus.',
-    'Taotlus esitatakse vallale.', '(1) Erandid. (2) Toetust ei saa isik, kes elab hooldekodus.', 'Seadus jõustub 1. jaanuaril.'];
+    'Taotlus esitatakse vallale.', '(1) Erandid. (2) Toetust ei saa isik, kes elab hooldekodus.', 'Seadus jõustub 1. jaanuaril.']
+    // padding: long sections, so the ranked seeds nearly fill the seeds' budget and a cross-reference passes it.
+    .map((text, i) => padding && i !== 4 ? text + ' Selgitus: toetuse andmise kord ja tingimused.'.repeat(i === 3 ? padding / 2 : padding) : text);
   const number = i => numbers ? numbers[i] : String(i + 1);
   const spans = texts.map((text, i) => ({ id: `s${i}`, tenant_id: tenant, document_version_id: version, pdf_page: 1, start: i * 200, source_text: text }));
   const chunks = texts.map((text, i) => {
@@ -44,8 +46,8 @@ function fixture({ numbers = null, versionFields = {} } = {}) {
   const postgres = { active: async () => generation, bundles: async (_t, _g, docs) => docs.includes(doc) ? [bundle] : [],
     units: async (_t, _g, docs) => docs.includes(doc) ? units : [], lexical: async () => rows };
   const policy = new LocalPolicy({ tenants: { [tenant]: { operator: [doc] } } });
-  const run = arm => retrieve({ postgres, qdrant: { query: async () => rows }, embedding, policy, context: { tenant, subject: 'operator', usage: 'development_only' },
-    query: queryForProfile(retrievalProfile(GRAPH_EXPERIMENT_PROFILES[arm]), { text: 'toetus', language: 'et' }), allowLexicalFallback: false });
+  const run = (arm, profileId = GRAPH_EXPERIMENT_PROFILES[arm]) => retrieve({ postgres, qdrant: { query: async () => rows }, embedding, policy,
+    context: { tenant, subject: 'operator', usage: 'development_only' }, query: queryForProfile(retrievalProfile(profileId), { text: 'toetus', language: 'et' }), allowLexicalFallback: false });
   return { run };
 }
 
@@ -66,6 +68,16 @@ test('arm D follows a plain number exactly when the version keeps its superscrip
   assert.deepEqual(added.map(entry => [entry.selection.reason.section, entry.source_text.slice(0, 10)]), [['11', '(1) Erandi']]);
   const older = await fixture({ numbers, versionFields: { source_format: 'xml', processing_config: { normalization: 'source-structure-v27' } } }).run('D');
   assert.deepEqual(older.measurements.cross_references, { candidates: 0, additions: 0, sections: [] });
+});
+
+test('chat profile v3: a cross-reference past the seeds\' budget stays within its own room; the turn does not fail (30.09.2026)', async () => {
+  const packet = await fixture({ padding: 290 }).run(null, CHAT_REFERENCES_PROFILE);
+  const added = packet.evidence.filter(entry => entry.selection.reason?.type === 'cross_reference');
+  assert.deepEqual(added.map(entry => entry.selection.reason.section), ['4']);
+  const { contextTokens, expansionContextTokens } = retrievalProfile(CHAT_REFERENCES_PROFILE).query.limits;
+  assert.ok(packet.measurements.context_tokens > contextTokens, 'the case passes the seeds\' budget');
+  assert.ok(packet.measurements.context_tokens <= contextTokens + expansionContextTokens);
+  assert.notDeepEqual(packet.dependency_context?.unresolved, [{ reason: 'dependency_context_budget' }]);
 });
 
 test('graph experiment arms share one extra room; the chat profiles are unchanged', () => {
