@@ -229,6 +229,13 @@ test('a residence the plan left out: the user\'s own first-person home is read, 
   assert.deepEqual(await after('Tegelikult ei ela ema Harku vallas.', [], emaKose, 'ema'), { ema: ['kose_vald', 'reported'] });
   assert.deepEqual(await after('Ema elab Tartu vallas, aga töötab Harku vallas.', [], emaKose, 'ema'), { ema: ['tartu_vald', 'reported'] });
   assert.deepEqual(await after('Ema käib Harku vallas arsti juures.', [], emaKose, 'ema'), { ema: [null, 'unresolved'] });
+  // A clause about someone the conversation does not know decides nothing for the user (measured 30.09: "Naabri
+  // omavalitsus on Kose vald"), nor a negation of theirs; a clause that names nobody still does.
+  const harku = [saved('user', 'harku_vald')];
+  assert.deepEqual(await after('Naabri omavalitsus on Kose vald. Millist abi saan mina oma vallast?', [], harku), { user: ['harku_vald', 'reported'] });
+  assert.deepEqual(await after('Mu sõber ei ela enam Harku vallas.', [], harku), { user: ['harku_vald', 'reported'] });
+  assert.deepEqual(await after('Соседка живёт в Козе.', [], harku), { user: ['harku_vald', 'reported'] });
+  assert.deepEqual(await after('Ei ela enam Harku vallas.', [], harku), { user: [null, 'unresolved'] });
   // A past home is no home now (measured 30.09: "Elasin Kose vallas, aga enam ma seal ei ela").
   assert.deepEqual(await after('Elasin Harku vallas, aga enam ma seal ei ela.', [], only), { user: [null, 'unresolved'] });
   assert.deepEqual(await after('Я жила в Харку.', [], only), { user: [null, 'unresolved'] });
