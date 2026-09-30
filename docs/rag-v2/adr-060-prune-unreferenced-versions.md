@@ -44,7 +44,23 @@
 - **Järel:** kordusjooks loendab 0; tabelitele tehti `VACUUM ANALYZE`; vestlusplaan on `ready`.
 - Tööriist käivitati serveri töökausta koopiast enne ühendamist. Generatsioonid v42–v45 jäid alles, sest need loetlevad ainult versioone, mis on ka v46-s.
 
+## Codexi ülevaatuse parandus R1 (30.09.2026): koristus ja indekseerimine välistavad teineteist
+
+- **Viga ([Codexi raport](../audits/rag-v2-pr283-288-review-2026-09-30.md), P1):** kontroll „midagi ei käi“ oli hetkeseis. Indeksitöö, mis algas pitserite märkimise ja Qdranti kustutamise vahel, indekseeris märgitud versiooni uuesti, pitseeris ja aktiveeris selle. Koristus kustutas seejärel uued punktid. Aktiivne indeks jäi `qdrant_count_mismatch`-iga katki ning ei koristuse ega indeksitöö kordus parandanud seda.
+- **Nüüd:** rentniku Postgresi nõuandev lukk (`PRUNE_LOCK`, `lib/rag-v2/search/postgres.js`).
+  - `--execute` võtab luku ühes seansis enne esimest kontrolli ja hoiab seda kogu töö: märkimine, iga Qdranti kustutus ja ridade kustutus käivad selles seansis. Kui lukk on võetud, keeldub tööriist (`prune_index_work_pending`).
+  - `beginGeneration` võtab sama luku jagatult oma tehingu ajaks. Koristuse ajal ei alga ükski generatsioon (`index_prune_running`; tööd saab pärast korrata). Varem alanud generatsioon ei ole valmis, seega koristus keeldub.
+  - Enne iga Qdranti kustutust tõendab päring luku seansis, et lukk on alles. Kadunud seanss peatab töö ja klient hävitatakse, mitte ei lähe tagasi kogumisse.
+  - Loendamine lukku ei võta. Mõlema tehingu kontroll „midagi ei käi“ jääb alles.
+- **`beginGeneration` on ainus generatsioonide looja** (`runIndexJob` → `enqueueIndex` ja vana paigutuse `indexSnapshot`). Loendiridu kirjutavad ainult `importSnapshot` ja `attachSealed` oma generatsioonile.
+- **Testid:**
+  - Codexi põimitud stsenaarium: Qdranti kustutuse ajal alustatud indeksitöö keeldub ega jäta ühtegi rida. Teine koristus keeldub, koristus lõpeb. Pärast seda indekseerib sama töö versiooni uuesti ja `verifyIndexJob` läbib.
+  - Luku ajal ootel generatsiooniga koristus keeldub.
+  - Seanss lõpetatakse (`pg_terminate_backend`) esimese kustutuse ajal: töö peatub enne teist kustutust, pitserid jäävad `staged` ja järgmine koristus lõpetab töö.
+  - Vana koodiga uus test kukub (indeksitöö jõuab lõpuni), nagu Codexi sond näitas.
+
 ## Piirid
 
-- Tööriista käivitab operaator ajal, mil indeksitööd ei käi. Tööriist kontrollib seda, aga Qdranti samm pole tehingu sees. Kui töö algaks kustutamise ajal, peatuks tööriist enne ridade kustutamist, kuid juba kustutatud punktide järel tuleb see töö üle kontrollida (`--mode verify`).
+- Tööriista käivitab operaator ajal, mil indeksitööd ei käi. Lukk ei lase koristuse ajal uuel generatsioonil alata ja keeldub, kui mõni on pooleli.
+- Indeksitöö rida (`rag_v2_index_job`) lisatakse pärast `beginGeneration`-i tehingut. Valmis generatsioon, millelt on töörida käsitsi kustutatud, võiks koristuse ajal uuesti loendiridu saada. Tavarada seda seisu ei tekita.
 - Kataloogi (`rag_v2_object`, umbes 2,6 GB) tööriist ei puuduta.

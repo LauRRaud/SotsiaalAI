@@ -2,7 +2,9 @@
 // ADR-060: the search index of document versions no generation lists (their unit rows, seals and Qdrant points).
 //   node scripts/rag-v2-prune-versions.mjs --tenant sotsiaalai-corpus [--connections tmp/rag-v2-services/connections.json] [--execute]
 // Without --execute it only counts. Run it when no index job is running: it refuses while a generation or an index job
-// of the tenant is not ready, and a run stopped part-way is completed by the next one.
+// of the tenant is not ready, or while another run holds the tenant's prune lock (prune_index_work_pending). While it
+// runs, an index job of the tenant cannot begin (index_prune_running; run it again afterwards). A run stopped part-way
+// is completed by the next one.
 import { parseArgs } from 'node:util';
 import { readJson } from '../lib/rag-v2/catalog.js';
 import { PostgresCatalog } from '../lib/rag-v2/search/postgres.js';
