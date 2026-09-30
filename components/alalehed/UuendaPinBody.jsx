@@ -161,17 +161,19 @@ export default function UuendaPinBody() {
                 {confirmPinLabel}
               </label>
               <Input type="password" id="confirm-pin" name="confirm-pin" placeholder={confirmPinLabel} value={confirmPin} onChange={e => setConfirmPin(e.target.value.replace(/\D/g, "").slice(0, PIN_MAX))} required minLength={PIN_MIN} maxLength={PIN_MAX} autoComplete="new-password" disabled={loading} />
+              <div>
+                <Button type="submit" variant="primary" disabled={loading}>
+                  <span>{loading ? t("profile.saving") : t("buttons.save")}</span>
+                </Button>
+              </div>
+              {/* Teade nupu ALL, mitte väljade ja nupu vahel — muidu lükkab ta
+                  nupu alla (omanik 30.09). */}
               {error ? <p role="alert">
                   {error}
                 </p> : null}
               {!error && success ? <p role="status">
                   {success}
                 </p> : null}
-              <div>
-                <Button type="submit" variant="primary" disabled={loading}>
-                  <span>{loading ? t("profile.saving") : t("buttons.save")}</span>
-                </Button>
-              </div>
             </Form>}
         </div>
       </div>

@@ -211,8 +211,6 @@ export default function UuendaEpostiBody() {
               <p>
                 {t("profile.email_update.pending_hint")}
               </p>
-              {notice && <p role="status">{notice}</p>}
-              {error && <p id={errorId} role="alert">{error}</p>}
               <div>
                 <Button type="button" variant="primary" onClick={handleResend} disabled={actionBusy !== ""}>
                   <span>
@@ -225,6 +223,9 @@ export default function UuendaEpostiBody() {
                   </span>
                 </Button>
               </div>
+              {/* Teated nuppude ALL (omanik 30.09, sama mis Uuenda PIN). */}
+              {notice && <p role="status">{notice}</p>}
+              {error && <p id={errorId} role="alert">{error}</p>}
             </div> : /* noValidate ei ole enam siin lipuna: `Form` kannab teda vaikimisi
                  ja teeb ise sama kontrolli, mille brauser teeks — ainult teate keel on
                  meie oma. Varem oli see leht erand, kus lipp tuli käsitsi juurde. */
@@ -242,9 +243,6 @@ export default function UuendaEpostiBody() {
                 {t("profile.email_update.pin_placeholder")}
               </label>
               <Input type="password" id="pin" name="pin" placeholder={pinPlaceholder} value={pin} onChange={e => setPin(e.target.value.replace(/\D/g, "").slice(0, PIN_MAX))} required minLength={PIN_MIN} maxLength={PIN_MAX} autoComplete="current-password" disabled={loading} />
-              {error && <p id={errorId} role="alert">
-                  {error}
-                </p>}
               <div>
                 <Button type="submit" variant="primary" disabled={loading}>
                   <span>
@@ -252,6 +250,10 @@ export default function UuendaEpostiBody() {
                   </span>
                 </Button>
               </div>
+              {/* Teade nupu ALL (omanik 30.09, sama mis Uuenda PIN). */}
+              {error && <p id={errorId} role="alert">
+                  {error}
+                </p>}
             </Form>}
         </div>
       </div>
