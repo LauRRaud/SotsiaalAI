@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="0c5e36f4-13ae-4eac-9716-91d773f42be4" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Mustvee Vallavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2018-10-31</aktikuupaev>
+  
+  
+  <aktiNr>32</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2018-11-08</avaldamineKuupaev><RTaasta>2018</RTaasta><RTartikkel>42</RTartikkel><aktViide>408112018042</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2018-11-11+02:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2018-11-07</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>408112018042</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2018-11-07</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1044797</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2018-11-07</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Tiina Piigats</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="be17b533-ae6c-41d8-be50-7a91a7a129fe">
+  <nimi id="7668d155-cc02-447e-b5e3-546ccaabbb1b">
+   <pealkiri id="a4b210cb-88c5-4344-8513-6ebda3b7ddda">Raske või sügava puudega lastele abi osutamiseks riigieelarvest eraldatud toetuse kasutamise kord</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="e3e3c3e3-720f-448d-95d2-c4c232420e4f"><preambul id="3a859837-697c-45bb-8d53-5ca617e0168f">
+   <tavatekst id="1a1f4cf0-7acc-4e62-9eb5-0ce5c1f32b56">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 2 ja sotsiaalhoolekande seaduse § 156 lõike 3<sup>2</sup> alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="2f0cd3e1-f1b5-4b41-b631-2b5d0ee8b2a4">1</paragrahvNr>
+   <kuvatavNr id="fc6046eb-4652-497b-a338-28fe08d6f4b4"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="a267c6c9-82f0-419d-81cb-73b820567941">Reguleerimisala</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="d056474d-9ade-4555-bd6f-6757f7e0fda5"/>
+   <kuvatavNr id="1726063c-97ce-4a2a-a84b-fd72f8cd44a6"/>
+   <sisuTekst id="940d3b2f-ca5b-402c-b98e-7b0314cb9edc">
+    <tavatekst id="4e10b12d-ded6-47cd-9d34-537262aac165">Määrus reguleerib riigieelarve toetusfondist eraldatud toetuse kasutamist raske või sügava puudega laste lapsehoiu-, tugiisiku-, sotsiaaltranspordi- või muudeks sotsiaalteenusteks, mis aitavad vähendada raske ja sügava puudega lapse perekonna hoolduskoormust või puudest tulenevat lisavajadust.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="a084b66f-cd9b-475c-990a-5cba12277465">2</paragrahvNr>
+   <kuvatavNr id="25a8a9d3-c654-462e-9f60-4a4363292695"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="f9ae4b60-9afd-47d7-9374-b39d80c3405b">Rahaliste vahendite kasutamine</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="d472ba68-9b7a-47c9-a158-d1c6e21250ff"/>
+   <kuvatavNr id="0d4f6479-d5f4-4cc2-99d4-50d4e6bac875"/>
+   <sisuTekst id="26bfbe88-b07e-4918-9066-97775d1a2ef9">
+    <tavatekst id="7e6588f9-c27a-469e-aa0d-9234e8275363">Riigieelarvest eraldatavat toetust võib sotsiaalosakond kasutada järgmiste teenuste osutamisel:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para2lg1p1">
+   <alampunktNr id="36618490-0382-46d5-995a-b884c4e8311c">1</alampunktNr>
+   <kuvatavNr id="66ab2db4-25fb-47c3-bbe4-de2f53196c21"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="be8e634d-5922-4e92-90d7-d9e540266cda">
+    <tavatekst id="806db3eb-9a38-4991-8b9f-a80adc78554e">lapsehoiuteenus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p2">
+   <alampunktNr id="8eb1ad29-5240-42be-8a7e-c8ba596491b4">2</alampunktNr>
+   <kuvatavNr id="a9720dce-8d81-4a3d-a11b-bcca99f3ce5b"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="2d239455-9c62-441f-a608-a860c15d1cc9">
+    <tavatekst id="f782c195-35f5-4438-8407-8bf51b6b83fa">tugiisikuteenus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p3">
+   <alampunktNr id="68603e47-4052-4f92-9998-aba87ba64d56">3</alampunktNr>
+   <kuvatavNr id="7155f546-b70a-418d-b887-97e79f6e9928"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="7a0c4b57-bd71-4427-8688-c8b066cd4fa7">
+    <tavatekst id="c9d1a18f-0dfd-416e-87e2-3d5d71b67e29">transporditeenus sõiduks haridus-, ravi- või rehabilitatsiooniasutusse;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p4">
+   <alampunktNr id="9ea42061-d73a-408b-b06d-b811dc4e6ee6">4</alampunktNr>
+   <kuvatavNr id="d6891e16-8275-4dc1-b83c-8560c441ec8d"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="7cbb01b0-c554-430e-ac4e-366682c2362e">
+    <tavatekst id="a6bad0df-87fa-499a-b591-19e2d837278c">nõustamisteenus (psühholoogiline nõustamine jm );</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p5">
+   <alampunktNr id="ab097ae8-5606-4a63-8a7c-62c18dd6a38b">5</alampunktNr>
+   <kuvatavNr id="583e8e52-5354-4c24-bc6a-2d629e0345a6"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="70e0a61b-e76f-47ef-9fb3-17e882fb0067">
+    <tavatekst id="69458c22-8660-4358-8608-b0cf44066f3a">erinevad teraapiad;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p6">
+   <alampunktNr id="59a80b44-6d5b-4b1a-9457-30eb950ea83d">6</alampunktNr>
+   <kuvatavNr id="53857f59-cacf-47d8-8ce1-c1d98787fbe7"><![CDATA[6) ]]></kuvatavNr>
+   <sisuTekst id="c8c2b1ee-7055-4682-be17-647a33f0a42e">
+    <tavatekst id="df26cb56-a8f7-4198-a012-4979245edd47">rehabilitatsiooniplaani tegevuskavas ette nähtud teenuste, sh abi- ja tugivahendite võimaldamine;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p7">
+   <alampunktNr id="64a57454-29ae-4b6a-bf25-b0a3f54020d5">7</alampunktNr>
+   <kuvatavNr id="af1de71b-6366-46ee-b404-1fad22e14405"><![CDATA[7) ]]></kuvatavNr>
+   <sisuTekst id="6e715875-bfc4-4fd8-bcc2-58c1df1a71f4">
+    <tavatekst id="e34407e8-1298-4d30-98a6-966995cdf5cb">eluaseme kohandamine;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p8">
+   <alampunktNr id="4a4f379e-30bf-459c-a3e2-ff763322692b">8</alampunktNr>
+   <kuvatavNr id="51348b2a-9840-4a52-ae72-b7a759bd4d80"><![CDATA[8) ]]></kuvatavNr>
+   <sisuTekst id="e809a6c6-08cc-4dce-8039-9db2ec25cd59">
+    <tavatekst id="cc137c61-f1b9-426d-a38d-a6ae38b0462e">laagri osalemiskulude katmine koolivaheajal;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p9">
+   <alampunktNr id="246977c6-96bd-4999-9d74-25aa16ae05cf">9</alampunktNr>
+   <kuvatavNr id="5c675b94-a9cc-43fd-a258-495c6ee768d0"><![CDATA[9) ]]></kuvatavNr>
+   <sisuTekst id="ff6ae233-ffa5-4188-b685-505776edf494">
+    <tavatekst id="7b310a3d-e0da-4cf6-af5b-2a72cc5fd2e2">tugikoduteenuse eest tasumine;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p10">
+   <alampunktNr id="932dc861-34c0-4b82-b18d-e5ec489fa2e7">10</alampunktNr>
+   <kuvatavNr id="37325737-4a2b-4e63-ad63-90f101f314bc"><![CDATA[10) ]]></kuvatavNr>
+   <sisuTekst id="da18320a-5ad6-485f-b7e1-72d0d0255ff5">
+    <tavatekst id="88f69503-cffe-4367-823f-da570a96d97d">muud teenused, mis toetavad ja parendavad raske ja sügava puudega lapse ja tema perekonna toimetulekut ning vähendavad perekonna hoolduskoormust või puudest tulenevaid lisavajadusi.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="67dfff6a-7e8e-4bc5-9cec-f55fe6592650">3</paragrahvNr>
+   <kuvatavNr id="4e038749-2217-4821-9405-83af1bef14bd"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="119d55d8-1362-4574-ae62-8d62d074d9a8">Rakendussätted</paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="1ac45828-426f-4cd4-a97b-6bf6e6be7a66"/>
+   <kuvatavNr id="47980af6-6110-4ae1-9ac9-8aefce289cbd"/>
+   <sisuTekst id="e31ceb70-b7fd-4cfe-89bb-b3620fee648a">
+    <tavatekst id="869d05d1-d14c-4a09-81cd-65079fca510c">Riigieelarvest eraldatud toetust võib kasutada tagasiulatuvalt alates 1. jaanuarist 2018 osutatavate teenuste eest tasumisel.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="f675c3c6-ee83-4f2e-b1b9-916b2555edd9"><allkiriKoht id="395ba0d2-e962-481e-baa7-5ee93232509a"/><allkirjastaja id="1767fc67-2a4f-4241-90a2-7ad599b723b3"><ametinimetus id="6fab56af-2e8f-4eb7-a86e-b7220827382e">Vallavolikogu esimees</ametinimetus><eesnimi id="f3b5167c-e1cf-40d7-ac7c-e720098daee0">Aivar</eesnimi><perekonnanimi id="41b9bc36-35f9-4c43-a8e6-4dcca2fc732a">Saarela</perekonnanimi></allkirjastaja></allkiri></oigusakt>

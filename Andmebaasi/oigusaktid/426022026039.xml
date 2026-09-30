@@ -1,0 +1,773 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="0888c488-21a8-4314-b11b-653ac671fe1c" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+ 
+ <valjaandja>Tartu Linnavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2014-06-26</aktikuupaev>
+  <avaldamismarge>
+	<RTosa id="df0a5b51-b273-45e7-9b7a-62ff63a03eff">RT IV</RTosa>
+	<avaldamineKuupaev id="c9337a93-26ad-47c3-9ff6-4b7611175120">2014-07-04</avaldamineKuupaev>
+	
+	
+	<RTartikkel id="b581ce8f-882b-4bee-8ff2-bd57da57a0bc">8</RTartikkel>
+	<aktViide id="15a8eabb-0f5e-4662-b489-d0c7a61ac4d0">404072014008</aktViide>
+  </avaldamismarge>
+  <joustumine>2014-07-07</joustumine>
+  <aktiNr>26</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-02-26</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>39</RTartikkel><aktViide>426022026039</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2026-03-01</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2026-02-21</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>426022026039</globaalID>
+ <metaandmedVersioon>31</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2026-02-25</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ <terviktekstiGrupiID>1025098</terviktekstiGrupiID>
+ <eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2014-06-27</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Reet Saks</metaandmedVersioonPohjustaja>
+		</versiooniMuutus><versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>6</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2014-07-03</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus><versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>avaldatud</dokumentStaatus>
+			<metaandmedVersioon>10</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2016-07-04</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus><versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>avaldatud</dokumentStaatus>
+			<metaandmedVersioon>11</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2016-07-04</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Reet Saks</metaandmedVersioonPohjustaja>
+		</versiooniMuutus><versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>12</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2016-07-04</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Reet Saks</metaandmedVersioonPohjustaja>
+		</versiooniMuutus><versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>17</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2016-07-06</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus><versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>22</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2017-05-17</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus><versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>27</metaandmedVersioon><metaandmedVersioonKuupaev>2020-07-02</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+	<aktinimi id="fa9a1259-4c3d-4cf8-b9b2-9ae8a513e680">
+		<nimi id="0ac1c842-b34b-4b02-9042-5b560f2dab96">
+			<pealkiri id="da56124a-6cc6-41f8-aef8-261c2b86b77e"> Tartu linna eelarvest lapsehoiuteenuse rahastamise kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="513521ca-6764-4c21-a3c8-b03b91dbb7f0">
+		<aktikuupaev id="6c118505-78d9-4dbc-ada1-2d6caa64dda7">2016-03-17</aktikuupaev>
+		<avaldamismarge id="569c5da6-96a5-4eea-9003-818fd59a97e9">
+			<RTosa id="d879d1da-226e-4b44-8274-129bd4437218">RT IV</RTosa>
+			<avaldamineKuupaev id="af248772-7704-499e-ac4b-be8034ed441a">2016-03-29</avaldamineKuupaev>
+			<RTartikkel id="97691d01-b577-4a1d-8130-554450acab33">8</RTartikkel>
+			<aktViide id="9697f35d-f3a5-4ebc-8c75-39efd0b9b543">429032016008</aktViide>
+		</avaldamismarge>
+		<joustumine id="70ae18ba-0900-42dd-97e8-b32c6736609f">2016-04-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="59619159-ce9b-4304-8e84-aa92eb6ed5a3">
+		<aktikuupaev id="2b6503aa-e3d2-475d-bebe-f49edfb81249">2016-06-30</aktikuupaev>
+		<avaldamismarge id="fd307bc2-2635-40b1-ba98-e55b43ff931d">
+			<RTosa id="9a087110-d1b7-4b8c-a1d2-ea8d1d05adc5">RT IV</RTosa>
+			<avaldamineKuupaev id="8864798e-a8aa-471b-b6e6-8202dda790b6">2016-07-07</avaldamineKuupaev>
+			<RTartikkel id="b4cd5076-38f8-4720-b3eb-d87eb15e0c43">1</RTartikkel>
+			<aktViide id="6cba5e16-906f-411d-800b-ab9813c81913">407072016001</aktViide>
+		</avaldamismarge>
+		<joustumine id="b744e1c6-7789-4134-8f2f-6081e8e84ea4">2017-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="aa97ff8f-54bf-4212-863b-1618c6ec3e6e">
+		<aktikuupaev id="69211c7f-8190-4e68-a531-2b4a45ecd534">2017-05-11</aktikuupaev>
+		<avaldamismarge id="99abc6fd-e213-4b1b-9788-d2ce939b6768">
+			<RTosa id="e159adec-1d90-4dfc-8355-8e93b4d70ec1">RT IV</RTosa>
+			<avaldamineKuupaev id="d0a791f3-6474-4cb5-af95-5612feaef1d4">2017-05-19</avaldamineKuupaev>
+			<RTartikkel id="3817ea5f-43bf-453d-ac2f-4678046a6db0">2</RTartikkel>
+			<aktViide id="30588922-2fb9-4ea7-8fda-b76114d1b0cf">419052017002</aktViide>
+		</avaldamismarge>
+		<joustumine id="25286f7a-67a8-4d1a-b982-543e40ac61b1">2017-05-22</joustumine>
+	</muutmismarge>
+	<muutmismarge id="7bc5d17b-007c-4f18-b836-afdb2c4237cc">
+		<aktikuupaev id="4c5e28b5-b2c5-4fa7-9963-07121215cc36">2020-06-25</aktikuupaev>
+		<avaldamismarge id="9a0e02e0-2f07-4532-a9cf-e76342fb27bc">
+			<RTosa id="f08e586c-b200-451a-8cc3-fd24d1ddb330">RT IV</RTosa>
+			<avaldamineKuupaev id="7f71ba66-c036-42f8-8f81-282105c0a30e">2020-07-03</avaldamineKuupaev>
+			<RTartikkel id="8c640514-3483-4980-82ba-ac01b63bd45e">7</RTartikkel>
+			<aktViide id="3f5de8bf-438e-4d67-876f-9ca3285a8438">403072020007</aktViide>
+		</avaldamismarge>
+		<joustumine id="6e7fc197-1a9b-4ff1-b30c-277bd0b6e584">2021-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="8a19fd4d-1d5f-41b6-b3ba-1c191ea4b440"><aktikuupaev id="3c877d11-e573-4c11-b0d3-b468b4f34433">2026-02-19</aktikuupaev><avaldamismarge id="f7147706-96a1-4194-bd7a-f5b865b05c89"><RTosa id="dc76cf5a-ded0-4755-ace8-afd0ab0aaeef">RT IV</RTosa><avaldamineKuupaev id="9ca510ba-c5a6-40d6-8a18-79fff0c8113b">2026-02-26</avaldamineKuupaev><RTartikkel id="99b798de-023e-430b-8d5d-55f7009f14b1">16</RTartikkel><aktViide id="c752b4cd-b124-4bca-b6f7-613f94154214">426022026016</aktViide></avaldamismarge><joustumine id="538e2a2d-9b9e-457c-84c5-852a3836a698">2026-03-01</joustumine><tavatekst id="d43004e6-bd85-4a61-81a3-52c6f2ee835b">, rakendatakse alates 01.01.2026</tavatekst></muutmismarge><sisu id="5bf7ef50-2996-4afb-94ab-3ca5e3065b12">
+		<preambul id="d79f632a-6844-4436-98dc-8234542d27ad">
+			<tavatekst id="c10867f1-9843-4f50-b15e-0f0487148bf1">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lg 1 p 5 ja sotsiaalhoolekande seaduse § 14 lg 2 alusel.</tavatekst>
+			<muutmismarge id="d1fb07b7-eee2-4d5c-bb24-b254640c316d">
+				<avaldamismarge id="44565270-7737-462e-9ad4-a6e57d68a8f0">
+					<RTosa id="a0a0ad26-cbb3-46b6-96d5-5e53dc444ca1">RT IV</RTosa>
+					<avaldamineKuupaev id="6d7bf424-2c16-4db0-b4e4-0bfe792bca49">2016-03-29</avaldamineKuupaev>
+					<RTartikkel id="5342d95c-715d-4ec1-a08a-32c9e4392119">8</RTartikkel>
+					<aktViide id="2fafa662-0ce9-40ce-b59e-fee2a59fe86a">429032016008</aktViide>
+				</avaldamismarge>
+				<joustumine id="3ef504ac-453c-45d3-bdfa-a8658590851c">2016-04-01</joustumine>
+			</muutmismarge>
+		</preambul>
+		<peatykk id="72781a72-b44e-421b-8f56-3f76dec18c14">
+			<peatykkNr id="dd058c43-b847-41fa-8ddc-ff0cbe464ae5">1</peatykkNr>
+			<kuvatavNr id="f0c7a86d-2552-4ffd-a436-e4c8ffc72a82"><![CDATA[1. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="561db717-6046-420a-9e37-2ae1a11ed39e">Üldsätted</peatykkPealkiri>
+			<paragrahv id="para1">
+				<paragrahvNr id="dcc44d73-63c6-42e4-8628-4e34f8a1e994">1</paragrahvNr>
+				<kuvatavNr id="a47e4dbb-25be-4295-9fa3-1158fb3ecd02"><![CDATA[§ 1. ]]></kuvatavNr>
+				<paragrahvPealkiri id="58684c8f-5066-46ee-82db-346e9f93d73f">Reguleerimisala</paragrahvPealkiri>
+				<loige id="para1lg1">
+					<loigeNr id="f67a9a9a-6b50-4524-af08-21cc6de1ab1d">1</loigeNr>
+					<kuvatavNr id="414837dd-9d80-41cc-b846-f71ccebefb8f"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="59476097-d590-491f-9bfd-73cbac6e592e">
+						<tavatekst id="5a31a1e7-22b3-4546-82d1-7e14942e19ad">Tartu linna eelarvest lapsehoiuteenuse rahastamise kord reguleerib lapsehoiuteenuse osutamise ja rahastamise tingimusi ja korda.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para1lg2">
+					<loigeNr id="e3af8048-062e-48e5-a49f-a3d92ec766d8">2</loigeNr>
+					<kuvatavNr id="f815c412-158a-41c5-b62c-c46c64c3d848"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="4b75c57a-c3b0-4fce-a252-d0e0e16e2df4">
+						<tavatekst id="b7d60833-5d6d-41a2-88cf-6bf1d3754848">Käesolev kord ei reguleeri riigi rahastatava lapsehoiuteenuse rahastamist.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="37cc5579-80f5-495b-b9da-6e6bd127cdfd">
+			<peatykkNr id="b19c3bbf-0038-45bf-a4d8-c4ae03f20561">2</peatykkNr>
+			<kuvatavNr id="e3b3e440-64e0-4b01-bf90-b64b31383c88"><![CDATA[2. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="1839afe5-f42e-4fdd-8691-62519cdc1de9">Tartu linna eelarvest rahastatava lapsehoiuteenuse osutamise tingimused ja kord</peatykkPealkiri>
+			<paragrahv id="para2">
+				<paragrahvNr id="9988a860-1586-4433-b8fb-e49014c2879c">2</paragrahvNr>
+				<kuvatavNr id="7d118433-bd78-4e42-bd57-9eb163175715"><![CDATA[§ 2. ]]></kuvatavNr>
+				<paragrahvPealkiri id="5c996687-59af-49a9-80d4-3858e618b1f1">Lapsehoiuteenuse osutamine</paragrahvPealkiri>
+				<loige id="para2lg1">
+					<loigeNr id="8630c99c-105c-4c5f-ae08-f6d6883568d4">1</loigeNr>
+					<kuvatavNr id="23944058-c956-4d1b-9266-f5ad3fd1685b"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="124b4be9-5acd-47e5-bf14-5fee1e7b466b">
+						<tavatekst id="e629ce95-b0a5-4fb9-8692-8fbc1a85d27e">Tartu linna eelarvest rahastatava lapsehoiuteenuse osutamine peab vastama õigusaktides sätestatud nõuetele. Lapsehoiuteenuse osutaja ja lapsehoidja peavad oma töös lähtuma lapse huvidest, lapse seadusliku esindaja (edaspidi <i>vanem</i>) juhistest, lapsehoiuteenuse osutaja ja vanema vahel sõlmitud lepingust või lapsehoiuteenuse osutamise kohta antud haldusaktist, tagades lapse hooldamise, arendamise ja turvalisuse.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para2lg2">
+					<loigeNr id="cdfc5755-60bf-4b60-bee7-83950b28ad9f">2</loigeNr>
+					<kuvatavNr id="5d9535c2-b9b2-4c2e-aaeb-fa1b6652b47e"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="3a3d8f6b-d47f-4997-902b-ed96ac33b9e6">
+						<tavatekst id="abdf171e-dcbe-459b-a3e5-436b1d87c671">Lapsehoiuteenuse osutaja tagab lapsehoiuteenuse raames võimalusel lapsele muusika- ja liikumistegevuse korraldamise, mille aeg on planeeritud päevakavasse.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para2lg3">
+					<loigeNr id="f3d265bc-7bc5-4b3e-9b8f-1320be2cebe7">3</loigeNr>
+					<kuvatavNr id="3fc8b186-9797-4e33-a160-ba806b1e1590"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="dd76409e-2cfc-4537-b23a-eab75e32f5db">
+						<tavatekst id="a856e068-e761-4dbb-b805-a22f2ee016f9">Lapsehoiuteenuse osutaja ja vanema vahel peab olema sõlmitud kirjalik või elektrooniline leping või lapsehoiuteenuse osutaja peab olema andnud haldusakti, mis peab muuhulgas sisaldama lapse isikuandmeid, lapsehoiuteenuse kasutamise alguse kuupäeva, lapsehoiuteenuse eest vanema makstava tasu suurust, toitlustamise eest makstava toidupäevamaksumuse suurust, lapsehoiuteenuse osutamise koha aadressi ning tingimusi lapsehoiuteenuse kestuse kohta päevas ja kuus (sealhulgas lapsehoiuteenuse kasutamise nädalapäevad ja kellaajad).</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para2lg4">
+					<loigeNr id="9ba1bd6b-06c8-4d42-9a53-fe0eaf021cfd">4</loigeNr>
+					<kuvatavNr id="6a17c229-d0bf-4dc5-9b75-6eaa3bb3a110"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="1c09a324-02cc-4c95-9276-0ff50d369188">
+						<tavatekst id="06a6c982-2674-4112-98dd-2c003a5f521f">Tartu Linnavalitsusel (edaspidi <i>linnavalitsus</i>) on õigus kehtestada määrusega Tartu linna eelarvest rahastatava lapsehoiuteenuse osutamisele käesoleva paragrahvi esimeses lõikes sätestatud nõuetele täpsustavad tingimused, lähtudes lapse huvidest, heast tavast ning mõistlikkuse ja proportsionaalsuse põhimõtetest.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para3">
+				<paragrahvNr id="e7e57286-29bb-464f-b03a-ba8353c49c06">3</paragrahvNr>
+				<kuvatavNr id="9f981697-716a-430b-b007-1fd71ffe2578"><![CDATA[§ 3. ]]></kuvatavNr>
+				<paragrahvPealkiri id="6fd6320e-cf21-4e72-8cfe-f4f9767c1479">Lapsehoiuteenuse ajaline maht</paragrahvPealkiri>
+				<loige id="para3lg1">
+					<loigeNr id="23d50275-18bf-4970-95b1-0fdc0b00b1c1">1</loigeNr>
+					<kuvatavNr id="8d090791-3821-460f-b53c-4eed6a1bb8b0"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="31e828f3-a14f-4d45-ba37-bf5695df397f">
+						<tavatekst id="a24405be-b129-4375-9f35-bf93cb30e4b8">Lapsehoiuteenust võib osutada täisajaliselt või osaajaliselt.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para3lg2">
+					<loigeNr id="3fda8d35-1ec3-4875-9013-5a58de3d9900">2</loigeNr>
+					<kuvatavNr id="741da1e0-2d32-4ba5-bc8b-79e24c124398"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="31f91bc1-b431-42ab-ac61-954dfcc518e0">
+						<tavatekst id="71573a14-eba5-4228-8cf3-3f1ca2ef4b62">Täisajalise lapsehoiuteenuse kestus on 40 tundi nädalas.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para3lg3">
+					<loigeNr id="334dfe88-01b5-4805-b285-2698ffee9979">3</loigeNr>
+					<kuvatavNr id="b8d0bb33-81ce-493e-9553-a9aff0e35f4c"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="29ccad98-760c-44a4-8d29-71feec45b962">
+						<tavatekst id="f0eb73d3-27d3-428f-96c4-0c39611eed2c">Osaajalise lapsehoiuteenuse kestus on alla 40 tunni nädalas.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para4">
+				<paragrahvNr id="5e902989-2b03-45af-a569-9076bcdfd4be">4</paragrahvNr>
+				<kuvatavNr id="de2e84eb-59e0-438c-bb3c-509d2f5f72bf"><![CDATA[§ 4. ]]></kuvatavNr>
+				<paragrahvPealkiri id="3f99594c-265e-4abb-8da7-25bb71e0daad">Toitlustamine</paragrahvPealkiri>
+				<loige id="para4lg1">
+					<loigeNr id="5d902339-1e5c-4a5a-9e39-85d283f19b0a">1</loigeNr>
+					<kuvatavNr id="4502d747-d88a-4da3-9eed-f5bf4cc6bc6b"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="72a7fb64-300d-4c6f-b51f-066f362290f0">
+						<tavatekst id="f9c3acc0-82a3-4be3-886e-199753c0f950">Laps peab süüa saama vähemalt iga 3 kuni 3,5 tunni järel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4lg2">
+					<loigeNr id="505caeb9-3284-4bcf-96d3-3cc2569ed7f5">2</loigeNr>
+					<kuvatavNr id="54b239b5-b32f-43f3-b647-563b6025a0a3"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="5fe558cd-fbc6-4f0e-aa2e-5347eb5273ba">
+						<tavatekst id="c50daf8d-5270-45f5-8487-106518046b1f">Toitlustamisteenuse hind ei või olla kõrgem vastava valdkonna turuhinnast.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para5">
+				<paragrahvNr id="ed3e2303-f4bc-4cc7-94c6-374ed07aedf8">5</paragrahvNr>
+				<kuvatavNr id="8d159afc-8bf0-4930-8f20-3a838761244c"><![CDATA[§ 5. ]]></kuvatavNr>
+				<paragrahvPealkiri id="82938bdf-8f52-4b4d-840a-7863fe8e1552">Lapsehoiuteenuse osutamise dokumenteerimine</paragrahvPealkiri>
+				<loige id="para5lg1">
+					<loigeNr id="72546979-7c7b-4749-80c0-163f4ccf4a38"/>
+					<kuvatavNr id="e12a526b-5570-44c4-8b77-f51185cb1f86"/>
+					<sisuTekst id="81705224-371d-4a4f-8805-c009d4bdec22">
+						<tavatekst id="efeba660-ebc3-4339-b01a-427006be043d">Lapsehoiuteenuse osutaja koostab üldtööplaani ja lapsehoiuteenust kasutavate laste päevakava ning peab arvestust lapse tegeliku lapsehoiuteenuse kasutamise kohta.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para6">
+				<paragrahvNr id="5a6a65c2-5aea-429e-bd3e-3d52e96b52f3">6</paragrahvNr>
+				<kuvatavNr id="d82eff28-ace7-4001-b98a-9632fa20b04f"><![CDATA[§ 6. ]]></kuvatavNr>
+				<paragrahvPealkiri id="ddbc739c-febd-4522-aac4-e863c59d7806">Lapsehoiuteenuse osutamise kohta andmete esitamine</paragrahvPealkiri>
+				<loige id="para6lg1">
+					<loigeNr id="354e1a08-95aa-48fb-b58d-c5fcc58056e7">1</loigeNr>
+					<kuvatavNr id="76cd2ff9-d597-4ec0-aa03-c414eec46878"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="a9e4e78b-81df-43ff-9fa0-b75ccab03e57">
+						<tavatekst id="fc6ac55f-583b-4506-9d14-e257f85c011f">Lapsehoiuteenuse osutaja peab kandma enda, osutatava lapsehoiuteenuse, lapsehoiuteenust kasutava lapse ja vanema andmed ülelinnalisse andmebaasi.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para6lg2">
+					<loigeNr id="e626f4a3-aabe-48c8-a664-cf7cc5a1c77d">2</loigeNr>
+					<kuvatavNr id="ea5a4a52-990f-4430-9e55-9ed39c50f9d2"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="aa4f252b-e903-47ab-a905-1d75f66f2e86">
+						<tavatekst id="27513658-a422-4db6-afdd-ec906fedb04b">Tartu Linnavalitsuse haridusosakonna (edaspidi <i>haridusosakond</i>) juhatajal on õigus kehtestada otsusega ülelinnalisse andmebaasi andmete kandmise ja seal olevate andmete kasutamise juhised.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para7">
+				<paragrahvNr id="d4170e35-5cdf-48f3-8372-0fef2883544d">7</paragrahvNr>
+				<kuvatavNr id="865c22a0-c8e7-4e0e-9a11-7ba4735a6521"><![CDATA[§ 7. ]]></kuvatavNr>
+				<paragrahvPealkiri id="a0be6245-e2a1-47bd-a53b-2516abef8be1">Täiendavate teenuste osutamine</paragrahvPealkiri>
+				<loige id="para7lg1">
+					<loigeNr id="c3ab857b-61eb-4709-a8c4-b0c62defc048"/>
+					<kuvatavNr id="bdd88fba-b1ad-4669-ba45-0ad77686ab38"/>
+					<sisuTekst id="295f98eb-1ec6-41e5-848a-f76c877f666d">
+						<tavatekst id="58a5c52c-02ec-42ef-ba28-4d969cf76285">Täiendavate teenuste osutamine toimub kokkuleppel vanemaga. Vanema jaoks on täiendav teenus vabatahtlik.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="d95e515a-72a7-43cc-81a3-b1ef2bd445e3">
+			<peatykkNr id="4226404d-7f2c-48a6-9321-214335a10569">3</peatykkNr>
+			<kuvatavNr id="35c11c11-b312-477e-bd53-8cbb7aa7edd3"><![CDATA[3. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="9c9d491c-49cf-4475-b9e4-2097b03df53c">Tartu linna eelarvest lapsehoiuteenuse rahastamise tingimused ja kord</peatykkPealkiri>
+			<paragrahv id="para8">
+				<paragrahvNr id="aa736f10-6d5a-447e-847e-67b909c43103">8</paragrahvNr>
+				<kuvatavNr id="cf5c297b-2d88-4c46-8c0c-6dc7b0f1dcfa"><![CDATA[§ 8. ]]></kuvatavNr>
+				<paragrahvPealkiri id="85a5d047-7b17-44c8-8b95-f6090bc51728">Lapsehoiuteenuse osutamise alustamine, laiendamine ja lõpetamine</paragrahvPealkiri>
+				<loige id="para8lg1">
+					<loigeNr id="c306b12c-0e12-48ed-9538-edd3fb489585">1</loigeNr>
+					<kuvatavNr id="61ec2bff-e070-4d69-8dd7-4650e46f019d"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="805e803e-ef3a-4711-b57c-91b68185f3ec">
+						<tavatekst id="bf68e4cc-37a9-448e-88bd-8628958a8278">Lapsehoiuteenuse osutaja, kes soovib alustada Tartu linna eelarvest rahastatava lapsehoiuteenuse osutamist või laiendab teenuse pakkumist uutesse ruumidesse, teavitab kirjalikult või elektrooniliselt haridusosakonda vähemalt neli kuud enne lapsehoiuteenuse osutamise alustamist või laiendamist, esitades seejuures andmed lapsehoiuteenuse osutaja, lapsehoiuteenuse osutamise või laiendamise alguskuupäeva, lapsehoiuteenuse osutamise tegevuskoha ja orienteeruva lapsehoiuteenust kasutama hakkavate laste arvu kohta.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para8lg2">
+					<loigeNr id="be55500f-c3ec-4250-be93-b0427f6429ab">2</loigeNr>
+					<kuvatavNr id="be0e76eb-d7fd-4d33-9657-f8fc742b4509"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="542c8b06-7bdd-472f-b1a6-0eec0f8deb68">
+						<tavatekst id="fee4eb02-5450-412b-b237-3af44a9a1516">Tartu linna eelarvest rahastatava lapsehoiuteenuse osutaja teavitab lapsehoiuteenuse osutamise lõpetamisest haridusosakonda kirjalikult või elektrooniliselt kolm kuud enne lapsehoiuteenuse osutamise lõpetamist.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para9">
+				<paragrahvNr id="2facc6f5-512f-4abd-a3ba-37142f13f16e">9</paragrahvNr>
+				<kuvatavNr id="dd7131f2-c1b3-4c41-a7d8-bea3f378dccb"><![CDATA[§ 9. ]]></kuvatavNr>
+				<paragrahvPealkiri id="dbc4e701-ddda-4a99-b3ae-d5451de98ebf">Lapsehoiuteenuse rahastamise tingimused</paragrahvPealkiri>
+				<loige id="para9lg1">
+					<loigeNr id="0555ab29-37ae-456c-8597-8e61a1e647aa"/>
+					<kuvatavNr id="3067eca3-20ea-4f60-8b1f-b17a47d15d4f"/>
+					<sisuTekst id="ef357a0c-4af7-4c91-964e-0f58dead2121">
+						<tavatekst id="1b2273df-da06-4ea5-9d50-cfc9c675a17d">Tartu linna eelarvest rahastatakse lapsehoiuteenust, kui:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para9lg1p1">
+						<alampunktNr id="fb826e3f-56f7-40a4-a691-4858916d5a77">1</alampunktNr>
+						<kuvatavNr id="464cd619-b246-4cdc-bf32-381924f9c883"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="504eae12-d593-419e-9a79-d3814de74bcc">
+							<tavatekst id="ae6ca721-e1f0-4a00-83ec-230d7f1bba5d">lapsehoiuteenuse osutaja ja lapsehoidja vastab õigusaktides esitatud nõuetele;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg1p2">
+						<alampunktNr id="b3fa156c-f480-4232-b39f-8ebd4248786a">2</alampunktNr>
+						<kuvatavNr id="87b9b936-173a-4fae-8242-bafc1ec7491f"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="43d49394-31df-4b5e-8fe1-7cfb5da12bd3">
+							<tavatekst id="3b7dfa51-9cbf-4b8b-a96c-44dfc9674e26">lapsehoiuteenus ja selle osutamine vastab käesoleva määruse 2. peatükis esitatud nõuetele;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg1p3">
+						<alampunktNr id="5536856b-e3ba-47c5-acec-ef6f4b200e2e">3</alampunktNr>
+						<kuvatavNr id="b15739ec-4362-47f0-981f-f56126d2906b"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="12fd39b4-d4e9-4936-9267-5543296f898e">
+							<tavatekst id="f46e5b71-e067-475c-be06-0edaef0a5628">lapsehoiuteenuse osutajal on kehtiv tegevusluba, mille ta on esitanud haridusosakonnale;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg1p4">
+						<alampunktNr id="0987e606-4e32-456a-afa6-3855c537102f">4</alampunktNr>
+						<kuvatavNr id="33b34b60-0082-481b-a656-4a92acb2c93f"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="190a6fb4-bde9-4a7b-871f-20685d8cefdc">
+							<tavatekst id="8845f262-d047-499d-bdcd-e0dbecdc279a">lapsehoiuteenuse osutajal puudub riiklike maksude või maksete võlgnevus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg1p5">
+						<alampunktNr id="69d282dc-aa20-46a4-9d37-9628252ca4bb">5</alampunktNr>
+						<kuvatavNr id="e38081d3-5dcd-42af-bf0f-18ee4e9ea233"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="e0de8e9c-82a3-49f1-9e6e-af9af1078715">
+							<tavatekst id="0d22ed9e-f496-49db-b22c-4381258b9a7e">lapsehoiuteenust kasutav laps on pooleteise kuni seitsmeaastane (või kuni koolis õppima asumiseni);</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg1p6">
+						<alampunktNr id="85ca22f2-a211-4d92-a00c-5fd360fa256e">6</alampunktNr>
+						<kuvatavNr id="7d04d45b-ec08-41b3-b82c-93e11dea890f"><![CDATA[6) ]]></kuvatavNr>
+						<sisuTekst id="dc3c18a3-1804-44fb-8e6a-7251c402f56b">
+							<tavatekst id="a3901bf0-9b08-4d34-81af-d14c6da99072">lapsehoiuteenust kasutava lapse ja ühe vanema elukoha andmetena on rahvastikuregistrisse kantud Tartu linn;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg1p7">
+						<alampunktNr id="bd8f1aca-af74-4456-95c8-c72330f35937">7</alampunktNr>
+						<kuvatavNr id="a7177e57-64ef-4b49-bb62-5b22e03fedf6"><![CDATA[7) ]]></kuvatavNr>
+						<sisuTekst id="dbefc8af-2818-4d8b-978f-7dec3b034bbb">
+							<tavatekst id="45e7f521-7973-4f02-b54a-546c3c4bb67c">lapsehoiuteenust kasutav laps kasutab riigi rahastatavat lapsehoiuteenust, teise õppeasutuse hoiuteenust või samaaegselt teise lapsehoiuteenuse osutaja teenust kokku mitte rohkem kui 1,0 koormusega;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg1p8">
+						<alampunktNr id="f07bfcec-9529-49b4-ba26-a435fd493226">8</alampunktNr>
+						<kuvatavNr id="5ebda75c-8a86-4e39-8e72-7058bc38a5db"><![CDATA[8) ]]></kuvatavNr>
+						<sisuTekst id="a8391527-d80f-43d5-a707-34abbb619f66">
+							<tavatekst id="3c6b49bd-4015-4683-a31d-2762389bc787">lapsehoiuteenuse osutaja on haridusosakonnale esitanud vanemaga sõlmitud lepingu lapsehoiuteenuse osutamise kohta või lapsehoiuteenuse osutamise kohta antud haldusakti.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="d8990ec4-f934-43f4-b7d7-faab21515ffe">
+							<avaldamismarge id="6c169ac6-16f0-45fe-8886-1ae67a3734a0">
+								<RTosa id="9289ba03-1972-4233-8e27-aeda6cd2b887">RT IV</RTosa>
+								<avaldamineKuupaev id="2827f0e7-4e28-4149-956d-8be8ce24128a">2017-05-19</avaldamineKuupaev>
+								<RTartikkel id="6558571b-29e2-4632-b0b1-814942bf15e8">2</RTartikkel>
+								<aktViide id="28250523-811f-4219-a920-259e0de8c399">419052017002</aktViide>
+							</avaldamismarge>
+							<joustumine id="1326c1df-e376-4820-ad07-c684c83ed7d4">2017-05-22</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para10">
+				<paragrahvNr id="f41bcb5c-52a3-49d2-bd9f-cb4589e1a9ac">10</paragrahvNr>
+				<kuvatavNr id="cd9eaf22-43c4-4a4c-a82d-269b4188288c"><![CDATA[§ 10. ]]></kuvatavNr>
+				<paragrahvPealkiri id="8f50bdfe-9ed7-4300-829f-a6ed72aee5a2">Lapsehoiuteenuse rahastamise korraldus</paragrahvPealkiri>
+				<loige id="para10lg1">
+					<loigeNr id="a6033912-4b07-40eb-aaf5-fb6f052f8fe6">1</loigeNr>
+					<kuvatavNr id="85646a09-7a69-4e83-b828-6936a6608782"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="b169e17d-9d6f-483b-8b78-27e355ef2c62">
+						<tavatekst id="573b8c6b-2f39-4db3-ba84-df0f98a3589f">Kui lapsehoiuteenuse osutaja on õigeaegselt teavitanud haridusosakonda Tartu linna eelarvest rahastatava lapsehoiuteenuse osutamise alustamisest või laiendamisest ning täidetud on käesoleva määruse paragrahvis 9 sätestatud tingimused, eraldatakse talle lapsehoiuteenust kasutava lapse eest lapsehoiuteenuse toetus (edaspidi <i>lapsehoiutoetus</i>) kalendrikuu kohta.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para10lg2">
+					<loigeNr id="74001b75-f76a-462a-ad4c-cf85be24ce7d">2</loigeNr>
+					<kuvatavNr id="01403a6c-69dd-4dd8-a6d9-d97ff69db0ee"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="120dfc55-7d3b-4808-bad1-27f591e9b85d">
+						<tavatekst id="450e516e-efd2-4b47-a222-656b7ffb877b">Täisajalise lapsehoiuteenuse eest eraldatakse lapsehoiutoetus kuumäära alusel. Osaajalise lapsehoiuteenuse korral eraldatakse lapsehoiutoetus kuumäära alusel, korrutades seda koormusega.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="bed89012-8ea5-423a-8147-69255495e4f1">
+						<avaldamismarge id="ca2df8f7-7168-43d5-b7da-a57232d64ced">
+							<RTosa id="9e623e9e-bfb6-4a90-825e-3f5ac3ea4f21">RT IV</RTosa>
+							<avaldamineKuupaev id="acea8e4c-373f-4023-aa65-0a68aaa34816">2017-05-19</avaldamineKuupaev>
+							<RTartikkel id="616ec111-e0de-44c7-b1d6-f9e20993fabc">2</RTartikkel>
+							<aktViide id="180cb626-dccd-4aab-b99e-d4fc3b6508d7">419052017002</aktViide>
+						</avaldamismarge>
+						<joustumine id="06675d07-b04c-4e2d-a788-6e06fce63def">2017-05-22</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para10lg3">
+					<loigeNr id="abacdfdf-e654-481c-a3b8-8754d69531cd">3</loigeNr>
+					<kuvatavNr id="3331d442-ecc8-4f10-ba56-3a20a88b2dee"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="8440cb95-7d6a-4de9-a801-0eb30104f2e1">
+						<tavatekst id="16e3997d-db46-4808-a687-d76dd45b6012">Kui Tartu linna eelarvest rahastatava lapsehoiuteenuse osutamine algab või lõpeb kalendrikuu kestel või kalendrikuu kestel muutuvad käesoleva määruse paragrahvi 9 punktis 6 nimetatud andmed, siis eraldatakse lapsehoiutoetus lähtudes tööpäevade arvust, mil laps kasutas vastavas kuus lapsehoiuteenust või paragrahvi 9 punktis 6 sätestatud tingimused olid täidetud. Päevamäär saadakse kuumäära jagamisel tööpäevade arvuga selles kuus, mille kohta toetust eraldatakse.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="8f7abe5a-e90d-40d4-b710-869ae1a243fe">
+						<avaldamismarge id="44c89e0f-e5a3-461e-a5c2-f107fd26e4aa">
+							<RTosa id="19cd95bf-9856-4a97-9d4e-2feba631d78e">RT IV</RTosa>
+							<avaldamineKuupaev id="b0d2fa8a-88d6-4e43-bdd0-22290dc3cf5d">2017-05-19</avaldamineKuupaev>
+							<RTartikkel id="88d26aad-0267-4481-80b1-c641659fec0e">2</RTartikkel>
+							<aktViide id="ddde855e-0bdd-4dc9-93d8-9ab291adf6e3">419052017002</aktViide>
+						</avaldamismarge>
+						<joustumine id="90e17818-2b12-434d-bcca-65f8875a565a">2017-05-22</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para10lg4">
+					<loigeNr id="53ea0995-0be8-4f4e-b3ab-a47abd2e31d1">4</loigeNr>
+					<kuvatavNr id="b3a7436a-2c15-4585-bc11-9ea880913a29"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="51fb38c3-b749-4076-94c8-128def686fb8">
+						<tavatekst id="5e43558a-331c-43b1-a06b-99f056eb5967">Lapsehoiutoetus makstakse välja hiljemalt lapsehoiuteenuse osutamisele järgneva kuu 15. kuupäevaks ülekandega lapsehoiuteenuse osutaja pangakontole.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para11">
+				<paragrahvNr id="4106a0aa-fa6a-40d8-bd06-c4896be704c1">11</paragrahvNr>
+				<kuvatavNr id="057ff4fc-0116-4df3-8e64-68bc4d1dd863"><![CDATA[§ 11. ]]></kuvatavNr>
+				<paragrahvPealkiri id="7da1dc01-440d-4f19-a079-2db53de799e6">Toetuse määrade kehtestamine</paragrahvPealkiri>
+				<loige id="para11lg1">
+					<loigeNr id="41f17350-1f3f-455f-a1a1-3249284ed065">1</loigeNr>
+					<kuvatavNr id="ae1bebf9-4cad-444c-b37c-cc3ba08f8ee1"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="ee98e3bf-daa8-4e99-84cf-2ba1827cba93">
+						<tavatekst id="a421fc5c-4ded-453d-86c1-4e754898020d">Linnavalitsus kinnitab määrusega lapsehoiutoetuse suuruse kuumäära, mis võib olla erinevas vanuses laste puhul erinev, ning määrab juhud, mil lapse kohta eraldatakse kuumäär koefitsiendiga ja vastava koefitsiendi suuruse.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="cd978cb1-a0b6-43bc-a137-92982b97ab66">
+						<avaldamismarge id="ca1f8fb3-cf0f-47f8-bd9f-8834a8172186">
+							<RTosa id="6b8168c0-de4b-40b1-9017-635515337f98">RT IV</RTosa>
+							<avaldamineKuupaev id="1c133658-cb5f-4143-814e-5a9dc666a27d">2017-05-19</avaldamineKuupaev>
+							<RTartikkel id="baf82b6c-82c0-4d5f-aeae-4afc189ffe42">2</RTartikkel>
+							<aktViide id="4e3f0bd1-3874-4e07-84f9-3722672bb4a6">419052017002</aktViide>
+						</avaldamismarge>
+						<joustumine id="27a2d82d-a83b-4da3-81a9-7e97708d23da">2017-05-22</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para11lg2">
+					<loigeNr id="76dca11b-2027-471d-8696-6ff833600933">2</loigeNr>
+					<kuvatavNr id="e0d0a587-b3ab-428a-bb1c-c8290fde19a1"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="ea6338b9-0027-41b3-a76b-f0c63611e72e">
+						<tavatekst id="e8998e6d-cd92-48de-9f10-c36fe964dbe5">Lapse kohta eraldatava toetuse kuumäära arvutamiseks jagatakse Tartu linna eelarves tegevusala „Alusharidus” all kinnitatud õppekava alusel tegutsevate munitsipaallasteasutuste tööjõu- ja majandamiskulud, millest on maha arvatud vanema poolt kaetav osa ja toitlustamiskulu, riigieelarveliste eraldiste arvelt kaetavad kulud, lasteasutuse hoonetega seotud kasutusrendi kulud, köögipersonali tööjõukulud ja toitlustushanke teenuse kulud ning tasuliste teenuste eest saadud tulud Tartu koolieelsetes munitsipaallasteasutuste õppekohtade koguarvuga ja kalendrikuude arvuga ning seejärel korrutatakse koefitsiendiga 0,90. Lisaeelarvega tehtud muudatusi ei arvestata.</tavatekst>
+					</sisuTekst>
+					
+				<muutmismarge id="c95a9b4b-8cf8-4676-97c5-9e756a1def7d"><avaldamismarge id="3034897f-e709-4e78-a46b-b92fd7dea13d"><RTosa id="7ebb9816-200d-4fc7-a681-1374e68451cc">RT IV</RTosa><avaldamineKuupaev id="db448d72-0477-4ec3-a8ef-96cb82672ef2">2026-02-26</avaldamineKuupaev><RTartikkel id="55712fa9-f5b5-4a84-b439-1821ae9d9958">16</RTartikkel><aktViide id="26bbdcfb-7e18-463c-9ab4-80b423c34a16">426022026016</aktViide></avaldamismarge><joustumine id="6c8cf5fa-2bbb-4a2d-9344-3fb93a37100e">2026-03-01</joustumine><tavatekst id="6448368c-8222-4336-a005-8dec55b4fbe6">, rakendatakse alates 01.01.2026</tavatekst></muutmismarge></loige>
+				<loige id="para11lg3">
+					<loigeNr id="8dcfbd4a-777e-4ffa-ba54-40d4603cd28a">3</loigeNr>
+					<kuvatavNr id="1420aa03-c649-4e97-ad59-7567623ed86f"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="44e12526-a091-4484-9480-5ba17b6732c8">
+						<tavatekst id="299ae3cf-0bdc-443f-8c48-cf91599355a0">Linnavalitsuse kinnitatav toetuse määr ei või olla väiksem eelnenud kalendriaastal kehtinud määrast, välja arvatud juhul, kui Tartu linna eelarve tegevusala „Alusharidus” all kinnitatud tööjõu- ja majandamiskulud vähenevad.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para12">
+				<paragrahvNr id="03f81a11-dbfa-46c8-a212-e910d8d4aa9b">12</paragrahvNr>
+				<kuvatavNr id="b4165f73-e11b-48cf-b155-e9beeb23f1ff"><![CDATA[§ 12. ]]></kuvatavNr>
+				<paragrahvPealkiri id="ebe65534-f40e-4049-baca-c5fef35cf748">Lapsehoiuteenuse eest täiendava toetuse eraldamine</paragrahvPealkiri>
+				<loige id="para12lg1">
+					<loigeNr id="fa1a03f4-c299-42b2-9e4a-d0bec51c3301">1</loigeNr>
+					<kuvatavNr id="d49c9f8c-ce3d-49c4-a8bd-6e675387d90a"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="4f72fd6d-d7f2-445c-ab23-eb4e4c5e4ff3">
+						<tavatekst id="d78ea33f-36c6-4728-bdae-26156f2dc08e">Tartu linna eelarvest rahastatava lapsehoiuteenuse osutajale eraldatakse täiendav toetus lapse kohta, kui:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para12lg1p1">
+						<alampunktNr id="07ee20c0-80dd-4a27-981a-144934be4a4a">1</alampunktNr>
+						<kuvatavNr id="88ae3944-2a0d-4b43-88ae-d01b60e8004d"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="fe0639fa-14aa-4e43-a6c2-69230d2ceddc">
+							<tavatekst id="d0418648-8b8d-4604-9446-ec20d0abbc5e">lapsehoiuteenuse eest maksab vanem lapsehoiuteenuse osutajale tasu, mis võrrelduna täisajalise tasuga ei ületa Tartu linna koolieelsete munitsipaallasteasutuste rahastamisel lapsevanema poolt kaetavat osa;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para12lg1p2">
+						<alampunktNr id="6a8baa67-1f3c-47ac-b1ac-29b8672320a4">2</alampunktNr>
+						<kuvatavNr id="3ec4b345-b231-410d-9d4d-9390f5bf04a3"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="200ccebd-ac92-4f41-a87b-aea76e54bb92">
+							<tavatekst id="fa12e7ea-5dc9-4b3d-a63f-9d30502184d9">lapsehoiuteenuse osutaja korraldab lapsehoiuteenuse raames last arendavaid tegevusi, sealhulgas muusika- ja liikumistegevusi igal nädalal vähemalt kaks astronoomilist tundi lapse kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para12lg1p3">
+						<alampunktNr id="c23eb151-3763-4430-923c-feac26c68801">3</alampunktNr>
+						<kuvatavNr id="91bb81bf-0996-4821-8ed1-a419816ae911"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="32ef602e-e390-47dd-8797-324ea039fb0e">
+							<tavatekst id="a1e848be-ac03-4db9-a1f7-23a2324841c4">lapsehoiuteenuse osutaja on kohaldanud tasule samu erisusi, nagu on Tartu linna koolieelsete munitsipaallasteasutuste puhul sätestatud Tartu Linnavolikogu 30. juuni 2016. a määruse nr 115 "Tartu linna koolieelsete munitsipaallasteasutuste rahastamisel vanemate poolt kaetava osa määra kehtestamine" paragrahvis 2.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="e4d263da-056a-48f6-a529-723c5cbb9d4a">
+							<avaldamismarge id="9e04b46d-a8a5-4721-8d1a-baa49c523896">
+								<RTosa id="dbf543bf-2946-4826-957e-5461073e1852">RT IV</RTosa>
+								<avaldamineKuupaev id="84025b8a-79c9-46a2-94a9-a36b1abf2cdf">2017-05-19</avaldamineKuupaev>
+								<RTartikkel id="a6cfa3ea-fa70-445f-9ff1-21f0ea52c71f">2</RTartikkel>
+								<aktViide id="bd75d2c1-7f61-4b21-91d9-db2af0ce044e">419052017002</aktViide>
+							</avaldamismarge>
+							<joustumine id="f6fe894e-3676-414c-9dc8-020730ac4460">2017-05-22</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para12lg2">
+					<loigeNr id="f7c3a064-90f1-401e-b41d-9cba2cbd29e8">2</loigeNr>
+					<kuvatavNr id="90a765f7-e45a-4242-9085-fcb3d830727b"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="265f94f5-d4a4-4492-8ffd-fa3e1c7922b0">
+						<tavatekst id="14e6a302-b56f-45f8-8341-b6079ce25ea1">Täiendava toetuse suurus on võrdne Tartu linna koolieelsete munitsipaallasteasutuste rahastamisel vanemate poolt kaetava määraga.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="51864afc-5a79-4cf0-be27-b21025fd0d40">
+						<avaldamismarge id="b2328011-57cc-4962-9d71-cfcc31fbdecb">
+							<RTosa id="1acc5440-022e-4c3e-9cf8-9023ad92d136">RT IV</RTosa>
+							<avaldamineKuupaev id="56767d35-ea05-4661-b155-f98e4f65c0a7">2020-07-03</avaldamineKuupaev>
+							<RTartikkel id="131fccf7-7539-47ab-8f58-2638685cd769">7</RTartikkel>
+							<aktViide id="135f1fdf-16ad-4671-aaba-a13a543de379">403072020007</aktViide>
+						</avaldamismarge>
+						<joustumine id="3642fe97-6a08-485f-abd0-591c9346ff50">2021-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para12lg2b1">
+					<loigeNr id="2164579d-e610-4baa-866b-a5858a4dd310" ylaIndeks="1">2</loigeNr>
+					<kuvatavNr id="923383ec-619e-497a-9cb3-6b82a6378a3c"><![CDATA[(2<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst id="8a541c01-b0b7-4fec-bad6-4382ff8b6982">
+						<tavatekst id="22baec5b-8894-4cb5-adf7-3b0b2970786d">Täisajalise lapsehoiuteenuse eest eraldatakse täiendav toetus kuumäära alusel. Osaajalise lapsehoiuteenuse korral eraldatakse täiendav toetus kuumäära alusel, korrutades seda koormusega.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="59a06f0a-bce1-4460-9e80-c02ee1cc45be">
+						<avaldamismarge id="20a8d9af-69b4-4ea7-9965-0fdb8d1a960f">
+							<RTosa id="829e9718-ae08-441a-b7f5-e90d43b44cca">RT IV</RTosa>
+							<avaldamineKuupaev id="e13edecc-d276-4b77-b8b6-d72c37a381ac">2017-05-19</avaldamineKuupaev>
+							<RTartikkel id="5c9ea583-a307-4142-83cf-bc15717cc3fd">2</RTartikkel>
+							<aktViide id="68141743-4a37-4d86-b76a-6703498a5c19">419052017002</aktViide>
+						</avaldamismarge>
+						<joustumine id="9280f765-9c62-4564-b410-797768b5449d">2017-05-22</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para12lg3">
+					<loigeNr id="56e144e1-763a-42d7-973c-cc715870268d">3</loigeNr>
+					<kuvatavNr id="4868c2c3-877c-4649-b3c8-9b6efc5abd58"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="35168d50-353f-4159-a2e5-0f8e51ab0e70">
+						<tavatekst id="1a141a63-cfc1-4405-960a-0be43015ba31">Lapsehoiuteenuse osutaja peab täiendava toetuse saamiseks esitama kirjaliku või elektroonilise taotluse, tuues välja, millisest kuupäevast täiendava toetuse eraldamist taotletakse.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para12lg4">
+					<loigeNr id="4882aebb-8b88-4c6f-ad1d-5afa6cc3cb0f">4</loigeNr>
+					<kuvatavNr id="d28993fb-2086-49f4-854c-bee4333be057"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="8fe4ca04-2a69-4a2a-9ec8-5c4bec563781">
+						<tavatekst id="71fb76c1-a1d6-4ff4-9b1e-1b8dd1e3dcfb">Kui Tartu linna eelarvest rahastatava lapsehoiuteenuse osutamine algab või lõpeb kalendrikuu kestel või kalendrikuu kestel muutuvad käesoleva määruse paragrahvi 9 punktis 6 nimetatud andmed, siis eraldatakse täiendav toetus lähtudes tööpäevade arvust, mil laps kasutas vastavas kuus lapsehoiuteenust või paragrahvi 9 punktis 6 sätestatud tingimused olid täidetud. Päevamäär saadakse kuumäära jagamisel tööpäevade arvuga selles kuus, mille kohta toetust eraldatakse.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="c186c155-8893-4927-adff-13985b03aa90">
+						<avaldamismarge id="a9fdbea6-1300-4df0-a4cc-64b138befec5">
+							<RTosa id="114df115-168b-4cf5-8875-c4fd6df84e00">RT IV</RTosa>
+							<avaldamineKuupaev id="6df683cf-2d19-445d-b378-621a46c09b5c">2017-05-19</avaldamineKuupaev>
+							<RTartikkel id="419646c2-24a3-4838-8949-2c13b05b93a1">2</RTartikkel>
+							<aktViide id="d21b4b57-369a-497a-8e29-aae37ae835af">419052017002</aktViide>
+						</avaldamismarge>
+						<joustumine id="b5a0afde-1247-4c6e-a042-1ad135089552">2017-05-22</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para12lg5">
+					<loigeNr id="0804f170-1b12-4404-8a4f-05ca759c9648">5</loigeNr>
+					<kuvatavNr id="3763b932-826c-413c-ab7d-abc3a7bd3701"><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst id="71ab7691-6afc-455b-b172-188906bb88fa">
+						<tavatekst id="a540d5ce-fbcc-4253-ad93-09c915687031">Täiendav toetus makstakse välja hiljemalt lapsehoiuteenuse osutamisele järgneva kuu 15. kuupäevaks ülekandega lapsehoiuteenuse osutaja pangakontole.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para13">
+				<paragrahvNr id="e15da386-2b43-4396-ad97-a8488b5389c0">13</paragrahvNr>
+				<kuvatavNr id="fad7113e-a891-46d8-b406-3d5bddcb1222"><![CDATA[§ 13. ]]></kuvatavNr>
+				<paragrahvPealkiri id="80b4956d-8f54-4054-9be9-cce82541936f">Lapsehoiutoetuse ja täiendava toetuse sihtotstarve</paragrahvPealkiri>
+				<loige id="para13lg1">
+					<loigeNr id="2bb49222-3e8e-482d-815b-9c41cbf9eb2e"/>
+					<kuvatavNr id="c6b45587-76c9-4bf1-b9db-f4dead6245e7"/>
+					<sisuTekst id="63fb0b5b-4081-49b7-aad5-bc00febfd645">
+						<tavatekst id="4257076a-1777-4208-8de0-068a3dd09644">Lapsehoiuteenuse osutaja võib lapsehoiutoetust ja täiendavat toetust kasutada tegevuskulude katteks.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para14">
+				<paragrahvNr id="33fc149e-d834-4013-b22f-f6eb450919a4">14</paragrahvNr>
+				<kuvatavNr id="7d514b1b-cc92-47d7-a459-0a1c82d45713"><![CDATA[§ 14. ]]></kuvatavNr>
+				<paragrahvPealkiri id="d27ad30a-eee9-4d6e-be6f-1f8558ac888b">Lapsehoiuteenuse osutaja teavitamiskohustus</paragrahvPealkiri>
+				<loige id="para14lg1">
+					<loigeNr id="072efe6e-82aa-4f20-affb-9397bb282d90">1</loigeNr>
+					<kuvatavNr id="08c83ee3-7cd0-4d03-a449-220a0f763d96"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="66bca216-6c90-4b7c-b95f-24d6cdb39e0a">
+						<tavatekst id="45e5d0ba-6e8f-4b76-9e3d-2a99dcfe80f6">Lapsehoiuteenuse osutaja on kohustatud haridusosakonda teavitama kohe kõikidest asjaoludest, mis tingivad või võivad tingida Tartu linna eelarvest lapsehoiuteenuse rahastamise lõpetamise, sealhulgas esitama toetuse eraldamiseks vajalikud andmed korrektselt Tartu haridusteenuste haldamise infosüsteemis ARNO.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="23859eac-6e1d-49fb-8080-b157717bbb54">
+						<avaldamismarge id="3cbe7c2a-1ef4-49b6-9cd9-52b742d7695a">
+							<RTosa id="4c8faf7f-3652-4dd5-8318-7bab4ca116cf">RT IV</RTosa>
+							<avaldamineKuupaev id="781a30f5-5044-48de-8b52-26a2ba4641dc">2017-05-19</avaldamineKuupaev>
+							<RTartikkel id="a13d9fff-c475-4abb-bf89-f5317534cc17">2</RTartikkel>
+							<aktViide id="6f93e789-9bb0-49e9-bb3c-8486b525ae1c">419052017002</aktViide>
+						</avaldamismarge>
+						<joustumine id="92406192-61bd-4f1a-86d6-b1a93f9a8e35">2017-05-22</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para14lg2">
+					<loigeNr id="731b607f-d5ed-4eb4-8fe1-18e9964b7be7">2</loigeNr>
+					<kuvatavNr id="fa4b51e1-c0ee-4e91-b4e3-46f6acd7c89a"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="eec3d75d-0286-4881-8fc9-ac8ff9851d66">
+						<tavatekst id="868ca8bc-cf2b-4fec-b376-11524ca2f430">Lapsehoiuteenuse osutaja on kohustatud viivitamatult teavitama haridusosakonda järelevalveorgani tehtud ettekirjutustest ja nende täitmisest.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para15">
+				<paragrahvNr id="fc0a5822-9160-42ea-bf95-f703051ba081">15</paragrahvNr>
+				<kuvatavNr id="088a9cb8-5c4d-41f4-9b51-26ad61300a30"><![CDATA[§ 15. ]]></kuvatavNr>
+				<paragrahvPealkiri id="fac1e3ba-4c6a-4680-9ef3-151d0b96c474">Lapsehoiutoetuse ja täiendava toetuse tagasinõudmine ja väljamaksmise peatamine</paragrahvPealkiri>
+				<loige id="para15lg1">
+					<loigeNr id="4ffe6a00-1d4b-40c4-9618-7c5c9fe21866">1</loigeNr>
+					<kuvatavNr id="1cbeea02-410b-493e-a1ca-26538df989ad"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="d7634ce5-6ff7-4682-a0b6-82d6d4a196a6">
+						<tavatekst id="8c444c99-6e66-4225-93ea-f37243907381">Haridusosakond peatab lapsehoiutoetuse ja täiendava toetuse väljamaksmise, kui Tartu linna eelarvest lapsehoiuteenuse rahastamise aluseks olevad tingimused ei ole täidetud, lapsehoiuteenuse osutaja ei luba haridusosakonna esindajat lapsehoiuteenuse osutamiseks kasutatavatesse ruumidesse kontrolli tegemiseks või ei esita nõutud andmeid ja dokumente tähtaegselt.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para15lg2">
+					<loigeNr id="897db593-5a7c-4b1f-b859-64503db085ca">2</loigeNr>
+					<kuvatavNr id="99d04a9d-fb03-4d79-929b-e86a4ff7bec8"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="137a88fc-cba3-4b28-ae71-d5f631487015">
+						<tavatekst id="2282c559-2121-4bcc-b973-06bb1ca4d6f9">Kui pärast lapsehoiutoetuse või täiendava toetuse väljamaksmist selgub, et Tartu linna eelarvest lapsehoiuteenuse rahastamise aluseks olevad tingimused ei olnud täidetud, on haridusosakonnal õigustasaarveldada aluseta makstud toetus väljamaksmisele kuuluva toetusega või nõuda aluseta väljamakstud toetus tagasi.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="87ba1280-ed27-413a-8f6b-4855843315d9">
+			<peatykkNr id="64b5ad7c-4f14-4a57-ab8e-803383b030ae">4</peatykkNr>
+			<kuvatavNr id="c6262233-7bf7-4d60-9b34-cc41e2cef6fa"><![CDATA[4. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="deee6ef8-39ba-4d9c-bd42-c3cbbe5d6559">Järelevalve</peatykkPealkiri>
+			<paragrahv id="para16">
+				<paragrahvNr id="75ee5782-7dbf-4e70-9bf2-2360c71be98f">16</paragrahvNr>
+				<kuvatavNr id="09244e23-5f05-43b1-8b1b-47006504cda4"><![CDATA[§ 16. ]]></kuvatavNr>
+				<paragrahvPealkiri id="ba074708-3287-4134-baf1-5b2ee2a87701">Järelevalve</paragrahvPealkiri>
+				<loige id="para16lg1">
+					<loigeNr id="b490dfc7-52cc-4fcb-8185-5c2629fcfc79">1</loigeNr>
+					<kuvatavNr id="29cd274a-d48c-4845-9469-4ccf835feaf7"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="1f256be5-a725-4acb-ad75-8d65af0b53b0">
+						<tavatekst id="5b4941f8-ead0-4c3d-a9d2-eb5b77f73172">Haridusosakonnal on õigus igal ajal kontrollida Tartu linna eelarvest lapsehoiuteenuse rahastamise ja täiendava toetuse eraldamise aluseks olevate tingimuste täitmist ja toetuse kasutamise sihtotstarbelisust.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para16lg2">
+					<loigeNr id="f6fb3e05-56d5-436e-8b54-cb3d60e5079e">2</loigeNr>
+					<kuvatavNr id="737329fc-5d14-4f13-80d5-7d049d4268b7"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="b347b7b6-0b26-4082-ac44-d834c265b8bb">
+						<tavatekst id="6acd7f54-11d0-40c9-9d4b-d3ce228a4cba">Käesoleva paragrahvi lõikes 1 sätestatud kontrolli tegemiseks on haridusosakonnal õigus:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para16lg2p1">
+						<alampunktNr id="539ff8b0-5704-4585-abdb-15c1f33e4e01">1</alampunktNr>
+						<kuvatavNr id="fdda89f2-bca8-485e-ac87-f9ef3e710d96"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="cd989fbc-e0e2-498e-ac62-31d2b9154e71">
+							<tavatekst id="a088abbc-fd71-4bc7-a7c7-d3a6a2ba5c27">nõuda Tartu linna eelarvest rahastatava lapsehoiuteenuse osutajalt lapsehoiuteenuse osutamisega seotud andmete ja dokumentide (sealhulgas vanemalt saadud tasu kohta) esitamist;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para16lg2p2">
+						<alampunktNr id="29d441a9-8ba4-40b1-b528-f0c6e76640dc">2</alampunktNr>
+						<kuvatavNr id="eb860064-6536-4f89-b17c-9828d0c2c9a2"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="5cfcc66a-cbee-42b6-bd21-a6fc0e7cfeb5">
+							<tavatekst id="2e4477e2-ba82-4734-b7cb-9793d12ca134">küsida Tartu linna eelarvest rahastatavat lapsehoiuteenust kasutavalt vanemalt andmeid lapsehoiuteenuse kasutamise kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para16lg2p3">
+						<alampunktNr id="a18b2ae2-a71d-4c5d-b3c4-c5f3a5954401">3</alampunktNr>
+						<kuvatavNr id="822788a6-71ee-4800-b614-d3c43542e3aa"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="ebde8cc3-2b5a-4cc2-b9bc-d281b79d37ae">
+							<tavatekst id="093afd7a-830f-40bf-b7e6-921ed431f54f">siseneda eelneval kokkuleppel Tartu linna eelarvest rahastatava lapsehoiuteenuse osutamiseks kasutatavatesse ruumidesse lapsehoiuteenuse osutamisega seotud asjaolude kontrollimiseks.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para16lg3">
+					<loigeNr id="e9241368-7c20-4df7-9ff1-56ec0c615881">3</loigeNr>
+					<kuvatavNr id="f4619f6f-0e64-4cff-a4f2-903e0e31aac0"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="26ef8cdc-2e64-4861-841e-2dfa498078a9">
+						<tavatekst id="c1e2cbb7-3747-4270-817e-7e47d0698b5c">Tartu linna eelarvest rahastatava lapsehoiuteenuse osutaja peab lapsehoiuteenusega seotud dokumente säilitama vähemalt viis aastat, kui õigusaktis ei ole ette nähtud pikemat dokumentide säilitamise aega.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="3cabb2ec-a615-4eee-be54-574efb81eba5">
+			<peatykkNr id="1fc95ba0-4879-456f-86fd-e039e52ed5d2">5</peatykkNr>
+			<kuvatavNr id="554a565b-a808-4c57-a306-1137ba2ac262"><![CDATA[5. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="0f913dd0-0daf-4e07-8add-b8d71e26c961">Lõppsätted</peatykkPealkiri>
+			<paragrahv id="para17">
+				<paragrahvNr id="ebba7aa3-35c5-4f33-9645-eff41653dacc">17</paragrahvNr>
+				<kuvatavNr id="006fcd66-e90a-49a5-8861-f78b1fe89ba3"><![CDATA[§ 17. ]]></kuvatavNr>
+				<paragrahvPealkiri id="590f4c89-e56d-46fe-bcb1-8ea9b76ca5dc">Määruse rakendamine</paragrahvPealkiri>
+				<muutmismarge id="916b5b3c-e11b-40fb-b6de-f5f3cbc89ab5">
+					<avaldamismarge id="fd71e6ca-4927-4055-a0ad-de14795e3b5e">
+						<RTosa id="7942e6d5-4ef2-4308-b41a-b71b3d99c67c">RT IV</RTosa>
+						<avaldamineKuupaev id="6554eb15-14ef-4f7a-bf7d-6caa4079e097">2017-05-19</avaldamineKuupaev>
+						<RTartikkel id="8a297cef-e716-440e-a545-69ab1817b2e9">2</RTartikkel>
+						<aktViide id="1a6994c0-5196-4b38-bec4-3252f1b3c41d">419052017002</aktViide>
+					</avaldamismarge>
+					<joustumine id="f61368c6-14f9-423f-8c02-c6bc4782f27f">2017-05-22</joustumine>
+				</muutmismarge>
+				<loige id="para17lg1">
+					<loigeNr id="bdc1278d-63f4-4957-9a81-d001c78be7c5">1</loigeNr>
+					<kuvatavNr id="14104876-94c3-45bb-bda2-149b90c7134d"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="d37ee3b5-ed33-4680-ab48-48a8d9c99617">
+						<tavatekst id="96ba5a16-ce96-47d8-9583-1d3db33b05c5">Käesoleva määruse § 6 jõustub 1. jaanuaril 2015. a.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para17lg2">
+					<loigeNr id="96b2e4e7-680e-4fb1-917a-52379a5b9667">2</loigeNr>
+					<kuvatavNr id="6e764737-400a-48a9-931b-ca838ebabde8"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="2d74a7e8-8ff6-4c2d-8051-ba7869612bcc">
+						<tavatekst id="39a30161-8a9d-4e9a-8687-9fa7be8ed848">Ajavahemiku juuli-august 2014. a eest makstakse lapsehoiutoetused välja 25. juulil, arvestades käesolevas määruses sätestatud lapsehoiutoetuse eraldamise aluseks olevaid tingimusi lapsehoiuteenuse toetuse määrade järgi, mille on linnavalitsus kehtestanud Tartu Linnavolikogu 28. juuni 2007. a määruse nr 64 „Tartu linna eelarvest lapsehoiuteenuse rahastamise kord” alusel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para17lg3">
+					<loigeNr id="88f72e85-2ce3-4bd5-9d34-d2fe6a653b06">3</loigeNr>
+					<kuvatavNr id="be290323-d6b1-4279-9278-093224309c33"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="73bce3ff-9c60-46d3-a3c4-b5e8a78eeb9c">
+						<tavatekst id="7922e5b4-9a81-4954-932d-f21be113e22f">Täiendava toetuse eraldamist alustatakse 1. septembrist 2014. a.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para17lg4">
+					<loigeNr id="378a0fe1-014a-4f9a-804c-1ae22aa60563">4</loigeNr>
+					<kuvatavNr id="732a062c-05a1-43b4-a5f4-7370eb3b8cab"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="ee2af82c-4ec0-4477-bed3-239b53646591">
+						<tavatekst id="2a952c6b-7a2b-43e4-87af-e224cc83926d">Alates 1. jaanuarist 2018. a peab lapsehoiuteenuse osutaja täiendava toetuse saamiseks täitma käesoleva määruse paragrahvi 12 lõike 1 punktis 3 sätestatud tingimust.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="d1e9c60f-6039-4dd3-8dda-bcafe18b8db5">
+						<avaldamismarge id="159fb6a9-1c09-4ccd-a444-edf91f9900db">
+							<RTosa id="794ce9a3-96d9-4c75-886e-3971d1f9fb3c">RT IV</RTosa>
+							<avaldamineKuupaev id="84e9ce0f-3549-44f9-90ae-00544c24f068">2017-05-19</avaldamineKuupaev>
+							<RTartikkel id="fe38e603-95c4-46c4-b504-81029e9b3438">2</RTartikkel>
+							<aktViide id="b0a51feb-b577-454d-9cba-2c4ac9623ced">419052017002</aktViide>
+						</avaldamismarge>
+						<joustumine id="e491a794-ee09-4d33-adab-06c621adcdee">2017-05-22</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para18">
+				<paragrahvNr id="deee495d-0095-445c-a35a-6c32500c551b">18</paragrahvNr>
+				<kuvatavNr id="5f33ae8c-2ba9-482d-b386-ce43a3ed8b7d"><![CDATA[§ 18. ]]></kuvatavNr>
+				<paragrahvPealkiri id="6a2adb42-0f4c-4916-a7a6-5918e2397c1c">Määruse täiendamine ja kehtetuks tunnistamine</paragrahvPealkiri>
+				<loige id="para18lg1">
+					<loigeNr id="642abe9b-9146-4382-966d-24e03655de61"/>
+					<kuvatavNr id="c8323c82-6f69-4971-b2cb-1fff7daf1ae6"/>
+					<sisuTekst id="05cff32a-d543-4773-a02e-86ed2f1cc7b0">
+						<tavatekst id="31b124dc-33aa-484b-a788-b1109b0a7c1a">[Käesolevast tekstist välja jäetud].</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+	</sisu>
+</oigusakt>

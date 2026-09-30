@@ -37,7 +37,7 @@ node scripts/rag-v2-corpus-refresh.mjs register --from W/dl --out W
 # plan (--selection W/selection.json), run ja review nagu jaotises 3
 node scripts/rag-v2-corpus-refresh.mjs review --draft W/review-draft.json --out W/review.json --reviewer "<kes, kelle korraldusel>"
 # publish nagu jaotises 3
-node scripts/rag-v2-corpus-refresh.mjs package --store tmp/rag-v2-corpus-store-v25 --policy <eelmine policy.json> --review W/review.json --out W/ship
+node scripts/rag-v2-corpus-refresh.mjs package --store tmp/rag-v2-corpus-store-v25 --policy <eelmine policy.json> --review W/review.json --out W/ship --remove W/scan/municipal-acts-<päev>.json
 ```
 
 - Serverisse lähevad `W/ship/ship.tgz`, `ship.json` ja `policy.json` nimedega `ship-v<N>.tgz`, `ship-v<N>.json` ja `policy-v<N>.json` töökausta. Seejärel: `sh /home/ubuntu/apps/sotsiaalai/scripts/rag-v2-corpus-run.sh <N> <eelmine N> /etc/sotsiaalai/m4-corpus-chat-<kuupäev><täht>.json <piir> "<alus et>" "<alus en>"`.

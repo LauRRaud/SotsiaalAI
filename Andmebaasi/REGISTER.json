@@ -26,8 +26,8 @@
       "sources": 1
     },
     "oigusaktid": {
-      "files": 574,
-      "sources": 560
+      "files": 592,
+      "sources": 578
     },
     "register": {
       "files": 2,
@@ -26128,6 +26128,150 @@
       "role": "source",
       "sha256": "c4f9771efaa9d1c504194529ba5740162c1770d54982459cf42584df236d0354",
       "original_path": "riigiteataja.ee/et/akt/427052026019.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/401022025031.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "b2881fe59f857137d39b08a97aec7b3ec0cc86be5498bd055f5fed0a7fdebd98",
+      "original_path": "riigiteataja.ee/et/akt/401022025031.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/402042026016.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "c4f3f478da046621388665bbbedf093a0bd4995ae8a28a23f392d543bee468ca",
+      "original_path": "riigiteataja.ee/et/akt/402042026016.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/404092025028.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "e720cc0918a32097720a506036ece0c4fe09f95bc7e49e01a5a0f1b188538745",
+      "original_path": "riigiteataja.ee/et/akt/404092025028.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/406062026037.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "3565298e7424b6ce992907691fea085a4e3becb6ac41331a6b1cf1ac520352ea",
+      "original_path": "riigiteataja.ee/et/akt/406062026037.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/406122024002.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "69c8dd191d343902c47798a5469143a08766a1f329075491f9efbb6154b626be",
+      "original_path": "riigiteataja.ee/et/akt/406122024002.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/407022026044.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "659d6053ac10b4b3953d069be05748a84e5af18aaf36cb6728d4a30b96742baf",
+      "original_path": "riigiteataja.ee/et/akt/407022026044.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/408022019008.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "bcba78ffafa25a76a6eea77044e4a3f650044bdff3ffeccc2a2ef1b795e3f0b7",
+      "original_path": "riigiteataja.ee/et/akt/408022019008.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/408112018042.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "352c29955e67a6b90da7b3914d86eb26afdcf3d5e528353b4b457d9ec413816f",
+      "original_path": "riigiteataja.ee/et/akt/408112018042.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/411062026014.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "ee2fff206592745aa52026ac96ca3b976dbda0c2d1872425b5b774fc0f50694d",
+      "original_path": "riigiteataja.ee/et/akt/411062026014.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/411062026015.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "c9f8c7d22d543bb9699b05043a77f6df1e7535eb3b4ed4f07f2ccb3cf8cc5775",
+      "original_path": "riigiteataja.ee/et/akt/411062026015.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/411122015006.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "b6f8832223ec8b84837f1bc0fd950bd2261daf72cf257ef665e45ac08094effa",
+      "original_path": "riigiteataja.ee/et/akt/411122015006.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/424032026005.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "228c2ec552c699a0100db2ed4ae22f56e26e13c4b5525e45efc1467df774356f",
+      "original_path": "riigiteataja.ee/et/akt/424032026005.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/426022021006.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "2b0a3fff480125902722ab8332fc035533ec08ee37c68011d6e4f673fc0a0fb7",
+      "original_path": "riigiteataja.ee/et/akt/426022021006.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/426022026039.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "b5d83b8e0c2ee438e0acd358e28b3b932744015d73658e9ae8181041c94eb8a8",
+      "original_path": "riigiteataja.ee/et/akt/426022026039.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/428122024034.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "8cc0743fde8319ab5e86e328efb36c722b57b7deeb46c5dbb93462fa58108a93",
+      "original_path": "riigiteataja.ee/et/akt/428122024034.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/429012026053.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "143b01006deb16e2297673c760819eba5fc8f1c1d40e81beb036f9d59d22e978",
+      "original_path": "riigiteataja.ee/et/akt/429012026053.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/429032016271.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "54a5340cc5d0d65409084251c78d37bebcc8a9c4d73cacfe58054e44fae9d7a6",
+      "original_path": "riigiteataja.ee/et/akt/429032016271.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/430012026034.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "fc34830f29690b6e4ddc073cb7b1700a61f0cc675991df27aeeb2331d2bb1f31",
+      "original_path": "riigiteataja.ee/et/akt/430012026034.xml",
       "review_status": "version_and_jurisdiction_validation_pending"
     }
   ],

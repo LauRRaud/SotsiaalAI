@@ -1,9 +1,9 @@
 {
   "schema_version": "rag-v2/legal-acts-in-index-1",
-  "generated_at": "2026-09-30T14:01:24.043Z",
+  "generated_at": "2026-09-30T16:00:16.291Z",
   "tenant": "sotsiaalai-corpus",
-  "store_generation": "generation_8c646ff0baf4fdd5bab026ef5b75cbd34ba05da2313113034f6f2b97a0b060bf",
-  "policy_documents": 6452,
+  "store_generation": "generation_392d8a2ad3d5466c87bb652a07d75f5ed07ce1dc2e1aa8d1e9756d9d8aee91c9",
+  "policy_documents": 6470,
   "acts": [
     {
       "document_id": "document_005199d74750ea0e1516034366803c9226115d36349d91b74b6ec0e360d34f6a",
@@ -1040,6 +1040,20 @@
       "index_to": null
     },
     {
+      "document_id": "document_228dba0a80dc6a26f9dabe27defb239395191da02a8f69938b66f9002de92be8",
+      "version_id": "version_7c5d8f6eb4b1564e479a303d4401a20e0dcfa792dcda7e84dabb8c6bbc2f6932",
+      "globaal_id": "406122024002",
+      "group": "1059956",
+      "title": "Eluruumi alaliste kulude piirmäärade kehtestamine Mustvee vallas",
+      "issuer": "Mustvee Vallavolikogu",
+      "regions": [
+        "mustvee_vald"
+      ],
+      "source_path": "oigusaktid/406122024002.xml",
+      "index_from": "2025-01-01",
+      "index_to": null
+    },
+    {
       "document_id": "document_22b17c74342515f0b22692b325e0a83a57681186729653aa193f4aac1ebe40cf",
       "version_id": "version_6c5404f3da1cf3191c3653bf0bd646874f7e563a5b50e6967c49454911abaeed",
       "globaal_id": "420062023029",
@@ -1264,6 +1278,20 @@
       "index_to": null
     },
     {
+      "document_id": "document_2ae831f4df73f561c60cc2d9c157c403e167fe60726c0307429992563123c5ed",
+      "version_id": "version_1f9d741a5dfdf4b0ae58d802ce04a89f21e335f7ebebcd75fce9124b8e010bb6",
+      "globaal_id": "430012026034",
+      "group": "1062733",
+      "title": "Rae valla eelarvest isiku toimetuleku kindlustamiseks toetuste maksmise piirmäärad 2026. aastal",
+      "issuer": "Rae Vallavalitsus",
+      "regions": [
+        "rae_vald"
+      ],
+      "source_path": "oigusaktid/430012026034.xml",
+      "index_from": "2026-02-02",
+      "index_to": "2026-12-31"
+    },
+    {
       "document_id": "document_2b3a8ac6a415a7363fbb4180d32038f24b522105802c3d471ded32d442570ed5",
       "version_id": "version_b0539d8cdff7b54fa07409e0629ef865168665ffd5a84c865f190450d073fca6",
       "globaal_id": "429022024017",
@@ -1318,6 +1346,20 @@
       "source_path": "oigusaktid/419082025017.xml",
       "index_from": "2025-08-22",
       "index_to": null
+    },
+    {
+      "document_id": "document_2dc3b6b49bf2987a9cb942f1e115164eb2d76c57f57ce0cd9dfce86c40296ced",
+      "version_id": "version_914434c5cc90e6209c7183ff1b4e5e47003bd9ce44b88bfd80654fe42cca459e",
+      "globaal_id": "411062026014",
+      "group": "1041287",
+      "title": "Vallaeelarvest makstavate sotsiaaltoetuste määrad",
+      "issuer": "Elva Vallavolikogu",
+      "regions": [
+        "elva_vald"
+      ],
+      "source_path": "oigusaktid/411062026014.xml",
+      "index_from": "2026-09-01",
+      "index_to": "2026-12-31"
     },
     {
       "document_id": "document_2deaadf75c8f53a4eb75c2ebfe937c50eb30bee9b2c9870f268e4ae2d3d3b0f8",
@@ -1458,6 +1500,20 @@
       "index_to": null
     },
     {
+      "document_id": "document_3182432c88763be913479e3e5a7132246524b432f90e9ac2dc32cb9c03900a9e",
+      "version_id": "version_0b94990ebfffeac60d576244b7af811ba9aafc3a9925633ee74f50e913ad84c4",
+      "globaal_id": "407022026044",
+      "group": "1052872",
+      "title": "Kiili valla eelarvest makstavate sotsiaaltoetuste määrade kehtestamine",
+      "issuer": "Kiili Vallavalitsus",
+      "regions": [
+        "kiili_vald"
+      ],
+      "source_path": "oigusaktid/407022026044.xml",
+      "index_from": "2026-02-10",
+      "index_to": null
+    },
+    {
       "document_id": "document_33557b546678ccf4d47ff226cc0e05903acc476c1c1543893645389ff0e4a95b",
       "version_id": "version_1ec1b9e300a46c97d5eba21ec99c7bff8c4bb3665b00dede4302b917d757411f",
       "globaal_id": "420052026012",
@@ -1483,6 +1539,20 @@
       ],
       "source_path": "oigusaktid/411122021016.xml",
       "index_from": "2021-12-14",
+      "index_to": null
+    },
+    {
+      "document_id": "document_33fa5a7ad761b6e12e02a6c770d1052f1c7f4f86cfaf4ba00354e26bff7b79d2",
+      "version_id": "version_c48a1eff85f0e0c7f928cd5ebb2a1c00b0b483bb4bc64a48c6a4166e28e8c575",
+      "globaal_id": "402042026016",
+      "group": "1048283",
+      "title": "Maardu linna eelarvest sotsiaaltoetuste maksmise kord",
+      "issuer": "Maardu Linnavolikogu",
+      "regions": [
+        "maardu_linn"
+      ],
+      "source_path": "oigusaktid/402042026016.xml",
+      "index_from": "2027-01-01",
       "index_to": null
     },
     {
@@ -1845,6 +1915,34 @@
       ],
       "source_path": "oigusaktid/411122019020.xml",
       "index_from": "2019-12-09",
+      "index_to": null
+    },
+    {
+      "document_id": "document_4423ef4fd06a8d6c525a7356f9c14eac78e888f6a07764db609e15ccc30b3ae6",
+      "version_id": "version_2effea9a1ad79bfb1f1c868b18b98932633f6b9b1afe87fd2832075916b72745",
+      "globaal_id": "424032026005",
+      "group": "1047754",
+      "title": "Tartu valla eelarvest makstavate sotsiaaltoetuste määrad",
+      "issuer": "Tartu Vallavolikogu",
+      "regions": [
+        "tartu_vald"
+      ],
+      "source_path": "oigusaktid/424032026005.xml",
+      "index_from": "2026-05-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_4434b1618071924fb31ecd17210ef5ae5e6c17c077bca8b15c5ae82b1af12326",
+      "version_id": "version_0ad21fbc35cf8e35da68bfb40e55e61544e81f6f9e100e69cb3b32bfd6e9104f",
+      "globaal_id": "411062026015",
+      "group": "1041287",
+      "title": "Vallaeelarvest makstavate sotsiaaltoetuste määrad",
+      "issuer": "Elva Vallavolikogu",
+      "regions": [
+        "elva_vald"
+      ],
+      "source_path": "oigusaktid/411062026015.xml",
+      "index_from": "2027-01-01",
       "index_to": null
     },
     {
@@ -3640,6 +3738,20 @@
       "index_to": null
     },
     {
+      "document_id": "document_82ab1720bc59b29ed30755b0dfdd007d5cc7fd976294562ee5838f79af2dcc59",
+      "version_id": "version_d10ab16209bf3bb41cdd068009e1098f4094f7e9114c5c62afa637326d480540",
+      "globaal_id": "404092025028",
+      "group": "1048283",
+      "title": "Maardu linna eelarvest sotsiaaltoetuste maksmise kord",
+      "issuer": "Maardu Linnavolikogu",
+      "regions": [
+        "maardu_linn"
+      ],
+      "source_path": "oigusaktid/404092025028.xml",
+      "index_from": "2025-09-07",
+      "index_to": "2026-12-31"
+    },
+    {
       "document_id": "document_82f2ffbc76f587e0e8c60718d59327786c6e7a900b68ecaecede7c75e6b65bbf",
       "version_id": "version_c0d26fc6f82f1b68d51385af19b324f463b16ae9f16f5e4533cc22f382e8c804",
       "globaal_id": "429012026055",
@@ -4270,6 +4382,48 @@
       "index_to": null
     },
     {
+      "document_id": "document_98683a7ae5c3053016f10169100c7554ba5b79ec57f6094b39167a33981dc419",
+      "version_id": "version_4d9dff554e97399804128f7c4d779379a5afc61806ee1bb03590d669c09c1e91",
+      "globaal_id": "401022025031",
+      "group": "1055286",
+      "title": "Peipsiääre valla eelarvest makstavate sotsiaaltoetuste määrad ja piirmäärad",
+      "issuer": "Peipsiääre Vallavolikogu",
+      "regions": [
+        "peipsiaare_vald"
+      ],
+      "source_path": "oigusaktid/401022025031.xml",
+      "index_from": "2025-02-04",
+      "index_to": null
+    },
+    {
+      "document_id": "document_99411a08cbd4f7f444981919a0b8e8407a3ac0bc0ed6d302dd0820bc6745716d",
+      "version_id": "version_e28b00cd0166b0af6bad31f134573ccfa43a1098cff3a8fbc77985f747ba425a",
+      "globaal_id": "429012026053",
+      "group": "1046913",
+      "title": "Rae valla eelarvest sotsiaaltoetuste määramise ja maksmise kord",
+      "issuer": "Rae Vallavolikogu",
+      "regions": [
+        "rae_vald"
+      ],
+      "source_path": "oigusaktid/429012026053.xml",
+      "index_from": "2026-02-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_995069deff5f4f9b5bce616884d1721947fcfcae3270c7ac60de6e2cff865dd0",
+      "version_id": "version_2d79da78bfe85300d9befcb7ad727514516ccb05875861027ad844da06f053e4",
+      "globaal_id": "408112018042",
+      "group": "1044797",
+      "title": "Raske või sügava puudega lastele abi osutamiseks riigieelarvest eraldatud toetuse kasutamise kord",
+      "issuer": "Mustvee Vallavolikogu",
+      "regions": [
+        "mustvee_vald"
+      ],
+      "source_path": "oigusaktid/408112018042.xml",
+      "index_from": "2018-11-11",
+      "index_to": null
+    },
+    {
       "document_id": "document_99b10bb85b436a43cef8945c065587ebf62c66fe6bad8b190cdca473d193074a",
       "version_id": "version_88e931256cd3c35a90b39775865d792f582597af1859c3da185424a449c4700d",
       "globaal_id": "405062026026",
@@ -4746,6 +4900,20 @@
       "index_to": null
     },
     {
+      "document_id": "document_abb9d00f20367148cd154c9db7af89cf215fbaf85e7bb8d713cd6b212e658735",
+      "version_id": "version_4bd0ca7c1a068c85fc78c8d104364a24bf73dbbb92bf5f01c8067e46ebc2a0eb",
+      "globaal_id": "428122024034",
+      "group": "1060129",
+      "title": "Mulgi valla eelarvest sotsiaaltoetuste taotlemise, määramise ja maksmise kord",
+      "issuer": "Mulgi Vallavolikogu",
+      "regions": [
+        "mulgi_vald"
+      ],
+      "source_path": "oigusaktid/428122024034.xml",
+      "index_from": "2024-12-31",
+      "index_to": null
+    },
+    {
       "document_id": "document_acd1e91c67f35ed4b5b260ef7e1015592020aafda0b69fca8a01a821b52d97ad",
       "version_id": "version_c6ece14f5c60ce1cab97e3f8b92a652bfc460752c252342c46ec3f987ddb1535",
       "globaal_id": "429092026004",
@@ -4825,6 +4993,20 @@
       ],
       "source_path": "oigusaktid/429012026051.xml",
       "index_from": "2026-02-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_b002949f062b1395e95fd9621a36a39940d2a8ac68d3abd3e806727eed8457ca",
+      "version_id": "version_181e2d37196ac62519e4f2bda1768af00aed3177d53f28d1461c546ed21256aa",
+      "globaal_id": "411122015006",
+      "group": "1010437",
+      "title": "Puuetega inimeste organisatsioonidele Tartu linna eelarvest toetuste andmise kord",
+      "issuer": "Tartu Linnavolikogu",
+      "regions": [
+        "tartu_linn"
+      ],
+      "source_path": "oigusaktid/411122015006.xml",
+      "index_from": "2016-01-01",
       "index_to": null
     },
     {
@@ -5052,6 +5234,20 @@
       "index_to": null
     },
     {
+      "document_id": "document_b9c910cb348219eefe99de8d44aa2edad511e4ab9b8487c1a9065c9458488994",
+      "version_id": "version_a0e95c9cdc1bc8e095a8f9ce9ce84da1ff845e17b6e6923f8858b216271a27f4",
+      "globaal_id": "429032016271",
+      "group": "1030082",
+      "title": "Pärnu linna eelarvest eralapsehoiuteenuse toetuse andmise kord",
+      "issuer": "Pärnu Linnavolikogu",
+      "regions": [
+        "parnu_linn"
+      ],
+      "source_path": "oigusaktid/429032016271.xml",
+      "index_from": "2016-04-01",
+      "index_to": null
+    },
+    {
       "document_id": "document_ba49f4632769cd243d0dc9ae952ed6fc3feeeb7f327ad8550fdc04f9c5538117",
       "version_id": "version_eb13831de59073493f7957c99cb4338a8d39ab2faf69f30e7ddc4aff5c633534",
       "globaal_id": "421112025006",
@@ -5248,6 +5444,20 @@
       "index_to": null
     },
     {
+      "document_id": "document_c1edc1c76f07d97c6dfb5775bcff7ae3fcb71092b3e80c65d6d3e760f70132aa",
+      "version_id": "version_c59b9186293e469643dda3c8fbc53d79bb45e7b69dd9c5a3479af0e013ae74b1",
+      "globaal_id": "408022019008",
+      "group": "1046074",
+      "title": "Valla eelarvest puuetega inimeste eluruumi kohandamise toetuse määramise ja maksmise kord",
+      "issuer": "Rapla Vallavolikogu",
+      "regions": [
+        "rapla_vald"
+      ],
+      "source_path": "oigusaktid/408022019008.xml",
+      "index_from": "2019-02-11",
+      "index_to": null
+    },
+    {
       "document_id": "document_c25e289bc93764fd16b52d4b9b92c20df883f68f8a6a6728c71c0ecccf5f8346",
       "version_id": "version_1a97e1398b591c6682258337d3a521acb5cf39539d25074ed4292c5e03602c87",
       "globaal_id": "403052019008",
@@ -5394,6 +5604,20 @@
       "source_path": "oigusaktid/111072026123.xml",
       "index_from": "2027-04-01",
       "index_to": "2027-12-31"
+    },
+    {
+      "document_id": "document_c8026b2cc29ec0c618a857475e1ac6d0ab1ccc5354b2ea6cfafbabf6b12dce8b",
+      "version_id": "version_d29296a194ddceaa6a10fbe58e24d6470b2986e6db328a2bcea417289d68499d",
+      "globaal_id": "426022026039",
+      "group": "1025098",
+      "title": "Tartu linna eelarvest lapsehoiuteenuse rahastamise kord",
+      "issuer": "Tartu Linnavolikogu",
+      "regions": [
+        "tartu_linn"
+      ],
+      "source_path": "oigusaktid/426022026039.xml",
+      "index_from": "2026-03-01",
+      "index_to": null
     },
     {
       "document_id": "document_c826caeb7477864d59c243396643bb55c9e808e99cd75ea323f25980d0a1f440",
@@ -5718,6 +5942,20 @@
       "index_to": null
     },
     {
+      "document_id": "document_d15047aba27e0fe1dbf4e8cfea281be32ce8d0ee34665a9a105c0efabe80287b",
+      "version_id": "version_9f87acb7522371ea72009d8b7f3ef35bf81913f4a832bc85fa07ac376870a73e",
+      "globaal_id": "406062026037",
+      "group": "1063693",
+      "title": "Nõo valla eelarvest makstavate sotsiaaltoetuste määrad",
+      "issuer": "Nõo Vallavalitsus",
+      "regions": [
+        "noo_vald"
+      ],
+      "source_path": "oigusaktid/406062026037.xml",
+      "index_from": "2026-06-09",
+      "index_to": null
+    },
+    {
       "document_id": "document_d15104b221e482e54a2a81ca8b9688de62027810007f93b272e14d057b392a90",
       "version_id": "version_cb356e6dbc4ce7f5cd59e950418613aff1fdd308e1389cb2dc5747f9cd2be12c",
       "globaal_id": "426062026007",
@@ -5769,6 +6007,20 @@
       ],
       "source_path": "oigusaktid/403032026033.xml",
       "index_from": "2026-04-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_d2173e11928c7be4352945d5eabe707712269a69ba0a83cb94d6e49f2cc27b2a",
+      "version_id": "version_00c4201e44d5fad55e79a1ad4cc266a938a10dec98d47e4d98024f207b339dec",
+      "globaal_id": "426022021006",
+      "group": "1051397",
+      "title": "Jõhvi valla eelarvest sotsiaalhoolekandealase suunitlusega projektide ning tegevustoetuste taotlemise ja kasutamise kord",
+      "issuer": "Jõhvi Vallavolikogu",
+      "regions": [
+        "johvi_vald"
+      ],
+      "source_path": "oigusaktid/426022021006.xml",
+      "index_from": "2021-03-01",
       "index_to": null
     },
     {

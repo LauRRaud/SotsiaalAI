@@ -46,7 +46,7 @@ Rada on kaheosaline. Sülearvutis on `scripts/rag-v2-corpus-refresh.mjs` (teek `
 ### Omavalitsuste skaneerimise parandus (ADR-058)
 
 - **v43 skaneerimine jättis neli akti vahele.** Väljaandja kogu loendit loeti 500 akti kaupa lehtedena. RT järjestab iga päringu isemoodi, seega lehed kattusid ja mõni akt jäi puudu. Tallinna Linnavalitsusel on näiteks 2110 akti.
-- **Nüüd otsitakse iga väljaandja akte 11 pealkirja märksõnaga.** Need katavad kõik kategooriad; otsing leiab sõna ka sõna seest („hoold“ → „Üldhooldusteenuse“).
+- **Nüüd otsitakse iga väljaandja akte 12 pealkirja märksõnaga.** Need katavad kõik kategooriad; otsing leiab sõna ka sõna seest („hoold“ → „Üldhooldusteenuse“).
   - Iga otsing mahub ühele lehele.
   - Lehti loetakse uuesti, kuni erinevate aktide arv jõuab koguarvuni.
   - Kui see ei juhtu, on tulemuseks tõrge (exit 20), mitte vaikne puudujääk.
@@ -65,6 +65,25 @@ Rada on kaheosaline. Sülearvutis on `scripts/rag-v2-corpus-refresh.mjs` (teek `
   - ülevaatus kirjutati ilma käsitsi muutmata;
   - pakk: alus v44 pea `e5bb67a1`, uus pea `8c646ff0`, 6452 dokumenti;
   - server `rag-v2-corpus-run.sh 45 44 …`: 42 sisendit, 0,0015 USD, indeks `dfa3b1db`, plaan `m4-corpus-chat-20260930g.json`. Plaanide erinevus sisaldas ainult oodatud välju.
+
+## Codexi ülevaatuse parandused (R1–R3, 30.09.2026)
+
+[Audit](../audits/rag-v2-pr276-281-review-2026-09-30.md).
+
+- **R1 — serveriskript teatas ebaõnnestumise järel edust.**
+  - Viga: plaani loomise väljund läks läbi `| tail` ja skript lõpetas koodiga 0. Indeksitöö aktiveerib aga uue generatsiooni enne plaani, nii et ebaõnnestunud plaan jätab vestluse pöördeid tagasi lükkama (`active_index_mismatch`).
+  - Nüüd annab iga samm (tõendid, plaan, `chown`, restart, teenuse seis, plaanide võrdlus) vea korral nullist erineva koodi ja ütleb, mis seisu see jättis.
+  - Plaani väljund läheb logifaili. Pakk kustutatakse alles pärast edu.
+  - `RESUME=plan` samade argumentide ja uue plaanifaili nimega teeb ainult plaani sammu, kui indeks on valmis.
+  - Test `tests/rag-v2-corpus-run.test.mjs` käivitab skripti ajutises puus `sudo` ja `systemctl` aseainetega: plaani, `chown`-i või teenuse viga annab vea ja jätab paki alles; edu kustutab paki; olemasolevat plaanifaili ei kirjutata üle; valmimata indeksit ei jätkata.
+- **R3 — katkenud registreerimine jättis pooliku seisu.**
+  - Viga: katkenud registreerimisest jäid failid registrist erinevaks ja kordusjooks kirjutas varukoopia üle.
+  - Nüüd loetakse ja kontrollitakse kõik failid ning tuletatakse kõik lisad enne, kui midagi kirjutatakse. `derivedAnnex` saab akti uued baidid otse.
+  - Kirjutamise järjekord: kõigepealt varukoopiad, siis failid ajutise nime ja ümbernimetamisega, register viimasena.
+  - Olemasolevat varukoopiat ei kirjutata kunagi üle. Kui registreeritud baite pole ei kettal ega varukoopias, peatub töö ega kirjuta midagi (`refresh_registered_bytes_missing`).
+  - Sama käsk lõpetab katkenud töö.
+  - Testid: vigane fail pärast õiget ei kirjuta midagi ja kordus lõpetab töö; vana koodi pooleli jäänud seisust jätkatakse õige varukoopiaga; kadunud baitide korral töö peatub.
+- **R2** on kirjas [ADR-058](adr-058-municipal-social-acts.md) täienduses.
 
 ## Piirid
 

@@ -83,6 +83,50 @@ test('a downloaded file must be the act its name says', async () => {
   await assert.rejects(registerDownloads({ root, from }), { code: 'refresh_not_the_named_act' });
 });
 
+// Codex R3 (30.09.2026): a stop part-way left replaced files beside the old registry, and the next run overwrote the
+// kept previous bytes with the new ones, so the Kose card could not be rebound.
+const koseChanged = async () => (await fs.readFile(path.join('Andmebaasi', KOSE), 'utf8'))
+  .replace(/<metaandmedVersioon>\d+<\/metaandmedVersioon>/u, '<metaandmedVersioon>99</metaandmedVersioon>');
+
+test('a file that fails its check stops the refresh before anything is written; the same command then completes it', async () => {
+  const { root, from, entries } = await registry('stop');
+  const registerBefore = await fs.readFile(path.join(root, 'REGISTER.json'), 'utf8');
+  await fs.writeFile(path.join(from, '430042026009.xml'), await koseChanged());
+  await fs.copyFile(path.join('Andmebaasi', NEW), path.join(from, '999999999999.xml'));
+  const previous = path.join(dir, 'stop-previous');
+  await assert.rejects(registerDownloads({ root, from, previous }), { code: 'refresh_not_the_named_act' });
+  assert.equal(hash(await fs.readFile(path.join(root, KOSE))), entries[0].sha256);
+  assert.equal(await fs.readFile(path.join(root, 'REGISTER.json'), 'utf8'), registerBefore);
+  await assert.rejects(fs.access(previous));
+  await fs.rm(path.join(from, '999999999999.xml'));
+  const result = await registerDownloads({ root, from, previous });
+  assert.deepEqual(result.replaced, [KOSE]);
+  assert.equal(hash(await fs.readFile(path.join(previous, KOSE))), entries[0].sha256);
+});
+
+test('after a stop between the files and the registry, a second run keeps the previous bytes and completes', async () => {
+  const { root, from, entries } = await registry('resume');
+  const kose = await koseChanged(), previous = path.join(dir, 'resume-previous');
+  await fs.writeFile(path.join(from, '430042026009.xml'), kose);
+  // The state a stop leaves: the previous bytes kept, the new file written, the registry still naming the old bytes.
+  await fs.mkdir(path.dirname(path.join(previous, KOSE)), { recursive: true });
+  await fs.copyFile(path.join(root, KOSE), path.join(previous, KOSE));
+  await fs.writeFile(path.join(root, KOSE), kose);
+  const result = await registerDownloads({ root, from, previous });
+  assert.deepEqual([result.replaced, result.annexes, result.knowledge], [[KOSE], [ANNEX], ['teadmised/kose.knowledge.json']]);
+  assert.equal(hash(await fs.readFile(path.join(previous, KOSE))), entries[0].sha256);
+  const register = JSON.parse(await fs.readFile(path.join(root, 'REGISTER.json'), 'utf8'));
+  assert.equal(register.entries.find(entry => entry.path === KOSE).sha256, hash(Buffer.from(kose)));
+  // Without the kept bytes and with the old ones gone from disk, nothing is written: the card could not be rebound.
+  const lost = await registry('lost');
+  await fs.writeFile(path.join(lost.from, '430042026009.xml'), kose);
+  await fs.writeFile(path.join(lost.root, KOSE), kose);
+  const registerBefore = await fs.readFile(path.join(lost.root, 'REGISTER.json'), 'utf8');
+  await assert.rejects(registerDownloads({ root: lost.root, from: lost.from, previous: path.join(dir, 'lost-previous') }), { code: 'refresh_registered_bytes_missing' });
+  assert.equal(await fs.readFile(path.join(lost.root, 'REGISTER.json'), 'utf8'), registerBefore);
+  assert.equal(await fs.readFile(path.join(lost.root, ANNEX_META), 'utf8'), await fs.readFile(path.join('Andmebaasi', ANNEX_META), 'utf8'));
+});
+
 const item = (id, fields, warnings = [], blockers = []) => ({ item_id: id, document_id: `document_${id}`, version_id: `version_${id}`, warnings, blockers,
   decision: 'pending', note: '', fields: Object.fromEntries(Object.entries(fields).map(([key, value]) => [key, { value }])) });
 const draft = items => ({ schema_version: 1, tenant: 't', batch_id: 'b', base_generation: 'g', reviewed_by: '', items, evidence_sha256: 'e' });
@@ -106,7 +150,13 @@ test('the next policy adds the reviewed documents that are in the store head, an
   const active = { documents: { d1: { version_id: 'v1' }, document_2: { version_id: 'version_2' } } };
   const review = { items: [{ document_id: 'document_2', version_id: 'version_2', decision: 'include' }] };
   const next = nextPolicy({ tenants: { t: { operator: ['d1'] } } }, review, active, 't');
-  assert.deepEqual(next, { policy: { tenants: { t: { operator: ['d1', 'document_2'] } } }, added: 1, versions: ['version_2'] });
+  assert.deepEqual(next, { policy: { tenants: { t: { operator: ['d1', 'document_2'] } } }, added: 1, removed: [], versions: ['version_2'] });
+  // An act a newer one replaced leaves the policy with its reason; the store keeps it.
+  const replaced = nextPolicy({ tenants: { t: { operator: ['d1'] } } }, review, active, 't', [{ document_id: 'd1', reason: '107 replaced_by_newer 101' }]);
+  assert.deepEqual([replaced.policy.tenants.t.operator, replaced.added, replaced.removed.length], [['document_2'], 1, 1]);
+  assert.throws(() => nextPolicy({ tenants: { t: { operator: ['d1'] } } }, review, active, 't', [{ document_id: 'gone', reason: 'x' }]), { code: 'refresh_remove_not_in_policy' });
+  assert.throws(() => nextPolicy({ tenants: { t: { operator: ['d1', 'document_2'] } } }, review, active, 't', [{ document_id: 'document_2', reason: 'x' }]), { code: 'refresh_remove_reviewed' });
+  assert.throws(() => nextPolicy({ tenants: { t: { operator: ['d1'] } } }, review, active, 't', [{ document_id: 'd1' }]), { code: 'refresh_remove_invalid' });
   assert.throws(() => nextPolicy({ tenants: { t: { operator: ['d1'] } } }, { items: [{ document_id: 'document_2', version_id: 'version_3', decision: 'include' }] }, active, 't'),
     { code: 'refresh_version_not_in_head' });
   assert.throws(() => nextPolicy({ tenants: { t: { operator: ['gone'] } } }, review, active, 't'), { code: 'refresh_policy_document_not_in_head' });

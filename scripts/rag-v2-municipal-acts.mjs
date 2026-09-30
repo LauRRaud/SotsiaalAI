@@ -5,7 +5,10 @@
 //     acts in force today or starting by the horizon (lib/rag-v2/municipal-acts.js) and names those not in the index.
 //     --download fetches their XML into DIR, except a text with no paragraphs (a repeal record) and an act whose
 //     consolidated-text group the index already has (its versions are the validity check's, ADR-038).
-//     Writes municipal-acts-<today>.json and .md. Exit 0: nothing new; 10: acts to add; 20: a request failed.
+//     It also names the indexed acts the selection now drops (a newer act of the same kind, a past year in the title):
+//     their amounts or rules would stand beside the newer ones, so they are to leave the index policy (refresh package
+//     --remove, ADR-059). Writes municipal-acts-<today>.json and .md. Exit 0: nothing to do; 10: acts to add or remove;
+//     20: a request failed.
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
@@ -35,7 +38,7 @@ async function get(url, errors, json) {
 // ("hoold" finds "Üldhooldusteenuse"). A search this narrow fits one page: an issuer's whole listing does not (Tallinna
 // Linnavalitsus has 2110 acts, 500 a page), and Riigi Teataja orders every request differently, so its pages overlap
 // and miss acts (30.09.2026: the v43 scan missed four).
-const TITLE_WORDS = ['sotsiaal', 'toetus', 'toetami', 'teenus', 'hoold', 'hoolekan', 'eluruum', 'eluase', 'puude', 'puuet', 'eaka'];
+const TITLE_WORDS = ['sotsiaal', 'toetus', 'toetami', 'teenus', 'hoold', 'hoolekan', 'eluruum', 'eluase', 'puude', 'puuet', 'eaka', 'toimetulek'];
 const ROUNDS = 8, MAX_PAGES = 30;
 
 /** Every act of an issuer whose title has the word; the pages are fetched again until the distinct acts reach the
@@ -77,6 +80,10 @@ function markdown(report) {
     '| Kategooria | Uusi | Alla laaditud |', '|---|---:|---:|',
     ...Object.entries(report.categories).map(([name, c]) => `| ${name} | ${c.new} | ${c.downloaded} |`), ''];
   for (const act of report.acts) lines.push(`- ${act.m} ${act.id} ${act.category} ${act.from}..${act.to ?? ''} ${act.status}: ${act.title}`);
+  if (report.superseded.length) {
+    lines.push('', `## Indeksis, aga asendatud: ${report.superseded.length}`, '');
+    for (const act of report.superseded) lines.push(`- ${act.m} ${act.id} ${act.category} ${act.reason}${act.replaced_by ? ` (${act.replaced_by})` : ''}: ${act.title}`);
+  }
   if (report.errors.length) lines.push('', ...report.errors.map(e => `- päringu tõrge: ${e.error} ${e.url ?? e.issuer ?? ''}`));
   return lines.join('\n');
 }
@@ -100,7 +107,10 @@ try {
       if (acts) all.push(...acts);
     }
   }
-  const { keep } = selectMunicipalActs(all, { today, horizon });
+  const { keep, dropped } = selectMunicipalActs(all, { today, horizon });
+  const documentOf = new Map(manifest.acts.map(act => [act.globaal_id, act.document_id]));
+  const superseded = dropped.filter(act => indexed.has(act.id)).map(act => ({ m: act.m, id: act.id, document_id: documentOf.get(act.id) ?? null,
+    category: act.category, title: act.title, reason: act.reason, ...(act.replaced_by ? { replaced_by: act.replaced_by } : {}) }));
   const fresh = keep.filter(act => !indexed.has(act.id)).sort((a, b) => a.m.localeCompare(b.m) || a.category.localeCompare(b.category) || a.from.localeCompare(b.from));
   // A downloaded text is read the way the ingest reads it: a repeal record has no text of its own (source_text_empty).
   // Loaded only for --download, since the monthly scan runs without the installed packages.
@@ -126,13 +136,13 @@ try {
     c.new++; if (act.status === 'downloaded') c.downloaded++;
   }
   const report = { schema_version: 'rag-v2/municipal-acts-report-1', today, horizon, municipalities: councils.size, selected: keep.length,
-    indexed: keep.length - fresh.length, categories, errors, acts: fresh };
+    indexed: keep.length - fresh.length, categories, errors, acts: fresh, superseded };
   await fs.mkdir(values.out, { recursive: true });
   await fs.writeFile(path.join(values.out, `municipal-acts-${today}.json`), `${JSON.stringify(report, null, 2)}\n`);
   await fs.writeFile(path.join(values.out, `municipal-acts-${today}.md`), `${markdown(report)}\n`);
-  const code = errors.length ? 20 : fresh.some(act => ['new', 'downloaded'].includes(act.status)) ? 10 : 0;
+  const code = errors.length ? 20 : fresh.some(act => ['new', 'downloaded'].includes(act.status)) || superseded.length ? 10 : 0;
   console.log(JSON.stringify({ today, municipalities: councils.size, selected: keep.length, new: fresh.length,
-    downloaded: fresh.filter(act => act.status === 'downloaded').length, errors: errors.length, exit: code }));
+    downloaded: fresh.filter(act => act.status === 'downloaded').length, superseded: superseded.length, errors: errors.length, exit: code }));
   process.exitCode = code;
 } catch (error) {
   console.error(JSON.stringify({ ok: false, code: typeof error.code === 'string' && /^[a-z][a-z0-9_]+$/.test(error.code) ? error.code : 'municipal_acts_failed' }));

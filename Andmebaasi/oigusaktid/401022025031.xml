@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="49483260-c4f1-4bad-9052-bb667099f2cb" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+ 
+ <valjaandja>Peipsiääre Vallavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2022-11-23</aktikuupaev>
+  <avaldamismarge>
+	<RTosa id="0005d60a-e423-4ddf-af30-65d417ecf11f">RT IV</RTosa>
+	<avaldamineKuupaev id="114fe61f-f205-40a8-8603-73153b1147cb">2022-12-06</avaldamineKuupaev>
+	
+	
+	<RTartikkel id="e24d368b-6f91-4bf1-b094-0c21a212c321">18</RTartikkel>
+	<aktViide id="2b31314b-c344-475a-a7b6-6872da173880">406122022018</aktViide>
+  </avaldamismarge>
+  <joustumine>2022-12-09</joustumine>
+  <aktiNr>36</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-02-01</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>31</RTartikkel><aktViide>401022025031</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2025-02-04</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2025-01-31</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>401022025031</globaalID>
+ <metaandmedVersioon>15</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2025-01-31</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ <terviktekstiGrupiID>1055286</terviktekstiGrupiID>
+ <eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2022-12-04</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Age Kiuru</metaandmedVersioonPohjustaja>
+		</versiooniMuutus></metaandmed>
+	<aktinimi id="bd75251a-41a9-4a7d-84fb-cea780a4988d">
+		<nimi id="ebce3120-9e7d-46ac-b70c-8c8697bc478f">
+			<pealkiri id="cf12a839-e770-459b-b79a-a1fbf62aaca9">Peipsiääre valla eelarvest makstavate sotsiaaltoetuste määrad ja piirmäärad</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="3c875fa0-01e9-4675-9e3b-dd2d11ad92db">
+		<aktikuupaev id="95f0c8ce-9fa2-4540-8fa1-078b1cacd36d">2023-06-21</aktikuupaev>
+		<avaldamismarge id="12116ff4-1ed8-4619-83b0-09b51a3888c7">
+			<RTosa id="f913b905-7d5c-4b76-82f8-360ea8fbf409">RT IV</RTosa>
+			<avaldamineKuupaev id="551ade4a-a2b3-4907-8c7f-c1771ece46a3">2023-06-28</avaldamineKuupaev>
+			<RTartikkel id="567e1396-ec40-4911-9928-78294b70e775">20</RTartikkel>
+			<aktViide id="27291b39-7d56-4996-9820-341a5fab8642">428062023020</aktViide>
+		</avaldamismarge>
+		<joustumine id="34177c6d-41ef-40a3-b035-3fc68860c5f5">2023-07-01</joustumine>
+		<aktiNr id="230e0255-e696-407a-82da-20111eb8431c">17</aktiNr>
+	</muutmismarge>
+	<muutmismarge id="07db29b3-ccf0-4efa-afa8-2ede659ace1b"><aktikuupaev id="5b8fd7ea-9e54-46ce-9e79-5c1e853a23b8">2025-01-29</aktikuupaev><avaldamismarge id="47dcddec-9b6c-4b11-9b4c-fe660e2e857d"><RTosa id="dd394eea-0322-4512-94bf-14d7853a2674">RT IV</RTosa><avaldamineKuupaev id="a786b9b3-7357-4fc5-b765-513d8d690844">2025-02-01</avaldamineKuupaev><RTartikkel id="32b2fbe3-5ef5-457d-bb3a-b594449a670e">18</RTartikkel><aktViide id="4947aac5-7994-447e-a081-63017517661a">401022025018</aktViide></avaldamismarge><joustumine id="ef203075-2780-4f41-9ba7-d2cbd93bda77">2025-02-04</joustumine><aktiNr id="c2a17b70-222d-4fd4-ba30-7c0bcd417be4">1</aktiNr></muutmismarge><sisu id="7dc87b14-14cd-454e-b44d-590eb64f857a">
+		<preambul id="2b53b6ba-2c6e-43b8-84f4-ad724ca56f1e">
+			<tavatekst id="74d393fc-06fc-43f1-b718-418d2a8610c1">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lg 1 p 5 ja Peipsiääre Vallavolikogu 23.11.2022 määruse nr 35 „Sotsiaaltoetuste määramise ja maksmise kord Peipsiääre vallas“ § 1 lg 3 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="1fb28d06-37a9-46a0-a4db-c9df40a19f4e">1</paragrahvNr>
+			<kuvatavNr id="68606b2d-5fdb-43c4-af9d-e7cf9bf9270c"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="32e01e50-66fc-44db-93e1-f4cd20b92392">Sissetulekust sõltuvad toetused</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="11a49960-f4e3-444c-aca7-6431fc26992f"/>
+				<kuvatavNr id="e3f19a18-c1e8-49a3-874e-5ebbddab9687"/>
+				<sisuTekst id="430b8ba1-0038-4fbc-a1ea-c4b6f2d49f0f">
+					<tavatekst id="100515a5-bd85-4528-9ab4-bf598205677c">Sissetulekust sõltuvate toetuste määrad on järgmised:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para1lg1p1">
+					<alampunktNr id="983b38a5-6e94-4981-8d7c-a1936bfe8c3d">1</alampunktNr>
+					<kuvatavNr id="d1e066de-74e5-4bf0-aa96-9cbc93994d7c"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="1f6ad053-7a75-40f0-a962-a6362ea4ad9b">
+						<tavatekst id="fc2940f8-f9f1-43c4-9067-11c2a460849c"> küttetoetus kuni 150 eurot eelarveaastas;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p2">
+					<alampunktNr id="1e8924d4-72fb-4cd1-afb2-5e9e56cf6aa5">2</alampunktNr>
+					<kuvatavNr id="d4184ad0-6598-49a4-97ae-d15f575576d8"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="2350ab02-a013-4bbf-8362-00a96a91bfcf">
+						<tavatekst id="d125f112-0667-415f-a8e7-3fb28dae0689"> lasteaialapse toitlustustoetus 50 % -100% toidupäeva maksumusest;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p3">
+					<alampunktNr id="f2db3db8-0f81-4432-be52-ef39d5f7d680">3</alampunktNr>
+					<kuvatavNr id="25f05885-f7ae-46f2-85d1-c7da69765bb3"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="463a400d-50c7-458e-bf9c-8b76f6868165">
+						<tavatekst id="838d940e-cf82-446d-acf3-087ae0a03524"> põhikooli ja kutsehariduskooli õpilase toitlustustoetus kuni 1 euro toidupäeva eest;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p4">
+					<alampunktNr id="59423769-cecc-4584-92c1-e668c1db7c3b">4</alampunktNr>
+					<kuvatavNr id="a95863e8-ad1b-4c6a-90c8-6755d90582ad"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="bace3ec5-7e2b-4fd9-9f10-37cd8417c630">
+						<tavatekst id="0275e8ad-2fec-47d4-8299-52bcb0bcebee"> laste- ja noortelaagri toetus kuni 80 eurot eelarveaastas, asendushooldusel viibival lapsel piirmäärata;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p5">
+					<alampunktNr id="94fa5c64-363d-46a1-aaf7-d978ecb4d6e5">5</alampunktNr>
+					<kuvatavNr id="1c453283-9fb2-4fe1-a781-4c15e97b9de5"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="405fe317-bbac-4604-8b76-8f1597b49abf">
+						<tavatekst id="bdefc23f-4480-4bfa-aef1-e9ca497d2955"> täisealise ravimite ja abivahenditoetus kuni 150 eurot eelarveaastas:</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p6">
+					<alampunktNr id="295ef5ec-eb76-4799-8928-718ef58f7436">6</alampunktNr>
+					<kuvatavNr id="5e469416-9c89-4580-825f-b1d6abcc7544"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="06f54cb9-d55d-464e-bb19-0a7bb797374a">
+						<tavatekst id="fbca974a-676f-4429-9ea0-c82bfa6e093d">eluruumi kohandamise toetus 90 % põhjendatud kulude maksumusest, kuid mitte üle 1800 euro.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="4f08d416-9808-4038-af7d-f7ade8c67966">2</paragrahvNr>
+			<kuvatavNr id="365d2b5e-756c-407c-8983-a5ed10e72bba"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="67cde39f-1518-4484-bb48-3f08be94fe21">Sissetulekust mittesõltuvad toetused</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="7dedfd44-54f2-4ff1-a5ae-59d843ed96c8"/>
+				<kuvatavNr id="96dd6199-b734-4e6e-97a9-b689e1724ebd"/>
+				<sisuTekst id="afd8bc10-76df-4872-bfe2-ace1ba1e7632">
+					<tavatekst id="75545e29-2644-4c1a-aa3f-f11cbc1da4fc">Sissetulekust mittesõltuvate toetuste määrad on järgmised:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para2lg1p1">
+					<alampunktNr id="31374447-adcc-4a98-bf46-f66f881f89ef">1</alampunktNr>
+					<kuvatavNr id="7e1d1615-d97f-4b8e-b4c3-d58fbeb2f4c7"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="24253010-038f-4e9f-8918-95bfd24f4113">
+						<tavatekst id="40632dac-32df-4f31-bee6-fe0c30314a88">sünnitoetus 600 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p2">
+					<alampunktNr id="583b2869-7b87-4e1c-b4bb-c211e2d88210">2</alampunktNr>
+					<kuvatavNr id="83a220a2-2e5f-4a37-adac-2be816c2bf56"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="61623d65-e6d0-4df5-8e1c-e05a55512b86">
+						<tavatekst id="84d2faf1-33e1-497c-8821-f97c4899b543">esmakordselt esimesse klassi mineva lapse toetus 100 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p3">
+					<alampunktNr id="2b6d0785-2b12-4870-a565-f43713e2af85">3</alampunktNr>
+					<kuvatavNr id="7164f8ae-7d63-432a-9918-a87d43b49408"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="e4157073-c281-4d46-acab-eb64d6f8b779">
+						<tavatekst id="959e14af-35ba-4d62-9f61-29b75eaf5890">koolitransporditoetus kehtivas liiniveo tariifis edasi-tagasi pileti maksumus, 0.20 eurot/km isikliku transpordi kasutamisel;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p4">
+					<alampunktNr id="ec83f5a3-ddab-4aa9-8e07-44cba8a5cea8">4</alampunktNr>
+					<kuvatavNr id="2c00daf6-e424-401c-89c3-179d86830156"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="d597d7d3-1855-4163-ae21-a0e16d770e69">
+						<tavatekst id="17f6ccc3-1059-405a-b184-7f8cfede1dd5">gümnaasiumis õppimise toetus 50 eurot kuus perioodil 1. september kuni 31. mai; </tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p5">
+					<alampunktNr id="6f9e5382-41f1-4725-aff3-4c9ce347fc53">5</alampunktNr>
+					<kuvatavNr id="4b34bb14-429d-4bba-a3f7-f3a4d079123c"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="b99d03ef-66ad-410a-9f39-d8399895713f">
+						<tavatekst id="b120739b-315e-4393-b58d-e5d935505810">koolilõputoetus 50 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p6">
+					<alampunktNr id="184924d2-ce97-456e-8ebf-3cb79b90f87e">6</alampunktNr>
+					<kuvatavNr id="a2e99d15-b51c-4a6b-9392-43b7b07b3101"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="395390cf-2d1a-476a-9b5a-22a25d525cbb">
+						<tavatekst id="6ba5bfaa-9a54-4520-bfb9-648b15d5be9d">kiituse või medaliga kooli lõpetanu toetus 100 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p7">
+					<alampunktNr id="7e22617d-acb0-4d8d-a022-742a4bc4bca2">7</alampunktNr>
+					<kuvatavNr id="66e841ff-1712-452d-af7a-815b12b067b6"><![CDATA[7) ]]></kuvatavNr>
+					<sisuTekst id="061a9111-10fe-4fac-abb8-142e94788dc2">
+						<tavatekst id="2d440872-fe88-4b1e-a869-d0b789fe6808">laste ravimite ja abivahendite toetus kuni 150 eurot eelarveaastas;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p8">
+					<alampunktNr id="71d2bc5b-263e-4349-9635-acb9216238dd">8</alampunktNr>
+					<kuvatavNr id="00e9856e-68bc-4030-9b7a-ecf98bbfb840"><![CDATA[8) ]]></kuvatavNr>
+					<sisuTekst id="8259fccc-0398-4b56-aa41-bba1dd512ba9">
+						<tavatekst id="6d79f898-7f35-4404-ba6f-f9a65dfdda79">puudega inimese toetus 50 eurot kvartalis ja puudega lapse hooldaja toetus 50 eurot kuus;</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="2941f11d-6137-4d72-bdfb-9a359c47034a">
+						<aktikuupaev id="144a9a46-071d-408d-85fd-d1d54a99c639">2023-06-21</aktikuupaev>
+						<avaldamismarge id="89094317-dc05-43bc-b0b9-cb6936433e0b">
+							<RTosa id="a4733a80-3c6a-4598-9797-68315da18072">RT IV</RTosa>
+							<avaldamineKuupaev id="ff241363-73cf-47c7-80f1-dccd3d0efbf7">2023-06-28</avaldamineKuupaev>
+							<RTartikkel id="155f1970-d85a-4e91-9d2a-c2ed9425f318">20</RTartikkel>
+							<aktViide id="a3d0c281-4220-413e-ba71-732915aa673b">428062023020</aktViide>
+						</avaldamismarge>
+						<joustumine id="dfe30402-f662-43d8-85da-c4bbe53d545e">2023-07-01</joustumine>
+						<aktiNr id="547c879d-c84f-486f-99c4-3987b8bf082c">17</aktiNr>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para2lg1p9">
+					<alampunktNr id="08d48fc1-de03-48e1-bfee-d64ef6c00d0e">9</alampunktNr>
+					<kuvatavNr id="f56342de-2ffc-4e9d-bc84-645967023b11"><![CDATA[9) ]]></kuvatavNr>
+					<sisuTekst id="fca66544-899c-4edc-8762-effcfca1ee0b">
+						<tavatekst id="c245fbec-9bed-423a-95a6-18448fd28594">kolmanda kuni neljanda hooldusgrupiga täisealise isiku hooldaja toetus 50 eurot kuus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p10">
+					<alampunktNr id="fd0276c5-c04b-469f-9e8f-a45f47cd2bb2">10</alampunktNr>
+					<kuvatavNr id="d6f6661c-faa5-4fc2-91cb-2d5acc1ea193"><![CDATA[10) ]]></kuvatavNr>
+					<sisuTekst id="f2e21124-5d30-4ba6-b4c0-68be830686eb">
+						<tavatekst id="4309d2c1-391c-4fbd-a5fc-bde02a35814f">teise hooldusgrupiga täisealise isiku hooldaja toetus 30 eurot kuus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p11">
+					<alampunktNr id="04ace4b5-5f89-43cd-b866-7dae1b85646d">11</alampunktNr>
+					<kuvatavNr id="7391a173-9348-40f0-b924-7b1f31ed32df"><![CDATA[11) ]]></kuvatavNr>
+					<sisuTekst id="be8cf73e-408b-42e9-a16c-1b1d5d00f759">
+						<tavatekst id="93acab8c-b664-45f0-9f0c-76341e3059c3">esimese hooldusgrupiga täisealise isiku hooldaja toetus 20 eurot kuus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p12">
+					<alampunktNr id="a07d9b2e-061f-489f-8561-0df675773e48">12</alampunktNr>
+					<kuvatavNr id="17ca24cf-05d9-44db-b019-2c63ebeffbd6"><![CDATA[12) ]]></kuvatavNr>
+					<sisuTekst id="b2d6c7c4-1893-462a-b516-8351cf9d6281">
+						<tavatekst id="7cf4c8b1-8d85-4b15-8bbd-6bce8396e7e5">eakate juubeli- ja sünnipäevatoetus 50 eurot koos õnnitluskaardiga;</tavatekst>
+					</sisuTekst>
+				<muutmismarge id="0d389fce-6e29-4abf-8e7e-97a8c7d60576"><avaldamismarge id="0b05d88e-9a8f-4b01-98ac-eee35a4dd00a"><RTosa id="49b713ed-84f8-4f46-8a3a-41bb5c8f3fa5">RT IV</RTosa><avaldamineKuupaev id="6193153c-52d3-403e-b1bd-3a167ac239af">2025-02-01</avaldamineKuupaev><RTartikkel id="6e26c9cc-5b62-40dc-9d07-5c1413c4b9a6">18</RTartikkel><aktViide id="25496511-044c-4dc1-85d9-5dc761e08eed">401022025018</aktViide></avaldamismarge><joustumine id="6f182678-5602-4da7-81f4-d1bc3d6a888d">2025-02-04</joustumine><aktiNr id="cf368380-b671-4576-bcd0-62c18047fc6a">1</aktiNr></muutmismarge></alampunkt>
+				<alampunkt id="para2lg1p13">
+					<alampunktNr id="cbc66be5-99e1-4416-8c5d-cfe66b8d13dd">13</alampunktNr>
+					<kuvatavNr id="c0cf191c-1687-4ff8-8ddb-09a93e0ddb35"><![CDATA[13) ]]></kuvatavNr>
+					<sisuTekst id="6f95c1ef-71c2-4a65-a6c2-3926a34dc715">
+						<tavatekst id="6433999d-518d-4a5d-9140-73e9c5d993a0">matusetoetus 250 eurot; </tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p14">
+					<alampunktNr id="11d0374f-d701-44e4-84aa-128011f48f91">14</alampunktNr>
+					<kuvatavNr id="cd08167b-da2c-46cf-80b4-fc6a8ae4e5fa"><![CDATA[14) ]]></kuvatavNr>
+					<sisuTekst id="2319ffd4-ff44-426f-b9b9-2613ce960745">
+						<tavatekst id="775d5336-ca42-4ec7-aa61-6a61ef89ba56">perekonnas hooldamisel oleva lapse toetus 240 eurot kuus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p15">
+					<alampunktNr id="a152fae4-4af6-4d30-8c8a-a2894b2e8577">15</alampunktNr>
+					<kuvatavNr id="8dc2c732-3a0d-4806-afc2-3d34bc420f65"><![CDATA[15) ]]></kuvatavNr>
+					<sisuTekst id="b2b24148-6775-4ee7-8a67-387120302014">
+						<tavatekst id="ae339efe-1337-4c86-a023-3ecacd1c64e8">elluastumistoetus 300 eurot.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="a8c9109a-45cd-4fe7-919d-81f2235e5d0c">3</paragrahvNr>
+			<kuvatavNr id="6e1c1ea5-2e15-4b4f-ab5b-9d7ff452585a"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="b10d6a4a-c443-43d5-ba4d-d04b9b42fd9b">Üleminekusätted</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="4277401d-d023-44b8-87c3-7211a246df48"/>
+				<kuvatavNr id="831d1474-8a24-47f9-9839-8cd7f17588f6"/>
+				<sisuTekst id="0129dc35-424d-485d-b28a-c23c40abc392">
+					<tavatekst id="72459274-ea69-4c7d-b531-b0d9e0308b6b">Peipsiääre Vallavolikogu 30.01.2018 määrus nr 2 „Sotsiaaltoetuste määramise ja maksmise kord Peipsiääre vallas“ alusel määratud sügava puudega täiskasvanu hooldaja toetus ja raske puudega täiskasvanu hooldaja toetus asendatakse 1. jaanuarist 2023 vastavalt kolmanda kuni neljanda hooldusgrupiga täisealise isiku ja teise hooldusgrupiga täisealise isiku hooldaja toetusega.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="0643acc2-fab4-442b-8c82-dc0256add918">4</paragrahvNr>
+			<kuvatavNr id="8c367303-42e3-45ef-88a0-f2f323447a02"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="8940befa-3086-4e99-b794-ecf74b32ec19">Määruse jõustumine</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="5151e3b7-143a-4d3f-9924-de1314d7eac7"/>
+				<kuvatavNr id="80a0bc60-58c4-4ec5-bf25-d75d3a1951f2"/>
+				<sisuTekst id="2e5917c1-be0d-42e4-95bb-2605a9cc1ee4">
+					<tavatekst id="2674d4e8-ada7-4081-adf2-5be8f6b46b69">Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+</oigusakt>

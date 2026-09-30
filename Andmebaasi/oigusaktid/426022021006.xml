@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="86bb14e9-2411-45f1-a2b3-eb957a36292a" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Jõhvi Vallavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2021-02-18</aktikuupaev>
+  
+  
+  <aktiNr>91</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2021-02-26</avaldamineKuupaev><RTaasta>2021</RTaasta><RTartikkel>6</RTartikkel><aktViide>426022021006</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2021-03-01+02:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2021-02-22</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>426022021006</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2021-02-25</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1051397</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2021-02-18</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Külli Korsten</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="31d78b2e-6865-418e-800b-df9c51f6d9e6">
+  <nimi id="6b3fcc58-36fd-4a1e-8c85-d3ba1ad28671">
+   <pealkiri id="ecddb801-5539-4684-8146-6506165e14e8">Jõhvi valla eelarvest sotsiaalhoolekandealase suunitlusega projektide ning tegevustoetuste taotlemise ja kasutamise kord</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="a806ebee-b1fd-48bc-a3dd-06d333a1da7f"><preambul id="5bf761dc-9d08-4443-9aa8-dd27b4b7aebf">
+   <tavatekst id="a4831b18-789a-4a56-8d0c-6c85a12959f1">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5 alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="d50464de-b3aa-4d14-99a9-5a37700ec2e2">1</paragrahvNr>
+   <kuvatavNr id="7018d6a0-33c8-4d24-855f-69285054a1ad"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="122ed890-037d-4983-abb7-4b3b4a4324dc">Üldsätted</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="d402f649-85d1-4365-a007-f71705a0db39">1</loigeNr>
+   <kuvatavNr id="0f293e6a-3931-4e74-9d1b-28b194c6e8ba"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="42a14801-8c84-4c06-9e87-a38c0ebe99aa">
+    <tavatekst id="24487cb7-2138-4d48-976b-8699fab452dd">Määrus reguleerib Jõhvi valla eelarvest eelarveaastaks sotsiaalhoolekandealase suunitlusega projektide ning tegevustoetuse (edaspidi <i>toetus</i>) taotlemist, taotluste menetlemist, toetuse eraldamist ja toetuse kasutamise üle järelevalve teostamist.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg2">
+   <loigeNr id="545c5e0b-dc34-4656-8581-632f9afe129f">2</loigeNr>
+   <kuvatavNr id="4d72cfdd-aa2c-4999-85ee-ccee9ae4e359"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="6b648617-8a12-45c1-9702-36ca92adb1c1">
+    <tavatekst id="c5ecee65-b981-4b36-aa1a-d2e7a42b6794">Toetuse andmise eesmärk on aidata kaasa sotsiaalse turvalisuse tagamisele ning riskigruppidele suunatud sotsiaalteenuste arendamisele Jõhvi vallas. Toetuse taotleja tegevus peab toimuma vallaelanike huvides ning kaasa aitama valla arengukava elluviimisele.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg3">
+   <loigeNr id="b5c6d9e5-3159-4bb4-8c5a-68f940004587">3</loigeNr>
+   <kuvatavNr id="574e934d-e12e-46bc-864c-1a3675221f39"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="f0150da5-834d-4b24-a8a2-9bc0b976ea7e">
+    <tavatekst id="c96d45a3-63f8-4d35-8eda-77a2a272aa0d">Määruse alusel ei saa toetust taotleda vallavalitsuse hallatavad asutused ja nende struktuurüksused.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg4">
+   <loigeNr id="033f894a-4e58-480f-a09b-3ffbcb45236b">4</loigeNr>
+   <kuvatavNr id="7ef5722c-208e-4b40-8ce3-aa342ded2fed"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="7a35fbeb-ecad-4c03-9296-5e7db365aef2">
+    <tavatekst id="27a171ca-6c80-473a-a5c0-bf922e5f09d7">Toetuse andmine toimub avaliku konkursi korras.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg5">
+   <loigeNr id="eba8179f-c0a4-46fe-9673-61ab6474fe65">5</loigeNr>
+   <kuvatavNr id="a57f290f-f455-4567-ad79-aacce4f8a6f6"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="7a006cb8-3ab0-4bb8-a672-a8f12784da6c">
+    <tavatekst id="832b280d-cf40-4a77-b8da-1fa69430a452">Jõhvi Vallavalitsus kuulutab konkursi välja rahastamise teate avaldamisega lehes ja oma veebilehel, tuues välja liigi, toetuse andmise eesmärgid, taotluste esitamise tähtajad ning viited lisateabe saamiseks. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg6">
+   <loigeNr id="f7f0b64c-c886-49f1-8a56-df0919f1317c">6</loigeNr>
+   <kuvatavNr id="20b2f5ef-c98c-43d9-98f4-727ffd0adfa4"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="20d4b513-0413-4924-9b9c-ebfbfeb887e1">
+    <tavatekst id="b9c6676a-49e9-4aa1-b98f-a91a1eeb856e">Toetust võivad taotleda vastavalt toetusliigile mittetulundusühingud ja sihtasutused, kelle registreeritud asukoht on Jõhvi valla haldusterritooriumil ning kelle tegevusest saavad kasu riskigruppidesse kuuluvad Jõhvi valla elanikud.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg7">
+   <loigeNr id="5356059f-750e-48e8-8d04-b867ab107e5a">7</loigeNr>
+   <kuvatavNr id="1bf17449-6c41-4f3f-940e-35832ccca96b"><![CDATA[(7)]]></kuvatavNr>
+   <sisuTekst id="aaeddd73-985d-4c86-b9e8-67d7e0d8cc1e">
+    <tavatekst id="b5bc20d0-cb88-4300-80a2-3f66d13ad7be">Toetuse saamiseks peab toetuse saaja asukoht olema Jõhvi vallas registreeritud vähemalt üks aasta enne taotluse esitamist.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg8">
+   <loigeNr id="6d642c46-175a-4607-aecf-e954d6d7f722">8</loigeNr>
+   <kuvatavNr id="9c06ab0c-648a-4e2a-baf1-c25a6da71ffa"><![CDATA[(8)]]></kuvatavNr>
+   <sisuTekst id="26af5ac7-ea3b-4096-8c78-cbafe8299733">
+    <tavatekst id="a9989b16-6c51-49ac-993c-acb96a815e1a">Toetuste määramisel lähtutakse läbiviidavate tegevuste olulisusest, valla eelarveliste vahendite olemasolust ja asjaolust, et varem saadud toetuse aruanded on tähtaegselt esitatud ja vallavalitsuse poolt heaks kiidetud ning toetuse saajal ei ole täitmata kohustusi Jõhvi valla ja riigi ees.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="e1d8d771-2347-4bc6-b40b-0f2247f824f3">2</paragrahvNr>
+   <kuvatavNr id="05bfbe12-9c0e-4d0a-b904-aae7f4cf6040"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="dde58de3-cef5-4c44-a357-d3acfb23f7ea">Toetuse liigid ning määruses kasutatavad mõisted</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="477b4dd2-a54f-4f58-9c16-d041f6d82829">1</loigeNr>
+   <kuvatavNr id="ed9f46c8-9827-468c-8218-3fd3a540cb74"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="16f153c9-7d25-45f8-8b12-a1fd1da64d9b">
+    <tavatekst id="5d59650f-07b4-4247-a818-6014044044b3">Tegevustoetust antakse Jõhvi vallas sotsiaalhoolekande valdkonnas tegutsevatele mittetulundusühendustele, kelle tegevuse sisuks on töö riskigruppidega ning kaasaitamine sotsiaalteenuste ning võrgustikutöö arendamisele Jõhvi vallas.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg2">
+   <loigeNr id="2a409f74-b7cb-4864-b306-6e2b5c35804f">2</loigeNr>
+   <kuvatavNr id="a612cd96-6bf0-4e90-8bfb-793dc9e5adf9"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="817e7068-7ddc-42f1-a05a-3660cb51a7bb">
+    <tavatekst id="3e6e7fed-3def-4bfc-bf81-164fee006e93">Projektitoetus on toetus, mida antakse mittetulundusühingutele ja sihtasutustele riskirühma kuuluvatele isikutele suunatud projektide ja ühistegevuste teostamiseks.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg3">
+   <loigeNr id="62104e26-2d7d-485e-ad5c-01c3adb5cc91">3</loigeNr>
+   <kuvatavNr id="a71f40f8-0b3f-4c7d-9a6f-822788d3051b"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="734033f3-a0c0-4e19-b251-5ff84d5b5b8d">
+    <tavatekst id="176f1690-9e5e-4181-908a-4d1bd7f4126c">Käesolevas määruses kasutatud riskirühma mõiste hõlmab vaesuse ja sotsiaalse tõrjutuse suhtes enim ohustatud sihtgruppe, sh puuetega inimesed, lapsed, lastega pered, pikaajalised töötud, eakad.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="6c1343e8-c99c-4ea5-9784-56c41b503e69">3</paragrahvNr>
+   <kuvatavNr id="66de7eef-5e19-42fd-8575-60410d2e59a4"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="a9b09b55-5058-4289-a0d7-e2d6f0d60e04">Tegevustoetuse taotlemine</paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="81889fe7-82ac-4c0d-82f9-bb4a9880b070">1</loigeNr>
+   <kuvatavNr id="04f889a1-3f54-4039-8d05-3d3537d741fd"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="6a862c5f-eb3b-4aea-aa67-3cc50df0c119">
+    <tavatekst id="88d3e8c8-acdb-4438-b51e-fd89ce91f564">Tegevustoetuse piirmäär on 3 000 eurot ühe taotleja kohta aastaks.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg2">
+   <loigeNr id="513a9c44-a82e-421f-b968-41a5fd5095f8">2</loigeNr>
+   <kuvatavNr id="a9514196-67f6-4289-8149-aa000f73770f"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="f30ad5a5-d4bc-4b2c-a0b7-aed9af77e098">
+    <tavatekst id="dc1c6d59-5cbb-407d-9c52-b75d37887c1f">Erandkorras põhjendatud juhtudel kaaluka avaliku huvi korral ja hindamiskomisjoni põhjendatud ettepaneku alusel on vallavalitsusel õigus määrata taotlejale toetuse piirmäärast suurem toetus.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg3">
+   <loigeNr id="38da640c-c01a-45b8-a297-3698ce433079">3</loigeNr>
+   <kuvatavNr id="1b692255-818f-447a-8b65-93f009c290eb"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="f6382619-a7a4-482a-85bd-34139b1d51b9">
+    <tavatekst id="a5ffdcb5-2c17-408e-8b3a-7855c1d49ba7">Taotlus esitatakse vallavalitsusele elektrooniliselt Jõhvi valla toetuste taotlemise ja menetlemise infosüsteemi SPOKU kaudu.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para4">
+   <paragrahvNr id="11004349-3d94-4521-ad8d-6a7f22042b4d">4</paragrahvNr>
+   <kuvatavNr id="6e9ac85f-0bb6-40b3-aa14-f5060a4709ac"><![CDATA[§ 4. ]]></kuvatavNr>
+   <paragrahvPealkiri id="191383cc-556e-44a9-bd9f-1cbbc96274c8">Tegevustoetuse määramine</paragrahvPealkiri>
+  <loige id="para4lg1">
+   <loigeNr id="65de4906-ef77-43b9-9e94-25e7ab863012"/>
+   <kuvatavNr id="956732f7-a75a-4695-9e8c-f4a75daeae4a"/>
+   <sisuTekst id="0ece73cf-501f-4f04-a236-ff4c4e9c0b55">
+    <tavatekst id="6e5d558d-0369-451d-8af9-140c947120e1">Tegevustoetuse määramisel lähtutakse peamiselt järgmistest põhimõtetest:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para4lg1p1">
+   <alampunktNr id="76abbd79-f2f9-4e1b-b9a0-0cc02a62b3d2">1</alampunktNr>
+   <kuvatavNr id="1fbac23d-d6c9-4ffa-9649-72ebd7b12aec"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="963806ab-d70a-4781-b945-f8e7bd970664">
+    <tavatekst id="a24f4c04-824c-4fb2-89cd-2b4ea5057034">tegevus on kooskõlas Jõhvi valla arengukavaga või viib ellu omavalitsuse ja riigi tasandil kehtestatud sotsiaalpoliitikat;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para4lg1p2">
+   <alampunktNr id="50817465-b1f9-4b70-b439-2cb7a3e74aae">2</alampunktNr>
+   <kuvatavNr id="bdd91ce7-ef27-475e-a245-b5f72459d31d"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="7ecab481-7941-4105-9b28-f5f3f6a9bde4">
+    <tavatekst id="9de155a0-fcbf-45c1-8e46-9332328c14c8">tegevustoetuse saamise eelduseks on taotleja omaosalus või kaasfinantseerimine teiste toetajate poolt vähemalt 15%;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para4lg1p3">
+   <alampunktNr id="cd602bc9-dfba-464d-a90c-bc1704828f43">3</alampunktNr>
+   <kuvatavNr id="f4ae55d0-7ea8-40bb-b77d-d0ccea8f26ff"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="ce1244fc-7311-4059-8e5a-eb03525bb975">
+    <tavatekst id="d4247ee8-ebc0-4ff4-bc22-6241e3237c0b">mittetulundusühingule põhikirjas sätestatud eesmärkide täitmiseks, mille mittetulunduslik tegevus on kestnud vähemalt üks aasta ning on läbipaistev ja kontrollitav;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para4lg1p4">
+   <alampunktNr id="605c2a04-e055-4c5e-938b-91c3dc51be31">4</alampunktNr>
+   <kuvatavNr id="0bafa870-0d5c-47bf-aeae-d94e2fa7ea59"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="7fd59072-af84-4097-8b55-018575076f71">
+    <tavatekst id="6a0b440a-e747-49c2-95a6-f7e8b6f357a7">taotletava toetuse kasutamine ei tohi olla seotud teiste projektide raames finantseeritud teenuste osutamisega.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para5">
+   <paragrahvNr id="05ea4e98-806e-404a-aca1-c59d8a4b2ae4">5</paragrahvNr>
+   <kuvatavNr id="8bb03d05-e287-44b0-96fa-47416dc5e0a5"><![CDATA[§ 5. ]]></kuvatavNr>
+   <paragrahvPealkiri id="68c7401d-339a-498b-afa9-96e8d11d16f8">Projektitoetuse taotlemine</paragrahvPealkiri>
+  <loige id="para5lg1">
+   <loigeNr id="fc311678-1847-4d27-8a5d-4f907f5008ed">1</loigeNr>
+   <kuvatavNr id="a454ea6b-9981-4430-8941-76271f765792"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="0ddc2476-ba65-4caf-99ce-70a35bd1a45b">
+    <tavatekst id="72d63e2f-a269-4cf9-a52d-9dc7f972bb6c">Projektitoetuse ülemmäär on 1 000 eurot ühe põhitaotleja ühe projekti kohta.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg2">
+   <loigeNr id="3066f7bd-b2da-4e9e-90a0-a7837c8a6b9a">2</loigeNr>
+   <kuvatavNr id="992010e6-4fed-4a12-90df-aedf61458ca9"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="82451e42-78eb-4682-bfc9-bd2802ce34aa">
+    <tavatekst id="37259c57-ff08-49df-94a0-a3a2966c47dd">Erandkorras kaaluka avaliku huvi korral ja hindamiskomisjoni põhjendatud ettepaneku alusel on vallavalitsusel õigus määrata toetuse piirmäärast suurem toetus.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg3">
+   <loigeNr id="4fe118e7-a6b4-48d4-963d-a19e540d9253">3</loigeNr>
+   <kuvatavNr id="7d94ac8e-2a24-4b47-ab09-a594540d0151"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="8ae73612-95eb-4e72-91b5-2e3f723dca10">
+    <tavatekst id="0dc8f9e8-44e2-4717-a08f-147b847779ef">Taotlus esitatakse vallavalitsusele Jõhvi valla toetuste taotlemise ja menetlemise infosüsteemi SPOKU kaudu.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para6">
+   <paragrahvNr id="68cd8fa1-668a-465e-a159-da951530daf5">6</paragrahvNr>
+   <kuvatavNr id="1121d912-d339-4f56-9ba3-8cdd1f355b70"><![CDATA[§ 6. ]]></kuvatavNr>
+   <paragrahvPealkiri id="37fe4cea-4386-47fc-be4b-da5c3cdcd128">Projektitoetuse määramine</paragrahvPealkiri>
+  <loige id="para6lg1">
+   <loigeNr id="8b3f3785-98b1-4c80-acba-400dcf8cc180"/>
+   <kuvatavNr id="0f756118-f6bf-4a88-9c4a-84ad1ce2250c"/>
+   <sisuTekst id="6fcecd34-9939-4dd0-9a67-79449d928491">
+    <tavatekst id="12e5b5a3-ef83-4f8e-b9df-53a5e03534cb">Projektitoetuse määramisel lähtutakse järgmistest hindamiskriteeriumidest:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para6lg1p1">
+   <alampunktNr id="29639ab8-9d08-412c-9e14-a357dd06330d">1</alampunktNr>
+   <kuvatavNr id="2224b8d5-aec3-4131-9530-808b4bc28907"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="33626712-5656-4333-a523-9c2c29820f79">
+    <tavatekst id="4bb4e36c-2641-48a2-8724-3d5ab1f10a66">projektitoetuse saamise eelduseks on taotleja omaosalus või kaasfinantseerimine teiste toetajate poolt vähemalt 15%;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para6lg1p2">
+   <alampunktNr id="62c87d57-edf6-4dbc-b83a-9238324bd6e3">2</alampunktNr>
+   <kuvatavNr id="f74b4c9d-4d78-4041-afad-3445f5c212a1"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="683af468-74e7-4604-88dd-0d80125ba8dc">
+    <tavatekst id="3d805e68-806a-423d-bba6-a2234ac03f80">projekt on suunatud riskigrupile või lähtutakse nende huvidest;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para6lg1p3">
+   <alampunktNr id="74ca5f39-b834-420e-a9c3-43fc8691306f">3</alampunktNr>
+   <kuvatavNr id="8ca80987-e91e-4135-9aa2-55ef7f43156b"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="81ea766d-84ca-404e-b5b5-f4ebd56448a0">
+    <tavatekst id="f058f0eb-3945-4219-8ea2-b172242c8ce6">projekti eesmärkide selgus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para6lg1p4">
+   <alampunktNr id="9ec79f2f-4793-4015-aa3e-11fdd3eb0a38">4</alampunktNr>
+   <kuvatavNr id="5b189870-69f9-42fd-8a1f-1528b4518157"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="4e3cfbb3-0e69-4c41-b53e-049fef8ab3b6">
+    <tavatekst id="731796f9-f894-455d-bd7e-1250ca78349f">projekti tegevusplaan ning tema seotus projekti eesmärkidega;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para6lg1p5">
+   <alampunktNr id="d0a1a55f-3180-47ce-8612-695ef01d4428">5</alampunktNr>
+   <kuvatavNr id="607046ce-0f8f-4c3c-b67a-879a63927888"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="339c9f01-c623-436b-8611-621febf2f59e">
+    <tavatekst id="b1da8a85-c116-4f28-94f6-897ba7b274eb">projekti elluviijate võimekus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para6lg1p6">
+   <alampunktNr id="500aed14-e672-44b7-9b9a-fa4590d5b008">6</alampunktNr>
+   <kuvatavNr id="ea6d7c85-a4c4-4657-a778-6632fdc6f759"><![CDATA[6) ]]></kuvatavNr>
+   <sisuTekst id="22eeb6da-617e-4122-9c93-07abcb55f910">
+    <tavatekst id="8b827e86-eb43-41e0-908a-50d099de9f3b">projekti kogueelarve kulud on põhjendatud ja eelarve on realistlik;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para6lg1p7">
+   <alampunktNr id="1a4cadf8-cad8-4a8b-b0ea-910873a33e82">7</alampunktNr>
+   <kuvatavNr id="93a58f1a-9f48-4a8f-b2cd-97a17d79b556"><![CDATA[7) ]]></kuvatavNr>
+   <sisuTekst id="2c4fae8b-c7dd-48f9-b785-b883e336dc58">
+    <tavatekst id="b0c0c840-72cd-4abc-b01a-cbc40eea3830">koostöö olemasolu teiste organisatsioonidega.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para7">
+   <paragrahvNr id="f70c61d9-276d-45d3-a1c2-dfe41b7b4125">7</paragrahvNr>
+   <kuvatavNr id="7f34a8c4-d48c-42b2-a977-9eee36d52ad3"><![CDATA[§ 7. ]]></kuvatavNr>
+   <paragrahvPealkiri id="6255a471-a53c-4c95-a674-f530196fdd74">Taotluse esitamine ja menetlemine</paragrahvPealkiri>
+  <loige id="para7lg1">
+   <loigeNr id="c716c5f1-d8a3-4401-b584-ef11c998a142">1</loigeNr>
+   <kuvatavNr id="4c07d689-f468-4b84-b9da-de0233a6112c"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="e41f1bc1-685f-4266-9ea3-efe301f8718e">
+    <tavatekst id="95dde06f-da72-4f41-8c16-f01299817b74">Tegevustoetuse taotlus järgmiseks eelarveaastaks toetuse saamiseks esitatakse jooksva eelarveaasta 15. septembriks.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg2">
+   <loigeNr id="65d4b73c-03da-47ce-8a64-9ee1a16abdff">2</loigeNr>
+   <kuvatavNr id="15a66c9b-e378-47d0-b23b-14bd3b104224"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="128cb242-6706-4910-a06a-a325cd9b077c">
+    <tavatekst id="24bee5c3-6733-435b-93a0-e75894bafaef">Projektitoetuse taotluse võib esitada eelarveaasta jooksul vähemalt 1 (üks ) kuu enne projekti alguskuupäeva.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg3">
+   <loigeNr id="5350bb48-49ce-476a-a257-42bae53ac27a">3</loigeNr>
+   <kuvatavNr id="7885c7d1-59a6-40ca-b7be-cacbdbf7ffd3"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="757218b8-9c27-4083-b707-a05b2f598436">
+    <tavatekst id="23bdea21-8d31-4e56-a391-ee2707e99592">Kui taotluse esitamise tähtaeg satub riigipühale või muule puhkepäevale, loetakse tähtpäev saabunuks puhkepäevale järgneval esimesel tööpäeval. Tähtaja määramisel loetakse päevaks ajavahemikku keskööst keskööni.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg4">
+   <loigeNr id="ed2ef2e3-9187-469e-8dab-52f5e60be1d3">4</loigeNr>
+   <kuvatavNr id="6d64ec1f-31b2-4622-9f90-9475bd1d1ccd"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="8ed7a48c-e6f6-4ca1-af0e-bd80355bfbb6">
+    <tavatekst id="36fa050e-beae-46a7-8a2e-efc2d742c976">Menetlusse võetakse üksnes tähtaegselt ja vormikohaselt esitatud taotlused.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg5">
+   <loigeNr id="f26044f0-790f-4f51-8bc6-2270938f966b">5</loigeNr>
+   <kuvatavNr id="0bf331ab-45ce-47fe-86d5-77649a3c7c33"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="999ad792-5c38-4acb-b9cf-50f961c8a0b5">
+    <tavatekst id="30fdd440-cd88-4b91-a09b-ea1467f4022a">Vallavalitsuse määratud ametnik kontrollib viie tööpäeva jooksul tähtaegselt esitatud taotluse vastavust korras sätestatud nõuetele.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg6">
+   <loigeNr id="56256603-c927-4e5e-8c78-e46ab5c208bb">6</loigeNr>
+   <kuvatavNr id="16608d5f-54cb-4bf4-bd98-6ed1d68e606d"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="64ac3545-df6d-4626-943c-6dd9dcb937f0">
+    <tavatekst id="1f0aad46-c339-4a8e-8628-8195fe1a5691">Puuduste esinemisel teatab ametnik sellest taotlejale ning annab puuduste kõrvaldamiseks tähtaja kuni viis tööpäeva. Kui taotleja ei kõrvalda tähtajaks puudusi, lõpetatakse taotluse menetlus.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg7">
+   <loigeNr id="18abb457-f5e2-4836-b7b6-c7d779356d22">7</loigeNr>
+   <kuvatavNr id="c236a9bc-cef5-4f8e-9d7a-d9ffc9cad18d"><![CDATA[(7)]]></kuvatavNr>
+   <sisuTekst id="d5ed16bc-72fd-47a1-a848-25f0c0079073">
+    <tavatekst id="3d2dea67-3fac-4a3b-88e3-937b00b2dd6c">Taotluse menetlejal on õigus nõuda taotlejalt täiendavat informatsiooni või lisadokumente.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para8">
+   <paragrahvNr id="d3e2f223-a37d-4671-bc16-8a8bf2e4c16a">8</paragrahvNr>
+   <kuvatavNr id="cac0d672-d549-452e-bf0e-7ed5f25ccacd"><![CDATA[§ 8. ]]></kuvatavNr>
+   <paragrahvPealkiri id="f64e81bb-b780-4423-8b60-1ff4b2088f74">Taotluse hindamine</paragrahvPealkiri>
+  <loige id="para8lg1">
+   <loigeNr id="1960a750-2e20-46a1-9828-0e73d7047569">1</loigeNr>
+   <kuvatavNr id="825be02b-e13f-419e-8c34-240c309a71e0"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="dbfc0169-2bd1-45c0-afc8-e3ab581c7512">
+    <tavatekst id="1e3ae1c6-6f83-4cdb-826e-c00a1c3d3ff8">Toetuste hindamiseks moodustab vallavalitsus hindamiskomisjoni.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para8lg2">
+   <loigeNr id="e57ca843-ce91-4385-8dfc-dff1f257891b">2</loigeNr>
+   <kuvatavNr id="3ad57e04-e374-46c0-b2b4-42a1cd47c3de"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="cc252717-70ba-4892-bbac-d8de4aeaf679">
+    <tavatekst id="43e96ad8-6ec8-4171-a00c-124fce76b7e0">Komisjoni koosseisus on vähemalt viis hindajat (nende hulgas ka volikogu sotsiaalkomisjoni esimehe poolt määratud komisjoni esindaja kellel ei ole hääletamise õigust), kes hindavad laekunud taotlusi.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para8lg3">
+   <loigeNr id="96f48419-4130-4272-847e-1bbcfe4b395a">3</loigeNr>
+   <kuvatavNr id="a1c1e693-59ee-4210-bed4-81301ad7c33f"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="579f9f14-6f08-40d6-b2d9-f16ee0a5f041">
+    <tavatekst id="d7372646-69c2-41dd-aad1-8bf75b8959ed">Hindaja peab taotluse hindamisel kinni pidama korruptsioonivastases seaduses sätestatud toimingupiirangutest. Komisjon on otsustusvõimeline, kui hindamisel osaleb üle 50% komisjoni liikmetest.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para8lg4">
+   <loigeNr id="25564607-67e6-4c7c-a578-f4d171a593ec">4</loigeNr>
+   <kuvatavNr id="17669ccb-41da-44cc-921e-60f25dd35608"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="2f5c147b-7a10-4e91-9b7c-c02957a9f680">
+    <tavatekst id="c712a8ac-d685-4b6c-8f6e-07614cf290c6">Hindamiskomisjoni koosolek protokollitakse ning toetuse määramise ettepaneku tegemisel arvestab komisjon käesolevas määruses sätestatud piirangute ja eelarve võimalustega. Komisjoni koosoleku protokoll, mis sisaldab ettepanekuid vallavalitsusele taotluste rahuldamise, osalise rahuldamise või rahuldamata jätmise kohta, esitatakse vallavalitsusele otsuse tegemiseks hiljemalt 10 tööpäeva jooksul pärast komisjoni koosoleku toimumist.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para9">
+   <paragrahvNr id="4907482c-3fa8-42aa-a97e-254c4647f278">9</paragrahvNr>
+   <kuvatavNr id="d127d751-de43-4b1c-bdcd-391d0729662e"><![CDATA[§ 9. ]]></kuvatavNr>
+   <paragrahvPealkiri id="4216f368-976f-40b8-a1ab-e3be17d91c03">Toetuse eraldamine</paragrahvPealkiri>
+  <loige id="para9lg1">
+   <loigeNr id="07b19017-a999-46c6-8e8c-1ca756e1f51e">1</loigeNr>
+   <kuvatavNr id="85ec8848-c9db-451c-a664-c0eb2390a101"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="a286a65a-eba2-4e82-8cf8-42e26f7a6748">
+    <tavatekst id="9ce91cbc-799b-4d10-b0be-f4cf93fe3793">Tegevustoetuse eraldamise otsustab vallavalitsus korraldusega, võttes arvesse hindamiskomisjoni ettepanekut, hiljemalt ühe kuu jooksul pärast eelarve vastuvõtmist.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para9lg2">
+   <loigeNr id="b5b66ebc-e99c-4cc5-9247-b664ebf24b1c">2</loigeNr>
+   <kuvatavNr id="72926363-71a9-4124-9698-1cc8eff4fc5c"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="a523d8f9-d8f2-488b-84cd-08619f8dade1">
+    <tavatekst id="605842be-1c64-41da-95d4-17dd6b7e227e">Projektitoetuse eraldamise otsustab vallavalitsus korraldusega hiljemalt ühe kuu jooksul puudusteta taotluse laekumisest.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para9lg3">
+   <loigeNr id="082ed153-0dbe-461a-be82-867fcbf46819">3</loigeNr>
+   <kuvatavNr id="33e9423d-4a36-4ca0-9f79-0ce14b8844b1"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="2f7a894f-8a2b-4123-949a-5b5ca216425c">
+    <tavatekst id="7a7393ab-fb4c-40bc-a39b-c44c0cb55ca7">Vallavalitsus võib toetuse taotlejale teha ettepaneku taotluses sisalduvate tegevuste ja eelarve muutmiseks. Vallavalitsus võib hindamiskomisjoni põhjendatud ettepanekul rahastada taotlust osaliselt.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para9lg4">
+   <loigeNr id="973d7795-d69e-4066-bcdd-643c6af30e4b">4</loigeNr>
+   <kuvatavNr id="541bb61c-7d2f-4501-98b7-f3d140f912c5"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="3a7422b3-6f73-4397-bb91-fcee61ab21d8">
+    <tavatekst id="26bef089-06cc-4678-b556-4a88670418a5">Vallavalitsus teatab taotlejale toetuse eraldamisest või eraldamata jätmisest kirjalikult kolme tööpäeva jooksul arvates korralduse andmisest.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para9lg5">
+   <loigeNr id="d327734b-e19d-47a4-a2b4-e89277df47d9">5</loigeNr>
+   <kuvatavNr id="2c1224ba-ce9a-4a8d-b770-bae4551b3ebd"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="664aa1ef-d396-449f-9db0-0ac59dfbc60a">
+    <tavatekst id="d2d44c09-318d-44ac-bb23-dd4f6da41b5f">Tegevustoetuse saajaga sõlmitakse toetusleping ja toetus kantakse taotleja või taotleja esindaja arvelduskontole pärast toetuslepingu sõlmimist lepingus sätestatud tähtajal.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para9lg6">
+   <loigeNr id="2f418e79-2f82-4a98-a431-3d232439d2fa">6</loigeNr>
+   <kuvatavNr id="ec2fe476-76fa-49b6-af44-03c813d7d517"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="9cda074c-a50a-420b-a374-98a108f6980c">
+    <tavatekst id="845e5eb8-2628-417a-9c0a-6ccfb2583626">Projektitoetuse puhul lepingut ei sõlmita. Toetus makstakse taotleja arvelduskontole vallavalitsuse korralduse alusel.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para10">
+   <paragrahvNr id="42afd1e5-ce1e-4de7-9c4c-9dccd569f58a">10</paragrahvNr>
+   <kuvatavNr id="bcb989f6-545a-44dc-91cd-58ced4758357"><![CDATA[§ 10. ]]></kuvatavNr>
+   <paragrahvPealkiri id="53248b2c-308e-4e1a-8e89-94f37ec58a75">Aruandlus ja kontroll toetuse kasutamise üle</paragrahvPealkiri>
+  <loige id="para10lg1">
+   <loigeNr id="c410ac92-324c-4625-a399-63d9561f5c07">1</loigeNr>
+   <kuvatavNr id="df7256fa-3b37-45a9-ad3a-6fc4b6702368"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="48bbdc7a-0cfa-4b4d-9654-a39e08fdae7c">
+    <tavatekst id="9db57c67-a119-4cac-9c71-63a65b60f2c3">Tegevustoetuse saaja on kohustatud esitama vormikohase aruande toetuseks saadud rahaliste vahendite kasutamise kohta toetuslepingus näidatud tähtajaks.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para10lg2">
+   <loigeNr id="5974d5ac-ed90-436b-844c-224de73eb342">2</loigeNr>
+   <kuvatavNr id="e69852ff-1fe1-429f-a136-2c8d35e94981"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="6cef7dbc-bfad-44bf-9f1c-930d79cfa0f7">
+    <tavatekst id="851879ab-a04c-4a1c-a139-bbd4c3916f25">Projektitoetuse saaja on kohustatud esitama vallavalitsusele toetuse kasutamise kohta kirjaliku vormikohase aruande hiljemalt 30 päeva jooksul pärast projektitegevuse lõppemist.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para10lg3">
+   <loigeNr id="c7d6686e-7b0f-4409-81a3-cbad6262fed2">3</loigeNr>
+   <kuvatavNr id="73e46073-f19b-4715-a591-25c1adeb3b7b"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="b9b68934-4f20-43fc-9e55-2e711404317f">
+    <tavatekst id="1e45f3df-8692-4381-8067-7497964e37ec">Vallavalitsusel on õigus nõuda toetus tervikuna või osaliselt tagasi kui:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para10lg3p1">
+   <alampunktNr id="dcbabdf2-ea30-4aa9-b3db-9cab986b3a51">1</alampunktNr>
+   <kuvatavNr id="d06d7436-17a8-4672-ade9-76121b87a336"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="07837e69-ea97-475c-8439-1938073ad5a5">
+    <tavatekst id="d65aae89-a503-45da-855f-84a4c0ff1d8c">toetust ei ole kasutatud sihtotstarbeliselt;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para10lg3p2">
+   <alampunktNr id="5d507df4-ea01-49b0-b05b-196160a8d0e7">2</alampunktNr>
+   <kuvatavNr id="5cc8fa18-d940-4d44-bdf3-a695e7d71ca9"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="a07352c5-e71c-47af-aabc-cfc9137bc277">
+    <tavatekst id="7775e8b3-7204-420c-b3ce-00b21aaa9971">toetuse taotlemisel on esitatud valeandmeid;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para10lg3p3">
+   <alampunktNr id="6853ab58-456b-4f19-ad30-5acfa9710ba5">3</alampunktNr>
+   <kuvatavNr id="b1976eeb-4144-4ea4-bb81-993bb8945313"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="71fd49c9-e872-4e96-9811-87cb76eb3680">
+    <tavatekst id="848673cb-0ad4-481b-bd84-414a9df5c986">projektid ja tegevused, milleks raha eraldati, on jäänud toimumata;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para10lg3p4">
+   <alampunktNr id="c3e154a6-35ed-4fc0-abfb-4f196646e0a0">4</alampunktNr>
+   <kuvatavNr id="f618149d-4fc1-4c3d-aa53-1983aabd8889"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="eb66b5f3-4d38-4f2c-ad5f-f0ce0e3ef71c">
+    <tavatekst id="85372cc4-684d-4e5f-90ed-7d04983f32b0">ei ole õigeaegselt esitatud aruannet.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para10lg4">
+   <loigeNr id="e80ec030-3e4e-480e-ac0a-11a6426cffbc">4</loigeNr>
+   <kuvatavNr id="2d236910-7403-4acc-a357-889a9be5191d"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="8c9729fc-df46-4406-b642-1e8d05a399bf">
+    <tavatekst id="d1477d87-df45-4e3d-a9d2-410d252716b8">Toetuse tingimustele vastava kasutamise kontrolli teostab vallavalitsuse määratud ametnik. Toetuse kasutamise kontrollimisel lähtub vallavalitsus taotlusest, toetuse andmise otsusest, toetuslepingust, aruandest ja vajadusel kohapealse kontrolli tulemustest. Vallavalitsusel on õigus saada lisateavet toetuse kasutamise kohta.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para11">
+   <paragrahvNr id="7116c11b-cb29-4eef-9557-22e43dae1e6e">11</paragrahvNr>
+   <kuvatavNr id="1f417204-c768-4e51-8a1a-934d19649476"><![CDATA[§ 11. ]]></kuvatavNr>
+   <paragrahvPealkiri id="91e16f31-1603-4fef-9665-e090410ba84a">Rakendussätted</paragrahvPealkiri>
+  <loige id="para11lg1">
+   <loigeNr id="d632cd24-783f-4dfd-9f50-0deb350a66d1">1</loigeNr>
+   <kuvatavNr id="a14cca19-f002-460e-8d4e-3bc47f47d60a"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="53b56eab-7f2b-4fbb-90b2-5f55701f4a5a">
+    <tavatekst id="d679bfb3-dd22-4aa5-9750-4bccf7e1bc7f">Jõhvi Vallavolikogu 18. juuni 2009 määrus nr 146 “Jõhvi valla eelarvest sotsiaalhoolekandealase suunitlusega projektide ja mittetulundusühingute toetamise kord” tunnistatakse kehtetuks.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para11lg2">
+   <loigeNr id="5fa43af0-b3eb-4862-ae0f-a3a3f8fd43f8">2</loigeNr>
+   <kuvatavNr id="224bf43c-7f2c-428d-aa14-2e2f29b4290a"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="b0223f8b-6394-42c7-9551-dd1f1833bfad">
+    <tavatekst id="b17e4c87-f738-4de5-b05b-7e046a4dc0ae">Määrus jõustub üldises korras.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="b302ae63-0d21-4487-b041-fd25afb68561"><allkiriKoht id="51f7d45f-4886-4ea7-b5ef-4cac41c2260d"/><allkirjastaja id="c402a9d8-601a-4408-bfca-356ee61d0978"><ametinimetus id="967857f6-3a18-4aa3-9911-ee8e882f6fd9">Volikogu esimees</ametinimetus><eesnimi id="ddcd9a71-2139-4907-9d57-b9de60ee0e84">Aleksei</eesnimi><perekonnanimi id="9961b200-56bc-4eca-98a8-408360a3ec12">Naumkin</perekonnanimi></allkirjastaja></allkiri></oigusakt>

@@ -5,7 +5,7 @@ import http from 'node:http';
 import os from 'node:os';
 import path from 'node:path';
 import { spawn } from 'node:child_process';
-import { classifyMunicipalAct, selectMunicipalActs } from '../lib/rag-v2/municipal-acts.js';
+import { classifyMunicipalAct, rateSubject, selectMunicipalActs } from '../lib/rag-v2/municipal-acts.js';
 
 // ADR-058: titles as Riigi Teataja lists them (30.09.2026).
 const TITLES = [
@@ -33,6 +33,17 @@ const TITLES = [
   ['Räpina valla spetsialisti eluaseme toetuse määramise kord', null],
   ['Sotsiaalhoolekandelise abi andmise otsuse tegijate määramine', null],
   ['Tori valla 2017. aasta eelarve', null],
+  // Codex R2 (30.09.2026): a word of another field only at a word's start, so a place name or "paid from the budget" stays.
+  ['Rae valla eelarvest isiku toimetuleku kindlustamiseks toetuste maksmise piirmäärad 2026. aastal', 'rates'],
+  ['Sotsiaalhoolekandelise abi andmise kord Mustvee vallas', 'welfare_procedure'],
+  ['Mustvee valla eelarvest makstavate sotsiaaltoetuste määrade kehtestamine', 'rates'],
+  ['Kiili valla omandis olevate sotsiaalkorterite üürile andmise ja kasutamise kord', 'service_procedure'],
+  ['Toimetulekule suunatud sotsiaalõppe teenuse osutamise kord', 'service_procedure'],
+  ['Tori valla eelarvestrateegia aastateks 2020-2023', null],
+  ['Tori valla 2024. aasta 1. lisaeelarve', null],
+  ['Haapsalu linna sotsiaalvaldkonna töötajate ja vabatahtlike tunnustamise kord', null],
+  ['Kanepi valla erateedel tasuta talvise teehoolduse tegemise kord', null],
+  ['Eralasteaia ja eralapsehoiu teenuse toetamise kord', null],
 ];
 
 test('a municipal act is classified by its title; acts of other fields are not social welfare acts', () => {
@@ -64,6 +75,20 @@ test('the selection keeps the acts in force and the next versions, and drops wha
   assert.deepEqual(dropped.map(a => [a.id, a.reason]).sort(), [['1', 'replaced_by_newer'], ['8', 'past_year_in_title']]);
 });
 
+test('rates are one act per benefit: the rate of a named benefit does not replace the general rates beside it', () => {
+  assert.deepEqual(['Hooldajatoetuse määra kehtestamine 2026. aastal', 'Lapsehoiutoetuse suuruse kinnitamine 2026. aastaks',
+    'Kadrina valla eelarvest maksmisele kuuluva lapse sünnitoetuse ja matusetoetuse määrade kinnitamine', 'Sotsiaaltoetuste määrad'].map(rateSubject),
+  ['hooldaja', 'lapsehoiu', 'sünni+matuse', 'general']);
+  const act = (id, title, from) => ({ m: 'rae_vald', id, title, from, to: null, tekst: 'terviktekst', kk: false, mj: false });
+  const { keep, dropped } = selectMunicipalActs([
+    act('430012026034', 'Rae valla eelarvest isiku toimetuleku kindlustamiseks toetuste maksmise piirmäärad 2026. aastal', '2026-02-02'),
+    act('412092026007', 'Hooldajatoetuse määra kehtestamine 2026. aastal', '2026-09-15'),
+    act('400000000001', 'Hooldajatoetuse määra kehtestamine', '2025-01-01'),
+  ], { today: '2026-09-30', horizon: '2027-12-31' });
+  assert.deepEqual(keep.map(a => a.id).sort(), ['412092026007', '430012026034']);
+  assert.deepEqual(dropped.map(a => [a.id, a.reason]), [['400000000001', 'replaced_by_newer']]);
+});
+
 const cli = (args, env) => new Promise(resolve => {
   const child = spawn(process.execPath, ['scripts/rag-v2-municipal-acts.mjs', ...args], { env: { ...process.env, ...env } });
   let stdout = '', stderr = '';
@@ -79,7 +104,8 @@ test('the scan downloads the new acts, and leaves out a repeal record and an act
   const listed = (id, pealkiri) => ({ globaalID: id, pealkiri, kehtivus: { algus: '2026-01-01', lopp: null }, tekst: 'terviktekst', kehtivKehtetus: false, mitteJoustunud: false });
   const lists = {
     'Väike Vallavolikogu': [listed(101, 'Sotsiaaltoetuste määrad'), listed(102, 'Koduteenuse osutamise kord'),
-      listed(103, 'Sotsiaalhoolekandelise abi andmise kord'), listed(104, 'Tugiisikuteenuse osutamise kord'), listed(106, 'Puude raieloa andmise kord')],
+      listed(103, 'Sotsiaalhoolekandelise abi andmise kord'), listed(104, 'Tugiisikuteenuse osutamise kord'), listed(106, 'Puude raieloa andmise kord'),
+      { ...listed(107, 'Sotsiaaltoetuste määrade kehtestamine'), kehtivus: { algus: '2024-01-01', lopp: null } }],
     'Väike Vallavalitsus': [listed(105, 'Eluasemekulude piirmäärad toimetulekutoetuse määramisel')],
   };
   const server = http.createServer((request, response) => {
@@ -98,15 +124,20 @@ test('the scan downloads the new acts, and leaves out a repeal record and an act
   try {
     const manifest = path.join(dir, 'manifest.json');
     await fs.writeFile(manifest, JSON.stringify({ acts: [{ globaal_id: '103', group: 'G-INDEXED', issuer: 'Väike Vallavolikogu', regions: ['vaike_vald'],
-      title: 'Sotsiaalhoolekandelise abi andmise kord', index_from: '2020-01-01', index_to: null }] }));
+      title: 'Sotsiaalhoolekandelise abi andmise kord', index_from: '2020-01-01', index_to: null },
+      { globaal_id: '107', document_id: 'document_107', group: 'G107', issuer: 'Väike Vallavolikogu', regions: ['vaike_vald'],
+        title: 'Sotsiaaltoetuste määrade kehtestamine', index_from: '2024-01-01', index_to: null }] }));
     const run = await cli(['scan', '--manifest', manifest, '--out', path.join(dir, 'out'), '--download', path.join(dir, 'xml'), '--today', '2026-09-30'],
       { RAG_V2_RT_BASE: `http://127.0.0.1:${server.address().port}`, RAG_V2_RT_PAUSE_MS: '0' });
     assert.equal(run.code, 10, run.stdout + run.stderr);
-    assert.deepEqual(JSON.parse(run.stdout), { today: '2026-09-30', municipalities: 1, selected: 5, new: 4, downloaded: 2, errors: 0, exit: 10 });
+    assert.deepEqual(JSON.parse(run.stdout), { today: '2026-09-30', municipalities: 1, selected: 5, new: 4, downloaded: 2, superseded: 1, errors: 0, exit: 10 });
     const report = JSON.parse(await fs.readFile(path.join(dir, 'out', 'municipal-acts-2026-09-30.json'), 'utf8'));
     assert.deepEqual(report.acts.map(a => [a.id, a.category, a.status]).sort(),
       [['101', 'rates', 'downloaded'], ['102', 'service_procedure', 'group_indexed'], ['104', 'service_procedure', 'no_text'], ['105', 'housing_costs', 'downloaded']]);
     assert.deepEqual((await fs.readdir(path.join(dir, 'xml'))).sort(), ['101.xml', '105.xml']);
+    // The indexed older rates act the newer one replaces is named for removal from the index policy.
+    assert.deepEqual(report.superseded, [{ m: 'vaike_vald', id: '107', document_id: 'document_107', category: 'rates',
+      title: 'Sotsiaaltoetuste määrade kehtestamine', reason: 'replaced_by_newer', replaced_by: '101' }]);
     assert.match(await fs.readFile(path.join(dir, 'out', 'municipal-acts-2026-09-30.md'), 'utf8'), /vaike_vald 101 rates 2026-01-01\.\. downloaded/u);
   } finally { server.close(); await fs.rm(dir, { recursive: true, force: true }); }
 });
