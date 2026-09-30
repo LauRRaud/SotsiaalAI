@@ -222,6 +222,13 @@ test('a residence the plan left out: the user\'s own first-person home is read, 
   assert.deepEqual(await after('Me elame Harku vallas.', [], child, 'naabri laps'), { user: ['harku_vald', 'reported'], 'naabri laps': ['harku_vald', 'reported'] });
   const mother = [saved('user', 'kose_vald'), saved('ema', 'tartu_vald')];
   assert.deepEqual(await after('Me elame Harku vallas.', plan, mother, 'ema'), { user: ['harku_vald', 'reported'], ema: ['tartu_vald', 'reported'] });
+  // A named person's home with the subject between the verb and the place (measured 30.09: "tegelikult elab ema Harkus");
+  // "ei ela ema …" is a negation; another clause's work place does not take a new home away; a visit decides nothing.
+  const emaKose = [saved('ema', 'kose_vald')];
+  assert.deepEqual(await after('Vabandust, tegelikult elab ema Harku vallas.', [], emaKose, 'ema'), { ema: ['harku_vald', 'reported'] });
+  assert.deepEqual(await after('Tegelikult ei ela ema Harku vallas.', [], emaKose, 'ema'), { ema: ['kose_vald', 'reported'] });
+  assert.deepEqual(await after('Ema elab Tartu vallas, aga töötab Harku vallas.', [], emaKose, 'ema'), { ema: ['tartu_vald', 'reported'] });
+  assert.deepEqual(await after('Ema käib Harku vallas arsti juures.', [], emaKose, 'ema'), { ema: [null, 'unresolved'] });
   // A singular home stays the user's alone.
   assert.deepEqual(await after('Elan Harku vallas.', [place(2, 'Elan Harku vallas', 'user', 'lives', 'Harku vald')], child, 'naabri laps'),
     { user: ['harku_vald', 'reported'], 'naabri laps': [null, 'unknown'] });
