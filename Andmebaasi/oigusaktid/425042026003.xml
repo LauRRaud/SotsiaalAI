@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="4178621e-5ace-49e6-ae64-b05e3544565d" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metaandmed>
+ 
+ <valjaandja>Hiiumaa Vallavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2023-06-14</aktikuupaev>
+  <avaldamismarge>
+	<RTosa id="2effca43-a276-4106-91f1-a2e98611d6e1">RT IV</RTosa>
+	<avaldamineKuupaev id="bbd6bf06-857b-4974-ae11-3a3bdb8fa4be">2023-06-21</avaldamineKuupaev>
+	<RTaasta id="d59382a7-9978-4b4c-9e8d-2407f5ba58bf">2023</RTaasta>
+	
+	<RTartikkel id="644e5789-9721-4726-a32a-ec42dab0c8f7">3</RTartikkel>
+	<aktViide id="0825adf0-837c-4001-b80e-91268e8b6f36">421062023003</aktViide>
+  </avaldamismarge>
+  <joustumine>2023-07-01</joustumine>
+  <aktiNr>5</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-04-25</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>3</RTartikkel><aktViide>425042026003</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2026-05-01</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2026-04-22</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>425042026003</globaalID>
+ <metaandmedVersioon>9</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2026-04-24</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ <terviktekstiGrupiID>1056832</terviktekstiGrupiID>
+ <eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>5</metaandmedVersioon><metaandmedVersioonKuupaev>2023-06-20</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+  <aktinimi id="7dcba2f4-416c-45cf-9087-48da589be3b2">
+    <nimi id="b31cace2-57e7-4145-924c-e85f6a9d8c76">
+      <pealkiri id="5fac47ea-8386-4ce0-a6eb-2604d4c527dc">Üldhooldusteenuse eest tasumise piirmäära kehtestamine</pealkiri>
+    </nimi>
+  </aktinimi>
+  <muutmismarge id="7712eed1-e293-4f82-bb9d-f900b79a6264"><aktikuupaev id="7e83dbfa-4b8d-40f9-b32a-b90d93066440">2026-04-22</aktikuupaev><avaldamismarge id="bd4ffdff-29c6-4e79-871c-49ba96593083"><RTosa id="e8efcedb-daa2-4023-9a42-ec0b28c1e8f8">RT IV</RTosa><avaldamineKuupaev id="fe417488-0d44-487d-93e9-bd6ba3442772">2026-04-25</avaldamineKuupaev><RTartikkel id="014d4d52-3701-4cfe-94b6-80245f69b3df">2</RTartikkel><aktViide id="5322073d-91a8-4459-a483-0ca7309f1e77">425042026002</aktViide></avaldamismarge><joustumine id="0d293135-c95f-44c5-b22e-ac6c3e0d06e6">2026-05-01</joustumine></muutmismarge><sisu id="748c4999-b0cd-4418-8931-fe8563d340e7">
+    <preambul id="ee94f7a7-a4f9-44dc-8e93-45078b1ce19c">
+      <tavatekst id="00d86f4e-bcb6-42d3-b98f-f343aae16f96">Määrus kehtestatakse sotsiaalhoolekande seaduse § 22<sup>1</sup> lg 3 ning Hiiumaa Vallavolikogu 18.05.2023 määruse nr 39 „Sotsiaalhoolekande seaduse alusel ööpäevaringse üldhooldusteenuse piirhinna kehtestamise delegeerimine Hiiumaa Vallavalitsusele“ alusel.<reavahetus/></tavatekst>
+    </preambul>
+    <paragrahv id="para1">
+      <paragrahvNr id="f65074c7-434c-47f6-87bf-024bd4490774">1</paragrahvNr>
+      <kuvatavNr id="8921a0bc-d135-4eb3-aa8e-3825415e0c04"><![CDATA[§ 1. ]]></kuvatavNr>
+      <paragrahvPealkiri id="2f649e08-43e8-4443-8e16-7a06dc02fdd1">Väljaspool kodu osutatava üldhooldusteenuse hoolduskulu piirmäära kehtestamine</paragrahvPealkiri>
+      <loige id="para1lg1">
+        <loigeNr id="e4e4e690-846b-4620-aa17-426a484e8cdc"/>
+        <kuvatavNr id="f88f603b-1016-41a2-a455-11ed2f1dcae0"/>
+        <sisuTekst id="32431fb0-dca5-4616-8767-609081039614">
+          <tavatekst id="41f8c4e2-9487-4fca-af52-bc18783e2dc5">Kehtestada hoolduskulu piirmääraks 705 eurot kalendrikuus.</tavatekst>
+        </sisuTekst>
+      <muutmismarge id="5b6eb4ce-4811-46ed-aeff-874d3d432989"><avaldamismarge id="e25a4912-74d5-4bf1-96b8-c1654652e4ed"><RTosa id="7bdb0940-932a-45af-8bbc-1c9ccc89255c">RT IV</RTosa><avaldamineKuupaev id="c3e0b5c3-cbe6-40bb-a5ae-b73a93d1b081">2026-04-25</avaldamineKuupaev><RTartikkel id="cb6b7213-1a6f-43a7-baa6-88b137dc296f">2</RTartikkel><aktViide id="f19719c4-51b0-4096-8d7d-b0252ebada75">425042026002</aktViide></avaldamismarge><joustumine id="f692d161-c013-48b6-ab20-4e6356fc64fa">2026-05-01</joustumine></muutmismarge></loige>
+    </paragrahv>
+    <paragrahv id="para2">
+      <paragrahvNr id="f8aaee56-69bf-4df1-82b4-0fec9be31769">2</paragrahvNr>
+      <kuvatavNr id="61fe47d5-b6c5-4e6e-b5f7-459d0ff2cbec"><![CDATA[§ 2. ]]></kuvatavNr>
+      <paragrahvPealkiri id="a0a53ad7-ffd4-49b9-8f0d-234391db5182">Määruse jõustumine</paragrahvPealkiri>
+      <loige id="para2lg1">
+        <loigeNr id="0c186a93-7fb4-43a1-a147-aeb3e15c59ba"/>
+        <kuvatavNr id="3bb866d8-a8eb-4631-9cee-b617297087fb"/>
+        <sisuTekst id="ef31aa48-1619-47b3-a46d-9854abee3d9a">
+          <tavatekst id="9c11b270-b8e6-4654-9c0e-a84cbd58b8e7">Määrus jõustub 01.juulil 2023.</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+  </sisu>
+  
+  
+</oigusakt>

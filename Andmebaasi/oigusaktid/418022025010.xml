@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="33687e33-1463-496e-8fa4-b19e8b926af2" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Kihnu Vallavalitsus</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2023-06-16</aktikuupaev>
+			<avaldamismarge>
+				<RTosa id="b01120c1-3459-4240-af3a-3022f0a174de">RT IV</RTosa>
+				<avaldamineKuupaev id="714f2a29-04f0-486f-a0f0-c0580313a651">2023-06-22</avaldamineKuupaev>
+				<RTartikkel id="248f27b4-8dbc-45bc-85f2-a835e1bcb6f9">33</RTartikkel>
+				<aktViide id="6f6765ec-f122-4899-8790-075c2c4c5f7e">422062023033</aktViide>
+			</avaldamismarge>
+			<joustumine>2023-07-01</joustumine>
+			<aktiNr>4</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-02-18</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>10</RTartikkel><aktViide>418022025010</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2025-03-01</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2025-02-14</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>418022025010</globaalID>
+		<metaandmedVersioon>12</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2025-02-17</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1056877</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2023-06-21</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Maarja Kobin</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>7</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2023-06-21</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="44f2b20e-b6dc-4d6f-93ab-3eaea9638240">
+		<nimi id="5edbd293-8b98-4d8d-be93-e62a2ff965b9">
+			<pealkiri id="9e9e21e5-30dd-47a0-9612-bd1a7f624cb9">Väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse hoolduskulude tasumise piirmäära kehtestamine</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="997ae38b-e316-4ab6-b535-ed9a3ac627ca">
+		<aktikuupaev id="58ee47c3-01f9-4e87-bd6c-799472344b98">2025-02-06</aktikuupaev>
+		<avaldamismarge id="e199ce0e-cfa2-4644-8c67-905a57616e9d">
+			<RTosa id="32de8434-a9d3-4378-bae2-383457ef30a3">RT IV</RTosa>
+			<avaldamineKuupaev id="1c471531-4294-4457-9408-e1aecd021a3b">2025-02-18</avaldamineKuupaev>
+			<RTartikkel id="e7303450-3a39-4362-9112-1bb1e9a8906b">6</RTartikkel>
+			<aktViide id="7e6b0f17-ca35-478e-8f3b-68a5ab18206d">418022025006</aktViide>
+		</avaldamismarge>
+		<joustumine id="e1a103d5-d220-4bc0-98db-fb074244d95a">2025-03-01</joustumine>
+		<aktiNr id="dcd14a9d-ca53-4ea3-8ad0-61a7c663c56a">1</aktiNr>
+	</muutmismarge>
+	<sisu id="ee991cea-cbf8-46ae-b62a-8047342615ff">
+		<preambul id="87921100-59c1-4d49-8921-f5465d409a96">
+			<tavatekst id="3f60e2e3-9cbb-4148-9df4-4478805f4dd0">Määrus kehtestatakse sotsiaalhoolekande seaduse § 22¹ lõike 3 ja Kihnu Vallavolikogu 30. aprilli 2020. aasta määruse nr 8 „Sotsiaalhoolekandelise abi andmise tingimused ja kord“ (01. juulil 2023 jõustuv redaktsioon) § 30 lõike 8 alusel</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="05f1afa0-94e0-4e86-aa80-baa435318124">1</paragrahvNr>
+			<kuvatavNr id="7b922de6-6b34-4bb9-bb70-c45499667c6b"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="c5f3ccbe-f979-4627-89c2-0dc3a366a180">Väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse hoolduskulude tasumise piirmäär</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="19e7fc18-fe72-41ca-a5d1-812ed4f3e5d3"/>
+				<kuvatavNr id="d7fabfdb-4f28-4ff2-b026-14a1562a82e6"/>
+				<sisuTekst id="629d407a-448a-4733-951a-eeab76b9faa7">
+					<tavatekst id="523c080e-93fd-416b-bbd1-a6bf2f0f16c5">Kehtestada väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse osutamisel vahetult teenust osutavate hooldustöötajate ja abihooldustöötajate kulude tasumise piirmääraks kuni 700 (seitsesada) eurot ühe teenuse saaja kohta kuus.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="8425bdfa-653a-4088-9de4-dac83ce20ca0">
+					<aktikuupaev id="7ae03052-817d-43d4-8fe6-148bd3d0a738">2025-02-06</aktikuupaev>
+					<avaldamismarge id="bb220f0b-486f-4775-aefc-d86b06806337">
+						<RTosa id="af5fbe96-9505-4351-81ea-3c9721451653">RT IV</RTosa>
+						<avaldamineKuupaev id="a8f05c5e-1de3-43b7-a6d9-20acbfe16dab">2025-02-18</avaldamineKuupaev>
+						<RTartikkel id="22e2c372-c5a2-499a-b6bb-5010d667a2fc">6</RTartikkel>
+						<aktViide id="5f468a98-ea75-4937-b849-631b65f36131">418022025006</aktViide>
+					</avaldamismarge>
+					<joustumine id="44820daf-dd5f-44a6-88fd-c90896712465">2025-03-01</joustumine>
+					<aktiNr id="4dc6a525-3288-41e3-85e9-2cf8686ad6e4">1</aktiNr>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="19e878b0-4ace-48c6-a12a-9167cda51609">2</paragrahvNr>
+			<kuvatavNr id="f3b2c095-5e75-4a1c-9d62-36c9bebeebb9"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="e7f78769-33dc-4b0a-8294-3dea69463623">Jõustumine </paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="1ba2e86e-8f50-40ea-841b-1da4457d7f0a"/>
+				<kuvatavNr id="239a846e-e46e-46fc-8a40-b5c9860f5ef1"/>
+				<sisuTekst id="e332acae-2974-47be-b5fc-cba0cbe1c995">
+					<tavatekst id="f66095f8-714d-4f45-bc09-333f254a9211">Määrus jõustub 01.07.2023</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+</oigusakt>

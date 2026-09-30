@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="8f6ad0bf-60c7-4ab7-8755-146d85703d6a" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Maardu Linnavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2022-10-25</aktikuupaev>
+  
+  
+  <aktiNr>24</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2022-11-01</avaldamineKuupaev><RTaasta>2022</RTaasta><RTartikkel>37</RTartikkel><aktViide>401112022037</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2022-11-04+02:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2022-10-31</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>401112022037</globaalID>
+ <metaandmedVersioon>7</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2022-10-31</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1055040</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2022-10-28</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Natalja Gorbunova</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="c48a5579-ae7f-4f7e-bc7d-dd9b6d621f3e">
+  <nimi id="91fa9d91-2502-4975-aceb-d559611b7463">
+   <pealkiri id="46d80af6-d77f-47d2-b068-15a8da7384e3">Maardu linna sotsiaaleluruumide kasutusse andmise ja kasutamise kord</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="b68f7a89-6eea-4b3f-99d1-892abe8e378f"><preambul id="ae894082-9a17-44bd-b3e2-7f4aa70aa994">
+   <tavatekst id="384c9e8e-f6b0-4157-897a-46c9c8a5aaf8">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lg 1 p 5 ning sotsiaalhoolekande seaduse § 14 lg 1 ja § 41 lg 1 alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="da1f2058-cdfa-4aab-8204-146b83e107c1">1</paragrahvNr>
+   <kuvatavNr id="79d6415b-b52e-407b-9e76-b1419f042b8a"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="cb95bd50-b728-4d36-b77f-5de0e47a0de1">Üldsätted</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="6285d75f-614c-4c8a-afe2-545a44aa656f">1</loigeNr>
+   <kuvatavNr id="e18d77cd-d945-480a-8573-76fec60f5114"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="4e6d0b9a-77f5-4232-8dc0-76fa981917de">
+    <tavatekst id="767d1a8e-f5ea-45f8-953b-6dc9f6564e2f">Sotsiaaleluruumide kasutusse andmise ja kasutamise kord (edaspidi määrus või kord) reguleerib Maardu linnale kuuluvate sotsiaaleluruumide kasutusse andmise ja kasutamise tingimusi ja korda.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg2">
+   <loigeNr id="9a40cd97-9217-4f8e-81fb-92411ca87827">2</loigeNr>
+   <kuvatavNr id="10d33983-97e2-45d3-922d-f67cc165f4c4"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="63c88127-478e-424b-bad2-152f1c874e46">
+    <tavatekst id="ac7a1250-326e-42b1-815f-0f85f2612819">Sotsiaaleluruumide kasutusse andmisega täidab Maardu linn sotsiaalhoolekande seaduses sätestatud kohustust anda eluruum isikutele, kes ei ole sotsiaalmajanduslikust olukorrast tulenevalt võimeline enda ja oma perekonna vajadustele vastavat eluruumi tagama.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="13aed338-4b65-4f46-b40a-8ed9902ede80">2</paragrahvNr>
+   <kuvatavNr id="4b2cf251-f3f5-4f3f-afda-032bf957a342"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="9bb54876-99de-4c68-90bd-3bf1b8113073">Sotsiaaleluruumi mõiste</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="2524ed14-d9d9-43da-95dc-844d29b4f96c"/>
+   <kuvatavNr id="c262a140-6a01-41b1-b264-a7eba3489ab0"/>
+   <sisuTekst id="7181f2e4-f617-492a-82a1-1474696ed768">
+    <tavatekst id="7d851b55-7110-4100-991d-6c41638b9ad4">Käesolevas korras käsitletakse sotsiaaleluruumina:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para2lg1p1">
+   <alampunktNr id="e1363efd-5403-4037-b7bb-291ffcb7bd32">1</alampunktNr>
+   <kuvatavNr id="f09edec8-dd93-410b-a6a3-1e9753e89b32"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="237281a1-f5ed-4be7-afae-829447513f42">
+    <tavatekst id="7e77eee1-f13c-4b20-84b4-bfdbb3b3e8fb">sotsiaalkorter – eluasemeteenust vajava isiku kasutusse antav korter;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p2">
+   <alampunktNr id="c2a469c7-a5a9-4cf5-b51a-6807b88570d7">2</alampunktNr>
+   <kuvatavNr id="78b949bc-87dc-4a2b-86e1-da819b9fe9a3"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="36b0d7ac-1bdc-4c68-997e-f54db1d4008c">
+    <tavatekst id="430d1a7e-568e-48df-a029-43e39f97a1db">sotsiaalpind – eluasemeteenust vajava isiku kasutusse antav eluruum, mis koosneb ühest või mitmest toast või toa osast ja abiruumidest (dušš, köök, WC jne), mida kasutavad mitu sotsiaalteenust vajavat isikut ühiselt. </tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="f1c11ca0-eec2-4422-a598-40a99a782e60">3</paragrahvNr>
+   <kuvatavNr id="856a9152-8939-4849-b4f3-1864d20e59f6"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="a0760a4c-fc47-4f32-a434-571c94afbfb5">Sotsiaaleluruumi õigustatud subjekt</paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="1965e199-6e80-4db4-bd44-3d0de49741d7">1</loigeNr>
+   <kuvatavNr id="9abbf32e-00b4-41ef-a721-2a49f17e339e"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="1d69fcf7-3e86-486c-9d94-95117f2fdb8f">
+    <tavatekst id="69f317d9-c06d-4729-9349-5e18f0913757">Sotsiaaleluruumi võib taotleda sotsiaalteenusena eluaset vajav füüsiline isik (edaspidi taotleja), kelle elukoht on rahvastikuregistri andmetel Maardu linn.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg2">
+   <loigeNr id="99a64067-d290-43f0-a104-28373baa8f13">2</loigeNr>
+   <kuvatavNr id="d8bfff69-e43f-48da-b6a8-5f901ac7b055"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="34f8e9af-c025-4c30-adff-aaa8f5d8b4d7">
+    <tavatekst id="068a8bba-31ed-4ed1-9e6f-326667d4bb60">Sotsiaalkorter antakse kasutusse eelkõige järgmistele eluaset mitteomavatele isikutele:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para3lg2p1">
+   <alampunktNr id="e00f974c-3831-4a76-aaa6-256ed38c3b7b">1</alampunktNr>
+   <kuvatavNr id="5ce6be33-62d4-4275-8282-941e760db6ab"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="e1074319-0a3b-45f1-b398-97d315c730e6">
+    <tavatekst id="1fb1f0fb-a648-4a10-8d6f-3fdebb748aeb">lastega perele, kelle sissetulek ei võimalda eluruumi osta või üürida;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg2p2">
+   <alampunktNr id="e7a152d8-ac96-46fe-8ea3-c9c9318c476e">2</alampunktNr>
+   <kuvatavNr id="fafe015b-1b6d-4c38-913e-e2d4b638e923"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="d1b724b1-dc36-4507-962e-a20cc2c987a9">
+    <tavatekst id="abb99ebd-55c1-45fa-82cd-2ce189ce28ea">isikule, kes tulekahju, loodusõnnetuse, katastroofi või muul sarnasel põhjusel on kaotanud oma eluaseme;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg2p3">
+   <alampunktNr id="b7e07eca-87bc-4ef7-81b4-f585b4224dd9">3</alampunktNr>
+   <kuvatavNr id="b94bde8d-82f0-4527-a974-30a5c364b725"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="ec100460-a359-43cd-87f5-398acc9aff3d">
+    <tavatekst id="1d4fc6c2-b793-4bac-b3a8-74c610715781">puudega isikule sotsiaalhoolekande seaduse §-st 42 tulenevalt.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para3lg3">
+   <loigeNr id="686d438d-5a59-4382-8c6e-a3c11bd418c6">3</loigeNr>
+   <kuvatavNr id="9cfa2dcc-f805-43e4-a597-533325c3b701"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="632fb15d-509a-44f2-a579-e79735254059">
+    <tavatekst id="d5197383-4158-4052-b744-81dfbc6f1176">Sotsiaalpind antakse kasutusse eelkõige järgmistele eluaset mitteomavatele isikutele:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para3lg3p1">
+   <alampunktNr id="de302df2-cd14-4e6f-bec2-75db7826ac23">1</alampunktNr>
+   <kuvatavNr id="5fd5bb9b-9d14-460c-a6f0-db33001c6408"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="19e80f8a-2a49-447f-a19d-0573acfd83b5">
+    <tavatekst id="30e94a97-e181-488e-8839-729ab3eeacd0">isikutele, kes ei ole suuteline endale ja oma perekonnale eluruumi tagama ning sotsiaaleluruumi eraldamata jätmine ohustab isiku või tema perekonna toimetulekut, elu ja tervist;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg3p2">
+   <alampunktNr id="32a3b147-1d3b-477f-b9a5-461f76866103">2</alampunktNr>
+   <kuvatavNr id="e3e21386-a487-4956-9077-93f840e57245"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="737ae81f-d5a2-4fc2-a11b-47dc2906ee69">
+    <tavatekst id="daef5a77-ab99-41b3-a5a6-b6fa74432058">kinnipidamisasutusest vabanenule, kui tema rahvastikuregistrisse kantud elukoht enne kinnipidamisasutusse paigutamist oli Maardu linnas;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg3p3">
+   <alampunktNr id="65d51788-cb99-4dac-b4a0-6ea5b7d78eb8">3</alampunktNr>
+   <kuvatavNr id="80f4609e-aa18-41b1-ae82-663d06dab117"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="262a226a-3065-4e1a-a1fe-d999c0403100">
+    <tavatekst id="c3f3a0dc-cee0-4f15-ba7f-a837a7922916">asenduskodust saabunule, kui isik suunati asenduskodusse Maardu linnast.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para4">
+   <paragrahvNr id="3957ca8f-68a4-476d-b3d0-867232f468f2">4</paragrahvNr>
+   <kuvatavNr id="b839e69a-6995-4ac9-90e4-788150f529a1"><![CDATA[§ 4. ]]></kuvatavNr>
+   <paragrahvPealkiri id="bbb28402-a57f-4823-b1da-12a139c2484a">Sotsiaaleluruumi taotlemine </paragrahvPealkiri>
+  <loige id="para4lg1">
+   <loigeNr id="a6c41ae5-3900-410c-9864-35deb2c907a4">1</loigeNr>
+   <kuvatavNr id="92e6e6dd-da05-47ac-9280-13c7ac312deb"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="6ab80360-bf09-4d7d-8426-bcb888e28371">
+    <tavatekst id="e5b21f93-f087-4e7d-80d6-740f371a4cd1">Sotsiaaleluruumi taotlemiseks esitab taotleja Maardu Linnavalitsuse sotsiaalabi osakonnale (edaspidi sotsiaalabi osakond) taotluse (edaspidi taotlus).</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg2">
+   <loigeNr id="251104fd-a1ac-4eed-875d-602b6ceb0261">2</loigeNr>
+   <kuvatavNr id="246623cd-fa81-4e30-abe8-5941db5f67d4"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="0de5377a-77a6-4aa0-8b8e-c0fb62f02b9d">
+    <tavatekst id="bf74f076-bc81-4e8c-81d6-080b851d129b">Taotluses märgitakse taotleja isiku- ja kontaktandmed, andmed perekonnaliikmete, ülalpeetavate ja ülalpidajate kohta, sotsiaaleluruumi taotlemise põhjus, andmed perekonna sissetulekute, muu varalise seisu, seni kasutatava eluruumi ja sellest ilmajäämise põhjuste kohta.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg3">
+   <loigeNr id="07bf0a46-1ab2-40ac-8324-6f501273adff">3</loigeNr>
+   <kuvatavNr id="3cd494d8-397f-4898-a299-8d96e9469ba5"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="af5a0b96-a4ea-452e-8b3b-4d425bb9ccae">
+    <tavatekst id="0a84b798-37b1-4d4c-a977-257f9ab0b906">Sotsiaalabi osakonnal on õigus abi- ja teenusevajaduse välja selgitamiseks nõuda täiendavaid dokumente, küsitleda taotleja lähedasi ning kontrollida taotleja, tema perekonnaliikmete ning tema ülalpidamiskohustuslas(t)e majanduslikku olukorda ning teha päringuid elatusvahendite (pensionid, toetused, hüvitised, väärtpaberid, kinnis- ja vallasvara jms) hindamiseks.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para5">
+   <paragrahvNr id="d907c672-5bfb-4dcb-81da-9f6bd4c2060a">5</paragrahvNr>
+   <kuvatavNr id="b5e2f1f4-7c7a-46d4-b434-4c7d84ce504f"><![CDATA[§ 5. ]]></kuvatavNr>
+   <paragrahvPealkiri id="39909449-7746-4de6-aed8-699e0d401450">Sotsiaaleluruumi andmine</paragrahvPealkiri>
+  <loige id="para5lg1">
+   <loigeNr id="33e08df9-9fa8-4e19-93a8-e00d45d6bffb">1</loigeNr>
+   <kuvatavNr id="953bb4b5-9495-4bdd-843a-51ed46d8d8bc"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="60b3e2c3-078e-4e15-b04c-cd89b501e2ff">
+    <tavatekst id="ecf5ca44-6ac2-40f7-b49a-a38e2b60ed29">Taotluste läbivaatamiseks moodustab Maardu Linnavalitsus komisjoni (edaspidi komisjon).</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg2">
+   <loigeNr id="1e7b70f9-6d51-4994-871f-76079dac1974">2</loigeNr>
+   <kuvatavNr id="3ac3bb11-c29d-4a65-8301-20a4e1166ef0"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="c08ab4ec-af69-4557-a3a3-736adf2775cd">
+    <tavatekst id="603f275f-fac6-4652-b55d-3a99e2cd6e44">Otsuse sotsiaaleluruumi kasutusse andmise või mitteandmise kohta teeb komisjon 10 kalendripäeva jooksul arvates taotluse ja kõigi nõutavate dokumentide esitamisest. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg3">
+   <loigeNr id="fe243ecc-08d8-4095-a733-7f7f8427a972">3</loigeNr>
+   <kuvatavNr id="1f750d82-8ce4-4de5-ac50-4af7b1644479"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="4e90cc83-3883-47d0-9a93-db889ebef442">
+    <tavatekst id="7736ea3a-d2e6-4363-8f4a-92623b2932c0">Taotlus jäetakse rahuldamata, kui abivajaduse hindamise tulemusena ei tuvastata taotleja abivajadust või ta ei vasta korras nimetatud tingimustele.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg4">
+   <loigeNr id="8847f71e-5d2a-4425-a32a-39646aff09a3">4</loigeNr>
+   <kuvatavNr id="ac76f0f6-151c-45f1-a475-5b64296d8aec"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="b12cb1e0-549d-4c0e-889c-5f15ae5411da">
+    <tavatekst id="6cb93c04-9461-48d1-a9d3-a0afa76e9cd6">Sotsiaaleluruumi andmisest võib keelduda juhul, kui esineb vähemalt üks järgmistest asjaoludest:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para5lg4p1">
+   <alampunktNr id="f5f74208-1fb5-4dea-a302-287f602a6075">1</alampunktNr>
+   <kuvatavNr id="2e722f25-32a5-4bcb-9f0f-32bcd9dc8af5"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="c3990fae-3bba-4dbb-9fcb-bd6f9b965240">
+    <tavatekst id="36e9f47b-9782-4fdd-820a-70b4c963cd53">taotluses on andmeid varjatud või on esitatud ebaõigeid andmeid;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para5lg4p2">
+   <alampunktNr id="d3b88a4e-4a2f-4bb2-9e10-5cf8e968b0a1">2</alampunktNr>
+   <kuvatavNr id="091b6758-f345-4e8f-881e-dd8bcb3b3a19"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="ae0b031c-b382-4475-a590-1dcdefff5cfe">
+    <tavatekst id="4d56f96e-d7ed-4980-80d2-9a730c92ea0b">taotleja ei võimalda taotluse asjaolusid kontrollida;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para5lg4p3">
+   <alampunktNr id="75903cfc-4950-4447-8226-71a16b19c0c8">3</alampunktNr>
+   <kuvatavNr id="149da413-1648-42f3-95df-20c18d44ce97"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="f4f46c82-a138-4e93-92ea-e4141e57aa38">
+    <tavatekst id="1e804c9c-ec20-4ba8-960c-2ce0b825d666">taotleja ei esita sotsiaalabi osakonna poolt küsitud täiendavaid dokumente;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para5lg4p4">
+   <alampunktNr id="a4b8e882-8e7e-47a1-af0a-5ae61db06d4c">4</alampunktNr>
+   <kuvatavNr id="47e7aab9-6902-4a56-bc81-5dfb4b08de25"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="60b7cf2b-5991-4457-9ac2-615e4af8f2d6">
+    <tavatekst id="472822de-e272-47c3-b091-153b3581587b">taotleja, tema perekonna või ülalpidamiskohuslaste omandis või kasutuses olevate vahendite abil on võimalik tagada taotlejale vajalik eluruum;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para5lg4p5">
+   <alampunktNr id="3a3c677e-584d-4410-af43-dc03424683c4">5</alampunktNr>
+   <kuvatavNr id="77fafe00-5029-4747-92b0-b25bd82ab834"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="692bd7d1-87e9-4d29-a3ef-17a6b8d0d06d">
+    <tavatekst id="32306a63-3c6e-44a5-80fa-1446f1f2280b">taotleja omandis on kinnis- või olulise väärtusega vallasvara, välja arvatud tema omandis oleva kinnisvara võõrandamisel Maardu linnale;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para5lg4p6">
+   <alampunktNr id="90595506-e1e4-488f-8c38-a7355a66482c">6</alampunktNr>
+   <kuvatavNr id="f8accf7d-e358-4a50-a871-f436ad9e4ed0"><![CDATA[6) ]]></kuvatavNr>
+   <sisuTekst id="fa0e9ebc-65b4-4494-bfc3-84ebb23b789c">
+    <tavatekst id="627b437e-f7a4-44fc-adf4-d7a8a0dae214">taotleja on vähemalt kaks korda järjest keeldunud talle pakutud sotsiaaleluruumist;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para5lg4p7">
+   <alampunktNr id="e78e6e41-56de-41aa-a7df-d5e82c42a6e9">7</alampunktNr>
+   <kuvatavNr id="9d1c2020-fb97-4ff3-97c0-e506671a8084"><![CDATA[7) ]]></kuvatavNr>
+   <sisuTekst id="8ada2d27-6122-4f81-8a74-a70fee0b89ec">
+    <tavatekst id="11a9b8af-b1b0-434a-a01d-19cea8c20dd4">sotsiaaleluruumi andmise vajadust on võimalik või otstarbekas katta muude sotsiaalteenuste või muu abiga;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para5lg4p8">
+   <alampunktNr id="da89eb92-1557-4e2d-a31d-1ce92e7cf3c9">8</alampunktNr>
+   <kuvatavNr id="1b637cd2-3296-46ab-9e2b-74c198bb7211"><![CDATA[8) ]]></kuvatavNr>
+   <sisuTekst id="781905d2-0b21-4228-9337-0213138da0b0">
+    <tavatekst id="eee4236c-d21d-40c7-8fc2-0e993c10c3a3">ilmnevad muud sotsiaalseadustiku üldosa seaduse § 18 ja § 19 lg 1 sätestatud juhud.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para6">
+   <paragrahvNr id="a4f02627-f994-48cf-b76d-b9ee84273d27">6</paragrahvNr>
+   <kuvatavNr id="33238620-563f-47fd-9c79-8e48334fbd4a"><![CDATA[§ 6. ]]></kuvatavNr>
+   <paragrahvPealkiri id="2faa06a6-7fc7-4c4c-9d02-4e68b512bb3c">Lepingu sõlmimine</paragrahvPealkiri>
+  <loige id="para6lg1">
+   <loigeNr id="f00bbd72-025b-4303-bd25-ead54b828501">1</loigeNr>
+   <kuvatavNr id="fd2eb91b-681f-458a-834b-110d2c871386"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="01453aec-dbfe-43f9-ad99-c16c48bcb7ef">
+    <tavatekst id="7571d365-6473-4b39-9cf5-80030beeffb2">Isikuga, kellele on sotsiaaleluruum kasutusse antud, sõlmitakse nimetatud eluruumi kasutamiseks kirjalik leping (edaspidi leping). Lepingu vormi kinnitab Maardu Linnavalitsus.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg2">
+   <loigeNr id="187bac6d-8cf0-4155-8d22-072161cd46c3">2</loigeNr>
+   <kuvatavNr id="15e3ecb5-dd73-4ff6-b9bc-3d258434778a"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="ce5f8e53-f3bd-4e98-a1a2-4cefab6938fb">
+    <tavatekst id="517e4ad8-12f2-4cb8-b035-4102f2fd289d">Enne lepingu sõlmimist on sotsiaaleluruumi taotlejal õigus talle määratud eluruum üle vaadata.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg3">
+   <loigeNr id="9596ed5e-a1f4-4dc1-b5f7-b14237526ab6">3</loigeNr>
+   <kuvatavNr id="b1b63630-3113-4edf-9d90-6f60cc3f91d4"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="57da56b1-e035-4d75-ac8d-95bbdf744072">
+    <tavatekst id="6846f281-57f8-44ae-a9e7-0d413dd33018">Leping sõlmitakse kahe nädala jooksul komisjoni otsuse teatavakstegemisest. Nimetatud tähtaja jooksul mõjuva põhjuseta lepingu sõlmimata jätmisel taotleja poolt, on komisjonil õigus keelduda sotsiaaleluruumi andmast.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg4">
+   <loigeNr id="f236b6d3-fe0b-4416-b9ff-6fffee1e23b4">4</loigeNr>
+   <kuvatavNr id="9ab4a2de-55d4-4d2f-a063-3e7697e6941f"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="93612197-f46b-4594-8bbc-a2e6854ef1d9">
+    <tavatekst id="97b736e0-42a1-41c4-95c2-69e7b5fa2f97">Sotsiaaleluruumile ei laiene elamuseaduse § 32 ega võlaõigusseaduses eluruumi üürimise kohta sätestatu.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg5">
+   <loigeNr id="0dcc8576-ec90-4e43-8014-e9503586df86">5</loigeNr>
+   <kuvatavNr id="7ca556c4-538e-4dde-aa95-ff013952426d"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="4c948600-6a26-443a-b475-fd9ed513192a">
+    <tavatekst id="93a742f6-e917-40b3-a530-4cd38635039d">Lepingu sõlmib Maardu Sotsiaalmaja.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para7">
+   <paragrahvNr id="1dbd56ab-7064-47ff-8d72-26cdda405277">7</paragrahvNr>
+   <kuvatavNr id="90786392-56b6-4b64-8edb-2256f972c713"><![CDATA[§ 7. ]]></kuvatavNr>
+   <paragrahvPealkiri id="e30af135-252d-491b-b2e7-82ccb599b369">Lepingu tähtaeg </paragrahvPealkiri>
+  <loige id="para7lg1">
+   <loigeNr id="7121f65a-bbfc-467c-9a2f-8b7b00b81b97">1</loigeNr>
+   <kuvatavNr id="c66399ee-3d1f-4a76-b827-807899f108f9"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="7d69d5ff-7857-47d9-9d38-df46645c9f68">
+    <tavatekst id="444e177a-425f-4e8e-a368-8ea365c30a5d">Sotsiaaleluruum antakse kasutusse tähtajaga kuni 1 aasta koos kohustusega pind määratud tähtajaks vabastada.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg2">
+   <loigeNr id="effc16f3-ea44-4118-819b-4111251b45bc">2</loigeNr>
+   <kuvatavNr id="9c5038ea-2892-4c4a-ba7a-a964aa4ecce7"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="5569cfdc-da29-4f69-9372-172621c32788">
+    <tavatekst id="9f0a72c2-c178-41bb-8d05-f30d07dbe246">Lepingu võib ennetähtaegselt üles öelda lepingus sätestatud tingimustel.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg3">
+   <loigeNr id="a749fa50-bcec-41be-b463-652ed5a59a78">3</loigeNr>
+   <kuvatavNr id="50af7294-7794-4b91-a64d-4c72770fe3b5"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="b462687e-1bd0-476a-b671-8f5fcf51401d">
+    <tavatekst id="e4ecb58e-8740-48ec-98d5-a8a679073c5d">Lepingu tähtaja möödumisel on sotsiaaleluruumi kasutajal õigus taotleda uue lepingu sõlmimist, kui isik on täitnud kõik lepingust tulenevad kohustused ja vastab korra § 3 esitatud nõuetele ja tingimustele. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg4">
+   <loigeNr id="d5dbf65c-f17e-4e91-a10e-07d387f2add3">4</loigeNr>
+   <kuvatavNr id="d47d4b18-087d-4a72-85a1-e6ecf90641fd"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="1d6fd181-9dde-4cc9-856b-cf576b351f7c">
+    <tavatekst id="a0917566-c769-4945-a67e-ffd07370732b">Uue lepingu sõlmimise taotlemiseks tuleb sotsiaaleluruumi kasutajal esitada taotlus põhjendusega lepingu pikendamise vajaduse kohta sotsiaalabiosakonnale 1 kuu enne kehtiva lepingu tähtaja lõppemist. Sotsiaalabiosakonnal on õigus küsida teenuse vajaduse hindamiseks täiendavaid andmeid ja dokumente taotluse põhjendatuse kohta ning teostada kodukülastust.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg5">
+   <loigeNr id="52cd7c9f-873f-48f0-927a-417a7c431d29">5</loigeNr>
+   <kuvatavNr id="0cd2a03a-8bcf-4c5d-ac73-b50d48ae0a55"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="58aed40f-fc90-41e3-840c-c04d1cf74ed7">
+    <tavatekst id="6b86e51c-d36e-41d9-a99a-995571e29181">Uue lepingu sõlmimise otsustab komisjon. Otsuse tegemisel arvestatakse lepinguliste kohustuste täitmist sotsiaaleluruumi kasutaja poolt ja isikule teenuse osutamise aluseks olnud andmete võimalikku muutumist.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para8">
+   <paragrahvNr id="c47a9084-f936-42e8-888e-791e1ec6bb13">8</paragrahvNr>
+   <kuvatavNr id="4535c781-36a0-44fd-9033-e32dcac733a0"><![CDATA[§ 8. ]]></kuvatavNr>
+   <paragrahvPealkiri id="7f864839-b4ce-4fd4-afaf-7b70b7832800">Sotsiaaleluruumi kasutamise alused</paragrahvPealkiri>
+  <loige id="para8lg1">
+   <loigeNr id="c214db78-dd08-4d4f-b909-f126cacddfcd">1</loigeNr>
+   <kuvatavNr id="468f9743-0744-4a5d-ae34-32223ee0c6a6"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="cb2f9506-e774-4cfd-9488-e875490187f8">
+    <tavatekst id="8c767711-1759-4af8-b46a-195a164ba75f">Sotsiaaleluruumi kasutamise õigus tekib taotlejal pärast lepingu sõlmimist lepingus nimetatud kuupäevast.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para8lg2">
+   <loigeNr id="0711b223-253b-4d76-a445-833a77acf8ad">2</loigeNr>
+   <kuvatavNr id="b7f68eab-f560-448c-abc7-3139f12a2082"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="170986d0-cf6c-437a-8617-665a9e244408">
+    <tavatekst id="584a1b6c-9f93-4b2d-bdcb-17a80cc2b3d3">Sotsiaaleluruumi kasutaja võib majutada talle kasutusse antud eluruumi teisi isikuid ainult komisjoni kirjaliku nõusoleku alusel.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para8lg3">
+   <loigeNr id="3a8017c3-8c53-47fa-bd11-c9c1e1f7d7d3">3</loigeNr>
+   <kuvatavNr id="31abded4-1b0c-4a5b-92fc-f84d13e71ed8"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="db6302f5-9879-40cc-ba67-0cdcd197954a">
+    <tavatekst id="9dfc8980-f38e-4656-bd08-005a81d5a723">Lemmiklooma pidamine on lubatud Maardu Sotsiaalmaja nõusolekul.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para8lg4">
+   <loigeNr id="3854db0c-4831-41cc-ac59-ed4783d92ecc">4</loigeNr>
+   <kuvatavNr id="bb034557-cef0-457e-9fdc-04cf20b4a235"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="3bc321e2-b74b-4c06-be19-8c5dee824a0a">
+    <tavatekst id="c26d241e-e797-4ae9-ae6d-ea735f15d60f">Kasutaja peab sotsiaaleluruumi kasutama heaperemehelikult ja vastavalt sihtotstarbele, arvestama teiste majaelanike ja naabrite huvidega ning täitma lepingu muid tingimusi ja eeskirju.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para9">
+   <paragrahvNr id="7bc44c26-73b9-4711-b110-824ce33cde7e">9</paragrahvNr>
+   <kuvatavNr id="4542429d-8ca9-46a9-a9d9-452a9705f3b9"><![CDATA[§ 9. ]]></kuvatavNr>
+   <paragrahvPealkiri id="cb4bbf27-ffa9-4e64-8a50-bb998a4bcd03">Sotsiaaleluruumi eest tasumine</paragrahvPealkiri>
+  <loige id="para9lg1">
+   <loigeNr id="6273164c-8fd6-4edf-afd3-18c2277228bd">1</loigeNr>
+   <kuvatavNr id="bd57785c-5343-4fb6-8c3b-02397993f0c9"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="09584812-5bc6-41c8-89d4-f1696713cd0c">
+    <tavatekst id="e690fee5-5c26-4059-ad46-8e065ef76ad1">Tasu sotsiaaleluruumi kasutamise eest määrab Maardu Linnavalitsus.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para9lg2">
+   <loigeNr id="ab4d7e4b-6af9-459d-9da8-c5736d9f05a6">2</loigeNr>
+   <kuvatavNr id="97425150-f2e7-4e6f-ba4d-b4234429373d"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="29e85edf-6253-4e30-aa39-331a2e176d6b">
+    <tavatekst id="4a3f49bc-0444-4036-943b-ef574a5c0c40">Kasutaja maksab tasu ja kõik sotsiaaleluruumi kasutamisega seotud kõrvalkulud (elektrienergia, vee, kanalisatsiooni, kütte, prügiveo ja muude kommunaalteenuste eest, samuti igakuised hooldus-, avarii- ja remondimaksed elamu haldajale, maamaks, tasu lauatelefoni, interneti ning valveteenuse kasutamine jms).</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para10">
+   <paragrahvNr id="1131bf94-7c6f-40e3-bf0e-2235bd0c11ac">10</paragrahvNr>
+   <kuvatavNr id="986a61f4-48de-490f-8847-6d9db50c5879"><![CDATA[§ 10. ]]></kuvatavNr>
+   <paragrahvPealkiri id="8b3de33b-fb1d-4b04-85ea-3c59705daafc">Sotsiaaleluruumide haldamine</paragrahvPealkiri>
+  <loige id="para10lg1">
+   <loigeNr id="268e45cd-244a-4f98-a06c-375be9f7ecca">1</loigeNr>
+   <kuvatavNr id="b4a41672-719e-4655-b6d8-d2ddf757eda6"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="02c72d1f-a6a5-4de1-8857-066c5ca0c804">
+    <tavatekst id="518b57c4-734e-4aa0-b09f-d60e2d041aa0">Maardu linnale kuuluvate sotsiaaleluruumide haldamist korraldab Maardu Sotsiaalmaja.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para10lg2">
+   <loigeNr id="fb71026a-4cbd-4410-ba32-eac29632449d">2</loigeNr>
+   <kuvatavNr id="bdc64e29-b258-4766-96a0-953ec858d02a"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="479109a8-e29c-4e6f-888e-12b12141861e">
+    <tavatekst id="ef0ddcfb-712e-4345-a64c-972709c18541">Maardu Sotsiaalmaja halduses olevate sotsiaaleluruumide sihipärase kasutamise ning lepingute tähtaegadest kinnipidamise üle teostab järelevalvet Maardu Sotsiaalmaja juhataja või tema poolt määratud isik.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para11">
+   <paragrahvNr id="49d00df1-ac89-4ca5-b883-09f6fbf065be">11</paragrahvNr>
+   <kuvatavNr id="a348f20a-a9a7-452b-a8b5-84caab38ab48"><![CDATA[§ 11. ]]></kuvatavNr>
+   <paragrahvPealkiri id="e6842bf2-24fd-4ee6-b4b6-8e7d954f325e">Määruse kehtetuks tunnistamine</paragrahvPealkiri>
+  <loige id="para11lg1">
+   <loigeNr id="906f4484-46c5-442d-8137-77427afb8e6c"/>
+   <kuvatavNr id="0b8b2461-7d4a-40c1-acbb-35fcdead17e6"/>
+   <sisuTekst id="62b87d28-1362-46f0-88c6-24942a14bfdf">
+    <tavatekst id="ab10fc48-761e-4fdd-955b-af30abaec7f0">Maardu Linnavolikogu 23.01.2018 määrus nr 11 „Maardu linna sotsiaaleluruumide üürile andmise ja kasutamise kord“ tunnistatakse kehtetuks.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="511e4240-7b96-4709-aa57-3f9518967e1f"><allkiriKoht id="2dc36f60-c1b7-4d1e-844a-4babd14a4730"/><allkirjastaja id="e41085e5-cca1-4d6d-8d09-9687e0af5988"><ametinimetus id="3733d381-e1ce-4a37-8757-ead85b474072">Maardu Linnavolikogu esimees</ametinimetus><eesnimi id="fa09b865-f4fc-4625-847e-cc6a8b778579">Ailar</eesnimi><perekonnanimi id="13f48906-cada-48fa-a77c-33391778344f">Lyra</perekonnanimi></allkirjastaja></allkiri></oigusakt>

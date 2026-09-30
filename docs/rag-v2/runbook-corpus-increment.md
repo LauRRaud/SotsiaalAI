@@ -149,6 +149,7 @@ node scripts/rag-v2-corpus-embeddings.mjs --mode plan --development-only --store
 ## 7. Kinnitus ja ost
 
 - Kui plaan näitab `external_inputs: 0` (kõik sisendid on vahemälus), jäta kinnitus ja ost vahele. Indeks kasutab olemasolevaid vektoreid ilma uue `--vectors` kaustata (v41, 30.09.2026: 700/700 vahemälust).
+- Omavalitsuste uued sotsiaalaktid: `node scripts/rag-v2-municipal-acts.mjs scan --manifest docs/rag-v2/legal-acts-in-index.json --out DIR --download DIR` laeb alla indeksist puuduvad kehtivad aktid ([ADR-058](adr-058-municipal-social-acts.md)). Edasi käib tavaline registreerimine (`original_path: riigiteataja.ee/et/akt/<id>.xml`), ingest ja indeks.
 - Kehtetuks tunnistamise märge (RT XML „Kehtetu“, 0 paragrahvi) annab ingest'is `source_text_empty`: võta selle asemel kehtetuks tunnistanud akti grupi kehtiv redaktsioon ([ADR-038](adr-038-law-validity-check.md), v42).
 - Omavalitsuse akti uus redaktsioon: kontrolli, kas eelmisel redaktsioonil on lisa ([ADR-053](adr-053-rt-annex-texts.md)). Tuletatud lisa nimetab oma redaktsiooni, seega sama PDF uues redaktsioonis on eraldi allikas: `scripts/rag-v2-rt-annex.mjs --xml <uus XML> …`.
 

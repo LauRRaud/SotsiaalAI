@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="44c23e33-280c-4dda-8513-a1773614939a" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Luunja Vallavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2019-05-02</aktikuupaev>
+  
+  
+  <aktiNr>27</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2019-05-08</avaldamineKuupaev><RTaasta>2019</RTaasta><RTartikkel>23</RTartikkel><aktViide>408052019023</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2019-05-11+03:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2019-05-07</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>408052019023</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2019-05-07</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1046975</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2019-05-07</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Aime Koor</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="1122f738-9b04-4b1e-afd8-40694798585c">
+  <nimi id="a9011ab1-daf3-4ef0-836a-2d2736ad2ec6">
+   <pealkiri id="8bb26140-3c42-4aa4-b91d-72a7d12f0729">Asendus- ja järelhooldusteenuse osutamise tingimused ja kord</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="6065f113-b51f-4cce-970a-fb7b7465f89b"><preambul id="f98828fa-c664-4a98-b248-5192f4f91419">
+   <tavatekst id="35e72f33-4b1f-4b46-aa91-ce5870b95080">Määrus kehtestatakse „Kohaliku omavalitsuse korralduse seadus“ § 22 lg 1 p 5 alusel juhindudes „Sotsiaalhoolekande seadus“ § 45<sup>5</sup> ja § 45<sup>15</sup> sätestatust.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="b96f607a-975f-4056-ba1a-c0aad6e0f02d">1</paragrahvNr>
+   <kuvatavNr id="574f4909-8f19-4933-8611-2e8642b304c9"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="fcc2e63f-0f4e-4c62-99ef-ea636d41d540">Määruse reguleerimisala</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="4c2b4354-75c4-49cf-ad76-aee90e39a960"/>
+   <kuvatavNr id="89fb2323-464a-4b32-b418-579d37ba3ad0"/>
+   <sisuTekst id="0594b0c6-611b-4268-91a3-78c1bb8ffb5d">
+    <tavatekst id="2bc9e3f1-82f8-487c-acfa-5385c3c98c66">Määrusega kehtestatakse asendus- ja järelhooldusteenuse (edaspidi ühiselt nimetatult teenus) korraldamise ja rahastamise tingimused ja kord</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="d666a06a-f762-4a3a-9632-701a993a28f8">2</paragrahvNr>
+   <kuvatavNr id="6c159adb-2dc5-449e-aba7-b1c88e43a83f"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="4acaacb0-552b-4d9f-a56c-f25869fee021">Asendushooldusteenuse eesmärk</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="bc10c4a2-900e-458b-a098-8ec59f8e38c3"/>
+   <kuvatavNr id="2f1edef4-e112-451a-be08-0c4809666f4b"/>
+   <sisuTekst id="92ceab41-ff15-4be1-bc9c-227f05deaf2c">
+    <tavatekst id="ea732ce9-130a-4f07-81f1-8ae0cdddb648">Asendushooldusteenuse eesmärk on pika- või lühiajaliselt lapse heaolu ja õiguste tagamine, lapsele tema põhivajaduste rahuldamiseks peresarnaste elutingimuste võimaldamine, lapsele turvalise ja arenguks soodsa elukeskkonna loomine ning lapse ettevalmistamine võimetekohaseks toimetulekuks täisealisena.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="dab95ed8-8378-4ad5-b112-dd36a68d983e">3</paragrahvNr>
+   <kuvatavNr id="59769e01-b7a4-4c72-9b75-5c635b7209d3"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="acdf8e5d-b142-4440-af96-beebf67089cb">Järelhooldusteenuse eesmärk</paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="59cfc426-6e45-4382-af55-e114287d3ec4"/>
+   <kuvatavNr id="bb777a3f-8167-426c-a72c-413a7d933038"/>
+   <sisuTekst id="1b591c7f-03ed-476e-9582-3cca6e9d40ef">
+    <tavatekst id="bc2eb88f-c7b4-4365-bc83-cb52492b9c87">Järelhooldusteenuse eesmärk on asendushoolduselt ja eestkostelt lahkuva isiku iseseisva toimetuleku ja õpingute jätkamise toetamine.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para4">
+   <paragrahvNr id="9d7e1194-c351-4151-9db6-203008e933f1">4</paragrahvNr>
+   <kuvatavNr id="e4fe9cc0-e62b-4457-9acc-704a8af92b4f"><![CDATA[§ 4. ]]></kuvatavNr>
+   <paragrahvPealkiri id="8c07eb35-f13b-4f41-bde9-bb6a331c6a2d">Teenuse osutaja</paragrahvPealkiri>
+  <loige id="para4lg1">
+   <loigeNr id="32921033-6527-43c5-921a-cab19cd1f550">1</loigeNr>
+   <kuvatavNr id="ebdc1c64-2ed9-4608-9090-ed38d30fb737"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="be74aaa0-c642-493a-8747-54b3c9a5e7f9">
+    <tavatekst id="578936b2-7d80-45c8-b40d-e305ffc100a3">Asendushooldusteenuse osutaja on hoolduspere, perekodu ja asenduskodu (edaspidi teenuse osutaja).</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg2">
+   <loigeNr id="679fd6a9-e2a6-47dd-9bef-bbd730a559ae">2</loigeNr>
+   <kuvatavNr id="302a17cc-0f0a-4c33-94a9-ca3ef059a926"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="0909aa1a-c540-4f7d-93a9-e57fbb9ca303">
+    <tavatekst id="a6eab74c-e790-4985-b509-831c095f9a5c">Järelhooldusteenuse osutamise korraldaja on Luunja vallavalitsus (edaspidi vallavalitsus).</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para5">
+   <paragrahvNr id="0ce46e86-f6c6-4987-ac8f-78cd4958a587">5</paragrahvNr>
+   <kuvatavNr id="a7df1b20-6c7e-42bf-872b-d2d2828aa825"><![CDATA[§ 5. ]]></kuvatavNr>
+   <paragrahvPealkiri id="fece1331-f13f-4e01-bdc9-115596f16efe">Teenuse saaja</paragrahvPealkiri>
+  <loige id="para5lg1">
+   <loigeNr id="72188e9e-16fd-4684-bdb0-15db1b9cd77b">1</loigeNr>
+   <kuvatavNr id="d9803ee3-596d-4bf3-873e-54cb9bcc1ccc"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="e4daa654-debb-48ff-9e0f-0995d2d0cc6f">
+    <tavatekst id="21ee1db0-f3cf-456f-9313-e15ce304e5bd">Asendushooldusteenus tagatakse Luunja vallavalitsuse poolt sotsiaalhoolekande seaduse (edaspidi SHS) paragrahv 45<sup>9</sup> lõigetes 1 ja 2 nimetatud lastele. Võimaluse esinemisel tagatakse teenus ka SHS paragrahvi 45<sup>9</sup> lõikes 3 nimetatud lastele.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg2">
+   <loigeNr id="adb6f7c2-3e4b-474a-a61b-8dc60b04e922">2</loigeNr>
+   <kuvatavNr id="318a96b7-464d-4aaa-88a3-22b3747f01cc"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="513ef691-b057-4ed5-97c2-8f7d4658acfb">
+    <tavatekst id="2b5e7e55-f6cf-43e0-a15b-16066e565f8c">Järelhooldusteenus tagatakse Luunja vallavalitsuse poolt SHS paragrahv 45<sup>16 </sup>lõikes 1 nimetatud täisealisele isikule. Võimaluse esinemisel tagatakse teenus ka SHS paragrahvi 45<sup>16</sup> lõikes 2 nimetatud täisealisele isikule.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para6">
+   <paragrahvNr id="87859a5f-8781-41b4-ab4f-116a27b6ad2d">6</paragrahvNr>
+   <kuvatavNr id="5b8fc059-8b54-4fd8-b0e4-b8cf15e2dffb"><![CDATA[§ 6. ]]></kuvatavNr>
+   <paragrahvPealkiri id="286fda73-6d57-43d3-82f1-262d1c21a9d6">Teenusele suunamine</paragrahvPealkiri>
+  <loige id="para6lg1">
+   <loigeNr id="97b561ab-d5b7-4f81-968e-69168a26e371">1</loigeNr>
+   <kuvatavNr id="c325bf40-d37a-4464-aa58-710fa07f8e82"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="debf7362-b1be-470b-9361-716216b22dea">
+    <tavatekst id="12c46ca0-072e-4ad4-8312-f7a54680ec3f">Teenusele suunamise otsustab vallavalitsus.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg2">
+   <loigeNr id="d99bd724-0866-4395-8c22-46a205543f3c">2</loigeNr>
+   <kuvatavNr id="cc201b65-737c-4206-930e-84466c17f7f9"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="c99c426f-9f37-43fb-96bd-373b143c21fe">
+    <tavatekst id="a350a1be-02b9-4a4c-b7f3-c65db8a620e4">Teenuse osutamise faktilised andmed kannab sotsiaalteenuste- ja toetuste andmeregistrisse lastekaitsespetsialist</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para7">
+   <paragrahvNr id="a890fa45-135d-4d0d-90df-605219833436">7</paragrahvNr>
+   <kuvatavNr id="94835f23-1409-40f3-9e0d-028fbb466c91"><![CDATA[§ 7. ]]></kuvatavNr>
+   <paragrahvPealkiri id="4c662735-af22-416c-bffd-156973ee8f30">Teenuse rahastamine ja lepingu sõlmimine</paragrahvPealkiri>
+  <loige id="para7lg1">
+   <loigeNr id="8ffec52d-1a63-429a-b8d6-c573986418b2">1</loigeNr>
+   <kuvatavNr id="2be79593-a436-4d8e-9381-194c86168116"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="ae5ba366-5993-499c-9188-b25af4ad0724">
+    <tavatekst id="7bc34ab4-0e79-46c1-88f7-c68648f2f6f4">Teenuse rahastamine toimub teenuse osutamiseks sõlmitava lepingu alusel ja kohaselt.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg2">
+   <loigeNr id="9eb4d7af-4198-4291-b13e-cc4c69393809">2</loigeNr>
+   <kuvatavNr id="7aac0ebd-ef4e-40ea-b0d9-00bc4f784e45"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="c51a8d4e-b1f5-4cc5-a04e-d0d2f9bbb19f">
+    <tavatekst id="58187e9a-1862-4387-a191-5b8007f1691b">Asendushooldusteenuse osutajal lasub kohustus tagada SHS paragrahv 45<sup>11</sup> lõikes 3 sätestatud nõude täitmine.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg3">
+   <loigeNr id="566e39e3-2bac-47a2-b0a1-826dff4f1710">3</loigeNr>
+   <kuvatavNr id="c44c0c7e-c510-46e4-b26a-fde4a743b86b"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="320c501e-ad61-4c0c-9796-ca21ece41be4">
+    <tavatekst id="f505a02f-2588-4285-82e5-deaa94c92a8f">Asendushooldusteenuse osutajaga sõlmitakse leping vallavalitsuse korralduse alusel.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg4">
+   <loigeNr id="773493f2-1eec-4940-808a-002d51be7bee">4</loigeNr>
+   <kuvatavNr id="7a8b14dd-d873-4268-b42d-3694635af435"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="698824ae-7182-40e9-8d06-e7377457948d">
+    <tavatekst id="10141511-136f-4420-ab64-8a514ccd6a78">Järelhooldusteenuse osutamiseks sõlmitakse leping vallavalitsuse korralduse alusel. Lepingu sõlmimisel peab teenuse saaja olema üheks lepingupooleks.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para8">
+   <paragrahvNr id="cd47788c-a740-43f1-8ddd-f95244cc4040">8</paragrahvNr>
+   <kuvatavNr id="827d032e-cfa0-4d7e-8a7f-fec49f793feb"><![CDATA[§ 8. ]]></kuvatavNr>
+   <paragrahvPealkiri id="d3f5f503-00f1-4e92-baf5-db358b43184e">Lepingu lõppemine ja lõpetamine</paragrahvPealkiri>
+  <loige id="para8lg1">
+   <loigeNr id="ecf59e3b-41e7-46b0-8432-c7db12172474">1</loigeNr>
+   <kuvatavNr id="d679d5db-4491-4433-8e22-daacce49e91d"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="c968272c-8362-461b-9b30-0d3d1d436846">
+    <tavatekst id="2d3f8d26-33d2-4af0-9b40-026af18cfa4e">Leping lõpetatakse:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para8lg1p1">
+   <alampunktNr id="100d4db9-bac1-464a-b4fa-5d6dbed05a53">1</alampunktNr>
+   <kuvatavNr id="b4b93481-a410-400f-9f60-152459dcd640"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="5e1f1041-b170-479e-a4ba-fe6df19f1075">
+    <tavatekst id="fcd80384-6196-4037-9ee2-94d5042b2186">teenuse vajaduse äralangemisel;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para8lg1p2">
+   <alampunktNr id="9115ec30-e935-40a3-a3a5-65c9c3107eaf">2</alampunktNr>
+   <kuvatavNr id="09623065-0977-4776-87bd-bf8283308608"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="7ac1afc3-3c76-4c3c-8d12-9afa0a16e4da">
+    <tavatekst id="f06174d1-68ff-4be9-892c-080d6d0bbda8">lepingus sätestatud kohustuste täitmata jätmisel;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para8lg1p3">
+   <alampunktNr id="428f018d-5f99-4a6c-bf57-4996ce4a3981">3</alampunktNr>
+   <kuvatavNr id="ecbc6a86-6db5-4bb7-a9d1-f6bcac7699ba"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="7c48b1e7-7bfd-4ca8-9f68-da91a7878aeb">
+    <tavatekst id="47f00356-9753-4c30-b640-502507aed234">lepingus sätestatu mittenõuetekohase täitmise korral;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para8lg1p4">
+   <alampunktNr id="c6b89078-a899-4779-b5b1-9f91f2b297ee">4</alampunktNr>
+   <kuvatavNr id="8a5859dc-5523-4902-b62d-cd49cd9a720d"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="6bad35fe-f056-4360-8d9e-f2f22a2c3b99">
+    <tavatekst id="b4f77a9f-b2cd-4b83-960c-a33562563e8c">lepingupoolte vastastikkusel kokkuleppel või</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para8lg1p5">
+   <alampunktNr id="0fea893d-3217-4879-9729-d68e74acbb6b">5</alampunktNr>
+   <kuvatavNr id="c2faa51e-bb57-4608-aaaf-845987f53f47"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="3e020ffd-240d-4268-8c8c-355e202b37f4">
+    <tavatekst id="d0911757-7d7d-468b-971a-afd461c697ff">muudel seadusest tulenevatel alustel.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para8lg2">
+   <loigeNr id="bdb4ef3f-19a5-4028-a0b4-18644f116bf4">2</loigeNr>
+   <kuvatavNr id="e8b0c418-85fa-408c-a31e-fd532963efac"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="5296a93d-bddb-4f58-94a9-cd82d88f01bc">
+    <tavatekst id="5c0ff773-65ea-4c95-a178-ca9c9ad26425">Leping lõpeb:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para8lg2p1">
+   <alampunktNr id="b9c9fc77-4300-48e6-9c01-9f9e08cda696">1</alampunktNr>
+   <kuvatavNr id="74e1c0ed-366b-477d-b497-a38204911184"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="c879b76a-1f07-4d5e-b6d3-0668e74d48a4">
+    <tavatekst id="3549968e-f5db-4f55-8465-063dc8beb159">tähtaja saabumise korral;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para8lg2p2">
+   <alampunktNr id="9ad2f91a-b827-46e9-8a23-db3c20acf4d6">2</alampunktNr>
+   <kuvatavNr id="6ae78534-a0d9-43b3-a541-9bb591b10ef7"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="0d0e0ad9-f5c6-4040-a839-979d3ed644fd">
+    <tavatekst id="13a338fe-0890-4686-b1bc-c87010b2e7e0">lepingupoole surma korral või</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para8lg2p3">
+   <alampunktNr id="0990df6b-b4f5-4b64-9806-8b60198d0544">3</alampunktNr>
+   <kuvatavNr id="94292092-55c7-4e1f-83b5-7d1ca18a624c"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="cf9cb84b-52c5-4f1e-8d6c-7b66099b3b94">
+    <tavatekst id="0714b8c6-0d4f-49fe-bc76-c88460ef3956">teenuse saaja surma korral.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para9">
+   <paragrahvNr id="2cb640d1-09e1-44f1-8fc5-2aa2b7879ea4">9</paragrahvNr>
+   <kuvatavNr id="7ad87883-0819-4370-9c0b-373023869cd9"><![CDATA[§ 9. ]]></kuvatavNr>
+   <paragrahvPealkiri id="023e5bb2-d4a8-45cf-bdf4-948afb488d9b">Teenuse saaja lahkumine teenuselt</paragrahvPealkiri>
+  <loige id="para9lg1">
+   <loigeNr id="0d01e8a7-adff-4bf9-b396-776b12a0e07b"/>
+   <kuvatavNr id="619caa17-6b51-4dde-ac93-25e81a4bc496"/>
+   <sisuTekst id="04fb9b94-67f8-4c76-a414-f87eb854ced6">
+    <tavatekst id="0b6be117-7ff4-4764-9a30-aee753614dda">Asendus- või järelhooldusteenuselt elluastuvatele noortele eraldab vallavalitsus toetust või muud sotsiaalhoolekandelist abi igast konkreetsest juhtumist lähtuvalt.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para10">
+   <paragrahvNr id="9418b179-75f4-40f8-b807-480216c734a8">10</paragrahvNr>
+   <kuvatavNr id="acecb9e0-0dd6-4c47-96f8-bc65f75511e7"><![CDATA[§ 10. ]]></kuvatavNr>
+   <paragrahvPealkiri id="061dc8b2-5812-47ad-8b19-6f7eb4cab5cd">Rakendussätted</paragrahvPealkiri>
+  <loige id="para10lg1">
+   <loigeNr id="c43c9439-49b2-418c-9083-1e7440f78b72">1</loigeNr>
+   <kuvatavNr id="1fb0e09f-c3ef-4080-be2c-f6ee6a3c2704"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="388ccf1d-4d49-4f9a-ab69-555786fd0d9c">
+    <tavatekst id="eb4ad8fa-0c51-46fe-924b-d94e170abe02">Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para10lg2">
+   <loigeNr id="26a935de-6205-460a-af9a-c8ad4a5aed84">2</loigeNr>
+   <kuvatavNr id="c3f95052-33f9-4414-b7e9-5b761a3fb983"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="e38aa6f2-639d-4626-91cd-7dcc3c93a21f">
+    <tavatekst id="d5e3c075-ab58-42e0-b610-e2d507cd9f98">Määrust rakendatakse tagasiulatuvalt alates 23. aprillist 2019.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="0a805720-78f2-4dfd-8be2-d2ecaddd6056"><allkiriKoht id="031f2bb5-576f-482b-8a00-8bc97a23d58f"/><allkirjastaja id="637a0bfa-fadf-465f-adbc-33d694a15a1c"><ametinimetus id="2b0be40d-ea30-4fc7-858c-23a4c50f5187">Volikogu esimees</ametinimetus><eesnimi id="44198b4c-e28a-43ea-85b8-26e5911a8d6d">Radž</eesnimi><perekonnanimi id="3a44f857-c38c-4365-888d-3d906d7f3a1d">Sauk</perekonnanimi></allkirjastaja></allkiri></oigusakt>

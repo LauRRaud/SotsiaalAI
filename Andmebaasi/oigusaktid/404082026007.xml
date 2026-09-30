@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="19ab679b-0f08-4cb2-9a43-acc7dc88bbd3" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+ 
+ <valjaandja>Narva Linnavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2024-01-25</aktikuupaev>
+  <avaldamismarge>
+	<RTosa id="07297ad2-925f-4f58-80a3-9cd670f9387d">RT IV</RTosa>
+	<avaldamineKuupaev id="21f643d2-2138-472d-8688-cce21ec53a73">2024-01-27</avaldamineKuupaev>
+	
+	
+	<RTartikkel id="14eb2263-bb8a-42db-903a-c34a3b1050b7">33</RTartikkel>
+	<aktViide id="7940764e-3925-4856-809f-a696e2a06814">427012024033</aktViide>
+  </avaldamismarge>
+  <joustumine>2024-02-01</joustumine>
+  <aktiNr>1</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-08-04</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>7</RTartikkel><aktViide>404082026007</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2026-08-07</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2026-07-31</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>404082026007</globaalID>
+ <metaandmedVersioon>17</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2026-08-03</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Marike Võime</metaandmedVersioonPohjustaja>
+ <terviktekstiGrupiID>1058296</terviktekstiGrupiID>
+ <eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2024-01-26</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Tatjana Udovichenko</metaandmedVersioonPohjustaja>
+		</versiooniMuutus></metaandmed>
+	<aktinimi id="f2eee566-b08c-4867-86dd-3164aad23737">
+		<nimi id="bf178f27-092c-4b68-9ff5-d3b3cde0f9ec">
+			<pealkiri id="e804ac17-4983-4147-a44d-a03ef3be2f11">Eluasemekulude piirmäärade kehtestamine toimetulekutoetuse määramisel</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="c2b560dd-c971-4d36-b544-019d4026b48c">
+		<aktikuupaev id="bd0ed91b-76b1-470f-ac90-2e2fdaf6dd46">2024-12-19</aktikuupaev>
+		<avaldamismarge id="810e5562-326f-40a1-957e-85e4564aa40e">
+			<RTosa id="e5a75d58-1467-4e06-ad71-682461c2d8b0">RT IV</RTosa>
+			<avaldamineKuupaev id="2274d952-5261-4bad-bd1e-90b8ce8227d1">2024-12-31</avaldamineKuupaev>
+			<RTartikkel id="9494c0de-d685-453d-b1f9-9d994ea3a9e8">13</RTartikkel>
+			<aktViide id="ce3da92c-2ab3-4f68-826c-f3fbed7aee1d">431122024013</aktViide>
+		</avaldamismarge>
+		<joustumine id="b093d430-62cc-4813-a034-adadaa615ddd">2025-01-03</joustumine>
+		<tavatekst id="07ed6ea1-4f40-4a1d-9cd0-7ef05c93a126">, rakendatakse alates 01.12.2024</tavatekst>
+	</muutmismarge>
+	<muutmismarge id="f4517b60-48c8-47f9-a70c-b80b4ee69927"><aktikuupaev id="50c45533-cb0a-4772-96ae-a7c8fe95ff43">2026-07-26</aktikuupaev><avaldamismarge id="c66508be-4c47-45c2-8ef0-1ef462485061"><RTosa id="4002987c-42a0-4838-bcdf-c7f4b7fbd3be">RT IV</RTosa><avaldamineKuupaev id="a144c5cb-af24-40d8-a621-e7c3a40ba594">2026-08-04</avaldamineKuupaev><RTartikkel id="de7f05ba-fbca-4733-9adf-333488488b73">2</RTartikkel><aktViide id="e2498d7c-31a2-49e9-90cd-c0711231959a">404082026002</aktViide></avaldamismarge><joustumine id="1a1df209-9b0c-4bb6-a6b7-dc5fb9059e8b">2026-08-07</joustumine><tavatekst id="2699fde7-f803-41f6-932b-6add01ec4eb4">, rakendatakse alates 01.07.2026</tavatekst></muutmismarge><sisu id="18a1a0e6-f1a6-4b5c-8b0c-324b3023821b">
+		<preambul id="a699a6d8-2f59-4436-ba54-54a89f19e283">
+			<tavatekst id="6dd7d0c3-1364-4cec-a98a-c62fd988450b">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 37, sotsiaalhoolekande seaduse § 131 lõike 2 ja § 133 lõike 6 alusel</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="27a0b13e-e1d9-4f4d-953f-42899dd7911e">1</paragrahvNr>
+			<kuvatavNr id="200a765e-b6b0-457d-8f97-3fdb169f9a88"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="aa5df05d-3ba6-42db-a106-cfc609cdfed9">Reguleerimisala</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="739289b7-ef3c-4055-bf14-83f503f46ad4">1</loigeNr>
+				<kuvatavNr id="827a8649-d705-4f5c-8d8e-a20d6772e73f"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="67a602ff-a531-46ec-8928-39c02cbf7036">
+					<tavatekst id="23529575-c37a-41e7-b007-d6b9758c8814">Määrusega kehtestatakse eluasemekulude piirmäärad toimetulekutoetuse määramisel Narva linnas.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg2">
+				<loigeNr id="71476eea-4b17-46b2-848f-ee0294958ae9">2</loigeNr>
+				<kuvatavNr id="9d3dabae-2800-42ea-ab8c-93fb571e17b2"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="9bdc1816-5b1b-4c9d-a884-a6bee43daebc">
+					<tavatekst id="96a80927-2ea8-4ce7-af8f-e10ba2d84568">Toimetulekutoetuse määramisel võetakse arvesse elamuseaduse § 7 lõike 1 punkti 2 alusel kehtestatud eluruumi sotsiaalselt põhjendatud norm ning jooksval kuul tasumisele kuuluvad eluaseme tegelikud kulud käesoleva määruse §-s 2 sätestatud piirmäärade ulatuses.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="ec28ea13-8622-422c-8d1a-2341c0cbf939">2</paragrahvNr>
+			<kuvatavNr id="bca9f8aa-554e-4300-ac96-c601d693c75f"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="04f2cef8-8def-4e15-850c-edee56b12a86">Piirmäärad</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="e116e4fb-1a40-4cd9-b00f-ae6b5102d468"/>
+				<kuvatavNr id="09a7f04f-61e0-4a70-9a54-522f45534543"/>
+				<sisuTekst id="d5c5f2c6-a1c3-485d-a69e-87e627962780">
+					<tavatekst id="3155e20f-ace0-431b-8dbd-a074280011b1">Kehtestada piirmäärad alljärgnevas suuruses:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para2lg1p1">
+					<alampunktNr id="63f27af6-8b2e-4596-8b5e-e51c41d09aaa">1</alampunktNr>
+					<kuvatavNr id="522e9f6e-5255-4b50-9441-24671e547a54"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="24dccd63-f508-4f00-ac50-55328f4df281">
+						<tavatekst id="a0b1f6de-50d7-4fc7-86d6-4763a2f22eb8">Eluaseme soetamiseks võetud laenu tagasimakse ja üür kompenseeritakse normpinna ulatuses, võttes aluseks üürilepingu alusel kehtestatud tasu, kuid mitte üle 8,00 eurot 1 m² kohta kuus.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p2">
+					<alampunktNr id="ab604b0a-1878-47c5-96c7-11d0152f4478">2</alampunktNr>
+					<kuvatavNr id="6de207a6-e066-44ff-84e2-cb997456d0e6"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="d196b8c2-96df-4453-99fb-e3a5ec2c4c82">
+						<tavatekst id="5a51aa36-ff25-48d0-8d81-b44f8c72d120">Korterelamu haldamise kulu, sh remondiga seotud kulu kompenseeritakse normpinna ulatuses, võttes aluseks vastavad kehtestatud tariifid, kuid mitte üle 2,50 eurot 1 m² kohta kuus.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p3">
+					<alampunktNr id="b97f39f6-31df-4333-b21b-c9e6f0442cf4">3</alampunktNr>
+					<kuvatavNr id="6dabfce3-5061-43a5-a068-98cb1864d718"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="402342e1-476a-43e5-acfb-7d53ced402b0">
+						<tavatekst id="538634b0-9b60-4769-906b-4e8bf850dde1">Korterelamu renoveerimiseks võetud laenu tagasimakse kompenseeritakse normpinna ulatuses, võttes aluseks tegelikud kulud, kuid mitte üle 2,50 eurot 1 m² kohta kuus.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p4">
+					<alampunktNr id="21014cce-415f-4242-826f-bb7546295c4b">4</alampunktNr>
+					<kuvatavNr id="dd1564ce-01e3-4ef3-8fdb-3df0336cd0e1"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="08c0e392-436e-4bc2-9abd-d1db9fbc3b5a">
+						<tavatekst id="8ee5ea70-aa2f-4fcd-8ea2-c270b0f7567b">Veevarustuse ja reovee ära juhtimise teenuste maksumus kompenseeritakse igakuiselt kuni 29,60 eurot üheliikmelise pere kohta kuus ning 15,40 eurot iga järgneva pereliikme kohta kuus. Kompenseerimisel võetakse arvesse ka abonenttasu ja vee jaotusteenuse maksumus.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p5">
+					<alampunktNr id="2130531a-d764-4999-a1f8-0886ce681bfc">5</alampunktNr>
+					<kuvatavNr id="d3abd6c5-bb47-428c-b22b-95126f7420b5"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="5d1be42c-71ba-4975-a240-b20a060c4bfc">
+						<tavatekst id="651d3d27-92d4-4fd4-8f15-020f2078be8b">Soojaveevarustuseks tarbitud soojusenergia maksumus kompenseeritakse kuni 52,00 eurot üheliikmelise pere kohta kuus ning 36,00 eurot iga järgneva pereliikme kohta kuus.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p6">
+					<alampunktNr id="8faaa131-5314-49e9-9738-1fce9223fa32">6</alampunktNr>
+					<kuvatavNr id="1246d9a6-fe29-45f5-ae13-4a4b8fdc6265"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="359de43a-c1bc-4718-8539-b5114cd803b1">
+						<tavatekst id="52b801ec-b035-48cb-9715-9bbd16759d1b">Kütteks tarbitud soojusenergia või kütuse maksumus kompenseeritakse kaugküttega, gaasi- ja/või elektriküttega eluruumides kuni 10,00 eurot 1 m² kohta kuus ja ahiküttega majades kompenseeritakse küttepuid kuni 1320 eurot pere/ühe leibkonna kohta üks kord aastas.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p7">
+					<alampunktNr id="01758410-631d-4c9c-a369-134e26f587ba">7</alampunktNr>
+					<kuvatavNr id="e731a070-2855-4672-bae0-ef74fdc86b9b"><![CDATA[7) ]]></kuvatavNr>
+					<sisuTekst id="2ba45244-dc3e-40f0-9e38-2c4917c06a92">
+						<tavatekst id="b3168908-5aea-4a25-b23c-0f495adcabf7">Tarbitud elektrienergia maksumus kuni 55,00 eurot üheliikmelise pere kohta kuus ja 22,00 eurot iga järgneva pereliikme kohta kuus.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p8">
+					<alampunktNr id="7ceb8b9c-1ebd-44a1-ad3a-95e6e503ce65">8</alampunktNr>
+					<kuvatavNr id="e1dd6904-9f4b-4fe9-98af-1e52232efe25"><![CDATA[8) ]]></kuvatavNr>
+					<sisuTekst id="c145e837-cb2b-4c08-9074-66b3dd5062d1">
+						<tavatekst id="afa1e00a-fef0-46d3-936c-94ab934daab4">Tarbitud maagaasi maksumus kuni 66,00 eurot üheliikmelise pere ja kuni 22,00 eurot iga järgneva pereliikme kohta kuus. Balloongaasi maksumus üks kord kvartalis vastavalt esitatud arvele.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p9">
+					<alampunktNr id="3943c24e-af0c-41eb-8fc2-caee60fdc138">9</alampunktNr>
+					<kuvatavNr id="cc868a54-d79e-4e78-8cc7-92499e12057a"><![CDATA[9) ]]></kuvatavNr>
+					<sisuTekst id="3910f112-3b62-4fac-a109-e495a1fb0384">
+						<tavatekst id="f8cc6d6f-0177-446d-85f1-4ecf45ef6459">Maamaksukulud kuni 0,15 eurot 1 m² kohta, mille arvestamise aluseks on kolmekordne elamualune pind üks kord aastas.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p10">
+					<alampunktNr id="845f015d-fa36-4880-b240-b805c7ce3c9a">10</alampunktNr>
+					<kuvatavNr id="f8e6ec5b-9fc6-454d-aba8-3e9a6c6f9e32"><![CDATA[10) ]]></kuvatavNr>
+					<sisuTekst id="88323eda-dbcb-4a69-b7cf-ba0ef93e5fcf">
+						<tavatekst id="42f60a7c-bcf8-4829-a05e-2d209ac03304">Hoonekindlustuse kulud, mis on arvestatud kasutatavale eluruumile, kompenseeritakse kuni 0,15 eurot korteriomandi 1 m² kohta kuus.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p11">
+					<alampunktNr id="f6848de2-8c5b-479e-ad0a-a575b4c1a0fe">11</alampunktNr>
+					<kuvatavNr id="1692bea6-29d5-4458-b4f4-6722896366c4"><![CDATA[11) ]]></kuvatavNr>
+					<sisuTekst id="d45468ed-b854-4c84-9551-a22a2a5c02d5">
+						<tavatekst id="3ccb4b07-c4fe-4bbe-b928-d5073fc97c3e">Olmejäätmete veotasu kuni 7,70 eurot üheliikmelise pere kohta kuus ja kuni 3,85 eurot iga järgneva perekonnaliikme kohta kuus.</tavatekst>
+					</sisuTekst>
+					
+				<muutmismarge id="39cc3737-07fb-446b-81d6-0e5df69f5de0"><avaldamismarge id="b2879ca4-ed11-4bb8-bb0f-6b5047ad2f58"><RTosa id="d3c1cbda-86e6-429b-b673-cacbc39092c9">RT IV</RTosa><avaldamineKuupaev id="ced498c6-1c35-4024-9342-b94298fbeed4">2026-08-04</avaldamineKuupaev><RTartikkel id="3db5c48f-e7ee-4e01-bb09-52013977b733">2</RTartikkel><aktViide id="c6c87638-34e0-4ca6-a20d-936a69858b27">404082026002</aktViide></avaldamismarge><joustumine id="ba1837aa-1a85-487e-ba21-3113a53eab7d">2026-08-07</joustumine><tavatekst id="ec610db9-6511-4912-94fa-2327056b136b">, rakendatakse alates 01.07.2026</tavatekst></muutmismarge></alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="5c0cf307-8c14-4e18-aaae-0f69c8f370ff">3</paragrahvNr>
+			<kuvatavNr id="81f6bc57-61cd-4dd1-b5d9-00f645a4714a"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="4b88d1a1-4fde-4f10-8d1e-1639a2a32921">Rakendussätted</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="372de293-3a41-4cc8-96a4-c5482a8f9a4f">1</loigeNr>
+				<kuvatavNr id="9f6ca548-8565-4630-ba0d-36c8ceca16d7"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="5af5fc75-8ef3-4ae5-b176-7b3043db3035">
+					<tavatekst id="5765ee51-9422-4dbd-a3b0-6fcf21e7a660"> [Käesolevast tekstist välja jäetud.]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg2">
+				<loigeNr id="83145710-5999-479a-904f-9acd51783029">2</loigeNr>
+				<kuvatavNr id="e5a40aad-60b4-450a-b4ed-90144b0e0da2"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="8d11db6b-5243-4548-9c58-f43808388d12">
+					<tavatekst id="8f4f1e10-90ee-486b-a706-f163de0414d1">Määrus jõustub alates 01.02.2024.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+</oigusakt>

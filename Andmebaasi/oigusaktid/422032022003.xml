@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="24dff2b0-dd6f-4bf1-bd2b-01358617204b" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Ruhnu Vallavalitsus</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>algtekst-terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2022-03-17</aktikuupaev>
+			<aktiNr>2</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2022-03-22</avaldamineKuupaev><RTaasta>2022</RTaasta><RTartikkel>3</RTartikkel><aktViide>422032022003</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2022-03-25+02:00</kehtivuseAlgus></kehtivus><versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2022-03-17</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>422032022003</globaalID>
+		<metaandmedVersioon>7</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2022-03-21</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1053778</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2022-03-16</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Tiina Allik</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="e6429e4b-312f-40f8-9154-ca52acbb095c">
+		<nimi id="eed08923-f89f-4cf7-ab7a-5a2d1856d3d5">
+			<pealkiri id="607ef3c7-e5c6-43e3-b89d-14a2b36904d1">Toimetulekutoetuse määramisel aluseks võetavad eluruumide alaliste kulude piirmäärad</pealkiri>
+		</nimi>
+	</aktinimi>
+	<sisu id="47027a90-70d5-4cb0-bd8e-0cf36bdd91ef">
+		<preambul id="a48c67fc-1b7e-4fdc-b063-4bb39ca10949">
+			<tavatekst id="7a11d663-fabe-4bab-a0a7-874fb56e7f71">Määrus kehtestatakse sotsiaalhoolekande seaduse § 133 lg 6, Ruhnu vallavolikogu 15.02.2018. a määruse nr 2 „Sotsiaalhoolekandelise abi andmise tingimused ja kord Ruhnu vallas“ § 21 lg 3 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="c0fbe343-7038-4ecd-a92c-b322d470e3ed">1</paragrahvNr>
+			<kuvatavNr id="bb44e9a6-3e1f-4202-865e-da80d64f2386"><![CDATA[§ 1. ]]></kuvatavNr>
+			<sisuTekst id="61b7cc22-df56-4e0a-aa1d-3594d3cffc61">
+				<tavatekst id="43719e1d-7526-4165-a44b-8eb8e6e2b4ad">Määrata toimetulekutoetuse aluseks võetavad eluruumide alaliste kulude piirmäärad: </tavatekst>
+			</sisuTekst>
+			<loige id="para1lg1">
+				<loigeNr id="50eebd85-f5c8-429f-b9cc-031f590b3bb3">1</loigeNr>
+				<kuvatavNr id="fb09bacc-fd5a-4e7e-be0b-3765f8faa548"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="d0fe2812-8d5c-45c6-a7fd-4254ca02adbb">
+					<tavatekst id="00ba2aa9-4faf-48be-9422-1136e8484d6e">üür – kuni 2.50 eurot 1 m<sup>2</sup> kohta kuus;</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg2">
+				<loigeNr id="4c5acbef-6fbf-4c14-ad7f-834dda6fcb7c">2</loigeNr>
+				<kuvatavNr id="6a149fd1-8973-4dd5-827d-b67f2d6ecc2e"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="e2179ed6-1ca0-466c-ae1c-c464e3b87f84">
+					<tavatekst id="e2134674-5d0a-4130-89ea-c0e7253ba4e2">korterelamu haldamise kulu, sh remondiga seotud kulu – kuni 2 eurot 1 m<sup>2</sup> kohta kuus;</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg3">
+				<loigeNr id="b3325a6d-2f7a-452b-938b-040acf2dbd5d">3</loigeNr>
+				<kuvatavNr id="8dfd15ce-9fbc-4ba0-95ce-2240fe0631d0"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="06935bfb-a0eb-4e85-8e87-23038294917b">
+					<tavatekst id="b9656e66-2bad-419e-abd9-81f47aa6662b">korterelamu renoveerimiseks võetud laenutagasimakse – kuni 2.50 eurot 1 m<sup>2</sup> kohta kuus;</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg4">
+				<loigeNr id="19ffb996-76e7-45ab-92f3-f9d4a05f21b1">4</loigeNr>
+				<kuvatavNr id="aa0f710d-8c64-49cf-8ff5-b2e217d85204"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="44eda8b7-1d9f-4e98-9e60-f3519f3abaf1">
+					<tavatekst id="f3fbed25-18af-471d-9338-7199af6ffb3d">veevarustuse ja reovee ärajuhtimise teenuste maksumus – kuni 12 eurot üheliikmelise pere kohta kuus ning kuni 8 eurot iga järgneva pereliikme kohta kuus;</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg5">
+				<loigeNr id="a3e27000-a86c-4b32-b8b9-081c5a2c33ce">5</loigeNr>
+				<kuvatavNr id="4d81a00d-c3b3-4537-9863-f6228e66e8e2"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="2cac4e88-4997-4237-a238-fd8170e1b1a1">
+					<tavatekst id="b6d21492-22bf-49f4-aae2-bb103b486b53">kütteks tarbitud soojusenergia või kütuse maksumus – kuni 2.50 eurot 1 m<sup>2</sup> kohta kuus;</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg6">
+				<loigeNr id="74fc476e-e31d-4a73-bfe8-0f1c47c12e4b">6</loigeNr>
+				<kuvatavNr id="f937167a-f911-48ab-92f4-e702bdb90e35"><![CDATA[(6)]]></kuvatavNr>
+				<sisuTekst id="4d56c779-f6dd-4156-a223-9eee576f3b56">
+					<tavatekst id="8f5c1fe9-38f8-4d37-b97e-6e6b29496359">elektrienergia tarbimisega seotud kulu – kuni 30 eurot üheliikmelise pere kohta kuus ning kuni 20 eurot iga järgneva pereliikme kohta kuus;</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg7">
+				<loigeNr id="6701b3e0-f654-4d8f-ab7d-26a5f5a2c41a">7</loigeNr>
+				<kuvatavNr id="6dca9095-f80b-4346-877c-b4d6c8df35a2"><![CDATA[(7)]]></kuvatavNr>
+				<sisuTekst id="f2047ab1-0dbc-4ce5-b57b-70c89dd3f136">
+					<tavatekst id="fb6477cc-f402-4a1d-9952-71525751251d">majapidamisgaasi maksumus – kuni 16 eurot üheliikmelise pere kohta kuus ning kuni 8 eurot iga järgneva pereliikme kohta kuus;</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg8">
+				<loigeNr id="3af53197-f90d-4f27-8824-3c841ebf14f5">8</loigeNr>
+				<kuvatavNr id="8dc39853-1007-4413-b1e5-192af7875625"><![CDATA[(8)]]></kuvatavNr>
+				<sisuTekst id="bce65935-1bd8-4cd4-a6cf-8207658d62f6">
+					<tavatekst id="712d00c0-1db0-4654-9ff0-ce68822f6390">maamaksukulud kolmekordse elamualuse pinna ulatuses – kuni 0.80 eurot 1 m<sup>2</sup> kohta kuus;</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg9">
+				<loigeNr id="b47a9fcc-c69a-42f0-bee0-b6e9f8bf4382">9</loigeNr>
+				<kuvatavNr id="1f330300-bc62-4472-8645-31cceabf3a95"><![CDATA[(9)]]></kuvatavNr>
+				<sisuTekst id="f2dc9525-0dd1-41dd-83f8-f77698e785a5">
+					<tavatekst id="702c99c3-8988-48ec-97ad-4aa26ee1a16f">hoonekindlustuse kulud – kuni 0.50 eurot 1 m<sup>2</sup> kohta kuus;</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg10">
+				<loigeNr id="a8cde5b0-6a49-4736-bdc6-b2f925f88580">10</loigeNr>
+				<kuvatavNr id="262a7f0a-e380-4d45-be7d-9c7f7091177c"><![CDATA[(10)]]></kuvatavNr>
+				<sisuTekst id="0245c089-3216-4f0b-a7c7-5b267b8dc265">
+					<tavatekst id="8b06f898-583f-4624-a818-2d95ef4da02d">olmejäätmete veotasu – kuni 3 eurot üheliikmelise pere kohta kuus ning kuni 2 eurot iga järgneva pereliikme kohta kuus.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="200f13a7-7c7a-48a1-9383-b4e5fd3bd8d9">2</paragrahvNr>
+			<kuvatavNr id="9d647d1d-4d30-432d-ade8-30c2c0850cfa"><![CDATA[§ 2. ]]></kuvatavNr>
+			<sisuTekst id="d1ef6aca-78eb-45c7-af34-8d3ea03f4223">
+				<tavatekst id="4f8b51cf-725b-4ddd-abc9-10f24d6db18f">Määrus jõustub kolmandal päeval peale Riigi Teatajas avaldamist.</tavatekst>
+			</sisuTekst>
+		</paragrahv>
+	</sisu>
+	<allkiri id="1d20b24f-e8af-4c2b-bcab-dfc2d5235185">
+		<allkiriKoht id="0568e5f7-f5d1-48f3-b4b0-d1a89533ecb3"/>
+		<allkirjastaja id="aaf55ac1-886c-4256-9bda-c2c4b7ba3b54">
+			<ametinimetus id="28540214-a758-4b7a-a86b-da1ff7361060">Vallavanem</ametinimetus>
+			<eesnimi id="341db3aa-6d66-4211-bc4b-b36d2a9072e8">Andre</eesnimi>
+			<perekonnanimi id="397c60dd-4277-43a3-ad11-6a0be3dea136">Nõu</perekonnanimi>
+		</allkirjastaja>
+	</allkiri>
+	<allkiri id="e73084ea-3c9a-4a03-bbc5-bb7527acaf60">
+		<allkiriKoht id="e9b92ca3-8a43-4c13-9020-2219fc822c1e"/>
+		<allkirjastaja id="28beabd3-9124-4b51-8ff6-8792a865237f">
+			<ametinimetus id="09b430d1-6b7b-4f3e-a744-64fdb9f25466">vallasekretär</ametinimetus>
+			<eesnimi id="473cc61e-3997-4cb5-8f9a-fcdf9d9f50e8">Tiina</eesnimi>
+			<perekonnanimi id="c5217d1b-f124-4c61-81b7-05c791b7e42a">Allik</perekonnanimi>
+		</allkirjastaja>
+	</allkiri>
+</oigusakt>

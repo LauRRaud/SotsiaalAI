@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="0be997f4-ca4c-4575-ac7c-d700c3efe425" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Ruhnu Vallavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>algtekst-terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2025-10-13</aktikuupaev>
+			<aktiNr>8</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-10-15</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>25</RTartikkel><aktViide>415102025025</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2025-10-18+03:00</kehtivuseAlgus></kehtivus><versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2025-10-13</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>415102025025</globaalID>
+		<metaandmedVersioon>7</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2025-10-14</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Marike Võime</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1062130</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2025-10-13</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Tiina Allik</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="ec6eab9d-8f62-4f7a-978a-cb85a9e11fac">
+		<nimi id="f05ae6cf-aa31-455e-9f7b-28ca84f091c6">
+			<pealkiri id="126ba974-71a9-41cf-8b99-5f42e43987b8">Vaimse tervise teenuste osutamise ja rahastamise kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<sisu id="59520efa-5ab6-4640-936e-1088ca2186df">
+		<preambul id="d68dd99c-7d5a-4843-8654-999ef517588a">
+			<tavatekst id="684234ec-c351-41dd-86aa-856e3f262b89">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5 ning sotsiaalhoolekande seaduse (edaspidi SHS) § 14 lõike 2 alusel. </tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="0908dac2-7ab1-42f0-a744-ec22c2d8e6bb">1</paragrahvNr>
+			<kuvatavNr id="47b0388e-663c-42e6-a23f-fb53e1a5c03f"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="e24f1996-d411-485d-864a-5f606731777e">Reguleerimisala </paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="5d85bf42-fa76-4e39-a546-29bcec539874"/>
+				<kuvatavNr id="8b9da52c-dc4c-4b01-b5be-6200253271cc"/>
+				<sisuTekst id="0c08961c-5b74-4ab2-8ce9-60523102cc00">
+					<tavatekst id="6896a20f-1003-4c85-926f-4d92733c3b57">Määrus sätestab Ruhnu vallas (edaspidi vald) sotsiaalhoolekandelise abina osutatava psühhosotsiaalse ja psühholoogilise abi (edaspidi vaimse tervise teenus või teenus) osutamise ja rahastamise tingimused ja korra. </tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="d6ce6dec-83dd-4560-8101-ea38ecde7e8d">2</paragrahvNr>
+			<kuvatavNr id="6825cef4-3df4-4ab2-87e4-ae9adfb18c43"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="4dc59f8c-67f7-422c-9b46-7e801a54d8a0">Vaimse tervise teenuse eesmärk, sihtrühm ja teenuse kirjeldus </paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="28e4ecc3-c4fa-40a2-bd42-3b033942507a">1</loigeNr>
+				<kuvatavNr id="c74ec84d-1d09-4a9e-bf94-9f1981fdb2a3"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="a60a1f3f-90b5-4855-85f9-e683868ed4b8">
+					<tavatekst id="6487061c-8406-4a02-818c-274eb209e999">Vaimse tervise teenuse eesmärk on kohalikul tasandil elanike vaimse tervise probleemide tekke ja süvenemise ennetamine ning psühholoogilise heaolu toetamine. </tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg2">
+				<loigeNr id="efdf6b4b-64be-47c7-9874-a69cb56ef08d">2</loigeNr>
+				<kuvatavNr id="80671989-89c2-4ef1-9cc9-217209e8ef6a"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="a39be36c-2330-4357-b6c2-8fbfdc9b16f3">
+					<tavatekst id="103ba236-350a-4557-a44d-3b7661f97d1d">Vaimse tervise teenuseid on õigustatud saama füüsiline isik, kelle elukoht, mille andmed on kantud rahvastikuregistrisse, ja tegelik elukoht on Ruhnu valla haldusterritooriumil ning kes vajab teenust vaimse tervise probleemide tekke ja süvenemise ennetamiseks või psühholoogilise heaolu toetamiseks. </tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg3">
+				<loigeNr id="178680a4-e66f-47c4-9c69-e8a482e7e8a6">3</loigeNr>
+				<kuvatavNr id="d8605f52-c180-4013-96d2-26bd72710268"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="f94ef904-34aa-4ccb-9143-4380ce922ad3">
+					<tavatekst id="ed47f74d-0a06-4bef-8ef7-cfc707eb703b">Ruhnu valla poolt korraldatavad vaimse tervise teenused on: </tavatekst>
+				</sisuTekst>
+				<alampunkt id="para2lg3p1">
+					<alampunktNr id="538527b7-387e-4ad1-bd62-e7bbe749ef8e">1</alampunktNr>
+					<kuvatavNr id="746861ee-afe6-4916-b0b6-c8f3eba24ee9"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="f8bc0e7e-c0de-413a-b830-b5264ac59a8f">
+						<tavatekst id="0436d1c4-60b0-41e5-9068-2d2d387d9469">tegevus-, loov-, mängu- jm teaduspõhine teraapia; </tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg3p2">
+					<alampunktNr id="b0868c8e-7668-4aa5-af78-f0a9a7060032">2</alampunktNr>
+					<kuvatavNr id="2c89977a-5b76-45de-b23a-10b20de924d0"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="9f8faa89-1e74-4b54-a5ff-ff0cc34ff361">
+						<tavatekst id="d7be2570-fcff-44ff-9538-b7a94e31a03f">sõltuvusnõustamine; </tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg3p3">
+					<alampunktNr id="312ba489-bb26-420f-a90e-217168e6cb06">3</alampunktNr>
+					<kuvatavNr id="b5dd86eb-725a-4736-ab49-717ff49cfea7"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="1de16bd8-79e1-4858-b319-e9342a4aaec5">
+						<tavatekst id="765118d9-f720-418b-8dea-52cb7a9c8fe6">leinanõustamine; </tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg3p4">
+					<alampunktNr id="1d776c32-c8c7-4311-8f07-150e241dc3ef">4</alampunktNr>
+					<kuvatavNr id="1d7d7f78-b354-4c85-b124-2237091ac19e"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="b93adbb6-2fc9-4122-b75e-d1d244fff3d8">
+						<tavatekst id="b820f687-d9a0-4a1e-ad43-abc814eeed85">psühholoogi nõustamisteenus; </tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg3p5">
+					<alampunktNr id="9dcb4931-ca65-4dc3-b90b-09907e014093">5</alampunktNr>
+					<kuvatavNr id="5ae6895d-8a0b-4692-be9e-2278a0964b0c"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="0201cc29-710f-4fbb-bd4d-9191f8c766de">
+						<tavatekst id="9eebde02-d19d-4ced-bd29-e8237b10d014">perenõustamisteenus; </tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg3p6">
+					<alampunktNr id="338220e3-29c0-4afa-94fd-a0360873ae38">6</alampunktNr>
+					<kuvatavNr id="5119823f-d3f4-463a-8273-c9f739087a88"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="3c193a32-4e5b-46e6-9920-b902a427228b">
+						<tavatekst id="22c0039b-4250-4b57-ae99-846cf4fa327c">kriisiabi sh laste leinalaagris osalemine; </tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg3p7">
+					<alampunktNr id="2683fc38-76f4-4c66-ba4b-699bf5978769">7</alampunktNr>
+					<kuvatavNr id="f955844c-fced-4d91-99fa-5502e802a20d"><![CDATA[7) ]]></kuvatavNr>
+					<sisuTekst id="a384e94b-efc0-43af-8277-13f87501e295">
+						<tavatekst id="64efb58f-91a0-4869-939c-bee265621933">tugirühmades ja tugiprogrammides osalemine; </tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg3p8">
+					<alampunktNr id="95bc207b-7c27-4d68-8f3d-d277c1c71458">8</alampunktNr>
+					<kuvatavNr id="384512fb-aa38-4de9-a427-d1854e6d4a16"><![CDATA[8) ]]></kuvatavNr>
+					<sisuTekst id="c134f694-e433-4ca7-afc6-409862f541c5">
+						<tavatekst id="246e0c11-94c2-48cd-824a-c4e8523749ef">muu sotsiaaltöö eest vastutava ametniku hinnangu alusel korraldatav ja isiku individuaalsest vajadusest lähtuv nõustamisteenus. </tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="e921b5f7-0824-4a21-833e-2191af52eb4d">3</paragrahvNr>
+			<kuvatavNr id="d857b74d-6b07-4940-b3b8-6ae562ddacad"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="61b40079-ba3c-42b0-bc29-0cd17e11f997">Teenuse korraldus </paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="6dc76727-cdbf-4c62-9c4a-2ea6cc159529">1</loigeNr>
+				<kuvatavNr id="0c43f943-cceb-4b99-98d7-b4b64abd09ff"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="32f142bb-a254-4a39-b405-1499753c60d7">
+					<tavatekst id="baecc346-82a0-4fff-8a6d-09123e98cccb">Teenust korraldab Ruhnu Vallavalitsus (edaspidi teenuse korraldaja). </tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg2">
+				<loigeNr id="429d0e96-6c37-433a-9406-923c724aedd0">2</loigeNr>
+				<kuvatavNr id="d4f8a6c0-36a0-4656-b14e-07aa56dc5767"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="f30b1cfd-4fc4-48cb-a542-b1c420931f99">
+					<tavatekst id="e0f7b505-acef-4733-9c28-f56450521eb2">Teenuse vahetu osutaja on füüsiline või juriidiline isik, kes osutab teenust teenuse korraldaja töötajana või teenuse korraldajaga sõlmitud lepingu alusel. </tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg3">
+				<loigeNr id="416c15ed-8cf1-4c9b-9cc0-6b32f6a399ad">3</loigeNr>
+				<kuvatavNr id="79ff5765-f72e-4917-a200-2374eb906c07"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="6f6b68f8-2628-4779-81df-0fef7396b9cf">
+					<tavatekst id="574d707b-ced9-4667-bfbb-833964965393">Teenusele saamise taotlus esitatakse suuliselt või kirjalikult teenuse korraldajale. </tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg4">
+				<loigeNr id="fc6b19ac-a385-41e0-ac8c-1770bb49e05f">4</loigeNr>
+				<kuvatavNr id="0e6dba21-2b03-413a-8c20-08a423ec72a0"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="2c94d1d0-684b-4c85-9cc5-97a0046014a5">
+					<tavatekst id="d10f9d1e-09ee-4f35-8622-fb9e7f4f24b7">Taotluse võib esitada isik enda kohta ise või selle võib esitada temaga seotud isik, sealhulgas pereliige, eestkostja või volitatud isik. </tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg5">
+				<loigeNr id="82e6ed06-9e8b-49e2-b852-cce0827b2bf8">5</loigeNr>
+				<kuvatavNr id="f5410323-e2e0-4ebe-9aee-d11cc0d96ba8"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="36eca418-1270-4e0f-a53b-a91d0ab1c15c">
+					<tavatekst id="4bd82e8a-86ce-4f3c-a8f2-b38845d92282">Paragrahvi 2 lõikes 3 nimetatud vaimse tervise teenused on valla elanikele tasuta määras, mille on kehtestanud Ruhnu Vallavalitsus korraldusega. </tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg6">
+				<loigeNr id="bf871f6a-4862-4674-be3a-1e0dac8ccc8f">6</loigeNr>
+				<kuvatavNr id="a9d01d7a-66e8-4e4e-b319-ab18c0519c2d"><![CDATA[(6)]]></kuvatavNr>
+				<sisuTekst id="00058b40-b7a5-4db7-8dff-5ebe5dbd7927">
+					<tavatekst id="2af9613d-48e2-4a42-850e-dd3e63aaca70">Teenuse osutamise otsustab teenuse korraldaja. </tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg7">
+				<loigeNr id="09332433-7bfb-47fb-abbb-479eb3a1429c">7</loigeNr>
+				<kuvatavNr id="0ed9cc4c-e66f-4c44-be9e-45596267a4cc"><![CDATA[(7)]]></kuvatavNr>
+				<sisuTekst id="a683045f-8674-4cca-9839-0cc0aea9d933">
+					<tavatekst id="9f02bf9f-ca49-4536-af53-a3341149c930">Taotlus jäetakse rahuldamata, kui taotleja või taotlus ei vasta määruses sätestatud tingimustele. </tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg8">
+				<loigeNr id="182579c0-b944-4645-a4da-e9040b760733">8</loigeNr>
+				<kuvatavNr id="8219a53d-87f0-4aaf-875b-79878f253d8d"><![CDATA[(8)]]></kuvatavNr>
+				<sisuTekst id="f405310e-2f1d-408d-af7e-9f5277da93aa">
+					<tavatekst id="c295f1cc-bd2f-4f58-84b9-8348be50f5f7">Kui taotleja ei ilmu mõjuva põhjuseta vaimse tervise teenuse vahetu osutaja vastuvõtule määratud ajal või on esitanud teenuse saamiseks valeandmeid, siis on teenuse korraldajal õigus nõuda taotlejalt teenuse vahetu osutaja tasu hüvitamist. </tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="5e10d291-3656-4b4d-bb63-1faf9f394593">4</paragrahvNr>
+			<kuvatavNr id="3e77126c-3f71-4bdc-b9aa-5b6cee33e62d"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="fa670ce2-1173-4cb3-8dec-58dc69bcaab4">Teenuse rahastamine </paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="0d12866e-8177-4265-ae21-bbbc920b6bb2"/>
+				<kuvatavNr id="7dc793d8-13fc-4d0e-9ea8-82d4cfd3009f"/>
+				<sisuTekst id="6f46d31d-9741-461f-b610-3392df238c44">
+					<tavatekst id="b7bc02fa-49f9-4f94-b2fa-8966bc97cf5d">Teenust rahastatakse valla eelarvest, sealhulgas SHS § 156 lõike 3<sup>9</sup> kohaselt riigieelarvest vallale määratud toetusest. </tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="e6740f96-5c10-44a9-99cd-aa0de8e19d97">5</paragrahvNr>
+			<kuvatavNr id="01aaa322-d3c7-4cbc-a8b4-3cf5072829c4"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="9b01bca0-de78-4c06-ae68-fd0a4089239e">Määruse jõustumine </paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="84d3804c-ee0a-4758-93a6-29eea12fd54c"/>
+				<kuvatavNr id="8eba89df-b327-4358-84f7-d71fea8c9473"/>
+				<sisuTekst id="a7135ec5-4349-4790-864b-62852d6cb161">
+					<tavatekst id="90791c82-008b-475f-b583-502b904cd710">Määrus jõustub seaduses ettenähtud korras. </tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+	<allkiri id="a64c09fe-2fb6-4880-af45-0bdf3f641677">
+		<allkiriKoht id="c9e07e60-614a-474d-a257-e6d0a5aad016"/>
+		<allkirjastaja id="c00155e8-60b3-4403-8586-665568ebc6d0">
+			<ametinimetus id="681e2fc7-42f9-4276-95ca-fecff6648283">volikogu esimees</ametinimetus>
+			<eesnimi id="734b75e0-099d-4324-91ac-ebf2d26fe439">Heiki</eesnimi>
+			<perekonnanimi id="5c716deb-9f87-49c4-a88f-073aa818ed5e">Kukk</perekonnanimi>
+		</allkirjastaja>
+	</allkiri>
+</oigusakt>

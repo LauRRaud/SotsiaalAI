@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="05c6c4cb-10a8-4cd7-8bd2-8ac754a21f34" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Otepää Vallavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2026-02-19</aktikuupaev>
+  
+  <joustumine>2026-04-01</joustumine>
+  <aktiNr>4</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-02-26</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>28</RTartikkel><aktViide>426022026028</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2026-04-01+03:00</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2026-02-20</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>426022026028</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2026-02-25</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1062935</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2026-02-20</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Kristi Mitt</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="d79b8d00-fbda-466c-884d-1d20f9f9b97e">
+  <nimi id="703f9b89-4cb1-4ac2-b06e-8e38bece8c21">
+   <pealkiri id="6617142e-3a19-4e1a-b60f-c23d172bd5c7">Väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse hoolduskulude tasumise piirmäära kehtestamine</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="7394dc70-7434-4290-96a1-b234599141f2"><preambul id="c19d45c9-2f61-4674-91a7-b2429cddc457"><tavatekst id="36ec37fe-9513-415a-b890-7f40489abd97">Määrus kehtestatakse sotsiaalhoolekande seaduse § 22<sup>1</sup> lõike 3 alusel.</tavatekst></preambul><paragrahv id="para1"><paragrahvNr id="42e4a039-3b28-48af-a507-3d711b37d561">1</paragrahvNr><kuvatavNr id="7ce73ae1-8bf7-4dbd-8da8-66fa7130bb5e"><![CDATA[§ 1. ]]></kuvatavNr><paragrahvPealkiri id="5be866eb-b1c3-4afa-ad0a-facea0c9c6a8">Väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse hoolduskulude tasumise piirmäär</paragrahvPealkiri><loige id="para1lg1"><loigeNr id="1c612d4b-78c6-4f3b-b5a6-a47d707bc570"/><kuvatavNr id="3d0c0fc1-3680-43d4-95b2-72f52fcd57e2"/><sisuTekst id="7f37d45a-6fde-461e-af8f-29c1c0ce2bbd"><tavatekst id="a85c9f21-57da-4de0-b430-edd419e6f590">Väljaspool kodu osutataval ööpäevaringsel üldhooldusteenusel hooldusteenust vahetult osutavate hooldustöötajate ja abihooldustöötajate kulude tasumise piirmäär on 600 eurot ühe teenusesaaja kohta kuus.</tavatekst></sisuTekst></loige></paragrahv><paragrahv id="para2"><paragrahvNr id="5d9d64ec-8999-427a-885a-7037b7f88aea">2</paragrahvNr><kuvatavNr id="acbb9654-d100-4d4c-8dd6-b7c63d3f72ca"><![CDATA[§ 2. ]]></kuvatavNr><paragrahvPealkiri id="e3a0ff81-109c-455c-b282-cdbd469162b5">Määruse kehtetuks tunnistamine</paragrahvPealkiri><loige id="para2lg1"><loigeNr id="72315491-f324-4c43-80d7-069f99352bfa"/><kuvatavNr id="f5ad7e97-1131-4d1c-bd8c-827d307b4748"/><sisuTekst id="9b296916-c8b9-4f19-9cb4-93dcbd8900f6"><tavatekst id="959a24bf-18f3-4e33-b9c7-43a3c56357e3">Otepää Vallavolikogu 22. juuni 2023. a määrus nr 10 „Väljaspool kodu osutataval ööpäevaringsel üldhooldusteenusel hooldusteenust vahetult osutavate hooldustöötajate ja abihooldustöötajate kulude tasumise piirmäära kehtestamine“ tunnistatakse kehtetuks.</tavatekst></sisuTekst></loige></paragrahv><paragrahv id="para3"><paragrahvNr id="f0c0af8c-a488-4bb2-8b35-9577fde16678">3</paragrahvNr><kuvatavNr id="3f746361-414c-4464-8b3c-461928fe91d5"><![CDATA[§ 3. ]]></kuvatavNr><paragrahvPealkiri id="bb34c679-74ee-4627-b0e9-4871beb29ac3">Määruse jõustumine</paragrahvPealkiri><loige id="para3lg1"><loigeNr id="3e72dab4-c2ea-426a-a085-ff6db825e1f2"/><kuvatavNr id="6455d961-fcc5-48c9-af1a-e8582d2d477b"/><sisuTekst id="dba5b45f-14fe-4963-a751-e053e7efbd65"><tavatekst id="6178843c-ed68-44da-ba6c-8b1d502e1765">Määrus jõustub 1. aprillil 2026. a.</tavatekst></sisuTekst></loige></paragrahv></sisu>
+<allkiri id="8f28f31d-8f73-4d80-8a1f-55d261683aca"><allkiriKoht id="3c2b59b7-0f1d-4d1c-a18e-5df49372b46d"/><allkirjastaja id="d99b5486-ee02-4512-89b3-0e5bee1204f1"><ametinimetus id="238b157c-972b-4b88-89d7-98fe718d9121">Volikogu esimees</ametinimetus><eesnimi id="b80fd7c0-6ed0-4802-b1f7-eb5a5e6930fe">Siim</eesnimi><perekonnanimi id="73513aa8-a768-43cf-95a7-892179faba11">Kalda</perekonnanimi></allkirjastaja></allkiri></oigusakt>

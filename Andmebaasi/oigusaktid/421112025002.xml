@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="8f350f70-4c3c-4eb3-8bcd-c8555f39ac1c" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Haapsalu Linnavalitsus</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2020-06-17</aktikuupaev>
+			<avaldamismarge>
+				<RTosa>RT IV</RTosa>
+				<avaldamineKuupaev>2020-07-14</avaldamineKuupaev>
+				<RTartikkel>1</RTartikkel>
+				<aktViide>414072020001</aktViide>
+			</avaldamismarge>
+			<joustumine>2020-07-17</joustumine>
+			<aktiNr>7</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-11-21</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>2</RTartikkel><aktViide>421112025002</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2025-11-24</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2025-11-14</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>421112025002</globaalID>
+		<metaandmedVersioon>12</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2025-11-20</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1050014</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2020-07-12</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Anneli Nõupuu</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>7</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2020-07-13</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="c0a7e40e-cdad-48e4-88cf-02fad7198f86">
+		<nimi id="3fc5025a-77cb-4e1d-a3b8-208254580d2d">
+			<pealkiri id="aefc4805-0b39-4453-8f78-75fdf4ef063e">Asendus- ja järelhooldusteenuse osutamise tingimused ja kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="07ecbe57-e16d-4109-9cf0-4fce1be53a05">
+		<aktikuupaev id="79bdecd5-bd8b-47f5-b1ab-0d84356091d8">2025-11-12</aktikuupaev>
+		<avaldamismarge id="8498b4ad-29ed-4fbc-9379-f30553bbc54f">
+			<RTosa id="bf3036c0-4c8e-46df-965f-7814e86e3168">RT IV</RTosa>
+			<avaldamineKuupaev id="ff6a613f-f1ec-44c2-8005-65f3bad0a405">2025-11-21</avaldamineKuupaev>
+			<RTartikkel id="947827e5-b9b3-4182-9966-20e4bdc8e9e3">1</RTartikkel>
+			<aktViide id="e2bcabd5-4a0f-422b-817b-8f53c0243809">421112025001</aktViide>
+		</avaldamismarge>
+		<joustumine id="30209653-d465-4930-85ea-a2439fe25bee">2025-11-24</joustumine>
+	</muutmismarge>
+	<sisu id="3435d498-1e95-4bec-b98d-00e908741ebd">
+		<preambul id="9f8cb56e-e1e2-4b83-b097-a802a2575ffd">
+			<tavatekst id="89fcc2d4-6117-40ef-ae7a-3ae3ae2c2e14">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5 ja sotsiaalhoolekande seaduse § 45<sup>5</sup> ja § 45<sup>1</sup><sup>5</sup> ja Haapsalu Linnavolikogu 28.03.2021.a määruse nr 84 „Sotsiaalteenuste osutamise üldine kord“ § 1 lõige 2 alusel.</tavatekst>
+			<muutmismarge id="7b06067d-5ccf-4636-b422-c1898774e337">
+				<avaldamismarge id="87a66d0b-abed-45f8-961a-4ee8fa255384">
+					<RTosa id="cc24c765-476c-4b5b-827e-bb5eaa2acd3f">RT IV</RTosa>
+					<avaldamineKuupaev id="a135fa9a-0d15-401b-9266-2718d430d4ec">2025-11-21</avaldamineKuupaev>
+					<RTartikkel id="446ea127-c884-4698-9ac3-cf0f4eb570ed">1</RTartikkel>
+					<aktViide id="3d8bd1f3-125e-4b54-96d1-81bb27796ba9">421112025001</aktViide>
+				</avaldamismarge>
+				<joustumine id="f8ad9d5c-6d56-47b7-a4cc-afab89665dfa">2025-11-24</joustumine>
+			</muutmismarge>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="824cc56a-b653-4347-b8c2-c06a2b369ae9">1</paragrahvNr>
+			<kuvatavNr id="574c4731-9db0-4362-ac74-c98e77cf8eec"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="4a1c6ace-055a-4635-91d8-93ea2fb9d587">Reguleerimisala</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="1a297cd7-c29d-4857-900b-8345f9f35d0d"/>
+				<kuvatavNr id="4b3fbe2c-4a6d-430a-8813-680d6b6ff067"/>
+				<sisuTekst id="edaf751d-675b-44d2-99eb-f463569550b6">
+					<tavatekst id="70ed3dd7-a371-491f-99a4-c75cb044e9f1">Määrusega kehtestatakse asendus- ja järelhooldusteenuse (koosnimetatult Teenus) korraldamise ja rahastamise tingimused ja kord Haapsalu linnas.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="344ded3e-0a7e-45e5-9f11-a74fa3d0ea84">2</paragrahvNr>
+			<kuvatavNr id="81667da4-0c33-4349-8555-542ce7c34097"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="1fc9c732-bb5d-4a0e-b390-1c69d07a35fa">Asendushooldusteenuse eesmärk</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="6d48ef51-10ca-494e-8a29-f18148778cd8"/>
+				<kuvatavNr id="137a486e-83a3-45ab-a043-cf56e4f756f9"/>
+				<sisuTekst id="8cbec1b6-933e-4c29-9680-5f634f826780">
+					<tavatekst id="d6449416-bf9f-4701-b691-60a37a1f648f">Asendushooldusteenuse eesmärk on pika- või lühiajaliselt lapse heaolu ja õiguste tagamine, lapsele tema põhivajaduste rahuldamiseks peresarnaste elutingimuste võimaldamine, lapsele turvalise ja arenguks soodsa elukeskkonna loomine ning lapse ettevalmistamine võimetekohaseks toimetulekuks täisealisena.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="9ce1d257-826b-44a7-93e4-0b61cba99ff6">3</paragrahvNr>
+			<kuvatavNr id="85dbb104-28de-4496-b9a7-5b7f2dd2879a"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="7237b387-a6e6-4774-89cb-d4073f6ce380">Järelhooldusteenuse eesmärk</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="63d061c4-474b-4e20-9d75-3d629a9fcda1"/>
+				<kuvatavNr id="234c4ca0-3a10-40cc-970b-d41ce6456f98"/>
+				<sisuTekst id="59cfc963-4cf3-4233-ac36-c038479f250d">
+					<tavatekst id="9db7186e-a995-4ffb-93a5-52354ce0e5c5">Järelhooldusteenus on kohaliku omavalitsuse üksuse korraldatav sotsiaalteenus, mille eesmärk on asendushoolduselt ja eestkostelt lahkuva isiku iseseisva toimetuleku ja õpingute jätkamise toetamine.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="218d87a3-078d-482d-a5df-233f252cab1d">4</paragrahvNr>
+			<kuvatavNr id="94808a38-a1b8-4d16-80d7-56480b1c3b24"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="6522de7a-8635-4183-bb70-746291f12485">Teenuse osutaja</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="2482c056-ff4c-4679-9096-4a57f479bb77">1</loigeNr>
+				<kuvatavNr id="4dc8d481-6181-41a2-b8b1-8c486c1f49a3"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="d210e8ca-7a84-4d73-8df9-d82d52c93ad8">
+					<tavatekst id="ff05f479-09fc-40af-884b-ec2a10409625">Teenuse osutamist korraldab Haapsalu linn.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg2">
+				<loigeNr id="4051778b-4a80-462b-8d63-4bf4de378ba2">2</loigeNr>
+				<kuvatavNr id="b1105ac4-58e6-4c7a-8d37-f38360693da5"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="d8025ddd-1dbf-4ff6-968f-115a488d43ab">
+					<tavatekst id="bb3deab5-4c6b-4bdd-85f5-0f7ce4c12caf">Asendushooldusteenuse osutaja on hoolduspere, perekodu ja asenduskodu.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="19af960b-fcd6-40a2-ae29-fb2b9f891895">5</paragrahvNr>
+			<kuvatavNr id="5d243d15-decc-4802-bc49-10e643010adf"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="3e03e776-1e68-46da-a65d-11f564ef855f">Asendushooldusteenuse saaja</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="7f083bd9-2369-4430-a21d-6ed8028d210d">1</loigeNr>
+				<kuvatavNr id="851371ca-c0ba-4393-bbf1-50e6c5dd6cf1"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="f451757d-702f-4c4c-9e42-94c3c9c8014a">
+					<tavatekst id="2291ca33-ae94-490b-b6c4-32ea55f6b4d2">Käesoleva määruse alusel tagatakse asendushooldusteenus rahvastikuregistrijärgselt Haapsalu linnas elavale lapsele kuni lapse 18-aastaseks saamiseni, kui:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para5lg1p1">
+					<alampunktNr id="3a3e169b-1778-4d6b-b658-718006fd868e">1</alampunktNr>
+					<kuvatavNr id="f34501d8-2f0d-4256-910e-4d0449571495"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="d8943d9e-1a16-491c-a48a-eebdf09ce8e6">
+						<tavatekst id="173833e7-f76d-4c7b-9c1c-97656c2ce7da">lapse vanem on surnud;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg1p2">
+					<alampunktNr id="b51435d5-aaf4-4e18-bc87-dbb4e34e4656">2</alampunktNr>
+					<kuvatavNr id="3eee2f55-d228-4095-9388-621c00f9433f"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="c9c23dfb-c755-4b39-9c6d-1a9d8889c9d9">
+						<tavatekst id="15931cb6-26c2-4a65-850c-15867d1b26ab">lapse vanemale on tema piiratud teovõime tõttu määratud eestkostja;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg1p3">
+					<alampunktNr id="9956823c-ecd3-4281-940a-cfd84631915f">3</alampunktNr>
+					<kuvatavNr id="c3a71eee-ba55-4274-a4d4-5347d769219f"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="ef8e9880-e694-4d98-9b43-0faa7b2513a4">
+						<tavatekst id="8801c146-0809-4d77-a8a5-a799beb39d1f">vanema hooldusõigus lapse suhtes on peatatud, seda on piiratud või see on täielikult ära võetud;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg1p4">
+					<alampunktNr id="5ae22888-c9e1-481d-8c57-0e516a28957e">4</alampunktNr>
+					<kuvatavNr id="94dd6eb5-bc0b-49fc-9825-7a78ca728030"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="7311eb84-77d5-4ae0-9088-c390ec1d6424">
+						<tavatekst id="e8909d95-1a47-46f2-a472-9a846041a2e0">laps on vanemast eraldatud.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para5lg2">
+				<loigeNr id="ee18b237-f877-458f-b1d6-8d40b380d451">2</loigeNr>
+				<kuvatavNr id="3a0d7537-b06e-4ead-ae5f-d31060c678ca"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="0969a007-d8b3-411d-b8c3-c621b9cb4253">
+					<tavatekst id="c3757a1b-4277-4cb4-ae12-19af8edd332e">Juhul kui käesoleva paragrahvi lõikes 1 nimetatud laps on enne 18-aastaseks saamist asunud õppima ja jätkab õppimist statsionaarses õppes või jätkab õppimist statsionaarses õppes või tervislikel näidustustel muus õppevormis põhikoolis, gümnaasiumis või kutseõppe tasemeõppes, tagatakse lapsele asendushooldusteenus:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para5lg2p1">
+					<alampunktNr id="feb63be2-0906-4d46-b7e5-f8729a3c18b9">1</alampunktNr>
+					<kuvatavNr id="c2eb4d1b-bdcb-4570-b427-79e7f9c92575"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="d75a8279-094c-4584-8a5e-031352160888">
+						<tavatekst id="5d79b337-8199-4675-ab49-d23803fb52fa">hariduse omandamise korral kuni järgmise õppeaasta alguseni, kuid mitte kauem kui järgmise õppeaasta alguseni sel aastal, kui laps sai 19-aastaseks;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg2p2">
+					<alampunktNr id="268ac174-a748-47b6-8dcc-892c6242a256">2</alampunktNr>
+					<kuvatavNr id="8de9694b-1eb2-4313-bdba-75358923590c"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="4a123408-da01-4c6c-9ad8-dce656e7647d">
+						<tavatekst id="30ff9a1a-fcd7-4c13-8192-36c7b9eba459">õpingute katkestamiseni, kuid mitte kauem kui lapse 19-aastaseks saamiseni, või lapse 19-aastaseks saamise korral kuni järgmise õppeaasta alguseni.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para5lg3">
+				<loigeNr id="81fcd2cd-80f1-49b9-b4f1-ceedb60ccd0a">3</loigeNr>
+				<kuvatavNr id="26514260-e10e-48fe-b814-0a44bb0abe58"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="d228effb-6d59-4753-beae-6d927afb92a6">
+					<tavatekst id="9c830890-e880-4a7e-8608-28061d84a970">Asendushooldusteenuse võib tagada abivajavale lapsele, kelle hooldusõiguslik vanem või füüsilisest isikust eestkostja on andnud nõusoleku, et asendushooldusteenust osutatakse kuni 90 päeva katkematult või periooditi.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para6">
+			<paragrahvNr id="1eb90b21-5656-4184-bed9-cc2f440b6a33">6</paragrahvNr>
+			<kuvatavNr id="1b3a74d2-739d-4a97-be9a-9c5479b91ee8"><![CDATA[§ 6. ]]></kuvatavNr>
+			<paragrahvPealkiri id="78eca907-4915-4ca6-9b22-f027e45090ea">Asendushooldusteenuse vajaduse hindamine ja teenusele suunamine</paragrahvPealkiri>
+			<loige id="para6lg1">
+				<loigeNr id="5bd59ffb-af77-4e7b-9236-64d3ae06d513"/>
+				<kuvatavNr id="864db0eb-bd3a-40d9-a501-a22447f80f63"/>
+				<sisuTekst id="0e458a23-585c-40ad-b028-a85635a1185c">
+					<tavatekst id="22d455de-6f03-4cb9-966b-a7c8d60274a9"> Haapsalu Linnavalitsuse lastekaitsespetsialist hindab asendushoolduseteenuse vajadust lapse heaolust lähtuvalt. Teenusele suunamise otsustab linnavalitsus.<reavahetus/></tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para7">
+			<paragrahvNr id="d59f3e26-450c-4b6b-b233-8ca49f815aa0">7</paragrahvNr>
+			<kuvatavNr id="a141af0e-e816-4584-8328-4505fb5a17a6"><![CDATA[§ 7. ]]></kuvatavNr>
+			<paragrahvPealkiri id="19f82f54-69da-42b6-a90d-6d01f5f1af41">Järelhooldusteenuse saaja </paragrahvPealkiri>
+			<loige id="para7lg1">
+				<loigeNr id="0390f766-fd4f-43eb-b314-a4c53c470452">1</loigeNr>
+				<kuvatavNr id="7ef94bc4-eff7-49a8-8193-c791f52e380a"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="2eb0fe4e-771f-4a13-95b5-ab504c18652d">
+					<tavatekst id="48a3ed67-569e-4682-b039-cd4911054ac0">Järelhooldusteenus tagatakse rahvastikuregistrijärgselt Haapsalu linna asendushooldusteenuselt elluastuvale täisealisele isikule, kes pärast põhi-, kesk-, kutse- või kõrghariduse omandamist jätkab järgmisel õppeaastal õppimist kutseõppe tasemeõppes, rakenduskõrgharidusõppes, ülikooli bakalaureuse- või magistriõppes või bakalaureuse- ja magistriõppe integreeritud õppes:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para7lg1p1">
+					<alampunktNr id="4d6890f7-713e-4c20-8dd0-af98deb8b650">1</alampunktNr>
+					<kuvatavNr id="685cf7bd-6da1-4baf-975e-f8e683beb38a"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="ae943f50-9e2f-4227-aa7a-4503a8484ede">
+						<tavatekst id="78e84095-86b4-4350-8f61-29e4e808b59e"> esmase õppekavajärgse nominaalse õppeaja lõpuni, kuid mitte kauem kui isiku 25-aastaseks saamiseni</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para7lg1p2">
+					<alampunktNr id="a7a549ee-ad27-4de4-94ee-6d529746acf1">2</alampunktNr>
+					<kuvatavNr id="d0b76299-3320-437d-a454-93c88a479a08"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="8f49317b-9f77-473e-bd8e-0d1f1acad742">
+						<tavatekst id="b2f3eadf-451c-4982-9b67-ac36f0a1d926">õpingute katkestamiseni, kuid mitte kauem kui isiku 25-aastaseks saamiseni, või </tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para7lg1p3">
+					<alampunktNr id="fd3393cf-1fd5-418e-ae69-643aede5fa0a">3</alampunktNr>
+					<kuvatavNr id="a94e07f7-6ae4-496a-8c8b-7a4b58f7e3fb"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="a9029ea4-e3d6-45aa-9998-843ac286f382">
+						<tavatekst id="4e396ca8-01d5-474f-949a-1f9f027d788a">isiku 25-aastaseks saamiseni.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para7lg2">
+				<loigeNr id="45a4ab8e-e654-45b1-87b1-763e0249ed04">2</loigeNr>
+				<kuvatavNr id="7e797db1-bd4e-4190-93b1-3760834d07bb"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="f8c66759-451c-4396-8897-e4599d02698e">
+					<tavatekst id="3b1b3caa-6247-4c05-b53a-a9c34cbdd06c">Järelhooldusteenuse võib tagada isikule, kes:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para7lg2p1">
+					<alampunktNr id="542e4ba8-e2f6-45f2-be65-e792a9826a62">1</alampunktNr>
+					<kuvatavNr id="97c00f73-1b6d-4e32-88ce-49d546c3c075"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="7907889e-a3b9-49df-a4af-fd96809dcd14">
+						<tavatekst id="17c18c74-a95f-47b0-85e8-ab33fa57ed03">on kuni 21-aastane ega õpi ning kes kuni täisealiseks saamiseni viibis asendushooldusel või eestkostel;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para7lg2p2">
+					<alampunktNr id="22de9a38-23ac-4823-b65c-49b31413cdb9">2</alampunktNr>
+					<kuvatavNr id="9d185eb3-29ef-4f2c-a585-d05af42d5565"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="4219ce5f-c16c-46b6-9694-2265e3941d29">
+						<tavatekst id="857119a5-1799-4aab-965f-337a87d7ad3a">on kuni 25-aastane ja õpib ning kes kuni täisealiseks saamiseni viibis eestkostel ja pärast põhi-, kesk-, kutse- või kõrghariduse omandamist jätkas järgmisel õppeaastal õppimist kutseõppe tasemeõppes, rakenduskõrgharidusõppes, ülikooli bakalaureuse- või magistriõppes või bakalaureuse- ja magistriõppe integreeritud õppes.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para8">
+			<paragrahvNr id="5e4eb371-eb53-42e8-8622-41e9d9fe8bc4">8</paragrahvNr>
+			<kuvatavNr id="cd250193-66ca-4319-a83f-51978f7d322c"><![CDATA[§ 8. ]]></kuvatavNr>
+			<paragrahvPealkiri id="17a5ea1f-a648-4292-a296-17358b3368a4">Järelhooldusteenuse vajaduse hindamine, teenusele suunamine ja teenuse osutamine</paragrahvPealkiri>
+			<loige id="para8lg1">
+				<loigeNr id="cbfed1f0-7ccf-49bc-8657-a0a6b9383c8f">1</loigeNr>
+				<kuvatavNr id="79858ed4-75e4-4b7f-a145-9e8c7806fbd3"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="d1f9c8c6-c2a8-436a-a7ca-7b7b0be2e102">
+					<tavatekst id="fc885383-e9c1-4162-9db0-d630a76605b7">Täisealise isiku järelhooldusteenuse korraldamisel osutab Haapsalu linn teenuseid ja eraldab toetusi lähtuvalt isiku juhtumiplaanis hinnatud vajadustele.<reavahetus/></tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para8lg2">
+				<loigeNr id="db376410-0032-4d7c-9271-ef426989ae60">2</loigeNr>
+				<kuvatavNr id="24d3e29f-56a3-45db-90d6-782f6a781b20"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="e7206aa5-d8ad-4b18-aed8-2cbb1dc8b0cc">
+					<tavatekst id="70b7490e-b201-4f52-9cd0-c253808b41fc">Järelhooldusteenuse tagamisel käesoleva korra § 5 lg 1,2 alusel asendushoolduselt lahkuvale täisealisele isikule hindab Haapsalu linnavalitsuse lastekaitsespetsialist teenuse vajadust, koostab juhtumiplaani ja korraldab isikule teenuste tagamise.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para8lg3">
+				<loigeNr id="a0ab48ea-b993-4ca5-abc1-147614db8809">3</loigeNr>
+				<kuvatavNr id="f11604fe-af90-4c30-80fc-18face901bbd"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="fd0526e6-f9b2-4b69-b11a-7abe3fa32dd2">
+					<tavatekst id="461fd560-09ad-4320-963c-1306dbf59f72">Lastekaitsespetsialist tagab täisealiseks saanud järelhooldusel oleva isiku ülemineku ühe aasta jooksul Haapsalu linnavalitsuse sotsiaaltöötaja vastutusalasse.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para8lg4">
+				<loigeNr id="12288e49-f7d7-412e-a7d5-60d09ad79938">4</loigeNr>
+				<kuvatavNr id="2b8811f6-e07e-4541-81ee-61dc3145dca8"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="37eb7b9c-e9ff-403b-a9c1-180e2967d6b3">
+					<tavatekst id="280382b3-918d-4067-9abf-de095a1b6940">Haapsalu linnavalitsuse sotsiaaltöötaja hindab järelhoolduse vajaduse ja koostab juhtumiplaani eestkostel olnud täisealisele isikule.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para8lg5">
+				<loigeNr id="e8498b34-d7ed-47bb-8de6-0c9982830c68">5</loigeNr>
+				<kuvatavNr id="1722feaa-510d-4ea9-bf92-6b9bd63a23ae"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="c52c1745-5c45-4563-aee5-57dc6397c02c">
+					<tavatekst id="459cfc87-3d37-4ed7-ae88-d1e194292cda">Teenusele suunamise otsustab linnavalitsus.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para9">
+			<paragrahvNr id="bef0ece9-0bca-4dd5-bc01-d631a3ad2af1">9</paragrahvNr>
+			<kuvatavNr id="f44a2db0-f1ce-43e9-9c7b-7d9b67d04fbd"><![CDATA[§ 9. ]]></kuvatavNr>
+			<paragrahvPealkiri id="7d7d512c-ede7-4caf-ae08-9865fd4b93a0">Teenuse rahastamine</paragrahvPealkiri>
+			<loige id="para9lg1">
+				<loigeNr id="f6a59e27-6d49-43db-849e-fffb1c58bbf0">1</loigeNr>
+				<kuvatavNr id="b1bfd003-bd18-4990-b03f-ca91848db9c0"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="393c0926-b469-4107-be81-f18989775071">
+					<tavatekst id="61f29415-2325-42b2-a3a4-c32a09039843">Teenuse osutamise kulud kaetakse teenuse saaja sissetulekutest ja Haapsalu linna eelarvest vastavalt sotsiaalhoolekande seaduses sätestatule.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para9lg2">
+				<loigeNr id="554d009d-4e48-4638-af31-d59aeb09ba1a">2</loigeNr>
+				<kuvatavNr id="bca5cb46-4532-49cc-8aba-98fbacfcf54f"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="2be7d8a2-dd23-422f-9e52-814161144d22">
+					<tavatekst id="349c034c-069f-4e87-8ee2-a13a62aa2d77">Lapse ülalpidamisest ja erivajadustest tulenevaid lisavajadusi rahastatakse lapsele riigieelarvest igakuiseks ülalpidamiseks ja puudest tingitud lisakulude osaliseks hüvitamiseks ette nähtud sissetulekutest.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para9lg3">
+				<loigeNr id="7bce9a3e-f6bb-4140-ba9c-c1e1b0bb48af">3</loigeNr>
+				<kuvatavNr id="8e3c9743-7254-4969-8d45-1b0fceed58d3"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="f01a1b0f-4e1a-4b4d-a27a-bdb6e2b88190">
+					<tavatekst id="def220bd-4497-49c0-9a5e-335126b118ae">Teenuse osutaja muud kulutused, mis on vajalikud teenuse osutamiseks, lepitakse kokku teenuse osutamise lepingus.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para9lg4">
+				<loigeNr id="0c18e33b-c2cc-4521-9635-7f5b5065cb6b">4</loigeNr>
+				<kuvatavNr id="152bf03f-6bcd-4b71-8e9b-d6f8e22e26bc"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="967f3ed8-0c50-40e9-8056-32e22bdaade3">
+					<tavatekst id="ee7dc196-d2f4-44b7-9622-b127f613813b">Teenuse osutaja muude kulude kokkuleppimisel tuleb arvestada teenuse saaja teenusel viibimise kestvust, õppimist väljaspool teenuse osutamise asukohta ja ülalpidamist riigi või kohaliku omavalitsuse eelarvest.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para10">
+			<paragrahvNr id="8db64d0f-94d5-4bd0-b8ea-101490c1fa86">10</paragrahvNr>
+			<kuvatavNr id="9e8e9dae-2410-4b8e-b5f0-7e51ead5dde6"><![CDATA[§ 10. ]]></kuvatavNr>
+			<paragrahvPealkiri id="2b116686-54c3-4cf3-b75b-269345619f8d">Lepingu sõlmimine</paragrahvPealkiri>
+			<loige id="para10lg1">
+				<loigeNr id="e6da1107-5a3c-4516-b006-9898fd3c0604">1</loigeNr>
+				<kuvatavNr id="554f78aa-e2f5-41e2-992f-f2b25cd461f2"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="baa0cc23-10c8-406a-8f4c-a13b19c3f0b2">
+					<tavatekst id="7b5cfb42-a5c8-48a3-a034-686276bc1153">Haapsalu linnavalitsus sõlmib Teenuse osutajaga lepingu enne teenuse osutamise alustamist.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para10lg2">
+				<loigeNr id="06130878-fc81-4f22-8881-a9cf05cde529">2</loigeNr>
+				<kuvatavNr id="1a4fe0fb-43e4-4dd6-8cdd-c75c15d83213"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="28b9b47a-0c0f-4475-aeab-1867282e2630">
+					<tavatekst id="953282b0-75f5-47b6-a396-677335ae7448">Järelhooldusteenuse osutamisel on üheks lepingu pooleks teenuse saaja.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para10lg3">
+				<loigeNr id="d7d73c54-bc98-4667-8ad8-b3e68b103b2c">3</loigeNr>
+				<kuvatavNr id="203e80f0-bcb3-4436-9a3e-b56f8c397031"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="bc410758-2ade-4270-a634-6cab1483677e">
+					<tavatekst id="7f6fa973-8b2d-4c64-bbb9-6aec11536e81">Teenuse osutamiseks sõlmitava lepinguga sätestatakse vähemalt osutatava teenuse sisu, maht, kestvus, rahastamine ning osapoolte õigused ja kohustused.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para10lg4">
+				<loigeNr id="97e05259-e527-4cb1-bfd6-53d89d96002b">4</loigeNr>
+				<kuvatavNr id="801d9089-6cca-462b-b695-a47bcbae3255"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="c29c6b3d-8692-4ccc-8e4f-95a5e5f630b8">
+					<tavatekst id="ba5832ae-52f2-403d-a0ab-acc72d63d109">Asendushooldusele suunatud lapsele koostatud juhtumiplaan on asendushooldusteenuse osutamise lepingu lisa.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para11">
+			<paragrahvNr id="70e7d1d0-33d4-4314-b166-74ce8aad2469">11</paragrahvNr>
+			<kuvatavNr id="7d510957-0352-45f1-85b2-898ae5541b50"><![CDATA[§ 11. ]]></kuvatavNr>
+			<paragrahvPealkiri id="fd88f545-d1fe-4ac2-b52d-a8797aa81b2f">Lepingu lõppemine ja lõpetamine</paragrahvPealkiri>
+			<loige id="para11lg1">
+				<loigeNr id="c859867d-4f8f-487b-a6a8-e787fd3199aa">1</loigeNr>
+				<kuvatavNr id="281c5423-2c9f-4620-9ade-0a76dde30efc"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="0fb24c8f-dfbe-4eb3-aaa8-a553af093bef">
+					<tavatekst id="24f1d215-ed84-4397-aec2-90c847c01229">Leping lõpetatakse:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para11lg1p1">
+					<alampunktNr id="41589671-58db-4b09-ba5d-2e87f022b3d1">1</alampunktNr>
+					<kuvatavNr id="a8525c16-a43c-49f5-8a1a-a624b7fc8b37"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="0e5ed800-25ad-4fac-9a36-81c680a9fd7c">
+						<tavatekst id="49d1c405-85de-4e2d-95c2-e6d6b601dbea">teenuse vajaduse äralangemisel;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para11lg1p2">
+					<alampunktNr id="7a991105-fe28-43ef-805d-fdf7499afe20">2</alampunktNr>
+					<kuvatavNr id="7b8b29be-4dca-4646-b312-6305ca939c2e"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="c13b410f-b55f-45bc-87da-8645702660ae">
+						<tavatekst id="bd54c111-1ed5-4e7f-908d-49f2c53cd230">lepingus sätestatud kohustuste täitmata jätmisel;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para11lg1p3">
+					<alampunktNr id="586545fb-58d4-42c9-a5d9-8da6e8e89fbf">3</alampunktNr>
+					<kuvatavNr id="dfaf19ff-83fe-4268-b8cd-051b2408a0a3"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="b78b801d-b3c1-4e04-8714-dd42dcec1637">
+						<tavatekst id="b9cdcc11-ef52-468a-bb0a-7fbfb6f6f8ea">lepingus sätestatud kohustuste mittenõuetekohase täitmise korral;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para11lg1p4">
+					<alampunktNr id="faae2381-6cdf-4107-8bc3-99ff4643fbd7">4</alampunktNr>
+					<kuvatavNr id="5880fff1-eefc-46e5-a7fa-1e6ec1fc60a4"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="ab87177e-03ef-443a-8131-f819048c4232">
+						<tavatekst id="040aa6df-8f71-4fe6-ad5d-1f740a45855d">lepingupoolte vastastikusel kokkuleppel või</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para11lg1p5">
+					<alampunktNr id="5bb2e82c-107d-4461-a07d-33d527663999">5</alampunktNr>
+					<kuvatavNr id="2fab8e98-ab03-4d24-83bb-60e923616687"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="f1b41edd-6dbb-4dd0-a458-ebc08727bdb0">
+						<tavatekst id="c22ca379-e9a1-4024-9282-42342400417c">muudel seadusest tulenevatel alustel.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para11lg2">
+				<loigeNr id="c0d0a812-a29b-4246-943d-faaaa358e13b">2</loigeNr>
+				<kuvatavNr id="3f6a4680-7635-4632-b157-d4b55de41a82"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="6f173409-ca52-471b-8994-e91c42582b1b">
+					<tavatekst id="02048a7a-2c3d-4f6e-88db-486a73538df0">Leping lõppeb:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para11lg2p1">
+					<alampunktNr id="f90f4084-32ad-44a9-ab73-1acd479f4373">1</alampunktNr>
+					<kuvatavNr id="d8cd75d9-bd13-4f23-9e32-4a4af9df4df9"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="f8fa226c-71e0-45ce-9758-cc91039ddec0">
+						<tavatekst id="daecb0ca-95a1-4a43-abdf-d8cc196046b9">tähtaja saabumise korral;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para11lg2p2">
+					<alampunktNr id="6cd9edb9-cde2-4910-90f0-91e42d9f1097">2</alampunktNr>
+					<kuvatavNr id="230406fe-c3c0-4a9b-9f7d-9ba79fc59ea5"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="00f18106-fcd1-43a3-b86a-7707bf88c3f4">
+						<tavatekst id="b3a75616-b301-4436-bdf7-d624de8d355c">lepingupoole surma korral;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para11lg2p3">
+					<alampunktNr id="28933c6f-fd28-4a44-b174-025f484a9986">3</alampunktNr>
+					<kuvatavNr id="bfe002bb-fc2a-4973-aee5-1be48696c0f9"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="f60f7066-5431-4212-8677-4116fd97e8aa">
+						<tavatekst id="3c42e96b-7c5b-449f-a6ba-6f1da71d83a9">teenuse saaja surma korral või</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para11lg2p4">
+					<alampunktNr id="674b5a8d-408c-4660-baa5-ec60483cb037">4</alampunktNr>
+					<kuvatavNr id="cc0b64fa-049c-4c7b-899c-ac1c67b2d545"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="8a9b1e2f-b592-4b66-998e-ccf7edd8a3ee">
+						<tavatekst id="557e8129-ee51-46d4-b314-44895adf73ad">muudel põhjendatud juhtudel.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para12">
+			<paragrahvNr id="1b043daa-6e15-4152-a1f1-a979113b0efc">12</paragrahvNr>
+			<kuvatavNr id="9c28d1d0-18be-4e0b-ae06-03ebe8c7eccc"><![CDATA[§ 12. ]]></kuvatavNr>
+			<paragrahvPealkiri id="71e69257-62ea-4c63-a09f-978607f2211d">Jõustumine</paragrahvPealkiri>
+			<loige id="para12lg1">
+				<loigeNr id="ba29c4d7-a406-49c4-882e-9c58a6084718"/>
+				<kuvatavNr id="b3d1c4c2-c222-4e67-afd6-5495bd10eeca"/>
+				<sisuTekst id="36d427c4-990c-4726-915e-47fa5eaa6755">
+					<tavatekst id="c0d3d69d-70af-46ce-aa7a-06796896232e">Määrus jõustub kolmandal päeval pärast avaldamist Riigi Teatajas.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+</oigusakt>

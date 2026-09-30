@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="3049e630-ed3b-4cb0-b45d-6eca9dcc095a" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Narva Linnavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2021-03-25</aktikuupaev>
+  
+  
+  <aktiNr>6</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2021-04-01</avaldamineKuupaev><RTaasta>2021</RTaasta><RTartikkel>25</RTartikkel><aktViide>401042021025</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2021-04-04+03:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2021-03-29</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>401042021025</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2021-03-31</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1051631</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2021-03-29</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Tatjana Udovichenko</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="38052a56-7f0d-492a-8e5a-cb4c8e7645ee">
+  <nimi id="df66dcb9-0aa8-41b3-89ad-1e8a3151e852">
+   <pealkiri id="6245a081-0240-4e2a-aa2a-eded933c7255">Koduteenuse osutamise tingimused ja kord Narva linnas</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="af181566-67e3-4a93-b1af-b85367f061de"><preambul id="ee7393e2-23ef-48fd-8f17-0a972d701244">
+   <tavatekst id="04ac4263-d910-468a-99aa-3dd2bf69401c">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 6 lõike 1 ja § 22 lõike 1 punkti 5 alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="27b08ca1-7845-4bec-bc35-4719672e302c">1</paragrahvNr>
+   <kuvatavNr id="60c88d22-ae9a-47d9-8c5c-430799ddc359"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="7045e94b-09d3-4027-b7f4-4ac0c5c47f76">Üldsätted</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="946bc898-1da0-46d0-a882-570b1504cf63">1</loigeNr>
+   <kuvatavNr id="5e8dd0b3-29c6-4146-82ab-3b4c6a59e0d4"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="27241902-2967-4826-bac5-1ffcd547dbf6">
+    <tavatekst id="fb0ef898-81f4-4c56-b6fc-1aa2e513886a">Käesolev kord sätestab koduteenuse (edaspidi teenus) osutamise tingimused ja korra Narva linnas.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg2">
+   <loigeNr id="b1958119-c06a-4a63-8bbb-3518c279d568">2</loigeNr>
+   <kuvatavNr id="3583557a-9251-4927-8306-1e74c8910582"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="72ed19df-ad62-44ff-998f-86daf14ad909">
+    <tavatekst id="ea28652d-3130-430c-9850-d337313a98d4">Teenust korraldab Narva Linna Sotsiaalabiamet (edaspidi Sotsiaalabiamet) hallatava asutuse Narva Sotsiaaltöökeskuse (edaspidi teenuseosutaja) kaudu.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="bdb30326-d6f8-4f84-8382-28054b3aac74">2</paragrahvNr>
+   <kuvatavNr id="8d35596f-2ca9-410b-ad99-ecf7d10e2f6b"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="9f3384d9-53b5-4da7-954b-4638cb855216">Teenuse eesmärk</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="7e903c1b-759e-4e0c-95f8-e3cd46fc9186">1</loigeNr>
+   <kuvatavNr id="49847aaf-7d1f-4785-ba8c-93cf71c729ca"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="07fc4e8b-9ae0-4f32-8300-82b71af110e1">
+    <tavatekst id="c6afe46e-7447-4394-aefd-9f1b11b63eec">Teenuse eesmärk on täisealise isiku iseseisva ja turvalise toimetuleku tagamine kodustes tingimustes, säilitades ja parandades tema elukvaliteeti.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg2">
+   <loigeNr id="4c3a51f3-4407-44b4-aa60-9c303b6cb9a0">2</loigeNr>
+   <kuvatavNr id="c1752baf-6659-41aa-a261-1f0b9b816165"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="e3b6ecd6-25c1-4fd5-b263-afddc8c83af2">
+    <tavatekst id="7214d7b7-61e3-4858-a252-d2c6bebf1ab9">Teenuse osutamisel abistatakse isikut toimingutes, mida isik terviseseisundist, tegevusvõimest või elukeskkonnast tulenevatel põhjustel ei suuda sooritada kõrvalabita, kuid mis on vajalikud kodustes tingimustes elamiseks, nagu kütmine, toiduvalmistamine, eluruumi ja riiete korrastamine ning väljaspool eluruumi toiduainete ja majapidamistarvete ostmine ja muu asjaajamine.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="a4ecfe50-93f2-4262-8f8e-e19890f361ab">3</paragrahvNr>
+   <kuvatavNr id="255de773-18fe-403e-bda6-f5eba2b36c46"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="213ce6ab-e5ab-4bd3-84b8-d798cff7b337">Õigustatud isikud</paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="76b35b74-7346-401d-9aa0-339ae8df79a6"/>
+   <kuvatavNr id="83e4367d-4218-4c48-b18e-c47a3495c9a2"/>
+   <sisuTekst id="90596cc5-76ee-4b00-8360-6097a35ac320">
+    <tavatekst id="c3b72619-627d-479a-8e3b-8ee407eeb770">Teenust osutatakse täisealisele isikule, kes vajab kodustes tingimustes elamiseks kõrvalabi käesoleva määruse § 2 lõikes 2 nimetatud toimingutes ning kelle rahvastikuregistrijärgne ja tegelik elukoht on Narva linnas.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para4">
+   <paragrahvNr id="5a880c1b-ac1c-4b19-831a-9cfd62a42899">4</paragrahvNr>
+   <kuvatavNr id="c2be64ee-3fca-402c-85cd-9c1a3765d5d3"><![CDATA[§ 4. ]]></kuvatavNr>
+   <paragrahvPealkiri id="39a33e20-32a7-4062-8ae9-4f5cbe0ffc6c">Teenuse määramise põhimõtted</paragrahvPealkiri>
+  <loige id="para4lg1">
+   <loigeNr id="0ea38fdb-d4a1-4b5d-a5ce-b20f9f485e3e">1</loigeNr>
+   <kuvatavNr id="25c2649c-c866-4759-bdfc-8b6d67f3ed8a"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="4ff057a6-27a9-4e8f-bf46-85c1bd9cde99">
+    <tavatekst id="5210dc97-e9d5-4a1a-88f1-c046386035ce">Sotsiaalabiamet otsustab teenuse vajaduse üldjuhul taotluse alusel või abivajaduse ilmnemisel.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg2">
+   <loigeNr id="6ad43a83-da89-4c05-8dfc-1d43c7d7e73e">2</loigeNr>
+   <kuvatavNr id="851fc29f-259b-46cb-b9dd-e154ac61692b"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="eb546f12-91c4-4a51-a580-e0343caab78d">
+    <tavatekst id="f02b68ca-6908-49eb-9e1d-3b8f5b8abf53">Abivajaduse väljaselgitamisel lähtutakse terviklikust lähenemisest isiku abivajadusele, võttes arvesse tema toimetulekut ja ühiskonnaelus osalemist mõjutavaid asjaolusid, sealhulgas: isiku personaalse tegevusvõimega seonduvaid asjaolusid, samuti isiku füüsilise ja sotsiaalse elukeskkonnaga seonduvaid asjaolusid.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg3">
+   <loigeNr id="f2eca3fc-665a-40f4-9c7f-dca918a00e14">3</loigeNr>
+   <kuvatavNr id="b7978c72-54af-415b-8230-00be97dd8e79"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="076f9793-7dc9-418b-acc1-e52884199bea">
+    <tavatekst id="e4e4a29e-a289-4cc7-870a-25a895f46156">Abivajadusest teada saamisel selgitatakse välja teenuse andmise vajadus ja ulatus. Vajadusel abistatakse isikut taotluse esitamisel või toimingu tegemisel, kui isiku abistamata jätmise korral jääksid tema õigused kaitseta.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg4">
+   <loigeNr id="974ae030-58af-4c80-8695-7dba8bcb855e">4</loigeNr>
+   <kuvatavNr id="858ac9df-2763-4278-8ad5-f23f1425274f"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="00210a79-6369-4c9c-bd50-a0d1b0c82c64">
+    <tavatekst id="d48ef60f-ea9f-4239-b71a-a679444a4e18">Abivajaduse tuvastamisel selgitab vastutav Sotsiaalabiameti spetsialist (edaspidi spetsialist) välja isikule sobivaima abi, mis toetab abivajaja iseseisvat toimetulekut ning suutlikkust korraldada iseseisvalt oma elu.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg5">
+   <loigeNr id="e8a5f41f-5a0b-4e84-806e-59983434788c">5</loigeNr>
+   <kuvatavNr id="f9ecea48-ecef-4bc3-a539-f58676ef51a0"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="9744c44b-c500-4982-ae9f-23af0bbedcd7">
+    <tavatekst id="a0e6c4d6-efa4-4d43-b654-8ebe5e97e951">Teenust osutatakse hinnatud abivajadusest lähtuvalt ja abivajava isiku nõusolekul.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para5">
+   <paragrahvNr id="a9880296-9c99-4f19-b4ac-5039baad2dc7">5</paragrahvNr>
+   <kuvatavNr id="ea0e7f0c-4352-405e-ac8f-0bd512fa97f7"><![CDATA[§ 5. ]]></kuvatavNr>
+   <paragrahvPealkiri id="5962213c-3b04-48a9-9d3c-41ddd1242bd6">Rahastamine</paragrahvPealkiri>
+  <loige id="para5lg1">
+   <loigeNr id="51dd4751-55ce-4b29-8e91-609707479615">1</loigeNr>
+   <kuvatavNr id="3e4c627b-cd53-4a6e-9709-256e351aa638"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="4a1c2beb-30dd-4d54-9d2b-304a4daf8823">
+    <tavatekst id="adc727ac-90c3-4054-b9de-00161f74449d">Teenuse rahastamise allikaks on Narva linna eelarve ja isiku makstav tasu (edaspidi ka omaosalus). Teenuse osutamiseks linnaeelarvest eraldatud vahendite üle peab arvestust Sotsiaalabiamet.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg2">
+   <loigeNr id="55b30551-93f3-42b9-9ca8-3fff503a48c8">2</loigeNr>
+   <kuvatavNr id="d35ce575-9787-4f91-8071-fa6b3e9f0b51"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="8b167182-6383-47ed-a10e-b4c9dc1258a5">
+    <tavatekst id="9863ce62-6392-4766-a5c4-2ba4736a20ff">Teenuse saaja omaosaluse suurus oleneb teenuse mahust, teenuse maksumusest ning teenust saava isiku ja tema perekonna majanduslikust olukorrast.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg3">
+   <loigeNr id="9e34d7ee-d004-44cd-9225-ee5610220be6">3</loigeNr>
+   <kuvatavNr id="ea88c382-6afb-429a-bbb0-39ccf44929fb"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="7be486b5-0fc3-4027-a724-153d71d6a8c8">
+    <tavatekst id="30a6cfdc-0e8c-469e-bf05-2d98ed1bd8f7">Teenuseosutaja poolt osutatava teenuse hinna kehtestab Narva Linnavalitsus.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg4">
+   <loigeNr id="c019fa07-20df-4c13-aeaa-46e5f2ccf681">4</loigeNr>
+   <kuvatavNr id="9aea17de-5d7d-41b1-afac-851ea161c1a0"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="c6da85c1-84c9-45af-bc7d-ea83678634cf">
+    <tavatekst id="b3e6b755-5481-4911-ba85-6538b2d99ba4">Teenuse saaja poolt omaosaluse maksmise üle otsustatakse pärast abivajaduse väljaselgitamist. Sotsiaalabiamet hindab, kas ja millisel määral on isik võimeline teenuse eest maksma.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg5">
+   <loigeNr id="7d2cf190-adbd-4b63-8d60-fd1ec853fa27">5</loigeNr>
+   <kuvatavNr id="d4d8b0c8-44fd-4faf-be69-b6dd3dfec743"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="842ee830-63d8-47b5-b934-e4cb9ec1c12f">
+    <tavatekst id="e71f8033-93b5-460c-820e-5b9502950a41">Teenuse saaja vabastatakse tasu maksmisest, kui isiku saab toimetulekutoetust või tema sissetulek on alla poole kehtivast töötasu alammäärast, pärast eluasemekulude maha arvestamist.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para6">
+   <paragrahvNr id="cd0250c4-0acb-4b12-ac01-b2f567dab580">6</paragrahvNr>
+   <kuvatavNr id="74a823d9-608b-4a10-8d87-e1144676d96d"><![CDATA[§ 6. ]]></kuvatavNr>
+   <paragrahvPealkiri id="a944c5d7-bc78-41ec-8fe9-96d81474c086">Teenuse taotlemine</paragrahvPealkiri>
+  <loige id="para6lg1">
+   <loigeNr id="2e915ca8-e9b4-4ddd-8cad-0d57324e287a">1</loigeNr>
+   <kuvatavNr id="33fde94c-8f52-4a57-9de4-b9017f36a118"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="19291614-4c0e-4ec8-b969-fa4d044aea29">
+    <tavatekst id="57329f66-1e88-4980-9664-12baa211f845">Teenuse saamiseks esitab teenuse taotleja või tema seaduslik esindaja Sotsiaalabiametile taotluse. Taotluse esitamine on vormivaba, kuid teenuse kiiruse ja selguse huvides on mõistlik esitada kirjalikult taasesitatavas vormis (e-kiri jms) või kirjalikus vormis taotlus. Taotluses märgitakse teenust vajava isiku ees- ja perekonnanimi, isikukood, elukoht, kontaktandmed, sotsiaalne seisund, teenuse taotlemise põhjus ja taotluse esitamise kuupäev ning taotleja või tema esindaja allkiri.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg2">
+   <loigeNr id="5fb63e93-5f50-48dd-8946-a2f116819887">2</loigeNr>
+   <kuvatavNr id="537d62d1-2f79-4052-8cf6-68247fab7257"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="d1223a49-b71c-46c8-be0d-8a9c4324fc14">
+    <tavatekst id="d3577964-29c6-4cfc-8b85-eac75237316d">Taotleja ja Sotsiaalabiamet teevad koostööd vajalike tõendite kogumisel ja taotlusdokumentide nõuetekohasuse saavutamisel.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg3">
+   <loigeNr id="d25aef45-0617-4f75-be24-b7021528eaae">3</loigeNr>
+   <kuvatavNr id="a4a12db0-af9f-4f58-94ea-3cdfb7dbe56d"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="c5354842-4d94-488a-a63d-f317b806071f">
+    <tavatekst id="75d1ee92-0e10-44ce-8d74-c1e2f22d07f3">Sotsiaalabiametil on õigus nõuda asja otsustamiseks vajalike dokumentide esitamist.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg4">
+   <loigeNr id="1ca2e353-0e0b-42ea-92fc-e0082cc6868c">4</loigeNr>
+   <kuvatavNr id="e4fa726b-7a89-4cb7-a286-81b7247bea04"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="9d7b9d89-8e24-418c-ac1f-67ea1631a147">
+    <tavatekst id="f8a827ee-1a57-44b9-9a0e-0b982d08468c">Taotluse menetlemisel on spetsialistil õigus nõuda taotlejalt sissetulekut tõendavaid dokumente, sealhulgas väljavõtteid taotleja ja tema perekonnaliikmete pangakontodest, vara kasutamise lepinguid ja muid otsustamiseks vajalikke lisaandmeid ja dokumente, sealhulgas kulutusi põhjendavaid dokumente, teha kodukülastusi, saada andmeid teistelt füüsilistelt ja juriidilistelt isikutelt.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg5">
+   <loigeNr id="e3a0af96-55a2-4b9e-b26e-728e4e7a6818">5</loigeNr>
+   <kuvatavNr id="576efc48-ab94-4541-8abb-fcbf4179e2b6"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="0f084fe5-9f5c-41ce-a0bc-d7ae105317e7">
+    <tavatekst id="4b2752fb-5e88-4cb0-ae22-f626f6491d8c">Puuduste esinemisel või ebapiisavate andmete korral annab Sotsiaalabiamet taotlejale aja puuduste kõrvaldamiseks või täiendavate andmete esitamiseks. Sotsiaalabiametil on põhjendatud vajaduse korral õigus teha päringuid andmete saamiseks läbi STAR infosüsteemi ja muude infosüsteemide.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para7">
+   <paragrahvNr id="ff6a4bc2-f1b3-47cd-8a92-856bd595f6a3">7</paragrahvNr>
+   <kuvatavNr id="482be1f2-35b0-4056-a873-ae7f8107bbb2"><![CDATA[§ 7. ]]></kuvatavNr>
+   <paragrahvPealkiri id="5a602ce4-ddc4-48d3-816a-d9ba351eca8f">Teenuse määramine</paragrahvPealkiri>
+  <loige id="para7lg1">
+   <loigeNr id="b50fdf23-25b0-48b3-97f8-b548cb61edf8">1</loigeNr>
+   <kuvatavNr id="233360f2-a255-4356-80d7-14ef9f3f21b4"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="a856890b-7492-4ad2-9b92-c2b603559dfe">
+    <tavatekst id="97b0d945-79fd-459d-9d12-24b876f528ff">Teenuse osutamise otsustamiseks teeb spetsialist kodukülastuse, mille käigus hinnatakse hindamisinstrumendiga taotleja hooldusvajadust.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg2">
+   <loigeNr id="46aa1351-d70b-4789-9292-2aea7e9df1c9">2</loigeNr>
+   <kuvatavNr id="a0e3af63-bab4-4a79-b6b5-69f74e2ebe26"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="a0c46d45-f535-431b-ba94-f4aef3b8d9b0">
+    <tavatekst id="ae1b8248-6354-44ae-b71b-9549c75a6d7d">Abi määramisel võetakse vajadusel arvesse abivajava isiku ja tema perekonnaliikmete sissetulekuid, üldist majanduslikku olukorda, taotluse põhjendatust ja tulemuslikkust olukorra leevendamisel, abivajava isiku enda panust toimetuleku tagamisel ning teisi olemasolevaid võimalusi olukorra lahendamiseks.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg3">
+   <loigeNr id="826c830c-8b96-48ba-9193-dca5ad75b97a">3</loigeNr>
+   <kuvatavNr id="e29f1a76-c8a0-4cd5-9037-8a0459aafa1e"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="10f91b2a-06b0-4513-b1f8-5d27ba66ed84">
+    <tavatekst id="8e65efcf-0d34-48d2-bf37-b416b667a183">Sotsiaalabiamet otsustab teenuse määramise ja selle osutamise tingimused või määramisest keeldumise 10 tööpäeva jooksul nõuetekohase taotluse esitamisest.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg4">
+   <loigeNr id="660e7023-3692-4c87-8494-31d65bdde0e0">4</loigeNr>
+   <kuvatavNr id="d9a38154-13d7-4894-bf2a-b5f63da65296"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="ac693ccd-48bd-45c5-82c9-94a4f328604d">
+    <tavatekst id="1e078cd4-d086-4d8d-acae-9d025284fc79">Otsuses märgitakse teenuseosutaja, toimingute loetelu, maht, osutamise tähtaeg ja finantseerimine, sh omaosaluse suurus. Spetsialist teeb otsuse teatavaks teenuseosutajale ja taotluse esitajale või tema seaduslikule esindajale kirjalikult viie tööpäeva jooksul arvates otsuse tegemise päevast.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg5">
+   <loigeNr id="f87ebdd6-c037-4866-bc3c-79dab4e53e69">5</loigeNr>
+   <kuvatavNr id="410a949b-8559-4087-ac86-04b62168eee3"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="964999b3-e09a-4fab-8073-388cbc9df798">
+    <tavatekst id="425804be-88dc-4348-a747-f9935ff937eb">Teenuse määramisest võib keelduda juhul, kui teenuse taotleja on teadvalt andmeid varjanud või esitanud valeandmed, dokumendid ja muud tõendid, mis on vajalikud teenuse saamise õiguse või muu teenuse andmiseks olulise asjaolu väljaselgitamiseks.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg6">
+   <loigeNr id="e5b46f60-89d9-4839-a2db-5b60f027e329">6</loigeNr>
+   <kuvatavNr id="c932f201-1a02-479f-af1c-979a23b55ef0"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="a73ff500-13de-462a-baaa-8e5b72852fb4">
+    <tavatekst id="54b4819e-fdde-4f26-8e4c-7cbac4df8ac8">Kui teenuse taotleja on võimeline öeldut või loetut mõistma, teavitatakse teda teenuse osutamise alustamisel suuliselt või kirjalikult tema õigustest ja piirangutest teenuse saamise ajal, sh vaide esitamise võimalusest ning korrast. Kui teenuse taotleja ei ole võimeline öeldut või loetut mõistma, teavitatakse teenuse taotleja õigustest ja piirangutest, sh vaide esitamise võimalusest ning korrast, tema seaduslikku esindajat.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg7">
+   <loigeNr id="11a4770e-f479-4738-8256-f33197980165">7</loigeNr>
+   <kuvatavNr id="4e2197eb-5d5f-4b64-9a93-f3997561adde"><![CDATA[(7)]]></kuvatavNr>
+   <sisuTekst id="48ec617b-102d-471d-afc1-532a1c8a738f">
+    <tavatekst id="f8d0cbae-5f4c-45fd-aa93-ef4d412d9a75">Vaie sotsiaalkaitse korraldamisel tehtud otsuse või toimingu peale esitatakse otsuse teinud või toimingu sooritanud haldusorganile, kui seadus ei sätesta teisiti.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg8">
+   <loigeNr id="005557fc-0a1b-42b6-aa78-11139a630bcb">8</loigeNr>
+   <kuvatavNr id="1929dc51-0019-4879-927a-3cb3e46aacd1"><![CDATA[(8)]]></kuvatavNr>
+   <sisuTekst id="f8b303f0-285a-4aa6-9ac2-205f211a58c6">
+    <tavatekst id="d5f431bb-3462-4ac9-be9c-02c5caa60f55">Vaie lahendatakse haldusmenetluse seaduses sätestatud korras 30 päeva jooksul, arvates vaide esitamisest vaiet läbivaatavale haldusorganile, kui seadus ei sätesta pikemat tähtaega. Vaide läbivaatamise tähtaega võib pikendada haldusmenetluse seaduses sätestatud korras.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para8">
+   <paragrahvNr id="5ffbee7f-9e1c-4151-90ae-6637db6777d9">8</paragrahvNr>
+   <kuvatavNr id="2857aebe-bf18-4160-b6e1-cebc1efe1e88"><![CDATA[§ 8. ]]></kuvatavNr>
+   <paragrahvPealkiri id="cedf3a04-2ccd-46ce-9109-6cb0878009f6">Teenuse osutamine</paragrahvPealkiri>
+  <loige id="para8lg1">
+   <loigeNr id="d7b9ae32-ef48-4ecb-baf5-1b8fb61f2572">1</loigeNr>
+   <kuvatavNr id="bc62d22b-bb57-4f7f-8e37-89dd44b46a83"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="f5d64a39-5d70-4bb1-9616-84e9b3bfd00a">
+    <tavatekst id="eedb4538-3981-4d40-8521-6434925b85b7">Teenusele vastuvõtmine toimub kuni viie tööpäeva jooksul otsuse teatavaks tegemisest arvates.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para8lg2">
+   <loigeNr id="8b9eaaa5-c1dd-44d1-9af5-d8738b751673">2</loigeNr>
+   <kuvatavNr id="22224ab7-000a-4930-bfd3-27706782cf9d"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="e03131d2-8c7f-4e5b-abbf-0d4c9bf42b07">
+    <tavatekst id="d36e03eb-3164-4910-ba6f-400d1a437d96">Teenuse osutamiseks sõlmib teenuseosutaja teenuse saajaga teenuse osutamise lepingu. Lepingu lahutamatu osa on hooldusplaan. Leping koostatakse kahes eksemplaris, millest üks jääb teenuse saajale ja teine teenuseosutajale ning lepingu koopia edastatakse Sotsiaalabiametisse.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para8lg3">
+   <loigeNr id="cf69fc3b-a670-4fc3-8cd6-4a758f1d3a92">3</loigeNr>
+   <kuvatavNr id="3c89b198-8464-4b0f-9a5c-a7c7b28515e0"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="07e97b9a-87e5-4456-adc6-0e6b2101de95">
+    <tavatekst id="e0700192-718c-4d20-8447-905f30728d03">Teenust osutatakse vastavalt hooldusplaanile, mille koostab ja vajadusel muudab spetsialist.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para8lg4">
+   <loigeNr id="5109576e-877b-47d9-b606-1dc6c98ea85e">4</loigeNr>
+   <kuvatavNr id="77e66898-9210-4bbe-afbb-28da7f4ee1a6"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="d8561988-8965-4673-bc8c-fed54b666200">
+    <tavatekst id="77aa17be-2b5e-4110-8bb8-d6b8d94605ec">Teenuseosutaja on kohustatud viivitamata kirjalikult informeerima teenuselt lahkunud teenuse saajast Sotsiaalabiametit.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para9">
+   <paragrahvNr id="97932c1c-6f00-4ffa-8338-be23e322ef43">9</paragrahvNr>
+   <kuvatavNr id="8f0801cd-f26a-436c-8a2d-fee0639500e8"><![CDATA[§ 9. ]]></kuvatavNr>
+   <paragrahvPealkiri id="85840d5f-32fc-4682-a777-f4dc6013b003">Teenuse lõpetamine</paragrahvPealkiri>
+  <loige id="para9lg1">
+   <loigeNr id="2a26b704-dd84-4e01-b93d-f1b2dbbc5121">1</loigeNr>
+   <kuvatavNr id="67c56e86-7a19-43f4-b7a4-5ea1a4752d0a"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="31023f45-17eb-4e8b-8b62-26a578b79d03">
+    <tavatekst id="26662ca2-c7d0-45cd-9e23-887a73a5ec3c">Teenus lõpetatakse Sotsiaalabiameti otsusega kui:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para9lg1p1">
+   <alampunktNr id="abb2c903-8933-4c5c-b318-9d37e27cdebe">1</alampunktNr>
+   <kuvatavNr id="d8422e2e-7f88-42cf-8308-978fbc7be2ea"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="3efec737-d6f6-405f-9a60-7ed14f6e5501">
+    <tavatekst id="e9134719-c0a0-45e2-bef0-5a814515f99c">teenuse saaja on kehtivalt esitanud teenuse lõpetamise avalduse;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para9lg1p2">
+   <alampunktNr id="782f83f0-8255-4997-a564-84ca2334b5cb">2</alampunktNr>
+   <kuvatavNr id="10c285f9-a279-4eed-82c6-bee6cc99238c"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="8d83ad5b-100c-4890-842d-11295e412268">
+    <tavatekst id="6cfe207f-0984-442a-a79c-27c68e255d53">ära on langenud teenuse määramist põhjustanud asjaolud;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para9lg1p3">
+   <alampunktNr id="899ff3c4-4f2c-4077-8a23-4aecbaa239db">3</alampunktNr>
+   <kuvatavNr id="729df3f1-850a-4b9e-94b9-a1e7beb49d2c"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="e3fcb858-8012-46ce-95b4-ba8d82e8554e">
+    <tavatekst id="a9dd90ef-5580-4f2f-b612-e2f3bc60133d">teenuse saaja asub alaliselt elama teise omavalitsuse või riigi territooriumile;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para9lg1p4">
+   <alampunktNr id="e2421183-47a4-4df6-8ccd-f748be5f7a93">4</alampunktNr>
+   <kuvatavNr id="0e5abbd2-01f9-43cc-ba41-a696802d02d0"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="3c508e59-3a5b-4d39-9bbc-912579b5e9ba">
+    <tavatekst id="750e292d-ce11-46a8-9521-f7cf3e95bda2">teenuse saaja on teadvalt andmeid varjanud või esitanud valeandmed, dokumendid ja muud tõendid, mis on vajalikud hüvitise saamise õiguse või muu hüvitise andmiseks olulise asjaolu väljaselgitamiseks;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para9lg1p5">
+   <alampunktNr id="852589f7-f74d-4df6-b895-73f6f25c1ec3">5</alampunktNr>
+   <kuvatavNr id="d27e0317-23f1-43b6-86de-5a1371f4041d"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="e8425e46-e17b-4892-9495-955c2dac333b">
+    <tavatekst id="5b6c22ff-0a7f-40b8-ba4c-b437752312cb">seoses teenuse saaja surmaga;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para9lg1p6">
+   <alampunktNr id="b9c1e878-343a-4080-9246-dddb5c206c59">6</alampunktNr>
+   <kuvatavNr id="c04be63a-a6ac-4a7b-ae63-5f901f8e4855"><![CDATA[6) ]]></kuvatavNr>
+   <sisuTekst id="d450da46-5c97-4f7c-bab0-1319e12bd3fe">
+    <tavatekst id="ef034cec-a7f6-4824-a9d0-f6d25b9c7903">muul põhjusel teenuse saaja ei vasta enam seaduses sätestatud tingimustele.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para9lg2">
+   <loigeNr id="e4a7b012-bf50-4f9d-ae9c-a1c9cb530b68">2</loigeNr>
+   <kuvatavNr id="a8667a6f-1f6e-4684-bb9b-9da794058d77"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="153da7a7-ca65-4a08-a835-9a3765f7b4fd">
+    <tavatekst id="1853e3d5-d849-4c57-a418-8b92f92cb75b">Teenuse ja teenuseosutaja määramine lõpetatakse alates käesoleva paragrahvi lõikes 1 nimetatud asjaolude tekkimisest.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para10">
+   <paragrahvNr id="7571e4a4-b881-4637-b8b8-00e65fff91df">10</paragrahvNr>
+   <kuvatavNr id="248b2c7c-dde7-4e8d-8ed6-5254a69500ba"><![CDATA[§ 10. ]]></kuvatavNr>
+   <paragrahvPealkiri id="f6eebba2-6387-4921-8879-5b3713495e41">Järelevalve teostamine ja arvestuse pidamine</paragrahvPealkiri>
+  <loige id="para10lg1">
+   <loigeNr id="7ba9736f-3e43-4b2c-8a4c-8b34db39b594">1</loigeNr>
+   <kuvatavNr id="2a8709a7-8650-4d25-944a-b392520a5e92"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="cf7d34a8-df79-47e5-bc97-34437ebeb56a">
+    <tavatekst id="e390291b-ffa8-4ef0-acbc-b04c9e35443e">Järelevalvet teenuse osutamise kohta teostab Sotsiaalabiamet.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para10lg2">
+   <loigeNr id="4d9bc1d6-c405-4961-b845-4dec3ade0913">2</loigeNr>
+   <kuvatavNr id="464b8256-3215-42d2-92f9-bbb1c88eb10d"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="5461c292-6a4a-4bd1-b53e-0e023f3ec158">
+    <tavatekst id="9e2c3b9a-d6bd-41d1-98c1-4f6f291b976b">Teenuse korraldamise ja osutamise üle arvestuse pidamise eest vastutab teenuseosutaja, kes esitab Sotsiaalabiametile vastavad aruanded.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para11">
+   <paragrahvNr id="7449ecd9-ae40-41f7-a9e7-c4615c793ea7">11</paragrahvNr>
+   <kuvatavNr id="2b74ce81-2f4f-459f-8502-b7a33f0ac323"><![CDATA[§ 11. ]]></kuvatavNr>
+   <paragrahvPealkiri id="c6ea48bf-bf5d-4bd6-8d7f-b03cac0ddd15">Rakendussätted</paragrahvPealkiri>
+  <loige id="para11lg1">
+   <loigeNr id="675932bd-c3d1-478a-b197-b72439855c4f">1</loigeNr>
+   <kuvatavNr id="eecc9397-a2db-457c-b2f7-85f1d4241b1d"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="142550fc-55f3-42be-b9d3-0bb712e6a61d">
+    <tavatekst id="f6f41d72-27ee-4829-8870-8b882f1d8868">Tunnistada kehtetuks Narva Linnavolikogu 20.02.2014 määrus nr 6 „Koduteenuste osutamise tingimused ja kord Narva linnas“.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para11lg2">
+   <loigeNr id="b9917e0f-4b67-4e02-b410-ec4870cfa2d2">2</loigeNr>
+   <kuvatavNr id="3408d161-c66b-4bf3-be60-9557a4f893d4"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="d668e1b7-2b06-4c0a-a73e-0575ea03b778">
+    <tavatekst id="b3e53967-9a3d-46cf-846e-ebbb9db8fac6">Määrus jõustub seadusega sätestatud korras.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="67507fc3-c75c-47f5-bdaf-109b2fdc210c"><allkiriKoht id="9149d0a7-8527-45c2-9e30-c76ea01cfc70"/><allkirjastaja id="e3e819d6-7838-4329-80f2-9e3f00629ab5"><ametinimetus id="60f2dbe3-7deb-4ec0-ad2a-8699d37ca9b8">Linnavolikogu esimees</ametinimetus><eesnimi id="bbee971b-9b8d-42c5-983b-d1046f77d7da">Tatjana</eesnimi><perekonnanimi id="b901c621-ce5a-48de-b2ad-f1eb183555d0">Stolfat</perekonnanimi></allkirjastaja></allkiri></oigusakt>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="2c2fa952-d76a-482d-8532-b2ed8e3a7d28" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Pärnu Linnavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2025-05-19</aktikuupaev>
+  
+  <joustumine>2025-06-01</joustumine>
+  <aktiNr>2</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-05-21</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>25</RTartikkel><aktViide>421052025025</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2025-06-01+03:00</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2025-05-20</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>421052025025</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2025-05-20</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1060999</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2025-05-20</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Liia Oidjärv</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="1433e8a7-3b54-4f83-862c-1124a0cb5586">
+  <nimi id="76602c78-f28b-4eef-a654-4b4e06eaca36">
+   <pealkiri id="24f68011-c5e6-48f3-9988-3949a7a2a9b7">Varjupaigateenuse maksumuse kinnitamine</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="eae070e3-b265-420f-b814-bfec638b142a"><preambul id="fdcbc872-2784-430d-9836-4be386fcfbd2"><tavatekst id="e1ab6b53-bc3f-4ba9-84ae-9afbdbb93043">Määrus kehtestatakse sotsiaalhoolekande seaduse § 16 lõike 1 ja Pärnu Linnavolikogu 14.10.2021 määruse nr 19 „Sotsiaalhoolekande seaduses ja lastekaitseseaduses sätestatud ülesannete delegeerimine“ § 1 ja Pärnu Linnavolikogu 20.05.2021 määruse nr 5 „Sotsiaalteenuste osutamise kord“ § 12 lg 8 (01.06.2025 jõustuv redaktsioon) alusel.</tavatekst></preambul><paragrahv id="para1"><paragrahvNr id="ab9cc0c8-e3e9-4e27-af05-a5913daf1e3c">1</paragrahvNr><kuvatavNr id="ec72e6af-1545-402d-8149-6425604a8525"><![CDATA[§ 1. ]]></kuvatavNr><paragrahvPealkiri id="f09d8e6f-55b1-4701-b336-edb5977e1575">Varjupaigateenuse maksumus</paragrahvPealkiri><loige id="para1lg1"><loigeNr id="1e521add-9366-476a-ae6b-7f5e5af99d66">1</loigeNr><kuvatavNr id="268573a4-a3ff-420d-8806-a305dd34bcb6"><![CDATA[(1)]]></kuvatavNr><sisuTekst id="d95c03b6-a907-4540-a0be-8a21f2c25af7"><tavatekst id="2c238854-91cf-409d-bc2f-9df5e39ede49">Kinnitada Pärnu linna korraldatava varjupaigateenuse maksumus järgmiselt:</tavatekst></sisuTekst><alampunkt id="para1lg1p1"><alampunktNr id="0f529a39-75c1-4ec3-b40a-45df65b0c161">1</alampunktNr><kuvatavNr id="14b810d8-6ed8-4117-9f60-d28952206329"><![CDATA[1) ]]></kuvatavNr><sisuTekst id="2c2de20e-4921-4a8e-905f-d7389be16406"><tavatekst id="570ed6c7-9b3a-4088-a450-f2d99d47e35a">varjupaigateenus isikule, kelle rahvastikuregistrisse kantud elukoht on Pärnu linn – 4 eurot ööbimiskorra eest;</tavatekst></sisuTekst></alampunkt><alampunkt id="para1lg1p2"><alampunktNr id="fca6dfbc-8cd6-417f-91d9-10df01cd57bb">2</alampunktNr><kuvatavNr id="f4aa2a73-598f-4bb2-84da-1038d9ba3fa9"><![CDATA[2) ]]></kuvatavNr><sisuTekst id="9c352ae6-4b68-4f2e-bf79-1d6e2f8a522a"><tavatekst id="28d01a08-d8a1-4e57-8040-913057957b6e">varjupaigateenus isikule, kelle rahvastikuregistrisse kantud elukoht ei ole Pärnu linn – 9 eurot ööbimiskorra eest.</tavatekst></sisuTekst></alampunkt></loige><loige id="para1lg2"><loigeNr id="7641eb87-c156-4eba-aa64-00312470f592">2</loigeNr><kuvatavNr id="15c2b747-600c-4461-b509-abe3321bb511"><![CDATA[(2)]]></kuvatavNr><sisuTekst id="a96e4e48-0d44-4586-978f-4201e3afb372"><tavatekst id="602b2ecb-f52d-4899-a3d3-138449c3f1cb">Varjupaigateenuse eest võetakse tasu isikult, kes kasutab varjupaigateenust rohkem kui 3 ööd kalendriaastas.</tavatekst></sisuTekst></loige></paragrahv><paragrahv id="para2"><paragrahvNr id="38b95220-e1a3-4758-8edf-063a2e00f627">2</paragrahvNr><kuvatavNr id="fb0c6ed6-8738-4132-9887-7343ea2fce68"><![CDATA[§ 2. ]]></kuvatavNr><paragrahvPealkiri id="010d2505-0345-4f2b-8345-e49d4cf8b8ea">Jõustumine</paragrahvPealkiri><loige id="para2lg1"><loigeNr id="7f3e5d2b-6eef-430b-a466-19d48be7b3a1"/><kuvatavNr id="a87ed5df-1a7b-4a32-8186-eb4ffef45cda"/><sisuTekst id="fad780c3-38dd-41b1-90cd-98777733e911"><tavatekst id="b3aa43c5-93a7-433c-bc19-716b1ac8f305">Määrus jõustub 01.06.2025.</tavatekst></sisuTekst></loige></paragrahv></sisu>
+<allkiri id="44adfd0d-2f25-48c7-ad25-932e7fcb9440"><allkiriKoht id="a28fb43a-fe7d-47c6-aac8-526c580632d3"/><allkirjastaja id="c77bcb4b-03d7-42cc-a9eb-e44b7b3353d9"><ametinimetus id="c2b73a30-7640-4d0e-8089-f04f690c847d">linnapea</ametinimetus><eesnimi id="859b3a05-3172-4e30-a211-78f202d690ab">Romek</eesnimi><perekonnanimi id="63dd9fe6-1d11-4341-b68f-7f4f1e2e9947">Kosenkranius</perekonnanimi></allkirjastaja></allkiri><allkiri id="47268205-c618-4aa4-aea7-0ef0a32c3a12"><allkiriKoht id="14590371-734d-4ee7-8bc3-5fa222fe8596"/><allkirjastaja id="37b33566-b0b6-4ea0-9db0-9fde49428a8b"><ametinimetus id="ce22062c-7be4-4f97-adcd-f2565e5749cc">linnasekretär</ametinimetus><eesnimi id="492975bf-65be-44ea-b782-1e136739ca7f">Taavi</eesnimi><perekonnanimi id="929d7c73-a566-4473-9904-a6dd814475c4">Käärid</perekonnanimi></allkirjastaja></allkiri></oigusakt>

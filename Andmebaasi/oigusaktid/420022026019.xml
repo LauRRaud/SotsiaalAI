@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="0db4196b-ade3-48e4-a1f1-1908e01d58a1" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Kiili Vallavalitsus</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2023-06-13</aktikuupaev>
+			<avaldamismarge>
+				<RTosa>RT IV</RTosa>
+				<avaldamineKuupaev>2023-06-28</avaldamineKuupaev>
+				<RTaasta>2023</RTaasta>
+				<RTartikkel>32</RTartikkel>
+				<aktViide>428062023032</aktViide>
+			</avaldamismarge>
+			<joustumine>2023-07-01</joustumine>
+			<aktiNr>4</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-02-20</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>19</RTartikkel><aktViide>420022026019</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2026-04-01</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2026-02-19</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>420022026019</globaalID>
+		<metaandmedVersioon>12</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2026-02-19</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1056910</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2023-06-25</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Kadri Tuisk</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>avaldatud</dokumentStaatus>
+			<metaandmedVersioon>6</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2026-02-19</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="c3424b95-7e15-477d-8321-44c19eb88aff">
+		<nimi id="fb306de3-1af0-4db4-947c-09c3f84c800a">
+			<pealkiri id="8da4fb8c-1539-47fd-bc82-ed7988758e53">Väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse hoolduskulude tasumise piirmäära kehtestamine</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="019156b5-d15d-4f2c-a883-eb42a9a5995e">
+		<aktikuupaev id="e34fe433-3eae-4558-b3b9-6750aa63752d">2026-02-10</aktikuupaev>
+		<avaldamismarge id="018a4168-6c7a-4fac-b73c-988a0ddd038c">
+			<RTosa id="6ae347cf-7f96-4715-accd-20c5c9f8dbe5">RT IV</RTosa>
+			<avaldamineKuupaev id="89cc84c8-672b-41dc-89ef-2be7bd6a08e6">2026-02-20</avaldamineKuupaev>
+			<RTartikkel id="85955aad-86c4-4ec5-bb42-1a42bb1acdcf">3</RTartikkel>
+			<aktViide id="bf627bb4-dbec-4ea0-866a-1027faba4771">420022026003</aktViide>
+		</avaldamismarge>
+		<joustumine id="1a904fa3-d0ff-4912-b569-80f96977f0da">2026-04-01</joustumine>
+	</muutmismarge>
+	<sisu id="e1b78373-0cdc-4ee8-b141-0568f11c1e0c">
+		<preambul id="2a8ab52f-ec7d-4eae-8130-cb5fabfab820">
+			<tavatekst id="5d9d1ff2-7dbc-44ef-b021-ec3c8002716d">Määrus kehtestatakse sotsiaalhoolekande seaduse § 22<sup>1</sup> lg 3 ja Kiili Vallavolikogu 07.10.2021 määruse nr 7 "Sotsiaalhoolekandelise abi andmise kord Kiili vallas" § 17<sup>1</sup> lg 3 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="e7c3d419-b3ae-42d5-9d22-6368c364ba3b">1</paragrahvNr>
+			<kuvatavNr id="f850cccd-a662-4d1b-9a4d-628bf77cbd28"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="eb0c5302-41d6-4a3e-bfa7-da37b7a167a8">Väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse hoolduskulude tasumise piirmäär</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="331266f5-11e2-418a-9cbe-50f8c128db19"/>
+				<kuvatavNr id="df785f33-b218-4b72-8300-f63c8da7200f"/>
+				<sisuTekst id="f889472f-1f21-4bd3-af98-41dce3c325e4">
+					<tavatekst id="963259c3-df28-46dd-8ce9-aca624aa15d8">Kehtestada väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse osutamisel vahetult teenust osutavate hooldustöötajate ja abihooldustöötajate kulude tasumise piirmääraks 700 eurot ühe teenusesaaja kohta kalendrikuus.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="affbf5e2-404d-40be-9a21-3ad5c8adc982">
+					<avaldamismarge id="6e4881a6-04a7-4236-9626-40de8517b899">
+						<RTosa id="c217aa15-de43-4f7b-9f68-bc4273884a8a">RT IV</RTosa>
+						<avaldamineKuupaev id="1a03d703-abda-4ef9-a168-9707b0f95539">2026-02-20</avaldamineKuupaev>
+						<RTartikkel id="26293782-8426-4c67-9c5e-fd6a889a1292">3</RTartikkel>
+						<aktViide id="f3d3c653-28e7-4700-ac4e-b1b1d4b12d29">420022026003</aktViide>
+					</avaldamismarge>
+					<joustumine id="d9ddbca4-e9eb-4a0b-91ad-e9cdf09c3fc5">2026-04-01</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="d0553338-cb00-47d4-a47c-81e21fc15873">2</paragrahvNr>
+			<kuvatavNr id="74951dfb-5417-48da-98bd-459b69770b83"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="6c866267-0259-4ae6-a286-94788b310858">Määruse jõustumine</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="64eac765-d4c3-467a-8571-b3a8fb39b771"/>
+				<kuvatavNr id="e6c0e387-8ace-4c00-8fe5-42fc631e1423"/>
+				<sisuTekst id="1df46d43-f4ee-423a-9379-1689a23a9867">
+					<tavatekst id="79d79409-1415-4fe2-9f2a-e26556a2c15e">Määrus jõustub 1. juulil 2023. aastal.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+</oigusakt>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="7eb4c015-2891-4c92-85e8-e60b01c05e5c" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metaandmed>
+    <valjaandja>Väike-Maarja Vallavalitsus</valjaandja>
+    <dokumentLiik>määrus</dokumentLiik>
+    <tekstiliik>algtekst-terviktekst</tekstiliik>
+    <dokumentEtapp>avaldamine</dokumentEtapp>
+    <dokumentStaatus>avaldatud</dokumentStaatus>
+    <vastuvoetud>
+      <aktiNr>4</aktiNr>
+      <aktikuupaev>2026-04-01</aktikuupaev>
+    </vastuvoetud>
+    <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-04-10</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>1</RTartikkel><aktViide>410042026001</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2026-05-01+03:00</kehtivuseAlgus></kehtivus><versioon>
+      <dokumentVersioon>1</dokumentVersioon>
+      <dokumentVersioonKuupaev>2026-04-01</dokumentVersioonKuupaev>
+    </versioon>
+    <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+    <globaalID>410042026001</globaalID>
+    <metaandmedVersioon>6</metaandmedVersioon>
+    <metaandmedVersioonKuupaev>2026-04-09</metaandmedVersioonKuupaev>
+    <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+    <terviktekstiGrupiID>1063253</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+  </metaandmed>
+  <aktinimi id="595a9514-4b08-4323-8948-1f42964ed2de">
+    <nimi id="79573349-db7d-4b59-92d0-d29754605b1e">
+      <pealkiri id="5d1f7e32-650b-4235-8132-150045e855f3">Sotsiaalteenuste hindade kehtestamine</pealkiri>
+    </nimi>
+  </aktinimi>
+  <sisu id="9028464e-645d-44ee-b6a4-6363a334e680">
+    <preambul id="92ed6c63-3700-4cc9-9628-389adbd2cc91">
+      <tavatekst id="16383e7c-bda5-45a1-941a-82682ff93540">Määrus kehtestatakse Väike-Maarja Vallavolikogu 25.03.2026 määruse nr 1 „Väike-Maarja valla 2026. aasta eelarve vastuvõtmine“ ja Väike-Maarja Vallavolikogu 28.11.2024 määruse nr 44 „Sotsiaalhoolekandelise abi andmise kord” § 7 lõike 2 alusel.</tavatekst>
+    </preambul>
+    <paragrahv id="para1">
+      <paragrahvNr id="20c95006-2f28-4fa9-94a4-368b728688af">1</paragrahvNr>
+      <kuvatavNr id="88ef2258-75d7-42de-829a-e0c2e07b8417"><![CDATA[§ 1. ]]></kuvatavNr>
+      <paragrahvPealkiri id="396e3b07-5e81-4ffb-ab7b-e022755cf8a7">Sotsiaalteenuste hindade kehtestamine</paragrahvPealkiri>
+      <loige id="para1lg1">
+        <sisuTekst id="ac2c69f9-bd19-4cf6-a9d9-1eda6ba38344">
+          <tavatekst id="aabed00f-163e-496d-b933-72871167bace">Kehtestada sotsiaalteenuste hinnad järgnevalt:<reavahetus/>1) tugiisiku teenus perele – 8,00 eurot tund;<reavahetus/>2) tugiisiku teenus üldhariduskoolis ja koolieelses lasteasutuses – 6,30 eurot tund;<reavahetus/>3) isikliku abistaja teenus - Vabariigi Valitsuse kehtestatud töötasu tunnitasu alammäär, millest teenust saav isik tasub omaosalusena 20%. Omaosaluse tasumisest on vabastatud madala sissetulekuga isik;<reavahetus/>4) koduteenus 5 eurot kord;<reavahetus/>5) vallasisene sotsiaaltransport (üks sõit) 4 eurot;<reavahetus/>6) vallasisene sotsiaaltransport väljaspool tööaega (üks sõit) 8 eurot;<reavahetus/>7) sotsiaaltransport Rakverre 20 eurot, transport väljaspool tööaega 30 eurot;<reavahetus/>8) sotsiaaltransport Jõgevale 30 eurot, transport väljaspool tööaega 45 eurot;<reavahetus/>9) sotsiaaltransport Jõhvi 70 eurot, vajadusel lisandub tasu parkimise eest, transport väljaspool tööaega 105 eurot;<reavahetus/>10) sotsiaaltransport Tartu 70 eurot, vajadusel lisandub tasu parkimise eest, transport väljaspool tööaega 105 eurot;<reavahetus/>11) sotsiaaltransporditeenus muudesse piirkondadesse 40 senti kilomeeter.</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para2">
+      <paragrahvNr id="95e32873-743e-457c-84fd-a5b2deb4cc14">2</paragrahvNr>
+      <kuvatavNr id="6f1b4bc5-bf97-4111-af42-299a36ed65d4"><![CDATA[§ 2. ]]></kuvatavNr>
+      <paragrahvPealkiri id="88d2cadc-8dc7-4cf3-875c-25ff4b047070">Määruse kehtetuks tunnistamine <reavahetus/></paragrahvPealkiri>
+      <sisuTekst id="341e0753-68ea-43ae-afa0-5428e085c4dc">
+        <tavatekst id="5b914649-2270-4a70-97c8-6ab347f64d51">
+          <reavahetus/>Tunnistada kehtetuks Väike-Maarja Vallavalitsus 14.02.2024 määrus nr 2 „Sotsiaalteenuste hindade kehtestamine”.</tavatekst>
+      </sisuTekst>
+    </paragrahv>
+    <paragrahv id="para3">
+      <paragrahvNr id="8724c457-7fe4-4f4c-aca1-63a74479917c">3</paragrahvNr>
+      <kuvatavNr id="7133d092-e201-4e08-a3de-37e1bfc8f930"><![CDATA[§ 3. ]]></kuvatavNr>
+      <paragrahvPealkiri id="d0c2031d-6ac1-4531-8e91-ed4da879e520">Määruse jõustumine</paragrahvPealkiri>
+      <loige id="para3lg1">
+        <sisuTekst id="2f22ea19-5210-4cb2-9345-75e58598e8f1">
+          <tavatekst id="f77544fc-ec06-4aec-96b8-24887a4bf816">Määrus jõustub 01.05.2026.</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+  </sisu>
+  <allkiri id="cf1fac3e-5073-4854-8805-91832451b038">
+    <allkiriKoht id="38de3aba-90c4-471f-b5e3-0ec3526dd78c"/>
+    <allkirjastaja id="1ffdcee8-a58d-4325-adb1-54e033cbc977">
+      <ametinimetus id="bcd6691d-d896-4183-a62e-6644b118426a">vallavanem</ametinimetus>
+      <eesnimi id="9c22c243-23f7-4fd7-8df9-60721c92a510">Indrek</eesnimi>
+      <perekonnanimi id="fe8aa703-30ce-41e7-83bf-8bb364513b71">Kesküla</perekonnanimi>
+    </allkirjastaja>
+  </allkiri>
+  <allkiri id="aa9b9125-f656-4335-83b1-89163b0af8cd">
+    <allkiriKoht id="1a280b97-62a8-43f9-bae2-3738a59ecabb"/>
+    <allkirjastaja id="f2fa4052-4faa-4376-bfed-cbd5f0380f7a">
+      <ametinimetus id="5a9f71de-dcdc-4fee-bc58-dafd4d92d67e">vallasekretär</ametinimetus>
+      <eesnimi id="f5a01cd7-56c5-4a35-b225-74f078e781e3">Maris</eesnimi>
+      <perekonnanimi id="a387e164-c3d6-4f53-a2d3-253fa84ec066">Kõrgmäe-Kruusamägi</perekonnanimi>
+    </allkirjastaja>
+  </allkiri>
+</oigusakt>

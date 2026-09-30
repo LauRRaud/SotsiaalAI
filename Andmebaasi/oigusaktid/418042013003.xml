@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="3d609f85-200d-4f13-a2b5-15f3eec0336c" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Viljandi Linnavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2008-03-31</aktikuupaev>
+  
+  <joustumine>2008-04-01</joustumine>
+  <aktiNr>12</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2013-04-18</avaldamineKuupaev><RTaasta>2013</RTaasta><RTartikkel>3</RTartikkel><aktViide>418042013003</aktViide></avaldamismarge><kehtivus>
+  
+  <kehtivuseAlgus>2008-04-01+03:00</kehtivuseAlgus>
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2013-04-12</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>418042013003</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2013-04-16</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1013013</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2013-04-12</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Kadri Kobin</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="16494a82-a425-4cac-8c21-f0f7ea3c1f18">
+  <nimi id="50ccd1dd-60e6-4836-a682-c30b1afb8937">
+   <pealkiri id="e4128ae7-7e63-43dd-9ad7-ddf04dd16d53">Sotsiaaltoetuste ning –teenuste osutamiseks ja arendamiseks eraldatud vahendite kasutamise kord</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="a29cb62d-1feb-4d76-8b91-1fb275831087"><preambul id="d452c930-1743-46a4-841c-e81ea845927a">
+   <tavatekst id="7ac6a916-96fc-4896-9b17-3c1129ab7330">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 6 lõike 1 ning Vabariigi Valitsuse 07.02.2008. a määruse nr 44 „„2008. aasta riigieelarve seaduses“ kohaliku omavalitsuse üksustele tasandusfondi määratud eraldiste jaotus ning jaotamise ulatus, tingimused ja kord“ alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="7312263c-4608-464f-959e-6a2fe4d51a55">1</paragrahvNr>
+   <kuvatavNr id="25f06520-e4c8-4ca0-b373-f54c23b41c1d"><![CDATA[§ 1. ]]></kuvatavNr>
+      <sisuTekst id="98b993c2-2d0b-47a3-9ce0-680b1a62a8d3">
+    <tavatekst id="ebe6c28d-8c9c-44ae-a774-c9a48bde9ebc">Kohalikele omavalitsustele sotsiaaltoetuste ning –teenuste osutamiseks eraldatud vahendeid võib kasutada:</tavatekst>
+   </sisuTekst>
+  <loige id="para1lg1">
+   <loigeNr id="1285638c-9ebf-4fd9-a7a2-499957249ef5">1</loigeNr>
+   <kuvatavNr id="5e16854b-2040-4c4d-96ad-cc90741ebd82"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="87be982f-78c0-41a9-a071-cb6ab7bbf02f">
+    <tavatekst id="ec509804-129a-490f-818e-8045f662dec8"> Viljandi Linnavalitsuse sotsiaalameti toimetulekuandmeid sisestava spetsialisti töötasu täies ulatuses;</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg2">
+   <loigeNr id="15554f1c-a0f6-42aa-ab66-c212d8e3795e">2</loigeNr>
+   <kuvatavNr id="d09704dc-098f-4a4a-bf61-c2e483f6af04"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="d9d01292-a873-4aa2-8734-b821e20c7538">
+    <tavatekst id="24f5243e-994c-4f43-99ab-aa7a56f1a9e7"> toimetulekutoetuse taotluste vastuvõtmise ja töötlemisega tegeleva peaspetsialisti töötasu 1/3 ulatuses;</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg3">
+   <loigeNr id="0ad8eef5-33c0-49db-aa35-149e8c0ea9b4">3</loigeNr>
+   <kuvatavNr id="70fafcc8-db5e-41f0-bb1a-19a7275295da"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="3be3801e-1869-439c-917a-94e5ba3fa588">
+    <tavatekst id="a4915b44-c94a-4829-824a-b276de987b8b"> isikutele ja peredele täiendavate sotsiaaltoetuste maksmiseks toimetuleku soodustamiseks hädavajalike kulutuste osaliseks katmiseks.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="f78a2d59-5220-40b3-aab3-9a2a888ccea5">2</paragrahvNr>
+   <kuvatavNr id="f77e169b-bf1e-42c1-aa5f-8ae275ac4af0"><![CDATA[§ 2. ]]></kuvatavNr>
+      <sisuTekst id="ebb61abe-007e-4a3c-9e66-6d492f323635">
+    <tavatekst id="4d2deadf-040e-42f5-8ac2-67b8e666a9c3">Kinnitada täiendavate sotsiaaltoetuste määramise tingimused ja kord järgmiselt:</tavatekst>
+   </sisuTekst>
+  <loige id="para2lg1">
+   <loigeNr id="63dffd75-f99b-4526-bf96-7c46d32f9855">1</loigeNr>
+   <kuvatavNr id="96f72717-510b-4653-9036-51a79524664a"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="9cbc207f-d4a6-462d-905c-bb0e29cb9772">
+    <tavatekst id="4d522d0e-b6a4-417d-a534-deccbc8e59bf"> täiendavat sotsiaaltoetust määratakse isikutele ja peredele isikliku avalduse või sotsiaaltöötaja ettepaneku alusel;</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg2">
+   <loigeNr id="c538c549-6774-47ec-8a5a-ae789a67230a">2</loigeNr>
+   <kuvatavNr id="8ed3c0b9-44a9-4467-8c3e-72f748471d69"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="4f680550-9743-48d5-bd9c-6c36f52930b9">
+    <tavatekst id="ac2356ed-f8c6-4b07-b32c-17ac541e73ff"> täiendava toetuse taotlejate avaldused koos neile lisatud kuludokumentidega, mis tõendavad täiendava toetuse saamise vajadust, vaadatakse läbi linnavalitsuse sotsiaalkomisjoni poolt 1 kord kuus;</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg3">
+   <loigeNr id="ba89dd5d-e2aa-478f-b53b-e928e90e6620">3</loigeNr>
+   <kuvatavNr id="bb11158e-3fa4-4323-8c8b-2e0fc165ec37"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="bb195919-550e-4206-b78c-13ede92cfb43">
+    <tavatekst id="0e21138b-cfb6-45fe-8a0d-7f432e877c80"> linnavalitsuse sotsiaalkomisjon otsustab toetuse andmise või andmata jätmise ja selle suuruse lähtuvalt toetuse taotlemise põhjendustest ning rahaliste vahendite olemasolust;</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg4">
+   <loigeNr id="11f1196a-ef5c-4d93-8fb5-4e1d0020358b">4</loigeNr>
+   <kuvatavNr id="75466b0c-35b1-45e0-8641-9b67ef5f131f"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="75356b6a-bc2d-47cd-87e9-7f895d1ab6d1">
+    <tavatekst id="c86c5ac3-0b46-41c5-8d92-6d6b333b48f4"> toetus kantakse rahandusameti poolt taotleja arvelduskontole või makstakse sotsiaalameti poolt välja sularahas 10 päeva jooksul peale otsuse tegemist.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="f975bd34-c533-4d0f-8bfc-03cef0aba453">3</paragrahvNr>
+   <kuvatavNr id="4b1c79cf-37ab-42a1-a183-fd5bf3bdf999"><![CDATA[§ 3. ]]></kuvatavNr>
+      <sisuTekst id="d6da8842-43d8-42a0-b83d-238f76aa1cb0">
+    <tavatekst id="093020cf-ca08-4531-b92f-154fc62ad298">Kohalikele omavalitsustele sotsiaalteenuste arendamise kulude katteks eraldatud vahendeid võib kasutada alljärgnevate sotsiaalteenuste osutamiseks:</tavatekst>
+   </sisuTekst>
+  <loige id="para3lg1">
+   <loigeNr id="587e5674-8016-4871-9066-f2e887db4132">1</loigeNr>
+   <kuvatavNr id="3335d257-050e-49e2-b09a-fa210f0ed220"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="28a9d523-a98f-4c09-92c3-a8144cc1885b">
+    <tavatekst id="0502b0f9-d87f-41a2-9f29-5116c4d629ec">puudega lastele transporditeenus;</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg2">
+   <loigeNr id="ac36d1f9-b1b2-4b0c-ac3f-f68347050f11">2</loigeNr>
+   <kuvatavNr id="46c2dbdc-bad2-4f3a-9a9f-817d02ee1c10"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="9b60f3f1-dac0-4b9e-989f-d2ece5f1cf1b">
+    <tavatekst id="a1229167-2e36-411d-b50c-2883bf97fd3f"> puudega inimestele abivahendite ostmine, elukoha kohandamine;</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg3">
+   <loigeNr id="fb42e961-f350-4974-9cfc-a91e8e1bc913">3</loigeNr>
+   <kuvatavNr id="e1b851d7-a44f-4971-8afb-f28fc78fafd9"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="87b4941d-e507-4a31-a18d-13e6f80f2e2e">
+    <tavatekst id="23010eff-f271-404a-a8ce-9da9876833a7"> päevaste tegevuste ruumide kohandamine ja sisustamine;</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg4">
+   <loigeNr id="cfdbd238-2737-4802-9bdb-7dbdce94ff76">4</loigeNr>
+   <kuvatavNr id="ee15ec18-5f8d-4288-95fe-7be98db02dbf"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="bca12fca-d280-4a26-97b6-c2d3e26d2f52">
+    <tavatekst id="9c619ada-0643-464c-a2e2-199c692f2d17">kaldteede ehitamine ühiskondlikes hoonetes;</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg5">
+   <loigeNr id="f254f0c2-2995-4c15-a750-760b98e90a07">5</loigeNr>
+   <kuvatavNr id="7cff042e-a76c-4977-9d73-12c5ce3b579b"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="c00ca352-4050-426a-873c-b0e8ba85cce7">
+    <tavatekst id="79cf5ace-178b-40fa-aaee-5d7e33b2254d"> raske ja sügava puudega täiskasvanutele raviprotseduurideks transporditeenus;</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg6">
+   <loigeNr id="70c9b84b-3ef7-4473-8235-e6ba38c8d1c1">6</loigeNr>
+   <kuvatavNr id="ef876e76-efed-4ef7-9c29-e666525784d4"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="dc529a0d-214a-44c6-ad81-b54781c4fa6b">
+    <tavatekst id="6fba0dc5-8a2c-47e0-a740-8410f7c40545"> spetsiifiline psühholoogiline ja psühhiaatriline nõustamine;</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg7">
+   <loigeNr id="f2aa76ff-262a-47e7-a5a0-fc150f3aa33e">7</loigeNr>
+   <kuvatavNr id="fb928cb6-a905-4c28-bf4d-f53a63503b10"><![CDATA[(7)]]></kuvatavNr>
+   <sisuTekst id="23836e04-4d4f-4ceb-8d38-1e53be0e61a4">
+    <tavatekst id="142e3162-0b5e-47c7-8f76-898f943df4c6">isikliku abistaja teenus.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para4">
+   <paragrahvNr id="37c2e5d5-a07f-4ad9-8a08-66f2b8d042e4">4</paragrahvNr>
+   <kuvatavNr id="1cc45a80-c1bc-4bb9-a046-dd79fce7fb9d"><![CDATA[§ 4. ]]></kuvatavNr>
+      <sisuTekst id="c413b197-b330-4894-b1a3-842404ba1e2b">
+    <tavatekst id="2cf2ad43-2a89-43c5-8628-38c0e8348ed0">Teenuste vajaduse ja osutatava abi suuruse otsustab abivajaja avalduse alusel linnavalitsuse sotsiaalkomisjon.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para5">
+   <paragrahvNr id="48a0ffb5-96cb-45ad-88d0-d57294555ddc">5</paragrahvNr>
+   <kuvatavNr id="e9b46da0-69a1-4f81-8418-6002302a5929"><![CDATA[§ 5. ]]></kuvatavNr>
+      <sisuTekst id="cf0bce41-0516-4c7e-83af-6c7665029b3d">
+    <tavatekst id="37a358e1-6bee-46e3-9f6e-3484be403220">Tunnistada kehtetuks Viljandi Linnavalitsuse 24.04.2006.a määrus nr 16 „Toimetuleku-toetusteks eraldatud vahendite kasutamise kord“, Viljandi Linnavalitsuse 26.11.2007.a määrus nr 42 „Viljandi Linnavalitsuse 24.04.2006.a määruse nr 16 „Toimetulekutoetusteks eraldatud vahendite kasutamise kord“ muutmine“ ning Viljandi Linnavalitsuse 10.01.2008.a määrus nr 3 „Viljandi Linnavalitsuse 26.11.2007.a määruse nr 42 „Viljandi Linnavalitsuse 24.04.2006.a määruse nr 16 „Toimetulekutoetusteks eraldatud vahendite kasutamise kord“ muutmine“ täiendamine“.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para6">
+   <paragrahvNr id="b46e8520-54a3-4835-9ad8-35907ba45be8">6</paragrahvNr>
+   <kuvatavNr id="a77780ec-112b-4ebe-b3f4-cf26ea8f74f3"><![CDATA[§ 6. ]]></kuvatavNr>
+      <sisuTekst id="4e859a36-6f54-4120-b2d1-478bfb42e6e1">
+    <tavatekst id="a7e448e8-ea0d-4da6-9aad-5339dbd0ac62">Määrus jõustub 01.04.2008.a.</tavatekst>
+   </sisuTekst>
+  </paragrahv></sisu>
+<allkiri id="3fffeb07-dd02-43a0-9254-d5f5a4f1469d"><allkiriKoht id="3f9481f7-d92f-417f-82bd-4e78c59187ee"/><allkirjastaja id="56bd4a87-d549-4f6f-a850-bc6a6b35d977"><ametinimetus id="ccb8ab20-7747-4d82-9df3-dbb44f10c95d">Linnapea</ametinimetus><eesnimi id="58639479-e006-4a72-ab15-c8d3f8ef04da">Kalle</eesnimi><perekonnanimi id="bf643001-09fc-4ced-98c8-0610e98de473">Jents</perekonnanimi></allkirjastaja></allkiri><allkiri id="3764ff5f-4a1a-4997-ac4f-0e00f4c54d6e"><allkiriKoht id="09b97ca3-d09b-4fc3-b16e-97bc8f90bf55"/><allkirjastaja id="b83755cf-0816-4d4e-a94e-f28250d3907c"><ametinimetus id="72032341-e2d7-49b3-9962-542f02add7b2">Linnasekretär</ametinimetus><eesnimi id="95928afe-f277-4a92-a0fa-760c6dddd334">Ene</eesnimi><perekonnanimi id="ff2c0b6e-cb58-4fa1-9bfa-5f14155e8e30">Pius</perekonnanimi></allkirjastaja></allkiri></oigusakt>

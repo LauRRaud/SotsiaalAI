@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="430c8ee2-ba1d-42ce-85d5-2c13b325dc02" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Sillamäe Linnavalitsus</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2023-06-15</aktikuupaev>
+			<avaldamismarge>
+				<RTosa id="c365ec2b-0458-4274-8b4e-c1a2cc0393d6">RT IV</RTosa>
+				<avaldamineKuupaev id="a2a6dbe9-39b1-4153-a061-5c85553e2653">2023-06-27</avaldamineKuupaev>
+				<RTartikkel id="9469a354-cf22-4a7a-9694-6d6440ae09de">45</RTartikkel>
+				<aktViide id="26cd2620-8f63-4a3c-8b2c-577b8ab1fe93">427062023045</aktViide>
+			</avaldamismarge>
+			<joustumine>2023-07-01</joustumine>
+			<aktiNr>4</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-12-18</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>15</RTartikkel><aktViide>418122025015</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2025-12-21</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2025-12-16</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>418122025015</globaalID>
+		<metaandmedVersioon>16</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2025-12-17</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1056927</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2023-06-26</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Andrei Ionov</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="9e3ae2e5-f045-4fe3-90ca-3556271ff162">
+		<nimi id="b5c54896-693c-47fc-961d-8321b812ecde">
+			<pealkiri id="81a5579f-659e-4910-afff-918768f3da7b">Väljaspool kodu osutatava üldhooldusteenuse kulude tasumise piirmäära kehtestamine</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="07e45255-50ba-45e5-a5bf-f712b86ac5c9">
+		<aktikuupaev id="08024c0c-deae-4caa-88f6-f785f7599506">2024-04-18</aktikuupaev>
+		<avaldamismarge id="43e7333c-7909-404d-abc5-7386b61dfc57">
+			<RTosa id="fcbb3213-b4c3-49c3-8365-92eec4ce2e0f">RT IV</RTosa>
+			<avaldamineKuupaev id="f5c0ba71-6b25-48a4-b48f-925ebddb3aa9">2024-05-09</avaldamineKuupaev>
+			<RTartikkel id="ea2ce3ac-f9af-4637-8051-8fe3da4671e8">6</RTartikkel>
+			<aktViide id="ab1e2a17-9b84-42c7-9f87-84b76822e8bb">409052024006</aktViide>
+		</avaldamismarge>
+		<joustumine id="1094ec24-c0ba-47e8-bfcc-9689eede690c">2024-05-12</joustumine>
+		<tavatekst id="259bbb72-a691-401d-9237-5beffac31987">, rakendatakse tagasiulatuvalt 01. aprillist 2024. a.</tavatekst>
+	</muutmismarge>
+	<muutmismarge id="8dc759e0-00e4-4dd5-a05f-41ea98b21b6a">
+		<aktikuupaev id="39c0cce6-8b22-4c8d-bb3d-2813f91bcc11">2025-12-11</aktikuupaev>
+		<avaldamismarge id="96174340-eee1-415e-9748-8b9681873e20">
+			<RTosa id="b155bbe0-8cea-401d-a8af-7e01ca909ffe">RT IV</RTosa>
+			<avaldamineKuupaev id="8795f396-b478-42c1-8203-f377142b8e97">2025-12-18</avaldamineKuupaev>
+			<RTartikkel id="68a1e8fb-5c12-48b6-851f-3cd7144f7cf6">10</RTartikkel>
+			<aktViide id="4361860c-641b-4382-b32b-c6b2863c473b">418122025010</aktViide>
+		</avaldamismarge>
+		<joustumine id="84d7e882-6f89-49bd-bf58-6ce712c5500e">2025-12-21</joustumine>
+		<tavatekst id="ffa6068b-66d8-4e8a-b3f8-50585f08f061">, rakendatakse 01. jaanuarist 2026. a.</tavatekst>
+	</muutmismarge>
+	<sisu id="bafdad81-1d2c-4d81-9e48-3173a6348665">
+		<preambul id="1accbaa5-e969-4c64-878e-b2221f843a31">
+			<tavatekst id="2ac839dc-bbf3-4031-80fa-c286e2b680d1">Määrus kehtestatakse „Sotsiaalhoolekande seaduse“ § 22<sup>1 </sup>lõike 5 ning Sillamäe Linnavolikogu 26. aprilli 2018. a määruse nr 13 „Sotsiaalteenuste osutamise kord“ § 8 lõike 8 alusel. </tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="704c98dd-0254-40fa-a86f-bc5086d990f0">1</paragrahvNr>
+			<kuvatavNr id="6a35dddf-852f-4316-8f38-a9bd168401ac"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="183ec71e-6659-40fb-908d-d6aa3803982f">Üldhooldusteenuse hoolduskulude piirmäär </paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="d46d0a35-63bd-426c-87e8-98ed553b9d6a"/>
+				<kuvatavNr id="c4712986-6a57-46fa-bc31-d017a551add3"/>
+				<sisuTekst id="0cef65f6-ecdf-43b2-bbdc-e75f0bf6572f">
+					<tavatekst id="5f0ae596-4e16-4d3a-a3c4-0d9562a8b75e">Kehtestada väljaspool isiku kodu ööpäevaringse üldhooldusteenuse osutamisel vahetult teenust osutavate hooldustöötajate ja abihooldustöötajate kulude tasumise piirmääraks 700 eurot ühe teenuse saaja kohta kuus.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="6597b0ba-1500-436c-b6b2-9f5ceded5777">
+					<avaldamismarge id="35dfca91-050e-4de1-9602-512d5d15683f">
+						<RTosa id="632345b0-892b-4542-b5d3-3a11be7d94e3">RT IV</RTosa>
+						<avaldamineKuupaev id="6bd6c8ba-1bc4-43b7-bd36-ed1a611836e7">2025-12-18</avaldamineKuupaev>
+						<RTartikkel id="35877af6-3c1d-4de9-99b5-0c57e50ac13f">10</RTartikkel>
+						<aktViide id="6bed641e-ff02-41f2-810e-321b6a0d41f8">418122025010</aktViide>
+					</avaldamismarge>
+					<joustumine id="4894392e-49a8-4b7c-af85-1cf097e65c39">2025-12-21</joustumine>
+					<tavatekst id="f7d29ab2-3205-4933-b669-63a71e1650e1">, rakendatakse 01. jaanuarist 2026. a.</tavatekst>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="1c373b93-f142-43f2-a621-ffca049b36ee">2</paragrahvNr>
+			<kuvatavNr id="c75b9c4b-8d8b-4661-8df7-a58981ecf122"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="c52af04f-1390-49cb-8e57-272ef2314682">Määruse jõustumine </paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="d4fc1b47-571e-4734-8be7-136448e2c046"/>
+				<kuvatavNr id="e4bf84d2-8a74-4a90-bc67-dc9d134b4bae"/>
+				<sisuTekst id="11aba0fd-31d6-4ea6-bd64-23a179d20761">
+					<tavatekst id="e190459e-03ee-47ba-972b-0d916b09e4dc">Määrus jõustub 1. juulil 2023. a.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+</oigusakt>

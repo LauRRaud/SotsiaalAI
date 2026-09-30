@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="2f2dbbed-5218-4863-a684-3ae585518c87" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metaandmed>
+    <valjaandja>Väike-Maarja Vallavalitsus</valjaandja>
+    <dokumentLiik>määrus</dokumentLiik>
+    <tekstiliik>algtekst-terviktekst</tekstiliik>
+    <dokumentEtapp>avaldamine</dokumentEtapp>
+    <dokumentStaatus>avaldatud</dokumentStaatus>
+    <vastuvoetud>
+      <aktiNr>6</aktiNr>
+      <aktikuupaev>2025-04-02</aktikuupaev>
+    </vastuvoetud>
+    <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-04-04</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>21</RTartikkel><aktViide>404042025021</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2025-04-07+03:00</kehtivuseAlgus></kehtivus><versioon>
+      <dokumentVersioon>1</dokumentVersioon>
+      <dokumentVersioonKuupaev>2025-04-02</dokumentVersioonKuupaev>
+    </versioon>
+    <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+    <globaalID>404042025021</globaalID>
+    <metaandmedVersioon>5</metaandmedVersioon>
+    <metaandmedVersioonKuupaev>2025-04-03</metaandmedVersioonKuupaev>
+    <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+    <terviktekstiGrupiID>1060771</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+  </metaandmed>
+  <aktinimi id="3a98ae7a-3d2b-4bee-ae35-56bb5f6a4ffb">
+    <nimi id="aa10bfce-0409-4457-99b7-8cbdc18799c1">
+      <pealkiri id="c28f28db-3b41-4668-86fd-cce848cfb5d8">Vaimse tervise teenuse osutamise kord</pealkiri>
+    </nimi>
+  </aktinimi>
+  <sisu id="88923af2-8728-4d62-a3de-51c067097018">
+    <preambul id="520dcf87-6f62-43e0-8170-b0b522537636">
+      <tavatekst id="22b7476b-c8c4-4edc-aef7-8a3d10a907f8">Määrus kehtestatakse sotsiaalhoolekande seaduse § 156 lõike 3<sup>9 </sup>ja 3<sup>10 </sup>ja Väike-Maarja Vallavolikogu 20.02.2025 määruse nr 4 „Sotsiaalhoolekande seaduse § 156 toodud küsimuste lahendamise volitamine“ alusel.</tavatekst>
+    </preambul>
+    <paragrahv id="para1">
+      <paragrahvNr id="2904c8e1-b169-4794-877a-deee9a1c0ff3">1</paragrahvNr>
+      <kuvatavNr id="3aa6508f-3385-4963-baec-9f4f4e3fb513"><![CDATA[§ 1. ]]></kuvatavNr>
+      <paragrahvPealkiri id="1d98abe0-8f8e-4c79-b442-370e98af9650">Üldsätted</paragrahvPealkiri>
+      <loige id="para1lg1">
+        <loigeNr id="31f647cd-de5d-42bb-93f8-91d1d75db509">1</loigeNr>
+        <kuvatavNr id="66248e8c-3fde-45ae-b9d2-12ef3c22b6fe"><![CDATA[(1)]]></kuvatavNr>
+        <sisuTekst id="fc0f6d09-7e7c-461a-a3bf-437d48d6a609">
+          <tavatekst id="bc6247aa-1441-41f1-b23b-7658d736f630">Käesolev kord sätestab sotsiaalhoolekandelise abina osutatava psühhosotsiaalse ja psühholoogilise teenuse (edaspidi vaimse tervise teenus) osutamise tingimused ja korra.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para1lg2">
+        <loigeNr id="c6dd1a97-66b4-4dc5-951f-4f8b8a36cb6f">2</loigeNr>
+        <kuvatavNr id="d45793a0-50df-4123-b8a4-80a4ada5465f"><![CDATA[(2)]]></kuvatavNr>
+        <sisuTekst id="4741f632-5983-422a-9c80-784587e0fa76">
+          <tavatekst id="37303951-2a40-41ab-acb6-c98014001de8">Vaimse tervise teenust osutab asjakohase ettevalmistusega isik, kes peab vastama vajalikele kvalifikatsiooninõuetele.</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para2">
+      <paragrahvNr id="168ae3a0-9290-4e2e-92be-9d97b17cf847">2</paragrahvNr>
+      <kuvatavNr id="b63b3373-77b8-4276-9879-5fce244720bd"><![CDATA[§ 2. ]]></kuvatavNr>
+      <paragrahvPealkiri id="13a57619-d2b0-4f71-b559-c925e5c43187">Vaimse tervise teenuse liigid</paragrahvPealkiri>
+      <loige id="para2lg1">
+        <loigeNr id="b5134517-57e8-4305-9fe2-66ed2cbffbec">1</loigeNr>
+        <kuvatavNr id="d6f49fa1-5ec5-47d4-830e-3efba4d90028"><![CDATA[(1)]]></kuvatavNr>
+        <sisuTekst id="ef72ba0d-4dca-4649-9b75-c451ef88788e">
+          <tavatekst id="114bcb17-5411-404b-aff3-6ed6c0601716">Psühholoogiline nõustamine</tavatekst>
+        </sisuTekst>
+        <alampunkt id="para2lg1p1">
+          <alampunktNr id="507c73ad-5940-481e-ab99-c8bed0ae555e">1</alampunktNr>
+          <kuvatavNr id="71329118-fe6f-4d0b-8645-7e712606e48b"><![CDATA[1) ]]></kuvatavNr>
+          <sisuTekst id="e6f76037-2020-4dfc-ba87-330dc41455ce">
+            <tavatekst id="700d211e-706b-4702-81e5-73e421249497">psühholoogilise nõustamise eesmärk on aidata noorel paremini mõista ja toime tulla oma emotsioonide ja muredega (koolisuhted, suhted sõpradega, õpiraskused, enesehinnang ja minapilt, peresuhted jms).</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para2lg1p2">
+          <alampunktNr id="c6f6ef1e-1c54-4993-8085-4c1dc8ad233d">2</alampunktNr>
+          <kuvatavNr id="c48f9842-8bd9-4c92-95b1-87bf879c0436"><![CDATA[2) ]]></kuvatavNr>
+          <sisuTekst id="163d1731-d57b-44a1-acc0-24d14ea56611">
+            <tavatekst id="731e8267-bdac-4473-a1e0-9a97d54e883a">psühholoogilise nõustamise eesmärk on pakkuda täisealistele inimestele vaimset tuge ja juhendamist, mis aitavad leida lahendusi probleemidele, suurendada eneseteadlikkust ning parandada heaolu ja toimetulekut erinevates eluvaldkondades. Nõustamine võib hõlmata mitmesuguseid teemasid, sh stress, ärevus, depressioon, lein, traumaatilised kogemused jm. Nõustamise käigus aitab psühholoog inimesel paremini mõista oma emotsioone, mõtteid ja käitumist.</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+      </loige>
+      <loige id="para2lg2">
+        <loigeNr id="811d6fa4-b697-4bb2-ab59-6cba5354a899">2</loigeNr>
+        <kuvatavNr id="d528ad7f-9000-4a50-8828-8d3f633e9cb8"><![CDATA[(2)]]></kuvatavNr>
+        <sisuTekst id="e4fd0f08-cdea-437f-a20b-38ada058b861">
+          <tavatekst id="56ec4f6e-17f9-46c3-af84-ad768db07370">Perenõustamine<reavahetus/>Perenõustamise fookuses on pereliikmete omavaheline suhtlemine ning suhete kvaliteet, perekonna erinevad arengukriisid ning nendega toimetulek.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para2lg3">
+        <loigeNr id="14db71b3-447c-4542-9252-f4fd2a928b12">3</loigeNr>
+        <kuvatavNr id="4cfe6baf-5ebd-42fc-8536-bfa386608df5"><![CDATA[(3)]]></kuvatavNr>
+        <sisuTekst id="dfd74c8d-07f2-41f4-99e6-f27920b2bebf">
+          <tavatekst id="981f27cd-a042-4d3c-909b-9849531649d4">Loovteraapia<reavahetus/>Loovteraapia on põhjendatud, eesmärgipärane ja planeeritud tegevus psühhoterapeutilises ravis ja rehabilitatsioonis, kus selgelt määratletud kliendi-terapeudi suhtes rakendatakse loovus- ja kunstipõhiseid meetodeid ja tehnikaid kliendi tervislikust seisundist lähtuvate eesmärkide saavutamiseks.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para2lg4">
+        <loigeNr id="4f61e684-39fe-4ac7-9100-d7813da9220a">4</loigeNr>
+        <kuvatavNr id="ebf30e50-8a2c-4469-9468-9d5eb1436a50"><![CDATA[(4)]]></kuvatavNr>
+        <sisuTekst id="bb5f2dbf-a0bd-4683-9db9-3f9109bc7aad">
+          <tavatekst id="642ddb31-9691-463f-8dc6-1bcfd8e803a8">Visuaalkunstiteraapia<reavahetus/>Visuaalkunstiteraapia on teraapia liik, kus kliendiga töös kasutab terapeut erinevaid visuaalkunsti vahendeid ja tehnikaid. Vahenditeks kasutatakse erinevaid värve, savi, fotosid või installatsioone ning graafikat, maalimist, skulptuuride tegemist jne.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para2lg5">
+        <loigeNr id="814cda35-3ff9-42bb-a282-ba8bc25f516e">5</loigeNr>
+        <kuvatavNr id="893c1428-0ab1-4810-ac6b-5da184868d4b"><![CDATA[(5)]]></kuvatavNr>
+        <sisuTekst id="6f8a5a29-aaf6-4a56-859c-aa06e6595e28">
+          <tavatekst id="6519f4bd-d822-46fb-94d0-3de54baeff56">Muusikateraapia<reavahetus/>Muusikateraapia on muusika ja/või selle elementide (heli, rütm, meloodia, harmoonia) kasutamine suhtlemise, õppimise, väljendamise, jõuvarude mobiliseerimise lihtsustamiseks, et rahuldada füüsilisi, emotsionaalseid, vaimseid, sotsiaalseid ja kognitiivseid vajadusi.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para2lg6">
+        <loigeNr id="cce35d60-20b2-495d-b7f7-5e0f20c78661">6</loigeNr>
+        <kuvatavNr id="050e21ab-91c2-4eb3-8a63-b10155688554"><![CDATA[(6)]]></kuvatavNr>
+        <sisuTekst id="5ad57e91-35d0-43b4-b466-698c1f0825ab">
+          <tavatekst id="12708016-5817-4ceb-b154-35bed9985a88">Leinanõustamine<reavahetus/>Leinanõustamine toetab inimesi, kes on kogenud oma elus kaotust ning tunnevad, et vajavad abi kogetuga toimetulekuks ning eluga edasiminekuks. Leinaja vajab professionaalset sekkumist siis, kui lein hakkab segama tema igapäevast tegevust nagu koolis või tööl käimine, otsuste tegemine, korrapäraselt magamine ning söömine. Leinanõustaja tegeleb inimestega nii individuaalselt kui grupis, lastega leinalaagris.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para2lg7">
+        <loigeNr id="e2858d65-e501-408d-b17b-7647850b6ce5">7</loigeNr>
+        <kuvatavNr id="b48d780f-7503-4124-886f-8d3a4901dd5d"><![CDATA[(7)]]></kuvatavNr>
+        <sisuTekst id="75f9d8fe-41a7-4862-b831-ce9e53178763">
+          <tavatekst id="b8f45125-a8a2-46f6-a7b5-4ef86b2a5440">Sõltuvusnõustamine ja -ravi<reavahetus/>Keemiline sõltuvus on sõltuvus alkoholist, narkootilistest ainetest ja ravimitest. Inimesel on kadunud kontroll alkoholi, narkootiliste ainete ja ravimite üle.<reavahetus/>Sõltuvused on ka kaas-, suhte-, neti-, hasartmängu-, ekraani- ja kasiinosõltuvused.</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para3">
+      <paragrahvNr id="a2b5528d-afc4-49bb-9ec5-cad2c451ec8d">3</paragrahvNr>
+      <kuvatavNr id="0918d8e5-238e-4f3f-b156-8fed718aea19"><![CDATA[§ 3. ]]></kuvatavNr>
+      <paragrahvPealkiri id="729b1d20-1160-4292-9daa-bbd9d28209ef">Vaimse tervise teenuse osutamine</paragrahvPealkiri>
+      <loige id="para3lg1">
+        <loigeNr id="f1d261de-3615-4989-9f0f-269cb8bd0873">1</loigeNr>
+        <kuvatavNr id="70239846-010f-40ee-a50f-e9ed6de7cd73"><![CDATA[(1)]]></kuvatavNr>
+        <sisuTekst id="c93048f9-8b0c-465f-ad0c-f4704f40fbf0">
+          <tavatekst id="898960f1-bc4b-4ae1-92ef-5d6356ab0269">Teenust on õigus taotleda isikul, kelle rahvastikuregistris registreeritud elukoht on Väike-Maarja vald.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para3lg2">
+        <loigeNr id="9683a666-7966-44d3-be3a-d4de20f98002">2</loigeNr>
+        <kuvatavNr id="ed395ddc-09cd-4f9b-9a5b-ce65f79e81a2"><![CDATA[(2)]]></kuvatavNr>
+        <sisuTekst id="da6fe9fb-9af3-46c6-ad03-3403bfec0a9a">
+          <tavatekst id="85ab98b5-42a3-48a4-8ed7-4bce67bed9c1">Teenuse saamiseks esitab abi vajav isik vallavalitsuse sotsiaalosakonnale avalduse. Avalduse võib esitada ka abi vajava isiku eestkostja, lähedane, hooldaja, sotsiaaltöötaja või muu õigustatud isik.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para3lg3">
+        <loigeNr id="143fee22-d1c4-45c2-8f78-fe274c2c0250">3</loigeNr>
+        <kuvatavNr id="9a211dfd-91c2-4b03-ab17-b2b1d3513ba1"><![CDATA[(3)]]></kuvatavNr>
+        <sisuTekst id="708e6ab3-0450-43b6-9194-9e0f800fefaf">
+          <tavatekst id="b89b714f-5190-4fb2-99c1-4f425b8cb2d5">Teenuse andmisel lähtutakse esmajärjekorras isiku abivajadusest. Sotsiaalosakonna ametnik või vaimse tervise õde hindab isiku abivajadust ning selgitab välja isikule parima asjakohase teenuse.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para3lg4">
+        <loigeNr id="f0a59e00-ce09-4332-9571-692633a6e16e">4</loigeNr>
+        <kuvatavNr id="65cf3480-3da6-4d18-b1a7-a435b5f946c5"><![CDATA[(4)]]></kuvatavNr>
+        <sisuTekst id="9c55657d-128e-49af-88fc-801f13029276">
+          <tavatekst id="1e0cc19b-7947-4ebe-ba2b-3f8d3b625b4a">Abivajaduse välja selgitamiseks kasutatakse abivajaduse hindamise instrumenti ja/või juhtumiplaani. Nendest dokumentidest peab selguma teenuse vajadus ja põhjendus. Abivajaduse määra muutumisel või uute asjaolude ilmnemisel, tuleb teenuse osutamise ajal viia läbi korduvhindamine.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para3lg5">
+        <loigeNr id="a59962c6-45bc-41f0-a69e-32fcd4547f79">5</loigeNr>
+        <kuvatavNr id="88ef3a9d-ae02-4c70-accb-c83a1ac81040"><![CDATA[(5)]]></kuvatavNr>
+        <sisuTekst id="18bf85f3-80a1-4fda-9702-aca41d2cc5cf">
+          <tavatekst id="25af37c0-e189-4b45-9676-7d03f543d90f">Ametnik võib teenuse määramisest keelduda kui isik ei vasta abi saamise tingimustele.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para3lg6">
+        <loigeNr id="4043aac2-dcf1-4b53-a254-97d965796435">6</loigeNr>
+        <kuvatavNr id="5e8b3b22-3dfe-487d-9183-befeaa7f541a"><![CDATA[(6)]]></kuvatavNr>
+        <sisuTekst id="ec8c2068-edb2-4991-bdf6-e235f086a949">
+          <tavatekst id="e7b3f6ad-7ddf-49fa-8fe9-4a2f3f82b07d"> Teenust rahastatakse toetusfondist laekunud vaimse tervise toetuse vahenditest.</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para4">
+      <paragrahvNr id="b25c0518-7662-48bc-99d5-bb2809811a4e">4</paragrahvNr>
+      <kuvatavNr id="53a16537-7f89-4909-9f1b-46ee5c6e16f8"><![CDATA[§ 4. ]]></kuvatavNr>
+      <paragrahvPealkiri id="cc8c7ac6-ff30-429d-9a30-8e05633bd816">Määruse jõustumine</paragrahvPealkiri>
+      <loige id="para4lg1">
+        <loigeNr id="09b77db9-be37-4ed0-8402-224f668c9b53"/>
+        <kuvatavNr id="23bc1759-a263-41e9-b010-53dff6d90eb7"/>
+        <sisuTekst id="ad107803-a768-4214-ba94-fbf16a7df4bd">
+          <tavatekst id="df41d0a3-28e1-4f0f-9a38-eb7052532bd7">Määrus jõustub kolmandal päeval pärast avaldamist Riigi Teatajas.</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+  </sisu>
+  <allkiri id="8c6158f1-4828-47f8-9274-d0cacb158b9f">
+    <allkiriKoht id="8e17ef28-b75e-4f9e-b7fe-e456816ab432"/>
+    <allkirjastaja id="9a3a17c5-31e2-460e-adac-2e5a14d0b05e">
+      <ametinimetus id="02b4de76-d1d9-4d0c-8ac0-c62ac8e7e325">vallavanem</ametinimetus>
+      <eesnimi id="6d148f48-e427-4aa8-a8ea-40ff14d1d9b7">Indrek</eesnimi>
+      <perekonnanimi id="f8ad89c2-f369-4bff-be2c-4515c856d751">Kesküla</perekonnanimi>
+    </allkirjastaja>
+  </allkiri>
+  <allkiri id="4437071d-5912-4adb-8f0a-4d763ca252c5">
+    <allkiriKoht id="fd7d83cd-ff9a-40f2-9bf0-0d175d0ef623"/>
+    <allkirjastaja id="bb17d529-0d4a-4f63-9ab6-91ea40b92e71">
+      <ametinimetus id="a56845e8-7bdf-4e23-b63c-165354f6f65b">vallasekretär</ametinimetus>
+      <eesnimi id="84402794-74eb-49f7-aac3-2470efcbd4b1">Maris</eesnimi>
+      <perekonnanimi id="fb343228-fb14-46d2-87a3-0ef7f2e05c03">Kõrgmäe-Kruusamägi</perekonnanimi>
+    </allkirjastaja>
+  </allkiri>
+</oigusakt>

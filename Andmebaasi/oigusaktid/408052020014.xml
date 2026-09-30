@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="4a139631-ad1c-45f5-821c-86666587b984" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Saaremaa Vallavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2020-04-30</aktikuupaev>
+  
+  
+  <aktiNr>11</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2020-05-08</avaldamineKuupaev><RTaasta>2020</RTaasta><RTartikkel>14</RTartikkel><aktViide>408052020014</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2020-05-11+03:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2020-05-05</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>408052020014</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2020-05-07</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1049427</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2020-04-22</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>?Teadmata? ?Teadmata?</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="20c903b5-ca0f-442f-89c8-e61972635db2">
+  <nimi id="3dc6bd5c-3275-4b1e-aa4b-94520ae398ac">
+   <pealkiri id="89a8a8c4-ed5c-450f-abc3-34da5a3d5ca3">Sotsiaaltoetuste määrade kehtestamine</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="7231e116-f420-43d4-af24-4f7a2d59e53c"><preambul id="f9f77baa-2020-4a98-9930-ec4c06e21ca9">
+   <tavatekst id="da1475aa-9de8-43e6-bfa9-fe69a08265fe">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5, sotsiaalhoolekande seaduse § 14 lõike 2 ning Saaremaa Vallavolikogu 26. aprilli 2019. a määruse nr 1 „Sotsiaalhoolekandelise abi andmise kord“ § 4 lõike 2 alusel. </tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="e6ac40ae-9271-4cef-9409-257a2f7855d8">1</paragrahvNr>
+   <kuvatavNr id="60c8614d-3212-4604-8a2c-b793889fce16"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="257abcb2-cdce-4304-b5a5-bd594fda0df8">Sotsiaaltoetuste määrad</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="7b15bd7d-7bb3-4e59-a6a5-d15b3b72d937"/>
+   <kuvatavNr id="b13383fb-f8ef-4ef8-b458-dc1bf6ba26c3"/>
+   <sisuTekst id="5dc27480-5090-4c53-b8cc-f4ff916255f1">
+    <tavatekst id="dd1c4934-224c-436b-83d0-e693b88af691">Kehtestada sotsiaaltoetuste määrad järgmiselt:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para1lg1p1">
+   <alampunktNr id="ea139018-76bf-4c8c-bea1-5a756f660870">1</alampunktNr>
+   <kuvatavNr id="2c7f2136-6e9a-4153-8534-3b00c83db256"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="7c8e3139-0aa1-421b-b724-8e5ac4032288">
+    <tavatekst id="bc948d55-1e2d-4061-9b27-ba0d4c892123">sünnitoetus 400 eurot;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg1p2">
+   <alampunktNr id="53ea16d6-519a-4cec-92cd-26ee6d497879">2</alampunktNr>
+   <kuvatavNr id="5d586416-ee76-4e95-8cb4-547e712c4d5a"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="d00d7ebb-2c87-49b9-ad7f-e9d198b42ad4">
+    <tavatekst id="c6e2ff32-8df6-4098-81b7-44c0cbd9c941">matusetoetus 250 eurot;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg1p3">
+   <alampunktNr id="eade0801-a69e-49f7-bcde-f30664f704f5">3</alampunktNr>
+   <kuvatavNr id="918aab9f-5332-4d99-aea2-027387144422"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="9a423b52-8366-4a8e-aefc-793754b44dc5">
+    <tavatekst id="bc50413d-db07-4db3-a31f-775bfb70b60f">hooldajatoetus sügava puudega isiku hooldajale 80 eurot kuus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg1p4">
+   <alampunktNr id="b5a6218c-8265-4b0b-bca8-3192619a5649">4</alampunktNr>
+   <kuvatavNr id="75a7dcbb-8f65-41aa-87f4-703cac2c828c"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="a7c6fc87-a0d7-4ffe-b6b6-4c00cc91f12f">
+    <tavatekst id="d0c067ea-b876-4b31-8dfc-c708a1dee7a9">hooldajatoetus raske puudega isiku hooldajale 60 eurot kuus.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="30edf82f-cf05-43a9-ac85-6a539b10efb2">2</paragrahvNr>
+   <kuvatavNr id="06c4f93c-dedc-4bf4-ab4b-29f0734a4306"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="c24e4ae5-54e0-4904-850d-518e27c06806">Rakendussätted</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="d0b212de-04ed-4a7a-88a2-4dea9490b9c9">1</loigeNr>
+   <kuvatavNr id="030ef66a-1717-4636-aa7d-af41eb55a612"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="8ef4680e-9c9d-4d68-b42b-82c7ee48df2b">
+    <tavatekst id="7b1a435d-8a91-45df-8b5a-1da8216b6a26"> Määrusega tunnistatakse kehtetuks Saaremaa Vallavolikogu 26. jaanuari 2018. a määrus nr 2 „Sotsiaaltoetuste määrade kehtestamine“.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg2">
+   <loigeNr id="84e39370-30e0-4c89-910f-cd9e7fd23c1f">2</loigeNr>
+   <kuvatavNr id="c3087db5-d089-4038-b654-f1f4d3653476"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="effa0723-32bc-47c2-80f6-92f5f3203505">
+    <tavatekst id="73dfaa82-ffdd-4971-9383-dd3ae25e7258"> Määrus jõustub kolmandal päeval pärast Riigi Teatajast avaldamist ning rakendatakse 1. jaanuarist 2020. </tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="5a34e3f4-2063-4356-87ac-92a5598f2b41"><allkiriKoht id="813771c1-3dbb-4b17-82c6-b52784df640f"/><allkirjastaja id="f432e1fc-adf1-4244-8422-d9581e0b2d1c"><ametinimetus id="44922dca-0d4b-4e69-a85b-42c70dd1faef">vallavolikogu esimees</ametinimetus><eesnimi id="885a6d6a-1491-4b65-bcd0-47ab55eaff5e">Tiiu</eesnimi><perekonnanimi id="b98092e8-0cd7-4e7a-b903-1299af875b88">Aro</perekonnanimi></allkirjastaja></allkiri></oigusakt>

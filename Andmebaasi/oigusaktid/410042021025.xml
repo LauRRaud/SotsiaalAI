@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="4cdf9c74-089f-4f19-a4be-2ea64dcba217" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Viljandi Vallavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2020-10-28</aktikuupaev>
+			<avaldamismarge>
+				<RTosa>RT IV</RTosa>
+				<avaldamineKuupaev>2020-11-06</avaldamineKuupaev>
+				<RTartikkel>6</RTartikkel>
+				<aktViide>406112020006</aktViide>
+			</avaldamismarge>
+			<joustumine>2020-11-09</joustumine>
+			<aktiNr>120</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2021-04-10</avaldamineKuupaev><RTaasta>2021</RTaasta><RTartikkel>25</RTartikkel><aktViide>410042021025</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2021-04-13</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2021-04-07</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>410042021025</globaalID>
+		<metaandmedVersioon>11</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2021-04-09</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1050436</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2020-10-30</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Ülle Riiner</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>6</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2020-11-05</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="c79d6659-06a5-4612-986a-88acd6b64e7d">
+		<nimi id="952f8dd8-a4cd-4ac0-a76a-f062869c5403">
+			<pealkiri id="110ff637-89ec-4b00-97f2-ff5fc273c54f">Lapsehoiuteenuse rahastamise kord </pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="7b5cbea3-f06f-465d-9517-a7f885b9c7af">
+		<aktikuupaev id="7fe53f27-b8b8-4f9a-bc74-2ce959ab5870">2021-03-31</aktikuupaev>
+		<avaldamismarge id="fee70c40-c2bb-4fcb-8854-536cd7712aec">
+			<RTosa id="fc010146-ee04-45a5-88d1-db40d1d7f7cd">RT IV</RTosa>
+			<avaldamineKuupaev id="fc9c812e-bb61-4389-9f7f-b3e0034addf0">2021-04-10</avaldamineKuupaev>
+			<RTartikkel id="0fc19009-339c-4637-8a38-3228e5e9536d">13</RTartikkel>
+			<aktViide id="eb303a6f-5174-4151-9034-1e528edbc64b">410042021013</aktViide>
+		</avaldamismarge>
+		<joustumine id="f4bfc4a7-5feb-45e7-bee8-5beb103a76f4">2021-04-13</joustumine>
+		<tavatekst id="3a72dde4-ccb1-4025-8c13-4e4ee224d62d">, rakendatakse tagasiulatuvalt alates 11.03.2021</tavatekst>
+	</muutmismarge>
+	<sisu id="58bfd213-b479-4cd5-bde4-f53adddfc59c">
+		<preambul id="7ddcb4fb-ecab-4d75-9ca4-755e53df023a">
+			<tavatekst id="3ce4063f-52ef-48fd-a879-c310f3415a39">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 6 lõike 3 punkti 2 ja § 22 lõike 1 punkti 5, koolieelse lasteasutuse seaduse § 10 lõike 1 ning sotsiaalhoolekande seaduse § 14 lõike 2 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="bd2ab163-13b6-4104-9a96-5d7dae860b7b">1</paragrahvNr>
+			<kuvatavNr id="c41e78a1-3b46-4205-9f20-0414d37a7f89"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="09f98388-c86c-4346-b347-5936afd3b2fc">Reguleerimisala</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="97d7aad1-5d57-4896-b13e-8f55dbaa447e"/>
+				<kuvatavNr id="a617db40-d957-4021-950b-012badba878e"/>
+				<sisuTekst id="65a70cd5-3ab4-47fc-8d2d-563ac2febde3">
+					<tavatekst id="404ca7ee-b84f-4ece-b311-03e0b0da42fc">Käesolev määrus reguleerib Viljandi valla eelarves selleks ettenähtud vahendite arvelt lapsehoiuteenuse rahastamist.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="fe80ed5f-d6e2-428c-9651-1dbb05250bfc">2</paragrahvNr>
+			<kuvatavNr id="a9814c5c-abad-4968-ab7a-c3bfd31c17a0"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="e62470e3-9aad-4731-9d2a-6eb7603f13ef">Üldsätted</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="77fe82eb-92c2-4c19-bdf9-a857ba339a63">1</loigeNr>
+				<kuvatavNr id="e1e8abb0-a175-40a3-9aa3-47279f2c71fe"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="c157399e-d422-450f-907e-8c48b707d6a7">
+					<tavatekst id="7484c56a-20fe-4bb6-8c99-3156c78187d8"> Lapsehoiuteenus on lapse vanema, eestkostja või hooldaja lapse perekonnas hooldamise lepingu alusel (edaspidi vanem) toimetulekut ja töötamist toetav teenus, mille osutamise vältel tagab lapsehoiuteenuse osutaja lapse hooldamise, arendamise ja turvalisuse.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg2">
+				<loigeNr id="c4d81708-edf4-4226-aa72-aa79096992ec">2</loigeNr>
+				<kuvatavNr id="94066504-649e-4cce-8bad-3fb2bfb0aefc"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="b9fef0ce-746e-47b4-8cfc-1143f8fb9aed">
+					<tavatekst id="dcb17046-fb66-494c-ba51-416256b53286"> Lapsehoiuteenuse osutaja on lapsehoidja kutset omav füüsilisest isikust ettevõtja või eraõiguslik juriidiline isik, kellel on sotsiaalkindlustusameti poolt antud kehtiv tegevusluba lapsehoiuteenuse osutamiseks.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg3">
+				<loigeNr id="a83bcb46-ac92-4545-80d3-bc0ff908c5aa">3</loigeNr>
+				<kuvatavNr id="93ac5cbb-a53b-422c-808a-d2c203573590"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="e8b874ae-7cce-441c-9bdd-b251e8568b95">
+					<tavatekst id="036b84f0-bae7-420f-a9d6-edb8f169dd27"> Lapsehoiuteenust rahastatakse Viljandi valla eelarves selleks ettenähtud vahendite arvelt, makstes vanemale lapsehoiuteenuse ostmisel tehtud rahaliste kulutuste eest toetust (edaspidi toetus).</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg4">
+				<loigeNr id="594e65cc-5edb-45a0-a7f4-f80c8594f380">4</loigeNr>
+				<kuvatavNr id="f9aaa5f0-7ef6-433a-91b5-93d3b8e545a4"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="b5288e03-e428-4ff7-8fb5-7cbcf3d34c15">
+					<tavatekst id="7e2a7df8-f4b9-4646-b4cc-59cd0c934ae0"> Õigust toetusele ei teki vanemal, kes ise osutab füüsilisest isikust ettevõtjana oma lapsele lapsehoiuteenust või kes ostab lapsehoiuteenust sama lapse füüsilisest isikust ettevõtjana tegutsevalt teiselt vanemalt.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg5">
+				<loigeNr id="1667b92a-c0fb-4a2b-ae29-833158ddd448">5</loigeNr>
+				<kuvatavNr id="efffd3af-77fd-4ace-bd92-3070a69ed0d6"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="7065fa8a-eee3-491e-acce-ca76cea80a7d">
+					<tavatekst id="590f084e-714b-4054-8d11-bd0f50716b94"> Käesolev määrus ei reguleeri riigi rahastatava lapsehoiuteenuse rahastamist.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="facad30b-f2c3-4ffe-8c48-8ae23032eda3">3</paragrahvNr>
+			<kuvatavNr id="b0afed82-f538-47fb-ba88-54d7108ad012"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="0ee0cf4f-3254-420a-9b74-23d698349e07">Toetuse taotlemine</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="fe0d0ca6-8a41-4233-821a-7a6be589248b">1</loigeNr>
+				<kuvatavNr id="66f4c9cf-7c81-4f00-a925-6d4f264846a2"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="599cd05a-8036-4836-bb6b-ac2d4caec067">
+					<tavatekst id="752f483b-a001-4515-9f9c-e7235b5a3940"> Toetust on õigus taotleda vanemal:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para3lg1p1">
+					<alampunktNr id="1cafda68-812d-4e86-ba20-35c913968a8c">1</alampunktNr>
+					<kuvatavNr id="500756bd-9b5a-44fa-82f6-52a06ac38c5e"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="d312d478-39b6-4711-ace5-d4dc28adf210">
+						<tavatekst id="7874f7f1-8972-4c28-bb63-d3afb5d7631f">kelle rahvastikuregistri järgne elukoht on Viljandi vald;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg1p2">
+					<alampunktNr id="110a20ca-def1-4fb0-bc32-93de6c808d84">2</alampunktNr>
+					<kuvatavNr id="f6fb4215-4a50-418f-a54c-2c6296c59f27"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="0943ce9d-136b-4f54-9b44-71244eb24a95">
+						<tavatekst id="d74761b1-4614-4e72-a371-e2c5973a64db">kui lapse, kelle jaoks toetust taotletakse, rahvastikuregistri järgne elukoht on Viljandi vald;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg1p3">
+					<alampunktNr id="e9ada404-2a3b-46ea-819d-9c95fba99838">3</alampunktNr>
+					<kuvatavNr id="d96f60d6-7fc4-4686-aade-c528c0aeffbb"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="8c9a2425-90e7-4588-a969-2a181475ccb4">
+						<tavatekst id="8ba97bfc-03d5-434c-9a5d-2df6018b9ab5">kui laps, kelle jaoks toetust taotletakse, ei ole kantud ühegi koolieelse lasteasutuse või eralasteasutuse nimekirja;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg1p4">
+					<alampunktNr id="ed6c7d18-def5-4795-857b-def3cc6a0fcc">4</alampunktNr>
+					<kuvatavNr id="8de52a33-f059-431d-bd87-619ee963f3c4"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="4df2584b-410f-4891-b052-2334dd822f82">
+						<tavatekst id="1e694052-5070-4e55-9a22-beacd94de971">kui lapse, kelle jaoks toetust taotletakse, hooldamine ei ole samal ajal tagatud teiste sotsiaalteenustega, sh riigi rahastatava lapsehoiuteenusega.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para3lg2">
+				<loigeNr id="115b5893-2123-448f-a8fb-ce2e0d3b7151">2</loigeNr>
+				<kuvatavNr id="c1893798-dde6-401d-a0b4-aa837559f163"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="17eaf8ed-94d8-4c26-843b-4043cb0cfd40">
+					<tavatekst id="83421bd0-11ad-4141-ab3e-35512eb74879"> Õigus toetust taotleda tekib järgmisel päeval arvates päevast, mil lõpetatakse vanemahüvitise seaduse alusel saadava hüvitise maksmine selle lapse eest, kelle jaoks lapsehoiuteenust ostetakse ning kui on täidetud üks järgmistest tingimustest:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para3lg2p1">
+					<alampunktNr id="d6892443-c16c-4a92-ad4f-9a2164caca57">1</alampunktNr>
+					<kuvatavNr id="a644f493-4477-4d80-a1f9-5c7b168f59d2"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="6e3e6e36-1c90-4198-a331-1e1f38db3a5f">
+						<tavatekst id="b4e28e1a-212b-487f-9286-23ba819fb0d3">lapse elukohajärgses lähimas koolieelses lasteasutuses ei ole vaba kohta ja laps on kohataotlejana registreeritud;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg2p2">
+					<alampunktNr id="93df96a5-76c8-4105-978f-fb795c8012e5">2</alampunktNr>
+					<kuvatavNr id="c5f49b5a-b849-413d-a4d3-5d48e0453353"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="ed0c22f9-3c30-4f42-b01a-3b0d56a177ea">
+						<tavatekst id="d9937734-6e63-411c-8799-7a1d7e3ae49b">laps vajab arsti otsuse kohaselt oma tervisliku seisundi tõttu erilist tähelepanu ja väikest kollektiivi.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para3lg3">
+				<loigeNr id="3f5a0135-02da-40c3-8ef7-bf932f88635a">3</loigeNr>
+				<kuvatavNr id="a4f41a02-e48c-4057-84bc-da16593c2081"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="9e60167f-9106-4919-ae90-3358c0a6ac42">
+					<tavatekst id="66124822-dfc2-49b6-8ba0-04ac529509a6"> Toetuse taotleja esitab Viljandi Vallavalitsuse ametiasutusele:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para3lg3p1">
+					<alampunktNr id="6dbc292a-19d9-4eb4-8101-cc8941fbd034">1</alampunktNr>
+					<kuvatavNr id="d1ac8cc5-5d5a-4f9e-924f-a97ae77d424c"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="2d6eaa7f-cf49-483f-ae9e-4856c7a9ffbf">
+						<tavatekst id="85741e7d-b60d-4458-8287-2cf3dcbb06cf">kirjaliku taotluse;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg3p2">
+					<alampunktNr id="db7f91f8-e5ef-40f8-ae8b-4791d9e3b573">2</alampunktNr>
+					<kuvatavNr id="66a822a4-ba07-43dd-8692-bb7e071bb635"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="bc341491-ce2f-4b59-a81e-3869b5ca01af">
+						<tavatekst id="b40d15b8-22b6-4306-a77a-f623163f6c72">toetuse esmakordsel taotlemisel isikut tõendava ning vajadusel eestkostjaks või hooldajaks määramise dokumendi koopia;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg3p3">
+					<alampunktNr id="ae7870dc-04bf-4399-95f1-a7a550bf2f11">3</alampunktNr>
+					<kuvatavNr id="1cf31d33-58ca-433f-8310-778171c7f65a"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="9bc7fe5f-37e4-4437-9d76-8f11aa5ef4ea">
+						<tavatekst id="15e8b94d-ba65-4626-8171-f901a8ce190a">lapsehoiuteenuse ostmist tõendavad dokumendid, kus on kirjas, millisel perioodil on lapsehoiuteenust kasutatud ning millal ja kui palju on teenuse eest makstud;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg3p4">
+					<alampunktNr id="051821c7-56a2-4911-aeff-90df85fedb54">4</alampunktNr>
+					<kuvatavNr id="4c4861cb-361a-4629-9885-ade2a8456494"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="0b90be6e-b9b4-4d1b-af64-0ba8f16d22ab">
+						<tavatekst id="d243e120-bc8f-4f56-bd38-505e0d7baed2">vajadusel lapsehoiuteenuse osutajaga sõlmitud lepingu koopia.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para3lg4">
+				<loigeNr id="ab087ea2-681b-4eaa-9b0b-77426fd14a18">4</loigeNr>
+				<kuvatavNr id="a0aa7a4d-7655-4a83-a790-33a056a8fb04"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="239684d2-36de-4b15-bf31-8f76fb2f95ff">
+					<tavatekst id="87dd005a-8ced-4bf9-971e-3e8c5b0973f9"> Viljandi Vallavalitsuse ametiasutuse haridusspetsialistil (edaspidi haridusspetsialist) on vajadusel õigus nõuda taotlejalt täiendavaid andmeid või dokumente, millest taotlejat informeeritakse taotluse vastuvõtmisel või kirjalikult 5 (viis) tööpäeva jooksul pärast taotluse vastuvõtmist.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="28f22b6a-b7ca-4e4f-b3e5-3e47a83bd37d">4</paragrahvNr>
+			<kuvatavNr id="ff5f4546-9e27-4490-8bbf-05cd0fda2fc6"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="3c6dd581-1362-4a42-9a21-1fe218eabf8a">Toetuse määramine ja maksmine</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="0f0ef0fc-1e6e-4533-8897-5bc35e82ed9b">1</loigeNr>
+				<kuvatavNr id="0bb2da31-b202-4fcb-bf60-df0d8f2a4acf"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="c37fe578-b5c5-428c-b359-e1c16f89c010">
+					<tavatekst id="751cdec4-03ce-4de1-aa62-c9b55e345fe2"> Esitatud taotluse vaatab haridusspetsialist läbi 10 (kümme) tööpäeva jooksul arvates viimase nõuetekohase dokumendi laekumisest.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg2">
+				<loigeNr id="153cbebd-67b2-446a-a273-a43d1f437b7e">2</loigeNr>
+				<kuvatavNr id="bdbc780d-5fb1-4a1f-b7ff-fe2a6d518b81"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="7cd08fe5-0713-4a7d-b926-1043ae9543dd">
+					<tavatekst id="cfc489e0-5007-4814-a693-46537f3f7cc7"> Otsuse toetuse määramise või mittemääramise kohta teeb haridusspetsialist.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg3">
+				<loigeNr id="a16b11be-ced0-4754-aa6f-5179c9ddfa90">3</loigeNr>
+				<kuvatavNr id="0044424b-2c45-418d-a74e-8411da302fa4"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="1b739145-8a18-4954-8019-24b44f3201a9">
+					<tavatekst id="15657a31-11ef-40b0-af0f-aede3bf72d06"> Kui toetust ei määrata, saadetakse taotlejale motiveeritud otsus 5 (viis) tööpäeva jooksul arvates otsuse tegemise päevast.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg4">
+				<loigeNr id="ee0b47a7-bba3-4fcc-8f71-ad4ee953e35d">4</loigeNr>
+				<kuvatavNr id="55d77979-27eb-4ad7-a31e-3330242b16c0"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="1b1e7cab-3774-427f-865b-21f4f00d6026">
+					<tavatekst id="ffbcae3d-433f-40f6-9be9-5698347ba31e"> Toetust makstakse üldjuhul kuludokumendi alusel arvestusega, et vanema osaks jääb katta lapsehoiuteenuse osutaja poolt määratud kohatasust ühe lapse kohta 20 (kakskümmend) protsenti Vabariigi Valitsuse kehtestatud palga alammäärast kuus. Kui vanem kasutab lapsehoiuteenust osalise ajaga, jääb vanema osaks kanda kohatasust 10 (kümme) protsenti Vabariigi Valitsuse kehtestatud palga alammäärast kuus. Toetus kantakse taotluses esitatud arvelduskontole 5 (viis) tööpäeva jooksul arvates otsuse tegemise päevast.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg5">
+				<loigeNr id="d22b0508-464b-41da-bc55-38a10b6cd7e2">5</loigeNr>
+				<kuvatavNr id="184e1a87-0bda-4a57-9fe2-f2591902e20a"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="899872a5-1e73-44bb-a030-b18babe50c5c">
+					<tavatekst id="3e310945-ad4b-482d-8f19-baa6c917d5b8"> Toidukulud ja muud kulud jäävad vanema kanda.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg6">
+				<loigeNr id="cdab2025-a617-418b-841f-35e4fb4cffee">6</loigeNr>
+				<kuvatavNr id="b024b100-33fd-4edd-927e-812a060cc294"><![CDATA[(6)]]></kuvatavNr>
+				<sisuTekst id="9eecb558-1f2f-49b3-be82-e136e3751f39">
+					<tavatekst id="0ae098d8-c316-49a4-813f-93a2a9018490"> Erandkorras, kui vanemal puuduvad rahalised vahendid või neist ei piisa lapsehoiuteenuse ostmiseks vajalike rahaliste kulutuste eest tasumiseks, on õigus haridusspetsialisti otsusel rahastada Viljandi valla eelarvest lapsehoiuteenuse kohatasu, millest on maha arvatud vanema poolt tasutud käesoleva paragrahvi lõikes 4 nimetatud vanema osa, lapsehoiuteenuse osutaja poolt esitatud arve alusel.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg7">
+				<loigeNr id="be6498e4-58ce-4e17-bf0e-1f451b9c3de5">7</loigeNr>
+				<kuvatavNr id="f1d28858-bd57-436e-b760-897cfcd077ac"><![CDATA[(7)]]></kuvatavNr>
+				<sisuTekst id="b3bf2a77-94d9-40df-b631-9e9871fd5157">
+					<tavatekst id="03408eee-2669-4ac0-b1f4-334a24ead5c9"> Kui taotleja on esitanud toetuse saamiseks valeandmeid, on Viljandi Vallavalitsusel õigus enammakstud toetus tagasi nõuda.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="7c85b4bb-32f6-4053-a209-aab2a3b7177a">
+				<loigeNr id="f9eb207a-28fd-4c37-b7a5-0cdb4c644603">8</loigeNr>
+				<kuvatavNr id="bde263c5-9910-42d0-b3e7-9a7f957dda03"><![CDATA[(8)]]></kuvatavNr>
+				<sisuTekst id="7909e481-edf1-4e73-96fb-dcd7230cf76b">
+					<tavatekst id="ae8b98a5-6215-4562-864c-57823e3c355e">Muudel erandjuhtudel otsustab lapsehoiuteenuse ostmisel tehtud rahaliste kulutuste eest toetuse arvestuse Viljandi Vallavalitsus.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="fdfb0a84-943d-4f27-a124-3d1dba63fa01">
+					<avaldamismarge id="cc15a2b4-d815-4553-907c-4836eaf408e8">
+						<RTosa id="e0fd13a0-877e-4b39-b2e3-88d2dd9e68d1">RT IV</RTosa>
+						<avaldamineKuupaev id="c3190fad-3c81-465e-a622-feec9b596134">2021-04-10</avaldamineKuupaev>
+						<RTartikkel id="eff89ddf-84ee-4f00-97d9-2318b7013832">13</RTartikkel>
+						<aktViide id="382873e4-e14e-4d04-9c78-2d7aa803f78d">410042021013</aktViide>
+					</avaldamismarge>
+					<joustumine id="76ce9e23-3b04-4d4b-9787-d00f8aa68faf">2021-04-13</joustumine>
+					<tavatekst id="33225e99-f966-487b-9cb3-98592c0fb76b">, rakendatakse tagasiulatuvalt alates 11.03.2021</tavatekst>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="26385de4-0363-4713-a2cb-7b3c2f967ad4">5</paragrahvNr>
+			<kuvatavNr id="02e18193-9549-45fb-a29e-ff97492df832"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="51b3a54c-9c48-4f49-99a8-baf509c3631e">Toetuse mittemääramine ja toetuse maksmise lõpetamine</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="71f7f20c-ca80-4f2a-a098-faa354c8602f">1</loigeNr>
+				<kuvatavNr id="839814d7-9a32-4314-b8c9-1f886a92092f"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="a73afd1c-afc0-4c9a-b698-1807d2452c52">
+					<tavatekst id="6bd8bd89-7552-4311-b760-119d5ff8f9ab"> Toetust ei määrata, kui:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para5lg1p1">
+					<alampunktNr id="b64ea886-7a0c-487a-a8e0-5fca80d24213">1</alampunktNr>
+					<kuvatavNr id="2a54fe0e-410c-4dd7-8212-86f21b4cf254"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="145ecf8d-d845-41eb-a1f5-1ee294095f07">
+						<tavatekst id="6286712b-e993-43ab-8b86-de3f866d04d9">taotleja ei vasta käesoleva määruse § 3 lõikes 1 ja/või lõikes 2 sätestatud nõuetele;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg1p2">
+					<alampunktNr id="cc4fd241-d81e-4765-b731-b4abff62fede">2</alampunktNr>
+					<kuvatavNr id="59c8cfd8-6649-4af9-8d34-e2efd3769d90"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="9997382a-5114-4613-a068-5af97b85cc17">
+						<tavatekst id="aee4a229-0782-4fa3-9f80-806e5bc8b2b4">taotleja ei ole 10 (kümme) tööpäeva jooksul taotluse esitamisest või kirjaliku teate saamisest esitanud täiendavalt nõutud andmeid või dokumente;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg1p3">
+					<alampunktNr id="b33d29ed-26c8-458e-9a70-6eed3d35d7a2">3</alampunktNr>
+					<kuvatavNr id="bd39ec0e-afcf-442c-829e-ce6adf104d2c"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="578a4a1e-b58e-4bca-b6a0-3836e12db8b2">
+						<tavatekst id="71c979b1-50c8-44f9-a961-101aa46b1d77">taotleja on esitanud toetuse saamiseks valeandmeid.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para5lg2">
+				<loigeNr id="6ea67746-a66a-4554-8363-eb0e713f72f5">2</loigeNr>
+				<kuvatavNr id="5b33597f-7096-4b1f-bdb6-d4272d48ff6f"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="28fa56be-a536-4122-bd99-ddebfc55fe68">
+					<tavatekst id="f2d89c55-66dd-43fc-9334-bab22061262e"> Toetuse maksmine lõpetatakse:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para5lg2p1">
+					<alampunktNr id="750ae921-161a-430b-be59-6b219dbae986">1</alampunktNr>
+					<kuvatavNr id="6241362b-fe86-478b-9228-150807d68349"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="f3606ebc-8b28-48b6-b1f1-9e97422c0557">
+						<tavatekst id="2e3cbc26-1a37-4943-81d4-091b293899e3">lapse kandmisel koolieelse lasteasutuse või üldhariduskooli nimekirja;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg2p2">
+					<alampunktNr id="3b43597b-15c8-4b36-8604-fb9bb004f44c">2</alampunktNr>
+					<kuvatavNr id="ec726bd6-aaf9-4014-83c0-ce59e992c978"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="c7bfe497-c44d-4427-9482-03f079527722">
+						<tavatekst id="618e8137-e80b-4cd8-8ca7-2e3ea0c9a38d">kui laps on Viljandi valla koolieelses lasteasutuses kohataotlejana nimekirjas ja koha pakkumisel vanem loobub pakutavat kohast.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para6">
+			<paragrahvNr id="dfa7de89-bbd7-497e-a2d3-7623234c500d">6</paragrahvNr>
+			<kuvatavNr id="e8ec2944-9805-4d35-b177-411997a2ce38"><![CDATA[§ 6. ]]></kuvatavNr>
+			<paragrahvPealkiri id="12c57f61-31c6-4e02-a685-01edeca014d9">Rakendussätted</paragrahvPealkiri>
+			<loige id="para6lg1">
+				<loigeNr id="12ba19e7-c5eb-4b07-8b78-2d6f0fe6bcfb">1</loigeNr>
+				<kuvatavNr id="0e4c0a55-33c7-4fad-845c-9db9041ee605"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="bb5537cb-6e8b-4efe-9ed7-9a61e3f40df4">
+					<tavatekst id="af802278-78d5-4669-bcc1-7fcdafa7adae"> Taotluse vormi kinnitab Viljandi Vallavalitsus.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg2">
+				<loigeNr id="a78e3e2e-5b11-4b4e-88a9-a3d799e10dba">2</loigeNr>
+				<kuvatavNr id="2bfcf80d-5db1-4601-b695-f8ea18c40fd3"><![CDATA[(2)]]></kuvatavNr>
+			
+				<muutmismarge id="2b34874b-7f4e-4d10-bbcd-e19ab0d59bca">
+					<tavatekst id="4461aafb-2301-4c03-8a24-143bf17fe3d5">Kehtetu -</tavatekst>
+					<avaldamismarge id="67f364ec-60bc-4a92-a8e3-bfd83628fa13">
+						<RTosa id="d881fb5c-51d6-4a00-b72b-31dcb48ee016">RT IV</RTosa>
+						<avaldamineKuupaev id="a44d79d6-8950-4e5c-ac8f-c5cc45404d48">2021-04-10</avaldamineKuupaev>
+						<RTartikkel id="601861a3-7192-45ad-8369-6b60a1bbcfd9">13</RTartikkel>
+						<aktViide id="1bbde494-22ef-44eb-9ed4-8acb68bf0e82">410042021013</aktViide>
+					</avaldamismarge>
+					<joustumine id="edecf852-22ce-4ee2-921d-ee1fbfe73784">2021-04-13</joustumine>
+					<tavatekst id="87326891-69fc-4dd8-82b1-fd12f4e264c2">, rakendatakse tagasiulatuvalt alates 11.03.2021</tavatekst>
+				</muutmismarge>
+			</loige>
+			<loige id="para6lg3">
+				<loigeNr id="882b3849-677d-4013-8d94-ecb8f96e700d">3</loigeNr>
+				<kuvatavNr id="b7c80f3d-bcb9-47e6-8b02-66ef63432f77"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="296fbc37-0f56-4f3c-8f8b-e0319bfbcc78">
+					<tavatekst id="f9628ea4-f8f3-46ad-b772-60784ed27b17"> [Käesolevast tekstist välja jäetud.]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg4">
+				<loigeNr id="36d3100b-0535-4fb2-8d41-bae724303ae6">4</loigeNr>
+				<kuvatavNr id="9b57679e-f9cc-46fb-8bc6-135f284b4adb"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="307d6d6d-3be1-41f4-b969-02e30c4c3a14">
+					<tavatekst id="053a0ba6-9a39-4252-8284-4c44bd48c42d"> Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+</oigusakt>

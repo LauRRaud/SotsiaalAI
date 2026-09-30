@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="904f6015-4dd1-4fea-99bd-15b39dd1e622" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Saue Vallavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2023-06-07</aktikuupaev>
+  
+  <joustumine>2023-07-01</joustumine>
+  <aktiNr>4</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2023-06-13</avaldamineKuupaev><RTaasta>2023</RTaasta><RTartikkel>5</RTartikkel><aktViide>413062023005</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2023-07-01+03:00</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2023-06-09</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>413062023005</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2023-06-12</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1056790</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2023-06-09</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Kairit Kõpper</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="e589999c-00c3-4d0a-a0e4-ffa0f63e7dd9">
+  <nimi id="a2d93904-4b43-4ec8-9490-45d7bfab8361">
+   <pealkiri id="7e92a70e-bf34-4473-a0eb-299f23fe99c0">Hoolduskulude piirmäära kehtestamine</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="47086fff-3ad3-4a46-ac7c-cfa6bd29d8e1"><preambul id="8f7c8299-e5cd-420d-a36b-678a404a7674"><tavatekst id="b6d1a0c0-9383-4482-addb-fe34564f0544">Määrus kehtestatakse sotsiaalhoolekande seaduse § 22<sup>1</sup> lõike 3 alusel.</tavatekst></preambul><paragrahv id="para1"><paragrahvNr id="40961320-51fa-437f-97bf-4bfad9695b06">1</paragrahvNr><kuvatavNr id="d90d50a8-402b-4d8e-8e64-b6c12c70a065"><![CDATA[§ 1. ]]></kuvatavNr><paragrahvPealkiri id="937ab23b-e59d-4763-b4b0-653ff200965b">Saue valla poolt makstava hoolduskulude piirmäär</paragrahvPealkiri><loige id="para1lg1"><loigeNr id="5eded871-2efa-4120-b6c5-6ba9e0e439dc"/><kuvatavNr id="e76ecc5e-a95b-4a0c-ac57-59553906aabe"/><sisuTekst id="aca6b3f5-9cd2-47b2-8bb8-6733e055878f"><tavatekst id="5165faa8-5867-4439-ba20-f42516231152">Kehtestada sotsiaalhoolekande seaduse § 22<sup>1</sup> lõikes 2 nimetatud kulude piirmääraks 650 eurot.</tavatekst></sisuTekst></loige></paragrahv><paragrahv id="para2"><paragrahvNr id="b2872921-6d25-4551-ac93-22239f256f8c">2</paragrahvNr><kuvatavNr id="108e02a6-80f5-4c1c-b1b5-a4945df2c6a0"><![CDATA[§ 2. ]]></kuvatavNr><paragrahvPealkiri id="b6e4484e-f4ba-4a59-8f56-e96ebaa14d92">Määruse jõustumine</paragrahvPealkiri><loige id="para2lg1"><loigeNr id="1c1ff5ca-c3bc-4e84-be34-59e7cdc9b3b8"/><kuvatavNr id="d0da51bc-7f29-4c43-979f-22fb3112d181"/><sisuTekst id="a25cf741-5968-4d6f-8027-bd25cbe205d0"><tavatekst id="02f6f9d9-3f28-4b7f-a40c-a270d8ddf893">Määrus jõustub 1. juulil 2023.</tavatekst></sisuTekst></loige></paragrahv></sisu>
+<allkiri id="f64ccf01-ef67-4685-96a3-460f0d1ef8db"><allkiriKoht id="7b846d15-3cd3-4614-823f-c8a5bff10133"/><allkirjastaja id="d5d815ff-7c8e-4bb3-99bb-64883504a42f"><ametinimetus id="248903eb-1fec-444e-a432-beed958cdd82">vallavanem</ametinimetus><eesnimi id="ab6dbc72-8477-405a-8d14-24d785e68e9d">Andres</eesnimi><perekonnanimi id="84bcb6b9-02a9-43a0-8c84-619004f9da30">Laisk</perekonnanimi></allkirjastaja></allkiri><allkiri id="8270f111-78ef-46ef-ab2a-84fa30ae7520"><allkiriKoht id="0e136c5f-a069-4572-b2e7-9288e3b7a313"/><allkirjastaja id="57be0dc1-ce23-47e0-88bc-efc52ca78948"><ametinimetus id="0033cc08-8a9f-46a1-8794-4833809fcd0b">vallasekretär</ametinimetus><eesnimi id="b61c5e4b-4902-4799-8757-617e2a8ee5a8">Kirsti</eesnimi><perekonnanimi id="55f2b917-4890-49b5-abd9-9a939c9ae345">Saar</perekonnanimi></allkirjastaja></allkiri></oigusakt>

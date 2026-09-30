@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="86cc6096-ad9e-4897-8098-9efb812c2535" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Rapla Vallavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2023-06-26</aktikuupaev>
+  <avaldamismarge>
+	<RTosa id="e385fc3a-f5a5-446a-9de2-f99c85adc950">RT IV</RTosa>
+	<avaldamineKuupaev id="bb52b884-824c-4940-accd-293d82538279">2023-06-28</avaldamineKuupaev>
+	
+	
+	<RTartikkel id="fc063fd5-1e3e-4d83-bedc-def0b4223e0f">46</RTartikkel>
+	<aktViide id="30e98831-939c-469a-9be8-9e6cb0136ef2">428062023046</aktViide>
+  </avaldamismarge>
+  <joustumine>2023-07-01</joustumine>
+  <aktiNr>6</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-12-16</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>2</RTartikkel><aktViide>416122025002</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2026-01-01</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2025-12-10</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>416122025002</globaalID>
+ <metaandmedVersioon>10</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2025-12-15</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ <terviktekstiGrupiID>1056929</terviktekstiGrupiID>
+ <eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2023-06-19</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Ants Soodla</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="500255e4-18e1-42bd-ad25-41a8745aadb1">
+  <nimi id="39fec9ce-052d-4156-af7d-27057b1941f5">
+   <pealkiri id="735f8738-d994-49db-aa96-65b6aef768a4">Väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse kulude tasumise piirmäära kehtestamine</pealkiri>
+  </nimi>
+ </aktinimi>
+ <muutmismarge id="61df76f4-500a-4d39-b14a-00002191a7c4"><aktikuupaev id="1ab521dc-c7c7-4dcc-abf5-f41bfb342f4b">2025-12-08</aktikuupaev><avaldamismarge id="28af4c8e-39de-43d6-a94b-03846dcb5e77"><RTosa id="b3b83d90-b10f-44c2-9070-0506aaa7506c">RT IV</RTosa><avaldamineKuupaev id="89cfaff3-0595-42fe-a8d6-4fb5346639c9">2025-12-16</avaldamineKuupaev><RTartikkel id="020903db-97aa-412d-9059-2b938ef2796b">1</RTartikkel><aktViide id="09e8f326-8bc6-424e-809a-6aaec7705709">416122025001</aktViide></avaldamismarge><joustumine id="0a04a654-0f47-4385-b8e5-fb6710fa2730">2026-01-01</joustumine></muutmismarge><sisu id="1a2be773-3f40-43ac-a254-b8b1ca34d0d4"><preambul id="62aad3fc-47cb-4581-bde3-16529d5bd0f4">
+   <tavatekst id="1a991fcc-404f-4606-ab7c-47d2bad98aa0">Määrus kehtestatakse sotsiaalhoolekande seaduse 1. juulil 2023 jõustuva redaktsiooni § 22¹ lõike 3 ning Rapla Vallavolikogu 21. detsembri 2020 määruse nr 18 „Sotsiaalhoolekandelise abi andmise kord“ 1. juulil 2023 jõustuva redaktsiooni § 3 lõike 5 alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="eb7abec3-c96b-441b-8c7c-12c346218cb8">1</paragrahvNr>
+   <kuvatavNr id="ac305e88-f44a-4ecc-98bc-4f4c1458608c"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="575556a9-eb55-45ef-9f50-e25d71b44a66">Piirmäära kehtestamine</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="603397f9-e54b-4721-be8f-21e4d1b2bfe3"/>
+   <kuvatavNr id="e29b3c28-6838-424f-b553-d6399a74a08d"/>
+   <sisuTekst id="15533ec2-47e3-4a8c-8bc8-da3d22a84c0f">
+    <tavatekst id="88bd3f42-eb21-4b09-8fbf-ec093661251a">Väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse kohaliku omavalitsuse rahastatavate kulude piirmääraks teenuse saajatele, kelle elukohaks rahvastikuregistris on Rapla vald, kehtestatakse 650 eurot ühe teenuse saaja kohta kuus.</tavatekst>
+   </sisuTekst>
+  <muutmismarge id="e3fc6875-aec1-4f01-b81a-9927a6f19c47"><aktikuupaev id="145f3f60-6540-477f-b8f5-7574afba5254">2025-12-08</aktikuupaev><avaldamismarge id="a4f5031e-a97d-4ba4-a121-d252be30ca33"><RTosa id="3344a6be-cb86-499b-8ad4-331bebb1c1f3">RT IV</RTosa><avaldamineKuupaev id="5596e179-165d-4b8f-a229-3ca8d88f9e34">2025-12-16</avaldamineKuupaev><RTartikkel id="24f3c742-e957-47b7-88e4-04b98ff18acb">1</RTartikkel><aktViide id="db8d88d2-0c14-4877-9a11-1358d0878c61">416122025001</aktViide></avaldamismarge><joustumine id="b8eb4921-c7e6-4451-ac8f-0b25c68d06ea">2026-01-01</joustumine></muutmismarge></loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="4c0d106b-db76-4288-bc7c-facfadf9df53">2</paragrahvNr>
+   <kuvatavNr id="666f5fe3-2f7b-4498-935a-ab5aa0d79a01"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="a1ed30f2-1745-4c4b-ad98-0fb61823076c">Määruse rakendamine</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="4af45394-c4fe-420b-af41-9bd9dacb6829"/>
+   <kuvatavNr id="e586e037-b7b8-4d3c-8a2f-df995b0f76aa"/>
+   <sisuTekst id="fb723010-cc77-4756-a491-970fd3680513">
+    <tavatekst id="548a87c1-7230-4c06-be48-4f31a561071d">Määrust rakendatakse 1. juulist 2023.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+</oigusakt>

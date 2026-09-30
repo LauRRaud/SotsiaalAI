@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="ecbe7900-86ff-4cf3-9bb0-e298efb9e982" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Kastre Vallavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>algtekst-terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2026-04-22</aktikuupaev>
+			<aktiNr>12</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-05-12</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>1</RTartikkel><aktViide>412052026001</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2026-06-01+03:00</kehtivuseAlgus></kehtivus><versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2026-05-06</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>412052026001</globaalID>
+		<metaandmedVersioon>8</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2026-05-11</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Marike Võime</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1063466</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2026-05-06</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gaabriel Tavits</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="189c8455-e7d4-4b1a-8fb4-e9ff07ac833e">
+		<nimi id="ca847f82-7d5b-4720-9223-1d56cb963a25">
+			<pealkiri id="dd766693-f9b8-410e-b216-e8c732f13dfc">Sotsiaaltoetuste piirmäärad </pealkiri>
+		</nimi>
+	</aktinimi>
+	<sisu id="32f72843-5d91-4729-9705-ae0811e8ca4d">
+		<preambul id="19e75086-5fd1-4846-af22-7de3e7152704">
+			<tavatekst id="22adef93-7dc8-40b8-9cec-22ce5b515ce9">Määrus kehtestatakse Kastre Vallavolikogu 18.03.2026 määruse nr 9 “Sotsiaalhoolekandelise abi andmise kord“ alusel.</tavatekst>
+		</preambul>
+		
+		<paragrahv id="para1">
+			<paragrahvNr id="326b41db-8a7d-4587-96e7-b5aecd71cace">1</paragrahvNr>
+			<kuvatavNr id="fc67a448-df7d-487a-a253-568118fe4d03"><![CDATA[§ 1. ]]></kuvatavNr>
+			<sisuTekst>
+				<tavatekst>Leibkonna sissetulekust mittesõltuvate toetuste piirmäärad on alljärgnevad:</tavatekst>
+			</sisuTekst>
+			<loige id="para1lg1">
+				<loigeNr id="278cec41-bdf6-4519-8f46-cb2319492c33"/>
+				<kuvatavNr id="480c9288-c3ff-4ab1-885c-1d5b631b768a"/>
+				<sisuTekst id="0f5827fd-f0a3-415c-9a0d-8c52def264f7">
+					<tavatekst id="ee58162c-8d6e-4592-8ea0-1522f697d9c3"/>
+				</sisuTekst>
+				<alampunkt id="para1lg1p1">
+					<alampunktNr id="b654faab-6aa7-469b-bc1b-68322b02b52f">1</alampunktNr>
+					<kuvatavNr id="c74d0f13-2330-47d2-9a4d-fbb9606b410f"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="f4927671-f1da-4f21-ac21-0af83d33ce4b">
+						<tavatekst id="297ddfc6-10da-498d-87e9-3a426ae8e916">Sünnitoetus 750 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p2">
+					<alampunktNr id="a3af5e28-1557-4fd0-b62b-5aa0c14597f1">2</alampunktNr>
+					<kuvatavNr id="139eeec5-d6b9-4b66-9a54-e1c2ec9c6d6f"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="8718783a-1b74-465e-ad43-bca47a29e418">
+						<tavatekst id="385a452e-0def-4d84-8b1c-8d761a756cac">Sõidutoetus koolikohustusliku haridusliku erivajadusega õpilase haridusasutusse ja tagasi sõitudeks 0,30 eurot/km ja mitte rohkem kui 150 eurot kuus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p3">
+					<alampunktNr id="d0f3f5fb-a784-40af-9444-f4ee31ce5203">3</alampunktNr>
+					<kuvatavNr id="cade3c74-83b0-4c1d-b74f-a95da410d2bd"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="0e9c3f41-24b4-4ba1-9fc9-001afb97ea6d">
+						<tavatekst id="b17b9949-7c4b-4b4b-a889-bc37600b6da8"> Eakate juubeli- ja sünnipäeva toetus 50 eurot, alates 100. eluaastast toetus 100 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p4">
+					<alampunktNr id="84858e70-a667-4e47-9c05-6f1afe9700dd">4</alampunktNr>
+					<kuvatavNr id="e44f6362-7d62-4d00-a15c-c3d1e8396dfa"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="edbbbe4c-e4ca-4aad-8e9f-ff364ffa1f7c">
+						<tavatekst id="24534a08-5f7f-412f-af74-ed29c6ecd284"> Hooldajatoetus 60 eurot kuus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p5">
+					<alampunktNr id="52617a35-0678-4ad7-bbd5-d5d06c5b6b1e">5</alampunktNr>
+					<kuvatavNr id="ae8807a5-a238-4a8b-a7fa-6b079a71343e"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="bb8663d7-3be4-4d20-ad2e-be5517229e7a">
+						<tavatekst id="52d37ff0-0834-4470-98fb-7fa220ca4900"> Matusetoetus 250 eurot.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="eb52726d-b72d-4152-bd2b-4b817452496f">2</paragrahvNr>
+			<kuvatavNr id="48e4fc8e-9f02-4ec9-babe-cb9435dc6374"><![CDATA[§ 2. ]]></kuvatavNr>
+			<sisuTekst>
+				<tavatekst>Leibkonna sissetulekust sõltuvate toetuste piirmäärad on alljärgnevad:</tavatekst>
+			</sisuTekst>
+			
+			<loige id="para2lg1">
+				<loigeNr id="492cd870-8a49-46f6-a7af-6ca5f0094da7"/>
+				<kuvatavNr id="97ec892f-d9a7-4ff9-98e8-ab93956005f5"/>
+				<sisuTekst id="672e966d-3be2-43da-a696-b2de46051eb3">
+					<tavatekst id="d804c192-a0d3-4c73-9880-5d96a1961f5c"/>
+				</sisuTekst>
+				<alampunkt id="para2lg1p1">
+					<alampunktNr id="be3b7d22-a9f4-4fc0-981f-1319d391ec65">1</alampunktNr>
+					<kuvatavNr id="1fd3e583-594c-4cea-9e32-7505df0b44ab"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="840f59e0-bdd9-442e-9c60-dad5f6cf5b09">
+						<tavatekst id="ed7c23af-e326-45b4-83ba-03f737e4ad98"> Lasteaia osalustasu ja toiduraha toetus kuni 100 eurot kuus lapse kohta;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p2">
+					<alampunktNr id="3135a5ef-2e44-4544-aa1f-e983af74393e">2</alampunktNr>
+					<kuvatavNr id="9597af8d-df48-4b86-b768-9dd787153797"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="b197ce19-e10d-4b2e-b330-8b80d324763a">
+						<tavatekst id="c0a18af6-d396-419c-b5f3-8f7e8b2bb802">Koolitoidutoetus kuni 2 eurot päevas; </tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p3">
+					<alampunktNr id="cadb2e8e-0be5-4bd3-b211-d5e0d02fa54c">3</alampunktNr>
+					<kuvatavNr id="c635c93a-2b5c-49ef-b7a6-409734d971ea"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="1124d749-39ad-4b9f-8161-32237a9fca55">
+						<tavatekst id="ba90d1b1-bb6f-4dd8-b7a3-20a0f8cf0b1b">Prillitoetus lastele kuni 240 eurot aastas;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p4">
+					<alampunktNr id="f5019775-c445-4dbc-945b-0b391a438763">4</alampunktNr>
+					<kuvatavNr id="987cde79-9d80-40f2-835c-79032a6e62da"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="1fd22c07-a4f8-44a0-bea3-c56b0a9bfacb">
+						<tavatekst id="6429035e-4cd0-4c42-8e50-2fdaa3d7caca"> Ravimite, abivahendite, raviteenuste toetus lastele kuni 200 eurot aastas;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p5">
+					<alampunktNr id="70f841b8-ad6f-4941-aaf4-41d9017af905">5</alampunktNr>
+					<kuvatavNr id="91c90ea4-f722-493a-af3a-e916501b8bb0"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="606431d5-2121-4971-a7ac-d8ce9d7e9db9">
+						<tavatekst id="1e24ce29-60df-4051-a839-e710bbd2006d"> Sotsiaaltoetus lastele kuni 200 eurot aastas;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p6">
+					<alampunktNr id="0759ffc5-2213-4f2f-a6a7-16c62d344da8">6</alampunktNr>
+					<kuvatavNr id="45aa82b9-81fe-4808-901d-de3d1f08dff3"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="4b642b5a-d84f-4e4f-8e98-acbd999effb4">
+						<tavatekst id="7af3370c-f241-4ef2-a4e3-960cf6679f51">Kodukütte toetus kuni 250 eurot leibkonna kohta aastas;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p7">
+					<alampunktNr id="10f50985-162c-443a-8a83-7215be786888">7</alampunktNr>
+					<kuvatavNr id="b4872014-111a-4193-b172-630f7b3a1b8a"><![CDATA[7) ]]></kuvatavNr>
+					<sisuTekst id="27b62259-95c6-4be5-a3a8-960917078695">
+						<tavatekst id="f85efe30-a42a-4df8-9132-3350c6d3db09"> Ravimitoetus täisealistele kuni 150 eurot aastas;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p8">
+					<alampunktNr id="14fd80c6-a6d2-4e49-822f-7e55a13b2414">8</alampunktNr>
+					<kuvatavNr id="8cfb8792-fea1-4bad-9799-2eb9d543d7b0"><![CDATA[8) ]]></kuvatavNr>
+					<sisuTekst id="c21ba94e-bf78-4844-91ef-2f38856c263d">
+						<tavatekst id="c61a00e8-cd3e-4b36-9711-7aa2458451b2">Abivahendite ja/või raviteenuste toetus kuni 150 eurot aastas.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="7a342fdb-863f-40de-8e5e-d186963074b9">3</paragrahvNr>
+			<kuvatavNr id="001cd38b-dba1-4c43-b261-cf0021a352e3"><![CDATA[§ 3. ]]></kuvatavNr>
+			<sisuTekst>
+				<tavatekst>Tunnistada kehtetuks Kastre Vallavolikogu 14.06.2022 määrus nr 8 „Kastre valla eelarvest makstavate sotsiaaltoetuste piirmäärad“.</tavatekst>
+			</sisuTekst>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="df76b4bc-9c4d-4436-9406-5f136f9b6ccd">4</paragrahvNr>
+			<kuvatavNr id="34f10e52-29a8-4e17-a1a3-7f42a9632066"><![CDATA[§ 4. ]]></kuvatavNr>
+			<sisuTekst>
+				<tavatekst>Määrus jõustub 01.06.2026.</tavatekst>
+			</sisuTekst>
+		</paragrahv>
+	</sisu>
+	<allkiri id="8f38df6e-72d5-4852-b974-423acb97ef98">
+		<allkiriKoht id="a26579da-0dc5-45f2-9f36-784620cf4669"/>
+		<allkirjastaja id="6c12d3ae-29e4-4596-b913-646771431a40">
+			<ametinimetus id="31ebfa6d-b64b-433e-a1da-8661f74bf1c3">volikogu esimees</ametinimetus>
+			<eesnimi id="27a518d1-1cde-4846-8c8b-d0cf523766a6">Pille-Riin</eesnimi>
+			<perekonnanimi id="54aac737-e8b2-4ed0-bceb-d66ddbfcd0de">Raudsepp</perekonnanimi>
+		</allkirjastaja>
+	</allkiri>
+</oigusakt>

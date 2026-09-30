@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="e2f82d5d-884a-4147-8949-447f97ba8643" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Anija Vallavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2026-02-09</aktikuupaev>
+  
+  
+  <aktiNr>3</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-02-13</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>9</RTartikkel><aktViide>413022026009</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2026-02-16+02:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2026-02-09</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>413022026009</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2026-02-12</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1062850</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2026-02-09</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Ilsia Väli</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="85ca1225-b0c4-4ee0-9a46-cf545de229f1">
+  <nimi id="1d3e9b5b-df05-47ed-a803-a8ec30e11261">
+   <pealkiri id="5bac8027-fbdb-40e6-9316-62e86b9e87ca">Väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse hoolduskulude tasumise piirmäära kehtestamine</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="ec90bc2d-4802-49a0-b5fa-0cde0b20ff78"><preambul id="eb3b600f-20cd-4fed-b268-9ccaf7af0ed8"><tavatekst id="3e098a3e-7d3b-45e4-8509-8a5cbdbf477d">Määrus kehtestatakse sotsiaalhoolekande seaduse § 22¹ lg 3 ja Anija Vallavolikogu 22.01.2026 määruse nr 5 „Sotsiaalhoolekandelise abi andmise kord“ § 18 lõike 3 alusel.</tavatekst></preambul><paragrahv id="para1"><paragrahvNr id="52ee2d88-79a0-4d46-837d-e2b22a88282a">1</paragrahvNr><kuvatavNr id="70d5ce38-b7b5-43ca-84c7-60c8e1488c06"><![CDATA[§ 1. ]]></kuvatavNr><paragrahvPealkiri id="bdb9d03b-05c4-4c7b-b9be-c20fb12c5de6">Väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse hoolduskulude tasumise piirmäär</paragrahvPealkiri><loige id="para1lg1"><loigeNr id="896df89e-53cb-4fe3-acee-d232c1c61306"/><kuvatavNr id="646d6610-960f-41da-a171-e04853c0cc92"/><sisuTekst id="edf854d8-e8da-4616-aeb3-7e67bbdf8066"><tavatekst id="c9f4cf6a-f452-48d3-b390-ff5d7ea0ad2d">Kehtestada väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse osutamisel vahetult teenust osutavate hooldustöötajate ja abihooldustöötajate kulude (sh tööjõukulud, tööriietuse ja isikukaitsevahendite kulud, tervisekontrolli ja vaktsineerimise kulud, koolituse ja supervisiooni kulud) tasumise piirmääraks 650 eurot ühe teenusesaaja kohta kalendrikuus.</tavatekst></sisuTekst></loige></paragrahv><paragrahv id="para2"><paragrahvNr id="6cbe5249-11c7-4d73-baef-99c5a14dffb7">2</paragrahvNr><kuvatavNr id="8e4b7620-5889-465e-b065-7d8caae880b8"><![CDATA[§ 2. ]]></kuvatavNr><paragrahvPealkiri id="8830b28e-b975-41eb-8b71-2481858d3276">Määruse jõustumine</paragrahvPealkiri><loige id="para2lg1"><loigeNr id="2724066c-0b9a-42eb-99c5-e44ba324bf27">1</loigeNr><kuvatavNr id="a2943677-aa32-4ffe-987e-723ba0ec91dd"><![CDATA[(1)]]></kuvatavNr><sisuTekst id="8d07f2a5-7ca1-4d63-b4ec-ede3e1459517"><tavatekst id="dcead24a-5fb2-44c5-bf3d-55e2efe6645a">Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist.</tavatekst></sisuTekst></loige><loige id="para2lg2"><loigeNr id="5841e22c-667b-4abb-889d-a64b9e2fc7d1">2</loigeNr><kuvatavNr id="4227a981-e52b-408b-89bc-8c4eb844c9ed"><![CDATA[(2)]]></kuvatavNr><sisuTekst id="f47b3b8d-fc80-4510-a82c-e668bee66c06"><tavatekst id="3c527f13-4f57-44e4-bf9b-e3aa2e0962c8">Määrust rakendatakse tagasiulatuvalt 2026. aasta 2. veebruarist.</tavatekst></sisuTekst></loige></paragrahv></sisu>
+<allkiri id="72b22cee-8973-43c6-ba2b-9082b3666fc7"><allkiriKoht id="77d064e4-8229-4106-b640-b5a145b44bc7"/><allkirjastaja id="7774acfe-9772-4fdb-a9a6-84556c3ada42"><ametinimetus id="8ec06433-8b62-4b1e-9aa3-3a1eb3cd996a">vallavanem</ametinimetus><eesnimi id="3ac4630d-6e60-4288-b11b-c062e59c2441">Riivo</eesnimi><perekonnanimi id="75cd2428-70ed-4bc6-82e3-c00080dd66fb">Noor</perekonnanimi></allkirjastaja></allkiri><allkiri id="7b5999bb-bc0f-4b5b-9def-2bcd80d3b892"><allkiriKoht id="68b44338-6f4f-4c6b-bb97-e81b87ce182c"/><allkirjastaja id="fa6e6fc8-271b-4574-9f7a-aa94b2f30d5e"><ametinimetus id="02935560-df77-46e6-a96e-32495c9ed8e4">referent vallasekretäri ülesannetes</ametinimetus><eesnimi id="c11254a1-780b-4838-befc-3514bc789d8f">Ilsia</eesnimi><perekonnanimi id="6aa46bad-29a7-4a95-9cde-d59da002581a">Väli</perekonnanimi></allkirjastaja></allkiri></oigusakt>

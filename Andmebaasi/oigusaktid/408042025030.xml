@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="45f9fa62-ff2a-418e-8b23-2d88b67a95dd" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Narva Linnavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2024-10-16</aktikuupaev>
+  <avaldamismarge>
+	<RTosa id="a6ee6c42-234f-4de1-938c-44a20521bd73">RT IV</RTosa>
+	<avaldamineKuupaev id="b31614cd-6302-4715-a99c-57a4d89226d1">2024-10-22</avaldamineKuupaev>
+	
+	
+	<RTartikkel id="c3d465c7-1b1c-4da3-8f0a-d2899db022cf">11</RTartikkel>
+	<aktViide id="60d29134-cd06-4d0d-b76f-a81adae9d3f1">422102024011</aktViide>
+  </avaldamismarge>
+  <joustumine>2024-10-25</joustumine>
+  <aktiNr>31</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-04-08</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>30</RTartikkel><aktViide>408042025030</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2025-04-11+03:00</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2025-04-03</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>408042025030</globaalID>
+ <metaandmedVersioon>11</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2025-04-04</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ <terviktekstiGrupiID>1059709</terviktekstiGrupiID>
+ <eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2024-10-18</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Jelena Tõsjatova</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="37fba0c5-b350-4f63-b8c4-676a53199d89">
+  <nimi id="642c02de-e714-4c57-97d8-f9df5d3f3cfa">
+   <pealkiri id="d4e10f59-d37f-4fe3-a721-65591bd7e4f7">Sotsiaalteenuste maksumuse piirmäärade kinnitamine</pealkiri>
+  </nimi>
+ </aktinimi>
+ <muutmismarge id="e65844f4-82ea-4d87-a874-6bd46d128db5"><aktikuupaev id="0356ab5b-e9f5-41bc-ba4f-9f1e27b8fe8b">2025-04-02</aktikuupaev><avaldamismarge id="afea1905-1db4-4908-b0fe-a8c7958eec2c"><RTosa id="d604f615-9bd2-4812-b9f1-f61a6cb3c2fa">RT IV</RTosa><avaldamineKuupaev id="85e439d2-5bf0-4ad7-b633-57709b8a8db9">2025-04-08</avaldamineKuupaev><RTartikkel id="71fbd97a-9c05-4bde-a2b6-c59b33195371">26</RTartikkel><aktViide id="8e836467-d45b-48a4-8914-feac32a5df9d">408042025026</aktViide></avaldamismarge><joustumine id="01041fe6-dca1-4294-96fa-9904c3fde7f2">2025-04-11</joustumine><tavatekst id="21ed63c6-e26b-4c0a-a417-6ea63be7654c">, rakendatakse alates 01.04.2025</tavatekst></muutmismarge><sisu id="2b91b6bb-783c-4b15-ade2-61040e093124"><preambul id="2ae99c9f-1559-4307-a41b-885f3336db44">
+   <tavatekst id="90634de8-d76f-44bd-9c18-595fee23d6f0">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 30 lõike 1 punkti 2 ja Narva Linnavolikogu 26.09.2024 määruse nr 16 „Suure hooldus- ja abivajadusega lastele sotsiaalteenuste osutamise tingimused ja kord“ § 2 lõike 3 alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="f7c74f83-9846-4de4-949a-327b90ed4d9b">1</paragrahvNr>
+   <kuvatavNr id="e11f4141-b1a5-4b65-adea-42d41cbfedb7"><![CDATA[§ 1. ]]></kuvatavNr>
+      <sisuTekst id="c72ec1d2-17f8-4c24-8f55-d0d55fa753c8">
+    <tavatekst id="69ca12a6-d10d-45c2-895c-4cbef0c51b0e">Kinnitada järgmised suure hooldus- ja abivajadusega lastele osutatavate sotsiaalteenuste maksumuse piirmäärad ühe lapse kohta:</tavatekst>
+   </sisuTekst>
+  <loige id="para1lg1">
+   <loigeNr id="4b27edfb-7328-42a7-8b87-1d70f12f835c">1</loigeNr>
+   <kuvatavNr id="b3d2a7e7-de9e-4371-82fd-cf5743a70ac4"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="6b63f595-e794-4fdb-9b53-59fb6370b6c3">
+    <tavatekst id="7d6eddeb-8a34-4a82-9735-3094a655cbc8">lapsehoiuteenus – 9,00 eurot/tund;</tavatekst>
+   </sisuTekst>
+  <muutmismarge id="d6a198e7-8513-4feb-b0d0-650e324c2c3f"><avaldamismarge id="dc729ae1-7b57-4e13-a57f-3cd95e8631c0"><RTosa id="448c8c4d-4f91-4ff9-817d-b8a5d542c75c">RT IV</RTosa><avaldamineKuupaev id="56dc0cd0-400e-4f67-88e3-d707bce2c1a8">2025-04-08</avaldamineKuupaev><RTartikkel id="dfa169ad-c442-4c05-8150-8d449565c895">26</RTartikkel><aktViide id="f23bae5b-a0de-41d4-b909-32d96cfb8d30">408042025026</aktViide></avaldamismarge><joustumine id="313b42aa-268d-47d2-8d46-9823ee9d47f9">2025-04-11</joustumine><tavatekst id="80ebb4ef-469a-469c-9abd-7dc58c1960df">rakendatakse alates 01.04.2025</tavatekst></muutmismarge></loige><loige id="para1lg2">
+   <loigeNr id="c5f18286-8914-4b4e-ace7-36864b65034f">2</loigeNr>
+   <kuvatavNr id="8ddb0196-1b55-4f8d-a2ac-5884882f2dd1"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="306f71a3-4ae7-4325-9e86-636af51ab281">
+    <tavatekst id="822b298a-5f9d-4990-9bcd-aac63299a174">tugiisikuteenus lapsele – 9,00 eurot/tund;</tavatekst>
+   </sisuTekst>
+  <muutmismarge id="9e0453fd-c466-405b-96ae-f6c07ba63827"><avaldamismarge id="7a60d0eb-17ea-4af7-b61c-3bc8a4ecafa2"><RTosa id="66be906b-e99f-4456-a1fb-26b1626246ec">RT IV</RTosa><avaldamineKuupaev id="7b428fa0-3c3a-4779-b66d-63ba417df52f">2025-04-08</avaldamineKuupaev><RTartikkel id="5dcdb731-79c8-407e-a578-d72fd725f5ff">26</RTartikkel><aktViide id="5dafa271-1e77-46c3-979f-33c410f86214">408042025026</aktViide></avaldamismarge><joustumine id="7eee676b-eed9-45f2-8704-020f5db2d0d9">2025-04-11</joustumine><tavatekst id="f214a23b-ddf4-430d-a67d-73208d0dc54a">rakendatakse alates 01.04.2025</tavatekst></muutmismarge></loige><loige id="para1lg3">
+   <loigeNr id="0396f65f-8bb7-4f54-a90c-07d25d8a659d">3</loigeNr>
+   <kuvatavNr id="094ceb76-5856-4505-acaf-15601d666138"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="0ff32b7c-c8ef-48d7-98fe-98d57418ad2f">
+    <tavatekst id="49171168-1467-417e-a99f-27e775942574">sotsiaaltransporditeenus:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para1lg3p1">
+   <alampunktNr id="57653892-1a89-4a7f-a6c5-ef3c1f4d621b">1</alampunktNr>
+   <kuvatavNr id="ed276d1e-d605-450d-b3bb-3ac58f29490c"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="9e3c811a-a46a-469d-8d11-26663cb06454">
+    <tavatekst id="8eeba10b-30f8-4cdf-aa47-f3b66740c370">haridusasutusse – mitte rohkem kui 5000,00 eurot aastas;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg3p2">
+   <alampunktNr id="c59c9d73-ad16-4b34-937a-91f3455c59da">2</alampunktNr>
+   <kuvatavNr id="bb453ae8-f7d9-4814-a067-c40e26a3bd6d"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="a231508d-2cae-4527-95ed-4071fef6447d">
+    <tavatekst id="f60027ea-6dca-485b-95c8-84fc1e7c5897">ravi- või rehabilitatsiooniasutusse – mitte rohkem kui 4000,00 eurot aastas;</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para1lg4">
+   <loigeNr id="948c3305-fd4b-415c-8f14-6352863c114a">4</loigeNr>
+   <kuvatavNr id="67057b6d-248a-4b0a-a954-41a92d5625ee"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="690739be-42a3-4f7b-bc6b-4de7690befa9">
+    <tavatekst id="e3cd79a9-b81c-4f78-a2a4-b2d7ebcac602"> eluruumi kohandamine – mitte rohkem kui 10000,00 eurot aastas.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="a6cd6066-6dd2-45b5-ad9f-281ed2728484">2</paragrahvNr>
+   <kuvatavNr id="c4ddebab-730f-4c24-a36f-2d91c422cbb8"><![CDATA[§ 2. ]]></kuvatavNr>
+      <sisuTekst id="51f8cd51-d1f8-4dc1-a07f-5ef694fc0105">
+    <tavatekst id="5e83f5ef-6161-451f-b752-6c71fb0f8364">[Käesolevast tekstist välja jäetud.]</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para3">
+   <paragrahvNr id="4155e236-0285-4386-b7ca-dd9536a14e30">3</paragrahvNr>
+   <kuvatavNr id="62aadd54-a0fb-4a16-82bd-777e5f6dd235"><![CDATA[§ 3. ]]></kuvatavNr>
+      <sisuTekst id="ec4e9384-50f3-47fa-93a2-3c53626eca88">
+    <tavatekst id="708b4262-e8c6-48ea-98a3-b55bc84943e0">Määrus jõustub seadusega sätestatud korras.</tavatekst>
+   </sisuTekst>
+  </paragrahv></sisu>
+</oigusakt>

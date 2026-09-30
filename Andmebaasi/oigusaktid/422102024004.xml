@@ -1,0 +1,971 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="0197b1ab-5c71-41fb-bd74-e8948b77087c" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Saarde Vallavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>algtekst-terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktiNr>55</aktiNr>
+			<aktikuupaev>2024-10-17</aktikuupaev>
+		</vastuvoetud>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2024-10-22+03:00</avaldamineKuupaev>
+			<RTaasta>2024</RTaasta>
+			<RTartikkel>4</RTartikkel>
+			<aktViide>422102024004</aktViide>
+		</avaldamismarge>
+		<kehtivus>
+			<kehtivuseAlgus>2024-10-25+03:00</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2024-10-17</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>422102024004</globaalID>
+		<metaandmedVersioon>7</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2024-11-01</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1059705</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+	</metaandmed>
+	<aktinimi id="72acffde-571e-4f1c-849a-090750529223">
+		<nimi id="aeff62da-e401-4013-8707-0a3f3a52a1c4">
+			<pealkiri id="ec6a336d-83e3-41af-be47-0da96cdb237d">Sotsiaaltoetuste määramise ja maksmise kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<sisu id="98050856-47ab-4d4d-bee2-d14d69bc7115">
+		<preambul id="5948aed2-5d27-46ca-907a-85723201a7d0">
+			<tavatekst id="24b2bbf1-5715-4a67-a04f-d3a66509d656">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lg 1 p 5 ja sotsiaalhoolekande seaduse § 14 alusel.</tavatekst>
+		</preambul>
+		<peatykk id="88f1b0e5-f93f-4e5d-80a3-2811a9524df5">
+			<peatykkNr id="d0b46277-3a94-4d31-a051-d7279bf7c9ca">1</peatykkNr>
+			<kuvatavNr id="11ef9d4b-f756-4b6e-8143-a1f50d44d36d"><![CDATA[1. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="570cb12c-e126-4ee9-9142-da589ef5c594">ÜLDSÄTTED</peatykkPealkiri>
+			<paragrahv id="para1">
+				<paragrahvNr id="422f2ccf-ef99-4fd1-b58d-ae61d84b0981">1</paragrahvNr>
+				<kuvatavNr id="101a06c6-4f58-469b-af40-13187645299a"><![CDATA[§ 1. ]]></kuvatavNr>
+				<paragrahvPealkiri id="b48dd51b-7dbb-49ce-a82c-eb446b09d0b4">Määruse reguleerimisala</paragrahvPealkiri>
+				<loige id="para1lg1">
+					<loigeNr id="27b41d36-b366-4108-8fac-7299c1cf57e9">1</loigeNr>
+					<kuvatavNr id="25f184f6-2d30-4a63-a622-34b30b0de075"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="8b0f5864-7737-4327-ac24-de3c5bb05108">
+						<tavatekst id="a96f4e82-e0ae-4085-bade-b68cad26c70d">Käesolev määrus sätestab isikutele, kelle elukohana on rahvastikuregistris registreeritud Saarde vald, valla eelarvest makstavate sotsiaaltoetuste määramise ja maksmise tingimused ning korra (edaspidi <i>kord</i>).</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para1lg2">
+					<loigeNr id="9f900af8-23a1-4aed-899e-fd4fd07c5f39">2</loigeNr>
+					<kuvatavNr id="9c72b94e-f46e-4e50-888f-eabf14cc16a0"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="bf785474-b8f1-4708-ab0f-915a5e4f189c">
+						<tavatekst id="ff99981d-3d73-4883-b7cd-789ece918ee2"> Käesoleva määruse § 10 lõikes 1 rakendatakse erandit.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para2">
+				<paragrahvNr id="111e9206-f7f6-4af8-93b6-83e9047e99a8">2</paragrahvNr>
+				<kuvatavNr id="bb2304ea-e55a-4297-832f-f302a3c272eb"><![CDATA[§ 2. ]]></kuvatavNr>
+				<paragrahvPealkiri id="2d5f1e2f-00ad-4e76-97ce-14ae340f1f65">Sotsiaalhoolekandelise abi eesmärk ja mõisted </paragrahvPealkiri>
+				<loige id="para2lg1">
+					<loigeNr id="85525709-aae2-4628-98d5-768c0226c5f3">1</loigeNr>
+					<kuvatavNr id="18c921be-d63d-47be-8f6c-02c96f8c05fe"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="1ba6e7a0-c9db-42dd-b6fb-031d7c444b70">
+						<tavatekst id="e9bbc877-0c7a-4e5b-8745-43a496df9725">Sotsiaalhoolekandeline abi on sotsiaaltoetuste, vältimatu abi ja muu abi andmine, mille eesmärk on toetada inimese iseseisvat toimetulekut ja töötamist ning aktiivset osalust ühiskonnaelus, ennetades sealjuures sotsiaalsete probleemide tekkimist või süvenemist üksikisiku, perekonna ja ühiskonna tasandil.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para2lg2">
+					<loigeNr id="e821c7ab-d0ac-401b-a339-0c0e0afbd1c7">2</loigeNr>
+					<kuvatavNr id="fd6a7156-135e-47f2-9f90-78ded32d5196"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="62f32587-4a17-4f56-b20a-cf82e8d374c1">
+						<tavatekst id="05156a4b-65ab-4a5c-a7d5-1bea6b588c48"> Sotsiaaltoetus on isikule makstav rahaline hüvitis.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para2lg3">
+					<loigeNr id="7ec0793e-aff5-4ac6-bba8-d300e5949114">3</loigeNr>
+					<kuvatavNr id="95f7bbad-6d80-4fa4-9cb5-ce4cbd8b0e59"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="db5b527f-f27c-4fd7-98e9-3429799a2ccc">
+						<tavatekst id="cda73a24-4201-4641-a769-38005e6cba49">Vältimatu abi on elatusvahendite kaotuse või puuduse tõttu sotsiaalselt abitusse olukorda sattunud isikule osutatav sotsiaalabi, mis tagab vähemalt toidu, riietuse ja ajutise majutuse.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para3">
+				<paragrahvNr id="bfb5b61b-606a-429b-8b4b-9c3b8391cbc3">3</paragrahvNr>
+				<kuvatavNr id="5e69970c-53f5-4486-981f-4b520e6e849d"><![CDATA[§ 3. ]]></kuvatavNr>
+				<paragrahvPealkiri id="d5abee91-07a2-4b79-a798-804a62f767c9">Sotsiaalhoolekandelise abi andmise põhimõtted </paragrahvPealkiri>
+				<loige id="para3lg1">
+					<loigeNr id="1b0c7328-99c2-441f-994e-d912c75155c6"/>
+					<kuvatavNr id="e16da1cf-5f80-4c90-9dba-5a52889e9d8d"/>
+					<sisuTekst id="7488aba8-af72-464e-ae73-cc0636524c65">
+						<tavatekst id="ce98e923-dfa9-419b-b39c-472bde8c0515">Sotsiaalhoolekandelise abi andmisel:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para3lg1p1">
+						<alampunktNr id="57dc97af-8c92-4151-bcb4-5f148a54e713">1</alampunktNr>
+						<kuvatavNr id="3ce786bc-ef0d-4cdf-b311-14ea294ab619"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="78dbd43d-212a-4cbc-aabd-e492d70b839d">
+							<tavatekst id="dc5e29d2-58c9-473a-b18c-8bcefcce1b48"> lähtutakse esmajärjekorras isiku vajadusest;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para3lg1p2">
+						<alampunktNr id="fe73020c-6a88-47e4-ac06-2f3e768d4a68">2</alampunktNr>
+						<kuvatavNr id="eb931149-d6ea-4e66-a441-73bbc032a2d8"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="cd9bcb40-b0d9-4ed0-bec9-1faffb1caf1a">
+							<tavatekst id="97103afc-837e-4ca8-8e55-5fa883f6f0a1"> eelistatakse abimeetmeid, mis on suunatud võimaluste leidmisele ja isiku suutlikkuse suurendamisele korraldada oma elu võimalikult iseseisvalt;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para3lg1p3">
+						<alampunktNr id="a5ab8397-7949-444f-a2e2-837907cfc329">3</alampunktNr>
+						<kuvatavNr id="ad2d989d-7fdf-4fdf-b6d0-e6272e092ae4"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="9422b99f-5881-4b68-b448-9b1959d2752e">
+							<tavatekst id="687d29bd-759f-4aa6-a63f-0abeb400ad09"> nõustatakse isikut abimeetme valikul ja kohandamisel ning vajaduse korral abi kasutamisel vastava erialase ettevalmistusega spetsialisti poolt;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para3lg1p4">
+						<alampunktNr id="2c80e11a-b8d0-4321-acca-7792d3cb80e2">4</alampunktNr>
+						<kuvatavNr id="9c40bd70-adbc-41e2-b529-b27fada9487e"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="f216a45e-f5e0-4a64-988b-e65d935f22ba">
+							<tavatekst id="70afb871-ed6f-4c4f-b79e-9b125a9870d6"> lähtutakse abimeetme rakendamise tulemuslikkusest abi vajava isiku ning vajaduse korral pere ja kogukonna seisukohast;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para3lg1p5">
+						<alampunktNr id="c5d51496-6993-4773-801a-43017b703a4a">5</alampunktNr>
+						<kuvatavNr id="e86aac88-e5e3-45db-a363-0b79e8e21173"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="129cc81e-2214-4471-9f1b-180ad4d545ee">
+							<tavatekst id="8bb837ab-4a88-420e-9b27-eaddb693fc6c"> kaasatakse abi andmise kõikidel etappidel abi vajavat isikut ning vajaduse korral ka tema perekonnaliikmeid, kui isik on selleks nõusoleku andnud;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para3lg1p6">
+						<alampunktNr id="ea971477-8cb8-4100-ab81-f7f0a21d278e">6</alampunktNr>
+						<kuvatavNr id="4655eb2f-3664-403f-93fe-fda9ae1d8429"><![CDATA[6) ]]></kuvatavNr>
+						<sisuTekst id="187c2e40-4d93-45fd-9d1d-85342d588ffc">
+							<tavatekst id="36d77770-2f6c-4bd0-b8b7-754418b7377d">tagatakse abimeetmed isikule võimalikult kättesaadaval moel. </tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para4">
+				<paragrahvNr id="f56938f8-a128-421a-b269-3bcd5c93e5ed">4</paragrahvNr>
+				<kuvatavNr id="5a56069b-032b-4848-960c-da9ca23cab3f"><![CDATA[§ 4. ]]></kuvatavNr>
+				<paragrahvPealkiri id="7ea4afd9-f003-4086-91f6-a33d6b2aa0ca">Sotsiaalhoolekandega hõlmatus</paragrahvPealkiri>
+				<loige id="para4lg1">
+					<loigeNr id="64bab2fe-2c26-48ac-a05f-ae9ab61536a8">1</loigeNr>
+					<kuvatavNr id="6e107c64-efb4-42cf-8b9b-2417b2a4f1f0"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="da316861-e46e-4e0e-bced-4e6aeb2a86e3">
+						<tavatekst id="909bb599-ddce-4378-8fca-e35355738448">Sotsiaalhoolekandelist abi on õigus taotleda isikul, kelle rahvastikuregistri järgne elukoht on Saarde vald või isikul, kelle rahvastikuregistri järgset elukohta ei saa kindlaks määrata, kuid kes abi vajamise ajal viibib Saarde valla haldusterritooriumil. </tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4lg2">
+					<loigeNr id="601d2db2-a52b-42fb-a54c-a1e0e21181d0">2</loigeNr>
+					<kuvatavNr id="391cc884-22af-4c4e-a2d0-8308f512222e"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="24bf6c35-6fd3-43fc-a3bb-33abc909293f">
+						<tavatekst id="32e69441-1e69-445f-9134-e415194fd33d"> Kooskõlastatult isiku rahvastikuregistrisse kantud elukoha järgse kohaliku omavalitsuse üksusega võib sotsiaalhoolekandelist abi osutada isikule, kelle rahvastikuregistri järgne elukoht ei ole Saarde vald.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4lg3">
+					<loigeNr id="0af9a739-e501-45ae-a53f-0361e54a7136">3</loigeNr>
+					<kuvatavNr id="3c78d1c3-ed0a-4a62-a349-a1a7132b976e"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="392888d1-1c4c-42ee-a77a-c67466c3583b">
+						<tavatekst id="13963716-0a7d-495f-a31f-e0a6cdb87c60">Vältimatut abi on õigus taotleda ka isikul, kelle rahvastikuregistri järgne elukoht ei ole Saarde vald, kuid kes viibib abi vajamise ajal Saarde valla haldusterritooriumil. </tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ebfe86d7-e28e-4552-9479-703cb60abea8">
+			<peatykkNr id="1894acd2-1b03-48e1-891a-8290d488f079">2</peatykkNr>
+			<kuvatavNr id="212b3889-3e6d-4fc3-b642-cbffd8d558ea"><![CDATA[2. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="59260c9d-d5aa-4685-83a5-14e6c7943aab">SOTSIAALTOETUSED</peatykkPealkiri>
+			<jagu id="437dc97d-312b-4ed7-82e9-781069b8a4eb">
+				<jaguNr id="0416b480-cdab-42f9-9e6d-cc5247edcd5e">1</jaguNr>
+				<kuvatavNr id="fb15b9ac-be75-4f16-8d0d-8127ddf50f02"><![CDATA[1. jagu]]></kuvatavNr>
+				<jaguPealkiri id="6a74790a-2f7f-4700-9d30-4a140bf84cec">Üldsätted</jaguPealkiri>
+				<paragrahv id="para5">
+					<paragrahvNr id="3833a8e8-13ef-4723-a94e-8f31eb78512e">5</paragrahvNr>
+					<kuvatavNr id="c7cb0fbb-de14-45bf-becb-1c1fc5583eb8"><![CDATA[§ 5. ]]></kuvatavNr>
+					<paragrahvPealkiri id="33a02273-dc23-490a-95e9-e0d8a08f4856">Sotsiaaltoetuste liigid</paragrahvPealkiri>
+					<loige id="para5lg1">
+						<loigeNr/>
+						<kuvatavNr/>
+						<sisuTekst id="66d6fc2b-ace9-463d-a493-b7524b895395">
+							<tavatekst id="0ebc9bd7-f51d-41f6-8203-b2e8f094a7c8">Saarde valla eelarvest makstavad sotsiaaltoetused jagunevad sissetulekust mittesõltuvateks ja sissetulekust sõltuvateks sotsiaaltoetusteks. </tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para6">
+					<paragrahvNr id="016983b4-fc5a-4676-9b21-c8a3420d4bc4">6</paragrahvNr>
+					<kuvatavNr id="034c38d3-00d7-445b-9bef-21862ae6e00a"><![CDATA[§ 6. ]]></kuvatavNr>
+					<paragrahvPealkiri id="9f3336f0-cc4f-4b47-a4c5-37a78c4e2679">Sotsiaaltoetuste taotlemise õiguse tekkimine</paragrahvPealkiri>
+					<loige id="para6lg1">
+						<loigeNr id="474a70a2-3ef6-4027-9e82-f90890c552a6">1</loigeNr>
+						<kuvatavNr id="a3ea8ac0-95ec-4bf0-ae72-3cf9a9bb27f7"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="3a425023-ca69-4726-9685-fe24f186fa12">
+							<tavatekst id="80a1f111-c6b8-4015-a818-cf833771460f">Sissetulekust mittesõltuva sotsiaaltoetuse taotlemise õigus tekib isikul toetuse faktiliseks aluseks oleva sündmuse toimumisest, asjaolu saabumisest või muu tingimuse täitmisest arvates.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para6lg2">
+						<loigeNr id="d9ba04b4-347c-4af8-8679-6a0b7cc45cb8">2</loigeNr>
+						<kuvatavNr id="b5304e23-1d9f-4c9f-bc45-199f99bdeb72"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="41b17ec8-4f6f-46c2-a0a6-bc61cf3f0ffb">
+							<tavatekst id="8cb2a2c9-8dc2-4972-9d16-d2a307e521f3"> Sissetulekust sõltuva sotsiaaltoetuse taotlemise õigus tekib, kui isiku või pere netosissetulek pereliikme kohta ühes kalendrikuus on alla 1,5-kordse riikliku toimetulekupiiri. Sissetulekuna ei arvestata puuetega inimeste sotsiaaltoetuste seaduse alusel makstavat puudega lapse toetust, puudega tööealise isiku toetust ja puudega vanaduspensioniealise inimese toetust, välja arvatud juhul kui toetust taotletakse abivahendi, sotsiaaltranspordi, hooldus- ja rehabilitatsiooniteenuste või ravikulude täiendavaks kompenseerimiseks.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para7">
+					<paragrahvNr id="d8a6314c-91df-4fbe-83af-7ac4eb512c3d">7</paragrahvNr>
+					<kuvatavNr id="cf53ef87-2185-4dcd-913b-a1ee93750fb0"><![CDATA[§ 7. ]]></kuvatavNr>
+					<paragrahvPealkiri id="7e8db9ed-44a8-4b01-b60f-3ad32743f48f">Sotsiaaltoetuste suurused</paragrahvPealkiri>
+					<loige id="para7lg1">
+						<loigeNr id="e538a610-4bb9-4754-b394-7990a37596fc"/>
+						<kuvatavNr id="c03cca6e-6baf-47fb-840b-a250a272d0fa"/>
+						<sisuTekst id="e13e957f-cb2b-40b9-aa06-b471e1853c07">
+							<tavatekst id="379ae360-98ae-48bf-9fab-6a323deac46a">Sotsiaaltoetuste suurused kehtestab Saarde Vallavalitsus (edaspidi <i>vallavalitsus</i>).</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="d4073a50-2327-4f8c-931c-eee4f0fd4d85">
+				<jaguNr id="4993328e-adec-43df-aaae-403bf21e544c">2</jaguNr>
+				<kuvatavNr id="e22f8e0d-140c-4419-bd3c-b6474d17b365"><![CDATA[2. jagu]]></kuvatavNr>
+				<jaguPealkiri id="d5ba422c-14ca-4597-beea-4480710b3f08">Sissetulekust mittesõltuvad sotsiaaltoetused, kirjeldused ja taotlemise tingimused</jaguPealkiri>
+				<paragrahv id="para8">
+					<paragrahvNr id="97af161f-4d1c-4007-b547-e63805dd5774">8</paragrahvNr>
+					<kuvatavNr id="6b951134-e93c-4d60-b40f-0cdb983df450"><![CDATA[§ 8. ]]></kuvatavNr>
+					<paragrahvPealkiri id="ffb6de8a-cd0a-4744-93db-63eb497112aa">Sissetulekust mittesõltuvad sotsiaaltoetused</paragrahvPealkiri>
+					<loige id="para8lg1">
+						<loigeNr/>
+						<kuvatavNr/>
+						<sisuTekst id="428c9881-a20a-4815-b2f7-e522f3c089cf">
+							<tavatekst id="33b087a9-5b37-434c-8ac9-8ef6a235a7e5">Sissetulekust mittesõltuvad sotsiaaltoetused</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para8lg1p1">
+							<alampunktNr id="45d70ef3-15e5-4f6c-8b70-a22e9345b06b">1</alampunktNr>
+							<kuvatavNr id="14ffcb41-b212-4545-b8ef-398e34ba2cd2"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="dd451f52-2496-4c1b-bd0e-ba2bd73d5092">
+								<tavatekst id="ab469fae-c555-4fea-8ce8-274c90c12e02">sünnitoetus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para8lg1p2">
+							<alampunktNr id="610cdf5c-4c4d-41ff-a6f0-4b7fc9e9c051">2</alampunktNr>
+							<kuvatavNr id="ddb5e068-4c2c-4fc1-8f2d-356e9d824201"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="0c15c12b-a990-4fda-b965-d938bdd5b5fe">
+								<tavatekst id="ef8833f7-b050-44bd-b949-f1c919803fe2">koolitee alsutamise toetus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para8lg1p3">
+							<alampunktNr id="21e01668-15da-4157-bfbc-f183b1c457ff">3</alampunktNr>
+							<kuvatavNr id="479aa76e-e407-4957-b220-8c7c7c93fc41"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="da240a2c-bf7a-4401-9368-31e43dd93272">
+								<tavatekst id="6b914513-d615-4a9c-9727-b0da95937cf2">üldhariduskooli lõpetaja toetus; </tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para8lg1p4">
+							<alampunktNr id="1c02d98a-d9a5-49ad-81a6-378440c85eef">4</alampunktNr>
+							<kuvatavNr id="d8e8f47e-6aaf-4354-bef9-3a2a2c5003c7"><![CDATA[4) ]]></kuvatavNr>
+							<sisuTekst id="1455a206-7eba-49bf-bf86-bc3e5de25ad1">
+								<tavatekst id="2d1772b5-e474-4302-bdc3-3a22ec0c1321">juubelitoetus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para8lg1p5">
+							<alampunktNr id="1af0a9d9-dd59-44b8-b35e-d1bae1a1147c">5</alampunktNr>
+							<kuvatavNr id="9e135f72-2bed-492b-badf-d5e76d809048"><![CDATA[5) ]]></kuvatavNr>
+							<sisuTekst id="e49caffc-63c6-4fad-9e35-c091a83d4f4b">
+								<tavatekst id="f5f04d1a-9490-442f-9ad3-180eb270b227">hooldajatoetus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para8lg1p6">
+							<alampunktNr id="f5929b7a-b0c9-4c0a-b4a7-36af311af219">6</alampunktNr>
+							<kuvatavNr id="1e904fc0-52e1-4c6b-802c-006030ce829e"><![CDATA[6) ]]></kuvatavNr>
+							<sisuTekst id="542f4956-f3a0-415d-b870-15f9eb1bb7ec">
+								<tavatekst id="d5ebdc08-6790-4f93-9d58-8023411279f2">jõulupakk;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para8lg1p7">
+							<alampunktNr id="fe94e22e-16fa-46c9-8924-dd3a2420d7b2">7</alampunktNr>
+							<kuvatavNr id="be19d0f5-90d0-412c-89eb-333ba1e2adea"><![CDATA[7) ]]></kuvatavNr>
+							<sisuTekst id="2135d80f-9bff-4c95-988a-a8cddf12d467">
+								<tavatekst id="4aa12403-2423-439d-bb08-ed8a277bf772">matusetoetus.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para9">
+					<paragrahvNr id="64974524-7808-4862-b7b8-a1b8ce0b5b69">9</paragrahvNr>
+					<kuvatavNr id="bd88284e-95ce-4b9e-8b56-587f432f990a"><![CDATA[§ 9. ]]></kuvatavNr>
+					<paragrahvPealkiri id="59faf33d-2c58-4555-b483-124e77a31b06">Sünnitoetus</paragrahvPealkiri>
+					<loige id="para9lg1">
+						<loigeNr id="cc101206-5dfe-4040-ac02-759adf2ecbad">1</loigeNr>
+						<kuvatavNr id="dec17c8a-3a55-4bd9-be31-3929b8e62045"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="03554b62-a2b2-41fa-aaf7-c76e40e99cff">
+							<tavatekst id="5f046b9c-9d2d-4209-b65a-92b3c286e46a">Sünnitoetus makstakse ühele lapsevanemale kolmes osas alljärgnevalt: </tavatekst>
+						</sisuTekst>
+						<alampunkt id="para9lg1p1">
+							<alampunktNr id="fb5f6b00-fd43-4df8-b4b4-a66156e11bf6">1</alampunktNr>
+							<kuvatavNr id="af6b7599-e54f-4279-aafb-2bae639a9525"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="5be0f9db-c614-43f7-b17a-73018ea80b59">
+								<tavatekst id="9e43f3e3-b26a-4312-afe0-29f38b5f0e9f">sünnitoetuse esimest osa on õigus taotleda lapsevanemal tingimustel, et ta on olnud rahvastikuregistri andmetel Saarde valla elanik lapse sünni eel vähemalt kuus kuud ja laps on valla elanik sünnist alates; </tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para9lg1p2">
+							<alampunktNr id="8fa0d3e1-bc4d-43bd-9772-3980488116d2">2</alampunktNr>
+							<kuvatavNr id="5666bc41-d6e1-4fe9-8d16-bfa028eb3575"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="e9a7640f-d953-461e-a782-e36dea77f4d9">
+								<tavatekst id="a402e4a1-e93a-42ef-b517-4fad73c588c0">sünnitoetuse teist osa on õigus taotleda lapse aastaseks saamisel tingimusel, et laps ja toetust taotlev lapsevanem on olnud rahvastikuregistri andmetel Saarde valla elanikud lapse aastaseks saamise eel vähemalt kuus kuud; </tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para9lg1p3">
+							<alampunktNr id="19f06434-d804-4fd1-9a24-62d39cf7abc8">3</alampunktNr>
+							<kuvatavNr id="a3c2e7cd-dc24-4433-9aeb-908e9db3c65a"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="c961ce45-4e5b-4cdc-b6c8-a23bd23d27ca">
+								<tavatekst id="d6a2eca0-211b-477b-af29-641efb28e155">sünnitoetuse kolmandat osa on õigus taotleda lapse kaheaastaseks saamisel tingimustel, et laps ja toetust taotlev lapsevanem on olnud rahvastikuregistri andmetel Saarde valla elanikud lapse kaheaastaseks saamise eel vähemalt kuus kuud.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para9lg2">
+						<loigeNr id="8636314e-75b6-4101-b75e-f4ff742dc1f1">2</loigeNr>
+						<kuvatavNr id="0b63e588-505a-4df8-ad64-f2e6cfc44bda"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="39d2bdb1-522d-4422-b506-cd55d87b6c49">
+							<tavatekst id="0756e65f-8b7d-4eb3-bcb2-9a327a5a7085"> Sünnitoetuse saamise õigus on ka lapsendajal või eestkostjal. Lapsendaja ja eeskostja peavad vastama käesolevas paragrahvis vanemale kehtestatud nõuetele. Lapsendamise korral makstakse sünnitoetust juhul, kui lapsendamine toimub enne lapse üheaastaseks saamist. Lapsendatud lapse elukoha määramisel lähtutakse elukoha aadressist, mis kantakse rahvastikuregistrisse pärast lapsendaja kandmist vanemana lapsendatava sünniakti.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para9lg3">
+						<loigeNr id="fa1adf2f-624f-4ebb-8418-e88b873d50e2">3</loigeNr>
+						<kuvatavNr id="41705bf3-c237-4092-9b75-62288e409a50"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="d1e3d43a-1155-4a1a-95ed-c43d5b954350">
+							<tavatekst id="26cfd7a3-d427-415b-a29c-4bb31da44034">Mitmike sünni või lapsendamise korral makstakse sünnitoetust vastavalt laste arvule.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para9lg4">
+						<loigeNr id="670e2f35-ba4d-4921-a09f-a3f03ac5849d">4</loigeNr>
+						<kuvatavNr id="80a67134-145e-4a10-b79e-d8b31a144c15"><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst id="57c18a0e-b4d2-4a28-a36f-b7231b026b7e">
+							<tavatekst id="8907b8ea-f1b3-4bca-a229-eeffd24639fa">Lapse elukoht on registreeritud taotlejaga ühel aadressil. </tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para9lg5">
+						<loigeNr id="d71c2d1c-298e-4226-a938-457689aad36a">5</loigeNr>
+						<kuvatavNr id="3df9a5fb-7c6a-4f6a-8365-b7a09f694efb"><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst id="bbf88f00-e31d-4601-a774-6e14f6a228ed">
+							<tavatekst id="2448328e-4f3a-4e2f-9070-dc555c9f6b8a"> Sünnitoetuse maksmise aluseks on taotleja vormikohane avaldus ja sünnitõend. Avaldus sünnitoetuse esimese osa saamiseks tuleb esitada kolme kuu jooksul pärast lapse sünni registreerimist ning sünnitoetuse teise ja kolmanda osa saamiseks kolme kuu jooksul pärast lapse ühe- või kaheaastaseks saamist. </tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para9lg6">
+						<loigeNr id="8b1f86f6-226f-4ccd-844e-64d28812e573">6</loigeNr>
+						<kuvatavNr id="ee3e1bdb-3ff3-4d2b-8cc4-6f53949d1ed1"><![CDATA[(6)]]></kuvatavNr>
+						<sisuTekst id="3bc06be2-6f6a-40db-8237-9a10b977c564">
+							<tavatekst id="66f73a6d-55da-4880-be5f-8a86e7b82195"> Sünnitoetuse osad makstakse välja kümne tööpäeva jooksul avalduse esitamisest arvates. Juhul, kui sünnitoetuse teise ja kolmanda osa avaldus esitatakse enne lapse ühe- või kaheaastaseks saamist, siis makstakse toetus välja kümne tööpäeva jooksul pärast lapse ühe- või kaheaastaseks saamist.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para9lg7">
+						<loigeNr id="f8aabd1f-7120-4ec7-bf62-ad2139560345">7</loigeNr>
+						<kuvatavNr id="475c6e22-09d0-48f8-aad9-109cd6b22c3c"><![CDATA[(7)]]></kuvatavNr>
+						<sisuTekst id="92f5e544-52d0-4521-92c9-0cd2e9ecea5c">
+							<tavatekst id="a8000f5a-67ff-447e-952f-122b052f4632"> Kõikidele Saarde vallas sündinud lastele, kes on piduliku vastuvõtu korraldamise eel rahvastikuregistris Saarde valla elukoht, korraldatakse hiljemalt ühe aasta jooksul sünnist pidulik vastuvõtt, millel antakse üle ka valla meene.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para10">
+					<paragrahvNr id="0831e233-0bcd-4996-9508-298465fcc4e9">10</paragrahvNr>
+					<kuvatavNr id="bd1f9736-dc48-46ec-b812-ee9d02bb2814"><![CDATA[§ 10. ]]></kuvatavNr>
+					<paragrahvPealkiri id="464828c6-9b60-4150-b28d-861f0e6343a7">Koolitee alustamise toetus</paragrahvPealkiri>
+					<loige id="para10lg1">
+						<loigeNr id="8f30d79d-ef2f-47ff-90e5-0e63cadd70a7">1</loigeNr>
+						<kuvatavNr id="f53ae535-12f8-4111-a6d8-a3d5e9da3b76"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="687cbd34-54ab-4bbe-a004-5d04549ea380">
+							<tavatekst id="8e34e6f5-4e67-4dfa-a279-624294e4776f">Koolitee alustamise toetust makstakse Saarde valla kooli esimesse klassi õppima asuvale lapsele, olenemata tema pere registrijärgsest elukohast.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para10lg2">
+						<loigeNr id="31b5e62f-196e-4220-86fe-1fc98b8aacab">2</loigeNr>
+						<kuvatavNr id="d611721b-3ec8-4586-a580-383a2dd453fc"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="e5497bfc-b177-40a9-bb9d-026b1c800b0e">
+							<tavatekst id="c0ea1ab9-1e62-4703-921d-28c284b55db6"> Toetust on õigus saada ka juhul, kui laps ei asu õppima Saarde valla kooli puudest tingitud erivajaduse tõttu või on vallavalitsuse poolt suunatud õppima väljaspool Saarde valda asuvasse kooli.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para10lg3">
+						<loigeNr id="df1c3ff9-1f9e-4150-8e6b-a3d60cdda8d0">3</loigeNr>
+						<kuvatavNr id="3359b210-3940-4cbf-92d6-efc2ff3ea2c9"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="22793f7a-3473-4fcf-b970-928af4089823">
+							<tavatekst id="17b02691-9b48-4c20-9d76-e195900385bd"> Toetust ei maksta, kui lapse registrijärgne elukoht on Saarde vallas, kuid ta on asunud õppima teise omavalitsuse kooli ja on teisest omavalitsusest sarnase eesmärgiga toetuse juba saanud või on õigustatud saama.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para10lg4">
+						<loigeNr id="07aa7d5f-8a08-4477-a395-a479c16ba102">4</loigeNr>
+						<kuvatavNr id="24a4163e-49db-46bd-b7a3-ef2789ec248c"><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst id="64913216-2329-46a7-a2eb-b58f1ff763f6">
+							<tavatekst id="d54d92a0-fd7f-42c9-b3ac-7a297eac61dd"> Toetuse maksmise aluseks on Saarde valla koolide poolt esitatud nimekirjad või haridusliku erivajadusega lapse vanema või eestkostja avaldus. Toetust ei maksta Saarde valla kooli õppeaasta kestel õppima asunud lapsele, kui lapse eelmise kooli kohalik omavalitsus on maksnud kooli õppima asumise toetuse.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para10lg5">
+						<loigeNr id="5c376d1c-0fc9-4c79-8a8d-79418b6fbda8">5</loigeNr>
+						<kuvatavNr id="d3f0e506-c83f-4cfa-83ac-408459e152d1"><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst id="f28cf8e3-f089-4219-8665-532b8f3545e3">
+							<tavatekst id="f0c05794-3870-4bef-bbe2-d33feb7b7f89"> Toetus kantakse lapsevanema või eeskostja arvelduskontole septembrikuu jooksul.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para11">
+					<paragrahvNr id="cd5fba97-60d4-4661-aaf2-66c9f4fd0ac1">11</paragrahvNr>
+					<kuvatavNr id="c4de98af-1fd7-47f8-b3bb-7019fecd3626"><![CDATA[§ 11. ]]></kuvatavNr>
+					<paragrahvPealkiri id="2279d602-b50a-4bac-8950-3fabe058afb3">Üldhariduskooli lõpetaja toetus </paragrahvPealkiri>
+					<loige id="para11lg1">
+						<loigeNr id="e88a01ba-6568-4e36-9779-17f134ee1de8">1</loigeNr>
+						<kuvatavNr id="a272471d-1539-49c9-bfa2-125760047bdb"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="a67b1751-16f8-496b-b171-ece01823afc7">
+							<tavatekst id="75bd398f-74cd-46f1-b4a6-705974b02d6b">Üldhariduskooli lõpetaja toetust makstakse rahvastikuregistris Saarde valla elukohaga õpilastele, keda tunnustatakse kiitusega põhikooli lõputunnistusel või gümnaasiumi statsionaarse õppe hõbe- või kuldmedaliga lõpetajatele.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para11lg2">
+						<loigeNr id="4d5cf115-443f-44ec-abd0-d9fe4ec973c5">2</loigeNr>
+						<kuvatavNr id="dad1cca7-d5eb-4178-b67a-78cccf1fd164"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="93be070a-691d-4f48-941b-9da0ff7af5ec">
+							<tavatekst id="6986cdb7-cefe-4056-bf0c-d1198eb93afc"> Toetust makstakse koolide poolt esitatavate nimekirjade alusel.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para12">
+					<paragrahvNr id="685608b8-2bf3-496c-84a5-f24bcd5fefea">12</paragrahvNr>
+					<kuvatavNr id="62a67b04-d20f-4d6c-91c3-e534425188b3"><![CDATA[§ 12. ]]></kuvatavNr>
+					<paragrahvPealkiri id="8d54a9af-ef15-4620-8ea3-a70ea1a674ae">Juubelitoetus</paragrahvPealkiri>
+					<loige id="para12lg1">
+						<loigeNr id="dfb42c85-379b-41cc-b8d6-a9414c43d106">1</loigeNr>
+						<kuvatavNr id="aaead993-ed1a-432d-a5cf-4d7969a6646a"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="18249f8c-9fb5-4fb9-96be-1caf8680be32">
+							<tavatekst id="babb7ab3-acc7-49eb-9a8a-d7c734a0b025">Juubelitoetust makstakse 80., 85., 90., 95., 100. ja igal 100. järgneval sünnipäeval, kui eaka rahvastikuregistri järgne elukoht on jooksva aasta 1. jaanuari seisuga Saarde vald.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para12lg2">
+						<loigeNr id="32a29a2c-9502-4ce1-8c6d-ef405c5f8520">2</loigeNr>
+						<kuvatavNr id="16768532-12e0-4f87-9c2d-4e0b7c0851d6"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="5742eda7-4f71-4e2e-972d-2973cf727992">
+							<tavatekst id="678b0079-e7ee-42d5-890b-cb667bc73037">Toetust ei maksta, kui vald osaleb eaka vallaelaniku hoolekandeasutuse kulude tasumisel. </tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para12lg3">
+						<loigeNr id="84a338aa-2557-4dfa-962a-f5f6bfe78238">3</loigeNr>
+						<kuvatavNr id="4e361e96-b4a9-47cf-8f4e-85d2db9f3dfd"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="6b4801b2-cbd6-4b1e-bb30-60c5d1f37ea6">
+							<tavatekst id="9fa706a0-604f-469c-ad79-cbbe2f044fc3"> Toetus kantakse juubilari esitatud arvelduskontole või makstakse välja sularahas.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para13">
+					<paragrahvNr id="c81b8092-d64f-4935-8b75-188946397c5e">13</paragrahvNr>
+					<kuvatavNr id="7e7633dc-7b80-4eb7-a54f-4c9fc8fdbefc"><![CDATA[§ 13. ]]></kuvatavNr>
+					<paragrahvPealkiri id="9521d5e2-8f2c-41c7-b27f-875c40f205d4">Hooldajatoetus</paragrahvPealkiri>
+					<loige id="para13lg1">
+						<loigeNr id="44803a83-76a4-49c9-841c-fc43afafcb40">1</loigeNr>
+						<kuvatavNr id="fb054216-a21f-4fdb-bff6-3442a45a7d25"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="f643a920-dec7-45ff-905a-649d167585d3">
+							<tavatekst id="97a9127b-8869-49e3-b857-ae752b4f7851">Hooldajatoetus on hooldaja toimetuleku soodustamiseks igakuiselt makstav rahaline toetus.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para13lg2">
+						<loigeNr id="bc42745e-eb10-4bb2-808e-c552132894fb">2</loigeNr>
+						<kuvatavNr id="77b00289-f8c8-4e2e-bc82-c8942c276b96"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="e83ea279-fecb-4ad0-a372-7e1e813ababa">
+							<tavatekst id="11484c78-b96e-4360-8470-bc836e4807e2"> Hooldajatoetuse määramist ja maksmist reguleerib Saarde Vallavalitsuse vastavasisuline määrus.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para14">
+					<paragrahvNr id="3f574c54-9239-40b8-9348-980856a2dd00">14</paragrahvNr>
+					<kuvatavNr id="3badce41-a733-43fa-82f2-35ad4fd3c74e"><![CDATA[§ 14. ]]></kuvatavNr>
+					<paragrahvPealkiri id="8d612fb6-2b78-4767-a616-fe3dcce0b1b0">Jõulupakk</paragrahvPealkiri>
+					<loige id="para14lg1">
+						<loigeNr id="947851fe-9674-4418-b0da-95f7a09cbf38">1</loigeNr>
+						<kuvatavNr id="b26e5296-029e-459f-b8fb-8d7dd9bbebcd"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="8cfd1b4a-a4bf-42b3-9853-fc35a331e1a1">
+							<tavatekst id="a7f1c88d-736f-43b7-be2b-8ba9d7d974a7">Jõulupakid on ette nähtud kõigile Saarde valla lasteaedade ja põhikoolide lastele ning jõuluüritusel eelregistreerimisega osalevatele Saarde valla rahvastikuregistris olevatele kodustele lastele. </tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para14lg2">
+						<loigeNr id="b00d726f-dc68-4003-98cc-a7d34eda16cf">2</loigeNr>
+						<kuvatavNr id="0f90b73b-7a53-48f4-9bc2-39961cf1e0d3"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="c8681253-0c5c-4274-a047-0a560df2df62">
+							<tavatekst id="5ef4888e-76b6-439a-8c64-432eaa6fdcfc"> Jõulupaki hinna kinnitab vallavalitsus vastavalt eelarve võimalustele.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para15">
+					<paragrahvNr id="6efe281b-4e5f-4a9b-84e2-587ebe43ac55">15</paragrahvNr>
+					<kuvatavNr id="9be965f9-a730-4e38-a7f1-547d5a6cb5b4"><![CDATA[§ 15. ]]></kuvatavNr>
+					<paragrahvPealkiri id="4a164af4-1bfa-4d29-97e8-28f54532cf8b">Matusetoetus</paragrahvPealkiri>
+					<loige id="para15lg1">
+						<loigeNr id="db948109-be70-4006-b9dc-5932ca334356">1</loigeNr>
+						<kuvatavNr id="7e9d0f35-9c92-4a7f-ba00-8a30bd761e76"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="73874f9f-20e5-464d-b139-2c931a841129">
+							<tavatekst id="1d8b47f9-21e6-458c-be7f-d9feb6129248">Matusetoetust makstakse surma hetkel rahvastikuregistri andmetel Saarde vallas elanud lahkunu matusekulude osaliseks kompenseerimiseks.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para15lg2">
+						<loigeNr id="e4e5453c-efbd-4294-8236-e581116066e5">2</loigeNr>
+						<kuvatavNr id="109fdbc5-79c2-4a48-901b-f55cdb3858fa"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="93d74d4b-097a-44dd-83f0-00821ba3b853">
+							<tavatekst id="4842eadb-5107-4a07-a17f-ca86c0ee5750">Matusetoetust võib maksta ka matuse korraldajale, kelle rahvastikuregistrijärgne elukoht on Saarde vald, kui ta taotleb matusetoetust isiku eest, kellel puudus rahvastikuregistrijärgne elukoht või kelle eest ei olnud võimalik saada toetust lahkunu elukohajärgsest kohalikust omavalitsusest. Toetust makstakse juhul kui varem ei ole sama isiku matuse kulude katmiseks matusetoetust makstud.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para15lg3">
+						<loigeNr id="c8ec25ca-215c-45f7-9d46-32a0494715a9">3</loigeNr>
+						<kuvatavNr id="b20eff5b-7031-477c-ba52-67384798e41b"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="e4a0c3f6-64bb-440f-81dd-4b1e05e57869">
+							<tavatekst id="2abf032a-c4f1-43e2-a4a9-d7128b2829f8"> Matusetoetust makstakse matusekorraldaja (edaspidi <i>taotleja</i>) vormikohase avalduse alusel. Avaldus toetuse taotlemiseks tuleb esitada kahe kuu jooksul alates surma registreerimisest. Toetuse taotlemisel kohustub taotleja kandma matusega seotud kulud. </tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para15lg4">
+						<loigeNr id="4b34c680-53b3-427b-997d-dde354dda63e">4</loigeNr>
+						<kuvatavNr id="62ec32b6-bbdf-4105-aebf-b49cb605e325"><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst id="eb957243-5c3a-4a88-bdbe-c10a455e5256">
+							<tavatekst id="1b77b6d1-0327-4d21-bd17-cdefb9d6a502">Omavalitsuse poolt omasteta või tundmatute surnute matmise korraldamiseks tehtud kulutused kaetakse 100% ulatuses vahenditest, mis on riigieelarvest määratud kohaliku omavalitsuse üksusele matuse korraldamise kulude katmiseks.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para15lg5">
+						<loigeNr id="a5ba1b86-7326-4e3b-b595-08ac32a26043">5</loigeNr>
+						<kuvatavNr id="b2d94a29-c27f-4ec1-9a7f-b44c2623229f"><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst id="f0be67c2-2fc9-4513-bdf4-73c90f240a9d">
+							<tavatekst id="5bbef314-0528-40fe-a6b6-dbbc9fdee564">Matusetoetust ei maksta kui:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para15lg5p1">
+							<alampunktNr id="81350c0d-7422-4378-8203-34b3b1d11083">1</alampunktNr>
+							<kuvatavNr id="1ba8e251-5932-436a-a19b-68655f4d7163"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="da158600-4e0d-4fb6-a737-d8b1b1a9ccb0">
+								<tavatekst id="82502f0d-76f4-44ed-ac18-32ffda2aa56c">käsitletava surmajuhtumi korral on matusetoetus juba eelnevalt määratud;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para15lg5p2">
+							<alampunktNr id="91cdbb27-fad7-40c3-a9c9-3bd3aa1c9488">2</alampunktNr>
+							<kuvatavNr id="98792510-5d16-4e26-8995-42b46f3510fc"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="97f9a22f-92d4-44ea-9efb-0a45474eeb44">
+								<tavatekst id="47465a69-e75c-453d-9ea0-304b2fe511f0">matusekulud kannab Saarde Vallavalitsus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para15lg5p3">
+							<alampunktNr id="c863277a-c98f-445f-8978-6778fe41dde2">3</alampunktNr>
+							<kuvatavNr id="f9a6f9b3-d8a7-4106-a15b-80d9a2faaef0"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="e1f7a322-14ba-45f5-bebf-4645a00da0f4">
+								<tavatekst id="6ac6ebd0-ecc8-489f-b0f4-cea05e8734dd">isik on kohtu poolt surnuks tunnistatud.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="6a3826a3-ff1e-4fff-aaf9-e0ebd69dd2bf">
+				<jaguNr id="8ced2bac-9b75-4f14-bb24-05370c84ea49">3</jaguNr>
+				<kuvatavNr id="c32b1024-2eab-4f29-a73d-a24013546a94"><![CDATA[3. jagu]]></kuvatavNr>
+				<jaguPealkiri id="270a9f66-a25c-4581-8737-a1ff95bd9435">Sissetulekust sõltuvad sotsiaaltoetused, kirjeldused ja taotlemise tingimused</jaguPealkiri>
+				<paragrahv id="para16">
+					<paragrahvNr id="649fc7d5-f19b-45cc-b6d8-9800415e587d">16</paragrahvNr>
+					<kuvatavNr id="a8df1979-8cb7-403e-a4e5-295bc6913a1f"><![CDATA[§ 16. ]]></kuvatavNr>
+					<paragrahvPealkiri id="9dc9bfc7-79c9-4fa6-9739-9e8d534ee5e1">Sissetulekust sõltuvad sotsiaaltoetused</paragrahvPealkiri>
+					<loige id="para16lg1">
+						<loigeNr id="ec8dc53d-0660-4a0c-aab6-f623535352a9">1</loigeNr>
+						<kuvatavNr id="1be7c09a-ca3f-460d-b674-9f4398a3ba4b"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="91bfd7e5-14cb-406e-abbb-abdc694fde32">
+							<tavatekst id="9ea1e7ba-6de7-488e-9155-581ca2029364">Sissetulekust sõltuvad sotsiaaltoetused:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para16lg1p1">
+							<alampunktNr id="d1409320-27f6-4254-a4b3-de427f99ccbb">1</alampunktNr>
+							<kuvatavNr id="6885e41a-d32c-479e-aeb9-79adb6cdeea6"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="499b37f8-f66a-420c-905f-9401b4b40428">
+								<tavatekst id="361d6350-269f-4790-b880-bf208402a7d1">lasteaiatoetus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para16lg1p2">
+							<alampunktNr id="c426c093-b273-4a61-8c72-7fae4e704ebe">2</alampunktNr>
+							<kuvatavNr id="f79736bc-9f36-4adc-85a8-0bf1b04a6d46"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="bfbe41df-07b5-4ab1-9073-2edc62467558">
+								<tavatekst id="0b5fa8d4-d42c-4d1b-a437-bc08bb636112">puudega isiku eluruumi kohandamise toetus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para16lg1p3">
+							<alampunktNr id="0fe5f4d7-1190-498d-ad65-b39ae68f061f">3</alampunktNr>
+							<kuvatavNr id="c98bf3da-7c55-454a-80e9-548ab1dc188d"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="3e7a0026-4976-406e-b900-ae9f7ee67acc">
+								<tavatekst id="e87bb059-3bd7-449c-920f-f9091713907a">lisatoetus.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para16lg2">
+						<loigeNr id="78775ac8-8168-4112-83de-3d2e47b20bbe">2</loigeNr>
+						<kuvatavNr id="a81d20e6-272c-4fe6-a768-a90f6cf1e28c"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="574ebba4-cc9d-4b82-8c8e-e3c6425c7c15">
+							<tavatekst id="060c19ac-b0a8-43e3-a0c7-57815f81818e">Toetust makstakse vallaeelarves selleks ette nähtud vahendite piires rahvastikuregistris Saarde valla elukohaga isikutele.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para17">
+					<paragrahvNr id="5c7211a8-d0e2-49c8-80b7-d7a3ad70dc96">17</paragrahvNr>
+					<kuvatavNr id="e1db297c-c8ba-4862-9ceb-53a55f5924fc"><![CDATA[§ 17. ]]></kuvatavNr>
+					<paragrahvPealkiri id="ad9f6914-041d-4acf-8d43-0ea5cd2cc948">Lasteaiatoetus</paragrahvPealkiri>
+					<loige id="para17lg1">
+						<loigeNr id="b24af2a2-88d2-40ad-b45d-443abd44c69a">1</loigeNr>
+						<kuvatavNr id="35cc2e42-2875-406f-8348-1fbbb51473e9"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="fa087854-06fb-4ac5-ac2d-150d87ad9434">
+							<tavatekst id="05c34be8-87bc-4e54-a0b1-69fb25414e4c">Lasteaiatoetust makstakse Saarde valla koolieelses lasteasutuses käiva materiaalselt vähekindlustatud pere lapsele/lastele toidupäeva maksumuse osaliseks kompenseerimiseks.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para17lg2">
+						<loigeNr id="c0a964c8-55f3-49eb-ad76-98beaf285d2e">2</loigeNr>
+						<kuvatavNr id="c087f548-0d8c-4afa-b890-db738df44118"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="72996e2a-05da-4eb1-8e3a-8d4e1dbe382a">
+							<tavatekst id="c3d596f5-8df4-4094-8563-d1adb67481aa"> Toetuse taotleja ja lasteasutuses käiva lapse rahvastikuregistrijärgne elukoht peab olema Saarde vald.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para17lg3">
+						<loigeNr id="a25075a9-88d3-4d41-baf7-7e08e9aae992">3</loigeNr>
+						<kuvatavNr id="5b2c8bc5-e44c-4929-b8c7-fd2b381e4b67"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="177563ca-11e3-4bbc-bab9-12059b7e72b7">
+							<tavatekst id="afcceb57-8aca-4af8-bf51-f91b8ee03894"> Toetuse saamiseks esitab lapse seaduslik esindaja avalduse koos pere sissetulekuid tõendavate dokumentidega.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para17lg4">
+						<loigeNr id="79864612-81e2-4984-931d-5dc9641121d2">4</loigeNr>
+						<kuvatavNr id="47f2f20f-63d0-4c34-9ff3-523f567d8cd6"><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst id="5834e9ad-39f4-4b0a-9aa5-318783722dfb">
+							<tavatekst id="d22cc70c-8f70-4080-b89e-de490e4dc67f"> Toetust võib maksta tagasiulatuvalt avalduse esitamisele eelnenud ühe kalendrikuu eest.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para17lg5">
+						<loigeNr id="e66ad19c-3455-44fa-92c0-a00f3790ee15">5</loigeNr>
+						<kuvatavNr id="57b379b6-1a29-4fe4-9086-1098ed8183d2"><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst id="e725f7e8-d7ca-43a6-8830-09c0e618d2ca">
+							<tavatekst id="f2edb88e-d9e3-43fe-a8ea-ac32c9f16662"> Vallavalitsusel on õigus nõuda taotlejalt täiendavaid andmeid ja dokumente sissetulekute kohta. </tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para18">
+					<paragrahvNr id="9f1783ae-dd8b-4967-9f9d-7fc19cf4678c">18</paragrahvNr>
+					<kuvatavNr id="23a0e8f9-7418-4274-a7a3-d22d421b82e9"><![CDATA[§ 18. ]]></kuvatavNr>
+					<paragrahvPealkiri id="4e56e0e6-bbb5-437f-874d-63d5e3846e05">Lisatoetus</paragrahvPealkiri>
+					<loige id="para18lg1">
+						<loigeNr id="b9043a7c-67f9-4920-9111-379310bbe634">1</loigeNr>
+						<kuvatavNr id="a6ffe10b-6d7b-42f9-8f37-eb324288b9de"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="dd10af79-4cfc-4f16-aa29-b18b434a7e60">
+							<tavatekst id="be113c76-36be-46a4-8ecf-2136a6a66cd1">Toetust makstakse majanduslikult vähekindlustatud isikutele ja peredele juhtumipõhiselt konkreetse olukorra leevendamiseks (küte, elutähtsad retseptiravimid, eluruumi hädavajalik parandamine, lapsele arendavate kultuuri- ja spordiürituste osavõtu tagamine, laste- või leinalaagris osalemine jms) vajalike kulutuste hüvitamiseks või ajutiste majandusraskuste ületamiseks (pikaajaline töövõimetus, kuriteo ohvriks langemine, pereliikme kaotus, pereliikme raske haigus jms).</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para18lg2">
+						<loigeNr id="ca96d6d0-45a4-45a8-a0d6-6adb8700ae10">2</loigeNr>
+						<kuvatavNr id="9c9c747c-d178-45ef-b3ab-3ac23fe8c850"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="7796489f-2c50-49b7-a43a-b801e3a32fcc">
+							<tavatekst id="464a968b-5521-4cc5-bade-e5d1b027847d">Toetuse maksmisel võib vallavalitsus erandjuhtudel üksikisiku või perekonna iseseisva toimetuleku tagamiseks või toimetuleku säilitamiseks mitte arvestada sissetulekust sõltuva toetuse aluseks olevat 1,5-kordset toimetulekupiiri.</tavatekst><veaparandus>
+								<veaparandusKuupaev>2024-11-01</veaparandusKuupaev>
+								<veaparandusKellaaeg>17:15:00</veaparandusKellaaeg>
+								<veaparandusTekst>Veaparandus - Parandatud ilmne ebatäpsus § 18 lg 2 tekstis. Riigi Teataja seaduse § 10 lg 3 alusel ja arvestades Saarde Vallavalitsuse taotlust.</veaparandusTekst>
+							</veaparandus>
+						</sisuTekst>
+					</loige>
+					<loige id="para18lg3">
+						<loigeNr id="dc4b6d8c-f340-46a9-bbd4-679c0bbf8386">3</loigeNr>
+						<kuvatavNr id="e8d61221-642d-4478-9d78-4fe78856b769"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="1a5e8e85-2e40-4416-8f90-3a98eccc5539">
+							<tavatekst id="ceb1e4d0-177b-4ea0-a5aa-d264f50ac10f">Toetuse maksmise aluseks on isiku põhjendatud avaldus ja kuludokumendid. </tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para19">
+					<paragrahvNr id="8d3de338-d606-42df-b505-5daf9134cce9">19</paragrahvNr>
+					<kuvatavNr id="219fc81b-55a4-4421-98ed-81d890541bcc"><![CDATA[§ 19. ]]></kuvatavNr>
+					<paragrahvPealkiri id="174111d3-9277-4f62-8f6b-19dff13c3366">Puudega isiku eluruumi kohandamise toetus</paragrahvPealkiri>
+					<loige id="para19lg1">
+						<loigeNr id="0ef174bd-3cf1-414e-aa98-5ba628e8bcd9">1</loigeNr>
+						<kuvatavNr id="95a60e78-46fd-4060-acb1-bcc9ffe74b47"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="ecbb91c9-9c11-4c26-b7e9-067f71e1a3af">
+							<tavatekst id="ded5ce58-370e-48cc-baba-703a4bef9677">Puudega isiku eluruumi kohandamise toetuse eesmärk on soodustada puudega inimese iseseisvat toimetulekut ja leevendada või kõrvaldada puudest tingitud takistusi eluruumis liikumisel, enesega toimetulekul ning eluruumi sisenemisel ja sealt väljumisel.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para19lg2">
+						<loigeNr id="0c12bd09-79b2-4620-ab50-c11f904fd91a">2</loigeNr>
+						<kuvatavNr id="99453245-cbef-4e45-954f-e1f792d804fd"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="a24ee691-472d-43bd-87db-2de24554ae8d">
+							<tavatekst id="e11c1886-e5aa-4baf-8374-1fc6b4104e45"> Puudega isiku eluruumi kohandamise toetust on õigus saada isikul, kellel on puue puuetega inimeste sotsiaaltoetuste seaduse tähenduses, ja sellekohane kehtiv otsus. Lisaks peab puudega inimese kasutuses olev eluruum, mida soovitakse kohandada, asuma Saarde valla haldusterritooriumil.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para19lg3">
+						<loigeNr id="749405b5-27db-41b1-848f-51ebb3d00104">3</loigeNr>
+						<kuvatavNr id="720223a8-0d77-4ecd-b390-e197b6894bc7"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="896aba06-e3f1-4d02-a99a-5c5f7553b5f2">
+							<tavatekst id="91aa7d3c-f8d9-4c1e-b0d8-c4906e9fbe51">Toetust antakse:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para19lg3p1">
+							<alampunktNr id="e4c4a1ee-6d73-4419-a450-70b9eb3554a0">1</alampunktNr>
+							<kuvatavNr id="fd53c5bd-bb50-4a67-9b65-71a80251b8c1"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="814a3010-067e-45ab-b1a7-6d5913eba69b">
+								<tavatekst id="28e59b5a-ce8a-408f-b934-1d34dfbfd3e0"> liikuvusega seotud toimingute parandamiseks, sealhulgas eluruumi sissepääsu, hoone välisukse ja eluruumi vahelise käigutee, hoone ja selle territooriumile sissepääsu või piirde kohandamiseks;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para19lg3p2">
+							<alampunktNr id="cd778bd3-c835-4342-9573-7b36f7f3728f">2</alampunktNr>
+							<kuvatavNr id="e5334c21-5bb0-4f19-a09f-bcebe8508fc2"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="7b4fc1bb-c6fe-4edc-b6fc-9467372c0cbf">
+								<tavatekst id="230019dd-239c-47b8-99eb-b58c348cf1c3"> hügieenitoimingute parandamiseks;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para19lg3p3">
+							<alampunktNr id="da223638-3ec7-4d53-84e4-ca70eaf765a9">3</alampunktNr>
+							<kuvatavNr id="fe04875d-83d1-45f0-87e9-a74fdc1204ce"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="05666134-79fc-4a01-8c10-b64e3884e1ea">
+								<tavatekst id="2a53ca9e-b792-4e38-b671-90e76b82d5ee"> köögitoimingute parandamiseks.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para19lg4">
+						<loigeNr id="08a95803-fc59-4ac4-830d-7057fab8c387">4</loigeNr>
+						<kuvatavNr id="8110ad14-68be-47a3-a608-fae16ece489c"><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst id="e23dccac-0e0b-435e-9c9e-f3ba678cd134">
+							<tavatekst id="06d60615-8309-454b-82b2-21cb736d16cf"> Eluruumi kohandamise kuluks loetakse eluruumi kohandamiseks vajaliku materjali ja ehitustööde ning tehniliste abivahendite ostmise ja paigaldamise kulu.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para19lg5">
+						<loigeNr id="f1c8e2f1-d769-4512-aec6-5e3bfca53531">5</loigeNr>
+						<kuvatavNr id="6c0df510-831b-4059-a191-6632353613de"><![CDATA[(5)]]></kuvatavNr>
+						<sisuTekst id="79ba7800-0ac8-406b-b252-55631d3d37a3">
+							<tavatekst id="452bf9ae-3aba-45ef-bf87-7f8c1b0f30b2"> Eluruumi kohandamise toetusega ei kaeta enne toetuse maksmise otsustamist tehtud tööde maksumust.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para19lg6">
+						<loigeNr id="f746ee11-da92-430d-bb0f-d7eee61691c9">6</loigeNr>
+						<kuvatavNr id="2faf2070-6254-4ef8-8906-0c841847db6b"><![CDATA[(6)]]></kuvatavNr>
+						<sisuTekst id="6c1171ae-187f-46a9-8e0e-dc5ac43dcbec">
+							<tavatekst id="1af6bfea-9f5d-48a9-a9a3-09ea3e2f46aa"> Eluruumi kohandamise toetust makstakse kord kolme kalendriaasta jooksul. Toetuse suurus on maksimaalselt 50 protsenti kohandamise maksumusest, kuid mitte rohkem kui 1000 eurot kohanduse kohta.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para19lg7">
+						<loigeNr id="71038ef6-fd1f-4055-b0d7-c9ee88f6093b">7</loigeNr>
+						<kuvatavNr id="0098a0ac-3de5-489a-b46e-27010e53daa5"><![CDATA[(7)]]></kuvatavNr>
+						<sisuTekst id="2d2a5b56-d5f3-4a08-be3f-6428942dd565">
+							<tavatekst id="e5e99f7f-3db8-42da-81ba-d4fc1df2bda6">Puudega isiku eluruumi kohandamise toetuse taotlemiseks esitatakse vallavalitsusele vormikohane kirjalik avaldus. Avaldusele tuleb lisada: </tavatekst>
+						</sisuTekst>
+						<alampunkt id="para19lg7p1">
+							<alampunktNr id="75cf575f-bfe2-4045-bd16-244fdc5c8164">1</alampunktNr>
+							<kuvatavNr id="7fd42e5d-71d7-48a8-8052-5efd8f9fc2a8"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="9ebddb02-92d5-43e3-be60-5d155bc493b5">
+								<tavatekst id="4816b3bf-b47b-4550-a075-a6f742e00a6f"> eluruumi omaniku või kaasomandis või ühisomandis oleva eluruumi omanike kirjalik nõusolek eluruumi kohandamiseks, kui taotleja ei ole kohandatava eluruumi omanik;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para19lg7p2">
+							<alampunktNr id="1fcc2f56-918b-4568-aa43-46b160bbfc32">2</alampunktNr>
+							<kuvatavNr id="c5460b3f-7191-44c9-a775-011f9a26851b"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="96d99285-dc83-4c7d-85f1-45ee93da2530">
+								<tavatekst id="2e957e10-9916-413f-bbf4-32d7076454e0"> korteriühistu nõusolek, kui eluruumi kohandamisega seonduvad tööd teostatakse väljaspool eluruumi või korteriomandi kaasomandi esemel (näiteks hoone välispiirded, kandvad konstruktsioonid, üldkasutatavad osad ning üldkasutatavad tehnoseadmed ja -süsteemid);</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para19lg7p3">
+							<alampunktNr id="96ef237b-8cd9-4d57-bae1-70d7d4d97070">3</alampunktNr>
+							<kuvatavNr id="0888d72c-3a3b-45ba-a33c-dced230735ac"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="3810fca5-bd89-450c-b091-83218419cf5e">
+								<tavatekst id="66563f1c-a7a6-4699-a54c-275d3632edc8"> vähemalt kaks võrreldavat hinnapakkumist taotletavale kohandustööle.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para19lg8">
+						<loigeNr id="2aa11bea-e545-4939-918b-08c808601279">8</loigeNr>
+						<kuvatavNr id="cfaa87ed-adc6-495c-98f9-d393cfd84da6"><![CDATA[(8)]]></kuvatavNr>
+						<sisuTekst id="99ffbaaf-b1cc-4a5c-81bb-52bd117c3da4">
+							<tavatekst id="929a922e-337a-4787-9586-e3700a7e5dc2"> Toetuse taotlemiseks esitatud dokumendid vaatab läbi sotsiaalspetsialist, kes teeb kohanduse taotleja kodukülastuse, kaasates menetlusse ametiasutuse ehitusspetsialisti ning vajadusel eksperdid ja teised sotsiaaltöötajad.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para19lg9">
+						<loigeNr id="e8db0eff-5173-48c5-b695-35a99969c48b">9</loigeNr>
+						<kuvatavNr id="95bfa8e1-bd49-4b06-ae49-ac65bbef4a3e"><![CDATA[(9)]]></kuvatavNr>
+						<sisuTekst id="b596c984-a712-44e8-9db0-62e8d3430762">
+							<tavatekst id="f9621f5c-ae59-424b-ae51-6bb718351a7d">Sotsiaalspetsialistil on õigus nõuda lisadokumente ning teha ettepanekuid säästlikemate lahenduste kasutamiseks.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para19lg10">
+						<loigeNr id="17913966-66fc-4c3d-980c-2344050f6fe9">10</loigeNr>
+						<kuvatavNr id="3ae53512-3772-48b1-8fcb-5baf58fb338d"><![CDATA[(10)]]></kuvatavNr>
+						<sisuTekst id="3f631df9-5e53-485a-b330-1eb0572be7dd">
+							<tavatekst id="b6978279-14cb-4aed-9d7b-237b98f07920"> Toetuse määramise otsustab vallavalitsus korraldusega.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para19lg11">
+						<loigeNr id="ab2458a4-0972-46f5-bec5-c9b8194eaa68">11</loigeNr>
+						<kuvatavNr id="c02405ce-ec9a-4ce2-8d75-4abe87a716e6"><![CDATA[(11)]]></kuvatavNr>
+						<sisuTekst id="de73df4a-2822-48a4-8979-3ae69cf85d03">
+							<tavatekst id="8748b699-6e66-42d4-92c5-bebed63df43e">Pärast haldusakti teatavakstegemist sõlmitakse Saarde valla, toetuse saaja või tema esindaja ning eluruumi kohandamise ehitustööde tegijaga kolmepoolne leping, milles märgitakse muuhulgas:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para19lg11p1">
+							<alampunktNr id="a9b456c8-ce17-468d-97a6-06ac8e44f0fb">1</alampunktNr>
+							<kuvatavNr id="369757b8-5ec2-4d65-b2f5-2767e9660674"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="14eec149-9503-469d-b0d0-5cec3478139b">
+								<tavatekst id="312a1b02-ae8f-498d-8b1e-d62e8f5f9567"> eluruumi kohandamiseks vajalikud tööd;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para19lg11p2">
+							<alampunktNr id="0f943fbc-3be6-4048-a017-285db0c46dcf">2</alampunktNr>
+							<kuvatavNr id="25bce3c6-4f3f-4631-8ca5-a510c6a892a0"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="f18005ed-cf86-4c7c-aeeb-05797b721f51">
+								<tavatekst id="68a2979b-5bba-4e2c-aea4-20066a0a8e6f"> tööde teostamise lõpptähtpäev;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para19lg11p3">
+							<alampunktNr id="8825ccb6-72e9-4cab-8e68-dabcd569740d">3</alampunktNr>
+							<kuvatavNr id="107c7cde-16e6-41f7-aad7-be8054d7a55a"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="91e5a0c4-2450-4d17-a72f-6917d728c4af">
+								<tavatekst id="f135bbb9-1970-468a-b1c8-5b056b1f7387">tööde rahastamise kord.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+				</paragrahv>
+			</jagu>
+		</peatykk>
+		<peatykk id="7e6a1365-fe41-4d0e-ab6a-ea15b6439281">
+			<peatykkNr id="4f5ddfb7-995d-40be-a7f4-d15bda5ba21b">3</peatykkNr>
+			<kuvatavNr id="9738c390-88b3-4eb5-b3f6-b30780ff4826"><![CDATA[3. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="8d8bc287-2d3c-4675-a1ff-54efa4da172e">MUU SOTSIAALABI</peatykkPealkiri>
+			<paragrahv id="para20">
+				<paragrahvNr id="3b466567-675f-4a7f-b19d-08b3bd9899bc">20</paragrahvNr>
+				<kuvatavNr id="499e3b48-95cc-415d-96ab-8be16c8f878c"><![CDATA[§ 20. ]]></kuvatavNr>
+				<paragrahvPealkiri id="53a94481-4850-4168-a8b4-9562881948f8">Vältimatu sotsiaalabi</paragrahvPealkiri>
+				<loige id="para20lg1">
+					<loigeNr id="94c4592e-8a89-4d6f-89bb-22e6e64c89a0">1</loigeNr>
+					<kuvatavNr id="3ad68193-b58e-4bb5-ad20-10b20208b716"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="00ee578d-ebab-44a6-bbf5-f3f670ec9284">
+						<tavatekst id="785fb6e0-5f8d-4729-b0c0-0de453f0d2cb">Isikule, kes on sattunud sotsiaalselt abitusse olukorda elatusvahendite kaotuse või puudumise tõttu, osutatakse vältimatut sotsiaalabi, mis tagab vähemalt toidu, riietuse ja ajutise majutuse.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para20lg2">
+					<loigeNr id="cf7519a2-f1d8-41b0-92a3-97c3ff842556">2</loigeNr>
+					<kuvatavNr id="a4c09252-6751-4fa3-b818-742170012668"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="e23562eb-78e5-4f18-b77a-4d43e2e28d01">
+						<tavatekst id="ad4c00b0-9da9-4fe8-9ccd-9f656bad3f78"> Vältimatut sotsiaalabi osutatakse isikule seni, kui ta ei ole enam elatusvahendite kaotuse või puudumise tõttu sotsiaalselt abitus olukorras.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="342eea78-6b06-4492-b647-9942926a663a">
+			<peatykkNr id="412c2e8f-c51d-49cb-b6fe-089f0ba67aa3">4</peatykkNr>
+			<kuvatavNr id="73a10c21-e856-433a-a3ef-5b32869dffed"><![CDATA[4. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="157f4e5f-4ac3-412a-9428-abfd0825ce74">SOTSIAALTOETUSTE MENETLEMINE</peatykkPealkiri>
+			<paragrahv id="para21">
+				<paragrahvNr id="5ad617c4-7dc7-410c-b7fb-86a2b9dbabe1">21</paragrahvNr>
+				<kuvatavNr id="3222e01c-2e6d-4847-81a5-1ea7b1976d2d"><![CDATA[§ 21. ]]></kuvatavNr>
+				<paragrahvPealkiri id="cdd73cc8-f56f-4e88-aa3d-e263cd491f2d">Sotsiaaltoetuste taotlemine</paragrahvPealkiri>
+				<loige id="para21lg1">
+					<loigeNr id="793873f0-8e3e-4b5e-9eca-76eaec85db58">1</loigeNr>
+					<kuvatavNr id="96438a1c-422a-4340-bb57-91732f44352d"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="986adb17-a64e-4caf-b2f2-7f1ab2ec0b0b">
+						<tavatekst id="b15dea1b-75d6-4d02-a13d-66a5f01a0df7">Sotsiaaltoetuste saamiseks esitab isik või tema esindaja vallavalitsusele vormikohase või vabas vormis avalduse ning vajadusel kuludokumendid ja muud tõendid, mis on vajalikud sotsiaaltoetuste saamise õiguse väljaselgitamiseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para21lg2">
+					<loigeNr id="15c865c9-3c2b-43a8-943b-c005c34ab029">2</loigeNr>
+					<kuvatavNr id="c00f3132-3fe7-48cc-ae26-c336d107882e"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="84dfc8ac-7fb8-4d5e-8920-216cd0900bc4">
+						<tavatekst id="4a050977-36fd-4823-ae23-b9efdbc15056">Sotsiaaltoetuste avalduste vormid kinnitab vallavalitsus. </tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para21lg3">
+					<loigeNr id="b7a075b0-59f5-4d46-aaa5-a3c2f4ade5cf">3</loigeNr>
+					<kuvatavNr id="27be41c3-ab8a-4a1e-b7e9-03a242731c48"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="3622ac9b-e67b-496e-b9d9-d308858a7517">
+						<tavatekst id="b0708e66-7f77-418e-84b5-7ad2393af537"> Vallavalitsus võib sissetulekust sõltuva toetuse taotlejalt nõuda täiendavaid dokumente taotleja majandusliku olukorra kindlakstegemiseks. </tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para22">
+				<paragrahvNr id="6f2206c6-337d-4324-9e8c-48fb0e679748">22</paragrahvNr>
+				<kuvatavNr id="2924f696-c48b-4fdc-8f9f-f745dc7e7b66"><![CDATA[§ 22. ]]></kuvatavNr>
+				<paragrahvPealkiri id="29cb1613-5252-4b9e-8566-7c19661e9527">Sotsiaaltoetuste määramine</paragrahvPealkiri>
+				<loige id="para22lg1">
+					<loigeNr id="43919562-0160-4a48-9798-083ad81b7951">1</loigeNr>
+					<kuvatavNr id="86ad7dac-a55a-49b3-acb7-51bf734d5ec2"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="b92f6314-0dba-40e6-ab3f-bdb9b77b9234">
+						<tavatekst id="203df124-f2db-4269-9ec1-d6abc9bb1a88">Toetuse määramise või sellest keeldumise otsuse teeb:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para22lg1p1">
+						<alampunktNr id="dcb04ae9-6f15-4c3f-8b9c-16ef76e63cdb">1</alampunktNr>
+						<kuvatavNr id="40342178-3934-48f5-845a-010b88ed202c"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="6a2ff6c2-8c4e-4113-9c68-a863f3c66935">
+							<tavatekst id="207b36ad-0c92-4ab2-8cbd-d92da03ce247">sissetulekust mittesõltuvate toetuste korral vallavalitsuse poolt volitatud ametnik;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para22lg1p2">
+						<alampunktNr id="07ebca70-ebf9-4dc0-a68f-1f658596f9f3">2</alampunktNr>
+						<kuvatavNr id="99afbfc4-de1c-49ca-8dfc-675ab7c083f9"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="9e4fb784-390b-4544-a718-4f68c948bf76">
+							<tavatekst id="41e93b26-1e3d-4548-a9c1-5707d42aa41d">sissetulekust sõltuvate toetuste korral vallavalitsus.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para22lg2">
+					<loigeNr id="963a1501-8e09-4045-90d3-62cb17c7f47b">2</loigeNr>
+					<kuvatavNr id="79ef5554-441b-4f64-a546-a6f9ddee7711"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="13b9043e-1123-4376-9653-1709e84e5ac2">
+						<tavatekst id="3f866e7c-15b6-4a35-8077-17203c9367d4"> Sotsiaaltoetus makstakse isiku avalduses näidatud arvelduskontole, sularahas või isiku nõusolekul tema kirjaliku avalduse, digitaalselt allkirjastatud elektroonilise avalduse või notariaalselt tõestatud avalduse alusel kolmanda isiku arvelduskontole Eestis.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para22lg3">
+					<loigeNr id="948d08b6-36d8-41b7-af29-99785257abbf">3</loigeNr>
+					<kuvatavNr id="ec21c226-2335-4735-aadb-5b651261e663"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="6961a517-2968-4597-994e-73a554d50c5a">
+						<tavatekst id="7d80e71f-48df-4c7b-b55f-60828b0428e9"> Avaldust menetleval ametnikul on otsuse tegemiseks oluliste täiendavate asjaolude väljaselgitamiseks õigus ja kohustus hankida lisainformatsiooni ja nõuda taotlejalt täiendavaid andmeid.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para22lg4">
+					<loigeNr id="620b1dc3-025f-4dea-b912-9e5e817778db">4</loigeNr>
+					<kuvatavNr id="7bcac7af-c4a5-49fb-97ff-12966f6701c1"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="e1f449d8-5262-4bbd-a5d2-7da72f020d35">
+						<tavatekst id="ff83180d-928e-49e7-b755-f229332c8f11">Sotsiaaltoetuse määramise või määramisest keeldumise otsus tehakse isikule või tema esindajale teatavaks avalduses märgitud aadressil.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para22lg5">
+					<loigeNr id="bfb9a93b-7db4-413a-ade5-2fe63df7d91b">5</loigeNr>
+					<kuvatavNr id="81c665b9-73cd-434a-b5db-49ce92ff0a4c"><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst id="c2653ef7-f255-45c0-90fa-b5384cf07d0e">
+						<tavatekst id="aeddf4bc-cbef-4eb2-96e1-febc4d461815"> Vallavalitsus maksab sotsiaaltoetuse välja 30 kalendripäeva jooksul otsuse tegemisest arvates.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para23">
+				<paragrahvNr id="1680b653-fd1d-4677-b07a-0f7595435fe5">23</paragrahvNr>
+				<kuvatavNr id="ac5b2175-e091-4743-a6a0-0dc90f6f08f7"><![CDATA[§ 23. ]]></kuvatavNr>
+				<paragrahvPealkiri id="4cd09910-82b8-4923-ab40-0ea901a28838">Alusetult saadu tagastamine</paragrahvPealkiri>
+				<loige id="para23lg1">
+					<loigeNr id="7d5f9ed6-16d5-4110-a75d-62b2dec92b7f"/>
+					<kuvatavNr id="8cab2a84-3e9f-40eb-bb80-ec7fdf27ec30"/>
+					<sisuTekst id="98ab2868-ca1b-4aee-8555-c6a9c8a976f4">
+						<tavatekst id="c861a50a-ea50-4f54-8e9b-e8030956d76d"> Saarde vallavalitsusel on õigus isikule valeandmete esitamisel alusetult väljamakstud sotsiaaltoetus osaliselt või täielikult tagasi nõuda.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="5941cae5-a6ca-4892-a71f-c1aa58b62a74">
+			<peatykkNr id="d36e9bf9-36fd-45d8-996e-df62be0f833f">5</peatykkNr>
+			<kuvatavNr id="b101d765-c291-446b-be81-6f19dd4b80b4"><![CDATA[5. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="b3e84ad2-bb47-49ec-a935-69abcfa5bc90">RAKENDUSSÄTTED</peatykkPealkiri>
+			<paragrahv id="para24">
+				<paragrahvNr id="a051a2ee-2c4e-4a9a-9abf-fd88c46f8e41">24</paragrahvNr>
+				<kuvatavNr id="c3353745-7994-428a-a7f0-5dd6541db186"><![CDATA[§ 24. ]]></kuvatavNr>
+				<paragrahvPealkiri id="57c069e0-9598-4725-9e6f-0ec05427a8e7">Määruse kehtetuks tunnistamine</paragrahvPealkiri>
+				<loige id="para24lg1">
+					<loigeNr id="79068398-98a1-4467-9a35-3a731ea645e5"/>
+					<kuvatavNr id="06f3e96d-7b3f-4f48-8801-d496bfd34359"/>
+					<sisuTekst id="d602901e-a684-4c17-b944-4e260ea79a16">
+						<tavatekst id="cba66280-a057-4225-a0a0-0fd010157450"> Tunnistada kehtetuks Saarde Vallavolikogu 17.03.2022 määrus nr 8 „Sotsiaaltoetuste määramise ja maksmise kord“.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para25">
+				<paragrahvNr id="93188dc0-2c83-4b01-a619-41486736ffca">25</paragrahvNr>
+				<kuvatavNr id="ed11f15b-613b-4890-acfe-507c56a83ac7"><![CDATA[§ 25. ]]></kuvatavNr>
+				<paragrahvPealkiri id="72dfcbcd-709e-4f97-a491-9cc48d15ec68">Määruse jõstumine</paragrahvPealkiri>
+				<loige id="para25lg1">
+					<loigeNr id="47e63c12-0f08-429f-a4c5-187598fef416"/>
+					<kuvatavNr id="d7ab37ea-527a-4d63-9a16-2559aa563712"/>
+					<sisuTekst id="71aeffbe-1b3d-4f19-96c2-80ee55a25577">
+						<tavatekst id="96b09c35-f571-4020-8540-ea3b006e1c4d">Määrus jõustub kolmandal päeval pärast avaldamist Riigi Teatajas.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+	</sisu>
+	<allkiri id="3b12968c-891c-4a97-97a9-c35083e06cbe">
+		<allkiriKoht id="4fd15447-07ab-4c9d-8a5f-056329775785"/>
+		<allkirjastaja id="44423823-931c-46df-ae04-70b992915025">
+			<ametinimetus id="ff1dc28a-4393-40d0-888a-945596e9a698">volikogu esimees</ametinimetus>
+			<eesnimi id="b89dc25a-ff30-4708-aed0-255a91e8285e">Eiko</eesnimi>
+			<perekonnanimi id="43fc7842-04c6-41e5-b9b6-b9a23cc6fd9b">Tammist</perekonnanimi>
+		</allkirjastaja>
+	</allkiri>
+</oigusakt>

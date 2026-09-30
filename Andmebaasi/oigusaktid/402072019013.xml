@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="d9e308b8-9a72-4140-aac2-ad0087c4e624" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Tori Vallavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2019-06-20</aktikuupaev>
+  
+  
+  <aktiNr>77</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2019-07-02</avaldamineKuupaev><RTaasta>2019</RTaasta><RTartikkel>13</RTartikkel><aktViide>402072019013</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2019-07-05+03:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2019-06-26</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>402072019013</globaalID>
+ <metaandmedVersioon>5</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2019-07-01</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1047357</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+</metaandmed>
+ <aktinimi id="35e17c4a-ca8b-4baf-bdd2-118bc55b5030">
+  <nimi id="1e438fd0-9234-4fa7-94fa-bdc4074c37d9">
+   <pealkiri id="12a6121e-8498-4bb2-860f-84f32f22e453">Võlanõustamisteenuse ja teiste toetavate sotsiaalteenuste osutamise tingimused ja kord</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="28b934fa-62eb-45de-822f-f53d2755f635"><preambul id="14ab4017-823f-442a-83bd-46f59111fd5f">
+   <tavatekst id="002f80de-8510-437c-ab56-869d8d1bc74e">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lg 1 punkti 5 ja sotsiaalhoolekande seaduse § 44 alusel.</tavatekst>
+  </preambul><peatykk id="addff9af-2de4-4b7a-8a14-6a0373c62b81">
+   <peatykkNr id="f19e933b-3a63-4a51-a0c6-b6b59b1cec79">1</peatykkNr>
+   <kuvatavNr id="c3596290-3f3d-498d-89ac-640f3c0e47d8"><![CDATA[1. peatükk]]></kuvatavNr>
+   <peatykkPealkiri id="2dff82e3-d5ea-4df8-a5ac-5c8ca7ff214d">ÜLDSÄTTED</peatykkPealkiri>
+  <paragrahv id="para1">
+   <paragrahvNr id="6fdc551c-9175-42d4-9541-8b6574256031">1</paragrahvNr>
+   <kuvatavNr id="94058838-6231-4e9e-a78a-b5b53347bbbb"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="581a9f30-ad8b-4850-a28b-d0b8c6bdce61">Määruse reguleerimisala</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="bdcc21cd-bb88-4744-864f-b1951bc7922e">1</loigeNr>
+   <kuvatavNr id="be5d38be-cb14-4840-a9b4-197badd78926"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="26eb1984-1f5b-4909-8c19-d7e850a9d41f">
+    <tavatekst id="843bd674-6af1-48d5-a252-ddab8f16d7a3">Käesolev määrus sätestab võlanõustamisteenusele ning teistele toetavatele sotsiaalteenustele suunamise ja teenuste osutamise tingimused ning korra.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg2">
+   <loigeNr id="bb1a5171-96fb-4d01-a721-ef162844f92f">2</loigeNr>
+   <kuvatavNr id="f1d82966-f69f-4578-8bd7-eaa31ad3e3ac"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="b9eac172-6add-42f7-9db3-078c39628062">
+    <tavatekst id="3675ef70-3e6f-42b6-9a33-6e6da6f3bddf">Tori Vallavalitsus korraldab teenuse osutamise.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="b0d7413d-3763-463b-b543-380fa6075d30">2</paragrahvNr>
+   <kuvatavNr id="caa85be4-0098-4ee8-89d7-8ba4801fb8b0"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="6235481a-0d37-4cd5-af42-46aea968d732">Võlanõustamisteenuse eesmärk</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="5418afa8-a3e0-40a2-b60f-4b3e5991abd0"/>
+   <kuvatavNr id="eea7dc19-108b-4017-b7b3-5f20c593e4f2"/>
+   <sisuTekst id="904315f6-74b1-4c6e-8142-0ffbb8882962">
+    <tavatekst id="fe8c9975-f688-49ac-83be-ddec9985129e">Võlanõustamisteenuse eesmärk on abistada isikut tema varalise olukorra kindlakstegemisel, võlausaldajaga läbirääkimiste pidamisel ja nõuete rahuldamisel, et vältida uute võlgnevuste tekkimist, suurendada isiku toimetulekuvõimet ning lahendada muid võlgnevusega seotud probleeme.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></peatykk><peatykk id="70c646cd-7a3b-48af-b050-bd2feeff2075">
+   <peatykkNr id="f9a3c241-0861-4a72-a410-188e5f8c37f4">2</peatykkNr>
+   <kuvatavNr id="eabd0a7a-1a3c-4fb5-831b-ea136c65e706"><![CDATA[2. peatükk]]></kuvatavNr>
+   <peatykkPealkiri id="e0a16ace-0bf9-4ff7-8148-839ac0d2b15e">VÕLANÕUSTAMISTEENUSE OSUTAMINE</peatykkPealkiri>
+  <paragrahv id="para3">
+   <paragrahvNr id="968636a7-1292-418b-8496-db0d87b6cd87">3</paragrahvNr>
+   <kuvatavNr id="adaa2f14-9a96-44ab-9f8c-4f520dac4801"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="b700fcab-530c-4953-9416-a43508cdae54">Võlanõustamise sihtgrupp</paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="40059d34-7506-4cef-b1ba-e4135e3d6e71">1</loigeNr>
+   <kuvatavNr id="6853fc6f-0b8f-4943-8c35-b59b0f72f85b"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="b0bbec0e-dbd2-4bf7-8091-710dc2ac7485">
+    <tavatekst id="4add4cf3-1e7e-4dcb-872f-d3e4851579c4">Teenust on õigustatud saama täisealine isik: </tavatekst>
+   </sisuTekst>
+  <alampunkt id="para3lg1p1">
+   <alampunktNr id="4dafb58d-cf63-4e62-92ca-c6365799dce4">1</alampunktNr>
+   <kuvatavNr id="ff68c2e2-c549-421b-8fea-8492ccffb4a3"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="498e6aee-7812-4f28-b4c2-ee67c90fcdfa">
+    <tavatekst id="3c343246-c239-4ca6-a3a1-9d8624fbf716">kelle rahvastikuregistrijärgne elukoht on Tori vallas; </tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg1p2">
+   <alampunktNr id="128f3c71-1304-4c69-a8fd-505cf2c7799c">2</alampunktNr>
+   <kuvatavNr id="e7e6d5fd-4a5a-4cd4-bbd9-0eee3211f468"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="0885b8a9-c56f-481f-a329-b9b1d5f78183">
+    <tavatekst id="ab559346-846d-4d4f-8bb0-67492aee98d5">kellele on esitatud nõue/nõuded täita võlaõiguslikust suhtest tulenev(ad) või seadusest tulenev(ad) sissenõutavaks muutunud rahalised kohustused;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg1p3">
+   <alampunktNr id="c75e10e1-ed50-4c9f-97ff-bcacbd78b157">3</alampunktNr>
+   <kuvatavNr id="bad12b4c-c1f7-4993-b4be-32683738584a"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="f93bccc1-7184-4aa2-85f0-4a2f162784b7">
+    <tavatekst id="3b147e05-508c-4fb3-8009-dec14ded5884">kelle finants-majanduslik käitumine võib edaspidi tekitada majanduslikku toimetulematust või võlgadesse sattumist.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para3lg2">
+   <loigeNr id="db001c86-db6f-4f3c-a3dc-2b99ef5c86e5">2</loigeNr>
+   <kuvatavNr id="3c5fabd3-f7f4-46e0-b13d-4a4ab6937135"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="28942cda-9f19-45da-9bbd-15183d7d7066">
+    <tavatekst id="6d0af2b4-b886-4e1b-82da-995d7f30a188">Teenust on õigustatud saama ka isik, kelle tegelik elukoht on Tori vallas, kuid rahvastikuregistrijärgne elukoht on teises omavalitsusüksuses, kooskõlastades teenuse osutamise rahastamise eelnevalt vastava omavalitsusüksusega.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para4">
+   <paragrahvNr id="a9261139-3aaa-4b94-b26f-87b136c2f680">4</paragrahvNr>
+   <kuvatavNr id="0b2defce-4a5d-4401-b397-3ce064e4873b"><![CDATA[§ 4. ]]></kuvatavNr>
+   <paragrahvPealkiri id="89e20f11-6677-48d6-920e-0e52e612ef6b">Võlanõustamisteenuse taotlemine</paragrahvPealkiri>
+  <loige id="para4lg1">
+   <loigeNr id="2cd7d556-9455-4f08-93db-8a8bb4657648">1</loigeNr>
+   <kuvatavNr id="4216c83e-6844-48bf-b8c3-be71c2fca53d"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="599e6120-807a-4ff4-ab90-30c61e938a60">
+    <tavatekst id="0317a6ea-c06b-4335-bfa1-3345c78d82d2">Teenuse taotlemiseks esitatakse avaldus Tori Vallavalitsusele. Avaldusele lisatakse teenuse taotleja viimase kolme kalendrikuu pangakonto(de) väljavõtted. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg2">
+   <loigeNr id="3c67ec69-097a-4b60-8e54-91e17c695072">2</loigeNr>
+   <kuvatavNr id="fbee7465-95b8-419a-a2b6-0ce1d2573e45"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="c3365b50-6688-492a-8fd6-cddffe00019d">
+    <tavatekst id="d6b53316-2baa-42b5-a163-c21a5f7ecff1">Tori Vallavalitsusel on õigus teha täiendavaid päringuid ning küsida täiendavaid dokumente teenuse taotleja ja temaga seotud isikute majandusliku toimetuleku väljaselgitamiseks.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg3">
+   <loigeNr id="6c4d07eb-5736-4ddd-83b6-bdda7c48e081">3</loigeNr>
+   <kuvatavNr id="2798dd2d-7e45-4e30-a79a-9e5d3eb01aec"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="f277722b-da05-4ef0-9796-9750c6387fc3">
+    <tavatekst id="954a0bd0-9956-4e20-a32b-0f6e7de710ee">Teenuse taotlejal on õigus pöörduda otse teenuse pakkuja poole teenuse saamiseks, kui puudub vajadus täiendava kohaliku omavalitsuse abi järgi.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para5">
+   <paragrahvNr id="61466218-64d9-4bed-a2ce-f5d9ed9b3fd7">5</paragrahvNr>
+   <kuvatavNr id="28b82404-6421-439a-91db-f07780046732"><![CDATA[§ 5. ]]></kuvatavNr>
+   <paragrahvPealkiri id="43771040-28b3-4abb-9c4d-d1ce5a30bbb6">Võlanõustamisteenuse osutamine</paragrahvPealkiri>
+  <loige id="para5lg1">
+   <loigeNr id="0f8e14d3-792f-4ed6-836b-7d5a82bd3c14">1</loigeNr>
+   <kuvatavNr id="a755a7f6-d7d4-4607-8a95-707b25c3e996"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="e1e1204f-1030-4015-9c22-db87155d8f91">
+    <tavatekst id="1798247e-632f-4fa7-a347-f4572485db34">Teenuse osutamiseks hindab Tori Vallavalitsuse sotsiaalosakond isiku teenuse vajadust ja majanduslikku võimekust. Hindamise järgselt korraldab Tori Vallavalitsuse sotsiaalosakond teenuse osutamise või abistab sobiva teenusepakkuja leidmisel.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg2">
+   <loigeNr id="54696833-5445-4738-9810-73d0c0be4e2c">2</loigeNr>
+   <kuvatavNr id="50aab8cf-c650-40cc-aedd-fbb963e013aa"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="f990a319-873a-4309-9c54-d1f9414e7698">
+    <tavatekst id="3769c571-8701-4a85-af2c-ab53cade2544">Teenusvajaduse mahu ja teenuse eest tasumise otsustab Tori Vallavalitsuse Hoolekandekomisjon.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg3">
+   <loigeNr id="01a81253-0ee0-4216-8d41-7875965dbc28">3</loigeNr>
+   <kuvatavNr id="42c2cf14-7712-4aca-9815-50c8e38d9cea"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="5877d433-5327-4b9f-9189-9d73b6776eab">
+    <tavatekst id="80295857-90f2-4ccb-af44-ca9d490f9cdb">Teenuse osutamise otsuse järgselt edastatakse andmed teenuse pakkujale teenuse saaja, teenuse rahastamise ja teenuse mahu ning sisu osas.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para6">
+   <paragrahvNr id="5b599da0-beeb-49da-bba4-b9f6de0f585b">6</paragrahvNr>
+   <kuvatavNr id="06a7e03c-901c-4433-9ebf-966eac2cdd3e"><![CDATA[§ 6. ]]></kuvatavNr>
+   <paragrahvPealkiri id="7fb7753a-1a37-45b1-940a-8b89d348d811">Võlanõustamisteenuse eest tasumine</paragrahvPealkiri>
+  <loige id="para6lg1">
+   <loigeNr id="e5cfd1ef-9253-48a6-b6ba-48bce213b057">1</loigeNr>
+   <kuvatavNr id="c028e049-3cac-4730-82fc-eeb08e46ce5c"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="0ec661a2-410b-443c-9889-c360e0fa6f58">
+    <tavatekst id="9e306345-323b-443e-bc72-baa6238790f7">Võlanõustamisteenus kuni 10 teenustundi on üldjuhul teenuse saajale tasuta. Kui teenuse taotleja kasutuses või omandis on rahalisi vahendeid, vallas- või kinnisasju, mis võimaldavad teenuse eest tasuda, tasub taotleja võlanõustamisteenuse eest ise täies ulatuses. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg2">
+   <loigeNr id="c1d603bc-6640-450a-a663-70b755595293">2</loigeNr>
+   <kuvatavNr id="2518872e-3062-449d-8b62-6bc116ef2e2a"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="ead5fdec-9a55-46a3-9630-ae4242f6e0f1">
+    <tavatekst id="dd410921-badb-4b1c-8b4f-54c56e1c13d8">Täiendavate teenustundide vajaduse ja rahastamise otsustab Tori Vallavalitsuse Hoolekandekomisjon käesoleva määruse § 5 sätestatud reeglite alusel.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg3">
+   <loigeNr id="837cf308-4f0c-4d9f-93c4-6e69e8f9683a">3</loigeNr>
+   <kuvatavNr id="c100a636-44b0-48db-b4a0-af3030fb9161"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="a93cbbe3-6d71-4e15-9919-3c6d7585756d">
+    <tavatekst id="4066f066-1936-4616-a4b8-4d784c4b765f">Teenusvajaduse ammendumisel kasutamata jäänud teenustunnid edasi ei kandu.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></peatykk><peatykk id="703ee3e9-8752-484b-8e0c-085518538f98">
+   <peatykkNr id="7b30aa7f-4154-4c1c-abd7-03c4e249dd20">3</peatykkNr>
+   <kuvatavNr id="939c3afc-79ea-45f7-bcbc-83e4fef7c516"><![CDATA[3. peatükk]]></kuvatavNr>
+   <peatykkPealkiri id="8f53c60f-535b-490f-9057-a6f13b14d70a">TOETAVATE SOTSIAALTEENUSTE OSUTAMINE</peatykkPealkiri>
+  <paragrahv id="para7">
+   <paragrahvNr id="2320fe7a-16cd-4868-927f-d0b017ab7078">7</paragrahvNr>
+   <kuvatavNr id="7b523f5e-d93d-43e9-83ae-17ba775a59f7"><![CDATA[§ 7. ]]></kuvatavNr>
+   <paragrahvPealkiri id="0d71c52b-0013-48a8-82ad-53a52dd27fb1">Toetavate sotsiaalteenuste eesmärk</paragrahvPealkiri>
+  <loige id="para7lg1">
+   <loigeNr id="532a843e-fff1-4506-ad01-2479475f11fa"/>
+   <kuvatavNr id="30bd98e9-3bde-4cd7-a3c6-7b1bce320ce7"/>
+   <sisuTekst id="b9cec8da-4f63-4f8d-986a-f65bdf64dc25">
+    <tavatekst id="377cf037-056a-40a8-9315-562ef968cd58">Toetavate sotsiaalteenuste eesmärk on igakülgselt aidata kaasa isiku sotsiaalselt abitusse olukorda sattumise vältimisele, toetada tema sotsiaal-majanduslikku toimetulekut ning iseseisvat hakkamasaamist.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para8">
+   <paragrahvNr id="49587c02-3999-4f41-b41a-9f441313e599">8</paragrahvNr>
+   <kuvatavNr id="06099e7a-7b18-432a-af30-751412ae468c"><![CDATA[§ 8. ]]></kuvatavNr>
+   <paragrahvPealkiri id="e67290eb-b12f-4251-a44a-1de3c6b52635">Toetavate sotsiaalteenuste liigid</paragrahvPealkiri>
+  <loige id="para8lg1">
+   <loigeNr id="4f9d8bbd-79d3-4eb2-899b-54614d66df70"/>
+   <kuvatavNr id="6d35f91d-cdea-4af4-ad8f-470458f0fb5c"/>
+   <sisuTekst id="2fa19af5-88e2-4f06-ac19-d431a4b13865">
+    <tavatekst id="0c76de92-78d6-407d-a9e5-af6bfda049e5">Toetavad sotsiaalteenused on:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para8lg1p1">
+   <alampunktNr id="45d545be-6a1b-41f0-acb5-5861be2cf6ed">1</alampunktNr>
+   <kuvatavNr id="6829fd5d-21b7-430e-b0b2-37726c7de7b5"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="563c0d4d-e83f-4eab-bc7d-e9c851114317">
+    <tavatekst id="8927d579-f4ee-4b36-b65b-650717aae273">viipekeele tõlgiteenus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para8lg1p2">
+   <alampunktNr id="9e17f2f2-5e07-487e-b192-e3f65d1156a0">2</alampunktNr>
+   <kuvatavNr id="43e512b1-3c8b-4ff2-ae59-873cc1282de4"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="e10b72d1-e856-45b3-a7be-e257a5971abd">
+    <tavatekst id="4c0035ca-582f-4c9f-9b40-da959985735c">psühholoogiline nõustamine;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para8lg1p3">
+   <alampunktNr id="3cf312bf-a095-4049-929e-fed61df8f6c8">3</alampunktNr>
+   <kuvatavNr id="a15f5ed9-167a-45ff-a49b-e4d1d4050039"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="809b6ac1-1071-41e3-b7b4-f5df70e6a488">
+    <tavatekst id="e0bdc4a8-58cd-44a7-947f-9dc9ea8eb999">muud eelpool nimetamata sotsiaalteenused.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para9">
+   <paragrahvNr id="2b0e110e-8028-465b-99b6-40af79cb8553">9</paragrahvNr>
+   <kuvatavNr id="c9e35b14-6cb3-47a4-b8b8-453e2693ef5e"><![CDATA[§ 9. ]]></kuvatavNr>
+   <paragrahvPealkiri id="bd2d9629-e524-4a4f-8d2c-22a9f405bfd4">Toetavate sotsiaalteenuste sihtgrupp</paragrahvPealkiri>
+  <loige id="para9lg1">
+   <loigeNr id="b5462d88-f9a7-4354-9f5f-135e041ab747">1</loigeNr>
+   <kuvatavNr id="2b6a6c10-0bc6-45a3-806a-7978ba7dedb1"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="9c57cc6c-092e-4489-9825-be054aa2a3ea">
+    <tavatekst id="1a851426-e3b7-40da-8f88-f3c04d3a6fbc">Toetavaid sotsiaalteenuseid on õigustatud saama:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para9lg1p1">
+   <alampunktNr id="dc2c6091-5e6d-4771-a6d6-28794fea7d72">1</alampunktNr>
+   <kuvatavNr id="1e2cff0b-da7d-4437-b03c-5b5b7277169d"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="586f04b3-70d9-44dc-b3f1-f7c2871b4aca">
+    <tavatekst id="44738bb5-0e16-4939-9e24-b5c2371f4ea8">isikud, kelle rahvastikuregistrijärgne elukoht on Tori vallas;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para9lg1p2">
+   <alampunktNr id="06ad6f3c-a042-4ec7-bba9-f31a41baabb6">2</alampunktNr>
+   <kuvatavNr id="083ea4fc-1690-431c-9539-c4e0c2c1defa"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="ee717de4-6db1-4f90-bcea-062f01788bd0">
+    <tavatekst id="a3d6277d-f089-438a-b72a-379b559670b6">kes vajavad abi oma tervislikust seisundist või toimetulekust lähtuvalt hakkamasaamiseks.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para9lg2">
+   <loigeNr id="90acc2a7-27bc-4e79-8e76-5fb699d699b0">2</loigeNr>
+   <kuvatavNr id="19104fb4-0e34-4197-8ae5-8a54e72cc24b"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="97799d09-5b3a-4bc5-a56b-bcafde7a7bb6">
+    <tavatekst id="40ed4540-f168-4015-b1dc-575bba6abc2f">Teenust on õigustatud saama ka isik, kelle tegelik elukoht on Tori vallas, kuid rahvastikuregistrijärgne elukoht on teises omavalitsusüksuses, kooskõlastades teenuse osutamise rahastamise eelnevalt vastava omavalitsusüksusega.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para10">
+   <paragrahvNr id="449c6443-a2a7-4864-8d77-990413789de7">10</paragrahvNr>
+   <kuvatavNr id="0e27bbe7-cc01-4d25-ad24-507bcb3243b1"><![CDATA[§ 10. ]]></kuvatavNr>
+   <paragrahvPealkiri id="7d5b3b9b-7678-4154-a6ec-47c9e8cd0225">Toetavate sotsiaalteenuste taotlemine</paragrahvPealkiri>
+  <loige id="para10lg1">
+   <loigeNr id="8f443833-7a13-4f1b-b70d-141227f2a4be">1</loigeNr>
+   <kuvatavNr id="57081f6f-af3c-4354-93f2-92d0fb2ce5f5"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="b880ae54-1486-4c71-84df-2ce17887e286">
+    <tavatekst id="b16c8812-e3b7-4a90-8308-66db343e3b18">Teenuse taotlemiseks esitatakse avaldus Tori Vallavalitsusele. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para10lg2">
+   <loigeNr id="b48cba4a-4f1d-4954-8e8a-2357bef2587b">2</loigeNr>
+   <kuvatavNr id="73727c87-5dd1-4044-bb3c-bc63caeca886"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="5a1a63bf-936a-47bf-ab31-3df3ab042da0">
+    <tavatekst id="d5011a62-656a-4e81-983d-ddd633bae685">Tori Vallavalitsusel on õigus küsida muid dokumente ja teha täiendavaid päringuid, mis on seotud avalduse menetlemisega.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para11">
+   <paragrahvNr id="b28f64af-590f-4ab8-b78e-b671e6cd42b0">11</paragrahvNr>
+   <kuvatavNr id="7a2b19e6-8119-4204-aa59-979da6af673d"><![CDATA[§ 11. ]]></kuvatavNr>
+   <paragrahvPealkiri id="bbc1101e-aec8-4426-8b59-bbcb7562833a">Toetavate sotsiaalteenuste osutamine</paragrahvPealkiri>
+  <loige id="para11lg1">
+   <loigeNr id="d496e9d3-9c61-41cf-a45d-c24639fcbbc4">1</loigeNr>
+   <kuvatavNr id="83b8a541-d75d-4447-9e09-2b0644b500d4"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="32a5e782-0911-4285-8282-a5cd7a17b163">
+    <tavatekst id="afa6d729-ecbe-40e4-88d1-2490ff103da8">Teenuse osutamiseks hindab Tori Vallavalitsuse sotsiaalosakond isiku teenuse vajadust ja majanduslikku võimekust. Hindamise järgselt korraldab Tori Vallavalitsuse sotsiaalosakond teenuse osutamise või abistab sobiva teenusepakkuja leidmisel.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para11lg2">
+   <loigeNr id="4f1b2443-ca34-4d43-b3eb-10989e5b7bb0">2</loigeNr>
+   <kuvatavNr id="184376f1-7125-4c59-93b1-e3e1639c8b1d"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="398cc916-3774-40ea-b8ec-1dfc98655ef7">
+    <tavatekst id="43364a99-cc72-47f1-8881-e8329e80d950">Teenusvajaduse mahu ja teenuse eest tasumise otsustab Tori Vallavalitsuse Hoolekandekomisjon.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para11lg3">
+   <loigeNr id="a09fe4b4-d03a-4bcd-ad0c-8dfc9d11ce94">3</loigeNr>
+   <kuvatavNr id="20e2377f-27b5-40d3-8c27-b6975addc056"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="50bc937e-2d57-4bd6-b4e3-c1ff01f451d8">
+    <tavatekst id="d85ba97c-7499-4626-8337-b90acaf5500e">Teenuse osutamise otsuse järgselt edastatakse andmed teenuse pakkujale teenuse saaja, teenuse rahastamise ja teenuse mahu ning sisu osas.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para12">
+   <paragrahvNr id="7c788fb7-9792-42bf-a770-810d71096c91">12</paragrahvNr>
+   <kuvatavNr id="7414a1e8-1426-428b-aa71-f04c96442cb4"><![CDATA[§ 12. ]]></kuvatavNr>
+   <paragrahvPealkiri id="12e1d25a-bfb8-470a-ae07-20ae56dc169a">Toetavate sotsiaalteenuste eest tasumine</paragrahvPealkiri>
+  <loige id="para12lg1">
+   <loigeNr id="5c736481-1887-42cc-ad1f-bfeca9acc80a"/>
+   <kuvatavNr id="260b2d9e-24f5-440f-b345-6aedc6fabc84"/>
+   <sisuTekst id="054202e8-f0ff-4317-bf11-ec3cc42c6547">
+    <tavatekst id="dc0309f0-dd52-420e-b555-ed1b04bbd497">Teenuse osutamisega kaasnevad kulud kaetakse kas osaliselt või täielikult Tori valla eelarvelistest vahenditest.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></peatykk><peatykk id="c221ac51-0673-4149-977b-a8ebaf8ae334">
+   <peatykkNr id="f0d3569e-48c1-4c9f-a2bf-06cd1b19468f">4</peatykkNr>
+   <kuvatavNr id="b9f623de-0bfa-45a6-a3ea-f998716c0d31"><![CDATA[4. peatükk]]></kuvatavNr>
+   <peatykkPealkiri id="d4b6976b-8073-4ea1-b7bd-42e33048bb47">RAKENDUSSÄTE</peatykkPealkiri>
+  <paragrahv id="para13">
+   <paragrahvNr id="919549d3-a819-49b3-b500-c9633c04f20c">13</paragrahvNr>
+   <kuvatavNr id="d00b48ce-4219-418b-9a16-f2a42f99004a"><![CDATA[§ 13. ]]></kuvatavNr>
+   <paragrahvPealkiri id="12604699-abdd-44bb-b7ed-563bd3ff6457">Määruste kehtetuks tunnistamine</paragrahvPealkiri>
+  <loige id="para13lg1">
+   <loigeNr id="997968b4-ff4a-41dd-a1e7-4b720379bf7e">1</loigeNr>
+   <kuvatavNr id="456e79bb-043b-455a-a3dc-91dbcae1d37b"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="fa289d7b-d0bc-4c9b-8fd8-29b4baf46011">
+    <tavatekst id="cbe4fa81-b64b-4dcd-94ba-151c74fcfd59">Määrusega tunnistatakse kehtetuks: </tavatekst>
+   </sisuTekst>
+  <alampunkt id="para13lg1p1">
+   <alampunktNr id="b0ee09ac-c185-409e-bbaf-67202c271d4b">1</alampunktNr>
+   <kuvatavNr id="c7b4b6bb-6513-4a0a-8b4c-755da7723a13"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="d76d030c-591d-4bef-8308-d3daf21e8c6f">
+    <tavatekst id="3facb7f6-76c8-487c-8cfc-10c67518b3b0">Sindi Linnavolikogu 10.03.2016 määruse nr 42 „Sotsiaalhoolekandelise abi andmise tingimused ja kord“ § 19 punkt 10 „võlanõustamisteenus“ ning 3. peatüki 11. jagu „Võlanõustamisteenus“;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para13lg1p2">
+   <alampunktNr id="d6cb164f-3531-45c8-b812-5c699e4914bb">2</alampunktNr>
+   <kuvatavNr id="8c492386-fee8-47c3-95c6-66816e9d6774"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="f29b0176-1afa-4868-970f-d3ef3e680a36">
+    <tavatekst id="dc645c0e-65f6-4526-bd0b-18c9c4591924">Are Vallavolikogu 11.03.2016 määruse nr 6 „Sotsiaalhoolekandelise abi andmise tingimused ja kord“ § 20 punkt 10 „võlanõustamisteenus“ ning 3. peatüki 11. jagu „Võlanõustamisteenus“;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para13lg1p3">
+   <alampunktNr id="4446036b-f58e-4c95-b598-d6fd828d1b4e">3</alampunktNr>
+   <kuvatavNr id="3b0ee235-8d01-423b-9b39-3cbcfa7868af"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="388fa3da-f6a0-4771-9a41-3f980266a24f">
+    <tavatekst id="c8d8be7b-30b8-4c28-a985-87b0c7ecd7d3">Tori Vallavolikogu 20.04.2016 määruse nr 16 „Sotsiaalhoolekandelise abi andmise tingimused ja kord“ § 15 lõike 3 punkt 4 „võlanõustamisteenus“ ning § 30 „Võlanõustamisteenus“.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para13lg2">
+   <loigeNr id="4864134f-f943-474d-98f0-dc8ffd387233">2</loigeNr>
+   <kuvatavNr id="0c962845-942f-4290-b709-9b8ed8905175"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="1eab7c64-930b-4ed2-bd92-eb520d70ff78">
+    <tavatekst id="c6d911c6-478c-4261-b60f-aafa18f51645">Määrus jõustub kolmandal päeval pärast avaldamist Riigi Teatajas.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></peatykk></sisu>
+<allkiri id="245625c0-61f1-4ec2-b1e8-1241b0ab2d0f"><allkiriKoht id="9a046363-c3af-4f43-b1e5-8c1b247c875e"/><allkirjastaja id="a8f4ce71-ccd8-44fe-8ea8-4e0f748525e6"><ametinimetus id="ed31a9a8-1888-4300-8b92-873b78074de8">volikogu esimees</ametinimetus><eesnimi id="706f47ac-2040-43bb-b243-891b9e8e9ec8">Enn</eesnimi><perekonnanimi id="518a2c1a-229d-469f-b211-eef16d834201">Kuslap</perekonnanimi></allkirjastaja></allkiri></oigusakt>

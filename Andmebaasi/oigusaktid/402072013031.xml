@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="cf8c1fdf-d44d-48a2-8700-bf3062051c0d" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Maardu Linnavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2013-06-27</aktikuupaev>
+  
+  
+  <aktiNr>3</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2013-07-02</avaldamineKuupaev><RTaasta>2013</RTaasta><RTartikkel>31</RTartikkel><aktViide>402072013031</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2013-07-05+03:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2013-06-28</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>402072013031</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2013-07-01</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Marike Võime</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1015063</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2013-06-28</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Natalja Gorbunova</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="db1170f1-f459-46bd-9bc6-61495278484e">
+  <nimi id="57c13b2d-32bb-4fdc-9d4a-e5270ba96b61">
+   <pealkiri id="2bd3d34b-e375-455f-8a2d-c01dd860c0b3">Hooldajatoetuse määra kehtestamine puudega lapse hooldajale</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="4fe17316-6fae-4380-bf86-6367a798feab"><preambul id="022f3032-1a5b-4588-a9e8-d4f8ff82b7fe">
+   <tavatekst id="ddd53537-cc1b-4e5e-b908-eeea41351912">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 30 lg 1 p 2 ja Maardu Linnavolikogu 30.04.2013 määruse nr 83 “Hooldajatoetuse maksmise kord puudega lapse hooldajale” § 2 alusel</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="611a3dca-077b-4eef-a393-fc0086d27df7">1</paragrahvNr>
+   <kuvatavNr id="8bacf00c-0d09-4578-b898-213ad4ffd7b2"><![CDATA[§ 1. ]]></kuvatavNr>
+      <sisuTekst id="dac5f30f-1f2a-45de-8ace-67fd9561cf73">
+    <tavatekst id="147c079a-b5c6-41e4-9fc0-de56ee31cf25">Hooldajatoetuse määra kehtestamine</tavatekst>
+   </sisuTekst>
+  <loige id="para1lg1">
+   <loigeNr id="ab00e449-ca52-4b0e-8089-d1e2fa24c165"/>
+   <kuvatavNr id="fd8bc1c9-b9ac-4026-8a0e-6d33a8d4d066"/>
+   <sisuTekst id="e8f4d280-e6b8-4ce2-8b88-cf6fecac3e80">
+    <tavatekst id="f6288079-e73a-47d2-a9b4-cdb077a8a962">Kehtestada hooldajatoetuse määraks:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para1lg1p1">
+   <alampunktNr id="c1dd923c-2eb3-4648-8a4a-91c7633ef5c2">1</alampunktNr>
+   <kuvatavNr id="520cb402-0d2e-4bef-8202-df85d1d93df7"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="649f1353-08be-464e-b665-a43cbf5bd751">
+    <tavatekst id="209c7d5b-fb40-4f32-8c3e-c1e550eb3494"> osalise hooldusvajaduse korral 43,41 eurot kuus; </tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg1p2">
+   <alampunktNr id="61eeb71d-2f0b-4878-bc34-adb8bb153ca5">2</alampunktNr>
+   <kuvatavNr id="f59bd920-e8ec-4052-baa7-73d1c4525fb5"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="d5382974-219c-4a0b-aba9-e4f7c87c3528">
+    <tavatekst id="0843d8b9-6adb-4816-8725-5840418d8094">pideva hooldusvajaduse korral 57,51 eurot kuus.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="c3bf19f4-1de7-4f74-8f25-ec1f1249c729">2</paragrahvNr>
+   <kuvatavNr id="e593ba5f-61f9-4bbe-bc9a-82a0f4961797"><![CDATA[§ 2. ]]></kuvatavNr>
+      <sisuTekst id="9524d46d-62b0-48a7-a0cc-e860b0bf6e93">
+    <tavatekst id="b9298bbd-d617-4a60-93ad-51c3b0f71c22">Määruse jõustumine ja rakendamine </tavatekst>
+   </sisuTekst>
+  <loige id="para2lg1">
+   <loigeNr id="7081bb61-a8ad-494f-9deb-1ade235ec538">1</loigeNr>
+   <kuvatavNr id="18d7dc30-ca09-4583-810b-a7aa5ed49301"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="2a215509-b8e4-4248-beeb-0721da3802f2">
+    <tavatekst id="fa39dc9b-99c7-4df3-a4c0-8aa63a4f2a73">Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg2">
+   <loigeNr id="b648e3e6-7465-4e92-a2f6-ec1d418fa374">2</loigeNr>
+   <kuvatavNr id="ea2db645-634c-49e7-b0a8-9b9b90593668"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="b9e675e2-28a1-443a-ab05-b6520dc18e5a">
+    <tavatekst id="a588f66d-7a95-4826-8572-4e5c8e7e89fb">Määrust rakendatakse tagasiulatuvalt alates 02.05.2013.a.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="78b09dfe-3023-4367-bcea-aadaf758a7ac"><allkiriKoht id="c6c3c7b3-9c2f-4904-af7c-96dacd35f4c5"/><allkirjastaja id="e5861a21-3b99-4d66-a821-f4143208f8e1"><ametinimetus id="170b75b5-858e-4543-9486-9520760a448e">Linnapea</ametinimetus><eesnimi id="9d9ae67b-e008-4981-9ab7-307253fc861a">Georgi</eesnimi><perekonnanimi id="e0ee72c2-1f9b-4812-8c4c-89b95947a6a7">Bõstrov</perekonnanimi></allkirjastaja></allkiri><allkiri id="377e758a-43f8-4c0c-b983-66feacb5d53f"><allkiriKoht id="c8d9b518-a81f-4f26-b9ca-18446400b166"/><allkirjastaja id="c9164f95-9b69-444f-ae6d-07f7e6eafba8"><ametinimetus id="4154316e-9a11-4ff6-bc42-32de572e5098">Linnasekretär</ametinimetus><eesnimi id="34ea1ddc-67a3-4e52-9644-3b05e7a8aeaf">Tiiu-Ann</eesnimi><perekonnanimi id="2eaf1e08-4ed0-4608-a78f-e7c15b5e36c7">Kaldma</perekonnanimi></allkirjastaja></allkiri></oigusakt>

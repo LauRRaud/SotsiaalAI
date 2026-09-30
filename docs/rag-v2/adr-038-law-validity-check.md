@@ -151,7 +151,7 @@ Omanik 30.09: „jätka arendust“.
 
 - Manifest on gitis. Kui korpus avaldatakse ilma manifesti uuendamata, kontrollib töö eelmist seisu.
 - Kontrollitakse ainult Riigi Teataja XML-e. Juhendeid, KOV-i kirjeid ja teisi allikaid see ei hõlma.
-- Täiesti uusi akte, mis ei jätka ühtki indekseeritud gruppi, leiab kontroll ainult lõppeva grupi asendajate kaudu. Uusi teemasid see ei otsi.
+- Täiesti uusi akte, mis ei jätka ühtki indekseeritud gruppi, leiab kontroll ainult lõppeva grupi asendajate kaudu. Uusi teemasid see ei otsi. Omavalitsuste sotsiaalakte otsib alates 30.09.2026 samas töös [ADR-058](adr-058-municipal-social-acts.md) skaneerimine.
 - Muutmisakti ilma grupita (Haljala `423012026003`) kontrollitakse ainult akti enda kehtivuse järgi.
 - Vaadatakse 400 päeva ette. SHS-i 2028. ja 2029. aasta redaktsioonid jäävad sellest välja.
 - RT otsingu-API käitumine võib muutuda. Mittetäielik tulemus annab siis tõrke, mitte vaikse möödalaskmise.

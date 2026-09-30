@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="f89e054e-f52b-4f18-b030-a53900a33a2b" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Harku Vallavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2023-05-30</aktikuupaev>
+  
+  <joustumine>2023-07-01</joustumine>
+  <aktiNr>6</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2023-05-31</avaldamineKuupaev><RTaasta>2023</RTaasta><RTartikkel>12</RTartikkel><aktViide>431052023012</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2023-07-01+03:00</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2023-05-30</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>431052023012</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2023-05-30</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1056737</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2023-05-30</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Kristjan Kuusik</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="bf42afeb-e9d8-4c75-9560-c6d1843ebb40">
+  <nimi id="ed162320-f2ff-4149-985e-7ce7a42ec905">
+   <pealkiri id="f2b2bd06-1749-499c-85a6-70010b1c322f">Üldhooldusteenust vahetult osutavatetöötajate kulude tasumise piirmäärakehtestamine</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="3b39eeae-a137-4968-928d-9fcc92e7f531"><preambul id="1acce0e1-a1ac-4d0d-95af-d41634206310">
+   <tavatekst id="4dfd6de3-1ee5-46e2-a7e2-d3584d336dea">Määrus kehtestatakse sotsiaalhoolekande seaduse § 22<sup>1</sup> lg 3 ja Harku Vallavolikogu 31. märtsi 2016 määruse nr 11 „Sotsiaalhoolekandelise abi andmise kord“ § 27 lõike 4 alusel</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="76b83d61-921b-454e-98ad-8d57fa299bcd">1</paragrahvNr>
+   <kuvatavNr id="890063bf-d111-41da-86af-5d4b2a6d144b"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="b8f907ad-1c24-46a1-a1fe-1a1f93203822">Üldhooldusteenust vahetult osutavate töötajate kulude tasumise piirmäära kehtestamine</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="94317097-98a5-4a7a-90ca-d9e46a1e1365"/>
+   <kuvatavNr id="564ccee8-4f0c-441a-9216-0a0e83e69db2"/>
+   <sisuTekst id="4b75c65f-9f3d-4d1f-8976-cfd7fc88d22f">
+    <tavatekst id="86858b2a-5c6b-461a-9455-7ba008e45ffa">Kehtestada väljaspool isiku kodu ööpäevaringse üldhooldusteenuse osutamisel vahetult teenust osutavate hooldustöötajate ja abihooldustöötajate kulude tasumise piirmääraks 700 eurot ühe teenuse saaja kohta kuus.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="de8abc5d-02fb-4694-8990-51cfae9b9e54">2</paragrahvNr>
+   <kuvatavNr id="bdd5eeab-abdb-41c5-b9d1-4e51a7b581c5"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="6776ba3e-6d6d-4154-9c24-bd3c916711a8">Määruse jõustumine</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="dd6fe6da-1c3d-42e2-8c9a-ef0ce5fae738"/>
+   <kuvatavNr id="bf1688aa-d77a-4b0b-82dd-cef0f895ccdc"/>
+   <sisuTekst id="36e47582-7864-47f3-a2c0-dac5a57f82db">
+    <tavatekst id="9f940692-d56c-46dd-8d91-60e8d58ba551">Määrus jõustub 1. juulil 2023. aastal.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="ca8d3d3b-26ca-42c1-8c38-3647f2db8a65"><allkiriKoht id="ea770057-8642-4561-adc8-e708d8a438c1"/><allkirjastaja id="ec5f71c9-72a2-4e7a-97ec-dae3db7e8a4b"><ametinimetus id="1484866d-a705-4b40-88af-1d120e6acef7">vallavanem</ametinimetus><eesnimi id="56cea8c2-8662-4636-b0d5-59d27db17fbf">Katrin</eesnimi><perekonnanimi id="8b137323-d7c7-413f-bf41-e93cb0e24662">Krause</perekonnanimi></allkirjastaja></allkiri><allkiri id="1aa45263-264f-4a08-a480-652eaa91cf3a"><allkiriKoht id="10d88c3f-4dcf-4022-8a9b-18fcbbae5a86"/><allkirjastaja id="0f736cbe-8f06-4be7-b444-6d3daf63374b"><ametinimetus id="d57cc9c5-5b89-4e53-b0e1-8b91e5e1255f">vallasekretär</ametinimetus><eesnimi id="90d206bd-7d0f-44e6-96e2-35bd304b54f2">Maarja</eesnimi><perekonnanimi id="97066c00-f1e2-4d69-a634-53466ed7b2ac">Lehemets-Tihhanov</perekonnanimi></allkirjastaja></allkiri></oigusakt>

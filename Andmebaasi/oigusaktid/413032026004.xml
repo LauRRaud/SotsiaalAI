@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="a5a706bc-052f-4209-a3b2-46146fdcafab" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Pärnu Linnavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2026-03-09</aktikuupaev>
+  
+  <joustumine>2026-04-01</joustumine>
+  <aktiNr>5</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-03-13</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>4</RTartikkel><aktViide>413032026004</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2026-04-01+03:00</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2026-03-10</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>413032026004</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2026-03-12</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1063052</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2026-03-10</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Liia Oidjärv</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="c2cf2242-8c5a-4609-82c7-4f32ee34230a">
+  <nimi id="2a5e07bb-8108-42b5-b2f7-af19ea0a1c88">
+   <pealkiri id="d428853a-1421-49be-8b9f-602609cd1ed9">Väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse hoolduskulude tasumise piirmäära kehtestamine</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="c3bc11b6-48b2-4421-a0d8-212a460a0c85"><preambul id="5ee3220e-03c5-4abb-bff8-2408945c4cad"><tavatekst id="d70e2add-72cd-47aa-a495-4f5a54121208">Määrus kehtestatakse sotsiaalhoolekande seaduse § 22<sup>1</sup> lg 3 ja Pärnu Linnavolikogu 14.10.2021 määruse nr 19 „Sotsiaalhoolekande seaduses ja lastekaitseseaduses sätestatud ülesannete delegeerimine“ § 1 alusel.</tavatekst></preambul><paragrahv id="para1"><paragrahvNr id="339b911a-b23e-49b7-9d8c-94797f36dcc7">1</paragrahvNr><kuvatavNr id="cfd527b8-ff0a-4a88-a16b-236caacaec29"><![CDATA[§ 1. ]]></kuvatavNr><paragrahvPealkiri id="76465b6d-b22a-4e67-92bb-49f13bcede01">Väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse hoolduskulude tasumise piirmäär</paragrahvPealkiri><loige id="para1lg1"><loigeNr id="cd97b7c0-9ff3-4b11-87c5-d9ce5e34298e"/><kuvatavNr id="e063ce22-2e45-41ae-aeb4-92c787cc8123"/><sisuTekst id="9addde12-2682-4be3-9476-fdfecc924e4b"><tavatekst id="eef82393-15f3-42a6-9c35-3cf6e5d0b996">Kehtestada väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse osutamisel vahetult teenust osutavate hooldustöötajate ja abihooldustöötajate kulude tasumise piirmääraks 660 eurot ühe teenusesaaja kohta kuus.</tavatekst></sisuTekst></loige></paragrahv><paragrahv id="para2"><paragrahvNr id="242aa862-a4aa-4bec-a14a-62ece1173487">2</paragrahvNr><kuvatavNr id="962ba388-7acd-4057-aa98-60ec48983ef3"><![CDATA[§ 2. ]]></kuvatavNr><paragrahvPealkiri id="0cc5e7c4-e2d4-4b40-8e40-cad2363803fc">Määruse kehtetuks tunnistamine</paragrahvPealkiri><loige id="para2lg1"><loigeNr id="8b23b6fb-4e66-41a8-b0c8-35606bdbb35e"/><kuvatavNr id="8707f934-377b-4d74-aada-0f36675f87e3"/><sisuTekst id="de7bc515-a79d-4d5f-899e-a9fafe9074e9"><tavatekst id="acd696f0-6e22-44cd-815c-cacd638f8291">Pärnu Linnavalitsuse 19.12.2024 määrus nr 10 „Väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse hoolduskulude tasumise piirmäära kehtestamine“ tunnistatakse kehtetuks.</tavatekst></sisuTekst></loige></paragrahv><paragrahv id="para3"><paragrahvNr id="821d7992-67df-4f26-9324-2cdd2d40d0bf">3</paragrahvNr><kuvatavNr id="6c54c1e3-e378-46d0-9afd-fa3f64043c53"><![CDATA[§ 3. ]]></kuvatavNr><paragrahvPealkiri id="2c90d4bd-1767-4324-bb83-f3619276b38b">Määruse jõustumine</paragrahvPealkiri><loige id="para3lg1"><loigeNr id="3ad0e6aa-24ff-4d43-aad6-92ddb684dca4"/><kuvatavNr id="5f3d0bdd-e7c2-4aca-90aa-eba9e0b09752"/><sisuTekst id="071dace4-03dc-4c6b-87c3-3c29273fd7d7"><tavatekst id="02780b49-de30-42bd-a592-43090251fa22">Määrus jõustub 01.04.2026.</tavatekst></sisuTekst></loige></paragrahv></sisu>
+<allkiri id="e130342a-4b39-4a4a-b5f4-ef75c07f1ff2"><allkiriKoht id="604143c1-b1d0-47e4-a3cd-ccbd9f851ef2"/><allkirjastaja id="354e682e-fc19-463c-8cbc-eef20799295e"><ametinimetus id="f61cbdd4-ac21-4e76-b0a1-35a2ec7058ca">linnapea</ametinimetus><eesnimi id="d3102a2e-9eef-4586-924b-0c65eb23fca3">Kristel</eesnimi><perekonnanimi id="47639d9d-93dc-4051-994d-eceffe2d042f">Voltenberg</perekonnanimi></allkirjastaja></allkiri><allkiri id="2dc5d194-5221-46c9-a075-34ae3d1d5c21"><allkiriKoht id="36aec943-908c-4881-8403-df66ba9942dd"/><allkirjastaja id="1481d2a3-dcd2-45cc-919a-20d4a50c23d4"><ametinimetus id="e47bd269-8e6f-4819-9170-a9a362e21451">õigusvaldkonna juht linnasekretäri ülesannetes</ametinimetus><eesnimi id="95c35158-4fdd-4567-af3e-7dd2e27d7205">Kristi</eesnimi><perekonnanimi id="6ab2b5c3-4b0d-4ad0-a9e4-0d312d6834b0">Matiisen</perekonnanimi></allkirjastaja></allkiri></oigusakt>

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="9e1ca83b-cdf0-44fc-b1dd-065104292f03" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Antsla Vallavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2021-01-26</aktikuupaev>
+			<avaldamismarge>
+				<RTosa id="6526c9d5-d2e9-4fbc-b058-001001474d32">RT IV</RTosa>
+				<avaldamineKuupaev id="40e531b5-57fe-4578-a14b-f7b7065a0252">2021-01-28</avaldamineKuupaev>
+				<RTartikkel id="f8eebc2a-1ca2-4e1b-87c1-17fda5492e5c">18</RTartikkel>
+				<aktViide id="1bbc9c9a-8c49-4616-bc02-cb71e3020963">428012021018</aktViide>
+			</avaldamismarge>
+			<joustumine>2021-01-31</joustumine>
+			<aktiNr>2</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2022-03-03+02:00</avaldamineKuupaev>
+			<RTaasta>2022</RTaasta>
+			<RTartikkel>6</RTartikkel>
+			<aktViide>403032022006</aktViide>
+		</avaldamismarge>
+		<kehtivus>
+			<kehtivuseAlgus>2022-04-01</kehtivuseAlgus>
+		<kehtivuseLopp>2026-12-31+02:00</kehtivuseLopp></kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2022-02-28</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>403032022006</globaalID>
+		<metaandmedVersioon>10</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2026-09-29</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1051241</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+	</metaandmed>
+	<aktinimi id="c7fe4b50-59e2-411e-a35b-ad7f8a6e7872">
+		<nimi id="f39c5a2f-6c30-4222-8dce-680c4fbf40c1">
+			<pealkiri id="b8681687-c9d1-4423-8a66-57775e51a5a1">Sotsiaaltoetuste määrad</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="058bd6e4-bf0d-42c6-9702-375ba7406310">
+		<aktikuupaev id="43adfdd0-807b-4bd4-b3c3-8ebde11bb04e">2022-02-22</aktikuupaev>
+		<avaldamismarge id="95517ce4-1ad7-4702-b679-0e64f1f6f34f">
+			<RTosa id="ab094e2d-e258-4628-8723-a2af1a2b79cb">RT IV</RTosa>
+			<avaldamineKuupaev id="34a0a173-f8c7-4d1a-ad28-03f1946ec9a5">2022-03-03</avaldamineKuupaev>
+			<RTartikkel id="e11eb426-fd23-4983-a25f-a9f3ee4c76fb">3</RTartikkel>
+			<aktViide id="076b6863-b083-449b-85d1-56a084cd5e78">403032022003</aktViide>
+		</avaldamismarge>
+		<joustumine id="21165a93-9c1e-4803-981f-76e4865c41b2">2022-04-01</joustumine>
+		<tavatekst id="4c49d22e-b6f3-42da-aeaa-612743bd4d8f">, osaliselt 01.01.2023</tavatekst>
+	</muutmismarge>
+	<sisu id="89909d62-161b-4acc-9530-730bb4421920">
+		<preambul id="9447e4b6-921d-41c5-a34d-f215808fa9d8">
+			<tavatekst id="71ce7e35-9258-4945-9e63-77bb3acf8b27">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5, sotsiaalhoolekande seaduse § 14 lõike 2 ja Antsla Vallavolikogu 26.01.2021 määruse nr 1 „Sotsiaalhoolekandelise abi andmise kord” § 1 lõike 4 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="1cb62f5e-aa55-4b8a-99e1-ba71c6b12d70">1</paragrahvNr>
+			<kuvatavNr id="9d48351a-3c67-49e9-b06c-af23daf81ab3"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="237565bd-ef5b-4390-9957-5ffa58e0ef55">Sissetulekust mittesõltuvate toetuste määrad</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="d3196f0b-efa5-47d0-accb-af86d4df0c66"/>
+				<kuvatavNr id="e1c456b5-577a-4d4b-ae4e-977bfa00811b"/>
+				<sisuTekst id="d779eb8d-1e54-4853-969f-287aa4d47a40">
+					<tavatekst id="b66ef5a8-e998-4e6f-9731-d30c0174d5f5">Sissetulekust mittesõltuvate toetuste määrad on järgmised:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para1lg1p1">
+					<alampunktNr id="8700a91c-106a-4e17-9a66-95ffc7bde738">1</alampunktNr>
+					<kuvatavNr id="c3112019-c344-4b8f-b152-1a3d9271982f"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="54b511e2-f6fa-4fe4-8ce1-c2d48a0322f3">
+						<tavatekst id="55b6736c-f4a1-495a-9368-fd1bbab9ab28">sünnitoetus: I osa 300 eurot ja II osa 300 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p2">
+					<alampunktNr id="178b6522-ced5-4775-b1fc-27df0e168b27">2</alampunktNr>
+					<kuvatavNr id="8c306c71-8303-4d6b-b64b-069922af2e7f"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="15d53daa-5d47-4cb6-a95d-433c08708e3c">
+						<tavatekst id="2cdecedd-4e81-453c-9d5d-de03385fb1ed">esimesse klassi astumise toetus: 100 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p3">
+					<alampunktNr id="1dd4faf9-6dd1-470d-8645-a49a1822c387">3</alampunktNr>
+					<kuvatavNr id="793e1c96-b803-468c-b61e-edf382bf143a"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="b48254e1-690b-4101-865a-34a09ad8a771">
+						<tavatekst id="db5dcc98-7f68-46bc-a319-5c10ac35c55c">jõulutoetus: esemeline kingitus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p4">
+					<alampunktNr id="aa50198c-ce95-4767-99b1-cf0e15cbcc49">4</alampunktNr>
+					<kuvatavNr id="b1b2b4eb-0d39-403e-8ba1-4fa74f08430a"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="712dd01e-b837-44f1-88d1-4c54cdf1d235">
+						<tavatekst id="f862bc42-a5dd-43f5-b25f-f01202b022d8">toetus asendushooldusel olevale noorele: 50 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p5">
+					<alampunktNr id="e64cd2ef-fdf1-470e-aad5-ea2bf1f42b68">5</alampunktNr>
+					<kuvatavNr id="6684b050-cd84-4bd3-af64-0dcd05d57b74"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="e9fe4e16-2d30-4173-98ab-ee7a12132f54">
+						<tavatekst id="b0977ffb-8442-45bd-accf-04f45f4d63b6">elluastumistoetus: 150 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p6">
+					<alampunktNr id="dfeae3b9-12dd-44bb-8729-06fb57f2284f">6</alampunktNr>
+					<kuvatavNr id="68b503ef-19fc-46d2-be46-d8f96ea466b7"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="25530f33-73d8-43bd-bfe9-e860d4853aa9">
+						<tavatekst id="f61ec980-50a7-46b3-9b40-9289a4987b5a">õnnetusjuhtumi toetus: kuni 500 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p7">
+					<alampunktNr id="265418a7-c350-4abe-8099-4544345ec6d4">7</alampunktNr>
+					<kuvatavNr id="1ab8d312-861c-41ea-9409-efd27a8adc02"><![CDATA[7) ]]></kuvatavNr>
+					<sisuTekst id="d064cea7-67d0-4bf0-8675-9a421a9e49aa">
+						<tavatekst id="20866777-9e0e-483a-9338-0abccf91cf9d">matusetoetus: 250 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p8">
+					<alampunktNr id="503e883c-8126-4593-822b-55fd467d4908">8</alampunktNr>
+					<kuvatavNr id="da2b65cd-3395-461f-9a46-b014b38089d4"><![CDATA[8) ]]></kuvatavNr>
+					<sisuTekst id="e02a1da1-0465-4f91-ac3e-e4d929da1980">
+						<tavatekst id="dae0e352-046e-40d8-bac4-0864175b46fd">hooldajatoetus puudega lapse hooldamise eest: raske puudega lapse hooldamise eest 30-80 eurot kuus, sügava puudega lapse hooldamise eest 40-100 eurot kuus, hooldajatoetus täisealise isiku hooldamise eest: raske puudega isik 30 eurot kuus ja sügava puudega isik 40 eurot kuus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p9">
+					<alampunktNr id="af5b2bd5-27e0-4314-b7a6-f3788a531563">9</alampunktNr>
+					<kuvatavNr id="fcb54269-cd94-4500-8888-dd7ea2703505"><![CDATA[9) ]]></kuvatavNr>
+					<sisuTekst id="d63e1e79-a09b-46b2-bea3-2ded7a4a140b">
+						<tavatekst id="cd493ae3-daca-4b03-9d58-67410a71bbe0">puudega lapse pere toetus: kuni 600 eurot aastas, sealhulgas sõidukulusid hüvitatakse 0,2 eurot kilomeetri kohta;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p10">
+					<alampunktNr id="460f9f24-f13d-4e2e-bd5c-c8ac5c004daf">10</alampunktNr>
+					<kuvatavNr id="c761b96c-9a38-4df1-8c39-e5daaaf09333"><![CDATA[10) ]]></kuvatavNr>
+					<sisuTekst id="b15de526-2cc0-49af-a804-5b829d43dce6">
+						<tavatekst id="14a49fc4-ff5a-4408-949f-c3f4e5132ad4">toetus üldhooldusteenuse kohamaksu tasumiseks on 50 eurot kuus.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="d97fd832-efda-4bb6-b5a7-fb29ac44bd7b">
+						<avaldamismarge id="2c1fb7b8-b2f2-4e2f-a535-dd23dfe6e614">
+							<RTosa id="6dfbe2ed-089c-4291-9f1a-0cfe0cc74744">RT IV</RTosa>
+							<avaldamineKuupaev id="98c525b1-0206-46b7-a25a-512d3c9920db">2022-03-03</avaldamineKuupaev>
+							<RTartikkel id="1f2d5682-b333-43b8-9cdd-64863d503c42">3</RTartikkel>
+							<aktViide id="512addeb-8463-4d87-96dd-431730ffca7d">403032022003</aktViide>
+						</avaldamismarge>
+						<joustumine id="1b9540c4-e31d-41b3-9d20-9f3ac5a6b059">2023-01-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="0f1fa395-f57b-472f-8eab-096888d6daa2">2</paragrahvNr>
+			<kuvatavNr id="bad20d76-a640-4347-b55b-dfa59dc04490"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="bd327559-93f9-4726-a72f-4fc23596518a">Abivajadusest sõltuvate toetuste määrad</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="1b592348-0e93-4ce4-baff-259f70ec69f4"/>
+				<kuvatavNr id="bd7cd06f-89e0-4361-b41f-0a7cfdcedad0"/>
+				<sisuTekst id="b3ddb5c7-a22c-4bfa-900f-59f6aa6db47c">
+					<tavatekst id="25c75766-510a-46c2-a99a-ac26a3b34a73">Abivajadusest sõltuvate toetuste määrad on järgmised:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para2lg1p1">
+					<alampunktNr id="8b3dd977-afa9-4a15-addb-1dec23f888a4">1</alampunktNr>
+					<kuvatavNr id="7e67b396-ed3f-4885-bf1a-91f11257be4e"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="21df7710-f479-4867-ab70-1e8b98ed1d10">
+						<tavatekst id="7a973026-1d72-478e-a9e3-c98c638d9601">toetus ravikulude, raviteenuste või abivahendi soetamise hüvitamiseks: kuni 100 eurot aastas pereliikme kohta, sealhulgas sõidukulusid hüvitatakse 0,2 eurot kilomeetri kohta;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p2">
+					<alampunktNr id="05a0d768-ffd7-409a-afee-bb736a75ded3">2</alampunktNr>
+					<kuvatavNr id="84650ece-8b7a-4e53-8541-c3fbc886a611"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="e011b78a-b220-4d72-a826-de959b9a2dd1">
+						<tavatekst id="b4ac915e-73c1-4082-b0e0-467e1d1aad8f">toetus koolitarvete, riiete ja jalanõude toetamiseks: kuni 55 eurot ühe lapse kohta aastas;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p3">
+					<alampunktNr id="1bfb699e-92e0-4421-9521-a85432f49353">3</alampunktNr>
+					<kuvatavNr id="6d6face5-f2d7-4913-abf2-9690ef599c5b"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="cc842980-2474-4b19-957e-5a4d8b37ffe6">
+						<tavatekst id="4698e53c-2428-46d0-8181-4e1ecb4e7dac">kütteks tarbitud soojusenergia või küttematerjali hüvitamise toetus kuni 250 eurot aastas;</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="41d3d079-0e11-485b-b914-3971e0f17aed">
+						<avaldamismarge id="bc9419db-0261-4430-a4bb-28b0fde8ed9c">
+							<RTosa id="4842005c-6c23-4bbd-92aa-d119163afae7">RT IV</RTosa>
+							<avaldamineKuupaev id="f69ea3a8-196b-41da-9fb2-b16f9a2886f3">2022-03-03</avaldamineKuupaev>
+							<RTartikkel id="c788f4e9-2475-4f96-8861-39fcb3b5a8a9">3</RTartikkel>
+							<aktViide id="63647581-4571-48a5-ade9-e2902d930b9f">403032022003</aktViide>
+						</avaldamismarge>
+						<joustumine id="2d0c3d57-b75d-4b4f-8ad7-34d426e622fb">2022-04-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para2lg1p4">
+					<alampunktNr id="501d20db-0e28-427f-8356-3e3f5b114abe">4</alampunktNr>
+					<kuvatavNr id="736d34a8-5112-4268-bd35-67971f1fb490"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="4df14ede-103e-4fa3-83be-ca6238ca6d99">
+						<tavatekst id="bf8c7bca-ef52-474c-a69a-5ef3b38ce497">vältimatu sotsiaalabi toetus: kuni 200 eurot aastas.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="25795e39-1e6d-4fbd-ba71-e98d39c808d9">3</paragrahvNr>
+			<kuvatavNr id="c500c621-927e-4e1a-8ff8-3f555dc05a42"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="85548299-6261-414a-afbf-6c5a0844bb9b">Määruse jõustumine</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="f81797c5-a510-4e84-97c7-3b9a9a3753b8"/>
+				<kuvatavNr id="f7f8ab33-8e4c-46fd-b740-60dd7580839d"/>
+				<sisuTekst id="717cfec1-f79d-4066-aa20-3fa525ec70cb">
+					<tavatekst id="58ca6277-8734-4f3e-b75d-1c8222a8de04">Määrus jõustub kolmandal päeval pärast avaldamist Riigi Teatajas.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+</oigusakt>

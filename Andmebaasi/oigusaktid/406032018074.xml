@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="b79911f0-a993-4e7d-8002-16f51afc506e" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Maardu Linnavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2018-02-27</aktikuupaev>
+  
+  
+  <aktiNr>14</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2018-03-06</avaldamineKuupaev><RTaasta>2018</RTaasta><RTartikkel>74</RTartikkel><aktViide>406032018074</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2018-03-09+02:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2018-03-02</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>406032018074</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2018-03-05</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Marike Võime</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1042349</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2018-03-02</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Natalja Gorbunova</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="f00e61f1-97da-450e-b065-ea5244c6c565">
+  <nimi id="933a46a6-8e54-45f4-9c8d-9d694193d325">
+   <pealkiri id="7533be13-672b-44b8-8425-5be9177dfb90">Asendus- ja järelhooldusteenuse osutamise tingimused ja kord </pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="a6a98f1c-1c3f-4a3e-8252-63f606a0d219"><preambul id="a3c87f55-36e4-4d12-a44a-a5b399a3d5e2">
+   <tavatekst id="f86fcb81-bb15-4739-b4cf-5b3fbd088479">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5 ja sotsiaalhoolekande seaduse § 45<sup>5</sup> ja § 45<sup>15</sup> alusel. </tavatekst>
+  </preambul><peatykk id="52d963ca-f9e2-421c-9a15-87de73c87465">
+   <peatykkNr id="15bf2773-1004-4f72-b573-0b9702d723b0">1</peatykkNr>
+   <kuvatavNr id="c872d795-ba88-4613-bd65-d433a8df726a"><![CDATA[1. peatükk]]></kuvatavNr>
+   <peatykkPealkiri id="f43ec806-4c1e-472d-86db-2cde3da72a37">Üldsätted</peatykkPealkiri>
+  <paragrahv id="para1">
+   <paragrahvNr id="af5d0d46-8035-4f48-8a9d-e110df44cc3b">1</paragrahvNr>
+   <kuvatavNr id="a6d29917-62a1-4532-8016-03102ef8a848"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="dde7bfc9-7da7-47c8-adb0-09b199f8e5c7">Määruse reguleerimisala </paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="d58a4527-3277-4eba-b5c6-57b566e18570"/>
+   <kuvatavNr id="aef22d15-da7c-49e5-92b7-ae5fe07a046c"/>
+   <sisuTekst id="b329008e-a8ee-4c59-9e60-d53123362810">
+    <tavatekst id="621a47fd-dc52-4925-9e51-af3d057d22d0">Määrusega kehtestatakse asendus- ja järelhooldusteenuse (edaspidi ühiselt nimetatud kui teenused) korraldamise ja rahastamise tingimused ja kord. </tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="b0419992-958c-43cf-bcf0-cfb172362245">2</paragrahvNr>
+   <kuvatavNr id="a87d2994-a80e-47b6-9088-af2c87b85123"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="257b26a0-65e2-4b62-a835-6d3c7ca69ec0">Asendushooldusteenuse eesmärk </paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="8682b92c-9b72-4b8d-bebb-b9409420400d"/>
+   <kuvatavNr id="be76c4c9-d393-4d6a-82c5-28a0d319997d"/>
+   <sisuTekst id="f629895b-06a0-4967-90f5-c80b2fea5c2a">
+    <tavatekst id="c89afb32-29d8-4133-892f-bb6ed5bd8e1d">Asendushooldusteenuse eesmärk on pika- või lühiajaliselt lapse heaolu ja õiguste tagamine, lapsele tema põhivajaduste rahuldamiseks peresarnaste elutingimuste võimaldamine, lapsele turvalise ja arenguks soodsa elukeskkonna loomine ning lapse ettevalmistamine võimetekohaseks toimetulekuks täisealisena. </tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="d26786e9-08a5-411e-916c-bdedab1e02b7">3</paragrahvNr>
+   <kuvatavNr id="87ac58a1-ed09-4b58-b59c-68fd8e233f68"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="4bc072b4-0aa6-4b7d-b0ed-cc3a038799a8">Järelhooldusteenuse eesmärk </paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="54dde4de-ccc1-465f-a78e-87399c0590a0"/>
+   <kuvatavNr id="18f0ee7c-f07a-41cc-84ae-4fdc1b10631a"/>
+   <sisuTekst id="195a2be2-6a68-47af-a4f0-ca6be7f6d273">
+    <tavatekst id="a8e96004-29fb-4be6-a65b-ba1b9646f5f4">Järelhooldusteenus on kohaliku omavalitsuse üksuse korraldatav sotsiaalteenus, mille eesmärk on asendushoolduselt ja eestkostelt lahkuva isiku iseseisva toimetuleku ja õpingute jätkamise toetamine. </tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></peatykk><peatykk id="0e97dd53-a5a6-4d65-8801-e3ac5d6daa72">
+   <peatykkNr id="0e755174-f009-41fd-8b92-33c68f279fed">2</peatykkNr>
+   <kuvatavNr id="82e70966-db77-45c7-8327-25ae439c7ea4"><![CDATA[2. peatükk]]></kuvatavNr>
+   <peatykkPealkiri id="7faf2171-f0bb-4353-a555-f00489103fe3">Teenuse kirjeldus</peatykkPealkiri>
+  <paragrahv id="para4">
+   <paragrahvNr id="93df4363-d962-49dd-a189-71625877cdf4">4</paragrahvNr>
+   <kuvatavNr id="959cf1d3-d353-4d3c-b33c-7fea68147965"><![CDATA[§ 4. ]]></kuvatavNr>
+   <paragrahvPealkiri id="5fe6293e-0054-44b2-b09d-87142e8c0f5e">Teenuse osutaja </paragrahvPealkiri>
+  <loige id="para4lg1">
+   <loigeNr id="eab5d8b7-771f-4530-81a0-b4b32819e73c">1</loigeNr>
+   <kuvatavNr id="28a6f710-9818-471f-822e-6338a95af019"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="c2155437-95c5-4075-b0f6-77573ab2191b">
+    <tavatekst id="5d396b22-234d-483a-b7f3-a7a2b3ff7137">Asendushooldusteenuse osutaja on hoolduspere, perekodu ja asenduskodu (edaspidi teenuseosutaja). </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg2">
+   <loigeNr id="4c4a1e62-2838-472e-97d5-59ee908c7757">2</loigeNr>
+   <kuvatavNr id="651b1ce4-9902-43e4-aa30-25ca4ad19524"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="9143ad74-d769-4674-992f-cd90683814d3">
+    <tavatekst id="c5b8988a-3b45-4d16-875a-8d0e594e64ee">Järelhooldusteenuse osutaja on Maardu linnavalitsus.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para5">
+   <paragrahvNr id="b10825ad-51c1-403f-aa4c-fcfca640ea17">5</paragrahvNr>
+   <kuvatavNr id="a81f18aa-1386-4c87-ade0-d654e9621975"><![CDATA[§ 5. ]]></kuvatavNr>
+   <paragrahvPealkiri id="7bf2f574-51c0-4223-ad37-24b88d152c97">Teenuse saaja </paragrahvPealkiri>
+  <loige id="para5lg1">
+   <loigeNr id="d46c807b-efd3-4235-841b-e411472380af">1</loigeNr>
+   <kuvatavNr id="2973eb31-fe3b-4e5b-bdf5-8d3551881f71"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="05fa90b9-6ed0-427d-8454-ec74a9dc54d7">
+    <tavatekst id="c8a0b9cd-1583-471f-aaf6-eff5cecfc59a">Asendushooldusteenus tagatakse Maardu linna poolt sotsiaalhoolekande seaduses § 45 <sup>9</sup> lg 1 ja 2 nimetatud lastele ja lapse heaolu tagamiseks Maardu linnavalitsuse otsusel § 45 <sup>9</sup> lõikes 3 nimetatud lastele.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg2">
+   <loigeNr id="2f031c6b-f8ba-4614-83f4-7356f6a78046">2</loigeNr>
+   <kuvatavNr id="02caa01c-4702-4d2f-b459-388a65b3ac6d"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="c1254620-6d3f-4a51-bdba-5c7cda1836c8">
+    <tavatekst id="4cd18e56-6f7a-4cb8-9bfa-444395ab1b3b">Järelhooldusteenus tagatakse Maardu linna poolt sotsiaalhoolekande seaduse § 45 <sup>16</sup> lõikes 1 nimetatud täisealisele isikule ja isiku toimetuleku tagamiseks Maardu linnavalitsuse otsusel § 45 <sup>16 </sup>lõikes 2 nimetatud täisealisele isikule. </tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></peatykk><peatykk id="04517a23-1d31-4bd3-8660-6c0bdacf7062">
+   <peatykkNr id="2c87133b-3415-47fd-a900-662ad27e4418">3</peatykkNr>
+   <kuvatavNr id="36049616-e2ee-47e1-9f7c-783526645477"><![CDATA[3. peatükk]]></kuvatavNr>
+   <peatykkPealkiri id="4b51e822-a0d4-4d6c-a5c2-c78f6d46f299">Teenuse osutamine</peatykkPealkiri>
+  <paragrahv id="para6">
+   <paragrahvNr id="b8e94fc4-4a5d-44b4-a869-ba5db8f044b3">6</paragrahvNr>
+   <kuvatavNr id="f07ac61c-32c0-4940-b6cc-39c307f8c841"><![CDATA[§ 6. ]]></kuvatavNr>
+   <paragrahvPealkiri id="30d2d774-8e0a-4902-93ad-77614bd26ecc">Teenuse vajaduse hindamine ja teenusele suunamine </paragrahvPealkiri>
+  <loige id="para6lg1">
+   <loigeNr id="d73404f7-4041-489f-b743-f54fd1e6d4ca">1</loigeNr>
+   <kuvatavNr id="a76bd627-c21d-4f79-89fd-ae746b8ba0f8"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="26f4ccec-f188-4391-b48c-3c51a22260f2">
+    <tavatekst id="56dcf200-d33a-4860-bdbc-782d91c99013">Sotsiaalhoolekande seaduse § 45 <sup>9</sup> lõigetes 1 ja 2 nimetatud lapse asendushooldusteenusele suunamisel hindab Maardu linn lapse heaolust lähtuvalt asendushooldusteenuse osutaja valikut (hoolduspere, perekodu või asenduskodu) ja põhjendab oma valikut. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg2">
+   <loigeNr id="ed98c16c-e153-46db-accb-31aa53cb8503">2</loigeNr>
+   <kuvatavNr id="b5ea1222-cc2b-4795-9b05-f2826c94f37b"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="218b5a75-bc82-4f2e-b98d-f523a3afa3f5">
+    <tavatekst id="5a4a879a-ce7f-4cd1-b344-ec4571bf1e12">Sotsiaalhoolekande seaduse § 45 <sup>9</sup> lõikes 3 nimetatud lapse asendushooldusteenusele suunamisel hindab Maardu linna lapse abivajadusest ja lapse heaolust lähtuvalt teenuse osutamise vajadust ja sobivust ning suunab lapse teenusele hooldusõigusliku vanema või füüsilisest isikust eestkostja nõusolekul. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg3">
+   <loigeNr id="d8cb1061-0d8a-4001-8448-c472e9648833">3</loigeNr>
+   <kuvatavNr id="a6ae985d-0287-4aea-aa55-ba9d604bd01e"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="874419aa-9666-4b9f-b4ca-d59412e519c5">
+    <tavatekst id="33807738-b020-4b36-a50c-72e1730ded85">Sotsiaalhoolekande seaduse § 45<sup>16</sup> lõigetes 1 ja 2 nimetatud täisealise isiku järelhooldusteenusele suunamisel osutakse teenuseid vastavalt juhtumiplaanile. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg4">
+   <loigeNr id="867d386b-7dab-4de2-9ef3-7bd72dfc5278">4</loigeNr>
+   <kuvatavNr id="0772e512-13d2-4a1d-9575-936302a17301"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="96ca840d-c390-46f0-a48d-db83a15ee30b">
+    <tavatekst id="490389a1-225e-421f-b53e-82d98ea115d0">Käesoleva paragrahvi lõigetes 1-3 nimetatud isikute puhul teeb Maardu linnavalitsus otsuse teenusele suunamise kohta ning kannab isikule teenuse osutamise andmed sotsiaalteenuste- ja toetuste andmeregistrisse (edaspidi STAR) sotsiaalhoolekande seaduse § 144 lõike 1 punkt 5 alusel. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg5">
+   <loigeNr id="4119d7ae-4410-459c-ba31-b0b0f47be0da">5</loigeNr>
+   <kuvatavNr id="5e711f3c-b9bf-4865-9a49-02d5ab409b70"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="c055b13f-d260-48a8-b5b4-c31977074dce">
+    <tavatekst id="66e5e312-ec12-441b-b2c0-91bb65615f4a">Teenuse saaja ja võimalusel tema vanem või füüsilisest isikust eestkostja peab olema kaasatud teenuse vajaduse hindamise ja teenusele suunamise protsessi. </tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para7">
+   <paragrahvNr id="a35177ed-5c4d-408f-9f30-6686585666cb">7</paragrahvNr>
+   <kuvatavNr id="911699c1-1462-4d06-b438-32fc9c0db91a"><![CDATA[§ 7. ]]></kuvatavNr>
+   <paragrahvPealkiri id="d7c8268c-ae11-4545-8874-356748867dd7">Teenuse rahastamine </paragrahvPealkiri>
+  <loige id="para7lg1">
+   <loigeNr id="e4b5f70f-c67c-475f-9a15-6d796a2b7ad8">1</loigeNr>
+   <kuvatavNr id="cafcba1c-0612-4b3f-acc0-fdd00fec5b62"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="232ba8b6-1668-4275-9a0f-f4ee21b82866">
+    <tavatekst id="f57b3018-a547-4b6c-9157-824fabf96e0a">Asendushooldusteenust sotsiaalhoolekandeseaduse § 45<sup>9</sup> lõigetes 1 ja 2 nimetatud lapsele rahastatakse Maardu linna eelarvest ning asendushooldusteenusel oleva lapse sissetulekutest. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg2">
+   <loigeNr id="4d098f20-dd69-46fa-b9ef-b8271f14f637">2</loigeNr>
+   <kuvatavNr id="1e2955e1-9ca6-4133-82ed-eab394f11def"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="717b38c9-3133-451a-8aaf-18d2470d9ef5">
+    <tavatekst id="506cbfd3-bf52-46e9-a3b1-1f498e4c48ab">Asendushooldusteenust sotsiaalhoolekandeseaduse § 45<sup>9</sup> lõikes 3 nimetatud lapsele võib rahastada Maardu linna eelarvest ja lapse ülalpidamiskohustusliku isiku vahenditest. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg3">
+   <loigeNr id="201a671a-b0c2-45c0-9b95-09c15aba0665">3</loigeNr>
+   <kuvatavNr id="77930c97-eb3b-4800-8f6d-6fd9ed9eca41"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="5dca24cd-e87b-4e6b-a130-626de3b12389">
+    <tavatekst id="dc6a599e-4b3c-4ec0-87b5-9203b252c053">Järelhooldusteenust rahastatakse Maardu linna eelarvest ning järelhooldusteenusel oleva täisealise isiku sissetulekutest. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg4">
+   <loigeNr id="3f469354-d103-40c3-b938-ef8f82e27f22">4</loigeNr>
+   <kuvatavNr id="164bf9bf-94b3-4e6c-890f-fab85e06bfea"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="ca626366-4970-47ce-9a4a-4a67b618ccde">
+    <tavatekst id="e5dde648-9523-45b7-89f0-31e2a3324c29">Teenuse saaja isiklike kulude katteks peab Maardu linna eelarvest iga kuu tegema kulutusi keskmiselt 240 euro ulatuses ja vähemalt 2880 eurot aastas, mille kohta peetakse eraldi arvestust. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg5">
+   <loigeNr id="85cee6df-763f-480a-99da-5e173d4bb976">5</loigeNr>
+   <kuvatavNr id="56f8703f-a3bf-4f1a-b85b-1f61b4de6356"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="d5abe7c3-3522-48ad-86eb-14718e7f452c">
+    <tavatekst id="9ad2ab56-a25e-4abd-983b-4ead1582996f">Käesoleva paragrahvi punktis 4 nimetatud summa tuleb fikseerida teenuse osutamise lepingus ning kanda lepingus kokkulepitud arvelduskontole, erandina võib järelhooldusel viibiva isiku puhul kokku leppida summa kandmise teenuse saaja arvelduskontole ja teha sellekohane märge teenusele suunamise otsuses. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg6">
+   <loigeNr id="73aaa38e-3919-4f1a-8efb-5154f3614437">6</loigeNr>
+   <kuvatavNr id="a0771148-e017-40ba-9191-9ee2cf995f20"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="6a6647e2-8387-4123-acef-660fcca31249">
+    <tavatekst id="4f732d3e-5e13-4369-b506-4e6f9d1da422">Maardu linn toetab hoolduspere vanemat, kes on kantud STAR-i ja kes hooldab üht last, vähemalt ühe neljandiku ulatuses TLS § 29 lg 5 alusel kehtestatud töötasu alammäärast. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg7">
+   <loigeNr id="46d65669-7335-4f5a-84d7-48077a383190">7</loigeNr>
+   <kuvatavNr id="37c9497a-f6d3-40d1-88c4-ccf0a0a7de0c"><![CDATA[(7)]]></kuvatavNr>
+   <sisuTekst id="91c73715-8a17-48db-9823-e45101c28cd7">
+    <tavatekst id="3c157c6b-8ca4-4a25-adbc-a49eb3d60332">Maardu linn võib STAR-i kantud hoolduspere vanemale maksta tasu mis ei tohi ühe lapse hooldamise korral olla väiksem kui üks neljandik TLS § 29 lg 5 alusel kehtestatud töötasu alamäärast. Tasu maksmise korral ei maksta hoolduspere vanemale käesoleva paragrahvi punktis 6 nimetatud toetust.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg8">
+   <loigeNr id="708a3275-a3b6-48a8-96a1-e65415ff19b5">8</loigeNr>
+   <kuvatavNr id="241c03a8-5fe0-44ca-abd3-d888b53a0b2c"><![CDATA[(8)]]></kuvatavNr>
+   <sisuTekst id="3f8fd5bf-7cf7-470e-b937-99c0d6aa723d">
+    <tavatekst id="cfe02483-019f-4920-90f2-000772cadf64">Lapse ülalpidamisest ja erivajadustest tulenevaid lisavajadusi rahastab Maardu linn lapsele riigieelarvest igakuiseks ülalpidamiseks ja puudest tingitud lisakulude osaliseks hüvitamiseks ette nähtud sissetulekutest. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg9">
+   <loigeNr id="96db7e37-7601-4fcd-a736-034cf79368fc">9</loigeNr>
+   <kuvatavNr id="a88ce8a4-b5ad-42c1-8d53-2e00c1cb5a4d"><![CDATA[(9)]]></kuvatavNr>
+   <sisuTekst id="0ca973fd-17be-40b0-8be5-9366217c5328">
+    <tavatekst id="ff2d0ab6-75f4-455f-aeae-111cffba1274">Asendushooldusteenuse osutaja muud kulutused ja nende hüvitamise kord lepitakse kokku Maardu linna ja asendushooldusteenuse osutaja vahel. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg10">
+   <loigeNr id="46eeb9c7-f5b0-48a0-bbc9-810875d6bd16">10</loigeNr>
+   <kuvatavNr id="07b80c30-7419-4756-9fc5-06739d5257ea"><![CDATA[(10)]]></kuvatavNr>
+   <sisuTekst id="e1a8892b-dad3-4c27-9c72-5f26b9f1e1ee">
+    <tavatekst id="390ffb05-6070-4564-be53-653751196ac6">Teenuse osutaja muude kulude kokkuleppimisel tuleb arvestada teenuse saaja teenusel viibimise kestvust, õppimist väljaspool teenuse osutamise asukohta, teenuse saaja spetsiifilisi vajadusi vms ning ülalpidamist riigi või kohaliku omavalitsuse eelarvest. </tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para8">
+   <paragrahvNr id="d64a2b0d-8773-40d4-be2c-3729c12ffff1">8</paragrahvNr>
+   <kuvatavNr id="d5f02061-33fc-4189-9b76-6e421ee55adb"><![CDATA[§ 8. ]]></kuvatavNr>
+   <paragrahvPealkiri id="18785b7c-e6fa-4f4a-b43e-752915597551">Hoolduspere vanema toetuse taotlemine </paragrahvPealkiri>
+  <loige id="para8lg1">
+   <loigeNr id="4ad0fcec-454d-4db4-98c9-62afef40bd90">1</loigeNr>
+   <kuvatavNr id="4925adf1-2d7e-47a0-8f9e-157a751edbad"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="872d4616-4702-4469-9fcb-57531f454e5d">
+    <tavatekst id="dbbc0ebb-bbef-468d-a61a-bfeee72f6ed3">Toetuse taotlemise õigus on hoolduspere vanemal, kes on kantud hooldusperena STAR-i ja kellega Maardu linn on sõlminud hoolduspere vanema lepingu. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para8lg2">
+   <loigeNr id="752c5e48-ad40-4ab8-8cfe-746764aa3cf3">2</loigeNr>
+   <kuvatavNr id="945a7f23-62d8-4952-b8b7-9af954c02411"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="2082beb8-ef43-42c6-9599-cd2cbcb17b82">
+    <tavatekst id="4b41e09f-5387-4cad-ad66-0827cb64db1e">Käesoleva määruse § 9 lg 6 toetuse saamiseks esitab hoolduspere vanem taotluse Maardu linnalevalitsusele. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para8lg3">
+   <loigeNr id="cd308b69-63b3-4a7b-8d80-e33868051bf3">3</loigeNr>
+   <kuvatavNr id="5b8168b1-e4ec-488f-92f4-bd3a8119ff5f"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="3d86d697-e193-4df2-a6ef-5678f3118917">
+    <tavatekst id="e1563cfb-4b78-4f32-9e77-6680a596af22">Taotleja esitab taotluse ja kinnitab andmete õigsust allkirjaga. vähemalt järgmiste andmete kohta: </tavatekst>
+   </sisuTekst>
+  <alampunkt id="para8lg3p1">
+   <alampunktNr id="ea89df47-cfbd-47bb-b3ff-a5867c542c5f">1</alampunktNr>
+   <kuvatavNr id="b2c5cfbc-73f0-4a39-872e-6c616eb0e2b3"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="1b303e99-3269-4e83-b81e-8e3d05cdf73f">
+    <tavatekst id="2735e107-e952-4cd7-b248-46224961592d">ees- ja perekonnanimi, isikukood; </tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para8lg3p2">
+   <alampunktNr id="c96a1476-3085-4999-b35b-64f197527452">2</alampunktNr>
+   <kuvatavNr id="824ebd6b-a432-4b98-b3fe-f48f82634eb4"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="9b0b2fc6-4611-42da-afcb-ef704aba6458">
+    <tavatekst id="881afee8-f2c3-4ac2-af1b-4fd12890d941">elukoht – maakond, linn või vald, tänav või küla, maja ja korteri number, sihtnumber; </tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para8lg3p3">
+   <alampunktNr id="6c747dfe-6659-4eef-b64f-6cd3d5039e27">3</alampunktNr>
+   <kuvatavNr id="2a24b8e1-cc60-4801-b0db-9c0d8c150ddf"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="f26d86d9-202a-4d9e-9dbd-e96b10c010a8">
+    <tavatekst id="c4b4bbd6-8513-40df-bf23-6c3778c2e9af">arvelduskonto number.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para9">
+   <paragrahvNr id="c2a432a4-fa02-4576-ab12-bda0344b2cca">9</paragrahvNr>
+   <kuvatavNr id="15139aa6-6416-4f87-a840-b8746d44f736"><![CDATA[§ 9. ]]></kuvatavNr>
+   <paragrahvPealkiri id="5df13882-92c8-4e39-9160-b1516e6ec1e1">Lepingu sõlmimine </paragrahvPealkiri>
+  <loige id="para9lg1">
+   <loigeNr id="70e4fc14-fa95-46e2-9d1a-e538d39c61e8">1</loigeNr>
+   <kuvatavNr id="70f9af59-b8d6-43cf-a632-b9145353b606"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="d4a07f5c-9c0f-4c61-ab51-652f346359ca">
+    <tavatekst id="1ee5262c-8317-4a42-9713-775e6f9b8332">Maardu linn sõlmib asendushooldusteenuse teenuseosutajaga lepingu enne teenuse saajale teenuse osutamise alustamist. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para9lg2">
+   <loigeNr id="54d81778-c4c5-4045-91b1-ce72daf5b22a">2</loigeNr>
+   <kuvatavNr id="39cc9383-b9b9-4793-aae2-fb8d7a8012cd"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="9ef93adf-d18e-4c12-b22a-f949e61546dd">
+    <tavatekst id="20e9ee96-c9cf-451b-937b-df918ea306e8">Järelhooldusteenuse osutamiseks võib sõlmida lepingu. Lepingu sõlmimisel peab teenuse saaja olema lepingupooleks. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para9lg3">
+   <loigeNr id="e84c0f9d-6af4-4389-a5a6-f6155780a09d">3</loigeNr>
+   <kuvatavNr id="1fd46d3a-92cd-4c06-9947-ea8708f0f1ec"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="518e3f2e-ff01-4a7b-be07-8af7054af132">
+    <tavatekst id="31a3588b-37a0-4e4c-9d14-3a123be8e470">Asendushooldusteenuse osutamiseks sõlmitava lepinguga sätestatakse vähemalt lapsele osutatava teenuse sisu, maht, kestvus, rahastamine ning osapoolte õigused ja kohustused. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para9lg4">
+   <loigeNr id="40111176-874e-4d80-80c1-408f2b070d11">4</loigeNr>
+   <kuvatavNr id="574e5601-bb2d-4600-842d-5221bf6dccae"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="d764b25b-feae-42db-affe-c9e28a1d3f3f">
+    <tavatekst id="33b83f92-882d-4050-b167-68496a1a38cb">Asendushooldusele suunatud lapsele koostatud juhtumiplaan on asendushooldusteenuse osutamise lepingu lisa. </tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para10">
+   <paragrahvNr id="14a2a137-6cf2-4be4-bfc8-820da0323600">10</paragrahvNr>
+   <kuvatavNr id="fac7c237-2cd9-4308-947c-70b889ae4675"><![CDATA[§ 10. ]]></kuvatavNr>
+   <paragrahvPealkiri id="58a8fc08-24c9-4759-a0bb-eb2d9de3b01b">Lepingu lõppemine ja lõpetamine </paragrahvPealkiri>
+  <loige id="para10lg1">
+   <loigeNr id="6cd81838-09e3-4435-a664-e6b068b9f715">1</loigeNr>
+   <kuvatavNr id="bcbadb8d-1a04-4814-b77b-5f61481e6a09"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="656c3d5e-cc3a-4b0e-a4d0-07008b0e7491">
+    <tavatekst id="44b3c5c3-1816-4dab-9df8-8564e86fed58">Leping lõpetatakse: </tavatekst>
+   </sisuTekst>
+  <alampunkt id="para10lg1p1">
+   <alampunktNr id="e13ab062-1317-427f-8466-657b6fe28a73">1</alampunktNr>
+   <kuvatavNr id="10d4ec6c-e8a5-42d4-aa6f-f307f5f69532"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="b7437fa7-7fec-4e71-8974-58512b40c227">
+    <tavatekst id="f4ae149f-2c29-41af-bfbc-51f0dbbb034a">teenuse vajaduse äralangemisel; </tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para10lg1p2">
+   <alampunktNr id="75ef44a1-4ea6-4208-abd5-19bc30dbf073">2</alampunktNr>
+   <kuvatavNr id="24a2cbb0-b0a7-4c99-a4d0-78c16aca62eb"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="8922521a-f29d-463e-830d-307d860a19bf">
+    <tavatekst id="8a8088c1-4713-4714-af11-a30c5a046509">lepingus sätestatud kohustuste täitmata jätmisel;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para10lg1p3">
+   <alampunktNr id="00a8a512-dd13-4390-b69e-91ce2cb24592">3</alampunktNr>
+   <kuvatavNr id="d1a68550-228f-4f2a-8923-18b16875b68a"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="5d2819e2-f9b2-4dc4-a088-c392f7bbf186">
+    <tavatekst id="6d122440-62d2-4e2d-9b23-81b6324dce2d">lepingus sätestatud kohustuste mittenõuetekohase täitmise korral; </tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para10lg1p4">
+   <alampunktNr id="c87c1f1d-f76d-4a52-9d0c-f61054b9d183">4</alampunktNr>
+   <kuvatavNr id="31921ce9-bbe0-4448-a3f8-c7ef4bc9409e"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="8a04bbc2-2d7f-4dc1-9db3-f7361e3f09de">
+    <tavatekst id="dd2e4e8c-4b1f-4a55-92f7-3c575a5b4055">lepingupoolte vastastikusel kokkuleppel või </tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para10lg1p5">
+   <alampunktNr id="d6ac3c69-9621-4420-a1cb-cadfd021d337">5</alampunktNr>
+   <kuvatavNr id="82dae3ab-ca75-43e0-80a2-33f1496e1973"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="62e1c283-8447-40b6-8820-a5de892e9c03">
+    <tavatekst id="3d1a70a8-60f9-4707-bb34-00372c71507d">muudel seadusest tulenevatel alustel. </tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para10lg2">
+   <loigeNr id="0d25705b-30c5-4947-93ad-6ca86e02d7dc">2</loigeNr>
+   <kuvatavNr id="1c815e74-e8b9-45f9-973c-71b156f09dde"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="c8c915b5-ce67-4c81-840b-88c33f4bebba">
+    <tavatekst id="a1969cff-ca7f-465e-89cd-2f1b2943d9c2">Leping lõppeb: </tavatekst>
+   </sisuTekst>
+  <alampunkt id="para10lg2p1">
+   <alampunktNr id="845247cc-752e-4dee-b5c3-c8a8c7856aca">1</alampunktNr>
+   <kuvatavNr id="1602c841-e0d9-434e-9ecf-579f195bca80"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="d1827bb8-64fd-4f4c-8ddf-46cf70329846">
+    <tavatekst id="14dbd45c-55d4-4de3-8bb2-2f25d7431fe8">tähtaja saabumise korral; </tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para10lg2p2">
+   <alampunktNr id="6c81f1ae-11fd-4ded-8f83-2fdbb1f8e7f8">2</alampunktNr>
+   <kuvatavNr id="37df3865-cff3-439b-b878-20312eef9a40"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="546b9443-931f-421d-a17c-19bc08d7245e">
+    <tavatekst id="fb445314-d4b3-407a-afc7-4138e7fa7e16">lepingupoole surma korral või </tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para10lg2p3">
+   <alampunktNr id="b0d862db-48ad-441a-8423-69ef217b5c4b">3</alampunktNr>
+   <kuvatavNr id="764ef850-d694-4af1-9e77-4afcb113ba21"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="2c5bd6e4-c68d-4ce9-a481-50e17105ae31">
+    <tavatekst id="cb22d8fc-aa76-46df-bd2e-0187ab6286f8">teenuse saaja surma korral. </tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv></peatykk><peatykk id="53fe6ca4-72a2-4be2-91ff-6fc362a4d4df">
+   <peatykkNr id="6db9299c-8821-4606-a2fd-486fb4ab2d27">4</peatykkNr>
+   <kuvatavNr id="d2469dfd-f0f4-420d-ba23-15f0a930151c"><![CDATA[4. peatükk]]></kuvatavNr>
+   <peatykkPealkiri id="dbf8cac8-abea-47ff-9827-2f5a730aac56">Lõppsätted</peatykkPealkiri>
+  <paragrahv id="para11">
+   <paragrahvNr id="bd751e68-d1bd-4a2e-917f-d836589a1219">11</paragrahvNr>
+   <kuvatavNr id="ca15663f-6386-445e-a8ef-9f618b3a080a"><![CDATA[§ 11. ]]></kuvatavNr>
+   <paragrahvPealkiri id="5b8c71c2-c7e9-459f-ae69-033d1074b646">Jõustumine</paragrahvPealkiri>
+  <loige id="para11lg1">
+   <loigeNr id="0eebbb2f-1af4-4ba3-8ade-997488cc5f07">1</loigeNr>
+   <kuvatavNr id="3e0e8351-64ba-465f-8d43-34f7a5ef615d"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="24148d27-a850-461f-bf2a-0339f6fee4c4">
+    <tavatekst id="f95feeab-75fd-49aa-8aef-fb0654929ac4">Määrust rakendatakse 1. jaanuarist 2018.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para11lg2">
+   <loigeNr id="c379d830-3cab-47d2-9c46-02733bd95f1e">2</loigeNr>
+   <kuvatavNr id="40d59f7b-a9bb-4095-b415-e95469e7ee30"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="8f909da5-1425-4214-9db3-f47aeb69a4a3">
+    <tavatekst id="3a1691b5-b8c3-4d61-8b9a-af436db1a54a">Määrus jõustub 3. päeval pärast Riigi Teatajas avaldamist</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></peatykk></sisu>
+<allkiri id="9945c5bc-0d79-4f22-ac82-388532fdebef"><allkiriKoht id="aad84449-2a2b-4f90-b5cf-982efef7c106"/><allkirjastaja id="a85ff4d5-6fb4-43cb-9685-da21c7f66ee6"><ametinimetus id="3a32245a-87f1-4940-a94b-44055f4f0af7">Maardu Linnavolikogu esimees</ametinimetus><eesnimi id="200e66b7-029e-4508-828f-aa8c3a7b3746">Ailar</eesnimi><perekonnanimi id="15b8d1e8-1f42-4099-93b3-8c6ef938a033">Lyra</perekonnanimi></allkirjastaja></allkiri></oigusakt>

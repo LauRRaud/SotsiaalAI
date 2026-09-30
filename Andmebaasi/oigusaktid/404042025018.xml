@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="5ec4c99a-9a64-43f4-bb9f-36079593213e" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Narva Linnavalitsus</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>algtekst-terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2025-04-02</aktikuupaev>
+			<aktiNr>8</aktiNr>
+		</vastuvoetud>
+		
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-04-04</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>18</RTartikkel><aktViide>404042025018</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2025-04-07+03:00</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2025-04-02</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>404042025018</globaalID>
+		<metaandmedVersioon>13</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2025-04-03</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1060765</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2025-04-02</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Tatjana Udovichenko</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="ade227b0-106d-435e-958d-475c40bba20e">
+		<nimi id="27bafe40-0ffc-4d43-894f-ee52febf63db">
+			<pealkiri id="6f12e8d4-7a8d-464e-b88e-8480cd0a3dc9">Vaimse tervise teenuste toetuse piirmäärade kinnitamine</pealkiri>
+		</nimi>
+	</aktinimi>
+	<sisu id="42f021c8-51f9-4d9c-8177-424fa1f7056f">
+		<preambul id="3f06c96d-8aa1-4efa-884e-a1380416cf62">
+			<tavatekst id="731c66db-9ee1-4678-94f6-43e1d01bd5fe">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 30 lõike 1 punkti 2 ja Narva Linnavolikogu 27.03.2025 määruse nr 3 "Vaimse tervise teenuse toetuse määramise tingimused ja kord" § 3 lõike 6 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="bd96d433-3300-45e4-bcb4-3a6f3e505933">1</paragrahvNr>
+			<kuvatavNr id="9d89a9fc-8246-49bb-a88f-3a81f8a5a233"><![CDATA[§ 1. ]]></kuvatavNr>
+			<sisuTekst id="fc32eeed-ab0b-4e74-a932-bf6f285e563b">
+				<tavatekst id="4482ae40-8626-40f0-a617-50935c33e6a3">Kinnitada järgmised vaimse tervise teenuste toetuse piirmäärad:</tavatekst>
+			</sisuTekst>
+			<loige id="para1lg1">
+				<loigeNr id="86fc4a55-c1f8-4a7c-869e-3ceed7ce5fff"/>
+				<kuvatavNr id="04eb527f-db59-4637-8975-9a010ab1825f"/>
+				<sisuTekst id="2a9960e1-9ef0-4b62-a993-93906e62581d">
+					<tavatekst id="1b9567b2-61d4-4465-9e58-da10e28b858b"/>
+				</sisuTekst>
+				<alampunkt id="para1lg1p1">
+					<alampunktNr id="141ce288-0b73-4e95-b5e2-315f8f6077d3">1</alampunktNr>
+					<kuvatavNr id="62dcb9c2-adf8-4f78-9eea-12f47ba69f0e"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="2bdc8244-3883-4975-ad20-009387dfd524">
+						<tavatekst id="4b102ca3-9ae2-4510-8c8e-6dca58ea576b">psühholoogiline nõustamine – kuni 70,00 eurot/tund;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p2">
+					<alampunktNr id="e376fac6-dcc1-451f-9703-f1451a8cedc7">2</alampunktNr>
+					<kuvatavNr id="c6d924f2-ca83-4747-b67d-00aafbfbd3eb"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="feab7b39-e96a-4e86-8f42-c53df52609f7">
+						<tavatekst id="55776e0e-e0bf-4193-90a0-6bcb9ece05c3">vaimse tervise kriisinõustamine – kuni 70,00 eurot/tund;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p3">
+					<alampunktNr id="dcd720bc-27bf-4acd-8b4b-1ec6c3263cca">3</alampunktNr>
+					<kuvatavNr id="7091a6cb-329f-4094-9b3a-202873347fb6"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="7ab094fa-89b8-484b-9f18-ce0ae78036be">
+						<tavatekst id="a3a9ee7e-5264-4c75-b768-a10c443cf50f">hingehoidlik nõustamine laiemalt (v.a hooldekodus) – kuni 60,00 eurot/tund;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p4">
+					<alampunktNr id="da11ac06-ea54-46ba-95cf-bf6e3a374cd1">4</alampunktNr>
+					<kuvatavNr id="b423c238-e117-4734-a997-b9e3d6e2b6d3"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="4b7bbefc-20d5-4532-ba6d-783257d12d3f">
+						<tavatekst id="17b2a9c6-3fc7-4dc1-baa9-83fb83c3739a">perenõustamine – kuni 70,00 eurot/tund;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p5">
+					<alampunktNr id="6b23b509-b59e-4cf4-afa1-3d81471ddd75">5</alampunktNr>
+					<kuvatavNr id="e04c7f19-3b01-49bd-8d3f-49c247229ab3"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="1e73eeb9-f7b7-46f3-a91b-908c0f4a6a90">
+						<tavatekst id="eea20d87-aa4f-40b1-abfb-bf179c06f8e3">pereteraapia – kuni 70,00 eurot/tund.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="913add1f-c666-445b-974d-7f573e268195">2</paragrahvNr>
+			<kuvatavNr id="6b49cefa-fcb1-4943-bdab-ac4fc8568971"><![CDATA[§ 2. ]]></kuvatavNr>
+			<sisuTekst id="8578da54-8c45-4098-b22f-2faf44d25d30">
+				<tavatekst id="3d94b26d-5429-446a-9a75-ff02057d2e27">Määrus jõustub seadusega sätestatud korras.</tavatekst>
+			</sisuTekst>
+		</paragrahv>
+	</sisu>
+	<allkiri id="a07ec12c-79c9-4de1-9fa6-0dafd590f2ac">
+		<allkiriKoht id="22a99edb-113a-4328-84c7-6e50748db170"/>
+		<allkirjastaja id="4d2130c7-a08c-4409-a6f6-fdb682ef8897">
+			<ametinimetus id="dbfe21dd-98fa-4a3a-bc09-3a5c4369e0b4">Linnapea</ametinimetus>
+			<eesnimi id="f25f3768-4688-4032-8321-d50cf79111e8">Katri</eesnimi>
+			<perekonnanimi id="4391bc6d-61a0-458b-95dc-499ad9f09047">Raik</perekonnanimi>
+		</allkirjastaja>
+	</allkiri>
+	<allkiri id="3a7d2e3f-11f0-40b0-9d51-abf19360ce86">
+		<allkiriKoht id="b0bc4139-2283-4e9d-b5e5-e8092d6a3b74"/>
+		<allkirjastaja id="2bc88cc1-9b4f-4775-84fe-4764a49700a3">
+			<ametinimetus id="f97c3133-3c4e-4dd7-9822-19ad9e8c9e19">Linnasekretär</ametinimetus>
+			<eesnimi id="a683251b-0eca-447b-a4ec-0f88bfd16efa">Üllar</eesnimi>
+			<perekonnanimi id="308b3db2-682c-4f3d-be5c-79279a80f56d">Kaljuste</perekonnanimi>
+		</allkirjastaja>
+	</allkiri>
+</oigusakt>

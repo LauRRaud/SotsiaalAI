@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="bd45c11e-9656-40d8-b5df-fa00b8566bd1" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Tori Vallavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2019-02-21</aktikuupaev>
+  
+  
+  <aktiNr>62</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2019-03-09</avaldamineKuupaev><RTaasta>2019</RTaasta><RTartikkel>10</RTartikkel><aktViide>409032019010</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2019-03-12+02:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2019-03-05</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>409032019010</globaalID>
+ <metaandmedVersioon>7</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2019-03-07</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1046392</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2019-03-03</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Siiri Jõerand</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="e4c3cbef-e227-45d1-a684-93dbafd8b015">
+  <nimi id="2421508d-aba8-4d90-a4da-a0dadcd30909">
+   <pealkiri id="239321f2-720b-446a-8fda-13b64a16e211">Varjupaigateenuse ja turvakoduteenuse osutamise tingimused ja kord</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="9e5a0342-7ecd-4a9a-88b0-379c5b5da75f"><preambul id="62601447-1e24-4625-916c-e9fb4b239b8b">
+   <tavatekst id="7aeaad0a-90d3-4a1d-ae69-efb46231ad5e">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõige 1 punkti 5 ning sotsiaalhoolekande seaduse § 14, § 30 ja § 33 alusel.</tavatekst>
+  </preambul><peatykk id="372acc7d-77e3-4ff9-9f38-dd5d575a482c">
+   <peatykkNr id="ad5439bf-59af-4e05-a159-f4ef84dfe9c2">1</peatykkNr>
+   <kuvatavNr id="e0e12d5a-5a5c-42db-b1e0-f3c2fdebdbaa"><![CDATA[1. peatükk]]></kuvatavNr>
+   <peatykkPealkiri id="ed12b03f-e367-4532-a01a-eaae55a2ac41">Üldsätted</peatykkPealkiri>
+  <paragrahv id="para1">
+   <paragrahvNr id="212eadbb-3cd2-4dc0-a404-612d4aba58fd">1</paragrahvNr>
+   <kuvatavNr id="1dc91ffe-6c0c-429f-8a2d-373b9bc2689e"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="bb33372c-06d2-41aa-a717-9443dd0e34f8">Määruse reguleerimisala</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="63ca7621-f3e5-4bf9-933e-87530e0a2271">1</loigeNr>
+   <kuvatavNr id="3abe343b-94bd-48ea-86ef-c63818e7b921"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="ecfff2a4-bce0-4e0b-bd70-95bf75271926">
+    <tavatekst id="a0fd08d6-9e6c-4b53-b4f1-8f6b4e65e200"> Käesolev määrus sätestab isikutele, kelle rahvastikuregistrijärgne elukoht on Tori vallas või kes abivajaduse ilmnemisel viibivad Tori valla territooriumil, varjupaigateenuse ja turvakoduteenuse osutamise tingimused ja korra.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg2">
+   <loigeNr id="61019fb3-a699-48ff-b27f-353e96a380a3">2</loigeNr>
+   <kuvatavNr id="5881046d-aafc-4968-a177-5987df1bae7e"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="c4594550-0b0e-43a1-969d-2b496092065c">
+    <tavatekst id="c156886b-0022-45fa-b823-9706ce8dbff4"> Tori Vallavalitsus võib osutada sotsiaalteenust enda poolt hallatava asutuse kaudu või volitada sotsiaalteenuse osutamise halduslepinguga eraõiguslikule juriidilisele või füüsilisele isikule või teise kohaliku omavalitsuse üksuse ametiasutusele.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg3">
+   <loigeNr id="fe8ab6d8-4539-40f2-af80-622642a77c95">3</loigeNr>
+   <kuvatavNr id="88db0645-1b70-4bd0-ac92-306f9d1fc7ae"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="e8514586-ec6f-4fe4-b06c-c97390b214e7">
+    <tavatekst id="d0a384d8-d42f-4ffb-8ce4-3957c929bc18"> Määrusega reguleerimata osas teenuste korraldamise põhimõtetes lähtutakse haldusmenetluse seadusest, sotsiaalseadustiku üldosa seadusest ja sotsiaalhoolekande seadusest.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="1ff4fa6e-ca55-4d68-b9ba-85a4058b3671">2</paragrahvNr>
+   <kuvatavNr id="ba1b89fc-908e-4226-84ed-5f46524cdcce"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="cf246ee6-c155-4877-b748-2948e8488314">Mõisted</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="66244a96-1fc3-4b89-9517-478ac3bd167c"/>
+   <kuvatavNr id="c9281ee4-4f6d-439a-a200-b3fbc009a764"/>
+   <sisuTekst id="37f1df95-d5d6-4308-9134-7b51dc1ddeb5">
+    <tavatekst id="9aeb444d-967b-404e-8b2d-aca20189af73">Käesolevas määruses kasutatakse mõisteid järgnevas tähenduses:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para2lg1p1">
+   <alampunktNr id="34d365c2-00e2-4085-b0a1-2c046bb5f225">1</alampunktNr>
+   <kuvatavNr id="2b5b084c-9b36-4ad4-8dbf-2b2e56e05f65"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="883cf721-ef2c-475e-86ed-32e8221c87ef">
+    <tavatekst id="a26227dd-e896-4856-89b4-44b97e539e5b"> varjupaik - ajutine eluase, kus abivajajale on tagatud voodikoht, võimalus hoolitseda isikliku hügieeni eest. Tegemist on vältimatu abi korras osutatava eluasemeteenusega;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p2">
+   <alampunktNr id="b04720ad-6475-4e40-a37d-cc786d073677">2</alampunktNr>
+   <kuvatavNr id="af535d23-7bd7-4ad9-abae-6c81a6f63a74"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="90144a77-f13f-466c-838c-de1afa06c496">
+    <tavatekst id="91ee6c1b-9cea-4757-b871-d6149f6870c6">turvakodu - ajutine eluase, kus abivajajale on tagatud turvaline keskkond ja esmane abi, voodikoht, võimalus hoolitseda isikliku hügieeni eest ning vajadusel ka kriisiabi. Kuigi turvakoduteenuse puhul on tegu ajutise abimeetmega, võib abivajaja edasisele elukorraldusele kuluva asjaajamise aja tõttu viibida turvakoduteenusel pikemat aega.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv></peatykk><peatykk id="6a85bd64-33f6-4c92-84cd-154a0f49a62b">
+   <peatykkNr id="bfe85f18-c7bf-4b82-ba2c-892735fe861b">2</peatykkNr>
+   <kuvatavNr id="308cbcab-e0b0-4f63-8463-b4129498bb40"><![CDATA[2. peatükk]]></kuvatavNr>
+   <peatykkPealkiri id="38e81e6c-06a1-4f0d-926d-e08f23726cee">Varjupaigateenus</peatykkPealkiri>
+  <paragrahv id="para3">
+   <paragrahvNr id="6f801388-d0e4-4ba7-baca-9e4493c152ff">3</paragrahvNr>
+   <kuvatavNr id="1f7adbd0-3e92-4221-8edf-544cdf1b543a"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="1c5ae5f8-0cd9-4907-be69-20a14387e971">Varjupaigateenuse osutamise eesmärk</paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="97f04011-144d-4f0e-be2f-a4694edce954"/>
+   <kuvatavNr id="d9d50d8f-b823-4526-a7f2-965453538ca4"/>
+   <sisuTekst id="e96eab7d-6123-4727-91be-ed0d0193d76e">
+    <tavatekst id="a811b0cc-5662-4cdb-b716-99c533b5fb0f">Varjupaigateenuse osutamise eesmärk on ajutise ööbimiskoha võimaluse kindlustamine täisealisele isikule, kes ei ole võimeline endale ööbimiskohta leidma. </tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para4">
+   <paragrahvNr id="24f9723a-41c7-4fb3-867c-4303c867655c">4</paragrahvNr>
+   <kuvatavNr id="ac263cf5-230a-4674-99e2-d198fcd8c6d1"><![CDATA[§ 4. ]]></kuvatavNr>
+   <paragrahvPealkiri id="12cb2a5d-0ff3-46fa-bede-c82eea38afdf">Varjupaigateenuse sihtgrupp</paragrahvPealkiri>
+  <loige id="para4lg1">
+   <loigeNr id="60a1ad92-28d8-45c0-9d16-e31d26595c7f">1</loigeNr>
+   <kuvatavNr id="b040c09c-de5f-40eb-9a63-980b901009f4"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="8fcc4c82-403f-45d7-addd-2f62d3dfc27f">
+    <tavatekst id="3af8f181-54f9-48a8-8a93-c21f15e72e30"> Varjupaigateenust osutatakse täisealisele isikule, kelle rahvastikuregistrijärgne elukoht on Tori vallas ning kellel puudub võimalus ja oskus iseseisvalt leida omale ööbimiskoht, mistõttu võib ta jääda tänavale ning seada ohtu oma elu ja tervise. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg2">
+   <loigeNr id="d27a6511-04cd-4530-bb1c-c65bf037507b">2</loigeNr>
+   <kuvatavNr id="beaf35a3-c879-4c42-84bc-879760f456bd"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="ee1ccf50-da2f-446d-932f-b65998a207bd">
+    <tavatekst id="99085dd4-8867-4621-aba5-a85133a3d625"> Teenust on õigustatud saama ka isik, kelle viibimiskoht on Tori vallas, kuid rahvastikuregistrijärgne elukoht on teises omavalitsusüksuses, kooskõlastades teenuse osutamise rahastamise eelnevalt vastava omavalitsusüksusega.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg3">
+   <loigeNr id="cc30f4e9-1bab-44e1-9424-71ff9b595421">3</loigeNr>
+   <kuvatavNr id="4abcbc6e-ae39-4c50-b9e9-ea9d3cb1f23a"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="1a40de82-3f76-4735-856a-d0968e2b1de3">
+    <tavatekst id="5be11462-a2a6-4263-9dc5-82ad91df63c5">Teenust osutatakse vältimatu sotsiaalabi korras ka täisealistele isikutele, kes ei ole Tori valla elanikud, kuid kes on Tori valla territooriumil sattunud abitusse olukorda ning kes ise ei ole võimelised endale ööbimiskohta tagama. </tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para5">
+   <paragrahvNr id="5ac513a3-b475-48f6-bfac-10f012c6a4e4">5</paragrahvNr>
+   <kuvatavNr id="8d63b34f-c524-4ab4-8883-ba0e9fef6e68"><![CDATA[§ 5. ]]></kuvatavNr>
+   <paragrahvPealkiri id="20334ed3-541b-4b38-b19f-713c51b54225">Varjupaigateenuse osutamise maht</paragrahvPealkiri>
+  <loige id="para5lg1">
+   <loigeNr id="b3c29669-ecc4-45bd-86ea-444e43294c5c">1</loigeNr>
+   <kuvatavNr id="1ea3f4d9-b864-48cf-aa57-87a42ccdfb26"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="d5eda0ae-f974-4471-96e6-bed64af1d058">
+    <tavatekst id="f3779b4f-9388-4f6e-ae65-8a786a64808b">Teenust osutatakse vastavalt isiku vajadusele, kuid üldjuhul mitte rohkem kui kolm järjestikust kalendrikuud.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg2">
+   <loigeNr id="4f431e5a-89f1-482f-98ea-9febcd94d946">2</loigeNr>
+   <kuvatavNr id="7b5a67c0-7518-4de2-a44b-40b27ea0ed3e"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="33db5052-a137-4a51-b121-7a66e953f3d6">
+    <tavatekst id="1ff7f006-3fa4-47b9-a72e-c90cd3fc57a6">Vältimatu sotsiaalabi korras osutatakse teenust üldjuhul kuni üks öö. Isiku vajadustest lähtuvalt võib vältimatu sotsiaalabi korras teenust osutada seni, kuni abivajaja ei ole enam elatusvahendite kaotuse või puudumise tõttu sotsiaalselt abitus olukorras.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg3">
+   <loigeNr id="2efd2eaf-cbf9-40ba-ae3e-dd97a04a021d">3</loigeNr>
+   <kuvatavNr id="6040a468-6775-4bdb-bdeb-509972979458"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="0bcc7ea7-f885-4d4c-ba8c-f86f92aaa156">
+    <tavatekst id="bf578265-5943-4c23-be71-29052745d760">Teenuse pakkumise mahu otsustab teenusvajaduse ilmnemisel sotsiaaltöö spetsialist või sotsiaalnõunik. Teenuse kasutamise võimaluse tagamise kauemaks kui üks nädal otsustab Tori valla hoolekandekomisjon.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para6">
+   <paragrahvNr id="05ec5372-76f6-401a-82c0-9aa86bc6872b">6</paragrahvNr>
+   <kuvatavNr id="10d626c6-5a3c-4e7d-b512-a2ed3458ac89"><![CDATA[§ 6. ]]></kuvatavNr>
+   <paragrahvPealkiri id="ac9836bf-2648-4d9f-bf70-befc62e3f804">Varjupaigateenuse sisu kirjeldus</paragrahvPealkiri>
+  <loige id="para6lg1">
+   <loigeNr id="71b052b0-2cc4-4d03-8642-053b84751b15">1</loigeNr>
+   <kuvatavNr id="97eccec2-bcd6-4b12-b206-b5e777fe0f2c"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="990d2556-bc5f-43b8-8efe-599e6acfc3c7">
+    <tavatekst id="d3302c1c-3fad-4ccf-8c00-74611cc1f32b">Teenuse osutamisel tagatakse isikule minimaalselt voodikoht ja pesemisvõimalused.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg2">
+   <loigeNr id="beef0303-384d-4168-b404-75f491f1532d">2</loigeNr>
+   <kuvatavNr id="a24dabaa-16e3-4d09-8e67-3a2dd158d443"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="d9ec4149-c75a-493b-8d0b-2513ce0bd802">
+    <tavatekst id="8bb7df4c-d911-4d2a-9f54-0e04d7db7bf7">Üldjuhul osutatakse ainult ööbimisteenust, kuid vastavalt vajadusele võib teenuse osutamine olla korraldatud kogu ööpäev. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg3">
+   <loigeNr id="59f572e7-1e94-441a-9cf2-f86d8f8a0931">3</loigeNr>
+   <kuvatavNr id="286baabc-5d1e-4416-934e-730169805cc3"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="3be61fd5-26bd-4fc4-beb0-01984a14f957">
+    <tavatekst id="25d5b9c1-0d08-4432-b7d2-04858486c552">Põhjendatud vajadusel korraldatakse abivajajale ka muud teenust, mis toetab tema iseseisvat toimetulekut. Teenuse täpsem sisu ja osutamise tingimused tulenevad hinnatud teenusevajadusest ja lepitakse kokku juhtumipõhiselt.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para7">
+   <paragrahvNr id="d4c6792d-097c-46b9-bc39-18dddaf89a44">7</paragrahvNr>
+   <kuvatavNr id="be16948f-f42d-4a3d-b068-4915c0f79176"><![CDATA[§ 7. ]]></kuvatavNr>
+   <paragrahvPealkiri id="2a3718db-bdbe-4b9d-a242-c8eab9fad5ea">Varjupaigateenuse hinna kehtestamine</paragrahvPealkiri>
+  <loige id="para7lg1">
+   <loigeNr id="8966c78a-5119-43cc-946f-22867c713151">1</loigeNr>
+   <kuvatavNr id="c651fb36-582d-4605-9e4f-56f6ed2fd618"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="4152d861-fdf1-4578-bde6-24b87047fa71">
+    <tavatekst id="341c2f53-8653-4df2-acd0-4d583af675c5">Teenuse hinna kehtestab Tori Vallavalitsus.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg2">
+   <loigeNr id="bdff38b3-230a-4766-b64b-e7a4ac911f72">2</loigeNr>
+   <kuvatavNr id="158b2c0b-c099-4355-9937-0d123a1b3922"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="48fcd62b-9e4c-4ae0-86f3-756807ac9228">
+    <tavatekst id="975a51f2-0b92-420a-ad3b-3670c0546fe1">Vältimatu sotsiaalabi korras osutatav teenus on isikule tasuta. </tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para8">
+   <paragrahvNr id="4e1edfa2-0f65-4d56-b41a-87d245362bf8">8</paragrahvNr>
+   <kuvatavNr id="0dbaffe2-1001-49e3-8d9f-18b2ef570891"><![CDATA[§ 8. ]]></kuvatavNr>
+   <paragrahvPealkiri id="60d4c77f-39d0-4d5e-a292-80e52cdc0788">Varjupaigateenuse osutamine </paragrahvPealkiri>
+  <loige id="para8lg1">
+   <loigeNr id="4a4a6ab6-0f8d-4f56-87bd-863f1b2c3d06">1</loigeNr>
+   <kuvatavNr id="44c35178-f49f-42d8-921d-12d79926d9c8"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="83cd6543-b0e6-422b-9a10-6ec256100eaf">
+    <tavatekst id="80083caf-09fd-4f55-b169-7158b61204fa">Teenuse saamiseks pöördub isik sotsiaaltöö spetsialisti või sotsiaalnõuniku poole, kes hindab isiku teenuse osutamise vajaduse ulatust ja korraldab teenuse osutamise. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para8lg2">
+   <loigeNr id="be7c53b6-edd3-483e-b5cc-eccf157ceb6e">2</loigeNr>
+   <kuvatavNr id="d6067361-d171-49f4-93b2-33466fbff8e2"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="466c45ca-b7de-4c1d-91fe-1242a551df09">
+    <tavatekst id="e2203d8a-6826-4986-a815-f55bb3ce5215">Hoolekandekomisjoni otsusega on õigus keelduda teenuse osutamisest isikule, kelle kohta on tõendeid, et isikul on piisavalt vahendeid ja oskuseid endale eluaseme tagamiseks. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para8lg3">
+   <loigeNr id="2bf94216-fabc-4288-a99c-0439d10c7abb">3</loigeNr>
+   <kuvatavNr id="6fffa1ac-d82d-486d-9e70-2db1ee6bbca4"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="5ccdc509-7f59-453b-8976-850a8defdf60">
+    <tavatekst id="23eb4857-19db-421b-af20-40fbde8f93bb">Teenuse osutamine lõpetatakse, kui: </tavatekst>
+   </sisuTekst>
+  <alampunkt id="para8lg3p1">
+   <alampunktNr id="1c346fda-4189-4f07-8a63-eba116e72f7a">1</alampunktNr>
+   <kuvatavNr id="c01ef669-613f-4b22-b86d-9839f991d661"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="50a9407a-d47e-437b-b700-4a14fa6b5b09">
+    <tavatekst id="1f23220a-66f0-46f9-a206-162fab4c2acd">isik ei ole enam elatusvahendite kaotuse või puudumise tõttu abitus olukorras; </tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para8lg3p2">
+   <alampunktNr id="9deb40d6-5124-466a-a6de-f4268c9ef92f">2</alampunktNr>
+   <kuvatavNr id="99a243c9-d85d-4566-9f7a-e040cbbf6f41"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="9fb0549f-392e-4c45-902a-192fccfa117f">
+    <tavatekst id="e273d363-8236-4dc2-80b7-86f2e2264051">isiku toimetulek on tagatud muude sotsiaaltoetuste ja –teenustega, mis ei ole vältimatu abi;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para8lg3p3">
+   <alampunktNr id="eeca5bf7-238c-42b4-9d2a-c5e4a65f4797">3</alampunktNr>
+   <kuvatavNr id="9493dd13-26eb-4cb0-9f61-bfe42efd575d"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="14eb8711-ab94-4da6-94a0-7f5f632eeddd">
+    <tavatekst id="4ed9598b-3ce5-43cf-b565-13454506d5f1">isik keeldub pakutud abist;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para8lg3p4">
+   <alampunktNr id="6195e5bd-acef-4b98-af00-3bd52635a1bc">4</alampunktNr>
+   <kuvatavNr id="b2e00fca-1f5c-4e87-8eac-b4b407dea298"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="783c390e-e57c-4bed-a1e0-fa14ef03a133">
+    <tavatekst id="628c18a3-7741-4ec6-8236-33dd1fd6389d">isik rikub sihilikult varjupaiga sisekorraeeskirju;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para8lg3p5">
+   <alampunktNr id="d9444ac1-1cfb-4176-9acb-6814bcea4714">5</alampunktNr>
+   <kuvatavNr id="10469a8b-02ad-4b26-affc-8a2818a18de5"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="e04b7d60-9f72-4886-91a6-bc383a566699">
+    <tavatekst id="8d89dab7-5148-4686-bf4f-b8b07947887a">isik lahkub teenuselt.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para9">
+   <paragrahvNr id="eb2d5a81-043c-46bc-a60e-47a0a2ec3a9d">9</paragrahvNr>
+   <kuvatavNr id="8e8a4b0a-5204-4dd3-853b-fc5dc90bd644"><![CDATA[§ 9. ]]></kuvatavNr>
+   <paragrahvPealkiri id="e4fb0396-051d-4b24-982f-b710a005f16e">Teenuse saaja kohustused</paragrahvPealkiri>
+  <loige id="para9lg1">
+   <loigeNr id="e61024c5-6f11-4358-a099-84515ced1a09">1</loigeNr>
+   <kuvatavNr id="9a256190-476d-40fe-a9b5-9992830a106c"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="d6351733-12a7-4243-a859-e764c872663d">
+    <tavatekst id="05a75ae2-ddbd-4ce0-9e3d-c4bad3646e20">Kui abi vajava isiku teenuse vajadus on rohkem kui üks öö, peab abi vajav isik pöörduma sotsiaaltöö spetsialisti juurde vestlusele ühe tööpäeva jooksul varjupaika saabumise päevast.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para9lg2">
+   <loigeNr id="b94d1401-dc44-4f14-98c6-9d5535760326">2</loigeNr>
+   <kuvatavNr id="c1a03105-8588-4ca4-864c-ce0e6e836e7d"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="a056fa6e-5e27-4f82-aa5c-339a7682cd63">
+    <tavatekst id="496c8140-bdd9-4458-b32a-88c91a1ed7bb">Töövõimeline ja -ealine isik, kes ei tööta ega õpi ja kes kasutab teenust pikemalt kui 1 kuu, peab olema Töötukassas töötuna arvel. Pikemalt teenusel viibiv isik on kohustatud vastu võtma pakutud sobiva töö või osalema tööturuteenusel, samuti Tori Vallavalitsuse poolt korraldatavatel iseseisvale toimetulekule suunatud sotsiaalteenustel või õppeprotsessides.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para9lg3">
+   <loigeNr id="48b3247a-54ed-4711-8025-dfc2c4edf5cc">3</loigeNr>
+   <kuvatavNr id="c7e2e0e7-015f-47b3-9984-dd8336b1d257"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="1098d405-d3d2-4d19-bfa9-0aab141b4676">
+    <tavatekst id="2b892f94-7a6a-4912-9a68-07692291abd3">Isik, kes teenust kasutab, on kohustatud vastu võtma talle pakutava muu abi (abistamine asjaajamisel, eluaseme leidmisel jne) või kõrvaldama iseseisvalt teenuse vajadust põhjustavad asjaolud.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></peatykk><peatykk id="95e84bd8-0ee1-4b2d-a1c8-2e668b921037">
+   <peatykkNr id="9dbfbd10-8e38-44e1-8abd-51fcf172f18f">3</peatykkNr>
+   <kuvatavNr id="06cc3293-cee2-495e-bbbc-1cf5d9d578e4"><![CDATA[3. peatükk]]></kuvatavNr>
+   <peatykkPealkiri id="53f2050d-c658-40be-bfdc-c811c6900549">Turvakoduteenus</peatykkPealkiri>
+  <paragrahv id="para10">
+   <paragrahvNr id="64af800a-bdc5-4964-83aa-5f38a3bcba45">10</paragrahvNr>
+   <kuvatavNr id="dc20d5ae-452c-4bf3-9ab4-45b127501f28"><![CDATA[§ 10. ]]></kuvatavNr>
+   <paragrahvPealkiri id="94825947-ec49-43d1-bd8e-4355f689b587">Teenuse osutamise eesmärk</paragrahvPealkiri>
+  <loige id="para10lg1">
+   <loigeNr id="f134dd7c-36f0-4bc3-9fe2-74d8570352a2"/>
+   <kuvatavNr id="152f7b70-2346-48fb-9748-70f0dfe7bffd"/>
+   <sisuTekst id="9f116452-3380-48ca-b223-623a6b335de0">
+    <tavatekst id="55acf1de-ecd0-43e5-b8dd-f88017bbb8f0">Turvakoduteenuse osutamise eesmärk on tagada lapsele või täisealisele isikule ajutine eluase, turvaline keskkond ja esmane abi, vajadusel kriisiabi, mis aitab kaasa isiku psüühilise tasakaalu ja igapäevase tegevusvõime taastamisele. Tulenevalt abi vajava isiku east ja vajadusest tagatakse ka tema hooldamine ja arendamine.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para11">
+   <paragrahvNr id="36ef427d-4228-49f8-9772-8f3b2bb868f6">11</paragrahvNr>
+   <kuvatavNr id="4a6908cc-3cd0-426f-9dba-2a9391e2e6d1"><![CDATA[§ 11. ]]></kuvatavNr>
+   <paragrahvPealkiri id="11a27126-b176-42c3-9dd8-7896aef6861a">Turvakoduteenuse sihtgrupp</paragrahvPealkiri>
+  <loige id="para11lg1">
+   <loigeNr id="d921f2d9-f647-4be1-b422-b26a68698f68">1</loigeNr>
+   <kuvatavNr id="1300ff58-61ab-45c8-b0e7-b85cbdd638ab"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="69cef7c7-91d5-4854-9771-fd5217976bd7">
+    <tavatekst id="b23c83e1-6891-48d4-9638-88d13c6f4f15">Turvakoduteenust osutatakse kuni 18-aastasele rahvastikuregistrijärgsele Tori vallas olevale lapsele: </tavatekst>
+   </sisuTekst>
+  <alampunkt id="para11lg1p1">
+   <alampunktNr id="6f6bb776-9999-4fcc-a388-a341b725ac6a">1</alampunktNr>
+   <kuvatavNr id="01931ee1-5e04-441c-8d14-662d3d7a710f"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="9c1573d6-61d1-4891-b6ca-5a7df56da3b3">
+    <tavatekst id="e3a04b66-a02f-4714-93dc-d1d1d21b81b6">kellel ei ole võimalik hooletusse jätmise või hüljatuse tõttu kodus olla;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para11lg1p2">
+   <alampunktNr id="c9aa5405-7993-4af9-9e54-f2c26a9c2c1d">2</alampunktNr>
+   <kuvatavNr id="524660d8-0ee3-4b17-a9c0-6faffa3723b4"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="9379fb1c-0a21-4fb4-ba69-b6359c3f5947">
+    <tavatekst id="d5389a7c-c8c3-4908-b189-987e12999f0f">keda on väärkoheldud;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para11lg1p3">
+   <alampunktNr id="2034481a-803d-4465-8c8a-98e0265121e1">3</alampunktNr>
+   <kuvatavNr id="4694b6da-d683-4a7e-bd0a-484d927aa387"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="fecbb746-3cc3-4ef8-9d3e-531a7e4d92d6">
+    <tavatekst id="65221551-f6c7-4dc8-8caf-c5cc87aac33b">kelle elukoht ja vanemad on väljaselgitamisel;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para11lg1p4">
+   <alampunktNr id="ec05b6ac-8cd3-4c0c-822a-75d5df2dac10">4</alampunktNr>
+   <kuvatavNr id="8f002399-ee19-4573-bbc3-7e77e34088e7"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="671311e4-add5-4d3e-8d88-0b298e0f92d0">
+    <tavatekst id="e4fea5b2-c265-47d9-b1c2-98f88137b6e1">kes on eraldatud perekonnast ja kodust ning toimuvad lapse asendushoolduse ettevalmistused;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para11lg1p5">
+   <alampunktNr id="aecf41fd-6c58-4501-bc4d-6f5d7423451c">5</alampunktNr>
+   <kuvatavNr id="881ba339-5c64-411d-b8e8-9f1dffea6527"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="03821278-2ae1-4fb4-b5d3-e735a9550c3b">
+    <tavatekst id="864bbf39-7506-4ae6-ab10-0e214f65cd56">kes vajab abi muul põhjusel.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para11lg2">
+   <loigeNr id="1ef4cf6d-e026-4152-bdcc-e0f4d88e065c">2</loigeNr>
+   <kuvatavNr id="30a9097a-b1d0-4ac6-867d-4e1efa178d13"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="1c525315-3a91-4067-b640-97529bf50507">
+    <tavatekst id="aa2f7794-9b66-4208-921c-43c751395191">Turvakoduteenust osutatakse lõikes 1 nimetatud lapsele koos vanemaga, kui:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para11lg2p1">
+   <alampunktNr id="495c62ba-64ea-4d2c-87b0-859f6b45f403">1</alampunktNr>
+   <kuvatavNr id="5e9480b2-cc4f-4fe4-aacd-05a4bf90f48a"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="38c41cec-6a74-422f-9ff5-c4104600d4aa">
+    <tavatekst id="b939dc71-e532-4008-ba0c-6a2084c5b620">vanem on langenud füüsilise, vaimse, seksuaalse või muu vägivalla ohvriks;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para11lg2p2">
+   <alampunktNr id="3831eff9-fd90-4479-ad03-f2b6bdce5baf">2</alampunktNr>
+   <kuvatavNr id="a9f3924f-f9c7-4c4e-8d5c-6a4d9003b61c"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="a7e540ee-2e92-4a74-9678-fc6411f65a9b">
+    <tavatekst id="81e10e43-d2b2-49c8-8576-b2ea2653c811">vanemal ei ole võimalik turvaliselt kodus olla;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para11lg2p3">
+   <alampunktNr id="09ef1953-3667-4089-a06b-78e64f11c65d">3</alampunktNr>
+   <kuvatavNr id="0e29f791-af4b-4c76-92e4-89d4b918598e"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="247d044a-48fd-4a6e-ac35-cca82a8e2065">
+    <tavatekst id="f1dcd0c8-e89b-4419-b5f2-c2148c928e49">tegemist on lapsega, kelle vanus ei võimalda teenusel olla ilma lapsevanemata.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para11lg3">
+   <loigeNr id="ee0e0f3b-3f11-4a56-96ca-8120d6c165c8">3</loigeNr>
+   <kuvatavNr id="67b2886e-c803-4750-b77e-bad77a684f8c"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="b6d1c324-25d3-464d-b980-3881090fbf57">
+    <tavatekst id="018e442d-d650-4991-9af0-5e891c2eef11">Turvakoduteenust osutatakse rahvastikuregistrijärgsele Tori valla täisealisele isikule, kes vajab turvalist keskkonda.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para11lg4">
+   <loigeNr id="4f66888c-bbc2-4bf1-aab2-fd4ef426f616">4</loigeNr>
+   <kuvatavNr id="806ac205-52d9-4989-9a5e-b0544bbb0533"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="e5cfc377-9fe5-4838-93b1-351e6d576100">
+    <tavatekst id="ac77c6e7-a937-4ae6-b918-5c355a6987c7">Teenust on õigustatud saama ka isik (nii laps kui täisealine), kelle tegelik elukoht on Tori vallas, kuid rahvastikuregistrijärgne elukoht on teises omavalitsusüksuses, kooskõlastades teenuse osutamise rahastamise eelnevalt vastava omavalitsusüksusega.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para12">
+   <paragrahvNr id="009a30ae-15e2-4b2f-b959-0c3f746e5ab6">12</paragrahvNr>
+   <kuvatavNr id="b34efbb4-2a8b-448c-94ca-aee5550a0838"><![CDATA[§ 12. ]]></kuvatavNr>
+   <paragrahvPealkiri id="af82d5fd-ca64-4012-99b8-eda8d7a96d77">Turvakoduteenuse osutamise maht</paragrahvPealkiri>
+  <loige id="para12lg1">
+   <loigeNr id="fec19a45-233f-46dc-89d2-0f49d14ef39e">1</loigeNr>
+   <kuvatavNr id="c71a73c3-52bf-49ae-8238-46f5cb4b0425"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="f7d94952-6c03-40a5-8278-1529a304df4a">
+    <tavatekst id="f415fd6f-128a-405b-b788-e9676eaf64ab">Turvakoduteenus on ööpäevaringne teenus, mille osutamise maht ja kestvus sõltuvad teenuse vajaduse hindamise tulemustest.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para12lg2">
+   <loigeNr id="6288c92a-343f-4bd1-ad9a-a1804e76e324">2</loigeNr>
+   <kuvatavNr id="d5810a51-da77-4c05-b4ab-5735f660902b"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="940f2657-5553-4270-abe0-03948d9abdf2">
+    <tavatekst id="d14faeb4-ae4c-4ba3-bb77-0a2a28087b29">Turvakoduteenuse osutamise vajadust hindab sotsiaalnõunik, sotsiaaltöö spetsialist või lastekaitsespetsialist.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para13">
+   <paragrahvNr id="b22c1898-f650-4247-86c4-d4fea374dc8c">13</paragrahvNr>
+   <kuvatavNr id="19682609-4e74-4600-a7b9-53d543478bc6"><![CDATA[§ 13. ]]></kuvatavNr>
+   <paragrahvPealkiri id="8f663d6b-edc1-4308-b86f-b90c2851491c">Turvakoduteenuse sisu kirjeldus</paragrahvPealkiri>
+  <loige id="para13lg1">
+   <loigeNr id="0de38767-7228-4591-ae22-322a48e93768"/>
+   <kuvatavNr id="1eb1478e-8a72-447e-b37e-c62cab77324c"/>
+   <sisuTekst id="19853a8d-8f50-4d01-956e-e3354f10e09a">
+    <tavatekst id="d432128a-d9d7-46e7-9226-87d9f282f532">Turvakoduteenust osutatakse isiku turvalisuse tagamiseks ja tema edasise elu korraldamiseks järgmiste tegevuste kaudu:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para13lg1p1">
+   <alampunktNr id="6bb0b280-9fd7-4896-bcfc-8c1094d1c368">1</alampunktNr>
+   <kuvatavNr id="6404e582-ab50-4d06-bdf5-fc9ac12765a4"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="b8db2871-3b74-4b90-bfa6-1b6e88f07bb9">
+    <tavatekst id="185e2404-a2b1-4ecc-8bb4-c932eb6b23bc">ööbimis- ja pesemisvõimaluse ning toitlustamise tagamine;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para13lg1p2">
+   <alampunktNr id="4e6a7672-cb3b-499c-96ac-2014d63102f3">2</alampunktNr>
+   <kuvatavNr id="cee66eb0-aecb-477c-ba02-944bdeddc850"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="fdb9ec0b-9229-4301-a49a-e380081d2415">
+    <tavatekst id="f6334378-dec7-4a34-9bfa-84d9be81d405">vajadusel esmase kriisiabi osutamine ning teistest abisaamise võimalustest teavitamine;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para13lg1p3">
+   <alampunktNr id="770b8355-b93f-46df-8a9d-5dd91be29810">3</alampunktNr>
+   <kuvatavNr id="b32f6896-dcd4-4d3a-9418-2dddcf8689ad"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="542e0caa-5c35-4707-bb55-f37ade5fa142">
+    <tavatekst id="d8c8c286-dcf6-4e51-9908-ceca47b9d0bc">east ja vajadustest lähtuv hooldamine ja arendamine;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para13lg1p4">
+   <alampunktNr id="a5ad171f-01c6-405d-904f-17a4475bc0c1">4</alampunktNr>
+   <kuvatavNr id="62278f54-d4f5-4098-b634-19b0381e88e9"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="48de1297-2790-4c7d-a733-c695baa4082e">
+    <tavatekst id="cdfeea49-cb31-4790-90a6-5e869fb695dc">meditsiinilise abi osutamise korraldamine.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para14">
+   <paragrahvNr id="64b3c230-7eba-4093-8dd9-aa92a8b7c981">14</paragrahvNr>
+   <kuvatavNr id="fe6c4fd5-edf3-4734-a2be-834c7160b7e9"><![CDATA[§ 14. ]]></kuvatavNr>
+   <paragrahvPealkiri id="36c1f60b-0b05-4fea-bfcb-20bc3bbe8eb4">Turvakoduteenuse hinna kehtestamine</paragrahvPealkiri>
+  <loige id="para14lg1">
+   <loigeNr id="d3cf3869-c38f-4d3e-8528-ebe5f5f5b242">1</loigeNr>
+   <kuvatavNr id="e8727f27-d89e-4fe3-8ac5-75de5cda5155"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="350d52b7-7b95-45d2-8972-6cdb6236819c">
+    <tavatekst id="f69b3b98-9669-4297-9cf2-1247c7392e19">Teenuse hinna kehtestab Tori Vallavalitsus.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para14lg2">
+   <loigeNr id="6166126b-b255-47a3-a595-6a3e673b900d">2</loigeNr>
+   <kuvatavNr id="4638ce90-ea1c-49f4-98f6-113301846694"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="445d0e6f-c956-496b-8da5-0029ad4f69cc">
+    <tavatekst id="9c3f1f0d-d9bd-47f1-b297-b593f105a3fa">Vältimatu sotsiaalabi korras osutatav teenus on isikule tasuta. </tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para15">
+   <paragrahvNr id="5a813045-54ee-453d-afae-ee137fc2bd21">15</paragrahvNr>
+   <kuvatavNr id="58c8b483-48c0-4b24-b4f5-250e4427f4ad"><![CDATA[§ 15. ]]></kuvatavNr>
+   <paragrahvPealkiri id="268ae69c-3e87-4c58-b216-5a3abce9734b">Turvakoduteenuse osutamine</paragrahvPealkiri>
+  <loige id="para15lg1">
+   <loigeNr id="977d3e17-d5e6-4e00-abfd-4bb3e7be507f">1</loigeNr>
+   <kuvatavNr id="b4fa871d-094e-4abd-b4eb-f583b37b7f5c"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="1a1a1776-b02f-4d8e-98fd-724253f22c27">
+    <tavatekst id="d6d8bef5-8186-4246-90d3-cdc50348a5ce">Teenuse saamiseks pöördub isik sotsiaaltöö spetsialisti, lastekaitsespetsialisti või sotsiaalnõuniku poole, kes hindab isiku teenuse osutamise vajaduse ulatust ja korraldab teenuse osutamise. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para15lg2">
+   <loigeNr id="31be2e6b-d555-4d30-a6c6-593df44a619d">2</loigeNr>
+   <kuvatavNr id="7215cecd-3ff7-4149-97c1-81e5000db50c"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="f2bf8b2e-598d-4208-b5a6-4fa2ebd4a597">
+    <tavatekst id="e3122958-4a5a-47a8-913c-55cff59944cf">Turvakoduteenuse osutamise kauemaks kui üks ööpäev otsustab Tori valla hoolekandekomisjon. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para15lg3">
+   <loigeNr id="6a340e9d-350a-447d-be68-69abb121e612">3</loigeNr>
+   <kuvatavNr id="171d6c3f-7706-4f39-bdd4-67cb4b5d0dad"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="1c1d27a6-45a8-4c11-9551-90c088cbf2f7">
+    <tavatekst id="d6018a54-ad20-456e-8e6e-482c656c3bd8">Teenuse osutamine lõpetatakse, kui: </tavatekst>
+   </sisuTekst>
+  <alampunkt id="para15lg3p1">
+   <alampunktNr id="c2c49792-1085-4b7f-9f40-98779ccb4b3a">1</alampunktNr>
+   <kuvatavNr id="6dcff352-d9da-4392-9c10-90d2a1ad32e5"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="1a667c54-d208-4c8e-a598-caac9d4d477c">
+    <tavatekst id="139e0fd3-1fc4-478c-ad69-b1cf629ad74c">isik ei ole enam abitus olukorras; </tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para15lg3p2">
+   <alampunktNr id="640a1ec6-e9e2-4c53-8ec7-f673b43d17b8">2</alampunktNr>
+   <kuvatavNr id="fa7a00ef-d28c-433e-8be1-ec8e3c88b4da"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="ebd54d7d-35f6-4446-b964-f2cc7068ed5c">
+    <tavatekst id="9d00c1da-373a-4eea-be42-6dfb31c59ce3">isiku toimetulek on tagatud muude sotsiaaltoetuste ja –teenustega, mis ei ole vältimatu abi;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para15lg3p3">
+   <alampunktNr id="b1cd4986-61a4-46d9-9451-56e0cde87a0e">3</alampunktNr>
+   <kuvatavNr id="de2e40d3-bcb3-4716-aa83-143880386011"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="63c8a5bf-cbf4-41c1-b6ef-9e9cc622f5e3">
+    <tavatekst id="463acbd8-f3b0-4949-9f23-7b87a2223322">isik keeldub pakutud abist;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para15lg3p4">
+   <alampunktNr id="9671e4e4-7307-4f87-9dec-6c819dadd536">4</alampunktNr>
+   <kuvatavNr id="1e333067-b51a-4e52-a488-98bed85e4aef"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="9f8dca56-01ed-4962-81c4-fecfda9b0fb3">
+    <tavatekst id="d85896b8-4ba6-4108-aeff-2a55c342f64e">isik rikub sihilikult turvakodu sisekorraeeskirju;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para15lg3p5">
+   <alampunktNr id="9b69d376-37cb-4798-80a8-a18496092e14">5</alampunktNr>
+   <kuvatavNr id="fed8ae23-9220-43d3-8e8b-da42ebd6296c"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="1bc2fa98-4dae-4eec-bd08-636c2aa71351">
+    <tavatekst id="25499c56-8650-47e9-aaac-3b0bbdfe99bf">isik lahkub teenuselt.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv></peatykk><peatykk id="cb5b8576-19c3-442c-9272-4f45a0bd9bab">
+   <peatykkNr id="84256113-ae66-4ad2-a6d8-bc0e1b1e4e48">4</peatykkNr>
+   <kuvatavNr id="d2570d9e-e398-4209-a0ff-332fab6ee902"><![CDATA[4. peatükk]]></kuvatavNr>
+   <peatykkPealkiri id="876fae70-73e7-424e-8aae-d32d2eaac6bb">Rakendussätted</peatykkPealkiri>
+  <paragrahv id="para16">
+   <paragrahvNr id="32bdd29e-400a-484c-b40c-b81e6ab14bd3">16</paragrahvNr>
+   <kuvatavNr id="8cd038e9-42c4-4d8f-bb36-6e58aa3b41fb"><![CDATA[§ 16. ]]></kuvatavNr>
+   <paragrahvPealkiri id="f9f4acbb-0d99-43aa-89ca-7b34a1735ea1">Määruste kehtetuks tunnistamine</paragrahvPealkiri>
+  <loige id="para16lg1">
+   <loigeNr id="08e9bf8b-e418-4dd2-97eb-4d9124de4a45">1</loigeNr>
+   <kuvatavNr id="37c455e0-6e95-4153-a82c-2ca8ca5cb195"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="9b804492-ff09-4de8-b48d-b95f6a41a959">
+    <tavatekst id="4cc75d46-a4b3-4d88-800d-6c010eb46de8">Sindi Linnavolikogu 10.03.2016 määruse nr 42 „Sotsiaalhoolekandelise abi andmise tingimused ja kord“ § 19 punkt 6 „varjupaigateenus“ ja punkt 7 „turvakoduteenus“ ning 3. peatüki 7. jagu „Varjupaigateenus“ ja 8. jagu „Turvakoduteenus“ tunnistatakse kehtetuks.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para16lg2">
+   <loigeNr id="5cf2dcdb-8044-4f7b-9840-6db857c41cdf">2</loigeNr>
+   <kuvatavNr id="31e744e4-ca85-4a17-80a0-77552b436f34"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="dbe2633e-d67d-4c2d-8f67-5b5d40b240fb">
+    <tavatekst id="7eed6478-508c-4681-a5c9-605438a25cbe">Are Vallavolikogu 11.03.2016 määruse nr 6 „Sotsiaalhoolekandelise abi andmise tingimused ja kord“ § 20 punkt 6 „varjupaigateenus“ ja punkt 7 „turvakoduteenus“ ning 3. peatüki 7. jagu „Varjupaigateenus“ ja 8. jagu „Turvakoduteenus“ tunnistatakse kehtetuks.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para16lg3">
+   <loigeNr id="31e99d0d-4837-4866-85a3-062a575fa008">3</loigeNr>
+   <kuvatavNr id="556f2206-9af8-4b72-9bd5-b1ebd095d444"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="a7b92571-cf61-4e2d-bdc4-5943cb6be560">
+    <tavatekst id="23bbb0f1-313d-47f8-94c5-437a8f0a00a7">Tori Vallavolikogu 20.04.2016 määruse nr 6 „Sotsiaalhoolekandelise abi andmise tingimused ja kord“ § 15 lõike 3 punkt 1 „varjupaigateenus“ ja punkt 2 „turvakoduteenus“ ning § 27 „Varjupaigateenus“ ja § 28 „Turvakoduteenus“ tunnistatakse kehtetuks.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para17">
+   <paragrahvNr id="191d1d13-95a5-4c4b-ab13-4fc1df947e37">17</paragrahvNr>
+   <kuvatavNr id="f7b6d038-cfeb-45a0-b03f-9a1ee265a2ff"><![CDATA[§ 17. ]]></kuvatavNr>
+   <paragrahvPealkiri id="0692b3cc-2239-4fc6-8046-bbc0f0650b78">Määruse jõustumine</paragrahvPealkiri>
+  <loige id="para17lg1">
+   <loigeNr id="af1b060f-cb8c-4524-a08d-42f58b01aa57"/>
+   <kuvatavNr id="786120d5-5d1e-4e8c-8d89-767aa201c042"/>
+   <sisuTekst id="d478bbe2-9df5-4518-ae71-1575db5e6dff">
+    <tavatekst id="fbe0359e-e324-4217-b336-b78df80f7803">Määrus jõustub kolmandal päeval pärast avaldamist Riigi Teatajas.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></peatykk></sisu>
+<allkiri id="5a580457-31d1-4c15-8aa7-acb8bd5b8bd4"><allkiriKoht id="52a08d14-e2b6-492a-9946-6dcb4bdca437"/><allkirjastaja id="523a4329-8729-4b95-9244-7628091f1d69"><ametinimetus id="4b802882-4ff1-4e5f-8f07-fd17cf5974ae">volikogu esimees</ametinimetus><eesnimi id="fe2e895f-e7ed-43e2-88b0-2747585cf58c">Enn</eesnimi><perekonnanimi id="1156b511-c01a-4b9c-8108-14a2e1e3ce5f">Kuslap</perekonnanimi></allkirjastaja></allkiri></oigusakt>

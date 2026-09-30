@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="8ab1d984-d87a-49d3-86c6-ebd446c57386" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Viru-Nigula Vallavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2022-02-28</aktikuupaev>
+			<avaldamismarge>
+				<RTosa>RT IV</RTosa>
+				<avaldamineKuupaev>2022-03-09</avaldamineKuupaev>
+				<RTartikkel>6</RTartikkel>
+				<aktViide>409032022006</aktViide>
+			</avaldamismarge>
+			<aktiNr>7</aktiNr>
+			<joustumine>2022-03-12</joustumine>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-05-08</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>31</RTartikkel><aktViide>408052026031</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2026-05-11</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2026-05-05</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>408052026031</globaalID>
+		<metaandmedVersioon>11</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2026-05-07</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1053702</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+	</metaandmed>
+	<aktinimi id="d6d1b8e7-4e27-4ebe-8c9f-db53c83b658f">
+		<nimi id="be13aa63-67fb-428d-af7f-a040497abafb">
+			<pealkiri id="b488bcb4-e829-4112-866f-2470b64a0d14">Sotsiaalhoolekandelise abi korras makstavate toetuste määrade kehtestamine</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="ac444f0c-c53a-4183-af56-0e145c1796b1">
+		<aktikuupaev id="94d15194-3015-4706-8f8a-8501b475710d">2026-04-30</aktikuupaev>
+		<avaldamismarge id="d4256626-62ab-4955-91c9-bf83de0deaee">
+			<RTosa id="78f1801c-1a75-4dde-95c7-cfaf2e14a198">RT IV</RTosa>
+			<avaldamineKuupaev id="4a1e5fa1-9895-4c34-afca-9ec932c38d13">2026-05-08</avaldamineKuupaev>
+			<RTartikkel id="bc152c8c-7e7b-4d5c-97fe-40a581badcd1">10</RTartikkel>
+			<aktViide id="f9e6dabe-078f-4a52-9c97-b1ad74217cb0">408052026010</aktViide>
+		</avaldamismarge>
+		<joustumine id="88b3b153-2656-4af6-a328-97e633b9edd6">2026-05-11</joustumine>
+	</muutmismarge>
+	<sisu id="19604a19-6932-4288-8979-006655c1efe6">
+		<preambul id="752b0550-8f0f-4593-9aec-af6764255860">
+			<tavatekst id="9ef31935-5c30-4f23-beb5-a8496700fed0">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5, sotsiaalhoolekande seaduse § 14 lõike 2 ning Viru-Nigula Vallavolikogu 27.01.2022 määruse nr 5 „Sotsiaalhoolekandelise abi andmise tingimused ja kord“ § 4 lõike 2 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="b06d6e5f-1751-4fc1-a346-1f457a3d4650">1</paragrahvNr>
+			<kuvatavNr id="17bfafff-98ed-4305-9da0-a96aa268aa4a"><![CDATA[§ 1. ]]></kuvatavNr>
+			<sisuTekst id="1239e1c8-27bd-44e0-9934-60373e56418e">
+				<tavatekst id="76ca845c-baba-406b-853e-133d833063ba">Kinnitada volikogu määrusest tulenevad sotsiaalhoolekandelise abi korras makstavate toetuste määrad ja piirsummad järgmiselt:</tavatekst>
+			</sisuTekst>
+			<loige id="para1lg1">
+				<loigeNr id="973051e0-8b9c-4766-aaf3-ed5f58ad8ebc"/>
+				<kuvatavNr id="1ef50c15-bf24-4540-8c40-4db4e41a2c76"/>
+				<sisuTekst id="d0748bee-1736-49a5-9544-880dcf407e5e">
+					<tavatekst id="ce2065c0-26ab-41c1-b6f6-6fba0c2db675"/>
+				</sisuTekst>
+				<alampunkt id="para1lg1p1">
+					<alampunktNr id="09057d76-9e39-4b5c-8818-d5b7cfc0af6c">1</alampunktNr>
+					<kuvatavNr id="7a8514f9-dade-45f2-8e01-f18851b95f93"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="a7f03ec0-35a7-493f-a3d0-cb2de1b31616">
+						<tavatekst id="6f1c6ff9-d36a-491f-b7df-17f2f2c2f9ec">sünnitoetus 500 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p2">
+					<alampunktNr id="0d18dca8-4ec4-44e9-93c6-b233f9a8c13c">2</alampunktNr>
+					<kuvatavNr id="7c12c7f6-dc7f-4222-b33b-ba8b9e19cbad"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="0d76f5dd-6af7-4ca5-b18f-8f5ddf9e4c97">
+						<tavatekst id="b2154523-691c-4e15-8a88-3b3e0306b7d8">matusetoetus 200 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p3">
+					<alampunktNr id="011e18af-716b-4016-9ac5-019edd222401">3</alampunktNr>
+					<kuvatavNr id="fbb850d1-16a9-4663-9ce7-e3e3bf557a39"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="77a8e07e-76db-4ecf-bcde-b21db5a57e6c">
+						<tavatekst id="63e06ddb-0cc2-4557-a6ef-cf349c3652b9">eaka sünnipäevatoetuse kinkekaardi väärtus 15 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p4">
+					<alampunktNr id="516621d2-fb87-4d9a-8ef8-d323e87ebc3a">4</alampunktNr>
+					<kuvatavNr id="1b6a22a0-6ab7-4b16-bc93-da7c2542fc40"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="8faa39ca-8e4b-49f1-875b-e437144d7cda">
+						<tavatekst id="a1102a44-b87e-4db7-ad51-1591a7b30fbf">ranitsatoetus 200 eurot;</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="a666e8f2-647f-4162-8157-fac3d835c454">
+						<avaldamismarge id="dfefddaf-a250-4dc7-80ef-f6e7efbb3339">
+							<RTosa id="36901599-8aa3-496c-a9b5-01b9345e2b30">RT IV</RTosa>
+							<avaldamineKuupaev id="fb5d4869-a284-490a-8573-a497f0634d59">2026-05-08</avaldamineKuupaev>
+							<RTartikkel id="33687800-ca52-4dee-867e-1215b412a5dd">10</RTartikkel>
+							<aktViide id="513c74bd-1de0-4c66-822f-9a9c80a3630c">408052026010</aktViide>
+						</avaldamismarge>
+						<joustumine id="df917300-e757-409d-beb6-bbf6713d9c16">2026-05-11</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para1lg1p5">
+					<alampunktNr id="6077055e-67c4-4f07-b928-a89c3385d29e">5</alampunktNr>
+					<kuvatavNr id="1fa0e90a-50c7-4c71-9ac1-f50460671875"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="0caab2c4-6056-4c95-afcb-6483016d19f1">
+						<tavatekst id="c8453fe3-63d5-4210-ae93-bd81a833965e">Tsernobõli katastroofi likvideerimisel osalenu toetus 40 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p6">
+					<alampunktNr id="c822d63f-0fcc-4e12-9bc6-19183723a5c7">6</alampunktNr>
+					<kuvatavNr id="205991f2-ef9a-432d-892b-a3850d94411a"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="e1a2db36-5515-4160-ab38-fa587324fa92">
+						<tavatekst id="e3510cad-fe4b-463c-b4de-ffb3e70035c2">ühekordne sotsiaaltoetus toimetuleku tagamiseks kuni 200 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p7">
+					<alampunktNr id="56ad13b9-f8f0-49c3-942a-2781cef493a8">7</alampunktNr>
+					<kuvatavNr id="abe178af-384e-40f5-a4ea-8ac7aa2e4745"><![CDATA[7) ]]></kuvatavNr>
+					<sisuTekst id="72d1d3f4-ac42-4961-9fd2-ea987336fbac">
+						<tavatekst id="c3e06bff-9c1f-4944-b143-eb40732f0b72">täiskasvanud raske puudega isiku hooldaja toetus 30 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p8">
+					<alampunktNr id="794561dc-bf47-40c7-bd42-4e9e58a46607">8</alampunktNr>
+					<kuvatavNr id="3354fc32-9be0-4a93-a10a-1a7da2aa93df"><![CDATA[8) ]]></kuvatavNr>
+					<sisuTekst id="c416f4aa-aea8-4adc-9853-c15505b1b48c">
+						<tavatekst id="8fb21a84-9beb-4c1d-ac9f-b44345988ae9">täiskasvanud sügava puudega isiku hooldaja toetus 40 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p9">
+					<alampunktNr id="50ff7fe8-d260-4795-bc18-bcf06f773a77">9</alampunktNr>
+					<kuvatavNr id="1b7df210-0733-4358-94ca-26b5eac6b5af"><![CDATA[9) ]]></kuvatavNr>
+					<sisuTekst id="bd1419e3-3393-4794-81a7-ce1f34ebf0de">
+						<tavatekst id="cc64f512-37bb-4455-9c5c-9ea74cc7b798">raske puudega lapse hooldajatoetus 50 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p10">
+					<alampunktNr id="ff6d1f4f-611d-41c4-8b65-d876cf089d98">10</alampunktNr>
+					<kuvatavNr id="a5159ddb-e040-4a1a-89d4-dbdc6389ffc4"><![CDATA[10) ]]></kuvatavNr>
+					<sisuTekst id="ea1b503c-8539-4529-87c4-a4b3f24bebdb">
+						<tavatekst id="3d10173e-21cd-42f9-9d40-31bc856b37b0">sügava puudega lapse hooldajatoetus 70 eurot.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="319a81c8-43c8-4044-9163-43a1000de1c0">2</paragrahvNr>
+			<kuvatavNr id="b829c7b1-060a-47c8-87e5-5622797006eb"><![CDATA[§ 2. ]]></kuvatavNr>
+			<sisuTekst id="fe0d88e4-4150-4744-8849-e3fa7ae58bcc">
+				<tavatekst id="2b45459f-0c93-4636-97c7-970f3570f4b5">[Käesolevast tekstist välja jäetud.]</tavatekst>
+			</sisuTekst>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="884d92d1-ff3d-4114-9c24-3fc25c895cc3">3</paragrahvNr>
+			<kuvatavNr id="41acf6e1-070f-4ead-a727-3f468634fa97"><![CDATA[§ 3. ]]></kuvatavNr>
+			<sisuTekst id="7d5d9fc7-c476-43d2-8f48-ea84163b6127">
+				<tavatekst id="43b90bb9-f63d-4dbb-a906-30f793ee3613">Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist.</tavatekst>
+			</sisuTekst>
+		</paragrahv>
+	</sisu>
+</oigusakt>

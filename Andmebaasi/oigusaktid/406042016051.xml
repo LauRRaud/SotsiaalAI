@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="16262668-63b7-43e1-b090-ea10bc0d92f2" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Maardu Linnavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2016-03-29</aktikuupaev>
+  
+  
+  <aktiNr>59</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2016-04-06</avaldamineKuupaev><RTaasta>2016</RTaasta><RTartikkel>51</RTartikkel><aktViide>406042016051</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2016-04-09+03:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2016-03-30</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>406042016051</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2016-04-05</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1034168</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2016-03-30</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Natalja Gorbunova</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="23649030-98b1-4260-a531-ca96a0a86030">
+  <nimi id="e863e6f5-d338-48cd-bc16-7015384d8375">
+   <pealkiri id="43a59d3c-3604-4966-8957-b6d15f8fba0a">Lastega peredele tugiisikuteenuse osutamise kord</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="7f62ecbe-c8c3-4943-85d8-4452e036a853"><preambul id="bdc4bcad-2836-4508-80ca-5671b2e972d0">
+   <tavatekst id="760d7918-ee4c-499c-a510-5e893f23b34e">Määrus kehtestatakse sotsiaalhoolekande seaduse § 14 lõike 1 ja § 23 lõike 1 alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="e31925e6-58ae-447c-812e-4b948a5994f3">1</paragrahvNr>
+   <kuvatavNr id="223a0280-8c87-460b-bf3f-6e3d353c0ebf"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="8bb45471-12b9-420d-b45b-627bdea1e036">Määruse reguleerimisala</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="d59f4067-0dcd-45ee-aece-3ec312e9be17"/>
+   <kuvatavNr id="3542b1fb-8fb2-4e67-96e1-1e58a96b033f"/>
+   <sisuTekst id="2cbe9683-d4b2-4786-9395-c9047f511601">
+    <tavatekst id="c2c8eb50-451b-440f-bfee-f1ba7a79f3e7">Käesolev määrus reguleerib tugiisikuteenuse (edaspidi teenus) osutamist lastega peredele, kelle elukohana on rahvastikuregistris registreeritud Maardu linn.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="91a5718d-4897-4713-bc5a-60d2712c75ed">2</paragrahvNr>
+   <kuvatavNr id="004a4582-be4f-4a93-ad3c-38f178e11c89"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="c4dafca4-a8c8-4c73-b3ec-16efde817f20">Teenuse kirjeldus ja eesmärk</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="f67cd50b-5e0b-4571-a54d-a6795dd99cb0">1</loigeNr>
+   <kuvatavNr id="73fe000e-584e-4db6-ba9a-98e9017d8494"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="097d905a-f6b2-425b-803e-ea7db3687641">
+    <tavatekst id="9c3a279c-cc70-4e31-b950-147d6b5194a7">Last kasvatavale isikule tugiisikuteenuse osutamise eesmärk on lapse hooldamise ning turvalise ja toetava kasvukeskkonna tagamine.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg2">
+   <loigeNr id="b34fd1fb-dd94-40b1-ba29-ccf0f27cf11c">2</loigeNr>
+   <kuvatavNr id="06647755-ca22-4fef-a5a6-f6f724b5049e"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="b53c1629-f40b-42b8-b159-507ae712bf56">
+    <tavatekst id="90806f08-6043-48c0-999e-e9d611f8800e">Lapsele tugiisikuteenuse osutamise eesmärk on koostöös last kasvatava isikuga lapse arengu toetamine, sealhulgas vajaduse korral puudega lapse puhul hooldustoimingute sooritamine. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg3">
+   <loigeNr id="46d7ad30-9b35-4fd6-b262-a47abd2f9d7b">3</loigeNr>
+   <kuvatavNr id="f3aee019-ecb5-4eff-88fc-486e30c8a231"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="eb1c075a-39cd-4a72-b6b2-094438acadd9">
+    <tavatekst id="c02418e4-5e87-4a72-afa1-9cbb52238f1e">Kliendile vajalikud teenused ja nende osutamise maht määratakse kindlaks enne teenuse osutamise alustamist ning nimetatakse tugiisikuga sõlmitavas lepingus.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg4">
+   <loigeNr id="0d20f30e-7983-40ad-9fd8-d4367142b866">4</loigeNr>
+   <kuvatavNr id="cf965bff-2b17-4eee-8035-89bde64977b4"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="25d4cd67-0909-475c-b922-06d62bd4e551">
+    <tavatekst id="7af0e816-a0a7-4d49-83e8-44aa6d66934f">Tugiisikuteenust võib osta ka juriidiliselt isikult.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="e6954d52-3c7a-4ead-ad1f-0ceb5123224a">3</paragrahvNr>
+   <kuvatavNr id="6710a583-a61d-4351-8037-e127e842a944"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="fc4a5028-489b-42dc-bdaa-6a0e6ef92698">Tugiisik</paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="b0265c2d-ebe4-4af0-891d-82be34799a77">1</loigeNr>
+   <kuvatavNr id="84dde246-c0c2-4c68-b322-2bc7419a8b72"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="6df95efd-d5bf-4c08-ba48-c86a559291ea">
+    <tavatekst id="7194ffb0-d019-4759-8b74-f7af55939648">Tugiteenuse osutajaks võib olla täisealine täieliku teovõimega füüsiline isik, kes on läbinud tugiisiku tööks vajaliku koolituse või on oma isikuomaduste ja võimete poolest sobiv (elu- ja töökogemused, teadmised, füüsiline ja vaimne tervis).</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg2">
+   <loigeNr id="1a3bec6a-2c73-4c02-aeed-c1427eb13628">2</loigeNr>
+   <kuvatavNr id="72b19fad-aeef-4cf8-a078-b6f48f3570f2"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="2b394313-3e1d-4622-aff3-b0934df729d9">
+    <tavatekst id="0ca212b2-4fd8-4b55-b2d0-8dc015f711c3">Tugiisikuteenust ei tohi vahetult osutada isik:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para3lg2p1">
+   <alampunktNr id="51becd92-3306-41d2-a212-2857619c81b8">1</alampunktNr>
+   <kuvatavNr id="e144ab8b-7b0a-4402-a257-b5f76fa0ca5a"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="3276a706-7d56-4402-b8cc-1e8bef43f36a">
+    <tavatekst id="dc340bc4-9d9b-460a-84c3-07c27d82f637">kelle karistatus tahtlikult toimepandud kuriteo eest võib ohtu seada teenust saama õigustatud isiku elu, tervise ja vara;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg2p2">
+   <alampunktNr id="dbe13a9a-7658-4542-aa02-8517e2ea2df7">2</alampunktNr>
+   <kuvatavNr id="8a10c8a9-3dad-405b-af4f-c7be72302724"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="112e29b1-1282-426e-9337-9c2d34857de3">
+    <tavatekst id="caf3eff5-75e0-4270-8ee3-7657270665d8">kes on teenuse saaja esimese või teise astme üleneja või alaneja sugulane;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg2p3">
+   <alampunktNr id="c07ba1bf-53ad-4807-8c8e-07fb108b63d3">3</alampunktNr>
+   <kuvatavNr id="4a305c82-d580-4ad8-b495-4f46dbf9f089"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="d34ff303-0d12-4dfb-85f9-4405ffeb62de">
+    <tavatekst id="ba9adde2-7e74-46f0-ade9-38c8a348a02c">kes elab alaliselt või püsivalt samas eluruumis teenuse saajaga.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para4">
+   <paragrahvNr id="19de26bf-6e0d-4bd6-a649-b75320fb224e">4</paragrahvNr>
+   <kuvatavNr id="12d13346-34fd-41fa-9a95-624f40b3b84b"><![CDATA[§ 4. ]]></kuvatavNr>
+   <paragrahvPealkiri id="64eeb648-de92-4c22-8ce2-dec7f31138a8">Teenuse saajad</paragrahvPealkiri>
+  <loige id="para4lg1">
+   <loigeNr id="4af5595f-0595-44e1-b24f-bd5b3c20bf3c"/>
+   <kuvatavNr id="54d5c217-3e6c-4902-a08e-5cb532d2b62e"/>
+   <sisuTekst id="6782cff3-d837-4389-9a50-cd6757bf1637">
+    <tavatekst id="c87e2e09-8e35-43f4-8f1a-58177f52faee">Tugiisiku teenust on õigus taotleda last kasvataval isikul, kelle rahvastikuregistri järgne elukoht on Maardu linnas, tingimustel, et:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para4lg1p1">
+   <alampunktNr id="8ea72657-af71-44e3-a651-5a74b6322f1b">1</alampunktNr>
+   <kuvatavNr id="2c27edd3-0598-46da-8ac7-2f57f246222c"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="060bc91e-7223-4021-b27b-e80e491c4d76">
+    <tavatekst id="b1e0fb17-5eb7-435f-925a-b2ca88944008">last kasvatav isik vajab kõrvalist abi lapse eest hoolitsemisel;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para4lg1p2">
+   <alampunktNr id="d4c0e203-1d2d-4b46-b0f0-9156075259ca">2</alampunktNr>
+   <kuvatavNr id="7707a2b7-cf52-49a1-9673-db29432ba575"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="e22bb3d1-2c14-4fda-abed-364866a1603d">
+    <tavatekst id="a0246dfe-9a11-4737-8de7-79baacacee81">last kasvatav isik vajab kõrvalist abi lapsele turvalise ja toetava kasvukeskkonda loomisel;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para4lg1p3">
+   <alampunktNr id="a5072be1-7171-47cc-9dd7-0d439721c7af">3</alampunktNr>
+   <kuvatavNr id="c9ea0346-afa4-4d8a-8720-8cd24a3b4f47"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="f3c9f0a3-bc78-4b36-a3b1-ad85865a8f3f">
+    <tavatekst id="8fc46b18-12cb-423d-9d28-d1aa9b663b4f">last kasvatav isik vajab kõrvalist abi pere toimetulekuvõime tõstmiseks, igapäevase eluga toimetulekuks ning suhtlemisel ümbritseva keskkonnaga.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para5">
+   <paragrahvNr id="d2dd7d0e-0e77-4ef5-961c-1f7d78ae5509">5</paragrahvNr>
+   <kuvatavNr id="4c78c60a-c668-4e0e-acbc-ae45f2b117da"><![CDATA[§ 5. ]]></kuvatavNr>
+   <paragrahvPealkiri id="8ed266e7-d763-47ce-a334-1a344d6c097f">Teenuse taotlemine ja määramine</paragrahvPealkiri>
+  <loige id="para5lg1">
+   <loigeNr id="c048f1d5-fb3e-4a7d-846d-0938dd8780e0">1</loigeNr>
+   <kuvatavNr id="78fb7783-45bd-44e3-a275-56c18986df26"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="00073ac7-21d1-4049-8fe0-729c36b9f9d4">
+    <tavatekst id="5c83d0de-90d6-4551-9d3a-840110cb2827">Tugiisikuteenust taotlev isik esitab Maardu Linnavalitsusele sotsiaalabi osakonnale (edaspidi sotsiaalabiosakond) põhjendatud kirjaliku taotluse abivajaduse kohta.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg2">
+   <loigeNr id="88a0e73b-56d2-4009-b9e3-6149fc178ce2">2</loigeNr>
+   <kuvatavNr id="c4d19987-9f82-425f-b6e0-fe6cee215f9f"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="4985809e-3b05-4270-acf3-01ac24456659">
+    <tavatekst id="045344e0-8a10-4f7b-bfdb-141cf502942f">Taotluses märgitakse:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para5lg2p1">
+   <alampunktNr id="60d8649e-6739-494b-8f99-7c0c63ab6bc6">1</alampunktNr>
+   <kuvatavNr id="b8213c88-7936-4e2d-ab70-7b89fe9bfaa0"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="d8bb000e-3e7b-424b-9587-2c912831236f">
+    <tavatekst id="9a38ed31-76dc-4b4c-b200-fffc650dbb3e">taotleja ees- ja perekonnanimi ning isikukood;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para5lg2p2">
+   <alampunktNr id="0872a741-2505-4afc-8fa0-f042598c61d6">2</alampunktNr>
+   <kuvatavNr id="10bc3848-de37-45c6-b272-1324aeb87bb6"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="4887a83a-23f8-4906-afa9-ed5d7e74911e">
+    <tavatekst id="788e59de-727e-435f-87ad-8df273dc4d85"> lapse ees- ja perekonnanimi ning isikukood;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para5lg2p3">
+   <alampunktNr id="25abd3b0-d70e-4a83-9c23-953975e728d9">3</alampunktNr>
+   <kuvatavNr id="62e2bf78-43d3-47da-ae05-1fe6a3ad3ed3"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="5c3e5fa5-a7f2-46b2-b1e2-34a46311d490">
+    <tavatekst id="b6734364-b602-4bf5-9b56-b665f6a5614b">taotleja elukoha aadress ja muud kontaktandmed;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para5lg2p4">
+   <alampunktNr id="45a76912-943a-4ad2-8932-5bfa02c03cdf">4</alampunktNr>
+   <kuvatavNr id="bef1dbb8-bccd-457f-86bd-400cd3c63066"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="e57fc9aa-6427-48a7-8181-eb591a16b132">
+    <tavatekst id="871795dc-fbfa-4b33-928b-bd8293563b34">tugiisikuteenuse vajaduse põhjendus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para5lg2p5">
+   <alampunktNr id="bd7b14e4-53c8-4abd-9953-4d7c6c2b5abc">5</alampunktNr>
+   <kuvatavNr id="42d247c1-859b-4eb4-866e-50ede461d971"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="6a19ca76-4313-40bf-a205-1c6574a1b89c">
+    <tavatekst id="986f963d-5d21-42c9-9465-bd8a2b8baa6c">taotleja nõusolek enda andmete kontrollimiseks.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para5lg3">
+   <loigeNr id="f395902f-c73d-48f7-b458-4d38725e0d28">3</loigeNr>
+   <kuvatavNr id="2443805f-ad3f-4f0d-bea1-ab9d3881e3f5"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="8bb26f6d-62dd-4acd-b107-af614994aa45">
+    <tavatekst id="e07e0a03-cfe9-4ec2-9c48-2cc058f5c31b">Sotsiaalabiosakonna lastekaitse spetsialist (edaspidi lastekaitse spetsialist) selgitab välja teenuse vajaduse, mahu ja sageduse. Vastavalt lapse võimele teenuse kavandamisest aru saada kaasatakse ka laps ning arvestatakse tema arvamusega.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg4">
+   <loigeNr id="c3156edb-ac74-4abb-bf73-937aca539700">4</loigeNr>
+   <kuvatavNr id="3756ffdb-2dce-456a-b33c-0eab1cb1c6f5"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="fd4b9990-3909-4322-b91d-0b4dcb656e16">
+    <tavatekst id="9876d4d3-f31e-4601-9be2-df266f5c75e4">Tugiisiku teenuse vajaduse märkamisel võib teenuse osutamise protsessi algatada ka lastekaitse spetsialist või muu pädev isik.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg5">
+   <loigeNr id="0b0aaa32-dcec-4354-9235-1ac526638971">5</loigeNr>
+   <kuvatavNr id="b5602503-c54e-4b49-bb7b-e2b9b0db3e6e"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="b7fc9aac-e2c7-4c52-b9f5-37d6404f2a5e">
+    <tavatekst id="75ff6330-7708-4c9b-9dfb-860987f295b2">Tugiisikuteenust osutatakse kliendile sotsiaalabiosakonna ettepanekul kliendi, tugiisiku ja Maardu Linnavalitsuse vahel sõlmitava halduslepingu alusel.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para6">
+   <paragrahvNr id="c6fedc3d-db63-451f-a470-517a5490d2ab">6</paragrahvNr>
+   <kuvatavNr id="f2b38db9-0127-4370-84b5-03ddd144081b"><![CDATA[§ 6. ]]></kuvatavNr>
+   <paragrahvPealkiri id="6d0b2698-3656-49c4-99a8-3c26706069f4">Teenuse lõpetamine ning tugiisikuteenuse osutamisest keeldumine</paragrahvPealkiri>
+  <loige id="para6lg1">
+   <loigeNr id="5deefac4-1505-45d0-b0c1-f506f11b07cf"/>
+   <kuvatavNr id="c79aebb1-77ca-44df-a676-6f07bdf96306"/>
+   <sisuTekst id="a88e1b62-22ac-4081-8723-818f863f013a">
+    <tavatekst id="e76a0c96-0aa2-4488-8588-c09d8a8aa80c">Tugiisikuteenuse osutamise lõpetatakse:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para6lg1p1">
+   <alampunktNr id="7a9dc5e5-76e4-45d7-8edc-ee2b0a10a7ce">1</alampunktNr>
+   <kuvatavNr id="9e9d8982-323a-444d-b0f8-01a6e5741e70"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="e81bd3f9-19db-4d43-9334-712e37418876">
+    <tavatekst id="0c5fe0c8-0a52-4483-82b5-66e26415e8a0">teenuse vajaduse lõppemisel;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para6lg1p2">
+   <alampunktNr id="a8664e2e-d041-485b-bbcd-a0716bb8d55a">2</alampunktNr>
+   <kuvatavNr id="b1067e8f-7fdd-46e6-8814-ab8118f1664b"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="de333849-c8bd-422a-b764-c6b6bc57e8bd">
+    <tavatekst id="d38a945d-b829-450c-ba30-8f73265b727a">teenuse saaja soovil;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para6lg1p3">
+   <alampunktNr id="7ee5cb7f-86b0-41a7-80e8-d61b9b7e770f">3</alampunktNr>
+   <kuvatavNr id="9c242c87-f679-4166-9f68-42b6465f69c5"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="cf48b81a-9b06-4c49-a9a7-32b2e74294fc">
+    <tavatekst id="a4c6899d-afdd-4965-a9de-c15694634fc6">tugiisiku ettepanekul kooskõlastatult ametiasutusega;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para6lg1p4">
+   <alampunktNr id="c17b43ba-59f6-402d-8592-4c574cb76bbd">4</alampunktNr>
+   <kuvatavNr id="d2a7732c-4625-4bad-8246-73e78a6c2dcd"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="8b2d0ccb-25fb-498f-bab2-8c47be494c08">
+    <tavatekst id="04a0f13a-61aa-4fe6-8d31-745465076493">muudel põhjustel, mis takistavad teenuse osutamist.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para7">
+   <paragrahvNr id="c753e2ab-2d70-4015-9d16-7358833bf57a">7</paragrahvNr>
+   <kuvatavNr id="c3a39bdc-9289-4ab0-9ad3-b335d28c2e63"><![CDATA[§ 7. ]]></kuvatavNr>
+   <paragrahvPealkiri id="50249b29-679a-422c-b595-3b61123195be">Teenuse finantseerimine</paragrahvPealkiri>
+  <loige id="para7lg1">
+   <loigeNr id="d65c9fd6-e322-44f0-8405-756618ff19a5"/>
+   <kuvatavNr id="3459e0ac-b20e-443c-a55d-2ef1e6ffb28c"/>
+   <sisuTekst id="1981c553-d2c5-42b5-9bad-25ec63e59e5b">
+    <tavatekst id="78f29b4a-5c8c-4db4-bcd2-e41fc4a01672">Teenust finantseeritakse Maardu linna eelarvest. Lisaks eelnevale võidakse tugiisikuteenuse finantseerimiseks kasutada mitmesuguste fondide, sihtkapitalide, samuti mittetulunduslikust tegevusest, annetustest ja sponsorlusest laekunud vahendeid.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para8">
+   <paragrahvNr id="b7cd3826-f620-4baa-baca-33419e767127">8</paragrahvNr>
+   <kuvatavNr id="a06fc5bd-28d0-46fa-b5a7-e10ae623e366"><![CDATA[§ 8. ]]></kuvatavNr>
+   <paragrahvPealkiri id="0e1ace05-0ee7-4015-aeee-6b2000329b55">Jõustumine</paragrahvPealkiri>
+  <loige id="para8lg1">
+   <loigeNr id="5a12138a-1bfa-4b03-8f09-79597f34011f">1</loigeNr>
+   <kuvatavNr id="8bebc5bb-0d78-4d48-914e-ea0a768d3487"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="6800337c-85ce-493f-89bc-5c721a594ccc">
+    <tavatekst id="d932ed78-e8b5-4293-99f7-0cb33086b5c6"> Tunnistada kehtetuks Maardu Linnavolikogu 24.09.2013 määrus nr 85 „Lastega peredele tugiisiku teenuse osutamise kord“.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para8lg2">
+   <loigeNr id="a7dd3e9b-909a-4c85-bc1a-8a2eaf2b8603">2</loigeNr>
+   <kuvatavNr id="068b2b2c-ee0b-4ed7-87fe-a34de93c84ec"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="66078393-b25b-40bb-86d8-12a299721909">
+    <tavatekst id="cf0c4ef3-5279-4a49-a81f-7df48346b8fb">Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="1c83f80c-787f-404e-8042-0d4dbadfdc11"><allkiriKoht id="9509c787-fc59-41da-9250-8477958741e2"/><allkirjastaja id="6c34411f-aaa5-40b8-a52a-36ea54c8a57d"><ametinimetus id="5deb884c-2185-45c6-af9b-a730c79b475d">Maardu Linnavolikogu esimees</ametinimetus><eesnimi id="6b6c83da-4386-4f82-9488-7e1baaf738ec">Elviira</eesnimi><perekonnanimi id="297c6eb9-d331-4dc8-9d41-e96f28d6c5c7">Piiskoppel</perekonnanimi></allkirjastaja></allkiri></oigusakt>

@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="ab1416c5-e5ec-42c8-bc86-eb0640b9a811" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metaandmed>
+    <valjaandja>Hiiumaa Vallavalitsus</valjaandja>
+    <dokumentLiik>määrus</dokumentLiik>
+    <tekstiliik>algtekst-terviktekst</tekstiliik>
+    <dokumentEtapp>avaldamine</dokumentEtapp>
+    <dokumentStaatus>avaldatud</dokumentStaatus>
+    <vastuvoetud>
+      <aktikuupaev>2024-01-03</aktikuupaev>
+      <aktiNr>1</aktiNr>
+    </vastuvoetud>
+    <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2024-01-12</avaldamineKuupaev><RTaasta>2024</RTaasta><RTartikkel>1</RTartikkel><aktViide>412012024001</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2024-02-01+02:00</kehtivuseAlgus></kehtivus><versioon>
+      <dokumentVersioon>1</dokumentVersioon>
+      <dokumentVersioonKuupaev>2024-01-04</dokumentVersioonKuupaev>
+    </versioon>
+    <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+    <globaalID>412012024001</globaalID>
+    <metaandmedVersioon>6</metaandmedVersioon>
+    <metaandmedVersioonKuupaev>2024-01-11</metaandmedVersioonKuupaev>
+    <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+    <terviktekstiGrupiID>1058184</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+  </metaandmed>
+  <aktinimi id="7054fe07-4ea4-4fec-9510-4abccdbb968d">
+    <nimi id="30b9603f-3df8-4c32-9fbe-a49a6336b694">
+      <pealkiri id="28d2807b-4e90-4b8f-abfe-9860984760c8">Sotsiaaltoetuse määrade ja sotsiaalteenuse hindade kehtestamine</pealkiri>
+    </nimi>
+  </aktinimi>
+  <sisu id="e6cf380c-d030-4ac9-ab51-e58ee3450275">
+    <preambul id="5fc7ef41-fe2e-473e-8323-2b6fd8eaf5fa">
+      <tavatekst id="78df5310-a500-4aed-ab91-3ef8bd26bcb7">Määrus kehtestatakse Hiiumaa Vallavolikogu 23.08.2018 määruse nr 30 „Sotsiaalteenuse osutamise ja sotsiaaltoetuse maksmise kord“ § 4 lg 2 alusel.</tavatekst>
+    </preambul>
+    <paragrahv id="para1">
+      <paragrahvNr id="721b8318-8f0a-4a0d-98fe-546e19fb1cc8">1</paragrahvNr>
+      <kuvatavNr id="45ac46a0-5c63-403d-9519-c4b036a12346"><![CDATA[§ 1. ]]></kuvatavNr>
+      <paragrahvPealkiri id="49a2a429-2a13-4e09-b031-d69315889987">Sissetulekust mittesõltuva sotsiaaltoetuse määr</paragrahvPealkiri>
+      <loige id="para1lg1">
+        <loigeNr id="fa617c7f-1d9a-4da7-b146-3cb30ddea2aa"/>
+        <kuvatavNr id="aa459bda-6f0f-48ea-bbe1-de48267bf4cc"/>
+        <sisuTekst id="72de8803-e23b-4207-b141-e56758bbbf96">
+          <tavatekst id="a25a3d47-129d-4477-a922-a96f0252fb17">Kinnitada sissetulekust mittesõltuva sotsiaaltoetuse määr järgmiselt:</tavatekst>
+        </sisuTekst>
+        <alampunkt id="para1lg1p1">
+          <alampunktNr id="61dd06b7-8379-4108-90c8-eb8e52694249">1</alampunktNr>
+          <kuvatavNr id="449ac327-f8ae-4fc2-a11b-6d317771f8f3"><![CDATA[1) ]]></kuvatavNr>
+          <sisuTekst id="d18a0d1f-a762-4d16-803b-d3c25497ba64">
+            <tavatekst id="fcd69015-f00b-4d37-942d-3bedec041274">sünnitoetus 200 eurot;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para1lg1p2">
+          <alampunktNr id="3103460e-5125-4438-8dc4-de51c3604b3f">2</alampunktNr>
+          <kuvatavNr id="eebc07d7-82e7-4cc5-ba79-e4a84ba581e9"><![CDATA[2) ]]></kuvatavNr>
+          <sisuTekst id="65094b96-45e4-411c-97e7-4ef6b260b5fe">
+            <tavatekst id="c937c031-6946-47aa-9caa-30a723e890cd">täiendav lapsetoetus lapse 1-aastaseks saamisel 200 eurot;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para1lg1p3">
+          <alampunktNr id="22ab16b8-0329-4c9f-b691-4505652c2050">3</alampunktNr>
+          <kuvatavNr id="2a71bdff-80d0-48bd-9f32-21c49704ede6"><![CDATA[3) ]]></kuvatavNr>
+          <sisuTekst id="9033577e-ec68-4471-a715-ee09e2a1a4f2">
+            <tavatekst id="65e1ed34-393c-4bc9-aff8-98e2d06d0015">täiendav lapsetoetus lapse 2-aastaseks saamisel 200 eurot;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para1lg1p4">
+          <alampunktNr id="07308a08-fe88-42be-b25c-809390350cfa">4</alampunktNr>
+          <kuvatavNr id="4b161c76-9693-4e20-9b07-a1faa8887e86"><![CDATA[4) ]]></kuvatavNr>
+          <sisuTekst id="544e9a3d-6f1f-4b02-a46d-12b8788e91c6">
+            <tavatekst id="a8557847-be75-4b10-8ed2-54e390fb701e">esimesse klassi astuja toetus 130 eurot;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para1lg1p5">
+          <alampunktNr id="957b7a58-4d2a-40e3-abad-c738e5c27ee9">5</alampunktNr>
+          <kuvatavNr id="b62a0c51-51ff-4e3c-8690-628bc7d895b7"><![CDATA[5) ]]></kuvatavNr>
+          <sisuTekst id="18eb4e8b-c50e-4b69-a807-3261d1626085">
+            <tavatekst id="e712a9ec-6e2a-42e6-97c5-729f1913b2e0">eaka sünnipäevatoetus 25 eurot;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para1lg1p6">
+          <alampunktNr id="7ead71df-f356-4d26-a328-d8006768c3d6">6</alampunktNr>
+          <kuvatavNr id="de222eb1-e5e2-4aca-9ccd-c2d64183b918"><![CDATA[6) ]]></kuvatavNr>
+          <sisuTekst id="478669a6-557a-4044-9ee4-a106998bfcf2">
+            <tavatekst id="7877e308-ed7c-471f-aad6-e7aa3f6e49e0">matusetoetus 250 eurot;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para1lg1p7">
+          <alampunktNr id="913e2cc3-8910-4b30-947e-c9b2de7eb90e">7</alampunktNr>
+          <kuvatavNr id="e60d020c-c081-4c3d-a047-4ce7a5753c5c"><![CDATA[7) ]]></kuvatavNr>
+          <sisuTekst id="fa9d2d2b-b753-486b-8d0b-b91c6b72e4a2">
+            <tavatekst id="556b51d2-da42-44c0-9580-d569a873653f">hooldajatoetus raske puudega täisealise hooldamise eest 40 eurot isiku kohta kuus;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para1lg1p8">
+          <alampunktNr id="3367fa23-d16b-4548-ba8a-e764348b4e23">8</alampunktNr>
+          <kuvatavNr id="594cbd87-65c3-4dfb-9a03-94e62b883d3d"><![CDATA[8) ]]></kuvatavNr>
+          <sisuTekst id="f7e641eb-8bc6-49e8-80af-662c644bd189">
+            <tavatekst id="7f682197-a976-4748-800c-59660203f9e9">hooldajatoetus sügava puudega täisealise hooldamise eest 60 eurot isiku kohta kuus;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para1lg1p9">
+          <alampunktNr id="b247df57-3861-4cf1-9c75-1f48d72ecaac">9</alampunktNr>
+          <kuvatavNr id="926026bb-bece-4edf-a122-b395690b838b"><![CDATA[9) ]]></kuvatavNr>
+          <sisuTekst id="661c1bb5-4aac-442e-b36e-02db45aae5be">
+            <tavatekst id="5969e1f9-b10c-4199-bf6f-6f94191a3d83">hooldajatoetus sügava või raske puudega lapse hooldamise eest 60 eurot isiku kohta kuus;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para1lg1p10">
+          <alampunktNr id="3c285403-883d-4852-93c2-8dcd148154f2">10</alampunktNr>
+          <kuvatavNr id="d22f2cb2-45a7-43fb-a139-52464b4d5c5f"><![CDATA[10) ]]></kuvatavNr>
+          <sisuTekst id="bfc9c35d-b07d-4c91-b52d-d5ba95321c8b">
+            <tavatekst id="a499019a-d170-46cf-b6f0-6c3d13d0627a">hoolduspere toetus on üks kahendik töölepingu seaduse § 29 lõike 5 alusel kehtestatud kuutasu alammäärast ühe lapse hooldamise kohta ja seda makstakse hooldusperes viibiva lapse hooldamise ning ülalpidamis- ja isiklike kulude katteks hoolduspere vanemale;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para1lg1p11">
+          <alampunktNr id="4c8db8d0-be1c-4e1b-a8a2-28d56088a455">11</alampunktNr>
+          <kuvatavNr id="56d0bdb3-6c8d-40eb-b8e7-8651b9d785c4"><![CDATA[11) ]]></kuvatavNr>
+          <sisuTekst id="e4bced72-b953-4989-a784-c3a9a9d33e14">
+            <tavatekst id="ad9b491d-44ba-418a-82c8-f9394c270fad">kui asendushooldusel viibiva lapse ülalpidamiskulu ja lapse erivajadusest tulenev lisakulu on suurem selle paragrahvi lg 1 punktis 10 nimetatud määrast, võib struktuuriüksuse abivallavanema otsusega suurendada hoolduspere toetust vastavalt tegelikule vajadusele;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para1lg1p12">
+          <alampunktNr id="9ee544ed-ce4d-4339-9cac-358c7d72ec74">12</alampunktNr>
+          <kuvatavNr id="22abdb7f-31ef-4cb9-b2d7-716ce718caf3"><![CDATA[12) ]]></kuvatavNr>
+          <sisuTekst id="5162ff1d-60fc-4780-9634-770045036511">
+            <tavatekst id="0cc4e125-4a7a-4df5-b5f3-65cf03bfb592">järelhooldusteenusel viibiva isiku toetuse suurus on 240 eurot kuus ja seda makstakse toetuse saajale tema isiklike kulude katteks;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para1lg1p13">
+          <alampunktNr id="436f70e1-d5ee-4527-8cbe-f57c9ca74758">13</alampunktNr>
+          <kuvatavNr id="5a5de533-a9fb-4da5-8991-bacbabf6e989"><![CDATA[13) ]]></kuvatavNr>
+          <sisuTekst id="3c5dccb6-6d87-47a3-9b36-60cd53b7f776">
+            <tavatekst id="408e9564-fe8b-45d5-a1da-43eacd7c7520">koduse lapse toetus 180 eurot kuus.</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para2">
+      <paragrahvNr id="faa29d9c-27c7-40f9-98ee-ee380351f4f9">2</paragrahvNr>
+      <kuvatavNr id="0a8cece2-5441-410b-bd8c-4b4d825c8708"><![CDATA[§ 2. ]]></kuvatavNr>
+      <paragrahvPealkiri id="d79deb71-18e5-48d3-84d5-da144b9835aa">Sotsiaalteenuste hinnad</paragrahvPealkiri>
+      <loige id="para2lg1">
+        <loigeNr id="87ab605e-0840-4a37-94af-bbcae75ddb20">1</loigeNr>
+        <kuvatavNr id="62cf508d-9fbd-4090-b6c5-6f7f1aa1aa17"><![CDATA[(1)]]></kuvatavNr>
+        <sisuTekst id="57d59d72-5bbb-4413-948a-b691fdfdf468">
+          <tavatekst id="38aa4cf4-7302-406e-8963-1abe19a6c4e7">Sotsiaaltransporditeenuse hind on:</tavatekst>
+        </sisuTekst>
+        <alampunkt id="para2lg1p1">
+          <alampunktNr id="dba8d95a-1fdc-4799-b845-330261ecdbe6">1</alampunktNr>
+          <kuvatavNr id="96b95b57-433c-4439-83c9-405ef9139d2a"><![CDATA[1) ]]></kuvatavNr>
+          <sisuTekst id="3ca0a168-e023-4789-b163-cefd66665eac">
+            <tavatekst id="185c1928-7b39-4ac5-a734-27cda2223550">Hiiumaa valla piires tasub iga teenuse saaja sõidu eest, mis ei ole rohkem kui 10 kilomeetrit, 3 eurot/kord;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para2lg1p2">
+          <alampunktNr id="388e00c4-5bf9-4cd7-9f42-913918c79ce9">2</alampunktNr>
+          <kuvatavNr id="59f11c42-29b3-4f39-9ee8-5c0f7c4d0421"><![CDATA[2) ]]></kuvatavNr>
+          <sisuTekst id="979eb65d-e240-4ba2-b28d-2cd722ec3d67">
+            <tavatekst id="082b450a-9d1e-4fe2-aeb7-1a3e5e356848">Hiiumaa valla piires tasub iga teenuse saaja sõidu eest, mis on 10-50 kilomeetrit, 5 eurot/kord;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para2lg1p3">
+          <alampunktNr id="514f7d86-4b72-4359-a4ac-540ecadaad04">3</alampunktNr>
+          <kuvatavNr id="7b4967ef-9473-45e9-ba8a-3bbd6bdeee98"><![CDATA[3) ]]></kuvatavNr>
+          <sisuTekst id="b8ebe0dc-1aea-494b-9475-d265796d26c8">
+            <tavatekst id="b43b7396-47d4-41b2-bf1d-7afd117dfe5f">Hiiumaa valla piires tasub iga teenuse saaja sõidu eest, mis on rohkem kui 50 kilomeetrit, 10 eurot/kord;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para2lg1p4">
+          <alampunktNr id="1aab1e41-2086-4e31-9deb-c88d67c23873">4</alampunktNr>
+          <kuvatavNr id="aa3991e8-58ba-42bb-a4fb-c35771a9e46a"><![CDATA[4) ]]></kuvatavNr>
+          <sisuTekst id="e72ccf09-ced5-442a-ba3b-e232004a4fc0">
+            <tavatekst id="a2eb6e81-016f-4161-8208-d1883798b569">väljaspool Hiiumaa valda tasub iga reisija 0,15 eurot/km, mis sisaldab reisija piletit praamisõidul;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para2lg1p5">
+          <alampunktNr id="a76cad63-29d6-477c-b1c3-dc0a58439fc5">5</alampunktNr>
+          <kuvatavNr id="4f5c7b11-c823-43e8-a2c9-b8abad3e488e"><![CDATA[5) ]]></kuvatavNr>
+          <sisuTekst id="3979fb6b-2c28-45ae-93d1-bd9070d2a736">
+            <tavatekst id="83127e9e-0128-4012-9781-dda97ba77ad7">sõidul suunal Hiiumaa-Tallinn või Tallinn-Hiiumaa tasub iga teenusesaaja 15 eurot, mis sisaldab reisija piletit praamisõidul.</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+      </loige>
+      <loige id="para2lg2">
+        <loigeNr id="33eed2c3-10b1-4202-ab6b-08180aa9d861">2</loigeNr>
+        <kuvatavNr id="22836862-8fc2-4608-ba56-b2845f79c842"><![CDATA[(2)]]></kuvatavNr>
+        <sisuTekst id="e92fe644-35d3-42a9-a75a-2068ce9a9f92">
+          <tavatekst id="d5031f90-c6e2-4488-9e76-ac49a0e293f4">Koduteenuse paketi hind on:</tavatekst>
+        </sisuTekst>
+        <alampunkt id="para2lg2p1">
+          <alampunktNr id="48935cba-dbb2-477c-add5-b6bf82914271">1</alampunktNr>
+          <kuvatavNr id="06e2492e-db99-4b2e-bd82-f1330f5ded33"><![CDATA[1) ]]></kuvatavNr>
+          <sisuTekst id="3bc7f551-cadd-4028-bad5-55fed1011fc2">
+            <tavatekst id="6702d2d6-3805-4bf2-8d38-955a41d281cf">koduteenuse pakett nr 1, mis sisaldab § 3 lõike 2 tegevusi üks kord nädalas, maksumus 21 eurot kuus;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para2lg2p2">
+          <alampunktNr id="bdfdfb9e-e68d-4eef-8dac-3d606b67c202">2</alampunktNr>
+          <kuvatavNr id="d544d75b-a8a0-46cd-a47d-8056697acead"><![CDATA[2) ]]></kuvatavNr>
+          <sisuTekst id="34ed4d37-4fb0-4b32-a788-d5ed011c3d79">
+            <tavatekst id="8cf1238e-8b5b-4b61-bce8-6bc3b07dc8c3">koduteenuse pakett nr 2, mis sisaldab § 3 lõike 2 tegevusi kaks korda nädalas, maksumus 31 eurot kuus;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para2lg2p3">
+          <alampunktNr id="9b420fe7-4004-4f05-ae1f-2bd3e3aa9e54">3</alampunktNr>
+          <kuvatavNr id="1d2a3f07-44b7-416d-893d-b6a83b29d5a6"><![CDATA[3) ]]></kuvatavNr>
+          <sisuTekst id="a7f99676-8e05-4f70-b481-316a7881f9ab">
+            <tavatekst id="06596375-f578-4580-b3a4-3dc811309f8c">koduteenuse pakett nr 3, mis sisaldab § 3 lõike 2 tegevusi kolm korda nädalas, maksumus 41 eurot kuus;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para2lg2p4">
+          <alampunktNr id="1f45eea2-fdf4-450b-8924-84d02f50852b">4</alampunktNr>
+          <kuvatavNr id="03a7542c-2830-47e3-82e1-6e49a80c7c75"><![CDATA[4) ]]></kuvatavNr>
+          <sisuTekst id="eb6b21ac-da9f-466d-80ec-72c49b559440">
+            <tavatekst id="b0a5aa6a-a3a6-4ee4-9054-736560cb0527">koduteenuste pakett nr 4, mis sisaldab § 3 lõigete 2 ja 3 tegevusi üks kord nädalas, maksumus 41 eurot kuus;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para2lg2p5">
+          <alampunktNr id="fe495398-71be-4e4a-aef4-c2d7b71a5aed">5</alampunktNr>
+          <kuvatavNr id="f1c8a257-b3d7-428f-9f7e-071b1a23023e"><![CDATA[5) ]]></kuvatavNr>
+          <sisuTekst id="77eaa9ae-8f15-43da-8109-953ac4a8f929">
+            <tavatekst id="40721f54-6c30-484f-8246-d5e1144244bf">koduteenuste pakett nr 5, mis sisaldab § 3 lõigete 2 ja 3 tegevusi kaks kord nädalas, maksumus 61 eurot kuus;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para2lg2p6">
+          <alampunktNr id="3228a7d5-9ad7-4b35-b05f-4b268e9a0b6b">6</alampunktNr>
+          <kuvatavNr id="4a7497c6-195a-424b-a9d2-ed77f6ad3529"><![CDATA[6) ]]></kuvatavNr>
+          <sisuTekst id="554888f8-3036-4447-ac11-b004736282ae">
+            <tavatekst id="75934b59-49c9-478b-adfe-6d851450a72e">koduteenuste pakett nr 6, mis sisaldab § 3 lõigete 2 ja 3 tegevusi kolm kord nädalas, maksumus 91 eurot kuus;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para2lg2p7">
+          <alampunktNr id="ed77e253-661e-4454-bc7b-8be680ab9f73">7</alampunktNr>
+          <kuvatavNr id="abd3dce6-0c98-48fa-84f2-295368253b73"><![CDATA[7) ]]></kuvatavNr>
+          <sisuTekst id="a6d17e17-8063-40a6-91d1-effaddec57e5">
+            <tavatekst id="c2e9a20c-93f9-4f68-9de7-5d2a5cd80b3d">koduteenuste pakett nr 7, mis sisaldab § 3 lõigete 2 ja 3 tegevusi neli kord nädalas, maksumus 121 eurot kuus;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para2lg2p8">
+          <alampunktNr id="6dc48366-2910-453d-97dd-345d4a6b1a31">8</alampunktNr>
+          <kuvatavNr id="d9b8ea32-97b5-43bc-9af0-bb06ae21bc9c"><![CDATA[8) ]]></kuvatavNr>
+          <sisuTekst id="3eee212e-9709-42c7-8aae-7ba8892e61ea">
+            <tavatekst id="5c9469b3-bf5c-483f-9c3c-a58e9a21eec2">koduteenuste pakett nr 8, mis sisaldab § 3 lõigete 2 ja 3 tegevusi viis kord nädalas, maksumus 151 eurot kuus.</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+      </loige>
+      <loige id="para2lg3">
+        <loigeNr id="0955aeac-0b60-4103-ab7d-df047e4fcc41">3</loigeNr>
+        <kuvatavNr id="859e76b7-a33f-4bab-a9fb-884cb0979229"><![CDATA[(3)]]></kuvatavNr>
+        <sisuTekst id="8fd75b83-97c0-4292-a55d-1aec04bca584">
+          <tavatekst id="9450fda7-1972-4c05-8759-e911420880a6">Koduteenuse osutamisel perekonnas, kus abi vajavad kaks isikut, arvestatakse teenuse hinnaks 1,5 kordne koduteenuse paketi maksumus.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para2lg4">
+        <loigeNr id="ef444fac-f6ba-452b-b2e8-6f6255869c68">4</loigeNr>
+        <kuvatavNr id="244bca85-f4d3-4791-b600-209af9ed1838"><![CDATA[(4)]]></kuvatavNr>
+        <sisuTekst id="e3bf952f-ee35-426f-b353-509442185e82">
+          <tavatekst id="c009160e-203e-40f6-a154-ea5549329c40"> Koduabi osutamine isikule, kes ei ole suunatud teenusele, on 20 eurot kord.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para2lg5">
+        <loigeNr id="f9e68de4-9f39-4ef1-96a6-362c03eaee2a">5</loigeNr>
+        <kuvatavNr id="7b880521-6e82-4df3-892e-b376be37c271"><![CDATA[(5)]]></kuvatavNr>
+        <sisuTekst id="738a5589-750f-45d7-8d87-03b2007315dd">
+          <tavatekst id="0e6f930b-874c-49b4-8ba4-f0842539b5be">Koduabi ja isikuabi osutamine isikule, kes ei ole suunatud teenusele, on 30 eurot kord.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para2lg6">
+        <loigeNr id="cc7064b4-2511-4320-b0f5-ddf6da65af1f">6</loigeNr>
+        <kuvatavNr id="c4469c8b-1f08-4a9d-98a5-18891765a85f"><![CDATA[(6)]]></kuvatavNr>
+        <sisuTekst id="05237904-2e8a-49ba-8a7d-23859d6f8ca0">
+          <tavatekst id="80ff95d3-6cfb-45cb-8147-1f5861846f3f">Sotsiaaltransporditeenust ja koduteenust osutab Hiiumaa Sotsiaalkeskus.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para2lg7">
+        <loigeNr id="25688f1d-8cc0-4442-b25e-2ffccb8a12e9">7</loigeNr>
+        <kuvatavNr id="167d2f65-d7a9-4844-8b3a-3ec57ece8bb2"><![CDATA[(7)]]></kuvatavNr>
+        <sisuTekst id="3e2651e0-667d-4cea-a19e-acca1d844a72">
+          <tavatekst id="90053ccc-4ac0-4199-94f7-0422587ac260">Isikliku abistaja teenuse tunnihind on Vabariigi Valitsuse kehtestatud tunnitasu alammäär.</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para3">
+      <paragrahvNr id="9cce3060-04da-4d62-92be-3e74a05f876d">3</paragrahvNr>
+      <kuvatavNr id="d182f8e2-a9ac-4759-876b-c23bd3aabd97"><![CDATA[§ 3. ]]></kuvatavNr>
+      <paragrahvPealkiri id="1f9c3860-5177-449f-aa0c-2611bee97762">Koduteenuse paketi tegevused</paragrahvPealkiri>
+      <loige id="para3lg1">
+        <loigeNr id="7e5ec959-dba2-458b-9cb6-2f03d41b9e99">1</loigeNr>
+        <kuvatavNr id="5e6022b2-18a4-4101-a20b-bbd81041f7a0"><![CDATA[(1)]]></kuvatavNr>
+        <sisuTekst id="07abae48-a499-48c1-af69-891aae70d0b5">
+          <tavatekst id="bfb8c52e-61d8-496b-b7af-2bed099ba62c">Koduteenuse paketid sisaldavad koduabi ja isikuabi teenuseid.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para3lg2">
+        <loigeNr id="628a8c25-1b24-4fe6-8fa8-d06824bee386">2</loigeNr>
+        <kuvatavNr id="a5ae94b6-f276-4db2-8e2a-1d4e740c52a0"><![CDATA[(2)]]></kuvatavNr>
+        <sisuTekst id="2f6f5860-6dcc-4784-b69e-b65cca8daca3">
+          <tavatekst id="29b497a0-3192-4c06-87d6-cdff4ff0e860">Koduabi seisneb inimese abistamises igapäevaeluks vajalikes tegevustes. Samuti abi tegevuste korraldamisel tema kodus ning asjaajamisel väljaspool kodu. Inimese abistatavad tegevused koduabis ei nõua abivajajaga füüsilist kontakti.<reavahetus/></tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para3lg3">
+        <loigeNr id="c4263c74-04ea-44ef-af06-74c73b684859">3</loigeNr>
+        <kuvatavNr id="eb67f2b5-5a9f-4904-a184-3d24c94e1556"><![CDATA[(3)]]></kuvatavNr>
+        <sisuTekst id="0435154b-4166-4679-b4c8-901f2af38753">
+          <tavatekst id="18d79747-0450-4868-b2f9-f21bc681f5a6"> Isikuabi tähendab inimese abistamist tema enesehooldusega seotud toimingute sooritamisel ja nõuab abivajajaga füüsilist kontakti.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para3lg4">
+        <loigeNr id="28abeabb-3294-4d96-a2fe-c4130a23ef7c">4</loigeNr>
+        <kuvatavNr id="e122df77-d4d9-4de1-8db7-8c7442525aa4"><![CDATA[(4)]]></kuvatavNr>
+        <sisuTekst id="cb7e5ab8-338a-48b3-8a21-c5adc11b3598">
+          <tavatekst id="e092a457-a02a-4e8e-a686-23c9a8cb6db7">Täpsed koduteenuse paketi tegevused lepitakse kokku isiku ja Hiiumaa Sotsiaalkeskuse vahel sõlmitud lepingus.</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para4">
+      <paragrahvNr id="c7babff2-d698-4b3f-8532-ea19bfbac572">4</paragrahvNr>
+      <kuvatavNr id="da87b187-1ba9-48c8-819d-e5151e12bf63"><![CDATA[§ 4. ]]></kuvatavNr>
+      <paragrahvPealkiri id="f00180e2-886e-4e4d-b61d-064be68520f2">Sotsiaalteenuste eest tasumine</paragrahvPealkiri>
+      <loige id="para4lg1">
+        <loigeNr id="ccd49c2c-3b0f-4dec-a866-82007582290b">1</loigeNr>
+        <kuvatavNr id="472064b5-9aa0-46c8-96fb-eadbefea5004"><![CDATA[(1)]]></kuvatavNr>
+        <sisuTekst id="8ae2eb26-570d-4a4b-9609-c3142862c0dd">
+          <tavatekst id="d6b79819-beb7-4198-b8c4-d4e9aedd8822">Sotsiaalteenuse eest tasutakse arve alusel.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para4lg2">
+        <loigeNr id="00065f09-b4da-4d50-8f19-8760385e91b0">2</loigeNr>
+        <kuvatavNr id="a7ba5982-493a-42f2-bcfb-e250b72c0a20"><![CDATA[(2)]]></kuvatavNr>
+        <sisuTekst id="d440ede1-25ff-451e-b8b7-bd7793dd7967">
+          <tavatekst id="978c7633-40ab-4e97-9c13-145392b823a4">Sotsiaaltransporditeenuse eest saab tasuda sularahas teenuse osutajale. Teenuse osutaja väljastab selle kohta kviitungi.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para4lg3">
+        <loigeNr id="2b3f29ac-556e-4297-b08a-6297cd085687">3</loigeNr>
+        <kuvatavNr id="28c7ab95-519c-4fd3-bcea-70548a1187af"><![CDATA[(3)]]></kuvatavNr>
+        <sisuTekst id="3dc9251d-0f4b-4d48-887a-562a547f6451">
+          <tavatekst id="a98e9e7a-dbc3-4f7d-87cd-236db9382b81">Sotsiaalvaldkonna ametniku otsusega võib mõjuval põhjusel erandkorras vähendada sotsiaalteenuse maksumust.</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para5">
+      <paragrahvNr id="430e30e1-9f3d-4e3a-8fd8-fbfc49195a73">5</paragrahvNr>
+      <kuvatavNr id="a3004e43-eea2-4295-a03b-f760a08d793c"><![CDATA[§ 5. ]]></kuvatavNr>
+      <paragrahvPealkiri id="d20306e0-4c13-4a35-867d-7b5dcc68e2c6">Määruse kehtetuks tunnistamine</paragrahvPealkiri>
+      <loige id="para5lg1">
+        <loigeNr id="0070cb51-d692-4028-a309-b619041855dd"/>
+        <kuvatavNr id="1ff61704-2812-4c8a-908d-43cad592d375"/>
+        <sisuTekst id="b99d6630-0dd5-404b-9d8d-a7e0afef8374">
+          <tavatekst id="71248c26-23b2-4892-9a03-523dc930cdf1">Hiiumaa Vallavalitsuse 19. septembri 2018. a määrus nr 8 " Sotsiaalteenuse ja -toetuse suuruse ning koduteenuse pakettide kehtestamine" tunnistatakse kehtetuks.</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para6">
+      <paragrahvNr id="d3a1ae32-d891-4530-a1ca-b6675855e3a0">6</paragrahvNr>
+      <kuvatavNr id="7d4abf26-cdc8-46a5-b00a-e7149888e059"><![CDATA[§ 6. ]]></kuvatavNr>
+      <paragrahvPealkiri id="8bcf1f82-8a69-4e0d-badd-d521e926a617">Määruse jõustumine</paragrahvPealkiri>
+      <loige id="para6lg1">
+        <loigeNr id="15f103d5-5cee-4419-922f-ed5b7a5885d2"/>
+        <kuvatavNr id="ececb3f9-33e0-4982-b764-28cd18fd353d"/>
+        <sisuTekst id="e6186a58-bf04-482f-8943-6a2a37a1be91">
+          <tavatekst id="1b1ef437-0768-43a4-9708-a3ddba0de1fc">Määrus jõustub 01. veebruaril 2024. a.</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+  </sisu>
+  <allkiri id="01f44851-7047-4830-8eb7-07a57cfa5b7c">
+    <allkiriKoht id="00620b72-ac69-4895-9316-12dd4c12f739"/>
+    <allkirjastaja id="00d5b4b5-4e50-44e7-928d-f6e132f7f419">
+      <ametinimetus id="0b5b344f-6fed-4f5b-b159-29870664f6ef">vallavanem</ametinimetus>
+      <eesnimi id="db676ac3-aceb-40ad-80bb-6f16fe216b25">Hergo</eesnimi>
+      <perekonnanimi id="442c695b-c3d3-410c-99b7-20e31391788b">Tasuja</perekonnanimi>
+    </allkirjastaja>
+  </allkiri>
+  <allkiri id="4754b17b-1964-40c6-86d0-67fefa492999">
+    <allkiriKoht id="84aa09d2-d388-4b6e-ad54-22e8beb7afc2"/>
+    <allkirjastaja id="83382c42-ef58-4e5c-b4aa-7723d984742e">
+      <ametinimetus id="970cd769-4ebe-4ebe-a30e-d987c31e5819">rahvastikuregistri- ja perekonnaseisutoimingute spetsialist vallasekretäri ülesannetes</ametinimetus>
+      <eesnimi id="072d8a33-0376-4aa6-b944-6e9ebab2280b">Riina</eesnimi>
+      <perekonnanimi id="6fe8f94f-65df-47be-8951-2911c84c65fe">Lilleõis</perekonnanimi>
+    </allkirjastaja>
+  </allkiri>
+</oigusakt>

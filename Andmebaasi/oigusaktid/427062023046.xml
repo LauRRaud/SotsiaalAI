@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="6af3cca6-496d-4586-a00d-e8d20fb83e0d" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Tartu Vallavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2023-06-22</aktikuupaev>
+  
+  
+  <aktiNr>4</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2023-06-27</avaldamineKuupaev><RTaasta>2023</RTaasta><RTartikkel>46</RTartikkel><aktViide>427062023046</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2023-07-01+03:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2023-06-26</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>427062023046</globaalID>
+ <metaandmedVersioon>5</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2023-06-26</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1056928</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+</metaandmed>
+ <aktinimi id="8fef205a-e894-47c6-934e-1e8e8fa954b6">
+  <nimi id="b921c155-c5bc-4d8a-8cf0-5a261b6d2cf3">
+   <pealkiri id="ac103f3b-ce93-4832-b3a2-53a3ee2df4c5">Üldhooldusteenuse hoolduskulude piirmäär</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="106388b7-cc56-4a4d-8a01-d04c732367c4"><preambul id="876c54c5-1921-4d46-97d7-d8f2dd6449b3">
+   <tavatekst id="1b0c1e28-35b4-431d-bc77-9fbc0a824521">Tartu Vallavolikogu 24.05.2018 määruse nr 14 „Üldhooldusteenuse osutamise kord Tartu vallas“ § 5 lg 3 sätestab, et sotsiaalhoolekande seaduse §-s 22<sup>1</sup> lg 2 sätestatud kulude tasumise piirmäära kehtestab vallavalitsus määrusega. <reavahetus/>Kohaliku omavalitsuse korralduse seaduse § 30 lg 1 p 2 ja Tartu Vallavolikogu 24.05.2018 määruse nr 14 „Üldhooldusteenuse osutamise kord Tartu vallas“ § 5 lg 3 (redaktsiooni kehtivuse algus 01.07.2023) alusel Tartu Vallavalitsus määrab:</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="627bebdf-35be-4168-9447-d5ee44ca4596">1</paragrahvNr>
+   <kuvatavNr id="18b5848b-364c-4be7-9698-88b3bed37ed8"><![CDATA[§ 1. ]]></kuvatavNr>
+      <sisuTekst id="2252bbff-73b0-4a4e-8481-5cc6326346e1">
+    <tavatekst id="a8b78561-0e3b-41bc-a305-31eb49e38707">Sotsiaalhoolekande seaduse § 22<sup>1</sup> lõikes 2 nimetatud väljaspool kodu osutatavat ööpäevaringset üldhooldusteenust vahetult osutavate hooldustöötajate ja abihooldustöötajate kulude Tartu valla poolt tasumise piirmäär on kuni 700 eurot teenusesaaja kohta kalendrikuus.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para2">
+   <paragrahvNr id="e9f16399-87e0-4377-8e32-c6087e030c5a">2</paragrahvNr>
+   <kuvatavNr id="61ab552b-8cce-4762-ac13-626f057b1a2a"><![CDATA[§ 2. ]]></kuvatavNr>
+      <sisuTekst id="21c4d930-90b2-4748-a14e-caf7148d5898">
+    <tavatekst id="a804b740-b968-4e1e-b996-0121f74c77ca">Määrus jõustub 1. juulil 2023.</tavatekst>
+   </sisuTekst>
+  </paragrahv></sisu>
+<allkiri id="78237459-9a4e-45b9-862a-af592d1d11af"><allkiriKoht id="847d4f04-98e7-4b48-bc9d-5de7b09715ae"/><allkirjastaja id="ec8411ec-af47-4182-866b-0a115ff57416"><ametinimetus id="8c448198-e230-4d22-b49a-d39609f09611">Vallavanem</ametinimetus><eesnimi id="8a96ec10-32da-48c9-a257-9119a332360f">Jarno</eesnimi><perekonnanimi id="9713dbbf-199c-43c8-8e53-454038b69ce8">Laur</perekonnanimi></allkirjastaja></allkiri><allkiri id="26a18646-9cea-428d-9e12-374f7aad1796"><allkiriKoht id="e4321bad-79f8-4ba4-87f2-5fbc8d0b09c1"/><allkirjastaja id="f1160600-63b7-4dfa-bff4-28046812853a"><ametinimetus id="075a4e45-a845-4196-9c7a-3cc5c5353ab0">Vallasekretär</ametinimetus><eesnimi id="a453d763-a485-43f5-b2eb-65974028ba80">Eve</eesnimi><perekonnanimi id="cef40bba-a48f-4ce9-85ca-319112e4dbe2">Kallas</perekonnanimi></allkirjastaja></allkiri></oigusakt>

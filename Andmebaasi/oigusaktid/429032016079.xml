@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="ae5be4b6-19f7-4766-861f-711a881933dd" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Haapsalu Linnavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2015-05-29</aktikuupaev>
+			<avaldamismarge>
+				<RTosa>RT IV</RTosa>
+				<avaldamineKuupaev>2015-06-06</avaldamineKuupaev>
+				<RTaasta>2015</RTaasta>
+				<RTartikkel>20</RTartikkel>
+				<aktViide>406062015020</aktViide>
+			</avaldamismarge>
+			<aktiNr>31</aktiNr>
+			<joustumine>2015-06-06</joustumine>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2016-03-29</avaldamineKuupaev><RTaasta>2016</RTaasta><RTartikkel>79</RTartikkel><aktViide>429032016079</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2016-04-01</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2016-03-23</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>429032016079</globaalID>
+		<metaandmedVersioon>12</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2016-03-24</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1029806</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2015-06-02</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Elvi Puda</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>7</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2016-03-23</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Marike Võime</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="ba3c9a24-e83e-4d8e-be46-2c2fe611508a">
+		<nimi id="47a4e467-4433-4b7a-b2f6-8217a0362984">
+			<pealkiri id="10dc8f17-b58e-4e83-b07e-a7d06668c9a2">Sotsiaalhoolekande alastele ja tervist edendavatele tegevustele toetuse eraldamise kord </pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="75d48f67-83ae-4f1c-ac66-95cc3ab59392">
+		<aktikuupaev id="6ecc3467-ce99-4df1-91ac-e1794e9bd918">2016-03-18</aktikuupaev>
+		<avaldamismarge id="b71f1108-1e86-4f05-be1d-a0d51e5285b1">
+			<RTosa id="38dd20b4-f823-4254-bd6c-437725b8e317">RT IV</RTosa>
+			<avaldamineKuupaev id="7fb6273e-5375-4c78-9128-fd1381082c2e">2016-03-29</avaldamineKuupaev>
+			<RTartikkel id="0631beb3-af87-4b10-9b93-bcb34cf9f11e">33</RTartikkel>
+			<aktViide id="2f0971f3-eea8-433e-8149-81442bd09267">429032016033</aktViide>
+		</avaldamismarge>
+		<joustumine id="e8d06f1a-9e30-4939-a95d-5ffeab4f5f9f">2016-04-01</joustumine>
+	</muutmismarge>
+	<sisu id="b5d1c87a-cd88-4346-a6f7-6d8d2ace3e93">
+		<preambul id="23d4064d-6dfa-42a0-9464-9cf9e46a6210">
+			<tavatekst id="9d58a6ee-e4e7-4c5a-a8df-fb8f0e28af2f">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lg 1 p 5 alusel.</tavatekst>
+			<muutmismarge id="6351034b-af1c-44b7-aa84-33f7af963c08">
+				<avaldamismarge id="e51fba66-865c-4559-a32c-a94d85e59ad9">
+					<RTosa id="6faa55fe-5371-4579-9f5d-aef0c995b01a">RT IV</RTosa>
+					<avaldamineKuupaev id="94d538fb-7269-4448-81f9-0a6a2de63131">2016-03-29</avaldamineKuupaev>
+					<RTartikkel id="9ef19319-db90-4c43-a731-3af71c5bdb40">33</RTartikkel>
+					<aktViide id="acf74c08-5f1a-41da-9af9-04f282f5741c">429032016033</aktViide>
+				</avaldamismarge>
+				<joustumine id="69c0c760-3f11-4d9a-8f5a-f7dc7ab42665">2016-04-01</joustumine>
+			</muutmismarge>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="ee0c351d-e360-4249-a214-5a9cd2c16384">1</paragrahvNr>
+			<kuvatavNr id="a98e1469-b05f-4d2c-9d90-3305c2531448"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="4570a05d-014f-4511-9809-43f8d3d41c2e">Üldsätted</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="6dee57d2-eefc-43c2-ba21-d375a9863208">1</loigeNr>
+				<kuvatavNr id="821c4f16-db1d-485b-af40-34051bfc4b62"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="875fddbf-e27f-4bef-9b88-3f169be6d4e4">
+					<tavatekst id="4ad587bf-2dbc-4d50-b00a-1eebf87f1937">Haapsalu linna eelarvest sotsiaalhoolekande alastele ja tervist edendavatele tegevustele toetuste eraldamise kord (Kord) reguleerib Haapsalu linna eelarvest sotsiaalvaldkonnas tegutsevatele juriidilistele isikutele ja füüsilistele isikutele toetuste taotlemise, taotluste läbivaatamise, toetuste eraldamise ning toetuste kasutamise üle aruandluse ja järelevalve kehtestamise korda.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg2">
+				<loigeNr id="85eda4b8-2a82-4345-b3fb-5650d300b4c8">2</loigeNr>
+				<kuvatavNr id="4bdaf24e-42f0-42ff-830a-53b9ff112f41"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="ca950afa-1871-4c63-aa8f-6d113b051949">
+					<tavatekst id="bf508236-4a20-4031-9374-23e00fee5ea9"> Toetus käesoleva Korras mõistes on esitatud tingimustele vastav linnaeelarveline eraldis sotsiaalsete erivajadusega isikute gruppide toimetulekuvõime tõstmisele, elukvaliteedi säilimisele ning inimese tervist väärtustava ja soodustava käitumise ja elulaadi kujundamisele suunatud tegevuste elluviimiseks.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg3">
+				<loigeNr id="dec6628e-7bb4-4b47-89a2-f19977947cd4">3</loigeNr>
+				<kuvatavNr id="88a34be3-afe1-415e-b750-adcc4cee69a4"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="3c8dcc61-9e39-4374-b2f0-7e7a3cd1aba5">
+					<tavatekst id="7dbd28c1-260c-4b61-8188-6bb492c66a65"> Toetuse eraldamise eesmärgiks on linnaelanike toimetuleku soodustamine ja sotsiaalse turvalisuse suurendamine ning tervisekäitumise edendamine Haapsalu linnas.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg4">
+				<loigeNr id="c2f035a3-df85-4380-877b-f5f12e404e7d">4</loigeNr>
+				<kuvatavNr id="98649d95-6c2d-42d6-bd12-73f7733933a0"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="8126aabd-09bb-47e7-a974-2e7fc1106c73">
+					<tavatekst id="68b31c16-242f-49c1-92b2-ca5dda061736"> Erivajadusega isikute grupid on käesoleva Korra mõistes elanikkonna grupid, kelle igapäevaeluga toimetulemist on nende tervislikust seisundist, east, puudest või muudest asjaoludest tingituna vajalik pidevalt või lühiajaliselt toetada sotsiaalhoolekande alaste meetmetega. </tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="531bea61-c739-49b7-bdf4-59d727342866">2</paragrahvNr>
+			<kuvatavNr id="3dfde1df-dfb4-4385-869b-7dd4eb634d20"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="e3d9b13a-df15-4322-b457-a6e19e6033ed">Toetuse taotlemine </paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="359fb30a-e6df-48b4-bae9-385a26b47c48">1</loigeNr>
+				<kuvatavNr id="9a9f006e-7b8e-485d-a6bb-4fd05ff97ca4"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="218d40c4-9b65-4e07-a352-36a1abe81859">
+					<tavatekst id="d2bff6c4-8c5a-47df-8bdd-10cac368d4c3">Toetuse taotlemiseks esitab taotleja vormikohase avalduse (lisa) Haapsalu Linnavalitsuse sotsiaal- ja tervishoiuosakonnale.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg2">
+				<loigeNr id="3b524123-4648-4ad4-bc55-45f4de34e07a">2</loigeNr>
+				<kuvatavNr id="6836dfde-7f17-407e-b746-50f5605a341e"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="9cfe183a-419d-43a8-a26c-02e261a6b67a">
+					<tavatekst id="a6a7c7a5-1742-4ccd-89da-57d89cf3b9fc"> Taotluses märgitakse ära tegevuse eesmärk, sihtgrupp, eeldatav tulemus, kasusaajate arv, tegevuse kirjeldus, tegevuse eelarve, omaosalus ja kaasfinantseerijad.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg3">
+				<loigeNr id="d118d301-f981-4ba7-abd9-8d6e7b4a3525">3</loigeNr>
+				<kuvatavNr id="ee1185f2-feeb-4790-bf07-6f0c54850eea"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="a9fbd29d-d352-45dc-8b3d-b5add0b6cd90">
+					<tavatekst id="80648402-dde6-40ae-9f4f-5f37df504cbd"> Puuduste ilmnemisel taotluses teavitab Haapsalu Linnavalitsuse sotsiaal- ja tervishoiuosakond sellest koheselt taotlejat ning annab puuduste kõrvaldamiseks tähtaja, mis ei tohi ületada 10 tööpäeva. Kui taotleja ei kõrvalda puudusi nimetatud tähtajaks, lõpetatakse nõuetele mittevastava taotluse menetlemine informeerides sellest ka taotlejat. </tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg4">
+				<loigeNr id="c3278fc7-13e8-43e8-94fe-ac30fd46d74d">4</loigeNr>
+				<kuvatavNr id="b383c976-489b-48be-93e3-012d68177e66"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="3b2cafa7-8541-4613-909a-68d6393cf8a6">
+					<tavatekst id="333a1414-fa09-467c-b165-6d36c94cbadb"> Nõuetele vastavad taotlused esitatakse läbivaatamiseks linnavalitsuse sotsiaalkomisjonile. </tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="371be944-b02c-4f49-a92c-125f85d7afe8">3</paragrahvNr>
+			<kuvatavNr id="43db47c9-07fc-4362-8c4e-5219ae1c284a"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="8e69033d-0d37-480d-8256-22e6e7043534">Taotluste läbivaatamine ja eraldamine</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="f32b8c8d-6460-4024-93fd-e8790d7c8bc8">1</loigeNr>
+				<kuvatavNr id="250bb310-ee9a-4b6b-93c5-29bc4e236a24"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="26541ce5-90cc-457f-aa30-a44f86a942d5">
+					<tavatekst id="e641fbbe-4f7c-4455-bb36-470d88f00fb3">Taotluste läbivaatamisel lähtub sotsiaalkomisjon järgmistest tingimustest: </tavatekst>
+				</sisuTekst>
+				<alampunkt id="para3lg1p1">
+					<alampunktNr id="02fb4e33-643a-4009-bfb2-2a62e93138d6">1</alampunktNr>
+					<kuvatavNr id="0ded911a-cdfa-4825-bf50-d074889dc432"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="dd5ee16c-7ca2-4ec5-bbe0-033afb5237f7">
+						<tavatekst id="9768cda6-609f-4bec-ae57-0daf9c031031">kavandatavad tegevused viiakse ellu jooksval eelarveaastal; </tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg1p2">
+					<alampunktNr id="168324e2-6f31-4974-b86d-3f97fab5638f">2</alampunktNr>
+					<kuvatavNr id="c66b8c44-0023-45df-aebb-5a7f69bc5954"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="fe54f713-7316-49ea-8923-2b4845fc497f">
+						<tavatekst id="532dc31f-88c8-4b09-b3fe-e44b052d7ba1">tegevused aitavad kaasa erivajadusega linnaelanike toimetuleku parandamisele ja sotsiaalse kaasatuse suurendamisele või tervise käitumise edendamisele. </tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para3lg2">
+				<loigeNr id="3a6b39be-6a51-41ed-bed1-cf688667e9e5">2</loigeNr>
+				<kuvatavNr id="36ad9204-cfe6-4cd4-9cf9-2de1ea5d3b71"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="051099cf-2551-426b-b095-3f3e6e100d01">
+					<tavatekst id="d878239d-d72d-4f44-8d46-5aa90c2d200d"> Sotsiaalkomisjon vaatab taotlused läbi ja teeb otsuse taotlejatele raha eraldamiseks ja eraldatava summa suuruse osas hiljemalt 30 päeva jooksul arvates nõuetele vastava taotluse saamise päevast. Keelduva otsuse korral teavitatakse sellest taotlejat kirjalikult viie (5) tööpäeva jooksul peale otsuse tegemist.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg3">
+				<loigeNr id="21887704-0627-492b-bb74-0cc03dcd3e02">3</loigeNr>
+				<kuvatavNr id="75892d6b-6f84-47ab-9409-94550c471870"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="540eb5bb-04f3-4f43-8ce8-9812615a3b44">
+					<tavatekst id="901bc4ea-6ee4-4e3e-a312-7abc12755e87"> Sotsiaalkomisjon võib rahaliste vahendite ebapiisavuse korral eraldada toetusena taotletud summast väiksema summa olles eelnevalt läbi rääkinud toetuse taotlejaga.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg4">
+				<loigeNr id="20bf235d-58ae-4104-8995-9be89950c6cf">4</loigeNr>
+				<kuvatavNr id="ceeeafe4-5c34-4a81-84a2-190cb88d2abe"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="0c54cb84-728d-41db-8866-11ffcfa375c7">
+					<tavatekst id="fa6a9c07-d2c7-4b24-ab01-b3bff6df8cb0"> Sotsiaalkomisjon võib taotluse jätta rahuldamata juhul, kui taotluses nimetatud tegevus ei täida käesoleva korra eesmärke, taotlejal puudub kvalifikatsioon tegevuste läbiviimiseks või Haapsalu linna eelarves puuduvad tegevuse läbiviimiseks vajalikud rahalised vahendid. </tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg5">
+				<loigeNr id="4fa73403-f72f-43cc-97aa-7043cf5d7365">5</loigeNr>
+				<kuvatavNr id="404e64ac-e2f3-45ad-b7cf-911bbfb281ed"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="3eba01e2-0cd9-4cb3-b473-213ee663fca8">
+					<tavatekst id="b3c3f95e-e2d5-4236-a5d0-846d501dabd6"> Sotsiaalkomisjoni koosoleku protokoll kinnitatakse linnavalitsuse korraldusega. </tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg6">
+				<loigeNr id="4c2a3831-174a-4584-a632-962b2ff29144">6</loigeNr>
+				<kuvatavNr id="38fb0092-aaeb-49fd-944e-d861968034bf"><![CDATA[(6)]]></kuvatavNr>
+				<sisuTekst id="a8b1a066-7b1b-4c83-9738-c33ddd78dbf2">
+					<tavatekst id="481a7612-3197-46b2-88a8-5f3383029fc5"> Toetuse eraldamisest teavitab sotsiaal- ja tervishoiuosakond taotlejat kirjalikult viie (5) tööpäeva jooksul peale linnavalitsuse korralduse andmist. </tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg7">
+				<loigeNr id="557df50e-d153-48e0-ba52-dca91d662c01">7</loigeNr>
+				<kuvatavNr id="9aeaf8aa-0ccf-488c-97e1-3bbfabecd9c2"><![CDATA[(7)]]></kuvatavNr>
+				<sisuTekst id="8cc87d61-af4d-44f3-a9c1-5bd9cad80283">
+					<tavatekst id="4263f964-38b3-46b1-92f6-13770b35c804">Toetuse saajaga sõlmitakse toetuse eraldamise leping viie (5) tööpäeva jooksul arvates linnavalitsuse korralduse jõustumise päevast. Lepingus sätestatakse: </tavatekst>
+				</sisuTekst>
+				<alampunkt id="para3lg7p1">
+					<alampunktNr id="018e0e7d-723d-4dce-87d2-30490649573e">1</alampunktNr>
+					<kuvatavNr id="945df620-245d-4388-98c8-534eb2fa657a"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="f3eabbfc-246a-4618-abfb-dfa38eb263c5">
+						<tavatekst id="0477a277-7371-4688-8304-1e141e19ac14"> toetuse sihtotstarve, sh ka tegevuse kirjeldus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg7p2">
+					<alampunktNr id="3633a10f-743e-4601-8213-db53bc443f89">2</alampunktNr>
+					<kuvatavNr id="e9dbfcc8-7bc0-408d-952f-60a371053825"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="f6bc99f8-0d3a-4751-9a9c-93c79875ab9f">
+						<tavatekst id="49401245-c47a-4737-b26a-2d02797d1163"> toetuse maksmise tähtajad ja toetuse üleandmise viis; </tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg7p3">
+					<alampunktNr id="81989520-4e7f-4d7d-bbe8-73cfbdde5037">3</alampunktNr>
+					<kuvatavNr id="a002a072-09c4-4df2-9bcb-3de793d59591"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="138f6199-7303-49e1-aaa1-92db9009d105">
+						<tavatekst id="9b04028f-86aa-42ee-879f-cc47f0364fe3"> toetuse saaja kohustused toetuse sihipäraseks kasutamiseks; </tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg7p4">
+					<alampunktNr id="938f0857-2f00-4bb1-a3e7-e3d16fab742f">4</alampunktNr>
+					<kuvatavNr id="3f6c03e2-1a6c-4eba-ad5d-fa314a15c21b"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="edf82e3c-2eb2-4978-aad7-571d53964768">
+						<tavatekst id="a8586c33-ecdf-4461-86ce-c14a5fbfedcd"> linnavalitsuse sotsiaal- ja tervishoiuosakonna õigused toetuse sihipärase kasutamise kontrollimisel; </tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg7p5">
+					<alampunktNr id="efb806eb-8d4f-4461-90b6-af1328031906">5</alampunktNr>
+					<kuvatavNr id="c33bb652-f4eb-4990-8085-6f96c341ce9b"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="b1475efe-bc8f-4b3f-834d-04b997cf9489">
+						<tavatekst id="962fe7b6-05a7-491d-abe6-0efcc093ace0"> sanktsioonid lepingu rikkumise korral;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg7p6">
+					<alampunktNr id="624cf44d-345c-4841-bc84-9862a2203eab">6</alampunktNr>
+					<kuvatavNr id="cb3d17d6-8955-4060-8209-02990383009a"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="d6b46bda-a55a-4cc4-9da2-cdae109e87fe">
+						<tavatekst id="608ad6bc-20db-44ee-9f03-a113f32d2354"> aruandluse kord. </tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para3lg8">
+				<loigeNr id="7a0f3bb7-bdcc-4ac3-aaaf-3d11545a5690">8</loigeNr>
+				<kuvatavNr id="476bbaff-4322-43e1-9d4c-f4bc8e699965"><![CDATA[(8)]]></kuvatavNr>
+				<sisuTekst id="75245045-835f-48b7-9d40-0155f4218e1b">
+					<tavatekst id="d20ab41b-0cf0-4675-9d1e-6c8c4d320c97"> Toetust ei eraldata taotlejale, kes on eelnevalt toetuse saamise korral rikkunud käesolevast korrast tulenevaid nõudeid või linnavalitsuse ja toetuse saaja vahel sõlmitud lepingu tingimusi. </tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="0c72ddfe-ce66-46c1-9b9a-f6d085712bd1">4</paragrahvNr>
+			<kuvatavNr id="0855f30d-9bcc-4c3e-996f-60c90e886d0f"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="592a6ca7-9251-4f14-ac96-38bbbb6718e1">Aruandlus </paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="a41cef72-9748-4c19-b432-a0b122c577f2">1</loigeNr>
+				<kuvatavNr id="04c17311-5669-4ab5-a58b-ba014698c9a0"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="ff4250f9-5241-465d-bc61-a6458a356472">
+					<tavatekst id="b5c2010e-d1f9-4d22-ae6b-15fad1b792c9">Toetuse saaja esitab sotsiaal- ja tervishoiuosakonnale aruande lepinguga fikseeritud korra kohaselt. Sotsiaal- ja tervishoiuosakonnal on õigus vajadusel kontrollida toetuse kasutamise sihipärasust ning nõuda aruande juurde täiendavaid dokumente ja seletusi. </tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg2">
+				<loigeNr id="6cf3ba2c-faa8-4bce-a758-4102e88ec860">2</loigeNr>
+				<kuvatavNr id="4edc2849-2136-4275-b16d-c63c6e74d22c"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="724d5028-3428-4dca-9928-6c57d0e0c5bc">
+					<tavatekst id="48e52b4e-82cb-4c64-9e7d-02287efc183e"> Kui toetuse saaja ei esita õigeaegselt aruandeid ega sotsiaal- ja tervishoiuosakonna poolt nõutud muid asjaomaseid dokumente, on linnavalitsusel õigus leping lõpetada ja toetus tagasi nõuda.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg3">
+				<loigeNr id="b74ce1b2-e8a3-4a9e-9fb6-cd91cd288864">3</loigeNr>
+				<kuvatavNr id="9e594ddb-0f88-4522-acef-a36ee54c8a98"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="3e7c1448-248f-4c44-9704-5f53c218e541">
+					<tavatekst id="e54f2e2e-92c1-4660-9abb-89e59da8e88e">Linnavalitsusel on õigus nõuda taotlejalt toetus tagasi ka juhul kui:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para4lg3p1">
+					<alampunktNr id="99738841-4759-4f27-ad0f-3e7f325fad1e">1</alampunktNr>
+					<kuvatavNr id="29d15f06-981c-4ac0-ae33-93d73169976f"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="6648b7f0-b4b9-40ed-ab3d-d923754fa25c">
+						<tavatekst id="1f2fcbbe-3c94-4851-8ad2-59e0af08bf9b"> toetust ei ole kasutatud sihtotstarbeliselt; </tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg3p2">
+					<alampunktNr id="94252ac4-9dea-4d3d-b5ba-8d96f4979d53">2</alampunktNr>
+					<kuvatavNr id="b62e87fd-9913-416d-a410-53eb6155f3b2"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="8af7e48e-7228-45d2-8e78-c029549afca7">
+						<tavatekst id="3d34f945-17ee-4146-a8b8-88ed61f68fc3">toetuse taotlemisel on esitatud valeandmeid. </tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para4lg4">
+				<loigeNr id="a435a115-0a4c-4e76-bf32-ac492b96a45e">4</loigeNr>
+				<kuvatavNr id="3764e778-d019-40e8-8f5b-f4f2d4be720e"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="f4f75bb2-8d1b-40a8-a9d9-14fa2f6f094c">
+					<tavatekst id="e45f334b-c6f0-47d2-aa21-a34450031311"> Toetuse sihipärase kasutamise kontrollimise eest vastutab linnavalitsuse sotsiaal- ja tervishoiuosakond. </tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="d5feb3a7-8dc5-4c1a-89ab-5e85680e9255">5</paragrahvNr>
+			<kuvatavNr id="8e77c849-11a4-4415-b2e1-e579e2a47b0b"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="460c2356-d396-44a8-a45b-6ca1cac1986e">Rakendamine </paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="afaa5366-8e27-4b05-a5a3-79b06e6b0244"/>
+				<kuvatavNr id="592fb00d-d59e-450d-9213-1c186f6b4215"/>
+				<sisuTekst id="d2f84e31-527a-441e-8517-bcdc9bee611b">
+					<tavatekst id="1bf9fee1-838d-4eea-89f2-339f095e3efc">Määrus jõustub kolmandal päeval pärast avaldamist Riigi Teatajas. </tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+	<lisaViide id="9b4091c6-654b-4373-9e96-5b7e9e4f15c4">
+		<lisaViit id="9db7f951-c9b4-4a89-a54e-085e6cdd6b12">
+			<sisuTekst id="020ffb96-1b6c-409f-bdf9-93ef28b08def">
+				<fail failKuvamine="viitena" failNimi="taotlus.pdf" failVorming="pdf" id="c195da15-fefa-42a5-aa04-8e6862d5ffea">JVBERi0xLjQKJcfsj6IKNCAwIG9iago8PC9MaW5lYXJpemVkIDEvTCA2MjcwL0hbIDM0MDIgMTM4
+XS9PIDYvRSAzNDAyL04gMS9UIDYxNDk+PgplbmRvYmoKICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAp4cmVmCjQgMTIKMDAwMDAwMDAxNSAwMDAw
+MCBuIAowMDAwMDAwNTQ4IDAwMDAwIG4gCjAwMDAwMDA2NjEgMDAwMDAgbiAKMDAwMDAwMDgyMSAw
+MDAwMCBuIAowMDAwMDAzMDM0IDAwMDAwIG4gCjAwMDAwMDMwNTQgMDAwMDAgbiAKMDAwMDAwMzA5
+NSAwMDAwMCBuIAowMDAwMDAzMTc4IDAwMDAwIG4gCjAwMDAwMDMyNDQgMDAwMDAgbiAKMDAwMDAw
+MzI3NCAwMDAwMCBuIAowMDAwMDAzMzE1IDAwMDAwIG4gCjAwMDAwMDM0MDIgMDAwMDAgbiAKCnRy
+YWlsZXIKPDwvU2l6ZSAxNi9JbmZvIDEgMCBSL1Jvb3QgNSAwIFIvSURbPDIxOTM0MDk3NzIzQzlE
+QTI1MzQxQTE4ODc3QkVCMzQ5PjwyMTkzNDA5NzcyM0M5REEyNTM0MUExODg3N0JFQjM0OT5dL1By
+ZXYgNjE0MT4+CnN0YXJ0eHJlZg0KMAolJUVPRgogICAgIAo1IDAgb2JqCjw8L1R5cGUgL0NhdGFs
+b2cgL1BhZ2VzIDIgMCBSCi9QYWdlTGF5b3V0L1NpbmdsZVBhZ2UKL1BhZ2VNb2RlL1VzZU5vbmUK
+L1BhZ2UgMQovTWV0YWRhdGEgMyAwIFIKPj4KZW5kb2JqCjYgMCBvYmoKPDwvVHlwZS9QYWdlL01l
+ZGlhQm94IFswIDAgNTk1IDg0Ml0KL1JvdGF0ZSAwL1BhcmVudCAyIDAgUgovUmVzb3VyY2VzPDwv
+UHJvY1NldFsvUERGIC9UZXh0XQovRXh0R1N0YXRlIDEyIDAgUgovRm9udCAxMyAwIFIKPj4KL0Nv
+bnRlbnRzIDcgMCBSCj4+CmVuZG9iago3IDAgb2JqCjw8L0xlbmd0aCA4IDAgUi9GaWx0ZXIgL0Zs
+YXRlRGVjb2RlPj4Kc3RyZWFtCnic7V3Ljts2FN37K7SrXdQMnyLZXQsUSNugaFPvii6CPCbzynOS
+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
+ghIgmk+cgPcnEnGusvfP+Iy8f2rY8doSI8GcHVB/7xb/dZPi2v12q/1624K1PhDuNQYz+sHtei/D
+Pz2PHH4SXnF1h12FYZPekq+9YEEojf0gProobGzD1l338q5r+/78oQAPco/+VhIC/a3FwOb2GRLl
+tIgvMdxsIqYQIVt3faz1lBMyrX3Nrx3BXtJk/v2m+adKn7qtWWEeFFtk+1+nygrtL8ECasq4V9x1
+HmFCau6J68gnBeLeJPtYhVVoD61mIBz9tmW/50DL3gL1meBJ4JilJFTuqq2gFGbC2p9s7N3BR7Qa
+x1Ks9oHp9g9bi7kJTlVhfuYvCpQNKjnDScJYOCKsv8f9LkLgpyoJhJifNos/zN//Ac/BIsVlbmRz
+dHJlYW0KZW5kb2JqCjggMCBvYmoKMjE0MwplbmRvYmoKOSAwIG9iago8PC9UeXBlL0V4dEdTdGF0
+ZQovT1BNIDE+PmVuZG9iagoxMCAwIG9iago8PC9CYXNlRm9udC9UaW1lcy1Sb21hbi9UeXBlL0Zv
+bnQKL0VuY29kaW5nIDE0IDAgUi9TdWJ0eXBlL1R5cGUxPj4KZW5kb2JqCjExIDAgb2JqCjw8L0Jh
+c2VGb250L1RpbWVzLUJvbGQvVHlwZS9Gb250Ci9TdWJ0eXBlL1R5cGUxPj4KZW5kb2JqCjEyIDAg
+b2JqCjw8L1I3CjkgMCBSPj4KZW5kb2JqCjEzIDAgb2JqCjw8L1I4CjEwIDAgUi9SOQoxMSAwIFI+
+PgplbmRvYmoKMTQgMCBvYmoKPDwvVHlwZS9FbmNvZGluZy9EaWZmZXJlbmNlc1sKMTMzL2VsbGlw
+c2lzCjIyOC9hZGllcmVzaXMKMjQ1L290aWxkZV0+PgplbmRvYmoKMTUgMCBvYmoKPDwvTGVuZ3Ro
+ICAgICAgICAgNjcKL1MgICAgICAgICAzNj4+CnN0cmVhbQoAAAAAAAAClQABAAAAAAABAAADNQAB
+AAAIpQABAAAAAQABAAEAAAAAAAAAAAAAAAkAAAAJAAAAAQAAAAAAAAABAAAACmVuZHN0cmVhbQpl
+bmRvYmoKMSAwIG9iago8PC9Qcm9kdWNlcihcMzc2XDM3N1wwMDBQXDAwMERcMDAwRlwwMDBDXDAw
+MHJcMDAwZVwwMDBhXDAwMHRcMDAwb1wwMDByXDAwMCBcMDAwMlwwMDAuXDAwMDBcMDAwLlwwMDAy
+XDAwMC5cMDAwMCkKL0NyZWF0aW9uRGF0ZShEOjIwMTUwNjAyMTUyNTI5KzAzJzAwJykKL01vZERh
+dGUoRDoyMDE1MDYwMjE1MjUyOSswMycwMCcpCi9UaXRsZShcMzc2XDM3N1wwMDBSXDAwMGFcMDAw
+aFwwMDBhXDAwMGxcMDAwaVwwMDBzXDAwMGVcMDAwIFwwMDB0XDAwMG9cMDAwZVwwMDB0XDAwMHVc
+MDAwc1wwMDBlXDAwMCBcMDAwdFwwMDBhXDAwMG9cMDAwdFwwMDBsXDAwMHVcMDAwc1wwMDAgXDAw
+MHNcMDAwb1wwMDB0XDAwMHNcMDAwaVwwMDBhXDAwMGFcMDAwbFwwMDBoXDAwMG9cMDAwb1wwMDBs
+XDAwMGVcMDAwa1wwMDBhXDAwMG5cMDAwZFwwMDBlXDAwMCBcMDAwYVwwMDBsXDAwMGFcMDAwc1ww
+MDB0XDAwMGVcMDAwbFwwMDBlXDAwMCBcMDAwalwwMDBhXDAwMCBcMDAwdFwwMDBlXDAwMHJcMDAw
+dlwwMDBpXDAwMHNcMDAwdFwwMDAgXDAwMGVcMDAwZFwwMDBlXDAwMG5cMDAwZFwwMDBhXDAwMHZc
+MDAwYVwwMDB0XDAwMGVcMDAwbFwwMDBlXDAwMCBcMDAwdFwwMDBlXDAwMGdcMDAwZVwwMDB2XDAw
+MHVcMDAwc1wwMDB0XDAwMGVcMDAwbFwwMDBlKQovQXV0aG9yKFwzNzZcMzc3XDAwMGVcMDAwbFww
+MDB2XDAwMGkpCi9TdWJqZWN0KCkKL0tleXdvcmRzKCkKL0NyZWF0b3IoXDM3NlwzNzdcMDAwUFww
+MDBEXDAwMEZcMDAwQ1wwMDByXDAwMGVcMDAwYVwwMDB0XDAwMG9cMDAwclwwMDAgXDAwMDJcMDAw
+LlwwMDAwXDAwMC5cMDAwMlwwMDAuXDAwMDApPj5lbmRvYmoKMiAwIG9iago8PCAvVHlwZSAvUGFn
+ZXMgL0tpZHMgWwo2IDAgUgpdIC9Db3VudCAxCj4+CmVuZG9iagozIDAgb2JqCjw8L1R5cGUvTWV0
+YWRhdGEKL1N1YnR5cGUvWE1ML0xlbmd0aCAxNjM4Pj5zdHJlYW0KPD94cGFja2V0IGJlZ2luPSfv
+u78nIGlkPSdXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQnPz4KPD9hZG9iZS14YXAtZmlsdGVycyBl
+c2M9IkNSTEYiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSdhZG9iZTpuczptZXRhLycgeDp4bXB0az0n
+WE1QIHRvb2xraXQgMi45LjEtMTMsIGZyYW1ld29yayAxLjYnPgo8cmRmOlJERiB4bWxuczpyZGY9
+J2h0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMnIHhtbG5zOmlYPSdo
+dHRwOi8vbnMuYWRvYmUuY29tL2lYLzEuMC8nPgo8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0n
+dXVpZDpmNDNkY2YzZi0wYjdkLTExZTUtMDAwMC1lMGY2MDYxZWY1NzcnIHhtbG5zOnBkZj0naHR0
+cDovL25zLmFkb2JlLmNvbS9wZGYvMS4zLyc+PHBkZjpQcm9kdWNlcj5QREZDcmVhdG9yIDIuMC4y
+LjA8L3BkZjpQcm9kdWNlcj4KPHBkZjpLZXl3b3Jkcz48L3BkZjpLZXl3b3Jkcz4KPC9yZGY6RGVz
+Y3JpcHRpb24+CjxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSd1dWlkOmY0M2RjZjNmLTBiN2Qt
+MTFlNS0wMDAwLWUwZjYwNjFlZjU3NycgeG1sbnM6eG1wPSdodHRwOi8vbnMuYWRvYmUuY29tL3hh
+cC8xLjAvJz48eG1wOk1vZGlmeURhdGU+MjAxNS0wNi0wMlQxNToyNToyOSswMzowMDwveG1wOk1v
+ZGlmeURhdGU+Cjx4bXA6Q3JlYXRlRGF0ZT4yMDE1LTA2LTAyVDE1OjI1OjI5KzAzOjAwPC94bXA6
+Q3JlYXRlRGF0ZT4KPHhtcDpDcmVhdG9yVG9vbD5QREZDcmVhdG9yIDIuMC4yLjA8L3htcDpDcmVh
+dG9yVG9vbD48L3JkZjpEZXNjcmlwdGlvbj4KPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9J3V1
+aWQ6ZjQzZGNmM2YtMGI3ZC0xMWU1LTAwMDAtZTBmNjA2MWVmNTc3JyB4bWxuczp4YXBNTT0naHR0
+cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLycgeGFwTU06RG9jdW1lbnRJRD0ndXVpZDpmNDNk
+Y2YzZi0wYjdkLTExZTUtMDAwMC1lMGY2MDYxZWY1NzcnLz4KPHJkZjpEZXNjcmlwdGlvbiByZGY6
+YWJvdXQ9J3V1aWQ6ZjQzZGNmM2YtMGI3ZC0xMWU1LTAwMDAtZTBmNjA2MWVmNTc3JyB4bWxuczpk
+Yz0naHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8nIGRjOmZvcm1hdD0nYXBwbGljYXRp
+b24vcGRmJz48ZGM6dGl0bGU+PHJkZjpBbHQ+PHJkZjpsaSB4bWw6bGFuZz0neC1kZWZhdWx0Jz5S
+YWhhbGlzZSB0b2V0dXNlIHRhb3RsdXMgc290c2lhYWxob29sZWthbmRlIGFsYXN0ZWxlIGphIHRl
+cnZpc3QgZWRlbmRhdmF0ZWxlIHRlZ2V2dXN0ZWxlPC9yZGY6bGk+PC9yZGY6QWx0PjwvZGM6dGl0
+bGU+PGRjOmNyZWF0b3I+PHJkZjpTZXE+PHJkZjpsaT5lbHZpPC9yZGY6bGk+PC9yZGY6U2VxPjwv
+ZGM6Y3JlYXRvcj48ZGM6ZGVzY3JpcHRpb24+PHJkZjpBbHQ+PHJkZjpsaSB4bWw6bGFuZz0neC1k
+ZWZhdWx0Jz48L3JkZjpsaT48L3JkZjpBbHQ+PC9kYzpkZXNjcmlwdGlvbj48L3JkZjpEZXNjcmlw
+dGlvbj4KPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgIAo8P3hwYWNrZXQgZW5kPSd3Jz8+CmVuZHN0cmVhbQplbmRvYmoKeHJlZgowIDQKMDAwMDAw
+MDAwMCA2NTUzNSBmIAowMDAwMDAzNTQwIDAwMDAwIG4gCjAwMDAwMDQzNjggMDAwMDAgbiAKMDAw
+MDAwNDQyNyAwMDAwMCBuIAp0cmFpbGVyCjw8L1NpemUgND4+CnN0YXJ0eHJlZgoxNDYKJSVFT0YK</fail>
+				<tavatekst id="e33ae644-7200-46b1-88af-2248ca2d98bc">Lisa</tavatekst>
+			</sisuTekst>
+		</lisaViit>
+		<lisaPealkiri id="8a13466e-a0fd-4e4c-a5fa-56ca30dede49">
+			<lisaNimi id="ddd20bae-3722-442c-a2fa-bfbd48b70629">Rahalise toetuse taotlus sotsiaalhoolekande alastele ja tervist edendavatele tegevustele</lisaNimi>
+		</lisaPealkiri>
+	</lisaViide>
+</oigusakt>

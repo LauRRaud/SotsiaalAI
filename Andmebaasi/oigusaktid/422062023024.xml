@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="37f956ba-22fc-4aa5-8549-af28ccdfbaf5" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Maardu Linnavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2023-06-20</aktikuupaev>
+  
+  <joustumine>2023-07-01</joustumine>
+  <aktiNr>43</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2023-06-22</avaldamineKuupaev><RTaasta>2023</RTaasta><RTartikkel>24</RTartikkel><aktViide>422062023024</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2023-07-01+03:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2023-06-20</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>422062023024</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2023-06-21</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1056858</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2023-06-16</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Natalja  Gorbunova</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="40dee9be-6845-458b-904e-35aaa7d478c3">
+  <nimi id="7d5712c1-1a3e-4043-bd88-ded4ac7a5544">
+   <pealkiri id="3b14a6cc-fb65-4daf-b8fc-27c882e461e3">Üldhooldusteenuse osutamise kord</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="5af627f9-d5cb-4013-8101-f375b1ef6991"><preambul id="561d218d-3889-4e14-bdf5-cb935193625e">
+   <tavatekst id="adb3f520-c1a4-4036-8730-891c252b5efa">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 p 5, sotsiaalhoolekande seaduse § 14 lõike 1, § 20 ja § 22<sup>1</sup> alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="689697c8-2c70-4e8f-93fa-8999dd30a779">1</paragrahvNr>
+   <kuvatavNr id="43ad91d4-c386-4367-81d6-2136a8bb0fb9"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="d8fde013-af78-4998-98a4-9a9c45c472f9">Üldsätted</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="6a0a46d0-0bd4-456c-ae01-0e4bf1d27d31">1</loigeNr>
+   <kuvatavNr id="0f406dfe-6650-4eec-887a-4b5d1da8a2de"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="7915df33-c56a-4d62-a600-2f6892af8a99">
+    <tavatekst id="2d07f824-f355-4dbf-890b-53dd3d36fd34"> Määrus reguleerib Maardu linna eelarvest rahastatava väljaspool kodu osutatava üldhooldusteenuse osutamise korda ja tingimusi.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg2">
+   <loigeNr id="bbf90161-6774-45e3-86ba-1366421b2212">2</loigeNr>
+   <kuvatavNr id="3be747dd-abba-45b8-8f99-0b5e8facd306"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="211646db-9301-46e9-ac0a-af88cdf7298a">
+    <tavatekst id="b36dde66-41a5-48fe-9d9d-10348b4950ee"> Väljaspool isiku kodu osutatavat üldhooldusteenust on õigus saada täisealisel isikul, kelle rahvastikuregistrisse kantud elukoht on Maardu linnas ja kes terviseseisundist, tegevusvõimest või elukeskkonnast tulenevatel põhjustel ei suuda kodustes tingimustes ajutiselt või püsivalt iseseisvalt toime tulla ja kelle toimetulekut pole võimalik tagada mõne muu sotsiaalhoolekandelise abi toel.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="6f81f7e6-3cc2-4105-af04-a2583c447c6f">2</paragrahvNr>
+   <kuvatavNr id="9b49f06d-e52b-4aba-9869-bad44204fac2"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="ef69a6ad-bd40-45ec-9f3d-393dfbb8531e">Mõisted</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="ea84bc05-302d-403d-8ab2-f882646201f1">1</loigeNr>
+   <kuvatavNr id="5b52a600-3933-4fe7-baf9-2c63715ef1f7"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="6f0046fc-15cb-4b1f-bd72-7a66e9f39dc0">
+    <tavatekst id="1e387de8-f730-44dc-8de2-536bd013d799"> Määruses kasutatakse mõisted alljärgnevas tähenduses:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para2lg1p1">
+   <alampunktNr id="9341ebf3-8457-413d-bbec-a02cd66dab84">1</alampunktNr>
+   <kuvatavNr id="88fdde0d-ce07-4203-9f7d-77ca337f4352"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="0feeffab-d914-4c89-85e6-19337d5438c2">
+    <tavatekst id="d41dbb21-be4a-4bfd-bd8a-bde81c63559e"> väljaspool isiku kodu osutatav üldhooldusteenus (edaspidi teenus) on Maardu linna (edaspidi linn) korraldatav sotsiaalteenus, mille eesmärk on turvalise keskkonna ja toimetuleku tagamine täisealisele isikule, kes terviseseisundist, tegevusvõimest või elukeskkonnast tulenevatel põhjustel ei suuda kodustes tingimustes ajutiselt või püsivalt iseseisvalt toime tulla;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p2">
+   <alampunktNr id="bd78a68b-2618-4f4d-8d40-f9fa8a914e6d">2</alampunktNr>
+   <kuvatavNr id="f1718ed9-81cd-40ad-8710-12e88516e1f9"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="f78baa11-1012-4623-9cd3-ee954928b5d3">
+    <tavatekst id="fe285c5d-50aa-4383-8472-cdb04f69b567"> ülalpidaja on ülalpidamiskohustuslane perekonnaseaduse § 16, § 72, § 73 ja § 96 ning kooseluseaduse § 9 ja § 10 mõistes. Ülalpidaja ülalpidamiskohustustuse täitmisele kohaldatakse perekonnaseaduse ja kooseluseaduse sätteid.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para2lg2">
+   <loigeNr id="04a9e8bd-79e6-4223-8cdd-ec38b276d557">2</loigeNr>
+   <kuvatavNr id="2ef669a2-aff8-47b7-b851-881503bc6101"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="f5e9fef4-8701-4234-974c-86e0328eda54">
+    <tavatekst id="747d3c9b-f4c5-46d5-9b40-f17ac8c5025b"> Käesoleva paragrahvi lõikes 1 nimetamata mõiste kasutamisel lähtutakse sotsiaalseadustiku üldosa seaduses ja sotsiaalhoolekande seaduses sisalduvatest mõistest, vastava mõiste puudumisel aga sõna üldlevinud tähendusest.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="7706cb3e-01b1-4a42-8973-2f62da67e0a3">3</paragrahvNr>
+   <kuvatavNr id="2c387274-6a32-4516-afa1-66fbf554e3a3"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="88abe85c-68fe-4414-822b-e5bdf095e825">Teenuse taotlemine ja abivajaduse hindamine</paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="adf1b8ed-3065-44e3-8240-c536898c4e14">1</loigeNr>
+   <kuvatavNr id="f0f996a6-c03a-4f74-814d-50ee92fcb7a4"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="07bed2b4-164c-47ea-959d-82b32a396704">
+    <tavatekst id="1e35e752-ca48-4e23-80f3-d289af2863e4"> Teenuse saamiseks esitab teenust vajav isik (edaspidi taotleja või teenuse saaja) või tema esindaja Maardu Linnavalitsusele (edaspidi linnavalitsus) kirjaliku taotluse.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg2">
+   <loigeNr id="d71ad5c4-6b65-42c2-a99c-27c331ab6b26">2</loigeNr>
+   <kuvatavNr id="8f7a082d-c13c-4a49-b722-3eeb5ba8aa5b"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="714c48bc-2330-4a85-94c1-6c2e81f7ca14">
+    <tavatekst id="048e665d-d8ab-4cd1-8131-1198baed6850"> Taotluses märgitakse:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para3lg2p1">
+   <alampunktNr id="86936801-be24-4356-8ffd-adcfc413e76e">1</alampunktNr>
+   <kuvatavNr id="7413093c-8e88-465e-b4fd-305e52370623"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="84ea69a8-cf00-4d47-84c2-47ac2a38e7b3">
+    <tavatekst id="e33fddd4-1902-4972-b743-92c692cae68a"> ees- ja perekonnanimi ning isikukood;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg2p2">
+   <alampunktNr id="b222f7d2-acf1-416f-a829-44be264505ae">2</alampunktNr>
+   <kuvatavNr id="bcd32445-2864-4fe8-8392-4405df81a06c"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="249aed33-f760-463d-85c4-968aced2c9cd">
+    <tavatekst id="a04659c0-2e83-4cb2-a0bb-eeeec96e789b"> elukoha aadress ja muud kontaktandmed;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg2p3">
+   <alampunktNr id="b2827507-892d-466f-af3b-39d4e62b9ae5">3</alampunktNr>
+   <kuvatavNr id="e5e5481f-17da-4d40-9e1e-ffec4662f2d8"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="eba2ea09-b40b-4d1e-b455-e893e1452bdc">
+    <tavatekst id="24bdea7e-ad33-4a48-80a6-b2edce750a84"> abivajaduse kirjeldus.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para3lg3">
+   <loigeNr id="9b0a2ee0-7528-401d-ae7f-1924c67a3325">3</loigeNr>
+   <kuvatavNr id="6a9afd92-f912-4a4c-8a69-fa56bdd85b80"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="e58dfd2d-8a14-4d5e-91dc-01084e4a2239">
+    <tavatekst id="eae2dfd8-9367-495e-a9ba-c53ac4fd5da3"> Taotlusele lisatakse:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para3lg3p1">
+   <alampunktNr id="6761adad-cc87-4ed9-8874-5e4d841a80a2">1</alampunktNr>
+   <kuvatavNr id="7344ceec-94c5-49ec-907e-27b19242fcfa"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="c71ff60a-9385-4927-81b3-be7f3d386134">
+    <tavatekst id="76ccbdf4-5dda-4300-aafe-e4b36ed0611a"> isikut tõendava dokumendi koopia;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg3p2">
+   <alampunktNr id="7fa07b92-e41c-4cdd-bb07-57122c22dce1">2</alampunktNr>
+   <kuvatavNr id="f9f05e5e-1225-4fe5-93d9-35c7c82209c5"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="a1dacd2b-2a3e-4f6d-9aa8-69033745e89c">
+    <tavatekst id="4291f6a3-9000-4221-a474-cd0d4bcabb91"> tervishoiuasutuse väljavõte ravi- ja haigusloost või muud tervislikku seisundit tõendavad dokumendid.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para3lg4">
+   <loigeNr id="a73702a3-29c4-482d-853d-8ae33f9d6dd7">4</loigeNr>
+   <kuvatavNr id="4c1dbdb7-25b1-4022-852f-4fe007cd3e7d"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="6cc7280e-c73c-4e86-afaa-06fdf27cce25">
+    <tavatekst id="b71dc5bf-0102-4ac4-bd96-4f796870e916"> Juhul kui taotleja taotleb teenuse täiendavat rahastamist linnaeelarvest, lisatakse taotlusele lisaks käesoleva paragrahvi lõikes 3 nimetatud dokumentidele:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para3lg4p1">
+   <alampunktNr id="8d357b40-7f93-418b-a380-8be8a3023f8f">1</alampunktNr>
+   <kuvatavNr id="a63b7301-6e87-448a-a690-21b774f0665c"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="d455b10b-af0a-463b-9dc8-53ef8d0d2d85">
+    <tavatekst id="0a97ce4e-93f3-413a-937d-6038acad913f"> taotleja sissetulekut ja varalist seisundit (kinnis- ja vallasvara, sh võõrandatud väärtusliku vara, väärtpaberid, aktsiad jms) kajastavad dokumendid, sh arvelduskonto(de) viimase 6 kuu väljavõtted jm tõendid;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg4p2">
+   <alampunktNr id="6c99cf77-c2c0-44ef-9f34-5edeb618d687">2</alampunktNr>
+   <kuvatavNr id="fff9245c-7503-4115-b9c9-8d7b9ae68711"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="47d9eee4-e744-46ea-a10e-6a3ef0c95a84">
+    <tavatekst id="c72c618e-2926-48d7-a9d4-55bf0cc104fd"> ülalpidaja(te) olemasolul nende nimed ja kontaktandmed või ülalpidaja puudumise korral kinnitus selle kohta;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg4p3">
+   <alampunktNr id="1a50a7c7-e227-4701-91ac-3585e6aec627">3</alampunktNr>
+   <kuvatavNr id="5a384d11-c2f0-4993-aa68-ce5be42b54ba"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="60b7637d-5dd4-46b6-96c5-ffd9daad6ab7">
+    <tavatekst id="6c2e232b-7631-44ed-92e9-0de8b1bc7a0f"> ülalpidaja(te) olemasolul andmed nende sissetulekute ja varalise seisundi (kinnisvara, väärtpaberid, aktsiad, arvelduskontode viimase 6 kuu väljavõtted jms) kohta;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg4p4">
+   <alampunktNr id="8c0741bf-0462-426f-b9f6-2b0604e08d05">4</alampunktNr>
+   <kuvatavNr id="54e5c0e1-5470-405b-9516-0963fbb2f6d7"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="d9cee756-a264-45f3-9b8f-fd7803f8b04c">
+    <tavatekst id="67d52998-d4a1-463f-9ff5-cd2e201147b4"> dokumendid, mis tõendavad ülalpidaja ülalpidamiskohustusest vabastamist või selle vähendamist (nt kohtuotsus), juhul kui ülalpidaja on vabastatud ülalpidamiskohustusest või ülalpidamiskohustust on vähendatud.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para3lg5">
+   <loigeNr id="002ef9e0-f949-4add-a465-562473274a4a">5</loigeNr>
+   <kuvatavNr id="ba471660-a7dc-4ed1-b034-9fdae8a9cc01"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="54bb43cb-3134-438f-bc84-548231f197b6">
+    <tavatekst id="885c4264-96b7-4a3c-8fb8-d1b0b4873e4a">Maardu Linnavalitsuse sotsiaalabiosakond (edaspidi sotsiaalabiosakond) kontrollib taotluses märgitud asjaolusid ning vajadusel kogub asja menetlemiseks täiendavaid tõendeid ja dokumente.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg6">
+   <loigeNr id="dfece88e-1dcb-41cb-af35-aec01092c5bf">6</loigeNr>
+   <kuvatavNr id="f32e6c6c-b409-4ff0-8079-6462fcf1adf0"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="f8f6a48c-9632-4b3f-9f1c-6158184dd081">
+    <tavatekst id="ff99f514-f06a-48ec-a81c-12fa107dae08">Sotsiaalabiosakond selgitab menetluse käigus välja:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para3lg6p1">
+   <alampunktNr id="5fb4d8b6-9809-443e-a799-92a108cce44c">1</alampunktNr>
+   <kuvatavNr id="25fcb8d0-861a-4ca1-8331-d461163e40ab"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="3100bdb6-292d-456c-bef1-e61f8338cf2c">
+    <tavatekst id="d64fb929-80f7-454d-805a-0ef23efbac5b">taotleja vajadusest lähtuva sobivaima sotsiaalhoolekandelise abi;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg6p2">
+   <alampunktNr id="cba40520-138f-4f81-a74b-adff5aa7ca31">2</alampunktNr>
+   <kuvatavNr id="a6fe9555-094d-4e08-a0ca-262ca41fa592"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="269674b5-e4f5-4f48-befc-88478071d48a">
+    <tavatekst id="1482116f-c2be-40fb-8caf-15bd418352a7">taotleja ja ülalpidaja(te) majandusliku olukorra juhul, kui teenust vajav isik taotleb teenuse täiendavat rahastamist linnaeelarvest.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para3lg7">
+   <loigeNr id="a328b3ef-05a7-44bf-b915-f143d07165ff">7</loigeNr>
+   <kuvatavNr id="cbe72844-e708-41f7-a3ef-82090e676262"><![CDATA[(7)]]></kuvatavNr>
+   <sisuTekst id="647893f8-ed6e-49b3-987d-753f5e30289d">
+    <tavatekst id="5e8bf2db-9bb4-4a2d-9109-048b66142264">Sotsiaalabi osakonnal on õigus nõuda taotlejalt ja/või tema lähedastelt täiendavaid andmeid ja dokumente, külastada taotlejat tema kodus või viibimiskohas, küsitleda tema lähedasi ning kontrollida taotleja ja tema ülalpidaja(te) majanduslikku olukorda ning teha asjakohaseid päringuid majandusliku olukorra ja abivajaduse hindamiseks.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para4">
+   <paragrahvNr id="638bf474-9a0b-48ee-a029-c24e7047b1af">4</paragrahvNr>
+   <kuvatavNr id="b02f36c1-8379-418e-a19d-49c6d48f164e"><![CDATA[§ 4. ]]></kuvatavNr>
+   <paragrahvPealkiri id="c1476caa-629c-472a-b3f3-d31374a87051">Teenuse määramine, sellest keeldumine, lõpetamine ja peatamine</paragrahvPealkiri>
+  <loige id="para4lg1">
+   <loigeNr id="f0bf7544-1bbc-4a8c-baf3-3d08bd54799d">1</loigeNr>
+   <kuvatavNr id="5995df96-9bf6-4ef0-9e1e-50037e0547c1"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="b736b6e2-2b89-46c5-bf21-60bae9134170">
+    <tavatekst id="18052591-ec44-4aa7-9017-4794394be461"> Otsuse teenuse määramise ja sellest keeldumise kohta teeb linnavalitsus kümne (10) tööpäeva jooksul alates taotluse ja lisadokumentide nõuetekohasest esitamisest.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg2">
+   <loigeNr id="15484177-676a-4860-b20f-92eeaeded6fb">2</loigeNr>
+   <kuvatavNr id="ab4eb2ea-9c4c-4312-9a40-768a27a84e1a"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="498a6292-a441-4c00-87eb-779115241deb">
+    <tavatekst id="c8937315-134b-4336-af30-0cea00a52d62"> Linnavalitsus jätab taotluse rahuldamata, kui taotleja ei vasta määruses nimetatud tingimustele.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg3">
+   <loigeNr id="39a3e6e0-f8cd-4a8e-8e65-cc9f38dff8af">3</loigeNr>
+   <kuvatavNr id="7aee4e7b-163a-4cee-b6ad-ee57038714cd"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="b74a749d-f349-479d-bbb9-73dfd9307077">
+    <tavatekst id="06a9a82d-c09f-4304-85dc-5081950cce44"> Linnavalitsus keeldub teenuse määramisest, kui taotleja ei võimalda taotluse asjaolusid kontrollida või abivajaduse hindamise tulemusena ei tuvastata taotleja abivajadust teenuse osutamiseks.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg4">
+   <loigeNr id="bb10c458-2410-480e-a388-0899476147b1">4</loigeNr>
+   <kuvatavNr id="ece6a7bd-e330-4f33-9e66-b4ec4597c955"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="7ce2f7ce-6dc0-4764-a7eb-52cce72d4069">
+    <tavatekst id="271699bf-2281-44be-ab4f-9da451bbbb0c"> Teenuse määramisest võib keelduda juhul, kui esineb vähemalt üks järgmistest asjaoludest:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para4lg4p1">
+   <alampunktNr id="f986b909-d039-4942-b5d9-dd7116d7104e">1</alampunktNr>
+   <kuvatavNr id="d4b58218-6363-4acc-9387-c03993384659"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="e8682619-ee17-4ade-9180-e64966001d12">
+    <tavatekst id="3d07cd5b-fd0d-4ad6-98e7-107a6b578c0e">taotluses on andmeid varjatud või on esitatud ebaõigeid andmeid;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para4lg4p2">
+   <alampunktNr id="11561a86-5d0d-4f7e-b5cd-3f5596701db6">2</alampunktNr>
+   <kuvatavNr id="1db44515-d8ae-4cd3-86eb-e3e186cb9a53"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="04ff58d9-6420-48af-ab06-b62e81b8bc3f">
+    <tavatekst id="e477b787-2436-4b52-8aa1-05304942de13">taotleja ei esita sotsiaalabiosakonna poolt küsitud täiendavaid dokumente või andmeid;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para4lg4p3">
+   <alampunktNr id="6efb5673-aa96-4cc9-856b-c2b6a4539232">3</alampunktNr>
+   <kuvatavNr id="ddb61c7a-8ee4-4fd7-9bec-72bd0544c61d"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="a1723ce8-8466-436e-8dc1-1f943d558234">
+    <tavatekst id="71a49d83-ac67-4c70-b5bc-00cfa95eea38">abivajadust on võimalik või otstarbekas katta muu sotsiaalhoolekandelise abiga.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para4lg5">
+   <loigeNr id="570d1ca0-c489-4b10-9b19-72901123acdf">5</loigeNr>
+   <kuvatavNr id="500416ab-f298-43c0-ae96-9c282d53ed82"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="ea444043-b88d-4632-b7f8-e2c32a78ec46">
+    <tavatekst id="9f6dea20-c7f4-4004-be97-62e104f41266">Linnavalitsus peatab või lõpetab teenuse osutamise, kui:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para4lg5p1">
+   <alampunktNr id="1bfcfa22-4c17-455c-bc7e-6e30268a01d0">1</alampunktNr>
+   <kuvatavNr id="13c1ca01-65d3-46d0-b2a8-2a01cc99ba9f"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="d967aecb-b07e-4fb0-95cf-b66f3a016fff">
+    <tavatekst id="49172da5-4f06-48f0-bbef-12efa89d0e0a">teenuse eesmärk on täidetud ja/või teenuse vajadus on ära langenud;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para4lg5p2">
+   <alampunktNr id="d239f136-0628-46f3-b3d4-04f6766f917b">2</alampunktNr>
+   <kuvatavNr id="ff5d8b8e-0be3-4d2f-8bac-65856cab473d"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="b1a2ad43-acd5-4d5c-919e-3f446c66f66d">
+    <tavatekst id="162522ba-78d4-4f1d-93b9-e0d71e6a74c5">taotleja on mõjuva põhjuseta jätnud linnavalitsuse teavitamata asjaoludest, mis mõjutavad teenuse saamise õigust ja teenuse määramist, või nende asjaolude muutumisest;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para4lg5p3">
+   <alampunktNr id="7f30c90e-afda-4884-914b-4ed29059c4b5">3</alampunktNr>
+   <kuvatavNr id="7b132df1-6acd-4cbc-9602-4e589f1a6440"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="ec4ffb82-be47-4c40-8f66-61344c96a5b4">
+    <tavatekst id="ae9812a7-e557-446d-8fe6-a91ead24c134">taotleja on loobunud teenuse kasutamisest ühe kuu jooksul alates linnavalitsuse otsuse tegemisest;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para4lg5p4">
+   <alampunktNr id="fb9a8928-6eaa-4ccd-8ddb-10e9883b5f12">4</alampunktNr>
+   <kuvatavNr id="225010ed-c265-4c1b-8930-a736663a08d4"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="c95773ff-bf5f-419b-bde8-63b2b81428fc">
+    <tavatekst id="9480ee86-f00b-4323-93ed-db3474579b3b">teenuse saaja käitumine või tema isikust tulenev muu objektiivne põhjus muudab teenuse osutamise võimatuks ja/või ohustab teisi inimesi ja/või nende vara.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para4lg6">
+   <loigeNr id="a2a83b77-3e6f-431a-87cd-809a0cb8143d">6</loigeNr>
+   <kuvatavNr id="f2514437-800d-49b4-b491-b94ece3b1f3d"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="7985a877-5197-43b8-8044-f5a015d889df">
+    <tavatekst id="30345067-8826-4133-a006-3f33d21addf5">Teenuse osutamine peatatakse või lõpetatakse, kui esineb sotsiaalseadustiku üldosa seaduses või sotsiaalhoolekande seaduses sätestatud asjaolu, mille alusel taotleja teenuse saamise õigus peatub või lõpeb.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg7">
+   <loigeNr id="ff25590e-7043-467f-9546-330bb0600d4e">7</loigeNr>
+   <kuvatavNr id="7254d53c-fd2a-4439-bbc5-f607037caeff"><![CDATA[(7)]]></kuvatavNr>
+   <sisuTekst id="79afc73d-541a-467d-9249-8cbe23e7db6d">
+    <tavatekst id="3716bbae-aba0-429a-9970-d60263f7d702">Teenuse saaja on kohustatud viivitamata teavitama linnavalitsust, kui tema abivajadus on teenuse saamise ajal muutunud. Linnavalitsus hindab teenuse saaja abivajadust uuesti ning otsustab teenuse osutamise jätkamise või muutmise.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para5">
+   <paragrahvNr id="12a232b1-8c88-48c1-9df8-33facc520bb1">5</paragrahvNr>
+   <kuvatavNr id="5efcbda9-32a7-4953-9374-2e11a3cc8a5d"><![CDATA[§ 5. ]]></kuvatavNr>
+   <paragrahvPealkiri id="dcab681e-6d98-4bc6-a4dc-c8684489bdfe">Teenuse eest tasu maksmise alused</paragrahvPealkiri>
+  <loige id="para5lg1">
+   <loigeNr id="d1c92192-ef48-48cb-9ac8-93c4699d6efc">1</loigeNr>
+   <kuvatavNr id="1c15cc73-4414-4ccd-92e8-883e4cbac98e"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="a245c516-6a77-40fd-a026-1d130217c7db">
+    <tavatekst id="eacb278e-e4ba-406f-9446-f172d325568f">Linnavalitsus osaleb teenuse rahastamisel sotsiaalhoolekande seaduses sätestatud alustel käesolevas korras sätestatud tingimustel.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg2">
+   <loigeNr id="34412140-399d-44be-8185-78dab01a41c6">2</loigeNr>
+   <kuvatavNr id="aba8b723-145d-40f1-9562-285caf1efcbb"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="59ebc3c7-355e-499e-9d72-6afb44f55190">
+    <tavatekst id="2621fd7b-87ea-48d0-9674-e5e9cbd589ae">Teenust rahastatakse järgmiselt:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para5lg2p1">
+   <alampunktNr id="06b1fe41-b356-4c3a-ac7f-1f4bef00b482">1</alampunktNr>
+   <kuvatavNr id="c2ba56a7-52a1-4030-93e7-0a521b022296"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="4dec1eef-af5a-421a-a704-9bc43152c150">
+    <tavatekst id="584bb2f9-1357-4635-ad9a-0190f43f68af">linnavalitsus rahastab sotsiaalhoolekande seaduse §-is 22<sup>1</sup> lg 2 nimetatud kulud;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para5lg2p2">
+   <alampunktNr id="67dc3095-3359-4842-9b30-edab392d54ec">2</alampunktNr>
+   <kuvatavNr id="b3827491-486b-46ae-bdb7-1275f226454c"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="00661692-9359-4e95-b865-233ac7a84158">
+    <tavatekst id="35ebf7e2-08af-4534-94d4-2edb659854db">teenuse saaja tasub sotsiaalhoolekande seaduse §-is 22<sup>1</sup> lg 4 nimetatud kulud;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para5lg2p3">
+   <alampunktNr id="240be3e4-a039-4329-acf7-2bef816381c5">3</alampunktNr>
+   <kuvatavNr id="d5709ffc-9fdb-4d72-9316-302660a2795c"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="7c44d712-bc98-4223-b43b-2a5adb6c39ba">
+    <tavatekst id="32fd891b-7309-49be-baf2-08c49afc81d9">teenuse saaja ja/või tema ülalpidaja(d) maksavad teenuse tasu täissummast puudujääva osa.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para5lg3">
+   <loigeNr id="0aa6d7e7-bf8f-4240-8634-acbbc6c3d950">3</loigeNr>
+   <kuvatavNr id="7f236cb1-d262-49a1-ba81-f4d0cc31e8bf"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="4bdb9115-614d-4f3a-b723-e319cb67e884">
+    <tavatekst id="30f28476-1416-4c93-8c46-6d4b8d32e08c">Linnavalitsus kehtestab käesoleva paragrahvi lõike 2 punktis 1 nimetatud kulude tasumise piirmäära, mis tagab taotlejale teenuse kättesaadavuse, arvestades sotsiaalhoolekande seaduse § 22 lõike 6 alusel kehtestatud hooldusteenust vahetult osutavate töötajate arvu nõudeid.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para6">
+   <paragrahvNr id="c29b91c2-16de-4a6e-b6f4-65a48847bffb">6</paragrahvNr>
+   <kuvatavNr id="50402ca2-5542-493f-bca6-03f3e5daea20"><![CDATA[§ 6. ]]></kuvatavNr>
+   <paragrahvPealkiri id="bbd90a9d-9f55-4823-b13d-9b49157bf8a6">Teenuse täiendav rahastamine linnaeelarvest</paragrahvPealkiri>
+  <loige id="para6lg1">
+   <loigeNr id="81a949f9-66df-435a-9c19-de8669407fe8">1</loigeNr>
+   <kuvatavNr id="5ad9b6f8-9449-4a32-a156-071c2b2f1335"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="f07c645e-e779-457f-8872-2ffede652339">
+    <tavatekst id="63dd0bde-8ce1-4fb4-b528-6164f70b9776"> Kui taotleja või tema ülalpidajate majanduslik olukord ei võimalda tal määruse § 5 lõike 2 punktis 3 nimetatud osa täies ulatuses tasuda, võib teenust vajav isik taotleda teenuse täiendavat rahastamist linnaeelarvest. Otsuse teenuse täiendava rahastamise ja sellest keeldumise kohta teeb linnavalitsus.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg2">
+   <loigeNr id="9d7d8f14-a895-4b1a-80cd-5334ca77ce47">2</loigeNr>
+   <kuvatavNr id="376265f1-69c3-42c2-8ce7-b467c2a628ad"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="31959e31-9a99-442f-984c-63781428bb93">
+    <tavatekst id="3a3c2bb2-03b9-464c-b34c-819834db79d1"> Linnaeelarvest teenuse täiendav rahastamine toimub üheks eelarveaastaks. Teenuse täiendava rahastamise otsustamiseks järgmiseks eelarveaastaks tuleb teenuse saajal esitada linnavalitsusele dokumendid enda ja oma ülalpidajate jooksva aasta varalise seisukorra hindamiseks hiljemalt 1. novembriks.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg3">
+   <loigeNr id="3107cb5e-bd8a-49c2-a792-ed077d2596a5">3</loigeNr>
+   <kuvatavNr id="05b2b291-a876-4e4d-827c-b5bbfd00a751"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="b7aa6b64-aaa3-4eda-9ee5-f9a18b124187">
+    <tavatekst id="377bbcc5-5784-49da-8d88-51d98e1247e3"> Teenuse saaja on kohustatud viivitamata teavitama linnavalitsust, kui tema majanduslik olukord on teenuse saamise ajal muutunud. Linnavalitsus hindab teenuse saaja majanduslikku olukorda uuesti ning otsustab teenuse täiendava rahastamise jätkamise või muutmise.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg4">
+   <loigeNr id="cd7535a3-6df8-4144-a1b1-71a3cdd4e16b">4</loigeNr>
+   <kuvatavNr id="3bb725cb-bdd1-481a-9d61-c7ca04c6caaf"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="9a65eb38-c80b-48d0-9dc2-d49a6be437c1">
+    <tavatekst id="4fd2a09f-6243-40e8-b3e8-8e6c69b91cec"> Kui teenuse saajal on ülalpidaja(d), on linnavalitsus õigustatud nõudma neilt linnaeelarvest tasutud teenuse tasu (v.a määruse § 5 lõike 2 punktis 1 nimetatud kulud) sisse ulatuses, millest nad ei ole vabastatud ülalpidamiskohustuse täitmisest.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg5">
+   <loigeNr id="69ea9998-06b0-4e36-8c97-cbdb0da3dd2d">5</loigeNr>
+   <kuvatavNr id="cbd28930-82c7-4483-9a41-37de920bded8"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="7b9281cd-5e37-4176-9996-1ccee49247a4">
+    <tavatekst id="b8865e62-d293-43fc-a5b0-9f33d6b99fc2"> Juhul, kui isik vajab teenust viivitamatult, tasub linnavalitsus isiku eest puudujääva osa kuni isiku enda ja/või tema ülalpidaja(te) varalise olukorra väljaselgitamiseni.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg6">
+   <loigeNr id="66365a2d-a12d-4488-9a3b-18faca808e28">6</loigeNr>
+   <kuvatavNr id="cfeb0ee1-b041-414e-a715-f39c3f76b171"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="d67dfb95-839e-492f-828a-ab87559ea4a7">
+    <tavatekst id="47653f43-cf92-4601-bae3-dc7605d31a10"> Kui teenust vajaval isikul ja/või ülalpidaja(te)l ei ole rahalisi vahendeid teenuse tasu maksmiseks, kuid neil on vara, mida on võimalik võõrandada või anda kasutusse vajalike rahaliste vahendite saamiseks, võib linnavalitsus tasuda teenuse eest linnaeelarvest osas, milleks isikul ja/või ülalpidaja(te)l rahalised vahendid puuduvad, kuni vara võõrandamiseni või kasutusse andmiseni.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg7">
+   <loigeNr id="b8790b8d-baa0-4583-9434-e9415b1b3913">7</loigeNr>
+   <kuvatavNr id="d130a8cd-ba4e-4226-92ac-f687734aa52e"><![CDATA[(7)]]></kuvatavNr>
+   <sisuTekst id="e32edb9c-71aa-42f5-9419-16f474176dcd">
+    <tavatekst id="b2fe1659-a595-4384-b8e0-c6fb3c29d183"> Kui teenuse saaja ja/või ülalpidaja(d) jätavad maksmata käesoleva paragrahvi lõigetes 3 - 5 nimetatud kulud, siis on linnavalitsusel käsundita asjaajamise sätete alusel õigus maksmata jäänud osa sisse nõuda.<reavahetus/></tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg8">
+   <loigeNr id="8e00e3be-8e56-4580-ac2a-d118e368b0e3">8</loigeNr>
+   <kuvatavNr id="92fc513d-0850-4de7-8211-2eddfba61cd9"><![CDATA[(8)]]></kuvatavNr>
+   <sisuTekst id="95bbd024-6383-411c-8295-40058ea3cbb8">
+    <tavatekst id="78a18003-20dc-4c76-a1f5-689c0b8a5e3a"> Linnavalitsus lõpetab teenuse eest tasumise:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para6lg8p1">
+   <alampunktNr id="dbc56313-a922-4079-897e-7bdb8ac973fb">1</alampunktNr>
+   <kuvatavNr id="2467fbc7-19e1-48e0-b3f9-10c08abf3c73"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="2dfe4861-47d7-4fe2-953f-799ca7c1cfcb">
+    <tavatekst id="2a91bbff-efed-4a6b-8833-8bc49afadaff"> teenuse vajaduse (sh teenust vajava isiku surma korral) või rahastamise vajaduse lõppemisel;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para6lg8p2">
+   <alampunktNr id="1563b3fc-c92d-4630-9298-178caa852f77">2</alampunktNr>
+   <kuvatavNr id="dab2b9a1-a78a-4e46-a1d5-3dd6f5112e1f"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="5883f8f6-b8f6-4729-a424-40997b59a1d6">
+    <tavatekst id="98ef57af-14e2-4ee6-ae9e-cfcdee387e3e"> kui teenuse saaja keeldub tasumast tema kanda jäävat osa teenuse tasust;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para6lg8p3">
+   <alampunktNr id="1ac00bcb-6f60-4a4f-89b4-56a69239b898">3</alampunktNr>
+   <kuvatavNr id="8017b162-dec2-4488-972a-a943d6c36487"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="42ec773a-e239-4d34-ac32-c030ed8d1828">
+    <tavatekst id="88e10ff9-a469-499c-80fc-b22613b9dcfa"> kui teenuse osutaja lõpetab teenuse saajale teenuse osutamise;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para6lg8p4">
+   <alampunktNr id="ce47440c-3944-47cf-bae6-4683f526d15a">4</alampunktNr>
+   <kuvatavNr id="edeb897b-6b5e-4970-ac2f-cdb00637ae83"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="b030753d-af95-4830-a817-181d82fb0cbf">
+    <tavatekst id="74d6e20a-85ef-42df-805e-ae7daab393db"> kui teenuse eest on võimalik täielikult tasuda teenuse saajal endal ja/või tema ülalpidaja(te)l.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para7">
+   <paragrahvNr id="65da22e5-5c07-4b59-bfd6-50a89a917f4c">7</paragrahvNr>
+   <kuvatavNr id="14796c43-477c-48ef-8b1a-6f71cb0f7d14"><![CDATA[§ 7. ]]></kuvatavNr>
+   <paragrahvPealkiri id="f85d4568-287b-4dfd-aca3-027bc2349179">Rakendussätted</paragrahvPealkiri>
+  <loige id="para7lg1">
+   <loigeNr id="07649472-edd8-4c28-88fc-ac238a2e3f80">1</loigeNr>
+   <kuvatavNr id="55dfcccc-5295-4120-9d25-b5b096afaf35"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="216f6e5f-0f96-495f-822f-65d736cb393c">
+    <tavatekst id="2eb50658-84c8-4709-820f-97b4030208c3"> Maardu Linnavolikogu 29.03.2016 määrus nr 56 „Üldhooldusteenuse osutamise kord“ tunnistatakse kehtetuks.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg2">
+   <loigeNr id="850d9052-d95b-4887-8037-b6f5349d3bb1">2</loigeNr>
+   <kuvatavNr id="2ffcd9a7-6ccb-4fde-a371-83e0f285a5c7"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="e40893ba-ffb8-4984-b1ac-c0e6ad8498c6">
+    <tavatekst id="ed5d76d9-f765-4695-84ed-9613cd737bd5">Määrus jõustub 01.07.2023.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="9ec355a4-4a19-4bea-b15a-2b2aacc4bcba"><allkiriKoht id="bfdfc44f-925e-41a9-8335-6f9736e33526"/><allkirjastaja id="08666eb1-73cf-4004-9671-9cd84fbe096f"><ametinimetus id="f6cc185b-5156-43e8-af4a-af4b7baef014">Maardu Linnavolikogu esimees</ametinimetus><eesnimi id="a09eccef-0638-492f-a663-bd5baa6c272c">Ailar</eesnimi><perekonnanimi id="ec438983-1eb0-48a4-9016-111a24cfd879">Lyra</perekonnanimi></allkirjastaja></allkiri></oigusakt>

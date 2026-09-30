@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="03746308-9297-4335-b7c8-639a5b39536d" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Maardu Linnavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2016-04-26</aktikuupaev>
+  
+  
+  <aktiNr>65</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2016-06-08</avaldamineKuupaev><RTaasta>2016</RTaasta><RTartikkel>7</RTartikkel><aktViide>408062016007</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2016-06-11+03:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2016-06-02</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>408062016007</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2016-06-07</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1035091</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2016-04-29</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Natalja Gorbunova</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="09a60475-ad26-4a67-a448-9bb22f4a4443">
+  <nimi id="9cc3ea61-59e4-4ebe-86e6-583eb3af136c">
+   <pealkiri id="481e3a9c-3b79-4732-96d1-6adcc25fb658">Lapsehoiutoetuse määramise ja maksmise kord</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="aeba65c0-a706-49db-a190-1b0dbeb290b3"><preambul id="42ddda5c-384c-445e-8d81-e7df5ab7d3e1">
+   <tavatekst id="c938292e-0d7a-45fd-8534-81374f9947b0">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5 ja sotsiaalhoolekande seaduse § 14 lg 2 alusel ja lähtudes Maardu Linnavalitsuse 14.04.2016 protokollilisest otsusest nr 29</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="bb86a69b-f7bd-422d-abda-6483060a111a">1</paragrahvNr>
+   <kuvatavNr id="f78cae84-6573-4731-85ce-f2cb748ac1f0"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="c31d533a-5169-4f73-9f8b-76fd67958bd5">Reguleerimisala </paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="bedabb8c-4370-4fc3-914e-fcf76c3fa193">1</loigeNr>
+   <kuvatavNr id="56671c5c-dad9-4183-8521-58fb5d36b7f9"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="a1ad6f05-6930-46ca-9d78-42ed4e6da93d">
+    <tavatekst id="62110b1b-a7b6-4f23-aa55-0ff1416fffb8">Käesolev määrus reguleerib Maardu linna eelarves selleks ettenähtud vahendite arvelt koolieelses lasteasutuses mittekäiva eelkooliealise lapse lapsehoiutoetuse (edaspidi toetus) määramise ja maksmise korda. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg2">
+   <loigeNr id="cead34b0-d581-4e54-aa86-bff3e4fd4d99">2</loigeNr>
+   <kuvatavNr id="efcdb337-e543-4f97-b527-40666c40c185"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="5802c3e9-dcdc-41b7-9f47-1152bc500f31">
+    <tavatekst id="524f364d-1303-4f98-8ce3-63d911ce1301">Käesolev kord ei reguleeri riigi rahastatava lapsehoiuteenuse maksmist.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="d0437385-fa0d-48cd-a74d-af0ad5fdf55e">2</paragrahvNr>
+   <kuvatavNr id="50195b03-eef6-409c-9441-f567eb84fd22"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="32b2b43c-5822-4e0e-91ec-370455ca40da">Üldsätted </paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="afe125ad-056a-44bd-8f5c-baa0fa309d3d">1</loigeNr>
+   <kuvatavNr id="f7e02952-1f14-4452-99d0-112f1069cee1"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="8ce492e1-64f9-47e1-849e-c0466b26b26c">
+    <tavatekst id="c5201449-3fcb-4f79-a86c-32c2a7669f1d">Lapsehoiuteenus on lapse vanema, eestkostja või lapse hooldaja lapse perekonnas hooldamise lepingu alusel (edaspidi hooldaja) toimetulekut või töötamist toetav teenus, mille osutamise vältel tagab nimetatud isikute asemel lapse hooldamise, arendamise ja turvalisuse lapsehoiuteenuse osutaja.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg2">
+   <loigeNr id="04780e2c-ea4f-4d48-8500-d66550dc3374">2</loigeNr>
+   <kuvatavNr id="2dd40aea-04bb-43af-a947-54cdd37dc0c0"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="f4c09aba-37bb-4d44-bf11-28d25a95f417">
+    <tavatekst id="1325a89e-1d0f-407e-9aed-8c97a7866704">Lapsehoiuteenuse rahastamine toimub Maardu linna eelarves selleks ettenähtud vahendite arvel lapse vanemale, eestkostjale või hooldajale lapsehoiuteenuse ostmisel tehtud rahaliste kulutuste eest toetuse maksmisena.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg3">
+   <loigeNr id="a96ce11a-a5fa-41b1-bec8-f3c1d6d57b29">3</loigeNr>
+   <kuvatavNr id="377f6b84-dbc8-4905-8abe-6c1c36563732"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="6cfe0ac8-9ba7-4d12-a187-70f948973f8d">
+    <tavatekst id="f1de272b-cf8c-4e19-b804-b20ac2362d97">Toetuse määra kehtestab Maardu Linnavalitsus (edaspidi linnavalitsus). Toetuse määr kehtib ühe lapse kohta ühes kalendrikuus. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg4">
+   <loigeNr id="79de1711-3ddf-46e2-9e96-4c4ac4486580">4</loigeNr>
+   <kuvatavNr id="effe3e4b-291f-4e20-bcd0-2e025b98e8b7"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="d6ee4d56-e3dd-43ef-a604-143dbff7b0ad">
+    <tavatekst id="06e2ebc9-1b4b-4c04-b7e4-c1d4dfd6d078">Õigus toetust taotleda tekib toetusele õigust omaval isikul vanemahüvitise maksmise lõppemisele järgnevast kuust, kui lapse elukohajärgse teeninduspiirkonna koolieelses lasteasutuses ei ole vaba kohta.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg5">
+   <loigeNr id="4af329c2-e2b1-4b8d-81e3-caf35dcd94ff">5</loigeNr>
+   <kuvatavNr id="5dc47b46-f177-4e9b-8b53-478b1246aa48"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="a0a2ee61-8099-47b1-ac98-e0ed0ea3b703">
+    <tavatekst id="f0c89062-f846-4595-b551-20a3810bbf74">Õigus toetusele lõpeb lapse minekul koolieelsesse lasteasutusse või õppimaasumisel üldhariduskoolis, samuti juhul, kui lapsele pakutakse kohta koolieelses lasteasutuses ja lapsevanem keeldub pakutud kohast mõjuva põhjuseta.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg6">
+   <loigeNr id="5d931d88-89ec-49ee-9e30-d0497c79b8c9">6</loigeNr>
+   <kuvatavNr id="fc951825-1164-457d-9abe-8aa82f2cfb09"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="b985df87-a8d9-4d96-ab34-1dada411382c">
+    <tavatekst id="f952cd14-fac4-48bd-9dcd-b15f370fdc1b">Toetust makstakse lapsehoiuteenuse ostmise eest, mille osutaja on füüsilisest isikust ettevõtja või juriidiline isik, kellele on väljastatud maavanema poolt kehtiv tegevusluba ja kohaliku omavalitsuse üksuse ametiasutus või valitsusasutuse hallatav asutus, kellel on lapsehoiuteenuse osutamine põhimäärusejärgne ülesanne ning kes on lapsehoiuteenuse osutajana kantud majandustegevuse registrisse.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg7">
+   <loigeNr id="d0ab3b91-2352-44ba-8e61-a3e052e4ee69">7</loigeNr>
+   <kuvatavNr id="b2441f22-1265-4dcd-9180-7142a774deb7"><![CDATA[(7)]]></kuvatavNr>
+   <sisuTekst id="cac3fe4c-fb8c-453c-bb62-0570d4a2e017">
+    <tavatekst id="d3306781-e2e7-4228-b410-059a7477c74c">Õigust toetusele ei teki lapse vanemal, hooldajal või eestkostjal, kes ise osutab kutsetunnistuse alusel lapsehoidjana oma lapsele lapsehoiuteenust. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg8">
+   <loigeNr id="3b262f47-d957-4d5f-b2d6-28a539ffd882">8</loigeNr>
+   <kuvatavNr id="63771d69-2cf2-47f9-83e8-d5f43b9b6683"><![CDATA[(8)]]></kuvatavNr>
+   <sisuTekst id="78ecd256-2049-4a23-b7f8-337fb33609ce">
+    <tavatekst id="45cac6a5-9d9f-4a82-baf3-f029779a44fd">Toetust makstakse lapsehoiuteenuse kasutamise ajal kehtinud korras ja määras.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg9">
+   <loigeNr id="a7ac3975-b287-4391-adf3-b1bc6e2e3c2e">9</loigeNr>
+   <kuvatavNr id="4fa112cc-c13e-44f9-b5c6-58f680327bfb"><![CDATA[(9)]]></kuvatavNr>
+   <sisuTekst id="d21813ff-b685-4ff8-bb94-17fa661cd7b8">
+    <tavatekst id="53252a26-5cba-4687-9f50-ff026de599ef">Toetuse maksmist korraldab ja makstud toetuse üle peab arvestust Maardu Linnavalitsuse sotsiaalabi osakonna (edaspidi sotsiaalabi osakond) lastekaitse (pea)spetsialist.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="6bf9aa8f-7977-43e7-a316-13ba5aaacca5">3</paragrahvNr>
+   <kuvatavNr id="27a66627-ea94-42c4-ae6c-2fbfd2672e73"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="74a6de5f-77a5-4476-b5b1-63fabe347d16">Toetusele õigust omav isik</paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="4d6913e8-ca12-469d-b974-8c4b6221f139"/>
+   <kuvatavNr id="f0f707d5-e36d-4d69-9d33-2e875aad2ffd"/>
+   <sisuTekst id="631675bc-c39a-4281-953a-866311fb7d3c">
+    <tavatekst id="3407659f-89d5-46fb-8b7f-16d950afd86e">Toetus määratakse ja makstakse lapse vanemale, eestkostjale või hooldajale (edaspidi lapsevanem):</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para3lg1p1">
+   <alampunktNr id="55ff3cc9-46f9-4e9d-9588-1a6978951a1e">1</alampunktNr>
+   <kuvatavNr id="3ad2c59e-3268-4dbd-a0eb-fa5deef1b188"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="9078b7af-4542-413e-b8f7-3f56caf744bf">
+    <tavatekst id="174cdf61-e403-4313-9f3c-65a995a69476">kelle Eesti rahvastikuregistri järgne elukoht on Maardu linn;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg1p2">
+   <alampunktNr id="f05cccb4-82ae-456d-a088-d8d60448f986">2</alampunktNr>
+   <kuvatavNr id="93dcadd8-0a2b-4628-b251-6da9c81d77b3"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="7427aac7-e5db-4947-8eb5-39dec6f9f875">
+    <tavatekst id="698d11a9-4653-470b-b9be-f91d1053b4ac">kui lapse, kelle jaoks toetust taotletakse, Eesti rahvastikuregistri järgne elukoht on Maardu linn;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg1p3">
+   <alampunktNr id="c6fcf3d5-d095-49bf-82cd-498b1d770c6a">3</alampunktNr>
+   <kuvatavNr id="c56a94db-5283-46b6-9b0e-f0663b1faa9b"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="1d82c6ad-655e-4189-b62c-aaf493f72ece">
+    <tavatekst id="9d92286d-917e-40bf-8fd3-72135f51bbb3">kui laps, kelle jaoks toetust taotletakse, ei ole kantud ühegi munitsipaal- või eralasteaia nimekirja.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para4">
+   <paragrahvNr id="3bcc2917-c199-4b69-a342-62b8acf3bbec">4</paragrahvNr>
+   <kuvatavNr id="e6595592-6fc0-4cce-9925-e5805b1a392d"><![CDATA[§ 4. ]]></kuvatavNr>
+   <paragrahvPealkiri id="69be9eef-f247-4902-a5f3-02787568c6dc">Toetuse taotlemine </paragrahvPealkiri>
+  <loige id="para4lg1">
+   <loigeNr id="96e5e668-56eb-423d-8710-3ed798fcc307">1</loigeNr>
+   <kuvatavNr id="e63a5e99-4008-4865-af16-06d81505a8ba"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="ed98cd1b-68ab-4f4d-a472-77a21528b810">
+    <tavatekst id="1d1e426e-6aba-434e-8ea5-781ebdf5e46d">Toetuse taotleja esitab sotsiaalabi osakonnale:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para4lg1p1">
+   <alampunktNr id="4be3c55c-b364-4641-b947-45ec404c6a21">1</alampunktNr>
+   <kuvatavNr id="654ed045-ef67-4700-9e07-b3a20ca48f62"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="263c8767-6aa5-4eac-a2a0-7dd317989117">
+    <tavatekst id="565373fd-0d31-4260-a3e1-122a134ddff0">kirjaliku vormikohase taotluse;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para4lg1p2">
+   <alampunktNr id="7edbe02c-ff3c-4982-b3d5-3419dc1f4e2a">2</alampunktNr>
+   <kuvatavNr id="62e2ba35-1d2a-4462-a821-377fb29e3233"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="b213044a-72a4-46f0-91e5-53a7a5901af6">
+    <tavatekst id="385d0cdf-98d5-48d8-bf11-551da452e036">isikut tõendava dokumendi koopia (toetuse esmakordsel taotlemisel);</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para4lg1p3">
+   <alampunktNr id="5e3a56f4-7379-4bdb-aa89-8a58ae243ca5">3</alampunktNr>
+   <kuvatavNr id="6bcbd1c0-f9fe-41cc-bea5-ea4fea61b26c"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="4baf895e-e98b-4572-a778-9df49b4f64dc">
+    <tavatekst id="fb111870-8916-4262-838b-eea1964c87d9">vajadusel eestkostjaks või hooldajaks olemist tõendava dokumendi koopia (toetuse esmakordselt taotlemisel);</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para4lg1p4">
+   <alampunktNr id="204a8b34-93dd-488e-966b-e528763c0bc6">4</alampunktNr>
+   <kuvatavNr id="54390e5b-410e-4230-abbf-9a1dfaec5c53"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="0e684e5a-172e-4568-a0c8-4717e2a61698">
+    <tavatekst id="d4284012-524e-4a22-9c39-4efc0cee2203">lapsehoiuteenuse ostmist tõendavad dokumendid, kust nähtub, millisel perioodil on lapsehoiuteenust kasutatud ning millal, kellele ja kui palju on teenuse eest makstud. Toetuse taotlejal on õigus esitada taotlus koos dokumentidega toetuse saamiseks mitte hiljem kui kolme kuu jooksul pärast lapsehoiuteenuse kasutamise kuud.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para4lg2">
+   <loigeNr id="62168761-32ed-4dc2-a9f3-8b9945ec454b">2</loigeNr>
+   <kuvatavNr id="9ffc64d0-dda8-4c89-ae2b-291569e004d5"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="bec24906-4168-4346-be93-9526bf220a8d">
+    <tavatekst id="5edaec5c-9007-42df-a169-da3bc9c337db">Lapsehoiutoetuse taotluse vormi kinnitab linnavalitsus.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg3">
+   <loigeNr id="eaca61c3-de52-4b82-b2ed-ad41d988171c">3</loigeNr>
+   <kuvatavNr id="1733a139-edc8-4a9c-9b88-3e5d9892b195"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="8e98924f-fdfd-49ea-8543-9b3a8b507b07">
+    <tavatekst id="8afa27e8-9679-4d93-bd82-ccbd55759d3e">Sotsiaalabi osakonnal on vajadusel õigus nõuda taotlejalt täiendavaid andmeid või dokumente, millest taotlejat informeeritakse taotluse vastuvõtmisel või kirjalikult 5 tööpäeva jooksul pärast taotluse vastuvõtmist. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg4">
+   <loigeNr id="db0d16d1-ffc1-430e-bce9-b1aafe8ba7cc">4</loigeNr>
+   <kuvatavNr id="994a934d-f333-4ee6-b69a-11ad57e86ab1"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="0a672354-94d6-4d64-9f63-2a0886ca4ce4">
+    <tavatekst id="a4d80140-9176-4e5d-8006-8a65a52db7cd">Taotlus jäetakse rahuldamata, kui 10 tööpäeva jooksul taotluse esitamisest või kirjaliku teate saatmisest ei ole esitatud täiendavalt nõutud andmeid või dokumente. </tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para5">
+   <paragrahvNr id="e37c547b-1589-461f-beba-3721ec0d85e1">5</paragrahvNr>
+   <kuvatavNr id="aa838592-6b2f-42cc-86e4-683c20cfe95d"><![CDATA[§ 5. ]]></kuvatavNr>
+   <paragrahvPealkiri id="81f04e46-9fbf-4a9a-97da-ebb12890d787">Toetuse määramine ja maksmine </paragrahvPealkiri>
+  <loige id="para5lg1">
+   <loigeNr id="b1e652f7-e528-414a-958e-20351b79201b">1</loigeNr>
+   <kuvatavNr id="bfc6de2c-2d1e-437a-8002-c7073d05065e"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="6d620417-2da9-4654-887e-b7bf6a052b77">
+    <tavatekst id="f6149c85-7c36-4e28-aaae-00b474f60cd9">Otsuse toetuse andmise või sellest keeldumise kohta teeb sotsiaalabi osakonna juhataja või juhataja asetäitja kümne (10) tööpäeva jooksul, arvates toetuse taotlemiseks viimase vajaliku dokumendi saamise päevast. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg2">
+   <loigeNr id="8ddb2de4-6f9b-4273-b27a-67c8dd9ff56e">2</loigeNr>
+   <kuvatavNr id="6e55cd25-9d95-4129-9585-9f097e187886"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="36d40713-a91a-4b9e-adec-ad49ca34b2c0">
+    <tavatekst id="351f60b3-04a8-4913-8b76-19f178ee1922">Kui sotsiaalabi osakonnal tekib põhjendatud kahtlus taotlusele lisatud dokumentide alusel teenuse tegeliku saamise kohta, on sotsiaalabi osakonnal õigus pikendada otsuse tegemise tähtaega kuni kolmkümmend (30) päeva, teatades sellest kirjalikult taotluse esitajale. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg3">
+   <loigeNr id="a58213ff-eb16-4e91-954f-cf67cf4335a6">3</loigeNr>
+   <kuvatavNr id="1f7aa5ec-1235-4e38-88da-37c094dce275"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="809da8af-befd-4584-bf4d-7ee975631f41">
+    <tavatekst id="f9903914-b9ac-48b4-964e-f3d6081ce7e2">Kui taotlust ei rahuldata, saadab sotsiaalabi osakond taotlejale vastuse viie (5) tööpäeva jooksul otsuse tegemisest. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg4">
+   <loigeNr id="d17d119c-b9fc-4d2c-b685-867d50690f20">4</loigeNr>
+   <kuvatavNr id="70f90efa-2df5-4247-ba24-fb054b1af42c"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="ec45d771-2c63-4c34-b2fc-20ec38e60cae">
+    <tavatekst id="93ab3e07-95f6-4649-8f5c-0a22d1fa26f2">Toetus määratakse dokumentaalselt tõestatud lapsehoiuteenuse kulutuste alusel kalendrikuu jooksul tehtud lapsehoiuteenuse kulutuste ulatuses mitte rohkem, kui linnavalitsuse poolt kehtestatud määras. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg5">
+   <loigeNr id="bcaac478-e55d-462f-95b3-9e32b2f745ee">5</loigeNr>
+   <kuvatavNr id="f59ec6e9-36bc-477a-9a9a-066ce374f244"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="eaa9ee7f-2156-4f4e-a60e-31c8bb99ca25">
+    <tavatekst id="cb8aeec9-01fd-4105-8729-fc53e664fd64">Toetus kantakse üle taotluses märgitud arvelduskontole kümne (10) päeva jooksul otsuse tegemisest. </tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para6">
+   <paragrahvNr id="2b4918bf-7c80-4528-9c0d-7728c923703b">6</paragrahvNr>
+   <kuvatavNr id="78c78433-e4e9-4d66-b509-ff8516db2365"><![CDATA[§ 6. ]]></kuvatavNr>
+   <paragrahvPealkiri id="a81876ca-5d1b-4475-8e04-0c0dfa4cdfcf">Lapsehoiuteenusele esitatavad nõuded </paragrahvPealkiri>
+  <loige id="para6lg1">
+   <loigeNr id="9fe4cc4d-553f-4b01-8528-e0b6a5cc6066"/>
+   <kuvatavNr id="9a07e920-5af4-4133-bbde-daead1cc8782"/>
+   <sisuTekst id="3c415e07-2372-475b-8fc2-0e1e75eb1ca2">
+    <tavatekst id="b686f027-39a4-406d-993b-a2ef35d3f127">Lapsehoiuteenusele ja lapsehoiuteenuse osutajale esitatavad nõuded sätestatakse sotsiaalhoolekande seaduse ja seaduse alusel antud õigusaktidega.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para7">
+   <paragrahvNr id="5bc7b3fc-f887-4e09-bbff-bb075b4b922b">7</paragrahvNr>
+   <kuvatavNr id="27113c51-d4d5-412a-9448-f177ffe999c1"><![CDATA[§ 7. ]]></kuvatavNr>
+   <paragrahvPealkiri id="0a18f916-e749-4a69-86b7-5ecb4d8e9516">Lapsehoiuteenuse osutamise kontrollimine </paragrahvPealkiri>
+  <loige id="para7lg1">
+   <loigeNr id="c563be9b-5c6c-407f-a019-411d8ade39d6">1</loigeNr>
+   <kuvatavNr id="5aaffa8e-30f4-46ad-aac7-2fd37c2d70ed"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="43173a59-9a8a-43ab-99ba-6294f34a428e">
+    <tavatekst id="9fe15bdd-d833-491e-8857-cfe717d091e7">Linnavalitsuse esindaja(te)l on õigus lapse õiguste kaitseks kontrollida lapsehoiuteenuse osutamise kohta teenuse osutamise ajal, kas teenust osutatakse lapsele kohastes tingimustes ning koostada vormikohane akt. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg2">
+   <loigeNr id="0fa9929e-b9a8-4243-94f4-266f425e5bba">2</loigeNr>
+   <kuvatavNr id="b70878b5-f9cf-4ccc-a3b9-0f5d3ecb410e"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="d25bd876-61d9-48ca-9115-30775254410a">
+    <tavatekst id="787ecbf8-a158-4d25-bb6d-0e96d7d3409c">Kontrollifunktsiooni täites ei võta linnavalitsus endale vastutust teenuse osutamise tagajärgede eest ega vabasta teenuse osutajat ega lapsevanemat või temaga võrdsustatud isikut vastutusest lapse heaolu eest. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg3">
+   <loigeNr id="f40b554c-7900-43d0-98a8-ab0b2325d966">3</loigeNr>
+   <kuvatavNr id="d5385e44-c855-4644-b305-f45431cc051e"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="80401f08-9653-4503-a452-d149d83bd127">
+    <tavatekst id="17cf53ee-9f0b-4dc1-bea1-e7e197557df7">Kontrolli tulemustest teavitatakse lapsevanemat, eestkostjat või hooldajat. </tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para8">
+   <paragrahvNr id="d3b21162-b29d-48a0-bfba-9f8d0ce00810">8</paragrahvNr>
+   <kuvatavNr id="015fe6f6-b7ca-4e8c-9bdd-58f4dbf859af"><![CDATA[§ 8. ]]></kuvatavNr>
+   <paragrahvPealkiri id="e9942a47-03db-4ed4-b8b1-4fd49d651947">Toetuse tagastamine</paragrahvPealkiri>
+  <loige id="para8lg1">
+   <loigeNr id="3aefd8df-9805-4d00-97ab-9e0d835e00b5"/>
+   <kuvatavNr id="b6ad93a9-831f-4975-9bbb-6d80f47e020f"/>
+   <sisuTekst id="4b7d2ea1-163f-4089-ae65-5915cd39056e">
+    <tavatekst id="f402c677-cbe2-4563-abe7-209c1aaeb52d">Toetust on õigus tagasi nõuda, kui toetuse saaja varjas andmeid teadvalt või esitas valeandmeid, samuti muudel sotsiaalseadustiku üldosa seadusega ettenähtud juhtudel. Kui isik keeldub alusetult saadud toetust tagasi maksmast, võib linnavalitsus teha toetuse saajale ettekirjutuse. Ettekirjutuse täitmata jätmise korral võib linnavalitsus anda selle sundtäitmisele täitemenetluse seadustikus sätestatud korras.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para9">
+   <paragrahvNr id="f1f0bf83-e443-4491-a723-3644eabe7e12">9</paragrahvNr>
+   <kuvatavNr id="cda5d91f-4134-4474-b81e-58cc5abe7c24"><![CDATA[§ 9. ]]></kuvatavNr>
+   <paragrahvPealkiri id="bb795613-99f2-4f16-9e85-99e0ee16dcca">Rakendussätted</paragrahvPealkiri>
+  <loige id="para9lg1">
+   <loigeNr id="d4c44a62-1bd2-40f6-97b6-e1114cf8d9fd">1</loigeNr>
+   <kuvatavNr id="e8cd7af1-8f08-4a0a-90b3-0736e42c8630"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="9f3f30a6-b28d-4a72-8064-c875c01a4289">
+    <tavatekst id="c9b2b07d-e342-4f06-a013-c05350d3a880">Määrus jõustub 3. päeval pärast Riigi Teatajas avaldamist.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para9lg2">
+   <loigeNr id="fc909b7a-c8b6-4bee-9d5c-d28c063b769c">2</loigeNr>
+   <kuvatavNr id="c05d0af6-3638-4439-8294-23050c2aa7c2"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="9e3b9ef0-1ef3-4a20-9571-79c6fdc6e41e">
+    <tavatekst id="a88a34c2-7e8d-4dda-9178-9439c782c0d0">Maardu Linnavolikogu 25.01.2011 määrus nr 41 „Lapsehoiutoetuse maksmise ning lapsehoiuteenuse osutamise kord“ tunnistatakse kehtetuks.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="39df57fd-6404-41c1-abc7-2a2b5ab5398c"><allkiriKoht id="b62babb2-557f-4c80-81e4-05d4d9166390"/><allkirjastaja id="b524890c-5302-4e54-9992-d6976818790e"><ametinimetus id="b1373a1e-69a2-4f62-bb14-3c553ef8e65c">Maardu Linnavolikogu esimees</ametinimetus><eesnimi id="fea00816-eb42-4134-915e-fedfe1545c21">Elviira</eesnimi><perekonnanimi id="f374b2e6-0752-4c89-a936-e1853d26d8d6">Piiskoppel</perekonnanimi></allkirjastaja></allkiri></oigusakt>

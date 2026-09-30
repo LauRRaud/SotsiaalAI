@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="6ca333b6-c2c7-4f10-9bb8-6f825d889c96" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Järva Vallavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2018-02-22</aktikuupaev>
+			<avaldamismarge>
+				<RTosa id="4a73a5b5-937c-4e63-b1eb-90e46b64aa81">RT IV</RTosa>
+				<avaldamineKuupaev id="34608701-3665-43ec-a6b2-5182d4f38339">2018-02-28</avaldamineKuupaev>
+				<RTartikkel id="51f8e5be-299e-4948-923f-a8c1dcad40e2">92</RTartikkel>
+				<aktViide id="1fbc34e9-0700-4ea4-952d-e46f89c11dcc">428022018092</aktViide>
+			</avaldamismarge>
+			<joustumine>2018-03-03</joustumine>
+			<aktiNr>6</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2023-12-08</avaldamineKuupaev><RTaasta>2023</RTaasta><RTartikkel>43</RTartikkel><aktViide>408122023043</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2023-12-11</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2023-12-07</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>408122023043</globaalID>
+		<metaandmedVersioon>11</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2023-12-07</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1042251</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2018-02-27</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Jaanika Aava</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>6</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2018-02-27</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="bcdf24df-021c-4470-9b36-7913310554d8">
+		<nimi id="1dc5c398-8a57-4830-aeeb-0d21041608dc">
+			<pealkiri id="0afe9147-2b54-4e92-9d1d-80a60471b439"> Asendus- ja järelhooldusteenuse osutamise tingimused ja kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="9d2f8c7e-cede-424d-ab45-9a34851375c0">
+		<aktikuupaev id="7b5afe78-150c-4c3d-85f6-aef218362c43">2023-11-30</aktikuupaev>
+		<avaldamismarge id="9b46daf3-ef1c-4eb3-82a0-f2dfd76da39a">
+			<RTosa id="23aad15c-5dc3-456f-b3ed-5a6559404f59">RT IV</RTosa>
+			<avaldamineKuupaev id="374fd3a8-457d-4b05-a0aa-72e00fc31be9">2023-12-08</avaldamineKuupaev>
+			<RTartikkel id="10c97362-5f78-458b-8440-e414600a8787">17</RTartikkel>
+			<aktViide id="bbe7ee25-8ab6-4303-b3df-c114bf0d5883">408122023017</aktViide>
+		</avaldamismarge>
+		<joustumine id="5dc44b7b-e7d9-4b5f-9ec4-2946422a4072">2023-12-11</joustumine>
+	</muutmismarge>
+	<sisu id="bf0f8d53-8fa6-473b-b6b0-56bdc5489b11">
+		<preambul id="3a2d0583-d0f2-4671-8f46-afcd132dcc9b">
+			<tavatekst id="99391900-ffcc-4957-b595-1bf28ec711ae">Määrus kehtestatakse sotsiaalhoolekande seaduse § 14 lõike 2 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="956e715b-7284-4d5b-a40c-2c687e411a75">1</paragrahvNr>
+			<kuvatavNr id="40a04c4a-741c-4199-8c0a-d0a6bf4952c3"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="90543741-1e93-40fb-af5b-a1568ede4f75">Määruse reguleerimisala</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="aea381cd-2e93-45ff-8684-d28b65a75994"/>
+				<kuvatavNr id="44263738-975b-4b5f-92cb-8e642e4abb68"/>
+				<sisuTekst id="3f7210f2-6446-4990-bb97-1607f5e67948">
+					<tavatekst id="8c43e1eb-11f7-4d6e-b316-3dc3a3abf980">Määrusega kehtestatakse asendus- ja järelhooldusteenuse (edaspidi ühiselt nimetatud <i>teenused</i>) korraldamise ning rahastamise tingimused ja kord Järva vallas.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="6b358d72-155a-4cf5-b151-8e2b29e52155">2</paragrahvNr>
+			<kuvatavNr id="292c0112-d963-4592-b463-60aaf9814325"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="c90171ad-7116-42a5-99c6-9075e3b7b13d">Asendushooldusteenuse eesmärk</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="d6310088-58a0-4617-8c9a-c33563081761"/>
+				<kuvatavNr id="8876b397-dd7f-4c19-93c5-aaa2c273db08"/>
+				<sisuTekst id="6f2c329a-efbb-4048-a39f-87bf16cb75a6">
+					<tavatekst id="3b9f67f3-1fc6-4daa-84f6-20a49f7d108a">Asendushooldusteenuse eesmärk on pika- või lühiajaliselt lapse heaolu ja õiguste tagamine, lapsele tema põhivajaduste rahuldamiseks peresarnaste elutingimuste võimaldamine, lapsele turvalise ja arenguks soodsa elukeskkonna loomine ning lapse ettevalmistamine võimetekohaseks toimetulekuks täisealisena.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="5b67efe9-d97f-4440-9010-66b5a65b54aa">3</paragrahvNr>
+			<kuvatavNr id="7a2a49b6-7739-4530-8d48-7f3e03c94ae3"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="0308311d-3f35-4912-bc31-86e3b41a0dbd">Järelhooldusteenuse eesmärk</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="e7cb1c9e-4d21-4279-88a0-f496ee264e75"/>
+				<kuvatavNr id="3ade130c-67a6-4280-95c6-0792cf4e8916"/>
+				<sisuTekst id="fa8e93a4-c680-4bcd-bfdc-43f8247fcfed">
+					<tavatekst id="a16e287f-c22a-4433-aa3a-c219620a4675">Järelhooldusteenus on Järva Vallavalitsuse sotsiaalosakonna (edaspidi <i>sotsiaalosakond</i>) korraldatav sotsiaalteenus, mille eesmärk on asendushoolduselt ja eestkostelt lahkuva isiku iseseisva toimetuleku ja õpingute jätkamise toetamine.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="13023147-c099-4e02-b6de-a3bab0cd2603">4</paragrahvNr>
+			<kuvatavNr id="755b72c4-be46-4afe-ba5f-13dfcd390fca"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="dc116256-dc5d-490a-b61a-1e4b3fba99ef">Asendushooldusteenuse osutaja</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="7e2b5172-b7ac-4566-8fbc-18ad32de09dd"/>
+				<kuvatavNr id="cf6239ad-26d9-4a02-a671-4537e1128870"/>
+				<sisuTekst id="597a571f-eb2d-4aaa-b14e-a0695f642c0d">
+					<tavatekst id="5363f030-fcd0-439f-9b30-dc07f69516db">Asendushooldusteenuse osutaja on hoolduspere, perekodu ja asenduskodu (edaspidi <i>teenuseosutaja</i>).</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="30b6b767-59cc-4ff5-88cd-5180fee63556">5</paragrahvNr>
+			<kuvatavNr id="a4da08b2-cf8d-4ca8-84e5-7cf2d9291470"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="b46aa35b-a425-461d-bee9-d5c2bbcdc663">Teenuse saaja</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="7a01f8e6-049b-4d3f-873b-759548c38f17">1</loigeNr>
+				<kuvatavNr id="50f41c7e-a7f4-4dae-8dd5-f8b42d37e84c"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="3fec6a97-911c-4313-9ed7-a3fa4c1b17c2">
+					<tavatekst id="452570dc-eec8-4dff-bbe9-5f789f8c41a5">Järva Vallavalitsus (edaspidi <i>vallavalitsus</i>) tagab lapsele asendushooldusteenuse kuni lapse 18-aastaseks saamiseni, kui:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para5lg1p1">
+					<alampunktNr id="f8ab1f91-b6a9-41c6-972c-9a4286f8802b">1</alampunktNr>
+					<kuvatavNr id="7387f3f7-1580-4f92-9e87-97aad12ff3b5"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="749e1a27-06f2-4d82-875e-5fc982a6b445">
+						<tavatekst id="a5d2b7c0-f1ad-44f4-8daf-d48de6d0178e">lapse vanem on surnud;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg1p2">
+					<alampunktNr id="af7872e9-e47a-4703-8972-db1e503c48e7">2</alampunktNr>
+					<kuvatavNr id="6dbeb6df-2a30-4922-bef8-b91db9988bf9"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="38118d07-feb1-4270-b052-49d1311cdd1c">
+						<tavatekst id="98e4c4c2-cfc3-41ce-9310-82a62f2c6ebf">lapse vanemale on tema piiratud teovõime tõttu määratud eestkostja;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg1p3">
+					<alampunktNr id="6414f9a7-0e14-4bcc-8cbe-cec03dd07799">3</alampunktNr>
+					<kuvatavNr id="4ad5097a-e59f-4aa0-b8bc-679825d6ad8c"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="1751cd24-172f-4a39-a082-72f69a2e8807">
+						<tavatekst id="41ef26bf-b353-4fda-9b97-e3fd90197eeb">vanema hooldusõigus lapse suhtes on peatatud, seda on piiratud või see on täielikult ära võetud;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg1p4">
+					<alampunktNr id="08bfb284-14e2-4940-bc44-decc13c46935">4</alampunktNr>
+					<kuvatavNr id="59db944f-ceac-4ffa-94d8-d72f37777a91"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="ffcb2a33-f266-448d-8afa-f0147de585e0">
+						<tavatekst id="3acdfb19-6184-4581-a5b9-539d70414c02">laps on vanemast eraldatud.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para5lg2">
+				<loigeNr id="a4ac3228-8166-410e-8bd2-af422d47dd8d">2</loigeNr>
+				<kuvatavNr id="d995931f-68e9-4efa-ac4e-79320a21f283"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="462b8c8a-374d-4a39-8440-fede25142116">
+					<tavatekst id="2ce1e698-087e-4871-9550-1550a3bf19d7">Kui käesoleva paragrahvi lõikes 1 nimetatud laps on enne 18-aastaseks saamist asunud õppima ja jätkab õppimist statsionaarses õppes või tervislikel näidustustel muus õppevormis põhikoolis, gümnaasiumis või kutseõppe tasemeõppes, siis tagab vallavalitsus lapsele asendushooldusteenuse:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para5lg2p1">
+					<alampunktNr id="a6b1e938-7540-459a-97f9-00841837b42f">1</alampunktNr>
+					<kuvatavNr id="d8ecd805-f3ba-421e-948b-fdb302d3c5ac"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="59f6da72-8238-45b9-8dfe-ab26cafe1855">
+						<tavatekst id="da0d30f1-a141-4bc7-88cc-2142bb785d72">hariduse omandamise korral kuni järgmise õppeaasta alguseni, kuid mitte kauem kui järgmise õppeaasta alguseni sel aastal, kui laps sai 19-aastaseks;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg2p2">
+					<alampunktNr id="e452cd8e-fd92-471d-bbb3-fece2492f8a8">2</alampunktNr>
+					<kuvatavNr id="15d72b4d-0838-4f92-9309-47b704bc7435"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="0b1f0299-2847-46b5-9614-3c0701f6f6f8">
+						<tavatekst id="be6d18ab-928a-4b27-89f6-530cb14ea490">õpingute katkestamiseni, kuid mitte kauem kui lapse 19-aastaseks saamiseni või</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg2p3">
+					<alampunktNr id="d7d5090b-b1f5-45c7-bee1-456ce0b725ee">3</alampunktNr>
+					<kuvatavNr id="d2c52a98-273b-4933-a9f4-a6e329ebfbc4"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="7dd37fbd-36e0-46f4-ba8e-c992d1d1066a">
+						<tavatekst id="e110620f-56b8-407d-84c3-c9998b5263a6">lapse 19-aastaseks saamise korral kuni järgmise õppeaasta alguseni.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para5lg3">
+				<loigeNr id="d5bdcb35-5c94-458a-9a33-087d9ffc0b05">3</loigeNr>
+				<kuvatavNr id="af515aa9-2265-419a-8768-d86072440990"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="04ee3c7e-0e6f-4017-a869-9ba86c78be9a">
+					<tavatekst id="2884c516-a9b9-4b8d-a2af-56fa72d0e3a8">Vallavalitsus võib tagada asendushooldusteenuse abivajavale lapsele, kelle hooldusõiguslik vanem või füüsilisest isikust eestkostja on andnud nõusoleku, et asendushooldusteenust osutatakse kuni 90 päeva või periooditi.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg4">
+				<loigeNr id="e5e14a35-db42-422e-8a0e-0caa3a864121">4</loigeNr>
+				<kuvatavNr id="0f38faac-9a35-4511-b49b-da2fff660913"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="4bf39f4f-f1f0-4914-8da3-dd9632abe09e">
+					<tavatekst id="e2709cc2-9836-4114-a76b-b3034fdc145d">Vallavalitsus tagab järelhooldusteenuse asendushooldusel viibivale täisealisele isikule, kes pärast põhi-, kesk-, kutse- või kõrghariduse omandamist jätkab järgmisel õppeaastal õppimist kutseõppe tasemeõppes, rakenduskõrgharidusõppes, ülikooli bakalaureuse- või magistriõppes või bakalaureuse- ja magistriõppe integreeritud õppes:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para5lg4p1">
+					<alampunktNr id="77240efb-7089-4f9e-bab8-12452f8ff918">1</alampunktNr>
+					<kuvatavNr id="823e1313-13f5-42a3-8736-e441fe2edbeb"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="56276432-4cab-4c03-a879-ae59c3df06d4">
+						<tavatekst id="3e26b7e5-0b55-47e9-a1f9-1ca3a9964348">esmase õppekavajärgse nominaalse õppeaja lõpuni, kuid mitte kauem kui isiku 25-aastaseks saamiseni;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg4p2">
+					<alampunktNr id="42681112-9efb-4bce-b95a-262c7b58a8f2">2</alampunktNr>
+					<kuvatavNr id="da9a7341-64e4-4737-941b-622100677b87"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="7b206269-3bb9-4f98-b15e-63227aee2dae">
+						<tavatekst id="105f2c87-27b7-4ba7-8017-71da179d95a4">õpingute katkestamiseni, kuid mitte kauem kui isiku 25-aastaseks saamiseni või</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg4p3">
+					<alampunktNr id="908d12d8-59dc-4345-bdee-38b87adcdf40">3</alampunktNr>
+					<kuvatavNr id="ead27d23-b6ea-4e4b-97cc-9a9a0205e323"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="5fab3617-b65e-4d0c-9bf2-cea4b0894cd3">
+						<tavatekst id="c6e78b4f-da44-4ae1-95a1-0ef33658a981">isiku 25-aastaseks saamiseni.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para5lg5">
+				<loigeNr id="5f044eaf-fc17-4d52-8cbf-0cd47085dc89">5</loigeNr>
+				<kuvatavNr id="cb552ab5-db8b-436e-829f-02b6f28068fc"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="3727b307-0590-4b36-b040-4aa6cb03e11a">
+					<tavatekst id="1becad18-5aa4-4870-9719-23ea4c58b93b">Vallavalitsus:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para5lg5p1">
+					<alampunktNr id="fc7c89d7-e3ca-442a-9771-11c2372035cd">1</alampunktNr>
+					<kuvatavNr id="1adb2083-f64f-417e-98d7-c4f3c60778db"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="c04ef3ae-fdd8-482f-8c5c-b4c65445834c">
+						<tavatekst id="87fa671a-0302-44ad-ba92-734a6d39f0ff">tagab järelhooldusteenuse sotsiaalhoolekande seaduse § 459 lõike 1 alusel asendushooldusel</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg5p2">
+					<alampunktNr id="2aa043fe-2027-4066-bf3b-22eaeac0aa70">2</alampunktNr>
+					<kuvatavNr id="45659f84-5b02-4dd1-b1db-07a1b5fee0a0"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="93f048a8-102c-479d-86c0-5333f73198d4">
+						<tavatekst id="22080d7c-fe29-4d39-860e-d19b89d32ebb">võib isikule, kes kuni täisealiseks saamiseni viibis asendushooldusel või eestkostel, tagada taseme- või diplomiõppes õppimise ajal järelhooldusteenuse kuni isiku 25-aastaseks saamiseni.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="8c7c3f1c-8d9c-448e-9a03-f4c004a0c0a8">
+						<avaldamismarge id="bea77170-d028-488a-b40e-2716bb9cc89b">
+							<RTosa id="b0f3ffa2-6cb2-48d8-b68a-a4005ced7777">RT IV</RTosa>
+							<avaldamineKuupaev id="73f90dfa-464d-4131-8b46-135b471dd225">2023-12-08</avaldamineKuupaev>
+							<RTartikkel id="f946f617-7a01-47ee-93be-8ad706744b6c">17</RTartikkel>
+							<aktViide id="329d429f-8ad5-4ccd-8c8f-06a7c4b06913">408122023017</aktViide>
+						</avaldamismarge>
+						<joustumine id="eea126a0-86cc-47c8-a4f2-1148f1a6e0e0">2023-12-11</joustumine>
+					</muutmismarge>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para6">
+			<paragrahvNr id="e767f2e0-6394-421c-aa9b-dec64ae05bc9">6</paragrahvNr>
+			<kuvatavNr id="e97baf2d-d79d-4e9b-905c-30e0230008f6"><![CDATA[§ 6. ]]></kuvatavNr>
+			<paragrahvPealkiri id="c3ca3d3a-78a1-4295-8e1c-9f215fee50a2">Teenuse vajaduse hindamine ja teenusele suunamine</paragrahvPealkiri>
+			<loige id="para6lg1">
+				<loigeNr id="72eb03b9-8955-499e-a4fd-945fd468d79c">1</loigeNr>
+				<kuvatavNr id="d871f7ca-d9e8-4d83-b181-b7ced74e3b42"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="e9b4abfb-88b4-463b-b60e-9af59cfdac46">
+					<tavatekst id="cf4ea734-6a80-459c-b0ba-52f5e1189463">Lapse asendushooldusteenusele suunamisel hindab sotsiaalosakonna spetsialist lapse abivajadusest ja heaolust lähtuvalt teenuse osutamise vajadust ning koostab juhtumiplaani.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg2">
+				<loigeNr id="50c1e8e0-8899-446e-8447-b6b4a021a94a">2</loigeNr>
+				<kuvatavNr id="61d508cd-1bb6-4b83-b7c3-30817765a3f3"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="d75c36d2-a927-44cd-89c7-fafd59ad6d3f">
+					<tavatekst id="79e2593a-8802-4c6a-b2b5-d5885c50afc9">Määruse § 5 lõikes 3 nimetatud lapse asendushooldusteenusele suunamisel hindab sotsiaalosakonna spetsialist lapse abivajadusest ja heaolust lähtuvalt teenuse osutamise vajadust ja sobivust ning suunab lapse teenusele hooldusõigusliku vanema või eestkostja nõusolekul.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg3">
+				<loigeNr id="2a55d455-e207-4427-8413-3ac811cd10e2">3</loigeNr>
+				<kuvatavNr id="919a864e-f903-42a4-a0f1-cc9707638aff"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="2d55d611-b520-4c86-bd30-b7d8eeb7b623">
+					<tavatekst id="cb26cf2a-41f6-4919-b141-d4d233f54d25">Täisealise isiku järelhooldusteenusele suunamisel hindab sotsiaalosakonna spetsialist isiku vajadusest tulenevalt teenuse vajaduse.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg4">
+				<loigeNr id="c0d7b405-bad3-4255-9a09-ba895e2b3189">4</loigeNr>
+				<kuvatavNr id="8e308af4-8a59-491d-9903-b305bca4d353"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="7afe164a-5ef7-4cf8-8e64-6687cb72e493">
+					<tavatekst id="547b939c-22b1-4928-b15e-8ae505ffded4">Otsuse teenusele suunamise kohta teeb vallavalitsus korraldusega ning sotsiaalosakonna spetsialist kannab isikule teenuse osutamise andmed sotsiaalteenuste- ja toetuste andmeregistrisse (edaspidi <i>STAR</i>).</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg5">
+				<loigeNr id="9dccb4aa-35d2-40c6-8938-08f85b56edbc">5</loigeNr>
+				<kuvatavNr id="65f46616-b509-47b4-958a-caca1e69526e"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="7c260ca0-c94c-419c-9afc-64fe732e2489">
+					<tavatekst id="b1add9e9-5297-4514-8082-8b2196a6d4b6">Teenuse saaja ja võimalusel tema vanem või füüsilisest isikust eestkostja peab olema kaasatud teenuse vajaduse hindamise ja teenusele suunamise protsessi.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg6">
+				<loigeNr id="feabdd68-daaa-481d-b3fa-f6eadc136289">6</loigeNr>
+				<kuvatavNr id="feff0157-a216-40a1-be65-c651d08e8fb3"><![CDATA[(6)]]></kuvatavNr>
+				<sisuTekst id="bc1f9283-333a-4301-bc4a-d572b8da57f6">
+					<tavatekst id="5d41b231-75d9-4921-98f8-11f1af27eacc">Teenusele suunamise aluseks on STARis koostatud juhtumiplaan alaealise või järelhooldusteenuse puhul täisealise isiku abivajaduse hindamise kohta.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para7">
+			<paragrahvNr id="fe2948bc-f235-4f13-b270-b1f6386f02dc">7</paragrahvNr>
+			<kuvatavNr id="02344b10-9549-40e5-86fc-cb3a91859cff"><![CDATA[§ 7. ]]></kuvatavNr>
+			<paragrahvPealkiri id="6ad465a4-9feb-48e6-b15e-faf630adbd3c">Teenuse rahastamine</paragrahvPealkiri>
+			<loige id="para7lg1">
+				<loigeNr id="f8623adf-491b-4214-8f21-5ad025961a40">1</loigeNr>
+				<kuvatavNr id="c2cd2fbb-6151-42bf-98df-b6148e1840c6"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="4ab0876a-0118-4762-8fe5-8f43c7bbbb94">
+					<tavatekst id="cbf2ee90-51ab-47a6-b22d-99b4c021a697">Asendushooldusteenust rahastatakse Järva valla eelarvest ning asendushooldusteenusel oleva lapse sissetulekutest.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg2">
+				<loigeNr id="1d27aa84-3282-40fd-b845-90e4d1eef533">2</loigeNr>
+				<kuvatavNr id="6e3fe1ea-0477-45e2-924b-fb974ff17eef"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="fbb8ddad-bfd3-428f-a4a2-3d4b1c938d50">
+					<tavatekst id="0a3e90b9-a6cd-4b15-8230-c7bd4dfc9d23">Asendushooldusteenust käesoleva määruse § 5 lõikes 3 nimetatud lapsele võib rahastada valla eelarvest ja lapse ülalpidamiskohustusliku isiku vahenditest.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg3">
+				<loigeNr id="9929b67e-14a9-430d-9be6-50560ac16210">3</loigeNr>
+				<kuvatavNr id="24fdb4db-0325-4d31-a668-8a4a62b082aa"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="dfbd4520-bfcd-4e37-9a6d-da9d4034c509">
+					<tavatekst id="136936aa-1e07-4d7b-870e-a0791f1ba664">Järelhooldusteenust rahastatakse valla eelarvest ning järelhooldusteenusel oleva täisealise isiku sissetulekutest.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg4">
+				<loigeNr id="01d83f1a-5488-45ed-b83f-3cde37b89cb3">4</loigeNr>
+				<kuvatavNr id="55b5f91b-64c5-4c92-ba9a-36be6582ff03"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="c6025029-f9d1-4fe0-bf6e-36b708cf70ba">
+					<tavatekst id="794cdf5f-ee28-453f-b492-e6af9460d655">Teenuse saaja isiklike kulude katteks peab valla eelarvest iga kuu tegema kulutusi keskmiselt 240 euro ulatuses ja vähemalt 2880 eurot aastas.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="507ad025-0ae1-4e3c-8586-74620cf20f25">
+					<avaldamismarge id="1767d313-df06-4675-8b5f-d2831a32152c">
+						<RTosa id="bc2a8f3b-0cdd-4fd8-9c72-8ef631c47b75">RT IV</RTosa>
+						<avaldamineKuupaev id="5cf7c032-c12c-4b5c-9080-6582153e12a0">2023-12-08</avaldamineKuupaev>
+						<RTartikkel id="8533bf53-effa-4667-9a8c-34895d6b43bc">17</RTartikkel>
+						<aktViide id="ed6f782b-5578-456d-806b-c1931f8b60e8">408122023017</aktViide>
+					</avaldamismarge>
+					<joustumine id="fbf9a020-dda2-45c1-ae55-ab17b2f13e55">2023-12-11</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para7lg5">
+				<loigeNr id="940a8265-b5ad-4c7c-97f1-7014377c87eb">5</loigeNr>
+				<kuvatavNr id="208ea92f-57ea-4a6b-ba37-4e3391d9d92d"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="ed17f097-788e-40d5-acb7-2742ddece03d">
+					<tavatekst id="d484071a-b721-4c10-8779-a72d86046b74">Käesoleva paragrahvi lõikes 4 nimetatud summa sätestatakse teenuse osutamise lepingus ning kantakse teenuse osutaja arvelduskontole.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg6">
+				<loigeNr id="90ce630f-dc9e-4723-aaed-d2d3113a1bc0">6</loigeNr>
+				<kuvatavNr id="a3cde0b0-d389-40e1-a311-c7529e73f9fe"><![CDATA[(6)]]></kuvatavNr>
+				<sisuTekst id="67a3b839-2b7a-4f8e-8216-02c8c245bcbd">
+					<tavatekst id="e32fd282-97a2-48ed-8a8e-71ffe5fef234"/>
+				</sisuTekst>
+				<muutmismarge id="c25d5010-e5ea-478a-89f0-4478d313747b">
+					<tavatekst id="8469ac1f-368f-4f81-b8b6-105ec0b875f7">Kehtetu</tavatekst>
+					<avaldamismarge id="d8b9c7fc-1aca-42ee-8960-adb4a1ee5f52">
+						<RTosa id="57aa4a23-aa52-42d0-ac03-817ffe957669">RT IV</RTosa>
+						<avaldamineKuupaev id="1248deb5-bd35-45ef-9796-c17915e4bc44">2023-12-08</avaldamineKuupaev>
+						<RTartikkel id="3a745846-1549-4a42-ac2a-22ef5a1fc5d4">17</RTartikkel>
+						<aktViide id="e3590d34-7f02-492b-94dd-d0a98599dd15">408122023017</aktViide>
+					</avaldamismarge>
+					<joustumine id="bbb2b042-d183-4c7f-8b09-ab9825c83b89">2023-12-11</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para7lg7">
+				<loigeNr id="2fab7167-5f53-4b79-8521-edc1d0efdd8b">7</loigeNr>
+				<kuvatavNr id="8200fe7d-4e2b-4aee-ac81-659346412a9e"><![CDATA[(7)]]></kuvatavNr>
+				<sisuTekst id="05060430-c4de-4931-a39f-c48ed0340dca">
+					<tavatekst id="ee285dc0-ece1-4a21-a643-27c817259fae">Hoolduspere vanemat toetatakse vähemalt ühe kahendiku ulatuses töölepingu seaduse § 29 lõike 5 alusel kehtestatud kuutasu alammäärast ühe lapse hooldamise kohta.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="c06918e9-cf3e-4ac0-ba81-f89af53121c0">
+					<avaldamismarge id="751e98d7-077f-4837-b477-d5407cb2d95d">
+						<RTosa id="aea9ad14-d698-4a82-80d6-a731ecdb948b">RT IV</RTosa>
+						<avaldamineKuupaev id="17ab7934-3ad7-401a-9984-eecc5d020d88">2023-12-08</avaldamineKuupaev>
+						<RTartikkel id="94a44af6-d519-4cf9-8dff-fa1eec82642b">17</RTartikkel>
+						<aktViide id="06fdd836-432a-41c2-8edd-108e6dc19db9">408122023017</aktViide>
+					</avaldamismarge>
+					<joustumine id="d5eccde2-6af4-4558-a3b7-7c026f71fc88">2023-12-11</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para7lg8">
+				<loigeNr id="11936fbf-41de-42ab-b0be-7976bd684d20">8</loigeNr>
+				<kuvatavNr id="f182e22e-1bab-4241-bd65-9356be3faf0b"><![CDATA[(8)]]></kuvatavNr>
+				<sisuTekst id="f2561bd7-1efd-4420-a027-8a45698a42e4">
+					<tavatekst id="aac923f5-5255-4c45-b098-fd6fda4813ee"/>
+				</sisuTekst>
+				<muutmismarge id="3cd57feb-1c85-4dad-aa2b-b88a14639253">
+					<tavatekst id="a8e53333-586e-40c5-b79a-c48c677023a0">Kehtetu</tavatekst>
+					<avaldamismarge id="bce3907e-2186-4773-82ce-39f7ade3d178">
+						<RTosa id="93b9f982-dd93-4c84-a625-b5b73417d8a9">RT IV</RTosa>
+						<avaldamineKuupaev id="eb86884b-b173-463a-9d67-4387a0b863f6">2023-12-08</avaldamineKuupaev>
+						<RTartikkel id="98e79d22-6338-4ef6-8dbd-93766692ae9b">17</RTartikkel>
+						<aktViide id="cd3ffdd8-3193-4c52-9c0b-3b95d989c6e3">408122023017</aktViide>
+					</avaldamismarge>
+					<joustumine id="0e7f3f5b-b6c3-4def-afcf-ca1164bbdf72">2023-12-11</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para7lg9">
+				<loigeNr id="7b170ec8-b6a9-4591-bcb1-eba295678db0">9</loigeNr>
+				<kuvatavNr id="961e6215-fcd4-44f0-ae77-17d20b87b570"><![CDATA[(9)]]></kuvatavNr>
+				<sisuTekst id="8352fda3-38dc-498c-933a-7f55d8e956a3">
+					<tavatekst id="e56ad6f6-e440-4148-88a3-b9be27392bac">Teenuse osutaja muud kulutused teenuse osutamisele lepitakse kokku vallavalitsuse ja teenuse osutaja vahel, sätestatakse teenuse osutamise lepingus ja kantakse teenuse osutaja arvelduskontole lepingu alusel.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg10">
+				<loigeNr id="59038e5d-e06d-4575-b4ab-de571c5cb373">10</loigeNr>
+				<kuvatavNr id="eb00556f-2558-4446-bf66-102d4f5e35fe"><![CDATA[(10)]]></kuvatavNr>
+				<sisuTekst id="e82afa65-d92e-4407-a1d5-0094ab9e7a57">
+					<tavatekst id="0fc05848-dde4-4214-b20f-43d7215dca99">Teenuse osutaja muude kulude kokkuleppimisel tuleb arvestada teenuse saaja teenusel viibimise kestvust, õppimist väljaspool teenuse osutamise asukohta ja ülalpidamist riigi või Järva valla eelarvest.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para8">
+			<paragrahvNr id="ad5b521a-0e24-4d17-83d9-fa48e4690d29">8</paragrahvNr>
+			<kuvatavNr id="efd4956d-ae71-4766-a17e-8f793204cf75"><![CDATA[§ 8. ]]></kuvatavNr>
+			<paragrahvPealkiri id="a9d473f6-a0a4-4b77-bc18-9e72d40242f8">Hoolduspere vanema toetuse taotlemine</paragrahvPealkiri>
+			<loige id="para8lg1">
+				<loigeNr id="849dd2c9-37af-4a36-b2e3-0a1527a4cfc3">1</loigeNr>
+				<kuvatavNr id="700a84de-4f01-4d3b-9b17-a3e34fff831d"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="8bd460d3-3387-406d-b4cf-6be1033b176e">
+					<tavatekst id="c1b3bc79-20d0-403c-9066-91c60c87ac1c">Toetuse taotlemise õigus on hoolduspere vanemal, kellega vallavalitsus on sõlminud asendushooldusteenuse osutamise lepingu.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="4c570a3d-c689-4493-bd18-444460d41ffc">
+					<avaldamismarge id="7a415d92-06fc-4f44-b5fd-97bc482ba074">
+						<RTosa id="d05f755e-d9cd-459d-b87c-90dd84d1ef89">RT IV</RTosa>
+						<avaldamineKuupaev id="3873d32f-7e44-4f99-b04f-c02ba118e773">2023-12-08</avaldamineKuupaev>
+						<RTartikkel id="d3f96879-835c-494f-9e13-4e84322b992f">17</RTartikkel>
+						<aktViide id="0d97c1c0-b0c3-47f3-a4cf-0c9832c11ac6">408122023017</aktViide>
+					</avaldamismarge>
+					<joustumine id="f4089581-c50c-40eb-a926-35dc1eb6cba7">2023-12-11</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para8lg2">
+				<loigeNr id="5d207a9b-84b4-46cc-a368-1cb97a5100eb">2</loigeNr>
+				<kuvatavNr id="71a8c408-ed43-424d-8465-01e95c945260"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="016a5b53-1f7a-4be4-9013-526f1c492d1a">
+					<tavatekst id="cc71496a-5c62-4837-91f1-087bd5ad5bb5">Määruse § 7 lõikes 7 nimetatud toetuse saamiseks esitab hoolduspere vanem vallavalitsusele allkirjastatud vormikohase taotluse.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para8lg3">
+				<loigeNr id="33906404-0b9b-4746-aca5-9a6b266ebb5d">3</loigeNr>
+				<kuvatavNr id="821472c8-0269-41f5-8d8e-fb2494f29978"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="a971d05b-b7e7-431b-8ef4-651789f86919">
+					<tavatekst id="0f9a2597-39f8-4692-83b9-591a39a5389a">Taotluse vormi kinnitab vallavalitsus.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para9">
+			<paragrahvNr id="efca4e24-302f-4ad8-843d-7d02ba43247c">9</paragrahvNr>
+			<kuvatavNr id="e247c49e-3063-4d42-b8e6-6be97bd7f4c1"><![CDATA[§ 9. ]]></kuvatavNr>
+			<paragrahvPealkiri id="cc1d6931-1fd8-4b1a-8bdf-44ab5df0de65">Lepingu sõlmimine</paragrahvPealkiri>
+			<loige id="para9lg1">
+				<loigeNr id="eed30caf-a67b-4715-822f-a065afb9fe7a">1</loigeNr>
+				<kuvatavNr id="75cbdb7a-3319-497a-8c03-f0d0ea08645c"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="92908f4a-50ac-431e-871c-8fb86956cf57">
+					<tavatekst id="b33fd713-0b63-4a42-bbda-0e8663228ca5"> Järva vallavanem või tema asendaja sõlmib asendushooldusteenuse osutajaga lepingu.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="3ebc0187-841b-468a-ab62-51811b5d399e">
+					<avaldamismarge id="6054a841-62c8-419a-810d-99f45664131f">
+						<RTosa id="55b700ae-774a-4b17-9d06-b742815648ed">RT IV</RTosa>
+						<avaldamineKuupaev id="cd0fb617-d380-4e65-bf3c-2421564a707e">2023-12-08</avaldamineKuupaev>
+						<RTartikkel id="3beac862-fdd8-4a32-96f2-7df0ac12fb57">17</RTartikkel>
+						<aktViide id="7187bcd4-5887-4d53-b8ce-c039843762b9">408122023017</aktViide>
+					</avaldamismarge>
+					<joustumine id="248f6fa3-9e99-47a9-8e38-75ec80db5bd9">2023-12-11</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para9lg2">
+				<loigeNr id="db3ac612-c246-46ea-af8f-e2f7ffc7baa4">2</loigeNr>
+				<kuvatavNr id="972e3195-1144-49b6-a15b-e638c42b05ca"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="7f55829a-8404-4196-af8b-b5f4bcf4f434">
+					<tavatekst id="f8a67721-ea27-4da0-9d8e-9dfbf2efa98f">Järelhooldusteenuse lepingu sõlmimisel peab teenuse saaja olema lepingupooleks.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para9lg3">
+				<loigeNr id="4ca45784-b40a-4560-a466-9be1592d2147">3</loigeNr>
+				<kuvatavNr id="578c513f-6286-40d3-bdbc-d0303f03be56"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="f1b00166-4a30-48a6-b902-7ef6984f6120">
+					<tavatekst id="e19c446b-467c-4bd4-90c5-db01e143069f">Lepinguga sätestatakse vähemalt osutatava teenuse sisu, maht, kestvus, rahastamine ning osapoolte õigused ja kohustused.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para9lg4">
+				<loigeNr id="5508c95f-be8d-4392-a110-48d3435e6c5d">4</loigeNr>
+				<kuvatavNr id="ac28daa1-c3a5-4f7c-a567-f7004f2c2261"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="114f5886-2485-4049-b3d5-d8870cf127c8">
+					<tavatekst id="63d18a35-6eb3-4ec6-808f-e6ce8e89b7b6">Asendushooldusele suunatud lapsele koostatud juhtumiplaan on asendushooldusteenuse<reavahetus/>osutamise lepingu lisa.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para9lg5">
+				<loigeNr id="8e600c94-94ed-42c2-b699-2965aaf1ec07">5</loigeNr>
+				<kuvatavNr id="d720cdb2-ba87-4677-b270-843796b05adc"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="f80d9210-3693-4fcb-9e1e-9b63028cd2bf">
+					<tavatekst id="14274fed-c805-4502-aae2-025f7a35a1f2">Järelhooldusteenusele suunatud isikule koostatud juhtumiplaan on järelhooldusteenuse osutamise lepingu lisa.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="a4b8bbf4-4cd0-44b9-b73f-311f852f546f">
+					<avaldamismarge id="6727e59d-75a7-4cd0-9bf3-c41e37fc66f6">
+						<RTosa id="44378084-26d5-42c6-868f-d095db5b97b4">RT IV</RTosa>
+						<avaldamineKuupaev id="524f5077-2ece-4e95-875f-744e0ce8c909">2023-12-08</avaldamineKuupaev>
+						<RTartikkel id="2813b13e-8cb1-446b-9184-92adaac7ab5f">17</RTartikkel>
+						<aktViide id="682c6a9a-7bf7-425e-ba59-ce0464b36396">408122023017</aktViide>
+					</avaldamismarge>
+					<joustumine id="be8fc3ee-e214-4aba-b65f-6f442912aaa9">2023-12-11</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para10">
+			<paragrahvNr id="dac86b75-1174-4b0a-ba6a-feb1b1fd3aa4">10</paragrahvNr>
+			<kuvatavNr id="b75c655a-a016-4d13-ae33-69d53758cf18"><![CDATA[§ 10. ]]></kuvatavNr>
+			<paragrahvPealkiri id="f896b893-42bb-4ca3-9b7a-dae2012aa58f">Lepingu lõpetamine ja lõppemine</paragrahvPealkiri>
+			<loige id="para10lg1">
+				<loigeNr id="2d211d5c-8dd7-4300-9baa-33ddc02fa709">1</loigeNr>
+				<kuvatavNr id="a981fa03-e560-429e-98c3-fdff9ce7d0f7"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="9b028d68-ad36-4318-8d23-50c772388886">
+					<tavatekst id="7d279040-5168-4764-8b73-1971adf2c83f">Leping lõpetatakse:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para10lg1p1">
+					<alampunktNr id="330bdf2c-6ca0-4434-a455-f57b0bcbce84">1</alampunktNr>
+					<kuvatavNr id="bfbe1919-3638-4077-b215-403f7a2b541d"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="b3f2ef08-035f-4b27-a0ff-eebb0354088c">
+						<tavatekst id="c23806c6-d08c-4b33-a6f9-5259c26bd3cc">teenuse vajaduse äralangemisel;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para10lg1p2">
+					<alampunktNr id="bdee67fb-85ad-4483-b75c-6159ca12fca5">2</alampunktNr>
+					<kuvatavNr id="34d947ce-4cd6-4c27-be38-1ed251a4de78"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="8d933ee2-a089-46cb-8fad-9e78979971e1">
+						<tavatekst id="cacf141f-9aa5-4b9b-9a62-84b62d3787c4">lepingus sätestatud kohustuste täitmata jätmisel;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para10lg1p3">
+					<alampunktNr id="a0efad53-c397-4ed3-a17f-f99666dcf33f">3</alampunktNr>
+					<kuvatavNr id="8a9db3d8-ba27-4102-8b1d-ff656df2cbd3"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="ef6b6830-a338-4c77-9aae-db4c36b8716c">
+						<tavatekst id="b00001d2-6ca1-4c03-b544-1695a4bd4c02">lepingus sätestatud kohustuste mittenõuetekohasel täitmisel;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para10lg1p4">
+					<alampunktNr id="00ea0564-e284-4a4e-b96e-6de8d054a47f">4</alampunktNr>
+					<kuvatavNr id="864cf057-845b-4768-97d9-8838165026bc"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="8cdec853-e8b4-4c5e-babc-a0196be03495">
+						<tavatekst id="5b8691a3-b600-4727-9bd2-5c7d7bc065a5">lepingupoolte vastastikusel kokkuleppel;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para10lg1p5">
+					<alampunktNr id="37ab0c74-d12c-4124-b1e9-c93831d4bcb4">5</alampunktNr>
+					<kuvatavNr id="b5a1120e-1a7a-44e7-93c6-f46f9764d1a2"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="b192acc7-b24f-4902-a197-94ed7c388010">
+						<tavatekst id="3160504e-237c-4c6d-9c9a-179e4cacec46">muudel seadusest tulenevatel alustel.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para10lg2">
+				<loigeNr id="8da9bfb7-6459-4aef-b984-57f0b49ae11f">2</loigeNr>
+				<kuvatavNr id="8d4dffb6-b362-4903-aa8a-c53596af8ff3"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="a6d5ea26-ec97-428e-b007-bba70cd41e2e">
+					<tavatekst id="0075b4ac-1372-44f5-b02b-64edd435923f">Leping lõpeb:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para10lg2p1">
+					<alampunktNr id="c4aa835a-b507-45bb-9e92-6c73e81c171a">1</alampunktNr>
+					<kuvatavNr id="eb479da6-8fa1-4368-bcd6-ae754e9cfb8a"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="188ccf9f-1bac-4b87-9f72-96ce49fa8233">
+						<tavatekst id="94314594-0791-4940-8bf3-7b26b506ca0e">tähtaja saabumisel;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para10lg2p2">
+					<alampunktNr id="44c3437f-d6e4-4a81-bfcb-3f693a244ce7">2</alampunktNr>
+					<kuvatavNr id="f9409019-4d44-4245-98a1-ba657c61ab9f"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="bdf986d1-55c9-4357-b14c-e18d0bd697d6">
+						<tavatekst id="799675c2-e1d2-477e-907b-0e1ea9f6675a">lepingupoole või teenuse saaja surma korral.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para11">
+			<paragrahvNr id="6ca2aa8c-ad72-4c7d-b8bb-482ff82a293e">11</paragrahvNr>
+			<kuvatavNr id="ed1e5e24-32bd-4f0a-a6ce-bc7b3efe66ff"><![CDATA[§ 11. ]]></kuvatavNr>
+			<paragrahvPealkiri id="4031f815-f5e3-49c3-86e4-8e923978d3a0">Määruse rakendamine ja jõustumine</paragrahvPealkiri>
+			<loige id="para11lg1">
+				<loigeNr id="f2069b4c-8eb7-456c-91c3-e1822080cf34">1</loigeNr>
+				<kuvatavNr id="6634337c-f34a-40ce-8420-b6ade19de3a4"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="4f0a1f46-aff6-4265-a2b7-1d22d20a6829">
+					<tavatekst id="f2fd359a-dd66-4b32-af65-c3e92d630aa9">Enne 2018. aasta 1. jaanuari sõlmitud asenduskoduteenuse osutamise lepingud kehtivad edasi, need loetakse sõlmituks vallavalitsuse ja asendushooldusteenuse osutaja vahel ning nende sisu tuleb viia vastavusse sotsiaalhoolekande seaduse ja määruse nõuetega 2018. aasta 31. detsembriks.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para11lg2">
+				<loigeNr id="32120237-5612-427e-bc6c-9886e3bbfd60">2</loigeNr>
+				<kuvatavNr id="950eb6ed-860b-488c-96b9-eaae5cda7976"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="6029d26c-6f4d-447a-9ac9-fb6951125b9e">
+					<tavatekst id="1652bc94-cf39-4a9e-8ad4-e9b7522e5480">Määrust rakendatakse 1. jaanuarist 2018.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para11lg3">
+				<loigeNr id="dbc81c98-9a6a-4267-ade3-1b7c85344ba0">3</loigeNr>
+				<kuvatavNr id="08cf592a-f4ac-4702-b4cd-cb60ebfe629e"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="eb9e6044-c230-484b-92b9-217c2d064adf">
+					<tavatekst id="2c0dc65a-fbc9-4b18-acac-a917142daba0">Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+</oigusakt>

@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="db062485-6e73-495c-acaf-f69640f47c5d" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Loksa Linnavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<tavatekst>rakendatakse tagasiulatuvalt alates 01.10.2019</tavatekst>
+			<aktikuupaev>2020-01-30</aktikuupaev>
+			<avaldamismarge>
+				<RTosa>RT IV</RTosa>
+				<avaldamineKuupaev>2020-02-04</avaldamineKuupaev>
+				<RTaasta>2020</RTaasta>
+				<RTartikkel>46</RTartikkel>
+				<aktViide>404022020046</aktViide>
+			</avaldamismarge>
+			<joustumine>2020-02-07</joustumine>
+			<aktiNr>4</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2020-03-18+02:00</avaldamineKuupaev>
+			<RTaasta>2020</RTaasta>
+			<RTartikkel>5</RTartikkel>
+			<aktViide>418032020005</aktViide>
+		</avaldamismarge>
+		<kehtivus>
+			<kehtivuseAlgus>2020-03-21</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2020-03-16</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>418032020005</globaalID>
+		<metaandmedVersioon>11</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2025-05-06</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Marike Võime</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1048789</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2020-01-31</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Viive Pajusaar</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>6</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2020-02-03</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="6a49ba24-d68c-441c-9f4e-a4647944a536">
+		<nimi id="07904430-6ad7-498e-87ef-075aba1ff3a3">
+			<pealkiri id="6853674e-f9b0-452d-ac71-4f243b8d191a">Puuetega inimeste eluaseme füüsilise kohandamise kord Loksa linnas</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="23fb0f2d-3973-49d6-8e8c-0f99b593104e">
+		<aktikuupaev id="418edba1-8300-470c-a9e6-b928f6455dcb">2020-03-12</aktikuupaev>
+		<avaldamismarge id="dbc14f8a-dba5-4184-9cbd-793cd22dace5">
+			<RTosa id="ef8f11ac-7f64-4bd5-97a4-7dff4bc3e885">RT IV</RTosa>
+			<avaldamineKuupaev id="9c8607e4-1372-436b-b509-720d2566c324">2020-03-18</avaldamineKuupaev>
+			<RTartikkel id="aa5256ea-fbca-4ae0-9e74-49be172f4f75">3</RTartikkel>
+			<aktViide id="3165b8cc-fd7b-4a88-8ac4-f996c5bb98b4">418032020003</aktViide>
+		</avaldamismarge>
+		<joustumine id="a0991e68-4833-4a15-b31b-9c894581e17d">2020-03-21</joustumine>
+	</muutmismarge>
+	<sisu id="5e740729-1533-4c12-938f-60af6525536d">
+		<preambul id="b2f1be77-74ec-4a0d-b2b1-996a5c3f949e">
+			<tavatekst id="a4c95963-5fb1-4d02-be44-2a7477090dbc">Määrus kehtestatakse kohaliku oma valitsuse korralduse seaduse § 22 lõike 2 ning sotsiaalhoolekande seaduse § 14 lõike 2 ja § 42 lõike 1 alusel, kooskõlas Loksa Linnavolikogu 07.04.2016 määruse nr 4 „Lastekaitseseaduses ja sotsiaalhoolekande seaduses sätestatud ülesannete delegeerimine“ § 1 lõike 2 punktiga 1 ja sotsiaalkaitseministri 26. veebruari 2018 määruse nr 4 „Puuetega inimeste eluaseme füüsiline kohandamine“ § 24 lõike 1 punktiga 1.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="a653aa9d-c663-41a5-a747-cbd7ca067bc2">1</paragrahvNr>
+			<kuvatavNr id="c139f4a4-eccc-4451-a1f4-77f73e5542e1"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="6047eaa0-153a-4d57-ace9-69e8a702090a">Reguleerimisala ja eesmärk</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="6c28c8c9-0673-4039-9d34-c0a10d92ec88">1</loigeNr>
+				<kuvatavNr id="bfd8b41e-36b8-44e5-af9e-11916b456a17"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="e3459c07-f8cc-4df3-9fdd-229efa600330">
+					<tavatekst id="01a07751-5406-4322-98b2-695359412e8b">Määrusega kehtestatakse sotsiaalkaitseministri 26. veebruari 2018 määruse nr 4 „Puuetega inimeste eluaseme füüsiline kohandamine" rakendamise tingimused ja kord.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg2">
+				<loigeNr id="e05961ad-6b4c-481d-9a9f-bffd05b6b7c3">2</loigeNr>
+				<kuvatavNr id="9408eda9-9a40-4f10-9ad6-542e63a9a27a"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="3918a89b-cb69-44f3-af39-a89fb5593680">
+					<tavatekst id="a8811bc3-fe75-4fa1-9631-0898325d37cc">Määruse eesmärk on tagada puudega inimestele paremad elamis-, õppimis- ja töötamistingimused, mille tulemusena paraneb nende iseseisev toimetulek ja väheneb omaste hoolduskoormus.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="7686f9e6-30a3-450f-a3b4-4154038c3612">2</paragrahvNr>
+			<kuvatavNr id="e016b6f2-3f8b-4df6-894e-f28d08d51cc8"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="7751333c-4a00-45bc-827b-3e5c38a1a1ba">Üldsätted</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="af1a8929-3278-4619-9750-f222fc09cfb3">1</loigeNr>
+				<kuvatavNr id="f755bcd1-7792-422d-95cb-c4f4062cd93f"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="a1e79d4e-3e09-42c0-beca-81c59939a088">
+					<tavatekst id="4dd0b7e6-68f7-4a09-851a-22ecb6326eb8">Eluruumi kohandamist on õigus saada isikul,</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para2lg1p1">
+					<alampunktNr id="c6631d29-b7cf-40d8-9e7d-05ce9d2e6fe9">1</alampunktNr>
+					<kuvatavNr id="e1fe181b-e7bc-40ce-aec0-108b32969ca9"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="1b1e91f4-2199-4beb-941f-08227b8c315b">
+						<tavatekst id="b8822af2-030a-4160-905e-418b83fecdb2">kellel Sotsiaalkindlustusamet on tuvastanud puude puuetega inimeste sotsiaaltoetuste seaduse tähenduses;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p2">
+					<alampunktNr id="d8723460-65cf-4604-9613-0dacadf21da4">2</alampunktNr>
+					<kuvatavNr id="a5039d12-2a27-474b-9670-d0a69921547e"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="7242e1c5-c53f-45bb-bb5a-36a1244e07b2">
+						<tavatekst id="032bcad8-44ea-4189-864b-d44855ec3d0d">kelle rahvastikuregistrijärgne ja tegelik elukoht on aastaringseks elamiseks Loksa linnas.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para2lg2">
+				<loigeNr id="d3b414a5-1f36-4f35-839f-0dde02473de3">2</loigeNr>
+				<kuvatavNr id="e6740008-7e74-41fc-bc24-fdd332926167"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="723c1a4e-2399-4366-b5d6-79b77284dad5">
+					<tavatekst id="fa62b1e5-bcce-4425-83cd-158a52535cb7">Eluruumide kohandamist rahastatakse linna eelarve vahenditest. Riik hüvitab Euroopa Regionaalarengu Fondist linnale 85% eluruumide kohandamise abikõlblikest kuludest.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg3">
+				<loigeNr id="66ec6d8a-9179-41e9-b140-959d86506bca">3</loigeNr>
+				<kuvatavNr id="737d3c1e-7c60-46bc-b3d1-1e87d5fc0da1"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="d014eee5-d26d-4924-a931-5449110e1d00">
+					<tavatekst id="2c7cb116-0526-421e-99cd-8da5ed2ef1c3">Eluruumi kohandamise maksumuse tasumisel lähtutakse sotsiaalkaitseministri määruses nimetatud standardiseeritud ühikuhindadest, nende puudumise korral tegelikest ja põhjendatud kuludest.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg4">
+				<loigeNr id="ddde5214-bbb2-4516-a182-828128e4887a">4</loigeNr>
+				<kuvatavNr id="d54e3323-7735-4daa-a763-fa45d99a9947"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="74372109-e1c8-4272-8c26-c3a42e6e5ce9">
+					<tavatekst id="7e6fa973-a2a6-4ebb-9929-2b61ec79b8e0">Eluruumi kohandamise tööde eest tasub Loksa Linnavalitsus (edaspidi <i>linnavalitsus</i>) töid teostanud ettevõtjale.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg5">
+				<loigeNr id="6fa41510-9a19-425d-aef1-3956eb12071d">5</loigeNr>
+				<kuvatavNr id="b1ab6297-37a3-4bb7-ae72-6dedc1977317"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="5830fcdf-abc9-4ce6-afad-a8fc3ff66e91">
+					<tavatekst id="b6b29e49-337c-404d-be9f-46d63cc8d350"/>
+				</sisuTekst>
+				<muutmismarge id="16fab31f-2595-4740-a223-27c7a32f6fbe">
+					<tavatekst id="fb7577e2-5581-4471-be08-47d222d4c55a">Kehtetu</tavatekst>
+					<avaldamismarge id="64f66b7b-6461-46ec-a4ed-b7151ce4df8b">
+						<RTosa id="771a2c99-b879-4de9-9fae-fcf6ff3f37a9">RT IV</RTosa>
+						<avaldamineKuupaev id="c249f4ac-30fb-4627-8b2d-e0ae25cdf0f2">2020-03-18</avaldamineKuupaev>
+						<RTartikkel id="2fee36f0-33b2-41ec-b4b5-4bb34f15f7d9">3</RTartikkel>
+						<aktViide id="fdadce78-ed6f-4046-b173-a4fa223ffd5f">418032020003</aktViide>
+					</avaldamismarge>
+					<joustumine id="de4ddfd3-e757-4b3f-b0d7-86f9d8bae314">2020-03-21</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="edc028ff-0347-485f-8853-e97aa089ce73">3</paragrahvNr>
+			<kuvatavNr id="936b92c3-d65b-4b7d-b9c5-e82398cfbea3"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="33fc2c76-9fbc-40dc-bc3e-f7221b779320">Eluruumi kohandamise taotluste vastuvõtmisest teavitamine</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="8610d64c-108b-4e28-9b26-a7a18d117656">1</loigeNr>
+				<kuvatavNr id="ec99d256-6aa0-46de-a681-ec4ece4e0b27"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="4d33f0f8-b7fb-43ba-a598-def54698af06">
+					<tavatekst id="b21574ea-f21c-4686-b940-775995667f2c">Kui Riigi Tugiteenuste Keskus on kuulutanud välja puuetega inimeste eluaseme füüsilise kohandamise meetme kohalike omavalitsuste taotlusvooru, otsustab linnavalitsus selles osalemise.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="e3a7b133-a43c-44ea-8a0c-be7a0c1ba43f">
+					<avaldamismarge id="de4242eb-56d1-4980-8cd4-3152e2f0169d">
+						<RTosa id="19bb8358-9db8-450b-94ec-c02a41436118">RT IV</RTosa>
+						<avaldamineKuupaev id="7a0523a0-0fb8-4636-bc3d-44c4df96f50f">2020-03-18</avaldamineKuupaev>
+						<RTartikkel id="ef5da255-ff83-4a01-9289-72aee9ab097c">3</RTartikkel>
+						<aktViide id="e17c1517-0e3c-4f8d-a66b-9dc28b0cb754">418032020003</aktViide>
+					</avaldamismarge>
+					<joustumine id="2075ee19-587e-4c06-80c0-8a0e00c52c3f">2020-03-21</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para3lg2">
+				<loigeNr id="87ff12c8-296b-47be-bce5-6a89b30a0d50">2</loigeNr>
+				<kuvatavNr id="a10ab0b0-6172-4c29-abf7-7cbe5bd65593"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="a3ca556a-b9be-474d-a449-7fe16fc8608d">
+					<tavatekst id="c8967817-9ee2-417b-bd49-73c8060c8871">Kui linnavalitsus otsustab taotlusvoorus osaleda avaldatakse linna kodulehel ja kohalikus ajalehes taotluste esitamise tähtaeg (vähemalt 30 kalendripäeva), tehtavate tööde arv ja taotluses esitavad kohustuslikud andmed.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="fcc63461-4565-4609-8f72-2f54e65476d2">4</paragrahvNr>
+			<kuvatavNr id="a773162e-998d-4a9a-8581-309ce9d0fa49"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="7f6639e4-f15f-4215-a66f-593f2a1012e7">Kohanduse taotlemine ja menetlemine</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="15ca6bf3-bf62-43c2-b078-a2513973c350">1</loigeNr>
+				<kuvatavNr id="5cbffc55-db70-4163-ba9c-6c75d66ac072"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="3c3e1d63-2f88-46c8-865c-a8ca1574e60e">
+					<tavatekst id="92e6a395-6532-44a6-977e-8540be528f02">Kohanduse taotlemiseks esitab taotleja kirjaliku avalduse linnavalitsusele. Avalduses märgitakse:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para4lg1p1">
+					<alampunktNr id="597f2cf9-20fe-4a79-bd33-1dad27768c6f">1</alampunktNr>
+					<kuvatavNr id="4ac216d8-cfc0-4c18-a694-0b62e1936618"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="726dec8d-b89d-4f15-bfb9-fbae8e1d0609">
+						<tavatekst id="ea3f883e-2654-45db-a8f1-62f5c289dcfa">kohanduse saaja andmed (nimi, isikukood, rahvastikuregistrijärgse elukoha aadress, puuet tõendavad dokumendid);</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg1p2">
+					<alampunktNr id="4cb1c65a-8ff6-4370-8a6f-58e519b278c6">2</alampunktNr>
+					<kuvatavNr id="3290c684-d930-4be5-886a-662129d6fc42"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="e9397cb7-2fb3-49a8-92f0-abb24488b170">
+						<tavatekst id="cefd5672-5711-499f-b92e-742079975ef4">taotleja seadusliku esindaja andmed, kui taotleja on alaealine või piiratud teovõimega isik;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg1p3">
+					<alampunktNr id="b4d7232d-91eb-47f8-9762-5f25b4c5de72">3</alampunktNr>
+					<kuvatavNr id="93d9f377-cd74-498c-9bcd-f5cf0026d05c"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="036d4a5b-ec8a-46d1-9427-5017d921bda9">
+						<tavatekst id="4381db02-c3da-4f2e-b383-ebf652d9e5b0">kohandatava eluruumi andmed;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg1p4">
+					<alampunktNr id="78f48eb8-a9b1-498d-944a-235d3a2a3da1">4</alampunktNr>
+					<kuvatavNr id="d6db4bd3-f157-409d-ac7f-122f0b497ad8"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="c701f366-603f-425e-927f-ee9aa2e6a242">
+						<tavatekst id="f8d68e51-4959-47d7-8161-2eaa5ad206f9">eluruumi füüsilise kohanduse kirjeldus.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para4lg2">
+				<loigeNr id="83524306-8336-4a33-a8c3-213cc1b7cb2a">2</loigeNr>
+				<kuvatavNr id="e3dd5f42-3059-4d44-9811-681f3da06742"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="f0af73b1-ded2-498a-b002-fc3ba9a89a28">
+					<tavatekst id="5a2e2b4a-4628-4382-bf67-ed4e878266d4">Vajadusel tuleb avaldusele lisada täiendavad dokumendid.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg3">
+				<loigeNr id="c164bdc1-08cd-484d-8675-e38876142ea1">3</loigeNr>
+				<kuvatavNr id="635f9a6a-5b59-4e68-8167-f994d8a70c32"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="0a1c62ca-eafd-4c90-a852-e122b21ebaa0">
+					<tavatekst id="fb299907-f1f2-4f7f-9088-850b456341ba">Linnavalitsuse sotsiaalhoolekande komisjon (edaspidi <i>komisjon</i>) vaatab avalduste materjalid läbi ja teeb linnavalitsusele ettepaneku avalduse rahuldamiseks või mitterahuldamiseks.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg4">
+				<loigeNr id="526da0b6-11d2-434d-9ba8-ba4a90cf0366">4</loigeNr>
+				<kuvatavNr id="c1e91aa8-09f4-41f3-a157-aee026a5a719"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="d09ca754-3a1c-4fc4-b14c-b81953a374b2">
+					<tavatekst id="05e32903-94ac-487a-8626-3813cf3fb156">Linnavalitsusel on õigus jätta taotlus rahuldamata, kui:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para4lg4p1">
+					<alampunktNr id="ff3d510c-8952-4f51-8d17-6f19b398e864">1</alampunktNr>
+					<kuvatavNr id="fe62619d-9aea-4d0b-b8f1-992660669da9"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="69108c14-3642-4749-b773-d136fb538164">
+						<tavatekst id="3f79074b-393e-4c9a-8a99-5bac940a9800">kohanduse saaja ei ole õigustatud isik;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg4p2">
+					<alampunktNr id="57e366bb-f904-4f3c-b0c1-beaa02858ab4">2</alampunktNr>
+					<kuvatavNr id="8695d8b8-db23-44a8-b130-227bdb32cee6"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="9cdc6989-78b3-40bb-a845-a2654d512656">
+						<tavatekst id="c8f34d61-0154-4dd3-9606-114ae488537e">taotleja või tema esindaja ei võimalda taotluse asjaolusid ja eluruumi kontrollida;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg4p3">
+					<alampunktNr id="3d6f6fb6-fb72-41b1-ae90-d12f9b045f6b">3</alampunktNr>
+					<kuvatavNr id="268dd9f9-eef7-41ab-8349-2fca4bda1596"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="8647c4f4-ee93-4ecb-aacb-020e3400458e">
+						<tavatekst id="a7c1c0f1-320a-42c5-98f1-6d910a153c5a">taotleja ei esita hoolekandeteenistuse poolt küsitud täiendavaid dokumente;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg4p4">
+					<alampunktNr id="72047f0e-b0d6-4bb7-a99a-0501f6e1a00b">4</alampunktNr>
+					<kuvatavNr id="35dd6d80-a39b-48a5-8fcb-4b98f48a0d61"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="2e61bcaf-a8f0-41bb-9d5c-ba2a3332fb82">
+						<tavatekst id="d8160249-1ace-43fc-a43a-bfd3f46ccc98">eluruumi soovitud viisil kohandamine ei paranda taotleja liikuvusega seotud toiminguid, köögi- või hügieenitoiminguid;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg4p5">
+					<alampunktNr id="5d57b3e5-76df-472b-8507-13dfe8805885">5</alampunktNr>
+					<kuvatavNr id="f5d28dfc-95a2-434a-aacf-e2f41bfa0453"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="73f9f80a-b62d-4e3c-af69-238eec5a397c">
+						<tavatekst id="ee7421bc-fb77-4344-b97f-6bcf8f087dbb">eluruumi soovitud viisil kohandamine ei ole ehituslikult või tehniliselt mõistlik;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg4p6">
+					<alampunktNr id="49a2f886-38e0-4bc8-a0b1-89cab341579d">6</alampunktNr>
+					<kuvatavNr id="ce7c8bb0-f52b-4632-87e8-0b9df9cddc1c"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="4abbc36b-dc56-497f-9469-983457987dbf">
+						<tavatekst id="f77f0ca2-e9b4-4a09-a894-662bcc9be44e">tegu on taotlejaga, kellel on linnavalitsuse ees võlgnevusi.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para4lg5">
+				<loigeNr id="58a5c2c3-6f71-46f8-9abc-29e6a74e5f65">5</loigeNr>
+				<kuvatavNr id="c99f5731-f3ca-4b40-b3e4-468721864905"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="3f78862a-c9ce-4728-96d0-d4841e1124d6">
+					<tavatekst id="111f8729-24ec-4b8e-b67d-c360ee45c35f">Kohanduse saaja avaldused registreeritakse sotsiaalteenuste ja -toetuste andmeregistris.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="dc2abf90-9e31-409c-98bc-379e45ab7ad4">5</paragrahvNr>
+			<kuvatavNr id="94d5d733-12ae-44fe-b687-74a2be4894e8"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="2a921a8e-d93c-4d24-b34d-48ab8d72552a">Taotluste järjekorra pidamine</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="94e700c7-de6d-4c09-aaac-afbc737aa3a2">1</loigeNr>
+				<kuvatavNr id="df3d363f-629d-4f9d-b45c-4b7d1ce49578"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="ffc309d0-2ec4-4fb0-a16f-c0e6178f9bf9">
+					<tavatekst id="c2c16205-adeb-4aaf-bb1b-1b0a7ae31e6b">Kohanduste saajate nimekirja koostamisel lähtutakse haldusmenetluse seaduse §-des 4 ja 6 sätestatud uurimis-ja kaalutlusõiguse põhimõtetest.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg2">
+				<loigeNr id="da63190b-b84b-440f-9ec1-62d062dd91b5">2</loigeNr>
+				<kuvatavNr id="44d9a672-c85e-4a4c-ab49-24ffcb83fedf"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="5f0024b2-cc49-4b4a-8a1e-eb80f75a09ee">
+					<tavatekst id="7be07ff1-918c-48a0-8ab9-4aab3edff202">Komisjon moodustab kohanduse saajate nimekirja, võttes arvesse kodukülastusel tehtud ettepanekuid, esitatud dokumente (sh kohandamise projekti ja hinnapakkumisi), kohandamise põhjendatust ning kohanduse mõju taotleja iseseisvamaks toimetulemiseks.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg3">
+				<loigeNr id="40c2f915-6b93-4bae-bcd6-8142f4ee309b">3</loigeNr>
+				<kuvatavNr id="56f80c09-ed1a-4bfe-a387-514b54acea86"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="941597fa-1995-4595-bebc-c0d07a30bfda">
+					<tavatekst id="5d32ca15-0631-4238-8d98-9fd66eea5b8b">Komisjon esitab kohanduse saajate nimekirja linnavalitsusele, mis kinnitatakse korraldusega.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg4">
+				<loigeNr id="3d0b08d1-cc75-47c6-a16e-1c1998d8bf81">4</loigeNr>
+				<kuvatavNr id="10451a56-4c8f-4a10-a718-f941fa9758c2"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="7e6e2afa-29f2-4906-b40b-699a19ee64dc">
+					<tavatekst id="758678c4-dfaa-48ff-bb9c-8937c773ec6b">Otsus kohanduse saajate nimekirja määramisest keeldumise kohta peab olema põhjendatud ning tuginema seadustele või muudele õigusaktidele.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg5">
+				<loigeNr id="6cdf090c-c7a3-4aa6-87ad-9f6e7e94b031">5</loigeNr>
+				<kuvatavNr id="7fdf79a6-14c2-413d-b006-d353106e747d"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="4a4b5a25-ab1e-446d-a763-82b479a714fa">
+					<tavatekst id="b25dced5-faac-45a1-ab3e-4b863f692595">Tekkinud vaidlused kohanduse taotleja ja komisjoni vahel lahendatakse linnavalitsuse istungil, vaidemenetlusega või kohtus.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para6">
+			<paragrahvNr id="411a87c3-5910-4445-bbc7-f817577b62b2">6</paragrahvNr>
+			<kuvatavNr id="48e3063c-eb26-47a4-872c-f3e355b90f3f"><![CDATA[§ 6. ]]></kuvatavNr>
+			<paragrahvPealkiri id="c8b13abb-d4e7-4422-a383-925c84004005">Kohanduse tegemiseks vajalikud kokkulepped</paragrahvPealkiri>
+			<loige id="para6lg1">
+				<loigeNr id="010e76e0-8914-40c4-81ec-0a9b6071c2b0">1</loigeNr>
+				<kuvatavNr id="b055fed6-8081-4da9-959f-97c44c9d835a"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="c69b2754-3c00-488d-8fb1-67123bd39a34">
+					<tavatekst id="298f1b54-e909-4ea5-8c40-8246866fb40b">Kohanduse saajal on õigus saada linnavalitsuselt informatsiooni ja nõu, mis on seotud osapoolte kohustuste täitmisega ja kohanduse tegemisega, sealhulgas kohanduste tegemisega seotud õigusaktide ja tööde teostajatele kehtivate nõuete kohta.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg2">
+				<loigeNr id="38c91730-fe05-45d0-8901-3b7c425f1cb2">2</loigeNr>
+				<kuvatavNr id="9373cbe1-43d4-4b32-82a5-33bfe4ebb3dc"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="4806f4fa-150f-40b5-833c-dc91105b4aa2">
+					<tavatekst id="7764fb1c-fef5-4550-9199-606c40d58748">Kohanduse saaja on kohustatud:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para6lg2p1">
+					<alampunktNr id="b70c7214-f4e8-4da5-a907-471d0fa72a1a">1</alampunktNr>
+					<kuvatavNr id="cb95475c-9b71-4e9a-b110-45b57d13a346"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="c1f8a115-ec79-4620-b6b1-2d862006a7b8">
+						<tavatekst id="eb3581b4-901b-43b4-964b-19ce179530fc">tegema kohanduse vastavalt linnavalitsusega kokku lepitud tingimustele;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg2p2">
+					<alampunktNr id="9fdbe376-5790-4cb2-b42a-7ec5219abc11">2</alampunktNr>
+					<kuvatavNr id="89176bbd-e4cc-480d-8377-0d23ece5896d"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="0ad9f69c-c995-4631-b35d-e7bb9d596e31">
+						<tavatekst id="a568eb19-8078-4d7b-85ad-dd02479484ef">kasutama toetust vastavalt meetme tegevuse eesmärkidele;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg2p3">
+					<alampunktNr id="91fef5f0-164d-4e44-b596-bdf629487e4e">3</alampunktNr>
+					<kuvatavNr id="7daf8fa0-985a-4893-be1a-348a42995555"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="ff2fc3a4-ef0b-42be-83aa-b8dd519fd96a">
+						<tavatekst id="78538991-0991-457a-8a8e-f5524d9f0f96">kasutama tööde teostamisel vaid vastavat õigust omavat ettevõtet juhul, kui tööde teostajale on seatud õigusaktidega erinõudeid;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg2p4">
+					<alampunktNr id="660c7087-3e03-4793-8242-374ebbdb56a7">4</alampunktNr>
+					<kuvatavNr id="fe7340b7-790b-4e42-a7cd-c7658230cd15"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="e90135c1-5947-494c-b6be-7c0236e52688">
+						<tavatekst id="ffd36b60-b090-4d73-a713-35abcb17f6ac">kaetud tööde akti koostamisel informeerima linnavalitsust vähemalt viis tööpäeva ette, et järelevalve tegijaks määratud isik saaks kontrollida tööde nõuetekohasust;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg2p5">
+					<alampunktNr id="bbd78f53-a120-4c5c-bd7c-28a8a2995d4c">5</alampunktNr>
+					<kuvatavNr id="09e12d4c-29cd-4b5b-982b-971c2d5b5841"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="b38ee5c5-a9aa-4684-af56-fb58cbe31909">
+						<tavatekst id="9e14b430-64f5-4445-994b-a2be82455059">vastama kohanduse kohta esitatud linnavalitsuse infopäringutele;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg2p6">
+					<alampunktNr id="7639440a-a57f-4dae-99db-da197975b452">6</alampunktNr>
+					<kuvatavNr id="51cce6c1-aaba-4e88-9e86-5537ca562c0d"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="d43bc8c0-80f5-417f-a4ae-b82aa3a4f481">
+						<tavatekst id="5a879434-29d2-443d-a429-7253a506d2ca">teavitama kirjalikult linnavalitsust ehitustööde alustamisest hiljemalt tööde alustamise kuupäeval;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg2p7">
+					<alampunktNr id="7ca5494d-0c0e-4241-a935-07bfe65e3034">7</alampunktNr>
+					<kuvatavNr id="04c36e07-3be5-4830-8043-46d5f58e89d6"><![CDATA[7) ]]></kuvatavNr>
+					<sisuTekst id="283326d5-cd4f-461a-aab8-de93c0a3ea41">
+						<tavatekst id="6cab8a8f-b0bd-4c13-85a7-ff9234078003">tagama ettenähtud omafinantseeringu juhul, kui kokkuleppes linnavalitsusega on omafinantseering ette nähtud;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg2p8">
+					<alampunktNr id="b85652dc-b93f-4e5b-820e-f994dfa05533">8</alampunktNr>
+					<kuvatavNr id="c36ea42f-27cb-419d-b4e3-89e8addaf5ca"><![CDATA[8) ]]></kuvatavNr>
+					<sisuTekst id="c9917b6d-b49b-45fd-9a59-5086fa6a3434">
+						<tavatekst id="49e50b82-d958-4c57-b53c-ca50ead12d9f">viivitamata kirjalikult informeerima linnavalitsust kõigist esitatud andmetes toimunud muudatustest ja asjaoludest, mis kohanduse saajat tema kohustuste täitmisel mõjutavad või võivad mõjutada;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg2p9">
+					<alampunktNr id="b4288dbd-8bc3-47cb-bce3-735f3cd73d6a">9</alampunktNr>
+					<kuvatavNr id="56f62d03-c29a-4146-87c4-5641666f98de"><![CDATA[9) ]]></kuvatavNr>
+					<sisuTekst id="2f26aa0f-64b5-47bb-97be-8a3345fffcd2">
+						<tavatekst id="fd8b860d-b198-45fd-bef7-c314f12d14e4">viivitamata kirjalikult informeerima linnavalitsust, kui kohanduse tegemise käigus ilmneb, et mingis osas kohandust ei ole võimalik teha;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg2p10">
+					<alampunktNr id="69d62d4c-2e4f-4cf3-a711-c2ad48f5d718">10</alampunktNr>
+					<kuvatavNr id="e998776c-dd85-4970-8fd9-be4072ff96ec"><![CDATA[10) ]]></kuvatavNr>
+					<sisuTekst id="82ec42e0-6ef5-4147-8fd6-4584740effee">
+						<tavatekst id="01247862-5501-4f5b-953e-bd3297d58c12">võimaldama linnavalitsuse ja Riigi Tugiteenuste Keskuse esindajal teha kohandustööde üle järelevalvet, muu hulgas kohapeal;</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="3fffe6a3-cf55-470d-b526-3f7284de54db">
+						<avaldamismarge id="c2a11090-f4ad-43ec-b9e6-2180cc768061">
+							<RTosa id="d7f6da74-8985-438e-89d6-2b6e52fd5ea1">RT IV</RTosa>
+							<avaldamineKuupaev id="74139892-59fa-46f5-8f4d-c32851e6e7e8">2020-03-18</avaldamineKuupaev>
+							<RTartikkel id="0d750e63-9de3-4fc0-acb8-f87f389441b3">3</RTartikkel>
+							<aktViide id="5796ed7b-89b6-4f91-a3d4-78757c9d485d">418032020003</aktViide>
+						</avaldamismarge>
+						<joustumine id="f8460ba1-bfc3-4da7-9770-e1e1a23a6c37">2020-03-21</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para6lg2p11">
+					<alampunktNr id="83fe40ba-6eb8-480d-94b9-b91f824f8ad4">11</alampunktNr>
+					<kuvatavNr id="2656b8bf-e5a2-4c0d-b4ec-fc3c40799dfa"><![CDATA[11) ]]></kuvatavNr>
+					<sisuTekst id="e4a6bcea-b879-4999-b3ab-ba755dd9100d">
+						<tavatekst id="c9b9fa2c-1c73-4fa4-b631-3c003ae4ce52">andma järelevalve tegija käsutusse vajalikud andmed ja dokumendid viie tööpäeva jooksul arvates vastava teate saamisest;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg2p12">
+					<alampunktNr id="08d8364f-b195-4b6e-8873-659643c71b4e">12</alampunktNr>
+					<kuvatavNr id="0238e484-ccd3-4d3a-af93-bae629d35d93"><![CDATA[12) ]]></kuvatavNr>
+					<sisuTekst id="f66c3c08-a98f-4a45-82ef-731e3039f478">
+						<tavatekst id="26d9dc64-ef25-4516-892f-d8c731fadf0b">täitma õigusaktides sätestatud muid kohustusi.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para7">
+			<paragrahvNr id="f08cc5fd-c64c-4e94-925d-13ff673e7c60">7</paragrahvNr>
+			<kuvatavNr id="e64356af-f35a-4160-8b61-f33b8baab0b3"><![CDATA[§ 7. ]]></kuvatavNr>
+			<paragrahvPealkiri id="5ddb0f62-250b-4d61-b26f-eef05f1397f0">Lepingute sõlmimine</paragrahvPealkiri>
+			<loige id="para7lg1">
+				<loigeNr id="3014d866-2709-406e-b6aa-ddbf150a3b7a">1</loigeNr>
+				<kuvatavNr id="fe76f968-cd38-4831-b547-ad5755e04678"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="4b30ad09-a1c6-4de3-b707-1d8b5110c646">
+					<tavatekst id="6a582741-17e4-4c14-ac5b-bc5609981f64">Määramise otsuse alusel ja/või pärast ehitusseadustikus sätestatud ehitusteatise esitamist või ehitusloa andmist sõlmib linnavalitsus kohanduse saaja ja eluruumi füüsilist kohandamist tegeva töövõtjaga kolmepoolse lepingu.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg2">
+				<loigeNr id="21f477c1-3c4e-423b-b5bf-a2ba5bc3d64b">2</loigeNr>
+				<kuvatavNr id="da42a59d-8238-4e3c-b8c2-9eea7676aec5"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="8a640ca6-9996-4e3f-ac6a-3a8af52a16a1">
+					<tavatekst id="53d35359-edfc-492a-afb4-56dc42a04946">Kui eluruumi füüsiliseks kohandamiseks ei ole ehitusteatis või ehitusluba vajalik, sõlmitakse leping kohanduse saajate nimekirja alusel hiljemalt 30 päeva jooksul § 5 lõikes 3 nimetatud otsuse tegemisest.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg3">
+				<loigeNr id="7e6d9632-c552-4789-bd89-507439c90b56">3</loigeNr>
+				<kuvatavNr id="6e8e4367-a077-416f-8b0d-3b973c685ea8"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="2fffc349-bc6c-4599-aa6f-ee284c1f07e0">
+					<tavatekst id="e3da4d89-f185-41ec-ba37-76683e996f56">Lepingus lepitakse muuhulgas kokku eluaseme füüsilise kohanduse teostamise aeg.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para8">
+			<paragrahvNr id="88b96a87-efd4-4548-827f-f369c1845099">8</paragrahvNr>
+			<kuvatavNr id="f77fe80d-e6f8-42db-94c5-da150f6cebd6"><![CDATA[§ 8. ]]></kuvatavNr>
+			<paragrahvPealkiri id="ea79d9a7-cde8-47a5-a890-53f0174bc506">Kohandustööde eest tasumine</paragrahvPealkiri>
+			<loige id="para8lg1">
+				<loigeNr id="78f60332-afbb-4b07-9a8f-a5a3bbc89d6b">1</loigeNr>
+				<kuvatavNr id="6c05e5a1-6b96-4f09-9b1f-9ea5d1fc05fd"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="f61152ab-89ef-4fb0-b12a-450892046188">
+					<tavatekst id="bd661b84-9470-4f9e-b543-c4e8b033c0a4">Eluaseme füüsilist kohandust tegev töövõtja on kohustatud esitama linnavalitsusele eluaseme füüsilise kohandamise tööde üleandmise-vastuvõtmise akti ning arve tehtud tööde kohta hiljemalt 10 tööpäeva jooksul pärast tööde teostamist.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para8lg2">
+				<loigeNr id="b335c17a-e5f3-4ea5-80e1-85327f8f3ed9">2</loigeNr>
+				<kuvatavNr id="0edaff32-7383-4034-afb0-109eb34a7fcf"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="eb0737c0-c20b-4785-93b7-5fef7d16f95d">
+					<tavatekst id="072f9d8a-6394-4774-8972-584899c35faa">Kohanduse eest makstakse töövõtjale 14 tööpäeva jooksul pärast üleandmise-vastuvõtmise akti ja arve esitamist ning vajadusel linnavalitsuse poolt kohandatavas eluruumis paikvaatluse läbiviimist.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para8lg3">
+				<loigeNr id="6b2e8810-a004-4c64-8eb7-3803eb370376">3</loigeNr>
+				<kuvatavNr id="860a8ee8-9d6c-47c7-b07c-23af7c872256"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="53d8d28c-9766-4b8a-80dc-b8b12188fb24">
+					<tavatekst id="366be116-e7f1-4c8a-bfde-d50557ede700">Kohanduse saaja on kohustatud viivitamata kirjalikult informeerima linnavalitsust kõigist esitatud andmetes toimunud muudatustest ja asjaoludest, mis kohanduse saajat tema kohustuste täitmisel mõjutavad või võivad mõjutada.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para9">
+			<paragrahvNr id="4c9c903a-881a-4191-b905-0edabdb582b3">9</paragrahvNr>
+			<kuvatavNr id="bb793af6-62d0-4bb9-af01-2da36fba15c3"><![CDATA[§ 9. ]]></kuvatavNr>
+			<paragrahvPealkiri id="6493f35e-1088-44b0-80d0-e0ac147979f3">Järelkontroll</paragrahvPealkiri>
+			<loige id="para9lg1">
+				<loigeNr id="9d082ab2-11b6-4f66-901b-2bab4e2ece77"/>
+				<kuvatavNr id="a1f68303-aafe-4051-b2c5-1306c9be8bff"/>
+				<sisuTekst id="af9b102b-0519-418f-83b2-1fb6d2122a27">
+					<tavatekst id="c4d50b52-95d4-4e7c-af92-0be85a6e8cf9">Mõju hindamiseks on linnavalitsusel õigus kontrollida kohanduse saaja kohandatavas eluruumis määruse § 1 lõikes 2 toodud eesmärgi täitmist kohanduse saamisest alates viie aasta jooksul.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para10">
+			<paragrahvNr id="e110a00d-bc7a-49f0-8a9c-b857bd646967">10</paragrahvNr>
+			<kuvatavNr id="683f258e-26af-4627-b1ea-3d785fa3ca1b"><![CDATA[§ 10. ]]></kuvatavNr>
+			<paragrahvPealkiri id="3e6a3a98-6019-43c2-a959-724f1a20cc0d">Mõju hindamine</paragrahvPealkiri>
+			<loige id="para10lg1">
+				<loigeNr id="4ff98dec-577c-4b1e-9f4e-d1c1c92d9e36">1</loigeNr>
+				<kuvatavNr id="1019811f-eec6-4dfc-b72c-63f40401b5de"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="3765d061-b309-4661-b6fa-c69a9ec1d52c">
+					<tavatekst id="7f209143-e349-4dc0-93d9-c59dc82c6404">Teenuse osutamisega seotud dokumente säilitatakse vastavalt linnavalitsuse õigusaktides ettenähtud korrale.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para10lg2">
+				<loigeNr id="201bf999-ada9-40dc-88cf-1d057e58cd3f">2</loigeNr>
+				<kuvatavNr id="41d7fa9c-fd74-46c7-bcf6-1d82af458f1a"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="620b3e63-aca8-4ace-8baf-a673f7dee00a">
+					<tavatekst id="ab954ca4-6654-4c30-bc90-e5817fbf02d7">Linnavalitsus annab eluruumi kohandamise kohta kogutud ja analüüsitud teabe põhjal hinnangu meetme tegevuse tulemuslikkusele ja elluviimisele. Info kogumiseks on linnavalitsuse ametnikul õigus teha kohandatud eluruumis vaatlusi, küsitleda kohanduse saajat ja kohandatud eluruumi teisi kasutajaid.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para10lg3">
+				<loigeNr id="fe079a12-d952-4e57-b90a-670c8d5e87d6">3</loigeNr>
+				<kuvatavNr id="b0ed9e32-ac5d-48a8-8e70-624da2efd26a"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="59e27820-e0cd-41af-9b4f-34bb15380ad4">
+					<tavatekst id="e53b82bf-eae3-462f-9630-b1ffff8ef863">Kohanduse saaja kohustub andma linnavalitsuse nõudmisel omapoolselt teavet teenuse mõju kohta.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para11">
+			<paragrahvNr id="4c0bf33f-3271-4631-a077-6d8f0807e275">11</paragrahvNr>
+			<kuvatavNr id="e7529099-696b-4520-922c-808a51973fc2"><![CDATA[§ 11. ]]></kuvatavNr>
+			<paragrahvPealkiri id="032bb7af-a76f-427c-9c71-e03d81b24658">Määruse rakendussätted</paragrahvPealkiri>
+			<loige id="para11lg1">
+				<loigeNr id="39414c13-c4e7-468f-b9d7-a1694ec00d36">1</loigeNr>
+				<kuvatavNr id="d7b8160f-6d93-41a4-aba0-c6dce016237c"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="269570a4-b896-4c12-a9d2-32ab20ede9c0">
+					<tavatekst id="ece594d9-031e-40d8-a84f-131014909587">Määrust rakendatakse tagasiulatuvalt alates 01. oktoobrist 2019. a.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para11lg2">
+				<loigeNr id="a41e704b-2ff6-409f-8482-55974cd55d5f">2</loigeNr>
+				<kuvatavNr id="4a495bfb-8fbf-4e56-920b-ae78ef55894f"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="01bd4787-88cc-4d35-9f99-a2d97d231f06">
+					<tavatekst id="302431e0-d3bd-4c08-beb3-05a173623143">Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+</oigusakt>

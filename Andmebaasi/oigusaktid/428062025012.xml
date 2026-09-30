@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="314da82e-bae2-42b9-93b5-279ae7cdd266" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Saaremaa Vallavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2025-06-19</aktikuupaev>
+  
+  
+  <aktiNr>13</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-06-28</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>12</RTartikkel><aktViide>428062025012</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2025-07-01+03:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2025-06-25</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>428062025012</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2025-06-27</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1061254</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2025-06-25</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>?Teadmata? ?Teadmata?</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="a8d4d8c3-583b-465f-8f92-ff2898bb1ee0">
+  <nimi id="906e7152-58eb-433d-8fbd-c0130fb61e33">
+   <pealkiri id="ae367815-e2f2-4981-a1eb-89185b7073d4">Vaimse tervise teenuste osutamise ja rahastamise kord</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="9cf67e73-b41e-4cc9-936b-892926e28a69"><preambul id="311f7be6-ff3c-44a1-b77a-fcf270d41f77">
+   <tavatekst id="20922e48-ee29-4491-be47-f3c71a2604fa">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5 ning sotsiaalhoolekande seaduse (edaspidi <i>SHS</i>) § 14 lõike 2 alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="733839a3-60ba-4002-8096-c39ddd87428f">1</paragrahvNr>
+   <kuvatavNr id="9b070561-bcd2-4bb6-91c1-4bec53e6fdcc"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="8fd58483-b230-4e06-ab23-7cd99089159c">Reguleerimisala</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="0973b306-f4e1-4dc7-a930-bd50e843f296"/>
+   <kuvatavNr id="f55830aa-cd4b-4dd5-b446-c18a6183bf1d"/>
+   <sisuTekst id="09620fbf-7654-42e4-9e85-9192e23f97ec">
+    <tavatekst id="5055d4aa-202e-4044-9f67-a55b134ddc48">Määrus sätestab Saaremaa vallas (edaspidi <i>vald</i>) sotsiaalhoolekandelise abina osutatava psühhosotsiaalse ja psühholoogilise abi (edaspidi <i>vaimse tervise teenus või teenus</i>) osutamise ja rahastamise tingimused ja korra.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="5ede66cb-a960-4a37-b905-b4164ac66761">2</paragrahvNr>
+   <kuvatavNr id="d359e0d4-eb32-4737-9606-48730205e733"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="0ce0f1f9-4a97-4c73-bdda-79a536ac6390">Vaimse tervise teenuse eesmärk, sihtrühm ja teenuse kirjeldus</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="c45553b0-0739-42c9-a652-2c13e79b4b2e">1</loigeNr>
+   <kuvatavNr id="e0b4afb3-4274-4784-bb38-3f9d475d926e"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="d4ae9c8a-4c3a-4515-a4de-239ddfa61aba">
+    <tavatekst id="818a598a-a9bd-4647-9139-a20eb6d3ad31">Vaimse tervise teenuse eesmärk on kohalikul tasandil elanike vaimse tervise probleemide tekke ja süvenemise ennetamine ning psühholoogilise heaolu toetamine.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg2">
+   <loigeNr id="d46dc294-bcfc-4743-9fff-32ce4efab581">2</loigeNr>
+   <kuvatavNr id="0c9e555c-97da-4dfc-8225-d98dc388a562"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="295f0f35-b8df-4aa5-97c1-6dde6abbcd00">
+    <tavatekst id="18820a6a-ae67-48d3-91cb-60c82c59dc0e">Vaimse tervise teenuseid on õigustatud saama füüsiline isik, kelle elukoht, mille andmed on kantud rahvastikuregistrisse, ja tegelik elukoht on valla haldusterritooriumil ning kes vajab teenust vaimse tervise probleemide tekke ja süvenemise ennetamiseks või psühholoogilise heaolu toetamiseks.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg3">
+   <loigeNr id="e43b6e66-097c-4ec2-adf9-f359662d6783">3</loigeNr>
+   <kuvatavNr id="f0d98aba-c9b5-4340-b91b-2594683dbbb7"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="432f32e9-b0b5-4d24-ae2e-892f64dcbf3a">
+    <tavatekst id="df62d1f6-7b1f-4ee2-83c1-423250c9fcd6">Saaremaa valla pakutavad vaimse tervise teenused on:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para2lg3p1">
+   <alampunktNr id="4a450aaf-f564-4725-816f-d8c85581b1a2">1</alampunktNr>
+   <kuvatavNr id="d09082c3-169b-460d-9f39-72675b69cd77"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="3fbc3fff-9ee0-42d8-84c0-ccee9f189fdd">
+    <tavatekst id="18caa826-4e84-43c9-bb96-f5d5b5abdda5">pereteraapia;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg3p2">
+   <alampunktNr id="51e45e87-04c3-4f30-bda3-2a117eb50a4d">2</alampunktNr>
+   <kuvatavNr id="740198dd-aea3-4654-b88c-cf431904a3ef"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="127d9c85-82a3-4cab-bbb6-5feb68d3102d">
+    <tavatekst id="4578427a-1ff5-4e75-b6dd-0075526380b8">perenõustamise teenus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg3p3">
+   <alampunktNr id="4e0649e9-0bcc-4c8e-9cad-d5c13f427151">3</alampunktNr>
+   <kuvatavNr id="d4acc3de-d037-4f66-812c-3ee124ec9123"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="c0baa35f-b02b-4047-9d41-4ee824c933a9">
+    <tavatekst id="72660033-dcb8-4571-920c-a7a540a59032">loovteraapiateenus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg3p4">
+   <alampunktNr id="129b6d53-f1dc-4167-9150-fea1e36150ae">4</alampunktNr>
+   <kuvatavNr id="105fb39c-abbb-4b8e-a5c8-98abcfd788a1"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="9e322260-f6c9-4fd3-af89-f6b8b478538c">
+    <tavatekst id="a899ceee-4d53-4f93-a70e-7cf670c7ec27">psühhoteraapiateenus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg3p5">
+   <alampunktNr id="65e760c2-549e-417e-8a66-8324b35563b4">5</alampunktNr>
+   <kuvatavNr id="8dba61a5-b80b-41dc-9c2e-1998f7faee9c"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="012aea3a-4872-4f1e-8979-49a10750adaa">
+    <tavatekst id="a2f8caf6-9d51-4b9d-8d45-52d568b18084">kriisinõustamise teenus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg3p6">
+   <alampunktNr id="f436108f-cc21-42c6-95e4-9855e5bf4ca7">6</alampunktNr>
+   <kuvatavNr id="30510487-921c-49bc-ae2b-1fca2705f878"><![CDATA[6) ]]></kuvatavNr>
+   <sisuTekst id="8159fe23-c364-4925-a4d7-195ff0e21e49">
+    <tavatekst id="dcb12ee4-f323-4f45-945d-b6714ec013c2">leinanõustamise teenus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg3p7">
+   <alampunktNr id="bea0011c-f763-449a-a325-702ce7734d5c">7</alampunktNr>
+   <kuvatavNr id="286e1fd8-cd63-445b-aeb6-0f46eba6f7d0"><![CDATA[7) ]]></kuvatavNr>
+   <sisuTekst id="912b98fb-f3ac-457c-9ad5-f7791e4fced6">
+    <tavatekst id="d4754fad-2842-4290-b2d2-ba5c3f53b9ba">vajaduse korral muu nõustamisteenus.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="31618edb-fa8d-4f69-bcf6-d99e7f9000a2">3</paragrahvNr>
+   <kuvatavNr id="7d02e581-427c-455a-800b-53a5f0baf63d"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="de10cacb-d530-40ba-894f-ae95d71bdcb8">Teenuse korraldus</paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="78ce1bd6-18c6-4acd-a67f-15d97c274bd6">1</loigeNr>
+   <kuvatavNr id="65d1cceb-d0c2-4a91-b91d-0d0f3a45a0dd"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="d715bba8-8e38-461c-a0cb-f0e1d3504118">
+    <tavatekst id="267f28a3-24e3-4baa-954a-d1b016697d5c">Teenust korraldab Saaremaa Vallavalitsuse hallatav asutus Saaremaa Toetava Hariduse Keskus (edaspidi <i>teenuse korraldaja)</i>.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg2">
+   <loigeNr id="a3d23f56-f519-420c-a78d-42c329b61589">2</loigeNr>
+   <kuvatavNr id="939e739a-a5b0-4bd1-bda1-ec52b3762143"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="50cf7547-2263-46f7-bbe3-3672caaa2c2f">
+    <tavatekst id="c76f0c3f-5cfd-41fe-8255-b2152edf46e2">Teenuse vahetu osutaja on füüsiline või juriidiline isik, kes osutab teenust teenuse korraldaja töötajana või teenuse korraldajaga sõlmitud lepingu alusel.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg3">
+   <loigeNr id="efcb3a23-be4d-4fcf-b910-34b292ab2440">3</loigeNr>
+   <kuvatavNr id="092c9039-4bd7-4974-8dce-da6ac79495da"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="98fac627-bad8-4b73-b5b8-ab7e135d59ad">
+    <tavatekst id="266a7c31-fbce-4636-be5a-75ff71cb6321">Teenusele saamise taotlus esitatakse suuliselt või kirjalikult teenuse korraldajale. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg4">
+   <loigeNr id="f50fb748-f3c1-4c79-abe4-bd13ab873e38">4</loigeNr>
+   <kuvatavNr id="2a3ebb9c-dc7e-43b2-9988-ef173b21fc85"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="adc5c2b1-d859-4938-b0cf-b7e0bd07e4cf">
+    <tavatekst id="1ed287ca-08d4-477e-bbb0-f94b59b8b326">Taotluse võib esitada isik enda kohta ise või selle võib esitada temaga seotud isik, sealhulgas pereliige, eestkostja või volitatud isik.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg5">
+   <loigeNr id="a2c22e1c-5070-4d0c-b245-008d3683881b">5</loigeNr>
+   <kuvatavNr id="07e6aeea-024f-42e3-b1f5-72263f83202d"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="fb999ed7-2809-453f-b3f5-2817f8d2686c">
+    <tavatekst id="8ca0ccaf-2ecc-4e0e-a80a-db779dea238f">Paragrahvi 2 lõikes 3 nimetatud vaimse tervise teenused on valla elanikele tasuta määras, mille on kehtestanud Saaremaa Vallavalitsus korraldusega.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg6">
+   <loigeNr id="485590f3-7e28-4d8e-9d57-cb8719c7ee74">6</loigeNr>
+   <kuvatavNr id="aef5b646-a0f3-45ab-b85a-9854b7041eb2"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="e7a176cb-7f3d-4eb2-a419-8063d8601b36">
+    <tavatekst id="6f23a41a-5b06-4255-915d-4dc6c542dc4a">Teenuse osutamise otsustab teenuse korraldaja.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg7">
+   <loigeNr id="9fdef15f-dcf2-48d1-9dcb-849d3b9102dc">7</loigeNr>
+   <kuvatavNr id="0d6bda1b-3f08-4625-ae24-95f61f247b1d"><![CDATA[(7)]]></kuvatavNr>
+   <sisuTekst id="5e874b64-1ef7-48a8-8f37-28f471006070">
+    <tavatekst id="8a1bf73b-038f-48fc-b5ed-3bdf0c0a73db">Otsuse tasuta teenuse mahu suurendamise, sellest keeldumise või § 2 lõike 3 punktis 7 nimetatud muu nõustamisteenuse määramise kohta teeb Saaremaa Vallavalitsuse sotsiaalkomisjon kirjaliku taotluse alusel kümne tööpäeva jooksul alates nõuetekohase taotluse esitamisest ja abivajaduse hindamisest. Otsust ette valmistaval Saaremaa Vallavalitsuse ametnikul on õigus nõuda taotlejalt asja otsustamiseks vajalike dokumentide või teabe esitamist.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg8">
+   <loigeNr id="99bd66e0-55e3-4926-8aa1-209c1b8b4a9f">8</loigeNr>
+   <kuvatavNr id="54484bf4-ad06-49c7-90ed-72606fee7aa1"><![CDATA[(8)]]></kuvatavNr>
+   <sisuTekst id="a63cbb77-ed8e-458f-9794-c344de535008">
+    <tavatekst id="8c23e9e2-c518-43d1-a5bc-3ebba1205093">Lõikes 7 nimetatud taotluses märgitakse järgmised abi vajava isiku andmed:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para3lg8p1">
+   <alampunktNr id="1c7f365f-bab5-4eca-8686-c57ac3a59b3c">1</alampunktNr>
+   <kuvatavNr id="39d872f2-1302-4c04-abd9-3e57f9676b2a"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="ae161362-b57f-49f0-b86a-46429fed5281">
+    <tavatekst id="ee9e8589-642f-47d6-968c-4400e4ae2be5">ees- ja perekonnanimi;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg8p2">
+   <alampunktNr id="282e45e2-a2bd-4153-93f6-5451e91b2802">2</alampunktNr>
+   <kuvatavNr id="92090ab5-cdd1-438b-8aa7-89939dae34f5"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="15d91bc6-54ac-4f2d-addf-92dd3c42139b">
+    <tavatekst id="78b50cd1-b845-4c55-b227-57576b18bd76">isikukood;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg8p3">
+   <alampunktNr id="fcdd3cb7-fdaf-48ba-8b1f-394a955f0176">3</alampunktNr>
+   <kuvatavNr id="336d2dbc-7096-435d-8234-5dec2daa179d"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="5a432069-9f8c-47c4-95f3-b6c06e0ed7a6">
+    <tavatekst id="6dc006af-2433-4cb4-963d-d9db5e24e814">elukoht;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg8p4">
+   <alampunktNr id="506aee7a-2c0c-4bc7-a082-eee556d9f797">4</alampunktNr>
+   <kuvatavNr id="0b2288b0-c2f7-4b69-8ccc-c212ab8f8194"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="565df115-9ff0-4378-b669-090d9e666bfa">
+    <tavatekst id="d006b8d3-9556-4fb6-af70-152123fadca5">kontaktandmed;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg8p5">
+   <alampunktNr id="5566569c-e489-476d-b714-c17eefa64e10">5</alampunktNr>
+   <kuvatavNr id="82ede8fa-b43e-42b3-b3e6-bdffd3c153b7"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="ac6c0ab4-541c-4683-a6b6-e15e10592d9d">
+    <tavatekst id="e95a00d1-c912-4737-97f1-7c8b6797654d">sotsiaalne seisund;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg8p6">
+   <alampunktNr id="254ddf31-e2ea-44b1-8b00-3fc109cf5ac2">6</alampunktNr>
+   <kuvatavNr id="32d7e624-ffce-46d3-bad2-18fbb312a91b"><![CDATA[6) ]]></kuvatavNr>
+   <sisuTekst id="da8b70ba-2aa0-4536-88f7-b1a8998f96a0">
+    <tavatekst id="044ad033-ff59-4362-8332-35f0202478a3">teenuse taotlemise või mahu suurendamise põhjus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg8p7">
+   <alampunktNr id="7af1649b-d0e0-4ea1-8744-4a14f9f27421">7</alampunktNr>
+   <kuvatavNr id="94ed097e-6277-4ef8-99c7-aeb663e8ed23"><![CDATA[7) ]]></kuvatavNr>
+   <sisuTekst id="0b46482c-5514-4611-aaed-13e5fdd517b9">
+    <tavatekst id="b95fc64f-7d08-4715-91c8-0adc4cc012c2">taotluse esitamise kuupäev;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg8p8">
+   <alampunktNr id="be0fba3c-acdb-42fb-a30a-60d74ecaa21c">8</alampunktNr>
+   <kuvatavNr id="3ef80d43-70fa-4dc0-9944-3b6d729c23b2"><![CDATA[8) ]]></kuvatavNr>
+   <sisuTekst id="64e02d23-8c40-41a8-bda2-e9be85f70403">
+    <tavatekst id="3671ba59-2778-4a4b-b6f5-bb7ea7a1ff25">taotleja allkiri.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para3lg9">
+   <loigeNr id="27631295-78c2-4767-ba11-464a70eb48fe">9</loigeNr>
+   <kuvatavNr id="ac84eb07-fd4b-42f7-a23e-bbd84aea6e5f"><![CDATA[(9)]]></kuvatavNr>
+   <sisuTekst id="5670f6ef-b10a-4ac9-acf4-49483074173b">
+    <tavatekst id="46c625c8-ddf7-491c-9d2d-4844c9f42ca7">Taotlus jäetakse rahuldamata, kui taotleja või taotlus ei vasta määruses sätestatud tingimustele.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg10">
+   <loigeNr id="c5e0c264-20cd-43eb-badf-984c5552c401">10</loigeNr>
+   <kuvatavNr id="ce20d353-738a-42c5-9f7c-dd00df3c1507"><![CDATA[(10)]]></kuvatavNr>
+   <sisuTekst id="c9b90e6f-8a44-4a83-bf8a-5460473c7dfb">
+    <tavatekst id="78e4149f-c6c6-4a4c-bdcf-05f0e161d24c">Kui taotleja ei ilmu mõjuva põhjuseta vaimse tervise teenuse vahetu osutaja vastuvõtule määratud ajal või on esitanud teenuse saamiseks valeandmeid, siis on teenuse korraldajal õigus nõuda taotlejalt teenuse vahetu osutaja tasu hüvitamist.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para4">
+   <paragrahvNr id="ed92ab85-4246-4019-82d1-454de23a2847">4</paragrahvNr>
+   <kuvatavNr id="fcf0ff23-eb0f-47db-b3b9-7ccf6e143d63"><![CDATA[§ 4. ]]></kuvatavNr>
+   <paragrahvPealkiri id="702249bb-6f5a-4657-b24a-86c1cfc90623">Teenuse rahastamine</paragrahvPealkiri>
+  <loige id="para4lg1">
+   <loigeNr id="e6578c84-4805-4965-93aa-cd74d7a86332"/>
+   <kuvatavNr id="eab6ce72-f9e5-4e90-b9e9-ca4b4c08f95f"/>
+   <sisuTekst id="3786cc21-1722-4c1d-9b1d-aeeafbeab362">
+    <tavatekst id="a7dae3d1-138f-4713-baaa-1b661e80bcb9">Teenust rahastatakse valla eelarvest, sealhulgas SHS § 156 lõike 3<sup>9</sup> kohaselt riigieelarvest vallale määratud toetusest.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para5">
+   <paragrahvNr id="c7b11e65-42f6-4875-92c4-3ca0ac9acff1">5</paragrahvNr>
+   <kuvatavNr id="182718cc-4fa4-4fff-97da-550259534774"><![CDATA[§ 5. ]]></kuvatavNr>
+   <paragrahvPealkiri id="f26a0659-9681-48d8-8df8-deadee837e2b">Teenuse korraldaja kohustused </paragrahvPealkiri>
+  <loige id="para5lg1">
+   <loigeNr id="92c1b8d8-ef83-488a-be74-e843f1289a45">1</loigeNr>
+   <kuvatavNr id="82d42b17-f9d9-45b6-917c-bfd862703a5d"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="6fe8e16d-d6e2-4456-a177-9c574ea2c3c3">
+    <tavatekst id="98f668e0-445e-4f9c-9a86-4db6af613aa9">Teenuse korraldaja tagab, et teenuse vahetul osutajal on tema teenuse osutamiseks SHS § 156 lõikes 3<sup>9</sup> sätestatud asjakohane ettevalmistus.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg2">
+   <loigeNr id="b6edb341-947b-40e5-834d-7b06a1876fb9">2</loigeNr>
+   <kuvatavNr id="03964fe7-ebf2-4276-9473-698cd8392199"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="4a9709b5-c9f2-4304-b61e-53b9e23540c3">
+    <tavatekst id="becdf0bd-0431-4633-a973-41c3ab3b61eb">Teenuse korraldaja tagab, et teenuse vahetul osutajal on tema teenuse osutamiseks SHS § 156 lõikes 39 sätestatud asjakohane ettevalmistus.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg3">
+   <loigeNr id="86effeed-1d0c-46b3-be42-73007216f170">3</loigeNr>
+   <kuvatavNr id="aaa6925a-57e3-4660-817b-c06d7bedc171"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="a337077a-9939-4142-bb57-72c1026834cf">
+    <tavatekst id="cb6dca0c-027b-4615-bf3d-2fd3e0ceb2f4">Teenuse korraldaja esitab hiljemalt iga aasta 10. jaanuaril Saaremaa Vallavalitsuse sotsiaalvaldkonna eest vastutava struktuuriüksuse juhile digitaalselt allkirjastatud aruande § 4 nimetatud raha kasutamise kohta eelneval kalendriaastal aasta lõpu seisuga.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg4">
+   <loigeNr id="c20c8874-4391-41d7-8d45-a9ee9c81429f">4</loigeNr>
+   <kuvatavNr id="2d8be669-cdcd-421c-b1ce-05808e6706c9"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="6ef5663d-c372-4fff-a01e-49d0a302f467">
+    <tavatekst id="0b88a5ab-2a44-40f8-8dac-ebcc893e23fb">Teenuse korraldaja teavitab teenuse osutamise alustamisel valla elanikke teenusest ja selle osutamise korraldusest.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para6">
+   <paragrahvNr id="3b1b63d4-b67f-4af8-a64a-b067a36bf88c">6</paragrahvNr>
+   <kuvatavNr id="6c35bb88-a4b8-407d-a0e2-816eae5b5309"><![CDATA[§ 6. ]]></kuvatavNr>
+   <paragrahvPealkiri id="3c839b88-e678-4e28-8c92-ba02411918ca">Määruse jõustumine</paragrahvPealkiri>
+  <loige id="para6lg1">
+   <loigeNr id="c9375a6b-f5ba-4cfe-a74e-5d3539f55c1c"/>
+   <kuvatavNr id="1fc6dc84-ac87-42eb-9877-049de16048e3"/>
+   <sisuTekst id="2d8b5442-9186-4e99-9a0d-346332754c7e">
+    <tavatekst id="8bad853d-a643-443f-9268-98660950d71c">Määrus jõustub 1. juulil 2025. a.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="232f4195-eb49-451e-a098-a08d08db8a6d"><allkiriKoht id="77eb979d-d7a4-4d8c-9b18-bdccd34f9d2d"/><allkirjastaja id="2c691702-a786-410a-9c08-78d90aad1132"><ametinimetus id="589561e7-dcc6-4521-9bfa-bb0e03639876">volikogu esimees</ametinimetus><eesnimi id="bf168334-a0fe-4c0b-b37e-123817ee5ed9">Jaanus</eesnimi><perekonnanimi id="77634f9f-0b44-4df8-b8ae-4e8d87ce0b5e">Tamkivi</perekonnanimi></allkirjastaja></allkiri></oigusakt>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="82d07333-5b9b-41f9-9890-05399b786f0d" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Mulgi Vallavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2023-08-08</aktikuupaev>
+  
+  
+  <aktiNr>4</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2023-08-16</avaldamineKuupaev><RTaasta>2023</RTaasta><RTartikkel>1</RTartikkel><aktViide>416082023001</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2023-10-01+03:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2023-08-15</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>416082023001</globaalID>
+ <metaandmedVersioon>5</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2023-08-15</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1057232</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+</metaandmed>
+ <aktinimi id="0a97ca0c-4492-4f32-a8c2-907681a2f997">
+  <nimi id="1c10a62a-a3e2-41a7-bdec-ba5213f32c2c">
+   <pealkiri id="1e2ff32d-3e13-4ebe-b03b-62458de85ba5">Üldhooldusteenuse hoolduskulude piirmäära kehtestamine </pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="28fe662f-9d9a-449e-9b49-eb994512c77e"><preambul id="f101db2c-df49-4cd9-a997-072b76ef9dae"><tavatekst id="6d1f55fc-86bf-4c87-88d6-67fbb5842a65">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 30 lõike 1 punkti 2, sotsiaalhoolekande seaduse § 22<sup>1 </sup>lõike 3 ja Mulgi Vallavolikogu 23.05.2023 määruse nr 43 „Üldhooldusteenuse hoolduskulude piirmäära kehtestamine“ § 1 lõike 2 alusel.</tavatekst></preambul><paragrahv id="para1"><paragrahvNr id="c5ca771b-c578-4577-b277-98db49db7fca">1</paragrahvNr><kuvatavNr id="5d940f45-5d37-48dc-857e-24d4b9afa138"><![CDATA[§ 1. ]]></kuvatavNr><paragrahvPealkiri id="9a7e2fff-6485-46f2-9492-82505327a7b3">Üldhooldusteenuse hoolduskulude piirmäära kehtestamine</paragrahvPealkiri><loige id="para1lg1"><loigeNr id="ff29997a-95ee-41d3-aa37-0d5cb0beaea2"/><kuvatavNr id="7b3228c3-24df-4734-88cc-2e9484471078"/><sisuTekst id="d994d2b1-189f-4562-a1c0-7c4b7c512ba1"><tavatekst id="e90af92d-9621-4ce2-86cc-8dac85a61134">Kehtestada Mulgi Vallavalitsuse üldhooldusteenuse hoolduskulude piirmäär 520 eurot alates 1. oktoobrist 2023. a.</tavatekst></sisuTekst></loige></paragrahv><paragrahv id="para2"><paragrahvNr id="834267c4-03fa-49ff-8347-33f77dc1814b">2</paragrahvNr><kuvatavNr id="cd9e7d08-782d-41b6-84cc-771a855987b0"><![CDATA[§ 2. ]]></kuvatavNr><paragrahvPealkiri id="9814f201-f436-4953-8997-5955ae7b5a86">Määruse rakendamine</paragrahvPealkiri><loige id="para2lg1"><loigeNr id="76f81fbe-78b2-4eef-9a4c-5b5364633599"/><kuvatavNr id="653b3ad6-83f1-4d5b-8fe9-ecf9073e360b"/><sisuTekst id="a8d3869a-04c0-4ed0-a3f5-610f9046cd8b"><tavatekst id="8338b8b3-f333-4c5e-824d-e15c76a2818a">Määrus jõustub 1. oktoobrist 2023. a.</tavatekst></sisuTekst></loige></paragrahv></sisu>
+<allkiri id="281bfc6a-e077-4abb-8f85-077ba80b537b"><allkiriKoht id="6ac7b3bb-e626-43c7-89ea-51d7f96f1b3a"/><allkirjastaja id="9f8ebd84-7589-46d0-9f32-37c9d1176b03"><ametinimetus id="789acfdc-5fb2-433a-b270-fca633de6a49">Vallavanem</ametinimetus><eesnimi id="984b0697-a6db-4a05-8a43-ceab8cc63ea2">Imre</eesnimi><perekonnanimi id="c5df6daf-064d-4532-8d8b-c5d40207aca7">Jugomäe</perekonnanimi></allkirjastaja></allkiri><allkiri id="3db0cdd7-6b08-4a76-b523-a2ccf6e8c8eb"><allkiriKoht id="34343de0-5958-4963-ba50-6c15734b0775"/><allkirjastaja id="4af769a0-1322-4c7d-aa2f-1c8afeb6a00e"><ametinimetus id="b4715a43-9582-48ca-af71-a4f8e26f099f">Vallasekretär</ametinimetus><eesnimi id="cd54c083-0574-4841-8247-55ce6c3ac558">Milja</eesnimi><perekonnanimi id="d4a10922-60a9-461c-ae63-16d7c65fa863">Janson</perekonnanimi></allkirjastaja></allkiri></oigusakt>

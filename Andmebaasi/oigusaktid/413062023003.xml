@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="cdfe8d23-3cf6-4fc8-b4e3-1f63b7a6bc9c" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metaandmed>
+    <valjaandja>Elva Vallavalitsus</valjaandja>
+    <dokumentLiik>määrus</dokumentLiik>
+    <tekstiliik>algtekst-terviktekst</tekstiliik>
+    <dokumentEtapp>avaldamine</dokumentEtapp>
+    <dokumentStaatus>avaldatud</dokumentStaatus>
+    <vastuvoetud>
+      <aktiNr>6</aktiNr>
+      <aktikuupaev>2023-06-06</aktikuupaev>
+    </vastuvoetud>
+    <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2023-06-13</avaldamineKuupaev><RTaasta>2023</RTaasta><RTartikkel>3</RTartikkel><aktViide>413062023003</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2023-07-01+03:00</kehtivuseAlgus></kehtivus><versioon>
+      <dokumentVersioon>1</dokumentVersioon>
+      <dokumentVersioonKuupaev>2023-06-06</dokumentVersioonKuupaev>
+    </versioon>
+    <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+    <globaalID>413062023003</globaalID>
+    <metaandmedVersioon>5</metaandmedVersioon>
+    <metaandmedVersioonKuupaev>2023-06-12</metaandmedVersioonKuupaev>
+    <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+    <terviktekstiGrupiID>1056785</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+  </metaandmed>
+  <aktinimi id="453b00cc-590c-46d4-a7c5-168ced16e7f2">
+    <nimi id="8a2d9467-82b6-4426-9237-39d2805b8dec">
+      <pealkiri id="87023cb3-ad22-4434-b4c2-ad0b0021dd43">Hoolduskulude tasumise piirmäära kehtestamine Elva vallas</pealkiri>
+    </nimi>
+  </aktinimi>
+  <sisu id="4d156de4-0878-4cd2-b56a-7adf68451fd9">
+    <preambul id="f6ad1aa2-a88a-458d-a72e-182830e1c887">
+      <tavatekst id="fa3d142f-e936-464e-b494-232768c9904a">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 30 lg 1 p 2 ja Elva Vallavolikogu 18.12.2017 määruse nr 6 "Sotsiaalhoolekandelise abi andmise kord Elva vallas" § 20 lg 3 alusel.</tavatekst>
+    </preambul>
+    <paragrahv id="para1">
+      <paragrahvNr id="b453e93d-7da6-4577-8670-ef1a2e63f1c0">1</paragrahvNr>
+      <kuvatavNr id="c3458967-af66-4ace-8870-5680609a3f0d"><![CDATA[§ 1. ]]></kuvatavNr>
+      <paragrahvPealkiri id="0ac3f46d-4abd-42f4-86b5-f5b534650a73">Hoolduskomponendi piirmäär</paragrahvPealkiri>
+      <loige id="para1lg1">
+        <loigeNr id="9e29839f-5b28-4fbc-96f9-fb1b61104376"/>
+        <kuvatavNr id="d5447195-8f5c-47e4-b10e-c97cc94b9b19"/>
+        <sisuTekst id="82e64f97-a02b-49e5-b790-6f8c42482adc">
+          <tavatekst id="bdd13ac4-c5a1-4e78-b04a-e746158cdd8e">Kehtestada väljaspool kodu osutatava üldhooldusteenuse Elva valla poolt tasutava hoolduskomponendi piirmääraks 600 eurot. </tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para2">
+      <paragrahvNr id="8cd9d677-c71a-4c92-af18-bbd0450c8b73">2</paragrahvNr>
+      <kuvatavNr id="d5ff68c6-1039-4dce-a520-efb04df05111"><![CDATA[§ 2. ]]></kuvatavNr>
+      <paragrahvPealkiri id="ea677c08-5297-4354-9af8-2d7d208fe49d">Määruse jõustumine</paragrahvPealkiri>
+      <loige id="para2lg1">
+        <loigeNr id="8c363bbe-3751-4359-a121-34546e2196fa"/>
+        <kuvatavNr id="7f88d2f6-af45-4f9c-909d-6ed5d5c362a6"/>
+        <sisuTekst id="3013d7ec-dea2-4e51-bf7f-d6215703ce1e">
+          <tavatekst id="f0544320-2862-4d23-b03c-f56ffae9d53b">Määrus jõustub alates 01.07.2023. </tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+  </sisu>
+  <allkiri id="fb03b05d-e666-43cb-b562-8a50047b257e">
+    <allkiriKoht id="3d25e72c-794f-4e0d-a89a-48ca6f588d36"/>
+    <allkirjastaja id="e3f1cb30-8793-40e5-b7e8-d4fc79c0a045">
+      <ametinimetus id="f59e614b-92e8-490c-94cc-e53eff343df9">vallavanem</ametinimetus>
+      <eesnimi id="cdef0a1c-60e5-4f01-8c71-cfe0cfb44829">Priit</eesnimi>
+      <perekonnanimi id="f0d52877-7356-421b-830d-77f04259cf1d">Värv</perekonnanimi>
+    </allkirjastaja>
+  </allkiri>
+  <allkiri id="76b8bbef-061d-4263-984e-6fcc3f84cfa2">
+    <allkiriKoht id="9b1f1b99-ef14-4587-978e-4568e49a4324"/>
+    <allkirjastaja id="e207cd2c-2359-40bd-8759-f701ce28d6d6">
+      <ametinimetus id="3d7e2da9-4cae-453a-9c84-8c5e3e5fffbf">vallasekretär</ametinimetus>
+      <eesnimi id="6f8affb5-3f59-42dc-9063-94f4d9840a1a">Salle</eesnimi>
+      <perekonnanimi id="0283dffc-e209-4ce8-b53f-6b1f6aa235ff">Ritso</perekonnanimi>
+    </allkirjastaja>
+  </allkiri>
+</oigusakt>

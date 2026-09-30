@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="2997654f-ef52-4952-83b0-d61ec56f459e" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Antsla Vallavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2023-06-20</aktikuupaev>
+  
+  
+  <aktiNr>12</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2023-06-28</avaldamineKuupaev><RTaasta>2023</RTaasta><RTartikkel>19</RTartikkel><aktViide>428062023019</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2023-07-01+03:00</kehtivuseAlgus><kehtivuseLopp>2026-10-02+03:00</kehtivuseLopp></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2023-06-21</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>428062023019</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2026-09-29</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1056882</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+</metaandmed>
+ <aktinimi id="77091ff1-84c1-4ace-a779-d6702d51ba25">
+  <nimi id="de3d02c0-3941-4bb5-bc30-6289055a9233"><pealkiri>Väljaspool kodu osutatava üldhooldusteenuse hoolduskulu piirmäära kehtestamine</pealkiri></nimi>
+ </aktinimi>
+ <sisu id="75d354ee-521d-4ffd-ac48-cb4b90658f00"><preambul id="d7fcedb0-2db2-4b81-ad42-34d019f31218"><tavatekst id="2d8a1352-09eb-41b4-a445-8a0bd78ffd82">Määrus kehtestatakse sotsiaalhoolekande seaduse § 22<sup>1</sup> lõike 3 ja Antsla Vallavolikogu 26.01.2021 määruse nr 1 „Sotsiaalhoolekandelise abi andmise kord” § 14 lõike 4<sup>3</sup> alusel.</tavatekst></preambul><paragrahv id="para1"><paragrahvNr id="70109d7b-b417-4b64-bc61-a9697c536961">1</paragrahvNr><kuvatavNr id="62c095c0-ed92-4c07-b82f-ce2d715ffa34"><![CDATA[§ 1. ]]></kuvatavNr><paragrahvPealkiri id="5480c12b-7420-4558-bf72-728cbd146c4b">Üldsätted</paragrahvPealkiri><loige id="para1lg1"><loigeNr id="5fe26cc5-ccb3-4464-a82e-a599d4ffbcea"/><kuvatavNr id="374defed-da58-4a50-aab6-bd494ba1127f"/><sisuTekst id="3e7a2e63-1a57-4226-bf03-977169ec7c85"><tavatekst id="ff9222a8-626f-4c6f-a8c0-4638599ac3ef">Määrusega kehtestatakse väljaspool kodu osutatava ööpäevaringse üldhooldekodu hooldus- ja abihooldustöötajate kulutuste piirmäär, mille ulatuses kaetakse üldhooldusteenuse kulud Antsla valla eelarvest. Nende kulutuste hulka kuuluvad üldhooldekodu hooldustöötajate tööjõukulud, tööriietuse ja isikukaitsevahendite kulud, tervisekontrolli ja vaktsineerimise kulud, koolituse ja supervisiooni kulud.</tavatekst></sisuTekst></loige></paragrahv><paragrahv id="para2"><paragrahvNr id="0adbfaf8-5b6e-4404-8536-b8fed2df58cb">2</paragrahvNr><kuvatavNr id="7a28243d-7b12-4de3-b4de-2bd6bb0cdeae"><![CDATA[§ 2. ]]></kuvatavNr><paragrahvPealkiri id="93caf44d-1a25-473f-8c6c-37387ac11e33">Piirmäära kehtestamine</paragrahvPealkiri><loige id="para2lg1"><loigeNr id="d1cd0013-1a3c-48c6-ad3c-97cd7f04c02d"/><kuvatavNr id="baba52e5-3810-4b8a-ac11-16b4551b1347"/><sisuTekst id="4e42af54-32ba-4caa-ba00-f9e2ab636243"><tavatekst id="be79afd1-432e-4a22-a11e-8d12b77d6e59">Väljaspool kodu osutatava üldhooldusteenuse hoolduskulu piirmäär on 550 eurot kalendrikuus ühe teenuse saaja kohta.</tavatekst></sisuTekst></loige></paragrahv><paragrahv id="para3"><paragrahvNr id="af8a909a-fd27-4ef2-928f-9b6f83a46455">3</paragrahvNr><kuvatavNr id="ed780e8d-1e75-42bf-bdb0-a89f058fcba4"><![CDATA[§ 3. ]]></kuvatavNr><paragrahvPealkiri id="8ed99f80-acd4-47fd-9c1f-bb308f8cd4f3">Rakendussätted</paragrahvPealkiri><loige id="para3lg1"><loigeNr id="57c9f688-1feb-4d65-a912-1c73f3886d51">1</loigeNr><kuvatavNr id="7422f7ba-035f-4f9f-9a38-a1e4585e965c"><![CDATA[(1)]]></kuvatavNr><sisuTekst id="d0eacbec-78c9-49e5-93ac-b8dd110bb5ef"><tavatekst id="743846dd-d464-4d73-96fb-6e189de103ed">Määrus jõustub kolmandal päeval pärast avaldamist Riigi Teatajas.</tavatekst></sisuTekst></loige><loige id="para3lg2"><loigeNr id="93c05e22-64ad-4949-aa95-7e259f8567a3">2</loigeNr><kuvatavNr id="dbe7ccd8-7911-424d-9e2a-c361c35414a7"><![CDATA[(2)]]></kuvatavNr><sisuTekst id="cfb59bbb-ffda-4519-98bd-a1715cbee544"><tavatekst id="3e712ac4-9777-48b6-ade9-b858df285961">Määrust rakendatakse alates 01.07.2023</tavatekst></sisuTekst></loige></paragrahv></sisu>
+<allkiri id="25d9e43c-e213-4929-a63d-38308b50008f"><allkiriKoht id="67fc6e63-da54-4e12-a66e-3725d837675e"/><allkirjastaja id="fee14547-833b-4029-bc45-c10511304ff1"><ametinimetus id="0ca706d8-e4f7-4d04-8872-17a28dd75049">volikogu esimees</ametinimetus><eesnimi id="c3976963-2aa9-4cfe-8329-cae54152c060">Merike</eesnimi><perekonnanimi id="304e863e-cd4a-417f-bc8d-704d05249a9b">Prätz</perekonnanimi></allkirjastaja></allkiri></oigusakt>

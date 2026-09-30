@@ -1,0 +1,763 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="2717a7b0-164b-4afd-a9c4-fef547fec88e" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Põlva Vallavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<tavatekst>, paragrahve 5 ja 6 rakendatakse alates 01.01.2018</tavatekst>
+			<aktikuupaev>2018-01-17</aktikuupaev>
+			<avaldamismarge>
+				<RTosa id="c035c3f3-b76c-4ddd-9b65-f83edfc51dd1">RT IV</RTosa>
+				<avaldamineKuupaev id="66b3aa37-7fae-4c83-966f-e092e0a73f4e">2018-01-26</avaldamineKuupaev>
+				<RTartikkel id="ec69b0c0-67ca-40f5-90b2-1197e9192729">2</RTartikkel>
+				<aktViide id="3ba1bcbe-c410-452d-8766-d12ecfa5384a">426012018002</aktViide>
+			</avaldamismarge>
+			<joustumine>2018-02-01</joustumine>
+			<aktiNr>2</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-03-25</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>38</RTartikkel><aktViide>425032026038</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2026-03-28</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2026-03-23</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>425032026038</globaalID>
+		<metaandmedVersioon>40</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2026-03-24</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1041750</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2018-01-22</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Kaia Sillaste</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>25</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2019-08-28</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>30</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2022-09-20</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>35</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2022-09-22</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="6f9d1cb6-b0e8-4c24-a185-052f890f54a6">
+		<nimi id="57d46b33-3b2d-48c8-9d07-0355281cd06a">
+			<pealkiri id="e1a6bef1-9c12-42b7-9020-9830d6b726d2">Sissetulekust mittesõltuvate toetuste määramise ja maksmise kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="26cfe52c-a09b-4aad-83c3-da6f30360ce9">
+		<aktikuupaev id="19ad45fa-a6a6-40e3-a475-136293fc87b0">2018-02-21</aktikuupaev>
+		<avaldamismarge id="ec74e45a-9da8-431d-ae2d-d3eecd899d83">
+			<RTosa id="a3d242bf-1f7b-4220-bd64-615739c7e2c6">RT IV</RTosa>
+			<avaldamineKuupaev id="99d0c0d4-68ca-46e4-9f8c-2ce016f8682e">2018-02-27</avaldamineKuupaev>
+			<RTartikkel id="89612d0c-afeb-4896-a3a4-f99f08c34919">22</RTartikkel>
+			<aktViide id="08c95b28-fba4-4daa-b33a-8482cbcf4cf4">427022018022</aktViide>
+		</avaldamismarge>
+		<joustumine id="080ec67a-bc67-4d6e-a1ec-afa7d3ebd7d7">2018-03-02</joustumine>
+	</muutmismarge>
+	<muutmismarge id="9f2a3881-a7d9-4e37-838a-c7a7af51f5e3">
+		<aktikuupaev id="0ccf1f80-2b01-41d6-b2f2-83571d514c69">2018-11-15</aktikuupaev>
+		<avaldamismarge id="e936fe02-d823-405c-8432-d05b7ef0206c">
+			<RTosa id="d39d429b-2e4d-44b1-966b-36e90841c822">RT IV</RTosa>
+			<avaldamineKuupaev id="0e5bfe35-b265-41ad-88e8-87e1362d7baa">2018-11-23</avaldamineKuupaev>
+			<RTartikkel id="825fcc64-d831-43d5-98f9-27d2c059f22e">5</RTartikkel>
+			<aktViide id="f0088d25-402a-4e63-a26c-c506d80d864f">423112018005</aktViide>
+		</avaldamismarge>
+		<joustumine id="c39d5b64-a449-4dd7-846f-ed304d7f0bc7">2018-11-26</joustumine>
+	</muutmismarge>
+	<muutmismarge id="676d83d0-48b2-4704-a1ea-a7b80aaf65fc">
+		<aktikuupaev id="d1fd3c81-2567-480a-838e-579148db1e63">2019-03-21</aktikuupaev>
+		<avaldamismarge id="6e22e2b2-8226-4dd5-ac05-e5c9ea6e6f9b">
+			<RTosa id="5efa92af-a36f-430b-8383-56a3e7e662f3">RT IV</RTosa>
+			<avaldamineKuupaev id="98af8cd9-8522-4af6-9e8e-3ed3c005ee5a">2019-03-27</avaldamineKuupaev>
+			<RTartikkel id="fb0d3247-89db-4174-ae98-71a27392eb0d">3</RTartikkel>
+			<aktViide id="5468d1bb-5195-4e72-a259-fb78332e615f">427032019003</aktViide>
+		</avaldamismarge>
+		<joustumine id="a98cd756-d1a9-4600-8ea3-0ee2f90ce2a0">2019-04-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="ab157eff-e04b-4c0a-86c6-2ee932a5c222">
+		<aktikuupaev id="4ea946bf-9a44-4dd0-aa54-d7e9435aca90">2019-08-16</aktikuupaev>
+		<avaldamismarge id="f543ac05-a009-4da9-8132-d3d7e54fd7a8">
+			<RTosa id="b7de166a-5619-4080-861c-62cb7c0845ba">RT IV</RTosa>
+			<avaldamineKuupaev id="728bb121-1bdf-4c0b-bd91-47ff21e91371">2019-08-29</avaldamineKuupaev>
+			<RTartikkel id="34f0ee46-028c-4055-a3be-15cc5b1d59ea">2</RTartikkel>
+			<aktViide id="4d5534b0-a955-4f74-b05c-5b0d4c6ec93c">429082019002</aktViide>
+		</avaldamismarge>
+		<joustumine id="1a3f4552-cdfd-44df-98ae-925da9466e1c">2019-09-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="9799889c-2a60-49a3-8082-10162804792a">
+		<aktikuupaev id="9f42a9a5-0ba0-422f-9bed-db751be6b7f7">2020-08-27</aktikuupaev>
+		<avaldamismarge id="1b739027-787d-4ce7-b57e-e5eefd1cc37c">
+			<RTosa id="3ece412f-7400-4762-8f03-1deec1a5ef1e">RT IV</RTosa>
+			<avaldamineKuupaev id="77561020-9c5b-48f3-859f-f6ea07651181">2020-09-04</avaldamineKuupaev>
+			<RTartikkel id="7a8dd551-c474-46d8-85e5-f8f6b2a5785b">3</RTartikkel>
+			<aktViide id="6edbc9e4-5660-467d-83af-fef01f7fa55d">404092020003</aktViide>
+		</avaldamismarge>
+		<joustumine id="bf156167-c18c-471e-afac-81d4c4e331df">2020-09-15</joustumine>
+	</muutmismarge>
+	<muutmismarge id="c796f41f-1dc7-45dd-b4c9-b2e92784e4da">
+		<aktikuupaev id="2a1cf021-41f5-4ccb-8cf0-6d0f5e4e65b9">2022-09-15</aktikuupaev>
+		<avaldamismarge id="378ffd14-9236-49dc-af91-24e6613f47b0">
+			<RTosa id="258e9dcd-b5c9-45a7-b5e0-e53f733c250c">RT IV</RTosa>
+			<avaldamineKuupaev id="c7bd27ab-2512-4634-a629-25700136fb10">2022-09-23</avaldamineKuupaev>
+			<RTartikkel id="1cb3c991-fbfe-43be-82c1-18bbb0c92f0f">13</RTartikkel>
+			<aktViide id="050a2963-4dc8-4c99-9301-26a73a68e24c">423092022013</aktViide>
+		</avaldamismarge>
+		<joustumine id="87f21387-d950-4ecc-a6fd-d15187640b1b">2022-09-26</joustumine>
+	</muutmismarge>
+	<muutmismarge id="42997f06-4fb5-4e4d-980c-f9a01ff979d2">
+		<aktikuupaev id="d5bbe934-7f25-4baa-8ea0-b50edf6bc761">2026-03-19</aktikuupaev>
+		<avaldamismarge id="ff0b9767-b12c-4059-8a91-24afba2ee9ad">
+			<RTosa id="2f4e8ae2-dca5-465d-ab7d-ed10eb360b94">RT IV</RTosa>
+			<avaldamineKuupaev id="0ab0c0d6-2ed5-47fd-bff3-e8390f03344c">2026-03-25</avaldamineKuupaev>
+			<RTartikkel id="9343cd44-7f97-4c90-98a5-3c4a37615c2b">9</RTartikkel>
+			<aktViide id="f76c19bd-9f24-4642-8a77-258ca485525b">425032026009</aktViide>
+		</avaldamismarge>
+		<joustumine id="9296c68d-4eca-4f66-bf19-fe71bc011dbc">2026-03-28</joustumine>
+	</muutmismarge>
+	<sisu id="a1a757b4-a7ce-4af5-8638-ffb2e248c372">
+		<preambul id="7383fe98-f86c-47cd-9a20-37a5224a402e">
+			<tavatekst id="23093334-806b-4df5-aceb-e6455366ae53">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5 alusel.</tavatekst>
+		</preambul>
+		<peatykk id="d583c0dd-a931-495a-9723-ae4d8453cead">
+			<peatykkNr id="e2b4debd-94fb-457d-b7a7-0b58fbe70b57">1</peatykkNr>
+			<kuvatavNr id="5f6ed335-c727-42e2-b335-6efc5c76e956"><![CDATA[1. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="cce3c279-d03a-49cb-8121-aeee710cbe09">Üldsätted</peatykkPealkiri>
+			<paragrahv id="para1">
+				<paragrahvNr id="fb5f14ea-4b5d-4b83-9da7-e13fc39da2ab">1</paragrahvNr>
+				<kuvatavNr id="ab4e5668-a73e-4c5b-ae7a-b21a1235f7e4"><![CDATA[§ 1. ]]></kuvatavNr>
+				<paragrahvPealkiri id="8cd1041b-97ec-4515-8675-e71544e69a69">Reguleerimisala</paragrahvPealkiri>
+				<loige id="para1lg1">
+					<loigeNr id="c6042fa6-0eab-4309-97ed-749975137a63"/>
+					<kuvatavNr id="07dc8fc1-ab08-497e-8a8a-02654d455dda"/>
+					<sisuTekst id="0b1ef1aa-46dc-4ec7-abba-0cb4dfa4e4c2">
+						<tavatekst id="243503bb-94d2-4ee2-ab01-a12876cbca2e">Määrusega kehtestatakse Põlva valla elanikele valla eelarve vahenditest makstavate sissetulekust mittesõltuvate toetuste (edaspidi <i>toetus</i>) taotlemise, määramise ja maksmise tingimused ja kord.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para2">
+				<paragrahvNr id="39a48490-5474-476d-b55b-0c168488dbbc">2</paragrahvNr>
+				<kuvatavNr id="87305a91-3689-472e-8fa5-1db1884d8c1e"><![CDATA[§ 2. ]]></kuvatavNr>
+				<paragrahvPealkiri id="b43fb526-bdc0-4352-a7ea-a807217ac987">Toetuste määrad</paragrahvPealkiri>
+				<loige id="para2lg1">
+					<loigeNr id="6fdf6809-a5bf-478d-a222-60c80acf20e4">1</loigeNr>
+					<kuvatavNr id="376d8646-3319-43c0-a7c7-70e20dbaaf0a"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="1b05c062-2da6-416e-8e11-78be0626d2d0">
+						<tavatekst id="9020bb03-4f2b-4702-8ae5-5257c3a949ce">Sissetulekust mittesõltuvaid toetusi makstakse vallaelanikuks olemise väärtustamiseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para2lg2">
+					<loigeNr id="ebeef383-e299-42c5-8932-2bae86ad14b0">2</loigeNr>
+					<kuvatavNr id="02625e8a-98ed-47b7-a042-c9254b5cc696"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="ba274396-f28d-43c8-ac47-f94ffbfd5c8a">
+						<tavatekst id="b2bb9f63-1c03-4aa2-9154-b58425056df3">Toetuste määrad kehtestab Põlva Vallavalitsus (edaspidi <i>vallavalitsus</i>).</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para3">
+				<paragrahvNr id="eed29097-dbce-43e8-ad0e-19ea8f03832d">3</paragrahvNr>
+				<kuvatavNr id="a653195d-1e99-4da5-8b7a-84ebaca50f51"><![CDATA[§ 3. ]]></kuvatavNr>
+				<paragrahvPealkiri id="506b868d-2ad5-418a-8850-d05254050aa3">Õigustatud isikud</paragrahvPealkiri>
+				<loige id="para3lg1">
+					<loigeNr id="be68363a-2ccc-446e-92e2-5cba7d083b4b">1</loigeNr>
+					<kuvatavNr id="f972c20c-52fb-4439-a9ac-65b77697e763"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="1611bd82-7277-4a23-b378-75f3486ffe6a">
+						<tavatekst id="e71b2dc7-df20-4fa3-a3c4-594085741073">Toetus määratakse isikule, kelle elukoht Eesti rahvastikuregistri (edaspidi <i>rahvastikuregister</i>) andmetel on Põlva vald.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para3lg2">
+					<loigeNr id="ecfa8508-5d10-4f6d-939c-efed3a0de9ac">2</loigeNr>
+					<kuvatavNr id="9eb78d4f-7ab1-495a-aa22-b9ef8a6b9061"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="e7a74c09-abf9-4f38-8928-3ac995f56c45">
+						<tavatekst id="dd14a99b-c84b-401a-ac10-8c412fd15daf">Käesoleva paragrahvi lõikes 1 sätestatud piirangut ei rakendata määruse paragrahvis 6 ning paragrahvi 8 lõike 1 punktides 1 ja 2 nimetatud toetuse suhtes.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="5b1ad72a-e4c0-4c67-90ed-9acdf9a5db1c">
+			<peatykkNr id="6b587eca-15b9-49b6-a024-5ed459f1fcc4">2</peatykkNr>
+			<kuvatavNr id="9c4038bc-292a-41a6-8e76-46b4bdd13d09"><![CDATA[2. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="e9bd7fda-2232-41b9-88b1-a5cda38f9796">Toetuse liigid ja kirjeldus</peatykkPealkiri>
+			<paragrahv id="para4">
+				<paragrahvNr id="316294aa-d0c5-49f5-9d34-014c002b8e13">4</paragrahvNr>
+				<kuvatavNr id="181e75a8-9949-4201-a895-9642b4145a16"><![CDATA[§ 4. ]]></kuvatavNr>
+				<paragrahvPealkiri id="e4ff87df-81cc-44df-ad4c-a3254df1bcb0">Sissetulekust mittesõltuvad toetused</paragrahvPealkiri>
+				<loige id="para4lg1">
+					<loigeNr id="5ee92e9b-a73e-426e-b63a-578485bc71d3"/>
+					<kuvatavNr id="e0694439-f466-489d-8729-6e8903e6d655"/>
+					<sisuTekst id="602b09aa-856d-4c9a-b640-fbc5660c8130">
+						<tavatekst id="9d126858-13eb-4efc-a0fb-bdaa867361af">Sissetulekust mittesõltuvad toetused on:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para4lg1p1">
+						<alampunktNr id="ce6e602f-e549-40de-98f7-6bb3b6980eed">1</alampunktNr>
+						<kuvatavNr id="e0ca11bc-32df-421c-bcbf-9e01f43304bd"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="343bbdee-c42f-4ff4-8f42-54011d31f23f">
+							<tavatekst id="383d9b8d-608e-4365-9e7a-51d489ac5481">sünnitoetus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p2">
+						<alampunktNr id="6114720a-5f91-4b8c-9b5f-8c2e34e48f3f">2</alampunktNr>
+						<kuvatavNr id="5804e975-61f7-4b81-b1f4-1ff2065b28dd"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="b0d7cb7c-f997-4f4c-ae1d-2501c95fc467">
+							<tavatekst id="ee3a6402-6119-4a94-a9a6-aa40bc6de221">matusetoetus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p3">
+						<alampunktNr id="68f012f9-4cd3-4019-a6ac-8d344c26d278">3</alampunktNr>
+						<kuvatavNr id="14d1eaa8-b000-4773-be69-3110973bed60"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="1c4a2942-cbaa-4001-b95d-f4fec4ec440b">
+							<tavatekst id="4a9ec51d-2f84-4ba9-a689-5822686e29f9">esimesse klassi astuja toetus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p4">
+						<alampunktNr id="a51f6893-0d8f-4ba2-b326-8b4a1d49e116">4</alampunktNr>
+						<kuvatavNr id="3b4d8fb6-1df9-431f-98ca-0dcbfa0aeafb"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="03c13ef3-227e-4e72-b8fe-d49c40c8a573">
+							<tavatekst id="43482222-18eb-4b15-acd7-6f3bc1de74c9">jõulutoetus.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para5">
+				<paragrahvNr id="3bb041d5-3811-4c31-ac6c-b1d55f7d7a79">5</paragrahvNr>
+				<kuvatavNr id="fb8d4a67-2fdc-4a57-ad3f-ac27d0440540"><![CDATA[§ 5. ]]></kuvatavNr>
+				<paragrahvPealkiri id="d33ef9d1-ce27-461e-bb81-f5f5f2a5c33d">Sünnitoetus</paragrahvPealkiri>
+				<loige id="para5lg1">
+					<loigeNr id="790eec7b-f706-461c-a91d-6ae097c13435">1</loigeNr>
+					<kuvatavNr id="5d8f2248-a1bb-40fb-9f6c-7df59ceb9052"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="c84b2979-483a-434a-9e03-41a6cd80d664">
+						<tavatekst id="3eadaa29-6fe2-4a11-97f1-ceb96c28064a">Toetust on õigus taotleda lapse vanemal, eestkostjal või isikul, kelle juures on laps lepingu alusel perekonnas hooldamisel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para5lg2">
+					<loigeNr id="682177e3-9ff7-4358-b208-02fef74b831f">2</loigeNr>
+					<kuvatavNr id="d8d40a60-3245-45aa-960f-89310e29fff9"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="8ad5297f-8f3a-4a1e-b72b-86485c6e72c6">
+						<tavatekst id="722ca521-7f2a-4061-9af2-0ecfa1e3ae47">Toetus määratakse tingimusel, et lapse elukoht rahvastikuregistri andmetel on Põlva vald.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="8322bbb6-1e59-48b9-aea3-819d12febf1a">
+						<avaldamismarge id="dbd97709-2fd1-4ea4-b973-eef7ebfb4331">
+							<RTosa id="cde75b0a-643d-47fb-a2f4-4532904bd790">RT IV</RTosa>
+							<avaldamineKuupaev id="dac609ce-c765-48ad-b45d-27fd23f23de1">2020-09-04</avaldamineKuupaev>
+							<RTartikkel id="7ab2902c-bcc6-4029-b9a2-567837d8ab89">3</RTartikkel>
+							<aktViide id="cd3a4564-0d1e-4695-b807-53990118087e">404092020003</aktViide>
+						</avaldamismarge>
+						<joustumine id="e8374d8d-cfd3-4595-9e0d-446b685ccf33">2020-09-15</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para5lg3">
+					<loigeNr id="5263d478-5ef1-4301-95e8-cf6523fdb0d1">3</loigeNr>
+					<kuvatavNr id="7c611277-391f-467e-915a-3718bbc73765"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="984a90a1-6f91-4c96-b73b-834ee8b458ac">
+						<tavatekst id="b6c8ecf5-3ac2-49c1-8cc9-3863897b64d1">Toetust makstakse kahes võrdses osas:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para5lg3p1">
+						<alampunktNr id="d5b72cf7-adde-409c-a9f9-b70db715c796">1</alampunktNr>
+						<kuvatavNr id="f312b01d-b77b-4d4f-8209-51660f5843ad"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="8b4f9fe3-8b7c-41dd-b37f-e15a73c2fe67">
+							<tavatekst id="43e2ebf3-033f-4259-a31d-28911f41db1e">esimene osa makstakse pärast lapse sünni registreerimist;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg3p2">
+						<alampunktNr id="8820665f-ee7b-43a4-91ff-9277e683a371">2</alampunktNr>
+						<kuvatavNr id="1a6cc721-5fd0-461b-8965-a5b46bd46811"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="316415e8-cee7-4693-8f58-dd384816d475">
+							<tavatekst id="fc2153d6-45c9-4f97-a4c6-9b25e09f4f55">teine osa makstakse lapse 1,5-aastaseks saamisel.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="05415f5c-1bee-4425-8b27-902a86d05617">
+							<avaldamismarge id="9bb182e3-74ac-4ee1-a740-01e226b169c8">
+								<RTosa id="422e8e44-314b-47ba-b4fc-5d1ba637b2a9">RT IV</RTosa>
+								<avaldamineKuupaev id="ceb7d4f0-57f0-41bb-b800-7ee1718b43d8">2026-03-25</avaldamineKuupaev>
+								<RTartikkel id="44ac3815-1f32-4323-b710-f7a42e43e551">9</RTartikkel>
+								<aktViide id="3c211eec-e944-4245-82c7-08c4ff96fcbb">425032026009</aktViide>
+							</avaldamismarge>
+							<joustumine id="64161fb7-d40f-4ab2-a502-e93f4ca5d83b">2026-03-28</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para5lg4">
+					<loigeNr id="9bc58d6c-8970-489f-8870-09cf1dc7f2df">4</loigeNr>
+					<kuvatavNr id="cf4d62e8-eb03-478c-bc0f-0533c5ed3125"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="a2d1195b-af60-47ce-abeb-9fae4f337ed8">
+						<tavatekst id="29c3f990-4b02-48e1-9d4d-12a4077f0c25">Mitmikute sünni korral makstakse sünnitoetust iga lapse eest.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para5lg5">
+					<loigeNr id="b6f7a8c6-3d37-4767-b8fe-175372522f09">5</loigeNr>
+					<kuvatavNr id="3c10c6b0-b097-4d5f-ac68-89b443ee4a24"><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst id="67ee1723-9249-4ec1-8c39-78870860b95b">
+						<tavatekst id="f5b0517c-e6dd-4b6b-a083-5c7a460a43a1">Toetust ei määrata, kui laps on riiklikul ülalpidamisel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para5lg6">
+					<loigeNr id="d72cec30-6e48-4151-b63b-8b47716bd794">6</loigeNr>
+					<kuvatavNr id="c3470b67-bc06-4e3f-babe-8b0631584952"><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst id="2257c912-1044-4c03-a951-20181c4d9e5c">
+						<tavatekst id="37c8bb05-c795-4fa6-9de4-607ec366ce89">Toetuse esimest osa on õigus taotleda kolme kuu jooksul peale sünni registreerimist rahvastikuregistris, toetuse teist osa kolme kuu jooksul peale lapse 1-aastaseks saamist.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="23bedf85-458f-47c9-920f-158edd26fde6">
+						<avaldamismarge id="5faa382b-41c2-47f5-9fe1-5a9a2f48bb7e">
+							<RTosa id="bad297fb-facd-4692-9302-00fa49028f1f">RT IV</RTosa>
+							<avaldamineKuupaev id="925c67b0-6540-4744-9ad3-063e7666e041">2020-09-04</avaldamineKuupaev>
+							<RTartikkel id="17bee857-cb1c-433c-8ad5-b2d665e141d9">3</RTartikkel>
+							<aktViide id="3074275f-645b-4c06-bce7-bef9ed3a0e57">404092020003</aktViide>
+						</avaldamismarge>
+						<joustumine id="4ca0cb70-1f21-498b-bebf-748c30d1608d">2020-09-15</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para5lg7">
+					<loigeNr id="86548a98-f8bb-4276-9548-c0443abbc510">7</loigeNr>
+					<kuvatavNr id="f864704d-4314-4d1c-b376-678ea9e13579"><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst id="3904b471-9907-4945-b100-4deea6589f44">
+						<tavatekst id="4b50763a-35a8-4850-8be7-b95dea29f7cb">Toetus makstakse välja juhul, kui lapse eest ei ole saadud sünnitoetust teisest kohalikust omavalitsusest.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="cfef98d9-d895-4025-a455-04ab3dfd8fa7">
+						<avaldamismarge id="4f39e10b-91af-44fa-87cb-498113e34adf">
+							<RTosa id="a4fed88d-298b-461d-bc00-fded4400a39a">RT IV</RTosa>
+							<avaldamineKuupaev id="a92e118c-7863-4169-bb9e-a1f5783f8b8d">2020-09-04</avaldamineKuupaev>
+							<RTartikkel id="2ac4e34e-32df-4827-a578-119fa3edcbf6">3</RTartikkel>
+							<aktViide id="ef8766d6-15b1-4789-b4f5-a742b510f2bd">404092020003</aktViide>
+						</avaldamismarge>
+						<joustumine id="00563d8e-0915-4365-967f-dc7766ddf200">2020-09-15</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para6">
+				<paragrahvNr id="f47d5d54-2326-4b5e-8763-ff101beaf47c">6</paragrahvNr>
+				<kuvatavNr id="92d59d7c-c5dd-4d82-bc6b-a32625b08784"><![CDATA[§ 6. ]]></kuvatavNr>
+				<paragrahvPealkiri id="371eac9c-6264-4faf-9c78-5ce716a2eaf3">Matusetoetus</paragrahvPealkiri>
+				<loige id="para6lg1">
+					<loigeNr id="d27871e7-b151-409e-a903-61f6d6865270">1</loigeNr>
+					<kuvatavNr id="395b42eb-d60f-4593-bea6-a0c5e8ad0de7"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="c0608a43-e2f1-47f7-bd65-120003850ac7">
+						<tavatekst id="55f518af-75e8-468a-b5ec-6a386f460e0c">Toetust makstakse:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para6lg1p1">
+						<alampunktNr id="eddf3b05-a255-45a8-a9c1-506e8f351e91">1</alampunktNr>
+						<kuvatavNr id="0aa5334c-0bce-4c23-a032-2f32d77bb5e7"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="a93b8b20-d011-4af6-baef-e5635e365d50">
+							<tavatekst id="e1898ae5-af4a-4e40-938e-8c32c6ffccb7">surma hetkel rahvastikuregistri andmetel Põlva vallas elanud isiku surma korral matuse korraldajale või;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para6lg1p2">
+						<alampunktNr id="25ab7080-4732-4fac-bc51-f81b414b4d65">2</alampunktNr>
+						<kuvatavNr id="38c42e6d-4bbb-4a39-8822-286606d7aa5a"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="616ae023-7818-4a92-8022-ee8f68927827">
+							<tavatekst id="c540456e-9092-4fb9-8d18-9cba7348aab9">erandkorras matuse korraldajale, kes on rahvastikuregistri andmetel Põlva valla elanik ning kes taotleb toetust isiku matmise kuludeks, kellel puudus rahvastikujärgne elukoht või kelle eest ei ole saadud matusetoetust teisest kohalikust omavalitsusest.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="696c4128-5da9-4f73-9a68-5b03f0e0f860">
+							<avaldamismarge id="7e61f379-add7-4d26-aee2-02131bc6fc63">
+								<RTosa id="7bb9f934-1d49-460e-9abf-6e9fa3a0adea">RT IV</RTosa>
+								<avaldamineKuupaev id="58afd9a1-9468-471b-a9f5-44c0108a6df6">2019-03-27</avaldamineKuupaev>
+								<RTartikkel id="dfc48554-1cc1-4b71-9d96-ba79e8928245">3</RTartikkel>
+								<aktViide id="696118bc-a5a9-46f2-820d-6d0d5956c660">427032019003</aktViide>
+							</avaldamismarge>
+							<joustumine id="98c0dd8d-e53e-4b92-8343-e77c08a08d79">2019-04-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para6lg2">
+					<loigeNr id="7dc09b73-6aa4-47da-9f58-eda15b5b259f">2</loigeNr>
+					<kuvatavNr id="d5170be3-0bc4-4780-abf4-545b4ada76e7"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="a1ab29aa-1135-4b4a-9fa0-01bc28609ae5">
+						<tavatekst id="7dd7313c-c0a4-4954-a7d9-820667574f78">Toetuse taotlemisel esitatakse taotlus.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="5560eabf-4bc1-49a3-93ea-18d5ef7af9a1">
+						<avaldamismarge id="2599299c-a9f0-469c-9df6-c38db9951eda">
+							<RTosa id="0d1a72a9-81ef-41cf-80cb-fcd8704d9dc4">RT IV</RTosa>
+							<avaldamineKuupaev id="d75d3248-7bda-4f5b-9b04-00e9c20e4202">2019-08-29</avaldamineKuupaev>
+							<RTartikkel id="b12be1f8-1b50-4c09-a1ae-1277f55c2075">2</RTartikkel>
+							<aktViide id="bd6e0904-0008-4a6f-9166-8886786a5d48">429082019002</aktViide>
+						</avaldamismarge>
+						<joustumine id="78bd1aa9-9897-48af-a4de-e4ad54ef1868">2019-09-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para6lg3">
+					<loigeNr id="69033dbc-6456-4083-adb1-07444b33bd4e">3</loigeNr>
+					<kuvatavNr id="9c54f2ce-abfa-451f-ac6c-18b1bd105e8b"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="341aa129-708c-4657-879e-5a816fb794f6">
+						<tavatekst id="01c6c482-5588-493a-8434-d4d4bf86e758">Toetust on õigus taotleda kolme kuu jooksul peale surma registreerimist rahvastikuregistris.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para7">
+				<paragrahvNr id="e5d0a4b9-b3e3-475f-a588-58586c92e1b3">7</paragrahvNr>
+				<kuvatavNr id="1be6939d-51ce-4d62-bb4e-df7d99b41013"><![CDATA[§ 7. ]]></kuvatavNr>
+				<paragrahvPealkiri id="6338694d-08d7-44c2-8e3e-750b98114bf1">Esimesse klassi astuja toetus</paragrahvPealkiri>
+				<loige id="para7lg1">
+					<loigeNr id="4a1fcbfb-ebb1-4732-9173-86b36fda81c5">1</loigeNr>
+					<kuvatavNr id="75ddc355-2876-4db7-a227-2d73ce744671"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="44b703a3-65a0-4bc9-b5bf-a287a89c28fd">
+						<tavatekst id="9dce94fc-5482-40a9-a96f-9f5ca5fbdadc">Toetus määratakse Põlva valla haldusterritooriumil asuva kooli esimesse klassi esmakordselt õppima asuvale lapsele, kelle elukoht rahvastikuregistri andmetel on Põlva vald.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para7lg2">
+					<loigeNr id="9af17989-1724-4e87-a3a1-ccb38a49b296">2</loigeNr>
+					<kuvatavNr id="dea35365-5f99-4d9e-bac6-722e2692b2c2"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="f3089552-2a8c-451f-a788-198efe9dc0a2">
+						<tavatekst id="41795714-c0eb-44cb-94fa-6f4a63583713">Erandjuhul makstakse toetus lapsele, kelle elukoht rahvastikuregistri andmetel on Põlva vald ning kes asub esmakordselt esimesse klassi õppima teise kohaliku omavalitsuse haldusterritooriumil asuvas koolis, kui:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para7lg2p1">
+						<alampunktNr id="4111cf4c-da25-474e-951a-137b20421c61">1</alampunktNr>
+						<kuvatavNr id="ea378c29-eadc-4c2d-8f4e-c3093c12f545"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="8f0f9e0e-d96f-441b-a10f-d532ef7cdc0b">
+							<tavatekst id="c07a8201-3afc-43f2-a428-451d19663f9b">lapse erivajadustele vastavat kooli Põlva vallas ei ole;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para7lg2p2">
+						<alampunktNr id="c4d8c9cc-68d0-4d74-9b61-9b71f716fb92">2</alampunktNr>
+						<kuvatavNr id="14ba55eb-f585-4b23-8385-79d0ed675e1f"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="78bc98d5-c0b8-4d51-9c9c-1701169cabf8">
+							<tavatekst id="f6b25b18-c8b1-4d93-ba56-55e8514a2e74">lapse registrijärgsele elukohale lähim kool asub teise omavalitsuse haldusterritooriumil.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="14d107a3-330f-4332-a43f-3bf58b32f834">
+							<avaldamismarge id="54734764-9ecf-4fc0-9e2c-69d7396e7273">
+								<RTosa id="34973b46-496e-4312-aafc-525828ab75cf">RT IV</RTosa>
+								<avaldamineKuupaev id="f93d24ca-1ef8-4fa3-adfc-ca8456639aec">2019-03-27</avaldamineKuupaev>
+								<RTartikkel id="cf75b674-c9d9-44ca-a02d-dfd89047e641">3</RTartikkel>
+								<aktViide id="c4b89e8f-18f1-4028-83d2-d3954bd84592">427032019003</aktViide>
+							</avaldamismarge>
+							<joustumine id="30b355d3-662f-411c-8ae7-ee0bf8ba5636">2019-04-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para7lg3">
+					<loigeNr id="5b6a6110-5bad-436e-8333-847a81186deb">3</loigeNr>
+					<kuvatavNr id="3312503f-ecd3-44fc-af6b-ed516c7aff7d"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="06ea6dbb-997b-420d-9086-0839306183e3">
+						<tavatekst id="c0a94fd9-dcfd-4206-9d98-d2e635e466d2">Taotlusi võetakse vastu 1. augustist 30. septembrini.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para8">
+				<paragrahvNr id="d46514ba-b29a-400e-8446-cde750aa3a08">8</paragrahvNr>
+				<kuvatavNr id="f934a03a-57d9-4477-b0d2-b559061e1082"><![CDATA[§ 8. ]]></kuvatavNr>
+				<paragrahvPealkiri id="a6432f57-561c-4b35-93a4-76da7728dd45">Jõulutoetus</paragrahvPealkiri>
+				<loige id="para8lg1">
+					<loigeNr id="b597a631-bb24-4175-925a-24753f5e4ef6">1</loigeNr>
+					<kuvatavNr id="e4e2568a-f5d7-4813-bd2a-444a57fcaaf8"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="513e86dc-18a7-4ec6-8471-7e7e9ef1e8a9">
+						<tavatekst id="6ddb4ebd-e5a0-49d1-a8c5-1306a70377df">Toetus antakse jõulupakina:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para8lg1p1">
+						<alampunktNr id="8da1b8cb-6668-4403-9f9a-0e96ba085b4c">1</alampunktNr>
+						<kuvatavNr id="513e4ba6-17ea-4601-8dfd-18b568095907"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="a37da55c-b2ea-46d0-8f36-94ee4691376f">
+							<tavatekst id="001879bd-d604-485f-a1f2-6261c39f5958">Põlva valla haldusterritooriumil asuvas koolieelses lasteasutuses käivatele lastele;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para8lg1p2">
+						<alampunktNr id="1f3030de-a296-4819-b388-9a742f55209f">2</alampunktNr>
+						<kuvatavNr id="e7be8c57-4a89-45f3-9f94-1f0ad325f01f"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="15036d78-c8e5-4277-a94d-18a35a5e55d1">
+							<tavatekst id="fcb4d26a-91a4-4597-8b13-1aa1fec1e376">Põlva valla haldusterritooriumil asuvate koolide esimeses kooliastmes õppivatele lastele;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para8lg1p3">
+						<alampunktNr id="427fbaf2-f7de-48fb-8802-0f2ad3745e53">3</alampunktNr>
+						<kuvatavNr id="3beb1694-1123-464e-8627-8c4a52c6a3ed"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="e81cd58a-2a7e-4f98-bee7-a3d1935d40f1">
+							<tavatekst id="e4792e77-7461-4159-8029-13968de05145">koolieelses lasteasutuses mittekäivatele lastele alates esimesest eluaastast.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para8lg2">
+					<loigeNr id="270676b6-7c85-4152-8b53-a85347130f85">2</loigeNr>
+					<kuvatavNr id="11e5881c-1c18-4abd-b3cb-f8100cba3d7e"><![CDATA[(2)]]></kuvatavNr>
+					<muutmismarge id="2a379c14-a311-487e-85cb-3a93c48a0b03">
+						<tavatekst id="21b9b9be-08a3-4fed-b912-c50d82b5b356">Kehtetu -</tavatekst>
+						<avaldamismarge id="da2361ac-4d36-4be5-9327-6f96cd5c481e">
+							<RTosa id="3f7c20e8-af5b-47a5-b750-4723e81f7b7e">RT IV</RTosa>
+							<avaldamineKuupaev id="2ab3733a-3786-4397-b301-f0379ef95bb8">2022-09-23</avaldamineKuupaev>
+							<RTartikkel id="fae1b1a2-928d-4c58-9f58-092277ab605c">13</RTartikkel>
+							<aktViide id="7462b38e-9dd7-4ef9-8b49-0ae5b941b7c7">423092022013</aktViide>
+						</avaldamismarge>
+						<joustumine id="0d61feef-b3fc-470c-8093-4f02e41a3739">2022-09-26</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para8lg3">
+					<loigeNr id="93ef4036-0fd3-4647-859f-32748ae3c925">3</loigeNr>
+					<kuvatavNr id="63b9577d-7e62-49bd-b2ea-0ba4ce279d33"><![CDATA[(3)]]></kuvatavNr>
+					<muutmismarge id="1efa3350-1764-4465-b04a-bea943653909">
+						<tavatekst id="e81b43e5-d5e5-4fb6-bfae-fd77f4ae7a2d">Kehtetu -</tavatekst>
+						<avaldamismarge id="47189257-22c0-4f61-aee0-8deb1950df11">
+							<RTosa id="172eb9fe-c599-4a50-a262-09386b828009">RT IV</RTosa>
+							<avaldamineKuupaev id="f8b3197b-33be-4b81-a2fa-fd09a23a1da3">2022-09-23</avaldamineKuupaev>
+							<RTartikkel id="c15d7fbe-9381-4df1-b068-3a9e5742f1ea">13</RTartikkel>
+							<aktViide id="4475246c-5801-4368-b6a2-beea97c54cb8">423092022013</aktViide>
+						</avaldamismarge>
+						<joustumine id="89d5b88b-3727-430b-b77f-fb5faa612025">2022-09-26</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para8lg4">
+					<loigeNr id="3e718896-2fd9-43c4-a9d0-af4e6ee5931f">4</loigeNr>
+					<kuvatavNr id="b4b10e5d-e1a2-4988-b65e-d84c18493dd7"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="b303e96e-5943-444f-b75f-f3bca22980f7">
+						<tavatekst id="06285db9-690d-433b-b89c-1a77720151da">Käesolevas paragrahvis määratlemata juhtudel määratakse ja makstakse toetus vallavalitsuse poolt kehtestatud ulatuses, tingimustel ja korras.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="8e34f182-a832-46f5-aaf3-227eaafcc9e5">
+			<peatykkNr id="55a40360-84a7-41d7-a811-ab68f08139c5">3</peatykkNr>
+			<kuvatavNr id="702fe5ab-e9a2-4a8b-9639-fda833a81640"><![CDATA[3. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="818e7ed5-c5b5-49e5-ac91-bc1f7a7a09f7">Toetuse taotlemine, määramine ja maksmine</peatykkPealkiri>
+			<paragrahv id="para9">
+				<paragrahvNr id="4e6fac84-0f11-44ec-8205-1ca2bde7c627">9</paragrahvNr>
+				<kuvatavNr id="087e2f12-420a-42ce-8602-8543b078702a"><![CDATA[§ 9. ]]></kuvatavNr>
+				<paragrahvPealkiri id="5fa291b5-df1f-4dcb-a90e-6ea61f8ba96c">Toetuse taotlemine</paragrahvPealkiri>
+				<loige id="para9lg1">
+					<loigeNr id="1a9a713f-589c-49ad-b341-beeb269c2133">1</loigeNr>
+					<kuvatavNr id="1fc467ff-6c85-4956-97b5-127ab8c35981"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="117e5c74-258a-4513-8dc8-bd5d6f156470">
+						<tavatekst id="a43d832b-f109-4e4f-9aa6-b443c6e8823c">Toetuse taotleja esitab vallavalitsusele kirjaliku taotluse. Taotluses märgitakse järgmised andmed:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para9lg1p1">
+						<alampunktNr id="60d1d700-735f-4556-9621-b199fa286dd0">1</alampunktNr>
+						<kuvatavNr id="237b6627-395b-4b47-a338-4cda548a32b7"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="7d706a14-7618-4f6d-93a0-d0adb68d2870">
+							<tavatekst id="8e9216c7-ef2c-433a-ae83-51ae39354d11">taotleja ees- ja perekonnanimi ning isikukood;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg1p2">
+						<alampunktNr id="1ac6be4e-ec45-4b6c-adaa-89609f02efa3">2</alampunktNr>
+						<kuvatavNr id="386f4b47-e323-4c37-9ea7-b73cb0d2a98c"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="a2c1eb3e-e443-4e9b-87e0-74778590efc0">
+							<tavatekst id="e52d7f0d-bcf3-4daf-b72f-b5fe9ab483ef">taotleja elukoht;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg1p3">
+						<alampunktNr id="33782a2e-b3cf-46f6-b43d-0ca336dbab4d">3</alampunktNr>
+						<kuvatavNr id="ceff49cb-724f-4d3c-bed4-f7f162b9b93a"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="cddb80e6-66d3-4e85-8924-e6a698044a6e">
+							<tavatekst id="11992976-3544-4c37-9db6-4e508aa1a4a7">taotleja kontaktandmed (aadress, telefon, elektronposti aadress);</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg1p4">
+						<alampunktNr id="898345bb-4c42-42d2-bee8-c85d91730ae7">4</alampunktNr>
+						<kuvatavNr id="4d04f88e-c329-4886-949f-446b5f867201"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="16282dd4-0905-404f-96b1-79b53e983988">
+							<tavatekst id="268a9f35-2e3d-4cbf-893a-a1b6a76dc874">pangakonto number;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para9lg1p5">
+						<alampunktNr id="a3ae8b77-fb67-4e98-94d0-5176eb7b8a80">5</alampunktNr>
+						<kuvatavNr id="cebd2a42-b302-42a7-a6b1-b7c615103c1e"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="b327b1ee-0f03-4400-bcbb-3f3eee138f22">
+							<tavatekst id="f9d6e825-c80b-40c1-9287-421da1dc0d0b">taotluse esitamise kuupäev ja allkiri.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para9lg2">
+					<loigeNr id="d92a854c-5742-4d8b-990f-b4298fde0eb7">2</loigeNr>
+					<kuvatavNr id="2040431a-96f5-4453-8a92-7063f716aafa"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="32896adb-0e95-4177-a1c0-c73ea7f329b2">
+						<tavatekst id="d4f99896-00be-4735-b727-e818f3e32d59">Määruse paragrahvi 8 lõikes 1 nimetatud toetuse saamiseks taotlust ei esitata.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para10">
+				<paragrahvNr id="620c1ab2-c668-4fb8-91c4-87c32b8d4211">10</paragrahvNr>
+				<kuvatavNr id="d07965bf-2de6-4c11-aa51-6423a17a6d4a"><![CDATA[§ 10. ]]></kuvatavNr>
+				<paragrahvPealkiri id="6dc3ca27-4830-41dd-af91-cc846a70cd0b">Toetuse määramine</paragrahvPealkiri>
+				<loige id="para10lg1">
+					<loigeNr id="d66fee57-8b06-49d6-8b3e-a1cb572af641">1</loigeNr>
+					<kuvatavNr id="d76c0de6-75aa-4792-8b46-9330dca45f40"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="65d17cc9-b87b-425b-8f69-2dcbe93dbdef">
+						<tavatekst id="9f23f439-7ce5-41ac-991f-57d0ba22a570">Otsuse toetuse määramise või määramisest keeldumise kohta teeb volitatud ametnik 30 kalendripäeva jooksul nõuetekohase taotluse esitamisest.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para10lg2">
+					<loigeNr id="3b9610b0-e242-4acd-8d73-94cb7e4e17a5">2</loigeNr>
+					<kuvatavNr id="49df5114-4245-4578-b03a-c205966fc130"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="657583da-0334-4324-a767-b7d67c6df37a">
+						<tavatekst id="f3130362-bad5-4f9e-8814-f258217c416b">Toetuse määramisest võib keelduda juhul, kui esineb vähemalt üks järgmistest asjaoludest:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para10lg2p1">
+						<alampunktNr id="e0493f7c-b379-475b-850a-d2370926e14c">1</alampunktNr>
+						<kuvatavNr id="2ed7c7af-36ba-4e81-ba1f-7247df1cbd3a"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="b208de20-4494-41f8-97a5-c7e4059c79dc">
+							<tavatekst id="da150228-2ad4-4860-bee6-e35d8ff56860">vallavalitsusele ei ole esitatud kõiki teadaolevaid tõeseid ja täielikke andmed, dokumente ja muid tõendeid, mis on vajalikud toetuse määramise otsustamisel;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg2p2">
+						<alampunktNr id="843ef078-5719-4f0e-9dc4-5102ff2b9c1f">2</alampunktNr>
+						<kuvatavNr id="d0d41ddd-850f-474c-b450-9d6618308cce"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="1acb0f67-5235-4e2f-a188-483ed270e763">
+							<tavatekst id="6cfb2522-cbb2-4b6e-8ebd-58f21e725c0c">taotleja ei võimalda toetuse vajadust kontrollida;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para10lg2p3">
+						<alampunktNr id="aa6d4e9a-abcc-44f3-ba72-a92d0f9137ae">3</alampunktNr>
+						<kuvatavNr id="2e44b941-ccb3-4161-81cd-16c60994a5c8"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="44355deb-c0ef-4722-8f41-b5811200f2e2">
+							<tavatekst id="487fe781-c571-402d-89cf-da96bc4ac5d1">taotleja ei ole teavitanud vallavalitsust viivitamata toetuse saamise õigust ja toetuse määramist mõjutavatest asjaoludest ja asjaolude muutumisest.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para11">
+				<paragrahvNr id="af106e4b-b7b4-498e-a3de-03c1a9a8b08c">11</paragrahvNr>
+				<kuvatavNr id="cf21b033-d16d-428c-b033-24a518c220ff"><![CDATA[§ 11. ]]></kuvatavNr>
+				<paragrahvPealkiri id="b9967494-1778-4cc5-ae0a-6714874874a9">Toetuse maksmine</paragrahvPealkiri>
+				<loige id="para11lg1">
+					<loigeNr id="e1fa3e34-c332-444c-9f94-213c109d260d">1</loigeNr>
+					<kuvatavNr id="2d0da6a1-3a15-4863-b08e-5f2777cdbe66"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="3b88d1e7-1c98-40fc-b4ca-0dffb56cdf75">
+						<tavatekst id="d20e7e64-e7be-404b-983e-721d729e92a0">Toetus makstakse välja 30 kalendripäeva jooksul toetuse andmise otsuse tegemisest arvates taotluses näidatud arvelduskontole või erandjuhul sularahas.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para11lg2">
+					<loigeNr id="356216ac-edfb-44d0-8e5b-44387a3f4d8f">2</loigeNr>
+					<kuvatavNr id="cffc6cdb-4f73-4d8f-aa10-236a353924bb"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="5f7114f9-faa5-4152-81f4-09a3e67504e6">
+						<tavatekst id="69d2002e-f4ae-40bf-9123-7d22a764ff62">Toetuse võib kanda kolmanda isiku arvelduskontole toetuse saaja kirjaliku taotluse alusel.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para12">
+				<paragrahvNr id="c2dd36b8-acc4-445b-9a8b-d5980679f3ce">12</paragrahvNr>
+				<kuvatavNr id="e2870616-6516-4a13-84e4-850379d4ef40"><![CDATA[§ 12. ]]></kuvatavNr>
+				<paragrahvPealkiri id="91bf7865-394b-4c67-b611-c88f4494a8da">Alusetult saadud toetuse tagasinõudmine</paragrahvPealkiri>
+				<loige id="para12lg1">
+					<loigeNr id="1dc2203d-aa0b-4396-beae-c76fb709a170"/>
+					<kuvatavNr id="f7c1c42d-0066-4f28-9e26-97cc35d72fec"/>
+					<sisuTekst id="53384070-52cc-42eb-aef5-036171304035">
+						<tavatekst id="e8e95d9c-9512-49b4-9200-1a676330eaf0">Alusetult saadud toetus makstakse tagasi vabatahtlikult või nõutakse toetuse saajalt tagasi.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="7e081237-c483-4589-9967-b2c1fb13031e">
+			<peatykkNr id="77537ff2-9e28-4427-bb7d-b3b1494e5179">4</peatykkNr>
+			<kuvatavNr id="08710215-4015-4bcd-b9c2-c85148319f42"><![CDATA[4. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="7b293785-9341-4b58-8e77-c70250bc5509">Rakendussätted</peatykkPealkiri>
+			<paragrahv id="para13">
+				<paragrahvNr id="5969d833-ed93-4eaa-ac85-b4b9f2799dfc">13</paragrahvNr>
+				<kuvatavNr id="1ff2facc-194d-4395-95da-adc8e8d15e45"><![CDATA[§ 13. ]]></kuvatavNr>
+				<paragrahvPealkiri id="88219ffc-69de-40c1-a492-0bf201e8fdab">Dokumendivormide kinnitamine</paragrahvPealkiri>
+				<loige id="para13lg1">
+					<loigeNr id="a86a93b3-dcc9-410d-b297-d392d54c04a6"/>
+					<kuvatavNr id="63c903ae-a3b3-457d-afcc-130addef4724"/>
+					<sisuTekst id="c54ed160-faf8-4f9d-975f-f508db8aaefc">
+						<tavatekst id="4173e4fe-f180-4d12-8f2d-feab3fcac63f">Määruse rakendamiseks vajalike dokumentide vormid kinnitab vallavalitsus.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para14">
+				<paragrahvNr id="940fdcaa-dc81-43a9-a9bc-60c47b0bd633">14</paragrahvNr>
+				<kuvatavNr id="ca36ae83-e3f4-4b0b-b178-1f09f604470d"><![CDATA[§ 14. ]]></kuvatavNr>
+				<paragrahvPealkiri id="0c0be355-151d-49e8-9216-e558fc6f44d4">Üleminekusätted</paragrahvPealkiri>
+				<loige id="para14lg1">
+					<loigeNr id="c3863304-57cc-4df2-aaff-00a36e6a149d">1</loigeNr>
+					<kuvatavNr id="f1c0679b-d826-4b1e-bdb4-44d38805f96a"><![CDATA[(1)]]></kuvatavNr>
+					
+					<muutmismarge id="d0540308-dea2-472c-9100-4a1225550e48">
+						<tavatekst id="e736e4f9-2dcb-4b75-93ee-ccde83ad1b9e">Kehtetu –</tavatekst>
+						<avaldamismarge id="3192f449-a8d7-4cc4-9dfd-676e3be1c9d3">
+							<RTosa id="3a697034-d2f1-4aea-a2a5-7eebb599a82c">RT IV</RTosa>
+							<avaldamineKuupaev id="ddc12a43-ec54-417b-8757-54dc0305ba51">2026-03-25</avaldamineKuupaev>
+							<RTartikkel id="8c3c1c2c-bba5-42e1-a026-4311c4051a87">9</RTartikkel>
+							<aktViide id="8a931f1b-4108-4585-b0b3-f1f1e21dc4d3">425032026009</aktViide>
+						</avaldamismarge>
+						<joustumine id="3df0be82-337b-43b8-b47f-08716ac393d6">2026-03-28</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para14lg2">
+					<loigeNr id="299480c8-dc9d-46ac-863d-cb2f941ba680">2</loigeNr>
+					<kuvatavNr id="4601c531-894e-4165-9789-ec2d1ddaca10"><![CDATA[(2)]]></kuvatavNr>
+					<muutmismarge id="e30e839c-4b1e-442e-a936-ee1b56914f97">
+						<tavatekst id="8ea8b03d-2dfc-4333-9759-073c2e1ea4c6">Kehtetu –</tavatekst>
+						<avaldamismarge id="4e72aacd-2ce9-4295-971f-173871a02aa4">
+							<RTosa id="1b5ae083-b13a-4442-8eb2-5b40de50f66a">RT IV</RTosa>
+							<avaldamineKuupaev id="3851628a-9865-41f7-890d-94db5d4cb0df">2026-03-25</avaldamineKuupaev>
+							<RTartikkel id="aeb8e5fa-5d0f-4411-b078-873c8b73b6ac">9</RTartikkel>
+							<aktViide id="bfaa3a30-c3e8-481c-827c-1108e5eb857f">425032026009</aktViide>
+						</avaldamismarge>
+						<joustumine id="9ae9dd51-af72-4415-9640-8342fbef1075">2026-03-28</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para14lg3">
+					<loigeNr id="d2a7d1d2-3dd9-41ea-83d8-4ff64f858bca">3</loigeNr>
+					<kuvatavNr id="1eb0533a-8d76-4dff-a170-22e7b9882184"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="d1a53095-91cb-4bce-9bd9-e5fd1c717a48">
+						<tavatekst id="7d9ea44e-5216-4a62-bcd1-05233e6e12e0">Lastele, kes on sündinud enne 2026. aastat, makstakse sünnitoetus lapse sündimise päeval kehtinud Põlva valla õigusaktiga kehtestatud korras ja määras.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="ae3d905d-fc5d-4c8f-ad8b-ff8d0d407d37">
+						<avaldamismarge id="996596ce-a9fc-4f1e-9d37-958e9742ce6d">
+							<RTosa id="c6d4cfff-c9ef-4537-9b28-a6385018a12f">RT IV</RTosa>
+							<avaldamineKuupaev id="ce48eb99-54d1-4666-97fd-b34eb68fe49e">2026-03-25</avaldamineKuupaev>
+							<RTartikkel id="1bde43e1-37d2-4af2-97b7-e2770d0a8950">9</RTartikkel>
+							<aktViide id="78e9c4b2-ffba-4036-bf48-cfa1e1873eec">425032026009</aktViide>
+						</avaldamismarge>
+						<joustumine id="12360869-6a39-427b-a3c1-0e3fddba01ae">2026-03-28</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para15">
+				<paragrahvNr id="86cacfe3-6184-4334-a431-919e7e6d5745">15</paragrahvNr>
+				<kuvatavNr id="dd29349c-9f24-42d8-8aec-c5c66a8e0ebc"><![CDATA[§ 15. ]]></kuvatavNr>
+				<paragrahvPealkiri id="c60a199a-dd15-4712-bdc6-518f99edf7a1">Määruste kehtetuks tunnistamine</paragrahvPealkiri>
+				<loige id="para15lg1">
+					<loigeNr id="fab57353-b022-4b1b-b1e7-367f733cd72c"/>
+					<kuvatavNr id="778bbcba-2e21-4d99-bca5-5429eb4d581e"/>
+					<sisuTekst id="945faac4-1207-4025-9b80-48986f21a052">
+						<tavatekst id="4161440b-b59e-4bd2-84f6-09b3b645bcad">[Käesolevast tekstist välja jäetud.]</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para16">
+				<paragrahvNr id="c7561984-73bd-4208-a89e-65ba91b7092f">16</paragrahvNr>
+				<kuvatavNr id="e5f6971a-2931-4d54-8e95-b69f18e14348"><![CDATA[§ 16. ]]></kuvatavNr>
+				<paragrahvPealkiri id="084394a2-4a50-4625-adf3-78b810605589">Määruste muutmine</paragrahvPealkiri>
+				<loige id="para16lg1">
+					<loigeNr id="226b1453-2505-4c05-95d7-fed595799094"/>
+					<kuvatavNr id="7f818779-7ded-4c68-8ee6-53b10946871a"/>
+					<sisuTekst id="309f7971-f222-438f-9632-4527adadfe83">
+						<tavatekst id="c1cef60b-d264-4643-8ef5-e18714e615af">[Käesolevast tekstist välja jäetud.]</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para17">
+				<paragrahvNr id="2d219ab6-9b3e-4d6d-8269-fc1764a46b53">17</paragrahvNr>
+				<kuvatavNr id="9ee8e250-5349-4bb6-9a49-6b0f4c48a78b"><![CDATA[§ 17. ]]></kuvatavNr>
+				<paragrahvPealkiri id="02719c74-314e-4001-a06b-922660b73ac2">Määruse jõustumine</paragrahvPealkiri>
+				<loige id="para17lg1">
+					<loigeNr id="3ae299a8-6238-4692-a78c-38a88f2d8cec">1</loigeNr>
+					<kuvatavNr id="ce022897-17ff-41d7-ac79-ddc6cfddf4c2"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="43e1675b-dacd-47ab-9bed-441d0feb656b">
+						<tavatekst id="c1aeef3a-f9f1-48a7-991a-04d5588f2602">Määrus jõustub 2018. aasta 1. veebruaril.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para17lg2">
+					<loigeNr id="ab3e1d68-fc4c-4852-81ba-3eb2363c8cd5">2</loigeNr>
+					<kuvatavNr id="931b7b5f-174b-4265-a9d6-aa10ae0f193a"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="4c232cc5-9015-4c5e-ac23-6b1886426702">
+						<tavatekst id="de95842f-4905-4f3f-b81d-ab46699f3f59">Määruse paragrahve 5 ja 6 rakendatakse alates 2018. aasta 1. jaanuarist.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+	</sisu>
+</oigusakt>

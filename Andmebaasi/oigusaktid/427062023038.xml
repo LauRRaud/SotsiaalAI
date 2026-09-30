@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="c20913d2-d910-4845-8cbf-fef16616f701" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Kehtna Vallavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2023-06-20</aktikuupaev>
+  
+  
+  <aktiNr>31</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2023-06-27</avaldamineKuupaev><RTaasta>2023</RTaasta><RTartikkel>38</RTartikkel><aktViide>427062023038</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2023-07-01+03:00</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2023-06-21</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>427062023038</globaalID>
+ <metaandmedVersioon>5</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2023-06-26</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1056881</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+</metaandmed>
+ <aktinimi id="cefa2532-d97e-42dd-b27f-17597319530b">
+  <nimi id="97f35151-21bd-48ab-ab7e-8a0c2582b2f0">
+   <pealkiri id="653c6f7b-8c39-40b0-b241-35fed675c4c2">Üldhooldusteenuse hoolduskulude piirmäära kehtestamine</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="da1a516c-cfa0-4f13-ac37-59713354c016"><preambul id="0b71b1b7-ff8a-40f6-858a-296e89d3a3b6">
+   <tavatekst id="4617e922-f1c0-4487-af3f-03da37953f38">Määrus on antud Kehtna Vallavolikogu 20.06.2023 määruse nr 30 “Sotsiaalhoolekandelise abi andmise tingimused ja kord” § 11 lõike 2 alusel. </tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="61bff433-38a6-42a2-a3c1-100ef7593a54">1</paragrahvNr>
+   <kuvatavNr id="5b1532ca-2421-422e-baef-31aac02a8f8c"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="321f618b-7798-4264-bb1d-bc8738ec61a8">Piirmäära kehtestamine</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="a1f78ef2-f59c-4d41-b326-ab6f69d94248"/>
+   <kuvatavNr id="dae58946-e8b8-4446-84c8-1de02359ebe8"/>
+   <sisuTekst id="def09891-aff4-4091-96bb-76e774bb7e73">
+    <tavatekst id="185c315a-58bb-4566-8e23-29dd213287cf">Kehtestada väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse osutamisel vahetult teenust osutavate hooldustöötajate ja abihooldustöötajate kulude tasumise piirmääraks 600 eurot ühe teenusesaaja kohta kuus.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="144e5eef-9f3c-4156-abf5-3e41b4cb507c">2</paragrahvNr>
+   <kuvatavNr id="4e806940-3ebb-4e4a-a334-2e0ff80d55a6"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="63a9fb84-a242-43eb-a4fc-93b3acaa032a">Määruse jõustumine</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="5fb6fc7c-03f8-48df-a60c-0b33623f22ef"/>
+   <kuvatavNr id="0726c524-9265-4191-ba4d-4fdc7de64d90"/>
+   <sisuTekst id="6cfc93a0-8d92-4657-a9a5-93e99f0bb833">
+    <tavatekst id="ecad080d-cc19-423a-a379-8f2f29b5dddd">Määrus jõustub 1. juulil 2023.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="005fc1d9-1050-4745-8698-b0e3a4d5cda9"><allkiriKoht id="1442f551-fc61-4583-8645-65ecb058a4c4"/><allkirjastaja id="60a5ddba-d674-42f4-bd0c-2103f152356d"><ametinimetus id="83d650c1-db74-466f-a740-127d09593545">volikogu esimees</ametinimetus><eesnimi id="af4eb15f-e168-4d48-b777-a558c2f23253">Katrin</eesnimi><perekonnanimi id="ce251c24-c9cf-4348-8a0f-7f57f79e7fff">Anto</perekonnanimi></allkirjastaja></allkiri></oigusakt>

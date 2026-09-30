@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="0e110401-02aa-403d-b1cf-591272d48a18" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Rakvere Linnavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2023-07-03</aktikuupaev>
+  
+  
+  <aktiNr>2</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2023-07-07</avaldamineKuupaev><RTaasta>2023</RTaasta><RTartikkel>65</RTartikkel><aktViide>407072023065</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2023-07-10+03:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2023-07-06</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>407072023065</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2023-07-06</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1057144</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2023-07-06</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Marika Villup</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="ba0a31dc-d5df-49a8-a666-85d8b3fc5a21">
+  <nimi id="a550f752-ed29-43bb-93fa-53b07c1ab7e5">
+   <pealkiri id="31e5a76e-aa1d-492b-921d-cf25c78be6cc">Ööpäevaringse üldhooldusteenuse teenuskoha eest tasumise piirmäär</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="0ab5503a-535b-4ad7-9a8f-4bda1ef26ecb"><preambul id="1ce7667c-00d9-4ed2-92a3-9b3e05bc539a"><tavatekst id="01f393d2-ab72-40c9-aaeb-4723fe497c2d">Määrus kehtestatakse Rakvere linnavolikogu 6. oktoobri 2021. a määruse nr 16 „Rakvere linna sotsiaaltoetused“ § 20 lõike 2 alusel.</tavatekst></preambul><paragrahv id="para1"><paragrahvNr id="d2dbe5d2-7c87-4b8b-a3cf-464713431bff">1</paragrahvNr><kuvatavNr id="b27f1a42-18bb-4497-815d-03a9dd397c60"><![CDATA[§ 1. ]]></kuvatavNr><paragrahvPealkiri id="e8cdfe2f-ebd7-43ce-a170-109a1df328a8">Ööpäevaringse üldhooldusteenuse teenuskoha eest tasumise piirmäär</paragrahvPealkiri><loige id="para1lg1"><loigeNr id="309a703a-5c83-4c47-9431-1b7b15b79b6a"/><kuvatavNr id="b13c98e1-3287-4976-b7b1-9f236db9ea85"/><sisuTekst id="ae1790ee-7893-4c44-8608-600754309516"><tavatekst id="160845b3-bd3e-42e7-b628-64e6ca610a4f">Kehtestada Rakvere linna poolt sotsiaalhoolekande seaduse § 22<sup>1</sup> lõike 2 alusel tasumisele kuuluvate ööpäevaringse üldhooldusteenuse teenuskoha hoolduskulude piirmääraks 650 eurot kalendrikuus.</tavatekst></sisuTekst></loige></paragrahv></sisu>
+<allkiri id="fedf6da3-2983-43af-b1fd-fcf48872f74b"><allkiriKoht id="6e1027e2-3782-4ffa-b9a5-0bc92f0c53a7"/><allkirjastaja id="4dee078a-d6cb-4c50-8d86-0fa094af9ecd"><ametinimetus id="f2360d26-75fc-4b6d-9b8a-4cfc2b8dac5a">Abilinnapea linnapea ülesannetes</ametinimetus><eesnimi id="fa63d049-125c-4175-b575-8e5b18668905">Kert</eesnimi><perekonnanimi id="2bb293a1-3bd1-4193-b567-1b5d137dc23e">Karus</perekonnanimi></allkirjastaja></allkiri><allkiri id="1a0023de-7c01-45ba-8790-83a92531ead3"><allkiriKoht id="3216c579-47f3-471a-a10c-b4088806be28"/><allkirjastaja id="3ed48c5f-5969-4329-bb18-eb07654f67b0"><ametinimetus id="16a20bdf-da58-4509-8178-5a6741e5104a">Linnasekretär</ametinimetus><eesnimi id="7ae61376-4c58-4379-9e70-d48aaa1ec8e8">Riina</eesnimi><perekonnanimi id="6b61fe7f-290d-4b0a-9fc2-547f83b9dec1">Männiste</perekonnanimi></allkirjastaja></allkiri></oigusakt>

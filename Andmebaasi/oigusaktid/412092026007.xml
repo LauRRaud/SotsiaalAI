@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="e4d3db2a-71d0-406b-af41-c1c704fb38f2" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Rae Vallavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2026-09-01</aktikuupaev>
+  
+  
+  <aktiNr>32</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-09-12</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>7</RTartikkel><aktViide>412092026007</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2026-09-15+03:00</kehtivuseAlgus><kehtivuseLopp>2026-12-31+02:00</kehtivuseLopp></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2026-09-07</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>412092026007</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2026-09-10</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1064395</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2026-09-07</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>?Teadmata? ?Teadmata?</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="d9357575-b5fd-4e41-8a80-465d121ed416">
+  <nimi id="6bb87602-c5a6-42d9-969c-05ed6649e51b">
+   <pealkiri id="ad75955a-4194-4fa5-a266-9559935016b2">Hooldajatoetuse määra kehtestamine 2026. aastal </pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="0bcfe486-f05f-4b0b-8318-074b40283ff1"><preambul id="1c4141b3-36b9-480f-8857-98bd4b6b0b6d">
+   <tavatekst id="0ac359f1-838e-448f-a4a3-17e06ee5bb3e">Määrus kehtestatakse Rae Vallavolikogu 20.06.2023 määruse nr 29 „Sotsiaalteenuste osutamise kord Rae vallas“ § 17 lõike 6 ja Rae Vallavolikogu 17.04.2018 määruse nr 11 „Hooldajatoetuse määramise ja maksmise kord puudega lapse hooldajale“ § 6 alusel. </tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="27e36caf-b3e6-4fde-9fba-611269ae3bdc">1</paragrahvNr>
+   <kuvatavNr id="abf34abf-2266-46e2-9510-bfdeee7ed74e"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="236dfdac-b9a6-46da-b7a8-64d6e6eb4efa">Hooldajatoetuste määrad </paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="8c044e76-a8fa-48b6-904b-6f34130fcddb">1</loigeNr>
+   <kuvatavNr id="f080c28d-790a-4ed7-91c5-54d5755d62fb"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="49a81960-bff1-4083-aafc-64f3a853691e">
+    <tavatekst id="7443ddc4-3b85-4b50-ae53-6edbada76bba">Hooldajatoetust täiskasvanud puudega ning suure hooldus- ja abivajadusega isiku hooldajale makstakse järgmiselt: </tavatekst>
+   </sisuTekst>
+  <alampunkt id="para1lg1p1">
+   <alampunktNr id="6102c744-77b4-4aba-a665-36c6f3787095">1</alampunktNr>
+   <kuvatavNr id="3a329d14-7e8f-42c3-a41d-58a51b5c3041"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="6bb35ea6-07d6-412a-91c2-ec94a40bdae3">
+    <tavatekst id="c58075a0-f6b6-4ff7-af67-24c96729c576">raske puudega ning suure hooldus- ja abivajadusega isiku hooldajale - 40 eurot kuus; </tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg1p2">
+   <alampunktNr id="a3e91ca3-9532-4fb0-9181-ed97cbb77e1a">2</alampunktNr>
+   <kuvatavNr id="dd8b2202-7fa6-4090-ac67-b3602a41037e"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="5fc39c18-5d6e-4a5f-868d-9c840a390935">
+    <tavatekst id="e7565f7b-6f15-479a-a55b-38735486868f">sügava puudega isiku hooldajale - 60 eurot kuus. </tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para1lg2">
+   <loigeNr id="786cfd72-6dc4-49b3-902c-5f4e14789d70">2</loigeNr>
+   <kuvatavNr id="9d47d237-9855-4ff9-95ec-2ea4dbbc5b82"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="c546ccae-cfed-481f-a813-ce4e5bd31231">
+    <tavatekst id="5cb4b871-ab5f-4783-b35e-962baf1b2c4b">Hooldajatoetus puudega lapse hooldajale - 100 eurot kuus. </tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="a18a2673-c7bd-46dc-af11-eb0e1d9eac12">2</paragrahvNr>
+   <kuvatavNr id="210e0ae7-6c30-4ef7-9ebb-cd7bb86935a1"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="8a5106b5-efb4-4359-ac5c-98b182705c17">Rakendussätted </paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="96c29022-d913-4c80-9d46-01afb795d778">1</loigeNr>
+   <kuvatavNr id="94c3e8aa-b9c1-4ead-b295-f921c8be9eef"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="eb8217e4-a34b-4165-8ffb-f077b5532091">
+    <tavatekst id="13cf5c50-24ef-4c7f-83a3-0b49ea595ec1">Tunnistada kehtetuks Rae Vallavalitsuse 04.02.2025 vastuvõetud määrus nr 2 „Hooldajatoetuse määra kehtestamine 2025. aastal“. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg2">
+   <loigeNr id="6fd7235c-5c85-4bcc-9231-7e0f09e739ad">2</loigeNr>
+   <kuvatavNr id="e432690b-e774-4aaa-8076-519627803069"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="d25fbd52-d1dc-4b85-b26e-c92b87d08c36">
+    <tavatekst id="120c00f5-6167-4e38-8910-5c93c762ba22">Määrus jõustub kolmandal päeval pärast avaldamist Riigi Teatajas. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg3">
+   <loigeNr id="107e3831-95ab-4b48-939c-53ba7e4af706">3</loigeNr>
+   <kuvatavNr id="fd16b54f-5e1e-4c5f-b9e0-a715775cca43"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="368763d5-a5c2-4cc8-aff9-e791ea152c74">
+    <tavatekst id="ff72f9a0-99f8-48bc-a6ae-68d29c3e01bf">Käesolevas määruses sätestatud hooldajatoetuse määrasid kohaldatakse tagasiulatuvalt alates 1. jaanuarist 2026. </tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="eb107f49-6fed-48ad-b850-1a742162e8ef"><allkiriKoht id="6caeb33b-a2b0-44cb-b676-230ba1ca11bb"/><allkirjastaja id="f3f1c972-2088-4c48-82c5-c66e3a222d24"><ametinimetus id="ea2e1753-464a-45a8-8168-511adb419dda">vallavanem</ametinimetus><eesnimi id="bbdcee0d-db00-472b-9aa2-877bc0767b9c">Gerli</eesnimi><perekonnanimi id="4bf37d2f-773e-41db-b24c-4f01df3ef171">Lehe</perekonnanimi></allkirjastaja></allkiri><allkiri id="a60e3b19-f192-4126-bcda-7ccf91b840e1"><allkiriKoht id="0a3e5552-030a-49cc-b187-fbd4d33ed5f9"/><allkirjastaja id="e1db0527-00b2-4808-946a-a8eb4e5bdbf1"><ametinimetus id="17b63989-f2fc-47d9-966c-012638420550">vallasekretär</ametinimetus><eesnimi id="fd4a3ac8-ee02-4fa5-be7c-140675604cea">Martin</eesnimi><perekonnanimi id="cdcc3d71-a6c3-4c65-9f88-e501bb8e1208">Minn</perekonnanimi></allkirjastaja></allkiri></oigusakt>

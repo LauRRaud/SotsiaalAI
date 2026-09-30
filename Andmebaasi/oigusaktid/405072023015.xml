@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="c0125a79-b574-4969-8054-25678270196f" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metaandmed>
+    <valjaandja>Raasiku Vallavalitsus</valjaandja>
+    <dokumentLiik>määrus</dokumentLiik>
+    <tekstiliik>algtekst-terviktekst</tekstiliik>
+    <dokumentEtapp>avaldamine</dokumentEtapp>
+    <dokumentStaatus>avaldatud</dokumentStaatus>
+    <vastuvoetud>
+      <aktikuupaev>2023-07-03</aktikuupaev>
+      <aktiNr>2</aktiNr>
+    </vastuvoetud>
+    <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2023-07-05</avaldamineKuupaev><RTaasta>2023</RTaasta><RTartikkel>15</RTartikkel><aktViide>405072023015</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2023-07-08+03:00</kehtivuseAlgus></kehtivus><versioon>
+      <dokumentVersioon>1</dokumentVersioon>
+      <dokumentVersioonKuupaev>2023-07-04</dokumentVersioonKuupaev>
+    </versioon>
+    <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+    <globaalID>405072023015</globaalID>
+    <metaandmedVersioon>5</metaandmedVersioon>
+    <metaandmedVersioonKuupaev>2023-07-04</metaandmedVersioonKuupaev>
+    <metaandmedVersioonPohjustaja>Marike Võime</metaandmedVersioonPohjustaja>
+    <terviktekstiGrupiID>1057073</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+  </metaandmed>
+  <aktinimi id="877406dd-0193-4e0f-9ca4-24d2e6ede84d">
+    <nimi id="14850abb-116d-48f7-9ad5-84488eb14d84">
+      <pealkiri id="27edeba2-3fc5-4ec1-95f0-2e8f98ee3682">Väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse hoolduskulude tasumise piirmäära kehtestamine</pealkiri>
+    </nimi>
+  </aktinimi>
+  <sisu id="71bb8ba8-03ed-4f0e-972f-9f0cd59adf44">
+    <preambul id="40e9f59c-4f8f-4c99-bacc-3971d252d5a5">
+      <tavatekst id="69966e3f-abb7-4d41-812f-b13ca3fd6782">Määrus kehtestatakse sotsiaalhoolekande seaduse § 22<sup>1</sup> lg 3 ja Raasiku Vallavolikogu 08.09.2020 määruse nr 15 „Sotsiaalhoolekandelise abi andmise kord Raasiku vallas“ § 17 lg 3 alusel.</tavatekst>
+    </preambul>
+    <paragrahv id="para1">
+      <paragrahvNr id="27adb19e-c923-4be3-a54c-9b39e04c83ef">1</paragrahvNr>
+      <kuvatavNr id="28b51c35-2df1-4355-9fa3-da4ab9e44726"><![CDATA[§ 1. ]]></kuvatavNr>
+      <paragrahvPealkiri id="38e26f69-5578-46eb-9c02-b69945c90e47">Väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse hoolduskulude tasumise piirmäär</paragrahvPealkiri>
+      <loige id="para1lg1">
+        <loigeNr id="b10cd419-be15-4b66-bd6b-07d43644a119"/>
+        <kuvatavNr id="f00da2bc-53c1-4abe-accb-15dfe401bca8"/>
+        <sisuTekst id="452c48bf-04a0-4fee-9e47-5b5d4b213e9d">
+          <tavatekst id="fca5826f-d325-4b61-90f6-d5f2d0d0379c">Kehtestada väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse raames vahetult teenust osutavate hooldustöötajate ja abihooldustöötajate kulude (sh tööjõukulud, tööriietuse ja isikukaitsevahendite kulud, tervisekontrolli ja vaktsineerimise kulud, koolituse ja supervisiooni kulud) kulude tasumise piirmääraks 650 eurot ühe teenuse saaja kohta kalendrikuus. </tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para2">
+      <paragrahvNr id="077ec332-8bd1-4241-82ad-5e7a636330df">2</paragrahvNr>
+      <kuvatavNr id="59ff5c2e-b127-4b89-8092-c964767ed221"><![CDATA[§ 2. ]]></kuvatavNr>
+      <paragrahvPealkiri id="3f163124-cf83-44f0-ad85-dbb172ae7e9c">Määruse jõustumine</paragrahvPealkiri>
+      <loige id="para2lg1">
+        <loigeNr id="cc5a0f15-31c2-43ae-8cb0-ac5a0975fa9b"/>
+        <kuvatavNr id="2ce29c91-ac93-4e3d-808f-169e2d8f1e60"/>
+        <sisuTekst id="b0939d19-d7ae-44f7-85de-e357998ceb8d">
+          <tavatekst id="7ca859c3-7753-4eb7-b5eb-2fb61108c106">Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist. Määrust rakendatakse tagasiulatuvalt alates 01.07.2023. a.</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+  </sisu>
+  <allkiri id="b8a05f45-a611-47a4-ab37-6743662dbcc0">
+    <allkiriKoht id="1360577a-3dcc-4cea-85c8-4e17f68a4853"/>
+    <allkirjastaja id="340f3888-8d56-46fe-90ae-1e878eeb0162">
+      <ametinimetus id="74b9e33e-912a-4f7f-96f1-d24277f50b34">vallasekretär vallavanema ülesannetes</ametinimetus>
+      <eesnimi id="2e6ddbee-f639-48b4-b465-07222946dd03">Gunnar</eesnimi>
+      <perekonnanimi id="3d0a8a00-8641-4376-8433-99ba5693077b">Nuuma</perekonnanimi>
+    </allkirjastaja>
+  </allkiri>
+</oigusakt>

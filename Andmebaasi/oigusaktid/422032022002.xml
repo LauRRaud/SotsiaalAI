@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="4ab87053-5553-4a70-bb14-f7b405090576" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Ruhnu Vallavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2022-03-17</aktikuupaev>
+  
+  
+  <aktiNr>1</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2022-03-22</avaldamineKuupaev><RTaasta>2022</RTaasta><RTartikkel>2</RTartikkel><aktViide>422032022002</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2022-04-01+03:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2022-03-17</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>422032022002</globaalID>
+ <metaandmedVersioon>7</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2022-03-21</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1053777</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2022-03-16</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Tiina Allik</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="9610de0a-a1f8-4d3f-a763-389e0c518f5c">
+  <nimi id="055afd25-1135-422b-b0c0-011e54eed873">
+   <pealkiri id="3d14426b-17c3-46ca-8d6b-9d71815052ad">Sotsiaaltoetuste määra kinnitamine </pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="344999b8-5bbc-4eed-8ea8-d15346bf3d1d"><preambul id="be5f9b18-f8fe-42b5-806e-f07a88d7da8e">
+   <tavatekst id="4edc3649-89df-47ee-84ba-d22d82d5505b">Määrus kehtestatakse Sotsiaalhoolekandeseaduse § 14 lg 2, kohaliku omavalitsuse korralduse seaduse § 30 lg 1 p 2 ja Ruhnu Vallavolikogu määrusega nr 2 15.02. 2018 a. kinnitatud „Sotsiaalhoolekandelise abi andmise tingimused ja kord Ruhnu vallas“ § 12 lg 7, § 13 lg 2 p 1, § 14 lg 5, § 15 lg 1 alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="064fbbdd-f0af-42a0-9ad9-11b016bf6dd7">1</paragrahvNr>
+   <kuvatavNr id="93d48d30-a792-443e-8e28-10903a544670"><![CDATA[§ 1. ]]></kuvatavNr>
+      <sisuTekst id="c6c457b5-4027-445e-95c9-2b40038b59f4">
+    <tavatekst id="47f494c9-08c1-4a60-99a3-f4f8ad5f1151">Kinnitada sotsiaaltoetuste määrad alljärgnevalt :</tavatekst>
+   </sisuTekst>
+  <loige id="para1lg1">
+   <loigeNr id="49f155b5-8821-4bd8-91ea-1235029aeabb">1</loigeNr>
+   <kuvatavNr id="55d96a6a-0bec-4507-a782-f35c54ccc5bb"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="570ddb35-c0c2-41fa-9580-5fdec47a2cbf">
+    <tavatekst id="2232dff7-32fb-484e-988d-a667c8b1e17c">sünnitoetus 500 eurot, mis makstakse kahes osas. 50% sünnitoetusest makstakse peale lapse sünni registreerimist ja 50% lapse ühe aastaseks saamisel, kui lapse elukoht rahvastikuregistri andmetel on Ruhnu vald;</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg2">
+   <loigeNr id="2b1c47be-f0a9-4193-bb3d-18bb60ce11c8">2</loigeNr>
+   <kuvatavNr id="db23b475-e4f8-4a90-86f9-7a9b06678c24"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="a404d9cc-8c06-47e9-b01a-fa9250fc39d7">
+    <tavatekst id="6d4f996a-8344-4ddc-a363-a7a392a82012">matusetoetus 250 eurot;</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg3">
+   <loigeNr id="10fb2a04-14f3-4f52-a78a-feb07b48d1a6">3</loigeNr>
+   <kuvatavNr id="ee0ab7a8-2618-4eaf-bd24-c11ff69dc263"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="b9d05017-c4a7-4646-808b-17c99a9a81f3">
+    <tavatekst id="0e28c903-68c9-45cb-9e48-7e0deb486556">koolitoetus gümnaasiumi õpilasele 100 eurot;</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg4">
+   <loigeNr id="c796bc66-26e4-4c84-9382-8649a2fe59b8">4</loigeNr>
+   <kuvatavNr id="c0f0c6ba-8949-48ac-bd21-e0645858d10a"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="4cd8c708-50b0-48a2-893b-760221798e10">
+    <tavatekst id="4d0ae59e-e617-422f-9f62-338a0c5c1a9f">koolitoetus üliõpilasele 50 eurot;</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg5">
+   <loigeNr id="c42c8f5e-fd24-48f6-898c-c872b296813d">5</loigeNr>
+   <kuvatavNr id="cbdc9fdb-ddaf-4fbe-bb2f-f02ed52ad0f2"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="d36416e5-f3ca-4568-abf7-08a8390b78c6">
+    <tavatekst id="4399a8a3-837f-4530-b493-65070e507bd6">ranitsatoetus esimesse klaasi mineva lapse vanemale 32 eurot;</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg6">
+   <loigeNr id="95224e0b-0f35-4903-859c-8ed6be35f811">6</loigeNr>
+   <kuvatavNr id="24f9e342-c1c0-44bd-bbb3-3fe1324d0cdc"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="c0325dcb-7edd-435f-8b25-e8915331271e">
+    <tavatekst id="3e701fe9-0c98-4291-9d2d-1b52d293d6ed">lastehoiutoetus 64 eurot;</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg7">
+   <loigeNr id="aba4838e-478b-4ac4-bab6-58a4e7002675">7</loigeNr>
+   <kuvatavNr id="14fd1070-0527-4f56-a69a-dd71fc5085a4"><![CDATA[(7)]]></kuvatavNr>
+   <sisuTekst id="9da60e2d-6349-4cb0-9b9c-30a9bbd0bcab">
+    <tavatekst id="d0e6b7f7-9ed8-4954-a578-7f76a6e367fb">kooli lõpetamise toetus 64 eurot;</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg8">
+   <loigeNr id="405cb4d9-8e3d-4b2c-acd5-76e9efff3eca">8</loigeNr>
+   <kuvatavNr id="726112e6-d894-4225-81b8-607ccfaa1b6d"><![CDATA[(8)]]></kuvatavNr>
+   <sisuTekst id="3f6d8e8b-af20-40b0-82ff-6f8c118ad397">
+    <tavatekst id="a993c3cf-f97c-45f0-bdbf-22f89d3487cb">kolimistoetus 60 eurot.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="49bc3ea5-0a2c-4d5d-9821-140ed074c6e7">2</paragrahvNr>
+   <kuvatavNr id="a6242065-0148-4542-9de1-9d21e785c09b"><![CDATA[§ 2. ]]></kuvatavNr>
+      <sisuTekst id="e0d27404-a3a3-4b55-85c5-7cbe002013a1">
+    <tavatekst id="801b01ec-e5e6-409b-9bf2-cd1719fc50a9">Määrus jõustub 01.04.2022 a.</tavatekst>
+   </sisuTekst>
+  </paragrahv></sisu>
+<allkiri id="aaff8d76-1ba5-4189-914d-3e18f24f0861"><allkiriKoht id="ca954468-060b-41dd-89e7-87bf76de4054"/><allkirjastaja id="35c73d6c-b519-4ccd-bc61-fbad390497bd"><ametinimetus id="2c23bce7-fa1e-4a24-908c-40134913a14a">Vallavanem</ametinimetus><eesnimi id="85495fd0-0f63-4dee-8d72-8c2de141d940">Andre</eesnimi><perekonnanimi id="4442238e-a85a-40c1-bd6a-90d5a77dafbd">Nõu</perekonnanimi></allkirjastaja></allkiri><allkiri id="2e53d674-bad7-4aa8-96b9-d41df88142c7"><allkiriKoht id="87d20a90-ac5e-49dc-8438-3ec7e246cfb2"/><allkirjastaja id="1e67cbba-8a50-46f7-846d-1ed82d497766"><ametinimetus id="6e84c4a0-83af-43ac-964b-1341fd43cb85">vallasekretär</ametinimetus><eesnimi id="ccf47907-27ef-4a1f-a984-71e5edb499d3">Tiina</eesnimi><perekonnanimi id="8e7aa11d-8f8d-444d-9195-d5483e12c690">Allik</perekonnanimi></allkirjastaja></allkiri></oigusakt>

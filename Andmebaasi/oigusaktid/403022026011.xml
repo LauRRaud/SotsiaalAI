@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="d677b58e-6380-4079-9fcc-66f95f54aaec" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Keila Linnavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>algtekst-terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<tavatekst>rakendatakse 1. veebruarist 2026</tavatekst>
+			<aktikuupaev>2026-01-27</aktikuupaev>
+			<aktiNr>2</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2026-02-03+02:00</avaldamineKuupaev>
+			<RTaasta>2026</RTaasta>
+			<RTartikkel>11</RTartikkel>
+			<aktViide>403022026011</aktViide>
+		</avaldamismarge>
+		<kehtivus>
+			<kehtivuseAlgus>2026-02-06+02:00</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2026-01-29</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>403022026011</globaalID>
+		<metaandmedVersioon>7</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2026-07-30</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Marike Võime</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1062759</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2026-01-29</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Raili Särev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="70402614-75ef-4209-8d94-037b2913bc39">
+		<nimi id="bc1dc691-c763-4fff-9ae7-076f232b9843">
+			<pealkiri id="3b46c799-7b7a-4e75-8a6e-066aecf1d773">Koduse lapse toetuse määramise ja maksmise kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<sisu id="b93b1731-499d-466b-82ab-2555f7ad761f">
+		<preambul id="4682b5a4-0147-4f12-8e5c-1cc32fc1f25e">
+			<tavatekst id="359d1f2a-852b-4428-93b1-3bb174d80a65">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="09d64255-abed-425d-9ead-2e51023448b0">1</paragrahvNr>
+			<kuvatavNr id="c2f4bc06-af91-44de-a202-c24d70271cc2"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="7806e371-fc67-4b28-8662-7909fdf61f2b">Määruse reguleerimisala</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="c415f730-241b-497e-b6e6-9b8808bedf0c"/>
+				<kuvatavNr id="49049eb5-e7cf-48f6-9e42-9dfdc59f46f9"/>
+				<sisuTekst id="ed3ab72c-10df-424c-8bc6-ba2edf34d17e">
+					<tavatekst id="fa58f59e-9f2f-4c05-a461-042f743dc730">Määrus reguleerib Keila linna eelarves selleks ettenähtud vahendite arvelt munitsipaal- ja eralasteaias või munitsipaal- ja eralastehoius mittekäiva lapse toetuse rahastamise tingimusi.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="646fa357-579a-4d7c-9858-93584541010e">2</paragrahvNr>
+			<kuvatavNr id="dfc99dac-aaf4-4e24-b3fd-5b45276ed55e"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="eda69e39-b5a7-4ee4-9627-103e64f986ca">Üldsätted</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="81425f27-3be9-4cb7-a70d-8663e11bb3bd">1</loigeNr>
+				<kuvatavNr id="e33ded2b-70cc-4643-8254-356720adbe45"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="8976ad7e-1301-4968-8d42-bc9c84aeca01">
+					<tavatekst id="3cb7d382-ca87-4787-a12d-875a350cd084">Toetuse määra kehtestab Keila linnavalitsus (edaspidi linnavalitsus). Toetuse määr kehtib ühe lapse kohta ühes kalendrikuus.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg2">
+				<loigeNr id="df87ce34-a2cc-456c-89c8-b1b0dbe6e5f7">2</loigeNr>
+				<kuvatavNr id="28145ac6-3a19-4414-a561-81c0a83eca74"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="ad858646-277c-41b3-983c-fbf914e2b7fa">
+					<tavatekst id="38d5a57b-adb8-4d8b-8fc0-4e0be95e7797">Toetuse maksmist korraldab ja makstud toetuse üle peab arvestust Keila linnavalitsuse haridus-, kultuuri- ja sotsiaalteenistus (edaspidi teenistus).</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="853098ea-110f-46a7-a2f7-95d6114b053e">3</paragrahvNr>
+			<kuvatavNr id="357eae14-9e81-4d6c-bc48-1512f3dd4db0"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="7921d97b-7338-4ac0-b271-1e125a2e5fb8">Toetuse subjekt</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="3d270df0-3575-471c-ae22-109244271e31">1</loigeNr>
+				<kuvatavNr id="9acf26dc-38da-40e3-8969-c410c1564d31"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="e381de2a-dc54-4ee7-b580-c557bfd1fe31">
+					<tavatekst id="3db6f68f-69ed-4d0c-979f-6b0b880adeab">Toetust on õigus taotleda lapsevanemal, eestkostjal või lepingulisel hooldajal, kelle rahvastikuregistrijärgne elukoht on Keila linn, ning toetus määratakse ja makstakse järgmistel tingimustel:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para3lg1p1">
+					<alampunktNr id="8cf01819-d2de-4bb9-a68b-84e4f45a64e1">1</alampunktNr>
+					<kuvatavNr id="00882d94-d564-4ee1-94c4-a4eec7d9bc31"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="21b7b4e5-0638-400b-96b9-192a8ddf2d73">
+						<tavatekst id="0d7201ee-8600-4005-8b45-587ce29abd5b">toetuse täies määras, kui lapse, kelle jaoks toetust taotletakse, elukoht ja tema mõlema vanema või üksikvanema või eestkostja või lepingulise hooldaja elukoht rahvastikuregistri andmetel on toetuse maksmise aasta 1. jaanuari seisuga ning pidevalt kogu toetuse maksmise perioodi jooksul Keila linnas;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg1p2">
+					<alampunktNr id="3bbf09dc-ce90-47e5-b393-abeb1d88d596">2</alampunktNr>
+					<kuvatavNr id="b75dd251-a782-4d9f-b9ac-999766eb5e8e"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="7a3375f1-dd7d-4aca-8f51-ec0c458d982e">
+						<tavatekst id="9b746f4d-8dfb-49dd-ad17-7a4c8099dbe4">pool toetuse määrast, kui lapse, kelle jaoks toetust taotletakse, elukoht ja tema ühe vanema elukoht rahvastikuregistri andmetel on toetuse maksmise aasta 1. jaanuari seisuga ning pidevalt kogu toetuse maksmise perioodi jooksul Keila linnas;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg1p3">
+					<alampunktNr id="141388da-ec67-4969-be6f-41079d625d58">3</alampunktNr>
+					<kuvatavNr id="2fd9c337-7e89-45ea-9e6c-87bbecd32333"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="e98517e8-3b0e-4736-8ca4-1607cf598695">
+						<tavatekst id="4192e92b-634b-4ba4-baf5-0ff6d1a6c363">kui lapsele ei ole võimalik pakkuda munitsipaal- või eralasteaia lasteaiakohta;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg1p4">
+					<alampunktNr id="8ca790a3-2206-4a76-ae6c-829e30f96fef">4</alampunktNr>
+					<kuvatavNr id="d89fee43-31bb-4adf-ac8d-521b8acd1311"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="71e2a7d6-0411-498c-b963-dafe29d0be10">
+						<tavatekst id="022ab455-f2ac-4677-80e8-18630387378a">laps ei ole kantud ühegi munitsipaal- või eralasteaia ega munitsipaal- või eralastehoiu nimekirja.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para3lg2">
+				<loigeNr id="b571d0b0-82df-4fba-998e-966ae20aed06">2</loigeNr>
+				<kuvatavNr id="418cf51f-38a1-45cc-a861-2dea64014008"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="23520b67-0121-4c09-a604-646ee4f64388">
+					<tavatekst id="0b712f9a-16cf-4881-aa0a-dcc8dfac770b">Õigus toetusele on lapsevanematel, üksikvanemal, eestkostjal või lepingulisel hooldajal, kelle laps on saanud jooksva kuu 10. kuupäeva seisuga vähemalt pooleteiseaastaseks. Õigus toetusele on kuni lapse kolmeaastaseks saamiseni. Õppeaasta jooksul kolme aastaseks saava lapse puhul kehtivad toetuse maksmise tingimused kuni jooksva aasta 31. juulini.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg3">
+				<loigeNr id="eb72ca72-ffcd-48ed-975b-330027306b6d">3</loigeNr>
+				<kuvatavNr id="821ce9c7-f76e-4db7-b770-0283e56288dd"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="19cd8a53-6820-4dcb-aed7-89c234ed2b52">
+					<tavatekst id="98ecfefe-8eb4-49bc-b9d7-780c5690380f">Toetuse maksmine lõpetatakse, kui lapsele on pakutud munitsipaal- või eralasteaia lasteaiakoht või laps hakkab kasutama munitsipaal- või eralastehoiu kohta või lapse ja tema vanemate või üksikvanema või eestkostja või lepingulise hooldaja elukoht ei ole enam Keila linnas.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="14092126-97f5-4a05-b6fa-7fd6de502ec7">4</paragrahvNr>
+			<kuvatavNr id="7bc31765-e823-4aa9-b78d-a578e2e674d0"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="e553f401-bf0f-4b8a-8bf3-0ab815f69da7">Toetuse taotlemine</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="3ca6a259-7703-4e6b-9a26-1e4d806d3a45">1</loigeNr>
+				<kuvatavNr id="86dafa4a-c4b3-4ba9-8f03-3037d7a9497f"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="8b063480-170b-4bb0-a048-b1e036d14219">
+					<tavatekst id="2f9e87b1-0aaa-4fc6-a6d6-2eeedfd1e1a8">Toetuse taotleja esitab linnavalitsusele vormikohase taotluse.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg2">
+				<loigeNr id="ad992a0b-8339-40a0-b715-51a43e66eeeb">2</loigeNr>
+				<kuvatavNr id="7b0cc6e6-4600-48ce-90ff-2d7058cdbef9"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="c4e31621-9477-4264-b892-063f9fdf4102">
+					<tavatekst id="f149ab98-86f3-4385-b81e-136a686f3e03">Teenistusel on vajadusel õigus nõuda taotlejalt täiendavaid andmeid või dokumente, millest taotlejat informeeritakse taotluse vastuvõtmisel või kirjalikult viie tööpäeva jooksul pärast taotluse vastuvõtmist.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg3">
+				<loigeNr id="1dcef971-b906-481f-9bb1-b3a4ca55dd92">3</loigeNr>
+				<kuvatavNr id="559bef45-d530-4dde-ac30-017404c6ce74"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="d3e025ec-9f21-4855-b5e5-c5d8ae826c8c">
+					<tavatekst id="4fac82ea-4f06-4469-b363-1af0acc2f7ff">Koduse lapse toetuse taotlus esitatakse linnavalitsusele toetuse maksmisele eelneva kuu jooksul.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg4">
+				<loigeNr id="aec81717-bea4-43df-a2ad-e16307740007">4</loigeNr>
+				<kuvatavNr id="a4d8b4e1-cdf8-4af3-8255-945f3e6be4bb"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="2839b48b-64e8-4bc8-91a4-578a31ea3763">
+					<tavatekst id="b64f098a-7e53-43cd-a0a6-29286fd0e5dd">Taotlus jäetakse rahuldamata, kui kümne tööpäeva jooksul taotluse esitamisest või kirjaliku teate saatmisest ei ole esitatud täiendavalt nõutud andmeid või dokumente.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="23999e94-7b1a-4c04-a5a4-d17672a1663b">5</paragrahvNr>
+			<kuvatavNr id="62039baa-e9b7-4186-b943-eef1f9b0cc31"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="3ff160e0-fada-4a5b-831e-6160432722ab">Toetuse määramine ja maksmine</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="0431bc5a-55ac-4739-8ec5-badd6bbd887f">1</loigeNr>
+				<kuvatavNr id="866e9926-fe2f-4bb2-8bb0-d638ca60b446"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="9cc4f5c4-aa80-46ca-8e33-b4f4a4238ba7">
+					<tavatekst id="2eb00cad-3806-4cef-ad54-48967590b7a7">Otsuse toetuse andmise või sellest keeldumise kohta teeb teenistus 15 tööpäeva jooksul, arvates toetuse taotlemiseks viimase vajaliku dokumendi saamise päevast.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg2">
+				<loigeNr id="3de9122b-54f8-44aa-a81a-53c957ad824d">2</loigeNr>
+				<kuvatavNr id="174f1993-44b7-4f04-a642-06ed022fe3f1"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="7458e047-c750-4289-b16c-a6e8db41c218">
+					<tavatekst id="384cfcb6-21fe-4a3c-9de0-2e9d2b7c32f0">Kui taotlust ei rahuldata, saadab teenistus taotlejale põhjendatud otsuse taotluse mitterahuldamise kohta viie tööpäeva jooksul otsuse tegemisest.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg3">
+				<loigeNr id="6324d5cf-bf45-4f94-adaa-c1431f3186ef">3</loigeNr>
+				<kuvatavNr id="4b9add6b-92cb-468d-899c-a05f3fefb18a"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="f0dd6c17-5351-4f52-9181-ff532c68a3bc">
+					<tavatekst id="b84d653e-76a5-4eb9-9d7e-de061051d16a">Toetus kantakse üle taotluses märgitud arvelduskontole kord kuus.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg4">
+				<loigeNr id="555b7d5b-6e7f-48f2-bbf1-ce9c7076921a">4</loigeNr>
+				<kuvatavNr id="261fdf92-5d67-4496-a322-a6ef2c85140e"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="1031a15d-cc0b-4354-8c03-f5c95fc02ff4">
+					<tavatekst id="15748d99-2ba1-4c57-9cba-c70f443d9e24">Linnavalitsusel on õigus teha põhjendatud juhtudel toetuse taotleja kasuks erandeid.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para6">
+			<paragrahvNr id="b448fbef-d860-4a14-9f2b-ffed863e9d9a">6</paragrahvNr>
+			<kuvatavNr id="bcd30952-3199-4367-8ffb-9040b5d44144"><![CDATA[§ 6. ]]></kuvatavNr>
+			<paragrahvPealkiri id="21780934-548e-4b58-a5c7-d18d17bca9fc">Vaidluste lahendamine</paragrahvPealkiri>
+			<loige id="para6lg1">
+				<loigeNr id="8b2d3e56-5ae9-4646-aecb-47b5932cc47c">1</loigeNr>
+				<kuvatavNr id="53da9516-1401-4c31-9800-c9c2ae32efed"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="2800aa83-e5ee-4646-a013-3b19e1b083fd">
+					<tavatekst id="93cf7a78-1a36-4434-82d9-388c3335a3d8">Kui toetuse saaja on esitanud toetuse saamiseks valeandmeid või on jätnud teatamata andmete muutumisest, mis tingivad toetuse maksmise lõpetamise, kohustub toetuse saaja õigusliku aluseta saadud toetuse linnavalitsusele viivitamatult tagastama.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg2">
+				<loigeNr id="cbb6c285-2ef4-403b-99b3-f26b6ed9d86b">2</loigeNr>
+				<kuvatavNr id="1e90eb47-a003-49ca-a6d6-632d4c979e85"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="bc758abf-7ec2-4093-81e6-88b7ea5bc71f">
+					<tavatekst id="e5b89ce7-22fd-47e7-881b-90f152457524">Kui toetuse saaja ei tagasta õigusliku aluseta saadud toetust, nõuab linnavalitsus õigusliku aluseta makstud toetuse koos seadusest tulenevate kõrvalnõuetega toetuse saajalt sisse seaduses ette nähtud korras.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg3">
+				<loigeNr id="e36e3162-f18f-4949-9bb9-abe6d6f26d2d">3</loigeNr>
+				<kuvatavNr id="c55d544e-9be4-4027-a013-2200456d6a0c"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="323a8294-c95c-4d26-8f63-e9177cd72ca5">
+					<tavatekst id="55342d3f-ce9f-4447-b13b-7f7e17cdc431">Teenistuse otsusega mittenõustumisel on abitaotlejal õigus esitada linnavalitsusele vaie või pöörduda seaduses sätestatud korras kaebusega halduskohtu poole.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para7">
+			<paragrahvNr id="0a011c00-6ba0-4aa5-8d94-b3dbea748b4e">7</paragrahvNr>
+			<kuvatavNr id="5c9f645d-9f21-4b2d-a8af-124d4424a4d0"><![CDATA[§ 7. ]]></kuvatavNr>
+			<paragrahvPealkiri id="4bb0322b-94ed-464d-a016-c8490f19dc36">Rakendussätted</paragrahvPealkiri>
+			<loige id="para7lg1">
+				<loigeNr id="c0a28769-e041-4856-a6c6-058b98558ab6">1</loigeNr>
+				<kuvatavNr id="3de8b0fc-b0a7-4d44-9fc2-9177caa759d0"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="53fb5b1b-e8ae-4d4b-8f06-aaa435d2841b">
+					<tavatekst id="fe5ccfcf-529c-4d29-9de9-9777ed241b78">Keila Linnavolikogu 27. septembri 2022 määrus nr 16 “ Koduse lapse toetuse määramise ja maksmise kord” tunnistatakse kehtetuks.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg2">
+				<loigeNr id="a3a73ae2-dbdc-45bd-bdce-6a28417626c6">2</loigeNr>
+				<kuvatavNr id="17fc21bb-7cad-4396-8446-39bfd6f88741"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="51ed985e-6b49-4636-9a16-6b98fc93e731">
+					<tavatekst id="4ff64476-3dbe-4d6f-9aea-96b146628550">Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg3">
+				<loigeNr id="76578731-ca6c-4780-adfe-e859c884bf6b">3</loigeNr>
+				<kuvatavNr id="fb134c97-fae6-4017-bb88-4a66a8d2e0fa"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="82b21b26-0a36-487b-959b-7f6cd0e54b52">
+					<tavatekst id="709eb736-7fdd-43e0-96b6-0cd1ff0ca05c">Määrust rakendatakse 1. veebruarist 2026.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+	<allkiri id="6c48d473-da87-4e3a-9bef-6316d6cf0e81">
+		<allkiriKoht id="dbb0461c-3b17-4c5a-a32b-e4ba6c4d2110"/>
+		<allkirjastaja id="29320b79-2f03-467d-806e-f695585d1a1e">
+			<ametinimetus id="c6e4fbfe-784d-42dc-b967-5146106ab7e5">volikogu esimees</ametinimetus>
+			<eesnimi id="7aeddde2-7fc3-48d1-bad7-36a446129193">Ahti</eesnimi>
+			<perekonnanimi id="10307ed3-6a59-45c7-98e7-2407868ad64c">Noor</perekonnanimi>
+		</allkirjastaja>
+	</allkiri>
+</oigusakt>

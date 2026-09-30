@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="4c215cbc-8bd9-45e0-9cbc-4f0a110ef43d" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Peipsiääre Vallavalitsus</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>algtekst-terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2026-03-16</aktikuupaev>
+			<aktiNr>3</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-03-20</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>5</RTartikkel><aktViide>420032026005</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2026-03-23+02:00</kehtivuseAlgus></kehtivus><versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2026-03-18</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>420032026005</globaalID>
+		<metaandmedVersioon>7</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2026-03-19</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1063104</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2026-03-18</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Age Kiuru</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="43de2eba-17d5-4221-a398-3632fbad112f">
+		<nimi id="78e3f856-fd72-455d-ba8c-eac041364e4c">
+			<pealkiri id="167dbca0-82c5-4fe0-9390-598cb20ba8f4">Üldhooldusteenuse hoolduskulude piirmäär</pealkiri>
+		</nimi>
+	</aktinimi>
+	<sisu id="91b08f07-4df4-463a-85b6-170bb686bc8f">
+		<preambul id="86c0c1fb-f6ca-432f-96ac-705073f0c95a">
+			<tavatekst id="500dc784-79dd-4744-8172-7549b0b3a99d">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 30 lõike 1 punkti 2, sotsiaalhoolekande seaduse § 22<sup>1</sup> lõike 3, Peipsiääre Vallavolikogu 21.06.2023 määruse nr 16 „Üldhooldusteenuse osutamise ja rahastamise kord“ § 4 lõike 2 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="bae406c5-a544-485f-b4c5-83d4a74d158a">1</paragrahvNr>
+			<kuvatavNr id="f925b8aa-2548-4ddf-b31b-102219d6638b"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="a2a1ce3c-c957-4a51-8017-6045fc00fb16">Üldhooldusteenust vahetult osutavate töötajate kulude tasumise piirmäär</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="1923bc5f-3907-47f2-882f-410f5f0cc739"/>
+				<kuvatavNr id="69a93ec6-d6ac-4b8d-9234-3d826064e6aa"/>
+				<sisuTekst id="99156f3f-3358-4956-978a-0d4284f9b6b8">
+					<tavatekst id="b7dd5d47-ceaf-459e-b77b-a9bd90c9bf73">Peipsiääre vald kannab sotsiaalhoolekande seaduse § 22<sup>1</sup> lõikes 2 nimetatud üldhooldusteenuse kulud (hooldusteenust väljaspool kodu ööpäevaringselt vahetult osutavate hooldustöötajate ja abihooldustöötajate tööjõukulud, tööriietuse ja isikukaitsevahendite kulud, tervisekontrolli ja vaktsineerimise kulud ning koolituse ja supervisiooni kulud) 550 eurot ühe teenusesaaja kohta kalendrikuus. </tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="7c3810f2-6e4d-4127-af26-cb21a8a1278f">2</paragrahvNr>
+			<kuvatavNr id="d6d2e9bd-b429-4bb9-a33f-92c74ef14de5"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="394e83fa-f863-47a8-b4f2-0b6660355390">Rakendussätted</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="e2ecf9ff-9d61-4bee-815a-74de1e5314ae">1</loigeNr>
+				<kuvatavNr id="5a9cae67-3459-4d38-9dbf-00c911ddbd26"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="ee7214b8-15b9-454d-8f20-5ffd54a2499d">
+					<tavatekst id="bd92bf09-741e-4c26-a81c-acaf89cd0a6c">Tunnistada kehtetuks Peipsiääre Vallavalitsuse 10.12.2024 määrus nr 7 „Üldhooldusteenuse hoolduskulude piirmäär“.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg2">
+				<loigeNr id="49eb1da5-8b38-4b79-a641-a12092c684ff">2</loigeNr>
+				<kuvatavNr id="38518c60-9e18-459e-b5d1-be9c50cb9fbb"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="25d5f953-f038-41e8-90f2-7f4300f196d0">
+					<tavatekst id="70044560-f5c3-41aa-96ee-6d28f3030971"> Määrust rakendatakse alates 01.04.2026.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg3">
+				<loigeNr id="5add5c3c-fa2d-4c03-b0e6-4cd34ab03fb6">3</loigeNr>
+				<kuvatavNr id="7966e9b7-6ac7-47b7-92d2-f6af159d748e"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="fa9c656b-7343-4de6-8b51-91c0b6fd54bf">
+					<tavatekst id="a2eca04c-01e6-47fb-81f4-84d52a3f6022">Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+	<allkiri id="7dbb8a9f-0d8e-425f-adb1-a38014c130f6">
+		<allkiriKoht id="e97e916b-0a99-4d30-a16a-b5cfba79430f"/>
+		<allkirjastaja id="b204eaf4-08ed-4007-b6bf-5f3306fa0233">
+			<ametinimetus id="980bcbc9-f396-4aa8-ae70-a6c93e08cb38">vallavanem</ametinimetus>
+			<eesnimi id="841cd500-3393-4e5b-9786-939bbbf600ef">Piibe</eesnimi>
+			<perekonnanimi id="10494e80-ba18-47b3-aa89-4f4b0721ef09">Koemets</perekonnanimi>
+		</allkirjastaja>
+	</allkiri>
+	<allkiri id="0b597ef5-2c1c-40a3-bf32-4c5307acacba">
+		<allkiriKoht id="a40c18bc-cbe8-497d-98a1-4b951d527fa0"/>
+		<allkirjastaja id="f4770a8a-00de-4a96-a4dc-b4644a16a0ea">
+			<ametinimetus id="5df42eae-83e4-4924-b708-e1ed74316f16">vallasekretär</ametinimetus>
+			<eesnimi id="076709e6-3968-4434-8e60-1a73e4084816">Kai</eesnimi>
+			<perekonnanimi id="bd80d12c-01f8-4f92-98cb-aea01752208a">Pruuli</perekonnanimi>
+		</allkirjastaja>
+	</allkiri>
+</oigusakt>

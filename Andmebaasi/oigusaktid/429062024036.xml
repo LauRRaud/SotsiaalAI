@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="58faa9c7-c0f3-402e-b1b0-a1f61b814ae7" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Jõgeva Vallavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2024-06-27</aktikuupaev>
+  
+  
+  <aktiNr>59</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2024-06-29</avaldamineKuupaev><RTaasta>2024</RTaasta><RTartikkel>36</RTartikkel><aktViide>429062024036</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2024-08-01+03:00</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2024-06-27</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>429062024036</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2024-06-28</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1059174</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2024-06-27</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Maire Kasvandik</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="1e1e41b6-acd5-49fd-b2a5-f99c39bf101f">
+  <nimi id="c8e340ee-de38-4f83-ab6e-ee9dcf7c4276">
+   <pealkiri id="47d06ce3-119e-439f-9d59-962e337ac476">Üldhooldusteenuse hoolduskulude piirmäära kehtestamine</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="0a8981f2-6c67-4037-9946-38319088a733"><preambul id="a8b9cb60-80b5-45da-8d44-e1109e1d26a1">
+   <tavatekst id="2d623cdb-36a1-47b7-b715-9b300812712c">Määrus kehtestatakse sotsiaalhoolekande seaduse § 22<sup>1 </sup>lõike 3 alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="e40a249b-82be-44e9-9c36-4e04285a3f6c">1</paragrahvNr>
+   <kuvatavNr id="75dd895b-6398-45a7-bfdb-a2f3a86bdecf"><![CDATA[§ 1. ]]></kuvatavNr>
+      <sisuTekst id="4e3f8002-f2fb-4c2c-8131-10689ff02c2d">
+    <tavatekst id="9be3cedb-7b13-460a-ada7-f1176831e090">Väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse teenuskoha maksumusest rahastatavate hooldusteenust vahetult osutavate hooldustöötajate ja abihooldustöötajate kulude eest Jõgeva valla eelarvest tasumise piirmääraks kehtestatakse 750 eurot ühe teenusesaaja kohta kuus.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para2">
+   <paragrahvNr id="11e11f2e-9989-4edc-bb16-0c93f51e573f">2</paragrahvNr>
+   <kuvatavNr id="3ac925fa-7931-40ca-8e36-8a8bf5706c7b"><![CDATA[§ 2. ]]></kuvatavNr>
+      <sisuTekst id="ab004bb2-0ff0-475e-b106-f8ad4732b73d">
+    <tavatekst id="3da69b58-2b4d-4f4f-9d2b-4e5510b53100">Määrus jõustub 1. augustil 2024.</tavatekst>
+   </sisuTekst>
+  </paragrahv></sisu>
+<allkiri id="fac5a19a-c9ed-451d-9352-3d516736375c"><allkiriKoht id="4b43e34a-7354-4bec-914c-2b4c8a1eb287"/><allkirjastaja id="2486ac16-9342-4b1a-adc7-97f907e8c59b"><ametinimetus id="71c0f1cb-514c-4c73-9337-0bda797ecf14">Volikogu esimees</ametinimetus><eesnimi id="0dcd6b91-23cd-411a-a02b-1fd79f280d6a">Priit</eesnimi><perekonnanimi id="4dfd41de-84ed-4b82-bf24-daf01c56b711">Põdra</perekonnanimi></allkirjastaja></allkiri></oigusakt>
