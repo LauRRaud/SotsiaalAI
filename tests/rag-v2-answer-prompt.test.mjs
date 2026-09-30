@@ -21,10 +21,12 @@ const GUARDRAILS = [
 ];
 
 test('prompt v10 keeps every v9 guardrail in each answer language, and v9 plans stay readable only', () => {
-  assert.equal(PROMPT_VERSION, 'm4-grounded-answer-11');
+  assert.equal(PROMPT_VERSION, 'm4-grounded-answer-12');
+  assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-11'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-10'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-9'));
-  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-20');
+  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-21');
+  assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-20'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-19'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-18'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-17'));
@@ -100,5 +102,19 @@ test('answer-11: Luna answers in her own voice and names scope, not sources', ()
       'whose local rule it is', 'Limitations and the clarification use the same voice']) assert.ok(prompt.includes(phrase), `${language}: ${phrase}`);
     assert.ok(!prompt.includes('Refer to a source by its title or author in prose'));
     assert.ok(!prompt.includes('Attribute an article position to its author'));
+  }
+});
+
+test('answer-12: a person or author question is answered from what the evidence shows; a stated circumstance gets its conditional conclusion', () => {
+  for (const language of ['et', 'en', 'ru']) {
+    const prompt = answerInstructions(language);
+    // The voice rule stays, with one exception (the owner's chat, 30.09: "kes on Laur Raudsoo" got no answer).
+    for (const phrase of ['no author names or document titles in the text', 'The exception is a question about a person, an author or a publication',
+      'do not refuse when the evidence names them', 'never as the only one', 'except as ANSWER VOICE allows',
+      'start with the conditional conclusion', 'ask only for the fact that would change it', 'not a question alone']) assert.ok(prompt.includes(phrase), `${language}: ${phrase}`);
+    // The guardrail against deciding eligibility from an ambiguous description is kept.
+    assert.ok(prompt.includes('Do not turn an ambiguous description into a diagnosis, eligibility decision or confirmed personal fact'));
+    // No real place or amount from the owner's example enters the instructions.
+    assert.doesNotMatch(prompt, /Harku|500 euros|Raudsoo/u);
   }
 });

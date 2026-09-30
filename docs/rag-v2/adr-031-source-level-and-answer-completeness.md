@@ -112,6 +112,19 @@ Kordus kuuel salvestatud pöördumisel (27.09 päris B9 ning aruande B4, B9, C9,
 
 Faktid, arvutusalused ja tingimused jäid alles (G11 136 € = 636 − 500; omavalitsuse kaalumiskohustus). E1.2 Raasiku elukohareegel on viitega plokk (Raasiku kord), piirang tuleneb sellest. Esimene v10 jooks kasutas piirangutes veel kaks korda sõna „väljavõtted“; lõplik juhis keelab selle.
 
+### 6a. Isiku- ja autoriküsimus, tingimuslik järeldus: `m4-grounded-answer-12` ja `m4-grounded-dialogue-21` (30.09.2026)
+
+Omaniku päris vestlus 30.09:
+- „Kes on Laur Raudsoo?“ → „Ma ei saa valitud teabe põhjal kindlaks teha, kes Laur Raudsoo on.“ Korpuses on tema kuus ajakirja Sotsiaaltöö artiklit (2017–2025). Hääle reegel keelas autorinimed tekstis, ja isikuküsimusele polnud muud vastust.
+- „Kes kirjutas tehisintellektist?“ → „Tehisintellektist kirjutas Laur Raudsoo.“ Valitud allika järgi õige, aga kõlab nagu ainus autor.
+- Harku sünnitoetus (märtsis kolinud pere): vastusel olid õiged faktid, kuid tingimusliku järelduse asemel oli ainult küsimus. Codexi täpsustus: kolimine ei tõenda rahvastikuregistri seisu, seega on õige vorm „kui te mõlemad registreerisite elukoha alles märtsis, siis see tingimus ei täitu“.
+
+Muudatus (`answerInstructions`):
+- **ANSWER VOICE:** reegel jääb ühe erandiga. Küsimuses isiku, autori või väljaande kohta („kes on …“, „kes kirjutas …“) on nimed, väljaanne ja aasta vastus. Vastus ütleb, mida tõendid inimesest näitavad (mida, kus ja millal ta kirjutas või tekstis nimetatud roll), ja mida need ei näita. Nimetatud inimese kohta ei keelduta. Autor on üks, kes teemast kirjutas, mitte ainus.
+- **A GOOD ANSWER:** kui kasutaja kirjeldus puudutab tõendites olevat tingimust, algab vastus tingimuslikust järeldusest, siis tuleb reegel. Küsitakse ainult seda asjaolu, mis järeldust muudaks. Kaitsereegel „ära tee ebaselgest kirjeldusest kõlblikkuse otsust“ jääb.
+- Juhises pole päris kohta, summat ega nime (test kontrollib).
+- Kontroll käib päris vestluses pärast deploy'd: needsamad kolm küsimust ja üks tavaline küsimus, et vastus ei hakkaks muidu allikatest jutustama.
+
 ## Mõõtmine
 
 Failid on kaustas `tmp/rag-v2-dev-2026-09-27/`. Iga variant jooksis üks kord.
