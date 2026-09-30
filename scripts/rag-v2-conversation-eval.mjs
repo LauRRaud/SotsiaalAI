@@ -10,10 +10,13 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
 import { randomUUID } from 'node:crypto';
+import { performance } from 'node:perf_hooks';
 import { checkTurn, validateCatalogue } from '../lib/rag-v2/pilot/conversation-eval.js';
 
 const { values } = parseArgs({ options: { scenarios: { type: 'string', default: 'tests/evaluation/dialogue/scenarios-corpus-4.json' }, out: { type: 'string' },
   only: { type: 'string' }, 'max-usd': { type: 'string', default: '1.5' }, 'dry-run': { type: 'boolean', default: false },
+  // --stream: request the answer as a stream, as the chat does, so the first visible text is measured (Codex 7.8).
+  stream: { type: 'boolean', default: false },
   legal: { type: 'string', default: 'docs/rag-v2/legal-acts-in-index.json' } } });
 const catalogue = JSON.parse(await fs.readFile(values.scenarios, 'utf8'));
 const problems = validateCatalogue(catalogue);
@@ -86,6 +89,12 @@ function observe(row, error) {
     personRegions: Object.fromEntries((payload.dialogueState?.value?.people || []).map(entry => [entry.person.trim().toLowerCase(), entry.region.id])),
     timings: { searched: payload.timings?.phases?.searched ?? null, answered: payload.timings?.phases?.answered ?? null,
       search: payload.timings?.search?.since_start_ms?.merged ?? null, total: payload.timings?.validatedDraftMs ?? null },
+    // Where the turn spent its time (Codex 7.8), read stage by stage: the service's phases since the turn started, the
+    // search's steps since it started and each lane's own steps (lanes run side by side), and each model call's times
+    // and tokens. Each process's own clock; nothing here is subtracted across processes.
+    stages: { phases: payload.timings?.phases ?? null, search: payload.timings?.search?.since_start_ms ?? null,
+      lanes: payload.timings?.search?.lanes ?? null,
+      calls: events.filter(event => event.timings || event.usage).map(event => ({ stage: event.stage, timings: event.timings ?? null, usage: event.usage ?? null })) },
     usd: events.reduce((sum, event) => sum + (event.estimatedNanoUsd || 0), 0) / 1e9,
     // The search plan and the rerank's candidates and choice: why a search check failed, read before the run's
     // conversations are deleted.
@@ -115,11 +124,14 @@ try {
       expiresAt: pilotExpiry(config) } });
     const turns = [];
     for (const turn of scenario.turns) {
-      let result = null, error = null;
-      try { result = await service.run(userId, { question: turn.text, contextMode: turn.mode, convId: conversation.id, clientTurnKey: randomUUID(), language: 'et' }); }
+      let result = null, error = null, firstText = null;
+      const started = performance.now(), streaming = values.stream ? { onAnswerText: () => { firstText ??= performance.now() - started; } } : {};
+      try { result = await service.run(userId, { question: turn.text, contextMode: turn.mode, convId: conversation.id, clientTurnKey: randomUUID(), language: 'et' }, streaming); }
       catch (failure) { error = failure.code || 'turn_failed'; result = failure.pilotTurnId ? { id: failure.pilotTurnId } : null; }
       const row = result?.id ? await prisma.m4PilotTurn.findUnique({ where: { id: result.id } }) : null;
       const observed = observe(row, error);
+      // The caller's own view in this process: the first provisional text passed on and the whole turn.
+      if (observed.stages) observed.stages.caller = { streamed: values.stream, firstTextMs: firstText === null ? null : Math.round(firstText), totalMs: Math.round(performance.now() - started) };
       spent += observed.usd;
       // The evidence texts are read by the checks only; the report keeps titles, not the sources' text.
       const evidenceTexts = (row?.payload?.packet?.evidence || []).map(evidence => evidence.source_text || '');
