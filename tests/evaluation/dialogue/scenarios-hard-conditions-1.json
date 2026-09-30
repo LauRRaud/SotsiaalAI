@@ -1,6 +1,6 @@
 {
   "schema_version": "rag-v2/dialogue-eval-2",
-  "purpose": "ADR-057: the nine questions of tests/evaluation/graph/hard-conditions-1.json in the whole chat (search plan, rerank, answer model), each its own conversation. evidence_text: the deciding phrase reached the evidence; must: the answer applies the deciding condition. Written 30.09.2026 before any run, to compare the chat profile v1 with v3 (v1 and the act's own cross-references). Changed after the first runs: involuntary-placement must /kohtu/ → /kohus|kohtu/, because a correct answer ("Paigutamise otsustab kohus") did not match it (ADR-057). The phrases are in the Sotsiaalhoolekande seadus versions in force on 30.09 and from 01.10.",
+  "purpose": "ADR-057: the nine questions of tests/evaluation/graph/hard-conditions-1.json in the whole chat (search plan, rerank, answer model), each its own conversation. evidence_text: the deciding phrase reached the evidence; must: the answer applies the deciding condition. Written 30.09.2026 before any run, to compare the chat profile v1 with v3 (v1 and the act's own cross-references). Changed after the first runs: involuntary-placement must /kohtu/ → /kohus|kohtu/, because a correct answer („Paigutamise otsustab kohus“) did not match it (ADR-057). The phrases are in the Sotsiaalhoolekande seadus versions in force on 30.09 and from 01.10.",
   "expectation_help": {
     "evidence_text": "the deciding condition's exact phrase is in the evidence the answer was given",
     "must": "the answer states the deciding condition or its effect"
