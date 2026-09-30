@@ -9,7 +9,7 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | KOV | 78 | 234 | 78 KOV-i põhipaketti koos metaandmete ja allikaloenditega. |
 | kontaktid | 0 | 10 | Kontaktide otsingumaterjal; kattuvus KOV-pakettidega vajab ühendamist. |
 | organisatsioonid | 1 | 3 | Organisatsiooni korjatud sisu ja allikad. |
-| oigusaktid | 147 | 158 | XML-aktid, sh eri redaktsioonid; kehtivus tuleb vastuvõtul kontrollida. Aktide lisadest tuletatud allikad (`lisad/`): kaks tabelit (ADR-050) ja üheksa omavalitsuse lisa teksti (ADR-053). |
+| oigusaktid | 148 | 160 | XML-aktid, sh eri redaktsioonid; kehtivus tuleb vastuvõtul kontrollida. Aktide lisadest tuletatud allikad (`lisad/`): kaks tabelit (ADR-050) ja kümme omavalitsuse lisa teksti (ADR-053); iga tuletatud allikas nimetab oma akti redaktsiooni. |
 | teadmised | 0 | 7 | Allikapõhised teadmiskaardid (tingimused, erandid, mõisted ja nende seosed) valitud allikatele; iga fail on seotud oma allika räsiga (ADR-054). |
 | register | 0 | 2 | Kavandatud allikate register, mitte teadmistekst. |
 | taastatud_allikad | 0 | 22 | Serveri vanast indeksist taastatud tekst. Enne importi võrrelda põhipakettidega. |
@@ -1302,6 +1302,8 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | 404072025017-lisa.meta.json | [oigusaktid/lisad/404072025017-lisa.meta.json](<oigusaktid/lisad/404072025017-lisa.meta.json>) |
 | 403042025042-lisa.json | [oigusaktid/lisad/403042025042-lisa.json](<oigusaktid/lisad/403042025042-lisa.json>) |
 | 403042025042-lisa.meta.json | [oigusaktid/lisad/403042025042-lisa.meta.json](<oigusaktid/lisad/403042025042-lisa.meta.json>) |
+| 430042026009-lisa.json | [oigusaktid/lisad/430042026009-lisa.json](<oigusaktid/lisad/430042026009-lisa.json>) |
+| 430042026009-lisa.meta.json | [oigusaktid/lisad/430042026009-lisa.meta.json](<oigusaktid/lisad/430042026009-lisa.meta.json>) |
 | 419052023006-lisa.json | [oigusaktid/lisad/419052023006-lisa.json](<oigusaktid/lisad/419052023006-lisa.json>) |
 | 419052023006-lisa.meta.json | [oigusaktid/lisad/419052023006-lisa.meta.json](<oigusaktid/lisad/419052023006-lisa.meta.json>) |
 | 411042018011-lisa-1.json | [oigusaktid/lisad/411042018011-lisa-1.json](<oigusaktid/lisad/411042018011-lisa-1.json>) |

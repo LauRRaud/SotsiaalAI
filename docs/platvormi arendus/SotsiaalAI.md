@@ -92,6 +92,22 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**30.09 (Opus), jätk: korpus v40 ja v41 — Kose ja Põlva kehtivad korrad, sama lisa uues redaktsioonis.** Omanik 30.09: „jätka arendust“.
+- **Tootmises 30.09 kella 13:35-st:** korpus v41 (indeks `5457e6e0`, 6040 dokumenti), plaan `m4-corpus-chat-20260930c.json` (käsitsi). Seaded on samad mis enne: profiil v3, answer-12, dialoog 21, olek v5.
+- **Korpus v40** (#276): Kose kehtiv kord (430042026009, alates 03.05.2026) ja Põlva uus redaktsioon (429092026004, alates 02.10.2026).
+  - Põlva eelmine redaktsioon sai RT antud lõpu 01.10.2026, seega 02.10-st pole korpuses kahte kehtivat Põlva korda.
+  - Embedding 0,0025 USD.
+  - Kehtivuskontroll: 64/65 rühma muutumata. Ainus leid on Riigilõivuseaduse 31.10 auk, mida RT pole veel avaldanud.
+- **Korpus v41** ([ADR-053](../rag-v2/adr-053-rt-annex-texts.md) täiendus): tuletatud lisa nimetab oma akti redaktsiooni. Seega Kose kehtiva redaktsiooni lisa (sama PDF mis varem) on eraldi allikas.
+  - 12 lisa uue versiooniga, lõigud samad, 0 USD. Harku lisa kaart on seotud uute baitidega.
+  - Päris vestlus: Kose sünnitoetus 600 eurot alates 03.05.2026, koos tingimustega.
+- **Avatud:**
+  - Luunja ja Tori kehtivate kordade lisad;
+  - kehtivuskontroll ei vaata tuletatud lisasid;
+  - 01.10: uus SHS ja abivahendite piirhinnad vastustes;
+  - kontaktid pärast 04.10;
+  - kiirus päris vestluses soojal serveril.
+
 **30.09 (Opus): Codexi #264–#272 ülevaatuse leiud R1–R4 parandatud** ([audit](../audits/rag-v2-pr264-272-review-2026-09-30.md)).
 - **R1, R2** ([ADR-055](../rag-v2/adr-055-codex-followup-region-state.md)): plaani tsitaat katab ainult oma lahenenud mainimise, ja plaaniga ning plaanita rada loevad eitust sama esinemise pealt. Codexi näited annavad plaaniga ja ilma sama tulemuse.
 - **R3** ([ADR-056](../rag-v2/adr-056-rt-xml-superscripts.md)): `source-structure-v29` loeb ülaindeksi ka CDATA-s, sisemises elemendis ja atribuutidega. Kõik 134 XML-i andsid v28 ja v29 all sama teksti, seega korpust pole vaja uuesti teha. `keepsSuperscripts` nimetab töötlused ükshaaval.
