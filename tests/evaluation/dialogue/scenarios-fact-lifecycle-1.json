@@ -1,0 +1,28 @@
+{
+  "schema_version": "rag-v2/dialogue-eval-2",
+  "purpose": "Codex follow-up review 29.09 (7.6): the fact lifecycle of the dialogue state, read from the saved facts and not from model.accepted. A new fact is added, a correction replaces the right person's fact and keeps another person's fact of the same topic, a retraction ends a fact and the next turn does not bring it back; a fact or change left out without an allowance fails. Written before any run.",
+  "expectation_help": {
+    "facts_present / facts_absent": "a current fact of the person whose quote matches the pattern is / is not in the saved state",
+    "fact_changes": "a fact of the person whose quote matches has become superseded or retracted",
+    "allowed_dropped": "a new fact, change, period or state the server left out passes only with its own allowance; absent here, so every such drop fails"
+  },
+  "scenarios": [
+    { "id": "debt-corrected-mother-kept", "title": "Võla parandus, ema võlg jääb", "source": "Codex 7.6", "turns": [
+      { "mode": "new", "text": "Mul on võlgu 2000 eurot ja minu emal on võlgu 5000 eurot. Elame mõlemad Harku vallas.",
+        "expect": { "region": "harku_vald", "facts_present": [{ "person": "user", "quote": "2000" }] } },
+      { "mode": "correction", "text": "Vabandust, minu enda võlg on hoopis 3000 eurot.",
+        "expect": { "facts_present": [{ "person": "user", "quote": "3000" }], "facts_absent": [{ "person": "user", "quote": "2000" }],
+          "fact_changes": [{ "person": "user", "quote": "2000", "status": "superseded" }], "must": ["3000|3 000"] } },
+      { "mode": "same", "text": "Kes saab mind võlgadega aidata?",
+        "expect": { "facts_present": [{ "person": "user", "quote": "3000" }], "facts_absent": [{ "person": "user", "quote": "2000" }], "must": ["võlanõusta"] } }
+    ] },
+    { "id": "unemployment-retracted", "title": "Töötuse tagasivõtmine", "source": "Codex 7.6", "turns": [
+      { "mode": "new", "text": "Olen töötu ja elan Kose vallas. Mul on kaks last.",
+        "expect": { "region": "kose_vald", "facts_present": [{ "person": "user", "quote": "töötu" }, { "person": "user", "quote": "kaks last" }] } },
+      { "mode": "correction", "text": "Tegelikult ma ei ole töötu, töötan osalise ajaga.",
+        "expect": { "facts_absent": [{ "person": "user", "quote": "Olen töötu" }], "fact_changes": [{ "person": "user", "quote": "Olen töötu", "status": ["retracted", "superseded"] }] } },
+      { "mode": "same", "text": "Millist toetust ma lastega saan?",
+        "expect": { "facts_absent": [{ "person": "user", "quote": "Olen töötu" }], "facts_present": [{ "person": "user", "quote": "kaks last" }] } }
+    ] }
+  ]
+}

@@ -19,14 +19,14 @@ Esimene nähtav tekst tuli **12,7–27,5 s** järel, mediaan 16,3 s. Aeg jaguneb
 | Otsing | 4,4 s (4,0–5,3) | sellest rerank'i mudel 1,4 s (1,1–2,5), sõnaline otsing 1,2 s |
 | Vastusemudel kuni esimese tekstini | 8,8 s (4,8–19,7) | arutlus `medium` enne esimest väljundit |
 
-Esimesed kolm sammu võtavad kokku umbes 8 s ja on ühtlased. **Kogu erinevus tuleb vastusemudeli arutlusest.**
+Esimesed kolm sammu võtavad kokku umbes 8 s ja on ühtlased. **Suurem osa erinevusest langeb vastusemudeli tekstieelsesse aega (arutlus).** (Täpsustus Codexi järelülevaate 29.09 järgi: mõõdetud on pakkuja tekstieelne viivitus ja tokenid; sisendi esitusviisi muutmise mõju pole katsena mõõdetud.)
 
 ### 2. Kõik 311 vastusekutset 28.09 (`medium`)
 
 - Vastusekutse mediaan 11,1 s, P90 19,4 s.
 - Arutlustokeneid mediaan 1091, P90 2159.
 - Sobitus: **aeg ≈ 1,7 s + 6,7 ms × arutlustoken + 4,5 ms × nähtav väljundtoken.** Arutlus kulgeb umbes 150 tokenit sekundis ja kogu see aeg on enne esimest teksti.
-- Sisendi suurus arutlust peaaegu ei mõjuta (r = 0,22; üle 15k sisendtokeni mediaan 1175, alla selle 1030). Tõendipaketi vähendamine seda aega ei lühendaks.
+- Sisendi suurus on arutlusega nõrgalt seotud (r = 0,22; üle 15k sisendtokeni mediaan 1175, alla selle 1030). See ei välista, et dubleerimise või keeruliste juhiste vähendamine lühendaks aega: seda pole katsena mõõdetud (Codexi järelülevaade 29.09).
 
 ### 3. Sama päringu kordus: teenustase ja arutluse tase
 

@@ -107,9 +107,9 @@ Otsinguplaan kirjutab igapäevased sõnad ametlikeks terminiteks („hooldekodu�
 | Lisade kataloog | 4/4 | 4/4 | 3/4, 4/4, 4/4 |
 | Kulukataloog | 5/5 | 5/5 | 4/5, 4/5, 5/5 |
 
-- v2 vead olid üksikud ja kordusel ei korranud:
-  - Peipsiääre vastus lükati kord tagasi (`invalid_answer_reference`);
-  - kuuldeaparaadi vastus jättis kaks korda kolmest „piirhinna“ nimetamata.
+- v2 vead (parandatud 29.09 Codexi järelülevaate järgi; varem oli siin „kordusel ei korranud“, mis oli vale):
+  - Peipsiääre vastus lükati ühes jooksus kolmest tagasi (`invalid_answer_reference`);
+  - kuuldeaparaadi vastus jättis „piirhinna“ nimetamata **kahes kulujooksus kolmest**. Viga kordus. Kas selle põhjustas v2 lisakontekst, pole eraldatud.
 - Omavalitsused on kõigis jooksudes samad.
 - **Mõõtmistaristu vead:**
   - plaani p esimene katalooginjooks läks kaotsi: eval-full koopias oli ADR-052-eelne `store.js` ja üks ajutine OpenAI viga blokeeris kogu jooksu;
@@ -118,15 +118,17 @@ Otsinguplaan kirjutab igapäevased sõnad ametlikeks terminiteks („hooldekodu�
 ## Järeldus
 
 - **Ahel töötab otsast lõpuni:** kaardid partiina, register, ingest, indeks, graafi läbimine ja allikalõikude lisamine (profiil v2).
-- **Selle küsimustiku peal pole graafil tootmises mõõdetavat eelist.**
-  - Vestlus (v1 koos otsinguplaaniga) leidis juba kõik 10 tingimust ja erandit.
+- **Selle kümne küsimuse täisahelas ei andnud graafi laiendatud eelarve (profiil v2) mõõdetud tõenditeksti katvusele lisa. Graafi enda mõju vastuse kvaliteedile ei eraldatud.** (Sõnastus parandatud 29.09 Codexi järelülevaate järgi; varem oli siin „graafil pole tootmises mõõdetavat eelist“.)
+  - Vestlus (v1 koos otsinguplaaniga) leidis juba kõik 10 tingimust ja erandit. See on laeefekt: 10/10 baas ei saa samal mõõdikul paraneda.
+  - Mõlemas profiilis on graaf sees. Ka v1-s jõuavad valitud lõikude kaardid ja seosed konteksti, seega puhast graafita võrdlust pole.
+  - `evidence_text` mõõdab fraasi olemasolu tõendis, mitte seda, kas vastus kohaldas tingimust õigele inimesele või eristas erandit.
   - Ilma otsinguplaanita tõstis graaf katvuse 7/10 → 8/10.
 - **Otsus:** vestlus jääb profiilile v1 korpusel v38. Kaardid jäävad indeksisse: nende väited ja seosed jõuavad konteksti seal, kus nende allikas on valitud.
   - Profiil v2 on olemas ja mõõdetud, aga tootmisse seda ei viida.
   - Kaartide koostamist kogu korpusele (umbes 6000 dokumenti) ei laiendata enne, kui raskem küsimustik näitab kasu. Teekaardi reegel: „kui keerukam mehhanism ei anna mõõdetavat eelist, jätame tootesse lihtsama variandi“.
 - **Järgmine mõõdik** on küsimustik, kus otsing koos plaaniga ei leia määravat tingimust: tingimus teises paragrahvis või teises dokumendis, erand, mida küsimuse sõnad ei puuduta. Seal saab võrrelda:
   - mudeli kaarte;
-  - akti enda ristviiteid (`lib/rag-v2/search/legal-references.js`: SHS-is 98 tükil 156 viidet, deterministlikud, ilma mudelita);
+  - akti enda ristviiteid (`lib/rag-v2/search/legal-references.js`, deterministlikud, ilma mudelita). Codex J5 järel hoiab lugeja loetelu akti ja redaktsiooni. Kohaliku korpuse 89 paragrahvidega aktis leidis ta 2228 oma viidet ja jättis 323 põhjendusega lahendamata (ADR-055);
   - sama jao naabreid.
 
 ## Piirid

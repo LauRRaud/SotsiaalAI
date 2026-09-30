@@ -11,9 +11,9 @@ const validity = id => ({ 'hms-2024': { from: '2024-01-01', to: '2026-12-31' }, 
   'shs-now': { from: '2026-06-12', to: '2026-09-30' }, 'open-law': { from: '2020-01-01', to: null } })[id] || null;
 
 test('the catalogue has known expectations, modes and a new start for every conversation', async () => {
-  for (const version of [1, 2, 3, 4]) {
-    const catalogue = JSON.parse(await fs.readFile(`tests/evaluation/dialogue/scenarios-corpus-${version}.json`, 'utf8'));
-    assert.deepEqual(validateCatalogue(catalogue), [], `version ${version}`);
+  for (const name of (await fs.readdir('tests/evaluation/dialogue')).filter(file => file.endsWith('.json'))) {
+    const catalogue = JSON.parse(await fs.readFile(`tests/evaluation/dialogue/${name}`, 'utf8'));
+    assert.deepEqual(validateCatalogue(catalogue), [], name);
   }
   assert.deepEqual(validateCatalogue({ scenarios: [{ id: 'x', turns: [{ mode: 'same', text: 'a', expect: { wrong: 1, must: 'x', valid_on: 'soon' } }] }] }),
     ["x turn 1: a conversation starts with 'new'", 'x turn 1: unknown expectation wrong', 'x turn 1: must needs a list of patterns', 'x turn 1: valid_on soon']);
@@ -109,4 +109,37 @@ test('ADR-054: a condition\'s exact phrase must be in the evidence text; other w
   assert.equal(missing.verdict, 'search');
   assert.equal(checkTurn(expect, observed(), { today: '2026-09-29' }).verdict, 'search');
   assert.deepEqual(validateCatalogue(JSON.parse(await fs.readFile('tests/evaluation/dialogue/scenarios-coverage-1.json', 'utf8'))), []);
+});
+
+test('the fact lifecycle (Codex 7.6): each check has its failing pair, and an accepted model state alone satisfies none', () => {
+  const fact = (id, person, quote, status = 'current') => ({ id, person, status, support: [{ turn: 1, quote }] });
+  const run = (expect, facts, dropped = []) => checkTurn(expect, observed({ facts, dropped, stateFallback: null }), { today: '2026-09-29' });
+  const failed = result => result.checks.filter(check => !check.ok).map(check => check.key);
+  // A correct new fact is there / a fact the server left out for its missing quote is not, and its drop needs an allowance.
+  const added = { facts_present: [{ person: 'user', quote: '2000 eurot' }] };
+  assert.equal(run(added, [fact('F1', 'user', 'Mul on võlgu 2000 eurot.')]).verdict, 'passed');
+  const lost = run(added, [], [{ kind: 'new_fact', reason: 'fact_not_quoted', person: 'user' }]);
+  assert.deepEqual([lost.verdict, failed(lost)], ['state', ['facts_present', 'allowed_dropped']]);
+  // A correction replaces the right person's old fact / the other person's fact of the same topic stays.
+  const corrected = { fact_changes: [{ person: 'user', quote: '2000 eurot', status: 'superseded' }], facts_present: [{ person: 'ema', quote: '5000 eurot' }],
+    facts_absent: [{ person: 'user', quote: '2000 eurot' }] };
+  const right = [fact('F1', 'ema', 'Emal on võlgu 5000 eurot.'), fact('F2', 'user', 'Mul on võlgu 2000 eurot.', 'superseded'), fact('F3', 'user', 'Võlgu on 3000 eurot.')];
+  assert.equal(run(corrected, right).verdict, 'passed');
+  const wrongPerson = [fact('F1', 'ema', 'Emal on võlgu 5000 eurot.', 'superseded'), fact('F2', 'user', 'Mul on võlgu 2000 eurot.'), fact('F3', 'user', 'Võlgu on 3000 eurot.')];
+  assert.deepEqual(failed(run(corrected, wrongPerson)), ['facts_present', 'facts_absent', 'fact_changes']);
+  // A retraction ends the fact / the next turn does not bring it back; a replacement may be what the model chose.
+  const retracted = { fact_changes: [{ person: 'user', quote: 'töötu', status: ['retracted', 'superseded'] }], facts_absent: [{ person: 'user', quote: 'töötu' }] };
+  assert.equal(run(retracted, [fact('F1', 'user', 'Olen töötu.', 'retracted')]).verdict, 'passed');
+  assert.deepEqual(failed(run(retracted, [fact('F1', 'user', 'Olen töötu.')])), ['facts_absent', 'fact_changes']);
+  // model.accepted=true with no fact satisfies nothing; one allowance covers one drop of its person, not every drop.
+  assert.equal(checkTurn(added, observed({ facts: [], dropped: [], stateFallback: null, model: { accepted: true } }), { today: '2026-09-29' }).verdict, 'state');
+  const allowed = { allowed_dropped: [{ kind: 'new_fact', reason: 'fact_not_quoted', person: 'ema' }] };
+  assert.equal(run(allowed, [], [{ kind: 'new_fact', reason: 'fact_not_quoted', person: 'ema' }]).verdict, 'passed');
+  assert.equal(run(allowed, [], [{ kind: 'new_fact', reason: 'fact_not_quoted', person: 'ema' }, { kind: 'new_fact', reason: 'fact_not_quoted', person: 'ema' }]).verdict, 'state');
+  assert.equal(run(allowed, [], [{ kind: 'new_fact', reason: 'fact_not_quoted', person: 'user' }]).verdict, 'state');
+  // A left-out need is the model's inference, not a lost statement of the user.
+  assert.equal(run(added, [fact('F1', 'user', 'Mul on võlgu 2000 eurot.')], [{ kind: 'needs', reason: 'reference_dropped' }]).verdict, 'passed');
+  assert.deepEqual(validateCatalogue({ scenarios: [{ id: 'x', turns: [{ mode: 'new', text: 'a', expect: { facts_present: [{ person: 'user' }],
+    fact_changes: [{ person: 'user', quote: 'x', status: 'gone' }], allowed_dropped: [{ kind: 'fact' }] } }] }] }),
+  ['x turn 1: facts_present needs person and quote', 'x turn 1: fact_changes status', 'x turn 1: allowed_dropped needs kind and reason']);
 });

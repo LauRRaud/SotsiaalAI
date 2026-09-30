@@ -7,7 +7,10 @@ import { PilotStore } from '../lib/rag-v2/pilot/store.js';
 import { PilotService } from '../lib/rag-v2/pilot/service.js';
 import { DIALOGUE_VERSION, DIALOGUE_LIMITS } from '../lib/rag-v2/pilot/dialogue.js';
 import { embeddingConfig } from '../lib/rag-v2/search/embedding.js';
-import { DIALOGUE_STATE_VERSION, PERSON_DIALOGUE_STATE_VERSION, FACT_STATE_VERSION } from '../lib/rag-v2/pilot/dialogue-state.js';
+import { DIALOGUE_STATE_VERSION, PERSON_DIALOGUE_STATE_VERSION, FACT_STATE_VERSION, REGION_STATE_VERSION } from '../lib/rag-v2/pilot/dialogue-state.js';
+import { SEARCH_ASSIST_VERSION } from '../lib/rag-v2/pilot/search-assist.js';
+import { runtimeAdapters } from '../lib/rag-v2/pilot/retrieval.js';
+import { RECORD_RETRIEVAL_VERSION } from '../lib/rag-v2/search/structured-record-source.js';
 
 const url = new URL(process.env.M4_TEST_DATABASE_URL || 'postgres://invalid/invalid');
 if (!['localhost', '127.0.0.1'].includes(url.hostname) || url.pathname !== '/sotsiaal_ai_m4_dev') throw Error('explicit isolated M4_TEST_DATABASE_URL required');
@@ -369,4 +372,85 @@ test('M4-C real DB: expired accepted head cannot resurrect an older person; null
   assert.equal(f.calls.length, 4);
   const fresh = await f.run('Alustan uuesti.', 'new_person');
   assert.equal((await f.row(fresh.id)).payload.dialogue.userTurns.length, 1);
+});
+
+// State v5 through the service: the real place check and scope of the retrieval adapter in one conversation, a planned
+// answer per turn. Each turn checks that both search lanes and the saved state read one region for the person searched.
+async function regionConversation(t) {
+  const user = await db.user.create({ data: { email: `m4c-${randomUUID()}@example.invalid` } });
+  const conv = await db.conversation.create({ data: { userId: user.id, role: 'CLIENT', metadata: { m4: true }, expiresAt: null } });
+  const config = { id: randomUUID(), configHash: randomUUID(), tenant: 'm4c-test', mode: 'real', users: [user.id], documents: { doc: 'v1' },
+    dialogueVersion: DIALOGUE_VERSION, dialogueStateVersion: REGION_STATE_VERSION, searchAssist: SEARCH_ASSIST_VERSION, recordCatalogue: RECORD_RETRIEVAL_VERSION,
+    embedding: embeddingConfig({ embedding_mode: 'real', provider: 'openai', model: 'text-embedding-3-large', dimensions: 3072, endpoint: 'https://api.openai.com/v1/embeddings' }),
+    model: 'gpt-5.6-luna', reasoning: 'low', maxInputTokens: 64000, maxOutputTokens: 1000, expiresAt: null, retentionHours: null,
+    prices: { embeddingInput: 1, answerInput: 1, answerOutput: 1 }, budget: { attempts: 24, embeddingAttempts: 12, answerAttempts: 12, tokens: 1000000, nanoUsd: 1000000 } };
+  t.after(async () => { await db.user.delete({ where: { id: user.id } }); await db.m4PilotLedger.deleteMany({ where: { id: config.id } }); });
+  // A stand-in for EstNLTK and the municipal directory.
+  const directory = [{ region: 'harku_vald', names: ['Harku vald', 'Harku'] }, { region: 'kose_vald', names: ['Kose vald', 'Kose'] }];
+  const analyzer = { analyze: async words => words.map(word => { const lower = word.toLowerCase(); return `vmet${lower}${lower === 'vallas' ? ' vmetvald' : ''}`; }) };
+  const runtime = runtimeAdapters(async () => config, user.id, { loadRegions: async () => directory, analyzer });
+  const scopes = [], plans = [];
+  const packet = { tenant: 'm4c-test', reference_map: { S1: { document_id: 'doc', document_version_id: 'v1', evidence_id: 'e1', pdf_pages: [1] } },
+    evidence: [{ evidence_id: 'e1', source_text: 'Source', bibliography: { title: 'Source' } }], model_context: { evidence: [{ ref: 'S1', text: 'Source' }] } };
+  const adapters = { preflight: async () => {}, canonical: async () => {}, dialogueStateContext: async () => ({ regions: directory }),
+    checkedPlaces: (c, query, places) => runtime.checkedPlaces(c, query, places),
+    search: async (c, query, vector, assist) => {
+      const { scope, knowledgeRegion } = await runtime.searchScope(c, query, directory, assist?.variants || []);
+      scopes.push({ person: scope.person ?? query.person, region: knowledgeRegion.region ?? null, state: scope.state });
+      return { ...packet, query_id: randomUUID() };
+    } };
+  const unit = Array.from({ length: 3072 }, (_, i) => i === 0 ? 1 : 0);
+  const service = new PilotService({ store: new PilotStore(db), readConfig: async () => config, adapters, call: async ({ stage, body }) => {
+    const usage = { input: 20, output: stage === 'embedding' ? 0 : 10 };
+    if (stage === 'embedding') return { value: Array.isArray(body.input) ? body.input.map(() => unit) : unit, usage, requestId: 'synthetic' };
+    if (stage === 'plan') return { value: plans.shift(), usage, requestId: 'synthetic' };
+    return { value: { kind: 'grounded', blocks: [{ text: 'Synthetic point', factual: true, refs: ['S1'] }], limitations: [], clarification: null,
+      dialogue_state: { new_facts: [], superseded: [], needs: [], unknowns: [], periods: [], language_hint: 'et' } }, usage, requestId: 'synthetic' };
+  } });
+  const turn = async (question, contextMode, plan) => {
+    plans.push({ language: 'et', ...plan });
+    const result = await service.run(user.id, { question, contextMode, convId: conv.id, clientTurnKey: randomUUID(), language: 'et' });
+    const value = (await db.m4PilotTurn.findUnique({ where: { id: result.id } })).payload.dialogueState.value;
+    const searched = scopes.at(-1), saved = value.people.find(entry => entry.person === searched.person);
+    // The same turn: the catalogue and the knowledge lane (one knowledgeRegion) and the saved state read one region.
+    assert.equal(searched.region, saved?.region.id ?? null);
+    assert.equal(value.focus, searched.person);
+    return { searched, people: Object.fromEntries(value.people.map(entry => [entry.person, [entry.region.id, entry.region.status]])) };
+  };
+  return turn;
+}
+
+test('dialogue state DB (Codex J1-J3): in every turn both search filters and the saved person region are one reading', async t => {
+  const turn = await regionConversation(t);
+  // J2: one sentence negates the user's Kose, the next gives the mother's; the plan got the user's relation wrong.
+  const first = await turn('Mina ei ela Kose vallas. Minu ema elab Kose vallas. Kuidas emale koduteenust saada?', 'new', { queries: ['Kose vald koduteenus'], person: 'ema',
+    places: [{ turn: 1, quote: 'Minu ema elab Kose vallas', name: 'Kose vald', person: 'ema', relation: 'lives' },
+      { turn: 1, quote: 'Mina ei ela Kose vallas', name: 'Kose vald', person: 'user', relation: 'lives' }] });
+  assert.deepEqual([first.searched.region, first.people], ['kose_vald', { ema: ['kose_vald', 'reported'], user: [null, 'negated'] }]);
+  // J1: a query that names Kose does not give the user the place the user negated.
+  const second = await turn('Aga mina ise? Millist abi mina saan?', 'same', { queries: ['Kose vald toimetulekutoetus'], person: 'user', places: [] });
+  assert.deepEqual([second.searched.region, second.searched.state, second.people.user], [null, 'region_required_after_negation', [null, 'negated']]);
+  // A place in another script, linked to a word of the clause, is the user's new place in both.
+  const third = await turn('Я живу в Харку.', 'same', { queries: ['Harku vald toimetulekutoetus'], person: 'user',
+    places: [{ turn: 3, quote: 'Я живу в Харку', name: 'Harku vald', person: 'user', relation: 'lives' }] });
+  assert.deepEqual([third.searched.region, third.people], ['harku_vald', { ema: ['kose_vald', 'reported'], user: ['harku_vald', 'reported'] }]);
+});
+
+test('dialogue state DB (Codex review of state v5, V1): a place change the plan left out is one decision for search and memory, and the next turn keeps it', async t => {
+  const turn = await regionConversation(t);
+  await turn('Elan Kose vallas ja mul on raske.', 'new', { queries: ['Kose vald toimetulek'], person: 'user',
+    places: [{ turn: 1, quote: 'Elan Kose vallas', name: 'Kose vald', person: 'user', relation: 'lives' }] });
+  // The plan names the user but leaves the negation out; its query still names Kose. The server reads the user's own negation.
+  const left = await turn('Ma ei ela enam Kose vallas.', 'same', { queries: ['Kose vald toimetulekutoetus'], person: 'user', places: [] });
+  assert.deepEqual([left.searched.region, left.people.user], [null, [null, 'negated']]);
+  const next = await turn('Millist abi ma saan?', 'same', { queries: ['Kose vald sotsiaalabi'], person: 'user', places: [] });
+  assert.deepEqual([next.searched.region, next.people.user], [null, [null, 'negated']]);
+  // A partial plan with an unclear person: the mother's place is checked; the user's own first-person home it left out is read too.
+  const partial = await turn('Ema elab Harku vallas. Ma elan nüüd Kose vallas.', 'same', { queries: ['Harku vald koduteenus'], person: 'unclear',
+    places: [{ turn: 4, quote: 'Ema elab Harku vallas', name: 'Harku vald', person: 'ema', relation: 'lives' }] });
+  assert.deepEqual([partial.searched.person, partial.searched.region, partial.people], ['user', 'kose_vald', { user: ['kose_vald', 'reported'], ema: ['harku_vald', 'reported'] }]);
+  // A place the plan lists again from a message the state has read changes nothing.
+  const again = await turn('Kui palju emale koduteenus maksab?', 'same', { queries: ['Harku vald koduteenuse hind'], person: 'ema',
+    places: [{ turn: 4, quote: 'Ema elab Harku vallas', name: 'Harku vald', person: 'ema', relation: 'lives' }] });
+  assert.deepEqual([again.searched.region, again.people.ema], ['harku_vald', ['harku_vald', 'reported']]);
 });
