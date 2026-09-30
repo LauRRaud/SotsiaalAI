@@ -1739,8 +1739,8 @@
       "save_failed": "Failed to switch preview."
     },
     "theme_mode": {
-      "light": "Light",
-      "mid": "Dim",
+      "light": "Day",
+      "mid": "Evening",
       "dark": "Dark",
       "night": "Night",
       "mono": "Mono",
@@ -1924,8 +1924,9 @@
         "reduce": "Reduce transparency"
       },
       "theme": {
-        "light": "Light",
-        "mid": "Dusk",
+        "auto": "Automatic",
+        "light": "Day",
+        "mid": "Evening",
         "dark": "Night"
       },
       "screen_profile": {
@@ -8168,8 +8169,8 @@
     "hands_swipe_up": "↑ Up",
     "hands_swipe_down": "↓ Down",
     "theme_switch": "Switch theme",
-    "theme_light": "Light",
-    "theme_mid": "Dusk",
+    "theme_light": "Day",
+    "theme_mid": "Evening",
     "theme_dark": "Night"
   },
   "topic_seeds": {

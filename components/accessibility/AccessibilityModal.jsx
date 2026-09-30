@@ -116,9 +116,9 @@ export default function AccessibilityModal({
   const initialContrast = requireInitialSelection ? null : prefs.contrast || "normal";
   const initialTheme = requireInitialSelection
     ? null
-    : ["light", "mid", "dark"].includes(prefs.theme)
+    : prefs.theme === "light" || prefs.theme === "mid"
       ? prefs.theme
-      : "mid";
+      : "auto";
   const [uiScale, setUiScale] = useState(initialUiScale);
   const [uiProfile, setUiProfile] = useState(initialUiProfile);
   const [contrast, setContrast] = useState(initialContrast);
@@ -441,7 +441,7 @@ export default function AccessibilityModal({
       contrast: contrast || prefs.contrast || "normal",
       reduceMotion,
       reduceTransparency,
-      theme: theme || prefs.theme || "mid"
+      theme: theme || prefs.theme || "auto"
     });
     if (typeof window !== "undefined" && lang && lang !== locale) {
       setLocale(lang);
@@ -472,7 +472,7 @@ export default function AccessibilityModal({
       contrast: contrast || prefs.contrast || "normal",
       reduceMotion,
       reduceTransparency,
-      theme: theme || prefs.theme || "mid"
+      theme: theme || prefs.theme || "auto"
     });
   }, [contrast, onPreview, prefs.contrast, prefs.theme, prefs.uiProfile, prefs.uiScale, reduceMotion, reduceTransparency, theme, uiProfile, uiScale]);
   useEffect(() => () => {
@@ -582,12 +582,24 @@ export default function AccessibilityModal({
           <fieldset className="csp-step">
             <legend>{t("accessibility.theme")}</legend>
             <div>
-              {/* LUKUS (07.07): platvorm avaldab ainult "Hämar" (mid).
-                  Hele/Öö on karkass (Fable 5 viimistleb) — kuni siis on
-                  valik peidetud ja runtime sunnib alati mid'i. */}
-              <OptionCard data-autofocus="" type="radio" name="theme" value="mid" checked={theme === "mid"} onChange={onPick(() => setTheme("mid"))}>
-                <span>{t("accessibility.options.theme.mid")}</span>
-              </OptionCard>
+              {/* Päev (light) = päevane tuba heleda liidesega, Õhtu (mid) =
+                  õhtune tuba tumeda liidesega, Automaatne = päeval Päev, pärast
+                  loojangut Õhtu (Eesti päikesetõus ja -loojang,
+                  lib/themeDaylight.js; vaikimisi). Järjekord omaniku järgi
+                  (30.09). Öö (dark) on ainult kõrgkontrasti baas. */}
+              {["light", "mid", "auto"].map((value, i) => (
+                <OptionCard
+                  key={value}
+                  {...(i === 0 ? { "data-autofocus": "" } : {})}
+                  type="radio"
+                  name="theme"
+                  value={value}
+                  checked={theme === value}
+                  onChange={onPick(() => setTheme(value))}
+                >
+                  <span>{t(`accessibility.options.theme.${value}`)}</span>
+                </OptionCard>
+              ))}
             </div>
           </fieldset>
         );

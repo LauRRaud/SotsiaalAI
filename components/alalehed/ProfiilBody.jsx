@@ -161,7 +161,7 @@ export default function ProfiilBody({
     active: kontoSection || usageSection
   });
   const isAuthed = status === "authenticated" || !!session?.user;
-  const currentTheme = prefs?.theme === "light" ? "light" : "dark";
+  const currentTheme = prefs?.theme === "light" ? "light" : "mid";
   const isHighContrast = prefs?.contrast === "hc";
   const currentMode = isHighContrast ? "hc" : currentTheme;
   const actualRole = normalizeProfileRole(
@@ -197,7 +197,7 @@ export default function ProfiilBody({
   useEffect(() => {
     if (embedded && !isActive) setLoginOpen(false);
   }, [embedded, isActive]);
-  const modeSequence = ["light", "dark", "hc"];
+  const modeSequence = ["light", "mid", "hc"];
   const currentModeIndex = modeSequence.indexOf(currentMode);
   const nextMode = modeSequence[(currentModeIndex + 1 + modeSequence.length) % modeSequence.length];
   const nextModeLabel = t(`profile.theme_mode.${nextMode}`);

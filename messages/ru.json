@@ -1799,8 +1799,8 @@
     },
     "delete_account_hint": "Безвозвратно удаляет аккаунт и навсегда убирает доступ — это нельзя отменить.",
     "theme_mode": {
-      "light": "Свет",
-      "mid": "Сумрак",
+      "light": "День",
+      "mid": "Вечер",
       "dark": "Тьма",
       "night": "Ночь",
       "mono": "Mono",
@@ -1924,8 +1924,9 @@
         "reduce": "Уменьшить прозрачность"
       },
       "theme": {
-        "light": "Светлая",
-        "mid": "Сумерки",
+        "auto": "Автоматически",
+        "light": "День",
+        "mid": "Вечер",
         "dark": "Ночь"
       },
       "screen_profile": {
@@ -8168,8 +8169,8 @@
     "hands_swipe_up": "↑ Вверх",
     "hands_swipe_down": "↓ Вниз",
     "theme_switch": "Сменить тему",
-    "theme_light": "Светлая",
-    "theme_mid": "Сумерки",
+    "theme_light": "День",
+    "theme_mid": "Вечер",
     "theme_dark": "Ночь"
   },
   "topic_seeds": {

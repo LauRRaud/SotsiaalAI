@@ -1799,8 +1799,8 @@
       "pin_setup_required": "Enne e-posti muutmist või konto kustutamist loo palun PIN oma praeguse e-posti taastamise kaudu."
     },
     "theme_mode": {
-      "light": "Hele",
-      "mid": "Hämar",
+      "light": "Päev",
+      "mid": "Õhtu",
       "dark": "Tume",
       "night": "Öö",
       "mono": "Mono",
@@ -1924,8 +1924,9 @@
         "reduce": "Vähenda läbipaistvust"
       },
       "theme": {
-        "light": "Hele",
-        "mid": "Hämar",
+        "auto": "Automaatne",
+        "light": "Päev",
+        "mid": "Õhtu",
         "dark": "Öö"
       },
       "screen_profile": {
@@ -8168,8 +8169,8 @@
     "hands_swipe_up": "↑ Üles",
     "hands_swipe_down": "↓ Alla",
     "theme_switch": "Vaheta teema",
-    "theme_light": "Hele",
-    "theme_mid": "Hämar",
+    "theme_light": "Päev",
+    "theme_mid": "Õhtu",
     "theme_dark": "Öö"
   },
   "topic_seeds": {

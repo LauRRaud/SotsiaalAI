@@ -92,6 +92,20 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**30.09 hele, tume ja automaatne teema uute toapiltidega (Opus).**
+Omaniku uued taustad on Real-ESRGAN 2×-ga `tuba-paev-2x.webp` / `tuba-ohtu-2x.webp`
+(3344×1882) + mullide `*-haga.webp`. Ligipääsetavuse lehel on Päev (päevane tuba, hele liides),
+Õhtu (õhtune tuba, tume liides) ja Automaatne (VAIKIMISI: päeval Päev, pärast loojangut Õhtu,
+Eesti päikesetõusu/-loojangu järgi, `lib/themeDaylight.js`; lahtine leht vahetab ise); Öö on
+ainult kõrgkontrasti baas.
+Versioonita (enne 30.09) salvestatud `mid` loetakse automaatseks — see polnud valik; uus
+salvestus kannab `themeV: 2`. Heleda teema tokenid on `tokens.css`-is, kõvakodeeritud
+tumedate pindade variandid kihivälises `theme-light.css`-is. Saabumine (kõnd, ⏻) jääb ka
+heledas teemas pimedaks; heledad tokenid kehtivad süttimisest. Playwright: avalikud lehed,
+vestlus, sisselogimine, süttimine, ligipääsetavuse lend, teemavahetus ja -salvestus, kell.
+Sisselogitud lehed (töölaud, kovisioon, teemaseemned, admin) heledas teemas `not_run` —
+testkontode PIN ei kehtinud; nende heledad variandid on tehtud CSS-i ülevaatuse järgi.
+
 **30.09 (Opus), jätk: korpuse värskendamise rada ja korpus v45** ([ADR-059](../rag-v2/adr-059-corpus-refresh-path.md)). Omanik 30.09: „sina jätka rag arendust“; Codex vaatab üle, kui valmis.
 - **Tootmises 30.09 kella 17:00-st:** korpus v45 (indeks `dfa3b1db`, 6452 dokumenti, 40 282 lõiku), plaan `m4-corpus-chat-20260930g.json`. Seaded on samad.
 - **Värskendamise rada:**

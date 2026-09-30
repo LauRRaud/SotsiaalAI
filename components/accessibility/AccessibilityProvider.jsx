@@ -4,6 +4,7 @@ import { createContext, useCallback, useContext, useEffect, useLayoutEffect, use
 import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
 import { useI18n } from "@/components/i18n/I18nProvider";
+import { resolveThemePreference } from "@/lib/themeDaylight";
 const AccessibilityModal = dynamic(() => import("./AccessibilityModal"), {
   ssr: false,
   loading: () => null
@@ -15,8 +16,16 @@ const DEFAULT_PREFS = {
   contrast: "normal",
   reduceMotion: false,
   reduceTransparency: false,
-  theme: "mid"
+  // Vaikimisi automaatne: päeval hele, õhtul tume (omanik 30.09).
+  theme: "auto"
 };
+/* Teema-eelistuse salvestusversioon. Enne kolme valikuga teemavalikut
+   (30.09) salvestatud "mid" ei olnud kasutaja valik (see oli ainus
+   avaldatud teema), seega versioonita salvestus loetakse automaatseks. */
+const THEME_PREF_VERSION = 2;
+function storedThemePreference(obj) {
+  return obj?.themeV >= THEME_PREF_VERSION ? normalizeTheme(obj?.theme) : "auto";
+}
 const UI_SCALE_VALUES = new Set(["sm", "md", "lg", "xl"]);
 const UI_PROFILE_VALUES = new Set(["sm", "mac", "lg"]);
 const UI_SCALE_STORAGE_KEY = "sotsiaalai.uiScale";
@@ -44,8 +53,7 @@ function ensureMetaTag(name) {
 function syncThemeChrome(prefs) {
   if (typeof document === "undefined") return;
   const contrast = prefs?.contrast || DEFAULT_PREFS.contrast;
-  const theme = contrast === "hc" ? "dark" : normalizeTheme(prefs?.theme);
-  const themeColor = resolveThemeChromeColor(theme, contrast);
+  const themeColor = resolveThemeChromeColor(effectiveTheme({ ...prefs, contrast }), contrast);
   ensureMetaTag("theme-color")?.setAttribute("content", themeColor);
 }
 
@@ -88,24 +96,29 @@ function resolveUIScaleFactors(uiScale, uiProfile) {
     combinedFactor: profileFactor * textFactor
   };
 }
+/* Nähtavad teemad (html-i klassid) ja kasutaja eelistused. Eelistus "auto"
+   ei ole ise teema: ta lahendub kellaaja järgi heledaks või tumedaks
+   (lib/themeDaylight.js) ja elab html-il eraldi atribuudis data-theme-pref. */
 const THEME_VALUES = ["light", "mid", "dark"];
+const THEME_PREFERENCES = ["auto", "light", "mid"];
 function isKnownThemeValue(theme) {
-  // Praegused (light/mid/dark) + legacy väärtused, mille normalizeTheme oskab kaardistada.
-  return THEME_VALUES.includes(theme) || theme === "night" || theme === "mono";
+  // Praegused (auto/light/mid/dark) + legacy väärtused, mille normalizeTheme oskab kaardistada.
+  return theme === "auto" || THEME_VALUES.includes(theme) || theme === "night" || theme === "mono";
 }
-function normalizeTheme() {
-  // LUKUS (07.07): platvorm avaldab ainult "Hämar" (mid). Hele/Öö
-  // tokenid on karkass (Fable 5 viimistleb) — kuni siis sunnib runtime
-  // ALATI mid'i, et salvestatud/legacy väärtused (light/dark/night/mono)
-  // ega cookie ei aktiveeriks poolikut teemat. HC-baas (dark) tuleb
-  // effectiveTheme'ist, mitte siit.
-  return "mid";
+function normalizeTheme(theme) {
+  // Avaldatud on automaatne, hele (light) ja tume (mid), omanik 30.09. Öö
+  // (dark) ja legacy väärtused (night/mono) langevad tumedale, sest Öö on
+  // ainult kõrgkontrasti baas ja see tuleb effectiveTheme'ist, mitte siit.
+  return theme === "auto" || theme === "light" ? theme : "mid";
 }
-/* Efektiivne teemaväärtus: kõrgkontrast sunnib alati "dark" baasi. */
+/* Efektiivne teemaväärtus: kõrgkontrast sunnib alati "dark" baasi,
+   automaatne lahendub praeguse kellaaja järgi. */
 function effectiveTheme(prefs) {
-  return prefs?.contrast === "hc" ? "dark" : normalizeTheme(prefs?.theme);
+  return prefs?.contrast === "hc" ? "dark" : resolveThemePreference(normalizeTheme(prefs?.theme), new Date());
 }
 function resolveThemeFromDom(html) {
+  const attrPreference = html.getAttribute("data-theme-pref");
+  if (THEME_PREFERENCES.includes(attrPreference)) return attrPreference;
   const attrTheme = html.getAttribute("data-theme-mode");
   if (THEME_VALUES.includes(attrTheme)) return attrTheme;
   if (attrTheme === "night" || attrTheme === "mono") return normalizeTheme(attrTheme);
@@ -142,7 +155,7 @@ function readPrefsFromCookie() {
     const contrast = obj?.contrast || DEFAULT_PREFS.contrast;
     const reduceMotion = !!obj?.reduceMotion;
     const reduceTransparency = obj?.reduceTransparency == null ? reduceMotion : !!obj?.reduceTransparency;
-    let theme = normalizeTheme(obj?.theme);
+    let theme = storedThemePreference(obj);
     if (contrast === "hc") theme = "dark";
     return {
       uiScale,
@@ -190,17 +203,11 @@ function readInitialPrefsFromDom() {
   };
   const html = document.documentElement;
   const contrast = html.getAttribute("data-contrast") || DEFAULT_PREFS.contrast;
+  // Eelistuse paneb html-ile teema-init skript (app/layout.js) juba enne
+  // esimest värvimist, samast a11y_prefs-ist; vana "theme" võtit ei loeta,
+  // sest see hoiab versioonita (enne 30.09) väärtust.
   let theme = resolveThemeFromDom(html) || DEFAULT_PREFS.theme;
-  if (contrast !== "hc") {
-    try {
-      const storedTheme = window.localStorage.getItem("theme");
-      if (isKnownThemeValue(storedTheme)) {
-        theme = normalizeTheme(storedTheme);
-      }
-    } catch {}
-  } else {
-    theme = "dark";
-  }
+  if (contrast === "hc") theme = "dark";
   const storedUIScale = readStoredUIScale();
   const storedUIProfile = readStoredUIProfile();
   const domReduceMotion = html.getAttribute("data-reduce-motion") === "1";
@@ -242,6 +249,7 @@ function applyPrefsToDom(prefs) {
   html.style.setProperty("--ui-scale", String(combinedFactor));
   const theme = effectiveTheme({ theme: prefs.theme, contrast: nextContrast });
   html.setAttribute("data-theme-mode", theme);
+  html.setAttribute("data-theme-pref", normalizeTheme(prefs.theme));
   const hadThemeClass = THEME_VALUES.find((v) => html.classList.contains(`theme-${v}`)) || null;
   const themeChanged = hadContrast !== nextContrast || hadThemeClass !== theme;
   if (themeChanged) {
@@ -515,6 +523,26 @@ function AccessibilityProvider({
       }
     };
   }, [logDev, safeApplyPrefsToDom]);
+  /* Automaatne teema: lahti olev leht vahetab päikesetõusul ja -loojangul
+     ise. Kontroll kord minutis ja lehele naastes (arvuti uni, taustakaart);
+     kui klass juba klapib, ei rakendata midagi. Avatud eelistuste modaali
+     ajal ei kontrollita, et eelvaadet tagasi ei keerataks. */
+  const autoTheme = prefs?.theme === "auto" && prefs?.contrast !== "hc";
+  useEffect(() => {
+    if (!autoTheme || open || typeof window === "undefined") return undefined;
+    const check = () => {
+      const snapshot = prefsRef.current;
+      if (!snapshot || matchesThemeClasses(document.documentElement, snapshot)) return;
+      safeApplyPrefsToDom(snapshot, "auto-daylight");
+    };
+    check();
+    const timer = window.setInterval(check, 60000);
+    document.addEventListener("visibilitychange", check);
+    return () => {
+      window.clearInterval(timer);
+      document.removeEventListener("visibilitychange", check);
+    };
+  }, [autoTheme, open, safeApplyPrefsToDom]);
   const announce = useCallback(msg => {
     if (!msg) return;
     if (typeof document === "undefined") return;
@@ -534,6 +562,7 @@ function AccessibilityProvider({
     merged.uiScale = normalizeUIScale(merged.uiScale);
     merged.uiProfile = normalizeUIProfile(merged.uiProfile ?? merged.uiScale);
     merged.theme = normalizeTheme(merged.theme);
+    merged.themeV = THEME_PREF_VERSION;
     if (merged.contrast === "hc") {
       merged.theme = "dark";
     }
@@ -558,7 +587,7 @@ function AccessibilityProvider({
       localStorage.setItem(UI_PROFILE_STORAGE_KEY, merged.uiProfile);
     } catch {}
     try {
-      if (THEME_VALUES.includes(merged.theme)) {
+      if (isKnownThemeValue(merged.theme)) {
         localStorage.setItem("theme", merged.theme);
       }
     } catch {}

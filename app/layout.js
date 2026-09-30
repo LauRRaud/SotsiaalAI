@@ -14,6 +14,7 @@ import LiquidCursor from "@/components/brand/LiquidCursor";
 import SpecularHighlight from "@/components/glass/SpecularHighlight";
 import GlassFilters from "@/components/glass/GlassFilters";
 import { authConfig } from "@/auth";
+import { isEstonianDaytime, resolveThemePreference } from "@/lib/themeDaylight";
 
 // Exo 2 = platvormi läbiv font (logo font); toetab kirillitsat (vene) ja
 // latin-ext'i (eesti š/ž) — kõik tekstid, nupud, pealkirjad ühes kirjas
@@ -89,8 +90,8 @@ const THEME_INIT_SCRIPT = `(function () {
   var root = document.documentElement;
   if (!root) return;
   function normalizeTheme(value) {
-    // Kolm tonaalset teemat: light (Hele) / mid (Hämar, vaikimisi) / dark (Öö).
-    if (value === "light" || value === "mid" || value === "dark") return value;
+    // Eelistus: auto (kellaaja järgi) / light (Hele) / mid (Tume, vaikimisi) / dark (Öö).
+    if (value === "auto" || value === "light" || value === "mid" || value === "dark") return value;
     // Legacy tagasiühilduvus: vanad väärtused → lähim uus.
     if (value === "night" || value === "mono") return "dark";
     return null;
@@ -104,14 +105,15 @@ const THEME_INIT_SCRIPT = `(function () {
     }
   }
   function readTheme(prefs) {
-    var theme = normalizeTheme(prefs && prefs.theme);
-    if (!theme) {
-      try {
-        theme = normalizeTheme(window.localStorage.getItem("theme"));
-      } catch {}
-    }
-    return theme || normalizeTheme(root.getAttribute("data-theme-mode")) || "mid";
+    // Vaikimisi automaatne (omanik 30.09). Enne kolme valikuga teemavalikut
+    // (themeV < 2) salvestatud teema ei olnud kasutaja valik — tume oli
+    // ainus võimalus —, seega see loetakse automaatseks.
+    if (prefs) return prefs.themeV >= 2 ? normalizeTheme(prefs.theme) || "auto" : "auto";
+    return normalizeTheme(root.getAttribute("data-theme-pref")) || "auto";
   }
+  // Sama funktsioon mis lib/themeDaylight.js (lähtetekstina, et automaatne
+  // teema oleks õige juba enne esimest värvimist).
+  var isEstonianDaytime = (${isEstonianDaytime.toString()});
   function resolveChromeColor(theme, contrast) {
     // Brauserikroom järgib teema tooni (Hämar = stseeni loojang).
     if (contrast === "hc") return "#0c0703";
@@ -136,10 +138,19 @@ const THEME_INIT_SCRIPT = `(function () {
   }
   var prefs = readPrefs();
   var contrast = (prefs && prefs.contrast) || root.getAttribute("data-contrast") || "normal";
-  // LUKUS (07.07): ainult "Hämar" (mid) avaldatud. Hele/Öö = karkass
-  // (Fable 5) — sunni mid, et salvestatud light/dark ei vilguks laadimisel.
-  // (readTheme/normalizeTheme jäetud alles Fable 5 taasavamiseks.)
-  var theme = contrast === "hc" ? "dark" : "mid";
+  // Avaldatud on automaatne (päeval hele, õhtul tume), hele (light, päevane
+  // tuba) ja tume (mid, õhtune tuba), omanik 30.09. Öö (dark) on ainult
+  // kõrgkontrasti baas — salvestatud dark ei vilgu laadimisel, vaid langeb
+  // tumedale (mid).
+  var preference = readTheme(prefs);
+  if (preference !== "auto" && preference !== "light") preference = "mid";
+  var theme =
+    contrast === "hc"
+      ? "dark"
+      : preference === "auto"
+        ? isEstonianDaytime(new Date()) ? "light" : "mid"
+        : preference;
+  root.setAttribute("data-theme-pref", preference);
   root.setAttribute("data-theme-mode", contrast === "hc" ? "dark" : theme);
   root.setAttribute("data-contrast", contrast);
   if (prefs) {
@@ -295,15 +306,22 @@ function parseA11yPrefs(jar) {
   try {
     const obj = JSON.parse(raw);
     const contrast = obj?.contrast;
-    // LUKUS (07.07): ainult "Hämar" (mid) avaldatud. Hele/Öö = karkass
-    // (Fable 5) — cookie'sse salvestatud light/dark ei taasaktiveeru.
+    // Avaldatud on auto, light ja mid (omanik 30.09); dark on ainult
+    // kõrgkontrasti baas, seega cookie'sse salvestatud dark langeb mid'ile.
     return {
       uiScale: obj?.uiScale ?? obj?.textScale,
       uiProfile: obj?.uiProfile ?? obj?.screenProfile ?? obj?.uiScale ?? obj?.textScale,
       contrast,
       reduceMotion: !!obj?.reduceMotion,
       reduceTransparency: obj?.reduceTransparency == null ? !!obj?.reduceMotion : !!obj?.reduceTransparency,
-      theme: contrast === "hc" ? "dark" : "mid"
+      // Enne kolme valikuga teemavalikut (themeV < 2) salvestatud teema ei olnud
+      // kasutaja valik, seega vaikimisi automaatne (omanik 30.09).
+      theme:
+        contrast === "hc"
+          ? "dark"
+          : obj?.themeV >= 2 && (obj?.theme === "light" || obj?.theme === "mid")
+            ? obj.theme
+            : "auto"
     };
   } catch {
     return null;
@@ -325,10 +343,13 @@ export default async function RootLayout({
   const initiallyCompletedRoomArrival =
     jar.get(ROOM_ARRIVAL_COMPLETE_COOKIE)?.value === "1";
   const initialA11yPrefs = parseA11yPrefs(jar);
-  const initialTheme = initialA11yPrefs?.theme || "mid";
+  // Eelistus (auto/light/mid/dark) ja selle järgi nähtav teema: automaatne
+  // lahendub serveri kellaaja järgi (sama arvutus mis teema-init skriptis).
+  const initialThemePref = initialA11yPrefs?.theme || "auto";
+  const initialTheme = resolveThemePreference(initialThemePref, new Date());
   const initialUiProfile = normalizeUiProfile(initialA11yPrefs?.uiProfile);
   const initialTextScale = normalizeTextScale(initialA11yPrefs?.uiScale);
-  return <html lang={locale} data-theme-mode={initialTheme} data-ui-scale={initialUiProfile} data-ui-profile={initialUiProfile} data-text-scale={initialTextScale} data-ui-scale-auto="0" data-contrast={initialA11yPrefs?.contrast || "normal"} data-reduce-motion={initialA11yPrefs?.reduceMotion ? "1" : "0"} data-reduce-transparency={initialA11yPrefs?.reduceTransparency ? "1" : "0"} className={`${initialTheme === "light" ? "theme-light" : initialTheme === "dark" ? "theme-dark" : "theme-mid"} ${fontExo2.variable}`.trim()} suppressHydrationWarning>
+  return <html lang={locale} data-theme-mode={initialTheme} data-theme-pref={initialThemePref === "dark" ? "mid" : initialThemePref} data-ui-scale={initialUiProfile} data-ui-profile={initialUiProfile} data-text-scale={initialTextScale} data-ui-scale-auto="0" data-contrast={initialA11yPrefs?.contrast || "normal"} data-reduce-motion={initialA11yPrefs?.reduceMotion ? "1" : "0"} data-reduce-transparency={initialA11yPrefs?.reduceTransparency ? "1" : "0"} className={`${initialTheme === "light" ? "theme-light" : initialTheme === "dark" ? "theme-dark" : "theme-mid"} ${fontExo2.variable}`.trim()} suppressHydrationWarning>
       <head>
         <meta
           name="format-detection"

@@ -122,6 +122,16 @@ button.specular-button[data-variant]:active:not(:disabled) {
   box-shadow: var(--input-highlight), var(--input-focus-glow), var(--input-shadow);
 }
 
+/* Hele teema (omanik 30.09): tume kiri heledal väljamaterjalil. Tekstivärv
+   tuleb inline-muutujast (--sb-text-color, #f5f5f5), seega kirjutatakse üle
+   värv ise. Siin, mitte theme-light.css-is: see fail on kihiväline. */
+html.theme-light:not(:has(.room[data-power="standby"])) .specular-button {
+  color: var(--text-warm);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .specular-button:focus-visible {
+  outline-color: rgba(21, 21, 21, 0.6);
+}
+
 /* Retain the shared translucent material, hover and pointer shine.
    Only backdrop resampling is disabled inside the moving pricing carousel. */
 button.specular-button.pc-cta[data-variant] {
