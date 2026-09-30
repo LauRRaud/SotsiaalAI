@@ -1,0 +1,23 @@
+{
+  "document_id": "riigiteataja:429012026051:lisa:sotsiaaltoetuse-maarad",
+  "title": "Sotsiaaltoetuste määrade kehtestamine: Saku Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise kord“ lisa",
+  "source_type": "legal_act",
+  "language": "et",
+  "authority": "Saku Vallavolikogu",
+  "valid_from": "2026-02-01+02:00",
+  "publication_date": "2026-01-29+02:00",
+  "source_url": "https://www.riigiteataja.ee/akt/429012026051",
+  "source_path": "oigusaktid/lisad/429012026051-lisa.json",
+  "source_format": "json",
+  "rt_annex": {
+    "xml_path": "oigusaktid/429012026051.xml",
+    "xml_sha256": "648f0e570218e6e3666f2ab2c7b0ccbe8a2633b0c688db96c866479115a64f0f",
+    "act_reference": "429012026051",
+    "file_name": "sotsiaaltoetuse maarad.pdf",
+    "pdf_sha256": "b04b55f0c0b701cac7fbc049263e0bdbff0d4f4eec911553a8a5c908e57a7999",
+    "table": "text",
+    "extractor": "rag-v2/rt-annex-text-1",
+    "heading": "Sotsiaaltoetuste määrade kehtestamine",
+    "pages": 1
+  }
+}

@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="6e6ed5da-d3c7-4533-82a0-5325f0fe5249" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Tapa Vallavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2026-08-27</aktikuupaev>
+  
+  
+  <aktiNr>16</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-09-04</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>56</RTartikkel><aktViide>404092026056</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2027-01-01+02:00</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2026-09-03</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>404092026056</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2026-09-03</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1064369</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2026-09-03</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Evelin Värk</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="24836232-d9fd-463b-9760-8e88677533e0">
+  <nimi id="f9a9efcf-a0f9-4508-8889-680ef01b47ff">
+   <pealkiri id="86881b3f-673e-4cb7-9bf0-e09276d511d6">Sissetulekust mittesõltuvate toetuste maksmise kord</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="c98215fb-862e-4512-9e47-0d13ac1c24e8"><preambul id="d78af73b-0c32-490e-a431-5109c91c594f">
+   <tavatekst id="bbb6d939-d166-47dc-a034-e13e534bf215">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lg 1 p 5 ja sotsiaalhoolekande seaduse § 14 lg 1 ja 2 alusel. </tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="af07018f-b5f9-46f2-9176-e0b217311e39">1</paragrahvNr>
+   <kuvatavNr id="1c2e6668-9bc2-4c8b-893f-eb832d80c517"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="bd3f29a1-548e-4b72-805a-bba59cdec73d">Määruse reguleerimisala</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="82122f68-5e45-4df8-821e-3d3a966d915d">1</loigeNr>
+   <kuvatavNr id="b345463d-a4d8-4cb3-98ab-0866af116f06"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="7932be90-fd1f-48b9-9d63-b5a6e223f243">
+    <tavatekst id="bfda8240-5dc5-4f5e-86e9-1329e9df042c">Käesolev kord sätestab sissetulekust mittesõltuvate toetuste liigid, määrad ning nende määramise ja maksmise Tapa vallas.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg2">
+   <loigeNr id="90603174-ff9d-44ba-a8f2-0a5783cb669e">2</loigeNr>
+   <kuvatavNr id="f5a0c7a7-e2e2-4058-9d80-6ddecc55c5ec"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="3068d2e9-fb04-48bd-8a3f-361e7d9c4030">
+    <tavatekst id="18ee6efb-b8c8-4727-9a32-de9f34b729e3">Sissetetulekust mittesõltuvate toetuste liigid on:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para1lg2p1">
+   <alampunktNr id="aae0768e-b9d9-4a39-bc3a-365f0e5a928f">1</alampunktNr>
+   <kuvatavNr id="a6791578-53a1-4e26-ae86-ea66d9a30670"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="cc0bc273-e561-42cb-a12e-fd5b4dec296f">
+    <tavatekst id="6aa1580d-7bfc-448d-9fa0-b142924cdbee">sünnitoetus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg2p2">
+   <alampunktNr id="c56e9ba3-fe60-4eb9-b371-48e5c8cc1fe2">2</alampunktNr>
+   <kuvatavNr id="0668f303-2382-40a8-9c2e-72ca955686c7"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="aa134ef0-0e50-449b-b13f-74ea602ee368">
+    <tavatekst id="07ca6d31-4a2e-45f5-aa3c-d01daa7d7fd2">ranitsatoetus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg2p3">
+   <alampunktNr id="35bfda16-1cfb-481d-ac23-e139b1eb304c">3</alampunktNr>
+   <kuvatavNr id="fa605df3-5cad-465e-bdc7-652316da98fc"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="10e8dd38-1fb8-4f98-86ab-037850b67406">
+    <tavatekst id="c4b4a474-3256-4260-b760-daff7c0499d2">eaka sünnipäevatoetus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg2p4">
+   <alampunktNr id="5f0e7559-003b-4be0-b884-3677dce1b106">4</alampunktNr>
+   <kuvatavNr id="75d740a3-3202-4050-bdb1-2916e5994995"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="3d6600d1-9a2c-4bef-8e4e-5e643886091a">
+    <tavatekst id="3e13443e-9526-4652-acd8-37c9353fd63e">matusetoetus.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para1lg3">
+   <loigeNr id="4190a01c-ee5e-4442-8b68-a2191bd84223">3</loigeNr>
+   <kuvatavNr id="34197b23-8e09-4c7b-b3b1-fa2a7e2c222b"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="b38ba5fb-67d5-4a73-996c-e0c1be3b4797">
+    <tavatekst id="c89a5f2c-5420-4518-8589-b17f08a99f6a">Tapa valla eelarves toetuste maksmiseks eraldatud vahendite kasutamist korraldab ja peab selle üle arvestust Tapa Vallavalitsus (edaspidi vallavalitsus).</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="0ee13460-edc4-46e2-ab29-a8474b387217">2</paragrahvNr>
+   <kuvatavNr id="6e97b852-1ef4-4c1a-bb82-d8b3ec6fecde"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="b7870e5e-d377-41ed-b4cf-65723e511f27">Toetuste määrad</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="a3d7fde9-87ba-44a6-bc22-1d3775724bc3"/>
+   <kuvatavNr id="71c28b5b-9fc3-4bcc-9d3d-e2d1ab9818f0"/>
+   <sisuTekst id="fab3a9ca-e999-49b5-8094-b29244d34210">
+    <tavatekst id="d76c8e2c-4835-45a6-a41c-adc381eee846">Sissetulekust mittesõltuvate toetuste määrad on: </tavatekst>
+   </sisuTekst>
+  <alampunkt id="para2lg1p1">
+   <alampunktNr id="167811b4-8db5-4ad4-b642-61b6bccc8ab3">1</alampunktNr>
+   <kuvatavNr id="e61c386c-6de4-4885-b9a1-4a84451bb6f1"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="30c96e92-5285-4f09-872d-134a61592bb6">
+    <tavatekst id="c2a672b7-cbc4-4250-9729-d2debe1f1cee">sünnitoetus 400 eurot;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p2">
+   <alampunktNr id="222fb342-5f0c-4349-ba8d-9d47a50f9af8">2</alampunktNr>
+   <kuvatavNr id="572484bf-a70c-48ce-92ef-6823eb9f16ea"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="a69fc111-446d-4f19-99be-e6010d6eaa62">
+    <tavatekst id="f87b6abc-b1f2-4a58-88d3-2e64a3f852e5">ranitsatoetus 150 eurot;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p3">
+   <alampunktNr id="3060af59-8c97-4c02-9f9b-06bf5b886597">3</alampunktNr>
+   <kuvatavNr id="2e9445aa-8a32-4a82-acbd-e11b0451ce56"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="c6988bcc-2fc6-4704-90be-2fa50e0c1420">
+    <tavatekst id="260d7a99-bf19-4de3-9f36-57bd3bcd60ac">eaka sünnipäevatoetus 75 eurot;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p4">
+   <alampunktNr id="9592eca1-5d72-4e5c-946c-511b3e0235e5">4</alampunktNr>
+   <kuvatavNr id="d24cd6a5-ca44-455b-8160-ba5ad11c39db"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="d701a759-f01a-4b01-b80e-26d8a1700ba2">
+    <tavatekst id="e0fac328-d5f6-4f25-bc72-2b091e831134">matusetoetus 250 eurot. </tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="ccb1aed9-27b8-4917-81eb-9c147ca342f1">3</paragrahvNr>
+   <kuvatavNr id="6658246e-eef8-4008-a04c-a8faea4a34c1"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="fe9a6760-a847-494d-b235-d3b48953fdb4">Sünnitoetus</paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="07c6d6fd-0ed7-4905-b29b-917eba3cacaa">1</loigeNr>
+   <kuvatavNr id="bf751726-2889-4ebf-8610-81a5f49a1691"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="844e6213-b00c-43e9-b759-4fef9a1ca970">
+    <tavatekst id="8d4a21c2-4a14-43d9-a235-b4a60cf2eec4">Sünnitoetus on lapse sünniga kaasnevate osaliste kulutuste katmiseks makstav ühekordne toetus.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg2">
+   <loigeNr id="b8efe9c3-0bb5-45ff-9bda-05ab6f1eaf25">2</loigeNr>
+   <kuvatavNr id="d69bf8c8-8bd5-46bc-9cae-e34b0e1d840e"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="0c58ff77-0269-4a9e-bb2c-972dc3392c63">
+    <tavatekst id="fc638e32-f2bf-4f52-9fdc-da8d0d77b69a">Toetust on õigus taotleda lapse sünni korral Tapa valla elanikul, kui lapse sündimise hetkel on lapse ema elukoht rahvastikuregistri andmetel Tapa vallas. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg3">
+   <loigeNr id="91f86e4a-3919-4574-9356-b6e138896969">3</loigeNr>
+   <kuvatavNr id="4f58efbc-9333-462a-adee-5532e62a3aa7"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="ebf93e3c-cd70-4f24-ac7d-9a99cf588d06">
+    <tavatekst id="64c8ecce-3905-47fe-a595-42a18c25231b">Kui lapse vanem või vanemad ei täida perekonnaseadusest tulenevaid kohustusi, makstakse sünnitoetus lapse eestkostjale, lapse tegelikule hooldajale või hoolduspere vanemale. Hoolduspere vanem, eestkostja vanem ja tegelik hooldaja ei pea olema rahvastikuregistri andmetel Tapa valla elanik. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg4">
+   <loigeNr id="347ff498-7c92-41fd-8aed-9f9e6f8df024">4</loigeNr>
+   <kuvatavNr id="c7328baa-706c-461d-a00e-b0ddbdd9eeb9"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="45015628-7ac8-4001-b70a-6010dadb83c6">
+    <tavatekst id="36784672-4d1a-4558-9af4-454f3e1da885">Mitmikute sünni puhul makstakse toetust iga lapse eest.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg5">
+   <loigeNr id="8bb7b1b6-2bd1-4d5c-a765-cce62171d14a">5</loigeNr>
+   <kuvatavNr id="0e10c7c8-2e4b-460d-97b2-850afbcdb3c5"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="57d519e5-1058-455e-916d-cfbe7be0b7f0">
+    <tavatekst id="5d65ccf4-0afe-4d62-aa57-88328d465652">Toetuse saamiseks tuleb esitada kirjalik taotlus hiljemalt kolme kuu jooksul alates lapse sünni registreerimisest.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg6">
+   <loigeNr id="4b2c5356-83f6-4247-b7fd-421e51067214">6</loigeNr>
+   <kuvatavNr id="3f72bb9f-239d-4e65-9f85-b07af77bc675"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="35090a88-acad-4dda-a4fe-6da3e9fb17f9">
+    <tavatekst id="ae41fcf9-bc3a-4da8-9fe8-795a5f3f4c25">Toetus makstakse välja mitte hiljem kui 10 kalendripäeva jooksul taotluse esitamisest arvates.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para4">
+   <paragrahvNr id="f024787f-56c9-40bc-be80-b5676ed10b76">4</paragrahvNr>
+   <kuvatavNr id="081b6629-0256-474c-b82d-2b4d1cc76b61"><![CDATA[§ 4. ]]></kuvatavNr>
+   <paragrahvPealkiri id="2dd5bb76-4d33-494e-a273-9f01dea0f45c">Ranitsatoetus</paragrahvPealkiri>
+  <loige id="para4lg1">
+   <loigeNr id="c8b30027-e600-477c-a01b-921f3d99c041">1</loigeNr>
+   <kuvatavNr id="95285c1e-7d73-4eb3-bd69-109170e39b63"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="eb58b3a0-a9f0-4b6e-ade5-544f10fb6dd5">
+    <tavatekst id="994cc050-fc0e-42c4-be9c-0b24c9bc8fc6">Ranitsatoetus on rahaline toetus, mida makstakse osaliste kulude katmiseks esimesse klassi mineva lapse vanemale, eestkostjale või hoolduspere vanemale.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg2">
+   <loigeNr id="c4282478-b6e2-44f8-a3a4-55b9b48fe756">2</loigeNr>
+   <kuvatavNr id="2d8a1848-9da2-4957-90bf-1e7fd4bf5ae2"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="94839e3d-a8f1-426f-9748-7bdeee6454e9">
+    <tavatekst id="5829e8b9-bc09-42f7-8553-94125012153d"> Toetust makstakse Tapa valla munitsipaalkooli esimesse klassi astuva õpilase eest.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg3">
+   <loigeNr id="53225d69-5c69-4b81-b32f-98b474d12cd1">3</loigeNr>
+   <kuvatavNr id="83a64849-23cd-4b87-8f97-fef1bd45b947"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="a70b4c01-df27-41e0-b2bf-2b9bef82e1a1">
+    <tavatekst id="2479d40c-3633-4d6b-9423-6dc016c67c21">Kui vanem ei täida perekonnaseadusest tulenevaid kohustusi, makstakse toetus lapse eestkostjale või lapse tegelikule hooldajale.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg4">
+   <loigeNr id="a824e1bc-b303-4e22-a37f-5e1db2e1729e">4</loigeNr>
+   <kuvatavNr id="36a8b2df-6e04-4e8b-b171-e4682c52b250"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="d8d45d17-bd6b-4f5a-a6dc-38d1527ddd98">
+    <tavatekst id="207f1314-14c8-4230-828b-9a7ceb7f6ded">Lapse üks vanem või eestkostja ja kooli minev laps peavad olema toetuse taotlemisel ja lapse kooli minemise aasta 1. septembri seisuga rahvastikuregistri andmetel Tapa valla elanikud.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg5">
+   <loigeNr id="1ceee100-5210-49c1-830e-858a8386a72d">5</loigeNr>
+   <kuvatavNr id="495bf131-5403-407e-9844-731974ef9aac"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="d4adb7f6-27db-48e2-8769-33c473357d8a">
+    <tavatekst id="cbc952cd-5250-4f91-af6e-4884b02cd002">Toetuse määramisel võetakse aluseks koolide esitatud 1. klassi õpilaste nimekirjad 10. septembri seisuga.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg6">
+   <loigeNr id="2cb03689-a668-47d2-9e01-f3bcc861cc46">6</loigeNr>
+   <kuvatavNr id="2f8e491b-052f-4c2c-a3d3-9493c63bdb47"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="52cc0773-ee70-4c46-ae55-666adbfd2fdf">
+    <tavatekst id="a2b1769b-ae8f-480e-8121-e1033d5c87b2">Toetust on õigus saada ka juhul, kui laps ei asu õppima Tapa valla kooli erivajaduse tõttu või on vallavalitsuse poolt suunatud õppima väljaspool Tapa valda asuvasse kooli ning lapsevanem esitab toetuse saamiseks taotluse, milles märgitakse lisaks lapse andmed ja kooli nimetus ning esitatakse koolitõend. Taotlus toetuse maksmiseks tuleb esitada õppeaasta algusest kolme kuu jooksul.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg7">
+   <loigeNr id="1014e6c8-4944-4ab0-a57a-0e3e0bdb6fa0">7</loigeNr>
+   <kuvatavNr id="fe10cd9d-dcff-4fee-b50d-831b1fbb55c8"><![CDATA[(7)]]></kuvatavNr>
+   <sisuTekst id="c0162eb1-aea4-4172-bf6a-45d561861fa9">
+    <tavatekst id="e2ed9be4-54e2-4d79-a5ae-4d921c2671b1">Toetus makstakse välja alates lapse koolimineku aasta 15. septembrist kuni 30. septembrini. </tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para5">
+   <paragrahvNr id="b99a2a95-5f1d-4c1c-97a9-87e101f789ed">5</paragrahvNr>
+   <kuvatavNr id="b2daa614-0428-43cf-971c-50a6f72040ce"><![CDATA[§ 5. ]]></kuvatavNr>
+   <paragrahvPealkiri id="63d34efe-759b-41e1-a7f2-830ee23db84f">Eaka sünnipäevatoetus</paragrahvPealkiri>
+  <loige id="para5lg1">
+   <loigeNr id="ed6a5874-0eda-4e95-b5b6-1bad6d3d65e3">1</loigeNr>
+   <kuvatavNr id="268a5c46-72bf-4842-8253-6d97dfd2e67a"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="b37e4651-7caf-41c3-abc3-f89a42423ea4">
+    <tavatekst id="4838253b-cb89-4b2f-b1bf-62a78425e581">Eaka sünnipäevatoetus on Tapa valla eakale elanikule sünnipäeva puhul makstav rahaline toetus. Vallavalitsus võib sünnipäevalapsele üle anda ka õnnitluskaardi ja lilled. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg2">
+   <loigeNr id="90a38700-6859-41bb-964b-353be2cd939e">2</loigeNr>
+   <kuvatavNr id="35c2c8ac-9881-4f16-9dca-4f97c6f97085"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="b76f4a89-1806-439a-b1c5-30c32776287e">
+    <tavatekst id="5c59bd1b-e3e2-4e11-8faf-cd9355c420a0">Toetust on õigus saada isikul 75. ja 80. sünnipäeva puhul ning alates 85. eluaastast iga sünnipäeva puhul, kui tema elukohaks on Eesti rahvastikuregistri andmetel Tapa vald. Tagasiulatuvalt saab taotleda toetust kuni 3 kuud sünnipäeva möödumisest. Toetust on võimalik saada, kui vähemalt jooksva aasta 01. jaanuari seisuga on õigustatud isiku elukohaks Eesti rahvastikuregistri andmetel Tapa vald.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg3">
+   <loigeNr id="7df1043c-67d3-49b4-844b-e9c50327503e">3</loigeNr>
+   <kuvatavNr id="4893554d-c925-46be-a4af-ad03585e1344"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="9308476e-c992-4233-8072-9cddcfcfe73b">
+    <tavatekst id="59a6cda2-9854-4ac6-b10c-4fbdb3603cfe">Toetus makstakse isikule välja sularahas sünnipäeva päeval või hiljemalt kolme päeva jooksul peale sünnipäeva või taotluse alusel arveldusarve kontole taotluse esitamisest 10 päeva jooksul. </tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para6">
+   <paragrahvNr id="8ca8cad5-51c2-42f2-9ffc-372712d20f1b">6</paragrahvNr>
+   <kuvatavNr id="75ff6a00-e981-4429-bef5-08b09e5423fc"><![CDATA[§ 6. ]]></kuvatavNr>
+   <paragrahvPealkiri id="fb981d8d-16d5-4d94-a7ea-5e6d7c3392e7">Matusetoetus</paragrahvPealkiri>
+  <loige id="para6lg1">
+   <loigeNr id="e028ad82-e68b-4a84-bea5-5782c93d934e">1</loigeNr>
+   <kuvatavNr id="8178995f-c6d5-4b15-b236-f9cde9b43658"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="7ca0bed0-f4af-47d6-9339-5db90815b532">
+    <tavatekst id="4b8bd78c-41be-41d1-8fad-c4436344bdd1">Matusetoetus on matuse korraldamisega kaasnevate kulude katmiseks makstav ühekordne toetus.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg2">
+   <loigeNr id="be01c59f-0fb7-431c-83ad-9db724ac270b">2</loigeNr>
+   <kuvatavNr id="e5924ea5-931f-4d02-b4fe-69251840721e"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="dc4e7c49-1a23-45b9-a93b-a6677a5dae78">
+    <tavatekst id="87078c8c-bba7-4952-857b-e6745c9bfb6e">Toetust ei maksta: </tavatekst>
+   </sisuTekst>
+  <alampunkt id="para6lg2p1">
+   <alampunktNr id="e6cd51c2-c36e-41d5-8c57-3b5bacdd4095">1</alampunktNr>
+   <kuvatavNr id="0ff23034-df23-4321-bc45-897b3a5440a3"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="35d35373-a6cb-49e9-b577-58b0d4b43f6a">
+    <tavatekst id="fef50434-1aa7-49ca-a94f-3ea56956130b">kohtu poolt isiku surnuks tunnistamise korral;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para6lg2p2">
+   <alampunktNr id="217e6fc5-0d68-4f54-a252-297da635f433">2</alampunktNr>
+   <kuvatavNr id="b70483d8-fbde-405f-90bb-68f3193b42d7"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="ce6c9c62-8a4b-4bdf-a45b-30eee2644795">
+    <tavatekst id="c3d2bc17-4f52-4ca2-b1a7-564ebfac233d">kui matuse korraldamise kõik kulud on hüvitatud seaduse või muu õigusakti alusel täies ulatuses riigieelarvest.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para6lg3">
+   <loigeNr id="697df61e-9915-4350-8163-a8be08ffda52">3</loigeNr>
+   <kuvatavNr id="3e9ff663-6309-4d0d-9ce3-bb935e32c951"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="8f58fff8-357a-479d-af54-a20a17df8141">
+    <tavatekst id="855ec1f2-e404-4650-8f15-e2abc6a33fa3">Toetust makstakse matuse korraldajale isiku surma korral, kelle viimane elukoht Eesti rahvastikuregistri andmetel oli Tapa vald.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg4">
+   <loigeNr id="b23ab9eb-106d-44d8-ad98-ca749d397502">4</loigeNr>
+   <kuvatavNr id="6c79bb6f-ea88-44de-804e-a593f56eeedc"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="6e031983-b69e-4a76-b0a1-e22785f51d53">
+    <tavatekst id="a616ce33-42d1-4b77-b644-e3dd1221df5f">Kui matusekorraldajaid on mitu, peavad matusega seotud kulusid teinud isikud kokku leppima, kes kulu teinud isikutest taotleb toetust.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg5">
+   <loigeNr id="58bc8b6a-5656-4f17-9829-13d6e007beda">5</loigeNr>
+   <kuvatavNr id="9d51802d-4634-4b9d-864d-b646785a0a18"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="52c54305-19bc-43ee-b12d-827b9c6e2ae4">
+    <tavatekst id="50f9fa9a-c76e-44ae-87c7-f073428949d8">Toetuse saamiseks tuleb esitada taotlus hiljemalt kolme kuu jooksul lahkunu surmapäevast arvates. Toetus makstakse välja arveldusarve kontole mitte hiljem kui 10 kalendripäeva jooksul taotluse esitamisest arvates.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para7">
+   <paragrahvNr id="9c38bc15-b108-45f6-9002-e18ed826f3e7">7</paragrahvNr>
+   <kuvatavNr id="890497ff-154c-42df-b5a9-f91e0b433659"><![CDATA[§ 7. ]]></kuvatavNr>
+   <paragrahvPealkiri id="bf74ee31-b571-4b72-b959-f772c1a4f1ed">Toetuste avalduste menetlemine ja väljamaksmine</paragrahvPealkiri>
+  <loige id="para7lg1">
+   <loigeNr id="6058d6c2-810a-46f1-9100-385ecb6a51c7">1</loigeNr>
+   <kuvatavNr id="e2bd94de-3d89-4e4f-9c0e-dfb2b8674ff6"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="60d62f72-be08-4846-96f0-1f7456943e87">
+    <tavatekst id="a70597a0-e4d9-4f26-8743-32fa2c6a48a4">Korra § 1 lõige 2 nimetatud toetuste taotlused (v.a. eakate sünnipäevatoetus) vaatab läbi, kontrollib andmete õigsust ja vastavust käesolevas määruses sätestatud tingimustele, vallavalitsuse vastava valdkonna spetsialist.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg2">
+   <loigeNr id="ac00c5c1-6236-4506-b124-073cea3aab65">2</loigeNr>
+   <kuvatavNr id="0dd7be48-11ce-4d70-8091-b7d04763462d"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="138ede60-d0cb-42d5-a88c-1cce36b23b30">
+    <tavatekst id="e9c1109d-b3b7-4cf2-af21-1f0d565012db">Info toetuste väljamaksmise kohta edastab vallavalitsuse vastava valdkonna teenistuja raamatupidamisele STAR süsteemi kaudu.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg3">
+   <loigeNr id="5b58201c-4a84-4ef8-bc12-1a0bbabf155f">3</loigeNr>
+   <kuvatavNr id="bf02dcf5-60ba-431c-b9f2-5811c0b203e7"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="69bfbd73-b7b9-47c9-bff3-3a0bad54dcdf">
+    <tavatekst id="499216a1-2faf-45a3-9d83-1d4af7a2cbeb">Kui toetuse maksmiseks puudub alus, jätab vallavalitsus toetuse taotluse rahuldamata ning sellest teavitatakse toetuse taotluse esitajat kirjalikult vallavalitsuse vastava valdkonna teenistuja poolt.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para8">
+   <paragrahvNr id="2829d695-fa85-4ae6-bdce-cb74ab4502bd">8</paragrahvNr>
+   <kuvatavNr id="5f7ecf49-66b0-419e-912a-eed8effd16cb"><![CDATA[§ 8. ]]></kuvatavNr>
+   <paragrahvPealkiri id="6ea5b0b2-546c-451e-982f-00da633127a6">Toetuse tagasinõudmine</paragrahvPealkiri>
+  <loige id="para8lg1">
+   <loigeNr id="141faf83-d929-4438-aa38-028dfc433339">1</loigeNr>
+   <kuvatavNr id="03a636cf-14f4-486e-8d98-4f807359459e"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="854c850c-43b0-4110-a5c8-168bd458db00">
+    <tavatekst id="8ccf9286-f344-418b-bbe6-34f4d6645726">Kui toetus on määratud või välja makstud alusetult, sealhulgas valeandmete esitamise, andmete varjamise või muu toetuse saamise õigust mõjutava asjaolu tõttu, on vallavalitsusel õigus teha toetuse tagasinõudmise otsus.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para8lg2">
+   <loigeNr id="3aa5c2b2-5bc9-4565-a370-64751947819e">2</loigeNr>
+   <kuvatavNr id="99c36eeb-468b-4589-9742-54d09ca42ba3"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="8076ba96-e004-4965-8a1a-7f00fdfeb84b">
+    <tavatekst id="42ce6298-3067-4528-a591-c45590e2e439">Enammakstud toetuse tagastamine toimub vabatahtlikult ja/või tasaarveldades Tapa valla poolt makstavate toetuste arvel või kohtu kaudu. Enne toetuse tagasinõudmise otsustamist antakse toetuse saajale võimalus esitada selgitused ja puudused kõrvaldada, kui rikkumise laad seda võimaldab.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para9">
+   <paragrahvNr id="fad226b5-43d7-4f96-8d65-ebc8060edc5d">9</paragrahvNr>
+   <kuvatavNr id="b3e420f8-5ac3-443b-8093-c21fbc335c05"><![CDATA[§ 9. ]]></kuvatavNr>
+   <paragrahvPealkiri id="b0b9fcdf-c55f-40b4-8e51-e0728baa4f76">Rakendussätted</paragrahvPealkiri>
+  <loige id="para9lg1">
+   <loigeNr id="21adb09c-4d00-4c81-9e66-82646c9fd82d"/>
+   <kuvatavNr id="89c6e9e5-192e-47a7-9df5-873943a26595"/>
+   <sisuTekst id="154cd58a-0a52-45d8-afb4-4953193888b7">
+    <tavatekst id="8ee08afc-6495-44e8-a3fc-ee66f9e88f60">Määrus jõustub 1. jaanuaril 2027. </tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="1afc3cea-1901-4316-92d0-0091d183afeb"><allkiriKoht id="5874ae1e-e1fe-4eb1-a030-c9846d82c136"/><allkirjastaja id="4e2b944a-1477-4117-a774-bcfc8425f16e"><ametinimetus id="670c0325-ce78-40b8-a22c-d30861643cf2">volikogu esimees</ametinimetus><eesnimi id="a1a532b5-5f82-42c0-9ca0-8daa703e4342">Maksim</eesnimi><perekonnanimi id="194b7a1a-50f6-4293-9593-4b6557089938">Butšenkov</perekonnanimi></allkirjastaja></allkiri></oigusakt>

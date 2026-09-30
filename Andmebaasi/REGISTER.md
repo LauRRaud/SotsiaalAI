@@ -9,7 +9,7 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | KOV | 78 | 234 | 78 KOV-i põhipaketti koos metaandmete ja allikaloenditega. |
 | kontaktid | 0 | 10 | Kontaktide otsingumaterjal; kattuvus KOV-pakettidega vajab ühendamist. |
 | organisatsioonid | 1 | 3 | Organisatsiooni korjatud sisu ja allikad. |
-| oigusaktid | 148 | 160 | XML-aktid, sh eri redaktsioonid; kehtivus tuleb vastuvõtul kontrollida. Aktide lisadest tuletatud allikad (`lisad/`): kaks tabelit (ADR-050) ja kümme omavalitsuse lisa teksti (ADR-053); iga tuletatud allikas nimetab oma akti redaktsiooni. |
+| oigusaktid | 188 | 202 | XML-aktid, sh eri redaktsioonid; kehtivus tuleb vastuvõtul kontrollida. Aktide lisadest tuletatud allikad (`lisad/`): kaks tabelit (ADR-050) ja kaksteist omavalitsuse lisa teksti (ADR-053); iga tuletatud allikas nimetab oma akti redaktsiooni. |
 | teadmised | 0 | 7 | Allikapõhised teadmiskaardid (tingimused, erandid, mõisted ja nende seosed) valitud allikatele; iga fail on seotud oma allika räsiga (ADR-054). |
 | register | 0 | 2 | Kavandatud allikate register, mitte teadmistekst. |
 | taastatud_allikad | 0 | 22 | Serveri vanast indeksist taastatud tekst. Enne importi võrrelda põhipakettidega. |
@@ -1304,6 +1304,10 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | 403042025042-lisa.meta.json | [oigusaktid/lisad/403042025042-lisa.meta.json](<oigusaktid/lisad/403042025042-lisa.meta.json>) |
 | 430042026009-lisa.json | [oigusaktid/lisad/430042026009-lisa.json](<oigusaktid/lisad/430042026009-lisa.json>) |
 | 430042026009-lisa.meta.json | [oigusaktid/lisad/430042026009-lisa.meta.json](<oigusaktid/lisad/430042026009-lisa.meta.json>) |
+| 430062026035-lisa.json | [oigusaktid/lisad/430062026035-lisa.json](<oigusaktid/lisad/430062026035-lisa.json>) |
+| 430062026035-lisa.meta.json | [oigusaktid/lisad/430062026035-lisa.meta.json](<oigusaktid/lisad/430062026035-lisa.meta.json>) |
+| 429012026051-lisa.json | [oigusaktid/lisad/429012026051-lisa.json](<oigusaktid/lisad/429012026051-lisa.json>) |
+| 429012026051-lisa.meta.json | [oigusaktid/lisad/429012026051-lisa.meta.json](<oigusaktid/lisad/429012026051-lisa.meta.json>) |
 | 419052023006-lisa.json | [oigusaktid/lisad/419052023006-lisa.json](<oigusaktid/lisad/419052023006-lisa.json>) |
 | 419052023006-lisa.meta.json | [oigusaktid/lisad/419052023006-lisa.meta.json](<oigusaktid/lisad/419052023006-lisa.meta.json>) |
 | 411042018011-lisa-1.json | [oigusaktid/lisad/411042018011-lisa-1.json](<oigusaktid/lisad/411042018011-lisa-1.json>) |
@@ -1340,6 +1344,44 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | 429082026027.xml | [oigusaktid/429082026027.xml](<oigusaktid/429082026027.xml>) |
 | 430042026009.xml | [oigusaktid/430042026009.xml](<oigusaktid/430042026009.xml>) |
 | 429092026004.xml | [oigusaktid/429092026004.xml](<oigusaktid/429092026004.xml>) |
+| 401072025023.xml | [oigusaktid/401072025023.xml](<oigusaktid/401072025023.xml>) |
+| 403032026033.xml | [oigusaktid/403032026033.xml](<oigusaktid/403032026033.xml>) |
+| 403072026037.xml | [oigusaktid/403072026037.xml](<oigusaktid/403072026037.xml>) |
+| 404032025051.xml | [oigusaktid/404032025051.xml](<oigusaktid/404032025051.xml>) |
+| 404072025051.xml | [oigusaktid/404072025051.xml](<oigusaktid/404072025051.xml>) |
+| 404072026045.xml | [oigusaktid/404072026045.xml](<oigusaktid/404072026045.xml>) |
+| 404092025018.xml | [oigusaktid/404092025018.xml](<oigusaktid/404092025018.xml>) |
+| 404092026056.xml | [oigusaktid/404092026056.xml](<oigusaktid/404092026056.xml>) |
+| 405092026058.xml | [oigusaktid/405092026058.xml](<oigusaktid/405092026058.xml>) |
+| 406022026002.xml | [oigusaktid/406022026002.xml](<oigusaktid/406022026002.xml>) |
+| 407052026045.xml | [oigusaktid/407052026045.xml](<oigusaktid/407052026045.xml>) |
+| 408072026002.xml | [oigusaktid/408072026002.xml](<oigusaktid/408072026002.xml>) |
+| 408092026007.xml | [oigusaktid/408092026007.xml](<oigusaktid/408092026007.xml>) |
+| 409052026032.xml | [oigusaktid/409052026032.xml](<oigusaktid/409052026032.xml>) |
+| 410092024005.xml | [oigusaktid/410092024005.xml](<oigusaktid/410092024005.xml>) |
+| 411062026104.xml | [oigusaktid/411062026104.xml](<oigusaktid/411062026104.xml>) |
+| 411062026105.xml | [oigusaktid/411062026105.xml](<oigusaktid/411062026105.xml>) |
+| 419082025017.xml | [oigusaktid/419082025017.xml](<oigusaktid/419082025017.xml>) |
+| 421032026022.xml | [oigusaktid/421032026022.xml](<oigusaktid/421032026022.xml>) |
+| 421062024005.xml | [oigusaktid/421062024005.xml](<oigusaktid/421062024005.xml>) |
+| 425042025021.xml | [oigusaktid/425042025021.xml](<oigusaktid/425042025021.xml>) |
+| 425042025028.xml | [oigusaktid/425042025028.xml](<oigusaktid/425042025028.xml>) |
+| 426022026027.xml | [oigusaktid/426022026027.xml](<oigusaktid/426022026027.xml>) |
+| 426022026044.xml | [oigusaktid/426022026044.xml](<oigusaktid/426022026044.xml>) |
+| 426032026011.xml | [oigusaktid/426032026011.xml](<oigusaktid/426032026011.xml>) |
+| 426052026014.xml | [oigusaktid/426052026014.xml](<oigusaktid/426052026014.xml>) |
+| 426062026017.xml | [oigusaktid/426062026017.xml](<oigusaktid/426062026017.xml>) |
+| 426062026018.xml | [oigusaktid/426062026018.xml](<oigusaktid/426062026018.xml>) |
+| 427052026006.xml | [oigusaktid/427052026006.xml](<oigusaktid/427052026006.xml>) |
+| 427062025029.xml | [oigusaktid/427062025029.xml](<oigusaktid/427062025029.xml>) |
+| 429012026051.xml | [oigusaktid/429012026051.xml](<oigusaktid/429012026051.xml>) |
+| 430042025034.xml | [oigusaktid/430042025034.xml](<oigusaktid/430042025034.xml>) |
+| 430062026035.xml | [oigusaktid/430062026035.xml](<oigusaktid/430062026035.xml>) |
+| 430092026027.xml | [oigusaktid/430092026027.xml](<oigusaktid/430092026027.xml>) |
+| 431032026012.xml | [oigusaktid/431032026012.xml](<oigusaktid/431032026012.xml>) |
+| 420052026012.xml | [oigusaktid/420052026012.xml](<oigusaktid/420052026012.xml>) |
+| 425032026014.xml | [oigusaktid/425032026014.xml](<oigusaktid/425032026014.xml>) |
+| 430092026046.xml | [oigusaktid/430092026046.xml](<oigusaktid/430092026046.xml>) |
 | 403072026003.xml | [oigusaktid/403072026003.xml](<oigusaktid/403072026003.xml>) |
 | 130062026065.xml | [oigusaktid/130062026065.xml](<oigusaktid/130062026065.xml>) |
 | 106072023031.xml | [oigusaktid/106072023031.xml](<oigusaktid/106072023031.xml>) |

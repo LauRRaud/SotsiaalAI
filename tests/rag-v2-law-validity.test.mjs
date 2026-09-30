@@ -5,13 +5,24 @@ import os from 'node:os';
 import path from 'node:path';
 import http from 'node:http';
 import { spawn } from 'node:child_process';
-import { analyseGroup, coverage, exitCode, groupStatus } from '../lib/rag-v2/law-validity.js';
+import { analyseGroup, coverage, exitCode, groupStatus, municipalCoverage } from '../lib/rag-v2/law-validity.js';
 
 // ADR-038: the legal texts of the active corpus against Riigi Teataja.
 const window = { from: '2026-09-27', to: '2027-10-31' };
 const v = (id, from, to = null) => ({ id, from, to });
 const RLS = [v('109042026003', '2026-04-10', '2026-06-11'), v('103062026020', '2026-06-12', '2026-07-18'), v('111072026165', '2026-07-19', '2026-07-31'),
   v('111072026166', '2026-08-01', '2026-10-30'), v('111072026167', '2026-11-01', '2026-12-31'), v('111072026168', '2027-01-01', '2027-06-30'), v('111072026169', '2027-07-01')];
+
+test('municipal coverage names a register municipality with no indexed act in force on the day', () => {
+  const acts = [{ regions: ['a_vald'], index_from: '2020-01-01', index_to: null }, { regions: ['b_vald'], index_from: '2020-01-01', index_to: '2026-09-29' },
+    { regions: ['c_linn'], index_from: '2026-10-01', index_to: null }];
+  const register = [{ municipality_id: 'a_vald', municipality_name: 'A vald' }, { municipality_id: 'b_vald', municipality_name: 'B vald' },
+    { municipality_id: 'c_linn', municipality_name: 'C linn', legacy_metadata: {} }];
+  // An ended act and one that starts later do not cover today.
+  assert.deepEqual(municipalCoverage(acts, register, '2026-09-30'), { municipalities: 3,
+    without_current_act: [{ municipality_id: 'b_vald', municipality_name: 'B vald' }, { municipality_id: 'c_linn', municipality_name: 'C linn' }] });
+  assert.deepEqual(municipalCoverage(acts, register, '2026-10-01').without_current_act.map(entry => entry.municipality_id), ['b_vald']);
+});
 
 test('coverage finds the one uncovered day, holes that began earlier, overlaps and an end within the horizon', () => {
   assert.deepEqual(coverage(RLS, window), { gaps: [{ from: '2026-10-31', to: '2026-10-31' }], overlaps: [], ends_on: null });
@@ -128,6 +139,15 @@ test('the check writes a repeatable report and tells a failed request apart from
     const clean = await cli(['check', '--manifest', await manifest('clean.json', [act('105', '55', 'Muutumatu seadus', '2020-01-01', null)]),
       '--out', path.join(dir, 'clean'), '--today', '2026-09-27'], env);
     assert.equal(clean.code, 0, clean.stderr); assert.equal(JSON.parse(clean.stdout).summary.unchanged, 1);
+    // A municipality of the register with no indexed act in force is a finding while every group is unchanged.
+    const register = path.join(dir, 'kov.json');
+    await fs.writeFile(register, JSON.stringify({ entries: [{ municipality_id: 'muutumatu_vald', municipality_name: 'Muutumatu vald' },
+      { municipality_id: 'puuduv_vald', municipality_name: 'Puuduv vald' }] }));
+    const covered = await cli(['check', '--manifest', await manifest('covered.json', [{ ...act('105', '55', 'Muutumatu seadus', '2020-01-01', null), regions: ['muutumatu_vald'] }]),
+      '--out', path.join(dir, 'covered'), '--today', '2026-09-27', '--municipalities', register], env);
+    assert.equal(covered.code, 10, covered.stderr);
+    assert.deepEqual(JSON.parse(covered.stdout), { today: '2026-09-27', groups: 1, summary: { unchanged: 1 }, municipalities_without_current_act: 1, exit: 10 });
+    assert.match(await fs.readFile(path.join(dir, 'covered', 'law-validity-2026-09-27.md'), 'utf8'), /kehtiva aktita indeksis: 1 \/ 2\r?\n\r?\n- Puuduv vald \(puuduv_vald\)/);
     // A repealed act whose repealing act the corpus has: explained in the report, not a missing text.
     const repealed = await cli(['check', '--manifest', await manifest('repealed.json', [act('400', '99', 'Vana kord', '2020-01-01', '2026-05-28', 'Väike vald'),
       act('402', '98', 'Uus kord', '2026-05-29', null, 'Väike vald')]), '--out', path.join(dir, 'repealed'), '--today', '2026-09-27'], env);
