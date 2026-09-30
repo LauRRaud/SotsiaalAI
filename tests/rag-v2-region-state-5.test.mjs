@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { checkedTurnPlaces, resolvePersonRegions, personRegionScope, regionTarget } from '../lib/rag-v2/pilot/person-places.js';
 import { queryPlanRequest, SEARCH_ASSIST_VERSION } from '../lib/rag-v2/pilot/search-assist.js';
 import { knowledgeRegionScope, locateQuote } from '../lib/rag-v2/pilot/record-scope.js';
-import { projectDialogueAnswer, stateAudit, REGION_STATE_VERSION, FACT_STATE_VERSION } from '../lib/rag-v2/pilot/dialogue-state.js';
+import { projectDialogueAnswer, stateAudit, modelStateContext, REGION_STATE_VERSION, FACT_STATE_VERSION, PERSON_DIALOGUE_STATE_VERSION } from '../lib/rag-v2/pilot/dialogue-state.js';
 import { PilotService } from '../lib/rag-v2/pilot/service.js';
 import { DIALOGUE_VERSION } from '../lib/rag-v2/pilot/dialogue.js';
 
@@ -352,4 +352,12 @@ test('V4: the plan gives another person the same place only when a message says 
   assert.deepEqual(await check('Elan emaga Harku vallas.', 'Elan emaga Harku vallas', 'ema'), [['harku_vald', 'lives', null]]);
   assert.deepEqual(await check('Naabri laps on üksi. Me elame Harku vallas.', 'Me elame Harku vallas', 'naabri laps'), [['harku_vald', 'lives', null]]);
   assert.deepEqual(await check('Mu naabrimees elab Harku vallas.', 'Mu naabrimees elab Harku vallas', 'naabrimees'), [['harku_vald', 'lives', null]]);
+});
+
+test('Codex 7.8: the model input of a fact state carries only the date of the state context; an earlier state keeps the municipalities', () => {
+  const context = { regions: [{ region: 'harku_vald', names: ['Harku vald'] }], asOfDateUTC: '2026-09-30' };
+  for (const version of [REGION_STATE_VERSION, FACT_STATE_VERSION]) assert.deepEqual(modelStateContext(version, context), { asOfDateUTC: '2026-09-30' });
+  assert.deepEqual(modelStateContext(REGION_STATE_VERSION, { regions: [] }), {});
+  assert.equal(modelStateContext(PERSON_DIALOGUE_STATE_VERSION, context), context);
+  assert.equal(modelStateContext(REGION_STATE_VERSION, null), null);
 });
