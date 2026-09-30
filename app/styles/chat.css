@@ -1537,6 +1537,22 @@ html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] [role="article"
   background: rgba(255, 255, 255, 0.12);
   border-color: rgba(255, 255, 255, 0.3);
 }
+/* Vastuse vormi link (omavalitsuse leht, ADR-061) on tavaline allajoonitud link, iga oma real,
+   ilma manuse pilli taustata (omanik 30.09). */
+.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] > div > a[target="_blank"] {
+  display: table;
+  margin: 0.35rem 0 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] > div > a[target="_blank"]:hover {
+  background: none;
+  text-decoration-thickness: 2px;
+}
 
 /* ---------- Vanemate sõnumite kild-nupud ---------- */
 .panel-scrim[data-conversation="1"] #chat-window-scroll > div:has(> button) {
