@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { actSections, chunkSection, internalReferences, keepsSuperscripts, readReferences, sectionKey, REFERENCE_LIMITS } from '../lib/rag-v2/search/legal-references.js';
+import { actSections, chunkSection, internalReferences, keepsSuperscripts, readReferences, sectionKey, REFERENCE_LIMITS, SUPERSCRIPT_NORMALIZATIONS } from '../lib/rag-v2/search/legal-references.js';
+import { DEFAULT_CONFIG } from '../lib/rag-v2/contracts.js';
 
 // The act's sections in the act's order, a section with a superscript between its neighbours.
 const sections = ['9', '15', '15^1', '16', '45', '45^9', '45^16', '46', '105', '105^1', '106', '107', '131', '132', '133'];
@@ -76,7 +77,11 @@ test('a text that keeps its superscripts (ADR-056): a plain number is exactly th
   assert.deepEqual(internalReferences('käesoleva seaduse § 45⁹ ja §-des 105–106', sections, kept), ['45^9', '105', '105^1', '106']);
   const version = normalization => ({ source_format: 'xml', processing_config: { normalization } });
   assert.equal(keepsSuperscripts(version('source-structure-v28')), true);
-  assert.equal(keepsSuperscripts(version('source-structure-v31')), true);
+  assert.equal(keepsSuperscripts(version('source-structure-v29')), true);
+  // A later normalization is not taken on trust (Codex R3): it is named only when it is known to keep the superscripts, and
+  // the current one must be named, so a new normalization cannot pass without that decision.
+  assert.equal(keepsSuperscripts(version('source-structure-v31')), false);
+  assert.ok(SUPERSCRIPT_NORMALIZATIONS.includes(DEFAULT_CONFIG.normalization));
   assert.equal(keepsSuperscripts(version('source-structure-v27')), false);
   assert.equal(keepsSuperscripts({ ...version('source-structure-v28'), source_format: 'pdf' }), false);
   assert.equal(keepsSuperscripts({ source_format: 'xml', processing_config: {} }), false);
