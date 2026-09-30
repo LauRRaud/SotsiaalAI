@@ -12,7 +12,7 @@ test('stage timings: the median and quartiles of each stage, from the phase mark
     phases: { planned, embedded: planned + 300, searched, first_text: firstText, answered: firstText + 2000 },
     search: { directory: 100, merged: searched - planned - 300 }, lanes: { knowledge: { lane: 2500, rerank: 1800 } },
     calls: [{ stage: 'answer', timings: { firstDataMs: 900, firstTextMs: firstText - searched, completeResponseMs: firstText - searched + 2000, streaming: true },
-      usage: { input: 20000, output: 900 } }] } } });
+      usage: { input: 20000, output: 900 } }], input: { instructions: 6000, record_entries: 4000, question_in_turns: true } } } });
   // A turn without stages (an older result) is left out, not counted as zero.
   const scenarios = [{ turns: [turn(2000, 6000, 12000), turn(3000, 8000, 13000), turn(2500, 7000, 17000), { observed: { timings: {} } }] }];
   await fs.writeFile(path.join(dir, 'conversation-eval.json'), JSON.stringify({ scenarios }));
@@ -26,6 +26,8 @@ test('stage timings: the median and quartiles of each stage, from the phase mark
   assert.equal(report.stages['call.answer.firstDataMs'].median, 900);
   assert.equal(report.stages['tokens.answer.input'].median, 20000);
   assert.ok(!('call.answer.streaming' in report.stages));
+  assert.equal(report.stages['input.record_entries'].median, 4000);
+  assert.ok(!('input.question_in_turns' in report.stages));
   const table = execFileSync(process.execPath, ['scripts/rag-v2-stage-timings.mjs', dir], { encoding: 'utf8' });
   assert.match(table, /\| stage\.first_text \| 3: 12000 \/ \*\*13000\*\* \/ 17000 \|/);
   await fs.rm(dir, { recursive: true, force: true });

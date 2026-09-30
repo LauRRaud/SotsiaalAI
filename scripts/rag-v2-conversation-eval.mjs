@@ -39,6 +39,7 @@ const { pilotExpiry } = await import('../lib/rag-v2/pilot/lifetime.js');
 const { renderAnswer } = await import('../lib/rag-v2/pilot/presentation.js');
 const { detectCrisis } = await import('../lib/chat/safety.js');
 const { focusRegion } = await import('../lib/rag-v2/pilot/record-scope.js');
+const { tokenCount } = await import('../lib/rag-v2/search/embedding.js');
 
 const plan = JSON.parse(await fs.readFile(process.env.M4_PILOT_CONFIG, 'utf8'));
 const userId = plan.users[0];
@@ -50,6 +51,24 @@ const legal = new Map(JSON.parse(await fs.readFile(values.legal, 'utf8')).acts.f
 const today = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Tallinn' });
 const titleOf = entry => entry.fields?.title?.value || entry.fields?.name?.value || '';
 const maxUsd = Number(values['max-usd']);
+
+// The answer request's parts in tokens (the search tokenizer, an estimate of the model's; the call's usage is exact): what
+// the input is made of, so a smaller input is measured part by part (Codex 7.8). question_in_turns: the question is also
+// the last of the dialogue's user turns.
+function inputParts(body, input) {
+  if (!body) return null;
+  const count = value => value === undefined || value === null ? 0 : tokenCount(typeof value === 'string' ? value : JSON.stringify(value));
+  const evidence = input.evidence || {}, dialogue = input.dialogue || {}, records = evidence.records || {};
+  const { entries = [], ...recordRest } = records;
+  const { userTurns, publishedAssistant, previousState, stateContext, ...dialogueRest } = dialogue;
+  return { instructions: count(body.instructions), schema: count(body.text?.format?.schema), question: count(input.question),
+    user_turns: count(userTurns), published_assistant: count(publishedAssistant), previous_state: count(previousState),
+    state_context: count(stateContext), dialogue_rest: count(Object.keys(dialogueRest).length ? dialogueRest : null),
+    sources: count(evidence.sources), evidence_text: count((evidence.evidence || []).map(item => item.text).join('\n')),
+    evidence_meta: count((evidence.evidence || []).map(({ text: _text, ...meta }) => meta)), dependencies: count(evidence.dependencies),
+    record_entries: count(entries), records_rest: count(recordRest), retrieval: count(evidence.retrieval),
+    question_in_turns: Boolean(input.question && Array.isArray(userTurns) && JSON.stringify(userTurns.at(-1) || '').includes(JSON.stringify(input.question).slice(1, -1))) };
+}
 
 // What a turn produced, from its saved row: the model's input (the catalogue and the dialogue), the evidence packet and
 // the published or rejected answer. No question or answer leaves the server except in this report.
@@ -94,7 +113,8 @@ function observe(row, error) {
     // and tokens. Each process's own clock; nothing here is subtracted across processes.
     stages: { phases: payload.timings?.phases ?? null, search: payload.timings?.search?.since_start_ms ?? null,
       lanes: payload.timings?.search?.lanes ?? null,
-      calls: events.filter(event => event.timings || event.usage).map(event => ({ stage: event.stage, timings: event.timings ?? null, usage: event.usage ?? null })) },
+      calls: events.filter(event => event.timings || event.usage).map(event => ({ stage: event.stage, timings: event.timings ?? null, usage: event.usage ?? null })),
+      input: inputParts(payload.requestAudit?.body, input) },
     usd: events.reduce((sum, event) => sum + (event.estimatedNanoUsd || 0), 0) / 1e9,
     // The search plan and the rerank's candidates and choice: why a search check failed, read before the run's
     // conversations are deleted.

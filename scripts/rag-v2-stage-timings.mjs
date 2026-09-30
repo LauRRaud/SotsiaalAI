@@ -35,6 +35,8 @@ function summarize(turns) {
       for (const [key, value] of Object.entries(call.timings || {})) if (typeof value === 'number') push(`call.${call.stage}.${key}`, value);
       for (const [key, value] of Object.entries(call.usage || {})) if (typeof value === 'number') push(`tokens.${call.stage}.${key}`, value);
     }
+    // The answer request's parts in estimated tokens (observed.stages.input).
+    for (const [key, value] of Object.entries(stages.input || {})) if (typeof value === 'number') push(`input.${key}`, value);
   }
   return Object.fromEntries([...collect].map(([key, values]) => [key, spread(values)]));
 }
