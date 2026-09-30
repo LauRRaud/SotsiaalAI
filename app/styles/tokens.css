@@ -500,7 +500,11 @@ html.theme-light:not(:has(.room[data-power="standby"])) {
   --input-placeholder: rgba(21, 21, 21, 0.56);
   --input-border: 1px solid rgba(0, 0, 0, 0.16);
   --input-border-hover: 1px solid rgba(0, 0, 0, 0.24);
-  --input-border-focus: 1px solid rgba(0, 0, 0, 0.42);
+  --input-border-focus: 1px solid rgba(0, 0, 0, 0.5);
+  /* Valitud/fookuses/vajutatud = TUMEDAM nagu tumedas teemas (omanik 28.09
+     ja 30.09: „ei saa aru, kui nupp on valitud ja input lahtritega sama").
+     Hover-valge (0,78) ei eristunud puhkeolekust (0,6). */
+  --input-bg-focus: rgba(226, 220, 212, 0.86);
   --input-focus-glow: 0 0 0 3px rgba(0, 0, 0, 0.08);
   --input-border-invalid: 1px solid rgba(170, 70, 40, 0.85);
   --input-invalid-glow: 0 0 0 3px rgba(170, 70, 40, 0.14);

@@ -318,9 +318,12 @@ html:has(.panel-scrim:not([data-canvas="1"]):not([data-conversation="1"])) body 
    et ruum on juba hägune, ja jätaks nupud siin täiesti läbipaistvaks
    (omanik 23.09). Kõrgkontrastis ja vähendatud läbipaistvuses on
    --input-blur 0. */
+/* 30.09 (omanik: „sulge ja hamburgeri nupul pidi ka blur taust olema"):
+   välja 10 px hägu ühtlase seina ees ei paistnud — nurganupud saavad
+   noolte härmatise (14 px, küllastus alla). */
 html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .panel-scrim[data-conversation="1"] :is(.panel-menu, .panel-close) {
-  -webkit-backdrop-filter: blur(var(--input-blur));
-  backdrop-filter: blur(var(--input-blur));
+  -webkit-backdrop-filter: blur(14px) saturate(70%);
+  backdrop-filter: blur(14px) saturate(70%);
 }
 .panel-scrim[data-conversation="1"] .panel-menu {
   left: clamp(1.1rem, 2.8vw, 2rem);
@@ -435,8 +438,9 @@ html:not([data-contrast="hc"]) .panel-scrim[data-compact="1"] .panel {
   width: 100%;
 }
 /* Salvesta-nupu mähis keskele; nupp ise auto-laius nagu registreeru CTA
-   (.register-submit muster). */
-.panel-scrim[data-compact="1"] .panel-body form > div:last-child {
+   (.register-submit muster). last-of-type, mitte last-child: teade (<p>)
+   tuleb nüüd nupu ALLA (omanik 30.09) ja nupu mähis peab jääma samaks. */
+.panel-scrim[data-compact="1"] .panel-body form > div:last-of-type {
   display: grid;
   justify-items: center;
   /* Nupp ei ole „veel üks väli" — ta seisab väljadest selgelt eemal. */
@@ -447,7 +451,7 @@ html:not([data-contrast="hc"]) .panel-scrim[data-compact="1"] .panel {
    teema ei ole minu lemmik") — nupp jääb sisu mõõtu, aga saab väljadega
    SAMA KIRJASUURUSE. Nii kasvab ta loomulikult ja loeb väljadega ühte
    perre, ilma et teda üle kaardi laiuse veetaks. */
-.panel-scrim[data-compact="1"] .panel-body form > div:last-child > :is(button, a) {
+.panel-scrim[data-compact="1"] .panel-body form > div:last-of-type > :is(button, a) {
   font-size: var(--input-font-size);
   /* Nupu polster on em-des ja kasvab kirjaga kaasa. Sama vertikaalne
      rütm mis väljal (0.62em + 1.2) hoiab nad ühel joonel — mõlemad 44 px. */
