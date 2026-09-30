@@ -410,7 +410,10 @@ async function regionConversation(t) {
   const turn = async (question, contextMode, plan) => {
     plans.push({ language: 'et', ...plan });
     const result = await service.run(user.id, { question, contextMode, convId: conv.id, clientTurnKey: randomUUID(), language: 'et' });
-    const value = (await db.m4PilotTurn.findUnique({ where: { id: result.id } })).payload.dialogueState.value;
+    const saved_ = (await db.m4PilotTurn.findUnique({ where: { id: result.id } })).payload, value = saved_.dialogueState.value;
+    // Codex 7.8: the answer model reads only the date of the state context; the server keeps the municipalities for its checks.
+    assert.deepEqual(Object.keys(JSON.parse(saved_.requestAudit.body.input[0].content).dialogue.stateContext), ['asOfDateUTC']);
+    assert.deepEqual(saved_.dialogueStateContext.regions, directory);
     const searched = scopes.at(-1), saved = value.people.find(entry => entry.person === searched.person);
     // The same turn: the catalogue and the knowledge lane (one knowledgeRegion) and the saved state read one region.
     assert.equal(searched.region, saved?.region.id ?? null);
