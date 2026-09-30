@@ -92,6 +92,13 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**30.09 (Opus), jätk: kasutamata versioonide otsinguindeks koristatud** ([ADR-060](../rag-v2/adr-060-prune-unreferenced-versions.md)). Omanik 30.09: „korista ära“.
+- **Tööriist:** `scripts/rag-v2-prune-versions.mjs` eemaldab versioonide lõigud, pitserid ja Qdranti punktid, mida ükski generatsioon ei loetle.
+  - Tööriist keeldub, kui mõni indeksitöö käib. Pitser märgitakse enne punktide kustutamist uuesti `staged`-iks, nii et katkenud töö saab kordusjooksuga lõpetada.
+  - Kataloog jääb alles, nii et tagasi tulnud versioon indekseeritakse uuesti.
+  - Integratsioonitest käib kohaliku Postgresi ja Qdrantiga.
+- **Serveris:** kustutati 466 versiooni 9121 punkti, lõiku ja pitserit. Aktiivse indeksi v46 tõend oli enne ja pärast sama. Kollektsioonis on nüüd 40 489 punkti, vestlusplaan on `ready`.
+
 **30.09 (Opus), jätk: Codexi #276–#281 ülevaatuse leiud R1–R3 parandatud, korpus v46** ([audit](../audits/rag-v2-pr276-281-review-2026-09-30.md)).
 - **Tootmises 30.09 kella 18:58-st:** korpus v46 (indeks `5a959000`, 6470 dokumenti, 40 489 lõiku), plaan `m4-corpus-chat-20260930h.json`. Seaded on samad.
 - **R1** ([ADR-059](../rag-v2/adr-059-corpus-refresh-path.md)): `rag-v2-corpus-run.sh` annab iga sammu vea korral nullist erineva koodi.
