@@ -143,3 +143,18 @@ test('the fact lifecycle (Codex 7.6): each check has its failing pair, and an ac
     fact_changes: [{ person: 'user', quote: 'x', status: 'gone' }], allowed_dropped: [{ kind: 'fact' }] } }] }] }),
   ['x turn 1: facts_present needs person and quote', 'x turn 1: fact_changes status', 'x turn 1: allowed_dropped needs kind and reason']);
 });
+
+test('Codex R4: the hard-conditions answer patterns keep the direction of the condition; the opposite answer fails', async () => {
+  const catalogue = JSON.parse(await fs.readFile('tests/evaluation/dialogue/scenarios-hard-conditions-2.json', 'utf8'));
+  const expectOf = id => catalogue.scenarios.find(scenario => scenario.id === id).turns[0].expect;
+  const verdict = (id, text) => checkTurn(expectOf(id), observed({ text, evidenceTexts: expectOf(id).evidence_text })).verdict;
+  // Answers the chat gave in the v38 and v39 runs (30.09), each a correct statement of the rule.
+  for (const text of ['Seejärel jäetakse kahel kuul palk täielikult arvestusest välja.', 'siis ei lähe töötasu arvestusse esimesel kahel kuul pärast selle saama hakkamist.',
+    'jäetakse uus töötasu kahel esimesel kuul täielikult arvestamata.', 'siis ei võeta su palka toetuse arvestamisel esimesel kahel palga saamisele järgneval kuul üldse arvesse.']) {
+    assert.equal(verdict('subsistence-new-job', text), 'passed', text);
+  }
+  for (const text of ['Jah, palk vähendab kohe toetust: kogu töötasu võetakse esimesest kuust täielikult arvesse.',
+    'Palk läheb kohe arvestusse ja vähendab toetust juba järgmisel kuul.']) assert.equal(verdict('subsistence-new-job', text), 'answer', text);
+  assert.equal(verdict('coach-reports-child', 'Edasta ainult lapse õiguste kaitseks vajalik teave.'), 'passed');
+  assert.equal(verdict('coach-reports-child', 'Võid vallale edastada kõik andmed, mitte ainult vajalikud.'), 'answer');
+});

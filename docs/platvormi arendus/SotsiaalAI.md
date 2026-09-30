@@ -92,6 +92,12 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**30.09 (Opus): Codexi #264–#272 ülevaatuse leiud R1–R4 parandatud** ([audit](../audits/rag-v2-pr264-272-review-2026-09-30.md)).
+- **R1, R2** ([ADR-055](../rag-v2/adr-055-codex-followup-region-state.md)): plaani tsitaat katab ainult oma lahenenud mainimise, ja plaaniga ning plaanita rada loevad eitust sama esinemise pealt. Codexi näited annavad plaaniga ja ilma sama tulemuse.
+- **R3** ([ADR-056](../rag-v2/adr-056-rt-xml-superscripts.md)): `source-structure-v29` loeb ülaindeksi ka CDATA-s, sisemises elemendis ja atribuutidega. Kõik 134 XML-i andsid v28 ja v29 all sama teksti, seega korpust pole vaja uuesti teha. `keepsSuperscripts` nimetab töötlused ükshaaval.
+- **R4** ([ADR-057](../rag-v2/adr-057-graph-experiment.md)): tulumuster nõuab töötasu väljajätmist ja keelab vastupidise; test kontrollib jooksudes antud õigeid ja vastupidiseid vastuseid.
+- Kõik deterministlikud testid; tasulisi jookse ei tehtud.
+
 **30.09 (Opus), jätk: korpus v39, vestluse profiil v3, prompt 19.** Omanik 30.09: „kui need parandused tehtud, tee arendustööd edasi, ilma pausita“.
 - **Tootmises 30.09 kella 10-st:** korpus v39 (indeks `8cfac9f3`), profiil `hybrid-estnltk-chat-v3`, dialoogi prompt 19, olek v5, `search-assist-5`. Plaan `m4-corpus-chat-20260930a.json` (käsitsi) ja selle uuendused väljalasetega.
 - **Riigi Teataja ülaindeksid** ([ADR-056](../rag-v2/adr-056-rt-xml-superscripts.md), #265): „§ 45⁹“, mitte „§ 459“.

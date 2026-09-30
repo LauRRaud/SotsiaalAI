@@ -37,6 +37,9 @@ function summarize(turns) {
     }
     // The answer request's parts in estimated tokens (observed.stages.input).
     for (const [key, value] of Object.entries(stages.input || {})) if (typeof value === 'number') push(`input.${key}`, value);
+    // The evaluating caller's own clock, from its call to the first text and to the end (Codex review 30.09: the service's
+    // phases start after the turn is claimed). Neither is a browser's click-to-text time.
+    for (const [key, value] of Object.entries(stages.caller || {})) if (typeof value === 'number') push(`caller.${key}`, value);
   }
   return Object.fromEntries([...collect].map(([key, values]) => [key, spread(values)]));
 }

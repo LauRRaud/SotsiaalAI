@@ -33,6 +33,13 @@
   - Vestluse ristviited (profiil v3) annavad selle iga dokumendi versiooni järgi.
   - **Kohalik v39 korpus:** `section_ambiguous` 211 (v38 tekst) → 151 (v39 tekst) → 0. Need 151 on nüüd viited, näiteks SHS § 131 lg 7 ja 8 (perekonnaliikmed), § 133 lg 5 ja § 151 (tegevusluba vajavad teenused). Kontrollitud valimis olid kõik sihid õiged, ja ükski varasem viide ei muutunud. 7510-st tükist 6133 on versioonides, mis hoiavad ülaindekseid.
 
+### Codexi järelülevaade 30.09: R3 ([Codexi järelülevaade 30.09](../audits/rag-v2-pr264-272-review-2026-09-30.md))
+
+- v28 luges ülaindeksi numbrit ainult siis, kui see oli `<sup>`-elemendi ainus tekstilaps või CDATA-s täpselt `<sup>1</sup>`. `<sup><![CDATA[1]]></sup>`, `<sup><b>1</b></sup>` ja CDATA-s `<sup class="number">1</sup>` said tavalisteks numbriteks („§ 131“ § 13¹ asemel), ja täpsete numbritega lugeja valis siis kindlalt vale paragrahvi.
+- **`source-structure-v29`** loeb ülaindeksi kogu teksti: CDATA, sisemine element, atribuudid. Numbritest erinev sisu („1a“) jääb tekstiks ega saa viiteks.
+- **Kõik 134 registreeritud XML-allikat andsid v28 ja v29 all sama teksti** (132 identset, 2 tühja akti ebaõnnestuvad nagu enne), seega korpuses neid kujusid pole ja v39 versioonid jäävad õigeks. Uut korpust pole vaja.
+- `keepsSuperscripts` ei usalda enam numbrit `>= 28`. Töötlused on nimetatud ükshaaval (`SUPERSCRIPT_NORMALIZATIONS`: v28 korpuse kontrolli ja v29 lugeja põhjal), ja test nõuab, et praegune töötlus oleks loendis. Uus töötlus ei pääse läbi ilma selle otsuseta.
+
 ## Piirid
 
 - Töötlusest väljas: omavalitsuste aktide lisade tekstid (ADR-053) tulevad teisest adapterist (`rt-annex.js`) ega muutu.

@@ -137,6 +137,13 @@ Küsimuse kaupa:
 - Leitud mälukataloogi 12 asjaoluga esimeses pöördes. Otsingukatse ei näinud seda, sest haru D-l pole semantilist graafi.
 - Nüüd sisaldab piir laienduse ruumi, kui naaber või ristviide tegelikult lisati. Test kordab juhtumit profiiliga v3.
 
+### Codexi järelülevaade 30.09: R4 ([Codexi järelülevaade 30.09](../audits/rag-v2-pr264-272-review-2026-09-30.md))
+
+- Laiendatud tulumuster (`täielikult`, `üldse arvesse`) võttis vastu ka vastupidise vastuse: „kogu töötasu võetakse esimesest kuust täielikult arvesse“ sai `passed`.
+- Nüüd nõuab muster, et töötasu jäetakse arvestusest välja, ja `must_not` keelab selle kohe arvesse võtmise. Lapse andmete muster ei võta vastu „mitte ainult vajalik“.
+- `tests/rag-v2-conversation-eval.test.mjs` kontrollib jooksudes antud õigeid vastuseid (kõik kuus läbivad) ja vastupidiseid (kukuvad).
+- Varasemad parandatud arvud põhinevad vastuste käsitsi lugemisel; need ei ole uue jooksu sõltumatu tõend.
+
 ## Piirid
 
 - Ainult ühe akti sees; dokumentidevahelist viidet D ei loe.
