@@ -2056,7 +2056,16 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         containerRef={topbarRef}
         handsOn={handsOn}
         onNextAmbient={nextAmbient}
-        onOpenAccessibility={() => a11y?.openModal?.()}
+        onOpenAccessibility={(event) => {
+          /* Modaal viib sulgemisel fookuse avajale tagasi. Hiireklõpsu järel
+             oleks see ülariba nupp: :focus-within hoidis riba lahti ja nupu
+             silt jäi näha (omanik 30.09). Hiirega avades riba kinni ja nupult
+             fookus maha ENNE avamist (openModal loeb avaja activeElement'ist);
+             klaviatuuriga (detail 0) jääb fookuse tagastus alles. */
+          if (event?.detail > 0) event.currentTarget?.blur?.();
+          setTopbarOpen(false);
+          a11y?.openModal?.();
+        }}
         onPowerOff={powerOff}
         onToggleAmbient={toggleAmbient}
         onToggleHands={handsAvailable ? toggleHands : null}

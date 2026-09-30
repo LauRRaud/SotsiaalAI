@@ -318,9 +318,12 @@ html:has(.panel-scrim:not([data-canvas="1"]):not([data-conversation="1"])) body 
    et ruum on juba hägune, ja jätaks nupud siin täiesti läbipaistvaks
    (omanik 23.09). Kõrgkontrastis ja vähendatud läbipaistvuses on
    --input-blur 0. */
+/* 30.09 (omanik: „sulge ja hamburgeri nupul pidi ka blur taust olema"):
+   välja 10 px hägu ühtlase seina ees ei paistnud — nurganupud saavad
+   noolte härmatise (14 px, küllastus alla). */
 html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .panel-scrim[data-conversation="1"] :is(.panel-menu, .panel-close) {
-  -webkit-backdrop-filter: blur(var(--input-blur));
-  backdrop-filter: blur(var(--input-blur));
+  -webkit-backdrop-filter: blur(14px) saturate(70%);
+  backdrop-filter: blur(14px) saturate(70%);
 }
 .panel-scrim[data-conversation="1"] .panel-menu {
   left: clamp(1.1rem, 2.8vw, 2rem);

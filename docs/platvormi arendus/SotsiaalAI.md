@@ -125,6 +125,12 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
   - kontaktid pärast 04.10;
   - kiirus päris vestluses.
 
+**30.09 hilisõhtu, heleda teema viimistlus (Opus):** heledas kursor heledam; vestlusmullid,
+karusselli nooled ja vestluse ☰/× läbipaistvamad; noolte ja ☰/× hägu nähtav mõlemas teemas
+(nool 0,82 → 0,55 + blur 14 px, pruuni vastu saturate); kasutuslimiidi rööbas nähtav; valitud
+kaart/nupp ja fookuses väli heledas tumedamad (`--input-bg-focus`) tumeda servaga; ülemiselt
+paneelilt hiirega avatud ligipääsetavus ei jäta paneeli pärast sulgemist lahti.
+
 **30.09 õhtu, heleda teema järelparandused (Opus):** ligipääsetavuse lennu dialoog jääb
 ilma taustata (tuba paistab); märkeruudud heledas tumeda raami ja musta täitega; nuppude ja
 väljade servaläige ning kursori helk tulevad teemast (`--specular-line`, heledas tume — valge
