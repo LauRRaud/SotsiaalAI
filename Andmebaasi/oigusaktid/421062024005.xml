@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="95a10b26-21e5-430c-bedf-8af23e653937" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Tapa Vallavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2024-06-13</aktikuupaev>
+  
+  
+  <aktiNr>44</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2024-06-21</avaldamineKuupaev><RTaasta>2024</RTaasta><RTartikkel>5</RTartikkel><aktViide>421062024005</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2024-07-01+03:00</kehtivuseAlgus>
+  
+  
+  
+ <kehtivuseLopp>2026-12-31+02:00</kehtivuseLopp></kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2024-06-17</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>421062024005</globaalID>
+ <metaandmedVersioon>7</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2026-09-07</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1059051</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2024-06-17</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Evelin Värk</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="05a3522d-5325-4e02-b64d-0bdf06184a78">
+  <nimi id="f06b9e18-59a6-486c-a3d8-3ab45f9111a7">
+   <pealkiri id="91c2f3e4-2468-4184-93af-307a22c16ee1">Sotsiaaltoetuste määrad</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="b44597f4-b256-452e-a0f2-34b41772247f"><preambul id="72ab625e-7235-4964-850d-522690e7c0ac">
+   <tavatekst id="b51625aa-834b-45c0-895a-8288e30e8c6d">Määrus kehtestatakse Tapa vallavolikogu 13.06.2024 määruse nr 43 “Sotsiaalhoolekandelise abi andmise kord Tapa vallas” § 4 lg 5 alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="0a96170d-b608-4653-ad15-75fd0fbdf57a">1</paragrahvNr>
+   <kuvatavNr id="589d96f1-4fad-4fc7-abbb-a2f78387f29e"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="365d18ca-c347-42f5-933c-da1435095b4a">Sotsiaaltoetuste määrad</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="d95b002a-73ee-4a8b-906e-b54cea553e8a"/>
+   <kuvatavNr id="c61bda87-2b78-40db-8700-3b3c8ed21b9e"/>
+   <sisuTekst id="a8be1469-13ff-4401-b029-b61a930d28a8">
+    <tavatekst id="738bf067-f0d3-4adb-9e64-d125721ed810">Kehtestatakse Tapa vallas makstavate sotsiaaltoetuste määrad järgmiselt:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para1lg1p1">
+   <alampunktNr id="639bc411-b009-4d5a-97f4-18ec83c75a48">1</alampunktNr>
+   <kuvatavNr id="28e5aa98-3f78-4fde-9fdd-a44743d3fb34"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="8ad519ad-ac73-45ee-b5d4-15d1f9724163">
+    <tavatekst id="f9bd3781-6c46-4166-8cc1-72d207eb5ee1">sünnitoetus 400 eurot;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg1p2">
+   <alampunktNr id="5ab0bc04-94d4-4baf-b166-8f014c2c9f9d">2</alampunktNr>
+   <kuvatavNr id="9be333e3-e406-4b27-b4e3-2356ae0ba24c"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="1a7230e8-d307-4ffd-ba61-0b99d133de29">
+    <tavatekst id="6c9955bb-8a2a-4bd9-870c-ed297fbe88f7">matusetoetus 250 eurot;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg1p3">
+   <alampunktNr id="0a4177fa-ab89-4cbc-9a21-7c702a8bc738">3</alampunktNr>
+   <kuvatavNr id="79250b63-03cb-4052-aeed-03fa75269522"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="cd9fea06-0777-4d0e-8724-610b196c3fb6">
+    <tavatekst id="48c92445-460d-4410-ad79-d1da6fba0bfb">ranitsatoetus 150 eurot;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg1p4">
+   <alampunktNr id="d55ff732-8726-4d46-9b93-c9997e09f74d">4</alampunktNr>
+   <kuvatavNr id="b250447a-5468-4ecd-8037-6c2a5ebcc69a"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="d1fe7e09-2468-400d-a471-29fbcc89aa05">
+    <tavatekst id="95874b59-125d-4f44-baf4-90ccd98566ea">eaka sünnipäevatoetus 75 eurot;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg1p5">
+   <alampunktNr id="587eb77f-75aa-4177-a3f5-c3df9e2afa89">5</alampunktNr>
+   <kuvatavNr id="a9fb91e8-37d5-4df4-8ab4-86f3a8fe6b4c"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="177c6b8d-ff1d-4229-ba27-b984cd7b0580">
+    <tavatekst id="fcdb1bb3-a11a-4917-9b10-929a790686c2">toimetuleku tagamise toetuse piirmäär kuni 500 eurot aastas;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg1p6">
+   <alampunktNr id="57eed766-4819-4001-a869-71aa53f7177c">6</alampunktNr>
+   <kuvatavNr id="39315140-fd02-44e7-8b1d-4180d1f7dcf2"><![CDATA[6) ]]></kuvatavNr>
+   <sisuTekst id="9418c74d-e27b-41fa-a091-022c248c45c9">
+    <tavatekst id="42a5f92d-afa9-462a-97bc-cc7be1086e28">vältimatu abi toetuse piirmäär kuni 1000 eurot aastas;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg1p7">
+   <alampunktNr id="5bf4957c-8836-49c1-9090-552113e7459a">7</alampunktNr>
+   <kuvatavNr id="418744dc-e210-473c-a171-6d5b1b00fdc2"><![CDATA[7) ]]></kuvatavNr>
+   <sisuTekst id="697c8fd1-141d-4b1a-a25c-e93cea585de7">
+    <tavatekst id="3001cf14-5a8f-40f6-96ab-1d3c5e4a6647">keskmise ja raske puudega isiku hooldajatoetus 100 eurot kuus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg1p8">
+   <alampunktNr id="1b5a06e2-29b4-41be-89eb-30218da8c1b0">8</alampunktNr>
+   <kuvatavNr id="f2e3600a-9818-4a25-b6c9-7e1b9acbe2d8"><![CDATA[8) ]]></kuvatavNr>
+   <sisuTekst id="992f5fd6-a275-4f78-a35a-e0d27cb33096">
+    <tavatekst id="47efbe4d-c3bf-476c-8f43-bdcb94b55ac4">sügava puudega isiku hooldajatoetus 150 eurot kuus.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="a99a047d-1aa9-419c-abbb-c8871fb93219">2</paragrahvNr>
+   <kuvatavNr id="e974f1e1-e071-4513-b130-64fe7ad1cf11"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="68051782-efcc-47ab-87d1-01499aad859c">Määruse kehtetuks tunnistamine</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="e2339611-ae63-45ce-ab10-ef6f711c5741"/>
+   <kuvatavNr id="923f6045-9628-492d-978a-75ddfb6e8561"/>
+   <sisuTekst id="c526ff9f-3353-49dd-9cd2-b5c622fb2339">
+    <tavatekst id="01defc09-ee35-4845-bb3c-dd7b3310971f"> Tunnistada kehtetuks Tapa Vallavolikogu 16.12.2019 määrus nr 76 „Sotsiaaltoetuste määrad“.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="f038ef7f-d2c6-4c5d-a42e-006ab33a5d57">3</paragrahvNr>
+   <kuvatavNr id="18c6bc27-8c5b-43fc-8c3d-7018b59ac287"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="d74c5cc9-c450-4a8b-ad65-954427fa816b">Määruse jõustumine</paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="1d7410b2-87a7-41c5-a92b-5ccd8dc7cbaa"/>
+   <kuvatavNr id="c01f03c3-d077-4dbf-893c-7c56edef4205"/>
+   <sisuTekst id="850bd4dc-feb4-4f9d-aad2-09ce6d7ba5e5">
+    <tavatekst id="0cddeaca-da36-4025-a238-71db9d7f2304"> Määrus jõustub 01.07.2024.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="486950d8-97bf-48d4-97e5-8e0c206f280c"><allkiriKoht id="2f68c201-9b0b-45b9-aa39-883eac05a84f"/><allkirjastaja id="c4034dfc-6b2f-4aa1-8a87-d4f19a1341d6"><ametinimetus id="1207a4c3-329c-49a3-9e39-a227b78892e5">volikogu esimees</ametinimetus><eesnimi id="d81d10a3-a525-4a6a-b2dc-ec478ec0656f">Maksim</eesnimi><perekonnanimi id="41e78ea5-bdfb-4c29-abc9-c646239c7329">Butšenkov</perekonnanimi></allkirjastaja></allkiri></oigusakt>

@@ -1,9 +1,9 @@
 {
   "schema_version": "rag-v2/legal-acts-in-index-1",
-  "generated_at": "2026-09-30T10:14:19.293Z",
+  "generated_at": "2026-09-30T11:09:06.167Z",
   "tenant": "sotsiaalai-corpus",
-  "store_generation": "generation_28a235a871f6b476b4159da3c10211d5740b61698fc3d610135d18110c28ed8d",
-  "policy_documents": 6039,
+  "store_generation": "generation_903d3fbb2e1460238f2196d28a94f9a392fd7cf9047c0d129d99864b82e27005",
+  "policy_documents": 6080,
   "acts": [
     {
       "document_id": "document_00b6ffec42890532bbe8f5616bfc38a9cea2136ec8619d16a002a3cc5296344e",
@@ -20,6 +20,20 @@
       "index_to": null
     },
     {
+      "document_id": "document_0208820bb1bdb1eac57c5602d8f94cf3fb097927d9977da732b043134550c4c5",
+      "version_id": "version_59db23aa9a7e1ff64a46cd922a6fc02dd8c624ad2d4aae1788c10485b2b72aa3",
+      "globaal_id": "426022026044",
+      "group": "1060019",
+      "title": "Tartu linna sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Tartu Linnavolikogu",
+      "regions": [
+        "tartu_linn"
+      ],
+      "source_path": "oigusaktid/426022026044.xml",
+      "index_from": "2026-07-01",
+      "index_to": null
+    },
+    {
       "document_id": "document_023f7254a08d614c87128244ed1ce6378163c2b8bba07bfdb8b33624563f0cce",
       "version_id": "version_aa5cd99f32b79bc35f745adad06a305d3fd8e11ffed0e5026b4993cb03db9186",
       "globaal_id": "412122024021",
@@ -31,6 +45,20 @@
       ],
       "source_path": "oigusaktid/412122024021.xml",
       "index_from": "2024-12-15",
+      "index_to": null
+    },
+    {
+      "document_id": "document_028d3c053af096a4b4a85cc2fedd744274c5745e419587731715eec7c26e09ec",
+      "version_id": "version_00518215b1f62af5f10e75b797bd6cfc1deb4c86954f897bebfdd15c69017c1c",
+      "globaal_id": "405092026058",
+      "group": "1050997",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Rapla Vallavolikogu",
+      "regions": [
+        "rapla_vald"
+      ],
+      "source_path": "oigusaktid/405092026058.xml",
+      "index_from": "2026-09-08",
       "index_to": null
     },
     {
@@ -59,6 +87,34 @@
       ],
       "source_path": "oigusaktid/417062026033.xml",
       "index_from": "2026-06-20",
+      "index_to": null
+    },
+    {
+      "document_id": "document_07ab9ab84b3bf15acb3afdf36f40cd44a9a35ab2697f0c758d75630a06838949",
+      "version_id": "version_bcce7dc7dcf641538eacab174c872c2b4955a89cd98d7fa0d99d8ca0dfb19d8f",
+      "globaal_id": "408092026007",
+      "group": "1064390",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Tapa Vallavolikogu",
+      "regions": [
+        "tapa_vald"
+      ],
+      "source_path": "oigusaktid/408092026007.xml",
+      "index_from": "2027-01-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_0a8ef75be32087ffeb45b0602d89460dde6fe19e9dfb21d82df4179d53a29861",
+      "version_id": "version_6d499da59d60f51fd0b93e1abcd6a072890b58dbc6c841402cd61c9170ba0288",
+      "globaal_id": "426062026018",
+      "group": "1050655",
+      "title": "Sotsiaalhoolekandelise abi andmise kord Lääne-Harju vallas",
+      "issuer": "Lääne-Harju Vallavolikogu",
+      "regions": [
+        "laane_harju_vald"
+      ],
+      "source_path": "oigusaktid/426062026018.xml",
+      "index_from": "2027-01-01",
       "index_to": null
     },
     {
@@ -104,6 +160,48 @@
       "index_to": null
     },
     {
+      "document_id": "document_15414c759da0247a03c26619cf367857061af83cf21c7c8d957286d373d37c6b",
+      "version_id": "version_34de1ae83fdc9090df43e684a8aef9749fbd5d2993bc383701a2cea3dc9a6505",
+      "globaal_id": "427062025029",
+      "group": "1060863",
+      "title": "Sotsiaalteenuste osutamise tingimused ja kord",
+      "issuer": "Saarde Vallavolikogu",
+      "regions": [
+        "saarde_vald"
+      ],
+      "source_path": "oigusaktid/427062025029.xml",
+      "index_from": "2025-06-30",
+      "index_to": null
+    },
+    {
+      "document_id": "document_1b76c04fb8e5deb3aabfcd3788c49a579249a59d972102ede8c3fac9d9e01e1a",
+      "version_id": "version_51067ac9b7da9914a93ad65a089e05e6a52acfd690ce81b1503eadb6ee3e696f",
+      "globaal_id": "427052026006",
+      "group": "1063565",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Nõo Vallavolikogu",
+      "regions": [
+        "noo_vald"
+      ],
+      "source_path": "oigusaktid/427052026006.xml",
+      "index_from": "2026-06-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_1ce4431bcda4774cea2e02a5e234923675c9a562353d918c49d25e4428798f34",
+      "version_id": "version_63b67f624229a1206afa880aed15e45070248090f926274331a366472fdbdc9f",
+      "globaal_id": "426062026017",
+      "group": "1050655",
+      "title": "Sotsiaalhoolekandelise abi andmise kord Lääne-Harju vallas",
+      "issuer": "Lääne-Harju Vallavolikogu",
+      "regions": [
+        "laane_harju_vald"
+      ],
+      "source_path": "oigusaktid/426062026017.xml",
+      "index_from": "2026-08-01",
+      "index_to": "2026-12-31"
+    },
+    {
       "document_id": "document_1d4842e2789a189c05fcf4df8317df856db42d12bd28b82549eeda6442d8d31a",
       "version_id": "version_261300a8e028cc638ce71d5813a2817d8dd2f885ff00c6f759ea0ccdbd06b29e",
       "globaal_id": "426052026009",
@@ -142,6 +240,20 @@
       "source_path": "oigusaktid/111072026166.xml",
       "index_from": "2026-08-01",
       "index_to": "2026-10-30"
+    },
+    {
+      "document_id": "document_219b1dcc4e131486e035ae936784c27b030d4c358518bd747f5e4563412b6933",
+      "version_id": "version_fa8bb74dd992d92e1281ca4bccc80e562dfbc45d1577b8c34a87842b72f28e6f",
+      "globaal_id": "425042025021",
+      "group": "1051968",
+      "title": "Sotsiaalteenuste osutamise kord",
+      "issuer": "Pärnu Linnavolikogu",
+      "regions": [
+        "parnu_linn"
+      ],
+      "source_path": "oigusaktid/425042025021.xml",
+      "index_from": "2025-06-01",
+      "index_to": null
     },
     {
       "document_id": "document_25dc2c86924954241c2bcc02f7a28bbb54540bdca2c5e13cd2228f5eae2c5447",
@@ -200,6 +312,20 @@
       "index_to": null
     },
     {
+      "document_id": "document_2d87ceb909c6054e3cfbc5757c52d71b2f603964c19435f4d8ff56997b4cfffa",
+      "version_id": "version_884fe76db1ef65a421c7e6acf6dfd333dd6b2181545774db1d8ae5e1e8db3ce7",
+      "globaal_id": "419082025017",
+      "group": "1050526",
+      "title": "Sotsiaalteenuste osutamise kord",
+      "issuer": "Võru Vallavolikogu",
+      "regions": [
+        "voru_vald"
+      ],
+      "source_path": "oigusaktid/419082025017.xml",
+      "index_from": "2025-08-22",
+      "index_to": null
+    },
+    {
       "document_id": "document_2deaadf75c8f53a4eb75c2ebfe937c50eb30bee9b2c9870f268e4ae2d3d3b0f8",
       "version_id": "version_3fa5fc7b238bccab187db87bcbc88cefaecc7c1f7fb62ea0a23e5a07027ec2a6",
       "globaal_id": "405042024007",
@@ -214,6 +340,20 @@
       "index_to": "2026-05-28"
     },
     {
+      "document_id": "document_2dfc2b5fd48fc5ac99c32ccd296eb8cb7e9bc9b57d37327cb6286fa0ad304bee",
+      "version_id": "version_120b04aa74c0acf82d499e5ffcb0b407bf0141cd484943e09764f828c11af39c",
+      "globaal_id": "404072026045",
+      "group": "1063134",
+      "title": "Sotsiaaltoetuste määramise ja maksmise kord",
+      "issuer": "Tori Vallavolikogu",
+      "regions": [
+        "tori_vald"
+      ],
+      "source_path": "oigusaktid/404072026045.xml",
+      "index_from": "2026-07-07",
+      "index_to": "2026-10-02"
+    },
+    {
       "document_id": "document_2fe557ae8dee59eadc6af5130c87257769e9842645ce57b4101274026fc01c61",
       "version_id": "version_d0b45607be234ea51194ddbacdd48449e4098c97d25d55c4b15c69ba18d9fab4",
       "globaal_id": "103062026023",
@@ -224,6 +364,20 @@
       "source_path": "oigusaktid/103062026023.xml",
       "index_from": "2026-06-12",
       "index_to": "2026-09-30"
+    },
+    {
+      "document_id": "document_33557b546678ccf4d47ff226cc0e05903acc476c1c1543893645389ff0e4a95b",
+      "version_id": "version_1ec1b9e300a46c97d5eba21ec99c7bff8c4bb3665b00dede4302b917d757411f",
+      "globaal_id": "420052026012",
+      "group": "1053546",
+      "title": "Sotsiaaltoetuste määramise ja maksmise kord",
+      "issuer": "Lääneranna Vallavolikogu",
+      "regions": [
+        "laaneranna_vald"
+      ],
+      "source_path": "oigusaktid/420052026012.xml",
+      "index_from": "2026-05-23",
+      "index_to": null
     },
     {
       "document_id": "document_374cd588741690b880f37a5fbb94f2e33794435de17fb2397e692d70c8b8ad52",
@@ -238,6 +392,20 @@
       "source_path": "oigusaktid/419052023006.xml",
       "index_from": "2023-07-01",
       "index_to": null
+    },
+    {
+      "document_id": "document_386c3cd436718b95ae9e2b2ce04e21e594df1c4e423dd07c08bf7fa60270cf9b",
+      "version_id": "version_bb0b22f3384998c52e5b95d4ff490bb2077cf55eb8c935bb9e2713b178adaa74",
+      "globaal_id": "421062024005",
+      "group": "1059051",
+      "title": "Sotsiaaltoetuste määrad",
+      "issuer": "Tapa Vallavolikogu",
+      "regions": [
+        "tapa_vald"
+      ],
+      "source_path": "oigusaktid/421062024005.xml",
+      "index_from": "2024-07-01",
+      "index_to": "2026-12-31"
     },
     {
       "document_id": "document_3af11d027e455979480ae68ba5ca990116495d177f7534d3b591893d290355fb",
@@ -416,6 +584,34 @@
       "index_to": null
     },
     {
+      "document_id": "document_511d4b7a833b36c8ecadc184bfb9a63a8aa1ac2b9b02faa468fd40406083a1d2",
+      "version_id": "version_aab0464fea70e1a7880ff54ad274e4597a1821efcf6fdb40129e019a2b8ac351",
+      "globaal_id": "408072026002",
+      "group": "1063973",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Vinni Vallavolikogu",
+      "regions": [
+        "vinni_vald"
+      ],
+      "source_path": "oigusaktid/408072026002.xml",
+      "index_from": "2026-07-11",
+      "index_to": null
+    },
+    {
+      "document_id": "document_516ae664e93510fee3add32bb73483cb36cc976289331e45118e0e33f55d9e75",
+      "version_id": "version_ecb626102c46912f7aa257f81ae45326a273f7854abff912d2f9e43fb6a63ec9",
+      "globaal_id": "421032026022",
+      "group": "1059486",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Märjamaa Vallavolikogu",
+      "regions": [
+        "marjamaa_vald"
+      ],
+      "source_path": "oigusaktid/421032026022.xml",
+      "index_from": "2026-03-24",
+      "index_to": null
+    },
+    {
       "document_id": "document_5248ee1334256f95748bc68d5d9d10380debdaaee9459ca884993a8525f6ec6b",
       "version_id": "version_d8c0cc0eac62920b0b7095390138bf6122fc22cef8cd52593f6c463950633951",
       "globaal_id": "428062025051",
@@ -498,6 +694,34 @@
       "index_to": null
     },
     {
+      "document_id": "document_5dce5998158a579c2b119ffc27258cdcebf60a892fbbce63d8943fe1dedcebf8",
+      "version_id": "version_9a9ef87100ee77f586e5a865895270dd1378e15be27eabcd69bb4739f6093969",
+      "globaal_id": "404092026056",
+      "group": "1064369",
+      "title": "Sissetulekust mittesõltuvate toetuste maksmise kord",
+      "issuer": "Tapa Vallavolikogu",
+      "regions": [
+        "tapa_vald"
+      ],
+      "source_path": "oigusaktid/404092026056.xml",
+      "index_from": "2027-01-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_61100059479b0ade0c16d8057097d4c7bf01a1f86546acbe0851029a06ee605b",
+      "version_id": "version_d997da8aee3f238c5138b732b4b1c3a60b3d2ccea431d31ad6d7fd4d8ae5334c",
+      "globaal_id": "426052026014",
+      "group": "1058311",
+      "title": "Sotsiaalhoolekandelise abi osutamise tingimused ja kord",
+      "issuer": "Tõrva Vallavolikogu",
+      "regions": [
+        "torva_vald"
+      ],
+      "source_path": "oigusaktid/426052026014.xml",
+      "index_from": "2026-05-29",
+      "index_to": null
+    },
+    {
       "document_id": "document_6142489bf560f9cf825e7ae885fec4168688504329f27330160652b3cd7e0cfe",
       "version_id": "version_f56c0543ca625bd2f7d53586abcb50e5fc4c6a38e401bfc369bca5399afce85b",
       "globaal_id": "111072026043",
@@ -524,6 +748,20 @@
       "index_to": null
     },
     {
+      "document_id": "document_673380bf354baea4fab1d78303eaa405fdb71979fb3980f6438ff755ec9f80b3",
+      "version_id": "version_2a437542bfeae7dc6d98092897080b64fcd809d6acc409a779e1a700239dc09c",
+      "globaal_id": "410092024005",
+      "group": "1059372",
+      "title": "Sotsiaalhoolekandelise abi andmise tingimused ja kord",
+      "issuer": "Viru-Nigula Vallavolikogu",
+      "regions": [
+        "viru_nigula_vald"
+      ],
+      "source_path": "oigusaktid/410092024005.xml",
+      "index_from": "2024-09-13",
+      "index_to": null
+    },
+    {
       "document_id": "document_6c340374a5eb7dd07afae5b68ca2b60311c10fc6cf1aebcffb48abca5481168d",
       "version_id": "version_8267d7feab502ab9131f1c381bced6f624ddd35950becd3f082a5db986ec05c7",
       "globaal_id": "431122025034",
@@ -535,6 +773,20 @@
       ],
       "source_path": "oigusaktid/431122025034.xml",
       "index_from": "2026-04-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_6ea66b3e3902b265f4c7972dc57eaac7ab214878aca06e643780a33b97190313",
+      "version_id": "version_38cc31db435fb9ab14c20a0eb35da7a7613c5dbf00dda2b848141e9054a87654",
+      "globaal_id": "406022026002",
+      "group": "1060727",
+      "title": "Sotsiaalhoolekandelise abi andmise kord Mustvee vallas",
+      "issuer": "Mustvee Vallavolikogu",
+      "regions": [
+        "mustvee_vald"
+      ],
+      "source_path": "oigusaktid/406022026002.xml",
+      "index_from": "2026-03-01",
       "index_to": null
     },
     {
@@ -636,6 +888,20 @@
       "index_to": null
     },
     {
+      "document_id": "document_75ca1a9e88e8dfcf04463cdef24452122c6cad366f7d8bb08bae67a1b4ab7a3d",
+      "version_id": "version_e7e2136b0d0630f1d14643583e2845f9f93b0ed059de9770b29e368fd99076a9",
+      "globaal_id": "404072025051",
+      "group": "1056728",
+      "title": "Sotsiaalhoolekandelise abi osutamise kord",
+      "issuer": "Põhja-Sakala Vallavolikogu",
+      "regions": [
+        "pohja_sakala_vald"
+      ],
+      "source_path": "oigusaktid/404072025051.xml",
+      "index_from": "2025-09-01",
+      "index_to": null
+    },
+    {
       "document_id": "document_7787b0c8c9cd167ff1f9c6fc61791ef00f73be139a58544f922a9b0c2c15f7eb",
       "version_id": "version_3dc96c4e46fa4d5eac0abc64adef934581d533929e11d51d6cb08263bcc818b7",
       "globaal_id": "405092026051",
@@ -716,6 +982,20 @@
       "index_to": "2026-06-11"
     },
     {
+      "document_id": "document_80885c9445c5f6d4ec79553aaf4013b151b7ba0dd4e2537dde7d2e1d36dde956",
+      "version_id": "version_49085e8c759a10c7f2bc29c840fba3454d284e089326eb0a2a95fa9b7a0b2c93",
+      "globaal_id": "411062026105",
+      "group": "1050689",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Türi Vallavolikogu",
+      "regions": [
+        "turi_vald"
+      ],
+      "source_path": "oigusaktid/411062026105.xml",
+      "index_from": "2027-01-01",
+      "index_to": null
+    },
+    {
       "document_id": "document_810322b67a0145baea5458c1f3f8fc7c426c394eaf71a28fb70a9c71f53d9035",
       "version_id": "version_585650962e09ab3cfdf102059554a72595190463d5626fc44fa73940761e270d",
       "globaal_id": "111072026168",
@@ -770,6 +1050,20 @@
       "index_to": "2026-06-30"
     },
     {
+      "document_id": "document_8f28a31d0b1a35417263d2c88cc1a4b752f747437603c0c6fe9f55585857006c",
+      "version_id": "version_c93b918ac6d5e06a2056a3de27ccd6f67d3a832074466a5ca4b026c11f505bb1",
+      "globaal_id": "426022026027",
+      "group": "1054638",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Põltsamaa Vallavolikogu",
+      "regions": [
+        "poltsamaa_vald"
+      ],
+      "source_path": "oigusaktid/426022026027.xml",
+      "index_from": "2026-03-01",
+      "index_to": null
+    },
+    {
       "document_id": "document_9009ad0d34f62879572f790fae7fa9e62c367220ddf2cd2a902f5810f810ddbe",
       "version_id": "version_1c8b32285985cc34bd19437a31f8e3fb3b9b3beac16c2437ab969b4a881582ea",
       "globaal_id": "406122024017",
@@ -812,6 +1106,20 @@
       "index_to": null
     },
     {
+      "document_id": "document_985b26bcd3f0969ea4bf8d69502962388f6dd4e200769142c3a809a7bac9b649",
+      "version_id": "version_d9c350e35ec3c9b49a0fc6a116957754f0ffc046075686bbf38e6383fa2e3667",
+      "globaal_id": "430062026035",
+      "group": "1051879",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Luunja Vallavolikogu",
+      "regions": [
+        "luunja_vald"
+      ],
+      "source_path": "oigusaktid/430062026035.xml",
+      "index_from": "2026-09-01",
+      "index_to": null
+    },
+    {
       "document_id": "document_99b5a60487ec57432dfec8ba69bd87278efbd2b31d9573c005bb37fb730f527a",
       "version_id": "version_ce3100c38114766b67a0b3fb90d823aad9160de174d8200c99543f3da66a6f37",
       "globaal_id": "426052023059",
@@ -826,6 +1134,20 @@
       "index_to": null
     },
     {
+      "document_id": "document_9fe8253d60abdbcf4b152dbd34c091c9984a091db658228fa96ae5581053b17c",
+      "version_id": "version_ef917e3b595282957b10c211ce3dfd9a0588c52e700980e504add50e5d9954b1",
+      "globaal_id": "411062026104",
+      "group": "1050689",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Türi Vallavolikogu",
+      "regions": [
+        "turi_vald"
+      ],
+      "source_path": "oigusaktid/411062026104.xml",
+      "index_from": "2026-09-01",
+      "index_to": "2026-12-31"
+    },
+    {
       "document_id": "document_a1735735d038c1e9cadea3bbcb499d37564c06332c3b70f9bc60546a27ede0f7",
       "version_id": "version_e7b53bef9880e0d528ee395117ce2780c2cc4f90b8fbf5032672d148a65a97d0",
       "globaal_id": "411042018011",
@@ -837,6 +1159,20 @@
       ],
       "source_path": "oigusaktid/411042018011.xml",
       "index_from": "2018-04-14",
+      "index_to": null
+    },
+    {
+      "document_id": "document_a60a96f2c2fdb2e997195db6e765ebc2d13a3a990ccd451dfc3bcf59a97c6998",
+      "version_id": "version_7fcf4a88bbd290389a4435bae8637a717ec499937623470702bf4dd11a9247ed",
+      "globaal_id": "403072026037",
+      "group": "1043087",
+      "title": "Sotsiaalteenuste osutamise kord",
+      "issuer": "Sillamäe Linnavolikogu",
+      "regions": [
+        "sillamae_linn"
+      ],
+      "source_path": "oigusaktid/403072026037.xml",
+      "index_from": "2026-07-06",
       "index_to": null
     },
     {
@@ -896,6 +1232,20 @@
       "index_to": null
     },
     {
+      "document_id": "document_a998eec5f87ec14688cc5ba42b14a864c25fe3e7721737a042bdd91b81f11d27",
+      "version_id": "version_0189489225fe6cb3bb7ce76e802735513bf843d1cdcd57df4e777e47bef2df68",
+      "globaal_id": "425032026014",
+      "group": "1063135",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Muhu Vallavolikogu",
+      "regions": [
+        "muhu_vald"
+      ],
+      "source_path": "oigusaktid/425032026014.xml",
+      "index_from": "2026-04-01",
+      "index_to": "2026-12-31"
+    },
+    {
       "document_id": "document_acd1e91c67f35ed4b5b260ef7e1015592020aafda0b69fca8a01a821b52d97ad",
       "version_id": "version_c6ece14f5c60ce1cab97e3f8b92a652bfc460752c252342c46ec3f987ddb1535",
       "globaal_id": "429092026004",
@@ -922,6 +1272,48 @@
       "index_to": "2026-09-30"
     },
     {
+      "document_id": "document_afe857719cdfd183521abddac8e64bf4fcee5c1deee3976f3fe629bf9cb98819",
+      "version_id": "version_76e9ed752b267da1fd749b160a14281df25afbf322d2dd38d836ce56bc659f62",
+      "globaal_id": "429012026051",
+      "group": "1039787",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Saku Vallavolikogu",
+      "regions": [
+        "saku_vald"
+      ],
+      "source_path": "oigusaktid/429012026051.xml",
+      "index_from": "2026-02-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_b3e11a8448b14c1f04d3981b389eb9e365ddfcbf8134081e1546f0a5fd689e05",
+      "version_id": "version_acd7c2e44030a9a7ef173d0c05b9804a207d3f4b9af4bd8cce2cb9a9d45784fb",
+      "globaal_id": "431032026012",
+      "group": "1060761",
+      "title": "Sotsiaalteenuste osutamise kord",
+      "issuer": "Maardu Linnavolikogu",
+      "regions": [
+        "maardu_linn"
+      ],
+      "source_path": "oigusaktid/431032026012.xml",
+      "index_from": "2026-04-03",
+      "index_to": null
+    },
+    {
+      "document_id": "document_b7788c820f2ed57bca78d7f0ef596852916631e0bd44e728a615ec3921aa967e",
+      "version_id": "version_659880e6d6750f6955833f2dd29c002dfec42da728b0f51f65b3f710f8b058e2",
+      "globaal_id": "426032026011",
+      "group": "1047757",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Tartu Vallavolikogu",
+      "regions": [
+        "tartu_vald"
+      ],
+      "source_path": "oigusaktid/426032026011.xml",
+      "index_from": "2026-05-01",
+      "index_to": null
+    },
+    {
       "document_id": "document_b79c33f8454a5438c12601bd6d459a04984c8d43d1c4963190307ff5b6f2ae21",
       "version_id": "version_73c04855508486d9c009316f1beb6684eb0f31e6bdc18dda682a61a44fbdd814",
       "globaal_id": "407042026033",
@@ -933,6 +1325,20 @@
       ],
       "source_path": "oigusaktid/407042026033.xml",
       "index_from": "2026-04-10",
+      "index_to": null
+    },
+    {
+      "document_id": "document_bcf6dbb4ec3dbcebda93bc2ccdb510ce5c687b27b8a210553a5042a710004b1f",
+      "version_id": "version_0dd0c97d2b3eec093b2c3e64bc588a74739bcc3fc856d2a22b2822bed275fe5e",
+      "globaal_id": "401072025023",
+      "group": "1050571",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Võru Linnavolikogu",
+      "regions": [
+        "voru_linn"
+      ],
+      "source_path": "oigusaktid/401072025023.xml",
+      "index_from": "2025-09-01",
       "index_to": null
     },
     {
@@ -1028,6 +1434,20 @@
       "index_to": null
     },
     {
+      "document_id": "document_d0129d67ba731f5a2da94172dd8a23266f6fc67ca0bcafc9854a5e655d7c758b",
+      "version_id": "version_c3ee9595d67ff5ff574781f923ef150c5444aef9705820537e876866d58489db",
+      "globaal_id": "404032025051",
+      "group": "1047991",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Valga Vallavolikogu",
+      "regions": [
+        "valga_vald"
+      ],
+      "source_path": "oigusaktid/404032025051.xml",
+      "index_from": "2025-03-07",
+      "index_to": null
+    },
+    {
       "document_id": "document_d180fd5fb89d26a8e66a8a0f82667fec99f91e6892dc8fcec434bd711ec179a7",
       "version_id": "version_0e55bdba032b162309dbcc613ae77632e8099de37673e5f10fdb5041cd75ec47",
       "globaal_id": "129082025009",
@@ -1038,6 +1458,34 @@
       "source_path": "oigusaktid/129082025009.xml",
       "index_from": "2025-09-01",
       "index_to": "2026-09-30"
+    },
+    {
+      "document_id": "document_d1b95cf4fa4700cc47ba15623a21699a0841d3b2ab3b4e679eeecb8d15b4a2c2",
+      "version_id": "version_81b2888f4d55f170c7185a6b1c059853029fdb287dbb3fb3c51e669cae4b0ea1",
+      "globaal_id": "403032026033",
+      "group": "1042642",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Põhja-Pärnumaa Vallavolikogu",
+      "regions": [
+        "pohja_parnumaa_vald"
+      ],
+      "source_path": "oigusaktid/403032026033.xml",
+      "index_from": "2026-04-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_d4539728de4e2836905f41502bf86db655778c6fa822a891072f843294907e85",
+      "version_id": "version_10f700555dec66788e01903f673d87191fd39c63401ecd2106d1dd68b887c685",
+      "globaal_id": "430042025034",
+      "group": "1060603",
+      "title": "Sotsiaalteenuste osutamise kord Mulgi vallas",
+      "issuer": "Mulgi Vallavolikogu",
+      "regions": [
+        "mulgi_vald"
+      ],
+      "source_path": "oigusaktid/430042025034.xml",
+      "index_from": "2025-05-03",
+      "index_to": null
     },
     {
       "document_id": "document_d540beb842ac36ff7ec854f6b3b379e6ea52c20e43488c10442d485c559fcc54",
@@ -1065,6 +1513,20 @@
       ],
       "source_path": "oigusaktid/403042025040.xml",
       "index_from": "2025-04-06",
+      "index_to": null
+    },
+    {
+      "document_id": "document_d8a9d0d34158aeeb1473c03c12b61313aa0f0e65ec5b92e9e908d9454d203a47",
+      "version_id": "version_8b4f724409ed439f67bff0404ac205a17fc6d4bc45a72b6920696d5dde47bd07",
+      "globaal_id": "430092026027",
+      "group": "1063134",
+      "title": "Sotsiaaltoetuste määramise ja maksmise kord",
+      "issuer": "Tori Vallavolikogu",
+      "regions": [
+        "tori_vald"
+      ],
+      "source_path": "oigusaktid/430092026027.xml",
+      "index_from": "2026-10-03",
       "index_to": null
     },
     {
@@ -1101,6 +1563,20 @@
       "regions": [],
       "source_path": "oigusaktid/109072026076.xml",
       "index_from": "2027-01-01",
+      "index_to": null
+    },
+    {
+      "document_id": "document_ddcb68e89a4eb02c72d6fef6b906a0dac93e8cef9ce427e378b5bfda22c4ea7e",
+      "version_id": "version_bba999ee700f966929b51398706201244b66851e53b1e2ecf3dbfb04fac0720c",
+      "globaal_id": "425042025028",
+      "group": "1042894",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Otepää Vallavolikogu",
+      "regions": [
+        "otepaa_vald"
+      ],
+      "source_path": "oigusaktid/425042025028.xml",
+      "index_from": "2025-04-28",
       "index_to": null
     },
     {
@@ -1168,6 +1644,20 @@
       "index_to": "2026-09-30"
     },
     {
+      "document_id": "document_e9710e0d3c8374e0bf945160d68f4a42368ebf544635b8ddea4b2c2e96d2392e",
+      "version_id": "version_3f87f2df49acd059886e32943b1556715862954e4bf1ba73e1c48d3ac1379616",
+      "globaal_id": "430092026046",
+      "group": "1063135",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Muhu Vallavolikogu",
+      "regions": [
+        "muhu_vald"
+      ],
+      "source_path": "oigusaktid/430092026046.xml",
+      "index_from": "2027-01-01",
+      "index_to": null
+    },
+    {
       "document_id": "document_ef2202c6477e71a7ad3e251a2ba089ef99cfa619c57ade5c8d9a24b0465e36cb",
       "version_id": "version_4d14d9f0673bab381f98c3e1440e51ad3ad6048cdf994f2dccb6fe16c8ec6bf2",
       "globaal_id": "431082024012",
@@ -1194,6 +1684,48 @@
       "source_path": "oigusaktid/407012022005.xml",
       "index_from": "2022-01-10",
       "index_to": "2026-08-31"
+    },
+    {
+      "document_id": "document_efe886eae997439b3ee66cf011e82695f0ba5e79a2af43e50bbb3d9dbd4b0ad2",
+      "version_id": "version_7252adc2918b596bec79257f7bfa50cc77808f6cc0cc1c6216cc023f09bf945e",
+      "globaal_id": "409052026032",
+      "group": "1042059",
+      "title": "Sotsiaalhoolekande abi andmise kord",
+      "issuer": "Lüganuse Vallavolikogu",
+      "regions": [
+        "luganuse_vald"
+      ],
+      "source_path": "oigusaktid/409052026032.xml",
+      "index_from": "2026-05-12",
+      "index_to": null
+    },
+    {
+      "document_id": "document_f0175599d39a9c1d09f0807a360a391d98d0facdec41e57a318dcdb344a6062d",
+      "version_id": "version_6d97d0b256c8f504348af2e3a1b05a35f70c2593ecd2ef88f3621ecd67428169",
+      "globaal_id": "407052026045",
+      "group": "1053996",
+      "title": "Rakvere valla sotsiaalhoolekandelise abi andmise tingimused ja kord",
+      "issuer": "Rakvere Vallavolikogu",
+      "regions": [
+        "rakvere_vald"
+      ],
+      "source_path": "oigusaktid/407052026045.xml",
+      "index_from": "2026-05-10",
+      "index_to": null
+    },
+    {
+      "document_id": "document_f6f8f426047085ba24c9e496dceebd9146cf303df56cddbd40de17d0b7f2f56b",
+      "version_id": "version_4c9d2723faef160d1e409f0649bf1564d37a0091a4c9f6583dcbb682949fd6f9",
+      "globaal_id": "404092025018",
+      "group": "1059050",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Tapa Vallavolikogu",
+      "regions": [
+        "tapa_vald"
+      ],
+      "source_path": "oigusaktid/404092025018.xml",
+      "index_from": "2025-09-07",
+      "index_to": "2026-12-31"
     },
     {
       "document_id": "document_f9f4d458bf5e531b51af452e2073e62721c3eaf56ab40decbc6d08260e38d3eb",

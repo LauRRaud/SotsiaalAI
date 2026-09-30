@@ -92,6 +92,24 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**30.09 (Opus), jätk: korpus v42 — 31 omavalitsuse kehtivad korrad ja omavalitsuste katvuse kontroll.** Omanik 30.09: „jätka arendust“.
+- **Tootmises 30.09 kella 14:07-st:** korpus v42 (indeks `19bc330a`, 6080 dokumenti, 36 540 lõiku), plaan `m4-corpus-chat-20260930d.json`. Seaded on samad.
+- **Leid:** 31 omavalitsusel 78-st polnud indeksis ühtki kehtivat RT korda. Nende hulgas olid Tartu linn ja vald, Pärnu, Rapla, Valga, Saku, Võru, Luunja ja Tori.
+  - Registris oli nende vana või kehtetuks tunnistatud redaktsioon.
+  - Igakuine kontroll nägi ainult indeksis olevaid gruppe, seega jäi lünk märkamata.
+- **Korpus v42** ([ADR-038](../rag-v2/adr-038-law-validity-check.md) täiendus): 38 akti redaktsiooni ning Luunja ja Saku määrade lisad.
+  - Redaktsioonide hulgas on 2027. aasta omad ja Tori redaktsioon alates 03.10.
+  - Embedding 0,086 USD.
+  - Katvus 78/78 täna, 02.10, 03.10 ja 01.01.2027.
+  - Päris vestlus: Tartu linna koduteenuse tasu on 1 euro koduskäigu eest, lisaks sissetulekust sõltuv tunnitasu (korra § 11 lõige 3).
+- **Kehtivuskontroll `--municipalities`:** nimetab iga registri omavalitsuse, millel pole indeksis kehtivat akti. Igakuine töö kasutab seda võtit.
+- **Avatud:**
+  - registri kirjed viitavad vanadele XML-idele, seega tuleb omavalitsus väljaandja nimest;
+  - eraldi määrade ja teenuste aktid on indeksis ainult osal omavalitsustel;
+  - 01.10 kontroll (uus SHS ja abivahendite piirhinnad);
+  - kontaktid pärast 04.10;
+  - kiirus päris vestluses.
+
 **30.09 (Opus), jätk: korpus v40 ja v41 — Kose ja Põlva kehtivad korrad, sama lisa uues redaktsioonis.** Omanik 30.09: „jätka arendust“.
 - **Tootmises 30.09 kella 13:35-st:** korpus v41 (indeks `5457e6e0`, 6040 dokumenti), plaan `m4-corpus-chat-20260930c.json` (käsitsi). Seaded on samad mis enne: profiil v3, answer-12, dialoog 21, olek v5.
 - **Korpus v40** (#276): Kose kehtiv kord (430042026009, alates 03.05.2026) ja Põlva uus redaktsioon (429092026004, alates 02.10.2026).

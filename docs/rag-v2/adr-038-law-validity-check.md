@@ -118,6 +118,35 @@ Samad neli juhtu on testides. Enne parandust andis vana kood testi RT asendaja v
   - kehtetuks tunnistamise märge, mille viidatud akti korpuses pole, jääb märkeks ka pärast asendajate otsingut (`group_repealed`, mitte `missing_version`);
   - 503, lehed, mis kunagi kokku ei tule, avaldatud redaktsiooni XML-i 404, otsingu 404 ja vastus ilma koguarvuta annavad `fetch_failed` ja exit 20.
 
+## Omavalitsuste katvus (30.09.2026, korpus v42)
+
+Omanik 30.09: „jätka arendust“.
+
+### Probleem
+
+- **Kontroll nägi ainult indeksis olevaid gruppe.** 31 omavalitsusel 78-st oli KOV-i RT registris (`Andmebaasi/register/kov_oigusaktid.json`) vana või kehtetuks tunnistatud redaktsioon. See ei jõudnud kunagi indeksisse, seega ei jõudnud see ka kontrolli.
+- **Nende omavalitsuste reeglid tulid ainult KOV-i paketist.** Nende hulgas olid Tartu linn ja vald, Pärnu, Rapla, Valga, Saku, Võru linn ja vald, Luunja ja Tori. Näiteks Tartu linna registreeritud kord kehtis kuni 28.02.2026, Pärnu oma kuni 29.12.2024 ja Tori oma kuni 2017.
+- **Kaks registreeritud XML-i olid kehtetuks tunnistamise märked** (Muhu, Lääneranna): „Kehtetu“, 0 paragrahvi. Ingest annab neile `source_text_empty`.
+
+### Otsus
+
+- **`check --municipalities Andmebaasi/register/kov_oigusaktid.json`** nimetab registri iga omavalitsuse, millel pole indeksis täna kehtivat akti. See on leid (exit 10) ning aruandes on eraldi jaotis. Igakuine töö kasutab seda võtit.
+- **Puuduvad aktid leiti sama kontrolliga.** Ajutine manifest registreeritud vanade XML-idega andis `--download`-ga iga grupi kehtiva ja teadaoleva tulevase redaktsiooni.
+  - Kehtetuks tunnistatud grupi asendaja tuli kehtetuks tunnistamise märke viitest (`repealed_by`) või asendajakandidaatidest.
+  - Tori kehtetuks tunnistanud akt oli lapsehoiu kord, seega leiti Tori kord RT otsinguga pealkirja ja väljaandja järgi.
+- **Korpus v42:**
+  - 38 akti redaktsiooni, sh Lääne-Harju, Türi, Muhu ja Tapa 2027. aasta redaktsioonid ning Tori redaktsioon alates 03.10.2026;
+  - Luunja ja Saku määrade lisad (ADR-053);
+  - 40 dokumenti ja 2136 lõiku, embedding 1873 sisendit, 0,086 USD;
+  - indeks `19bc330a`: 6080 dokumenti, 36 540 lõiku, v41 tõend muutumatu.
+- **Manifestis on nüüd 129 akti ja 99 gruppi.** Kontroll: 98 gruppi muutumata, ainus leid on Riigilõivuseaduse 31.10 auk. Katvus: 78/78 omavalitsusel on kehtiv akt täna, 02.10, 03.10 ja 01.01.2027.
+- **Päris vestlus** (üks küsimus): Tartu linna koduteenuse tasu on 1 euro koduskäigu eest, lisaks sissetulekust sõltuv tunnitasu (6,50 või 13 eurot), nagu korra § 11 lõikes 3.
+
+### Piirid
+
+- Registris on iga omavalitsuse kohta üks akt (tavaliselt sotsiaalhoolekandelise abi kord). Eraldi määrade või teenuste aktid lisandusid ainult siis, kui need olid kontrolli teel (Tapa määrad).
+- Registri kirjed viitavad endiselt vanadele XML-idele. Uute aktide omavalitsus tuleb väljaandja nimest (`issuer_name`), mitte registri räsist.
+
 ## Piirid
 
 - Manifest on gitis. Kui korpus avaldatakse ilma manifesti uuendamata, kontrollib töö eelmist seisu.

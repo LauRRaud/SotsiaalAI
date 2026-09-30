@@ -32,7 +32,8 @@ jobs:
         id: check
         run: |
           set +e
-          node scripts/rag-v2-law-validity.mjs check --manifest docs/rag-v2/legal-acts-in-index.json --out law-validity
+          node scripts/rag-v2-law-validity.mjs check --manifest docs/rag-v2/legal-acts-in-index.json --out law-validity \
+            --municipalities Andmebaasi/register/kov_oigusaktid.json
           echo "exit=$?" >> "$GITHUB_OUTPUT"
 
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1

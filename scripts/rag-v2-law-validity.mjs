@@ -10,10 +10,12 @@
 //     Writes law-validity-<today>.json and .md. Exit 0: unchanged; 10: findings or items to review; 20: a request
 //     failed after retries (its group is reported as fetch_failed, never as unchanged).
 //     --download puts the missing versions' XML in DIR for the usual register, ingest and index path.
+//     --municipalities Andmebaasi/register/kov_oigusaktid.json also names every municipality of that register without
+//     an indexed act in force today (exit 10), since the groups come from the index and cannot show one that is absent.
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
-import { addDays, analyseGroup, coverage, exitCode, groupStatus, isoDay } from '../lib/rag-v2/law-validity.js';
+import { addDays, analyseGroup, coverage, exitCode, groupStatus, isoDay, municipalCoverage } from '../lib/rag-v2/law-validity.js';
 
 const BASE = process.env.RAG_V2_RT_BASE || 'https://www.riigiteataja.ee';
 const PAGE = 500, MAX_PAGES = 30, ROUNDS = 8, PAUSE_MS = Number(process.env.RAG_V2_RT_PAUSE_MS ?? 200);
@@ -170,6 +172,12 @@ function markdown(report) {
     `Kontrollitud ${report.groups.length} akti gruppi (${report.acts} indekseeritud teksti), vaatehorisont kuni ${report.horizon}. ` +
     `Manifest: ${report.manifest.store_generation ?? '?'} (${report.manifest.generated_at ?? '?'}).`, '',
     '| Olek | Gruppe |', '|---|---:|', ...Object.entries(report.summary).map(([state, count]) => `| ${state} | ${count} |`), ''];
+  const municipal = report.municipal_coverage;
+  if (municipal) {
+    lines.push(`## Omavalitsused ilma kehtiva aktita indeksis: ${municipal.without_current_act.length} / ${municipal.municipalities}`, '');
+    for (const entry of municipal.without_current_act) lines.push(`- ${entry.municipality_name ?? entry.municipality_id} (${entry.municipality_id})`);
+    if (municipal.without_current_act.length) lines.push('');
+  }
   // Published versions from half a year back: the ones the findings are about.
   const recent = entry => (entry.split('..')[1] === 'open' || entry.split('..')[1] >= addDays(report.today, -180));
   for (const group of report.groups.filter(g => g.status !== 'unchanged' || g.notes.length)) {
@@ -209,7 +217,7 @@ try {
   const [mode, ...rest] = process.argv.slice(2);
   const { values } = parseArgs({ args: rest, options: { store: { type: 'string' }, tenant: { type: 'string', default: 'sotsiaalai-corpus' },
     policy: { type: 'string' }, 'input-root': { type: 'string', default: 'Andmebaasi' }, out: { type: 'string' }, manifest: { type: 'string' },
-    today: { type: 'string' }, 'horizon-days': { type: 'string', default: '400' }, download: { type: 'string' } } });
+    today: { type: 'string' }, 'horizon-days': { type: 'string', default: '400' }, download: { type: 'string' }, municipalities: { type: 'string' } } });
   if (mode === 'manifest') {
     if (!values.store || !values.policy || !values.out) throw Object.assign(new Error('usage'), { code: 'law_validity_usage' });
     const manifest = await buildManifest(values);
@@ -242,13 +250,17 @@ try {
     }
     const summary = {};
     for (const group of groups) summary[group.status] = (summary[group.status] || 0) + 1;
+    const municipal = values.municipalities
+      ? municipalCoverage(manifest.acts, JSON.parse(await fs.readFile(values.municipalities, 'utf8')).entries || [], today) : null;
     const report = { schema_version: 'rag-v2/law-validity-report-1', today, horizon, acts: manifest.acts.length,
-      manifest: { store_generation: manifest.store_generation, generated_at: manifest.generated_at }, summary, groups };
+      manifest: { store_generation: manifest.store_generation, generated_at: manifest.generated_at }, summary,
+      ...(municipal ? { municipal_coverage: municipal } : {}), groups };
     await fs.mkdir(values.out, { recursive: true });
     await fs.writeFile(path.join(values.out, `law-validity-${today}.json`), `${JSON.stringify(report, null, 2)}\n`);
     await fs.writeFile(path.join(values.out, `law-validity-${today}.md`), `${markdown(report)}\n`);
-    const code = exitCode(groups);
-    console.log(JSON.stringify({ today, groups: groups.length, summary, exit: code }));
+    const code = Math.max(exitCode(groups), municipal?.without_current_act.length ? 10 : 0);
+    console.log(JSON.stringify({ today, groups: groups.length, summary,
+      ...(municipal ? { municipalities_without_current_act: municipal.without_current_act.length } : {}), exit: code }));
     process.exitCode = code;
   } else throw Object.assign(new Error('usage'), { code: 'law_validity_usage' });
 } catch (error) {
