@@ -4,8 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 import GlassCarousel from "@/components/room/GlassCarousel";
-import ChevronIcon from "@/components/brand/icons/ChevronIcon";
-import { AboutInfoIcon } from "@/components/brand/icons/CardIcons";
+import { AboutInfoIcon, BackArrowIcon } from "@/components/brand/icons/CardIcons";
 import { VOICE_SESSION_WARNING_MS } from "@/lib/chat/realtimeVoice";
 
 const LIVE_STATES = ["connecting", "listening", "thinking", "speaking"];
@@ -78,7 +77,10 @@ export default function VoiceModeSurface({ t, voice, onClose }) {
         backItem={{
           key: "voice-back",
           label: read("chat.voice.back", "Tagasi vestlusesse"),
-          icon: <ChevronIcon direction="left" strokeWidth={1.05} />
+          /* Sama nool mis igas teises dokis. ChevronIcon'i viewBox on 4,8 × 8,6:
+             doki ühine `stroke-width: 1.75` tegi selles mõõtkavas paksu kõvera
+             noole (omanik 30.09: „imelik ja kole tagasi nool"). */
+          icon: <BackArrowIcon />
         }}
         actionItem={{
           key: "voice-toggle",
