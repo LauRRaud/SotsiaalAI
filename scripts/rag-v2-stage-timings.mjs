@@ -18,8 +18,10 @@ function spread(values) {
   return { n: sorted.length, p25: Math.round(at(0.25)), median: Math.round(at(0.5)), p75: Math.round(at(0.75)) };
 }
 
-// The service's phases (lib/rag-v2/pilot/service.js): the turn's stages as the differences of consecutive marks.
-const STAGES = [['plan', null, 'planned'], ['embedding', 'planned', 'embedded'], ['search', 'embedded', 'searched'],
+// The service's phases (lib/rag-v2/pilot/service.js): the turn's stages as the differences of consecutive marks. From
+// 30.09 the search starts with the embedding request, not after it: "search" is then the search's time after the request
+// ended, and "plan_to_searched" the embedding and the search together.
+const STAGES = [['plan', null, 'planned'], ['embedding', 'planned', 'embedded'], ['search', 'embedded', 'searched'], ['plan_to_searched', 'planned', 'searched'],
   ['answer_to_first_text', 'searched', 'first_text'], ['answer_after_first_text', 'first_text', 'answered'], ['first_text', null, 'first_text'], ['answered', null, 'answered']];
 
 function summarize(turns) {

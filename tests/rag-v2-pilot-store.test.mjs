@@ -134,9 +134,85 @@ test('real DB: budget reservation is locked across concurrent claimers and survi
   await db.conversation.delete({ where: { id: f.conv.id } });
   assert.equal((await db.m4PilotLedger.findUnique({ where: { id: f.config.id } })).totals.attempts, 1);
 });
+// Codex 30.09: the search starts while the turn's embedding request runs; the request stays one batch, its usage is
+// recorded before the turn ends on any failure, and a failed request is the turn's error.
+const deferred = () => { let resolve, reject; const promise = new Promise((ok, fail) => { resolve = ok; reject = fail; }); return { promise, resolve, reject }; };
+const until = async (condition, rounds = 500) => { for (let i = 0; i < rounds && !condition(); i++) await new Promise(resolve => setTimeout(resolve, 2)); return condition(); };
+const unit = Array.from({ length: 3072 }, (_, i) => i === 1 ? 1 : 0);
+function gatedEmbedding(f) {
+  const gate = deferred(), original = f.service.call;
+  f.service.call = async args => { if (args.stage !== 'embedding') return original(args); f.calls.push('embedding'); f.bodies.push({ stage: 'embedding', body: args.body }); return gate.promise; };
+  return gate;
+}
+const embeddingEvent = async f => (await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id } })).payload.events.find(event => event.stage === 'embedding');
+
+test('Codex 30.09 real DB: the search starts before the embedding request ends and reads the same vector from one request', async t => {
+  const f = await fixture(t), gate = gatedEmbedding(f);
+  let started = false, seen = null;
+  f.adapters.search = async (c, query, vector) => { started = true; seen = await vector; return f.packet; };
+  const running = f.service.run(f.user.id, f.input);
+  assert.ok(await until(() => started), 'the search started while the embedding request was still open');
+  assert.equal(seen, null);
+  gate.resolve({ value: unit, usage: { input: 50, output: 0 }, requestId: 'fake-embedding' });
+  assert.equal((await running).state, 'completed');
+  assert.deepEqual(seen, unit);
+  assert.deepEqual(f.calls, ['embedding', 'answer']);
+  assert.equal(f.bodies.filter(entry => entry.stage === 'embedding').length, 1);
+  assert.equal((await embeddingEvent(f)).state, 'response_received');
+  // A cached question makes no request and the search reads the cached vector.
+  let cached = null;
+  f.adapters.search = async (c, query, vector) => { cached = await vector; return f.packet; };
+  await f.service.run(f.user.id, { ...f.input, clientTurnKey: randomUUID() });
+  assert.deepEqual(cached, unit);
+  assert.deepEqual(f.calls, ['embedding', 'answer', 'answer']);
+});
+
+test('Codex 30.09 real DB: an early search failure ends the turn only after the embedding usage is recorded', async t => {
+  const f = await fixture(t), gate = gatedEmbedding(f);
+  let failed = false;
+  f.adapters.search = async () => { failed = true; throw Object.assign(Error('lexical down'), { code: 'lexical_service_failed' }); };
+  let settled = false;
+  const running = f.service.run(f.user.id, f.input).finally(() => { settled = true; });
+  assert.ok(await until(() => failed));
+  await new Promise(resolve => setTimeout(resolve, 20));
+  assert.equal(settled, false, 'the turn waits for the embedding request');
+  gate.resolve({ value: unit, usage: { input: 50, output: 0 }, requestId: 'fake-embedding' });
+  await assert.rejects(running, { code: 'lexical_service_failed' });
+  const event = await embeddingEvent(f);
+  assert.equal(event.state, 'response_received');
+  assert.deepEqual(event.usage, { input: 50, output: 0 });
+  assert.equal((await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id } })).state, 'stopped');
+});
+
+test('Codex 30.09 real DB: a failed embedding request is the error of the turn though the search failed because of it', async t => {
+  const f = await fixture(t), gate = gatedEmbedding(f);
+  let searchSettled = false;
+  f.adapters.search = async (c, query, vector) => { try { await vector; return f.packet; } finally { searchSettled = true; } };
+  const running = f.service.run(f.user.id, f.input);
+  assert.ok(await until(() => f.calls.includes('embedding')));
+  gate.reject(Object.assign(Error('provider refused'), { code: 'provider_http_error', usage: { input: 50, output: 0 } }));
+  await assert.rejects(running, { code: 'provider_http_error' });
+  assert.equal(searchSettled, true);
+  assert.deepEqual(f.calls, ['embedding']);
+  assert.deepEqual((await embeddingEvent(f)).usage, { input: 50, output: 0 });
+});
+
+test('Codex 30.09 real DB: access withdrawn while the embedding request runs stops the turn before any answer', async t => {
+  const f = await fixture(t), gate = gatedEmbedding(f);
+  f.adapters.search = async (c, query, vector) => { await vector; return f.packet; };
+  const running = f.service.run(f.user.id, f.input);
+  assert.ok(await until(() => f.calls.includes('embedding')));
+  f.revoke();
+  gate.resolve({ value: unit, usage: { input: 50, output: 0 }, requestId: 'fake-embedding' });
+  await assert.rejects(running, { code: 'revoked' });
+  assert.deepEqual(f.calls, ['embedding']);
+  assert.equal(await db.conversationMessage.count({ where: { conversationId: f.conv.id } }), 0);
+});
+
 test('real DB: revocation between retrieval and generation blocks egress and later restoration', async t => {
   const f = await fixture(t);
-  f.adapters.search = async () => { f.revoke(); return f.packet; };
+  // The search waits for the turn's vector (the embedding request runs meanwhile), then access is withdrawn.
+  f.adapters.search = async (c, query, vector) => { await vector; f.revoke(); return f.packet; };
   await assert.rejects(f.service.run(f.user.id, f.input), { code: 'revoked' });
   assert.deepEqual(f.calls, ['embedding']);
   assert.equal(await db.conversationMessage.count({ where: { conversationId: f.conv.id } }), 0);

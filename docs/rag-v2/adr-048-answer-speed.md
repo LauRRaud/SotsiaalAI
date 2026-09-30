@@ -103,6 +103,18 @@ Mõlemad jooksud tehti `eval-full` koopiast, mille `lib` on sama mis tootmises (
     - Tootmiskoodi vead polnud prompt'i omad: üks oli #271 parandatud eelarveviga, teine juhuslik tekstisisene viide, mille tõttu vastus lükati tagasi.
     - Vastuse sisend vähenes pöörde kohta umbes 1700 tokenit (mälukataloogis mediaan 22 370 → 20 989). Aja mõju sellise valimiga ei eristu, sest vastuse arutluse kõikumine on suurem.
 
+### 6. Embedding ja otsing samal ajal, 30.09
+
+- **Päris vestluse pöördes** (Harku sünnitoetus, 30.09) kestis embeddingu kutse 1,6 s ja sõnaline otsing 1,4 s. Teenus ootas enne otsingut terve embeddingu ära: kutse, kulu salvestuse ja vektori kontrolli. Otsingutuum käivitab sõnalise ja vektorikanali juba paralleelselt (Codexi kontroll: [audit](../audits/rag-v2-first-text-timings-2026-09-29.md)).
+- **Muudatus** (`pilot/service.js`, `pilot/retrieval.js`):
+  - teenus alustab embeddingu partii ja otsingu korraga;
+  - otsingu ulatus, kataloog ja sõnaline kanal ei vaja vektorit; vektorikanal ja teenusekataloog ootavad vektori ära;
+  - partii jääb üheks (küsimus ja plaani päringud);
+  - vektor antakse välja alles pärast kulu salvestamist ja rea kirjutamist, seega rerank'i kirjutused tulevad endiselt pärast embeddingu omi;
+  - teenus ootab mõlemad lõpuni: otsingu varajane tõrge ootab embeddingu kulu salvestuse ära, ja embeddingu tõrge (ka õiguste tühistamine selle ajal) on pöörde viga ka siis, kui otsing kukkus selle tõttu.
+- **Võit ei ole veel mõõdetud** (Codex: NOT_PROVEN). Ülempiir on embeddingu kutse kestus: selles pöördes ~1,6 s, tavaliselt ~0,5 s, vahemälutabamuse korral 0. Tulemus tuleb päris vestlusest. Etappide kokkuvõttes on `search` nüüd otsingu aeg pärast embeddingu lõppu, ja `plan_to_searched` embeddingu ja otsingu kogukestus.
+- **Kontroll:** `tests/rag-v2-pilot-store.test.mjs` (andmebaas) näitab, et otsing algab enne embeddingu lõppu ja saab sama vektori ühest kutsest. Samuti kontrollib see vahemälu, varajast otsingutõrget, embeddingu tõrget ja õiguste tühistamist. Kolm uut testi kukuvad vana koodiga. Ühtse otsingu integratsioonitest päris Postgresi, Qdranti ja EstNLTK-ga: 4/4.
+
 ## Järeldus
 
 - Esimese tekstini kulub umbes 8 s ühtlast eeltööd (plaan, embedding, otsing koos rerank'iga) ja 5–20 s vastusemudeli arutlust.
