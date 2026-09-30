@@ -1,9 +1,9 @@
 {
   "schema_version": "rag-v2/legal-acts-in-index-1",
-  "generated_at": "2026-09-30T11:56:56.660Z",
+  "generated_at": "2026-09-30T12:17:01.167Z",
   "tenant": "sotsiaalai-corpus",
-  "store_generation": "generation_645cefd0b47d69473d8f4983f0f5018a80d3a41d5a5b12bf2add935a52ca9f46",
-  "policy_documents": 6446,
+  "store_generation": "generation_e5bb67a1479911b9a264a0d8ca62a7ce1518ca0c4986c60a5b4a60346c1a0540",
+  "policy_documents": 6447,
   "acts": [
     {
       "document_id": "document_005199d74750ea0e1516034366803c9226115d36349d91b74b6ec0e360d34f6a",
@@ -3055,6 +3055,20 @@
       ],
       "source_path": "oigusaktid/418082026033.xml",
       "index_from": "2026-08-21",
+      "index_to": null
+    },
+    {
+      "document_id": "document_6fbbbf006e143d1495f7abf21a46d245df789b5b7eb0eb7bc23274e9d591510e",
+      "version_id": "version_958d502e010fc604e570bce880100d39bbe87ea95145a4ef0ff11878186c79b8",
+      "globaal_id": "401102026040",
+      "group": "1039669",
+      "title": "Isikliku abistaja teenuse osutamise tingimused ja kord",
+      "issuer": "Maardu Linnavalitsus",
+      "regions": [
+        "maardu_linn"
+      ],
+      "source_path": "oigusaktid/401102026040.xml",
+      "index_from": "2026-10-04",
       "index_to": null
     },
     {

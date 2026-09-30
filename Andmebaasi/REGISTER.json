@@ -26,8 +26,8 @@
       "sources": 1
     },
     "oigusaktid": {
-      "files": 568,
-      "sources": 554
+      "files": 569,
+      "sources": 555
     },
     "register": {
       "files": 2,
@@ -26080,6 +26080,14 @@
       "role": "source",
       "sha256": "c3683cf4d720871e624fbe730198ac0962ab4e2b2b3cb146229ecb82b303bc05",
       "original_path": "riigiteataja.ee/et/akt/431122025011.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/401102026040.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "d5f91811a65dddd6d2a8d50b5e24c2d8d115ceda4f9991ae846a1cabad056d3b",
+      "original_path": "riigiteataja.ee/et/akt/401102026040.xml",
       "review_status": "version_and_jurisdiction_validation_pending"
     }
   ],
