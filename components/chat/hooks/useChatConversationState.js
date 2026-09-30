@@ -9,6 +9,9 @@ const MAX_HISTORY = 8;
 /* SOL-CHAT-11: üldine võti on SURNUD. Aktiivse vestluse ID elab nüüd konto ja rolli all
    (`lib/chat/activeConversationKey.js`); vana sildistamata rida kustutatakse esimesel puutel. */
 const EMPTY_CONVERSATION_READY_KEY = "__empty__";
+// Ootel piloodikäigu uus vaatamine: iga 4 s, kõige rohkem 45 korda (umbes kolm minutit).
+const PENDING_REFRESH_MS = 4000;
+const PENDING_REFRESH_TRIES = 45;
 
 function hasMeaningfulMessageContent(message) {
   if (!message || typeof message !== "object") return false;
@@ -201,6 +204,8 @@ export function useChatConversationState({
   // SOL-CHAT-12: ainult viimasena ALANUD hüdreerimine tohib kirjutada (vt lib/chat/requestGeneration.js).
   const hydrationGenerationRef = useRef(createRequestGeneration());
   const hydrationAbortRef = useRef(null);
+  const pendingRefreshRef = useRef({ timer: 0, tries: 0 });
+  const hydrateAgainRef = useRef(null);
   useEffect(() => {
     messagesRef.current = messages;
   }, [messages]);
@@ -303,8 +308,12 @@ export function useChatConversationState({
     );
     const serverDroppedMessages =
       nextList.length < prevList.length || nextUserCount < prevUserCount;
+    // Piloodi käik, mida server alles vastab, ei asenda selle akna enda voogu: fookuse või nähtavuse
+    // värskendus keset vastust vahetas muidu voogava mulli teksti „Pooleliolev katse“ vastu (30.09).
+    const serverTurnPending = nextList.at(-1)?.role === "ai" && nextList.at(-1)?.completionStatus === "PENDING";
 
     return (
+      ((isGeneratingRef.current || hasLocalStreaming) && serverTurnPending) ||
       ((isGeneratingRef.current || hasLocalStreaming || localRecentlyMutated) &&
         serverDroppedMessages) ||
       (localHasStructuredOnlyMessages && serverDroppedMessages)
@@ -516,6 +525,21 @@ export function useChatConversationState({
           messageIdRef.current = nextId;
           return mapped;
         });
+        // Käik, mida server alles vastab (teine aken või lehe laadimine keset vastust), vaadatakse
+        // uuesti, kuni see valmib; kõige rohkem umbes kolm minutit. Voogav aken saab vastuse ise.
+        const pending = pendingRefreshRef.current;
+        window.clearTimeout(pending.timer);
+        const lastServer = serverMessages.at(-1);
+        if (pilotEnabled && lastServer?.role === "ai" && lastServer.completionStatus === "PENDING" && !isGeneratingRef.current) {
+          if (pending.tries < PENDING_REFRESH_TRIES) {
+            pending.tries += 1;
+            pending.timer = window.setTimeout(() => {
+              if (!cancelledRef?.current) hydrateAgainRef.current?.(cancelledRef);
+            }, PENDING_REFRESH_MS);
+          }
+        } else {
+          pending.tries = 0;
+        }
         return;
       }
       if (!serverTextTrim) {
@@ -582,10 +606,15 @@ export function useChatConversationState({
     }
   }, [normalizeSources, setIsCrisis, shouldPreserveLocalMessages, pilotEnabled, _t]);
   useEffect(() => {
+    hydrateAgainRef.current = hydrateFromServer;
+  }, [hydrateFromServer]);
+  useEffect(() => {
     if (!convId) return;
     const cancelledRef = {
       current: false
     };
+    const pending = pendingRefreshRef.current;
+    pending.tries = 0;
     hydrateFromServer(cancelledRef);
     const throttled = throttle(() => {
       if (document.visibilityState === "visible") hydrateFromServer(cancelledRef);
@@ -598,6 +627,7 @@ export function useChatConversationState({
     window.addEventListener("sotsiaalai:refresh-conversations", refreshFromEvent);
     return () => {
       cancelledRef.current = true;
+      window.clearTimeout(pending.timer);
       throttled.cancel();
       refreshFromEvent.cancel();
       try {

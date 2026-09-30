@@ -92,10 +92,32 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**Uus aken alustab siit (30.09 õhtu).** Eelmine vestlus läks liiga pikaks, omanik avas uue akna.
+- **Tootmises:** korpus v46 (indeks `5a959000`, 6470 dokumenti, Qdrantis 40 489 punkti). Vestlusplaani uuendab reliis ise (ADR-037): profiil v3, answer-12, dialoog 21, olek v5, arutlus medium.
+- **Tööviis:**
+  - Codex kujundab põhikaustas, seega ära vaheta seal harusid. Töötle %TEMP% worktree's: `node_modules` junction, `generated/` koopia. Eemalda worktree ja haru pärast PR-i.
+  - PR liidetakse ja deploy'takse ise. Enne PR-i jooksuta kogu `npm test`.
+  - Tasulised jooksud on kitsad: väikseim kataloog, suurem komplekt ainult hinnaga ette öeldes.
+  - Päris mõõtmine käib päris vestluses: brauseripaanis `sotsiaal.ai/vestlus`, uus vestlus sessionStorage'i `:convId` võtme kustutamisega.
+- **Järgmised sammud:**
+  - 01.10: ühe küsimuse kontrollid, et vastused kasutaksid uut SHS-i ja abivahendite piirhindu.
+  - 04.10: Maardu XML-id 415082017002 ja 402072013031 uuesti alla laadida, kui RT on kirjutanud neile lõpukuupäeva. Rada: `rag-v2-law-validity.mjs check --download`, `rag-v2-corpus-refresh.mjs`, serveris `rag-v2-corpus-run.sh` (runbook, jaotis 0).
+  - Kontaktid pärast 04.10.
+  - Kitsas omavalitsuste vastuste mõõtmine: 6–8 küsimust, umbes 0,1 USD.
+  - Omaniku valik: M3 (kontrollitud seoste katse) või M5 (kümne aasta ülevaade).
+  - Codex vaatab üle PR-id #283, #285, #286 ja #288.
+  - Kiiruse mõõtmine päris vestluses teeb omanik.
+- **Võrk 30.09 õhtul:** SSH port 22 aegus korduvalt nii GitHubi kui serveri (`ssh sotsiaalai`) poole. Push õnnestus kordamisel. `gh` töötab HTTPS-i kaudu.
+
 **30.09 (Opus), jätk: vastus annab vormi lingi** ([ADR-061](../rag-v2/adr-061-answer-form-links.md)). Omanik 30.09: „ma ei taha enda andmebaasi taotlusi, kui assistent vastab kasutajale, annab ta lingi“.
-- **Vormide tekstid jäävad korpusest välja.** KOV-pakettides on 870 vormikirjet koos lingiga.
+- **Vormide tekstid jäävad korpusest välja.** KOV-pakettides on 870 vormikirjet koos lingiga. RT lisadest tuletatakse edasi ainult määrade tabeleid, taotlusvorme mitte.
 - **Vastuse alla tuleb vormi link.** Lingi võtab server käigu kirjekontekstist: vastuses viidatud vormikirje või viidatud ja täielikult näidatud teenuse vorm. Ainult allika `https`-aadress, kuni viis linki. Mudeli juhis ja korpus ei muutu.
-- **Varem:** Kose matusetoetuse vastuses oli link kolme kliki kaugusel (viide → allikad → „Ava allikas“ → „Algallikas“).
+  - Päris vestlus (#286): Kose matusetoetuse vastuse all on „Matusetoetuse avalduse vorm2026 (docx)“ ja „Kose valla SPOKU e-taotluste keskkond“. Mõlemad avanevad uues aknas.
+  - Varem oli link kolme kliki kaugusel (viide → allikad → „Ava allikas“ → „Algallikas“).
+- **#288:** vormi link on tavaline allajoonitud link, ilma pilli taustata (omanik 30.09). Allalaaditav fail jääb pilliks.
+- **#288, ooteolek:** fookuse või nähtavuse värskendus keset vastust vahetas voogava mulli teksti „Pooleliolev katse“ vastu. Põhjus: serveris on vastuse ajal juba sama palju sõnumeid, seega kohalikku voogu ei hoitud alles.
+  - Nüüd jääb selle akna voog alles, kuni serveri käik on ootel.
+  - Teine aken või keset vastust laetud leht vaatab ootel käiku iga 4 s uuesti, kuni vastus valmib (kõige rohkem umbes 3 minutit).
 
 **30.09 (Opus), jätk: kasutamata versioonide otsinguindeks koristatud** ([ADR-060](../rag-v2/adr-060-prune-unreferenced-versions.md)). Omanik 30.09: „korista ära“.
 - **Tööriist:** `scripts/rag-v2-prune-versions.mjs` eemaldab versioonide lõigud, pitserid ja Qdranti punktid, mida ükski generatsioon ei loetle.
