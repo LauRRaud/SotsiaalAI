@@ -70,12 +70,28 @@ Küsimuse kaupa:
 - Kolm küsimust leidis juba baas ja kõik harud.
 - Kaarditekst üksi (ilma allikalõiguta) ei sisaldanud ühtegi fraasi.
 
+### Teine kataloog: muu kujuga juhud (`hard-conditions-2.json`)
+
+- Kuus küsimust, kirjutatud enne jooksu.
+- Esimese kataloogi kallutatuse kontroll: ükski paragrahv, mida küsimus puudutab, ei nimeta määravat. Määrav on sama akti hilisemas paragrahvis (SÜS § 35, LasteKS § 27¹) või pika paragrahvi hilisemas lõikes (SHS § 131 lg 9, § 133 lg 2¹); üks on kontrolljuht (§ 132 lg 1).
+
+| Haru | Leitud | Konteksti tokenid |
+|---|---:|---:|
+| A graafita | 5/6 | 6010 |
+| B rohkem teksti | 5/6 | 8031 |
+| C kaardid | 5/6 | 6892 |
+| D ristviited | 5/6 | 6488 |
+| E naabrid | 5/6 | 8522 |
+
+- Baas leidis juba viis kuuest, ja lapsega töötava isiku andmete edastamise tingimust (LasteKS § 27¹) ei leidnud ükski haru. Selle kataloogi peal harud ei erinenud.
+- D lisas kõige vähem konteksti (+478 tokenit baasiga võrreldes; B +2021, C +882, E +2512) ja kahju ei teinud. Tema lisandused olid SÜS-i enda viidatud paragrahvid (§ 15, § 27).
+
 ## Järeldus
 
 - Sama lisaruumiga tõi akti enda ristviidete deterministlik laiendus määrava tingimuse kõige sagedamini ja väikseima lisakontekstiga, ilma mudelita.
 - Kaardid ja ristviited täiendavad teineteist: kumbki leidis juhte, mida teine ei leidnud.
 - Rohkem tavateksti (B) ja naabrid (E) lisasid vähe.
-- **Kataloogi kallutatus:** neli üheksast juhtumist on ristviite kujuga (§ 72 erandid). Tulemus ei näita, et D oleks alati parim. See näitab, et selliseid juhte baas, rohkem teksti ega naabrid ei leia.
+- **Kataloogi kallutatus:** neli üheksast juhtumist on ristviite kujuga (§ 72 erandid). Tulemus ei näita, et D oleks alati parim. See näitab, et selliseid juhte baas, rohkem teksti ega naabrid ei leia. Teises kataloogis, kus viidet pole, harud ei erinenud (kõik 5/6) ja D oli odavaim lisandus.
 - Vastusepoolne mõõtmine on allpool: vestluse täisahel reranki ja vastusemudeliga, profiil v1 vs v3.
 
 ## Vestluse profiil v3 (`hybrid-estnltk-chat-v3`)
