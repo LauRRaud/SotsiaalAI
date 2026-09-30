@@ -72,6 +72,12 @@
   - plaan `m4-corpus-chat-20260930e.json`, seaded samad.
 - **Päris vestlus** (üks küsimus): „Elan Tartu linnas 30-ruutmeetrises üürikorteris ja taotlen toimetulekutoetust. Kui suurt üüri mulle arvestatakse?“ Vastus: 18,01–33 m² eluruumi üür kuni 15 eurot ruutmeetri kohta kuus, 30 m² puhul kuni 450 eurot. See on Tartu eluasemekulude piirmäärade akti § 1 punkt 2, mida varem indeksis polnud.
 
+## Täiendus (ADR-059)
+
+- v43 skaneerimine luges väljaandja kogu loendi 500 akti kaupa lehtedena. RT järjestab iga päringu isemoodi, seega jäi neli akti vahele.
+- Nüüd otsitakse väljaandja akte pealkirja märksõnadega. Iga otsing mahub ühele lehele ja loetakse, kuni erinevate aktide arv jõuab koguarvuni; muidu on tulemuseks tõrge.
+- Leitud aktid lisati korpuse versiooniga v45.
+
 ## Piirid
 
 - Kategooria tuleb pealkirjast. Akt, mille pealkiri ei nimeta teemat („Toetuse andmise kord“ ilma sotsiaalsõnata), jääb välja. Teise valdkonna sõnaga pealkiri, mis siiski puudutab sotsiaalvaldkonda, jääb samuti välja.

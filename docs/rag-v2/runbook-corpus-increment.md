@@ -28,6 +28,21 @@ Näidetes on v26 väärtused. Mõisted:
 - Abiskriptid (`run-v26.sh`, `make-approval-v26.mjs`, `law-check.mjs`, `assist-eval-v26.mjs` jt) on gitist väljas: `tmp/rag-v2-dev-2026-09-27/` ja serveri töökaustas. Nende v26 teed ja nimed tuleb uue käigu jaoks muuta.
   - `run-v26.sh` kasutas veel vana kausta `$A/tmp/rag-v2-v25`. Serveris on see muudetud, aga sülearvuti koopias mitte.
 
+## 0. Kiire rada Riigi Teataja muudatustele ([ADR-059](adr-059-corpus-refresh-path.md))
+
+```bash
+node scripts/rag-v2-law-validity.mjs check --manifest docs/rag-v2/legal-acts-in-index.json --out W/check --download W/dl
+node scripts/rag-v2-municipal-acts.mjs scan --manifest docs/rag-v2/legal-acts-in-index.json --out W/scan --download W/dl
+node scripts/rag-v2-corpus-refresh.mjs register --from W/dl --out W
+# plan (--selection W/selection.json), run ja review nagu jaotises 3
+node scripts/rag-v2-corpus-refresh.mjs review --draft W/review-draft.json --out W/review.json --reviewer "<kes, kelle korraldusel>"
+# publish nagu jaotises 3
+node scripts/rag-v2-corpus-refresh.mjs package --store tmp/rag-v2-corpus-store-v25 --policy <eelmine policy.json> --review W/review.json --out W/ship
+```
+
+- Serverisse lähevad `W/ship/ship.tgz`, `ship.json` ja `policy.json` nimedega `ship-v<N>.tgz`, `ship-v<N>.json` ja `policy-v<N>.json` töökausta. Seejärel: `sh /home/ubuntu/apps/sotsiaalai/scripts/rag-v2-corpus-run.sh <N> <eelmine N> /etc/sotsiaalai/m4-corpus-chat-<kuupäev><täht>.json <piir> "<alus et>" "<alus en>"`.
+- Rada peatub, kui mõni kirje vajab inimese otsust või kui kaart tuleb uuesti siduda. Siis käib edasi jaotiste 1–7 järgi.
+
 ## 1. Allikas
 
 Riigi Teataja õigusakti puhul:

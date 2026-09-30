@@ -26,8 +26,8 @@
       "sources": 1
     },
     "oigusaktid": {
-      "files": 569,
-      "sources": 555
+      "files": 574,
+      "sources": 560
     },
     "register": {
       "files": 2,
@@ -26088,6 +26088,46 @@
       "role": "source",
       "sha256": "d5f91811a65dddd6d2a8d50b5e24c2d8d115ceda4f9991ae846a1cabad056d3b",
       "original_path": "riigiteataja.ee/et/akt/401102026040.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/403032018117.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "c6619a340885b48ddc3003ac258bdd53837f9884978f3e2f63a1f44c96cdbf50",
+      "original_path": "riigiteataja.ee/et/akt/403032018117.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/423022022027.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "d963264ae1bfe6a0ed8bf010fa0f806b757cbc9dce455bc1ef1518249f3ef56e",
+      "original_path": "riigiteataja.ee/et/akt/423022022027.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/423122025041.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "599ddfb74cf28ceee9b399146484ad8815973517599c7c66b9f49b3d0d202b29",
+      "original_path": "riigiteataja.ee/et/akt/423122025041.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/426062026007.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "6066f8269c96e3e2c53fffd71366295723d3359bce52087b6ce4fc83a9929546",
+      "original_path": "riigiteataja.ee/et/akt/426062026007.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/427052026019.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "c4f9771efaa9d1c504194529ba5740162c1770d54982459cf42584df236d0354",
+      "original_path": "riigiteataja.ee/et/akt/427052026019.xml",
       "review_status": "version_and_jurisdiction_validation_pending"
     }
   ],
