@@ -35,7 +35,14 @@
       "input": 119320,
       "output": 83647,
       "reasoning": 8094
-    }
+    },
+    "reanchored": [
+      {
+        "normalization": "source-structure-v28",
+        "reason": "superscript_digits",
+        "anchors": 25
+      }
+    ]
   },
   "knowledge": {
     "schema_version": "rag-v2/knowledge-input-2",
@@ -1000,7 +1007,7 @@
           {
             "source_unit_index": 71,
             "start": 55,
-            "quote": "Kohaliku omavalitsuse üksus tagab järelhooldusteenuse käesoleva seaduse § 459 lõike 1 alusel asendushooldusel viibivale täisealisele isikule, kes pärast põhi-, kesk-, kutse- või kõrghariduse omandamist jätkab järgmisel õppeaastal õppimist kutseõppe tasemeõppes, rakenduskõrgharidusõppes, ülikooli bakalaureuse- või magistriõppes või bakalaureuse- ja magistriõppe integreeritud õppes:"
+            "quote": "Kohaliku omavalitsuse üksus tagab järelhooldusteenuse käesoleva seaduse § 45⁹ lõike 1 alusel asendushooldusel viibivale täisealisele isikule, kes pärast põhi-, kesk-, kutse- või kõrghariduse omandamist jätkab järgmisel õppeaastal õppimist kutseõppe tasemeõppes, rakenduskõrgharidusõppes, ülikooli bakalaureuse- või magistriõppes või bakalaureuse- ja magistriõppe integreeritud õppes:"
           }
         ]
       },
@@ -1016,7 +1023,7 @@
           {
             "source_unit_index": 71,
             "start": 671,
-            "quote": "Kohaliku omavalitsuse üksus tagab järelhooldusteenuse käesoleva seaduse § 459 lõike 1 alusel asendushooldusel viibivale täisealisele isikule, kes järelhooldusele suunamise ajal jätkab § 459 lõikes 2 nimetatud õppevormis õppimist."
+            "quote": "Kohaliku omavalitsuse üksus tagab järelhooldusteenuse käesoleva seaduse § 45⁹ lõike 1 alusel asendushooldusel viibivale täisealisele isikule, kes järelhooldusele suunamise ajal jätkab § 45⁹ lõikes 2 nimetatud õppevormis õppimist."
           }
         ]
       },
@@ -1048,7 +1055,7 @@
           {
             "source_unit_index": 71,
             "start": 1089,
-            "quote": "Kohaliku omavalitsuse üksus tagab, et käesoleva seaduse § 4515 lõikes 2 nimetatud eluaseme elukeskkond vastab rahvatervishoiu seaduse §-s 21 sätestatud ja selle alusel kehtestatud nõuetele."
+            "quote": "Kohaliku omavalitsuse üksus tagab, et käesoleva seaduse § 45¹⁵ lõikes 2 nimetatud eluaseme elukeskkond vastab rahvatervishoiu seaduse §-s 21 sätestatud ja selle alusel kehtestatud nõuetele."
           }
         ]
       },
@@ -1255,7 +1262,7 @@
           {
             "source_unit_index": 85,
             "start": 1650,
-            "quote": "esmasesse psühhoosi haigestunud isikul, kellel ravimeeskond on tuvastanud sotsiaalse rehabilitatsiooni teenuse vajaduse käesoleva seaduse § 62 lõike 31 alusel."
+            "quote": "esmasesse psühhoosi haigestunud isikul, kellel ravimeeskond on tuvastanud sotsiaalse rehabilitatsiooni teenuse vajaduse käesoleva seaduse § 62 lõike 3¹ alusel."
           }
         ]
       },
@@ -2284,7 +2291,7 @@
           {
             "source_unit_index": 128,
             "start": 51,
-            "quote": "Päeva- ja nädalahoiuteenuse sisuks olevaid käesoleva seaduse § 991 lõikes 2 nimetatud tegevusi tuleb päeva- ja nädalahoiuteenust saava isiku suhtes ellu viia minimaalselt kümnel päeval ja maksimaalselt 23 ööpäeval kuus"
+            "quote": "Päeva- ja nädalahoiuteenuse sisuks olevaid käesoleva seaduse § 99¹ lõikes 2 nimetatud tegevusi tuleb päeva- ja nädalahoiuteenust saava isiku suhtes ellu viia minimaalselt kümnel päeval ja maksimaalselt 23 ööpäeval kuus"
           }
         ]
       },
@@ -2300,7 +2307,7 @@
           {
             "source_unit_index": 128,
             "start": 339,
-            "quote": "Kuus kuud pärast esmakordses suunamisotsuses märgitud teenuse osutamiseks kokku lepitud tähtpäeva on kohanemisaeg, mille kestel võib käesoleva seaduse § 991 lõikes 2 nimetatud tegevusi päeva- ja nädalahoiuteenust saava isiku suhtes ellu viia vähem kui kümnel päeval kuus."
+            "quote": "Kuus kuud pärast esmakordses suunamisotsuses märgitud teenuse osutamiseks kokku lepitud tähtpäeva on kohanemisaeg, mille kestel võib käesoleva seaduse § 99¹ lõikes 2 nimetatud tegevusi päeva- ja nädalahoiuteenust saava isiku suhtes ellu viia vähem kui kümnel päeval kuus."
           }
         ]
       },
@@ -3015,7 +3022,7 @@
           {
             "source_unit_index": 157,
             "start": 3196,
-            "quote": "Kui õpilane või üliõpilane saab toimetulekutoetuse taotlemise kuul 25-aastaseks, ei kohaldata tema suhtes käesoleva paragrahvi lõikeid 8‒91."
+            "quote": "Kui õpilane või üliõpilane saab toimetulekutoetuse taotlemise kuul 25-aastaseks, ei kohaldata tema suhtes käesoleva paragrahvi lõikeid 8‒9¹."
           }
         ]
       },
@@ -3031,7 +3038,7 @@
           {
             "source_unit_index": 157,
             "start": 3344,
-            "quote": "Õpilase ja üliõpilase suhtes, kes on abielus või registreeritud kooselus või lapse vanem või eestkostja, ei kohaldata käesoleva paragrahvi lõikeid 8‒91, kui õpilase või üliõpilase tegelik elukoht erineb käesoleva paragrahvi lõikes 7 nimetatud perekonnaliikmete tegelikust elukohast."
+            "quote": "Õpilase ja üliõpilase suhtes, kes on abielus või registreeritud kooselus või lapse vanem või eestkostja, ei kohaldata käesoleva paragrahvi lõikeid 8‒9¹, kui õpilase või üliõpilase tegelik elukoht erineb käesoleva paragrahvi lõikes 7 nimetatud perekonnaliikmete tegelikust elukohast."
           }
         ]
       },
@@ -3683,7 +3690,7 @@
           {
             "source_unit_index": 184,
             "start": 55,
-            "quote": "Riiklikku järelevalvet käesolevas seaduses ja selle alusel kehtestatud õigusaktides sätestatud nõuete, välja arvatud käesoleva seaduse § 453 lõike 4 punktis 2 ja § 4513 lõikes 2 sätestatud nõuete täitmise üle teeb Sotsiaalkindlustusamet"
+            "quote": "Riiklikku järelevalvet käesolevas seaduses ja selle alusel kehtestatud õigusaktides sätestatud nõuete, välja arvatud käesoleva seaduse § 45³ lõike 4 punktis 2 ja § 45¹³ lõikes 2 sätestatud nõuete täitmise üle teeb Sotsiaalkindlustusamet"
           }
         ]
       },
@@ -3699,7 +3706,7 @@
           {
             "source_unit_index": 184,
             "start": 330,
-            "quote": "Riiklikku järelevalvet käesoleva seaduse § 453 lõike 4 punktis 2 ja § 4513 lõikes 2 sätestatud nõuete täitmise üle teeb Terviseamet"
+            "quote": "Riiklikku järelevalvet käesoleva seaduse § 45³ lõike 4 punktis 2 ja § 45¹³ lõikes 2 sätestatud nõuete täitmise üle teeb Terviseamet"
           }
         ]
       },
@@ -4035,7 +4042,7 @@
           {
             "source_unit_index": 190,
             "start": 91,
-            "quote": "Käesoleva seaduse § 1391 lõike 2 punktis 1 sätestatut ei kohaldata isikule, kelle rahvastikuregistrisse kantud elukohas elav teine isik on Eestis elav ajutise kaitse saaja."
+            "quote": "Käesoleva seaduse § 139¹ lõike 2 punktis 1 sätestatut ei kohaldata isikule, kelle rahvastikuregistrisse kantud elukohas elav teine isik on Eestis elav ajutise kaitse saaja."
           }
         ]
       },
@@ -4083,7 +4090,7 @@
           {
             "source_unit_index": 187,
             "start": 13199,
-            "quote": "Kuni 2023. aasta 31. detsembrini kohaldatakse käesoleva seaduse § 221 lõikes 5 sätestatud väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse kulude katmise puhul Statistikaameti avaldatud eelarveaastale eelnenud aasta teise kvartali keskmise vanaduspensioni 1,06-kordset suurust."
+            "quote": "Kuni 2023. aasta 31. detsembrini kohaldatakse käesoleva seaduse § 22¹ lõikes 5 sätestatud väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse kulude katmise puhul Statistikaameti avaldatud eelarveaastale eelnenud aasta teise kvartali keskmise vanaduspensioni 1,06-kordset suurust."
           }
         ]
       },
@@ -4115,7 +4122,7 @@
           {
             "source_unit_index": 187,
             "start": 15074,
-            "quote": "kellel tuvastatakse jätkuv vajadus samasisulise teenuse järele ning kes vastab pärast suunamisotsuses märgitud teenuse osutamise tähtaega käesoleva seaduse §-s 992 sätestatud päeva- ja nädalahoiuteenuse saamise tingimustele"
+            "quote": "kellel tuvastatakse jätkuv vajadus samasisulise teenuse järele ning kes vastab pärast suunamisotsuses märgitud teenuse osutamise tähtaega käesoleva seaduse §-s 99² sätestatud päeva- ja nädalahoiuteenuse saamise tingimustele"
           }
         ]
       },
@@ -4624,7 +4631,7 @@
           {
             "source_unit_index": 71,
             "start": 813,
-            "quote": "kes järelhooldusele suunamise ajal jätkab § 459 lõikes 2 nimetatud õppevormis õppimist."
+            "quote": "kes järelhooldusele suunamise ajal jätkab § 45⁹ lõikes 2 nimetatud õppevormis õppimist."
           }
         ]
       },
@@ -4643,7 +4650,7 @@
           {
             "source_unit_index": 71,
             "start": 1089,
-            "quote": "Kohaliku omavalitsuse üksus tagab, et käesoleva seaduse § 4515 lõikes 2 nimetatud eluaseme elukeskkond vastab rahvatervishoiu seaduse §-s 21 sätestatud ja selle alusel kehtestatud nõuetele."
+            "quote": "Kohaliku omavalitsuse üksus tagab, et käesoleva seaduse § 45¹⁵ lõikes 2 nimetatud eluaseme elukeskkond vastab rahvatervishoiu seaduse §-s 21 sätestatud ja selle alusel kehtestatud nõuetele."
           }
         ]
       },
@@ -5369,7 +5376,7 @@
           {
             "source_unit_index": 128,
             "start": 454,
-            "quote": "mille kestel võib käesoleva seaduse § 991 lõikes 2 nimetatud tegevusi päeva- ja nädalahoiuteenust saava isiku suhtes ellu viia vähem kui kümnel päeval kuus."
+            "quote": "mille kestel võib käesoleva seaduse § 99¹ lõikes 2 nimetatud tegevusi päeva- ja nädalahoiuteenust saava isiku suhtes ellu viia vähem kui kümnel päeval kuus."
           }
         ]
       },
@@ -5612,7 +5619,7 @@
           {
             "source_unit_index": 157,
             "start": 3277,
-            "quote": "ei kohaldata tema suhtes käesoleva paragrahvi lõikeid 8‒91."
+            "quote": "ei kohaldata tema suhtes käesoleva paragrahvi lõikeid 8‒9¹."
           }
         ]
       },
@@ -5637,7 +5644,7 @@
           {
             "source_unit_index": 157,
             "start": 3449,
-            "quote": "ei kohaldata käesoleva paragrahvi lõikeid 8‒91"
+            "quote": "ei kohaldata käesoleva paragrahvi lõikeid 8‒9¹"
           }
         ]
       },
@@ -6042,7 +6049,7 @@
           {
             "source_unit_index": 184,
             "start": 330,
-            "quote": "Riiklikku järelevalvet käesoleva seaduse § 453 lõike 4 punktis 2 ja § 4513 lõikes 2 sätestatud nõuete täitmise üle teeb Terviseamet"
+            "quote": "Riiklikku järelevalvet käesoleva seaduse § 45³ lõike 4 punktis 2 ja § 45¹³ lõikes 2 sätestatud nõuete täitmise üle teeb Terviseamet"
           }
         ]
       },
@@ -6175,7 +6182,7 @@
           {
             "source_unit_index": 190,
             "start": 91,
-            "quote": "Käesoleva seaduse § 1391 lõike 2 punktis 1 sätestatut ei kohaldata"
+            "quote": "Käesoleva seaduse § 139¹ lõike 2 punktis 1 sätestatut ei kohaldata"
           }
         ]
       },
@@ -6213,7 +6220,7 @@
           {
             "source_unit_index": 187,
             "start": 14540,
-            "quote": "Kui isik vastab käesoleva seaduse §-s 992 sätestatud päeva- ja nädalahoiuteenuse saamise tingimustele"
+            "quote": "Kui isik vastab käesoleva seaduse §-s 99² sätestatud päeva- ja nädalahoiuteenuse saamise tingimustele"
           }
         ]
       },
@@ -6286,7 +6293,7 @@
           {
             "source_unit_index": 60,
             "start": 741,
-            "quote": "pikaajalise ööpäevaringse teenusena käesoleva seaduse § 459 lõikes 1 nimetatud juhul;"
+            "quote": "pikaajalise ööpäevaringse teenusena käesoleva seaduse § 45⁹ lõikes 1 nimetatud juhul;"
           }
         ]
       },
@@ -6299,7 +6306,7 @@
           {
             "source_unit_index": 71,
             "start": 813,
-            "quote": "kes järelhooldusele suunamise ajal jätkab § 459 lõikes 2 nimetatud õppevormis õppimist."
+            "quote": "kes järelhooldusele suunamise ajal jätkab § 45⁹ lõikes 2 nimetatud õppevormis õppimist."
           }
         ]
       },
@@ -6468,7 +6475,7 @@
           {
             "source_unit_index": 187,
             "start": 14540,
-            "quote": "Kui isik vastab käesoleva seaduse §-s 992 sätestatud päeva- ja nädalahoiuteenuse saamise tingimustele, otsustab Sotsiaalkindlustusamet teenuse osutamise vastavalt §-s 70 sätestatule"
+            "quote": "Kui isik vastab käesoleva seaduse §-s 99² sätestatud päeva- ja nädalahoiuteenuse saamise tingimustele, otsustab Sotsiaalkindlustusamet teenuse osutamise vastavalt §-s 70 sätestatule"
           }
         ]
       },
@@ -6494,7 +6501,7 @@
           {
             "source_unit_index": 190,
             "start": 91,
-            "quote": "Käesoleva seaduse § 1391 lõike 2 punktis 1 sätestatut ei kohaldata"
+            "quote": "Käesoleva seaduse § 139¹ lõike 2 punktis 1 sätestatut ei kohaldata"
           }
         ]
       }

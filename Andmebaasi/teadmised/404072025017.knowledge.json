@@ -25,7 +25,14 @@
       "input": 29381,
       "output": 27065,
       "reasoning": 1795
-    }
+    },
+    "reanchored": [
+      {
+        "normalization": "source-structure-v28",
+        "reason": "superscript_digits",
+        "anchors": 1
+      }
+    ]
   },
   "knowledge": {
     "schema_version": "rag-v2/knowledge-input-2",
@@ -949,7 +956,7 @@
           {
             "source_unit_index": 49,
             "start": 41,
-            "quote": "Järelhooldusteenus tagatakse määruse § 348 lõike 1 alusel asendushooldusel viibivale täisealisele isikule, kes pärast põhi-, kesk-, kutse- või kõrghariduse omandamist jätkab järgmisel õppeaastal õppimist kutseõppe tasemeõppes, rakenduskõrgharidusõppes, ülikooli bakalaureuse- või magistriõppes või bakalaureuse- ja magistriõppe integreeritud õppes:"
+            "quote": "Järelhooldusteenus tagatakse määruse § 34⁸ lõike 1 alusel asendushooldusel viibivale täisealisele isikule, kes pärast põhi-, kesk-, kutse- või kõrghariduse omandamist jätkab järgmisel õppeaastal õppimist kutseõppe tasemeõppes, rakenduskõrgharidusõppes, ülikooli bakalaureuse- või magistriõppes või bakalaureuse- ja magistriõppe integreeritud õppes:"
           }
         ]
       },

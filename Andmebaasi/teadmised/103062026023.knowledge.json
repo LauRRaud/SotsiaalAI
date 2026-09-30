@@ -35,7 +35,14 @@
       "input": 116400,
       "output": 87045,
       "reasoning": 8367
-    }
+    },
+    "reanchored": [
+      {
+        "normalization": "source-structure-v28",
+        "reason": "superscript_digits",
+        "anchors": 29
+      }
+    ]
   },
   "knowledge": {
     "schema_version": "rag-v2/knowledge-input-2",
@@ -1369,7 +1376,7 @@
           {
             "source_unit_index": 82,
             "start": 1650,
-            "quote": "esmasesse psühhoosi haigestunud isikul, kellel ravimeeskond on tuvastanud sotsiaalse rehabilitatsiooni teenuse vajaduse käesoleva seaduse § 62 lõike 31 alusel."
+            "quote": "esmasesse psühhoosi haigestunud isikul, kellel ravimeeskond on tuvastanud sotsiaalse rehabilitatsiooni teenuse vajaduse käesoleva seaduse § 62 lõike 3¹ alusel."
           }
         ]
       },
@@ -2476,7 +2483,7 @@
           {
             "source_unit_index": 125,
             "start": 339,
-            "quote": "Kuus kuud pärast esmakordses suunamisotsuses märgitud teenuse osutamiseks kokku lepitud tähtpäeva on kohanemisaeg, mille kestel võib käesoleva seaduse § 991 lõikes 2 nimetatud tegevusi päeva- ja nädalahoiuteenust saava isiku suhtes ellu viia vähem kui kümnel päeval kuus."
+            "quote": "Kuus kuud pärast esmakordses suunamisotsuses märgitud teenuse osutamiseks kokku lepitud tähtpäeva on kohanemisaeg, mille kestel võib käesoleva seaduse § 99¹ lõikes 2 nimetatud tegevusi päeva- ja nädalahoiuteenust saava isiku suhtes ellu viia vähem kui kümnel päeval kuus."
           }
         ]
       },
@@ -3113,7 +3120,7 @@
           {
             "source_unit_index": 156,
             "start": 2664,
-            "quote": "Töiseks sissetulekuks käesoleva paragrahvi lõike 2 punkti 9 ja lõike 21 tähenduses loetakse tasu, mis on saadud töö- või teenistussuhtes või võlaõigusliku teenuse osutamise lepingu alusel, samuti füüsilisest isikust ettevõtja ettevõtlusest saadud tulu."
+            "quote": "Töiseks sissetulekuks käesoleva paragrahvi lõike 2 punkti 9 ja lõike 2¹ tähenduses loetakse tasu, mis on saadud töö- või teenistussuhtes või võlaõigusliku teenuse osutamise lepingu alusel, samuti füüsilisest isikust ettevõtja ettevõtlusest saadud tulu."
           }
         ]
       },
@@ -3468,7 +3475,7 @@
           {
             "source_unit_index": 167,
             "start": 2990,
-            "quote": "Käesoleva paragrahvi lõikes 2 nimetatud andmete kandmisel sotsiaalteenuste ja -toetuste andmeregistrisse lähtutakse käesoleva seaduse §-s 1421 nimetatud andmekoosseisudest."
+            "quote": "Käesoleva paragrahvi lõikes 2 nimetatud andmete kandmisel sotsiaalteenuste ja -toetuste andmeregistrisse lähtutakse käesoleva seaduse §-s 142¹ nimetatud andmekoosseisudest."
           }
         ]
       },
@@ -3484,7 +3491,7 @@
           {
             "source_unit_index": 167,
             "start": 2433,
-            "quote": "Käesoleva seaduse § 151 lõikes 2 ning § 152 lõigetes 1 ja 2 nimetatud isikute abivajaduse ja sellele vastava abi ulatuse väljaselgitamisel kannab kohaliku omavalitsuse üksus sotsiaalteenuste ja -toetuste andmeregistrisse abivajaduse, edasise juhtumiplaani ja menetlustoimingute andmed."
+            "quote": "Käesoleva seaduse § 15¹ lõikes 2 ning § 15² lõigetes 1 ja 2 nimetatud isikute abivajaduse ja sellele vastava abi ulatuse väljaselgitamisel kannab kohaliku omavalitsuse üksus sotsiaalteenuste ja -toetuste andmeregistrisse abivajaduse, edasise juhtumiplaani ja menetlustoimingute andmed."
           }
         ]
       },
@@ -3649,7 +3656,7 @@
           {
             "source_unit_index": 169,
             "start": 397,
-            "quote": "Käesoleva seaduse § 151 lõike 4 alusel töödeldud ning sotsiaalteenuste ja -toetuste andmeregistrisse kantud andmeid säilitatakse isikute 27-aastaseks saamiseni."
+            "quote": "Käesoleva seaduse § 15¹ lõike 4 alusel töödeldud ning sotsiaalteenuste ja -toetuste andmeregistrisse kantud andmeid säilitatakse isikute 27-aastaseks saamiseni."
           }
         ]
       },
@@ -3665,7 +3672,7 @@
           {
             "source_unit_index": 169,
             "start": 565,
-            "quote": "Käesoleva seaduse § 1421 punktis 9 nimetatud andmeid säilitatakse kuni perelepitusteenusest puudutatud lapse täisealiseks saamiseni."
+            "quote": "Käesoleva seaduse § 142¹ punktis 9 nimetatud andmeid säilitatakse kuni perelepitusteenusest puudutatud lapse täisealiseks saamiseni."
           }
         ]
       },
@@ -3713,7 +3720,7 @@
           {
             "source_unit_index": 169,
             "start": 1701,
-            "quote": "Pärast käesoleva paragrahvi lõigetes 2–42 nimetatud säilitamise tähtaega andmed anonüümitakse."
+            "quote": "Pärast käesoleva paragrahvi lõigetes 2–4² nimetatud säilitamise tähtaega andmed anonüümitakse."
           }
         ]
       },
@@ -3888,7 +3895,7 @@
           {
             "source_unit_index": 179,
             "start": 1387,
-            "quote": "Kohaliku omavalitsuse üksus võib kasutada käesoleva paragrahvi lõikes 31 nimetatud toetust, et osutada suure hooldus- ja abivajadusega lapsele ja tema perele teenuseid, mis toetavad abivajava lapse toimetulekut, ennetavad abivajaduse süvenemist ning aitavad vähendada perekonna hoolduskoormust."
+            "quote": "Kohaliku omavalitsuse üksus võib kasutada käesoleva paragrahvi lõikes 3¹ nimetatud toetust, et osutada suure hooldus- ja abivajadusega lapsele ja tema perele teenuseid, mis toetavad abivajava lapse toimetulekut, ennetavad abivajaduse süvenemist ning aitavad vähendada perekonna hoolduskoormust."
           }
         ]
       },
@@ -4160,7 +4167,7 @@
           {
             "source_unit_index": 183,
             "start": 12673,
-            "quote": "Käesoleva seaduse § 131 lõikeid 3–5 rakendatakse tagasiulatuvalt 2020. aasta 12. märtsist."
+            "quote": "Käesoleva seaduse § 13¹ lõikeid 3–5 rakendatakse tagasiulatuvalt 2020. aasta 12. märtsist."
           }
         ]
       },
@@ -4176,7 +4183,7 @@
           {
             "source_unit_index": 183,
             "start": 12771,
-            "quote": "Kohaliku omavalitsuse üksuse sotsiaaltöötaja ettevalmistus peab vastama käesoleva seaduse §-s 161 sätestatud nõudele hiljemalt 2026. aasta 1. juuliks."
+            "quote": "Kohaliku omavalitsuse üksuse sotsiaaltöötaja ettevalmistus peab vastama käesoleva seaduse §-s 16¹ sätestatud nõudele hiljemalt 2026. aasta 1. juuliks."
           }
         ]
       },
@@ -4192,7 +4199,7 @@
           {
             "source_unit_index": 183,
             "start": 12929,
-            "quote": "Käesoleva seaduse §-s 152 sätestatud puudega täisealise isiku abivajaduse esmakordse hindamise korral peab kohaliku omavalitsuse üksus võtma isikuga abivajaduse väljaselgitamise ja abi osutamise eesmärgil ühendust 90 päeva jooksul isikust teadasaamisest arvates."
+            "quote": "Käesoleva seaduse §-s 15² sätestatud puudega täisealise isiku abivajaduse esmakordse hindamise korral peab kohaliku omavalitsuse üksus võtma isikuga abivajaduse väljaselgitamise ja abi osutamise eesmärgil ühendust 90 päeva jooksul isikust teadasaamisest arvates."
           }
         ]
       },
@@ -4208,7 +4215,7 @@
           {
             "source_unit_index": 183,
             "start": 13199,
-            "quote": "Kuni 2023. aasta 31. detsembrini kohaldatakse käesoleva seaduse § 221 lõikes 5 sätestatud väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse kulude katmise puhul Statistikaameti avaldatud eelarveaastale eelnenud aasta teise kvartali keskmise vanaduspensioni 1,06-kordset suurust."
+            "quote": "Kuni 2023. aasta 31. detsembrini kohaldatakse käesoleva seaduse § 22¹ lõikes 5 sätestatud väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse kulude katmise puhul Statistikaameti avaldatud eelarveaastale eelnenud aasta teise kvartali keskmise vanaduspensioni 1,06-kordset suurust."
           }
         ]
       },
@@ -4224,7 +4231,7 @@
           {
             "source_unit_index": 183,
             "start": 13493,
-            "quote": "Käesoleva seaduse § 92 punktis 11 sätestatud puuduva töövõime tingimus on täidetud ka siis, kui isik on riikliku pensionikindlustuse seaduse alusel tunnistatud püsivalt töövõimetuks töövõime kaotusega vähemalt 80 protsenti."
+            "quote": "Käesoleva seaduse § 92 punktis 1¹ sätestatud puuduva töövõime tingimus on täidetud ka siis, kui isik on riikliku pensionikindlustuse seaduse alusel tunnistatud püsivalt töövõimetuks töövõime kaotusega vähemalt 80 protsenti."
           }
         ]
       },
@@ -4256,7 +4263,7 @@
           {
             "source_unit_index": 183,
             "start": 14165,
-            "quote": "Käesoleva seaduse § 992 punktis 2 sätestatud puuduva töövõime tingimus on täidetud ka siis, kui isik on riikliku pensionikindlustuse seaduse alusel tunnistatud püsivalt töövõimetuks töövõime kaotusega vähemalt 80 protsenti."
+            "quote": "Käesoleva seaduse § 99² punktis 2 sätestatud puuduva töövõime tingimus on täidetud ka siis, kui isik on riikliku pensionikindlustuse seaduse alusel tunnistatud püsivalt töövõimetuks töövõime kaotusega vähemalt 80 protsenti."
           }
         ]
       },
@@ -4272,7 +4279,7 @@
           {
             "source_unit_index": 183,
             "start": 14396,
-            "quote": "Sotsiaalkindlustusamet hindab enne 2025. aasta 1. jaanuari igapäevaelu toetamise teenuse järjekorda võetud isiku erihoolekandeteenuse vajadust. Kui isik vastab käesoleva seaduse §-s 992 sätestatud päeva- ja nädalahoiuteenuse saamise tingimustele, otsustab Sotsiaalkindlustusamet teenuse osutamise vastavalt §-s 70 sätestatule ning teavitab isikut tema võtmisest päeva- ja nädalahoiuteenuse järjekorda kirjalikku taasesitamist võimaldavas vormis."
+            "quote": "Sotsiaalkindlustusamet hindab enne 2025. aasta 1. jaanuari igapäevaelu toetamise teenuse järjekorda võetud isiku erihoolekandeteenuse vajadust. Kui isik vastab käesoleva seaduse §-s 99² sätestatud päeva- ja nädalahoiuteenuse saamise tingimustele, otsustab Sotsiaalkindlustusamet teenuse osutamise vastavalt §-s 70 sätestatule ning teavitab isikut tema võtmisest päeva- ja nädalahoiuteenuse järjekorda kirjalikku taasesitamist võimaldavas vormis."
           }
         ]
       },
@@ -4288,7 +4295,7 @@
           {
             "source_unit_index": 183,
             "start": 15074,
-            "quote": "kellel tuvastatakse jätkuv vajadus samasisulise teenuse järele ning kes vastab pärast suunamisotsuses märgitud teenuse osutamise tähtaega käesoleva seaduse §-s 992 sätestatud päeva- ja nädalahoiuteenuse saamise tingimustele, otsustab Sotsiaalkindlustusamet vastavalt §-s 70 sätestatule ning väljastab suunamisotsuse päeva- ja nädalahoiuteenuse saamiseks vastavalt §-s 71 sätestatule"
+            "quote": "kellel tuvastatakse jätkuv vajadus samasisulise teenuse järele ning kes vastab pärast suunamisotsuses märgitud teenuse osutamise tähtaega käesoleva seaduse §-s 99² sätestatud päeva- ja nädalahoiuteenuse saamise tingimustele, otsustab Sotsiaalkindlustusamet vastavalt §-s 70 sätestatule ning väljastab suunamisotsuse päeva- ja nädalahoiuteenuse saamiseks vastavalt §-s 71 sätestatule"
           }
         ]
       },
@@ -4304,7 +4311,7 @@
           {
             "source_unit_index": 183,
             "start": 15857,
-            "quote": "Kui isik vastab käesoleva seaduse §-s 992 sätestatud päeva- ja nädalahoiuteenuse saamise tingimustele, otsustab Sotsiaalkindlustusamet isiku nõusolekul teenuse osutamise jätkamise vastavalt §-s 70 sätestatule ning väljastab uue suunamisotsuse päeva- ja nädalahoiuteenuse saamiseks vastavalt §-s 71 sätestatule. Uue suunamisotsuse tähtaeg ei tohi olla lühem kui enne 2025. aasta 1. jaanuari väljastatud suunamisotsuse tähtaeg."
+            "quote": "Kui isik vastab käesoleva seaduse §-s 99² sätestatud päeva- ja nädalahoiuteenuse saamise tingimustele, otsustab Sotsiaalkindlustusamet isiku nõusolekul teenuse osutamise jätkamise vastavalt §-s 70 sätestatule ning väljastab uue suunamisotsuse päeva- ja nädalahoiuteenuse saamiseks vastavalt §-s 71 sätestatule. Uue suunamisotsuse tähtaeg ei tohi olla lühem kui enne 2025. aasta 1. jaanuari väljastatud suunamisotsuse tähtaeg."
           }
         ]
       },
@@ -4320,7 +4327,7 @@
           {
             "source_unit_index": 184,
             "start": 54,
-            "quote": "Sotsiaalministeerium analüüsib hiljemalt 2020. aastal käesoleva seaduse §-s 151 sätestatud noore abivajaduse hindamise regulatsiooni rakendamise mõju ja tulemuslikkust."
+            "quote": "Sotsiaalministeerium analüüsib hiljemalt 2020. aastal käesoleva seaduse §-s 15¹ sätestatud noore abivajaduse hindamise regulatsiooni rakendamise mõju ja tulemuslikkust."
           }
         ]
       },
@@ -4652,7 +4659,7 @@
           {
             "source_unit_index": 71,
             "start": 1410,
-            "quote": "Käesoleva paragrahvi lõike 31 tähenduses on hooldusteenuse osutamise või teenuse osutamiseks kasutatava hoonega otseselt seotud abivahend, mis:"
+            "quote": "Käesoleva paragrahvi lõike 3¹ tähenduses on hooldusteenuse osutamise või teenuse osutamiseks kasutatava hoonega otseselt seotud abivahend, mis:"
           }
         ]
       },
@@ -5449,7 +5456,7 @@
           {
             "source_unit_index": 156,
             "start": 2664,
-            "quote": "Töiseks sissetulekuks käesoleva paragrahvi lõike 2 punkti 9 ja lõike 21 tähenduses loetakse"
+            "quote": "Töiseks sissetulekuks käesoleva paragrahvi lõike 2 punkti 9 ja lõike 2¹ tähenduses loetakse"
           }
         ]
       },
@@ -5680,7 +5687,7 @@
           {
             "source_unit_index": 167,
             "start": 3095,
-            "quote": "lähtutakse käesoleva seaduse §-s 1421 nimetatud andmekoosseisudest."
+            "quote": "lähtutakse käesoleva seaduse §-s 142¹ nimetatud andmekoosseisudest."
           }
         ]
       },
@@ -5862,7 +5869,7 @@
           {
             "source_unit_index": 68,
             "start": 813,
-            "quote": "kes järelhooldusele suunamise ajal jätkab § 459 lõikes 2 nimetatud õppevormis õppimist."
+            "quote": "kes järelhooldusele suunamise ajal jätkab § 45⁹ lõikes 2 nimetatud õppevormis õppimist."
           }
         ]
       },
@@ -5953,7 +5960,7 @@
           {
             "source_unit_index": 169,
             "start": 397,
-            "quote": "Käesoleva seaduse § 151 lõike 4 alusel töödeldud ning sotsiaalteenuste ja -toetuste andmeregistrisse kantud andmeid säilitatakse isikute 27-aastaseks saamiseni."
+            "quote": "Käesoleva seaduse § 15¹ lõike 4 alusel töödeldud ning sotsiaalteenuste ja -toetuste andmeregistrisse kantud andmeid säilitatakse isikute 27-aastaseks saamiseni."
           }
         ]
       },
@@ -5966,7 +5973,7 @@
           {
             "source_unit_index": 167,
             "start": 3106,
-            "quote": "käesoleva seaduse §-s 1421 nimetatud andmekoosseisudest."
+            "quote": "käesoleva seaduse §-s 142¹ nimetatud andmekoosseisudest."
           }
         ]
       },
@@ -6018,7 +6025,7 @@
           {
             "source_unit_index": 183,
             "start": 14540,
-            "quote": "Kui isik vastab käesoleva seaduse §-s 992 sätestatud päeva- ja nädalahoiuteenuse saamise tingimustele"
+            "quote": "Kui isik vastab käesoleva seaduse §-s 99² sätestatud päeva- ja nädalahoiuteenuse saamise tingimustele"
           }
         ]
       },
@@ -6031,7 +6038,7 @@
           {
             "source_unit_index": 183,
             "start": 15142,
-            "quote": "kes vastab pärast suunamisotsuses märgitud teenuse osutamise tähtaega käesoleva seaduse §-s 992 sätestatud päeva- ja nädalahoiuteenuse saamise tingimustele"
+            "quote": "kes vastab pärast suunamisotsuses märgitud teenuse osutamise tähtaega käesoleva seaduse §-s 99² sätestatud päeva- ja nädalahoiuteenuse saamise tingimustele"
           }
         ]
       },
@@ -6044,7 +6051,7 @@
           {
             "source_unit_index": 183,
             "start": 15857,
-            "quote": "Kui isik vastab käesoleva seaduse §-s 992 sätestatud päeva- ja nädalahoiuteenuse saamise tingimustele"
+            "quote": "Kui isik vastab käesoleva seaduse §-s 99² sätestatud päeva- ja nädalahoiuteenuse saamise tingimustele"
           }
         ]
       },
@@ -6057,7 +6064,7 @@
           {
             "source_unit_index": 183,
             "start": 12816,
-            "quote": "ettevalmistus peab vastama käesoleva seaduse §-s 161 sätestatud nõudele"
+            "quote": "ettevalmistus peab vastama käesoleva seaduse §-s 16¹ sätestatud nõudele"
           }
         ]
       }
