@@ -26,8 +26,8 @@
       "sources": 1
     },
     "oigusaktid": {
-      "files": 158,
-      "sources": 147
+      "files": 160,
+      "sources": 148
     },
     "register": {
       "files": 2,
@@ -22536,7 +22536,7 @@
       "path": "oigusaktid/lisad/129082025009-abivahendite-loetelu.json",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "3ab796a0a015a7c644d2e09df4d9d127bd5005e6c0b3156f9f15ed6ee397f6de",
+      "sha256": "045640427ebc77a39f3a9b351e1bb2f5034c8b117193c855d814e3bca4d1fc39",
       "original_path": "oigusaktid/129082025009.xml#lisa:SOM_m43_lisa.pdf",
       "review_status": "derived_annex_table_checked",
       "title": "Abivahendite loetelu: määruse „Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi andmed“ lisa (sotsiaalministri 27.08.2025 määruse nr 43 sõnastuses)",
@@ -22554,7 +22554,7 @@
       "path": "oigusaktid/lisad/126092026005-abivahendite-loetelu.json",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "75cda12ed6e16e8cfbec1de0d269705da985958de97b3e148291f963e15afa86",
+      "sha256": "7060f847e0296169c20d5d7dc9ba389c2dfb1f35e90f29cea817a84d89011c78",
       "original_path": "oigusaktid/126092026005.xml#lisa:SOM_24092026_m37_lisa.pdf",
       "review_status": "derived_annex_table_checked",
       "title": "Abivahendite loetelu: määruse „Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi andmed“ lisa (sotsiaalministri 24.09.2026 määruse nr 37 sõnastuses)",
@@ -22572,7 +22572,7 @@
       "path": "oigusaktid/lisad/404072025017-lisa.json",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "4b78c2b5fd2f4fc6fd0370b36b0b6260662fe63d43ce963c6c5e87fd5247fc8f",
+      "sha256": "bb9c086af55435d46bf66924a591a344525cb679ce561aecdd6f850d0acd1052",
       "original_path": "oigusaktid/404072025017.xml#lisa:vvk_2025_m_14_Lisa.pdf",
       "review_status": "derived_annex_text_checked",
       "title": "Harku valla eelarvest makstavate sotsiaaltoetuste määrad ja piirmäärad: Harku Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise kord“ lisa",
@@ -22591,7 +22591,7 @@
       "path": "oigusaktid/lisad/403042025042-lisa.json",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "cbd7bf6bc32418b8cb676425eac9e0483f006e17777d634c54fcde53e54d7eef",
+      "sha256": "d5c2d6b0dc69cffde6919a99301226bc9955d35c080926f19ef3eb46a55af93b",
       "original_path": "oigusaktid/403042025042.xml#lisa:M80-Lisa.pdf",
       "review_status": "derived_annex_text_checked",
       "title": "Kose valla sotsiaaleelarvest makstavate toetuste määrad: Kose Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise kord“ lisa",
@@ -22609,7 +22609,7 @@
       "path": "oigusaktid/lisad/419052023006-lisa.json",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "535e33891bfa51bd7ba7eb0c93299e5828632c715fc335b6d347e2970780abf7",
+      "sha256": "97c304e3134ab5adfc52b81e566eb6e707523b09e1c6d0abdedd450aa5aadcf5",
       "original_path": "oigusaktid/419052023006.xml#lisa:Lisa.pdf",
       "review_status": "derived_annex_text_checked",
       "title": "Sotsiaalhoolekandelise abi taotlus: Jõelähtme Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise kord Jõelähtme vallas“ lisa",
@@ -22627,7 +22627,7 @@
       "path": "oigusaktid/lisad/411042018011-lisa-1.json",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "62af0d0b1247dfd52a32e36618614c02317c7881a6bd622ab94967d80e57b976",
+      "sha256": "eeb43f1720a0b11fd712180f560e6e242fc27cd0ea3aee42357cf6000abb1fd9",
       "original_path": "oigusaktid/411042018011.xml#lisa:Lisa 1.pdf",
       "review_status": "derived_annex_text_checked",
       "title": "Hindamisinstrument hooldusvajaduse ja sotsiaalteenuste määramiseks: Peipsiääre Vallavolikogu määruse „Sotsiaalteenuste osutamise kord“ lisa",
@@ -22645,7 +22645,7 @@
       "path": "oigusaktid/lisad/411042018011-lisa-2.json",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "4d6ff12470ba44e958787f1c70c27c28d206e2add4cae28d6c5d22a96fc0699f",
+      "sha256": "1b1a4caf03adbecab0dfcda215b1ad9c96b53274542768c7d56dd78b5539466a",
       "original_path": "oigusaktid/411042018011.xml#lisa:Lisa 2.pdf",
       "review_status": "derived_annex_text_checked",
       "title": "Kliendi tagasiside teenusele: Peipsiääre Vallavolikogu määruse „Sotsiaalteenuste osutamise kord“ lisa",
@@ -22663,7 +22663,7 @@
       "path": "oigusaktid/lisad/404052016003-lisa-1.json",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "c05dbf986239747a27e3c644d846ae015b45f6f4b4e5feca5d0f4a6f54582fa1",
+      "sha256": "64ada3ed02ffaabae7c95f9b8072d9e376a606832bfdb00630d623e36bc54abd",
       "original_path": "oigusaktid/404052016003.xml#lisa:Lisa1.pdf",
       "review_status": "derived_annex_text_checked",
       "title": "Avaldus sünnitoetuse osa taotlemiseks: Tori Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise tingimused ja kord“ lisa",
@@ -22681,7 +22681,7 @@
       "path": "oigusaktid/lisad/404052016003-lisa-2.json",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "68495b790a81d92d683696ddfb77744d243a4f0d4aa2645d586940ab0eb00000",
+      "sha256": "9ce321124be61dffbe8eb46dee86904a96b513b31275d0d6ee45a3ff4192eea3",
       "original_path": "oigusaktid/404052016003.xml#lisa:Lisa2.pdf",
       "review_status": "derived_annex_text_checked",
       "title": "Avaldus peretoetuse taotlemiseks: Tori Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise tingimused ja kord“ lisa",
@@ -22699,7 +22699,7 @@
       "path": "oigusaktid/lisad/404052016003-lisa-3.json",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "cf7bd40557a5344ac3e2c23dccd0422a9cf308f3bc19bb63137296f12170da88",
+      "sha256": "6fdc82fda05ca93febe8de3516f69fa30905e979cfab9c69fd8acde50b6b0bc0",
       "original_path": "oigusaktid/404052016003.xml#lisa:Lisa3.pdf",
       "review_status": "derived_annex_text_checked",
       "title": "Avaldus I klassi astuja toetuse taotlemiseks: Tori Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise tingimused ja kord“ lisa",
@@ -22717,7 +22717,7 @@
       "path": "oigusaktid/lisad/407052021021-lisa.json",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "09ddf9a2e855b2046b2d35f4d209b0bf76ecd3530e57b94fbd6300e0c2d871b0",
+      "sha256": "15f4b6fdad8b3070e27107a1889a1d0e763bd25d19894e0afe8fdfda41437023",
       "original_path": "oigusaktid/407052021021.xml#lisa:LuunjaVVK_m7_Lisa.pdf",
       "review_status": "derived_annex_text_checked",
       "title": "Vallaeelarvest makstavate sotsiaaltoetuste määrad: Luunja Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise kord“ lisa",
@@ -22770,7 +22770,7 @@
       "path": "teadmised/404072025017-lisa.knowledge.json",
       "category": "teadmised",
       "role": "knowledge",
-      "sha256": "e8e58297949ed8ca9a785c4711ced5007675a124343baad872ff335e1b4f267f",
+      "sha256": "43e5af8c54b222839bef2458e0d2aecb9cfc50a7a6943037f9d53f37248888f5",
       "source_path": "oigusaktid/lisad/404072025017-lisa.json"
     },
     {
@@ -22795,6 +22795,24 @@
       "sha256": "01b4a0b8485559e88efdc4e391f536086566725fd2c1470ac026ad9794af15e6",
       "original_path": "riigiteataja.ee/et/akt/429092026004.xml",
       "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/lisad/430042026009-lisa.json",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "a945b11474f059801e10495e1c1911e213d7051128debe070b0463679f9ffb37",
+      "original_path": "oigusaktid/430042026009.xml#lisa:M80-Lisa.pdf",
+      "review_status": "derived_annex_text_checked",
+      "title": "Kose valla sotsiaaleelarvest makstavate toetuste määrad: Kose Vallavolikogu määruse „Sotsiaalhoolekandelise abi andmise kord“ lisa",
+      "document_id": "riigiteataja:430042026009:lisa:m80-lisa",
+      "metadata_path": "oigusaktid/lisad/430042026009-lisa.meta.json"
+    },
+    {
+      "path": "oigusaktid/lisad/430042026009-lisa.meta.json",
+      "category": "oigusaktid",
+      "role": "metadata",
+      "sha256": "9b5ade99d10b456847b78e8cdd5bab96b01b6c59d7afc10a42f050789b10d6dc",
+      "original_path": "oigusaktid/lisad/430042026009-lisa.meta.json"
     }
   ],
   "original_path_base": "../Arhiiv/Andmebaasi_2026-09-07/Andmebaasi"

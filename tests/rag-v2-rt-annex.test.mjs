@@ -111,6 +111,8 @@ const TEXT_ANNEXES = [
   { act: '404052016003', file: 'Lisa2.pdf', out: 'lisa-2', heading: 'Avaldus peretoetuse taotlemiseks', pages: 2 },
   { act: '404052016003', file: 'Lisa3.pdf', out: 'lisa-3', heading: 'Avaldus I klassi astuja toetuse taotlemiseks', pages: 1 },
   { act: '407052021021', file: 'LuunjaVVK_m7_Lisa.pdf', out: 'lisa', heading: 'Vallaeelarvest makstavate sotsiaaltoetuste määrad', pages: 1 },
+  // Kose's version in force from 03.05.2026 carries the same annex PDF as the version before it.
+  { act: '430042026009', file: 'M80-Lisa.pdf', out: 'lisa', heading: 'Kose valla sotsiaaleelarvest makstavate toetuste määrad', pages: 1 },
 ];
 const textOut = annex => `oigusaktid/lisad/${annex.act}-${annex.out}`;
 const textAnnex = annex => derivedAnnex({ root: 'Andmebaasi', xmlPath: `oigusaktid/${annex.act}.xml`, fileName: annex.file, table: 'text', out: textOut(annex), heading: annex.heading });
@@ -158,3 +160,34 @@ test('ADR-053: a text annex gets its act\'s municipality and validity on ingest,
   assert.equal(bundle.document.fields.valid_to.open_end, true);
   assert(bundle.chunks.some(chunk => chunk.source_text.includes('Toimetuleku piirmäär Harku vallas on 600 eurot kuus')));
 });
+
+test('ADR-053: an annex that a new act version carries unchanged is a source of its own, named by its act version', async () => {
+  const [before, after] = await Promise.all([TEXT_ANNEXES[1], TEXT_ANNEXES.at(-1)].map(textAnnex));
+  const [oldSource, newSource] = [before, after].map(derived => JSON.parse(derived.source));
+  const [oldMeta, newMeta] = [before, after].map(derived => JSON.parse(derived.metadata));
+  // The same PDF in both versions gives the same items; the source names its version, so the bytes differ and the
+  // publication, which keeps one active document per source bytes, takes both with their own validity.
+  assert.equal(newMeta.rt_annex.pdf_sha256, oldMeta.rt_annex.pdf_sha256);
+  assert.deepEqual(newSource.items, oldSource.items);
+  assert.deepEqual([oldSource.act_reference, newSource.act_reference], ['403042025042', '430042026009']);
+  assert.notEqual(after.source, before.source);
+  assert.deepEqual([oldMeta.valid_to, newMeta.valid_to], ['2026-05-02+03:00', undefined]);
+  // The registry adapter checks the name against the act version the metadata points to.
+  const dir = path.join(root, 'version-registry'), annex = TEXT_ANNEXES.at(-1);
+  const files = [`oigusaktid/${annex.act}.xml`, `${textOut(annex)}.json`, `${textOut(annex)}.meta.json`];
+  for (const file of files) { await fs.mkdir(path.dirname(path.join(dir, file)), { recursive: true }); await fs.copyFile(path.join('Andmebaasi', file), path.join(dir, file)); }
+  const entriesFor = async () => {
+    const bytes = file => fs.readFile(path.join(dir, file));
+    const entries = [{ role: 'source', path: files[0], sha256: hash(await bytes(files[0])) },
+      { role: 'source', path: files[1], sha256: hash(await bytes(files[1])), metadata_path: files[2] },
+      { role: 'metadata', path: files[2], sha256: hash(await bytes(files[2])) }];
+    await fs.writeFile(path.join(dir, 'REGISTER.json'), JSON.stringify({ entries }));
+    return entries;
+  };
+  assert.equal((await registeredSource(dir, (await entriesFor())[1])).rt_annex.act_reference, '430042026009');
+  for (const actReference of ['403042025042', undefined]) {
+    await fs.writeFile(path.join(dir, files[1]), JSON.stringify({ ...newSource, act_reference: actReference }));
+    await assert.rejects(registeredSource(dir, (await entriesFor())[1]), { code: 'rt_annex_act_mismatch' });
+  }
+});
+

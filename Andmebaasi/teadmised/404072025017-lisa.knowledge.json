@@ -1,7 +1,7 @@
 {
   "schema_version": "rag-v2/registered-knowledge-1",
   "source_path": "oigusaktid/lisad/404072025017-lisa.json",
-  "source_sha256": "4b78c2b5fd2f4fc6fd0370b36b0b6260662fe63d43ce963c6c5e87fd5247fc8f",
+  "source_sha256": "bb9c086af55435d46bf66924a591a344525cb679ce561aecdd6f850d0acd1052",
   "preparation": {
     "schema_version": "rag-v2/knowledge-preparation-1",
     "model": "gpt-6-luna",
@@ -19,7 +19,14 @@
       "input": 1626,
       "output": 3447,
       "reasoning": 653
-    }
+    },
+    "reanchored": [
+      {
+        "normalization": "source-structure-v29",
+        "reason": "source_bytes_same_text",
+        "previous_source_sha256": "4b78c2b5fd2f4fc6fd0370b36b0b6260662fe63d43ce963c6c5e87fd5247fc8f"
+      }
+    ]
   },
   "knowledge": {
     "schema_version": "rag-v2/knowledge-input-2",

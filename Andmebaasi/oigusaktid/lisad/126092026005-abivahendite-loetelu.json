@@ -1,5 +1,6 @@
 {
   "title": "Abivahendite loetelu: määruse „Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi andmed“ lisa (sotsiaalministri 24.09.2026 määruse nr 37 sõnastuses)",
+  "act_reference": "126092026005",
   "extractor": "rag-v2/rt-annex-table-1",
   "table": "abivahendite_loetelu",
   "items": [

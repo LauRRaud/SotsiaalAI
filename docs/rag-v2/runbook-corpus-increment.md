@@ -148,6 +148,9 @@ node scripts/rag-v2-corpus-embeddings.mjs --mode plan --development-only --store
 
 ## 7. Kinnitus ja ost
 
+- Kui plaan näitab `external_inputs: 0` (kõik sisendid on vahemälus), jäta kinnitus ja ost vahele. Indeks kasutab olemasolevaid vektoreid ilma uue `--vectors` kaustata (v41, 30.09.2026: 700/700 vahemälust).
+- Omavalitsuse akti uus redaktsioon: kontrolli, kas eelmisel redaktsioonil on lisa ([ADR-053](adr-053-rt-annex-texts.md)). Tuletatud lisa nimetab oma redaktsiooni, seega sama PDF uues redaktsioonis on eraldi allikas: `scripts/rag-v2-rt-annex.mjs --xml <uus XML> …`.
+
 1. Kinnitus: `tmp/rag-v2-dev-2026-09-27/make-approval-v26.mjs` eeskujul. Selle `plan-v26` ja `approval-v26` teed on sisse kirjutatud ja tuleb muuta.
    - Skript kontrollib, et manifest on sama, hind on värske ja piir (kujul `0.10`) on vähemalt kulu.
    - Olemasolevat faili ta üle ei kirjuta.
