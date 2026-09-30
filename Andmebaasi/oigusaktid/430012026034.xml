@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="438db4c1-c5ea-4a36-a415-d42967c21fab" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Rae Vallavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2026-01-27</aktikuupaev>
+  
+  
+  <aktiNr>3</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-01-30</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>34</RTartikkel><aktViide>430012026034</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2026-02-02+02:00</kehtivuseAlgus><kehtivuseLopp>2026-12-31+02:00</kehtivuseLopp></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2026-01-27</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>430012026034</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2026-01-29</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1062733</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2026-01-27</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>?Teadmata? ?Teadmata?</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="483214f8-be4a-479b-b1b0-409a58af97cd">
+  <nimi id="62ed51be-d14f-45c6-8fc4-ee77957fb7b0">
+   <pealkiri id="6bee2b1c-c47c-4b1a-aadd-1748f312c767">Rae valla eelarvest isiku toimetuleku kindlustamiseks toetuste maksmise piirmäärad 2026. aastal </pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="e0094f43-b462-494c-9bfe-7ee84ef9567f"><preambul id="0f924851-3ccf-4fe3-a366-9a59d940f28b">
+   <tavatekst id="1b5c98b8-866c-48bf-b999-1aa14dd83204">Määrus kehtestatakse kohaliku omavalitsuse seaduse § 6 lõike 1, sotsiaalhoolekande seaduse § 5 ja § 14 lõike 2, Rae Vallavolikogu 16.04.2019.a määruse nr 34 „Rae valla eelarvest sotsiaaltoetuste määramise ja maksmise kord“ § 3 lõike 3 ning Rae valla 2026. aasta eelarve alusel. </tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="09da42d7-69ce-4809-9a4c-fc41fabba5e3">1</paragrahvNr>
+   <kuvatavNr id="e87b125f-7a6d-4bae-8273-78087805dfa3"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="2247e113-790a-41ec-843e-7126b89917bf">Sotsiaaltoetuste piirmäärad </paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="25b42e47-b0bb-4e10-a26d-37b70272c5b1"/>
+   <kuvatavNr id="bcc6db17-0c02-4d9a-890d-70c89f44fb23"/>
+   <sisuTekst id="3e98c016-27d7-4862-aec2-78336361c5c9">
+    <tavatekst id="583523a3-e871-4b0b-bd21-a1b083ac2320">Kinnitada 2026. aastal valla eelarvest makstavate sotsiaaltoetuste piirmäärad alljärgnevalt: </tavatekst>
+   </sisuTekst>
+  <alampunkt id="para1lg1p1">
+   <alampunktNr id="596db6e2-f4aa-47a0-9f61-ad5bc8a84072">1</alampunktNr>
+   <kuvatavNr id="6a13973a-53df-4873-994f-28fd62b89be5"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="c89e2721-0a11-4c95-b9fa-0e03343d65df">
+    <tavatekst id="96d88a62-0d72-4261-8d30-75ada26e25a7">vähekindlustatud pere lapse koolitoetus – 150 eurot; </tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg1p2">
+   <alampunktNr id="c3110e3a-4d97-4b9f-adab-f760f7bbae11">2</alampunktNr>
+   <kuvatavNr id="670df960-d9e7-4d35-9013-ad788bbdaab2"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="6a63dd42-0a61-40f8-9e87-95c55e3df625">
+    <tavatekst id="6f1b12d0-70c6-4828-88b7-9fc955aa4af8">asendushooldusteenusel oleva lapse/noore sünnipäevatoetus – 50 eurot, jõulutoetus – 100 eurot, koolilõputoetus – 50 eurot ja elluastumise toetus – 320 eurot; </tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg1p3">
+   <alampunktNr id="c1a9c7e2-cfd3-42b5-ae7d-f1307f85913c">3</alampunktNr>
+   <kuvatavNr id="dfaaf9ca-2d3d-41b9-976b-f98bb022df41"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="1a7ae4b0-7870-413b-b3d1-6f05a622edd3">
+    <tavatekst id="63a99c75-afbb-4f07-95a9-1f2d8137fc20">suurpere, eestkostepere ja puudega lapse vanema emadepäeva toetus – 100 eurot (makstakse välja maikuus); </tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg1p4">
+   <alampunktNr id="709d6cbf-9e52-41b1-b468-4e8731cac7dd">4</alampunktNr>
+   <kuvatavNr id="907aa703-3956-4234-805d-d30f62e797a2"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="a079b881-3345-4d80-989a-4dc4b32d5c55">
+    <tavatekst id="2a534de1-4e4a-43c0-96e3-a1c5c5a6ecfd">suurpere, eestkostepere ja puudega lapse vanema jõulutoetus – 100 eurot (makstakse välja detsembrikuus); </tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg1p5">
+   <alampunktNr id="94e81894-af5f-48ae-a28e-253dd0221936">5</alampunktNr>
+   <kuvatavNr id="5082245f-7a3d-448d-a266-470ca1b8c3b2"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="549e368f-6518-4785-af8b-0f6fb75d8748">
+    <tavatekst id="b21b51c8-1542-454b-a2e0-10d3fb27576e">pensionäri, puudega täisealise ja puudega lapse ravimi-/või hambaravitoetus – 200 eurot (üks kord eelarveaasta jooksul, makstakse välja hiljemalt detsembrikuus); </tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg1p6">
+   <alampunktNr id="0055e1c1-ac6a-4210-b660-845996431f09">6</alampunktNr>
+   <kuvatavNr id="a0779275-01c1-4868-874d-2842dfcd4565"><![CDATA[6) ]]></kuvatavNr>
+   <sisuTekst id="0fc3fb51-27b9-42e5-8bec-6b6f573f2cf1">
+    <tavatekst id="d6357f2e-1c88-4994-b7e8-18c94963a2ae">pensionäri ja puudega lapse prillitoetus – 100 eurot (üks kord eelarveaasta jooksul, makstakse välja hiljemalt detsembrikuus); </tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg1p7">
+   <alampunktNr id="10d82012-5627-4429-8d2e-5e5e0cfe56c7">7</alampunktNr>
+   <kuvatavNr id="fff7a46b-50a4-43f2-9d2f-96e76fb3a0b9"><![CDATA[7) ]]></kuvatavNr>
+   <sisuTekst id="c8f887b9-bca7-46df-bed9-760af78c466e">
+    <tavatekst id="ac3430cb-9305-4914-81e8-678822f65b8e">toetus puudega täisealise ja puudega lapse küttekulude eest osaliseks tasumiseks 150 eurot (üks kord eelarveaasta jooksul, makstakse välja hiljemalt detsembrikuus); </tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg1p8">
+   <alampunktNr id="dfc7302d-e013-4b2f-a509-00839561983f">8</alampunktNr>
+   <kuvatavNr id="ec8c9b6e-66c2-4e9c-9e05-e09368680ba1"><![CDATA[8) ]]></kuvatavNr>
+   <sisuTekst id="4e91b85f-1d69-4f4e-8a2e-8f97ed5cc027">
+    <tavatekst id="66f7e288-0001-406e-952d-9ae0d21dbffc">eaka (alates 80. eluaastast) tähtpäevatoetus – 50 eurot; </tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg1p9">
+   <alampunktNr id="332003ce-a367-4660-9491-1edb19a29576">9</alampunktNr>
+   <kuvatavNr id="ca856332-699d-42d3-afa9-f15dca30add0"><![CDATA[9) ]]></kuvatavNr>
+   <sisuTekst id="b42f2522-14c2-4530-8214-f962555f78ef">
+    <tavatekst id="0ecd5d34-eff8-4502-a397-7fbd17a24af5">kinnipidamisasutusest vabanenud isiku ühekordne toetus – 50 eurot; </tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg1p10">
+   <alampunktNr id="aad90d26-ce02-4979-b499-05c074e77a69">10</alampunktNr>
+   <kuvatavNr id="c539ec24-674a-4883-bfda-7683408bf705"><![CDATA[10) ]]></kuvatavNr>
+   <sisuTekst id="26bccdb3-0251-44da-b168-3186c382c204">
+    <tavatekst id="551dd386-85b3-462f-8626-6f127bed3d05">vältimatu sotsiaalabi toetus (ühekordne toidukott) – 50 eurot; </tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg1p11">
+   <alampunktNr id="80471f43-87d9-488b-ac20-6cab19d2c8da">11</alampunktNr>
+   <kuvatavNr id="bd884881-aa1a-47cf-89c7-731a5d30326b"><![CDATA[11) ]]></kuvatavNr>
+   <sisuTekst id="368cf999-decf-45f5-a9fc-872ea2e34637">
+    <tavatekst id="16c44995-4d1d-45c5-a631-09c881f8b02d">matusetoetus (vahendid eraldatakse läbi toetusfondi) – 350 eurot. </tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="3b58084f-ed60-4d2b-aac5-b4ecbff53194">2</paragrahvNr>
+   <kuvatavNr id="71dd474e-e964-4d52-b159-4cc4074e6326"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="b6b73cbe-2e39-48f6-9b24-a08b165f9139">Rakendussätted </paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="258da69c-8515-419a-a896-f0840c9d708e">1</loigeNr>
+   <kuvatavNr id="275e318a-fb77-403b-8283-ae40d1039ca1"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="149691e5-78ac-4fda-b5f0-bcdc8543977a">
+    <tavatekst id="f796d5c6-cdb7-43d9-a964-9e53c7422a0b">Tunnistada kehtetuks Rae Vallavalitsuse 04.01.2025 määrus nr 1 „Rae valla eelarvest isiku toimetuleku kindlustamiseks toetuste maksmise piirmäärad 2025. aastal“. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg2">
+   <loigeNr id="8d00fe57-9ce0-41be-80be-77cf7fe2002a">2</loigeNr>
+   <kuvatavNr id="6df91e6c-69e9-44aa-8261-001ea497097d"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="e59c63cc-5ef6-4e35-9479-ca7a7c460a7f">
+    <tavatekst id="64fe4c6b-b658-4b65-bb2c-12d3daff9b19">Määrus jõustub kolmandal päeval pärast avaldamist Riigi Teatajas. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg3">
+   <loigeNr id="5894e4ae-e52e-410d-b094-2f87b5cee6d3">3</loigeNr>
+   <kuvatavNr id="7fa10ec2-168b-4328-81c9-520d069db44a"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="e8cc1dca-5f99-44ca-a591-b8ff924f7c37">
+    <tavatekst id="50f95f7d-341f-4b27-9a68-a5a7eea8ab9f">Piirmäärasid rakendatakse tagasiulatuvalt alates 01.01.2026.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="166a3a2a-99ad-4c19-8465-9a999af108d3"><allkiriKoht id="f6e0ac90-dadf-4197-8514-66922f8ba812"/><allkirjastaja id="bc160823-d47b-4ca5-960a-fb3a1cef7a2a"><ametinimetus id="e86b603d-37e7-4aec-8d3d-40ff52c58b05">vallavanem</ametinimetus><eesnimi id="36ea8abe-e580-4285-b720-c36d1f9d8f97">Gerli</eesnimi><perekonnanimi id="45445972-8811-4348-bacd-c425d24a8f26">Lehe</perekonnanimi></allkirjastaja></allkiri><allkiri id="af8e9046-0c1c-4a74-936b-9cf620ef3799"><allkiriKoht id="f83c5371-4c69-4dfb-90f8-188390856cdb"/><allkirjastaja id="e8eebdbb-4e62-4ed0-ae0e-8ee7be466356"><ametinimetus id="2cecf51e-8ac0-42f9-a59d-cb8fe34dbee2">vallasekretär</ametinimetus><eesnimi id="7dbf39cd-577f-426a-a42c-98d5e17cdbbc">Martin</eesnimi><perekonnanimi id="852726c8-516a-4c74-9f2e-493f8cb30740">Minn</perekonnanimi></allkirjastaja></allkiri></oigusakt>

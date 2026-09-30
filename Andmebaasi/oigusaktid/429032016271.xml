@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="fa6427da-12ec-41cc-bd00-b8f15548ba7a" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Pärnu Linnavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2015-06-18</aktikuupaev>
+			<avaldamismarge>
+				<RTosa>RT IV</RTosa>
+				<avaldamineKuupaev>2015-06-30</avaldamineKuupaev>
+				<RTartikkel>17</RTartikkel>
+				<aktViide>430062015017</aktViide>
+			</avaldamismarge>
+			<aktiNr>22</aktiNr>
+			<joustumine>2015-09-01</joustumine>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2016-03-29</avaldamineKuupaev><RTaasta>2016</RTaasta><RTartikkel>271</RTartikkel><aktViide>429032016271</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2016-04-01</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2016-03-24</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>429032016271</globaalID>
+		<metaandmedVersioon>11</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2016-03-28</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1030082</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2015-06-12</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Merike Lille</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="c72dfcb4-a247-42aa-86fb-d60c7bb41208">
+		<nimi id="bdf16670-edf4-4a64-b8f7-312e241eb0b3">
+			<pealkiri id="b379e587-16b2-40cd-a17d-0c569af9193e">Pärnu linna eelarvest eralapsehoiuteenuse toetuse andmise kord </pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="7512a891-2e16-4707-a24e-467a7e5061be">
+		<aktikuupaev id="7be112fc-d8eb-456d-bff5-ddd57d57fd38">2016-03-17</aktikuupaev>
+		<avaldamismarge id="3f382dd8-ca15-4a24-a312-efd7770427ac">
+			<RTosa id="3c878fbf-7c81-4059-9399-0f2bc122135f">RT IV</RTosa>
+			<avaldamineKuupaev id="1918e5a6-b969-4653-99b2-ac767a4b5b43">2016-03-29</avaldamineKuupaev>
+			<RTartikkel id="6952a5ee-47ae-4ae4-b0a9-211d27336440">134</RTartikkel>
+			<aktViide id="f60b28d3-f3fb-459e-8a1b-0119940fe2c5">429032016134</aktViide>
+		</avaldamismarge>
+		<joustumine id="8fed5ecb-6c41-4807-9660-5afff7c5843a">2016-04-01</joustumine>
+	</muutmismarge>
+	<sisu id="4e72e545-6ee0-4c0f-9c62-6422eb02ea22">
+		<preambul id="9f3892e2-ca47-48ac-9541-3f8ef07b0c52">
+			<tavatekst id="b6426f10-9769-403e-a5ba-095ae5788849">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5 ning koolieelse lasteasutuse seaduse § 10 lõike 1 ja § 27 lõigete 3 ja 4 alusel.</tavatekst>
+			<muutmismarge id="56a5dea4-4009-4d7d-9492-ae24fe366a5e">
+				<avaldamismarge id="d29ad08d-d8e4-440a-b1c0-a81f169f6175">
+					<RTosa id="61f87dec-0c46-4cf6-9186-ba4d84b38f10">RT IV</RTosa>
+					<avaldamineKuupaev id="3d4afcd8-9562-4aa6-89e0-90d26ffb73ce">2016-03-29</avaldamineKuupaev>
+					<RTartikkel id="35cdde9d-f00c-46b8-85f7-1a544ee56ece">134</RTartikkel>
+					<aktViide id="320206c4-fe11-4526-b6c2-0951e9811b6d">429032016134</aktViide>
+				</avaldamismarge>
+				<joustumine id="ded0f0c8-aa8f-4edb-92b6-37f0d36dc2bb">2016-04-01</joustumine>
+			</muutmismarge>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="4af289d6-89e3-4074-860a-325b89f8e08d">1</paragrahvNr>
+			<kuvatavNr id="547b398d-ef80-4777-bfe0-bf962ce1d6fa"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="38b00dad-a7a0-4b9f-acef-0cf3fb525d1e">Määruse reguleerimisala</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="9020839b-db84-4cbc-8ee0-8074bebda3f9">1</loigeNr>
+				<kuvatavNr id="037ae821-5a08-4320-abd5-2ac8cb60b2c8"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="61681f65-e5e4-4a83-9ba6-0ece41d533d2">
+					<tavatekst id="9912991d-8656-4441-9968-02162cedf019">Määrus reguleerib pooleteise- kuni kolmeaastase lapse eralapsehoiuteenuse (edaspidi <i>lapsehoiuteenus</i>) osutaja toetamist Pärnu linna eelarvest.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg2">
+				<loigeNr id="ee287540-4bcb-4095-b83b-7ee4fcd01016">2</loigeNr>
+				<kuvatavNr id="d2cbfe72-6608-4faf-97e4-c8d400f2eea8"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="060891a6-9482-4510-8c1e-a7036240526c">
+					<tavatekst id="c02461ff-b2ec-4bb7-88ca-79e791d2a0fb">Määrusega kehtestatakse toetuse andmise alused, toetuse taotlemise, määramise ja maksmise kord ning järelevalve toetuse kasutamise üle.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="9e76617a-01ed-4cb2-a5ac-de9b1bc96a68">2</paragrahvNr>
+			<kuvatavNr id="2d502de9-d594-4d7b-ae85-2f0279e2c913"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="9be139a1-bbaa-44d5-b400-c0dbf7b650ef">Mõisted</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="66933d01-e384-433f-a1f4-3de4e0d65e96"/>
+				<kuvatavNr id="1563cb85-98ae-4d6e-aca2-44d7dca25fa8"/>
+				<sisuTekst id="5a13a394-aa4f-4ea2-bf53-d8ea35c59a69">
+					<tavatekst id="c1db77bc-3e07-47fc-b52f-d30868ee28ab">Määruses kasutatakse mõisteid järgmises tähenduses:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para2lg1p1">
+					<alampunktNr id="eca5d949-87ed-4954-839f-316eebb91a24">1</alampunktNr>
+					<kuvatavNr id="b6270091-b83a-41a6-a68b-42ac02dde3e8"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="90066668-32c9-4a26-98f4-35467dfecbba">
+						<tavatekst id="5b7040e6-3390-4307-a049-1c514f487266">
+							<b>lapsehoiuteenus</b> – lapse seadusliku esindaja toimetulekut või töötamist toetav teenus, mille osutamise vältel tagab nimetatud isikute asemel lapse hooldamise, arendamise ja turvalisuse lapsehoiuteenuse osutaja;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p2">
+					<alampunktNr id="b413a11b-34fc-4b84-8e9f-2ed6cee82251">2</alampunktNr>
+					<kuvatavNr id="b671118b-c7ce-4826-8268-df2ba3957a2d"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="a95164bc-9afe-40de-b78f-29edfba0ce69">
+						<tavatekst id="a1a61707-fcb1-4337-a7a6-59130e31c6e1">
+							<b>lapsehoiuteenuse osutaja</b> – lapsehoidja kutset omav füüsilisest isikust ettevõtja või eraõiguslik juriidiline isik, kellel on maavanema poolt antud kehtiv tegevusluba lapsehoiuteenuse osutamiseks;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p3">
+					<alampunktNr id="88b2a9d9-ffcb-4d9f-bd4d-d55375575252">3</alampunktNr>
+					<kuvatavNr id="19fa4118-0305-4e30-a25b-b380c2db5098"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="912478bb-506b-4d19-82c1-dfe96b698815">
+						<tavatekst id="92765188-7ac0-4252-a2b6-5afb6614d4fb">
+							<b>laps</b> - pooleteise- kuni kolmeaastane laps;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p4">
+					<alampunktNr id="5ca12bf1-448a-42dd-9459-81606da1e34b">4</alampunktNr>
+					<kuvatavNr id="1cf37bf2-6207-4855-87a8-a1427218d547"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="3c356cf3-6442-4cb5-b437-e3fe000c8da3">
+						<tavatekst id="aeb08cc4-3691-4ae4-ba48-34cd55995299">
+							<b>lapsevanem</b> – lapse seaduslik esindaja (vanem või eestkostja).</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="38869c1c-6d2f-45b2-a159-1447ebb90e7c">3</paragrahvNr>
+			<kuvatavNr id="de2ec4a0-0cd4-46d9-ad0b-13488860190f"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="b0e7b114-c63b-453f-a864-413105482ea5">Toetuse andmise alused</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="978226cf-bfce-4432-bac6-781d4bc1dc65">1</loigeNr>
+				<kuvatavNr id="370be862-b73a-405c-b083-51de743efb48"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="75dddb8c-cbcc-45dd-bff5-c655ff2f2e1f">
+					<tavatekst id="318a47b5-ffac-443c-952b-298f70efbe61">Toetus antakse lapsehoiuteenuse osutajale töötajate töötasude, ruumide majandamiskulude ja mänguvahendite soetamiskulude osaliseks katmiseks.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg2">
+				<loigeNr id="b068ad7c-4354-447d-95b8-04f986b90355">2</loigeNr>
+				<kuvatavNr id="d0835d44-ebb4-4463-bdc7-30f5e6e40334"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="2c180463-c802-402c-be74-7473e3754d6a">
+					<tavatekst id="608121b1-29c0-41b0-9c77-cadee2264bc5">Toetuse saamise õigus on lapsehoiuteenuse osutajal tema teenusel oleva lapse eest, kui lapse elukoht, mis ühtib vähemalt ühe vanema elukohaga, on Pärnu linn.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg3">
+				<loigeNr id="4ca00877-f982-483d-a2be-d97983153242">3</loigeNr>
+				<kuvatavNr id="f8a1a13c-fce0-4428-8782-4b69e3bee07e"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="571f22be-c030-4d21-90d2-88321478274a">
+					<tavatekst id="0f31abdc-78bc-40fc-887a-9eaae8ae6fb5">Toetust makstakse lapse eest, kelle vanem on taotlenud lapsele kohta Pärnu linna munitsipaallasteaias ja kellele ei ole teeninduspiirkonna lasteaias kohta pakkuda ning lapsevanem on nõus lasteaia koha asendamisega lapsehoiuteenusega.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg4">
+				<loigeNr id="d8fe3ba5-0295-4bf0-86aa-9abc4536d5cc">4</loigeNr>
+				<kuvatavNr id="1cc8364a-13e4-45f6-8ce6-a62b191aec90"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="4a638d9d-9067-40ab-8b48-2eb0130f2016">
+					<tavatekst id="92b66426-2640-463f-bee3-155eca60c9a3">Toetust makstakse kuni 11 kuu eest õppeaastas lapse eest, kes kasutab tegelikult kohta.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg5">
+				<loigeNr id="1202c33a-e886-4fa7-a8fe-c51d7edab116">5</loigeNr>
+				<kuvatavNr id="82cd74db-3aa4-4238-965b-a074b0815017"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="512b63ff-c24a-47f1-828a-b879433c4b5f">
+					<tavatekst id="e635a2c5-ac64-46a5-9a87-76ea5b4b291b">Lapse eest, kes kasutab osaajalist kohta, makstakse toetust proportsionaalselt koha kasutamisega.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="1aef3cd0-a076-4527-ab0c-e8a50910d141">4</paragrahvNr>
+			<kuvatavNr id="b8b2052c-4e7c-4110-9c2a-0f7f66940d2c"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="503140c5-90a9-4455-9fb2-a48085de2ac5">Toetuse suurus</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="be1eb204-e8a9-41f5-b61b-a8c0b076bac5">1</loigeNr>
+				<kuvatavNr id="f36a6741-785e-4add-bf9f-6e664892847c"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="a78b3fd3-4917-45c2-886c-867ffe9eaa07">
+					<tavatekst id="27072bf2-f696-477e-8b78-7db7d91762a7">Lapsehoiuteenuse osutajale makstakse toetust lapsehoiuteenuse hinnakirja alusel, millest on maha arvatud lapsevanema poolt kaetav osa. Toetus ei või olla suurem kui linnavalitsuse hallatavate ujulata lasteaedade keskmine tegevuskulu maksumus.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg2">
+				<loigeNr id="8eedfc4e-20dc-469d-91d0-e81b9d8e85ac">2</loigeNr>
+				<kuvatavNr id="a9c74424-5620-48ce-b0d3-0ce7087de647"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="b1fde8f5-506b-4a47-af5a-54858a8484f4">
+					<tavatekst id="c3437709-df57-426a-9b89-563fe753cd7a">Lapsehoiuteenuse eest maksab lapsevanem lapsehoiuteenuse osutajale summa, mis on võrdne linnavalitsuse hallatavas ujulata lasteaias vanemate poolt kaetava osa määraga.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg3">
+				<loigeNr id="7960ca38-6f7c-420a-82cd-f81ea95e18db">3</loigeNr>
+				<kuvatavNr id="7c5dbec7-e3b0-4118-8499-2ef0aa843f9f"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="0cb4286b-d26e-4ea7-8064-7552ed58667c">
+					<tavatekst id="54adf606-7e35-4ab6-8e3b-c88830eae1e4">Toidupäeva maksumuse tasub lapsevanem.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="302cbc86-8942-48c5-ad48-092804f2c649">5</paragrahvNr>
+			<kuvatavNr id="b2cbfa72-514e-4941-8783-3acd4ea962d0"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="6e5aa5ac-c85d-40e6-bf47-4d974c0b9e95">Toetuse taotlemine, määramine ja maksmine</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="0fadd6bc-e6f7-4100-9654-70b2784e36f1">1</loigeNr>
+				<kuvatavNr id="68d2fc49-7630-431b-9170-a74ab29b2d3f"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="365c505d-5e2b-4bcc-8d42-a33206612351">
+					<tavatekst id="bd59eaf5-f167-4f67-967e-bad5fa399160">Toetuse taotlemise aluseks on lapsevanema poolt linnavalitsuse haridus- ja kultuuriosakonnale (edaspidi <i>haridus- ja kultuuriosakond</i>) esitatud taotlus lapsehoiuteenuse kasutamiseks.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg2">
+				<loigeNr id="70c99117-e47f-424c-8b04-e16c051cda09">2</loigeNr>
+				<kuvatavNr id="670f3a72-3c5d-42c2-8d98-67bba3c9dbb0"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="130ea9d6-d148-4f6c-b4cd-48f0cb38de87">
+					<tavatekst id="e3cf8683-916b-41f8-993e-fafe1c31382e">Taotluse rahuldamise või rahuldamata jätmise otsustab haridus- ja kultuuriosakonna juhataja oma otsusega 30 päeva jooksul.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg3">
+				<loigeNr id="7a220e63-c59c-49a0-866a-3bc72d16e03a">3</loigeNr>
+				<kuvatavNr id="b2f6feef-7f6e-42e7-a7da-173e771d830d"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="711d45c4-2667-44cb-bd16-d8547665cadc">
+					<tavatekst id="edfb3760-0833-40d5-b3ca-86f31eb2631a">Taotluse rahuldamise korral sõlmib haridus- ja kultuuriosakond lapsehoiuteenuse osutajaga ja lapsevanemaga toetuse kasutamise kolmepoolse lepingu, milles sätestatakse:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para5lg3p1">
+					<alampunktNr id="0edfb232-11f0-4ebf-9529-2d2662ad81d9">1</alampunktNr>
+					<kuvatavNr id="eeebe5fe-e8aa-4ed9-9a8f-7198e5b032b5"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="58f76309-c7df-4a69-a4c4-d484ebe0d440">
+						<tavatekst id="5e307daf-2f5b-47d5-b963-0c66714a32cf">lepingu tähtaeg;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg3p2">
+					<alampunktNr id="e649cc0d-31ff-4743-a0f0-dd8c16505a0e">2</alampunktNr>
+					<kuvatavNr id="53a339fd-f99e-4e1f-a2b9-bbe78cd95a2e"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="06a41c3d-164b-4fe3-aa3c-5aac6e188da8">
+						<tavatekst id="a22ebbac-3013-4256-bafa-2056da62ef32">toetuse kasutamise sihtotstarve;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg3p3">
+					<alampunktNr id="f81af0f5-2df8-4e9b-8d65-e5cae1b58e2b">3</alampunktNr>
+					<kuvatavNr id="c0e06456-8b1a-46eb-8055-01fc5773d2f6"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="74003a91-a321-441f-8e73-7c2bac7f327a">
+						<tavatekst id="b1e3b1cf-feda-4959-992c-a3ac10f8fb25">toetuse suurus ja ülekandmise tähtaeg või maksegraafik;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg3p4">
+					<alampunktNr id="2d63e88e-fdc3-4d3f-b4fb-3306e862a921">4</alampunktNr>
+					<kuvatavNr id="e0bba34e-1571-4542-9d8b-726cea57f1c7"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="432aea9c-74c0-49c3-9c7d-bdc3afee451b">
+						<tavatekst id="9ef5fb81-db11-4af8-a897-8743ac322509">toetuse andja ja toetuse saaja õigused ja kohustused;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg3p5">
+					<alampunktNr id="d36e4b42-9027-4aee-ab7d-299fb8c9c029">5</alampunktNr>
+					<kuvatavNr id="151063f0-aa0d-4ef2-8476-42372b587415"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="c9e1cf48-5c8d-487d-b85d-a5fcdf966929">
+						<tavatekst id="cfee270b-220c-4593-9147-6c853f6de56f">lapsevanema õigused ja kohustused;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg3p6">
+					<alampunktNr id="d3f7c6bf-81ef-44e6-9943-f0deb29d3300">6</alampunktNr>
+					<kuvatavNr id="3afbd0fd-4413-43bd-a34c-46eb226ee619"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="0ea22d92-0765-48c1-b82d-92ffbe7294ef">
+						<tavatekst id="6344094b-7426-4044-bdd0-12e660863b22">linnavalitsuse õigused toetuse sihipärasuse kontrollimisel;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg3p7">
+					<alampunktNr id="f05061e9-f68b-43e5-b060-19671aae5192">7</alampunktNr>
+					<kuvatavNr id="b0a3a700-76de-4eab-865f-7bee47499e12"><![CDATA[7) ]]></kuvatavNr>
+					<sisuTekst id="9b72bc49-40a3-4779-9a88-95007fd80545">
+						<tavatekst id="9a98b3db-6ee4-4ba1-8621-2ed962032c53">toetuse mittesihtotstarbelise kasutamisega kaasnevad sanktsioonid;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg3p8">
+					<alampunktNr id="a634a8f7-d2d5-450f-87d5-a71736f00920">8</alampunktNr>
+					<kuvatavNr id="804c8b06-071d-4962-bc65-7f33f952e6e2"><![CDATA[8) ]]></kuvatavNr>
+					<sisuTekst id="15146d03-c130-40d8-8fa5-a3532c706fad">
+						<tavatekst id="2863985e-9b47-4b8b-b3d1-30a90b97a6da">muud lepingus vajalikud tingimused.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para5lg4">
+				<loigeNr id="90bfde25-8f2f-4e26-bae5-27d6267041fd">4</loigeNr>
+				<kuvatavNr id="bc0d29a0-00f5-402a-8776-7e9c76aefdbc"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="e7b99fd3-1fc2-40c4-889c-9007c79b3988">
+					<tavatekst id="a465c3ef-3327-476c-90c0-70e2e83bb801">Kui pooled lepingu sõlmimisel kokkuleppele ei jõua, loetakse menetlus selle lapsehoiuteenuse osutaja toetamiseks lõppenuks <b>. </b>
+					</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para6">
+			<paragrahvNr id="97af0607-f2f4-45a0-afb3-7c9072f7e062">6</paragrahvNr>
+			<kuvatavNr id="30ececc5-eca5-453e-9d6a-1936a59725d2"><![CDATA[§ 6. ]]></kuvatavNr>
+			<paragrahvPealkiri id="7b78f9ac-7fa8-4453-aa8f-b97f2b42b002">Järelevalve toetuse kasutamise üle</paragrahvPealkiri>
+			<loige id="para6lg1">
+				<loigeNr id="edabb9d3-8dff-4fc5-ad65-829c5d7722c4">1</loigeNr>
+				<kuvatavNr id="ad873379-43ad-4c36-b0bf-b255a891411b"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="86c5d010-03af-41f6-b184-4fa253af1127">
+					<tavatekst id="2c2e5122-3d6e-4686-951c-edecdd5a1160">Lapsehoiuteenuse osutaja on kohustatud viivitamatult informeerima linnavalitsust riikliku järelevalvet teostavate ametiisikute poolt tehtud ettekirjutustest ja nende täitmisest. Ettekirjutuste põhjendamatul täitmata jätmisel või eiramisel kaotab nimetatud lapsehoiuteenuse osutaja õiguse toetusele alates ettekirjutuse tähtajale järgnevast kalendrikuust.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg2">
+				<loigeNr id="7d2c9b14-1da1-4822-9796-efeb0d4baaa9">2</loigeNr>
+				<kuvatavNr id="3a2c0951-cd38-4cc1-b43f-20ecd2accc13"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="9eba253b-0425-4931-8344-9d30ffbeb20c">
+					<tavatekst id="5af8a47c-6a4d-4536-9c24-dc01be606c53">Linnavalitsuse esindajal on vajadusel õigus nõuda seletusi ning kontrollida toetuse kasutamise sihipärasust.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg3">
+				<loigeNr id="f905ebd8-d97c-4024-9b9e-502b24da73e8">3</loigeNr>
+				<kuvatavNr id="366ceea4-1181-41ff-a6b3-dcaf99b55e5f"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="b79047c8-fea2-4355-a13f-f3fdf142fc09">
+					<tavatekst id="44986524-135b-4c8d-b2a1-900171f3add8">Linnavalitsusel on õigus osaliselt või täies mahus lõpetada toetuse maksmine ja/või nõuda toetuse osalist või täielikku tagastamist, kui:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para6lg3p1">
+					<alampunktNr id="ee91b2db-0671-4ec8-a1aa-76c318ad1cdf">1</alampunktNr>
+					<kuvatavNr id="379aadd3-685a-43a2-9999-6b9320862a85"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="24e99464-569a-416c-af8f-6a7265af800a">
+						<tavatekst id="e0e54958-4ff1-4fb4-b0ad-19fa4207985e">toetust ei ole kasutatud sihtotstarbeliselt;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg3p2">
+					<alampunktNr id="f835fca3-536f-468f-a6ec-78099f71b348">2</alampunktNr>
+					<kuvatavNr id="9cd379fe-3bd4-49ae-99ff-ca0f2878c400"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="733a5d34-4a73-4050-b28d-6fd282f44314">
+						<tavatekst id="5afca45a-a2c8-44ee-bafc-d094699ca454">toetuse taotlemisel on esitatud valeandmeid;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg3p3">
+					<alampunktNr id="85ebead5-aaec-4f31-917b-5bde60ac6e51">3</alampunktNr>
+					<kuvatavNr id="9f31efcb-4bef-4a91-a1c1-53a81ef80f12"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="e7e21f3d-51ee-4a3f-90bc-0eef5e6d1946">
+						<tavatekst id="c3bce7bb-e3d2-49f2-9c80-f1d9e2026420">lapsehoiuteenuse osutaja lõpetab tegevuse toetuse andmise perioodi kestel;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg3p4">
+					<alampunktNr id="8974876c-c31f-4e53-aa51-3dc2b880f8ad">4</alampunktNr>
+					<kuvatavNr id="1be9b425-d121-4b06-ab1b-6054c851cb4e"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="9383c3c7-c817-4f41-bb5e-8f894b559705">
+						<tavatekst id="eec443e3-66a4-4490-a400-f18075d4a57a">muudel lepingus sätestatud juhtudel.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para7">
+			<paragrahvNr id="88005c42-4c75-4d47-b90f-b992f7e42fac">7</paragrahvNr>
+			<kuvatavNr id="5cf0dbd0-f554-418a-b36c-687b1f78298c"><![CDATA[§ 7. ]]></kuvatavNr>
+			<paragrahvPealkiri id="e95bb1c9-2450-4430-aaaf-910ece0675f8">Jõustumine</paragrahvPealkiri>
+			<loige id="para7lg1">
+				<loigeNr id="8b8156f3-4daf-4d23-b332-4c1c4788820f"/>
+				<kuvatavNr id="c8d7796f-04c7-4899-a702-a9d9dd334f4f"/>
+				<sisuTekst id="e269d8ce-01d5-4b16-88ee-b76bdc3e860f">
+					<tavatekst id="df753e68-5f07-4453-9fea-e6740f3a543d">Määrus jõustub 1. septembril 2015.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+	
+</oigusakt>

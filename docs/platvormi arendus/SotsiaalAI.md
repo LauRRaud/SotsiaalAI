@@ -92,6 +92,27 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**30.09 (Opus), jätk: Codexi #276–#281 ülevaatuse leiud R1–R3 parandatud, korpus v46** ([audit](../audits/rag-v2-pr276-281-review-2026-09-30.md)).
+- **Tootmises 30.09 kella 18:58-st:** korpus v46 (indeks `5a959000`, 6470 dokumenti, 40 489 lõiku), plaan `m4-corpus-chat-20260930h.json`. Seaded on samad.
+- **R1** ([ADR-059](../rag-v2/adr-059-corpus-refresh-path.md)): `rag-v2-corpus-run.sh` annab iga sammu vea korral nullist erineva koodi.
+  - Plaani väljund läheb logifaili ja pakk kustutatakse alles pärast edu.
+  - `RESUME=plan` teeb ainult plaani sammu.
+  - Test käivitab skripti `sudo` ja `systemctl` aseainetega.
+- **R3:** registreerimine kontrollib ja arvutab kõik enne kirjutamist. Failid kirjutatakse ajutise nime kaudu ja register viimasena.
+  - Varukoopiat ei kirjutata üle ja registreeritud baitide puudumine peatab töö.
+  - Sama käsk lõpetab katkenud töö.
+- **R2** ([ADR-058](../rag-v2/adr-058-municipal-social-acts.md)): välistus sobib ainult sõna algusega, seega „eelarvest“ ja „Mustvee“ ei jää enam välja.
+  - Määrad on üks akt toetuse kohta: hooldajatoetuse määr ei tõrju üldisi piirmäärasid.
+  - Skaneerimine nimetab indekseeritud aktid, mille uuem akt asendas; `package --remove` eemaldab need poliitikast.
+  - v46: 18 akti (sh Codexi näide Rae 430012026034), 0,0063 USD, asendatud akte 0.
+  - Päris vestlus: Rae pensionäri prillitoetus on 100 eurot kord aastas, koos tingimuste ja kontaktiga.
+- **Avatud:**
+  - 01.10 kontroll;
+  - 04.10 Maardu XML-id;
+  - 46 akti taotlusvormid;
+  - kontaktid pärast 04.10;
+  - kiirus päris vestluses.
+
 **30.09 (Opus), jätk: korpuse värskendamise rada ja korpus v45** ([ADR-059](../rag-v2/adr-059-corpus-refresh-path.md)). Omanik 30.09: „sina jätka rag arendust“; Codex vaatab üle, kui valmis.
 - **Tootmises 30.09 kella 17:00-st:** korpus v45 (indeks `dfa3b1db`, 6452 dokumenti, 40 282 lõiku), plaan `m4-corpus-chat-20260930g.json`. Seaded on samad.
 - **Värskendamise rada:**

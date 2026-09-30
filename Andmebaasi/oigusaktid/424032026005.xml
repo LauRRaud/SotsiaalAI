@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="760d071a-4d5e-4370-a929-3a3d60498b05" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Tartu Vallavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2019-09-26</aktikuupaev>
+			<avaldamismarge>
+				<RTosa id="a7b47008-1989-47a9-a2b9-b76c339bc219">RT IV</RTosa>
+				<avaldamineKuupaev id="dad643b5-f116-4897-875a-3dbd92e07675">2019-10-03</avaldamineKuupaev>
+				<RTartikkel id="9bc1aac4-c1b6-49bf-8bf9-cbd73a678839">2</RTartikkel>
+				<aktViide id="96d36a45-55ad-4d67-ada6-2c481deec7e2">403102019002</aktViide>
+			</avaldamismarge>
+			<joustumine>2019-10-06</joustumine>
+			<aktiNr>23</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-03-24</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>5</RTartikkel><aktViide>424032026005</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2026-05-01</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2026-03-19</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>424032026005</globaalID>
+		<metaandmedVersioon>23</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2026-03-23</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1047754</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2019-09-30</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Estrit Aasma</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="a719a62f-c807-429f-93e4-1393898def7d">
+		<nimi id="0a55c7ce-82f3-4072-a540-a5491dd1fa57">
+			<pealkiri id="8bbb8b88-148b-43f5-a1d6-a35912e24dca">Tartu valla eelarvest makstavate sotsiaaltoetuste määrad</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="cf8a0b87-e884-4c00-b514-88c4e8f01c5d">
+		<aktikuupaev id="10823fcb-65f7-4df9-aceb-da171a9a8452">2019-11-28</aktikuupaev>
+		<avaldamismarge id="040efabe-a8bf-46b8-8a88-ec47fc87a2c4">
+			<RTosa id="60da5e1c-953e-46cb-a76c-d7c87dfe2164">RT IV</RTosa>
+			<avaldamineKuupaev id="02c1654f-6416-4715-afa2-3b34eeed03ba">2019-12-10</avaldamineKuupaev>
+			<RTartikkel id="856b8049-8eeb-48ad-86a1-bbc2933c222b">2</RTartikkel>
+			<aktViide id="0628ba18-b523-483a-b3fa-dfcb4bcb832d">410122019002</aktViide>
+		</avaldamismarge>
+		<joustumine id="2cfa0fb2-b537-4c51-b362-12874382e4d2">2020-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="2035f1d3-33e4-44df-8cd1-c8d7a0d5963d">
+		<aktikuupaev id="0f8c89d8-c389-4f40-af9c-feb45c139233">2022-01-19</aktikuupaev>
+		<avaldamismarge id="b22b435e-2c0b-42da-a01a-6b3025838a43">
+			<RTosa id="1f5ba5fa-b625-4d0e-915e-fadf2bcc00dd">RT IV</RTosa>
+			<avaldamineKuupaev id="3acde4b6-89d7-4cc7-8177-adf215b2400d">2022-01-26</avaldamineKuupaev>
+			<RTartikkel id="10e8ba3d-7eee-4558-8cae-542943b93f8f">4</RTartikkel>
+			<aktViide id="c40b5ffd-0db4-4e95-9ac5-ba613e814be6">426012022004</aktViide>
+		</avaldamismarge>
+		<joustumine id="f5451a7e-ab17-47b9-be05-9d2515e6c263">2022-01-29</joustumine>
+	</muutmismarge>
+	<muutmismarge id="58d22d78-17f5-490d-b757-b1ccedf7bba0">
+		<aktikuupaev id="a4783447-20f8-447a-82b8-1354fcde5563">2024-02-28</aktikuupaev>
+		<avaldamismarge id="eb423895-4491-45d5-b650-f1cc9c6ba216">
+			<RTosa id="6b782ba6-2a5c-413c-a895-4d2067ea6ef2">RT IV</RTosa>
+			<avaldamineKuupaev id="53d5984d-5e59-4cb0-890a-3113681ce856">2024-03-08</avaldamineKuupaev>
+			<RTartikkel id="c8cee0ad-d771-44fd-93a9-79dbd51739af">22</RTartikkel>
+			<aktViide id="6895b767-2681-4898-8aaa-6ca360d38ecb">408032024022</aktViide>
+		</avaldamismarge>
+		<joustumine id="2e81c913-2d17-47b1-8460-49622bf55962">2024-03-11</joustumine>
+	</muutmismarge>
+	<muutmismarge id="d4087db4-3a44-4f1c-a8a5-324f87b6281d">
+		<aktikuupaev id="83a7f8e2-cfd6-437a-945b-61d715ef0eb6">2026-03-18</aktikuupaev>
+		<avaldamismarge id="2cf51710-2748-44d7-9536-806a9f51050d">
+			<RTosa id="8f13c6e9-fe7c-415c-991b-a159b31867ac">RT IV</RTosa>
+			<avaldamineKuupaev id="7f5b6f53-e9df-467a-9346-18b40d9830ab">2026-03-24</avaldamineKuupaev>
+			<RTartikkel id="c1f93638-da5f-49fc-8090-68a87dcbbdd6">3</RTartikkel>
+			<aktViide id="0c258e7c-ef3a-4554-a43d-b4c2b50e2400">424032026003</aktViide>
+		</avaldamismarge>
+		<joustumine id="fb87fbd7-36bd-4809-bb82-ad5d50b878d0">2026-05-01</joustumine>
+	</muutmismarge>
+	<sisu id="86636fa1-02aa-47e8-b3d9-c40980564b78">
+		<preambul id="536ca37a-9802-4833-a4a5-4c5df5e1720a">
+			<tavatekst id="f0a3a0e3-e2b2-44e4-9302-9114349b0967">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lg 1 p 5 ja Tartu Vallavolikogu 26.09.2019 määruse nr 22 „Sotsiaalhoolekandelise abi andmise kord” alusel ning arvestades Tartu Vallavolikogu 28.12.2017 määrust nr 13 „Sünni- ja matusetoetuse määramise ja maksmise tingimused ja kord Tartu vallas”.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="3278de3a-dd16-42dc-a631-addb78b353b5">1</paragrahvNr>
+			<kuvatavNr id="133c4719-e5ee-41a4-b3ab-f49bcc4af4d8"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="2030454e-69e4-456d-b6c0-8966bb1878ef">Sissetulekust mittesõltuvad toetused</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="aaf645e7-74ca-41d0-a3e3-af69a74d0478"/>
+				<kuvatavNr id="45a00ba4-d5c6-4b58-a2f5-c35863831548"/>
+				<sisuTekst id="88b63ffd-3e29-4a12-8983-2924d1e51ebb">
+					<tavatekst id="c17fdddf-779c-419d-8351-946bbc97647c">Sissetulekust mittesõltuvate toetuste määrad on järgmised:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para1lg1p1">
+					<alampunktNr id="7d4a31dc-8858-4384-bbf4-a2222a0f3dcb">1</alampunktNr>
+					<kuvatavNr id="bdba2dc1-7185-485e-93f9-6833c8d84f74"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="64cba0ee-82ac-43b5-adb3-76b1abd60c68">
+						<tavatekst id="20917fc6-0947-45f2-8830-9fd110736763">hõbelusikas sündinud Tartu valla elanikule väärtuses kuni 40 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p2">
+					<alampunktNr id="6df92bca-686c-43d0-b78b-8a02df403d15">2</alampunktNr>
+					<kuvatavNr id="eb93ee3b-30ca-4940-b50e-ef002c34159a"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="e26ac987-b56b-40b7-a573-9512afb2d360">
+						<tavatekst id="5e2fd8fe-ed88-4535-ab3f-3aafa671053b">ühe- kuni seitsmeaastaste koduste laste jõulupakid väärtuses kuni 25 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p3">
+					<alampunktNr id="7e25e1bd-96f3-4721-8a9c-cef88b750f2c">3</alampunktNr>
+					<kuvatavNr id="a230d4c4-09ff-44d2-95e8-7a47cdcb39c0"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="0d7df53c-2b2a-4ebd-b214-509bd564bad3">
+						<tavatekst id="9d191fd2-afb7-4112-9d23-dcac4095df70">ranitsatoetus esmakordselt kooli õppima asuvale lapsele 100 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p4">
+					<alampunktNr id="7e18941f-70dc-47fc-b2b4-1dcc4619906e">4</alampunktNr>
+					<kuvatavNr id="35cda954-d7ee-4fca-8ea6-d77ebd555524"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="a2a9df58-b7a4-4fbd-9b73-90e3cf1516b0">
+						<tavatekst id="535e84b0-cf65-44ab-9122-60260d8f344e">kriisiabi kuni 5000 eurot; </tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p5">
+					<alampunktNr id="f91ed73c-7732-45e7-96e8-113d0e3bba3e">5</alampunktNr>
+					<kuvatavNr id="7ef2712a-f483-4dfb-9315-65be1427aea7"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="1a6d9229-5644-4e85-8063-3c0b6c424192">
+						<tavatekst id="eb45cd8c-bd8e-4052-a027-c98d361b9918">eakate tähtpäeva tervitus kuni 30 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p6">
+					<alampunktNr id="d3f282f6-eeea-4a36-ac90-084178b7ef16">6</alampunktNr>
+					<kuvatavNr id="22a13cdb-021d-4bc5-a711-4d4a9af299b6"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="8e00ce70-284e-4e33-a559-73132f6fcb9f">
+						<tavatekst id="eef90de4-3068-4b46-a42a-a7b34115e8f4">hapniku tootmiseks vajaliku elektri kompenseerimine 100 eurot kvartalis;</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="2148c906-f6b8-40b6-8e5b-e5725f02af4a">
+						<avaldamismarge id="7a8c0e88-695a-4b68-a319-3816e5b9af30">
+							<RTosa id="1055dd5f-8e6a-49c6-b679-7450f7c3b211">RT IV</RTosa>
+							<avaldamineKuupaev id="dd1df1e0-b83f-4453-94e8-5a6420fe5c09">2022-01-26</avaldamineKuupaev>
+							<RTartikkel id="427e9be7-a9bf-4ae4-8f8a-7b7a4afce8f6">4</RTartikkel>
+							<aktViide id="6993d983-2f8a-4700-82ad-85b1ecf564a2">426012022004</aktViide>
+						</avaldamismarge>
+						<joustumine id="d8eb4a70-6c05-4a65-af28-08c6c8047237">2022-01-29</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para1lg1p7">
+					<alampunktNr id="cf8cb77a-7bd0-480b-81a4-47c585d7ff8f">7</alampunktNr>
+					<kuvatavNr id="9f088573-7632-4da7-8fc6-fd307bcf3d8e"><![CDATA[7) ]]></kuvatavNr>
+					<sisuTekst id="9433675e-f3de-4505-8c65-13f15be20423">
+						<tavatekst id="7c0982f0-0c17-46ae-acc7-9ac37cd945e3"> koolisõidutoetus kuni 600 eurot õppeaastas kuludokumentide alusel. Isikliku sõiduki kasutamisel õpilaste transpordiks kooli ja tagasi hüvitatakse sõidupäeviku alusel kuni 0,30 eurot ühe sõidukilomeetri kohta;</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="006598bf-6e15-40ea-9041-0c94db2c9534">
+						<avaldamismarge id="60460729-b714-423e-8d4f-23930faf05ce">
+							<RTosa id="a4da34e6-7624-498d-a077-bfe9386e08bb">RT IV</RTosa>
+							<avaldamineKuupaev id="07e08b66-e6fe-4ffa-9fb7-b63acf87186c">2026-03-24</avaldamineKuupaev>
+							<RTartikkel id="c4f633cd-8908-4b82-8560-e41a64b22dc1">3</RTartikkel>
+							<aktViide id="17accc34-28d9-44ec-9012-86e759d43dbc">424032026003</aktViide>
+						</avaldamismarge>
+						<joustumine id="5243f99f-cd92-4fc3-a89e-04f6b461eef6">2026-05-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para1lg1p8">
+					<alampunktNr id="4bc61732-0ca7-45d5-8226-e875ed4e3b4b">8</alampunktNr>
+					<kuvatavNr id="157a798e-f01a-4b4b-bfb5-541c1aeb67e8"><![CDATA[8) ]]></kuvatavNr>
+					<sisuTekst id="3348ca80-a3ef-40ca-967e-3ee01e966106">
+						<tavatekst id="96d821ae-30f2-45a2-80a4-99a5c371a125">muude erakorraliste kulude hüvitamine kuni 3000 eurot.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="bdf292d9-50b1-4bac-98c0-52068e388c83">
+						<avaldamismarge id="dd598d44-6436-4c35-9148-a9adb2ad354d">
+							<RTosa id="791bdb4f-1253-457b-a192-203694bc1598">RT IV</RTosa>
+							<avaldamineKuupaev id="dc0505cf-4034-489e-bf7f-b8f9a1f84280">2024-03-08</avaldamineKuupaev>
+							<RTartikkel id="6e90a84c-d48d-42dd-8bfa-353145f85b1d">22</RTartikkel>
+							<aktViide id="8b1cd5c1-ccbd-41ab-b242-75cbab14d6df">408032024022</aktViide>
+						</avaldamismarge>
+						<joustumine id="0c78d599-23b9-4ade-b977-74fa5f985183">2024-03-11</joustumine>
+					</muutmismarge>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="119fa37e-f3b1-4d97-b158-0424d05efa98">2</paragrahvNr>
+			<kuvatavNr id="91031215-46d0-4642-b32c-110fbf2f435d"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="8e3c0189-79a8-4e27-85c4-a7e1d6f39cf5">Sissetulekust sõltuvad toetused</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="1461b924-8990-47ed-9ce5-5e402d0ee275"/>
+				<kuvatavNr id="9cb991af-8d36-46df-89ad-75c9a11a6eea"/>
+				<sisuTekst id="aebf2238-22fa-486c-93c3-cfb43296ff82">
+					<tavatekst id="b8298c72-847f-45b5-ab28-2a3f4dd8064b">Sissetulekust sõltuvate toetuste määrad on järgmised:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para2lg1p1">
+					<alampunktNr id="2d62e248-3a82-47d4-91a1-1f235623ffac">1</alampunktNr>
+					<kuvatavNr id="3fa42ef6-0b31-40a3-b2a3-c165252ecb31"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="15f90b7f-6f3c-4f48-b66a-039841caeca0">
+						<tavatekst id="469adbe1-16fc-43a9-a46b-c2e63dcf712f">tervisetoetused kuni 300 eurot aastas;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p2">
+					<alampunktNr id="8ea0815e-3bb9-4cb3-ba26-e181b1cedf1f">2</alampunktNr>
+					<kuvatavNr id="395d54ed-4cfa-43a1-a49d-76faab66dfd9"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="dbc53c54-b1a3-443a-a64d-2016959f5294">
+						<tavatekst id="68fe5c50-b852-4cde-b598-1f2c9f429865">ravimitoetus kuni 50 eurot aastas;</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="faf54e1c-0aaa-44b5-8b40-95ff03e957df">
+						<avaldamismarge id="2212403b-a11e-4172-8b3c-b9fd7afc33c4">
+							<RTosa id="56947af7-8d29-4f09-831f-ab778e87b412">RT IV</RTosa>
+							<avaldamineKuupaev id="5a3b85cc-de24-4dfc-9166-61a78e9a89fc">2019-12-10</avaldamineKuupaev>
+							<RTartikkel id="5a827fae-2bbc-4ab0-b4b1-2ca57c91206e">2</RTartikkel>
+							<aktViide id="5620e41d-25ca-4dc1-81fa-20aebc6973a5">410122019002</aktViide>
+						</avaldamismarge>
+						<joustumine id="7162a9f7-5269-4f7a-b5e9-de350828d7fa">2020-01-01</joustumine>
+						<aktiNr id="cf0f873f-fe28-42cb-ba0f-8b7663c89525">26</aktiNr>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para2lg1p3">
+					<alampunktNr id="42f31e73-a1ce-44f8-91cd-0a10d8dd16c9">3</alampunktNr>
+					<kuvatavNr id="f6aa9758-6f03-4ef5-8eb0-21df50a30714"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="997d1a82-9ce8-4b49-9ed4-a9f7b7f80357">
+						<tavatekst id="455494bd-bfe0-474a-9647-b20b9ef1d4b7">toetused lastega peredele kuni 400 eurot aastas;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p4">
+					<alampunktNr id="312eec68-831b-410b-9440-c326a6f8d61e">4</alampunktNr>
+					<kuvatavNr id="18cc22c4-3713-4fb0-ae14-88fa83735c24"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="db5f4c52-8561-4e37-abff-10f2a3a4fe13">
+						<tavatekst id="6c0cbb27-cdf7-4a81-ae36-9e535aecf399">koolitoetus kuni 100 eurot aastas; </tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p5">
+					<alampunktNr id="c7370eea-8cb7-406a-aae3-661a6d78b0af">5</alampunktNr>
+					<kuvatavNr id="5c3bb67d-46d0-4015-838d-63dfb3eec705"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="674cc3e8-9a12-4fc7-b0a5-a0ec0e8a706f">
+						<tavatekst id="4a23be28-b36e-4e0d-b713-f1e69fedf302"> lapse toiduraha katmise toetus kuni 2,50 eurot päevas;</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="4ab5f263-2fdb-4383-8242-790cb2d0ca30">
+						<avaldamismarge id="f7aa5e69-be0c-4f39-b5cf-898e7bd0b4d2">
+							<RTosa id="288caea6-b07a-4fde-bcb1-849d41234b86">RT IV</RTosa>
+							<avaldamineKuupaev id="f793327e-f32b-45e7-a1e8-e8e4a48fed29">2026-03-24</avaldamineKuupaev>
+							<RTartikkel id="c866578e-9c9f-4b31-96a7-3dedf94b2ebb">3</RTartikkel>
+							<aktViide id="bc871f78-9b31-4110-b166-09859df48928">424032026003</aktViide>
+						</avaldamismarge>
+						<joustumine id="ec740fcb-7399-4b38-a4ce-31aa0e2ad680">2026-05-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para2lg1p6">
+					<alampunktNr id="a7fda409-d0c4-4cea-9fc7-0fc5cc7cdcbd">6</alampunktNr>
+					<kuvatavNr id="056769d9-3d6e-4cf9-be4f-4393fba7d780"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="4d6be1f9-ac00-49bd-9284-f7a8181e6b20">
+						<tavatekst id="366b60fb-10db-4239-b976-5cf34a12825f"> küttetoetus kuni 350 eurot leibkonna kohta aastas;</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="68a9e400-befd-4fc3-80b3-26bc7137fa59">
+						<avaldamismarge id="0444bc3a-3087-49ff-b75c-ec37890e6fa2">
+							<RTosa id="8e64764e-4193-4ee6-8504-fa221d1f9a3d">RT IV</RTosa>
+							<avaldamineKuupaev id="c0be79ef-d637-4e47-85b7-ed8468e7254f">2026-03-23</avaldamineKuupaev>
+							<RTartikkel id="b145d57c-986f-4c9a-b656-c342b25a10a8">3</RTartikkel>
+							<aktViide id="0c673df4-7874-4b35-a748-988e938155dc">424032026003</aktViide>
+						</avaldamismarge>
+						<joustumine id="ef92d867-1121-4142-951d-2949b624f67f">2026-05-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para2lg1p7">
+					<alampunktNr id="a2618cce-1a62-4756-8ccc-ee9d6b50bb54">7</alampunktNr>
+					<kuvatavNr id="ecad65d0-73fb-494c-86cc-a80022740cff"><![CDATA[7) ]]></kuvatavNr>
+					<sisuTekst id="e659059c-beef-4d90-9460-d7fab58cbd07">
+						<tavatekst id="dd02bf01-1da9-4eae-9d70-07b23b82963a">toetus raske majandusliku olukorra puhul kuni 500 eurot aastas.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="57d38825-5d11-4025-8a3b-98a6d21e267b">
+						<avaldamismarge id="b0738e06-df33-4e4c-9b3a-2f0d5455c22b">
+							<RTosa id="09332a82-e8f5-4c58-be6b-14112e8db5f8">RT IV</RTosa>
+							<avaldamineKuupaev id="04b0e7dc-25b2-45d7-ba9e-41bb9d592005">2024-03-08</avaldamineKuupaev>
+							<RTartikkel id="d57bd15c-f32c-4edd-88da-1e39d1c4a627">22</RTartikkel>
+							<aktViide id="c4f194c4-78c4-4735-90a8-44cde9165c56">408032024022</aktViide>
+						</avaldamismarge>
+						<joustumine id="edb636b9-d167-4848-8ba1-5a0208b4ccc9">2024-03-11</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para2lg1p8">
+					<alampunktNr id="cc0c6b34-fdd6-41be-bf50-d39e03d90c06">8</alampunktNr>
+					<kuvatavNr id="69882819-d8f6-4aad-baee-79d01c898222"><![CDATA[8) ]]></kuvatavNr>
+				
+					<muutmismarge id="9f7f9108-4753-46c2-8616-f217cf97e75c">
+						<tavatekst id="b188c168-0947-4c55-92e4-71d65e20cf6d">kehtetu</tavatekst>
+						<avaldamismarge id="9adc6d22-af2e-4abe-9ab5-76c643c184f9">
+							<RTosa id="d38aef92-739f-4889-9a13-1fe55255c62f">RT IV</RTosa>
+							<avaldamineKuupaev id="365dce9d-4d7f-43b4-bccd-677f6d1f6562">2024-03-08</avaldamineKuupaev>
+							<RTartikkel id="63614f94-3bea-47be-b4a0-706cc9aacffd">22</RTartikkel>
+							<aktViide id="066f6738-0c84-4323-ae04-cd4b6fda4543">408032024022</aktViide>
+						</avaldamismarge>
+						<joustumine id="fbcf9b82-1a09-4181-a6c6-4bb74003a0fb">2024-03-11</joustumine>
+					</muutmismarge>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="b2731778-304f-4562-a0d1-e50d6a1dc851">3</paragrahvNr>
+			<kuvatavNr id="b0c3e8aa-ea3c-4a5e-be22-a1126a4bdf99"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="234a01d5-974c-466f-a0eb-55c7d1e582fe">Erivajadusest tulenevad toetused</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="1d7b87c8-bb3d-42b7-adcf-52e59e7e8972">1</loigeNr>
+				<kuvatavNr id="76bd97b9-95ee-436e-976c-f7f262b659fc"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="b83de791-ba35-46da-bbb9-104fa3570e7c">
+					<tavatekst id="e1439aec-3c8a-4081-87f1-66a41758c8bf">Erivajadustest tulenevate toetuste määrad hooldatava täisealise isiku hooldajale ühes kalendrikuus on järgmised:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para3lg1p1">
+					<alampunktNr id="e7dee9f6-9a6a-4a6e-8311-574718f889d5">1</alampunktNr>
+					<kuvatavNr id="2f4322da-432d-495d-8014-11b548d74339"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="eb9bcd15-d476-42f1-a546-da554c290b1c">
+						<tavatekst id="621a2a2c-6e8a-4b64-8cc0-8577e38c2a99">isiku eest, kellel on raskelt häiritud toimetulek igapäevastes majapidamistoimingutes – 50 eurot;</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="725d99ce-bca3-4bf9-9711-4f5387c46d92">
+						<avaldamismarge id="3bf10118-3426-4761-a048-793fad02c220">
+							<RTosa id="8f5e2852-c758-4d42-a8c2-9e04fa22d5d4">RT IV</RTosa>
+							<avaldamineKuupaev id="c0437481-e28f-4995-a9e4-6816e1cb5d31">2026-03-24</avaldamineKuupaev>
+							<RTartikkel id="5988f15a-ab5d-4da2-8a6e-462ca07f9966">3</RTartikkel>
+							<aktViide id="a759ed59-599a-457a-af6e-209e2a5a81b5">424032026003</aktViide>
+						</avaldamismarge>
+						<joustumine id="ac4e3622-c0fb-4a91-8594-d0f2aafc4463">2026-05-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para3lg1p2">
+					<alampunktNr id="08f7dba5-ec21-4da1-91e7-2288cef1a8eb">2</alampunktNr>
+					<kuvatavNr id="1fe279b4-abb9-433c-9f90-4b7b24dfb591"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="8af836ee-0964-4835-bcd2-42a1ee2af33d">
+						<tavatekst id="3aec0a7b-b0fa-4139-b0f0-a3a1ee5a78a2">isiku eest, kellel on raskelt häiritud toimetulek igapäevastes majapidamistoimingutes ja eneseteeninduses – 75 eurot;</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="a8a8bd74-9fb2-46e1-830d-4c0c8767e919">
+						<avaldamismarge id="f0f212b8-eb5f-43c8-8036-111c545668c1">
+							<RTosa id="67af69bd-bfa1-46a0-b44e-349b7e73ad95">RT IV</RTosa>
+							<avaldamineKuupaev id="3aa05c45-92fb-418d-b329-0c08d80cf80b">2026-03-24</avaldamineKuupaev>
+							<RTartikkel id="9c43d4da-fe19-4446-b877-155d302c0bd0">3</RTartikkel>
+							<aktViide id="ca3d519f-b159-4076-b2cf-ce481d7ed7ef">424032026003</aktViide>
+						</avaldamismarge>
+						<joustumine id="1b37f617-e1a0-4c35-8a35-56f131a1fe79">2026-05-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para3lg1p3">
+					<alampunktNr id="b4d7992a-9296-4b6e-81be-39c19185701f">3</alampunktNr>
+					<kuvatavNr id="bc49e5a3-f28c-42b6-a77c-a7af7817172c"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="841fc998-2ef7-4488-b25a-8b8328cc54a8">
+						<tavatekst id="9d27fa3d-3f6a-4e60-950b-f4944c85d08f">isiku eest, kellel on suutmatus täielikult osaleda igapäevastes majapidamistoimingutes ja eneseteeninduses või neid teostada – 100 eurot.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="7fbdd0e9-7fc1-4f9a-b45f-e91ee8409684">
+						<avaldamismarge id="b1f9dae2-729c-47aa-afad-e0f706c40110">
+							<RTosa id="77a7fc4a-307f-4b5c-8b6a-642cd15610ad">RT IV</RTosa>
+							<avaldamineKuupaev id="6d2b79e6-5a8c-40cd-9555-218836135dcd">2026-03-24</avaldamineKuupaev>
+							<RTartikkel id="2bc7e8c5-66af-4662-98b5-cfb4019ad4e6">3</RTartikkel>
+							<aktViide id="0f0adcfe-83ac-43fd-9ac4-247ace9f9d07">424032026003</aktViide>
+						</avaldamismarge>
+						<joustumine id="6908f0f9-fba4-415e-aa78-7b22777d4800">2026-05-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para3lg1p4">
+					<alampunktNr id="b31cb19b-7a90-40cc-bf65-56444653b27c">4</alampunktNr>
+					<kuvatavNr id="76fff540-be6b-4844-b656-9a7129062e08"><![CDATA[4) ]]></kuvatavNr>
+					
+					<muutmismarge id="a53caec4-9fab-474d-8d5f-0a0630c6c2b2">
+						<tavatekst id="86197b75-2eea-478f-9f59-ab13efa820c8">kehtetu</tavatekst>
+						<avaldamismarge id="56de48fd-86d8-4f7e-bfd3-a479c9cab5aa">
+							<RTosa id="9e41fa85-374d-4585-b18f-b8601891b6af">RT IV</RTosa>
+							<avaldamineKuupaev id="9bb59415-8ee9-4c3c-84cd-1a4508c9c661">2026-03-24</avaldamineKuupaev>
+							<RTartikkel id="f1f0a31b-064f-4904-828c-b8e8479db8e1">3</RTartikkel>
+							<aktViide id="a98fe970-d022-4a15-b746-44784dff06cc">424032026003</aktViide>
+						</avaldamismarge>
+						<joustumine id="8da70f6c-f174-4345-8187-9adcea25dc2d">2026-05-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para3lg1p5">
+					<alampunktNr id="922e6548-5e2f-45ef-8138-8947f8e66cec">5</alampunktNr>
+					<kuvatavNr id="7fa6db58-d1fb-46b6-9cab-c5a5a4a094fe"><![CDATA[5) ]]></kuvatavNr>
+					
+					<muutmismarge id="72e07c8a-e75f-452a-9e58-951502391a5f">
+						<tavatekst id="4c96bc48-5b56-4908-a37d-bc9d8a5949a7">kehtetu</tavatekst>
+						<avaldamismarge id="5578e00f-74b6-4378-8f60-df3eb5ee2345">
+							<RTosa id="0af4b5e1-8208-430b-88d6-b91116243381">RT IV</RTosa>
+							<avaldamineKuupaev id="e6a0fe3c-5e1f-411d-b21a-fb9bf3a97c1c">2026-03-24</avaldamineKuupaev>
+							<RTartikkel id="02f9343d-bc36-4c8b-b3a4-e4040c8fa770">3</RTartikkel>
+							<aktViide id="20224a78-0a7f-4390-9176-bb9e021e72b1">424032026003</aktViide>
+						</avaldamismarge>
+						<joustumine id="0d34b5ca-f6dc-475f-a9f8-efd71d7f0e89">2026-05-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para3lg1p6">
+					<alampunktNr id="1963102d-4e03-4d01-80a1-a9a4017fe8b2">6</alampunktNr>
+					<kuvatavNr id="c7c12f89-7487-488b-bbd1-e806d3338031"><![CDATA[6) ]]></kuvatavNr>
+				
+					<muutmismarge id="ea608407-6817-445e-a845-e59159d20710">
+						<tavatekst id="9fb73829-b25f-4773-aa33-eec9dd33fd50">kehtetu</tavatekst>
+						<avaldamismarge id="57613bc0-9117-4fc5-866b-f8c5ba09de71">
+							<RTosa id="d116f3b9-43e0-4271-a5b9-f97fd739ddb2">RT IV</RTosa>
+							<avaldamineKuupaev id="f8ac4652-aa0f-4007-8f16-a89a1bf56713">2026-03-24</avaldamineKuupaev>
+							<RTartikkel id="4f1e6c3a-8d6b-4876-9281-53cd03843ce3">3</RTartikkel>
+							<aktViide id="d116d042-8b6f-4a03-91fa-a3ecc6d78386">424032026003</aktViide>
+						</avaldamismarge>
+						<joustumine id="affbbe0a-ba3f-465d-ba06-98f91838a3ec">2026-05-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+			</loige>
+			<loige id="para3lg2">
+				<loigeNr id="8237e565-80c8-4f50-ad40-a1e8831af589">2</loigeNr>
+				<kuvatavNr id="cd096ab3-82a8-4ba2-a36a-0498d2901d2a"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="e4d57a73-301e-4f95-a964-66c65a2ffcad">
+					<tavatekst id="0366bb07-934d-40f3-9aab-00527303d839">Ühes kalendrikuus lapse hooldajale ühe hooldatava kohta makstava hooldajatoetuse määrad on järgmised:</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="52cb1dd3-444a-4f14-97fc-6dfdcad08810">
+					<avaldamismarge id="e961a574-b8fb-4abb-bfb7-61522279c477">
+						<RTosa id="6fda7b96-e59b-4f06-b79b-e8f070ac0a26">RT IV</RTosa>
+						<avaldamineKuupaev id="2ce0273e-f6b8-4386-9ad1-359c4f816700">2026-03-24</avaldamineKuupaev>
+						<RTartikkel id="df91799d-f738-4b9f-9eac-d62ccb20e829">3</RTartikkel>
+						<aktViide id="a6dafffa-953a-48dc-a7a0-3a9aaf69ccbb">424032026003</aktViide>
+					</avaldamismarge>
+					<joustumine id="dba49afe-6d51-4027-a407-468cf4905978">2026-05-01</joustumine>
+				</muutmismarge>
+				<alampunkt id="para3lg2p1">
+					<alampunktNr id="476e090d-7c9f-4fa6-8bb5-72ef23edf99d">1</alampunktNr>
+					<kuvatavNr id="a68a56cf-d1be-4217-bbcb-150d6752298b"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="c6a14daf-8cb2-4229-a60e-fb2906ba2a2e">
+						<tavatekst id="775f8733-6801-4a31-b0c5-7f728f751082">osalise hooldusvajaduse korral 150 eurot;</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="00896926-77b9-4428-a847-fb1c5884b793">
+						<avaldamismarge id="62357071-26e6-46e2-89af-78a94a5f85b5">
+							<RTosa id="6d3dd897-5ed2-48d2-aa14-46247c9014a3">RT IV</RTosa>
+							<avaldamineKuupaev id="3b276241-a1ef-4463-b73f-566d889ca7e6">2026-03-24</avaldamineKuupaev>
+							<RTartikkel id="c7bd864d-437b-4d76-b8da-35d94a8b6da4">3</RTartikkel>
+							<aktViide id="527af8f8-a90a-46ea-9662-6647ca4cbc6b">424032026003</aktViide>
+						</avaldamismarge>
+						<joustumine id="54ac89b1-a6e6-476a-9162-c8134bd602ae">2026-05-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para3lg2p2">
+					<alampunktNr id="a308ae3e-7562-4fb8-b37b-28809a297cf4">2</alampunktNr>
+					<kuvatavNr id="c17561e3-1dac-4413-8667-c9bf98ea99f7"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="756c71f6-f9f6-4615-ac3f-1fc6442db3bc">
+						<tavatekst id="217b9dd6-e203-49dd-97f1-407f39229c0c">pideva hooldusvajaduse korral 200 eurot.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="75ff72bd-df19-4ac1-a31c-3643304b5137">
+						<avaldamismarge id="d09dbc06-b831-469f-a699-d2ded55d4e15">
+							<RTosa id="f6539f44-b2be-4b95-9cc5-c6890958a0b5">RT IV</RTosa>
+							<avaldamineKuupaev id="3d4847a2-dfa1-4d1a-9bed-a52657fdb32d">2026-03-24</avaldamineKuupaev>
+							<RTartikkel id="ea885584-6ff0-49d2-b7e6-d8241dea4564">3</RTartikkel>
+							<aktViide id="6893dbdb-832d-4cdc-b28e-f0a5651a04f6">424032026003</aktViide>
+						</avaldamismarge>
+						<joustumine id="3548f3c3-41df-474e-b4b3-9af038f70020">2026-05-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="b2125410-7856-4d56-b240-b8be0b68cb87">4</paragrahvNr>
+			<kuvatavNr id="b92b3428-e661-431c-b772-dcdd7c01516e"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="56853419-12e8-47c9-aa40-2ad90ccbf02d">Määruse kehtetuks tunnistamine </paragrahvPealkiri>
+			<loige id="para4lg1">
+				<sisuTekst id="91db646b-1033-479c-9f4a-87a54117fa55">
+					<tavatekst id="9217742f-6fa9-4552-9f61-4c33e2218a68">[Käesolevast tekstist välja jäetud.]</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="24cd909c-a652-4c8e-ade3-9582b9e0a5fa">5</paragrahvNr>
+			<kuvatavNr id="616a40f6-5dff-442c-b54b-835ef71eb3d6"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="49df8a56-09d0-415e-90f5-c5968d7f48d7">Määruse jõustumine</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="e2999427-c2a1-4216-81a3-62bf4762f84e"/>
+				<kuvatavNr id="4eebd87d-be41-4b70-8caf-a8f66e138f6b"/>
+				<sisuTekst id="752216d8-da3e-4cee-a8fa-a3c229a1f0c7">
+					<tavatekst id="29a52dc5-2dfe-46ba-aac9-bd06de3e440b">Määrus jõustub kolmandal päeval peale Riigi Teatajas avalikustamist.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+</oigusakt>

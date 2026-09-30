@@ -78,9 +78,28 @@
 - Nüüd otsitakse väljaandja akte pealkirja märksõnadega. Iga otsing mahub ühele lehele ja loetakse, kuni erinevate aktide arv jõuab koguarvuni; muidu on tulemuseks tõrge.
 - Leitud aktid lisati korpuse versiooniga v45.
 
+## Codexi R2 (30.09.2026): välistused ja määrade teemad
+
+- **Välistus sobis alamsõnale.** Nii jäid välja „Rae valla eelarvest … toetuste maksmise piirmäärad 2026. aastal“ („eelarve“) ja „… kord Mustvee vallas“ („vee“).
+- **Nüüd sobib välistuse tüvi ainult sõna algusega.**
+  - „eelarve“ ja „lisaeelarve“ on välistused, „eelarvestrateegia“ samuti. „eelarvest“ (rahastusallikas) ei ole.
+  - Liitsõnad, mis olid välistused ainult alamsõnana, said oma tüve: „eratee“, „talihooldus“, „teehooldus“, „talvise“, „eralasteaia“, „tunnust“.
+  - Võrdlus varasema täisloendiga: 131 pealkirja sai kategooria, üks (töötajate tunnustamise kord) kaotas selle. Uued vasted on valla eelarvest makstavad toetused, Mustvee aktid, sotsiaalkorterid ja sotsiaalõppe teenus.
+- **Määrad on üks akt toetuse kohta.** Kui pealkiri nimetab konkreetse toetuse (hooldaja-, lapsehoiu-, sünni-, matuse-, koduse lapse, eaka-, juubeli-, ranitsa- või vaimse tervise toetus), on see oma teema. Muidu on teema „üldine“. Uusim akt valitakse teema piires, nii et Rae hooldajatoetuse määr ei tõrju enam välja üldisi piirmäärasid.
+- **Asendatud aktid lahkuvad indeksist.**
+  - Skaneerimine nimetab indekseeritud aktid, mille valik nüüd välja jätab (uuem sama liiki akt või möödunud aasta pealkirjas), koos asendajaga (`superseded`, exit 10). Muidu seisaksid vanad summad või reeglid uute kõrval.
+  - `rag-v2-corpus-refresh.mjs package --remove <aruanne>` eemaldab need põhjusega indeksi poliitikast ja kirjutab need `ship.json`-i. Hoidlasse jäävad need ajaloo jaoks alles.
+- **Skaneerimise märksõnadesse lisandus „toimetulek“ (12 sõna).** Need katavad kõik 5072 pealkirja, millele uus klassifikaator varasemas täisloendis kategooria annab.
+- **Korpus v46 (30.09.2026):**
+  - parandatud skaneerimine: 481 valitud akti, 18 uut, 0 asendatud indekseeritud akti, tõrkeid pole;
+  - uued aktid on määrade, toetuste ja teenuste korrad (Rae, Elva, Kiili, Nõo, Peipsiääre, Tartu vald, Maardu, Mulgi jt);
+  - 175 sisendit, 0,0063 USD, indeks `5a959000`, plaan `m4-corpus-chat-20260930h.json`;
+  - paranduse järgi tehtud serveriskriptiga.
+  - Päris vestlus: „Olen pensionär ja elan Rae vallas. Kas vald toetab prillide ostmist ja kui palju?“ Vastus: 100 eurot kord aastas, koos taotlemise tingimuste ja kontaktiga. Allikad on Codexi näide 430012026034 ja Rae toetuste kord.
+
 ## Piirid
 
 - Kategooria tuleb pealkirjast. Akt, mille pealkiri ei nimeta teemat („Toetuse andmise kord“ ilma sotsiaalsõnata), jääb välja. Teise valdkonna sõnaga pealkiri, mis siiski puudutab sotsiaalvaldkonda, jääb samuti välja.
-- „Uusim kehtiv“ reegel eeldab, et ühes kategoorias kehtib üks akt. Kui omavalitsusel on kaks samaaegset määrade akti (näiteks eri toetuste määrad), jääb vanem välja.
+- „Uusim kehtiv“ reegel eeldab, et ühes kategoorias kehtib üks akt: eluasemekulude ja hoolduskulude piirmäära puhul omavalitsuse kohta, määrade puhul toetuse kohta. Kaks samaaegset üldist määrade akti jätaksid vanema välja.
 - Taotlusvormid (46 aktil) on tuletamata. Need saab lisada ADR-053 vormingus, kui igale lisale on antud tema enda pealkiri.
 - Registri kirjed viitavad endiselt ühele aktile omavalitsuse kohta. Uute aktide omavalitsus tuleb väljaandja nimest (`issuer_name`).

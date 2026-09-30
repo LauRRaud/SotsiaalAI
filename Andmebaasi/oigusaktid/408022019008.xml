@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="b55bb707-3e42-4a96-b930-080cfd783894" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Rapla Vallavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>algtekst-terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2019-01-31</aktikuupaev>
+			<aktiNr>1</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2019-02-08+02:00</avaldamineKuupaev>
+			<RTaasta>2019</RTaasta>
+			<RTartikkel>8</RTartikkel>
+			<aktViide>408022019008</aktViide>
+		</avaldamismarge>
+		<kehtivus>
+			<kehtivuseAlgus>2019-02-11+02:00</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2019-02-04</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>408022019008</globaalID>
+		<metaandmedVersioon>8</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2025-07-21</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Marike Võime</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1046074</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2019-02-04</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Irma Kirst</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="4a6cfcb0-3d81-44e6-aa7c-1a12700f02ea">
+		<nimi id="d1d81f10-577e-4aea-bd56-4f798b9ac01f">
+			<pealkiri id="4beb403c-70e2-4fb5-8ed5-1ae8cebd05f8">Valla eelarvest puuetega inimeste eluruumi kohandamise toetuse määramise ja maksmise kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<sisu id="b36a623f-19c8-4426-bebe-62d15d5296d6">
+		<preambul id="ac284659-74a0-4a8f-b2d8-98d509e5cbf9">
+			<tavatekst id="187b9588-4759-4f8d-8164-2c6dc4293881">Määrus kehtestatakse sotsiaalhoolekande seaduse § 42 lõike 1 ja kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkt 5 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="cfba7a44-e0c6-4346-84fa-a8714a9cad8f">1</paragrahvNr>
+			<kuvatavNr id="fca5f249-cb2b-4caa-a41b-bc36d84b45eb"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="f442da49-a3c5-4dab-83d9-7a28397db4f5">Määruse eesmärk ja reguleerimisala</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="316bbab9-87e8-4486-8030-29bf98eaa41e">1</loigeNr>
+				<kuvatavNr id="32a52f0c-1afa-444e-a75c-306d12269bc5"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="e5fcd653-0c37-4635-ad61-511ffdd6885f">
+					<tavatekst id="832b29c6-355b-42ba-8262-415a5741c310">Puudega isikule eluruumi kohandamise toetuse (edaspidi toetus) eesmärgiks on tagada toimetulek oma eluruumi piires isikule, kellel on raskused eluruumis liikumisel või enesega toimetulekul.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg2">
+				<loigeNr id="de1dbdc9-5149-499a-aadb-50daeba2524c">2</loigeNr>
+				<kuvatavNr id="f90c594f-564d-45c5-aeee-65f829de27e8"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="44518619-6797-424e-9410-528f5e659d1b">
+					<tavatekst id="397f2f68-8584-4c78-84f0-9d715bcf7a0e">Määrus reguleerib valla eelarvest puudega isiku eluruumi kohandamiseks toetuse taotlemise, määramise ja maksmise korda.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg3">
+				<loigeNr id="5823916e-e9a8-4f76-bcc2-b5d909374747">3</loigeNr>
+				<kuvatavNr id="cc60cd2a-5bc4-40f3-83fa-92fddb126d55"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="5fde2f95-989a-4b97-a9ec-86083269b183">
+					<tavatekst id="8d62b196-4909-4556-a5bb-f99bef3cc14a">Eluruumi kohandamise kuluks ei loeta tehniliste abivahendite ostmise ja paigaldamise kulu, kui tehnilised abivahendid on võimalik osta ja paigaldada sotsiaalhoolekande seaduse alusel kehtestatud tehniliste abivahendite taotlemise ja soodustingimustel eraldamise korra alusel.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="c3a98de8-58a0-4145-b42f-d7e1009325e4">2</paragrahvNr>
+			<kuvatavNr id="5bb8d0e5-b274-4f7b-829a-a2d670fb1601"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="ddf9b3f1-d2ec-4815-809d-a78fe0d04353">Toetuse taotleja</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="84017d34-8c61-4803-9c23-8f38205b43f8"/>
+				<kuvatavNr id="dc26f9d5-2ac6-4642-9494-014da1ef25f9"/>
+				<sisuTekst id="343fa006-430f-42ed-8b8a-ef04cbdedbbf">
+					<tavatekst id="fb406450-17f6-419f-a9e0-9b85ffbbbb34">Toetust on õigus taotleda raske või sügava puudega isikul või tema eestkostjal, kelle elukohaks Eesti rahvastikuregistris on märgitud Rapla vallas asuv eluruum, mille kohandamiseks toetust taotletakse.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="b8276b86-7235-41a7-8ac3-872d85cfdc9d">3</paragrahvNr>
+			<kuvatavNr id="97294bb5-1a13-4422-b7f7-6af21fb990c6"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="624c7325-0819-4568-92e0-b025daddfe17">Toetuse taotlemine</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="ec70615e-59fb-4dd2-b05c-58e6cab5fb85">1</loigeNr>
+				<kuvatavNr id="e555801a-c4bc-4a42-b157-fd1f1cb7b764"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="17e14104-0bf2-4ccc-9a89-4f90fbe4b12c">
+					<tavatekst id="f4bfa3da-785b-43e4-a193-f526a1fd64b1">Toetuse taotlemiseks esitab käesoleva korra paragrahvis 2 nimetatud isik vallavalitsusele taotluse, milles on märgitud:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para3lg1p1">
+					<alampunktNr id="af86cf0f-6920-4155-a706-330ef0e00e6e">1</alampunktNr>
+					<kuvatavNr id="5ace80cf-3f5c-49fd-b3f9-89cbc5062c65"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="993e8e03-9096-420d-8bca-e0dc3cbc4d10">
+						<tavatekst id="30cb783f-3148-4e19-98b8-1394e589fc0b">taotleja nimi ja isikukood;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg1p2">
+					<alampunktNr id="032a117d-c5b5-40f3-8ff4-aeb1bb6d2a45">2</alampunktNr>
+					<kuvatavNr id="bb686b9a-259a-45e4-b8f0-8b592f924c09"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="dc8d76cb-b06f-4b9d-aea8-e3dd3b634e12">
+						<tavatekst id="37cbfad4-4922-43a7-8196-ead9f5e147ff">planeeritava kohandamise põhjendus ja üksikasjalik kirjeldus sealhulgas kohandamise orienteeruv maksumus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg1p3">
+					<alampunktNr id="0b79343a-7191-46c5-beec-63cbf8079014">3</alampunktNr>
+					<kuvatavNr id="913216f8-a036-42c3-bc3b-f6891452eaa2"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="4b478bc9-58de-42ed-b3eb-bd82f28a91ff">
+						<tavatekst id="e21de91f-6dc5-4449-b894-153d66e8460d">taotlejaga koos elavate perekonnaliikmete isikukoodid.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para3lg2">
+				<loigeNr id="b8c6a53f-fc4e-420d-9839-4bc8d9727f65">2</loigeNr>
+				<kuvatavNr id="36db4b1e-3d88-4536-b38a-f3818eafa702"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="9c8e06a9-ac5f-4f01-958c-5ba673751969">
+					<tavatekst id="0524b581-42a1-44a2-89b7-3498ef01a2ed">Taotlusele lisatakse eluruumi omaniku, kaasomandi puhul kõigi kaasomanike või korteriühistu kirjalik nõusolek plaanitavaks kohandamiseks.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="cd4be0db-a72c-4705-a141-ae1ef115e3f7">4</paragrahvNr>
+			<kuvatavNr id="72c26601-7ef8-41db-a143-a7f84423804e"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="834a0ebb-01e3-4201-aa22-44dde0206534">Taotluste hindamine ja toetuse määramine</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="3ebd5e3c-b948-4c60-a82e-ba29e88db267">1</loigeNr>
+				<kuvatavNr id="909b0693-d705-4f60-bc0d-8a09988f08b6"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="79a2076d-7121-4e8b-b4ec-c3f6b8a58e29">
+					<tavatekst id="5d1c8cf8-6913-486a-b11d-0a4472cc0ab4">Toetuse ja selle suuruse määramisel arvestatakse taotleja ja tema perekonnaliikmete sissetulekuid ja eluruumi kohandamise põhjendatust. Toetuse suurus on maksimaalselt 90% kogu kohandamise maksumusest, kuid mitte rohkem kui 2000 eurot kalendriaastas.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg2">
+				<loigeNr id="bcf82351-90ab-4e09-8a42-ffd91ff9620a">2</loigeNr>
+				<kuvatavNr id="2c788f3b-2c69-41a8-a5a6-c72840bab47b"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="8cdb3baa-afb4-4c83-8f6f-1c28574104eb">
+					<tavatekst id="125960e7-2413-4d3b-af20-a056940f4b61">Rapla Vallavalitsuse hoolekandekomisjon (edaspidi komisjon) vaatab esitatud taotlused läbi ja hindab kohandamise vajadust 30 päeva jooksul.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg3">
+				<loigeNr id="050fcded-ed6d-40a2-9a4c-b2a4066f3f2f">3</loigeNr>
+				<kuvatavNr id="bd090ac9-5597-42a0-a58a-88863b375dd1"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="ff6ccf8c-8d2f-450a-bf00-69dc255155de">
+					<tavatekst id="058e38c6-9d41-4bf2-beb5-cfc384820d1e">Toetuse määramise ja selle suuruse otsustab komisjoni ettepanekul Rapla Vallavalitsus.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="f3b5a1fd-14e5-48cb-b2bf-6fe3a5307041">5</paragrahvNr>
+			<kuvatavNr id="ae672184-d594-4a94-988c-15f983657267"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="451c78f2-dba0-4d0b-8eb9-0326c21a9972">Toetuse maksmine</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="c6ba3efc-f921-4938-949b-152d74d8dde7">1</loigeNr>
+				<kuvatavNr id="8227ce01-8b19-4442-9616-cdce713dab49"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="2d815256-39a6-4899-9bf9-ba0bbe156dec">
+					<tavatekst id="ab6a2458-1016-48fa-a2c9-6bfd52162420">Määratud toetus makstakse taotlejale 10 tööpäeva jooksul pärast kuludokumentide esitamist.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg2">
+				<loigeNr id="1df8fffd-451f-43df-afd6-8aeb2c7a3ec8">2</loigeNr>
+				<kuvatavNr id="48c9a31f-8d77-4a79-bf53-726eb74e7cd0"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="2d51c4e0-518b-4810-824d-9160d56733c7">
+					<tavatekst id="d465294a-7ca9-4fb7-a5d3-95c89610f494">Väljamakse toetuse taotlejale tehakse sotsiaalteenuste- ja toetuste andmeregistris.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para6">
+			<paragrahvNr id="1f5a3f40-4bda-4069-80e7-6eee48508b9e">6</paragrahvNr>
+			<kuvatavNr id="aaad45d1-2010-4588-9449-a4e8a67c6d38"><![CDATA[§ 6. ]]></kuvatavNr>
+			<paragrahvPealkiri id="4da6bdd7-b2a2-482e-9fdd-9c0dafe98c71">Toetuse eraldamisest keeldumine</paragrahvPealkiri>
+			<loige id="para6lg1">
+				<loigeNr id="fd277246-0861-4cdc-9e2e-a77d04a82b11"/>
+				<kuvatavNr id="d47c9b60-2a63-4a10-ba1e-8b8e352b5bde"/>
+				<sisuTekst id="ef2854ab-0871-4f49-a108-445f0807c335">
+					<tavatekst id="9f556925-a942-4466-8f32-7570c3f7ad3c">Rapla Vallavalitsusel on õigus keelduda toetuse määramisest eelkõige järgmistel juhtudel:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para6lg1p1">
+					<alampunktNr id="afcfaeae-daa8-4ec4-a09e-d62f2ec43508">1</alampunktNr>
+					<kuvatavNr id="1cf1b356-4600-47f6-915a-cdfca2d42767"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="36eaa153-f6d5-43cd-b981-d476779f8ff0">
+						<tavatekst id="8f05fcb6-5ed0-4e05-b5a3-4b0cc08842d6">kohandamine ei taga määruse paragrahvis 1 nimetatud eesmärki;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg1p2">
+					<alampunktNr id="d27e78b5-a28a-41f5-8936-94f4f6206f09">2</alampunktNr>
+					<kuvatavNr id="15c9cea1-1cd9-48d5-9966-033cc37410ca"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="f96f2524-4522-4165-83a8-7c2e9cc620cb">
+						<tavatekst id="b79027bc-e0f7-4633-add4-64b64c4db2ce">toetuse taotlemisel on esitatud valeandmeid.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para7">
+			<paragrahvNr id="d1e7041f-6f99-4f21-a104-96a7d0eb58b5">7</paragrahvNr>
+			<kuvatavNr id="7c9cbec6-2a82-4a24-ab4c-c24fef183b00"><![CDATA[§ 7. ]]></kuvatavNr>
+			<paragrahvPealkiri id="e47e9165-de17-4d67-bcd9-e0ed6e1a80f9">Toetuse määramise kehtetuks tunnistamine</paragrahvPealkiri>
+			<loige id="para7lg1">
+				<loigeNr id="c0c40ab2-9f21-4360-8e10-fc51b2fdb67e">1</loigeNr>
+				<kuvatavNr id="e7c90d3c-9495-4669-82bf-8a6e60bc26f8"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="831e06b0-de34-4961-8c6b-8e539fdddd5d">
+					<tavatekst id="a60b9694-0430-4e88-9144-af9483f71856">Vallavalitsuse korraldus toetuse määramise kohta tunnistatakse komisjoni ettepanekul kehtetuks, kui:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para7lg1p1">
+					<alampunktNr id="5eac04ff-605b-4e7e-bb46-6be70ada2e26">1</alampunktNr>
+					<kuvatavNr id="f23a2e0b-df8f-4a63-a1fa-adc10e64a016"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="3a187a13-9b98-4741-bc0c-661288c9c22d">
+						<tavatekst id="b34f624e-5078-4308-acfd-96c1efbcab3b">taotleja loobub määratud toetusest;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para7lg1p2">
+					<alampunktNr id="e828296f-2845-4a21-bc02-e0cf2fa5d032">2</alampunktNr>
+					<kuvatavNr id="aa6954fc-9a11-48a7-8b3e-a28c38c9cfd6"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="cc33d691-838f-49f4-9e62-dc588ee2f4be">
+						<tavatekst id="c6544fa9-fff5-47e2-9c05-130e5b272edc">esitatud kuludokumendid ei vasta planeeritud kohandamisele.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para7lg2">
+				<loigeNr id="3957964d-a080-433b-9453-fb1ec4c53239">2</loigeNr>
+				<kuvatavNr id="7ed8e7ff-ebb2-48bd-988f-8412d0b43585"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="366008c4-819f-4e53-bdaa-1e57f41cb902">
+					<tavatekst id="b197da29-08e1-4649-a121-4c77e9c909bc">Toetuse määramise kehtetuks tunnistamisel § 7 lõike 1 punkti 2 alusel on vallavalitsusel kohustus väljamakstud toetus tagasi nõuda.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para8">
+			<paragrahvNr id="128d86cf-2ad9-437f-98ab-3f0e6297d6ca">8</paragrahvNr>
+			<kuvatavNr id="d42af1e4-3650-4cd4-b9c2-9206f1c36dcd"><![CDATA[§ 8. ]]></kuvatavNr>
+			<paragrahvPealkiri id="efbb372c-dc19-4499-81ec-ae80253720f7">Õigusakti kehtetuks tunnistamine</paragrahvPealkiri>
+			<loige id="para8lg1">
+				<loigeNr id="129e0154-e51a-493d-a405-5fde8fd90843"/>
+				<kuvatavNr id="0f7790e4-dc1d-4c0d-8e04-f2e525cceb47"/>
+				<sisuTekst id="ec60419e-c85a-44c3-a9aa-8ee929fa8111">
+					<tavatekst id="751187b8-d0b2-4f13-b4c8-7085ca5a77e2">Rapla Vallavolikogu 31. augusti 2017. a määrus nr 17 „Puudega isikule eluruumi kohandamise toetuse määramise ja maksmise kord“ tunnistatakse kehtetuks.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para9">
+			<paragrahvNr id="ad67f4e2-acfb-4cbc-9ef1-744676e7c30a">9</paragrahvNr>
+			<kuvatavNr id="f6840f94-d325-4689-86ff-8f8bd63b87cb"><![CDATA[§ 9. ]]></kuvatavNr>
+			<paragrahvPealkiri id="2b83aa83-2bd6-48aa-b7ba-4ba6fa418dc9">Rakendussätted</paragrahvPealkiri>
+			<loige id="para9lg1">
+				<loigeNr id="c693693d-9904-40c3-bb1e-f2388f7aea17"/>
+				<kuvatavNr id="8e44b178-3759-48f9-a750-fbf7a0920e7f"/>
+				<sisuTekst id="9ed107d4-8939-44b7-91a3-b36ad4d8a777">
+					<tavatekst id="c945b620-1d8a-460e-9183-d604001d5c5c">Määrust rakendatakse 2019. aasta 1. jaanuarist.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+	<allkiri id="1ee8b254-cb4b-43cf-9a65-3f0e621d0ec2">
+		<allkiriKoht id="d8714080-5071-4132-8934-7082e5d9e80d"/>
+		<allkirjastaja id="006e8e62-57d3-4fe0-8de3-6451e250aa03">
+			<ametinimetus id="f6484822-f503-418e-adff-5e69d6fbfc09">Volikogu esimees</ametinimetus>
+			<eesnimi id="527dc5bf-99f3-47c7-8088-bb160379f7b5">Rene</eesnimi>
+			<perekonnanimi id="ff029e80-8c95-4279-a5e3-d1c45999df0a">Kokk</perekonnanimi>
+		</allkirjastaja>
+	</allkiri>
+</oigusakt>
