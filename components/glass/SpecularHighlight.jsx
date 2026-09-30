@@ -27,6 +27,7 @@ import {
   SPECULAR_FRAG,
   SPECULAR_VERT,
 } from "@/components/SpecularButton/specularShader";
+import { specularThemeColors } from "@/components/SpecularButton/specularTheme";
 
 /* Lõuend ulatub väljast üle, et helk tohiks servast välja hõõguda — sama
    marginaal mis nupul (.specular-button__fx inset: -20px). */
@@ -62,9 +63,7 @@ const FIELD_SELECTOR = [
 
 /* Nupu vaikeväärtused annavad välja jaoks liiga jämeda joone. Need on need,
    mis olid PIN-lehe .specular-input mähisel — sealt tuli ilme, mida omanik
-   nägi ja tellis kõikjale. */
-const LINE_COLOR = "#ffffff";
-const BASE_COLOR = "#525252";
+   nägi ja tellis kõikjale. Värvid tulevad teemast (specularTheme.js). */
 const INTENSITY = 0.9;
 const SHINE_SIZE = 6; // kraadi
 const SHINE_FADE = 18; // kraadi
@@ -129,8 +128,9 @@ export default function SpecularHighlight() {
       const geometry = new Triangle(gl);
       if (geometry.attributes.uv) delete geometry.attributes.uv;
 
-      lineC.set(LINE_COLOR);
-      baseC.set(BASE_COLOR);
+      const themeColors = specularThemeColors();
+      lineC.set(themeColors.line);
+      baseC.set(themeColors.base);
       program = new Program(gl, {
         vertex: SPECULAR_VERT,
         fragment: SPECULAR_FRAG,
@@ -240,6 +240,11 @@ export default function SpecularHighlight() {
         const diff = ((pointerAngle - angle + Math.PI * 3) % (Math.PI * 2)) - Math.PI;
         angle += diff * (1 - Math.exp(-dt * 7));
         program.uniforms.uAngle.value = angle;
+        const themeColors = specularThemeColors(now);
+        lineC.set(themeColors.line);
+        baseC.set(themeColors.base);
+        program.uniforms.uLineColor.value = [lineC.r, lineC.g, lineC.b];
+        program.uniforms.uBaseColor.value = [baseC.r, baseC.g, baseC.b];
         program.uniforms.uIntensity.value = (active.matches(LOGIN_BUTTON_SELECTOR) ? 0.7 : active.matches(OPTION_BUTTON_SELECTOR) ? 1 : INTENSITY) * bright;
         host.style.opacity = "1";
         renderer.render({ scene: mesh });

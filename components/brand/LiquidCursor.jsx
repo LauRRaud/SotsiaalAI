@@ -112,6 +112,12 @@ export default function LiquidCursor() {
     window.addEventListener("hashchange", onScroll);
     return () => {
       cancelAnimationFrame(rafRef.current);
+      /* Viide nulli: F11-täisekraan lülitab noole välja (display-mode:
+         fullscreen) ja väljumine tagasi sisse. Kui väljalülitamise hetkel oli
+         kaader ootel, jäi tühistatud id alles, schedule() pidas seda ootel
+         kaadriks ega seadnud noole asukohta enam kunagi — nool jäi ekraanist
+         välja ja süsteemikursor oli peidetud (omanik 30.09). */
+      rafRef.current = 0;
       if (refreshTimer) window.clearTimeout(refreshTimer);
       refreshRef.current = null;
       document.removeEventListener("mousemove", onMove);

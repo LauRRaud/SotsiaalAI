@@ -1960,11 +1960,15 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         />
       ) : null}
 
-      {/* Kontakt — olemasolev info klaaskaardis */}
+      {/* Kontakt — avatud karusselli kaart nagu Uuenda PIN ja Paigalda
+          (omanik 30.09): kaardi mõõt ja koht, ristita. Sulgeb dokis tagasi-
+          nool, Esc ja väljaklõps. */}
       <GlassModal
         open={openInfoModal === "kontakt"}
         onClose={() => setOpenInfoModal(null)}
         title={t("about.contact.title")}
+        contentClassName="contact-card-shell"
+        hideClose
       >
         <p>{t("about.contact.company")}</p>
         <p>{t("about.contact.registry_value")}</p>
