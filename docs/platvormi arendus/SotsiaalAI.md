@@ -92,6 +92,24 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**30.09 (Opus), jätk: korpuse värskendamise rada ja korpus v45** ([ADR-059](../rag-v2/adr-059-corpus-refresh-path.md)). Omanik 30.09: „sina jätka rag arendust“; Codex vaatab üle, kui valmis.
+- **Tootmises 30.09 kella 17:00-st:** korpus v45 (indeks `dfa3b1db`, 6452 dokumenti, 40 282 lõiku), plaan `m4-corpus-chat-20260930g.json`. Seaded on samad.
+- **Värskendamise rada:**
+  - sülearvutis `scripts/rag-v2-corpus-refresh.mjs` (register, review, package);
+  - serveris `scripts/rag-v2-corpus-run.sh`;
+  - kehtivuskontrolli `--download` laeb nüüd ka muutunud kehtivusega aktid;
+  - käivitusskripte ei tuletata enam käsitsi.
+- **Omavalitsuste skaneerimise parandus:** RT järjestab iga päringu isemoodi, mistõttu v43 jättis viis akti vahele. Nüüd tehakse märksõnaotsingud, mis mahuvad ühele lehele ja kontrollivad, et tulemus on täielik.
+  - v45 lisas need viis akti (sh Antsla ja Kanepi eluasemekulude piirmäärad), 0,0015 USD.
+- **Harud:** omaniku otsusel („Sulge ja kustuta kõik“) suleti kõik 118 Codexi PR-i ja kustutati kõik harud peale `main`-i. Taastamisnimekirjad on serveris kaustas `rag-v2-work/archive/`.
+- **Codexi ülevaatuseks:** PR-id #276–#280 ja see PR; ADR-053 täiendus, ADR-058, ADR-059 ja ADR-038 täiendused.
+- **Avatud:**
+  - 01.10 kontroll (uus SHS ja abivahendite piirhinnad);
+  - 04.10 Maardu XML-id;
+  - 46 akti taotlusvormid;
+  - kontaktid pärast 04.10;
+  - kiirus päris vestluses.
+
 **30.09 (Opus), jätk: korpus v43 — omavalitsuste teised kehtivad sotsiaalaktid** ([ADR-058](../rag-v2/adr-058-municipal-social-acts.md)). Omanik 30.09: „jätka arendust“.
 - **Tootmises 30.09 kella 14:55-st:** korpus v43 (indeks `3f91e02d`, 6446 dokumenti, 40 226 lõiku), plaan `m4-corpus-chat-20260930e.json`. Seaded on samad.
 - **Leid:** indeksis oli iga omavalitsuse kohta üks akt. Paljudel on eraldi kehtivad:

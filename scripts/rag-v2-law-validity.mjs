@@ -9,7 +9,8 @@
 //     corpus has them), versions missing from the corpus, and for a group that ends, replacing acts to review.
 //     Writes law-validity-<today>.json and .md. Exit 0: unchanged; 10: findings or items to review; 20: a request
 //     failed after retries (its group is reported as fetch_failed, never as unchanged).
-//     --download puts the missing versions' XML in DIR for the usual register, ingest and index path.
+//     --download puts the missing versions' XML in DIR, and the current XML of an indexed act whose validity changed, for
+//     scripts/rag-v2-corpus-refresh.mjs register (ADR-059) and the usual ingest and index path.
 //     --municipalities Andmebaasi/register/kov_oigusaktid.json also names every municipality of that register without
 //     an indexed act in force today (exit 10), since the groups come from the index and cannot show one that is absent.
 import fs from 'node:fs/promises';
@@ -241,7 +242,7 @@ try {
     }
     if (values.download) {
       await fs.mkdir(values.download, { recursive: true });
-      for (const group of groups) for (const finding of group.findings.filter(f => f.kind === 'missing_version')) {
+      for (const group of groups) for (const finding of group.findings.filter(f => ['missing_version', 'validity_changed'].includes(f.kind))) {
         const xml = await get(`${BASE}/et/akt/${finding.globaal_id}.xml`, group.errors);
         if (xml === null) group.errors.push({ url: `/et/akt/${finding.globaal_id}.xml`, error: 'not_found' });
         if (xml) await fs.writeFile(path.join(values.download, `${finding.globaal_id}.xml`), xml);

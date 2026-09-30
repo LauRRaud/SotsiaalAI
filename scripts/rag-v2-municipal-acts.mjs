@@ -13,7 +13,7 @@ import { addDays } from '../lib/rag-v2/law-validity.js';
 import { selectMunicipalActs } from '../lib/rag-v2/municipal-acts.js';
 
 const BASE = process.env.RAG_V2_RT_BASE || 'https://www.riigiteataja.ee';
-const PAUSE = Number(process.env.RAG_V2_RT_PAUSE_MS ?? 250), PAGE = 500;
+const PAUSE = Number(process.env.RAG_V2_RT_PAUSE_MS ?? 200), PAGE = 500;
 const pause = () => new Promise(resolve => setTimeout(resolve, PAUSE));
 const tag = (xml, name) => xml.match(new RegExp(`<${name}>([^<]*)</${name}>`))?.[1] ?? null;
 
@@ -31,20 +31,43 @@ async function get(url, errors, json) {
   return undefined;
 }
 
-/** Every act an issuer has in Riigi Teataja, all result pages; undefined when a request failed. */
-async function listing(issuer, municipality, errors) {
-  const acts = [];
-  for (let page = 1, total = Infinity; (page - 1) * PAGE < total; page++) {
-    const result = await get(`${BASE}/api/oigusakt_otsing/1/otsi?valjaandja=${encodeURIComponent(issuer)}&leht=${page}&limiit=${PAGE}`, errors, true);
-    if (!Number.isInteger(result?.metaandmed?.kokku) || !Array.isArray(result?.aktid)) {
-      if (result !== undefined) errors.push({ issuer, error: 'invalid_response' });
-      return undefined;
+// Title words that every category of lib/rag-v2/municipal-acts.js contains; the search matches them inside words too
+// ("hoold" finds "Üldhooldusteenuse"). A search this narrow fits one page: an issuer's whole listing does not (Tallinna
+// Linnavalitsus has 2110 acts, 500 a page), and Riigi Teataja orders every request differently, so its pages overlap
+// and miss acts (30.09.2026: the v43 scan missed four).
+const TITLE_WORDS = ['sotsiaal', 'toetus', 'toetami', 'teenus', 'hoold', 'hoolekan', 'eluruum', 'eluase', 'puude', 'puuet', 'eaka'];
+const ROUNDS = 8, MAX_PAGES = 30;
+
+/** Every act of an issuer whose title has the word; the pages are fetched again until the distinct acts reach the
+ *  reported total. undefined when a request failed or the acts never added up. */
+async function search(issuer, word, errors) {
+  const acts = new Map();
+  let total = Infinity;
+  for (let round = 1; round <= ROUNDS && acts.size < total; round++) {
+    for (let page = 1; (page - 1) * PAGE < total && page <= MAX_PAGES; page++) {
+      const result = await get(`${BASE}/api/oigusakt_otsing/1/otsi?valjaandja=${encodeURIComponent(issuer)}&pealkiri=${encodeURIComponent(word)}&leht=${page}&limiit=${PAGE}`, errors, true);
+      if (!Number.isInteger(result?.metaandmed?.kokku) || !Array.isArray(result?.aktid)) {
+        if (result !== undefined) errors.push({ issuer, word, error: 'invalid_response' });
+        return undefined;
+      }
+      total = result.metaandmed.kokku;
+      for (const act of result.aktid) acts.set(String(act.globaalID), act);
     }
-    total = result.metaandmed.kokku;
-    for (const a of result.aktid) acts.push({ m: municipality, issuer, id: String(a.globaalID), title: a.pealkiri, from: a.kehtivus?.algus ?? null,
-      to: a.kehtivus?.lopp ?? null, tekst: a.tekst, kk: a.kehtivKehtetus === true, mj: a.mitteJoustunud === true });
   }
-  return acts;
+  if (acts.size < total) { errors.push({ issuer, word, error: 'incomplete_results', found: acts.size, total }); return undefined; }
+  return [...acts.values()];
+}
+
+/** The issuer's acts whose titles have a social welfare word; undefined when any search failed. */
+async function listing(issuer, municipality, errors) {
+  const acts = new Map();
+  for (const word of TITLE_WORDS) {
+    const found = await search(issuer, word, errors);
+    if (!found) return undefined;
+    for (const act of found) acts.set(String(act.globaalID), act);
+  }
+  return [...acts.values()].map(a => ({ m: municipality, issuer, id: String(a.globaalID), title: a.pealkiri, from: a.kehtivus?.algus ?? null,
+    to: a.kehtivus?.lopp ?? null, tekst: a.tekst, kk: a.kehtivKehtetus === true, mj: a.mitteJoustunud === true }));
 }
 
 function markdown(report) {
