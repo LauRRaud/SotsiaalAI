@@ -22735,7 +22735,7 @@
       "path": "teadmised/103062026023.knowledge.json",
       "category": "teadmised",
       "role": "knowledge",
-      "sha256": "4278943ffa22c0136b366200effd0649086cd7e57c7800f09fbde55eb2e48569",
+      "sha256": "5eb628fa0cb682ce366639062dd278c5327c48a2e9130d2b116322ffaa482d35",
       "source_path": "oigusaktid/103062026023.xml"
     },
     {
@@ -22749,21 +22749,21 @@
       "path": "teadmised/126092026005.knowledge.json",
       "category": "teadmised",
       "role": "knowledge",
-      "sha256": "d0e01e0ae6daf2a6c0a9409db7897113f1ff2e6b2ce9ffbbade6f4e506306978",
+      "sha256": "d294564fb13dc200cdb5238743e4e374a25d6acdfc176e4f6f4567963d01ab7b",
       "source_path": "oigusaktid/126092026005.xml"
     },
     {
       "path": "teadmised/129082025009.knowledge.json",
       "category": "teadmised",
       "role": "knowledge",
-      "sha256": "3c7e2d2aea22e8bdc24f18472281b23a9f2917ea1ba967b46b769321010f78e6",
+      "sha256": "c23ca4720e001e451ddab09dcaeb9afaa50ed9b8447c1bba387ecf52593f01fd",
       "source_path": "oigusaktid/129082025009.xml"
     },
     {
       "path": "teadmised/130062026065.knowledge.json",
       "category": "teadmised",
       "role": "knowledge",
-      "sha256": "6017e5d57a18b5c6a1c2c40cdaef6121b79fc8b2e5f7d8f74d4ce2968c8a1792",
+      "sha256": "f902ff26a23936a18263d0cee467d8e07c2ec1b4fcbfb07c052ed4b1ccf2ede9",
       "source_path": "oigusaktid/130062026065.xml"
     },
     {
@@ -22777,7 +22777,7 @@
       "path": "teadmised/404072025017.knowledge.json",
       "category": "teadmised",
       "role": "knowledge",
-      "sha256": "67e944b1f146f8148a0b806b68d002ec8bace9e41c153b12365488e47545a11a",
+      "sha256": "fdf42ef4d808afdc64ecc833304e88233a7c18428dddd81fb6c45574e0a48b5a",
       "source_path": "oigusaktid/404072025017.xml"
     }
   ],

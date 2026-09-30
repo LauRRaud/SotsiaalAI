@@ -19,7 +19,14 @@
       "input": 6274,
       "output": 8649,
       "reasoning": 421
-    }
+    },
+    "reanchored": [
+      {
+        "normalization": "source-structure-v28",
+        "reason": "superscript_digits",
+        "anchors": 3
+      }
+    ]
   },
   "knowledge": {
     "schema_version": "rag-v2/knowledge-input-2",
@@ -121,7 +128,7 @@
           {
             "source_unit_index": 4,
             "start": 30,
-            "quote": "Abivahendi tõendit on õigus väljastada § 2 lõikes 21 nimetatud isikutel."
+            "quote": "Abivahendi tõendit on õigus väljastada § 2 lõikes 2¹ nimetatud isikutel."
           }
         ]
       },
@@ -617,7 +624,7 @@
           {
             "source_unit_index": 4,
             "start": 30,
-            "quote": "Abivahendi tõendit on õigus väljastada § 2 lõikes 21 nimetatud isikutel."
+            "quote": "Abivahendi tõendit on õigus väljastada § 2 lõikes 2¹ nimetatud isikutel."
           }
         ]
       },
@@ -821,7 +828,7 @@
           {
             "source_unit_index": 9,
             "start": 2298,
-            "quote": "loeteluvälise abivahendi taotlemiseks vastava abivahendi valdkonnaga seotud § 2 lõikes 21 nimetatud spetsialisti tõendi abivahendi vajaduse kohta."
+            "quote": "loeteluvälise abivahendi taotlemiseks vastava abivahendi valdkonnaga seotud § 2 lõikes 2¹ nimetatud spetsialisti tõendi abivahendi vajaduse kohta."
           }
         ]
       }
