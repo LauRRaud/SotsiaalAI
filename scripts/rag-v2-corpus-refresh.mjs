@@ -3,7 +3,10 @@
 // `rag-v2-municipal-acts.mjs scan --download DIR`:
 //   register --from DIR --out WORK [--root Andmebaasi]
 //     Registers the downloaded Riigi Teataja XML (new acts added, changed bytes replaced, derived annexes read again)
-//     and writes WORK/selection.json for `rag-v2-ingest-batch.mjs --mode plan`; replaced bytes go to WORK/previous.
+//     and writes WORK/selection.json for `rag-v2-ingest-batch.mjs --mode plan` and WORK/register.json; replaced bytes go
+//     to WORK/previous. WORK keeps the registry it started from and its state: the same command completes a stopped
+//     work (take it up with the same WORK), and on a finished one prints the same summary and writes nothing. A new
+//     refresh takes a new WORK; it refuses a registry a stopped work left half written.
 //   review --draft WORK/review-draft.json --out WORK/review.json --reviewer "<who, on whose instruction>"
 //     Writes the review when every item is clean; otherwise lists the items a person has to decide (exit 2).
 //   package --store S --policy PREVIOUS/policy.json --review WORK/review.json --out OUT [--tenant T] [--remove FILE]
@@ -26,12 +29,9 @@ try {
     tenant: { type: 'string', default: 'sotsiaalai-corpus' }, remove: { type: 'string' } } });
   if (mode === 'register') {
     if (!values.from || !values.out) throw usage();
-    await fs.mkdir(values.out, { recursive: true });
-    const result = await registerDownloads({ root: values.root, from: values.from, previous: path.join(values.out, 'previous') });
-    await fs.writeFile(path.join(values.out, 'selection.json'), `${JSON.stringify(result.selection)}\n`);
+    const result = await registerDownloads({ root: values.root, from: values.from, work: values.out });
     const summary = { added: result.added.length, replaced: result.replaced.length, unchanged: result.unchanged.length,
       annexes: result.annexes.length, knowledge_to_rebind: result.knowledge, selection: result.selection.length };
-    await fs.writeFile(path.join(values.out, 'register.json'), `${JSON.stringify({ ...summary, ...result }, null, 2)}\n`);
     console.log(JSON.stringify(summary));
     if (result.knowledge.length) console.error(`Knowledge cards to rebind first: node scripts/rag-v2-knowledge-reanchor.mjs --input-root ${values.root} --previous-root ${path.join(values.out, 'previous')} --write`);
   } else if (mode === 'review') {

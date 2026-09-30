@@ -1,4 +1,5 @@
 import { createRequestGeneration } from "@/lib/chat/requestGeneration";
+import { createPendingTurnRefresh, isTransientStatus } from "@/lib/chat/pendingTurnRefresh";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   readActiveConversationId,
@@ -9,9 +10,6 @@ const MAX_HISTORY = 8;
 /* SOL-CHAT-11: üldine võti on SURNUD. Aktiivse vestluse ID elab nüüd konto ja rolli all
    (`lib/chat/activeConversationKey.js`); vana sildistamata rida kustutatakse esimesel puutel. */
 const EMPTY_CONVERSATION_READY_KEY = "__empty__";
-// Ootel piloodikäigu uus vaatamine: iga 4 s, kõige rohkem 45 korda (umbes kolm minutit).
-const PENDING_REFRESH_MS = 4000;
-const PENDING_REFRESH_TRIES = 45;
 
 function hasMeaningfulMessageContent(message) {
   if (!message || typeof message !== "object") return false;
@@ -204,7 +202,8 @@ export function useChatConversationState({
   // SOL-CHAT-12: ainult viimasena ALANUD hüdreerimine tohib kirjutada (vt lib/chat/requestGeneration.js).
   const hydrationGenerationRef = useRef(createRequestGeneration());
   const hydrationAbortRef = useRef(null);
-  const pendingRefreshRef = useRef({ timer: 0, tries: 0 });
+  // Ootel piloodikäigu uus vaatamine (vt lib/chat/pendingTurnRefresh.js).
+  const pendingRefreshRef = useRef(createPendingTurnRefresh());
   const hydrateAgainRef = useRef(null);
   useEffect(() => {
     messagesRef.current = messages;
@@ -447,14 +446,31 @@ export function useChatConversationState({
     const ac = typeof AbortController !== "undefined" ? new AbortController() : null;
     hydrationAbortRef.current = ac;
     const isCurrent = () => hydrationGenerationRef.current.isCurrent(generation);
+    const pendingRefresh = pendingRefreshRef.current;
+    const refreshAgain = () => {
+      if (!cancelledRef?.current) hydrateAgainRef.current?.(cancelledRef);
+    };
+    // Ajutine tõrge (HTTP 5xx, 408 või 429, `ok: false`, võrk) ei lõpeta ootel käigu uut vaatamist; muu
+    // HTTP-viga (401, 403, 404) lõpetab. Katkestatud või uuemaga asendatud laadimine ei otsusta midagi —
+    // seda teeb uuem (Codex R3, 30.09).
+    const failed = error => pendingRefresh.failed(refreshAgain, {
+      superseded: !!cancelledRef?.current || !isCurrent() || error?.name === "AbortError"
+    });
     try {
       const r = await fetch(pilotEnabled ? `/api/chat/pilot?format=chat&convId=${encodeURIComponent(id)}` : `/api/chat/run?convId=${encodeURIComponent(id)}`, {
         cache: "no-store",
         ...(ac ? { signal: ac.signal } : {})
       });
-      if (!r.ok) return;
+      if (!r.ok) {
+        if (isTransientStatus(r.status)) failed();
+        else pendingRefresh.settled();
+        return;
+      }
       const data = await r.json();
-      if (!data?.ok) return;
+      if (!data?.ok) {
+        failed();
+        return;
+      }
       if (cancelledRef?.current) return;
       if (!isCurrent()) return;
       const currentActiveId = typeof window !== "undefined"
@@ -481,6 +497,14 @@ export function useChatConversationState({
         localMessages: messagesRef.current,
         serverMessages
       }));
+      // Käik, mida server alles vastab (teine aken või lehe laadimine keset vastust), vaadatakse
+      // uuesti, kuni see valmib; kõige rohkem umbes kolm minutit. Voogav aken saab vastuse ise.
+      const lastServer = serverMessages.at(-1);
+      if (pilotEnabled && lastServer?.role === "ai" && lastServer.completionStatus === "PENDING" && !isGeneratingRef.current) {
+        pendingRefresh.pending(refreshAgain);
+      } else {
+        pendingRefresh.settled();
+      }
       if (serverMessages.length) {
         setMessages(prev => {
           let nextId = 1;
@@ -525,21 +549,6 @@ export function useChatConversationState({
           messageIdRef.current = nextId;
           return mapped;
         });
-        // Käik, mida server alles vastab (teine aken või lehe laadimine keset vastust), vaadatakse
-        // uuesti, kuni see valmib; kõige rohkem umbes kolm minutit. Voogav aken saab vastuse ise.
-        const pending = pendingRefreshRef.current;
-        window.clearTimeout(pending.timer);
-        const lastServer = serverMessages.at(-1);
-        if (pilotEnabled && lastServer?.role === "ai" && lastServer.completionStatus === "PENDING" && !isGeneratingRef.current) {
-          if (pending.tries < PENDING_REFRESH_TRIES) {
-            pending.tries += 1;
-            pending.timer = window.setTimeout(() => {
-              if (!cancelledRef?.current) hydrateAgainRef.current?.(cancelledRef);
-            }, PENDING_REFRESH_MS);
-          }
-        } else {
-          pending.tries = 0;
-        }
         return;
       }
       if (!serverTextTrim) {
@@ -592,7 +601,9 @@ export function useChatConversationState({
         }
         return next;
       });
-    } catch {}
+    } catch (error) {
+      failed(error);
+    }
     finally {
       if (cancelledRef?.current) return;
       if (!isCurrent()) return;
@@ -613,8 +624,7 @@ export function useChatConversationState({
     const cancelledRef = {
       current: false
     };
-    const pending = pendingRefreshRef.current;
-    pending.tries = 0;
+    const pendingRefresh = pendingRefreshRef.current;
     hydrateFromServer(cancelledRef);
     const throttled = throttle(() => {
       if (document.visibilityState === "visible") hydrateFromServer(cancelledRef);
@@ -627,7 +637,7 @@ export function useChatConversationState({
     window.addEventListener("sotsiaalai:refresh-conversations", refreshFromEvent);
     return () => {
       cancelledRef.current = true;
-      window.clearTimeout(pending.timer);
+      pendingRefresh.stop();
       throttled.cancel();
       refreshFromEvent.cancel();
       try {

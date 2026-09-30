@@ -15,7 +15,7 @@
   - vorm, mille viidatud ja täielikult näidatud kirje (`selected_detail` või `relevant_detail`) oma vormiks nimetab (`relation: 'form'`). Kataloogireana näidatud kirje vorme ei lisata, sest loetelu-vastus tooks muidu kümneid linke.
   - Lingiks sobib ainult allika enda `https`-aadress. Iga aadress tuleb üks kord, kokku kuni viis.
   - Formaat (`docx`, `pdf`, …) lisatakse nimele ainult siis, kui see on failitüüp. Väärtused nagu `web_form` või `PDF/DOC/DOK` jäävad nimest välja.
-- **Vestlus näitab lingid vastuse all olemasoleva manuste rea kaudu (`attachments`)** nii voo lõpus kui ka vestluse uuesti laadimisel. Näiteks: „Matusetoetuse avalduse vorm2026 (docx)“. Väline link avaneb uues aknas ja vestlus jääb alles. Omaniku soovil (30.09, #288) on vormi link tavaline allajoonitud link, iga oma real, ilma manuse pilli taustata. Allalaaditav fail jääb pilliks.
+- **Vestlus näitab lingid vastuse all olemasoleva manuste rea kaudu (`attachments`)** nii voo lõpus kui ka vestluse uuesti laadimisel. Näiteks: „Matusetoetuse avalduse vorm2026 (docx)“. Väline link avaneb uues aknas ja vestlus jääb alles. Omaniku soovil (30.09, #288) on vormi link tavaline allajoonitud link, iga oma real, ilma manuse pilli taustata. Allalaaditav fail jääb pilliks. #289: link on vastuse teksti suurune ja joon käitub nagu saidi teistel linkidel (hele, hõljutades selgem); varem oli kiri 14 px ja hõljutus tegi joone 2 px paksuseks.
 - **Mudeli juhis, vastuse leping ja korpus ei muutu.** Uus käik on vaja ainult selleks, et link ilmuks. Salvestatud käigud saavad lingid uuesti laadimisel samast kirjekontekstist.
 
 ## Kontroll

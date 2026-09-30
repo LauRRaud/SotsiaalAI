@@ -85,6 +85,22 @@ Rada on kaheosaline. Sülearvutis on `scripts/rag-v2-corpus-refresh.mjs` (teek `
   - Testid: vigane fail pärast õiget ei kirjuta midagi ja kordus lõpetab töö; vana koodi pooleli jäänud seisust jätkatakse õige varukoopiaga; kadunud baitide korral töö peatub.
 - **R2** on kirjas [ADR-058](adr-058-municipal-social-acts.md) täienduses.
 
+## Codexi #283–#288 ülevaatuse parandus R2 (30.09.2026): registreerimine jätkub igast kirjutusest
+
+- **Viga ([Codexi raport](../audits/rag-v2-pr283-288-review-2026-09-30.md), P2):** kui töö katkes `REGISTER.json`-i ja `REGISTER.md` kirjutamise vahel, oli JSON uus ja Markdown vana.
+  - Kordus pidas kõiki allalaadimisi muutumatuks: valik `[]`, Markdowni rida puudu.
+  - Järgmine lisamine peatus `refresh_register_row_missing` veaga.
+  - Sama juhtus katkestusel enne `selection.json`-i. Lõpetatud töö kordus kirjutas valiku tühjaks.
+- **Nüüd hoiab WORK töö alust ja olekut** (`registerDownloads({ root, from, work })`):
+  - Esimene jooks salvestab enne muid kirjutusi `WORK/register-base/` (register, nagu töö selle leidis) ja `WORK/register-state.json` (`started`, aluse ja allalaadimiste räsid).
+  - Iga jooks arvutab tulemuse alusest, mitte elavast registrist, ja kirjutab kõik uuesti: varukoopiad, failid, register, `selection.json`, `register.json`. Olek `done` kirjutatakse viimasena.
+  - Katkenud töö kordus nõuab samu allalaadimisi (`refresh_downloads_changed`). Iga registrifail peab olema kas alus või selle jooksu väljund (`refresh_register_changed_meanwhile`).
+  - Lõpetatud töö kordus tagastab salvestatud tulemuse ega kirjuta midagi.
+  - Pooleldi kirjutatud register ei ole uue töö alus: aktide arvud ja read peavad klappima (`refresh_register_inconsistent`). See püüab kinni ka katkenud töö, mida korratakse uue WORK-iga.
+  - Varukoopiate kontroll käib enne esimest kirjutust. Ajutine failinimi on fikseeritud (`<fail>.refresh`), seega kordus kirjutab katkestuse jäägi üle.
+- **Test:** puhtas jooksus loetakse kõik 13 ümbernimetamist. Iga ümbernimetamise juures katkestatakse töö ja korratakse sama käsuga. Registri, töö ja failide lõppseis võrdub katkestuseta jooksuga.
+- Päris registris (578 allikat, 551 RT XML-i) klapivad arvud ja read.
+
 ## Piirid
 
 - Rada ei otsusta sisu üle. Uue tüübi hoiatus, lahendamata omavalitsus või kaart, mis vajab uuesti sidumist, peatab raja.

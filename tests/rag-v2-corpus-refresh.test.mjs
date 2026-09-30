@@ -49,10 +49,12 @@ test('downloaded acts: a new one is added, changed bytes replace the registered 
   await fs.writeFile(path.join(from, '430042026009.xml'), kose);
   await fs.copyFile(path.join('Andmebaasi', POLVA), path.join(from, '426052026009.xml'));
   await fs.copyFile(path.join('Andmebaasi', NEW), path.join(from, '429092026004.xml'));
-  const previous = path.join(dir, 'register-previous');
-  const result = await registerDownloads({ root, from, previous });
+  const work = path.join(dir, 'register-work'), previous = path.join(work, 'previous');
+  const result = await registerDownloads({ root, from, work });
   assert.deepEqual([result.added, result.replaced, result.unchanged, result.annexes], [[NEW], [KOSE], [POLVA], [ANNEX]]);
   assert.deepEqual(result.selection, [{ source: NEW }, { source: KOSE }, { source: ANNEX }]);
+  assert.deepEqual(JSON.parse(await fs.readFile(path.join(work, 'selection.json'), 'utf8')), result.selection);
+  assert.deepEqual(JSON.parse(await fs.readFile(path.join(work, 'register.json'), 'utf8')), result);
   // The card on Kose's old bytes needs the re-anchor script; the old bytes are kept for it.
   assert.deepEqual(result.knowledge, ['teadmised/kose.knowledge.json']);
   assert.equal(hash(await fs.readFile(path.join(previous, KOSE))), entries[0].sha256);
@@ -72,15 +74,15 @@ test('downloaded acts: a new one is added, changed bytes replace the registered 
   const md = await fs.readFile(path.join(root, 'REGISTER.md'), 'utf8');
   assert.match(md, /^\| oigusaktid \| 4 \| 5 \| XML-aktid\. \|$/mu);
   assert(md.includes(row(POLVA) + row(NEW)));
-  // Run again: everything is registered now.
-  const again = await registerDownloads({ root, from });
+  // A new refresh of the same downloads: everything is registered now.
+  const again = await registerDownloads({ root, from, work: path.join(dir, 'register-work-again') });
   assert.deepEqual([again.added, again.replaced, again.annexes, again.selection], [[], [], [], []]);
 });
 
 test('a downloaded file must be the act its name says', async () => {
   const { root, from } = await registry('wrong-name');
   await fs.copyFile(path.join('Andmebaasi', NEW), path.join(from, '111111111111.xml'));
-  await assert.rejects(registerDownloads({ root, from }), { code: 'refresh_not_the_named_act' });
+  await assert.rejects(registerDownloads({ root, from, work: path.join(dir, 'wrong-name-work') }), { code: 'refresh_not_the_named_act' });
 });
 
 // Codex R3 (30.09.2026): a stop part-way left replaced files beside the old registry, and the next run overwrote the
@@ -93,38 +95,128 @@ test('a file that fails its check stops the refresh before anything is written; 
   const registerBefore = await fs.readFile(path.join(root, 'REGISTER.json'), 'utf8');
   await fs.writeFile(path.join(from, '430042026009.xml'), await koseChanged());
   await fs.copyFile(path.join('Andmebaasi', NEW), path.join(from, '999999999999.xml'));
-  const previous = path.join(dir, 'stop-previous');
-  await assert.rejects(registerDownloads({ root, from, previous }), { code: 'refresh_not_the_named_act' });
+  const work = path.join(dir, 'stop-work'), previous = path.join(work, 'previous');
+  await assert.rejects(registerDownloads({ root, from, work }), { code: 'refresh_not_the_named_act' });
   assert.equal(hash(await fs.readFile(path.join(root, KOSE))), entries[0].sha256);
   assert.equal(await fs.readFile(path.join(root, 'REGISTER.json'), 'utf8'), registerBefore);
-  await assert.rejects(fs.access(previous));
+  await assert.rejects(fs.access(work));
   await fs.rm(path.join(from, '999999999999.xml'));
-  const result = await registerDownloads({ root, from, previous });
+  const result = await registerDownloads({ root, from, work });
   assert.deepEqual(result.replaced, [KOSE]);
   assert.equal(hash(await fs.readFile(path.join(previous, KOSE))), entries[0].sha256);
 });
 
 test('after a stop between the files and the registry, a second run keeps the previous bytes and completes', async () => {
   const { root, from, entries } = await registry('resume');
-  const kose = await koseChanged(), previous = path.join(dir, 'resume-previous');
+  const kose = await koseChanged(), work = path.join(dir, 'resume-work'), previous = path.join(work, 'previous');
   await fs.writeFile(path.join(from, '430042026009.xml'), kose);
-  // The state a stop leaves: the previous bytes kept, the new file written, the registry still naming the old bytes.
+  // The state a stop left before the work kept its base (#283): the previous bytes kept, the new file written, the
+  // registry still naming the old bytes.
   await fs.mkdir(path.dirname(path.join(previous, KOSE)), { recursive: true });
   await fs.copyFile(path.join(root, KOSE), path.join(previous, KOSE));
   await fs.writeFile(path.join(root, KOSE), kose);
-  const result = await registerDownloads({ root, from, previous });
+  const result = await registerDownloads({ root, from, work });
   assert.deepEqual([result.replaced, result.annexes, result.knowledge], [[KOSE], [ANNEX], ['teadmised/kose.knowledge.json']]);
   assert.equal(hash(await fs.readFile(path.join(previous, KOSE))), entries[0].sha256);
   const register = JSON.parse(await fs.readFile(path.join(root, 'REGISTER.json'), 'utf8'));
   assert.equal(register.entries.find(entry => entry.path === KOSE).sha256, hash(Buffer.from(kose)));
-  // Without the kept bytes and with the old ones gone from disk, nothing is written: the card could not be rebound.
+  // Without the kept bytes and with the old ones gone from disk, the registry is not written: the card could not be rebound.
   const lost = await registry('lost');
   await fs.writeFile(path.join(lost.from, '430042026009.xml'), kose);
   await fs.writeFile(path.join(lost.root, KOSE), kose);
   const registerBefore = await fs.readFile(path.join(lost.root, 'REGISTER.json'), 'utf8');
-  await assert.rejects(registerDownloads({ root: lost.root, from: lost.from, previous: path.join(dir, 'lost-previous') }), { code: 'refresh_registered_bytes_missing' });
+  await assert.rejects(registerDownloads({ root: lost.root, from: lost.from, work: path.join(dir, 'lost-work') }), { code: 'refresh_registered_bytes_missing' });
   assert.equal(await fs.readFile(path.join(lost.root, 'REGISTER.json'), 'utf8'), registerBefore);
   assert.equal(await fs.readFile(path.join(lost.root, ANNEX_META), 'utf8'), await fs.readFile(path.join('Andmebaasi', ANNEX_META), 'utf8'));
+});
+
+// Codex R2 (30.09.2026): a stop between REGISTER.json and REGISTER.md left the new act's row out of the Markdown, and a
+// second run found every download registered: an empty selection, and the next addition stopped on the missing row.
+const download = async from => {
+  await fs.writeFile(path.join(from, '430042026009.xml'), await koseChanged());
+  await fs.copyFile(path.join('Andmebaasi', POLVA), path.join(from, '426052026009.xml'));
+  await fs.copyFile(path.join('Andmebaasi', NEW), path.join(from, '429092026004.xml'));
+};
+// Every write goes through a rename: this runs `run` and returns the renamed paths, or stops at the rename `stop`
+// chooses as a killed process would.
+async function renames(run, stop = () => false) {
+  const rename = fs.rename, done = [];
+  fs.rename = async (source, target) => {
+    if (stop(target, done.length)) throw Object.assign(new Error('stopped'), { code: 'test_stopped' });
+    await rename(source, target);
+    done.push(target);
+  };
+  try { await run(); return done; } finally { fs.rename = rename; }
+}
+// The files under a registry and its work, with their hashes.
+async function files(...dirs) {
+  const listed = {};
+  for (const [at, base] of dirs.entries()) for (const entry of await fs.readdir(base, { recursive: true, withFileTypes: true })) {
+    const file = path.join(entry.parentPath, entry.name);
+    if (entry.isFile()) listed[`${at}:${path.relative(base, file).replaceAll(path.sep, '/')}`] = hash(await fs.readFile(file));
+  }
+  return listed;
+}
+
+test('a stop at any write of the register step: the same command then ends as a run without the stop', async () => {
+  const whole = await registry('whole'), work = path.join(dir, 'whole-work');
+  await download(whole.from);
+  let expected;
+  const written = await renames(async () => { expected = await registerDownloads({ root: whole.root, from: whole.from, work }); });
+  // The base and the state first, the state 'done' last, the registry before the work's selection and result.
+  assert.deepEqual(written.map(file => path.relative(dir, file).replaceAll(path.sep, '/')), ['whole-work/register-base/REGISTER.json',
+    'whole-work/register-base/REGISTER.md', 'whole-work/register-state.json', `whole-work/previous/${KOSE}`, `whole/${NEW}`, `whole/${KOSE}`,
+    `whole/${ANNEX}`, `whole/${ANNEX_META}`, 'whole/REGISTER.json', 'whole/REGISTER.md', 'whole-work/selection.json', 'whole-work/register.json',
+    'whole-work/register-state.json']);
+  assert.deepEqual([expected.added, expected.replaced, expected.annexes], [[NEW], [KOSE], [ANNEX]]);
+  const after = await files(whole.root, work);
+  for (let stop = 0; stop < written.length; stop++) {
+    const cut = await registry(`cut-${stop}`), cutWork = path.join(dir, `cut-${stop}-work`);
+    await download(cut.from);
+    await assert.rejects(renames(() => registerDownloads({ root: cut.root, from: cut.from, work: cutWork }), (_, at) => at === stop), { code: 'test_stopped' });
+    assert.deepEqual(await registerDownloads({ root: cut.root, from: cut.from, work: cutWork }), expected, `stop at ${written[stop]}`);
+    assert.deepEqual(await files(cut.root, cutWork), after, `stop at ${written[stop]}`);
+  }
+  // A finished work returns its result and writes nothing.
+  let again;
+  assert.deepEqual(await renames(async () => { again = await registerDownloads({ root: whole.root, from: whole.from, work }); }), []);
+  assert.deepEqual([again, await files(whole.root, work)], [expected, after]);
+});
+
+test('a stopped work goes on only with its downloads and the registry it left; a finished one with other downloads stops', async () => {
+  const { root, from } = await registry('meanwhile'), work = path.join(dir, 'meanwhile-work');
+  await download(from);
+  // Codex's stop: REGISTER.json is written, REGISTER.md is not.
+  await assert.rejects(renames(() => registerDownloads({ root, from, work }), target => target === path.join(root, 'REGISTER.md')), { code: 'test_stopped' });
+  const json = await fs.readFile(path.join(root, 'REGISTER.json'), 'utf8'), md = await fs.readFile(path.join(root, 'REGISTER.md'), 'utf8');
+  assert(!md.includes(row(NEW)));
+  // The same stop taken up with a new WORK: the half-written registry is no base, and nothing is written.
+  const other = path.join(dir, 'meanwhile-other-work');
+  await assert.rejects(registerDownloads({ root, from, work: other }), { code: 'refresh_register_inconsistent' });
+  await assert.rejects(fs.access(other));
+  await fs.copyFile(path.join('Andmebaasi', KOSE), path.join(from, '430042026009.xml'));
+  await assert.rejects(registerDownloads({ root, from, work }), { code: 'refresh_downloads_changed' });
+  await download(from);
+  await fs.writeFile(path.join(root, 'REGISTER.json'), json.replace('version_and_jurisdiction_validation_pending', 'reviewed'));
+  await assert.rejects(registerDownloads({ root, from, work }), { code: 'refresh_register_changed_meanwhile' });
+  assert.equal(await fs.readFile(path.join(root, 'REGISTER.md'), 'utf8'), md);
+  assert.equal(JSON.parse(await fs.readFile(path.join(work, 'register-state.json'), 'utf8')).state, 'started');
+  await fs.writeFile(path.join(root, 'REGISTER.json'), json);
+  const result = await registerDownloads({ root, from, work });
+  assert.deepEqual(result.selection, [{ source: NEW }, { source: KOSE }, { source: ANNEX }]);
+  assert.deepEqual(JSON.parse(await fs.readFile(path.join(work, 'selection.json'), 'utf8')), result.selection);
+  assert((await fs.readFile(path.join(root, 'REGISTER.md'), 'utf8')).includes(row(POLVA) + row(NEW)));
+  // A new refresh takes a new work: a finished one does not register other downloads.
+  await fs.rm(path.join(from, '429092026004.xml'));
+  await assert.rejects(registerDownloads({ root, from, work }), { code: 'refresh_downloads_changed' });
+});
+
+test('a replaced file whose registered bytes are gone stops before the work is written', async () => {
+  const { root, from } = await registry('gone'), work = path.join(dir, 'gone-work');
+  await fs.writeFile(path.join(root, KOSE), 'edited by hand');
+  await fs.writeFile(path.join(from, '430042026009.xml'), await koseChanged());
+  await assert.rejects(registerDownloads({ root, from, work }), { code: 'refresh_registered_bytes_missing' });
+  await assert.rejects(fs.access(work));
 });
 
 const item = (id, fields, warnings = [], blockers = []) => ({ item_id: id, document_id: `document_${id}`, version_id: `version_${id}`, warnings, blockers,

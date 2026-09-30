@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**Uus aken alustab siit (30.09 õhtu).** Eelmine vestlus läks liiga pikaks, omanik avas uue akna.
+**Uus aken alustab siit (30.09 hilisõhtu).** Seis pärast Codexi #283–#288 ülevaatuse parandusi (R1–R3) ja omavalitsuste vastuste mõõtmist.
 - **Tootmises:** korpus v46 (indeks `5a959000`, 6470 dokumenti, Qdrantis 40 489 punkti). Vestlusplaani uuendab reliis ise (ADR-037): profiil v3, answer-12, dialoog 21, olek v5, arutlus medium.
 - **Tööviis:**
   - Codex kujundab põhikaustas, seega ära vaheta seal harusid. Töötle %TEMP% worktree's: `node_modules` junction, `generated/` koopia. Eemalda worktree ja haru pärast PR-i.
@@ -103,11 +103,28 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
   - 01.10: ühe küsimuse kontrollid, et vastused kasutaksid uut SHS-i ja abivahendite piirhindu.
   - 04.10: Maardu XML-id 415082017002 ja 402072013031 uuesti alla laadida, kui RT on kirjutanud neile lõpukuupäeva. Rada: `rag-v2-law-validity.mjs check --download`, `rag-v2-corpus-refresh.mjs`, serveris `rag-v2-corpus-run.sh` (runbook, jaotis 0).
   - Kontaktid pärast 04.10.
-  - Kitsas omavalitsuste vastuste mõõtmine: 6–8 küsimust, umbes 0,1 USD.
+  - Sätte muutmise märge mudelini (Märjamaa leid allpool): jõustumine, muutev akt ja „rakendatakse alates“ tulevad lõigu või allikakaardiga, et vastus ei dateeriks summat konsolideeritud teksti alguse järgi.
   - Omaniku valik: M3 (kontrollitud seoste katse) või M5 (kümne aasta ülevaade).
-  - Codex vaatab üle PR-id #283, #285, #286 ja #288.
+  - Codex vaatab üle R1–R3 paranduste PR-i ja #289.
   - Kiiruse mõõtmine päris vestluses teeb omanik.
 - **Võrk 30.09 õhtul:** SSH port 22 aegus korduvalt nii GitHubi kui serveri (`ssh sotsiaalai`) poole. Push õnnestus kordamisel. `gh` töötab HTTPS-i kaudu.
+
+**30.09 (Opus), hilisõhtu: Codexi #283–#288 ülevaatuse R1–R3 parandatud, omavalitsuste vastuste mõõtmine, vormi lingi suurus (#289)** ([Codexi raport](../audits/rag-v2-pr283-288-review-2026-09-30.md)).
+- **R1 (P1, [ADR-060](../rag-v2/adr-060-prune-unreferenced-versions.md)):** koristus ja indekseerimine välistavad teineteist rentniku Postgresi nõuandva lukuga.
+  - Koristus hoiab lukku ühes seansis esimesest kontrollist viimase kustutuseni. `beginGeneration` võtab selle jagatult; koristuse ajal ei alga ükski generatsioon (`index_prune_running`, tööd saab pärast korrata).
+  - Codexi põimitud stsenaarium on integratsioonitest: indeksitöö keeldub, koristus lõpeb, siis indekseerib töö versiooni uuesti ja kontroll läbib. Kadunud seanss peatab koristuse enne järgmist kustutust.
+- **R2 (P2, [ADR-059](../rag-v2/adr-059-corpus-refresh-path.md)):** `register` salvestab WORK-i registri aluse ja oleku ning arvutab iga jooksu alusest.
+  - Sama käsk lõpetab töö, mis katkes ükskõik millise kirjutuse juures. Test katkestab kõigi 13 kirjutuse juures ja lõppseis võrdub katkestuseta jooksuga.
+  - Lõpetatud töö kordus ei kirjuta midagi. Pooleldi kirjutatud registrist keeldub uus töö (`refresh_register_inconsistent`).
+- **R3 (P2, #288):** ootel käigu uus vaatamine jätkub ka ajutise vea järel (HTTP 5xx, 408, 429, `ok: false`, võrk) sama 45 katse eelarves. 401, 403 ja 404 lõpetavad selle.
+  - Loogika on `lib/chat/pendingTurnRefresh.js`-is. Testid kasutavad võltstaimerit ja hook'i enda `hydrateFromServer`-it.
+- **Kontroll:** iga parandust püüdis sõltumatu ülevaataja murda. Leiti ainult P3 märkused ja need on parandatud. `npm test` 468/468 (19 vahele jäetud), integratsioonitestid kohaliku Postgresi ja Qdrantiga 28/28.
+- **Omavalitsuste vastuste mõõtmine päris vestluses** ([audit](../audits/rag-v2-kov-live-check-2026-09-30.md)): 7 küsimust ja 1 jätkuküsimus ADR-058 aktidest, viitevastused enne küsimist akti tekstist.
+  - Kõik 8 käiku lõpetasid vigadeta, esimene tekst 12,9–25,9 s.
+  - 6/7 on õiged: Kuusalu 480 € ja 140 €, Kambja 800 €, Jõelähtme 150 €, Mulgi 0,45 €/km + 15 €, Viimsi „2026 ei saa“, Häädemeeste vormi link.
+  - **Märjamaa on enamasti õige:** 500 + 300 € on õige, aga vastus pidas konsolideeritud teksti algust (04.09) summa muutumise päevaks ja kahtles asjatult. Summa kehtib 01.01.2026-st (muutev akt 421022026007).
+- **#288 päris vestluses:** fookuse ja nähtavuse sündmused keset vastust ei asenda voogu enam tekstiga „Pooleliolev katse“. Keset vastust laetud leht näitab „Pooleliolev katse“ ja asendab selle valmis vastusega.
+- **#289 (omanik: „link on kuidagi väike“, „hover efekt on kole“):** vormi link on vastuse teksti suurune (14 → 16,5 px). Joon on nagu saidi teistel linkidel: hele, hõljutades selgem, mitte 2 px paks.
 
 **30.09 (Opus), jätk: vastus annab vormi lingi** ([ADR-061](../rag-v2/adr-061-answer-form-links.md)). Omanik 30.09: „ma ei taha enda andmebaasi taotlusi, kui assistent vastab kasutajale, annab ta lingi“.
 - **Vormide tekstid jäävad korpusest välja.** KOV-pakettides on 870 vormikirjet koos lingiga. RT lisadest tuletatakse edasi ainult määrade tabeleid, taotlusvorme mitte.

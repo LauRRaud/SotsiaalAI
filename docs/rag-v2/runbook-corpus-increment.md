@@ -43,6 +43,7 @@ node scripts/rag-v2-corpus-refresh.mjs package --store tmp/rag-v2-corpus-store-v
 
 - Serverisse lähevad `W/ship/ship.tgz`, `ship.json` ja `policy.json` nimedega `ship-v<N>.tgz`, `ship-v<N>.json` ja `policy-v<N>.json` töökausta. Seejärel: `sh /home/ubuntu/apps/sotsiaalai/scripts/rag-v2-corpus-run.sh <N> <eelmine N> /etc/sotsiaalai/m4-corpus-chat-<kuupäev><täht>.json <piir> "<alus et>" "<alus en>"`.
 - Rada peatub, kui mõni kirje vajab inimese otsust või kui kaart tuleb uuesti siduda. Siis käib edasi jaotiste 1–7 järgi.
+- Katkenud `register` lõpetatakse sama käsuga ja sama `--out W`-ga (ADR-059, R2 30.09). Uus W katkenud töö registrist keeldub (`refresh_register_inconsistent`). Lõpetatud W kordus trükib sama kokkuvõtte ega kirjuta midagi.
 
 ## 1. Allikas
 
