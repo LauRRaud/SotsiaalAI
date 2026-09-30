@@ -130,6 +130,13 @@ Küsimuse kaupa:
 - **Tulemus:** sellel kujul profiilid ei erinenud. v3 ristviited ei kahjustanud, nagu otsingukatseski.
 - **v39 peal** (profiil v3, prompt 19): 5/6 (parandatud 6/6); täpsete paragrahvinumbritega 6/6 (ADR-056). LasteKS § 27¹ jõudis mõlemas tõenditesse.
 
+### Parandus 30.09: ristviidete ruum lõpukontrollis
+
+- Otsingu lõpukontroll võrdles kogu konteksti piiriga „seemnete eelarve + sõltuvuste ruum“ ega arvestanud ristviidete lisaruumi (3000 tokenit).
+- Kui profiili v3 ristviited viisid konteksti üle 10 000 tokeni, katkes kogu pööre veaga `dependency_context_budget_exceeded`. Enne seda jäi kaartide sõltuvuskontekst välja.
+- Leitud mälukataloogi 12 asjaoluga esimeses pöördes. Otsingukatse ei näinud seda, sest haru D-l pole semantilist graafi.
+- Nüüd sisaldab piir laienduse ruumi, kui naaber või ristviide tegelikult lisati. Test kordab juhtumit profiiliga v3.
+
 ## Piirid
 
 - Ainult ühe akti sees; dokumentidevahelist viidet D ei loe.
