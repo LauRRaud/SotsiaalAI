@@ -17,6 +17,9 @@ const { values } = parseArgs({ options: { scenarios: { type: 'string', default: 
   only: { type: 'string' }, 'max-usd': { type: 'string', default: '1.5' }, 'dry-run': { type: 'boolean', default: false },
   // --stream: request the answer as a stream, as the chat does, so the first visible text is measured (Codex 7.8).
   stream: { type: 'boolean', default: false },
+  // --warm: verify the knowledge sources before the first conversation, as the chat server does at its start (ADR-033),
+  // so the search times are a warm server's and not this new process's (Codex 7.8).
+  warm: { type: 'boolean', default: false },
   legal: { type: 'string', default: 'docs/rag-v2/legal-acts-in-index.json' } } });
 const catalogue = JSON.parse(await fs.readFile(values.scenarios, 'utf8'));
 const problems = validateCatalogue(catalogue);
@@ -45,6 +48,19 @@ const plan = JSON.parse(await fs.readFile(process.env.M4_PILOT_CONFIG, 'utf8'));
 const userId = plan.users[0];
 const readConfig = options => readPilotConfig(userId, options);
 const config = await readConfig({ purpose: 'execute' });
+if (values.warm) {
+  const { processCatalog } = await import('../lib/rag-v2/search/postgres.js');
+  const { unifiedDirectory } = await import('../lib/rag-v2/search/unified.js');
+  const postgres = processCatalog(process.env.RAG_V2_POSTGRES_URL), generation = await postgres.active(config.tenant);
+  const documents = Object.keys(plan.documents).filter(doc => generation.snapshot.documents[doc]?.version_id === plan.documents[doc]);
+  const groups = unifiedDirectory(await postgres.retrievalDirectory(config.tenant, generation, documents));
+  const national = groups.nationalLaw.map(row => row.document_id), first = new Set(national);
+  const knowledge = [...national, ...groups.knowledge.map(row => row.document_id).filter(doc => !first.has(doc))], started = performance.now();
+  await postgres.warm(config.tenant, generation.id, knowledge);
+  // The server's own warm-up keeps this mark per process and generation; set, the first turn does not start it again.
+  (globalThis[Symbol.for('sotsiaalai.rag-v2.warming')] ||= new Set()).add(generation.id);
+  console.error(JSON.stringify({ warmed: knowledge.length, seconds: Math.round((performance.now() - started) / 1000) }));
+}
 const service = new PilotService({ store: new PilotStore(prisma), readConfig, adapters: runtimeAdapters(readConfig, userId, municipalDirectoryAdapter(prisma)) });
 const legal = new Map(JSON.parse(await fs.readFile(values.legal, 'utf8')).acts.filter(act => !act.regions.length)
   .map(act => [act.document_id, { from: act.index_from, to: act.index_to }]));
