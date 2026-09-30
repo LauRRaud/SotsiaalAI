@@ -97,7 +97,10 @@ Mõlemad jooksud tehti `eval-full` koopiast, mille `lib` on sama mis tootmises (
   - **Rerank'i arutlus on juba `low` tasemel mediaanis 0 tokenit.** Taseme `none` (mudel toetab `none`, `low`, `medium`, `high`, `xhigh`, `max`; `minimal` mitte) võit oleks väike, seega seda katset ei tehtud. Rerank'i kutse aja teeb 17 000 tokeni sisend ja vastus.
   - Otsinguplaan (~2,2 s, 105 arutlustokenit) loeb, kelle koht on nimetatud; selle taset ei vähendata ilma kohtade kataloogideta mõõtmata.
   - Soe protsess lühendas otsingut umbes 0,35 s. Tootmisserver on soe, seega kiiruse mõõtmine käib edaspidi `--warm`-iga.
-  - **Kasutamata sisend:** oleku kontekstis oli kõigi 79 omavalitsuse loend (~1730 tokenit), mida olek v4/v5 enam ei kasuta. Selle eemaldamine on eraldi muudatus ja mõõtmine (dialoogi prompt 20).
+  - **Kasutamata sisend:** oleku kontekstis oli kõigi 79 omavalitsuse loend (~1730 tokenit), mida olek v4/v5 enam ei kasuta. **Dialoogi prompt 20** saadab mudelile ainult kuupäeva (13 tokenit); loend jääb serveri kontrollideks alles.
+    - Mõõtmine aktiveerimata plaanidega (tootmiskood / prompt 20), üks jooks kummalgi: mälu 7/8 / 8/8, piirkond 11/11 / 11/11, faktide elutsükkel 5/6 / 6/6.
+    - Tootmiskoodi vead polnud prompt'i omad: üks oli #271 parandatud eelarveviga, teine juhuslik tekstisisene viide, mille tõttu vastus lükati tagasi.
+    - Vastuse sisend vähenes pöörde kohta umbes 1700 tokenit (mälukataloogis mediaan 22 370 → 20 989). Aja mõju sellise valimiga ei eristu, sest vastuse arutluse kõikumine on suurem.
 
 ## Järeldus
 

@@ -107,7 +107,8 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 - **Mõõtmine v39 peal** (aktiveerimata plaanid, tootmiskood koos prompt 19-ga; vastus voogesitatud): rasked tingimused 9/9, teine kataloog 5/6 (parandatud 6/6), kataloog v4 39/40 (kuuldeaparaadi vastus ütles „piirmäär“, mitte „piirhind“; summad õiged). Täpsete numbritega 9/9, 6/6 ja 40/40.
 - **Kiirus (Codex 7.8, [ADR-048](../rag-v2/adr-048-answer-speed.md) jaotis 5):** hindaja salvestab iga pöörde etapiajad ja vastuse sisendi osad (`--stream`, `--warm`, `observed.stages`, `scripts/rag-v2-stage-timings.mjs`).
   - Soe protsess, kataloog v4: esimene nähtav tekst mediaanis 14,2 s = plaan 2,3 + embedding 0,5 + otsing 3,9 (rerank'i mudel 1,6) + vastuse arutlus kuni esimese tekstini 6,4 s.
-  - Rerank'i arutlus on juba `low` tasemel mediaanis 0 tokenit, seega `none` ei annaks midagi. Oleku kontekstis oli ~1730 tokenit kasutamata omavalitsuste loendit: selle eemaldamine (prompt 20) on mõõtmisel.
+  - Rerank'i arutlus on juba `low` tasemel mediaanis 0 tokenit, seega `none` ei annaks midagi. Dialoogi prompt 20 jätab oleku kontekstist välja kasutamata omavalitsuste loendi (~1700 tokenit pöörde kohta); kataloogid olid sama head (mälu 8/8, piirkond 11/11, faktid 6/6).
+  - #271 parandas profiili v3 vea: kui ristviited viisid konteksti üle 10 000 tokeni, katkes kogu pööre (`dependency_context_budget_exceeded`).
 - **Katvus v39 peal 9/10:** Harku lapsehoiu küsimusel valis rerank tühja loendi (kaheksast jooksust kahel, ka v38 peal). Määrav lause on koduse lapse toetuse sättes, mis nimetab lapsehoiutoetust ainult välistusena; prompti selle pärast ei muudetud.
 - **Avatud:**
   - 01.10: kontrollida, et vastused tsiteerivad uut SHS-i ja uut abivahendite määrust (piirhinnad 500 ja 850 eurot);
