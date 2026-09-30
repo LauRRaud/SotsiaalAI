@@ -45,10 +45,12 @@ nummerdatud kasutajapöörded + eelmise oleku inimesed
   - Kontrollitud plaanikoht katab ainult oma tsitaadi sees olevad mainimised. Teise inimese sama piirkond ega `other` mainimine ei kata sama sõnumi teist mainimist (N2).
   - Katmata mainimine kuulub:
     - kasutajale, kui osalause on ainsuse esimeses isikus („Ma ei ela enam Kose vallas“, „Я больше не живу в Козе“). Eituse loeb server kasutaja `not`-iks (`server_read_negation`), nii et kolimine hoiab uue koha ja välistab vana;
-    - kasutajale ka siis, kui osalause on ainsuse esimeses isikus elukohaütlus ilma eituseta (`server_read_residence`: „Olen Harkus.“, „Я живу в Харку“; mõõdetud 30.09, plaan jättis koha loetlemata). Elukohaks loeb server ainult elamisverbi koha ees („elan“, „живу“, „live“) või „olen/asun“, kui koht lõpetab osalause; „Olen Harkus tööl“ ei ole kodu;
+    - kasutajale ka siis, kui osalause on ainsuse esimeses isikus elukohaütlus ilma eituseta (`server_read_residence`: „Olen Harkus.“, „Я живу в Харку“; mõõdetud 30.09, plaan jättis koha loetlemata). Elukohaks loeb server elamisverbi samas osalauses enne kohta („elan“, „живу“, „live“; ka „tegelikult elab ema Harkus“, kus alus on verbi ja koha vahel) või „olen/asun“, kui koht lõpetab osalause. „Olen Harkus tööl“ ei ole kodu. Mineviku vorm („elasin“, „elanud“, „жила“, „lived“) ei ole praegune kodu; „ei ela ema Harkus“ on eitus;
     - kasutajale ja sihtisikule, kui osalause on mitmuse esimeses isikus elukohaütlus („Me elame Tartu linnas“). Sihtisik saab koha ainult siis, kui tal kohta veel pole; teadaolevat kohta see ei asenda. Sama kehtib, kui plaan andis sellise osalause ainult kasutajale (`shared_clause`; kataloogi v4 juhtum „Naabri väike laps … Me elame Tartu linnas“);
     - ühele teadaolevale inimesele, kui osalause nimetab teda („Ema elab Kose vallas“).
-  - Muul juhul on mainimise inimene ebaselge. Sihtisik, eituse korral ka kõik selle koha praegused elanikud, jääb ilma kohata (`place_not_attributed`), välja arvatud see, kes sai samas sõnumis kontrollitud uue koha.
+  - Osalause, mis nimetab kedagi, keda vestlus ei tunne, või mitut inimest (isikunimisõnad nagu „naabri“, „sõber“, „соседка“), on nende kohta. See ei otsusta midagi sihtisiku ega kellegi teise jaoks („Naabri omavalitsus on Kose vald“, mõõdetud 30.09).
+  - Muul juhul (osalause ei nimeta kedagi) on mainimise inimene ebaselge. Sihtisik, eituse korral ka kõik selle koha praegused elanikud, jääb ilma kohata (`place_not_attributed`).
+  - Kes sai samas sõnumis uue kodu, plaanist või serveri lugemisest, hoiab selle teise osalause mainimise vastu („Ema elab Tartus, aga töötab Harkus“).
   - Muu jaatav katmata mainimine, mis pole elukohaütlus, annab oma inimesele lahendamata koha: plaan ei kinnitanud seda elukohaks.
   - Kellegi koht ei muutu ainult seetõttu, et teisel inimesel oli sama koht (N1: kasutaja kolib Harkusse, ema jääb Kosesse).
   - **Sihtisik** (`regionTarget`) on plaani nimetatud isik. Kui plaan ütleb `unclear`, on see ainus teadaolev inimene, keda sõnum nimetab, eeldusel et sõnum pole ainsuse esimeses isikus („Ja ema, kas tema saaks sotsiaaltransporti?“, mõõdetud 30.09). Selle puudumisel on see vestluse fookus, siis kasutaja. Otsing, katmata mainimised ja oleku fookus kasutavad sama inimest.
@@ -145,6 +147,34 @@ nummerdatud kasutajapöörded + eelmise oleku inimesed
 - Codexi 30.09 sond ([`rag-v2-negation-review-2026-09-30-probes.mjs`](../audits/rag-v2-negation-review-2026-09-30-probes.mjs), sama `checkedPlaces` → `searchScope` rada): kõik üheksa juhtu annavad soovitud tulemuse. N1: kasutaja Harku, ema Kose. N2: kasutaja eitatud, ema Kose, otsing `null`. N3: kasutaja eitatud, Harku jääb töökohaks. Sondi assert'id kirjeldavad vana käitumist ja kukuvad nüüd teadlikult läbi.
 - Codexi varasem sond ([`rag-v2-state-v5-review-2026-09-29-probes.mjs`](../audits/rag-v2-state-v5-review-2026-09-29-probes.mjs)): V2, V3 ja V4 ei kordu. V1 sond annab otsingule tühjad kohad `checkedPlaces`-ist mööda, mida teenus ei tee. Teenuse enda teega (`checkedPlaces` ja siis `searchScope`) on otsing `null`, olek `unresolved` ja järgmine pööre `null`.
 
-### Tulemused serveris, 29.09.2026
+### Tulemused serveris, 29.–30.09.2026
 
-(täidetakse mõõtmise järel)
+Aktiveerimata plaanid iseseisvas `eval-full` koopias, korpus v38, profiil v1.
+
+- **x** (`m4-eval-full-20260929x`): main (olek v4) koos uue hindaja ja kataloogidega.
+- **y** (`…20260929y`): esimene v5.
+- **c** (`…20260930c`) ja **d** (`…20260930d`, commit `3d976b93a`): V1–V4 ja N1–N3 järel.
+- **f** (`…20260930f`, commit `e83966dd`): lõplik.
+
+| Kataloog | x (v4) | y (esimene v5) | c | d | f (lõplik) |
+|---|---:|---:|---:|---:|---:|
+| `region-state-1` (11) | 6/11 | 9/11 | 11/11, 11/11 | 11/11, 11/11 | **11/11, 11/11** |
+| `fact-lifecycle-1` (6) | 5/6 (vastus) | 6/6 | 6/6 | 5/6 (vastus) | — |
+| `two-people-1` (8) | 8/8 (ADR-051) | 6/8 | 6/8 | 8/8, 8/8 | **8/8** |
+| `two-people-2` (5) | 5/5 (ADR-051) | 2/5 | 5/5 | 5/5 | **5/5** |
+| `memory-1` (8) | 8/8 (prompt 17) | 4/8 | 8/8 | 7/8 (vastus) | 7/8 (vastus) |
+| Kataloog v4 (40) | 40/40 (ADR-054) | 38/40 | 39/40 (vastus) | 39/40 (olek) | **40/40** |
+| Katvuskataloog (10) | 10/10 | — | 10/10 | 9/10 (otsing) | — |
+| Lisade kataloog (4) | 4/4 | — | 4/4 | 4/4 | — |
+| Kulukataloog (5) | 5/5 | — | 5/5 | 5/5 | — |
+
+- **Vahejooksud leidsid ja parandasid:**
+  - y: plaan loetles loetud sõnumi koha uuesti ja v5 kustutas teadaoleva koha (ema Harku). Kahe inimese kataloogid 6/8 ja 2/5, mälu 4/8;
+  - c: plaan tsiteeris naabri osalause ilma kohata;
+  - d: „tegelikult elab ema Harkus“;
+  - e (`…20260930e`): „Elasin Kose vallas, aga enam ma seal ei ela“ ja „Naabri omavalitsus on Kose vald“.
+
+  Iga parandus on eespool reeglina kirjas ja ühiktestis.
+- **„Vastus“ tähendab:** vastus ei nimetanud parandatud summat („Vabandust, võlgu on hoopis 5000 eurot“ → vastus räägib võlanõustamisest ilma summata). Olekukontrollid läbisid. Sama viga oli v4 baasis (x) ja varem prompt 17-ga umbes kolmandikus jooksudest. See on vastuse sõnastuse küsimus, mitte olekuviga (avatud S1.0-s).
+- **d „otsing“:** Harku lapsehoiu toetuse määrav fraas ei jõudnud tõenditesse, kuigi piirkond oli õige. c-s ja varem leiti see. See on otsingu ja reranki kõikumine.
+- **Mõõtmine ei loe** plaani tsiteeritud teksti. Jooks salvestab ainult kontrollitud kohad (`observed.places`), sest vestlused kustutatakse pärast jooksu.
