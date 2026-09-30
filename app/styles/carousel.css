@@ -562,6 +562,7 @@
   height: clamp(2rem, calc(var(--desk-card-h) * 0.43), 4.7rem);
 }
 .gc[data-desk="1"] .gc-icon svg * {
+  --icon-stroke: 1.5; /* brändi S sobitab end sellega (CardIcons BrandSIcon) */
   stroke-width: calc(1.5 / var(--icon-scale, 1));
 }
 /* Silt on kaardi PÕHISISU, mitte allkiri: 288 px laiusel plaadil oli
@@ -1015,6 +1016,7 @@ html:not([data-contrast="hc"])[data-display-mode="fullscreen"] .gc-card-surface:
 .gc-icon svg * {
   /* --icon-scale: vähendatud rühm (CardIcons ScaledGroup) saab sama
      nähtava joone mis naabrid. */
+  --icon-stroke: 1.25; /* brändi S sobitab end sellega (CardIcons BrandSIcon) */
   stroke-width: calc(1.25 / var(--icon-scale, 1));
 }
 .gc-item[data-center="0"] .gc-icon {
@@ -1684,6 +1686,7 @@ html[data-reduce-motion="1"] .gc-shortcut-menu > * {
      pehmendus ise on ideaalist 2–4% kaugusel (mõõdetud 8× viite vastu),
      seega aitab ainult paksem joon: kõrvalekalle 6.0 → 5.2 (125%) ja
      7.8 → 7.0 (100%). Sama joon on ülemisel paneelil (room.css). */
+  --icon-stroke: 1.75; /* brändi S sobitab end sellega (CardIcons BrandSIcon) */
   stroke-width: calc(1.75 / var(--icon-scale, 1));
 }
 .gc-shortcut-mark {

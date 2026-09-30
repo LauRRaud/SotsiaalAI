@@ -3,6 +3,7 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import { Renderer, Program, Mesh, Triangle, Color } from "ogl";
 import { SPECULAR_FRAG, SPECULAR_VERT } from "./specularShader";
+import { specularThemeColors } from "./specularTheme";
 import "./SpecularButton.css";
 
 const PAD = 20;
@@ -16,8 +17,9 @@ const SpecularButton = forwardRef(function SpecularButton({
   tintOpacity = 0,
   blur = 0,
   textColor = "#f5f5f5",
-  lineColor = "#ffffff",
-  baseColor = "#525252",
+  // Vaikimisi teemast (tokens.css --specular-line/--specular-base).
+  lineColor = null,
+  baseColor = null,
   intensity = 1,
   shineSize = 10,
   shineFade = 40,
@@ -152,8 +154,9 @@ const SpecularButton = forwardRef(function SpecularButton({
       const brightTarget = p.autoAnimate ? 1 : proximityT;
       bright += (brightTarget - bright) * (1 - Math.exp(-dt * 8));
 
-      lineC.set(p.lineColor);
-      baseC.set(p.baseColor);
+      const themeColors = specularThemeColors(now);
+      lineC.set(p.lineColor || themeColors.line);
+      baseC.set(p.baseColor || themeColors.base);
       program.uniforms.uAngle.value = angle;
       program.uniforms.uRadius.value = Math.min(p.radius, Math.min(sizeRef.w, sizeRef.h) / 2) * dpr;
       program.uniforms.uLineColor.value = [lineC.r, lineC.g, lineC.b];

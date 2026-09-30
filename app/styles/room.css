@@ -990,6 +990,7 @@ html[data-contrast="hc"] .room-quickbar {
    kaared ei astenduks 125% ekraanil). Kehtib ka kaamera riba nuppudele. */
 .glass-iconbtn.room-quick-btn svg *,
 .hand-cam-btn svg * {
+  --icon-stroke: 1.75;
   stroke-width: calc(1.75 / var(--icon-scale, 1));
 }
 /* Hover = alumise kiirmenüü nupp (.gc-shortcut, carousel.css): ainult

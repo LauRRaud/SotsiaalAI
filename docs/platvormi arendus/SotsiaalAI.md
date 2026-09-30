@@ -113,6 +113,13 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
   - kontaktid pärast 04.10;
   - kiirus päris vestluses.
 
+**30.09 õhtu, heleda teema järelparandused (Opus):** ligipääsetavuse lennu dialoog jääb
+ilma taustata (tuba paistab); märkeruudud heledas tumeda raami ja musta täitega; nuppude ja
+väljade servaläige ning kursori helk tulevad teemast (`--specular-line`, heledas tume — valge
+helk kustutas halli serva); ülemise paneeli hover = kiirmenüü; S-ikoon naabritega sama joonega
+(`--icon-stroke`); heledas tume kursor; F11-st väljudes kadunud kursor parandatud
+(LiquidCursor jättis tühistatud kaadri viite alles); Kontakt = Uuenda PIN kaart, ristita.
+
 **30.09 hele, tume ja automaatne teema uute toapiltidega (Opus).**
 Omaniku uued taustad on Real-ESRGAN 2×-ga `tuba-paev-2x.webp` / `tuba-ohtu-2x.webp`
 (3344×1882) + mullide `*-haga.webp`. Ligipääsetavuse lehel on Päev (päevane tuba, hele liides),

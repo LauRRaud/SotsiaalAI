@@ -481,6 +481,16 @@
       top: 50%;
     }
   }
+  /* Kontakt = Uuenda PIN aken (omanik 30.09): kitsas aknas läheb PIN-kaart
+     (panel.css kompaktne paneel, ≤768 px) laiemaks ja suhe 0,78 — sama
+     reegel siia, et kontaktikaart oleks igas aknasuuruses sama kujuga. */
+  @media (max-width: 768px) {
+    .glass-modal-shell.contact-card-shell {
+      width: min(88vw, 22.5rem);
+      aspect-ratio: 0.78;
+      max-height: min(var(--overlay-available-block-size), 34rem);
+    }
+  }
   /* Läige — KOLMAS kiht, mis kaardil on ja siin puudus (omanik 26.07:
      „kontakti kaart tundub ikka teine kui peaks olema"). Materjal ja serv
      olid juba tokenist, aga ülaserva läiketa nägi kaart matim välja kui

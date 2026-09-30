@@ -61,6 +61,20 @@ html.theme-light:not(:has(.room[data-power="standby"])) .gc-shortcut[data-on="1"
   background: rgba(0, 0, 0, 0.06);
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.14);
 }
+/* Ülemise peidetud paneeli nupud = kiirmenüü nupud (room.css, omanik 28.09
+   ja 30.09): sama tume hover-täide, sama sildi serv. */
+html.theme-light:not(:has(.room[data-power="standby"])) .glass-iconbtn.room-quick-btn:is(:hover, :focus-visible) {
+  background-color: rgba(0, 0, 0, 0.055);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .glass-iconbtn.room-quick-btn:active {
+  background-color: rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1.5px 3px rgba(0, 0, 0, 0.12);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .room-quick-tip {
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.08),
+    inset 0 1px rgba(255, 255, 255, 0.6);
+}
 html.theme-light:not(:has(.room[data-power="standby"])) .gc-shortcut-divider {
   background: rgba(0, 0, 0, 0.14);
 }
@@ -71,10 +85,75 @@ html.theme-light:not(:has(.room[data-power="standby"])) .gc-dot[data-on="1"] {
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
 }
 
+/* ---------- Kursor (components/brand/LiquidCursor.jsx, base.css) ----------
+   Tumedas teemas hele klaasnool (valge täide, hele serv ja kuma) — heledal
+   pinnal nähtamatu (omanik 30.09: „ma ei näe hiirt helereziimis"). Heledas:
+   suitsuklaas tumeda servaga ja õhuke valge ääris, et nool paistaks ka
+   tumedal puidul. SVG atribuudid (fill/stroke) kirjutab CSS üle. Loori ja
+   kõnni ajal (tuled kustus) jääb hele nool. */
+html.theme-light:not(:has(.room[data-power="standby"])) .liquid-cursor-svg {
+  filter:
+    drop-shadow(0 0 0.8px rgba(255, 255, 255, 0.9))
+    drop-shadow(0 1px 1.5px rgba(0, 0, 0, 0.28));
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .liquid-cursor-svg > path:first-of-type {
+  fill: rgba(28, 28, 28, 0.42);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .liquid-cursor-svg .lc-glow {
+  fill: #2a2a2a;
+  opacity: 0.3;
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .liquid-cursor-svg .lc-rim {
+  stroke: #161616;
+  stroke-opacity: 0.88;
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .liquid-cursor.is-active .liquid-cursor-svg {
+  filter:
+    drop-shadow(0 0 1px rgba(255, 255, 255, 0.95))
+    drop-shadow(0 1.25px 1.5px rgba(0, 0, 0, 0.32));
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .liquid-cursor.is-active .lc-glow {
+  fill: #1c1c1c;
+  opacity: 0.42;
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .liquid-cursor.is-active .lc-rim {
+  stroke: #0e0e0e;
+  stroke-opacity: 0.95;
+}
+
 /* Süttimise S-vahepala on valkjas SVG (#f4f1ec) keskmise kaardi peal —
    heledal kaardil tumedaks, nagu kaartide ikoonid. */
 html.theme-light:not(:has(.room[data-power="standby"])) .room-intro-sai-mono img {
   filter: brightness(0.1);
+}
+
+/* ---------- Märkeruudud kogu platvormil (omanik 30.09) ----------
+   Natiivne ruut (glass.css) ja OptionCard'i indikaator (panel.css) on SAMA
+   kast. Tumedas on ta hele raam heledal alfal — heledal pinnal peaaegu
+   nähtamatu. Heledas: tume raam valgel, valituna must täide valge linnukesega. */
+html.theme-light:not(:has(.room[data-power="standby"])) input[type="checkbox"]:not(.sr-only),
+html.theme-light:not(:has(.room[data-power="standby"])) label[data-control-type] > span[aria-hidden="true"] {
+  border-color: rgba(21, 21, 21, 0.42);
+  background-color: rgba(255, 255, 255, 0.72);
+  box-shadow: inset 0 1px 1.5px rgba(0, 0, 0, 0.08);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) input[type="checkbox"]:not(.sr-only):hover,
+html.theme-light:not(:has(.room[data-power="standby"])) label[data-control-type]:hover > span[aria-hidden="true"] {
+  border-color: rgba(21, 21, 21, 0.64);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) input[type="checkbox"]:not(.sr-only):checked,
+html.theme-light:not(:has(.room[data-power="standby"])) input[type="checkbox"]:not(.sr-only):indeterminate,
+html.theme-light:not(:has(.room[data-power="standby"])) label[data-control-type][data-checked="true"] > span[aria-hidden="true"] {
+  border-color: #1c1c1c;
+  background-color: #1c1c1c;
+  box-shadow: none;
+  color: #ffffff;
+}
+html.theme-light:not(:has(.room[data-power="standby"])) input[type="checkbox"]:not(.sr-only):checked {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-8'/%3E%3C/svg%3E");
+}
+html.theme-light:not(:has(.room[data-power="standby"])) input[type="checkbox"]:not(.sr-only):indeterminate {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.8' stroke-linecap='round'%3E%3Cpath d='M6 12h12'/%3E%3C/svg%3E");
 }
 
 /* ---------- Alalehed ---------- */
@@ -329,14 +408,14 @@ html.theme-light:not(:has(.room[data-power="standby"])) .covision-card {
 }
 
 /* ---------- Ligipääsetavus, sisselogimine, paigaldus ---------- */
-/* Tume loor jääb ainult esimesele külastusele enne ⏻ (siis on tuba
-   niikuinii pime ja heledad tokenid ei kehti); tuledega toas on hele. */
+/* Keele ja ligipääsetavuse lennu taga on tuba härmatise taga näha, nagu
+   tumedas teemas (seal tume loor 0,45). Hele loor on õhem, sest päevane
+   tuba on ise hele: 0,4 koos hägu ja heledate valikutega muutis tausta
+   peaaegu valgeks (omanik 30.09). Dialoog ise on lennus täisekraan ilma
+   taustata (a11y-flight.css) — sellele heledat klaasi EI panda. Tume loor
+   jääb esimesele külastusele enne ⏻ (siis heledad tokenid ei kehti). */
 html.theme-light:not(:has(.room[data-power="standby"])) :is(div[role="presentation"][aria-hidden="true"].a11f-veil, .a11f-veil[role="presentation"][aria-hidden="true"]) {
-  background: rgba(236, 232, 227, 0.4);
-}
-html.theme-light:not(:has(.room[data-power="standby"])) [role="dialog"][aria-labelledby="a11y-title"] {
-  background: linear-gradient(165deg, rgba(252, 250, 247, 0.72) 0%, rgba(247, 244, 240, 0.76) 55%, rgba(243, 240, 236, 0.8) 100%);
-  border-color: rgba(0, 0, 0, 0.1);
+  background: rgba(236, 232, 227, 0.16);
 }
 html.theme-light:not(:has(.room[data-power="standby"]))[data-reduce-transparency="1"] .a11f-ambient-choice {
   background: #f1eeea;
