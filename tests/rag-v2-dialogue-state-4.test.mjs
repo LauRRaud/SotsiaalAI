@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mergeFactState, activeView, FACT_LIMITS, FACT_STATE_VERSION } from '../lib/rag-v2/pilot/dialogue-state-4.js';
+import { mergeFactState, activeView, FACT_LIMITS, FACT_STATE_VERSION, FACT_STATE_INSTRUCTIONS } from '../lib/rag-v2/pilot/dialogue-state-4.js';
 import { projectDialogueAnswer, previousStateFor, stateAudit } from '../lib/rag-v2/pilot/dialogue-state.js';
 import { checkedPlaces, nextPeople, nextFocus, placeScope } from '../lib/rag-v2/pilot/person-places.js';
 
@@ -149,4 +149,9 @@ test('after a turn whose state was not kept, the places of its message still rea
     [{ turn: 1, text: 'Elan Kose vallas.' }, { turn: 2, text: 'Ma ei ela enam Kose vallas.' }], directory, analyzer);
   assert.deepEqual(left.map(place => [place.relation, place.turn]), [['not', 2], ['not', 2]]);
   assert.deepEqual(await scope(left, 'Ma ei ela enam Kose vallas.'), { state: 'region_required', region: null, person: 'user' });
+});
+
+test('prompt 19: one circumstance per fact, so a correction replaces only what it concerns (measured 30.09: a whole-message fact lost "kaks last")', () => {
+  assert.match(FACT_STATE_INSTRUCTIONS, /one circumstance per fact with the clause that states it/);
+  assert.match(FACT_STATE_INSTRUCTIONS, /never one fact for the whole message/);
 });
