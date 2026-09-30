@@ -16,22 +16,25 @@ before(() => {
 });
 after(() => { globalThis.fetch = savedFetch; net.Socket.prototype.connect = savedConnect; assert.equal(network, 0); });
 
-// A fictional act of five sections; § 1 names an exception in § 4, which the search does not rank.
-function fixture() {
+// A fictional act of five sections; § 1 names an exception in § 4, which the search does not rank. With numbers, the
+// sections are § 1, § 1¹, § 2, § 11 and § 12, and § 1 names "§ 11": ambiguous (§ 1¹ that lost its superscript?) unless the
+// version keeps its superscripts (ADR-056).
+function fixture({ numbers = null, versionFields = {} } = {}) {
   const tenant = 'graph-experiment', doc = 'act', version = 'act-v1', embedding = new MockEmbedding(), config = searchConfig(embedding.config);
-  const texts = ['Toetust saab täisealine isik, välja arvatud käesoleva seaduse § 4 lõikes 2 nimetatud isik.', 'Toetus makstakse kord kuus.',
+  const texts = [`Toetust saab täisealine isik, välja arvatud käesoleva seaduse § ${numbers ? '11' : '4'} lõikes 2 nimetatud isik.`, 'Toetus makstakse kord kuus.',
     'Taotlus esitatakse vallale.', '(1) Erandid. (2) Toetust ei saa isik, kes elab hooldekodus.', 'Seadus jõustub 1. jaanuaril.'];
+  const number = i => numbers ? numbers[i] : String(i + 1);
   const spans = texts.map((text, i) => ({ id: `s${i}`, tenant_id: tenant, document_version_id: version, pdf_page: 1, start: i * 200, source_text: text }));
   const chunks = texts.map((text, i) => {
-    const heading = `Väljamõeldud seadus > § ${i + 1}. Jagu ${i + 1}`;
+    const heading = `Väljamõeldud seadus > § ${number(i)}. Jagu ${i + 1}`;
     return { id: `c${i}`, ordinal: i, parent_section_id: `section${i}`, span_ids: [`s${i}`], pdf_pages: [1], source_text: text,
       retrieval_text: `${heading}\n\n${text}`, retrieval_mapping: { prefix_length: heading.length } };
   });
-  const bundle = { tenant_id: tenant, version: { id: version, pdf_hash: 'a'.repeat(64) },
+  const bundle = { tenant_id: tenant, version: { id: version, pdf_hash: 'a'.repeat(64), ...versionFields },
     document: { id: doc, rights: { access: 'local_private', usage: 'development_only' }, search_aids: {}, fields: {
       title: { value: 'Väljamõeldud seadus' }, authors: { value: [] }, publication_date: { value: null } } },
     spans, chunks, report: { warnings: [] },
-    sections: chunks.map((c, i) => ({ id: `section${i}`, parent_id: null, title: `§ ${i + 1}. Jagu ${i + 1}`, span_ids: [`s${i}`] })),
+    sections: chunks.map((c, i) => ({ id: `section${i}`, parent_id: null, title: `§ ${number(i)}. Jagu ${i + 1}`, span_ids: [`s${i}`] })),
     relations: chunks.flatMap(c => [{ id: `belongs-${c.id}`, type: 'BELONGS_TO', from_id: c.id, to_id: doc },
       { id: `parent-${c.id}`, type: 'PARENT_SECTION', from_id: c.id, to_id: c.parent_section_id }]) };
   const documents = { [doc]: { version_id: version } }, snapshot = { source_generation: 'source-v1', documents, snapshot_hash: hash(stable(documents)) };
@@ -54,6 +57,15 @@ test('graph experiment arm D adds the start of the section an own-act cross-refe
   const added = references.evidence.filter(entry => entry.selection.reason?.type === 'cross_reference');
   assert.deepEqual(added.map(entry => [entry.selection.reason.section, entry.source_text.slice(0, 10)]), [['4', '(1) Erandi']]);
   assert.deepEqual(references.measurements.cross_references, { candidates: 1, additions: 1, sections: ['4'] });
+});
+
+test('arm D follows a plain number exactly when the version keeps its superscripts (ADR-056), and leaves it out otherwise', async () => {
+  const numbers = ['1', '1¹', '2', '11', '12'];
+  const kept = fixture({ numbers, versionFields: { source_format: 'xml', processing_config: { normalization: 'source-structure-v28' } } });
+  const added = (await kept.run('D')).evidence.filter(entry => entry.selection.reason?.type === 'cross_reference');
+  assert.deepEqual(added.map(entry => [entry.selection.reason.section, entry.source_text.slice(0, 10)]), [['11', '(1) Erandi']]);
+  const older = await fixture({ numbers, versionFields: { source_format: 'xml', processing_config: { normalization: 'source-structure-v27' } } }).run('D');
+  assert.deepEqual(older.measurements.cross_references, { candidates: 0, additions: 0, sections: [] });
 });
 
 test('graph experiment arms share one extra room; the chat profiles are unchanged', () => {

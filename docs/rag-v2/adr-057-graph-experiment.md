@@ -110,6 +110,25 @@ Küsimuse kaupa:
 - v1 jättis mõlemas jooksus kõigis kolmes § 72 lõike 2 juhtumis määrava fraasi tõenditest välja, ja vastus ei nimetanud tingimust. v3 leidis ja kohaldas selle igas jooksus. Hooldekodu välistuse (§ 132 lg 7) leidsid mõlemad: kaardid on mõlemas profiilis.
 - \* v3 jooksu 1 ainus viga oli kataloogi oma: vastus ütles „Paigutamise otsustab kohus“, aga eelnevalt kirjutatud muster oli `/kohtu/`. Tulemust ei muudetud. Muster on pärast jooksu laiendatud `/kohus|kohtu/` ja see on kataloogis kirjas.
 - **Otsus:** vestlus läheb profiilile v3 koos korpuse v39 uue plaaniga (ADR-056).
+- **Tehtud 30.09 09:46:** plaan `m4-corpus-chat-20260930a.json`. v39 peal andis sama koodiga aktiveerimata plaan (koos prompt 19-ga) raskete tingimuste kataloogis 9/9 ja kataloogis v4 39/40 (tulemused ADR-056-s).
+
+### Teine kataloog vestluse täisahelas
+
+- `tests/evaluation/dialogue/scenarios-hard-conditions-2.json`: kuus küsimust `hard-conditions-2.json`-ist vestlustena, kirjutatud enne jooksu.
+- Mõõdetud 30.09, korpus v38, samad plaanid (v1 ja v3), kaks jooksu kummalegi.
+
+| Jooks | v1 | v3 |
+|---|---:|---:|
+| 1 | 4/6 (parandatud 6/6) | 4/6 (parandatud 6/6) |
+| 2 | 3/6 (parandatud 6/6) | 3/6 (parandatud 5/6) |
+
+- **Otsingukatse ainus möödalask leiti:** LasteKS § 27¹ oli liidetud järjestuses 22. kohal, rerank'i 30 kandidaadi hulgas. Rerank valis Lastekaitseseaduse igas jooksus, ja § 27¹ lõik jõudis tõenditesse kolmes jooksus neljast. Neljandas (v3, jooks 2) tuli seadusest teine lõik, aga vastus andis sama põhimõtte juhendi põhjal („Edasta ainult lapse abistamiseks vajalikku … teavet“).
+- **Parandatud arv:** kolm eelnevalt kirjutatud mustrit ei tundnud õiget vastust ära. Seetõttu on need pärast jooksu laiendatud, ja see on kataloogis kirjas; hinnatud arvud jäävad tabelisse:
+  - „hiljemalt selle kuu viimasel tööpäeval“ (muster oli `viimase(ks)? tööpäeva`);
+  - „palk jäetakse kahel kuul täielikult arvestusest välja“ ja v39 jooksus „ei võeta su palka … üldse arvesse“ (muster oli `100 ?(%|protsent)`);
+  - „Edasta ainult lapse õiguste kaitseks vajalik teave“.
+- **Tulemus:** sellel kujul profiilid ei erinenud. v3 ristviited ei kahjustanud, nagu otsingukatseski.
+- **v39 peal** (profiil v3, prompt 19): 5/6 (parandatud 6/6); täpsete paragrahvinumbritega 6/6 (ADR-056). LasteKS § 27¹ jõudis mõlemas tõenditesse.
 
 ## Piirid
 

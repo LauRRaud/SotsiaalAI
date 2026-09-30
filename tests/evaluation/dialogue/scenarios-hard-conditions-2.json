@@ -1,6 +1,6 @@
 {
   "schema_version": "rag-v2/dialogue-eval-2",
-  "purpose": "ADR-057: the six questions of tests/evaluation/graph/hard-conditions-2.json in the whole chat (search plan, rerank, answer model), each its own conversation. No section the question is about names the deciding one: it is in a later section of the same act (SÜS § 35, LasteKS § 27¹) or a later subsection of a long section (SHS § 131 lg 9, § 133 lg 2¹); § 132 lg 1 is a control. The answer-free experiment found 5/6 in every arm and missed LasteKS § 27¹, which ranked 22nd in the fused list, inside the reranker's pool of 30. evidence_text: the deciding phrase reached the evidence; must: the answer applies the deciding condition. Written 30.09.2026 before any run. The phrases are in the versions in force on 30.09 (SHS RT 103062026023, SÜS RT 130122025036, LasteKS RT 131122024023) and from 01.10.",
+  "purpose": "ADR-057: the six questions of tests/evaluation/graph/hard-conditions-2.json in the whole chat (search plan, rerank, answer model), each its own conversation. No section the question is about names the deciding one: it is in a later section of the same act (SÜS § 35, LasteKS § 27¹) or a later subsection of a long section (SHS § 131 lg 9, § 133 lg 2¹); § 132 lg 1 is a control. The answer-free experiment found 5/6 in every arm and missed LasteKS § 27¹, which ranked 22nd in the fused list, inside the reranker's pool of 30. evidence_text: the deciding phrase reached the evidence; must: the answer applies the deciding condition. Written 30.09.2026 before any run. The phrases are in the versions in force on 30.09 (SHS RT 103062026023, SÜS RT 130122025036, LasteKS RT 131122024023) and from 01.10. Changed after the first runs (four on v38 and one on v39): three must patterns missed correct answers („viimasel tööpäeval“, „palk täielikult arvestusest välja“, „ei lähe töötasu arvestusse“ and, on v39, „ei võeta su palka … üldse arvesse“, „Edasta ainult lapse abistamiseks vajalikku“) and are wider; those runs keep their scored counts, with the corrected count beside them (ADR-057).",
   "expectation_help": {
     "evidence_text": "the deciding condition's exact phrase is in the evidence the answer was given",
     "must": "the answer states the deciding condition or its effect"
@@ -14,16 +14,17 @@
         "expect": { "evidence_text": ["Tagasinõude ettekirjutuse sundtäitmise aegumistähtaeg on seitse aastat"], "must": ["seitse aastat|7 aastat|seitsme aasta"] } } ] },
     { "id": "coach-reports-child", "title": "Treener teatab abivajavast lapsest", "source": "LasteKS § 27, § 27¹", "turns": [
       { "mode": "new", "text": "Olen treener ja märkasin, et üks laps vajab abi. Milliseid andmeid ma tohin tema kohta vallale edastada?",
-        "expect": { "evidence_text": ["edastades vähimas vajalikus ulatuses"], "must": ["vähim|vajalikus ulatuses|minimaal|ainult vajalik|vaid vajalik"] } } ] },
+        "expect": { "evidence_text": ["edastades vähimas vajalikus ulatuses"], "must": ["vähim|vajalikus ulatuses|minimaal|ainult (\\p{L}+ ){0,3}vajalik|vaid vajalik"] } } ] },
     { "id": "student-subsistence-own", "title": "Vanematest eraldi elav üliõpilane ja toimetulekutoetus", "source": "SHS § 131 lg 9", "turns": [
       { "mode": "new", "text": "Olen 20-aastane üliõpilane ja elan vanematest eraldi teises linnas. Kas ma saan ise toimetulekutoetust taotleda?",
         "expect": { "evidence_text": ["kuni 24-aastasel üliõpilasel, kes õpib ülikoolis, rakenduskõrgkoolis või kutseõppeasutuses"],
           "must": ["rahvastikuregist|elukoha ?(andmed|aadress)|sisse kirjutatud|sissekirjutus|perekonnale määrati|perele määrati"] } } ] },
     { "id": "subsistence-new-job", "title": "Tööle asumine toimetulekutoetuse ajal", "source": "SHS § 133 lg 2¹", "turns": [
       { "mode": "new", "text": "Sain mitu kuud toimetulekutoetust ja nüüd hakkasin tööle. Kas mu palk vähendab kohe toetust?",
-        "expect": { "evidence_text": ["kahel kuul 100 protsenti töisest sissetulekust"], "must": ["100 ?(%|protsent)"] } } ] },
+        "expect": { "evidence_text": ["kahel kuul 100 protsenti töisest sissetulekust"],
+          "must": ["100 ?(%|protsent)|täielikult|kogu see sissetulek|üldse arvesse|ei (lähe|võeta) .{0,60}arves"] } } ] },
     { "id": "subsistence-deadline", "title": "Toimetulekutoetuse taotluse tähtaeg", "source": "SHS § 132 lg 1", "turns": [
       { "mode": "new", "text": "Mis ajaks pean ma toimetulekutoetuse taotluse esitama?",
-        "expect": { "evidence_text": ["hiljemalt kuu viimaseks tööpäevaks"], "must": ["viimase(ks)? tööpäeva"] } } ] }
+        "expect": { "evidence_text": ["hiljemalt kuu viimaseks tööpäevaks"], "must": ["viimase(ks|l)? tööpäeva"] } } ] }
   ]
 }

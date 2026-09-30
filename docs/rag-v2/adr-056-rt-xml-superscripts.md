@@ -26,6 +26,12 @@
   - 54 aktiivset akti said uue versiooni (sisestusrühm `ingest_batch_93c75134…`, allikapõlvkond `generation_961c427c…`).
   - Iga uue versiooni tükid erinevad aktiivsest versioonist ainult ülaindeksi numbrite poolest: 542 tükki, samad otsingutekstid peale ülaindeksite. Muid muutusi pole.
   - Embedding ostetakse ainult muutunud sisenditele (korduvkasutus nagu v27-s).
+- **Paragrahvi number tekstis, mis hoiab ülaindekseid** (lisatud pärast v39 indeksit):
+  - Ristviidete lugeja (ADR-055) pidas paljast „§ 131“ mitmetähenduslikuks, kui aktis on ka § 13¹. Vanas tekstis võis see olla § 13¹, mille ülaindeks kadus.
+  - v28 tekstis ülaindeks ei kao, seega „§ 131“ on ainult § 131.
+  - `keepsSuperscripts(version)` on tõene Riigi Teataja XML-i versioonil, mille töötlus on `source-structure-v28` või uuem. Siis loeb lugeja palja numbri täpselt (`exactNumbers`); vanemas tekstis jääb kehtima vana reegel.
+  - Vestluse ristviited (profiil v3) annavad selle iga dokumendi versiooni järgi.
+  - **Kohalik v39 korpus:** `section_ambiguous` 211 (v38 tekst) → 151 (v39 tekst) → 0. Need 151 on nüüd viited, näiteks SHS § 131 lg 7 ja 8 (perekonnaliikmed), § 133 lg 5 ja § 151 (tegevusluba vajavad teenused). Kontrollitud valimis olid kõik sihid õiged, ja ükski varasem viide ei muutunud. 7510-st tükist 6133 on versioonides, mis hoiavad ülaindekseid.
 
 ## Piirid
 
@@ -39,6 +45,22 @@
 - Kaardi- ja registritestid läbivad (74/74).
 - Serveri mõõtmine (indeks, vestluse plaan, kataloogid) on kirjas allpool pärast korpuse v39 indeksit.
 
-### Tulemused serveris
+### Tulemused serveris (30.09.2026)
 
-(täidetakse pärast v39 indeksit)
+- **Korpus v39** (`run-v39.sh`):
+  - 216 uut embeddingu sisendit (127 245 tokenit, 0,0165 USD plaani hinnaga); ülejäänud sisendid tulid varasematest ostudest;
+  - indeks `8cfac9f3` valmis 1 min 54 s-ga: 54 dokumenti ja nende 6133 tükki indekseeriti uuesti, 5983 dokumenti võeti v38-st üle;
+  - v38 tõendid (tükiread, pitserid, punktid) jäid samaks;
+  - vestluse uus plaan `m4-corpus-chat-20260930a.json` profiiliga `hybrid-estnltk-chat-v3` (ADR-057) on aktiivne.
+- **Otsingukatse** (ADR-057 jooksja, rerankita, ilma mudelikutseteta) v39 peal andis mõlemas kataloogis sama tulemuse mis v38 peal: esimene kataloog A 3/9, B 4/9, C 5/9, D 7/9, E 3/9; teine kataloog kõigil 5/6. Ülaindeksid ei muutnud nende küsimuste otsingut.
+- **Täpsed paragrahvinumbrid** otsingukatses: haru D leidis samad 7/9. Ta lisas kahel toimetulekutoetuse küsimusel ka § 133 (toetuse arvestamine), mis enne jäi mitmetähenduslikuna välja. Kontekst kasvas keskmiselt 203 tokenit esimeses kataloogis ja 305 tokenit teises.
+- **Vestluse täisahel** (aktiveerimata plaanid v39 peal: tootmiskood koos prompt 19-ga ja sama koos täpsete numbritega; vastus voogesitatud):
+
+| Kataloog | Tootmiskood | Täpsed numbrid |
+|---|---:|---:|
+| Rasked tingimused 1 | 9/9 | 9/9 |
+| Rasked tingimused 2 | 5/6 (parandatud 6/6*) | 6/6 |
+| Kataloog v4 | 39/40** | 40/40 |
+
+- \* Ainus viga oli õige vastus „ei võeta su palka … üldse arvesse“, mida muster ei tundnud; muster on laiendatud (ADR-057).
+- \*\* Kuuldeaparaadi vastus andis õiged summad („piirmäär 350 eurot, riigi osa kuni 315 eurot“), aga kataloog ootab sõna „piirhind“.

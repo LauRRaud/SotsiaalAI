@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { actSections, chunkSection, internalReferences, readReferences, sectionKey, REFERENCE_LIMITS } from '../lib/rag-v2/search/legal-references.js';
+import { actSections, chunkSection, internalReferences, keepsSuperscripts, readReferences, sectionKey, REFERENCE_LIMITS } from '../lib/rag-v2/search/legal-references.js';
 
 // The act's sections in the act's order, a section with a superscript between its neighbours.
 const sections = ['9', '15', '15^1', '16', '45', '45^9', '45^16', '46', '105', '105^1', '106', '107', '131', '132', '133'];
@@ -64,6 +64,23 @@ test('superscripts: written, lost and restored only when unique; unknown or ambi
   assert.deepEqual(reasons('§-des 105–999'), ['range_bound_unknown']);
   const long = Array.from({ length: REFERENCE_LIMITS.range + 1 }, (_, index) => String(index + 1));
   assert.deepEqual(readReferences(`§-des 1–${long.length}`, long), { references: [], other: [], unresolved: [{ at: 6, end: 10, reason: 'range_too_long' }] });
+});
+
+test('a text that keeps its superscripts (ADR-056): a plain number is exactly that section, never a restored one', () => {
+  const kept = { exactNumbers: true };
+  // The Sotsiaalhoolekande seadus has § 15¹ and § 151: in a v28 text "§ 151 punktile 3" is § 151, which the older reading
+  // left out as ambiguous; "§ 459" is no section, because § 45⁹ would read "§ 45⁹".
+  assert.deepEqual(internalReferences('käesoleva seaduse § 151 punktile 3', [...sections, '151'], kept), ['151']);
+  assert.deepEqual(reasons('käesoleva seaduse § 151 punktile 3', [...sections, '151']), ['section_ambiguous']);
+  assert.deepEqual(readReferences('käesoleva seaduse § 459 lõikes 1', sections, kept).unresolved.map(entry => entry.reason), ['section_not_in_act']);
+  assert.deepEqual(internalReferences('käesoleva seaduse § 45⁹ ja §-des 105–106', sections, kept), ['45^9', '105', '105^1', '106']);
+  const version = normalization => ({ source_format: 'xml', processing_config: { normalization } });
+  assert.equal(keepsSuperscripts(version('source-structure-v28')), true);
+  assert.equal(keepsSuperscripts(version('source-structure-v31')), true);
+  assert.equal(keepsSuperscripts(version('source-structure-v27')), false);
+  assert.equal(keepsSuperscripts({ ...version('source-structure-v28'), source_format: 'pdf' }), false);
+  assert.equal(keepsSuperscripts({ source_format: 'xml', processing_config: {} }), false);
+  assert.equal(keepsSuperscripts(null), false);
 });
 
 test('the act of a bare list: a sentence\'s other act makes it unclear, a new sentence starts over, "sama seaduse" follows the last act', () => {

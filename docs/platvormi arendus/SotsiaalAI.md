@@ -92,6 +92,25 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**30.09 (Opus), jätk: korpus v39, vestluse profiil v3, prompt 19.** Omanik 30.09: „kui need parandused tehtud, tee arendustööd edasi, ilma pausita“.
+- **Tootmises 30.09 kella 10-st:** korpus v39 (indeks `8cfac9f3`), profiil `hybrid-estnltk-chat-v3`, dialoogi prompt 19, olek v5, `search-assist-5`. Plaan `m4-corpus-chat-20260930a.json` (käsitsi) ja selle uuendused väljalasetega.
+- **Riigi Teataja ülaindeksid** ([ADR-056](../rag-v2/adr-056-rt-xml-superscripts.md), #265): „§ 45⁹“, mitte „§ 459“.
+  - 54 akti uue versiooniga, 62 kaardi ankrut seotud uuesti. Embedding 0,0165 USD, indeks 1 min 54 s, v38 tõendid muutumata.
+  - Pärast v39-t loeb ristviidete lugeja v28 teksti palja numbri täpselt („§ 131“ on § 131, mitte § 13¹): `section_ambiguous` 211 → 0 (see PR).
+- **Graafi kasu eraldav katse** ([ADR-057](../rag-v2/adr-057-graph-experiment.md), #266, #267): viis haru sama lisaruumiga.
+  - Akti enda ristviited (D) leidsid määrava tingimuse 7/9, kaardid 5/9, graafita baas 3/9.
+  - Vestluse täisahelas v38 peal: profiil v1 6/9 ja 5/9, v3 8/9 ja 9/9; kataloogid v4 40/40 ja katvus 10/10.
+  - Teine kataloog (muu kujuga juhud): profiilid ei erinenud; rerank leidis ka LasteKS § 27¹.
+  - #266 quality gate kukkus main'is (JSON-i jutumärk) ja deploy jäi vahele; #267 parandas. Auto-merge ei oota main'i kontrolli, seega käib kogu testikomplekt enne PR-i.
+- **Dialoogi prompt 19** (#268): parandatud väärtus kinnitatakse vastuse esimeses lauses; olek kirjutab iga asjaolu eraldi faktina.
+  - Faktide elutsükkel 6/6 ja 6/6, mälu 8/8 kolm korda. Prompt 18 jättis parandatud võla nimetamata viiel korral kümnest.
+- **Mõõtmine v39 peal** (aktiveerimata plaanid, tootmiskood koos prompt 19-ga; vastus voogesitatud): rasked tingimused 9/9, teine kataloog 5/6 (parandatud 6/6), kataloog v4 39/40 (kuuldeaparaadi vastus ütles „piirmäär“, mitte „piirhind“; summad õiged). Täpsete numbritega 9/9, 6/6 ja 40/40.
+- **Kiirus (Codex 7.8):** hindaja salvestab iga pöörde etapiajad ja vastuse sisendi osad (`--stream`, `--warm`, `observed.stages`, `scripts/rag-v2-stage-timings.mjs`); tulemused lisanduvad ADR-048-sse eraldi PR-iga.
+- **Avatud:**
+  - 01.10: kontrollida, et vastused tsiteerivad uut SHS-i ja uut abivahendite määrust (piirhinnad 500 ja 850 eurot);
+  - kontaktid pärast 04.10;
+  - vanad testplaanid on `/etc/sotsiaalai/eval-archive-20260930/` all (kustutamata); serveri töökaust `rag-v2-work/knowledge-pilot` on alles.
+
 **30.09 (Opus): Codexi järelülevaate parandused, olek v5** ([ADR-055](../rag-v2/adr-055-codex-followup-region-state.md)). Omanik 30.09: „tee arendustööd edasi, ilma pausita“.
 - **Isiku omavalitsus: üks otsus otsingule ja mälule** (olek `m4-dialogue-state-5`, otsinguplaan `search-assist-5`, prompt 18).
   - Plaani koht nimetab oma pöörde, tsiteerib osalauset ja annab eestikeelse nime.
@@ -102,7 +121,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 - **Muu:** taastatav pööre hoiab vestluse järjekorda (J4); plaani ID ei põrku (J6); ristviidete lugeja hoiab akti ja redaktsiooni (J5, otsingusse ühendamata); hindaja kontrollib fakti elutsüklit (`facts_present`, `fact_changes`, `allowed_dropped`).
 - **Codexi kontrollid** V1–V4 (29.09) ja N1–N3 (30.09) on parandatud; sondid on `docs/audits` all.
 - **Mõõtmine** (aktiveerimata plaanid, korpus v38, profiil v1): piirkonnakataloog 6/11 (v4) → 11/11 kahel korral; kahe inimese kataloogid 8/8 ja 5/5; mälu 7/8 (vastus ei nimetanud parandatud summat, olek õige); kataloog v4 40/40. Vahejooksud leidsid viis juhtumit, mis on parandatud ja kirjas ADR-055-s.
-- **Järgmine:** Riigi Teataja ülaindeksid korpuses (ADR-056: „§ 45⁹“, mitte „§ 459“). 54 akti ja 62 kaardi ankrut on valmis, korpus v39 läheb serverisse eraldi PR-iga.
+- **Järgmine:** tehtud 30.09, vt ülal (korpus v39, profiil v3).
 
 **29.09 (Opus): kiirus, kahe inimese vestlus, piirhind, mälu, lisad, semantiline graaf, kontaktid.** Omanik 29.09: arendus jätkub ja Codex vaatab koodi üle, kui kõik arendustööd on tehtud; ülevaatamiseks ADR-048…054 ja PR-id #255–#263.
 - **Kiirus** ([ADR-048](../rag-v2/adr-048-answer-speed.md)): enne esimest teksti on umbes 8 s eeltööd (plaan, embedding, otsing koos rerank'iga) ja 5–20 s vastuse arutlust. Prioriteedi soov teenustaset ei muutnud.
@@ -138,11 +157,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
   - 20 on sama inimese topeltread.
   - Avaldamine ühe partiina pärast 04.10 kontrolli; siis kontrollida ka, et 376 avaldatut on endiselt lubatud.
 - **Avatud:**
-  - 01.10: kontrollida, et vastused tsiteerivad uut SHS-i ja uut abivahendite määrust (piirhinnad 500 ja 850 eurot);
-  - semantiline graaf: graafi kasu eraldav katse A–E (Codexi 7.7: graafita baas, rohkem tavateksti, kaardid, ristviited, sama jao naabrid), sama eelarvega;
-  - Codexi punkt 5 (sisendi dubleerimine): ajavõit on hüpotees, suurim osa on teenusekataloog;
-  - testplaanide koristus: `/etc/sotsiaalai/m4-eval-full-20260929{a..z}.json`, `…20260930{a..f}.json` ja `m4-eval-graph-20260930{a,b}.json`; serveri töökaust `/home/ubuntu/rag-v2-work/knowledge-pilot`;
-  - parandatud summa nimetamine vastuses: „Vabandust, võlgu on hoopis 5000 eurot“ järel jätab vastus summa umbes kolmandikus jooksudest nimetamata (ka v4-s). Olek on õige; parandus vajab prompti versiooni ja mõõtmist.
+  - Codexi punkt 5 (sisendi dubleerimine): mõõtmine käib (30.09 plokk, ADR-048);
 
 **27.09 Muudatusepõhine indeks serveris (ADR-036, PR #210–#217).** Serveriaruande järgi on
 aktiivne korpus v32 (`versions-v1`, 32 746 tekstiosa). v31 lisamisel töötles indeks kaks
