@@ -38,6 +38,13 @@
   font-family: var(--font-ui);
   text-align: center;
 }
+/* Hele teema (app/styles/theme-light.css): hele klaas tumeda kirja all. */
+:global(html.theme-light:not(:has(.room[data-power="standby"]))) .card {
+  background: linear-gradient(165deg, rgba(252, 250, 247, 0.72) 0%, rgba(245, 242, 238, 0.8) 100%);
+}
+:global(html.theme-light[data-reduce-transparency="1"]:not(:has(.room[data-power="standby"]))) .card {
+  background: linear-gradient(165deg, rgba(248, 246, 243, 0.99), rgba(240, 237, 233, 1));
+}
 
 /* Läbipaistvuse vähendus / kõrge kontrast: läbipaistmatu + blur maha
    (loetavus enne esteetikat). */

@@ -1,0 +1,609 @@
+/* ============================================================
+   Hele teema (html.theme-light), omanik 30.09: päevane tuba, heledad
+   menüükaardid musta teksti ja ikooniga, alalehtedel tume tekst.
+
+   Tokenid (tekst, klaas, väljad, nupud) on tokens.css-i heleda teema
+   plokis. Siin on ainult need pinnad, mille tume toon või hele tekst on
+   oma failis kõvasti kirjas (tumeda teema järgi mõõdetud) ja mida token
+   seepärast ei muuda. Iga reegel kordab algse reegli selektorit
+   prefiksiga; see fail on globals.css-is viimane.
+
+   Fail on TEADLIKULT @layer'ist väljas. Osa stiilifaile on tervikuna
+   kihivälised (teemaseeme, covision*, voice-mode …) ja osal on
+   kihiväline lõpp (chat.css, panel.css) — kihiväline reegel võidab iga
+   kihilise spetsiifilisusest sõltumata. Kihivälisena võidab see fail
+   kõik kihilised reeglid, seega peab iga olekureegel (hover, aktiivne),
+   mille algne kihiline variant muidu võidaks, olema siin eraldi kirjas.
+
+   Prefiks on sama „tuled sees" tingimus mis tokenitel:
+   html.theme-light:not(:has(.room[data-power="standby"])). Saabumine
+   (kõnd, ⏻-ooterežiim ja esmakülastuse ligipääsetavuse lend enne ⏻) on
+   ka heledas teemas pime ja kasutab tumeda teema tokeneid — siinsed
+   heledad pinnad ei tohi seal kehtida.
+
+   Kõrgkontrast sunnib alati .theme-dark klassi, seega siinsed reeglid
+   seal ei kehti.
+   ============================================================ */
+
+/* ---------- Kiirmenüü, ülemine paneel, karusselli nooled ----------
+   Tumedas teemas on neil tokenist tihedam jahe toon (sooja seina ees
+   pruuniks minemise vastu). Heledas teemas on tokeni hele klaas ise
+   õige; alles jääb ainult õrn tume serv, et pill ei sulaks seina. */
+html.theme-light:not(:has(.room[data-power="standby"])):not([data-reduce-transparency="1"]) .gc-shortcuts > .gc-shortcut-menu::before,
+html.theme-light:not(:has(.room[data-power="standby"])):not([data-reduce-transparency="1"]) .room-quickbar::before {
+  background: var(--control-glass-bg);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .gc-shortcut-menu::before,
+html.theme-light:not(:has(.room[data-power="standby"])) .room-quickbar::before,
+html.theme-light:not(:has(.room[data-power="standby"])) :is(.gc, .pc) .glass-iconbtn:is(.gc-arrow, .pc-arrow),
+html.theme-light:not(:has(.room[data-power="standby"])) .gc-shortcut-tooltip {
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.08),
+    inset 0 1px rgba(255, 255, 255, 0.6);
+}
+html.theme-light:not(:has(.room[data-power="standby"])):not([data-reduce-transparency="1"]) .gc .glass-iconbtn.gc-arrow {
+  background: var(--control-glass-bg);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .gc-shortcut {
+  color: rgba(21, 21, 21, 0.62);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .gc-shortcut--back {
+  color: rgba(21, 21, 21, 0.8);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .gc-shortcut:is(:hover, :focus-visible, [data-on="1"]) {
+  color: var(--room-text);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .gc-shortcut:hover,
+html.theme-light:not(:has(.room[data-power="standby"])) .gc-shortcut:focus-visible {
+  background: rgba(0, 0, 0, 0.055);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .gc-shortcut[data-on="1"] {
+  background: rgba(0, 0, 0, 0.06);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.14);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .gc-shortcut-divider {
+  background: rgba(0, 0, 0, 0.14);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .gc-dot {
+  background: rgba(0, 0, 0, 0.24);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .gc-dot[data-on="1"] {
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+}
+
+/* Süttimise S-vahepala on valkjas SVG (#f4f1ec) keskmise kaardi peal —
+   heledal kaardil tumedaks, nagu kaartide ikoonid. */
+html.theme-light:not(:has(.room[data-power="standby"])) .room-intro-sai-mono img {
+  filter: brightness(0.1);
+}
+
+/* ---------- Alalehed ---------- */
+html.theme-light:not(:has(.room[data-power="standby"])) .panel-body article p,
+html.theme-light:not(:has(.room[data-power="standby"])) .panel-body article li {
+  color: var(--text-soft);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .guide-role-picker {
+  background:
+    radial-gradient(circle at 12% 0%, rgba(255, 255, 255, 0.4), transparent 38%),
+    rgba(255, 255, 255, 0.28);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .reading-search input {
+  background: var(--input-bg);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .usage-meter__notice {
+  color: var(--text-dim);
+}
+/* ---------- Vestlus (chat.css) ---------- */
+/* Mullid kannavad sama toa härmatise koopiat (--room-frost-image) kui
+   tumedas teemas, aga suitsu asemel on piimjas toon. Ainult
+   background-image: kihtide asend ja suurus tulevad algsest reeglist. */
+html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] {
+  background-image:
+    radial-gradient(120% 90% at 14% 0%, rgba(255, 255, 255, 0.4), transparent 52%),
+    linear-gradient(165deg, rgba(250, 248, 245, 0.66) 0%, rgba(248, 246, 243, 0.72) 58%, rgba(246, 244, 241, 0.76) 100%),
+    var(--room-frost-image);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.06),
+    0 14px 36px rgba(60, 45, 30, 0.14);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conversation="1"] [role="article"][data-role="user"] {
+  background-image:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.34) 0%, rgba(255, 255, 255, 0.2) 55%, rgba(255, 255, 255, 0.26) 100%),
+    linear-gradient(rgba(232, 226, 219, 0.52), rgba(232, 226, 219, 0.52)),
+    var(--room-frost-image);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.06),
+    0 10px 28px rgba(60, 45, 30, 0.12);
+}
+html.theme-light:not(:has(.room[data-power="standby"]))[data-reduce-transparency="1"] .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] {
+  background: rgba(248, 246, 243, 0.98);
+}
+html.theme-light:not(:has(.room[data-power="standby"]))[data-reduce-transparency="1"] .panel-scrim[data-conversation="1"] [role="article"][data-role="user"] {
+  background: rgba(234, 230, 225, 0.98);
+}
+/* Paneelivestluse (mitte ruumi) mullid ja sisestusriba. Ainult
+   background-color: ruumivestluse mullidel katab selle härmatise pilt,
+   ja nende kihtide asend peab algsest reeglist alles jääma. */
+html.theme-light:not(:has(.room[data-power="standby"])) [role="article"][data-role="ai"] {
+  background-color: rgba(255, 255, 255, 0.55);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) [role="article"][data-role="user"] {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) form:has(#chat-input) > div:has(#chat-input) > div:has(#chat-input) {
+  background: rgba(255, 255, 255, 0.55);
+}
+/* Ruumivestluse pill kannab klaasi ::before-kihil; pind ise jääb tühjaks. */
+html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > div:has(#chat-input) {
+  background: none;
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .conv-privacy-prompt {
+  border-color: rgba(0, 0, 0, 0.12);
+  background: rgba(250, 248, 245, 0.92);
+  box-shadow: 0 8px 24px rgba(60, 45, 30, 0.14);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .conv-privacy-prompt[data-state="unavailable"] {
+  border-color: rgba(160, 118, 40, 0.42);
+  background: rgba(250, 244, 230, 0.94);
+}
+html.theme-light:not(:has(.room[data-power="standby"])):not([data-reduce-transparency="1"]) .conv-tools-menu[role="menu"] {
+  background: linear-gradient(165deg, rgba(250, 248, 245, 0.84) 0%, rgba(243, 240, 236, 0.9) 100%);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conversation="1"] form:has(#chat-input) {
+  --conv-icon-quiet: rgba(21, 21, 21, 0.6);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conversation="1"] form:has(#chat-input) > div:first-child button {
+  color: rgba(21, 21, 21, 0.72);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conversation="1"] form:has(#chat-input) > div:first-child button:is(:hover, [aria-expanded="true"]) {
+  color: var(--text-warm);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conversation="1"] #chat-input {
+  caret-color: #3a3a3a;
+  text-shadow: 0 1px 8px rgba(255, 255, 255, 0.6);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) form:has(#chat-input) button[data-recording="true"] {
+  color: #b0452c;
+  border-color: rgba(176, 69, 44, 0.5);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conversation="1"] form:has(#chat-input) button[data-recording="true"] {
+  color: #555555;
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conversation="1"] form:has(#chat-input) button[type="submit"] {
+  color: rgba(21, 21, 21, 0.9);
+  filter: none;
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conversation="1"] form:has(#chat-input) button[type="submit"]:hover {
+  color: #000000;
+  filter: none;
+}
+/* Häälvestluse päästik istub saatmisnupu pesas (sama sõlm) ja kannab
+   mikri vaikset tooni, mitte saatmise oma (chat.css). */
+html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conversation="1"] form:has(#chat-input) button.conv-voice-mode-trigger[data-voice-mode-trigger="true"] {
+  color: var(--conv-icon-quiet);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conversation="1"] form:has(#chat-input) button.conv-voice-mode-trigger[data-voice-mode-trigger="true"]:is(:hover, :focus-visible) {
+  color: var(--text-warm);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conversation="1"] button[aria-controls="chat-window-scroll"] {
+  border-color: rgba(0, 0, 0, 0.12);
+  background: rgba(250, 248, 245, 0.9);
+  color: rgba(21, 21, 21, 0.85);
+  box-shadow: 0 10px 26px rgba(60, 45, 30, 0.16);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conversation="1"] button[aria-controls="chat-window-scroll"]:hover {
+  border-color: rgba(0, 0, 0, 0.22);
+  background: rgba(255, 255, 255, 0.96);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) #chat-sources-panel {
+  background: rgba(236, 232, 227, 0.62);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .room-call-details {
+  background: linear-gradient(165deg, rgba(250, 248, 245, 0.88), rgba(243, 240, 236, 0.92));
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] .room-call-controls > button,
+html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] button.conv-ai-target {
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.82), rgba(240, 237, 233, 0.88));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 0.45rem 1.15rem rgba(60, 45, 30, 0.14);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] .room-call-controls > button:hover:not(:disabled),
+html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] button.conv-ai-target:hover:not(:disabled) {
+  background: linear-gradient(155deg, #ffffff, rgba(246, 244, 241, 0.94));
+}
+/* Olekunuppude roheline/punane toon jääb (ülal olev hele nupp võidaks
+   muidu ka nende tausta üle). */
+html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] .room-call-controls > button.room-call-icon[data-active="true"] {
+  color: #1f6b43;
+  background: color-mix(in srgb, #8bd3aa 22%, transparent);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] .room-call-controls > button.room-call-mute:not([data-muted="true"]) {
+  color: #2a7a4f;
+  background: color-mix(in srgb, #8bd3aa 16%, transparent);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] .room-call-controls > button.room-call-mute[data-muted="true"] {
+  background: color-mix(in srgb, #ff9d8a 18%, transparent);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conversation="1"] .chat-composer[data-room-mode="true"] .room-call-controls > button.room-call-mute[data-muted="true"],
+html.theme-light:not(:has(.room[data-power="standby"])) .room-call-controls > button.room-call-mute[data-muted="true"] {
+  color: #a8472a;
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conversation="1"] form.chat-composer[data-room-mode="true"] .chat-composer__room-tools button.conv-ai-target[data-active="true"] {
+  color: var(--text-warm) !important;
+  background: rgba(0, 0, 0, 0.06) !important;
+}
+
+/* ---------- Töölaud, teenusekaart, eelpöördumine (workspace.css) ---------- */
+html.theme-light:not(:has(.room[data-power="standby"])) .glass-modal-layer:has(.dashboard-info-shell),
+html.theme-light:not(:has(.room[data-power="standby"])) .invite-modal-overlay {
+  background: rgba(236, 232, 227, 0.5);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .dashboard-info-shell {
+  background: linear-gradient(165deg, rgba(250, 248, 245, 0.94), rgba(243, 240, 236, 0.96));
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .invite-modal-card {
+  background: linear-gradient(165deg, rgba(252, 250, 247, 0.8) 0%, rgba(247, 244, 240, 0.84) 55%, rgba(243, 240, 236, 0.88) 100%);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .service-map-topbar {
+  background:
+    linear-gradient(105deg, rgba(255, 255, 255, 0.4), transparent 48%),
+    rgba(250, 248, 245, 0.78);
+  box-shadow:
+    0 0.8rem 2rem rgba(60, 45, 30, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .service-map-results-detail,
+html.theme-light:not(:has(.room[data-power="standby"])) .service-map-leaflet__legend,
+html.theme-light:not(:has(.room[data-power="standby"])) .service-map-match-panel,
+html.theme-light:not(:has(.room[data-power="standby"])) .service-map-match-status {
+  background: rgba(250, 248, 245, 0.9);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .service-map-leaflet__status {
+  background: rgba(250, 248, 245, 0.72);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .service-map-canvas .service-map-leaflet {
+  background: #e9e5df;
+}
+/* Kaardi popup: hele klaas, tume kiri. Algsed reeglid on !important
+   (Leafleti enda stiili vastu), seega ka siin. */
+html.theme-light:not(:has(.room[data-power="standby"])) .service-map-canvas .leaflet-popup-content-wrapper,
+html.theme-light:not(:has(.room[data-power="standby"])) .service-map-canvas .leaflet-popup-tip {
+  background: rgba(250, 248, 245, 0.97) !important;
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .service-map-canvas .leaflet-popup-content-wrapper {
+  color: var(--text-warm) !important;
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1rem 2.6rem rgba(60, 45, 30, 0.18), inset 0 1px rgba(255, 255, 255, 0.7);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .service-map-canvas .leaflet-container a.leaflet-popup-close-button,
+html.theme-light:not(:has(.room[data-power="standby"])) .service-map-popup__action {
+  color: var(--text-warm) !important;
+}
+html.theme-light:not(:has(.room[data-power="standby"])) :is(.service-map-popup, .service-map-popup__title, .service-map-popup__meta > span:last-child, .service-map-popup__contact-button) {
+  color: var(--text-warm);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) :is(.service-map-popup__body, .service-map-popup__privacy-note, .service-map-popup__contact-meta) {
+  color: var(--text-soft);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) :is(.service-map-popup__label, .service-map-popup__contact-description) {
+  color: var(--text-dim);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) :is(.service-map-popup__action, .service-map-popup__contact-button) {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.18);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) :is(.service-map-popup__action, .service-map-popup__contact-button):is(:hover, :focus-visible) {
+  background: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.3);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .service-map-popup__contact {
+  border-top-color: rgba(0, 0, 0, 0.1);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .pre-inquiry-recipient-card {
+  border-color: rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.5);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .pre-inquiry-recipient-card__availability {
+  border-color: rgba(170, 110, 40, 0.5);
+  background: rgba(214, 156, 81, 0.18);
+  color: #6b4210;
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .pre-inquiry-recipient-card__availability[data-tone="positive"] {
+  border-color: rgba(50, 130, 90, 0.5);
+  background: rgba(111, 183, 145, 0.2);
+  color: #1f5f3c;
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .covision-canvas {
+  background:
+    radial-gradient(1px 1px at 24px 24px, rgba(0, 0, 0, 0.14) 1px, transparent 1px),
+    linear-gradient(165deg, rgba(250, 248, 245, 0.7), rgba(242, 239, 235, 0.78));
+  background-size: 48px 48px, 100% 100%;
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .covision-card {
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.86), rgba(245, 242, 238, 0.9));
+}
+
+/* ---------- Ligipääsetavus, sisselogimine, paigaldus ---------- */
+/* Tume loor jääb ainult esimesele külastusele enne ⏻ (siis on tuba
+   niikuinii pime ja heledad tokenid ei kehti); tuledega toas on hele. */
+html.theme-light:not(:has(.room[data-power="standby"])) :is(div[role="presentation"][aria-hidden="true"].a11f-veil, .a11f-veil[role="presentation"][aria-hidden="true"]) {
+  background: rgba(236, 232, 227, 0.4);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) [role="dialog"][aria-labelledby="a11y-title"] {
+  background: linear-gradient(165deg, rgba(252, 250, 247, 0.72) 0%, rgba(247, 244, 240, 0.76) 55%, rgba(243, 240, 236, 0.8) 100%);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+html.theme-light:not(:has(.room[data-power="standby"]))[data-reduce-transparency="1"] .a11f-ambient-choice {
+  background: #f1eeea;
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .scroll-frames {
+  color: rgba(21, 21, 21, 0.4);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .a11f-dock .gc-shortcut[data-state="open"] {
+  color: rgba(21, 21, 21, 0.62);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .login-help-popover,
+html.theme-light:not(:has(.room[data-power="standby"])) .pwa-install-help {
+  background: linear-gradient(165deg, rgba(252, 250, 247, 0.96), rgba(244, 241, 237, 0.98));
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 18px 44px rgba(60, 45, 30, 0.2);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .pwa-install-inline-help {
+  border-color: rgba(0, 0, 0, 0.12);
+  background: rgba(250, 248, 245, 0.84);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .journey-quick-help {
+  background: rgba(250, 248, 245, 0.84);
+}
+
+/* ---------- Admin (rag-admin.css, admin-analytics.css) ---------- */
+html.theme-light:not(:has(.room[data-power="standby"])) :is(.ra-table th, .aa-table th) {
+  background: rgba(244, 241, 237, 0.96);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .aa-nav {
+  background: rgba(248, 246, 243, 0.96);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .ra-pre {
+  background: rgba(0, 0, 0, 0.05);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) :is(.ra-drawer-scrim, .aa-confirm) {
+  background: rgba(236, 232, 227, 0.5);
+}
+
+html.theme-light:not(:has(.room[data-power="standby"])) ::selection {
+  background: rgba(0, 0, 0, 0.14);
+  color: var(--text-warm);
+}
+
+/* ---------- Häälvestlus (voice-mode.css) ---------- */
+html.theme-light:not(:has(.room[data-power="standby"])) .voice-mode {
+  --voice-pearl: #2a2622;
+  --voice-champagne: #86601f;
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .voice-mode__state {
+  color: rgba(21, 21, 21, 0.74);
+  text-shadow: 0 1px 14px rgba(255, 255, 255, 0.9);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .voice-mode__clock {
+  color: rgba(21, 21, 21, 0.52);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .voice-mode__error {
+  color: #a8472a;
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .voice-mode__info {
+  background-image:
+    linear-gradient(165deg, rgba(250, 248, 245, 0.7) 0%, rgba(246, 244, 241, 0.76) 100%),
+    var(--room-frost-image);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 18px 44px rgba(60, 45, 30, 0.14);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .voice-mode__info p {
+  color: rgba(21, 21, 21, 0.78);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .gc-shortcut--action[data-tone="start"] {
+  color: #86601f;
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .gc-shortcut--action[data-tone="stop"] {
+  color: #a8472a;
+}
+
+/* ---------- Aktsendi RGB-kolmikud: hele soe klaas → tume soe toon ---------- */
+html.theme-light:not(:has(.room[data-power="standby"])) .ts-page {
+  --tsa: 70, 58, 46;
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .ccp-shell {
+  --ccpa: 70, 58, 46;
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .epp-shell {
+  --eppa: 70, 58, 46;
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .cvw {
+  --cvwa: 70, 58, 46;
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .cv1 {
+  --cv1a: 70, 58, 46;
+}
+
+/* Aktiivne navilink ja vahekaart (ühine muster neljas failis). */
+html.theme-light:not(:has(.room[data-power="standby"])) :is(.ts-nav-link, .ccp-nav-link, .epp-nav-link)[data-active="1"],
+html.theme-light:not(:has(.room[data-power="standby"])) .cvw-nav a[aria-current="page"],
+html.theme-light:not(:has(.room[data-power="standby"])) :is(.ccp-detail-tabs, .epp-tabs) button[aria-current="page"] {
+  background: rgba(0, 0, 0, 0.07);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) :is(.ccp-detail-backdrop, .epp-dialog-backdrop, .ts-layer, .cv1-layer, .cvs-pause-veil) {
+  background: rgba(236, 232, 227, 0.55);
+}
+
+/* ---------- Teemaseemned (teemaseeme.css) ---------- */
+html.theme-light:not(:has(.room[data-power="standby"])) .ts-page .ts-acc,
+html.theme-light:not(:has(.room[data-power="standby"])) .ts-filter,
+html.theme-light:not(:has(.room[data-power="standby"])) .ts-notice,
+html.theme-light:not(:has(.room[data-power="standby"])) .ts-layout-reset,
+html.theme-light:not(:has(.room[data-power="standby"])) .ts-resize-handle {
+  background: rgba(255, 255, 255, 0.5);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .ts-page .ts-acc:hover:not(:disabled),
+html.theme-light:not(:has(.room[data-power="standby"])) .ts-filter[aria-pressed="true"],
+html.theme-light:not(:has(.room[data-power="standby"])) .ts-layout-reset:is(:hover, :focus-visible),
+html.theme-light:not(:has(.room[data-power="standby"])) .ts-drag-handle:is(:hover, :focus-visible) {
+  background: rgba(0, 0, 0, 0.07);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .ts-drag-handle:active,
+html.theme-light:not(:has(.room[data-power="standby"])) .ts-card[data-moving="true"] .ts-drag-handle,
+html.theme-light:not(:has(.room[data-power="standby"])) .ts-resize-handle:is(:hover, :focus-visible),
+html.theme-light:not(:has(.room[data-power="standby"])) .ts-card[data-resizing="true"] .ts-resize-handle {
+  background: rgba(0, 0, 0, 0.1);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .ts-filter:hover,
+html.theme-light:not(:has(.room[data-power="standby"])) .ts-status[data-status="jarelvaates"] {
+  border-color: rgba(0, 0, 0, 0.26);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) :is(.ts-intro, .ts-filter, .ts-card-rows dd) {
+  color: var(--text-soft);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) :is(.ts-spatial-hint, .ts-resize-handle, .ts-card-meta, .ts-card-rows dt) {
+  color: var(--text-dim);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .ts-filter[aria-pressed="true"],
+html.theme-light:not(:has(.room[data-power="standby"])) .ts-status[data-status="valitud"] {
+  color: var(--text-warm);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .ts-card {
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.5) 0%, rgba(250, 248, 245, 0.56) 55%, rgba(246, 243, 239, 0.62) 100%);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .ts-card[data-positioned="true"] {
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.66) 0%, rgba(250, 248, 245, 0.72) 55%, rgba(246, 243, 239, 0.78) 100%);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .ts-card[data-front="true"] {
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.9) 0%, rgba(250, 248, 245, 0.92) 55%, rgba(246, 243, 239, 0.94) 100%);
+  box-shadow:
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.7),
+    0 32px 90px rgba(60, 45, 30, 0.22),
+    0 0 34px rgba(var(--tsa), 0.1);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .ts-card[data-moving="true"],
+html.theme-light:not(:has(.room[data-power="standby"])) .ts-card[data-resizing="true"] {
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.94) 0%, rgba(250, 248, 245, 0.95) 55%, rgba(246, 243, 239, 0.96) 100%);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .ts-private {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.16);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .ts-layer-card {
+  border-color: rgba(0, 0, 0, 0.12);
+  background: rgba(250, 248, 245, 0.96);
+}
+
+/* ---------- Kovisioon (covision.css, covision-live.css) ---------- */
+html.theme-light:not(:has(.room[data-power="standby"])) :is(
+  .cvs-timer[data-over="1"] .cvs-timer-time,
+  .cvs-person-role[data-lead="1"],
+  .cvs-hero-kicker,
+  .cvs-anchor-label,
+  .cvs-focus-label,
+  .cvs-focus-hint[data-tone="warn"],
+  .cvs-compass-q[aria-pressed="true"],
+  .cvs-qcard[data-state="ready"] .cvs-qcard-q,
+  .cvs-qsteps li[data-on="1"],
+  .cv1-chip[data-over="1"] .cv1-chip-value,
+  .cv2-anchor[data-investigate="1"] .cv2-anchor-type,
+  .cvl-kind
+) {
+  color: var(--text-warm);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) :is(
+  .cv1-panel-meta[data-done="1"],
+  .cv1-person-state[data-done="1"],
+  .cv1-case-state[data-done="1"],
+  .cv1-gate-hint[data-ok="1"],
+  .cv1-people-state li[data-done="1"],
+  .cv2-focus-state,
+  .cv2-duties li[data-done="1"] span:last-child,
+  .cv3-site[data-state="done"] .cv3-site-state,
+  .cv3-astate[data-state="answered"],
+  .cvl-lock
+) {
+  color: var(--text-dim);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .cv1 .cv1-acc {
+  background: rgba(255, 255, 255, 0.5);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .cv1 .cv1-acc:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.07);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .cv1-view {
+  background: rgba(250, 248, 245, 0.82);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .cv1-layer-card {
+  border-color: rgba(0, 0, 0, 0.12);
+  background: linear-gradient(165deg, rgba(252, 250, 247, 0.96), rgba(244, 241, 237, 0.97));
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .cvl-topbar {
+  background: rgba(250, 248, 245, 0.78);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .cvf-station-nav {
+  background: rgba(250, 248, 245, 0.6);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .cvf-scroll-hint {
+  background: rgba(250, 248, 245, 0.55);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) :is(.cvl-side-section, .cvl-guidance, .cvl-stage-controls, .cvl-composer, .cvl-stage-seven, .cvl-stage-eight) {
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.55), rgba(246, 243, 239, 0.72));
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.6), 0 16px 38px rgba(60, 45, 30, 0.1);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .cvl-canvas {
+  background:
+    radial-gradient(ellipse at 50% 45%, rgba(255, 255, 255, 0.4), transparent 31%),
+    linear-gradient(155deg, rgba(255, 255, 255, 0.3), rgba(236, 232, 227, 0.45));
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.5), inset 0 -4rem 8rem rgba(60, 45, 30, 0.06);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .cvl-card {
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.55) 0%, rgba(250, 248, 245, 0.62) 55%, rgba(246, 243, 239, 0.68) 100%);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .cvl-hero {
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.72) 0%, rgba(250, 248, 245, 0.78) 55%, rgba(246, 243, 239, 0.84) 100%);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .cvl-private {
+  border-color: rgba(0, 0, 0, 0.2);
+  background:
+    radial-gradient(circle at 92% 8%, rgba(255, 255, 255, 0.5), transparent 42%),
+    linear-gradient(150deg, rgba(250, 248, 245, 0.66), rgba(238, 234, 229, 0.82));
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .cvl-gate {
+  background: rgba(250, 248, 245, 0.92);
+  box-shadow: 0 -1.2rem 3rem rgba(60, 45, 30, 0.12);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .cvl-gate.is-open {
+  border-top-color: rgba(0, 0, 0, 0.3);
+  background: linear-gradient(90deg, rgba(244, 241, 237, 0.96), rgba(250, 248, 245, 0.94));
+}
+@media (prefers-contrast: more) {
+  html.theme-light:not(:has(.room[data-power="standby"])) :is(.cvl-card, .cvl-side-section, .cvl-guidance, .cvl-stage-controls, .cvl-composer, .cvl-stage-seven, .cvl-stage-eight) {
+    background: rgba(252, 251, 249, 0.98);
+  }
+}
+
+/* ---------- Jaamade dokid (register-flight.css, covision-live.css) ---------- */
+html.theme-light:not(:has(.room[data-power="standby"])) :is(.rgf-dock, .cvf-stage-dock) .gc-shortcut[data-state="done"] {
+  color: rgba(21, 21, 21, 0.78);
+}
+
+/* ---------- Väljad (field.css) ---------- */
+html.theme-light:not(:has(.room[data-power="standby"])) :is(.fld-warn, .fld-item__error) {
+  color: var(--text-soft);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .fld-input {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+/* ---------- Teenuspäevik (service-log.css) ---------- */
+html.theme-light:not(:has(.room[data-power="standby"])) .sl-map-pin > span {
+  background: rgba(250, 248, 245, 0.94);
+  color: var(--text-warm);
+}
