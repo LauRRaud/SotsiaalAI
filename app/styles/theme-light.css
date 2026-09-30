@@ -42,9 +42,9 @@ html.theme-light:not(:has(.room[data-power="standby"])) .gc-shortcut-tooltip {
     inset 0 1px rgba(255, 255, 255, 0.6);
 }
 html.theme-light:not(:has(.room[data-power="standby"])):not([data-reduce-transparency="1"]) .gc .glass-iconbtn.gc-arrow {
-  /* Läbipaistvam kui dokk (omanik 30.09): hele 0,7 luges heledal seinal
-     läbipaistmatu kettana. */
-  background: rgba(250, 248, 245, 0.4);
+  /* Kiirmenüü materjal (omanik 30.09): --control-glass-bg toon, aga 0.82,
+     sest nupu enda opacity 0.85 → nähtav tihedus 0.7 nagu kiirmenüül. */
+  background: rgba(250, 248, 245, 0.82);
 }
 html.theme-light:not(:has(.room[data-power="standby"])) .gc-shortcut {
   color: rgba(21, 21, 21, 0.62);
@@ -235,7 +235,7 @@ html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conver
 html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conversation="1"] [role="article"][data-role="user"] {
   background-image:
     linear-gradient(160deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0.12) 55%, rgba(255, 255, 255, 0.18) 100%),
-    linear-gradient(rgba(232, 226, 219, 0.28), rgba(232, 226, 219, 0.28)),
+    linear-gradient(rgba(232, 226, 219, 0.5), rgba(232, 226, 219, 0.5)),
     var(--room-frost-image);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.6),
@@ -248,13 +248,17 @@ html.theme-light:not(:has(.room[data-power="standby"]))[data-reduce-transparency
 html.theme-light:not(:has(.room[data-power="standby"]))[data-reduce-transparency="1"] .panel-scrim[data-conversation="1"] [role="article"][data-role="user"] {
   background: rgba(234, 230, 225, 0.98);
 }
-/* Vestluse nurganupud (☰ vestlused, × sulge): läbipaistvamad kui väljad
-   (omanik 30.09), härmatis jääb (--input-blur). */
-html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conversation="1"] :is(.panel-menu, .panel-close) {
-  background-color: rgba(255, 255, 255, 0.38);
+/* Vestluse nurganupud (☰ vestlused, × sulge) = kiirmenüü materjal ka
+   heledas (omanik 30.09): hele juhtklaas, sama serv ja hover-kiht. */
+html.theme-light:not(:has(.room[data-power="standby"])):not([data-reduce-transparency="1"]) .panel-scrim[data-conversation="1"] :is(.panel-menu, .panel-close) {
+  background-color: var(--control-glass-bg);
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.08),
+    inset 0 1px rgba(255, 255, 255, 0.6);
 }
-html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conversation="1"] :is(.panel-menu, .panel-close):hover {
-  background-color: rgba(255, 255, 255, 0.56);
+html.theme-light:not(:has(.room[data-power="standby"])):not([data-reduce-transparency="1"]) .panel-scrim[data-conversation="1"] :is(.panel-menu, .panel-close):hover {
+  background-color: var(--control-glass-bg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.055), rgba(0, 0, 0, 0.055));
 }
 /* Paneelivestluse (mitte ruumi) mullid ja sisestusriba. Ainult
    background-color: ruumivestluse mullidel katab selle härmatise pilt,

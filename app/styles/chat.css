@@ -1085,10 +1085,14 @@ button[aria-controls="chat-window-scroll"] {
   /* Hele klaas härmas toa peal. Endine backdrop-filter: blur(30px) ei
      hägustanud tegelikult midagi — #chat-window-scroll'i servamask on
      backdrop root — seega sama eelhägustatud toa koopia mis AI-mullil
-     (--room-frost-*, tokens.css), kerge valge klaas ja õrn suits loetavuseks. */
+     (--room-frost-*, tokens.css), kerge valge klaas ja suits loetavuseks.
+     Suits 0,3 → 0,48 (omanik 30.09: „kasutaja enda sõnumimull rohkem sellist
+     värvi, et tekst läbi ei paista"): õhtuse toa hele sein kumas läbi ja
+     valge kiri jäi ~3,4:1 peale. Valge läige jääb, nii et kasutaja mull
+     püsib AI-mullist (0,5–0,6) heledam ja eristub. */
   background:
     linear-gradient(160deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.04) 55%, rgba(255, 255, 255, 0.055) 100%),
-    linear-gradient(rgba(10, 12, 16, 0.3), rgba(10, 12, 16, 0.3)),
+    linear-gradient(rgba(10, 12, 16, 0.48), rgba(10, 12, 16, 0.48)),
     var(--room-frost-image);
   background-repeat: no-repeat;
   background-attachment: scroll, scroll, fixed;

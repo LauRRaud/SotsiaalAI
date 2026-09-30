@@ -164,6 +164,10 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
   - kontaktid pärast 04.10;
   - kiirus päris vestluses.
 
+**30.09 öö (Opus):** karusselli nooled ja vestluse ☰/× = kiirmenüü materjal (toon, hägu,
+läige; nool 0,82, sest nupu opacity 0,85); häälvestluse dokis sama tagasinool mis mujal;
+kasutaja sõnumimull tihedam (tume 0,3 → 0,48, hele 0,28 → 0,5).
+
 **30.09 hilisõhtu, heleda teema viimistlus (Opus):** heledas kursor heledam; vestlusmullid,
 karusselli nooled ja vestluse ☰/× läbipaistvamad; noolte ja ☰/× hägu nähtav mõlemas teemas
 (nool 0,82 → 0,55 + blur 14 px, pruuni vastu saturate); kasutuslimiidi rööbas nähtav; valitud

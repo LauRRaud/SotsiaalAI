@@ -1172,14 +1172,12 @@ html:not([data-contrast="hc"]) :is(.gc, .pc) .glass-iconbtn:is(.gc-arrow, .pc-ar
    0.85 x 0.82 ~ 0.7, sama läbipaistvus kui paneelidel. Mõõdetud 1536x730:
    vasak rgb(34,24,22), parem rgb(24,21,22). Hinnastuse nool (.pc-arrow)
    ja kõrgkontrast / vähendatud läbipaistvus jäävad tokeni omale.
-   30.09 (omanik: „noolel pidi ka blur taust olema"): 0.82 toon kattis hägu
-   täielikult ja nool luges täisvärvi kettana. Nüüd 0.55 + tugevam hägu
-   (14 px); pruuni vastu töötab küllastuse langetus (saturate 60%) toonitiheduse
-   asemel — puit hägustub halliks, mitte pruuniks. */
+   30.09 (omanik: „vasak-parem nupud ... nagu kiirmenüü, samad omadused"):
+   SAMA materjal mis kiirmenüül (.gc-shortcuts > .gc-shortcut-menu::before):
+   toon rgba(8,8,9), hägu --control-glass-blur, ülaserva läige. Nupu enda
+   opacity 0.85 tõttu on toon 0.82 → nähtav tihedus 0.7 nagu kiirmenüül. */
 html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .gc .glass-iconbtn.gc-arrow {
-  background: rgba(16, 22, 28, 0.55);
-  -webkit-backdrop-filter: blur(14px) saturate(60%);
-  backdrop-filter: blur(14px) saturate(60%);
+  background: rgba(8, 8, 9, 0.82);
 }
 /* Optiline tsentreering (tellija): chevroni KOLMNURGA raskuskese
    nupu keskele — bbox-keskjoondus jätab tipu keskele ja keha kõrvale.

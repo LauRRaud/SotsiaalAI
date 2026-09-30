@@ -318,12 +318,22 @@ html:has(.panel-scrim:not([data-canvas="1"]):not([data-conversation="1"])) body 
    et ruum on juba hägune, ja jätaks nupud siin täiesti läbipaistvaks
    (omanik 23.09). Kõrgkontrastis ja vähendatud läbipaistvuses on
    --input-blur 0. */
-/* 30.09 (omanik: „sulge ja hamburgeri nupul pidi ka blur taust olema"):
-   välja 10 px hägu ühtlase seina ees ei paistnud — nurganupud saavad
-   noolte härmatise (14 px, küllastus alla). */
+/* Nurganupud = kiirmenüü materjal (omanik 30.09: „sulge ja hamburger peaks
+   olema nagu kiirmenüüd, anna neile samad omadused"): sama toon ja hägu
+   mis .gc-shortcuts > .gc-shortcut-menu::before (carousel.css), ülaserva
+   läige ilma servajooneta; hover = kiirmenüü nupu hele kiht. Kõrgkontrast
+   ja vähendatud läbipaistvus jäävad ülal oleva väljamaterjali peale. */
 html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .panel-scrim[data-conversation="1"] :is(.panel-menu, .panel-close) {
-  -webkit-backdrop-filter: blur(14px) saturate(70%);
-  backdrop-filter: blur(14px) saturate(70%);
+  background-color: rgba(8, 8, 9, 0.7);
+  background-image: none;
+  border-color: transparent;
+  box-shadow: inset 0 1px rgba(247, 247, 247, 0.08);
+  -webkit-backdrop-filter: var(--control-glass-blur);
+  backdrop-filter: var(--control-glass-blur);
+}
+html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .panel-scrim[data-conversation="1"] :is(.panel-menu, .panel-close):hover {
+  background-color: rgba(8, 8, 9, 0.7);
+  background-image: linear-gradient(rgba(248, 248, 248, 0.055), rgba(248, 248, 248, 0.055));
 }
 .panel-scrim[data-conversation="1"] .panel-menu {
   left: clamp(1.1rem, 2.8vw, 2rem);
