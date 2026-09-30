@@ -10,10 +10,16 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
 import { randomUUID } from 'node:crypto';
+import { performance } from 'node:perf_hooks';
 import { checkTurn, validateCatalogue } from '../lib/rag-v2/pilot/conversation-eval.js';
 
 const { values } = parseArgs({ options: { scenarios: { type: 'string', default: 'tests/evaluation/dialogue/scenarios-corpus-4.json' }, out: { type: 'string' },
   only: { type: 'string' }, 'max-usd': { type: 'string', default: '1.5' }, 'dry-run': { type: 'boolean', default: false },
+  // --stream: request the answer as a stream, as the chat does, so the first visible text is measured (Codex 7.8).
+  stream: { type: 'boolean', default: false },
+  // --warm: verify the knowledge sources before the first conversation, as the chat server does at its start (ADR-033),
+  // so the search times are a warm server's and not this new process's (Codex 7.8).
+  warm: { type: 'boolean', default: false },
   legal: { type: 'string', default: 'docs/rag-v2/legal-acts-in-index.json' } } });
 const catalogue = JSON.parse(await fs.readFile(values.scenarios, 'utf8'));
 const problems = validateCatalogue(catalogue);
@@ -36,17 +42,49 @@ const { pilotExpiry } = await import('../lib/rag-v2/pilot/lifetime.js');
 const { renderAnswer } = await import('../lib/rag-v2/pilot/presentation.js');
 const { detectCrisis } = await import('../lib/chat/safety.js');
 const { focusRegion } = await import('../lib/rag-v2/pilot/record-scope.js');
+const { tokenCount } = await import('../lib/rag-v2/search/embedding.js');
 
 const plan = JSON.parse(await fs.readFile(process.env.M4_PILOT_CONFIG, 'utf8'));
 const userId = plan.users[0];
 const readConfig = options => readPilotConfig(userId, options);
 const config = await readConfig({ purpose: 'execute' });
+if (values.warm) {
+  const { processCatalog } = await import('../lib/rag-v2/search/postgres.js');
+  const { unifiedDirectory } = await import('../lib/rag-v2/search/unified.js');
+  const postgres = processCatalog(process.env.RAG_V2_POSTGRES_URL), generation = await postgres.active(config.tenant);
+  const documents = Object.keys(plan.documents).filter(doc => generation.snapshot.documents[doc]?.version_id === plan.documents[doc]);
+  const groups = unifiedDirectory(await postgres.retrievalDirectory(config.tenant, generation, documents));
+  const national = groups.nationalLaw.map(row => row.document_id), first = new Set(national);
+  const knowledge = [...national, ...groups.knowledge.map(row => row.document_id).filter(doc => !first.has(doc))], started = performance.now();
+  await postgres.warm(config.tenant, generation.id, knowledge);
+  // The server's own warm-up keeps this mark per process and generation; set, the first turn does not start it again.
+  (globalThis[Symbol.for('sotsiaalai.rag-v2.warming')] ||= new Set()).add(generation.id);
+  console.error(JSON.stringify({ warmed: knowledge.length, seconds: Math.round((performance.now() - started) / 1000) }));
+}
 const service = new PilotService({ store: new PilotStore(prisma), readConfig, adapters: runtimeAdapters(readConfig, userId, municipalDirectoryAdapter(prisma)) });
 const legal = new Map(JSON.parse(await fs.readFile(values.legal, 'utf8')).acts.filter(act => !act.regions.length)
   .map(act => [act.document_id, { from: act.index_from, to: act.index_to }]));
 const today = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Tallinn' });
 const titleOf = entry => entry.fields?.title?.value || entry.fields?.name?.value || '';
 const maxUsd = Number(values['max-usd']);
+
+// The answer request's parts in tokens (the search tokenizer, an estimate of the model's; the call's usage is exact): what
+// the input is made of, so a smaller input is measured part by part (Codex 7.8). question_in_turns: the question is also
+// the last of the dialogue's user turns.
+function inputParts(body, input) {
+  if (!body) return null;
+  const count = value => value === undefined || value === null ? 0 : tokenCount(typeof value === 'string' ? value : JSON.stringify(value));
+  const evidence = input.evidence || {}, dialogue = input.dialogue || {}, records = evidence.records || {};
+  const { entries = [], ...recordRest } = records;
+  const { userTurns, publishedAssistant, previousState, stateContext, ...dialogueRest } = dialogue;
+  return { instructions: count(body.instructions), schema: count(body.text?.format?.schema), question: count(input.question),
+    user_turns: count(userTurns), published_assistant: count(publishedAssistant), previous_state: count(previousState),
+    state_context: count(stateContext), dialogue_rest: count(Object.keys(dialogueRest).length ? dialogueRest : null),
+    sources: count(evidence.sources), evidence_text: count((evidence.evidence || []).map(item => item.text).join('\n')),
+    evidence_meta: count((evidence.evidence || []).map(({ text: _text, ...meta }) => meta)), dependencies: count(evidence.dependencies),
+    record_entries: count(entries), records_rest: count(recordRest), retrieval: count(evidence.retrieval),
+    question_in_turns: Boolean(input.question && Array.isArray(userTurns) && JSON.stringify(userTurns.at(-1) || '').includes(JSON.stringify(input.question).slice(1, -1))) };
+}
 
 // What a turn produced, from its saved row: the model's input (the catalogue and the dialogue), the evidence packet and
 // the published or rejected answer. No question or answer leaves the server except in this report.
@@ -86,6 +124,13 @@ function observe(row, error) {
     personRegions: Object.fromEntries((payload.dialogueState?.value?.people || []).map(entry => [entry.person.trim().toLowerCase(), entry.region.id])),
     timings: { searched: payload.timings?.phases?.searched ?? null, answered: payload.timings?.phases?.answered ?? null,
       search: payload.timings?.search?.since_start_ms?.merged ?? null, total: payload.timings?.validatedDraftMs ?? null },
+    // Where the turn spent its time (Codex 7.8), read stage by stage: the service's phases since the turn started, the
+    // search's steps since it started and each lane's own steps (lanes run side by side), and each model call's times
+    // and tokens. Each process's own clock; nothing here is subtracted across processes.
+    stages: { phases: payload.timings?.phases ?? null, search: payload.timings?.search?.since_start_ms ?? null,
+      lanes: payload.timings?.search?.lanes ?? null,
+      calls: events.filter(event => event.timings || event.usage).map(event => ({ stage: event.stage, timings: event.timings ?? null, usage: event.usage ?? null })),
+      input: inputParts(payload.requestAudit?.body, input) },
     usd: events.reduce((sum, event) => sum + (event.estimatedNanoUsd || 0), 0) / 1e9,
     // The search plan and the rerank's candidates and choice: why a search check failed, read before the run's
     // conversations are deleted.
@@ -115,11 +160,14 @@ try {
       expiresAt: pilotExpiry(config) } });
     const turns = [];
     for (const turn of scenario.turns) {
-      let result = null, error = null;
-      try { result = await service.run(userId, { question: turn.text, contextMode: turn.mode, convId: conversation.id, clientTurnKey: randomUUID(), language: 'et' }); }
+      let result = null, error = null, firstText = null;
+      const started = performance.now(), streaming = values.stream ? { onAnswerText: () => { firstText ??= performance.now() - started; } } : {};
+      try { result = await service.run(userId, { question: turn.text, contextMode: turn.mode, convId: conversation.id, clientTurnKey: randomUUID(), language: 'et' }, streaming); }
       catch (failure) { error = failure.code || 'turn_failed'; result = failure.pilotTurnId ? { id: failure.pilotTurnId } : null; }
       const row = result?.id ? await prisma.m4PilotTurn.findUnique({ where: { id: result.id } }) : null;
       const observed = observe(row, error);
+      // The caller's own view in this process: the first provisional text passed on and the whole turn.
+      if (observed.stages) observed.stages.caller = { streamed: values.stream, firstTextMs: firstText === null ? null : Math.round(firstText), totalMs: Math.round(performance.now() - started) };
       spent += observed.usd;
       // The evidence texts are read by the checks only; the report keeps titles, not the sources' text.
       const evidenceTexts = (row?.payload?.packet?.evidence || []).map(evidence => evidence.source_text || '');
