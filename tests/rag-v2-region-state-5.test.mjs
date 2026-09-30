@@ -229,6 +229,9 @@ test('a residence the plan left out: the user\'s own first-person home is read, 
   assert.deepEqual(await after('Tegelikult ei ela ema Harku vallas.', [], emaKose, 'ema'), { ema: ['kose_vald', 'reported'] });
   assert.deepEqual(await after('Ema elab Tartu vallas, aga töötab Harku vallas.', [], emaKose, 'ema'), { ema: ['tartu_vald', 'reported'] });
   assert.deepEqual(await after('Ema käib Harku vallas arsti juures.', [], emaKose, 'ema'), { ema: [null, 'unresolved'] });
+  // A past home is no home now (measured 30.09: "Elasin Kose vallas, aga enam ma seal ei ela").
+  assert.deepEqual(await after('Elasin Harku vallas, aga enam ma seal ei ela.', [], only), { user: [null, 'unresolved'] });
+  assert.deepEqual(await after('Я жила в Харку.', [], only), { user: [null, 'unresolved'] });
   // A singular home stays the user's alone.
   assert.deepEqual(await after('Elan Harku vallas.', [place(2, 'Elan Harku vallas', 'user', 'lives', 'Harku vald')], child, 'naabri laps'),
     { user: ['harku_vald', 'reported'], 'naabri laps': [null, 'unknown'] });
