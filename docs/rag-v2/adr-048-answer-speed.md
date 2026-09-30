@@ -96,6 +96,7 @@ Mõlemad jooksud tehti `eval-full` koopiast, mille `lib` on sama mis tootmises (
   - Suurim osa on endiselt vastuse arutlus enne esimest teksti (~6,4 s, ~870 arutlustokenit `medium` tasemel).
   - **Rerank'i arutlus on juba `low` tasemel mediaanis 0 tokenit.** Taseme `none` (mudel toetab `none`, `low`, `medium`, `high`, `xhigh`, `max`; `minimal` mitte) võit oleks väike, seega seda katset ei tehtud. Rerank'i kutse aja teeb 17 000 tokeni sisend ja vastus.
   - Otsinguplaan (~2,2 s, 105 arutlustokenit) loeb, kelle koht on nimetatud; selle taset ei vähendata ilma kohtade kataloogideta mõõtmata.
+  - **Mõõtmise ulatus** (Codexi järelülevaade 30.09): teenuse etapid algavad pärast pöörde hõivamist (`claim`). Hindaja enda kell (`caller.firstTextMs`) andis soojas jooksus mediaaniks 14,27 s, teenuse märk 14,24 s: enne `claim`-i kulus eval'is umbes 30 ms. Brauseri klõpsust kuvamiseni (HTTP, autentimine, võrk, kuvamine) seda ei mõõda; see tuleb päris vestlusest.
   - Soe protsess lühendas otsingut umbes 0,35 s. Tootmisserver on soe, seega kiiruse mõõtmine käib edaspidi `--warm`-iga.
   - **Kasutamata sisend:** oleku kontekstis oli kõigi 79 omavalitsuse loend (~1730 tokenit), mida olek v4/v5 enam ei kasuta. **Dialoogi prompt 20** saadab mudelile ainult kuupäeva (13 tokenit); loend jääb serveri kontrollideks alles.
     - Mõõtmine aktiveerimata plaanidega (tootmiskood / prompt 20), üks jooks kummalgi: mälu 7/8 / 8/8, piirkond 11/11 / 11/11, faktide elutsükkel 5/6 / 6/6.

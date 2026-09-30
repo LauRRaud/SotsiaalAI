@@ -125,6 +125,15 @@ nummerdatud kasutajapöörded + eelmise oleku inimesed
 - ADR-054: graafi järeldus ütleb nüüd, et laiendatud eelarve ei andnud tõenditeksti katvusele lisa. Graafi enda mõju pole eraldatud (laeefekt, graaf mõlemas profiilis sees). Kuuldeaparaadi viga kordus kahes kulujooksus kolmest.
 - ADR-048: kiiruse põhjuslik väide on nõrgendatud mõõdetu tasemele.
 
+### Codexi järelülevaade 30.09: R1 ja R2 ([Codexi järelülevaade 30.09](../audits/rag-v2-pr264-272-review-2026-09-30.md))
+
+- **R1:** plaani tsitaat kattis enne kontrolli kogu oma lõigu. „Ma ei ela enam Kose vallas, ema elab Harku vallas“, tsiteeritud terve lausena ema jaoks, peitis nii kasutaja eituse; kui plaan nimetas kolimislauses ainult ühe koha, kadus teine.
+  - Nüüd katab plaan ainult selle ühe mainimise, mille omistus lahenes. Lahendamata omistus ei kata midagi.
+  - Serveri selge lugemine sama inimese ja koha kohta samas sõnumis asendab plaani lahendamata omistuse.
+- **R2:** plaaniga rada luges eitust ainult koha eest (`occurrenceNegated`), plaanita rada ka elamisverbi ja koha vahel oleva alusega lausest (`livingInClause`). „Praegu ei ela ema Kose vallas“ oli ema „not“ ainult ilma plaanita.
+  - Nüüd kasutavad mõlemad sama esinemise lugemist (`placeOccurrences`).
+- `tests/rag-v2-region-state-5.test.mjs`: Codexi näited annavad plaaniga ja plaanita sama tulemuse. Vana koodiga testid kukuvad, varasemad V1–V4 ja N1–N3 läbivad.
+
 ## Piirid
 
 - Kontroll ei tõesta, et mudel luges isiku õigesti. Kui plaan paneb kolmanda isiku osalause („Ema elab Harku vallas“) vale isiku alla, jääb see nii. Kontrollitakse ainult kasutaja enda esimese isiku osalauset (V4).
