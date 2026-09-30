@@ -498,6 +498,8 @@ const ChatMessageItem = memo(function ChatMessageItem({
               key={`${item.url}-${idx}`}
               href={item.url}
               download={item.fileName || undefined}
+              /* Vastuse vormi link (omavalitsuse leht) avaneb uues aknas, vestlus jääb alles. */
+              {...(/^https:\/\//.test(item.url) && !item.fileName ? { target: "_blank", rel: "noopener noreferrer" } : {})}
             >
               {item.label}
             </a>
