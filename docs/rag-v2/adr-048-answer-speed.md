@@ -63,6 +63,42 @@ Mõlemad jooksud tehti `eval-full` koopiast, mille `lib` on sama mis tootmises (
   - `care-home-correction` 3: kasutaja parandas pensioni 500 eurolt 700-le, aga vastus ei arvestanud uut summat (700 puudus).
 - Hindaja kontrollib ainult piirkonda, allikaid, kontakte ja kohustuslikke sõnu. Sõnastuse kvaliteeti see ei mõõda. Omanik leidis 27.09, et `low` on 2,5 korda kiirem, aga vastused on nõrgemad (`chat-plan.js`).
 
+### 5. Etapid pöörde kaupa, 30.09 (Codexi järelülevaade 7.8)
+
+- **Hindaja salvestab nüüd iga pöörde etapid** (`observed.stages`):
+  - teenuse etapimärgid: plaan, embedding, otsing, esimene tekst, vastus;
+  - otsingu ja iga raja oma sammud;
+  - iga mudelikutse ajad ja tokenid;
+  - vastusepäringu osad tokenites (otsingu tokenisaatoriga hinnatud; kutse enda tokenid on täpsed).
+- `--stream` küsib vastust voona nagu vestlus ja mõõdab esimest nähtavat teksti.
+- `--warm` kontrollib enne esimest vestlust teadmusallikad serveri enda soojendusega (1163 allikat, 294 s). Uus protsess kontrollis muidu allikat alles pöörde sees.
+- `scripts/rag-v2-stage-timings.mjs` annab iga etapi valimi suuruse, mediaani ja kvartiilid.
+- **Mõõtmine:** kataloog v4 (40 pööret), korpus v39, profiil v3, prompt 19, aktiveerimata plaan, arutlus `medium`, vastus voona. Mediaan (p25–p75):
+
+| Etapp | Külm protsess | Soe protsess |
+|---|---:|---:|
+| Otsinguplaan | 2,43 s (2,12–2,97) | 2,27 s (1,99–3,01) |
+| Embedding | 0,44 s | 0,54 s |
+| Otsing kokku | 4,26 s (3,51–5,32) | 3,90 s (3,45–4,65) |
+| – sõnaline kanal | 1,31 s | 1,32 s |
+| – rerank'i samm (sh mudelikutse) | 2,20 s (1,52–3,39) | 1,97 s (1,59–2,61) |
+| – rerank'i mudelikutse | 1,59 s | 1,59 s |
+| Vastusemudel esimese tekstini | 6,95 s (4,17–10,14) | 6,38 s (4,97–10,22) |
+| **Esimene nähtav tekst** | **15,4 s** (11,8–19,9) | **14,2 s** (11,6–18,6) |
+| Vastus valmis | 17,2 s | 15,6 s |
+
+- **Tokenid** (soe jooks, mediaan):
+  - vastus: sisend 14 158, sellest vahemälust 4865; arutlus 872; väljund 1294;
+  - rerank: sisend 17 291, arutlus **0** (p75 164);
+  - plaan: sisend 961, arutlus 105, väljund 184.
+- **Vastusepäringu osad** (hinnang tokenites, mediaan): juhised 4187, skeem 1117, **oleku kontekst 1730**, otsingu kontekst 1082, tõendite tekst 4497 (p75 6686), allikakaardid 439, tõendite metaandmed 495, sõltuvused 327, eelmine vastus 246, kasutaja pöörded 99, kataloogi kirjed kuni 5629, kui omavalitsus on teada. Küsimus (17) on ka viimane kasutaja pööre.
+- **Järeldused:**
+  - Suurim osa on endiselt vastuse arutlus enne esimest teksti (~6,4 s, ~870 arutlustokenit `medium` tasemel).
+  - **Rerank'i arutlus on juba `low` tasemel mediaanis 0 tokenit.** Taseme `none` (mudel toetab `none`, `low`, `medium`, `high`, `xhigh`, `max`; `minimal` mitte) võit oleks väike, seega seda katset ei tehtud. Rerank'i kutse aja teeb 17 000 tokeni sisend ja vastus.
+  - Otsinguplaan (~2,2 s, 105 arutlustokenit) loeb, kelle koht on nimetatud; selle taset ei vähendata ilma kohtade kataloogideta mõõtmata.
+  - Soe protsess lühendas otsingut umbes 0,35 s. Tootmisserver on soe, seega kiiruse mõõtmine käib edaspidi `--warm`-iga.
+  - **Kasutamata sisend:** oleku kontekstis oli kõigi 79 omavalitsuse loend (~1730 tokenit), mida olek v4/v5 enam ei kasuta. Selle eemaldamine on eraldi muudatus ja mõõtmine (dialoogi prompt 20).
+
 ## Järeldus
 
 - Esimese tekstini kulub umbes 8 s ühtlast eeltööd (plaan, embedding, otsing koos rerank'iga) ja 5–20 s vastusemudeli arutlust.
