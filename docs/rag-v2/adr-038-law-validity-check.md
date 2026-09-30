@@ -146,6 +146,7 @@ Omanik 30.09: „jätka arendust“.
 
 - Registris on iga omavalitsuse kohta üks akt (tavaliselt sotsiaalhoolekandelise abi kord). Eraldi määrade või teenuste aktid lisandusid ainult siis, kui need olid kontrolli teel (Tapa määrad).
 - Registri kirjed viitavad endiselt vanadele XML-idele. Uute aktide omavalitsus tuleb väljaandja nimest (`issuer_name`), mitte registri räsist.
+- RT võib lõpu märkida enne otsingu loendisse kui XML-i metaandmetesse. Näiteks Maardu 415082017002 ja 402072013031 (lõpp 03.10.2026) olid 30.09 XML-is veel lõputa. Kontroll loeb kehtivust XML-ist, seega on sellised aktid kirjas puuduva versiooni või kehtetuks tunnistamise ülevaatusena, mitte `validity_changed`-ina. XML tuleb uuesti alla laadida siis, kui RT lõpu sinna kirjutab.
 
 ## Piirid
 

@@ -114,8 +114,9 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
   - kustutati ka hoidla pea varukoopiad v26–v41, vanad vektoriplaanid, koodikoopia `lib.pr186` ja testiplaanide arhiiv. Ketas läks 88% pealt 83% peale;
   - sülearvutis kustutati vanad hoidlad v13–v24 ning partii- ja indeksikaustad;
   - aktiivne plaan on `ready`.
+- **Korpus v44 (30.09 kella 15:23-st):** Maardu isikliku abistaja teenuse kord alates 04.10 (indeks `deaaee56`, 6447 dokumenti, 40 240 lõiku, plaan `m4-corpus-chat-20260930f.json`). Maardu ja Märjamaa kehtetuks tunnistavad aktid ei too uut sisu.
 - **Avatud:**
-  - Maardu ja Märjamaa uued aktid (v44) enne 03.10;
+  - Maardu kahe akti XML-id uuesti alla laadida, kui RT kirjutab lõpu 03.10 XML-i (ADR-038);
   - 46 akti taotlusvormid (lisad) on tuletamata;
   - 01.10 kontroll (uus SHS ja abivahendite piirhinnad);
   - kontaktid pärast 04.10;
