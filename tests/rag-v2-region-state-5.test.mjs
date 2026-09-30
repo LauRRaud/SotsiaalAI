@@ -361,3 +361,43 @@ test('Codex 7.8: the model input of a fact state carries only the date of the st
   assert.equal(modelStateContext(PERSON_DIALOGUE_STATE_VERSION, context), context);
   assert.equal(modelStateContext(REGION_STATE_VERSION, null), null);
 });
+
+// Codex review of #264–#272 (30.09), R1 and R2: the same message read with the plan's places and without them.
+const reviewLemmas = { vallas: 'vald', valda: 'vald' };
+const reviewAnalyzer = { analyze: async words => words.map(word => {
+  const lower = word.toLowerCase();
+  return `vmet${lower}${reviewLemmas[lower] ? ` vmet${reviewLemmas[lower]}` : ''}`;
+}) };
+const reviewDirectory = [{ region: 'harku_vald', names: ['Harku vald'] }, { region: 'kose_vald', names: ['Kose vald'] }];
+const bothInKose = ['user', 'ema'].map(person => ({ person, region: { id: 'kose_vald', status: 'reported', support: [{ turn: 1, quote: 'Elame Kose vallas' }] } }));
+async function reviewRead(text, places, target = 'user') {
+  const checked = await checkedTurnPlaces(places, [{ turn: 2, text }], reviewDirectory, reviewAnalyzer, { target, previousPeople: bothInKose });
+  const people = Object.fromEntries(resolvePersonRegions(bothInKose, checked, target).map(entry => [entry.person, [entry.region.id, entry.region.status]]));
+  const scope = await personRegionScope({ previousValue: { people: bothInKose }, places: checked, person: target, turn: { text }, turnNumber: 2,
+    directory: reviewDirectory, analyzer: reviewAnalyzer });
+  return { people, region: scope.region };
+}
+
+test('Codex R1: a quote covers only its own mention; a long quote left unresolved hides no other mention from the server', async () => {
+  const text = 'Ma ei ela enam Kose vallas, ema elab Harku vallas.';
+  const planned = await reviewRead(text, [{ turn: 2, quote: text, name: 'Harku vald', person: 'ema', relation: 'lives' }]);
+  const unplanned = await reviewRead(text, []);
+  assert.deepEqual(planned, unplanned);
+  assert.deepEqual(planned, { people: { user: [null, 'negated'], ema: ['harku_vald', 'reported'] }, region: null });
+  // A move quoted whole, the plan naming either place: the other one is read by the server.
+  const move = 'Ma ei ela enam Kose vallas, elan Harku vallas.';
+  for (const plan of [[{ turn: 2, quote: move, name: 'Kose vald', person: 'user', relation: 'not' }], [{ turn: 2, quote: move, name: 'Harku vald', person: 'user', relation: 'lives' }], []]) {
+    const result = await reviewRead(move, plan);
+    assert.equal(result.region, 'harku_vald', JSON.stringify(plan));
+    assert.deepEqual(result.people.user, ['harku_vald', 'reported']);
+  }
+});
+
+test('Codex R2: a negation with the subject between the verb and the place is read the same with the plan and without it', async () => {
+  const text = 'Praegu ei ela ema Kose vallas.';
+  const planned = await reviewRead(text, [{ turn: 2, quote: text, name: 'Kose vald', person: 'ema', relation: 'lives' }], 'ema');
+  const unplanned = await reviewRead(text, [], 'ema');
+  assert.deepEqual(planned, unplanned);
+  assert.equal(planned.region, null);
+  assert.equal(planned.people.ema[0], null);
+});
