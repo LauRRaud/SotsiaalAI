@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="3fa5a23a-73cf-4334-8a3c-ae39ac09a303" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+ 
+ <valjaandja>Haapsalu Linnavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2021-12-08</aktikuupaev>
+  <avaldamismarge>
+	<RTosa>RT IV</RTosa>
+	<avaldamineKuupaev>2021-12-15</avaldamineKuupaev>
+	
+	
+	<RTartikkel>9</RTartikkel>
+	<aktViide>415122021009</aktViide>
+  </avaldamismarge>
+  <joustumine>2021-12-18</joustumine>
+  <aktiNr>8</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-11-21</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>10</RTartikkel><aktViide>421112025010</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2025-11-24</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2025-11-14</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>421112025010</globaalID>
+ <metaandmedVersioon>11</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2025-11-20</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ <terviktekstiGrupiID>1053056</terviktekstiGrupiID>
+ <eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2021-12-13</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Kristjan Kuusik</metaandmedVersioonPohjustaja>
+		</versiooniMuutus><versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>7</metaandmedVersioon><metaandmedVersioonKuupaev>2021-12-14</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+	<aktinimi id="a26f5d2b-a955-4056-ab44-2f7ca5545605">
+		<nimi id="be585071-ecb9-420f-80b6-fa350ad5567c">
+			<pealkiri id="7eb7aab2-8f24-46e9-b56e-c07852383d9a">Võlanõustamisteenuse osutamise kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="5723dab3-5f27-4643-af52-e0ebb4bb0b74"><aktikuupaev id="dc77b24d-06ac-48e7-b781-fe4a2c19baed">2025-11-12</aktikuupaev><avaldamismarge id="567ea48c-4878-4f77-bfe8-129d45144510"><RTosa id="cecef507-d9c3-497b-80e3-ecf13f0d49ca">RT IV</RTosa><avaldamineKuupaev id="30929eac-7906-44cd-b5de-583f7e39a7ca">2025-11-21</avaldamineKuupaev><RTartikkel id="bcbe004c-0a52-4625-a7a5-a811bedb8ea9">1</RTartikkel><aktViide id="7529cdb0-eda4-4a94-8bb0-e7cc35dab5b7">421112025001</aktViide></avaldamismarge><joustumine id="e1ac9e63-4b0d-4a59-995e-1da160887ead">2025-11-24</joustumine></muutmismarge><sisu id="328e0836-ae4a-40a4-b762-4d0eaea19ed2">
+		<preambul id="279474cc-e798-4566-bf93-fbf99bdfc6e8">
+			<tavatekst id="87c71064-70cf-4ad4-adbd-b8391b3912ae">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 6 lõike 1 ja § 22 lõike 1 punkti 5, sotsiaalhoolekande seaduse § 14 lõike 1, §-de 15–16 ja §-de 44–45 ning Haapsalu Linnavolikogu 28.03.2021 nr 84 „Sotsiaalteenuste osutamise kord“ alusel.</tavatekst>
+		<muutmismarge id="1dbf2c73-b88a-4f5a-aadc-2624ccf0d276"><avaldamismarge id="1248b27a-6633-4f3c-9d5a-5b5db924548e"><RTosa id="f4ab03e4-efe2-4963-9d4a-0d411bbfc7dc">RT IV</RTosa><avaldamineKuupaev id="5745bbb5-7ca1-4800-a379-67dc13456739">2025-11-21</avaldamineKuupaev><RTartikkel id="8f7de175-c95e-4b8d-ab87-b266dcba05a2">1</RTartikkel><aktViide id="01466712-ec9c-4500-8918-d7f1a4eef1f9">421112025001</aktViide></avaldamismarge><joustumine id="80ce6a9f-3c65-4832-b5ae-f62fc7c0a72e">2025-11-24</joustumine></muutmismarge></preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="c6d44f61-a127-4810-8b7c-6220e46cfe92">1</paragrahvNr>
+			<kuvatavNr id="0064bb62-0b72-41ea-8f59-7d9478c5d556"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="3a55947d-85e6-45a2-8866-68e09628ab66">Reguleerimisala</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="36a1709d-aaf0-44ad-9b79-98d1110de1de"/>
+				<kuvatavNr id="a7c46b30-aeb2-4457-84fb-7fcb3e6b4002"/>
+				<sisuTekst id="87f7d01a-aea3-4f38-8377-b6a34e5435b3">
+					<tavatekst id="efd8425e-8125-4430-9818-1825de0987f6">Käesolev kord reguleerib võlanõustamisteenuse (edaspidi teenus) taotlemise, määramise ja teenuse osutamise tingimused ja korra.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="5164653d-8159-45e5-b30d-dcc02f0b379f">2</paragrahvNr>
+			<kuvatavNr id="e575c74d-aa78-4a70-b42c-cc08f2e1ca9e"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="cb385b82-db0b-40c2-a5a6-ab1e44652811">Teenuse eesmärk ja kirjeldus</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="a3945b28-2a4a-4228-8de0-d1b2db2275de">1</loigeNr>
+				<kuvatavNr id="79f9c8ce-b86a-4b1e-aaf6-d5ef21361ccf"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="67cb758a-83aa-42a3-a76a-8a1b9597ba56">
+					<tavatekst id="42472954-e060-4d5f-99ca-a968a5283cc0">Teenuse eesmärk on abistada isikut tema varalise olukorra kindlakstegemisel, võlausaldajaga läbirääkimiste pidamisel ja nõuete rahuldamisel, vältida uute võlgnevuste tekkimist toimetulekuvõime parandamise kaudu ning lahendada muid võlgnevusega seotud probleeme.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg2">
+				<loigeNr id="b31a3bbf-0a67-42a5-a156-6dcd86ba5174">2</loigeNr>
+				<kuvatavNr id="91544481-ccbf-4f29-8f01-da68704833e9"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="9f61bb47-fbd5-4fcb-96ad-316c70a687ec">
+					<tavatekst id="4966bf63-8f27-47f9-ac8a-fb1cdc5d1e7e">Teenuse raames loetakse võlgnevuseks olukorda, kus isikule on esitatud nõue täita võlaõiguslikust suhtest või seadusest tulenev sissenõutavaks muutunud rahaline kohustus, mida isik ei ole võimeline iseseisvalt täitma.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg3">
+				<loigeNr id="f9fc65fc-397f-4de2-9bfb-27c04c6ceb45">3</loigeNr>
+				<kuvatavNr id="9e0bd32d-2f65-4711-8f54-daf7734f7813"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="508267df-1f25-4faf-bfc8-48630ab8d1e8">
+					<tavatekst id="f7729406-e7ec-4d7d-889c-850204e625ba">Teenus hõlmab isiku nõustamist, juhendamist ja edasiste võlgade tekkimise ennetamist.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="5d7bd4c8-92a9-483f-93b6-93284ae4fb59">3</paragrahvNr>
+			<kuvatavNr id="17417dd9-60ae-45cb-8583-ae581bd5efb6"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="9980398f-b951-40b6-bb0f-6ac8d0ec2a15">Teenuse sihtgrupp</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="f709401b-65ec-4fe6-a33e-6287abdc32a2"/>
+				<kuvatavNr id="b67fffcc-2ad3-4147-a7fc-ba4b8dc01670"/>
+				<sisuTekst id="c4bd4992-4718-485c-b111-9a55bbb0c400">
+					<tavatekst id="22070967-e4f8-4188-8372-d538097f680f">Teenuse sihtgrupp on Eesti Rahvastikuregistri (edaspidi register) järgselt Haapsalu linnas alaliselt elavad täisealised isikud, kellel on tekkinud võlgnevused või on oht võlgnevuse tekkimiseks ning kes vajavad nõustamist võlgadega seotud probleemide lahendamiseks.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="f8042f6c-0e45-4d7a-9944-99bfcd0f4106">4</paragrahvNr>
+			<kuvatavNr id="c3978469-d066-40df-b6c4-5edb594f9c1c"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="8ea660b5-4654-40c7-8303-6542be8f5572">Teenuse osutaja</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="1c57bad0-798c-4b52-8bf2-1c59e6acc3b3">1</loigeNr>
+				<kuvatavNr id="41ea8d2e-e484-4ef3-ae4a-2e1f2ab8dfed"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="bab37351-1d72-4fae-8a90-4e77867dbbe3">
+					<tavatekst id="2778f6af-7ca9-4d99-9b58-a3364221fcd7">Teenuse osutamine on üldjuhul korraldatud teenust vahetult osutava koostööpartneri kaudu, mille hangib Haapsalu Sotsiaalmaja.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg2">
+				<loigeNr id="6af9daf9-5e48-463b-ba06-18b3e2e8151b">2</loigeNr>
+				<kuvatavNr id="b64cb6bd-d193-439f-ba47-ab4f8881c73f"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="d2e453eb-ddd9-4207-a1a4-1610d901181b">
+					<tavatekst id="dbc35d93-cb69-4f96-ba8e-f384702a9879">Teenuse vahetu osutaja peab vastama sotsiaalhoolekande seaduse § 45 lõikes 1 sätestatud tingimustele.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg3">
+				<loigeNr id="d7070494-07a7-47f7-8e02-f031fee67301">3</loigeNr>
+				<kuvatavNr id="3697efac-9b95-494f-b097-c60ba77eb9ae"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="c5c6288f-5c87-4dac-9ffa-929d4ccfb6fc">
+					<tavatekst id="2d6955f9-b73c-4b9c-ab5c-5ed242911dac">Juhul kui käesoleva paragrahvi lõikes 1 nimetatud teenuse osutaja mõjuvatel põhjustel ei sobi või teenuse vajadus on tavapärasest suurem, on isikul õigus esitada Haapsalu linnavalitsusele vastavasisuline põhjendatud taotlus.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="a445b752-e7c1-4d6a-951c-27ee45ae9ac4">5</paragrahvNr>
+			<kuvatavNr id="ee8f8649-5e02-422e-b2a7-4a0bb8181c67"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="487eddac-4a6b-4032-8b49-ffdd6e2a1152">Teenuse taotlemine, määramine ja tasumine</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="a1f532b4-21c6-4589-b7d8-71afc5be1d28">1</loigeNr>
+				<kuvatavNr id="9078d9e0-d8d5-46c3-aa2c-49bb8312994a"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="d3067b08-8071-42bb-9d3c-2057bd949768">
+					<tavatekst id="a5b53837-0592-4fa5-8c05-d17eb762455f">Teenuse taotlemisel käesoleva korra § 4 lõige 1 alusel registreerib isiku teenuse saamiseks Haapsalu Sotsiaalmaja sekretär. Teenust osutatakse isikule tasuta kuid mitte rohkem kui kuus tundi. Arvestust teenuse osutamise üle peab Haapsalu Sotsiaalmaja.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg2">
+				<loigeNr id="ad5422b7-53af-457f-ac6f-22bed13fcbcf">2</loigeNr>
+				<kuvatavNr id="ebc4b624-75ca-4ee2-9107-aa1facc142f0"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="afc57192-d4f5-4f87-8ae2-cc99898c5de4">
+					<tavatekst id="7d32d28d-3f3a-4732-9020-ddc5ba3a6b55">Teenuse osutamisel käesoleva korra § 4 lõige 3 alusel esitab isik teenuse taotlemiseks Haapsalu linnavalitsusele vastava põhjendatud taotluse.</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para5lg2p1">
+					<alampunktNr id="dea5e958-74a0-4457-9e98-ec3495215cb4">1</alampunktNr>
+					<kuvatavNr id="38ab3677-6d08-4d70-b30a-8b17a815b359"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="97c82c6b-c2e7-45fe-b1e2-d6062e499a47">
+						<tavatekst id="a9b63639-3f0f-4fc4-91f0-e885c472ff73">Linnavalitsuse vastav ametnik selgitab välja teenuse vajaduse ning teenuse osutamiseks muud olulised asjaolud ning hinnatud abivajaduse puhul esitab sotsiaalkomisjonile ettepaneku teenusele suunamiseks ja rahastamiseks.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg2p2">
+					<alampunktNr id="28a0796b-3461-4629-b3e3-f66c53aa6752">2</alampunktNr>
+					<kuvatavNr id="4a6f0bcc-f1fd-48fc-a6ed-543a6cb753d0"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="257e50ba-c3b4-411d-831c-ea239998d6c4">
+						<tavatekst id="34e9a028-f10e-4f7f-9910-0c8b634681f0">Teenuse osutamise maht ja tingimused lepitakse kokku teenuse osutaja ja Haapsalu linnavalituse vahelises teenuse osutamise lepingus.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg2p3">
+					<alampunktNr id="a2974306-1fd5-4965-ad20-75b78216bd23">3</alampunktNr>
+					<kuvatavNr id="94f37695-39ab-406d-b369-fa9e6a2b0c3b"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="bb104359-b6db-4fbc-b559-33947c30beea">
+						<tavatekst id="a36d0bec-3bb4-4261-904b-f028a0e148b2">Isikule võib määrata omaosaluse teenuse eest tasumisel juhul, kui tal on selleks hindamise alusel piisavad vahendid.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para5lg3">
+				<loigeNr id="4b595217-2740-4fd5-8874-f3486ee15c02">3</loigeNr>
+				<kuvatavNr id="6a611cec-41d7-40cd-b6a9-73c6a2312e7d"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="4dfc4d20-62d3-441f-bf3f-95bb6e7af6c3">
+					<tavatekst id="ed85013b-d232-4e13-b488-dae4945401e5">Teenuse rahastamisest võib keelduda juhul, kui esineb vähemalt üks järgmistest asjaoludest:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para5lg3p1">
+					<alampunktNr id="824d20ad-ad4d-4a3d-963b-418bbfed0db9">1</alampunktNr>
+					<kuvatavNr id="be523dc6-cc87-4413-a139-b78023296dfb"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="936a916d-ad79-4f29-9347-846e6bc69b86">
+						<tavatekst id="4bf14a74-8139-4464-8140-61828182b7bf">taotleja ei esita nõutud täiendavaid dokumente;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg3p2">
+					<alampunktNr id="ee8d44b5-cf2d-476c-9a20-4b89380a8069">2</alampunktNr>
+					<kuvatavNr id="71384264-5fe6-4972-a556-551d0da7d633"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="a2893e81-fa7b-45d8-82ab-747e28fd0d20">
+						<tavatekst id="9309825a-63c8-4829-8380-8d97d88f2e4d">taotleja ei võimalda taotluse asjaolusid kontrollida;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg3p3">
+					<alampunktNr id="15e04fb7-9cda-4300-a916-33d75db51483">3</alampunktNr>
+					<kuvatavNr id="5c6129b1-547f-4679-995f-7fe690515f9e"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="baefd236-e0c7-45e5-9ffa-0817c221dfb9">
+						<tavatekst id="b2cc4f1c-c0f9-4c19-9d36-c6c031b3fcbd">taotleja ei paranda avalduses esinevaid puudusi määratud tähtajaks;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg3p4">
+					<alampunktNr id="416cbe16-ebc3-47ed-ac23-6ec1bd302e0e">4</alampunktNr>
+					<kuvatavNr id="f3ddac08-24f7-42e6-bd0c-75add646e4dc"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="be557f0e-51b1-488b-b1aa-b37bbda69f7a">
+						<tavatekst id="3329bc61-8c43-45ce-a404-1b77cb2cd273">taotleja ei ole linnavalitsust viivitamata teavitanud teenuse saamise õigust ja teenuse määramist mõjutavatest asjaoludest või asjaolude muutumisest;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg3p5">
+					<alampunktNr id="809a1333-7b78-42a9-83c9-9cdc74741344">5</alampunktNr>
+					<kuvatavNr id="fb2575f6-a6bb-4298-8708-62f689c52271"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="7d08701a-352f-49f3-a79f-29f08f9e0a09">
+						<tavatekst id="1877223c-5525-452a-8007-8a3c1036aff4">teenuse vajadust on võimalik või otstarbekas katta muude teenuste või muu abiga;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg3p6">
+					<alampunktNr id="488de8a4-4536-41b4-a87b-4626019fcfab">6</alampunktNr>
+					<kuvatavNr id="fbaa5889-b42e-4833-b2aa-dda998d53d36"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="4d376523-4e5c-44f9-9699-e5d88abdcf9b">
+						<tavatekst id="78de94e4-4613-46f1-8c35-68737414d319">taotleja on teadvalt andmeid varjanud või esitanud valeandmeid;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg3p7">
+					<alampunktNr id="5521472a-0634-41be-a5d5-2fec2b5217a9">7</alampunktNr>
+					<kuvatavNr id="a45a8c80-0edf-414d-a1d2-7ccb75c65df2"><![CDATA[7) ]]></kuvatavNr>
+					<sisuTekst id="a61789fe-0dbd-4212-9154-43d5cbf58174">
+						<tavatekst id="279f2f79-584b-4917-b105-31b8df00b8f2">taotleja või tema leibkonnaliikmete suhtes esineb muid asjaolusid, mis sotsiaalkomisjoni arvamusel ei anna alust toetuse määramiseks.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para6">
+			<paragrahvNr id="91b67daa-b604-498d-bb8b-900dff083bc3">6</paragrahvNr>
+			<kuvatavNr id="a10b2430-fb4e-47d0-a679-96d981c49f91"><![CDATA[§ 6. ]]></kuvatavNr>
+			<paragrahvPealkiri id="00c105e4-e26c-4b98-a37c-8ed1e2a7cb07">Teenuse osutamine</paragrahvPealkiri>
+			<loige id="para6lg1">
+				<loigeNr id="04c8fd8f-5660-44e1-bbce-f402645e2e14">1</loigeNr>
+				<kuvatavNr id="ca6255bd-1ba0-4fdd-876b-034c7a930204"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="b29db9d1-c443-4a48-80f3-e0560c171630">
+					<tavatekst id="e26e7da9-69f8-4a8b-ad15-d59ce23de22c">Teenuse osutamise käigus võlanõustaja:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para6lg1p1">
+					<alampunktNr id="4bd9a628-4408-44d6-872a-bca969a65b6f">1</alampunktNr>
+					<kuvatavNr id="901f4e63-80b2-4012-9fa7-e297cc83e6c8"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="8f545880-5d0c-4f42-8000-64f2e650b4b2">
+						<tavatekst id="0f1d95c8-8984-4169-b043-2771baf3150a">selgitab välja võlgnevusse sattumise põhjused;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg1p2">
+					<alampunktNr id="db7c5ea0-ba68-4059-a3f8-8653a5ff6939">2</alampunktNr>
+					<kuvatavNr id="afa8328b-4cff-4b63-8fb9-a9f14f89d9d3"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="a77ae62b-c3fa-421c-88be-e03e8b965615">
+						<tavatekst id="f093fc5d-1629-4349-9dcb-64bef8e084f9">hindab võlanõuete õiguspärasust;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg1p3">
+					<alampunktNr id="bd2df6d6-611f-45ee-92d7-d72952e5082c">3</alampunktNr>
+					<kuvatavNr id="8703d2c2-eee4-4621-a7ea-6941f15c181b"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="89de9a62-2ca5-497a-b1b7-a8f0599cff22">
+						<tavatekst id="a7843531-a4a1-4790-8372-427d6a0c09eb">hindab võlgniku abivajadust, sealhulgas määratleb tema rahaliste kohustuste hulga ja mahu ning ressursid võlgnevuse kõrvaldamiseks;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg1p4">
+					<alampunktNr id="b0e51592-d0e0-47a1-b9f1-f19174db698b">4</alampunktNr>
+					<kuvatavNr id="bb8c4c36-3af2-4929-a8d3-45e3af20c02f"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="fa1b1a22-5582-4c12-ac17-672525c95f03">
+						<tavatekst id="e5efe8a3-eda8-481e-a350-20722a76a836">aitab isikul planeerida tema rahalisi vahendeid rahaliste kohustuste täitmiseks ning võlgnevuse kõrvaldamiseks;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg1p5">
+					<alampunktNr id="441d75bc-c29c-477f-8dba-413227fc2e57">5</alampunktNr>
+					<kuvatavNr id="811fa0d9-0c33-48b7-9790-9d37ec2099d5"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="117047ae-f959-4ad5-9bf6-895851f43274">
+						<tavatekst id="444f74c1-ec9a-42d1-be74-cc3afcfa9090">abistab ja nõustab isikut võlgnevuse kõrvaldamiseks sobivate lahenduste väljaselgitamisel ja suhtlemisel võlausaldajatega;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg1p6">
+					<alampunktNr id="ab7a8810-d700-4291-96ce-e599d53f7c89">6</alampunktNr>
+					<kuvatavNr id="42fab1c5-31e1-42b6-bff4-5d9267a1b574"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="3a8d0f57-5a06-45a5-a022-f3c6ff22d81b">
+						<tavatekst id="d799801f-efd3-4e24-8e87-7d9970ae8280">teeb isiku nõusolekul koostööd füüsiliste ja juriidiliste isikutega, kelle ees isikul on rahaline kohustus täitmata;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg1p7">
+					<alampunktNr id="1771065e-b1eb-4acc-9bec-2f70a7fd8b04">7</alampunktNr>
+					<kuvatavNr id="d218f8e5-706c-4dbe-af08-a592eda99f3d"><![CDATA[7) ]]></kuvatavNr>
+					<sisuTekst id="9cdaee6c-82a8-404e-86d9-12e250bcabfd">
+						<tavatekst id="4708af4a-18cd-4fdd-8b54-521175308e64">abistab maksegraafikute koostamisel ja täitmisel;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg1p8">
+					<alampunktNr id="b437ac40-0e58-4a4d-afba-5a4625ad4aea">8</alampunktNr>
+					<kuvatavNr id="f6520ba8-55f8-4dcb-a373-e30dd175455b"><![CDATA[8) ]]></kuvatavNr>
+					<sisuTekst id="d69e6956-ffd3-4a0f-a603-e6f5719fbe9c">
+						<tavatekst id="24b12f91-3b9c-48b2-b1ef-ba6887ec7803">nõustab ja juhendab isikut, kuidas vältida uute võlgnevuste tekkimist.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para6lg2">
+				<loigeNr id="6f8aeeaf-1a1f-46d7-973d-3d3521327619">2</loigeNr>
+				<kuvatavNr id="e88ab946-e38e-4805-923e-1ed868c4deaf"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="d2dbff6c-5cea-4066-8289-4a6aeaf6a7a9">
+					<tavatekst id="0df956ae-5702-419e-b6f9-8a602e29b2c2">Võlanõustajal on õigus teenuse osutamisest keelduda juhul, kui isik teadlikult esitab valeandmeid või korduvalt ei täida võlanõustajaga saavutatud kokkuleppeid.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para7">
+			<paragrahvNr id="0a252ed5-89cd-4a7b-ba64-eb1fb69d1844">7</paragrahvNr>
+			<kuvatavNr id="5504d3a0-5232-4cda-a448-f053f28493b4"><![CDATA[§ 7. ]]></kuvatavNr>
+			<paragrahvPealkiri id="5a0265d1-5d6b-42cd-a1ba-dadd1a3a49a3">Vaide esitamine ja järelevalve.</paragrahvPealkiri>
+			<loige id="para7lg1">
+				<loigeNr id="d0ed771d-6a58-44a4-98be-8135d8f3f0d9">1</loigeNr>
+				<kuvatavNr id="b399dfd8-c2c5-4144-87a3-7416a4bdf66a"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="704bf550-fa38-4187-a25d-01736e1506ff">
+					<tavatekst id="4c187144-0188-4ab4-b5f7-cadf163c63ef">Sotsiaalteenuste osutamise üle teostab järelevalvet Haapsalu Linnavalitsus.<reavahetus/>Riiklikku järelevalvet teostab tulenevalt sotsiaalhoolekande seaduse § 157 lg 1 ja 3 Sotsiaalkindlustusamet.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg2">
+				<loigeNr id="f88b4f47-8a92-4061-960b-3e9834a25a6d">2</loigeNr>
+				<kuvatavNr id="9ed46534-5b1a-4df2-892a-10ff792583a5"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="15ffc4a0-d13e-494a-814f-68066e5cce28">
+					<tavatekst id="5ace4620-e4df-4e84-8195-48bd7fdfbafd">Vaie teenuse osutamise kohta esitatakse Haapsalu Linnavalitsusele.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg3">
+				<loigeNr id="4e625e17-cf34-4c00-9ef5-604066daacdd">3</loigeNr>
+				<kuvatavNr id="3ccf2293-f686-4d11-ba98-2e68eb66a949"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="a233e060-bd72-4591-8338-c926066aecbf">
+					<tavatekst id="e470fd13-105b-46f0-a590-a869ff4e48e6">Sotsiaalseadustiku üldosa seaduse § 36 lg 2 tulenevalt lahendatakse vaie 30 päeva jooksul.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para8">
+			<paragrahvNr id="a78ed63b-840d-425e-b9a9-c93afbfd3882">8</paragrahvNr>
+			<kuvatavNr id="f24172aa-72f6-4e08-b85d-5935e77060f4"><![CDATA[§ 8. ]]></kuvatavNr>
+			<paragrahvPealkiri id="43a5f9b0-59f0-4514-a194-8718ad78ed85">Rakendamine</paragrahvPealkiri>
+			<loige id="para8lg1">
+				<loigeNr id="c170a64a-c295-48a9-886d-269c7b2d0c61"/>
+				<kuvatavNr id="76a90921-9327-4b54-99cb-d397cb1a9147"/>
+				<sisuTekst id="682b4880-03be-40d7-a8fb-1faa28a83fb5">
+					<tavatekst id="8bed346c-a3b3-4678-bd51-1b2b4810f819">Määrus jõustub kolmandal päeval pärast avaldamist Riigi Teatajas.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+	
+	
+</oigusakt>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="1b8b335d-8458-4581-8e9d-e83a279b040f" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Ruhnu Vallavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>algtekst-terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2023-06-27</aktikuupaev>
+			<aktiNr>3</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2023-06-28</avaldamineKuupaev><RTaasta>2023</RTaasta><RTartikkel>52</RTartikkel><aktViide>428062023052</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2023-07-01+03:00</kehtivuseAlgus></kehtivus><versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2023-06-27</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>428062023052</globaalID>
+		<metaandmedVersioon>7</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2023-06-27</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1056937</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2023-06-27</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Tiina Allik</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="07e338f7-cea2-42dc-b124-db08e83f1d27">
+		<nimi id="86970965-88c0-41af-a583-cf8eb7bfc542">
+			<pealkiri id="b0a1ccd0-62f6-4e59-9d15-fe6c039303e6">Üldhooldusteenuse hoolduskulude piirmäära kehtestamine </pealkiri>
+		</nimi>
+	</aktinimi>
+	<sisu id="7ca1b192-8836-4c00-af3f-49d96f90e89a">
+		<preambul id="0cefe1df-3d2c-4d0f-89de-2dc4efca4ee4">
+			<tavatekst id="e4b47bde-f66f-45d7-b513-9408e51d9bdf">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lg 2, sotsiaalhoolekande seaduse § 22<sup>1</sup> lõike 3 alusel. </tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="ac093f90-1620-4fcd-84fe-59575fb5a87f">1</paragrahvNr>
+			<kuvatavNr id="03109f1b-8d3a-4f12-89b7-d17805004a10"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="fb1330cd-15ad-48b5-9634-95c2735a862d">Üldhooldusteenuse hoolduskulude piirmäära kehtestamine </paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="8fea12cc-0f48-4062-8ef1-885b28bc4be8">1</loigeNr>
+				<kuvatavNr id="99257fea-2d94-414e-955c-5d520b63365c"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="9a805183-11dd-4ec0-993d-e2982cfe0823">
+					<tavatekst id="a67735ee-113c-4b9d-8973-6aa77b98715d">Kehtestada Ruhnu Vallavalitsuse üldhooldusteenuse hoolduskulude piirmäär 500 eurot.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg2">
+				<loigeNr id="e6d610f1-f246-4454-a2b5-bf2edca6a5bd">2</loigeNr>
+				<kuvatavNr id="95b4a401-1029-4dbd-a965-b32f804f7264"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="6aae3f33-0f68-4289-bd04-e5ce68adde56">
+					<tavatekst id="318b0ce5-4fa4-4a09-a9eb-9bb08c6bb49d">Delegeerida Ruhnu vallavalitsusele üldhooldusteenuse hoolduskulude piirmäära muudatuste tegemine.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="45cb7c1c-e6b6-4c2a-95e5-6d7a757a3c74">2</paragrahvNr>
+			<kuvatavNr id="5d896373-d344-4f6d-9a02-97832ba326df"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="09aee1a7-7bf3-42db-aba7-e2b29b7cf0f8">Määruse rakendamine</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="2636a518-2b83-4cfd-ae51-88044a91b012"/>
+				<kuvatavNr id="94dc4172-eb60-4979-9424-08cb0606cd1c"/>
+				<sisuTekst id="845371fb-239e-448a-b284-71a3c14eb0d1">
+					<tavatekst id="95611b8f-dd10-4326-a5d9-0d3799d015e6">Määrus jõustub 01.07.2023 a. </tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+	<allkiri id="2f66268d-f420-453d-8060-14a9774d94a5">
+		<allkiriKoht id="157a6de0-81de-4360-b4d2-935b7a182831"/>
+		<allkirjastaja id="df80caf4-600f-4236-9705-e9f305bfff58">
+			<ametinimetus id="72070ac3-d603-4e2f-ba9e-56e5fe094496">volikogu esimees</ametinimetus>
+			<eesnimi id="dfce84cf-4a14-4e9b-b611-a88ddc71e749">Heiki</eesnimi>
+			<perekonnanimi id="2c544c41-6ddd-4990-9aab-068d7378abb6">Kukk</perekonnanimi>
+		</allkirjastaja>
+	</allkiri>
+</oigusakt>

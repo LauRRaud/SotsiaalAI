@@ -1,0 +1,959 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Tallinna Linnavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2023-12-14</aktikuupaev>
+			<avaldamismarge>
+				<RTosa>RT IV</RTosa>
+				<avaldamineKuupaev>2023-12-28</avaldamineKuupaev>
+				<RTartikkel>61</RTartikkel>
+				<aktViide>428122023061</aktViide>
+			</avaldamismarge>
+			<joustumine>2023-12-31</joustumine>
+			<aktiNr>29</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-07-25</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>17</RTartikkel><aktViide>425072025017</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2025-09-01</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2023-12-27</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>425072025017</globaalID>
+		<metaandmedVersioon>20</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2025-07-24</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Marike Võime</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1058138</terviktekstiGrupiID>
+	</metaandmed>
+	<aktinimi>
+		<nimi>
+			<pealkiri>Lapsehoiuteenuse toetamise kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge>
+		<aktikuupaev>2024-08-22</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2024-08-29</avaldamineKuupaev>
+			<RTartikkel>6</RTartikkel>
+			<aktViide>429082024006</aktViide>
+		</avaldamismarge>
+		<joustumine>2024-09-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2025-03-20</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2025-03-29</avaldamineKuupaev>
+			<RTartikkel>14</RTartikkel>
+			<aktViide>429032025014</aktViide>
+		</avaldamismarge>
+		<joustumine>2025-04-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2025-07-21</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2025-07-25</avaldamineKuupaev>
+			<RTartikkel>15</RTartikkel>
+			<aktViide>425072025015</aktViide>
+		</avaldamismarge>
+		<joustumine>2025-09-01</joustumine>
+	</muutmismarge>
+	<sisu>
+		<preambul>
+			<tavatekst>Määrus
+kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lg 1 p 5 alusel.</tavatekst>
+			<muutmismarge>
+				<aktikuupaev>2025-07-21</aktikuupaev>
+				<avaldamismarge>
+					<RTosa>RT IV</RTosa>
+					<avaldamineKuupaev>2025-07-25</avaldamineKuupaev>
+					<RTartikkel>15</RTartikkel>
+					<aktViide>425072025015</aktViide>
+				</avaldamismarge>
+				<joustumine>2025-09-01</joustumine>
+			</muutmismarge>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr>1</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 1.]]></kuvatavNr>
+			<paragrahvPealkiri>Reguleerimisala</paragrahvPealkiri>
+			<muutmismarge>
+				<aktikuupaev>2025-07-21</aktikuupaev>
+				<avaldamismarge>
+					<RTosa>RT IV</RTosa>
+					<avaldamineKuupaev>2025-07-25</avaldamineKuupaev>
+					<RTartikkel>15</RTartikkel>
+					<aktViide>425072025015</aktViide>
+				</avaldamismarge>
+				<joustumine>2025-09-01</joustumine>
+			</muutmismarge>
+			<loige id="para1lg1">
+				<loigeNr>1</loigeNr>
+				<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Määrusega
+kehtestatakse eralasteaiale ja -lastehoiule Tallinna linna eelarves ette nähtud vahenditest lapsehoiuteenuse toetuse (edaspidi <i>toetus</i>) andmise tingimused ja kord (edaspidi <i>kord</i>). </tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<aktikuupaev>2025-07-21</aktikuupaev>
+					<avaldamismarge>
+						<RTosa>RT IV</RTosa>
+						<avaldamineKuupaev>2025-07-25</avaldamineKuupaev>
+						<RTartikkel>15</RTartikkel>
+						<aktViide>425072025015</aktViide>
+					</avaldamismarge>
+					<joustumine>2025-09-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para1lg2">
+				<loigeNr>2</loigeNr>
+				<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Eralasteaed on lasteaed, mis tegutseb alusharidusseaduse alusel ning millel on tegevusluba. Eralasteaia pidaja on eraõiguslik juriidiline isik.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<aktikuupaev>2025-07-21</aktikuupaev>
+					<avaldamismarge>
+						<RTosa>RT IV</RTosa>
+						<avaldamineKuupaev>2025-07-25</avaldamineKuupaev>
+						<RTartikkel>15</RTartikkel>
+						<aktViide>425072025015</aktViide>
+					</avaldamismarge>
+					<joustumine>2025-09-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para1lg3">
+				<loigeNr>3</loigeNr>
+				<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Eralastehoid
+on lastehoid, mis tegutseb alusharidusseaduse alusel ning millel on tegevusluba. Eralastehoiu pidaja on eraõiguslik
+juriidiline isik või füüsilisest isikust ettevõtja.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<aktikuupaev>2025-07-21</aktikuupaev>
+					<avaldamismarge>
+						<RTosa>RT IV</RTosa>
+						<avaldamineKuupaev>2025-07-25</avaldamineKuupaev>
+						<RTartikkel>15</RTartikkel>
+						<aktViide>425072025015</aktViide>
+					</avaldamismarge>
+					<joustumine>2025-09-01</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr>2</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 2.]]></kuvatavNr>
+			<paragrahvPealkiri>Toetuse andmise tingimused</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr>1</loigeNr>
+				<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Toetust antakse lapsehoiuteenust osutavale eralasteaiale või -lastehoiule (edaspidi koos <i>teenuse osutaja</i>) järgmistel tingimustel:</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<aktikuupaev>2025-07-21</aktikuupaev>
+					<avaldamismarge>
+						<RTosa>RT IV</RTosa>
+						<avaldamineKuupaev>2025-07-25</avaldamineKuupaev>
+						<RTartikkel>15</RTartikkel>
+						<aktViide>425072025015</aktViide>
+					</avaldamismarge>
+					<joustumine>2025-09-01</joustumine>
+				</muutmismarge>
+				<alampunkt id="para2lg1p1">
+					<alampunktNr>1</alampunktNr>
+					<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>teenuse osutajal on toetuse taotlemise ajal tegevusluba;</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-07-21</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-07-25</avaldamineKuupaev>
+							<RTartikkel>15</RTartikkel>
+							<aktViide>425072025015</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-09-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para2lg1p2">
+					<alampunktNr>2</alampunktNr>
+					<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>teenuse osutajal ei ole toetuse taotlemise ajal maksuvõlgu ega võlgu<b> </b>Tallinna linna asutustele;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p3">
+					<alampunktNr>3</alampunktNr>
+					<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>teenust kasutav laps (edaspidi <i>laps</i>) on pooleteise- kuni seitsmeaastane (kuni kooli õppima asumiseni);</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p4">
+					<alampunktNr>4</alampunktNr>
+					<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>nii lapse
+kui ka tema vanema või eestkostja (edaspidi koos <i>vanem</i>) elukoht on rahvastikuregistri andmetel toetuse taotlemise kalendriaastale eelneva kalendriaasta 31. detsembril ning toetuse taotluse esitamise aastal katkematult Tallinna linn;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p5">
+					<alampunktNr>5</alampunktNr>
+					<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2024-08-29</avaldamineKuupaev>
+							<RTartikkel>6</RTartikkel>
+							<aktViide>429082024006</aktViide>
+						</avaldamismarge>
+						<joustumine>2024-09-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para2lg1p5b1">
+					<alampunktNr ylaIndeks="1">5</alampunktNr>
+					<kuvatavNr><![CDATA[5<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>laps ei ole kantud ühegi munitsipaallastehoiu ega -lasteaia (edaspidi koos <i>munitsipaallasteasutus</i>) nimekirja;</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-07-21</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-07-25</avaldamineKuupaev>
+							<RTartikkel>15</RTartikkel>
+							<aktViide>425072025015</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-09-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para2lg1p6">
+					<alampunktNr>6</alampunktNr>
+					<kuvatavNr><![CDATA[6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>teenuse osutaja on kandnud lapse Tallinna universaaltoetuste andmekogusse (edaspidi <i>andmekogu</i>);</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p7">
+					<alampunktNr>7</alampunktNr>
+					<kuvatavNr><![CDATA[7)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>vanem
+on Tallinna e-teeninduses kinnitanud oma soovi toetuse andmise kohta teenuse osutajale.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para2lg2">
+				<loigeNr>2</loigeNr>
+				<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Teenuse
+osutaja teavitab vanemat kohustusest kinnitada Tallinna e-teeninduses oma soovi toetuse
+andmise kohta teenuse osutajale.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg3">
+				<loigeNr>3</loigeNr>
+				<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Õigust toetusele ei teki lapse vanemal, kes ise osutab füüsilisest isikust ettevõtjana oma lapsele lapsehoiuteenust või kes ostab lapsehoiuteenust sama lapse füüsilisest isikust ettevõtjana tegutsevalt teiselt vanemalt.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg4">
+				<loigeNr>4</loigeNr>
+				<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT IV</RTosa>
+						<avaldamineKuupaev>2024-08-29</avaldamineKuupaev>
+						<RTartikkel>6</RTartikkel>
+						<aktViide>429082024006</aktViide>
+					</avaldamismarge>
+					<joustumine>2024-09-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para2lg5">
+				<loigeNr>5</loigeNr>
+				<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Haridusametil on õigus anda toetust ka juhul, kui<b>:</b></tavatekst>
+				</sisuTekst>
+				<alampunkt id="para2lg5p1">
+					<alampunktNr>1</alampunktNr>
+					<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>lapse ja vanema elukoht ei ole olnud rahvastikuregistri andmetel Tallinna linn toetuse taotlemisele eelneva kalendriaasta 31. detsembri seisuga ja </tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg5p2">
+					<alampunktNr>2</alampunktNr>
+					<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst> lapse ja vanema elukoht on toetuse taotlemisest alates katkematult Tallinna linn ja </tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg5p3">
+					<alampunktNr>3</alampunktNr>
+					<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst> samale lapsele ei ole varasemalt käesoleva lõike alusel toetust määratud. </tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr>3</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 3.]]></kuvatavNr>
+			<paragrahvPealkiri>Toetuse
+suurus</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr>1</loigeNr>
+				<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Teenuse osutajale makstav toetus on võrdne Tallinna Haridusameti (edaspidi <i>haridusamet</i>) haldusala munitsipaallasteasutuse koha arvestusliku maksumusega ühe lapse kohta. Toetuse suuruse kinnitab haridusameti juhataja.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<aktikuupaev>2025-07-21</aktikuupaev>
+					<avaldamismarge>
+						<RTosa>RT IV</RTosa>
+						<avaldamineKuupaev>2025-07-25</avaldamineKuupaev>
+						<RTartikkel>15</RTartikkel>
+						<aktViide>425072025015</aktViide>
+					</avaldamismarge>
+					<joustumine>2025-09-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para3lg2">
+				<loigeNr>2</loigeNr>
+				<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Teenuse osutajale, kes vastab käesoleva määruse § 2 lõikes 1 nimetatud tingimustele, makstakse täiendavat toetust: </tavatekst>
+				</sisuTekst>
+				<alampunkt id="para3lg2p1">
+					<alampunktNr>1</alampunktNr>
+					<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>vanema eralasteaias või -lastehoius käiva teise ja enama lapse eest kalendrikuu kohta juhul,
+kui munitsipaallasteasutuses, eralasteaias või
+-lastehoius osutatakse lapsehoiuteenust sama pere kahele või enamale lapsele;</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-07-21</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-07-25</avaldamineKuupaev>
+							<RTartikkel>15</RTartikkel>
+							<aktViide>425072025015</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-09-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para3lg2p2">
+					<alampunktNr>2</alampunktNr>
+					<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>haridusliku erivajadusega lapse eest, kes vastab alusharidusseaduse § 14 lõikes 1 nimetatud tingimustele.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-07-21</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-07-25</avaldamineKuupaev>
+							<RTartikkel>15</RTartikkel>
+							<aktViide>425072025015</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-09-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+			</loige>
+			<loige id="para3lg3">
+				<loigeNr>3</loigeNr>
+				<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Käesoleva paragrahvi lõikes 2 nimetatud täiendava toetus suurus lapse
+kohta on 71,25 eurot kuus.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<aktikuupaev>2025-03-20</aktikuupaev>
+					<avaldamismarge>
+						<RTosa>RT IV</RTosa>
+						<avaldamineKuupaev>2025-03-29</avaldamineKuupaev>
+						<RTartikkel>14</RTartikkel>
+						<aktViide>429032025014</aktViide>
+					</avaldamismarge>
+					<joustumine>2025-04-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para3lg4">
+				<loigeNr>4</loigeNr>
+				<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Linnavalitsuse
+kehtestatud piirmäära ulatuses kaetakse lapse toidukulu eralasteaias või -lastehoius
+kohal käidud päevade eest, mille eest on arvestatud toidutasu.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<aktikuupaev>2025-07-21</aktikuupaev>
+					<avaldamismarge>
+						<RTosa>RT IV</RTosa>
+						<avaldamineKuupaev>2025-07-25</avaldamineKuupaev>
+						<RTartikkel>15</RTartikkel>
+						<aktViide>425072025015</aktViide>
+					</avaldamismarge>
+					<joustumine>2025-09-01</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr>4</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 4.]]></kuvatavNr>
+			<paragrahvPealkiri>Toetuse taotlemine</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr>1</loigeNr>
+				<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Toetuse saamiseks esitab teenuse osutaja haridusametile vormikohase toetuse taotluse.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg2">
+				<loigeNr>2</loigeNr>
+				<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Haridusameti nõudmisel on toetuse saaja kohustatud esitama dokumente, mis tõendavad toetuse andmise tingimuste täitmist.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg3">
+				<loigeNr>3</loigeNr>
+				<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Lapsehoiuteenuse toetuse taotluse vormi kehtestab haridusameti juhataja.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr>5</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 5.]]></kuvatavNr>
+			<paragrahvPealkiri>Taotluse menetlemine</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr>1</loigeNr>
+				<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Haridusamet kontrollib toetuse taotluses esitatud andmete õigsust
+kümne tööpäeva jooksul ning teavitab teenuse osutajat ilmnenud puudustest. Teenuse osutaja on
+kohustatud puudused kõrvaldama viie tööpäeva jooksul arvates nende
+teatavakstegemisest. Kui teenuse osutaja ei kõrvalda puudusi tähtaja
+jooksul, jätab haridusamet toetuse taotluse läbi vaatamata.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg2">
+				<loigeNr>2</loigeNr>
+				<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Kui toetuse saamise tingimused on
+täidetud, siis toetuse määramise otsust kirjalikult ei vormistata.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg3">
+				<loigeNr>3</loigeNr>
+				<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Haridusameti juhataja või tema volitatud
+isik teeb:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para5lg3p1">
+					<alampunktNr>1</alampunktNr>
+					<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>toetuse
+määramisest keeldumise otsuse, kui toetuse saamise tingimused ei ole täidetud
+või </tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg3p2">
+					<alampunktNr>2</alampunktNr>
+					<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>toetuse määramise otsuse, kui rakendatakse käesoleva määruse § 2 lõikes 5
+sätestatud erandit.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para5lg4">
+				<loigeNr>4</loigeNr>
+				<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Käesoleva paragrahvi lõikes 3 nimetatud otsus tehakse kümne tööpäeva jooksul toetuse taotluse või
+nõutud lisadokumentide esitamise päevast või nende esitamiseks antud
+tähtpäevast. Otsus tehakse taotlejale teatavaks andmekogus.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para6">
+			<paragrahvNr>6</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 6.]]></kuvatavNr>
+			<paragrahvPealkiri>Finantseerimislepingu sõlmimine </paragrahvPealkiri>
+			<loige id="para6lg1">
+				<loigeNr>1</loigeNr>
+				<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Teenuse osutajale,
+kes vastab käesolevas korras esitatud nõuetele, esitab haridusamet 14 päeva jooksul pärast toetuse taotluse esitamist allkirjastamiseks vormikohase
+finantseerimislepingu. Taotleja on kohustatud lepingu allkirjastama. </tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg2">
+				<loigeNr>2</loigeNr>
+				<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Kui toetuse taotleja ei tagasta
+haridusametile allkirjastatud finantseerimislepingut 14 päeva jooksul, kaotab ta lepingu sõlmimise
+õiguse ja haridusamet toetuse taotlejale toetust välja
+ei maksa. Selle kohta vormistab haridusameti juhataja või tema volitatud isik
+kirjaliku otsuse. </tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg3">
+				<loigeNr>3</loigeNr>
+				<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Finantseerimislepingu
+vormi kehtestab haridusameti juhataja.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para7">
+			<paragrahvNr>7</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 7.]]></kuvatavNr>
+			<paragrahvPealkiri>Toetuse maksmine</paragrahvPealkiri>
+			<loige id="para7lg1">
+				<loigeNr>1</loigeNr>
+				<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Haridusamet maksab teenuse osutajale toetust kord kuus finantseerimislepingu alusel.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg2">
+				<loigeNr>2</loigeNr>
+				<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Kui vanem kinnitab Tallinna e-teeninduses oma soovi teenuse osutajale toetuse andmise kohta 15. kuupäevaks, makstakse tema lapse eest toetust samast kuust alates.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg3">
+				<loigeNr>3</loigeNr>
+				<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Toetuse maksmine lõpetatakse, kui laps kantakse munitsipaallasteasutuse nimekirja.</tavatekst>
+				</sisuTekst>
+				<muutmismarge>
+					<aktikuupaev>2024-08-22</aktikuupaev>
+					<avaldamismarge>
+						<RTosa>RT IV</RTosa>
+						<avaldamineKuupaev>2024-08-29</avaldamineKuupaev>
+						<RTartikkel>6</RTartikkel>
+						<aktViide>429082024006</aktViide>
+					</avaldamismarge>
+					<joustumine>2024-09-01</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para8">
+			<paragrahvNr>8</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 8.]]></kuvatavNr>
+			<paragrahvPealkiri>Toetuse
+saaja muud kohustused</paragrahvPealkiri>
+			<loige id="para8lg1">
+				<sisuTekst>
+					<tavatekst>Toetuse
+saaja on lisaks muudele korra nõuetele kohustatud:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para8lg1p1">
+					<alampunktNr>1</alampunktNr>
+					<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>kasutama
+toetust<b> </b>eralasteaias ja -lastehoius vahetult lastega tegelevate töötajate tööjõukulu, logopeedi ja eripedagoogi või muu lapsega seotud tugiteenuse kulu, õppevahendite- ja õppekäikude kulu, kommunaalkulu ning laste toidukulu katmiseks;</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-07-21</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-07-25</avaldamineKuupaev>
+							<RTartikkel>15</RTartikkel>
+							<aktViide>425072025015</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-09-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para8lg1p2">
+					<alampunktNr>2</alampunktNr>
+					<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>teavitama
+haridusametit eralasteaia ja -lastehoiu tegevuse olulistest muutustest;</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-07-21</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-07-25</avaldamineKuupaev>
+							<RTartikkel>15</RTartikkel>
+							<aktViide>425072025015</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-09-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para8lg1p3">
+					<alampunktNr>3</alampunktNr>
+					<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>viivitamata
+teavitama haridusametit riiklikku järelevalvet tegevate ametiisikute ettekirjutustest
+ja nende täitmisest. Kui ettekirjutus jäetakse põhjuseta täitmata või kui
+ettekirjutust eiratakse, kaotab toetuse saaja alates ettekirjutuse täitmise
+tähtajale järgnevast kalendrikuust õiguse toetust saada;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg1p4">
+					<alampunktNr>4</alampunktNr>
+					<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>tagastama
+saadud toetuse kümne tööpäeva jooksul pärast tagasinõude saamist, kui
+haridusamet on tuvastanud, et toetust on kasutatud mittesihtotstarbeliselt;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg1p5">
+					<alampunktNr>5</alampunktNr>
+					<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>tagastama kasutamata
+toetuse (osa) finantseerimislepingus
+kindlaks määratud ajal ja korras lepingus määratud kontole;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg1p6">
+					<alampunktNr>6</alampunktNr>
+					<kuvatavNr><![CDATA[6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>andma
+haridusameti nõudmisel ja haridusameti määratud tähtajaks lisateavet toetuse kasutamise kohta, sealhulgas esitama täiendavaid toetuse kasutamisega seotud andmeid, dokumente ja vajadusel koostama kirjalikke selgitusi;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg1p7">
+					<alampunktNr>7</alampunktNr>
+					<kuvatavNr><![CDATA[7)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>tagama,
+et toetuse saaja raamatupidamises on toetatava tegevuse kulud ja neid
+kajastavad kulu- ja maksedokumendid selgelt eristatavad toetuse saaja muudest
+kulu- ja maksedokumentidest;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg1p8">
+					<alampunktNr>8</alampunktNr>
+					<kuvatavNr><![CDATA[8)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>teavitama
+haridusametit viivitamata kõigist esitatud andmete muudatustest või asjaoludest,
+mis mõjutavad või võivad mõjutada toetuse saaja kohustuste täitmist, sh toetuse
+saaja nime, aadressi ning seadusliku või volitatud esindaja muutumine, teenuse osutaja kui juriidilise isiku ümberkujundamine, toetuse saaja pankroti
+väljakuulutamine või likvideerija määramine või toetuse saaja tegevuse
+lõpetamine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg1p9">
+					<alampunktNr>9</alampunktNr>
+					<kuvatavNr><![CDATA[9)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>kandma andmekogusse kõigi eralasteaeda või -lastehoidu vastu võetud ning seal tegelikult käivate laste
+andmed, kelle elukoht on rahvastikuregistri andmetel Tallinna linn. </tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-07-21</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-07-25</avaldamineKuupaev>
+							<RTartikkel>15</RTartikkel>
+							<aktViide>425072025015</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-09-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para9">
+			<paragrahvNr>9</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 9.]]></kuvatavNr>
+			<paragrahvPealkiri>Järelevalve
+finantseerimislepingu täitmise üle</paragrahvPealkiri>
+			<loige id="para9lg1">
+				<loigeNr>1</loigeNr>
+				<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Järelevalvet
+toetuse sihtotstarbelise kasutamise üle teeb haridusamet.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para9lg2">
+				<loigeNr>2</loigeNr>
+				<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Toetuse
+saaja on kohustatud järelevalve käigus:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para9lg2p1">
+					<alampunktNr>1</alampunktNr>
+					<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>võimaldama
+järelevalve tegijale juurdepääsu eralasteaia või -lastehoiu
+raamatupidamisdokumentidele ja ruumile, kus lapsehoiuteenust osutatakse;</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<aktikuupaev>2025-07-21</aktikuupaev>
+						<avaldamismarge>
+							<RTosa>RT IV</RTosa>
+							<avaldamineKuupaev>2025-07-25</avaldamineKuupaev>
+							<RTartikkel>15</RTartikkel>
+							<aktViide>425072025015</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-09-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para9lg2p2">
+					<alampunktNr>2</alampunktNr>
+					<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>esitama
+järelevalve tegijale nõutud teabe ja dokumendid tema nimetatud tähtpäevaks.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para9lg3">
+				<loigeNr>3</loigeNr>
+				<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Järelevalve
+kohta koostab haridusamet akti, millele kirjutavad alla järelevalve tegija ja
+toetuse saaja esindaja.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para9lg4">
+				<loigeNr>4</loigeNr>
+				<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Järelevalve
+käigus avastatud olulise ja/või korduva lepingutingimuste rikkumise kohta
+koostab haridusamet akti(de) alusel protokolli.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para9lg5">
+				<loigeNr>5</loigeNr>
+				<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Protokollis märgitakse
+järelevalve aeg ja koht, järelevalve tegija nimi ning toetuse saaja esindaja ja tunnistajate nimed, järelevalvetoimingu eesmärk, järelevalve käigus
+tuvastatud asjaolud, järelevalvetoimingus osaleja seletused, tunnistajate
+ütluste sisu ja/või paikvaatluse tulemused.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para9lg6">
+				<loigeNr>6</loigeNr>
+				<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Protokoll antakse toetuse saajale
+üle allkirja vastu või edastatakse väljastusteatega tähtkirjaga.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para9lg7">
+				<loigeNr>7</loigeNr>
+				<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Kui
+järelevalve käigus avastatakse lepingutingimuste rikkumine, on haridusametil
+õigus rakendada sanktsioone, sh määrata lepingus nimetatud leppetrahv või
+leping lõpetada.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para10">
+			<paragrahvNr>10</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 10.]]></kuvatavNr>
+			<paragrahvPealkiri>Finantseerimislepingu
+lõpetamine ja toetuse tagasinõudmine</paragrahvPealkiri>
+			<loige id="para10lg1">
+				<loigeNr>1</loigeNr>
+				<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Kui
+toetuse saaja on esitanud valeandmeid toetuse saamise või kasutamise kohta, on
+kasutanud toetust mittesihtotstarbeliselt, lõpetanud tegevuse, jätnud kasutamata toetuse haridusametile
+tagastamata või on muul moel lepingut rikkunud, siis on ameti juhatajal õigus
+toetust vähendada, määrata leppetrahv, lõpetada leping, toetus tagasi nõuda ja
+kolme aasta jooksul toetuse saajale toetust mitte anda.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para10lg2">
+				<loigeNr>2</loigeNr>
+				<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Haridusamet
+esitab toetuse saajale tagasinõude 30 kalendripäeva jooksul pärast toetuse
+tagasinõudmise alustest teadasaamise päeva. Pärast lepingu lõppemist võib
+toetust tagasi nõuda kolme aasta jooksul.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para10lg3">
+				<loigeNr>3</loigeNr>
+				<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Lepingu
+rikkumise korral on haridusametil õigus küsida toetuse saajalt leppetrahvi kuni
+20% konkreetse lepinguga antud toetusest. Leppetrahvi tasumise nõude võib
+esitada lisaks toetuse tagasinõudele või ilma toetuse tagasinõuet esitamata.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para11">
+			<paragrahvNr>11</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 11.]]></kuvatavNr>
+			<paragrahvPealkiri>Määruse rakendamine</paragrahvPealkiri>
+			<loige id="para11lg1">
+				<loigeNr>1</loigeNr>
+				<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Lapsehoiuteenuse eest, mida osutatakse 1. oktoobrist kuni 31. detsembrini 2023 Tallinna Linnavolikogu 22. märtsi 2007 määruse nr 8 „Lapsehoiuteenuse rahastamise kord“ alusel, maksavad õigustatud isikutele hüvitist linnaosade valitsuste sotsiaalhoolekande osakonnad kuni 31. jaanuarini 2024.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para11lg2">
+				<loigeNr>2</loigeNr>
+				<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>[Käesolevast tekstist välja jäetud]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para11lg3">
+				<loigeNr>3</loigeNr>
+				<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Määruse jõustumisel makstakse teenuse
+osutajale, kes vastab määruse § 2 lõikes 1 tingimustele, kuni 2023/2024.
+õppeaasta lõpuni enne käesoleva määruse jõustumist eralasteasutuses käiva
+pooleteise- kuni seitsmeaastase lapse eest toetust, kui on täidetud järgmised
+tingimused:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para11lg3p1">
+					<alampunktNr>1</alampunktNr>
+					<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst> lapse
+ja tema vanema elukoht on rahvastikuregistri andmetel Tallinna linn;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para11lg3p2">
+					<alampunktNr>2</alampunktNr>
+					<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst> eralasteasutus
+on kandnud lapse Tallinna hariduse infosüsteemis eralasteasutuse nimekirja;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para11lg3p3">
+					<alampunktNr>3</alampunktNr>
+					<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>
+              <b> </b>laps
+on Tallinna hariduse infosüsteemis kantud kuni kolme munitsipaallasteasutusse
+vastuvõtu taotlejate nimekirja.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para11lg4">
+				<loigeNr>4</loigeNr>
+				<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Määruse jõustumisel makstakse teenuse osutajale, kes vastab määruse § 2
+lõikes 1 tingimustele, kuni 2023/2024. õppeaasta lõpuni enne käesoleva määruse
+jõustumist lapsehoiuteenust saava lapse eest toetust, kui on täidetud järgmised
+tingimused:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para11lg4p1">
+					<alampunktNr>1</alampunktNr>
+					<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst> lapse
+ja tema vanema elukoht on rahvastikuregistri andmetel Tallinna linn. Hooldaja,
+kellel on lapse perekonnas hooldamise leping sõlmitud Tallinna linnaga ja
+kellele Tallinna linn maksab lapse perekonnas hooldamise eest toetust, ei pea
+rahvastikuregistri järgi olema Tallinna linna elanik;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para11lg4p2">
+					<alampunktNr>2</alampunktNr>
+					<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst> laps
+on pooleteise- kuni seitsmeaastane;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para11lg4p3">
+					<alampunktNr>3</alampunktNr>
+					<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst> laps
+ei ole kantud ühegi munitsipaal- või eralasteaia või kooli nimekirja.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para12">
+			<paragrahvNr>12</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 12.]]></kuvatavNr>
+			<paragrahvPealkiri>Määruste kehtetuks tunnistamine </paragrahvPealkiri>
+			<loige id="para12lg1">
+				<loigeNr/>
+				<kuvatavNr/>
+				<sisuTekst>
+					<tavatekst>[Käesolevast tekstist välja jäetud.]</tavatekst>
+				</sisuTekst>
+			</loige>
+	
+		</paragrahv>
+		<paragrahv id="para13">
+			<paragrahvNr>13</paragrahvNr>
+			<kuvatavNr><![CDATA[§ 13.]]></kuvatavNr>
+			<paragrahvPealkiri>Määruse
+jõustumine</paragrahvPealkiri>
+			<loige id="para13lg1">
+				<loigeNr>1</loigeNr>
+				<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Määrus jõustub 1. jaanuaril 2024.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para13lg2">
+				<loigeNr>2</loigeNr>
+				<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Määruse § 11 lõige 2 jõustub üldises korras.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+</oigusakt>

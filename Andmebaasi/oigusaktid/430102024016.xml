@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="947fd309-76ee-4a99-82e1-43651e1cb75c" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Narva Linnavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2024-10-24</aktikuupaev>
+  
+  
+  <aktiNr>19</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2024-10-30</avaldamineKuupaev><RTaasta>2024</RTaasta><RTartikkel>16</RTartikkel><aktViide>430102024016</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2024-11-02+02:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2024-10-25</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>430102024016</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2024-10-29</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1059779</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2024-10-25</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Tatjana Udovichenko</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="72440a51-ad2c-4437-8484-995a480cfa54">
+  <nimi id="b5a46bc6-304b-4962-b02b-487d641636a7">
+   <pealkiri id="450de9b1-3eed-4988-890c-e48bf2840a1d">Asendus- ja järelhooldusteenuse osutamise kord Narva linnas</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="d83f9b0e-1135-4e09-b132-af340e54dcab"><preambul id="fb1f9e74-0026-4b3e-8a48-134f8a20ec09">
+   <tavatekst id="4838efca-c878-43d1-a604-13b3191ddae5">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5 ja sotsiaalhoolekande seaduse § 14 ja § 45<sup>5</sup>- § 45<sup>17</sup> alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="f22bda06-cc2d-4a1c-88cd-425017b6bb6b">1</paragrahvNr>
+   <kuvatavNr id="4adc0750-7230-4a3a-8a4a-0234d102dd1c"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="8cef790c-5ba2-4fb3-b55f-514a97f3cc84">Üldsätted</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="f7d02b16-3bcb-43fa-90d1-fdb4ef8e7a1e">1</loigeNr>
+   <kuvatavNr id="9ebe1f89-7fe8-42c2-b8b2-0139c34eef04"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="3ee71123-ed05-44ba-9051-18ea53462168">
+    <tavatekst id="5a0f6f9a-6acc-4965-a76e-327062bdf0a1">Määrusega kehtestatakse asendus- ja järelhooldusteenuse korraldamise ja rahastamise tingimused ja kord Narva linnas.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg2">
+   <loigeNr id="3661a036-d9c4-4ed0-877e-2cdc592fe3e5">2</loigeNr>
+   <kuvatavNr id="e011af13-205a-4ed9-b871-835c725d90b9"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="3c6565bf-4424-4feb-814b-d4347440b49b">
+    <tavatekst id="012d9329-0aef-4dc6-b1b2-78f98efe6860">Asendus- ja järelhooldusteenused (edaspidi ühiselt nimetatud kui teenused) on sotsiaalteenused sotsiaalhoolekande seaduse mõttes. Teenuseid osutatakse isikutele, kelle elukohaks on rahvastikuregistri järgi Narva linn.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg3">
+   <loigeNr id="01540c64-efd5-4e6e-a783-285204a69ae3">3</loigeNr>
+   <kuvatavNr id="3aec75be-0f3a-42a0-9b85-f927d11fd069"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="8038ea5d-01f8-4b50-afec-446e63d1e031">
+    <tavatekst id="2f70b646-a722-4080-b61c-cf46b1257180">Teenuste osutamist korraldab Narva linna Sotsiaalabiamet (edaspidi Sotsiaalabiamet).</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg4">
+   <loigeNr id="bbc7b5ac-42e7-44b7-abf9-ad2c2670d961">4</loigeNr>
+   <kuvatavNr id="ecffbef5-41f5-41f7-99db-b3dc9daa6834"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="f8371bd4-2a8e-4642-ae1d-42f3d7bdfcd1">
+    <tavatekst id="50882acf-4e23-4b04-ab55-4873a9d723ce">Teenuseid rahastatakse riigieelarvest Narva linna eelarvesse eraldatud vahenditest ning teenustel oleva lapse või täisealise isiku sissetulekutest. Teenuste osutamiseks eraldatud vahendite üle peab arvestust Sotsiaalabiamet.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="1eebb670-fd60-4b3d-b18f-09cdc612226f">2</paragrahvNr>
+   <kuvatavNr id="3eeaf59f-f1c6-484b-84cd-33fb7a115381"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="d8e93ac4-3138-4d16-bf88-60407f792416">Teenuste vajaduse hindamine ja määramine</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="d3432914-74b5-41aa-bd93-953d646000a0">1</loigeNr>
+   <kuvatavNr id="ef4bda14-1f76-4b2f-8e69-385d25cf7f74"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="f5f291c9-b0bc-4289-af58-a3cfe3febbe2">
+    <tavatekst id="e20ce7a6-ed6a-4859-ab3c-717c0c34ee8a">Teenuste vajaduse hindamist teeb Sotsiaalabiameti spetsialist. Otsuse teenuste osutamise kohta võtab vastu Sotsiaalabiameti direktor.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg2">
+   <loigeNr id="a5b71cb9-157b-43e2-838f-8e6d25975da9">2</loigeNr>
+   <kuvatavNr id="4ffec2f0-c1d7-4664-8cd1-f9ee03e3ffe6"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="9122d7ee-17d0-4c77-a5b2-412daa49195a">
+    <tavatekst id="bfb6e277-de78-46dd-8c85-46629b9064c9">Lapse asendushooldusteenusele suunamisel valib Sotsiaalabiamet lapse heaolust lähtuvalt asendushooldusteenuse liiki (hoolduspere, perekodu või asenduskodu) ja osutaja ning põhjendab otsuses oma valikut.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg3">
+   <loigeNr id="abb81f3a-5b66-4714-9918-8ff96e00e367">3</loigeNr>
+   <kuvatavNr id="8d388c41-ef14-4e78-a0e6-71658d3d888c"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="f98a07fa-bf15-4c41-9d56-6ad0a05d6197">
+    <tavatekst id="3d67080e-2f97-48b5-b453-0d55090c6440">Täisealise isiku järelhooldusteenusele suunamisel lähtutakse isiku juhtumiplaanis hinnatud vajadustest ja plaanis märgitud tegevustest. Otsuses märgitakse muuhulgas vajalikud abimeetmed ja teenuse osutaja.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg4">
+   <loigeNr id="844d6443-e141-4b5d-b55b-84b419698669">4</loigeNr>
+   <kuvatavNr id="30d9207d-6f83-4601-b40b-ce1da1638a6a"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="34fc330c-8e16-4540-938c-cf6fab0d8f5d">
+    <tavatekst id="44da6401-0841-4fcc-8c0d-a7961971918d">Teenuste saaja ja võimalusel tema vanem või füüsilisest isikust eestkostja peab olema kaasatud teenuste vajaduse hindamise ja teenustele suunamise protsessi.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="e5f807ae-f0c9-471c-9b38-3cee4df8cff4">3</paragrahvNr>
+   <kuvatavNr id="e8f1aa39-9f79-4953-88f1-e9b09791bed5"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="bcebb58d-75bb-44af-8c3d-36581403f639">Teenuste rahastamine</paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="3dbed8ad-b8c1-48c5-a309-7523cd702e3f">1</loigeNr>
+   <kuvatavNr id="7de52364-e722-48b2-9452-3a4e13a3513f"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="5d0d582f-f5d0-4b08-8b02-9aec9878e5e8">
+    <tavatekst id="5cd979b0-4c0b-476c-b55c-8473908dfcb4">Asendushooldusteenuse osutamine perekodus või asenduskodus korraldatakse teenuse osutaja ja Sotsiaalabiameti vahel sõlmitud lepingu alusel. Teenuse saaja isiklike kulude katteks tagatakse vähemalt SHS § 45<sup>11</sup> lõikes 3 sätestatud miinimum.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg2">
+   <loigeNr id="7b94fc90-b50b-4960-bcbe-3d077721e6f2">2</loigeNr>
+   <kuvatavNr id="cda27da1-9609-467a-ab90-b06cef5d0e79"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="89d30ba9-4a6a-495d-8a38-7233eae63593">
+    <tavatekst id="a4a718c8-8261-49ff-8b1f-e7b19a528fe6">Asendushooldusteenuse osutamine hooldusperes korraldatakse perevanema või käsunduslepingu alusel. Hoolduspere vanemale makstakse toetust või tasu SHS § 45<sup>11</sup> lõikes 4 sätestatud korras.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg3">
+   <loigeNr id="321acd21-e0cf-4a25-bf4c-beaa985c6c7b">3</loigeNr>
+   <kuvatavNr id="40386704-2a24-4b7b-858e-4d7a4b551e1e"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="b28f9831-d89f-46be-b858-31c22f7ad363">
+    <tavatekst id="2e5898f4-c09b-4642-b07a-198ae9149eaa">Järelhooldusteenuse osutamine korraldatakse teenuse osutaja, teenuse saaja ja Sotsiaalabiameti vahel sõlmitud lepingu alusel. Isiku isiklike kulude katmisel tuleb lähtuda SHS § 45<sup>11</sup> lõikes 3 sätestatust. Järelhooldusteenuse eest makstakse igakuiselt teenuse osutaja poolt esitatud arve alusel.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg4">
+   <loigeNr id="7c62cbc1-65b8-4c88-9898-ec4ee05cf49b">4</loigeNr>
+   <kuvatavNr id="d0781d5a-6ac4-4680-a5d4-efed76016e4a"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="f2efcf34-a23b-48e1-994a-674d17b64246">
+    <tavatekst id="2244e6ae-3d41-470c-bba0-d95a0429ec10">Teenuse eest maksmisel tuleb arvestada teenuse saaja teenusel viibimise kestvust, õppimist väljaspool teenuse osutamise asukohta ja teenuse saaja erivajadusi.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para4">
+   <paragrahvNr id="58e74672-480f-420f-ba1f-76e75044b6db">4</paragrahvNr>
+   <kuvatavNr id="f9deb5d1-037f-4ab8-8863-9085a31c12b7"><![CDATA[§ 4. ]]></kuvatavNr>
+   <paragrahvPealkiri id="e166f32a-9a71-47e5-a83b-42d13f1a6b4e">Rakendussätted</paragrahvPealkiri>
+  <loige id="para4lg1">
+   <loigeNr id="acfe8c6d-e489-42b6-b809-e086a0577069">1</loigeNr>
+   <kuvatavNr id="6fd42170-f5fb-4c3e-a036-b7fe89d326e3"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="feca6dc0-2f83-4a07-b107-11ec87857395">
+    <tavatekst id="f7cbc830-c513-486f-b0c3-e70f93599646">Tunnistada kehtetuks Narva Linnavolikogu 25.01.2018 määrus nr 3 „Asendus- ja järelhooldusteenuse osutamise kord Narva linnas“.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg2">
+   <loigeNr id="14ef02e1-cb5d-4eb5-b4df-51812cde3b4e">2</loigeNr>
+   <kuvatavNr id="724ea6c9-9eec-4e82-b16d-2da7d133b4eb"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="12ad554d-98ee-4067-995e-de298885af17">
+    <tavatekst id="cc77bb7d-b1fb-4026-8b4c-3e823ecf7dff">Määrus jõustub seadusega sätestatud korras.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="9019cc24-77f7-4b1e-9f65-522ce16d5a71"><allkiriKoht id="b7521ab1-2b51-42e3-b114-b81bf98e7cac"/><allkirjastaja id="f4f8e3c2-1f1a-4672-ad34-81f5ece292a8"><ametinimetus id="766c8cc1-34da-420e-a7ae-7c9658746a30">Linnavolikogu esimees</ametinimetus><eesnimi id="e1179a1b-b41f-4cff-8d8c-834341737062">Irina</eesnimi><perekonnanimi id="bd7ad6b8-9f01-4b2b-815d-e764b472dd13">Janovitš</perekonnanimi></allkirjastaja></allkiri></oigusakt>

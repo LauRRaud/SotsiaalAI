@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="3ba1c6f8-cf18-42d0-b941-805d15cd8c7d" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Mulgi Vallavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2026-05-19</aktikuupaev>
+  
+  
+  <aktiNr>3</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-05-22</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>3</RTartikkel><aktViide>422052026003</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2026-05-25+03:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2026-05-19</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>422052026003</globaalID>
+ <metaandmedVersioon>5</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2026-05-21</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1063518</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+</metaandmed>
+ <aktinimi id="9d5a3cf2-d6f3-479f-bd9c-01e58013b188">
+  <nimi id="f8f79bfb-cdf4-433c-a8c3-3b47d72831c5">
+   <pealkiri id="f0fe79f2-ec21-4005-869d-9e3f506aab79">Sotsiaaltransporditeenuse hinna kehtestamine</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="16e1da43-cebd-487b-b2ab-ac7d1bf9f28b"><preambul id="46cbbc7a-268b-44f1-8406-798ec5aafbd0"><tavatekst id="92b92521-7aee-43f2-b92c-f0f32510b409">Määrus kehtestatakse kohaliku omavalitsuse korralduse § 30 lõike 1 punkti 2 ja Mulgi Vallavolikogu 25.02.2025 määruse nr 75 „Sotsiaalteenuste osutamise kord Mulgi vallas“ § 14 lõike 4 alusel.</tavatekst></preambul><paragrahv id="para1"><paragrahvNr id="f5c1f15f-8c4b-4039-9bc7-0d82fffc2f85">1</paragrahvNr><kuvatavNr id="f444942f-f8f3-4aef-97cb-fa38bdde9136"><![CDATA[§ 1. ]]></kuvatavNr><paragrahvPealkiri id="6d647287-3c5e-415e-b0eb-f613b16698e1">Sotsiaaltransporditeenuse hinna kehtestamine</paragrahvPealkiri><loige id="para1lg1"><loigeNr id="8018a7c6-cf1c-49c9-80ef-c143bca6dc6e">1</loigeNr><kuvatavNr id="44a8e41e-961f-4e69-b846-1542735e77fa"><![CDATA[(1)]]></kuvatavNr><sisuTekst id="a00349c1-1575-4898-914b-8f1555f7309a"><tavatekst id="3b49d6f5-30ab-4c87-8a92-e0c15ee51b11">Kehtestada Mulgi valla elanikele sotsiaaltranspordi teenuse hinnakiri järgmiselt:</tavatekst></sisuTekst><alampunkt id="para1lg1p1"><alampunktNr id="20216ac2-2c4a-4a6a-a095-02fbcaa8aaa2">1</alampunktNr><kuvatavNr id="24299fdf-ca38-4668-b925-a7521e093f0e"><![CDATA[1) ]]></kuvatavNr><sisuTekst id="c752c0f2-ccbd-45ec-9ff0-afb8af6ec895"><tavatekst id="c2d05c18-a1d2-4188-9c0a-c69dde1038d7">sotsiaaltransporditeenuse hind on 0,45 eurot/kilomeeter;</tavatekst></sisuTekst></alampunkt><alampunkt id="para1lg1p2"><alampunktNr id="9aaa5b4c-ce48-4382-b7aa-ef6dc6bc60de">2</alampunktNr><kuvatavNr id="841e3e16-35c3-411e-9f26-a16f0c3bbc31"><![CDATA[2) ]]></kuvatavNr><sisuTekst id="587df35f-51c1-4f90-acd5-56ab6dfb02ed"><tavatekst id="0a52c8be-7e0f-48b5-8bf4-6b1feb034c8c">soodustingimustel sotsiaaltransporditeenuse hind 0,30 eurot/ kilomeeter.</tavatekst></sisuTekst></alampunkt></loige><loige id="para1lg2"><loigeNr id="a7db2cb6-d133-4236-92f0-cc948b1d7ad9">2</loigeNr><kuvatavNr id="358831bb-93a0-4047-9770-c83571e308b1"><![CDATA[(2)]]></kuvatavNr><sisuTekst id="2df60e57-3136-4acc-93b1-37c9858847fa"><tavatekst id="83e3969d-cabc-4993-ade0-20d77f6ac921">Kehtestada ooteaja tunni tasuks 5,00 eurot.</tavatekst></sisuTekst></loige><loige id="para1lg3"><loigeNr id="197ce204-e3ed-4c51-8127-13bbc63e5467">3</loigeNr><kuvatavNr id="48ede041-3f83-496e-b41e-11eac47aeaf2"><![CDATA[(3)]]></kuvatavNr><sisuTekst id="d0c702c3-3e3a-47bc-afcb-19c054c0b25c"><tavatekst id="60600014-0137-40d0-be53-680e53235a13">Sotsiaaltransporditeenuse hinna arvestus algab ja lõpeb teenuse saaja kodus.</tavatekst></sisuTekst></loige></paragrahv><paragrahv id="para2"><paragrahvNr id="06342282-4bbe-46fa-9328-af122e337f4c">2</paragrahvNr><kuvatavNr id="0672576a-9ce2-4fd7-af44-2ff3b6009543"><![CDATA[§ 2. ]]></kuvatavNr><paragrahvPealkiri id="03f058a8-29fb-4d5a-9ff4-1715e41aa696">Rakendussätted</paragrahvPealkiri><loige id="para2lg1"><loigeNr id="703feaeb-5c6e-4065-aaf4-05d13262adea">1</loigeNr><kuvatavNr id="27ea55a6-b436-43d9-9850-699d02773080"><![CDATA[(1)]]></kuvatavNr><sisuTekst id="a03ca027-205c-4e2a-9742-4175c38d73cb"><tavatekst id="37059203-b1b7-4a50-b232-349969ac824c">Tunnistada kehtetuks Mulgi Vallavalitsuse 25.10.2018 määruse nr 9„Sotsiaaltransporditeenuse hinna kehtestamine“.</tavatekst></sisuTekst></loige><loige id="para2lg2"><loigeNr id="312ea6de-48e9-4869-aa54-c338f29ed458">2</loigeNr><kuvatavNr id="607f0afb-5728-4621-a273-b2bc38c4211d"><![CDATA[(2)]]></kuvatavNr><sisuTekst id="bdada332-6b6e-468e-9637-6129d11c2cb6"><tavatekst id="cdf5f2a3-c9cc-41c4-bf0d-2030ca5a84dc">Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist.</tavatekst></sisuTekst></loige></paragrahv></sisu>
+<allkiri id="1c30e78f-96f9-4ccd-b56c-6f2eb187ffe9"><allkiriKoht id="8f797cd9-12e1-4efa-8075-681fc289168a"/><allkirjastaja id="9e57d95e-8feb-4eef-81b6-4980e4aca00d"><ametinimetus id="fd470401-1e66-4269-9393-67420f2fb948">Vallavanem</ametinimetus><eesnimi id="e1d68fe3-2539-4f16-9036-45522131ee5b">Imre</eesnimi><perekonnanimi id="121123c5-1f9a-430f-9de1-68a949e1661c">Jugomäe</perekonnanimi></allkirjastaja></allkiri><allkiri id="8958d101-a390-42d5-8604-e66b0c015e34"><allkiriKoht id="6aad9835-7efc-44df-b5a9-68172db35e78"/><allkirjastaja id="ee5ad93d-42fa-40f3-84c3-1749210498ed"><ametinimetus id="3dd69ed6-ebd6-4e47-97a6-6abedb360c34">Vallasekretär</ametinimetus><eesnimi id="12e2138e-f35a-4044-8743-8aaed90a6de5">Milja</eesnimi><perekonnanimi id="fe47d2a1-e1b7-4dce-873b-c6a8ddc39122">Janson</perekonnanimi></allkirjastaja></allkiri></oigusakt>

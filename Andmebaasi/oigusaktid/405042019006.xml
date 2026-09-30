@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="d2a8df25-ab8b-4f9b-8d78-283b443b26ba" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Saaremaa Vallavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2019-03-28</aktikuupaev>
+  
+  
+  <aktiNr>3</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2019-04-05</avaldamineKuupaev><RTaasta>2019</RTaasta><RTartikkel>6</RTartikkel><aktViide>405042019006</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2019-04-08+03:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2019-04-02</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>405042019006</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2019-04-04</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1046737</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2019-04-02</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Margit Kaldre</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="4129aa5d-8605-44ef-8729-f39ab85b35b7">
+  <nimi id="b8e064da-5127-43ba-8046-8170ba49ebe5">
+   <pealkiri id="33642040-647b-4528-a669-bab32d4a66d9">Ranitsatoetuse maksmise tingimused ja kord</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="42833bdd-5aca-4a3b-bf29-d3158df2b826"><preambul id="2c4c9076-f5a5-4b14-abbe-e8b6a466d406">
+   <tavatekst id="89f42410-7c9e-4a44-8701-1f6295d13bba">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5 ja sotsiaalhoolekande seaduse § 14 lõike 2 alusel ning võttes arvesse tulumaksuseaduse § 19 lõike 3 punkti 3.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="a2c916cd-0b9c-41e0-b8f3-08a4312f263c">1</paragrahvNr>
+   <kuvatavNr id="e48da9a8-561a-4e7b-b668-0bbef20fedc2"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="59b1c148-4025-4f15-a09d-c6e20fd559ec">Määruse reguleerimisala<reavahetus/></paragrahvPealkiri>
+  <sisuTekst id="bd18a0cd-1e00-4d56-a66c-40f93546cde5">
+	<tavatekst id="13a2a987-962f-4da4-87dc-4a21f32e3923"><reavahetus/>Määrusega kehtestatakse Saaremaa valla (edaspidi <i>vald</i>) eelarvest esmakordselt koolimineva lapse perele makstava ranitsatoetuse maksmise tingimused ja kord.</tavatekst>
+	</sisuTekst></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="6f4e709d-4102-486b-960b-c2ae48da6920">2</paragrahvNr>
+   <kuvatavNr id="14bea3e7-9488-4ca4-9133-72c2efaec70a"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="e0765710-57f1-4ee9-9e40-928ea1d68722">Üldsätted </paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="cb828e61-984f-4baf-b76f-a6a452fb6358">1</loigeNr>
+   <kuvatavNr id="9e3edc77-0068-458f-a860-62e8bb21e9cb"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="d466e876-f20b-4ad7-a750-5bcf1f13056f">
+    <tavatekst id="e42422ef-03fb-4535-a222-b8f61432c295"> Ranitsatoetus on valla eelarvest makstav ühekordne toetus esmakordselt vallas tegutseva üldhariduskooli 1. klassi mineva lapse vanemale, eestkostjale või lapse hooldajale (edaspidi <i>vanemale</i>). </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg2">
+   <loigeNr id="efbe93c0-2afe-4c54-b25c-43330b2176c4">2</loigeNr>
+   <kuvatavNr id="b7f7052b-dedb-4466-97e4-ffe9c8da1a8f"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="cb8d25d3-6b90-4002-9dd7-919da9007d34">
+    <tavatekst id="6ba278ff-57ce-45a6-93d0-2798d470b640"> Ranitsatoetust makstakse vanemale, kes ise ja kelle koolimineva lapse elukoht on rahvastikuregistris registreeritud vallas.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg3">
+   <loigeNr id="d86bbc5c-ce8e-40d6-affc-d6980ae41a5b">3</loigeNr>
+   <kuvatavNr id="eb29e418-9f87-40cb-8ada-28486054dfdd"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="149c6c27-161e-40a1-bc3e-89d4e314d6a3">
+    <tavatekst id="a10e3f03-ecae-449a-9f52-08976b503a22"> Ranitsatoetuse suuruse kinnitab Saaremaa Vallavalitsus (edaspidi <i>vallavalitsus</i>) oma korraldusega.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="09c40e7a-8694-4c49-a9b8-b8845d571517">3</paragrahvNr>
+   <kuvatavNr id="3db5b695-8450-4443-be5d-02c4e0259a03"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="17df00e8-4737-4024-8c6a-e6e78433855c">Ranitsatoetuse taotlemine ja määramine</paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="11ad09a5-5d59-456a-9185-9da4f5b4db43">1</loigeNr>
+   <kuvatavNr id="d1de3285-16d3-4a42-aa1b-fa9898dadedd"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="6478a3b3-6178-4c0a-8ad4-4c1e8b3a51f8">
+    <tavatekst id="14e5227c-0802-48d2-addb-4aca317c08ae"> Ranitsatoetuse taotlemiseks tuleb esmakordselt koolimineva lapse vanemal esitada hiljemalt jooksva kalendriaasta 10. septembriks vallavalitsusele vormikohane taotlus. Ranitsatoetuse taotluse saab esitada koos lapsele elukohajärgse kooli määramise taotlusega. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg2">
+   <loigeNr id="a10f63c9-ddf6-4c87-be21-4077668cf6fe">2</loigeNr>
+   <kuvatavNr id="36db5a65-43b9-4c50-82f3-333989cadd6f"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="20622f02-c801-4ce8-a767-888fa3cabe25">
+    <tavatekst id="cd8a8ef0-acdd-4ae6-8fe5-4851740f579f"> Ranitsatoetus määratakse esitatud taotluse alusel vanemale, kelle esmakordselt kooliminev laps asub õppima ühes vallas tegutsevas koolis ning tingimusel, et nii laps kui taotluse esitanud vanem omavad hiljemalt jooksva aasta 1. septembri seisuga registreeritud elukohta vallas.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg3">
+   <loigeNr id="91582734-48a7-46ad-9de0-54d99fb34176">3</loigeNr>
+   <kuvatavNr id="45115e61-4993-46d6-952d-217607fd9028"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="305fb6a9-3596-487f-b51e-b093ca9eb04d">
+    <tavatekst id="4c0e84ef-ed46-422b-a458-93c80070d0cc"> Ranitsatoetuse väljamaksmise eeltingimuseks on, et vallavalitsuse ees on täidetud kõik lapse lasteaiakoha kasutamisega seotud kohustused.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg4">
+   <loigeNr id="ac4e1909-1db0-4762-8551-34852956a895">4</loigeNr>
+   <kuvatavNr id="c931ec67-6100-46eb-b545-9ff04bc6fb21"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="9045db76-e971-4b6f-b43d-49d82416509a">
+    <tavatekst id="52d69b80-bf58-4e00-a9e2-6e75b8564f22"> Ranitsatoetuse väljamaksmine toimub üldjuhul ülekandega taotluse esitanud vanema arvelduskontole septembrikuu jooksul.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg5">
+   <loigeNr id="7873b0ff-cbe7-49ca-9fe8-778138ebb1b6">5</loigeNr>
+   <kuvatavNr id="1f57d115-6aa4-4591-8a3c-2e832daafe3e"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="7a351e48-7429-40dc-ac85-a12e00792e47">
+    <tavatekst id="65bcadbd-4d53-4ae7-974e-992e48f47950"> Esitatud taotlused vaatab läbi ning kontrollib nende vastavust käesolevale määrusele vallavalitsuse haridus- ja noorsootööosakond.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg6">
+   <loigeNr id="f6d201c5-4639-42a6-8a2f-4b17ef7bd81b">6</loigeNr>
+   <kuvatavNr id="a3cc60ea-bed2-454b-9df4-4fab6ee84cc8"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="3c6fb66d-cfa9-4ff2-96d7-e0eefdfa39d1">
+    <tavatekst id="8043b382-f70f-42e9-a505-d5e7879a9ce7"> Ranitsatoetust võib erandkorras määrata käesoleva määruses ettenägematul juhtudel haridus- ja noorsootööosakonna ettepanekul vallavalitsuse korraldusega.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg7">
+   <loigeNr id="566bb449-b0d6-454d-b033-9d6bbd4ce3e9">7</loigeNr>
+   <kuvatavNr id="5f75caec-0427-4cdb-b26a-64c6384f2925"><![CDATA[(7)]]></kuvatavNr>
+   <sisuTekst id="c6f30c30-5f50-4786-8bec-6ba1739ad1cd">
+    <tavatekst id="cd4c8905-98f0-4048-a29f-bf99fe6dc9a6"> Tingimustele vastavatest taotlustest koostab haridus- ja noorsootööosakond koondi ja esitab selle väljamaksete tegemiseks vallavalitsusse rahandusteenistusele.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para4">
+   <paragrahvNr id="daca3fbf-c18c-498a-85af-b516e3b38f45">4</paragrahvNr>
+   <kuvatavNr id="aafa9ecb-c4b1-44a3-8b62-2e9501ee4d2d"><![CDATA[§ 4. ]]></kuvatavNr>
+   <paragrahvPealkiri id="93ab4de8-cd9b-4a47-9510-646a451421e8">Rakendussätted</paragrahvPealkiri>
+  <loige id="para4lg1">
+   <loigeNr id="9d8e6b99-6491-4ef3-983f-e13a8cae9993">1</loigeNr>
+   <kuvatavNr id="5f4ca82d-178c-4be5-9375-af606e093570"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="e4fde94f-a208-4ae7-b40d-8fe10b6de7c4">
+    <tavatekst id="44f94172-1c62-40c8-9e66-c79c638c25f8">Määrusega tunnistatakse kehtetuks:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para4lg1p1">
+   <alampunktNr id="758f167e-8072-4998-b553-f1b055ac90e9">1</alampunktNr>
+   <kuvatavNr id="1e378547-2206-44bc-9446-dcc6d732bb29"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="231ed103-8513-498b-a996-63ca56502d39">
+    <tavatekst id="8de36c07-87e5-47ef-9fbd-af91a018c102"> Saaremaa Vallavolikogu 26. jaanuari 2018. aasta määruse nr 1 „Sotsiaalhoolekandelise abi andmise kord“ § 52;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para4lg1p2">
+   <alampunktNr id="fdf69ceb-8ac1-4780-82c5-455118642bb4">2</alampunktNr>
+   <kuvatavNr id="eb199980-aa57-4d81-9b93-dad38930b162"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="755f21a9-8a69-45ce-9734-e6114efc1a79">
+    <tavatekst id="50df8e17-538a-465f-80b1-7f25a6c95c01">Saaremaa Vallavolikogu 26. jaanuari 2018. aasta määruse nr 2 „Sotsiaaltoetuste määrade kehtestamine“ § 1 punkt 3.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para4lg2">
+   <loigeNr id="5b83ee52-efa5-4171-8d5a-76b94c48c999">2</loigeNr>
+   <kuvatavNr id="ef06f700-90b9-4fe2-b508-84ec49ce4e05"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="05180410-868b-44bb-9c3c-86a896511379">
+    <tavatekst id="008d7188-e10e-437c-a6c8-8e0897935ef6"> Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="7b3342a7-17c7-4c19-b5c4-e050a86c33b4"><allkiriKoht id="44434cb7-6a2b-4b88-9b4d-7cd811bf8630"/><allkirjastaja id="486a9b4f-1115-4c93-9124-edeb8518a824"><ametinimetus id="28b10448-9de6-4acd-abac-4318d7f10f0a">Vallavolikogu aseesimees</ametinimetus><eesnimi id="fba437ff-a206-4280-86dd-42474fd58485">Aivar</eesnimi><perekonnanimi id="07c97fab-1907-4c37-abaa-e6bc6e8b7247">Aru</perekonnanimi></allkirjastaja></allkiri></oigusakt>

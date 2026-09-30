@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="e46b75b5-5225-4b62-b573-8de3c03bc1b8" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Sillamäe Linnavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2018-02-27</aktikuupaev>
+  
+  
+  <aktiNr>9</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2018-03-20</avaldamineKuupaev><RTaasta>2018</RTaasta><RTartikkel>9</RTartikkel><aktViide>420032018009</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2018-03-23+02:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2018-03-19</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>420032018009</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2018-03-19</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1042469</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2018-03-19</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Deniss Iškin</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="a30c6d5a-5fac-4a9a-b7b5-0faafd703bfa">
+  <nimi id="b4807538-8828-4666-986b-53e97c652d18">
+   <pealkiri id="b127aa5a-e137-4475-b256-95b1378c2e6d">Asendus- ja järelhooldusteenuse osutamise tingimused ja kord</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="b89520c4-6cd1-4ca0-a4a5-f8485b46ab9d"><preambul id="1c8622a3-1dd5-47a4-b4e9-5036fbcb3614">
+   <tavatekst id="6bc4d26e-1611-42b2-8b4a-f19158784abd">Määrus kehtestatakse „Kohaliku omavalitsuse korralduse seaduse“ § 22 lõike 1 punkti 5 ja „Sotsiaalhoolekande seaduse“ § 14 lõike 2 alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="de34a9cd-a808-4840-a57c-66d308416f76">1</paragrahvNr>
+   <kuvatavNr id="ae552c2f-3674-4765-83f7-2ac51d063188"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="779384ea-d46f-45d5-a63e-3568507772aa">Reguleerimisala</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="9179360d-c952-48a5-93bd-a1c67f52739a"/>
+   <kuvatavNr id="08bfda32-b7ac-44b7-89e6-38e6a87efc79"/>
+   <sisuTekst id="15137504-fa8f-4723-ae6b-0f3c3efea37b">
+    <tavatekst id="7cb4b754-e6c6-4521-be26-4dda285c49d0">Määrusega kehtestatakse asendus- ja järelhooldusteenuse korraldamise ja rahastamise tingimused ja kord Sillamäe linnas.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="11a26788-8f00-41d2-8ba8-11fbd7eb5b68">2</paragrahvNr>
+   <kuvatavNr id="23763987-3778-4fcf-a828-db06e470eaee"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="9862d19c-1a54-4554-a3d4-f98ac989cc11">Asendushooldusteenuse eesmärk</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="00188862-0080-48c0-b3ec-2d0003ab4d00"/>
+   <kuvatavNr id="b55ae08d-fde6-4bd2-a031-19531b4e33ef"/>
+   <sisuTekst id="1d69f0be-101d-496e-ad7c-bbb509b62a0e">
+    <tavatekst id="0f62b33e-1e03-4243-bb66-6c5ce7b08b79">Asendushooldusteenuse eesmärk on pika- või lühiajaliselt lapse heaolu ja õiguste tagamine, lapsele tema põhivajaduste rahuldamiseks peresarnaste elutingimuste võimaldamine, lapsele turvalise ja arenguks soodsa elukeskkonna loomine ning lapse ettevalmistamine võimetekohaseks toimetulekuks täisealisena.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="96e65515-5859-4d40-89be-315f33db61a5">3</paragrahvNr>
+   <kuvatavNr id="67b489c2-cebe-4c29-b3c7-e00bc981a12c"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="afe5fd0c-09b2-4fe4-9779-c461ca789e67">Järelhooldusteenuse eesmärk</paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="47a8a7dc-1967-4f67-ae1a-c48c21ec0c9f"/>
+   <kuvatavNr id="f1870a0c-1dc9-4126-9029-a329f6e7f5fe"/>
+   <sisuTekst id="82703918-068c-4ee4-83d3-2f19ffc394d0">
+    <tavatekst id="0c2e2ac6-09a3-4781-850f-947800194b0f">Järelhooldusteenuse eesmärk on asendushoolduselt ja eestkostelt lahkuva isiku iseseisva toimetuleku ja õpingute jätkamise toetamine.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para4">
+   <paragrahvNr id="3b6ba51e-7a5a-492c-8663-41099f86f849">4</paragrahvNr>
+   <kuvatavNr id="adef482f-949a-4c89-86b5-8c301a5f6d11"><![CDATA[§ 4. ]]></kuvatavNr>
+   <paragrahvPealkiri id="268e418c-c31c-4177-9e8e-fd63facb26f2">Teenuste osutaja</paragrahvPealkiri>
+  <loige id="para4lg1">
+   <loigeNr id="d2e08a2f-348e-4db1-8da3-627b878b6f4c"/>
+   <kuvatavNr id="0568b8de-f41f-4b91-8dc5-b9821c100db3"/>
+   <sisuTekst id="bf6e6aad-09d9-45ff-be1e-4d081e3e7f29">
+    <tavatekst id="ee40dcf9-573b-40c8-991c-e35f00ecc6ca">Teenuste osutamist korraldab Sillamäe Linnavalitsus (edaspidi <i>linnavalitsus</i>), kes kaasab vajadusel vahetud teenuseosutajad (hoolduspere, perekodu, asenduskodu jne.)</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para5">
+   <paragrahvNr id="2af442ad-997e-4dce-9b02-8744679a7708">5</paragrahvNr>
+   <kuvatavNr id="84d76367-43fc-4b82-a42b-f3a8dbf0517d"><![CDATA[§ 5. ]]></kuvatavNr>
+   <paragrahvPealkiri id="a00c3984-e90e-43d2-b9fb-0c0ae2a3d023">Teenuse saaja</paragrahvPealkiri>
+  <loige id="para5lg1">
+   <loigeNr id="529485aa-2a2c-43a5-9856-ce9783275bae">1</loigeNr>
+   <kuvatavNr id="abc73ff4-4868-451e-b1dc-9dfd7c1e1418"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="935ea4e8-e417-4a81-bba4-30ee48ecdba3">
+    <tavatekst id="1ca10b65-ed96-4868-a0d8-ea9a9f5aa152">Asendushooldusteenus tagatakse Eesti Rahvastikuregistri andmetel (edaspidi <i>registrijärgselt</i>) Sillamäe linnas elavale „Sotsiaalhoolekande seaduses“ (edaspidi <i>SHS</i>) § 45<sup>9</sup> lõigetes 1 ja 2 nimetatud lapsele ja lapse heaolu tagamiseks SHS § 45<sup>9</sup> lõikes 3 nimetatud lapsele.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg2">
+   <loigeNr id="e814cafa-1cfc-4144-8ea8-61b748bcb8c6">2</loigeNr>
+   <kuvatavNr id="a3333f27-3053-41fd-90e0-6ea8fbf7889f"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="53eefd74-9ecb-4ae6-aa33-cc2166cf5af5">
+    <tavatekst id="688fdbd9-25e1-4a09-9fce-b69a75445c12">Järelhooldusteenus tagatakse registrijärgselt Sillamäe linnas elavale SHS § 45<sup>16</sup> lõikes 1 nimetatud täisealisele isikule ja isiku toimetuleku tagamiseks SHS § 45<sup>16</sup> lõikes 2 nimetatud täisealisele isikule.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para6">
+   <paragrahvNr id="2828ad81-62e8-40e0-a498-f9a22e634bde">6</paragrahvNr>
+   <kuvatavNr id="9c77961a-c267-4a96-bcac-c7a4ce383fb7"><![CDATA[§ 6. ]]></kuvatavNr>
+   <paragrahvPealkiri id="59d18090-c169-4b91-bc27-26015b61ae26">Teenuse vajaduse hindamine ja teenusele suunamine</paragrahvPealkiri>
+  <loige id="para6lg1">
+   <loigeNr id="0807716f-116a-4851-8338-e5f342b50af6">1</loigeNr>
+   <kuvatavNr id="e05bef4d-439c-4d57-84c5-c7ada81384a0"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="20b6b85d-0fc8-4d36-8f4a-9fb08f6f6621">
+    <tavatekst id="6888a969-d67d-401f-9caa-f92014c92fd1">Linnavalitsuse sotsiaalhoolekande osakonna teenistuja hindab lapsele ja täisealisele isikule teenuse osutamise vajadust. Otsuse teenuse osutamise kohta teeb linnavalitsuse sotsiaalhoolekande osakonna juhataja.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg2">
+   <loigeNr id="8e939ed1-0c13-40bd-be8d-de0551ddc004">2</loigeNr>
+   <kuvatavNr id="c6558d37-de60-4e64-ae1a-5a29ec5640ea"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="bf06974e-f61d-46d5-9a25-ab60e6ba53e4">
+    <tavatekst id="d9f38ae8-76a0-461c-be31-943e53b97ca1">Käesoleva paragrahvi lõikes 1 nimetatud isikud lähtuvad hindamise ja otsuse tegemisel vastavalt SHS § 45<sup>9</sup> ja § 45<sup>16</sup> sätestatud tingimustest.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg3">
+   <loigeNr id="f420b54d-6c81-4466-b0ae-ac37292bd105">3</loigeNr>
+   <kuvatavNr id="94764d9c-a349-4fd6-a5d0-27d6e47f0170"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="8ec808c9-df31-4fda-b525-1a09a0fcbcd0">
+    <tavatekst id="b3f56839-0f48-43b7-93e3-dc9d8879d352">Lapse asendushooldusteenusele suunamisel valitakse lapse heaolust lähtuvalt asendushooldusteenuse liigi (hoolduspere, perekodu, asenduskodu) ja osutaja. Otsuses märgitakse muuhulgas valiku põhjendus.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg4">
+   <loigeNr id="861b8baf-5b50-49a4-b132-203b0201b54b">4</loigeNr>
+   <kuvatavNr id="96c8bb11-8c25-491b-be7d-d02dc4e167cf"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="4913ef91-7779-4827-a152-18569717576e">
+    <tavatekst id="e7546000-3245-4cbd-a94f-ccfe8aae681f">Täisealise isiku järelhooldusteenusele suunamisel lähtutakse isiku juhtumiplaanis hinnatud vajadusest ja plaanis märgitud tegevustest. Otsuses märgitakse muuhulgas vajalikud abimeetmed ja teenuse osutaja.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg5">
+   <loigeNr id="80dfeb45-3433-4402-b9fd-783cbe7883fa">5</loigeNr>
+   <kuvatavNr id="23e7c58e-1c0b-4bfc-a238-3f633498417b"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="b9dc0878-d613-4880-8626-369cf70f32cd">
+    <tavatekst id="5f34fca3-bf3a-43d2-98f7-305f5e39a9c8">Teenuste saaja ja võimalusel tema vanem või füüsilisest isikust eestkostja peab olema kaasatud teenuse vajaduse hindamise ja teenusele suunamise protsessi.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para7">
+   <paragrahvNr id="3725b42a-fbc8-434f-87f5-c963d19cc68e">7</paragrahvNr>
+   <kuvatavNr id="175f7501-66c5-4283-8419-0fc18e7be247"><![CDATA[§ 7. ]]></kuvatavNr>
+   <paragrahvPealkiri id="eddabd4f-fc53-4d96-a115-0933d72ce688">Teenuste osutamise korraldamine ja teenuste eest maksmine</paragrahvPealkiri>
+  <loige id="para7lg1">
+   <loigeNr id="e22fbedd-f96e-4644-9395-5483dca01471">1</loigeNr>
+   <kuvatavNr id="d414cd21-6fae-4bc5-8e14-f7e82e926f0b"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="2dcf3db4-65b1-47a0-8880-aa8c47f0823e">
+    <tavatekst id="655a86c7-cb86-4089-bfed-393676df99fb">Asendushooldusteenuse osutamine perekodus, asenduskodus või hooldusperes korraldatakse teenuse osutaja ja linnavalitsuse vahel sõlmitud lepingu alusel enne teenuse saajale teenuse osutamise alustamist.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg2">
+   <loigeNr id="7a350f77-ae69-4c22-ad79-9313a5787de1">2</loigeNr>
+   <kuvatavNr id="03ea5c49-4d67-4ff4-8bea-8c84d2e4a013"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="bb71faa3-0527-45a1-9d01-0c37cffd0707">
+    <tavatekst id="9e7c0f0e-9c76-4853-9b41-9d818c237c41">Asendushooldusteenuse osutamisel hooldusperes sõlmitakse leping hoolduspere vanemaga.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg3">
+   <loigeNr id="d43965d6-b7a5-4ca3-9a75-f6143109bc7d">3</loigeNr>
+   <kuvatavNr id="8e26a41a-0c45-4554-8d22-3dea492ff778"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="e8f22180-b0b3-4e2a-b50f-c0f93ce4c519">
+    <tavatekst id="2ba75ba7-2bd1-436d-8ca8-118154c2bdc5">Järelhooldusteenuse osutamine korraldatakse teenuse osutaja, teenuse saaja ja linnavalitsuse poolt sõlmitud lepingu alusel.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg4">
+   <loigeNr id="7121ee15-6e5f-4bfd-9960-646d5e66c634">4</loigeNr>
+   <kuvatavNr id="fe749137-8d7b-47bf-935e-3db90a8dbaab"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="2fd25d2f-00f1-4a71-97ff-d1f10e88dd24">
+    <tavatekst id="2274a13c-8bb0-485e-a0a8-46ca06acb2f2">Teenuse osutamiseks sõlmitava lepinguga sätestatakse vähemalt lapsele või täisealisele isikule osutatava teenuse sisu, maht, kestvus, rahastamise kord ning osapoolte õigused ja kohustused.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg5">
+   <loigeNr id="ae9a67b6-627e-495f-bd17-86e602621987">5</loigeNr>
+   <kuvatavNr id="c1ef8bd8-ab71-4bd9-8b32-bfd5e7101705"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="65f40186-911e-48fe-aa49-2bd3c62f5b39">
+    <tavatekst id="7742e74f-ca43-4cb1-989b-74ba4feba551">Asendushooldusele suunatud lapsele koostatud juhtumiplaan on asendushooldusteenuse osutamise lepingu lahutamatu lisa.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg6">
+   <loigeNr id="37c292dd-1e1f-44db-9a3c-4e4415a1fda9">6</loigeNr>
+   <kuvatavNr id="fe59f9fe-4bdf-4966-b717-1d622ba5bd0a"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="4d374431-317e-41b1-8448-76382d034b2a">
+    <tavatekst id="603f0646-25e9-4452-8ce9-906f978f7961">Teenuse eest tasumise ja hoolduspere vanemale tasu maksmise otsustab linnavalitsus.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg7">
+   <loigeNr id="9e057582-82e5-4c76-b011-a1c276d6dfda">7</loigeNr>
+   <kuvatavNr id="f4ab6a92-5919-4e9b-9901-8f08f6782e93"><![CDATA[(7)]]></kuvatavNr>
+   <sisuTekst id="d6f090c3-fe98-42ec-a8d5-75dc94ced599">
+    <tavatekst id="9a40188f-4827-4f57-a174-0e65388a156e">Asendushooldusteenust rahastatakse SHS § 45<sup>9</sup> lõigetes 1 ja 2 nimetatud lapsele linnaeelarvest ning asendushooldusel oleva lapse sissetulekutest.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg8">
+   <loigeNr id="67c9c608-47eb-4a35-aa18-638a2c5eef5f">8</loigeNr>
+   <kuvatavNr id="d9175c8e-c1ef-4b3c-8832-37322f3f306a"><![CDATA[(8)]]></kuvatavNr>
+   <sisuTekst id="f9528361-f6aa-4274-b292-cdea577845ae">
+    <tavatekst id="1961339c-a12d-4ff2-9cb6-d133bc682db6">Asendushooldusteenust võib rahastada SHS § 45<sup>9</sup> lõikes 3 nimetatud lapsele linnaeelarvest ja lapse ülalpidamiskohustusliku isiku vahenditest.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg9">
+   <loigeNr id="995b124c-ab25-4f31-b279-df5871b08094">9</loigeNr>
+   <kuvatavNr id="449e8d45-ac81-44dd-b34e-adba94f25031"><![CDATA[(9)]]></kuvatavNr>
+   <sisuTekst id="3f665218-8bef-4a61-8661-bdb91c3c7e9a">
+    <tavatekst id="78935463-de61-4878-a553-aab20177ad86">Järelhooldusteenust rahastatakse linnaeelarvest ning järelhooldusteenusel oleva täisealise isiku sissetulekutest.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg10">
+   <loigeNr id="e4b43ffc-ab53-4afc-b708-df01cf462ac1">10</loigeNr>
+   <kuvatavNr id="fd39390d-a748-482e-88a9-c4e80bf7153b"><![CDATA[(10)]]></kuvatavNr>
+   <sisuTekst id="477c6baa-1294-45b1-bc3c-57ec15bdc4e5">
+    <tavatekst id="e6eb808b-821f-4f79-aa92-27398ce7bf03">Lapse ülalpidamist ja erivajadusest tulenevaid lisavajadusi rahastatakse muu hulgas lapsele riigieelarvest igakuiseks ülalpidamiseks ja puudest tingitud lisakulude osaliseks hüvitamiseks ettenähtud sissetulekutest (elatis, elatisabi, toitjakaotuspension, puudega lapse toetus, lapse vara võõrandamisest saadud vahendid jms.). Eelpool nimetatud sissetulekute olemasolul võib linnavalitsus määrata lapsele teenuse eest tasumiseks omaosaluse.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg11">
+   <loigeNr id="9c5a3076-3374-4f06-9cda-a8b4db2d5dbd">11</loigeNr>
+   <kuvatavNr id="20e0bea6-f172-4697-95c6-2cc57bf3dcf1"><![CDATA[(11)]]></kuvatavNr>
+   <sisuTekst id="b427288b-4919-45a8-82a9-4ea870f80d6e">
+    <tavatekst id="7811386a-1fec-4802-85d4-5fa48c6edecb">Teenuse saaja isiklike kulude katteks tuleb linnavalitsusel tagada vähemalt SHS § 45<sup>11</sup> lõikes 3 sätestatud miinimum. Teenuse saaja isiklike kulutuste all peetakse silmas toidu, riiete, hügieenitarvete, hariduse, vabaaja, huvitegevuse, tervise ja raviga seonduvaid kulusid.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg12">
+   <loigeNr id="63633616-21d7-4f5b-893e-0f3fa7565040">12</loigeNr>
+   <kuvatavNr id="1f1f9c3f-a48b-4f97-bdc7-9ad2dd2f1808"><![CDATA[(12)]]></kuvatavNr>
+   <sisuTekst id="1c6b3faf-07c1-47da-a13a-5e466af4d7fa">
+    <tavatekst id="030c4a0f-434d-40ca-ae14-0c81f16da0ff">Hoolduspere vanemale maksab linnavalitsus tasu SHS § 45<sup>11 </sup>lõikes 4 sätestatud tingimustel ja vähemalt kehtestatud miinimumsummas.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg13">
+   <loigeNr id="1aa15899-76f3-4bff-aaec-81fba7f63a87">13</loigeNr>
+   <kuvatavNr id="4ef73b8b-b7cc-43a2-a3b2-5008df0489c0"><![CDATA[(13)]]></kuvatavNr>
+   <sisuTekst id="7cecf273-930a-42db-9da3-0fe3ce64ec1a">
+    <tavatekst id="49555376-49e5-4c51-8a4f-8cbdcb17ff0c">Teenuse eest tasumine toimub vastavalt teenuse osutamise lepingus (edaspidi <i>leping</i>) kokkulepitud tingimustele ja teenuse osutaja poolt esitatud arvete alusel (va asendushooldusteenuse osutamisel hooldusperes).</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg14">
+   <loigeNr id="f01b39a2-2a14-43b4-9ae8-7cd8d981d22b">14</loigeNr>
+   <kuvatavNr id="e90c1987-90ee-41a2-b75e-0d6b158d1ae3"><![CDATA[(14)]]></kuvatavNr>
+   <sisuTekst id="53e26f4c-0b8d-4992-b9dc-9b736faba188">
+    <tavatekst id="e81030e4-3ee2-46a1-9057-6013596e50d6">Linnavalitsus võib hoolduspere vanemale maksta toetust või tasu suuremas ulatuses, kui SHS § 45<sup>11</sup> lõikes 4 sätestatud miinimumsumma.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg15">
+   <loigeNr id="cf91c042-df43-40d1-8ea1-c1d837f021c6">15</loigeNr>
+   <kuvatavNr id="1537f9d5-2198-4dde-99a1-6aea820a67ad"><![CDATA[(15)]]></kuvatavNr>
+   <sisuTekst id="4c7d016b-28ca-4c9a-a24e-47bb69da7f86">
+    <tavatekst id="bc79a1a4-b0e8-4ed4-8c32-de4af77d7e7c">Asendushooldusteenuse osutaja muud kulutused ja nende hüvitamise kord lepitakse kokku lepingus. Asendushooldusteenuse osutaja muude kulude kokkuleppimisel arvestatakse teenuse saaja teenusel viibimise kestvust, õppimist väljaspool teenuse osutamise asukohta, teenuse saaja spetsiifilisi vajadusi ning ülalpidamist riigi või linnaeelarvest.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg16">
+   <loigeNr id="5039022f-cdad-4a77-9150-b120cf4ffe12">16</loigeNr>
+   <kuvatavNr id="e64f61a3-1e59-4eee-b31d-8c0b64775e65"><![CDATA[(16)]]></kuvatavNr>
+   <sisuTekst id="06af9e7d-3039-4b32-b410-9eab28059cda">
+    <tavatekst id="48064e77-2317-4baf-b740-bac0b213ce51">Käesoleva paragrahvi lõikes 11 nimetatud summa fikseeritakse lepingus ning kantakse lepingus kokkulepitud arvelduskontole. Järelhooldusteenusel viibiva täisealise isiku puhul võib erandina kokku leppida summa kandmise teenuse saaja arvelduskontole ja teha sellekohane märge teenusele suunamise otsuses.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg17">
+   <loigeNr id="168ba624-e905-4838-84bd-64c5a729d50e">17</loigeNr>
+   <kuvatavNr id="bb6bdc6b-be20-4b04-9fd4-25bb574cbedb"><![CDATA[(17)]]></kuvatavNr>
+   <sisuTekst id="618447b8-c748-49e7-9c12-18822c4bacf8">
+    <tavatekst id="c21578a2-a2b6-45b5-8495-7bef3d71b287">Järelhooldusteenuse osutamisel tuleb linnavalitsusel tagada täisealisele isikule eluruum tema vajadusi arvesse võttes (asendushooldusteenuse, eestkostepere, sotsiaaleluruumi, renditud eluaseme, ühiselamukoha või muu sobiliku majutuse kaudu) ning lähtuvalt täisealise isiku juhtumiplaanist katta tema isiklikud kulud ning vajaduspõhised tugiteenuste kulud.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para8">
+   <paragrahvNr id="cef74021-ca95-4a91-b025-7224d3b2174e">8</paragrahvNr>
+   <kuvatavNr id="86d39a1a-6eab-47f3-ba58-5589a905f9e7"><![CDATA[§ 8. ]]></kuvatavNr>
+   <paragrahvPealkiri id="538da71b-2deb-407f-a164-5a8e5549d35e">Rakendussätted</paragrahvPealkiri>
+  <loige id="para8lg1">
+   <loigeNr id="1541c998-99b6-43e2-890a-51a256c2f8f2"/>
+   <kuvatavNr id="de226505-ad45-462f-950f-450ce4481003"/>
+   <sisuTekst id="d4fbc557-c479-42b9-ac21-a8a5a683db0b">
+    <tavatekst id="89803422-4743-47ae-bb81-76bcb7426fa5">Määrust rakendatakse alates 1. jaanuarist 2018. a.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="e31e6852-889b-4a80-9c4d-32186a929bb4"><allkiriKoht id="5a95aeee-7257-491b-a957-73c9f6c04115"/><allkirjastaja id="11eb5aad-0125-4057-8225-6e7c0ff7d968"><ametinimetus id="dd65673a-92ec-46db-9bc8-f7f862f7ce17">volikogu esimees</ametinimetus><eesnimi id="2e9a7605-3332-467f-8336-475c57c93df6">Jelena</eesnimi><perekonnanimi id="24d4cfb3-7024-44dd-9488-b0587c704223">Koršunova</perekonnanimi></allkirjastaja></allkiri></oigusakt>

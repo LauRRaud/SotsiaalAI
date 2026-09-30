@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="324f86d8-e3fb-401c-ab21-45ed2ecb5b84" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Jõhvi Vallavalitsus</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>algtekst-terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2025-12-29</aktikuupaev>
+			<aktiNr>2</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-12-31</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>11</RTartikkel><aktViide>431122025011</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2026-01-03+02:00</kehtivuseAlgus></kehtivus><versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2025-12-29</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>431122025011</globaalID>
+		<metaandmedVersioon>7</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2025-12-30</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1062560</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2025-12-22</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Külli Korsten</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="40c5cce1-89f9-4db4-bedc-f87a4960e83e">
+		<nimi id="5b233f94-158a-4353-849f-bc318813dc9e">
+			<pealkiri id="d1fc116d-d46d-484c-95c9-2ac945b5c181">Üldhooldusteenust vahetult osutavate töötajate kulude tasumise piirmäära kehtestamine</pealkiri>
+		</nimi>
+	</aktinimi>
+	<sisu id="d9e496e6-0ce7-4727-9f7a-e8899d84772a">
+		<preambul id="a6f96e52-e1c3-48d7-b124-6c38cda43476">
+			<tavatekst id="3e3aebb7-1213-42ce-a6e0-4265486a8438">Määrus kehtestatakse sotsiaalhoolekande seaduse § 22<sup>1</sup> lõike 3 ja Jõhvi Vallavolikogu 18. detsembri 2025 määruse nr 6 “Sotsiaalhoolekandelise abi andmise kord Jõhvi vallas“ § 34 lõike 2 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="f788969b-19ff-4fb0-be7f-4d862e779081">1</paragrahvNr>
+			<kuvatavNr id="34bc0e96-f45c-4014-9238-0d84ac7a980d"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="ac6a886b-1909-476e-abca-892d159c0d47">Üldhooldusteenust vahetult osutavate töötajate kulude tasumise piirmäära kehtestamine</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="a664d531-7794-4ce3-94cc-15a3b68e827b"/>
+				<kuvatavNr id="d71fd47d-8431-4c93-aa22-b485c8f760a8"/>
+				<sisuTekst id="18c92cbd-7f30-4461-82e6-84b7cda6c95d">
+					<tavatekst id="7de45578-bb67-4047-87ec-67c92e8f5962">Kehtestada väljapool isiku kodu ööpäevaringse üldhooldusteenuse osutamisel vahetult teenust osutavate hooldustöötajate ja abihooldustöötajate sotsiaalhoolekande seaduse § 22<sup>1</sup> lõikes 2 sätestatud kulude tasumise piirmääraks kuni 650 eurot ühe teenuse saaja kohta kalendrikuus.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="a87e593f-88f9-400a-8523-c248d56edc67">2</paragrahvNr>
+			<kuvatavNr id="2b07aa85-7458-4a0a-a582-76a7e9ebdf56"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="75fc147e-c77f-48fc-afb4-8f1f3aff9243">Rakendussätted</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="879f7977-dfe8-4eed-bc0a-0083a9691a35">1</loigeNr>
+				<kuvatavNr id="99c24fd6-5e96-45d7-98f7-0da807646cc4"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="3740109e-5fa5-40ea-ac52-993d1ce93665">
+					<tavatekst id="940678d3-a863-4fa0-958a-697326af64a3">Jõhvi Vallavalitsuse 13. juuni 2023 määrus nr 8 „Üldhooldusteenust vahetult osutavate töötajate kulude tasumise piirmäära kehtestamine“ tunnistatakse kehtetuks.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg2">
+				<loigeNr id="a13ba9d7-6f47-4cbd-a6e3-1992d8d597e1">2</loigeNr>
+				<kuvatavNr id="b65eaecb-9eb4-43f9-b512-8759ff10cbdb"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="22b165ce-8df6-43d3-89bf-2d92a8768d97">
+					<tavatekst id="dea83245-2b8b-4447-a6b9-dbceb3e39a2c">Määrust rakendatakse alates 01.01.2026</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg3">
+				<loigeNr id="579d533b-48d2-49a3-9936-6b6e48e35aa5">3</loigeNr>
+				<kuvatavNr id="e801a82a-4f8b-47d5-8415-b69adc2eeb8e"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="62729bda-f0e6-498b-a5d1-9af6e882bfc8">
+					<tavatekst id="6ba9ba21-6b7d-4af6-bd09-4727da1ddf62">Määrus jõustub üldises korras.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+	<allkiri id="0b87f257-8b9a-4778-b7b7-0e32957bba6a">
+		<allkiriKoht id="5e0606d2-0923-4a93-9794-8c70bc9f78f0"/>
+		<allkirjastaja id="30a6605a-4f75-4f85-a39d-ff95c6706230">
+			<ametinimetus id="9fe2571f-0f61-4bb0-a473-f0d339147bb8">Vallavanem</ametinimetus>
+			<eesnimi id="1c0316e7-bdb2-4ada-a327-67f974289ac5">Vallo</eesnimi>
+			<perekonnanimi id="0d7a50f9-29f4-40f1-a1b3-95bd7d919641">Reimaa</perekonnanimi>
+		</allkirjastaja>
+	</allkiri>
+	<allkiri id="ad5c67d0-b53b-4858-904f-ceae0dc61fb6">
+		<allkiriKoht id="49653dbc-ceb2-4d57-9697-413d37677395"/>
+		<allkirjastaja id="0290acea-1d1e-4871-aab6-13d7e45367ba">
+			<ametinimetus id="fe7ac103-a615-4f13-b117-c0326b7b7d88">Jõhvi vallasekretär</ametinimetus>
+			<eesnimi id="6d99c93d-7706-496d-bd1c-554dc170d4a7">Piia</eesnimi>
+			<perekonnanimi id="485ddfe8-4ad2-47fe-96b0-cedd07b0f11e">Lipp</perekonnanimi>
+		</allkirjastaja>
+	</allkiri>
+</oigusakt>

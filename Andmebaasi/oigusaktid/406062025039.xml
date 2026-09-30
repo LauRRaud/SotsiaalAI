@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="39d0fb94-1d66-4e3b-9663-282f259286bb" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Viljandi Linnavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2025-05-29</aktikuupaev>
+  
+  
+  <aktiNr>67</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-06-06</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>39</RTartikkel><aktViide>406062025039</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2025-06-09+03:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2025-06-03</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>406062025039</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2025-06-05</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1061123</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+</metaandmed>
+ <aktinimi id="9c118ca6-29df-482b-86ad-2e589f80e731">
+  <nimi id="b720fe63-93d7-4715-8cd9-dcc7ad12479e">
+   <pealkiri id="c1e80a13-757f-484d-9e71-fcbb86e8050e">Viljandi linna omandis olevate eluruumide valdamise,kasutamise ja käsutamise ning sotsiaaleluruumide kasutusse andmise kord</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="175c883a-3057-42d6-95a8-c0ecc1b46c67"><sisuTekst id="8171d16d-0292-4c73-ae45-c2d28443a37c"><tavatekst id="689f197d-d3a7-4153-ab98-cffd4acd0b23">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 6 lõike 1, § 22 lõike 1 punkti 37, sotsiaalhoolekande seaduse § 41 lõike 1 ja § 42 ning elamuseaduse § 8 punktide 1 ja 2 alusel.</tavatekst></sisuTekst><peatykk id="7cc0322c-1995-46ca-a18b-bddff40981b6"><peatykkNr id="7023cc8a-fdfc-4cbc-8e8e-653bb1ef01f6">1</peatykkNr><kuvatavNr id="1ae2de59-6e2c-420e-9d6e-9b0ccb23a595"><![CDATA[1. peatükk]]></kuvatavNr><peatykkPealkiri id="619eb724-97a3-419a-8f1d-69a37c785645">ÜLDSÄTTED</peatykkPealkiri><paragrahv id="para1">
+   <paragrahvNr id="8e45a86b-ea46-4644-bbf1-131807bd0f61">1</paragrahvNr>
+   <kuvatavNr id="49da3b6c-5141-4a70-a6bf-3aa239240e25"><![CDATA[§ 1. ]]></kuvatavNr>
+      <sisuTekst id="2d5c4a8c-37dd-4c38-9e3d-45ffed8018ed">
+    <tavatekst id="3b804cf4-3850-4212-becc-9ff246ff94ef"> Viljandi linna omandis olevate eluruumide (edaspidi eluruumide) valdamise, kasutamise ja käsutamise ning sotsiaaleluruumide kasutusse andmise korra (edaspidi kord) eesmärk on sätestada Viljandi linna omandis olevate eluruumide valdamise, kasutamise ja käsutamise alused ning linnavalitsuse struktuurüksuste pädevus vastavate toimingute tegemisel.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para2">
+   <paragrahvNr id="e21b32f0-c6a0-424d-ae8f-aa3f7db27bb6">2</paragrahvNr>
+   <kuvatavNr id="b44e528a-7595-485b-a536-46cfb16ca040"><![CDATA[§ 2. ]]></kuvatavNr>
+      <sisuTekst id="b5c72b5e-4b81-4ff0-8005-18cb7dbfbad9">
+    <tavatekst id="cf54630b-e188-4b53-92c0-1d297dcbb8cd"> Käesolevat korda kohaldatakse koos sotsiaalseadustiku üldosa seaduse, sotsiaalhoolekande seaduse, tsiviilseadustiku üldosa seaduse, võlaõigusseaduse, elamuseaduse, asjaõigusseaduse, korteriomandiseaduse, rahvastikuregistri seaduse ja teiste eluruumide valdamist, kasutamist ja käsutamist reguleerivate õigusaktidega.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para3"><paragrahvNr id="fd01e4a3-b6ea-4023-8c1e-d661f57c791b">3</paragrahvNr><kuvatavNr id="ba44f217-0e0f-4224-9099-ce9fc5679759"><![CDATA[§ 3. ]]></kuvatavNr><paragrahvPealkiri id="baa420c6-09d6-48f2-aa5f-db0c035a531e">Eluruum</paragrahvPealkiri><loige id="para3lg1"><loigeNr id="b343bfe3-f829-4350-9c6a-3da1d6e26f4f"/><kuvatavNr id="0e5dbcf9-4edc-4d3a-a2b2-a91f886fc055"/><sisuTekst id="6eff736c-0b7b-4d45-bfbb-6b55cdda25bb"><tavatekst id="9a49ca8a-8749-4f80-bded-23b68a7b90a2">Eluruum on linnale kuuluv elamu, korter (mõtteline osa sellest) või muu omaette ruum, mis on kasutatav alaliseks elamiseks ja vastab eluruumidele esitatavatele nõuetele. Eluruumid jagunevad sotsiaaleluruumideks ja muudeks eluruumideks.</tavatekst></sisuTekst></loige></paragrahv><paragrahv id="para4"><paragrahvNr id="5f0f7ed6-e776-438d-8c78-130c258b9cb4">4</paragrahvNr><kuvatavNr id="74df9815-83fc-4d69-868f-f24b90de0993"><![CDATA[§ 4. ]]></kuvatavNr><paragrahvPealkiri id="d23111b5-ace4-47a4-b02e-a9e528ea15d2">Sotsiaaleluruum</paragrahvPealkiri><loige id="para4lg1"><loigeNr id="a904a220-4629-4db1-9049-798b68c54beb"/><kuvatavNr id="ea3ed065-08f8-4e12-be0b-a52006a7a790"/><sisuTekst id="93c95ad7-870e-49d5-afa0-af860dd03894"><tavatekst id="71262313-b6d8-4906-9cc1-5f37c7be3eba">Sotsiaaleluruum on linnale kuuluv eluruum, mis on tunnistatud Viljandi Linnavalitsuse (edaspidi linnavalitsus) poolt sotsiaaleluruumiks ning mida kasutatakse isikule eluruumi tagamise teenuse osutamiseks.</tavatekst></sisuTekst></loige></paragrahv><paragrahv id="para5">
+   <paragrahvNr id="8d638021-6f61-4118-9b61-e902bf1217a4">5</paragrahvNr>
+   <kuvatavNr id="983ab716-e27e-4a48-8ced-7e047119a43f"><![CDATA[§ 5. ]]></kuvatavNr>
+      <sisuTekst id="caa0dc30-d95a-4d31-a940-6562c8ed8eaa">
+    <tavatekst id="7f4d4f91-eee2-4567-8aa0-5196453dbf9d">Korraga reguleerimata küsimuste lahendamisel võetakse aluseks Viljandi linnavara valitsemise kord.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para6">
+   <paragrahvNr id="f302abd9-aaa5-4667-884d-80f794b8f12f">6</paragrahvNr>
+   <kuvatavNr id="a2e1070f-19ba-4a06-bcf0-32b749970d0e"><![CDATA[§ 6. ]]></kuvatavNr>
+      <sisuTekst id="d1c66286-ce5f-4923-9171-368ead6f8476">
+    <tavatekst id="4d1b7013-9a58-4ee8-811e-2c49e400dddd">Mittesotsiaaleluruumide kasutamisega seotud küsimusi otsustab haldusameti (edaspidi haldusamet) ettepaneku alusel linnavalitsus. Haldusameti pädevus ja töökorraldus on sätestatud haldusameti põhimääruses. Sotsiaaleluruumide kasutamisega seotud küsimusi otsustab linnavalitsuse sotsiaalkomisjon (edaspidi sotsiaalkomisjon), kelle pädevus ja töökorraldus on sätestatud komisjoni põhimääruses.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para7">
+   <paragrahvNr id="0cb9bd37-0567-4949-b16d-342623180e3f">7</paragrahvNr>
+   <kuvatavNr id="1b29918d-2bbd-4cfb-83fb-fe7ac7eb261e"><![CDATA[§ 7. ]]></kuvatavNr>
+      <sisuTekst id="d9cd6f32-7bc9-446b-9547-bc50c0037548">
+    <tavatekst id="b770b889-07de-4d90-a74a-40343a0d8229">Eluruumide valdamise ja käsutamisega seotud küsimusi lahendab vastavalt oma pädevusele volikogu või linnavalitsus.</tavatekst>
+   </sisuTekst>
+  </paragrahv></peatykk><peatykk id="1866b51c-9eda-4c2b-a8d3-8a6366356938"><peatykkNr id="af5861aa-3548-4268-8b15-6846885da562">2</peatykkNr><kuvatavNr id="95b518d4-3acc-402b-be18-3f931b970433"><![CDATA[2. peatükk]]></kuvatavNr><peatykkPealkiri id="e2840624-52eb-45dc-a552-0bd92b9759de">ELURUUMIDE HALDAMINE</peatykkPealkiri><paragrahv id="para8">
+   <paragrahvNr id="94d80d7b-474a-47a4-af7f-cf41561052af">8</paragrahvNr>
+   <kuvatavNr id="d469cef0-c21d-4866-9973-463f90baf651"><![CDATA[§ 8. ]]></kuvatavNr>
+      <sisuTekst id="c3accfa5-a6fd-4d5f-a42a-32964547e7bd">
+    <tavatekst id="db010c70-0ec1-41ce-8694-261982837fe0">Eluruumide haldaja on linnavalitsus, mida esindab Viljandi Linnavalitsuse haldusamet.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para9">
+   <paragrahvNr id="73a86f4e-eac6-42b9-ab45-9065749ba47a">9</paragrahvNr>
+   <kuvatavNr id="9db525c2-8231-47db-bff5-50e7544ff3a5"><![CDATA[§ 9. ]]></kuvatavNr>
+      <sisuTekst id="dd89ac20-40b6-45ba-92aa-f137e1256469">
+    <tavatekst id="f4eac2c9-f4f6-4321-b625-6add4ef4fefb">Kui Viljandi linn omandab eluruumi või vabaneb eluruum, võtab linnavalitsus seisukoha eluruumi edasise kasutamise kohta, arvestades eluruumi ja elamu andmeid ning linna vajadust sotsiaal- või muude eluruumide järgi.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para10">
+   <paragrahvNr id="a52fbd20-5c1c-4d55-8cc4-9ce30b0274b0">10</paragrahvNr>
+   <kuvatavNr id="185b4fbe-d7a5-4b2f-ab2d-ad4b2dd79e7a"><![CDATA[§ 10. ]]></kuvatavNr>
+      <sisuTekst id="116726c0-2043-4a5c-8559-3eb7dd8412a0">
+    <tavatekst id="433a9ea1-d0a1-4373-a99d-78f48a18f0c2">Haldusamet eluruumide haldaja esindajana korraldab elamute hooldus- ja remonditöid (s.h üürniku erivajadusest tulenevaid kohandustöid) vahendab kommunaalteenuseid, sõlmib teenuste osutamiseks vajalikke lepinguid, korraldab eluruumi üürilepingute täitmist ning täidab muude volikogu või linnavalitsuse õigusaktidega tema pädevusse antud eluruumidega seotud ülesandeid.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para11">
+   <paragrahvNr id="ac71a27f-a6f1-4ecb-bb13-cba748ff4b60">11</paragrahvNr>
+   <kuvatavNr id="1a8916b9-9287-4d7a-a9a1-fffbe7152177"><![CDATA[§ 11. ]]></kuvatavNr>
+      <sisuTekst id="1f2beb28-f3fb-46c0-943c-72739f2433f7">
+    <tavatekst id="79a9a90b-323f-4a76-8702-6e5053ba6ea6">Eluruumi varisemisohtlikuks või kasutamiskõlbmatuks tunnistamise, sellise eluruumi remontimise või selle muul viisil kasutamise, samuti lammutamise otsustab haldusameti ettepanekul linnavalitsus. Eluruumi seisukorra kohta koostatakse hinnang, kus märgitakse eluruumi bilansiline maksumus, lühiiseloomustus, varisemisohtlikuks või kasutamiskõlbmatuks muutumise põhjused, eluruumiga seotud õigused ja kohustused ning muud eluruumiga seotud olulised andmed. Hinnangu koostab haldusamet või vastavat kvalifikatsiooni omav isik.</tavatekst>
+   </sisuTekst>
+  </paragrahv></peatykk><peatykk id="683403c7-e19a-446f-a4b6-676078585fc3"><peatykkNr id="20d00bb9-17c8-4903-8192-4e8037c18c6c">3</peatykkNr><kuvatavNr id="96d6f6c2-1652-4fd8-8b53-76dd6462c562"><![CDATA[3. peatükk]]></kuvatavNr><peatykkPealkiri id="790be299-3af3-4236-810c-df02e5a7b84a">ELURUUMIDE KASUTUSSE ANDMINE</peatykkPealkiri><paragrahv id="para12">
+   <paragrahvNr id="a9b60cf2-47f7-4ef0-9819-65be443885d2">12</paragrahvNr>
+   <kuvatavNr id="bc803ca6-87a5-4925-9e5a-b8a2511c0328"><![CDATA[§ 12. ]]></kuvatavNr>
+      <sisuTekst id="f1b379f9-9420-42de-9599-5ad716df9cd9">
+    <tavatekst id="8c9fdf40-4602-43c8-9629-1dcd2103a1e4">Sotsiaaleluruumi üürile andmise otsustab sotsiaalkomisjon, mittesotsiaaleluruumi üürile andmise otsustab haldusameti ettepanekul linnavalitsus. Sotsiaalkomisjon lähtub otsuse tegemisel eluruumi vajava isiku taotluse esitanud isiku reaalsetest võimalustest ja vajadustest, hinnates eluruumi sobivust konkreetsele eluruumi vajavale isikule.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para13">
+   <paragrahvNr id="9b8089cf-d08a-41fb-8c6f-eccfbdfbb5d6">13</paragrahvNr>
+   <kuvatavNr id="6feca37c-0034-442d-bdd6-e01026729624"><![CDATA[§ 13. ]]></kuvatavNr>
+      <sisuTekst id="f023d14a-b3d7-4661-9c98-ea6752130efc">
+    <tavatekst id="da089574-4c56-4256-9a5b-1b3e2562b887">Eluruumi kasutamise aluseks on eluruumi üürileping, mille sõlmib linnavalitsuse korralduse või sotsiaalkomisjoni otsuse alusel haldusamet. Üürileping sõlmitakse kirjalikult 14 kalendripäeva jooksul arvates üürile andmise korralduse või otsuse teatavakstegemise päevast.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para14">
+   <paragrahvNr id="8f710bbd-f2a4-4504-a43a-9699c2e06213">14</paragrahvNr>
+   <kuvatavNr id="7cd4122b-da40-4249-87da-cf18ee98be99"><![CDATA[§ 14. ]]></kuvatavNr>
+      <sisuTekst id="53a21f4c-6f44-4c8f-90ee-fcba496f8afe">
+    <tavatekst id="00ea865c-4096-463e-9b06-9ea6089b7611">Eluruumi kasutamise aluseks oleva eluruumi üürilepingu tingimused ja vormi kinnitab linnavalitsus.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para15">
+   <paragrahvNr id="637a32a9-0971-4040-9f3a-1b129c6b1c7c">15</paragrahvNr>
+   <kuvatavNr id="9291f5d6-9099-4442-b6ab-3316a412608a"><![CDATA[§ 15. ]]></kuvatavNr>
+      <sisuTekst id="04a938ac-6eb7-4af8-b6a0-df50606f6367">
+    <tavatekst id="faa6f087-0eca-4ed4-95f9-e334511c673f">Eluruumi üürileping sõlmitakse Võlaõigusseaduses sätestatud alustel ja korras, kas tähtajaliselt või tähtajatult.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para16">
+   <paragrahvNr id="911c70f0-d3c8-4191-8b0e-bac5a732c35a">16</paragrahvNr>
+   <kuvatavNr id="0459bc62-0bab-4884-98b6-6568900f64ea"><![CDATA[§ 16. ]]></kuvatavNr>
+      <sisuTekst id="aec9643f-bf09-4f94-9921-b29232ce3c66">
+    <tavatekst id="c4f1173b-ef06-4ef6-a549-db3035a96f7d">Sotsiaaleluruumi üürilepingu võib sõlmida kuni üheks aastaks kui seaduse, volikogu või linnavalitsuse õigusaktiga ei ole ette nähtud teisiti.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para17">
+   <paragrahvNr id="9069667a-0a10-4c12-9bce-37243e0b0c07">17</paragrahvNr>
+   <kuvatavNr id="9c6686d2-942a-4fe3-8eb6-f6ec4842bbe2"><![CDATA[§ 17. ]]></kuvatavNr>
+      <sisuTekst id="7a561e3a-e5e5-48d3-afc4-974ce5a82cc1">
+    <tavatekst id="66d55a01-104c-4546-8a10-badbf5f4f096">Paragrahvis 13 sätestatud tähtaja jooksul üürniku poolt üürilepingu mõjuva põhjuseta sõlmimata jätmise korral tunnistatakse kehtetuks eluruumi üürile andmise korraldus või sotsiaalkomisjoni otsus. Mõjuva põhjuse ilmnemisel võib haldusamet pikendada üürilepingu sõlmimise tähtaega.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para18">
+   <paragrahvNr id="a1ee8eb0-8eba-4210-871e-22ce4a85dab2">18</paragrahvNr>
+   <kuvatavNr id="bbe745e4-8753-4e19-abdc-1d5d015f2fcd"><![CDATA[§ 18. ]]></kuvatavNr>
+      <sisuTekst id="f0a02571-f503-4a83-823e-e4087c33a4ac">
+    <tavatekst id="ff300377-a6ec-45a8-8fa9-9fe7e8d969ed">Eluruumi valdus antakse üle ja võetakse vastu üleandmise - vastuvõtmise aktiga, millele kirjutavad alla üürnik ja haldaja esindajana haldusamet.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para19">
+   <paragrahvNr id="36240752-bce2-4643-944f-bc06d765f0d7">19</paragrahvNr>
+   <kuvatavNr id="4909fd79-a1dd-4a41-8f5d-47e7b81c850e"><![CDATA[§ 19. ]]></kuvatavNr>
+      <sisuTekst id="56e77261-e45b-4fa8-85c7-44d9366de110">
+    <tavatekst id="ce7d3e83-3330-4098-a3bd-b0b7390b6384">Korteriühistu, elamuühistu, korteriomanike ühisuse liikmena tegutsemisel vms esindab Viljandi linna eluruumi haldaja esindajana haldusameti teenistuja linnapea volituse alusel.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para20">
+   <paragrahvNr id="c0e0de42-1302-49f5-ab29-5ad9704c34b6">20</paragrahvNr>
+   <kuvatavNr id="6a9f604a-0267-4c12-8c6c-5eac3e5c2aee"><![CDATA[§ 20. ]]></kuvatavNr>
+      <sisuTekst id="b3aba65b-c747-4ef5-b007-2f8612243632">
+    <tavatekst id="906f3151-fde6-4521-8136-46e82e2aa3e2">Üürilepingu pikendamise otsustab sotsiaaleluruumide puhul sotsiaalkomisjon, mittesotsiaaleluruumide puhul otsustab üürilepingu pikendamise linnavalitsus arvestades haldusameti ettepanekut.</tavatekst>
+   </sisuTekst>
+  </paragrahv></peatykk><peatykk id="ba291e6e-fc34-4b71-931b-c0623b59e100"><peatykkNr id="fb133e61-38c3-4b0b-8e5d-c1a21eaedabe">4</peatykkNr><kuvatavNr id="91eb242d-8913-4568-bc29-c54db7360116"><![CDATA[4. peatükk]]></kuvatavNr><peatykkPealkiri id="33663b30-4f4f-4e24-b6fb-52b2539af167">TASU ELURUUMIDE KASUTAMISE EEST</peatykkPealkiri><paragrahv id="para21">
+   <paragrahvNr id="d1944103-ed04-4d57-9bbb-1985f9fbb1f3">21</paragrahvNr>
+   <kuvatavNr id="e4477fc1-7aa7-4aa8-a8a1-e435bca4006f"><![CDATA[§ 21. ]]></kuvatavNr>
+      <sisuTekst id="d29b68ae-a551-4208-89a2-fbb8f3887040">
+    <tavatekst id="c7a077b4-5e06-4978-83b9-46a1b9cce29b">Üürilepingu alusel eluruumi kasutamise korral peab üürnik tasuma üüri ja eluruumiga seotud kõrvalkulud.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para22">
+   <paragrahvNr id="b49dc2e0-5473-49cb-915e-c673355f586c">22</paragrahvNr>
+   <kuvatavNr id="3b6aaf96-a943-4478-84ad-dc99dd6a17cc"><![CDATA[§ 22. ]]></kuvatavNr>
+      <sisuTekst id="9bd29be1-080f-478c-a1f3-5b509fa94aef">
+    <tavatekst id="6feeeff7-58cd-4c91-a0fa-91ecb0c33afc">Mittesotsiaaleluruumi üür tasutakse jooksva kalendrikuu eest ja kõrvalkulud tasutakse üldjuhul eelneva kuu eest vastavalt reaalselt tarbitule. Sotsiaaleluruumi korral tasutakse üür ja kindla summana fikseeritud kõrvalkulud jooksva kuu eest. Maksete eest tasumiseks esitatakse vastav arve.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para23">
+   <paragrahvNr id="c571597b-903c-4c9b-984b-822f09546548">23</paragrahvNr>
+   <kuvatavNr id="91237974-e035-4403-8734-d0fbba130210"><![CDATA[§ 23. ]]></kuvatavNr>
+      <sisuTekst id="d56238d7-e850-4753-a814-fdee2534aba4">
+    <tavatekst id="c9413f6c-6269-4cbe-bfa8-253903387a47">Kõrvalkulud on tasu üürileandja või kolmanda isiku teenuste ja tegude eest, mis on seotud asja kasutamisega. Kõrvalkulude suurus sõltub eluruumi kasutamisega seotud linna või kolmandate isikute poolt osutatud teenuste tegelikust maksumusest.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para24">
+   <paragrahvNr id="47941f6a-7dbc-4170-9c8c-555ae2aa7515">24</paragrahvNr>
+   <kuvatavNr id="687db19d-aa9a-44fa-ad1d-3e6c7f27e241"><![CDATA[§ 24. ]]></kuvatavNr>
+      <sisuTekst id="b0c51cbc-bc9d-4772-9551-9705de2aeff4">
+    <tavatekst id="4509238e-bb58-49e2-8303-31361b435342">Üüri suuruse eluruumi üldpinna 1 m<sup>2</sup> kohta kehtestab linnavalitsus.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para25">
+   <paragrahvNr id="c3783e47-9486-4458-badc-dbb949fa1816">25</paragrahvNr>
+   <kuvatavNr id="31f9edaa-eff5-453c-9748-75c76c269760"><![CDATA[§ 25. ]]></kuvatavNr>
+      <sisuTekst id="991d42d2-ed46-450b-ae67-723ba37bc1c4">
+    <tavatekst id="907d166f-4f81-4d9a-94e1-bec1f881a77f">Haldusamet võib sotsiaaleluruumi üürniku põhjendatud juhtudel vabastada üürniku taotluse või sotsiaalameti spetsialisti kirjaliku teate alusel üüri ja kõrvalkulude tasumisest proportsionaalselt mujal viibitud (haiglas, õendushoolduses, üldhooldusteenusel jmt) ajale, kui ta ei ole eluruumi kasutanud vähemalt järjestikuse 15 päeva jooksul.</tavatekst>
+   </sisuTekst>
+  </paragrahv></peatykk><peatykk id="7d7d4d91-6334-4e36-998c-dc2dd56b700f"><peatykkNr id="9219d23d-73f1-4997-9607-a583f4d856c8">5</peatykkNr><kuvatavNr id="aa5cc7cb-0bda-4027-a444-708ddb5593cf"><![CDATA[5. peatükk]]></kuvatavNr><peatykkPealkiri id="23f4e399-2f46-4896-954b-197ca11e7bdf">LEPINGUTE LÕPPEMINE</peatykkPealkiri><paragrahv id="para26">
+   <paragrahvNr id="e0d3d7a2-d8f8-4ece-b8f2-29f196cbe135">26</paragrahvNr>
+   <kuvatavNr id="866e6586-e58b-4944-b4c7-7e7adf354b3e"><![CDATA[§ 26. ]]></kuvatavNr>
+      <sisuTekst id="d8d42cf7-efad-4047-ac4f-b57af3af36f9">
+    <tavatekst id="8c17549d-62d1-45b8-b1bd-f16b8dd7f4bc">Eluruumide kasutamise lepingud lõpevad tähtaja möödumisega või üürilepingu sõlminud isiku surmaga. Kui eluruumi üürnikeks on mitu isikut, siis sõlmitud leping jätkub kaasüürnikuga. Sõltuvalt lepingu pikkusest ja kooskõlas võlaõigusseadusega saadab üürnik lepingu pikendamise sooviavalduse linnavalitsusele vähemalt 1 kuu enne üürilepingu lõppemist.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para27">
+   <paragrahvNr id="acbe3025-1021-4444-9687-d874623facf3">27</paragrahvNr>
+   <kuvatavNr id="a3c6229a-1684-48ae-8d95-5a35cab8c149"><![CDATA[§ 27. ]]></kuvatavNr>
+      <sisuTekst id="16744496-c71e-4c94-b6ed-935b25061f31">
+    <tavatekst id="3e417772-dd7e-4f42-8660-33f8b8168925">Linnavalitsusel on õigus lõpetada üürileping ennetähtaegselt lepingus, seaduses või käesolevas määruses sätestatud alustel. Mittesotsiaaleluruumide üürilepingute erakorraline ülesütlemine toimub ainult kooskõlas üürilepingus ja võlaõigusseaduses sätestatuga.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para28">
+   <paragrahvNr id="f853b0ee-8f14-4b4b-aeac-aa748f817037">28</paragrahvNr>
+   <kuvatavNr id="6700920a-c419-4dd2-8fc3-d3ef06bf5c27"><![CDATA[§ 28. ]]></kuvatavNr>
+      <sisuTekst id="27be6cc6-fc91-4e08-9cbe-dc00a995565f">
+    <tavatekst id="677200a0-926b-4613-ac2a-5e0aeea22cc7">Sotsiaaleluruumi üürilepingut on õigus erakorraliselt üles öelda lisaks võlaõigusseaduses toodud alustele:</tavatekst>
+   </sisuTekst>
+  <loige id="para28lg1">
+   <loigeNr id="0677a317-ac53-417e-897a-78a6ad7639bf">1</loigeNr>
+   <kuvatavNr id="482d819d-1e97-400b-b2a6-2884c12d1d50"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="68e5ed1b-26a4-4a8e-9ce3-21e9ae818f7e">
+    <tavatekst id="00f1bbd1-b533-420b-aedb-56db692b90f3">Haldusametil, kui</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para28lg1p1">
+   <alampunktNr id="a6958c90-31bb-4ed8-986c-1b13946b9285">1</alampunktNr>
+   <kuvatavNr id="d6b99a65-b169-4e33-9202-f7cf6e4cee0d"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="f8f0b58a-9126-48df-a742-acaa9f30442f">
+    <tavatekst id="069842f2-568a-460a-80d6-1241afa77767">üürilepingu sõlminud isik ja temaga koos elavad isikud (eluruumi kaastaotlejad) ei kasuta eluruumi alalise elukohana;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para28lg1p2">
+   <alampunktNr id="75edba68-1fda-499e-850a-be4756d18e0c">2</alampunktNr>
+   <kuvatavNr id="4f454784-7c23-4e82-8323-8f6e360385ec"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="5ba89817-f050-460d-b284-fad745fae5e8">
+    <tavatekst id="a943b5e7-44c2-4c81-b721-8d228d538690">üürilepingu sõlminud isik asub rahvastikuregistrijärgselt elama mõne teise kohaliku omavalitsuse territooriumile;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para28lg1p3">
+   <alampunktNr id="ad288516-5932-44c0-af59-d67f7a8f1469">3</alampunktNr>
+   <kuvatavNr id="b5134279-7751-4077-b134-6b4aa064e5fb"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="07a0358c-1e8c-445e-af7d-c6d296cd96c9">
+    <tavatekst id="5fc863c9-33e4-416d-8c19-da9c8989c69e">üürnik ei kasuta eluruumi ise ning see on kolmandate isikute kasutuses.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para28lg2">
+   <loigeNr id="b67faa94-b369-4785-9e9f-a15ed403db46">2</loigeNr>
+   <kuvatavNr id="cd44d3f8-3908-4895-85e3-aaf5dcc7d7b4"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="bc80ed92-db8d-4c0f-8356-276766a565c5">
+    <tavatekst id="dc4e33f9-eabc-4774-9684-991a1eb664b3">Sotsiaalkomisjonil on õigus sotsiaaleluruumi üürileping erakorraliselt üles öelda juhul kui üürilepingu sõlminud isik või tema kaastaotleja rikub sotsiaaleluruumide sisekorraeeskirju.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></peatykk><peatykk id="3aa6db6a-badc-4856-9cfd-1aab6a0ec726"><peatykkNr id="4247ca02-db25-4cb1-8956-5af480f3ee48">6</peatykkNr><kuvatavNr id="3d8d9e54-9c96-4149-9151-86a332d16c7f"><![CDATA[6. peatükk]]></kuvatavNr><peatykkPealkiri id="bc86f211-b69d-441d-a665-5b0b829a0559">ELURUUMIDE KÄSUTAMINE</peatykkPealkiri><paragrahv id="para29">
+   <paragrahvNr id="ec0b2771-4b74-40b7-aa38-2d19314bd94c">29</paragrahvNr>
+   <kuvatavNr id="efa115c8-1204-4197-9381-f15c3b80b3bc"><![CDATA[§ 29. ]]></kuvatavNr>
+      <sisuTekst id="f2bfb056-1677-448e-a8d2-6c961b7c3d52">
+    <tavatekst id="5bec29c5-9cbd-4d31-916e-9858e2760f35">Eluruumide kasutamise otstarbe muutmine või eluruumide väljaarvamine sotsiaaleluruumide hulgast toimub linnavalitsuse korralduse alusel.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para30">
+   <paragrahvNr id="ff29c608-d6c2-4b22-b27a-42faa29b23a9">30</paragrahvNr>
+   <kuvatavNr id="1fae59d3-3138-4473-8ba1-9e02344a2c41"><![CDATA[§ 30. ]]></kuvatavNr>
+      <sisuTekst id="af9aec10-28f2-47e8-a5a1-a0e52d78b902">
+    <tavatekst id="88e2f33a-716f-4d8e-b4fe-254bfdb9c245">Eluruumide võõrandamist korraldab linnavalitsus. Eluruumi võõrandamine toimub linnavara valitsemise korra alusel.</tavatekst>
+   </sisuTekst>
+  </paragrahv></peatykk><peatykk id="19c92943-438a-4290-90e2-08f46ef1a5fa"><peatykkNr id="b79ba9ad-c572-4d85-8e55-8cf7ae5f3fda">7</peatykkNr><kuvatavNr id="456eb295-a1fa-4b97-9750-5e28d535a2ae"><![CDATA[7. peatükk]]></kuvatavNr><peatykkPealkiri id="f5ca740e-793b-44e4-941f-3d5e1413b2ab">SOTSIAALELURUUMI KASUTUSSE ANDMISE TINGIMUSED</peatykkPealkiri><paragrahv id="para31">
+   <paragrahvNr id="d2c626d4-a824-4cc1-a691-9588e6ca2e6d">31</paragrahvNr>
+   <kuvatavNr id="6f8f2dbd-91a6-42bb-8438-16fcf90b8f3f"><![CDATA[§ 31. ]]></kuvatavNr>
+      <sisuTekst id="28357b9d-8292-4743-9abd-65c5b8733ef2">
+    <tavatekst id="9ffb967a-7900-4286-9df4-dd1c454a6e89">Sotsiaaleluruumi olemasolul antakse see üürile eluaset mitteomavatele isikutele, kelle elukoha aadress Eesti rahvastikuregistris on Viljandi linn ja kes reaalselt elavad linna territooriumil ning vastavad vähemalt ühele järgnevatest tingimustest:</tavatekst>
+   </sisuTekst>
+  <loige id="para31lg1">
+   <loigeNr id="390b3065-1ce3-401b-b381-4e0f3eaf334e"/>
+   <kuvatavNr id="d9e26c03-28ac-4002-9720-4577d3499ca9"/>
+   <sisuTekst id="08571c7f-94fa-43ec-9d5a-254ede7a9a68">
+    <tavatekst id="4619e175-b754-4d0f-85ea-ece58a0fc2d0"/>
+   </sisuTekst>
+  <alampunkt id="para31lg1p1">
+   <alampunktNr id="50ccf14b-254d-452a-bd3d-1b1da32b0e57">1</alampunktNr>
+   <kuvatavNr id="b74cf297-722f-44f6-918a-1e402e13e5e4"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="118aeb86-9277-4e54-8bc7-749f0c587baf">
+    <tavatekst id="d9fbd9cd-2127-4a9a-9f09-fde6db5cba85">isikule, kes lähtuvalt oma sotsiaalsest ja majanduslikust olukorrast ei ole ise suuteline eluruumi endale või oma perekonnale tagama ning sotsiaaleluruumi eraldamata jätmine ohustab isiku või tema perekonna toimetulekut, elu ja tervist;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para31lg1p2">
+   <alampunktNr id="7ca467cf-e626-4867-a09d-2ae4733ae6e1">2</alampunktNr>
+   <kuvatavNr id="7fcc90ab-1ec7-46d1-afdc-5e42b94a98c2"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="c0d3ce8d-3e61-4f07-8cda-7cd95e900da1">
+    <tavatekst id="13ad6126-6485-45f0-8722-f159e1c6b937">isikule, kes tulekahju, loodusõnnetuse, katastroofi või muu sarnase põhjuse tagajärjel on kaotanud oma eluaseme.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para32">
+   <paragrahvNr id="6740518e-2231-465a-aa17-9d3b8b2eeddb">32</paragrahvNr>
+   <kuvatavNr id="f35f3a9f-2a90-45b3-a969-2494a762ac41"><![CDATA[§ 32. ]]></kuvatavNr>
+      <sisuTekst id="c2c71a2e-27a0-4891-8ed1-12a51769c9fa">
+    <tavatekst id="cc57296d-47f0-4f08-8a7c-c0d7f8f68293">Sotsiaalkomisjon võib otsustada Viljandi Linnavalitsuse sotsiaalameti (edaspidi sotsiaalamet) teenistuja põhjendatud ettepanekul eluruumi üürile andmise leibkondadele, kes ei vasta käesolevas määruses olevatele tingimustele, kuid sotsiaaleluruumi üürile andmine on hädavajalik leibkonna iseseisva toimetuleku säilitamiseks</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para33">
+   <paragrahvNr id="e360e206-fbb4-439c-af46-32a06c2b6b86">33</paragrahvNr>
+   <kuvatavNr id="85c134f4-be0f-4dd7-9c50-55f12fc00328"><![CDATA[§ 33. ]]></kuvatavNr>
+      <sisuTekst id="2488dd64-314d-41d4-98c3-64b8cae02c26">
+    <tavatekst id="f419c557-3cf2-4e02-9813-f8d4a1d03314">Sotsiaalametil on mõjuvatel põhjustel õigus teha haldusametile ettepanek sotsiaaleluruumi isiku kasutusse andmiseks enne üürile andmise otsuse tegemist. Mõjuvaks põhjuseks loetakse olukorda, kus isikule eluruumi koheselt andmata jätmise korral ohustaks see isiku või tema perekonna elu ja tervist.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para34">
+   <paragrahvNr id="32ede751-d3a1-4a21-985d-8bdee7af4a36">34</paragrahvNr>
+   <kuvatavNr id="ddd88c16-c3c9-4f07-bcc6-2d7f6b45e2ab"><![CDATA[§ 34. ]]></kuvatavNr>
+      <sisuTekst id="e1f94e7e-aaf2-4890-a404-f2934e48a853">
+    <tavatekst id="aee21564-d37e-4533-b6af-a9166c535546">Sotsiaalkomisjon võib keelduda sotsiaaleluruumi üürile andmisest kui:</tavatekst>
+   </sisuTekst>
+  <loige id="para34lg1">
+   <loigeNr id="dc624cfc-3d4d-4067-8b9b-b77452d8214a"/>
+   <kuvatavNr id="cf98064b-a39e-4b74-820a-cb7a3acffb5c"/>
+   <sisuTekst id="52af0b03-ab3a-4dba-8997-fb5bdde75ba3">
+    <tavatekst id="b5a95366-d498-4ce4-8a54-484003c61457"/>
+   </sisuTekst>
+  <alampunkt id="para34lg1p1">
+   <alampunktNr id="3504c92d-03db-45d8-a782-5ed3c96251f3">1</alampunktNr>
+   <kuvatavNr id="a4d01f8b-b3f5-4838-bdfb-4c613bc7ddbd"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="13817dad-5590-47c0-b631-2607251ce4b9">
+    <tavatekst id="2344738c-ca84-4236-aa76-fb16160ef291">eluruumi taotleja või tema leibkonnaliikme kasutuses või omandis olevad vallas- või kinnisasjad tagavad temale või leibkonnale toimetulekuks piisavad vahendid eluruumi tagamiseks;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para34lg1p2">
+   <alampunktNr id="5146e0c1-5558-40d1-aaa8-f32605acfc8b">2</alampunktNr>
+   <kuvatavNr id="d084027e-bffb-499a-a852-5abd0cb8ec2e"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="6fff599d-3b0d-4082-bba8-8ac95730af8f">
+    <tavatekst id="bccbe438-699a-44cd-830e-f8e5190ab5f6">eluruumi taotlejal või temaga koos elaval ülalpidamist saama õigustatud lapsel või muul abivajaval alanejal või ülenejal sugulasel, kes ei ole võimeline ennast ise ülal pidama, on õigus elatist saada, kuid kes keeldub elatise saamise kohta dokumenti esitamast või elatist sisse nõudmast;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para34lg1p3">
+   <alampunktNr id="208c9a3f-f3f0-4504-b8ff-23f52d764ab4">3</alampunktNr>
+   <kuvatavNr id="bdf17b00-7b1b-486b-a460-479c65282fd3"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="fb1cb608-6ffd-4795-b35c-a571183290d4">
+    <tavatekst id="6363d469-d734-48cd-9d14-c7f0d74bb5dc">eluruumi taotleja või tema leibkonnaliige on töövõimeline 18-aastane kuni vanaduspensioniealine isik, kes ei tööta ega õpi ning on rohkem kui ühel korral ilma mõjuva põhjuseta keeldunud sobivast tööst või osalemast tööturuteenuses või linnavalitsuse korraldatavas iseseisvale toimetulekule suunatud sotsiaalteenuses või õppeprotsessis;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para34lg1p4">
+   <alampunktNr id="1c639396-e1b0-404a-b099-c91e76f96174">4</alampunktNr>
+   <kuvatavNr id="c5c4caea-2db7-40c9-b222-7b83db44975f"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="de0be370-4eb6-4a67-8449-c7dde761d751">
+    <tavatekst id="4f2f5fbc-98d4-4f44-b7ec-1b61e1dc06ce">eluruumi vajadust on võimalik või otstarbekas katta muude teenuste või toetustega;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para34lg1p5">
+   <alampunktNr id="08079ecd-b918-453a-aa4b-95b0bf77088f">5</alampunktNr>
+   <kuvatavNr id="6c31d667-f106-473e-8f27-3232546bd655"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="33f9dd09-8170-4d90-8857-5863bb20f957">
+    <tavatekst id="93dbc575-15c7-479e-8df2-b640d6ccce6e">eluruumi taotleja ei esita nõutud täiendavaid dokumente või ei võimalda taotluse asjaolusid kontrollida või ei paranda avalduses esinevaid puudusi määratud tähtajaks;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para34lg1p6">
+   <alampunktNr id="076110ec-8c09-476a-8db6-022a1ab28501">6</alampunktNr>
+   <kuvatavNr id="79b321be-2d6e-4432-8806-ff9881ba9888"><![CDATA[6) ]]></kuvatavNr>
+   <sisuTekst id="b6a8cbd5-fd1e-46ad-bac6-3df143048639">
+    <tavatekst id="03ebee93-ff3b-43d2-a0b3-e975d1fc4949">eluruumi taotleja on teadvalt andmeid varjanud või esitanud valeandmeid;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para34lg1p7">
+   <alampunktNr id="3cba5cbc-e147-4cda-b746-c2e2013043c8">7</alampunktNr>
+   <kuvatavNr id="f7efed4d-53fc-4ed9-9e33-7ab81d6e0f9a"><![CDATA[7) ]]></kuvatavNr>
+   <sisuTekst id="e9395f3f-c7c1-4f0d-9eab-a8b0e8e6729d">
+    <tavatekst id="106b2017-8a99-40bc-a772-097ff57ed2c3">eluruumi taotleja või tema leibkonnaliikmete suhtes esineb muid asjaolusid, mis sotsiaalkomisjoni liikmete arvamusel ei anna alust sotsiaaleluruumi üürile andmiseks.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para35">
+   <paragrahvNr id="84c2d38c-9594-4753-8100-8ef728892774">35</paragrahvNr>
+   <kuvatavNr id="e97516e7-d22e-405e-9ff7-7ddb0b3c0fbb"><![CDATA[§ 35. ]]></kuvatavNr>
+      <sisuTekst id="2c1bb4df-3395-4038-91cb-64314e89bd11">
+    <tavatekst id="6ad0e0d0-35bd-401e-affe-75ffdb349e4c">Sotsiaaleluruumi vajav isik esitab vastava taotluse sotsiaalametile.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para36">
+   <paragrahvNr id="e90a4496-9152-4db7-8c74-42c91d13c5a5">36</paragrahvNr>
+   <kuvatavNr id="b1ac72f2-5ebc-48a4-a3d9-48052017cfb6"><![CDATA[§ 36. ]]></kuvatavNr>
+      <sisuTekst id="1e023cf0-2189-4a3d-9f0d-3d10e1decaf8">
+    <tavatekst id="9a356632-965b-4087-8d1d-a57f0cbd98c2">Taotluses peavad olema märgitud:</tavatekst>
+   </sisuTekst>
+  <sisuTekst id="e9f69fa7-63ac-406f-93a1-654905cbd08e">
+	<tavatekst id="e324148b-b27b-40c2-8c33-48ae8e7854c2"/>
+	</sisuTekst><loige id="para36lg1">
+   <loigeNr id="2164c354-4e71-48ea-8040-95f8c59d2ca2"/>
+   <kuvatavNr id="e1b04799-8042-4587-87e4-aeae68693b8f"/>
+   <sisuTekst id="49a59592-c4d0-457d-ad41-7b6a6744ecfe">
+    <tavatekst id="93d4deda-73c0-4335-88c3-695f5a3087ab"/>
+   </sisuTekst>
+  <alampunkt id="para36lg1p1">
+   <alampunktNr id="7f0de2d0-edce-4fce-9a80-ad4b714caffb">1</alampunktNr>
+   <kuvatavNr id="cafb77fa-123d-495f-99d1-617898a011c1"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="6d20e30e-ce4a-4493-88a9-151eb1b09c96">
+    <tavatekst id="5b4ca7cb-aafb-4a96-9ec7-534b89d725ef">taotleja ees- ja perekonnanimi, isikukood, elukoht;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para36lg1p2">
+   <alampunktNr id="fdb8434e-e722-4ec7-8f39-fa6eedab61a0">2</alampunktNr>
+   <kuvatavNr id="9ea9c143-cf98-4f02-90a1-7645ff573216"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="cf00faf7-a3aa-47f4-90af-e1a1cbba3197">
+    <tavatekst id="f76ccd3d-d271-4f1a-a6af-1fc0c315eefa">taotleja leibkond sh ülalpeetavad;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para36lg1p3">
+   <alampunktNr id="1e265506-db8f-4e80-a546-dbbf5aecfe37">3</alampunktNr>
+   <kuvatavNr id="5c5a7728-b9eb-41b9-aeca-969736feba81"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="bfe277a5-10d6-44df-85fb-da5928e884a6">
+    <tavatekst id="2a9c09be-9952-495c-8d1a-7f7f40cb417a">sotsiaaleluruumi taotlemise põhjused;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para36lg1p4">
+   <alampunktNr id="8bd8b671-0409-4734-98a1-f906a3ea7d6e">4</alampunktNr>
+   <kuvatavNr id="5baa3e86-bdd7-489c-a184-621e7615992a"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="985f961b-71d5-4317-b65f-e7c8fc5a60ce">
+    <tavatekst id="4fe86e8d-6a60-432a-a027-ae07f992e08f">hetkel kasutatava eluruumi suurus ja seisukorra kirjeldus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para36lg1p5">
+   <alampunktNr id="9917a365-a2a5-44c1-a676-8dfa8e334c5b">5</alampunktNr>
+   <kuvatavNr id="8e236fda-2811-4fc0-b0d0-4888dcce0ccf"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="da2ffb58-ad5f-4363-b07d-f9b853fd5301">
+    <tavatekst id="5d1ad1c5-0e4b-4e0e-8543-2da4396f25c8">andmed taotleja ja tema leibkonna liikme omandis oleva kinnisvara kohta;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para36lg1p6">
+   <alampunktNr id="f9c425ca-a11b-491c-b1c3-499b7e599dfa">6</alampunktNr>
+   <kuvatavNr id="1983613b-2677-47c5-a413-f5e0cd14f783"><![CDATA[6) ]]></kuvatavNr>
+   <sisuTekst id="62d4fe00-584a-4c53-82f7-ad2422931c71">
+    <tavatekst id="fa8abd0a-4a63-4d58-9e64-2c849e756169">kontaktandmed.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para37">
+   <paragrahvNr id="43f20ca5-468a-43de-823b-070a9a2cd89b">37</paragrahvNr>
+   <kuvatavNr id="2543781f-80b3-4b69-a001-d5f5ff114c06"><![CDATA[§ 37. ]]></kuvatavNr>
+      <sisuTekst id="11bea89b-d3a5-4dd6-909c-deef31c4dfbd">
+    <tavatekst id="5442009d-611e-481f-bd9e-50e78708030d">Taotluses esitatud andmete õigsust kinnitab taotleja oma allkirjaga.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para38">
+   <paragrahvNr id="9502c78b-dc64-40ad-9d9e-c86c9ff6b76d">38</paragrahvNr>
+   <kuvatavNr id="ba33cc6c-898a-4d0c-bd98-dd1fa041a0ec"><![CDATA[§ 38. ]]></kuvatavNr>
+      <sisuTekst id="9f9dd3b6-690a-4a1b-ba1f-b4cf4b42c089">
+    <tavatekst id="c0b9e470-8b49-4b65-a789-59feff944f4f">Isiku taotlus registreeritakse ja talle vastatakse kirjalikult hiljemalt 10 päeva jooksul taotluse esitamisest arvatuna.</tavatekst>
+   </sisuTekst>
+  </paragrahv></peatykk><peatykk id="53a7c4dc-b622-4c25-b4b1-758dbf29ae29">
+   <peatykkNr id="5689c536-484f-4b40-8f2e-b12770892324">8</peatykkNr>
+   <kuvatavNr id="028c1302-1b01-4069-9f04-a427103fe342"><![CDATA[8. peatükk]]></kuvatavNr>
+   <peatykkPealkiri id="1cc068b8-a138-4b79-ae2f-acd08eec49dd">LÕPPSÄTTED</peatykkPealkiri>
+  <paragrahv id="para39">
+   <paragrahvNr id="d13b65a4-f23d-4248-bca4-ce44508d2f46">39</paragrahvNr>
+   <kuvatavNr id="cbcd29b7-3961-436b-937e-0426d3cb4e8d"><![CDATA[§ 39. ]]></kuvatavNr>
+      <sisuTekst id="37a2f370-e88a-4c8c-b7e2-6a57df8c290d">
+    <tavatekst id="65419b48-39e8-4eeb-b349-7a8e39a3e183"> Tunnistada kehtetuks Viljandi Linnavolikogu 25.02.2016 määrus nr 81 „Viljandi linna omandis olevate eluruumide valdamise, kasutamise ja käsutamise ning sotsiaaleluruumide kasutusse andmise kord“.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para40">
+   <paragrahvNr id="65ebe375-b5c9-4ad9-86f3-46986a4ed241">40</paragrahvNr>
+   <kuvatavNr id="5107bf56-462f-4650-9915-ed427a97f39e"><![CDATA[§ 40. ]]></kuvatavNr>
+      <sisuTekst id="0bdccd5e-367e-4ea6-bc61-cf77acd91c0e">
+    <tavatekst id="84adbc40-cb45-44f5-80b3-74d37f6e294f"> Määrus jõustub kolmandal päeval pärast avaldamist Riigi Teatajas.</tavatekst>
+   </sisuTekst>
+  </paragrahv></peatykk></sisu>
+<allkiri id="9fb0f231-fe0d-4503-801a-f4173ae30a39"><allkiriKoht id="01c9fdac-dd5a-4f1f-9852-8ba6368bb055"/><allkirjastaja id="1893db23-c820-4e53-a2b5-7787fc15f26c"><ametinimetus id="934313cf-0b2e-4021-a511-bd460e07be80">linnavolikogu esimees</ametinimetus><eesnimi id="752540b4-782f-4927-8a31-8abdc84b1711">Helmen</eesnimi><perekonnanimi id="dbcc9083-f80b-4f24-bc17-a77611e5fed3">Kütt</perekonnanimi></allkirjastaja></allkiri></oigusakt>

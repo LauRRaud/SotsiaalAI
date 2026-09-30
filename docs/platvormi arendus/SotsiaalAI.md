@@ -92,6 +92,35 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**30.09 (Opus), jätk: korpus v43 — omavalitsuste teised kehtivad sotsiaalaktid** ([ADR-058](../rag-v2/adr-058-municipal-social-acts.md)). Omanik 30.09: „jätka arendust“.
+- **Tootmises 30.09 kella 14:55-st:** korpus v43 (indeks `3f91e02d`, 6446 dokumenti, 40 226 lõiku), plaan `m4-corpus-chat-20260930e.json`. Seaded on samad.
+- **Leid:** indeksis oli iga omavalitsuse kohta üks akt. Paljudel on eraldi kehtivad:
+  - toetuste kord;
+  - määrad;
+  - toimetulekutoetuse eluasemekulude piirmäärad;
+  - üldhoolduse hoolduskulude piirmäär;
+  - teenuste hinnad ja korrad;
+  - hooldajatoetuse kord.
+- **`scripts/rag-v2-municipal-acts.mjs`** leiab need RT loendist pealkirja ja kehtivuse järgi (`lib/rag-v2/municipal-acts.js`).
+  - Välja jäävad kehtetuks tunnistamise märked, jõustumata redaktsioonid, möödunud aasta arvuga pealkirjad ja uuemaga asendatud aktid.
+  - Igakuine kehtivuskontrolli töö käivitab ka selle skaneerimise.
+- **v43:** 366 akti 78 omavalitsuselt, embedding 0,133 USD.
+  - Päris vestlus: Tartu 30 m² üürikorteri eest arvestatakse toimetulekutoetuse juures üüri kuni 15 €/m², st kuni 450 eurot kuus.
+- **Kehtivuskontroll v43 manifestil** (495 akti, 449 gruppi, 7 min):
+  - 445 gruppi on muutumata ja kõigil 78 omavalitsusel on kehtiv akt;
+  - leiud: Riigilõivuseaduse 31.10 auk, Maardu isikliku abistaja teenuse uus redaktsioon 04.10-st, Maardu hooldajatoetuse määra ja Märjamaa eluaseme kohandamise korra kehtetuks tunnistamine 03.–04.10-st.
+- **Koristus** (omanik 30.09: „minu luba antud kustutamiseks vanad asjad“):
+  - serveris kustutati vanad indeksi generatsioonid v30–v41 (alles on v42 ja aktiivne v43) ning arendusrentniku kolm vana generatsiooni;
+  - kustutati ka hoidla pea varukoopiad v26–v41, vanad vektoriplaanid, koodikoopia `lib.pr186` ja testiplaanide arhiiv. Ketas läks 88% pealt 83% peale;
+  - sülearvutis kustutati vanad hoidlad v13–v24 ning partii- ja indeksikaustad;
+  - aktiivne plaan on `ready`.
+- **Avatud:**
+  - Maardu ja Märjamaa uued aktid (v44) enne 03.10;
+  - 46 akti taotlusvormid (lisad) on tuletamata;
+  - 01.10 kontroll (uus SHS ja abivahendite piirhinnad);
+  - kontaktid pärast 04.10;
+  - kiirus päris vestluses.
+
 **30.09 (Opus), jätk: korpus v42 — 31 omavalitsuse kehtivad korrad ja omavalitsuste katvuse kontroll.** Omanik 30.09: „jätka arendust“.
 - **Tootmises 30.09 kella 14:07-st:** korpus v42 (indeks `19bc330a`, 6080 dokumenti, 36 540 lõiku), plaan `m4-corpus-chat-20260930d.json`. Seaded on samad.
 - **Leid:** 31 omavalitsusel 78-st polnud indeksis ühtki kehtivat RT korda. Nende hulgas olid Tartu linn ja vald, Pärnu, Rapla, Valga, Saku, Võru, Luunja ja Tori.

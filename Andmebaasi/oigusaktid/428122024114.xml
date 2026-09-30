@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="969b68ab-05da-45b6-a3b6-2202dce3f0ad" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Tartu Linnavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2024-04-16</aktikuupaev>
+  <avaldamismarge>
+	<RTosa>RT IV</RTosa>
+	<avaldamineKuupaev>2024-04-19</avaldamineKuupaev>
+	
+	
+	<RTartikkel>5</RTartikkel>
+	<aktViide>419042024005</aktViide>
+  </avaldamismarge>
+  <joustumine>2024-05-01</joustumine>
+  <aktiNr>11</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2024-12-28</avaldamineKuupaev><RTaasta>2024</RTaasta><RTartikkel>114</RTartikkel><aktViide>428122024114</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2025-01-01</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2024-12-23</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>428122024114</globaalID>
+ <metaandmedVersioon>10</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2024-12-23</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ <terviktekstiGrupiID>1058736</terviktekstiGrupiID>
+ <eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2024-04-16</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Kilter Kareli</metaandmedVersioonPohjustaja></versiooniMuutus><versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>6</metaandmedVersioon><metaandmedVersioonKuupaev>2024-04-18</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="27005bb8-697f-43c3-a4a3-00c17f36ea3e">
+  <nimi id="278c9273-8dcf-4ec0-8bdd-83d5bc21badf">
+   <pealkiri id="039e3d52-254e-41c4-ba0a-94d7265f3808">Üldhooldusteenuse eest tasumise piirmäär</pealkiri>
+  </nimi>
+ </aktinimi>
+ <muutmismarge id="13a5c2ce-24fb-407d-a44a-20bd614dfe08"><aktikuupaev id="967debdc-f5d0-4935-a39e-fd0177a94151">2024-12-17</aktikuupaev><avaldamismarge id="803cbf90-f7d0-49de-a017-bd679a926c68"><RTosa id="0ac3d205-0610-41c9-bf3e-e3991b6b8e27">RT IV</RTosa><avaldamineKuupaev id="b290e8e2-7d18-4315-b7dc-4e228f3d9713">2024-12-28</avaldamineKuupaev><RTartikkel id="6930e20e-a74b-482f-ae48-7f116f6861e7">14</RTartikkel><aktViide id="3681a5dd-8ef6-407b-9850-92ebeeee15aa">428122024014</aktViide></avaldamismarge><joustumine id="0039fc73-2ea8-48e0-8fe6-b529e8a3c368">2025-01-01</joustumine></muutmismarge><sisu id="9d075df2-64aa-472a-85b4-23aa5e1214c4"><preambul id="b8b0b128-ae9d-4fe8-a9ab-0c0cbb1d6a8a">
+   <tavatekst id="c8cc7781-057e-4de8-9eec-40eb519956ab">Määrus kehtestatakse Tartu Linnavolikogu 5. detsembri 2024. a määruse nr 89 "Tartu linna sotsiaalhoolekandelise abi andmise kord" § 25 lõike 3 alusel ning arvestades sotsiaalhoolekande seaduse § 22<sup>1 </sup>lõiget 3.</tavatekst>
+  <muutmismarge id="a7b4c3e0-3a6f-4600-9dd7-f9d7786809c0"><avaldamismarge id="30e6d646-ac47-40f3-877b-2f9125499f87"><RTosa id="ca1436d7-de1e-41a1-98ab-095a7ea62772">RT IV</RTosa><avaldamineKuupaev id="e66c2b98-5ce9-4609-ba44-578825dcaa65">2024-12-28</avaldamineKuupaev><RTartikkel id="d691a88d-22f8-4164-8a22-4b19995f628f">14</RTartikkel><aktViide id="c7fa49d8-24af-4393-8689-feb0c6cdc2d2">428122024014</aktViide></avaldamismarge><joustumine id="1ebef24f-58e6-40e4-9d74-8b9cc54c4935">2025-01-01</joustumine></muutmismarge></preambul><paragrahv id="para1">
+   <paragrahvNr id="5949188f-f915-48e2-8712-329e00eb6e50">1</paragrahvNr>
+   <kuvatavNr id="a139be61-ffe1-446f-9347-fd17cb0f5ab3"><![CDATA[§ 1. ]]></kuvatavNr>
+      <sisuTekst id="8404534a-4a83-465b-8374-0a3c7d7de8b8">
+    <tavatekst id="d5ccc75b-5061-4319-9091-90c23c96c5f1">Tartu linn kannab sotsiaalhoolekande seaduse paragrahvi 22<sup>1</sup> lõikes 2 nimetatud (hooldusteenust vahetult osutavate hooldustöötajate ja abihooldustöötajate tööjõukulud, tööriietuse ja isikukaitsevahendite kulud, tervisekontrolli ja vaktsineerimise kulud ning koolituse ja supervisiooni kulud) üldhooldusteenuse kulud 800 euro ulatuses kalendrikuus.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para2">
+   <paragrahvNr id="9175dcc9-4614-4039-940e-5091590f5a0a">2</paragrahvNr>
+   <kuvatavNr id="232db683-0590-418c-9eca-4111051a3d9d"><![CDATA[§ 2. ]]></kuvatavNr>
+      <sisuTekst id="07f9df6f-f036-45be-aef7-28828d45ad9f">
+    <tavatekst id="6bed4a6a-4033-4fca-8835-08dc983cf942">Tartu Linnavalitsuse 30. mai 2023. a määrus nr 17 "Üldhooldusteenuse eest tasumise piirmäär" tunnistatakse kehtetuks.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para3">
+   <paragrahvNr id="660b9b4d-5d12-4717-8926-77227a392c1d">3</paragrahvNr>
+   <kuvatavNr id="5a86684c-4048-4185-b6e1-71749bbfb470"><![CDATA[§ 3. ]]></kuvatavNr>
+      <sisuTekst id="7b73d9e0-c51b-4a7b-9599-bcf73f9dac63">
+    <tavatekst id="617f1caf-e827-471b-968c-376001edc805">Määrus jõustub 1. mail 2024. a.</tavatekst>
+   </sisuTekst>
+  </paragrahv></sisu>
+</oigusakt>

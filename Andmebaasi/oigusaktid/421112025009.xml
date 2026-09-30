@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="6ececb0d-572b-4366-9e95-28fc516a6f42" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Haapsalu Linnavalitsus</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2016-08-24</aktikuupaev>
+			<avaldamismarge>
+				<RTosa>RT IV</RTosa>
+				<avaldamineKuupaev>2016-08-29</avaldamineKuupaev>
+				<RTartikkel>7</RTartikkel>
+				<aktViide>429082016007</aktViide>
+			</avaldamismarge>
+			<joustumine>2016-09-01</joustumine>
+			<aktiNr>5</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-11-21</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>9</RTartikkel><aktViide>421112025009</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2025-11-24</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2025-11-14</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>421112025009</globaalID>
+		<metaandmedVersioon>11</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2025-11-20</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1035706</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2016-08-24</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Maret Zeemann</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>6</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2016-08-26</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Marike Võime</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="b22dd78f-1811-475a-834a-de214343fc9d">
+		<nimi id="d814fc67-662e-45da-a58a-a7686481730a">
+			<pealkiri id="618f1fc1-893a-40f7-b88a-24bda5258b8e">Varjupaigateenuse osutamise kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="483bc926-928a-416f-9fde-41931bbcfaf3">
+		<aktikuupaev id="55e6a7d1-8604-492d-81d3-82c34ec285ca">2025-11-12</aktikuupaev>
+		<avaldamismarge id="86f17f7b-359a-4b15-897a-a3825f057882">
+			<RTosa id="0f2a9cc8-08c3-4b8f-9444-ff36e567227c">RT IV</RTosa>
+			<avaldamineKuupaev id="629e8b0c-6da7-4b3c-89ff-4c2fcb883ded">2025-11-21</avaldamineKuupaev>
+			<RTartikkel id="39dc2bc7-da3e-4802-b632-d5ca93608a0f">1</RTartikkel>
+			<aktViide id="2d29cd23-4c7e-494c-9183-905982884f02">421112025001</aktViide>
+		</avaldamismarge>
+		<joustumine id="9498b5ad-6203-481c-a5da-d1ba043ab64c">2025-11-24</joustumine>
+	</muutmismarge>
+	<sisu id="26248958-ffcc-4384-9fed-0d7984dad7f2">
+		<preambul id="b5201048-fd5f-42b8-8e6a-23add578cf39">
+			<tavatekst id="d13d1644-1e0f-46d9-bc60-e32c70b44412">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5 ja sotsiaalhoolekande seaduse § 30 ja Haapsalu Linnavolikogu 28.03.2021 määruse nr 84. a „Sotsiaalteenuste osutamise üldine kord“ § 1 lõige 2 alusel.</tavatekst>
+			<muutmismarge id="6856c2a6-25af-4829-81f1-102ec9583569">
+				<aktikuupaev id="5c08e207-8a18-4e9a-8caf-16cb85c04944">2025-11-12</aktikuupaev>
+				<avaldamismarge id="3c8703bd-ace1-4b6c-9cf9-3a369eb0b49f">
+					<RTosa id="5fe8ff35-a0c3-4c62-a98b-be3ff8c242d2">RT IV</RTosa>
+					<avaldamineKuupaev id="e6bba3a1-88a2-4c26-af00-705c65b82bc9">2025-11-21</avaldamineKuupaev>
+					<RTartikkel id="d08049b3-2750-49da-8b9c-58721bac2f72">1</RTartikkel>
+					<aktViide id="febd000c-719a-43f5-8138-f6302be268e2">421112025001</aktViide>
+				</avaldamismarge>
+				<joustumine id="e043d20b-3a79-41bc-92bc-1463677e3d0b">2025-11-24</joustumine>
+			</muutmismarge>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="1c22189b-b842-4850-9174-d0cca0e0b8cb">1</paragrahvNr>
+			<kuvatavNr id="2858a78c-1746-4681-a816-2abd128311c2"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="45505ce1-019d-4d4c-9e55-b7d158aa2f0d">Üldsätted</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="96d646d3-5996-4a4b-9b1b-25c446249373">1</loigeNr>
+				<kuvatavNr id="3e44684a-d40f-46d2-9915-d59145ba34b2"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="707a53bb-927f-4962-b61b-b6cf5bb59f7b">
+					<tavatekst id="43038f81-a1e4-4978-a357-98d228976c5f">Varjupaigateenuse eesmärk on ajutise ööbimiskoha võimaluse kindlustamine täisealisele isikule, kes ei ole võimeline endale ööbimiskohta leidma.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg2">
+				<loigeNr id="641bdfb4-c5ca-404c-acaa-75a4a39a3780">2</loigeNr>
+				<kuvatavNr id="e476b880-983e-4232-8540-cf3de28dedb1"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="163ee3b2-b412-405a-816a-f230731858f1">
+					<tavatekst id="743b3dfd-699f-4a67-9cbc-5d5c33eda7e2"> Varjupaigateenuse kasutamise tulemusena säilib või suureneb teenust saava isiku võimalikult iseseisev toimetulek ning teenuse kasutajale tagatakse võimalus aktiivselt ühiskonnaelus osaleda.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg3">
+				<loigeNr id="6a862998-a363-4ba7-91a7-b115c0e50494">3</loigeNr>
+				<kuvatavNr id="3a7c2a83-f5a0-46b9-a6b2-6dce7497b12b"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="8a56d575-1acb-484c-b721-6d9a132a8de8">
+					<tavatekst id="7ef61ed1-d35a-45f9-84a6-25ac5ae720c1"> Varjupaigateenus on esmane eluasemeteenus, mis on suunatud peavarjuprobleemi lahendamisele.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg4">
+				<loigeNr id="f3373179-8bc7-486f-8ebc-5cb7a21cf895">4</loigeNr>
+				<kuvatavNr id="87779af9-d4db-4520-85c0-c2b5ea55d7ab"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="25a31298-a602-477e-8007-91308e1cbf4c">
+					<tavatekst id="f1957b0f-6262-484f-9c1c-ec1695d9ab20"> Isikule võib samaaegselt osutada ka muid toimetulekut arendavaid, säilitavaid või toetavaid teenuseid.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg5">
+				<loigeNr id="3c4d931c-1eb1-4236-b23e-b95646ccae9b">5</loigeNr>
+				<kuvatavNr id="2b755066-2168-4075-ac7b-9eba182ae3d5"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="e9b2c3bc-b929-4c14-9709-43649623b2dd">
+					<tavatekst id="f330b83a-db4d-469c-93a6-b0806f9e10ca"> Varjupaigateenuse näol on tegemist ajutise abimeetmega. Tulenevalt inimese vanusest, terviseseisundist jms võib ta liikuda sotsiaaleluruumi, vabaturueluruumi või üld- või erihooldusteenustele.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="a9de2cb0-2367-4e42-ad70-2700eb976788">2</paragrahvNr>
+			<kuvatavNr id="774bda6b-3f22-4c91-9da0-e0e98a8b3434"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="b041650f-5b2a-44a1-8866-04f4650e16f6">Varjupaigateenuse sihtgrupp</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="31424952-a347-4f6c-a07d-36ff685cc6a0">1</loigeNr>
+				<kuvatavNr id="96a66e53-c6cc-46d8-b706-156457412044"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="c0946e1e-d364-4f44-99b9-60daf3e7d960">
+					<tavatekst id="030723df-2e79-4057-8171-0b6e1da05b7d"> Teenuse sihtgrupiks on täisealine inimene, kes ise ei ole võimeline endale ööbimiskohta tagama.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg2">
+				<loigeNr id="94b0d503-a516-4c10-b7a0-47a0dd946f7f">2</loigeNr>
+				<kuvatavNr id="eb7caab5-e1be-4a28-bd9c-987900b39625"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="7d0d3204-8337-4e44-addb-e5e0620abbb6">
+					<tavatekst id="3f704e09-7a4b-40d9-b5bd-4d9d1e3347f3"> Teenust osutatakse isikutele, kes on kantud rahvastikuregistrisse Haapsalu linna täpsusega või isikutele, kes viibivad abivajamise hetkel väljapool oma rahvastikuregistrijärgset kohaliku omavalitsuse üksust, ning vajavad varjupaigateenust kui vältimatu abi osutamist.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg3">
+				<loigeNr id="995509ed-f411-44d4-9268-534a1b54f2c2">3</loigeNr>
+				<kuvatavNr id="2d819090-44b3-464b-9093-e26dbd6ebe4d"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="7aa6c613-962d-4864-a736-04aff93a049c">
+					<tavatekst id="75290e1f-1082-4b94-9411-cdd0515b36a0"> Varjupaigateenust osutatakse nii alalise elukoha kasutamise võimaluseta isikutele kui ka vältimatu abi raames ööbimiskohta vajavatele isikutele.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg4">
+				<loigeNr id="0ac10dce-3ee7-4002-aa96-2f59994e8838">4</loigeNr>
+				<kuvatavNr id="c07c4fa5-cde5-40fc-8427-39e2fdb2c155"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="95ba6c52-3fe0-44fa-9a81-4b4b57e61fdc">
+					<tavatekst id="15c6a6e0-11bd-4982-a96f-904e92512462"> Isikule, kes on sattunud sotsiaalselt abitusse olukorda elatusvahendite kaotuse või puudumise tõttu, osutatakse vältimatut sotsiaalabi, mis tagab vähemalt toidu, riietuse ja ajutise majutuse. Vältimatut sotsiaalabi osutatakse isikule seni, kuni ta ei ole enam elatusvahendite kaotuse või puudumise tõttu sotsiaalselt abitus olukorras.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="6ea2c9bb-669f-4502-9346-f2acda35e6ef">3</paragrahvNr>
+			<kuvatavNr id="5f2326d5-6231-4b59-8723-9d417ca8df77"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="6ea6f6c4-465e-4c26-bdf3-e26d2dd8ce91">Varjupaigateenuse kirjeldus</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="4592b0fb-07d0-4195-909f-c2c3cddd8df0">1</loigeNr>
+				<kuvatavNr id="1e17d78d-e972-497b-aa98-6abd7c4f0022"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="36c04673-2fe5-4bc6-9b1a-4b8e3816683c">
+					<tavatekst id="da2a48bd-bb30-436a-87b9-72b57d1cc504">Varjupaigateenuse osutamisel tagatakse abivajajale minimaalselt ööbimiskoht, pesemisvõimalus ja turvaline keskkond.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg2">
+				<loigeNr id="a78c5c92-d32c-40c1-97dc-219d1c32f0ce">2</loigeNr>
+				<kuvatavNr id="065393da-42e5-431c-995c-7b59d4e37a26"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="43fb6b27-4e7a-449c-a05b-22938444072b">
+					<tavatekst id="0e8d715e-c47b-4968-a0ad-9cdb714dccfa"> Kohustus tagada voodikoht tähendab, et isikule tuleb tagada voodikoha kasutamise võimalus.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg3">
+				<loigeNr id="f6cce029-7aad-446c-a17a-cf2efea92dfc">3</loigeNr>
+				<kuvatavNr id="8a60ffa4-4a31-4294-9abe-9cdb969f92ec"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="1fdbaf00-419c-4cae-ae88-b1c8ed193caa">
+					<tavatekst id="ef838f84-16ee-4079-80fe-6bc40f5ec3a1"> Turvaline keskkond tähendab kohustust tagada teenuse vahetus osutamiskohas personali olemasolu, kes on pädev tekkinud olukorda hindama ning vajaduse korral abi (kiirabi, politsei) kutsuma.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg4">
+				<loigeNr id="fe4946dd-b121-4b3b-8a05-3232bae30cc7">4</loigeNr>
+				<kuvatavNr id="9e82f517-e19c-4986-b1ac-34b784943cc6"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="6c722f86-f5ae-491a-9b43-3c94d32863df">
+					<tavatekst id="07ffa404-983a-4c2e-be84-69cf64851fb3"> Varjupaigateenuse raames pakutakse toitlustamist või toiduvalmistamise võimalust ning pesupesemis võimalust.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg5">
+				<loigeNr id="0126c495-7f10-491d-a58a-69463e099469">5</loigeNr>
+				<kuvatavNr id="47031ad8-90fb-42b4-bbe3-12e6287795ac"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="8bdd28e4-d710-49a0-b323-230e4ed5afb4">
+					<tavatekst id="e5c78c6b-5e82-4163-85ff-0a86a65184d7"> Varjupaigateenust osutatakse öisel ajal või ööpäevaringselt.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg6">
+				<loigeNr id="11c00b67-460c-4981-a647-7fce31c49b1c">6</loigeNr>
+				<kuvatavNr id="6d1af9b7-781d-4bb4-a2e5-f090c2c2c83a"><![CDATA[(6)]]></kuvatavNr>
+				<sisuTekst id="a1deebf6-6f73-455b-a213-1f4da5798f84">
+					<tavatekst id="3a99acb8-3c87-49f4-85fc-ca20af925244"> Öisel ajal pakutava varjupaigateenuse raames pakutakse abivajajatele ööbimisvõimalust, võimalust hügieeni eest hoolitsemiseks ja võimalikult turvalist keskkonda.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg7">
+				<loigeNr id="00ecbbf7-26eb-45ae-80e2-48ba13703274">7</loigeNr>
+				<kuvatavNr id="d97177bc-f398-45ad-895f-2f5e21e7503d"><![CDATA[(7)]]></kuvatavNr>
+				<sisuTekst id="065665c2-b6ef-4824-ade1-6019b1abb195">
+					<tavatekst id="4e9eacf2-2ae1-403b-892b-3ce2a0228ea5"> Ööpäevaringsel teenuse osutamisel peab olema tagatud toitlustamine või toidu valmistamise võimalus, pesu pesemise võimalus ja juurdepääs tervishoiu-, ning hooldusteenustele.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg8">
+				<loigeNr id="9666f540-e28f-4f91-8f3e-cb01032962d5">8</loigeNr>
+				<kuvatavNr id="2954be00-c8cb-4818-aa47-e65903a8abfa"><![CDATA[(8)]]></kuvatavNr>
+				<sisuTekst id="855320dc-05b3-4f9c-b131-656b42b93cc3">
+					<tavatekst id="f4bf3598-bf66-4054-932a-76c6b67d27f3"> Varjupaigateenuse osutaja kehtestab ohutu töötamise korra sisekorraeeskirja näol ning teavitab teenuse osutamise alustamisel isikut sisekorraeeskirjast ning isiku õigustest ja piirangutest teenuse saamise ajal sellisel viisil, et isik on võimeline neid mõistma.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg9">
+				<loigeNr id="e4b84bba-5904-4e84-9abb-3cc3611c7a32">9</loigeNr>
+				<kuvatavNr id="18777ef3-fd90-4842-b8fc-4ea151576aa8"><![CDATA[(9)]]></kuvatavNr>
+				<sisuTekst id="3effeb1b-3c7a-454d-ad02-1ad367478230">
+					<tavatekst id="7e7474d3-8ed8-4e12-8a52-b4fc667831de"> Teenuse osutaja kehtestab ohutu töötamise korras, kus peab muuhulgas olema välja toodud varjupaigas keelatud esemete ja ainete nimekiri ning nende hoiustamise kord.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg10">
+				<loigeNr id="d0c90572-92a5-4c0b-8c7e-115807243670">10</loigeNr>
+				<kuvatavNr id="721d0cb9-2007-4ddd-a331-5f059e298cfd"><![CDATA[(10)]]></kuvatavNr>
+				<sisuTekst id="c74d43b6-b17c-494d-acd3-27f7909905a6">
+					<tavatekst id="28ebecfc-1a3e-44b2-8093-6262f827da71"> Teenuse osutamise kestus sõltub teenuse vajaduse hindamise tulemustest.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg11">
+				<loigeNr id="c9781ad4-0520-4c6e-a406-fd6d1f404cb4">11</loigeNr>
+				<kuvatavNr id="ecdbbb86-9cd4-4f4b-bfab-cef1cbc81a15"><![CDATA[(11)]]></kuvatavNr>
+				<sisuTekst id="e8eb16ee-72f5-4f90-b821-1a3fa9f04b63">
+					<tavatekst id="73e93487-920c-4f65-950b-bd77b7bcce60">Teenus peab olema kättesaadav kõikidele isikutele, kelle puhul on tuvastatud teenuse vajadus.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="2d6d3540-371d-4943-80ca-c2a0afb5631a">4</paragrahvNr>
+			<kuvatavNr id="4badcab1-cd60-4c4b-b4f7-10c0bf24ca97"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="0de995d2-9f4b-4539-8c7c-5455f9644b34">Varjupaigateenuse taotlemine ja osutamine</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="6d1f0cba-d70f-49f4-a004-d6a5db6c4bce">1</loigeNr>
+				<kuvatavNr id="e3b0455e-6694-4c47-878f-b296d8129562"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="72138da8-850b-490e-aa16-5c706a8ea695">
+					<tavatekst id="30ac6ed8-713e-475c-b1bf-801cd934eb8e"> Teenuse saamiseks pöördub isik või isiku seaduslik esindaja otse varjupaigateenuse osutaja poole.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg2">
+				<loigeNr id="127846cc-bd44-4ce5-839d-9e9ea0a5ea87">2</loigeNr>
+				<kuvatavNr id="37aa8e3f-e43a-4bf3-aa12-7dc8c4f311da"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="335ab275-d10d-47cf-a56d-bc931b18bc67">
+					<tavatekst id="283ba8be-1bdd-44c7-b331-5f6b06c05780"> Varjupaigateenuse osutaja hindab, kas inimene on teenusele õigustatud või mitte, ja sõlmib isikuga lepingu.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg3">
+				<loigeNr id="f108b1ba-b471-4504-95ae-a6c2ef12bcc6">3</loigeNr>
+				<kuvatavNr id="2b85ad47-1b1f-4ffd-a42c-3bcf652201d4"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="539ba968-566e-468a-a631-b8ab095bf6c6">
+					<tavatekst id="6aaad5da-503f-4ef9-ba19-87f7c063e036"> Teenuse osutamise alustamisel teavitatakse isikut suuliselt või kirjalikult tema õigustest ja piirangutest teenuse saamise ajal, sh kaebuste esitamise võimalustest ja korrast, kui isik on võimeline öeldut või loetut mõistma. Kui isik ei ole võimeline öeldut või loetut mõistma, teavitatakse isiku õigustest ja piirangutest, sh kaebuste esitamise võimalustest ja korrast, isiku seaduslikku esindajat.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="3da831da-a424-42ff-9271-3650bbb118e2">5</paragrahvNr>
+			<kuvatavNr id="763b719a-c046-4686-a102-651472aaba00"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="7bfe4545-9bb8-4fb9-912d-2b8ab9cfca3c">Varjupaigateenuse osutamise koht</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="33a34b1b-2703-4045-91d5-0a434b384485">1</loigeNr>
+				<kuvatavNr id="af4583ee-c1cf-4eb3-ad88-f118f8e7b7f7"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="d29b36a5-86e7-41e4-88ed-0063c35cc60c">
+					<tavatekst id="58732fc8-6016-45c8-93e3-3531b0882520"> Teenuse osutamist korraldatakse varjupaigateenust pakkuvates asutustes.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg2">
+				<loigeNr id="490dcda4-d9b0-4d4c-96af-4fb2ddf6f36f">2</loigeNr>
+				<kuvatavNr id="44b498ac-0ea2-43c7-8467-abc27827d087"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="60b27940-abb7-4917-900e-4d30cf5269cf">
+					<tavatekst id="c5d0aeec-c49e-4037-9e1b-8e1150b79c39">Varjupaigateenuse osutamise võib volitada halduslepinguga eraõiguslikule juriidilisele või füüsilisele isikule või teise kohaliku omavalitsuse üksuse ametiasutusele.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para6">
+			<paragrahvNr id="fe5c9236-0fa4-4b31-aec8-ce3a4b00e74c">6</paragrahvNr>
+			<kuvatavNr id="205201fb-4edc-4fa8-bc10-2d92a93adfc4"><![CDATA[§ 6. ]]></kuvatavNr>
+			<paragrahvPealkiri id="c0f9be66-6728-4045-8d2b-42f2341e5f7f">Teenuse finantseerimise/ maksumuse põhimõtted</paragrahvPealkiri>
+			<loige id="para6lg1">
+				<loigeNr id="4c22910e-2e13-491d-9fff-53b54ff055d0">1</loigeNr>
+				<kuvatavNr id="30c2135d-9e71-46fe-aa13-7b0c01f642c5"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="0ac963d2-33c4-4639-9d60-389dd4b5f43b">
+					<tavatekst id="85be9635-320b-4915-9647-5599b25321a0">Teenust finantseerib kohalik omavalitsus ja teenust saav isik.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg2">
+				<loigeNr id="329b1859-6ad3-498d-bd2c-c622923ca244">2</loigeNr>
+				<kuvatavNr id="6e1249da-20c6-4645-9a6e-d6323277d57e"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="7c44978b-bbe9-4071-86b9-435480909f81">
+					<tavatekst id="472ed6b9-fe34-4961-8e68-bb228badb818"> Teenuse osutamise kulud selgitatakse välja teenuse osutamiseks korraldatud avaliku pakkumise käigus.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg3">
+				<loigeNr id="c164eabf-8f0a-4029-922b-a79853a871fa">3</loigeNr>
+				<kuvatavNr id="9b4da78a-d250-4968-ab2a-23c789749ae1"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="870c55c1-08b7-4439-a12f-4f0e72e74392">
+					<tavatekst id="c3156538-f595-4c50-9fcc-a59b9c7b150d"> Teenuse eest võetava isiku omaosaluse suurus oleneb teenuse mahust, maksumusest ja teenust saava isiku majanduslikust olukorrast. Teenuse eest võetava omaosaluse suurus ei tohi olla takistuseks teenuse saamisel.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg4">
+				<loigeNr id="00dde14e-5b59-4555-aba7-9f2a80a331fe">4</loigeNr>
+				<kuvatavNr id="e5108ec7-bd22-4475-b82a-71a2eef5222a"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="313d88e8-bb15-4285-8ee4-c3798de0c560">
+					<tavatekst id="09cfbdab-7d01-45d5-b2a0-19487d225deb"> Haapsalu linna poolt osutatava varjupaigateenuse osutamise eest võetava isiku omaosaluse suuruse kehtestab linnavalitsus.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg5">
+				<loigeNr id="b8f18929-ced5-413a-839e-4dae9910d09d">5</loigeNr>
+				<kuvatavNr id="b5631fdf-136e-4471-97c5-fee1eed8ae0b"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="4a83ac48-8146-440a-a37a-991eb3241205">
+					<tavatekst id="a492a15c-6359-45b0-9951-c8ed26a4bdc0"> Erandkorras ja juhtumiga seotud asjaoludest tulenevalt võib isikule osutada talle hädavajalikku varjupaiga teenust ilma haldusakti või halduslepinguta.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para7">
+			<paragrahvNr id="775349ac-5d50-4c21-a4bd-5576ea108f6d">7</paragrahvNr>
+			<kuvatavNr id="29429ae9-6ee8-400f-91ba-785d1b1e73ca"><![CDATA[§ 7. ]]></kuvatavNr>
+			<paragrahvPealkiri id="540393b3-fde1-46f5-b215-8b4b80072c05">Teenuse osutaja</paragrahvPealkiri>
+			<loige id="para7lg1">
+				<loigeNr id="4faec4b9-7599-4472-ab6c-990f4e184fa3">1</loigeNr>
+				<kuvatavNr id="b9fbe3e2-779c-4308-a335-9d03add067c5"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="7a24e43a-9d52-4a2c-86e8-a5b3ff325783">
+					<tavatekst id="aba9612c-2d55-4f51-9dd5-c825526bcfee"> Teenuse osutaja võib olla füüsilisest isikust ettevõtja, juriidiline isik, kohalik omavalitsus ja riik täidesaatva riigivõimu asutuste kaudu.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg2">
+				<loigeNr id="0cf99e05-5caa-4a3f-a45f-34e45c86afc4">2</loigeNr>
+				<kuvatavNr id="f3726f4a-3947-4e8f-8c43-273fb4007831"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="81844b83-8458-4484-a306-bc210041cb56">
+					<tavatekst id="711e79a8-c5cb-4ac1-956b-ecec9be2b458"> Personal peab olema pädev tekkinud olukordi hindama ning vajaduse korral abi (kiirabi, politsei) kutsuma. Personali hulka võib kuuluda sotsiaaltööalase kõrgharidusega sotsiaaltöötaja.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg3">
+				<loigeNr id="0f809d25-3ff1-4f38-82b6-4856ac03b124">3</loigeNr>
+				<kuvatavNr id="49feab74-c6a1-43d2-8498-4e9f7b1ce3f0"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="18ff45a4-926d-4ddf-baf3-94c014711501">
+					<tavatekst id="df9b7f2c-74c1-42ea-bc5a-c316ab23faff"> Teenuse osutamise ruumid vastavad soovituslikult sotsiaalministri määruses „Täiskasvanute hoolekandeasutuse tervisekaitsenõuded“ kehtestatud nõuetele.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para8">
+			<paragrahvNr id="e09aa5ed-145e-41f2-9f2e-ff65bdad3309">8</paragrahvNr>
+			<kuvatavNr id="73da5c27-b56a-4163-ad59-87fd3340c319"><![CDATA[§ 8. ]]></kuvatavNr>
+			<paragrahvPealkiri id="7cb15df5-678a-4cf1-80fc-40f0e7e669f2">Kliendi tagasiside ja järelevalve</paragrahvPealkiri>
+			<loige id="para8lg1">
+				<loigeNr id="96c16581-402b-4c14-9a8c-cb0b1a1627f9">1</loigeNr>
+				<kuvatavNr id="d1a92867-61b6-4ea2-8c06-28c1daefbbcf"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="632b326d-0566-4ea3-a143-3ffff77a7d5d">
+					<tavatekst id="5fda96c5-2c96-48ee-9a8e-74f34c373e5c"> Varjupaigateenuse nõuetele vastavust jälgib ja teenuseid saavate isikute kaebusi lahendab linnavalitsus kaasates vajaduse korral vastava teenuse ala asjatundjaid. Kolmandate isikute osutatavate teenuste teenusenõuete rikkumise korral esitab linnavalitsus pretensiooni teenuse osutajale ühe tööpäeva jooksul arvestades puuduse ilmsikstulekut.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para8lg2">
+				<loigeNr id="c772ee19-6128-4911-9e37-6dffafc4091c">2</loigeNr>
+				<kuvatavNr id="c8972bda-235b-469c-a016-06d2fc0a5c40"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="363a5203-5ce9-4b83-ab37-268babeb9218">
+					<tavatekst id="0848a06b-a5ff-4def-879d-01421a683852">Vaie linnavalitsuse haldusaktile või toimingule tuleb esitada 30 päeva jooksul, arvates päevast, millal isik vaidlustatavast haldusaktist või toimingust teada sai või oleks pidanud teada saama Lääne maavanemale linnavalitsuse kaudu.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para9">
+			<paragrahvNr id="cc50bc66-f190-4930-b8fe-0b36aad29567">9</paragrahvNr>
+			<kuvatavNr id="86583866-f681-46fe-bbfe-d39deee30e0a"><![CDATA[§ 9. ]]></kuvatavNr>
+			<paragrahvPealkiri id="561cdadc-ae31-4e6a-8641-3ad7eba6a3b1">Rakendamine</paragrahvPealkiri>
+			<loige id="para9lg1">
+				<loigeNr id="5d69ada6-f90d-4ba4-b22c-7bc6c864d06c"/>
+				<kuvatavNr id="1085455b-aeb5-4c13-93fd-63e48c694afc"/>
+				<sisuTekst id="c96f5869-1f75-4ad9-a70f-154afd2933a0">
+					<tavatekst id="09fc8aaf-5363-40fd-acd5-2f0be8e4f9d9">[Käesolevast tekstist välja jäetud]</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+</oigusakt>

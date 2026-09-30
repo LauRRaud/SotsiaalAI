@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="ea662479-51a4-4f1c-a35a-e9802b29648e" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Tori Vallavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2023-06-15</aktikuupaev>
+  
+  
+  <aktiNr>43</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2023-06-27</avaldamineKuupaev><RTaasta>2023</RTaasta><RTartikkel>4</RTartikkel><aktViide>427062023004</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2023-07-01+03:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2023-06-19</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>427062023004</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2023-06-26</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1056847</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2023-06-19</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Siiri Jõerand</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="89d62e2c-45f7-4d92-840f-ab59b5bbb40f">
+  <nimi id="ce45d564-2db5-4c61-b13c-57bdf502d143">
+   <pealkiri id="8bfe633b-1325-443b-baf6-b3f094204a1d">Väljaspool kodu osutatavale üldhooldusteenusele suunamise tingimused ja kord </pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="adbdfe8c-b283-4ca2-8ed9-d591bf0182ff"><preambul id="a5c08699-ddde-4d75-8505-3af52de52b13">
+   <tavatekst id="dc62d9d2-02eb-49bc-8110-3649f0c9f689">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lg 1 punkti 5 ja sotsiaalhoolekande seaduse § 20 ja § 22¹ alusel. </tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="ba84fc64-477c-41c2-b2f3-3819056fe9d1">1</paragrahvNr>
+   <kuvatavNr id="3383ee9a-fa45-4954-a775-b2cdfbfbb05e"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="a734fcb9-0618-46ce-a6c7-cb43a5d450b6">Määruse reguleerimisala</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="0aa8b061-13a0-49b2-a44e-269d2e8c3a02"/>
+   <kuvatavNr id="1a51e1b6-b92e-4f41-9199-f3ce4f01f6eb"/>
+   <sisuTekst id="2dd7fe69-49e7-40b4-9479-49b2a9d455f5">
+    <tavatekst id="f4076e25-a551-4aac-9a0f-39b43489b266">Määrus sätestab väljaspool kodu osutatavale üldhooldusteenusele (edaspidi teenus) suunamise ja teenuse osutamise tingimused ja korra.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="82ceb131-799f-4158-b3c7-b0a61166df59">2</paragrahvNr>
+   <kuvatavNr id="f9b3e68a-1c38-4d58-9a0d-f3305ed27590"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="a1493686-e7d4-403e-a9bf-fbbfe27168b2">Teenuse eesmärk</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="28a38e6e-9f72-4f32-85fb-726b390fe25b"/>
+   <kuvatavNr id="99635392-fdc7-4ec9-ab37-34739aa03d53"/>
+   <sisuTekst id="860a64e9-4fb8-45c6-9625-a7b1f11f813d">
+    <tavatekst id="660e3368-f737-4a38-93da-79c86bec8c9a">Teenuse eesmärk on turvalise keskkonna ja toimetuleku tagamine täisealisele isikule, kes terviseseisundist, tegevusvõimest või elukeskkonnast tulenevalt ei suuda iseseisvalt koduses keskkonnas ajutiselt või püsivalt hakkama saada.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="fc5027c4-50a6-446b-ad05-5253c3b31cb6">3</paragrahvNr>
+   <kuvatavNr id="b37b527f-2288-4b8f-89ce-0361ea49da02"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="499e501a-dd77-4b26-b9da-323f92cbfe78">Teenuse sihtgrupp</paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="818bece7-4aa8-4b19-a499-ea9569fb4f76"/>
+   <kuvatavNr id="f4470fbd-831e-44b1-8025-6248e7c2b348"/>
+   <sisuTekst id="72207ac6-32fe-4c2e-b002-05e193ecdb56">
+    <tavatekst id="70230b5d-3cc4-41c3-9ea7-798c0b4e5374">Teenust on õigustatud saama täisealine isik:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para3lg1p1">
+   <alampunktNr id="492db1c3-1fdf-4fae-a613-91efb773a948">1</alampunktNr>
+   <kuvatavNr id="9bcb1d68-a92c-419a-a7af-0decff383b9e"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="02783b70-165f-4d9f-9b7e-661e31aaa9e4">
+    <tavatekst id="f799267b-a725-465c-ac48-2b5924f59f4a"> kelle rahvastikuregistrijärgne elukoht on Tori vallas;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg1p2">
+   <alampunktNr id="0d5558b3-9740-4008-acc0-f44e3d722a2a">2</alampunktNr>
+   <kuvatavNr id="aa7b23f4-f247-4f38-b55b-3b199c856405"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="9fcd3c88-8571-4355-826e-c95832fcbe71">
+    <tavatekst id="d88aa9fb-baf1-4da8-a67b-635e7d9a7edd"> kes east ja/või terviseseisundist, tegevusvõimest või elukeskkonnast tulenevalt vajab ööpäevaringselt kõrvalabi igapäevaeluks vajalike tegevuste elluviimisel ja kelle iseseisev toimetulek kodustes tingimustes ei ole võimalik;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg1p3">
+   <alampunktNr id="739a1829-db3e-4a09-aae2-3c8c766b639c">3</alampunktNr>
+   <kuvatavNr id="0abc13eb-d3c2-42e7-8a70-4302240af39f"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="757c06d7-a9f1-47be-8bc1-2b5dda0825f6">
+    <tavatekst id="3c85a923-a049-4411-adfa-7714d97406fb"> kelle toimetulekut ei ole võimalik tagada teiste sotsiaalteenuste või -toetustega;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg1p4">
+   <alampunktNr id="0e0ca3ac-eb71-4654-84bd-a6b191e90167">4</alampunktNr>
+   <kuvatavNr id="21bc73dd-f142-40c8-b803-e4216817ae3c"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="b807edc7-8a48-4168-8e3d-6b187bdcc584">
+    <tavatekst id="fcf4ee68-426d-48f9-9adf-d6c1abd7142d"> teenust on õigustatud saama ka isik, kelle tegelik elukoht on Tori vallas, kuid rahvastikuregistrijärgne elukoht on teises omavalitsusüksuses, kooskõlastades teenuse osutamise ja rahastamistingimused eelnevalt vastava omavalitsusüksusega.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para4">
+   <paragrahvNr id="352555e9-8d46-4ce1-8c19-d57b86f2b4d8">4</paragrahvNr>
+   <kuvatavNr id="f801ccdc-a474-4589-afc4-be04c647ae5a"><![CDATA[§ 4. ]]></kuvatavNr>
+   <paragrahvPealkiri id="43223cbf-aa40-41d9-b87e-0851bad99e3f">Teenuse taotlemine </paragrahvPealkiri>
+  <loige id="para4lg1">
+   <loigeNr id="335ddf73-641d-42df-bb78-17b6ef535e18">1</loigeNr>
+   <kuvatavNr id="57632ece-2531-4a69-9057-4d1ecc121436"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="a7489a84-b5ac-47f8-a96b-71d2c032c890">
+    <tavatekst id="1a3f4516-03e5-47d2-83dd-e20f3aac867b"> Teenuse taotlemiseks esitatakse avaldus Tori Vallavalitsusele. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg2">
+   <loigeNr id="5a1144f0-3d51-4395-b8ad-5b61bde6c8b4">2</loigeNr>
+   <kuvatavNr id="dfe1372d-8e5f-4137-94dd-22dc66191fd5"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="d9b03bf9-5fe0-42b6-97f1-87b30337c28a">
+    <tavatekst id="dd85a790-2c16-4cf8-b672-a4be91df9a27">Avaldust menetlev sotsiaalametnik:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para4lg2p1">
+   <alampunktNr id="26862d31-a160-4c05-bb9e-4461e8842959">1</alampunktNr>
+   <kuvatavNr id="3fdb11d3-0b32-4816-bcca-33283dc1d446"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="3e8943e7-c885-442b-85e8-17d532351390">
+    <tavatekst id="5098424d-6afe-424e-ac83-88719ef7d70f"> kontrollib avalduses märgitud asjaolusid ja kogub avalduse menetlemiseks vajalikke täiendavaid dokumente ja tõendeid;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para4lg2p2">
+   <alampunktNr id="e2102019-4a10-43f3-9094-2d1c30fab336">2</alampunktNr>
+   <kuvatavNr id="b1278d91-1c71-4a83-847f-d9e0cd23c38d"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="57f42446-fbf1-4088-99fc-a3e92767547e">
+    <tavatekst id="64ef95b8-51c9-46ec-b99b-a1e634e39b1b"> viib teenust vajava isiku suhtes läbi hooldusvajaduse hindamise ja selgitab välja teenuse vajaduse;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para4lg2p3">
+   <alampunktNr id="7ad1e1e2-984a-4932-aae3-5b2a278b9777">3</alampunktNr>
+   <kuvatavNr id="dc051609-3ed0-4bbf-b5a3-de51d2def87e"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="9f8b02b4-36cf-43d3-8364-3ea94ee029d3">
+    <tavatekst id="17edc4a2-0e01-4781-a29c-fe00a9b31590"> selgitab vajadusel välja taotleja ja tema ülalpidamiskohuslaste maksevõime teenuse eest tasumiseks.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para5">
+   <paragrahvNr id="02368fe7-8174-4a84-904a-799d02c1293d">5</paragrahvNr>
+   <kuvatavNr id="1bef2070-0552-4556-9668-004667774247"><![CDATA[§ 5. ]]></kuvatavNr>
+   <paragrahvPealkiri id="a9eae6cd-1f06-49bd-9ed3-f37bb9b76e85">Teenuse osutamine ja teenuse eest tasumine</paragrahvPealkiri>
+  <loige id="para5lg1">
+   <loigeNr id="4230be06-3e4b-4ff4-98a5-78f7f6119a28">1</loigeNr>
+   <kuvatavNr id="153ab829-7672-4445-bb19-364568dc0f1f"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="4c29ecde-5d9d-4768-b9f4-0b48512574fe">
+    <tavatekst id="17451983-2c0a-4ac0-b88f-6162fd435345">Teenuse osutamise, teenuse osutamisest keeldumise või teenuse osutamise lõpetamise ja rahastamise valla eelarvelistest vahenditest sotsiaalhoolekande seaduses sätestatud korras otsustab Tori valla hoolekandekomisjon kümne tööpäeva jooksul nõuetekohase taotluse saamisest alates. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg2">
+   <loigeNr id="be4e25e9-fd1f-4d59-93c8-f83fce4b884c">2</loigeNr>
+   <kuvatavNr id="beea99d2-52a9-4ab9-8090-3130c786cf48"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="971073c8-4f88-470f-a4cd-eb50054c6d5a">
+    <tavatekst id="89c63d7e-a617-4288-be42-ba72288a6cfd"> Teenus on taotlejale tasuline.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg3">
+   <loigeNr id="0938711a-ea15-4a2d-ae9e-0415a9f399b1">3</loigeNr>
+   <kuvatavNr id="e5fd6ce3-5dd8-4e14-adc2-a60576f107f8"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="9c9d62f0-99ee-460f-adbf-67951b04b5d3">
+    <tavatekst id="44782182-7b34-41de-8f74-58f679ec042c"> Teenust ei rahastata valla eelarvest, kui taotleja hooldusvajaduse hindamisest selgub, et taotleja abivajadust on võimalik leevendada muude sotsiaalteenuste ja/või -toetustega.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg4">
+   <loigeNr id="e1e3c2cb-4df6-4d31-af70-f1770319e8a2">4</loigeNr>
+   <kuvatavNr id="5b5eb18d-c971-417b-9cb9-a2656d192f6c"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="076067a4-5636-47a0-96f1-74a277cf9a3c">
+    <tavatekst id="31e9c9bb-01b9-4d2f-8c3a-43063a685016"> Teenuse rahastamine valla eelarvest lõpetatakse, kui teenust saava isiku seisund on paranenud, mistõttu ei ole talle teenuse osutamine enam põhjendatud ja tema abivajadust on võimalik leevendada muude sotsiaalteenuste ja/või – toetustega.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg5">
+   <loigeNr id="d50266b7-9041-45ca-b51b-cfec02f91a24">5</loigeNr>
+   <kuvatavNr id="a7524104-9080-4f1d-8f1e-b87de52ae288"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="d9dd8179-61eb-42df-87f8-85c0f2b31891">
+    <tavatekst id="b76c668d-669e-45ac-af98-962f00a7c7de"> Kui taotleja, tema ülalpidamiskohuslaste või muude hoolduskohustusega isikute maksevõime ei võimalda teenuse eest täies või osalises mahus tasuda või kui ülalpidajatelt on ülalpidamiskohustust ebamõistlik nõuda, võib taotleda Tori Vallavalitsuselt täiendavat teenuse eest tasumist. Täiendava teenuse eest tasumise otsustab Tori valla hoolekandekomisjon otsusega kümne tööpäeva jooksul.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg6">
+   <loigeNr id="e549c0d3-4058-4c50-9e71-0567a47d679f">6</loigeNr>
+   <kuvatavNr id="0b9db4e6-63d4-45d2-9b74-84ea058bb817"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="4eccfdab-2e7d-4d9e-a6ef-44677e547bea">
+    <tavatekst id="550cfc85-284f-40df-bbe0-67dc4d56c330"> Teenuse osutamiseks sõlmitakse teenuse osutamise leping teenuse osutaja, Tori vallavalitsuse ja teiste teenuse eest tasuvate osapoolte vahel.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para6">
+   <paragrahvNr id="6bf426c3-9c0a-4739-b69a-f781444f9132">6</paragrahvNr>
+   <kuvatavNr id="dba04b84-4e5a-45c8-941a-050ed637c6e2"><![CDATA[§ 6. ]]></kuvatavNr>
+   <paragrahvPealkiri id="75b1217e-da40-43dc-836a-94e9b7cf60cc">Rakendussätted</paragrahvPealkiri>
+  <loige id="para6lg1">
+   <loigeNr id="bffab3d7-c526-402d-bc45-f089c5ef28ca">1</loigeNr>
+   <kuvatavNr id="688cc8b3-e876-4a1e-a508-aea3f256e6c1"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="7d5b748f-8a44-49ea-8014-e35a127cb891">
+    <tavatekst id="b169597f-320a-45e1-83b8-d2fd826f2dae">Kehtetuks tunnistatakse:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para6lg1p1">
+   <alampunktNr id="e446ea77-6f77-4b49-a5f7-467402758fe2">1</alampunktNr>
+   <kuvatavNr id="028e5ec9-7549-4806-98c6-dff24ef62800"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="96accfa6-927d-4f32-acfa-539e01cff9a7">
+    <tavatekst id="feca4a30-ca8c-43e5-9a1b-14a384057b9c"> Tori Vallavolikogu 20.06.2019 määrus nr 78 „Väljaspool kodu osutatavale üldhooldusteenusele suunamise tingimused ja kord“;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para6lg1p2">
+   <alampunktNr id="74011191-fc4e-47bb-bbe4-469f30ae37ac">2</alampunktNr>
+   <kuvatavNr id="122479f8-5795-485f-afa3-c93a9370e259"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="15b22ecf-07ec-4678-b065-8a87779d6d52">
+    <tavatekst id="f1fb71ee-462d-4463-a18d-c87e03e9dbdb">Tori Vallavolikogu 25.01.2018 määruse nr 3 „Sotsiaaltoetuste määramise ja maksmise kord“ § 14 punkt 4 „hooldustoetus“ ja § 18 „Hooldustoetus“.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para6lg2">
+   <loigeNr id="159b3040-0c43-4c5c-87f5-ddf23bcc3768">2</loigeNr>
+   <kuvatavNr id="4cf0c6ca-7437-44ea-adc7-723c3edbf7fa"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="51af2a60-7d5e-4636-ad0a-e09d31cfc59f">
+    <tavatekst id="ff21b4b0-223d-46f1-81ee-11d9294bc05c">Määrus jõustub 1. juulil 2023.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="6076f781-9be1-432f-bcda-f5e67ec3eb65"><allkiriKoht id="b435c268-47bf-4fbb-be06-6e76d7b9c4fb"/><allkirjastaja id="24f33d70-f496-4a53-8864-a09188400737"><ametinimetus id="98653677-3226-4246-ac28-97202ace4eb4">volikogu esimees</ametinimetus><eesnimi id="fa83d1d9-c7f6-4d74-8ddd-6b9d0556dc39">Jana</eesnimi><perekonnanimi id="1a3017aa-bf0c-4d4b-96e5-d00926b7b1f3">Malõh</perekonnanimi></allkirjastaja></allkiri></oigusakt>

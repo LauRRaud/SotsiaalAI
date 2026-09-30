@@ -1,0 +1,2047 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="6ab71923-42b5-4964-939c-e908beb6eae1" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Viimsi Vallavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2022-06-07</aktikuupaev>
+			<avaldamismarge>
+				<RTosa id="a1e771d2-ea91-4353-a818-b7c25a714072">RT IV</RTosa>
+				<avaldamineKuupaev id="ce8cbcec-1bc8-462e-88c7-221ba8d54e2c">2022-06-28</avaldamineKuupaev>
+				<RTartikkel id="4aaa9570-5707-4637-8ad1-9f8fdbd08025">58</RTartikkel>
+				<aktViide id="a73a69a3-7e29-4146-849d-947c870a0a2c">428062022058</aktViide>
+			</avaldamismarge>
+			<joustumine>2022-07-01</joustumine>
+			<aktiNr>12</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2023-06-21</avaldamineKuupaev><RTaasta>2023</RTaasta><RTartikkel>34</RTartikkel><aktViide>421062023034</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2024-01-01</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2023-06-19</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>421062023034</globaalID>
+		<metaandmedVersioon>17</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2023-06-20</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1054418</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2022-06-20</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Liina Mugu</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="1997ce3d-2100-4617-9b31-4a860a58c567">
+		<nimi id="b5257f82-bde6-45ca-9da8-cdb1c4dc6e58">
+			<pealkiri id="0cc8f863-6a1c-48a5-800b-c4f2f960e5ea">Viimsi valla sotsiaaltoetuste määramise ja maksmise tingimused ja kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="10fb9f60-61dc-4993-a529-34dafa0d503c">
+		<aktikuupaev id="95b772b5-811a-4148-a4ff-9cb76c480ddb">2023-02-21</aktikuupaev>
+		<avaldamismarge id="d99976ec-c638-486c-b41a-f605486804a0">
+			<RTosa id="c436aebc-c03f-481d-b851-5093ddb6ed4d">RT IV</RTosa>
+			<avaldamineKuupaev id="5e3e438e-e92a-40ed-9fb0-e887f4d4473c">2023-03-03</avaldamineKuupaev>
+			<RTartikkel id="850ab39c-ef9b-44fd-af0d-c5f63d669473">7</RTartikkel>
+			<aktViide id="ae72b07a-1fd2-4836-8cd2-282e28a981f3">403032023007</aktViide>
+		</avaldamismarge>
+		<joustumine id="d7b622e1-86d1-44b8-ade1-82a33c08b4c0">2023-03-06</joustumine>
+		<tavatekst id="8bb0317e-7c27-4345-8183-6965642ea922">, rakendatakse tagasiulatuvalt alates 01.03.2023</tavatekst>
+	</muutmismarge>
+	<muutmismarge id="b61c83fc-f5d7-428d-ab32-1c881fbdbc81">
+		<aktikuupaev id="cf06bc80-6607-4385-9434-c54364aadf3c">2023-06-13</aktikuupaev>
+		<avaldamismarge id="d77198b5-c1f8-4060-9c78-be68adff029c">
+			<RTosa id="add07466-fee2-4f7d-8924-c99f8bd468cb">RT IV</RTosa>
+			<avaldamineKuupaev id="12edc019-0653-4752-825c-6621c618bae6">2023-06-21</avaldamineKuupaev>
+			<RTartikkel id="e5dd885d-5527-451e-9259-699457bff581">1</RTartikkel>
+			<aktViide id="bbb28cc7-08cb-41cd-aea8-3dfe6ab67d9b">421062023001</aktViide>
+		</avaldamismarge>
+		<joustumine id="2d341d34-6082-4b1c-af8b-229733618f9f">2023-09-01</joustumine>
+		<aktiNr id="aa68bb5a-808f-48c7-af15-90d56b65b981">20</aktiNr>
+		<tavatekst id="76f1c108-6462-47fe-949a-f62a7b7ceb31">, osaliselt 01.01.2024</tavatekst>
+	</muutmismarge>
+	<sisu id="6b210520-4345-43bd-97c8-7b9fedba77d4">
+		<preambul id="0d76be76-167e-4431-b6d0-3547aa444ff7">
+			<tavatekst id="28c7483a-32ca-4d2b-8de8-3813f9300cb6">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 6 lõike 1 ja § 22 lõike 1 punkti 5 ning sotsiaalhoolekande seaduse § 5 ja § 14 alusel.</tavatekst>
+		</preambul>
+		<peatykk id="65d4bbf5-9054-4eb3-952e-c840a269575f">
+			<peatykkNr id="0568337a-5fcf-4181-a791-f4425bb413ef">1</peatykkNr>
+			<kuvatavNr id="d5206b7a-655f-4147-9290-34decd2ce8d3"><![CDATA[1. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="41f5f80b-55b6-418a-ad36-0115cbdabb10">ÜLDSÄTTED</peatykkPealkiri>
+			<paragrahv id="para1">
+				<paragrahvNr id="52ff434a-5c1c-466e-9483-b9afb1449fee">1</paragrahvNr>
+				<kuvatavNr id="785114d9-19ea-4307-b791-3b1301135bcf"><![CDATA[§ 1. ]]></kuvatavNr>
+				<paragrahvPealkiri id="e7dafd40-d0c2-48ba-a6b2-0a77c7b99c15">Määruse reguleerimisala</paragrahvPealkiri>
+				<loige id="para1lg1">
+					<loigeNr id="22ad5e12-24a1-451c-b62f-f7172e3b6c4f">1</loigeNr>
+					<kuvatavNr id="62074d86-fc91-469f-910a-204a15ae7e39"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="7fe7fc36-18ac-4e6d-95d0-1b39a12601d3">
+						<tavatekst id="7bb5b8df-c09d-42d6-98de-869234964468">Määrusega kehtestatakse Viimsi valla eelarvest makstavate sotsiaaltoetuste (edaspidi toetus) liigid, taotlemise, määramise ja maksmise tingimused ja kord (edaspidi kord) ning sotsiaaltoetuste määrad.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para1lg2">
+					<loigeNr id="15a39507-ef3b-4366-b6e9-3ddfe9885ce4">2</loigeNr>
+					<kuvatavNr id="35e30ffe-2387-4b37-b768-41d18c5b5d11"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="dbac9bba-6630-43f3-99f5-289754bc5a70">
+						<tavatekst id="20252f17-4939-415d-8e1d-226a404f49d8"> Määrust kohaldatakse koostoimes sotsiaalseadustiku üldosa seaduse, sotsiaalhoolekande seaduse ja haldusmenetluse seadusega.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para2">
+				<paragrahvNr id="ad1d95ce-fa47-44c2-9e01-2abdbdc5291b">2</paragrahvNr>
+				<kuvatavNr id="cf552e62-0723-410e-9fdc-65d269791d04"><![CDATA[§ 2. ]]></kuvatavNr>
+				<paragrahvPealkiri id="bff13395-5b37-49e1-91f4-46602fd1c1cd">Mõisted</paragrahvPealkiri>
+				<loige id="para2lg1">
+					<loigeNr id="05eec132-df5a-4b54-a875-7e8cb1a66e6a"/>
+					<kuvatavNr id="d8fb8bc6-b186-4cb2-bab4-e2824779092c"/>
+					<sisuTekst id="9906ffca-cf6d-4aff-9016-1e798553bed9">
+						<tavatekst id="43ac170b-7c61-4094-942b-c8d43da7f15f">Määruses kasutatavaid mõisteid käsitletakse alljärgnevas tähenduses:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para2lg1p1">
+						<alampunktNr id="4dddd24b-b8f8-46e4-8719-68467d113c55">1</alampunktNr>
+						<kuvatavNr id="1e53bd7b-00cb-46a8-9ed9-09df009c4697"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="82a39144-788b-4b76-a418-4f14967986ef">
+							<tavatekst id="9985a2d5-fadb-4f48-bf88-d9bd90474520">Perekond – abielus või abielulistes suhetes olevad samas eluruumis elavad isikud, nende lapsed ja vanemad või muud üht või enamat tuluallikat ühiselt kasutavad või ühise majapidamisega isikud.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2lg1p2">
+						<alampunktNr id="8401d813-cdca-4b40-82b5-cd88768c941a">2</alampunktNr>
+						<kuvatavNr id="e5295c55-19e2-4e13-9d74-83f72ba7c23a"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="6a971071-6b94-4620-afcf-23904ed68e27">
+							<tavatekst id="c89a8d6e-267f-4e9c-b83e-81ece317bfd0">Suurpere – perekond, kus on vähemalt neli kuni 18 a (k.a) last.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2lg1p3">
+						<alampunktNr id="24b8050f-51a3-4da5-ae92-18e3d806bee0">3</alampunktNr>
+						<kuvatavNr id="c81b33dc-bc36-408c-a4e6-a6342ff563f9"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="80a49812-2703-4540-baa0-67529039216d">
+							<tavatekst id="e7afb59c-dd25-428a-a1db-0df0c5924c36"> Vähekindlustatud isik/perekond - isik või perekond, kelle ühe kuu sissetulek esimese pereliikme kohta jääb alla kahe ja poole (2,5) kordse riikliku toimetulekupiiri. Pere teise ja iga järgneva liikme sissetuleku piiriks on 75% pere esimese liikme sissetuleku piirist.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2lg1p4">
+						<alampunktNr id="d0f58a76-3c32-4dec-a465-1b0aa69aa9b1">4</alampunktNr>
+						<kuvatavNr id="837936ea-11eb-4b51-b5b2-e3a313a9c4df"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="3e3095c2-2ca6-4747-94fc-86ec9bb2d837">
+							<tavatekst id="6751bcc6-31f8-4ab6-a7e2-d733c2a0dc90"> Perekonna sissetulek – toetuse määramisel arvestatakse toetuse saaja ja tema perekonnaliikmete netosissetulekuid ning perekonnaseadusest tulenevat ülalpidamiskohustust. Sissetulekute hulka ei arvata sotsiaalhoolekande seaduse § 133 lõikes 2 nimetatud toetusi.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2lg1p5">
+						<alampunktNr id="5de6d151-ed73-438a-b862-0ebd64d2fa24">5</alampunktNr>
+						<kuvatavNr id="22fa41fe-0157-4b2b-b61f-e15dad012b85"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="19c1f462-ad14-4007-af4c-bf0f742ce425">
+							<tavatekst id="a5966161-a9ef-4d41-bd94-0cf8611a6a11">Üksikvanem – isik, kelle lapse sünniaktis või rahvastikuregistrisse kantud perekonnaseisuandmete puudub kanne isa kohta ja kellel on õigus riiklikult üksikvanema lapse toetusele või kelle lapse teine vanem on surnud, samuti need lapsevanemad, kes tõendavad vastavate andmete ja dokumentidega, et kasvatavad last teisest vanemast lahkumineku tõttu üksinda (elatisraha või ainuhooldusõigus).</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2lg1p6">
+						<alampunktNr id="6be487f0-298d-4332-a5ec-b2de60896df6">6</alampunktNr>
+						<kuvatavNr id="64e52205-d1a0-42e1-88c8-cd09551774a9"><![CDATA[6) ]]></kuvatavNr>
+						<sisuTekst id="62dd1faf-0c34-47cd-824c-e23badc0fcb2">
+							<tavatekst id="7e2aa336-4c01-4da0-8545-50011912468f">Hooldaja – isik, kes on määratud sotsiaal- ja tervishoiu osakonna (edaspidi osakond) poolt raske või sügava puudega täisealise isiku hooldajaks või keskmise, raske või sügava puudega lapse hooldajaks.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2lg1p7">
+						<alampunktNr id="754e2bfa-73a4-4ab5-b621-72d3284ab2eb">7</alampunktNr>
+						<kuvatavNr id="73e64249-cfae-4584-ac15-9a141df73abb"><![CDATA[7) ]]></kuvatavNr>
+						<sisuTekst id="c732624f-1144-43ea-b0a1-3ec0fb0cbb0a">
+							<tavatekst id="c1cacbac-1d82-4a1f-b9b8-73545b5d3724">Puue – vastavalt puuetega inimeste sotsiaaltoetuste seaduse paragrahvi 2 lõigetele 1 ja 11, inimese anatoomilise, füsioloogilise või psüühilise struktuuri või funktsiooni kaotus või kõrvalekalle, mis koostoimes erinevate suhtumuslike ja keskkondlike takistustega tõkestab ühiskonnaelus osalemist teistega võrdsetel alustel.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2lg1p8">
+						<alampunktNr id="7cf4bba0-4a1e-4398-a0be-956d0d38e391">8</alampunktNr>
+						<kuvatavNr id="ba5fb7ea-851a-4b34-a531-908f85636c16"><![CDATA[8) ]]></kuvatavNr>
+						<sisuTekst id="1a6b0179-5bcd-4ba5-8f09-db8a336caca7">
+							<tavatekst id="5058bc73-5e2c-40f8-b34a-52f5491bf979"> Sotsiaaltoetus - isikule või perekonnale valla eelarvelistest vahenditest eraldatav rahaline toetus.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para3">
+				<paragrahvNr id="a6f77e5e-54c4-46ce-9307-b6b0b01f8788">3</paragrahvNr>
+				<kuvatavNr id="377d8c1e-85ee-46a3-bb0b-b6795fb7b974"><![CDATA[§ 3. ]]></kuvatavNr>
+				<paragrahvPealkiri id="bd43ca2a-7e42-4021-96e7-8989361b3694">Toetusele õigustatud isik</paragrahvPealkiri>
+				<loige id="para3lg1">
+					<loigeNr id="b0215d4b-ee00-47bb-8502-d1c61753ee6e"/>
+					<kuvatavNr id="4119d917-e346-4047-a43f-78f1d7e06204"/>
+					<sisuTekst id="823e712a-e6cd-4b7d-b25f-dd50e5447d4f">
+						<tavatekst id="22b63abe-372f-4dcb-bd90-2e5d4363d894">Toetust on õigustatud taotlema isik, kes on rahvastikuregistri andmetel Viimsi valla elanik.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para4">
+				<paragrahvNr id="94c54355-94ac-4a69-ae4d-74807afd43a5">4</paragrahvNr>
+				<kuvatavNr id="5f83d70c-eb77-4857-920b-4a665c135173"><![CDATA[§ 4. ]]></kuvatavNr>
+				<paragrahvPealkiri id="3db6dd08-cfbe-42d3-bf37-6fe98ef9a717">Toetuse taotlemine</paragrahvPealkiri>
+				<loige id="para4lg1">
+					<loigeNr id="ccde91aa-dedf-4aeb-ab55-76754f0e6522">1</loigeNr>
+					<kuvatavNr id="577e1495-cb98-4006-8a77-a6a7164275b2"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="754b47e9-baa9-4813-ac7f-a8cedf7add5e">
+						<tavatekst id="0dc03297-7f93-4932-84d1-96283b018610">Toetuse saamiseks esitab isik (edaspidi taotleja) osakonnale allkirjastatud taotluse, milles on märgitud taotleja andmed ja toetuse taotlemise põhjus.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4lg2">
+					<loigeNr id="107f2deb-968b-46b6-8e75-1dfdf42e05b5">2</loigeNr>
+					<kuvatavNr id="a8558149-e72d-4c43-b555-cb937e8b1578"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="c21e2883-2d7a-43ff-a125-018036290d9c">
+						<tavatekst id="a3cd5020-ad1e-4ab6-9b03-cf7f9a59a844">Sissetulekust sõltuva toetuse taotlemisel tuleb taotlusele lisada käesoleva määruse § 8 lõikes 2 nimetatud dokumendid ja andmed.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4lg3">
+					<loigeNr id="ec908def-9576-4ae9-b4a0-b373ce4e7a80">3</loigeNr>
+					<kuvatavNr id="be9b74da-7943-49c5-afa8-6e5edb0d45c6"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="ace45f7f-b7e2-4bdb-9064-74111395afc0">
+						<tavatekst id="d515f4e6-31cd-4bb8-8aa4-4e10c6e4386d"> Taotlust menetleval sotsiaaltöötajal on õigus teha päringuid ja kontrollida esitatud andmete õigsust.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4lg4">
+					<loigeNr id="35c656ee-dc74-460f-b3fb-3a7715bca329">4</loigeNr>
+					<kuvatavNr id="4a4b536a-d8d1-43f1-9935-132b31d210eb"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="333cd4fb-d7f7-42a6-8db9-663f610cc6d7">
+						<tavatekst id="331c1e03-5c5c-4ace-8df6-41442f06188d">Toetust on õigus taotleda kolme kuu jooksul pärast kulutuste tegemist, milleks toetust taotletakse, või pärast sündmust, mille korral toetust makstakse. Põhjendatud vajaduse korral võib toetust taotleda ette, esitades kuludokumendid peale kulutuste tegemist. </tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para5">
+				<paragrahvNr id="159acb18-37ef-4919-9624-68141b4d3e7d">5</paragrahvNr>
+				<kuvatavNr id="266aef75-db1f-41bc-8ea4-77239752b986"><![CDATA[§ 5. ]]></kuvatavNr>
+				<paragrahvPealkiri id="42914f45-36c7-439e-b61e-4817010f23f5">Toetuse menetlemine ja määramine</paragrahvPealkiri>
+				<loige id="para5lg1">
+					<loigeNr id="5e7ffee0-c517-474c-8909-77d2b635d785">1</loigeNr>
+					<kuvatavNr id="b34085f7-b1a8-4e7c-a618-cf6bb13df27a"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="e9fa4728-0d6d-466e-b513-a9f9eabff80f">
+						<tavatekst id="4a895752-c73a-4c43-baed-fafbc8f8de48"> Otsuse toetuse määramise või määramata jätmise kohta teeb osakond kümne tööpäeva jooksul alates toetuse taotlemiseks vajaliku viimase dokumendi saamise päevast või dokumendi esitamise tähtajast.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para5lg2">
+					<loigeNr id="8d157b96-d373-4641-bc20-f8ba44884eef">2</loigeNr>
+					<kuvatavNr id="ac8b7b55-0b8b-4496-ac07-b646bb9112a9"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="6a4dabd1-c8bc-4cb3-98bb-c395281a58e4">
+						<tavatekst id="73a4723c-ed9a-49d5-92b4-0f6d24c0df54">Kui taotluses esineb puudusi antakse taotlejale tähtaeg puuduste kõrvaldamiseks, mis on vähemalt 14 kalendripäeva. Kui taotleja ei ole nimetatud tähtajaks esitanud puuduste kõrvaldamiseks vajalikke dokumente või andmeid, jäetakse taotlus rahuldamata.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para5lg3">
+					<loigeNr id="d956c090-ab1b-4b2b-b441-4b5c060be911">3</loigeNr>
+					<kuvatavNr id="80565675-fec4-4e70-a733-df336dbbeea3"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="df96ec0c-10a3-49d1-8961-fe8b6cf12f82">
+						<tavatekst id="02fe2383-e3cc-4fb9-9c6d-17ae72955ec8"> Toetuse võib määrata perioodiliselt vastavalt käesoleva määruse lisas kehtestatud määras. Kui toetuse menetlemise ajal muudetakse käesoleva määruse lisas kehtestatud toetuse suurust, arvestatakse toetus taotleja kasuks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para5lg4">
+					<loigeNr id="5f31e7a4-872b-4f3d-a29b-5d8ebf205e27">4</loigeNr>
+					<kuvatavNr id="126b7a2c-04eb-4096-800e-069e9d61be14"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="d075ef79-069b-4f3d-8887-9bd175e0487e">
+						<tavatekst id="26ea3e26-0e24-40fd-b235-92e69bbb37dd">Taotleja vastutab esitatud andmete ja dokumentide õigsuse eest. Valeandmete esitamise korral toetuse taotluse menetlemine ja maksmine lõpetatakse. Vallavalitsusel on õigus makstud toetus seaduses ja käesolevas määruses sätestatud korras tagasi nõuda. </tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para5lg5">
+					<loigeNr id="34b1adbc-dc09-4ee2-8517-ee4454c63af2">5</loigeNr>
+					<kuvatavNr id="7a43a806-c7ee-4fcb-9977-fbc1399a36f3"><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst id="de56319e-a82e-4cc7-aeb8-4bde12803647">
+						<tavatekst id="ac27598c-20e7-41d3-9f2f-afd73fe95338"> Sissetulekust sõltumatu toetuse otsus väljastatakse sotsiaalteenuste ja -toetuste andmeregistri (STAR) väljatrükina.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para5lg6">
+					<loigeNr id="9b1aef4c-9e91-462a-a54e-0c310a22fc4b">6</loigeNr>
+					<kuvatavNr id="3b13a74e-28c8-4896-b88c-92dd0314f2bc"><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst id="a1ed0df3-8bf5-4926-930a-81659bcb7d98">
+						<tavatekst id="536827b5-561e-452e-8a13-17bf4c4c9b37">Põhjendatud otsus toetuse määramise või määramata jätmise kohta tehakse taotlejale kirjalikult taasesitatavas vormis teatavaks viie tööpäeva jooksul alates otsuse tegemisest taotleja poolt esitatud kontaktaadressile. </tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para5lg7">
+					<loigeNr id="36e49eaa-3bb9-4b17-adfa-b016f018d428">7</loigeNr>
+					<kuvatavNr id="25745734-438f-4847-80b1-e072b7271ba4"><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst id="367af482-d829-469c-996e-d8147e0f40e2">
+						<tavatekst id="d965e95e-b0db-4861-a62e-035c78ea4923">Riiklikud toetused, mille menetlemine ja määramine on pandud kohaliku omavalitsuse ülesandeks menetletakse käesolevas määruses sätestatud korras, kui see ei ole riigikogu, Vabariigi Valitsuse või ministeeriumi õigusaktis sätestatud teisiti. </tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para6">
+				<paragrahvNr id="906468ba-ed56-4ee1-bb4d-97ffa69db07f">6</paragrahvNr>
+				<kuvatavNr id="9c173681-f958-41b3-8703-6b4d5dfd18f3"><![CDATA[§ 6. ]]></kuvatavNr>
+				<paragrahvPealkiri id="6661e5c8-a794-4b1e-895f-04b2c475b3f9">Toetuse maksmine</paragrahvPealkiri>
+				<loige id="para6lg1">
+					<loigeNr id="4d673ee8-b6a6-430d-9766-80665c90403b">1</loigeNr>
+					<kuvatavNr id="ae86ed90-1ced-46d8-9690-2082b18c4774"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="ca99e912-e641-464d-b682-51cbfb0bcb30">
+						<tavatekst id="18177fef-8c52-40ed-8360-f82f542887b2"> Käesoleva määruse § 7 loetletud toetused kantakse viie tööpäeva jooksul pärast toetuse määramise otsust taotluses esitatud arveldusarvele või makstakse välja sularahas.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para6lg2">
+					<loigeNr id="b63a2505-02f6-4f45-ae35-6b4d0d79611a">2</loigeNr>
+					<kuvatavNr id="dd2f6301-0192-4ba1-8ec7-d3ef40c87df3"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="9a444cf5-d19c-458c-8e4a-eb40a0be5c81">
+						<tavatekst id="73a35834-81b0-4605-99f6-b8d1583c40ef">Perioodiliselt makstava toetuse võib lõpetada ennetähtaegselt, kui toetuse määramise põhjused on ära langenud. </tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para6lg3">
+					<loigeNr id="d1b2fa2a-5e53-497a-b1f4-bcac80a1ba06">3</loigeNr>
+					<kuvatavNr id="b4151d9c-8b1e-4424-b48f-fc03a9596e96"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="73dd2d67-ae1b-47e0-83fc-be58b82632eb">
+						<tavatekst id="2ce96fdb-b7b5-48b2-a98a-b08a948874cf">Määratud toetuse väljamaksmine lõpetatakse taotleja surma korral. </tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="233bc04c-0eb7-4e78-8846-963914402b04">
+			<peatykkNr id="623de75c-804f-4fb1-8770-01f71b545c91">2</peatykkNr>
+			<kuvatavNr id="c11f7a2d-23aa-4d19-ad8b-54b71c90c400"><![CDATA[2. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="7adbd777-8f06-4704-9700-73d00f8c10e6">PEREKONNA SISSETULEKUST SÕLTUVAD TOETUSED</peatykkPealkiri>
+			<jagu id="64ecc047-7569-444d-98ac-8bd2bda93e5c">
+				<jaguNr id="dad8c0f2-ccc0-4959-8a90-4c2db22db60c">1</jaguNr>
+				<kuvatavNr id="e3e6833c-5264-428d-8eb2-c8d2372b6f04"><![CDATA[1. jagu]]></kuvatavNr>
+				<jaguPealkiri id="51eb410e-05ee-414d-bc4c-7308134236a5">Sissetulekust sõltuvate toetuste liigid ja andmise põhimõtted</jaguPealkiri>
+				<paragrahv id="para7">
+					<paragrahvNr id="76a5e3a3-7f33-4fb2-8df9-abbdc7c76812">7</paragrahvNr>
+					<kuvatavNr id="6e1a653a-bb3c-4a65-8e9d-c4f3afe3d908"><![CDATA[§ 7. ]]></kuvatavNr>
+					<paragrahvPealkiri id="5d5c6028-833c-4ad9-b441-0a638d9a1c1a">Perekonna sissetulekust sõltuvate toetuste liigid</paragrahvPealkiri>
+					<loige id="para7lg1">
+						<loigeNr id="e4c0ec37-ecdc-4055-be7e-e6a81d08c756"/>
+						<kuvatavNr id="4ed3407c-5f63-4ec9-be6c-fb809fdef28e"/>
+						<sisuTekst id="66214dc1-bb02-4417-b0e9-641f5275a695">
+							<tavatekst id="861b396e-595d-429e-b64d-9e21029704f6">Perekonna sissetulekust sõltuvad toetused on:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para7lg1p1">
+							<alampunktNr id="15771464-29c3-4be2-b76a-4dfe23fe3492">1</alampunktNr>
+							<kuvatavNr id="7b528a76-ea21-4c29-91f1-efb384303235"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="1d515cfe-b74c-45aa-8ef5-60e1cdcbdaec">
+								<tavatekst id="5fe7fc4c-9a99-40ab-9a5d-cde409d4643e">lapse lasteaias, lastehoius ja koolis toidu eest tasumise toetus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para7lg1p2">
+							<alampunktNr id="d348b64c-1842-45f0-86fb-a1556765fd05">2</alampunktNr>
+							<kuvatavNr id="c4eb64c2-c60d-4bf3-8d45-33a8d6d554fc"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="7417eeb4-cb1b-4ee7-9083-31aca860a5e5">
+								<tavatekst id="e3211a23-b714-4f45-86a5-b5c8807f8d04"> lasteaia ja lastehoiu kohatasu toetus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para7lg1p3">
+							<alampunktNr id="ae21ca22-cbf8-4fe2-82a3-85b7ed2ca62b">3</alampunktNr>
+							<kuvatavNr id="da76f60c-a218-4a51-ab7d-cc23d2706890"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="a6d0fed9-0118-49d1-919e-43551467c6c2">
+								<tavatekst id="67a21b9b-5f4e-4e43-9a4f-f25c1a357db2">ravimitoetus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para7lg1p4">
+							<alampunktNr id="64653122-afc4-4c06-a450-a8be574b53c6">4</alampunktNr>
+							<kuvatavNr id="e944eea7-373c-4ce6-ba97-b460b096a41f"><![CDATA[4) ]]></kuvatavNr>
+							<sisuTekst id="e5cae9cc-09b8-4d9d-b14b-f37c50c5c0b8">
+								<tavatekst id="96420ca4-4065-44c2-b8dd-b1e78565a3ce"> toimetuleku tagamise toetus;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para7lg1p5">
+							<alampunktNr id="bf2e863c-f9df-4232-ab7a-10056ef561b9">5</alampunktNr>
+							<kuvatavNr id="b7f46556-7da9-44c2-bd4d-adb6a68c17b8"><![CDATA[5) ]]></kuvatavNr>
+							<sisuTekst id="6c986128-bae0-4051-a4f6-fb84ac6520ea">
+								<tavatekst id="eeda2851-f782-4131-aca7-b80ad79ee851">vältimatu sotsiaalabi.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para8">
+					<paragrahvNr id="01a26fc1-79ea-4579-a246-6b54d47fe8e8">8</paragrahvNr>
+					<kuvatavNr id="9b1e1527-32ba-45c0-a7d2-1d7d633237b4"><![CDATA[§ 8. ]]></kuvatavNr>
+					<paragrahvPealkiri id="750d29e0-79d4-43fb-a1db-9347a5c04a1e">Sissetulekust sõltuva toetuse andmise põhimõtted</paragrahvPealkiri>
+					<loige id="para8lg1">
+						<loigeNr id="6162145b-26a8-4109-805c-cfbb66f7ae78">1</loigeNr>
+						<kuvatavNr id="ffd0933d-ed2e-435f-8010-1d19d02ebc79"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="8168ff91-64aa-4f4c-bacd-b1a5ffdcb8b5">
+							<tavatekst id="477b2a68-6ffc-4cf9-9d4e-4a90172b9688"> Toetust on võimalik taotleda põhjendatud kulutuste osaliseks hüvitamiseks vähekindlustatud isikul või perekonnal. </tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para8lg2">
+						<loigeNr id="3f086c2f-9599-4f28-bf38-55f433aad851">2</loigeNr>
+						<kuvatavNr id="fb8f9e9b-12c6-474b-a1d8-e8f7000e2871"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="26f26388-001f-4063-83b2-0a874d5c5195">
+							<tavatekst id="6cbfd9ca-c79e-4cd6-8976-bdf33afd79f4">Toetuse taotlusele lisatakse:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para8lg2p1">
+							<alampunktNr id="d92a6163-68a5-4280-8f7b-5833c1109a86">1</alampunktNr>
+							<kuvatavNr id="19cb4ebe-fdef-4bbc-a31e-f317dc4eb9b3"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="a0a77577-351e-471a-becf-32e0e97ac98d">
+								<tavatekst id="f0430027-d33a-4cc6-9856-c6b5f0ec370f">taotleja ja tema perekonnaliikmete taotlemisele eelneva kuu sissetulekuid tõendavad dokumendid ja/või arvelduskontode väljavõtted, vara kasutamise lepingud ning muud otsustamiseks vajalikud lisaandmed;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para8lg2p2">
+							<alampunktNr id="482bd487-5086-4bd3-b9ed-e2c395c65689">2</alampunktNr>
+							<kuvatavNr id="be0dc4d3-2052-4385-9319-84b377a5e275"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="52fd4cab-81a5-4ced-8af1-dfb9f2f67be8">
+								<tavatekst id="ecaf03a9-8fc1-42d5-affb-80253b967872">andmed taotleja ja tema perekonnaliikmete omandis olevate kinnistute, sõidukite, väärtpaberite ja muu vallasvara (edaspidi vara) kohta;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para8lg2p3">
+							<alampunktNr id="74863ad7-62ad-46d6-a3f2-36f658f5da73">3</alampunktNr>
+							<kuvatavNr id="755a2b5e-bbd9-4418-80f0-1ed91507087f"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="b5013d60-cc30-48a4-a18c-9706d3664d55">
+								<tavatekst id="3e8c82c4-e400-47d4-95df-90a11594ea21">hüvitamisele kuuluvate kulude tegemist tõendavad dokumendid;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para8lg2p4">
+							<alampunktNr id="41eb0b33-6f11-420d-89c9-76ff3303a88b">4</alampunktNr>
+							<kuvatavNr id="3772c8eb-5fc3-4114-a862-fbd86d0901e2"><![CDATA[4) ]]></kuvatavNr>
+							<sisuTekst id="6155b8b0-500d-4f28-8417-53a5600ba12a">
+								<tavatekst id="7bb29b87-09bb-4907-95cf-d28cdd67c186"> vajadusel muud täiendavad dokumendid.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para8lg3">
+						<loigeNr id="6dafb4f8-4c1b-4c67-a532-700f87db6b6b">3</loigeNr>
+						<kuvatavNr id="da499431-75a4-4f1c-a27f-224da582aabf"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="03cd7006-d92d-4356-9ecc-5d3f5781d639">
+							<tavatekst id="57ec4f26-25d5-4b5e-adef-f50bf8ae1a29">Taotlust menetleval sotsiaaltöötajal on vajaduse korral õigus ja kohustus hinnata taotleja toimetulekut igapäevases keskkonnas, teha päringuid, kontrollida esitatud andmete õigsust ning nõuda isiku enda ja tema perekonnaliikmete varalist seisu tõendavaid dokumente või muid täiendavaid andmeid.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para8lg4">
+						<loigeNr id="167d05b3-fe72-4de2-9b75-5870c05b04a5">4</loigeNr>
+						<kuvatavNr id="7c1e4676-8d6e-4fc0-a25a-1cf7ada3b954"><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst id="4bb96f71-fb6f-4250-b80c-c1aa87de0150">
+							<tavatekst id="a4eab61c-8505-499c-936d-83eef77bd02e">Toetust ei määrata kui:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para8lg4p1">
+							<alampunktNr id="f775a8c9-1abb-4718-a056-3a9b3921aa04">1</alampunktNr>
+							<kuvatavNr id="ffa92d34-ea0a-4ef6-a247-3995b18d9644"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="73f7a81f-f2b3-4239-a500-c060855b14b7">
+								<tavatekst id="02252e4f-2af9-45e6-80d5-e3c03011d225"> taotleja on esitanud valeandmeid;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para8lg4p2">
+							<alampunktNr id="11c3edf0-65d9-415b-bfda-828f9da6e4df">2</alampunktNr>
+							<kuvatavNr id="079a42d8-43cd-4d07-9df1-39023601af6e"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="a1c45fd2-546d-44eb-9311-337e87e05fc4">
+								<tavatekst id="db317934-ba86-47a2-9501-35ddbcbfc8d0"> taotleja ei esita sotsiaaltöötaja poolt küsitud täiendavaid dokumente;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para8lg4p3">
+							<alampunktNr id="5257e772-3396-4a5b-b199-7f5edc5752bc">3</alampunktNr>
+							<kuvatavNr id="784a53a7-55e4-47ea-b016-64992200361b"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="82cf3642-3e59-4d29-a9ed-fa310f531e18">
+								<tavatekst id="07a54a4c-c003-4723-a6d5-d4f528c61880">taotleja ja/või tema perekonna kasutuses ja/või omandis olevad vallas- ja kinnisasjad tagavad toimetulekuks piisavad elatusvahendid;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para8lg4p4">
+							<alampunktNr id="e7b2e3a9-6f1e-456f-891b-20d9f3fddc7e">4</alampunktNr>
+							<kuvatavNr id="d9eeec57-2d26-47f5-b238-6709f43b41f1"><![CDATA[4) ]]></kuvatavNr>
+							<sisuTekst id="1bab8bc0-b5f3-4458-b461-3f4aaf371b18">
+								<tavatekst id="cff5e270-cf0c-470d-ae50-5a7c534a19f3"> täisealine töövõimeline isik, kes ei tööta ega õpi, keeldub ilma mõjuva põhjuseta kasutamast tööturuteenuseid ja -toetuseid; </tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para8lg4p5">
+							<alampunktNr id="ca96d32b-c437-4bef-ab33-dd202635caa7">5</alampunktNr>
+							<kuvatavNr id="3fa9b3e2-ff4b-43bd-940f-c8583cc89a72"><![CDATA[5) ]]></kuvatavNr>
+							<sisuTekst id="b7b37cf7-6982-4962-b5d0-a90ea99ec03d">
+								<tavatekst id="b78a5659-1db7-40b1-9fda-e2721b8c2f30"> taotleja poolt taotletav toetus ei leia kasutust toetuse kirjelduses märgitud eesmärgil;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para8lg4p6">
+							<alampunktNr id="ae008d39-bafe-455c-a79c-473fe28dc600">6</alampunktNr>
+							<kuvatavNr id="394ec4f7-e5fe-4065-b395-d57f4bc3b8bb"><![CDATA[6) ]]></kuvatavNr>
+							<sisuTekst id="cf827ac2-4127-48ae-90e8-b37b25cb93c4">
+								<tavatekst id="e518513b-bef3-4925-acb7-dfa72d5728d5"> taotleja ei ole kasutanud muid õigusaktidega ette nähtud võimalusi oma toimetuleku parandamiseks. </tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="03d7ad96-d69e-4e55-8165-c64fad82ef62">
+				<jaguNr id="30868c03-9b96-4f5a-a0f1-2a5023ab9fc0">2</jaguNr>
+				<kuvatavNr id="f5470741-11fa-4878-a1e1-2d96c2386758"><![CDATA[2. jagu]]></kuvatavNr>
+				<jaguPealkiri id="16f7578f-5236-42b7-abe9-20c7eae2c6bb">Sissetulekust sõltuvad toetused</jaguPealkiri>
+				<paragrahv id="para9">
+					<paragrahvNr id="4fe4aeb2-f0d4-4eb0-9712-12ffe5e68e43">9</paragrahvNr>
+					<kuvatavNr id="7345e5da-ef74-4409-857b-75e7260b39d8"><![CDATA[§ 9. ]]></kuvatavNr>
+					<paragrahvPealkiri id="018dc59b-b82e-4ea8-abac-c90423ec3317">Lasteaias, lastehoius ja koolis toidu eest tasumise toetus</paragrahvPealkiri>
+					<loige id="para9lg1">
+						<loigeNr id="ac981b0c-1fbb-447e-9ba0-a6c1d4a69c8c">1</loigeNr>
+						<kuvatavNr id="e812d3cd-5529-4779-bfef-398b17f680d6"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="19b6867c-6ec6-4496-bf46-abcc7a56c0ab">
+							<tavatekst id="36abc04f-ff87-4bf7-91c3-de8667fcfbd9"> Lasteaias, lastehoius ja koolis toidu eest tasumise toetust antakse vähekindlustatud perele:</tavatekst>
+						</sisuTekst>
+						<alampunkt id="para9lg1p1">
+							<alampunktNr id="a8b45246-4cbf-427d-a0ee-8634a0067d16">1</alampunktNr>
+							<kuvatavNr id="38596118-45f2-434f-ba2d-3b93835d05e8"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="ac553459-cf65-4040-9073-df0424bc6c7f">
+								<tavatekst id="23eac121-d1d4-4e5e-9622-2c401e22bef8">asteaias või lastehoius käiva lapse toiduraha maksumuse hüvitamiseks;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para9lg1p2">
+							<alampunktNr id="145173f9-c55e-4b3f-a136-7034ebbfdc94">2</alampunktNr>
+							<kuvatavNr id="9b0493f7-a080-49df-a15a-764814bc0a2d"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="2421c3bc-a3b2-47c7-b249-441814134c94">
+								<tavatekst id="0af96831-e50d-48b2-9816-375963fccbd1">gümnaasiumis õppiva või põhikooli pikapäevarühmas käiva lapse toiduraha maksumuse hüvitamiseks õppeperioodil.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para9lg2">
+						<loigeNr id="68ea9b0e-8696-418b-b863-120823e2f18b">2</loigeNr>
+						<kuvatavNr id="fa5b1b2b-46fa-476f-a022-70c0f7be05e7"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="e0412336-aa21-4084-a124-1e4172c15dcd">
+							<tavatekst id="f715b961-8121-49b0-b51f-0039300cdffd">Lasteaias, lastehoius ja koolis toidu eest tasumise toetus antakse tingimusel, et laps ja lapse mõlemad vanemad, üksikvanem või teda kasvatavad isikud on rahvastikuregistri andmetel Viimsi valla elanikud.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para9lg3">
+						<loigeNr id="12e31a14-3e40-46ba-a2a4-6274e7d2578c">3</loigeNr>
+						<kuvatavNr id="6d33972a-6ac7-4fad-a704-2ecfeea113bb"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="5212f7bf-b3f9-4c93-8e82-110d76bf50cb">
+							<tavatekst id="6811a5fa-1888-4614-b05c-78214795cd8c">Avalduse lasteaias, lastehoius ja koolis toidu eest tasumise toetuse saamiseks võivad osakonnale esitada lapsevanema (hooldaja, eestkostja) asemel ka haridusasutuse töötaja või sotsiaaltöötaja.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para9lg4">
+						<loigeNr id="b1218f76-ff35-449e-980d-b3d013ee25d1">4</loigeNr>
+						<kuvatavNr id="7f1fbbb3-86f6-4804-9723-2efb3dddd09b"><![CDATA[(4)]]></kuvatavNr>
+						<sisuTekst id="af299bc2-23c8-47cc-9b77-d9709b88bdb5">
+							<tavatekst id="f47bbc74-a4b7-4ef7-9fc6-b0a9acfdba8d">Lasteaias, lastehoius ja koolis toidu eest tasumise toetuse maksimaalne periood on õppeaasta ja kantakse üle arve alusel üldjuhul haridusasutusele.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para10">
+					<paragrahvNr id="00f37c8d-e181-4030-ae08-5c67577cface">10</paragrahvNr>
+					<kuvatavNr id="341c576d-4e19-40fe-a26f-d8ae1291b32a"><![CDATA[§ 10. ]]></kuvatavNr>
+					<paragrahvPealkiri id="bfbc278d-462e-4837-9407-f4ac1be2f343">Lasteaia ja lastehoiu kohatasu toetus</paragrahvPealkiri>
+					<loige id="para10lg1">
+						<loigeNr id="75337dd7-3118-49b2-9001-1082d2738901">1</loigeNr>
+						<kuvatavNr id="db37a326-7495-459b-af98-44554f3e8b48"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="4a1eac10-701e-4e99-a843-a11587454f80">
+							<tavatekst id="51c5f157-3be4-4c35-a4f8-f0e8ecfea50c"> Lasteaia ja lastehoiu kohatasu toetus antakse vähekindlustatud perekonnale kohatasu tasumiseks määruse lisas kehtestatud määras, tingimusel, et laps ja lapse mõlemad vanemad, üksikvanem või teda kasvatavad isikud on rahvastikuregistri andmetel Viimsi valla elanikud.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para10lg2">
+						<loigeNr id="b60e5dbf-58b9-49d3-a95e-038bb2fa6999">2</loigeNr>
+						<kuvatavNr id="8d2c20db-0055-47d0-9b53-7df19e270cdb"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="2b107cb3-5c09-47b3-8f69-8d07a74b6116">
+							<tavatekst id="73a8bed9-f08c-469d-8b30-a6c7440718e3">Lasteaia ja lastehoiu kohatasu toetuse maksimaalne periood on õppeaasta ja kantakse üle arve alusel üldjuhul haridusasutusele.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para11">
+					<paragrahvNr id="ca444267-9007-4e85-a392-55032701fb9b">11</paragrahvNr>
+					<kuvatavNr id="f8f5bc92-b844-43ee-990d-42203ff7834d"><![CDATA[§ 11. ]]></kuvatavNr>
+					<paragrahvPealkiri id="f8eb5fc3-2e19-4053-a116-240183aeafac">Ravimitoetus</paragrahvPealkiri>
+					<loige id="para11lg1">
+						<loigeNr id="7521f38a-5ee3-4dc4-ab41-1cb0a577de82">1</loigeNr>
+						<kuvatavNr id="3ec6c72b-ed45-401e-a87a-44e9ab6c0765"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="59679ff9-f329-4e05-9d16-7653ff2369dd">
+							<tavatekst id="65760644-2ded-4759-85a7-91f3766b6eb1"> Ravimitoetusega kompenseeritakse osaliselt taotlusele eelneva kolme kuu jooksul tehtud kulutused retseptiravimitele, abivahenditele ja haavandiravi vahenditele, mida ei rahastata Eesti Haigekassa või Sotsiaalkindlustusameti vahenditest. </tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para11lg2">
+						<loigeNr id="1c8cc2cc-bbfc-4933-9d9e-27bbaf04ea22">2</loigeNr>
+						<kuvatavNr id="0f32595f-f7ab-4d96-892d-85f2f4b4a288"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="b9f46551-a8d9-4d6c-a884-dea2d525d2db">
+							<tavatekst id="6f238585-faa5-4e44-8dbe-5abd5a8f84c5"> Taotlusele lisatakse retseptiravimite ostmise kuludokumendid, millel on kirjas taotleja nimi, ravimite nimetused ja maksumused. Ravimitoetust võib taotleda kuni 4 korda kalendriaastas.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para11lg3">
+						<loigeNr id="1934fedc-7d9a-4af7-bb07-e62395d7c61b">3</loigeNr>
+						<kuvatavNr id="ebd0bea4-305e-45dd-932a-820ee11a734a"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="d6738041-4e1a-4da4-96d4-d348b908986a">
+							<tavatekst id="0246e694-7215-493a-ba4e-db3976eb4be0"> Ravimitoetust võib määrata taotlejale aastas kuni määruse lisas kehtestatud määras, kuid mitte rohkem kui 50% tehtud kulutustest.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para12">
+					<paragrahvNr id="3f421ed2-cc4a-4c38-ab6e-e9683bbd11b5">12</paragrahvNr>
+					<kuvatavNr id="223c6b48-c631-4e3c-829e-3bb60c1eb126"><![CDATA[§ 12. ]]></kuvatavNr>
+					<paragrahvPealkiri id="fa2c4651-1450-461b-b247-f5c006bebeb7">Toimetuleku tagamise toetus</paragrahvPealkiri>
+					<loige id="para12lg1">
+						<loigeNr id="7327b403-c223-42f0-b4e4-e64b89f2f9e0">1</loigeNr>
+						<kuvatavNr id="900c961c-cd3d-455a-9d5d-da9568d3ab6f"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="3eab4003-e8db-4bbd-a07f-c000236cf6e6">
+							<tavatekst id="c600ab1e-8f75-4ae1-9693-d34a3a532b97"> Toimetuleku tagamise toetust määratakse: </tavatekst>
+						</sisuTekst>
+						<alampunkt id="para12lg1p1">
+							<alampunktNr id="dc1ce34c-246a-471e-984d-8ecf7cb372b5">1</alampunktNr>
+							<kuvatavNr id="59d15ea1-8c01-4dd9-95a1-4c188e3c817e"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="c73b663f-b83e-4e8b-ab45-a6761d597afe">
+								<tavatekst id="373aed85-7735-45b9-91d8-21c9993584ea"> eluasemekulude ja esmatarbevahendite eest tasumiseks;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para12lg1p2">
+							<alampunktNr id="496c2f5c-0bf7-4747-923d-62718f138176">2</alampunktNr>
+							<kuvatavNr id="c9763ff7-adcc-4cf2-990c-a215bfc04e9e"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="414d3ee1-8a19-486c-b696-4e088527fa44">
+								<tavatekst id="6b459048-0099-4007-8aff-b1632fc32a91">spordi- ja lastelaagrite osalustasu kompenseerimiseks;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para12lg1p3">
+							<alampunktNr id="e1d86f05-4889-42a4-b395-92f4a84564a7">3</alampunktNr>
+							<kuvatavNr id="b8cb47cc-4805-4d5e-9752-20f172f2fb24"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="a95d19a6-80bb-4e12-a936-3663121ea33a">
+								<tavatekst id="b7d4b7d2-df29-472a-b1af-d2ab265eb7ba">pereteenuste osaliseks või täielikuks kompenseerimiseks (lastekaitsespetsialisti poolt selgitatud vajadusel);</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para12lg1p4">
+							<alampunktNr id="7c837dd8-3f53-4d6c-b841-afcbbf7fd4e8">4</alampunktNr>
+							<kuvatavNr id="d8880ebc-0751-4930-b03f-ff379db628c2"><![CDATA[4) ]]></kuvatavNr>
+							<sisuTekst id="868b7e7f-96dd-4237-854a-ed29f9433293">
+								<tavatekst id="96a42485-aae7-49ab-8391-42ed9a1a1653">muudel vajaduspõhistel ja ettenägematutel asjaoludel.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para12lg2">
+						<loigeNr id="524feaaf-c71f-4e09-93b1-12c483b6a2ce">2</loigeNr>
+						<kuvatavNr id="22a466e2-a6e8-4c46-bd43-04ce8f8f4935"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="f70a9708-fc9e-410d-9b91-089e56fcded7">
+							<tavatekst id="e25945c7-4837-4575-8c4d-1ce6ac8753a9"> Toimetuleku tagamise toetust makstakse taotlejale tõendatud vajaduse korral kuni käesoleva määruse lisas kehtestatud määrani.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para12lg3">
+						<loigeNr id="76c288c5-f36b-46bc-8b01-3d91c939dfae">3</loigeNr>
+						<kuvatavNr id="df987bc0-a3c1-4b22-9ce1-2fab8dc3de83"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="40b16625-18d4-43f3-8a74-226e4f02456f">
+							<tavatekst id="ba9df448-de87-41be-8bba-df9033156073"> Osakonnal on õigus määrata toimetuleku tagamise toetust õnnetusjuhtumite või muude ettenägematute asjaolude puhul ühekordselt võttes arvesse taotleja individuaalset abivajadust sõltumata taotleja sissetulekust.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+				<paragrahv id="para13">
+					<paragrahvNr id="87e89c6b-6566-469a-a253-ac604426d002">13</paragrahvNr>
+					<kuvatavNr id="cb36d45c-93cd-4750-bd12-5964a84f471a"><![CDATA[§ 13. ]]></kuvatavNr>
+					<paragrahvPealkiri id="44094d10-f3c1-4e21-811e-41d76d2eaa5e">Vältimatu sotsiaalabi</paragrahvPealkiri>
+					<loige id="para13lg1">
+						<loigeNr id="e2ff72e7-cfec-41b4-8155-d7792eb56b88">1</loigeNr>
+						<kuvatavNr id="ab6c8990-6e4f-41eb-8898-310c106760dd"><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst id="2dd4b1a3-7a59-4708-a37a-02a01449f5d0">
+							<tavatekst id="f82a655b-b588-4012-85c8-eafbfb12d5eb"> Vältimatu sotsiaalabi toetust on õigus määrata ja maksta sotsiaaltöötajal, informeerides vallavalitsuse sotsiaalkomisjoni esimesel võimalusel.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para13lg2">
+						<loigeNr id="03daa2bd-d0ce-4425-b7e5-b6a255a0d93a">2</loigeNr>
+						<kuvatavNr id="70d087d5-1a70-4bef-b655-329ee0422499"><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst id="eb2d69f3-fbd9-4a79-a338-ef0ac7f9f2aa">
+							<tavatekst id="a12ac6b9-d2e7-472e-9752-0f80ddfd3de7">Vältimatut sotsiaalabi saab isik: </tavatekst>
+						</sisuTekst>
+						<alampunkt id="para13lg2p1">
+							<alampunktNr id="bc7259a3-cff3-4791-9300-2dbd9439cd38">1</alampunktNr>
+							<kuvatavNr id="7a4d0cfd-732a-4945-a240-311ede17615c"><![CDATA[1) ]]></kuvatavNr>
+							<sisuTekst id="83faf4aa-7fef-4de7-81c0-8579e4c9178e">
+								<tavatekst id="0e3abda2-f16c-4d76-8c50-bec45b325f7b"> kes on rahvastikuregistri andmetel Viimsi valla elanik;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para13lg2p2">
+							<alampunktNr id="f59b614b-d689-4d5b-8fb3-d4df120d8aef">2</alampunktNr>
+							<kuvatavNr id="53245acf-a736-4d5e-b51a-36f98435c698"><![CDATA[2) ]]></kuvatavNr>
+							<sisuTekst id="6636ff3d-e221-4492-baf5-c46f89b1fc5c">
+								<tavatekst id="4df62861-30c8-4b64-a81e-ec0ed80c8d7b">kelle viibimiskoht on Viimsi vallas, kuid kelle elukoht ei asu Viimsi vallas;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para13lg2p3">
+							<alampunktNr id="2a102c11-7347-4305-9fc2-bba1ea955256">3</alampunktNr>
+							<kuvatavNr id="115d35c1-bbda-4b04-b54c-cbb747c764df"><![CDATA[3) ]]></kuvatavNr>
+							<sisuTekst id="3ce0a27b-0f8f-4a54-a52f-6d85e4d9b9bb">
+								<tavatekst id="11cbed9c-a5b7-48aa-b944-bf03f7cc98e3">kes on välismaalane ja kes abi vajamise ajal asub ajutiselt Viimsi valla haldusterritooriumil;</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+						<alampunkt id="para13lg2p4">
+							<alampunktNr id="a0261fb7-9157-40d6-a90a-6687c2b76969">4</alampunktNr>
+							<kuvatavNr id="acda9e1c-8a90-4090-a8b2-35e99a189802"><![CDATA[4) ]]></kuvatavNr>
+							<sisuTekst id="2d94f18e-5d21-4ece-8550-09f3c77d08e3">
+								<tavatekst id="db8487e2-5b65-4220-8413-0a29ac74a8cb">taotluse alusel või sotsiaaltöötaja omal algatusel määramisel.</tavatekst>
+							</sisuTekst>
+						</alampunkt>
+					</loige>
+					<loige id="para13lg3">
+						<loigeNr id="74c7c4b9-2905-4c5b-8e5f-f04ea8a9b40a">3</loigeNr>
+						<kuvatavNr id="d75d0fc8-7a84-4ce1-b1bd-f66f95e41cbb"><![CDATA[(3)]]></kuvatavNr>
+						<sisuTekst id="876afb5f-6e37-4c01-ac7f-7d7486254cd2">
+							<tavatekst id="46fbc4f8-d850-448b-abc1-c33b96629150"> Vältimatut sotsiaalabi toetust määratakse, makstakse ja osutatakse isikule seni, kuni ta ei ole enam elatusvahendite kaotuse või puudumise tõttu sotsiaalselt abitus olukorras.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+		</peatykk>
+		<peatykk id="fefb1e3a-cdbc-42ea-b4b7-9d6f5a699fb2">
+			<peatykkNr id="5346a282-05ea-49c8-b98b-28db349e69f7">3</peatykkNr>
+			<kuvatavNr id="743330f6-9895-460a-b271-d9beed7cfe2a"><![CDATA[3. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="ddbc4535-def4-4b39-a7d1-21b7e60bdc86">PEREKONNA SISSETULEKUST MITTESÕLTUVAD TOETUSED</peatykkPealkiri>
+			<paragrahv id="para14">
+				<paragrahvNr id="a81a0377-44e0-4275-b6d3-43500cb24316">14</paragrahvNr>
+				<kuvatavNr id="b637d7c6-b022-40ed-951e-c5d31bfd4dbc"><![CDATA[§ 14. ]]></kuvatavNr>
+				<paragrahvPealkiri id="415a2061-adb6-4f74-b014-f108cbf6c2cc">Perekonna sissetulekust mittesõltuvate toetuste liigid</paragrahvPealkiri>
+				<loige id="para14lg1">
+					<loigeNr id="8aa19e10-c409-422c-ae08-e1bd02d86a46"/>
+					<kuvatavNr id="2e92aee0-fa9b-4f99-bbc5-a8a64229f4dc"/>
+					<sisuTekst id="80a0362d-ea49-497d-b6e5-2c7cdd55e67a">
+						<tavatekst id="fe08f3b0-e2ad-4f78-8cf3-1ba9b7c37683">Perekonna sissetulekust mittesõltuvad toetused on:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para14lg1p1">
+						<alampunktNr id="15b570f4-99ca-4f77-acab-b534e66bc64a">1</alampunktNr>
+						<kuvatavNr id="7ec3f6ca-1c1f-4949-98d7-25dc5a6577e3"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="11dcded7-75dd-4e16-82aa-d204364eecff">
+							<tavatekst id="142af3f1-733f-4f1b-87a0-001aca82fcd8">sünnitoetus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para14lg1p2">
+						<alampunktNr id="a9e84f94-4728-4470-b61a-cf197c3138a7">2</alampunktNr>
+						<kuvatavNr id="b309b7c7-b074-4522-8764-4f1d5bbb67fd"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="87cb7d17-340a-48a3-ba45-a3b92e603fcb">
+							<tavatekst id="37eb4bd5-c81e-4bea-81c6-8389647196f4"> I klassi mineva lapse toetus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para14lg1p3">
+						<alampunktNr id="97bbbb9e-4ea7-4530-b204-e4f85dd2a2a8">3</alampunktNr>
+						<kuvatavNr id="f221b87e-5653-442c-81c5-af7eaa6159de"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="2732a57e-a466-468f-8ca7-4db7ebb5df1d">
+							<tavatekst id="4e131c88-17cf-454e-be71-6b6d500b7674"> tähtpäevatoetus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para14lg1p4">
+						<alampunktNr id="31f89128-afcb-469b-b5dc-0acc3f0c978b">4</alampunktNr>
+						<kuvatavNr id="a14e3e06-8990-4e87-b03f-d214219f2f4c"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="d342051b-8850-4175-9d1a-c3a4baa20616">
+							<tavatekst id="6574ad7d-9cd1-4f1b-b179-6da64c3103c8"> matusetoetus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para14lg1p5">
+						<alampunktNr id="8aca107c-8e88-4db9-9ebe-bc328386051b">5</alampunktNr>
+						<kuvatavNr id="abb8be70-2c7d-4005-9d94-9ca766194b54"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="e6b2cbe9-5cd6-4276-93d4-ae46fe5e07b1">
+							<tavatekst id="90ded569-4cb0-4b57-b8ce-21cd20f0d2c0"> Tšernobõli AEJ avarii likvideerimisel osalenu toetus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para14lg1p6">
+						<alampunktNr id="69761530-6777-4f6b-b6f8-69f86b18e757">6</alampunktNr>
+						<kuvatavNr id="7c8a8ce5-e13c-4dd7-bae4-0758c65882f6"><![CDATA[6) ]]></kuvatavNr>
+						<sisuTekst id="89ae07ef-63cf-4115-b517-e66d260d9962">
+							<tavatekst id="9f4c650b-8397-4231-b30f-65b1e81f54e0">suurpere toetus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para14lg1p7">
+						<alampunktNr id="f24388c9-9060-410d-b105-6ec72e345df3">7</alampunktNr>
+						<kuvatavNr id="5914d5c4-1ade-4b2a-9077-80ee93db10ee"><![CDATA[7) ]]></kuvatavNr>
+						<sisuTekst id="e2d8bab0-93dd-42e3-8bfe-1a8e1f4dca63">
+							<tavatekst id="1872e8df-46e0-4ea2-9782-f1fba3cbbd90"> puudega isiku transporditoetus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para14lg1p8">
+						<alampunktNr id="d27664ae-6450-4002-ad22-417d1ab5ca72">8</alampunktNr>
+						<kuvatavNr id="dfad3078-0f42-44fb-9b0e-7ff788761b73"><![CDATA[8) ]]></kuvatavNr>
+						<sisuTekst id="c67c66b3-b880-4e2f-ba85-9f6d258b1d7a">
+							<tavatekst id="f4251dfa-6bd9-4aed-b349-0a3550416c57"> hooldajatoetus.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para15">
+				<paragrahvNr id="ae49d2ff-c3df-41dd-9a5d-38556e5fa1db">15</paragrahvNr>
+				<kuvatavNr id="0690f25d-ce5f-4451-8842-4a367c8bad47"><![CDATA[§ 15. ]]></kuvatavNr>
+				<paragrahvPealkiri id="14fb25fd-2926-4f17-a238-4191ca7434d8"> Sünnitoetus</paragrahvPealkiri>
+				<loige id="para15lg1">
+					<loigeNr id="b9db8a0e-0bc4-426f-a594-7bc3cbe4e657">1</loigeNr>
+					<kuvatavNr id="9c756192-a9ff-400c-b163-2a39678993ab"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="fde7b130-8ef4-46b6-954d-93504a4d98ba">
+						<tavatekst id="caee03e1-b76f-4918-9f61-ae9dd7f53bc0"> Lapse sünnitoetuse taotlejaks on vanem. Toetus makstakse välja kui on täidetud järgmised tingimused:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para15lg1p1">
+						<alampunktNr id="5429e679-d09e-4ce7-bac1-f64e787e752d">1</alampunktNr>
+						<kuvatavNr id="d36a4f9c-b2a2-45ff-b930-de495368b090"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="99015cff-94dd-458a-8729-3546d0dbc6f5">
+							<tavatekst id="5e3c853c-77b2-4ef5-88fd-47460af8ce9b"> mõlemad vanemad või üksikvanem on lapse sünnile eelnevalt vähemalt üks aasta olnud katkematult rahvastikuregistri andmetel Viimsi valla elanikud; </tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para15lg1p2">
+						<alampunktNr id="814ac7f9-d084-4d60-b227-5749b6a319b7">2</alampunktNr>
+						<kuvatavNr id="9c2e815f-7130-4b95-b917-ac28b5fc419f"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="37760d3a-5cb1-426b-b714-d3163050ce1d">
+							<tavatekst id="44e296dc-42b8-4dcb-9929-e88b1a74e53c">laps on rahvastikuregistri andmetel Viimsi valla elanik sünnist alates ja elab toetuse taotlejaga ühel aadressil.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para15lg2">
+					<loigeNr id="cb731a60-ee6a-4883-9e99-230e923d32b1">2</loigeNr>
+					<kuvatavNr id="6bd8f54a-e4ed-442b-9eea-3172db1e9218"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="d0dac6e6-274c-4274-826e-95e8904d5362">
+						<tavatekst id="c25d73be-f312-446c-95e8-858da42e2e96"> Mitmike sünni puhul arvestatakse sünnitoetust iga sündinud lapse kohta eraldi.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para15lg3">
+					<loigeNr id="db9a7b1f-9fed-432a-98c7-c403bd06f27d">3</loigeNr>
+					<kuvatavNr id="20867c41-a793-485f-8d02-d00024e545ad"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="26828b29-4fe7-4652-a50d-ec818d7e6147">
+						<tavatekst id="891e9620-3745-4119-b6f0-1c3649cf0330">Lapse lapsendanud isikule makstakse sünnitoetust järgmistel tingimustel:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para15lg3p1">
+						<alampunktNr id="e792878a-dffa-4397-a070-ff322f7e697d">1</alampunktNr>
+						<kuvatavNr id="8fb3e249-39e1-421a-925a-2899c3610a83"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="4c6b7f93-1711-4466-a966-0106fd5893db">
+							<tavatekst id="9dbef099-b49f-4f99-b8eb-b57fdb2a6a09">laps on registreeritud valla elanikuks ja taotleja ning tema abikaasa/elukaaslane on rahvastikuregistri andmetel Viimsi valla elanikud;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para15lg3p2">
+						<alampunktNr id="86187ca5-a798-4536-b034-64e84d6c99bf">2</alampunktNr>
+						<kuvatavNr id="23a95558-fd92-4428-9bc3-51b191c320bd"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="59543d06-dfb2-49f0-98ca-b6225062c9c2">
+							<tavatekst id="28056fc8-0751-4c9a-92f6-e445bd1c658f"> lapsendamise protsessiga on alustatud enne lapse 1-aastaseks saamist ja seda kinnitavad dokumendid on lisatud avaldusele.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para15lg4">
+					<loigeNr id="1277693f-3806-41b9-bbf7-483c3d9083fe">4</loigeNr>
+					<kuvatavNr id="77921176-1b91-42c3-864d-fc0646f61b84"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="a30d1229-eebd-450a-9492-c407cb86067f">
+						<tavatekst id="598af950-6f3f-4c51-b5e9-79c9e75a9bba"> Sünnitoetuse saamiseks tuleb esitada taotlus kolme kuu jooksul peale lapse sündi. Sünnitoetus kantakse ühe kuu jooksul taotluses esitatud arveldusarvele.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para16">
+				<paragrahvNr id="50df809a-a255-4a2a-857c-d532cc7401a0">16</paragrahvNr>
+				<kuvatavNr id="213760d9-119c-4428-84b7-ff94a579ab44"><![CDATA[§ 16. ]]></kuvatavNr>
+				<paragrahvPealkiri id="124496b7-83ca-4efd-ab83-e1e3578c3d07"> I klassi mineva lapse toetus</paragrahvPealkiri>
+				<loige id="para16lg1">
+					<loigeNr id="0508cf12-bdf2-4bee-abdf-f35e653aad16">1</loigeNr>
+					<kuvatavNr id="1405ed9e-37ca-42a7-b6f9-3d8385d4e8ec"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="0de08937-4fba-47d9-9f2e-06686cde7182">
+						<tavatekst id="0407a335-1b7a-4330-b9ff-3d8f221670ec"> I klassi mineva lapse toetust makstakse vanemale tingimusel, et laps ja lapse mõlemad vanemad või üksikvanem on taotlemisele eelneva kalendriaasta 31. detsembrist olnud katkematult rahvastikuregistri andmetel Viimsi valla elanikud.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para16lg2">
+					<loigeNr id="0d18457e-d063-4a73-a644-e6a08ae83a08">2</loigeNr>
+					<kuvatavNr id="a12b4748-04c5-47b9-bb86-0fc8fa87f1ca"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="a3246fef-6795-41ce-a3d0-73dddf95ffb8">
+						<tavatekst id="88b99937-1f52-446c-ad58-d30414442c0a"> I klassi mineva lapse toetuse saamiseks tuleb esitada taotlus Viimsi haridusteenuste haldamise infosüsteemis ARNO lapse I klassi minemise aastal ajavahemikul 1. septembrist kuni 30. septembrini.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para16lg3">
+					<loigeNr id="4ab86a06-ca37-4b73-a918-61dd8378a6ca">3</loigeNr>
+					<kuvatavNr id="082896af-bd67-43cc-a92c-e48c1c26868a"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="99c44e98-b951-4b6c-a2ce-be0089ba22ae">
+						<tavatekst id="e43c958a-a03a-4879-b394-b36304bccb14"> I klassi mineva lapse toetus makstakse taotluses esitatud arveldusarvele 1. novembriks.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para17">
+				<paragrahvNr id="01cb6908-b5ba-499b-b7ef-9f597232d016">17</paragrahvNr>
+				<kuvatavNr id="98d8389c-1acb-4750-8b2c-9355b1258e55"><![CDATA[§ 17. ]]></kuvatavNr>
+				<paragrahvPealkiri id="d6b231a7-d987-473f-881c-35e3087db5f0">Tähtpäevatoetus</paragrahvPealkiri>
+				<loige id="para17lg1">
+					<loigeNr id="a3cd9d18-2e78-4293-acf5-5068f2035f26">1</loigeNr>
+					<kuvatavNr id="de0e8470-7b3b-4aa7-9b79-1f64e5c006fa"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="0a7e148b-3cdb-4f24-92b5-e5aa6e4a95fc">
+						<tavatekst id="b040c603-28ab-4a5c-baec-3ebcaf6ac511"> Tähtpäevatoetust makstakse isikule, kes on rahvastikuregistri andmetel Viimsi valla elanik:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para17lg1p1">
+						<alampunktNr id="2eb84654-4688-46ac-9a84-2f5d88809747">1</alampunktNr>
+						<kuvatavNr id="430a091d-9d75-46bd-bf54-47827036cb6e"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="e4985db3-17e2-4ea7-9501-dcf995fcc3ea">
+							<tavatekst id="92a6903a-c6e9-4f5a-83bb-8f6bfe7078a3">70-ndaks, 75-ndaks, 80-ndaks ja 85-ndaks sünnipäevaks;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para17lg1p2">
+						<alampunktNr id="91a518ab-2384-4a7e-844f-40cb339787d9">2</alampunktNr>
+						<kuvatavNr id="a9e66c35-c981-4676-86cf-a55e02a0ea23"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="04ebb1a1-d401-40f1-b75d-f3286aace6c0">
+							<tavatekst id="ab982b41-90e8-45d3-a07d-8fbf7525bf6f">90-aastastele ja vanematele isikutele igaks sünnipäevaks;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para17lg1p3">
+						<alampunktNr id="11c28fe7-425f-4067-83b7-6e836301d58d">3</alampunktNr>
+						<kuvatavNr id="d2c0118a-adf3-4d8c-a752-3eabdcd44349"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="b4840a4b-adcf-4bee-90f8-a7b4fae0eff1">
+							<tavatekst id="2057e4d5-6854-41dd-9bc8-f0b9a0f36ca4">kuld- või briljantpulmadeks.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para17lg2">
+					<loigeNr id="0222ae49-4da1-4e26-b98d-ce6fd1e9eb3a">2</loigeNr>
+					<kuvatavNr id="26f0efe0-f4af-4f08-8222-54ee1cbcd57d"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="5dbda39c-dfa4-41a8-ba9f-0cd433c4944c">
+						<tavatekst id="338afaa2-2806-46ba-a173-fd1d432272a3">Tähtpäevatoetus kantakse toetuse saaja arveldusarvele. 90 ja vanematele isikutele viiakse tähtpäevatoetus võimalusel vallavalitsuse poolt koju.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para17lg3">
+					<loigeNr id="60f6bd13-b05b-488a-8275-cc090b0c5e7f">3</loigeNr>
+					<kuvatavNr id="01d26160-b4f6-4bff-ba6d-1526dba7c068"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="73905d83-42e1-4e81-8282-f1bc6803973a">
+						<tavatekst id="796d78cc-e640-4191-a5c1-317c9264b3ff"> Kuld- või briljantpulmade puhul tähtpäevatoetuse saamiseks tuleb esitada taotlus.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para17lg4">
+					<loigeNr id="ce83dec6-cb19-4c58-b87e-cde9ef28cff2">4</loigeNr>
+					<kuvatavNr id="1378a3b6-ec57-4be4-a44d-56cb56b3ff7e"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="e0348edb-43f8-4424-8754-3d4d0258778e">
+						<tavatekst id="7153322e-07e0-4995-8d37-fc1358a8a3c9">Tähtpäevatoetuse määramise sünnipäeva puhul algatab sotsiaaltöötaja.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para18">
+				<paragrahvNr id="5d2cc912-8717-4508-b1b6-a5cafe7c3899">18</paragrahvNr>
+				<kuvatavNr id="caaf90e2-41f4-4d22-b2dd-9f53d2ff7606"><![CDATA[§ 18. ]]></kuvatavNr>
+				<paragrahvPealkiri id="0726672d-4ea7-4687-9a68-2dc364b2487f">Matusetoetus</paragrahvPealkiri>
+				<loige id="para18lg1">
+					<loigeNr id="18fb49bd-ff55-456b-a463-ecf492784163"/>
+					<kuvatavNr id="0b1581b1-932e-45ec-a674-0a6877260f33"/>
+					<sisuTekst id="d726f078-8024-450a-8764-af96ea9a39d7">
+						<tavatekst id="30c1910c-a97f-4db4-8894-ef0cf8488f14">Matusetoetust makstakse rahvastikuregistri andmetel Viimsi valla elaniku surma korral. Matusetoetust makstakse taotluse alusel isikule, kes kannab matuse korraldamisega seotud kulud.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para19">
+				<paragrahvNr id="4e5db594-e04b-4e66-aac7-b8377de38651">19</paragrahvNr>
+				<kuvatavNr id="8ce9bc11-f570-485d-be64-cf7f258a6bee"><![CDATA[§ 19. ]]></kuvatavNr>
+				<paragrahvPealkiri id="1c4e6df0-55a2-4476-bf16-6cbf3ce45366">Tšernobõli AEJ avarii likvideerimisel osalenu toetus</paragrahvPealkiri>
+				<loige id="para19lg1">
+					<loigeNr id="31b8aab0-a79b-4ad5-8664-cb439cd7019b">1</loigeNr>
+					<kuvatavNr id="51602e1e-f5b4-4eb4-87ec-2e34c6a2f048"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="421abb3f-6a4e-4b49-b949-06b007307c1c">
+						<tavatekst id="636e9f30-7f37-47b7-9d0e-eeb157fb7f3b">Tšernobõli AEJ avarii likvideerimisel osalenu toetust makstakse isikule, kes on rahvastikuregistri andmetel Viimsi valla elanik ning kes on osalenud Tšernobõli AEJ avarii likvideerimisel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para19lg2">
+					<loigeNr id="fbd50688-be0c-4e43-8813-9447963e792c">2</loigeNr>
+					<kuvatavNr id="309efd6b-5f28-4a5f-83e7-6bda5f79bced"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="a79d0249-4516-416f-8729-0b536eae89dd">
+						<tavatekst id="3c46975c-eb15-4243-8306-05916ef64fa7"> Esmasel taotlemisel tuleb esitada Tšernobõli AEJ avarii likvideerimisel osalemist tõendav dokument, edaspidi laekub toetus automaatselt taotluse esitanud isikule hiljemalt veebruarikuus.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para20">
+				<paragrahvNr id="3804dfbf-6786-45f9-8daa-34fcb3eaee88">20</paragrahvNr>
+				<kuvatavNr id="26ad500b-f803-4843-b009-83bad6471ce9"><![CDATA[§ 20. ]]></kuvatavNr>
+				<paragrahvPealkiri id="d0bf9cb5-acd5-4c3a-8912-08da0727a649">Suurpere toetus</paragrahvPealkiri>
+				<loige id="para20lg1">
+					<loigeNr id="5a27e77c-e6be-476c-8394-ff926cba4cf1">1</loigeNr>
+					<kuvatavNr id="e3af73b5-e475-4c14-988a-0dd3005c1046"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="416a5c05-3c7c-4b8b-8693-b63b18211c38">
+						<tavatekst id="8ae3dd96-9d27-4d6b-a342-1f982ea96a01"> Suurpere toetust makstakse üks kord aastas tingimusel, et lapsed ja mõlemad vanemad, lapsi kasvatavad isikud või üksikvanem on rahvastikuregistri andmetel katkematult Viimsi valla elanikud eelmise kalendriaasta 31. detsembrist.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para20lg2">
+					<loigeNr id="62fb297b-622f-411f-bea7-d643078b10b2">2</loigeNr>
+					<kuvatavNr id="622eb47a-43fe-444f-b934-4994e7284801"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="b4a87a99-fed9-4d9d-8c4d-89dd6c4e1617">
+						<tavatekst id="f34c122f-0a9f-4ddc-8c6a-7a27611bf8b6"> Esmakordsel taotlemisel tuleb esitada taotlus ja edaspidi laekub toetus maikuu jooksul.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para21">
+				<paragrahvNr id="f9e552e7-775a-4996-8318-f3349cfb986d">21</paragrahvNr>
+				<kuvatavNr id="142ff9a4-37e9-4702-8514-1d7af9a59618"><![CDATA[§ 21. ]]></kuvatavNr>
+				<paragrahvPealkiri id="149b2177-fcf5-4382-9c67-e65cfec5fb7e">Puudega isiku transporditoetus</paragrahvPealkiri>
+				<loige id="para21lg1">
+					<loigeNr id="3fc35a4c-d472-4bdb-a1ee-e8e9fd87b0ba">1</loigeNr>
+					<kuvatavNr id="2a34c14d-03b6-4ad3-9bff-f3f40dde3df4"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="b257bde8-6142-4ae1-bb87-252ae365d522">
+						<tavatekst id="7a517299-8110-436e-9de6-9dafc78de7c2">Puudega isiku transporditoetust võib taotleda puudega isik kelle puue takistab isikliku või ühissõiduki kasutamist transpordiks kooli, päevakeskusesse, raviasutusse või muudel vajalikel juhtudel. Taotluse võib esitada toetust vajav isik, tema seaduslik esindaja, eestkostja või sotsiaaltöötaja.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para21lg2">
+					<loigeNr id="3491121c-0341-4f08-8ac2-6faef66a0611">2</loigeNr>
+					<kuvatavNr id="5d062ee7-310f-4555-a5e5-938e5a826054"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="bbbc4228-1d5d-4dcd-a7ff-9d1ce91ad15e">
+						<tavatekst id="25b5ca0d-8ce9-471e-a671-7a8e0d88a90c">Puudega isiku transporditoetuse taotlusele tuleb lisada abivajadust tõendav dokument, millest nähtub transporditoetuse vajadus.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para21lg3">
+					<loigeNr id="0c3dae10-a3f1-4c69-8cb4-0a3ef357e6e4">3</loigeNr>
+					<kuvatavNr id="a0be1b44-2c1d-41bb-88a2-17b193052d89"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="41c97903-64f4-421e-9d50-c0d6562b1dfe">
+						<tavatekst id="5ca1643f-cd30-4bea-bcdb-e9b1972d405c">Toetuse määramise ja perioodi otsustab osakond taotluse alusel, võttes arvesse taotleja individuaalset transpordivajadust.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para22">
+				<paragrahvNr id="47e53f0c-0838-4d57-89ed-a150c7a255c5">22</paragrahvNr>
+				<kuvatavNr id="054cb635-7751-4ec8-a75e-81a0a856798b"><![CDATA[§ 22. ]]></kuvatavNr>
+				<paragrahvPealkiri id="6c73a494-7970-4124-995e-7d132be98077">Hooldajatoetus</paragrahvPealkiri>
+				<loige id="para22lg1">
+					<loigeNr id="bd98157f-fc39-47be-8884-b3e2c0ac2c80">1</loigeNr>
+					<kuvatavNr id="2b057c28-ef26-434d-866b-30814da7706a"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="c035c55a-0375-428d-8f78-68eaab8f61da">
+						<tavatekst id="86708f50-e744-4aea-a6ea-b8ebce803e93"> Hooldajatoetust saab taotleda isik, kes on määratud osakonna poolt raske või sügava puudega täisealise isiku hooldajaks või keskmise, raske või sügava puudega lapse hooldajaks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para22lg2">
+					<loigeNr id="f32f2237-699b-4db6-8005-6157303fe50c">2</loigeNr>
+					<kuvatavNr id="b733011a-1123-4274-b087-0ab4efbb3391"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="5a6fdf06-e2f8-4894-8108-aba70808657d">
+						<tavatekst id="dd014b72-15c4-4e18-bc8b-25fd96126d14"> Hooldajatoetust makstakse igakuiselt alates osakonna poolt hooldajaks määramisele järgneva kuu jooksul hooldaja poolt taotluses esitatud arveldusarvele või sularahas.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para22lg3">
+					<loigeNr id="9e8f962c-1fda-49c8-a0fc-eeddfe32db52">3</loigeNr>
+					<kuvatavNr id="e0dce4cb-83e3-41a5-a690-b0893003d7a5"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="99e62f4e-0d90-482c-988c-1f3901b47978">
+						<tavatekst id="175e3370-64f5-43be-a00b-06e0c5ec5a8f"> Hooldajatoetust makstakse kuni hoolduse seadmise lõppemiseni. Kui hooldajatoetuse saamise õigus lõpeb kuu keskel, makstakse toetus selle kuu eest välja täies ulatuses.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para22lg4">
+					<loigeNr id="4d1188c3-381a-4f1b-a89b-f8c108ca7abe">4</loigeNr>
+					<kuvatavNr id="7be24b5a-6721-4388-a66b-57d2f5200088"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="733c6ff9-a199-45a4-bb6f-c152f4aa6b31">
+						<tavatekst id="b889c901-f2e0-4669-842a-0cce99ef9522"> Hooldajatoetus määratakse hooldajale osakonna otsusega taotluse alusel.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para23">
+				<paragrahvNr id="f1f0b76c-dd28-46be-8a50-26f20dda71ea">23</paragrahvNr>
+				<kuvatavNr id="a8289d7a-481f-4bce-afde-49c5364c2705"><![CDATA[§ 23. ]]></kuvatavNr>
+				<paragrahvPealkiri id="7a45906e-7be2-4e9c-a2e6-6f7a166faf27">Erijuhud</paragrahvPealkiri>
+				<loige id="para23lg1">
+					<loigeNr id="b247577d-494e-415e-a504-bf5fe10e66aa"/>
+					<kuvatavNr id="70ad4d23-32d4-4056-9d04-90723d65aeb8"/>
+					<sisuTekst id="5137ad2d-7326-4f06-a844-0e0586f1f5fb">
+						<tavatekst id="f3917d80-97c5-4420-b9b3-f679dc8575e9">Vallavalitsusel on õigus eelarveliste vahendite olemasolul määrata toetusi kindlale sihtgrupile, mis makstakse välja sotsiaal- ja tervishoiuosakonna poolt koostatud nimekirja alusel.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="2baf6e74-cae3-4e95-a88e-0ef6bff17330">
+			<peatykkNr id="dc0721b8-93c6-4006-8a4b-3338f2c828a7">4</peatykkNr>
+			<kuvatavNr id="30be36a6-1c49-48c6-a413-ea8f8e1a41d7"><![CDATA[4. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="16a80c06-5b63-475c-809f-865b34cd6111">VAIDEMENETLUS JA JÄRELEVALVE</peatykkPealkiri>
+			<paragrahv id="para24">
+				<paragrahvNr id="ce2ee03b-3c37-40d8-a58d-af9a90498e4d">24</paragrahvNr>
+				<kuvatavNr id="4b91d620-7f51-4584-a38b-321031d737e3"><![CDATA[§ 24. ]]></kuvatavNr>
+				<paragrahvPealkiri id="c67c5c22-1ac4-4090-a8b5-c7b46eeadc1b">Kaebuste lahendamine</paragrahvPealkiri>
+				<loige id="para24lg1">
+					<loigeNr id="bc59c6aa-0b4e-4282-8522-a96dd33fd60e">1</loigeNr>
+					<kuvatavNr id="b59a2ada-5bec-45d7-bb89-8cacdd660a55"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="5b77b7e0-2b66-4837-a555-00b46bcaa5f1">
+						<tavatekst id="6e7d5ec3-7287-4ed9-a742-35a7ce2d9cb3"> Käesoleva määruse nõuetele vastavust jälgivad ja toetuseid saavate isikute kaebusi lahendavad osakonna ametnikud, kaasates vajaduse korral vastava ala spetsialiste.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para24lg2">
+					<loigeNr id="5ca764bb-5ed2-4ed0-b241-4ca12b58749f">2</loigeNr>
+					<kuvatavNr id="436b40df-8dfe-4090-9536-2a6ae73dcdfa"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="aa7603f2-be4a-4591-be94-7ac43eff76b0">
+						<tavatekst id="3e47393e-bfe6-45a4-96af-72c036ea331b">Viimsi valla eelarvest rahastatava toetuse taotlejal on õigus esitada haldusmenetluse seaduses sätestatud korras vaie vallavalitsusele või kaebus halduskohtusse.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para24lg3">
+					<loigeNr id="f837d64d-7347-452e-a9bb-44803d8d8fb0">3</loigeNr>
+					<kuvatavNr id="a3fb1d30-b9ec-4b20-86ed-d60650706f2b"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="4387f8b8-4dcf-41aa-94c3-2d0a794bdb52">
+						<tavatekst id="996fe226-ced9-444e-bce4-c1e3048f5a31"> Vaie lahendatakse 30 päeva jooksul vaide vallavalitsusele esitamisest arvates. Vaide läbivaatamise tähtaega võib pikendada haldusmenetluse seaduses sätestatud korras.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para25">
+				<paragrahvNr id="1240a3dd-0dd9-4f29-b008-6b997cf9f2dc">25</paragrahvNr>
+				<kuvatavNr id="90af7f4d-5be7-4abd-9d27-92fe8c90257c"><![CDATA[§ 25. ]]></kuvatavNr>
+				<paragrahvPealkiri id="35e3b565-0ae7-44bc-8982-bcb3c0431d3b">Teenistuslik järelevalve</paragrahvPealkiri>
+				<loige id="para25lg1">
+					<loigeNr id="1d378ae0-2712-4149-9dfc-69ce233962ee"/>
+					<kuvatavNr id="b83d56ee-660a-4a33-a1e7-6852d946ecd2"/>
+					<sisuTekst id="897ca27c-82ec-4d1f-8002-ae63c3a9022b">
+						<tavatekst id="e5a035c4-5699-44ee-94ef-e666b9fb4965">Teenistuslikku järelevalvet teenistujate ja vallavalitsuse sotsiaalkomisjoni tegevuse õiguspärasuse ja otstarbekuse üle teostab vallavalitsus. </tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para26">
+				<paragrahvNr id="ce2ec45d-61eb-41c2-a14d-69f4c80a4bec">26</paragrahvNr>
+				<kuvatavNr id="a2d90d32-50b0-4f2a-bd0b-2c9c7d6287fd"><![CDATA[§ 26. ]]></kuvatavNr>
+				<paragrahvPealkiri id="6af4c2fb-38e0-4fde-8cc0-22178239a3be">Omavalitsuslik haldusjärelevalve</paragrahvPealkiri>
+				<loige id="para26lg1">
+					<loigeNr id="cd678824-2d24-430a-902e-0aaf8bc5f4bd"/>
+					<kuvatavNr id="a83e97b7-0a9b-4d82-8275-a70581887f03"/>
+					<sisuTekst id="d7b21e63-39a9-4620-9246-0fcecfe9b469">
+						<tavatekst id="38cd5507-2b83-4428-a74b-11c9da4ea6c5">Määrusega sätestatud nõuete täitmist ning osakonna ja vallavalitsuse tegevuse seaduslikkust, otstarbekust ja tulemuslikkust sotsiaalhoolekandelise abi korraldamisel Viimsi vallas kontrollib ja hindab Viimsi Vallavolikogu revisjonikomisjon. </tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="8653a9c6-1756-4283-8023-45ff0d996ce8">
+			<peatykkNr id="54814133-d313-44a9-84a0-559a9a185fe3">5</peatykkNr>
+			<kuvatavNr id="6e08dbb2-65b1-472b-9ec7-54a1eb987b0e"><![CDATA[5. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="1bfe434d-60fd-46bb-b31e-25e876f21158">RAKENDUSSÄTTED</peatykkPealkiri>
+			<paragrahv id="para27">
+				<paragrahvNr id="6826c184-df0b-4073-a422-37d3f3db1be7">27</paragrahvNr>
+				<kuvatavNr id="6446b0d1-f3da-4b33-b78a-0ef4c36a8bb4"><![CDATA[§ 27. ]]></kuvatavNr>
+				<paragrahvPealkiri id="6fc30962-1b3f-41bb-8e00-b25c87d0ff71">Määruse rakendamine</paragrahvPealkiri>
+				<loige id="para27lg1">
+					<loigeNr id="49491933-9f9b-481c-9ee4-3fbe309fb16c">1</loigeNr>
+					<kuvatavNr id="fc128fd7-8b1e-478a-99e2-2b0fccc2f722"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="a948d604-0ed6-4ed2-ab06-2a73344655fb">
+						<tavatekst id="21395b61-1847-4292-a3de-600bbd723b82">Määrus jõustub kolmandal päeval peale Riigi Teatajas avalikustamist.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para27lg2">
+					<loigeNr id="de9287a5-0a5e-4708-9b8a-c98c76654f48">2</loigeNr>
+					<kuvatavNr id="f4ff6afd-9121-4ee9-af43-290936246a1a"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="185186fb-c961-4361-8fb0-1dd64c95aded">
+						<tavatekst id="ec5aabee-50bb-43c3-993a-8346b82b88e1"> Seni teenuse osutamiseks antud haldusaktid jäävad kehtima neis märgitud tähtajani või kehtetuks tunnistamiseni ja sõlmitud lepingud neis kokku lepitud tähtajani või lepingu lõpetamiseni.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para28">
+				<paragrahvNr id="67d51aff-ee5b-4707-9d4a-ff859543546b">28</paragrahvNr>
+				<kuvatavNr id="1066e730-346b-4ae0-8280-e9600d80e373"><![CDATA[§ 28. ]]></kuvatavNr>
+				<paragrahvPealkiri id="3de93318-59d2-46bf-8f5a-1cb2b3cff395">Õigusaktide kehtetuks tunnistamine</paragrahvPealkiri>
+				<loige id="para28lg1">
+					<loigeNr id="b17baf24-bd55-454e-a8e5-7f54b5f4940e"/>
+					<kuvatavNr id="48cf2a0a-1118-4433-95ca-3238cdbeeb7b"/>
+					<sisuTekst id="a6f037d7-3bb8-4a31-897b-7a02ffe80c38">
+						<tavatekst id="73300fe9-7cbe-4dfa-9be4-2a58f3196f12">[Käesolevast tekstist välja jäetud.]<reavahetus/> </tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+	</sisu>
+	<lisaViide id="8869e2ac-5ab3-4946-8e9e-ba36680314a1">
+		<lisaViit id="56184d8c-007b-4b43-9154-a16582a85a7f">
+			<sisuTekst id="c2c702ba-4ed6-47e7-930f-c8ef78bb8c23">
+				<fail failKuvamine="viitena" failNimi="Lisa 2.pdf" failVorming="pdf" id="d9bd0330-2b70-4855-9f44-1f7aa05f30ff">JVBERi0xLjcNCiW1tbW1DQoxIDAgb2JqDQo8PC9UeXBlL0NhdGFsb2cvUGFnZXMgMiAwIFIvTGFu
+ZyhldCkgL1N0cnVjdFRyZWVSb290IDE3IDAgUi9NYXJrSW5mbzw8L01hcmtlZCB0cnVlPj4vTWV0
+YWRhdGEgNjEgMCBSL1ZpZXdlclByZWZlcmVuY2VzIDYyIDAgUj4+DQplbmRvYmoNCjIgMCBvYmoN
+Cjw8L1R5cGUvUGFnZXMvQ291bnQgMS9LaWRzWyAzIDAgUl0gPj4NCmVuZG9iag0KMyAwIG9iag0K
+PDwvVHlwZS9QYWdlL1BhcmVudCAyIDAgUi9SZXNvdXJjZXM8PC9Gb250PDwvRjEgNSAwIFIvRjIg
+OSAwIFIvRjMgMTEgMCBSPj4vRXh0R1N0YXRlPDwvR1M3IDcgMCBSL0dTOCA4IDAgUj4+L1Byb2NT
+ZXRbL1BERi9UZXh0L0ltYWdlQi9JbWFnZUMvSW1hZ2VJXSA+Pi9NZWRpYUJveFsgMCAwIDU5NS4z
+MiA4NDEuOTJdIC9Db250ZW50cyA0IDAgUi9Hcm91cDw8L1R5cGUvR3JvdXAvUy9UcmFuc3BhcmVu
+Y3kvQ1MvRGV2aWNlUkdCPj4vVGFicy9TL1N0cnVjdFBhcmVudHMgMD4+DQplbmRvYmoNCjQgMCBv
+YmoNCjw8L0ZpbHRlci9GbGF0ZURlY29kZS9MZW5ndGggMTc5Mz4+DQpzdHJlYW0NCnicvZpLc9s2
+EIDvmtF/wFHsRDCeJDj16BBbyaSTHDrxtIdMD0zN2opsSTVF/WL/hd5y6O7yIcoiZLcm4hkZIAhg
+AeyHXTzIzj5vshU7Pz/7dPHhkomzj9nqhk3y7XQ+j2Yz9vbygv09Hgku8M+5RDLBbGq5VswZyVPF
+HvLx6Pef2Go8ens1Hp29k0xKLgy7+ms8wtyCSWZSg0mJTXnMru4h2/vPCbspoGZ2Q0+ufno/Hn2Z
+fFxE8aTImIr+YFe/jEdzqPjX8WiAhliluek2hOTXYtmhODb/dMHY4QDJUAOkYq4US4zl4rhhv0Vm
+sogs/e6jqZ4UGGPR1NCr7A6G6w5Sst060hTD98v1DTyVwcawv60vGEQVaBC1szxliRbcmqN2SQ2D
+wXHIRNzElICY0oOPkDGCp87XEhZAnuHSJ46AeXyMpJk8YLQs8hqSnK0iKSA1CdAmC0lQordRbAq1
+S6fY1Z9fUAmhCH3R+PcRqgcgVPU0LFFcKMNiKOh803xa/7svUDkUpZm+i6TGqe5Ad/CYsTyPpKwf
+HnY5KviuLV1g7i1oNv+/qv3vqjjVYwc0HKuiWEOXt5VFy7K2O5Syhh7ZKloWTbYcu0XDUZSQVj6U
+mEBEX78Ko762K+G4Tnxtf8W49iFnAhnFRgHWcJxwT60iH37mO8O180osvq9AWSv08FvU45rApWhZ
+tNrVFjIJlpfIBJmt9RbI/3nwxspUc6l9jR1YxzawjjWM/FEfVBgVq9gn8ENrspa0KCkKVDaDH7ki
+XJqscMLuMnaXQbgpCAFWzfwYidANEEyCe2igABp0DUNl3SBteCJUIrlJPX0bGIg4MBBS88QddUIH
+nPT9EisOtnm2oAhq701LyV2bRhrNb0HLa0QG1A9z/hu+Zsv1ulnXFjUpaDww2zViUQFCIBVbwq3J
+k4GngNR78IVUOmeQnHQpIxdSAVuicaoW1/EkNtGevGb5RHaoyoy2qUThxfAUGqtwCekZz4ExTMJi
+aMHGquPljgmHoUfiIYatXfkWTbuPTa5boCuZlMggqXqNYGZb4IlBeuO8TkMEj9IgO5aqaWgh9Ifu
+u9aOQ1FP3wdGxgVGBsL4qT8+2DZYPjw8kkvjkR1i21Z7UY88sjbZbtH1m8crpgqrA+C06F070bsM
+HW5R20VENoD/hKVUqoceRQ+GaWAMwQqL5BSGcTgM+2SHxLBfHrHyeNvYuc0jxPJd1iLYawKtaFd0
+R4u2uGN0yR5+zTuHVvRug8m3ZZ38pimyLPGg63X7vF5i04TL1DcA0+ENtRA88coL4BiE5qn0ydv9
+s2gG+Ctq6KExNjj2lWtctdpvdEIWKbuOujvyQ60dcBB3MQizkTOwbE8HnzW+Y+BQB+WN3dGSW3vK
+7iTh7E6f7JB2p7evULnRCXX1PhtcdJqCb/J2tXat+Wkbp+iI4kdvTgVsC5KhdeSjPNRtR0M5vnm6
+xz6g3IWjvE/2aynXJyjvlXcuhE6EmINHMG5m4NHa2VRjKOGnZhg1Vojksoq+m1kMLigQejbFMspQ
+UVXVoC73b4yBWlIMZ7Jbe13Bk3oOazfzumz9mFAbqbTDmvANhKIOY3pt99U0tVpVvzUHXcA6JKVY
+h5khTKpH1QqClLjOgDVgJgk9kiBUvq2eqR43k6o7doqKuvPDgagbYOOZlFXl+zGC2uV8NrhPUorb
+oVHzTdZQt2r1ZDWp4Do9NVnTYJO1V3ZAl+SRV5Stjd/kTWy//jlxnC0VZHftliyBRRDDQ6hqO4aJ
+YbdkxvE4HXoYfSAOcXl2CsQ45e7knkyKACQmFRl9wkOQiKpyXnn7w09aiOdb2BlBsCw7B+nIE34A
+QAdb7QlCkeOJQc85wrJcLSJZbwTo5PNHXL/g1gS2XgMPq4/MwHdsxqRcn1y1Q9FgZPYJD0nms53d
+lOV1fpMx3EIuikWEG3iyelvg8KHaWBabNcRgU7+oWbSAJQVgPdMJlY0tBS2MFmG01btlCfmCgCk1
+Ou2BR9UHZuCLQaMcdycX2lKFA7NPeEgw++Xd4qdRazpAQqdbHWxsCTZ9cHqfkxNedixm57oqro9l
+i2VOd0Nx9/ik+F7Z28Hdt3N4puHp2C47PIEp21OZmyzqXmlscK2Rs1u8SUu6o4CDkjOJn5tYUXfr
+yXlNff4W6LLL+ns39EwLfONq8JMReXKm6XAzrU94yJnWL+9FM607kZo1y4aWLxW/NJOqm9pH+ho0
+zzqnxIDxgr4qAI8C4vBy7om8mmlRLWKUB2UsGeAo0mj8vGtgdfiIDnx5qwGu+PRy2wQjuld4QKI9
+8l7qOxoHIOnjlg0aVOLsGp3F3hpXVyrPUI2F183nvMdg2+fBHl4r+FGCHVopPq4D3zDrOMEPv0L3
+IvAFpTYxj5+1MdSyfwGt4qGyDQplbmRzdHJlYW0NCmVuZG9iag0KNSAwIG9iag0KPDwvVHlwZS9G
+b250L1N1YnR5cGUvVHJ1ZVR5cGUvTmFtZS9GMS9CYXNlRm9udC9BcmlhbE1UL0VuY29kaW5nL1dp
+bkFuc2lFbmNvZGluZy9Gb250RGVzY3JpcHRvciA2IDAgUi9GaXJzdENoYXIgMzIvTGFzdENoYXIg
+MjUyL1dpZHRocyA1OSAwIFI+Pg0KZW5kb2JqDQo2IDAgb2JqDQo8PC9UeXBlL0ZvbnREZXNjcmlw
+dG9yL0ZvbnROYW1lL0FyaWFsTVQvRmxhZ3MgMzIvSXRhbGljQW5nbGUgMC9Bc2NlbnQgOTA1L0Rl
+c2NlbnQgLTIxMC9DYXBIZWlnaHQgNzI4L0F2Z1dpZHRoIDQ0MS9NYXhXaWR0aCAyNjY1L0ZvbnRX
+ZWlnaHQgNDAwL1hIZWlnaHQgMjUwL0xlYWRpbmcgMzMvU3RlbVYgNDQvRm9udEJCb3hbIC02NjUg
+LTIxMCAyMDAwIDcyOF0gPj4NCmVuZG9iag0KNyAwIG9iag0KPDwvVHlwZS9FeHRHU3RhdGUvQk0v
+Tm9ybWFsL2NhIDE+Pg0KZW5kb2JqDQo4IDAgb2JqDQo8PC9UeXBlL0V4dEdTdGF0ZS9CTS9Ob3Jt
+YWwvQ0EgMT4+DQplbmRvYmoNCjkgMCBvYmoNCjw8L1R5cGUvRm9udC9TdWJ0eXBlL1RydWVUeXBl
+L05hbWUvRjIvQmFzZUZvbnQvQXJpYWwtQm9sZE1UL0VuY29kaW5nL1dpbkFuc2lFbmNvZGluZy9G
+b250RGVzY3JpcHRvciAxMCAwIFIvRmlyc3RDaGFyIDMyL0xhc3RDaGFyIDExOC9XaWR0aHMgNjAg
+MCBSPj4NCmVuZG9iag0KMTAgMCBvYmoNCjw8L1R5cGUvRm9udERlc2NyaXB0b3IvRm9udE5hbWUv
+QXJpYWwtQm9sZE1UL0ZsYWdzIDMyL0l0YWxpY0FuZ2xlIDAvQXNjZW50IDkwNS9EZXNjZW50IC0y
+MTAvQ2FwSGVpZ2h0IDcyOC9BdmdXaWR0aCA0NzkvTWF4V2lkdGggMjYyOC9Gb250V2VpZ2h0IDcw
+MC9YSGVpZ2h0IDI1MC9MZWFkaW5nIDMzL1N0ZW1WIDQ3L0ZvbnRCQm94WyAtNjI4IC0yMTAgMjAw
+MCA3MjhdID4+DQplbmRvYmoNCjExIDAgb2JqDQo8PC9UeXBlL0ZvbnQvU3VidHlwZS9UeXBlMC9C
+YXNlRm9udC9BcmlhbE1UL0VuY29kaW5nL0lkZW50aXR5LUgvRGVzY2VuZGFudEZvbnRzIDEyIDAg
+Ui9Ub1VuaWNvZGUgNTYgMCBSPj4NCmVuZG9iag0KMTIgMCBvYmoNClsgMTMgMCBSXSANCmVuZG9i
+ag0KMTMgMCBvYmoNCjw8L0Jhc2VGb250L0FyaWFsTVQvU3VidHlwZS9DSURGb250VHlwZTIvVHlw
+ZS9Gb250L0NJRFRvR0lETWFwL0lkZW50aXR5L0RXIDEwMDAvQ0lEU3lzdGVtSW5mbyAxNCAwIFIv
+Rm9udERlc2NyaXB0b3IgMTUgMCBSL1cgNTggMCBSPj4NCmVuZG9iag0KMTQgMCBvYmoNCjw8L09y
+ZGVyaW5nKElkZW50aXR5KSAvUmVnaXN0cnkoQWRvYmUpIC9TdXBwbGVtZW50IDA+Pg0KZW5kb2Jq
+DQoxNSAwIG9iag0KPDwvVHlwZS9Gb250RGVzY3JpcHRvci9Gb250TmFtZS9BcmlhbE1UL0ZsYWdz
+IDMyL0l0YWxpY0FuZ2xlIDAvQXNjZW50IDkwNS9EZXNjZW50IC0yMTAvQ2FwSGVpZ2h0IDcyOC9B
+dmdXaWR0aCA0NDEvTWF4V2lkdGggMjY2NS9Gb250V2VpZ2h0IDQwMC9YSGVpZ2h0IDI1MC9MZWFk
+aW5nIDMzL1N0ZW1WIDQ0L0ZvbnRCQm94WyAtNjY1IC0yMTAgMjAwMCA3MjhdIC9Gb250RmlsZTIg
+NTcgMCBSPj4NCmVuZG9iag0KMTYgMCBvYmoNCjw8L0F1dGhvcihMaWluYSBNdWd1KSAvQ3JlYXRv
+cij+/wBNAGkAYwByAG8AcwBvAGYAdACuACAAVwBvAHIAZAAgAGYAbwByACAATQBpAGMAcgBvAHMA
+bwBmAHQAIAAzADYANSkgL0NyZWF0aW9uRGF0ZShEOjIwMjMwNjE5MTE0MDI2KzAzJzAwJykgL01v
+ZERhdGUoRDoyMDIzMDYxOTExNDAyNiswMycwMCcpIC9Qcm9kdWNlcij+/wBNAGkAYwByAG8AcwBv
+AGYAdACuACAAVwBvAHIAZAAgAGYAbwByACAATQBpAGMAcgBvAHMAbwBmAHQAIAAzADYANSkgPj4N
+CmVuZG9iag0KMjQgMCBvYmoNCjw8L1R5cGUvT2JqU3RtL04gMzcvRmlyc3QgMjc0L0ZpbHRlci9G
+bGF0ZURlY29kZS9MZW5ndGggNjc2Pj4NCnN0cmVhbQ0KeJylVm1rIjEQ/l7of5h/kM17Fkqhd21p
+aSuiwn2Q+7DVnC7VTVlXqP/+JiZa78iSswdqNpM888xkn5nIGBTAJEgKTAEtGDANVHJgBlghgJW4
+KoEX+FHAKXCp8QuiMMAFCMWBa5AM1xVIjTtLUJwBN6CMAUFBC78bTEFBcDASjQxKilgJpUaj8LQa
+BPIWxrsEShEgShxLtBugDAPCCCmnBcgCR4VkHKhgaGc46hKQFONGO/pTSgBGTTVVwBCnFTpB/6bE
+TfhYGgRjZmyfJY4+fcyZod+rKzL0oAJGZEyGZLJ7t2TctdtZd7eya/I0heInkOECuN9zfX158Q8Q
+ej6EnQ/h50PE+RB5PkSdD9EpCEouQJ6/ufkuBTNJGDvAHpPHJv1yEqhyfOVX+HQvn8nx0aT4coRl
+HyEWWo4wKd0MoaC9hCxLmBR+jpD3EmYlQ5NlkyPs1YzIaoYmiy5H2CsakRdNsmRzhL2ikXnRJAs+
+Qyh7RSPzokm3iwxhr2iOremZ3ADfryXraq+t2CVi8caSikKP8ouiiK8qHmBM6wuXSbLJZTDJRkV1
+xNy62XZtmy55EYVMmAxDyITpMISEWBlOIOTFaRgCToYTkLFgIvcJz6S1duRcR0ZuZV+qd39F+6iG
+VYsR+VV/WXuLD+YokuPqwH50T3YHNLq+R1+N6ywZ+J+7Zv45meDWV/dBxnbWkQdbzW0bnj3m8PzY
+rOrGjpeVj9Abbhr0UHW1a+K87epfFT7sZz9c+/bq3NvnGXrLZmlt54PsyEs1a93J/PsSf0/mt3W1
+cosTw3hVz+3J3sCD2xZttSb39WLbYip1t7Lk4ZD0YLveTP1/Of7HMQ+qtd1Mw/Q/3mQAhHsr3iax
+x8fOG/th7FKxd8SKjnX2txAuL34DrEm1Lg0KZW5kc3RyZWFtDQplbmRvYmoNCjMzIDAgb2JqDQo8
+PC9PL0xpc3QvTGlzdE51bWJlcmluZy9EZWNpbWFsPj4NCmVuZG9iag0KNTYgMCBvYmoNCjw8L0Zp
+bHRlci9GbGF0ZURlY29kZS9MZW5ndGggMzQwPj4NCnN0cmVhbQ0KeJyFUstugzAQvPMVPqaHCEwM
+SSSElKfEoQ+V9gOIvaRIxViGHPj7ml1K8zjUkrGGnZ3dtcffZftMVx3z32wjc+hYWWlloW0uVgI7
+wbnSHo+ZqmQ3IvzKujCe75Lzvu2gznTZeEnC/HcXbDvbs9lGNSd48vxXq8BW+sxmn7vc4fxizDfU
+oDsWeGnKFJRO6LkwL0UNzMe0eaZcvOr6ucv5Y3z0BliImFMzslHQmkKCLfQZvCRwK2XJ0a3UA63u
+4mPWqZRfhUX2wrGDIAyQPf6fWJMoF0jjER4LPrIpHt+L8i3RVimiA6EtopCUBCe0IhQR2hPaIFos
+EUXiurXwoTUhfiWGIyZdQbmC5GNx0+/DJYgd0db/VKJBopDYNE9EdaM1HsvwplJ4X2lJEx5p3gNe
+Po/5dd3h0QZvTY6QF2udGdCA6ILh/SsNk0dNY4asYf8AlpzRdQ0KZW5kc3RyZWFtDQplbmRvYmoN
+CjU3IDAgb2JqDQo8PC9GaWx0ZXIvRmxhdGVEZWNvZGUvTGVuZ3RoIDQyMDExL0xlbmd0aDEgOTU0
+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
+dnWwSlmH5umFzmXaisYAH8JjJaazD6wqrUJbSlBdeTnsx2O7K3rbML1ybJrjgVG+z+ckQt/TzTvK
+mJx3ELtn6EJ8AP8BJ2iRmA0KZW5kc3RyZWFtDQplbmRvYmoNCjU4IDAgb2JqDQpbIDBbIDc1MF0g
+IDNbIDI3OF0gIDE1WyAyNzggMzMzIDI3OF0gIDE5WyA1NTYgNTU2IDU1NiA1NTYgNTU2IDU1NiA1
+NTYgNTU2IDU1NiA1NTZdICAzMFsgMjc4XSAgMzZbIDY2N10gIDQwWyA2NjddICA0NFsgMjc4IDUw
+MF0gIDQ3WyA1NTZdICA1NVsgNjExXSAgNTdbIDY2N10gIDY4WyA1NTYgNTU2XSAgNzFbIDU1NiA1
+NTZdICA3NFsgNTU2IDU1NiAyMjIgMjIyIDUwMCAyMjIgODMzIDU1NiA1NTYgNTU2XSAgODVbIDMz
+MyA1MDAgMjc4IDU1NiA1MDBdICAxMDhbIDU1Nl0gIDEyNVsgNTU2XSAgMTI5WyA1NTZdICAyMjdb
+IDUwMF0gXSANCmVuZG9iag0KNTkgMCBvYmoNClsgMjc4IDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAy
+NzggMzMzIDI3OCAwIDU1NiA1NTYgNTU2IDU1NiA1NTYgNTU2IDU1NiA1NTYgNTU2IDU1NiAwIDI3
+OCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDI3OCAwIDAgNTU2IDAgMCAwIDAgMCAwIDAgMCAw
+IDY2NyAwIDAgMCAwIDAgMCAwIDAgMCAwIDU1NiA1NTYgMCA1NTYgNTU2IDAgNTU2IDU1NiAyMjIg
+MjIyIDUwMCAyMjIgODMzIDU1NiA1NTYgNTU2IDAgMzMzIDUwMCAyNzggNTU2IDUwMCAwIDAgMCAw
+IDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAg
+MCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAw
+IDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAg
+MCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDU1NiAwIDAgMCAwIDAgMCAw
+IDAgMCAwIDAgMCAwIDAgMCAwIDU1NiAwIDAgMCAwIDAgMCA1NTZdIA0KZW5kb2JqDQo2MCAwIG9i
+ag0KWyAyNzggMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAg
+MCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAw
+IDY2NyAwIDAgMCAwIDAgMCAwIDAgMCAwIDU1NiAwIDAgNjExIDU1NiAwIDAgMCAyNzggMCAwIDI3
+OCA4ODkgMCA2MTEgMCAwIDM4OSA1NTYgMzMzIDYxMSA1NTZdIA0KZW5kb2JqDQo2MSAwIG9iag0K
+PDwvVHlwZS9NZXRhZGF0YS9TdWJ0eXBlL1hNTC9MZW5ndGggMzA4Nj4+DQpzdHJlYW0NCjw/eHBh
+Y2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+PHg6eG1wbWV0
+YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iMy4xLTcwMSI+CjxyZGY6UkRGIHht
+bG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+Cjxy
+ZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiICB4bWxuczpwZGY9Imh0dHA6Ly9ucy5hZG9iZS5j
+b20vcGRmLzEuMy8iPgo8cGRmOlByb2R1Y2VyPk1pY3Jvc29mdMKuIFdvcmQgZm9yIE1pY3Jvc29m
+dCAzNjU8L3BkZjpQcm9kdWNlcj48L3JkZjpEZXNjcmlwdGlvbj4KPHJkZjpEZXNjcmlwdGlvbiBy
+ZGY6YWJvdXQ9IiIgIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyI+
+CjxkYzpjcmVhdG9yPjxyZGY6U2VxPjxyZGY6bGk+TGlpbmEgTXVndTwvcmRmOmxpPjwvcmRmOlNl
+cT48L2RjOmNyZWF0b3I+PC9yZGY6RGVzY3JpcHRpb24+CjxyZGY6RGVzY3JpcHRpb24gcmRmOmFi
+b3V0PSIiICB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iPgo8eG1wOkNy
+ZWF0b3JUb29sPk1pY3Jvc29mdMKuIFdvcmQgZm9yIE1pY3Jvc29mdCAzNjU8L3htcDpDcmVhdG9y
+VG9vbD48eG1wOkNyZWF0ZURhdGU+MjAyMy0wNi0xOVQxMTo0MDoyNiswMzowMDwveG1wOkNyZWF0
+ZURhdGU+PHhtcDpNb2RpZnlEYXRlPjIwMjMtMDYtMTlUMTE6NDA6MjYrMDM6MDA8L3htcDpNb2Rp
+ZnlEYXRlPjwvcmRmOkRlc2NyaXB0aW9uPgo8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiAg
+eG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iPgo8eG1wTU06RG9j
+dW1lbnRJRD51dWlkOkZGQUM2MjkwLTNFRTEtNDU0OC1CRTQyLUMyQUFERDg4NzY3QzwveG1wTU06
+RG9jdW1lbnRJRD48eG1wTU06SW5zdGFuY2VJRD51dWlkOkZGQUM2MjkwLTNFRTEtNDU0OC1CRTQy
+LUMyQUFERDg4NzY3QzwveG1wTU06SW5zdGFuY2VJRD48L3JkZjpEZXNjcmlwdGlvbj4KICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAog
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgCjwvcmRmOlJERj48L3g6eG1wbWV0YT48P3hwYWNrZXQgZW5kPSJ3
+Ij8+DQplbmRzdHJlYW0NCmVuZG9iag0KNjIgMCBvYmoNCjw8L0Rpc3BsYXlEb2NUaXRsZSB0cnVl
+Pj4NCmVuZG9iag0KNjMgMCBvYmoNCjw8L1R5cGUvWFJlZi9TaXplIDYzL1dbIDEgNCAyXSAvUm9v
+dCAxIDAgUi9JbmZvIDE2IDAgUi9JRFs8OTA2MkFDRkZFMTNFNDg0NUJFNDJDMkFBREQ4ODc2N0M+
+PDkwNjJBQ0ZGRTEzRTQ4NDVCRTQyQzJBQUREODg3NjdDPl0gL0ZpbHRlci9GbGF0ZURlY29kZS9M
+ZW5ndGggMTc3Pj4NCnN0cmVhbQ0KeJw10DsOAXEQx/HZ9d5ld73X+1m4AD1RiFrvPC6hcQoSnYoj
+0IjKDRSS9TdfpphPJplfMhkRU1FkmZ4X+bKDq2K9lcwCnopzUVyBMdyU7EnJTWENL8WbKf5ExDbZ
+ULrQgz4MoAO/zaHJBcv/ZIENMYhDApKQgqaJF1f/eAbS4IIDOciCDx7kIYAiFKAMJahCBWoQQgPq
+0IL298CNvqc8UvZb5XBXjjY8lPNc5AONUhlnDQplbmRzdHJlYW0NCmVuZG9iag0KeHJlZg0KMCA2
+NA0KMDAwMDAwMDAxNyA2NTUzNSBmDQowMDAwMDAwMDE3IDAwMDAwIG4NCjAwMDAwMDAxNjMgMDAw
+MDAgbg0KMDAwMDAwMDIxOSAwMDAwMCBuDQowMDAwMDAwNTA4IDAwMDAwIG4NCjAwMDAwMDIzNzYg
+MDAwMDAgbg0KMDAwMDAwMjUzNyAwMDAwMCBuDQowMDAwMDAyNzYzIDAwMDAwIG4NCjAwMDAwMDI4
+MTYgMDAwMDAgbg0KMDAwMDAwMjg2OSAwMDAwMCBuDQowMDAwMDAzMDM2IDAwMDAwIG4NCjAwMDAw
+MDMyNjggMDAwMDAgbg0KMDAwMDAwMzM5MyAwMDAwMCBuDQowMDAwMDAzNDIzIDAwMDAwIG4NCjAw
+MDAwMDM1NzYgMDAwMDAgbg0KMDAwMDAwMzY1MCAwMDAwMCBuDQowMDAwMDAzODk0IDAwMDAwIG4N
+CjAwMDAwMDAwMTggNjU1MzUgZg0KMDAwMDAwMDAxOSA2NTUzNSBmDQowMDAwMDAwMDIwIDY1NTM1
+IGYNCjAwMDAwMDAwMjEgNjU1MzUgZg0KMDAwMDAwMDAyMiA2NTUzNSBmDQowMDAwMDAwMDIzIDY1
+NTM1IGYNCjAwMDAwMDAwMjQgNjU1MzUgZg0KMDAwMDAwMDAyNSA2NTUzNSBmDQowMDAwMDAwMDI2
+IDY1NTM1IGYNCjAwMDAwMDAwMjcgNjU1MzUgZg0KMDAwMDAwMDAyOCA2NTUzNSBmDQowMDAwMDAw
+MDI5IDY1NTM1IGYNCjAwMDAwMDAwMzAgNjU1MzUgZg0KMDAwMDAwMDAzMSA2NTUzNSBmDQowMDAw
+MDAwMDMyIDY1NTM1IGYNCjAwMDAwMDAwMzQgNjU1MzUgZg0KMDAwMDAwNDk0OCAwMDAwMCBuDQow
+MDAwMDAwMDM1IDY1NTM1IGYNCjAwMDAwMDAwMzYgNjU1MzUgZg0KMDAwMDAwMDAzNyA2NTUzNSBm
+DQowMDAwMDAwMDM4IDY1NTM1IGYNCjAwMDAwMDAwMzkgNjU1MzUgZg0KMDAwMDAwMDA0MCA2NTUz
+NSBmDQowMDAwMDAwMDQxIDY1NTM1IGYNCjAwMDAwMDAwNDIgNjU1MzUgZg0KMDAwMDAwMDA0MyA2
+NTUzNSBmDQowMDAwMDAwMDQ0IDY1NTM1IGYNCjAwMDAwMDAwNDUgNjU1MzUgZg0KMDAwMDAwMDA0
+NiA2NTUzNSBmDQowMDAwMDAwMDQ3IDY1NTM1IGYNCjAwMDAwMDAwNDggNjU1MzUgZg0KMDAwMDAw
+MDA0OSA2NTUzNSBmDQowMDAwMDAwMDUwIDY1NTM1IGYNCjAwMDAwMDAwNTEgNjU1MzUgZg0KMDAw
+MDAwMDA1MiA2NTUzNSBmDQowMDAwMDAwMDUzIDY1NTM1IGYNCjAwMDAwMDAwNTQgNjU1MzUgZg0K
+MDAwMDAwMDA1NSA2NTUzNSBmDQowMDAwMDAwMDAwIDY1NTM1IGYNCjAwMDAwMDUwMDEgMDAwMDAg
+bg0KMDAwMDAwNTQxNiAwMDAwMCBuDQowMDAwMDQ3NTE4IDAwMDAwIG4NCjAwMDAwNDc4NDEgMDAw
+MDAgbg0KMDAwMDA0ODM4NiAwMDAwMCBuDQowMDAwMDQ4NjExIDAwMDAwIG4NCjAwMDAwNTE3ODAg
+MDAwMDAgbg0KMDAwMDA1MTgyNSAwMDAwMCBuDQp0cmFpbGVyDQo8PC9TaXplIDY0L1Jvb3QgMSAw
+IFIvSW5mbyAxNiAwIFIvSURbPDkwNjJBQ0ZGRTEzRTQ4NDVCRTQyQzJBQUREODg3NjdDPjw5MDYy
+QUNGRkUxM0U0ODQ1QkU0MkMyQUFERDg4NzY3Qz5dID4+DQpzdGFydHhyZWYNCjUyMjAzDQolJUVP
+Rg0KeHJlZg0KMCAwDQp0cmFpbGVyDQo8PC9TaXplIDY0L1Jvb3QgMSAwIFIvSW5mbyAxNiAwIFIv
+SURbPDkwNjJBQ0ZGRTEzRTQ4NDVCRTQyQzJBQUREODg3NjdDPjw5MDYyQUNGRkUxM0U0ODQ1QkU0
+MkMyQUFERDg4NzY3Qz5dIC9QcmV2IDUyMjAzL1hSZWZTdG0gNTE4MjU+Pg0Kc3RhcnR4cmVmDQo1
+MzY0MA0KJSVFT0Y=</fail>
+				<tavatekst id="87cb49f9-78b6-43d8-9446-7656b5877735">Lisa</tavatekst>
+			</sisuTekst>
+		</lisaViit>
+		<lisaPealkiri id="4eebefae-2d04-4c5b-8c3b-f101991fc010">
+			<lisaNimi id="d269d97b-cce9-4165-9764-add2f3aa2dc4">Viimsi valla eelarveliste sotsiaaltoetuste suurused</lisaNimi>
+			<muutmismarge id="769e8258-1104-4a0b-b969-efc1f7f3d4ff">
+				<avaldamismarge id="50fdc571-bd3e-4d6c-9000-f6075d5d621c">
+					<RTosa id="7bb351cc-f4da-48ec-81ec-b508732e7dfa">RT IV</RTosa>
+					<avaldamineKuupaev id="a14621f1-04a7-403d-bfba-72b37eb72425">2023-06-21</avaldamineKuupaev>
+					<RTartikkel id="d0f8e6e2-fd81-4005-ac53-a8f46240b9e7">1</RTartikkel>
+					<aktViide id="bbf74e32-aa4a-44db-b8f4-5e4000ccaae8">421062023001</aktViide>
+				</avaldamismarge>
+				<joustumine id="bcc7fea4-c4aa-4ab9-9322-aa86f52d2345">2024-01-01</joustumine>
+				</muutmismarge>
+		</lisaPealkiri>
+	</lisaViide>
+</oigusakt>

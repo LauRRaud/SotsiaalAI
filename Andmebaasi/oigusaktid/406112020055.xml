@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="928a9f7e-e6bb-4e16-be0c-22be50f3a004" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metaandmed>
+    <valjaandja>Saarde Vallavalitsus</valjaandja>
+    <dokumentLiik>määrus</dokumentLiik>
+    <tekstiliik>algtekst-terviktekst</tekstiliik>
+    <dokumentEtapp>avaldamine</dokumentEtapp>
+    <dokumentStaatus>avaldatud</dokumentStaatus>
+    <vastuvoetud>
+      <aktiNr>7</aktiNr>
+      <aktikuupaev>2020-10-27</aktikuupaev>
+    </vastuvoetud>
+    <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2020-11-06</avaldamineKuupaev><RTaasta>2020</RTaasta><RTartikkel>55</RTartikkel><aktViide>406112020055</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2020-11-09+02:00</kehtivuseAlgus></kehtivus><versioon>
+      <dokumentVersioon>1</dokumentVersioon>
+      <dokumentVersioonKuupaev>2020-10-27</dokumentVersioonKuupaev>
+    </versioon>
+    <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+    <globaalID>406112020055</globaalID>
+    <metaandmedVersioon>5</metaandmedVersioon>
+    <metaandmedVersioonKuupaev>2020-11-05</metaandmedVersioonKuupaev>
+    <metaandmedVersioonPohjustaja>Marike Võime</metaandmedVersioonPohjustaja>
+    <terviktekstiGrupiID>1050475</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+  </metaandmed>
+  <aktinimi id="640def29-4481-46d0-bfe6-c2d549babc66">
+    <nimi id="f80db86d-f812-45bc-8ec5-973935e7322d">
+      <pealkiri id="6d89fedd-7566-446e-8714-bfec43115f1f">Sotsiaaltranspordi teenuse osutamise kord</pealkiri>
+    </nimi>
+  </aktinimi>
+  <sisu id="a94ceade-858a-4bba-994d-8a9051657241">
+    <preambul id="80ceffc7-86fa-42ea-8475-ec9cadbcb4f4">
+      <tavatekst id="d9b2a16a-c176-426f-ae7a-50ee95faf15f">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 6 lõike 1, § 30 lõike 1 punkti 2, sotsiaalhoolekande seaduse § 14 lõike 1 ja Saarde Vallavolikogu 18. aprilli 2018. a määruse nr 17 „Sotsiaalhoolekandelise abi andmise tingimused ja kord“ § 28 lõike 2, § 30 ja § 40 alusel.</tavatekst>
+    </preambul>
+    <paragrahv id="para1">
+      <paragrahvNr id="cabcf639-2e8b-42b3-a95d-17712d47fc57">1</paragrahvNr>
+      <kuvatavNr id="b007151c-3fac-4e8b-b0d1-c6e447e44ae0"><![CDATA[§ 1. ]]></kuvatavNr>
+      <paragrahvPealkiri id="14c85a74-0cdc-47d6-9deb-0fef96be1865">Reguleerimisala</paragrahvPealkiri>
+      <loige id="para1lg1">
+        <loigeNr id="19155fbd-7a32-48d0-ace3-3f5aa1df941e"/>
+        <kuvatavNr id="bf1943b7-9a4d-4265-968f-2b482b0c74bf"/>
+        <sisuTekst id="50f166fd-ed7a-44d6-856e-5909c254b312">
+          <tavatekst id="3d4b26a1-6405-457e-8f5b-622ed15639b9">Käesolev määrus sätestab sotsiaaltransporditeenuse (edaspidi teenus) taotlemise, määramise ja kulude katmise korra Saarde vallas.</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para2">
+      <paragrahvNr id="21d6cbe0-cd4a-4431-83b8-57de31baaab3">2</paragrahvNr>
+      <kuvatavNr id="dbaffca3-eb15-48de-ae8f-743f2900648f"><![CDATA[§ 2. ]]></kuvatavNr>
+      <paragrahvPealkiri id="5756f907-9603-437c-9f2c-9a5683e2284c">Üldsätted</paragrahvPealkiri>
+      <loige id="para2lg1">
+        <loigeNr id="16a3eddf-a4b6-472d-8a83-45d9ed7a00f5">1</loigeNr>
+        <kuvatavNr id="ee03f5df-cacb-4e39-8678-6856b0338003"><![CDATA[(1)]]></kuvatavNr>
+        <sisuTekst id="c002768a-02e5-408c-80a0-fc70ec36201f">
+          <tavatekst id="dfdb0d35-9cbd-4632-b7cb-eadf25a0c7e9"> Teenust osutatakse Saarde vallas alaliselt elavale isikule (edaspidi: teenuse kasutaja), kelle elukoht Rahvastikuregistris on registreeritud Saarde valda ja kes erivajaduste tõttu ei saa kasutada ühistransporti või ei ole suuteline iseseisvalt sõitma ravi-, rehabilitatsiooni-, abivahendit väljastavasse asutusse ja riigi või kohaliku omavalitsuse ametiasutusse.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para2lg2">
+        <loigeNr id="8dbb10be-0ec3-4302-9909-b5403e5657e5">2</loigeNr>
+        <kuvatavNr id="a8fd344d-6cf6-49a7-b7cd-ece67485cc16"><![CDATA[(2)]]></kuvatavNr>
+        <sisuTekst id="477d1afc-b5e8-448b-a5d0-87ac9c4a894b">
+          <tavatekst id="50c4e9af-f2eb-451d-9dde-cf8ca1a9d816"> Teenust osutatakse isikule, kelle eestkostjal või ülalpidamiskohustusega isikul ei ole iseseisvalt võimalik transporditeenust korraldada.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para2lg3">
+        <loigeNr id="1e9aa380-b273-42e2-a29d-956aad02aad1">3</loigeNr>
+        <kuvatavNr id="6594dbfd-1045-4a58-afae-8cd14a3ad616"><![CDATA[(3)]]></kuvatavNr>
+        <sisuTekst id="2cecbb9e-6da5-4e20-a1bd-75298ff7b555">
+          <tavatekst id="7871744d-66ca-4606-ada6-6e59a53bc473"> Erandjuhul, mõjuvate põhjuste olemasolul (ajutine liikumisvõimetus vm), võib teenust osutada ka lõikes 1 nimetamata isikule.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para2lg4">
+        <loigeNr id="9332231d-90be-4c77-9205-cda9ca7a8da0">4</loigeNr>
+        <kuvatavNr id="9ea48554-e9cd-4b48-9555-6f66aa5d422d"><![CDATA[(4)]]></kuvatavNr>
+        <sisuTekst id="46694917-6b4a-4b9d-84c1-d5c306dd5867">
+          <tavatekst id="0d233a7a-bd1f-42b2-8a90-985d433c2f32"> Teenust osutatakse üldjuhul tööpäevadel mittetulundusühingu Pärnumaa Ühistranspordikeskus omandis ja kasutuses olevate sõidukitega.</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para3">
+      <paragrahvNr id="d7fef903-d46b-48d5-8637-60a458ef3b42">3</paragrahvNr>
+      <kuvatavNr id="958d7821-af34-4f53-b23e-32453bda1d15"><![CDATA[§ 3. ]]></kuvatavNr>
+      <paragrahvPealkiri id="53111a73-9ce5-403c-989d-61a0e95c41bc">Teenuse taotlemine ja osutamine</paragrahvPealkiri>
+      <loige id="para3lg1">
+        <loigeNr id="a67989af-c5db-43fd-bec1-fd7c3fe0ece5">1</loigeNr>
+        <kuvatavNr id="f001124e-0932-43a8-b68f-cffec9d7fc05"><![CDATA[(1)]]></kuvatavNr>
+        <sisuTekst id="141dd776-66af-4c46-bee1-211914f3e3cd">
+          <tavatekst id="cfab6c04-0314-44dd-a7ff-dc3617f21fe8"> Taotlus esmakordselt teenuse saamiseks esitatakse telefoni teel Saarde Vallavalitsuse sotsiaalametnikule, kes esitab kliendi andmed ja sõiduvajaduse mittetulundusühingule Pärnumaa Ühistranspordikeskus, kes korraldab sotsiaaltransporti Saarde vallas. Taotlus esitatakse Saarde Vallavalitsusele hiljemalt 3 tööpäeva enne teenuse kasutamist suuliselt.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para3lg2">
+        <loigeNr id="988f6319-8500-4641-ae86-8d13007ee414">2</loigeNr>
+        <kuvatavNr id="b73a4985-4644-4eb2-a701-4a895552dd3a"><![CDATA[(2)]]></kuvatavNr>
+        <sisuTekst id="356abcfa-cd63-4556-9469-d0a9087527a2">
+          <tavatekst id="ea86f8e3-cc3d-4198-8f21-9ec083a600cc">Saarde Vallavalitsus esitab Pärnumaa Ühistranspordikeskusele kliendi kohta andmed vastavalt teenuse osutaja poolt kinnitatud kliendiankeedile.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para3lg3">
+        <loigeNr id="5ecf015a-1c4a-47d7-9ffc-10d1b45d77e4">3</loigeNr>
+        <kuvatavNr id="fc968117-ecc8-443d-8de3-3dca5fc3f0d2"><![CDATA[(3)]]></kuvatavNr>
+        <sisuTekst id="bee6cea5-7e9b-42e5-b2b9-28376d9e2ff1">
+          <tavatekst id="8d51400a-82d2-4462-89b7-3ae7ba2afff1"> Vallavalitsuse sotsiaalametnik hindab teenuse osutamise vajadust ja korraldab teenuse osutamise teenuse kasutajale võimalikult soodsatel tingimustel.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para3lg4">
+        <loigeNr id="0ab1fc8e-ec62-4734-8c04-f51bb9098517">4</loigeNr>
+        <kuvatavNr id="80ef41c4-11b5-4fce-93c8-136104b9db27"><![CDATA[(4)]]></kuvatavNr>
+        <sisuTekst id="46b8fad5-ef46-44c9-b9a6-121cb098e2b2">
+          <tavatekst id="4f7a6289-4993-451d-9c0b-0b7f64392184"> Soodushinnaga sõitude õiguse ja nende arvu kvartalis määrab kliendile Saarde Vallavalitsuse sotsiaalametnik enda poolt allkirjastatud ja Pärnumaa Ühistranspordikeskusele edastatud kliendiankeediga. Kasutamata jäänud sõidukorrad ei kandu edasi järgmisesse kvartalisse.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para3lg5">
+        <loigeNr id="af2e4431-e91c-44cf-b1a4-df5ee478f5c4">5</loigeNr>
+        <kuvatavNr id="0984e1c4-8d5e-49fc-8004-eb7e3da26b5e"><![CDATA[(5)]]></kuvatavNr>
+        <sisuTekst id="ed3e9673-0ced-4214-85b9-bff697a36f8e">
+          <tavatekst id="cb3bc824-acbf-450f-bca3-b43ada281565">Teenuse osutamisest teavitatakse taotlejat suuliselt esimesel võimalusel.</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para4">
+      <paragrahvNr id="ccaaddc7-33ae-41ec-93e7-2f44cb3dc0e8">4</paragrahvNr>
+      <kuvatavNr id="cbf2fa84-53e1-421a-bace-e1ef2a778642"><![CDATA[§ 4. ]]></kuvatavNr>
+      <paragrahvPealkiri id="17f02752-df5f-4312-8026-4e94ff6c876b">Teenuse hind ja teenuse eest tasumine</paragrahvPealkiri>
+      <loige id="para4lg1">
+        <loigeNr id="bbe3720a-2b4c-4b0e-87d1-a60f1b027f51">1</loigeNr>
+        <kuvatavNr id="21bdba78-4ba0-4c66-a5ab-9954e7199eb4"><![CDATA[(1)]]></kuvatavNr>
+        <sisuTekst id="fcf17e9a-d874-445b-8168-8837f9e3fded">
+          <tavatekst id="f4bb11c5-de45-42c2-99d4-f73afaaf8141"> Teenuse hinnad kehtestab Pärnumaa Ühistranspordikeskus ja kooskõlastab Saarde Vallavalitsus korraldusega.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para4lg2">
+        <loigeNr id="6b31b1a8-27cc-411f-926a-1ec6a4b12c72">2</loigeNr>
+        <kuvatavNr id="8fd2938b-75e5-4282-b6e7-df160b0d7f95"><![CDATA[(2)]]></kuvatavNr>
+        <sisuTekst id="d66f96a7-3820-4946-8b5e-a2b42f6cdbc3">
+          <tavatekst id="b8650cad-5f58-48ed-a20c-99ad59caf2b9"> Juhuveo teenuse kasutaja tasub teenuse eest vastavalt sõidutsoonidele.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para4lg3">
+        <loigeNr id="cb1cdc5d-8f41-444b-b759-d4b40f6a8e14">3</loigeNr>
+        <kuvatavNr id="e5ea0da8-00e8-4188-ab18-27aec305b1d9"><![CDATA[(3)]]></kuvatavNr>
+        <sisuTekst id="6bd622a8-de49-40ab-8a4e-f1bb919a379c">
+          <tavatekst id="ff472d05-57e0-4635-9ec4-9c5f38c3fcd7"> Teenuse eest tasumisel arvestatakse marsruudil läbitud sõidutsoone teenuse saaja elukohast soovitud sihtkohta ja sealt tagasi elukohta.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para4lg4">
+        <loigeNr id="bffc5a19-e3b1-461a-8234-541d40e31d7c">4</loigeNr>
+        <kuvatavNr id="51f688db-5773-4568-b654-e03d44f972ff"><![CDATA[(4)]]></kuvatavNr>
+        <sisuTekst id="0aba73d2-8c1e-4b02-b911-f3837f5c7402">
+          <tavatekst id="0e87f2b1-d62d-4b80-aad1-cfc02268e72a"> Teenuse kasutamisel mitme inimese poolt korraga tasub iga teenuse kasutaja enda eest eraldi, välja arvatud saatja.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para4lg5">
+        <loigeNr id="e8b81277-150e-47d5-a443-cdc17f2060b3">5</loigeNr>
+        <kuvatavNr id="b0a70e1d-a402-4460-92b2-a293157d8c41"><![CDATA[(5)]]></kuvatavNr>
+        <sisuTekst id="bcb76e83-4782-4901-921b-a73d9f9684bd">
+          <tavatekst id="2b2061ba-fb42-43f1-bfc2-7c90955de584"> Teenuse taotleja õigustatud saatjalt ei võeta tasu teenuse eest. Saatjal on kohustus abistada teenuse saajat kogu teenuse osutamise vältel ning aidata teenuse saajat liikumisel hoonesisesest asukohast (kodust, haiglast vm) teenust osutava sõidukini.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para4lg6">
+        <loigeNr id="e1a2f1fe-6ea0-44ee-9efa-9eb237d6f37c">6</loigeNr>
+        <kuvatavNr id="54e0e2f6-775e-48a9-835d-3264f42161be"><![CDATA[(6)]]></kuvatavNr>
+        <sisuTekst id="09695213-d617-4556-80a4-df470cdcec17">
+          <tavatekst id="258f0003-f58d-4191-b9e6-97f230d65b4c"> Teenuse kasutaja tasub teenuse eest Pärnumaa Ühistranspordikeskusele.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para4lg7">
+        <loigeNr id="05e10417-756b-43e6-8bf1-585445802325">7</loigeNr>
+        <kuvatavNr id="aaa2f075-7345-4054-888c-2ae91954cbeb"><![CDATA[(7)]]></kuvatavNr>
+        <sisuTekst id="4d340604-b1b3-4c70-a069-110919c62f31">
+          <tavatekst id="c54e32fa-3180-494f-9780-949c73aa5d7f"> Tasuta sotsiaaltranspordi teenuseid osutatakse üldjuhul madala sissetulekuga kõrvalabi vajavale isikule, kelle sissetulek on väiksem riigi poolt kehtestatud kahekordsest toimetulekupiirist ning kellel puuduvad seadusjärgsed ülalpidajad.</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para5">
+      <paragrahvNr id="a70a194e-e88a-4331-832a-dde0650e497d">5</paragrahvNr>
+      <kuvatavNr id="1e1b60b9-e75a-4944-b0ad-1e2168731e78"><![CDATA[§ 5. ]]></kuvatavNr>
+      <paragrahvPealkiri id="98090a40-523d-478b-a29b-7b6632a21659">Määruse jõustumine</paragrahvPealkiri>
+      <loige id="para5lg1">
+        <loigeNr id="2c7e0d28-575a-42dc-838b-5e7d14e0b5f0">1</loigeNr>
+        <kuvatavNr id="6245b613-749e-4350-beb3-563240b5131d"><![CDATA[(1)]]></kuvatavNr>
+        <sisuTekst id="b7f72ecf-df30-4500-9463-ac96a1401fd0">
+          <tavatekst id="a9df0e8a-fe16-4274-8cab-865c8d6fe3cc">Määrust rakendatakse tagasiulatuvalt <b>01. septembrist 2020. a.</b></tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para5lg2">
+        <loigeNr id="2acacd90-ced3-4d1e-8497-ec7c072f82e2">2</loigeNr>
+        <kuvatavNr id="639e202f-f903-471b-b7a3-475235320f6a"><![CDATA[(2)]]></kuvatavNr>
+        <sisuTekst id="631d40f2-335c-4a70-9bfb-d5e0a60240c8">
+          <tavatekst id="2b76a904-52b3-44b4-9678-bbf9d92deff9"> Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist. </tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+  </sisu>
+  <allkiri id="40ca8a2f-25dd-4c9b-9230-377b945c5298">
+    <allkiriKoht id="5c587f5c-3d46-49ee-a4d9-ceccc99d423b"/>
+    <allkirjastaja id="0e38ee84-d409-4c7e-805c-d06347efbb8d">
+      <ametinimetus id="9ed10215-0bce-433b-9cb4-69d6354ccb1e">vallavanem</ametinimetus>
+      <eesnimi id="21ba84fd-93a4-4361-8254-a4e916950ad5">Andres</eesnimi>
+      <perekonnanimi id="1dba80a0-9ee4-4ab3-bc30-7e30cbad3fb9">Annast</perekonnanimi>
+    </allkirjastaja>
+  </allkiri>
+  <allkiri id="a79ebcfa-6d05-4ca3-95d3-2d5bcffc7b14">
+    <allkiriKoht id="56044865-1266-4e93-b31f-d912404ffa51"/>
+    <allkirjastaja id="cb38af63-d66b-4c40-8323-a7bdedc368f5">
+      <ametinimetus id="3ee7b9d2-f6bf-4be6-9607-2bab62ad2592">vallasekretär</ametinimetus>
+      <eesnimi id="ab0e79f7-0ffa-47da-95bb-930e183788c1">Külliki</eesnimi>
+      <perekonnanimi id="0205fac3-a4e0-43c7-b8fe-f6ecf6b3c4d4">Kiiver</perekonnanimi>
+    </allkirjastaja>
+  </allkiri>
+</oigusakt>

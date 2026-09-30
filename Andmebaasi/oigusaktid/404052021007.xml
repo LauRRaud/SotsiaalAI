@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="32d747d8-a0f1-4bc4-8a86-e90830be311a" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+ 
+ <valjaandja>Maardu Linnavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2016-03-29</aktikuupaev>
+  <avaldamismarge>
+	<RTosa id="2b8c7cfd-5157-4440-9a56-bebbcc034ba2">RT IV</RTosa>
+	<avaldamineKuupaev id="bf55b981-7912-4f75-bf4a-1c2ffc74ee2b">2016-04-02</avaldamineKuupaev>
+	
+	
+	<RTartikkel id="ad2a27d5-3ff7-4153-a31d-46ff96014ae1">50</RTartikkel>
+	<aktViide id="e9d8ce5d-658a-434d-899d-82a25c210e1c">402042016050</aktViide>
+  </avaldamismarge>
+  <joustumine>2016-04-05</joustumine>
+  <aktiNr>62</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2021-05-04</avaldamineKuupaev><RTaasta>2021</RTaasta><RTartikkel>7</RTartikkel><aktViide>404052021007</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2021-05-07</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2021-04-28</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>404052021007</globaalID>
+ <metaandmedVersioon>20</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2021-05-03</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ <terviktekstiGrupiID>1034171</terviktekstiGrupiID>
+ <eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2016-03-30</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Natalja Gorbunova</metaandmedVersioonPohjustaja>
+		</versiooniMuutus><versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>6</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2017-07-10</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus><versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>11</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2017-07-11</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus><versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>16</metaandmedVersioon><metaandmedVersioonKuupaev>2018-01-30</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+	<aktinimi id="bb0c940f-46d4-4933-be66-94b64ce14d11">
+		<nimi id="5b06331d-dd83-4544-a526-dcde03c054d1">
+			<pealkiri id="6375bb2a-8e71-48c3-bb0b-23241d23079b">Hoolduse seadmise, hooldaja määramise ning hooldajatoetuse määramise ja maksmise kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="3e7239c3-ad27-4714-8292-aab38494bcc9">
+		<aktikuupaev id="f1fc633d-b5dc-49ff-bf32-3217c5267bd5">2017-06-27</aktikuupaev>
+		<avaldamismarge id="eeaf9878-122a-49b9-8ee3-5cef676273f9">
+			<RTosa id="c1c6964e-125b-482b-a373-023c9a7849d7">RT IV</RTosa>
+			<avaldamineKuupaev id="0866d4b9-6613-49b8-86fe-449692d2aba8">2017-07-12</avaldamineKuupaev>
+			<RTartikkel id="1f9aab14-1b7a-4179-8563-8e31c87dfc5e">12</RTartikkel>
+			<aktViide id="2155eaed-90eb-44bf-8fed-66d1c7833e52">412072017012</aktViide>
+		</avaldamismarge>
+		<joustumine id="3ead0330-be39-49e2-824a-bde05ecd9444">2017-07-15</joustumine>
+		<aktiNr id="48f3f98d-cebb-4f50-8076-235b523297b1">107</aktiNr>
+	</muutmismarge>
+	<muutmismarge id="2b399225-0904-4e59-b843-c28b7e51cf7e">
+		<aktikuupaev id="58ac5003-b43f-422f-9364-acc0bbfcee1d">2018-01-23</aktikuupaev>
+		<avaldamismarge id="9d2cfc5a-4c51-4e3d-8802-5da6a57738af">
+			<RTosa id="e4064220-9623-4220-8345-6e1e5ab53a95">RT IV</RTosa>
+			<avaldamineKuupaev id="bbf78dc7-3797-41d6-a12b-63eb18d68f5b">2018-02-01</avaldamineKuupaev>
+			<RTartikkel id="b3af5498-30e5-4785-b688-4177103e9282">16</RTartikkel>
+			<aktViide id="a9890147-516f-4db1-a64b-5d8f286c4a38">401022018016</aktViide>
+		</avaldamismarge>
+		<joustumine id="56e800ff-2be7-4a5f-a115-8fac2985d722">2018-02-04</joustumine>
+		<aktiNr id="14a9b7fa-0f21-4a8c-98b1-a059017e09f7">10</aktiNr>
+	</muutmismarge>
+	<muutmismarge id="79e80738-cc4b-4d94-a2fe-8c33398b1544"><aktikuupaev id="323c79e1-7464-4dc4-871f-91ede8df2d70">2021-04-27</aktikuupaev><avaldamismarge id="eafeef39-b44a-42d5-af72-0d2b096baa4c"><RTosa id="b479d6ed-7a42-41fc-89c2-dfa2de4f67c7">RT IV</RTosa><avaldamineKuupaev id="4d5b6a3c-df0b-4d67-b068-210b0e934dc4">2021-05-04</avaldamineKuupaev><RTartikkel id="43d2d837-4a6a-4c8d-a571-cfe2504d399a">2</RTartikkel><aktViide id="a54ffcb6-1977-4a02-be03-affe18a439a6">404052021002</aktViide></avaldamismarge><joustumine id="d1520eec-4505-4ea0-8f45-bbc372996f19">2021-05-07</joustumine><aktiNr id="2aa1990a-027c-41ce-9740-8677021ff7cc">97</aktiNr></muutmismarge><sisu id="523c1e24-9277-4cb6-b3c5-b493432c68d3">
+		<preambul id="8047a59d-4d4a-4ed9-aaad-ff3604d9ebbc">
+			<tavatekst id="751d0765-e724-4577-87d5-8b38b5cf2e39">Määrus kehtestatakse sotsiaalhoolekande seaduse § 14 lõike 1 ning § 26 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="ba95d0b7-b389-4cbe-9cbf-5a812f04140b">1</paragrahvNr>
+			<kuvatavNr id="c779da1b-6f30-414b-8cdd-796ff0ac4a19"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="d7a39385-4a4f-4831-8164-aed0455159a2">Üldsätted</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="64e8bdf5-07e1-4f86-9a88-d1871e05a797">1</loigeNr>
+				<kuvatavNr id="68180ab7-9dc3-400e-a72f-b927b979282c"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="c30816f1-424a-4c81-a50b-b71ba2a3f07e">
+					<tavatekst id="eca2e44a-9fe8-4918-b6e5-edb5d4d24deb">Määruse eesmärk on kehtestada täisealisele hooldusvajadusega isikule hoolduse seadmise, hooldaja määramise, hoolduse lõpetamise ja hooldajale hooldajatoetuse maksmise tingimused ja kord.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg2">
+				<loigeNr id="8d996171-607d-4293-93dc-2e4320e70fff">2</loigeNr>
+				<kuvatavNr id="18b05d8c-9464-4ab1-881a-cfe1e93ff422"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="51b948cd-ff70-40f1-942a-572dceafdb79">
+					<tavatekst id="5d195b03-3403-4e8a-b258-1e18b4c4f96b">Hooldus seatakse üldjuhul raske või sügava puudega täisealisele isikule, kes vaimse või kehalise puude tõttu vajab abi oma õiguste teostamiseks ja kohustuste täitmiseks (edaspidi <i>hooldatav</i>).</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="896be97c-fdf0-47d7-9c87-6fae8fcf56e7">
+					<avaldamismarge id="bccb7dda-e411-4aeb-abf1-79c4e09dbe5c">
+						<RTosa id="2e1027c4-c1da-4171-ae14-df64a5dbb52c">RT IV</RTosa>
+						<avaldamineKuupaev id="8bd714b4-ebfe-4ddc-8f3e-d92c4d6fae92">2018-02-01</avaldamineKuupaev>
+						<RTartikkel id="8f102506-dc6d-41df-a40e-b278d92fed78">16</RTartikkel>
+						<aktViide id="e5567bb1-0b09-43ae-8e65-a0bf06d6e41c">401022018016</aktViide>
+					</avaldamismarge>
+					<joustumine id="2a1dcfcf-d4c4-455e-816a-33c15ee64a73">2018-02-04</joustumine>
+					<aktiNr id="41890be0-307d-422b-a98b-18463f2ba021">10</aktiNr>
+				</muutmismarge>
+			</loige>
+			<loige id="para1lg3">
+				<loigeNr id="1a0ce238-41ee-4f74-92cf-356e7ebb048d">3</loigeNr>
+				<kuvatavNr id="7cd61d46-d1cc-4ea7-bb85-da60d052b0d6"><![CDATA[(3)]]></kuvatavNr>
+
+				<muutmismarge id="826d58e1-385f-440e-9c73-d1555cbf4902">
+				<tavatekst id="3e6f1762-0436-444f-9d3e-ff7185bb0f77">Kehtetu - </tavatekst>
+					<avaldamismarge id="130c6d47-6dc1-4ade-aacd-a521a922fe22">
+						<RTosa id="c78bec33-b4b0-4991-bd6b-83070cbfc708">RT IV</RTosa>
+						<avaldamineKuupaev id="167bf544-d1ad-48e3-bb8c-b15e2ad82622">2018-02-01</avaldamineKuupaev>
+						<RTartikkel id="4cac7950-6a5b-4fab-9722-e1ed8523d22b">16</RTartikkel>
+						<aktViide id="b44d7bb5-727b-4787-909a-602922d338ad">401022018016</aktViide>
+					</avaldamismarge>
+					<joustumine id="6d6c7815-742f-4a3c-aeb8-4c96929ae913">2018-02-04</joustumine>
+					<aktiNr id="25a029ca-bdc1-4410-a120-a0ff2216751b">10</aktiNr>
+				</muutmismarge>
+			</loige>
+			<loige id="para1lg4">
+				<loigeNr id="bbf53871-317a-4a11-a8f0-178304d01299">4</loigeNr>
+				<kuvatavNr id="4d78637f-5422-46f7-b65d-582845623fc6"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="7b5b6cad-ca7e-42d3-a5d8-01a40158ee6f">
+					<tavatekst id="27d0557b-ee50-4e37-b8f2-920cc0a5b8ad">Hooldatava elukohana peab olema rahvastikuregistrisse kantud Maardu linn. Hooldajatoetust saab taotleda isik, kelle enda elukohana on rahvastikuregistrisse kantud Maardu linn, puudega isiku eest, kelle elukohana on rahvastikuregistrisse kantud Maardu linn.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="53af8353-7ca3-43b4-967d-819f4aede83a">2</paragrahvNr>
+			<kuvatavNr id="afd77c65-fb5a-47fc-8a13-6b571c6062b3"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="8f4e25b7-af60-4322-84a0-a5adb0ef99fb">Mõisted</paragrahvPealkiri>
+				<muutmismarge id="355aec85-a343-465e-8892-01f21c7dd475">
+				<tavatekst id="0a9034e2-9cb4-49f1-a7b5-a555eeca4634">Kehtetu - </tavatekst>
+					<avaldamismarge id="886a81b9-28e7-42e4-a82f-810f36f57db4">
+						<RTosa id="2533e3af-fa38-499d-9878-eae20bdbcdd4">RT IV</RTosa>
+						<avaldamineKuupaev id="caa27145-a6a5-4f1a-8fbf-0e47203e8c83">2018-02-01</avaldamineKuupaev>
+						<RTartikkel id="01050a2d-227e-43ca-a44d-3713687b6317">16</RTartikkel>
+						<aktViide id="5e34a52c-d871-4f35-bb83-4907777d70b3">401022018016</aktViide>
+					</avaldamismarge>
+					<joustumine id="d583c6c4-a724-4d7f-a1a4-051862c0bb06">2018-02-04</joustumine>
+					<aktiNr id="2f30e50c-5028-4f67-bccf-83843f76f94a">10</aktiNr>
+				</muutmismarge>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="5caaa1f2-609b-4a3f-af0e-34f113cb8d4e">3</paragrahvNr>
+			<kuvatavNr id="50a9f8b6-8c0f-46d0-9fa0-1e11ce1b444d"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="b9a97b65-2c6e-4d24-9e7c-df95dddee1ba">Hoolduse seadmise taotlemine</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="9f5bcaba-4897-4392-9e19-47d5bc237541">1</loigeNr>
+				<kuvatavNr id="4365d660-2103-4de0-a646-f05d39434ff5"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="28912d48-ea14-4613-92ea-25e428afbebb">
+					<tavatekst id="5dfbb5fc-a4a7-4aca-8035-7fc4ea3c739a">Hoolduse seadmiseks esitab abivajav isik või tema seaduslik esindaja Maardu Linnavalitsusele (edaspidi: <i>ametiasutus</i>) kirjaliku taotluse, milles märgitakse:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para3lg1p1">
+					<alampunktNr id="4a4ae3f9-db83-4e74-b636-6b990c210d7f">1</alampunktNr>
+					<kuvatavNr id="10d5111e-46d9-4bb0-87ed-84e89cb026b0"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="2cd7280c-f3f3-4cfa-a149-597cd4b300ad">
+						<tavatekst id="9d4bbf8b-f7db-4457-ae69-21f7ad361779"> hooldust vajava isiku nimi, isikukood, elukoht, kontaktandmed;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg1p2">
+					<alampunktNr id="882b46cc-cc55-46f2-afb1-947e437eca74">2</alampunktNr>
+					<kuvatavNr id="7777cef9-1502-4ebc-8ab9-78af53089ffa"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="e20e6771-43d9-4dac-846e-86c343c39b35">
+						<tavatekst id="3be0158d-c880-43c2-b242-74afc14ee820">nõusolek isikuandmete töötlemiseks;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg1p3">
+					<alampunktNr id="6587aa55-c558-492e-94e4-a09b309c41a0">3</alampunktNr>
+					<kuvatavNr id="df959b43-a270-4905-8731-2075bc218d54"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="c4d64229-603e-4ea0-864f-97bf8acb92ea">
+						<tavatekst id="770a41a6-0eed-49a1-865c-26040750680e">soovitud hooldaja olemasolul tema nimi ja andmed (isikukood, elukoht, kontaktandmed);</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="f4a1a19e-82aa-44d5-9f9b-16e98d5e0892">
+						<avaldamismarge id="8fe36ec9-c69f-4308-abd5-edf040d22ea5">
+							<RTosa id="9801babe-532f-4034-92b8-691f3bf3161a">RT IV</RTosa>
+							<avaldamineKuupaev id="c3cbb64f-d0ff-4132-8963-c6fa7214420e">2018-02-01</avaldamineKuupaev>
+							<RTartikkel id="a35623e6-0074-48e3-900d-269582d68ce4">16</RTartikkel>
+							<aktViide id="99a76a84-5222-4a14-a418-4c31d2a673fa">401022018016</aktViide>
+						</avaldamismarge>
+						<joustumine id="206e7dab-8665-42db-a6d3-bdb7c94a57ab">2018-02-04</joustumine>
+						<aktiNr id="f78c3d5c-b650-41df-9b4c-2eb2a6fcbc4e">10</aktiNr>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para3lg1p4">
+					<alampunktNr id="28d092a3-538b-46fc-9558-62f5d696053b">4</alampunktNr>
+					<kuvatavNr id="ccb5eb47-42e2-4779-b205-73fcdd170a96"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="5a01de21-b18d-4811-9586-ea1e63450e62">
+						<tavatekst id="2073e070-9b04-4755-83f0-c41e4b8297bd">kinnitus esitatud andmete õigsuse kohta.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para3lg2">
+				<loigeNr id="0ae994fc-8a04-4083-bd0e-6ed5445313e2">2</loigeNr>
+				<kuvatavNr id="02ffdd2f-5139-4e3a-b26f-4dcf28a40c8f"><![CDATA[(2)]]></kuvatavNr>
+
+				<muutmismarge id="7f6e4627-cd2b-41af-a0f7-9acb8f199ed5">
+				<tavatekst id="00543eeb-9be2-4e96-a814-993e087d8a1f">Kehtetu - </tavatekst>
+					<avaldamismarge id="56f29c9b-ac66-43f0-aeb2-7464d8eb9f42">
+						<RTosa id="d50dade0-f830-4669-9f0e-abe21347ab5b">RT IV</RTosa>
+						<avaldamineKuupaev id="ecafa5b0-be87-49c4-b80b-feac628bcbbe">2018-02-01</avaldamineKuupaev>
+						<RTartikkel id="5b993cf3-975c-43b8-8c43-efa692178b37">16</RTartikkel>
+						<aktViide id="4ffc1b7b-1604-4033-93d1-5d1a7956aee3">401022018016</aktViide>
+					</avaldamismarge>
+					<joustumine id="c5744977-1072-4298-a396-d293d1380f39">2018-02-04</joustumine>
+					<aktiNr id="0751d98b-0847-462e-8921-3ab4c75c3bad">10</aktiNr>
+				</muutmismarge>
+			</loige>
+			<loige id="para3lg3">
+				<loigeNr id="525bf931-5ea7-428c-86bf-b2b2063a87a6">3</loigeNr>
+				<kuvatavNr id="a152e6c1-5781-4b9e-9f33-7baacecbb435"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="a4e3c3d6-8b02-45ea-9a7d-0b9248102744">
+					<tavatekst id="8c10d3c8-d56a-4886-8c18-4862e11c0e28">Hooldajaks määratav isik peab esitama kirjaliku nõusoleku hooldajaks määramise kohta. Kirjalikus nõusolekus märgitakse hooldaja nimi, isikukood, elukoht, kontaktandmed, tema seos hooldatavaga. </tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg4">
+				<loigeNr id="c786a507-e3d4-4c45-b4a4-fc2f99068bde">4</loigeNr>
+				<kuvatavNr id="161f70e0-5c24-41eb-b112-a0b2e20d6e59"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="b2144e5a-c3e0-4c86-9e9d-cb5ac756478c">
+					<tavatekst id="2da40290-e8b7-4263-b6f5-c6d535175152">Hooldajatoetuse määramiseks esitab hooldajaks määratav isik ametiasutusele sellekohase avalduse, milles märgib ka hooldajatoetuse saamiseks pangakonto numbri. </tavatekst>
+				</sisuTekst>
+				<muutmismarge id="1bb5daab-c13e-4656-9e53-8db47b2b4ccd">
+					<avaldamismarge id="ba94731b-54db-4993-a996-3110a4f3ad5a">
+						<RTosa id="58f697c9-c93a-46cd-9772-0d2baf40bdb8">RT IV</RTosa>
+						<avaldamineKuupaev id="44193408-6904-4d5b-bc4a-5062e1a18029">2018-02-01</avaldamineKuupaev>
+						<RTartikkel id="15f578a6-9206-4811-8766-2c2b56d94631">16</RTartikkel>
+						<aktViide id="6c9430ca-3942-4a6c-947c-621b639fc33e">401022018016</aktViide>
+					</avaldamismarge>
+					<joustumine id="2998443d-f019-4f09-b504-0a11a35b7559">2018-02-04</joustumine>
+					<aktiNr id="ecf38815-3a74-48b1-98f5-39c9d7b9095d">10</aktiNr>
+				</muutmismarge>
+			</loige>
+			<loige id="para3lg5">
+				<loigeNr id="67661b0b-d37a-473a-a873-612e2c795124">5</loigeNr>
+				<kuvatavNr id="2112ed6c-ce53-42da-871a-47238ebaa7fb"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="bdc03465-5250-4ced-8a81-cbd3ff1ffe4c">
+					<tavatekst id="7262d99a-fc13-42e1-bde5-c7fb256c2b5d">Ametiasutusel on vajaduse korral õigus nõuda taotlejalt lisaandmeid või -dokumente.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg6">
+				<loigeNr id="36cef8e6-d584-4570-b37d-00ff0e0d6ef2">6</loigeNr>
+				<kuvatavNr id="0204c253-43c1-41be-b78c-659d938b525e"><![CDATA[(6)]]></kuvatavNr>
+				<sisuTekst id="32d211b7-44af-4a40-b107-48ac56b7c5a6">
+					<tavatekst id="fc86db05-4898-4557-a917-300e3f3647b6">Hooldusvajaduse väljaselgitamiseks ja hooldajatoetuse määramise ja maksmisega seonduvate dokumentide vormid kinnitab Maardu Linnavalitsus (edaspidi: <i>linnavalitsus</i>).</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="4ee8c147-7176-4f74-bf63-244bb0f1a34c">4</paragrahvNr>
+			<kuvatavNr id="cde3a4d0-0e07-40bc-b7ad-ecaa12af4445"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="ba4da399-fdee-4cec-b92c-7e9a3bab12ae">Hooldusvajaduse ja hooldaja sobivuse hindamine</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="c0a0307f-9c8f-4c8b-b56e-38789ef219ef">1</loigeNr>
+				<kuvatavNr id="58a67c8b-9bb0-4a1c-a4e3-fe664c38fc0e"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="2b6e8f5a-6c40-4eb7-b3fc-ff976b575729">
+					<tavatekst id="a1e2244f-9161-46d0-bfa6-ef781d7aaccd">Toetuse määramiseks korraldab linnavalitsuse sotsiaalabi osakond puudega inimese hindamise sotsiaalabiosakonnas või tema kodus, kaasates vajadusel perearste ja teisi spetsialisti ning selgitab välja hooldusvajaduse.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg2">
+				<loigeNr id="1409d9cc-3a25-47d7-8478-08a2d70c9b36">2</loigeNr>
+				<kuvatavNr id="a1be7dd8-d41e-48db-b31c-eda44cf5ebec"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="399c126d-bbb4-444d-8374-05970bc81edf">
+					<tavatekst id="17902c89-1d00-4dac-b595-955fe65856c4">Hooldajaks võib määrata isiku, kellel endal ei ole sügavat või rasket puuet. </tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg3">
+				<loigeNr id="d7d5c1da-7b22-4aae-b45b-4b9bc7378af9">3</loigeNr>
+				<kuvatavNr id="60e16148-c08b-4b0a-bb42-a843086310fb"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="9b2c976e-2bdd-44d0-8bcb-8636c450eebe">
+					<tavatekst id="bec8c332-098b-4a32-aa5e-1417e8e8fdff">Isiku võib määrata hooldajaks enam kui ühele puudega hooldatavale. </tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="ae917b44-d229-4788-840f-19d9733f2cde">5</paragrahvNr>
+			<kuvatavNr id="c7a1a506-9922-4b52-baf4-e475211c7837"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="d5027118-4c5b-45ce-965b-4cd5e9afe96c">Hooldajatoetus, toetuse määr ja suurus</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="da23fee7-f497-406d-8153-378855cb9607">1</loigeNr>
+				<kuvatavNr id="7ea15b3f-d65f-41f0-8eaa-b408a4b289e4"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="df217e63-717e-476b-8234-6a692b9c24de">
+					<tavatekst id="ea0ceadf-b91e-419c-ab55-e9659b90eb64">Hooldajatoetus on hooldajale makstav igakuine sotsiaaltoetus.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg2">
+				<loigeNr id="41cc4a1c-9f74-466b-b0ac-832e92aed93f">2</loigeNr>
+				<kuvatavNr id="5d65c2ce-85a6-40d5-92c8-c66a6c181948"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="9439110d-221d-44d0-86e5-1633250ee77a">
+					<tavatekst id="666279a8-d76d-4b6f-a6dd-efa74471b9b5">Hooldajatoetuse määra kehtestab Maardu linnavalitsus.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg3">
+				<loigeNr id="90db9867-d7e1-4990-a101-7d393e19041b">3</loigeNr>
+				<kuvatavNr id="4ba7457d-20a9-4447-8294-f4167e71c422"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="04df4be6-f670-49bc-85b4-f66af5eceb2b">
+					<tavatekst id="0ae5e135-4930-47b8-b665-790d73ffe611">Hooldajatoetust makstakse töövõimelises eas isikule, kes ei ole tööle asunud või töötab osalise tööajaga ja kes tagab: </tavatekst>
+				</sisuTekst>
+				<alampunkt id="para5lg3p1">
+					<alampunktNr id="e738750e-ea1b-47c3-af95-bb52d9dc3ba3">1</alampunktNr>
+					<kuvatavNr id="a01a2f0b-ec99-4581-aa55-9b210c28f794"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="95f43d9a-865e-48af-a27f-1b680cd1a43e">
+						<tavatekst id="e5d451b8-03ef-46b8-955f-7251a33e7ed5">sügava puudega isikule kõrvalabi, juhendamise või järelvalve ööpäevaringselt - 200 protsenti hooldajatoetuse määrast; </tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg3p2">
+					<alampunktNr id="272a4b78-ba7e-4f44-8115-674c09c0ad5a">2</alampunktNr>
+					<kuvatavNr id="90bab8d8-a86d-4e93-9add-adf4ebaaa5f7"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="496788a3-d6a3-483b-95bc-3a036a88b955">
+						<tavatekst id="413636d8-e21b-4c46-8cb4-503e1df04ad8">muu puudega isikule kõrvalabi, juhendamise või järelevalve igal ööpäeval - 150 protsenti hooldajatoetuste määrast.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="6753247e-f400-4ade-8a8d-fd7f01b3798f">
+						<avaldamismarge id="d06a8be2-d6d3-4f7b-8793-f6f70805f8c3">
+							<RTosa id="4bdccfcc-a505-499e-91ca-0584155b4be9">RT IV</RTosa>
+							<avaldamineKuupaev id="e8951335-15ab-47e3-ad2c-317c83f2eeaf">2018-02-01</avaldamineKuupaev>
+							<RTartikkel id="34798427-494d-439a-a6af-fcfe0e8b082f">16</RTartikkel>
+							<aktViide id="f8fa9e30-cb16-40de-a720-da54283580d6">401022018016</aktViide>
+						</avaldamismarge>
+						<joustumine id="e76ec8de-ec6d-4241-930b-9ede11f1a8cc">2018-02-04</joustumine>
+						<aktiNr id="24c1a956-6743-4b3a-ae58-2fd8d39047c4">10</aktiNr>
+					</muutmismarge>
+				</alampunkt>
+			</loige>
+			<loige id="para5lg4">
+				<loigeNr id="f76e75fa-7488-4c80-8545-251454957eab">4</loigeNr>
+				<kuvatavNr id="041d2733-3b07-4d8d-a3a3-18d37b3f5d43"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="737d37e3-3982-4089-b86f-3eaa421e225d">
+					<tavatekst id="9c0dbbe5-d794-40ae-8580-5f94298bd02a">Hooldajatoetust makstakse isikule, kes on mittetöötav või osalise tööajaga töötav riikliku pensionikindlustuse seaduse alusel pensioni saaja ning kes tagab: </tavatekst>
+				</sisuTekst>
+				<alampunkt id="para5lg4p1">
+					<alampunktNr id="7c851440-2956-41dd-97eb-944684c607b1">1</alampunktNr>
+					<kuvatavNr id="dec351de-2346-4423-9de0-59b3afb6de88"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="b2445081-4c0c-4199-bb17-da83735c7176">
+						<tavatekst id="996815f2-4208-4e39-8ab4-094c060a71fa">sügava puudega isikule kõrvalabi, juhendamise või järelvalve ööpäevaringselt - 100 protsenti hooldajatoetuste määrast; </tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg4p2">
+					<alampunktNr id="9d617231-2ff4-4339-b158-1326c328f4e8">2</alampunktNr>
+					<kuvatavNr id="e913db90-9330-4ffd-b5fa-8b5ec12af35c"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="9ac1aa0f-5be8-4e0b-8449-5967cd3e2935">
+						<tavatekst id="dfa993d0-a107-49ad-8947-db82df293658">muu puudega isikule kõrvalabi, juhendamise või järelvalve igal ööpäeval - 60 protsenti hooldajatoetuste määrast.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="cca37229-7231-4903-aae6-6ce5192b4e31">
+						<avaldamismarge id="f6befd3c-8d38-41d3-a118-301e7433cdb7">
+							<RTosa id="fe6dff0e-d20f-44b7-a59f-8386ef225376">RT IV</RTosa>
+							<avaldamineKuupaev id="7726b09a-ed15-49c9-8d0b-2b761fd6dc12">2018-02-01</avaldamineKuupaev>
+							<RTartikkel id="86aa55f8-fbd6-470b-a6be-510939f4a3b3">16</RTartikkel>
+							<aktViide id="212fb96d-e007-4bce-8e44-27f3523bade6">401022018016</aktViide>
+						</avaldamismarge>
+						<joustumine id="8c7fee42-0e16-4851-8b44-941c108430a7">2018-02-04</joustumine>
+						<aktiNr id="a3b7b553-a35b-4d75-9964-737b873a2120">10</aktiNr>
+					</muutmismarge>
+				</alampunkt>
+			</loige>
+			<loige id="para5lg5">
+				<loigeNr id="ab777a46-118d-42b1-94b3-ddb6f81a0456">5</loigeNr>
+				<kuvatavNr id="82bd73b2-540e-4a99-a468-ee8817bfe798"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="df347a88-66c0-4eb8-91a3-c15f33681cc5">
+					<tavatekst id="0ad82be9-32e5-4679-bb66-b8ed04594dfd">Kui isik on määratud mitme isiku hooldajaks, on tal õigus saada hooldajatoetust iga hooldatava hooldamise eest.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para6">
+			<paragrahvNr id="1b7ed267-b465-4eb8-ae41-4a0303f5b1bd">6</paragrahvNr>
+			<kuvatavNr id="554c7a8e-b8e9-4d30-9053-1005a4e05443"><![CDATA[§ 6. ]]></kuvatavNr>
+			<paragrahvPealkiri id="a618cfab-becb-4277-93aa-17e7f3d17f82">Hoolduse seadmise ja hooldajatoetuse määramine </paragrahvPealkiri>
+			<loige id="para6lg1">
+				<loigeNr id="1e29641b-013f-4532-ae2f-b9ab45471aee">1</loigeNr>
+				<kuvatavNr id="e7693414-8bac-4030-810a-bf8bbcd12b24"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="8cba9ce1-db52-485a-963c-9f86dd4acca7">
+					<tavatekst id="abe1eff0-e1d0-4d15-8320-675b952a5d58">Otsuse hoolduse seadmise ja hooldajatoetuse määramise või neist keeldumise kohta teeb linnavalitsuse sotsiaalabi osakonna juhataja kümne (10) tööpäeva jooksul alates taotluse ja lisadokumentide nõuetekohasest esitamisest. Otsus tehakse taotlejale teatavaks 5 päeva jooksul otsuse vastuvõtmisest.</tavatekst>
+				</sisuTekst>
+				
+			<muutmismarge id="c6dd67c7-4283-4b24-8cd0-66f3aaec7959"><avaldamismarge id="4ea986d3-fa4c-44cd-a805-c7aed40a8052"><RTosa id="042b5ecf-18ce-4d7e-ba39-ac636789dfd5">RT IV</RTosa><avaldamineKuupaev id="9d38783e-e8ea-41ab-8d4a-c311feecb539">2021-05-04</avaldamineKuupaev><RTartikkel id="8cdb2b1f-bec9-4463-9a4d-c380ff70f388">2</RTartikkel><aktViide id="346f2129-5bbe-4d33-ad28-d365f88691a1">404052021002</aktViide></avaldamismarge><joustumine id="b099842c-6dbd-45e8-8662-61daaab91b1b">2021-05-07</joustumine><aktiNr id="69a75a72-6f4b-42d6-81a3-250fa3917ea7">97</aktiNr></muutmismarge></loige>
+			<loige id="a2a682ff-30d3-439d-b91c-88ce5ce04a0e">
+				<loigeNr id="44ee8334-2cc6-4416-9df9-2984dffa9c8e">2</loigeNr>
+				<kuvatavNr id="b9915c0f-69a3-40bb-a231-cd82f40b0c7c"><![CDATA[(2)]]></kuvatavNr>
+				<muutmismarge id="ceec492a-10ac-49f4-8234-29176abda1a8">
+				<tavatekst id="4522dc84-cc1b-4fef-9866-de41dfc133c0">Kehtetu - </tavatekst>
+					<avaldamismarge id="cde65bfd-8729-4448-acdd-9d340e221e70">
+						<RTosa id="ec44c7a5-ef51-467f-bd3b-28ff964750ef">RT IV</RTosa>
+						<avaldamineKuupaev id="3b40d6c0-0631-4a8f-a066-1497fe7ae591">2018-02-01</avaldamineKuupaev>
+						<RTartikkel id="a5941ccc-aa8c-4cce-bb10-65bf55f4468b">16</RTartikkel>
+						<aktViide id="bff6061b-1c1e-4b7a-9bde-2a6596d820b2">401022018016</aktViide>
+					</avaldamismarge>
+					<joustumine id="337a0b11-ad0d-4da4-8a8d-00acfc385d9b">2018-02-04</joustumine>
+					<aktiNr id="a88fbbac-bc88-4fd5-8d9f-915cecd62a01">10</aktiNr>
+				</muutmismarge>
+			</loige>
+			<loige id="para6lg3">
+				<loigeNr id="79fa83ed-5224-4e95-8673-d9fdee279367">3</loigeNr>
+				<kuvatavNr id="caaff8f1-9bdd-480e-af38-a152b0c48d32"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="667bea33-1ce6-411e-97d0-76d4e2cd1722">
+					<tavatekst id="6c1ec831-3dac-45bb-87f4-313cee78ac4b">Hooldajatoetust makstakse alates otsuse vastuvõtmisele järgnevast kalendrikuust jooksva kuu eest.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para7">
+			<paragrahvNr id="80c57b2c-1915-4ef9-9b66-9bccdf174cd7">7</paragrahvNr>
+			<kuvatavNr id="a552eb82-d9b0-4929-a282-37699bbc7d52"><![CDATA[§ 7. ]]></kuvatavNr>
+			<paragrahvPealkiri id="efdff58f-914e-48a2-a079-c26136554724">Hoolduse seadmise ja hooldaja määramise tähtaeg</paragrahvPealkiri>
+			<loige id="para7lg1">
+				<loigeNr id="f67e010a-4820-4a25-81d5-7bd71da3ac7e">1</loigeNr>
+				<kuvatavNr id="7b53c30e-f4fb-47f3-beef-7630ac08758c"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="0a433c2c-db8c-4bbf-9bc0-d3557c4536ff">
+					<tavatekst id="aec8782c-9ab0-46c7-bc22-6d7e97c142c0">Hooldus seatakse tähtajaliselt üldjuhul hooldust vajava isiku puude kehtivuse tähtaja lõppemiseni, kui lühema tähtaja määramist ei tingi taotlejast või hooldust vajavast isikust tulenevad asjaolud.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="9fce730c-46ad-40dc-94cc-ffe27e5dea00">
+					<avaldamismarge id="6b9ff9db-63bb-4dd7-9052-9e66c1a0b188">
+						<RTosa id="2e237872-2f64-48e8-96a8-8bd20d053443">RT IV</RTosa>
+						<avaldamineKuupaev id="984a4613-1a3e-4768-8221-4bd2ca813753">2018-02-01</avaldamineKuupaev>
+						<RTartikkel id="f3937965-4f34-45f4-b1f6-0407365b8752">16</RTartikkel>
+						<aktViide id="29f9eba9-1f39-4f21-9cc4-7ebc1d76cda8">401022018016</aktViide>
+					</avaldamismarge>
+					<joustumine id="96658600-ebef-4346-8c15-1600ed5e3e2d">2018-02-04</joustumine>
+					<aktiNr id="0d7443fb-2709-4ad0-9bb6-45d2fc3e01bc">10</aktiNr>
+				</muutmismarge>
+			</loige>
+			<loige id="para7lg2">
+				<loigeNr id="e80c34cc-90da-4c3f-99ea-0b2ea81ebd93">2</loigeNr>
+				<kuvatavNr id="136d4cf6-2e3b-476f-996f-a282a66ff3e6"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="d1553530-f387-4ef9-a721-f068d5cd5235">
+					<tavatekst id="aa1af1a9-ae0b-4ccf-8e9b-7dfb92874779">Hoolduse võib seada tähtajatult, kui hooldust vajava isiku puude raskusaste on määratud tähtajatult. </tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg3">
+				<loigeNr id="eb33e2d8-e8d6-4d80-8645-b5ac3a3ee98d">3</loigeNr>
+				<kuvatavNr id="5fe02edf-0d4a-46cb-86f3-d9e8a2ba8280"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="bb2143a9-3b28-4ef6-a071-848f73d31e0b">
+					<tavatekst id="7a486d07-b508-48e8-84be-0d74273aa9a7">Hooldajatoetus määratakse seatud hoolduse ajaks.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para8">
+			<paragrahvNr id="c9d2b2f4-5708-4476-a600-e357b977ed2c">8</paragrahvNr>
+			<kuvatavNr id="d6c7d4b0-25fd-4ced-b376-b29c2541427b"><![CDATA[§ 8. ]]></kuvatavNr>
+			<paragrahvPealkiri id="754a8632-1c4c-429a-b37d-91541f154084">Hoolduse lõpetamine</paragrahvPealkiri>
+			<loige id="para8lg1">
+				<loigeNr id="dbab60ae-b95c-4361-a865-60ecda397bd1">1</loigeNr>
+				<kuvatavNr id="e85bbf8c-a8b7-44d9-a13c-8f8545a4c3c1"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="fde9624b-ed10-4ca3-9cce-5bef3259c41e">
+					<tavatekst id="15bb4631-4d30-46be-b66f-8343586da1c7">Hooldus lõpetatakse hooldatava või hooldaja avalduse alusel või hoolduse seadmise aluse äralangemisel. Hoolduse seadmise aluse äralangemiseks võivad olla:</tavatekst>
+				</sisuTekst>
+				
+				<alampunkt id="para8lg1p1">
+					<alampunktNr id="18eaeba3-1f46-4d93-8487-ab5606250851">1</alampunktNr>
+					<kuvatavNr id="a9be9c99-0daa-41f6-8829-824755c30808"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="2cb48227-3c17-4c73-a76c-85025e92df5d">
+						<tavatekst id="6cad9fda-8d3a-453f-9b5c-844435b07b26">hooldaja või hooldatava elukoha vahetus teise omavalitsusse;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg1p2">
+					<alampunktNr id="627dc1c1-68c1-4f4e-9c4e-95859517faa9">2</alampunktNr>
+					<kuvatavNr id="13dbce6e-15b5-4152-adf8-0d88bac0ff64"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="97a9f65d-48b8-484d-a3c9-10c28327bb2b">
+						<tavatekst id="bd653c36-4aa0-4481-ac99-416d2e930f0a">hooldatava hoolduse korraldamine teiste sotsiaalteenustega;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg1p3">
+					<alampunktNr id="fa0117f0-286c-4e70-ab72-652625e66052">3</alampunktNr>
+					<kuvatavNr id="fe390a84-111a-4102-9369-1fd39f6fc7d3"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="5087c224-2873-456c-9b14-8c2cc6e40dba">
+						<tavatekst id="cd1d4caf-76ae-4c0b-88b6-c87bdbfb289c">hooldusvajaduse vähenemine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg1p4">
+					<alampunktNr id="60691c46-8ad0-4766-8492-9b94a6956903">4</alampunktNr>
+					<kuvatavNr id="7929f637-c608-4d32-8db0-c7c195852032"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="7e953035-ca1b-452f-81a4-926c866f156c">
+						<tavatekst id="852a9bed-8e08-48cc-8985-2bebf4c56d37">hooldajale sügava või raske puude määramine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg1p5">
+					<alampunktNr id="f69acfaa-cf73-46cd-80c4-e43e38b40646">5</alampunktNr>
+					<kuvatavNr id="2d2faeb4-1a87-48b9-b4ec-84fe87fdca35"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="9e8583c6-2e7f-4eac-85aa-4ff8b10c1835">
+						<tavatekst id="47a81fd4-a3f2-4740-af9e-2b9a0aa3d715">hooldatava või hooldaja surm;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg1p6">
+					<alampunktNr id="bd947420-000f-48af-87f2-5c4816cb6440">6</alampunktNr>
+					<kuvatavNr id="f92d19b1-9911-442c-a9f3-8b620cd1fdcc"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="d1aeab81-9b31-413f-830b-a5a5cbf1cac0">
+						<tavatekst id="5734aed8-6256-4b71-86bd-99ac550ddf99">hooldaja suutmatus hooldust korraldada;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg1p7">
+					<alampunktNr id="51c54358-44cc-49ea-8fda-174a3b385313">7</alampunktNr>
+					<kuvatavNr id="185b9201-fec0-4c98-a289-2066350fa42e"><![CDATA[7) ]]></kuvatavNr>
+					<sisuTekst id="7670398f-9937-4ab8-9908-b41cf99d7bbd">
+						<tavatekst id="a7a0f32f-8ab9-4e01-aeb3-5cd9fd5c3ac1">hooldaja ei täida hooldaja määramise otsusega temale pandud kohustusi.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="26c438a0-ee8f-428a-9463-e118451286fd">
+					<avaldamismarge id="d3daabda-ea0d-4854-9041-a3cc65f5afd0">
+						<RTosa id="0f2e3789-082b-470d-bf7d-47adb76e517e">RT IV</RTosa>
+						<avaldamineKuupaev id="b6815199-d5dc-4885-9956-3f4480aaa441">2018-02-01</avaldamineKuupaev>
+						<RTartikkel id="8ec492da-38da-4f00-b701-ab6c7299431a">16</RTartikkel>
+						<aktViide id="ba934236-d8dd-4f04-971f-510e5524110a">401022018016</aktViide>
+					</avaldamismarge>
+					<joustumine id="c65439e4-2206-473c-9ff5-2d45568992c8">2018-02-04</joustumine>
+					<aktiNr id="ec265db6-f0f0-486d-8ba1-e0bb8e5f27a6">10</aktiNr>
+				</muutmismarge>
+				</alampunkt>
+			</loige>
+			<loige id="para8lg2">
+				<loigeNr id="189a76f3-3c8d-4d1d-84ce-ddd5164da3d5">2</loigeNr>
+				<kuvatavNr id="88d05fd9-de2a-4586-b326-d36add1e4323"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="4b7e6757-cae6-4f70-b3f1-289beda405c2">
+					<tavatekst id="13ec7938-c68e-4a64-8a66-2bb76a2dd070">Hoolduse lõpetamise otsuse teeb linnavalitsus korraldusega. Otsuses märgitakse hooldatava ja hooldaja isikuandmed ning hoolduse lõpetamise põhjused.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para8lg3">
+				<loigeNr id="192bdfe9-04fa-41f3-89f2-9fecadfaf70c">3</loigeNr>
+				<kuvatavNr id="94b573eb-c26b-4d95-9f45-63b7d5901641"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="59cd10ea-549f-49e6-b3fc-6fe92f4baceb">
+					<tavatekst id="41ccab14-24b0-4ac6-8878-938b28e688d3">Hoolduse lõpetamise otsus tehakse hooldajale ja hooldatavale teatavaks viie tööpäeva jooksul otsuse tegemisest. </tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para8lg4">
+				<loigeNr id="39d17787-1a7d-4198-98df-6efcfa786f6b">4</loigeNr>
+				<kuvatavNr id="d2899e25-20b7-416b-905f-084ce294d26b"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="12ccd872-43a0-4851-b237-3e1b3155c61d">
+					<tavatekst id="783249ba-ed5a-4495-a11b-fe6bba66c332">Hooldajatoetuse maksmine lõpetatakse hooldajatoetuse maksmise lõpetamist tingivate või maksmist välistavate asjaolude tekkimisest alates.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para9">
+			<paragrahvNr id="81cb9599-91c0-47ac-a30d-3406e229d243">9</paragrahvNr>
+			<kuvatavNr id="f8d80878-7487-48e5-8133-9fbf0d1713e2"><![CDATA[§ 9. ]]></kuvatavNr>
+			<paragrahvPealkiri id="0c9e17ad-e7f8-4a67-bb66-5decb9da9670">Teavitamiskohustus</paragrahvPealkiri>
+			<loige id="para9lg1">
+				<loigeNr id="c24ab6c0-dd69-4b79-b552-66ee86ba6b07"/>
+				<kuvatavNr id="d286fbe3-0bfc-49fe-9dd2-f8b490db600d"/>
+				<sisuTekst id="ea12acf7-d02f-44ac-acb0-48a8d3f366a9">
+					<tavatekst id="b0c72cc5-c408-4ef0-9847-d3dce07b0b18">Hooldaja on kohustatud teavitama linnavalitsuse sotsiaalabi osakonda 10 päeva jooksul asjaolude tekkimisest, mis toovad kaasa:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para9lg1p1">
+					<alampunktNr id="85b3f0cc-314d-43ff-a387-3afb172fe92d">1</alampunktNr>
+					<kuvatavNr id="a9ae1ce4-322f-4cd2-9eb0-f4e1e418c766"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="3fb4fa60-778f-4182-aef1-6e9fd9a4b9fd">
+						<tavatekst id="8ec46809-c34f-4d04-90ae-c1e50ecde66f">hoolduse lõpetamise;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para9lg1p2">
+					<alampunktNr id="356f6673-f356-443d-9c20-a002be4151c6">2</alampunktNr>
+					<kuvatavNr id="f7cac03b-119a-47b3-9be7-275511eeebb0"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="89d13279-06f2-40e8-b639-2319a27f9b83">
+						<tavatekst id="f6bf6895-4dd9-4705-99af-48214f50d6c6">määratud hooldajatoetuse suuruse vähenemise;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para9lg1p3">
+					<alampunktNr id="a2faacbb-48cf-4245-876f-32cab889a13e">3</alampunktNr>
+					<kuvatavNr id="f4d9fbc3-7abf-422c-8448-7038ff656bfa"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="ac516445-e3f7-4393-8301-79b876e01ff8">
+						<tavatekst id="ffd7fc79-0712-4e61-ac5f-c7b871dc118c">hooldaja eest sotsiaalmaksu tasumise kohustuse tekkimise või äralangemise.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para10">
+			<paragrahvNr id="991dc766-b320-4970-bfe4-2ae2fbd8f4e0">10</paragrahvNr>
+			<kuvatavNr id="8f00f90f-c254-4610-8eff-909fa8211398"><![CDATA[§ 10. ]]></kuvatavNr>
+			<paragrahvPealkiri id="73175727-8275-444a-8201-bd83b444c953">Hooldajatoetuse tagastamine</paragrahvPealkiri>
+			<loige id="para10lg1">
+				<loigeNr id="b0f1c6b8-d9a3-41ea-8fb3-11c1a9b7aa84"/>
+				<kuvatavNr id="b21ccc8a-bd2b-4940-92a7-2c05ca1eca85"/>
+				<sisuTekst id="9a1519c0-2e78-4ed9-ac9c-41d052a39165">
+					<tavatekst id="45f42570-e3bf-45f7-b67d-05548b32c8d5">Hooldajatoetust on õigus tagasi nõuda, kui toetuse saaja varjas paragrahvis 9 nimetatud andmeid teadvalt või esitas valeandmeid. Kui isik keeldub alusetult saadud toetust tagasi maksmast, võib linnavalitsus teha toetuse saajale ettekirjutuse. Ettekirjutuse täitmata jätmise korral võib linnavalitsus anda selle sundtäitmisele täitemenetluse seadustikus sätestatud korras.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para11">
+			<paragrahvNr id="bf0df871-b5bd-41cb-b981-3b4dc88cf75d">11</paragrahvNr>
+			<kuvatavNr id="61431986-d86b-4d6a-9109-22c79a38c580"><![CDATA[§ 11. ]]></kuvatavNr>
+			<paragrahvPealkiri id="dd9aa052-8f59-407a-9c6e-98db38b07522">Rakendussätted</paragrahvPealkiri>
+			<loige id="para11lg1">
+				<loigeNr id="131139a7-2511-4145-852c-609317147702"/>
+				<kuvatavNr id="0bfbb588-907c-4087-be29-86efa2dd8bf8"/>
+				<sisuTekst id="b47124d5-3453-4ae1-a0cb-e4724b74b94a">
+					<tavatekst id="afc4525f-1792-4a71-a096-4969c07dc53f">[Käesolevast tekstist välja jäetud ] </tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para12">
+			<paragrahvNr id="a8171078-5615-4f2c-9373-032ac9d58574">12</paragrahvNr>
+			<kuvatavNr id="bb862c71-a255-4f00-882d-cd60dc03e089"><![CDATA[§ 12. ]]></kuvatavNr>
+			<paragrahvPealkiri id="f5c06e81-39a8-4d8a-a3b3-d14499bda505">Määruse jõustumine</paragrahvPealkiri>
+			<loige id="para12lg1">
+				<loigeNr id="ed6cc14b-3916-4b4c-b7d1-8af0ed3569df"/>
+				<kuvatavNr id="a743c57c-ca5e-4309-ad32-426c58c6f171"/>
+				<sisuTekst id="b9d1da35-584e-4e51-9cee-13b4bfa20ce7">
+					<tavatekst id="0b606be2-7371-4b93-8267-7ecdfb9d90b9">Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+</oigusakt>

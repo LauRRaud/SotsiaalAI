@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="591d120e-e40c-4f86-96f9-49fc51a2aa95" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Narva Linnavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2026-06-26</aktikuupaev>
+  
+  
+  <aktiNr>6</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-07-04</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>17</RTartikkel><aktViide>404072026017</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2026-07-07+03:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2026-06-30</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>404072026017</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2026-07-03</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1063945</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2026-06-30</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Tatjana Udovichenko</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="3dc29700-abba-4df1-ac98-0bf4d9b906e5">
+  <nimi id="9e117bd6-e465-4d94-a722-7165adc0473b">
+   <pealkiri id="1578dc43-e443-4f59-8ce4-34b60e081b38">Sünnitoetuse maksmise kord Narva linnas</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="ca219f0d-f149-4e03-b5a0-7c4ff516c21f"><preambul id="80942a5c-f7af-424d-84a0-2b0ae200528a">
+   <tavatekst id="97e48e9a-b9c8-4f68-9b7b-ae091068e8ea">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5 ning sotsiaalhoolekande seaduse § 14 alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="70c7e61e-3b52-49bc-b48a-fd34a29a265a">1</paragrahvNr>
+   <kuvatavNr id="a41546df-f709-44bd-9e99-3fdecd4b4b80"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="442a3225-591f-4b1a-af75-5c9f0f00bb05">Üldsätted</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="3f920a5b-fe9b-49c3-a21c-051e0a471cd5">1</loigeNr>
+   <kuvatavNr id="d99c3077-cda8-4ea2-853a-5dbd879ec9ad"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="0e42bda1-81ef-4371-89cc-5e802525315a">
+    <tavatekst id="36900d88-a5d6-41e6-87b5-dc0216b7e58d">Määrus sätestab Narva linnas sünnitoetuse (edaspidi toetus) maksmise korra ja tingimused.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg2">
+   <loigeNr id="dca9090c-17db-486d-8f06-8d91136f7847">2</loigeNr>
+   <kuvatavNr id="82d7f378-e667-49a1-a46a-31433b17b0b3"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="27cfae0d-8632-487b-9c2c-45cca0d5163d">
+    <tavatekst id="d5454e66-383e-4299-be66-02d45aa7d317">Toetust makstakse pärast lapse sündi. Toetus on ühekordne ja selle on õigus taotleda ühel lapse vanemal või selle puudumisel muul lapse seaduslikul füüsilisel esindajal (edaspidi taotleja). Toetust ei maksta, kui laps on riiklikul ülalpidamisel hoolekandeasutuses.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg3">
+   <loigeNr id="6333800c-bc57-4558-b48e-c100a8ccb683">3</loigeNr>
+   <kuvatavNr id="14e12053-75b9-4125-8d4a-ec2525d2b308"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="ed0fce9d-b92d-4f39-82c2-0d94d1a6afaf">
+    <tavatekst id="392e7949-0d37-4466-a37c-d4cabf21c882">Toetus määratakse ja selle kõik osad makstakse taotlejale tingimusel, et laps ning taotleja on rahvastikuregistri andmetel katkematult Narva linna elanikud alates lapse sünnist kuni vähemalt kaheaastaseks saamiseni.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg4">
+   <loigeNr id="9cbfc539-017a-420f-8f2d-c39225d133af">4</loigeNr>
+   <kuvatavNr id="d124dbc1-ce3f-4673-a845-db05628922e0"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="d4bb8408-8a6d-4dba-9490-22f7c8fade74">
+    <tavatekst id="bca87f23-edad-45b9-90de-7ca190f14565">Toetust makstakse Narva linna eelarves selleks ettenähtud vahenditest.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg5">
+   <loigeNr id="f16a5969-b748-4b38-acd5-15443111fd97">5</loigeNr>
+   <kuvatavNr id="281bc9b3-495b-4c82-9204-df7b4b9480a8"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="f6425c59-1343-43da-b68e-40c5533f891c">
+    <tavatekst id="4c8a4805-0311-462d-b4d0-26ce71c3244a">Toetusele eraldatud vahendite üle peab arvestust Narva Linna Sotsiaalabiamet (edaspidi Sotsiaalabiamet).</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="f8d2f0fd-64ec-4860-b4db-c4ba30e03489">2</paragrahvNr>
+   <kuvatavNr id="23b8b866-9ad5-4853-8fb0-cb0cf9bba4a0"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="cf203165-bf59-4ce2-b1f6-d9a79184d871">Toetuse määr</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="0a57f1c3-b7fd-44a2-9eda-76f7a507cf2a">1</loigeNr>
+   <kuvatavNr id="b891cf6f-51ff-448f-b6b0-878c5847fba8"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="677cd188-d01d-40cd-9fb5-6d575f4ed24d">
+    <tavatekst id="e2c7e0cd-3efb-4639-a7af-586419c562ee">Toetuse määraks on 1500 eurot.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg2">
+   <loigeNr id="06165973-4369-4838-aaaa-8ec9d46805f8">2</loigeNr>
+   <kuvatavNr id="9d7bfff8-293f-4810-8d48-73bac546f46f"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="f1bcb6d0-39f4-4ee1-890e-dc54f40fc19b">
+    <tavatekst id="74d87cf2-bb8f-4609-aac3-c439d416de5c">Toetus makstakse kolmes osas:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para2lg2p1">
+   <alampunktNr id="b524d9ac-8541-4299-978c-3b86109dfb19">1</alampunktNr>
+   <kuvatavNr id="eb7abb16-e419-49e6-a575-136ff3158ffe"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="f9f03838-8027-4741-8f8f-970fab0fb41c">
+    <tavatekst id="feeab419-bac8-4097-ae4e-a7b65725c614">900 eurot makstakse pärast lapse sündi;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg2p2">
+   <alampunktNr id="e2c928c8-9e15-4568-9a46-dea3e4c45a3b">2</alampunktNr>
+   <kuvatavNr id="8404cdcb-dd88-480e-a3d7-11c7e1f7d67c"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="ac93d31f-f71a-459f-819a-a0a95ad8f502">
+    <tavatekst id="d56344e6-369f-45ce-9fdc-9bbc9e2f0579">300 eurot makstakse lapse aastaseks saamisel;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg2p3">
+   <alampunktNr id="11c874d8-1f9f-4a74-934a-b9c2ce871993">3</alampunktNr>
+   <kuvatavNr id="519e3a61-6bd5-4a52-8c94-14f985ab6a3c"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="2a4c56c3-6a95-4f69-a52d-e515a078db13">
+    <tavatekst id="25052da9-bfa6-4f37-a6c5-46f6ddde05e5">300 eurot makstakse lapse kahe aastaseks saamisel.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="f5c19fe7-389a-43e9-b791-97b864ae62de">3</paragrahvNr>
+   <kuvatavNr id="caebdb28-c04c-48fa-9f2e-247421abda58"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="263ffa91-ce93-498b-b7a4-cae97f7edd7d">Toetuse taotlemine ja maksmine</paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="e7dbd2a2-5a27-4c61-a581-d8abdf0f2985">1</loigeNr>
+   <kuvatavNr id="a351558f-bfb4-4d0c-9774-3ea1f51b4b6c"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="e0e56eff-d480-4789-8b98-0c0e464be194">
+    <tavatekst id="0bc6e5b0-70a0-401f-b8d9-9d3be4a6ebac">Toetuse saamiseks on vaja esitada Sotsiaalabiametile taotlus. Taotluse esitamine on vormivaba, kuid teenuse kiiruse ja selguse huvides on mõistlik esitada kirjalikult taasesitatavas vormis (e-kiri jms) või kirjalikus vormis taotlus. Taotlusele lisatakse taotleja isikut tõendav dokument.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg2">
+   <loigeNr id="5bf5858f-af99-4b7d-87b1-4702e8d8aec6">2</loigeNr>
+   <kuvatavNr id="54f50deb-9ebe-4f24-915b-4608ef248b54"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="c6663ede-da64-48bd-ae59-541d6d0745d1">
+    <tavatekst id="f4fe426a-693d-40b1-808d-b4608af127aa">Taotluse toetuse saamiseks võib esitada ühe aasta vältel pärast lapse sündi.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg3">
+   <loigeNr id="2723c4a2-a06a-424f-baf8-0dc7fefba1d2">3</loigeNr>
+   <kuvatavNr id="12e69b0c-495c-476b-96ae-a1508c480fc1"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="cb756705-e709-45f0-8d7c-2787bdfd961c">
+    <tavatekst id="b8cd8700-3ad3-43d5-903a-1c8a22ddb262">Juhul, kui toetuse taotlus ei ole esitatud § 3 lõike 2 määratud aja jooksul, on taotlejal õigus taotleda toetuse teist ja kolmandat osa. Taotluse toetuse teise ja kolmanda osa saamiseks võib esitada kuni lapse ühe aastaseks ja 11 kuuseks saamiseni. Toetuse teise ja kolmanda osa maksmine toimub vastavalt § 3 lõike 5.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg4">
+   <loigeNr id="030c168d-6735-4f1b-9087-31b8a38f6227">4</loigeNr>
+   <kuvatavNr id="ee4dd9fa-89bd-486e-86e6-98bdc2f5a1e5"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="7d468f84-57b7-4723-a53d-1f01b7983133">
+    <tavatekst id="c4f92442-4a79-467e-b5d4-4c3aca051bdf">Toetuse esimene osa makstakse välja hiljemalt viie tööpäeva jooksul pärast kõikide vajalike dokumentide esitamist taotleja poolt esitatud arveldusarvele.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg5">
+   <loigeNr id="01fcd5e8-946c-452c-b0a1-d6457779f75a">5</loigeNr>
+   <kuvatavNr id="cd89039f-212e-4e97-a937-cfc894b08000"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="cb76278b-0ad7-4d98-a84e-0799bf6d5ac0">
+    <tavatekst id="a0dd1bce-5cde-4ad0-841c-5e35d6ec45a6">Toetuse teine ja kolmas osa makstakse taotleja poolt esitatud arveldusarvele hiljemalt viie tööpäeva jooksul pärast lapse ühe- ja kaheaastaseks saamist. Toetuse taotluse esitamisel pärast lapse üheaastakses saamist, makstakse toetuse teine ja kolmas osa viie tööpäeva jooksul pärast lapse kaheaastaseks saamist.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg6">
+   <loigeNr id="c70e8004-87bc-4345-8ea2-0f40d601e908">6</loigeNr>
+   <kuvatavNr id="dd8fab87-cc4e-429c-97fe-320452eed90d"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="761f0ff0-e4e4-4e00-9a94-e25ccfd98019">
+    <tavatekst id="c212e84b-a089-4317-b954-43d667069e71">Toetuse teist ja kolmandat osa eraldi taotlema ei pea.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg7">
+   <loigeNr id="bb60f6ed-ca4b-47ff-be5f-7be6ad60a2d6">7</loigeNr>
+   <kuvatavNr id="77ef3608-855a-44f5-8726-e649f3ae1d4d"><![CDATA[(7)]]></kuvatavNr>
+   <sisuTekst id="5ccd2587-57ea-4c1d-ab2f-ca62e4d0cbfb">
+    <tavatekst id="25bb6b44-52db-4753-a550-384e53993ee8">Otsust toetuse määramise või toetuse määramisest keeldumise kohta võtab vastu Sotsiaalabiameti direktor või tema poolt volitatud isik.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para4">
+   <paragrahvNr id="79bd6ff9-4372-4366-b85a-19cbc00a4803">4</paragrahvNr>
+   <kuvatavNr id="7dcec8ee-e5b9-44d7-8a5c-2d72fbc65a8f"><![CDATA[§ 4. ]]></kuvatavNr>
+   <paragrahvPealkiri id="bdac246c-6b2c-4188-879f-be5acaf418c9">Vaidluste lahendamine</paragrahvPealkiri>
+  <loige id="para4lg1">
+   <loigeNr id="5de17bbc-1f76-47b9-8745-6821ed6210e0"/>
+   <kuvatavNr id="c5921585-684e-4da7-b75a-ed46459e0b79"/>
+   <sisuTekst id="a5275ad5-b1c8-40b9-9c59-17abc2832b8b">
+    <tavatekst id="8fd0128c-23af-4b4b-baea-fbf7d13dca8e">Isik, kes leiab, et vahendite eraldamisel või sellest keeldumisel on rikutud tema õigusi või piiratud tema vabadusi, võib esitada vaide seaduses sätestatud korras.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para5">
+   <paragrahvNr id="56ff52e1-e7bb-4db6-92c7-c56792b6ff17">5</paragrahvNr>
+   <kuvatavNr id="532a0bec-7c55-43c2-ad49-8a583e8e1004"><![CDATA[§ 5. ]]></kuvatavNr>
+   <paragrahvPealkiri id="4dca7ea8-4b18-40e9-bde9-61164a2e160a">Rakendussätted</paragrahvPealkiri>
+  <loige id="para5lg1">
+   <loigeNr id="8f92a4ac-4729-4bd3-93af-24e9be723e41">1</loigeNr>
+   <kuvatavNr id="6e2e0ac0-726a-4026-8eaf-016b91283ccf"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="aa1c4d54-e2bb-4f96-b52c-e1c2c8160be5">
+    <tavatekst id="4302f635-1c65-45a3-a469-889f35995f68">Tunnistada kehtetuks Narva Linnavolikogu 15.06.2023 määrus nr 11 „Sünnitoetuse maksmise kord Narva linnas“.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg2">
+   <loigeNr id="cfa74ee3-5aa0-4219-92ba-42d10db98c87">2</loigeNr>
+   <kuvatavNr id="77993269-d05c-4b39-a604-b271c9bd79e4"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="d69f79e0-ee53-4dc1-a345-e57e9426e303">
+    <tavatekst id="d0a55fb2-0be1-49e4-9b98-baf7207839f0">Toetuse saajale, kes esitas sünnitoetuse taotluse kuni 31.12.2025 ja toetuse teist osa ei ole enne 01.01.2026 välja makstud, kohaldatakse lapse aastaseks saamisel kehtiva korraga ettenähtud toetuse teise osa määra.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg3">
+   <loigeNr id="4a817415-5962-43a8-b5d5-b012807fd860">3</loigeNr>
+   <kuvatavNr id="e9a0745a-ee24-4a65-b837-78578efd776b"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="3c381e9c-b5f3-4acb-9441-f0e5770ed262">
+    <tavatekst id="92571b7b-cfe5-4cd0-a663-52c967cbbb2f">Toetuse saajale, kes esitas sünnitoetuse taotluse kuni 31.12.2025, kohaldatakse lapse kahe aastaseks saamisel kehtiva korraga ettenähtud toetuse kolmanda osa määra. Sellele lisatakse Narva Linnavolikogu 15.06.2023 määrus nr 11 § 2 lg 1 ja lg 2 p 3 põhimõtete kohaselt arvestatud kolmanda väljamakse osa sellises ulatuses, et toetuse kolmas osa ei oleks lõppsummana väiksem 15.06.2023 määrus nr 11 kehtimise korral väljamaksmisele kuulunud kolmanda osa suurusest.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg4">
+   <loigeNr id="672d462f-28de-42b5-b73c-13d599294401">4</loigeNr>
+   <kuvatavNr id="dce8a6db-799e-41cc-960e-f31b887e39dc"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="c1fc340f-959a-4060-99b9-7474b911d8f1">
+    <tavatekst id="cf4c59d5-3c46-47d2-846b-a90b567b5128">Määrus jõustub seadusega sätestatud korras ja määrust rakendatakse tagasiulatuvalt alates 01.01.2026.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="5a1e9fa4-e585-4a1f-9920-fe555ff3ae2a"><allkiriKoht id="eaece34e-9e27-4984-a622-5aee56c3fe58"/><allkirjastaja id="bd5930e1-28f6-40b3-b6d6-6101dc9bcc05"><ametinimetus id="2db2f5b6-14e6-4bd7-8f5d-f7761d8152cf">Linnavolikogu esimees</ametinimetus><eesnimi id="2914e9fc-a0d6-43c8-97bf-5bdf916a89d7">Mihhail</eesnimi><perekonnanimi id="7aecd031-e6a7-47ff-9639-4e47166f0423">Stalnuhhin</perekonnanimi></allkirjastaja></allkiri></oigusakt>

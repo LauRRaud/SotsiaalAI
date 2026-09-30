@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="1913c1d5-d059-452b-832a-4820672bc82d" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+ 
+ <valjaandja>Põlva Vallavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2021-01-28</aktikuupaev>
+  <avaldamismarge>
+	<RTosa>RT IV</RTosa>
+	<avaldamineKuupaev>2021-02-05</avaldamineKuupaev>
+	
+	
+	<RTartikkel>14</RTartikkel>
+	<aktViide>405022021014</aktViide>
+  </avaldamismarge>
+  <joustumine>2021-02-08</joustumine>
+  <aktiNr>4</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-09-29</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>11</RTartikkel><aktViide>429092026011</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2026-10-02</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2026-09-23</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>429092026011</globaalID>
+ <metaandmedVersioon>11</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2026-09-28</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ <terviktekstiGrupiID>1051302</terviktekstiGrupiID>
+ <eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2021-01-31</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Liia Sulg</metaandmedVersioonPohjustaja>
+		</versiooniMuutus><versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>7</metaandmedVersioon><metaandmedVersioonKuupaev>2021-02-04</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+	<aktinimi id="aaa8c30e-50b3-4d99-9c33-871cb14dcc55">
+		<nimi id="53b5ada0-6622-4fa3-b05a-3a281e8301e8">
+			<pealkiri id="ebd944cb-ecd6-4d68-93da-7ac084dbd5d5">Raske ja sügava puudega lastele sotsiaalteenuste osutamiseks toetuse andmise ja maksmise kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="15db646c-c46c-44fe-b7d7-371dcd616f85"><aktikuupaev id="5f6bec71-8c3a-451e-8524-906bf669f1a7">2026-09-17</aktikuupaev><avaldamismarge id="03f4d812-ffea-4f50-bea8-229fbf0e0810"><RTosa id="c1d7310d-adf2-45dc-be2e-7a421ca05d36">RT IV</RTosa><avaldamineKuupaev id="7645b459-52dc-43c1-aab1-be01bad4d6a4">2026-09-29</avaldamineKuupaev><RTartikkel id="ca20bde1-1e03-454e-9539-e8f5585a24ad">1</RTartikkel><aktViide id="45efa652-ecac-48cb-baa1-c3aa8bb2d8dc">429092026001</aktViide></avaldamismarge><joustumine id="3ecaead6-5a7d-45c3-a4b9-ad940b3e13c1">2026-10-02</joustumine><tavatekst id="a66a6d12-81d7-4299-9f96-737da04ad227">, rakendatakse alates 01.08.2026</tavatekst></muutmismarge><sisu id="dbab25f3-2210-4780-9df4-84d51df92b77">
+		<preambul id="e216a35a-d2ea-4bbd-b736-42394009733e">
+			<tavatekst id="1f6d1447-9185-4865-a978-84a83a6bfbf6">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5 ja sotsiaalhoolekande seaduse § 14 lõike 1 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="74cd1ba7-93d9-4eb9-bc53-07bd55bc4ff3">1</paragrahvNr>
+			<kuvatavNr id="fb110421-2330-4073-8891-e9fadcd2267f"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="9f1e02bf-37e2-4bc9-85b7-a1d406e5c782">Üldsätted</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="877084ff-68e2-4b0d-8bf3-be1eaa41746c">1</loigeNr>
+				<kuvatavNr id="1ad271b1-b668-485b-b055-b462139a61d1"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="f3e091f0-55ed-4e24-b88d-b1341795b674">
+					<tavatekst id="82567368-e375-411d-aae8-aab0288b8303">Määrus reguleerib raske ja sügava puudega lastele sotsiaalteenuste osutamiseks toetuse (edaspidi <i>toetus</i>) andmise tingimused ja korra Põlva vallas.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg2">
+				<loigeNr id="375d73ef-7809-4371-ae8f-60817636830a">2</loigeNr>
+				<kuvatavNr id="6ffd987d-0041-4a34-afc1-0ed1fb000f68"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="bf00f66e-8b05-47a6-90c6-60d43786e53a">
+					<tavatekst id="2875dbd1-da9f-4357-9508-adca82f7e1c1">Riigieelarvest raske ja sügava puudega lastele abi osutamiseks määratud toetust võib Põlva Vallavalitsus (edaspidi <i>valitsus</i>) kasutada raske ja sügava puudega laste lapsehoiu-, tugiisiku-, sotsiaaltranspordi- või muude sotsiaalteenuste osutamiseks ja arendamiseks.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg3">
+				<loigeNr id="28800c7f-08de-4851-af78-f27bef9ba7e4">3</loigeNr>
+				<kuvatavNr id="3ed128cf-db49-4b9e-85a1-d70d4f1a702c"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="b9b964ee-600d-4c29-ac03-bc9277366cfb">
+					<tavatekst id="2434da78-b0c2-484f-84e1-bbcc23501200">Taotluse menetlemisele kohaldatakse haldusmenetluse seadust, arvestades sotsiaalseadustiku üldosa seaduses sätestatud erisusi.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="1f9aa303-9086-44ee-9874-84f7df510e74">2</paragrahvNr>
+			<kuvatavNr id="95481242-29da-4042-87a6-d29973004c41"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="7d7fd258-2a62-4b14-b04c-5fe423d14617">Puudega laps</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="041bd43b-13b9-4201-aca6-7674fa398184"/>
+				<kuvatavNr id="34fa9db6-d8ff-426b-a8d1-c7151639a359"/>
+				<sisuTekst id="1b2219be-1eb6-44ce-af3e-e11bcdd0786c">
+					<tavatekst id="60229ca0-061a-4aa1-a42b-f5e664ed862f">Puudega laps käesoleva määruse mõistes on kuni 18-aastane isik, kellele on Sotsiaalkindlustusameti otsusega määratud raske või sügav puue ja kelle elukohana on rahvastikuregistrisse kantud Põlva vald.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="8fe6d3f8-400d-4339-a4f2-7ce7cc62c10d">3</paragrahvNr>
+			<kuvatavNr id="bbc6021f-dc80-4ce6-9be7-982c3010c62c"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="69ac6ef3-9323-446b-a02c-ec8bd8567ae5">Õigustatud isikud</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="94eb358f-205a-4b23-9c27-597384037055"/>
+				<kuvatavNr id="642783bb-8a5f-4c5e-a3eb-1c5bfe8bb777"/>
+				<sisuTekst id="b527d23a-aa8a-4c68-90d1-64f8e05565e4">
+					<tavatekst id="f2bf56bc-1485-4fd6-987d-feef1f67108f">Toetust on õigus saada puudega lapse hooldusõigust omaval isikul või sotsiaalhoolekande seaduse § 45<sup>5</sup> lõikes 2 nimetatud last vahetult kasvataval isikul kuni selle kalendriaasta lõpuni, kui laps saab 18-aastaseks.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="2dffd5e3-0dbe-49dd-afb7-1927dc8a3b19">4</paragrahvNr>
+			<kuvatavNr id="60d28d6b-a343-46f0-8f58-c493835883d5"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="d88a9d1c-0ac9-411a-9d4e-6fef98704100">Toetuse eesmärk ja määrad</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="cbf3b1d4-1b1d-46a6-b7f0-e31fbf6c011b">1</loigeNr>
+				<kuvatavNr id="caea790c-b4de-4476-abc2-63653651586e"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="cb37fa8a-a3ca-4775-a98e-afb813f53568">
+					<tavatekst id="c812feb7-6097-4842-8864-d8ca869a57f2">Toetuse eesmärk on toetada puudega lapse hooldusõigust omava isiku või sotsiaalhoolekande seaduse § 45<sup>5</sup> lõikes 2 nimetatud last vahetult kasvatava isiku toimetulekut või töötamist, et vähendada puudega laste perekonna hoolduskoormust või puudest tulenevaid lisavajadusi.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg2">
+				<loigeNr id="840ac1aa-20a0-476a-92e4-55790bd6ec7c">2</loigeNr>
+				<kuvatavNr id="abd605a5-e10a-4b52-bf45-9908283e2960"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="0640daec-ddb8-46a8-9bf9-da0822de384c">
+					<tavatekst id="e03f4657-881c-4736-ad39-8549fbfa2fbc">Toetuse määrad kehtestab valitsus.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="f93e4771-3e87-496d-889a-2428e9223138">5</paragrahvNr>
+			<kuvatavNr id="624259fa-0bce-4813-962b-45ca74722b3f"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="03730c6e-2317-4a64-94aa-239358841535">Toetatavad teenused</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="bf68ed75-01ac-4637-9d10-30305fd99b3b"/>
+				<kuvatavNr id="7d567348-4c5f-4e56-8a54-eeb3c398fa71"/>
+				<sisuTekst id="82493ef7-e03e-40c7-bb9d-074e4a8ea8bb">
+					<tavatekst id="143a3231-54c5-43a3-96ef-abbedbdfaad5">Toetust antakse järgmiste teenuste osutamiseks ning arendamiseks:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para5lg1p1">
+					<alampunktNr id="a3e2052a-df8d-4fda-bf2e-86dda286584b">1</alampunktNr>
+					<kuvatavNr id="4ff0acdd-2182-4d24-ac3c-7d80291be208"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="647ad632-3705-4404-90ae-e82cbb32e1db">
+						<tavatekst id="0250d3bd-15e4-478a-99b6-b308d1972817">lapsehoiuteenus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg1p2">
+					<alampunktNr id="1afe741a-c0ad-4768-afc4-f475715cc82b">2</alampunktNr>
+					<kuvatavNr id="a20be529-d035-4596-9548-c94f32d30aec"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="b14d6041-65d8-4b3e-b47a-b2a70c8aaf0b">
+						<tavatekst id="99171eb9-87a0-4878-9157-25704f0ce5ec">tugiisikuteenus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg1p3">
+					<alampunktNr id="4f113d15-1bec-4799-8265-66a43bf0b5c2">3</alampunktNr>
+					<kuvatavNr id="0fa67b31-c24f-4129-bbf6-7c6b98e2cac9"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="165ff104-8b7a-4805-b82b-7784b6f93689">
+						<tavatekst id="f414b478-fc0b-47e5-ab1d-513e5276b275">isikliku abistaja teenus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg1p4">
+					<alampunktNr id="447ebac3-ad60-4250-81d7-b4811a9f7878">4</alampunktNr>
+					<kuvatavNr id="55efc50c-31dc-45bb-a613-ede7cb503747"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="f05814dd-95ea-4509-9812-ba4cb55f42f4">
+						<tavatekst id="d15b683c-c207-4951-aa9e-a7a0b82f214c">transporditeenus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg1p5">
+					<alampunktNr id="8e3584db-2e51-4f8f-add7-845e6b05a020">5</alampunktNr>
+					<kuvatavNr id="59321480-7735-4971-bae0-425b3fa2fdbb"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="0f5e9ba2-7f38-45aa-86c1-0a4b612219d5">
+						<tavatekst id="a6b5618a-8bd1-4700-8609-46c74900a0d9">lapse rehabilitatsiooniteenus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg1p6">
+					<alampunktNr id="f77508bd-770e-44e4-9f34-3ffa606c48ba">6</alampunktNr>
+					<kuvatavNr id="d6d57223-ef1e-487a-9597-035c0d3f127b"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="0e721f86-e68d-4486-ae6c-d2cd9fd8416b">
+						<tavatekst id="1a96d09b-711f-4627-9bc5-dfdc0f5e88a3">lapse ja tema perekonna nõustamisteenus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg1p7">
+					<alampunktNr id="8b081a74-c7cd-4453-a986-bd5a57781954">7</alampunktNr>
+					<kuvatavNr id="76cd8fb7-51d1-4bfe-84c1-5359c222c634"><![CDATA[7) ]]></kuvatavNr>
+					<sisuTekst id="1d5f25d7-e1d8-4b00-9b8a-f705eaaa81ea">
+						<tavatekst id="1b816bf5-8bd9-4d8b-9337-688d299006ff">lapsele eluaseme kohandamine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg1p8">
+					<alampunktNr id="141dbecc-e6bf-4a55-bac2-c1674ef67279">8</alampunktNr>
+					<kuvatavNr id="f2b589e2-b5f8-434b-979a-967f3cdf7885"><![CDATA[8) ]]></kuvatavNr>
+					<sisuTekst id="975a6343-017b-4487-a6d9-3bd4f7025fda">
+						<tavatekst id="441965e8-24b7-4ef7-b4e9-4564fa8a1cc4">peredele toimetuleku koolituse korraldamine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg1p9">
+					<alampunktNr id="63590dbb-2683-4ef6-8516-19b69878cd40">9</alampunktNr>
+					<kuvatavNr id="88bc52fa-d873-430a-b6f8-d3e68457d16e"><![CDATA[9) ]]></kuvatavNr>
+					<sisuTekst id="e34427c3-1712-4421-98fb-bf5342652f32">
+						<tavatekst id="17d552f2-6fee-4eee-912f-263642554ba7">muud sotsiaalteenused, mis aitavad vähendada raske ja sügava puudega lapse perekonna hoolduskoormust või puudest tulenevat lisavajadust.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para6">
+			<paragrahvNr id="485d07ae-23b1-407b-a5ee-5596175991c1">6</paragrahvNr>
+			<kuvatavNr id="698ae129-7722-4213-a54d-595f0f798a1e"><![CDATA[§ 6. ]]></kuvatavNr>
+			<paragrahvPealkiri id="429ae538-0b02-4c3d-a402-7218b7ad6736">Toetuse taotlemine</paragrahvPealkiri>
+			<loige id="para6lg1">
+				<loigeNr id="05ee4352-c1a2-4d5f-89ea-a3416727b1f8">1</loigeNr>
+				<kuvatavNr id="2aefbd73-a9f7-4d0e-aa18-7725bdee7a21"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="1a84b335-257e-4637-8cd6-ecf8b09240f1">
+					<tavatekst id="b65ec41d-5714-4aef-abcf-ed977e6e47d1">Toetuse saamiseks esitab õigustatud isik valitsusele kirjaliku taotluse.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg2">
+				<loigeNr id="cef6240b-bf12-4e3f-a997-85d343faa62a">2</loigeNr>
+				<kuvatavNr id="745588a5-7075-4fc7-a500-04179013df12"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="95c5bc1d-828d-4d44-88a8-5968b28e6345">
+					<tavatekst id="c1f4e58d-29cf-485e-9ea1-5b51fc11402a">Taotlusele lisatakse koopia:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para6lg2p1">
+					<alampunktNr id="c6dea646-7759-4fe3-bd94-b9f9c37840b6">1</alampunktNr>
+					<kuvatavNr id="c1917887-5e16-4a14-b09e-19a1e5e953f3"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="3c1e9696-f5c1-4e50-87c0-04c8dc165f6d">
+						<tavatekst id="97e088db-d7ef-4c03-b36c-b59a6bb2203b">lapse rehabilitatsiooniplaanist, selle olemasolul;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg2p2">
+					<alampunktNr id="56e3e1e7-fd8c-48ff-bf69-d2a668d7f1db">2</alampunktNr>
+					<kuvatavNr id="d8ed9af3-7210-430e-a757-28c36cc14cd5"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="ec043c64-0c10-490b-9ae6-8a181a7326d7">
+						<tavatekst id="42a9d05b-8c99-41a2-bd1e-b96455eed2de">kuludokumendist teenuse osutamise kohta, kui teenuse eest on juba tasutud.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para6lg3">
+				<loigeNr id="ca961f69-d51d-482d-8552-af721666865c">3</loigeNr>
+				<kuvatavNr id="64928712-8042-4fde-8e2a-ac1f15ba1393"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="4ffc2a6e-5eb5-4d6c-8728-ab93061e27d8">
+					<tavatekst id="3cd71c2f-4759-4237-8188-28ad3a071588">Toetust on õigus taotleda kolme kuu jooksul pärast nende kulutuste tegemist, milleks toetust taotletakse.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg4">
+				<loigeNr id="0ca4158a-8dda-44b9-b13e-d17c59cde3a2">4</loigeNr>
+				<kuvatavNr id="ed0aa2c7-9bf7-4621-a166-3ff157ac57ab"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="3f46a7bb-ab25-45c4-8e0d-67652be97f65">
+					<tavatekst id="a3a7f751-c823-4674-a74e-186c552539a7">Valitsusel on õigus teha täiendavaid päringuid ning küsida täiendavaid dokumente toetuse vajaduse väljaselgitamiseks.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg5">
+				<loigeNr id="3ebf264b-abef-4553-8afb-225dbef8e812">5</loigeNr>
+				<kuvatavNr id="bd38aeff-e56c-4505-a46f-6d47a8505332"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="ed294aa4-8912-4d76-bf6b-a2babd8afc14">
+					<tavatekst id="3cdebc0f-34c4-42d2-abc1-5c3d52c4bc28">Eelarveaasta kasutamata rahaliste vahendite ülejäägi korral ning juhul kui puudega lapse sotsiaalteenuste vajadus on suurem valitsuse poolt kehtestatud toetuse määrast, võib õigustatud isik esitada valitsusele täiendavalt toetuse taotluse peale eelarveaasta 1. septembrit.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg6">
+				<loigeNr id="94c49860-88e0-4d29-be2e-468d7adbf2b5">6</loigeNr>
+				<kuvatavNr id="2e89654c-a202-4185-98bc-d302a0a6f855"><![CDATA[(6)]]></kuvatavNr>
+				<sisuTekst id="b0ac9a68-ef67-4e80-97c2-d9496f696606">
+					<tavatekst id="47914c8a-f45d-4372-895f-ede670af3028">Kuni eelarveaasta 1. septembrini rahuldatakse esitatud taotlused vallavalitsuse poolt kehtestatud piirmäärade ulatuses. Peale 1. septembrit esitatud toetuse taotluse võib valitsus rahuldada valitsuse poolt kehtestatud määradest suuremas määras.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para7">
+			<paragrahvNr id="8203a45d-c6ab-4984-bc21-4a5ef080145a">7</paragrahvNr>
+			<kuvatavNr id="87feeb02-89c6-4832-9126-7d5e94c20181"><![CDATA[§ 7. ]]></kuvatavNr>
+			<paragrahvPealkiri id="d1364887-90e8-44ef-8f98-759dd3f316e8">Toetuse andmine ja välja maksmine</paragrahvPealkiri>
+			<loige id="para7lg1">
+				<loigeNr id="9d3a5d2a-5ef2-4f9b-8caf-c1505cd89a08">1</loigeNr>
+				<kuvatavNr id="ecbfef26-a449-4039-87ce-2850b4274931"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="4492f8da-1ca4-4682-9b2a-425f1185a0e0">
+					<tavatekst id="efa6684a-0715-4425-ac89-71e0d6a66b2a">Otsuse valitsuse poolt kehtestatud määrade ulatuses toetuse andmise või toetuse andmisest keeldumise kohta teeb sotsiaal- ja haridusosakonna juhataja või teda asendav ametnik kümne tööpäeva jooksul nõuetekohase taotluse esitamisest.</tavatekst>
+				</sisuTekst>
+			<muutmismarge id="2379580e-f303-470c-8659-a5d9aa2b4b37"><avaldamismarge id="bf5e83e6-0f96-40af-8bf1-6bebf68b4f0c"><RTosa id="d9552e39-681f-4d2c-ad0f-a1844beb265e">RT IV</RTosa><avaldamineKuupaev id="440315ca-c613-4a12-bd66-4a8592e49e15">2026-09-29</avaldamineKuupaev><RTartikkel id="6e4f1a84-1a83-4747-959d-47413bb7e701">1</RTartikkel><aktViide id="32bccc04-83ee-4df7-8d94-51a05451b6d8">429092026001</aktViide></avaldamismarge><joustumine id="34b06613-eed5-4555-8748-0efec7930a98">2026-10-02</joustumine><tavatekst id="4a072647-d4a9-4858-8f4a-dd72b6a8265b">, rakendatakse alates 01.08.2026</tavatekst></muutmismarge></loige>
+			<loige id="para7lg2">
+				<loigeNr id="b54dd100-5efb-46c3-af72-ab44722661e0">2</loigeNr>
+				<kuvatavNr id="ca3cc750-becf-4421-811e-7f93bc06f036"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="a8991382-923d-40af-9c93-076110a310f8">
+					<tavatekst id="36189adc-7e61-4a45-8cea-15e8b1f1f627">Valitsuse poolt kehtestatud määradest suuremas ulatuses toetuse andmise või toetuse andmisest keeldumise otsustab valitsus kümne tööpäeva jooksul nõuetekohase taotluse esitamisest.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg3">
+				<loigeNr id="0dbbdcab-ba5e-4405-b707-3fa2d9eb62f6">3</loigeNr>
+				<kuvatavNr id="73567986-04b7-4333-9100-27011e59df0a"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="38094387-5214-4773-a3a9-5f7968e2964b">
+					<tavatekst id="9b775ce0-0191-4a92-ac20-ef0edfb1c4b0">Toetus makstakse 30 kalendripäeva jooksul toetuse andmise otsuse tegemisest arvates taotluses näidatud arvelduskontole või erandjuhul sularahas.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg4">
+				<loigeNr id="98b886d9-83e5-4c10-8181-331d34c0249c">4</loigeNr>
+				<kuvatavNr id="8f5f6901-1652-4aac-98ed-b234178d9434"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="daa5bbf2-f549-40d0-99ed-57a3fe41370f">
+					<tavatekst id="fa2bd9cf-3c8e-4ad1-b4d9-f568f21d4181">Sotsiaalabikomisjon võib teha valitsusele ettepaneku toetuse andmise ja maksmise kohta.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para8">
+			<paragrahvNr id="4ae13cd0-63c6-4050-9513-f4a3f4ec7fa3">8</paragrahvNr>
+			<kuvatavNr id="2744a70e-39d7-491c-9757-5b6550dc48b9"><![CDATA[§ 8. ]]></kuvatavNr>
+			<paragrahvPealkiri id="bc5370d8-93e0-44cf-a0f4-0ba40b6cbf39">Toetuse andmisest keeldumise alused</paragrahvPealkiri>
+			<loige id="para8lg1">
+				<loigeNr id="ec1fe747-24e4-4688-a711-b769614eecb3"/>
+				<kuvatavNr id="0ffdb82e-c45d-4ee6-9c7e-1d7c13881ac9"/>
+				<sisuTekst id="b15f8e1b-0fb7-4530-8129-f121adaff0a9">
+					<tavatekst id="1ff074d2-704b-41d0-9f55-b7cd2b898206">Toetuse andmisest võib keelduda juhul, kui esineb vähemalt üks järgmistest asjaoludest:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para8lg1p1">
+					<alampunktNr id="ae0bcbbd-6685-40d4-92d8-26dfd6fc5e28">1</alampunktNr>
+					<kuvatavNr id="a79cdd3a-e5a9-4417-8a67-b47fb4179c7a"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="81905c51-450f-412e-9637-7eca1c6dbd5f">
+						<tavatekst id="47cfe6a4-ac78-4568-8370-eef5939f8915">valitsusele ei ole esitatud kõiki teadaolevaid tõeseid ja täielikke andmeid, dokumente ja muid tõendeid, mis on vajalikud toetuse andmise otsustamisel;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg1p2">
+					<alampunktNr id="3cf7ea97-cc2e-471c-a682-391417dc0dba">2</alampunktNr>
+					<kuvatavNr id="20ea9aaa-b704-4d3e-9d7a-ad838e973288"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="5beb4dac-91e9-42fd-913c-f56fbcf81da4">
+						<tavatekst id="a318843a-e51f-4e17-8667-40d61d74e592">taotleja ei võimalda toetuse vajadust kontrollida;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg1p3">
+					<alampunktNr id="7619c548-f0f3-41e8-ac32-f782c2883432">3</alampunktNr>
+					<kuvatavNr id="71b37a7c-711d-4006-b9fb-cc4469caf8c6"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="3ecd0e3f-31bb-4d4f-a051-87f74f51c945">
+						<tavatekst id="b269c438-bca9-43a2-a56e-334d32ddc6ca">taotleja ei ole teavitanud valitsust viivitamata toetuse saamise õigust ja toetuse andmist mõjutavatest asjaoludest ja asjaolude muutumisest;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg1p4">
+					<alampunktNr id="97fbb707-11b3-4c0c-985e-bab02642ef4b">4</alampunktNr>
+					<kuvatavNr id="f7ca31b0-705c-4e34-80f5-6f409b630ce4"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="b8b5b666-a2a2-46cf-89e8-98169660ff2a">
+						<tavatekst id="7c88606f-f7da-4926-9e65-fe67ce895409">toetuse vajadust on võimalik või otstarbekas katta teiste teenuste või muu abiga;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg1p5">
+					<alampunktNr id="33d12959-5a1e-4afa-8c35-f207c3eb6976">5</alampunktNr>
+					<kuvatavNr id="90b3efc0-9afb-436c-832d-0535f3cc5ef8"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="f3fc1e73-30c7-43e1-a734-28451fa59475">
+						<tavatekst id="b1ceeda1-5c99-42b0-aecc-22f55206b271">puudega lapsele on kalendriaastas eraldatud toetust kehtestatud määra ulatuses;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg1p6">
+					<alampunktNr id="e83efeaa-d80c-4b4c-a014-5c3bf035ccef">6</alampunktNr>
+					<kuvatavNr id="058a16ef-8e26-4b26-93da-4eade55c5b23"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="2c3a8c3b-99db-4afa-8a79-a7e7da6c69c8">
+						<tavatekst id="df9b3e0b-089c-4e6a-ac1f-9ae1a604573c">toetuse saaja ei vasta määruse § 2 nõuetele;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg1p7">
+					<alampunktNr id="a3b61804-d6f1-46b1-aeff-33a339ed33d7">7</alampunktNr>
+					<kuvatavNr id="dc952af9-49a7-4054-a00c-39281d7fa0f4"><![CDATA[7) ]]></kuvatavNr>
+					<sisuTekst id="9bb7bf64-7323-4619-a5b8-87c18774a097">
+						<tavatekst id="fd794db8-d5da-40c9-aa49-55f2dcafcacf">toetuse taotleja ei vasta määruse § 3 nõuetele;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg1p8">
+					<alampunktNr id="27322872-15ad-46ef-a3e0-e302616a5387">8</alampunktNr>
+					<kuvatavNr id="213aa037-5183-4a4a-80d3-1ec25c575d1c"><![CDATA[8) ]]></kuvatavNr>
+					<sisuTekst id="129ecce0-241e-48e8-a459-b938058a9090">
+						<tavatekst id="2c9d660b-7a7a-4065-a1b1-49f25005c666">esineb muu põhjendatud asjaolu, mis välistab toetuse andmise.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para9">
+			<paragrahvNr id="70808115-21a7-4ef0-9b4d-b06ec422b608">9</paragrahvNr>
+			<kuvatavNr id="1268558f-c8c2-4c69-b35f-881f587affa5"><![CDATA[§ 9. ]]></kuvatavNr>
+			<paragrahvPealkiri id="084df111-2dc8-40f0-b3aa-e8754db75671">Alusetult saadud toetuse tagasinõudmine</paragrahvPealkiri>
+			<loige id="para9lg1">
+				<loigeNr id="56f9e167-45b7-4498-a2d8-971eb0b7c87e"/>
+				<kuvatavNr id="82cfe45e-efda-4598-a605-37e66b4cc81e"/>
+				<sisuTekst id="7f37298b-d520-472c-a862-11a9ca5305e0">
+					<tavatekst id="8ecda995-c0ba-474b-b5d6-dae17b78bb03">Alusetult saadud toetuse tagasinõudmine toimub sotsiaalseadustiku üldosa seaduse paragrahvides 31–35 sätestatud korras.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para10">
+			<paragrahvNr id="5c7c2900-e481-4b93-bd85-56aa693875a1">10</paragrahvNr>
+			<kuvatavNr id="498eeaee-5a8f-4673-a6a9-61f169e19978"><![CDATA[§ 10. ]]></kuvatavNr>
+			<paragrahvPealkiri id="ed75a26e-0751-48ba-9916-2f9ee4278d1a">Dokumendivormide kinnitamine</paragrahvPealkiri>
+			<loige id="para10lg1">
+				<loigeNr id="7ca0fbd4-9453-456b-a327-3fb36d173c9d"/>
+				<kuvatavNr id="e41c0d49-f57b-475f-8571-ce7de8c72a6d"/>
+				<sisuTekst id="031da2db-b43b-4211-8012-c215642fb2e4">
+					<tavatekst id="d510c742-9140-4275-b1ed-5706037374ad">Vallavalitsus võib kinnitada määruse rakendamiseks vajalike dokumentide vormid.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para11">
+			<paragrahvNr id="f73a7525-62c6-46fd-967f-8e61133aeb27">11</paragrahvNr>
+			<kuvatavNr id="45a0b54a-707c-4158-aa5a-16873fe054b7"><![CDATA[§ 11. ]]></kuvatavNr>
+			<paragrahvPealkiri id="509d74db-1bbd-4fb7-b548-de5abdfda1c8">Määruse kehtetuks tunnistamine</paragrahvPealkiri>
+			<loige id="para11lg1">
+				<loigeNr id="8a9bedec-e313-4291-b4c6-eb396bba7e4c"/>
+				<kuvatavNr id="281f7b74-ee11-4f09-bc85-0720127e37cb"/>
+				<sisuTekst id="6d64003c-1e39-43e1-b71e-abca52557d99">
+					<tavatekst id="19f69d9a-ba99-4a8f-8e07-02fe0eb06a88">[Käesolevast tekstist välja jäetud.]</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para12">
+			<paragrahvNr id="b22f58b8-ca83-4513-b688-04770b2ffd03">12</paragrahvNr>
+			<kuvatavNr id="4ffa346f-9a57-41a0-b935-bf824e61a5be"><![CDATA[§ 12. ]]></kuvatavNr>
+			<paragrahvPealkiri id="00330fca-8ca0-4aa1-b44c-bdcf6c13071f">Määruse jõustumine</paragrahvPealkiri>
+			<loige id="para12lg1">
+				<loigeNr id="474211c6-1ebb-4157-bb2a-2c12d8a1fbfe"/>
+				<kuvatavNr id="0280a719-5e6f-45fe-b0b6-ec13888cd4c6"/>
+				<sisuTekst id="5065a271-c11d-4ae9-8438-d9d94202ed03">
+					<tavatekst id="fe2376b7-cbda-42f1-84c9-cdf38e041695">Määrus jõustub kolmandal päeval pärast avaldamist Riigi Teatajas.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+	
+</oigusakt>

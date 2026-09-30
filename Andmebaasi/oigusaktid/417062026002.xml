@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="06d6ad50-274e-4205-801f-2f26904017e2" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Kastre Vallavalitsus</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>algtekst-terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2026-05-28</aktikuupaev>
+			<aktiNr>3</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-06-17</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>2</RTartikkel><aktViide>417062026002</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2026-06-20+03:00</kehtivuseAlgus></kehtivus><versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2026-06-09</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>417062026002</globaalID>
+		<metaandmedVersioon>6</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2026-06-16</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1063745</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2026-06-05</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gaabriel Tavits</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="3eb91789-e528-412f-876b-1be7a9181f4f">
+		<nimi id="e6265c55-c7dc-4e69-bde1-f2f2a8159855">
+			<pealkiri id="52198524-9547-43bb-8b26-11dc3895528a">Sotsiaalteenuste hindade kehtestamine </pealkiri>
+		</nimi>
+	</aktinimi>
+	<sisu id="418de0a4-dc28-4d51-bdf0-655fbad7b2a9">
+		
+		<preambul id="26111504-1854-443d-be67-a1db25665ee0">
+			<tavatekst id="e36e33e8-ce89-422b-8187-1e3607b161ab">Määrus kehtestatakse sotsiaalhoolekande seaduse § 16 ja Kastre Vallavolikogu 18.03.2026 määruse nr 9 “Sotsiaalhoolekandelise abi andmise kord“ alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="e634b1c9-2697-4af2-b880-c56f2e6e00b3">1</paragrahvNr>
+			<kuvatavNr id="5a4190af-1d83-42c1-b99b-0e20d6fb768d"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="e9addbdb-26b0-4f75-8a13-cfada0820785">Reguleerimisala</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="45942723-009d-4623-ab3a-9a6d1a50504e"/>
+				<kuvatavNr id="8cf2b19a-b673-4d61-990f-8534005bb78d"/>
+				<sisuTekst id="65c4a48b-4d6c-45fa-8f08-66c834523706">
+					<tavatekst id="0b313baa-7c53-400a-8a1c-5aa100faa497">Määrusega kehtestatakse sotsiaalteenuste omaosalustasu maksumus.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="fe07c934-eb7b-4cd9-8b3a-a0f45434aec2">2</paragrahvNr>
+			<kuvatavNr id="4cce6ed7-f977-4d92-a32c-ff3f34195f4b"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="056c9173-f2bc-447a-b2a7-deeeca9b5fe2">Koduabi ja isikuabi pakettide omaosalustasu maksumus</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="84f1dc61-2221-4dcc-8242-436f67b2cf8b">1</loigeNr>
+				<kuvatavNr id="5a612921-056e-4b17-aea8-be9d90908c0f"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="9a73761f-d86a-432d-a31e-36bd77917b91">
+					<tavatekst id="0a3572d9-3d90-4244-a747-a44d545d59b2">Koduabi</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para2lg1p1">
+					<alampunktNr id="7db83605-b2b3-4974-8bee-8a2f076bbeca">1</alampunktNr>
+					<kuvatavNr id="105009ab-7f49-46b5-8913-74f0bb964cf4"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="e3833ab4-090b-4e9b-a61a-e586dd9425e2">
+						<tavatekst id="bc4acafa-806b-464b-b30d-5b65ac17d7d7">Pakett nr 1 (teenuseid osutatakse üks kord nädalas kestusega kuni 2 tundi nädalas). Paketi maksumus 30 eurot kuus.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p2">
+					<alampunktNr id="682d6e02-71fb-41af-9a0d-f5bb4a7a8d62">2</alampunktNr>
+					<kuvatavNr id="71e9b717-610f-46e6-8024-b7713513a78f"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="09a86d8d-071b-46b9-8138-8538a398286e">
+						<tavatekst id="a350b549-759c-407d-a4e2-117be532a28d">Pakett nr 2 (teenuseid osutatakse kaks korda nädalas kestusega kuni 4 tundi nädalas). Paketi maksumus 60 eurot kuus.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p3">
+					<alampunktNr id="43a6d428-c82f-4a82-a4dd-d7660f85da30">3</alampunktNr>
+					<kuvatavNr id="12211e92-daa8-4089-a2ce-f167c4cbaa31"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="d1444837-95b7-4524-863a-0d5b20f4b333">
+						<tavatekst id="05069590-3f72-493f-9c4e-6d51a7d92e5b">Pakett nr 3 (teenuseid osutatakse kolm korda nädalas kestusega kuni 6 tundi nädalas). Paketi maksumus 90 eurot kuus.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p4">
+					<alampunktNr id="38553011-99dd-4887-8796-c88704eeb105">4</alampunktNr>
+					<kuvatavNr id="a59c0a80-6b3e-4808-9b92-1d1ca81e00f4"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="9fd2beda-99b8-4d18-a548-574f979f17e6">
+						<tavatekst id="d4a83c5d-fbc2-4f7f-8364-5741a3065d00">Pakett nr 4 (teenuseid osutatakse neli korda nädalas kestusega kuni 8 tundi nädalas). Paketi maksumus 120 eurot kuus.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p5">
+					<alampunktNr id="6f8fd8f1-7e83-4725-8628-2fdf946e11e0">5</alampunktNr>
+					<kuvatavNr id="fc5aa208-69a7-40c1-a265-483acbfc7158"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="5d0935e4-348b-4c1f-931b-19514338d37d">
+						<tavatekst id="71add1a5-cd8c-4862-804f-530380f24d0b">Pakett nr 5 (teenuseid osutatakse viis korda nädalas kestusega kuni 10 tundi nädalas). Paketi maksumus 150 eurot kuus.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para2lg2">
+				<loigeNr id="a5f309c9-e338-43a8-827e-72ad4a27d158">2</loigeNr>
+				<kuvatavNr id="9281b332-04f6-4204-a3c1-cfec8983e428"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="d2e11ba7-3cdb-4be2-bc93-79f6cf44d73a">
+					<tavatekst id="182d4a07-83cd-4af3-a4a8-4fac9041aa11">Koduabi maksumus isikule, kelle rahvastikuregistrijärgne elukoht on väljaspool Kastre valda on 15 eurot tund.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg3">
+				<loigeNr id="bb893c20-d267-49b5-8914-3b8bbe71fd92">3</loigeNr>
+				<kuvatavNr id="1bee4769-fe5d-490b-923c-84d7a473c3ae"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="2633e1ac-2b89-4701-a75d-91196b370f7f">
+					<tavatekst id="05d32942-333b-496e-871e-30906aafb90e">Isikuabi</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para2lg3p1">
+					<alampunktNr id="5eb63a18-c054-431a-9f3d-b8648b20de4c">1</alampunktNr>
+					<kuvatavNr id="2862e0be-197d-4b41-b151-8c0cdaa1951a"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="38cccfd6-dc59-4f00-9b39-661f68d68416">
+						<tavatekst id="d510b523-8277-4d66-8f7b-4d2f4b9bd3d6">Pakett nr 6 (teenuseid osutatakse üks kord nädalas kestusega kuni 2 tundi nädalas). Paketi maksumus 60 eurot kuus.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg3p2">
+					<alampunktNr id="fc2c0605-983d-48dc-9504-f2ecafdb9fe3">2</alampunktNr>
+					<kuvatavNr id="5dbeb398-3731-4dc2-b1e3-b4dd9046eaf4"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="04410700-fbd2-4139-9f67-9c7b030cab2d">
+						<tavatekst id="37d8c058-bda7-4445-ad4b-bce781a1b49d">Pakett nr 7 (teenuseid osutatakse kaks korda nädalas kestusega kuni 4 tundi nädalas). Paketi maksumus 90 eurot kuus.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg3p3">
+					<alampunktNr id="ed1c34af-401b-4abf-961a-45b98f35def2">3</alampunktNr>
+					<kuvatavNr id="9047a04c-13bf-4752-918a-694aeed73fa6"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="4bd691bd-e281-408e-a6c4-d733ec9364c6">
+						<tavatekst id="963692d9-e60c-4520-92a3-c80f1c65c5ad">Pakett nr 8 (teenuseid osutatakse kolm korda nädalas kestusega kuni 6 tundi nädalas). Paketi maksumus 120 eurot kuus.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg3p4">
+					<alampunktNr id="867fc5d4-9a9b-446e-8d44-6ad356df63d3">4</alampunktNr>
+					<kuvatavNr id="eca73711-74fb-49a8-a2b2-d43d230ed5ef"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="b47b6ef2-3988-4b9b-931a-2e89c7380be2">
+						<tavatekst id="c3ff7451-d606-447d-bf10-005d07bed670">Pakett nr 9 (teenuseid osutatakse neli korda nädalas kestusega kuni 8 tundi nädalas). Paketi maksumus 150 eurot kuus.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg3p5">
+					<alampunktNr id="c48be69f-9b61-4c9a-9d37-f8bd71c26af2">5</alampunktNr>
+					<kuvatavNr id="b11739c1-9864-4640-a9a4-58a1e2a0ddde"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="0478db0a-66b5-4455-9939-f4ecfeeef2a3">
+						<tavatekst id="6178ca90-71c5-4014-ae02-06f6cb949a41">Pakett nr 10 (teenuseid osutatakse viis korda nädalas kestusega kuni 10 tundi nädalas). Paketi maksumus 180 eurot kuus.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para2lg4">
+				<loigeNr id="5a90b65a-aaec-4c8e-9052-2d568d127bac">4</loigeNr>
+				<kuvatavNr id="dc88ecab-1594-4476-a0dd-541a136fb3e8"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="c75df01c-7620-4e35-abe2-bc41735bbe29">
+					<tavatekst id="f0af0813-cd4a-4167-b86f-fadc9b7c828c">Isikuabi maksumus isikule, kelle rahvastikuregistrijärgne elukoht on väljaspool Kastre valda on 20 eurot tund.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg5">
+				<loigeNr id="efe183fc-69ee-4f2b-8b34-925f59faa1ba">5</loigeNr>
+				<kuvatavNr id="a71f5aac-a48b-4e0b-9367-1ad328bb6d59"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="a9f830dd-1560-4d51-94d8-29dfa561c241">
+					<tavatekst id="20e69fab-e387-401a-b76f-819aa991bd14">Ühekordne koduabi ja isikuabi on 15 eurot tund.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="c376d629-39ab-4dad-8b04-3460de141ef5">3</paragrahvNr>
+			<kuvatavNr id="aa7dc7af-408b-4e73-8aa1-89e9ce4386d5"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="73e5afe9-7400-4e35-b980-a2077ce957c2">Isikliku abistaja teenuse omaosalustasu maksumus</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="d783a5b6-dcd3-4e2e-9b06-0b7016e78fca"/>
+				<kuvatavNr id="b2b23e2d-b763-4c88-9a00-3cd35b6e0b2c"/>
+				<sisuTekst id="e42de013-fd9d-473d-a5de-ea89eab996cb">
+					<tavatekst id="51a3c85e-b26a-4e13-bbdc-d9de06fdaab7">Isikliku abistaja teenuse maksumus on 0.30 eurot ühe teenustunni eest.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="f920e21b-71cf-48f1-86ea-dd26e8a2f5e0">4</paragrahvNr>
+			<kuvatavNr id="6c6a6976-cdfa-48f2-9e86-bee482835efd"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="a0456c53-c25e-4c6d-ae88-96bba2a522d6">Sotsiaaltransporditeenuse omaosaluse maksumus</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="7127b2c8-5a9f-4c3c-a3c8-6cbc16f10300">1</loigeNr>
+				<kuvatavNr id="1822b7ef-f7d2-4a0c-80ef-834febe30317"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="f8d24f52-a5e1-4870-8764-616704beeeac">
+					<tavatekst id="19e9015a-2d77-49cb-a597-bc685515af3b">Sotsiaaltranspordi kasutaja omaosalus kasutuskorra kohta:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para4lg1p1">
+					<alampunktNr id="97e8afc0-0579-4fbe-bd94-acc99c1769da">1</alampunktNr>
+					<kuvatavNr id="d2581e78-94a6-4950-8983-093c47828cac"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="c039337d-b0c8-46f3-8fd0-63b852bd4265">
+						<tavatekst id="74a2a834-a2a1-4c00-ac7d-eb5a078046fc">Kastre valla piires – 1/3 sotsiaaltransporditeenuse maksumusest;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg1p2">
+					<alampunktNr id="09bf576b-2030-4c67-b16b-f462cf6b44db">2</alampunktNr>
+					<kuvatavNr id="341ad67a-cfc0-4fe3-9ce4-17fbe5f75d5d"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="af95b00b-d2db-4f6c-8994-8314e918f41d">
+						<tavatekst id="05e853aa-a9bf-48f4-ab14-519ed82c0876">Tartu maakonna piires – 1/4 sotsiaaltransporditeenuse maksumusest;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg1p3">
+					<alampunktNr id="508e9eaa-690e-47b1-b15b-014b1f2adea0">3</alampunktNr>
+					<kuvatavNr id="336e6e71-522e-4e52-8ffb-42c826cc87a3"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="0f8b30aa-6d77-488c-8888-84bc5a333c2f">
+						<tavatekst id="54fbc194-0f4b-43d6-9b66-ad892a909bf4">Eesti Vabariigi piires – 1/4 sotsiaaltransporditeenuse maksumusest.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para4lg2">
+				<loigeNr id="28279d52-f1c2-4883-9d77-af4422794cc9">2</loigeNr>
+				<kuvatavNr id="59659393-56f2-45d5-9dc6-209346c6e9d4"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="6fa669f3-772d-4c9b-92a8-73e03c68fccd">
+					<tavatekst id="60822046-4eea-49db-b540-c767dad9e58a">Sotsiaaltransporditeenuse maksumus isikule, kelle rahvastikuregistrijärgne elukoht on väljaspool Kastre valda rakendub teenuse eest tasumisel sotsiaaltransporditeenuse osutaja poolt esitatud hinnakirjajärgne maksumus täies ulatuses.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="7af7ec58-e6a3-4aad-a622-597b98770fee">5</paragrahvNr>
+			<kuvatavNr id="abd1be7b-b099-4d79-afd7-f4a215372596"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="dc48bf2d-c55a-4b35-bcc5-26d908f6636d">Eluruumi tagamise teenuse omaosaluse maksumus</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="0b41e9cf-803d-4b99-8219-02472047de9b">1</loigeNr>
+				<kuvatavNr id="e2505334-6824-4236-9467-ffe47f969ce4"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="99756e4a-53b2-4701-b31a-ea39e5e1b491">
+					<tavatekst id="0498db4b-37b0-4849-b887-e054ba34eb1b">Sotsiaaleluruumide üürihinnad</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para5lg1p1">
+					<alampunktNr id="c4e8ac95-f283-43e1-896a-671453b371c3">1</alampunktNr>
+					<kuvatavNr id="24515f78-29b3-4c6c-8442-284629d737d5"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="56ebdf69-fb3d-42d8-b264-132c3ea60c3b">
+						<tavatekst id="2378da6c-4828-43f5-860c-734270861306">Mugavusteta eluruumi üüri hind 1.5 eurot m² kohta kuus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg1p2">
+					<alampunktNr id="b5ea81bc-de51-4855-9f21-c88ed0119203">2</alampunktNr>
+					<kuvatavNr id="6f59f934-9f9a-483d-9ba0-d1bb5d8f7f68"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="53ec600a-ab48-434b-8a0c-2f1900c68ccb">
+						<tavatekst id="19c8ecf7-b6bf-480e-b157-6706c3ec4218">Mugavustega eluruumi üüri hind 3 eurot m² kohta kuus.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para5lg2">
+				<loigeNr id="26d726da-3819-4757-a64c-2e30a069a8f4">2</loigeNr>
+				<kuvatavNr id="07364ec7-2c6b-487e-8b98-b22e5282ec01"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="88770695-d50a-48fb-9889-3f0aee23e0ea">
+					<tavatekst id="639bb0a9-c72b-4967-8ebd-b39475e87052">Sotsiaaleluruumide üürihinnad isikule, kelle rahvastikuregistrijärgne elukoht on väljaspool Kastre valda on</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para5lg2p1">
+					<alampunktNr id="423aa47f-c6cf-4384-aa35-0c8912c9d002">1</alampunktNr>
+					<kuvatavNr id="2b641132-da96-41bd-bbff-b8953ec24e75"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="14fc1c27-35fa-4e89-985a-f99ca20a93a8">
+						<tavatekst id="9f4d9f16-9961-4dfb-8f68-d35370438b4b">Mugavusteta eluruumi üüri hind 2.5 eurot m² kohta kuus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg2p2">
+					<alampunktNr id="72daded4-8cef-4932-b696-1e21ae122cb1">2</alampunktNr>
+					<kuvatavNr id="6b631975-3775-4014-affb-988b4946c286"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="aff48f84-989c-4a40-943a-c15f09913ab4">
+						<tavatekst id="34425aa4-09c3-4cf9-a1c8-f6f29ca9ada1">Mugavustega eluruumi üüri hind 4 eurot m² kohta kuus.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para5lg3">
+				<loigeNr id="e3d790b8-0355-4420-98e7-4f5deea2595e">3</loigeNr>
+				<kuvatavNr id="f2529b78-3ba5-4fb1-becf-79aefc176775"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="2bfd41fd-33ee-4f52-b16f-cacba3a246e1">
+					<tavatekst id="92fbf0cb-7997-473e-a63d-56fb206753c8">Munitsipaaleluruumide üürihinnad</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para5lg3p1">
+					<alampunktNr id="a288c458-5f26-4ff6-b599-be2cc31fbbfa">1</alampunktNr>
+					<kuvatavNr id="ed1c92d6-bbd3-4605-a7a7-7488c4234703"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="34e1c995-ada6-45e2-8a00-a55beeba0ed4">
+						<tavatekst id="1fa08994-256a-4c55-ab3f-6afbd7ed754a">Mugavusteta eluruumi üüri hind 3 eurot m² kohta kuus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg3p2">
+					<alampunktNr id="473d8e35-9667-457d-b3bd-f43d0d2a669b">2</alampunktNr>
+					<kuvatavNr id="8ba290b5-c64c-4afb-ac94-013024a1f558"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="8f0c88bd-a6f1-4397-8213-aa81fba60ea7">
+						<tavatekst id="efe94394-3161-4271-9105-c770e61045b3">Mugavustega eluruumi üüri hind 5 eurot m² kohta kuus.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para5lg4">
+				<loigeNr id="ff8cffd2-f324-40d2-918f-3be66c30836f">4</loigeNr>
+				<kuvatavNr id="24ae611f-baeb-42f0-800a-aee222833292"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="45b47360-fe26-439c-adef-e75a54065275">
+					<tavatekst id="18ad34e1-0842-4b02-bfc0-87ecaa7d076d">Munitsipaaleluruumide üürihinnad isikule, kelle rahvastikuregistrijärgne elukoht on väljaspool Kastre valda on</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para5lg4p1">
+					<alampunktNr id="d7053fd7-29f6-4a06-9279-30252294d9e1">1</alampunktNr>
+					<kuvatavNr id="76f2316b-d254-481f-b10d-3eff43bfc00d"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="df3fcd96-a0fb-458d-811d-7692e137f72e">
+						<tavatekst id="fce322f8-1a21-4ef7-9b92-ef39a2dbc359">Mugavusteta eluruumi üüri hind 3.5 eurot m² kohta kuus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg4p2">
+					<alampunktNr id="556ed144-4c04-4b20-a63e-30d7eb317945">2</alampunktNr>
+					<kuvatavNr id="3e5b8955-10fc-439a-86b9-b374e5a41a5b"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="f17eef11-ef1a-4ef2-8646-b5f38307dee1">
+						<tavatekst id="17903288-11ff-4515-a66d-cc4b18918348">Mugavustega eluruumi üüri hind 6 eurot m² kohta kuus.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para6">
+			<paragrahvNr id="3324516b-b58d-4ac5-b336-343f9cc8adf2">6</paragrahvNr>
+			<kuvatavNr id="7b72fe2b-1c22-477d-9847-79b177d14564"><![CDATA[§ 6. ]]></kuvatavNr>
+			<paragrahvPealkiri id="58a9f619-7b6e-47ee-b4a7-2657c315183b">Suure hooldus- ja abivajadusega laste teenused</paragrahvPealkiri>
+			<loige id="para6lg1">
+				<loigeNr id="ad0a6712-79bb-427c-8fb7-1680c51dea1e">1</loigeNr>
+				<kuvatavNr id="6ced8e8c-ee7c-4dad-818d-4e39bda5bc66"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="c6740b8b-8caf-4ca0-bd9f-49bd04b8ce31">
+					<tavatekst id="77bc3ccd-4234-491f-83dc-76f77dd005c9">Lapsehoiuteenus. Omaosalustasu ühe lapsehoiuteenuse teenustunni kohta on 10 % teenuse maksumusest. Omaosalustasu rakendatakse alates 401 tunnist ühes aastas (määratud 400 tunni lapsehoiuteenuse ärakasutamisest).</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg2">
+				<loigeNr id="df3d6225-15d1-4371-b0a8-2c222610ebfb">2</loigeNr>
+				<kuvatavNr id="762a7aa1-95fc-4b35-877f-673e23245529"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="fd18cb83-3176-4413-9cbd-6837603a373a">
+					<tavatekst id="9c6f01ab-070f-4048-bdda-3547194bfb5b">Tugiisikuteenus. Omaosalustasu ühe tugiisikuteenuse teenustunni kohta on 10 % teenuse maksumusest. Omaosalustasu rakendatakse alates 401 tunnist ühes aastas (määratud 400 tunni tugiisikuteenuse ärakasutamisest).</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg3">
+				<loigeNr id="8cb8ba23-7599-4e89-a74f-4bffa1203ca7">3</loigeNr>
+				<kuvatavNr id="d2f3de74-b4d4-4f42-99d7-39d0d7f58a69"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="6795a7da-c9da-4c05-b5fc-1a821bf14810">
+					<tavatekst id="ee210a19-50ee-40ae-aabd-aecef94b9ff6">Muud toetavad teenused. Omaosalustasu teenustunni kohta on 10 % teenuse maksumusest.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para7">
+			<paragrahvNr id="352d0077-bb03-46ea-97e5-a8c3a4fdcdf1">7</paragrahvNr>
+			<kuvatavNr id="b6311d22-ed4f-48b4-adce-aa616792abe1"><![CDATA[§ 7. ]]></kuvatavNr>
+			<paragrahvPealkiri id="a02da621-0dd9-492c-8b1c-c5344f208263">Sotsiaalmajutusteenuse omaosalustasu maksumus</paragrahvPealkiri>
+			<loige id="para7lg1">
+				<loigeNr id="1b49b1d9-078c-4abe-be42-874772930c16">1</loigeNr>
+				<kuvatavNr id="9a25130d-deb3-4197-bc04-d403b1576cf2"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="79bd6944-9841-4d8d-adbd-e492acb718a9">
+					<tavatekst id="0ec43ebb-0bab-497a-acb8-a8fff8faacb0">Sotsiaalmajutusteenuse omaosalus isikule, kelle rahvastikuregistrijärgne elukoht on Kastre vallas on 250 eurot kuus või 25 eurot ööpäevas ja isiku igale alaealisele pereliikmele 50 eurot kuus või 10 eurot ööpäevas. Sotsiaalmajutusteenusele võivad lisanduda lisateenuste hinnad (toitlustamine, pesu pesemine, pesukuivati kasutamine, duši kasutamine jms).</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg2">
+				<loigeNr id="aeec6f2c-b9b0-4cc2-b015-fef9fed1955a">2</loigeNr>
+				<kuvatavNr id="d7284c56-069e-4588-9c73-9418c4c784a5"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="0ff5db40-a5d1-44d6-872f-4be739240597">
+					<tavatekst id="2e0990e5-982e-4e23-9f43-e257ab0e9807">Sotsiaalmajutusteenuse omaosalus isikule, kelle rahvastikuregistrijärgne elukoht on väljaspool Kastre valda on 450 eurot kuus või 35 eurot ööpäevas ja isiku igale alaealisele pereliikmele 50 eurot kuus või 10 eurot ööpäevas. Sotsiaalmajutusteenusele võivad lisanduda lisateenuste hinnad (toitlustamine, pesu pesemine, pesukuivati kasutamine, duši kasutamine jms).</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para8">
+			<paragrahvNr id="e60fb070-1518-4854-a635-f7c0649a7084">8</paragrahvNr>
+			<kuvatavNr id="f3d95097-e433-4e55-a4df-b3bdf9e0401f"><![CDATA[§ 8. ]]></kuvatavNr>
+			<paragrahvPealkiri id="f7eaef3a-cfee-4b12-af5d-bb2a624d1668">Päevahoiuteenuse omaosaluse maksumus</paragrahvPealkiri>
+			<loige id="para8lg1">
+				<loigeNr id="75deebfb-6e40-415c-9532-24cb76f96040">1</loigeNr>
+				<kuvatavNr id="15d1dd45-c6b8-450b-af61-24bb9f7134ad"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="c1f4dbc8-f833-41f8-b26e-93c288236a9f">
+					<tavatekst id="423a15ab-bf76-4ecd-a061-f65b69355c4c">Päevahoiuteenuse omaosalus isikule, kelle rahvastikuregistrijärgne elukoht on Kastre vallas on 135 eurot kuus või 15 eurot päevas. Päevahoiuteenusele võivad lisanduda lisateenuste hinnad (toitlustamine, pesu pesemine, pesukuivati kasutamine, duši kasutamine jms).</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para8lg2">
+				<loigeNr id="b23c339b-edb4-4a4e-966d-6fc0f8cd8432">2</loigeNr>
+				<kuvatavNr id="c8a38d2e-4f59-4ab0-8b8c-8ac3a1e23bd5"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="d71ee57e-102c-4d30-9e3f-f18cf95e54f0">
+					<tavatekst id="830cac77-83e8-4474-b05e-79fbe280b16b">Päevahoiuteenuse omaosalus isikule, kelle rahvastikuregistrijärgne elukoht on väljaspool Kastre valda on 20 eurot päevas. Päevahoiuteenusele võivad lisanduda lisateenuste hinnad (toitlustamine, pesu pesemine, pesukuivati kasutamine, duši kasutamine jms).</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para9">
+			<paragrahvNr id="b4e48a5d-c6e0-49e8-a9b2-0c0a9e8deddc">9</paragrahvNr>
+			<kuvatavNr id="d3071404-766c-4add-ab37-3f587947ea1b"><![CDATA[§ 9. ]]></kuvatavNr>
+			<paragrahvPealkiri id="2573abe5-473b-417e-9c1f-121db79ebba8">Vaimset tervist toetavad teenused</paragrahvPealkiri>
+			<loige id="para9lg1">
+				<loigeNr id="25513b85-9427-4765-a3f4-4ce252fd3c04">1</loigeNr>
+				<kuvatavNr id="ac61b701-dcf1-489a-90ff-2a6933a50ffe"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="0d31c455-b79b-4b02-b103-943036e65172">
+					<tavatekst id="fd89b3c4-6535-4f96-8d7b-b98467c50b8e">Omaosalustasu ühe teenustunni kohta on 10 % teenuse maksumusest, kui teenuse maksumus on kuni 100 eurot/tund. Omaosalustasu rakendatakse alates kuuendast (6) vaimset tervist toetavast teenustunnist ühes aastas (määratud viie nõustamiskorra ärakasutamisest).</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para9lg2">
+				<loigeNr id="a7b9b5bd-3395-46ed-910f-76b207441558">2</loigeNr>
+				<kuvatavNr id="30bb3788-aa67-4e67-9e4d-49a50ba84f8e"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="715e57e5-f3f9-421e-9cd7-b9a77adb6f7d">
+					<tavatekst id="b9c83a7e-6fb4-4345-989e-819c117d03db">Omaosalustasu ühe teenustunni kohta on 50 % teenuse maksumusest, kui teenuse maksumus on üle 100 euro/tund.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para10">
+			<paragrahvNr id="07522b37-ab59-4c09-8fa1-580ad22400ca">10</paragrahvNr>
+			<kuvatavNr id="dd726f0c-60a3-46dd-a317-7c375531bfb4"><![CDATA[§ 10. ]]></kuvatavNr>
+			<paragrahvPealkiri id="454b7d5e-6c3a-4f13-8d3a-b737fca50065">Muud sotsiaalteenused</paragrahvPealkiri>
+			<loige id="para10lg1">
+				<loigeNr id="b02a3c23-f721-47e2-b7cf-de68cfb9a580">1</loigeNr>
+				<kuvatavNr id="18441477-dc9a-48f2-950b-b32c1ae5d508"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="16369713-455a-430f-9ea0-5708216ac695">
+					<tavatekst id="590254e1-a36e-459d-9b32-2aa5509852db">Pesupesemise teenus (1 masinatäis) 3 eurot.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para10lg2">
+				<loigeNr id="7cc5fcbd-70a0-40b6-815b-a20c87b7be9a">2</loigeNr>
+				<kuvatavNr id="d7b246d0-dd90-478a-8cc2-60d92f03b54f"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="4c89f857-a93b-4b08-af39-5964e9e3a2e3">
+					<tavatekst id="127a7f5a-0f92-4b10-bf51-f041a5b94655">Pesukuivati teenus (1 masinatäis) 2 eurot.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para10lg3">
+				<loigeNr id="e30cea89-997f-4d9d-9e10-86f910fa3287">3</loigeNr>
+				<kuvatavNr id="9a471d42-7c74-40e7-9452-a69f84e9a080"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="c8d73c3f-ce30-4a91-a373-c68846dcc723">
+					<tavatekst id="3182233b-3e1b-41ed-824c-552f2837baf9">Isikliku hügieeni tagamise teenus (dušiteenus) 3 eurot.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para10lg4">
+				<loigeNr id="3dfd28ef-1cbf-45b7-8321-0ac50761330c">4</loigeNr>
+				<kuvatavNr id="f5616817-6e57-423c-b4b3-3d185180dda3"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="a2613506-d825-4de9-b7aa-a8f4e9abdfd0">
+					<tavatekst id="a3de8b0f-7b20-440f-965c-1642bad5be2c">Poka Sotsiaalteenuste keskuse päevahoiuteenuse ja sotsiaalmajutusteenuse raames osutatav toitlustusteenus</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para10lg4p1">
+					<alampunktNr id="7a568639-f964-40c1-afc7-fd56e9e08fef">1</alampunktNr>
+					<kuvatavNr id="81bc221f-2d9c-4cce-b2ae-8ed0434af012"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="c823bc16-5697-4594-8674-4baa7a500dda">
+						<tavatekst id="819ee473-1d92-4a3d-8fe5-fed47c8681ff">Hommikusöök 1.20 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para10lg4p2">
+					<alampunktNr id="2a137b62-5bf7-4081-a961-be67f1ba28dc">2</alampunktNr>
+					<kuvatavNr id="09821cd8-b7b2-46e8-9bc3-e811afa19eba"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="06464af4-a948-4efc-88af-1de60607483d">
+						<tavatekst id="8c3bf64d-8296-480d-9a7c-9afdcfacf9b5">Lõunasöök 2 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para10lg4p3">
+					<alampunktNr id="2d37ca5f-f83e-4fbf-8f11-8757a1669b85">3</alampunktNr>
+					<kuvatavNr id="582a0a00-db47-41f1-a3cd-05120ce40230"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="87969caa-805d-4593-9a7e-638ec8c2998d">
+						<tavatekst id="5a92b35f-7857-4fef-94e7-fbef119c1431">Õhtuoode 1 eurot.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para10lg5">
+				<loigeNr id="ed33d6df-bba0-4c4d-bf98-40957dab2648">5</loigeNr>
+				<kuvatavNr id="ea393578-c5b8-4918-a496-2ddb0b2e4ce1"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="c7d21609-47f8-481c-bc5e-afa7c499e94e">
+					<tavatekst id="079ad823-c5f8-444f-a9bc-cbbcb1f696a5">Tugiprogrammide (peretugevdusprogramm, vanemlikke oskusi toetavad programmid) omaosaluse maksumus on 10 % tugiprogrammi maksumusest.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para11">
+			<paragrahvNr id="c729992f-f421-4942-8a67-23d1fd307f60">11</paragrahvNr>
+			<kuvatavNr id="626a2010-0077-4dea-b06a-5c158b76312e"><![CDATA[§ 11. ]]></kuvatavNr>
+			<paragrahvPealkiri id="6d60b280-9188-486d-8ab5-5de55a918060">Määruste kehtetuks tunnistamine</paragrahvPealkiri>
+			<loige id="para11lg1">
+				<loigeNr id="091d3353-0347-43eb-9912-91081f5fa1b4"/>
+				<kuvatavNr id="be0ec388-ab03-4f00-b61d-1a8aabf270b2"/>
+				<sisuTekst id="bb0fec22-13cb-4e55-8c90-2097b4bb33d3">
+					<tavatekst id="bc40a55b-8cfc-4260-ab39-75c77ff5c479">Tunnistada kehtetuks Kastre Vallavalitsuse järgnevad määrused:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para11lg1p1">
+					<alampunktNr id="0ac5a233-31e1-4c1a-9ed1-70a33afebb3a">1</alampunktNr>
+					<kuvatavNr id="23e75314-1a6d-46db-870c-81b2a30b0399"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="2c54ad04-0da7-41f8-9117-579f08e023b6">
+						<tavatekst id="2021dfcd-470c-443b-bbfd-6b4ec06adc3f">Kastre Vallavalitsuse 16.05.2018 määrus nr 4 „Hooldajatoetusega seonduvate vormide kinnitamine“.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para11lg1p2">
+					<alampunktNr id="0b7549e1-5d41-4421-8ce7-e13d454eb3e6">2</alampunktNr>
+					<kuvatavNr id="e57ac70f-67c5-4801-9259-75b8956089d9"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="b5e341ed-ab97-4604-9474-28285d98cba9">
+						<tavatekst id="c041355f-9aaa-4c53-88fc-171eabbaa6c8">Kastre Vallavalitsuse 02.11.2018 määrus nr 8 „Koduteenuste pakettide maksumuse kinnitamine“.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para11lg1p3">
+					<alampunktNr id="20d25718-5136-4acc-9139-30338853ee45">3</alampunktNr>
+					<kuvatavNr id="0c8bffc0-6ba2-476d-b95f-05650704dfab"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="7668a54d-eb02-4767-9310-0c1553bcff5b">
+						<tavatekst id="b68b6d96-639c-4f07-97f0-ea2074e896bb">Kastre Vallavalitsuse 02.11.2018 määrus nr 9 „Koduteenuste osutamisega seonduvate vormide kinnitamine“.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para11lg1p4">
+					<alampunktNr id="2f4b7588-1841-4978-9da6-8153033bca2d">4</alampunktNr>
+					<kuvatavNr id="86dbdf14-c965-4cb2-b435-51f14ada20e4"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="fc97c36d-788e-42d3-86ca-cf7f99145137">
+						<tavatekst id="fdc6530e-1295-4ca7-b63e-26a91baecf05">Kastre Vallavalitsuse 03.07.2019 määrus nr 7 „Sotsiaaleluruumide üürihindade kehtestamine“.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para11lg1p5">
+					<alampunktNr id="54cd7bef-fb88-4c6a-9eb5-e29ee8792953">5</alampunktNr>
+					<kuvatavNr id="1d502344-62a7-43d8-9711-8ba8f196026d"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="68f4531f-8a22-4cd4-ad18-7d50331714da">
+						<tavatekst id="3b1aac8d-e7b3-4961-9c50-90e1d1ff6986">Kastre Vallavalitsuse 28.02.2020 määrus nr 4 „Isikliku abistaja teenuse osutamisega seonduvate vormide kinnitamine“.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para11lg1p6">
+					<alampunktNr id="0002632b-7cec-4bd7-a068-3be9a369eecf">6</alampunktNr>
+					<kuvatavNr id="70dbe6fa-2608-4d37-9f09-4d3e186309a1"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="96fc006b-f92a-48aa-a888-54c484c50d9a">
+						<tavatekst id="7f1b9c92-eb19-429c-bbcf-56261cb2f169">Kastre Vallavalitsuse 26.11.2020 määrus nr 6 „Munitsipaaleluruumide üürihindade kehtestamine“.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para11lg1p7">
+					<alampunktNr id="b35d5c32-a322-42c4-8d7b-6263eb59edca">7</alampunktNr>
+					<kuvatavNr id="8b40c5cb-d5e8-4916-9ade-13bacd57dd36"><![CDATA[7) ]]></kuvatavNr>
+					<sisuTekst id="1081848f-f3c6-4e17-be25-e1bb40405caa">
+						<tavatekst id="79ac4aca-c5f5-42b4-bff0-8317428e5a40">Kastre Vallavalitsuse 19.01.2023 määrus nr 1 „Sotsiaaltransporditeenuse hindade kehtestamine“.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para12">
+			<paragrahvNr id="c9ba10c6-1193-4799-9e55-0d8cb66bc7fe">12</paragrahvNr>
+			<kuvatavNr id="9f960d07-f792-4ad0-bd64-0a041526cd11"><![CDATA[§ 12. ]]></kuvatavNr>
+			<paragrahvPealkiri id="b65db71d-05ef-4816-830f-66d2fc20eb2f">Määruse jõustumine</paragrahvPealkiri>
+			<loige id="para12lg1">
+				<loigeNr id="04923873-4f45-43b2-b9b6-5f659016dcd5"/>
+				<kuvatavNr id="bd6b0daf-baf7-4469-bd29-586ea54f9faa"/>
+				<sisuTekst id="05e813f2-3ea6-4aa6-b13c-2b9c26418e6a">
+					<tavatekst id="4faf8214-46b0-4609-aa9a-f6d5899c6b83">Käesolev määrus jõustub 01.06.2026.<reavahetus/></tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+	<allkiri id="e1cfd7b6-e596-44b6-8d4c-d307553ae866">
+		<allkiriKoht id="46cd4197-e6e4-49b9-9d36-74adf64c1448"/>
+		<allkirjastaja id="d261ecf1-681d-4139-81c8-866ff486dfcc">
+			<ametinimetus id="ababb1c8-9e72-48a7-8718-af35afb49069">vallavanem</ametinimetus>
+			<eesnimi id="8a70bc8f-0a99-4261-9425-42f4d78f4ecb">Priit</eesnimi>
+			<perekonnanimi id="0006d37c-0e0c-4bd1-bb04-9f6e1d79b630">Lomp</perekonnanimi>
+		</allkirjastaja>
+	</allkiri>
+	<allkiri id="e62d0025-27f9-4f72-9757-85cd4eaa4e8a">
+		<allkiriKoht id="0bf4ee3b-f186-40dc-b112-f0372cf7025a"/>
+		<allkirjastaja id="215e93b1-2de7-4c75-81ce-851bbfd01a65">
+			<ametinimetus id="84bc7445-503d-43a4-9be9-2ec3b57ccb7d">vallasekretäri kohusetäitja</ametinimetus>
+			<eesnimi id="18dd5a8e-d94e-471e-84fb-165235f8502f">Gaabriel</eesnimi>
+			<perekonnanimi id="ab4a2673-e9c2-4162-8ed5-7de71c07fe86">Tavits</perekonnanimi>
+		</allkirjastaja>
+	</allkiri>
+</oigusakt>

@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="d88357ad-a7a7-4a86-b8dd-3dc096f7805f" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+ 
+ <valjaandja>Haapsalu Linnavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2019-02-13</aktikuupaev>
+  <avaldamismarge>
+	<RTosa id="6cf8cd19-589c-49ca-97af-e42dabedbc97">RT IV</RTosa>
+	<avaldamineKuupaev id="ec1795cb-d174-4f6f-9822-74e466d53d50">2020-02-06</avaldamineKuupaev>
+	
+	
+	<RTartikkel id="20f85b4f-4b8d-457c-a705-58f32019fbd8">69</RTartikkel>
+	<aktViide id="486881a5-7dbd-43b0-9b77-2c2a4137d212">406022020069</aktViide>
+  </avaldamismarge>
+  <joustumine>2020-02-09</joustumine>
+  <aktiNr>6</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-11-21</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>8</RTartikkel><aktViide>421112025008</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2025-11-24</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2025-11-14</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>421112025008</globaalID>
+ <metaandmedVersioon>16</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2025-11-20</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ <terviktekstiGrupiID>1048834</terviktekstiGrupiID>
+ <eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2020-02-04</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Anneli Nõupuu</metaandmedVersioonPohjustaja>
+		</versiooniMuutus><versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>7</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2020-02-05</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus><versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>12</metaandmedVersioon><metaandmedVersioonKuupaev>2020-12-28</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+	<aktinimi id="6519491e-8a31-419e-b0c7-249b31c8bf5c">
+		<nimi id="5a869ee4-c228-4e9e-ba20-b1baea7548cf">
+			<pealkiri id="c8e71c18-29ad-4016-8cf0-451c5be5d50f">Sotsiaaltransporditeenuse osutamise kord Haapsalu linnas</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="8b683ece-f739-4bec-8fd4-1d01fae4a27b">
+		<aktikuupaev id="433f2099-9cf8-4a3e-860f-051f4ec19b34">2020-12-16</aktikuupaev>
+		<avaldamismarge id="49b6757d-0b44-4b37-aeba-cfcd6003c212">
+			<RTosa id="48743403-6c90-48df-ba77-560cfc1c8970">RT IV</RTosa>
+			<avaldamineKuupaev id="47b0b163-d532-484c-bd60-48bf22f8fdf3">2020-12-29</avaldamineKuupaev>
+			<RTartikkel id="2a6d99cd-7a24-4949-802c-3223f7d85d4a">32</RTartikkel>
+			<aktViide id="3dce13b4-364d-499b-b4a7-c3c968cf7ae0">429122020032</aktViide>
+		</avaldamismarge>
+		<joustumine id="15230ab0-0f1f-4ca9-af30-b84eb02a131d">2021-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="b7385219-440e-4da2-9455-3dc60d57bfa5"><aktikuupaev id="ed213566-7b59-4c68-a2bf-e79963089142">2025-11-12</aktikuupaev><avaldamismarge id="b989f915-46ed-4695-863a-c8c4f88ce14f"><RTosa id="8293fe5a-6743-4cc2-bb18-7ee8cd8377f6">RT IV</RTosa><avaldamineKuupaev id="23036ab4-9370-4b2b-8d65-0946afcf5a35">2025-11-21</avaldamineKuupaev><RTartikkel id="2b6a10a3-0990-4a1e-b280-2e943c77adff">1</RTartikkel><aktViide id="5965060c-aec7-4402-a707-c523757532e2">421112025001</aktViide></avaldamismarge><joustumine id="7a7ec2c4-d598-4309-a33c-39bf4aaa04a8">2025-11-24</joustumine></muutmismarge><sisu id="40d618fe-4e58-4f05-a7c6-fd75bbc448ab">
+		<preambul id="affe5054-6100-4f35-a30e-34ab5358b0cc">
+			<tavatekst id="ee4f7eec-a1a5-4c9f-9531-71e8f14fc526">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5 ja sotsiaalhoolekande seaduse § 38 ja Haapsalu Linnavolikogu 28.03.2021 määruse nr 84. a „Sotsiaalteenuste osutamise üldine kord“ § 1 lõige 2 alusel.</tavatekst>
+		<muutmismarge id="9ce023a2-175c-4d8e-a2e9-d214980df887"><aktikuupaev id="a0328d43-7d13-4e68-8148-403886aaeb65">2025-11-12</aktikuupaev><avaldamismarge id="4cf13762-7d6d-418e-8b6a-ca2c2fccfc73"><RTosa id="381890a2-42ca-40f2-bd2f-45f6481cd06c">RT IV</RTosa><avaldamineKuupaev id="b0f90ee3-e2b8-4f25-a2fa-3b724f3ae9b8">2025-11-21</avaldamineKuupaev><RTartikkel id="114e6c1c-ee5d-4048-9422-30b6f1715023">1</RTartikkel><aktViide id="fd093534-6866-42a6-b007-dbf055786996">421112025001</aktViide></avaldamismarge><joustumine id="ef8dbf33-fc00-4fa7-b350-7531b5b76d6c">2025-11-24</joustumine></muutmismarge></preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="6880951a-83b5-4510-abaa-dc8c4f734edf">1</paragrahvNr>
+			<kuvatavNr id="507d0333-ce40-460d-a835-a14976ff909f"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="0a2f89b2-d692-4cc8-9f21-9c4d3c682e01">Üldsätted</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="f17ec38f-8794-4f75-9de4-a97187c2cf98"/>
+				<kuvatavNr id="43652d78-3064-48bc-b1d9-37c7ca30656d"/>
+				<sisuTekst id="f01d1557-6f1e-4699-aaa7-ee2337689f5c">
+					<tavatekst id="4442f484-35e1-4635-b29a-269d7d09b761">Käesolev sotsiaaltransporditeenuse osutamise kord Haapsalu linnas (edaspidi <i>Kord</i>) sätestab Haapsalu Sotsiaalmaja poolt sotsiaaltranspordi teenuse (edaspidi <i>teenus</i>) võimaldamise tingimused ja korra.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="ed2032e2-783d-404e-af88-3c7243f88fa0">2</paragrahvNr>
+			<kuvatavNr id="df83dcfb-b6a9-47d9-bee0-188301f3eb5f"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="dc0281ba-3647-41cf-b96d-7ef3eeca9b8a">Teenuse eesmärk ja sisu</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="713a9c70-622c-4ba0-ad34-f621b3afb212">1</loigeNr>
+				<kuvatavNr id="47f7e39b-c514-4a87-94a0-a374f94d7f7e"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="ea557602-c303-4c6e-8d04-2f6622a19937">
+					<tavatekst id="5f0e92af-c3d5-4c4b-a770-8406f35b6b06">Teenuse eesmärk on võimaldada puudega isikul, kellel puue takistab isikliku või ühissõiduki kasutamist, kasutada tema vajadustele vastavat transpordivahendit tööle või õppeasutusse sõitmiseks või avalike teenuste kasutamiseks (sh korrakaitse, meditsiini-, hügieeni-, või apteegiteenuste, panga-, side- ja postiteenuste kasutamine ning muude igapäevaeluks vajalike toimingute teostamine).</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg2">
+				<loigeNr id="b46e547a-2c1b-4cbe-b504-90d0e9c4fedb">2</loigeNr>
+				<kuvatavNr id="d886b4b2-cf7e-4d22-90ea-eef5120f473c"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="40ad2609-cd75-4801-92f1-ab4cac68c253">
+					<tavatekst id="b68b48ff-7ad9-463d-b26f-b957b56ca128">Erandjuhtudel võib mõjuvate põhjuste olemasolul teenust osutada ka teistele abivajajatele.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg3">
+				<loigeNr id="e2452498-dfe9-421d-9c7c-caa6fb260d3a">3</loigeNr>
+				<kuvatavNr id="f1a89afe-9cb7-4223-ab8d-c0287697cf2b"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="4e7a2fcf-42f4-405a-aae4-3aeca2af0f49">
+					<tavatekst id="0e9647f6-91fa-47a6-b7e3-84775ddfd115">Teenuse osutamist korraldab Haapsalu linnas üldjuhul Haapsalu Sotsiaalmaja (edaspidi <i>sotsiaalmaja</i>).</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg4">
+				<loigeNr id="0b86fcc0-1f0b-43cc-ba8b-e81dcff1c609">4</loigeNr>
+				<kuvatavNr id="f4c0c932-a4d2-4d92-a593-736081d07209"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="faf7e515-cc00-4e0a-b940-21f44e01db56">
+					<tavatekst id="d2784fcb-5961-455c-87c2-8e28a329bce4">Haapsalu Linnavalitusel on õigus teenuse osutamine asendada toetuse maksmisega kui isik korraldab endale ise sobiva transpordi.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="c495fe31-f96b-4422-a83c-955850fb3cee">3</paragrahvNr>
+			<kuvatavNr id="3aa80a64-d8c3-4b2d-8dea-2cbc0bf1f656"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="0834281d-5246-4ec7-b0c8-982306d0e92d">Teenuse saaja</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="49d5d570-f0dc-4027-9777-f7896a99e548">1</loigeNr>
+				<kuvatavNr id="7f3a843c-7306-4f5d-a68f-ce27c5ddfbfd"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="da24520a-f5bd-4dda-957b-881a8743fb8a">
+					<tavatekst id="22746021-4459-45f6-8d2c-1bb037c89782">Sotsiaalmaja osutab teenust rahvastikuregistri andmetel Haapsalu linnas elavatele inimestele.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg2">
+				<loigeNr id="b6126d54-05f5-4ab0-b3ad-5d21bb1048fe">2</loigeNr>
+				<kuvatavNr id="294bc696-9721-47df-b71b-bf29445e5a31"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="a604760d-bd69-4988-b6a6-878b3e60308d">
+					<tavatekst id="4c4ce5da-445e-44ba-9de9-cd058f25c060">Teenust osutatakse pensionärile või puudega (liikumis-, nägemis- või intellektihäirega) isikule, kes puudest või tervise seisundist tingituna ei saa kasutada isiklikku sõiduvahendit või ühistransporti.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg3">
+				<loigeNr id="7c587e96-79f6-4c3d-afbe-eec2c78c6809">3</loigeNr>
+				<kuvatavNr id="86a92087-0510-4e9b-980d-31058ef2c937"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="d46d72ba-2ae6-4bed-bd95-67114d9c106f">
+					<tavatekst id="a9127ae8-8167-49de-9090-2dce888c7b97">Teenust osutatakse juhul, kui liikumispuude üheks tunnuseks on liikumisabivahendi (ratastool, rulaator, kargud jms) kasutamine või kõrvalise abi vajadus liikumisel väljaspool kodu ja transpordivahendi kasutamisel.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="d4bfd883-ae91-46a4-8e8f-2521b407e616">4</paragrahvNr>
+			<kuvatavNr id="77093a4d-0f2d-41fc-8f75-29598b596c8c"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="ea4e59db-bb75-47ac-8325-4f713faa3e86">Teenuse taotlemine, menetlemine ja teenuse määramine</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="c4fee5a4-92b7-499a-8623-1fce9a3b6751">1</loigeNr>
+				<kuvatavNr id="611caaa9-2e0a-483b-a86a-b63013a7c935"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="abba7ec6-8efd-4cf6-8a0b-96cd6952f6ef">
+					<tavatekst id="1201969b-8363-4520-bf79-8b43832417a7"> Teenuse saamiseks esitab teenuse taotleja või tema esindaja sotsiaalmaja suulise või kirjaliku taotluse.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg2">
+				<loigeNr id="d24e985b-b36e-4518-9caa-8b73a9efadb0">2</loigeNr>
+				<kuvatavNr id="bf81094f-6a6f-45d6-8d5f-eddb05b6d9e7"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="028216e7-75ed-4aae-87df-4f3a6de1fa81">
+					<tavatekst id="8606cfa3-570b-4d42-b388-26e1b7ca968c">Teenuse saamise otsustab hindamisinstrumendi alusel sotsiaaltöötaja, arvestades § 3 lõigetes 2 ja 3 sätestatut.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg3">
+				<loigeNr id="06c64683-d1c8-473b-b632-7b4b81123533">3</loigeNr>
+				<kuvatavNr id="6b815c04-3582-4b59-b7aa-9f729149be2c"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="6220ae35-2bdc-451e-8ead-0db2cd5f6c69">
+					<tavatekst id="a255335c-6d6d-46c5-9457-e5e20be62181">Hindamist ei pea tegema juhul, kui hindamine on kliendile juba varasemalt tehtud teise teenuseosutaja või asutuse poolt mitte rohkem kui kaks aastat tagasi.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg4">
+				<loigeNr id="5a735f5a-56d8-4ba8-9397-779a8e6f8f92">4</loigeNr>
+				<kuvatavNr id="d88f263c-e0ee-4c23-b242-640f74bfd284"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="a51fd2fa-89da-48db-a635-f536b49f1b38">
+					<tavatekst id="8648e7be-cc0b-42c6-945b-b8d9ea68f99d">Vajadusel võib sotsiaaltöötaja küsida täiendavaid andmeid teenuse taotleja terviseseisundi, tegevusvõime või kõrvalabi vajaduse kohta.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg5">
+				<loigeNr id="96850e00-f236-4fe7-bc6a-d6e79bd349c9">5</loigeNr>
+				<kuvatavNr id="16038cb6-5f57-4a89-9b38-9bcf0ebcf205"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="25ead377-cc21-4bec-bf1a-43ead4457270">
+					<tavatekst id="06ece8f2-c22d-4abf-9e69-d24ce9abab16">Esmakordse sõidu korral ei toimu teenuse saaja hindamist, vaid täpsustakse teenuse saaja erivajadus.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg6">
+				<loigeNr id="78e2ec4c-a90b-4e3c-8ea5-a998c4ec683a">6</loigeNr>
+				<kuvatavNr id="6601f5ec-3b39-4628-ac33-387055190c8e"><![CDATA[(6)]]></kuvatavNr>
+				<sisuTekst id="1788a819-72d9-4eeb-9d7f-c188e66ef202">
+					<tavatekst id="02d349a5-2099-4675-b3f3-f4461774eb09">Teenuse määramise algatab sotsiaaltöötaja, kes külastab teenuse taotlejat tema kodus vähemalt 14 päeva jooksul avalduse esitamisest ja hindab teenuse vajadust hindamisinstrumendi abil (lisa 1).</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg7">
+				<loigeNr id="a7bd4cce-6759-4da5-be36-fd01fbd273ea">7</loigeNr>
+				<kuvatavNr id="de4a1840-5279-4ce6-a499-0095794a863e"><![CDATA[(7)]]></kuvatavNr>
+				<sisuTekst id="764b11f3-856d-41d2-9b3f-7024987ad893">
+					<tavatekst id="8fd9b20e-f848-44c3-adeb-7c2313374612">Sotsiaaltöötaja teeb teenuse osutamise või mitte osutamise kohta otsuse vähemalt 14 päeva jooksul ning esitab selle sotsiaalmaja direktorile kinnitamiseks.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg8">
+				<loigeNr id="60b998b7-7756-4702-bc4f-e562456b80f9">8</loigeNr>
+				<kuvatavNr id="ee0e5e54-e9a8-4f36-a4cc-96cf0a6c6fbc"><![CDATA[(8)]]></kuvatavNr>
+				<sisuTekst id="3d4cb77f-73b7-4f03-b156-a60592f9c28e">
+					<tavatekst id="c13ecd9c-235e-4cf9-bebd-e435dd92a528">Sotsiaaltöötaja teavitab teenuse taotlejat teenuse määramise või keeldumise kohta 5 tööpäeva jooksul, arvates otsuse tegemise päevast.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg9">
+				<loigeNr id="456bd7c8-5b33-4097-89d8-127e98729931">9</loigeNr>
+				<kuvatavNr id="04f18b0d-8567-4b2a-b535-662821bddf05"><![CDATA[(9)]]></kuvatavNr>
+				<sisuTekst id="4664c419-2e2d-4834-8090-7de63b7d5312">
+					<tavatekst id="c1af7f20-4ba3-4d09-bbdf-d119797f3702">Kui hindamise käigustaotletava teenuse vajadus ei ole põhjendatud, soovitab teenuse sotsiaaltöötaja hoolduse ja/või kõrvalabi tagamiseks teisi meetmeid.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg10">
+				<loigeNr id="0cc09f08-e898-4c80-b5da-3f8419b81398">10</loigeNr>
+				<kuvatavNr id="e4a261c7-e8b3-4b57-b98c-8ae2825e7fc6"><![CDATA[(10)]]></kuvatavNr>
+				<sisuTekst id="9d092daa-8a4e-4304-9779-291a0837d3ff">
+					<tavatekst id="37ac224d-db9d-4670-a105-4358659d5e26">Teenuse osutamise alustamisel teavitatakse teenuse taotlejat suuliselt või kirjalikult tema õigustest ja piirangutest teenuse saamise ajal, sh kaebuste esitamise võimalustest ning korrast talle arusaadaval viisil.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg11">
+				<loigeNr id="55b3203b-3a97-42b3-b980-9e302e082b03">11</loigeNr>
+				<kuvatavNr id="871eed90-aa77-4bd6-9f0d-8eeae14fd46c"><![CDATA[(11)]]></kuvatavNr>
+				<sisuTekst id="a4aa6cdd-62b8-48c7-b9bf-e6d999271722">
+					<tavatekst id="ee081ac9-1f39-4a7d-a62b-7d7884c13c41">Teenuse võimaldamist isikule võib taotleda teenust vajava isiku huvides ka temale määratud eestkostja või hooldaja või muu isik, kellel on andmeid abivajaja isiku kohta, samuti ametiisikud, kellel on seadusest tulenevalt abivajajast teatamise kohustus.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg12">
+				<loigeNr id="b338b7f6-245d-4bf1-b35f-b1f8389db7aa">12</loigeNr>
+				<kuvatavNr id="cc3e6dba-a787-4d98-8ac2-d0f1ed782c3b"><![CDATA[(12)]]></kuvatavNr>
+				<sisuTekst id="24396fa1-a79b-4994-9e1a-b2f3b4459823">
+					<tavatekst id="87be2d43-4c54-475b-943d-0e9013b992e7">Teenuse osutamisest on õigus keelduda juhul, kui on tuvastatud, et taotleja puue või muu erivajadus ei takista ühistranspordi kasutamist, isik ei ela Haapsalu linnas või tellitud sõit ei vasta § 3 lõigetes 2 ja 3 sätestatule.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="e1b067b0-61d7-4c22-9fb1-8450645a455c">5</paragrahvNr>
+			<kuvatavNr id="d69b9f5e-7a3f-43e2-b0b8-7cd9b0bc49e9"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="f8a0d0f4-cac4-49a5-a92c-c1831f81b585">Teenuse osutamine</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="04f9bd3f-bf59-45a0-af2b-e307954a699b">1</loigeNr>
+				<kuvatavNr id="49b64077-541d-4f7e-84bb-ba57fef2c871"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="2bef2c0f-a910-4d5c-b017-bd93826a5781">
+					<tavatekst id="6cef3478-3987-407d-83de-6235a41288bd">Teenuse tellimus registreeritakse sotsiaalmaja sekretäri poolt sotsiaaltranspordi tellimise registris, kuhu märgitakse kliendi nimi, sõiduaeg, marsruut ja kontaktandmed.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg2">
+				<loigeNr id="dc488cb1-424b-4690-bf7b-24c02f110660">2</loigeNr>
+				<kuvatavNr id="2fcbbe66-2b49-4421-abc0-1e99c9481af7"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="0b2ec0bf-83de-4a87-98a7-1205b9860ed1">
+					<tavatekst id="b376747f-3ace-43ee-b468-dc5e43ae8604">Teenuse osutajal on õigus jätta kliendi sotsiaaltranspordi tellimus rahuldamata või pakkuda välja tellimuse teostamiseks muu aeg kui:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para5lg2p1">
+					<alampunktNr id="2042a8ba-3c6e-4502-9a70-8ecfdd11f051">1</alampunktNr>
+					<kuvatavNr id="2890bfe3-4f39-4238-ba7b-0b35d72ea8f3"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="94842df3-0e85-48c5-ae33-cbac2cf39100">
+						<tavatekst id="99f2c4a6-708d-4b9c-9ef5-432a747289e5">sotsiaaltranspordi tellimuse iseloom võimaldab seda edasi lükata või lahendada muul viisil;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg2p2">
+					<alampunktNr id="65d68189-54e4-409b-bfea-b4b0b1951a6b">2</alampunktNr>
+					<kuvatavNr id="81672d39-cca0-43d6-a658-90818b44893e"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="5565b229-7f00-4a71-b63f-d3a9624721fe">
+						<tavatekst id="28374b08-8842-485e-9638-853614c86528">taotlejal on eelnevate transporditeenuste eest tasumata.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para5lg3">
+				<loigeNr id="483b9660-c558-4bec-9f9d-c5acc2d019a8">3</loigeNr>
+				<kuvatavNr id="54450688-81ca-4770-9a39-61b16e1fc441"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="a3609ce3-c586-47fe-b9ee-1936526d716d">
+					<tavatekst id="db73ec84-a0b8-404a-a69d-3aa8cc99a1cb">Teenust osutatakse üldjuhul tööpäevadel, ajavahemikus 7.30 – 17.00 sotsiaaltranspordi tellimise registri alusel.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg4">
+				<loigeNr id="7503c697-ee20-4572-b1bc-837f01cb01c8">4</loigeNr>
+				<kuvatavNr id="2bf72c94-6a7b-46e7-8913-a1d41aa09137"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="b9d6cbc9-e30f-497a-95ad-1914c62b1aec">
+					<tavatekst id="89bfdb50-3ce1-497d-ac68-6c0e120e8c69">Teenust ei osutata riiklikel pühadel.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg5">
+				<loigeNr id="e6b493de-9047-484e-9f2a-7abb541d0d3e">5</loigeNr>
+				<kuvatavNr id="fa274bc4-6b93-44d0-aeba-dac90c49a295"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="b0c290b5-63f2-427c-880d-2a487a188a51">
+					<tavatekst id="314993b5-7b72-4698-b6a0-6a5546cd37f9">Teenuse taotlemisel on vajalik ettetellimine vähemalt 3 päeva sõiduks Haapsalu linna piires ning vähemalt 7 päeva sõiduks väljaspool Haapsalu linna.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg6">
+				<loigeNr id="1eeef75a-89f0-4d39-889e-d7432ab1c66d">6</loigeNr>
+				<kuvatavNr id="4b0b105e-1ab9-4c1c-bb9f-a28a3ed0aaf0"><![CDATA[(6)]]></kuvatavNr>
+				<sisuTekst id="d7dbeb94-8c41-4b2c-ab15-305344b85de5">
+					<tavatekst id="04a13698-c75d-47c3-a83e-58aa43c6b1db">Teenuse osutaja võib osutada teenust ka juhtudel, kui sõidusoovist on ette teatatud ettenähtust vähema aja jooksul, kui teenuse osutajal on teenuse osutamiseks transport vaba.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg7">
+				<loigeNr id="283f7ffa-1316-45dd-9a4e-b75ea5b314c2">7</loigeNr>
+				<kuvatavNr id="5be269d0-304a-4a81-b083-6c001737480c"><![CDATA[(7)]]></kuvatavNr>
+				<sisuTekst id="d9c33b7c-90e8-42d9-bec8-ab7745015de0">
+					<tavatekst id="bc280c3e-b909-4d7f-b138-e0908c66c617">Teenus ei laiene kolimiseks ja tarbeesemete transpordiks. Teenus ei sisalda endas saatja, hooldaja või isikliku abistaja teenust.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg8">
+				<loigeNr id="76cfeb19-a257-4c2c-9652-f744ca2a670e">8</loigeNr>
+				<kuvatavNr id="98a3068a-ccac-4db6-b725-d99908a43651"><![CDATA[(8)]]></kuvatavNr>
+				<sisuTekst id="bf243298-9250-4889-aefa-b95da063dc18">
+					<tavatekst id="4c2cafec-e9e4-4f02-8b8c-8eafdf1e163d">Teenust osutatakse Haapsalu linna piirides, regulaarsõitudena üks kord nädalas Tallinna ning erandjuhul võib teenust osutada ka mujal väljaspool Haapsalu linna.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="198d8fe4-0bff-40b2-a348-a664ce262863">
+					<avaldamismarge id="df56d842-3f81-41b2-b84f-afd2474e51f2">
+						<RTosa id="cf50e087-d4c4-487d-bed5-0d43660b88cd">RT IV</RTosa>
+						<avaldamineKuupaev id="ade10416-d291-4612-8f9d-36fc59f7f7f5">2020-12-29</avaldamineKuupaev>
+						<RTartikkel id="864f0ef8-852d-4104-9af3-7bcc7709a045">32</RTartikkel>
+						<aktViide id="b0099388-27e4-4ddf-a443-0393fc2ddc61">429122020032</aktViide>
+					</avaldamismarge>
+					<joustumine id="98fcce32-0fde-4b11-a357-a365d025b91a">2021-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para5lg9">
+				<loigeNr id="f59e0831-6266-4374-bd24-86dd6dd2239c">9</loigeNr>
+				<kuvatavNr id="72060b5c-f65d-4e50-b875-68e740d1e9af"><![CDATA[(9)]]></kuvatavNr>
+				<sisuTekst id="a66a60c2-ce5e-4261-8466-a4087498b6c4">
+					<tavatekst id="b34e4649-dc61-429b-bc91-d5f2882779b6">Teenuse osutamisel tagatakse teenuse kasutaja turvalisus ning abistamine sõidukist väljumisel ja sisenemisel, samuti teenuse kasutaja abistamine turvavöö kinnitamisel, ning liikumise abivahendi fikseerimine.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg10">
+				<loigeNr id="5bd3a78b-33be-47d3-9d3d-bb26e2ccdd0c">10</loigeNr>
+				<kuvatavNr id="62c15a78-8096-4048-870c-03946462803d"><![CDATA[(10)]]></kuvatavNr>
+				<sisuTekst id="f989b678-d8a3-4785-ba28-ad00ae933c45">
+					<tavatekst id="feb7161d-0d08-4c83-81e6-f4dfd39f0bc2">Teenuse osutaja omab puuetega inimestele transporditeenuse osutamiseks sobivat ja tehnilistele nõuetele vastavat transpordivahendit.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg11">
+				<loigeNr id="8ed97a80-356a-4656-9ce0-816779f84e2d">11</loigeNr>
+				<kuvatavNr id="b39d70a9-ca95-4e22-9d23-ef6823d298ad"><![CDATA[(11)]]></kuvatavNr>
+				<sisuTekst id="c9bbd3fb-5daa-4ed4-aff2-c2c0b0916a7f">
+					<tavatekst id="6af0f0ef-21c6-4e1b-896f-6fbddb8b75ab">Teenuse osutaja kehtestab ohutu töötamise korra ning tagab selle kättesaadavuse teenust kasutavale isikule ja teenust vahetult osutavale isikule.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg12">
+				<loigeNr id="f55da2f9-230e-4e39-8d36-5aa3f7a02df4">12</loigeNr>
+				<kuvatavNr id="9e70587e-5a5a-4136-a012-30521d027374"><![CDATA[(12)]]></kuvatavNr>
+				<sisuTekst id="dda4c03e-c296-4035-a974-9a0856be1e4c">
+					<tavatekst id="87140cdd-a154-4e9d-a376-17db6af803ed">Teenuse osutamise üle peab arvestust sotsiaalmaja.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para6">
+			<paragrahvNr id="0e4398d2-973f-4a8b-9efc-fc0b8069eca8">6</paragrahvNr>
+			<kuvatavNr id="19aba3c6-215c-4884-adc4-0eafcc672c59"><![CDATA[§ 6. ]]></kuvatavNr>
+			<paragrahvPealkiri id="f8c3ae66-7ae0-494b-a51f-e069ca69fcd8">Rahastamine</paragrahvPealkiri>
+			<loige id="para6lg1">
+				<loigeNr id="b14e83c3-9ffb-4ac4-bdbc-660fd7552042">1</loigeNr>
+				<kuvatavNr id="5aa09ce9-4be1-4d68-b2dc-383f3ade51c5"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="30d2a926-83d6-4231-bdc5-8e54244189e2">
+					<tavatekst id="7d5e34eb-3dd3-49cd-a3ac-ee7f4c58646d">Teenust rahastatakse sotsiaalmaja eelarvest ja isikult võetavast tasust (omaosalus).</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg2">
+				<loigeNr id="153b86f7-1d51-4c2c-aa0a-ac7370ad0b0c">2</loigeNr>
+				<kuvatavNr id="3a960983-25d6-41b6-b4c7-dce5b01cb6a7"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="7fb7dde0-a158-464e-8a54-1af677e39294">
+					<tavatekst id="0e0ecc6f-73c8-4661-b087-742b4122355f">Isikult võetava tasu suuruse kehtestab Haapsalu Linnavalitsus korraldusega.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg3">
+				<loigeNr id="c762eb92-b393-4cf5-b523-19aa401eb3ce">3</loigeNr>
+				<kuvatavNr id="ab2f0baa-6bad-4819-926c-00746a9d2269"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="28b1a5a3-e9bb-4c29-b0fd-8c84f88429be">
+					<tavatekst id="5f113e1c-38df-4c05-b42a-73f7d7ee3080">Isikult võetav teenustasu arvestatakse spidomeetri näidu alusel kliendi juurest sõidu alustamisel sihtkohta jõudmiseni.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg4">
+				<loigeNr id="d44472e3-0955-453e-84bf-4fa72b1c27ef">4</loigeNr>
+				<kuvatavNr id="1661ed81-77b5-4089-8779-3ad72353ed8c"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="7d2b0b32-9179-45eb-9930-b991ea062354">
+					<tavatekst id="6008105a-2438-4df4-b249-73ba338c8c45">Kui teenust osutatakse korraga rohkem kui ühele teenuse saajale, jagatakse Haapsalu maapiirkonnas teenuse omaosaluse maksumus teenuse saajate vahel (v.a saatja). Piirkondades Haapsalu linn, Uuemõisa küla/alevik, Paralepa alevik maksab iga sõitja teenuse omaosaluse vastavalt hinnakirjale.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg5">
+				<loigeNr id="5911361c-321e-42fa-90f5-00d46d771b99">5</loigeNr>
+				<kuvatavNr id="8e9b4da3-f096-4adc-8353-1d40f4616a86"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="cef8f54a-4c18-4bd1-8a3a-23aa526bc2ee">
+					<tavatekst id="eceecb74-cb9a-4f42-a91c-8e447376a1e8">Teenuse eest tasumine toimub sularahas autojuhile või sotsiaalmaja poolt esitatud arve alusel.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg6">
+				<loigeNr id="fd2b0b5b-b41b-4fb3-aa7c-21e42dfcd845">6</loigeNr>
+				<kuvatavNr id="2dabccad-d390-4413-8311-92286828f45b"><![CDATA[(6)]]></kuvatavNr>
+				<sisuTekst id="4ae8845b-8ea3-48ab-b0b9-7952d8abbec5">
+					<tavatekst id="2a1bf6fa-2979-4554-ba78-467bc119bfa1">Isik vabastatakse teenuse omaosalusest Haapsalu Linnavalitsuse sotsiaalkomisjoni otsusega isiku vastava põhjendatud avalduse alusel.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para7">
+			<paragrahvNr id="125b1569-4dd9-4d6f-88a9-262f7e1dd853">7</paragrahvNr>
+			<kuvatavNr id="520b9cad-fba8-43fe-a19e-ed7b83660d37"><![CDATA[§ 7. ]]></kuvatavNr>
+			<paragrahvPealkiri id="d2947686-b6ae-4c34-a2f0-b3a3e05bd1cc">Järelevalve ja arvestuse pidamine</paragrahvPealkiri>
+			<loige id="para7lg1">
+				<loigeNr id="0d26ce28-b656-45be-8728-2679a8a46087">1</loigeNr>
+				<kuvatavNr id="de5729c1-2aaa-416a-9d55-ef9717041e30"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="c326bae8-4431-41be-890c-e64edcffa60f">
+					<tavatekst id="2ee8abb0-009c-4378-af62-cb105cffdc1f">Järelevalvet teenuse osutamise üle teostab Haapsalu Linnavalitsus.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg2">
+				<loigeNr id="9ad47a06-dbf7-4581-8d1d-7cb210af0803">2</loigeNr>
+				<kuvatavNr id="c4c8987e-a647-4fdb-916c-1b36ef83001e"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="1b2fd0eb-3015-48cb-8780-148cbae16130">
+					<tavatekst id="df9a00e5-53d1-4850-9fd3-ce33cc14a399">Teenuse korraldamise ja teenuse osutamise üle arvestuse pidamise eest vastutab sotsiaalmaja.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para8">
+			<paragrahvNr id="08e65315-ef93-49e5-8725-215b442f5f4b">8</paragrahvNr>
+			<kuvatavNr id="5b75c7ee-2fa1-4eed-b6a1-ef3038b13d4f"><![CDATA[§ 8. ]]></kuvatavNr>
+			<paragrahvPealkiri id="0674c3cc-5ad7-4525-a27d-cb17d5109d9d">Määruse jõustumine</paragrahvPealkiri>
+			<loige id="para8lg1">
+				<loigeNr id="22c2048a-85fb-43e2-b185-9c9eef1cf0d2"/>
+				<kuvatavNr id="e527605e-7c6c-464a-b67f-89d87bcdea49"/>
+				<sisuTekst id="fb1614e1-a6b0-486d-9cd6-b2a4d391ce5e">
+					<tavatekst id="65f4c55e-69fa-4bd3-aee8-ff1582d3374d">Määrus jõustub kolmandal päeval pärast avaldamist Riigi Teatajas.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+</oigusakt>

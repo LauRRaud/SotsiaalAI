@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="21ce3926-6bde-4a08-b357-668e0b583f3b" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metaandmed>
+    <valjaandja>Hiiumaa Vallavolikogu</valjaandja>
+    <dokumentLiik>määrus</dokumentLiik>
+    <tekstiliik>algtekst-terviktekst</tekstiliik>
+    <dokumentEtapp>avaldamine</dokumentEtapp>
+    <dokumentStaatus>avaldatud</dokumentStaatus>
+    <vastuvoetud>
+      <aktikuupaev>2023-06-15</aktikuupaev>
+      <aktiNr>43</aktiNr>
+    </vastuvoetud>
+    <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2023-06-27</avaldamineKuupaev><RTaasta>2023</RTaasta><RTartikkel>3</RTartikkel><aktViide>427062023003</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2023-07-01+03:00</kehtivuseAlgus></kehtivus><versioon>
+      <dokumentVersioon>1</dokumentVersioon>
+      <dokumentVersioonKuupaev>2023-06-19</dokumentVersioonKuupaev>
+    </versioon>
+    <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+    <globaalID>427062023003</globaalID>
+    <metaandmedVersioon>5</metaandmedVersioon>
+    <metaandmedVersioonKuupaev>2023-06-26</metaandmedVersioonKuupaev>
+    <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+    <terviktekstiGrupiID>1056845</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+  </metaandmed>
+  <aktinimi id="09b230f4-d4f6-4818-b254-76d7a8b5596d">
+    <nimi id="9eeeccb6-6c88-4d6a-a69e-37eeaed55271">
+      <pealkiri id="72660f32-8be1-4ade-a326-1b7fe49f3674">Väljaspool kodu osutatava üldhooldusteenuse rahastamise kord</pealkiri>
+    </nimi>
+  </aktinimi>
+  <sisu id="649e717b-8520-49dc-a1f3-68530c37bba8">
+    <preambul id="477f052e-55c7-4322-a436-c8f47173496b">
+      <tavatekst id="cde079ef-93ed-4334-b8c4-0767d2b66404">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lg 1 p 5 ja sotsiaalhoolekande seaduse § 14 lg 1, § 20 ning § 22<sup>1</sup> alusel.</tavatekst>
+    </preambul>
+    <paragrahv id="para1">
+      <paragrahvNr id="172e2ea0-31dc-4435-95aa-841d542726f9">1</paragrahvNr>
+      <kuvatavNr id="43379d15-9936-4474-8e0c-3e7565bda682"><![CDATA[§ 1. ]]></kuvatavNr>
+      <paragrahvPealkiri id="df53ca03-79c0-4d66-925e-ab3f10e189be">Määruse reguleerimisala</paragrahvPealkiri>
+      <loige id="para1lg1">
+        <loigeNr id="7f8940b1-4786-438e-a5ab-479b61e5643c"/>
+        <kuvatavNr id="2ec9f703-7b3d-4b4e-bd7e-260f7d683db1"/>
+        <sisuTekst id="6acbc200-b166-414e-8588-05e8ff76f1a2">
+          <tavatekst id="ffa909e3-c476-4646-9312-d72113ce6b84">Määrusega sätestatakse Hiiumaa valla poolt rahastatava väljaspool kodu osutatava üldhooldusteenuse (edaspidi <i>üldhooldusteenus</i>) taotlemise tingimused ja rahastamise kord Eesti rahvastikuregistri andmetel alalise elukohaga Hiiumaa vallas elavatele isikutele.</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para2">
+      <paragrahvNr id="8fb0f8ad-7f2e-4c64-83db-99d4d70dd57c">2</paragrahvNr>
+      <kuvatavNr id="f6a16909-1488-420c-b624-f9b9d456c177"><![CDATA[§ 2. ]]></kuvatavNr>
+      <paragrahvPealkiri id="21f7a153-4cd8-49d1-8d75-422a7ba07cb3">Teenuse eesmärk ja sisu</paragrahvPealkiri>
+      <loige id="para2lg1">
+        <loigeNr id="75c024c1-8360-4742-83d9-0d0252e3b7f5">1</loigeNr>
+        <kuvatavNr id="b2bbf256-e385-4842-a2e9-14bd29c871ed"><![CDATA[(1)]]></kuvatavNr>
+        <sisuTekst id="acb9b9c3-0cac-4a1e-ae36-4b6c60d5081c">
+          <tavatekst id="db45f904-7108-4b03-9f8d-7f21822d0df2"> Üldhooldusteenus on sotsiaalteenus, mille eesmärk on turvalise keskkonna ja toimetuleku tagamine täisealisele isikule, kes terviseseisundist, tegevusvõimest või elukeskkonnast tuleneval põhjusel ei suuda kodustes tingimustes ajutiselt või püsivalt iseseisvalt toime tulla ja kelle toimetulekut ei ole võimalik tagada teise teenuse või muu abi osutamisega.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para2lg2">
+        <loigeNr id="47032173-e5f5-4376-af55-c79b30612b12">2</loigeNr>
+        <kuvatavNr id="3037abbc-e24a-44e3-9b46-21f155836da9"><![CDATA[(2)]]></kuvatavNr>
+        <sisuTekst id="065b1c4f-a992-4194-85bc-b54bb443fb38">
+          <tavatekst id="db24e9a1-c15a-401a-8e0b-e038f027d1e6">Üldhooldusteenuse osutamisel tagab üldhooldusteenuse osutaja teenuse saajale hooldustoimingud ning muud toetavad ja toimetulekut tagavad toimingud ning teenused, mis on määratud teenuse saajale koostatud hooldusplaanis.</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para3">
+      <paragrahvNr id="7fce0a1a-d282-4633-bd0f-cf12f39b9be6">3</paragrahvNr>
+      <kuvatavNr id="1b5db751-59fd-4011-80d1-3cc2a9edc210"><![CDATA[§ 3. ]]></kuvatavNr>
+      <paragrahvPealkiri id="a218b73f-7aad-450a-bccb-3ed2f3c835af">Üldhooldusteenuse taotlemine</paragrahvPealkiri>
+      <loige id="para3lg1">
+        <loigeNr id="2cabb407-07dd-4e87-bcfc-295faf015ed0">1</loigeNr>
+        <kuvatavNr id="78b47b68-802b-4b12-ad13-5c3b854f53f1"><![CDATA[(1)]]></kuvatavNr>
+        <sisuTekst id="1387ad47-ed25-467a-8d83-5dd8abc56459">
+          <tavatekst id="3a98d280-5f25-4b8e-878f-3e05b4419e80">Üldhooldusteenuse saamiseks esitatakse Hiiumaa Vallavalitsusele (edaspidi <i>vallavalitsus</i>) üldhooldusteenuse taotlus, milles märgitakse:</tavatekst>
+        </sisuTekst>
+        <alampunkt id="para3lg1p1">
+          <alampunktNr id="807d564e-d828-4efb-899b-f145b96f92a5">1</alampunktNr>
+          <kuvatavNr id="1ef40bc6-242e-4d66-90b2-2c0ba6489458"><![CDATA[1) ]]></kuvatavNr>
+          <sisuTekst id="2d4686eb-6013-4b07-9bb4-edee43d12663">
+            <tavatekst id="242d8aed-cf18-4653-80ca-91b47502e442">üldhooldusteenuse taotleja ees- ja perekonnanimi, isikukood, Eesti rahvastikuregistrijärgne elukoha aadress, telefoni number;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para3lg1p2">
+          <alampunktNr id="2bb859c0-2448-4181-9109-23d5d458d7eb">2</alampunktNr>
+          <kuvatavNr id="5103d7c6-9579-4603-af84-786e24ed97cf"><![CDATA[2) ]]></kuvatavNr>
+          <sisuTekst id="2c483ed2-9419-46bb-80e1-f9c232cf5221">
+            <tavatekst id="e00adf07-5e06-4dce-9d0a-26fff6a126e5">asutuse nimetus, kellega ülhooldusteenuse taotlejal on kokkulepe üldhooldusteenusele saamiseks;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para3lg1p3">
+          <alampunktNr id="1f3c8fdb-8f60-4757-83ba-530db6a1af08">3</alampunktNr>
+          <kuvatavNr id="9007e644-f482-48d5-a1e2-386231cae54d"><![CDATA[3) ]]></kuvatavNr>
+          <sisuTekst id="119ef53f-6114-4ec3-8dcf-67090c93e11f">
+            <tavatekst id="460e72f6-5356-43b6-825d-0c0cd05befee">üldhooldusteenuse taotlemise põhjus;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para3lg1p4">
+          <alampunktNr id="719e6dd5-e81c-46cd-b3a2-5e9751f9daeb">4</alampunktNr>
+          <kuvatavNr id="ccb98965-dfd1-4019-b176-3dfff280345e"><![CDATA[4) ]]></kuvatavNr>
+          <sisuTekst id="f190c555-131c-43b2-bd12-7df8f5ce17bf">
+            <tavatekst id="661f6878-9012-49c2-941c-8ca27eb0eef0"> üldhooldusteenuse taotleja igakuine sissetulek;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para3lg1p5">
+          <alampunktNr id="5d528c71-b961-4f66-a191-da974ab6abbd">5</alampunktNr>
+          <kuvatavNr id="b095e032-4400-4bf7-b031-817025c57302"><![CDATA[5) ]]></kuvatavNr>
+          <sisuTekst id="2e501f98-dd81-44a2-a6b7-106ddb993e92">
+            <tavatekst id="048c051b-2f6b-4ee3-b055-985a812dbafc"> perekonnaseadusest tulenevalt ülalpidamiskohustusega isikute olemasolul nende nimed ja kontaktandmed.</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+      </loige>
+      <loige id="para3lg2">
+        <loigeNr id="3bef5a97-79b3-41ed-a1cd-07ca181e0f16">2</loigeNr>
+        <kuvatavNr id="89164e3c-b438-448f-a0a8-8553e8b3cea1"><![CDATA[(2)]]></kuvatavNr>
+        <sisuTekst id="650fcfd3-42b1-4b05-828c-a261e3c5c2d3">
+          <tavatekst id="17108331-8d1b-4bd0-ae40-7a2b7fb7d586">Vallavalitsuse ametnik (edaspidi <i>ametnik</i>) selgitab vallavalitsuse (ametiasutusena) poolt koostatud hindamisvahendi abil välja isiku abivajaduse. Hooldusvajaduse ja üldhooldusteenuse rahastamise hindamiseks võib ametnik külastada üldhooldusteenuse taotlejat tema elukohas, teha päringuid tema perekondliku, tervisliku ja majandusliku seisundi väljaselgitamiseks ning vajadusel nõuda täiendavaid dokumente (sh üldhooldusteenuse taotluse esitamisest arvates sellele eelneva kuue kalendrikuu arvelduskonto väljavõtte).</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para3lg3">
+        <loigeNr id="1d583407-a0fe-42ae-b24c-26d37ad46eea">3</loigeNr>
+        <kuvatavNr id="f50e5291-4054-4605-bc0a-ebe332fe34b2"><![CDATA[(3)]]></kuvatavNr>
+        <sisuTekst id="922594ff-1b8f-46dd-86b6-180dce3386ad">
+          <tavatekst id="87cb6b18-1e1e-4565-9fdd-70361929a909"> Üldhooldusteenust rahastatakse vastavalt sotsiaalhoolekande seaduse paragrahvis 22<sup>1</sup> sätestatule.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para3lg4">
+        <loigeNr id="02ceb0f1-688d-48aa-a191-f643ba68611c">4</loigeNr>
+        <kuvatavNr id="0477a769-e1de-4cfb-ad8f-c13166274da9"><![CDATA[(4)]]></kuvatavNr>
+        <sisuTekst id="599b53fd-44e3-4b76-91e5-f769891ce40a">
+          <tavatekst id="10760e03-dcdd-40ba-99db-5b223e570cfb">Kui üldhooldusteenuse maksumus ületab sotsiaalhoolekande seaduse paragrahvi 22<sup>1</sup> alusel tasutava kulu maksumust, tasutakse puudujääv üldhooldusteenuse maksumuse osa üldhooldusteenust saava isiku varaliste vahendite arvelt või nende puudumisel ülalpidamiskohustuslaste vara arvelt.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para3lg5">
+        <loigeNr id="d14d1562-322d-4415-b272-4b944315fde1">5</loigeNr>
+        <kuvatavNr id="d6dc4947-2f20-49ec-82c9-63ee1c42b978"><![CDATA[(5)]]></kuvatavNr>
+        <sisuTekst id="a410eed8-a3a7-4f93-b3fc-e85234489a24">
+          <tavatekst id="b9758263-b04d-422b-9b3a-96f9ce52a7c1">Kui üldhooldusteenuse taotleja maksevõime hindamise tulemusena selgub, et üldhooldusteenuse taotleja ja ülalpidamiskohustuslaste varast ei piisa üldhooldusteenuse maksumuse omaosaluse tasumiseks, tasub puudujääva üldhooldusteenuse maksumuse osa Hiiumaa vald.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para3lg6">
+        <loigeNr id="e2c366f4-392d-46f6-8bf7-4f59221e6e42">6</loigeNr>
+        <kuvatavNr id="4c73ecbf-eb59-44b2-931a-ba10a215dd99"><![CDATA[(6)]]></kuvatavNr>
+        <sisuTekst id="0043f104-26b5-47fd-a2c3-6318df94fc0e">
+          <tavatekst id="4a88c01a-2fb9-4085-ade7-e51a2a89d6f7"> Üldhooldusteenuse rahastamise otsustamisel arvestatakse, et üldhooldusteenuse saajal võib pärast üldhooldusteenuse eest tasumist isiklikuks kasutamiseks jääda vastavalt tema vajadustele kuni 10% igakuisest sissetulekust.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para3lg7">
+        <loigeNr id="fce5dbd0-8c6d-44d8-9d52-02f78a763268">7</loigeNr>
+        <kuvatavNr id="fe565094-4696-472d-af9b-c79cf4d407bb"><![CDATA[(7)]]></kuvatavNr>
+        <sisuTekst id="4d1dd72a-0920-4762-b1d8-2cb4606daff8">
+          <tavatekst id="d996e9fe-73f8-47d8-8952-4f240ee73d92"> Üldhooldusteenusele suunamise ja selle rahastamise otsustab ametnik haldusaktiga 10 tööpäeva jooksul nõuetekohase üldhooldusteenuse taotluse saamisest arvates.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para3lg8">
+        <loigeNr id="4743c927-f99f-4db2-afbd-d2ce513733d3">8</loigeNr>
+        <kuvatavNr id="579f48a7-df2f-4f24-8bbf-b16f4c48e984"><![CDATA[(8)]]></kuvatavNr>
+        <sisuTekst id="d656ced8-7f63-4ab5-9384-bc56d8b90f75">
+          <tavatekst id="0a7dc42b-be13-4b4e-aacb-d490b60df680"> Haldusakti alusel sõlmib vastutava valdkonna abivallavanem vajadusel halduslepingu.</tavatekst>
+        </sisuTekst>
+      </loige>
+      <loige id="para3lg9">
+        <loigeNr id="832ce538-cb64-493a-897f-13d4cb38aa49">9</loigeNr>
+        <kuvatavNr id="aa527880-524a-4cf3-b5f1-642370c57574"><![CDATA[(9)]]></kuvatavNr>
+        <sisuTekst id="d25fb4a1-8c21-4f5c-89f2-344212c403f6">
+          <tavatekst id="e22514b2-63ff-4968-bc92-f3a3726491ed">Üldhooldusteenuse taotlus jäetakse rahuldamata kui:</tavatekst>
+        </sisuTekst>
+        <alampunkt id="para3lg9p1">
+          <alampunktNr id="4a5fa49e-1a0d-4053-8365-f2cd9795a162">1</alampunktNr>
+          <kuvatavNr id="b741424d-3f62-4f46-b358-2609a5709357"><![CDATA[1) ]]></kuvatavNr>
+          <sisuTekst id="9ca0d57c-d140-4efe-a4c5-4da0cf4de919">
+            <tavatekst id="04af220e-ef7d-4915-8811-15ebb820952d"> üldhooldusteenuse taotleja abivajaduse hindamisest ei tulene üldhooldusteenuse vajalikkus;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para3lg9p2">
+          <alampunktNr id="96a9a782-40e5-423c-8dab-2b70936ae255">2</alampunktNr>
+          <kuvatavNr id="45ec28f6-7836-4a5c-9334-c1b9d0e7c3e2"><![CDATA[2) ]]></kuvatavNr>
+          <sisuTekst id="b0da2f09-072a-4d3d-9da4-a7eedaebeac6">
+            <tavatekst id="110dff18-16c5-4f4c-a709-d675beda0cb6"> üldhooldusteenuse taotleja toimetulek on võimalik tagada isikule teisi sotsiaalteenuseid osutades.</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para4">
+      <paragrahvNr id="c9690782-bd8d-4054-8ab9-73f1c552bec2">4</paragrahvNr>
+      <kuvatavNr id="c46dfd6e-9739-4963-91b7-63b506dc6d8e"><![CDATA[§ 4. ]]></kuvatavNr>
+      <paragrahvPealkiri id="ec14a9e3-3c34-4f97-b216-967ed7cce5ff">Üldhooldusteenuse taotluse vorm</paragrahvPealkiri>
+      <loige id="para4lg1">
+        <loigeNr id="6b927073-1c2e-4cb3-8604-b709e3ee66cc"/>
+        <kuvatavNr id="8d4bf61f-c5e3-45cc-8b46-125e8de4dbfa"/>
+        <sisuTekst id="725e2200-1fcb-49be-a3be-2631318fd287">
+          <tavatekst id="5b7197f8-b3e1-4e06-bf22-00c7fb0ed8dd">Taotluse vormi töötab välja vallavalitsus (ametiasutusena).<reavahetus/></tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para5">
+      <paragrahvNr id="4400284e-b5b5-4eeb-bd5d-62626b33dbee">5</paragrahvNr>
+      <kuvatavNr id="215f12ab-82de-4fb7-b5cc-1eaf0d7fd519"><![CDATA[§ 5. ]]></kuvatavNr>
+      <paragrahvPealkiri id="72bbcb88-fea7-4483-9856-200d8167f8a0">Sotsiaalteenuse osutamise ja sotsiaaltoetuse maksmise korra muutmine</paragrahvPealkiri>
+      <loige id="para5lg1">
+        <loigeNr id="eea44c43-2877-469b-9ac8-b81717f3b6ac"/>
+        <kuvatavNr id="64bc722a-b21a-48cd-965e-a0a40fecfd51"/>
+        <sisuTekst id="ca7f98c3-15e0-4f48-8681-807cdfa1e895">
+          <tavatekst id="711c5ebe-1e82-45ac-a2fa-18159d06f28e">Hiiumaa Vallavolikogu 23.08.2018 määruses nr 30 "Sotsiaalteenuse osutamise ja sotsiaaltoetuse maksmise kord" tehakse järgmised muudatused:</tavatekst>
+        </sisuTekst>
+        <alampunkt id="para5lg1p1">
+          <alampunktNr id="c729beaf-19a9-4f81-8dd0-d5c433520785">1</alampunktNr>
+          <kuvatavNr id="df0f749a-5723-4d9a-9b95-e2ca4a16d984"><![CDATA[1) ]]></kuvatavNr>
+          <sisuTekst id="60be6d55-8288-460b-8dbd-3418cd35ba3e">
+            <tavatekst id="6d7bae8f-76b5-44c8-88fb-8e7a6effe80b"> paragrahv 8 lõige 3 tunnistatakse kehtetuks;</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+        <alampunkt id="para5lg1p2">
+          <alampunktNr id="14fddd3d-5944-4050-a6d2-c3032c54d654">2</alampunktNr>
+          <kuvatavNr id="80f54e75-640a-4938-bf1e-2d2adff6dac1"><![CDATA[2) ]]></kuvatavNr>
+          <sisuTekst id="38cf6310-388a-4fd9-a345-105420207beb">
+            <tavatekst id="a87e0f23-a560-4f44-8147-898278ffd458"> paragrahv 26 tunnistatakse kehtetuks.</tavatekst>
+          </sisuTekst>
+        </alampunkt>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para6">
+      <paragrahvNr id="04c46b61-4286-4a9f-a0dc-8be6fae9bda5">6</paragrahvNr>
+      <kuvatavNr id="f714aa94-7bb5-44cc-8958-334fe2688c97"><![CDATA[§ 6. ]]></kuvatavNr>
+      <paragrahvPealkiri id="85e3503c-cecc-4db6-a3d5-eb01a15d26ca">Määruse jõustumine</paragrahvPealkiri>
+      <loige id="para6lg1">
+        <loigeNr id="48dd3c87-3f1e-467f-85d3-15a6eadd04d8"/>
+        <kuvatavNr id="d33a69f9-b68c-41ae-8e80-5efd9369c781"/>
+        <sisuTekst id="c21edbdb-a114-482f-b862-6f8764ba3f13">
+          <tavatekst id="59115d82-61df-4d89-9108-56aade09e149">Määrus jõustub 01. juulil 2023.</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+  </sisu>
+  <allkiri id="fc1ea239-5299-495a-aa26-ce88f2d10371">
+    <allkiriKoht id="1f503ac4-957e-4a32-8bf4-0e833f88cfbb"/>
+    <allkirjastaja id="4118fe64-f046-4bb8-a04b-31d8221d13b2">
+      <ametinimetus id="1c7c51a0-03d3-49a6-9b4a-f04eb0195b24">Hiiumaa Vallavolikogu esimees</ametinimetus>
+      <eesnimi id="233a8280-f614-483b-a97e-758198932429">Anu</eesnimi>
+      <perekonnanimi id="f47f0e5e-2dca-4c91-8d8a-0965d77bea37">Pielberg</perekonnanimi>
+    </allkirjastaja>
+  </allkiri>
+</oigusakt>

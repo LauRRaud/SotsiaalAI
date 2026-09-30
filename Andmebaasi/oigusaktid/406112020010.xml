@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="ea8e08f9-2cff-44c4-b43f-c198d05c5e87" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Maardu Linnavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2020-10-27</aktikuupaev>
+  
+  
+  <aktiNr>79</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2020-11-06</avaldamineKuupaev><RTaasta>2020</RTaasta><RTartikkel>10</RTartikkel><aktViide>406112020010</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2020-11-09+02:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2020-10-30</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>406112020010</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2020-11-05</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1050439</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2020-10-29</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Natalja Gorbunova</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="4650a27b-af80-47c3-9251-e4c355f35d07">
+  <nimi id="6d068d0e-66bf-46ff-b35c-1408848d76cc">
+   <pealkiri id="c0d54681-f8ab-4b43-9b69-73e96a0054a6">Koduteenuse osutamise tingimused ja kord</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="5b0f99d8-9995-42d0-ad4b-23ddea9e3629"><preambul id="b26b6563-d6e9-4540-a7a2-e6eb35a394c3">
+   <tavatekst id="ec8e285f-7d42-4f15-a56f-c090b26a46b7">Käesolev määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5 ja § 22 lõike 2, sotsiaalhoolekande seaduse § 14 lõike 1, § 17, § 18 ja § 19 alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="cfb207db-8ddf-4df8-af14-edcf35510468">1</paragrahvNr>
+   <kuvatavNr id="d4641c0a-84c6-4c00-918f-28c9e38a397c"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="b69398d3-cb0f-4b73-8a4e-b974984e20b2">Üldsätted</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="82c695e4-9c04-4f69-a72b-c285f9a4f200">1</loigeNr>
+   <kuvatavNr id="ae468f25-da10-44ac-8189-0c7dba11bdf3"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="1cc3756d-6793-406b-9e5b-5be44ae3a047">
+    <tavatekst id="a3ca6dd7-72b0-42cd-8169-7c7e6dee837f">Määrus reguleerib koduteenuse osutamise tingimusi ja korda Maardu linnas.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg2">
+   <loigeNr id="9c8b00ae-2267-45a5-88c9-08f2d7a26d60">2</loigeNr>
+   <kuvatavNr id="c9c72510-f5b7-4c6a-bc73-9949198a9036"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="e063ce85-5e9b-4565-b7e9-84778135b407">
+    <tavatekst id="bf0ba5b0-e073-4567-9171-d2f2c6b8b256">Koduteenusel osutatavate koduteenuste loetelu ja hinnad kinnitab Maardu Linnavalitsus korraldusega. Linnavalitsusel on õigus anda koduteenuse osutamise korraldamisel haldusakte ja juhiseid.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg3">
+   <loigeNr id="48225447-f096-48df-9c32-a0c2931e97d0">3</loigeNr>
+   <kuvatavNr id="ab48f1c9-05db-4db5-9425-1e351a491fa3"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="69eed004-8f7e-4851-85a1-d97ff0c831c2">
+    <tavatekst id="c19c8b90-e961-483a-b47e-b14260626625">Käesolevas määruses ettenähtud haldusmenetlusele kohaldatakse haldusmenetluse seaduse sätteid, arvestades eriseaduses sätestatud erisusi. </tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="e7693a6f-017d-4559-b3c4-41756a202c88">2</paragrahvNr>
+   <kuvatavNr id="b811e3a1-9ee8-4e9f-896c-12d7a1b4ca16"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="c8c211da-5b46-4848-8f86-4c25ef002ee7">Mõisted</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="adbc1a79-be87-48b2-94df-e09b3d80de82"/>
+   <kuvatavNr id="1163f10a-2877-44b3-9c09-9959b715dc23"/>
+   <sisuTekst id="bbfd8ed2-83c4-4d33-8631-ead4244af7fa">
+    <tavatekst id="5f8daa77-59bc-4e62-8f0b-cb36181d851f">Käesolevas korras kasutatakse mõisteid alljärgnevas tähenduses:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para2lg1p1">
+   <alampunktNr id="47ad1e83-fcc1-4f97-bdca-401a3ef179d5">1</alampunktNr>
+   <kuvatavNr id="9c74e9d6-dae2-4fbf-94e5-489aaa9accbe"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="1169f6b5-5234-47c0-a9f0-23a707fd8a43">
+    <tavatekst id="903d6747-050f-49ef-ba51-b13f7cb29ad2">koduteenus – sotsiaalteenus, mille eesmärk on täisealise isiku iseseisva ja turvalise toimetuleku tagamine kodustes tingimustes, säilitades ja parandades tema elukvaliteeti;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p2">
+   <alampunktNr id="a0906b21-830f-4c4c-b393-a9651ce17bbc">2</alampunktNr>
+   <kuvatavNr id="eeaebaa5-89e9-40db-a25b-668f46f05af8"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="e7ebc9e3-7a4a-4703-9808-55943d9727a1">
+    <tavatekst id="784ef718-d8af-4226-a044-e31a911fa9d9">kõrvalabi vajav isik – täisealine isik, kellel on terviseseisundist, tegevusvõimest või elukeskkonnast tulenevalt kõrvalabi vajadus kodustes tingimustes igapäevaeluks vajalike toimingute sooritamisel ja väljaspool kodu asjaajamisel;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p3">
+   <alampunktNr id="8ffa7e03-9aee-47e3-89e2-1a457c14b4e4">3</alampunktNr>
+   <kuvatavNr id="78c88527-f73c-44de-856b-7fa9db65e34e"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="031ea785-068e-4999-9b7d-8637b16cd78e">
+    <tavatekst id="bea01af8-b285-4859-a47c-e19436308a9d">hooldustöötaja – töötaja, kes on omandanud tööks vajalikud teadmised ja oskused abivajaja hooldamiseks, juhendamiseks rehabilitatsiooniplaani või hoolduskava alusel ja/või vastab hooldustöötaja kutsestandardis kehtestatud nõuetele;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p4">
+   <alampunktNr id="45e31c70-d22a-4596-8c24-e876fe1f39f2">4</alampunktNr>
+   <kuvatavNr id="f59d5903-6313-4333-91d7-e5ed674944a1"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="b10f611c-ae16-4b9a-a7af-ffbff57eeb44">
+    <tavatekst id="2db77618-c768-4d90-a5d6-e21d2124c6bb">hoolduskava – teenusevajaduse hindamisel koostatav dokument, mis sisaldab kirjeldust kõrvalabi vajava isiku seisundi kohta ja temale osutatavate teenuste loetelu, kestvuse, ulatuse ja osutamise tingimused;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p5">
+   <alampunktNr id="514f4a24-b995-4eec-a006-2693de50c386">5</alampunktNr>
+   <kuvatavNr id="4b5bf6c0-ed42-4f3e-875f-5f5dccb1f3b7"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="1ade4e76-85ca-48cf-bf5f-115a0680f16b">
+    <tavatekst id="1efb8fa2-a059-4716-8384-eef6827a64db">koduteenuse osutaja – Maardu Linnavalitsus (edaspidi linnavalitsus), linnavalitsuse hallatav asutus Maardu Sotsiaalmaja (edaspidi Maardu Sotsiaalmaja) või muu koduteenuse osutaja;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p6">
+   <alampunktNr id="ee4a1b29-5cc8-4701-8e8b-97d3efd5fed5">6</alampunktNr>
+   <kuvatavNr id="80417d88-ef1e-4702-a882-e7a44cb9098a"><![CDATA[6) ]]></kuvatavNr>
+   <sisuTekst id="8c82ffc4-bd9f-4dfc-9442-aed7f1a58006">
+    <tavatekst id="f1fa2e0a-c14e-4f00-8480-8375957a1b11">koduteenuse saaja – isik, kellele osutatakse lepingulisel alusel koduteenust;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p7">
+   <alampunktNr id="143b0646-124e-40c7-8c3c-81dd41e55a9e">7</alampunktNr>
+   <kuvatavNr id="ea90035c-b102-403d-ae20-fadacf5d8d20"><![CDATA[7) ]]></kuvatavNr>
+   <sisuTekst id="55df7a13-05fa-4578-8fa4-61c6cb6b64b0">
+    <tavatekst id="0c5bd417-1387-4a9d-8ecc-f1916a6f2b61">sotsiaalmaja – hooned eluruumi kasutusõiguseta inimeste ajutiseks majutamiseks.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="bad5af9d-99e5-4daf-9cb3-a732acf3cc75">3</paragrahvNr>
+   <kuvatavNr id="8a9e160a-719f-43c9-81f0-27f47ae6332c"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="7a4361c8-bd88-4f96-a737-863968c720c9">Koduteenusele õigust omavad isikud</paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="1d575947-60fe-432b-86ba-b609f9511ccb">1</loigeNr>
+   <kuvatavNr id="b37bc401-52fa-4074-9a63-4ec9d09b94dc"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="49e66932-7570-48d1-b1d2-49f38617443e">
+    <tavatekst id="72f287b2-6089-4b15-be4b-3a5ac62fbbc0">Koduteenust osutatakse täisealisele isikule, kes oma tervisliku seisundi tõttu ei tule toime igapäevaelu toimingutega ja kelle rahvastikuregistrisse kantud ja tegelik elukoht on Maardu linnas.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg2">
+   <loigeNr id="ad53a6ae-b555-47b4-bca0-6f9dd6d9094f">2</loigeNr>
+   <kuvatavNr id="9335fa1b-3ff7-4c01-8592-a66bc9e62303"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="ec0cb6c9-5185-4466-8373-d5f01478dc7f">
+    <tavatekst id="45abca4d-8b42-4ac5-b9d8-1873c95d8a91">Koduteenust osutatakse nii üksi kui ka koos elavatele täisealistele inimestele, kellest üks või mõlemad vajavad kõrvalist abi igapäevaeluga toimetulekul. Koduteenust osutatakse tegevuste ulatuses, mida koduteenuse saajal ja tema pereliikmetel ei ole võimalik mõjuvatel põhjustel teostada.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para4">
+   <paragrahvNr id="8ed2ec2e-ef03-4c23-94f0-84f4fac896ec">4</paragrahvNr>
+   <kuvatavNr id="784caed6-0bd3-4fda-b2c5-3b10d18dbbb0"><![CDATA[§ 4. ]]></kuvatavNr>
+   <paragrahvPealkiri id="405e27f6-1452-48b1-84d3-45f027104b0b">Koduteenuse osutamise taotlemine</paragrahvPealkiri>
+  <loige id="para4lg1">
+   <loigeNr id="c9676c8e-0cf5-4fd4-9fae-afea3098c656">1</loigeNr>
+   <kuvatavNr id="b8e10d75-7f76-45e7-b0b1-11792b5a72e0"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="28854358-a1ef-4fbf-9316-f326178bcb46">
+    <tavatekst id="40b955bb-bfe6-48fe-86d4-265106a8a284">Koduteenuse osutamiseks esitab kõrvalabi vajav isik või tema seaduslik esindaja taotluse linnavalitsuse sotsiaalabi osakonnale või Maardu Sotsiaalmajale, kui kõrvalabi vajav isik on majutatud sotsiaalmajja.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg2">
+   <loigeNr id="8e4f7be4-ae25-49ec-89bc-8728705f457a">2</loigeNr>
+   <kuvatavNr id="9548958e-5a6a-414a-b75b-48d85759e633"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="d9aedad0-8b15-4d01-9abc-f7b23f73ae5c">
+    <tavatekst id="4b268b60-63b3-4dc6-b994-b365ed15a06a">Taotluses märgitakse järgnevad andmed:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para4lg2p1">
+   <alampunktNr id="c322c1ae-7989-4272-9c73-4589f5c00b30">1</alampunktNr>
+   <kuvatavNr id="04c84b71-e3f4-4cc8-9b5a-626aec996628"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="1de3ffbc-1dcb-444c-a099-de8da6e854c5">
+    <tavatekst id="377e5ff3-ab32-4a6b-ae33-7bc36fa3250c">abivajaja ees- ja perekonnanimi;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para4lg2p2">
+   <alampunktNr id="7eac96f1-e4a2-4eb2-8e50-56be796d9480">2</alampunktNr>
+   <kuvatavNr id="417ebe83-12ae-44ce-bf13-f71e1a41c421"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="84f17693-3dfc-4335-89ab-df5aa8bd5e71">
+    <tavatekst id="9573b759-8218-4c3e-b241-fc73cae8e5e6">isikukood;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para4lg2p3">
+   <alampunktNr id="5779cfd7-e4af-4e76-8f67-9c5041ecf037">3</alampunktNr>
+   <kuvatavNr id="624545dc-d064-45b3-88bc-c91a02281928"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="1ceb0d18-1142-4de0-94a4-254d9789bb8b">
+    <tavatekst id="62d1ab03-752f-454a-ab30-29a2b5f827fb">tegelik elukoht;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para4lg2p4">
+   <alampunktNr id="ae7d2325-698a-40ae-bdcf-6f07def1fdaa">4</alampunktNr>
+   <kuvatavNr id="cd07747c-1502-4cbb-9147-49e5f6d31a3c"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="70eac0c0-f049-4a13-aa50-ab0a9cd66736">
+    <tavatekst id="7af53cfb-7dba-4890-9416-26217dc05219">kõrvalabi vajava isiku ja vajadusel tema esindaja(te) kontaktandmed (tegeliku elukoha aadress, telefon, elektronposti aadress);</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para4lg2p5">
+   <alampunktNr id="e4c2d4e0-808d-4abd-946b-97f8dd4142d4">5</alampunktNr>
+   <kuvatavNr id="51191b02-2998-403c-a8f6-f9ff15c20310"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="8e9a6891-effd-4d52-ae07-dfc3c6180b40">
+    <tavatekst id="9cb849b2-3596-4ac0-829e-10b1a380e1ff">sotsiaalteenuse vajaduse põhjendus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para4lg2p6">
+   <alampunktNr id="af2b398e-76d5-40c7-8d77-7aa7f04e0f36">6</alampunktNr>
+   <kuvatavNr id="d0dd7a19-4e59-44e2-b44e-6527d13ef128"><![CDATA[6) ]]></kuvatavNr>
+   <sisuTekst id="12f20a49-a713-4a0d-b32f-28fcffdb5ff4">
+    <tavatekst id="487562e9-4703-4013-b420-d35d8aa6dea4">vajadusel isiku kinnitus seadusjärgsete ülalpidajate olemasolu või puudumise kohta.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para4lg3">
+   <loigeNr id="adbb8923-6bd1-4c7a-9391-632fac07794e">3</loigeNr>
+   <kuvatavNr id="f033a4e4-b4a0-4550-846d-2acc3369387e"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="99c47253-9f90-41fe-aefb-51e8c2478406">
+    <tavatekst id="5244237b-abb0-4e40-b941-399e72cf53b5">Linnavalitsuse sotsiaalabi osakonnal on õigus vajaduse korral nõuda kõrvalabi vajavalt isikult taotluse täiendamist ja asjakohaseid dokumente.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg4">
+   <loigeNr id="517f7023-b8e7-445f-a135-f454547e36ce">4</loigeNr>
+   <kuvatavNr id="61cfc1ee-a889-49e0-b1d4-a760162def1a"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="3db7e0f7-e062-422c-85f6-109095b3245c">
+    <tavatekst id="e81959ad-c64b-42d0-9bc9-7bd3e316c70a">Taotluses ilmnenud puuduste kõrvaldamiseks antakse taotlejale tähtaeg puuduste kõrvaldamiseks. Taotluse menetlemise tähtaeg pikeneb nimetatud tähtaja võrra.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para5">
+   <paragrahvNr id="a356c986-0aae-4cd4-a9c0-4581cd30974c">5</paragrahvNr>
+   <kuvatavNr id="97150301-90cb-4100-8a3f-a770914e24cb"><![CDATA[§ 5. ]]></kuvatavNr>
+   <paragrahvPealkiri id="f5203992-4afd-4933-8b97-f287f7db2969">Koduteenuse osutamise otsustamine</paragrahvPealkiri>
+  <loige id="para5lg1">
+   <loigeNr id="60fc6c66-4917-44d3-a604-bf01f32febc1">1</loigeNr>
+   <kuvatavNr id="6a1ed533-b758-476c-9bfb-60954f2d3b45"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="c37f306e-15ac-49bf-8d0e-ff11a1cc0d2c">
+    <tavatekst id="217a9e8e-a367-48e7-962f-44b473154350">Koduteenuse osutamise otsustamiseks teeb linnavalitsuse sotsiaalabi osakond viie tööpäeva jooksul pärast taotluse saamist kodukülastuse, mille käigus hinnatakse kõrvalabi vajava isiku iseseisvat toimetulekuvõimet ja koduteenuse osutamise vajadust. Kodukülastuse alusel lepib linnavalitsuse sotsiaalabi osakond kõrvalabi vajava isikuga kokku tema hoolduskava, v.a käesoleva paragrahvi lõikes 5 sätestatud juhul.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg2">
+   <loigeNr id="80de9a21-4986-4efa-8c4c-202df4e39300">2</loigeNr>
+   <kuvatavNr id="b8ed7b3a-9a7f-4a2f-a017-b6d890927b98"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="fff60bbc-a53a-4f38-96a8-59fb3c4aa948">
+    <tavatekst id="c4347bcc-1afc-4cbc-809f-a74c6372f17f">Linnavalitsuse sotsiaalabi osakonna juhataja teeb kümne tööpäeva jooksul alates taotluse esitamisest otsuse koduteenuse osutamise või sellest keeldumise kohta. Koduteenuse osutamisel määratakse vähemalt osutatavate teenuste loetelu, kestus, maht ja tasu suurus.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg3">
+   <loigeNr id="941f9961-e322-4759-a8b9-6fb202031747">3</loigeNr>
+   <kuvatavNr id="8522f59d-99aa-4767-873c-cf6808d6d196"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="6b4a442e-0803-4fb9-934c-6e8bed3d1b82">
+    <tavatekst id="44886bb3-0ec0-49ec-b98c-b70566e854c7">Linnavalitsuse sotsiaalabi osakond teeb käesoleva paragrahvi lõikes 2 nimetatud otsuse kõrvalabi vajavale isikule teatavaks tema vanust ja arengutaset arvestaval ning talle arusaadaval viisil kolme tööpäeva jooksul alates otsuse tegemise päevast, v.a käesoleva paragrahvi lõikes 5 sätestatud juhul.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg4">
+   <loigeNr id="553f9f45-f521-4bd1-83cb-bf351e2ace7b">4</loigeNr>
+   <kuvatavNr id="ccc1f033-7345-42b6-9047-b4670393f17b"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="9291763a-2dd7-4ed5-b601-cb704e4e1e44">
+    <tavatekst id="47944bf2-eb49-41da-a7fe-f49454affa34">Linnavalitsuse sotsiaalabi osakond edastab kõrvalabi vajavale isikule koduteenuse määramise otsuse koos kodukülastuse akti ja hoolduskavaga teenuse osutajale lepingu sõlmimiseks.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg5">
+   <loigeNr id="cdd8ff09-9089-4f10-9868-1518f190eb48">5</loigeNr>
+   <kuvatavNr id="616dbe7c-c5d6-4bb2-a46c-b265e709548e"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="a83b7d03-8c1c-4b7d-ad3a-72f78c85bb39">
+    <tavatekst id="57f16204-db6e-44d6-ba0f-a935166affaf">Kui kõrvalabi vajav isik on majutatud sotsiaalmajja, korraldab Maardu Sotsiaalmaja tema kodukülastuse, kodukülastuse akti koostamise ja hoolduskava kokkuleppimise ning edastab viie tööpäeva jooksul alates taotluse esitamisest taotluse koos kodukülastusakti ja hoolduskavaga linnavalitsuse sotsiaalabi osakonnale. Maardu Sotsiaalmaja teeb sotsiaalmajja majutatud inimesele käesoleva paragrahvi lõikes 2 nimetatud otsuse teatavaks kolme tööpäeva jooksul alates otsuse saamise päevast.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg6">
+   <loigeNr id="1bbd6ae1-21e5-4c40-b037-e3c9f6ca5718">6</loigeNr>
+   <kuvatavNr id="f82acb81-f9c0-4a69-98cb-24eb8a9e3525"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="0e3e5b9a-2286-4717-89d4-9330a52dba94">
+    <tavatekst id="1fa85941-7410-4caf-8393-61805eaba679">Koduteenust osutatakse inimesele koheselt, kui teenuse osutamata jätmine võib põhjustada tema elule või tervisele ohtliku olukorra. Sel juhul koostatakse käesoleva määruse § 4 lõikes 1 ja käesoleva paragrahvi lõigetes 1 ja 5 nimetatud dokumendid hiljemalt kümne päeva jooksul alates teenuse osutamisest.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para6">
+   <paragrahvNr id="dbcc0086-ad2d-4702-920b-34246d8acaa9">6</paragrahvNr>
+   <kuvatavNr id="8534ee8a-e9dd-4d84-a2f9-9bf85fe5b72d"><![CDATA[§ 6. ]]></kuvatavNr>
+   <paragrahvPealkiri id="7b2d8b5d-cf60-4847-9a3d-edf691e91628">Koduteenuse osutamine</paragrahvPealkiri>
+  <loige id="para6lg1">
+   <loigeNr id="9deec130-87d3-4988-a5f2-8f08c869d018">1</loigeNr>
+   <kuvatavNr id="cad94d13-60e6-4427-8f29-665ceea6dd0b"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="836ffc47-46e6-4843-9232-3720c5744c24">
+    <tavatekst id="f06e9586-b332-42a2-9679-ed877bd813bc">Koduteenust osutab Maardu Sotsiaalmaja, kui linnavalitsus ei ole otsustanud teisiti. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg2">
+   <loigeNr id="23d4ad38-31d5-4c9d-961c-d86699c1c1b5">2</loigeNr>
+   <kuvatavNr id="af7160ec-8ffc-4fdf-a61a-5c02f9161af0"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="9dcce78e-38da-4d98-b087-9e457b997d55">
+    <tavatekst id="a9d5a230-be72-44d8-91c6-790eb1fe1b60">Hooldustöötaja lähtub koduteenuse osutamisel seadusest, käesolevast korrast, töölepingust ja ametijuhendist, koduteenuse saajaga sõlmitud lepingust ja koduteenuse osutamise hoolduskavast ning muudest juhenditest ja teenuse standardist. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg3">
+   <loigeNr id="8e0d2770-a903-4c57-b5bf-aace253e4b9d">3</loigeNr>
+   <kuvatavNr id="fde8cf4b-be03-4a5c-b69e-61d88e4e6cc5"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="3c1417ef-1fdd-4872-b96d-0ac3b5811c13">
+    <tavatekst id="52d7d955-ed53-4df7-87fd-31a25715c585">Hooldustöötaja peab teenuse osutamisel iga koduteenuse saaja kohta eraldi hoolduspäevikut, milles kajastab kuupäevaliselt:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para6lg3p1">
+   <alampunktNr id="b00fe285-dcb4-462f-857a-3f2eef2316ca">1</alampunktNr>
+   <kuvatavNr id="0289f7eb-646a-49a6-83c8-28e9a32fd9bd"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="fb25b7a6-afd1-4d09-9c6c-8d952fdeecb0">
+    <tavatekst id="af96f1ce-8d9c-4ddd-b050-0765d7c4e0a9">hooldustöötaja konkreetseid tegevusi;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para6lg3p2">
+   <alampunktNr id="589e1967-bb33-4cd2-9e80-cd9fdf20c996">2</alampunktNr>
+   <kuvatavNr id="4697b398-c921-4167-9520-d5a13725abc7"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="a57c3709-6b1a-492f-823e-6ec189b074c3">
+    <tavatekst id="3479682e-0e5e-4fa9-99d2-d317efc5cc7b">koduteenuse saaja rahalisi tehinguid.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para6lg4">
+   <loigeNr id="d17bc165-ac4f-4746-b5c3-3e07e8bb4c9f">4</loigeNr>
+   <kuvatavNr id="b12a25e3-7785-4997-9992-ee37911edd1d"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="e664dfc0-c2c6-43f6-bf11-bb746439a4d2">
+    <tavatekst id="e5097fe7-86d0-420a-a873-f330826b499f">Hooldustöötaja ja koduteenuse saaja kinnitavad allkirjaga hoolduspäevikusse tehtud kanded.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg5">
+   <loigeNr id="97ce3d29-93cc-48c2-8b4e-c7251eafb819">5</loigeNr>
+   <kuvatavNr id="3533923b-a514-40f4-b882-fbfcf3de1b8e"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="42ebc528-a70d-42d3-b56c-77c917499b85">
+    <tavatekst id="75368248-66c2-4d68-8696-dd90dcb81992">Kord kuus teeb hooldustöötaja lühikokkuvõtte teenuste osutamisest ja teenuse saaja seisundist ning esitab selle Maardu Sotsiaalmaja juhatajale.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg6">
+   <loigeNr id="3e095f13-c9e0-4155-8894-e5fae12c5bc4">6</loigeNr>
+   <kuvatavNr id="d32ae187-e945-4c90-a80d-8fd553100c08"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="1d8a984e-cf77-408e-9018-12dbbda56dd5">
+    <tavatekst id="7d50e0df-d234-4e53-88ab-03a3b68a6c67">Koduteenust ei tohi vahetult osutada isik, kelle karistatus tahtlikult toimepandud kuriteo eest võib ohtu seada teenust saama õigustatud isiku elu, tervise ja vara.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para7">
+   <paragrahvNr id="57a6f2d9-7e7f-4b74-8708-fb97377e8e79">7</paragrahvNr>
+   <kuvatavNr id="fc266d3e-497a-4c47-88c9-466c1419c3fc"><![CDATA[§ 7. ]]></kuvatavNr>
+   <paragrahvPealkiri id="d8eda395-0ce0-48db-9ca6-da146c5d76e1">Koduteenuse osutamise leping</paragrahvPealkiri>
+  <loige id="para7lg1">
+   <loigeNr id="9fa3ec52-2b1a-49a8-a7e0-1c131e32be55">1</loigeNr>
+   <kuvatavNr id="1d02a6cb-cc2c-4350-bb49-8c3eadb5b8a5"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="1b01638e-22ee-4b8c-bfda-5fbc263f354d">
+    <tavatekst id="6d84c0a4-11fb-4b9a-89b6-4e1b66b693c7">Koduteenuse osutamiseks sõlmivad teenuse osutaja ja teenuse saaja koduteenuse osutamise lepingu (edaspidi leping).</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg2">
+   <loigeNr id="6a310748-51dc-43f3-8353-62186229222d">2</loigeNr>
+   <kuvatavNr id="5e5c1c13-c001-434c-b91e-ee2eaf33427c"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="7a804f8e-4f9d-42a2-bde2-ffb15ecba978">
+    <tavatekst id="08e35d53-9d3c-49c1-a06b-3e87dbea269b">Lepingus märgitakse vähemalt teenuse kestus, hind, sagedus ja osutatavate teenuste loetelu ning poolte õigused ja kohustused. Lepingut võib muuta poolte kokkuleppel igal ajal, kui selleks tekib põhjendatud vajadus. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg3">
+   <loigeNr id="3ee34037-b2c0-46ee-bed8-2451154a2eec">3</loigeNr>
+   <kuvatavNr id="f0b1261e-1799-4f6e-8555-5124a49cd853"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="4ebff629-987c-48c2-bd50-496da45083c6">
+    <tavatekst id="0801c9d0-1ab8-43ba-85c5-f109bfc1fd6a">Leping on tähtajaline ja sõlmitakse kuni üheks aastaks. Tähtaja saabumisel pikeneb leping automaatselt üheks aastaks, kui teenuse saaja ei ole hiljemalt üks kuu enne lepingu tähtaja saabumist teatanud teenuse osutajale kirjalikult soovist leping lõpetada. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg4">
+   <loigeNr id="e74676fc-0651-42c7-9021-0edb5ac026c4">4</loigeNr>
+   <kuvatavNr id="ad01ca5a-c325-46a1-8abb-bcdc84900282"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="69e7cf01-e210-452f-b0f1-d2c0861c4de6">
+    <tavatekst id="e152fee0-8b9c-4a57-aacb-c62580c54d38">Koduteenuse osutamise lepingu täitmine peatub kuni koduteenuse taaskasutamiseni, kui teenuse saaja viibib tegelikust elukohast (kodust) eemal (haiglas ravil, laste või sugulaste juures, rehabilitatsiooniteenusel jms).</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg5">
+   <loigeNr id="18b87bc1-5207-40c2-8fa4-6ec46e645404">5</loigeNr>
+   <kuvatavNr id="26587287-6ef9-4395-a47c-f541fb8c6c66"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="80f4e712-9430-4765-830e-cb7371ad8ce0">
+    <tavatekst id="7a4298dc-6dd3-4410-a923-06cb392e8b22">Leping lõpeb:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para7lg5p1">
+   <alampunktNr id="5acafbee-f069-44c1-a5ac-f5db6abf77c2">1</alampunktNr>
+   <kuvatavNr id="fd2daa45-e5da-4f87-890c-5a5430925b14"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="a6a83236-12c8-4200-825a-47ab830ad636">
+    <tavatekst id="f13df1b6-d0c7-4954-bd69-680b513d8c8e">tähtaja saabumisel, v.a lepingu pikendamise korral;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para7lg5p2">
+   <alampunktNr id="af1a62e8-b10a-4ac4-8478-c36746e01fc3">2</alampunktNr>
+   <kuvatavNr id="3fdd06dd-4dde-4f8a-8288-d44f4d251637"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="2f11dfe8-4ed3-4615-8d9c-25f946287d14">
+    <tavatekst id="27310b45-cef9-4203-9cc0-d7bcdd214dbd">teenuse saaja surma korral;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para7lg5p3">
+   <alampunktNr id="5ce48cdb-621a-4851-944e-c5f011047cb2">3</alampunktNr>
+   <kuvatavNr id="ff83a7e6-47cb-4a2c-bf08-a1376f22564a"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="3a6fef31-0077-4964-931d-650e49317e75">
+    <tavatekst id="88a609ec-acae-47ae-b12c-8c7a7f970443">koduteenuse saamise õiguse lõppemisel.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para7lg6">
+   <loigeNr id="bd089e4d-4300-4dfa-9de7-cd9540b57931">6</loigeNr>
+   <kuvatavNr id="d1ac7647-acfe-4f22-8f92-d2e004431256"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="564cafd9-277f-4d79-af32-38f14e073150">
+    <tavatekst id="bd650fad-8e6c-431a-85a9-9e07a24cb9cd">Koduteenuse saamise õiguse lõppemisel teatab koduteenuse osutaja koduteenuse saajale lepingu lõppemisest kirjalikult selleks vajaliku vähima aja jooksul.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para8">
+   <paragrahvNr id="6ad32268-8b95-4636-9921-aa3562ee7a06">8</paragrahvNr>
+   <kuvatavNr id="1cc3d4ed-5934-40d7-98b4-180683152ebd"><![CDATA[§ 8. ]]></kuvatavNr>
+   <paragrahvPealkiri id="c4f25502-3f67-488b-87d8-099c7cc9e4f4">Koduteenuse saamise õiguse peatumine</paragrahvPealkiri>
+  <loige id="para8lg1">
+   <loigeNr id="a807cffd-ec48-46be-babb-a4c45f41615c">1</loigeNr>
+   <kuvatavNr id="1da214e2-41e0-45da-ae6d-8d3320081bb7"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="01d71c37-789d-429b-add6-8aa19736bd07">
+    <tavatekst id="7aed39dd-83cf-49db-a1d7-dc269f636d78">Õigus koduteenusele peatub:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para8lg1p1">
+   <alampunktNr id="8c6092af-cfcf-4b93-9db1-0e2c0baf0f0a">1</alampunktNr>
+   <kuvatavNr id="37acb0cd-86c1-4b5f-af10-b7f852d9af00"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="8bebc878-5732-4bba-a63e-adcc1791bb05">
+    <tavatekst id="a94c1cd9-142e-40f8-8979-045d04789f2d">kui teenuse saaja ei võimalda (sh ebaviisakas käitumine, alkoholi või narkootiliste ainete kuritarvitamine, agressiivsus vms) teenuse osutajal täita koduteenuse osutamiseks vajalikke ülesandeid;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para8lg1p2">
+   <alampunktNr id="481695f5-7e4d-489f-9945-991625c71585">2</alampunktNr>
+   <kuvatavNr id="118177b9-c379-4747-a1cb-e8ee3d64f767"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="5314ba81-085b-4f81-ab37-b8f8aae0fe50">
+    <tavatekst id="80adde9e-1d46-4f9e-94d8-b5584530d52e">muul seaduses sätestatud juhul.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para8lg2">
+   <loigeNr id="0c5b44bf-9257-42ea-9f7e-a8ba43a4dbe2">2</loigeNr>
+   <kuvatavNr id="9adcd30f-3846-4bfc-bc76-4c3b731c3b03"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="cc43f3da-eb83-4166-80b6-42ccea43110d">
+    <tavatekst id="92b176f2-abac-4446-bb6c-6d3d6f76a0f7">Koduteenuse saamise õiguse peatumise aluse äralangemisest tekib isikul uuesti õigus koduteenusele.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para9">
+   <paragrahvNr id="0e4ed4e4-24d0-4978-afdc-1ce998f9705e">9</paragrahvNr>
+   <kuvatavNr id="33720113-d07d-4516-8e96-f49d58c64aab"><![CDATA[§ 9. ]]></kuvatavNr>
+   <paragrahvPealkiri id="d9be30ca-7336-4e47-bd3a-14e686d55a1e">Koduteenuse saamise õiguse lõppemine </paragrahvPealkiri>
+  <loige id="para9lg1">
+   <loigeNr id="d775af20-d9e6-46b8-806f-4d5b6c6e0459"/>
+   <kuvatavNr id="adae2140-e5eb-47c9-a689-70fcbf7f460b"/>
+   <sisuTekst id="6ac250a8-d900-4959-a8f1-124c3ca20110">
+    <tavatekst id="e940bcdc-3a15-4f18-b0e9-5e02de6b0d12">Koduteenuse saaja õigus koduteenusele lõpeb:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para9lg1p1">
+   <alampunktNr id="23f20fbb-e8d8-4469-b2e7-ffa83b3b8a00">1</alampunktNr>
+   <kuvatavNr id="9fb6e35c-b9fa-4d82-8eef-fccca99e7a11"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="795fa424-9a00-4b12-b723-0d514d6294c2">
+    <tavatekst id="65ee13dc-378c-406f-8a41-7198baf1aaa9">kui isik ei vasta seaduses koduteenuse saamiseks sätestatud tingimustele;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para9lg1p2">
+   <alampunktNr id="86fdc39c-2f25-4914-9031-6b85ea642a0e">2</alampunktNr>
+   <kuvatavNr id="b540e221-0da6-4552-bd38-8e95e4558d7c"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="688f7f0e-e3f5-4ffe-aabe-2b45b8d5f17b">
+    <tavatekst id="9c66abc6-8c2e-453d-8927-668b3588a48f">koduteenuse osutamise otsuse tühistamise või kehtetuks tunnistamisega;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para9lg1p3">
+   <alampunktNr id="be73a2ac-9c40-4fbd-afb1-43e1a767e504">3</alampunktNr>
+   <kuvatavNr id="d2c18fba-8ca7-4421-bf5f-4faa25d83519"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="fdfa2d94-c86c-4786-82fd-8ba51d10acf2">
+    <tavatekst id="1999598d-fa66-496b-abe6-6449b7b24930">teenuse saaja toimetulek on paranenud määral, mis võimaldab toimetuleku ilma koduteenuseta;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para9lg1p4">
+   <alampunktNr id="b7f78d26-41a3-4497-beec-912fdb5d0472">4</alampunktNr>
+   <kuvatavNr id="99400390-0591-4a34-9850-3a172c540c38"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="8da7124c-93a3-4d95-a3be-d4d51644d055">
+    <tavatekst id="7f4c9faf-23ec-4311-89cf-b8b9d66e559a">isiku surma korral;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para9lg1p5">
+   <alampunktNr id="2fc40ab6-7961-40a7-912f-1521f1c0f5bc">5</alampunktNr>
+   <kuvatavNr id="acc30ae8-0056-4ee6-8430-94c5400c1fbc"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="cbfa5e0c-3050-4d52-ba30-505233f1bfe0">
+    <tavatekst id="623ab7de-eb54-40d1-81ee-1a3b78a221a1">koduteenusest loobumisega, kui seadus ei sätesta teisiti;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para9lg1p6">
+   <alampunktNr id="89351213-bce1-4055-86b8-1f05c08c8fec">6</alampunktNr>
+   <kuvatavNr id="48da3d13-12e0-4272-9bc5-b77e903a8263"><![CDATA[6) ]]></kuvatavNr>
+   <sisuTekst id="374d6ac5-f322-4451-a7b3-e358828b2b0c">
+    <tavatekst id="b8e1fd34-56a2-495e-a1ae-ec9183bfbcb6">hoolekandeasutusse või teise kohaliku omavalitsuse üksuse territooriumile elama asumisel;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para9lg1p7">
+   <alampunktNr id="d81b672d-85df-4d96-ad99-855da50c13d8">7</alampunktNr>
+   <kuvatavNr id="0863ba52-849b-47c8-89a1-0815076775b5"><![CDATA[7) ]]></kuvatavNr>
+   <sisuTekst id="e6147a52-7e68-4915-9125-cf7ec9312481">
+    <tavatekst id="171ba368-fcc0-4a29-9042-7796fc80506c">muul seaduses sätestatud juhul.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para10">
+   <paragrahvNr id="e0fedb6c-a2a2-42bc-81db-a9e2cf2b853b">10</paragrahvNr>
+   <kuvatavNr id="39403a8b-4e57-43a4-b0d8-d85900bcab5c"><![CDATA[§ 10. ]]></kuvatavNr>
+   <paragrahvPealkiri id="d88a9ee3-9781-46ed-88ef-e87ed3e0e327">Koduteenuse eest tasumine</paragrahvPealkiri>
+  <loige id="para10lg1">
+   <loigeNr id="b2413d55-ab8b-4b07-88a0-6c6608c12b90">1</loigeNr>
+   <kuvatavNr id="f5c4cf2c-ba48-40be-839d-1256b9c1a893"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="3c1b6015-fb7b-47e7-a65a-cdc383f927a0">
+    <tavatekst id="6dc1a3f3-7611-413b-9675-f13912148947">Koduteenuse osutamine on tasuline teenus ja koduteenuse saaja tasub koduteenuse eest linnavalitsuse poolt kehtestatud hindade alusel.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para10lg2">
+   <loigeNr id="d0cb5a9b-1769-4717-b50f-a0cdb5685f27">2</loigeNr>
+   <kuvatavNr id="24d5515d-6a71-489c-8b6f-e325caf6a093"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="db3655d8-7be0-47e4-afa8-4aa7aa39ac8b">
+    <tavatekst id="867a2982-54e1-47d3-a79c-1ee9c457d701">Linnavalitsuse sotsiaalabi osakonna juhataja võib koduteenuse saaja vabastada täielikult või osaliselt teenuse eest tasumisest, arvestades teenust vajava isiku ja tema perekonna majanduslikku olukorda ning muid juhtumiga seotud asjaolusid. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para10lg3">
+   <loigeNr id="81e82c74-b47f-40b8-9a2f-474bff4477ce">3</loigeNr>
+   <kuvatavNr id="0a665ca3-3a98-476b-b795-3a267d63996b"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="a24668fa-e87b-4c4f-9c45-9828fb056322">
+    <tavatekst id="22059980-4a06-4a5e-9325-b7404454a3d3">Koduteenuse eest tasumise arvestuse aluseks on kalendrikuu. Teenuse saaja tasub koduteenuse eest arve alusel, mille teenuse osutaja esitab hiljemalt teenuse osutamise kuule järgneva kuu 10. kuupäevaks. Koduteenuse eest tasutakse teenuse osutamise kuule järgneva kuu 20. kuupäevaks.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para11">
+   <paragrahvNr id="c13fde6f-2c3e-411f-b508-44ecc51377a1">11</paragrahvNr>
+   <kuvatavNr id="3543e8e0-976a-4099-868b-4a64ab24308b"><![CDATA[§ 11. ]]></kuvatavNr>
+   <paragrahvPealkiri id="ebc946df-1b3c-4608-aa9c-d935879d98c8">Järelevalve ja arvestuse pidamine</paragrahvPealkiri>
+  <loige id="para11lg1">
+   <loigeNr id="ab4190b5-678c-41f3-a899-d96b96e56d61">1</loigeNr>
+   <kuvatavNr id="11bcd42b-913e-42b3-95f9-ebd38e5d9593"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="ac2678b8-1a64-46f1-8575-c1403a0f8390">
+    <tavatekst id="8f42ce79-b017-423e-b2c8-5089015fba73">Sotsiaalkindlustusameti pädevuses on:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para11lg1p1">
+   <alampunktNr id="32492eda-f5eb-4178-aa18-0b9b1cc0b07c">1</alampunktNr>
+   <kuvatavNr id="e565b625-1279-443c-83f0-2efd869ea991"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="3d7a93c2-b958-49f3-ac36-24b459f380eb">
+    <tavatekst id="11e1ffd5-a974-4fd5-a8e2-f3978a0e4283">riiklikku järelevalve tegemine seaduses ja selle alusel kehtestatud õigusaktides sätestatud nõuete täitmise üle;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para11lg1p2">
+   <alampunktNr id="e202743a-b663-4dc7-a539-0ceeb96d6579">2</alampunktNr>
+   <kuvatavNr id="96ca0c2e-75f9-4e87-ad56-5bb7badc4c41"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="827dda6a-ed74-4933-80fa-b20581b4357c">
+    <tavatekst id="13c5fae1-8bec-433f-a4b9-3b356cb2af12">haldusjärelevalve tegemine Maardu linna haldusaktide õiguspärasuse ning koduteenuse kvaliteedi üle.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para11lg2">
+   <loigeNr id="d7dded26-4724-43b5-a59c-ea49ce50bb64">2</loigeNr>
+   <kuvatavNr id="d161771d-dd70-4aa3-b773-b0300e51399a"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="d87f934f-bea0-4b48-9123-e26856406e26">
+    <tavatekst id="bcb0535a-099f-4514-9bf8-7cbda2266178">Linnavalitsuse pädevuses on teenistusliku järelevalve läbiviimine sotsiaalabi osakonna ametiisikute ning Maardu Sotsiaalmaja ja selle juhataja tegevuse seaduslikkuse ja otstarbekuse kontroll.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para11lg3">
+   <loigeNr id="49ce22da-c756-4b04-9204-b8ddc32eec21">3</loigeNr>
+   <kuvatavNr id="7507484f-c941-4197-93a5-63f89458feb9"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="b70594f1-fbf2-4abb-8422-9638affb8c10">
+    <tavatekst id="b5d6ae7e-127e-4118-b34c-3f9f524f21f9">Koduteenuse korraldamise eest vastutavad sotsiaalabi osakonna juhataja ja Maardu Sotsiaalmaja juhataja vastavalt oma pädevusele.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para11lg4">
+   <loigeNr id="c71bc529-8a78-4ced-a3fb-2fe882d8aad0">4</loigeNr>
+   <kuvatavNr id="1329dbd4-ee00-4060-9e2a-3356682bfc0f"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="8431e9fc-41d8-4753-89e0-c30b66721a84">
+    <tavatekst id="b399c730-601d-4d12-aad3-e70c3e84fe7b">Koduteenuste üle arvestuse pidamise eest vastutab koduteenuse osutaja.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para12">
+   <paragrahvNr id="ffb9b432-c3a4-4f68-aa7a-946ad307426a">12</paragrahvNr>
+   <kuvatavNr id="a077e4f6-8952-448a-b0b5-d56559bbc16e"><![CDATA[§ 12. ]]></kuvatavNr>
+   <paragrahvPealkiri id="ae8eeeab-b83b-4cbe-882f-a7d7c91204eb">Vaidemenetlus ja vaidluste lahendamine</paragrahvPealkiri>
+  <loige id="para12lg1">
+   <loigeNr id="12d133eb-6fbe-4896-838e-c896940f8f19">1</loigeNr>
+   <kuvatavNr id="4002f570-da65-49f1-83d8-c1628f6ce2d1"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="787e207b-c1e8-4c5f-811a-4eae62cafd7f">
+    <tavatekst id="0dca116e-d6ee-4306-ad1e-bff456a6235e">Vaie koduteenuse osutamisel tehtud otsuse või toimingu peale esitatakse linnavalitsusele.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para12lg2">
+   <loigeNr id="8261afb9-9aa2-4a7d-9865-752013df2877">2</loigeNr>
+   <kuvatavNr id="815eefae-9cb9-496f-bcc0-5616d8fff659"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="d0ac4130-d607-47c7-a1b6-4aeb8f95f181">
+    <tavatekst id="3c5508cd-58c2-447f-b38a-cff46343bc25">Vaie lahendatakse haldusmenetluse seaduses sätestatud korras 30 päeva jooksul arvates vaide esitamisest linnavalitsusele, kui seadus ei sätesta pikemat tähtaega. Vaide läbivaatamise tähtaega võib pikendada haldusmenetluse seaduses sätestatud korras.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para12lg3">
+   <loigeNr id="051362ed-b285-4a19-bc61-6b9d2612ab55">3</loigeNr>
+   <kuvatavNr id="4ba926c6-f042-4fe6-afc7-825b5bf92ec6"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="d9db0733-e631-4af5-9c4c-f8c5275b36df">
+    <tavatekst id="d3e934d9-0450-4dbc-a7d7-a72a00757ef9">Isikul, kelle vaie jääb vaidemenetluses rahuldamata või kelle õigusi on vaidemenetluses rikutud, on õigus pöörduda haldusmenetluse seadustikus sätestatud tingimustel ja korras kaebusega halduskohtusse.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para12lg4">
+   <loigeNr id="cf589db3-0227-4a1f-80d7-0893f770f0aa">4</loigeNr>
+   <kuvatavNr id="c3b50332-b2d0-40d8-b1f5-1651da449912"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="4e6393c9-2157-47e6-9a43-3437373dc2a7">
+    <tavatekst id="3926748e-06d7-49d8-bb66-79590f00d14c">Koduteenuse osutamise lepingu täitmisega seotud vaidlusi lahendab linnavalitsuse sotsiaalabi osakonna juhataja või tema poolt määratud ametnik.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para13">
+   <paragrahvNr id="f1f5c81e-0eb5-48e0-ac22-e30389d1c8ca">13</paragrahvNr>
+   <kuvatavNr id="b1ba00e6-9928-4695-b085-3c2b78db6983"><![CDATA[§ 13. ]]></kuvatavNr>
+   <paragrahvPealkiri id="43318e29-7e28-4321-a86e-a2ab7fd23cbc">Rakendussätted</paragrahvPealkiri>
+  <loige id="para13lg1">
+   <loigeNr id="e3414e66-3d83-45ed-af6e-3c04d13d34d7"/>
+   <kuvatavNr id="5e760335-3072-41a6-8b24-f2f8f7ee8ec9"/>
+   <sisuTekst id="1041e59b-e637-4033-82a8-9a6058857b59">
+    <tavatekst id="e6400f0e-d25a-4095-86aa-cdab0a3c2908">Maardu Linnavolikogu 29.03.2016 määrus nr 61 „Koduteenuste osutamise tingimused ja kord“ tunnistatakse kehtetuks.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="b027779e-8aa0-4aa1-b3b7-1ad4d19c13c3"><allkiriKoht id="583f5d1c-f13a-4905-97af-5a2752e63c47"/><allkirjastaja id="66d0c751-d8ce-4fc3-898a-844f8f2491e7"><ametinimetus id="80b63278-702f-48e8-b3b8-029897637147">Maardu Linnavolikogu esimees</ametinimetus><eesnimi id="009a8fe6-2e4f-4f7f-ab04-c6f5712f18b3">Ailar</eesnimi><perekonnanimi id="338c81aa-f44e-452d-8e62-a4d6b17539df">Lyra</perekonnanimi></allkirjastaja></allkiri></oigusakt>

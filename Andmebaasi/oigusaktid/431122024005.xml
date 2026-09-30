@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="e6cc21d0-67d4-4cde-81af-5418de9e286f" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Põhja-Sakala Vallavalitsus</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2023-06-14</aktikuupaev>
+			<avaldamismarge>
+				<RTosa>RT IV</RTosa>
+				<avaldamineKuupaev>2023-06-20</avaldamineKuupaev>
+				<RTartikkel>34</RTartikkel>
+				<aktViide>420062023034</aktViide>
+			</avaldamismarge>
+			<aktiNr>6</aktiNr>
+			<joustumine>2023-07-01</joustumine>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2024-12-31</avaldamineKuupaev><RTaasta>2024</RTaasta><RTartikkel>5</RTartikkel><aktViide>431122024005</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2025-01-03</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2024-12-20</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>431122024005</globaalID>
+		<metaandmedVersioon>11</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2024-12-30</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1056836</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2023-06-16</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>?Teadmata? ?Teadmata?</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>6</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2023-06-19</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Marike Võime</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="22809bec-81d1-4c5c-be7d-8a899f2140bc">
+		<nimi id="2368466a-69f5-41b2-a3b2-2b8d38dcf9ce">
+			<pealkiri id="ecdc2b14-76e0-4f9e-9162-abaa8dac834b">Üldhooldusteenuse hoolduskulude piirmäär</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="842a656f-82bd-4cee-95e7-f6467cda7d8a">
+		<aktikuupaev id="610ac2fb-34a2-4bd4-9ed4-2a394eac4685">2024-12-19</aktikuupaev>
+		<avaldamismarge id="e1c11791-0c90-42fd-baac-98ed01162724">
+			<RTosa id="0adcb922-0bbf-4f2e-a817-e13cc14e43f5">RT IV</RTosa>
+			<avaldamineKuupaev id="0fe0750b-4857-4902-9f4a-337d4de391d0">2024-12-31</avaldamineKuupaev>
+			<RTartikkel id="94982852-d4bd-44c4-9360-49a0925d9c6f">2</RTartikkel>
+			<aktViide id="287ad0fb-9537-45fe-a3ae-e08100d1d99b">431122024002</aktViide>
+		</avaldamismarge>
+		<joustumine id="650e95f4-b521-4793-978d-a8c84af44858">2025-01-03</joustumine>
+		<aktiNr id="812a91d2-367e-4075-8ad8-bf32bfaf9d4a">6</aktiNr>
+		<tavatekst id="c29661b5-8182-4248-b784-06e562ee30e0">, rakendatakse 1. jaanuarist 2025.</tavatekst>
+	</muutmismarge>
+	<sisu id="f883fade-85d8-478f-b0de-db692c81c66b">
+		<preambul id="ab3a3789-dac9-45c9-b580-5c0beb5a7d1b">
+			<tavatekst id="39c6d78e-6cec-4b43-9858-48cccde314f9">Määrus kehtestatakse sotsiaalhoolekande seaduse § 22<sup>1</sup> lõike 3 ja Põhja-Sakala Vallavolikogu 25.05.2023 määruse nr 47 „Väljaspool kodu osutatava üldhooldusteenuse korraldamise ja rahastamine kord“ § 5 lõike 3 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="36583f5e-20b8-4ecf-a300-b54ea6b662eb">1</paragrahvNr>
+			<kuvatavNr id="575303d3-ccc3-43ec-9398-f551b50751d7"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="3a8336e3-7b97-4252-8c37-0a9bfee58dd4">Reguleerimisala</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="877f2656-2263-48af-9a1e-35ba13472f67"/>
+				<kuvatavNr id="c04ffa77-aaf8-4076-92e2-867b59d202d5"/>
+				<sisuTekst id="d41dfd1a-a9e0-4608-a8f0-bc0b2207a074">
+					<tavatekst id="7a588124-300b-4d66-be5b-fa3131832f2e">Määrus reguleerib rahvastikuregistrisse kantud Põhja-Sakala valla elanikele väljaspool kodu osutatava üldhooldusteenuse (edaspidi <i>üldhooldusteenus)</i> raames hooldusteenust vahetult osutavate hooldustöötajate ja abihooldustöötajate kulude (edaspidi <i>hoolduskulude)</i> tasumise piirmäära suuruse kehtestamist.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="8aeb2df6-1137-4bee-abc3-c5a341ad1fc3">2</paragrahvNr>
+			<kuvatavNr id="5a4d59f7-de29-4ee7-ac65-27d25a70ac0e"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="9331efdf-8778-4639-b9e8-e80b9455cca1">Üldsätted</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="26aef070-3761-4511-8734-275f3ee3630a">1</loigeNr>
+				<kuvatavNr id="a0cc54f9-f3bc-4699-a5c1-8a3d3e32b079"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="c1c02974-2112-43e1-bfaf-f67b265b8290">
+					<tavatekst id="6cf88871-c943-44a0-a39c-6b62bed3a803">Määruses käsitatakse üldhooldusteenuse saaja elukohana Eesti rahvastikuregistrisse kantud elukoha aadressi.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg2">
+				<loigeNr id="7a87009e-5b2b-41bb-b607-7e4cfc87eb94">2</loigeNr>
+				<kuvatavNr id="6dfc9c8f-00cd-420c-acf6-95d209426c3e"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="90a4949d-af4b-4759-ae9e-89131d24e310">
+					<tavatekst id="e8c09e62-d8a9-4501-b582-3bc5fb11bc13">Väljaspool isiku kodu osutatav üldhooldusteenus on kohaliku omavalitsuse üksuse korraldatav sotsiaalteenus, mille eesmärk on turvalise keskkonna ja toimetuleku tagamine täisealisele isikule, kes terviseseisundist, tegevusvõimest või elukeskkonnast tulenevatel põhjustel ei suuda kodustes tingimustes ajutiselt või püsivalt iseseisvalt toime tulla.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg3">
+				<loigeNr id="e3a2a214-813c-4da4-a135-2a0e1b6e128f">3</loigeNr>
+				<kuvatavNr id="bfeb4371-523c-42e7-a126-6b63e9ebd251"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="92d0b52c-c8ec-4ed4-a57a-17a9cf0e181a">
+					<tavatekst id="3647562d-da18-4604-9472-037f5f314288">Hoolduskulud makstakse Põhja-Sakala valla eelarvest sotsiaalosakonna poolt hinnatud üldhooldusteenuse vajaduse korral.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg4">
+				<loigeNr id="debf9003-ecbd-4466-837d-bd28ebe7e4e1">4</loigeNr>
+				<kuvatavNr id="e2c4ab98-ef5d-444f-896a-99f4b9dbb225"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="1c272968-3c23-464b-8752-eb71ff0250c4">
+					<tavatekst id="654c8645-c625-444e-9bd4-6cbfa07aee5d">Hooldusteenust vahetult osutavate hooldustöötajate ja abihooldustöötajate kuludeks on:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para2lg4p1">
+					<alampunktNr id="a34af98d-58cc-460d-89ac-4690edabe6de">1</alampunktNr>
+					<kuvatavNr id="18e882d2-827a-4a2e-98b2-14dade07f6c7"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="030ac4a0-2e98-4817-8fc8-de8909460d5b">
+						<tavatekst id="0deff73c-34ca-489b-9665-2199024ac399">tööjõukulud;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg4p2">
+					<alampunktNr id="fde94f7d-075d-4261-82a8-5d2a17a9759c">2</alampunktNr>
+					<kuvatavNr id="98ad409d-bca1-4b49-90f6-35f808497528"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="8cb092df-9188-4cec-b29a-c33375e5a212">
+						<tavatekst id="40c3f80b-333c-460b-91ef-82554bc68031">tööriietuse ja isikukaitsevahendite kulud;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg4p3">
+					<alampunktNr id="1dd96c96-ee1f-4d57-8774-28b45e37f5e7">3</alampunktNr>
+					<kuvatavNr id="db71c207-0d8e-49d9-a574-3786f92db406"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="0ab0cb5d-57c5-43bf-bfa4-1b90c84a5769">
+						<tavatekst id="aec13b34-a137-4cbe-bd65-cacb556b28fd">tervisekontrolli ja vaktsineerimise kulud;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg4p4">
+					<alampunktNr id="c2d8b621-bddb-41ff-a1ec-88553a2ec0bc">4</alampunktNr>
+					<kuvatavNr id="7e63475b-4534-4267-9943-3db6c4563519"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="39db8118-69d1-4567-b249-e7ad706ed24b">
+						<tavatekst id="1bdfc25b-e4e9-4c99-aa9b-21a73d25fb36">koolituse ja supervisiooni kulud.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para2lg5">
+				<loigeNr id="bafcd162-c343-4613-a689-f26391339959">5</loigeNr>
+				<kuvatavNr id="1f6f4b92-060e-4465-af13-7b16ee312a01"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="f41174eb-f756-4051-8c13-3695a1cf1851">
+					<tavatekst id="8ff05cd0-0480-47c1-8d4f-379d50054f08">Piirmäära suurus tagab teenuse saajale teenuse kättesaadavuse.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="d0f6496c-1359-4e26-8e87-ae9239eac96b">3</paragrahvNr>
+			<kuvatavNr id="dc15143a-e527-429e-b02d-f0de9b0d1999"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="015b7b69-69e5-4770-a916-269b227f43d8">Piirmäära suurus</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="66d09f7f-b013-4c75-b557-56a710bad05d"/>
+				<kuvatavNr id="50b229b2-a5a1-48b9-b738-a3fcc27c04b0"/>
+				<sisuTekst id="1bf5f130-2c5d-4648-9f57-d500d70fe871">
+					<tavatekst id="4668bb14-31e1-4f95-bb04-cf2da25b82ff">Hoolduskulu piirmäär on 610 eurot kalendrikuus.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="d31c4534-3bfb-437b-81e9-2c4f008ca13a">
+					<avaldamismarge id="f3b20fce-8b3c-492a-a383-6079b42eaff4">
+						<RTosa id="99afe64b-f079-426a-8a5d-99c382765144">RT IV</RTosa>
+						<avaldamineKuupaev id="d808bc15-11a8-4b1d-bae5-33a32f99c1e7">2024-12-31</avaldamineKuupaev>
+						<RTartikkel id="cdc656ad-c24f-44d2-aba8-7393b70e31f8">2</RTartikkel>
+						<aktViide id="ed67d2b7-85b2-4e17-8666-5852cd0e413c">431122024002</aktViide>
+					</avaldamismarge>
+					<joustumine id="40d37ea9-77bd-486a-a1a7-cb84d5509979">2025-01-03</joustumine>
+					<aktiNr id="15c5d510-94f2-4b06-9280-a9b8d81c2836">6</aktiNr>
+					<tavatekst id="6ec25887-8dd2-4b32-8cff-aa540ab02e6f">, rakendatakse 1. jaanuarist 2025.</tavatekst>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="87afd99f-9b0d-4c0f-b36a-0447628b6247">4</paragrahvNr>
+			<kuvatavNr id="fa041a0d-c8f5-4523-8185-6f268105a8ea"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="a0fa37db-7fed-4b11-825c-0ac7626365b6">Piirmäära muutmine</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="6effef45-a953-43fc-bd4a-217b07934e6b"/>
+				<kuvatavNr id="2163754d-4d49-47a5-a28c-dfe6f8abd496"/>
+				<sisuTekst id="6bd590e7-7265-433d-8aef-42a23936563c">
+					<tavatekst id="51d64262-87e7-438f-a1a3-111d39ad9c4b">Piirmäära muudetakse vastavalt vajadusele.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="de3e2f88-b979-4f0c-ba83-78045f009ab2">5</paragrahvNr>
+			<kuvatavNr id="8140aba9-6018-4b95-b934-9014b2725f0e"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="c8f986b4-5ca1-47d3-93cb-57f479bb44a4">Rakendussätted</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="1e61c936-6026-448d-88ad-05670cfdd513"/>
+				<kuvatavNr id="d375b264-bdd9-4945-bd20-6ef58ea81b48"/>
+				<sisuTekst id="2ae780b9-1c52-4d13-8079-3ae18bdc6d07">
+					<tavatekst id="e6fc3617-27f8-417c-9d24-9b4554663c58">Määrus jõustub 1. juulil 2023. a.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+</oigusakt>

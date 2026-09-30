@@ -1,0 +1,718 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="0124f388-3ef6-4240-89e3-4fa23ac40daf" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Tori Vallavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2022-05-19</aktikuupaev>
+  
+  
+  <aktiNr>15</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2022-05-28</avaldamineKuupaev><RTaasta>2022</RTaasta><RTartikkel>3</RTartikkel><aktViide>428052022003</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2022-06-01+03:00</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2022-05-23</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>428052022003</globaalID>
+ <metaandmedVersioon>5</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2022-05-27</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1054187</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+</metaandmed>
+ <aktinimi id="cfb77c4f-c487-45f4-82d3-3a1679979f0e">
+  <nimi id="a2272090-ca17-48cc-954d-570b57453f54">
+   <pealkiri id="8bca1c36-902d-4ef8-9ef3-967bed31594b">Hooldaja määramise ja hooldajatoetuse maksmise kord</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="ed2c250a-da69-4c75-aa3d-2e595868fa2a"><preambul id="785a1013-fd2b-49ab-a299-dccc483a07ba">
+   <tavatekst id="dab8c1a1-51ec-4084-9496-055790a5fa93">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 6 lõike 1 ja § 22 lõike 1 punkti 5 ning sotsiaalhoolekande seaduse § 14 lõike 2, § 15 ja § 26 alusel.</tavatekst>
+  </preambul><peatykk id="9655196c-6ee8-4e79-99d5-7d5fd674fc2d">
+   <peatykkNr id="99f5cd9b-c4a2-49a0-922d-2244bd89e913">1</peatykkNr>
+   <kuvatavNr id="218a6027-4614-4a79-ad7d-31547804109d"><![CDATA[1. peatükk]]></kuvatavNr>
+   <peatykkPealkiri id="2a8be1c6-7297-4da7-9feb-2aab94a7f6b5">Üldsätted</peatykkPealkiri>
+  <paragrahv id="para1">
+   <paragrahvNr id="24e02427-c0c2-4136-92ec-eb90e8f49ea4">1</paragrahvNr>
+   <kuvatavNr id="f964bcd5-2cd4-4c5f-bc27-b8dd2d4accbc"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="c180ca47-c914-4de5-90ff-9cef1dcd83a9">Määruse reguleerimisala</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="487fde96-0fbe-4be6-894c-e53887a8228d"/>
+   <kuvatavNr id="2d8a7d5a-2011-420d-b13c-7794a4ab75e6"/>
+   <sisuTekst id="5a43cb4d-29db-4cec-ac98-19abb6dd3fa3">
+    <tavatekst id="72523863-36d2-4786-98a8-effd9eda2123">Käesolev määrus sätestab rahvastikuregistris registreeritud Tori valla hooldusvajadusega isikule hoolduse seadmise, hooldaja määramise ja valla eelarvest makstava hooldajatoetuse korra (edaspidi kord).</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="d6066833-6d65-4e0e-90e5-14589124c62f">2</paragrahvNr>
+   <kuvatavNr id="8f0554ae-59cb-4824-b122-8206d8fca326"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="bbcfd363-85bc-4b49-aed5-765413634e75">Mõisted</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="012d9c7a-4d9e-4f92-b6d7-5d64fae5637b"/>
+   <kuvatavNr id="4d90fa3f-8033-45a9-b30c-c34fa6202aab"/>
+   <sisuTekst id="79fce828-5cbe-46be-a9d9-ea043b40c5d3">
+    <tavatekst id="a3d4eb2e-e497-4799-9833-af9a30685647">Käesolevas korras kasutatakse mõisteid järgmises tähenduses:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para2lg1p1">
+   <alampunktNr id="b21b721f-acb7-4877-854d-504fb8371d36">1</alampunktNr>
+   <kuvatavNr id="ad06debe-3133-4f63-872c-73eca89fb48d"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="d985bd4d-f144-47d2-b84d-b910d8da378e">
+    <tavatekst id="6f0d124a-2de6-420e-b363-98c991fbc41e"> Hooldatav – kõrvalabi, juhendamist ja järelevalvet vajav vaimse või füüsilise puudega ja/või kõrvalekaldega isik, kes vajab abi igapäevaelutoimingute sooritamisel.</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p2">
+   <alampunktNr id="32d6dcbc-ef8b-4dcd-9b6a-9a7ed59d90da">2</alampunktNr>
+   <kuvatavNr id="47e21290-7ca8-4e11-b466-c5e3a1fecd64"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="403b42ca-1d4f-40c4-9787-b55eb4b78799">
+    <tavatekst id="115beb71-bf51-4a82-ab49-11e2c7ce7cf3"> Hooldaja – kohaliku omavalitsuse poolt määratud teovõimeline isik, kes tagab hooldatavale kõrvalabi, juhendamise ja järelevalve.</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p3">
+   <alampunktNr id="2640fab0-7f77-4704-8756-57ece22d7409">3</alampunktNr>
+   <kuvatavNr id="20d28cd2-1520-46b9-a684-5c744721fd2d"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="5cbd6faa-0613-4538-bc5c-7fa77b9fe712">
+    <tavatekst id="c8eeb23f-3a30-4c40-a36f-7cab24f15203"> Hooldus – vajaliku kõrvalabi, juhendamise ja järelevalve tagamine isikule, kes ei tule iseseisvalt toime söömise, hügieenitoimingute, riietumise, liikumise või suhtlemisega või kes oma tegevuse või tegevusetusega võib tekitada kahju iseenda või teiste inimeste elule, tervisele või varale.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="e4c390b1-9c72-4a6f-bafb-13188cf106a3">3</paragrahvNr>
+   <kuvatavNr id="cddc6c31-a246-4c30-b717-7583647cc205"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="a41f4a61-06d5-429e-8c7b-55a7451588ea">Hoolduse seadmine</paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="02bd97b6-53c0-4157-a5f5-93ef45d9342e">1</loigeNr>
+   <kuvatavNr id="b3d27b53-dadc-4d87-a73a-96cf370d980d"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="0b12ace9-6a2d-4b40-a08b-912def188321">
+    <tavatekst id="c03acb7c-f11a-4df4-b906-f752cefc92e9">Hooldus seatakse abivajavale isikule, kelle tegelik ja rahvastikuregistrijärgne elukoht on Tori vald ja kes vaimse või kehalise kõrvalekalde tõttu vajab abi oma õiguste teostamiseks ja kohustuste täitmiseks (edaspidi hooldatav).</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg2">
+   <loigeNr id="9a9fb2ba-4f48-4a2d-aa60-99f32f018a35">2</loigeNr>
+   <kuvatavNr id="5c32aa59-f186-4564-b521-a512d0815bfe"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="6f097028-24c7-4106-86cb-bce6f89dd2b1">
+    <tavatekst id="29bdea2b-7166-4786-8b97-f016a50d595a">Hoolduse eesmärk on tagada hooldusvajadusega isikule, kes ei tule iseseisvalt toime, igapäevane kõrvalabi, juhendamine ja järelevalve harjumuspärases keskkonnas lähtuvalt tema elulaadist.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg3">
+   <loigeNr id="dc807ac8-8053-423e-9845-c96fe9cfddf3">3</loigeNr>
+   <kuvatavNr id="3364c147-a798-4376-a339-e97e31d4228b"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="2d109185-2811-4fea-9507-d4c2390c99d2">
+    <tavatekst id="a995a24d-246c-43ff-86b0-056ad6a99f47">Erandjuhul võib Tori valla elanike registris oleva hooldatava hooldajaks määrata teises omavalitsuses elava isiku, juhul kui hooldaja ja hooldatava elukohtade vahemaa võimaldab hooldajal täita talle pandud ülesandeid.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></peatykk><peatykk id="420cb655-8b18-4f44-9de6-e5c7f1cf0e71">
+   <peatykkNr id="e179f483-89c5-474b-bf69-5be2845b6d4e">2</peatykkNr>
+   <kuvatavNr id="267589d9-6b43-416e-9de2-2cd4c1002edd"><![CDATA[2. peatükk]]></kuvatavNr>
+   <peatykkPealkiri id="c35f2645-ccfd-4aa3-b995-90fbd3d563d1">Hooldaja ja hooldajatoetuse määramine</peatykkPealkiri>
+  <jagu id="27a2449d-0ac9-4259-bd4f-03f97c5fa735">
+   <jaguNr id="ef9a5d23-6fd9-4f88-bd53-b6219ebc9921">1</jaguNr>
+   <kuvatavNr id="8065c8af-0574-4b7d-9c90-57468c928197"><![CDATA[1. jagu]]></kuvatavNr>
+   <jaguPealkiri id="cbc98df8-e46a-4108-814f-0ebd9db5bf7b">Puudega lapsele hooldaja ja hooldajatoetuse määramine</jaguPealkiri>
+  <paragrahv id="para4">
+   <paragrahvNr id="95dc59f3-2b55-49ee-b271-e3ee7fc22114">4</paragrahvNr>
+   <kuvatavNr id="62b7baba-54f0-48a9-a522-608b9e76c2b3"><![CDATA[§ 4. ]]></kuvatavNr>
+   <paragrahvPealkiri id="d8f9ceea-502b-490d-9e3d-c4dede26d604">Puudega lapse hooldajaks määramise ja hooldajatoetuse taotlemine</paragrahvPealkiri>
+  <loige id="para4lg1">
+   <loigeNr id="ae09509d-b61a-49f7-8066-e8816d5c1746">1</loigeNr>
+   <kuvatavNr id="feed9689-059a-4b9f-a360-e041a6ad5569"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="db9c00f2-1238-4274-8f08-f52dde388ee5">
+    <tavatekst id="6932274f-475e-468e-8e47-1dd29a2a9f6f">Puudega lapse hooldaja (edaspidi hooldaja) on käesoleva korra mõistes vanem, last kasvatava vanema abikaasa või elukaaslane, eestkostja või hoolduspere vanem, kes ei saa töötada puudega lapse hooldamise tõttu.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg2">
+   <loigeNr id="de575766-81e3-4758-baf9-c3749dd7febe">2</loigeNr>
+   <kuvatavNr id="585c95eb-689e-466d-98b7-c5534e1de31f"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="7a446fd2-0cde-4d70-829e-6bce2975a501">
+    <tavatekst id="8ba410c1-c5ea-4f09-9d4a-23d4d1a9b597">Erandjuhul võib puudega lapse hooldajaks määrata töötava isiku, juhul kui ta ei ole töötamisega hõivatud üle 64 tundi kalendrikuus ja tema töine sissetulek ei ületa lubatud töötundide eest teenitavat miinimumpalga tunnitasuga võrdset summat.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg3">
+   <loigeNr id="da516bb6-a258-4a4b-b31c-80015719cdf3">3</loigeNr>
+   <kuvatavNr id="f04bccb7-ca7b-40ef-8701-761d3899e469"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="1587e75b-f3be-46d7-a71b-3f869f716f02">
+    <tavatekst id="48090313-cd4a-4faf-8320-757bad04fa89">Hooldajatoetus puudega lapse hooldajale on igakuine sotsiaaltoetus kuni 18-aastase hooldusvajadusega raske ja sügava puudega lapse hooldamise eest.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg4">
+   <loigeNr id="8e307c3e-2a73-48b9-bd7f-9fc9c25fe8ac">4</loigeNr>
+   <kuvatavNr id="fe05dddb-7929-4c0b-980c-f870743d60d9"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="671ff9b2-99f8-46d7-8e77-2c682ab87cc9">
+    <tavatekst id="6cb82e5a-707f-49a5-8b97-beefc429e07f">Hooldajatoetust saab taotleda isik, kelle elukohana on rahvastikuregistrisse kantud Tori vald ja kelle tegelik elukoht on Tori vallas, puudega lapse eest. Hooldusperede puhul võib taotlejaks olla ka teises omavalitsuses registreeritud isik.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg5">
+   <loigeNr id="6acab86c-fdfa-4245-8816-e8c2359847aa">5</loigeNr>
+   <kuvatavNr id="ab48f04f-d83d-4ec4-a64f-3b91475a898d"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="ea3ca8d3-b6f8-4ad4-b4b0-5360bb9ca96e">
+    <tavatekst id="b8a117e2-fe71-40ba-8e62-e5989c6bce83">Hooldajatoetuse saamiseks esitab hooldaja Tori vallavalitsusele taotluse.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg6">
+   <loigeNr id="334c1e54-eec8-4aa8-ac15-1577d838302c">6</loigeNr>
+   <kuvatavNr id="a8267379-0c04-44c1-a529-1c5848c70665"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="1c21dcd4-be5e-4c14-8f49-37902f4ce61a">
+    <tavatekst id="bf95d520-3457-4e3c-8511-b1e93a44b791">Kui hooldajatoetust taotleb last kasvatava vanema abikaasa või elukaaslane, lisatakse avaldusele vanema nõusolek toetuse määramiseks last kasvatava vanema abikaasale või elukaaslasele.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg7">
+   <loigeNr id="c1f1c54e-c47b-4847-a600-40566524aa51">7</loigeNr>
+   <kuvatavNr id="63409a5f-a3ff-4bce-b2e5-5a0b28fb49b3"><![CDATA[(7)]]></kuvatavNr>
+   <sisuTekst id="a18d75ef-d2f6-4dc6-a374-fef44522af6e">
+    <tavatekst id="f9c520fb-39d6-4575-96ca-5f19474103aa">Kui taotleja jätab koos taotlusega esitamata nõutud andmed või kui taotluses on muid puudusi, määrab sotsiaalosakond taotlejale tähtaja puuduste kõrvaldamiseks, mis ei või olla lühem kui viis tööpäeva.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para5">
+   <paragrahvNr id="9e0c399c-1a86-455a-8787-6928054fdc49">5</paragrahvNr>
+   <kuvatavNr id="d1995186-50da-46de-bf4a-3068ac988a4f"><![CDATA[§ 5. ]]></kuvatavNr>
+   <paragrahvPealkiri id="f9471fb5-a8a6-48fb-8493-658817fe6ed9">Puudega lapse hooldusvajaduse hindamine</paragrahvPealkiri>
+  <loige id="para5lg1">
+   <loigeNr id="a9e057a0-aa7f-4109-9a68-c7e2ada8575f">1</loigeNr>
+   <kuvatavNr id="89369a7e-c6c2-420b-8c09-4bde93f59912"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="46beae71-5590-4234-a3f8-4db2b64c58fb">
+    <tavatekst id="133ac4f9-34fa-4604-b901-528d79ef5432">Hooldusvajadus on puudega lapse osaline või pidev kõrvalabi, juhendamise või järelevalve vajadus.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg2">
+   <loigeNr id="33177894-0f71-44af-9fea-db38ac7766f3">2</loigeNr>
+   <kuvatavNr id="494f0600-2d9d-4a71-a8bd-f98e585ec8d5"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="6fc10cd1-2750-45c3-97dd-90f99986ae32">
+    <tavatekst id="4e75c56e-5e67-4eea-a4bb-8f2092462275">Lastekaitsespetsialist selgitab vestluse, esitatud dokumentide, kodukülastuse ja hindamise alusel välja puudega lapse hooldusvajaduse ja hooldaja võimalused puudega lapsele kõrvalabi, juhendamise või järelevalve tagamiseks ning teeb hoolekandekomisjonile ettepaneku hooldaja ja hooldajatoetuse määramise kohta.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para6">
+   <paragrahvNr id="0e9057ae-924f-42b8-a6e9-55e37e0e7e1f">6</paragrahvNr>
+   <kuvatavNr id="0887da9b-1e52-47cd-83a3-bf2e241fdf84"><![CDATA[§ 6. ]]></kuvatavNr>
+   <paragrahvPealkiri id="538288bc-491e-4e20-8655-5858c087297b">Puudega lapse hooldajatoetuse määramine ja maksmine</paragrahvPealkiri>
+  <loige id="para6lg1">
+   <loigeNr id="b5da97b2-fb08-4f97-8084-3581933ee7a3">1</loigeNr>
+   <kuvatavNr id="9230be38-ee46-4a59-9a4f-76df5e4b9e93"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="b28a9e1e-8fd2-48b8-909e-c70925f860d7">
+    <tavatekst id="b24a8547-15e0-4edd-b055-0896dade9edb">Hooldajaks määramise ja hooldajatoetuse maksmise otsustab hoolekandekomisjon 14 päeva jooksul alates taotluse esitamisest.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg2">
+   <loigeNr id="6b460c73-aa92-4e15-b874-f1cf25c1e68d">2</loigeNr>
+   <kuvatavNr id="9de75a17-479b-4479-8286-98370168e9f4"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="f013fba8-d5b6-478b-af5b-4df18562ba46">
+    <tavatekst id="54f09758-b705-4c6d-ba5f-84d343a41a78">Hooldajatoetust makstakse jooksva kuu eest alates otsuse vastuvõtmisele järgnevast kalendrikuust.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg3">
+   <loigeNr id="187f41f3-5310-48d6-9212-54f7294c7409">3</loigeNr>
+   <kuvatavNr id="fa7a80b6-89ef-4923-96b7-2591063c6b8d"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="bf315dd7-b123-48c8-9197-5affe19ffba1">
+    <tavatekst id="f80c57f9-5978-4b6e-b300-dfbce5440a32">Hooldajatoetus makstakse välja hiljemalt 20. kuupäevaks hooldaja või tema poolt määratud isiku pangakontole või sularahas.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg4">
+   <loigeNr id="5ee64f39-8017-4f79-843e-05276d0404a2">4</loigeNr>
+   <kuvatavNr id="2052b8b0-0909-43a8-8c8d-9699b584ead8"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="9e6af5ff-c6aa-4991-9bfa-01db995b90fa">
+    <tavatekst id="a6b47ecd-5498-41e9-9091-e46089d94f49">Hooldajatoetust makstakse tagasiulatuvalt puude määramise kuupäevast, kui hooldajatoetuse saaja on esitanud avalduse hooldajatoetuse tähtaja pikendamiseks 30 päeva jooksul pärast puude määramise otsuse tegemist.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg5">
+   <loigeNr id="ecfd8628-e0b7-4ab3-ad2b-f1d25e1c93fa">5</loigeNr>
+   <kuvatavNr id="ab968f41-e21f-4cbe-942d-3b5244b8457c"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="560f9060-16e0-4d7e-8413-290a3a7d5256">
+    <tavatekst id="e6183dd0-c98e-462d-acc7-9f4680a24486">Puudega lapse hooldamise eest ei maksta hooldajatoetust juhul kui:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para6lg5p1">
+   <alampunktNr id="62c48d39-100d-4c2f-a7f6-a138a1ed8b13">1</alampunktNr>
+   <kuvatavNr id="52c1bf72-f0c8-4c32-aee2-1e76b6ede8d4"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="ef07a9a1-a4a0-4b90-b131-dd93778916f7">
+    <tavatekst id="226f84dd-f74f-4668-8954-182fcbc84e62">taotleja saab töötutoetust või töötuskindlustushüvitist;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para6lg5p2">
+   <alampunktNr id="06601cae-131f-48e1-8e7d-707aee1cd23f">2</alampunktNr>
+   <kuvatavNr id="df2f4879-275a-4677-ad73-51afa51d75fa"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="4a9de9c0-1afe-4686-9ea5-197f1cadf341">
+    <tavatekst id="94317522-6374-4d40-a8ea-765d511fed29">puudega lapse kasvatamise eest makstakse vanemahüvitist;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para6lg5p3">
+   <alampunktNr id="d94327ae-3ae9-42c5-9c55-b3c5264b589f">3</alampunktNr>
+   <kuvatavNr id="70767b33-2f9e-4fdf-a017-f02cda4023d0"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="a4ce47f8-ebd4-4496-b74b-336d9964f42d">
+    <tavatekst id="6c25215d-2fb2-4f6c-91cc-38a2172393e2">puudega lapse hooldamine on püsivalt tagatud teiste sotsiaal- ja/või haridusteenustega, täiendavate toetuste või muu abi osutamisega;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para6lg5p4">
+   <alampunktNr id="eceed9a5-aa5b-4ea1-b749-ba5050800195">4</alampunktNr>
+   <kuvatavNr id="47a70533-a072-4a7d-95fd-d1879df77913"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="dc0889c5-5056-4701-ba49-6ec79b958fed">
+    <tavatekst id="4008c532-6ca9-4212-a63a-9b799eb14299">lapse hooldusvajadus ei põhjusta hooldajale olulisi takistusi tööturul osalemiseks;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para6lg5p5">
+   <alampunktNr id="25a9efb3-086a-4709-95df-f8fe875ff383">5</alampunktNr>
+   <kuvatavNr id="a705f28a-d54f-4b0e-a4c4-c5a8e5289127"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="88ea399b-0729-4bce-bb1b-f862bb15ebba">
+    <tavatekst id="4f8f4725-ecaa-49ef-8492-f3e7c25c50f1">keskmise puudega või puuduva puudeastmega hooldust vajava lapse hooldamise eest.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para6lg6">
+   <loigeNr id="ef69476f-1377-4bb2-8824-45186abe15c9">6</loigeNr>
+   <kuvatavNr id="d87b8779-a1a0-4ab8-870c-c6076e2ba3fd"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="d69c2abd-a4b4-4035-bb29-2ec4c5335428">
+    <tavatekst id="fe97f925-01ab-4b69-88d5-39fb58fe0a58">Puudega lapse hooldajatoetust makstakse kuni:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para6lg6p1">
+   <alampunktNr id="f23d3fdc-2aea-48a8-aba0-1d5399c62378">1</alampunktNr>
+   <kuvatavNr id="465abd60-aafa-447e-a157-7bf47d2241af"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="f790a0ba-31e4-4dbe-ac5d-a69e8743a838">
+    <tavatekst id="a89830eb-9ccd-4c97-8e16-bd7a0d86dedd">hooldatava tähtajaliselt määratud puude raskusastme kehtivuse lõpptähtajani;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para6lg6p2">
+   <alampunktNr id="e6c31ecd-c0cc-4ba9-8a43-7fb6c1fd27aa">2</alampunktNr>
+   <kuvatavNr id="0b327a5b-1329-4b32-858c-2303fa89c9ab"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="14ee345a-6beb-4900-9277-d35f8115ed4c">
+    <tavatekst id="4959c57f-f3a3-4e9f-b58f-d9f91aa11f19">tähtajalise elamisloa kehtivuse lõpptähtajani, kui hooldatav või hooldaja omab tähtajalist elamisluba;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para6lg6p3">
+   <alampunktNr id="f0b1316c-5486-4f30-9652-cc04ee600fb8">3</alampunktNr>
+   <kuvatavNr id="5df0b05e-bc42-4777-be63-5fe2255d9bd3"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="bde555ef-3d1d-4219-b405-040a7764f8e1">
+    <tavatekst id="0782099c-2939-4965-b75c-2cc310803568">seatud tähtajalise eestkoste või hooldusperekonnas viibimise tähtaja lõpuni.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para6lg7">
+   <loigeNr id="f4abfd10-ea3e-4caa-95c7-a91cf75e4c12">7</loigeNr>
+   <kuvatavNr id="86319fcc-4cb1-4c85-8f63-3c14a5c7df99"><![CDATA[(7)]]></kuvatavNr>
+   <sisuTekst id="dddd5a58-cdd2-411d-947f-42adfac74d0d">
+    <tavatekst id="470fb0b3-c286-4df0-b8ca-08b034b9eba6">Puudega lapse hooldajatoetuse suuruse muutmist tingivate asjaolude tekkimisel arvutatakse toetuse suurus ümber asjaolude sotsiaalosakonnale teatavaks saamise kuupäevaga ning see kajastub hiljemalt järgneva kuu toetuse väljamaksmisel.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg8">
+   <loigeNr id="f7c1be88-8d41-4cb5-8301-79d571ce9e77">8</loigeNr>
+   <kuvatavNr id="ce81d014-f984-4163-821d-979cc52c9047"><![CDATA[(8)]]></kuvatavNr>
+   <sisuTekst id="2547036c-9118-4e57-a3b3-4c8e10e01aa3">
+    <tavatekst id="87d138ef-7fa1-4520-b10b-abc85df01323">Puudega lapse hooldajatoetus nõutakse tagasi, kui taotleja on esitanud valeandmeid või andmeid varjanud.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para7">
+   <paragrahvNr id="d41a84e4-ee85-4dc6-a825-f586d2a3969d">7</paragrahvNr>
+   <kuvatavNr id="3caa776e-7355-42f5-84ed-11190400914b"><![CDATA[§ 7. ]]></kuvatavNr>
+   <paragrahvPealkiri id="88adf4eb-72de-4255-bbeb-d73a9f882184">Puudega lapse hooldajatoetuse määramise tähtaja lühendamine ja pikendamine</paragrahvPealkiri>
+  <loige id="para7lg1">
+   <loigeNr id="fc64fc1a-8db3-4cb4-96fc-c42b84f8867b">1</loigeNr>
+   <kuvatavNr id="53d537da-c325-4f4b-b1dd-d88a5e4ed665"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="75e3cae2-e1d9-4128-a815-be7781467a89">
+    <tavatekst id="806e2fd3-7c83-4d52-8e82-430509f80e83">Hooldajatoetuse määramise tähtaja möödumisel on taotlejal õigus esitada avaldus hooldajatoetuse määramise tähtaja pikendamiseks.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg2">
+   <loigeNr id="b718aa38-dadc-4a4a-af2a-9b205b1dcb94">2</loigeNr>
+   <kuvatavNr id="3e70912c-4df5-4898-b00c-1488e62200af"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="8ed2618c-23f8-48d0-88b4-d9256077533e">
+    <tavatekst id="18e2890a-d6bb-485c-9fee-acb694db2422">Hooldajatoetuse määramise tähtaja pikendamise otsustab hoolekandekomisjon.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg3">
+   <loigeNr id="1fded271-500e-4d3c-ae98-ccd84d50580e">3</loigeNr>
+   <kuvatavNr id="7e98c909-b247-4443-961b-cd4d8b08847e"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="be02ba2c-c46a-4b31-a107-df170634dfd4">
+    <tavatekst id="b520c139-f1cd-440b-ace0-f73fc43f7daf">Hooldajatoetuse tähtaja määramise pikendamisele eelneb puudega lapse hooldusvajaduse kordushindamine.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg4">
+   <loigeNr id="c411c472-af7d-4247-9061-a3b93e9725ec">4</loigeNr>
+   <kuvatavNr id="b2f1589c-a5dc-4486-a1ef-0e4104148005"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="12dce837-f6a0-43e1-86dc-28932edb00b3">
+    <tavatekst id="f2ffcd29-f5b0-4144-a7da-1c73cf129f2b">Puudega lapse hooldajatoetust määratakse tähtajaliselt § 6 lõikes 6 sätestatust lühemaks ajaks, kui on eeldada hooldamise tähtajalisust.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para8">
+   <paragrahvNr id="9e7b1c1c-e3e0-40ff-894c-2025206a20eb">8</paragrahvNr>
+   <kuvatavNr id="f18e4f40-8603-4f18-98ce-439b7be9a365"><![CDATA[§ 8. ]]></kuvatavNr>
+   <paragrahvPealkiri id="76e20dfa-51ab-4f5f-a0d6-9338d2ed3cf0">Puudega lapse hooldajatoetuse maksmise peatamine ja lõpetamine</paragrahvPealkiri>
+  <loige id="para8lg1">
+   <loigeNr id="16b7b69e-ded7-4f86-a096-fd5c3bc9de26">1</loigeNr>
+   <kuvatavNr id="134730f2-e574-49ec-bf5c-ede8ef1e02b2"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="19aa9eaf-d7b3-4075-b8e7-0574f11f152d">
+    <tavatekst id="9578b3b6-6534-4823-97eb-59519dd93609">Puudega lapse hooldajatoetuse maksmine peatatakse:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para8lg1p1">
+   <alampunktNr id="080f3d2a-705b-4063-bd05-e71566b029d0">1</alampunktNr>
+   <kuvatavNr id="989929a6-affa-4418-af56-33abaac0896f"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="bc84ce15-44f3-433a-96ba-12bb4aac8330">
+    <tavatekst id="c67f631d-24df-43ad-a5db-12ce2306aff6">lapse õppima asumisel õpilaskoduga õppeasutusse;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para8lg1p2">
+   <alampunktNr id="7f622613-f1a6-47e0-9a84-c63efb76f069">2</alampunktNr>
+   <kuvatavNr id="b6adf19a-a552-45aa-b314-c949184fade7"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="788928b4-187a-436b-8658-7c8e90efb5b7">
+    <tavatekst id="6154fc4d-83a6-463d-b4bd-271755812828">lapse viibimisel üle ühe kuu ravi- või hooldusteenusel.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para8lg2">
+   <loigeNr id="caeb396b-6bce-4119-ae3e-88339b942d4e">2</loigeNr>
+   <kuvatavNr id="ff75de2a-3fe7-4864-8a64-cd37802a8066"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="96fe56a5-4a1f-46b3-88fa-6e2b1320c9df">
+    <tavatekst id="fe768e59-013f-4cd7-b6d4-0c5e55d97b6c">Puudega lapse hooldajatoetuse maksmist jätkatakse puudega lapse hooldaja taotluse alusel pärast peatamist tinginud asjaolude ära langemist kuni § 6 lõikes 6 nimetatud tähtaegadeni.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para8lg3">
+   <loigeNr id="76e1fe46-cbf7-425f-8f27-8aba89f8f169">3</loigeNr>
+   <kuvatavNr id="f4edf5c7-a287-4a03-8ec5-c6184eb42d06"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="de3977b2-6dd8-4503-b911-d196318cad99">
+    <tavatekst id="ead0d474-61fa-4005-87b6-c9528a5a0652">Puudega lapse hooldajatoetuse maksmine lõpetatakse:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para8lg3p1">
+   <alampunktNr id="a97a5921-c312-4fa1-a067-7cd3ebc70c99">1</alampunktNr>
+   <kuvatavNr id="1dc9a6d6-f67b-472a-9c76-d068b77820cc"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="a6796827-b2a3-49de-89bf-d8206acccb70">
+    <tavatekst id="0271d453-935a-41bb-9139-24799a7cc573">toetuse määramise aluste äralangemisel;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para8lg3p2">
+   <alampunktNr id="eb1bbada-3bae-40a9-9f08-5eca85a8135d">2</alampunktNr>
+   <kuvatavNr id="a63d2bd1-0436-4ed0-a7c6-de76b60c1d2e"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="09294d8d-9464-4dc0-b108-938581f593e8">
+    <tavatekst id="616f0a6d-5f42-4885-8850-589d24184ccb">puudega lapse või hooldaja alalisel elama asumisel teise omavalitsuse territooriumile;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para8lg3p3">
+   <alampunktNr id="dfa37eb5-c7a8-4037-8bd7-8ea4e62ac262">3</alampunktNr>
+   <kuvatavNr id="7a234623-2c81-410d-99e3-a988c468ed4a"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="b38564bb-a278-4e8f-aced-519c7db19b72">
+    <tavatekst id="e21caff0-bfe6-4aeb-8523-69e3b470849e">puudega lapse hoolduse korraldamisel edaspidi muul viisil;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para8lg3p4">
+   <alampunktNr id="12cca2ee-dd2a-4f8d-a747-6d626bdd566c">4</alampunktNr>
+   <kuvatavNr id="9ecd3030-c435-4f9b-9f7a-df785104483f"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="f1d21684-e5e8-45ad-8a52-3f24cad4d33d">
+    <tavatekst id="ab4586c6-e944-4b2c-829f-9bf744df8695">hooldaja tööle asumisel või lubatud mahust suuremal määral töö tegemisel ja palga saamisel.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv></jagu><jagu id="73b34fae-cf01-4509-b0fc-da0bc7951a30">
+   <jaguNr id="75c84b0c-ea53-4813-8e46-f1265ffe63bd">2</jaguNr>
+   <kuvatavNr id="fca3f798-1063-48ed-bda4-a2f8ab1f760d"><![CDATA[2. jagu]]></kuvatavNr>
+   <jaguPealkiri id="7d563eb3-6569-4f08-bd6c-ea838b5f8f13">Täisealise isikule hooldaja ja hooldajatoetuse määramine</jaguPealkiri>
+  <paragrahv id="para9">
+   <paragrahvNr id="ec7d540e-6380-42ed-8bc2-627dca816ecd">9</paragrahvNr>
+   <kuvatavNr id="c3b798ef-d194-48f5-a30e-f0a28da7ac26"><![CDATA[§ 9. ]]></kuvatavNr>
+   <paragrahvPealkiri id="1768db87-4004-425d-8308-87b8a9a96ba2">Täisealisele isikule hoolduse seadmine</paragrahvPealkiri>
+  <loige id="para9lg1">
+   <loigeNr id="63504343-b311-4fd9-a09d-7abe87fd57cb">1</loigeNr>
+   <kuvatavNr id="c53832a1-4bc7-4c3d-8c9f-abb535b92abd"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="b846b396-19f6-4e64-8128-0120b886023e">
+    <tavatekst id="fff0c27c-3687-4b4c-9392-4beb0508f6de">Hooldus seatakse hooldusvajadusega täisealisele isikule (edaspidi hooldatav), kelle tegelik ja rahvastikuregistrijärgne elukoht on Tori vald ning kes vajab oma vaimse või kehalise puude tõttu kõrvalabi, juhendamist ja järelevalvet.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para9lg2">
+   <loigeNr id="6ff58d92-fd01-4e88-87a2-2bf90b23171d">2</loigeNr>
+   <kuvatavNr id="4c12858d-2c8c-4a47-9128-614bea2235f1"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="9d44a74a-47d2-424c-bf03-2d6e0f9cc93d">
+    <tavatekst id="63256500-9de0-4622-afd9-5ce749c879a3">Täisealise hooldaja on käesoleva korra mõistes täisealine isik, kes abistab hooldust vajavat isikut tema toimetulekul, tagab hooldust vajava isiku hooldusvajaduse ja igapäevase elukorralduse.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para10">
+   <paragrahvNr id="1ccf5187-5741-452c-ae3a-e2c71d56a443">10</paragrahvNr>
+   <kuvatavNr id="ed40b06d-3846-4a3d-8180-3f24bab238c4"><![CDATA[§ 10. ]]></kuvatavNr>
+   <paragrahvPealkiri id="956fc59c-b8e4-4173-b3a5-502a9dad26fe">Täisealisele isikule hoolduse seadmise ja hooldaja määramise taotlemine</paragrahvPealkiri>
+  <loige id="para10lg1">
+   <loigeNr id="79e5c711-f211-400f-9fdb-650d4245edcd">1</loigeNr>
+   <kuvatavNr id="81e483e1-c3a6-4e36-a9d8-3e6aabcdba68"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="2b7f59bc-b22e-46bd-bfdf-4a588546abb5">
+    <tavatekst id="52ab530d-3668-44f7-9c13-e0635434125e">Hooldajaks taotleja esitab Tori vallavalitsusele taotluse koos hooldatava kirjaliku nõusolekuga talle hooldaja määramise kohta. Samuti esitab taotleja võimalusel avalduse menetlemist ja hooldusvajaduse hindamist lihtsustavad muud olemasolevad dokumendid.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para10lg2">
+   <loigeNr id="6db6de70-acbf-4a82-a5e8-92ee5f39d953">2</loigeNr>
+   <kuvatavNr id="7b8b9e92-003f-4c74-9e97-620f6047f088"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="da4847b9-1a1a-4a75-8793-bbf33871af35">
+    <tavatekst id="d2f84c0e-9597-41da-8148-7c225033f60d">Sotsiaaltöö spetsialist selgitab vestluse, esitatud dokumentide, kodukülastuse ja hindamise alusel välja hooldatava hooldusvajaduse ja hooldaja võimalused puudega inimesele kõrvalabi, juhendamise või järelevalve tagamiseks ning teeb hoolekandekomisjonile ettepaneku hooldaja määramiseks ja hooldajatoetuse maksmiseks.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para10lg3">
+   <loigeNr id="5c6aa630-8ffe-431d-b7fd-d9c96e7763d9">3</loigeNr>
+   <kuvatavNr id="0cf3e515-7c66-4254-896d-c42c9341dd15"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="07a05c5d-216c-42a7-9213-e86a98aa446a">
+    <tavatekst id="b42b46c4-28ce-44db-aafb-7b43da45d0a9">Kui taotleja jätab koos taotlusega esitamata nõutud andmed või kui taotluses on muid puudusi, määrab sotsiaalosakond taotlejale tähtaja puuduste kõrvaldamiseks, mis ei või olla lühem kui viis tööpäeva. </tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para11">
+   <paragrahvNr id="abd2254f-2388-4ba1-bd45-c0b91124d4a8">11</paragrahvNr>
+   <kuvatavNr id="4c79b615-7d17-4ecc-b86c-f7311b51e7ce"><![CDATA[§ 11. ]]></kuvatavNr>
+   <paragrahvPealkiri id="b80a47b3-947f-4042-9795-69bf70ee17a4">Täisealisele isikule hoolduse seadmine ja hooldaja määramine</paragrahvPealkiri>
+  <loige id="para11lg1">
+   <loigeNr id="6a56c56d-e985-422f-9c92-8bc6ff4ee42e">1</loigeNr>
+   <kuvatavNr id="8c71bd7c-e784-47b1-b6d3-e2d034e70dd7"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="f0a6fe3d-f8a5-43ad-9b73-9a7af7bec02c">
+    <tavatekst id="9efff506-527c-4cdd-9f5d-9df61d01dcfe">Hooldatavale seatakse hooldus ja talle määratakse hooldaja hoolekandekomisjoni otsusega 14 päeva jooksul alates taotluse esitamisest.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para11lg2">
+   <loigeNr id="db8b5179-e05b-44c7-9060-cd2fe81dca5a">2</loigeNr>
+   <kuvatavNr id="d32c839b-0135-4a7f-8249-1d7a49cdfa36"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="cbf9cfd9-c120-43f8-bd16-4339fbe414bf">
+    <tavatekst id="bc4245f5-460b-44f9-b7d7-6cb51639ef02">Hoolduse seadmisest ja hooldaja määramisest keeldumisest teatatakse taotlejale kirjalikult, esitades keeldumise põhjused, mis tulenevad hoolduse seadmise ja hooldusvajaduse hindamise tulemustest.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para11lg3">
+   <loigeNr id="6180b661-1f94-4265-91e0-80e56d03ba74">3</loigeNr>
+   <kuvatavNr id="50b3b4b5-38af-44f2-a344-8fcb63f8728e"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="7567614e-197c-497b-b574-487839a20eb1">
+    <tavatekst id="e46bb1fc-858f-48bd-a53b-484ad007fe07">Hooldajaks võib määrata teovõimelise isiku, kes sobib hooldatavale ja on oma tervisliku seisundi ning elukorralduse tõttu võimeline hooldaja ülesandeid täitma.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para11lg4">
+   <loigeNr id="0a8af613-310b-4af2-9630-4def7c135ab4">4</loigeNr>
+   <kuvatavNr id="1ad43019-18ee-4a98-bada-0100a20b04b1"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="630cc10b-7ac7-4cec-9fb3-44aae30a4572">
+    <tavatekst id="078f4605-7a2c-465d-b2a7-c4ba56244cc9">Hooldus seatakse ja hooldaja määratakse kuni:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para11lg4p1">
+   <alampunktNr id="2281c8ce-3ffd-46ab-97e6-b3ef0f63b941">1</alampunktNr>
+   <kuvatavNr id="2eb5b212-8387-47d7-aa6b-9b5c1ef7f3b5"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="572ab347-733d-45ac-b851-f40628db31f5">
+    <tavatekst id="65a7b6b4-9f69-4975-b36c-87ae382263b6">määratud puude raskusastme kehtivuse lõpptähtajani;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para11lg4p2">
+   <alampunktNr id="820ec62c-4995-48a5-bdd5-183ccab86236">2</alampunktNr>
+   <kuvatavNr id="502609b2-187b-4d1c-9e8c-d57ceae5f61c"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="17613e94-5ecc-4d98-ac4f-80a89c985ec7">
+    <tavatekst id="2f2c68c6-be1b-443e-a0fd-80effefa8c22">planeeritud kordushindamise läbiviimise tähtajani;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para11lg4p3">
+   <alampunktNr id="3109ea3d-c11d-45fc-9cb4-f1c9c20c1b49">3</alampunktNr>
+   <kuvatavNr id="3987d684-a785-4b67-8662-5a473a992894"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="95a0afad-b651-4748-a42b-b883d09962ff">
+    <tavatekst id="0149b99f-d00f-4f36-a293-8b651f6ca120">tähtajalise elamisloa kehtivuse lõpptähtajani, kui hooldatav või hooldaja omab tähtajalist elamisluba.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para11lg5">
+   <loigeNr id="46cd38b9-2228-42e3-923e-26941aa83eee">5</loigeNr>
+   <kuvatavNr id="72b6446d-99a8-4dce-a308-d7bd1f2ca048"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="4385b970-1584-4a64-b652-2c6f790942cf">
+    <tavatekst id="5ae7ab70-4a0f-4eeb-b4cd-56a49b155318">Üks hooldaja võib hooldada kuni kahte hooldatavat.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para12">
+   <paragrahvNr id="19a1ff75-af2e-41d4-8a1c-ef10117fe12a">12</paragrahvNr>
+   <kuvatavNr id="d3d3572b-9b2c-4785-ad81-c198a6716bf6"><![CDATA[§ 12. ]]></kuvatavNr>
+   <paragrahvPealkiri id="5a47e131-bdd6-4535-90f3-c701f23dbbcf">Hooldaja kohustused</paragrahvPealkiri>
+  <loige id="para12lg1">
+   <loigeNr id="3c5c81f9-8cf2-4d09-a064-8cf1dc904290"/>
+   <kuvatavNr id="d534ed66-f4fd-4bc3-9180-4ecda03d2baf"/>
+   <sisuTekst id="efe8bc52-09f1-41d9-8f9f-77e24594156c">
+    <tavatekst id="a33b9df1-a017-492f-b5ed-740681720632">Hooldajaks määratud isik on kohustatud:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para12lg1p1">
+   <alampunktNr id="0affc359-a759-4aaf-af83-a26dec8d46a9">1</alampunktNr>
+   <kuvatavNr id="947c37a1-6749-48fb-ba95-e17c00bb52c1"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="5d49b8a4-f806-4b70-bf78-c6b6f52b7295">
+    <tavatekst id="e68bb808-3bcb-483e-97ae-c47c7fa335b2">tagama piisava kõrvalabi ja juhendamise hooldatavale, kes ei tule iseseisvalt toime söömise, hügieenitoimingute, riietumise, liikumise ja suhtlemisega;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para12lg1p2">
+   <alampunktNr id="cccb926d-1e05-48aa-a2b5-695c461c79f1">2</alampunktNr>
+   <kuvatavNr id="d7538975-721e-4219-acb9-6b7e88dd0b24"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="bf3518fa-cb86-4881-9122-126c4a22a648">
+    <tavatekst id="1ce25a48-915c-486f-9876-8cb6b2485061">tagama hooldatava ohutuse, kui hooldatav oma tegevuse või tegevusetusega võib tekitada kahju iseenda või teiste inimeste elule, tervisele või varale;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para12lg1p3">
+   <alampunktNr id="5214a575-169a-44a3-af94-b92997143f56">3</alampunktNr>
+   <kuvatavNr id="1c734bf0-6600-42a6-a25c-9da37452b051"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="ddde9a21-2ccb-4f20-a2f6-5a5f8760ab2a">
+    <tavatekst id="e7f9f2b0-6dd9-428b-ad65-643825c76ce3">teavitama sotsiaalosakonda hooldusega seoses tekkinud probleemidest;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para12lg1p4">
+   <alampunktNr id="b38ffa10-b6de-406b-a1e4-8c4bbc6949bc">4</alampunktNr>
+   <kuvatavNr id="f033ab97-91ba-49fe-997d-203fb4390206"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="59a7b8da-e519-47f7-a262-c5df8a02ec15">
+    <tavatekst id="c39dd666-e8d1-405a-9345-aeb802a4f710">teavitama sotsiaalosakonda hooldusvajaduse lõppemisest või edasisest hooldust võimatuks muutvatest asjaoludest kümne päeva jooksul asjaolude tekkimisest.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para13">
+   <paragrahvNr id="b581c016-8927-4053-815a-a86f598e2250">13</paragrahvNr>
+   <kuvatavNr id="3e7c8671-a4bb-46ef-a1e7-4224b1befd3f"><![CDATA[§ 13. ]]></kuvatavNr>
+   <paragrahvPealkiri id="25ed7e57-9f75-45d6-b54b-46e12041d868">Täisealise isiku hooldajale toetuse maksmine</paragrahvPealkiri>
+  <loige id="para13lg1">
+   <loigeNr id="4efd31ba-ba67-4fb8-b7ef-9d0b301296f8">1</loigeNr>
+   <kuvatavNr id="3b550257-9f1e-4c49-8622-6bce5313bcfd"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="d84eb49c-a3f3-40ee-9fc9-660fbebaa83d">
+    <tavatekst id="42f476a9-65ae-4138-a7b7-a8aa9d19071f">Hooldajatoetust makstakse jooksva kuu eest alates otsuse vastuvõtmisele järgnevast kalendrikuust. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para13lg2">
+   <loigeNr id="65b6e09a-baa4-4155-8229-52380b9a64b4">2</loigeNr>
+   <kuvatavNr id="b2a1070c-baba-4ecd-8e83-60a96588922d"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="254bd27c-2132-4b7f-9a9b-73867da19821">
+    <tavatekst id="ac042eb5-a19e-4cda-8278-8568cc8566c2">Hooldajatoetus makstakse välja hiljemalt 20. kuupäevaks hooldaja või tema poolt määratud isiku pangakontole või sularahas.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para13lg3">
+   <loigeNr id="d03abfee-1302-4446-acc3-7d912461d805">3</loigeNr>
+   <kuvatavNr id="3ae26ebc-77b4-4fd3-9f35-6a21a186b5e9"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="b77a290c-4e5a-41d6-9ad4-cee629b8eaa9">
+    <tavatekst id="6d6bb0c6-c64c-4048-9f2d-ce503337ce60">Hooldajatoetust makstakse tagasiulatuvalt puude määramise kuupäevast, kui hooldajatoetuse saaja on esitanud avalduse hooldajatoetuse tähtaja pikendamiseks 30 päeva jooksul pärast puude määramise otsuse tegemist.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para13lg4">
+   <loigeNr id="184bb9f7-b647-4308-af62-f6361351d089">4</loigeNr>
+   <kuvatavNr id="1cac2a00-75c4-401e-a3d2-9d5637fefa4d"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="8cbdef9a-aaea-4ec3-9de4-66b098ad0edf">
+    <tavatekst id="6015133e-1137-46ec-929f-3258f3d1355b">Täisealise isiku hooldajale makstakse hooldajatoetust kuni:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para13lg4p1">
+   <alampunktNr id="ebe5032a-3c37-410b-baa9-023e54890da4">1</alampunktNr>
+   <kuvatavNr id="c5fa8d1f-7999-4886-850b-aa260e1518f4"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="c705bf5e-7c9e-403b-b5ba-679c3cf5fb15">
+    <tavatekst id="7e27deec-8fca-47d8-b6e0-e880d3ce6c15">hooldatava tähtajaliselt määratud puude raskusastme kehtivuse lõpptähtajani;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para13lg4p2">
+   <alampunktNr id="c615aba5-3c0f-4792-8552-a8ed95b971f0">2</alampunktNr>
+   <kuvatavNr id="f825801d-8951-452a-bc0d-d793cfa99dc1"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="b835f1ac-80ab-44b8-a59b-22b25aae0e5f">
+    <tavatekst id="8252fa7c-3e4d-4f11-9f49-9711ffd2071e">tähtajalise elamisloa kehtivuse lõpptähtajani, kui hooldaja või hooldatav omab tähtajalist elamisluba;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para13lg4p3">
+   <alampunktNr id="197a8a2c-3b6b-431b-98b8-d1e7223d94f2">3</alampunktNr>
+   <kuvatavNr id="1d1da6ad-421f-4785-9108-ab53c21dfe40"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="bf2d728e-743b-471a-9907-8011879bc908">
+    <tavatekst id="b66c0854-7191-419c-92a1-c56a3205d224">hooldusvajaduse ja sotsiaalteenuste kordushindamise läbiviimise tähtajani.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para13lg5">
+   <loigeNr id="1c02ac17-b131-4faf-b051-34e7b6900242">5</loigeNr>
+   <kuvatavNr id="e595192b-42d2-4826-a7ed-792749856190"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="4b3d8910-a9c7-460b-b673-373c6f07a664">
+    <tavatekst id="36e1fc84-c0b4-4869-9a61-a9ef47082f8c">Keskmise puudega või puuduva puudeastmega hooldust vajava täisealise hooldamise eest hooldajatoetust ei maksta.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para14">
+   <paragrahvNr id="9d71265b-cbfd-4745-a720-57a8836ad528">14</paragrahvNr>
+   <kuvatavNr id="1368718d-3edd-4b71-9743-2432f7702ad1"><![CDATA[§ 14. ]]></kuvatavNr>
+   <paragrahvPealkiri id="b73cfd31-a570-4a20-b9d7-500a4074e6c6">Täisealisele isikule hoolduse seadmise ja hooldaja määramise lõpetamine</paragrahvPealkiri>
+  <loige id="para14lg1">
+   <loigeNr id="dd1284a8-1e5d-4224-94a2-64e327644c30">1</loigeNr>
+   <kuvatavNr id="c4e16654-5952-45f0-9783-8b8901d9a1ec"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="e3598b77-6431-4ef1-a306-36728a33b71b">
+    <tavatekst id="17fb2be7-62d6-449f-913a-a730b04add9b">Hoolduse seadmine ja/või hooldajaks määramine lõpetatakse hoolekandekomisjoni otsusega kui:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para14lg1p1">
+   <alampunktNr id="2699bdc3-29e0-49b0-862c-9c94be423e76">1</alampunktNr>
+   <kuvatavNr id="3ec347be-97fd-453b-ae56-f8d629a5b995"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="a353de0b-05c0-4c6b-be46-9dd3f096616a">
+    <tavatekst id="c7a32ca6-503c-4ae4-b5b3-f94f6fd8527c">on ära langenud hoolduse seadmise ja hooldaja määramise tinginud asjaolud;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para14lg1p2">
+   <alampunktNr id="92656167-56b3-48c0-b0c2-da87a4a5ccce">2</alampunktNr>
+   <kuvatavNr id="640268e0-7643-4c00-a146-309659ed5b7e"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="12e32d46-d545-4532-b418-b0af9faeb5c4">
+    <tavatekst id="83a05fdd-c1e0-4094-a04d-4c93b764dbaa">hooldatav soovib uue hooldaja määramist;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para14lg1p3">
+   <alampunktNr id="10039180-d584-49a2-9afb-fa53f51c3e14">3</alampunktNr>
+   <kuvatavNr id="909dc4c3-7e11-468e-8b61-7856b976b3ce"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="de0b7204-2973-4cd2-aff7-989c8ef6dd41">
+    <tavatekst id="02fdd498-ef38-4580-9239-d2e5653f4266">hooldatav on paigutatud ööpäevaringset hooldusteenust pakkuvasse hoolekandeasutusse;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para14lg1p4">
+   <alampunktNr id="90f0e7e3-ec3c-42ea-a9f9-62592ded323e">4</alampunktNr>
+   <kuvatavNr id="10b9ef30-d021-4ffb-9b46-2dcba0e15b1f"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="f624625c-f26b-44ee-9543-cceb2961b25a">
+    <tavatekst id="c56eaa19-d275-40ce-a331-6cd418e117af">hooldatav asub alaliselt elama teise omavalitsusüksuse territooriumile;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para14lg1p5">
+   <alampunktNr id="9c53890e-cf9a-4117-b0bb-053d03c463cb">5</alampunktNr>
+   <kuvatavNr id="40a76b4a-fe73-4f0a-96b0-addf32f28194"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="cbf3dfbe-9c11-4b43-b9e1-025f3f3e2b28">
+    <tavatekst id="6b060087-ab47-487d-83f2-ec2ded338a68">isiku hooldusvajadus tagatakse muul viisil;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para14lg1p6">
+   <alampunktNr id="778a40d2-2a60-4668-b383-6467a6c767dc">6</alampunktNr>
+   <kuvatavNr id="f1b5df76-9014-46c2-8b38-77abab9ca1c3"><![CDATA[6) ]]></kuvatavNr>
+   <sisuTekst id="2a192c66-7705-4c24-89ea-88af938a5185">
+    <tavatekst id="36491fe4-8750-40d0-b526-1f2286551d0b">hooldaja ei täida või ei saa täita hooldaja kohustusi;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para14lg1p7">
+   <alampunktNr id="43450ff1-a166-4f52-a544-0095233574e9">7</alampunktNr>
+   <kuvatavNr id="eab0d3d6-29a0-4099-b68c-920607ec89d4"><![CDATA[7) ]]></kuvatavNr>
+   <sisuTekst id="bce139d4-7475-425b-89a7-526766697a27">
+    <tavatekst id="49c06657-31c0-4279-9fe2-e08aa64e1845">muul põhjusel, kui hooldatav või hooldaja ei vasta enam käesolevas korras sätestatud tingimustele.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para14lg2">
+   <loigeNr id="9e89598c-e87a-4a24-b4f8-2ec7a0ed6482">2</loigeNr>
+   <kuvatavNr id="13fe0899-3069-4949-888b-7ab564ade836"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="bee418dc-930c-43ef-9dc0-8dc4645f28a0">
+    <tavatekst id="32af0655-c399-4910-9344-498061fe6fd0">Käesoleva paragrahvi punktis 1 nimetatud asjaoludest mitteteatamisel on hoolekandekomisjonil õigus hoolduse seadmine ja/või hooldaja määramine omal algatusel lõpetada.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para14lg3">
+   <loigeNr id="a09a431f-3cd2-4e1f-ade4-e21bafb856b2">3</loigeNr>
+   <kuvatavNr id="edae9b2e-9ae6-41d8-a1f2-5156ddf8ca45"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="56a4af05-37b6-4527-8232-7d9fa648c8de">
+    <tavatekst id="2f639af6-1d9f-4dab-9e5d-904496bab626">Hoolduse seadmine ja/või hooldaja määramine lõppeb alates hooldusvajaduse möödumisest või hooldusvajaduse äralangemisest.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para15">
+   <paragrahvNr id="dad4623e-9b07-4539-adef-d009b431ef11">15</paragrahvNr>
+   <kuvatavNr id="549e004f-5c93-40d0-b50b-e20402e28671"><![CDATA[§ 15. ]]></kuvatavNr>
+   <paragrahvPealkiri id="0e954eba-f68d-4a99-b63d-4924e5b1baaa">Täisealise isiku hooldajale toetuse määramise tähtaja lühendamine ja pikendamine</paragrahvPealkiri>
+  <loige id="para15lg1">
+   <loigeNr id="f98e685b-5b0c-43dc-ad4b-c138ea157fb4">1</loigeNr>
+   <kuvatavNr id="162478df-0418-4d53-aeb1-554e05628523"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="12a4189d-de94-456a-ad4b-82e873f34252">
+    <tavatekst id="e9248376-2490-4c67-a673-81b7ba5126c1">Täisealise isiku hooldamise eest makstava hooldajatoetuse tähtaega pikendatakse:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para15lg1p1">
+   <alampunktNr id="aab11d40-335b-4696-ab67-7b86fcd77102">1</alampunktNr>
+   <kuvatavNr id="b5e751fd-59a1-405c-a86b-2c426d184602"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="ce07fdb7-ba5a-4c52-b316-6702e535af05">
+    <tavatekst id="733f9d6f-1d8e-4c36-9596-92e2e39b321b">puude raskusastme pikendamise kuupäevast, kui taotleja on esitanud vastavasisulise taotluse hiljemalt 30 päeva jooksul uue puude määramise otsuse tegemisest;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para15lg1p2">
+   <alampunktNr id="c321dacd-6207-43f5-9ac7-4b2eec96888c">2</alampunktNr>
+   <kuvatavNr id="177fd1a6-552d-4f02-9619-a0d25c3cfb9b"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="053faf9f-dd3f-44e8-b8aa-ff913a546f27">
+    <tavatekst id="930d9406-d6ed-44d2-8042-4b24b0ef4c1a">elamisloa pikendamise kuupäevast, kui taotleja on esitanud vastavasisulise taotluse hiljemalt 30 päeva jooksul elamisloa pikendamisest alates;</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para15lg2">
+   <loigeNr id="07e83e69-b6ad-4d01-86b5-a292a1a8771e">2</loigeNr>
+   <kuvatavNr id="ae471997-010f-4aad-b66f-ff41810bb08f"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="439956dc-35f0-4344-81f2-2a6f78aba3e8">
+    <tavatekst id="10ab2f8c-3724-40f4-a113-5b331e5fe48c">Hooldajatoetuse maksmine peatatakse:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para15lg2p1">
+   <alampunktNr id="2c3acb5a-a4d9-4493-9b1c-569dca5c5cf2">1</alampunktNr>
+   <kuvatavNr id="c3472885-ebbb-407d-a6ac-d6b195a66e34"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="2dc3667c-da6c-4322-a73b-2e6d2477fe18">
+    <tavatekst id="8da784f5-4b18-4f3f-a78a-9bebd7c3d1e7">kui hooldatav viibib järjest üle ühe kuu haiglaravil või õendusteenusel;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para15lg2p2">
+   <alampunktNr id="cef534ed-9b12-488e-8a91-34d00a0dfc35">2</alampunktNr>
+   <kuvatavNr id="303c12f6-3edf-4779-a644-2fac07495ee4"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="163ed98b-c445-4614-aee6-ae6777b8b86d">
+    <tavatekst id="a1da67d6-0e0d-49ae-9b7e-d7e82d8bf949">hooldaja viibimise ajal haiglas, vanglas või arestimajas, mil ta ei saa hooldusvajadust tagada.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv></jagu></peatykk><peatykk id="667965e1-1427-481a-905f-b7501dd902bb">
+   <peatykkNr id="19c6f8aa-6daa-471e-97ae-488d2441ed2f">3</peatykkNr>
+   <kuvatavNr id="b8d5ea24-4884-4cdd-9994-19a50e598f7e"><![CDATA[3. peatükk]]></kuvatavNr>
+   <peatykkPealkiri id="be431b73-13c4-49a4-a480-813bcbc86898">Hooldajatoetuse suurus</peatykkPealkiri>
+  <paragrahv id="para16">
+   <paragrahvNr id="fb93c8fe-8e21-4d38-bbcf-95acfd1e2eb7">16</paragrahvNr>
+   <kuvatavNr id="ed761e49-01ce-47cc-9540-465630f51d54"><![CDATA[§ 16. ]]></kuvatavNr>
+   <paragrahvPealkiri id="a4698cd4-e877-4dce-8f09-168b00b1e2a0">Hooldajatoetuse maksmine ja suurus</paragrahvPealkiri>
+  <loige id="para16lg1">
+   <loigeNr id="a2bce737-da46-4b31-969d-4e12ccda8a84">1</loigeNr>
+   <kuvatavNr id="61e4f36b-6cbd-41ab-9451-4729a80c4253"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="d4b08899-6589-4ffc-b913-f4a34ffdd0a4">
+    <tavatekst id="5085dfb3-3c69-4b3a-ac5c-87ef05f0a90f">Hooldajatoetus on hooldajale makstav igakuine sotsiaaltoetus.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para16lg2">
+   <loigeNr id="3d1e67b7-fe24-49ef-b930-7bfc0132ed24">2</loigeNr>
+   <kuvatavNr id="793832ea-7a1d-4b7a-8c1c-af2390786df9"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="0b416a8c-6462-4ec5-be5e-66a7dcd0e25d">
+    <tavatekst id="6a61d9e5-1dd5-44fa-946e-4bab68d6975a">Hooldajatoetuse suuruse puudega lastele ja täisealistele kehtestab vallavalitsus.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para16lg3">
+   <loigeNr id="29e1995f-155f-4f87-b1ba-8c7af1ba4f51">3</loigeNr>
+   <kuvatavNr id="c6e3ce0d-4c82-4be0-9326-543f68393887"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="ae070577-1a80-450a-8595-9516b8593982">
+    <tavatekst id="247f22ee-5580-404f-81ba-cbd2bcb5478e">Kui isik on määratud mitme isiku hooldajaks, on tal õigus saada hooldajatoetust iga hooldatava hooldamise eest.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para16lg4">
+   <loigeNr id="4d11a3eb-1989-469d-9191-c21aa933695e">4</loigeNr>
+   <kuvatavNr id="8d40fd49-6979-4dc4-b65b-29fa3d6ed0aa"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="0d24c1e1-1c6d-4bdf-a619-8650007bbf81">
+    <tavatekst id="f931a778-a54f-4882-bb60-5ee439aade6e">Hooldajatoetust makstakse alates otsuse vastuvõtmisele järgnevast kalendrikuust jooksva kuu eest hiljemalt 20. kuupäevaks hooldaja või tema poolt määratud isiku pangakontole või sularahas.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para16lg5">
+   <loigeNr id="b7e6e419-eae6-44d6-8d80-f654fcc47574">5</loigeNr>
+   <kuvatavNr id="83a93695-c385-4039-b9d9-b090dd821bf1"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="bdb55fed-9824-465b-a3fe-0a8f1ee38eab">
+    <tavatekst id="6abeda65-bb28-4622-a106-8fd8f5eb49bf">Hooldajaks määratud isiku eest tasub sotsiaalmaksu vallavalitsus juhul kui isikul ei ole võimalust taotleda sotsiaalkindlustust muudel alustel.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></peatykk><peatykk id="87c0b9c8-22a7-47fa-a19b-acef23ef5d05">
+   <peatykkNr id="4bb5d80d-3b1c-4636-8e7a-7c10b3668d6d">4</peatykkNr>
+   <kuvatavNr id="247db5bf-3fe6-4044-bb6f-ef1c834bdd38"><![CDATA[4. peatükk]]></kuvatavNr>
+   <peatykkPealkiri id="41452508-a58c-45f7-af6d-07d96916795c">Rakendussätted</peatykkPealkiri>
+  <paragrahv id="para17">
+   <paragrahvNr id="3abd8642-f9ec-41f2-ad31-859a8d779d8f">17</paragrahvNr>
+   <kuvatavNr id="fc427972-aa57-489b-9d33-680d9b3f96ac"><![CDATA[§ 17. ]]></kuvatavNr>
+   <paragrahvPealkiri id="0439b79c-649d-4be3-9c52-52d05c8b124b">Määruse kehtetuks tunnistamine</paragrahvPealkiri>
+  <loige id="para17lg1">
+   <loigeNr id="06aef9d3-1cc9-46f6-a17e-9cfb50231be6"/>
+   <kuvatavNr id="ada5072f-4391-468c-a7fc-1ddece6ab15b"/>
+   <sisuTekst id="7c49f0b9-70dd-4ad0-805f-e97fca5c0303">
+    <tavatekst id="6fbff66f-ccd3-4ea2-ba7e-e32496262388">Tori Vallavolikogu 25.01.2018 määrus nr 5 „Hooldaja määramise ja hooldajatoetuse maksmise kord“ tunnistatakse kehtetuks.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para18">
+   <paragrahvNr id="9aa3cc9e-9823-4ce6-aca8-778abcdc25e0">18</paragrahvNr>
+   <kuvatavNr id="011f0175-84ab-421c-bc59-a8a983851f33"><![CDATA[§ 18. ]]></kuvatavNr>
+   <paragrahvPealkiri id="6b2a43ac-46c8-4d5c-85a4-367adaeb61d9">Määruse jõustumine</paragrahvPealkiri>
+  <loige id="para18lg1">
+   <loigeNr id="dd5910da-323a-49a5-9272-ffa0b7059a90"/>
+   <kuvatavNr id="8027c427-76de-4eac-9ff1-a82468bee75d"/>
+   <sisuTekst id="f109fefb-50cb-4023-83f7-3d7ba42772ab">
+    <tavatekst id="bf64d6c8-1168-4508-9572-b74a36ed9f84">Määrus jõustub 1. juunil 2022.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></peatykk></sisu>
+<allkiri id="1ab53386-dd1a-4e9a-b5fb-9454bb5f6edc"><allkiriKoht id="02307e77-d2cf-4562-a8e1-26fdf1db52d8"/><allkirjastaja id="e65151c4-d1ed-4536-b8f9-1c8531661de6"><ametinimetus id="4d7221a9-06d3-4d34-a190-97cadaefb678">volikogu esimees</ametinimetus><eesnimi id="133372e1-8bbe-47fa-8c41-f3bd01b95f3b">Jana</eesnimi><perekonnanimi id="a1589ba3-a076-4124-9bf4-3279a3fb82fb">Malõh</perekonnanimi></allkirjastaja></allkiri></oigusakt>

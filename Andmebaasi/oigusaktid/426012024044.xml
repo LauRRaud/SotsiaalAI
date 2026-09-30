@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="e708f27b-f60b-431f-9475-df3e984dca79" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Paide Linnavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2018-02-15</aktikuupaev>
+  <avaldamismarge>
+	<RTosa>RT IV</RTosa>
+	<avaldamineKuupaev>2018-02-23</avaldamineKuupaev>
+	
+	
+	<RTartikkel>23</RTartikkel>
+	<aktViide>423022018023</aktViide>
+  </avaldamismarge>
+  <joustumine>2018-02-26</joustumine>
+  <aktiNr>8</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2024-01-26</avaldamineKuupaev><RTaasta>2024</RTaasta><RTartikkel>44</RTartikkel><aktViide>426012024044</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2024-02-01</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2024-01-25</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>426012024044</globaalID>
+ <metaandmedVersioon>10</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2024-01-25</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ <terviktekstiGrupiID>1042103</terviktekstiGrupiID>
+ <eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2018-02-20</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Ulvi Vürmer</metaandmedVersioonPohjustaja></versiooniMuutus><versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>6</metaandmedVersioon><metaandmedVersioonKuupaev>2024-01-25</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="ac2d6bf6-1aa9-43c2-b2ca-75d1bb5ba649">
+  <nimi id="287a81b4-f562-45b1-9827-1eb70a81790d">
+   <pealkiri id="653119ce-5d03-4ed9-9971-9ad4810d3144">Lastega peredele sotsiaalhoolekandelise abi andmise kord</pealkiri>
+  </nimi>
+ </aktinimi>
+ <muutmismarge id="8a5d38b5-803b-4275-bd3c-739a83e68400"><aktikuupaev id="b814daf8-53ff-4e39-95b5-83e742351ae6">2024-01-18</aktikuupaev><avaldamismarge id="ee6f0c8a-f610-4bde-9c55-e3079f39595a"><RTosa id="093801de-16ca-4115-b837-f44816a96fdd">RT IV</RTosa><avaldamineKuupaev id="44906cbe-b41d-4036-a18b-63fc08ec82c2">2024-01-26</avaldamineKuupaev><RTartikkel id="570c93a9-51c6-4c6f-869f-9f6137a3ec69">22</RTartikkel><aktViide id="34e3502c-9682-49a8-b4a1-0647dc0abe13">426012024022</aktViide></avaldamismarge><joustumine id="8cd6c674-a734-4514-a362-9dd3d421c1b8">2024-02-01</joustumine></muutmismarge><sisu id="aeb0b6d4-19f8-49d6-9518-5d80c471e7b8"><preambul id="c08c910c-9976-4946-a7dd-63c5988e6b9d">
+   <tavatekst id="5447014d-8f4b-497d-9337-e08ecacfe1cf">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5, sotsiaalhoolekande seaduse § 14 lõike 2, lastekaitseseaduse § 17 lõike 2 alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="7d7d2574-6acc-4f36-894c-01d771698a53">1</paragrahvNr>
+   <kuvatavNr id="b18695c2-65e9-4948-bbab-4b80f9be3edd"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="fc23bf38-9707-4871-b820-0ef25c3eab78">Reguleerimisala</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="b666cb90-d5b3-4f64-8bc6-2013065e9238">1</loigeNr>
+   <kuvatavNr id="ebd4e73b-6806-4d4e-9eb9-07a287d50460"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="6b7144e4-1f8d-4a3e-b8f5-b3d1d2691b9b">
+    <tavatekst id="438172a8-388d-4c63-b752-e32368512e40">Käesolev määrus reguleerib Paide linna eelarvest ja sotsiaalhoolekande seaduse § 156 lõigete 31-33 alusel antavate riigi eelarveliste vahendite kasutamist lastega peredele ja last kasvatavale isikule sotsiaalhoolekandelise abi andmiseks.</tavatekst>
+   </sisuTekst>
+  <muutmismarge id="3133d434-9934-4026-9be3-53dafcc4ac5d"><avaldamismarge id="e45ac6ff-b8fb-4605-918b-d7855c7f5aef"><RTosa id="183de121-79d4-4501-b9d6-e0ff540e4d5d">RT IV</RTosa><avaldamineKuupaev id="e5f7148b-0a43-4d22-aff5-0b98c2cf20d7">2024-01-26</avaldamineKuupaev><RTartikkel id="c7ba2a7c-85d0-47fd-a5d3-bfe58d9539cc">22</RTartikkel><aktViide id="39e20953-58c9-4ad7-bcb9-fcee424a9107">426012024022</aktViide></avaldamismarge><joustumine id="7089d694-97c5-4ae0-887d-cf2e87a460a2">2024-02-01</joustumine></muutmismarge></loige><loige id="para1lg2">
+   <loigeNr id="4f6d55c5-fe5b-416c-bd4d-16532e40f266">2</loigeNr>
+   <kuvatavNr id="fc9d4567-f22b-4150-9e43-ee514cb35bbe"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="fda425fb-98a5-41bf-a14c-4b6a93f0333b">
+    <tavatekst id="6f393c03-71dd-46e7-a898-09a8e9660c5c">Määruse alusel korraldatakse sotsiaalhoolekandelise abi andmist lastega peredele või last kasvatavale isikule juhul, kui lapse elukoha aadress on Eesti rahvastikuregistri andmetel Paide linnas.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="fb6094db-f60b-4ac0-abd4-77e4f9266eff">2</paragrahvNr>
+   <kuvatavNr id="ae495d63-5e9d-4655-a1d2-805a9bb73f03"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="5790646f-d9f9-4dec-8e76-4e17217131db">Sotsiaalhoolekandelise abi andmise eesmärk ja sisu</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="16d72f8a-778f-4f81-81be-e6f36091f9f5">1</loigeNr>
+   <kuvatavNr id="989f6c6f-fcf5-4017-9d4b-d1ca206a5171"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="d59c4e66-2248-44c0-84ac-e2c40e269f65">
+    <tavatekst id="125d278f-ec54-4661-be89-b80f00ac5e89">Sotsiaalhoolekandelise abi andmise eesmärgiks on lastega perede ja last kasvatava isiku toimetuleku ja laste heaolu tagamine, mis seisneb toetavate sotsiaalteenuste- ja toetuste osutamises, korraldamises ja arendamises.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg2">
+   <loigeNr id="b8608b04-4bed-415d-b770-4cf7edfe8add">2</loigeNr>
+   <kuvatavNr id="57a79872-a911-4413-aa9b-90a07b49fe42"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="eda775c3-4609-4036-9817-1f159a9cab88">
+    <tavatekst id="d135ebd5-c779-4a8e-b679-5e5d5ec6580e">Toetavad sotsiaalteenused- ja toetused (edaspidi <i>sotsiaalabi</i>) on:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para2lg2p1">
+   <alampunktNr id="b14cb9ff-5bfc-46a2-8436-3c1b0aa50d9d">1</alampunktNr>
+   <kuvatavNr id="06e2dc7e-89ca-49d1-8eff-3a6ede9a2204"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="9997f02b-e3ce-4566-b09a-224b8218bc8e">
+    <tavatekst id="5e69702a-24f8-4f7a-81cb-b958cd0ffd3d">psühholoogiteenus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg2p2">
+   <alampunktNr id="59cae1e4-935b-4fa7-8591-1f1b39985444">2</alampunktNr>
+   <kuvatavNr id="faca15fe-135e-4700-b037-93299ea386f2"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="09c779bd-299e-4a59-aa36-66bafe3d6aa0">
+    <tavatekst id="859f81e3-e844-44df-8531-79327885d957">pereteraapia teenus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg2p3">
+   <alampunktNr id="632509d4-63f1-420e-a850-d9396c3db6b2">3</alampunktNr>
+   <kuvatavNr id="fac62742-35cd-4952-a043-43f6d64c84be"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="83889b76-2126-49b5-920d-aaacf935010d">
+    <tavatekst id="55c10ae9-efb4-4592-98f8-0d7a60d14b83">perenõustamisteenus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg2p4">
+   <alampunktNr id="65384830-3724-4254-8544-d431f8e154c4">4</alampunktNr>
+   <kuvatavNr id="5a764451-4f7e-45d7-941e-fa7016328c2a"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="49d98349-b3b0-4a65-a7e6-90bc96e0c724">
+    <tavatekst id="2a45f063-a6da-42a7-82a3-caf6e373bf82">perelepitusteenus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg2p5">
+   <alampunktNr id="7d2611f4-3b6a-4619-81bd-b44bc762f3a1">5</alampunktNr>
+   <kuvatavNr id="29e00346-d9d9-4bcb-9a92-8768783277e6"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="6d619940-c369-42f0-b7be-0f79dac13724">
+    <tavatekst id="0a514fa2-157a-4fe1-9c3a-be11faaef36a">teraapiateenus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg2p5b1">
+   <alampunktNr id="2fede8e2-f27f-4464-8d17-44dd6866fba1" ylaIndeks="1">5</alampunktNr>
+   <kuvatavNr id="0fbcbfb1-1756-4e00-b690-6ac730a56bc8"><![CDATA[5<sup>1</sup>) ]]></kuvatavNr>
+   <sisuTekst id="9f074a7e-4ce8-4eeb-b8eb-e7b2d967e3ba">
+    <tavatekst id="cadce374-96ce-45fb-9fe8-2e2d8e6f6a2b">transporditeenuse kasutamisel, sh isiklikus kasutuses oleva sõidukiga transporditeenust osutades, hüvitatakse kulud arvestusega 0,13 eurot läbitud kilomeetri kohta kuludokumentide alusel;</tavatekst>
+   </sisuTekst>
+  <muutmismarge id="bfcf5825-c5ca-4930-b9a6-db742d5bc12b"><avaldamismarge id="11a146bd-7f19-452e-a7f4-9cfb38af8c6d"><RTosa id="fdaae433-6007-47ef-88cc-19847d7f4e61">RT IV</RTosa><avaldamineKuupaev id="fea36560-9598-4cb3-b5c5-4a6b1723f513">2024-01-26</avaldamineKuupaev><RTartikkel id="080c75d1-db09-4287-b13e-74056d678f7c">22</RTartikkel><aktViide id="3d1e8123-350d-45c4-92a8-19fcfdf1a1a7">426012024022</aktViide></avaldamismarge><joustumine id="c5c73195-7fdf-41bd-9f06-411b4ee23877">2024-02-01</joustumine></muutmismarge></alampunkt><alampunkt id="para2lg2p6">
+   <alampunktNr id="4527ab28-53d1-4ff4-b2e1-618814252d59">6</alampunktNr>
+   <kuvatavNr id="43a426c5-68d0-4ac3-ba05-4027a834fecf"><![CDATA[6) ]]></kuvatavNr>
+   <sisuTekst id="33f249a1-0faf-46c2-8dbd-80842ce2368f">
+    <tavatekst id="fb29033d-040f-4fa5-90d3-8f89c57646ef">vanemlusprogrammis osalemine;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg2p7">
+   <alampunktNr id="580c6d38-70ec-476d-982b-517557e8739e">7</alampunktNr>
+   <kuvatavNr id="56c0e98e-544e-4da7-9091-a7e15d6b01b6"><![CDATA[7) ]]></kuvatavNr>
+   <sisuTekst id="b5e984b8-cffa-4a88-ad82-091f4b440fd7">
+    <tavatekst id="f653ece6-c94b-4c4f-b08c-968bd8acea68">ennetustegevuste läbiviimine (infopäevade, koolituste läbiviimiseks koolides, lasteaedades ning teistes riigi ja kohaliku omavalitsuse üksuste ametiasutustes);</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg2p8">
+   <alampunktNr id="7b03e72a-f8ab-4a30-9f2b-e101a37b02b7">8</alampunktNr>
+   <kuvatavNr id="9527554f-9848-4afc-95b7-476aa1593d75"><![CDATA[8) ]]></kuvatavNr>
+   <sisuTekst id="d376dba9-47d0-4443-970f-2966779a3f8c">
+    <tavatekst id="549b42d4-9387-41b3-bbdf-efb9f09c411b">muud sotsiaalteenused- ja toetused, mis soodustavad lapse heaolu, lastega perede või last kasvatava isiku toimetulekut.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="aa949766-9362-4e88-875b-005d02f300b6">3</paragrahvNr>
+   <kuvatavNr id="91890a3d-48ca-407d-adef-5d67a255d86c"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="1831e4e8-ddc3-4258-8e1f-be90cbb13c42">Sotsiaalabi taotlemine, määramine ja otsustamine</paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="a096a501-afb4-4a58-952c-491cec613b90">1</loigeNr>
+   <kuvatavNr id="d4888f56-9299-4cca-ab74-570a1fce061e"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="0cab1cb0-7425-467a-bb2e-973b4228dc3a">
+    <tavatekst id="8a22559d-b7c2-4e58-9ed5-1eef9812206e">Sotsiaalabi saamiseks esitab lapse seaduslik esindaja või last kasvatav isik Paide Linnavalitsusele (edaspidi <i>ametiasutusele</i>) taotluse, milles märgitakse:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para3lg1p1">
+   <alampunktNr id="94f09992-69d5-4852-a1ff-dda157cc1a9f">1</alampunktNr>
+   <kuvatavNr id="754a897b-ad28-4ce0-a6f1-b6a5fbe3cd11"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="e343b9fd-0d43-4d5a-ad38-30c348dff98b">
+    <tavatekst id="90e0a0f5-d225-4339-a6a1-4ba0748ef27e">sotsiaalabi taotleja ees- ja perekonnanimi, isikukood, aadress, telefoni number;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg1p2">
+   <alampunktNr id="87299e47-8d8a-45bf-bb8f-b627b73e8551">2</alampunktNr>
+   <kuvatavNr id="a555bd75-b965-4e8d-a701-92d509e6f0c6"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="c3f253d8-32c6-49bc-bfaa-7da195e9ff3b">
+    <tavatekst id="83c1df76-ec36-4d79-a1ef-21eb1881332c">andmed igakuise sissetuleku (sh sotsiaalhoolekandelise rahalise hüvitise) kohta;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg1p3">
+   <alampunktNr id="e6e74caf-6e10-4709-aa27-9e3161325d16">3</alampunktNr>
+   <kuvatavNr id="b9961c6c-4147-439d-aa94-eddd60175e25"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="e8a78ce4-29d6-432a-98f7-ad826d54d9cd">
+    <tavatekst id="7fc89ae7-f0c8-41b1-a16c-6cd85d069447">sotsiaalabi taotlemise põhjus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg1p4">
+   <alampunktNr id="18a5b6f7-553f-4f82-a26a-e7c9a6bdbccb">4</alampunktNr>
+   <kuvatavNr id="236015d8-fbfd-4eb4-99a4-b0923ffecc3c"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="971bcf65-5e95-4e18-87bc-471b4ff57fc6">
+    <tavatekst id="258483ee-2bfa-4360-96f1-370de57586e5">taotletava sotsiaalabi maksumus; </tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg1p5">
+   <alampunktNr id="cc3ccb52-cfda-4b53-8f9e-5497d2aa0b9b">5</alampunktNr>
+   <kuvatavNr id="f68ff167-fd4d-482d-8406-f22410373c1b"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="eb0a5c46-8cb8-45f8-a7c0-1b668d8a2746">
+    <tavatekst id="e2c19861-7ba0-45ba-aec1-06320a521f97">vajadusel lisatakse taotlusele kuludokument, mis ei tohi olla vanem kui kolm kuud.</tavatekst>
+   </sisuTekst>
+  <muutmismarge id="f044c5a5-a109-410d-adba-2aae51a40edc"><avaldamismarge id="19e4d830-868e-4228-b6d7-107a3200747f"><RTosa id="1212cff4-6d93-4864-88ee-4582f8056bff">RT IV</RTosa><avaldamineKuupaev id="f37e69d2-0405-4023-bb6e-df3a7b108452">2024-01-26</avaldamineKuupaev><RTartikkel id="6e980748-427a-497c-b3e5-dcfb96008c13">22</RTartikkel><aktViide id="57866c33-57b5-48b5-b363-8ba620d8fbbd">426012024022</aktViide></avaldamismarge><joustumine id="cef82bd1-687f-4f21-9f53-e4c140a0218a">2024-02-01</joustumine></muutmismarge></alampunkt></loige><loige id="para3lg2">
+   <loigeNr id="b67e1c79-deeb-4235-9692-8207ce4f7f5e">2</loigeNr>
+   <kuvatavNr id="bce4353e-b4a2-415f-bf62-df55fa64361b"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="02599fc0-2478-46c7-80f7-60eff6ed39a5">
+    <tavatekst id="73956bde-7592-4077-ab67-2675b916da8c">Lastekaitsetöötaja selgitab välja lapse huvid, hindab lapse abivajadust ning pakub lapse abistamiseks meetmeid arvestades konkreetse lapse, tema pere või last kasvatava isiku vajadusi ning korraldab teenusele suunamise. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg3">
+   <loigeNr id="d07fb732-c7b8-4aa9-b2f2-74e89f718b14">3</loigeNr>
+   <kuvatavNr id="8de28330-5a27-4871-b35a-1087fb92c62e"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="710bb6da-a311-4967-93eb-303cae97de34">
+    <tavatekst id="949f56e9-23cd-4142-a817-d536d730985e">Sotsiaalabi saamiseks esitatud dokumendid vaatab läbi lastekaitsetöötaja, kes määrab vajadusel taotlejale tähtaja puuduste kõrvaldamiseks.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg4">
+   <loigeNr id="ba43abff-8259-4560-96f7-5953e94b9957">4</loigeNr>
+   <kuvatavNr id="900b25a5-e6ed-4d81-b13a-4aa56658b769"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="98bcede9-1355-4871-9c77-2f911d2c6a4e">
+    <tavatekst id="0ef30aa4-301e-4722-b6f3-46a7b1a4fdff">Sotsiaalabi määramise või määramata jätmise ning teenuse mahu otsustab sotsiaalosakonna juhataja lastekaitsetöötaja ettepanekul kümne tööpäeva jooksul arvates nõuetekohase taotluse esitamisest.</tavatekst>
+   </sisuTekst>
+  <muutmismarge id="6ace5c7f-be21-4dee-adb4-59c69a4793c6"><avaldamismarge id="1d9fa303-660e-42fe-9b48-479fa9dadaf4"><RTosa id="f5dd4eb2-f942-4dd9-8276-66eb78871b51">RT IV</RTosa><avaldamineKuupaev id="3046723e-f762-490e-8ec4-caaa1bb97a5c">2024-01-26</avaldamineKuupaev><RTartikkel id="4a01fe4f-7456-4dc1-adf5-a0bf32a53d66">22</RTartikkel><aktViide id="9b188c9f-ef06-47fe-8ee4-68332ff81baf">426012024022</aktViide></avaldamismarge><joustumine id="344289df-408f-4acf-a5f0-1795c514a3fe">2024-02-01</joustumine></muutmismarge></loige><loige id="para3lg5">
+   <loigeNr id="e12c1986-7d1f-421e-8be6-1e517c41f490">5</loigeNr>
+   <kuvatavNr id="a2ece7f7-36fa-4cbf-97e5-05b34d8069c0"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="7aa624cd-405a-4d7a-8a88-2a9c0bb90b9c">
+    <tavatekst id="1ed95585-6c94-4335-a071-fe6aaa4c4e1c">Sotsiaalabi ei määrata järgmistel juhtudel: </tavatekst>
+   </sisuTekst>
+  <alampunkt id="para3lg5p1">
+   <alampunktNr id="f4649704-1234-4be3-a49b-861c08835f6d">1</alampunktNr>
+   <kuvatavNr id="16c1ab36-2112-4632-90e3-03399b349ec7"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="6c9f7dfa-8cda-49b1-81ad-4bd3f631fb9e">
+    <tavatekst id="a90be57f-a269-4390-b5fa-3f93fff116f3">tegemist ei ole abivajava lapsega vastavalt lastekaitseseaduse § 26 sätestatule;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg5p2">
+   <alampunktNr id="7159f663-3b82-4be4-8555-f598b530270e">2</alampunktNr>
+   <kuvatavNr id="c1f43f7e-69a2-435e-b227-b82844237d43"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="c904617f-76b1-4d4e-8719-8e01d0bbfe47">
+    <tavatekst id="d0b4b51e-c9b2-433f-a5a6-440fdca8276e">sotsiaalabi vajadust on võimalik või otstarbekas katta teiste teenuste või muu abiga.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para4">
+   <paragrahvNr id="ba43acfe-8972-4dbe-9527-ec764eee0a64">4</paragrahvNr>
+   <kuvatavNr id="04d53857-b1b9-4485-b137-beb8b2621ac3"><![CDATA[§ 4. ]]></kuvatavNr>
+   <paragrahvPealkiri id="f2f0cca3-c26f-4237-9864-1914932a4d7e">Sotsiaalabi tasu ja tasumine</paragrahvPealkiri>
+  <loige id="para4lg1">
+   <loigeNr id="8a55fcd2-3e4f-4f87-82cb-5651bd263a3b">1</loigeNr>
+   <kuvatavNr id="a58d1a76-8bb1-4ec3-9c5c-523898a94686"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="16319cd5-552a-4155-805d-5937750b27ef">
+    <tavatekst id="505ac44c-1766-4259-89c5-376e0dca6328">Sotsiaalabi võib taotlejale olla tasuta või osaliselt tasuline. Isiku poolt makstava tasu suurus oleneb sotsiaalabi mahust, maksumusest ning sotsiaalabi saava isiku majanduslikust olukorrast ning see otsustatakse juhtumipõhiselt.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg2">
+   <loigeNr id="aa03bb08-561d-43c0-9629-128b5e2a5ee0">2</loigeNr>
+   <kuvatavNr id="8dbba949-1408-482b-8f0e-a0444becb76a"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="ab836fd1-3916-41d5-a085-cc23de7b54eb">
+    <tavatekst id="61f58682-db39-487f-8b38-443d8ea1944d">Sotsiaalabi osutajaga sõlmitakse leping või tasutakse teenuse eest sotsiaalabi osutajale arve alusel. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg3">
+   <loigeNr id="9f71b8f7-8ea5-42a1-9706-552bc0f085b3">3</loigeNr>
+   <kuvatavNr id="6485385b-9e05-43af-86d3-410fe11cac37"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="82b27e74-0941-4d11-856c-0e686de13982">
+    <tavatekst id="4e831fe5-164a-4eea-9800-b5fa6eed8e04">Sotsiaalabi võib maksta välja ka toetusena toetuse määramise otsuse tegemisest arvates kümne tööpäeva jooksul avalduses märgitud arvelduskontole.</tavatekst>
+   </sisuTekst>
+  <muutmismarge id="bb94657d-5318-4990-a339-c0aa10dff8ce"><avaldamismarge id="5bec732b-b8e3-4b89-bb99-df3f6a9a785c"><RTosa id="d13f99d7-e04f-48d8-8017-0ccebfd05b05">RT IV</RTosa><avaldamineKuupaev id="f2476661-51e8-49e9-81fd-654c7c0c10ca">2024-01-26</avaldamineKuupaev><RTartikkel id="d60c3d1f-c005-4707-9b1a-edc6f7cd876a">22</RTartikkel><aktViide id="3c5e1b8e-bfd5-4e60-9491-ee1204bbc969">426012024022</aktViide></avaldamismarge><joustumine id="03418cd6-8e64-428a-a409-f9452a552bde">2024-02-01</joustumine></muutmismarge></loige></paragrahv><paragrahv id="para5">
+   <paragrahvNr id="6bd395fb-79f0-4502-b55a-2d3b77244805">5</paragrahvNr>
+   <kuvatavNr id="1381142d-0ec8-4952-a317-ae5fb342c12d"><![CDATA[§ 5. ]]></kuvatavNr>
+   <paragrahvPealkiri id="7accafb0-be09-47f3-ac33-97b4b71df925">Määruse jõustumine</paragrahvPealkiri>
+  <loige id="para5lg1">
+   <loigeNr id="0a6646b6-3750-49a3-a5fc-80b830859395"/>
+   <kuvatavNr id="8cb9b82c-40ef-441a-abc9-bf8a4eb61462"/>
+   <sisuTekst id="927068ce-aade-48ea-ab70-49dea31e7aca">
+    <tavatekst id="50a4e110-9593-4c04-aa94-0089735471bd">Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+</oigusakt>

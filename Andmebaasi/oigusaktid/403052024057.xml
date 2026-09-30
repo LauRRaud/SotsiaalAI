@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="92bc1a97-211e-46b8-bee4-2a695b9801ed" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+ 
+ <valjaandja>Viljandi Linnavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2007-09-28</aktikuupaev>
+  <avaldamismarge>
+	<RTosa id="39e03ed1-810f-4191-a7d5-da746f08f96f">RT IV</RTosa>
+	<avaldamineKuupaev id="493cd15b-2558-4eee-8586-64f497045daa">2012-09-05</avaldamineKuupaev>
+	
+	
+	<RTartikkel id="b568167e-8fce-4735-8722-a37b4da621f4">20</RTartikkel>
+	<aktViide id="3cc93812-d634-4f45-b6ae-436bc093638f">405092012020</aktViide>
+  </avaldamismarge>
+  <joustumine>2007-10-01</joustumine>
+  <aktiNr>57</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2024-05-03</avaldamineKuupaev><RTaasta>2024</RTaasta><RTartikkel>57</RTartikkel><aktViide>403052024057</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2024-05-06</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2024-04-30</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>403052024057</globaalID>
+ <metaandmedVersioon>15</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2024-05-02</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ <terviktekstiGrupiID>1004352</terviktekstiGrupiID>
+ <eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2012-06-12</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Katrin Ülesoo</metaandmedVersioonPohjustaja>
+		</versiooniMuutus><versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>6</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2012-09-03+03:00</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Liis Laursoo</metaandmedVersioonPohjustaja>
+		</versiooniMuutus></metaandmed>
+	<aktinimi id="8787a47b-40f4-4f5b-aac9-d4e9e32a224e">
+		<nimi id="2e849f43-89f8-4eba-8dcd-4ec2c5ce9c40">
+			<pealkiri id="41902849-4aa7-4d19-b8f8-dbd9b4a37459">Lapsehoiuteenuse rahastamise kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="edc15a80-430c-4056-ab9b-8dd6651b2799">
+		<aktikuupaev id="67d50782-18e1-48ca-b78f-c5dd648597a1">2019-04-25</aktikuupaev>
+		<avaldamismarge id="1551f24c-fc92-43a9-893f-26b5dcbeeb3a">
+			<RTosa id="ecf79f14-d952-41ae-83a4-8c722a420bc3">RT IV</RTosa>
+			<avaldamineKuupaev id="9adb7d5c-d2de-4b8f-86bf-f7209f0ffaf5">2019-05-02</avaldamineKuupaev>
+			<RTartikkel id="29b9266e-28a0-4f78-a413-2a5308ef8355">2</RTartikkel>
+			<aktViide id="d32ce7b6-727c-409d-82e5-e6dd9e6e868e">402052019002</aktViide>
+		</avaldamismarge>
+		<joustumine id="8aaa36c4-4d37-4ef7-9fde-d4448ee8ead6">2019-05-05</joustumine>
+	</muutmismarge>
+	<muutmismarge id="c70496b2-6383-4e55-a54f-797de51e0acc"><aktikuupaev id="baf12349-a451-4eed-8d9d-8b5ad5a2a9c1">2024-04-25</aktikuupaev><avaldamismarge id="615bfb81-41f1-4dc5-9bba-82051f27fb63"><RTosa id="fc2e88e0-ee43-45e4-94a6-75de3cd23a41">RT IV</RTosa><avaldamineKuupaev id="e145b90f-f7c3-40a2-b88b-330230a8d0f3">2024-05-03</avaldamineKuupaev><RTartikkel id="9312d0d8-0659-4cd0-941b-66eda2d2b146">27</RTartikkel><aktViide id="462de2cb-12df-4726-b759-4172f211c477">403052024027</aktViide></avaldamismarge><joustumine id="6bbae730-b157-4845-922e-da5ee44f361d">2024-05-06</joustumine></muutmismarge><sisu id="2ae64d6a-ff73-4f6a-b740-4a43531088dc">
+		<preambul id="df54382e-4913-4877-aca8-1ae6a7f5be7f">
+			<tavatekst id="f60c5322-617e-4224-8dc2-4fc4faba3377">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5 ja sotsiaalhoolekandeseaduse § 14 lõike 2 alusel.</tavatekst>
+			<muutmismarge id="1ba1f923-40d9-4ed4-a1e2-30bb9d53eabd">
+				<avaldamismarge id="1745f928-3f7d-412d-8401-e6fad6c3c96b">
+					<RTosa id="6537092d-7428-4c60-839e-59d97c0ffa5c">RT IV</RTosa>
+					<avaldamineKuupaev id="a15e35df-3d94-4160-b73b-5870f316b4e8">2019-05-02</avaldamineKuupaev>
+					<RTartikkel id="fbb96427-2d4c-44f7-b7a8-e2f003d178ca">2</RTartikkel>
+					<aktViide id="7a1b6609-4a67-4659-802e-cb026db10d6e">402052019002</aktViide>
+				</avaldamismarge>
+				<joustumine id="91b6768b-71da-43f3-a118-f72b1730d41c">2019-05-05</joustumine>
+			</muutmismarge>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="3cdbb8e7-1c30-4d8e-bdaf-18f2a7e5a7b2">1</paragrahvNr>
+			<kuvatavNr id="08f4a570-8a92-41c8-b5c1-9decd86570a1"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="68432001-6436-425f-808b-126c50740a04">Reguleerimisala</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="3c2e8022-de6e-4455-856d-70192d1e1b51"/>
+				<kuvatavNr id="20592d46-7075-43bc-aa4e-e4d7d1b671a4"/>
+				<sisuTekst id="046f52e2-2b6e-47fb-b03c-2d8af7f4023e">
+					<tavatekst id="b702d122-5292-4b69-acf3-19afde5e6055">Käesolev määrus reguleerib Viljandi linna eelarves selleks ettenähtud vahendite arvelt lapsehoiuteenuse rahastamist.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="4f765706-7cbf-4852-8d3f-3bc2a22d97a0">2</paragrahvNr>
+			<kuvatavNr id="996c0b3a-6133-4664-b828-d778d1e0aa14"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="c1038d99-83f5-4514-8a6e-2bdc6a643538">Üldsätted</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="8d780786-1fbd-4ddd-af59-45a5a61af7e4">1</loigeNr>
+				<kuvatavNr id="f842e8ff-33d9-41d2-b5c8-f08d1b1d567d"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="7b206c3a-9ba5-403c-9ebb-f089e76e4b25">
+					<tavatekst id="3c10fca6-465d-4651-a061-6da8e8afabdc">Lapsehoiuteenus on lapse seadusliku esindaja (edaspidi vanem) toimetulekut või töötamist toetav teenus, mille osutamise vältel tagab lapsehoiuteenuse osutaja lapse hooldamise, arendamise ja turvalisuse.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg2">
+				<loigeNr id="32e14dbf-7cd4-42a2-a765-910c41b2c05f">2</loigeNr>
+				<kuvatavNr id="789489f8-48c3-40f0-9eca-ddcff77e4faa"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="0a74720a-0e8a-4420-ae55-7d813bd3f550">
+					<tavatekst id="ef630c08-240f-4176-974c-129d4d26e98b">Käesolev kord ei reguleeri riigi rahastatava lapsehoiuteenuse rahastamist.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="f2bb1df0-d943-4c1a-946f-a0800331bf8a">3</paragrahvNr>
+			<kuvatavNr id="41978f2a-6da3-4f7a-a2a7-341d203757be"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="2fd873a3-f429-4f9f-b88e-82bebe9be7f6">Lapsehoiuteenuse osutamisega seotud isikud</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="867d1fba-d5d2-4e2f-ac1e-1ad91cb13acd">1</loigeNr>
+				<kuvatavNr id="aa916c80-9e3a-49be-a0b8-22e5b9bf8eed"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="ca583934-e5e6-45e8-9928-a4c4110cc513">
+					<tavatekst id="8e116ad7-cac4-4a9d-ad1c-00d8544551a6">Lapsehoiuteenuse osutaja on füüsilisest isikust ettevõtja, juriidiline isik, kohaliku omavalitsusüksuse asutus või valitsusasutuse hallatav asutus, kellel on kehtiv tegevusluba.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="8b65d3b7-73d8-456d-a892-1176aa24ff5c">
+					<avaldamismarge id="5485a25a-2109-45de-bdb4-d5e70b69fa55">
+						<RTosa id="00edd0dc-926b-4731-9a01-b4c2dbdc0c5a">RT IV</RTosa>
+						<avaldamineKuupaev id="b4474026-e989-41d9-aecd-d1a1caa57b4e">2019-05-02</avaldamineKuupaev>
+						<RTartikkel id="b6350a08-d3bd-4b78-a0ea-67dfe1ae4174">2</RTartikkel>
+						<aktViide id="01fbf0c9-d759-4be6-bb72-c7a1339c52ec">402052019002</aktViide>
+					</avaldamismarge>
+					<joustumine id="6fc80023-f1ed-4763-ba84-8d1d6cff3afe">2019-05-05</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para3lg2">
+				<loigeNr id="be01363a-0f56-4817-b2fd-11c58464940b">2</loigeNr>
+				<kuvatavNr id="14d89839-6646-4a4c-9108-2fcf5e838d68"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="0874e804-6041-4073-94d0-e7e644e6defb">
+					<tavatekst id="8c464f8d-1bfd-45c9-969a-c8532e55577d">Lapsehoidja on füüsiline isik, kes lapsehoiuteenuse osutamise kestel last isiklikult hooldab ja arendab ning tagab tema turvalisuse. Isikul peab lapsehoidjana tegutsemiseks olema lapsehoidja kutsetunnistus.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="217a95c7-56aa-42b4-b774-53c6cf1a26a8">4</paragrahvNr>
+			<kuvatavNr id="a8e0a985-5a74-4f29-9af1-44eed2aef166"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="24365738-937b-4cd3-b269-1e21cf687789">Lapsehoiuteenuse saaja</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="dc172579-b152-408a-9d3d-ffa380d06897"/>
+				<kuvatavNr id="66f78291-e652-4c96-8ae5-3bb24f70f9a6"/>
+				<sisuTekst id="9da50aea-fe20-442a-ac03-c3c3d156118f">
+					<tavatekst id="e808baa0-97db-4ae9-b139-f4bb295d3b8d">Viljandi linna eelarvest rahastatava lapsehoiuteenuse saajaks on laps, kelle enda ja lapsehoiuteenuse osutajaga lepingu sõlminud vanema elukohana on Eesti rahvastikuregistrisse kantud Viljandi linn ja laps on pooleteise kuni seitsmeaastane (või kuni koolis õppima asumiseni).</tavatekst>
+				</sisuTekst>
+			<muutmismarge id="09cf8b80-5f71-4917-81e0-aea970c74ae4"><avaldamismarge id="2fd4ba75-c1aa-47c9-aef6-7400b605f645"><RTosa id="ee1f35b0-8a6a-41fd-a89e-7452645aeee4">RT IV</RTosa><avaldamineKuupaev id="f9400c76-1f9a-469d-957e-7ed3c761ff1d">2024-05-03</avaldamineKuupaev><RTartikkel id="c611da27-f828-47c5-94f2-ebabd8641e26">27</RTartikkel><aktViide id="828839ea-0a39-4773-b128-f55d114a28f5">403052024027</aktViide></avaldamismarge><joustumine id="34d26c51-947e-4cab-b0f3-ed7fca2b3f35">2024-05-06</joustumine></muutmismarge></loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="4bc39d6f-3319-44d4-ac50-b2d7e1b3ceb4">5</paragrahvNr>
+			<kuvatavNr id="a61c8301-05a2-47c8-a00c-26286a73de14"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="0ba5fc97-c0b6-450d-b8e2-edfd4d638e52">Lapsehoiuteenuse osutamisele esitatavad nõuded</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="926c7b2f-cf4a-4682-b3a4-ecac37a95e0d"/>
+				<kuvatavNr id="4a091256-c353-4ee3-b09d-6fb22b4b4967"/>
+				<sisuTekst id="2c2d0f3d-3434-42df-b1c0-fa6886220a1e">
+					<tavatekst id="39732693-88ab-43e4-ab87-a5f24a79fe39">Lapsehoiuteenusele ja lapsehoiuteenuse osutajale esitatavad nõuded sätestatakse Sotsiaalhoolekande seaduse ja seaduse alusel antud õigusaktidega.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para6">
+			<paragrahvNr id="0af17d41-474b-406c-b65b-6f3c3260d317">6</paragrahvNr>
+			<kuvatavNr id="4ba81ded-0b9b-4b2a-b6f1-d9f10b0cd74b"><![CDATA[§ 6. ]]></kuvatavNr>
+			<paragrahvPealkiri id="60742339-94ad-4063-a80e-51b5825e9488">Lapsehoiuteenuse rahastamise eeldused</paragrahvPealkiri>
+			<loige id="para6lg1">
+				<loigeNr id="158c0803-ee9a-44a6-9c3d-7ae397e95794"/>
+				<kuvatavNr id="42b14bb6-55a5-4837-ae37-b5380deca591"/>
+				<sisuTekst id="5739115e-ad8b-4bf9-b9b5-d9d00f714f79">
+					<tavatekst id="6334a3e7-e201-496c-a749-b118bf09ff74">Viljandi linna eelarvest rahastatakse lapsehoiuteenust eeldusel, et:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para6lg1p1">
+					<alampunktNr id="ce658c92-9804-4878-b848-52a64113b1a7">1</alampunktNr>
+					<kuvatavNr id="22811656-38bb-4f9e-900a-5e17124fd6f3"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="f3643ac3-9ef7-46ac-a4fb-6aeb262d6e63">
+						<tavatekst id="c9b380ee-3597-45c4-b6e7-f9299f680ae0">lapsehoiuteenuse osutaja, lapsehoidja, lapsehoiuteenuse saaja vastab käesoleva korra paragrahvis 3 ja 4 esitatud nõuetele;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg1p2">
+					<alampunktNr id="7e3bf16c-b9a4-4715-bab0-516b858bfa71">2</alampunktNr>
+					<kuvatavNr id="dff88289-83e0-4d11-b636-84c545d858ec"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="52ae8463-192e-4336-a469-66f324f9c701">
+						<tavatekst id="155d9c2b-1ec1-4ec7-89e6-7fd6669aae63">lapsehoiuteenuse osutaja ja vanema vahel on sõlmitud leping;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg1p3">
+					<alampunktNr id="80540028-5943-45d7-8ade-17ef9b979013">3</alampunktNr>
+					<kuvatavNr id="0247376b-1a8a-499c-9116-b32e10b103f2"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="9716bde2-b3dc-4433-8a0a-a0beb7b033a5">
+						<tavatekst id="d20da2e2-8ab2-4490-867d-edd8e9df45d8">osutatav lapsehoiuteenus vastab käesoleva korra paragrahvis 5 esitatud nõuetele;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg1p4">
+					<alampunktNr id="da094add-3c10-43c3-b118-64147b7a5453">4</alampunktNr>
+					<kuvatavNr id="df43052a-6217-4042-9db8-eaad341ce331"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="af3efd74-1f1a-4c09-a6d5-afe848f94fda">
+						<tavatekst id="56a891cf-7b7e-41fd-8e1b-335e25a67fc1">lapse hooldamine ei ole samal ajal tagatud teiste sotsiaalteenustega, sh riigi rahastatava lapsehoiuteenusega;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg1p5">
+					<alampunktNr id="0b9bc95f-4016-46af-93a0-69d00f2c4b23">5</alampunktNr>
+					<kuvatavNr id="3fae2e0f-1a90-42ba-9b8e-579e18649c6e"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="c2510cec-fd32-48f6-b5c1-1c8f0b8d5451">
+						<tavatekst id="b5a0e217-922e-420c-9dd3-66bb84bbac49">laps ei viibi samal ajal haridusasutuses.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para7">
+			<paragrahvNr id="3ca4c70a-853c-4ae9-adc7-0b83b7f7221f">7</paragrahvNr>
+			<kuvatavNr id="ef956193-cdbd-484f-9ce0-ed4aedcd01ff"><![CDATA[§ 7. ]]></kuvatavNr>
+			<paragrahvPealkiri id="82946805-acc3-440e-8d6f-4837a83799f1">Lapsehoiuteenuse rahastamise taotlemine</paragrahvPealkiri>
+			<loige id="para7lg1">
+				<loigeNr id="7d05f5ad-ad44-45d5-965a-57c808e559df">1</loigeNr>
+				<kuvatavNr id="8bffb1cd-85ce-40b6-be2a-29fe9b7fdeec"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="a862411a-9b07-42c2-bcdc-76f4c330b58b">
+					<tavatekst id="5d9dd70e-45b1-4186-a0d3-aa0cfe909088">Lapsehoiuteenuse osutaja esitab Viljandi Linnavalitsuse haridus- ja kultuuriametile (edaspidi haridus- ja kultuuriametile) Viljandi linna eelarvest lapsehoiuteenuse rahastamise taotlemiseks vormikohase kirjaliku taotluse koos nõutavate dokumentidega.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg2">
+				<loigeNr id="d5d93667-6e5d-49a9-b9a6-4180b2b0c686">2</loigeNr>
+				<kuvatavNr id="cf4e6f90-f10f-4670-86c2-761884db3fa8"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="e20f6923-c9d1-4812-9ca8-fb7fd024c01f">
+					<tavatekst id="5ca07a6f-f698-4f4b-9b64-dbb5b5f36a3a">Taotluse vormi ja nõutavate dokumentide loetelu kinnitab Viljandi Linnavalitsus (edaspidi linnavalitsus).</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para8">
+			<paragrahvNr id="73f1ea13-7ec0-4d11-83e2-df5cf0991d9a">8</paragrahvNr>
+			<kuvatavNr id="8a2ca9a9-d8d5-4610-b226-be9134b7f0b2"><![CDATA[§ 8. ]]></kuvatavNr>
+			<paragrahvPealkiri id="88f1b994-a929-42cf-a0e9-be1699af5841">Lapsehoiuteenuse rahastamise otsustamine</paragrahvPealkiri>
+			<loige id="para8lg1">
+				<loigeNr id="9d17b98c-33a0-4275-945a-d98621552cb6">1</loigeNr>
+				<kuvatavNr id="74d6733a-a965-4a6e-86df-a64990a03784"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="dd88cefc-749c-44bb-bb49-c0a2e64c9dc9">
+					<tavatekst id="48096f2e-2fe8-4346-ae87-2658234f515f">Haridus- ja kultuuriamet teeb otsuse lapsehoiuteenuse rahastamise kohta 10 kalendripäeva jooksul taotluse ja kõigi nõutavate dokumentide saamisest arvates.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para8lg2">
+				<loigeNr id="95e5f35b-3dda-4d15-8e15-3f50844ea48b">2</loigeNr>
+				<kuvatavNr id="566c855f-fd62-433c-b129-f3d72be68362"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="c1de0fed-4525-4476-b9b7-4ef6be5e92f4">
+					<tavatekst id="428523d5-c1ea-44d6-a41e-d510e39428cf">Taotlus rahuldatakse ja lapsehoiuteenuse osutajaga sõlmitakse vormikohane lapsehoiuteenuse rahastamise leping, kui on täidetud käesoleva korra paragrahvis 6 sätestatud eeldused.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para8lg3">
+				<loigeNr id="080dd247-2c2c-4fcc-aa4c-9338409234b5">3</loigeNr>
+				<kuvatavNr id="0fd65998-b78a-42d7-8e72-9d58c211ac52"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="6b279d6c-6d93-40f6-ad50-dca1d652a961">
+					<tavatekst id="2e4f2163-573c-49d2-96fa-2f4f0707447d">Lapsehoiuteenuse rahastamise lepingu vormi kinnitab linnavalitsus.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para8lg4">
+				<loigeNr id="6c048dd1-bf56-4a03-bded-d4fe48d7fa68">4</loigeNr>
+				<kuvatavNr id="4685a46d-01dd-49e9-ab9b-a644f0c9cad8"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="e7c48c6c-cd2b-417a-a044-0cfed7bd9031">
+					<tavatekst id="8c63ea27-6ac1-4676-ae23-6805763aae30">Taotluse rahuldamata jätmisest teavitatakse lapsehoiuteenuse osutajat kirjalikult.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para9">
+			<paragrahvNr id="f7b65e56-fa8a-4707-8217-308aa4fe0112">9</paragrahvNr>
+			<kuvatavNr id="522320f0-b42d-431c-84da-22c524d1114c"><![CDATA[§ 9. ]]></kuvatavNr>
+			<paragrahvPealkiri id="91ca09ae-6fff-43d8-8d41-e83d01df2204">Lapsehoiuteenuse toetus ja selle suurus</paragrahvPealkiri>
+			<loige id="para9lg1">
+				<loigeNr id="32fe7335-08f4-4621-a720-f6ff2db8cf4a">1</loigeNr>
+				<kuvatavNr id="9bbdc517-5a10-49f2-818c-35cce227a340"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="c77a7bd5-f584-4f59-bf99-74c85329ce2e">
+					<tavatekst id="a62b2188-f6be-4abf-9494-2e6ac8259add">Lapsehoiuteenuse rahastamise taotluse rahuldamisel eraldatakse lapsehoiuteenuse osutajale toetus (edaspidi lapsehoiuteenuse toetus) iga lapsehoiuteenuse saaja kohta kuus.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para9lg2">
+				<loigeNr id="8785fc43-9957-4403-8101-568fe9d69fae">2</loigeNr>
+				<kuvatavNr id="a45e79fa-68bd-47de-8f7e-68ecf133b573"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="deb06b14-dba8-4f6a-a982-56cbff2d200c">
+					<tavatekst id="02d4c89c-eb78-4abf-90b1-52e62ec2b9ee">Lapsehoiuteenuse rahastamise maht planeeritakse linnaeelarves.</tavatekst>
+				</sisuTekst>
+				
+			</loige>
+			<loige id="para9lg3">
+				<loigeNr id="b8e656f6-69bb-4d49-829b-5c6c6fe26c11">3</loigeNr>
+				<kuvatavNr id="0edf66a7-a0bb-4f43-99fe-ed40f7e376de"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="279c42a0-0e51-4343-8571-e46dc0ae0e7a">
+					<tavatekst id="ee72cc3b-ed37-4425-93a2-d3b8febeea0d">Linnavalitsus kinnitab lapsehoiuteenuse toetuse suuruse.</tavatekst>
+				</sisuTekst>
+			
+			</loige>
+			<loige id="para9lg4">
+				<loigeNr id="7fc60b39-9700-456d-bad8-594abb48873f">4</loigeNr>
+				<kuvatavNr id="48c655ce-e556-42df-be64-af6463dbd1e3"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="4a3f9bdd-af8f-4ab1-aae7-1ad7ad6c5971">
+					<tavatekst id="40526b92-a14b-4207-86fd-5208351923cb">Linnavalitsusel on õigus diferentseerida lapsehoiuteenuse toetuse suurust lähtuvalt lapsehoiuteenuse kasutamise ajast ning lapse vanusest.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="1ec2f2f9-85cf-44c9-aaf7-7e7244d114a3">
+					<avaldamismarge id="f365203e-96aa-4328-acfa-6c3f27dd9af5">
+						<RTosa id="77ad4cfc-b3bc-47e9-b323-e5ea1951b107">RT IV</RTosa>
+						<avaldamineKuupaev id="482d8dd7-3409-4f63-9045-a0d51a051cb0">2019-05-02</avaldamineKuupaev>
+						<RTartikkel id="dd052f4a-0b72-4b4c-a237-0c5f2de4cf8f">2</RTartikkel>
+						<aktViide id="2fd6be81-131a-43f3-afef-0565bf26c107">402052019002</aktViide>
+					</avaldamismarge>
+					<joustumine id="9e572f1a-208f-413e-bcea-8995113bc313">2019-05-05</joustumine>
+				</muutmismarge>
+			</loige>
+
+		</paragrahv>
+		<paragrahv id="para10">
+			<paragrahvNr id="35877e5d-2ba5-4c04-8d6d-5a546d60e02d">10</paragrahvNr>
+			<kuvatavNr id="16d6b3fe-c5b2-41b4-b01b-49698691038f"><![CDATA[§ 10. ]]></kuvatavNr>
+			<paragrahvPealkiri id="cc14394f-6c94-412b-8875-6e899f4b9b6b">Lapsehoiuteenuse toetuse ülekandmine</paragrahvPealkiri>
+			<loige id="para10lg1">
+				<loigeNr id="372ab236-7a6f-4481-b569-b3cdba2920d8"/>
+				<kuvatavNr id="4b04edc0-234a-4fe7-abb2-c7520cfbfdb1"/>
+				<sisuTekst id="d76f244a-0d9f-4834-888d-c7633c7e5ebf">
+					<tavatekst id="eb182155-a3e9-4f65-8efa-759af14933c8">Lapsehoiuteenuse toetus kantakse lapsehoiuteenuse osutaja pangakontole üks kord kuus peale teenuse kasutamise aruande esitamist.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para11">
+			<paragrahvNr id="371f582f-813c-4e36-aa77-5f9989c759f3">11</paragrahvNr>
+			<kuvatavNr id="d44e2d88-173a-4f51-a2d9-79d11ab2f9fb"><![CDATA[§ 11. ]]></kuvatavNr>
+			<paragrahvPealkiri id="81d6122e-9941-45e4-9f05-7cce45828509">Lapsehoiuteenuse toetuse kasutamine</paragrahvPealkiri>
+			<loige id="para11lg1">
+				<loigeNr id="3705ce29-7a54-4e1e-98bd-23da26d16dd7"/>
+				<kuvatavNr id="78f4bef8-8a79-4c38-adb7-aec27816dc60"/>
+				<sisuTekst id="703e2a62-8f6a-4581-b525-0cdd69aa19a3">
+					<tavatekst id="072790c1-cad4-446d-be1a-549736b19ca5">Lapsehoiuteenuse osutaja võib lapsehoiuteenuse toetust kasutada personali- ja majandamiskulude katteks.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para12">
+			<paragrahvNr id="d0a526db-7a1f-4ea6-9eac-bb7b11404260">12</paragrahvNr>
+			<kuvatavNr id="aa7d4c5f-8fb8-4b6f-b6be-fbe912b11172"><![CDATA[§ 12. ]]></kuvatavNr>
+			<paragrahvPealkiri id="33a22078-6798-437b-8e9f-b8007522debc">Lapsehoiuteenuse osutaja teavitamiskohustus</paragrahvPealkiri>
+			<loige id="para12lg1">
+				<loigeNr id="b3e51afa-ae2e-42c4-9e0e-c6b6c9ea8c45"/>
+				<kuvatavNr id="5a734814-f591-4098-8f03-f22646a2df4b"/>
+				<sisuTekst id="47b9b54d-eafd-48da-b4d1-df01a7bb6e82">
+					<tavatekst id="a804c907-479f-435e-98eb-7493811ba3fa">Lapsehoiuteenuse osutaja on kohustatud viivitamatult teavitama haridus- ja kultuuriametit järelevalveorgani tehtud ettekirjutustest ja nende täitmisest.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para13">
+			<paragrahvNr id="ebe1377f-a3d7-4d4f-aa56-334bab07cf11">13</paragrahvNr>
+			<kuvatavNr id="9195cfde-5d48-472d-a3a2-30edb9f10c6c"><![CDATA[§ 13. ]]></kuvatavNr>
+			<paragrahvPealkiri id="4e15442c-d92b-4406-af23-70763132049c">Lapsehoiuteenuse toetuse eraldamise lõpetamine</paragrahvPealkiri>
+			<loige id="para13lg1">
+				<loigeNr id="0e35e295-89f4-4f72-a258-0bbd0a40fbd1">1</loigeNr>
+				<kuvatavNr id="8039e6a2-a422-490c-8f6a-cdf1e9306f18"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="7bfeac8c-761b-4897-aa5b-4f2e78df5fff">
+					<tavatekst id="ad5039e7-e7ae-43ad-93bd-e0a218de5d47">Lapsehoiuteenuse toetuse eraldamine lõpetatakse, kui lapsehoiuteenuse osutaja ei täida käesoleva korra paragrahvis 6 sätestatud eeldusi.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para13lg2">
+				<loigeNr id="24043c85-ddc3-4fdd-86f1-e059da377ab8">2</loigeNr>
+				<kuvatavNr id="1f046121-b0a8-4752-9aba-afe0744828fa"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="10a6dd00-2c94-44de-a46b-1b97199159d7">
+					<tavatekst id="14fdd176-be41-41c5-8315-5a1895cfa3de">Lapsehoiuteenuse toetuse eraldamine lõpetatakse, kui lapsehoiuteenuse osutaja ei luba haridus- ja kultuuriameti esindajat lapsehoiuteenuse osutamiseks kasutatavatesse ruumidesse kontrolli teostamiseks või ei esita tähtaegselt nõutud andmeid ja dokumente.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para14">
+			<paragrahvNr id="187083e3-cb47-46c9-a7f9-a7ab1581957e">14</paragrahvNr>
+			<kuvatavNr id="5d49d387-0078-42a3-91f7-8c1e932cdabb"><![CDATA[§ 14. ]]></kuvatavNr>
+			<paragrahvPealkiri id="e01cf507-be4d-4d2d-bf6e-e2558ef59f36">Lapsehoiuteenuse toetuse tagasinõudmine</paragrahvPealkiri>
+			<loige id="para14lg1">
+				<loigeNr id="bab9006e-9519-4815-91a2-991e3208cdd9"/>
+				<kuvatavNr id="0ace0e66-e8f3-48d2-b2bd-ae3447048308"/>
+				<sisuTekst id="f90d9a32-cc14-4ecd-acce-1abd42619cf1">
+					<tavatekst id="2bf65221-2aa1-43fe-b189-f0234bd8f5ca">Kui lapsehoiuteenuse osutamisel ei täideta käesoleva korra paragrahvis 6 sätestatud eeldusi, taotluses või lisatud dokumentides on esitatud valeandmeid, lapsehoiuteenuse osutajal on maksuvõlgnevus, ta ei kasuta toetust sihipäraselt, on haridus- ja kultuuriametil õigus nõuda alates eelnevalt loetletud asjaolude esinemisest eraldatud toetus tagasi.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para15">
+			<paragrahvNr id="89c6645c-3ef8-4fc2-b579-24ad345e639f">15</paragrahvNr>
+			<kuvatavNr id="ba5b8bed-7b82-4920-956c-2d0351a3c2d8"><![CDATA[§ 15. ]]></kuvatavNr>
+			<paragrahvPealkiri id="cf28c8e4-de1d-48c7-b675-ad3b0e11af3f">Lapsehoiuteenuse aruandlus</paragrahvPealkiri>
+			<loige id="para15lg1">
+				<loigeNr id="ad34f70c-fb9c-4bf5-b9f6-0a5f9b50de51">1</loigeNr>
+				<kuvatavNr id="66861fb4-f5fe-42bf-8659-fa85b63090c8"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="1ff2cbb6-77c8-494c-89f2-67dfa1c41ab8">
+					<tavatekst id="93bf55a9-0c53-4f8c-aceb-fc211cec1223">Lapsehoiuteenuse osutaja on kohustatud esitama haridus- ja kultuuriametile aruanded osutatud lapsehoiuteenuse osutamise kohta vastavale kuule järgneva kuu 5. kuupäevaks ja aastaaruande aruandeaastale järgneva aasta 31. jaanuariks.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para15lg2">
+				<loigeNr id="e88cd9c6-d0de-44b9-8d49-50f830c5ca9d">2</loigeNr>
+				<kuvatavNr id="f83fed41-757d-40d0-9b75-3e6fce4ffbb8"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="23c00c9e-dae3-4d44-b2ae-618a42da00d4">
+					<tavatekst id="211df32d-bbc7-4336-8a62-e757e92babaa">Aruande vormid kinnitab linnavalitsus.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para15lg3">
+				<loigeNr id="bc76debb-29e5-400e-bccc-ff08da0bd3f0">3</loigeNr>
+				<kuvatavNr id="914ccad1-dc70-43cb-bd13-4d09f7c3cfef"><![CDATA[(3)]]></kuvatavNr>
+	
+				<muutmismarge id="fa793af8-6e9b-4ccb-8a1a-a25c7113ee91">
+					<tavatekst id="581af563-6be9-4f53-aeb0-32e643c3479a">Välja jäetud -</tavatekst>
+					<avaldamismarge id="62c49920-a665-416a-ba13-37ae9005e821">
+						<RTosa id="a3e08299-afbf-4a8c-805d-965bb7861a3b">RT IV</RTosa>
+						<avaldamineKuupaev id="b122d9f0-093a-4cc8-b3a6-83c306678c04">2019-05-02</avaldamineKuupaev>
+						<RTartikkel id="fb9ae916-9b8a-4849-98d5-a1312a9ed9ae">2</RTartikkel>
+						<aktViide id="fc8833c7-523d-46c6-b008-ececf8803ace">402052019002</aktViide>
+					</avaldamismarge>
+					<joustumine id="4aa1c780-f7fc-478a-9c31-ca69f19fd560">2019-05-05</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para16">
+			<paragrahvNr id="dc8b30a9-4e2f-4899-835b-169a3a1d3901">16</paragrahvNr>
+			<kuvatavNr id="6d1b7948-b742-4701-b194-7541cd72574d"><![CDATA[§ 16. ]]></kuvatavNr>
+			<paragrahvPealkiri id="97a4fe7e-5bc8-4909-aacb-95af67b2eaa5">Lapsehoiuteenuse järelevalve</paragrahvPealkiri>
+			<loige id="para16lg1">
+				<loigeNr id="38758596-4eec-4312-8671-1a701ce25b7c">1</loigeNr>
+				<kuvatavNr id="5a083ceb-4045-46cf-851e-38afe01b6ef4"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="9b9cef6f-bc4f-4187-af49-cea01bc7397f">
+					<tavatekst id="b07dd0db-d457-48ff-b7b3-c3209b79dda8">Lapsehoiuteenuse rahastamisel kontrollitakse käesoleva korra paragrahvis 6 sätestatud eelduste täitmist taotluse saamisel.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para16lg2">
+				<loigeNr id="1026352b-6dd7-4a4d-9e60-d1d6850e8634">2</loigeNr>
+				<kuvatavNr id="20b658bc-a6f6-4989-8cd7-50837363dea2"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="088b255d-b7fc-4347-9b4d-f60fa30cdace">
+					<tavatekst id="e2625eba-e49d-4d2a-b095-922dd223df00">Haridus- ja kultuuriamet võib nõuda lapsehoiuteenuse osutajalt igal ajal lapsehoiuteenuse osutamisega seotud andmete ja dokumentide esitamist. Lapsehoiuteenuse osutaja peab lubama haridus- ja kultuuriameti esindaja lapsehoiuteenuse osutamiseks kasutatavatesse ruumidesse lapsehoiuteenuse osutamisega seotud asjaolude kontrollimiseks.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para17">
+			<paragrahvNr id="a7ebbad4-365f-4a74-b737-445a8e9572a7">17</paragrahvNr>
+			<kuvatavNr id="667adc8f-88fc-458c-a097-7f51ac82657d"><![CDATA[§ 17. ]]></kuvatavNr>
+			<paragrahvPealkiri id="2a095928-2abf-47a4-b11b-663f35b7bd33">Määruse rakendamine 2007. aastal</paragrahvPealkiri>
+			<loige id="para17lg1">
+				<loigeNr id="09d2850e-632d-4533-b54b-f28152e77918"/>
+				<kuvatavNr id="3ada6b88-3709-4b42-b344-b6a5217a9f79"/>
+				<sisuTekst id="e7bea11a-fdfa-4a1d-80a2-ca02334794d1">
+					<tavatekst id="7f74c431-b4fd-41be-aa6f-ff700d3c03ed">[Käesolevast tekstist välja jäetud].</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para18">
+			<paragrahvNr id="c043ccf4-0fa1-42fa-a17f-54459db7e127">18</paragrahvNr>
+			<kuvatavNr id="65f4eaa3-d4ea-4795-92de-1916e6235c12"><![CDATA[§ 18. ]]></kuvatavNr>
+			<paragrahvPealkiri id="4c879c56-8cd8-4bb3-bc37-3db2fcb97842">Määruse jõustumine</paragrahvPealkiri>
+			<loige id="para18lg1">
+				<loigeNr id="012d7f4f-183e-4510-8ff0-b24e0b6edd92"/>
+				<kuvatavNr id="76d599e1-0770-415c-ab9d-c6315d559532"/>
+				<sisuTekst id="bc0b02f7-a98c-42f9-b019-ab0309cc8f38">
+					<tavatekst id="2879f15e-dbe8-4358-a1f2-10e72cc487a8">Määrus jõustub kolmandal päeval peale avalikustamist.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+</oigusakt>

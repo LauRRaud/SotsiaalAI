@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="be93b6ec-9f61-4346-98d2-7b43f9485588" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Haljala Vallavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2026-01-20</aktikuupaev>
+  <avaldamismarge>
+	<RTosa>RT IV</RTosa>
+	<avaldamineKuupaev>2026-01-23</avaldamineKuupaev>
+	<RTaasta>2026</RTaasta>
+	
+	<RTartikkel>2</RTartikkel>
+	<aktViide>423012026002</aktViide>
+  </avaldamismarge>
+  <joustumine>2026-02-01</joustumine>
+  <aktiNr>2</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-08-22</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>15</RTartikkel><aktViide>422082026015</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2026-09-01</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2026-08-19</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>422082026015</globaalID>
+ <metaandmedVersioon>11</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2026-08-21</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ <terviktekstiGrupiID>1062663</terviktekstiGrupiID>
+ <eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>koostamine</dokumentEtapp><dokumentStaatus>koostamisel</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2026-01-20</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Marika Sundla</metaandmedVersioonPohjustaja></versiooniMuutus><versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>2</metaandmedVersioon><metaandmedVersioonKuupaev>2026-01-20</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Marika Sundla</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="b31dcc30-3d77-4598-8ddd-9f44eb845aa8">
+  <nimi id="ad03612b-9f7d-470f-91c3-2343c7020199">
+   <pealkiri id="37086065-2919-47f1-af84-186c6d85ad7d">Sotsiaalhoolekandelise abi korras makstavate toetuste määrade kehtestamine</pealkiri>
+  </nimi>
+ </aktinimi>
+ <muutmismarge id="5e13d739-d081-4ad7-95bf-8a2754d78222"><aktikuupaev id="f4956f6f-7028-4948-a9f7-b6b5091e8f9f">2026-08-18</aktikuupaev><avaldamismarge id="455f48a5-cdf4-499b-9b80-c2049472bfba"><RTosa id="4d156ba7-ddee-4fdd-98bd-87da30e10c21">RT IV</RTosa><avaldamineKuupaev id="a6d74a4c-3556-4c29-ba2e-bbb4442946e9">2026-08-22</avaldamineKuupaev><RTartikkel id="3a5d3a5e-219a-476c-9154-1e944545e9fc">12</RTartikkel><aktViide id="f2e04cac-f4bc-49f9-95f5-59676ae2e266">422082026012</aktViide></avaldamismarge><joustumine id="dba01d45-0091-40c8-9842-2641a8846e59">2026-09-01</joustumine></muutmismarge><sisu id="33674d8d-d0c5-4c2c-84ea-7b556c8603be"><preambul id="0971edff-86d4-494c-97b7-fc5c5e14bf6f">
+   <tavatekst id="ee3cf348-456d-47eb-845f-e6d13d464dbd">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5, sotsiaalhoolekande seaduse § 14 lõike 2 ning Haljala Vallavolikogu 19.11.2024 määruse nr 72 „Haljala valla sotsiaalhoolekandelise abi andmise tingimused ja kord“ § 3 lõike 2, § 26 lõike 6 alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="bc29313a-2240-4fc1-8711-0ff8f3fb0cbb">1</paragrahvNr>
+   <kuvatavNr id="d99e5468-6b98-4dd3-afe6-eeea1027680f"><![CDATA[§ 1. ]]></kuvatavNr>
+      <sisuTekst id="ac4deaef-3852-484d-bb63-f3baf809ef99">
+    <tavatekst id="ce38f38f-68f4-4b74-b3af-7fc4947a987f">Kinnitada sotsiaalhoolekandelise abi korras makstavate sissetulekust mittesõltuvate toetuste määrad järgmiselt:</tavatekst>
+   </sisuTekst>
+  <loige id="para1lg1">
+   <loigeNr id="0828da46-90ea-4d5e-965a-74e06b1f5945"/>
+   <kuvatavNr id="7a27e2ce-e2ec-4663-9260-7e5cd50ef30b"/>
+   <sisuTekst id="98635506-49e4-4a4d-b9a7-59cc090c8c33">
+    <tavatekst id="882c9cf2-841e-4beb-9bc5-b5097968cb1b"/>
+   </sisuTekst>
+  <alampunkt id="para1lg1p1">
+   <alampunktNr id="2059458f-dba8-4dde-819a-9be363e87fa1">1</alampunktNr>
+   <kuvatavNr id="85172631-6802-4395-b959-822803139bd7"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="7b11d094-130a-44e4-8b12-bc3b6d54b640">
+    <tavatekst id="79155e39-1d8d-4058-9dd7-3b3cdc91f561">sünnitoetus 600 eurot, mis makstakse välja kahes võrdses osas;</tavatekst>
+   </sisuTekst>
+  <muutmismarge id="9ff8490a-db6b-4899-a24d-f6d5cf49a816"><avaldamismarge id="a77acc4a-cb98-4257-a97d-9f26b3acfd75"><RTosa id="8e58ef50-bae1-4ead-ad60-cbee169c953b">RT IV</RTosa><avaldamineKuupaev id="f1a06faa-eeac-4a2e-b49e-123c6fb98b4a">2026-08-22</avaldamineKuupaev><RTartikkel id="2ff71ee9-28c0-4f2a-baf7-14e1e30cb896">12</RTartikkel><aktViide id="5e5f9b42-663b-4be4-83e4-9ea26e95b269">422082026012</aktViide></avaldamismarge><joustumine id="b56ba22e-1a12-4ca4-acdd-d80010f8b53a">2026-09-01</joustumine></muutmismarge></alampunkt><alampunkt id="para1lg1p2">
+   <alampunktNr id="ead80461-c293-4e28-862f-97a2e8e82400">2</alampunktNr>
+   <kuvatavNr id="3dab082a-7f46-4b2b-b75b-febc79f1c21a"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="cf9feeb7-bf23-4881-b73d-f4a9a4d4956c">
+    <tavatekst id="6caf9fb0-1728-442c-972a-6b5accd3b424">matusetoetus 300 eurot;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg1p3">
+   <alampunktNr id="b97babd4-6efb-4022-a9b0-f734ae06793f">3</alampunktNr>
+   <kuvatavNr id="f053317a-7a89-4dda-9e58-e35c65a253a2"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="5270e13c-f244-44b2-af76-e4e7ac13076b">
+    <tavatekst id="6b213da9-1397-49f5-a477-dc269b665e03">hooldajatoetus keskmise puudega lapse hooldajale 40 eurot;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg1p4">
+   <alampunktNr id="068705a1-99cd-4d4f-8c6f-cd1f17891f24">4</alampunktNr>
+   <kuvatavNr id="8711cf56-1ddd-4f91-a44e-c9c2a1d2a6dd"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="a32bfdf8-baad-4ec8-977f-07f2d2ab0977">
+    <tavatekst id="e84c4889-133f-4b9a-a0cc-5a37326d40b4">hooldajatoetus raske puudega lapse hooldajale 50 eurot;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg1p5">
+   <alampunktNr id="b205bccd-8cca-4cb7-a20c-411ed09fb96a">5</alampunktNr>
+   <kuvatavNr id="22615321-f7f5-484d-a7e1-3b2a45cf0dec"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="8270072c-b243-4348-b592-0ee58a6ba342">
+    <tavatekst id="722a19d5-4f7a-404c-8460-42a0fa201170">hooldajatoetus sügava puudega lapse hooldajale 100 eurot;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg1p6">
+   <alampunktNr id="7442f69c-5a1d-461a-b2ed-2e9bf6164667">6</alampunktNr>
+   <kuvatavNr id="83da6404-ce34-4699-803d-da8bba9910f9"><![CDATA[6) ]]></kuvatavNr>
+   <sisuTekst id="21569dd5-b8fe-407c-9af8-06b8a8ebe998">
+    <tavatekst id="80699057-7185-4b1c-81f4-d3eb5918370e">hooldajatoetus raske puudega täisealise isiku hooldajale 50 eurot;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg1p7">
+   <alampunktNr id="bd3338c7-a6c0-4b6e-ac35-5f0bf9735de3">7</alampunktNr>
+   <kuvatavNr id="624c2b11-2470-4240-9302-ef69c0a8729b"><![CDATA[7) ]]></kuvatavNr>
+   <sisuTekst id="c2301d37-fa06-43b0-9510-2e547fc8113c">
+    <tavatekst id="24fd2996-e69b-479f-8d94-a153be86085d">hooldajatoetus sügava puudega täisealise isiku hooldajale 100 eurot;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg1p8">
+   <alampunktNr id="906590ad-bf75-4189-a36e-a9dd388d19c9">8</alampunktNr>
+   <kuvatavNr id="112585bf-0541-4771-96b9-ac15009c8130"><![CDATA[8) ]]></kuvatavNr>
+   <sisuTekst id="cd179487-c22e-4f54-9ab1-1b0fa207cb2c">
+    <tavatekst id="87330b44-fd63-465a-b40a-9c829a5ac9a5">toetus õnnetusjuhtumi korral kuni 5000 eurot.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="649aeddb-2d96-43b1-b851-c7727f8bfc11">2</paragrahvNr>
+   <kuvatavNr id="8b70bc57-4508-4f14-8716-c278911e717c"><![CDATA[§ 2. ]]></kuvatavNr>
+      <sisuTekst id="7dafc467-3e2e-48f9-965d-2f3bca1ca2b9">
+    <tavatekst id="45d693e6-f788-44a4-a0ef-352199f1ae68">Kinnitada väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse osutamisel vahetult teenust osutavate hooldustöötajate ja abihooldustöötajate kulude tasumise piirmääraks 650 eurot ühe teenusesaaja kohta kuus.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para3">
+   <paragrahvNr id="8c3d0ff3-0129-488c-ac6f-44b95197b1fd">3</paragrahvNr>
+   <kuvatavNr id="a518950e-b2e5-4b43-821e-c38f1be2cfff"><![CDATA[§ 3. ]]></kuvatavNr>
+      <sisuTekst id="6ce8d110-0fe7-45f8-97eb-3e792a72b263">
+    <tavatekst id="51e97b2c-8fc4-4896-854b-34534055fd3b">Kinnitada Haljala Vallavolikogu 19.11.2024 määruse nr 72 „Haljala valla sotsiaalhoolekandelise abi andmise tingimused ja kord“ § 19 sätestatud täiendava toetuse toimetuleku tagamiseks piirmääraks kuni 400 eurot aastas, kui määrus ei sätesta teisiti.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para4">
+   <paragrahvNr id="055828b5-7566-4d70-8547-3553cd6a52b8">4</paragrahvNr>
+   <kuvatavNr id="6c65d2bf-db5b-43c2-ab8f-1bd7d9e23abf"><![CDATA[§ 4. ]]></kuvatavNr>
+      <sisuTekst id="d426e51c-ac0f-4341-9878-ccb4abad9d6d">
+    <tavatekst id="e420fb2a-1744-447b-8268-6bfe5856357c"> [Käesolevast tekstist välja jäetud].</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para5">
+   <paragrahvNr id="2bac6c35-8cef-495b-9e59-f4c04dbed005">5</paragrahvNr>
+   <kuvatavNr id="83e9eaa7-0419-4f85-9a28-2331839a344b"><![CDATA[§ 5. ]]></kuvatavNr>
+      <sisuTekst id="4c379421-af45-400f-a959-a2d6031939ac">
+    <tavatekst id="34744589-508b-4e01-afee-5f9a30ffe7e1">Määrus jõustub 01.02.2026.</tavatekst>
+   </sisuTekst>
+  </paragrahv></sisu>
+</oigusakt>

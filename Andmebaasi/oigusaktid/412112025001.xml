@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="8915b8bb-8cff-4d09-ae5f-6efb8ad2e6ec" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Põhja-Pärnumaa Vallavalitsus</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>algtekst-terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2025-11-04</aktikuupaev>
+			<aktiNr>10</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-11-12</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>1</RTartikkel><aktViide>412112025001</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2026-01-01+02:00</kehtivuseAlgus></kehtivus><versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2025-11-06</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>412112025001</globaalID>
+		<metaandmedVersioon>6</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2025-11-11</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1062269</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+	</metaandmed>
+	<aktinimi id="656c0373-a4d4-40ee-8779-47bddec14a36">
+		<nimi id="7cfb2250-eee2-4780-9620-ca5b5a22025c">
+			<pealkiri id="e22c342e-00a8-4293-a58a-b44057394457">Hoolduskulu piirmäära kehtestamine</pealkiri>
+		</nimi>
+	</aktinimi>
+	<sisu id="78386621-bef4-4fd8-983f-3291ea75a46c">
+		<preambul id="6c7ef716-36f4-4cdf-b880-547b5a55e1aa">
+			<tavatekst id="0a107aec-4122-4655-9951-d3a8caba40ea">Sotsiaalhoolekande seaduse § 22<sup>1</sup> lõike 3 ning Põhja-Pärnumaa Vallavolikogu 17.01.2018 määruse nr 3 "Lastekaitseseadusest, sotsiaalhoolekande seadusest ja riigilõivuseadusest tulenevate ülesannete delegeerimine" § 1 lõike 2 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="8757acd9-ed9b-44c1-a9fb-e42f8b7c445a">1</paragrahvNr>
+			<kuvatavNr id="27951d23-c1c1-4c73-ad70-a4f6046b981e"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="9588cb9e-c2a5-4bd0-8040-750ec1d08f60">Üldhooldusteenuse hoolduskulu piirmäär</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="9152b0cd-474b-4038-a088-53561d4d08d7"/>
+				<kuvatavNr id="1eafa4a5-d289-4fa4-aedb-b28372c46835"/>
+				<sisuTekst id="566e74e5-8030-497d-a29e-50de06d66a39">
+					<tavatekst id="f3c04ae8-e366-41f5-8d7b-0bcf403585d5">Põhja-Pärnumaa valla poolt hoolduskulu tasumise piirmäär valla elaniku kohta on 600 eurot kuus.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="49777343-cd41-4f1c-a741-78a9b9223ceb">2</paragrahvNr>
+			<kuvatavNr id="d226b670-d62e-414a-8301-7783a07ad02f"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="e40c4dc2-a568-4dbb-877d-4a78b3ad6af7">Määruse kehtetuks tunnistamine<reavahetus/></paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="09c7289a-20b8-4d48-b148-ee27c65e5790"/>
+				<kuvatavNr id="e1e08124-dabc-4976-8a8e-79bd77b42804"/>
+				<sisuTekst id="1e79fd1e-6124-405a-83d6-af2672071b2e">
+					<tavatekst id="b4b2d06d-f09e-4fb4-8e95-fae77753491c">Tunnistada kehtetuks Põhja-Pärnumaa Vallavalitsuse 16. mai 2023 määrus nr 4 "Hoolduskulu piirmäära kehtestamine".</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="b4d58b22-58cb-41e9-9813-dc6391d73ebc">3</paragrahvNr>
+			<kuvatavNr id="2656ec90-1183-444e-bd37-7553bf62364d"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="ba5fb00e-3e1b-490f-b3b7-4675f91a41b6">Määruse jõustumine</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="bf08c910-f700-422f-81b2-5c45e996f95b"/>
+				<kuvatavNr id="b09ebaac-f58d-4ac3-b1cd-a2e0bc156189"/>
+				<sisuTekst id="a4d80ee0-3454-48a6-9d93-a5653e4bb945">
+					<tavatekst id="d05b08a7-f01a-4953-bb74-05f0db191688">Määrus jõustub 01. jaanuar 2026.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+	<allkiri id="679dc6c3-af22-4512-88d6-09aafa53234a">
+		<allkiriKoht id="e7f7f8a8-62d8-4d8b-b7c4-762d81cc6f04"/>
+		<allkirjastaja id="b0e4e88e-1130-4482-8228-b67164d3edc6">
+			<ametinimetus id="33481594-1487-4d26-8892-278881cfa2df">vallavanem</ametinimetus>
+			<eesnimi id="b8cd7f43-6512-4102-88de-cd0cd33c7c55">Madis</eesnimi>
+			<perekonnanimi id="565f399e-62f5-4c13-bda7-5492c292d283">Koit</perekonnanimi>
+		</allkirjastaja>
+	</allkiri>
+	<allkiri id="e6cbe40f-541c-4379-97d8-0c8ef94e8b4b">
+		<allkiriKoht id="424e2c42-52f3-4486-978b-092302a38d27"/>
+		<allkirjastaja id="39e0aae5-12ae-4a14-9afc-39702e605cc2">
+			<ametinimetus id="93a5328b-22cf-4dcb-b6e6-e176d33bfc2f">vallasekretär</ametinimetus>
+			<eesnimi id="5305804d-8b55-4f9c-8a62-de818b5b1b0c">Tiina</eesnimi>
+			<perekonnanimi id="234bfd65-959f-4eb9-b6d7-3fad73186575">Roht</perekonnanimi>
+		</allkirjastaja>
+	</allkiri>
+</oigusakt>

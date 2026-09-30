@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="cc08b665-634f-4426-b378-126e780ebf9c" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Põhja-Pärnumaa Vallavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2018-03-28</aktikuupaev>
+			<avaldamismarge>
+				<RTosa id="213e5d34-bd8f-43c1-aa4a-30dd84a43dbb">RT IV</RTosa>
+				<avaldamineKuupaev id="c542b1e9-3b50-49f1-8aaf-758c5698c888">2018-04-05</avaldamineKuupaev>
+				<RTartikkel id="98d89db7-0f4b-4f7f-a57a-06029c1d441f">3</RTartikkel>
+				<aktViide id="e42c8d6e-b982-4e7a-985c-c36992d1d2ab">405042018003</aktViide>
+			</avaldamismarge>
+			<joustumine>2018-05-01</joustumine>
+			<aktiNr>15</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-03-03</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>34</RTartikkel><aktViide>403032026034</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2026-04-01</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2026-02-26</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>403032026034</globaalID>
+		<metaandmedVersioon>36</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2026-03-02</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1042643</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2018-03-23</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Ahti Randmere</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>12</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2019-03-06</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>17</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2021-02-18</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>22</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2021-02-22</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>27</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2023-10-23</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>31</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2023-10-24</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="399b14c4-3e05-4b77-ba22-3cc6f0a48678">
+		<nimi id="2fde0b75-b71c-405b-92c0-3030ffc25b83">
+			<pealkiri id="d109ab11-daf6-48c2-9475-5c1aa2b28c97">Sotsiaaltoetuste määrad</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="3dfdf5ec-1e68-4b50-b87b-54e1a916621f">
+		<aktikuupaev id="a539a4b5-76fb-4d92-8d31-b240346692a6">2019-02-27</aktikuupaev>
+		<avaldamismarge id="a28db484-1d91-41db-b57b-6573ae11615e">
+			<RTosa id="99cd1e3e-4333-4c7e-b8e0-d94c1e6d86d7">RT IV</RTosa>
+			<avaldamineKuupaev id="b899860c-92f7-475c-b05c-b82bc00c5d3b">2019-03-07</avaldamineKuupaev>
+			<RTartikkel id="5cbb8a82-cccf-40e2-b2f9-49a72dfe5fcd">2</RTartikkel>
+			<aktViide id="e8b136f5-bcfc-4cad-ba2c-09b0a1c95212">4271229019002</aktViide>
+		</avaldamismarge>
+		<joustumine id="3f00a227-a500-4f89-85aa-4b87dd70f741">2019-03-10</joustumine>
+	</muutmismarge>
+	<muutmismarge id="647f9b93-a31e-48bc-89ec-a76fc8dba42c">
+		<aktikuupaev id="f27bf1c4-6f64-47a6-aed3-fb538475afbe">2019-12-18</aktikuupaev>
+		<avaldamismarge id="56264b90-f691-43e2-845d-9025fc9af5ff">
+			<RTosa id="a4a1d285-5663-4f99-affd-6bb9e44a97ca">RT IV</RTosa>
+			<avaldamineKuupaev id="a8a5c3bd-f0ad-401c-99fb-dd040c66ac66">2019-12-27</avaldamineKuupaev>
+			<RTartikkel id="547b22b8-5d14-4885-b2e3-b6d314c42403">2</RTartikkel>
+			<aktViide id="3d3dc788-49f5-49c5-9fec-6974090681dd">427122019002</aktViide>
+		</avaldamismarge>
+		<joustumine id="d65033a2-e3d8-40b9-ad6d-bb5c3373f1e6">2020-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="5a2b4cfa-98c8-4f58-a552-b07b01a59797">
+		<aktikuupaev id="76a2e724-3988-4030-992c-8dd1550b3fba">2021-02-17</aktikuupaev>
+		<avaldamismarge id="6060594c-f4c1-46c5-bc2a-83da87cbf1b3">
+			<RTosa id="26014cb3-69f4-4ebd-ba92-3ecff1092e46">RT IV</RTosa>
+			<avaldamineKuupaev id="79edefa4-f25e-4dcd-a111-da6097c21170">2021-02-23</avaldamineKuupaev>
+			<RTartikkel id="6e886bf6-07f9-44b8-86fd-43d2009565c8">9</RTartikkel>
+			<aktViide id="715fb7bd-ff01-411d-b73c-9638079f742b">423022021009</aktViide>
+		</avaldamismarge>
+		<joustumine id="b21d2b62-0942-4f47-9ae6-b0f721416062">2021-02-26</joustumine>
+		<aktiNr id="422ee75b-1a53-4682-9896-97db0cc7949e">3</aktiNr>
+	</muutmismarge>
+	<muutmismarge id="d56f6e44-2314-4124-b8d5-8f89578f197e">
+		<aktikuupaev id="c55a0d81-9863-459d-9dde-0c867df3013b">2023-01-18</aktikuupaev>
+		<avaldamismarge id="5bcf6119-933f-4064-bade-0b24c9a742f1">
+			<RTosa id="950e3eef-0acb-42eb-a167-8ec233626b47">RT IV</RTosa>
+			<avaldamineKuupaev id="6cf89321-1c9c-43b0-9813-4ebad69e2a6b">2023-01-28</avaldamineKuupaev>
+			<RTartikkel id="7d74a43e-6da5-4635-bf53-5fa88878c108">5</RTartikkel>
+			<aktViide id="69d8438f-7c78-4550-b042-76194d4e01f0">428012023005</aktViide>
+		</avaldamismarge>
+		<joustumine id="c617b480-d3fc-4e49-aab0-c40f4fe0dab5">2023-02-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="816bb51f-e02f-4944-b4ec-0c918ac58314">
+		<aktikuupaev id="8638b503-cecf-4b8f-bbda-e0a43a555f81">2023-10-18</aktikuupaev>
+		<avaldamismarge id="c5199760-142b-40b6-97fd-ee15e61bc8ef">
+			<RTosa id="e93a6849-eacd-473b-9032-06c8be7d35c7">RT IV</RTosa>
+			<avaldamineKuupaev id="18a58cc3-61cb-4217-9c42-640f63d20e55">2023-10-25</avaldamineKuupaev>
+			<RTartikkel id="6cb137ed-d048-473e-8010-89daefc0d718">7</RTartikkel>
+			<aktViide id="bea83161-d0f7-4177-9099-09b499860a00">425102023007</aktViide>
+		</avaldamismarge>
+		<joustumine id="8cc2bf0f-fa0f-4477-bdbb-9bc195634abf">2023-10-28</joustumine>
+		<aktiNr id="27c3f39b-e525-40ad-b5f3-177b055a0936">22</aktiNr>
+	</muutmismarge>
+	<muutmismarge id="3e7a8932-dff6-4fd2-8172-823b52d2870b">
+		<aktikuupaev id="5d328f16-059a-461b-b638-04f1692aefdd">2026-02-18</aktikuupaev>
+		<avaldamismarge id="f94605c4-47c2-4b3c-993e-00748e9e1d16">
+			<RTosa id="e758d59e-8507-42c7-9853-bc65ad420287">RT IV</RTosa>
+			<avaldamineKuupaev id="411d2731-b350-428b-a334-a2e17b2b337d">2026-03-03</avaldamineKuupaev>
+			<RTartikkel id="846a219d-6252-4c76-bd6b-88f551ff71e1">2</RTartikkel>
+			<aktViide id="84b5ef8a-09c5-420d-9f2d-77148f3a6ce6">403032026002</aktViide>
+		</avaldamismarge>
+		<joustumine id="7091f9ff-79cf-4bd5-8d3d-99fc92a712d0">2026-04-01</joustumine>
+		<aktiNr id="0fae41fc-ebda-46ab-92ef-f564cbfe1e2b">3</aktiNr>
+		<tavatekst id="1b4cd9c9-5627-4354-b1ff-0a793a0807f4">, rakendatakse alates 01.01.2026</tavatekst>
+	</muutmismarge>
+	<sisu id="636d6c83-252f-4348-b34c-ae99d28fadbf">
+		<preambul id="a5bbf939-7d3e-4ff8-94bf-cbf5b9cd1edb">
+			<tavatekst id="c92613d9-ad48-4a34-8d31-1bc6377bc064">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lg 1 punkti 5, sotsiaalhoolekande seaduse § 14 ja Põhja-Pärnumaa Vallavolikogu 28. märtsi 2018 määruse nr 14 “Sotsiaalhoolekandelise abi andmise kord“ § 8 lõike 2 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="1f4fba82-05a7-48d6-9f4c-df55a780b9fe">1</paragrahvNr>
+			<kuvatavNr id="27073c40-9ada-4673-92b0-daccfe832637"><![CDATA[§ 1. ]]></kuvatavNr>
+			<sisuTekst id="85b21fa6-121e-43dd-80f3-25e9a884b209">
+				<tavatekst id="6afb6145-03a4-4e87-8108-18658041fc47">Perekonna sissetulekust mittesõltuvate vallaeelarvest makstavate sotsiaaltoetuste määrad on järgmised:</tavatekst>
+			</sisuTekst>
+			<loige id="para1lg1">
+				<loigeNr id="46db7511-46f9-4b2a-8a98-6c7893089cb8"/>
+				<kuvatavNr id="3d5b4661-0e22-47be-afb1-f5e0a39bb42a"/>
+				<sisuTekst id="708dd495-c379-45ab-ba80-6be8d4b1ad32">
+					<tavatekst id="35358985-2909-4750-b727-f02ea1b1734d"/>
+				</sisuTekst>
+				<alampunkt id="para1lg1p1">
+					<alampunktNr id="359c73d6-bbe5-4e6e-82c3-3024ee30839d">1</alampunktNr>
+					<kuvatavNr id="405fe9d1-c7dc-4309-a1bc-ccb0bf26981d"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="8b3c878c-6052-4026-86ad-944c162f6c2c">
+						<tavatekst id="64e33474-5d95-482d-875a-2a8954cda0bf">lapse sünnitoetus 1000 eurot;</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="ea1df8b3-4f1c-485c-be29-4c5b72c0b127">
+						<aktikuupaev id="be87ebe5-58c9-43c2-b9fb-3e23b6203ad3">2026-02-18</aktikuupaev>
+						<avaldamismarge id="2a6be768-c345-4652-a642-894e4fb28cbd">
+							<RTosa id="a5aaef5a-00a8-460e-a741-67e690536803">RT IV</RTosa>
+							<avaldamineKuupaev id="631195d8-67fa-4771-90af-8fb4ccf5ed12">2026-03-03</avaldamineKuupaev>
+							<RTartikkel id="b7ed621f-728d-4b20-b320-3bd3be79e4dc">2</RTartikkel>
+							<aktViide id="1b0be0d5-3a16-4823-914a-d0d2dc6b72fd">403032026002</aktViide>
+						</avaldamismarge>
+						<joustumine id="18c96542-de22-4493-9bf5-a03d5eebacdc">2026-04-01</joustumine>
+						<aktiNr id="3b187f26-762f-4685-959a-687d8bfcabf9">3</aktiNr>
+						<tavatekst id="ef7c100d-bdac-4596-bfcd-8023ad4c2556">, rakendatakse alates 01.01.2026</tavatekst>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para1lg1p2">
+					<alampunktNr id="f0e2bb4a-86ba-4802-9ed3-b117efa82e2e">2</alampunktNr>
+					<kuvatavNr id="8bf1ec9f-a331-4ea8-8411-53ffeaad1995"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="3a7a8354-79d4-4ea8-adb9-4e4ddc1708f6">
+						<tavatekst id="c49db251-9d37-4f8f-b077-d74243a6c295">matusetoetus 250 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p3">
+					<alampunktNr id="5ad523c4-39f8-4e2d-aa12-81855416cd61">3</alampunktNr>
+					<kuvatavNr id="040190b8-90b0-4e2e-9d98-2d750a366ec9"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="7cfae697-ee50-4aef-b652-4612f58fa298">
+						<tavatekst id="6b46d7ba-a14d-4762-a503-5dbe7ab81d8c">esimesse klassi astuja toetus 150 eurot;</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="83ce3d77-2097-484c-9418-1ca495b0328a">
+						<avaldamismarge id="6d34a55a-b35c-4bf9-8eaf-bbebf93c5ff3">
+							<RTosa id="0b7a4085-f2bb-4e59-9b92-8646e9aade36">RT IV</RTosa>
+							<avaldamineKuupaev id="cac82601-ff6e-4d59-9a17-3372fb47fcb7">2023-01-28</avaldamineKuupaev>
+							<RTartikkel id="d5414be7-c3ea-4099-a064-b46f9c66de4d">5</RTartikkel>
+							<aktViide id="7a5ae3bd-5ff5-4ccd-ba2e-3b7de07fb1ca">428012023005</aktViide>
+						</avaldamismarge>
+						<joustumine id="8e202b9a-1c42-4d0e-ab0d-739a2b64b3ed">2023-02-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para1lg1p4">
+					<alampunktNr id="684a8e16-98d6-40cc-84c8-a33b3edfb228">4</alampunktNr>
+					<kuvatavNr id="8a71baed-48bb-4754-8b9f-0f957ea54e48"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="3fe9684c-1371-443c-a6e3-8da5763ae5fe">
+						<tavatekst id="15130166-8952-4935-a033-102bd234269e">hooldajatoetus täisealise isiku ja puudega lapse hooldajale 55 eurot kuus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p5">
+					<alampunktNr id="717f0a88-8a8d-421f-a1fd-1221e008bd25">5</alampunktNr>
+					<kuvatavNr id="38991de1-b5b4-4175-a6ec-48f40bafd028"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="8bcf137f-8eab-442e-af04-0cabd46685ae">
+						<tavatekst id="8e939517-1ae0-4d0e-9738-cced45715660">Juhtkoera ülalpidamise toetus 65 eurot kuus.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="1d3d125c-7a79-4b3a-8a85-86152c0ae327">
+						<avaldamismarge id="230393ac-059c-4776-9ab7-16d3113d761a">
+							<RTosa id="77142800-99b4-42fe-9039-7a420804ae95">RT IV</RTosa>
+							<avaldamineKuupaev id="a7a7037d-204d-4ea5-a1b6-372f0a0f8942">2019-12-27</avaldamineKuupaev>
+							<RTartikkel id="80b208f7-a60c-48ff-859f-f32a3c3d4f43">2</RTartikkel>
+							<aktViide id="30e3935e-c16f-4566-9bae-d65e012fd32c">427122019002</aktViide>
+						</avaldamismarge>
+						<joustumine id="d0b76390-17c9-4c1a-a6d6-0e898364ed0c">2020-01-01</joustumine>
+					</muutmismarge>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="66a9c7b2-efa9-4082-8634-b77790b442f3">2</paragrahvNr>
+			<kuvatavNr id="d6468784-8826-464f-afb2-c209272e5e44"><![CDATA[§ 2. ]]></kuvatavNr>
+			<sisuTekst id="4a86faf0-ec6f-4876-8227-a1318d7d45bf">
+				<tavatekst id="d6dd8018-dd78-4637-b89f-0f3de75691bf">Määrus jõustub 1. mail 2018. a.</tavatekst>
+			</sisuTekst>
+		</paragrahv>
+	</sisu>
+</oigusakt>

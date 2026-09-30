@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="a56fcd16-f049-4198-ac2e-cadad11c482f" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Tartu Vallavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2017-12-28</aktikuupaev>
+  
+  
+  <aktiNr>13</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2018-01-05</avaldamineKuupaev><RTaasta>2018</RTaasta><RTartikkel>22</RTartikkel><aktViide>405012018022</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2018-01-08+02:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2018-01-04</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>405012018022</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2018-01-04</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1041626</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2018-01-04</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>?Teadmata? ?Teadmata?</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="462fae6e-998d-47e7-82cc-202cfd29b043">
+  <nimi id="3ee72386-2cd3-4db6-a6d2-eae7cd550d94">
+   <pealkiri id="3de9ca3d-bcdf-416e-8db6-3e66f0de6e4d">Sünni- ja matusetoetuse määramise ja maksmise tingimused ja kord Tartu vallas</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="d1f48402-3636-409c-babc-cfbaa04e3f2e"><preambul id="840a3db8-5ff7-4327-b53c-d1b3053001f3">
+   <tavatekst id="b0c1a618-2af5-4d9e-aec8-1ee27ba13a96">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lg 1 p 5 alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="58eddbac-5549-47bf-b920-c4fe5326d091">1</paragrahvNr>
+   <kuvatavNr id="955ca9de-1fbb-4703-99c6-b3feea8dfc40"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="44ebf3f5-5039-4940-a745-ddea54f9cb3d">Üldsätted</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="1b192915-31d0-408e-9756-2fbac45a4161"/>
+   <kuvatavNr id="94de28dd-be60-43df-9ee0-1bdc2edf6709"/>
+   <sisuTekst id="aee8e8ff-43f4-4df4-9b8e-179617abf58b">
+    <tavatekst id="0a3fd8d4-63c8-48fd-823f-187368d6f15f">Määrus sätestab Tartu valla eelarvest makstava sünni- ja matusetoetuse määramise ja maksmise tingimused ja korra.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="72d9a239-c5fc-4aae-a932-056e04cf5a07">2</paragrahvNr>
+   <kuvatavNr id="832a74c9-74d7-440d-9e71-372861135c42"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="1f95617c-f62e-4faf-8772-5e673554259e">Sünnitoetus</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="bd1b3485-3e6d-4515-8437-3a00a73ef6ea">1</loigeNr>
+   <kuvatavNr id="e242779d-57ff-46ef-9f41-a408d3b78d3f"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="9667f7df-92ee-4277-8aff-5051cbd413bd">
+    <tavatekst id="8bff77e7-5128-4ce0-939b-8dbeb427a012">Sünnitoetuse määr on 512 eurot lapse kohta, millest esimene osa (320 eurot) makstakse vanemale pärast lapse sünni registreerimist ja teine osa (192 eurot) lapse aastaseks saamisel, tingimusel, et laps on Rahvastikuregistri andmetel jätkuvalt Tartu valla elanik.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg2">
+   <loigeNr id="23614184-0354-4111-a987-759e7a960d0d">2</loigeNr>
+   <kuvatavNr id="b89951f1-9789-4eb5-9c9e-4a18a84a968c"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="386a63cf-a2d5-4a68-9e54-e49d28a2759b">
+    <tavatekst id="1088ec7b-9f78-42ae-aac2-f987ef717560">Lapse sünnitoetust makstakse lapse sünni puhul lapse vanemale või lapsendajale, kes on elukoha registreerinud Tartu vallas enne lapse sündi ning tingimusel, et laps on Rahvastikuregistri andmetel Tartu valla elanik ja elab toetuse taotlejaga ühel aadressil.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg3">
+   <loigeNr id="6a7f8f80-3891-4fcb-924a-a9f294c668da">3</loigeNr>
+   <kuvatavNr id="e936ecdd-6ee1-4164-984a-e6bf83a00efe"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="1a791562-3936-470e-914f-aefc77f3b847">
+    <tavatekst id="4bbceedb-2db3-468b-87bd-9d3c0f14612b">Sünnitoetust ei maksta, kui laps on riiklikul ülalpidamisel või kui sünnitoetust maksti ühele vanematest teises omavalitsuses.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg4">
+   <loigeNr id="683252f0-b272-4ab9-9f0e-e49abdafbc8b">4</loigeNr>
+   <kuvatavNr id="4a7ffcda-cdf4-4adb-b97a-64bbdb56c3ec"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="2536ea4c-435e-488c-bc42-4950bd488725">
+    <tavatekst id="7da6c3ab-4f18-4955-9c2e-894de7ceb461">Sünnitoetuse taotlemiseks esitab taotleja avalduse Tartu Vallavalitsusele (edaspidi vallavalitsus) enne lapse kolmekuuseks saamist. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg5">
+   <loigeNr id="3a25b11d-73b3-46ee-921c-94ba08e592d5">5</loigeNr>
+   <kuvatavNr id="a192a363-315f-4593-843a-939392509eab"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="fbb74995-238a-4be2-8c39-2fdfe10f2ef9">
+    <tavatekst id="72185306-fffb-47a4-bd87-bc1afa29c293">Sünnitoetuse teise osa maksab vallavalitsus välja omal algatusel pärast toetuse saamise aluseks olevate asjaolude kontrollimist. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg6">
+   <loigeNr id="42e45886-2a54-4777-b861-62380747f50c">6</loigeNr>
+   <kuvatavNr id="0305da56-8486-4e29-90d5-d898642c38c5"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="1aee1bef-2cd4-4e22-bbfc-83c0bf366f0d">
+    <tavatekst id="dcb744fc-04f2-4826-98c8-1b6556b78b7d">Lapse lapsendamisel või lapse üle eestkoste seadmisel võib sünnitoetust taotleda enne lapse üheaastaseks saamist tingimusel, et varem pole selle lapse sündimisel sünnitoetust ühegi omavalitsuse poolt makstud.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg7">
+   <loigeNr id="57f44c80-e401-4ffd-aa6d-21f24480efb4">7</loigeNr>
+   <kuvatavNr id="88ad5343-3038-41bf-b3ce-e431fa822120"><![CDATA[(7)]]></kuvatavNr>
+   <sisuTekst id="24d6b575-ce70-4623-a7a0-4c319bd0c30a">
+    <tavatekst id="759b99da-82b2-46da-8bbe-6861629bcf18">Vallavalitsusel on õigus nõuda vajaduse korral täiendavaid dokumente, teha päringuid andmekogudesse ning pöörduda teiste omavalitsuste poole.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="9bb8a103-d66a-416e-ad02-de6679bec764">3</paragrahvNr>
+   <kuvatavNr id="9e60238c-642a-4094-9c3c-a58480747b5a"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="dfb0ea51-f121-49cf-be57-405547d55def">Matusetoetus</paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="7e725f4d-6d07-409c-979f-12941d0fe644">1</loigeNr>
+   <kuvatavNr id="36dc880e-8c99-4983-9cfa-2b137d7f96c4"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="8a4eed98-6ad9-4957-af42-5159bc514741">
+    <tavatekst id="00cb8ee0-d20a-4ce7-bf09-bd59d71226d3">Matusetoetuse määraks on 250 eurot. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg2">
+   <loigeNr id="6cfb40c8-d5b6-4b74-9e44-26fc1ecc349d">2</loigeNr>
+   <kuvatavNr id="0c0bc0cb-543b-42fd-8519-2f015f9a5ffb"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="f75bb9e5-5ca6-45c2-8551-1facbb85e8a0">
+    <tavatekst id="17d2b110-82f6-486b-be29-d197148c5f99">Matusetoetuse taotlemiseks esitab matuse korraldaja Tartu Vallavalitsusele avalduse.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg3">
+   <loigeNr id="c37b3632-9e18-44de-b976-a7e843b48dac">3</loigeNr>
+   <kuvatavNr id="ad0d30ce-0313-4cb8-a21d-88cc91716cc7"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="82298442-181c-49f6-b97f-b29ffdb3528a">
+    <tavatekst id="797e3882-8b27-4ac0-b40c-595b22827348">Matusetoetus makstakse matuse korraldajale, kui surnu elukoht oli surma hetkel Rahvastikuregistri andmetel Tartu vallas.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg4">
+   <loigeNr id="56a9a896-bb77-4e1b-9397-2f3232a4aa82">4</loigeNr>
+   <kuvatavNr id="21bd8f28-bd3e-4f4c-81a9-e42a4f458190"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="bcbe68df-d0b1-4f47-9571-35d97e66bbb9">
+    <tavatekst id="694ee490-04db-4f2d-b09d-6472640ee7a2">Matusetoetust ei maksta:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para3lg4p1">
+   <alampunktNr id="31df77af-fb39-4bb2-8eb6-c9789f311739">1</alampunktNr>
+   <kuvatavNr id="727166bc-9aee-478e-aea1-b91babeee843"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="a47e097c-4709-4bc9-830f-7a12fac3e59d">
+    <tavatekst id="964fc2f3-3bb7-42f5-afd4-20bb1a0c061d">isiku surnuks tunnistamise korral;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg4p2">
+   <alampunktNr id="e78ed5fe-f15b-4c31-af3c-e3cbff41cb02">2</alampunktNr>
+   <kuvatavNr id="c5a653ea-42e9-40ef-acbc-4d61a919f206"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="e9de0936-6d55-45a2-8525-413c79dad7c2">
+    <tavatekst id="bdc11d8c-d610-485a-8374-3834b53dbde3">kui matuse korraldajaks on riigiasutus.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para3lg5">
+   <loigeNr id="7f79cb68-f399-4c7f-bce8-ef87487db7e3">5</loigeNr>
+   <kuvatavNr id="a5105a7e-e7bf-44a6-a40b-b2be08415733"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="04ef7a5c-be91-4a47-abcb-7b673d837958">
+    <tavatekst id="1e8867ba-a91b-42ba-bd1a-b43b517688b4">Matuse korraldaja on isik, kes kannab surnu matuse korraldamise kulud.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para4">
+   <paragrahvNr id="bbce897a-9c19-4a11-a06c-46adf33ff081">4</paragrahvNr>
+   <kuvatavNr id="f6f1f810-88e8-4198-9325-24a687fda165"><![CDATA[§ 4. ]]></kuvatavNr>
+   <paragrahvPealkiri id="d6f28bf1-e26a-47c4-92a6-0f3a4395ad0c">Rakendussätted</paragrahvPealkiri>
+  <loige id="para4lg1">
+   <loigeNr id="fed53727-c13d-441d-a412-cf439149ff78">1</loigeNr>
+   <kuvatavNr id="4fd451bf-6e28-41ae-aef1-a69e05c6edfb"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="7411764d-c6a1-4add-922f-ada3ff8c1d72">
+    <tavatekst id="c33819ff-453f-4e5e-a195-ef408f9849ff">Sünni- ja matusetoetus makstakse viie tööpäeva jooksul taotleja avalduses näidatud pangakontole.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg2">
+   <loigeNr id="6164ad57-56f0-4304-bdc2-9a5ad53e45e1">2</loigeNr>
+   <kuvatavNr id="7ea8d52b-2b38-417e-86f2-9792b2e9f3d4"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="2fd81acf-a14a-4df0-8ef7-82f104c11e89">
+    <tavatekst id="1f4f7ea8-732a-4f32-93d1-9efa036293bf">Määrus jõustub kolmandal päeval peale avaldamist Riigi Teatajas ja määrust rakendatakse alates 01. jaanuarist 2018.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg3">
+   <loigeNr id="c69da922-ce1a-4560-9f4f-1757efc5c208">3</loigeNr>
+   <kuvatavNr id="98908112-d953-49f3-bb24-d57afe97a664"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="22b6f88f-6f82-48cb-aed6-58f9343b425f">
+    <tavatekst id="0bb0d2de-0198-4b8d-a782-89561e8c371d">Kui sünnitoetuse esimene osa maksti välja enne 1. jaanuari 2018, siis järgmised osad makstakse Vabariigi Valitsuse 22.06.2017 määruse nr 104 „Laeva valla, Piirissaare valla, Tabivere valla ja Tartu valla osas haldusterritoriaalse korralduse ja Vabariigi Valitsuse 3. aprilli 1995. a määruse nr 159 „Eesti territooriumi haldusüksuste nimistu kinnitamine“ muutmine“ alusel ühinenud omavalitsusüksustes kehtinud määrades, tähtaegadel, tingimustel ja korras. </tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="63dbf23c-4aa5-4bb0-84b7-a43ce203a488"><allkiriKoht id="c6416839-cc54-415a-924f-ebb295ba251d"/><allkirjastaja id="7d1dffe5-248f-435f-8133-430170eed7ef"><ametinimetus id="d6de954c-a5d9-476a-b6ae-e233c573ca5c">volikogu esimees</ametinimetus><eesnimi id="6c8a7679-709c-4874-9469-a1172bdb3b46">Üllar</eesnimi><perekonnanimi id="052dfe1c-a673-4d55-ae6c-21cba6ee0169">Loks</perekonnanimi></allkirjastaja></allkiri></oigusakt>

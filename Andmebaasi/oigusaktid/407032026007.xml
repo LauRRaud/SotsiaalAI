@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="dd2467d9-7d4f-4bff-be97-eab0f36e6184" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Viljandi Linnavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2026-02-26</aktikuupaev>
+  
+  
+  <aktiNr>5</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-03-07</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>7</RTartikkel><aktViide>407032026007</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2026-03-10+02:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2026-03-02</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>407032026007</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2026-03-06</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1063010</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2026-03-02</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Sirli-Mai Nurka</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="71952d7a-c146-4922-b2fc-1c0ad0f4b3f5">
+  <nimi id="92ef30ab-9b06-4947-8756-efc20ec01575">
+   <pealkiri id="d705aa9b-25e3-4a89-a67d-8ad6c658fb66">Eluruumi alaliste kulude piirmäärad toimetulekutoetuse arvestamisel</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="f2be017c-c10e-440c-bcf1-3da37c53d002"><preambul id="eff01b53-9ba0-4fa6-85f0-8966444c0b72">
+   <tavatekst id="d97eeb06-6bda-4bb7-8aed-199184581796">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5 ja sotsiaalhoolekande seaduse § 133 lõike 6 alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="e3b7257b-6063-431d-8df7-3c3a62c715bc">1</paragrahvNr>
+   <kuvatavNr id="be3daead-ea6f-4036-b241-864bed85301f"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="b525bf3d-b562-4f38-b601-cef375a0a143">Üldosa</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="9e33f59b-d986-4ddc-bc22-391000723ac7"/>
+   <kuvatavNr id="00a42008-509d-4102-ba54-7de60d3c7f84"/>
+   <sisuTekst id="3b85d002-0c99-447a-9f91-c9ffcf6a057e">
+    <tavatekst id="7bd8d0d2-5a78-4083-9575-61cd3cecbd1c">(1) Toimetulekutoetust on õigus saada üksi elaval isikul või perekonnal, kelle kuu netosissetulek pärast sotsiaalhoolekande seaduse § 133 lõigetes 5 ja 6 sätestatud tingimusel arvestatud eluruumi alaliste kulude maha arvamist on alla kehtestatud toimetulekupiiri.<reavahetus/>(2) Toimetulekutoetuse määramisel võetakse arvesse elamuseaduse § 7 lõike 1 punkti 2 alusel kehtestatud eluruumi sotsiaalselt põhjendatud normi ulatuses eluruumi tegelikud kulud, kuid mitte üle linnavolikogu poolt käesolevas määruses kehtestatud piirmäärade.<reavahetus/></tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="3b8be72c-3349-4559-94c9-b0a7ecb096e7">2</paragrahvNr>
+   <kuvatavNr id="d618f7e2-cde5-4941-a88f-563273199d03"><![CDATA[§ 2. ]]></kuvatavNr>
+      <sisuTekst id="b98a3821-7aff-4631-b796-0384de014f4f">
+    <tavatekst id="7c5ee52a-c1d3-4e91-88bd-840c2ac82ef7">Kehtestada Viljandi linnas toimetulekutoetuse arvestamisel alalise eluruumi alaliste kulude piirmäärad alates 03.03.2026 järgmiselt:</tavatekst>
+   </sisuTekst>
+  <loige id="para2lg1">
+   <loigeNr id="ac82e779-72c7-44bb-8252-fe85a0b5ef60"/>
+   <kuvatavNr id="00e58daf-35ca-40c8-8da2-3891377ad09a"/>
+   <sisuTekst id="08b35151-383f-49a9-8b43-30a635a0b4ae">
+    <tavatekst id="8fb2db70-bd59-4219-865f-5de80e49d975">1) üür kuni 12 eurot ühe normpinna m² kohta kalendrikuus;<reavahetus/>2) eluaseme soetamiseks võetud laenu tagasimakse (s.h laenu põhiosa, intress ja kohustuslik varakindlustusmakse) kuni 12 eurot ühe normpinna m² kohta kalendrikuus:<reavahetus/>3) korterelamu haldamise kulu, sealhulgas remondiga seotud kulu kuni 6 eurot ühe normpinna m² kohta kalendrikuus;<reavahetus/>4) korterelamu renoveerimiseks võetud laenu tagasimakse kuni 6 eurot ühe normpinna m² kohta kalendrikuus;<reavahetus/>5) veevarustuse ja reovee ärajuhtimise teenuste maksumus kuni 5 m³ ühe elaniku kohta kalendrikuus;<reavahetus/>6) soojaveevarustuseks tarbitud soojusenergia või kütuse maksumus kuni 25 eurot ühe elaniku kohta kalendrikuus;<reavahetus/>7) kütteks tarbitud soojusenergia või kütuse maksumus (arvesse võetakse vaid ühte kütteliiki): kaugküttega, kaugkütteta ja elektriküttega eluruumide puhul olenemata kütuseliigist kuni 9 eurot ühe normpinna m² kohta kalendrikuus. Kaugkütteta eluruumis mitte rohkem kui 1000 eurot kalendriaastas. Kütuse ostmisel arvestatakse toimetulekuarvestuse sisse kuludokumendid, mis on ostetud taotluse esitamise eelsel või taotluse esitamise kalendrikuul;<reavahetus/>8) elektrienergia tarbimisega seotud kulu kuni 70 eurot üheliikmelise pere kohta kalendrikuus ning kuni 55 eurot iga järgneva pereliikme kohta kalendrikuus;<reavahetus/>9) majapidamisgaasi ühe ballooni maksumus perekonna kohta 2 kalendrikuu jooksul;<reavahetus/>10) maamaksukulud kolmekordse eluruumi normpinna ulatuses kalendriaastas;<reavahetus/>11) hoone kindlustuse kulud kuni 0,50 eurot eluruumi ühe normpinna m² kohta kalendrikuus;<reavahetus/>12) olmejäätmete veo kulud kuni 10 eurot ühe elaniku kohta kalendrikuus.<reavahetus/></tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="d621e201-4971-4f4d-aa8f-ef6be5bf7ff8">3</paragrahvNr>
+   <kuvatavNr id="88341298-314b-40c2-bbfa-fd1e5f8dd46c"><![CDATA[§ 3. ]]></kuvatavNr>
+      <sisuTekst id="a4ce1dc7-c4ef-4429-abef-e572d9893997">
+    <tavatekst id="6e237e2d-03bf-4e7d-8769-9e5087f76aed">Tunnistada kehtetuks Viljandi Linnavolikogu 16.06.2022 määrus nr 17 “Eluruumi alaliste kulude piirmäärade kehtestamine toimetulekutoetuse määramisel”.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para4">
+   <paragrahvNr id="3392b681-53ea-461a-91a2-f574dc4451fc">4</paragrahvNr>
+   <kuvatavNr id="2cb061b6-d741-42c7-98a7-90889aef9502"><![CDATA[§ 4. ]]></kuvatavNr>
+      <sisuTekst id="d7b000bf-515f-4913-a793-426cd5a8f801">
+    <tavatekst id="2afeb289-933b-4bee-a444-cf107da5416e">Määrus jõustub kolmandal päeval pärast avaldamist Riigi Teatajas.</tavatekst>
+   </sisuTekst>
+  </paragrahv></sisu>
+<allkiri id="a103034a-3f11-47cb-b43e-a2cf22bfa975"><allkiriKoht id="94065d5d-6656-4128-92ab-3f6a8cf7487f"/><allkirjastaja id="afea4003-4a8a-4660-a05a-e4262c990227"><ametinimetus id="70e9114e-991f-4a6d-ba65-eb851980a3a1">linnavolikogu esimees</ametinimetus><eesnimi id="ff6b4b46-ed34-4014-bd6c-e46e0c5c8dde">Helir-Valdor</eesnimi><perekonnanimi id="007bf571-97df-4058-94a5-9a5d44d3a041">Seeder</perekonnanimi></allkirjastaja></allkiri></oigusakt>

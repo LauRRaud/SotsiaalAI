@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="baa8bb1d-51b3-413e-a612-8988844b4501" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Kastre Vallavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2026-04-22</aktikuupaev>
+  
+  
+  <aktiNr>13</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-05-12</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>2</RTartikkel><aktViide>412052026002</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2026-06-01+03:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2026-05-06</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>412052026002</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2026-05-11</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Marike Võime</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1063467</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2026-05-06</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Gaabriel Tavits</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="f0af628b-d310-4aeb-8eae-4519d62e9064">
+  <nimi id="770168d5-9cd0-4538-a258-7fe6fa75215b">
+   <pealkiri id="455278fa-6d7c-4ac1-ada7-ce204d065f53">Hoolduskulu piirmäära kehtestamine</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="3002908e-46ed-4766-baf0-9c196672a245"><preambul id="b292e1a7-b02c-44a0-9ffa-06f428cd1ad5">
+   <tavatekst id="3c6519f3-9857-4f9c-98d6-adccd8742683">Määrus kehtestatakse sotsiaalhoolekande seaduse § 22¹ lg 2 ja 3 ning Kastre Vallavolikogu 18.03.2026 määruse nr 9 “Sotsiaalhoolekandelise abi andmise kord“ alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="1b6ee63f-020c-42f3-a7d5-be0b1acd492a">1</paragrahvNr>
+   <kuvatavNr id="b46b82ea-6bc8-4792-b25c-ffb9cc1814f3"><![CDATA[§ 1. ]]></kuvatavNr>
+      <sisuTekst id="7d5aeaf4-dec5-41d5-9288-6e04bf7696a2">
+    <tavatekst id="54e4734a-c6b4-4cc3-bcc4-ff74d441c5e3">Väljaspool kodu osutatava üldhooldusteenuse hoolduskulu piirmäära kehtestamine.</tavatekst>
+   </sisuTekst>
+  <loige id="para1lg1">
+   <loigeNr id="918a05a4-b014-49cb-988b-46ca441aed87"/>
+   <kuvatavNr id="cb5b66fb-09af-4368-982d-9173424db1bb"/>
+   <sisuTekst id="720b5003-108f-44c9-9e51-899ca22e9811">
+    <tavatekst id="6d04c636-181b-49f8-a8aa-56e6eff077bb">Kehtestada hoolduskulu piirmääraks 700 eurot kuus.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="55477e26-3303-4360-9e04-b1b62859e9ba">2</paragrahvNr>
+   <kuvatavNr id="2a70f8c0-e1e1-4a9a-97b5-b169115a154d"><![CDATA[§ 2. ]]></kuvatavNr>
+      <sisuTekst id="e1246207-e967-41b5-9bbe-950eee1ff64d">
+    <tavatekst id="536adfe7-73d5-4c54-95b3-324cad507b44">Tunnistada kehtetuks Kastre Vallavolikogu 18.05.2023 määrus nr 32 „Hoolduskulu piirmäära kehtestamine“.</tavatekst>
+   </sisuTekst>
+  </paragrahv><paragrahv id="para3">
+   <paragrahvNr id="e2c9ed37-d7e4-4e6a-b3dc-7840a6c3e623">3</paragrahvNr>
+   <kuvatavNr id="b270a859-3f7f-40a4-a7f6-adb7a6df6160"><![CDATA[§ 3. ]]></kuvatavNr>
+      <sisuTekst id="3a6e0e4c-b2ef-4acb-b3b9-a993d9cdbfb8">
+    <tavatekst id="3976bb9d-4fac-4f55-bfbc-4fd24712a9ea">Määrus jõustub 01.06.2026</tavatekst>
+   </sisuTekst>
+  </paragrahv></sisu>
+<allkiri id="5bf98df7-1f91-42e8-98a6-f18582916681"><allkiriKoht id="a3f994e3-a742-489d-9c9a-b529a0fe81f5"/><allkirjastaja id="ceabacdb-b899-48b4-afee-8cdd8c1c00b6"><ametinimetus id="e9363938-568f-446e-9a9a-16fd7027980f">volikogu esimees</ametinimetus><eesnimi id="691acc66-eda5-4445-be64-a758d816296a">Pille-Riin</eesnimi><perekonnanimi id="1fedb803-404f-4dc0-802d-b6d882129cfd">Raudsepp</perekonnanimi></allkirjastaja></allkiri></oigusakt>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="6454ca1b-2901-4366-8f74-887d379980cd" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Lääne-Nigula Vallavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2022-02-17</aktikuupaev>
+  
+  
+  <aktiNr>5</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2022-03-02</avaldamineKuupaev><RTaasta>2022</RTaasta><RTartikkel>7</RTartikkel><aktViide>402032022007</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2022-03-05+02:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2022-02-23</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>402032022007</globaalID>
+ <metaandmedVersioon>8</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2022-03-01</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1053633</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2022-02-23</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Airi Läänemets</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="8f3ad0ec-f5ff-4cb9-b7d7-b2a017331372">
+  <nimi id="1e7cb4ca-0027-426c-8170-c08772a2b52c">
+   <pealkiri id="5871e3d0-a825-4727-87ef-0960ae67367b">Sotsiaaltoetuste suurused Lääne-Nigula vallas</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="04176a36-98c6-47c8-bb47-d1ecaab37b46"><preambul id="135e51e4-8516-4dcc-b5d4-00c9fa2232bb"><tavatekst id="dcc89ec5-532b-4627-80e1-bdaf6a8be74c">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 6 lõike 1 ja punkti 5 alusel.</tavatekst></preambul><paragrahv id="para1"><paragrahvNr id="b3044394-e57a-458a-a87b-66c5138c572c">1</paragrahvNr><kuvatavNr id="936c3ebe-6cfd-4c38-9b2d-c87084e291e6"><![CDATA[§ 1. ]]></kuvatavNr><paragrahvPealkiri id="67d31824-9edb-4d1a-af1a-d652fbf9d98d">Üldsätted</paragrahvPealkiri><loige id="para1lg1"><loigeNr id="e9077e8d-3d26-40f4-9f03-e6cad81a70f9"/><kuvatavNr id="075ddb9f-8057-4a68-8a7b-56fc6905b0dc"/><sisuTekst id="3b5fc5e4-af4f-4ba2-9634-84ee5a97c9e7"><tavatekst id="e7de03ce-e764-4d86-907d-5fde3b860c81">Sotsiaaltoetuste suuruste kinnitamisel lähtutakse Lääne-Nigula Vallavolikogu 17.02.2022 määrusest nr 1-2/22-4 „Sotsiaaltoetuste määramise ja maksmise kord“.</tavatekst></sisuTekst></loige></paragrahv><paragrahv id="para2"><paragrahvNr id="2b309f5a-0a1a-4063-bfb9-df8432c09e7a">2</paragrahvNr><kuvatavNr id="f67118e8-c452-4fc2-bd6e-a9925b527f8f"><![CDATA[§ 2. ]]></kuvatavNr><paragrahvPealkiri id="165e1283-df89-4abd-bd4e-4e355da80504">Sotsiaaltoetuste suurused</paragrahvPealkiri><loige id="para2lg1"><loigeNr id="13d6503f-d9fb-4881-ade7-c9ba3d5f27ef"/><kuvatavNr id="3407b870-d5b4-41da-9a35-c2717c02c379"/><sisuTekst id="1f4a6834-5021-401d-a265-52e16aa16093"><tavatekst id="d50bd9ab-39c9-4ce7-981c-fb65f26d561b">Kehtestada sotsiaaltoetuste suurused järgmiselt:</tavatekst></sisuTekst><alampunkt id="para2lg1p1"><alampunktNr id="b20b4223-0b3c-455b-b770-e0b30eb6265b">1</alampunktNr><kuvatavNr id="867572fd-d6aa-4c80-96f1-7c591163e9f0"><![CDATA[1) ]]></kuvatavNr><sisuTekst id="67516a2b-45ac-4122-abc4-bdfae08ebeb9"><tavatekst id="3fb48d30-2bb2-4db1-9ce6-73b0aa2fdaf9">sünnitoetus 1000 eurot (lapse sünnil 500 eurot, aastaseks saamisel 250 ja kahe aastaseks saamisel 250 eurot). Mitmikute sünni puhul makstakse lisatoetust 500 eurot lapse kohta;</tavatekst></sisuTekst></alampunkt><alampunkt id="para2lg1p2"><alampunktNr id="65280aac-22b9-4ae8-953e-87e14dd3d862">2</alampunktNr><kuvatavNr id="35713ca0-37b6-4820-b823-adf30f977f8b"><![CDATA[2) ]]></kuvatavNr><sisuTekst id="03f419a0-73eb-4f59-baff-3d35073e9141"><tavatekst id="86142abf-6039-479f-ba89-cf92fc0bcb49">esmakordselt koolimineva lapse toetus 250 eurot;</tavatekst></sisuTekst></alampunkt><alampunkt id="para2lg1p3"><alampunktNr id="a269c50d-6a99-47c5-9ed7-d6867214bf5f">3</alampunktNr><kuvatavNr id="e24dfd6f-d502-4cce-8dd2-0866bb65ba85"><![CDATA[3) ]]></kuvatavNr><sisuTekst id="cca0d63a-c8bf-4633-b579-936f27846bdc"><tavatekst id="95aa3f32-d8bc-4385-a998-683b0f2b773e">matusetoetus 250 eurot;</tavatekst></sisuTekst></alampunkt><alampunkt id="para2lg1p4"><alampunktNr id="e748efa9-71a9-491c-a699-349104fb2b4c">4</alampunktNr><kuvatavNr id="bad38741-a368-44d6-bf7c-4192a8dfdc95"><![CDATA[4) ]]></kuvatavNr><sisuTekst id="27c4b18c-21e1-4cfa-aa48-0043d3304564"><tavatekst id="a25a1340-d846-4377-9e26-0209e21b2c7f">ühekordne toetus 350 eurot aastas;</tavatekst></sisuTekst></alampunkt><alampunkt id="para2lg1p5"><alampunktNr id="2be4fcce-abd6-4707-a1c0-aa8b48285b27">5</alampunktNr><kuvatavNr id="7c5e628f-a043-4516-b03a-ada486f2fbfb"><![CDATA[5) ]]></kuvatavNr><sisuTekst id="11534b09-8e77-4696-96e3-0369206f7704"><tavatekst id="15054664-e96b-4a21-90bd-f5d7aca11560">hooldajatoetus raske puudega isiku hooldajale 100 eurot kuus;</tavatekst></sisuTekst></alampunkt><alampunkt id="para2lg1p6"><alampunktNr id="71f69041-1622-4c79-8c6f-cb626c53c73d">6</alampunktNr><kuvatavNr id="0bdd56c8-b6e7-40e6-8a2a-b16828714845"><![CDATA[6) ]]></kuvatavNr><sisuTekst id="c5f3898d-48b2-4ea2-a717-63be3915b10a"><tavatekst id="7b52e00e-ad98-4beb-8c02-84c7a5e57b6b">hooldajatoetus sügava puudega isiku hooldajale 100 eurot kuus.</tavatekst></sisuTekst></alampunkt></loige></paragrahv><paragrahv id="para3"><paragrahvNr id="fb205565-141e-48a9-aa4b-49654cbcdad5">3</paragrahvNr><kuvatavNr id="d88cee76-5071-4890-8ae1-f2948addc3fe"><![CDATA[§ 3. ]]></kuvatavNr><paragrahvPealkiri id="5c18abd2-b39e-4591-a1d0-0c831005a7f9">Rakendussätted</paragrahvPealkiri><loige id="para3lg1"><loigeNr id="94695af3-a60a-4e16-a256-292fef55abd8">1</loigeNr><kuvatavNr id="cf717a0c-3853-40e2-ba06-8efda7161568"><![CDATA[(1)]]></kuvatavNr><sisuTekst id="bcfc573b-0092-4828-9f05-40858453cdba"><tavatekst id="129dcd20-0114-4f08-bb71-885f03f0b358">Määrus jõustub kolmandal päeval pärast Riigi Teatajas avalikustamist.</tavatekst></sisuTekst></loige><loige id="para3lg2"><loigeNr id="07271e00-5232-4fa7-bb1b-f8d39bdbb497">2</loigeNr><kuvatavNr id="4dcdcbb2-fce1-4944-a6fc-aca22ca8b068"><![CDATA[(2)]]></kuvatavNr><sisuTekst id="20687e18-cbc9-4aa1-b58d-e356b8439599"><tavatekst id="fe916b8a-25d2-4786-9857-17cfd88b5700">Tunnistada kehtetuks Lääne-Nigula Vallavolikogu 24.05.2018 määrus nr 25 „Sotsiaaltoetuste suurused Lääne-Nigula vallas“.</tavatekst></sisuTekst></loige></paragrahv></sisu>
+<allkiri id="8ec0f4b6-e824-4cc3-b00a-3d442f37fc46"><allkiriKoht id="63bdd108-14e9-49ec-a249-32e883c2977f"/><allkirjastaja id="429e8490-50d3-4320-b9bb-cf66db5ebfc8"><ametinimetus id="0504f7bd-14f0-4eed-a782-3e26a99b8af3">volikogu esimees</ametinimetus><eesnimi id="ed962718-3213-4113-b1bb-38a7fa423e93">Mikk</eesnimi><perekonnanimi id="e336a46d-de9f-4e15-8f93-68a31beaf88a">Lõhmus</perekonnanimi></allkirjastaja></allkiri></oigusakt>

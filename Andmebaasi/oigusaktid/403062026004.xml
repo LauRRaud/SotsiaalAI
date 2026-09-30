@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="b9b07b50-d30c-44a2-9272-af4ce1f00983" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+ 
+ <valjaandja>Valga Vallavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  <tavatekst>, rakendatakse alates 1.01.2018.</tavatekst>
+  <aktikuupaev>2017-12-22</aktikuupaev>
+  <avaldamismarge>
+	<RTosa id="2eb80531-c417-42a0-b7d2-92d41930147d">RT IV</RTosa>
+	<avaldamineKuupaev id="6a9c1674-5891-4f59-a3df-29dbe7838063">2018-01-04</avaldamineKuupaev>
+	<RTaasta id="03fcab14-a6bb-4cdb-b163-b20a18a369d8">2018</RTaasta>
+	
+	<RTartikkel id="a35686b6-8df1-459c-8d12-e6f7774a3e1e">4</RTartikkel>
+	<aktViide id="0c18e7c5-f553-4628-a5f8-ae7bf3587a67">404012018004</aktViide>
+  </avaldamismarge>
+  <joustumine>2018-01-07</joustumine>
+  <aktiNr>8</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-06-03</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>4</RTartikkel><aktViide>403062026004</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2026-06-06</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2026-06-01</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>403062026004</globaalID>
+ <metaandmedVersioon>11</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2026-06-01</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ <terviktekstiGrupiID>1041428</terviktekstiGrupiID>
+ <eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2017-12-26</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Ene Elango</metaandmedVersioonPohjustaja>
+		</versiooniMuutus></metaandmed>
+	<aktinimi id="959d2cee-b467-4039-bef6-ffbddce9e628">
+		<nimi id="9a4b2249-0a34-4823-b404-1e5fd0515f35">
+			<pealkiri id="8b075787-63e1-4825-a3f5-fb4b49e7cdd5">Sissetulekust mittesõltuvate toetuste andmise kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="a0f06fd2-7b5f-4a2a-9581-beea09159855"><aktikuupaev id="4db0cec3-0d24-4bd4-8267-ed82e3f81110">2026-05-21</aktikuupaev><avaldamismarge id="c84f68cb-b90f-4845-855c-45193b94eec5"><RTosa id="93c756f4-9ba9-4659-9ffb-c7dae006cb2a">RT IV</RTosa><avaldamineKuupaev id="1d30b809-5bc2-426a-af67-f0c24b3335e7">2026-06-03</avaldamineKuupaev><RTartikkel id="fcf57a86-e494-4fb8-8504-985760cd8c5c">2</RTartikkel><aktViide id="f8ce2488-0e4c-4176-9d15-d4f350935eef">403062026002</aktViide></avaldamismarge><joustumine id="0eaf8247-dcde-42c8-a29c-a869a8ef45fe">2026-06-06</joustumine><tavatekst id="61dcae54-fde0-46c3-91fd-40e0530b1317">, rakendatakse 1. jaanuarist 2026</tavatekst></muutmismarge><sisu id="7cd18830-d198-4798-9798-02f1d25676e5">
+		<preambul id="4b6cca8b-e092-433b-aefb-1200b96eb2f2">
+			<tavatekst id="2eca8968-f44a-41c7-9163-a47786835090">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5 alusel</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="6650262a-7cd6-4aec-82e8-ff1c59730a46">1</paragrahvNr>
+			<kuvatavNr id="ca15e971-41fd-4289-9ae8-4dae9dc10e84"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="429f73f8-ac5a-4e41-b7ec-b665b078705c">Reguleerimisala</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="84247e77-c0e9-454e-ab59-5f064290cfec"/>
+				<kuvatavNr id="a76d4252-a3b1-4ccb-b50c-4b749f421c21"/>
+				<sisuTekst id="0c48497a-3af5-482c-ac6c-74e8ada65914">
+					<tavatekst id="141e89d0-2b0b-4471-be6c-8fb305ff872a">Määrusega reguleeritakse järgmiste sissetulekust mittesõltuvate toetuste andmine Valga vallas:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para1lg1p1">
+					<alampunktNr id="64a368af-5724-4739-863a-ffb1172eb012">1</alampunktNr>
+					<kuvatavNr id="e3da5bc4-a916-4045-bde9-17db3671e944"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="62d9f5ef-b672-43b0-813c-25b39897d81b">
+						<tavatekst id="85f8a589-ba25-4cd2-a103-d90d67262281">sünnitoetus</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p2">
+					<alampunktNr id="6ceffd18-8005-4eb9-a683-2bd63b352fd3">2</alampunktNr>
+					<kuvatavNr id="8f62597a-36ed-4300-8ff2-dc3a1331a4a3"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="7418b74f-a5e7-464e-9288-47deddd4c91b">
+						<tavatekst id="9ca37d18-240d-4846-a1a2-77cdc55a073e">ranitsatoetus</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p3">
+					<alampunktNr id="e3da464a-ef3c-417c-9ae8-fc3ac96daaa0">3</alampunktNr>
+					<kuvatavNr id="199ab9a0-20b0-495f-a303-a1c0d9d13220"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="f36f2b98-3cf7-4fda-a5ba-5b2ed39dc4ab">
+						<tavatekst id="592dc3c2-2127-428e-b0c6-ccb1797e6f90">kolme- ja enamalapselise pere koolitoetus</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p4">
+					<alampunktNr id="3789c6b8-0821-47c0-af4a-90ee42a30a64">4</alampunktNr>
+					<kuvatavNr id="26b886c4-9e8f-4479-853e-c88188ac5caf"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="1c1d7682-c7cb-488b-ac46-56fbbf663996">
+						<tavatekst id="7c71301a-1c60-4e25-9bca-209ca1b91f66">matusetoetus.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="aa8e59e8-8c76-4be7-aacc-8ae3d4ae618a">2</paragrahvNr>
+			<kuvatavNr id="675276e5-bff5-4c4d-9421-cb73820efae4"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="a2eb472b-122e-4381-a4ac-193721353d08">Sünnitoetus</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="83d33bb0-d042-4fab-b19d-a3470cbaac38">1</loigeNr>
+				<kuvatavNr id="105a4e10-4101-4178-8129-ae698a38411e"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="e4ff68ab-22a9-44ee-a63d-0f2787909011">
+					<tavatekst id="93ff29ad-5f66-4981-9dfe-84fe7b61f6dc">Sünnitoetust antakse lapse sünni puhul.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg2">
+				<loigeNr id="5c6f3daf-6af8-4b3a-bf7f-ce380598b3f9">2</loigeNr>
+				<kuvatavNr id="08ca1f54-8490-4ab1-8850-dd8c9fce21cc"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="96b13b2c-e49c-4904-924e-8b51787988fa">
+					<tavatekst id="015dd5ca-e4e1-4942-ad7c-281414139b6d">Õigus sünnitoetusele tekib, kui lapse sünnil registreeritakse lapse elukoht Valga valda ja vähemalt ühe lapsevanema elukoht oli Valga vallas.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg3">
+				<loigeNr id="e55c295b-59d0-4c8b-82b9-f452c1bf9a60">3</loigeNr>
+				<kuvatavNr id="ca577740-e450-4736-85f5-87c864a208bf"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="fa9584e3-bcea-4ae3-bd43-528bb5b6b143">
+					<tavatekst id="260d7e3a-81c9-4592-b4d2-e3f9e8c55dbd">Sünnitoetuse suurus on 530 eurot ja see määratakse kolmes osas:</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="bd055f03-3db4-4767-af26-d358c693a9ba"><avaldamismarge id="7e007779-778e-45a0-97b6-2dc18357c79a"><RTosa id="2235ed5a-9e71-4eea-8e10-33adf4ef88fc">RT IV</RTosa><avaldamineKuupaev id="796bf65b-ad99-41be-a795-7978dc7f4c7b">2026-06-03</avaldamineKuupaev><RTartikkel id="76f00661-674d-41dd-b879-d2795059c9aa">2</RTartikkel><aktViide id="7c200364-6436-4901-b774-af85eacd6492">403062026002</aktViide></avaldamismarge><joustumine id="48ff92fe-7b2e-4afb-9560-22d06a24c444">2026-06-06</joustumine><tavatekst id="bd1ecf7d-a3d2-48c4-aa69-8a7575584948">, rakendatakse 1. jaanuarist 2026</tavatekst></muutmismarge><alampunkt id="para2lg3p1">
+					<alampunktNr id="8a691ae5-9e99-4bc9-b67d-3b46d2607d61">1</alampunktNr>
+					<kuvatavNr id="34fa9531-9b36-41f1-9d34-eac832cc0837"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="89bafc9b-0c8d-4985-8c3a-21cbd4059908">
+						<tavatekst id="3ba038d4-d052-4a45-81ce-62258544aaef">lapse sünnil 330 eurot,</tavatekst>
+					</sisuTekst>
+				<muutmismarge id="64fd2a44-da80-4a8d-a0c2-09a6c61cbf43"><avaldamismarge id="297028fa-81d4-40ee-bdc6-c420c5bc67d9"><RTosa id="98c1456b-7a63-498b-a3ae-9c7d7402a2ef">RT IV</RTosa><avaldamineKuupaev id="d6c78528-aac3-4009-9065-c6ccb8e0f501">2026-06-03</avaldamineKuupaev><RTartikkel id="297c4c0d-457d-4327-84d0-017c9aad617a">2</RTartikkel><aktViide id="04bcf945-46b0-4d11-89a2-8ab4f56716c0">403062026002</aktViide></avaldamismarge><joustumine id="e9c6ea5d-5ff7-416b-bfd6-e4d90ac30369">2026-06-06</joustumine><tavatekst id="fec5149b-6d80-4c1b-9e35-4f896e24ce43">, rakendatakse 1. jaanuarist 2026</tavatekst></muutmismarge></alampunkt>
+				<alampunkt id="para2lg3p2">
+					<alampunktNr id="8da17487-6a1b-4003-a3ab-d62772b06008">2</alampunktNr>
+					<kuvatavNr id="6e0e9e7f-e853-422e-a583-509bbee55a41"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="cb9b887a-52e3-4b43-9a36-66f7bd06f876">
+						<tavatekst id="ccb7f68d-929a-4e8d-a03e-eba3672e7e28">lapse ühe aasta ja kuue kuu vanuseks saamisel 100 eurot,</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg3p3">
+					<alampunktNr id="30e44c9f-c31e-458f-9b22-e6c36185701c">3</alampunktNr>
+					<kuvatavNr id="4e8e1c83-25a5-41dc-8713-9f36b1ed4855"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="7419c93b-239a-414b-ba5c-c28c6435d635">
+						<tavatekst id="0f393886-877c-4713-a4a4-2227c88f2f90">lapse kolmeaastaseks saamisel 100 eurot.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para2lg4">
+				<loigeNr id="49b986da-ac71-4b89-81cb-4e2fea638807">4</loigeNr>
+				<kuvatavNr id="73b586a4-1db4-416e-a858-2858e5b5508b"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="dad911f6-85cc-48be-a752-27e4b49e2b1e">
+					<tavatekst id="20b63780-3932-49b3-bda2-952e5c178a5c">Sünnitoetuse teise ja kolmanda osa määramise eelduseks on, et lapse ja ühe lapsevanema registreeritud elukoht lapse sünnihetkest on katkematult olnud Valga vald ja toetuse osa saamiseks esitatakse avaldus.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg5">
+				<loigeNr id="cb10e52c-e6dc-453f-89fe-1942081d8774">5</loigeNr>
+				<kuvatavNr id="0d8683cd-9ffe-4af2-8a09-fb86773b6416"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="3bf3dd43-5485-4257-b7ca-0c60deda94a0">
+					<tavatekst id="8684bf83-4ce4-42c4-8418-07d4dfa5ca99">Toetuse taotleja esitab sünnitoetuse iga osa väljamaksmiseks Valga Vallavalitsusele avalduse, milles on märgitud taotleja ees- ja perekonnanimi, isikukood, elukoht, arvelduskonto number, lapse nimi ja isikukood.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="c6666d8d-06c7-4350-8eb9-d7e3662f51f7">3</paragrahvNr>
+			<kuvatavNr id="4a881c0a-6a39-4922-8909-ef452c041b34"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="b7847574-4a07-45cf-b53a-cefc1d3244da">Ranitsatoetus</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="8085b9ef-400f-480d-8a93-5bbd754ea1b7">1</loigeNr>
+				<kuvatavNr id="d1f0cea1-bb4b-47fd-a89b-8d2296fe69b7"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="fc910f32-a682-4d02-81a6-d75d19111ac0">
+					<tavatekst id="8d24c6bd-1a5b-4edd-841e-b13a9173d0ac">Ranitsatoetust antakse lapse esimesse klassi õppima astumisel.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg2">
+				<loigeNr id="782acf04-fc7f-417b-ac4e-71c56d21bf51">2</loigeNr>
+				<kuvatavNr id="353a939c-d218-49ce-8c61-17af8a44d909"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="67b95f11-7a36-460a-90be-208fa4e259c2">
+					<tavatekst id="0cd26b86-e8b8-4a00-aa09-bdb145752ae4">Õigus ranitsatoetusele tekib, kui lapse ja lapsevanema elukoht on registreeritud Valga vallas.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg3">
+				<loigeNr id="0ff3b2ed-5384-4a78-83d6-2dc3e66d073a">3</loigeNr>
+				<kuvatavNr id="f13dda5a-1876-4019-ab45-4a69e5d4740a"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="325c8f00-c94d-4f0c-9ed4-97daee784ce0">
+					<tavatekst id="9ebac768-3306-418f-bb09-34e4ab2c5b1d">Ranitsatoetuse suurus on 160 eurot.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg4">
+				<loigeNr id="13666b82-ba28-400b-a583-f034de7091cc">4</loigeNr>
+				<kuvatavNr id="200b8402-c766-455a-ac75-5fb90527dada"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="4252d937-77eb-41fe-a10a-dac72b85287c">
+					<tavatekst id="c4491abd-1120-4194-8c7b-19868ba55995">Toetuse taotleja esitab ranitsatoetuse väljamaksmiseks Valga Vallavalitsusele</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para3lg4p1">
+					<alampunktNr id="12dfc54e-06c1-442b-ab76-4231c6894800">1</alampunktNr>
+					<kuvatavNr id="74a2bd19-5c3c-4ca8-983a-e12b2e8b65ab"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="9878952a-997f-4e58-8abc-5abc3c7faa6a">
+						<tavatekst id="798f445a-9e23-4e1c-9617-26de51e8c324">avalduse, milles on märgitud taotleja ees- ja perekonnanimi, isikukood, elukoht, arvelduskonto number, lapse nimi ja isikukood.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="5d42ecec-d30e-43b3-b36a-f2d9cbc13269">4</paragrahvNr>
+			<kuvatavNr id="81cfa146-6a36-42fa-bde8-761315530c3c"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="41c1a734-7322-45c1-b06f-60fe6dfea2e3">Kolme- ja enamalapselise pere koolitoetus</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="a82e2fed-15a8-4753-95d0-ead8e0809e31">1</loigeNr>
+				<kuvatavNr id="eb65ec16-c412-48cc-b964-769dc4434afa"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="620312ff-a508-4979-9f32-bb18e9f1c8e4">
+					<tavatekst id="bc0c5d14-ead4-4180-9c56-8ae7688c5335">Kolme- ja enamalapselise pere koolitoetust antakse perele, kus kolm või enam kuni 19-aastast last õpivad tasemeõppes.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg2">
+				<loigeNr id="d3ea9764-9fa9-40a0-a1f6-46fd89b9c7df">2</loigeNr>
+				<kuvatavNr id="55ccfb13-add3-4bb8-ad7c-6954de135f8e"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="fac2feb8-242c-424f-9aa9-8abb853a7e87">
+					<tavatekst id="38796afd-3698-4dd1-b593-fffe94639699">Õigus kolme- ja enamalapselise pere koolitoetusele tekib, kui laste ja lapsevanema elukoht on registreeritud Valga vallas.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg3">
+				<loigeNr id="a7ba0c5b-c1ca-45d4-9e62-e0303d93d78d">3</loigeNr>
+				<kuvatavNr id="4c05dbcd-8e54-4490-9526-b293092d94a5"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="1d66e4fc-116f-4650-834d-2448c4f684c2">
+					<tavatekst id="6780bd7a-275c-4ba9-b85d-caf799f8b4f6">Toetuse suurus on 130 eurot ja seda makstakse üks kord igal kalendriaastal.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg4">
+				<loigeNr id="8a35de2f-25b4-4fc8-b7eb-44f5d0d38970">4</loigeNr>
+				<kuvatavNr id="c739ead4-c843-4926-a865-330d6859c69e"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="e2f402eb-2b5f-466d-8cbe-5b6c5f577e8c">
+					<tavatekst id="8d10e71b-38bc-4ace-bbe9-3eb71a2fc138">Toetuse taotleja esitab kolme- ja enamalapselise pere koolitoetuse väljamaksmiseks Valga Vallavalitsusele</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para4lg4p1">
+					<alampunktNr id="7a2be957-95b4-40eb-9a12-c09d21e062f7">1</alampunktNr>
+					<kuvatavNr id="feae3703-08ca-49f9-8853-18ed26cf8a6f"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="eadadc54-0958-4e7f-aa5d-1e704ba1db93">
+						<tavatekst id="c0e5c044-170b-4a70-8c31-cdaebf2a9d70">avalduse, milles on märgitud taotleja ees- ja perekonnanimi, isikukood, elukoht, arvelduskonto number, laste nimed ja isikukoodid.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="c5d1a362-96b9-4e49-a753-9d503429ed6f">5</paragrahvNr>
+			<kuvatavNr id="3922107a-03b7-43f6-9424-89621b4a88d1"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="0cd95f02-0e0f-4eaa-b422-41238c351f3d">Matusetoetus</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="cd93cf09-b14d-48ea-83aa-334eda85a3ed">1</loigeNr>
+				<kuvatavNr id="fb94c217-412d-4a58-a290-d81cda8535af"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="762cd7e9-a1f7-46cc-bbba-decdb977e264">
+					<tavatekst id="ef4902aa-c047-4259-8102-c491e4ea316c">Matusetoetust antakse matusekulude kandjatele, kes korraldavad surnu matmise.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg2">
+				<loigeNr id="1809fead-07d8-45d6-873a-8edf01089fd3">2</loigeNr>
+				<kuvatavNr id="27874085-b8aa-48e7-a709-05c462d0c34e"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="14c0e07e-90b2-4c1d-aeff-e04a7efe937f">
+					<tavatekst id="d9288719-ba2d-4de4-bab6-234b1ea4de77">Õigus matusetoetusele tekib ühel matusekulude kandjatest, kes korraldab surmakuupäeva seisuga Valga valla elanikeregistris olnud isiku matused.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg3">
+				<loigeNr id="8b4ebfb5-7b40-438f-b348-797882ac9cec">3</loigeNr>
+				<kuvatavNr id="1975205c-d449-4d70-80b0-6d54b64873e9"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="db90ce8d-2c5d-4a29-a2d4-14ca5caa21d3">
+					<tavatekst id="11d6e67d-fab6-49f9-b174-7e80e6a804d6">Toetuse suurus on 250 eurot.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg4">
+				<loigeNr id="e25b9ce6-7a64-4ad2-a928-2bebc4fd0ec4">4</loigeNr>
+				<kuvatavNr id="b97ced3c-8fca-46d3-977d-9e6ca15e0151"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="7b4e69c2-82b0-48c1-a576-d55c5c276055">
+					<tavatekst id="f021d9b8-3b51-4452-959e-ad47d43db7e0">Toetuse taotleja esitab matusetoetuse väljamaksmiseks Valga Vallavalitsusele avalduse, milles on märgitud taotleja ees- ja perekonnanimi, isikukood, elukoht, arvelduskonto number.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para6">
+			<paragrahvNr id="6c468e1c-d57c-45c0-8e3a-d01a3a3902a0">6</paragrahvNr>
+			<kuvatavNr id="afbdc8fc-b1d7-4123-8f17-1f7ba17b4a13"><![CDATA[§ 6. ]]></kuvatavNr>
+			<paragrahvPealkiri id="2be56901-f169-49d3-8109-ddb91b8827c0">Asjaajamiskord</paragrahvPealkiri>
+			<loige id="para6lg1">
+				<loigeNr id="fb48b040-6f70-47e9-a6ad-fe50d826bea9">1</loigeNr>
+				<kuvatavNr id="6993d7da-479a-4d61-ba12-4efe9623176d"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="656b9c79-cacb-4448-ba55-51926c0cb2a3">
+					<tavatekst id="7f212394-88ff-4eb4-8e42-c372769ab503">Sissetulekust mittesõltuvate toetuste andmise otsustab Valga Vallavalitsuse ametnik 10 tööpäeva jooksul taotluse esitamise järel.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg2">
+				<loigeNr id="4bac2e4d-d9da-44bc-b6fe-36a3b2cb62f3">2</loigeNr>
+				<kuvatavNr id="d9ac7ba1-6c72-41a9-a4b0-e68c1de3cde2"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="8e825961-8200-45fd-bb9e-d2a72b495741">
+					<tavatekst id="e3b7887f-1b19-4b5f-95cd-160bac2786a0">Taotleja vastava kirjaliku märke kohaselt võib toetuse kanda teise isiku arvelduskontole. Sellisel juhul märgib taotleja avaldusse selle isiku andmed (nimi, isikukood, arvelduskonto), kelle arvelduskontole soovib toetuse ülekandmist.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg3">
+				<loigeNr id="57304a8d-457f-4a4f-98e9-cd41b95351af">3</loigeNr>
+				<kuvatavNr id="276b0687-74a6-408f-ace5-c7da4953ac75"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="0e75fbdc-f9bf-445f-82bf-b91e109c7d3e">
+					<tavatekst id="09b8cde8-bca4-4cd2-98a9-f745fabe88be">Sissetulekust mittesõltuvate toetuste maksmist on õigus taotleda kuni 1 aasta jooksul alates toetusele õiguse tekkimisest.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para7">
+			<paragrahvNr id="5be7df8d-8379-4256-bf1a-fae717c61387">7</paragrahvNr>
+			<kuvatavNr id="dd218762-0448-4a09-9253-ebaed557c40a"><![CDATA[§ 7. ]]></kuvatavNr>
+			<paragrahvPealkiri id="192cfd3b-8771-4bcd-b273-ffc708d89bf3">Rakendussätted</paragrahvPealkiri>
+			<loige id="para7lg1">
+				<loigeNr id="1e172aad-d72c-4f46-acf2-9df4b1526d28">1</loigeNr>
+				<kuvatavNr id="24cab4a1-30af-48c3-aa82-1352f4b2614d"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="b0b8fc5a-c4c7-4af7-ba5a-cf3cd9759552">
+					<tavatekst id="36bc23b3-93cb-4226-8104-789239389b3f">Määruses sätestatud elukoha ja paiksusnõue laieneb üldõigusjärgluse kohaselt ka isikutele, kelle registreeritud elukoht oli Valga linnas, Taheva vallas, Karula vallas, Tõlliste vallas ja Õru vallas.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg2">
+				<loigeNr id="b23830a9-99fb-4025-9f95-4c1624c696d9">2</loigeNr>
+				<kuvatavNr id="6ab1bc8a-c24a-4024-bee8-9dd0429bb703"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="abf9f401-d3bc-42e2-bcc1-cb85d9e419f2">
+					<tavatekst id="7ad6112f-acee-44b0-95a5-b594b497290e">[Käesolevast tekstist välja jäetud].</tavatekst>
+				</sisuTekst>
+				
+				
+				
+				
+				
+			</loige>
+			
+			<loige id="para7lg3">
+				<loigeNr id="02da54c5-c836-4eb1-a918-7f458293519a">3</loigeNr>
+				<kuvatavNr id="ad224e7a-902c-40a1-8010-211a6ededdf1"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="6fd20699-df44-460b-9ad9-c86a3d2f51e0">
+					<tavatekst id="46774b20-b2d8-4000-a890-1cd92f57a4c4">Määrus jõustub kolmandal päeval peale Riigi Teatajas avaldamist.</tavatekst>
+				</sisuTekst>
+			</loige><loige id="para7lg4">
+   <loigeNr id="5ee56ad5-4f59-406f-bad0-352b2e43ab5d">4</loigeNr>
+   <kuvatavNr id="bb56b4c0-5a6c-4433-b770-112bd3e3e85a"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="e07423d3-4b80-4b39-8348-5f6571193bad">
+    <tavatekst id="695f1028-0a7b-42e7-bc40-dcc907d57011">Määrust rakendatakse 1. jaanuarist 2018.</tavatekst>
+   </sisuTekst>
+  </loige>
+		</paragrahv>
+	</sisu>
+	
+</oigusakt>

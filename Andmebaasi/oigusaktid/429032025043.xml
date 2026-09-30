@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="d0858e7c-8b35-4ed5-ba88-785eb81bed5a" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Narva Linnavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2025-03-27</aktikuupaev>
+  
+  
+  <aktiNr>3</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-03-29</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>43</RTartikkel><aktViide>429032025043</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2025-04-01+03:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2025-03-28</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>429032025043</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2025-03-28</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Marike Võime</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1060723</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2025-03-28</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Tatjana Udovichenko</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="a929595c-681f-4470-895f-44e17e864c92">
+  <nimi id="1bf3d777-6c32-41c8-b6d5-b811e6882c25">
+   <pealkiri id="75f1078a-ca26-406c-a775-4ba4c0cda758">Vaimse tervise teenuse toetuse määramise tingimused ja kord</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="310f7b5b-8007-4d86-b4dd-564c063e9618"><preambul id="01c5b723-c58f-48e6-9d61-e9ce9d89c6a0">
+   <tavatekst id="844d2845-4478-480a-af15-ff1aa3c37906">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 37 ja sotsiaalhoolekande seaduse § 14 ja § 156 lõike 3<sup>9</sup> alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="c002edd6-36fc-4e75-9e0a-dd517dae919a">1</paragrahvNr>
+   <kuvatavNr id="6c9012e6-7ff0-4997-9950-1a30339e2b9b"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="dd2c8520-564b-4002-bcd7-c917524bb54e">Üldsätted</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="15e3891b-4492-47e9-ada5-373440b69422">1</loigeNr>
+   <kuvatavNr id="3ba5272f-1b5a-4d94-a035-acfbff2d8619"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="4d848ae1-c931-4b23-8879-2b6c62860d99">
+    <tavatekst id="65bd6aee-73f5-47f6-b8f4-6e934d4375d6">Määrusega kehtestatakse Narva linna elanikele vaimse tervise teenuse toetuse (edaspidi ka toetus) taotlemise tingimused ja kord.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg2">
+   <loigeNr id="9a29520c-7ad5-4345-8846-adf5da56deb3">2</loigeNr>
+   <kuvatavNr id="4dcfcfb0-f13c-4799-b590-8c2872daddb0"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="3a36660d-c761-4a5b-9d7d-ccac46300a34">
+    <tavatekst id="b43a1504-fd04-467a-b129-ef53736b258b">Vaimse tervise teenuse toetuse eesmärk on toetada Narva linnas elavate isikute psühhosotsiaalset heaolu ja vaimset tervist.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg3">
+   <loigeNr id="19abaac4-cb96-4ccc-a240-79635a5a5e99">3</loigeNr>
+   <kuvatavNr id="46211e76-4544-4aef-af0a-18ef3a0f2302"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="47b287f5-d25d-4c51-9406-b2eefaa74fb7">
+    <tavatekst id="558ae815-c6ce-46fc-8482-9bb810339eb3">Vaimse tervise teenuse toetus määratakse abivajavale lapsele ja täiskasvanule, kelle rahvastikuregistrisse kantud elukoht on Narva linn ja kes elab Narva linnas.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg4">
+   <loigeNr id="ca406098-340f-4cb9-b6ad-e1de51799a67">4</loigeNr>
+   <kuvatavNr id="96554acd-caa2-489c-ab8d-6a7ee7406852"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="ef245583-ffd1-45d7-800f-00a7f67624c6">
+    <tavatekst id="d8a97a01-c94e-485e-8d2f-e5daa7b2dc64">Vaimse tervise teenust osutab asjakohase ettevalmistusega isik. Teenust vahetult osutav isik peab vastama vajalikele kvalifikatsiooninõuetele.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg5">
+   <loigeNr id="1b8b9e49-2e9b-4e91-a8ea-5bd4a7de10c0">5</loigeNr>
+   <kuvatavNr id="8675709e-0978-47b9-8da5-fe6fd4a08e01"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="0a91581c-b321-4fe9-b019-b066578f4ae6">
+    <tavatekst id="bd217be3-4aea-4998-9700-a89d6f3ec16b">Vahendite kasutamist korraldab ja kasutamise üle peab arvestust Narva linna Sotsiaalabiamet (edaspidi Sotsiaalabiamet).</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg6">
+   <loigeNr id="4298bb7e-861c-4a65-8d19-69af39917ab3">6</loigeNr>
+   <kuvatavNr id="1709e5a0-484e-4c7c-8d59-ee55124fa800"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="9b478426-e198-4f6f-b61d-704c19aec036">
+    <tavatekst id="0fd17585-1f29-4fff-8db6-2c30dd0d2069">Teenust rahastatakse riigi poolt eraldatavatest toetus- ja tasandusfondi vahenditest ja vajadusel isiku omaosalusest. Teenust rahastatakse ja osutatakse vastavate rahaliste vahendite olemasolul.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="27083286-95c1-4c8f-bc11-4c1d847c4c6c">2</paragrahvNr>
+   <kuvatavNr id="813e62db-2836-483e-9320-60dcee5a68f8"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="87c03715-90d7-4a17-820e-9905984dee8e">Mõisted</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="1c478e0e-3177-45af-a8a2-8d88be50629d"/>
+   <kuvatavNr id="ee83ae0e-4b31-4d3c-8436-6982ce2c82b5"/>
+   <sisuTekst id="8e4bcff3-cccf-4695-8011-bd56f7933db2">
+    <tavatekst id="98d52465-6dfc-43c1-8b2c-7e5c4b691479">Käesolevas määruses kasutatakse mõisteid järgmises tähenduses:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para2lg1p1">
+   <alampunktNr id="42d88dff-dffc-44bb-8e9c-c67bddfe9c38">1</alampunktNr>
+   <kuvatavNr id="75c5534d-59d1-4244-ad77-e7eaae688176"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="f8fb2dda-05c6-4038-a670-f4051bdf6ca8">
+    <tavatekst id="ea542596-00ce-4ba7-a36d-6ed7a1afd41f">psühholoogiline nõustamine – teenus, mille eesmärk on parandada isiku heaolu, leevendada tema pingeid, lahendada kriise ja probleeme, edendada iseseisvust probleemide lahendamisel, toetada isiku toimetulekut saavutamaks adekvaatset enesehinnangut, suuremat enesekindlustust, oskusi ja enesetõhusust valikute ning otsuste tegemisel ja enesele püstitatud eesmärkide saavutamisel, õpetada paremat arusaamist iseendast, oma võimetest ja olukordadest;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p2">
+   <alampunktNr id="9943236b-784c-493e-84ca-2c29c1448480">2</alampunktNr>
+   <kuvatavNr id="ea787279-8b4b-418a-9b79-88ef9e5dab37"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="1d21a2a3-8365-42b9-b24a-03b5cd08d3b2">
+    <tavatekst id="fa8b76f2-88fc-451b-ba35-b262ef27a385">vaimse tervise kriisinõustamine – lühiajaline psühholoogilise abi teenus isikule, kes on läbi elanud traumaatilise sündmuse või õnnetusjuhtumi (sh olnud nende osas tunnistaja/pealtvaataja rollis) või kes on sattunud igapäevaelu kriisi ja tunneb, et vajab toimetulekuks abi (sh õnnetusjuhtumid, surmad, vägivaldne peretüli, kaotus, lein, lahutus, perekonfliktid, emotsionaalne toimetulek elusituatsioonidega, suitsiidmõtted, depressiivsus jne);</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p3">
+   <alampunktNr id="68f7e9c1-717c-4350-8d07-05767700a9d9">3</alampunktNr>
+   <kuvatavNr id="d35ca85e-46dc-412d-b76d-6818b3016229"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="f116cf99-da20-4dc9-ba50-cfb9481533ec">
+    <tavatekst id="3c810401-2c28-44ea-bc0c-9752f12dd82d">hingehoidlik nõustamine hooldekodus – teenus, mille käigus on hingehoidja kannatava isiku ja tema lähedaste ja hooldajate kuulaja, kõrvalolija ja toetaja. Sel kombel aitab ta isikul toimuvat mõista ja mõtestada ning toime tulla uute ülesannetega, mis ravi kestel kui ka ravi lõppedes isiku ees seisavad. Hingehoidja on isiku ja ta lähedaste saatjaks kuni tema lahkumiseni igavikku;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p4">
+   <alampunktNr id="dd6cc0bc-1351-4dff-a43c-0ec03ccff787">4</alampunktNr>
+   <kuvatavNr id="22d57a15-90c0-4fef-895c-7e78c18fde60"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="1d33062a-0abc-4690-9063-b7f5a8aebd7e">
+    <tavatekst id="ba9d8f3c-0922-4c96-8c6f-fdeaa4d59c3d">hingehoidlik nõustamine laiemalt (v.a hooldekodus) – teenus, mille käigus on hingehoidja kannatava isiku ja tema lähedaste kuulaja, kõrvalolija ja toetaja. Sel kombel aitab ta isikul toimuvat mõista ja mõtestada ning toime tulla uute ülesannetega, mis ravi kestel kui ka ravi lõppedes isiku ees seisavad. Hingehoidja on isiku ja ta lähedaste saatjaks kuni tema lahkumiseni igavikku;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p5">
+   <alampunktNr id="78599691-8d20-45a2-9861-a50be4df0305">5</alampunktNr>
+   <kuvatavNr id="2f79873d-815b-4901-8f7a-00f3d0779be7"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="f7e2b51d-34a8-46a0-9b26-d4784884da62">
+    <tavatekst id="0b98f430-7099-4d08-997b-110f32112f17">perenõustamine – teenus, mille käigus aitab nõustaja perel leida lahendusi keerukatele olukordadele (nt konfliktid, igapäevased stressiallikad, suhtlemisprobleemid). Eesmärk on anda juhiseid ja strateegiaid, mis aitavad perel paremini toimida;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p6">
+   <alampunktNr id="320637cf-d79c-4b39-94d6-ac69ee240e79">6</alampunktNr>
+   <kuvatavNr id="0861fad0-00e5-4a31-9b4c-d939f1a35a74"><![CDATA[6) ]]></kuvatavNr>
+   <sisuTekst id="7f7b088b-ed5c-43ca-b73c-357c2ad0239a">
+    <tavatekst id="e779c57a-c5d6-410e-9243-e7439d914a06">pereteraapia – teenus, mille käigus keskendutakse suhetele lastega, vanematega, õdede-vendadega, sh põlvkondade vahelised traumad, laste ja teismeliste stress, arenguprobleemid; üleüldine rahulolematus, lapse ja vanema suhtlusprobleemid, ebaefektiivsed suhtlusmustrid, keerulised suhted vanematega, elu arenguetappide ületamine jne.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="9df32568-ae0f-46e4-9774-c759b904657b">3</paragrahvNr>
+   <kuvatavNr id="34c45d7d-15a7-4a78-a19e-b3dc3ff851d1"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="bb948bb0-2608-4be7-8cf3-9ab5b98726b5">Rahaliste vahendite kasutamine</paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="546b5e29-55f3-4afa-9487-5d2955df339c">1</loigeNr>
+   <kuvatavNr id="4d711e58-03fb-4a27-b30d-b66f71388829"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="bb59fd56-2987-4bb2-99e0-c045c3156caa">
+    <tavatekst id="7b647a24-8457-4b5e-876c-099e685d9351">Vahendeid võib kasutada paragrahvis 2 nimetatud teenuste toetuse saamiseks.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg2">
+   <loigeNr id="f947ae10-990d-4375-a57b-3ec124da559c">2</loigeNr>
+   <kuvatavNr id="e57602c2-00cb-40d3-beac-f6576e584549"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="73dd53db-5e62-470e-9834-7d884577cca8">
+    <tavatekst id="6660269b-f873-422f-b31c-782003caf73d">Sotsiaalabiametil on õigus Narva Linnavalitsuse sotsiaalkomisjoni ettepanekul erandkorras määrata paragrahvis 2 nimetamata teenuse saamiseks toetust, mis aitab parandada abivajaja vaimset tervist ja heaolu.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg3">
+   <loigeNr id="3bc1742f-6f46-4c1d-bbe8-d5df82d493c5">3</loigeNr>
+   <kuvatavNr id="8b67565a-2193-4558-ad2e-bb0a2f36e240"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="30a1a4b8-2277-4f27-8086-f2507d6509ca">
+    <tavatekst id="edb1bd63-cf02-4e36-b069-1f290a80aad1">Üldjuhul valib taotleja endale sobiva teenuspakkuja ise v.a paragrahvi 2 lõike 1 punktis 3 nimetatud teenuse korral. Vajadusel abistab Sotsiaalabiamet sobiva teenuspakkuja leidmisel.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg4">
+   <loigeNr id="234e666e-99b4-43c8-8c66-ee90f454e50a">4</loigeNr>
+   <kuvatavNr id="a2669bbd-dda0-4216-985c-38d08bad7c4e"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="f0ef6814-17bd-4dcd-9d8f-cd6cf316fc51">
+    <tavatekst id="7b122972-6448-4386-adbb-e1a9da30838b">Teenuste korral määratakse isikule toetus kuni 10 teenuskorra kohta aastas.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg5">
+   <loigeNr id="d7127983-6b3b-47be-892e-22ad61eca414">5</loigeNr>
+   <kuvatavNr id="1bb49c62-78ab-4ec8-949e-af3ce04f97ce"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="b4427e60-9748-47f0-8bc3-fdad9d0b45b8">
+    <tavatekst id="cff28d95-41cb-4c1f-8f9b-f785140f319b">Teenus kestab 6 kuud alates esimesest kokkulepitud teenuse osutamise kuupäevast. Ühe teenuse osutamise seansi pikkus järjest ühele isikule on maksimaalselt 2 teenuskorda ehk 90 minutit.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg6">
+   <loigeNr id="2246ab10-a410-4217-8048-afe2fb18fbf9">6</loigeNr>
+   <kuvatavNr id="6d3cce02-d2e2-4d05-9181-14effce68653"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="14c74972-dea0-48a7-9d07-a458c67cfea0">
+    <tavatekst id="e0567d3c-f3a1-4ade-9541-9ff196d08c5b">Paragrahvis 2 loetletud teenuste toetuse piirmäära kinnitab Narva Linnavalitsus.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para4">
+   <paragrahvNr id="198203f8-136f-40e1-afea-c6e6e8092b00">4</paragrahvNr>
+   <kuvatavNr id="4c43fe32-015f-411f-a7ed-3493a44f49ff"><![CDATA[§ 4. ]]></kuvatavNr>
+   <paragrahvPealkiri id="115da0e5-2ca4-416e-b38b-dacb7e21bf65">Vahendite taotlemine ja eraldamine</paragrahvPealkiri>
+  <loige id="para4lg1">
+   <loigeNr id="82f389ca-a3b7-47f4-8f57-6210512070b5">1</loigeNr>
+   <kuvatavNr id="e7e3dadb-a3cb-4c1a-b11f-877d43b5deac"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="70769062-a2f1-469d-9ad2-aec388fb332a">
+    <tavatekst id="4a3beb8f-a261-4196-a0ad-0d2fe33552ad">Vahendite eraldamiseks tuleb taotlejal või tema seaduslikul esindajal esitada Sotsiaalabiametile põhjendatud taotlus. Taotluse esitamine on vormivaba, kuid teenuse kiiruse ja selguse huvides on mõistlik esitada kirjalikult taasesitatavas vormis (e-kiri jms) või kirjalikus vormis taotlus.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg2">
+   <loigeNr id="026832d2-cf3c-4cea-8c1a-ea4e09def86a">2</loigeNr>
+   <kuvatavNr id="1a7d5ca9-8371-4c67-8dee-e538755f7ced"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="814ccdc1-a8c0-4180-aff6-40677fcedb8c">
+    <tavatekst id="df9ca9ec-5f27-49de-bc18-f85eabab1918">Teenuse vajaduse täielikuks väljaselgitamiseks ja teenuse osutaja nõuetele vastavuse kontrollimiseks on Sotsiaalabiametil õigus ja kohustus nõuda taotlejalt täiendavaid dokumente ja andmeid, mida Sotsiaalabiametil endal ei ole võimalik iseseisvalt koguda, toetuse määramiseks vajalikke lisaandmeid ja dokumente ning saada toetuse määramiseks vajalikke andmeid kolmandatelt füüsilistelt ja juriidilistelt isikutelt. Sotsiaalabiametil on põhjendatud vajaduse korral õigus teha päringuid andmete saamiseks STAR infosüsteemi ja muudesse infosüsteemidesse.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg3">
+   <loigeNr id="da517ba5-1bae-4bbe-bee6-6a249c6850a1">3</loigeNr>
+   <kuvatavNr id="1f30c958-fbcb-4dea-848d-6865b7c174d9"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="2e964b26-137e-49c3-b886-3defff44eabe">
+    <tavatekst id="621c8866-506a-4d82-932e-94c10aecdd8e">Tähtajaks puuduste kõrvaldamata jätmisel jääb taotlus läbi vaatamata, millest teavitatakse taotlejat kirjalikult.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg4">
+   <loigeNr id="39fa26d4-e1a5-4426-8108-e9bce63e3fee">4</loigeNr>
+   <kuvatavNr id="deae7262-293d-40ad-8b39-1c340e45aaf3"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="089b1b8b-511d-4d54-a135-36bb082d9242">
+    <tavatekst id="f702c0dc-c4ad-4c65-b463-206f7ac77a76">Kõigi isikuandmete ja muude eriliigiliste andmete töötlemiseks annab taotleja isikuandmete töötlejale kirjaliku nõusoleku, mis on tagasivõetav. Nõusoleku andmisest keeldumisel või selle tagasivõtmisel võib taotluse menetlemine ja rahuldamine osutuda võimatuks.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg5">
+   <loigeNr id="19c81908-0fe2-4f8e-a7a0-2a884551e38c">5</loigeNr>
+   <kuvatavNr id="e8804339-0543-40e7-ace3-dbef23bd6253"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="633467c6-7745-42ed-90d5-b527abe2ceb4">
+    <tavatekst id="fc2096c0-a3ec-41db-b779-10a7e170c3dd">Sotsiaalabimeti direktor või tema poolt volitatud isik võtab vastu otsuse taotluse rahuldamise või rahuldamata jätmise kohta 10 tööpäeva jooksul nõuetekohase taotluse esitamisest.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg6">
+   <loigeNr id="909e53ad-37a7-476c-bfca-18ac537602ec">6</loigeNr>
+   <kuvatavNr id="df169fa5-6470-4840-b86f-a76757b18b8d"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="3b6842ea-0a63-40d5-a9a0-67d7da7c111a">
+    <tavatekst id="fcf5ee18-0240-45ce-94db-38bb9b2563e0">Sotsiaalabiametil on õigus jätta taotlus rahuldamata, kui:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para4lg6p1">
+   <alampunktNr id="28f69cab-c945-447e-98fb-569021d62750">1</alampunktNr>
+   <kuvatavNr id="9060e87e-b847-4488-b86d-a5b15b2beff1"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="0a82be37-a9ea-4bbb-b1a0-1bbf9d5a850c">
+    <tavatekst id="5b72fa08-b898-4178-940b-61319941d211">taotluses on pahatahtlikult esitatud ebaõigeid andmeid või andmeid on varjatud;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para4lg6p2">
+   <alampunktNr id="88eb110f-1dda-4df8-a2cf-ea0633f70835">2</alampunktNr>
+   <kuvatavNr id="d50fa8c5-27c6-42c6-a2f3-73fce7675f76"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="b74dfb6e-3edc-4937-8b1c-399949f4e6bb">
+    <tavatekst id="3dc2e8e2-4012-4abf-b4ae-2940ab35a1be"> koostöö eiramise tõttu ei ole võimalik taotluse asjaolusid kontrollida;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para4lg6p3">
+   <alampunktNr id="d4735a97-08c0-4bea-9bcf-11b7f24161d2">3</alampunktNr>
+   <kuvatavNr id="7e5fe104-fe79-46cc-8180-4faf758394dc"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="852d368c-eb85-4e9c-bde7-1adf008c8cac">
+    <tavatekst id="406a1551-9e33-49de-b964-86dac1f89de7">ei esitata täiendavaid dokumente;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para4lg6p4">
+   <alampunktNr id="668729fe-ebfb-4672-8b60-4681c578aade">4</alampunktNr>
+   <kuvatavNr id="e16d0289-2f53-4d95-8cb0-4ae4a3ca3e7b"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="40320a8c-99e7-4703-ad71-5997b23a4e3f">
+    <tavatekst id="08bb2d89-faf1-4d1e-aae0-5edac3febf12">taotleja olukorda on võimalik parandada muul viisil;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para4lg6p5">
+   <alampunktNr id="2f03c6d6-0539-41a2-aa27-75d93d1edcea">5</alampunktNr>
+   <kuvatavNr id="84b29982-a612-419f-8731-20b484318ecf"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="b265b837-d98c-41ca-a6b9-953b8f925366">
+    <tavatekst id="2634596f-2dac-4f1b-8cf5-8f23f5989dce">Sotsiaalabiametit ei ole viivitamata teavitatud hüvitise andmist mõjutavatest asjaoludest ja asjaolude muutumisest.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para4lg7">
+   <loigeNr id="1ed1ac00-d7a0-4b9f-80a7-f90f6296a091">7</loigeNr>
+   <kuvatavNr id="b5ab9f7d-3917-440c-98cf-51672602accc"><![CDATA[(7)]]></kuvatavNr>
+   <sisuTekst id="804e0663-6f28-47c1-af4b-47fb7b83dcff">
+    <tavatekst id="d43ff63e-632a-44b1-a31b-74ed3b906c98">Pärast otsuse tegemist võtab isik või tema seaduslik esindaja hiljemalt 1 kuu jooksul ühendust sobiva teenuse osutajaga ja registreerub teenuse saamiseks. Isik või tema seaduslik esindaja lepib teenuse osutajaga kokku teenuse osutamise kuupäeva ja kellaaja ning asukoha teenuse toimumiseks. Pärast registreerumist teavitab isik või tema seaduslik esindaja sellest kirjalikult Sotsiaalabiametit.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg8">
+   <loigeNr id="449f9fd8-786e-4296-8f27-71972db547cb">8</loigeNr>
+   <kuvatavNr id="9e96fcba-2e06-4f87-833d-08ccf15fd378"><![CDATA[(8)]]></kuvatavNr>
+   <sisuTekst id="1d74e251-ec19-4a64-9f9b-40dd17e858b6">
+    <tavatekst id="476b2057-db57-4278-afb1-e5d8fb2b5784">Isik saab teenust ainult siis, kui Sotsiaalabiamet on väljastanud teenuse osutajale garantiikirja teenuse eest tasumise kohta.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg9">
+   <loigeNr id="9ed9ebe5-0417-44cf-9ccc-5478371a0be9">9</loigeNr>
+   <kuvatavNr id="dfcaee47-9c9a-4e33-a224-783bbdab5605"><![CDATA[(9)]]></kuvatavNr>
+   <sisuTekst id="9c0221a4-d490-4647-9e7e-0733cb6c58da">
+    <tavatekst id="5ea1abff-4a03-4290-8515-8972f1b9d80b">Iga teenuse osutamise seansi lõpus on teenuse saajal või tema seaduslikul esindajal vajalik allkirjastada osavõtuleht, mis kinnitab isiku teenusel osalemist. Sotsiaalabiamet ei maksa isiku teenusele ilmumata jätmise eest.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg10">
+   <loigeNr id="ddbd3251-1ebc-4280-a340-cabe99c0ebcc">10</loigeNr>
+   <kuvatavNr id="aae39b01-0bdb-487c-b64a-dc6339b233de"><![CDATA[(10)]]></kuvatavNr>
+   <sisuTekst id="6c308375-318e-4066-a897-8475eae713bc">
+    <tavatekst id="c239c899-7bea-405c-958a-20f7675466b7">Teenuse osutamise võib lõpetada ennetähtaegselt, kui teenuse eesmärk saavutati kokkulepitud perioodist varem ja vajadus teenuse järele on ära langenud. Teenuse saajal või tema seaduslikul esindajal on kohustus sellest teenuse osutajat ja Sotsiaalabiametit viivitamatult teavitada.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg11">
+   <loigeNr id="b85bd652-e458-45ac-8408-0c731e37e336">11</loigeNr>
+   <kuvatavNr id="d4c8bbb7-0590-47e0-8d8b-a52245451806"><![CDATA[(11)]]></kuvatavNr>
+   <sisuTekst id="92241b05-9461-4daf-b82d-19a14e384adc">
+    <tavatekst id="91e9a74d-7176-46fb-8eea-efa0a46b0820">Vahendeid eraldatakse teenuse osutaja arveldusarvele teenuse osutaja esitanud arve alusel pärast aruandluse esitamist ja kontrollimist. Aruandes märgitakse vähemalt teenuse saaja ees- ja perekonnanimi, teenuse liik, teenuskordade arv, teenuse osutamise kuupäevad ja kellaaeg, aruande esitamise kuupäev ja allkiri.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para5">
+   <paragrahvNr id="706a996c-9bc6-4615-8029-c5f2df77abb3">5</paragrahvNr>
+   <kuvatavNr id="42d05eed-982a-43ce-9b6c-20fbd0317e5c"><![CDATA[§ 5. ]]></kuvatavNr>
+   <paragrahvPealkiri id="bfea66c7-20dd-4023-ad37-730004087149">Vaide esitamine</paragrahvPealkiri>
+  <loige id="para5lg1">
+   <loigeNr id="105a81ad-1c9a-4c28-9258-ea3666bcadb7">1</loigeNr>
+   <kuvatavNr id="c7874a78-9117-4657-863d-f43ceffe51a2"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="509bec7d-1dcf-47a5-8e86-d9f409219099">
+    <tavatekst id="3670cb6f-d9ed-4d66-8cfa-b2a39434a27a">Vaie tehtud otsuse või toimingu peale esitatakse otsuse teinud või toimingu sooritanud haldusorganile, kui seadus ei sätesta teisti.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg2">
+   <loigeNr id="1f0a2e44-ccdd-4230-b3d9-6d57e4705e4d">2</loigeNr>
+   <kuvatavNr id="7287b63e-4ac1-4783-9274-f7ca1adf38fb"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="68b39b28-5ba7-489a-9da8-e3d7db52e64f">
+    <tavatekst id="0f1d96af-5249-4510-91fc-ce2570ab2a96">Vaie lahendatakse haldusmenetluse seaduses sätestatud korras 10 päeva jooksul, arvates vaide edastamisest vaiet läbivaatavale haldusorganile, kui seadus ei sätesta teisiti. Kui vaiet on vaja täiendavalt uurida, võib vaiet läbivaatav haldusorgan vaide läbivaatamise tähtaega pikendada kuni 30 päeva võrra. Tähtaja pikendamise teade edastatakse vaide esitajale.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para6">
+   <paragrahvNr id="bb04b7ab-504e-435b-9517-f643e8c71b76">6</paragrahvNr>
+   <kuvatavNr id="8994db63-1c29-4aad-bbca-206d9e7c6624"><![CDATA[§ 6. ]]></kuvatavNr>
+   <paragrahvPealkiri id="3f85787e-f607-45b5-8823-d8d2d8c9d436">Rakendussätted</paragrahvPealkiri>
+  <loige id="para6lg1">
+   <loigeNr id="07ae3c49-b6eb-483b-ac83-f1363c9b9a83"/>
+   <kuvatavNr id="93677f75-ac42-44d6-aac9-d2f9a9a719ff"/>
+   <sisuTekst id="84413fea-a11c-4633-b05c-cf96a9abb263">
+    <tavatekst id="75fb8e90-ebb5-4373-b1df-1f79f18393b3">Määrus jõustub seadusega sätestatud korras.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="b5ac4707-f3e8-4051-89e7-b8fb419058de"><allkiriKoht id="5264a206-86e0-492a-b791-4b315f319318"/><allkirjastaja id="8104788f-b2ba-4e20-b0d0-eda708b66242"><ametinimetus id="316ca6b3-c371-455c-ae27-ad048b8c8cd6">Linnavolikogu esimees</ametinimetus><eesnimi id="004c8e46-9d1c-4fa6-a149-84af00fb0eac">Tatjana</eesnimi><perekonnanimi id="c50f4a65-1a74-4c4a-ba3c-1ec0fb61a439">Stolfat</perekonnanimi></allkirjastaja></allkiri></oigusakt>

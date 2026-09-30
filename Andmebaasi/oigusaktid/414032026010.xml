@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="62d7d67b-3e09-4f02-9040-be5ffe71af39" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+ 
+ <valjaandja>Kambja Vallavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  <tavatekst>Rakendatakse alates 01.01.2025</tavatekst>
+  <aktikuupaev>2025-01-09</aktikuupaev>
+  <avaldamismarge>
+	<RTosa>RT IV</RTosa>
+	<avaldamineKuupaev>2025-01-14</avaldamineKuupaev>
+	
+	
+	<RTartikkel>5</RTartikkel>
+	<aktViide>414012025005</aktViide>
+  </avaldamismarge>
+  
+  <aktiNr>1</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-03-14</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>10</RTartikkel><aktViide>414032026010</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2026-04-01</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2026-03-12</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>414032026010</globaalID>
+ <metaandmedVersioon>11</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2026-03-13</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ <terviktekstiGrupiID>1060336</terviktekstiGrupiID>
+ <eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2025-01-09</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Kristina Reigo</metaandmedVersioonPohjustaja>
+		</versiooniMuutus><versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>7</metaandmedVersioon><metaandmedVersioonKuupaev>2026-03-12</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Marike Võime</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+	<aktinimi id="f1472df1-0296-465d-9d9c-720c9dea825e">
+		<nimi id="81d5ded0-169a-41d2-864a-4d158c95488f">
+			<pealkiri id="6cdf92f4-4a47-4027-9654-83a5cee4cda2">Sotsiaaltoetuste suuruste kinnitamine ja üldhooldusteenuse hoolduskulu piirmäära kehtestamine</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="3b8863e9-62d9-42ac-b107-d9fc85f20e6b"><aktikuupaev id="bdf5c234-73ab-48db-a551-a7bd04decc06">2026-03-11</aktikuupaev><avaldamismarge id="7a2adad0-a77d-47fc-bf99-d8cc983721bf"><RTosa id="e5ad59ab-8af2-4664-810b-b579f066b0ed">RT IV</RTosa><avaldamineKuupaev id="e087e926-707a-4e59-a6a2-7676f20884f3">2026-03-14</avaldamineKuupaev><RTartikkel id="d7aea847-783e-43da-996f-d94be9b713f5">3</RTartikkel><aktViide id="1fa4eb67-9a34-4b68-b8b3-1b04ad32088d">414032026003</aktViide></avaldamismarge><joustumine id="d28a46b6-ed6d-4df3-99cc-3a5de6800610">2026-04-01</joustumine></muutmismarge><sisu id="6f1bb68c-025f-4a30-ab73-e0891f5d5bfd">
+		<preambul id="22586928-8fb6-413d-a349-3b080bef3d20">
+			<tavatekst id="4fab5327-c8d8-410f-bf29-e498c29ce6fa">Määrus kehtestatakse sotsiaalhoolekande seaduse § 22<sup>1</sup> lõike 3 ning Kambja Vallavolikogu 18.12.2024 määruse nr 21 „Sotsiaalhoolekandelise abi andmise kord“ § 3 lõike 1 ja § 26 lõike 6 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="f5937b0d-bd01-41ce-958c-0a64552697c0">1</paragrahvNr>
+			<kuvatavNr id="953450c9-3e4d-4fb2-966f-05615ee5fd28"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="2fac9a1e-73f5-4ea3-9d1f-d8a083da930d">Sünnitoetus</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="3036fd07-f8d6-4614-91ec-d451a112f4c2"/>
+				<kuvatavNr id="59d65092-2853-46c6-a11a-6cac88092909"/>
+				<sisuTekst id="227701bd-ad18-4760-bdf6-331f7b7e075d">
+					<tavatekst id="d0a847d5-366d-4882-9926-3750cbe6b380">Sünnitoetuse suurused on järgmised:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para1lg1p1">
+					<alampunktNr id="50425679-1436-4848-b309-ad74bfa37606">1</alampunktNr>
+					<kuvatavNr id="22b11f61-3ab8-4215-9b36-7c1b3c5d2710"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="44505abf-db06-4441-8189-2e81f6d498b9">
+						<tavatekst id="7e706e04-a537-4a0a-a8d0-13714479ea0f">sünnitoetuse I osa on 250 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p2">
+					<alampunktNr id="5787a9a9-7442-45c3-94a8-03348773de4c">2</alampunktNr>
+					<kuvatavNr id="8f1f9a21-f013-45f5-a6d5-88236de8eb8d"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="fb0b6d87-2058-4c12-bca8-244f22d6a510">
+						<tavatekst id="9322c518-5f60-4637-968a-1488dba26f3c">sünnitoetuse II osa on 100 eurot.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="e5b7d928-32dd-4ece-aa45-d8a6241fb5bd">2</paragrahvNr>
+			<kuvatavNr id="b33d7cab-8672-4bb1-8c54-1ee241aab4f7"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="2c858af1-e9dc-4169-9d1d-a3526c7519f2">Ranitsatoetus</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="ce505198-4a91-41c2-b1e8-ba6e98644ade"/>
+				<kuvatavNr id="b0df512e-9587-455b-9150-d4f984510cf4"/>
+				<sisuTekst id="bdde7a6b-41ff-4db2-bd26-da92ec78cbb0">
+					<tavatekst id="f237c518-a89a-4c3c-9b2d-900759d3896f">Ranitsatoetus on 120 eurot.</tavatekst>
+				</sisuTekst>
+			<muutmismarge id="bd8071ab-2321-41e1-8890-2d1377fbfeb9"><avaldamismarge id="3b5c242a-81ce-40de-b650-12e284cd8e3a"><RTosa id="83f96c9a-9175-41d6-8abd-7b6bc8629fb9">RT IV</RTosa><avaldamineKuupaev id="7b83cba2-5860-4402-a473-4bceb8e27354">2026-03-14</avaldamineKuupaev><RTartikkel id="dbc24382-d8ed-49df-bbbd-9eab51b6a5d2">3</RTartikkel><aktViide id="7723a396-cfd3-43e1-9f8d-eb4dcf6a7874">414032026003</aktViide></avaldamismarge><joustumine id="823cab9d-2036-4206-ac25-809030aed804">2026-04-01</joustumine></muutmismarge></loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="3bca9604-827a-4974-85b7-f16b045e270a">3</paragrahvNr>
+			<kuvatavNr id="0e1f1bb7-48ae-45fc-b53a-870a1e20c42a"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="6a71befb-f52f-40b0-beb1-d320d99ad83f">Eakate sünnipäevatoetus</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="3d5a56b5-96da-44ea-9b0d-3dc3c68b9e7a"/>
+				<kuvatavNr id="6875512d-a753-43ad-bc3b-58914fe64c80"/>
+				<sisuTekst id="96e0f587-1da9-438b-8d87-58f7e19bb59d">
+					<tavatekst id="4d2e3bc9-1b35-42a3-aa6a-7bf23f8bfbd4">Eakate sünnipäevatoetus on 50 eurot.</tavatekst>
+				</sisuTekst>
+			<muutmismarge id="43352a8e-e937-4104-9e31-f50c39906ba9"><avaldamismarge id="5c3fda95-94d5-4a30-b3d8-9094b1dfa742"><RTosa id="458b72e2-e457-4be9-aaec-b2c05b70e0bc">RT IV</RTosa><avaldamineKuupaev id="8eb5146b-8b47-479b-8b5a-6619fab86de1">2026-03-14</avaldamineKuupaev><RTartikkel id="e94afb14-dd75-4fac-92de-1c313d104fcf">3</RTartikkel><aktViide id="72797ff9-2996-4b5c-bc5a-8931af319525">414032026003</aktViide></avaldamismarge><joustumine id="4d6c2041-7a66-46c3-8430-7bb9a558dce9">2026-04-01</joustumine></muutmismarge></loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="3a91738b-443d-4001-add9-db44ef9b6dee">4</paragrahvNr>
+			<kuvatavNr id="7315f542-a683-47a0-b6f6-0e97efb18342"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="09291795-480f-4ef8-9bad-43a02f14f6c3">Matusetoetus</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="06e967d0-3779-4519-8580-6c1252d09db8"/>
+				<kuvatavNr id="a404bdcf-ab74-491c-83fd-e1b95b8741e5"/>
+				<sisuTekst id="af03ff7b-f960-47c0-84a9-e2ac1210cc2b">
+					<tavatekst id="b832b2de-7a95-4644-b736-185bb000fff5">Matusetoetus on 250 eurot.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="816d6905-682e-4f41-92a6-788dadbfd6e5">5</paragrahvNr>
+			<kuvatavNr id="a22f978d-e823-4d18-b2a0-fc2326da6d1c"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="44bc6d26-1949-47e0-a1d8-d50ea89224d1">Õppetoetus</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="5f08f283-14a0-4dca-8c24-c7f3db8b81dc">1</loigeNr>
+				<kuvatavNr id="702ddda9-18cd-4ab6-8e54-940adef7275a"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="2edbfe97-a911-4b24-b669-e6b5954e2b4c">
+					<tavatekst id="8f006106-c95a-47a5-9eb1-74a2fa7067cc">Sotsiaalosakonna ametnik otsustab õppetoetuse kuni 100 euro ulatuses.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg2">
+				<loigeNr id="bb739a5e-12cd-4d6d-8432-342ffd5df1da">2</loigeNr>
+				<kuvatavNr id="d6d8c503-0637-4bbc-ab9a-25fc441ad90c"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="bd961a46-f53c-46b8-a6e9-c658e4ff2682">
+					<tavatekst id="666e1180-487d-49e1-bba2-066296e587f2">Lõikes 1 toodud piirmäärast suurema toetuse otsustab sotsiaalosakonna juhataja.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para6">
+			<paragrahvNr id="9f98b0e9-9b65-4ae8-bd16-32c05af2888b">6</paragrahvNr>
+			<kuvatavNr id="5d3a7b5d-eec8-4e7b-8522-7590215cf0f9"><![CDATA[§ 6. ]]></kuvatavNr>
+			<paragrahvPealkiri id="c575e129-0c24-471d-b5bf-9ba79fd29db2">Laagritoetus</paragrahvPealkiri>
+			<loige id="para6lg1">
+				<loigeNr id="3d9149b0-1fbc-4795-96d5-e58b30f0a222"/>
+				<kuvatavNr id="39ba266a-a73d-4754-a4d4-f1e36cf7b195"/>
+				<sisuTekst id="6eb23c3e-6ef4-4a2c-a68e-6646e56be512">
+					<tavatekst id="2a3641e5-8ef2-4b98-963d-5cec63a341b8">Laagritoetus on kuni 100 eurot üks kord aastas.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para7">
+			<paragrahvNr id="f612d44b-3592-460a-b115-4c8b40b6c5b4">7</paragrahvNr>
+			<kuvatavNr id="8850e15f-ab21-48e8-870f-1146f4b7be88"><![CDATA[§ 7. ]]></kuvatavNr>
+			<paragrahvPealkiri id="cea0b8cd-7f03-4629-a1e1-09b50b8bfd02">Küttetoetus</paragrahvPealkiri>
+			<loige id="para7lg1">
+				<loigeNr id="6900ea7b-467b-4ca1-a366-46f7c3438bf2"/>
+				<kuvatavNr id="b54ca364-4e73-4f07-bc8d-3d7d8cb74072"/>
+				<sisuTekst id="7f7e0dc6-62ad-41bd-bb27-870098f1540e">
+					<tavatekst id="ea2e5df6-6d2a-43b7-8575-7d880c83c60a">Küttetoetus on 200 eurot üks kord aastas.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para8">
+			<paragrahvNr id="a94792e2-63be-4968-8973-ec9988f3f6d9">8</paragrahvNr>
+			<kuvatavNr id="8eab9e6f-214d-4b47-a31e-43aeb484924c"><![CDATA[§ 8. ]]></kuvatavNr>
+			<paragrahvPealkiri id="4cb3ccbb-1630-4297-9f9a-1f667c8b36ab">Tervisetoetus</paragrahvPealkiri>
+			<loige id="para8lg1">
+				<loigeNr id="c9dd767f-cd8b-44ac-b0fe-28ea63ebd58a"/>
+				<kuvatavNr id="861991a2-5e76-43e5-bd83-ef7adae36541"/>
+				<sisuTekst id="30476dc6-cf8d-4ea4-8215-c47235e3adf9">
+					<tavatekst id="ad99e697-42c3-4f04-ab19-4f8769a4a6e3">Tervisetoetuse suurused on järgmised:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para8lg1p1">
+					<alampunktNr id="5bc7b64e-d297-4f80-aa6f-dacadd3ef32f">1</alampunktNr>
+					<kuvatavNr id="7a78d48c-949f-465f-8a67-97488b2ff486"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="cb5dc422-e04b-4e29-834d-ebf6cc32217c">
+						<tavatekst id="fa721ba2-0736-4fa2-b3ca-69cad0ab8fd1">tervisetoetus retseptiravimite kompenseerimiseks on kuni 60 eurot üks kord aastas;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg1p2">
+					<alampunktNr id="c8d5c159-6a24-42b6-a9e8-dcf47d24fa25">2</alampunktNr>
+					<kuvatavNr id="ebf74df5-f913-4299-badc-10fdcd2a555a"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="f36af9ff-6725-4240-83fd-2cddf962bef1">
+						<tavatekst id="55bedb57-b1a7-4aa7-bd0d-e45f3eb12169">tervisetoetus lapse prillide hüvitamiseks on 50% prilliklaaside maksumusest ja prilliraamide maksumusest kuni 100 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg1p3">
+					<alampunktNr id="819a9b63-f0f1-4ab3-b1b0-209b56beb887">3</alampunktNr>
+					<kuvatavNr id="bc330291-509a-4236-ac3c-36e369a0f253"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="687e1d82-d592-45a8-8d29-d2a83821ea22">
+						<tavatekst id="45d82ae8-9d1e-45ed-afbf-6d54b2006ba6">tervisetoetus hapnikravi saajale 22 eurot kuus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg1p4">
+					<alampunktNr id="ae1b97a2-f515-48fd-88f4-5219aff8aa6a">4</alampunktNr>
+					<kuvatavNr id="df9567f2-f61f-4a1f-bd30-f8cc6cb6acb7"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="e98fe05c-5729-4967-b17a-6d40494c8765">
+						<tavatekst id="9083e356-2094-4e1c-9319-b0c9f35a3e72">valitsus otsustab igakordselt tervisetoetuse suuruse lapsele või täiskasvanule meditsiiniliselt põhjendatud abivahendi ostmiseks või laenutamiseks.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para9">
+			<paragrahvNr id="49150b35-8647-43b8-9174-1fb4f3ce3a4a">9</paragrahvNr>
+			<kuvatavNr id="eb4784d5-91cc-4964-b01a-9076eab1add7"><![CDATA[§ 9. ]]></kuvatavNr>
+			<paragrahvPealkiri id="ecdbad05-2813-4300-967e-94bfb6579b68">Toetus kriisiolukorra või õnnetusjuhtumi korral</paragrahvPealkiri>
+			<loige id="para9lg1">
+				<loigeNr id="4e3f3ce3-dfb0-406a-bfa8-87ff03973f8f">1</loigeNr>
+				<kuvatavNr id="0bf7cfba-450f-4c5f-a758-44fafc5d845d"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="e0b0f466-87a2-4a5e-8ffa-8ec7d0524507">
+					<tavatekst id="40e48e0e-cf74-4e21-bba4-4d60d3de7a97">Sotsiaalosakonna juhataja otsustab toetuse kriisiolukorra või õnnetusjuhtumi korral kuni 350 euro ulatuses;</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para9lg2">
+				<loigeNr id="b6726595-2b53-4641-8a96-12f23fcb0dba">2</loigeNr>
+				<kuvatavNr id="713b6c01-54d2-4feb-bd08-52973ea77e63"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="bf70d24c-f786-4142-8298-95f59cf8a283">
+					<tavatekst id="ad1a1b21-4cc0-48ea-89a1-ca475b1038b3">Lõikes 1 toodud piirmäärast suurema toetuse otsustab valitsus.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para10">
+			<paragrahvNr id="aac4fd90-c326-4a8d-ab6f-9b3a041e47c2">10</paragrahvNr>
+			<kuvatavNr id="0dce027b-2378-4fcb-b2f3-384e1f930688"><![CDATA[§ 10. ]]></kuvatavNr>
+			<paragrahvPealkiri id="e0631cdc-2d81-4812-a45f-33cedc393b93">Ühekordne toetus</paragrahvPealkiri>
+			<loige id="para10lg1">
+				<loigeNr id="94578b54-6775-4dbd-b184-47c6cc80396f">1</loigeNr>
+				<kuvatavNr id="96c4bc03-8d3b-4e7c-8f4f-05edf449dbd8"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="423e4ee8-7aa8-46c9-a24f-188b589a4bfe">
+					<tavatekst id="7abe4813-06d8-4028-8df8-2c18706526a7">Sotsiaalosakonna juhataja otsustab ühekordse toetuse kuni 350 euro ulatuses;</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para10lg2">
+				<loigeNr id="68678e8d-6c09-4d4f-af27-fa16f63e24fa">2</loigeNr>
+				<kuvatavNr id="bd3a8b2a-6474-435c-a1c9-6e06bcb0b8ee"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="51abd450-d89b-4fef-bf3f-6690a1e7e42d">
+					<tavatekst id="bc72ecbb-75a8-4f1c-adcb-65412b940836">Lõikes 1 toodud piirmäärast suurema toetuse otsustab valitsus.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para11">
+			<paragrahvNr id="a8e8f8f7-5687-4c07-8389-77070fb963ab">11</paragrahvNr>
+			<kuvatavNr id="d5b3f6b7-5448-4129-ad14-bc755e6b911b"><![CDATA[§ 11. ]]></kuvatavNr>
+			<paragrahvPealkiri id="6eb574cb-2f1c-433e-8289-bd6f3a993a71">Hooldajatoetus</paragrahvPealkiri>
+			<loige id="para11lg1">
+				<loigeNr id="f50f7244-2f19-4725-affe-996b627e69cc"/>
+				<kuvatavNr id="d957093a-14c8-46f4-9967-70ae9c6492c1"/>
+				<sisuTekst id="70602528-bd7b-4c72-b045-a62d6a57f7cd">
+					<tavatekst id="d8b75d69-b2eb-45e2-84e6-aed29695272b">Hooldajatoetuse suurused on järgmised:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para11lg1p1">
+					<alampunktNr id="db846f5b-0a1f-48c8-ba80-1b28b4e3817d">1</alampunktNr>
+					<kuvatavNr id="6c4d402d-5d58-4299-8910-153fa9dc5765"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="b7ac1638-3430-4c4d-a6a3-ca43771a6e98">
+						<tavatekst id="102e8875-91e9-4124-b656-638f281b2392">hooldajatoetus täisealise isiku hooldajale on 75 eurot kuus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para11lg1p2">
+					<alampunktNr id="e9178dd3-2656-4ce5-84b7-95c84c48b980">2</alampunktNr>
+					<kuvatavNr id="4d3c146c-539f-4d9d-9fff-dba94e1b8ffc"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="68685fc1-ce7a-4b2d-ab54-4d630c60749a">
+						<tavatekst id="e36f90dc-21e6-40d5-b01f-acf5c5bf7b61">hooldajatoetus puude raskusastmeta või keskmise puudega lapse hooldajale on 75 eurot kuus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para11lg1p3">
+					<alampunktNr id="719cf3c5-97db-4f6c-ad5c-49d27ff55b80">3</alampunktNr>
+					<kuvatavNr id="beb0f460-c5a8-4c9c-a2db-d2067d8dbfa0"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="0e1011fa-05a7-4643-a4da-cda3d579446d">
+						<tavatekst id="8d9aab17-61aa-4a0b-a20e-027ee161782c">hooldajatoetus raske või sügava puudega lapse hooldajale on 100 eurot kuus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para11lg1p4">
+					<alampunktNr id="ea0ae526-1b61-4c30-bb17-3a7ea9c68368">4</alampunktNr>
+					<kuvatavNr id="7c1e8b90-0dd4-434d-90b4-51b4129f2140"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="3c4d7bd7-b656-4bf4-a91b-0b8b096c62e2">
+						<tavatekst id="bf7b1b80-be9b-4c4e-ba37-a53402f349f4">hooldajatoetus äärmuslikult suure hooldusvajadusega isiku hooldajale on 350 eurot kuus.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para12">
+			<paragrahvNr id="529ecb64-3e09-4e3a-8cad-5bffa7445556">12</paragrahvNr>
+			<kuvatavNr id="25b1cf94-c1ae-4f41-8825-f3fab42833f1"><![CDATA[§ 12. ]]></kuvatavNr>
+			<paragrahvPealkiri id="05b51579-e116-47d3-af0c-ddcdfdcf4020">Üldhooldusteenuse hoolduskulu piirmäär</paragrahvPealkiri>
+			<loige id="para12lg1">
+				<loigeNr id="0a6608e9-a75c-4e7a-b61e-fa6032d9894c"/>
+				<kuvatavNr id="82525f0d-30ff-4077-9ffc-2ff7ff699afc"/>
+				<sisuTekst id="0e7806c1-b3f5-42ce-9c76-5d4ec18e185a">
+					<tavatekst id="71856c36-b075-4d83-9733-9e333987e875">Üldhooldusteenuse hoolduskulu piirmäär on kuni 800 eurot ühe teenusesaaja kohta kuus.</tavatekst>
+				</sisuTekst>
+			<muutmismarge id="9a752dc5-fa68-4492-82ea-e361d02bc93a"><avaldamismarge id="6642037a-bc8f-44a4-becc-456b01f87a42"><RTosa id="1ea34d8a-b0ed-4739-ab77-4d70cef7f5ef">RT IV</RTosa><avaldamineKuupaev id="3929f39d-d2be-4d4c-b2f0-9abd660b971c">2026-03-14</avaldamineKuupaev><RTartikkel id="998dc765-2a85-4634-ab34-c72a6b35e5fe">3</RTartikkel><aktViide id="5685e065-73d7-45d2-97df-2cf9ddf9e0d7">414032026003</aktViide></avaldamismarge><joustumine id="1f20c63b-43ce-44cc-be2a-eb61986cc2a0">2026-04-01</joustumine></muutmismarge></loige>
+		</paragrahv>
+		<paragrahv id="para13">
+			<paragrahvNr id="fd9d8fc3-035c-466b-99e8-2b38b3357103">13</paragrahvNr>
+			<kuvatavNr id="aeb42484-e241-4cc7-89c6-a09b9369920b"><![CDATA[§ 13. ]]></kuvatavNr>
+			<paragrahvPealkiri id="6230239d-384b-4dfa-abed-4816d76f5735">Erandid</paragrahvPealkiri>
+			<loige id="para13lg1">
+				<loigeNr id="3c58c3ca-c2c4-4d3f-9e47-5a34a18ef618"/>
+				<kuvatavNr id="b7f8e867-79be-4d46-ac2c-cae5c1e16185"/>
+				<sisuTekst id="281006df-04d2-4392-af5b-c40b401305dc">
+					<tavatekst id="f0d02bc0-cab7-4444-865c-a7bd1e002a3e">Valitsusel on ametniku või sotsiaalosakonna juhataja põhjendatud ettepanekul õigus teha erandeid määrusega kehtestatud toetuste suuruses.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para14">
+			<paragrahvNr id="ca136ef8-98d9-49f5-929b-2385f48aeb60">14</paragrahvNr>
+			<kuvatavNr id="7bea3ce6-751e-4fa7-b144-f58ae8be9d7e"><![CDATA[§ 14. ]]></kuvatavNr>
+			<paragrahvPealkiri id="29a0b309-a57b-46f1-aa28-abccc1552322">Rakendussätted</paragrahvPealkiri>
+			<loige id="para14lg1">
+				<loigeNr id="1f42a172-86bf-46b7-b0a1-5672751d4b0c">1</loigeNr>
+				<kuvatavNr id="7182b36c-bb55-436b-a6a0-9ca5d09cc531"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="d3bf1089-1a29-4ba8-bb95-da1b6014caa1">
+					<tavatekst id="89d4027e-662b-4962-b841-4f08872e0046"> [Käesolevast tekstist välja jäetud].</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para14lg2">
+				<loigeNr id="76e57a17-592c-4b3b-9c30-cf9cbb70ae6e">2</loigeNr>
+				<kuvatavNr id="9f45d963-be0e-4f29-829f-5469d9043eb5"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="af22f6d1-6842-474f-943e-6ec3385dbff7">
+					<tavatekst id="19e2c1ae-bfc6-4976-9d4e-413a19521b98">Määrust rakendatakse 1. jaanuarist 2025.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+	
+	
+</oigusakt>

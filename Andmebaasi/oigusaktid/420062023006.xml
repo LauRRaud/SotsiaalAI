@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="26852197-f7b6-494c-adf0-ff8be3c2d21e" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metaandmed>
+    <valjaandja>Väike-Maarja Vallavalitsus</valjaandja>
+    <dokumentLiik>määrus</dokumentLiik>
+    <tekstiliik>algtekst-terviktekst</tekstiliik>
+    <dokumentEtapp>avaldamine</dokumentEtapp>
+    <dokumentStaatus>avaldatud</dokumentStaatus>
+    <vastuvoetud>
+      <aktiNr>6</aktiNr>
+      <aktikuupaev>2023-06-08</aktikuupaev>
+    </vastuvoetud>
+    <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2023-06-20</avaldamineKuupaev><RTaasta>2023</RTaasta><RTartikkel>6</RTartikkel><aktViide>420062023006</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2023-07-01+03:00</kehtivuseAlgus></kehtivus><versioon>
+      <dokumentVersioon>1</dokumentVersioon>
+      <dokumentVersioonKuupaev>2023-06-08</dokumentVersioonKuupaev>
+    </versioon>
+    <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+    <globaalID>420062023006</globaalID>
+    <metaandmedVersioon>5</metaandmedVersioon>
+    <metaandmedVersioonKuupaev>2023-06-19</metaandmedVersioonKuupaev>
+    <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+    <terviktekstiGrupiID>1056809</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+  </metaandmed>
+  <aktinimi id="1d767944-acdb-49c3-add2-55b87f354c31">
+    <nimi id="4f8fb3ef-69f9-4698-ac6d-df81a6296d1e">
+      <pealkiri id="a8ba8b12-71e4-4c48-bbbc-42695e84e704">Hoolduskulude maksmiseks piirmäära kehtestamine </pealkiri>
+    </nimi>
+  </aktinimi>
+  <sisu id="0638346c-8391-478e-bd08-8c7f8bf992af">
+    <preambul id="01449e31-6436-4d9c-8cbf-caf8afd90e84">
+      <tavatekst id="48a3024a-2c88-490b-8037-9f1d6fbff63c">Määrus kehtestatakse Väike-Maarja Vallavolikogu 25.05.2023 määruse nr 23 „Sotsiaalhoolekandelise abi andmise kord“ § 28 lõike 5 alusel.<reavahetus/></tavatekst>
+    </preambul>
+    <paragrahv id="para1">
+      <paragrahvNr id="345ad4fc-6f88-44a5-88a0-ff5f75656212">1</paragrahvNr>
+      <kuvatavNr id="e2d904f7-9522-485e-84e8-22068b99e731"><![CDATA[§ 1. ]]></kuvatavNr>
+      <paragrahvPealkiri id="edc5b94f-3fc1-475c-abe7-958392f29644">Hoolduskulude piirmäära kehtestamine</paragrahvPealkiri>
+      <loige id="para1lg1">
+        <sisuTekst id="ab3a27ed-20bb-4cee-b08d-0a7f06d27f19">
+          <tavatekst id="5884ea2b-ee3b-417e-9d6a-fd436356717c">Kehtestada väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse hoolduskulude maksmisel piirmääraks 550 eurot kuus.<reavahetus/></tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+    <paragrahv id="para2">
+      <paragrahvNr id="57017bd6-b428-41ef-bc64-542bc33319d1">2</paragrahvNr>
+      <kuvatavNr id="d145ed45-d982-4432-93f4-15db4d5689e9"><![CDATA[§ 2. ]]></kuvatavNr>
+      <paragrahvPealkiri id="e149f432-3499-41bc-a0da-e40894d56d22">Määruse jõustumine</paragrahvPealkiri>
+      <loige id="para2lg1">
+        <sisuTekst id="f60d2b2d-c224-4c2e-908d-dae3c2696b55">
+          <tavatekst id="8a2ed63c-317a-456e-8470-063ef7a8a030">Määrus jõustub 01.07.2023.</tavatekst>
+        </sisuTekst>
+      </loige>
+    </paragrahv>
+  </sisu>
+  <allkiri id="9a35ec52-a462-46d6-a81e-b9bf1cb3fe00">
+    <allkiriKoht id="6e8fb443-2ee4-4d44-a568-c6b75bb1c3c0"/>
+    <allkirjastaja id="178b3f57-ec67-47cc-b222-facb06cc9162">
+      <ametinimetus id="bcb97ff5-5432-43ff-bea3-18af67d82df4">vallavanem</ametinimetus>
+      <eesnimi id="3a39fb8f-cbf4-4788-86a2-e142827a2468">Indrek</eesnimi>
+      <perekonnanimi id="38d14588-dc24-4749-bdfc-fc59b2a6ac29">Kesküla</perekonnanimi>
+    </allkirjastaja>
+  </allkiri>
+  <allkiri id="7d4ae145-74c4-43a4-8bd0-1cb9659323c9">
+    <allkiriKoht id="f347eda1-4f35-4410-9988-35c66c4a7a48"/>
+    <allkirjastaja id="81b73609-27a8-42f2-8c8f-2956bff241b9">
+      <ametinimetus id="a9e20104-8cd7-4a65-9bb9-07ab10583275">vallasekretär</ametinimetus>
+      <eesnimi id="f015acfd-f7e5-4aab-abad-0acc46d96a53">Maris</eesnimi>
+      <perekonnanimi id="945bbbe9-d1ca-4572-896f-1678c1cdb993">Kõrgmäe</perekonnanimi>
+    </allkirjastaja>
+  </allkiri>
+</oigusakt>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="058f517d-949e-4d56-993f-201334488183" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Kose Vallavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2023-06-13</aktikuupaev>
+  
+  
+  <aktiNr>5</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2023-06-20</avaldamineKuupaev><RTaasta>2023</RTaasta><RTartikkel>29</RTartikkel><aktViide>420062023029</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2023-07-01+03:00</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2023-06-15</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>420062023029</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2023-06-19</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1056834</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2023-06-15</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Kärol Vaiksaar</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="667f9571-74f6-49dc-b1c6-926a25fe9f4c">
+  <nimi id="1af92cb0-1bb1-44f6-a129-ef56166cbd4b">
+   <pealkiri id="f13ca414-e23e-49d5-86dd-cf4a20028a64">Väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse hoolduskulude tasumise piirmäära kehtestamine</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="feacc805-ad7e-4e3b-8ab6-71ffb0aa021d"><preambul id="6711e29b-e9f2-4b49-b292-9fdc047fed0e"><tavatekst id="bf0ceb18-45e7-4d55-9a0c-143b08d6623f">Määrus kehtestatakse Kose Vallavolikogu 25.05.2023 määruse nr 39 „Sotsiaalhoolekandelise abi andmise kord“ § 11 lõike 8 alusel.</tavatekst></preambul><paragrahv id="para1"><paragrahvNr id="fcbf82fa-08a1-4653-8817-002307f47386">1</paragrahvNr><kuvatavNr id="5fde1f24-ac4d-49f9-a7a9-9b3e56df3b29"><![CDATA[§ 1. ]]></kuvatavNr><paragrahvPealkiri id="2974858e-0b17-4528-bee2-921f4fb3c477">Piirmäära kehtestamine</paragrahvPealkiri><loige id="para1lg1"><loigeNr id="634e153a-c1af-4d4f-8237-e5f59f15a196"/><kuvatavNr id="80661e9b-eede-48d4-9c2f-deb185e117a5"/><sisuTekst id="5728f528-36de-45a8-ae55-1de220c35b07"><tavatekst id="5a264f3c-7934-4aa0-a4af-54f443ed0694">Kehtestada väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse osutamisel vahetult teenust osutavate hooldustöötajate ja abihooldustöötajate kulude (sh tööjõukulud, tööriietuse ja isikukaitsevahendite kulud, tervisekontrolli ja vaktsineerimise kulud, koolituse ja supervisiooni kulud) tasumise piirmääraks 650 eurot ühe teenusesaaja kohta kalendrikuus.</tavatekst></sisuTekst></loige></paragrahv><paragrahv id="para2"><paragrahvNr id="94ae29a9-c711-455d-8454-469469d3f993">2</paragrahvNr><kuvatavNr id="a880b597-82dd-4acc-ae59-070fe6096d5a"><![CDATA[§ 2. ]]></kuvatavNr><paragrahvPealkiri id="add8eaf7-b20f-4d2a-b23c-2e8aa74b7fcd">Määruse jõustumine</paragrahvPealkiri><loige id="para2lg1"><loigeNr id="a640cd0e-eb2d-4f06-b362-86979aaed162"/><kuvatavNr id="fcf13c7e-3159-454d-8cb6-ab84d67dd580"/><sisuTekst id="af1cf6e8-d252-48ba-a344-8b001ddad442"><tavatekst id="3ae28a43-b018-4bec-a351-0c57475594aa">Määrus jõustub 01.07.2023.</tavatekst></sisuTekst></loige></paragrahv></sisu>
+<allkiri id="4df27aaf-2536-4b74-b10f-3f28b6a6919a"><allkiriKoht id="a6a95403-6023-4c2c-bc88-54342da57d50"/><allkirjastaja id="c36c895d-6aa4-4574-a839-cd2fddde6858"><ametinimetus id="679e17e1-3532-4ae8-ae8c-7be6f32e4524">vallavanem</ametinimetus><eesnimi id="d26151f4-703b-4ad9-90d3-cbf6b3bbce7e">Demis</eesnimi><perekonnanimi id="20a160f7-45df-497b-b777-1992fc1fac52">Voss</perekonnanimi></allkirjastaja></allkiri><allkiri id="1fc62cf8-d726-45fd-90f5-870f64baa849"><allkiriKoht id="ad232f3b-11f7-423f-9184-e9e76af0eded"/><allkirjastaja id="6fc6f592-b2d8-4684-9051-067c221f66f2"><ametinimetus id="ce231c26-3247-4e14-961f-7413509f0c2e">vallasekretär</ametinimetus><eesnimi id="5319b6b4-f6cb-412c-a403-8c40a725c9f3">Kätlin</eesnimi><perekonnanimi id="bd93c321-c89c-4ad1-8210-1db27777cb0a">Iljin</perekonnanimi></allkirjastaja></allkiri></oigusakt>

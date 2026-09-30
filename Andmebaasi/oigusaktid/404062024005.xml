@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="e4340131-af46-43bb-bb50-aa560aec1e6b" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Lüganuse Vallavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>algtekst-terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2024-05-30</aktikuupaev>
+			<aktiNr>72</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2024-06-04+03:00</avaldamineKuupaev>
+			<RTaasta>2024</RTaasta>
+			<RTartikkel>5</RTartikkel>
+			<aktViide>404062024005</aktViide>
+		</avaldamismarge>
+		<kehtivus>
+			<kehtivuseAlgus>2024-06-07+03:00</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2024-06-03</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>404062024005</globaalID>
+		<metaandmedVersioon>7</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2025-05-15</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Marike Võime</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1058968</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2024-06-03</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>?Teadmata? ?Teadmata?</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="63e866e1-1183-481a-9739-f32a92bd4ac5">
+		<nimi id="25611cd7-1652-4ff7-ada6-9c4a171fa9ea">
+			<pealkiri id="4abdb85f-7d56-4ac2-9736-c253f80f4fe1">Erivajadusega inimeste eluruumi kohandamise toetuse määramise ja maksmise kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<sisu id="338aa992-eaec-4189-bf50-64f8e512b732">
+		<preambul id="0b573816-da6c-4f62-9262-e98772c2a5b3">
+			<tavatekst id="21ed7127-1a9a-4a66-8203-027b2609a87c">Määrus kehtestatakse sotsiaalhoolekande seaduse § 42 lõike 1 ja kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkt 5 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="6f25453d-06bf-4ff5-8343-89db12d75268">1</paragrahvNr>
+			<kuvatavNr id="96c49b89-e24d-45c8-99b6-0165374e97e3"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="2f0d45fa-2252-4216-8f0f-6d9fa7d73b4f">Määruse eesmärk ja reguleerimisala</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="a8529274-1373-4d90-9aff-75d3e3e0a37a">1</loigeNr>
+				<kuvatavNr id="8c56ee82-7b09-4ac4-a382-f1221fa546cb"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="8be22152-68a3-4c52-82aa-beb62db5a01b">
+					<tavatekst id="013ca6f2-fe69-438a-95ab-49c16ae0db04">Erivajadusega isikule eluruumi kohandamise toetuse (edaspidi toetus) eesmärgiks on tagada toimetulek oma eluruumi piires isikule, kellel on raskused eluruumis liikumisel või enesega toimetulekul (toiduvalmistamine, pesupesemine, enesehügieen, eluruumis oluliste tegevuste sooritamiseks ja elementaarse heaolu saavutamiseks vajaliku füüsilise keskkonna kohandamine).</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg2">
+				<loigeNr id="86198755-b853-48e6-83d9-b10e490c4abe">2</loigeNr>
+				<kuvatavNr id="9b25b66a-fcb2-474a-97e8-c18909af7768"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="b2fbbad0-59e4-4d2d-adae-72830d086d4e">
+					<tavatekst id="9bfe9a3b-41d5-4d29-972e-db71fa6ede99">Määrus reguleerib Lüganuse valla (edaspidi vald) eelarvest erivajadusega isiku eluruumi kohandamiseks toetuse taotlemise, määramise ja maksmise korda.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="0278fdc3-5e7b-4e83-8030-4fbaa4757d85">2</paragrahvNr>
+			<kuvatavNr id="20cda8a8-383d-4e7b-bd77-063610cd7bcd"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="b9fcc62b-cd04-45cb-bdff-b8d3cf6376c3">Toetuse taotleja</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="c826bf69-4161-4f88-9a54-85ebacdb14dc"/>
+				<kuvatavNr id="f5d5143d-fb87-4bf0-a06a-f81ae624dad8"/>
+				<sisuTekst id="989216ca-9d0d-4f9c-a1bf-7a2824799385">
+					<tavatekst id="da35992e-e7e4-4ca0-902e-043e9a4bccac">Toetust on õigus taotleda erivajadusega isikul või tema eestkostjal, kelle elukohaks Eesti rahvastikuregistris on märgitud Lüganuse vallas asuv eluruum, mille kohandamiseks toetust taotletakse.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="7ee0ea7b-c0e0-4e7f-8f9f-7ea211035201">3</paragrahvNr>
+			<kuvatavNr id="f366665a-97ff-4914-a8a3-09854df14936"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="9b041eb8-6cdf-4ff0-a6fa-757245cc2674">Toetuse taotlemine</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="535ee9e3-0e51-4e73-baf7-423ca6d5036a">1</loigeNr>
+				<kuvatavNr id="ae7a2c2a-656f-4c6e-9986-f39854976bb6"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="80eef915-b244-45a2-9aad-0d25144dcefb">
+					<tavatekst id="905fae24-1619-40d0-9a0b-5bbeb3336089">Toetuse taotlemiseks esitab käesoleva korra paragrahvis 2 nimetatud isik Lüganuse vallavalitsusele (edaspidi vallavalitsus) taotluse, milles on märgitud:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para3lg1p1">
+					<alampunktNr id="20575af7-a68f-4ffb-930b-f5e523fc98ad">1</alampunktNr>
+					<kuvatavNr id="e1417adf-5c9d-483e-9e62-8bf5d14f7b26"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="f1a91d14-3c63-4207-a4db-264820d9e8bf">
+						<tavatekst id="93cd82db-e440-44aa-8742-a972d94a922b">taotleja nimi ja isikukood;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg1p2">
+					<alampunktNr id="faf75d81-0e15-4e95-a4c2-b4b3d727c638">2</alampunktNr>
+					<kuvatavNr id="60698e0e-92d3-4864-9207-d00884046eff"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="4f13a6f7-d327-4faf-a8b4-fac437eecd5b">
+						<tavatekst id="5223b23f-6732-435d-b941-f21e3a0bfb60">planeeritava kohandamise põhjendus ja üksikasjalik kirjeldus, sealhulgas kohandamise maksumus koos parima hinnaga töid teostava juriidilise isiku poolt tehtud kirjaliku hinnapakkumisega (võrrelda vähemalt kahte pakkumist, esitada ka konkureeriv pakkumine).</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para3lg2">
+				<loigeNr id="087ad58a-e09d-498a-869a-a73c8cfbd80a">2</loigeNr>
+				<kuvatavNr id="836ddc00-b78d-449a-99aa-f80891dc081c"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="b893cc83-088e-4ece-83ce-a2a16e87718d">
+					<tavatekst id="a6add529-2f98-4bda-876c-b845074887cf">Taotlusele lisatakse eluruumi omaniku, kaasomandi puhul kõigi kaasomanike või korteriühistu kirjalik nõusolek plaanitavaks kohandamiseks.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="781da2b9-45bc-42af-9c80-b9761e095d15">4</paragrahvNr>
+			<kuvatavNr id="524a16ad-fc8e-4498-8aec-dcca2752ea47"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="9d186590-53ba-4098-9948-796a2919b717">Taotluste hindamine ja toetuse määramine</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="8b523093-791a-4c89-bfbe-c6b2995ab2fb">1</loigeNr>
+				<kuvatavNr id="3fef5f7e-e9d4-45a4-9387-3de2be9de511"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="21d3a6f6-dabc-43d9-8899-273157806430">
+					<tavatekst id="1eac1dce-d360-4e11-8122-d9acd06bf8ac">Toetuse ja selle suuruse määramisel arvestatakse taotleja ja tema perekonnaliikmete sissetulekuid ja eluruumi kohandamise põhjendatust. Toetuse suurus on maksimaalselt 90% kogu kohandamise maksumusest, kuid mitte rohkem kui 3000 eurot kalendriaastas.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg2">
+				<loigeNr id="38f14e10-9d4a-46d3-93d9-079b25607e41">2</loigeNr>
+				<kuvatavNr id="c250b6fb-41fb-4e1b-a536-8211b9ff1ad2"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="9d6ee8d6-a4b8-443a-af5a-6b444c544c76">
+					<tavatekst id="073d5dfb-61b9-4a7d-becd-d9a807bccec9">Lüganuse Vallavalitsuse sotsiaalkomisjon (edaspidi komisjon) vaatab esitatud taotlused läbi ja hindab kohandamise vajadust 30 päeva jooksul.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg3">
+				<loigeNr id="e8b5f013-f39c-4799-a89c-e66f50f0a6aa">3</loigeNr>
+				<kuvatavNr id="da3882f5-03c1-46ee-acdb-8303fd085b65"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="9da5010c-c601-4e72-a9c4-92b2a4e90e8c">
+					<tavatekst id="860ba7f1-6dc4-4704-9c7f-9b60b739037a">Toetuse määramise ja selle suuruse otsustab komisjoni ettepanekul Lüganuse Vallavalitsus korraldusega.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="e73b056f-0e39-49a4-88a4-60a520b6c98e">5</paragrahvNr>
+			<kuvatavNr id="cfa79c5b-6cc2-4554-99dc-7d7138d8e5cc"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="3bacf566-4940-4e03-8ec5-f6b918758e9f">Toetuse maksmine</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="4c662abf-8584-4e20-ac6f-47df6b5ff9de">1</loigeNr>
+				<kuvatavNr id="75de6b7b-65ff-42ba-9e7c-5238c6d67331"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="21336017-dbe6-439c-b955-a374fcc42245">
+					<tavatekst id="2f2af307-70da-45fb-bc88-e113949b4097">Toetus makstakse töid teostanud juriidilise isiku pangakontole esitatud arve alusel 10 tööpäeva jooksul pärast tööde üleandmise-vastuvõtmise akti allkirjastamist vallavalitsuse esindaja, toetuse saaja ja töid teostanud juriidilise isiku esindaja poolt ning vajadusel vallavalitsuse poolt järelevalve teostajaks määratud isiku poolt kohandatavas eluruumis paikvaatluse läbiviimist.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg2">
+				<loigeNr id="6453ee4d-6d0c-439f-92e2-e1d9c1986490">2</loigeNr>
+				<kuvatavNr id="39be504a-3ed0-4518-8f7f-b5a33c29af98"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="37b0a73e-96d1-4cad-8828-8d58011e969d">
+					<tavatekst id="bdaebe00-308f-4336-b83a-ba57b01b73d0">Märge toetuse saamise kohta kantakse sotsiaalteenuste- ja toetuste andmeregistrisse.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para6">
+			<paragrahvNr id="f6f792e9-30f5-4cc2-9dae-5e939895144c">6</paragrahvNr>
+			<kuvatavNr id="bada3d0b-910d-41a3-8f15-f1d3f8d5dc79"><![CDATA[§ 6. ]]></kuvatavNr>
+			<paragrahvPealkiri id="d9a20c46-72fc-4047-a05d-e14e5ce7389c">Toetuse eraldamisest keeldumine</paragrahvPealkiri>
+			<loige id="para6lg1">
+				<loigeNr id="198b1de4-dff5-4117-a563-234de46d4da1"/>
+				<kuvatavNr id="f05a7603-ace9-4c06-9e6b-e8733a7b2c0e"/>
+				<sisuTekst id="b68ae1ab-7ef7-4587-a319-94b881ff8fd5">
+					<tavatekst id="b8751342-27ce-4096-a753-ecb9703281ea">Lüganuse Vallavalitsusel on õigus keelduda toetuse määramisest järgmistel juhtudel:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para6lg1p1">
+					<alampunktNr id="980fad35-5f91-4cf6-913f-908cad6c6684">1</alampunktNr>
+					<kuvatavNr id="40f20e76-be6c-42e8-be3e-68222978e49d"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="036b0a0d-2c62-4d9a-a25d-7ae5196f58f9">
+						<tavatekst id="bf08d135-4d78-475e-b5cb-f508065d929b">kohandamine ei taga määruse paragrahvis 1 nimetatud eesmärki;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg1p2">
+					<alampunktNr id="85aacea2-1327-46fd-8759-d970a654a51d">2</alampunktNr>
+					<kuvatavNr id="704672c2-9ec1-4a34-89c8-28171220061b"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="3a294cc3-4336-4f04-89da-e319166d9abc">
+						<tavatekst id="b12b4aa4-89b5-48cf-877e-ace7955cd300">toetuse taotlemisel on esitatud valeandmeid;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg1p3">
+					<alampunktNr id="34608c26-7f2e-4858-aabd-876a031d0bf7">3</alampunktNr>
+					<kuvatavNr id="e3e970d9-76d7-42d2-b5bf-cc2cd5f3ae35"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="cfe970bf-41d9-4d5f-a7b6-6bb54ae34090">
+						<tavatekst id="4f4afa9f-e2a2-44bd-bed5-ed4ec8116d99">ilmnevad asjaolud, mis kinnitavad saadava toetuse mitte sihipärast kasutamist.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para7">
+			<paragrahvNr id="243cb01f-7578-4dc8-bec8-403cad2b7323">7</paragrahvNr>
+			<kuvatavNr id="6a5b2016-5f10-4a9b-9a28-6628f9a7a0b2"><![CDATA[§ 7. ]]></kuvatavNr>
+			<paragrahvPealkiri id="d4120ac6-c97c-4b41-b2ad-800144297801">Toetuse määramise kehtetuks tunnistamine</paragrahvPealkiri>
+			<loige id="para7lg1">
+				<loigeNr id="f559397d-7edc-4a9b-aa72-60ac116c582f">1</loigeNr>
+				<kuvatavNr id="12fa8139-838e-4b01-a461-21319dde5497"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="76667cd7-d03d-45ab-a76d-51239cf3bc7f">
+					<tavatekst id="e25e569b-4f02-4aaf-aaa0-4f752701474a">Toetuse määramise korraldus tunnistatakse komisjoni ettepanekul kehtetuks, kui:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para7lg1p1">
+					<alampunktNr id="a7ffd729-c8c3-4ff0-bbd0-ed72d6beee01">1</alampunktNr>
+					<kuvatavNr id="a9386531-d1b5-4c4f-b461-95b609270e18"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="968fc938-fac0-44ba-b498-95d9c45df32a">
+						<tavatekst id="200d3ee5-9cbc-4e4f-a3b2-be5f22112736">taotleja loobub määratud toetusest;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para7lg1p2">
+					<alampunktNr id="24c31643-ffad-4438-8ae4-4777484c4288">2</alampunktNr>
+					<kuvatavNr id="8a6f5848-47d6-4585-a89e-55c969703174"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="d993a2bd-da80-4c1a-8db8-b00acdaa000e">
+						<tavatekst id="7634bddd-1030-4c71-841e-569df083d0a3">teostatud tööd ei vasta planeeritud kohandamisele.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para7lg2">
+				<loigeNr id="eeffd4f8-0258-4868-945b-cbde1ab2ca18">2</loigeNr>
+				<kuvatavNr id="1e765120-5efa-4ff9-bdc9-74d5dcbcc413"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="e89676ee-c70c-4b34-8235-5c55a3c855a7">
+					<tavatekst id="fe0bd522-5561-47a7-80c6-b11b15fed9de">Toetuse määramise kehtetuks tunnistamisel § 7 lõike 1 punkti 2 alusel on vallavalitsusel kohustus väljamakstud toetus tagasi nõuda.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para8">
+			<paragrahvNr id="d48b317d-667c-4d50-8e87-bf5654282302">8</paragrahvNr>
+			<kuvatavNr id="5880446a-34ec-4987-8fb5-bc655f3efc2f"><![CDATA[§ 8. ]]></kuvatavNr>
+			<paragrahvPealkiri id="37feaef9-9d59-4a1b-a4fb-1771a2374d7b">Rakendussätted</paragrahvPealkiri>
+			<loige id="para8lg1">
+				<loigeNr id="465466a1-41a4-425e-a032-0c998e4f1746"/>
+				<kuvatavNr id="6c055d5c-583c-4b5e-9d5f-ed13db0c7564"/>
+				<sisuTekst id="ba8e755e-c250-4edd-9a4c-623a162e8ad9">
+					<tavatekst id="81fda98c-ed37-418d-afda-ecc4556388a2">Määrust jõustub kolmandal päeval pärast Riigi Teatajas avaldamist.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+	<allkiri id="6b7a6984-0ca8-4313-912f-3dc96c283225">
+		<allkiriKoht id="f0da8b43-2a33-4a68-83c6-28dfd667cd03"/>
+		<allkirjastaja id="f723bf1d-cd86-4669-ab57-0b1e1c8221a2">
+			<ametinimetus id="0fca5e93-ec99-4219-8a30-893543dcda2b">vallavolikogu esimees</ametinimetus>
+			<eesnimi id="ec92e52d-9f6b-4423-8f9c-f76e9481e8d2">Andrea</eesnimi>
+			<perekonnanimi id="8844fe20-b280-422c-82ec-50f5d6931702">Eiche</perekonnanimi>
+		</allkirjastaja>
+	</allkiri>
+</oigusakt>

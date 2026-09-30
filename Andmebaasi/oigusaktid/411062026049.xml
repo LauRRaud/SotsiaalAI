@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="f81c3a76-3722-49c9-aeca-318386a261bb" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Viimsi Vallavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2020-02-18</aktikuupaev>
+			<avaldamismarge>
+				<RTosa id="af92dd07-cc40-41c4-825f-a5c390d2b210">RT IV</RTosa>
+				<avaldamineKuupaev id="9bef352e-fe0f-44f6-bd7f-43a3f606afd3">2020-02-25</avaldamineKuupaev>
+				<RTartikkel id="01dcc30a-a9d4-4aea-b3ce-236299a18c07">8</RTartikkel>
+				<aktViide id="bb7427a3-f665-47eb-9da7-57cbf41ec597">425022020008</aktViide>
+			</avaldamismarge>
+			<joustumine>2020-04-01</joustumine>
+			<aktiNr>4</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-06-11</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>49</RTartikkel><aktViide>411062026049</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2026-06-14</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2026-06-04</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>411062026049</globaalID>
+		<metaandmedVersioon>23</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2026-06-10</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1048943</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2020-02-21</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Liina Mugu</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>6</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2020-02-21</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="b5f0ce24-5715-4453-a832-2cfc5182b797">
+		<nimi id="76f4637b-a04a-4cdb-9acf-013f0182c487">
+			<pealkiri id="72b77d64-bf26-4c77-902f-7d62248f14fe">Koduse lapse toetuse määramise ja maksmise kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="fa08017b-a595-47ea-a12b-a73c392e794d">
+		<aktikuupaev id="2a2f5898-b7d7-4ea5-a5f7-9873e1b08ca7">2020-08-25</aktikuupaev>
+		<avaldamismarge id="0dae19ba-5a51-4343-9854-540ce0e9b5d8">
+			<RTosa id="ace57c75-ff6e-4eb6-9ec1-e3a1375613a8">RT IV</RTosa>
+			<avaldamineKuupaev id="344528ad-c967-4e6f-baff-ff65380f454e">2020-09-01</avaldamineKuupaev>
+			<RTartikkel id="b51cb3c0-2a1f-470a-b88e-765361702af8">6</RTartikkel>
+			<aktViide id="59f4b987-6d22-46a4-a9e4-6a917c7a02f3">401092020006</aktViide>
+		</avaldamismarge>
+		<joustumine id="3cdd0b28-19ca-4a19-9b26-494cff2faf5c">2020-09-04</joustumine>
+		<aktiNr id="44f5abd1-4a40-48f2-8cfa-37f3573dcb8f">31</aktiNr>
+	</muutmismarge>
+	<muutmismarge id="e45f3e37-081c-4d5b-8c0e-ad23eee3f708">
+		<aktikuupaev id="fdab34b4-ef13-4535-a2e2-b7787be40df2">2020-10-20</aktikuupaev>
+		<avaldamismarge id="c3f81e5a-7f7a-45cf-a954-fcdfc4a0acbb">
+			<RTosa id="149763aa-96cd-4697-8a5e-501cf636be30">RT IV</RTosa>
+			<avaldamineKuupaev id="44ec0849-8fc9-4ac9-81ea-94b19b8e2ced">2020-10-29</avaldamineKuupaev>
+			<RTartikkel id="78093a3c-aa74-40e2-9849-3f8a63a787d3">3</RTartikkel>
+			<aktViide id="5507798c-abf4-42f1-bc19-b5e65fe332e3">429102020003</aktViide>
+		</avaldamismarge>
+		<joustumine id="8b7d822b-cec2-450e-9e81-0c7d1de7c545">2021-01-01</joustumine>
+		<aktiNr id="4e1f73d8-e35a-4809-9c53-55f6159cc792">35</aktiNr>
+	</muutmismarge>
+	<muutmismarge id="f2b7232e-0613-4fc1-b68d-ee094b6ce53f">
+		<aktikuupaev id="22d31a39-d63b-43ef-8d2e-279b707dc2e0">2021-06-15</aktikuupaev>
+		<avaldamismarge id="39a2a84f-6df9-4ce3-9aab-ac5d46566a1c">
+			<RTosa id="d2cc9a39-8fa1-427b-b7bd-12a1a19d7934">RT IV</RTosa>
+			<avaldamineKuupaev id="cb9d13ec-2dc0-456f-b166-ba0f1e734237">2021-06-29</avaldamineKuupaev>
+			<RTartikkel id="f8fbd3d8-058d-4b71-8c6e-c6e836087702">1</RTartikkel>
+			<aktViide id="bf387862-e94f-49f7-960d-bda9fa815d68">429062021001</aktViide>
+		</avaldamismarge>
+		<joustumine id="26f1588d-1c1d-49d3-b1ef-015fad791afc">2021-08-01</joustumine>
+		<aktiNr id="94b14e4a-e51f-4b97-8502-e5d8ca22ca23">18</aktiNr>
+	</muutmismarge>
+	<muutmismarge id="f8482105-93d5-49ed-9a79-7dedae8e355b">
+		<aktikuupaev id="945fe8f2-53e4-456c-82e0-9355fb347cc8">2026-05-28</aktikuupaev>
+		<avaldamismarge id="b05c607d-2f11-4c47-830f-6912a58a453e">
+			<RTosa id="d83dc8a9-bc81-43d5-b745-1bf5800172d4">RT IV</RTosa>
+			<avaldamineKuupaev id="c861e713-69f6-4ea9-920a-05289f823d9c">2026-06-11</avaldamineKuupaev>
+			<RTartikkel id="dfb184a0-ff96-4dbb-b2a3-f448b09a211a">19</RTartikkel>
+			<aktViide id="7570e654-254f-4b74-9e91-fa6335189c5c">411062026019</aktViide>
+		</avaldamismarge>
+		<joustumine id="2f52b02a-1ffb-4449-b58e-97c610fd3725">2026-06-14</joustumine>
+		<aktiNr id="b9112627-2c93-4c36-b7cf-9442d5b94493">24</aktiNr>
+	</muutmismarge>
+	<sisu id="0654e55e-56d4-4dec-8538-616cee87c047">
+		<preambul id="2e34093f-878a-40da-b516-e9084128caf1">
+			<tavatekst id="28d03512-4708-4576-a2db-0d249b28cfce">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5 alusel. </tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="878895d2-526e-4e8c-a48f-6a23bdb1c1ce">1</paragrahvNr>
+			<kuvatavNr id="55daa085-1a0c-43e9-908b-98cdfced71d3"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="edcac19d-db67-4ac9-8f7b-f33bbfd81a17">Reguleerimisala</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="dcb05e7d-0806-47af-88fa-e3bbca8c96eb"/>
+				<kuvatavNr id="801c5bbd-d5ae-44d3-80fa-11210c292407"/>
+				<sisuTekst id="f7e1fb29-a611-419e-a89e-3aa7a4f874c2">
+					<tavatekst id="1c4a04db-d1e7-43a6-820f-e5af0a782da6">Määrus reguleerib Viimsi valla eelarves selleks ettenähtud vahendite arvelt koolieelses lasteasutuses mittekäiva lapse toetuse rahastamise tingimusi.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="c113e0f7-691e-4f93-a291-6794c4e383c7">2</paragrahvNr>
+			<kuvatavNr id="37040d54-9474-41dc-971e-cedb5d76374d"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="619327b4-0d0b-43f4-a236-037996c7e556">Üldsätted</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="1eb5a06d-3197-4aa1-9b75-6d3156ad8182">1</loigeNr>
+				<kuvatavNr id="eae0c526-fb4d-41d3-8274-9475f8f5fe25"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="76187c09-11e8-48e7-8201-a4bdd93a4c36">
+					<tavatekst id="1c4008f9-2e30-4257-ad79-62bad7b2ccf5">Toetuse määra kehtestab Viimsi Vallavalitsus. Toetuse määr kehtib ühe lapse kohta ühes kalendrikuus. </tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg2">
+				<loigeNr id="5cde8649-9ed5-4257-babc-1f9097d87654">2</loigeNr>
+				<kuvatavNr id="97615dad-4f63-45bb-a817-c18cdf468de3"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="14cdeeb7-8d64-40c1-81f1-02b37c0bed57">
+					<tavatekst id="e106de22-f338-4dc6-96e1-33661ec30b05"> Toetuse maksmist korraldab ja makstud toetuse üle peab arvestust Viimsi Vallavalitsuse valdkonna eest vastutav osakond (edaspidi osakond).</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="87bb8eac-4cab-41df-bb26-a81e249b313d">
+					<avaldamismarge id="ee2aee54-827f-4701-b3a1-bd9f079158c5">
+						<RTosa id="d6701fa2-e47a-4882-a3a7-8f087b35a0ec">RT IV</RTosa>
+						<avaldamineKuupaev id="e48ac061-11fd-45dc-a472-cbf97a9e797e">2026-06-11</avaldamineKuupaev>
+						<RTartikkel id="ef302d09-042c-4e59-9416-0e36e9d252e6">19</RTartikkel>
+						<aktViide id="16e00d78-59d6-401e-9ffa-511d8ad990b4">411062026019</aktViide>
+					</avaldamismarge>
+					<joustumine id="62730779-02a8-4b9c-ac2b-108751cc7442">2026-06-14</joustumine>
+					<aktiNr id="59a35411-5f89-4993-9139-607c590a9184">24</aktiNr>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="87d35049-1786-417d-8671-953add64f899">3</paragrahvNr>
+			<kuvatavNr id="5a3e2498-de93-4df7-b244-83de78b3faaf"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="1d4931c3-f7a5-4d44-838e-5fe9dfa3dfbc">Toetuse subjekt</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="8a194ef9-d102-447c-aaf7-1aceb8e84c91">1</loigeNr>
+				<kuvatavNr id="9696f207-14ba-427f-86b0-139e135ec299"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="f365d6bb-ab88-42f4-8bcf-0889fab04bea">
+					<tavatekst id="268f4fed-bdcd-4f52-a2ec-5195fd97c971">Toetus määratakse ja makstakse lapsevanemale, eestkostjale või lepingulisele hooldajale: </tavatekst>
+				</sisuTekst>
+				<alampunkt id="para3lg1p1">
+					<alampunktNr id="71810251-c387-4284-aa23-b57dbff52461">1</alampunktNr>
+					<kuvatavNr id="b0906b33-79bd-47d6-9fae-a8c6a1ec6771"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="c8c2c5cf-0648-4608-941a-2cbea985afdd">
+						<tavatekst id="0abe318b-8886-489a-b45d-e7db5f5c2251">kui lapse, kelle jaoks toetust taotletakse, elukoht ja tema mõlema vanema või üksikvanema või eestkostja või lepingulise hooldaja elukoht rahvastikuregistri andmetel on toetuse maksmise aasta 1. jaanuari seisuga ning pidevalt kogu toetuse maksmise perioodi jooksul Viimsi vallas;</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="a627f7b5-cbf5-485c-a385-ace5baa0dd82">
+						<aktikuupaev id="5837138d-8a9c-4501-9c88-55105472ce49">2020-10-20</aktikuupaev>
+						<avaldamismarge id="8f3a5cff-be8e-465b-b306-d299b469e933">
+							<RTosa id="9624ef12-a442-4212-884a-97b07dc18fa8">RT IV</RTosa>
+							<avaldamineKuupaev id="98bf1e33-ab4b-4bf8-83bf-eba8312a0f54">2020-10-29</avaldamineKuupaev>
+							<RTartikkel id="478b786e-1ee6-4b42-a078-287ffae9291c">3</RTartikkel>
+							<aktViide id="8b64cd14-e3c3-4331-825d-0707e52233d7">429102020003</aktViide>
+						</avaldamismarge>
+						<joustumine id="2a5f37fc-ac71-4791-bd8e-3fe6898e5986">2021-01-01</joustumine>
+						<aktiNr id="b1942fcc-cf75-4c1a-b92c-252745e64e70">35</aktiNr>
+					</muutmismarge>
+				</alampunkt>
+				<alampunkt id="para3lg1p2">
+					<alampunktNr id="47b05703-7403-4f11-acb2-55861a550d40">2</alampunktNr>
+					<kuvatavNr id="161d4888-4696-43e0-b420-e3e5470a7779"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="7f32cd03-ac03-4a08-bb00-bd416e98db88">
+						<tavatekst id="698aed5b-8df2-4ea9-a4d2-3900aa321c5b">kui laps, kelle jaoks toetust taotletakse, ei ole kantud ühegi munitsipaal- või eralasteaia ega lapsehoiu teenuse pakkuja nimekirja.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="0baec451-bb8b-4191-87db-5a02ca7ecbc6">
+						<avaldamismarge id="d3fa4c2f-b611-42ac-9685-1f8cbd068251">
+							<RTosa id="b3111e04-0e79-4b79-b9d1-f32f97e7eb6b">RT IV</RTosa>
+							<avaldamineKuupaev id="d2a25c8a-4166-4925-af14-f828cd45aa05">2021-06-29</avaldamineKuupaev>
+							<RTartikkel id="2318dc0a-e049-445d-9deb-04a1e16c608e">1</RTartikkel>
+							<aktViide id="725b35d0-73bf-40e7-99fb-36dab13e59f6">429062021001</aktViide>
+						</avaldamismarge>
+						<joustumine id="2bb0198b-c28d-4ad8-8034-0bc0fd135c82">2021-08-01</joustumine>
+						<aktiNr id="bfbfff1b-a5ab-468d-ba6a-e555109f537d">18</aktiNr>
+					</muutmismarge>
+				</alampunkt>
+			</loige>
+			<loige id="para3lg2">
+				<loigeNr id="e518b2d3-af21-4d0d-85c9-cb72fe0e2ad7">2</loigeNr>
+				<kuvatavNr id="3dd7740f-eefd-4ac2-9999-c2c1b9201d9a"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="d90f718e-d5e6-440a-850c-b3c73d19249f">
+					<tavatekst id="ea8ea12d-ad3c-4a1c-be8b-c2790bc9a868">Õigus toetusele on lapsevanematel, üksikvanemal, eestkostjal või lepingulisel hooldajal, kelle laps on saanud jooksva kuu 10. kuupäeva seisuga vähemalt pooleteise aastaseks. Õigus toetusele on kuni lapse kolme aastaseks saamiseni. Õppeaasta jooksul kolme aastaseks saava lapse puhul kehtivad toetuse maksmise tingimused kuni õppeaasta lõpuni 31. augustil</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="8e2e0849-bfff-4061-88f5-60b2326183e3">
+					<avaldamismarge id="61b5b903-531f-40bd-b38e-7db09d3751a6">
+						<RTosa id="205e9b22-123f-4d19-88d5-ae1c8374c437">RT IV</RTosa>
+						<avaldamineKuupaev id="9b4f27af-ea87-498d-b176-a677e57f80fb">2021-06-29</avaldamineKuupaev>
+						<RTartikkel id="3bae7e3d-9b42-4cbb-9a14-44b592abe108">1</RTartikkel>
+						<aktViide id="d441562d-9ce2-4b07-85f5-07a3f64e721d">429062021001</aktViide>
+					</avaldamismarge>
+					<joustumine id="e908b287-f124-46f9-b3d1-12112bcee0e0">2021-08-01</joustumine>
+					<aktiNr id="33c00294-49be-4735-8782-23d5fcf456de">18</aktiNr>
+				</muutmismarge>
+			</loige>
+			<loige id="para3lg3">
+				<loigeNr id="ede1d4a5-6d50-4091-88b0-6e1121f06d32">3</loigeNr>
+				<kuvatavNr id="5b3cffa0-fa8e-4df7-ac13-335cdc8a5ce1"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="5e33a352-114c-4fce-b528-f381c585399e">
+					<tavatekst id="017f0ad5-0e54-4740-9aa4-9847e33ccfcd">Toetuse maksmine lõpetatakse, kui laps läheb koolieelsesse lasteasutusse, hakkab kasutama lapsehoiuteenust või lapse ja tema vanemate või üksikvanema või eestkostja või lepingulise hooldaja elukoht ei ole enam Viimsi vallas. Juulikuus toetust ei maksta.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="b0cb1dcd-6ab6-4271-8faa-e13776fa6280">
+					<aktikuupaev id="83487e61-2fb9-4ac7-9948-54de9422763b">2020-10-20</aktikuupaev>
+					<avaldamismarge id="9ce53e79-2cd0-453c-b00d-001673a97b4d">
+						<RTosa id="f002bc41-c313-4ed3-bb43-490dfe1d5a4b">RT IV</RTosa>
+						<avaldamineKuupaev id="88a732ce-f75c-451f-b624-73a3305c6dcf">2020-10-29</avaldamineKuupaev>
+						<RTartikkel id="2cbda66b-d666-4017-87a0-ca4ae2fc0714">3</RTartikkel>
+						<aktViide id="3f78c689-f089-4e6d-80a2-2dcc53b51616">429102020003</aktViide>
+					</avaldamismarge>
+					<joustumine id="bda9d90d-81d9-4346-96f2-a345d443dfca">2021-01-01</joustumine>
+					<aktiNr id="08cf79f7-4222-4f3a-9112-74d979d8ea1f">35</aktiNr>
+				</muutmismarge>
+			</loige>
+			<loige id="para3lg4">
+				<loigeNr id="f1502f4d-92a0-4586-96c7-308059deb9e4">4</loigeNr>
+				<kuvatavNr id="8253c68a-8390-4367-a694-426ca9ac6b16"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="1a5d4d1c-d582-406c-9229-2e6576545445">
+					<tavatekst id="c8a1b011-3960-4104-9d1e-f8c2d152c562">Toetust ei maksta kui lapsevanem on loobunud kohast Viimsi valla pakutud munitsipaallasteasutuses või Viimsi vallale hankelepingu alusel teenust pakkuvas eralasteaias.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="7d152bc4-567c-48a9-b527-79be4f8d4ceb">
+					<aktikuupaev id="2e1d7f1f-5609-488d-95ad-6048fa3cb4eb">2020-10-20</aktikuupaev>
+					<avaldamismarge id="7922cfa1-9cfe-45f8-b311-b0d4cb0a0c78">
+						<RTosa id="3f6b672f-0099-4f4c-8ae1-a80b004d5053">RT IV</RTosa>
+						<avaldamineKuupaev id="be71aafa-f57e-47d8-830a-afbc7247355b">2020-10-29</avaldamineKuupaev>
+						<RTartikkel id="ca0b560a-6198-4ca7-9976-6ffa6aa8fa14">3</RTartikkel>
+						<aktViide id="f3b113ec-7c98-4c4f-bbec-028403b7d681">429102020003</aktViide>
+					</avaldamismarge>
+					<joustumine id="28378064-7a1c-4728-9693-d394d6afbbcb">2021-01-01</joustumine>
+					<aktiNr id="ad7d9039-53f9-42c6-81ed-76ff6864ab9e">35</aktiNr>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="3764ec16-444b-4ead-998a-29c490991f88">4</paragrahvNr>
+			<kuvatavNr id="c719da2d-80ab-4e12-b25d-910ac4cc98df"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="9a9e5017-cf2f-4b97-8279-67a99a8c9728">Toetuse taotlemine</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="5902f46f-838d-4293-ae51-de0006e21a89">1</loigeNr>
+				<kuvatavNr id="fa40e506-e8f7-488d-901c-a20ac1e04bb6"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="22898e87-dab0-4f42-95cf-1d5c06b15221">
+					<tavatekst id="82e01e6c-a8f0-46a4-ac68-199e1151e1c4">Toetuse taotleja esitab vallavalitsusele kirjaliku vormikohase taotluse.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="a48e609a-013b-499c-8c12-32e0ab88192a">
+					<aktikuupaev id="13f3638f-be7d-4dc3-9407-06ea9f38c04d">2020-10-20</aktikuupaev>
+					<avaldamismarge id="c0ee0a0f-de3a-4ba3-b1d9-c411234978c8">
+						<RTosa id="8c2d55c4-4cf6-4996-accc-c1685959586b">RT IV</RTosa>
+						<avaldamineKuupaev id="89955460-e554-4f0c-a1db-dc23d82167f5">2020-10-29</avaldamineKuupaev>
+						<RTartikkel id="fdd423d6-3a31-4f94-971f-dd514ed6130b">3</RTartikkel>
+						<aktViide id="12a8e4a5-0864-49c4-8484-bff576af62e6">429102020003</aktViide>
+					</avaldamismarge>
+					<joustumine id="71f90e14-c60d-49db-98f4-a6f4fcef376f">2021-01-01</joustumine>
+					<aktiNr id="aa629313-e1dc-46f7-9ec4-057016aa0314">35</aktiNr>
+				</muutmismarge>
+			</loige>
+			<loige id="para4lg2">
+				<loigeNr id="4f47873c-760e-4475-b02d-0e4d2db6f80e">2</loigeNr>
+				<kuvatavNr id="61779715-7e7e-48e1-ba6c-1825f93c6692"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="f5ebf011-43f8-417a-a7f5-50352e25b684">
+					<tavatekst id="4731b8e6-4630-4442-87d1-6f2a1f21eccc">Osakonnal on vajadusel õigus nõuda taotlejalt täiendavaid andmeid või dokumente, millest taotlejat informeeritakse taotluse vastuvõtmisel või kirjalikult viie tööpäeva jooksul pärast taotluse vastuvõtmist.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="1f73b608-aeea-4207-a639-cf15e8ddf8fa">
+					<aktikuupaev id="0e9a0ee3-8f0d-4696-91b3-5df06097c56e">2020-08-25</aktikuupaev>
+					<avaldamismarge id="98b5111c-ce47-45d8-86fb-33e2b4eb41a8">
+						<RTosa id="b4a4c5d1-fa49-4ba5-9d14-89950dd8725d">RT IV</RTosa>
+						<avaldamineKuupaev id="f7991d6e-5a3a-4de0-a14a-cb55eccad034">2020-09-01</avaldamineKuupaev>
+						<RTartikkel id="14fad89e-7308-4a63-b6c9-c384888555ee">6</RTartikkel>
+						<aktViide id="e50d130b-2fe5-4dbc-bfe1-21dabb393a53">401092020006</aktViide>
+					</avaldamismarge>
+					<joustumine id="3cf4b996-55f6-44b7-afd3-17ae11028eea">2020-09-04</joustumine>
+					<aktiNr id="4bc90367-7c94-482b-8264-4ba2a7b69868">31</aktiNr>
+				</muutmismarge>
+			</loige>
+			<loige id="para4lg2b1">
+				<loigeNr id="b48c20b8-1e8b-4684-9c55-25cad635743f" ylaIndeks="1">2</loigeNr>
+				<kuvatavNr id="f6295a19-017a-4098-8426-0de45d54f424"><![CDATA[(2<sup>1</sup>)]]></kuvatavNr>
+				<sisuTekst id="e0732863-0025-49b1-812f-89d81b1e0ae1">
+					<tavatekst id="6b15fcba-7418-4aa2-9c3b-02ef56503bcf">Koduse lapse toetuse taotlus esitatakse osakonnale hiljemalt jooksva kalendrikuu 15. kuupäevaks. Taotlused, mis esitatakse peale nimetatud kuupäeva, arvestatakse toetuse määramiseks järgmisest kalendrikuust.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="44e77f29-ae60-4a0c-b054-c646c6fd089e">
+					<aktikuupaev id="c705cf8f-0735-4a58-adff-00ab8f1bd851">2020-08-25</aktikuupaev>
+					<avaldamismarge id="e68f309d-fc07-4b03-9d64-c53b2df0b721">
+						<RTosa id="264f9cf5-456f-4bac-8bfb-099d362668d0">RT IV</RTosa>
+						<avaldamineKuupaev id="4a532d75-c981-465e-ac0f-87897259f318">2020-09-01</avaldamineKuupaev>
+						<RTartikkel id="a687dbed-c644-4644-9b04-5fda2c093227">6</RTartikkel>
+						<aktViide id="19aae13e-7792-4cc1-bfa7-e0bab8b75a72">401092020006</aktViide>
+					</avaldamismarge>
+					<joustumine id="7e43aa2d-779d-48b1-9fba-e5006a80962e">2020-09-04</joustumine>
+					<aktiNr id="c2056c1d-559e-4d15-953b-2ea0a1404e3b">31</aktiNr>
+				</muutmismarge>
+			</loige>
+			<loige id="para4lg3">
+				<loigeNr id="0c22635e-4ca7-4ffa-83ec-a9bad2158898">3</loigeNr>
+				<kuvatavNr id="a906eadd-d93e-442a-97a6-7855a7e08219"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="9e15fad7-509d-43fb-8812-911ba8ed4484">
+					<tavatekst id="b376f9fd-f393-40b0-8424-977f62f77f41">Taotlus jäetakse rahuldamata, kui kümne tööpäeva jooksul taotluse esitamisest või kirjaliku teate saatmisest ei ole esitatud täiendavalt nõutud andmeid või dokumente.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="2731e24a-45da-4a0f-be65-8bac27a41e15">
+					<aktikuupaev id="625503a8-1e03-4a82-94a1-f2a7ea726e28">2020-08-25</aktikuupaev>
+					<avaldamismarge id="ae8b3494-1153-4d35-a1ab-10f264b96c8c">
+						<RTosa id="039ce742-da6a-42c1-9a70-4e6105fea5e4">RT IV</RTosa>
+						<avaldamineKuupaev id="2974a9ea-62ce-4756-b8ba-4ef6c26f3b67">2020-09-01</avaldamineKuupaev>
+						<RTartikkel id="8b77cdf0-4abc-4437-8504-06a71c3b3776">6</RTartikkel>
+						<aktViide id="a62ceb81-b1ae-4357-a3e8-3222559392e9">401092020006</aktViide>
+					</avaldamismarge>
+					<joustumine id="41ec4868-1c27-4559-94d7-effe2addad9f">2020-09-04</joustumine>
+					<aktiNr id="775d9923-beb6-4ca9-8ec6-c94f3e06a15c">31</aktiNr>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="8e1d1316-1dfd-457c-af0b-42cc81f3e825">5</paragrahvNr>
+			<kuvatavNr id="23905445-f788-455b-bca8-a8c95d600719"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="06456693-529a-4747-896d-115464c016b8">Toetuse määramine ja maksmine</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="8c8938cf-6a71-4b88-ba5c-851e4a5ac83d">1</loigeNr>
+				<kuvatavNr id="4333edbb-8712-4c11-85f3-35e96036ab47"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="a7a39829-21e7-41ca-90d9-b0acdbf9befa">
+					<tavatekst id="6343a1ed-b8af-4b39-ba01-3837477bd1a4">Otsuse toetuse andmise või sellest keeldumise kohta teeb osakond 15 tööpäeva jooksul, arvates toetuse taotlemiseks viimase vajaliku dokumendi saamise päevast. </tavatekst>
+				</sisuTekst>
+				<muutmismarge id="4201306f-802b-4325-886b-a3fb81ec25d0">
+					<avaldamismarge id="4372dd82-90d9-40a5-ab50-5e627f022846">
+						<RTosa id="239b413e-b713-491f-a46f-053e065c0c51">RT IV</RTosa>
+						<avaldamineKuupaev id="91657b22-e47d-4726-97c0-c39ed9dec65d">2020-09-01</avaldamineKuupaev>
+						<RTartikkel id="a15d7148-4ee1-4341-aa76-f0404e7dc5bf">6</RTartikkel>
+						<aktViide id="f7d17f92-f0f2-454c-9980-4369d8dc1946">401092020006</aktViide>
+					</avaldamismarge>
+					<joustumine id="0fc537c7-5e74-4173-99be-fc248fddeafd">2020-09-04</joustumine>
+					<aktiNr id="c94ae218-fc57-4822-a8af-11081fdf5b0d">31</aktiNr>
+				</muutmismarge>
+			</loige>
+			<loige id="para5lg2">
+				<loigeNr id="e340cf6a-d5c8-48ae-a8c9-06b8374be333">2</loigeNr>
+				<kuvatavNr id="cd23ce5a-5675-4289-92e8-46b43da6313f"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="45e51aef-2195-40dc-afe3-9d6b0a7c6287">
+					<tavatekst id="b0519bfc-539f-425c-8fbe-5966e164f0ec">Kui taotlust ei rahuldata, saadab osakond taotlejale motiveeritud otsuse viie tööpäeva jooksul otsuse tegemisest.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="05df1340-7b75-452c-aa0c-a62a05d52386">
+					<avaldamismarge id="17e27224-c2b5-4ca3-8314-4097b5928372">
+						<RTosa id="1f0ee48e-36c3-488b-8745-187f48e15e3f">RT IV</RTosa>
+						<avaldamineKuupaev id="5a95a465-1ffe-4a17-86e2-bd1ae5095216">2020-10-29</avaldamineKuupaev>
+						<RTartikkel id="f090c99c-cf5b-4acb-b655-77895ce9153f">3</RTartikkel>
+						<aktViide id="35cf9b1f-f39e-484c-b4ac-0414d9a85288">429102020003</aktViide>
+					</avaldamismarge>
+					<joustumine id="5f02c4dd-ad4e-47a8-843f-08224412ba0b">2021-01-01</joustumine>
+					<aktiNr id="2396b431-4d6e-40ef-ae50-b6fcc06acd72">35</aktiNr>
+				</muutmismarge>
+			</loige>
+			<loige id="para5lg3">
+				<loigeNr id="3276498d-dbd0-4f48-a35b-48b73b954b7b">3</loigeNr>
+				<kuvatavNr id="78b72c8c-565c-47e5-a378-00b33beb0e43"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="04926470-5cfb-46d5-922a-b0a364d6acf4">
+					<tavatekst id="de3a90b3-f8a6-427d-98d7-3e495635add5">Toetus kantakse üle taotluses märgitud arvelduskontole kord kuus hiljemalt 25. kuupäevaks. </tavatekst>
+				</sisuTekst>
+				<muutmismarge id="23adb8fa-e057-44ed-8417-800b0bddbf51">
+					<avaldamismarge id="f0a42373-e226-4fa1-a456-e3421bbc4f9f">
+						<RTosa id="df183633-387a-4525-8840-5419539b9e73">RT IV</RTosa>
+						<avaldamineKuupaev id="09bf1083-945e-41a6-b1f8-80ca0731efdd">2020-09-01</avaldamineKuupaev>
+						<RTartikkel id="6de49af1-6c55-4195-9aa9-3f92975869d2">6</RTartikkel>
+						<aktViide id="43e6a9b5-6ec7-4919-9cce-34943c9d1e39">401092020006</aktViide>
+					</avaldamismarge>
+					<joustumine id="9910f6fe-7aa5-4eb0-945e-c7a32ac4f053">2020-09-04</joustumine>
+					<aktiNr id="4498b6db-5542-4408-88a0-fbfc80bb98d0">31</aktiNr>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para6">
+			<paragrahvNr id="4ddcccd0-53e5-45b1-a790-59d8b0191428">6</paragrahvNr>
+			<kuvatavNr id="a0db53ac-c4c4-4bb2-a3dd-62c8c5939b22"><![CDATA[§ 6. ]]></kuvatavNr>
+			<paragrahvPealkiri id="fb4efc3e-ebe5-45eb-b4f2-44e7c440245f">Vaidluste lahendamine</paragrahvPealkiri>
+			<loige id="para6lg1">
+				<loigeNr id="8323cb1f-b556-4236-8b77-a7733b54c078">1</loigeNr>
+				<kuvatavNr id="cd818e14-5ef6-4649-8687-ad19a987651b"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="5511bda6-bb52-4394-8e33-a2865787a7e4">
+					<tavatekst id="d5cbd50e-6ee9-4602-8217-eecc4da831c4">Kui toetus on taotleja poolt valeandmete esitamise tagajärjel makstud välja alusetult, on vallavalitsusel õigus nõuda alusetult makstud toetuse summa tagastamist, esitades toetuse saajale sellekohase nõudekirja.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg2">
+				<loigeNr id="a9d4e9d1-2ccb-4a95-89de-41bbfe41cc54">2</loigeNr>
+				<kuvatavNr id="e8a89a23-6e15-402f-be0a-6f09d8f3fc68"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="4b286db7-c946-4e6c-a746-ebdd823f1f95">
+					<tavatekst id="b86d960f-b7e4-42ff-82e3-990c548301e9">Toetuse alusetult saanud isik on kohustatud alusetult saadud toetuse tagasi maksma 15 päeva jooksul arvates vallavalitsuselt nõudekirja saamisest. Alusetult makstud toetusi, mida pole ettenähtud 15 päeva jooksul tagastatud, on vallavalitsusel õigus nõuda tagasi kohtu korras. Sel juhul on alusetu toetuse saanud isik kohustatud vallavalitsusele hüvitama ka sissenõudmisega seotud kulud.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="b1d7228a-d8db-44e8-9b88-f2c23ba48f86">
+					<avaldamismarge id="d41f0a88-0600-41b2-a679-49068fd3c754">
+						<RTosa id="2dce4b5f-bdc4-4e41-b7be-ab1b62e69cc4">RT IV</RTosa>
+						<avaldamineKuupaev id="09ccb02c-105f-443e-aeb8-cc0636ab4f57">2020-09-01</avaldamineKuupaev>
+						<RTartikkel id="e42c94e7-b39a-4e50-acb3-4521187b0d68">6</RTartikkel>
+						<aktViide id="0cd8954d-7c06-4717-a064-55c06af5ae33">401092020006</aktViide>
+					</avaldamismarge>
+					<joustumine id="fccc71fd-4816-491c-a77a-e012b90bdea3">2020-09-04</joustumine>
+					<aktiNr id="fe5560d1-a322-4416-926b-01be6889fbe7">31</aktiNr>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para7">
+			<paragrahvNr id="ac210e24-c829-46ee-a936-5825927007fb">7</paragrahvNr>
+			<kuvatavNr id="1a06e432-3b2d-4fe2-adec-29e884321b58"><![CDATA[§ 7. ]]></kuvatavNr>
+			<paragrahvPealkiri id="b3f9bcd7-d49d-47b2-951b-7ce7ae238463">Rakendamine</paragrahvPealkiri>
+			<loige id="para7lg1">
+				<loigeNr id="d4c17655-a16b-4bdc-96cb-8ab42bbfce6e"/>
+				<kuvatavNr id="45acaf24-4582-485e-a1c6-953f46a9d431"/>
+				<sisuTekst id="51001be0-7286-40eb-817b-4171db4fe9dd">
+					<tavatekst id="ffb67a43-10bc-4d91-a1c6-5d587cf19e41">Määrus jõustub 01.04.2020.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+</oigusakt>

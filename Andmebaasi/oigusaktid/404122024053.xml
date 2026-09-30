@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="49d8c5ff-8092-4809-9b12-ed8868fa8739" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Kanepi Vallavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2018-01-23</aktikuupaev>
+			<avaldamismarge>
+				<RTosa id="5b4121c0-a941-4a97-9ffa-913226019ff6">RT IV</RTosa>
+				<avaldamineKuupaev id="afeb8eef-e509-4b55-9fb4-2ec2cc04485e">2018-02-07</avaldamineKuupaev>
+				<RTartikkel id="9f9b2766-a3a1-41e3-a826-bc94a85218f0">8</RTartikkel>
+				<aktViide id="d8cea630-034d-4b31-962d-7aa16d62305e">407022018008</aktViide>
+			</avaldamismarge>
+			<joustumine>2018-02-10</joustumine>
+			<aktiNr>6</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2024-12-04</avaldamineKuupaev><RTaasta>2024</RTaasta><RTartikkel>53</RTartikkel><aktViide>404122024053</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2025-01-01</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2024-12-02</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>404122024053</globaalID>
+		<metaandmedVersioon>21</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2024-12-03</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1041894</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2018-01-30</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Katrin Slungin</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>6</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2018-02-05</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>11</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2019-10-30</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>16</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2020-12-22</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="d1568af4-7f9b-41eb-bdab-273fe85952ae">
+		<nimi id="fcbc5d7e-d31a-4e2d-82d4-dd1e65a2e92d">
+			<pealkiri id="ae021fd4-2960-4665-9110-9f40bf7e16db">Sotsiaaltoetuste määrade kehtestamine</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="6393cac6-3bcd-4903-b609-676e5dfacad2">
+		<aktikuupaev id="bb2f9854-57cd-4fb2-94ca-b25178a1eef0">2019-10-17</aktikuupaev>
+		<avaldamismarge id="2d97004c-72f6-4ac3-831e-af91cb7c4a7f">
+			<RTosa id="fbbfe8da-cd73-4ae0-93b7-608a46137ae0">RT IV</RTosa>
+			<avaldamineKuupaev id="362557a9-4b24-4617-8947-fa0bee80fee1">2019-10-31</avaldamineKuupaev>
+			<RTartikkel id="7989592a-ada3-43c8-8c85-895ae492f3c1">4</RTartikkel>
+			<aktViide id="cb20d438-09b6-4f23-b96d-6eaf2d98e3c7">431102019004</aktViide>
+		</avaldamismarge>
+		<joustumine id="503b660f-a507-461d-be19-1ae93d294433">2020-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="7b5615d2-41ac-4e94-acc4-5ec8234b5951">
+		<aktikuupaev id="275b801f-77ef-4709-98c2-23e2c01fd3c4">2020-12-17</aktikuupaev>
+		<avaldamismarge id="8c412958-e6d8-48bc-8c80-32d1e5707bdf">
+			<RTosa id="8c1442a9-debb-41a0-bb18-913e874ff6dd">RT IV</RTosa>
+			<avaldamineKuupaev id="37db65f9-a21a-48a1-a694-404b1603c807">2020-12-23</avaldamineKuupaev>
+			<RTartikkel id="b485fa7f-4792-4243-833d-50b6f8125f61">15</RTartikkel>
+			<aktViide id="c363d432-4803-47a9-9af2-36d1444d8bbd">423122020015</aktViide>
+		</avaldamismarge>
+		<joustumine id="36006642-4f45-4609-98d0-9dd88e540d71">2021-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="122a93e7-41b5-44aa-bfc2-756255fc38e9">
+		<aktikuupaev id="0a5222d8-d4cb-4450-82c8-08458422690f">2024-11-21</aktikuupaev>
+		<avaldamismarge id="1b2fa5da-fd63-40ea-b3fd-58e6ce621d08">
+			<RTosa id="1f5c459b-ffe7-45f5-b41b-daf2fb3fae2a">RT IV</RTosa>
+			<avaldamineKuupaev id="f218469b-885d-4c02-8aa3-aef30cf2aa30">2024-12-04</avaldamineKuupaev>
+			<RTartikkel id="4ebe5380-fb95-4878-8e7b-e68c23e842ed">1</RTartikkel>
+			<aktViide id="cdce9d7f-285c-41be-815b-1e9641e55e9e">404122024001</aktViide>
+		</avaldamismarge>
+		<joustumine id="beb55f77-2df0-44af-b422-7abada65078b">2025-01-01</joustumine>
+	</muutmismarge>
+	<sisu id="11ac3f11-0dd3-4ced-bf1b-d1575f02199a">
+		<preambul id="9449d697-73fd-4d38-8d41-3738b643e891">
+			<tavatekst id="b667f161-7b21-4e50-b973-b69f033debd5">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 6 lõike 1, § 22 lõike 1 punkti 5 ja sotsiaalhoolekande seaduse § 14 lõike 2 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="50a0afdd-6834-4009-80b3-8b89362d828b">1</paragrahvNr>
+			<kuvatavNr id="aa268233-b12d-418f-8ef2-95bb05c02946"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="c88ffc39-8e87-49f0-bc9b-16c2a7ccf41f">Sotsiaaltoetuste määrad</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="ad0f42a0-3484-41c9-a2ee-dc16e0d00221">1</loigeNr>
+				<kuvatavNr id="27a6ecca-0ab2-4feb-960f-4487cd45b09c"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="60e6293d-3bd9-4d26-b966-1bdb6d03cf12">
+					<tavatekst id="0c67aea2-cef5-4855-94cb-c2138e50c2d4">Sünnitoetuse esimese osa suuruseks on 500 eurot. Sünnitoetuse teise osa suuruseks on 500 eurot.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="15bc643b-a21f-4c17-a953-d619be349f8e">
+					<avaldamismarge id="a6b279ca-2db9-4b41-a3de-d92d244312f0">
+						<RTosa id="25856641-3337-4133-a8cf-b609349c2d82">RT IV</RTosa>
+						<avaldamineKuupaev id="6e4e0554-0596-43a7-952d-46af6e7d8cbe">2020-12-23</avaldamineKuupaev>
+						<RTartikkel id="c296a105-94d5-4461-b81e-16485a963235">15</RTartikkel>
+						<aktViide id="596da372-64ce-4293-8036-1913f58cd376">423122020015</aktViide>
+					</avaldamismarge>
+					<joustumine id="e4a2c2fd-2b05-4d15-b2a1-ec475d507d64">2021-01-01</joustumine>
+					<aktiNr id="67e72044-0794-4722-b9e7-3d527a71e28f">18</aktiNr>
+				</muutmismarge>
+			</loige>
+			<loige id="para1lg2">
+				<loigeNr id="62759571-690b-49d2-8a62-c225b817553d">2</loigeNr>
+				<kuvatavNr id="e3e1f7d0-b30e-4f4e-91e5-580e4e2386a3"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="8fdfff07-2af3-4eb6-9af1-68b57b10e49e">
+					<tavatekst id="750f93ea-a415-4b07-9176-5bc0680b5125">Matusetoetuse suuruseks on 250 eurot. Täiendava matusetoetuse suuruseks on kuni 100 eurot.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg3">
+				<loigeNr id="c27e1983-8e26-4870-8952-52d718af4403">3</loigeNr>
+				<kuvatavNr id="a98861d1-d21e-4354-998b-d8ed600ec2e8"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="fe07eb37-9f66-4322-b8ae-20eabc3f47c2">
+					<tavatekst id="9eab549e-422c-4dc3-9cbc-98396ba248e9">Esimesse klassi astuja toetus on 200 eurot.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg4">
+				<loigeNr id="3fc37756-e2f2-4309-9223-924950b1c42c">4</loigeNr>
+				<kuvatavNr id="79bdfc5b-1590-4d1a-a652-22660d160397"><![CDATA[(4)]]></kuvatavNr>
+				
+				<muutmismarge id="1d53b900-3ef2-44b0-8617-de2b6e79fca4">
+					<tavatekst id="94838650-ef19-4f49-84c2-f0a218755774">Kehtetu - </tavatekst>
+					<avaldamismarge id="bb53ccf0-86b4-4a03-8f5a-7ccae04538c2">
+						<RTosa id="e2d7c683-5791-4ae7-adde-18f007911787">RT IV</RTosa>
+						<avaldamineKuupaev id="d6b763c9-9d84-4da0-8253-6115b64f00e7">2024-12-04</avaldamineKuupaev>
+						<RTartikkel id="a8754e7f-1ce6-480d-ad74-0f4db0dec7a6">1</RTartikkel>
+						<aktViide id="e94a2200-9661-4eba-b632-e93e7cf85f98">404122024001</aktViide>
+					</avaldamismarge>
+					<joustumine id="f097db94-5599-45a6-ac63-922969280b7a">2025-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para1lg5">
+				<loigeNr id="f2a6931b-324d-46cb-b278-947511f52bc5">5</loigeNr>
+				<kuvatavNr id="83506de7-d6f8-46a3-b53a-f235be3d6094"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="5a1690f9-db80-417c-a5b9-b51c413635d4">
+					<tavatekst id="a3b58059-91ee-4b9d-a45d-1aea423ee011">Prillitoetuse piirmääraks on kuni 70 eurot.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg6">
+				<loigeNr id="887e68fc-978d-46c3-bef8-10fefdd961d7">6</loigeNr>
+				<kuvatavNr id="66fac955-b271-4fba-a6dd-72e0803d8b82"><![CDATA[(6)]]></kuvatavNr>
+				<sisuTekst id="13a38a66-c14b-4852-b244-fe0a66968a3d">
+					<tavatekst id="bc6fa93a-0de7-4ffd-84de-c2d51384763c">Küttetoetust määratakse rahalises väärtuses kuni 200 eurot.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="1a31011b-b0c5-419a-a28e-23ada755ece6">
+					<avaldamismarge id="51f90bd8-a3cd-496b-b781-59efe71cfced">
+						<RTosa id="cc0c9dcf-1881-4b8e-bef5-03a19df6c580">RT IV</RTosa>
+						<avaldamineKuupaev id="91c07362-825c-45cc-a584-9a6a5a12e5ec">2019-10-31</avaldamineKuupaev>
+						<RTartikkel id="3fe54aae-36a1-4815-9c12-5d7383c2b4c3">4</RTartikkel>
+						<aktViide id="e017d906-3ed8-419f-a9fa-75bb9b1e279b">431102019004</aktViide>
+					</avaldamismarge>
+					<joustumine id="be061500-8b32-4350-ab6f-f5da21bfcade">2020-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para1lg7">
+				<loigeNr id="fe3cf11b-61c5-4a52-854f-6ef2b4c03e7b">7</loigeNr>
+				<kuvatavNr id="f6fa3672-5312-4ac8-b9e9-d8e8ac28f9e8"><![CDATA[(7)]]></kuvatavNr>
+				<sisuTekst id="c9a28e57-72ec-4c20-852e-67535929621c">
+					<tavatekst id="c528a381-3090-4583-b86d-b5053990fa9f">Puudega isiku hooldajale toetus on 25 eurot kuus.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg8">
+				<loigeNr id="5706bfdc-bb6e-4dc9-92c6-169bf9504d08">8</loigeNr>
+				<kuvatavNr id="708266c2-10ac-43ff-8f66-16dfff194ba8"><![CDATA[(8)]]></kuvatavNr>
+				<sisuTekst id="264a9f23-f913-4251-b3fb-f90c8eeb5b14">
+					<tavatekst id="d56ba3f0-993e-4623-8002-872b4782571b">Sügava puudega isiku hooldajale toetus on 40 eurot kuus.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg9">
+				<loigeNr id="f03752e7-678f-420e-a1fb-f16338316669">9</loigeNr>
+				<kuvatavNr id="0b29f312-ba14-4ea4-8571-bdc36e1d4099"><![CDATA[(9)]]></kuvatavNr>
+				<sisuTekst id="dc24aa5f-3512-499a-8610-8c562848be3a">
+					<tavatekst id="ec2a8ef0-89c6-4ee3-8435-20a6fe57a0f1">Puudega lapse hooldaja toetus on 100 eurot kuus (pideva hooldusvajaduse korral 140 eurot kuus).</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="8be1e1bd-9a04-44b0-a24a-d6066bc42353">
+					<avaldamismarge id="7db23cd6-95ec-4a5e-9860-4a53a2309c4d">
+						<RTosa id="ad14e9be-50c8-4a28-820b-abb9a411ddf4">RT IV</RTosa>
+						<avaldamineKuupaev id="c5516ed4-e199-47b0-819d-66941b7ed002">2019-10-31</avaldamineKuupaev>
+						<RTartikkel id="f1d4be55-4c1d-4fe3-943d-41862da0d1a0">4</RTartikkel>
+						<aktViide id="56a0b452-78c6-4a0b-b040-9d31dd13b2d5">431102019004</aktViide>
+					</avaldamismarge>
+					<joustumine id="8d635071-d946-42b4-9273-914cd81afebb">2020-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="b6618d8e-1a7e-448a-8215-5e414a6b9fa8">2</paragrahvNr>
+			<kuvatavNr id="7581f914-44b3-425b-850d-b9f03afdacae"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="359bb499-dc19-4a30-b7cf-965f594bd66a">Rakendussätted</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="b471bc53-a553-40f1-b924-305e77a2bf28">1</loigeNr>
+				<kuvatavNr id="b354b9ca-f134-4299-8b7f-b9f8ce1340e9"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="b76377cc-f0a3-4015-b166-c25de8861834">
+					<tavatekst id="a415b57b-e1b4-4223-bef8-5a493f2cb47a">[Käesolevast tekstist välja jäetud.]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg2">
+				<loigeNr id="e7c8f215-fdd3-4d0a-a77a-d0e21c6bfe57">2</loigeNr>
+				<kuvatavNr id="efbee6ee-70df-41d8-811e-39427d949934"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="47019591-03d5-47db-8c37-f27e13b1cad5">
+					<tavatekst id="4689b14d-62a8-43a8-b1af-8e22130c3891">Määrust rakendatakse alates 01.01.2018</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+</oigusakt>

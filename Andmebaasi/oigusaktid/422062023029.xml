@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="5ed9966d-11f7-431c-9411-481538ff1657" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Loksa Linnavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2023-06-21</aktikuupaev>
+  
+  
+  <aktiNr>4</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2023-06-22</avaldamineKuupaev><RTaasta>2023</RTaasta><RTartikkel>29</RTartikkel><aktViide>422062023029</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2023-07-01+03:00</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2023-06-21</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>422062023029</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2023-06-21</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1056861</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2023-06-21</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Karin Kask</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="72b89ad5-4ee9-4cf7-be6f-df4ff23096cd">
+  <nimi id="a7c59a2c-eb02-4fe2-b3fd-af253394b6ea">
+   <pealkiri id="9996cbec-796e-4236-a89a-66b6c2c29001">Väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse hoolduskulude tasumise piirmäära kehtestamine</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="172e6a4e-db81-4730-933e-72e242443b7f"><preambul id="434cc868-9ab8-4be4-9f87-6fa3d416993a">
+   <tavatekst id="88cfbbfa-ea58-4cc9-b5f4-2155ca7518f9">Määrus kehtestatakse sotsiaalhoolekande seaduse § 22<sup>1 </sup>lõike 3 (01.07.2023 redaktsioonis) ja Loksa Linnavolikogu 28.04.2022 määruse nr 7 „Sotsiaalteenuste osutamise kord“ § 8 lõike 10 alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="bd403cc3-fe97-4d0f-b086-c564fd67a1a6">1</paragrahvNr>
+   <kuvatavNr id="86342951-8696-4330-869d-0e23393509b8"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="9fd9115d-705e-4883-adb2-db9e99f5d2eb"> Väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse hoolduskulude tasumise piirmäär</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="ed04694b-0295-4b95-96c3-fc6bc70e0d09"/>
+   <kuvatavNr id="4710f2f4-0c3c-477a-827c-53b8c1a8ac1a"/>
+   <sisuTekst id="ca1a4c3c-5373-4667-898f-525e66e55cae">
+    <tavatekst id="8077d5dd-f4ef-4c94-bf65-acbf93487912"> Kehtestada väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse osutamisel vahetult teenust osutavate hooldustöötajate ja abihooldustöötajate kulude (sh tööjõukulud, tööriietuse ja isikukaitsevahendite kulud, tervisekontrolli ja vaktsineerimise kulud, koolituse ja supervisiooni kulud) tasumise piirmääraks 650 eurot ühe teenusesaaja kohta kalendrikuus.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="df73bcfe-4ea0-4ced-ac9a-0b9541f6da58">2</paragrahvNr>
+   <kuvatavNr id="1a323393-849b-49aa-901c-fbe26f447392"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="afcbf098-3b16-4851-8471-b092131f37c0">Määruse jõustumine</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="ac25fba3-ff8d-4851-9d79-90b2b828d230"/>
+   <kuvatavNr id="d02098bf-842d-49b1-bc5e-70e3b19d9d93"/>
+   <sisuTekst id="ca2bfff1-a4d4-47cd-bb1b-777c8641f6d4">
+    <tavatekst id="32786df4-6f0d-4c1d-b407-11c273bb290a"> Määrus jõustub 1. juulil 2023. aastal.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="82b48de9-6632-4df2-811a-cf76b540b51a"><allkiriKoht id="4a392f1b-b503-411e-8852-43703e2ffeeb"/><allkirjastaja id="f33914d1-d9fd-46a4-9655-562bbe8e1481"><ametinimetus id="bfe7d0d6-830a-4dbc-b2fa-a84fa29e5b13">linnapea</ametinimetus><eesnimi id="93dd9c26-d7d7-429a-adcb-e03d4e18748c">Värner</eesnimi><perekonnanimi id="f0bb48d0-2950-4e61-98e6-5fdef3df6c25">Lootsmann</perekonnanimi></allkirjastaja></allkiri><allkiri id="39757f0d-cc02-4def-8289-187daec919cc"><allkiriKoht id="716b9f5a-c1d7-495c-97c4-ebdf4a98c7a0"/><allkirjastaja id="d62e8dad-af54-48a2-9a58-0e11b491032d"><ametinimetus id="97f98471-3afc-44de-9897-dd6e0cac6dce">linnasekretär</ametinimetus><eesnimi id="bd1b7017-6fc5-43bd-9a62-df1c303f2500">Karin</eesnimi><perekonnanimi id="597eec47-c9a5-4e7f-8d76-536edff4f12c">Kask</perekonnanimi></allkirjastaja></allkiri></oigusakt>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="27c7e962-068f-4c48-b585-7edea2933f29" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+ 
+ <valjaandja>Põltsamaa Vallavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2023-05-08</aktikuupaev>
+  <avaldamismarge>
+	<RTosa id="36363a3f-4b0f-45b9-b0ed-1b2286b36809">RT IV</RTosa>
+	<avaldamineKuupaev id="8df8b9c9-10f2-4bf2-b66d-56523f3d5384">2023-05-10</avaldamineKuupaev>
+	<RTaasta id="1b3cd5f0-7996-4b9d-9083-1358f3fded1e">2023</RTaasta>
+	
+	<RTartikkel id="161c5c7d-ecc0-4001-8db3-53a300492f02">17</RTartikkel>
+	<aktViide id="e58d528f-f5c2-40c3-a122-f0f992903877">410052023017</aktViide>
+  </avaldamismarge>
+  <joustumine>2023-07-01</joustumine>
+  <aktiNr>3</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2024-03-02</avaldamineKuupaev><RTaasta>2024</RTaasta><RTartikkel>5</RTartikkel><aktViide>402032024005</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2024-04-01</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2024-02-27</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>402032024005</globaalID>
+ <metaandmedVersioon>15</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2024-03-01</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ <terviktekstiGrupiID>1056608</terviktekstiGrupiID>
+ <eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2023-05-09</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Ulvi Pint</metaandmedVersioonPohjustaja>
+		</versiooniMuutus></metaandmed>
+	<aktinimi id="40093318-ae22-437d-8205-8f9d797a3193">
+		<nimi id="8652a1e2-5126-4ce8-bbde-73622edf9d60">
+			<pealkiri id="2b4487c5-96de-43bb-bbe9-dbd8fc2e63bc">Üldhooldusteenuse hoolduskulude piirmäära kehtestamine</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="e05b9c66-a9ae-4c62-b322-04094db415f7"><aktikuupaev id="e780d072-21cc-439e-a43f-964f444796e2">2023-06-12</aktikuupaev><avaldamismarge id="96cabc2c-560b-4306-87b3-5c1384595d14"><RTosa id="74d463fd-f8bd-4b63-a27c-cb7e6656cdae">RT IV</RTosa><avaldamineKuupaev id="f978a1cf-206f-4194-8d37-6f571d3e9dd5">2023-06-21</avaldamineKuupaev><RTartikkel id="327b11fe-d2e9-4c9c-a314-fd412f91b5d3">6</RTartikkel><aktViide id="223706d3-82b5-47c2-aa4d-f300f4486dcd">421062023006</aktViide></avaldamismarge><joustumine id="fa801448-dbba-4d2b-ac03-595355f51ae3">2023-07-01</joustumine></muutmismarge><muutmismarge id="a1451765-4d05-488d-90ad-d0c88275c86f"><aktikuupaev id="1dcd5717-25c9-4ed0-860b-d1f1c1e17d76">2024-02-26</aktikuupaev><avaldamismarge id="4bad4ae7-40a5-4b18-a833-a1af22c09540"><RTosa id="1d0dfbce-136a-49d4-81b8-42d33868828c">RT IV</RTosa><avaldamineKuupaev id="2ff203e9-f8bd-45ff-961a-9d7f609f6ace">2024-03-02</avaldamineKuupaev><RTartikkel id="631caa61-8e93-428e-9b64-170bbe4596a5">1</RTartikkel><aktViide id="3fcdfcab-0c75-42fc-bd13-c169a67eef44">402032024001</aktViide></avaldamismarge><joustumine id="4ab877dd-b26e-4dd4-bffe-5bd667c15ef3">2024-04-01</joustumine></muutmismarge><sisu id="a271d15d-3e43-42a4-90f0-3d03b3a68af7">
+		<preambul id="ac16bcb9-05d1-4151-bd03-32fe589eca25">
+			<tavatekst id="22adef75-22d2-483f-8f1c-35ec8d49e45f">Määrus kehtestatakse sotsiaalhoolekande seaduse § 22<sup>1</sup> lõike 3 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="a7701d79-6b8d-43b9-a5e0-95a66cd366a4">1</paragrahvNr>
+			<kuvatavNr id="72439e94-7d08-41c1-85eb-65fad01e2448"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="b08ffd67-5612-42bd-9b6c-8eba597f8947">Reguleerimisala</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="004e7b8c-802a-48a5-b094-a2754abef701"/>
+				<kuvatavNr id="5043b920-bc9f-4d62-911e-099eeb2ad502"/>
+				<sisuTekst id="e17a2ef0-1df0-4c7b-b291-3b0697671493">
+					<tavatekst id="604ffe93-6f66-4c47-9ea2-e66eb3717980">Käesolev määrus (edaspidi <i>kord</i>) reguleerib rahvastikuregistrisse kantud Põltsamaa valla elanikele väljaspool kodu osutatava üldhooldusteenuse (edaspidi <i>üldhooldusteenus)</i> raames hooldusteenust vahetult osutavate hooldustöötajate ja abihooldustöötajate kulude (edaspidi <i>hoolduskulude)</i> tasumise piirmäära suuruse kehtestamist.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="bf421808-42e8-4d0a-83d0-6f9e8878e8dd">2</paragrahvNr>
+			<kuvatavNr id="6687bcb8-1ada-4020-897b-42b23eaad209"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="94e7e97b-0e67-446c-bafa-2c1bcc77e1ac">Üldsätted</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="7e011176-6dc5-4807-b4ae-ec4b932098c1">1</loigeNr>
+				<kuvatavNr id="ac451e77-436b-4ba7-a468-c50b3a11bf51"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="9d42eac4-2244-4b94-8c83-5f9cecdba53d">
+					<tavatekst id="1cc31290-1d59-47d3-9288-53437a9bc083">Käesolevas määruses käsitatakse üldhooldusteenuse saaja elukohana Eesti rahvastikuregistrisse kantud elukoha aadressi.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg2">
+				<loigeNr id="7e80b807-69aa-4428-ae09-2d9ec8f98cb0">2</loigeNr>
+				<kuvatavNr id="42df2e80-9493-49db-a3b1-13708bfa06d7"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="80d8919f-aa03-44cd-a301-99bcb6dea890">
+					<tavatekst id="dc499b54-64dd-4ccc-a1a6-9a0c616d2ba1">Väljaspool isiku kodu osutatav üldhooldusteenus on kohaliku omavalitsuse üksuse korraldatav sotsiaalteenus, mille eesmärk on turvalise keskkonna ja toimetuleku tagamine täisealisele isikule, kes terviseseisundist, tegevusvõimest või elukeskkonnast tulenevatel põhjustel ei suuda kodustes tingimustes ajutiselt või püsivalt iseseisvalt toime tulla.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg3">
+				<loigeNr id="311caa3b-fee0-4d0e-bb0a-912238b45aa3">3</loigeNr>
+				<kuvatavNr id="4bf8d03f-bab5-4360-8098-a14f25470d41"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="64060a03-5396-4f52-996e-206f39f1fa98">
+					<tavatekst id="ed3ded11-a051-44af-9814-0063ede48233">Hoolduskulud makstakse Põltsamaa valla eelarvest sotsiaalosakonna poolt hinnatud üldhooldusteenuse vajaduse korral.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg4">
+				<loigeNr id="099b2727-42a1-4b54-a703-56284a5ad41f">4</loigeNr>
+				<kuvatavNr id="fa04c547-df8c-419f-af5e-be08d23e4e33"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="66af16a3-b76f-4861-b438-faf774f0552e">
+					<tavatekst id="8cc77c27-7583-43d8-9aa7-e9fa71923759">Hooldusteenust vahetult osutavate hooldustöötajate ja abihooldustöötajate kuludeks on:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para2lg4p1">
+					<alampunktNr id="7deddb40-5043-44ec-ad5d-e99703852e51">1</alampunktNr>
+					<kuvatavNr id="7b6488a7-4858-4207-b0aa-fce15a91ff25"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="0b41ac51-1f7d-46c7-b64b-773370e753ca">
+						<tavatekst id="8ef416b0-4c13-4eeb-8f78-2cf49f7e2964">tööjõukulud;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg4p2">
+					<alampunktNr id="59926738-f965-4355-8b1c-e9856a1cbdce">2</alampunktNr>
+					<kuvatavNr id="686a25bb-6d25-404b-9acf-5c9dce0aadc3"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="10bf0f94-5d7b-4154-b4ab-4135b1ab6bb2">
+						<tavatekst id="913e7712-3eb4-4940-b7bf-d4f4bf30d19f">tööriietuse ja isikukaitsevahendite kulud;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg4p3">
+					<alampunktNr id="0e2b5b1b-5a94-4d25-937d-24a808cc7983">3</alampunktNr>
+					<kuvatavNr id="d035e097-1347-4227-a7c8-1626645ecfda"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="84afbb78-9c3d-4edb-b2a0-8f5c8327a3b2">
+						<tavatekst id="ed8ed1ed-d97c-4348-be2a-39b1a163429f">tervisekontrolli ja vaktsineerimise kulud;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg4p4">
+					<alampunktNr id="847eaed8-8e6b-4c0f-a059-ef0f8ad7505b">4</alampunktNr>
+					<kuvatavNr id="a18b86e4-fbee-4c2c-85e3-90581ceda7d8"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="67d629c4-a739-4258-a86c-3d01daa3274c">
+						<tavatekst id="c3c99808-2a6d-40f9-baf8-db1f88319cf1">koolituse ja supervisiooni kulud.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para2lg5">
+				<loigeNr id="5be53141-fb22-4bc4-8866-d5fefd096de8">5</loigeNr>
+				<kuvatavNr id="1512cbb9-9e38-42da-bb54-90ddf19b978c"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="a87052aa-c2db-4b00-a7d6-854a491d9bbd">
+					<tavatekst id="b63f9c40-25fa-4be5-97e6-d629b1ce1c52">Piirmäära suurus tagab teenuse saajale teenuse kättesaadavuse.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="934092aa-a371-43be-8519-e8e77f0f5034">3</paragrahvNr>
+			<kuvatavNr id="38fb6fa1-0d77-4463-a04f-a94e92bc05df"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="357def50-b39e-4c3d-893d-b38dd2bd2a7a">Piirmäära suurus</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="246c7524-593e-47ee-ab16-38f7521b2294"/>
+				<kuvatavNr id="ebedb5d8-f78b-4cba-9151-b2aa715fac80"/>
+				<sisuTekst id="ee9916e5-af74-42a4-8cc3-4dc15da0530f">
+					<tavatekst id="bf61333f-a1ee-4160-b3c7-a7fcf62e2b06">Kehtestada väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse osutamisel vahetult teenust osutavate hooldustöötajate ja abihooldustöötajate kulude tasumise piirmääraks 600 eurot ühe teenusesaaja kohta kuus.</tavatekst>
+				</sisuTekst>
+			<muutmismarge id="9bc4c503-6e9b-41e1-ab68-ef2a114ff42d"><avaldamismarge id="be2be205-28f2-411d-a280-92a3b3212815"><RTosa id="9917fb42-0df1-42eb-b0c3-bde89f33c5ec">RT IV</RTosa><avaldamineKuupaev id="7659ae1e-8ce7-4ad0-bd14-4219eebddb35">2024-03-02</avaldamineKuupaev><RTartikkel id="1bd7f4c6-5550-4d4c-a79d-098b9d0df0cf">1</RTartikkel><aktViide id="53a21dfb-22c8-46bf-b6a0-03c87505a9f5">402032024001</aktViide></avaldamismarge><joustumine id="028cd3b9-265a-4d68-8fbd-454dfbc2c07e">2024-04-01</joustumine></muutmismarge></loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="063f2ee0-e2cc-4aa3-8f9b-8a04ef360fb3">4</paragrahvNr>
+			<kuvatavNr id="a178fc5c-97ba-4188-997e-a27c4a75fb00"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="0024ae0c-6b10-4044-8e8a-1eefc92e2ccc">Piirmäära muutmine</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="e318dc3d-8c6e-4e8b-82f6-89f44e779e2b"/>
+				<kuvatavNr id="4dbd519f-1487-464c-8891-b771bd300c3a"/>
+				<sisuTekst id="c075046f-b90e-4549-a767-f435a2dbf1d3">
+					<tavatekst id="9a20c4d4-02a1-4395-a4ce-87280215c997">Piirmäära muudetakse vastavalt vajadusele.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="d24fd7b5-909f-477f-87dc-7fb10afbc834">5</paragrahvNr>
+			<kuvatavNr id="8082e9d7-188e-447e-9977-96477cb07244"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="afcdacd4-75fe-4495-9268-f0369541185a">Rakendussätted</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="2edb997a-39e0-46cd-866b-b277af24d265"/>
+				<kuvatavNr id="d96eb0db-4cfe-4ba5-8fcc-58cb44c72d2e"/>
+				<sisuTekst id="d7600b09-be6b-45e4-a3cd-7f3ef4fbee64">
+					<tavatekst id="66eb25ac-031a-4939-81e2-7ffe97855fa0">Määrus jõustub 1. juulil 2023.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+	
+	
+</oigusakt>

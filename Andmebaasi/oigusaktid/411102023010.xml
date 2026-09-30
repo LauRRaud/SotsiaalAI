@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="986ceeeb-fb6a-4d87-8cdb-ef62c166b163" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Lüganuse Vallavalitsus</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2019-03-19</aktikuupaev>
+			<avaldamismarge>
+				<RTosa>RT IV</RTosa>
+				<avaldamineKuupaev>2019-03-22</avaldamineKuupaev>
+				<RTartikkel>7</RTartikkel>
+				<aktViide>422032019007</aktViide>
+			</avaldamismarge>
+			<joustumine>2019-03-25</joustumine>
+			<aktiNr>3</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2023-10-11</avaldamineKuupaev><RTaasta>2023</RTaasta><RTartikkel>10</RTartikkel><aktViide>411102023010</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2023-10-14</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2023-10-09</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>411102023010</globaalID>
+		<metaandmedVersioon>11</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2023-10-10</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1046623</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2019-03-20</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Tiina Urban</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>6</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2019-03-21</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="f23fad28-7669-4656-bc80-4f33888972d1">
+		<nimi id="9c07e1dc-8acb-4f8c-a980-847c00aa480a">
+			<pealkiri id="7d922015-8d0a-4515-a732-4c2854f93d2a">Sotsiaaleluruumi kasutamise kord </pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="674e3406-cffc-4b8a-ad85-44bb0ef50ffe">
+		<aktikuupaev id="6dbae84f-7081-45bf-b9da-f7a75abf6ba8">2023-10-06</aktikuupaev>
+		<avaldamismarge id="aec3a8e7-101c-4c97-9709-f8bffe3774ea">
+			<RTosa id="40958a6f-4c0f-404d-a10a-b9957151297e">RT IV</RTosa>
+			<avaldamineKuupaev id="01617dc1-6826-44f7-a558-567bc713829c">2023-10-11</avaldamineKuupaev>
+			<RTartikkel id="dc00404c-a55f-4435-8a4c-e4821591fcc9">8</RTartikkel>
+			<aktViide id="0cdee7a5-0c8b-4895-ad74-d17d518b4f35">411102023008</aktViide>
+		</avaldamismarge>
+		<joustumine id="7fc8e77e-7127-4c51-8b42-2a0423ebbbaf">2023-10-14</joustumine>
+	</muutmismarge>
+	<sisu id="2e40245b-a7f0-41e1-99b5-7e0c77f50b95">
+		<preambul id="176ada26-90c8-4002-b5cf-7dcf3546d263">
+			<tavatekst id="c8c04777-be89-44f5-8878-950a54089885">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 30 lõike 1 punkti 2 ja Lüganuse Vallavolikogu 07.02.2018 määruse nr 14 „Sotsiaalhoolekande abi andmise kord“ § 44 lõike 13 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="b70e941b-7b15-4dcd-b8d9-0ed35e7976cf">1</paragrahvNr>
+			<kuvatavNr id="46fa3aa8-2b8b-4701-9fe4-fd9b3f644c9a"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="f6f3dbc4-df8c-4358-bd91-445802eec269">Reguleerimisala</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="3e3e0cd9-b7f1-4b6c-a53e-6f29fcfec31a">1</loigeNr>
+				<kuvatavNr id="0d873970-161f-4f58-a263-3236009c5b84"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="da20034c-e38c-4b8b-b50e-68c5623ab2fd">
+					<tavatekst id="475227b5-8f0d-461a-8052-47d02dc8db47">Määrusega kehtestatakse Lüganuse vallale kuuluvate sotsiaaleluruumide kasutamise kord.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg2">
+				<loigeNr id="738298fa-14c2-4213-962f-939038aea5d4">2</loigeNr>
+				<kuvatavNr id="1071dd05-7d2d-4164-a924-c6c398d5d9f0"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="0889afd1-3c35-4a5a-8711-bcc3d3fc96da">
+					<tavatekst id="63716607-f6a9-489d-a627-b4061fce8779">Sotsiaaleluruum (edaspidi <i>eluruum</i>) on Lüganuse Vallavolikogu poolt sotsiaaleluruumiks tunnistatud Lüganuse valla omandis olev eluruum (korter, tuba või osa toast vms), mis antakse üürile eluasemeteenust vajavale isikule ja tema perekonnale (edaspidi <i>üürnik</i>), kes ise ei ole suuteline ega võimeline endale või oma perekonnale eluaset tagama.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="95f283f2-ebc4-4643-91da-0cc7f0a3b6f7">2</paragrahvNr>
+			<kuvatavNr id="e614f12c-352e-47ae-87d8-e4b4cec75cc4"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="6e653b03-5460-442b-822f-0ff3b4fa4aec">Eluruumi kasutamise kord</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="fbcd310c-ee3a-4702-be96-467368e6dd81">1</loigeNr>
+				<kuvatavNr id="4145ce7c-1d80-4fea-abee-2c7cc533414d"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="b2d7a636-0f21-4a76-bbf2-c4da807dd1f1">
+					<tavatekst id="793c0700-c0ad-4175-9553-fc783284f485">Eluruumi kasutamise õigus on Lüganuse valla ja üürniku vahel sõlmitud üürilepingus (edaspidi <i>leping</i>) nimetatud isikutel ning üürniku alaealistel lastel.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg2">
+				<loigeNr id="99aa2abc-3061-4469-a438-8a235945e6d5">2</loigeNr>
+				<kuvatavNr id="2da7d5d5-94f2-458c-be89-7dce6f4dcfa5"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="07d53451-2ddf-4469-a5a8-d795ee20bc3e">
+					<tavatekst id="0d53e29f-4137-4b38-815e-28b2c417abe8">Eluruumi üürnik on kohustatud:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para2lg2p1">
+					<alampunktNr id="8bac53b3-7383-44be-9088-ef0d5efb2034">1</alampunktNr>
+					<kuvatavNr id="4fdc94ee-74c0-4717-83ab-fee8a5944643"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="59fe7031-6276-4fec-8a2e-5445200783c1">
+						<tavatekst id="cbaac087-4561-4200-9d91-02ac541f7526">kasutama eluruumi ja selle sisustust heaperemehelikult, lähtudes selle otstarbest ning hoidma seda nii, et selle väärtus ei väheneks, välja arvatud harilik kulumine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg2p2">
+					<alampunktNr id="57f404c0-f245-40f5-8527-aa3f7e06fb8c">2</alampunktNr>
+					<kuvatavNr id="67c145bb-2b1e-46b7-90b6-8e44d30f9d97"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="d0297f6e-2bef-4949-8fe3-24bbe87e8089">
+						<tavatekst id="1097effa-071b-4070-8c74-0b5e1f9990cf">arvestama teiste majaelanike ja naabrite huvidega;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg2p3">
+					<alampunktNr id="67c9c7ab-a60a-4b53-a6f3-27be173cc5ad">3</alampunktNr>
+					<kuvatavNr id="bf7a32d6-1dd0-42f8-8f55-5dc55eff5b2f"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="2502b36b-d9ae-4d69-98de-17969b9120de">
+						<tavatekst id="801eda35-f0e7-4598-9c40-ef4c8d4ebf8e">järgima eluruumis, üldkasutatavates ruumides ja kinnistul sanitaar- ja tuleohutusnõudeid, heakorraeeskirja ning kinni pidama teistest Lüganuse valla õigusaktidest;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg2p4">
+					<alampunktNr id="dcb135a8-8496-40f7-ae03-7140856c0194">4</alampunktNr>
+					<kuvatavNr id="0b7dcd9b-e850-4fac-b452-fe3f424eb986"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="eb4b3e67-f1a1-441f-beef-b1b85e6731ff">
+						<tavatekst id="92091165-2093-400a-b63d-0e3d2b8aba6d">hüvitama täielikult eluruumi hävimisest ja kahjustumisest tuleneva sellise kahju, mis tekib ajal, kui eluruum oli üürniku valduses ja kui on tõendatav, et hävimine või kahjustumine toimus asjaoludel, mis tulenesid otseselt üürniku või temaga koos elavate isikute pahatahtlikust tegevusest või hooletusest;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg2p5">
+					<alampunktNr id="dcb2bf23-3223-410e-8544-dd9b2796c477">5</alampunktNr>
+					<kuvatavNr id="4a5c5221-bb1e-4bd3-8b00-8ffb04bac0b4"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="09defcf5-6047-4110-9360-a8cd86a288e0">
+						<tavatekst id="471e7d83-91af-4cf4-bebc-17b70b79ec6c">rakendama eluruumi avariide ja rikete avastamisel viivitamatult abinõusid avariide ja rikete kõrvaldamiseks ning teatama nende tekkest vastavatele ametiasutustele ja vallavalitsuse esindajale;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg2p6">
+					<alampunktNr id="dcc781c4-b533-49ab-9e7a-0f2021a953fc">6</alampunktNr>
+					<kuvatavNr id="0f04f5c0-3326-443c-a14c-e4a9effec889"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="b0bf5d35-d4a2-4668-bdaa-9faf55f4f0ea">
+						<tavatekst id="e6edc995-0483-4eb1-aac8-d1f6b978976e">lubama vallavalitsuse esindajal eluruumi üle vaadata;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg2p7">
+					<alampunktNr id="5d102fdb-e89c-47be-a729-bb252a7aee6e">7</alampunktNr>
+					<kuvatavNr id="5ae9d211-6a4a-409b-a639-959d0be76acf"><![CDATA[7) ]]></kuvatavNr>
+					<sisuTekst id="d1e8ec00-d5d3-44df-a4c6-dfa1aa22ce1c">
+						<tavatekst id="aeba1277-881c-4d56-adc3-513480bcada4">andma lepingu lõppemisel eluruumi üle vallavalitsuse esindajale mitte halvemas seisukorras kui see oli lepingu sõlmimisel (välja arvatud harilik kulumine);</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg2p8">
+					<alampunktNr id="23c3af18-8854-4901-96c8-6d104d5b8e3f">8</alampunktNr>
+					<kuvatavNr id="d510d402-5f2e-43f0-b068-03275b1b4059"><![CDATA[8) ]]></kuvatavNr>
+					<sisuTekst id="dc81e0f0-3f25-49c8-9b53-1bce71adf7d3">
+						<tavatekst id="374bb7ff-7299-4314-80dd-73c62919ddf4">vajadusel sõlmima eraldi lepingud kõrvalkulude tasumiseks teenuse osutajatega;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg2p9">
+					<alampunktNr id="2960e70d-d17d-4d20-bc99-428b7eee743c">9</alampunktNr>
+					<kuvatavNr id="8e6e0474-8413-4883-9b58-b42de5697185"><![CDATA[9) ]]></kuvatavNr>
+					<sisuTekst id="2b97de86-fe3d-4b3c-ae2c-2d2cb77502ab">
+						<tavatekst id="e2e923c9-55f6-4692-a3ee-b5e461ee2d04">vabastama eluruumi pärast lepingu tähtaja lõppemist või taotlema vähemalt 30 päeva enne lepingu lõppemist selle pikendamist.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para2lg3">
+				<loigeNr id="7dafd83b-43c8-4cb4-84bf-cd578282e574">3</loigeNr>
+				<kuvatavNr id="21966145-0c2a-47aa-bc2a-057d2d326bc9"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="75d94fc8-bf24-4213-a084-97a8ac3da832">
+					<tavatekst id="eafed46e-66eb-4106-ba88-a7a8488c5cf3">Eluruumi üürnikul on keelatud:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para2lg3p1">
+					<alampunktNr id="fb977b0d-2bba-43ce-b2bf-3566fec8283a">1</alampunktNr>
+					<kuvatavNr id="56d3c7c9-aaec-44f3-8cce-c8982834af6a"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="1ca09d47-a403-48c2-b0c7-6aa95d184394">
+						<tavatekst id="a8cb5975-a13b-4e61-88ea-a91595359ac3">anda eluruum allkasutusse kolmandatele isikutele;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg3p2">
+					<alampunktNr id="099f0db5-2411-42e3-8f7f-1dd6da774276">2</alampunktNr>
+					<kuvatavNr id="6c1b4153-8c42-49f1-94a1-bd15f93c4305"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="e8f7d71e-2d34-4d9c-a3a3-89cbc15acfdc">
+						<tavatekst id="20b54557-a184-4fa7-9289-fdcd112bcf8f">teha eluruumi või selle seadmete ümberehitust või -paigutust ilma vallavalitsuse kirjaliku nõusolekuta;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg3p3">
+					<alampunktNr id="e8d925ed-e2b4-46c2-889e-a81fc63d90d9">3</alampunktNr>
+					<kuvatavNr id="a36fcc86-4d8c-4760-a99d-1f058879ddfc"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="b7aad193-4fa5-4345-9cb1-e20b179f5b48">
+						<tavatekst id="ca324396-0e2d-4b90-939d-4403d1d86c34">ilma eelneva kokkuleppeta pidada eluruumis lemmikloomi.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para2lg4">
+				<loigeNr id="86791d2d-9858-431f-9276-1c71f51d2219">4</loigeNr>
+				<kuvatavNr id="1fe0270a-f71c-481e-aa54-2d6a0c080a47"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="d931b2c8-aef1-4554-ba87-7fe72881b655">
+					<tavatekst id="2a50f14e-cb3f-42fb-933e-5f2f4db6eda7">Eluruumi kasutaja, kes pahatahtlikult viivitab eluruumi eest tasumisega või rikub süstemaatiliselt ühiselu reegleid ja ei suuda pidada üldkasutatavates ruumides elementaarset korda, paigutatakse ümber vähem heakorrastatud eluruumi.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg5">
+				<loigeNr id="3a9b8c33-f28a-4b19-94af-5071bddf055f">5</loigeNr>
+				<kuvatavNr id="5dd70dd5-e738-4cc3-9d0a-489e07f5104e"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="1a13093a-ce65-4ee9-8de2-b7fac54eacec">
+					<tavatekst id="53f5bd1a-534f-4c05-9e21-322748dc790a">Eluruumi remondi kohustuste jaotus vallavalitsuse ja üürniku vahel määratakse kindlaks üürilepinguga. Üürnikul on õigus parendada eluruumi välisilmet, ümberehituseks peab luba taotlema vallavalitsusest.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="0c6da1d2-5f8b-4463-82c6-d7643c79c4c3">3</paragrahvNr>
+			<kuvatavNr id="8b8f9bcf-c281-4e53-b49f-2b9f0c7d32ca"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="a48e78a8-743c-4134-a609-7cd4a38eb440">Tasu eluruumi kasutamise eest</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="39722909-eb47-45ae-ab70-eeff5b2444a8">1</loigeNr>
+				<kuvatavNr id="8639df5c-3140-4dde-9244-2054581af6d5"><![CDATA[(1)]]></kuvatavNr>
+			
+				<muutmismarge id="708315d9-f0c2-4614-811e-bbca137e2ff8">
+					<tavatekst id="9585744b-98ae-47eb-b2f9-9660a4b29a2b">Kehtetu - </tavatekst>
+					<avaldamismarge id="3e92c858-160f-48bd-8f65-f6a6833c3180">
+						<RTosa id="a4c430ef-495d-4ed4-b247-b46cda92bcd6">RT IV</RTosa>
+						<avaldamineKuupaev id="a3e28395-587d-4ed1-88cb-1c01fe5c7faa">2023-10-11</avaldamineKuupaev>
+						<RTartikkel id="9d6fc5a2-dbf5-4161-9294-9849bbc0bea7">8</RTartikkel>
+						<aktViide id="dc177e2f-9a9c-409d-b2c7-7cd994c1910a">411102023008</aktViide>
+					</avaldamismarge>
+					<joustumine id="27d331a6-da34-4823-8a4e-7f7ad54e6098">2023-10-14</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para3lg2">
+				<loigeNr id="66f718b6-04d0-4fd4-a3bb-542c40704301">2</loigeNr>
+				<kuvatavNr id="4c4bd919-6d83-4f01-8a01-f31653165c22"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="ddb2c49b-98ed-4576-82a1-1fa55bc302c0">
+					<tavatekst id="7c7a30bb-8cf2-4dbb-ab31-a4888ef6d24f">Üürnik tasub kõik eluruumi kasutamisega seotud haldus- ja kommunaalkulud proportsionaalselt üürniku poolt kasutatavate eluruumide suurusele vastavalt esitatud arvetele.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="efcbb393-dd11-4912-8c09-c10817f57cda">4</paragrahvNr>
+			<kuvatavNr id="5097d95a-cfcc-4ebd-bd92-9ef5bfa24afd"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="3f589ebe-01c2-4b97-bc1a-c705791af61e">Järelevalve</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="d447ff9a-bcca-4ca1-944e-533142441e1c"/>
+				<kuvatavNr id="c36cfcca-70f4-4865-b963-ad5869b8a4a1"/>
+				<sisuTekst id="eb3f0179-0d3b-4310-8b78-350c9e9ac67d">
+					<tavatekst id="945ba34c-604a-49e5-885a-49a195a49cb9">Järelevalvet eluruumi sihipärase kasutamise ja lepingu täitmise üle teostab vallavalitsuse sotsiaalosakonna teenistuja.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="7bedb626-747b-4944-b11a-e9aa93a6468c">5</paragrahvNr>
+			<kuvatavNr id="b8b9362a-b101-4bf0-86a0-cb8c6de0589a"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="d20cd427-60aa-430b-8ef6-87f4aca932dd">Määruse jõustumine</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="5f21aa3f-71c5-4dcc-9286-76d08e2e3b46"/>
+				<kuvatavNr id="14c90c77-9272-463e-ad3d-58433a9fd9b6"/>
+				<sisuTekst id="7729bec6-8375-418f-bed5-53142896dc12">
+					<tavatekst id="cceeb0d6-3246-4350-b9db-7a19338c954b">Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+</oigusakt>

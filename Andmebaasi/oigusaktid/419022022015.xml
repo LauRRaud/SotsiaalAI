@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="ef89e946-3e6e-4aea-a4b0-da9f20db88c9" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Kiili Vallavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2022-02-15</aktikuupaev>
+  
+  
+  <aktiNr>2</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2022-02-19</avaldamineKuupaev><RTaasta>2022</RTaasta><RTartikkel>15</RTartikkel><aktViide>419022022015</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2022-02-22+02:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2022-02-16</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>419022022015</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2022-02-18</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1053557</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2022-02-16</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Kristiina Vaide</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="d63298d2-2aea-4865-a6ad-f42b02465128">
+  <nimi id="f41fdb87-8d12-47c6-8eeb-d41ef186c0cc">
+   <pealkiri id="703d6ad6-ce4b-4a3c-a6c8-382e483698c9">Sotsiaalteenuste hindade kehtestamine</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="b479508d-8e8b-4c52-97e2-ca767e2b7d03"><preambul id="0def43c9-4817-4fa2-9279-44e1bfe79537">
+   <tavatekst id="79fd57f0-4758-488d-9c23-0c4f1b80159c">Määrus kehtestatakse sotsiaalhoolekande seaduse § 16 lg 1 ja Kiili Vallavolikogu 07.10.2021 määruse nr 7 „Sotsiaalhoolekandelise abi andmise kord Kiili vallas” § 11 lg 3 alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="bb56fe13-937b-49db-9a40-1ec62b11c82e">1</paragrahvNr>
+   <kuvatavNr id="876f6040-10e2-41db-bee4-f9e6301a73f1"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="46a4e496-acc2-4f3c-a9f3-56d52ea54247">Kiili Vallavalitsuse poolt osutatavate sotsiaalteenuste hinnad</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="5436d023-ef85-4cbe-a78c-ca0c41de3656">1</loigeNr>
+   <kuvatavNr id="d82be099-2059-4340-bca1-c2d90c227a88"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="03514f02-628a-4038-9505-7f3d1e7425d8">
+    <tavatekst id="6ac0fe3d-90fe-420b-9cf8-5574ceda6472">Koduteenuse hind on 5 eurot/ tund.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg2">
+   <loigeNr id="f3cc5636-ec81-4d8b-b003-522a7bb372ed">2</loigeNr>
+   <kuvatavNr id="a1b8c770-2a45-4c7f-aa83-941d38ce7451"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="a0ad79b4-6f51-442a-9cea-81eba7b92708">
+    <tavatekst id="48a233a1-e8de-4583-ba16-511176202368">Isikliku abistaja teenuse hind on 1 euro/tund.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg3">
+   <loigeNr id="1a52efa5-287f-42ad-b627-b6ff08a4ca92">3</loigeNr>
+   <kuvatavNr id="677cc103-1dfe-4b97-b8fb-2c831442150e"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="3523c915-9307-442c-a745-9b94bf1d0107">
+    <tavatekst id="2a1b6f23-8f93-4b79-abd5-87b523185c13">Tugiisikuteenuse hind on 1,5 eurot/tund.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg4">
+   <loigeNr id="536afbb1-bacd-4d34-a7f0-a6a803114327">4</loigeNr>
+   <kuvatavNr id="0cc1bb55-9a77-4ce0-8f51-b5028e3c9ab5"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="7ed3ce0d-a655-41b9-88bb-5c78325fb63d">
+    <tavatekst id="4e55acd8-d9e4-4b34-a927-d55cf892be02">Sotsiaaltransporditeenuse hind on:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para1lg4p1">
+   <alampunktNr id="864d6a01-2c0a-46c6-a578-3779c469ddff">1</alampunktNr>
+   <kuvatavNr id="a5cdc3bb-d8fe-49e7-8b63-51fa1823c46f"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="77d86d2c-c9c9-40e1-8b03-340f3dc99ba3">
+    <tavatekst id="17d33cc1-a4b6-494a-8f73-679766614bec">juhuveoteenus Kiili valla haldusterritooriumil asuvasse sihtkohta sõitmisel 3 eurot sõidukord (edasi-tagasi);</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg4p2">
+   <alampunktNr id="0eee6863-8586-4d9f-86b6-917dd177240f">2</alampunktNr>
+   <kuvatavNr id="d689f82a-0665-4b0a-a2e3-e712f038cb15"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="a2a1a466-7fde-4237-aba9-30bcb8f6a8ba">
+    <tavatekst id="bd3e0c16-f2e1-4324-b24b-605fe49f1f1b">juhuveoteenus väljaspool Kiili valla haldusterritooriumit asuvasse sihtkohta sõitmisel 8 eurot sõidukord (edasi-tagasi kuni 60 km), iga lisanduv kilomeeter 0,20 eurot;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg4p3">
+   <alampunktNr id="c1804f03-6ff9-451c-ad23-c2200968d8a2">3</alampunktNr>
+   <kuvatavNr id="3b4ff80d-35b9-4d7f-895e-241a68d58a56"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="78d89fe0-c296-498b-ba8c-a85b03ce524d">
+    <tavatekst id="ffac892a-1e59-4577-9ea2-f8552145ed40">ootetunni hind väljaspool Kiili valla haldusterritooriumit asuvasse sihtkohta sõitmisel 2 eurot/tund.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para1lg5">
+   <loigeNr id="66e43da1-c344-4300-94bd-e1d2b26d6ebe">5</loigeNr>
+   <kuvatavNr id="86c2655c-be96-4d35-b8db-af13fb52edef"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="9e4d9aef-2c31-4881-90e5-dd39dbeafc93">
+    <tavatekst id="b98b2355-ab71-4e24-85e1-df819973f23e">Eluruumi tagamise teenuse osutamiseks abivajava isiku või pere kasutusse antava eluruumi üüri suuruse määrab Vallavalitsus.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg6">
+   <loigeNr id="cd5d2e29-3163-4117-b098-8167e28ffc24">6</loigeNr>
+   <kuvatavNr id="edee3f5d-9881-489c-b6d8-f3879dafb962"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="4d6e35da-a167-4a52-8d6f-819d4a312c46">
+    <tavatekst id="70077b98-ff71-4bf9-aec8-d9a9b592de00">Vallavalitsusel on õigus kaalutlusotsusega vabastada teenust vajav isik osaliselt või täielikult teenuse eest tasumisest. Isikult võetava tasu suurus oleneb teenuse mahust, maksumusest ning teenust vajava isiku ja tema seadusjärgsete ülalpidajate majanduslikust olukorrast.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="b307a604-a96f-40c5-81f9-bb3db62bc4e1">2</paragrahvNr>
+   <kuvatavNr id="8496cf60-479d-43df-bae5-5c57282fd668"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="d7679dde-3f2b-4edf-864b-f88fbadc31cd">Muude teenuseosutajate poolt osutatavate sotsiaalteenuste hinnad</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="b333dc68-019e-428d-b412-46f0420eef03">1</loigeNr>
+   <kuvatavNr id="6210e2e6-567d-41c2-9c16-2601bae53cbd"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="d1f20aaf-bf96-480f-b3c5-b4f655d133cf">
+    <tavatekst id="07357a16-6a98-4f76-afcf-c942a0f9de10"> Eraõigusliku juriidilise või füüsilise isiku, mittetulundusühingu või teise kohaliku omavalitsuse poolt osutatava sotsiaalteenuse hinna määrab teenuse osutaja.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg2">
+   <loigeNr id="15096360-c9a5-46f9-ad5b-59a041cde953">2</loigeNr>
+   <kuvatavNr id="218f3121-c06e-4789-94a9-285b08833468"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="c000d9eb-831f-443e-be05-c258c9ce8d61">
+    <tavatekst id="f8705163-a067-40b7-b36f-3374111da0ce"> Teenuse saajalt võetava tasu suuruse otsustab Vallavalitsus juhtumipõhiselt. Isikult võetava tasu suurus oleneb teenuse mahust, maksumusest ning teenust vajava isiku ja tema seadusjärgsete ülalpidajate majanduslikust olukorrast.Teenuse saajalt võetava tasu suurus ei ületa üldjuhul 50% teenuse kogumaksumusest.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="089c7b18-3080-4f7a-b9ae-1b810ed2b138">3</paragrahvNr>
+   <kuvatavNr id="8ea5b51e-d914-4798-82e8-b2ea18dc64c9"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="43916939-a93e-44dd-8aed-6ca48107066d">Sotsiaalteenuste eest tasumine</paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="7bdf2163-964b-4c57-adfa-9bb9b20d4d8a">1</loigeNr>
+   <kuvatavNr id="fefc30eb-b9b0-4ce8-8f4b-2d4ea563b41e"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="b94b2ae5-8708-4c88-81d9-94c8c2c19290">
+    <tavatekst id="59acea5f-37d2-4b43-8cc8-a903a5870a28">Teenuse osutamise aja sisse arvatakse kogu teenuse osutamiseks kulunud aeg, sh teenuse saaja juurde sõitmiseks kulunud aeg.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg2">
+   <loigeNr id="0fdc5775-6ef0-49f3-b242-2b0a46a32520">2</loigeNr>
+   <kuvatavNr id="0183c573-279d-485b-a7e2-66f3937afd5b"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="5bb393bb-694d-43c3-9a36-5cad802eb2b8">
+    <tavatekst id="5ea9190b-0a58-47f4-8c86-5edb8331effd">Teenuse osutamisele kulunud aega arvestatakse poole tunni täpsusega, veerand- ja kolmveerandtunnid ümardatakse pool- ja täistundideks.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg3">
+   <loigeNr id="e8c56d67-7ea4-4f46-a5d4-88dc13d3f153">3</loigeNr>
+   <kuvatavNr id="c280d551-fbf5-4bf4-af95-a1e5eb3e91e0"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="4b53d659-b977-420a-a540-29ef12e186b7">
+    <tavatekst id="67418d07-fec9-4c05-9dca-f0101edfa9e4">Arve teenuse osutamise eest esitatakse teenuse saajale eelneval kalendrikuul osutatud teenuse eest iga kuu 5.kuupäevaks.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para4">
+   <paragrahvNr id="8c5bf49c-31d4-471b-8743-b662e440e89e">4</paragrahvNr>
+   <kuvatavNr id="48bc9be8-db88-4132-a773-7190c2a68d09"><![CDATA[§ 4. ]]></kuvatavNr>
+   <paragrahvPealkiri id="e04da87d-a0d1-4706-8ac8-d7d5416b5399">Rakendussätted</paragrahvPealkiri>
+  <loige id="para4lg1">
+   <loigeNr id="83b765d9-9e3e-449f-bbe1-7c66cd8a3f3c">1</loigeNr>
+   <kuvatavNr id="851cf3bf-d608-46e7-b624-99f55ce65452"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="9b7e7667-9763-48d6-8bcb-9bc5f83ee3c9">
+    <tavatekst id="c099c2da-1eb5-423e-9f3b-92a03e04e943">Tunnistada kehtetuks Kiili Vallavalitsuse 12.04.2016 määrus nr 4 „Sotsiaalteenuste hinnad, teenuse eest võetava tasu suurus ja tingimused“.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg2">
+   <loigeNr id="026babbf-5741-46e3-91d7-858b5406568c">2</loigeNr>
+   <kuvatavNr id="4282b7cf-9145-474e-89a2-5da6ac64330d"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="cf1969d8-f8d1-4230-8ed4-530ad274c9c4">
+    <tavatekst id="c3860fe3-891b-4ca6-ba46-96324c0119c6">Tunnistada kehtetuks Kiili Vallavalitsuse 29.03.2016 korraldus nr 130 „Koduteenuste loetelu ja hinnakirja kinnitamine“.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para5">
+   <paragrahvNr id="7a4d65bd-2923-4e14-b6dc-13f391b23dc5">5</paragrahvNr>
+   <kuvatavNr id="bbab7bc9-2a45-4de6-81c7-19d6cd74ae6e"><![CDATA[§ 5. ]]></kuvatavNr>
+   <paragrahvPealkiri id="b268db72-1990-4004-a4d1-c9b4ca94b9b8">Määruse jõustumine</paragrahvPealkiri>
+  <loige id="para5lg1">
+   <loigeNr id="7db1a37d-0f37-4a80-b2f0-e0d36f688236"/>
+   <kuvatavNr id="38770afd-9410-44c2-8517-b2ca1e782a0f"/>
+   <sisuTekst id="0bc4b88a-251a-4a8d-8cd3-04ee5d515824">
+    <tavatekst id="b6bb58fa-38ba-4642-93c2-b0e8cbfd589c">Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="4588a431-f591-4eea-b241-2b34703cd7bc"><allkiriKoht id="fa3700a1-a018-429c-9227-6c1b24d779ef"/><allkirjastaja id="8286ef62-0a4c-4038-8246-7767ba247e8d"><ametinimetus id="64ce04c6-459a-4816-bced-857cb1c13bb0">Vallavanem</ametinimetus><eesnimi id="82f817cc-c1d4-44a5-aca6-007ffd2b196e">Aimur</eesnimi><perekonnanimi id="b6294b24-b80a-4182-bb8a-b8d771d4d3e0">Liiva</perekonnanimi></allkirjastaja></allkiri><allkiri id="aba5ccf8-4c63-4aa8-b6f4-9ed243762c10"><allkiriKoht id="0b06751e-2d77-4d2e-8ce0-0d402ed8126b"/><allkirjastaja id="32a43b4c-d64a-4328-8129-d1e645e36648"><ametinimetus id="d1e67719-10e4-4ab9-92d4-5c10287b84e7">Vallasekretär</ametinimetus><eesnimi id="2953e3a6-ba2c-4346-9f54-0f541cc2d353">Tarko</eesnimi><perekonnanimi id="9bfc5336-1cad-4caa-8398-05a63d18ab8b">Tuisk</perekonnanimi></allkirjastaja></allkiri></oigusakt>

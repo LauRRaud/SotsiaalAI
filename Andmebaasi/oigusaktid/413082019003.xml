@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="e7404e02-8f64-4013-8283-7bfcbaf0c0be" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Kastre Vallavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>algtekst-terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2019-06-18</aktikuupaev>
+			<aktiNr>77</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2019-08-13+03:00</avaldamineKuupaev>
+			<RTaasta>2019</RTaasta>
+			<RTartikkel>3</RTartikkel>
+			<aktViide>413082019003</aktViide>
+		</avaldamismarge>
+		<kehtivus>
+			<kehtivuseAlgus>2019-08-16+03:00</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2019-08-08</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>413082019003</globaalID>
+		<metaandmedVersioon>9</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2019-08-23</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Imre Sobnin</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1047498</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2019-08-08</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Annika  Pajumaa-Murov</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="ac5cf808-c44c-4262-a7f4-776280d629ef">
+		<nimi id="9d8463d8-3940-402b-b97d-01502c55b42e">
+			<pealkiri id="dcd3acb6-32e3-4e1a-95ff-d937ff0d77d7"> Sotsiaaleluruumide üürile andmise ja kasutamise kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<sisu id="bc5c7c34-b14d-43ed-934c-ad4e84721280">
+		<preambul id="6ffeadf9-6054-4b4a-9f53-f691f5feb9d5">
+			<tavatekst id="fd84e90e-7df0-46b3-8915-b6fc4b6e095c">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 6 lõike 1, lõike 3 punkti 1, § 22 lõike 1 punkti 5 ja 37, sotsiaalhoolekande seaduse § 14 lõike 1, § 41 lõike 1, elamuseaduse § 8 punkti 1 ja 2 ning võlaõigusseaduse § 272 lõike 4 punkti 4 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="1b740413-0056-4b1f-8efe-a196d43435d0">1</paragrahvNr>
+			<kuvatavNr id="2d807b86-74e7-4c91-aa7a-c6abe494ba4c"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="c65cd4f5-ea16-4423-b9a9-aec430154983">Üldsätted</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="dcd26224-a39f-475d-a886-63f5a8e31eb2">1</loigeNr>
+				<kuvatavNr id="93332185-46d7-46ad-90f6-0aa8e4d02181"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="504ff490-4b7a-4013-ae4b-8f471ae09c8f">
+					<tavatekst id="f178b9af-2265-4fd0-83cf-87683d6dd695">Määrusega sätestatakse sotsiaaleluruumi mõiste, sotsiaaleluruumi üürile andmise tingimused, sotsiaaleluruumi üürilepingu sõlmimise, pikendamise ja lõpetamise kord ning sotsiaaleluruumi üürniku õigused, kohustused ning piirangud sotsiaaleluruumi kasutamisel.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg2">
+				<loigeNr id="ddd64d1f-0012-4a7c-b7c4-69194d065694">2</loigeNr>
+				<kuvatavNr id="e2b7f75b-bb70-4ac3-9891-da84a5619958"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="a6aab71b-49a2-47ed-939d-59c7547fcd4a">
+					<tavatekst id="caed95b8-9a5c-4be1-9f3f-3610b454407a">Sotsiaaleluruum on Kastre Vallavalitsuse poolt sotsiaaleluruumiks (edaspidi eluruum) tunnistatud Kastre valla omandis olev eluruum (korter, tuba või osa toast), mis antakse üürile eluasemeteenust (edaspidi teenus) vajavale isikule ja tema perekonnale, kes ise ei ole sotsiaalmajanduslikust olukorrast tulenevalt võimeline enda ja oma perekonna vajadustele vastavat eluruumi tagama.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg3">
+				<loigeNr id="9e4db61f-9f99-4636-ab5f-e17c59660672">3</loigeNr>
+				<kuvatavNr id="b258b83c-17f8-4272-a7e4-dd0472ff1adb"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="d34af0a4-4370-4a43-b6d6-6d42fac27e62">
+					<tavatekst id="2797b7a9-8ca1-4567-aad1-4e5fd350f950">Eluruumina võib erandina kasutada kolmandatelt isikutelt üüritud eluaasemeteenuseks vajaminevat elamispinda.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg4">
+				<loigeNr id="3153c1cd-a015-4ebc-a2ff-fdeeb3551652">4</loigeNr>
+				<kuvatavNr id="0daf7e6a-8469-4c10-8c06-8311ef36cc10"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="6766a7e1-8ca4-4290-803a-96991cefa41d">
+					<tavatekst id="3bf22675-4f58-48b9-9cf3-4ab196cb111b">Eluruumi taotluse ja lepingu vormid kinnitab Kastre Vallavalitsus (edaspidi vallavalitsus).</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="d1977588-54f4-47d6-8820-5431dc281db8">2</paragrahvNr>
+			<kuvatavNr id="b9b7197c-b715-4b58-913b-e2681961655f"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="165c0393-afb6-468d-bf6d-68c6c6ba56e9">Eluruumi taotlema õigustatud isikud</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="f8a69189-d97d-4862-86c9-409e3ccb5757">1</loigeNr>
+				<kuvatavNr id="d24f16be-fcad-4ec6-b868-b6c0938f3c19"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="41cfbc10-98f9-4414-8c33-4727aa6535e4">
+					<tavatekst id="117df904-3ae6-42dd-b13f-b1568f6b8ece">Eluruumi võib taotleda sotsiaalteenusena eluaset vajav füüsiline isik, kelle elukoht Eesti rahvastikuregistri (edaspidi rahvastikuregister) andmetel on Kastre vald (edaspidi taotleja).</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg2">
+				<loigeNr id="7764c42a-ddfb-4edf-a06c-76eab8ad422c">2</loigeNr>
+				<kuvatavNr id="1b0e48dc-b232-4bf7-a804-ac80da6dbbea"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="204d5c2e-f5f9-4443-8f0a-41d6dd514243">
+					<tavatekst id="447d4dd3-2016-464b-8610-cbea39eac5b5">Taotlema on õigustatud:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para2lg2p1">
+					<alampunktNr id="785188ca-539c-4e7c-8268-1f2f82539f52">1</alampunktNr>
+					<kuvatavNr id="e848f8e1-215f-421b-8528-25caff68b636"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="4b4c1400-1be1-4ddf-83eb-88cdde7a491a">
+						<tavatekst id="324e29ae-3452-471d-9d08-08c1981c4735">isikud, kes tulenevalt oma vanusest, tervislikust seisundist või sotsiaalmajanduslikust olukorrast ei ole ise suuteline endale ja/või oma perekonnale eluruumi tagama ning eluruumi eraldamata jätmine ohustab isiku elu, tervist ja toimetulekut;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg2p2">
+					<alampunktNr id="4d4e61bc-c655-4cc7-83c4-5eb93fa4bcb0">2</alampunktNr>
+					<kuvatavNr id="c034c043-84c9-4910-a3d5-381ca04a3f19"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="869cb52a-ba3d-4e9a-a4f9-bb2b5e2a9aa4">
+						<tavatekst id="5542db65-2d26-4bdd-bbfd-261531b1db1d">isikule, kes tulekahju, loodusõnnetuse või muu õnnetusjuhtumi tagajärjel on kaotanud elamispinna;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg2p3">
+					<alampunktNr id="a2990b49-d401-41b8-8954-401507b1cf09">3</alampunktNr>
+					<kuvatavNr id="5cb66e7a-896d-4b78-9325-c0df30b81b8d"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="0a264eb9-4acb-46fb-bf9d-2092f49e2881">
+						<tavatekst id="baeb8da5-718e-4646-a41c-187fe006a748">teised isikud põhjendatud juhtudel.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para2lg3">
+				<loigeNr id="d0028621-c74f-4b83-9535-4770b6b7603b">3</loigeNr>
+				<kuvatavNr id="4ff23a3c-7cea-4de0-8fc5-5171cb0d8be1"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="44f23a53-ff6e-4ca3-a6e0-f6a064ad4b08">
+					<tavatekst id="1fbeff9f-06c0-4a93-9cc0-37c74c9e0684">Isikule, kelle elukoht rahvastikuregistri andmetel ei ole Kastre vald võib eraldada eluruumi vaba elamispinna olemasolu korral juhul, kui isikul ei ole alalist elukohta, kuid isik viibib püsivalt Kastre valla haldusterritooriumil ja eluruumi eraldamata jätmine ohustab isiku elu ja tervist.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="b83df3a3-efde-45b5-946c-6d5d3c7f9f57">3</paragrahvNr>
+			<kuvatavNr id="1f87ad26-d966-4d7a-963c-214e45f0400e"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="3986c881-0732-4227-a9eb-c6c0198429f9">Eluruumi taotlemine</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="558e0015-1586-4243-ba2d-394d960bc69f">1</loigeNr>
+				<kuvatavNr id="b3e19b7f-b41e-46ff-ab18-dad2d0c3e62d"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="5c82142f-d72d-43b7-ae82-fa0a942db6f4">
+					<tavatekst id="237cee9a-d82e-4f9b-a4c6-a0bb72d6cbd5">Eluruumi taotlemiseks esitab õigustatud isik Kastre Vallavalitsusele (edaspidi vallavalitsus) kirjaliku vormikohase taotluse.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg2">
+				<loigeNr id="9378b825-151f-47b8-bdae-7b35d3869a66">2</loigeNr>
+				<kuvatavNr id="33a9b4bf-a143-4a3b-8127-f0bcbb57ae36"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="a9b08be5-594d-4ed1-bf14-b9b7107d17b5">
+					<tavatekst id="51098351-d659-43e2-8e64-7aadec64dee4">Taotluses märgitakse:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para3lg2p1">
+					<alampunktNr id="44a901a1-bc75-4f61-ae86-f87b0d40cd03">1</alampunktNr>
+					<kuvatavNr id="6d7ea060-58b7-47d9-b79f-11b86e9429bb"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="6bd14d82-c34b-4d53-9c32-e4e7479ba392">
+						<tavatekst id="fd3202b5-ab2f-4def-bca2-5fbe6c69c3a2">taotleja ees- ja perekonnanimi ning isikukood;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg2p2">
+					<alampunktNr id="fc9bb21b-5443-4741-b879-58b8a7a20481">2</alampunktNr>
+					<kuvatavNr id="2bc2a06c-ffeb-48d2-9ce1-0d9cf674a8c3"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="6c2af7eb-4c98-478c-89fc-e99c4332e823">
+						<tavatekst id="f144df02-c8b2-4716-bf01-69a4a98c5f9a">taotleja kontaktandmed (aadress, telefon, e-posti aadress);</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg2p3">
+					<alampunktNr id="fa052152-b9c4-4571-a15f-cc13a3978046">3</alampunktNr>
+					<kuvatavNr id="5f9a4700-f0cc-4baf-8a4a-d48afbbd119b"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="8f88204e-99fa-45dd-b6bb-85dcb98c70d0">
+						<tavatekst id="a850979a-7dfb-469e-9465-a90126fb3ceb">andmed perekonnaliikmete, ülalpidamiskohustusega isikute ja ülalpeetavate kohta (nimed, isikukoodid, kontaktandmed);</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg2p4">
+					<alampunktNr id="3e63bceb-7c73-4e2f-a5de-c46acb09ebcb">4</alampunktNr>
+					<kuvatavNr id="3fee5c5a-7e5c-4a0e-92a0-ed664e53c79f"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="d052e1cb-e252-46fd-9b41-846ce4cc9334">
+						<tavatekst id="fd88603c-6425-4a2a-8dc6-01e7bd480ad2">andmed taotleja ja tema perekonnaliikmete taotluse esitamisele eelneva nelja kalendrikuu sissetulekute kohta;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg2p5">
+					<alampunktNr id="b7a9abb7-7751-4442-ac00-651acd4c343a">5</alampunktNr>
+					<kuvatavNr id="dec64fe5-967d-4a85-89a3-540d45527bac"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="116c3edd-f56d-4506-9210-09a8f03b4cda">
+						<tavatekst id="73d19550-a22c-4338-8446-4a07d8c96ce1">andmed taotleja ja tema perekonnaliikmete omandis oleva(te) kinnisasja(de) ja sõiduki(te) kohta;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg2p6">
+					<alampunktNr id="a8f0b1e5-5517-4bbc-b177-3e37bd9c1567">6</alampunktNr>
+					<kuvatavNr id="b437a39d-5eab-43bd-9f10-0e80430af1bf"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="6fa4d533-f24d-4970-b74e-137abd7cda61">
+						<tavatekst id="3a83b8fb-9879-4f9d-9af3-b8b38e01dbe0">eluruumi taotlemise põhjendus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg2p7">
+					<alampunktNr id="9022f93e-2502-4507-8623-2447d6185ec4">7</alampunktNr>
+					<kuvatavNr id="17055a61-fb6d-43ac-99bf-201950746213"><![CDATA[7) ]]></kuvatavNr>
+					<sisuTekst id="6d92bb08-01d3-418f-b477-c3e062bcd9b6">
+						<tavatekst id="0ce8c013-cf41-4f61-aad5-817b41646462">andmed seni kasutatava eluruumi ning sellest ilmajäämise põhjuste kohta.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para3lg3">
+				<loigeNr id="eef35677-dab7-4ddb-9ca6-20adba7b1690">3</loigeNr>
+				<kuvatavNr id="740daa61-cadf-4e29-a885-62a1b9e5bb6e"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="374d5401-aa46-4cf9-98a4-5bc6f6eb9323">
+					<tavatekst id="854f99e6-ccad-45ee-be86-a51c759e3f18">Asjaolude selgitamiseks on vallavalitsusel õigus nõuda taotlejalt täiendavaid dokumente ja andmeid.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="310ee203-26ea-4c48-b0d9-ff388ee0e32b">4</paragrahvNr>
+			<kuvatavNr id="c15bccfa-90ea-4124-8388-e978366deff4"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="841307d6-669e-496a-ae56-273fccdf3c28">Taotluse menetlemine</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="09d23bcd-c811-485d-a211-389e04f3f278">1</loigeNr>
+				<kuvatavNr id="72ac30d9-05d8-4d32-aa82-98106f05d64e"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="8b2f9451-c2f8-4038-8238-31a6cb0b2d4f">
+					<tavatekst id="db8a5536-18c8-4bca-a165-97b8b5c21ac0">Eluruumi üürile andmise või üürile andmisest keeldumise otsustab vallavalitsus korraldusega ning teeb selle eluruumi taotlevale isikule teatavaks hiljemalt 10 (kümne) tööpäeva jooksul taotluse ja nõuetekohaste dokumentide esitamisest.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg2">
+				<loigeNr id="8443db14-1a1a-4c02-bafc-6761eded3b76">2</loigeNr>
+				<kuvatavNr id="bbea0e0b-882e-4dd3-ae60-8294598e82e7"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="8a3c5098-f3b4-4a53-aebb-65ffe7e648ad">
+					<tavatekst id="24918101-ec2b-44aa-8c0f-cc9d582ff722">Juhul, kui elukoha puudumine põhjustab taotlejale ja/või tema perekonna elule või tervisele ohtliku olukorra, eraldatakse eluruum koheselt ja dokumendid täidetakse hiljemalt 10 (kümne) tööpäeva jooksul.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg3">
+				<loigeNr id="8c82d347-26ba-4116-9816-1e73c1b59344">3</loigeNr>
+				<kuvatavNr id="68d7e3af-0fa2-4f4e-a97d-1dc7a777eea4"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="d4eb2ba9-75c6-4397-ba0a-bdff893a0782">
+					<tavatekst id="3576ea1f-8d2e-4641-b2da-c7127dafbe02">Eluruumi üürile andmisest võib keelduda juhul, kui esineb vähemalt üks järgmistest asjaoludest:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para4lg3p1">
+					<alampunktNr id="9626a712-7b78-4467-bfdc-637e9dc279dd">1</alampunktNr>
+					<kuvatavNr id="8474991e-c7bb-44dc-8f43-1e9406f10f27"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="0ccf8d8c-6f65-47bf-93c3-675d1d85552a">
+						<tavatekst id="d167df9f-cdf3-4780-a397-48587413bcd1">taotlejal on olemas perekonnaseaduse § 96 alusel ülalpidamiskohustusega isikud, kes oma sissetulekutest lähtuvalt on võimelised ülalpidamiskohustust täitma;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg3p2">
+					<alampunktNr id="9503c59c-b4f1-4a91-b6ea-90a8017412fd">2</alampunktNr>
+					<kuvatavNr id="fbb3ed7a-0348-4013-9e99-8c06a4db5fde"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="c19ee4e3-beff-451a-ae7d-8c33078b5e07">
+						<tavatekst id="d41907f4-a2ed-4e9e-b74e-239d8ad6bf3e">vallavalitsusele ei ole esitatud kõiki teadaolevaid tõeseid ja täielikke andmeid, dokumente ja muid tõendeid, mis on vajalikud teenuse määramise otsustamisel;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg3p3">
+					<alampunktNr id="02dd97d9-241f-43a4-85ff-3806f6275a41">3</alampunktNr>
+					<kuvatavNr id="d66275d1-044a-40ca-acec-13453929d63a"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="460e198d-f7fe-4f10-90aa-11fb9d400fcb">
+						<tavatekst id="9438d47d-9665-4ccc-9d06-cf8d251f7981">taotleja ei võimalda teenuse vajadust kontrollida;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg3p4">
+					<alampunktNr id="4ba8dc77-6f1e-42c6-874a-dc4a5e8137e7">4</alampunktNr>
+					<kuvatavNr id="cdc429e4-f581-4dab-a1fa-ad1ffa62306f"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="ce9d0bb7-0b9c-4b6b-85f5-35cd9d6a85df">
+						<tavatekst id="785edbf6-d092-4301-8f8d-440b181072d8">teenuse vajadust on võimalik või otstarbekas katta muude sotsiaalteenuste või muu abiga;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg3p5">
+					<alampunktNr id="68784721-602b-46ed-94bf-13a6c69b9bf9">5</alampunktNr>
+					<kuvatavNr id="482333f8-9ddc-4426-bae6-cf10ac632ab1"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="f285b2e5-b4ab-4779-89a0-33cb173fdaa8">
+						<tavatekst id="b7ede47f-5162-49e6-996c-e88924135bac">teenuse vajaduse katavad riiklikud või valla eelarvest makstavad toetused ja teenused;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg3p6">
+					<alampunktNr id="af82d5ba-c4bb-4f6a-ad59-667fd9052ded">6</alampunktNr>
+					<kuvatavNr id="2d7a01fc-ae32-4c3f-9a1f-fe3fe386fad2"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="c9f08e6b-6c81-4d96-ae7b-18f5ad71e974">
+						<tavatekst id="c3f8c2a5-b97e-45e3-8b86-67fbf3728c30">taotleja on vähemalt kaks korda järjest keeldunud talle pakutud eluruumist.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para4lg4">
+				<loigeNr id="89f811c5-2cd1-4ba1-99a8-96c13b3997f2">4</loigeNr>
+				<kuvatavNr id="0d4f2a0b-6081-4c2c-bc47-eda7a0851af7"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="4d413990-e3c0-46ca-9a4d-4566889cc6bd">
+					<tavatekst id="4b8465fa-50bc-42e4-859f-4edacd175c6c">Vallavalitsusel on õigus hoida eluruume reservis erakorraliste olukordade jaoks.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="96e9dd34-dd5d-4f76-ad18-1e59cb1e0191">5</paragrahvNr>
+			<kuvatavNr id="665503b4-9057-46ad-ab68-86ee02fd959a"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="1bc96b53-b7d2-4fd4-904d-a9569265bc05">Üürilepingu sõlmimine</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="2fba9e1e-5b54-4fc2-af4c-ee9775c94bec">1</loigeNr>
+				<kuvatavNr id="e3336cc1-7c67-493b-888b-2a33b06c894f"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="e9854f02-1be7-4bef-bb7c-c8185e7cdd73">
+					<tavatekst id="97bec769-7e26-4988-857e-271c6ca52e36">Isikuga, kellele vallavalitsus eluruumi eraldas, sõlmitakse üürileping (edaspidi leping).</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg2">
+				<loigeNr id="722bb671-d3e1-4dcd-9766-39e181a7d477">2</loigeNr>
+				<kuvatavNr id="7b15b4e7-2295-4caf-804b-4308066fc863"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="7bdd3bc4-9706-4c47-8594-fe218f7b6889">
+					<tavatekst id="738b9ccd-db41-4f66-a304-4bc3f9698b3a">Enne lepingu sõlmimist on eluruumi taotlejal õigus talle määratud eluruum üle vaadata ja sellest keelduda, kui eluruumi seisukord, suurus või asukoht ei sobi üürnikule või tema perekonnaliikmetele.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg3">
+				<loigeNr id="eb0d6146-718c-4b07-826e-ae9ada464a83">3</loigeNr>
+				<kuvatavNr id="c5581dae-48e3-4276-b345-b644c71165b3"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="51a2987e-de6b-4ba3-83c4-af1e35e420bb">
+					<tavatekst id="7295bbfe-87b5-4a17-b2fa-10f6e5f90028">Leping sõlmitakse 10 (kümne) tööpäeva jooksul vallavalitsuse korralduse teatavakstegemisest arvates. Nimetatud tähtaja jooksul mõjuva põhjuseta lepingu sõlmimata jätmisel taotleja poolt on vallavalitsusel õigus tunnistada vastav korraldus kehtetuks.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg4">
+				<loigeNr id="18f097c5-f3d4-4441-bda6-d7d40a58e403">4</loigeNr>
+				<kuvatavNr id="32df199f-7a2a-48dd-ad33-2922fe9d0657"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="dbac9cd0-3cb0-43be-b20b-ee40f81cf06e">
+					<tavatekst id="1ab0a421-41e8-40c0-818b-3934121df314">Eluruumi kasutamiseks sõlmitava lepingu tähtaja määrab vallavalitsus.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg5">
+				<loigeNr id="48bfe59d-bcac-4178-aa7d-5c00708bc3a2">5</loigeNr>
+				<kuvatavNr id="ab2c62bf-6c8a-4fbb-b7a3-7249363d7d1c"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="f43c2f8d-54bf-4d6c-94cb-f4e2aa40cfce">
+					<tavatekst id="f96cd0c5-45fd-47ba-815c-43e35134083a">Eluruumi kasutamiseks sõlmitava lepingu tähtaeg tööealiste isikute puhul on kuni üks aasta ja isikutega, kellele on määratud puudeaste/osaline või puuduv töövõime või vanaduspensioniealise isikute puhul kuni kolm aastat.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg6">
+				<loigeNr id="d14f27e7-2a5e-441a-aff1-bd02bd1f9a41">6</loigeNr>
+				<kuvatavNr id="36f151b5-3d87-4355-aac7-e4b67ebc00ec"><![CDATA[(6)]]></kuvatavNr>
+				<sisuTekst id="dad3107b-1276-4281-ab99-989db9a42c6b">
+					<tavatekst id="d97db8a5-22e5-4802-b7ff-a538a74bd427">Eluruumi lepingu sõlmib sotsiaalosakonna juhataja.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg7">
+				<loigeNr id="34abeeb3-aeb4-4c1b-a89a-5f098db05cc3">7</loigeNr>
+				<kuvatavNr id="695fd535-69ee-4153-9b30-91717319b5fd"><![CDATA[(7)]]></kuvatavNr>
+				<sisuTekst id="9ddd9e91-057c-4d3a-8fe7-e6ff984bd516">
+					<tavatekst id="369d2044-441d-4d7a-8ec2-48b43bbb0d54">Lepingu sõlmimisel koostatakse lepingu lisana eluruumi üleandmise-vastuvõtmise akt ja lõppemisel eluruumi tagastamise akt, milles kajastatakse eluruumi ja selle sisustuse seisukord.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para6">
+			<paragrahvNr id="a5740c53-0f52-4347-aaf3-35ba1292d058">6</paragrahvNr>
+			<kuvatavNr id="3e33d83f-0ec5-4ee2-95cb-17a1b9d4b489"><![CDATA[§ 6. ]]></kuvatavNr>
+			<paragrahvPealkiri id="846e4cd3-10ee-4b2d-910b-b47674390494">Lepingu pikendamine</paragrahvPealkiri>
+			<loige id="para6lg1">
+				<loigeNr id="a9fdd45b-b674-4730-aedb-a89b70bdf630">1</loigeNr>
+				<kuvatavNr id="5383f498-70ae-4749-9e29-9069357ada80"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="ab67cdc7-17b2-488d-ae35-dcf509321739">
+					<tavatekst id="ade94a8d-626a-44e2-98ab-c7856126e25e">Lepingu lõppemise tähtaja lähenemisel ja eluruumi vajaduse säilimisel võib üürniku põhjendatud taotluse ja vallavalitsuse korralduse alusel isikule eraldatud eluruumi lepingut pikendada. Eluruumi lepingut pikendatakse juhul, kui isik on täitnud kõik lepingust tulenevad kohustused ja vastab käesoleva määruse § 2 nõuetele.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg2">
+				<loigeNr id="9e29655f-fd61-4cfa-8384-391c2eaf74c9">2</loigeNr>
+				<kuvatavNr id="e8a435e9-c86b-40ad-b4a0-58e705e0880c"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="a916238b-2049-4334-bbab-a80cba67c8b7">
+					<tavatekst id="459fd752-8258-40e8-8d01-3960dd3e51e1">Üürivõlgnevuse korral pikendatakse lepingut eeldusel, et on sõlmitud maksegraafik üürivõlgnevuse likvideerimiseks.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg3">
+				<loigeNr id="44f30383-ab9b-431d-9a8b-d7d5e5cf4622">3</loigeNr>
+				<kuvatavNr id="d3d49a89-0ea9-42c3-b045-b6c078ddb9a3"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="c661325c-551c-4d25-84c0-856d87af01d5">
+					<tavatekst id="d8e03463-42f9-49ee-82df-8d1e4861c621">Eluruumi lepingu pikendamiseks esitab üürnik vallavalitsusele taotluse vähemalt 30 päeva enne eluruumi lepingu lõppemist.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg4">
+				<loigeNr id="4007b731-0e4e-40ea-ab59-ea24088be3fd">4</loigeNr>
+				<kuvatavNr id="cbaf8a13-25c3-4fe1-85a9-415cb0bee19d"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="2622bc56-59ec-4806-94a3-cc60c79b9784">
+					<tavatekst id="d92cd269-b093-432c-8c15-af46a8e1ec1c">Eluruumi üürilepingu pikendamise otsuse tegemisel lähtub vallavalitsus lepingu pikendamise vajadusest, eluruumi sobilikkusest üürnikule ja tema perekonnale ning üürilepingujärgsete kohustuste täitmisest.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg5">
+				<loigeNr id="840328ab-cf81-40a4-8067-aa795d9420f2">5</loigeNr>
+				<kuvatavNr id="ec3472cb-2636-4f0b-b053-fc69e96c691f"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="9d0bebf0-5fe1-492c-ab7f-279642462cba">
+					<tavatekst id="b6de51d3-3a3b-45ec-9be7-50fec5b63972">Juhul, kui üürnik ei ole täitnud kõiki lepingujärgseid kohustusi, kuid isikul säilib määruses sätestatud alustel õigus ja vajadus eluruumile, võib vallavalitsus anda taotlejale üürile senisest vähem heakorrastatud ja väiksemaid kulutusi nõudva eluruumi või ühiseluruumi.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg6">
+				<loigeNr id="a78e332f-4d01-4126-a34b-7bc82ba897ab">6</loigeNr>
+				<kuvatavNr id="db22cbeb-82b4-4a57-a20e-a0ac02a635fa"><![CDATA[(6)]]></kuvatavNr>
+				<sisuTekst id="f43e65ed-4c05-496e-a0e0-9ac849763902">
+					<tavatekst id="52a2e060-5d7f-40b3-84e7-50c1e6fff835">Lepingu pikendamise otsustab vallavalitsus korraldusega, mis fikseeritakse lepingu lisana.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para7">
+			<paragrahvNr id="770da28c-5a17-40c7-89fd-86bfed45c77c">7</paragrahvNr>
+			<kuvatavNr id="032f46b1-d0eb-496d-86b9-5b653abd2fe3"><![CDATA[§ 7. ]]></kuvatavNr>
+			<paragrahvPealkiri id="a04e286f-1cf6-437e-ba0a-2eda9af2b49a">Lepingu lõppemine</paragrahvPealkiri>
+			<loige id="para7lg1">
+				<loigeNr id="4f98492f-87b4-4579-9c46-0f20c168f126">1</loigeNr>
+				<kuvatavNr id="fc3ef934-4608-44e0-a745-04e7eb32fe80"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="67561d77-3b29-47ad-942d-548e9a1c612a">
+					<tavatekst id="03dc1b01-5ab6-4611-915f-3acf92ef39a8">Leping lõpeb tähtaja möödumisel.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg2">
+				<loigeNr id="8a5c08b8-bb5a-44c7-8e82-cf384d799a68">2</loigeNr>
+				<kuvatavNr id="ad305d6b-1717-4c9d-b688-d40b5f84e06d"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="4aadddc4-9a06-49ac-95fb-699ea4617415">
+					<tavatekst id="ee7b6465-b524-4e72-a69d-09fb633fb5ea">Leping lõpetatakse vallavalitsuse korraldusega:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para7lg2p1">
+					<alampunktNr id="8b227f1a-9c97-4562-a220-6b6c41f87b74">1</alampunktNr>
+					<kuvatavNr id="f74f349a-b001-45c0-b111-427b3f8967f5"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="5331eb65-d5f0-4205-b497-0cd71baef515">
+						<tavatekst id="5b37f022-95f3-460c-bcee-82b2ccc99d24">lepingu ülesütlemisel;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para7lg2p2">
+					<alampunktNr id="f6d3af55-8d3b-4f05-b02a-b693ea7fe5ec">2</alampunktNr>
+					<kuvatavNr id="9685892a-4792-4550-af00-88c78143422e"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="422018b7-68d7-443c-83ef-0e57faec4a7e">
+						<tavatekst id="5204fb00-6f51-4652-a98e-e9dd74093b1c">poolte kokkuleppel;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para7lg2p3">
+					<alampunktNr id="9303386f-8525-4592-9bc5-fc817d1b9b8d">3</alampunktNr>
+					<kuvatavNr id="3e4be5d7-d366-4d6b-8196-e4659977a390"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="814da9fe-e8b8-428e-9314-819c23e5c7f0">
+						<tavatekst id="973b9054-9436-4a23-b7d7-6338f6156bf1">eluruumi hävimisel või kasutuskõlbmatuks muutumisel;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para7lg2p4">
+					<alampunktNr id="3d43a537-94cd-4377-adcc-fd9834c73946">4</alampunktNr>
+					<kuvatavNr id="8ae173d3-3fe0-4993-8aa5-0b7f01e3aba4"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="0724b90e-1033-4f73-875e-6da70fb70a2d">
+						<tavatekst id="9a8fc660-4ecb-43a7-94af-b8a6ea59ac86">üürniku alalisel lahkumisel eluruumist;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para7lg2p5">
+					<alampunktNr id="593c345f-a4e3-40db-9a08-ce344b22ce0a">5</alampunktNr>
+					<kuvatavNr id="87961716-0b9e-4364-88b4-df38e5222d11"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="90b266f7-cd8c-4f77-9e16-631fba9aeedc">
+						<tavatekst id="eecae2a0-9d40-498f-9677-247859acf6c1">eluruumi taotlemisel aluseks olnud põhjuste äralangemisel;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para7lg2p6">
+					<alampunktNr id="af8a1b6f-c73d-40c7-9e23-da714f8062b4">6</alampunktNr>
+					<kuvatavNr id="8fa705dc-dc41-47e0-833f-f5f6ed62b153"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="30f3b0fc-b2ce-4aaf-b7c9-cdca6e3a11da">
+						<tavatekst id="e2b53eb8-a951-43e1-876c-4678682e6342">üürniku surma korral.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para7lg3">
+				<loigeNr id="436bac7c-3de2-4b69-b1c6-cdbd399b4591">3</loigeNr>
+				<kuvatavNr id="d90ce24f-8374-473f-ac9d-f65a656bd858"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="b1b29e65-5697-4fca-a305-8fb134ff16ba">
+					<tavatekst id="064f5fda-c1ee-4c3e-b24b-de98d78dbc5a">Lepingu võib üürnik ennetähtaegselt üles öelda, esitades vastava avalduse vallavalitsusele.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg4">
+				<loigeNr id="055266c7-5bd2-41f9-8ab6-0193dc88f081">4</loigeNr>
+				<kuvatavNr id="8f28e416-0056-4d07-bb4e-38a94892d50f"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="2031e5c6-1712-458d-89d3-ad7e8906b1bc">
+					<tavatekst id="14bc970e-3348-40c8-872b-9504457bbc88">Vallavalitsus võib eluruumi üürilepingu ennetähtaegselt üles öelda, teatades sellest üürnikule ette vähemalt 30 päeva, kui üürnik ja temaga koos elavad isikud rikuvad üürilepingu tingimusi ja/või teiste üürnike rahu. Ülesütlemistähtaega ei pea järgima, kui üürnik kahjustab eluruumi tahtlikult.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para8">
+			<paragrahvNr id="e9cb0418-4e92-4e52-a9b1-19897a62d74b">8</paragrahvNr>
+			<kuvatavNr id="ebc6b330-eec8-427f-bcf4-907903035369"><![CDATA[§ 8. ]]></kuvatavNr>
+			<paragrahvPealkiri id="48a9bfca-b78d-4998-8e33-aa898c92465f">Eluruumi kasutamise kord</paragrahvPealkiri>
+			<loige id="para8lg1">
+				<loigeNr id="1b29ef69-71c9-486f-9f09-4f8eb985cbe7">1</loigeNr>
+				<kuvatavNr id="0bc3f189-94b8-43c9-90c2-010153c8c4ce"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="07b7ea92-3db2-4894-b601-dbdc50dffb03">
+					<tavatekst id="191af9c3-29b8-4073-be8a-25ac48a4883c">Eluruumi kasutamise õigus on lepingus nimetatud isikutel ning üürniku alaealistel lastel.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para8lg2">
+				<loigeNr id="89ac6443-9367-46e3-a919-2425cc09a950">2</loigeNr>
+				<kuvatavNr id="84d7bab7-b68b-4ff0-8c0c-b19aff115947"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="46660817-be83-4ca8-b2d2-1c3e1ab33497">
+					<tavatekst id="38644084-c8ba-4788-899b-a020bd04a701">Eluruumi üürnik on kohustatud:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para8lg2p1">
+					<alampunktNr id="09f086b3-ba1a-47ce-b07f-4dce280ccfc7">1</alampunktNr>
+					<kuvatavNr id="d335f855-c47d-43cd-aef8-5dcd0b095d2a"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="fdc19136-80d4-4ada-83df-e9cfc286d1f3">
+						<tavatekst id="76553da5-82e2-4594-affe-a2514e64bee6">kasutama eluruumi ja selle sisustust heaperemehelikult;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg2p2">
+					<alampunktNr id="d8ab1d5a-7bab-4985-9012-aa417453de6a">2</alampunktNr>
+					<kuvatavNr id="919827a2-3540-442c-9aae-9d2be7520607"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="08760321-e136-4283-bd72-4b4bb0fd9de3">
+						<tavatekst id="aec70016-25e2-4e5d-b5b3-2755a03e4f61">arvestama teiste majaelanike ja naabrite huvidega;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg2p3">
+					<alampunktNr id="9ca31db6-9954-4054-bf32-cbcc5371ecbb">3</alampunktNr>
+					<kuvatavNr id="58c76b21-8216-4b58-82cf-1f12837296c7"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="e0338425-d9da-4025-98e1-b18a16723607">
+						<tavatekst id="a3856b80-5d05-4cb6-b75d-9e3aaa956337">järgima eluruumis, üldkasutatavates ruumides ja kinnistul sanitaar- ja tuleohutusnõudeid, heakorraeeskirja ning kinni pidama teistest Kastre valla õigusaktidest;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg2p4">
+					<alampunktNr id="e5dc353a-0768-417b-99fe-ff567e7fb8bf">4</alampunktNr>
+					<kuvatavNr id="50aa5442-0e06-4334-8104-563a67dec035"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="a7c1bad8-44a0-4601-a133-1b26ea2aa2c7">
+						<tavatekst id="4b360bbb-cdc2-4c32-958c-9dfb1df8280d">hüvitama üürniku või temaga koos elavate isikute süü läbi eluruumi või selles asuvate seadmete rikkumisega tekitatud kahjud;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg2p5">
+					<alampunktNr id="7797ddbd-80f0-4547-9662-072b01e48572">5</alampunktNr>
+					<kuvatavNr id="2f6105dc-ec12-43f6-a76f-d4712445521d"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="79648558-c784-4780-898e-34999aeec3e4">
+						<tavatekst id="d4316636-da5a-409b-801e-f971d24934c3">rakendama eluruumi avariide ja rikete avastamisel viivitamatult abinõusid avariide ja rikete kõrvaldamiseks ning teatama nende tekkest vastavatele ametiasutustele ja üürileandja esindajale;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg2p6">
+					<alampunktNr id="a5219bd1-67af-404c-82e8-c0b50c12ea4f">6</alampunktNr>
+					<kuvatavNr id="f4b98cc4-4b2c-4de8-82d7-bbbc51040ba3"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="7b107ca1-6844-4e78-bd0a-3d4ec7665dac">
+						<tavatekst id="9de53a59-ec09-4a04-b518-061120a333d6">lubama üürileandja esindajal eluruumi üle vaadata;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg2p7">
+					<alampunktNr id="97616bc4-e985-4a0c-8406-d0be7cf34a72">7</alampunktNr>
+					<kuvatavNr id="714381a6-c5bf-4cde-a29a-e0f336351a3d"><![CDATA[7) ]]></kuvatavNr>
+					<sisuTekst id="9e344602-a71e-4611-a3b3-53c68ed4859f">
+						<tavatekst id="72239733-8fbd-419b-ba73-857f5728751e">andma lepingu lõppemisel eluruum üle üürileandja esindajale mitte halvemas seisukorras kui see oli lepingu sõlmimisel (välja arvatud harilik kulumine);</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg2p8">
+					<alampunktNr id="6f64d4ed-9bd4-4b09-99cd-7dd2ad2a3982">8</alampunktNr>
+					<kuvatavNr id="bdbeab2b-f1a8-4077-a1c7-4f1c2abd674f"><![CDATA[8) ]]></kuvatavNr>
+					<sisuTekst id="87c98594-f83f-4580-a992-4648546839aa">
+						<tavatekst id="39d22ae0-3234-4938-9ac1-8f176f17f9c5">vajadusel sõlmima eraldi lepingud kõrvalkulude tasumiseks teenuse osutajatega;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg2p9">
+					<alampunktNr id="3debcbfe-de4e-4dfa-a5d8-952e583460a5">9</alampunktNr>
+					<kuvatavNr id="3617348d-d118-4d3f-b136-54d91798c643"><![CDATA[9) ]]></kuvatavNr>
+					<sisuTekst id="3b57ea5b-c9e9-40e2-8b5b-97eae3938266">
+						<tavatekst id="6a06199c-e288-486b-a8a3-0fddfb5ff413">vabastama eluruum pärast lepingu tähtaja lõppemist või taotlema vähemalt 30 päeva enne lepingu lõppemist selle pikendamist.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para8lg3">
+				<loigeNr id="08755f8e-f079-4df5-9519-db8a01f14774">3</loigeNr>
+				<kuvatavNr id="10cd9a8a-96a8-48a9-aeca-bc1b9f368ca8"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="9482e21f-364f-4919-903c-a1fa49905a00">
+					<tavatekst id="8471a1ae-a6fa-44d8-a923-e671ddf27e3e">Eluruumi üürnikul on keelatud:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para8lg3p1">
+					<alampunktNr id="0555c1a6-622e-4d5f-a4aa-589e064ee359">1</alampunktNr>
+					<kuvatavNr id="9e48864c-4d99-4898-afd3-db27cf11e7b4"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="4731b7fe-7c6f-4ef8-ac68-3585f0077b65">
+						<tavatekst id="9a2e85ce-50ff-4abe-bf33-8b2c37c4c3e4">anda eluruum allkasutusse kolmandatele isikutele;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg3p2">
+					<alampunktNr id="b1a8161e-3c5f-4337-88df-41702e7863f1">2</alampunktNr>
+					<kuvatavNr id="d99563cf-9f6a-4a2d-a07a-2637a226a42e"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="ed086906-4316-4027-aefe-2800866ac1b1">
+						<tavatekst id="8f4a0a7e-fb61-4b35-a806-82a72c1f6423">teha eluruumi või selle seadmete ümberehitust või -paigutust ilma vallavalitsuse kirjaliku nõusolekuta;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para8lg3p3">
+					<alampunktNr id="045ced0a-a087-4ce7-979e-4103f407d6bd">3</alampunktNr>
+					<kuvatavNr id="c2f39f27-ccc6-4adc-9aa3-a629aa9eda3a"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="a16e54b9-001d-4399-ab5d-1c9aebc4b903">
+						<tavatekst id="cc048e3e-f2d3-4371-b04c-720b8ee7502a">pidada eluruumis lemmikloomi.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para8lg4">
+				<loigeNr id="b4f4e598-7899-4f95-9a0b-9331ac859a60">4</loigeNr>
+				<kuvatavNr id="1eb20087-42a1-413f-baee-6a5eb3356b17"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="3504f822-4749-487e-b9c4-208346fec9a2">
+					<tavatekst id="c1e00256-892c-4d76-a942-14120265e55d">Sotsiaalvaldkonna ametnik (vajadusel mõni muu vallavalitsuse ametnik) võib etteteatamise tähtajaga kontrollida üüriobjektiks oleva vara sihipärast kasutamist.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para8lg5">
+				<loigeNr id="7c89f5ff-b29f-466e-970d-1b0c3ef28f24">5</loigeNr>
+				<kuvatavNr id="1a22935b-474c-4ef1-bf0f-e5cfcaa3035b"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="ff8c2a24-3d23-45ad-b17e-018fb98d8986">
+					<tavatekst id="58860943-e190-41ef-8384-aa38f0866376">Sotsiaalvaldkonna ametnik (vajadusel mõni muu vallavalitsuse ametnik) võib ette teatamata teostada kontrolli eluruumis seadusega sätestatud juhtudel ja korras, avaliku korra, tervise või teiste inimeste õiguste ja vabaduste kaitseks või kuriteo tõkestamiseks.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para9">
+			<paragrahvNr id="82224100-aca5-4f5f-8259-52908ef52752">9</paragrahvNr>
+			<kuvatavNr id="1d21c8d5-60e3-43ea-8f97-a026dba0dddd"><![CDATA[§ 9. ]]></kuvatavNr>
+			<paragrahvPealkiri id="f9057d7a-d856-43d6-9f06-12e77f9e2570">Tasu eluruumi kasutamise eest</paragrahvPealkiri>
+			<loige id="para9lg1">
+				<loigeNr id="bb4993f7-ed28-4e8a-8bba-3908db3a7945">1</loigeNr>
+				<kuvatavNr id="b11f56fa-fcbd-4d3f-acfa-c039125c6fdd"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="61658066-6096-4324-adaa-62a4a68102f4">
+					<tavatekst id="ef1b3922-165a-401c-85ef-f09f261d24cd">Eluruumi üüri suuruse määrab vallavalitsus.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para9lg2">
+				<loigeNr id="b7d639f4-5286-49d5-8172-dc5c03b6e9d6">2</loigeNr>
+				<kuvatavNr id="ba87deaf-24fa-4a8c-bef1-2875d2caa639"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="e3de629d-ec64-4b24-b4b8-699938289faf">
+					<tavatekst id="574f9c15-c909-45da-98c1-cc011f41f3c1">Üürnik tasub üüri ja kõik eluruumi kasutamisega seotud kõrvalkulud proportsionaalselt üürniku poolt kasutatavate eluruumide suurusele vastavalt esitatud arvetele (elektrienergia, vee, kanalisatsiooni, kütte, prügiveo ja muude kommunaalteenuste eest, samuti igakuised hooldus-, avarii- ja remondimaksed elamu haldajale ning valveteenuse kasutamine jms).</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para10">
+			<paragrahvNr id="7b9d8efc-d44f-468c-bcad-e9c123f27c9b">10</paragrahvNr>
+			<kuvatavNr id="4a52c703-9ce5-4dc1-8447-0ec5fab7c5ba"><![CDATA[§ 10. ]]></kuvatavNr>
+			<paragrahvPealkiri id="22af74fd-54d1-4f60-8624-c44a231befa7">Järelevalve ja vastutus</paragrahvPealkiri>
+			<loige id="para10lg1">
+				<loigeNr id="a278dfcd-aa1d-4f57-9755-37e9a3c69ee0"/>
+				<kuvatavNr id="f09a8b71-fb48-4763-8e13-5a5d892cce1b"/>
+				<sisuTekst id="4e2ada3d-c92b-4fad-b395-079ba76a8d5a">
+					<tavatekst id="a4d4340e-4c0f-402e-841e-3acd895625cb">Järelevalvet eluruumi sihipärase kasutamise ja lepingu täitmise üle teostab sotsiaaltöö peaspetsialist.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para11">
+			<paragrahvNr id="93fae041-1322-4745-bd58-e18ee560cbe4">11</paragrahvNr>
+			<kuvatavNr id="a722dd31-c843-4170-8780-2900a6124581"><![CDATA[§ 11. ]]></kuvatavNr>
+			<paragrahvPealkiri id="c2ca74cb-7028-4ab5-8910-be7fc21cdbab">Rakendussätted</paragrahvPealkiri>
+			<loige id="para11lg1">
+				<loigeNr id="174beb9b-e996-41ef-9b64-bc4dffb3691f">1</loigeNr>
+				<kuvatavNr id="715390a0-8677-41c7-b460-4e8bd4bb1503"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="7de7150c-eebc-4f79-8fb2-eb41b106a825">
+					<tavatekst id="ea260978-d63d-4dbc-8cb1-3caaa94315c7">Enne käesoleva määruse jõustumist sõlmitud lepingud kehtivad lepingus märgitud kuupäevani.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para11lg2">
+				<loigeNr id="997e972b-65ab-451e-8915-ddbd602cc32d">2</loigeNr>
+				<kuvatavNr id="86c07b67-68c7-4e36-8088-d3a854888cee"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="6ffbd8d0-270b-402e-88e9-84172b59f2f3">
+					<tavatekst id="ef66b839-3154-4ecc-a972-b27c1cf96400">Tunnistada kehtetuks:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para11lg2p1">
+					<alampunktNr id="54b002bb-30cc-46a0-afcd-d096ac35be53">1</alampunktNr>
+					<kuvatavNr id="6bc308e3-232c-4334-ab4f-700273b946b2"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="fd2893f5-822a-45b1-bbb8-53458b5cb8df">
+						<tavatekst id="7dccab10-7a78-4894-a779-1634a1d9c3c5">Haaslava Vallavolikogu 11.12.2014 määrus nr 22 „Sotsiaaleluruumi andmise ja kasutamise kord“;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para11lg2p2">
+					<alampunktNr id="8b8b14de-6c03-4a8e-85d4-8c3a048515ba">2</alampunktNr>
+					<kuvatavNr id="3db39e28-cf89-4d17-bf17-7dc6901f39bd"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="4ed7a01c-73db-4c08-906e-3137d904ef56">
+						<tavatekst id="84516a97-e054-4bc2-875e-b6509cc2fb8a">Mäksa Vallavolikogu 22.02.2016 määrus nr 7 „Sotsiaaleluruumide üürile andmise ja kasutamise kord“.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para11lg3">
+				<loigeNr id="2eb816e2-72fd-465f-92f0-96f2a274c043">3</loigeNr>
+				<kuvatavNr id="ceec9c47-3ee3-4442-a94a-d8292dd1bec3"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="4a47884e-a48a-4f7e-a844-ce71b903e3c2">
+					<tavatekst id="4843ebf0-a983-4d80-b442-4e0807265305">Määrus jõustub kolmandal päeval pärast avaldamist Riigi Teatajas.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+	<allkiri id="094e929d-7b69-4194-a342-678d87cb467c">
+		<allkiriKoht id="67dc9cc7-c666-4b96-9142-e59106310f02"/>
+		<allkirjastaja id="4cd52f03-4996-4cb8-9296-b1cd5778e63a">
+			<ametinimetus id="2f370391-cf88-4c99-b3c7-8eff25f11f1d">vallavolikogu esimees</ametinimetus>
+			<eesnimi id="a0aed064-6665-4566-a51e-c38605e56825">Mati</eesnimi>
+			<perekonnanimi id="bf4e6b92-a0c0-4d28-89d6-5c139d847fd8">Möller</perekonnanimi>
+		</allkirjastaja>
+	</allkiri>
+</oigusakt>

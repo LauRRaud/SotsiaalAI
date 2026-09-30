@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="093a0304-5726-42f0-88f2-661290fc52a7" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Tori Vallavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2022-02-17</aktikuupaev>
+  
+  
+  <aktiNr>8</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2022-03-05</avaldamineKuupaev><RTaasta>2022</RTaasta><RTartikkel>2</RTartikkel><aktViide>405032022002</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2022-03-08+02:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2022-03-01</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>405032022002</globaalID>
+ <metaandmedVersioon>5</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2022-03-04</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1053663</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+</metaandmed>
+ <aktinimi id="0d2324b5-4e56-488c-bcdb-5e87433317f5">
+  <nimi id="5902b91d-eb8a-4a18-99f0-65e2224ab619">
+   <pealkiri id="069e99c0-23af-41b7-b171-2b46c47d97eb">Raske ja sügava puudega lastele sotsiaalteenuste osutamiseks toetuse andmise ja maksmise kord</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="7a77c9c7-1098-48d6-ace4-6437b98e6a20"><preambul id="eace9937-2cd0-4c43-aed7-2e9a1005f01e">
+   <tavatekst id="7d8d1459-9476-4834-ab87-4807e3dea7f0">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5 ja sotsiaalhoolekandeseaduse § 14 lõike 1 § 156 lõigete 3<sup>1</sup>, 3<sup>2</sup> ja 3<sup>3</sup> alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="c46a74aa-6418-4b2e-9453-d8552ca3e951">1</paragrahvNr>
+   <kuvatavNr id="88d9ba3e-dcd1-49db-b316-49ba8f90e9bd"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="1a3e16d2-79c4-48a6-9f28-fcc565955175">Üldsätted</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="792dbab2-3c10-4b69-8ad4-7c12a84445f9">1</loigeNr>
+   <kuvatavNr id="95d7469f-0572-4c27-90af-7683f33500a4"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="0accc4b2-2a11-48cf-8b16-98a2d164a815">
+    <tavatekst id="c0e8151e-046c-4fa1-8d39-de25ab41ce52">Määrus reguleerib raske ja sügava puudega lastele sotsiaalteenuste osutamiseks toetuse andmise tingimusi ja korda Tori vallas.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg2">
+   <loigeNr id="bea05dd0-9101-40fd-a69f-77b1e69e3664">2</loigeNr>
+   <kuvatavNr id="aae77df4-13cc-4548-adde-980291cf1818"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="379f395d-d448-4188-931f-903057c26cb0">
+    <tavatekst id="ddca2563-daf9-4a6b-b28b-0c979c17ec0d">Määruse eesmärgiks on puudega lapse ja tema perekonnaliikmete toimetuleku toetamine.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg3">
+   <loigeNr id="9e21f561-9aab-467d-8b1f-b4d048cb72b7">3</loigeNr>
+   <kuvatavNr id="7ed14971-3767-47d5-840d-fad162fe9c02"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="ae61db4c-c1ed-4049-84de-a3e7db48884f">
+    <tavatekst id="7691731a-cf29-4aed-9183-61e496a2fc57">Taotluse menetlemisel kohaldatakse haldusmenetluse seadust, arvestades sotsiaalseadustiku üldosa seaduses sätestatud erisusi.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="b913dc26-8276-4776-9cdb-7e3b8ce8d531">2</paragrahvNr>
+   <kuvatavNr id="36f9f396-2b7d-4516-ab8f-3f635f9db78f"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="9fc4d875-4b2b-4d0b-82a0-21bd55b4b9b6">Sotsiaalteenuste määramise põhimõtted ja toetavad sotsiaalteenused</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="f4c4d7c1-faee-4493-8d00-af0314460c3f">1</loigeNr>
+   <kuvatavNr id="6935380b-f4c3-48b1-bb99-0831fc57b4e6"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="82523346-d5f4-44d2-9684-428e2e9fdee7">
+    <tavatekst id="21d5e070-8395-432e-9cb2-6fa144a44a63">Sotsiaalteenust on õigus saada raske või sügava puudega lapse hooldusõigust omaval isikul kuni selle kalendriaasta lõpuni, kui laps saab 18-aastaseks.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg2">
+   <loigeNr id="9ae112eb-d22f-4a5a-beb8-b6f7377d9443">2</loigeNr>
+   <kuvatavNr id="fe84cf25-c3d7-49cd-88ac-2de3edea4c5f"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="3c7be730-8dd5-4b49-8a20-570e813ed4fe">
+    <tavatekst id="c499324a-10f4-44bc-95e3-b1f6a1717198">Sotsiaalteenus määratakse raske või sügava puudega lapsele, kelle elukoha aadress koos taotlejaga on Eesti rahvastikuregistri andmetel Tori vallas.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg3">
+   <loigeNr id="e81809db-3c45-4857-8190-7af65d20a2ef">3</loigeNr>
+   <kuvatavNr id="933db09f-dab5-450c-8fae-e1e2141288b9"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="a710ad24-74ec-4c9a-98d3-663b4e29eb25">
+    <tavatekst id="abc47046-25c0-47d0-b4e4-162ba6a4bde2">Sotsiaalteenus määratakse, kui teenuse vajadus tuleneb puudega lapse rehabilitatsiooniplaanist või sotsiaalosakonna lastekaitsespetsialisti läbi viidud tegeliku abivajaduse hindamisest.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg4">
+   <loigeNr id="a031ef3e-ffd2-48bc-a427-e1684cedda6f">4</loigeNr>
+   <kuvatavNr id="1d7952da-e07e-43eb-a007-8a89b7f9e692"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="bd8b2cfb-4ea5-4379-b916-f9bfbe086a61">
+    <tavatekst id="886f22a2-a836-4f84-94ef-61b87ee969ec">Valla poolt toetatakse järgmisi sotsiaalteenuseid:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para2lg4p1">
+   <alampunktNr id="365d0434-39f6-4c9e-86dd-47f6096450a0">1</alampunktNr>
+   <kuvatavNr id="d5da0e31-8171-4536-ba55-139a5baff144"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="e3457364-d7b1-49fc-ac60-57d01f154e5c">
+    <tavatekst id="fd55dec1-ba51-4bfa-903a-46d0ebacf01f">lapsehoiuteenus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg4p2">
+   <alampunktNr id="4495e0da-bf4a-4267-aaf1-4f30977e67e7">2</alampunktNr>
+   <kuvatavNr id="bf0c5977-03b2-4746-b243-7a5cf9399fe9"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="5f7e4881-908f-4214-af15-55d656551500">
+    <tavatekst id="866fa522-bebb-495b-85d6-6b9c786447f6">tugiisikuteenus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg4p3">
+   <alampunktNr id="f11eee53-54c0-4de8-b4d1-3e0c9fb481a4">3</alampunktNr>
+   <kuvatavNr id="33671fe5-5c82-4003-b334-78e8c2a33a7a"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="cbb4e235-81a6-40d5-8da6-27ed326832e9">
+    <tavatekst id="f342fc2c-105b-40a7-a28c-2a3c858e4e55">transporditeenus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg4p4">
+   <alampunktNr id="6e0645e1-68c6-4a09-8724-baedc2e54e07">4</alampunktNr>
+   <kuvatavNr id="3782327b-3911-4d45-b028-491c5aa63479"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="83e9f0f1-1095-4034-a700-a6f3c74f313e">
+    <tavatekst id="fef94fdb-8c8e-44cb-a928-f3f27a89160d">muud teenused, mis aitavad vähendada raske või sügava puudega lapse perekonna hoolduskoormust või puudest tulenevaid lisavajadusi.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="1ff58c0a-db0a-404a-ad5d-6ed41b99ae5e">3</paragrahvNr>
+   <kuvatavNr id="a6895994-6c20-42f2-adc2-2966324d3134"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="834874cc-6ebb-406a-a1f8-a01da7460c44">Toetuse suurus </paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="42d084f5-da25-47c6-8e0a-b77d5b6a8c21">1</loigeNr>
+   <kuvatavNr id="cb1d502d-c6a9-47c8-bba9-8f78df3c0dbe"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="ff2288d8-0e23-40e5-b592-3ea1a4250120">
+    <tavatekst id="5356c0a2-58a7-4ca7-9d99-ac2ca7aa771f">Käesoleva määruse §-s 2 sätestatud sotsiaalteenuste osutamisega seotud kulud kaetakse täielikult või osaliselt valla eelarvest sotsiaaltoetusteks ja sotsiaalteenusteks ettenähtud vahenditest.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg2">
+   <loigeNr id="d5e95e33-3053-44c1-bf29-1f3bcb083c26">2</loigeNr>
+   <kuvatavNr id="8519ad70-964f-4849-920e-6efcf74c2885"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="3b15a5b6-c29e-45e8-8d41-b1727261526c">
+    <tavatekst id="a0c5f8ac-02f4-405d-9c19-0452455ad868">Toetuse määrad kehtestab Tori vallavalitsus (edaspidi vallavalitsus), arvestades, et teenuse saaja omaosalus on kuni 30% kogu teenuse maksumusest. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg3">
+   <loigeNr id="0b81f04b-2c6a-43da-8b6b-e6d7ee7c62c9">3</loigeNr>
+   <kuvatavNr id="e890f072-25bc-4964-b875-3702d72a81cd"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="af504747-eb40-4e29-8a54-bf7b84108242">
+    <tavatekst id="f136eaf4-f189-453e-86fc-00d3ea76b347">Hoolekandekomisjon võib põhjendatud juhtudel otsustada omaosaluse katmise Tori valla eelarvest osaliselt või täielikult.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para4">
+   <paragrahvNr id="937c8a45-e4a1-4a33-a8b1-254c4c996057">4</paragrahvNr>
+   <kuvatavNr id="71bb6513-aa6e-4fd7-b128-6016cc4d18be"><![CDATA[§ 4. ]]></kuvatavNr>
+   <paragrahvPealkiri id="73ba640d-47a6-48a4-9f0a-0690638d56af">Taotlemine</paragrahvPealkiri>
+  <loige id="para4lg1">
+   <loigeNr id="a6086363-48cb-45e1-a70c-9f38bcb3510e">1</loigeNr>
+   <kuvatavNr id="08016eab-f877-44b6-8405-e67deb57a96c"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="95247a88-f016-4cb0-b70c-0507e1b423b9">
+    <tavatekst id="32870a48-27ad-425b-8d05-61de1c479bfc">Sotsiaalteenuse ja selleks toetuse saamiseks esitatakse vallavalitsusele taotlus koos järgmiste dokumentidega:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para4lg1p1">
+   <alampunktNr id="1f02013c-fbdb-4501-8d1f-58ec94cc8b20">1</alampunktNr>
+   <kuvatavNr id="e23db803-b533-43cf-a4db-982b925f3c20"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="57f7d8e1-4951-46d5-bf5a-cf4a9c7cd742">
+    <tavatekst id="7bef5a46-732e-48f3-ab6f-45f9c4bd946c">teenuse esmakordsel taotlemisel vanema ja puudega lapse isikut tõendavate dokumentide koopiad;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para4lg1p2">
+   <alampunktNr id="1d1f8eb1-d266-4224-b724-e9959a59264a">2</alampunktNr>
+   <kuvatavNr id="89d5bef3-1705-4615-bcee-6ae8e3b0934e"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="098689bc-54a4-4cdb-ab4e-4128e448e522">
+    <tavatekst id="6d25fe4c-4716-435f-bf06-1d224fc0b839">puudega lapse rehabilitatsiooni plaan (selle olemasolul);</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para4lg1p3">
+   <alampunktNr id="dacf571a-ac8a-41bc-9d91-a2c817bf1092">3</alampunktNr>
+   <kuvatavNr id="464d346a-df55-4b5d-9bf7-6f7c465a869a"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="af1af55e-23d8-4923-941a-da86a5952141">
+    <tavatekst id="dd622469-0d4d-4c48-8dce-6520e7d5e60a">otsus puude raskusastme määramise kohta;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para4lg1p4">
+   <alampunktNr id="09165024-d269-45c8-95ae-21e499cb4083">4</alampunktNr>
+   <kuvatavNr id="85d81d49-4390-4c6d-a86f-463ba2bbfa54"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="084abf57-14aa-4934-a225-0700cc54fdd3">
+    <tavatekst id="d99d0ed4-8f9b-48c1-a188-ac16612a87c1">kuludokument teenuse osutamise kohta, kui teenuse eest on juba tasutud.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para4lg2">
+   <loigeNr id="3f7043aa-6d81-4e9d-bd82-66328d61e505">2</loigeNr>
+   <kuvatavNr id="44d5a904-9de2-4746-8cab-7e3e77ec9103"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="da6e86c5-f6fb-46ac-81e2-4b694eca3306">
+    <tavatekst id="63518817-fe2d-4bc1-a877-d8a7cbcf745c">Sotsiaalteenuse määramine ja toetuse andmine otsustatakse hoolekandekomisjoni otsusega 15 tööpäeva jooksul alates taotluse esitamisest vallavalitsusele.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para5">
+   <paragrahvNr id="81db3960-747f-455f-b63c-b764a757f57b">5</paragrahvNr>
+   <kuvatavNr id="58ca4758-1319-4125-8011-1809d0720abf"><![CDATA[§ 5. ]]></kuvatavNr>
+   <paragrahvPealkiri id="aaad0a94-446c-4ed1-b6de-5baadf21b501">Toetuse andmisest keeldumine</paragrahvPealkiri>
+  <loige id="para5lg1">
+   <loigeNr id="e0ef6640-53e1-4f58-8498-489693c5bb95"/>
+   <kuvatavNr id="096e61dd-856e-4ef6-bd80-42927b3aaa6a"/>
+   <sisuTekst id="6fb3e9f5-2517-4f0f-98f6-c265c2f34559">
+    <tavatekst id="fb870dbc-03c9-4a76-8fff-42fa3bb24669">Toetuse andmisest võib keelduda juhul, kui esineb vähemalt üks järgmistest asjaoludest:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para5lg1p1">
+   <alampunktNr id="0fd8a78f-3108-41ce-aaa8-a4a2bdceefa7">1</alampunktNr>
+   <kuvatavNr id="00dacabc-ed04-461b-a1d0-e28b38d846bf"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="40e88873-dd64-47ac-ac1a-1b24cb3c0c22">
+    <tavatekst id="09f458ea-9df0-4ee6-bf27-d15bd4c527a2">vallavalitsusele ei ole esitatud kõiki teadaolevaid tõeseid ja täielikke andmeid, dokumente ja muid tõendeid, mis on vajalikud toetuse andmise otsustamisel;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para5lg1p2">
+   <alampunktNr id="09e956fa-d6fd-45dc-94a8-ececbb6e05cd">2</alampunktNr>
+   <kuvatavNr id="9ed129ab-3acb-418c-89fe-be0d68c6804f"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="032f873c-2d6e-4158-8cf4-ed441e43e15e">
+    <tavatekst id="d04a74e0-53ec-4e6e-bacf-8367f0e3985c">taotleja ei võimalda toetuse saamise vajadust kontrollida;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para5lg1p3">
+   <alampunktNr id="0e95e473-45c3-40e5-a5f6-f72e34135fe2">3</alampunktNr>
+   <kuvatavNr id="7a0f6b63-a4a6-46a5-966e-27f6b71e9ed3"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="916d69b9-7db6-45d5-97a8-8078a725e4ef">
+    <tavatekst id="5678295f-8738-45fd-87f7-69f8f5abdec7">taotleja ei ole teavitanud vallavalitsust viivitamata toetuse saamise õigust ja toetuse andmist mõjutavatest asjaoludest või selliste asjaolude muutumisest;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para5lg1p4">
+   <alampunktNr id="35ff7306-5dc6-48e2-8920-6a78f01811bb">4</alampunktNr>
+   <kuvatavNr id="d873feeb-f7a8-4b10-b1b4-5bf785ae2c78"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="431c8947-5d32-413c-86bd-fe5763d3849a">
+    <tavatekst id="2be9301b-fbbc-4acf-bc1e-64ab3378cc20">teenuse vajadust on võimalik või otstarbekas rahuldada teiste teenuste või abiga;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para5lg1p5">
+   <alampunktNr id="e166b5bb-9cc9-48d3-9927-e5fc95b0ec2e">5</alampunktNr>
+   <kuvatavNr id="1a7a3296-6bf7-415a-81fb-8f115385837f"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="66b7b29f-1a31-4769-9eb7-612cfc796c1e">
+    <tavatekst id="f764daf7-91bf-4919-b824-d99d996aecca">puudega lapsele on jooksva kalendriaasta jooksul eraldatud toetust kehtestatud piirmäära ulatuses;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para5lg1p6">
+   <alampunktNr id="a51c3953-a146-47f3-a7e2-828e0f52a23b">6</alampunktNr>
+   <kuvatavNr id="4668b178-f390-4956-aee5-55d14dffaf40"><![CDATA[6) ]]></kuvatavNr>
+   <sisuTekst id="bf7e4686-c2f2-4842-bf04-c7008b195201">
+    <tavatekst id="edf96d8d-14b2-4cce-9bae-9081246b4c98">toetuse taotleja ei vasta määruse § 2 nõutele;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para5lg1p7">
+   <alampunktNr id="189017a7-bee3-42de-ad25-02b29495150a">7</alampunktNr>
+   <kuvatavNr id="b37c00cd-7cd9-4ecc-bb76-f995e5ae9a5f"><![CDATA[7) ]]></kuvatavNr>
+   <sisuTekst id="f01c13b1-0f6a-4676-bedf-601c4fbd3979">
+    <tavatekst id="d4e0a1ea-9d5e-4955-8cf7-a2458be5efa3">esineb muu objektiivne asjaolu, mis välistab toetuse andmise.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para6">
+   <paragrahvNr id="afa4a5d3-47c3-490b-a6d0-feb4c2f3609f">6</paragrahvNr>
+   <kuvatavNr id="5fee69d7-7a3b-4b77-a87b-94788050bb0c"><![CDATA[§ 6. ]]></kuvatavNr>
+   <paragrahvPealkiri id="fd468f4a-b48d-4faa-ad3e-178bb1a3b014">Alusetult saadud toetuse tagasinõudmine</paragrahvPealkiri>
+  <loige id="para6lg1">
+   <loigeNr id="5124dcad-1188-40f4-9dcc-572f21d1f143"/>
+   <kuvatavNr id="1852b2a4-302d-42d4-9acc-1c0ffd56bd84"/>
+   <sisuTekst id="7fca87e5-4477-4c1f-8418-5133ab338bd2">
+    <tavatekst id="6079740c-3221-4a18-a7e5-4909c5761a67">Alusetult saadud toetuse tagasinõudmine toimub sotsiaalseadustiku üldosa seaduse paragrahvides 31-35 sätestatud korras. </tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para7">
+   <paragrahvNr id="912efd9e-fc74-4a5e-bf0d-b6a8d4117d01">7</paragrahvNr>
+   <kuvatavNr id="977b3023-0f02-44a9-be9b-1287f0f18f1e"><![CDATA[§ 7. ]]></kuvatavNr>
+   <paragrahvPealkiri id="9711cb6b-c45f-4bd6-9595-42fa6b275560">Rakendussätted</paragrahvPealkiri>
+  <loige id="para7lg1">
+   <loigeNr id="5ec5956c-96c9-4165-9728-add785c54030">1</loigeNr>
+   <kuvatavNr id="d4e7c067-350c-4ef8-a5f8-353cf890809d"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="54a8075d-29be-46d4-b347-4efa6e108b1b">
+    <tavatekst id="dee6b2f3-97d6-4804-ae37-c9c55748e5c7">Kehtetuks tunnistatakse Tori Vallavolikogu 24.05.2018 määrus nr 27 „Raske ja sügava puudega lastele abi osutamiseks eraldatud vahendite kasutamise tingimused ja kord“.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg2">
+   <loigeNr id="cd5ee46a-f0e0-4535-9c27-447c5ae6c448">2</loigeNr>
+   <kuvatavNr id="e2d23970-64e8-4b30-aa04-c8d672ef88aa"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="a0ab7936-ba7b-4e67-b58d-602eb7616549">
+    <tavatekst id="694489d6-4d34-4548-9e4d-c88ceabd0295">Määrus jõustub kolmandal päeval pärast avaldamist Riigi Teatajas.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg3">
+   <loigeNr id="665db416-cec8-4a11-8613-58b1ef7803af">3</loigeNr>
+   <kuvatavNr id="94b4246f-9830-40a0-a6b2-26f63a3a6000"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="4075e138-8ef0-4e2c-b233-563ea0063c83">
+    <tavatekst id="93bfb6f4-8c65-48c0-a8af-6b6193a38f2d">Määrust rakendatakse tagasiulatuvalt alates 01.01.2022.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="55088e45-5269-4bd6-96da-00a2304f056e"><allkiriKoht id="70839a2d-c7b0-4ffb-9fc9-f4d62837462a"/><allkirjastaja id="4e41fb13-c570-481a-9d50-526bcc825c0f"><ametinimetus id="4a731d26-f995-484d-b5af-5dec9f2edba7">vallavolikogu esimees</ametinimetus><eesnimi id="864fac07-336e-44b2-b6aa-ace2fc4937f6">Jana</eesnimi><perekonnanimi id="c4b428bf-f7ed-4470-8b49-be0cd383ad68">Malõh</perekonnanimi></allkirjastaja></allkiri></oigusakt>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="2c052c6a-4d41-4e76-a1cf-7de07cfeaa0d" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Nõo Vallavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2026-03-03</aktikuupaev>
+  
+  
+  <aktiNr>1</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-03-07</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>9</RTartikkel><aktViide>407032026009</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2026-04-01+03:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2026-03-04</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>407032026009</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2026-03-06</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1063021</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2026-03-04</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Kristjan Kuusik</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="17971de0-57ee-4163-92ec-fd4fd1cece87">
+  <nimi id="60cfaa4c-5e70-4788-bf53-62a8248d8361">
+   <pealkiri id="e5d19254-59af-4229-ae03-e862d02fb062">Üldhooldusteenuse hoolduskulu piirmäära kehtestamine</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="828f60c3-4cac-4a33-80e1-38608e79ab1a"><preambul id="350ac9a7-527e-4164-93a4-b3a4b4f5dfbb"><tavatekst id="c019c02d-04af-4a85-8262-9d9a472ab161">Määrus kehtestatakse „Kohaliku omavalitsuse korralduse seaduse“ § 30 lõike 1 punkti 2, Nõo Vallavolikogu 19.12.2019 määruse nr 37 „Sotsiaalhoolekandelise abi andmise kord“ § 20¹ lõigete 2 ja 3 alusel.</tavatekst></preambul><paragrahv id="para1"><paragrahvNr id="f0d70891-4e5d-4f86-b553-cd2be6c6a1b1">1</paragrahvNr><kuvatavNr id="646363cc-6710-4c94-8c89-f243eaa191dd"><![CDATA[§ 1. ]]></kuvatavNr><paragrahvPealkiri id="db69ad9c-d1b5-4f49-a6c7-2026fa366d04">Piirmäära kehtestamine</paragrahvPealkiri><loige id="para1lg1"><loigeNr id="5f49c2d2-2561-4bac-b03d-75db21941d5c"/><kuvatavNr id="9bcb7294-45c8-4218-b529-2af18e306dc8"/><sisuTekst id="6c52ca1f-d9f2-4523-8b12-9b54c59b90ef"><tavatekst id="d73db3ef-4ca5-4c91-9487-e04026a744ec">Üldhooldusteenuse hoolduskulu piirmäär on 700 eurot kalendrikuus.</tavatekst></sisuTekst></loige></paragrahv><paragrahv id="para2"><paragrahvNr id="5e64b0a5-59e0-41ac-934f-1b874de6f319">2</paragrahvNr><kuvatavNr id="aeef3498-511e-4bc7-b0f8-2dc62dabd005"><![CDATA[§ 2. ]]></kuvatavNr><paragrahvPealkiri id="4e3ab7be-4c2b-45d2-8a48-7adc75f3e33b">Rakendussätted</paragrahvPealkiri><loige id="para2lg1"><loigeNr id="f9d45738-cd72-4bb3-a276-9f4483a20ad6">1</loigeNr><kuvatavNr id="07f7fe10-7c74-46fc-aaa1-9c69b71d7c9e"><![CDATA[(1)]]></kuvatavNr><sisuTekst id="e4f61820-bf31-4dc9-bccd-263df8449314"><tavatekst id="4292976e-9102-4ae8-8987-145c50cad7d7">Tunnistada kehtetuks Nõo Vallavalitsuse 11. märts 2025 määrus nr 3 „Üldhooldusteenuse hoolduskulude piirmäära kehtestamine“.</tavatekst></sisuTekst></loige><loige id="para2lg2"><loigeNr id="fd800a11-78d7-441f-bb1a-fde5f834ebbc">2</loigeNr><kuvatavNr id="0c34243c-8239-46bd-9a50-394ed7d3c9db"><![CDATA[(2)]]></kuvatavNr><sisuTekst id="9fa7670d-e7e5-430f-b1ec-2b9f07cd9a51"><tavatekst id="fe0203b1-0b27-4012-9df0-7096757b5d1a">Määrus jõustub 1. aprillil 2026.</tavatekst></sisuTekst></loige></paragrahv></sisu>
+<allkiri id="f5afc11b-67b4-46b0-9a88-d9b6e840b397"><allkiriKoht id="4e77b784-6ef1-432b-b2da-eff7d3b883da"/><allkirjastaja id="4acbeb9e-0cd9-4fc4-b5ea-753ec94d804c"><ametinimetus id="c96215d6-e50a-45a5-885b-51fe9f462e9c">vallavanem</ametinimetus><eesnimi id="16b302d7-36b6-476d-a748-e7ee71f812db">Helen</eesnimi><perekonnanimi id="f2c07887-97b3-45e6-9731-bce8b1384eb8">Elias</perekonnanimi></allkirjastaja></allkiri><allkiri id="382f0ec3-ce83-463c-bfc9-a49010ed7428"><allkiriKoht id="361d48a5-c210-4074-a13e-385ef634bf13"/><allkirjastaja id="4a0ae518-63dd-4f6a-8be6-2ce1ed4d9c9d"><ametinimetus id="6f673b07-0775-4678-97e7-3b851650e839">vallasekretär</ametinimetus><eesnimi id="8c58ea80-05cc-4cf8-b788-5ed75255e740">Aira</eesnimi><perekonnanimi id="4bb54577-76b1-4df8-a22b-135f8261d4be">Laul</perekonnanimi></allkirjastaja></allkiri></oigusakt>

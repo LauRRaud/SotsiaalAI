@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="ab77055b-794f-4550-8be9-9a7bc347ab9f" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Rapla Vallavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2023-03-30</aktikuupaev>
+			<avaldamismarge>
+				<RTosa id="7be561a2-6599-43ef-a09e-9ce6d668752e">RT IV</RTosa>
+				<avaldamineKuupaev id="39b6564c-eec0-407c-9b42-b99019eeb75a">2023-04-06</avaldamineKuupaev>
+				<RTartikkel id="be6c6bba-58cb-4cd4-8352-06a369941e0b">1</RTartikkel>
+				<aktViide id="9f42e37e-7201-4e2e-bef2-da53fa6f85b5">406042023001</aktViide>
+			</avaldamismarge>
+			<joustumine>2023-04-09</joustumine>
+			<aktiNr>8</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-09-09</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>10</RTartikkel><aktViide>409092025010</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2025-09-12</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2025-09-08</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>409092025010</globaalID>
+		<metaandmedVersioon>13</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2025-09-08</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1056453</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2023-03-17</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Irma Kirst</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="92878a84-ec03-427a-adc3-bc11014e2db2">
+		<nimi id="d3d1e3cc-aa28-4a22-bd4f-db862da73954">
+			<pealkiri id="edbccc28-7cb6-4d6f-a0db-315d46d587f1">Lapsehoiuteenuse rahastamise kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="73f7cbf9-edbd-46f1-bc0a-9ac2ead53dc0">
+		<aktikuupaev id="a17e0c88-e14f-4e57-9241-d3f6ad8e9f3f">2025-08-28</aktikuupaev>
+		<avaldamismarge id="5f31779a-d608-4b22-969f-0a36d8be618f">
+			<RTosa id="7293b6db-7756-49a4-806f-63fe730f2893">RT IV</RTosa>
+			<avaldamineKuupaev id="f6b46103-de83-4f88-877a-54c828938e39">2025-09-09</avaldamineKuupaev>
+			<RTartikkel id="21139b1d-1586-4291-be52-20c968e6d66c">3</RTartikkel>
+			<aktViide id="4d1555d3-c610-4ac2-97de-78888596efcf">409092025003</aktViide>
+		</avaldamismarge>
+		<joustumine id="a469f2d5-cd3a-4029-a4e0-21b1d3c66070">2025-09-12</joustumine>
+		<tavatekst id="534addf7-d5f4-4eb8-8291-a4f8b2a3fac0">, rakendatakse 1. septembrist 2025</tavatekst>
+	</muutmismarge>
+	<sisu id="9ec4673b-1fdd-41ef-914e-65c282fb2b5d">
+		<preambul id="138cffc1-622f-4f69-8223-db9e2f6002f2">
+			<tavatekst id="ea6e8fb7-2171-48d3-bfdd-b03dff811972">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 6 lõike 3 punkti 1, § 22 lõike 1 punkti 37 ja alusharidusseaduse § 47 lõike 3 alusel..</tavatekst>
+			<muutmismarge id="944a6268-22f9-4a20-b1c0-19af05ac3636">
+				<aktikuupaev id="fbc4aa41-d701-42b6-9983-49557b839c70">2025-08-28</aktikuupaev>
+				<avaldamismarge id="2c92dacb-f393-42b3-8f8b-4eace5db4f3f">
+					<RTosa id="a3855e6d-16b4-470d-b3df-038c3c16b819">RT IV</RTosa>
+					<avaldamineKuupaev id="b1306832-a661-43f0-b8a4-a0bb530fa441">2025-09-09</avaldamineKuupaev>
+					<RTartikkel id="0876131c-f7eb-45ff-bc40-70c0cf903a78">3</RTartikkel>
+					<aktViide id="58bd0241-adaa-493b-9f30-9800bfd9dfd3">409092025003</aktViide>
+				</avaldamismarge>
+				<joustumine id="4d21ffbb-92ef-4f76-975d-e06303dbbd1d">2025-09-12</joustumine>
+				<tavatekst id="12ccf730-a8ff-4c63-8298-979b9540024d">, rakendatakse 1. septembrist 2025</tavatekst>
+			</muutmismarge>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="a2594ead-e21e-4241-8f5c-96afce72c3ab">1</paragrahvNr>
+			<kuvatavNr id="cfd62616-f4c0-4135-aa8d-407e09938d20"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="6492d6a6-fe7d-4d1a-88cb-0323cf69a8d9">Reguleerimisala</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="765035d0-e8e0-4fad-9667-7f8053d8316e"/>
+				<kuvatavNr id="dab2f56e-371a-4fee-a03d-dcfa5a4d824b"/>
+				<sisuTekst id="3b357a63-a029-4523-b0b2-0a4071551fc3">
+					<tavatekst id="cc266699-5f74-48a5-a07a-2fb19d81483d">Määrus reguleerib Rapla valla eelarves selleks ettenähtud vahendite arvelt lastehoius või lasteaias mittekäiva 1 aasta ja 6 kuu kuni 7 aastase lapse lapsehoiuteenuse, välja arvatud Rapla Vallavolikogu 21.12.2020 määruse nr 18 „Sotsiaalhoolekandelise abi andmise kord“ 12. jao paragrahvides 40–42 kehtestatud lapsehoiuteenus suure hoolduskoormuse ja abivajadusega lapsele, toetuse (edaspidi toetus) rahastamist.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="db01fe6c-e330-44d2-a53e-9e93135f5b4e">
+					<aktikuupaev id="1e3dbfe6-7914-4635-814b-63740eded898">2025-08-28</aktikuupaev>
+					<avaldamismarge id="34f595ba-7ab1-4427-9917-f496a2421200">
+						<RTosa id="437cb0d2-7676-40fa-89b9-9edc65eb0ca6">RT IV</RTosa>
+						<avaldamineKuupaev id="c148f7ab-4615-43b9-a745-af9cdd0eb51f">2025-09-09</avaldamineKuupaev>
+						<RTartikkel id="582712b5-0571-43b2-8642-d3723d0752b3">3</RTartikkel><aktViide>409092025003</aktViide>
+					</avaldamismarge>
+					<joustumine id="0ab2fb19-28c7-47fb-9da5-bcaedc85e276">2025-09-12</joustumine>
+					<tavatekst id="33b381a3-9012-4042-895f-a3816d153931">, rakendatakse 1. septembrist  2025</tavatekst>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="7c3fdc24-7af2-4df5-941f-7f17fefdd996">2</paragrahvNr>
+			<kuvatavNr id="5df80a52-196b-4480-bbf9-4bc09b06d48b"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="e5d1f181-aa13-4da3-9983-93ca22fc547b">Üldsätted</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="81b5dd48-71bc-4a5b-816e-080f7b8e26f8">1</loigeNr>
+				<kuvatavNr id="4f3b16dc-6051-4142-b16e-d59846519531"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="3b5fde9b-a80a-4c3e-a09d-c25390b7afda">
+					<tavatekst id="03562839-f41a-4097-b1fd-d4bd54f26934">Lapsehoiuteenus (edaspidi <i>teenus</i>) on käesoleva määruse tähenduses lapse vanema, eestkostja või hooldaja (edaspidi vanem) toimetulekut või töötamist toetav teenus.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg2">
+				<loigeNr id="0ecb049d-7a50-45c5-b730-3dcc0fe62f6d">2</loigeNr>
+				<kuvatavNr id="0b235bae-92f2-481f-8f70-ca1bca26c491"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="4acb19cb-823b-4a4e-a65d-bb11729c616f">
+					<tavatekst id="5a7a8825-0d3e-49c3-b672-d185e86ae9d0">Lapsehoiuteenuse osutaja käesoleva korra mõistes on lapsehoidja kutset omav füüsilisest isikust ettevõtja või juriidiline isik, kellel on kehtiv tegevusluba lapsehoiuteenuse osutamiseks.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg3">
+				<loigeNr id="d6b4964e-1839-4199-adea-32be7e4b6625">3</loigeNr>
+				<kuvatavNr id="c5175c82-d571-4563-9dd4-ea38725abef7"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="4864932e-a95f-4a89-9bfa-c5ffe65c37d5">
+					<tavatekst id="808976bd-afed-4b11-9900-db3fcbf3f9aa">Toetus on mõeldud vanemale teenuse eest tehtud kulutuste (v.a toidukulu) osaliseks hüvitamiseks.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg4">
+				<loigeNr id="4148b3fd-cbd4-4747-bb07-3d1e13c8829a">4</loigeNr>
+				<kuvatavNr id="2b2fdb69-23db-4d7e-b2b3-cb945165037a"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="62e1ad84-125e-46e9-b8e1-59f7c38f7512">
+					<tavatekst id="2731cbb7-3753-4d12-b254-b520e63f09bf">Toetuse iga-aastase suuruse kehtestab Rapla Vallavalitsus (edaspidi <i>vallavalitsus</i>).</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg5">
+				<loigeNr id="8cd8e4b0-defb-40b9-b709-4a61c73b2a50">5</loigeNr>
+				<kuvatavNr id="71506676-7ed6-47ea-b918-d3c8622ab342"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="8295b088-a341-41b0-b674-b7558472a213">
+					<tavatekst id="f6c3f0a8-662e-45c2-bf7c-46da86898f0a">Vanema omaosalus kohatasus ühe lapse kohta kuus ei või olla suurem kui kõrgeim Rapla valla munitsipaallasteaedadele kehtestatud kohatasu.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="582a14f7-0daa-402e-83b5-6f8ade2d313d">
+					<avaldamismarge id="93f3099e-5935-4d70-b024-7e77ec7818bd">
+						<RTosa id="582016fa-58af-4229-960d-290b8e5dabaf">RT IV</RTosa>
+						<avaldamineKuupaev id="e41b0a47-20fc-491e-820d-0365facf9836">2025-09-09</avaldamineKuupaev>
+						<RTartikkel id="6465754f-7ab8-4325-aafa-5ebc6030a0d1">3</RTartikkel>
+						<aktViide id="fed2d7af-d464-43fe-b46b-d16d5d541364">409092025003</aktViide>
+					</avaldamismarge>
+					<joustumine id="edf9640c-55a2-4d33-b975-975378aaa855">2025-09-12</joustumine>
+					<tavatekst id="5725911e-0b2b-40ea-8c00-362e2875d12b">, rakendatakse 1. septembrist 2025</tavatekst>
+				</muutmismarge>
+			</loige>
+			<loige id="para2lg6">
+				<loigeNr id="3b7ff019-cbec-48fe-908f-7e1b6bbd2fd6">6</loigeNr>
+				<kuvatavNr id="7ba5442e-4bfa-4c52-a099-e3e31342f5d6"><![CDATA[(6)]]></kuvatavNr>
+				<sisuTekst id="4277278c-ea3f-422c-9066-f2d3249321ab">
+					<tavatekst id="704e2017-7070-4e35-a2bc-f20e567e7fa3">Toetuse arvestusperioodiks on kalendrikuu. Toetus on kulupõhine ja makstakse välja kulutusi tõendavate dokumentide alusel.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg7">
+				<loigeNr id="300dee96-82da-43c1-8aa0-5c29991a97a9">7</loigeNr>
+				<kuvatavNr id="e78ae229-59aa-422a-892e-da7594647f38"><![CDATA[(7)]]></kuvatavNr>
+				<sisuTekst id="57de7b2e-f9bb-4483-b693-fa4f1659ac1c">
+					<tavatekst id="11040b07-f016-4cd6-817e-cd23a5564bb6">Toetust makstakse ühe lapse kohta maksimaalselt 11 kalendrikuud aastas.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg8">
+				<loigeNr id="11fd9aa3-aecf-4968-92c1-100d12365d08">8</loigeNr>
+				<kuvatavNr id="daa70c96-9d41-4cf9-a675-31063b03497e"><![CDATA[(8)]]></kuvatavNr>
+				<sisuTekst id="c481809d-f1ac-4f2d-bc9b-7fc269618948">
+					<tavatekst id="f93093f6-2c90-43c4-bd01-6c8a31342792">Toetuse taotleja ja teenust kasutava lapse elukoht on rahvastikuregistri andmetel Rapla vald. </tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg9">
+				<loigeNr id="e49e5212-4814-4f0c-9840-bb0194ad01c1">9</loigeNr>
+				<kuvatavNr id="17d2271f-8458-4257-8d17-1ba09a07c924"><![CDATA[(9)]]></kuvatavNr>
+				<sisuTekst id="0c4ce11a-fcda-4798-bf30-285718d0e651">
+					<tavatekst id="3b741485-3bd8-4ecc-bf68-b13dab106e5c">Õigus taotleda hüvitist on vanemal, kelle laps on Rapla valla lasteaedade avalikus järjekorras ja ei saa soovitud ajaks Rapla valla munitsipaallasteaias lapsele kohta. Õigus hüvitist taotleda lõpeb lapse lastehoiu või lasteaia või kooli nimekirja kandmisel.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="b8fd1b33-067d-4ab7-89aa-684a0d5fedaa">
+					<avaldamismarge id="f1add933-f78e-4b43-ba13-74f74b090087">
+						<RTosa id="7f1b36b3-7181-43e0-bf03-b35c5f97cb95">RT IV</RTosa>
+						<avaldamineKuupaev id="526949c8-79c7-49f1-80b5-85dc75bb6cc2">2025-09-09</avaldamineKuupaev>
+						<RTartikkel id="7140f728-7e67-45ea-89d7-1e87bd71f70c">3</RTartikkel>
+						<aktViide id="76cd7c3a-4a7a-4285-b396-e9a2841e6493">409092025003</aktViide>
+					</avaldamismarge>
+					<joustumine id="65e97683-869d-4ed4-8ac5-c611d864c2a0">2025-09-12</joustumine>
+					<tavatekst id="00e8ec96-b4f6-4b8a-a2bc-e610d740670f">, rakendatakse 1. septembrist 2025</tavatekst>
+				</muutmismarge>
+			</loige>
+			<loige id="para2lg10">
+				<loigeNr id="4ff9792f-d568-494a-a3dc-b19240b305f7">10</loigeNr>
+				<kuvatavNr id="2aa8cc68-a2fe-4c22-a211-714a8f4e2265"><![CDATA[(10)]]></kuvatavNr>
+				<sisuTekst id="9d85c68f-89bb-4429-b99e-e073d7063fc5">
+					<tavatekst id="f8192e05-5d8a-4a85-a2c0-a027a37aa189">Otsuse erandina lapsehoiuteenuse kasutamise jätkamiseks teevad haridusvaldkonna ametnikud vanema põhjendatud taotluse alusel. </tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg11">
+				<loigeNr id="808043f6-83c4-4aff-b92e-15bd20a073c7">11</loigeNr>
+				<kuvatavNr id="c7bd3b1b-c568-4a52-9cfb-756f6f988f5a"><![CDATA[(11)]]></kuvatavNr>
+				<sisuTekst id="31ee04d2-9117-4bec-87ec-95dd06009cac">
+					<tavatekst id="b2c1c471-2751-434f-b12c-03aab600d8ea">Õigust toetusele ei teki lapse vanemal, kes ise osutab oma lapsele teenust või ostab teenust sama lapse teiselt vanemalt.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg12">
+				<loigeNr id="5ceaec96-f8ca-4850-8bcd-03387906eeed">12</loigeNr>
+				<kuvatavNr id="dab248a2-bed2-44de-912a-05dc54624d26"><![CDATA[(12)]]></kuvatavNr>
+				<sisuTekst id="908efb1c-f084-4aab-b6ce-6dd5979e5de9">
+					<tavatekst id="9510438d-a9af-4c1c-855e-45c905df8e88">Toetuse maksmist ja selle üle arvestuse pidamist korraldavad vallavalitsuse haridusvaldkonna ametnikud ja raamatupidamine. </tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="287138a7-3760-438b-9f2e-1d6ec872f773">3</paragrahvNr>
+			<kuvatavNr id="f8653da4-07c6-4c9b-86e8-3b5eebc44b64"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="c2a84f53-4297-4230-b60b-f17b7d375545">Toetuse taotlemine</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="6d37d183-7b21-4992-9260-c7987b883997">1</loigeNr>
+				<kuvatavNr id="503484ad-4f3d-4363-9a07-74921484628b"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="4f3e1a27-f8a2-403c-8bc2-833041ceabba">
+					<tavatekst id="ea21be66-0128-480a-b4eb-d1f45e674fa6">Toetust taotlev isik (edaspidi <i>taotleja</i>) esitab vallavalitsusele:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para3lg1p1">
+					<alampunktNr id="f78ac9d0-1f64-4a9e-ba5b-cbc1db238a08">1</alampunktNr>
+					<kuvatavNr id="84c6513b-ad40-4f1e-a222-0ac4f3c4eab8"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="40ab9c8d-351d-4650-8dc2-6d097af91468">
+						<tavatekst id="429135db-3083-4d7a-b983-8e332b8d9a48"> taotluse, mille näidisvorm on kättesaadav valla kodulehel;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg1p2">
+					<alampunktNr id="14f9defc-54d9-41cc-a738-b36eab50350a">2</alampunktNr>
+					<kuvatavNr id="09a5a28e-359b-49d2-81a0-27a16519ad18"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="cecd83cc-23cf-4007-9a21-4a2ea3d0e5ff">
+						<tavatekst id="21fd8b43-88c0-4016-bb34-b62c144ea7f7">toetuse esmakordsel taotlemisel või lepingu muutumisel esitatakse teenuse osutajaga sõlmitud teenuse kasutamise lepingu koopia;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg1p3">
+					<alampunktNr id="a107d730-b3f9-4d28-8cc7-3062be954ec1">3</alampunktNr>
+					<kuvatavNr id="ef71488a-cf7d-4006-bbd0-0117687ed474"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="324486ae-304b-462e-bce7-a1d2580bb2fa">
+						<tavatekst id="b302e461-cdc7-4668-9db2-a9ca9c9e003c">teenuse eest saadud arve koopia, millel on eraldi välja toodud kohatasu ja toidukulu;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg1p4">
+					<alampunktNr id="fb7d459f-5eb0-4148-8b2a-912a40f1174b">4</alampunktNr>
+					<kuvatavNr id="aee06f7b-3b96-4115-a067-cb0f0f53e35f"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="ea4d3f11-9c8e-421b-b7a0-1529719bc00e">
+						<tavatekst id="184215b7-a9e2-425b-841f-668230d62270">teenuse eest tasumise maksekorralduse koopia. </tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para3lg2">
+				<loigeNr id="a612b141-3952-4d16-b7aa-92f178deb335">2</loigeNr>
+				<kuvatavNr id="d13b556d-a696-4b38-b58a-5840e78043fd"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="66c6f351-b80b-42be-b6d9-a96ed1d7b14d">
+					<tavatekst id="9720ba26-bf4f-41b8-985e-6faa424ad93f"> Vallavalitsusel on vajadusel õigus nõuda taotlejalt täiendavaid asjakohased andmeid või dokumente, millest taotlejat informeeritakse taotluse vastuvõtmisel või kirjalikult 5 tööpäeva jooksul pärast taotluse laekumist.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg3">
+				<loigeNr id="d7ac99e9-ab11-4c09-ab8d-b9a000aa88a0">3</loigeNr>
+				<kuvatavNr id="51126eb9-4ae9-4df2-b5c4-84ec77bab384"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="2b8d6fd1-c069-4992-a00c-b0f6271152d0">
+					<tavatekst id="1cb46dfc-65c9-4848-953a-708657a19817">Taotlus jäetakse rahuldamata, kui 10 tööpäeva jooksul taotluse vastuvõtmisest või kirjaliku teate saatmisest ei ole esitatud täiendavalt nõutud andmeid või dokumente.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="6979e34b-5256-4c15-9270-9737cecf6326">4</paragrahvNr>
+			<kuvatavNr id="df04df83-ee36-4ed2-bbe6-531668b31cb8"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="defc9a6e-95c9-4950-a644-ab67b4175193">Toetuse määramine</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="157a4c72-8532-4757-bb08-942dddc41964">1</loigeNr>
+				<kuvatavNr id="834b82e6-03d0-4321-b756-71810b87aea8"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="46a90c4e-9502-4d8a-bb9a-1af94fd83d80">
+					<tavatekst id="97c5d55d-e890-4da6-ac64-eb8bbb3e58cc">Kalendrikuu jooksul ostetud teenuse eest toetuse saamiseks tuleb vanemal taotlus ja teised § 3 lõikes 1 nimetatud dokumendid esitada vallavalitsusele hiljemalt järgmise kalendrikuu 15. kuupäevaks. </tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg2">
+				<loigeNr id="2e22ea82-732a-40eb-89d8-5f764b9fd7b3">2</loigeNr>
+				<kuvatavNr id="47c0af62-1672-4634-8435-add1323c9813"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="4e3b7a44-fcc4-496d-8d77-836c2114c1d6">
+					<tavatekst id="c3ce0fb7-4fed-4920-9dee-bb68819b6c78">Toetus kantakse vanema pangakontole hiljemalt 10 tööpäeva jooksul arvates taotluse laekumisest või täiendavate andmete ning dokumentide esitamisest.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg3">
+				<loigeNr id="2cfbe9bb-0d19-4cfa-b25e-63f47562c741">3</loigeNr>
+				<kuvatavNr id="78f6b1e8-b6fa-42ee-b025-dbc350872427"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="eaf9ab40-e504-4627-929a-f986152a101b">
+					<tavatekst id="06f4a2ce-5f4d-487c-9ffb-78586e93d032">Põhjendatud kahtluse korral teenuse mittekasutamise kohta on vallavalitsusel õigus kuni asjaolude selgitamiseni peatada toetuse maksmine, teavitades vanemat sellest kirjalikult.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="302aea31-ee90-4a53-9ee1-cbf1841ad411">5</paragrahvNr>
+			<kuvatavNr id="0e72922c-512b-45a1-8359-19b2fbc595f0"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="da972a09-9bb1-4692-9996-9fe855e4a036">Õigusakti kehtetuks tunnistamine</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="094b2254-6840-453f-a3b8-39d0aac19d0a"/>
+				<kuvatavNr id="aca97b71-a05e-4294-885a-e38a38fab160"/>
+				<sisuTekst id="3ca6a676-15ec-4d36-8362-784d38139e6d">
+					<tavatekst id="94b63d82-9473-4059-b57f-159361bb7678">[Käesolevast tekstist välja jäetud.]</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+</oigusakt>

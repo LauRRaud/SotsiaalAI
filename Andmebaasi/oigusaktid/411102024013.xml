@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="59db54b8-49aa-4401-b5ed-426820d90f98" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+ 
+ <valjaandja>Saaremaa Vallavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2023-06-13</aktikuupaev>
+  <avaldamismarge>
+	<RTosa id="71003845-3153-4260-ac23-4780c7d06440">RT IV</RTosa>
+	<avaldamineKuupaev id="23610280-2d8e-435f-9b1e-843a13b39826">2023-06-20</avaldamineKuupaev>
+	
+	
+	<RTartikkel id="ed680b60-df39-4398-b476-7b5e62ff1525">16</RTartikkel>
+	<aktViide id="3f70ad83-42ed-469c-b1d2-e7585e11b3bf">420062023016</aktViide>
+  </avaldamismarge>
+  <joustumine>2023-07-01</joustumine>
+  <aktiNr>10</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2024-10-11</avaldamineKuupaev><RTaasta>2024</RTaasta><RTartikkel>13</RTartikkel><aktViide>411102024013</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2025-01-01</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2024-10-08</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>411102024013</globaalID>
+ <metaandmedVersioon>16</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2024-10-10</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ <terviktekstiGrupiID>1056822</terviktekstiGrupiID>
+ <eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2023-06-14</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>?Teadmata? ?Teadmata?</metaandmedVersioonPohjustaja>
+		</versiooniMuutus><versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>6</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2023-06-19</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus><versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>avaldatud</dokumentStaatus><metaandmedVersioon>11</metaandmedVersioon><metaandmedVersioonKuupaev>2024-10-08</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Marike Võime</metaandmedVersioonPohjustaja></versiooniMuutus><versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>12</metaandmedVersioon><metaandmedVersioonKuupaev>2024-10-08</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Margit Kaldre</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+	<aktinimi id="b7bb124f-408a-47a8-ac65-3a64fd98a2f7">
+		<nimi id="f36e1dfc-e498-403b-8d8a-025170087566">
+			<pealkiri id="90c8879d-eb4a-4f5c-9b1a-aecaa8d3a7af">Väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse hoolduskulude piirmäär</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="14d041f0-304e-4abd-b90d-230a7c37f925">
+		<aktikuupaev id="36c477b5-9f56-456f-8216-c842d954dd4c">2024-06-11</aktikuupaev>
+		<avaldamismarge id="2704b737-ff3b-424f-8908-47a921d2ab8e">
+			<RTosa id="f855bdaf-6f5b-4b1f-81fc-943f01a4ba1a">RT IV</RTosa>
+			<avaldamineKuupaev id="1b9a8c42-3415-4502-acef-5d2f44c07590">2024-06-14</avaldamineKuupaev>
+			<RTartikkel id="ef842fec-a8e2-4bd2-b763-8cc382ad13ae">7</RTartikkel>
+			<aktViide id="663c445a-d1f5-4290-8f64-d2503c15d382">414062024007</aktViide>
+		</avaldamismarge>
+		<joustumine id="c715178b-62be-405c-81f5-6ad0da70fca3">2024-07-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="4aeeba2c-c35f-47d6-8c9c-bf8e8d2b8450"><aktikuupaev id="69c0115c-e64c-4293-a4db-d099fd0f5f28">2024-10-01</aktikuupaev><avaldamismarge id="808bbb51-22fb-4330-b66b-bc9eba4eec43"><RTosa id="795fb627-fc1a-4418-bc24-6518c34642c1">RT IV</RTosa><avaldamineKuupaev id="d48c301c-e2b9-43b5-a61d-c0605ada41a2">2024-10-11</avaldamineKuupaev><RTartikkel id="1002d635-c060-43be-b0f4-3b1197d02dce">12</RTartikkel><aktViide id="5090c0ad-2410-4cc7-b401-867276b73756">411102024012</aktViide></avaldamismarge><joustumine id="ba3dca21-6d18-4104-a2fd-72ed4cb1c763">2025-01-01</joustumine></muutmismarge><sisu id="472d928c-c046-4093-8c49-87303d7a6877">
+		<preambul id="e32d52c3-d028-4a3a-94ec-a2fd2028669f">
+			<tavatekst id="30facea5-28e5-4860-be3a-c4fc9cae7ca0">Määrus kehtestatakse sotsiaalhoolekande seaduse § 22<sup>1</sup> lõike 3 ja Saaremaa Vallavolikogu 25. mai 2023. a määruse nr 1-2/13 „Pädevuse delegeerimine“ § 1 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="17b7d073-e225-4cce-babf-b21de8b01589">1</paragrahvNr>
+			<kuvatavNr id="3fce172c-65fe-4b92-8b02-e2687cb003fb"><![CDATA[§ 1. ]]></kuvatavNr>
+			<sisuTekst id="752aa549-5b21-4665-a748-e19d8aa39226">
+				<tavatekst id="f0c06eb1-5a84-4cfb-b730-bc8ae6ea8c7b">Sotsiaalhoolekande seaduse § 22<sup>1</sup> lõikes 2 nimetatud väljaspool kodu osutatavat ööpäevaringset üldhooldusteenust vahetult osutavate hooldustöötajate ja abihooldustöötajate kulude Saaremaa valla poolt tasumise piirmääraks kehtestatakse 560 eurot.</tavatekst>
+			</sisuTekst>
+			
+		<muutmismarge id="1bab00d3-35bf-4c24-85ae-62cd4136be0a"><avaldamismarge id="fdf53cf9-263d-4234-bddb-d36830597154"><RTosa id="e2143954-09bd-4f4c-a284-0b4505cf29d9">RT IV</RTosa><avaldamineKuupaev id="c2e33811-5196-48f2-b5f2-6283f29390b6">2024-10-11</avaldamineKuupaev><RTartikkel id="77b3206b-aaac-440f-be38-c6833cebe713">12</RTartikkel><aktViide id="83a230a6-05d1-4636-aafe-2ea917cd1279">411102024012</aktViide></avaldamismarge><joustumine id="00f41b56-81ff-4464-a695-4c4bf5baed64">2025-01-01</joustumine></muutmismarge></paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="8c05a39d-07a6-493f-90af-29bdf9061614">2</paragrahvNr>
+			<kuvatavNr id="67b2cc77-a4e0-4c9d-9dbe-4489982017cd"><![CDATA[§ 2. ]]></kuvatavNr>
+			<sisuTekst id="8af4747d-dd13-4803-896e-c32fc55475c8">
+				<tavatekst id="8f3ca4fc-e01a-4bf4-ac02-15a3a4a56a67">Määrus jõustub 1. juulil 2023. a.</tavatekst>
+			</sisuTekst>
+		</paragrahv>
+	</sisu>
+</oigusakt>

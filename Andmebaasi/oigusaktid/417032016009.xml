@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="0c7112ef-6ade-4a18-858a-ce9fdc17ea5d" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Ruhnu Vallavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2012-09-29</aktikuupaev>
+			<avaldamismarge>
+				<RTosa id="4cae6794-c95f-4c53-aa64-da4e237b5e47">RT IV</RTosa>
+				<avaldamineKuupaev id="731d440c-98a5-4cec-82b8-53a86ebe8261">2012-10-06</avaldamineKuupaev>
+				<RTartikkel id="c03c56db-cc3f-4ef1-80b8-d5fa90dc8c41">38</RTartikkel>
+				<aktViide id="0fa4f431-9c61-4b99-a809-db34aa5aae21">406102012038</aktViide>
+			</avaldamismarge>
+			<joustumine>2012-10-03</joustumine>
+			<aktiNr>6</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2016-03-17</avaldamineKuupaev><RTaasta>2016</RTaasta><RTartikkel>9</RTartikkel><aktViide>417032016009</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2016-03-20</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2016-03-14</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>417032016009</globaalID>
+		<metaandmedVersioon>11</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2016-03-16</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1005022</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2012-10-01</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Tiina Allik</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>6</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2012-10-04+03:00</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Liis Laursoo</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="7cbdedc6-f500-40c3-b1be-87f1f65565d6">
+		<nimi id="f4447ed1-48ec-470b-990e-d913f096054e">
+			<pealkiri id="ae478f70-3958-420b-a557-1a268ad6511b">Ruhnu valla täiendavate sotsiaaltoetuste maksmise kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="a66abad9-212f-4cd6-ba48-722cdbd7edbb">
+		<aktikuupaev id="f8a91924-bfb3-4422-abae-0a4f12d99956">2016-03-10</aktikuupaev>
+		<avaldamismarge id="d295cd75-f679-4f16-a04c-c9f07e75b538">
+			<RTosa id="ac721c3d-1af1-47ba-b53d-d5c9e52c0e76">RT IV</RTosa>
+			<avaldamineKuupaev id="a998ba84-7b46-48e8-bce4-ac69be21ac21">2016-03-17</avaldamineKuupaev>
+			<RTartikkel id="1548b8d9-bba0-4f3a-b0e9-66d662984703">3</RTartikkel>
+			<aktViide id="0906cd3c-7f1c-4bfd-be1d-8e9682ce682a">417032016003</aktViide>
+		</avaldamismarge>
+		<joustumine id="d20780f9-c9e0-4d15-8df1-85ac890fdcb2">2016-03-20</joustumine>
+		<aktiNr id="65bf8b10-90fd-4975-963d-c8bf256a7433">3</aktiNr>
+	</muutmismarge>
+	<sisu id="18b055e1-e9f4-4231-9404-07fffdb24f9d">
+		<preambul id="c1eeeabe-7430-4aed-b16d-5be7394bc8b7">
+			<tavatekst id="f04af272-2334-45a3-bd3f-811deb3973d4">Määrus kehtestatakse kohaliku omavalitsuse korralduse seadu § 22 lg1 p5 ja sotsiaalhoolekande seaduse § 14 lg 2 alusel.</tavatekst>
+			<muutmismarge id="b0d75ca3-0a9e-489c-b5c1-c30d819e1371">
+				<avaldamismarge id="cc5e4e8c-8b7e-4ccb-a73b-3dc5c21286a1">
+					<RTosa id="d5bb9689-3fb7-47e4-9a54-41e67ac866f5">RT IV</RTosa>
+					<avaldamineKuupaev id="589ff7db-86df-4946-9b66-e0722eed6200">2016-03-17</avaldamineKuupaev>
+					<RTartikkel id="a632c3d3-b331-46cb-81e7-7b57f1cb338c">3</RTartikkel>
+					<aktViide id="d2dc6d0b-7fa1-4d2b-b6bd-9a5102029cbe">417032016003</aktViide>
+				</avaldamismarge>
+				<joustumine id="43c9561d-2450-4503-a177-ea93455df704">2016-03-20</joustumine>
+				<aktiNr id="aafcd60c-588a-4be2-9d34-24ecf8aa91b2">3</aktiNr>
+			</muutmismarge>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="1bb705ee-052f-4dc9-a7c1-07235db27296">1</paragrahvNr>
+			<kuvatavNr id="85980808-153c-4269-8c30-b2251e787a45"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="c0115d45-75ad-4d9c-b03d-4f7a40233854">Üldsätted</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="e9887e44-1a96-4e6f-93bb-ce269965df7c">1</loigeNr>
+				<kuvatavNr id="f4df1077-260d-43c5-9a57-71a9e4eedbf9"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="27f6b227-88e7-4958-a041-aae53d34844d">
+					<tavatekst id="a862bb64-ec98-46f8-a26e-3b27b41f19dc">Täiendavate sotsiaaltoetuste maksmise kord sätestab Ruhnu valla eelarvest täiendavate sotsiaaltoetuste maksmise tingimused juhtudel, mil see pole reguleeritud Eesti Vabariigi muu õigusaktiga.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg2">
+				<loigeNr id="1f2bf3c6-9785-47ee-a91a-8624afb4d1f7">2</loigeNr>
+				<kuvatavNr id="6565af34-7862-4d79-8c9c-3157633de948"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="fbe033a6-68bd-4a98-8bbf-2d45aba27c0f">
+					<tavatekst id="f918768b-09b5-442b-ace1-b426f4d9da14">Sotsiaaltoetust võib taotleda rahvastikuregistri alusel Ruhnu valda registreeritud isik.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg3">
+				<loigeNr id="f3a9c842-a668-4b14-b1ae-ab832a9f42f3">3</loigeNr>
+				<kuvatavNr id="1e8fa80d-1090-4a32-b4c8-a92054627016"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="70df538b-91c0-4401-a392-8820a0e828f9">
+					<tavatekst id="89acca4e-3b27-46d5-a1ea-20febd92824b">Täiendava sotsiaaltoetuse all mõistetakse Ruhnu valla eelarvest makstavaid ühekordseid toetusi ettenägematult halvenenud majandusliku olukorra leevendamiseks, toetusi majanduslikult vähekindlustatud isikute ning perede toimetuleku soodustamiseks ning erivajadustega isikutele hädavajalike kulude osaliseks katmiseks, mida ei ole võimalik kompenseerida teiste riiklike või kohalike toetustega.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="72563597-8a33-4f08-b493-470958f24351">2</paragrahvNr>
+			<kuvatavNr id="9432e3fb-f265-40d3-9f3d-9e4a32371b98"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="18a031e9-bfe8-4fb7-84d7-116e93b87cd7">Sotsiaaltoetuste taotlemine ja määramine</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="0b75566e-97e6-4a11-b6de-76b9537b8457">1</loigeNr>
+				<kuvatavNr id="80539e30-5109-4a98-b0f2-85572e7a8e38"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="32b759ce-3d57-48f4-bcaf-711ac198f853">
+					<tavatekst id="eeca26af-9ffa-4e0c-a223-532359a45466">Sotsiaalabi taotleja esitab Ruhnu Vallavalitsusele avalduse, millele lisatakse võimalusel kulutusi tõendavad dokumendid.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg2">
+				<loigeNr id="8a7ae815-9d20-481e-8a3d-1a7f957f29ec">2</loigeNr>
+				<kuvatavNr id="477086ab-5c5d-4ba5-b8e4-ed1a041c7f32"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="80e32111-e384-45fe-a01d-1d4983617699">
+					<tavatekst id="76b58d7a-d1d3-4553-9f36-750eb9224c19">Taotluse toetuse saamiseks võivad esitada ka hooldajad, eestkostjad, vallavalitsuse ametnikud ja sotsiaaltöötaja, kui toetuse saaja ise mingil põhjusel ei saa või ei ole võimeline seda tegema.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg3">
+				<loigeNr id="c6dd2ab0-77f7-475c-aed3-30540b719977">3</loigeNr>
+				<kuvatavNr id="34f343dd-4f71-4822-bc4b-56f64a1db8c1"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="6770e246-b9f4-4c1c-9ff0-e6e252acad65">
+					<tavatekst id="a985c799-7113-4d16-a655-f7fe286fd3d6">Vallavalitsusel on õigus kontrollida esitatud avalduse õigsust ning nõuda vajadusel täiendavaid andmeid perekonna või muude oluliste asjaolude kohta.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg4">
+				<loigeNr id="576bbaa5-eb91-4560-ac2e-b12bfb6a21f8">4</loigeNr>
+				<kuvatavNr id="f0d78d15-02b1-4009-bc41-beae082fa6f9"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="63728994-31f9-41f2-b6c0-c80fd8f5f44a">
+					<tavatekst id="513fbf1a-c61f-43d9-8fc4-ff693cfb49e3">Toetuse taotlemise avaldused arutab läbi ja määrab toetuse või keeldub toetuse määramisest vallavalitsus oma korraldusega ühe kuu jooksul avalduse laekumisest.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg5">
+				<loigeNr id="1d81740e-cce5-4f81-9c3c-3259ca23316e">5</loigeNr>
+				<kuvatavNr id="a3020d37-d6fa-449d-86ba-c144748f8ea5"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="52c69643-92ef-4a01-ac27-b0c0f441cfa8">
+					<tavatekst id="d31ca7b0-03f9-47eb-a796-dd25dabfedba">Määratud toetus kantakse toetuse saaja arveldusarvele pangas või makstakse erandjuhul välja sularahas.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="81ab5fed-f889-42dd-ae8c-8bcd4176521e">3</paragrahvNr>
+			<kuvatavNr id="bfe60cf1-0d5e-44d6-a2eb-8d58e9d72de9"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="9f0252a7-8afd-4775-9f61-d60ab01c63a5">Toetuste liigid</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="3c031085-4d4c-4d08-8da0-7cd18003a784">1</loigeNr>
+				<kuvatavNr id="f00cb9a0-ad1e-4c56-975d-686c0579ea84"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="6028ab56-2b3e-46bc-8a7e-e096aaab5284">
+					<tavatekst id="fde4fdbe-a429-45c3-98df-f5a561c4d987">Ruhnu valla eelarvest makstavad sissetulekust mittesõltuvad täiendavad sotsiaaltoetused on:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para3lg1p1">
+					<alampunktNr id="4f204b9a-4484-4b36-8756-fbf0cc6e5182">1</alampunktNr>
+					<kuvatavNr id="baf27dfb-eb81-4645-85fd-e1dcbc144501"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="9d69b4a0-937b-4a88-92ab-ea500c0dd6a0">
+						<tavatekst id="a153718b-d192-439a-bac1-466bd3d1d421">sünnitoetus, mida makstakse lapsele, kelle mõlemad vanemad või üksikvanem on rahvastikuregistri andmetel Ruhnu valla elanikud vähemalt 1 (üks) aasta enne lapse sündi järgmiselt:<reavahetus/>Peale lapse sünni registreerimist 50% ulatuses kinnitatud määrast<reavahetus/>Lapse 1 (ühe) aastaseks saamisel ülejäänud 50 % kinnitatud määrast, kui laps on jätkuvalt Ruhnu valla elanike registris.<reavahetus/>Kui rahvastikuregistri andmetel on Ruhnu valla elanik ainult üks lapsevanematest, makstakse sünnitoetust 50 % ulatuses, samadel tingimustel.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg1p2">
+					<alampunktNr id="de87645d-c5f1-4884-b56b-fc5327732f81">2</alampunktNr>
+					<kuvatavNr id="180d7328-559e-4c28-905b-1bf6638357f9"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="eee7f95b-680f-4e30-bc0d-ef305e5e7290">
+						<tavatekst id="0974ab0e-b4c9-407d-869a-822f879891cc">matusetoetus</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg1p3">
+					<alampunktNr id="e2a2b67a-06ad-4471-b88b-a55929fe1569">3</alampunktNr>
+					<kuvatavNr id="e8c40783-bc34-415e-a1be-22ad3ef987d3"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="4396ea3c-0fa0-4b3e-a5cc-3a4095ce99cb">
+						<tavatekst id="fb0d1134-1c28-4cca-8207-679f83ccf663">kolimistoetus valla eelarvest palka saavale töötajale Ruhnu saarele tööle- ja elamaasumisel vähemalt kolmeks aastaks</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para3lg2">
+				<loigeNr id="cf96f91b-fba7-4c50-87fc-f80e999d4ccf">2</loigeNr>
+				<kuvatavNr id="591ff3e5-ea64-4d29-94a8-126004853b59"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="3dfcd931-9a4a-4023-8126-1380fd048383">
+					<tavatekst id="16d2f17f-b414-4806-b274-789d51c1d63a">Ruhnu valla eelarvest makstavad sissetulekust sõltuvaid täiendavaid sotsiaaltoetusi makstakse järgmisteks vajadusteks:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para3lg2p1">
+					<alampunktNr id="84c2fa9c-4c87-4e29-93fc-3696099d379e">1</alampunktNr>
+					<kuvatavNr id="a271fb0e-cf86-4669-a952-660c913982fc"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="b2a2f6a3-090d-411a-8ae5-6a8d4a71be03">
+						<tavatekst id="06afd433-b71c-4166-a53c-46e0782de70c">ravimite muretsemiseks väikese sissetulekuga inimesele;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg2p2">
+					<alampunktNr id="c91632d9-9c79-4dce-8715-6f54f1d9d51f">2</alampunktNr>
+					<kuvatavNr id="56995540-c5c8-460e-b1a7-80e74b4bdcaa"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="5a545568-1b03-4edd-a4bd-17e3f75ff5be">
+						<tavatekst id="d64ae7bb-2193-426e-a6ff-eb363ee50c6c">põetus- ja hooldusvahendite muretsemiseks puuetega inimestele;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg2p3">
+					<alampunktNr id="567cc5f1-de78-4917-a037-b81a6707142d">3</alampunktNr>
+					<kuvatavNr id="7bee1415-3036-48df-a9b9-8b67d8ca3fb0"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="69c68bf2-10bf-4e06-8253-be9d3ceb0e85">
+						<tavatekst id="9cbd7676-303e-4a8e-bf27-7c16561c7de5">õnnetusjuhtumiteks ootamatute hädavajalike kulutuse puhul (tulekahju, vargus jm);</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg2p4">
+					<alampunktNr id="c79f316c-ace0-44c6-a935-6f5babafed5b">4</alampunktNr>
+					<kuvatavNr id="3b4f07ca-afb9-4189-9a3a-9aa9ff3835a6"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="d746fc06-edcb-4ff0-90b0-259433f6fb80">
+						<tavatekst id="c8cb0335-137b-4b7c-b2fd-8a2d59fdc63e">lastelaagri tuusikute hinna täielikuks või osaliseks kompenseerimiseks;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg2p5">
+					<alampunktNr id="d8b23144-6352-4fba-ab97-d6335124c740">5</alampunktNr>
+					<kuvatavNr id="15950ac2-54aa-446e-ae9d-dc80bab2ca73"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="200baaee-5672-4206-a0cc-44937bc97cc3">
+						<tavatekst id="cef5cd99-f7ff-4f31-82fa-dddb350f2e06">õpitoetus lapsevanemale lapse kesk-, keskeri- ja kutsehariduse omandamise perioodil</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg2p6">
+					<alampunktNr id="15792654-3d3e-486a-90b6-1567f57707e5">6</alampunktNr>
+					<kuvatavNr id="b98b65ec-9eb9-4d62-9323-aed847b2851e"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="cb45d80e-4117-446e-856c-8a26103d5977">
+						<tavatekst id="817b244c-b204-4147-848c-ac1b46b68eef">muuks abivajaduseks.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para3lg3">
+				<loigeNr id="f570f9a0-cfc9-4122-bbea-f801acbfa150">3</loigeNr>
+				<kuvatavNr id="5837a140-3294-4e84-a446-9787bd23cae2"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="6d8adbbd-057b-4188-b350-d6f04ba1caf5">
+					<tavatekst id="7a39c9b1-8c94-445b-a0c1-42e211f5c0a4">Sünni-, matuse- ja kolimistoetuse määra kinnitab vallavolikogu.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="db3e02c7-e332-4832-8ab7-c4f8d3344196">4</paragrahvNr>
+			<kuvatavNr id="50b0bd96-7da9-41a2-9ab1-c5b957e417fa"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="7d44e328-b611-4f80-acf7-9c23849d1d1c">Toetuste väljamaksmine</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="6c85b742-e4f4-41b3-bf6c-3035aab6b375">1</loigeNr>
+				<kuvatavNr id="c1defe97-5322-4e56-acd7-53fee01b998a"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="0f29fbd3-d373-4a01-a747-4fd77b754f92">
+					<tavatekst id="4ae5a26d-312d-44c9-b725-b6c440234de9">Määratud toetus kantakse toetuse saaja pangaarvele või makstakse erandjuhul välja sularahas.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg2">
+				<loigeNr id="ee9ea193-2098-4eca-b1ed-dc5fa1b580e6">2</loigeNr>
+				<kuvatavNr id="b344df41-884b-4d62-a0a0-33504f4cb1d8"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="437d050a-e779-4643-9acd-8f24337ccc6b">
+					<tavatekst id="5ed7f73a-4955-4c9e-971a-97fa22d07844">Lapse sünnitoetuse makstakse lapse sünni puhul lapsevanema avalduse alusel lapse emale või isale. Mitmikute sünni korral makstakse sünnitoetust iga vastsündinu kohta.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg3">
+				<loigeNr id="7ca0299a-c1ab-42b4-bfe0-5863002c5570">3</loigeNr>
+				<kuvatavNr id="3bbdc299-52fe-4805-9516-90f9e5960b25"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="a6c4e708-13c1-4671-b93b-320832995048">
+					<tavatekst id="78d1a2fe-03de-4917-8fd0-f84cf796ba28">Matusetoetust makstakse rahvastikuregistri andmetel Ruhnu valla registris olnud lahkunu ühele lähedasele alates surmatunnistuse ja avalduse esitamisest ühe kuu jooksul pärast surmaakti vormistamist.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="e49bde8f-977f-427d-853a-293cca455c6a">5</paragrahvNr>
+			<kuvatavNr id="b9085b4c-c924-4c36-aaf0-6a05a40c0f10"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="3b1f4a09-bc53-4788-b6c9-bd02a88bbd04">Määruse rakendamine</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="ab2d715d-c3c9-43e0-ab3c-288b34971184">1</loigeNr>
+				<kuvatavNr id="6811155c-42cd-4d1f-bc8b-67a6181a74a6"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="eac5b0fc-8880-48b8-a643-5c2f40836ef2">
+					<tavatekst id="09e66822-d51a-4654-8d38-2870b8e60b95">[Käesolevast tekstist välja jäetud.]</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg2">
+				<loigeNr id="64e3fa9d-bc96-4073-9522-c233e9ee61de">2</loigeNr>
+				<kuvatavNr id="6fe78fa5-4ba8-499f-a0ae-abe8355e0e5d"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="28cec6be-0635-45a3-a323-28c2ec7e4ab1">
+					<tavatekst id="05a57f7f-c0ff-47bc-8166-a40f09b9b862">Määrus jõustub 03.10.2012. a.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+</oigusakt>

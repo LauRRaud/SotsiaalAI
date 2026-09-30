@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="6a65927d-f167-4bdd-9f52-18fa78eee1b9" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Väike-Maarja Vallavalitsus</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>algtekst-terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktiNr>5</aktiNr>
+			<aktikuupaev>2026-04-01</aktikuupaev>
+		</vastuvoetud>
+		<avaldamismarge>
+			<RTosa>RT IV</RTosa>
+			<avaldamineKuupaev>2026-04-10+03:00</avaldamineKuupaev>
+			<RTaasta>2026</RTaasta>
+			<RTartikkel>2</RTartikkel>
+			<aktViide>410042026002</aktViide>
+		</avaldamismarge>
+		<kehtivus>
+			<kehtivuseAlgus>2026-04-13+03:00</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2026-04-01</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>410042026002</globaalID>
+		<metaandmedVersioon>6</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2026-04-09</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1063254</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+	</metaandmed>
+	<aktinimi id="fdbc3d4b-f3d4-46fb-abed-7bb7f50e6f6c">
+		<nimi id="0fec7e3d-df41-4b4e-a630-7898f0118dc7">
+			<pealkiri id="9919de05-7a51-4127-88ce-91b022b79aa5">Sotsiaaltoetuste määrade kehtestamine</pealkiri>
+		</nimi>
+	</aktinimi>
+	<sisu id="c08732cb-a22c-4a3b-a82d-207a376b5c30">
+		<preambul id="af0bbba2-8447-400d-88c7-f6a6b2875f05">
+			<tavatekst id="6f12138a-41a4-46de-a49f-b27afcca0200">Määrus kehtestatakse Väike-Maarja Vallavolikogu 25.03.2026 määruse nr 1 „Väike-Maarja valla 2026. aasta eelarve vastuvõtmine“ ja Väike-Maarja Vallavolikogu 28.11.2024 määruse nr 44 „Sotsiaalhoolekandelise abi andmise kord” § 7 lõike 2 alusel.<reavahetus/></tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="136e519f-1b7c-4427-8fb7-b52c0ae9daa9">1</paragrahvNr>
+			<kuvatavNr id="50e1866c-d4f3-4933-8e7b-1d422610099c"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="6ff6a2ea-d55b-460d-87a7-eb57de6deaf7">Sotsiaaltoetuste määrade kehtestamine</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<sisuTekst id="b228500e-b86c-4e19-b53d-0772d3f0841f">
+					<tavatekst id="92e3bacf-a8dd-4f86-bb54-5d30fb6ca16f">Kehtestada sotsiaaltoetuste määrad:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para1lg1p1">
+					<alampunktNr>1</alampunktNr>
+					<kuvatavNr><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>esmakordselt esimesse klassi mineva lapse toetus 100 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p2">
+					<alampunktNr>2</alampunktNr>
+					<kuvatavNr><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>küttetoetus 200 eurot aastas;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p3">
+					<alampunktNr>3</alampunktNr>
+					<kuvatavNr><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>sünnitoetus 600 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p4">
+					<alampunktNr>4</alampunktNr>
+					<kuvatavNr><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>juubelitoetus 50 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p5">
+					<alampunktNr>5</alampunktNr>
+					<kuvatavNr><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>matusetoetuse 375 eurot;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p6">
+					<alampunktNr>6</alampunktNr>
+					<kuvatavNr><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>hooldajatoetus puudega lapse hooldajale 50 eurot kuus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p7">
+					<alampunktNr>7</alampunktNr>
+					<kuvatavNr><![CDATA[7) ]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>hooldajatoetus puudega täisealise isiku hooldajale 50 eurot kuus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para1lg1p8">
+					<alampunktNr>8</alampunktNr>
+					<kuvatavNr><![CDATA[8) ]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>sotsiaaltoetuse ülemmäär, mida on sotsiaalosakonna juhatajal õigus otsustada ilma toetuste määramise komisjoni ja vallavalitsust otsustusprotsessi kaasamata, 25 eurot.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="fd4c85c1-2298-44f0-84d2-9194a5e3cfe7">2</paragrahvNr>
+			<kuvatavNr id="ea503c62-2adf-4249-9f8b-55a7d8ced4c2"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="b460c34a-1417-4fbf-acbb-ba95d374ba59">Määruse kehtetuks tunnistamine</paragrahvPealkiri>
+			
+			<loige id="para2lg1">
+				<loigeNr id="9d598162-975e-4c8b-8cd6-1a172f4b8d30"/>
+				<kuvatavNr id="415c1e33-73a5-46cd-a349-c6e51e89d70a"/>
+				<sisuTekst id="aebc0846-e4ec-40c9-9c86-214f92c503ba">
+					<tavatekst id="635ecf05-9ece-4a91-a4c2-626b96a4a44b">Tunnistada kehtetuks Väike-Maarja Vallavalitsuse 23.02.2022 määrus nr 2 „Sotsiaaltoetuste määrade kehtestamine“.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="b3498ac4-de4d-4d87-87e4-ea4abc88bfdf">3</paragrahvNr>
+			<kuvatavNr id="23ad4ce9-bfcc-4186-9489-5a612fd44e8d"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="ed6c1821-d1f8-4b1e-a140-3deed05fc4d0">Määruse jõustumine</paragrahvPealkiri>
+			<loige id="para3lg1">
+			<loigeNr/>
+			<kuvatavNr/>
+			<sisuTekst id="fa8d5fbd-32e4-4f4f-9ba0-cc7529da51db">
+				<tavatekst id="b863e611-7804-496c-b4ef-dd4efcb41685">Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist.</tavatekst>
+			</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+	<allkiri id="889335db-e8f7-47a5-8240-f52eb9b323c6">
+		<allkiriKoht id="51101ce0-8cff-4852-b2e8-4ea8b1fc2b12"/>
+		<allkirjastaja id="927126bb-8f61-4c89-8725-d35457816872">
+			<ametinimetus id="36a475fa-3b98-48cf-b091-4d1c32130266">vallavanem</ametinimetus>
+			<eesnimi id="d02a9c40-98f3-42c7-b6e4-75fcb2c79dbe">Indrek</eesnimi>
+			<perekonnanimi id="6f9972c9-40ad-44dc-b136-874af991f279">Kesküla</perekonnanimi>
+		</allkirjastaja>
+	</allkiri>
+	<allkiri id="71d0dfa9-7abc-4021-ace0-09743ca129ec">
+		<allkiriKoht id="7fff9fe9-450a-40c2-907d-92a3019743d8"/>
+		<allkirjastaja id="7eebe551-2903-4fd4-a667-caa4138cc282">
+			<ametinimetus id="229645d6-e95e-446e-bd13-43504d5dd87e">vallasekretär</ametinimetus>
+			<eesnimi id="c6fce043-3d56-4d58-83f7-086078242bf4">Maris</eesnimi>
+			<perekonnanimi id="efd6db82-aa89-437b-83ba-6696c2420b18">Kõrgmäe-Kruusamägi</perekonnanimi>
+		</allkirjastaja>
+	</allkiri>
+</oigusakt>

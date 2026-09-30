@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="debbb4e1-4cae-470e-b7c4-71bda67c5255" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Rae Vallavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2023-06-13</aktikuupaev>
+  
+  
+  <aktiNr>20</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2023-06-20</avaldamineKuupaev><RTaasta>2023</RTaasta><RTartikkel>10</RTartikkel><aktViide>420062023010</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2023-07-01+03:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2023-06-13</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>420062023010</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2023-06-19</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1056814</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2023-06-13</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Silva Reinpuu</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="47d1ee9e-5ffd-4f91-a9c4-07c7ee9e789f">
+  <nimi id="df86cde8-c390-46e6-82ce-d807f68e94ce">
+   <pealkiri id="fe775aca-c9ba-485f-96fc-2ad50b61b8e9">Väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse hoolduskulude tasumise piirmäära kehtestamine</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="0ec7c818-9425-4923-a1a0-cf179673c363"><preambul id="ec0dc2f6-95ba-4ed1-b0a4-c45e169fdbd6">
+   <tavatekst id="53cd4b3b-2e67-4447-8d8a-90e98b8260fc">Määrus kehtestatakse sotsiaalhoolekande seaduse § 22¹ lg 3 (01.07.2023 redaktsioonis) alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="824bd76a-d935-4393-a562-f6d4865dee76">1</paragrahvNr>
+   <kuvatavNr id="4ac58900-148b-482d-94e4-5cd11d69eb7a"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="90f0884a-b6a6-46df-a3d0-98afe57070f0">Reguleerimisala</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="9e9d77a2-43b6-4012-9133-41518f745019"/>
+   <kuvatavNr id="6ffca764-19ad-4c76-8921-e83645e8744e"/>
+   <sisuTekst id="9d5b1d9a-3542-41a6-b6f0-6007be08ca60">
+    <tavatekst id="5291a6d0-0729-4c19-874d-141adfa0e94e">Käesolev määrus (edaspidi kord) reguleerib rahvastikuregistrisse kantud Rae valla elanikele väljaspool kodu osutatava üldhooldusteenuse (edaspidi üldhooldusteenus) raames hooldusteenust vahetult osutavate hooldustöötajate ja abihooldustöötajate kulude (edaspidi hoolduskulude)tasumise piirmäära suuruse kehtestamist.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="4f4de1f6-26cd-481a-b363-2ace88285e6d">2</paragrahvNr>
+   <kuvatavNr id="0e57fbda-7e2d-4541-96cf-74a8b4770216"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="bd6236f3-69e8-4628-9999-302311e77235">Üldsätted</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="60d713c4-4a37-46b4-a1f2-535746dfff7f">1</loigeNr>
+   <kuvatavNr id="81c67151-3d2b-4c53-ac51-609e0d59bc05"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="5b217b9a-2bdb-4b42-b83e-1b7dad5b2887">
+    <tavatekst id="32c2f874-327b-4e58-96fe-b933d30922cb">Käesolevas määruses käsitatakse üldhooldusteenuse saaja elukohana Eesti rahvastikuregistrisse kantudelukoha aadressi.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg2">
+   <loigeNr id="ae92c56e-d8f6-400f-b89f-e7da57053ddf">2</loigeNr>
+   <kuvatavNr id="10fc44d8-ca35-43bb-b8d7-0d821b5a450a"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="8239bb03-c2d2-48a1-ac43-244db4d8691e">
+    <tavatekst id="461282d1-a7ec-4e28-9dca-70858fa9c7b9">Väljaspool isiku kodu osutatav üldhooldusteenus on kohaliku omavalitsuse üksuse korraldatavsotsiaalteenus, mille eesmärk on turvalise keskkonna ja toimetuleku tagamine täisealisele isikule, kes terviseseisundist, tegevusvõimest või elukeskkonnast tulenevatel põhjustel ei suuda kodustes tingimustes ajutiselt või püsivalt iseseisvalt toime tulla.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg3">
+   <loigeNr id="ec93d919-8ed6-443e-a9e4-8359861f6bc0">3</loigeNr>
+   <kuvatavNr id="017b82b1-8039-4029-bbd2-f293875324a0"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="775121c0-ab6f-494c-8b31-a798bd5c31d1">
+    <tavatekst id="a09a4f66-1b69-4e12-b77b-9c850587d5dc">Hooldusteenust vahetult osutavate hooldustöötajate ja abihooldustöötajate kuludeks on:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para2lg3p1">
+   <alampunktNr id="8607a0aa-29e5-4587-b246-2d7cc0d49dbb">1</alampunktNr>
+   <kuvatavNr id="f7000bcb-d2c8-4475-a258-ee91b837032b"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="5a45644b-f983-4c97-9efc-a9eeffd9ff23">
+    <tavatekst id="56cc926c-6745-43ce-9cba-7e09b007be3d">tööjõukulud;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg3p2">
+   <alampunktNr id="14c6a596-4170-4f95-a0a4-b4ef5d2d0e9c">2</alampunktNr>
+   <kuvatavNr id="2f5619eb-2ec7-4cb7-8661-6c5365f9be92"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="4bfddde0-6541-43fc-bc84-5189a4fec751">
+    <tavatekst id="f971ac4d-1234-44c7-8b13-74201aae2256">tööriietuse ja isikukaitsevahendite kulud;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg3p3">
+   <alampunktNr id="1b4b6086-6375-48eb-9164-ce7218c1f6b8">3</alampunktNr>
+   <kuvatavNr id="1b685a2a-1b85-4a9b-a23e-c34514a09fdf"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="0efcc35b-5315-48f6-a263-300db21b8645">
+    <tavatekst id="d2b67615-f03f-4382-ba29-1041f9f04c8f">tervisekontrolli ja vaktsineerimise kulud; </tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg3p4">
+   <alampunktNr id="97c7e82a-4c82-4af8-97f0-3b54930833fa">4</alampunktNr>
+   <kuvatavNr id="b67eb88f-752a-4abc-b949-ed220fcadaca"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="290542d4-a988-479c-b201-440fbf5beeb1">
+    <tavatekst id="0bf7d976-b51a-4b6c-b899-f4c39925878a">koolituse ja supervisiooni kulud.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="366a6279-2b2c-4ef6-904a-71eb3fc5bfcb">3</paragrahvNr>
+   <kuvatavNr id="157f1fa5-1d49-4d2f-b40b-2481bc7f36d4"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="0af588bd-ee30-4943-a5f8-03710d70f1f2">Piirmäära suurus</paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="21cb4a44-88c7-4b0f-8578-c655ba7ee2b5"/>
+   <kuvatavNr id="351076bd-11b0-421d-b84e-79e81484d880"/>
+   <sisuTekst id="43ad0086-4e39-4d4b-b82e-df7e35a19154">
+    <tavatekst id="4ce3b96a-06b2-401f-bee5-61c6e4420bc3">Hoolduskulu tasumise piirmäär on 650 eurot ühe teenuse saaja kohta kalendrikuus.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para4">
+   <paragrahvNr id="0cf839ac-9890-4d23-af94-6430933ea66c">4</paragrahvNr>
+   <kuvatavNr id="36dbf2ea-d741-4690-b4b5-dbe7baf30e3d"><![CDATA[§ 4. ]]></kuvatavNr>
+   <paragrahvPealkiri id="43409b83-510f-4c89-93e7-3a2422b52dd2">Piirmäära muutmine</paragrahvPealkiri>
+  <loige id="para4lg1">
+   <loigeNr id="cb89fa5c-0ee3-41a2-997e-ba3c8e63ab23"/>
+   <kuvatavNr id="797e3269-530f-4b65-a14f-7f3fb696374d"/>
+   <sisuTekst id="d6ad8f44-52da-4ee1-b23a-d116e245eb80">
+    <tavatekst id="0a999d76-43b6-4e6f-b727-79dc0f9e5107">Piirmäära muudetakse vastavalt vajadusele.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para5">
+   <paragrahvNr id="d460d89f-eae9-4850-91bb-dbeaffaec162">5</paragrahvNr>
+   <kuvatavNr id="777fedd6-8d7f-46e8-a104-918c0d4ac5ed"><![CDATA[§ 5. ]]></kuvatavNr>
+   <paragrahvPealkiri id="7dbf54a6-fe34-4f68-8e04-5de5c36b2562">Määruse rakendamine</paragrahvPealkiri>
+  <loige id="para5lg1">
+   <loigeNr id="700f3df0-7f5f-456f-b122-8b6ebc521238"/>
+   <kuvatavNr id="f87202ce-d720-471b-b86c-09f4afbca640"/>
+   <sisuTekst id="9871f337-4789-4895-b848-1d8067091619">
+    <tavatekst id="0eb231d5-19ea-404e-b4a7-4ff1b0790aa4">Määrus avaldatakse Rae valla veebilehel.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para6">
+   <paragrahvNr id="69626f4f-1fb0-4f1b-9e1e-d556d1f472a9">6</paragrahvNr>
+   <kuvatavNr id="1012dd36-87e4-45f5-ad58-7fc60258ddfb"><![CDATA[§ 6. ]]></kuvatavNr>
+   <paragrahvPealkiri id="e1aca7fb-83c5-4b91-aba1-9839caf033ed">Määruse jõustumine</paragrahvPealkiri>
+  <loige id="para6lg1">
+   <loigeNr id="58e1a528-8b73-4b0f-9373-914bf6e3a1cd"/>
+   <kuvatavNr id="c314252b-cf2f-4b1a-8a01-e41c80d1c990"/>
+   <sisuTekst id="4a6a799c-a316-4c7f-8c9d-5248f06effdd">
+    <tavatekst id="d51f331f-f8a7-461c-93c2-c535d5c57a71">Määrus jõustub 01.07.2023.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="5af7ca32-160d-488a-89ac-f3cfa9a4984b"><allkiriKoht id="c68f6b07-4da3-40e7-96c7-4ba5ecd3553d"/><allkirjastaja id="d731d2c7-6476-4c47-9767-f81442343420"><ametinimetus id="fbcb2b8a-98e3-4918-a62d-1312e65bcb5d">vallavanem</ametinimetus><eesnimi id="3f36f89f-abe3-4976-ac0d-2fdcfecbc7e8">Madis</eesnimi><perekonnanimi id="2c1d6e0c-e302-4be6-996a-a66fa05b270d">Sarik</perekonnanimi></allkirjastaja></allkiri><allkiri id="53678842-f3b0-4c26-8757-aaf0ce03dc4a"><allkiriKoht id="0e64c6e3-4270-457b-83b5-70a5a91bb7aa"/><allkirjastaja id="25f5f8ce-16b5-452f-8b03-e00cac4276ac"><ametinimetus id="afc6e371-de4d-4d14-97fc-24e9a2c87f41">jurist vallasekretäri ülesannetes</ametinimetus><eesnimi id="c45d0310-8e91-415c-bc99-441d42da49b3">Helle</eesnimi><perekonnanimi id="3cac2bae-15db-40fb-82e6-22297a2aa1a8">Semmel</perekonnanimi></allkirjastaja></allkiri></oigusakt>

@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="c7698433-1fed-41a2-a8b1-ea14df4c5eab" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Rapla Vallavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2014-09-08</aktikuupaev>
+  <avaldamismarge>
+	<RTosa id="b3a2a2c0-f83d-405b-b272-ea1ea40235c1">RT IV</RTosa>
+	<avaldamineKuupaev id="353c4980-3b71-445a-b5d9-8f92890ac3a3">2014-09-16</avaldamineKuupaev>
+	
+	
+	<RTartikkel id="ffc5a08c-3794-4ca9-974e-f760c046d85b">49</RTartikkel>
+	<aktViide id="3abf4c91-09b9-4fd3-ba26-29da4d9364b3">416092014049</aktViide>
+  </avaldamismarge>
+  <joustumine>2014-09-19</joustumine>
+  <aktiNr>22</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2017-07-04</avaldamineKuupaev><RTaasta>2017</RTaasta><RTartikkel>29</RTartikkel><aktViide>404072017029</aktViide></avaldamismarge><kehtivus>
+  <kehtivuseAlgus>2017-07-07+03:00</kehtivuseAlgus>
+  
+  
+  
+ </kehtivus>
+ <versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2017-07-03</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>404072017029</globaalID>
+ <metaandmedVersioon>12</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2017-07-03</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ <terviktekstiGrupiID>1025729</terviktekstiGrupiID>
+ <eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2014-09-12</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Ants Soodla</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="0fb65fec-1e49-4041-9709-c7401c8b214c">
+  <nimi id="4a2097de-0849-407d-af0c-8ba6afaa7966">
+   <pealkiri id="468f17ee-e24e-4cbd-bbdf-77eefe33bba3">Rapla Hooldekeskusesse suunamise, vastuvõtmise, sealt lahkumise ja väljaarvamise ning teistesse hoolekandeasutustesse suunamise eeskiri</pealkiri>
+  </nimi>
+ </aktinimi>
+ <muutmismarge id="6baae316-7547-492e-b87b-81fc4418d3ea"><aktikuupaev id="4ccdf267-5685-47c1-be52-022c09cc6203">2017-06-26</aktikuupaev><avaldamismarge id="06480a82-e56f-43dc-9692-6c9ea2a1e2cd"><RTosa id="994d899c-19b9-409d-8abe-15f7fe04a00c">RT IV</RTosa><avaldamineKuupaev id="44cd2f71-09af-4e18-980d-44b01f90bc86">2017-07-04</avaldamineKuupaev><RTartikkel id="aba69616-aa40-4660-b99a-4226ef5c8bd1">9</RTartikkel><aktViide id="d357a055-60d6-4653-810b-ab67b544ea77">404072017009</aktViide></avaldamismarge><joustumine id="8b023559-b7f5-4789-839a-43ad41c48f9a">2017-07-07</joustumine><aktiNr id="928c271b-eabf-48a9-9c07-acddb1474503">10</aktiNr></muutmismarge><sisu id="616029f1-ab97-4e22-8e1c-19aa091bc5d0"><preambul id="2f6ed8ab-2798-46ca-b695-b9664fdcd283">
+   <tavatekst id="6ad8752b-abec-40c5-a028-b246b45fb812">Määrus kehtestatakse “Kohaliku omavalitsuse korralduse seaduse” paragrahvi 30 lõike 1 punkti 3 alusel.</tavatekst>
+  </preambul><peatykk id="4f19e310-c938-471a-8a07-1e271d84855e">
+   <peatykkNr id="d1708caf-3fd1-47f4-969a-0904c5d8dc89">1</peatykkNr>
+   <kuvatavNr id="1d5da063-b9ee-4c97-adf8-38d78c905980"><![CDATA[1. peatükk]]></kuvatavNr>
+   <peatykkPealkiri id="376254e4-c484-4e7a-8b2c-0f0ab5e0c8bd">RAPLA HOOLDEKESKUSSE SUUNAMISE ÜLDALUSED</peatykkPealkiri>
+  <paragrahv id="para1">
+   <paragrahvNr id="6c2d5bc9-5df4-4424-ae74-96de88c39280">1</paragrahvNr>
+   <kuvatavNr id="a4931be2-5e92-4cf1-9234-f912086702af"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="92b14660-d0f2-4809-a676-0ec99a9872d6">Määruse reguleerimisala </paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="0505c94f-a2c2-4632-beff-1d4f3f4e7440"/>
+   <kuvatavNr id="82660fac-f15f-4a5a-b6bc-465e6e38d412"/>
+   <sisuTekst id="073d3ef9-87d7-4a50-a2a1-3201c5103aed">
+    <tavatekst id="824ad51d-4f75-47c7-9731-302dcbadcdb9">Käesoleva määrus reguleerib Rapla Hooldekeskusesse (edaspidi <i>hooldekeskus</i>) suunamist, vastuvõtmist, sealt lahkumist ja väljaarvamist ning rahvastikuregistri andmetel Rapla vallas elavate omasteta isikute teistesse hoolekandeasutustesse suunamist.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="931231f7-a6ed-405a-8e5d-98bd45d6cc88">2</paragrahvNr>
+   <kuvatavNr id="4e385648-cf79-4ae9-9380-5831500e5a05"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="a5a235c0-0cfb-442b-b1f5-a0c98dc2103b">Ööpäevaringsele hooldamisele paigutatavad isikud</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="d8cb665e-3c6e-4a01-86ea-c06fd75b4f38">1</loigeNr>
+   <kuvatavNr id="303d8587-e01c-4227-982a-b8190253b5cb"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="2fef4989-6e59-466f-ae77-27cbc4d3dcd1">
+    <tavatekst id="1bdeabc1-2ae5-44c5-a7df-864ddf79fb1f">Hooldekeskusesse võib ööpäevaringsele hooldamise teenusele (edaspidi <i>teenus</i>) paigutada alljärgnevaid rahvastikuregistri andmetel Rapla vallas elavaid isikuid:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para2lg1p1">
+   <alampunktNr id="1b75d70d-f262-4213-9e0f-cf909583614e">1</alampunktNr>
+   <kuvatavNr id="52f40184-4070-43e9-9e85-f5e7c7668bf2"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="79cb095a-44d2-43e1-b066-651dc7e2abcd">
+    <tavatekst id="566b72da-d08d-4cb2-854a-26cee7cca45e">kellel puudub seadusjärgne ülalpidaja või kui viimatinimetatu ei suuda täita talle “Perekonnaseaduse” paragrahvides 16, 96, 105 ning 157 sätestatud ülalpidamiskohustust;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p2">
+   <alampunktNr id="72f42996-2976-4f9a-9edb-c58ac21b6828">2</alampunktNr>
+   <kuvatavNr id="069853ca-e528-46ca-b286-9824f058928f"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="4002e682-8649-4ffd-ab5a-872ace615c7d">
+    <tavatekst id="1a3a3959-635a-4fdb-a43d-e936a972c997">kellel on seadusjärgsed ülalpidajad ning kes tasuvad teenuse eest vastavalt lepingule.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para2lg2">
+   <loigeNr id="31d73242-733a-447d-8d1d-d096dba2a60f">2</loigeNr>
+   <kuvatavNr id="d180e213-fe03-42a7-a416-856e2ea7a243"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="ca065706-feca-4592-ad82-acc1cb73b373">
+    <tavatekst id="135f9a80-e25a-4ea8-9db7-9c0c27359690">Hooldekeskusesse võib vastu võtta vabade kohtade olemasolul isikuid, kelle rahvastikuregistrijärgne elukoht on mujal ning kes tasuvad teenuse eest vastavalt sõlmitud lepingule või maksmise garanteerib tema rahvastikuregistrijärgne kohalik omavalitsus.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="d8a7f39c-9bf0-4f67-a5d3-ad87d8954507">3</paragrahvNr>
+   <kuvatavNr id="8a64bd5a-7a56-4cb4-b54b-0b454201b7e5"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="830ca1c0-6617-481e-9729-bba08c6f1228">Ajutisele hooldamisele paigutatavad isikud</paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="2b9dbe10-0ec8-419b-a872-15a1642deb25"/>
+   <kuvatavNr id="c45592f9-c000-42ec-bb0d-e567631ca724"/>
+   <sisuTekst id="470b8b10-d90a-400e-ba84-a7cf3b5a87ce">
+    <tavatekst id="4dd8d4af-3e68-409c-ad06-fb816e8babcf">Ajutisele hooldamisele hooldekeskusesse võib võtta isikuid, kelle seadusjärgne ülalpidaja konkreetse ajavahemiku vältel (mitte kauem kui kuus kalendrikuud ühe kalendriaasta jooksul) ei ole suuteline talle “Perekonnaseaduse” paragrahvides 16, 96, 105 ning 157 sätestatud ülalpidamiskohustust täitma.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para4">
+   <paragrahvNr id="700ab346-1ce5-4965-88af-7194664fa30b">4</paragrahvNr>
+   <kuvatavNr id="d2a65d49-8105-4fe7-bc4e-67937e755cb8"><![CDATA[§ 4. ]]></kuvatavNr>
+   <paragrahvPealkiri id="1faa1f2f-9952-407e-942f-9a62b58b544e">Erandkorras hooldekeskusesse paigutatavad isikud</paragrahvPealkiri>
+  <loige id="para4lg1">
+   <loigeNr id="5b443060-6f10-4e0e-9a03-d05ea5e34a5f">1</loigeNr>
+   <kuvatavNr id="e789c0fe-d904-4251-93c5-b49cf54c2963"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="ec6a7a12-c36a-4721-987a-729c76467767">
+    <tavatekst id="f0e84bef-e352-45aa-9018-3377c05323eb">Hooldekeskusesse võib erandkorras paigutada ajutiselt (kuni kolm ööpäeva) teiste asutuste taotlusel isikuid, kelle paigutamine hooldekeskusse on hädavajalik ja möödapääsmatu muude paigutamisvõimaluste puudumise tõttu. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg2">
+   <loigeNr id="ff08661f-f3d8-476f-a954-016b08b8b91e">2</loigeNr>
+   <kuvatavNr id="7d499680-c5b7-43dd-bf88-421c9e8d3342"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="9ba8a582-349b-4661-b96a-cbd7edf17dd5">
+    <tavatekst id="112140ac-88af-4a88-b666-a925ea852668"> Isiku paigutamiseks peab vastav asutus esitama saatekirja, milles on märgitud isiku andmed ja paigutamise põhjus. Isiku paigutamiseks on nõutav haigla valvearsti õiend isiku tervisliku seisundi kohta. </tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></peatykk><peatykk id="585e82ee-d9aa-4030-aa0a-3d34de3de7c4">
+   <peatykkNr id="d8f4dbb4-6d43-4fb3-9395-99f6d5269eca">2</peatykkNr>
+   <kuvatavNr id="a8d3ced8-b4fb-4ed4-89fc-70f1c45873dc"><![CDATA[2. peatükk]]></kuvatavNr>
+   <peatykkPealkiri id="75dd5842-9fa1-4c2b-8dcf-b708f752d3b9">KOHA TAOTLEMINE JA VASTUVÕTMINE</peatykkPealkiri>
+  <paragrahv id="para5">
+   <paragrahvNr id="fdbc6888-fa27-4f48-8ab9-975d44e4e82d">5</paragrahvNr>
+   <kuvatavNr id="dc736b49-7578-4830-8adf-83705949a42b"><![CDATA[§ 5. ]]></kuvatavNr>
+   <paragrahvPealkiri id="7a495e9a-9d35-485b-97dd-d5260e5f9cfb">Koha taotlemine </paragrahvPealkiri>
+  <loige id="para5lg1">
+   <loigeNr id="57ab45fc-4c16-48fe-bc49-9fb8b5b33e5f">1</loigeNr>
+   <kuvatavNr id="647c98b2-eed7-4e64-b14e-2a4d1b1c5150"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="d904dc65-353c-4de8-b92d-bc609a344b06">
+    <tavatekst id="715a16f1-1816-44f3-a945-6d4629feaf9b">Hooldekeskuses koha taotlemise aluseks on isiku või tema eestkostja vabas vormis kirjalik avaldus, milles ta põhjendab hooldekeskusesse paigutamise vajadust ja näitab ära, kuidas toimub hooldekeskuses viibimise aja eest kulude katmine.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg2">
+   <loigeNr id="d81d690f-1fcc-43d9-a81f-62c57377cd2f">2</loigeNr>
+   <kuvatavNr id="dd347f26-91e8-4616-aaf7-305b0e970bec"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="602b3f8d-7256-422b-8244-67ab30e54919">
+    <tavatekst id="402d7a10-1b7b-49f9-ac97-e5aa8a79c52c">Avaldus koos käesoleva määruse §-s 6 nimetatud dokumentidega esitatakse hooldekeskuse juhatajale.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg3">
+   <loigeNr id="9620b0e5-b0f2-475e-9595-8216ec0fe8bf">3</loigeNr>
+   <kuvatavNr id="c8a17e43-a307-4392-b69c-52ac50b1759b"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="4bb59456-a57a-4eab-a900-e9f64b1ac747">
+    <tavatekst id="32186f08-f307-4610-8564-fa8c00460093">Kui taotleja ei ole suuteline oma tervisliku seisundi tõttu avaldust esitama, võib selle erandjuhul esitada sotsiaaltöötaja või muu isik. </tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para6">
+   <paragrahvNr id="131f42f1-69ed-4347-8f8e-446b16e9ddb4">6</paragrahvNr>
+   <kuvatavNr id="c0c2b04d-ff15-4070-bd7a-eda89f2a788a"><![CDATA[§ 6. ]]></kuvatavNr>
+   <paragrahvPealkiri id="d215d62d-b61d-44ca-8be3-e53c7e4a5ea3">Avalduse dokumendid</paragrahvPealkiri>
+  <loige id="para6lg1">
+   <loigeNr id="23594585-98b2-4b3c-95d1-cfdefebcded1">1</loigeNr>
+   <kuvatavNr id="82daeef5-01db-4a84-9dd4-2a36d1ac24c9"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="34bcc3b2-f7a2-4998-a281-36c34ad89bc7">
+    <tavatekst id="76f43ca0-4608-45b3-b1a1-091cb5793b2c"> Avaldusele lisatakse järgmised dokumendid:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para6lg1p1">
+   <alampunktNr id="24bb640b-9aa6-48b5-b088-076c0345052a">1</alampunktNr>
+   <kuvatavNr id="78263ad7-1bd0-4e34-9981-8cefddd57b47"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="0638e364-e0b9-475d-8192-c8041f4d22e3">
+    <tavatekst id="756d5560-9c22-4665-92c8-5126df905979">isikut tõendava dokumendi koopia (välismaalasel koos elamisloa koopiaga);</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para6lg1p2">
+   <alampunktNr id="4e2c32cb-4740-4b46-8e88-3e8971439f2c">2</alampunktNr>
+   <kuvatavNr id="be5eab40-a997-4330-babc-b411c0f9b67e"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="5b5f121f-44e9-40e7-b767-57868cb3d86a">
+    <tavatekst id="532487c5-bea5-495a-8c5a-92e60e78c2bd">isiku (v.a. juhul, kui isik on teovõimeline ainutaotleja), seadusliku esindaja või eestkosteasutuse kirjalik nõusolek hooldekeskusse teenusele minekuks;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para6lg1p3">
+   <alampunktNr id="0220afc8-4231-45cc-8fc4-645726bde26d">3</alampunktNr>
+   <kuvatavNr id="2138fdc5-d617-4848-bb92-5e2468234493"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="cda1dbe9-c2ee-44a0-8bf1-110f8ffdd426">
+    <tavatekst id="d79afee7-b51d-4da3-9f50-e08d0b780a00">perearsti tõend kinnitamaks, et hooldekeskuse teenust taotlev isik ei põe nakkushaigusi ega ole enesele ja teistele ohtlik oma psüühika- ja käitumishäire tõttu;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para6lg1p4">
+   <alampunktNr id="ad8ca59a-0c5c-497f-a41f-34a50123fb30">4</alampunktNr>
+   <kuvatavNr id="fe450793-91bf-4801-a504-ad836ab64de4"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="19f03e28-5423-422e-b569-23aff3c37162">
+    <tavatekst id="99cb90d1-6885-4b36-b9ae-72ecd9ab8fb9">sotsiaalkindlustusameti ekspertiisikomisjoni otsus (olemasolul); </tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para6lg1p5">
+   <alampunktNr id="5f8c8899-64ef-4230-8892-8de527f27123">5</alampunktNr>
+   <kuvatavNr id="c740d33a-942a-44e5-b6aa-8e6fa7f1f9d6"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="75a362b9-44e0-4596-a73b-6db38460191c">
+    <tavatekst id="b6275d5e-9ee6-42cc-862d-1a52f6e6eae9">geriaatrilise seisundi hindamise kokkuvõte või rehabilitatsiooniplaan (olemasolul);</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para6lg1p6">
+   <alampunktNr id="5f25291e-0540-4cae-918e-ce6a19c6df81">6</alampunktNr>
+   <kuvatavNr id="92f9cc15-bffd-403f-a673-88369f377b33"><![CDATA[6) ]]></kuvatavNr>
+   <sisuTekst id="2e0346b9-2839-41f4-bb57-c145b2a04237">
+    <tavatekst id="b2a520ab-3f5e-4a5b-8927-9075e59b514b">isiku või tema esindaja kinnitus kinkelepingus fikseeritud ülalpidamiskohustuse, seadusjärgsete ülalpidajate olemasolu või puudumise kohta; </tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para6lg1p7">
+   <alampunktNr id="013c01b5-6e7c-427b-bf10-92a3f872ef1e">7</alampunktNr>
+   <kuvatavNr id="a1988647-9ec5-4c60-bb23-695c247133d3"><![CDATA[7) ]]></kuvatavNr>
+   <sisuTekst id="e325aac6-8779-4d16-aa9e-12026c41880b">
+    <tavatekst id="f6c8c9f0-c586-4179-9189-ba9cc4582676">taotleja või tema seadusjärgsete ülalpidajate kirjalikud kinnitused hoolduskulude osalise või täieliku tasumise kohta.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para6lg2">
+   <loigeNr id="2f2d7c64-ecd5-4ff7-81a9-4fcdf5668aea">2</loigeNr>
+   <kuvatavNr id="2d0c8b74-50d9-4487-a35c-00e85a14d18c"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="1133e898-6a0c-46d3-a273-a0f31a6c9ccd">
+    <tavatekst id="e8c503bb-4763-468a-a7b7-055a385e9df9">Kui isik või tema esindaja taotleb kohamaksu osalist tasumist Rapla valla poolt, tuleb lisaks eelpoolloetletud dokumentidele esitada dokumendid taotlejale kuuluva kinnisvara ja registritesse kantud vallasvara kohta</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg3">
+   <loigeNr id="3a876eed-7cdc-4aa3-8262-e1b7554240ec">3</loigeNr>
+   <kuvatavNr id="70672272-e51b-4db4-bd43-5ea0a09ec69c"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="2f5d72b4-1356-4434-bf7d-b38989a8b782">
+    <tavatekst id="7e0fd66e-776f-4627-b5e3-c0c66fa3000c">Isiku hooldekeskusesse vastuvõtmisel vormistab juhataja käskkirja, milles näidatakse: </tavatekst>
+   </sisuTekst>
+  <alampunkt id="para6lg3p1">
+   <alampunktNr id="d6e7c6cf-0365-4e67-a7e2-0e85ed9354a0">1</alampunktNr>
+   <kuvatavNr id="8228e8b1-f66a-4780-91e9-4ba3a225f173"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="89a2c0f8-7e9a-4371-8e11-0327a453aa87">
+    <tavatekst id="1b670b8e-890e-4830-b665-628e6b15431f">hoolealuse nimi;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para6lg3p2">
+   <alampunktNr id="863c0842-78c3-4555-9db8-87c9574d5a35">2</alampunktNr>
+   <kuvatavNr id="4bb96c84-2a22-4050-95f2-22dfb717bda1"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="1f9a76fa-cf45-4658-a188-376c0f822010">
+    <tavatekst id="47d840ed-4821-46c7-aaed-57c9ae0986c8">isikukood;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para6lg3p3">
+   <alampunktNr id="5793b14a-8598-49bb-b74c-a671d0f58cfe">3</alampunktNr>
+   <kuvatavNr id="da4a58f0-609d-4ad1-b27d-5cf2dc135db4"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="b1006d38-9aef-4a43-a73c-7d90fb1c16f5">
+    <tavatekst id="cb882db2-81c7-4745-8083-7d14a5ab989d">hooldamise periood;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para6lg3p4">
+   <alampunktNr id="e02eb7e6-842c-4198-8918-9b08e95acf74">4</alampunktNr>
+   <kuvatavNr id="464ee29d-b23f-4dcd-bfad-ec802390b6ef"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="2af46a03-18e3-4fb8-aa63-49d24f7c368d">
+    <tavatekst id="6cd671fd-f8e7-46b5-aa4b-bd9e38b845be">hooldamise eest tasuja (isik või kohalik omavalitsus).</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para7">
+   <paragrahvNr id="a0f4084c-5b25-4df4-9979-b7e68be6651c">7</paragrahvNr>
+   <kuvatavNr id="c338003a-6f68-4ffd-9f08-b099239d9f4b"><![CDATA[§ 7. ]]></kuvatavNr>
+   <paragrahvPealkiri id="044a54b5-c683-4ba8-ac92-e340a60315c0">Lepingu sõlmimine</paragrahvPealkiri>
+  <loige id="para7lg1">
+   <loigeNr id="e020740e-1923-418c-aa2f-e92c7c0980c8">1</loigeNr>
+   <kuvatavNr id="b61ab71e-019b-46b9-bac2-404e47e5c5cc"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="74705cf9-d10b-41ba-8e95-54f7157fe79d">
+    <tavatekst id="03f2596f-091f-47e7-868a-9131d8003ff9">Hooldekeskusesse vastuvõetav isik või tema seaduslik esindaja on kohustatud sõlmima peale käesoleva määruse § 6 lõikes 3 märgitud käskkirja vormistamist kirjaliku hoolduslepingu (edaspidi <i>leping</i>), milles määratletakse poolte õigused ja kohustused, lähtudes eelkõige “Sotsiaalhoolekande seaduse” § 16 ning teenuse eest tasumisest.</tavatekst>
+   </sisuTekst>
+  <muutmismarge id="b09f2c58-93d0-4eac-82c3-566cde23ff8d"><aktikuupaev id="57327696-2765-4fe7-87ba-a3a48ee2e39c">2017-06-26</aktikuupaev><avaldamismarge id="c6edf57d-f78c-49c9-861e-c44ffdb42b2a"><RTosa id="b0ac83cd-4721-42d5-a5d7-f5b41042b671">RT IV</RTosa><avaldamineKuupaev id="6d2c03da-758c-449f-851e-32be72565d36">2017-07-04</avaldamineKuupaev><RTartikkel id="14901172-703a-4d7a-828f-65886f78c7c5">9</RTartikkel><aktViide id="69239169-bbd0-4ba5-b6ce-926e08c722c2">404072017009</aktViide></avaldamismarge><joustumine id="aaa596ce-7d78-4f51-ab9a-83a886bf9930">2017-07-07</joustumine></muutmismarge></loige><loige id="para7lg2">
+   <loigeNr id="d2153147-b75d-43f9-b4b4-7da8a033a04b">2</loigeNr>
+   <kuvatavNr id="62ce54cf-8c45-435a-aeaa-4e518d5998dc"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="67b07c73-c7a8-47bf-873d-6c8eda35bc0e">
+    <tavatekst id="ac6b8837-11a7-45c6-9ffd-e4f7c855b222">Hooldekeskusesse elama asumisel tutvuvad hooldust vajav isik ja tema seaduslik esindaja hooldekeskuse kodukorraga, mis on lepingu lisa. </tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></peatykk><peatykk id="47b7de3e-eabf-4c77-8f6f-66830c5e0132">
+   <peatykkNr id="e9aeb978-6361-4f12-96d9-231317a839ca">3</peatykkNr>
+   <kuvatavNr id="81fbffc9-afc2-4e77-adef-3dbba1fe4c08"><![CDATA[3. peatükk]]></kuvatavNr>
+   <peatykkPealkiri id="dc4cc99f-ee21-47f0-90c5-9cceb09fa02d">HOOLDATAVA ÕIGUSED JA KOHUSTUSED, HOOLDUSLEPINGU TÄITMINE</peatykkPealkiri>
+  <paragrahv id="para8">
+   <paragrahvNr id="a182c430-3839-4d12-92f2-7357782520f7">8</paragrahvNr>
+   <kuvatavNr id="ee1e116b-eb3e-4c0b-8030-cd245a9bdfdf"><![CDATA[§ 8. ]]></kuvatavNr>
+   <paragrahvPealkiri id="99da839b-ac3b-450e-8883-12656c9741c9">Kulude tasumine</paragrahvPealkiri>
+  <loige id="para8lg1">
+   <loigeNr id="0a811632-99ae-4c9d-a652-a070beae2211">1</loigeNr>
+   <kuvatavNr id="9ae79192-78cd-4007-b969-5db4e5dbb283"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="03325fcd-eb00-4c50-b1a4-0f25c1d6529f">
+    <tavatekst id="0c8047a5-f346-4d4b-a033-012ccbb335c3">Hooldekeskusesse vastuvõtmisel võtab isik või tema esindaja kohustuse tasuda ööpäevaringse teenuse eest vastavalt sõlmitud lepingule.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para8lg2">
+   <loigeNr id="bc2ccd79-14d4-4dd7-9de2-f9e318ac1d49">2</loigeNr>
+   <kuvatavNr id="87e9c1c7-845c-40aa-a644-3c941bbc596a"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="752665a8-9a80-4136-8527-bc5702c7d84d">
+    <tavatekst id="cf13c01b-b48b-453b-aa03-79f246a0157f">Osalisel teenuse eest tasumisel kannab teenuse saaja hooldekeskusele vähemalt 95% hooldatavale määratud igakuisest pensionist. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para8lg3">
+   <loigeNr id="f8654695-c070-4342-9672-a43c5a723deb">3</loigeNr>
+   <kuvatavNr id="51084ac1-0b85-4778-835e-f01d55c79394"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="35107b54-2f5b-4e76-94c9-82cb2594f9fd">
+    <tavatekst id="6fbfea25-d6ae-44fc-b34b-695e97b0531f">Pidevat kõrvalabi ja põetust vajavad isikud maksavad hooldekeskuse teenusele lisaks 100% temale riigi poolt määratud puudega isiku toetusest. Nimetatud kohustuse täitmiseks sõlmib hooldekeskus lepingu lisa. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para8lg4">
+   <loigeNr id="a5df11b9-4d2b-4aff-b7a0-cc55bd3c696f">4</loigeNr>
+   <kuvatavNr id="20931a0a-5b57-4d30-9269-5380f971863f"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="4d9793e2-28f5-4dfd-b0f8-5fddf4fa24ac">
+    <tavatekst id="a988a423-3044-45eb-b01c-554b22355cbb">Kui isik või tema seadusjärgsed ülalpidajad tasuvad teenuse eest täies ulatuses, ei nõua hooldekeskus pidevat kõrvalabi ja põetust vajavatelt isikutelt puudega isiku toetuse täiendavat tasumist.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para8lg5">
+   <loigeNr id="01bdc881-dde8-4a5a-87a6-8af96354b14a">5</loigeNr>
+   <kuvatavNr id="2d5df9c2-6d4d-4c80-a503-690c1665b3fc"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="7b65220e-4f7b-4a3c-80a3-27c18ca0a5b3">
+    <tavatekst id="d268c2d4-a790-4133-aad5-936a45d6a37d">Teenuse hinna muutmisest tuleb isikule kirjalikult teatada vähemalt kolm kuud enne muudatuse kehtima hakkamist. Isiku nõustumine eeltoodud kohatasu muudatusega fikseeritakse sõlmitud lepingu lisana.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para8lg6">
+   <loigeNr id="42e0a1ce-0ea8-48b4-a954-b95f227edd3f">6</loigeNr>
+   <kuvatavNr id="ec7c57f0-f308-4de6-80cd-b462d280f6e8"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="ec7a62a1-7745-4574-baa3-1361dc9fefb5">
+    <tavatekst id="ea5bc217-f2d8-4e0e-974a-fa407c5a192f">Kui isikul ei ole võimalik tasuda teenuse eest ning kohalik omavalitsus või seadusjärgsed ülalpidajad ei ole nõus täiendavalt maksma, on pooltel õigus leping lõpetada ühekuulise etteteatamistähtajaga kui lepingus ei ole teisiti sätestatud.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para8lg7">
+   <loigeNr id="fddf889d-875a-4b4a-9208-72d76527f7f9">7</loigeNr>
+   <kuvatavNr id="3abd0d80-797a-452d-adf4-ddb64cf4a3a5"><![CDATA[(7)]]></kuvatavNr>
+   <sisuTekst id="5d97a934-5cd1-4f42-a80c-2047a3caa840">
+    <tavatekst id="31002437-9eb9-45aa-9e07-89d17bee903b">Teenuse eest tasutava puudujääva osa katmiseks võib isik või tema esindaja taotleda vahe tasumist vallaeelarvest. Selleks tuleb esitada taotlus vallavalitsusele. Otsuse rahastamise kohta langetab vallavalitsuse sotsiaalkomisjon.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para9">
+   <paragrahvNr id="065f3d5b-f7f4-4263-a16b-deb3ec0b5f61">9</paragrahvNr>
+   <kuvatavNr id="7e075688-4303-46dd-b599-5a8dfd7c0c03"><![CDATA[§ 9. ]]></kuvatavNr>
+   <paragrahvPealkiri id="21ba49a9-5f87-46bf-b679-b1917b4425d1">Lepingu muutmine ja lõpetamine</paragrahvPealkiri>
+  <loige id="para9lg1">
+   <loigeNr id="21e80847-6fa7-43e3-982d-a2c5a51819ac"/>
+   <kuvatavNr id="043eda58-0597-48d4-acbf-c88b5ac74aed"/>
+   <sisuTekst id="5b388245-fe0d-416b-b726-4c3ee38d5949">
+    <tavatekst id="34337b01-bf2d-449c-9c0e-03b84b4552bc">Lepingut on õigus muuta või lõpetada ainult poolte kirjalikul kokkuleppel. Erandina käsitletakse olukorda kui võlgnevus ületab kolme kuu kohatasu, sellisel juhul võib hooldekeskus lõpetada lepingu ühepoolselt.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para10">
+   <paragrahvNr id="68cde732-db9e-4791-ae41-f0e23b7daf0a">10</paragrahvNr>
+   <kuvatavNr id="e5b95c3d-89f1-4f94-8e8b-b2819f71a486"><![CDATA[§ 10. ]]></kuvatavNr>
+   <paragrahvPealkiri id="23c418d1-f089-49e1-a8eb-4fbd1468748e">Lepingu täitmine</paragrahvPealkiri>
+  <loige id="para10lg1">
+   <loigeNr id="baef4987-405c-4bf0-add9-c03767009687">1</loigeNr>
+   <kuvatavNr id="ca265c27-c819-4371-be08-225febebfce3"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="ba768930-6848-4fa4-bcb7-69a558ed4342">
+    <tavatekst id="a01049c8-e9c6-45b0-805d-4f6ae24cfd35">Isik, kes on ajutiselt lahkunud hooldekeskusest kuni üheks kuuks, on kohustatud tasuma 50% ulatuses kohatasu (v.a. toidukulu) tema koha säilitamiskulude katteks. Pikema perioodi puhul kuulub kohatasu (v.a. toidukulu) tasumisele täies mahus.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para10lg2">
+   <loigeNr id="a24bf0af-ea62-443f-a5b8-2beb22ed89fd">2</loigeNr>
+   <kuvatavNr id="8e1471f6-d5a9-4539-bcd2-0a10f51be505"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="7635c66e-5abb-4034-ba8e-cc5758fd7498">
+    <tavatekst id="efdddba6-aee4-4d44-82c5-2cb1169f2371">Isiku lepingujärgsed võlgnevused võidakse sisse nõuda kohtu kaudu, kaasates kaaskostjatena hooldatava esindajaid ja/või käendajaid.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para11">
+   <paragrahvNr id="f8e0f0a5-8ef5-4cb2-8ccb-d0fbc5488e64">11</paragrahvNr>
+   <kuvatavNr id="4e614e28-65ab-448d-be0a-0e861bcc4573"><![CDATA[§ 11. ]]></kuvatavNr>
+   <paragrahvPealkiri id="ae489ccf-507b-41ba-8390-76853b42b92a">Ööpäevaringne hooldusteenus </paragrahvPealkiri>
+  <loige id="para11lg1">
+   <loigeNr id="6e1247a7-ba18-4451-a38f-191b6629494f">1</loigeNr>
+   <kuvatavNr id="6dbddf2c-8056-40b1-9ed6-be77fce0eb2c"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="3110f561-b1a5-4cc3-9d4c-5838f2868603">
+    <tavatekst id="f5864155-5337-4091-8329-1cfde6c9184a">Teenuse sisu:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para11lg1p1">
+   <alampunktNr id="42944c29-3904-4b1c-a1e9-166152949757">1</alampunktNr>
+   <kuvatavNr id="52157594-4a9c-4a0f-95c0-9f9aa5d80f1b"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="39370ef3-171c-4304-90c3-0bb1b6338862">
+    <tavatekst id="4d786967-5de5-4bf7-9a38-80995a4a4ba8">hooldus 24h vältel;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para11lg1p2">
+   <alampunktNr id="4a20a9ca-3858-4936-8660-933f4c3c94aa">2</alampunktNr>
+   <kuvatavNr id="4832e1eb-9f3d-4bb6-bfc3-d1fff2706004"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="8769f19e-c8f0-41ce-9d7a-0fad18a6d4b8">
+    <tavatekst id="00c0d3bb-6c09-4cbe-91ce-023cc5b91b2e">hooldusõe teenus tööpäevadel;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para11lg1p3">
+   <alampunktNr id="27467212-b0fe-4d7d-8e27-7843348f88d5">3</alampunktNr>
+   <kuvatavNr id="6df07e9d-aa78-44b2-852e-c5a1b5825941"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="477263f7-f8d1-4e66-9595-efb4816d0109">
+    <tavatekst id="8d1319c8-a25a-48bb-a899-58fc22f6176c">majutus kahekohalises toas;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para11lg1p4">
+   <alampunktNr id="3ed4a2b8-9618-4ada-ba8c-c719b7959845">4</alampunktNr>
+   <kuvatavNr id="5932b218-5bb3-427b-b3a3-5612461c23f3"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="6168eb61-1db1-4234-bf3e-1128fa7ff8e6">
+    <tavatekst id="105628d9-e18e-4f98-9a96-43ffb4eb2203">toitlustamine kolm korda päevas (raviarsti poolt määratult eridieedi korral enam kordi);</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para11lg1p5">
+   <alampunktNr id="a310f4d9-3107-46a5-9f4b-dbb6b8e4ddda">5</alampunktNr>
+   <kuvatavNr id="68b6c4c0-1f18-41d3-bfc9-b9bcbbd41646"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="18145210-902c-4be9-92a2-596d76b27a5c">
+    <tavatekst id="38e77e8b-6835-47b5-b826-26220681ac4c">eluruumide koristamine;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para11lg1p6">
+   <alampunktNr id="02f852ee-ffdb-4e07-a891-2eb41e2969d0">6</alampunktNr>
+   <kuvatavNr id="449e0aa0-860e-441e-b3db-5d979d14fb3d"><![CDATA[6) ]]></kuvatavNr>
+   <sisuTekst id="7f08b561-9adf-47e6-9446-4449a1de7d2e">
+    <tavatekst id="dd555fcc-4d65-4f9b-bc3b-3429a33bd04c">kliendi pesu pesemine;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para11lg1p7">
+   <alampunktNr id="8e53d00e-dcf3-4126-8bcf-635333df4258">7</alampunktNr>
+   <kuvatavNr id="080fbb49-2e3c-46ea-bad5-f31600ae5f2f"><![CDATA[7) ]]></kuvatavNr>
+   <sisuTekst id="ac0751e7-ac9d-4a25-af6a-020d2bf30a2b">
+    <tavatekst id="e44a66eb-5074-43ac-a426-4b568f74dbf3">arsti poolt määratud ravimite võtmise järelevalve;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para11lg1p8">
+   <alampunktNr id="f999a25f-3d6b-4190-a18a-36a3f58390eb">8</alampunktNr>
+   <kuvatavNr id="2ccaa87e-1a38-4285-a492-154fa442afb4"><![CDATA[8) ]]></kuvatavNr>
+   <sisuTekst id="81aba869-5288-4492-9fa8-4dfc67005600">
+    <tavatekst id="e421a7d3-c1a1-4d58-94d9-7738777212a7">retseptiravimite hankimine;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para11lg1p9">
+   <alampunktNr id="b3ae8033-f638-44ad-a786-e5bb17d1ca50">9</alampunktNr>
+   <kuvatavNr id="5bce565a-c2e2-4a51-9151-1e63542c0843"><![CDATA[9) ]]></kuvatavNr>
+   <sisuTekst id="14a3e715-da76-474a-beb2-25e35ef74ac1">
+    <tavatekst id="fb4cbeb5-0c1e-4908-b34d-e87c1674db36">isiklike dokumentide hoiustamine;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para11lg1p10">
+   <alampunktNr id="86e5092a-342d-44dc-8a93-e9178147f1e9">10</alampunktNr>
+   <kuvatavNr id="9bc19e67-1da6-4f44-ba69-d937452e5997"><![CDATA[10) ]]></kuvatavNr>
+   <sisuTekst id="a148864a-53c3-4912-870b-a3f6bf2884dd">
+    <tavatekst id="bd7d5272-4645-4177-8434-5f14f52149ee">liikumisabi majas ja õues, liikumisabivahenditega kindlustamine;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para11lg1p11">
+   <alampunktNr id="426382fe-a7cf-4398-b992-913747d331c6">11</alampunktNr>
+   <kuvatavNr id="d18d5666-51d8-4507-a49f-e9503c62b314"><![CDATA[11) ]]></kuvatavNr>
+   <sisuTekst id="bdf13c36-9441-4ed9-85f4-1fff259db7e8">
+    <tavatekst id="685aa4aa-d76a-44da-a0f6-b167c2125ffa">sauna, dušši või vanni kasutamise võimalus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para11lg1p12">
+   <alampunktNr id="1745f5d7-0a6f-4762-ad7f-26242e96dcf2">12</alampunktNr>
+   <kuvatavNr id="ea29ef68-315c-4aa4-88ff-5c9326ffa792"><![CDATA[12) ]]></kuvatavNr>
+   <sisuTekst id="2cef5ba9-9dcb-4bb5-8f62-755c93f017ed">
+    <tavatekst id="d78a4347-3ad4-4f41-8590-74c59b580400">klientide sünnipäevade ja tähtpäevade tähistamine;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para11lg1p13">
+   <alampunktNr id="173c8a8f-d42a-4622-b3bb-ff4b4245bbbb">13</alampunktNr>
+   <kuvatavNr id="a17d7287-540d-49fd-a7b4-2036b103e942"><![CDATA[13) ]]></kuvatavNr>
+   <sisuTekst id="a65a0531-f166-4928-bb07-90410afdd156">
+    <tavatekst id="97c7d548-ecb7-4ff6-8745-d908cf8797eb">klientide huviringide korraldamine.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para11lg2">
+   <loigeNr id="25c03de3-46d8-4850-a5c5-e5f4aae2f11b">2</loigeNr>
+   <kuvatavNr id="7665df96-8966-4ce4-a4b0-83f15e55b701"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="7838cc31-71df-48e6-948a-e04b388a3c11">
+    <tavatekst id="d66bc112-725b-4c30-b359-11cf1ba118ae">Teenuses ei sisaldu:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para11lg2p1">
+   <alampunktNr id="822cd35a-bcd5-4931-a1d6-e8b93e77ba76">1</alampunktNr>
+   <kuvatavNr id="61c7abe1-ecbc-41b5-8bc1-e896c7589867"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="6bd99abd-2cbd-49ca-9107-259cc06e5c59">
+    <tavatekst id="c46f53cd-d8be-486c-b496-cc1372bc1c49">sanatoorsete tuusikute maksumus; </tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para11lg2p2">
+   <alampunktNr id="23e6adb3-421b-4d2d-81c7-1b43c6d8e9df">2</alampunktNr>
+   <kuvatavNr id="99031b70-fd86-45a3-8ba4-e570cf686b2f"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="9a0618a0-f1ad-4375-bb6f-6bbb2d5841a1">
+    <tavatekst id="c0bdefab-40f6-4298-91a6-18f86753a7fe">füsioteraapiateenuste ja massaaži maksumus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para11lg2p3">
+   <alampunktNr id="9594dbf2-71cc-4287-bd40-7a0dfacdec46">3</alampunktNr>
+   <kuvatavNr id="8b88410f-11a8-4242-82e0-d81aee787ead"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="097892e9-8b46-498a-9381-03c2c090b312">
+    <tavatekst id="a52c9130-7c3a-4ce9-a9a3-052d8acab8d0">eraviisiliste külaskäikude transpordikulude maksmine;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para11lg2p4">
+   <alampunktNr id="577f734a-bd2b-4c8b-8e52-ca3e3829a246">4</alampunktNr>
+   <kuvatavNr id="d7286b49-0565-43ea-a3cd-8fb24fc689f7"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="6354165d-8104-43cb-819d-d42a78604245">
+    <tavatekst id="349118d2-d70a-49bd-a509-f42d61b065cb">juuksuri- ja kosmeetikateenuse osutamine;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para11lg2p5">
+   <alampunktNr id="c7611b05-5464-4e78-98aa-640d12aef7f3">5</alampunktNr>
+   <kuvatavNr id="d3582013-5b86-4f08-b239-f9b7ebbd8e5f"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="1183ed79-d2cf-402a-8dd4-0bb3a5f514f9">
+    <tavatekst id="d7e5f041-7d67-4872-bc26-9031dc94669b">käsimüügiravimite maksumus; </tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para11lg2p6">
+   <alampunktNr id="a5726906-9713-4e74-9cf8-f55459b7b2ae">6</alampunktNr>
+   <kuvatavNr id="1e3dbc7e-d597-4526-bbb7-b5314c0794d0"><![CDATA[6) ]]></kuvatavNr>
+   <sisuTekst id="dca02683-ffdc-4675-891e-2944d9f898fc">
+    <tavatekst id="83763f3f-7618-4ca5-a28f-f69af1b7eac3">surnu korrastamine ja surnu riided;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para11lg2p7">
+   <alampunktNr id="e9fc71fc-8641-48fe-9771-9e6abe07fc5f">7</alampunktNr>
+   <kuvatavNr id="2e7f5428-67ef-4d9a-815c-b06b4a9cdf7b"><![CDATA[7) ]]></kuvatavNr>
+   <sisuTekst id="c841160c-776c-4bfb-9d90-39a93b7f0225">
+    <tavatekst id="14fbe70b-7d86-4cbb-8d35-6848fa0ff39d">matusekulud, kui on olemas hooldusele paigutaja, seadusjärgsed ülalpidajad/eestkostja või asjast huvitatud isikud;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para11lg2p8">
+   <alampunktNr id="841030c8-1da7-4223-95ce-f5f78ed6d4b6">8</alampunktNr>
+   <kuvatavNr id="d421719c-0ace-4b96-a881-33b8c1243289"><![CDATA[8) ]]></kuvatavNr>
+   <sisuTekst id="a70fa7a9-9a34-4e48-bb8e-1837fb079ffb">
+    <tavatekst id="16a2f4a9-5169-445d-af34-db0c485153c9">haiglas viibimise ajal voodipäevatasu.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv></peatykk><peatykk id="c3fc69cb-1633-4097-acd1-1f189d3dcb16">
+   <peatykkNr id="cecaef61-fa04-42a9-954b-5618b91213d4">4</peatykkNr>
+   <kuvatavNr id="c029ce71-a732-450a-aa29-373cb514e1cc"><![CDATA[4. peatükk]]></kuvatavNr>
+   <peatykkPealkiri id="5ab6fc77-54c0-45c9-bf96-64a7bdb2a17c">HOOLDEKESKUSEST LAHKUMINE JA VÄLJAARVAMINE</peatykkPealkiri>
+  <paragrahv id="para12">
+   <paragrahvNr id="0216c2fb-bd42-4a85-bec5-e6995476ee8f">12</paragrahvNr>
+   <kuvatavNr id="5802d2f3-9635-4ed6-890d-99d669d76093"><![CDATA[§ 12. ]]></kuvatavNr>
+   <paragrahvPealkiri id="1cb24da8-c6ec-4814-97d2-4fce276d2ddc">Lahkumine hooldekeskusest</paragrahvPealkiri>
+  <loige id="para12lg1">
+   <loigeNr id="0b1451aa-3bcb-46db-a688-d852bf420ce7">1</loigeNr>
+   <kuvatavNr id="e37ff53f-76cf-43f7-ae58-14dd64624234"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="f6487911-b77b-4cef-9da6-1376f1aabeaf">
+    <tavatekst id="998e55ec-8e90-4d70-b5e5-c1976dbe5675">Isik võib hooldekeskusest lahkuda</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para12lg1p1">
+   <alampunktNr id="14672b6a-4dd3-43e9-a407-e96a34f8087b">1</alampunktNr>
+   <kuvatavNr id="056eca9a-c253-4a81-aaeb-0ecd23190903"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="1de547af-ce1c-489d-9586-b3ea1caaa80c">
+    <tavatekst id="dce27750-138f-42d6-b8a5-9cd5535c3349">isikliku avalduse alusel;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para12lg1p2">
+   <alampunktNr id="9e9f7227-bfea-43ad-9c52-4b840e81e6f0">2</alampunktNr>
+   <kuvatavNr id="15f1a6a8-8e30-42fb-9b4f-35cc0d576abe"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="d29b9c02-a417-44df-9918-eaec8e1c3616">
+    <tavatekst id="447d5552-978c-4988-b616-c3f63b1ef0cb">kohtuotsuse alusel kinnipidamiskohta või psühhiaatriahaiglasse sundravile paigutamisel.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para12lg2">
+   <loigeNr id="a22ca313-5467-4282-950a-d3c9dae4bd84">2</loigeNr>
+   <kuvatavNr id="ccbbd6b0-d8b4-4ac6-8518-a78fd7132dd7"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="ae344a4f-00fa-4745-a123-fabd0a652d90">
+    <tavatekst id="ca3fc1fc-6cc7-4d70-8d28-127768591922">Hooldekeskusest lahkumine vormistatakse juhataja käskkirjaga.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para13">
+   <paragrahvNr id="acd3c25b-7f6a-4999-887a-f4ceec4d1dab">13</paragrahvNr>
+   <kuvatavNr id="b5f570ef-e683-44fe-9f96-f04f3d17ca4e"><![CDATA[§ 13. ]]></kuvatavNr>
+   <paragrahvPealkiri id="6de81af2-c43c-4c7b-9a6a-6fc85d1acccd">Väljaarvamine hooldekeskusest</paragrahvPealkiri>
+  <loige id="para13lg1">
+   <loigeNr id="e8dc2c45-2505-4c5a-b64f-35e7456e9ac9"/>
+   <kuvatavNr id="d13090d4-861e-4547-b564-06cd8400a7b1"/>
+   <sisuTekst id="9dd8d649-e35a-4b8f-b50a-abd724b06cc6">
+    <tavatekst id="ad28be22-388d-42ec-ac5f-15c5fe74ad0d">Isiku võib hooldekeskusest välja arvata juhataja käskkirjaga:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para13lg1p1">
+   <alampunktNr id="eb1aa0dc-3f9d-4141-9345-e27d191893fc">1</alampunktNr>
+   <kuvatavNr id="d8ec202d-8a5e-46b1-a89a-c73ac65d172f"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="3305dc54-0619-410b-a50b-8b61f450465c">
+    <tavatekst id="1aafe065-40e7-4154-bdf4-737a412ec895">kui ta ei täida lepinguga endale võetud kohustusi ja ei pea kinni kehtestatud kodukorrast;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para13lg1p2">
+   <alampunktNr id="7eb28da3-eaf4-4ca4-b3a3-79ea531034f9">2</alampunktNr>
+   <kuvatavNr id="885d3a50-8340-4686-a321-141df4a220f1"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="400beb89-84a6-4ec3-8277-407cf0b9da83">
+    <tavatekst id="9f6f8e37-ff63-4b60-88cf-f0b02acf6a3c">omavoliliselt etteteatamata lahkumisel, kui andmed lahkunud isiku asukoha kohta ühe kuu jooksul puuduvad;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para13lg1p3">
+   <alampunktNr id="ffd2ac44-54c9-4221-b733-3c4de7791483">3</alampunktNr>
+   <kuvatavNr id="f05b48c5-2f50-4582-be0e-e5b59785a148"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="a401e084-ccd8-41c4-97ac-70ddd0a82247">
+    <tavatekst id="02a5589c-910e-4d13-bca2-9dd0e109c327">isiku surma korral.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv></peatykk><peatykk id="3dcedcbd-3fbd-499a-a561-7f65d6002c53">
+   <peatykkNr id="2fee61b5-e75d-4d9f-b4d6-0d3c0201e7cd">5</peatykkNr>
+   <kuvatavNr id="5818129b-f6bc-4c12-90f4-506d898fb6cc"><![CDATA[5. peatükk]]></kuvatavNr>
+   <peatykkPealkiri id="51e39c6c-d680-4949-9678-f8eeaa5d6a14">ISIKU SUUNAMINE TEISTESSE HOOLEKANDEASUTUSTESSE</peatykkPealkiri>
+  <paragrahv id="para14">
+   <paragrahvNr id="b7eb6675-aef7-4def-99c8-0c4c1bdfeef8">14</paragrahvNr>
+   <kuvatavNr id="c1a2b4dc-f709-455c-a93a-951717ce2632"><![CDATA[§ 14. ]]></kuvatavNr>
+   <paragrahvPealkiri id="9cf908df-5dd0-4173-b1e9-b0f206c4a909">Isiku suunamine teistesse hoolekandeasutustesse</paragrahvPealkiri>
+  <loige id="para14lg1">
+   <loigeNr id="7d13d75c-ad6c-41ca-ac17-08c359932981">1</loigeNr>
+   <kuvatavNr id="a7f4fcaf-539b-4335-817e-69216e2588b7"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="d2111d43-5d7e-4fc6-90f7-efb22d20dac7">
+    <tavatekst id="566e06bb-434f-4737-b0ea-8988cf5e1f4f">Rapla Vallavalitsus võib taotleda kohta teistesse hoolekandeasutustesse § 2 lõikes 1 nimetatud isikule juhul, kui hooldekeskuses ei ole vabu kohti.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para14lg2">
+   <loigeNr id="9e80f0b7-e3f1-4375-bd4b-3bdd293fc7eb">2</loigeNr>
+   <kuvatavNr id="0922dc21-a9e1-4349-8525-13a1f12f18ef"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="b0392c67-d163-439a-901f-92a2f4ba5f87">
+    <tavatekst id="c1264ea5-4cf3-49e5-9011-440d63ff65e5">Kõik toimingud suunatavaga teostatakse samadel alustel nagu hooldekeskusesse vastuvõtmisel.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></peatykk><peatykk id="4d660183-2bb2-4909-8e63-ac01845cd6d1">
+   <peatykkNr id="d400fd8b-78a6-43bc-9324-914ba699eb30">6</peatykkNr>
+   <kuvatavNr id="e058f3ed-4bda-4b81-a10d-ba428a5415c6"><![CDATA[6. peatükk]]></kuvatavNr>
+   <peatykkPealkiri id="53bc06ad-8b76-4910-8d91-ca0357fb1d63">RAKENDUSSÄTTED</peatykkPealkiri>
+  <paragrahv id="para15">
+   <paragrahvNr id="ec34fde0-4125-402a-af67-24d59c7f8ca6">15</paragrahvNr>
+   <kuvatavNr id="b414171a-8c20-48f3-93bd-d5125386eb52"><![CDATA[§ 15. ]]></kuvatavNr>
+   <paragrahvPealkiri id="08d99e69-9c72-4eb1-9578-a1642c12cc40">Varasema õigusakti kehtetuks tunnistamine</paragrahvPealkiri>
+  <loige id="para15lg1">
+   <loigeNr id="215bc2d3-37af-4041-81b5-72ab5048cdcd"/>
+   <kuvatavNr id="a7ac6c73-935c-4cc6-9dcf-d9f866df8c0e"/>
+   <sisuTekst id="8338aaf1-eddf-4803-a308-9cdae6ff3093">
+    <tavatekst id="d41521ff-aa90-4b1e-8a53-567e8089d6ee">[Käesolevast tekstist välja jäetud].</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para16">
+   <paragrahvNr id="09076ada-7a95-444b-aa40-280446477061">16</paragrahvNr>
+   <kuvatavNr id="d770c579-f2a5-4443-af9e-3506b5928bfa"><![CDATA[§ 16. ]]></kuvatavNr>
+   <paragrahvPealkiri id="df2c1932-ed1d-45fb-a23d-188ec0727c8b">Määruse jõustumine</paragrahvPealkiri>
+  <loige id="para16lg1">
+   <loigeNr id="8ccc3201-15eb-4d2b-8f05-e71fb9a49140"/>
+   <kuvatavNr id="4328a5e0-c592-4262-be3d-46ab7acf7478"/>
+   <sisuTekst id="8e021304-4a94-495c-baca-4ce53de123b2">
+    <tavatekst id="211ea481-848c-464c-86a1-8ba4830117e1">Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></peatykk></sisu>
+</oigusakt>

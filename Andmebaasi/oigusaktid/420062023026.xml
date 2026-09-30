@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="5b9011bb-f3fe-4c40-827e-f20aa65a2ec8" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Viimsi Vallavalitsus</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>algtekst-terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2023-06-16</aktikuupaev>
+			<aktiNr>12</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2023-06-20</avaldamineKuupaev><RTaasta>2023</RTaasta><RTartikkel>26</RTartikkel><aktViide>420062023026</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2023-07-01+03:00</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2023-06-17</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>420062023026</globaalID>
+		<metaandmedVersioon>7</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2023-06-19</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1056828</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2023-06-17</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Birgit Mägi</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="530a6d4b-422a-42f3-a0e1-57323b09b4fe">
+		<nimi id="f543fff4-c12f-4b83-96ea-f6410caefd0e">
+			<pealkiri id="568c9aef-7502-443a-a410-ed5b746319f4">Väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse hoolduskulude tasumise piirmäära kehtestamine</pealkiri>
+		</nimi>
+	</aktinimi>
+	<sisu id="36bc852f-86d5-4bcd-a824-17e9273e8e93">
+		<preambul id="0b0dd0e6-6a55-4ebe-8014-fa770dec21ca">
+			<tavatekst id="6b221da5-3fb3-4370-9e49-40b47d9792e9">Määrus kehtestatakse sotsiaalhoolekande seaduse § 22<sup>1</sup> lõige 3 ja Viimsi Vallavolikogu 21.03.2023 määruse nr 10 „Viimsi valla sotsiaalteenuste osutamise tingimused ja kord“ § 8 lõike 2 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="e56207e6-76b2-44bf-a7cf-21befdf82a91">1</paragrahvNr>
+			<kuvatavNr id="80d0e9a8-a0df-448b-ae78-83b91679558b"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="c4c0685e-de31-43f7-b97a-bd4d3ce6c7ed">Väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse hoolduskulude tasumise piirmäär</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="603420df-9af4-48b3-8f26-f6a8f3b99e6f"/>
+				<kuvatavNr id="9a43ca8f-ee79-47c1-9d65-00c3f04221e5"/>
+				<sisuTekst id="37a7acc9-630e-41ba-8e2a-664b986d8d7e">
+					<tavatekst id="0185e91d-a9cf-47be-9b19-0b6765d5d32f">Kehtestada väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse osutamisel vahetult teenust osutavate hooldustöötajate ja abihooldustöötajate kulude tasumise piirmääraks 650 eurot ühe teenusesaaja kohta kalendrikuus.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="b01cd8c7-7fce-4af3-b6ad-ff48a22f86c3">2</paragrahvNr>
+			<kuvatavNr id="0b65da60-9812-4bef-8de9-f0e2115b7a2f"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="c872329b-dfd8-4787-a47c-7bb828f5f747">Määruse jõustumine</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="d6f4c4e6-3814-43f4-86c9-7b5f631985e5"/>
+				<kuvatavNr id="a35e3402-6f8b-4249-b9f7-aaefb1d69b8e"/>
+				<sisuTekst id="5528fc32-95ec-44fc-95c4-727c5c8f8143">
+					<tavatekst id="e45d84c8-d8a7-4dbe-a2b9-f205d3385c0b">Määrus jõustub 1. juulil 2023.a.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+	<allkiri id="4a4b28ad-aa82-46d1-a731-d7a01d7e2a8f">
+		<allkiriKoht id="5fe3d45e-f1f7-486b-8545-cab75f57485a"/>
+		<allkirjastaja id="4328d544-9673-4cf8-b335-b3b0a1c6378c">
+			<ametinimetus id="02ed34cc-d5d9-43e2-8cd9-b39e63af684c">vallavanem</ametinimetus>
+			<eesnimi id="b812dfc2-d610-42b1-82a6-46343b75db23">Illar</eesnimi>
+			<perekonnanimi id="93ec6d2b-eb63-4bdf-a4de-6701ffff7ddd">Lemetti</perekonnanimi>
+		</allkirjastaja>
+	</allkiri>
+	<allkiri id="38699c9b-d3d5-45e6-b185-e226208708ab">
+		<allkiriKoht id="f06ceb27-a40c-4b10-b266-72b5f393a7ed"/>
+		<allkirjastaja id="0b968058-7256-4acf-ace4-2cdeb6d1587e">
+			<ametinimetus id="7961ca47-d7c3-41eb-a43e-aa58e1e67ad9">vallasekretär</ametinimetus>
+			<eesnimi id="0d9a1335-f615-4664-8e51-e666f4b09f66">Leevi</eesnimi>
+			<perekonnanimi id="7c0535a3-06c0-4976-9af3-7aa65d9b93c3">Laever</perekonnanimi>
+		</allkirjastaja>
+	</allkiri>
+</oigusakt>

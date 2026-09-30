@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="68ea0559-4a98-4b47-bc24-1957c561a732" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Põlva Vallavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>algtekst-terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2020-12-29</aktikuupaev>
+			<aktiNr>21</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2020-12-31</avaldamineKuupaev><RTaasta>2020</RTaasta><RTartikkel>86</RTartikkel><aktViide>431122020086</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2021-01-03+02:00</kehtivuseAlgus><kehtivuseLopp>2026-10-01+03:00</kehtivuseLopp></kehtivus><versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2020-12-30</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>431122020086</globaalID>
+		<metaandmedVersioon>8</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2026-09-28</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1051090</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2020-12-30</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Liia Sulg</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="f4a788c8-127c-4c54-9be8-3574ff07e09d">
+		<nimi id="f135a846-1769-431d-98d5-e30efb46e55b">
+			<pealkiri id="8d7f54c8-a623-40da-a67a-d92af977ad84">Raske ja sügava puudega lapse tugiisikuteenuse ja lapsehoiuteenuse osutamise tingimused ja kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<sisu id="4231ac51-d804-427f-9932-86eb16f3f4d3">
+		<preambul id="185c4f76-8cd2-492e-bb9e-536edd2a4bb7">
+			<tavatekst id="b2865029-3e41-4e4b-ad26-8f469fb4e30a">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lg 1 p 5, sotsiaalhoolekande seaduse § 14 lg 1, § 23 lg 3, § 45<sup>1</sup> lg 1 ja § 45<sup>2</sup> lg 6 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="510a70c0-c8e6-4a23-a407-f33cdefc0bc8">1</paragrahvNr>
+			<kuvatavNr id="7e5b4f1f-d494-4f2c-ad05-409c1a229fc0"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="baea6381-22f0-45ab-b47f-724e98367d60">Üldsätted</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="961dd831-d861-47a2-8bb7-39cb782cebda">1</loigeNr>
+				<kuvatavNr id="c7b250c0-11a2-4527-9787-68acde9687d0"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="d6a9c934-8acd-4847-9758-f902a4f5d94a">
+					<tavatekst id="896ef49a-2608-4088-9c58-e906b35d5931">Määrus reguleerib raske ja sügava puudega lastele tugiisikuteenuse (edaspidi <i>tugiisikuteenus</i>) ja lapsehoiuteenuse (edaspidi <i>lapsehoiuteenus</i>) osutamise tingimused ja korra Põlva vallas (edaspidi <i>vald</i>).</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg2">
+				<loigeNr id="d724d836-2411-4c78-9525-e4feb6ff81d1">2</loigeNr>
+				<kuvatavNr id="03a6879e-6b08-478d-a570-9a9b6a33b4f2"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="4d6741e0-05a7-47e7-a894-1916f51324dc">
+					<tavatekst id="ca204bb2-a4b7-4622-8ae8-3c866f91827f">Määruses ettenähtud haldusmenetlusele kohaldatakse haldusmenetluse seadust, arvestades sotsiaalseadustiku üldosa seaduses sätestatud erisusi.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="ea37dcf0-f281-440a-8e75-390d135da06a">2</paragrahvNr>
+			<kuvatavNr id="0ca952b6-88a3-48c7-8d86-8e8b3cf2cdb8"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="01b6482d-e7d0-4d69-9155-59ce15fee5bf">Õigustatud isikud</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="5a2a9239-0aa7-4032-b3d2-43dfe6b201ef">1</loigeNr>
+				<kuvatavNr id="48780620-ec29-482c-9664-03a2a361462d"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="04f499a7-5db7-4fd4-9ffb-4f2242781ff0">
+					<tavatekst id="e227e3bb-e6de-456f-921d-d2cf3dd81f84">Puudega laps käesoleva määruse mõistes on kuni 18-aastane raske või sügava puudega laps, kelle tegelik ja rahvastikuregistrijärgne elukoht on Põlva vald.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg2">
+				<loigeNr id="050b2b76-93d5-4fcd-a08b-3c6569675986">2</loigeNr>
+				<kuvatavNr id="e760c272-efcc-42f7-8a39-4a66a88c9364"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="096ba963-a42d-424a-b20f-c097a1f0a290">
+					<tavatekst id="2a370fe0-09af-4a3f-8438-6ec3037ba799">Teenust on õigus taotleda puudega lapse vanemal, eestkostjal või lepingu alusel hoolduspere vanemal kuni lapse 18-aastaseks saamiseni.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg3">
+				<loigeNr id="a69f2c1a-315c-4945-a8bb-ad79e828cd8b">3</loigeNr>
+				<kuvatavNr id="df1a0566-d85e-4e9c-8267-ea785bfedc97"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="c508a45a-a35a-4637-9330-37303cee7fea">
+					<tavatekst id="bcf47285-7e17-4e53-a519-46c554f64013">Teenusele on õigus käesoleva paragrahvi lõikes 1 märgitud isikutel, eeldusel, et:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para2lg3p1">
+					<alampunktNr id="b9961031-8c11-404f-bb9f-06ee6c76bcc1">1</alampunktNr>
+					<kuvatavNr id="fea1d087-9d10-4885-a602-94b0a92c4425"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="f40dfca1-fb6e-44ff-93a2-f4b8cd242eed">
+						<tavatekst id="0581056a-2e80-464f-ad98-eb25c50ab0ad">puudega lapse teenuse vajadus on tuvastatud abivajaduse hindamisega ning kajastub juhtumiplaanis;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg3p2">
+					<alampunktNr id="0515e715-d381-4690-8d4d-61fba92cac70">2</alampunktNr>
+					<kuvatavNr id="c300bad6-7cca-4fe7-b230-3570ed63fb77"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="5e8005fb-acb9-4cf5-8ad4-b21688c148c9">
+						<tavatekst id="a49a32c6-0377-424b-b29e-b5b97aa05caf">lapse hooldamine ei ole samal ajal tagatud teiste sotsiaalteenustega.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="96a9d95a-89db-4bff-bebb-ed4b331d003c">3</paragrahvNr>
+			<kuvatavNr id="1ce33015-c3f8-414f-ab7d-fe3da71abde4"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="019f6f0c-1b9a-42b2-94a5-40ecb5a11bed">Lapsehoiuteenus</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="502c44c3-9533-4751-8a90-b02be3c62233">1</loigeNr>
+				<kuvatavNr id="fd3da487-5b69-4ffa-81e9-64cac623f5e9"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="85525b5f-ddfd-4237-afc7-989b2a69455f">
+					<tavatekst id="43bd7ab5-8b65-4dc3-a296-2f5afb5bc56d">Lapsehoiuteenus on lapsevanema, eestkostja või lepingu alusel hoolduspere vanema töötamist, õppimist või toimetulekut toetav teenus, mille osutamise ajal tagab lapse hooldamise, arendamise ja turvalisuse lapsehoiuteenuse osutaja.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg2">
+				<loigeNr id="6c4cbbbc-faf4-457f-873a-20359c74fcb2">2</loigeNr>
+				<kuvatavNr id="71a61d4b-f9de-489e-824c-5d6342e039bc"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="13356b17-318b-464c-8986-2d5fe2bdd93b">
+					<tavatekst id="6631b062-c65b-407b-bbc8-b3a1aa162507">Lapsehoiuteenuse osutaja peab vastama sotsiaalhoolekande seaduse (edaspidi <i>SHS</i>) § 45<sup>3</sup> ja teenust vahetult osutav isik SHS § 45<sup>4</sup> esitatud nõuetele.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="3d3defd2-844e-4cde-bdcb-0b0f1097a001">4</paragrahvNr>
+			<kuvatavNr id="540e5538-aa64-4e6f-86c8-90bd39d96099"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="651bc180-1801-4dc4-9b4e-19d1c7e07809">Tugiisikuteenus</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="cccdec13-d872-4a98-b20c-3e0a803379c7">1</loigeNr>
+				<kuvatavNr id="47ae237f-3371-455b-a6ae-8cb442c29418"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="516894e5-1098-486e-a154-99bf4457a182">
+					<tavatekst id="01204375-8dd5-42b1-a388-e81d1fed238b">Tugiisikuteenus on last kasvatava isikuga koostöös lapse arengu toetamine, sealhulgas vajaduse korral hooldustoimingute sooritamine. Tugiisik abistab last arendavates tegevustes, juhendab ja motiveerib igapäevaelus toime tulema, abistab suhtlemisel perekonnaliikmetega või väljaspool kodu.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg2">
+				<loigeNr id="ff6d0c6b-99c1-478c-af71-e8c0f663a59e">2</loigeNr>
+				<kuvatavNr id="316b038d-4086-46be-a28b-460f6ca9ebf1"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="638a0693-ef53-4ed5-84d0-93dbbc8e6397">
+					<tavatekst id="f17cfa58-24d8-4ef8-841b-b5a599fe0c23">Tugiisikuteenust võib osutada isik, kes vastab SHS § 25 esitatud nõuetele.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="93c17b39-ba3e-4160-82da-ca96cefbfe21">5</paragrahvNr>
+			<kuvatavNr id="fc7f34f6-5fc7-4abe-bfa0-cd6f31a85cc4"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="b81db432-4a92-47e0-a0b6-eca8f43a1b89">Teenuse taotlemine ja taotluse menetlemine</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="481df6fb-5621-41d1-999f-5967f8b7e091">1</loigeNr>
+				<kuvatavNr id="378f3862-62e0-45c3-bc64-7e3fcc5f5dfc"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="f29555b2-7aed-4846-814c-335cc6d9bb6f">
+					<tavatekst id="18d3c595-97c3-4ed2-9faa-b8cf1917c0c8">Teenuse taotlemiseks esitab õigustatud isik vallavalitsusele taotluse.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg2">
+				<loigeNr id="68add423-0ca9-41dd-9485-3bfdae418d2f">2</loigeNr>
+				<kuvatavNr id="e81da91c-faab-4b38-b7fc-92583bc0d122"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="33582c1b-aed4-4d23-b67f-3eca887d0fc5">
+					<tavatekst id="bd545555-30af-4409-a3d2-5bae6749e743">Taotluses esitatakse järgmised andmed või lisatakse vastavad dokumendid:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para5lg2p1">
+					<alampunktNr id="4c7591e3-88b5-4051-be08-b56634595479">1</alampunktNr>
+					<kuvatavNr id="0ba4bca2-87d4-4804-9953-3f4eda87db58"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="0f5b3c8d-83a3-4dea-9c9d-5921eee49023">
+						<tavatekst id="6941bf93-e63b-4288-96c5-b2ca1d643b07">teenust taotleva isiku nimi, isikukood, elukoht, kontakttelefon;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg2p2">
+					<alampunktNr id="dadeeb9c-c385-468c-8cbf-a52edd21f4ea">2</alampunktNr>
+					<kuvatavNr id="5b216e75-07b2-4f52-9be7-1329fbf9b38b"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="e6c4e137-e5e6-4371-ad46-12c35585d13e">
+						<tavatekst id="38639d1f-9ad4-401f-8eae-eb3a78e4dfc5">teenusele suunatava lapse nimi, isikukood, elukoht;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg2p3">
+					<alampunktNr id="b6796c3a-16f1-44be-8b99-25f0ddf4bd90">3</alampunktNr>
+					<kuvatavNr id="6937cd33-2fe5-4618-86d5-d25d5ee6c0c2"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="f4c94676-4df4-4df0-a952-f7b8f1e4e1a8">
+						<tavatekst id="fcf79f57-1d5f-49cd-9189-819936585b3d">olemasolul koopia lapse rehabilitatsiooniplaanist;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg2p4">
+					<alampunktNr id="4d96304b-1fa8-4abe-8e2e-262fe2a28ab6">4</alampunktNr>
+					<kuvatavNr id="27e9aa71-fd3a-4578-836d-8eb0325a7bfc"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="7bdba170-5d0b-4f04-ab73-387b7409b3ae">
+						<tavatekst id="53cc1c26-3c44-4513-8d53-29b3ca977960">teenuse vajaduse põhjendus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg2p5">
+					<alampunktNr id="26caa73a-cbd8-43c0-b9c1-49996316d464">5</alampunktNr>
+					<kuvatavNr id="60486785-1986-404d-b8a1-abb8f2be6fd3"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="f33918ca-52f9-4cf6-aa4c-8336fbb9691b">
+						<tavatekst id="39b5c1a9-d6b8-47b1-863a-e0ab04894c54">tegevused, milleks tugiisikuteenust või lapsehoiuteenust vajatakse;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para5lg3">
+				<loigeNr id="e87b8011-5d85-4387-b93f-4195d0c86829">3</loigeNr>
+				<kuvatavNr id="c4116892-02e2-43ca-8afd-096fc1a1207a"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="fd4b787f-dc14-4080-aeff-fbd60d409b1c">
+					<tavatekst id="c6937ff2-195a-4140-a1e6-f60091c0666b">Vallavalitsusel on õigus teha täiendavaid päringuid ning küsida taotluse juurde täiendavaid dokumente või muud teenuse määramiseks vajalikku infot.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg4">
+				<loigeNr id="d0e06447-61ca-4156-ad2c-08de2467d226">4</loigeNr>
+				<kuvatavNr id="3369b3e1-ae7a-4d00-9c27-5992b3b6bd76"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="1c4bdaae-09d0-4d62-ba75-713f89440547">
+					<tavatekst id="751f6904-05a3-4f81-aa4d-99478169d621">Teenuse saajal on õigus valida tugiisikuteenust osutavat isikut. Soovi avaldamisel abistab teenuste koordinaator teenuse saajat teenust osutava isiku leidmisel.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg5">
+				<loigeNr id="213f5c0d-5c1c-4e30-b668-275e1a77cd57">5</loigeNr>
+				<kuvatavNr id="09b6bf2c-e5ce-4c0a-8cfc-13d0e7303778"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="bf0df4ec-546c-4c91-b639-34660fc37fd7">
+					<tavatekst id="7d5fb348-5131-4989-af8b-43ddfa4d3329">Teenuse saajal on õigus enne teenust osutava isiku määramist omavahelise sobivuse hindamiseks temaga kohtuda.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg6">
+				<loigeNr id="5a4035e6-352a-45d4-b194-34c830f66deb">6</loigeNr>
+				<kuvatavNr id="a9314d3d-d532-4982-9b72-7ea5e18ed471"><![CDATA[(6)]]></kuvatavNr>
+				<sisuTekst id="ae80fc0f-14ca-49e6-8591-881b07c901aa">
+					<tavatekst id="e13d8eeb-c778-4cbe-82f4-109fda030f92">Tugiisikuks määratav isik peab andma vastavasisulise kirjaliku nõusoleku.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para6">
+			<paragrahvNr id="ded50af3-0f28-4f95-9c32-e225aa1bd689">6</paragrahvNr>
+			<kuvatavNr id="ce983185-6f92-4f0a-a850-07aeb3b33fe8"><![CDATA[§ 6. ]]></kuvatavNr>
+			<paragrahvPealkiri id="b2609439-1292-4c51-90c2-6718f14415da">Teenuse määramine</paragrahvPealkiri>
+			<loige id="para6lg1">
+				<loigeNr id="a683e214-337c-45e6-b4b3-0f52b640ccd4">1</loigeNr>
+				<kuvatavNr id="d6454f07-03b6-4c04-b3e9-37b6a010a4bf"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="8eb324e1-3a32-435e-88ec-007bca73aa6b">
+					<tavatekst id="0734990d-9a08-4cc3-b6d6-6246d112c43d">Teenuse osutamise otsustamiseks selgitab lastekaitsespetsialist välja teenuse vajaduse, teenuse osutamise sageduse ja mahu.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg2">
+				<loigeNr id="c7f601a1-e9fc-4bd4-8f4d-46a6a8d54b13">2</loigeNr>
+				<kuvatavNr id="cdac7331-3808-4901-a272-de4d1270b4a4"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="decd7199-e14d-4295-979a-f0ffac4abd45">
+					<tavatekst id="d14ded14-ad4b-4ae3-b1c6-b5491fd00c0d">Otsuse teenuse määramise või sellest keeldumise kohta teeb vallavalitsuse sotsiaalabikomisjoni ettepanekul sotsiaalosakonna juhataja või teda asendav ametnik kümne tööpäeva jooksul pärast nõuetekohase taotluse esitamist.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg3">
+				<loigeNr id="0c2413d8-6634-4920-82c1-b115bd14c841">3</loigeNr>
+				<kuvatavNr id="69afc9f4-7e28-47fe-82b3-7e8d60196096"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="3fcaa187-8d1c-46d4-8942-bd8ab3e2cf19">
+					<tavatekst id="259515e4-ec55-4c34-aa71-2778cdbe17a2">Teenuse määramisest võib keelduda juhul, kui esineb vähemalt üks järgmistest asjaoludest:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para6lg3p1">
+					<alampunktNr id="8aeecd7f-59a4-482b-8f03-bda765d0f097">1</alampunktNr>
+					<kuvatavNr id="cdb8f456-25cf-457e-b0b0-311602ecc6d2"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="39450205-16df-4384-96a0-209c9eb99e08">
+						<tavatekst id="e8633dab-5bb4-46df-bf8b-4243576e3ef6">vallavalitsusele ei ole esitatud kõiki teadaolevaid tõeseid ja täielikke andmeid, dokumente ja muid tõendeid, mis on vajalikud teenuse määramise otsustamisel;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg3p2">
+					<alampunktNr id="f73d6aed-67c3-493f-95fb-5a291868e120">2</alampunktNr>
+					<kuvatavNr id="96725c23-d628-488c-8a70-dab0aee5872e"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="f183b37f-427b-4674-8dd1-406923cb7b31">
+						<tavatekst id="ec48dc44-f961-4d3b-bbf8-29db837ca5f5">taotleja ei võimalda teenuse vajadust kontrollida, sealhulgas ei võimalda läbi viia käesoleva paragrahvi lõikes 1 nimetatud teenuse vajaduse hindamist;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg3p3">
+					<alampunktNr id="7a1021bd-ce3a-4332-beeb-c226a28370fe">3</alampunktNr>
+					<kuvatavNr id="78842316-9cb0-4ca4-8297-448fb22b9ed1"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="33f6d671-dd9b-4748-a575-0346a1db723b">
+						<tavatekst id="96105066-db4c-4883-aa10-072d3fbb5953">taotleja ei ole teavitanud vallavalitsust viivitamata teenuse saamise õigust ja teenuse määramist mõjutavatest asjaoludest ja asjaolude muutumisest;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg3p4">
+					<alampunktNr id="184149eb-de4b-41eb-b0b9-86ba8eb6e848">4</alampunktNr>
+					<kuvatavNr id="c44a9765-4380-48a8-98ac-e0ff3f712688"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="2f11861c-75db-463e-ba96-0dfbc67dd7d1">
+						<tavatekst id="f73bcd16-9698-411b-a95f-75dcf34018e1">teenuse vajadust on võimalik või otstarbekas katta muude teenuste või muu abiga;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg3p5">
+					<alampunktNr id="e6b3fb53-cbd0-4d9e-8a3a-b86ef5e262c1">5</alampunktNr>
+					<kuvatavNr id="ae760ba9-cbcb-48a0-b2d4-028ea113797a"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="9f66799f-4545-4fce-b6da-5a4a0e05a814">
+						<tavatekst id="b9eaa943-2f42-48f9-9ef5-568856b180c9">teenuse saaja ja/või teenuse taotleja ei vasta käesoleva määruse §-s 2 sätestatud tingimustele;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg3p6">
+					<alampunktNr id="8af8785d-8ebb-412b-9d4e-ab7195748d05">6</alampunktNr>
+					<kuvatavNr id="1be04086-2807-4389-b10d-c18e1de833a6"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="ecbea38e-b97c-494b-902a-be37669e063a">
+						<tavatekst id="59ba2945-c868-4343-81cf-c33cb97f89d1">muudel juhtudel.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para6lg4">
+				<loigeNr id="b1f397ef-ef60-44f4-8b71-2d2e6d4c3d4e">4</loigeNr>
+				<kuvatavNr id="4f59b1de-60ec-45cc-a381-2f81b1dc765e"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="7f4f4c16-7ed0-4a0f-8ca3-051ee771ce59">
+					<tavatekst id="258496bf-0d6e-403b-9e7b-6fcad9e648c8">Teenuse osutamiseks sõlmitakse leping.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para7">
+			<paragrahvNr id="95a2e433-26d3-435b-940a-c1ab88004bf7">7</paragrahvNr>
+			<kuvatavNr id="1ef7093f-0db9-4c7b-8b2d-7268b691b045"><![CDATA[§ 7. ]]></kuvatavNr>
+			<paragrahvPealkiri id="e2c5c1db-d3a1-4d95-994e-a466d31cab5f">Teenuse rahastamine</paragrahvPealkiri>
+			<loige id="para7lg1">
+				<loigeNr id="cc92400b-cd0d-46c4-9d17-c656f2694229"/>
+				<kuvatavNr id="61f29f67-872c-467d-9b9b-227b92b9a650"/>
+				<sisuTekst id="c5b69964-4653-4bc6-a002-605f99823177">
+					<tavatekst id="bec0d270-373a-44fe-8e55-0fb40bd01200">Teenuseid rahastatakse:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para7lg1p1">
+					<alampunktNr id="196c5836-d81d-4b6a-a074-7566f8590691">1</alampunktNr>
+					<kuvatavNr id="cefdd24d-3a3b-4a0b-a4fb-2f2d2001476c"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="5c2c6554-6f87-4f41-9a1e-0ce7d41fcde6">
+						<tavatekst id="56fde24e-b82d-419f-b9a9-59812a414636">Euroopa Sotsiaalfondi vahenditest;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para7lg1p2">
+					<alampunktNr id="7fde7b21-cecd-46cf-80bb-23aa30ec8e07">2</alampunktNr>
+					<kuvatavNr id="77f04dbb-bf50-4264-b308-527aa513b825"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="c0b53905-d205-4e64-93d4-699c0fc55a86">
+						<tavatekst id="63e7c322-423e-4f72-b249-a5ac63f12ce7">valla eelarvelistest vahenditest;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para7lg1p3">
+					<alampunktNr id="7debb773-46ce-4ff3-b0c9-91b57589857c">3</alampunktNr>
+					<kuvatavNr id="9d4d6b3c-9606-49eb-825a-607c9d645cd7"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="662824c5-6e81-4c00-bc51-e1af7b702f65">
+						<tavatekst id="9eefa18e-0e98-48c1-9965-19156ba74893">puudega lapse, lapsevanema, eestkostja või lepingu alusel hoolduspere vanema vahenditest.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para8">
+			<paragrahvNr id="2056be78-2bf0-4d3c-ae2b-bba43256c9a8">8</paragrahvNr>
+			<kuvatavNr id="2e4c5110-a514-4a03-bcdf-297e43d1fb3b"><![CDATA[§ 8. ]]></kuvatavNr>
+			<paragrahvPealkiri id="71ab5bbf-00fd-4cf0-b897-6d0a885d1269">Määruse jõustumine</paragrahvPealkiri>
+			<loige id="para8lg1">
+				<loigeNr id="b02695a8-6632-4311-859e-2bb6ceca423d"/>
+				<kuvatavNr id="2fab5201-4036-4fc7-bc7b-acefdd74a02a"/>
+				<sisuTekst id="3d2859a9-7718-49d5-8c1b-fac7ece47a86">
+					<tavatekst id="42fe02c6-41ca-4b2e-9545-8137e0a21ce6">Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist, rakendatakse alates 01.01.2021.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+	<allkiri id="1b9701c3-38fd-4464-8278-775d9e7a3c35">
+		<allkiriKoht id="b7bcecd1-7dd8-4c6c-9c4b-a70c98233e8a"/>
+		<allkirjastaja id="85ace88a-7b19-40cf-8b42-f525195d4767">
+			<ametinimetus id="1a88cdc9-d8d3-4def-984a-9898c328116a">vallavolikogu esimees</ametinimetus>
+			<eesnimi id="a4ec797b-0b8f-4528-b5c9-fc3b5ccd6912">Lennart</eesnimi>
+			<perekonnanimi id="9078a145-b825-4b2b-a37d-fb938f84b9af">Liba</perekonnanimi>
+		</allkirjastaja>
+	</allkiri>
+</oigusakt>

@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="f8e67b0e-0ce3-4a8c-a36e-e64e55e28c60" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Jõelähtme Vallavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>algtekst-terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2023-04-13</aktikuupaev>
+			<aktiNr>33</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2023-04-20</avaldamineKuupaev><RTaasta>2023</RTaasta><RTartikkel>2</RTartikkel><aktViide>420042023002</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2023-04-23+03:00</kehtivuseAlgus></kehtivus><versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2023-04-17</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>420042023002</globaalID>
+		<metaandmedVersioon>7</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2023-04-19</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1056517</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2023-04-12</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Maire Kivistu</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="9e766211-87fd-43bd-99ac-93bf24c8808c">
+		<nimi id="ac30bb21-707d-4183-8113-406fe77fa233">
+			<pealkiri id="e56ca27e-4fd0-4649-b187-eeee50108d5e">Lapsehoiuteenuse rahastamise tingimused ja toetuse maksmise kord Jõelähtme vallas</pealkiri>
+		</nimi>
+	</aktinimi>
+	<sisu id="e2a20313-4240-4050-9a2b-f9ba9c96c279">
+		<preambul id="4f465d09-d8ba-41bb-b66b-3818130415c5">
+			<tavatekst id="e296880b-7cd9-46a7-822a-cc35b3cc1f02">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 6 lg 3 p 2, § 22 lg 1 p 5, sotsiaalhoolekande seaduse § 5 lg 1, § 14, § 45<sup>1</sup>, § 45<sup>2</sup>, § 156 lg-d 3<sup>1</sup>-3<sup>3</sup> ning koolieelse lasteasutuse seaduse § 10 lg 1, § 27 lg 3 ja 4 alusel.</tavatekst>
+		</preambul>
+		<peatykk id="fcde2628-989e-4add-9074-85fa90d9c815">
+			<peatykkNr id="338278f3-caed-4dc3-9d35-91bfb88727a5">1</peatykkNr>
+			<kuvatavNr id="f35e4d24-65b7-4746-9d56-e24aa1edafb3"><![CDATA[1. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="c59b6fbb-60d1-45c8-a7ed-0f8e35208951">ÜLDSÄTTED</peatykkPealkiri>
+			<paragrahv id="para1">
+				<paragrahvNr id="e54c406c-2efe-4cbf-a8ab-6b4c919156a6">1</paragrahvNr>
+				<kuvatavNr id="ff243247-e615-410e-be5d-44cfe26a4a46"><![CDATA[§ 1. ]]></kuvatavNr>
+				<paragrahvPealkiri id="b37dd3b2-04f3-4119-be83-a798395b20dc">Määruse reguleerimisala</paragrahvPealkiri>
+				<loige id="para1lg1">
+					<loigeNr id="18d056eb-9384-492d-ab91-310a1e2227c2"/>
+					<kuvatavNr id="1abe0036-8fa7-4bcf-8d7a-4f8529935f6e"/>
+					<sisuTekst id="629601ea-73cc-4d6e-8b78-e59734124e13">
+						<tavatekst id="36c3e73e-b288-45bf-94ab-fa3db4b9acfd">Määrusega kehtestatakse Jõelähtme valla eelarves selleks ettenähtud vahendite arvelt koolieelses lasteasutuses mittekäiva eelkooliealise lapse lapsehoiuteenuse rahastamise tingimused ning toetuse määramise ja maksmise kord, suure hooldus- ja abivajadusega lapse lapsehoiuteenusele suunamise tingimused ja kord ning suure hooldus- ja abivajadusega lastele mõeldud toetavate teenuste rahastamiseks eraldatud vahendite kasutamise kord.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para2">
+				<paragrahvNr id="aaa4745b-8c57-4ccf-9f03-3a7d3c437049">2</paragrahvNr>
+				<kuvatavNr id="a2ea5e7c-b77a-4640-876c-b55c42e0bc6e"><![CDATA[§ 2. ]]></kuvatavNr>
+				<paragrahvPealkiri id="81d3191b-dd8c-4bb5-822f-32e463cc21b1">Üldsätted</paragrahvPealkiri>
+				<loige id="para2lg1">
+					<loigeNr id="8e01d54d-3ccc-4de1-a45e-0595fe5e0126">1</loigeNr>
+					<kuvatavNr id="f609524f-3afe-4636-92cb-27dc6401e212"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="694563a6-26d2-4880-b0a1-8e024b466509">
+						<tavatekst id="1b9059d4-5b4e-40f3-8eaa-7c1a21a7f8f5">Lapsehoiuteenuse eesmärk on toetada last kasvatava isiku toimetulekut või töötamist või vähendada lapse erivajadusest tulenevat hoolduskoormust.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para2lg2">
+					<loigeNr id="b5325538-9eb0-4105-b961-11a5e842c672">2</loigeNr>
+					<kuvatavNr id="f87eac3b-f2e5-4afe-b9bb-449d8d7c19f7"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="f55347b0-ac8f-4b2f-8924-b965d7dce5ba">
+						<tavatekst id="793d6710-72a2-4ade-826f-8068d48f0e6c">Määrust kohaldatakse kooskõlas sotsiaalseadustiku üldosa seaduse ja sotsiaalhoolekande seadusega ning vajadusel teiste sotsiaalkaitse korraldust ja sotsiaalkaitse tagamist reguleerivate õigusaktidega.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para2lg3">
+					<loigeNr id="14b3f2d9-faad-4933-97e0-35e28e9684e3">3</loigeNr>
+					<kuvatavNr id="c7214b3c-0a06-4f9d-a058-6d52390d30ae"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="6dbafd91-8e3f-439b-bf51-90c1bf6a439d">
+						<tavatekst id="bec6be86-9086-43e1-a62d-81b7f47233b7">Lapsehoiuteenust ja toetavaid teenuseid määratakse valla elanikule, kelle elukoht rahvastikuregistri andmetel on Jõelähtme vald, samuti sotsiaalhoolekande seaduse § 5 lõigetes 2-5 nimetatud juhul.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para2lg4">
+					<loigeNr id="587ccff9-d1df-4ca7-a9c4-dfcfa2566547">4</loigeNr>
+					<kuvatavNr id="590c1495-6149-4d80-9c4f-b4b8ddb2112c"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="e6457538-f8d0-42ab-ad7c-363743891ef4">
+						<tavatekst id="012e2f0f-1603-454a-ae9a-8be8caf8118e">Lapsehoiuteenuse osutaja on lapsehoidja kutset omav füüsilisest isikust ettevõtja või juriidiline isik, kellel on Sotsiaalkindlustusameti poolt väljastatud kehtiv tegevusluba, või kohaliku omavalitsuse asutus või valitsusasutuse hallatav asutus, kellel on lapsehoiuteenuse osutamine põhimäärusejärgne ülesanne ning kes on lapsehoiuteenuse osutajana kantud majandustegevuse registrisse.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="0353c3b8-12e4-43e2-bfc4-5b3ad1b5c98f">
+			<peatykkNr id="b855017e-dd44-450e-85f7-3cac31037468">2</peatykkNr>
+			<kuvatavNr id="c794f298-d36a-42e0-80ff-dc00a5132228"><![CDATA[2. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="1b531167-28e8-4da8-94fa-29c4c3455183">VALLAEELARVEST MAKSTAV LAPSEHOIUTEENUSE TOETUS</peatykkPealkiri>
+			<paragrahv id="para3">
+				<paragrahvNr id="87df0219-0b25-4e8a-995a-7e4208033001">3</paragrahvNr>
+				<kuvatavNr id="dab66a53-6a9e-4b8a-a2a5-e506501a6cc8"><![CDATA[§ 3. ]]></kuvatavNr>
+				<paragrahvPealkiri id="adc76082-fa48-47b3-a47f-86cfd46b8418">Toetuse andmise alused</paragrahvPealkiri>
+				<loige id="para3lg1">
+					<loigeNr id="3b4b33da-2a72-4213-9ad7-56c4b8c6a378">1</loigeNr>
+					<kuvatavNr id="0ebfd0fd-0223-4686-971d-415fa5c67492"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="23b6df97-1456-4406-94bb-d8a1acdd1f67">
+						<tavatekst id="c3d51f6e-eef0-47d4-bb1e-4c5e892bb804">Lapsehoiuteenuse toetus määratakse ja makstakse lapse hooldusõigust omavale isikule alljärgnevatel tingimustel:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para3lg1p1">
+						<alampunktNr id="af3e0fef-e12c-487e-999c-9f9da8f2e84f">1</alampunktNr>
+						<kuvatavNr id="ca05519d-138e-421a-b0db-a3f92127c745"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="8969b19e-4757-4882-a651-1f7b2dc98698">
+							<tavatekst id="3d7a96d1-6bcf-4779-b3c0-5a404466373a">toetuse taotleja ning lapse, kelle jaoks toetust taotletakse rahvastikuregistri järgne elukoht on Jõelähtme vald ning</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para3lg1p2">
+						<alampunktNr id="499215a8-192d-4027-a8ff-18985128730a">2</alampunktNr>
+						<kuvatavNr id="d2103209-6642-4029-8afb-11ceb02f8867"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="5f547e8b-f67f-4ec7-aba2-e4b3565ace3d">
+							<tavatekst id="a57eab8f-e20e-42c3-998d-900d9bbc63e7">laps, kelle jaoks toetust taotletakse ei ole kantud ühegi munitsipaal- või eralasteaia nimekirja, aga on registreeritud Jõelähtme valla haldusterritooriumil asuva munitsipaallasteaia järjekorda.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para3lg2">
+					<loigeNr id="e95b237f-544d-4ba5-b6b1-0d20ff3aba58">2</loigeNr>
+					<kuvatavNr id="1ba1bc70-4224-4aa1-8ee7-1f618a3fdde4"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="60cd6696-e259-4c15-bb41-c9e41404abca">
+						<tavatekst id="df67398c-be04-4b56-b203-9f98ec0755c5">Lapsehoiuteenuse toetust on õigus saada lapsevanemal, kelle laps ei saa lasteaiakohta Jõelähtme valla haridusteenuste haldamise süsteemis ARNO esitatud lasteaiakoha taotlusel märgitud ajaks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para3lg3">
+					<loigeNr id="07027b94-da2a-49e0-9f8e-9c4892dd0e62">3</loigeNr>
+					<kuvatavNr id="816786af-f0ec-4505-bca8-b38f0dfeac4c"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="4930bdee-dd62-4750-bbd0-10025c2a33e4">
+						<tavatekst id="551c11f2-0555-4d56-b1af-75061dc0bb20">Õigus toetust taotleda tekib perehüvitiste seaduse alusel saadava hüvitise maksmise lõppemise kalendrikuule järgnevast kuust ning lõpeb lapse vastuvõtmisel koolieelsesse lasteasutusse või õppima asumisel üldhariduskoolis.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para3lg4">
+					<loigeNr id="21014bc3-1902-47e2-b889-e26aa3179856">4</loigeNr>
+					<kuvatavNr id="b81cb917-e659-4715-b7a4-160d8adf7490"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="054608fc-4800-47bd-be2d-04f2975c8a8d">
+						<tavatekst id="606e0a7e-4673-425b-bcdd-1436a7323170">Toetuse saaja on kohustatud teavitama koheselt Jõelähtme vallavalitsust (edaspidi vallavalitsus) käesoleva paragrahvi lõigetes 1 või 3 toimunud muudatustest.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="cf8f3c14-4bca-445c-973e-feed8ddbf52d">
+			<peatykkNr id="f7463374-1bbd-4564-8dae-28d41adf24e9">3</peatykkNr>
+			<kuvatavNr id="2a39a7ee-4903-43fc-8ba6-07292aa94fba"><![CDATA[3. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="09f07ec4-9c0c-41d5-b04c-1256bfb4d4f6">SUURE HOOLDUS- JA ABIVAJADUSEGA LAPSE LAPSEHOIUTEENUSE RAHASTAMINE</peatykkPealkiri>
+			<paragrahv id="para4">
+				<paragrahvNr id="e859a13e-7a3e-4cdb-9fa0-f79375d32bec">4</paragrahvNr>
+				<kuvatavNr id="19e600af-3c3f-4465-af77-00465be7cf27"><![CDATA[§ 4. ]]></kuvatavNr>
+				<paragrahvPealkiri id="2d12a1c3-a47f-465a-bee2-0fe7683038bf">Teenust saama õigustatud isikud</paragrahvPealkiri>
+				<loige id="para4lg1">
+					<loigeNr id="682119a2-51fc-4e54-9a58-711254db5801">1</loigeNr>
+					<kuvatavNr id="6bde5207-9008-47ff-9242-c89001d1ff63"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="2c93c35c-36bd-4156-bc2c-9b6a0a43de6c">
+						<tavatekst id="25d847bc-a627-41bf-bef5-48bf9522da0e">Suure hooldus- ja abivajadusega lapse lapsehoiuteenusele on õigus lapsel kuni selle kalendriaasta lõpuni, kui laps saab 18-aastaseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4lg2">
+					<loigeNr id="eae40666-e54e-42ea-9ffb-7b9e2e6eaea0">2</loigeNr>
+					<kuvatavNr id="e46f4001-6b7b-4402-96f3-351300c45698"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="0a76a2f0-9976-4528-a3bb-82e20520f41a">
+						<tavatekst id="f1765a8f-6b30-4517-b7ff-04b9e25e98eb">Vallavalitsuse sotsiaalametnik hindab teenuse vajadust igal lapsel eraldi.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4lg3">
+					<loigeNr id="f5106efd-7bd6-4c0d-a7c2-15bbec93d278">3</loigeNr>
+					<kuvatavNr id="5bc4e7bd-284a-4b6a-9763-f4bfcebdf735"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="f3d9f347-4540-4db4-845b-f619e3be7f19">
+						<tavatekst id="5eb89835-c7c3-4304-a7d9-4eb25755ce29">Ametnik hindab teenuste vajadust igal lapsel eraldi lastekaitseseaduse § 28 alusel ja täidab sotsiaaltoetuste ja teenuste infosüsteemis STAR lapse juhtumiplaani.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para5">
+				<paragrahvNr id="59b80ebf-863b-4639-8133-210fdd6b8eda">5</paragrahvNr>
+				<kuvatavNr id="62442dbd-6eb8-41d1-831d-bbc2f73e8c18"><![CDATA[§ 5. ]]></kuvatavNr>
+				<paragrahvPealkiri id="d8a7cd48-c2bf-44d6-a775-bba388ae54ee">Toetavate sotsiaalteenuste rahastamine</paragrahvPealkiri>
+				<loige id="para5lg1">
+					<loigeNr id="f364d047-ebf5-4f2b-822d-179acd9b034c">1</loigeNr>
+					<kuvatavNr id="9045c27c-d726-4331-a809-1fecd9e42f52"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="7f37174f-6dc8-4ecb-b155-c3ae69b3795b">
+						<tavatekst id="fa953dcf-54ea-4c24-96ba-83d2517ad33b">Riigieelarvest toetusfondi kaudu eraldatavaid vahendeid võib vallavalitsus kasutada suure hooldus- ja abivajadusega laste ja nende peredega seotud sotsiaalteenuste osutamiseks ja arendamiseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para5lg2">
+					<loigeNr id="4e5c24bf-43b1-4064-9c05-ec63ac4a25d7">2</loigeNr>
+					<kuvatavNr id="c4a422e5-1c68-4d66-afb8-dad75b311be3"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="49f1f3df-9bed-47c2-bcbf-7efd6863faff">
+						<tavatekst id="d81373bb-7866-4cb1-bd69-832745b4a908">Toetavad sotsiaalteenused on:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para5lg2p1">
+						<alampunktNr id="9668b4fb-ca0c-4f20-b3d6-c8a6b3aff052">1</alampunktNr>
+						<kuvatavNr id="21da828c-7799-4c71-85a6-9693e6fd5584"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="81845c28-893f-457d-9a1c-3a7668d81873">
+							<tavatekst id="ed4a657b-1494-4f86-98a9-0388a7cfe0e9">transporditeenus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg2p2">
+						<alampunktNr id="89d78279-f223-41db-89de-6a7625cc3f91">2</alampunktNr>
+						<kuvatavNr id="1117ce20-f9ae-4889-a7c0-1af4f04bb450"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="ac5d4a57-18d3-47a5-bc3b-82c854178689">
+							<tavatekst id="d5f3e801-d831-494b-98b6-491ffd181344">psühholoogiteenus, logopeediteenus ja muud teraapiad, mille vajadus on hinnatud erialaspetsialistide poolt;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg2p3">
+						<alampunktNr id="a03d4bf2-736e-4e7c-b786-a7b4ac96dc36">3</alampunktNr>
+						<kuvatavNr id="a509e624-a6bc-405a-a45e-898e56514f8c"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="946252df-5d5c-42f4-b464-ad1bec5c8423">
+							<tavatekst id="a54b7990-a8cc-49e6-91de-71dd7f1f5c8e">isikliku abistaja või tugiisiku teenus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg2p4">
+						<alampunktNr id="b2a119d2-4fd7-4a4b-8b52-479d2cc96181">4</alampunktNr>
+						<kuvatavNr id="f93c7979-65da-47ad-bb78-595517d7e0ab"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="a5b10a34-a13f-430d-b89e-91e8748a2199">
+							<tavatekst id="678a9507-4941-40a2-adb9-ed6ba66c30eb">abi- ja tugivahendite soetamine/rentimine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg2p5">
+						<alampunktNr id="b0b8cf12-75e0-4aab-92b8-daa8f942fb6b">5</alampunktNr>
+						<kuvatavNr id="955d8706-c3fc-42c2-8893-11a2755728df"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="2df358e0-770d-4e72-87ec-19484fa4a5f3">
+							<tavatekst id="1bcb0b2f-7704-4116-9b8a-b3bd24e9b550">muud teenused või toetused, mis soodustavad suure hooldus- ja abivajadusega lapse ja tema perekonna toimetulekut ning aitavad vähendada perekonna hoolduskoormust või hooldus- ja abivajadusest tulenevaid lisavajadusi.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para5lg3">
+					<loigeNr id="8a03938b-4a01-482a-b7a1-447a718307f7">3</loigeNr>
+					<kuvatavNr id="670d1e10-1245-4dc3-9439-d1e92c24343c"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="6393236f-c3a0-4f47-a06b-8ba422522dd4">
+						<tavatekst id="93b4437a-ab00-4c27-bdea-c2d66c3cbb07">Suurema teenusevajaduse korral eraldab vallavalitsus vastavalt riigieelarvest suure hooldus- ja abivajadusega laste arvule eraldatud kindla piirsumma ulatuses lisatoetust.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para5lg4">
+					<loigeNr id="290f51f2-45ff-4f36-9f63-3eb195e111be">4</loigeNr>
+					<kuvatavNr id="ebcc4885-f17f-44d3-9dac-55c75fee6294"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="9361cf11-951f-4930-a8a1-1f85958e1948">
+						<tavatekst id="206f35e6-931e-4ac5-b8eb-797d52826b51">Teenuse osutaja või abi- ja tugivahendi müüjaga sõlmitakse leping ja/või tasutakse teenuse või abi- ja tugivahendi eest teenuse osutajale või eseme müüjale/rentijale arve alusel. Lapse seaduslikule esindajale või perekonnas hooldajale väljamakseid ei tehta.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="8abb8dd6-6c80-45d9-a5e8-e359881f9017">
+			<peatykkNr id="4ef2fac4-dd96-4c55-8343-1da1d7982c71">4</peatykkNr>
+			<kuvatavNr id="9a355a15-c956-4c22-9814-45445b4ec7f0"><![CDATA[4. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="86677b52-c52c-4120-870c-717450cb1499">LAPSEHOIUTEENUSE TOETUSE TAOTLEMINE</peatykkPealkiri>
+			<paragrahv id="para6">
+				<paragrahvNr id="8e476d1a-e3ac-45f5-81fd-13b2b4fec0f2">6</paragrahvNr>
+				<kuvatavNr id="478f2a69-0e26-4c1e-a0b5-2694a2917dd7"><![CDATA[§ 6. ]]></kuvatavNr>
+				<paragrahvPealkiri id="b8f68c48-dc8c-47db-a181-59c7858bffd3">Lapsehoiuteenuse toetuse taotlemine</paragrahvPealkiri>
+				<loige id="para6lg1">
+					<loigeNr id="9e4411cc-f42f-4ded-9d20-166b0da5e8f1"/>
+					<kuvatavNr id="3af45b53-b9cc-42e5-93ab-27e2d3b79702"/>
+					<sisuTekst id="796bcb9a-5c00-4273-a36e-5829ec046426">
+						<tavatekst id="6259082f-ff49-4de8-aca0-a148c88ee65b">Toetuse taotleja esitab vallavalitsusele:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para6lg1p1">
+						<alampunktNr id="c0a28581-3fa2-4cb8-b6ba-e4b6f8b49fb7">1</alampunktNr>
+						<kuvatavNr id="92c17777-65e3-49f7-a7ea-f6999f70d553"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="f775cc10-5c48-4269-8e41-dc0f8599d550">
+							<tavatekst id="c6102705-fd83-445b-817e-b34a6b4d091b">Jõelähtme valla haridusteenuste haldamise infosüsteemis ARNO taotluse;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para6lg1p2">
+						<alampunktNr id="a93e6474-8b57-4df2-9abd-752c0f1d076e">2</alampunktNr>
+						<kuvatavNr id="2294d48e-b343-41e0-ac72-885a97f1357d"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="76e566ea-476f-4d1a-96f2-9592f8584f24">
+							<tavatekst id="c3ddfb03-31d1-4431-b755-4d7186823b97">teenuse pakkuja poolt esitatud arve, kus on eraldi välja toodud kohatasu- ja toiduraha maksumus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para6lg1p3">
+						<alampunktNr id="461a53dd-dc3f-45c9-af0b-dd137a775321">3</alampunktNr>
+						<kuvatavNr id="3049e3fd-560f-49e9-bd88-c22c4b0b0c1d"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="9caf0c2f-5a62-4cc5-9d43-b855443c566c">
+							<tavatekst id="afce3d73-88e9-4ea7-9d4a-e935e8705685">lapsehoiuteenuse eest maksmist tõendava dokumendi.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="25363b5b-9cdd-4029-8e1d-df951943d085">
+			<peatykkNr id="431e86c7-dcd0-4a4d-81ad-9b829526ab83">5</peatykkNr>
+			<kuvatavNr id="119be0a8-639c-4f7c-80cf-cc30c0fde5d5"><![CDATA[5. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="5b2c3627-5ac9-483d-a601-122769afed1f">TOETUSE MÄÄRAMINE JA MAKSMINE</peatykkPealkiri>
+			<paragrahv id="para7">
+				<paragrahvNr id="c92ac7f3-040d-4c1c-b78f-cccc918e1263">7</paragrahvNr>
+				<kuvatavNr id="a6549c32-339a-4a61-9565-f9aa9fa6c8c4"><![CDATA[§ 7. ]]></kuvatavNr>
+				<paragrahvPealkiri id="057d655c-b867-4df9-ae72-2d7f186584f5">Toetuse määramine ja maksmine</paragrahvPealkiri>
+				<loige id="para7lg1">
+					<loigeNr id="04687189-b4c2-4c5c-b03c-07e0eafcc969">1</loigeNr>
+					<kuvatavNr id="4b0129a2-f1e5-4d88-9b20-08bcfab79a11"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="8f518a36-ed7a-4578-b2b7-97674788437d">
+						<tavatekst id="793892c7-5c2a-4a8d-a8eb-1fc29431562c">Valla eelarvest makstava lapsehoiuteenuse toetuse määr on kuni 192,00 eurot kuus lapse kohta ning see on võrdne koolieelsetele eralasteasutustele makstava toetuse määraga.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para7lg2">
+					<loigeNr id="942495fa-e9e1-4c15-973b-62b80bf7e89e">2</loigeNr>
+					<kuvatavNr id="aa401c58-4427-4f3f-a955-391a2e562067"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="afd19be7-f891-4ec7-9ceb-c823ab7ba1e8">
+						<tavatekst id="2b622358-6293-4315-905c-4d157dc1a8c4">Kui vallavalitsusel ei ole võimalik pakkuda 1,5-kuni 7-aastasele lapsele kohta oma haldusterritooriumil asuvas lasteaias on lapsevanemal õigus saada lapsehoiuteenuse toetust kohatasu maksmise hüvitamiseks alljärgnevalt:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para7lg2p1">
+						<alampunktNr id="f0975dd5-c5a5-40b4-9c27-a6011417159c">1</alampunktNr>
+						<kuvatavNr id="b9c4901b-3c76-4f99-9fe1-f64a745dd297"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="ad9a0346-6e09-4584-ba43-b70e017a0000">
+							<tavatekst id="2238e397-0ad6-4bad-9132-00bb66ff262c">1,5-kuni 3-aastase lapse vanemale makstav toetus. Lapsevanemate poolt kaetav kohatasu suurus on sama Jõelähtme Vallavolikogu 16.12.2021 määruses nr 5 “Koolieelsetes lasteasutustes lapsevanema poolt kaetava osa määr ja tasumise kord” kehtestatud kohatasu maksmise põhimõtetega. Õppeaasta keskel 4-aastaseks saava lapse puhul kehtivad tingimused kuni õppeaasta lõpuni.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para7lg2p2">
+						<alampunktNr id="8f4eeb1c-ab4f-4119-98da-b6a499dbc5dc">2</alampunktNr>
+						<kuvatavNr id="d994ded8-e42a-4cf2-a30c-9cb8a4a7a1aa"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="71c95f5c-a31b-4a5d-bd72-be5c102a9bfd">
+							<tavatekst id="e5f202dd-306a-48cb-93ed-6d50990fac69">4-kuni 7-aastase lapse vanemale makstav toetus. Toetust makstakse käesoleva paragrahvi lõikes 1 sätestatud määras.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para7lg3">
+					<loigeNr id="91c1b981-bade-4078-b6df-477e364c79fe">3</loigeNr>
+					<kuvatavNr id="a4b80946-abec-47a3-b879-ada5f3831028"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="8e66c560-a60d-4bff-b75d-b1301406b29b">
+						<tavatekst id="20190b3f-110f-4ce7-b510-c3c44e558eae">Kui vallavalitsusel on pakkuda koht oma haldusterritooriumil asuvas lasteaias 1,5-kuni 3-aastasele lapsele õppeaasta keskel, kuid lapsevanem soovib kasutada lapsehoiuteenust õppeaasta lõpuni, siis kehtivad käesoleva paragrahvi lõike 2 punktis 1 tingimused.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para7lg4">
+					<loigeNr id="c935da21-3440-4daa-80cd-f4f38e2de722">4</loigeNr>
+					<kuvatavNr id="7ece8630-b3d8-429f-ae04-8bf9939c2163"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="92dfebbc-9a25-48a3-8fdb-6cfc06fffab1">
+						<tavatekst id="f04680ce-e1f9-4e58-ac18-6c18d60332aa">Juhul kui vallavalitsusel on pakkuda koht oma haldusterritooriumil asuvas lasteaias 4-kuni 7-aastasele lapsele, kuid lapsevanem soovib alustada/jätkata lapsehoiuteenusega, siis lapsehoiuteenuse toetust ei maksta. Erandkorras, põhjendatud taotluse alusel, otsustab toetuse määramise vallavalitsus sotsiaalkomisjoni ettepanekul.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para7lg5">
+					<loigeNr id="cf2ab8a7-6b65-4e88-8668-3198543bb425">5</loigeNr>
+					<kuvatavNr id="b49b32c8-f31d-4c5b-8fe3-b8ee6a65f531"><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst id="5ccfa035-4af1-4586-9d5f-8d66e9179617">
+						<tavatekst id="7884de32-ae03-4949-9c1f-977ef51e07e6">Lapsehoiuteenuse eest makstav toetus on kulutuste põhine ning seda makstakse arve ja kuludokumentide alusel, millest nähtub teenuse kasutamise periood, teenuse eest makstud kohatasu suurus ja maksmise kuupäev.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para7lg6">
+					<loigeNr id="854136ca-697c-40db-9c78-53b0feed4322">6</loigeNr>
+					<kuvatavNr id="476c85c9-36f0-413e-81ba-25f218c26a8f"><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst id="123f1206-71ed-4b13-bf17-23a60f580f7e">
+						<tavatekst id="d9872614-d8d0-4c49-b721-b43fb0044fc7">Toetust makstakse alates päevast, kui taotleja on asunud õigustatult lapsehoiuteenust kasutama, kuid mitte rohkem kui kaks kuud tagasiulatuvalt taotluse esitamise hetkest arvates.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para7lg7">
+					<loigeNr id="0d75eb80-783a-4197-8648-87e0eab6f2ce">7</loigeNr>
+					<kuvatavNr id="267ba961-48d3-4696-8658-d63191baac70"><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst id="49d96322-d19b-4698-a348-4627f0b18962">
+						<tavatekst id="f26e24a5-7f7b-4c83-925e-9d12c16d49dc">Mittetäieliku koha kasutamise korral (nt. üksikutel päevadel suvekuudel või kui kohta hakatakse kasutama arvlemise kuu keskel) arvestatakse lapsevanema omaosalust proportsionaalselt kasutatud teenuse ajaga.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para7lg8">
+					<loigeNr id="b90041f2-3fd4-4b0d-a3a1-98d30b2ef8da">8</loigeNr>
+					<kuvatavNr id="b2a5c7f7-7da2-49ef-ad1a-7bb21f12b558"><![CDATA[(8)]]></kuvatavNr>
+					<sisuTekst id="d5222c18-8add-4945-ab06-26c33fb27c74">
+						<tavatekst id="ccb0eccf-e25e-4144-8c96-55a37ea56538">Suure hooldus- ja abivajadusega lapse lapsehoiuteenuse ja toetavate teenuste rahastamine toimub teenuseosutaja esitatud arve alusel. Teenuse vajaduse hindamine toimub iga lapse puhul eraldi arvestades konkreetse lapse ja tema pere vajadusi.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para7lg9">
+					<loigeNr id="13b87b19-e34e-44df-ab40-8b5f92f524d9">9</loigeNr>
+					<kuvatavNr id="4b0bc8f3-483e-4ff5-a285-f295f08d0f6c"><![CDATA[(9)]]></kuvatavNr>
+					<sisuTekst id="ec7a1503-f732-49ab-a0c0-c9c79bfaf8ce">
+						<tavatekst id="1dd5679b-4ca4-47de-b0af-3acd74aabd2d">Ametnikul on suure hooldus- ja abivajadusega lapse õigus ja kohustus vajaduse korral nõuda taotlejalt täiendavaid dokumente (pere- või eriarsti epikriis, raviskeem, rehabilitatsiooniplaan, õppe-nõustamiskomisjoni soovitused, lapse perekonnas hooldamise leping, iseloomustus haridusasutusest, individuaalse arengu jälgimise kaart), andmeid ning kontrollida esitatud andmete õigsust.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para7lg10">
+					<loigeNr id="1800cbbd-e832-438c-b72e-12d702bbab8d">10</loigeNr>
+					<kuvatavNr id="a91028e3-3e32-441d-bebe-75379fe7611f"><![CDATA[(10)]]></kuvatavNr>
+					<sisuTekst id="3a550045-5063-4109-9a7e-531a3bb09546">
+						<tavatekst id="58a698f7-1a61-4bf4-b6b3-9e9e098eeca5">Otsuse toetuse andmise või sellest keeldumise kohta teeb vallavalitsus 10 tööpäeva jooksul toetuse taotlemiseks vajalike dokumentide saamise päevast arvates.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para7lg11">
+					<loigeNr id="c057cf17-3be1-4c07-a2fe-c64953e70da4">11</loigeNr>
+					<kuvatavNr id="cae09626-5530-4dc4-bda2-e6a7179a9586"><![CDATA[(11)]]></kuvatavNr>
+					<sisuTekst id="865c3c9e-c768-43eb-bd42-f9b08cec962c">
+						<tavatekst id="048a9581-b442-470b-83e7-37bd7d706d4e">Kui taotlust ei rahuldata, saadab vallavalitsus taotlejale motiveeritud otsuse 10 tööpäeva jooksul otsuse tegemisest.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para8">
+				<paragrahvNr id="5c94f1f8-0609-44da-9c74-bbe9c32db17d">8</paragrahvNr>
+				<kuvatavNr id="cab0f2c7-d8ff-4b3b-afbf-4cebf66a41ac"><![CDATA[§ 8. ]]></kuvatavNr>
+				<paragrahvPealkiri id="ddba0f4b-ab18-4926-b503-8f5f44da48fe">Toetuse tagasinõudmine</paragrahvPealkiri>
+				<loige id="para8lg1">
+					<loigeNr id="f96fbb12-69d5-4f84-8796-e134eb6a70a7"/>
+					<kuvatavNr id="2b44baa5-01b9-4968-bf4f-de56a775e29c"/>
+					<sisuTekst id="c28a699f-a884-4c4d-956d-d913bbc2af20">
+						<tavatekst id="e7969269-9b77-4ac9-af3d-3fe7eff9a0e0">Toetuse tagasinõudmisel rakendatakse sotsiaalseadustiku üldosa seaduse § 31-35 sätteid.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para9">
+				<paragrahvNr id="e2bb4509-1cae-4dcc-b09d-e251f3535379">9</paragrahvNr>
+				<kuvatavNr id="7539fa4f-edea-4778-b463-b0c5b5aa97ad"><![CDATA[§ 9. ]]></kuvatavNr>
+				<paragrahvPealkiri id="ebb69d45-591b-4b81-ba32-87f9f6cc8568">Vaide esitamine</paragrahvPealkiri>
+				<loige id="para9lg1">
+					<loigeNr id="da11b7af-05a4-4e4c-b3fb-674d6f1b7e11"/>
+					<kuvatavNr id="338f6977-555e-4bc1-8cf1-20d9ba1bd803"/>
+					<sisuTekst id="03570a21-9e0c-424a-8b7b-a77ed1a4929e">
+						<tavatekst id="a7a365af-9b7f-4dee-b41e-03a1e707f413">Lapsehoiuteenuse korraldamisest keeldumisega seotud haldusaktiga mittenõustumise korral on taotlejal õigus esitada vaie vallavalitsusele või kaebus Tallinna Halduskohtule halduskohtumenetluse seadustiku §-s 46 sätestatud tähtaegadel ja tingimustel.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para10">
+				<paragrahvNr id="bd46724d-ecb7-4d1e-a702-a9e43f93f9ce">10</paragrahvNr>
+				<kuvatavNr id="9ae7d32e-eb30-4342-b0bf-377fcb214758"><![CDATA[§ 10. ]]></kuvatavNr>
+				<paragrahvPealkiri id="85e254c4-f584-4ab9-8538-9059e1dcf8b2">Määruse kehtetuks tunnistamine</paragrahvPealkiri>
+				<loige id="para10lg1">
+					<loigeNr id="066358b9-a1d7-4da0-a57d-cf78fe3617bd"/>
+					<kuvatavNr id="4b39f30e-1a01-4bab-824f-c047322629cb"/>
+					<sisuTekst id="e5b09b72-6972-43cf-9192-34aac33cb02b">
+						<tavatekst id="e7328982-a9b4-4578-9ff2-9e61344dac29">Tunnistada kehtetuks Jõelähtme Vallavolikogu 12.01.2017 määrus nr 100 „Lapsehoiuteenuse rahastamise tingimused ja toetuse maksmise kord Jõelähtme vallas“.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+	</sisu>
+	<allkiri id="d437e31f-5805-4d5c-8828-9a38374b0447">
+		<allkiriKoht id="2e5a448f-4cf7-4086-b4ac-30e30f4592d7"/>
+		<allkirjastaja id="85065833-a146-4b91-b6b6-15b96576301b">
+			<ametinimetus id="de404828-166a-43b4-ade1-d749d246eb33">vallavolikogu esimees</ametinimetus>
+			<eesnimi id="695191f1-9903-4c9b-8156-1a817f877506">Väino</eesnimi>
+			<perekonnanimi id="02f0d3e8-ead9-4599-8b2f-b47a80355c00">Haab</perekonnanimi>
+		</allkirjastaja>
+	</allkiri>
+</oigusakt>

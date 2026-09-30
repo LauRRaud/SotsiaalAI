@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="9efb8775-46f3-4a24-aae0-2f48a0f54e32" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Mulgi Vallavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>algtekst-terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2018-04-18</aktikuupaev>
+			<aktiNr>23</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2018-04-28</avaldamineKuupaev><RTaasta>2018</RTaasta><RTartikkel>78</RTartikkel><aktViide>428042018078</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2018-05-01+03:00</kehtivuseAlgus></kehtivus><versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2018-04-24</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>428042018078</globaalID>
+		<metaandmedVersioon>6</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2018-04-25</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1042924</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+	</metaandmed>
+	<aktinimi id="61095453-7ebe-47f4-8a14-2182e8bb78d1">
+		<nimi id="1a12e5a9-683f-4999-9e1e-003cb22f6e68">
+			<pealkiri id="e48abc3a-cea9-404f-b8b7-8443c4b83975">Projekti „Puuetega inimeste eluaseme füüsiline kohandamine“ toetuse andmise tingimused ja kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<sisu id="45e84d5e-71ce-4309-b91d-fbca0639122b">
+		<preambul id="1459e4a4-c642-4338-adcf-66e14f9c10f3">
+			<tavatekst id="429fff44-ea9c-4fbc-9f9c-b554a49d6d64">Määrus kehtestatakse sotsiaalkaitseministri 03.03.2018. a määruse nr 4 „Puuetega inimeste eluaseme füüsiline kohandamine“ § 24 lõike 1 punkti 1 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="852cd1d6-9791-4fe1-8d0d-58f47e0e7e55">1</paragrahvNr>
+			<kuvatavNr id="68a407f2-18ed-4980-b956-e00b6c0b2313"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="c6e56f00-018b-4d75-8bcc-c957e3dde499">Üldsätted</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="9b017037-e729-4494-844b-b58a6df89e7a">1</loigeNr>
+				<kuvatavNr id="84d89889-9f73-4f08-ba00-3440acafa1d3"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="8866b399-ede5-4718-8338-a52a6c74e953">
+					<tavatekst id="492fa466-2e4c-4bcb-8853-6be37983c0c8">Projekti „Puuetega inimeste eluaseme füüsiline kohandamine“ toetuse andmise tingimused ja kord (edaspidi määrus) sätestab riigi poolt rahastatava projekti „Puuetega inimeste eluaseme füüsiline kohandamine“ toetuse (edaspidi kohandamise toetus) andmise tingimused.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg2">
+				<loigeNr id="0063f131-7ea5-42c3-8bb3-0704721ad4e8">2</loigeNr>
+				<kuvatavNr id="9c252f34-42ad-4201-b9d7-494ea5fb49f2"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="4c9d600b-12d0-4c2d-86ed-a76a64b94108">
+					<tavatekst id="c45fc65c-6435-4798-9044-37f2d90ebe84">Kohandamise toetuse eesmärk on kohandada puudest tuleneva erivajadusega inimese eluruumid vastavalt tema puudest tulenevatele vajadustele, mille tulemusel paraneb isiku iseseisev toimetulek ja väheneb hoolduskoormus ning tagada puudega inimestele paremad elamis-, õppimis- ja töötamistingimused.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg3">
+				<loigeNr id="3198dcfa-f9c9-4ee2-a949-4eeee2f73316">3</loigeNr>
+				<kuvatavNr id="45eff142-1da4-4845-bf0d-e34a007b3424"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="88350896-06ba-48bf-81b5-edb50b5b895b">
+					<tavatekst id="f140a3db-40ec-49c6-bea2-9d820e18c443">Kohandamise toetuse taotluste esitamiseks kuulutab Mulgi Vallavalitsus (edaspidi vallavalitsus) oma halduspiirkonnas välja taotluste vastuvõtmise taotlusvooru, mille täheaeg on vähemalt üks kuu. Teavitades sellest valla kodulehel ja valla ajalehes.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="cfa8fb16-29ab-44ac-9d86-42805eba7961">2</paragrahvNr>
+			<kuvatavNr id="76535a0a-452e-40f0-8b18-3c79c4fe8746"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="cec8339d-bb46-4047-9311-841fb40028da">Määruses kasutatavad mõisted</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="bd6e8b74-f036-402a-8e25-e572995a572c"/>
+				<kuvatavNr id="e3fe4c45-6cb2-4e19-9e7e-77abfe991d85"/>
+				<sisuTekst id="755ce921-f4cd-46cd-b1db-da824ef0ca5a">
+					<tavatekst id="cfe1d252-e899-4156-81a4-3ac950ff69da">Käesolevas korras kasutatakse mõisteid järgnevas tähenduses:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para2lg1p1">
+					<alampunktNr id="6cfcdf14-ac6f-41c5-98ad-067e9034bb27">1</alampunktNr>
+					<kuvatavNr id="9b828db0-cbf5-4b1c-b0e4-0c1c994e4524"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="4cfa26c3-9e2c-4737-bb3e-d3df7bc03b77">
+						<tavatekst id="f10ada89-019b-48de-bbb4-5c61817bc076">kohandatav eluruum – ruum või ruumide kogum, sealhulgas abiruumid, mis on ette nähtud aastaringseks elamiseks ning on taotleja rahvastikuregistrijärgne ja tegelik elukoht või kohaliku omavalitsuse omandis olev eluruum, mis antakse üürilepingu alusel puudega inimese kasutusse (v. a varjupaigateenuse ja turvakoduteenuse asukoht);</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p2">
+					<alampunktNr id="628b66a5-7151-4cc2-bdc1-af226c41764e">2</alampunktNr>
+					<kuvatavNr id="52a0e148-0c99-481e-842f-ba5ce70cc70e"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="e2dd9315-a84b-42d1-8410-7ff2f4a56947">
+						<tavatekst id="88b6ec1c-0fb0-4302-acd1-e42ea8f57682">füüsiline kohandamine – puudega inimese erivajadustest tulenev eluruumi ümberehitamine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p3">
+					<alampunktNr id="cc7a68fa-099c-4b12-9790-e8f6ec0d9bef">3</alampunktNr>
+					<kuvatavNr id="1aa69c6c-b0b7-43ef-916d-bccecf519dfe"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="01dcfe03-8543-41ed-b52a-9f760f76bcd0">
+						<tavatekst id="a8b35141-d0ab-4b0c-9bf2-860ac32bed3f">puue – taotlejal tuvastatud puue puuetega inimeste sotsiaaltoetuste seaduse tähenduses;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p4">
+					<alampunktNr id="fa091547-5cec-4c0b-81ee-d600ffd0aa39">4</alampunktNr>
+					<kuvatavNr id="da89ec00-874f-45ed-ab0a-9327e0523d98"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="aa996162-ea66-4f79-876f-90298aad2c99">
+						<tavatekst id="6490b28c-3574-4f99-8385-90c41677494e">taotleja – isik, kelle eluruume kohandatakse tema puudest tuleneva erivajaduse tõttu;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p5">
+					<alampunktNr id="a66cab3d-1e43-47e8-835d-2a0bc76c909d">5</alampunktNr>
+					<kuvatavNr id="adc3fc5a-237a-44cd-9e11-cedd8e240174"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="74ecd912-fc34-4c19-b4a8-d0579dcebb8b">
+						<tavatekst id="e5e89b6a-0fe6-4c50-a272-06aba5478199">liikuvusega seotud toimingud – püsti, pikali ja istuma saamine, treppidest üles ja alla liikumine, ustest ja väravatest sisse ja välja liikumine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p6">
+					<alampunktNr id="db6a05a3-d4ed-4445-84b7-e38414d51958">6</alampunktNr>
+					<kuvatavNr id="0491a065-7a0d-4b72-98bc-d3b09c3c9e9d"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="ec94927a-4899-4971-8f85-e61d0c109328">
+						<tavatekst id="7e291178-d8b1-4d3d-a6ad-4accd248a2d9">köögitoimingud – toiduvalmistamine, söömine ja joomine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg1p7">
+					<alampunktNr id="3816e4ac-cc9d-4a17-9cbb-c85937df0795">7</alampunktNr>
+					<kuvatavNr id="d61f059d-f106-4519-89f3-f4339b813cd6"><![CDATA[7) ]]></kuvatavNr>
+					<sisuTekst id="d4e24d0c-5823-4612-a8de-f7b352f0c624">
+						<tavatekst id="d80f2522-477c-4ad0-b4d1-c3e83636624d">hügieenitoimingud – pesemis- ja tualetitoimingud.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="73a46f1d-0acb-4eda-b533-d51c785c6898">3</paragrahvNr>
+			<kuvatavNr id="f6c77558-7c88-4c05-a4f3-848d58378b29"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="59aea441-f725-4236-98e5-ea9749b472fd">Kohandamise toetuse taotlemine</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="626a9f47-33e4-431c-8cdf-6b40adf8e6ae">1</loigeNr>
+				<kuvatavNr id="e289f99e-5c92-4570-9562-99a09a91874c"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="7bbd279e-4997-46c4-a9df-e8fdc6a8c612">
+					<tavatekst id="16d32486-ccf3-4c82-8d88-5a2c3976c578">Kohandamise toetust saab taotleda puudest tuleneva tegevuspiiranguga rahvastikuregistrijärgne Mulgi valla elanik, kes vajab kõrvalabi igapäevategevustes (edaspidi taotleja).</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg2">
+				<loigeNr id="0584cd4a-7698-4458-853e-75a234283831">2</loigeNr>
+				<kuvatavNr id="eaa8ae7c-4ef7-4a5a-87e7-98399dce3423"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="72aed3af-343b-439c-ad9d-f06a24073798">
+					<tavatekst id="69a0f3c3-8683-4aee-a21c-d2fedcf1dc1d">Kohandamise toetuse taotlemiseks esitab taotleja või tema esindaja kirjaliku taotluse (edaspidi taotlus) Mulgi Vallavalitsusele kahes osas alljärgnevalt:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para3lg2p1">
+					<alampunktNr id="2cd20bcb-ab26-4402-a7e7-b0f60befafe0">1</alampunktNr>
+					<kuvatavNr id="26d55d2a-65f5-4ea0-a30b-127d140e04ad"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="c01fcdbe-d51a-4601-a435-71a04c5439f6">
+						<tavatekst id="10c22b3a-194d-46af-8289-1cfbda0bc6b5">eeltaotlus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg2p2">
+					<alampunktNr id="9c332148-7ff3-4995-b0d6-ea68bc539d46">2</alampunktNr>
+					<kuvatavNr id="46e60e7e-b45d-437a-b9e8-656753f6baaa"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="fd176766-ee37-4ff8-93cb-81ae07c1ed3c">
+						<tavatekst id="7ed0765c-4c0a-4911-9a30-6e1fbe3d8869">põhitaotlus.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para3lg3">
+				<loigeNr id="b4e39c89-3d00-4b7c-a7a9-81ed2aca13d4">3</loigeNr>
+				<kuvatavNr id="9e0a6c80-fabf-4e79-9ac2-f534e8459d86"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="72abffaf-8339-4ecb-9d64-702de98e47ae">
+					<tavatekst id="a7d3b0df-2647-47de-834e-da9bed4e210b">Eeltaotluses märgitakse vähemalt:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para3lg3p1">
+					<alampunktNr id="171a15bf-3ca2-4905-b6fc-4e67de5a6a4b">1</alampunktNr>
+					<kuvatavNr id="54f17389-9523-4f5d-9fa5-5f6cd088db5b"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="763a3d81-1f4e-4109-8739-b86984e339a7">
+						<tavatekst id="c8e8f699-7c42-49fc-b9bb-ccf01001ff6b">taotleja nimi, isikukood, aadress;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg3p2">
+					<alampunktNr id="607252d5-0b67-4b13-a430-520f68b4610b">2</alampunktNr>
+					<kuvatavNr id="246a5e2d-c201-4e08-a9c7-ee45e958fe36"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="d19bae34-dc87-478b-bdf1-bcee6e5b1a60">
+						<tavatekst id="cbd96888-5805-4d94-b0ee-99a6d8d5ddf6">kohandatava eluruumi aadress;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg3p3">
+					<alampunktNr id="bad31202-b674-4ebd-afd4-b21501e10e8c">3</alampunktNr>
+					<kuvatavNr id="1c6c1717-cc21-485d-bcf1-1d56e9cbc37c"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="ba9070a4-e2bf-4eb4-9b92-ac4f781d9505">
+						<tavatekst id="a36c30e3-431a-44ec-aaf8-bfb4dbf0bf3f">planeeritav kohandus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg3p4">
+					<alampunktNr id="e59e521b-b2ed-49c9-8094-acb672d7a406">4</alampunktNr>
+					<kuvatavNr id="2d090d2f-d98f-40ab-b65a-da8d6ade1fb0"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="8ad28657-9704-491e-a852-a9d7d04b9562">
+						<tavatekst id="1edfaafa-de63-4753-a80e-33da143c920e">kohandamisest kasusaavate isikute arv.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg3p5">
+					<alampunktNr id="fcecfd4d-0927-431f-8f20-9ec536c58801">5</alampunktNr>
+					<kuvatavNr id="62d50e11-1796-4f26-ad42-0b71f60617fd"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="b1144483-19a0-468e-98d9-773adb2400ab">
+						<tavatekst id="ea5e1190-2483-40d6-99de-5b1ea447cd62">Sotsiaalkindlustusameti otsus puude raskusastme määramise kohta;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg3p6">
+					<alampunktNr id="ea0513ba-8b6b-429a-8cab-df7a919e470b">6</alampunktNr>
+					<kuvatavNr id="bd97d47f-792a-4eac-bac5-cad6223b024b"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="3ddb989a-f5c1-498d-bbb8-f2ca31164443">
+						<tavatekst id="e21b056b-5898-4164-a194-a78baf2a6fa3">üürileping, juhul kui taotleja ei ole kohandatava eluruumi omanik;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para3lg4">
+				<loigeNr id="8842034b-f912-4417-a000-4538f5516ddf">4</loigeNr>
+				<kuvatavNr id="b507f162-9236-4919-b8d8-99c2c50d9fa3"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="e7df6e43-d0a9-44b0-8976-3f7aed82900f">
+					<tavatekst id="f81ded6c-4d4e-4dc1-ae17-ed9ab9a01cb2">Põhitaotluses lisatakse eeltaotluses esitatud andmetele:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para3lg4p1">
+					<alampunktNr id="85cbe989-e9e9-4b99-a4bb-6c0395ff80a0">1</alampunktNr>
+					<kuvatavNr id="7cca7f6e-4cb3-45c5-a1b3-b1dc29d40098"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="d8e5dd56-a2b7-460a-b028-cd456395a1a3">
+						<tavatekst id="097bfec9-6fb8-4493-8f87-7b5ddff090d6">teostatavate tööde kaks hinnapakkumist;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg4p2">
+					<alampunktNr id="f0edddb6-5f6c-4de1-94da-e77305ff8372">2</alampunktNr>
+					<kuvatavNr id="1798af65-620e-4a43-aa71-7ff240a8ca86"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="b899590f-9d5b-48a9-9705-77a35b5fe196">
+						<tavatekst id="211d9c90-d57e-4742-9c47-154eece587cf">eluruumi omaniku (sh kaasomanike) nõusolek, kui kohandust taotletakse eluruumi sees;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg4p3">
+					<alampunktNr id="8d10226c-cda1-44ca-86d6-0119ef838d15">3</alampunktNr>
+					<kuvatavNr id="e3d68388-2716-4f14-a819-3af7a22110d7"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="44c0a5c5-3c95-477d-a762-521fbdd8bde4">
+						<tavatekst id="15474725-c647-488a-bc16-21561e82abaf">korteriühistu nõusolek, kui kohandust taotletakse kohandusteks väljaspool eluruumi;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg4p4">
+					<alampunktNr id="dc104353-5098-46ea-8674-3ca4269e2ad6">4</alampunktNr>
+					<kuvatavNr id="e5047016-a9fb-4c12-98e5-00466872a6d8"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="12c931b4-5acc-4f9f-b899-b157c297e0b1">
+						<tavatekst id="8ed1d5bd-12ec-48a3-869c-3a1711a6027f">nõusolek isikuandmete töötlemiseks.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para3lg5">
+				<loigeNr id="8055610a-30f6-4ab9-a7c4-1edfb223cde7">5</loigeNr>
+				<kuvatavNr id="b8bec8e2-a3e3-44ee-aa9f-046b311a3287"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="622ca58c-0577-408c-b2c1-5f740285a7ce">
+					<tavatekst id="b27b85ff-64ea-4903-8152-14deda0fd7ce">Vallavalitsuse vastaval ametnikul on õigus küsida taotlejalt täiendavaid dokumente.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="f87f2615-e943-409c-955d-0e3ad4edeae1">4</paragrahvNr>
+			<kuvatavNr id="d1f4cde0-64fb-40b9-b4e3-219d320597f1"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="ce39abc9-ee19-4959-817a-e6be01ce8f12">Kohandatav eluruum</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="b2a457b1-ed62-4e60-b06f-08cb36ea810c">1</loigeNr>
+				<kuvatavNr id="06d24768-eeee-4faf-a368-9b9fc74e5601"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="2d692e59-964e-404a-bcc0-0ff34a75345c">
+					<tavatekst id="96c31a5a-638f-427c-94b7-1d1ba8348800">Kohandatav eluruum peab olema taotleja rahvastikuregistrijärgne ja tegelik elukoht.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg2">
+				<loigeNr id="37cabc83-86b2-432a-8bbe-cf87fa76b564">2</loigeNr>
+				<kuvatavNr id="537087b1-6ad4-457c-9e12-9ff9c511fe55"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="057b123e-1348-4d96-b50c-be546782497b">
+					<tavatekst id="ef872b71-504d-42dc-a523-be6f7cabcb65">Kohandada saab eluruumi, mis on taotleja:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para4lg2p1">
+					<alampunktNr id="f348da65-cba9-4c1a-9344-337a87acbca4">1</alampunktNr>
+					<kuvatavNr id="e040db1f-9d3e-44c5-8cd4-e011024eae31"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="2dccee23-9741-43f5-851e-f988f17e80b5">
+						<tavatekst id="345e1d51-f0ee-4aa2-ba96-c94b85acc527">omandis või kaasomandis;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg2p2">
+					<alampunktNr id="9aeaaa9e-e6d1-4c2a-a8cd-652e2ff48f18">2</alampunktNr>
+					<kuvatavNr id="c33695c3-465f-4754-86ad-4ea17a4a988e"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="c721662d-c390-4dbb-93aa-dd047932dd35">
+						<tavatekst id="222b9aea-46cf-4724-9e14-a3cba0e4c70c">kasutuses lepingu alusel, mille järgi on taotlejal õigus asja igakordsest omanikust sõltumata kasutada kohandatavat eluruumi vähemalt viis (5) aastat kohanduse planeeritud lõpetamisest;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg2p3">
+					<alampunktNr id="72b3ceb3-bd8c-448f-a844-1170d3e10929">3</alampunktNr>
+					<kuvatavNr id="e0997bdb-e50d-47fa-a524-7179872bf330"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="c00166e2-e822-4514-bc3e-3161bc3439af">
+						<tavatekst id="e76d0a62-9c6e-42c0-b41e-88bc426dca92">vanema või lapse omandis või kaasomandis, või nende kasutuses lepingu alusel, mille järgi on neil õigus asja igakordsest omanikust sõltumata kasutada kohandatavat eluruumi vähemalt viis (5) aastat kohanduse planeeritud lõpetamisest.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para4lg3">
+				<loigeNr id="288907b5-858d-4eba-98e9-4bbc612af504">3</loigeNr>
+				<kuvatavNr id="b3645c72-9207-40b4-b279-c30795ee0ae3"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="8b889023-955f-4e96-9278-7956270452fa">
+					<tavatekst id="e5592c48-4363-471e-9188-294bd86bda31">Kui kohandatav eluruum ei ole taotleja või tema vanema või lapse omandis, peab koos taotlusega esitama eluruumi omaniku, kaasomandi puhul kaasomaniku ning vajadusel hoone teiste korteriomanike või korteriühistu kirjaliku nõusoleku kohanduse tegemise lubamise kohta.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg4">
+				<loigeNr id="030097d4-a1a9-4c3e-8542-efa9cac16ecf">4</loigeNr>
+				<kuvatavNr id="86438c95-e56c-4953-975f-36688c4c45b3"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="b80bae77-0853-4aee-9d14-caef27335baf">
+					<tavatekst id="948b2176-b56c-4789-9035-727da61f69da">Kui kohandatavale eluruumile on seatud hüpoteek, peab taotlusele lisama hüpoteegipidaja nõusoleku kohanduse tegemiseks, kui hüpoteegi seadmise kokkulepe piirab vara käsutamist.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg5">
+				<loigeNr id="fd85b264-c35b-4b20-a632-02fc5e7a2599">5</loigeNr>
+				<kuvatavNr id="236ba387-499f-40d7-9ccc-8e503fba248b"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="8743f9e6-3f15-4d84-8f47-66b4e8ffbbb1">
+					<tavatekst id="70a3325d-2bfc-415b-8fc7-d78f454baea2">Kohandada ei saa eluruumi, mille osas on algatatud täitemenetlus, välja arvatud juhul kui eluruumi kasutatakse lepingu alusel, mille järgi on neil õigus asja igakordsest omanikust sõltumata kasutada eluruumi vähemalt viis (5) aastat kohanduse planeeritud lõpetamisest.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="15f56095-c89c-4e1b-acbb-ca9289016d6d">5</paragrahvNr>
+			<kuvatavNr id="57c9e474-19cc-40f4-b074-f1239bc67712"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="3ecdfabb-b883-4f11-8fe9-9c7f000b7799">Taotluse menetlemine, kohandamise toetuse saajate nimekirja koostamine ja toetuse taotluse rahuldamise ning toetuse maksmise otsustamine</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="9f33b7e7-564f-4ccc-a034-4933b3bc99e3">1</loigeNr>
+				<kuvatavNr id="b226f61a-3db2-4d53-a6ee-baec6b8240cf"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="d445f71c-7917-43b9-9f6f-595576d338e9">
+					<tavatekst id="b500e370-afef-4b8a-8ed3-a272b48dd162">Eeltaotluse alusel kontrollib vallavalitsuse vastav ametnik:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para5lg1p1">
+					<alampunktNr id="513fa069-e129-4efe-abbb-52ce800a47b1">1</alampunktNr>
+					<kuvatavNr id="6ab63dcc-e7d8-414b-b72c-75764f1c606a"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="2e0c0eaf-bbf0-4c5d-afc5-605a887fcf57">
+						<tavatekst id="e95df8c6-b823-4d76-88df-bc7f83986674">kas taotlus vastab meetme eesmärkidele;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg1p2">
+					<alampunktNr id="70684f80-02f7-4a4f-b859-dfcce272f88f">2</alampunktNr>
+					<kuvatavNr id="d3bcafd4-5885-4f8e-b32c-8919ea4f537c"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="9c10537b-6b28-4e42-b3dc-5d3eae59d2ca">
+						<tavatekst id="6a61292a-7b22-4672-a39b-f5dae00824bf">kas taotlus on põhjendatud;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg1p3">
+					<alampunktNr id="83b0992e-c2df-4524-a263-77650c105399">3</alampunktNr>
+					<kuvatavNr id="4499df73-52f8-40db-af6d-0dcf3c5f3b81"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="e2f613b5-2f1d-4177-bf43-ef50b9eaf24c">
+						<tavatekst id="765d9983-2211-4022-bb4a-8774e0f0c770">kas taotluses nimetatud eluruumi kohandamist on võimalik ellu viia.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para5lg2">
+				<loigeNr id="1429b1e1-6cbd-4816-a3cd-22785fcbe1b9">2</loigeNr>
+				<kuvatavNr id="faa28bbf-5187-4696-914d-da58287adb1d"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="e8ea53a6-c4c2-4575-8a92-ad7ffa1d3046">
+					<tavatekst id="b37a9d3b-98c1-405f-86c5-a5e574ff1ff5">Kui eeltaotluse esitanud taotleja vastab meetme kriteeriumitele, esitab taotleja põhitaotluse.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg3">
+				<loigeNr id="8a2796e7-5651-430b-bcc4-5084d7b9dbea">3</loigeNr>
+				<kuvatavNr id="8cc448d8-2b23-4c85-84d9-71808bde298f"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="be5e65ef-df78-41f0-a8bb-c19c1d34d366">
+					<tavatekst id="3af7cdf3-b980-433a-8502-46754fa4ab02">Taotlused vaatab läbi vallavalitsuse kinnitatud 5 (viie) liikmeline komisjon.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg4">
+				<loigeNr id="fc7cfc4c-f7fb-4c50-9dc8-fc6b03191189">4</loigeNr>
+				<kuvatavNr id="5b949c87-b701-4ec2-846e-eb4999ed01cc"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="910f4f66-ea39-42c4-a913-29b0bf5e57f9">
+					<tavatekst id="1554b7b1-1f92-43a6-8db1-112ed463f9e8">Komisjon koostab toetuse saajate nimekirja.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg5">
+				<loigeNr id="8fa9b3e2-0c1a-4c7e-a481-f855583c279a">5</loigeNr>
+				<kuvatavNr id="3d5b3f24-5d54-4b20-adfb-75c06bf69bb0"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="3ff197e7-cd67-44c2-be5d-e4fefd795770">
+					<tavatekst id="f11c7020-f15f-41cc-8921-492d28cf84b4">Kui taotlusele ei ole lisatud käesoleva korra § 3 lõigetes 3 ja 4 nimetatud dokumente, määratakse taotluse esitajale tähtaeg puuduste kõrvaldamiseks.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg6">
+				<loigeNr id="dcffdf46-e9c8-4f1e-aa12-492fc1d0ce59">6</loigeNr>
+				<kuvatavNr id="0f2e2d2a-fc59-4783-9bf0-eccd2acff246"><![CDATA[(6)]]></kuvatavNr>
+				<sisuTekst id="440e7e63-2a9e-439f-abb9-6499df3dcf9f">
+					<tavatekst id="a04c730b-1431-4368-93ee-02b19a06f429">Kui taotluse esitaja ei esita nõutud dokumente ettenähtu tähtajaks, taotlust edasi ei menetleta.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg7">
+				<loigeNr id="98ca6fc0-9474-4df1-84b6-974dfe443c51">7</loigeNr>
+				<kuvatavNr id="522170c1-bf0e-46e2-a5d1-786002d9e41e"><![CDATA[(7)]]></kuvatavNr>
+				<sisuTekst id="6c29d569-ad8d-4f9c-9ddd-81072777fc11">
+					<tavatekst id="5b968584-696c-4e54-a20d-cda091bd79c2">Otsuse taotluse rahuldamise, toetuse maksmise, toetuse suuruse või toetuse maksmisest keeldumise kohta teeb komisjoni ettepanekul vallavalitsus.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg8">
+				<loigeNr id="a2646a17-9cba-49b5-a676-ec2ca75e7a56">8</loigeNr>
+				<kuvatavNr id="dec9e62d-7914-4f0b-be36-d8170fa6e445"><![CDATA[(8)]]></kuvatavNr>
+				<sisuTekst id="5aa78501-ac10-48b0-a475-f0a6e8b385ed">
+					<tavatekst id="bff70dec-9039-45db-ad92-a2b117bbb87b">Toetuse suurus määratakse standardiseeritud ühikuhindade alusel (Sotsiaalkaitseministri 26. veebruari 2018. a määrus nr 4 „Puuetega inimeste eluaseme füüsiline kohandamine“ Lisa 1), nende puudumisel tegelike kulude alusel.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg9">
+				<loigeNr id="51a4720e-fa4a-4fcf-b111-16f077773e07">9</loigeNr>
+				<kuvatavNr id="902db1c0-0c0a-4525-b72b-9eb7dcb426c5"><![CDATA[(9)]]></kuvatavNr>
+				<sisuTekst id="c3000641-d9bf-46b9-b238-88c83e719dfc">
+					<tavatekst id="09608783-bc77-44f4-8430-99dbff6ca903">Vallavalitsusel on õigus keelduda kohandamise toetuse maksmisest, kui:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para5lg9p1">
+					<alampunktNr id="27fddc36-18d3-40d4-8ae9-555e82677faa">1</alampunktNr>
+					<kuvatavNr id="b94a4b16-56ec-4dee-a572-96a9c75df069"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="ac079d4b-8e92-454c-9248-9e3cce5e5dc8">
+						<tavatekst id="907d50d8-ee4b-402e-b87e-4a2edf4994b3">eluruumis ei ole teostatud planeeritud kohandusi;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg9p2">
+					<alampunktNr id="c242877c-da18-46dd-b694-f4b6a7cd0d4e">2</alampunktNr>
+					<kuvatavNr id="d9d0b46e-1bc3-4eb5-b957-bb5682b5e8bf"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="33744945-fc1a-4d5e-9520-8623e027c4c4">
+						<tavatekst id="92b234aa-d234-42ab-ab38-3602f9da7dbd">toetuse taotlemisel on esitatud valeandmeid;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg9p3">
+					<alampunktNr id="30de00ba-8750-44c6-b21c-a15b7242aa96">3</alampunktNr>
+					<kuvatavNr id="e06f747a-4840-4f82-9593-61c8fcec22bd"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="5a4d6bfd-f1e9-42c6-a10d-8d475ba401f5">
+						<tavatekst id="bde75578-4b56-4ec0-a971-6f04bb24e0c6">toetust taotlenud isiku süü tõttu jäid kohandustööd kokkulepitud mahus tegemata või tehti kokkulepitust erinevad tööd;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para5lg9p4">
+					<alampunktNr id="85ea4b71-9b54-45e3-be85-f94fb8e6c94b">4</alampunktNr>
+					<kuvatavNr id="34ee1293-df7a-4a0a-8b81-d943a8147298"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="bb4e6ba2-f13e-481d-be10-26e603faa6d6">
+						<tavatekst id="7ebad115-e30c-4ac8-b739-1d28ff33936c">muudel lepingus sätestatud juhtudel.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para5lg10">
+				<loigeNr id="27490d09-e5ca-40bd-ac88-adc13202e78c">10</loigeNr>
+				<kuvatavNr id="9bb9e990-8103-4736-b6f1-b1849f77c126"><![CDATA[(10)]]></kuvatavNr>
+				<sisuTekst id="540c52aa-3231-4ece-a42b-ef8d5e289794">
+					<tavatekst id="7aa2f27e-4bb9-4092-a43c-62e303d342ef">Toetus makstakse välja pärast kohanduste teostamist ja tööde vastuvõtmist kui lepingus ei ole kokku lepitud teisti.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg11">
+				<loigeNr id="4fff0408-5ec4-4d3a-8073-4fa897c40048">11</loigeNr>
+				<kuvatavNr id="6569d5b0-2a15-4a29-8a21-5e7b93c29a42"><![CDATA[(11)]]></kuvatavNr>
+				<sisuTekst id="8d8fdea2-2307-406b-a560-736e8a545bc2">
+					<tavatekst id="20b4cf57-eca7-4f7e-b8a8-3b891a11e140">Taotluse võib osaliselt rahuldada, kui projekti eesmärgid, tulemused või väljundid on saavutatavad ka taotletust väiksema toetuse summaga.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg12">
+				<loigeNr id="efa9da6a-27cc-47aa-a54d-cbc5ff75fa8d">12</loigeNr>
+				<kuvatavNr id="e4ed18da-ed56-4e7a-b3b9-0bcdae53786d"><![CDATA[(12)]]></kuvatavNr>
+				<sisuTekst id="5cb9130d-dd30-4735-a456-efe947f088e5">
+					<tavatekst id="f34e5f6d-b759-480d-a7b9-fe63728000a0">Taotluse piirmäär on üldjuhul 7255 eurot, erandid on võimalikud komisjoni ettepanekul eriti mahukate kohanduste korral.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para6">
+			<paragrahvNr id="83af26e3-a378-4e2e-b96a-04b8cec3f9dc">6</paragrahvNr>
+			<kuvatavNr id="814e5e00-54df-4274-829d-26ae007cce7b"><![CDATA[§ 6. ]]></kuvatavNr>
+			<paragrahvPealkiri id="ed8da54e-998e-457a-9721-8c16cb36b04d">Kohandamise toetuse taotluse rahuldamise otsuse muutmine ja kehtetuks tunnistamine</paragrahvPealkiri>
+			<loige id="para6lg1">
+				<loigeNr id="1a16626b-3cf5-4771-9717-65fce79e2211">1</loigeNr>
+				<kuvatavNr id="6c17258b-97f3-4dfc-9f0a-7612f4b2f3db"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="c0daae8c-eb07-48dd-afcd-708696c62161">
+					<tavatekst id="967b2d8c-51cc-45a4-81c0-10302d9fe550">Taotluse rahuldamise otsust muudetakse või see tunnistatakse kehtetuks vallavalitsuse korraldusega, toetuse saaja sellekohase kirjaliku avalduse alusel või vallavalitsuse algatusel.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg2">
+				<loigeNr id="875fd54f-d0be-4061-8213-68bb6db1b306">2</loigeNr>
+				<kuvatavNr id="79b3d81d-bc96-4235-bf90-bcf26b727e57"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="088c8b9a-b7b1-403a-a20b-98f9da023d88">
+					<tavatekst id="d1048507-d9ec-43de-823a-b303ac29cabe">Taotluse rahuldamise otsust võib muuta kui täidetakse jätkuvalt toetuse andmise eesmärke ja muudetakse:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para6lg2p1">
+					<alampunktNr id="95c07f09-28c8-4650-9a00-4d4f7f227202">1</alampunktNr>
+					<kuvatavNr id="33e8f4e0-06cd-4c5c-a7fe-a73a3d33c1f2"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="9bd6a388-b3e6-41aa-954e-4ccbda1c95aa">
+						<tavatekst id="cc99cdcb-c599-48b8-b953-5b001af72bf9">projekti abikõlblikku tegevust, tegevuse ulatust või lisatakse täiendav tegevus;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg2p2">
+					<alampunktNr id="3c2c0bec-139e-44e0-9882-01f4276f583a">2</alampunktNr>
+					<kuvatavNr id="ab6f5426-9190-40bb-93cf-25f24d7e2244"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="5469643b-9bf9-41ee-b8e2-3eaf7d83a966">
+						<tavatekst id="db5b0bea-e613-4407-91ab-2b812b9a29ef">toetuse summasid või nende osakaale abikõlblikest kuludest;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg2p3">
+					<alampunktNr id="977b55db-fb09-4d51-89cc-eb9513aa1daf">3</alampunktNr>
+					<kuvatavNr id="5b3e65b4-fe4d-413e-8cb0-549c41eb0d7b"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="dbc73cb2-1106-473e-b7a3-26bfb012a081">
+						<tavatekst id="a0256d80-f95c-4a10-a277-9a1a7a5b7635">toetuse kasutamise perioodi;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg2p4">
+					<alampunktNr id="5a8f71ba-dd2b-4cc2-8605-99118e3df4d5">4</alampunktNr>
+					<kuvatavNr id="ac419a4f-94f0-4f17-ae33-8530dda92eba"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="c9477da7-efac-4417-94eb-1c07a8af54c0">
+						<tavatekst id="1f440c75-ea80-48b6-b19b-b24e595bc34f">kulude hüvitamise viisi.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para6lg3">
+				<loigeNr id="df516baf-b387-4e60-9e6e-760c90103b2e">3</loigeNr>
+				<kuvatavNr id="3eaccb3f-c12a-4d39-a2ef-07c72a02e031"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="b390e26c-e527-4a42-8f04-bcb6d8748a37">
+					<tavatekst id="8ee2f52e-5096-4cbe-a6e5-2dee7b02ee88">Vallavalitsusel on õigus keelduda taotluse rahuldamise otsuse muutmisest juhul, kui soovitav muudatus mõjutab olulises ulatuses negatiivselt oodatavaid tulemusi ja mõju või nende vastavust meetme tegevuse eesmärkidele.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg4">
+				<loigeNr id="68361f44-bbba-4f63-9fad-d768c27867f1">4</loigeNr>
+				<kuvatavNr id="8f55fdb4-4768-4b2a-8bb8-e54d4aae4d9c"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="ea64177a-7292-42bd-9858-3ec9efacaf70">
+					<tavatekst id="f8e5ee94-f718-4b2d-a6ae-60cb1702a88d">Taotluse rahuldamise otsus tunnistatakse täielikult või osaliselt kehtetuks, kui esineb vähemalt üks järgmistest asjaoludest:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para6lg4p1">
+					<alampunktNr id="51c49160-a057-4e82-91e4-3212a7e0271b">1</alampunktNr>
+					<kuvatavNr id="76a691b6-f3cf-471f-80b0-27527d3d1d3d"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="f70e56aa-5501-478d-8570-15aefb7ea65b">
+						<tavatekst id="a983afbe-e1fe-4838-8bb8-f71338b69572">pärast otsuse tegemist ilmneb asjaolu, mille korral taotlust ei oleks rahuldatud või taotlus oleks rahuldatud osaliselt;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg4p2">
+					<alampunktNr id="d28ba4d1-7eef-4405-8591-070cbb649327">2</alampunktNr>
+					<kuvatavNr id="ccef1d9c-dd61-4aec-bc23-7ff5ed9b1f0c"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="abd658ff-80c1-43a9-a481-1e8d121ab976">
+						<tavatekst id="15e8fa7e-85c0-4793-b5e0-bb347c0f698b">taotlemisel või kohandamise elluviimisel on teadlikult esitatud ebaõiget või mittetäielikku teavet või teave on jäetud teadlikult esitamata;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg4p3">
+					<alampunktNr id="28cd1bc3-5b62-4903-a132-fe7315bdecad">3</alampunktNr>
+					<kuvatavNr id="6eae68d2-8237-47a5-af89-a3803d081f91"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="6217bbff-a9b8-4af9-9a71-d442e6538bdb">
+						<tavatekst id="e51cf82a-8ee3-4be5-9145-99edabf171c6">kohanduse saaja avaldust taotluse rahuldamise otsuse muutmiseks ei rahuldata ja kohanduse saajal ei ole toetuse kasutamist senistel tingimustel võimalik jätkata;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para6lg4p4">
+					<alampunktNr id="9523ef7e-8114-42eb-bad0-8b1b4d9a45d6">4</alampunktNr>
+					<kuvatavNr id="7fed0ac5-09d9-435c-a38b-b08527e0111e"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="e4452192-d22d-40e0-957c-876a7c44f77f">
+						<tavatekst id="6d7fec95-bfc4-4588-931e-ee9676c044d5">kohanduse saaja esitab avalduse toetuse kasutamisest loobumise kohta.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para7">
+			<paragrahvNr id="c630bc64-dfd0-4644-8323-9c983775c842">7</paragrahvNr>
+			<kuvatavNr id="b844e8f9-d34e-4c2c-93ed-8e73e92d5934"><![CDATA[§ 7. ]]></kuvatavNr>
+			<paragrahvPealkiri id="936215b2-1fbb-4e4b-a83d-812606daad48">Lepingu sõlmimine taotlejaga ja kohanduse elluviimine</paragrahvPealkiri>
+			<loige id="para7lg1">
+				<loigeNr id="8945148b-d878-48a6-bf3e-ebb866ad9b5a">1</loigeNr>
+				<kuvatavNr id="2a6d2336-f1b6-43c9-b345-a7706315a51b"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="f3a2ff62-c6b3-429c-82ca-dd68f2d1bc91">
+					<tavatekst id="dfc0f138-eb2b-4fd0-a456-a10b95fdf58a">Kohanduse elluviimise eest vastutab ja selleks vajalike tööde teostamise korraldab taotleja.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg2">
+				<loigeNr id="22c5a3bd-1743-4675-a550-278d5805c1b8">2</loigeNr>
+				<kuvatavNr id="ab91569a-cd49-4699-92cd-59d9c8ca97e0"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="729ea4cb-ec76-4368-9704-45425e28d04e">
+					<tavatekst id="d2a021bc-e25b-4783-9dcf-e8b16579f401">Vajalikud tööd on näiteks tööde tellimine ja vastuvõtmine projekteerijalt ning ehitusettevõttelt, abivahendite lõplik valik ja tellimine abivahendeid müüvalt ettevõttelt, ehitustöödeks vajalike lubade, s. h ehituslubade, korteriühistu nõusoleku jm hankimine.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg3">
+				<loigeNr id="3142fabd-e33b-44cd-9ddd-2a5bb6006faa">3</loigeNr>
+				<kuvatavNr id="2b0c8f31-d1f4-4ce2-a2d7-acc300c9ec35"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="533f0b25-bb99-4b12-819c-f9db496ab62c">
+					<tavatekst id="ee7b94bd-af04-4d60-a998-f8f5763667c6">Taotluse rahuldamise otsuse tegemise järel on taotleja kohustatud sõlmima vallavalitsusega kirjaliku lepingu. Kui taotleja ei sõlmi kahe kuu jooksul, arvates toetuse eraldamise otsuse kätte saamisest, lepingut, loetakse taotleja toetusest loobunuks.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg4">
+				<loigeNr id="93687aa1-8075-410f-91c5-99edb227c09d">4</loigeNr>
+				<kuvatavNr id="55f3a046-2358-417f-817b-6f8ae23c7f73"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="b7775792-d152-4200-a665-63227fcd81d2">
+					<tavatekst id="04053a50-9ab2-4139-8976-d70cb290aa39">Lepingus sätestatakse vähemalt:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para7lg4p1">
+					<alampunktNr id="081ed215-6bd1-4635-aa30-64abc4ed7bab">1</alampunktNr>
+					<kuvatavNr id="1d404b1d-0bad-4c26-ad6a-d9c1b152ad80"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="99361de7-6114-4a02-993e-f809836bfe4d">
+						<tavatekst id="af6b400e-9674-4868-bf3d-a1d5e9f2e433">teostatavad kohandustööd;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para7lg4p2">
+					<alampunktNr id="548f4860-9dd4-4625-a193-12d9ccfe81e6">2</alampunktNr>
+					<kuvatavNr id="b59cf378-3c01-4a10-a789-99109e5ba06c"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="e833bf21-1aa8-44a5-a2d6-f4f62cbdd608">
+						<tavatekst id="be57240c-d6db-4ffe-bc33-1014b4de3282">osapoolte rahalised kohustused (muuhulgas kas toetus makstakse välja taotlejale või maksab vallavalitsus kohandustöid teostavale isikule, samuti vahe- ja/või lõpparuande esitamises, tööde ja väljamaksete tähtaegades jm);</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para7lg4p3">
+					<alampunktNr id="c4eb3338-6514-43b1-9d0b-98c1eaba316f">3</alampunktNr>
+					<kuvatavNr id="34f89c5e-53b9-4ec6-96ab-8de7a9385897"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="2137e2e8-f26a-4b45-ae29-5435b7d802fa">
+						<tavatekst id="d3c13360-6bdf-42d4-9d52-410b8856dfe4">kohandamise teostamise aeg;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para7lg4p4">
+					<alampunktNr id="db7d5793-c11b-402c-91a4-60698fdc967e">4</alampunktNr>
+					<kuvatavNr id="6f0d766b-fd5f-4de6-acba-efdfa16bc9a1"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="9b822a34-97d7-428b-a647-1f6d90163d31">
+						<tavatekst id="916112fa-3847-4cda-974e-97f2b3a73176">vallavalitsuse õigused toetuse sihipärase kasutamise kontrollimisel,</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para7lg4p5">
+					<alampunktNr id="d162d2f5-43b5-448b-8310-3a794f983559">5</alampunktNr>
+					<kuvatavNr id="2d542096-8ba9-44d5-81a9-ba2eb7c4ff48"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="64fc9403-ac10-490a-902c-69a63f582a61">
+						<tavatekst id="1195714d-d41c-4901-9912-1838a8894c06">sanktsioonid lepingu rikkumise korral;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para7lg4p6">
+					<alampunktNr id="23480ffa-3734-4b1a-b1bf-81bdc4ae7a49">6</alampunktNr>
+					<kuvatavNr id="7a105f11-12ab-4cf3-80f2-1955996423e7"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="02ffc811-8145-41b0-9394-5f0f0f562aea">
+						<tavatekst id="bba05d30-2ce2-45fb-90a2-794e629d68e5">muud olulised tingimused.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para7lg5">
+				<loigeNr id="522b55d3-d779-46ab-a404-492e8f84d5b7">5</loigeNr>
+				<kuvatavNr id="a41092e9-1369-46a4-99c3-830f4eb710ab"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="3c659395-4535-437d-b654-c22857b68c54">
+					<tavatekst id="6097ba63-18a7-4a3f-9b69-564eac2598c2">Toetuse kasutamise aeg on kuni 12 kuud taotluse rahuldamise otsusest. Mõjuval põhjusel võidakse vallavalitsuse ja taotleja vahelises lepingus leppida kokku pikemas tähtajas.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg6">
+				<loigeNr>6</loigeNr>
+				<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+				<sisuTekst>
+					<tavatekst>Vallavalitsusel on õigus enne toetuse väljamakse tegemist teha koduvisiit taotleja juurde hindamaks olukorda või tehtud tööde vastavust lepingule.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para8">
+			<paragrahvNr id="2a3e0111-6892-405f-902d-958894046694">8</paragrahvNr>
+			<kuvatavNr id="cfca0c2f-1591-4f91-bbfc-95ded259fdf7"><![CDATA[§ 8. ]]></kuvatavNr>
+			<paragrahvPealkiri id="197519c3-dd82-479c-8f72-163243345220">Dokumentide säilitamine, kohandamise toetust saanud projektide järelkontroll ja kohanduse mõju hindamine</paragrahvPealkiri>
+			<loige id="para8lg1">
+				<loigeNr id="dd2635d0-6134-42d4-a506-a02e428aae0d">1</loigeNr>
+				<kuvatavNr id="a393aae4-7672-410c-adce-b17cb7af684f"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="435da8ff-b890-4a1d-a641-304c71c10023">
+					<tavatekst id="9dd3b779-d91b-49b2-bbfd-b1d09424b2e5">Kohandamise toetuse dokumente säilitatakse vallavalitsuses vastavalt seadusele.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para8lg2">
+				<loigeNr id="d03d5bda-1813-4c3a-8694-ed5e7fbf8093">2</loigeNr>
+				<kuvatavNr id="d52b062b-ff0f-4cb7-920d-7e1019f6e6d2"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="08d309bc-3531-4335-a42f-917697346d8d">
+					<tavatekst id="e5aeedfc-b9ca-485c-860a-5cfb1c270471">Kohandamise toetust saanud projektide üle teostab järelkontrolli ja hindab kohanduse mõju vallavalitsus.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para9">
+			<paragrahvNr id="42da525c-d9dc-48d3-a181-2f9dba969423">9</paragrahvNr>
+			<kuvatavNr id="854a5b0b-0d3d-4b73-8a74-7c6d859756bd"><![CDATA[§ 9. ]]></kuvatavNr>
+			<paragrahvPealkiri id="cb22aa08-881b-41cc-b07c-a8d2e5455fdd">Rakendussätted</paragrahvPealkiri>
+			<loige id="para9lg1">
+				<loigeNr id="3d2ed76f-0f8a-493d-9dd5-d6c940b2ba16"/>
+				<kuvatavNr id="8dc31349-cb22-4f14-bfe7-cfcf099ee5fc"/>
+				<sisuTekst id="6fdeb855-2697-4cbd-b0b5-1eafb3fa8694">
+					<tavatekst id="0fb48281-7d98-4000-b73e-7d292cdf4ecd">Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+	<allkiri id="40f044e7-0a64-4392-964a-8eb219d8992b">
+		<allkiriKoht id="c4f8db3c-ebad-437b-ae7e-7589302b9672"/>
+		<allkirjastaja id="15d926d7-4b3b-4dcf-b53f-b48af2861721">
+			<ametinimetus id="f340cc55-7c9a-4870-b6e6-0ce13ac2e9b8">Volikogu esimees</ametinimetus>
+			<eesnimi id="7c0ba425-db0d-4416-9282-d9f3ca6ee272">Arvo</eesnimi>
+			<perekonnanimi id="5c8440c9-fae2-4ba5-97b8-82080e3bb236">Maling</perekonnanimi>
+		</allkirjastaja>
+	</allkiri>
+</oigusakt>

@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="5786c653-9980-4829-9818-ec7e0244a0d2" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Tori Vallavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2020-01-23</aktikuupaev>
+  
+  
+  <aktiNr>100</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2020-01-31</avaldamineKuupaev><RTaasta>2020</RTaasta><RTartikkel>8</RTartikkel><aktViide>431012020008</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2020-02-03+02:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2020-01-28</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>431012020008</globaalID>
+ <metaandmedVersioon>5</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2020-01-30</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1048751</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+</metaandmed>
+ <aktinimi id="de81476d-8ca8-46c5-b0d0-be1ab4fa7411">
+  <nimi id="02f71e94-ff2e-4c64-ba54-5fccc99255fa">
+   <pealkiri id="83a7b45a-394e-4279-acd8-17b600e0feba">Iseseisvale toimetulekule suunatud rehabilitatsiooniteenuse osutamise tingimused ja kord</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="38602684-6469-4f19-b891-aa36ed435563"><preambul id="9846aeb5-5949-4d8f-b84f-94c9eb55c959">
+   <tavatekst id="c8d691ec-4422-4649-8f5d-4c16d28cfe29">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5 ja sotsiaalhoolekande seaduse § 14 lõike 2 ja § 134 lõike 4 p 5 alusel.</tavatekst>
+  </preambul><peatykk id="d65b0ee3-e8ac-433d-95cc-8f4612a569ae">
+   <peatykkNr id="35ffe71c-5a22-4720-971d-1f74edb4ce06">1</peatykkNr>
+   <kuvatavNr id="5f3e04fd-85ba-4b4a-9fe8-0018443beafa"><![CDATA[1. peatükk]]></kuvatavNr>
+   <peatykkPealkiri id="2d5eb735-2081-4c7d-aeae-dd92c6359c3d">Üldsätted</peatykkPealkiri>
+  <paragrahv id="para1">
+   <paragrahvNr id="9e20715c-fba1-4c5c-9099-b11cc40116fa">1</paragrahvNr>
+   <kuvatavNr id="2bb8ce1a-e3ac-4fa3-931f-4d46064759a0"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="949a0f5c-9dd7-4a83-b68a-a05b9af18712">Määruse reguleerimisala</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="0c511e4f-edc7-43b8-96e4-860253db57bd">1</loigeNr>
+   <kuvatavNr id="967bc88c-9d64-47be-8ab4-b71db30858ac"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="473c04c1-68db-436d-badc-f8cfcf5bfba0">
+    <tavatekst id="f11da3e9-721d-4ace-be29-8749cc5ce247">Käesolev kord reguleerib iseseisvale toimetulekule suunatud rehabilitatsiooniteenuse (edaspidi teenus) osutamist Tori vallas.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg2">
+   <loigeNr id="d254a673-95ba-41f0-9b70-72ab31d0a9a8">2</loigeNr>
+   <kuvatavNr id="2ffc009b-0391-4966-a822-cb36204993a8"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="8e06d4b9-bcc0-464e-bbfa-024ae3050004">
+    <tavatekst id="51677d6b-2998-4701-95eb-a1270815ebe2">Teenuse osutamise korraldab Tori Vallavalitsus.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="04a2a392-9c42-495a-980e-7c069ddee01f">2</paragrahvNr>
+   <kuvatavNr id="f182dfaa-cc87-4063-bc23-a12865fbadb9"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="71f05e1b-9803-419c-ac07-dc26848d144e">Teenuse eesmärk ja ülesanne</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="54d1a176-1622-403c-880c-21be909e2a66">1</loigeNr>
+   <kuvatavNr id="d9c3849b-cd36-4a2b-a663-0bb0d59b6a67"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="2e787a5c-9b7c-43e8-b2f7-15913a697dd6">
+    <tavatekst id="fc480ed8-da9c-49bc-ac0c-6da9d5e50cc1">Teenuse osutamise eesmärk:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para2lg1p1">
+   <alampunktNr id="b138c660-a4fc-4c61-a266-68f2ee41e3df">1</alampunktNr>
+   <kuvatavNr id="f4b1e35b-e18e-42be-b72a-488ab153ad3f"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="0775f3a5-21c9-4910-9f61-6901d5260196">
+    <tavatekst id="d04a764e-301c-415e-a99c-8f18b4584889">teenuse saajate tööharjumuse taastamine;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p2">
+   <alampunktNr id="d1e2f9c4-446b-4348-9516-f1ae6839ceb4">2</alampunktNr>
+   <kuvatavNr id="3bbbc2ce-3c20-4d2e-96b2-31dfbc311450"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="979dde25-c487-4302-8310-598e8871d6e3">
+    <tavatekst id="906fbcbc-a237-449b-80a3-1cbc5edd55be">töövõimelises eas isikute konkurentsivõime tõstmine tööturul;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg1p3">
+   <alampunktNr id="9e998b60-e57d-46e7-95bd-9caa3df8b388">3</alampunktNr>
+   <kuvatavNr id="5a211892-fcb9-49d5-8717-3bff97715ae9"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="268d4406-237c-4680-a33c-b49df3ab5830">
+    <tavatekst id="9ceecfe5-a779-41c5-aa48-d0bebc95022b">isikute vastutuse suurendamine enda ja oma perekonna toimetuleku eest.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para2lg2">
+   <loigeNr id="18618699-3325-415e-b4b7-c4ed6991d54f">2</loigeNr>
+   <kuvatavNr id="ab4b3565-cf53-4b4d-ac3a-0c56e82a82da"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="e73ac28d-06cf-4ea9-b6b1-16b495609e1f">
+    <tavatekst id="b066d759-64fd-45d2-ab99-2c805b6ba068">Teenuse osutamise ülesanne:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para2lg2p1">
+   <alampunktNr id="8a2bce8e-c599-41bf-8f3d-f4c9bfff274c">1</alampunktNr>
+   <kuvatavNr id="43d4d422-055f-4545-9efa-2bae8101ebf3"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="1830fa7b-0ba6-4ac9-8fe1-844ce01e1a2e">
+    <tavatekst id="58f1442c-7845-492a-9a16-82b7bbd6d648">töövõimeliste isikute järjepidev aktiviseerimine;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg2p2">
+   <alampunktNr id="b79f544f-d7c8-47ce-bb23-bc5d74473cab">2</alampunktNr>
+   <kuvatavNr id="b387be07-0f2b-4028-adbb-3a3afeb37f1d"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="dd7834ec-32f8-4e18-9cf4-c251967ffdd6">
+    <tavatekst id="3ae0083c-98aa-4588-be90-d97fd8487b5a">info kogumine teenuse saajate tööalaste ja sotsiaalsete oskuste kohta ning saadud teabe kasutamine edasise tegevuse planeerimisel;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg2p3">
+   <alampunktNr id="c6c2981f-9ec8-4446-8520-78ff81b76f3a">3</alampunktNr>
+   <kuvatavNr id="a2b8f1ca-9c0b-4f4a-a7a5-821ae9800d28"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="49d1e394-85ab-42c5-a86d-1cb6c1794c59">
+    <tavatekst id="fa19811c-d614-48c9-94ee-1ae0dd34bda8">toimetuleku õpetamine toimetulekuraskustega isikutele;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg2p4">
+   <alampunktNr id="0e4168e5-e28a-4794-8243-8b1b7c53c449">4</alampunktNr>
+   <kuvatavNr id="84ffdbb2-19bb-4537-bc87-39edbed33217"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="41ab2242-6d70-40c9-a626-bc1a43119927">
+    <tavatekst id="ec8cdc03-5cd2-45cd-82d3-6efcf68f6b9c">teenuse saajatele võimaluste loomine lihtsamate, erialast kvalifikatsiooni mittenõudvate töiste tegevustega tegelemiseks;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg2p5">
+   <alampunktNr id="6ff315f5-cc71-45a3-aa79-681a46b68baf">5</alampunktNr>
+   <kuvatavNr id="8e3b40cf-e102-4b2f-81cc-27df747fd6e7"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="c45297cd-7fa7-49ee-821c-632e012b49b7">
+    <tavatekst id="38e33c3e-d9db-492c-8eab-1e389ee7c80f">teenuse saajate abistamine tööotsingutel;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para2lg2p6">
+   <alampunktNr id="18ef384d-cb83-420b-88ad-f43565416ea8">6</alampunktNr>
+   <kuvatavNr id="626b7154-0b34-4aeb-8cbe-845c515d32ec"><![CDATA[6) ]]></kuvatavNr>
+   <sisuTekst id="11e31cdf-0460-48d6-b4f6-f0b9acdf4468">
+    <tavatekst id="c0746f42-4f63-45db-b1e3-cc740c8e1728">heitumuse vähendamiseks sotsiaalse suhtlemise võimaldamine.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv></peatykk><peatykk id="b047d582-290e-4a09-a2c1-9b4e3b634507">
+   <peatykkNr id="35aad053-1703-4357-a423-6a230b779751">2</peatykkNr>
+   <kuvatavNr id="6c9b7493-8114-4d37-b65c-a11a1b18e3c0"><![CDATA[2. peatükk]]></kuvatavNr>
+   <peatykkPealkiri id="c0b79ff9-5f59-4c30-bff5-161a0f060d2d">Teenuse osutamine</peatykkPealkiri>
+  <paragrahv id="para3">
+   <paragrahvNr id="a14ea6cd-cd68-4de1-9b6c-dbb1c534f300">3</paragrahvNr>
+   <kuvatavNr id="38aea2be-cb29-4930-b3a2-2a41d2d0acce"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="ad5e2c29-d67f-4dff-ba73-b26ba707a8ce">Teenuse sihtgrupp</paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="aefbb1c9-a09e-4b71-87eb-dbc8c5ab8b9f">1</loigeNr>
+   <kuvatavNr id="a7e81e95-332d-465f-9c5b-db4ed37e7d88"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="ce3b49ba-93c0-4a4f-9f13-0d0bb2c73b02">
+    <tavatekst id="e9c64564-3267-4e24-b5ae-c3036711639e">Teenust on õigustatud saama täisealine töövõimeline isik:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para3lg1p1">
+   <alampunktNr id="5e7f13aa-5aff-4c50-be34-c753535a7315">1</alampunktNr>
+   <kuvatavNr id="fc02f749-ec7f-436e-8b8e-09ed6b162fa1"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="d3af7a33-6b93-4042-b824-2ac3d483e95b">
+    <tavatekst id="67405508-b417-408e-8f95-e209bc08fb31">kelle rahvastikuregistrijärgne elukoht on Tori vallas;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg1p2">
+   <alampunktNr id="b79ab3a7-9acf-4688-95ba-a3a423fbc9df">2</alampunktNr>
+   <kuvatavNr id="4f165b96-f29a-4e20-860b-15a3035148b8"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="916fe776-b73f-4d47-8968-e9d8e33e30ba">
+    <tavatekst id="13ecbdcb-8744-4153-a5cd-934eb4cdc3b4">kes ei ole vanaduspensioniealine;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para3lg1p3">
+   <alampunktNr id="90290f6c-b56f-4da6-ba0e-299505298daa">3</alampunktNr>
+   <kuvatavNr id="9ebb015e-7cf9-444f-beeb-dd881076e318"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="526369a0-23f8-4073-98d7-0effd200f349">
+    <tavatekst id="4d2be7fd-1eee-4e7d-a683-69b79f66172c">kes on olnud hõivamata töö või tööturuteenuste ja -toetuste seaduse § 26 mõistes tööga võrdsustatud tegevusega 12 kuud või kauem ja kelle konkurentsivõime tööturul on seetõttu vähenenud.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para3lg2">
+   <loigeNr id="b4614301-0b2d-44a7-a2a3-1cfcb226e346">2</loigeNr>
+   <kuvatavNr id="f0ce0a40-1ed6-4c10-8fe4-b3ac80128a9a"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="a945ebc5-4cf2-4385-8cdf-48bbfeac17c2">
+    <tavatekst id="ee9af750-815b-4af9-9a98-b66b00fed1ae">Teenust on õigustatud saama ka isik, kelle tegelik elukoht on Tori vallas, kuid rahvastikuregistrijärgne elukoht on teises omavalitsusüksuses, kooskõlastades teenuse osutamise rahastamise eelnevalt vastava omavalitsusüksusega.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para4">
+   <paragrahvNr id="08b1101f-4c95-485a-bea9-6e816c21bda0">4</paragrahvNr>
+   <kuvatavNr id="6e71c3b0-bb73-4fe1-80e7-ad8e71a51ec1"><![CDATA[§ 4. ]]></kuvatavNr>
+   <paragrahvPealkiri id="c385334c-b7ab-4d86-b265-fc12db13cc43">Teenuse osutamine</paragrahvPealkiri>
+  <loige id="para4lg1">
+   <loigeNr id="b5f6f343-6707-494e-a0c8-ce8069f76585">1</loigeNr>
+   <kuvatavNr id="ef746807-7cf9-4f93-b432-91b348f62543"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="89ef2301-ed0f-47d9-839f-31fc64f591e4">
+    <tavatekst id="cb08a792-3f5a-4720-87f7-340ba0a7ed8f">Teenuse osutamiseks hindab Tori Vallavalitsuse sotsiaalosakonna vastav spetsialist isiku teenuse vajadust ja hindamise järgselt korraldab teenuse osutamise.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg2">
+   <loigeNr id="7c5afb7b-e624-4204-b4ad-7c4276b551b8">2</loigeNr>
+   <kuvatavNr id="81bda58b-8a22-418d-bf73-7e04d200e040"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="d8fce87e-87c6-475a-b575-9455a1b7359a">
+    <tavatekst id="239e1f42-d2c4-4c96-bf05-683ec16359a1">Teenuse mahu ja teenuse eest tasumise otsustab Tori Vallavalitsuse sotsiaalosakonna vastav spetsialist. Teenusel osalemine on kohustuslik teenusele suunatud toimetulekutoetust taotlevatele mittetöötavatele isikutele ning nende täisealistele mittetöötavatele või töötamisega võrdsustatud tegevusega hõivamata leibkonna liikmetele.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg3">
+   <loigeNr id="5ed15bff-93c8-43f2-bbb3-f71f2546a8e4">3</loigeNr>
+   <kuvatavNr id="cd7deafe-7fcd-4252-bf01-4eba653c4770"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="f53619cd-f356-48a3-b875-305b63b9746b">
+    <tavatekst id="c89cf8fa-858e-40ac-b60d-41e08799723c">Teenuse osutamise otsuse järgselt suunatakse isik teenuse pakkuja juurde vastava suunamiskirjaga, millel on märgitud teenuse saaja andmed ning teenuse maht.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg4">
+   <loigeNr id="2c3cff13-bb18-40f2-8865-19cbbeac3da0">4</loigeNr>
+   <kuvatavNr id="f9134c66-4f33-42a0-8fa9-d0143ce3a852"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="f835241c-0d17-4d35-a9e5-0bdc9c0ee131">
+    <tavatekst id="24b0847a-d269-4eb3-b18e-e56448eeb49a">Vallavalitsus võib jätta toimetulekutoetuse määramata töövõimelisele 18-aastasele kuni vanaduspensioniealisele isikule, kes ei tööta ega õpi, kui isik on rohkem kui ühel korral ilma mõjuva põhjuseta keeldunud osalemast vallavalitsuse korraldataval iseseisvale toimetulekule suunatud rehabilitatsiooniteenusel.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg5">
+   <loigeNr id="9221d731-8608-4865-9a0a-376d147e91ff">5</loigeNr>
+   <kuvatavNr id="0b95315d-2c40-42b0-93f3-ffca09e986db"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="54625c8d-89dd-4485-98ae-a178a73d7451">
+    <tavatekst id="2a7579fa-ad00-423e-970f-d521f82b421d">Teenust osutab asutus, ettevõte või mittetulundusühing, kes omab vastava kvalifikatsiooniga spetsialiste ning kellega vallavalitsus on sõlminud kokkuleppe.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para5">
+   <paragrahvNr id="b2af70a0-4fc9-4e2d-9f5f-2b5efc95f8c2">5</paragrahvNr>
+   <kuvatavNr id="26ba33ad-ba69-4b49-9c5b-00f389daf068"><![CDATA[§ 5. ]]></kuvatavNr>
+   <paragrahvPealkiri id="923e3374-15da-45fe-a631-17059fddd6c8">Teenuse osutamise tingimused</paragrahvPealkiri>
+  <loige id="para5lg1">
+   <loigeNr id="516476f0-a81e-4d74-ab25-0b8b1b74e781">1</loigeNr>
+   <kuvatavNr id="3c699d68-c838-4494-938a-260a89be1bbc"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="31c4084a-5a07-4553-995a-6da8143677a1">
+    <tavatekst id="5d6fbcfe-7df1-4cd0-b4af-546256308c98">Teenuse osutaja koostab teenuse saajale vajadusel individuaalse tegevuskava.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg2">
+   <loigeNr id="167d235c-51dc-4a73-bdcf-58ca6cf05125">2</loigeNr>
+   <kuvatavNr id="ff29c85f-4711-47ca-818d-ab2b2e04b4d8"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="a04124c7-f182-4bb0-bda6-8b066c204d3a">
+    <tavatekst id="ba6fddcd-7ec3-4295-b38d-6728e61d1861">Sotsiaalosakonna vastaval spetsialistil on õigus kontrollida individuaalse tegevuskava täitmist.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg3">
+   <loigeNr id="8a4816d2-1cfc-47e4-aa60-5e60c3fc7cba">3</loigeNr>
+   <kuvatavNr id="dddfd92e-0530-4071-9780-ad0051696e00"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="f0b605a2-f38c-48bb-86fb-f2b2e2d60af3">
+    <tavatekst id="d17ecd9f-0f7c-4467-bd51-da856ccd8e3d">Teenuse osutaja tagab teenuse saajatele töises tegevuses osalemisel ohutud tingimused ning tööohutusalase juhendamise.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg4">
+   <loigeNr id="d9f3413a-3ea3-4fe0-84e1-64f56b444c4b">4</loigeNr>
+   <kuvatavNr id="d3244544-1f8f-4362-91d2-ea3288af722d"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="0e78b9a7-6836-431e-a183-a132f20a8789">
+    <tavatekst id="6b135fe2-a0b2-43d5-b790-07aa96855e1d">Teenuse osutamise lõpetamise või pikendamise otsustab toimetulekutoetuse määramise eest vastutav spetsialist.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para6">
+   <paragrahvNr id="f1ffdcb2-37b7-440b-85ea-61721f8d177f">6</paragrahvNr>
+   <kuvatavNr id="ea2efd52-e7a5-4b97-aad7-8574b3802ed0"><![CDATA[§ 6. ]]></kuvatavNr>
+   <paragrahvPealkiri id="e66b5383-3801-497d-a119-3b000a3e725a">Teenuse eest tasumine</paragrahvPealkiri>
+  <loige id="para6lg1">
+   <loigeNr id="bd8545b3-94e9-4032-9292-ede7caf35935">1</loigeNr>
+   <kuvatavNr id="fff24882-be8d-4774-b0b3-4dd869a3a0a8"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="867004b9-688c-45b0-a4ee-89cb61c06945">
+    <tavatekst id="deff8973-6c63-4cf5-bdbb-2ff1b0c4a9b6">Teenust rahastatakse Tori valla eelarvest.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg2">
+   <loigeNr id="22872d4d-ce54-41e1-9750-94df23c80511">2</loigeNr>
+   <kuvatavNr id="d433df1f-2147-4825-b614-457d03b61a6e"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="980948b1-1b4c-4419-8517-b09e769441db">
+    <tavatekst id="1b60872c-61c1-4ff1-b45f-f7c584e3a3a7">Teenuse saajatele on teenus tasuta.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></peatykk><peatykk id="733db802-19a6-43af-b8a1-5ba858f248bf">
+   <peatykkNr id="6a0595b0-7c49-4fd4-97d6-0b0894af5ecc">3</peatykkNr>
+   <kuvatavNr id="08e11a0c-e8e7-4b20-bc0f-437653b2a049"><![CDATA[3. peatükk]]></kuvatavNr>
+   <peatykkPealkiri id="542b00f5-eb0e-4c0d-8234-83dc22b34ca8">Rakendussätted</peatykkPealkiri>
+  <paragrahv id="para7">
+   <paragrahvNr id="b40f72fb-b0ad-4d26-8f34-c2d000f061f9">7</paragrahvNr>
+   <kuvatavNr id="989013a5-06be-4e01-8204-6a1c2771b930"><![CDATA[§ 7. ]]></kuvatavNr>
+   <paragrahvPealkiri id="909d8e74-9e5d-42b8-a13d-531a59796a22">Määruste kehtetuks tunnistamine ja jõustumine</paragrahvPealkiri>
+  <loige id="para7lg1">
+   <loigeNr id="35ed41ef-f18f-4b4b-be6b-443c716be99a">1</loigeNr>
+   <kuvatavNr id="cdfcc23f-69b0-438f-9135-6c84c28a7228"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="a47c44be-cc0c-4390-9a42-0c36e7b80f55">
+    <tavatekst id="3d88be34-58d4-4ee4-8d3f-6e0992f3025f">Sauga Vallavolikogu 23.02.2012 määrus nr 1 „Sauga vallas toimetulekule suunatud rehabilitatsiooniteenuse osutamise kord“ tunnistatakse kehtetuks.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg2">
+   <loigeNr id="ee2b712e-8b2b-4334-9443-21fda6c0e389">2</loigeNr>
+   <kuvatavNr id="130b4d04-070a-44b8-a897-142e49db6988"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="0cad5667-ca0e-4dea-aa71-2b5666f705d3">
+    <tavatekst id="210d62f1-1d7d-40a2-9f86-bc6c9f53ed3f">Määrus jõustub kolmandal päeval pärast avaldamist Riigi Teatajas.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></peatykk></sisu>
+<allkiri id="f6929df5-c7c4-4f72-a247-c0b5a5cfce01"><allkiriKoht id="c7f80519-7884-4ba8-929a-5246fa1b2816"/><allkirjastaja id="6f41f5da-ddbc-4fce-a21b-371ddc57a26f"><ametinimetus id="59429c08-a492-4770-abb3-b0bc32b76779">volikogu esimees</ametinimetus><eesnimi id="f0cc5817-e057-48da-988a-98f8f594211f">Enn</eesnimi><perekonnanimi id="fb3b04f3-479b-4433-aeb4-a640da076c99">Kuslap</perekonnanimi></allkirjastaja></allkiri></oigusakt>

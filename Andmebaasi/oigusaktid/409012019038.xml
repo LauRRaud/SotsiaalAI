@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="1eba1503-1236-418e-a3dc-fc46aa394fb4" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Valga Vallavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2019-01-02</aktikuupaev>
+  
+  
+  <aktiNr>2</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2019-01-09</avaldamineKuupaev><RTaasta>2019</RTaasta><RTartikkel>38</RTartikkel><aktViide>409012019038</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2019-01-12+02:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2019-01-08</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>409012019038</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2019-01-08</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1045788</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2019-01-08</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Liina Pettai</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="9ab02fc5-45c7-463d-be46-c33313df78db">
+  <nimi id="7339eec9-205f-464e-92df-3b130f2fc056">
+   <pealkiri id="283e0a91-97e9-4c9e-9be9-60ab741617ba">Varjupaigateenuse hinna kehtestamine</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="0318831e-b5bd-4c73-a6f1-5443d1d49a11"><preambul id="e6c8129e-3d4c-45e8-8f3e-c8337143f3a7"><tavatekst id="23533ea1-a364-4d71-b59f-3f104cc802bf">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 30 lg 3 ja Valga Vallavolikogu 06.04.2018 määruse nr 27 „Sotsiaalhoolekandelise abi andmise kord“ § 24 lg 2 alusel.</tavatekst></preambul><paragrahv id="para1"><paragrahvNr id="ced6f30c-187e-4017-8b8e-cb212daa5e80">1</paragrahvNr><kuvatavNr id="becf7586-8b43-45c6-9a86-0db710da00c5"><![CDATA[§ 1. ]]></kuvatavNr><paragrahvPealkiri id="0a09b13c-489e-4356-8765-a4cc237bb2a9">Määruse reguleerimisala</paragrahvPealkiri><loige id="para1lg1"><loigeNr id="5f2e5a5f-0b76-4603-a46d-c321d46dcad4"/><kuvatavNr id="7b7eb4d8-d554-4fef-b4cc-2cb57d9538ac"/><sisuTekst id="c6b671d2-2e0f-446d-ab2b-207302fce29c"><tavatekst id="e6069695-ee53-4ff7-a347-1f4834b76aab">Määrusega kehtestatakse Valga valla hallatava asutuse Valga Töötute Aktiviseerimiskeskus poolt osutatava varjupaigateenuse hind isikutele, kelle registreeritud elukoht on väljaspool Valga valda.</tavatekst></sisuTekst></loige></paragrahv><paragrahv id="para2"><paragrahvNr id="b4795034-f70e-409f-835f-f8894ec244e3">2</paragrahvNr><kuvatavNr id="9f84f550-5556-4176-8c37-7ad7856678a0"><![CDATA[§ 2. ]]></kuvatavNr><paragrahvPealkiri id="c06481a2-0f52-4ebd-8c29-5b936c174f4b">Varjupaigateenuse hind</paragrahvPealkiri><loige id="para2lg1"><loigeNr id="be5f7950-3a91-418e-9696-e5aa81a785b7">1</loigeNr><kuvatavNr id="9b187776-8ac3-44ae-8cf6-9ef9b2c0773b"><![CDATA[(1)]]></kuvatavNr><sisuTekst id="21d39d1d-5623-434c-b34d-c3596fc2df97"><tavatekst id="a3285026-43c1-489d-8d22-de0d69e7160e">Varjupaigateenuse hind on 6,50 eurot ööpäeva eest alates teisest ööpäevast.</tavatekst></sisuTekst></loige><loige id="para2lg2"><loigeNr id="c58fd98c-173d-4357-a00d-b8e925fc7e02">2</loigeNr><kuvatavNr id="7a1c613a-09b2-4af4-a41f-40289bfbeee8"><![CDATA[(2)]]></kuvatavNr><sisuTekst id="0749c398-bba1-4f11-86c4-43f23e9457e6"><tavatekst id="262e31e9-4045-44da-822c-09a4b75ed77c">Isikute eest, kes ei ole võimelised ise teenuse eest maksma, tasub nende elukohajärgne omavalitsus.</tavatekst></sisuTekst></loige><loige id="para2lg3"><loigeNr id="85dfec0e-3fc8-4ad4-87df-999730ba53cd">3</loigeNr><kuvatavNr id="8a5f46ee-19ef-4966-8f6a-037658f7b99e"><![CDATA[(3)]]></kuvatavNr><sisuTekst id="9f689ea5-40fe-4c3d-a802-557580b3d6be"><tavatekst id="de816d90-dc90-4e57-95bc-d10749c94c41">Teenuse saamiseks esitab isik Valga valla sotsiaaltöö teenistuse ametnikule avalduse. Otsus teenuse osutamise ja selle tingimuste kohta teeb ametnik kooskõlastatult isiku elukohajärgse omavalitsusega.</tavatekst></sisuTekst></loige></paragrahv><paragrahv id="para3"><paragrahvNr id="c02af7bc-f1ec-4808-a4a0-5c23fdbfd3bb">3</paragrahvNr><kuvatavNr id="d7ecbd65-c96d-4c77-a5f5-3d7179e4d948"><![CDATA[§ 3. ]]></kuvatavNr><paragrahvPealkiri id="0caf0048-6112-42bd-b0e3-d9cd92f53ba4">Rakendussätted</paragrahvPealkiri><loige id="para3lg1"><loigeNr id="46bc1e69-4d20-4b67-bf21-199b9ba9337a"/><kuvatavNr id="18a6245b-81df-4ac1-914d-6f40858d3e58"/><sisuTekst id="fce42de3-6045-415d-b1c1-1946e5fbe905"><tavatekst id="cc2ed903-a9bb-4d47-ae82-8ae9867c6608">Määrus jõustub kolmandal päeval peale määruse Riigi Teatajas avaldamist.</tavatekst></sisuTekst></loige></paragrahv></sisu>
+<allkiri id="634fd5fd-f2de-4f96-ad12-6ecea827282a"><allkiriKoht id="c1176bc7-0b05-48f1-b3b4-eaa445bc9408"/><allkirjastaja id="f4d31eaa-4d7c-4692-90e4-98621104bc77"><ametinimetus id="240202c0-1332-41b4-9904-67237df2baa6">asevallavanem vallavanema ülesannetes</ametinimetus><eesnimi id="2965ecab-0451-4849-b2a1-9bb930b5ad9b">Viktor</eesnimi><perekonnanimi id="7fea15aa-549e-4cfc-b367-2e9634f5d0b8">Mägi</perekonnanimi></allkirjastaja></allkiri><allkiri id="59a32152-2ae3-47b0-be1e-4aa2218ded64"><allkiriKoht id="c55322a5-ba51-404e-a224-4f43f90e26e9"/><allkirjastaja id="445a9879-db70-49d5-86df-d66cab696be6"><ametinimetus id="7122c832-a907-480a-84ec-0838e35f51e4">jurist vallasekretäri ülesannetes</ametinimetus><eesnimi id="f2873245-5b1e-446b-a3bb-906fc676dc29">Anastasija</eesnimi><perekonnanimi id="74b63dd0-32bd-4f40-8f5b-c62118621a4d">Kikkas</perekonnanimi></allkirjastaja></allkiri></oigusakt>

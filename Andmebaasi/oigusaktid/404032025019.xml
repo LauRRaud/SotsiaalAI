@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="8bf33b59-d66a-4456-9824-af0fe6b9e359" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Maardu Linnavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2025-02-25</aktikuupaev>
+  
+  
+  <aktiNr>83</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-03-04</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>19</RTartikkel><aktViide>404032025019</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2025-03-07+02:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2025-02-27</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>404032025019</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2025-03-03</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1060597</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2025-02-26</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Anna Platonov</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="afa62736-55da-4196-becb-9c799b909ce2">
+  <nimi id="00dcbc72-1dce-4ade-abc1-66770db5bfb7">
+   <pealkiri id="557fcd9c-7c8f-4c3c-a24f-5ecbaa960947">Psühhosotsiaalse ja psühholoogilise abi osutamise kord </pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="8c093901-2a8e-40fa-ba5a-17f2f610f32e"><preambul id="f4d5e05c-5ffb-4afa-825f-912d2f55857e">
+   <tavatekst id="8e5d19e1-5188-4671-9d4f-041ba9f2cdf1">Määrus kehtestatakse sotsiaalhoolekande seaduse § 14 lg 1, § 156 lg 3<sup>9</sup> ja lg 3<sup>10</sup> alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="cb811c13-4abd-44e1-a43c-55f184bf19f0">1</paragrahvNr>
+   <kuvatavNr id="262c9f7e-c74c-464a-8ae8-1fa6fdeb83fd"><![CDATA[§ 1. ]]></kuvatavNr>
+      <sisuTekst id="8ca9ab5f-e17e-4e48-bfa2-0a3ed02bb66a">
+    <tavatekst id="853615a7-3e50-4c68-bc88-9bef63a37f89">Üldsätted</tavatekst>
+   </sisuTekst>
+  <loige id="para1lg1">
+   <loigeNr id="4c70bcfc-8034-4c25-9113-1d4973611d3b">1</loigeNr>
+   <kuvatavNr id="e7fc1306-314f-4166-8603-4a60f196ac83"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="d5c5de76-28e5-4fb0-bce7-6fc8a0567a26">
+    <tavatekst id="0832d029-8e31-4833-af1b-364103c92676">Määrus reguleerib sotsiaalhoolekande seaduse § 156 lg 3<sup>9</sup> kohaselt eraldatud vahenditest isikule psühhosotsiaalse ja psühholoogilise abi (edaspidi koos vaimse tervise teenus) osutamise kord.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg2">
+   <loigeNr id="17947045-7ef2-4523-93d5-12491ba5b654">2</loigeNr>
+   <kuvatavNr id="c3e1bce9-29c7-44cc-94d7-7f985cf32ca5"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="1d9e7f66-ce42-4533-b4a3-ba907910f1ce">
+    <tavatekst id="d7972c30-e955-47d6-b13d-9ab065054043"> Vaimse tervise teenuse eesmärk on toetada isiku psühhosotsiaalset heaolu ja vaimset tervist.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg3">
+   <loigeNr id="f24dd65e-791d-401f-975a-971d41ae802c">3</loigeNr>
+   <kuvatavNr id="a4cff857-12e7-447a-8d14-4fb5265559fc"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="3f9e2c98-550a-4ba3-9244-788c407d9f7c">
+    <tavatekst id="e3686e13-20cd-430a-aed9-b801075dba73"> Vaimse tervise teenus osutatakse täisealisele teovõimelisele isikule, kelle rahvastikuregistrisse kantud elukoht on Maardu linn.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg4">
+   <loigeNr id="94242aa0-5131-4c6d-86c7-0e23186705e1">4</loigeNr>
+   <kuvatavNr id="fa33a649-b319-48ef-aa82-e330377a3bad"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="64adf5a5-3c1c-4c09-8bb7-d2847e909b2a">
+    <tavatekst id="9e26db58-9b92-4063-9448-3ae4d5d8d345">Vaimse tervise teenus osutatakse sotsiaalhoolekande seaduse § 156 lg 3<sup>9</sup> kohaselt eraldatud vahendite piires.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="538d7aad-9651-4b5b-9f34-7a33eaf64636">2</paragrahvNr>
+   <kuvatavNr id="e0fa2f80-a0c4-4794-836b-eb6dc5f98e2c"><![CDATA[§ 2. ]]></kuvatavNr>
+      <sisuTekst id="af46a168-ae65-46f4-8f81-3a4ff598b175">
+    <tavatekst id="bbdb7090-17ee-4d97-a24c-7099c068dbda">Vaimse tervise teenuse osutamine</tavatekst>
+   </sisuTekst>
+  <loige id="para2lg1">
+   <loigeNr id="e6f831e9-267f-4b3d-aa5c-b8210d1b6826">1</loigeNr>
+   <kuvatavNr id="7ff06b91-66e5-4d70-bfff-657c0bcf99fa"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="71c096d9-8bdb-4f01-ba2f-0d216765d163">
+    <tavatekst id="472aaa9a-d66a-4d43-b4ec-7ee397023b1f">Vaimse tervise teenuse saamiseks esitab teenust vajav isik (edaspidi taotleja) taotluse Maardu Linnavalitsuse (edaspidi linnavalitsus) sotsiaalabiosakonnale (edaspidi sotsiaalabiosakond). Taotlus esitatakse suuliselt või kirjalikult.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg2">
+   <loigeNr id="e8f46a1b-2d44-4d90-ac4e-2e80576ee460">2</loigeNr>
+   <kuvatavNr id="8f6dc111-da51-43bf-8401-d49435f40d4a"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="7b7117eb-2a1d-423f-85d8-78532e9b232f">
+    <tavatekst id="c593106c-c597-4ffa-a3fd-ccc2b33c3f3f"> Sotsiaalabi osakonnal on õigus nõuda taotlejalt täiendavaid andmeid ja dokumente.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg3">
+   <loigeNr id="a784c2b4-4245-4f46-91bc-771d44c1bd27">3</loigeNr>
+   <kuvatavNr id="08cd3b97-cc00-43cd-a313-ab88eead75e4"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="f1c0d411-111e-40b6-b8e3-8f5042e5aeed">
+    <tavatekst id="7a98bf49-9975-4b39-aaec-8fa00311a356"> Otsuse teenuse määramise ja sellest keeldumise kohta teeb sotsiaalabiosakonna juhataja kümne (10) tööpäeva jooksul alates taotluse ja lisadokumentide nõuetekohasest esitamisest.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg4">
+   <loigeNr id="a27504f2-febe-4811-b82e-4043989883a5">4</loigeNr>
+   <kuvatavNr id="1ed66d34-d5cc-4243-9c62-089746118120"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="28ad1449-2b90-4050-afca-e5966bf4331c">
+    <tavatekst id="7764fecb-6e6a-49a4-b56a-98a15a01a43d">Vaimse tervise teenust osutab teenuse osutaja, kellel on sõlmitud vastav leping linnavalitsusega.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg5">
+   <loigeNr id="958f69db-969f-494a-9d2f-8857da7dcecb">5</loigeNr>
+   <kuvatavNr id="742c0331-b6a3-4528-9de9-2532833d18e6"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="ea47aab1-6b5f-4f57-bce1-2c11acef186b">
+    <tavatekst id="7304c7f8-f985-42a0-bb9f-86ca83d0d209">Linnavalitsus võib kehtestada vaimse tervise teenuse maksumuse piirmäära. Kui teenuse maksumus ületab piirmäära, tasub ületava osa teenuse saaja.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg6">
+   <loigeNr id="64cfb3da-4068-401f-bd2b-a4594e9a1595">6</loigeNr>
+   <kuvatavNr id="218e23b0-e625-4381-abaa-0d72f800465f"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="cf23e8a1-f522-4c5c-b213-571617be6a27">
+    <tavatekst id="e10025ac-5a43-4e83-9bbf-ccda1a25672b">Kui taotleja ei ilmu mõjuva põhjuseta vaimse tervise teenuse osutaja vastuvõtule määratud ajal, on linnavalitsusel õigus nõuda taotlejalt vaimse tervise teenuse osutaja tasu hüvitamist.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg7">
+   <loigeNr id="0d13742b-1976-4deb-b55c-5e5eebaa5deb">7</loigeNr>
+   <kuvatavNr id="d9ec411f-a2cf-4006-a64b-f40d9443c570"><![CDATA[(7)]]></kuvatavNr>
+   <sisuTekst id="1ea24d2c-6a8b-4c36-b65f-84b17910525e">
+    <tavatekst id="383c238a-17e2-4f14-8b9c-9d6d7618b2d6">Vaimse tervise teenus määratakse taotlejale kuni viis nõustamiskorda eelarveaasta jooksul.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="32b5525e-361f-413f-8698-152a2761d20c"><allkiriKoht id="c76d9a13-5f97-48b0-934b-aeaf4681986e"/><allkirjastaja id="4bb5d044-9b9b-4c4e-a256-a3b678c0c18c"><ametinimetus id="65340351-1ba2-4315-9ae3-335ec96a1552">Maardu Linnavolikogu esimees</ametinimetus><eesnimi id="0c473a04-0825-4c24-bce2-f27696b6ebc7">Ailar</eesnimi><perekonnanimi id="77b9aa5a-194d-418e-86ff-15a7260cf42e">Lyra</perekonnanimi></allkirjastaja></allkiri></oigusakt>

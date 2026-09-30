@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="59f89942-1627-4177-a544-3ff8dfdf9827" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Tartu Linnavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2026-01-27</aktikuupaev>
+  
+  
+  <aktiNr>9</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-01-31</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>6</RTartikkel><aktViide>431012026006</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2026-02-03+02:00</kehtivuseAlgus><kehtivuseLopp>2026-12-31+02:00</kehtivuseLopp></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2026-01-28</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>431012026006</globaalID>
+ <metaandmedVersioon>7</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2026-01-30</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1062738</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2026-01-28</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Kilter Kareli</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="df712d14-4c9b-40c5-a06f-f38f27a59df4">
+  <nimi id="742f53ab-4331-4dd2-aacc-f1399d45f1e0">
+   <pealkiri id="475ab35b-fb65-49dd-bc29-d8bc11810f47">Lapsehoiutoetuse suuruse kinnitamine 2026. aastaks</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="d3d17347-0a0b-4d92-a472-e47c2a02dd70"><preambul id="83ff61fc-030f-4a3f-87db-ead7fbb4d6ee">
+   <tavatekst id="6cda95b8-8667-4057-9175-55fd8a716291">Määrus kehtestatakse Tartu Linnavolikogu 26. juuni 2014. a määruse nr 26 „Tartu linna eelarvest lapsehoiuteenuse rahastamise kord” § 11 lõike 1 alusel. </tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="f180e21f-8214-4053-a980-ab67ca300955">1</paragrahvNr>
+   <kuvatavNr id="235fa651-1d21-4073-b947-c9c0214dcd28"><![CDATA[§ 1. ]]></kuvatavNr>
+      <sisuTekst id="72802937-3964-4387-816a-746e638d6d4d">
+    <tavatekst id="ee13ce83-1397-40fd-9594-60da19e90084">Kinnitada 2026. aastal lapsehoiutoetuse suuruseks ühe lapse kohta 421 eurot kuus.</tavatekst>
+   </sisuTekst>
+  </paragrahv></sisu>
+<allkiri id="5f04f1b8-aed2-42d3-8a25-3aa826dccd19"><allkiriKoht id="940781b5-8a42-4905-a3e4-5e4898ef964f"/><allkirjastaja id="f4639e81-402c-462e-92ea-466382f09495"><ametinimetus id="ace78cc5-b114-4d43-a906-729aaf4205cd">linnapea</ametinimetus><eesnimi id="0bfd6297-c217-483e-81ad-6051a51ae189">Urmas</eesnimi><perekonnanimi id="48003f00-8ab6-4e9b-a444-820405e7f170">Klaas</perekonnanimi></allkirjastaja></allkiri><allkiri id="96317499-6084-4093-81c3-50f610930a28"><allkiriKoht id="753237af-5d3a-4f4c-93a4-132c88c38e71"/><allkirjastaja id="024a7998-475d-4aed-a1f7-bc6d07c5d86d"><ametinimetus id="d935ba18-882e-4a8f-a7ee-d7374c2be46c">õigusteenistuse juhataja linnasekretäri ülesannetes</ametinimetus><eesnimi id="396259ce-cf64-48d7-80c1-3bc058638681">Anneli</eesnimi><perekonnanimi id="3fbba15e-9734-4647-95ab-8f1453c5baf0">Apuhtin</perekonnanimi></allkirjastaja></allkiri></oigusakt>

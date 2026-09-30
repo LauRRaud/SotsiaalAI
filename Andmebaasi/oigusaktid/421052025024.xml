@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="c11e599f-91df-4be6-b2a5-97d472048e57" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Harku Vallavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2025-05-20</aktikuupaev>
+  
+  <joustumine>2025-06-15</joustumine>
+  <aktiNr>3</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-05-21</avaldamineKuupaev><RTaasta>2025</RTaasta><RTartikkel>24</RTartikkel><aktViide>421052025024</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2025-06-15+03:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2025-05-20</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>421052025024</globaalID>
+ <metaandmedVersioon>7</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2025-05-20</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1060997</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2025-05-20</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Kristjan Kuusik</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="b89dda49-25cd-4e98-9d9a-d46e4d24f8af">
+  <nimi id="3d97f250-4bee-424b-9d11-ceda9074c776">
+   <pealkiri id="f2b34aaf-8b0f-4928-b0e8-5615614060af">Koduteenuse eest võetava tasu suurus ja tingimused</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="4e30dfc7-e393-4810-a397-633bd86acbfe"><preambul id="c74e49e5-5205-4ee4-8008-bd6b5b66e26c">
+   <tavatekst id="9a6b1c11-4381-4fb2-875e-a2c42be2dfa6">Määrus kehtestatakse Harku Vallavolikogu 31. märtsi 2016. a määruse nr 11 „Sotsiaalhoolekandelise abi andmise kord“ § 8 lõike 4 alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="6e6f49ba-8b13-4cf7-8382-ccf8b050ae70">1</paragrahvNr>
+   <kuvatavNr id="4772d66e-7785-4e0d-91aa-23b022f9f133"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="91260eb0-04bc-42e9-9b34-96e655b1d493">Koduteenuse eest võetava tasu suurus ja tingimused</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="f8ee8188-427c-405c-a3ed-b7b0985f3946">1</loigeNr>
+   <kuvatavNr id="509014a5-99d4-4f85-ba64-940ed5b83246"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="836d57b7-6828-4874-9f96-0ed973429247">
+    <tavatekst id="038a5204-2e99-4d0b-9a22-c788439539be">Kehtestada Harku Vallavalitsuse poolt Harku valla elanikele osutatava koduteenuse tasu suuruseks neli eurot ühe koduteenuse tunni eest.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg2">
+   <loigeNr id="abbe45c0-66e2-46f3-b2a7-659df276e937">2</loigeNr>
+   <kuvatavNr id="7d4ca8d9-e1e0-49be-8903-9367c97a8138"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="02529d8b-4fe8-4d43-aa05-0bbc57e9fb26">
+    <tavatekst id="19977629-c51a-46c5-9d77-98bbb87b41b1">Koduteenuse osutamisele kulunud aega ühe korra kohta arvestatakse järgmiselt:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para1lg2p1">
+   <alampunktNr id="a20cfe7c-e03e-438f-903b-6f4b08051809">1</alampunktNr>
+   <kuvatavNr id="d6a35b05-ecfc-4d61-b9c4-a5df3813c41f"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="ff8bc8d1-008e-4af5-9384-3b7bc6d4f612">
+    <tavatekst id="c3ae4a32-a80f-4132-809c-5d0eb60e56a0">kuni 60 minutit koduteenuse osutamise koguaega loetakse tasu arvestamisel 60 minutiks;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg2p2">
+   <alampunktNr id="fec5739b-aeb8-4b76-b416-777afa16024b">2</alampunktNr>
+   <kuvatavNr id="91031a4a-90e9-4b2c-b88f-2366522bcb05"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="7b89ba03-19b2-4754-9889-b30347f9c562">
+    <tavatekst id="80eaa32e-73c2-4e6e-8d57-795a5c7c6d38">üle 60 minuti kuni 120 minutit koduteenuse osutamise koguaega loetakse tasu arvestamisel 120 minutiks;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg2p3">
+   <alampunktNr id="48a29308-234f-4d16-99e1-bf2bb3c7bcf8">3</alampunktNr>
+   <kuvatavNr id="4c5ee9b0-737f-40a2-bdec-cb3e1430002b"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="c1b77e6f-13fb-4066-abc2-051aa5145b26">
+    <tavatekst id="dc65d866-05f4-4b6a-acb6-ca7ca5d9910e">üle 120 minuti kuni 180 minutit koduteenuse osutamise koguaega loetakse tasu arvestamisel 180 minutiks;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg2p4">
+   <alampunktNr id="cf172531-c691-4251-a8ce-a5e70e561cc8">4</alampunktNr>
+   <kuvatavNr id="443cea48-5c0f-45d8-9803-f96e10c99e50"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="f7be3a82-8019-41ab-b35f-a4aa9c691941">
+    <tavatekst id="5c11b033-2ad0-42b1-add2-7761dcef80bf">üle 180 minuti kuni 240 minutit koduteenuse osutamise koguaega loetakse tasu arvestamisel 240 minutiks;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para1lg2p5">
+   <alampunktNr id="ec6303fd-19fd-43a0-8307-614ec967f07f">5</alampunktNr>
+   <kuvatavNr id="1890c6a3-acc3-4974-acf6-f19bf749c9fe"><![CDATA[5) ]]></kuvatavNr>
+   <sisuTekst id="36b345e7-b0e2-4291-8130-65c718bfa707">
+    <tavatekst id="c117487f-4328-45b8-916d-1914a005a758">üle 240 minuti kuni 300 minutit koduteenuse osutamise koguaega loetakse tasu arvestamisel 300 minutiks.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para1lg3">
+   <loigeNr id="f0151db3-95a9-43bb-9f8c-6a5629f978a8">3</loigeNr>
+   <kuvatavNr id="12685f0b-2812-46be-bc90-406d7bbfb831"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="39e7c4ac-86d9-4d00-831a-e4b85aaadc41">
+    <tavatekst id="c471fa49-0448-4353-9d40-e85a3424d20a">Isikule, kelle netosissetulek ühes kuus riiklike andmebaaside andmetel on koduteenuse osutamise otsustamisel väiksem Harku Vallavolikogu 31. märtsi 2016. a määruse nr 11 "Sotsiaalhoolekandelise abi andmise kord" lisas kehtestatud toimetuleku piirmäärast, osutatakse koduteenust tasuta. Sissetulekuna ei arvestata puudega inimese sotsiaaltoetust. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg4">
+   <loigeNr id="343008c7-4d5b-4d6a-bd51-0956f8cdffb4">4</loigeNr>
+   <kuvatavNr id="a5b5e99b-f8ab-41f1-b5a3-0cb19e7e2274"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="c5be96a2-5caa-4bd4-8bc7-e75f06dcc9db">
+    <tavatekst id="56c5ea70-6fed-4743-8857-9d3e775d6d72">Kooskõlas Harku Vallavolikogu 31. märtsi 2016. a määruse nr 11 "Sotsiaalhoolekandelise abi andmise kord" § 7 lõikega 3, § 8 lõikega 4 ja § 12 lõikega 4 otsustab käesoleva paragrahvi lõikes 1 kehtestatud koduteenuse tasu võtmise Harku Vallavalitsuse sotsiaal- ja tervishoiuosakond koduteenuse määramisel.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="b4309f39-ce78-46bc-bfbc-5589c5d87445">2</paragrahvNr>
+   <kuvatavNr id="01f73acb-42d4-467b-b0a0-e59d2f663235"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="41fbd1b2-1cee-4492-8b5d-0d78a433d60b">Määruse rakendamine</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="74ef7905-ed86-420b-a63c-555d44f9e87e">1</loigeNr>
+   <kuvatavNr id="39aa31dc-0bc7-4385-a730-305f2eff9e3a"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="61b15663-fd06-45fb-bc22-8ea9d4292097">
+    <tavatekst id="7327898e-0665-4fb6-8ce6-42279255ca01">Isikutele, kellega on enne käesoleva määruse jõustumist sõlmitud leping koduteenuse tasuta osutamiseks või kelle osas on tehtud otsus koduteenuse tasuta osutamiseks, osutatakse kuni 2025. aasta lõpuni, kuid mitte kauem lepingus või otsuses ettenähtud teenuse osutamise ajast, koduteenust tasuta. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg2">
+   <loigeNr id="4f3f5790-ba17-46f2-b272-1b740d95f836">2</loigeNr>
+   <kuvatavNr id="60d66221-fa7f-4f58-9be3-6ec289c5c159"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="33579781-046a-4bf8-993e-b9766d6df9d5">
+    <tavatekst id="87421745-8eff-4047-a482-55574e5c9cc6">Isikutele, kes osalevad projektis „Sotsiaalteenuste kättesaadavuse ja kvaliteedi parandamine Harku vallas“, osutatakse koduteenust tasuta kuni projektis määratud tähtpäevani.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="32156a8c-a536-44ff-bb42-0678e1277ec7">3</paragrahvNr>
+   <kuvatavNr id="90a5b0e3-ee20-456d-999e-5dec0282bcdf"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="8c548156-fa9d-4ff7-8114-96281cf86d77">Määruse jõustumine</paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="d2003a5b-4b09-4904-8531-f6da8a9a64e3"/>
+   <kuvatavNr id="495773e9-5053-41b1-81f8-64bd533f9379"/>
+   <sisuTekst id="bce3d964-3982-4524-828d-1cd4b68cdf1a">
+    <tavatekst id="8fdeebf3-d43a-440f-87f9-7c98b66e008c">Määrus jõustub 15. juunil 2025. aastal.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="3cb36027-13d2-4b81-873f-be839d58418e"><allkiriKoht id="6e2c3db8-38cf-45e7-9fdb-c0894e800d34"/><allkirjastaja id="b29d1b30-35d7-458a-b41a-b910521b0bdc"><ametinimetus id="c93044c7-117b-4f45-a935-8f342ef0833b">vallavanem</ametinimetus><eesnimi id="12f5608f-604f-494b-b54d-7229b97b68c8">Erik</eesnimi><perekonnanimi id="aaaf1310-86d7-44b9-a1d8-688a30323a63">Sandla</perekonnanimi></allkirjastaja></allkiri><allkiri id="3561f6e0-3878-45d4-a23d-710287679e10"><allkiriKoht id="bbadaeb2-f78e-4261-a09b-52d681df1627"/><allkirjastaja id="6fbe7009-580b-4245-9989-4386b34b7bbb"><ametinimetus id="8f15e81e-10d7-4059-b021-ea0a2603cdd4">vallasekretär</ametinimetus><eesnimi id="47f8e7d4-9808-4a4f-9809-6f807702f9a3">Maarja</eesnimi><perekonnanimi id="f24b1687-6bc4-40b1-bb1d-8419ca0b8ea5">Lehemets-Tihhanov</perekonnanimi></allkirjastaja></allkiri></oigusakt>

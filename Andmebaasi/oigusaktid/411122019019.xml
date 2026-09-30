@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="f53bee9a-ec34-4449-8d39-534529789406" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Narva Linnavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2013-03-21</aktikuupaev>
+			<avaldamismarge>
+				<RTosa id="c85309fc-c8a2-4ab2-97f4-40d1d86797e8">RT IV</RTosa>
+				<avaldamineKuupaev id="e8672881-342b-4cf5-8c4f-7dbf8128235f">2013-03-27</avaldamineKuupaev>
+				<RTartikkel id="6c9e2b52-36a0-4338-8dc6-59667cbf9a6e">31</RTartikkel>
+				<aktViide id="c3a4f54e-0eaf-4271-988e-d199fceec44d">427032013031</aktViide>
+			</avaldamismarge>
+			<joustumine>2013-03-30</joustumine>
+			<aktiNr>12</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2019-12-11</avaldamineKuupaev><RTaasta>2019</RTaasta><RTartikkel>19</RTartikkel><aktViide>411122019019</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2019-12-09</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2019-12-10</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>411122019019</globaalID>
+		<metaandmedVersioon>22</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2019-12-10</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Maret Mauer</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1012335</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2013-03-25</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Jelena Tõsjatova</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>6</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2013-03-25</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Marike Võime</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>11</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2014-12-23</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>17</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2019-12-10</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="8a7afb0f-f620-4c96-9644-27b1fc3cc24a">
+		<nimi id="add5a472-6fb8-4d9e-8fa5-7cf032d605ec">
+			<pealkiri id="fbe7e9fe-4c62-4571-b1d8-33bbc0e6c7f3">Laste turvakoduteenuse osutamise tingimused ja kord Narva linnas</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="b1030b27-086e-40d5-9409-834e47eb8a0b">
+		<aktikuupaev id="00d3d520-5a67-41a2-80b1-a8f45539d8c7">2014-12-18</aktikuupaev>
+		<avaldamismarge id="a8b0ce71-f7c0-4ed4-bdf4-cf509f98e3c6">
+			<RTosa id="c3ca2ced-3b86-4a65-8d6e-39f5e8f00e9b">RT IV</RTosa>
+			<avaldamineKuupaev id="0bb1b840-f2cf-409e-9fcd-5fa35f7d941e">2014-12-29</avaldamineKuupaev>
+			<RTartikkel id="0e56bd02-c87c-4675-b15a-e73ca53005aa">61</RTartikkel>
+			<aktViide id="b3e261d4-e31a-4df0-9a5e-00a87f8dd9c5">429122014061</aktViide>
+		</avaldamismarge>
+		<joustumine id="ffff8c77-f241-4d6c-917e-33b12959dace">2015-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="a04f8c8e-8312-47d9-b2db-3aa9412d5d24">
+		<aktikuupaev id="7f9b3e4a-14eb-482d-8b06-d3bd376e0460">2016-02-25</aktikuupaev>
+		<avaldamismarge id="b2d293ea-171f-4a9e-bd72-28646a51f3f1">
+			<RTosa id="1d7cf277-7c87-4183-aa08-cf6748386cd5">RT IV</RTosa>
+			<avaldamineKuupaev id="3c8a2b1a-3a89-4cd7-8d9f-63cf795cdf3a">2016-03-05</avaldamineKuupaev>
+			<RTartikkel id="92704b77-a052-4c34-839e-7f06a55c70a4">1</RTartikkel>
+			<aktViide id="66823b97-3955-41f0-96e7-be4a74e6692a">405032016001</aktViide>
+		</avaldamismarge>
+		<joustumine id="8c1698f4-08f3-4735-b1fd-de82bbd29f73">2016-03-08</joustumine>
+		<tavatekst id="54734f5e-2ebf-4563-ae0f-3fe07c9ee8d5">, määruses on läbivalt asendatud sõna „varjupaigateenus“ sõnaga „turvakoduteenus“ ning sõna „varjupaik” sõnaga „turvakodu” vastavas käändes</tavatekst>
+	</muutmismarge>
+	<muutmismarge id="f28259db-cc57-4b53-bbf8-ad9d72ffc23b">
+		<aktikuupaev id="402d30a6-abb9-47b2-956f-831641c7a75a">2019-12-09</aktikuupaev>
+		<avaldamismarge id="d80a1225-cbf3-4a08-9166-f2720ac0db9f">
+			<RTosa id="80fc6bc6-8f5c-4ab4-9232-3c82efdce2c0">RT I</RTosa>
+			<avaldamineKuupaev id="30b87ceb-4094-4c38-9206-7dc4a3904e0f">2019-12-11</avaldamineKuupaev>
+			<RTartikkel id="333da710-1c42-44e7-8e8d-5fc70f6c00fb">21</RTartikkel>
+			<aktViide id="85511201-49a1-42aa-814e-9790aaf7c906">111122019021</aktViide>
+		</avaldamismarge>
+		<joustumine id="c0bde8c6-0c53-4b27-a091-a946502db6a4">2019-12-09</joustumine>
+		<tavatekst id="94b7a60e-4bc5-451c-b9ac-ca2135e99000"> - Riigikohtu põhiseaduslikkuse järelevalve kolleegiumi 09.12.2019 kohtuotsus nr 5-18-7 tunnistab põhiseadusega vastuolus olevaks ja kehtetuks Narva Linnavolikogu 21. märtsi 2013. a määruse nr 12 „Laste turvakoduteenuse osutamise tingimused ja kord Narva linnas“: § 2 lõige 2 osas, milles see kohustab isikuandmeid esitama ja nende õigsust tõendama lapse turvakodusse toonud inimest, kellel on õigus oma andmete esitamisest keelduda lastekaitseseaduse § 27 lõike 5 teise lause alusel; § 3 lõige 5 osas, milles see ei taga turvakoduteenuse osutamisel teenuse saaja east ja vajadustest tulenevaid arendavaid tegevusi.</tavatekst>
+	</muutmismarge>
+	<sisu id="aed02bb0-9bd3-4dcd-b1c1-9899c591f801">
+		<preambul id="c077cbf5-b145-470b-9ff2-330455f78011">
+			<tavatekst id="594e4691-ebb8-4814-97d9-17974dc84689">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5 ning sotsiaalhoolekande seaduse § 14 alusel.</tavatekst>
+			<muutmismarge id="55862c06-cb6c-4c15-b88c-4ffe5b13c38f">
+				<avaldamismarge id="8fb56d59-7861-433a-98ac-c479ebe43c87">
+					<RTosa id="e24d3714-dd3a-4481-b56e-5eb8ffb95b60">RT IV</RTosa>
+					<avaldamineKuupaev id="290293d3-7d7a-46c2-a837-56b13662420d">2016-03-05</avaldamineKuupaev>
+					<RTartikkel id="15e4be06-1937-4bf1-a883-2c4fb95a0675">1</RTartikkel>
+					<aktViide id="830af756-e5ce-4cf0-9ac5-f26b0766881a">405032016001</aktViide>
+				</avaldamismarge>
+				<joustumine id="28d9deee-803f-4dc6-ab61-13068ca037b9">2016-03-08</joustumine>
+			</muutmismarge>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="aa7d2347-f2f2-45d2-994f-61831bd1f2b5">1</paragrahvNr>
+			<kuvatavNr id="d51e724c-0b8d-4511-9b86-ca5441abaedf"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="3a3bb936-b13a-42cd-9e6b-052b4dd9edb7">Reguleerimisala</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="95b88dde-27a3-4837-a112-4ab252eaf809">1</loigeNr>
+				<kuvatavNr id="5bb053a6-d9e3-424c-8caa-8aa68d1ac280"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="afbcd661-a3c6-4f05-9879-e0db1046e7ef">
+					<tavatekst id="7f8bdded-f3c5-4a29-90d7-47ee021ce40d">Käesolev määrus reguleerib laste turvakoduteenuse (edaspidi <i>teenus</i>) osutamise tingimusi ja korda vanemliku hoolitsuseta jäänud või vägivalla või konfliktide tõttu ohtu sattunud lastele.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg2">
+				<loigeNr id="7c3f96ba-1b3d-49b7-a00e-16a1ba68c6c8">2</loigeNr>
+				<kuvatavNr id="666c92fa-0325-4cab-a5cc-70e9faa905f7"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="3e2a585c-b429-464a-a1d8-3285b05de2a4">
+					<tavatekst id="90ae7404-124c-423f-8f55-5ebaae66f2dd"> Teenuse osutamise eesmärgiks on tagada vanemliku hoolitsuseta jäänud või ohtu sattunud lastele nende eale ja seisundile vastav hooldamine ja nende õiguste ja huvide kaitse.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para1lg3">
+				<loigeNr id="20239889-7d54-45dc-9aaa-fd25e03c4b06">3</loigeNr>
+				<kuvatavNr id="1b38ec83-6cb6-4ea2-abd4-e0ac67a80201"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="1dd8ec5e-e921-4e7f-8092-dfb761547b21">
+					<tavatekst id="4d1dc0f6-2f39-44c8-ac10-9a21170076a1">Teenust korraldab Narva linna Sotsiaalabiamet (edaspidi <i>Sotsiaalabiamet</i>) hallatava asutuse Narva Sotsiaaltöökeskuse (edaspidi <i>teenuse osutaja</i>) kaudu.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="68df55fa-a658-4c06-8609-b94b04058baf">
+					<avaldamismarge id="f4b8cad3-e5a9-46be-96c2-c4b42bbf63bd">
+						<RTosa id="1841982b-52f5-42db-8c63-d8dd8656fe07">RT IV</RTosa>
+						<avaldamineKuupaev id="2de0f8c0-92fb-4405-8155-67c1985d16bb">2014-12-29</avaldamineKuupaev>
+						<RTartikkel id="33893716-c6e6-4323-b081-16f6da91fdce">61</RTartikkel>
+						<aktViide id="d6af86ab-6b21-47a3-a3e3-59228ee56a48">429122014061</aktViide>
+					</avaldamismarge>
+					<joustumine id="80f867da-3273-487a-a3eb-e610541cd75d">2015-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+			<loige id="para1lg4">
+				<loigeNr id="15781980-1a4e-4db4-b014-b2e0e0317d8f">4</loigeNr>
+				<kuvatavNr id="eaa0cf71-eae2-4b5d-80e5-199b8d18ad4c"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="64204352-ff0a-487a-8c45-dbfc6c935ea6">
+					<tavatekst id="1b865fed-4469-4017-8452-ef1456d81bab"> Teenuse rahastamise allikaks on Narva linna eelarve. Teenuse osutamiseks linnaeelarvest eraldatud vahendite üle peab arvestust Sotsiaalabiamet.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="618e8c7a-9f8e-4170-943f-29962e20780d">2</paragrahvNr>
+			<kuvatavNr id="eb58cf54-87c5-48fc-b61c-2dd29ce2a82b"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="cede1819-062d-4edf-a07d-213631a5dab2">Lapse toimetamine teenusele</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="3eb3ea27-d43f-4b82-8747-16bf1d6287e2">1</loigeNr>
+				<kuvatavNr id="229c5373-ebc3-4f23-b5d3-fd84dd7d8d6c"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="ec8a1e2a-24a1-4fb1-b2fa-5dd0fa4de991">
+					<tavatekst id="e1d9404b-be80-4186-b31c-34a4cb91099e">Lapsi võivad teenuse osutamiseks kohale toimetada lapse ohtu sattumisest teada saanud isikud, sealhulgas ametiisikud.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg2">
+				<loigeNr id="00d9a647-12fd-4c3a-a784-3e90d9fc7fae">2</loigeNr>
+				<kuvatavNr id="a39738b1-844a-4fe6-80d4-97eec2863927"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="79a9ad8f-c4e9-41a0-be0a-d36dc4a211b9">
+					<tavatekst id="dcba523d-3122-4048-86af-31af46737f5b">Lapse teenusele tooja on kohustatud andma oma andmed (nimi, kontaktandmed, vajadusel töökoht ja amet) ning andma selgitusi asjaolude kohta, mis tingisid lapse teenusele toomise. Teenuse osutajal on õigus küsida lapse teenusele tooja isikut tõendavat dokumenti isikuandmete kontrollimiseks.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="a196b6a1-93d5-4b77-b460-049850e226d3">
+					<avaldamismarge id="5aa2d7e1-5b1d-47db-bc03-122a460bcd97">
+						<RTosa id="86aba91e-6bf8-4fda-9478-8550fa0572e3">RT I</RTosa>
+						<avaldamineKuupaev id="fee44eca-414d-4e1c-9f18-698112327119">2019-12-11</avaldamineKuupaev>
+						<RTartikkel id="d069f604-2465-4172-9640-8fbc447bb2f0">21</RTartikkel>
+						<aktViide id="d96eb167-0967-43e5-990f-ab268de9887a">111122019021</aktViide>
+					</avaldamismarge>
+					<joustumine id="5a0fb234-19f9-4148-91fa-28e973808db9">2019-12-09</joustumine>
+					<tavatekst id="6111cec6-d22a-4b15-8e0d-93d8dccce906"> - Riigikohtu põhiseaduslikkuse järelevalve kolleegiumi 09.12.2019 kohtuotsus nr 5-18-7 tunnistab põhiseadusega vastuolus olevaks ja kehtetuks Narva Linnavolikogu 21. märtsi 2013. a määruse nr 12 „Laste turvakoduteenuse osutamise tingimused ja kord Narva linnas“ § 2 lõige 2 osas, milles see kohustab isikuandmeid esitama ja nende õigsust tõendama lapse turvakodusse toonud inimest, kellel on õigus oma andmete esitamisest keelduda lastekaitseseaduse § 27 lõike 5 teise lause alusel.</tavatekst>
+				</muutmismarge>
+			</loige>
+			<loige id="para2lg3">
+				<loigeNr id="b8420e8a-9579-42c8-930b-32ab34e4f45d">3</loigeNr>
+				<kuvatavNr id="5add9a8e-5d2a-41a3-b70f-210c850377c7"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="23911f0e-74d5-45ed-a257-9c8b099ba887">
+					<tavatekst id="dad22644-214f-487e-a931-79ef26bb4da0">Laps võib teenuse osutamise kohta tulla omal algatusel, kui ta on lahkunud kodust oluliste probleemide tõttu. Sellisel juhul viivitamatult selgitatakse välja kõik lapse teenusele saabumist tingisid asjaolud ja lapse andmed.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="44565f62-38aa-49aa-a359-1e3856252f2a">3</paragrahvNr>
+			<kuvatavNr id="2b282731-581a-411a-8d7f-a1cd00645db2"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="aed6a56a-9074-45ae-a54f-89a82aadebe2">Teenuse osutamine</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="9ccddde2-6544-4b9b-916d-244df11375b8">1</loigeNr>
+				<kuvatavNr id="c763b2d4-b259-47b7-bef3-da0709bdf543"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="98d82645-f10e-4cfa-8baa-0eaf498ca0ee">
+					<tavatekst id="d9e20efc-996d-4289-b3ee-f944ca2d43c2"> Teenust osutatakse ööpäevaringselt 0- kuni 18- aastastele lastele, vajaduse korral ka teenusel olevat last hooldatavale isikule.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg2">
+				<loigeNr id="1aa2d277-c122-45e9-a47e-2653b017c869">2</loigeNr>
+				<kuvatavNr id="45b9e69f-2c2d-4e1f-8b30-53eec4d2d135"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="026103a1-2dfa-45c5-8f93-6a7ed9af452f">
+					<tavatekst id="51df67df-5fd6-4a5c-a86e-f8140cd1380d"> Teenust osutatakse kõigile lastele sõltumata nende elukohast.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg3">
+				<loigeNr id="17c3bf8d-aaa8-47a4-b829-2692ff48cd9d">3</loigeNr>
+				<kuvatavNr id="54c80a9c-d48c-440d-8a1d-600e477c6534"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="eef742b3-71b0-442d-993a-c3457f0d70a3">
+					<tavatekst id="6b1de71b-3b6c-4940-8230-0a0e7ac0f32f">Kõigi turvakoju tulnud või toodud laste kohta peetakse arvestust ja vormistatakse isiku toimik. Lapse saabumisel teenusele koostab teenuse osutaja juhtumi kirjelduse.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg4">
+				<loigeNr id="35903e9f-e88d-4f08-8070-6cce0796b01d">4</loigeNr>
+				<kuvatavNr id="8b00b014-8356-4a53-893f-132ace844f67"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="a72a7035-60e8-4a82-b324-3f51d1208b91">
+					<tavatekst id="4f523fdd-cc1a-4dfe-a12e-cc1a926a6341">Teenuse osutaja on kohustatud informeerima esimesel võimalusel teenusele tulnud või toodud lapsest tema elukohajärgset omavalitsust või vastavat riigi esindust, kes lahendab lapse edaspidise elukorralduse küsimused.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg5">
+				<loigeNr id="663387c4-34e8-42ed-992c-dddc11938a3c">5</loigeNr>
+				<kuvatavNr id="9521d6fd-8b98-4892-9b85-dab5eaf66e3d"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="519c614c-b751-4711-864a-c1e97b4ed1f1">
+					<tavatekst id="a73ad885-b546-492d-93bc-9df46ddb5b25">Teenus sisaldab järgmisi tegevusi:</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="9e170c0a-3c46-4f2b-817c-26fd53f6d4d2">
+					<avaldamismarge id="063a5c43-f427-4644-9441-d2fa1ec2d736">
+						<RTosa id="7ece79be-ee66-47f8-9ebe-f9c27067dc8b">RT I</RTosa>
+						<avaldamineKuupaev id="73e9bcf7-7710-4976-ad78-ed93c369e167">2019-12-11</avaldamineKuupaev>
+						<RTartikkel id="d24e9cf5-fdfd-454d-b666-529b3a2949a9">21</RTartikkel>
+						<aktViide id="6fe54fc6-678b-4788-ba42-ee6974f0fe47">111122019021</aktViide>
+					</avaldamismarge>
+					<joustumine id="69effac6-6602-4b9a-b0dc-f151b9157f2a">2019-12-09</joustumine>
+					<tavatekst id="32665823-5d96-401d-a77c-c9e172fb480b"> - Riigikohtu põhiseaduslikkuse järelevalve kolleegiumi 09.12.2019 kohtuotsus nr 5-18-7 tunnistab põhiseadusega vastuolus olevaks ja kehtetuks Narva Linnavolikogu 21. märtsi 2013. a määruse nr 12 „Laste turvakoduteenuse osutamise tingimused ja kord Narva linnas“ § 3 lõige 5 osas, milles see ei taga turvakoduteenuse osutamisel teenuse saaja east ja vajadustest tulenevaid arendavaid tegevusi.</tavatekst>
+				</muutmismarge>
+				<alampunkt id="para3lg5p1">
+					<alampunktNr id="f88d650c-ae0d-4198-8d32-4c6a52712477">1</alampunktNr>
+					<kuvatavNr id="fdb3f3e9-013f-4436-ad60-2942e3d3505a"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="8e6989b1-a3f0-48e6-9f51-884f844c4ae5">
+						<tavatekst id="82498eaa-0d8a-4fcc-957f-78dd90085476"> ööbimisvõimaluse ja toitlustamise tagamine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg5p2">
+					<alampunktNr id="147f6b06-3328-44a3-be64-6b859600cd16">2</alampunktNr>
+					<kuvatavNr id="a14b8c65-4b42-403f-bdb1-426174ea9fc4"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="ee2962b7-6b00-4eae-bd5c-d2487061a294">
+						<tavatekst id="3d0803ae-f789-4aa2-91bb-90a17f332c14"> vajadusel puhta pesu ja riiete võimaldamine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg5p3">
+					<alampunktNr id="5d76f01d-0702-4fa3-8924-d149371bac0f">3</alampunktNr>
+					<kuvatavNr id="a8671cbd-15b1-47ef-9aaa-e3986e6b5237"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="612a20f9-8799-4657-aa5a-28ee1a2c6037">
+						<tavatekst id="19bb6ba3-7505-4b97-8074-472c2c39afee"> esmane sotsiaalnõustamine ja psühholoogiline abi;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg5p4">
+					<alampunktNr id="6775ddc2-cbaf-4481-ae4d-6adb7d787976">4</alampunktNr>
+					<kuvatavNr id="a84ed719-faca-4e9c-a6bb-dfc068689f80"><![CDATA[4) ]]></kuvatavNr>
+					<sisuTekst id="2956537c-1dfd-496e-ab2e-bb01d15e532f">
+						<tavatekst id="a0edc018-ce87-4d64-8094-c47961f23849"> meditsiinilise abi osutamise korraldamine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg5p5">
+					<alampunktNr id="9decdb61-1b3a-46a7-aeaa-3af0944dea53">5</alampunktNr>
+					<kuvatavNr id="1f185b68-ebb3-43b4-a9a5-a215f50f6ea7"><![CDATA[5) ]]></kuvatavNr>
+					<sisuTekst id="1b742a85-1483-4985-a6f4-1c38cec7a848">
+						<tavatekst id="5d5f6a46-38a4-4fec-94c1-430b862b951c"> pesemisvõimaluste tagamine;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg5p6">
+					<alampunktNr id="b7bc9e0c-61a6-4aa0-8c7c-c8d0d7a6f15f">6</alampunktNr>
+					<kuvatavNr id="55bfa17c-93d3-49f2-856f-ed8ebd53c8d3"><![CDATA[6) ]]></kuvatavNr>
+					<sisuTekst id="f76edca3-50d6-4f8e-b00c-f42017ce19f7">
+						<tavatekst id="92dba81b-f329-4e00-9e99-8d99d89a518f"> abistamine kooliülesannete lahendamisel;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para3lg5p7">
+					<alampunktNr id="4bf3cea5-399d-49f6-a35b-112b35351359">7</alampunktNr>
+					<kuvatavNr id="52d6cb54-2979-41c8-8023-f0ff510e1cd0"><![CDATA[7) ]]></kuvatavNr>
+					<sisuTekst id="65b9c96c-86ba-4b43-9077-a2fe8c3d1707">
+						<tavatekst id="d152fbbc-33c2-48b7-85a4-f83bfdd3e971"> kooli külastamise tagamine.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para3lg6">
+				<loigeNr id="79e25363-3ab5-4e46-88d8-c010119766e6">6</loigeNr>
+				<kuvatavNr id="90af7f3c-7ce2-4c65-87c8-3ca6bf29e4ab"><![CDATA[(6)]]></kuvatavNr>
+				<sisuTekst id="acf6c604-b27c-4cc4-bf7c-3b9f07a2b433">
+					<tavatekst id="87749f05-71dc-47ee-b5aa-ee582bbe329b">Abivajav laps ning vajadusel last hooldav isik võib viibida turvakodus juhtumiga aktiivse ja sisuka töö aja jooksul olukorra dünaamika igakuise analüüsiga.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg7">
+				<loigeNr id="5c0473ae-ca40-4cb2-979c-ade39ccfd12d">7</loigeNr>
+				<kuvatavNr id="1c508826-c17e-4bd3-a416-3c5c76bd781a"><![CDATA[(7)]]></kuvatavNr>
+				<sisuTekst id="24139f3b-d8a1-401f-85e8-45c6108ab2c2">
+					<tavatekst id="1cbe196a-0a62-4314-8e2e-6ee50cab000b">Teenuse osutamine lõpetatakse, kui langevad ära põhjused, mis olid lapse turvakoju sattumise aluseks.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg8">
+				<loigeNr id="df0b20e6-beea-428f-9965-17bce033a113">8</loigeNr>
+				<kuvatavNr id="c423f464-b2ad-4e60-99a2-8ebc6f65923b"><![CDATA[(8)]]></kuvatavNr>
+				<sisuTekst id="3997e34f-3ce8-4384-8184-57c2a9fd371d">
+					<tavatekst id="d6b5045e-bd24-49eb-af0c-3165e7688b29">Teenuse osutaja on kohustatud informeerima teenuselt lahkunud lapsest tema elukohajärgset omavalitsust või vastavat riigi esindust.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="11823329-dd5d-4b17-b7f3-308ae1b07fb9">4</paragrahvNr>
+			<kuvatavNr id="88643180-8192-464b-9438-3845a4c1ee02"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="81c02f3b-1371-46ae-8315-dd84436787ed">Teenuse finantseerimine</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="81dab746-56b7-4ed0-8646-b768cb0f891c">1</loigeNr>
+				<kuvatavNr id="d4a4bc53-bc17-4b17-83d4-77efe5a313bd"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="a5bb03e7-3ced-4733-9c07-9ef66c3562a7">
+					<tavatekst id="a4b8cdbf-e06e-4f44-9b36-3e05cd5252fb"> Teenuse saajatele on teenus tasuta.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg2">
+				<loigeNr id="b6edef2b-9481-4c03-8f08-b5a8a18c4226">2</loigeNr>
+				<kuvatavNr id="44d6d105-cc49-4e80-b531-0afdeb40d41b"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="3a7556f3-c66c-45ab-83f9-d79c66964a32">
+					<tavatekst id="358e378b-007b-49ba-bc8b-acd0af497919">Kui turvakodus viibib laps, kelle elukohana Eesti rahvastikuregistris ei ole registreeritud Narva linn, esitab teenuse osutaja lapse elukohajärgsele omavalitsusele või vastava riigi esindusele arvet ülalpidamiskulude katmiseks. Tasu ei või nõuda siis, kui teenust osutatakse lapsele kuni kolm päeva.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg3">
+				<loigeNr id="d9471cbe-5ea7-40c7-9e70-1ca0a1f7ce88">3</loigeNr>
+				<kuvatavNr id="ee6b7bc5-ae52-483a-badc-87fb14a0a261"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="d7268076-8146-4e31-bf51-2202a896367e">
+					<tavatekst id="831c6e71-daac-43b9-baf5-bfc6f8525d54">Teenuse maksumuse kinnitab Narva Linnavalitsus.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="5ced728b-755f-432a-88e2-b87312b5264a">5</paragrahvNr>
+			<kuvatavNr id="4fdaa9fa-d3b8-4437-8e33-83113f1117cf"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="0adc5648-00c1-4295-83e5-da0eb61efab3">Rakendussätted</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="08ac1454-a62e-41e8-8eae-4cce3afa0b98"/>
+				<kuvatavNr id="5a765d90-2f04-4ce7-9bb2-3bd5fb28cf8c"/>
+				<sisuTekst id="0cfb3cf9-7412-4c38-99a2-30d6818531b2">
+					<tavatekst id="b6f3fcaf-422d-4efc-af50-2b5a5dc4c2ca">Määrus jõustub seadusega sätestatud korras.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+</oigusakt>

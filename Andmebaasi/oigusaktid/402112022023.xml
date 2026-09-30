@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="180765c8-360c-45cf-9f92-56c3749a45bd" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Narva-Jõesuu Linnavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2018-01-24</aktikuupaev>
+			<avaldamismarge>
+				<RTosa>RT IV</RTosa>
+				<avaldamineKuupaev>2018-02-03</avaldamineKuupaev>
+				<RTartikkel>24</RTartikkel>
+				<aktViide>403022018024</aktViide>
+			</avaldamismarge>
+			<aktiNr>18</aktiNr>
+			<joustumine>2018-02-06</joustumine>
+			<tavatekst>, rakendatakse alates 01.01.2018</tavatekst>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2022-11-02</avaldamineKuupaev><RTaasta>2022</RTaasta><RTartikkel>23</RTartikkel><aktViide>402112022023</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2023-01-01</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2022-10-31</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>402112022023</globaalID>
+		<metaandmedVersioon>11</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2022-11-01</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1041865</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2018-01-28</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Eret Laht</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>6</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2018-01-31</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="25820e3a-69cf-46f7-9982-9d6a68e1ee8f">
+		<nimi id="62ac2fb9-604d-4890-9e17-696985428dbe">
+			<pealkiri id="e5085358-d55d-4653-a493-83e16c8d2384">Sotsiaaltransporditeenuse osutamise kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="2573a6d7-b94d-4221-8e80-37f5b693ddf1">
+		<aktikuupaev id="99156f20-75b2-41d1-92d4-e8e43d7fe159">2022-10-26</aktikuupaev>
+		<avaldamismarge id="908f8aba-328e-4d43-934d-cf855fcaf703">
+			<RTosa id="7b3db1a1-8f2a-40ee-91e1-cf2c248fa25d">RT IV</RTosa>
+			<avaldamineKuupaev id="67040b63-04ef-4ad4-aceb-d4c8c2440959">2022-11-02</avaldamineKuupaev>
+			<RTartikkel id="e9c331c7-0ac8-40d1-87f4-5929bc01e274">7</RTartikkel>
+			<aktViide id="bb6efeb0-e3b8-4c1c-bf42-1fee2daf0ea9">402112022007</aktViide>
+		</avaldamismarge>
+		<joustumine id="dc39d043-a69c-46f8-b9fe-29273ac44138">2023-01-01</joustumine>
+	</muutmismarge>
+	<sisu id="bb6ed921-005b-4b0d-9248-071ef3caacb6">
+		<preambul id="feb62544-482e-4926-a114-f916125affe0">
+			<tavatekst id="889b9d8d-74d8-47a0-a2e0-25b7e206ad1c">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 2, sotsiaalhoolekande seaduse § 38 lõike 1 ja Narva-Jõesuu Linnavolikogu 24.01.2018 määrus nr 15 „Sotsiaaltoetuste maksmise ja sotsiaalhoolekandelise abi andmise kord Narva-Jõesuu linnas“ § 15 lõike 2 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="0f22c3c6-f2da-4bb9-b792-3847d0dfa308">1</paragrahvNr>
+			<kuvatavNr id="c3115814-0f4e-4954-9af3-85ff85505e38"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="cf97a34e-3ace-46d0-8a41-b4de7f401427">Määruse reguleerimisala</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="7a5a358b-7f4c-4545-afb5-e706f263b60b"/>
+				<kuvatavNr id="f204ddbe-0f95-4808-9a7c-fba397f6d8ac"/>
+				<sisuTekst id="5d33bcc4-711a-4905-8548-15b394dc3ca5">
+					<tavatekst id="7ce663d7-cfcb-4b4e-bdf7-1eae4aec1005">Käesolev kord reguleerib rahvastikuregistri andmetel Narva-Jõesuu linnas elavatele puuetega ja eakatele inimestele sotsiaaltransporditeenuse (edaspidi: teenus) osutamist, tagamaks nimetatud inimestele paremaid tingimusi toimetulekuks ja võrdsete võimaluste toetamiseks.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="10d6ed8b-c695-438e-95b5-84f2a6891e83">2</paragrahvNr>
+			<kuvatavNr id="05563dab-50df-4349-8ebc-d6b15e26fee3"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="b432186c-f62a-42d5-89be-32b802f6e795">Üldsätted</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="bf9f50d1-4af0-4045-8cc8-c2cab1f531a4">1</loigeNr>
+				<kuvatavNr id="a015ee0e-1bcd-40ff-b461-ad563c843239"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="89be2c82-e312-4e70-a923-35ba54ef433c">
+					<tavatekst id="1fc92f16-e340-4ec2-8e64-f118bda08547">Sotsiaaltransporditeenus on avalike teenuste kasutamiseks, õppeasutusse või tööle sõitmiseks osutatav ühe- või mitmekordne teenus.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg2">
+				<loigeNr id="b821e70f-34d6-459b-a5eb-df9772705363">2</loigeNr>
+				<kuvatavNr id="9449e1df-9031-4a4d-8ee8-36f1a6ec525b"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="3b1fe36c-c950-488d-a824-b255fccaafa5">
+					<tavatekst id="4dba722a-3dce-4987-ab0c-d4a2122c6617">Teenust on õigust taotleda rahvastikuregistri andmetel Narva-Jõesuu linnas alaliselt elavatel puudega või eakatel inimestel, kes vajavad tervislikust seisundist, puudest ja raskest majanduslikust seisundist tulenevalt transporti ning kellel ei ole võimalik:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para2lg2p1">
+					<alampunktNr id="9b97ae54-f913-429c-8996-6ece45326710">1</alampunktNr>
+					<kuvatavNr id="df7f284c-cd71-4428-9932-49f39e62f920"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="b9a52f9f-d2e5-410f-b7e5-5d2c77233a6e">
+						<tavatekst id="a98b3051-65b4-4e85-b084-85b29db6ec66">kasutada ühistransporti või</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg2p2">
+					<alampunktNr id="2730f4a6-4e12-4cc3-a9c9-95c77030e41f">2</alampunktNr>
+					<kuvatavNr id="5f74ff7d-6f44-4769-a27b-d3e8940b674d"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="09914e4b-7005-4f56-b377-c049b551c9e6">
+						<tavatekst id="f783424c-c010-4130-bdd1-2e7ad916025e">kasutada isiklikku sõiduautot või</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para2lg2p3">
+					<alampunktNr id="869a8f7a-4211-445a-b586-03526ce7f8cc">3</alampunktNr>
+					<kuvatavNr id="520dd8fc-e069-49a6-baa3-e7552b94af25"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="862344fc-d26d-467a-a5b3-0f1a5f11473c">
+						<tavatekst id="105c4e73-02a7-4706-9818-7d1c0015d680">transporti iseseisvalt korraldada.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para2lg3">
+				<loigeNr id="62982f3c-1b95-4680-913a-ff185c42b1fd">3</loigeNr>
+				<kuvatavNr id="ff7f0e29-50a9-442b-887d-6bfe56928d5b"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="e762034a-d877-46ca-b197-0f2128b8bb23">
+					<tavatekst id="ece51e9c-6323-4357-8047-803af7ce88d6">Puudega isik käesoleva korra mõttes on isik, kellele on määratud raske või sügav puue ning oma puudest tingituna ei saa ta kasutada tavatransporti.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg4">
+				<loigeNr id="7f1a1e96-67b7-4307-84b0-df0d8acb6256">4</loigeNr>
+				<kuvatavNr id="3197db28-2de8-42e2-85c2-67a220e3fa4e"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="1cb74fd7-4ebc-4868-b7f1-dc388db3e690">
+					<tavatekst id="dbe4f9f6-8085-4402-b8a0-e14ac5a17994">Teenust osutatakse isikule, kelle eestkostjal või ülalpidamiskohustusega isikul ei ole iseseisvalt võimalik transporditeenust korraldada.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg5">
+				<loigeNr id="760ef80b-8ad0-4389-a3d3-633904c7e32a">5</loigeNr>
+				<kuvatavNr id="50a495c3-2010-46dd-9cc7-ecd6ba8a0030"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="629b2583-fc3e-4e59-9a89-80787e163fc9">
+					<tavatekst id="aacd37d8-a383-4d79-ae56-713f7abfd780">Transporditeenust osutatakse tööpäevadel Eesti Vabariigi piires.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg6">
+				<loigeNr id="1f458178-6b15-408f-a85a-722cb8d6aa73">6</loigeNr>
+				<kuvatavNr id="9bbff654-44d8-4521-b26e-89a973f335e7"><![CDATA[(6)]]></kuvatavNr>
+				<sisuTekst id="a89e8b77-023a-4864-8bf3-ef37ad803967">
+					<tavatekst id="fe8167bd-b795-4453-820d-6dcbae226bae">Erandjuhul, mõjuvate põhjuste olemasolul võib osutada teenust ka lõikes 2 nimetamata isikule või perekonnale.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="94384be9-e12a-4fe7-b59d-320813a07f6b">3</paragrahvNr>
+			<kuvatavNr id="193009b4-3a67-430d-aaeb-80c9267f06e9"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="503a3225-701e-4f5a-bc67-8f85796041a4">Teenuse taotlemine ja määramine</paragrahvPealkiri>
+			<loige id="para3lg1">
+				<loigeNr id="7029559d-4397-48a1-8e52-8e135f136546">1</loigeNr>
+				<kuvatavNr id="f0eca4ba-ee9d-4a48-ba84-ddcbffa2c675"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="13768c8c-c1d4-43bd-bb4b-fd5a7991678b">
+					<tavatekst id="0b932622-11ab-4245-8fa9-b938ae238c5c">Teenust vajav isik esitab sotsiaalosakonnale kirjaliku taotluse teenuse vajalikkuse põhjendusega, sõidu otstarbe ja marsruudi kohta. Puuet omav isik esitab vastava tõendi. Vajadusel esitatakse perekonna sissetulekut tõendavad dokumendid.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg2">
+				<loigeNr id="d20d0827-f41c-4cef-8810-cced537e18be">2</loigeNr>
+				<kuvatavNr id="a2befa60-e29c-44ee-98a3-752d0d8c3aea"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="9846939f-1209-4438-821b-7a15b5f77157">
+					<tavatekst id="3a8b90ed-d41a-4087-a1b2-db2a33deb3ba">Teenust vajav isik esitab taotluse teenuse saamiseks vähemalt seitse tööpäeva enne soovitud sõiduaega.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg3">
+				<loigeNr id="10b37165-f1c3-43b7-a1d5-8d2e634d6c0c">3</loigeNr>
+				<kuvatavNr id="4f080ab8-5c8c-4a82-9d5d-a6164e3c59dc"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="f1d045f1-640e-468f-8acf-be2120536765">
+					<tavatekst id="100e4eaf-fcfa-4c78-bea5-9b6badeab648">Isikule abi osutamisel ja teenuse vajaduse väljaselgitamisel kasutatakse kaalutlusõiguse ja juhtumikorralduse põhimõtet ning teenuse määramine otsustatakse igal konkreetsel juhul eraldi.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg4">
+				<loigeNr id="00de2672-1a18-4889-9534-441089776da9">4</loigeNr>
+				<kuvatavNr id="8f344fbc-bf15-4321-9e45-c54896b9ee19"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="c47dc9d1-59a0-444c-8f17-9b16e054dcc6">
+					<tavatekst id="82c93777-f92a-49fc-83a0-02375eaf037d">Otsuse selle kohta, kas isik on õigustatud transporditeenust saama ja kas linnavalitsusel on soovitud ajal võimalik teenust osutada teeb sotsiaalosakonna ametnik.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg5">
+				<loigeNr id="2f3511fe-dd85-411f-8890-5ad3378e9ced">5</loigeNr>
+				<kuvatavNr id="dd605227-1590-4706-91ad-862eeb8a1bb9"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="bef124ce-be0e-4979-a6b2-9b480db6061c">
+					<tavatekst id="28d7ccdb-83b8-44e9-af6f-265efba727de">Erandjuhtudel osutatakse transporditeenust esimesel võimalusel sotsiaalosakonna juhataja otsusega või perearsti pöördumisel.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg6">
+				<loigeNr id="f6dca68a-4bf0-46a3-a736-38264ed7faf3">6</loigeNr>
+				<kuvatavNr id="52f59029-d35a-47cb-8082-ddb5c87be3d1"><![CDATA[(6)]]></kuvatavNr>
+				<sisuTekst id="725d021f-2e59-40a6-a75e-bf7cd19451a3">
+					<tavatekst id="00e9bdb4-68a1-4056-afa9-072dba7b90e1">Teenust osutatakse üldjuhul sotsiaalosakonna kasutuses oleva sõiduvahendiga või vastavalt vajadusele teenust sisse osta (kohandatud transport).</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg7">
+				<loigeNr id="c3bed1ee-0cbe-478f-b9b5-69575ca79930">7</loigeNr>
+				<kuvatavNr id="f8c2ec62-fb91-41eb-bf13-dbbdb77c34c8"><![CDATA[(7)]]></kuvatavNr>
+				<sisuTekst id="0dc36100-8694-47f7-9f59-f6c528e705d8">
+					<tavatekst id="bd66cafa-903b-4e8b-baae-e9c14b4c6eec">Teenuse osutaja on kohustatud abivajajat abistama sõidukisse sisenemisel ja väljumisel, samuti abistama teda raviasutuses või ametiasutuses asja ajamisel kui abivajaja tervislik seisund seda nõuab.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg8">
+				<loigeNr id="d1e9c725-4c2e-4960-ac84-fc967c5c4217">8</loigeNr>
+				<kuvatavNr id="67523116-f18c-412e-99e7-cf6d70fffffb"><![CDATA[(8)]]></kuvatavNr>
+				<sisuTekst id="597a0772-5466-432e-a540-e9c5041fe74a">
+					<tavatekst id="2b67f8b1-719e-4ae3-9d6c-efae9e963be6">Teenuse osutamise alustamisel teavitatakse isikut tema õigustest ja piirangutest teenuse saamise ajal, sealhulgas kaebuste esitamise võimalustest ja korrast.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg9">
+				<loigeNr id="59ed4e1a-9275-43f7-873b-4cfa5203cf55">9</loigeNr>
+				<kuvatavNr id="31eedfdb-8d6e-4506-a714-117a3b87460f"><![CDATA[(9)]]></kuvatavNr>
+				<sisuTekst id="c4977e83-54fc-4c09-b5d1-b719b2ea144f">
+					<tavatekst id="62d6b73a-ab23-4eac-a7fd-5a683d13a873">Sotsiaalosakonna juhatajal on erandkorras õigus reguleerida mitteametiasutusse (saunaring, poering ja raamatukoguring) toimetamise teenuse määramist.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg10">
+				<loigeNr id="6c10b805-b6cd-474e-928d-09610348a59a">10</loigeNr>
+				<kuvatavNr id="29e5ed48-f2f4-466a-90bc-e5269e5e10ef"><![CDATA[(10)]]></kuvatavNr>
+				<sisuTekst id="67b92fd7-3741-4ade-b3e1-387b6b47b9ed">
+					<tavatekst id="4353637c-1f56-4521-8d98-34f35c7d54a6">Kui teenuse taotleja vastab teenuse saamise nõuetele vastavalt antud määruse paragrahvile 2 registreeritakse taotlus sotsiaalteenuste-ja toetuste registris STAR.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg11">
+				<loigeNr id="b3c46409-2f94-4636-a1c8-ea7a992801db">11</loigeNr>
+				<kuvatavNr id="7d928a19-d4e3-43cd-802c-cdabdcd44e53"><![CDATA[(11)]]></kuvatavNr>
+				<sisuTekst id="ee2cdc25-cc2e-42d9-84e4-8ba92685599e">
+					<tavatekst id="51c2cdf8-3517-4955-b87f-d8351cf94ad2">Sotsiaaltransporditeenuse osutaja peab tagama teenuse osutamisel teatavaks saadud eraeluliste ja delikaatsete isikuandmete konfidentsiaalsuse.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3lg12">
+				<loigeNr id="fa9538a9-2e77-42df-ba58-dcba9232119a">12</loigeNr>
+				<kuvatavNr id="c0f66834-47e2-4e2f-9cdc-1aa7e0d6eaa8"><![CDATA[(12)]]></kuvatavNr>
+				
+				<muutmismarge id="1233749b-5fbc-4502-b9eb-eecb9ceebf56">
+					<tavatekst id="f570bded-d55c-4050-bbfd-5c006f064d59">Kehtetu -</tavatekst>
+					<avaldamismarge id="7cd61da7-659b-4acd-a729-7a90b1ce5d58">
+						<RTosa id="79940659-8a7c-4aaf-b5de-fcfc4975d641">RT IV</RTosa>
+						<avaldamineKuupaev id="44d61176-d368-4307-8a63-93438797de44">2022-11-02</avaldamineKuupaev>
+						<RTartikkel id="a3784f8f-f20f-40c2-a01c-b13dae591dc5">7</RTartikkel>
+						<aktViide id="681cc84f-e6b9-43f1-be5b-32d7ebba21c9">402112022007</aktViide>
+					</avaldamismarge>
+					<joustumine id="af7b297f-0860-4d3d-967e-f886faaa4a85">2023-01-01</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3b1">
+			<paragrahvNr id="165d43fc-9f47-4765-baa1-29677535310e" ylaIndeks="1">3</paragrahvNr>
+			<kuvatavNr id="0a6f83a5-7917-4d2b-8eb6-2c20a0327c2f"><![CDATA[§ 3<sup>1</sup>. ]]></kuvatavNr>
+			<paragrahvPealkiri id="263a542e-1fee-4403-b4f5-b564c34272e4">Sotsiaaltransporditeenuse eest tasumine</paragrahvPealkiri>
+			<muutmismarge id="b4c768e7-3742-4915-a9ff-379fa466fdf3">
+				<avaldamismarge id="42781a56-11eb-4289-9f66-129cd3b4f66d">
+					<RTosa id="c6336a89-742b-4c2e-a18a-dc2f38907fa7">RT IV</RTosa>
+					<avaldamineKuupaev id="09909b74-ee7d-4356-b1d7-81a65c991310">2022-11-02</avaldamineKuupaev>
+					<RTartikkel id="034baab8-e5b4-459a-9848-35eebc5adf72">7</RTartikkel>
+					<aktViide id="73f1773b-ae11-4661-a6b9-d32dd51449ef">402112022007</aktViide>
+				</avaldamismarge>
+				<joustumine id="cdf15728-5216-490a-97db-06e3c1c88cb7">2023-01-01</joustumine>
+			</muutmismarge>
+			<loige id="para3b1lg1">
+				<loigeNr id="48ffce87-ca66-460a-96f1-40e99745a0ef">1</loigeNr>
+				<kuvatavNr id="c4f7fe27-f92b-4ec7-92d8-516c9682e571"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="277b5994-b5a7-477f-8dd9-32f3df53fa8b">
+					<tavatekst id="e117f09b-307d-4a92-ad33-88fa1e62b247">Sotsiaaltransporditeenus on tasuline. Sotsiaaltransporditeenuse eest tasub teenuse saaja omaosalustasu.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3b1lg2">
+				<loigeNr id="26185c50-e097-45d0-ae0c-f71985bacd43">2</loigeNr>
+				<kuvatavNr id="d475aa89-e3e5-4e81-a5c3-edf1cc288dcc"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="dfcc1465-bef4-4cf7-891a-c4ecc7b6c8c2">
+					<tavatekst id="57f44a47-7d6a-4113-bca5-16e08509f94c">Sotsiaaltransporditeenuse omaosalustasu kehtestab linnavalitsus.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para3b1lg3">
+				<loigeNr id="fb9c62c2-f957-4d1a-be0f-b0cefa9feffb">3</loigeNr>
+				<kuvatavNr id="5bb8d4c9-8df5-4f19-8feb-b999054f599a"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="f1be38ca-af3f-49bc-9a38-37003530648e">
+					<tavatekst id="777e994c-5e1a-4586-85de-5ab92aedadeb">Omaosalustasu maksmisest on vabastatud puudega lapsed saatjatega.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="b4c768e7-3742-4915-a9ff-379fa466fdf3">
+				<avaldamismarge id="42781a56-11eb-4289-9f66-129cd3b4f66d">
+					<RTosa id="c6336a89-742b-4c2e-a18a-dc2f38907fa7">RT IV</RTosa>
+					<avaldamineKuupaev id="09909b74-ee7d-4356-b1d7-81a65c991310">2022-11-02</avaldamineKuupaev>
+					<RTartikkel id="034baab8-e5b4-459a-9848-35eebc5adf72">7</RTartikkel>
+					<aktViide id="73f1773b-ae11-4661-a6b9-d32dd51449ef">402112022007</aktViide>
+				</avaldamismarge>
+				<joustumine id="cdf15728-5216-490a-97db-06e3c1c88cb7">2023-01-01</joustumine>
+			</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="68b45c6e-39f5-4683-a842-523271e45c80">4</paragrahvNr>
+			<kuvatavNr id="47b7ff25-496b-429e-ad45-12263d397677"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="d6f0749b-5509-4988-804b-20f2f9984066">Sotsiaaltransporditeenuse määramata jätmine</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="db0ee92e-6f7c-4b21-82cc-6ec8181201f2">1</loigeNr>
+				<kuvatavNr id="565856ff-3e24-44c5-801d-55a6d47e113f"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="bab48cfa-1ea9-4543-8bf2-daa52c8a0065">
+					<tavatekst id="464c76d2-b002-46f9-a704-c182026bd86d">Taotluse sotsiaaltransporditeenuse saamiseks võib jätta rahuldamata kui:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para4lg1p1">
+					<alampunktNr id="fdd6ec81-cb62-4e71-b506-3fc73b7b4ac3">1</alampunktNr>
+					<kuvatavNr id="02bae3e4-fa0e-48a8-a2f9-2b3026802285"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="63bb60a7-cda5-45c5-b240-dc12b8481f6e">
+						<tavatekst id="164407eb-8929-4cf8-b3f3-ed9df12dabd9">isik ei ole õigustatud teenust saama;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg1p2">
+					<alampunktNr id="c8133859-9ac4-4ccf-80c8-a458d5a3eb27">2</alampunktNr>
+					<kuvatavNr id="03cdb5bb-4e4b-4032-99b3-7c1cd9f1aedd"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="005c46c0-a7b6-4fd6-b119-fc9417c1b687">
+						<tavatekst id="b76fbe9c-d570-4fb0-b5bd-d387ee883154">transpordivahend teenuse osutamiseks soovitud ajal on juba eelnevalt broneeritud;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg1p3">
+					<alampunktNr id="75e33d33-0e1c-4f9e-981b-b50aee0c80a0">3</alampunktNr>
+					<kuvatavNr id="d07a2842-f8fa-4951-a69a-c630b966af85"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="e1a6a125-f89f-4313-b972-452884d0f16a">
+						<tavatekst id="73c0768d-6d82-427f-8cca-69141d431a71">sotsiaaltransporti taotleva isiku alaline elukoht on teise omavalitsuse territooriumil.</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+			</loige>
+			<loige id="para4lg2">
+				<loigeNr id="008515cc-4947-4b66-bd69-3c7b9be30325">2</loigeNr>
+				<kuvatavNr id="8810d370-4f3b-4180-b0f8-d9e9e4456525"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="103e622a-77c7-41db-9fa0-1aac7a7bf590">
+					<tavatekst id="925e8cfc-2cac-4562-979e-639ce10849a2">Teenuse osutamisest või mitteosutamisest teavitab sotsiaalosakond teenust taotlenud isikut esimesel võimalusel telefoni teel või kirjalikult.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg3">
+				<loigeNr id="4ee6c1ad-12cd-496e-bee8-3708e8310d68">3</loigeNr>
+				<kuvatavNr id="e825d4bc-8a39-4d4c-8aef-57927f3bd9c7"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="bea91076-333e-4325-b3aa-97d015c4af18">
+					<tavatekst id="b41073b5-5de5-4dff-86f3-fc288ae87cb9">Otsusega mittenõustumise korral on taotlejal õigus esitada vaie linnavalitsusele või pöörduda halduskohtusse halduskohtumenetluse seaduses sätestatud korras.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="63a8397d-d1fc-4643-bd2e-6d9af86f6911">5</paragrahvNr>
+			<kuvatavNr id="95020f1c-db0f-4961-9b80-55ddedaad93f"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="89658e36-1cfd-4132-9ee9-4697ed438a16">Järelevalve ja vaidluste lahendamine</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="fab85743-99bb-4463-90b7-1991681d8bc2">1</loigeNr>
+				<kuvatavNr id="f3c6696f-0db8-4378-bd7a-72198d400d8d"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="eff3b809-6fd6-4f1a-bd5a-eceda57e8910">
+					<tavatekst id="5b97ca67-8180-402e-b799-6ef710bffb89">Järelevalvet teenuse osutamise üle teostab linnavalitsus.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg2">
+				<loigeNr id="8924b345-b77e-463c-af1b-131ae65e3840">2</loigeNr>
+				<kuvatavNr id="d0b2f129-9814-49f4-aefe-aa21a5edab88"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="30bfdef2-af00-4afb-82b1-9228d8197d52">
+					<tavatekst id="d81a1f28-c00d-473d-b600-9ae08fe19915">Teenuse üle peab arvestust sotsiaalosakond. Taotlused registreeritakse ja teenus määratakse sotsiaalteenuste-ja toetuste registris STAR.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg3">
+				<loigeNr id="db166421-c729-4173-a9df-dd2557098488">3</loigeNr>
+				<kuvatavNr id="02bcdecf-24d1-4e3d-80a1-32cb4a9dc787"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="e9d4e135-3d8d-40b5-83f2-10cabaa36c70">
+					<tavatekst id="3c799c14-13b6-4844-a6a6-dcb5f8b62387">Teenuste osutamisega seotud kaebuste ilmnemisel informeerib teenust saav isik koheselt sotsiaalosakonna juhatajat. Sotsiaalosakonna juhataja kontrollib pretensioonide õigustatust, kuulab ära kõik osapooled ning teeb otsuse kaebuse lahendamise kohta.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para6">
+			<paragrahvNr id="61491d8d-8ba3-4b53-beec-e6b0a592e06a">6</paragrahvNr>
+			<kuvatavNr id="0bb15d49-7b42-41e6-8742-4368850f1f8e"><![CDATA[§ 6. ]]></kuvatavNr>
+			<paragrahvPealkiri id="ac144952-e14c-4943-bf75-f39a7dcbf9ed">Rakendussätted</paragrahvPealkiri>
+			<loige id="para6lg1">
+				<loigeNr id="1f7254d3-66fa-4a85-8c8f-76f19e13c251">1</loigeNr>
+				<kuvatavNr id="4927dea5-9715-4e17-9382-e8afc88746b2"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="bf8b14f5-4794-477e-8bd6-7135529b06c0">
+					<tavatekst id="0391b0ad-3a2c-410d-a98d-89f9698e37d1">Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg2">
+				<loigeNr id="e2882920-4eac-42e0-97c7-93ef69dc4f59">2</loigeNr>
+				<kuvatavNr id="2dab94b2-3653-4fdd-9f1d-ce927dee8cef"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="25363277-5bd8-4bd0-b3ed-e25f4704efdf">
+					<tavatekst id="ff88ce0d-68ef-4a56-8b0d-d80ee174604b">Määrus rakendatakse 1. jaanuarist 2018. a.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+</oigusakt>

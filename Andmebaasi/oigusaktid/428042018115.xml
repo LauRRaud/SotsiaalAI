@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="e59644f3-b2c8-4aa8-8306-488ddfc04ccd" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Maardu Linnavolikogu</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2018-04-24</aktikuupaev>
+  
+  
+  <aktiNr>20</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2018-04-28</avaldamineKuupaev><RTaasta>2018</RTaasta><RTartikkel>115</RTartikkel><aktViide>428042018115</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2018-05-01+03:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2018-04-26</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>428042018115</globaalID>
+ <metaandmedVersioon>6</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2018-04-27</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Marike Võime</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1042978</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2018-04-25</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Natalja Gorbunova</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="80bdf989-08ec-4add-9310-e81b2579e5ee">
+  <nimi id="e621cf01-9593-486d-8894-cb4b727b9352">
+   <pealkiri id="5549e4c4-a27b-42a8-a53e-3be00737c3df">Puudega inimesele eluruumi kohandamiseks toetuse määramise kord</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="f30ba28b-2466-426a-a79e-147ac3d32ab6"><preambul id="a16cc1b0-58c6-422a-a998-8464a985c9e2">
+   <tavatekst id="e186bdaa-039b-45c6-b000-2e902c6a1329">Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lg 1 p 5 ja sotsiaalhoolekande seaduse § 42 lg 1 alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="6b7a630a-ed5a-4c16-b8ff-8a12ef62e90d">1</paragrahvNr>
+   <kuvatavNr id="c018cba9-922b-4aa3-bee8-bf2f2398fb2f"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="77ce29af-449f-4204-ae32-0ffe53d8a5b7">Üldsätted</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="d45c4b3f-1d0e-4ecd-bde3-0a5ac97ea365">1</loigeNr>
+   <kuvatavNr id="2567b762-66b7-43c5-89b1-c50aec85b269"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="b26ea52b-67b8-4f8f-a7de-eea71ec6b6a6">
+    <tavatekst id="64a0efc3-14aa-4ce9-a4db-9833c3269525">Puudega inimesele eluruumi kohandamiseks toetuse määramise kord (edaspidi kord) sätestab Maardu linna eelarvest toetuse määramise tingimused ja korra puudega inimese kasutuses oleva eluruumi kohandamiseks.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para1lg2">
+   <loigeNr id="f7ce1c33-5a14-4a25-b72b-5f68a2e88da0">2</loigeNr>
+   <kuvatavNr id="619a3e70-e775-497c-9ba6-8922c37f4761"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="2186d57d-a48d-47f7-bd33-88e59b7c35c3">
+    <tavatekst id="7fd83a1c-cd8e-4d00-af1c-029dce62d60d">Toetuse eesmärgiks on vähendada puudest tingitud raskusi eluruumi sisenemisel, eluruumis liikumisel ja enesega toimetulekul.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="cd921db7-e3e1-495c-82d3-219b2cfedb43">2</paragrahvNr>
+   <kuvatavNr id="8e75a313-c1a1-4831-a575-d6b17973240e"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="69e52590-bce2-498a-8c62-400fedbb855a">Toetuse määramise üldpõhimõtted</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="b6555f1f-9597-470f-8a11-4f0f74999f39">1</loigeNr>
+   <kuvatavNr id="4495fea8-64fe-4f2b-b077-47a536597eb6"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="09e64a63-4de6-4c03-b273-ec5d64c5e4f4">
+    <tavatekst id="f615c374-6203-4dfd-a462-76fe8d02737f">Toetust määratakse ehitustöödeks, mis vastavad õigusaktides sätestatud nõuetele ja soodustavad puudega isiku iseseisvat toimetulekut, leevendavad või kõrvaldavad puudest tingitud takistusi eluruumi kasutamisel (edaspidi kohandamine).</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg2">
+   <loigeNr id="8784fcbb-e52f-4b8a-b9f5-3c011d1d3441">2</loigeNr>
+   <kuvatavNr id="9df54be6-c26f-4c4b-8fae-c14407f0aaed"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="c003bd3b-bf56-46f7-be94-cd12e90ecb15">
+    <tavatekst id="e1f86bfc-9d2d-4778-9e0a-29a54096fb5b">Toetust määratakse eluruumi või selle juurdepääsu kohandamiseks, mida taotleja kasutab alaliseks elamiseks ja mis on toetuse taotleja või temaga samas eluruumis elava perekonnaliikme omandis (edaspidi eluruum) või pikaajalises (vähemalt 2 aastat) kasutuses.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg3">
+   <loigeNr id="95be7b7b-b334-4cfa-91e4-bd1f6266caac">3</loigeNr>
+   <kuvatavNr id="b2d4083c-75f7-44c7-9392-1e8821964657"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="ffecb1ef-9927-49b1-a776-c3116a732b2b">
+    <tavatekst id="10b4952a-b214-4ad0-9697-d7120d7335f7">Toetust määratakse Maardu linnas asuva eluruumi kohandamiseks sügava liikumispuudega ja progresseeruva liikumisvõime kaotusega raske puudega inimesele, kelle elukohana on Eesti rahvastikuregistris registreeritud Maardu linn. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para2lg4">
+   <loigeNr id="25cb5ba7-b152-4318-8677-045478430de7">4</loigeNr>
+   <kuvatavNr id="39cbfa15-d0da-4467-a430-a056314b226a"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="c16595f9-eff3-4bf2-a437-98331a65ec42">
+    <tavatekst id="6c3f13b3-5bca-4fb8-986e-c247dcc607d9">Toetust ei maksta statsionaarsete abivahendite eest, mis on eraldatud vastavalt Sotsiaalkaitseministri 21.12.2015 määrusele nr 74 „ Abivahendite loetelu, abivahendite eest tasu maksmise kohustuse riigi poolt ülevõtmise otsustamise ja erandite tegemise tingimused ja kord ning abivahendikaardi andmed“.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="d03dc1e9-5cce-44f7-bd74-61093ee27dd6">3</paragrahvNr>
+   <kuvatavNr id="50c3cc5c-12a1-46cc-b30e-37e6b96aac81"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="e88413f1-3198-4c87-aa01-c7a1acf2b205">Toetuse suurus</paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="1262c275-651f-4c93-99d3-ad5ef63e3a5d">1</loigeNr>
+   <kuvatavNr id="32174ff9-c7c7-4d8b-8dce-72a6d931ed0d"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="aeaad29f-f745-4fbe-bbf4-c3c80a8ea502">
+    <tavatekst id="760e70dd-89d6-4231-b84c-f22cfb76a060">Toetuse määramisel arvestatakse kohanduse põhjendatust ja üksi elava taotleja või temaga koos elava perekonna sissetulekuid.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para3lg2">
+   <loigeNr id="d1338abc-a375-4852-8c25-d04d9ca61cb2">2</loigeNr>
+   <kuvatavNr id="535444c9-c6e6-43ad-adc5-be4a5978e73c"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="88edd94d-52ce-4888-9488-d293fe228977">
+    <tavatekst id="b741d5b3-c3fa-4bfc-9ae2-9f1979fd86df">Toetuse suuruse määrab Linnavalitsus vastavalt eelarveliste vahendite olemasolule. </tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para4">
+   <paragrahvNr id="e8a5a82c-7808-40ef-86ed-c3fcda09e5c7">4</paragrahvNr>
+   <kuvatavNr id="eeee6660-f3aa-4fbb-a996-8b50cb78894d"><![CDATA[§ 4. ]]></kuvatavNr>
+   <paragrahvPealkiri id="2f948dc0-b1fb-42b0-a6eb-b7ca1273a903">Toetuse taotlemine</paragrahvPealkiri>
+  <loige id="para4lg1">
+   <loigeNr id="b1ad34ec-2e0b-49cf-b1d4-5932cfdf1ce7">1</loigeNr>
+   <kuvatavNr id="50d18151-9981-40dd-b23a-6c0fc0174ded"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="b778c070-9f9a-4755-b678-f0e37b054435">
+    <tavatekst id="7c59d618-4bc2-405f-9f3b-2b487b95cf81">Toetuse saamiseks esitatakse taotlus Maardu Linnavalitsuse sotsiaalabiosakonnale (edaspidi osakond).</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg2">
+   <loigeNr id="c22890c4-2dbd-4967-bcb0-6ad0dff1a360">2</loigeNr>
+   <kuvatavNr id="a08a8792-234a-4a4a-99f9-f181a4e354c6"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="ed082213-0ffc-43bf-b56e-12a8dfb36fd9">
+    <tavatekst id="4a9955f6-194e-4e06-a831-93a000669010">Taotluses esitatakse taotleja ja eluruumi andmed, kohanduse kirjeldus, taotletav summa.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para4lg3">
+   <loigeNr id="a637595c-8c18-4906-b5f7-a0d534841862">3</loigeNr>
+   <kuvatavNr id="7e7fe5d5-2369-44e1-bf21-aa615fcac106"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="9df93431-0da4-4fe0-8818-8602ac93a21d">
+    <tavatekst id="e8d9a4c8-64c7-4657-8c41-602aae7f0164">Taotlusega koos esitatakse järgmised dokumendid:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para4lg3p1">
+   <alampunktNr id="5fdfb5db-413a-4705-8876-88dc57cb28d5">1</alampunktNr>
+   <kuvatavNr id="b002c266-9ec9-4357-8cda-a7ad3899c8ae"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="cdbd448a-c5af-470f-8928-e620383721f6">
+    <tavatekst id="51ce98f4-f776-4897-8129-93647b39f2b7">puude määramise otsus;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para4lg3p2">
+   <alampunktNr id="10afce42-c43e-4ffa-9668-4a6b9415b438">2</alampunktNr>
+   <kuvatavNr id="945d6ba0-6f50-411c-ae90-8a895cb03448"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="a1f7c1d8-41af-49d9-9ba2-e33486532fb0">
+    <tavatekst id="d42f6bc7-d6c7-4785-bfcf-3f5624ae89a0">kohandamise hinnapakkumine;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para4lg3p3">
+   <alampunktNr id="aaeae55f-4566-43a3-9008-b911ab05b629">3</alampunktNr>
+   <kuvatavNr id="e56f122d-9199-4eb7-926d-7e31dd62a677"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="dd7edd44-e157-492d-880d-d46fa5d9d06a">
+    <tavatekst id="52027f27-c7e2-40a7-81b1-f850362ed22e">taotleja ja tema pereliikmete sissetulekut tõendavad dokumendid.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige></paragrahv><paragrahv id="para5">
+   <paragrahvNr id="255eb559-5ed3-4c6b-bb59-e131be792ea7">5</paragrahvNr>
+   <kuvatavNr id="a4d92f15-33e0-4af8-b343-cba5c3915b01"><![CDATA[§ 5. ]]></kuvatavNr>
+   <paragrahvPealkiri id="0ff8d11f-a7ad-4092-ab57-0d9ad7b9e9dc">Taotluse läbivaatamine</paragrahvPealkiri>
+  <loige id="para5lg1">
+   <loigeNr id="826fbc3b-31a7-49c2-a723-be27dc875216">1</loigeNr>
+   <kuvatavNr id="0630b107-6e61-4886-8dd9-037d037fb992"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="9d172850-17e2-433e-9e86-cf8d066d59e4">
+    <tavatekst id="0284f846-b9a0-4736-a006-74e1aa434418">Sotsiaalabi osakonna töötaja vaatab taotlusi läbi nende saabumise järjekorras. Taotluste vastuvõtmine peatatakse kui eelarves selleks ettenähtud vahendid on lõppenud. Osakond teavitab eelarveaastaks eraldatud raha lõppemisest Maardu linna veebilehel ja kohalikus ajalehes.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg2">
+   <loigeNr id="52058495-8ee4-48bc-9086-f8d76305c2d7">2</loigeNr>
+   <kuvatavNr id="aba4d5af-1ce3-44fa-955f-5c75491af27a"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="edd48353-5529-47b4-b9f2-914110eb603b">
+    <tavatekst id="229ebeb4-d75d-4276-91bb-6b60eb669bad">Sotsiaalabi osakonna töötaja hindab kodukülastuse, vestluse ja esitatud andmete alusel kohandamise põhjendatust. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg3">
+   <loigeNr id="8527a140-bde7-418c-9a5b-ac062b468e01">3</loigeNr>
+   <kuvatavNr id="17145cec-beb8-4e02-a796-414aa8baf3e6"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="17d4fada-bc4e-4e8f-a9e5-e391bcddd8cf">
+    <tavatekst id="4a7b9030-b1d2-4fb2-b5f9-14e360a6c5b4">Kui taotluses esineb puudusi, annab Sotsiaalabi osakonna töötaja taotlejale tähtaja puuduste kõrvaldamiseks. Tähtajaks puuduste kõrvaldamata jätmisel jäetakse taotlus läbi vaatamata.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg4">
+   <loigeNr id="fd72c964-274b-4d45-82a8-e8fb145cf242">4</loigeNr>
+   <kuvatavNr id="9ee24295-27a5-47b6-832c-b1eaf7681746"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="4ac67b21-5eae-471d-b760-5fe251bbfa5e">
+    <tavatekst id="6a0d9211-486c-4b3d-b4f3-790cf1658745">Sotsiaalabi osakonna töötajal on õigus nõuda lisadokumente, sealhulgas täiendavate hinnapakkumiste esitamist, külastada kohandamist vajavat eluruumi ning teha ettepanekuid säästlikumate lahenduste kasutamiseks. Andmete esitamisest keeldumisel, ettenähtud tähtajaks esitamata jätmisel või valeandmete esitamisel jäetakse taotlus läbi vaatamata.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para5lg5">
+   <loigeNr id="22b6f261-03d2-4eac-86f6-670b0eacdd5b">5</loigeNr>
+   <kuvatavNr id="0c4e3267-eb32-4b17-9401-9519c4c36b07"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="2ed2e833-08b7-4208-b6a4-fa6c5d198e83">
+    <tavatekst id="a2d4e7e1-81f0-46e4-9c63-0c3b2e6e1c23">Sotsiaalabi osakonna töötaja edastab esitatud taotluse koos lisadokumentidega Maardu linnavalitsuse Sotsiaaleluruumikomisjonile läbivaatamiseks.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para6">
+   <paragrahvNr id="ddbe3b37-9525-46df-a6d1-467062dca647">6</paragrahvNr>
+   <kuvatavNr id="dc7759a2-ec6b-4a44-940a-8be114427529"><![CDATA[§ 6. ]]></kuvatavNr>
+   <paragrahvPealkiri id="505a2bd7-acf7-4fb8-aa92-97106b8d5160">Toetuse määramine</paragrahvPealkiri>
+  <loige id="para6lg1">
+   <loigeNr id="4c724495-dd3c-449c-a660-8deb9f74b2d5">1</loigeNr>
+   <kuvatavNr id="c2dd2263-022d-4c1b-bb86-9e2933497909"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="e5c30657-f555-4492-aea8-0cb2319affe5">
+    <tavatekst id="520e8760-0cc9-493d-9d53-3abd3625b67d">Sotsiaaleluruumikomisjon vaatab esitatud taotluse läbi ja teeb Linnavalitsusele ettepaneku toetuse määramise või määramata jätmise kohta.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg2">
+   <loigeNr id="41248bbd-78be-4e1a-9835-141920c07782">2</loigeNr>
+   <kuvatavNr id="76702491-a789-466c-ac8a-4ae79aa071d6"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="204b2fef-c054-459d-b9f9-bc83552ab2d0">
+    <tavatekst id="f728d221-51c7-493e-8bce-96bb231431d9">Toetuse määramise või sellest keeldumise otsustab Linnavalitsus 10 tööpäeva jooksul Sotsiaaleluruumikomisjoni ettepaneku saamisest, kuid mitte hiljem kui 30 päeva jooksul nõuetekohase taotluse esitamisest. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg3">
+   <loigeNr id="cf150d70-f386-44be-bd12-d6a7e626a8b5">3</loigeNr>
+   <kuvatavNr id="76df6673-8f02-45e6-aaaf-b9da40d24fec"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="95e6912a-4e7a-47c0-8fdb-4429a80df808">
+    <tavatekst id="90c739dc-ffd1-47aa-8e69-e2f7c8a039ec">Toetuse määramise ettepanekus arvestab komisjon eelarves eraldatud vahendite suurust ja sotsiaalabi osakonna töötaja seisukohta.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg4">
+   <loigeNr id="2e540d47-84d8-4fe7-8386-7d9e067bf9d5">4</loigeNr>
+   <kuvatavNr id="c740771d-c2cf-436d-8874-a6a343630c8f"><![CDATA[(4)]]></kuvatavNr>
+   <sisuTekst id="2aa98838-5062-4056-a158-f99ceac81fe4">
+    <tavatekst id="9d7d2a1d-a8f0-4433-af96-2cf8245522ae">Toetus määratakse linnavalitsuse korraldusega. Linnavalitsusel on õigus keelduda toetuse määramisest, kui taotleja või temaga koos elava perekonna sissetulekud on piisavad eluruumi kohandamiseks. </tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg5">
+   <loigeNr id="9d5c71df-c775-48e3-bf67-e45469dd4e67">5</loigeNr>
+   <kuvatavNr id="1400d551-033d-46ca-b2dc-d83335730697"><![CDATA[(5)]]></kuvatavNr>
+   <sisuTekst id="bf01511c-3da2-4250-a4bd-e994b20dbdb5">
+    <tavatekst id="ea1768de-19a6-4b65-942c-26d64373093d">Juhul, kui eelarves ettenähtud vahendid on lõppenud, jääb vastavaks tunnistatud taotlus ootele.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg6">
+   <loigeNr id="713d704e-4710-4443-8d32-71e260b4fb75">6</loigeNr>
+   <kuvatavNr id="77cdf6f9-645c-4d03-b7b0-e4235dd73e3d"><![CDATA[(6)]]></kuvatavNr>
+   <sisuTekst id="cb415f80-22ab-4cd6-b615-af9f3d4029c5">
+    <tavatekst id="88a660d4-725a-4907-9cb8-81887e34a1bf">Linnavalitsusel on õigus jätta taotlus läbi vaatamata, kui taotlus on esitatud puudustega ja puudused on jäetud komisjoni või sotsiaalabi osakonna töötaja määratud tähtajaks kõrvaldamata.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para6lg7">
+   <loigeNr id="559bc833-8040-445e-9406-52d9e1b323c8">7</loigeNr>
+   <kuvatavNr id="21c445d2-4c98-4a94-9589-5ae9d2c5cc28"><![CDATA[(7)]]></kuvatavNr>
+   <sisuTekst id="0e57c977-be4c-4606-ac39-c97d92b497f0">
+    <tavatekst id="05a95c9b-11f7-42b3-b178-f924621406fb">Taotluse läbivaatamata jätmine ei piira taotleja õigust esitada uus nõuetele vastav taotlus.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para7">
+   <paragrahvNr id="1f617dfc-44e8-4f05-b8af-c964a07b182c">7</paragrahvNr>
+   <kuvatavNr id="de588fbb-fbf6-487b-9b21-db93a4dbaad0"><![CDATA[§ 7. ]]></kuvatavNr>
+   <paragrahvPealkiri id="77360145-276a-4573-a48a-b92cc568a70e">Lepingu sõlmimine</paragrahvPealkiri>
+  <loige id="para7lg1">
+   <loigeNr id="6f76a57d-f74b-4b34-aa97-8ab6d4619dc0">1</loigeNr>
+   <kuvatavNr id="a09557b3-7f2b-4d70-8674-231323f5dedc"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="f49da8a7-8a90-404f-8c34-3805ed13e635">
+    <tavatekst id="52b13fac-0063-4ea0-af16-01f61418e14a">Sotsiaalabi osakonna juhataja sõlmib taotlejaga, kellele on toetus määratud (edaspidi toetuse saaja) ja tööde teostajaga, kolmepoolse lepingu hiljemalt kahe kuu jooksul arvates toetuse määramise otsuse tegemisest.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para7lg2">
+   <loigeNr id="6616814f-8e17-4e67-a988-6ab58f18a5a6">2</loigeNr>
+   <kuvatavNr id="a9015318-c26e-48ff-be69-1ebee28ecae1"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="b905c9f5-f46f-4d45-847f-d0a2050f49ea">
+    <tavatekst id="7058bd4c-6f8a-4717-8dae-a84b681ed0cc">Juhul, kui käesoleva paragrahvi punktis 1 nimetatud aja jooksul tulenevalt toetuse saaja tegevusest või tegevusetusest lepingut ei sõlmita, kaotab toetuse määramise otsus kehtivuse.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para8">
+   <paragrahvNr id="dd592acc-4224-456f-b647-3f0cedd03300">8</paragrahvNr>
+   <kuvatavNr id="682ac8c0-ac35-4b56-ba61-1a14d7bd9824"><![CDATA[§ 8. ]]></kuvatavNr>
+   <paragrahvPealkiri id="04e2e09c-fe14-4943-b86f-41fe10b3a37b">Aruandlus</paragrahvPealkiri>
+  <loige id="para8lg1">
+   <loigeNr id="ed29f06a-ad18-4c2c-8358-6ba068ca4c7a"/>
+   <kuvatavNr id="9f370688-0f89-4730-ab59-1eb8d588213c"/>
+   <sisuTekst id="5af28d52-8f53-42b6-9e12-2596b2c5afc6">
+    <tavatekst id="c23ab33b-ccc4-42b9-ac4d-49b2b7f784b2">Toetuse saaja on kohustatud esitama osakonnale kohandamise üleandmise-vastuvõtmise akti ning arve tehtud tööde kohta hiljemalt jooksva eelarveaasta 1. detsembriks.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para9">
+   <paragrahvNr id="06242f53-0082-4948-807f-68940d36c4a7">9</paragrahvNr>
+   <kuvatavNr id="3465f281-d22c-4389-9c44-ad58b929898b"><![CDATA[§ 9. ]]></kuvatavNr>
+   <paragrahvPealkiri id="88ff0f5b-4ea6-4d69-a95d-78a09b89aa5a">Toetuse maksmine</paragrahvPealkiri>
+  <loige id="para9lg1">
+   <loigeNr id="b121de16-1fc2-4263-9ca6-0c2c171b0248">1</loigeNr>
+   <kuvatavNr id="6809e874-5e61-47cb-9c88-97dd8cd811c5"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="3629aa67-e082-40fe-aead-3f54ff039a4b">
+    <tavatekst id="81dfb147-1fe2-4780-babc-25a40445da3c">Toetus makstakse välja tööde teostaja arvelduskontole 10 tööpäeva jooksul pärast üleandmise-vastuvõtmise akti ja arve esitamist ning vajadusel osakonna poolt paikvaatluse läbiviimist.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para9lg2">
+   <loigeNr id="92936018-d833-4f3b-8082-e554454f0622">2</loigeNr>
+   <kuvatavNr id="608094c9-f4b1-46e5-809d-a35d9d1ba931"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="744102f2-c9bf-4f37-9a2f-60aedfa56b0b">
+    <tavatekst id="b88bf203-e168-41d0-a99b-908a3d2893d8">Osakonnal on õigus jätta toetus välja maksmata, kui:</tavatekst>
+   </sisuTekst>
+  <alampunkt id="para9lg2p1">
+   <alampunktNr id="46137a94-2edb-4eef-b4e2-4acf1a8348c1">1</alampunktNr>
+   <kuvatavNr id="c199a9a2-a89e-40bc-9961-dbcd100786d3"><![CDATA[1) ]]></kuvatavNr>
+   <sisuTekst id="0fefaeb2-fc1f-4b59-895f-fdd08a9fb8c5">
+    <tavatekst id="cde1d3ec-c999-4b35-96c3-d42cadf42ab1">toetuse taotlemisel või lepingu sõlmimisel on esitatud valeandmeid;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para9lg2p2">
+   <alampunktNr id="040cc122-0f30-4171-b500-af560b32f736">2</alampunktNr>
+   <kuvatavNr id="bd07e5b3-c375-4a2e-a085-a4d73b091dd7"><![CDATA[2) ]]></kuvatavNr>
+   <sisuTekst id="4b65dead-f627-47c4-8cc2-d5cf6d9f7020">
+    <tavatekst id="3e820c82-15fb-4ad4-a3dd-a316832d6fee">toetuse saaja ei esita määratud tähtajaks tööde tegemise kohta käesoleva määruse paragrahvis 8 sätestatud dokumente;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para9lg2p3">
+   <alampunktNr id="129b15c9-e212-4e2d-b0e9-b161543c16ca">3</alampunktNr>
+   <kuvatavNr id="c86d1937-095c-4ae6-9798-e372b05801a5"><![CDATA[3) ]]></kuvatavNr>
+   <sisuTekst id="4e9468b9-2bb7-49ac-9775-6953efc87d45">
+    <tavatekst id="392efc2a-3277-4796-ad2e-2fdd68409e2a">eluruumis ei ole tehtud lepingujärgset kohandamist;</tavatekst>
+   </sisuTekst>
+  </alampunkt><alampunkt id="para9lg2p4">
+   <alampunktNr id="8583b608-088f-43ce-a71c-371195a7ec91">4</alampunktNr>
+   <kuvatavNr id="a53ff91c-2411-4813-a23a-6147349b351a"><![CDATA[4) ]]></kuvatavNr>
+   <sisuTekst id="240f41b0-3caa-41c6-8007-25cd31306423">
+    <tavatekst id="7c91bd4b-0c28-4cff-be7d-4cc3c28cd5e2">muudel lepingus sätestatud juhtudel.</tavatekst>
+   </sisuTekst>
+  </alampunkt></loige><loige id="para9lg3">
+   <loigeNr id="2fde931a-66f4-4c19-9c9e-8a0e8002e3c7">3</loigeNr>
+   <kuvatavNr id="c6b29cb5-cd5d-4c76-8a58-6cdb6e16dc8d"><![CDATA[(3)]]></kuvatavNr>
+   <sisuTekst id="917d6a57-d0f0-4df4-8e81-96926901623d">
+    <tavatekst id="d13b4fad-7f3c-400f-9c7f-22673563d66d">Osakonnal on õigus jätta toetus välja maksmata või toetust vähendada, kui tööd ei ole tehtud toetuse taotlemisel ja lepingu sõlmimisel esitatud dokumentide kohaselt.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para10">
+   <paragrahvNr id="d79766b4-340a-4479-9eaa-2d6e53c6d08e">10</paragrahvNr>
+   <kuvatavNr id="a6672958-28b2-4acc-9274-c6cad6a8db84"><![CDATA[§ 10. ]]></kuvatavNr>
+   <paragrahvPealkiri id="946f411f-1e1e-427a-a240-b3f3bfcca230">Rakendussätted</paragrahvPealkiri>
+  <loige id="para10lg1">
+   <loigeNr id="be93c3e7-c8c9-44d0-811d-5a72792a8e67">1</loigeNr>
+   <kuvatavNr id="5d2d6cc1-a6c3-4072-b2ea-8fdd14b2b1a8"><![CDATA[(1)]]></kuvatavNr>
+   <sisuTekst id="9d727692-d3e2-47d8-a73f-f7b866978023">
+    <tavatekst id="d6d473c2-fe8d-4689-a5be-0164a52ca588">Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist.</tavatekst>
+   </sisuTekst>
+  </loige><loige id="para10lg2">
+   <loigeNr id="feca410c-086a-430a-849c-62df9de1ba1a">2</loigeNr>
+   <kuvatavNr id="e9d84c1d-7b2d-4ff6-852d-39403499e1d9"><![CDATA[(2)]]></kuvatavNr>
+   <sisuTekst id="dea334a3-5c23-4edf-9b9b-53a6855fa41f">
+    <tavatekst id="ba6450fb-69bb-4f16-8e99-fb7ca749538a">Maardu Linnavalitsuse linnakantseleil avalikustada määrus Maardu linna veebilehel.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="6b2d2f5f-0a50-4d15-9ecb-2cc8c764aae6"><allkiriKoht id="88a1658e-abd0-456f-abd2-ed0d97d2a895"/><allkirjastaja id="8e4f47b1-29c5-4eb5-91ca-03fe37c3e0c6"><ametinimetus id="32dc02c2-903a-4da3-9b71-3f297d78819e">Maardu Linnavolikogu esimees</ametinimetus><eesnimi id="6171f9b8-53b3-45df-8558-558bfc9392a9">Ailar</eesnimi><perekonnanimi id="37b1eacd-f4e4-4be2-b697-9168e3300c0e">Lyra</perekonnanimi></allkirjastaja></allkiri></oigusakt>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="8db0977c-5037-41aa-bbca-cf28e5f3e07c" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metaandmed>
+ 
+ <valjaandja>Rõuge Vallavalitsus</valjaandja>
+ <dokumentLiik>määrus</dokumentLiik>
+ 
+ <tekstiliik>algtekst-terviktekst</tekstiliik>
+ 
+ 
+ 
+ <dokumentEtapp>avaldamine</dokumentEtapp>
+ <dokumentStaatus>avaldatud</dokumentStaatus>
+ <vastuvoetud>
+  
+  <aktikuupaev>2026-02-26</aktikuupaev>
+  
+  
+  <aktiNr>1</aktiNr>
+ </vastuvoetud>
+ 
+ 
+ 
+ 
+ 
+ 
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-03-04</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>3</RTartikkel><aktViide>404032026003</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2026-04-01+03:00</kehtivuseAlgus></kehtivus><versioon>
+  <dokumentVersioon>1</dokumentVersioon>
+  <dokumentVersioonKuupaev>2026-02-27</dokumentVersioonKuupaev>
+ </versioon>
+ <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+ <globaalID>404032026003</globaalID>
+ <metaandmedVersioon>7</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2026-03-03</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+ 
+ <terviktekstiGrupiID>1062993</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+<versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2026-02-27</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Siiri Mõttus</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
+ <aktinimi id="527c0ea3-cfa9-4f6c-be5e-9e5bb7db98fe">
+  <nimi id="6a142bee-e018-4b40-8955-ef8de09a6789">
+   <pealkiri id="3b909192-7a4c-428c-a183-a9d7db7e9fb5">Väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse hoolduskulude tasumise piirmäära kehtestamine</pealkiri>
+  </nimi>
+ </aktinimi>
+ <sisu id="7900d017-e5ce-4901-b2a1-d3341b9cd7df"><preambul id="1e69feec-fe09-443c-a8a7-ba2b644c894e">
+   <tavatekst id="6489ef71-ba25-45a7-abde-fb29ff7fd637">Määrus kehtestatakse sotsiaalhoolekande seaduse § 22<sup>1</sup> lõike 3 alusel.</tavatekst>
+  </preambul><paragrahv id="para1">
+   <paragrahvNr id="8c46d041-c502-47d4-a22a-0749f71e18f6">1</paragrahvNr>
+   <kuvatavNr id="e7358afb-5978-450f-a873-635801d6a958"><![CDATA[§ 1. ]]></kuvatavNr>
+   <paragrahvPealkiri id="b5d33382-f4c1-45e0-b3d3-724fe1d6ada0">Väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse hoolduskulude tasumise piirmäär</paragrahvPealkiri>
+  <loige id="para1lg1">
+   <loigeNr id="2acebabf-47fd-4e2f-a817-fafbd1eb494a"/>
+   <kuvatavNr id="91b9a9d9-5398-40c0-a684-4f7f6e7cd276"/>
+   <sisuTekst id="1f0a88a7-2a03-40da-b1af-339263b93a15">
+    <tavatekst id="824aa6b1-37a0-4445-910b-d8411bed4901">Kehtestada väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse osutamisel vahetult teenust osutavate hooldustöötajate ja abihooldustöötajate kulude tasumise piirmääraks 600 eurot ühe teenusesaaja kohta kuus.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para2">
+   <paragrahvNr id="fda3a760-1907-4c2e-b27d-b6484388ee74">2</paragrahvNr>
+   <kuvatavNr id="e697d4b2-e0fb-46c1-821d-bac1f7e278c9"><![CDATA[§ 2. ]]></kuvatavNr>
+   <paragrahvPealkiri id="ae31d159-6c3b-4832-9ce0-5dded2b96512">Määruse kehtetuks tunnistamine</paragrahvPealkiri>
+  <loige id="para2lg1">
+   <loigeNr id="60022d22-16e4-476a-9182-b253808e1e9e"/>
+   <kuvatavNr id="926d2f81-5d75-4fa3-9380-d400771d103a"/>
+   <sisuTekst id="6cea54e8-c1cb-4a54-ae3f-0e31e3eb19e1">
+    <tavatekst id="07108ff9-5d8c-420b-abc3-58ce83420834">Rõuge Vallavalitsuse 22.06.2023 määrus nr 2 „Väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse hoolduskulude tasumise piirmäära kehtestamine“ tunnistatakse kehtetuks.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv><paragrahv id="para3">
+   <paragrahvNr id="4730fee4-b17c-487a-9c77-f7e89b75fc5e">3</paragrahvNr>
+   <kuvatavNr id="f366ec07-8f4a-43cd-8b9d-740a5d8d8256"><![CDATA[§ 3. ]]></kuvatavNr>
+   <paragrahvPealkiri id="7b0d17c5-3a08-49f1-892b-8fdd118d548b">Määruse jõustumine</paragrahvPealkiri>
+  <loige id="para3lg1">
+   <loigeNr id="9efb438b-ad44-409b-b598-f97f52a7a9ad"/>
+   <kuvatavNr id="f2d9df26-2679-40c2-8411-9aca046654c1"/>
+   <sisuTekst id="6fe670cc-4422-4a52-8096-e72396bedd7e">
+    <tavatekst id="9faee368-812a-4a6c-9d3e-14a714120c8b">Määrus jõustub 01.04.2026.</tavatekst>
+   </sisuTekst>
+  </loige></paragrahv></sisu>
+<allkiri id="ed16de83-9402-48b2-b214-be4c6d38b71a"><allkiriKoht id="0d98feaa-f897-41c1-99d7-399f464f1729"/><allkirjastaja id="d994cbb1-38ee-4d10-b83c-1a72aafdd48e"><ametinimetus id="c8375f1c-bf90-43b9-97a1-f9f5d332199c">vallavanem</ametinimetus><eesnimi id="7e033789-52a6-4d12-828d-e2f3c2f75529">Britt</eesnimi><perekonnanimi id="0a25e42c-003f-426d-892c-4479d2d349b2">Vahter</perekonnanimi></allkirjastaja></allkiri><allkiri id="d40d45a9-e7b6-4a6e-8b63-17a29467a0db"><allkiriKoht id="ccb02e8c-d9e6-4a7a-8562-8aa042fc4224"/><allkirjastaja id="c82bc60c-58a6-424c-ba1b-776430f8fd06"><ametinimetus id="8763727c-abdb-49ac-abc4-22edabbd9635">vallasekretär</ametinimetus><eesnimi id="4fb4b8f5-5e2b-45a3-9924-9a763a3fb8e0">Kaja</eesnimi><perekonnanimi id="840040cd-dfb4-427d-bb00-0cc00d98823f">Kiilo</perekonnanimi></allkirjastaja></allkiri></oigusakt>

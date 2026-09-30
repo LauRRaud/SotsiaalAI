@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="a480e24f-5a9a-4e18-a0d2-dae80401b5ef" xsi:schemaLocation="maarus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/maarus_1_10.02.2010.xsd" xmlns="maarus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Sillamäe Linnavolikogu</valjaandja>
+		<dokumentLiik>määrus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		<dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<tavatekst>, rakendatakse alates 1.01.2018</tavatekst>
+			<aktikuupaev>2018-01-30</aktikuupaev>
+			<avaldamismarge>
+				<RTosa id="3472e061-a349-449c-aa55-e9cfc4c130fd">RT IV</RTosa>
+				<avaldamineKuupaev id="1d94d3d7-e733-4a47-9b14-ca91cee2e585">2018-02-08</avaldamineKuupaev>
+				<RTartikkel id="b00f7402-a906-4e54-aabd-8383f30ca472">9</RTartikkel>
+				<aktViide id="bbd52555-3074-45d9-9c4a-e86eaefd1929">408022018009</aktViide>
+			</avaldamismarge>
+			<joustumine>2018-02-11</joustumine>
+			<aktiNr>5</aktiNr>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2019-07-12</avaldamineKuupaev><RTaasta>2019</RTaasta><RTartikkel>7</RTartikkel><aktViide>412072019007</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2019-07-15</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2019-07-10</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>412072019007</globaalID>
+		<metaandmedVersioon>16</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2019-07-11</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1041941</terviktekstiGrupiID>
+		<eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>1</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2018-02-01</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Deniss Iškin</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>6</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2018-02-07</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+		<versiooniMuutus>
+			<dokumentEtapp>avaldamine</dokumentEtapp>
+			<dokumentStaatus>esitatud avaldamiseks</dokumentStaatus>
+			<metaandmedVersioon>11</metaandmedVersioon>
+			<metaandmedVersioonKuupaev>2019-04-05</metaandmedVersioonKuupaev>
+			<metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
+		</versiooniMuutus>
+	</metaandmed>
+	<aktinimi id="5fed51bf-64ec-4e86-909b-52f3a4c6f918">
+		<nimi id="8cba8094-46e9-41fe-94e6-9736b290d0bf">
+			<pealkiri id="db678cd6-693a-4122-9120-d3987f5cf78a">Matusetoetuse maksmise tingimused ja kord</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="44f2dd83-0e57-4060-be8a-48f62dc696ca">
+		<aktikuupaev id="1d05cd99-2758-4ae1-a954-9781ca2cbe26">2019-03-28</aktikuupaev>
+		<avaldamismarge id="5ce412ba-b31c-4020-9771-a10da4dbf3f6">
+			<RTosa id="fd8067c0-5107-48d8-b340-353818aa2586">RT IV</RTosa>
+			<avaldamineKuupaev id="2935e4fb-b85a-441e-9cf7-b90f176f2d7e">2019-04-06</avaldamineKuupaev>
+			<RTartikkel id="7800b6d3-d8b4-4399-98e4-9d6cfc83eaee">3</RTartikkel>
+			<aktViide id="04f700ac-b1e7-4a84-8dfa-8da72e3f74d5">406042019003</aktViide>
+		</avaldamismarge>
+		<joustumine id="482b1edb-7908-4969-8231-609a5715bff3">2019-04-09</joustumine>
+	</muutmismarge>
+	<muutmismarge id="f75135ba-fe28-4e97-9864-95de142245e6">
+		<aktikuupaev id="e4fa6a57-1a54-4f5b-bfa3-6f38d3e09a1c">2019-06-27</aktikuupaev>
+		<avaldamismarge id="7e695ccb-6b52-4174-8aab-9993099f193e">
+			<RTosa id="2df0af75-6940-4f4e-9779-af256033d94e">RT IV</RTosa>
+			<avaldamineKuupaev id="097e45b5-7cdf-48aa-b619-bf00828a4402">2019-07-12</avaldamineKuupaev>
+			<RTartikkel id="2b7e751a-6c85-4ba5-af3f-d5f8ad4d4ddc">2</RTartikkel>
+			<aktViide id="83d13b04-872f-4663-807b-5ea7e75f6753">412072019002</aktViide>
+		</avaldamismarge>
+		<joustumine id="4757b180-aef4-4012-9254-b646a89de9e4">2019-07-15</joustumine>
+	</muutmismarge>
+	<sisu id="3db7b422-f37d-4570-9918-038ba607e162">
+		<preambul id="f26159a1-7ab7-4c54-846d-826fadf2e0e8">
+			<tavatekst id="53025061-aaea-43a7-bc43-db5e969e6f9f">Määrus kehtestatakse „Kohaliku omavalitsuse korralduse seaduse“ § 22 lõike 1 punkti 5 ja „Sotsiaalhoolekande seaduse“ § 14 lõike 2 alusel.</tavatekst>
+		</preambul>
+		<paragrahv id="para1">
+			<paragrahvNr id="d0a3df7c-e357-49fe-ab3a-175f7d6f03ad">1</paragrahvNr>
+			<kuvatavNr id="98968211-fcb6-4ebd-9cdd-519df60e7bd0"><![CDATA[§ 1. ]]></kuvatavNr>
+			<paragrahvPealkiri id="9344a9e0-532c-4791-a451-e0ad7296565f">Reguleerimisala</paragrahvPealkiri>
+			<loige id="para1lg1">
+				<loigeNr id="d26ddbc5-7d12-467c-aa19-8a1495c5861b"/>
+				<kuvatavNr id="047b68e5-103d-45e5-9ed0-98076970b20d"/>
+				<sisuTekst id="f8327921-0598-4324-b241-87530f2cba09">
+					<tavatekst id="d396824c-47f1-4792-8c2a-bf626d312943">Määrus sätestab matusetoetuse määramise ja maksmise tingimused ning korra Sillamäe linnas.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para2">
+			<paragrahvNr id="5d9e855d-306e-443b-84ee-050d00bfa264">2</paragrahvNr>
+			<kuvatavNr id="67ace783-d8b4-450b-8caf-c15025650257"><![CDATA[§ 2. ]]></kuvatavNr>
+			<paragrahvPealkiri id="fcb4bf94-e68c-4449-a776-79ce8c156870">Matusetoetus ja selle saamise õigus</paragrahvPealkiri>
+			<loige id="para2lg1">
+				<loigeNr id="77ca756e-3946-4628-99f6-fc9b1d04e2c9">1</loigeNr>
+				<kuvatavNr id="bbcc8f98-a23c-49be-95fb-0594e2aa2447"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="adef6453-52b8-46cb-844b-293db6fae5bc">
+					<tavatekst id="d6ada5e9-c500-427b-83a0-552292e4cf60">Matusetoetus on matuse kulude osaliseks kompenseerimiseks matuse korraldajale makstav ühekordne sotsiaaltoetus.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg2">
+				<loigeNr id="51ffc499-50a5-47dc-b944-eaa2e4c27397">2</loigeNr>
+				<kuvatavNr id="f229216b-7792-4ffa-aedf-86dc2edf7204"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="40f8c2fa-6acb-4a51-8366-bd5a51573c2d">
+					<tavatekst id="6caf7be7-1442-4459-91e3-5b4fb41d4e5a">Matusetoetust makstakse isikule, kes kannab matuse korraldamise kulu rahvastikuregistri järgi Sillamäe linna elaniku surma korral.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para2lg3">
+				<loigeNr id="fbd0f7b7-9fe9-4591-9ca7-f478e76ea9a4">3</loigeNr>
+				<kuvatavNr id="50e9fd82-c1d1-446e-ab92-59888d21dca6"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="1aeb884e-0075-4abd-8e56-2316b3413681">
+					<tavatekst id="32b5a6d8-b3fb-414b-8833-24afdaf1ef19">Tundmatu või omasteta surnud isiku matused korraldab ja kannab matuse korraldamise kulu Sillamäe Linnavalitsus (edaspidi <i>linnavalitsus</i>).</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="ebb853f7-eaf3-45df-9150-0788d189f650">
+				<loigeNr id="52b38c2a-56a0-44ff-9728-0f4574080c74">4</loigeNr>
+				<kuvatavNr id="fe3f2513-9a8c-424c-8faf-89bb79d74db6"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="9ea3e349-549c-4880-acdf-22342a742d00">
+					<tavatekst id="4bd36557-1405-4fa7-ad69-6e5136e9622d">Matusetoetust makstakse ka isikule, kelle elukoht rahvastikuregistri andmetel on Sillamäe linn ning kes taotleb matusetoetust isiku matmise kuludeks, kellel puudus rahvastikuregistrijärgne elukoht või kelle eest ei olnud võimalik saada matusetoetust teisest kohaliku omavalitsuse üksusest.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="f601ffb4-f3ef-4fc3-9961-561902c13dc6">
+					<avaldamismarge id="9f7c1820-68ef-4c6f-95a6-993f1805f73d">
+						<RTosa id="32ee1f38-e9c0-41cf-8fb1-a09f3b8c4c79">RT IV</RTosa>
+						<avaldamineKuupaev id="d0785144-4862-4020-8907-b01f5e0159a3">2019-04-06</avaldamineKuupaev>
+						<RTartikkel id="26aff130-9fc2-41b3-8139-f5c98db67d29">3</RTartikkel>
+						<aktViide id="93a4488d-8835-4548-ae4e-8899c17df220">406042019003</aktViide>
+					</avaldamismarge>
+					<joustumine id="cb9b9278-f4ca-4e90-b25a-38b7898c23dc">2019-04-09</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para3">
+			<paragrahvNr id="17e892db-bc88-419a-9080-abb8fec90742">3</paragrahvNr>
+			<kuvatavNr id="8a3295c6-8c28-474b-bd59-d51cff94b3b5"><![CDATA[§ 3. ]]></kuvatavNr>
+			<paragrahvPealkiri id="a2facac6-83a5-4a69-b6ca-c1e1cdb26e9a">Matusetoetuse taotlemine</paragrahvPealkiri>
+			<loige id="5e34e207-e918-4844-9ddd-b07ad5063e7a">
+				<loigeNr id="b285adca-2f2e-4ef1-8741-9cee76c4295b"/>
+				<kuvatavNr id="277d5d12-5d15-4fc0-9ee5-e186efd51eac"/>
+				<sisuTekst id="0a1a30e9-60ee-4635-82d1-ee21e3fb277d">
+					<tavatekst id="935fe7b4-02f5-4cdb-8764-2cf928381644">Matusetoetuse taotlemiseks esitab matuseid korraldav isik kirjaliku taotluse linnavalitsuse sotsiaalhoolekande osakonda, milles märgib enda ees- ja perekonnanime, isikukoodi, pangakonto numbri, kontaktandmed ning surnu nime ja isikukoodi. Taotlusele lisatakse taotleja isikut tõendava dokumendi koopia.</tavatekst>
+				</sisuTekst>
+				<muutmismarge id="c01e8574-ffb1-40f8-b7a5-b3c7c58154c5">
+					<avaldamismarge id="93cc8947-16a2-4052-a448-cc59ae58b217">
+						<RTosa id="d592082c-5566-4c01-b9f4-468545a51e6b">RT IV</RTosa>
+						<avaldamineKuupaev id="d29fa0af-af0c-4658-8de4-63b4929a4a26">2019-07-12</avaldamineKuupaev>
+						<RTartikkel id="695ef6ba-604f-41de-87c5-9f35260b7e88">2</RTartikkel>
+						<aktViide id="a64fb7e9-a841-4826-8baa-d7d5b6145238">412072019002</aktViide>
+					</avaldamismarge>
+					<joustumine id="e156abad-1ea0-45b4-a2b1-d402b327fcef">2019-07-15</joustumine>
+				</muutmismarge>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para4">
+			<paragrahvNr id="230648ac-5e3c-4e71-a83a-12964eb51b76">4</paragrahvNr>
+			<kuvatavNr id="086e0c46-8b63-48ff-bd13-4c42e53b329b"><![CDATA[§ 4. ]]></kuvatavNr>
+			<paragrahvPealkiri id="3311e3de-fc0f-4492-b327-5503901f222c">Matusetoetuse määramine ja määramata jätmine</paragrahvPealkiri>
+			<loige id="para4lg1">
+				<loigeNr id="5769948c-df44-4f20-8316-d69114febf1e">1</loigeNr>
+				<kuvatavNr id="827c420a-b7a5-4530-bc93-21f46e98acad"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="ccafd23e-4c73-43d4-acea-5a12989fc318">
+					<tavatekst id="15fac096-3279-433c-a5cf-20b1f22dca74">Matusetoetus määratakse kui matusetoetuse avaldus on esitatud kuue kuu jooksul surmapäevast või surma registreerimisest arvates.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg2">
+				<loigeNr id="b1fe7d05-cf28-4df2-b888-7c6baed04f03">2</loigeNr>
+				<kuvatavNr id="e65ddda2-21d5-479c-a182-781c43c06f48"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="032c9cf4-3873-47bb-ab5b-45e731684ce5">
+					<tavatekst id="4359d59e-442c-4166-b64d-c971495c6e3e">Andmed matusetoetuse määramise ja maksmise kohta kantakse sotsiaalteenuste ja -toetuste andmeregistrisse.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg3">
+				<loigeNr id="3fb32440-74e1-4998-bd49-f3c8eb0d20d2">3</loigeNr>
+				<kuvatavNr id="27a33564-2cad-45fe-8c89-a42223a98ed8"><![CDATA[(3)]]></kuvatavNr>
+				<sisuTekst id="acf34aa6-7c3d-458e-971b-56bf1140fd10">
+					<tavatekst id="0af9a791-62cc-4b6d-99e5-55274937e3c9">Matusetoetus määratakse või jäetakse määramata linnavalitsuse sotsiaalhoolekande osakonna ametniku otsuse alusel.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para4lg4">
+				<loigeNr id="92a763a3-1ea8-4514-b4cb-a13ab08781c7">4</loigeNr>
+				<kuvatavNr id="b2ca680f-09ac-459f-afc0-c89494d6f17a"><![CDATA[(4)]]></kuvatavNr>
+				<sisuTekst id="f8e284b7-8436-44f7-a2dd-b7c1803cbb53">
+					<tavatekst id="c551cadb-bca7-4d85-8553-a9051cfd1aa7">Maatusetoetust ei määrata, kui:</tavatekst>
+				</sisuTekst>
+				<alampunkt id="para4lg4p1">
+					<alampunktNr id="623ff83d-3066-4a27-9e51-81b0a759ae70">1</alampunktNr>
+					<kuvatavNr id="e1d79307-ef59-4dcd-893b-17aa9efa8344"><![CDATA[1) ]]></kuvatavNr>
+					<sisuTekst id="575d93f8-68d1-44b6-a9ce-6cf94217ba92">
+						<tavatekst id="4665e664-c7af-4069-846c-f8736c469d67">käesoleva määrusega kehtestatud nõudeid ei ole täidetud;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="para4lg4p2">
+					<alampunktNr id="eafcdaa9-c147-4a84-bfe3-fe4ac1db8236">2</alampunktNr>
+					<kuvatavNr id="890f1723-3e63-49ad-81fc-1697137ebcb1"><![CDATA[2) ]]></kuvatavNr>
+					<sisuTekst id="9a22d025-aeb7-4b52-943e-62d081635b7b">
+						<tavatekst id="5dc1724c-1156-4743-a766-54a9b2aa0e7f">käsitletava surmajuhtumi korral on matusetoetus juba eelnevalt määratud;</tavatekst>
+					</sisuTekst>
+				</alampunkt>
+				<alampunkt id="3ac19550-8df7-4c5b-9f96-1d267334b0ab">
+					<alampunktNr id="1badc296-b7a9-40b9-9931-34f22e6f117a">3</alampunktNr>
+					<kuvatavNr id="f532a48a-d339-4f4c-8bd1-3b6b533dac41"><![CDATA[3) ]]></kuvatavNr>
+					<sisuTekst id="197b9498-9931-4753-a71a-c9a11adbe7f3">
+						<tavatekst id="181cea35-4ead-4556-8fb4-cfde0cc2f2e6">isik on saanud matusetoetust teisest kohaliku omavalitsuse üksusest.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="f44c1c31-9986-46f1-89c4-94f7359865b6">
+						<avaldamismarge id="0d2c618d-6b5d-4b12-86cd-51a1eea1a4bf">
+							<RTosa id="649cce80-d022-466d-99e3-188e269dea19">RT IV</RTosa>
+							<avaldamineKuupaev id="63bb6294-a2d7-438c-a87f-b20919887ea8">2019-04-06</avaldamineKuupaev>
+							<RTartikkel id="7955b507-7e74-40e5-9766-d935da6be4e5">3</RTartikkel>
+							<aktViide id="1f0c6907-1a6b-4e8d-8d15-b85a569e6667">406042019003</aktViide>
+						</avaldamismarge>
+						<joustumine id="535e1b5d-6cbc-4a74-81f0-ecb22bdf6efc">2019-04-09</joustumine>
+					</muutmismarge>
+				</alampunkt>
+			</loige>
+			<loige id="para4lg5">
+				<loigeNr id="3e8d7c67-3c62-4ce7-a116-4fdc51ccb156">5</loigeNr>
+				<kuvatavNr id="3b0a2031-0385-4477-95e6-eadaa5ea1494"><![CDATA[(5)]]></kuvatavNr>
+				<sisuTekst id="b21aa6b0-fac7-4fa0-8fa2-f799524682a6">
+					<tavatekst id="704351f6-7211-4d7a-baf1-987c41ca7a60">Isik, kes leiab, et matusetoetuse määramisel või määramata jätmisel on rikutud tema õigusi või piiratud tema vabadusi, võib esitada vaide „Haldusmenetluse seaduses“ sätestatud korras või kaebuse „Halduskohtumenetluse seadustikus“ sätestatud korras.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para5">
+			<paragrahvNr id="d3ab5054-274f-43c3-bb10-78919423a3d8">5</paragrahvNr>
+			<kuvatavNr id="f8d4906b-262d-43dc-8299-85f8fe679da8"><![CDATA[§ 5. ]]></kuvatavNr>
+			<paragrahvPealkiri id="6ed87ab3-1733-4d82-899f-566c90e601ca">Matusetoetuse maksmine ja tagasinõudmine</paragrahvPealkiri>
+			<loige id="para5lg1">
+				<loigeNr id="3177e328-e827-4d45-bb80-a027325404aa">1</loigeNr>
+				<kuvatavNr id="48cc7c24-d103-4c8b-9241-dbf74d283822"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="76312660-4dfa-4f32-9e7c-0068abfa39aa">
+					<tavatekst id="473dae8d-abd2-48e7-8b7c-69de09272996">Määratud matusetoetus kantakse matuseid korraldava isiku pangakontole.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para5lg2">
+				<loigeNr id="0ceadcb6-9daf-416b-9c30-621a1c58f1dd">2</loigeNr>
+				<kuvatavNr id="ec00b274-e2ba-486c-8526-936dbbc82be3"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="cb6de7d0-a778-4023-9246-fad767774034">
+					<tavatekst id="f7704491-b9d3-472d-b464-1d0264480676">Kui pärast matusetoetuse väljamaksmist selgub, et toetuse määramise aluseks olevad tingimused ei olnud täidetud või matusetoetuse saaja esitas valeandmeid, on linnavalitsuse sotsiaalhoolekande osakonna ametnikul õigus tasaarveldada aluseta makstud toetus väljamaksmisele kuuluva toetusega või nõuda aluseta väljamakstud toetus tagasi.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para6">
+			<paragrahvNr id="21722d91-5920-449a-bdb5-5d8bd58266d9">6</paragrahvNr>
+			<kuvatavNr id="cc0253a1-a449-40b7-991b-660a18b44bd7"><![CDATA[§ 6. ]]></kuvatavNr>
+			<paragrahvPealkiri id="d2f0358d-2a6e-4c20-968f-b22cc88d5c19">Matusetoetuse suurus ja finantseerimine</paragrahvPealkiri>
+			<loige id="para6lg1">
+				<loigeNr id="9fd5fec4-aa16-4cef-9d33-b6d09a20c2f1">1</loigeNr>
+				<kuvatavNr id="6faeb367-4b8f-48af-a5c8-68456d04884f"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="0c6c911a-7b51-4bf6-b65e-59047788b7d0">
+					<tavatekst id="ecadf685-eb55-4c4c-8b8c-8c6438eb4ff3">Toetus määratakse summas 250 eurot.</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para6lg2">
+				<loigeNr id="d9f348c9-4fb6-46ba-a785-09ec2f1fa9d9">2</loigeNr>
+				<kuvatavNr id="a998af60-9e7c-487c-ab3b-2a1ee68f5fff"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="f20a4a83-c0d4-4989-83bc-bedcb1da2c96">
+					<tavatekst id="d224eda2-07e7-4de6-8cc5-e677f6fa63f1">Matusetoetust finantseeritakse riigieelarvest Sillamäe linna eelarve kaudu.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+		<paragrahv id="para7">
+			<paragrahvNr id="80fd1ed1-0dc8-4fc6-910b-013ac235d16f">7</paragrahvNr>
+			<kuvatavNr id="63164de2-a17b-43d6-98cd-71aa09017df3"><![CDATA[§ 7. ]]></kuvatavNr>
+			<paragrahvPealkiri id="c89d9df5-7d33-4fb6-85a7-0847b78b2e14">Rakendussätted</paragrahvPealkiri>
+			<loige id="para7lg1">
+				<loigeNr id="6a035d64-7a6d-4105-b231-a75e9687948b">1</loigeNr>
+				<kuvatavNr id="458549f5-2b71-4129-bb46-8271fc4c6bca"><![CDATA[(1)]]></kuvatavNr>
+				<sisuTekst id="9392fcfc-fe03-41e6-a98d-d2249481e2b6">
+					<tavatekst id="a4cce3c6-3d11-4a97-ac97-da8f7f6db6a3">[Käesolevast tekstist välja jäetud].</tavatekst>
+				</sisuTekst>
+			</loige>
+			<loige id="para7lg2">
+				<loigeNr id="1f2510bf-e76e-45b7-8a1f-b855f8edfe57">2</loigeNr>
+				<kuvatavNr id="f07fc954-7562-4561-8ee5-383487389745"><![CDATA[(2)]]></kuvatavNr>
+				<sisuTekst id="06b55efd-13b0-4b64-a131-337154ff410d">
+					<tavatekst id="8ab63c40-aeba-4778-a5a6-7f9e77252305">Määrust rakendatakse alates 1. jaanuarist 2018. a.</tavatekst>
+				</sisuTekst>
+			</loige>
+		</paragrahv>
+	</sisu>
+</oigusakt>
