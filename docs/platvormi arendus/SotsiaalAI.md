@@ -92,6 +92,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**30.09 (Opus), jätk: vastus annab vormi lingi** ([ADR-061](../rag-v2/adr-061-answer-form-links.md)). Omanik 30.09: „ma ei taha enda andmebaasi taotlusi, kui assistent vastab kasutajale, annab ta lingi“.
+- **Vormide tekstid jäävad korpusest välja.** KOV-pakettides on 870 vormikirjet koos lingiga.
+- **Vastuse alla tuleb vormi link.** Lingi võtab server käigu kirjekontekstist: vastuses viidatud vormikirje või viidatud ja täielikult näidatud teenuse vorm. Ainult allika `https`-aadress, kuni viis linki. Mudeli juhis ja korpus ei muutu.
+- **Varem:** Kose matusetoetuse vastuses oli link kolme kliki kaugusel (viide → allikad → „Ava allikas“ → „Algallikas“).
+
 **30.09 (Opus), jätk: kasutamata versioonide otsinguindeks koristatud** ([ADR-060](../rag-v2/adr-060-prune-unreferenced-versions.md)). Omanik 30.09: „korista ära“.
 - **Tööriist:** `scripts/rag-v2-prune-versions.mjs` eemaldab versioonide lõigud, pitserid ja Qdranti punktid, mida ükski generatsioon ei loetle.
   - Tööriist keeldub, kui mõni indeksitöö käib. Pitser märgitakse enne punktide kustutamist uuesti `staged`-iks, nii et katkenud töö saab kordusjooksuga lõpetada.
