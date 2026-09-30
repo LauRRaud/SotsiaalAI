@@ -1,0 +1,38 @@
+{
+  "schema_version": "rag-v2/dialogue-eval-2",
+  "purpose": "ADR-057: the nine questions of tests/evaluation/graph/hard-conditions-1.json in the whole chat (search plan, rerank, answer model), each its own conversation. evidence_text: the deciding phrase reached the evidence; must: the answer applies the deciding condition. Written 30.09.2026 before any run, to compare the chat profile v1 with v3 (v1 and the act's own cross-references). Changed after the first runs: involuntary-placement must /kohtu/ → /kohus|kohtu/, because a correct answer ("Paigutamise otsustab kohus") did not match it (ADR-057). The phrases are in the Sotsiaalhoolekande seadus versions in force on 30.09 and from 01.10.",
+  "expectation_help": {
+    "evidence_text": "the deciding condition's exact phrase is in the evidence the answer was given",
+    "must": "the answer states the deciding condition or its effect"
+  },
+  "scenarios": [
+    { "id": "day-support-dementia-retirement", "title": "Dementsusega vanaduspensionär ja igapäevaelu toetamise teenus", "source": "SHS § 88, § 72 lg 2", "turns": [
+      { "mode": "new", "text": "Minu 70-aastasel isal on dementsus. Kas ta saab riigi rahastatud igapäevaelu toetamise teenust?",
+        "expect": { "evidence_text": ["vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule"], "must": ["vanaduspension|pensioniea"] } } ] },
+    { "id": "supported-living-alcohol", "title": "Alkoholisõltuvus ja toetatud elamise teenus", "source": "SHS § 95, § 72 lg 2", "turns": [
+      { "mode": "new", "text": "Mu täiskasvanud pojal on alkoholisõltuvus. Kas ta saab riigi rahastatud toetatud elamise teenust?",
+        "expect": { "evidence_text": ["sõltuvus alkoholist või narkootilisest ainest põhihaigusena"], "must": ["põhihaigus"] } } ] },
+    { "id": "community-living-dementia", "title": "Dementsusega eakas ja kogukonnas elamise teenus", "source": "SHS § 98, § 72 lg 2", "turns": [
+      { "mode": "new", "text": "Kas 75-aastane dementsusega naine saab riigi kulul kogukonnas elamise teenust?",
+        "expect": { "evidence_text": ["vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule"], "must": ["vanaduspension|pensioniea"] } } ] },
+    { "id": "subsistence-care-home", "title": "Hooldekodus elaja toimetulekutoetus", "source": "SHS § 132 lg 7", "turns": [
+      { "mode": "new", "text": "Mu ema elab hooldekodus ja tema pension ei kata kõiki kulusid. Kas ta saab toimetulekutoetust?",
+        "expect": { "evidence_text": ["Toimetulekutoetust ei määrata isikule, kellele osutatakse väljaspool kodu ööpäevaringselt osutatavat üldhooldusteenust"],
+          "must": ["ei määrata|ei saa toimetulekutoetust|ei ole õigust toimetulekutoetusele|toimetulekutoetust ei"] } } ] },
+    { "id": "subsistence-prison", "title": "Kinnipeetu toimetulekutoetus", "source": "SHS § 132 lg 7", "turns": [
+      { "mode": "new", "text": "Mu mees on vanglas. Kas ta saab toimetulekutoetust, et oma kulusid katta?",
+        "expect": { "evidence_text": ["samuti isikule, kes viibib kinnipeetava või vahistatuna kinnipidamisasutuses"], "must": ["kinnipeetav|kinnipidamisasutus|vanglas viibi"] } } ] },
+    { "id": "involuntary-placement", "title": "Hoolekandeasutusse paigutamine tahte vastaselt", "source": "SHS § 12, § 105", "turns": [
+      { "mode": "new", "text": "Mu vend keeldub hooldusest ja on endale ohtlik. Kas teda saab paigutada hoolekandeasutusse tema tahte vastaselt?",
+        "expect": { "evidence_text": ["varasemate abimeetmete rakendamine ei ole osutunud küllaldaseks"], "must": ["kohus|kohtu"] } } ] },
+    { "id": "own-share-shortfall", "title": "Erihooldusteenuse omaosaluse puudujääk", "source": "SHS § 74, § 73 lg 2", "turns": [
+      { "mode": "new", "text": "Mu õde saab ööpäevaringset erihooldusteenust ja tema pensionist ei jätku omaosaluse maksmiseks. Kas riik hüvitab puudujääva osa?",
+        "expect": { "evidence_text": ["vähemalt 15 protsenti tema tuludest"], "must": ["15 ?(%|protsent)"] } } ] },
+    { "id": "rehabilitation-student", "title": "Õppiv osalise töövõimega isik ja rehabilitatsioon", "source": "SHS § 59 lg 3", "turns": [
+      { "mode": "new", "text": "Mul on osaline töövõime ja ma õpin ülikoolis. Kas ma saan taotleda sotsiaalse rehabilitatsiooni teenuse tasu ülevõtmist?",
+        "expect": { "evidence_text": ["ega omanda põhi-, üldkesk-, kutse- või kõrgharidust"], "must": ["(õpi|haridus)[^.]{0,160}(ei |pole|puudu)|(ei |pole)[^.]{0,160}(õpi|haridus)"] } } ] },
+    { "id": "day-care-retirement-age", "title": "Psüühikahäirega eakas ja päeva- ja nädalahoiuteenus", "source": "SHS § 99², § 72 lg 2", "turns": [
+      { "mode": "new", "text": "Mu 68-aastasel emal on psüühikahäire. Kas riik maksab tema päeva- ja nädalahoiuteenuse eest?",
+        "expect": { "evidence_text": ["vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule"], "must": ["vanaduspension|pensioniea"] } } ] }
+  ]
+}

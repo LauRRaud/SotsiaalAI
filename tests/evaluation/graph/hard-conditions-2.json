@@ -1,0 +1,31 @@
+{
+  "schema_version": "rag-v2/graph-experiment-catalogue-1",
+  "purpose": "ADR-057, second catalogue: hard questions of other shapes than hard-conditions-1, which leaned to cross-references (four of nine cases were exceptions naming § 72(2)). Here no section the question is about names the deciding one: a later section of the same act (SÜS § 35, LasteKS § 27¹) or a later subsection of a long section (SHS § 131(9), § 133(2¹)). Written 30.09.2026 before any run; the queries are what a search plan writes, and the phrases are copied from the versions in force on the date (SHS RT 130062026065, SÜS RT 130062026031, LasteKS RT 111072026042), without superscript digits.",
+  "date": "2026-10-15",
+  "questions": [
+    { "id": "reclaim-limitation", "kind": "within_document", "note": "SÜS § 31 on reclaiming; the limitation periods are in § 35, which § 31 does not name.",
+      "text": "Vald nõuab minult tagasi toetust, mis maksti mulle kolm aastat tagasi ekslikult. Kas nad saavad seda veel nõuda?",
+      "queries": ["alusetult makstud sotsiaaltoetuse tagasinõudmine", "hüvitise tagasinõudmise tähtaeg"],
+      "evidence_text": ["aegumistähtaegade kohta sätestatut"] },
+    { "id": "reclaim-enforcement", "kind": "within_document", "note": "SÜS § 35(2), the enforcement period of a reclaim order.",
+      "text": "Mulle tehti ettekirjutus liiga palju makstud toetuse tagasimaksmiseks. Kui kaua saab seda minult sundkorras sisse nõuda?",
+      "queries": ["sotsiaalkaitse kulutuste tagasinõude ettekirjutus", "tagasinõude sundtäitmine"],
+      "evidence_text": ["Tagasinõude ettekirjutuse sundtäitmise aegumistähtaeg on seitse aastat"] },
+    { "id": "coach-reports-child", "kind": "within_document", "note": "LasteKS § 27 is the duty to report; what a person working with children passes on is in § 27¹.",
+      "text": "Olen treener ja märkasin, et üks laps vajab abi. Milliseid andmeid ma tohin tema kohta vallale edastada?",
+      "queries": ["abivajavast lapsest teatamine", "lapsega töötava isiku teatamiskohustus ja andmete edastamine"],
+      "evidence_text": ["edastades vähimas vajalikus ulatuses"] },
+    { "id": "student-subsistence-own", "kind": "within_document", "note": "SHS § 131(9), deep in the long section on the benefit.",
+      "text": "Olen 20-aastane üliõpilane ja elan vanematest eraldi teises linnas. Kas ma saan ise toimetulekutoetust taotleda?",
+      "queries": ["toimetulekutoetuse saamise õigus üliõpilasel", "toimetulekutoetus noorele, kes elab perekonnast eraldi"],
+      "evidence_text": ["kuni 24-aastasel üliõpilasel, kes õpib ülikoolis, rakenduskõrgkoolis või kutseõppeasutuses"] },
+    { "id": "subsistence-new-job", "kind": "within_document", "note": "SHS § 133(2¹), the work-income disregard, deep in the section on calculating the benefit.",
+      "text": "Sain mitu kuud toimetulekutoetust ja nüüd hakkasin tööle. Kas mu palk vähendab kohe toetust?",
+      "queries": ["toimetulekutoetuse arvestamine töise sissetuleku korral", "toimetulekutoetus tööle asumisel"],
+      "evidence_text": ["kahel kuul 100 protsenti töisest sissetulekust"] },
+    { "id": "subsistence-deadline", "kind": "within_document", "note": "SHS § 132(1): a control the base is expected to find.",
+      "text": "Mis ajaks pean ma toimetulekutoetuse taotluse esitama?",
+      "queries": ["toimetulekutoetuse taotluse esitamise tähtaeg", "toimetulekutoetuse taotlemine kohalikule omavalitsusele"],
+      "evidence_text": ["hiljemalt kuu viimaseks tööpäevaks"] }
+  ]
+}
