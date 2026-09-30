@@ -9,7 +9,7 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | KOV | 78 | 234 | 78 KOV-i põhipaketti koos metaandmete ja allikaloenditega. |
 | kontaktid | 0 | 10 | Kontaktide otsingumaterjal; kattuvus KOV-pakettidega vajab ühendamist. |
 | organisatsioonid | 1 | 3 | Organisatsiooni korjatud sisu ja allikad. |
-| oigusaktid | 145 | 156 | XML-aktid, sh eri redaktsioonid; kehtivus tuleb vastuvõtul kontrollida. Aktide lisadest tuletatud allikad (`lisad/`): kaks tabelit (ADR-050) ja üheksa omavalitsuse lisa teksti (ADR-053). |
+| oigusaktid | 147 | 158 | XML-aktid, sh eri redaktsioonid; kehtivus tuleb vastuvõtul kontrollida. Aktide lisadest tuletatud allikad (`lisad/`): kaks tabelit (ADR-050) ja üheksa omavalitsuse lisa teksti (ADR-053). |
 | teadmised | 0 | 7 | Allikapõhised teadmiskaardid (tingimused, erandid, mõisted ja nende seosed) valitud allikatele; iga fail on seotud oma allika räsiga (ADR-054). |
 | register | 0 | 2 | Kavandatud allikate register, mitte teadmistekst. |
 | taastatud_allikad | 0 | 22 | Serveri vanast indeksist taastatud tekst. Enne importi võrrelda põhipakettidega. |
@@ -1336,6 +1336,8 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | 419062026027.xml | [oigusaktid/419062026027.xml](<oigusaktid/419062026027.xml>) |
 | 426052026009.xml | [oigusaktid/426052026009.xml](<oigusaktid/426052026009.xml>) |
 | 429082026027.xml | [oigusaktid/429082026027.xml](<oigusaktid/429082026027.xml>) |
+| 430042026009.xml | [oigusaktid/430042026009.xml](<oigusaktid/430042026009.xml>) |
+| 429092026004.xml | [oigusaktid/429092026004.xml](<oigusaktid/429092026004.xml>) |
 | 403072026003.xml | [oigusaktid/403072026003.xml](<oigusaktid/403072026003.xml>) |
 | 130062026065.xml | [oigusaktid/130062026065.xml](<oigusaktid/130062026065.xml>) |
 | 106072023031.xml | [oigusaktid/106072023031.xml](<oigusaktid/106072023031.xml>) |

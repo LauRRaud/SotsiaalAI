@@ -1,13 +1,13 @@
 {
   "schema_version": "rag-v2/legal-acts-in-index-1",
-  "generated_at": "2026-09-29T19:08:19.967Z",
+  "generated_at": "2026-09-30T10:14:19.293Z",
   "tenant": "sotsiaalai-corpus",
-  "store_generation": "generation_c1efd2f41d724a97045ba93d26e3f3a1eb18aa795cbb1b677cb1c2630db75d32",
-  "policy_documents": 6037,
+  "store_generation": "generation_28a235a871f6b476b4159da3c10211d5740b61698fc3d610135d18110c28ed8d",
+  "policy_documents": 6039,
   "acts": [
     {
       "document_id": "document_00b6ffec42890532bbe8f5616bfc38a9cea2136ec8619d16a002a3cc5296344e",
-      "version_id": "version_323de7c35c4e775cec2d9af3c8c5047d1c80c54fbca859b57d3b764c167b5e34",
+      "version_id": "version_7e1038a0187d67162f9b7f9b70caee2c0a18e186a537e96a52b9c374fae38415",
       "globaal_id": "423052026004",
       "group": "1055418",
       "title": "Sotsiaaltoetuste määrad",
@@ -21,7 +21,7 @@
     },
     {
       "document_id": "document_023f7254a08d614c87128244ed1ce6378163c2b8bba07bfdb8b33624563f0cce",
-      "version_id": "version_8d41a41b3a8d8a4dc89d0e24334c03a6a9ca7916efd43cb48116e7772736efd7",
+      "version_id": "version_aa5cd99f32b79bc35f745adad06a305d3fd8e11ffed0e5026b4993cb03db9186",
       "globaal_id": "412122024021",
       "group": "1045127",
       "title": "Sotsiaalhoolekandelise abi andmise kord",
@@ -49,7 +49,7 @@
     },
     {
       "document_id": "document_0791f3d43c509b621fdf012ca9ee5c6f5b2f178dbf40f0428520186eebcc39cc",
-      "version_id": "version_73584ccce6bb07be1d9b388b4552f283d3259a7faaad244c283aa8b6466b656d",
+      "version_id": "version_b57a1405aa92537a4bb8ca26d8138a1d638b5e4a289830ef006eccdecf26828d",
       "globaal_id": "417062026033",
       "group": "1052761",
       "title": "Sotsiaalteenuste osutamise tingimused ja kord",
@@ -77,7 +77,7 @@
     },
     {
       "document_id": "document_129560b8d24293e47333d922d75b24b00736ba9d5fb53acc9a281d19945bfbfe",
-      "version_id": "version_256bf9c164229d2003ad4d641b35fc77ea3bb6fcd3807c733797da92c7a9d31f",
+      "version_id": "version_6567f6ab27565e1b64df595ab88993ee517d4383856955259da75a3c5d01c58a",
       "globaal_id": "413022026026",
       "group": "1055418",
       "title": "Sotsiaaltoetuste määrad",
@@ -105,7 +105,7 @@
     },
     {
       "document_id": "document_1d4842e2789a189c05fcf4df8317df856db42d12bd28b82549eeda6442d8d31a",
-      "version_id": "version_351e947e2027eb0b384f801e3257e59af98d570fff23279d67423b13e36ecff4",
+      "version_id": "version_261300a8e028cc638ce71d5813a2817d8dd2f885ff00c6f759ea0ccdbd06b29e",
       "globaal_id": "426052026009",
       "group": "1063564",
       "title": "Sotsiaaltoetuste määramise ja maksmise kord",
@@ -115,7 +115,7 @@
       ],
       "source_path": "oigusaktid/426052026009.xml",
       "index_from": "2026-05-29",
-      "index_to": null
+      "index_to": "2026-10-01"
     },
     {
       "document_id": "document_1fae74055bc1374c2d3c8395d034f8ff159fa415604fd7ea0afd02f0451a1e82",
@@ -133,7 +133,7 @@
     },
     {
       "document_id": "document_2056eca70950ed945ed9e80cfdc3f24a213d974d76bbd066574df9cc93a11a94",
-      "version_id": "version_3db4d2af5c718ffef7e789ca57300bc5236dc2b33d0bc968f5dfc3804a3b5eb2",
+      "version_id": "version_cdc3f919f01d642db259a3c8dcd627102ea6ee3a106564056739e422e712782e",
       "globaal_id": "111072026166",
       "group": "1027446",
       "title": "Riigilõivuseadus",
@@ -173,7 +173,7 @@
     },
     {
       "document_id": "document_2a9817540d0711f03b341ecd915c7b834a712461791a5cdba9d97a916419ec3f",
-      "version_id": "version_951d2ec130a8e3042240754a62b9a66ecc59733521cb6d168b169fa9b3c8d5a6",
+      "version_id": "version_a7953e3c3a8e766712565245efdc1e20a0e8a2e418389c78179648251a63d178",
       "globaal_id": "403052025002",
       "group": "1060911",
       "title": "Sotsiaalhoolekandelise abi andmise kord",
@@ -187,7 +187,7 @@
     },
     {
       "document_id": "document_2cf8838b86cf04d869998fddf28caede81cc9962a34a3c2e0bb991e7d5a4aabc",
-      "version_id": "version_2b6fae28ce93ddbe4411f3cee14b10318da690ed37b5213261daa42502b12ec2",
+      "version_id": "version_a3112f360bcf3e3140ed33ef80bd88873e072fc6b6b779e345b7b1352676ab72",
       "globaal_id": "417092025023",
       "group": "1061837",
       "title": "Raasiku valla sotsiaalhoolekandelise abi osutamise kord",
@@ -215,7 +215,7 @@
     },
     {
       "document_id": "document_2fe557ae8dee59eadc6af5130c87257769e9842645ce57b4101274026fc01c61",
-      "version_id": "version_b4bde64aafc918f3b5f0730aaa6e362f1674d4e9281c104453a8ddf3b5243c62",
+      "version_id": "version_d0b45607be234ea51194ddbacdd48449e4098c97d25d55c4b15c69ba18d9fab4",
       "globaal_id": "103062026023",
       "group": "1032355",
       "title": "Sotsiaalhoolekande seadus",
@@ -241,7 +241,7 @@
     },
     {
       "document_id": "document_3af11d027e455979480ae68ba5ca990116495d177f7534d3b591893d290355fb",
-      "version_id": "version_dcaff305aa34e1553d5e6453823a81030374a7a8efc363b97d5345d380a890b4",
+      "version_id": "version_d167d500e995d84e32800b573ad59cf3bce6bc2563d4e8484f77d494b9ed04d1",
       "globaal_id": "427052026031",
       "group": "1056916",
       "title": "Sotsiaalteenuste osutamise kord Rae vallas",
@@ -269,7 +269,7 @@
     },
     {
       "document_id": "document_3ba412b5308af3586755a89f44b092b2aaf691634266ba77801e087fd143b2ef",
-      "version_id": "version_9763a5fbb2901f4620309af25c1a1b59ecdd360517a5d143de10619e0de2d845",
+      "version_id": "version_d85924346c0937d5e18dcd9be52459e2bba5dbc4b6c80a4605bb6c3f70c8d215",
       "globaal_id": "426022025038",
       "group": "1053107",
       "title": "Toimetulekutoetuse määramisel aluseks võetavate eluasemekulude piirmäärad",
@@ -311,7 +311,7 @@
     },
     {
       "document_id": "document_40156a94894415822074aa3636ce12a1b4ffafae0a6d66d140d40d161b1b12fe",
-      "version_id": "version_0b87776abaa4edb087c9d8f0d7422860a90480f84dbb278c661ad9965a47035a",
+      "version_id": "version_d67318a98befc5222d01e8dd0e6c9093e5ef5bd7e17cf385a44772622a1ce441",
       "globaal_id": "410092025031",
       "group": "1052761",
       "title": "Sotsiaalteenuste osutamise tingimused ja kord",
@@ -339,7 +339,7 @@
     },
     {
       "document_id": "document_41d06b5f2784216a24c6d1720bb15f16ab5af00b8eb0717e64d2060460dfa3d3",
-      "version_id": "version_29f77d56b9009eebea05dbe7e5892bf3dcd82363d0375ec609d33ae54418a48c",
+      "version_id": "version_9b8323c741447373a8e055c40c153e32ae6637bb8cc79ef05c69db28ed2f3cf2",
       "globaal_id": "111072026120",
       "group": "1032355",
       "title": "Sotsiaalhoolekande seadus",
@@ -351,7 +351,7 @@
     },
     {
       "document_id": "document_499dc0949f78657d021b4659528265514bf353fcb19919b3f4387e278218d415",
-      "version_id": "version_cc25922fc9f7588849b10cbe5ad63281577a9ef65ca014933afd60beb1e780ad",
+      "version_id": "version_bd42772ec583955e15883a9ddbe8fedaf489c4f02ff55ba034b25048714bd865",
       "globaal_id": "111072026167",
       "group": "1027446",
       "title": "Riigilõivuseadus",
@@ -363,7 +363,7 @@
     },
     {
       "document_id": "document_4a0892e6bd41ea5358b487800f52420acf04fdd45b8aba2335c763c813619708",
-      "version_id": "version_6ce5806a86bf5dc3ffd3282e8a29dfbfdf0653cdffc40915c84777126a3f4a74",
+      "version_id": "version_fbae1de241f9636267b32659c3236e5591597725253313317d2b32f6013b57e5",
       "globaal_id": "126092026005",
       "group": "1032376",
       "title": "Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi andmed",
@@ -389,7 +389,7 @@
     },
     {
       "document_id": "document_4ca80a2d66e3b2b7851fb4bec1ea6dd32ebebb990fbbb600af40a631350f50fb",
-      "version_id": "version_403f70b88c1c9532e95b2d66a74f8e73a47b8958db2be2d911aedffa4aafbc3a",
+      "version_id": "version_1486f0e67fedf4338a1c587ec5cdb88bef84710b2b9f0a2d627b58491c0e06e2",
       "globaal_id": "429082026027",
       "group": "1064314",
       "title": "Sotsiaalteenuste osutamise tingimused ja kord",
@@ -417,7 +417,7 @@
     },
     {
       "document_id": "document_5248ee1334256f95748bc68d5d9d10380debdaaee9459ca884993a8525f6ec6b",
-      "version_id": "version_861be434d41605fe57b2cc7d2f532af44f99a76b9eb3fae71368d259539888b2",
+      "version_id": "version_d8c0cc0eac62920b0b7095390138bf6122fc22cef8cd52593f6c463950633951",
       "globaal_id": "428062025051",
       "group": "1051240",
       "title": "Sotsiaalhoolekandelise abi andmise kord",
@@ -431,7 +431,7 @@
     },
     {
       "document_id": "document_52a87c3410469639a83b83f9c2eb9641f39c5d7c45d5799f84d71b0d9c6dedf1",
-      "version_id": "version_9f0dce9101ffe845bc48f817fdfc472bbd6fd9d85898a4217ed4cf1aac5defdc",
+      "version_id": "version_d3d05471b5fe9fe5aae0a5e092b74a6689f5df9796b1e916025d8e495b066bcb",
       "globaal_id": "423012026003",
       "group": null,
       "title": "Haljala Vallavolikogu 19.11.2024 määruse nr 72 „Haljala valla sotsiaalhoolekandelise abi andmise tingimused ja kord” muutmine",
@@ -445,7 +445,7 @@
     },
     {
       "document_id": "document_54b8e5436f0f38cc36a3f5c8143b5139b4d7624dec68b838b57d30fab04c0db6",
-      "version_id": "version_8157ade751f69f14c4f0acefb08e7f2a3ab088ebc07acfecb0f2eaee3b49fdf3",
+      "version_id": "version_af94dde517ac3415ed6a0d27da2c73ab289642b57a4ecb8f9fd83ae2a7380219",
       "globaal_id": "111072026121",
       "group": "1032355",
       "title": "Sotsiaalhoolekande seadus",
@@ -457,7 +457,7 @@
     },
     {
       "document_id": "document_56afc65dd386b3ca88344c32c4d2296df0eb8a57661b9975df263414ae4889c8",
-      "version_id": "version_b2453fd9372d3e8a434cce1dc806072311fc70d18ba9753c576c1f505a597a09",
+      "version_id": "version_679e7f59905516131069c3b5ebf168cf0b147aa98eeb6f80a9e4ef556ccfb914",
       "globaal_id": "425032026040",
       "group": "1062686",
       "title": "Sotsiaalhoolekandelise abi andmise kord",
@@ -471,7 +471,7 @@
     },
     {
       "document_id": "document_57ca3d59cb69ab6202c6cbcbc4ba24ba0e874006aa473187fbed8943ec72d4a7",
-      "version_id": "version_2058fd95a1e8772ed0d40a6d7696be8f262b475579570f952a2601653bbb5d1f",
+      "version_id": "version_c2a53a802fb2c6261aef672fdb4f7d6e718c02d30c08347c1306d3567e45863b",
       "globaal_id": "429032025041",
       "group": "1050674",
       "title": "Sotsiaalhoolekandelise abi andmise kord Keila linnas",
@@ -499,7 +499,7 @@
     },
     {
       "document_id": "document_6142489bf560f9cf825e7ae885fec4168688504329f27330160652b3cd7e0cfe",
-      "version_id": "version_9db7166f2ba6db38e0eb9c3aafbc7d2f4e95cfcbe2990371f19a250701e01d75",
+      "version_id": "version_f56c0543ca625bd2f7d53586abcb50e5fc4c6a38e401bfc369bca5399afce85b",
       "globaal_id": "111072026043",
       "group": "1026887",
       "title": "Lastekaitseseadus",
@@ -525,7 +525,7 @@
     },
     {
       "document_id": "document_6c340374a5eb7dd07afae5b68ca2b60311c10fc6cf1aebcffb48abca5481168d",
-      "version_id": "version_74f6069dea05be93b78329afd792e26ed7f8984943c8127b4f905fc8fd309faf",
+      "version_id": "version_8267d7feab502ab9131f1c381bced6f624ddd35950becd3f082a5db986ec05c7",
       "globaal_id": "431122025034",
       "group": "1041462",
       "title": "Sotsiaalhoolekandelise abi andmise kord",
@@ -539,7 +539,7 @@
     },
     {
       "document_id": "document_6edbe7df292b2d7dc98e7e87b0191cacf70206120a10a2d38662d8d470d90922",
-      "version_id": "version_768eaa78474fabe2bbffbe8bef1ef5320a482d5806267ae6953c64a350620ba2",
+      "version_id": "version_f8b1d7b113418b95c52fef18be5de6dfc3a0c2150a01974e0a37fb8c92d28d89",
       "globaal_id": "418082026033",
       "group": "1062686",
       "title": "Sotsiaalhoolekandelise abi andmise kord",
@@ -553,7 +553,7 @@
     },
     {
       "document_id": "document_702c57efc367c6d927013811d18d1337616495620c2dacafa360da36b5ea477d",
-      "version_id": "version_ed8fd4328aacc769f698c360c192c7d90fac679bf452b6a969e92fb1a27a41c2",
+      "version_id": "version_5db150d0518215f4687251e350b2864795671a4a847c8b00e97e2574b249898d",
       "globaal_id": "404072025017",
       "group": "1034262",
       "title": "Sotsiaalhoolekandelise abi andmise kord",
@@ -567,7 +567,7 @@
     },
     {
       "document_id": "document_702e34970561cbb6fb8ec17f48553e2f141d6bb5d161cddf33c02f59bb73fef3",
-      "version_id": "version_8502a4a510fc2c12c1a0ac58f1343ea6cad2b72e20f1f5a831ac20911626faed",
+      "version_id": "version_10a3dd3b2298dc282ae98a47e84589e986b7cfcc5c811254e63130c66db5c2b9",
       "globaal_id": "404022026032",
       "group": "1041856",
       "title": "Sotsiaaltoetuste maksmise ja sotsiaalhoolekandelise abi andmise kord Narva-Jõesuu linnas",
@@ -581,7 +581,7 @@
     },
     {
       "document_id": "document_728b8d7cf774ad3bfe22cb34ed058436e601b56cec106774616c5d5443aee425",
-      "version_id": "version_09858e0b8c565f92f229b5f2680dc7675f8bfc97d047ea9e51277d9b24e8f791",
+      "version_id": "version_c2e6745d75910d2e05cb0c6ade9fdfa6e5028808ebc7412444f9c03af11b88b8",
       "globaal_id": "426032025019",
       "group": "1052759",
       "title": "Rakvere linna sotsiaalteenused",
@@ -595,7 +595,7 @@
     },
     {
       "document_id": "document_72c3c0ca4926feb8e0f96c2cec7cb3a6dcd94d41001935863980de494bab7c46",
-      "version_id": "version_03630d648c8181813f8d293b80bc0ea15a362374777f83a52d8a7d054c59e808",
+      "version_id": "version_90c195501292e5abc522d08e509979552e62ea96d035dc14d9072e8b23d437e8",
       "globaal_id": "423122025040",
       "group": "1062514",
       "title": "Sotsiaalhoolekandelise abi andmise kord Jõhvi vallas",
@@ -623,7 +623,7 @@
     },
     {
       "document_id": "document_758e5c1b0bc0bb21fcfca24ec21e7a24cb9454a915c048a51fbdaac2284c464b",
-      "version_id": "version_07b0429c6907aed92ac06d980580a7dbec5117d2ee1771534f4a5bcb00ce97d0",
+      "version_id": "version_637396a37bfaea8e19497ee5c53ba0c6297a339bd3e3269823f6b79675eb71e9",
       "globaal_id": "430042025039",
       "group": "1058295",
       "title": "Saue valla sotsiaalhoolekandelise abi andmise kord",
@@ -637,7 +637,7 @@
     },
     {
       "document_id": "document_7787b0c8c9cd167ff1f9c6fc61791ef00f73be139a58544f922a9b0c2c15f7eb",
-      "version_id": "version_6fc9287152f8587a7c036702102c0e0573e5c74f98161f6c3c572435b6981a88",
+      "version_id": "version_3dc96c4e46fa4d5eac0abc64adef934581d533929e11d51d6cb08263bcc818b7",
       "globaal_id": "405092026051",
       "group": "1051053",
       "title": "Sotsiaalhoolekandelise abi andmise kord Alutaguse vallas",
@@ -651,7 +651,7 @@
     },
     {
       "document_id": "document_7a856448839c28621cb1ef4b0329bf1587c81f1b41d30b96971f1b09e4f90f5e",
-      "version_id": "version_5fde3985d4bd183d557e42d7fe399c956c71250f6eac97c524a2f76028647103",
+      "version_id": "version_5344356f00a5085128d7fd476ad062252ec262564b4cff9336ef2acfab5f88fd",
       "globaal_id": "426092026047",
       "group": "1062514",
       "title": "Sotsiaalhoolekandelise abi andmise kord Jõhvi vallas",
@@ -665,7 +665,7 @@
     },
     {
       "document_id": "document_7bc08e4d57743ae10bdc1547093811a6e2f18ca63bb2c0056f2636adfb334f3e",
-      "version_id": "version_f0941bd9ed30efdcf342e85f822a07fad5a70d107dbb4eb1d65a8d007d38a374",
+      "version_id": "version_25fa9c4c3b07e189a2df06cf219e117a4352c5f9b839949fa6ed110a2b918238",
       "globaal_id": "111072026169",
       "group": "1027446",
       "title": "Riigilõivuseadus",
@@ -705,7 +705,7 @@
     },
     {
       "document_id": "document_7e43477320e342495fcd5e708ff197a14ccea877b7996c289e35fba33a325d11",
-      "version_id": "version_2a52cf2befee92de64a9c5245de195ddd649d977b8b7c76b1fbb62b5766a5e54",
+      "version_id": "version_87d516f1d85673720add07e45f74f6f0bc14b355ab85219286219addb4b03c76",
       "globaal_id": "109042026003",
       "group": "1027446",
       "title": "Riigilõivuseadus",
@@ -717,7 +717,7 @@
     },
     {
       "document_id": "document_810322b67a0145baea5458c1f3f8fc7c426c394eaf71a28fb70a9c71f53d9035",
-      "version_id": "version_fe5625ca8ff2c0c3b7885e5bf059ac759f133e7c083d35a9f47f8cf8ab975bcb",
+      "version_id": "version_585650962e09ab3cfdf102059554a72595190463d5626fc44fa73940761e270d",
       "globaal_id": "111072026168",
       "group": "1027446",
       "title": "Riigilõivuseadus",
@@ -757,7 +757,7 @@
     },
     {
       "document_id": "document_8b723fa5ba39c3f1c50654ff047ad8ecd82106390e46231a91cc5ad67321a63c",
-      "version_id": "version_82ef748fc6d9fd081a289209a18c23e05328c236cc83777aa5955fa67daedadb",
+      "version_id": "version_07c84ebc8680d4781df0c38e9058298b9bbba19789ebe3fa7661a792d74f4fa6",
       "globaal_id": "412042025015",
       "group": "1033406",
       "title": "Sotsiaalhoolekande seaduse, lastekaitseseaduse, sotsiaalseadustiku üldosa seaduse ja riigilõivuseadusega kohaliku omavalitsuse üksuse pädevusse antud ülesannete delegeerimine",
@@ -771,7 +771,7 @@
     },
     {
       "document_id": "document_9009ad0d34f62879572f790fae7fa9e62c367220ddf2cd2a902f5810f810ddbe",
-      "version_id": "version_e6c334260f3ec7310cfa6e197e567f6413e56fd9511e1a46c31aad10fa5b3869",
+      "version_id": "version_1c8b32285985cc34bd19437a31f8e3fb3b9b3beac16c2437ab969b4a881582ea",
       "globaal_id": "406122024017",
       "group": "1059974",
       "title": "Sotsiaalhoolekandelise abi andmise kord",
@@ -785,7 +785,7 @@
     },
     {
       "document_id": "document_94ebcbe2787130f92e785981b58f679d8fb9097c737f5fe5221f36f20eaa21e5",
-      "version_id": "version_8223504cd22349474dae53b43c287ff2db469a4f718199c683a84ccf731cccd1",
+      "version_id": "version_f12f706729ebd0a3393adb583b879a487310afa5cae00be9f77e98fb8ab6b0c5",
       "globaal_id": "406022025035",
       "group": "1049430",
       "title": "Sotsiaalhoolekandelise abi andmise tingimused ja kord",
@@ -813,7 +813,7 @@
     },
     {
       "document_id": "document_99b5a60487ec57432dfec8ba69bd87278efbd2b31d9573c005bb37fb730f527a",
-      "version_id": "version_5d9b688b161a5f5a8dbecffc81af8bf3dd42dcea5605e9c0d840fb179fde7df4",
+      "version_id": "version_ce3100c38114766b67a0b3fb90d823aad9160de174d8200c99543f3da66a6f37",
       "globaal_id": "426052023059",
       "group": "1041276",
       "title": "Sotsiaalhoolekandelise abi andmise kord Elva vallas",
@@ -841,7 +841,7 @@
     },
     {
       "document_id": "document_a66b6f4f0c1b79ccf9f054b93112bc4d50c8fc4b8654e76b5747aa8d0ec62732",
-      "version_id": "version_d5c8187aceae755acbc9416c0e3c468750596e0159e9f7390c46dbdd83ee7dad",
+      "version_id": "version_8a34728737b4d2a4225dd2cee1877f7cb9c9f8623cac2eed1fcda627922c717d",
       "globaal_id": "407032025024",
       "group": "1051053",
       "title": "Sotsiaalhoolekandelise abi andmise kord Alutaguse vallas",
@@ -869,7 +869,7 @@
     },
     {
       "document_id": "document_a795aa44d9c570fcd152d2d9bf713808223bd7334f2070cccb5cd5c48ac22213",
-      "version_id": "version_9d4a264018d772e276dd65b20747b00288a6994ba35f1204b85c213a909d6712",
+      "version_id": "version_88ac045e8fa141cc05ed2ed380898279196f11a30c23bf65333542ddaef98328",
       "globaal_id": "410032026002",
       "group": "1060100",
       "title": "Sotsiaalhoolekandeabi andmise kord Rõuge vallas",
@@ -896,8 +896,22 @@
       "index_to": null
     },
     {
+      "document_id": "document_acd1e91c67f35ed4b5b260ef7e1015592020aafda0b69fca8a01a821b52d97ad",
+      "version_id": "version_c6ece14f5c60ce1cab97e3f8b92a652bfc460752c252342c46ec3f987ddb1535",
+      "globaal_id": "429092026004",
+      "group": "1063564",
+      "title": "Sotsiaaltoetuste määramise ja maksmise kord",
+      "issuer": "Põlva Vallavolikogu",
+      "regions": [
+        "polva_vald"
+      ],
+      "source_path": "oigusaktid/429092026004.xml",
+      "index_from": "2026-10-02",
+      "index_to": null
+    },
+    {
       "document_id": "document_ae0c90e47b6de61e562751c6578edb2696672be8954968c387afe3a9e44c25b5",
-      "version_id": "version_2a1aad6795032ae7ba17522d7274f96255b195cf501fc2478147030aa59b7ad0",
+      "version_id": "version_5b67df08d3d868c157b949e2f5a6f651e9cfe01ce5d8bf68fbe30c083936ab77",
       "globaal_id": "130122025036",
       "group": "1032299",
       "title": "Sotsiaalseadustiku üldosa seadus",
@@ -909,7 +923,7 @@
     },
     {
       "document_id": "document_b79c33f8454a5438c12601bd6d459a04984c8d43d1c4963190307ff5b6f2ae21",
-      "version_id": "version_b82c35e3ff8f1d206a03fd28caf7ebad38e0b38aae8c4969217b74d9f0e3cb4a",
+      "version_id": "version_73c04855508486d9c009316f1beb6684eb0f31e6bdc18dda682a61a44fbdd814",
       "globaal_id": "407042026033",
       "group": "1051994",
       "title": "Sotsiaalhoolekandelise abi andmise kord",
@@ -937,7 +951,7 @@
     },
     {
       "document_id": "document_c32255b376cda0db1ac63e945ee75bed5b75c967b11d63699a789b53485f97f3",
-      "version_id": "version_87feaea65af1be965c680e2c3aab2ed04258259711d8e0ba317dbc60240ec029",
+      "version_id": "version_dadf4544ee70aab8497232176d8c381620db65db1eeb6e10d66f61b97eb5e28b",
       "globaal_id": "130062026065",
       "group": "1032355",
       "title": "Sotsiaalhoolekande seadus",
@@ -949,7 +963,7 @@
     },
     {
       "document_id": "document_c779eb5fc1ee4b5aecd76521c0ef28c84eb84fba1bd649c28406acb0984aedcb",
-      "version_id": "version_da502d7a6c13a0f24af1fb23b48ab73088fb157733416a3e4a4a87f8d3c57e9e",
+      "version_id": "version_5e6352607b6f10cc72dcecfb527bf167cb618e78806aecd0761ed6199e96249e",
       "globaal_id": "107052025017",
       "group": "339043",
       "title": "Perekonnaseadus",
@@ -961,7 +975,7 @@
     },
     {
       "document_id": "document_c7c02fa7f9f7686df11e0a84d92aa9895193a950d7fe420f5e871a57a911b8ea",
-      "version_id": "version_323a3cfe297deb04b05579ac62734ebee1881cc5637148563f9e4d7a70a8978c",
+      "version_id": "version_91a815e0e9e6961dba0da2ea76794ca351819cde4a3f3371ed25c8e101416279",
       "globaal_id": "418032026007",
       "group": "1054059",
       "title": "Sotsiaalteenuste osutamise kord",
@@ -989,7 +1003,7 @@
     },
     {
       "document_id": "document_c7db5224ab443116d9f9dfb9686f2e95c125fe661eff9ed0fa075ab84d235f28",
-      "version_id": "version_5f63ca53906e0a5436d83c2bb77dc590a8c3dcf6fda85b590af254836ba574ca",
+      "version_id": "version_55fc3214596541f237cca1d18a009c02887d3364e2009f85c887f8efad8c5c0f",
       "globaal_id": "111072026123",
       "group": "1032355",
       "title": "Sotsiaalhoolekande seadus",
@@ -1015,7 +1029,7 @@
     },
     {
       "document_id": "document_d180fd5fb89d26a8e66a8a0f82667fec99f91e6892dc8fcec434bd711ec179a7",
-      "version_id": "version_d78710bee731458959659145869daf7b43788472d88cd482d2ca13ef25cc5486",
+      "version_id": "version_0e55bdba032b162309dbcc613ae77632e8099de37673e5f10fdb5041cd75ec47",
       "globaal_id": "129082025009",
       "group": "1032376",
       "title": "Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi andmed",
@@ -1055,7 +1069,7 @@
     },
     {
       "document_id": "document_d965143779b80298b88acd8c0a901855a9d35311c9265fa8df7e60f1163bef9d",
-      "version_id": "version_991d1ecf167e33793a72119807681ec5aa963001b439b8bd667514298de5b587",
+      "version_id": "version_a4e079a1bf8ba98d9e06d6a6abb759f460a4fd39d83d06c683cee11aabf1766b",
       "globaal_id": "111072026042",
       "group": "1026887",
       "title": "Lastekaitseseadus",
@@ -1067,7 +1081,7 @@
     },
     {
       "document_id": "document_d9e7b9017eb175b355334d66c985724acbe21f9348137b0dcf816b78e1f95f56",
-      "version_id": "version_52cb1b1d0c336a87e73ff13b632b22fa90af4ac3212fc0c3bbe4094d1f31194f",
+      "version_id": "version_c29e8523813640810779081ab62f4212c7e592cbb857d3525c508ee015c11f39",
       "globaal_id": "111072026122",
       "group": "1032355",
       "title": "Sotsiaalhoolekande seadus",
@@ -1079,7 +1093,7 @@
     },
     {
       "document_id": "document_db6295dc196047e71a82e952b16936d20182ecb4b9f37ac416cbc4ca31d504bc",
-      "version_id": "version_bf87373255890d417cebf2006d8393dcda43b3c8ba5bb59972313b2144f7cb23",
+      "version_id": "version_063960dc0de3dba4b3bdd897f820cc4fac87c2bd4a8fe2f50327f0fa52034b18",
       "globaal_id": "109072026076",
       "group": "153445",
       "title": "Haldusmenetluse seadus",
@@ -1091,7 +1105,7 @@
     },
     {
       "document_id": "document_e0d47b974b2166e1800a1945551de3aea22d26044f8a8166b36a0486daf5cbd4",
-      "version_id": "version_33059cfd5c717233aa276c8f32c69748ed1459fa8bef52a050a50bf513726118",
+      "version_id": "version_494c58d2b68b4a15410d78ce2cdd4cf69955fc9aa678322b073303bbc10a931a",
       "globaal_id": "130062026031",
       "group": "1032299",
       "title": "Sotsiaalseadustiku üldosa seadus",
@@ -1103,7 +1117,7 @@
     },
     {
       "document_id": "document_e31a57766ffc985581f559a7dec35bb95ef5a4e97c05189b89a1039e1ad06cfa",
-      "version_id": "version_82dfb95f0ae014ec1370acfe0a41d18ef5f2c050d6cbdc8cfd7a8ba25ab617a9",
+      "version_id": "version_af64971d409519be4c88792eac6d19f29279d0d79fa22b7547e3fae909c6adb5",
       "globaal_id": "422032022006",
       "group": "1042096",
       "title": "Sotsiaalhoolekandelise abi andmise tingimused ja kord Ruhnu vallas",
@@ -1143,7 +1157,7 @@
     },
     {
       "document_id": "document_e8d605b2f0f123f8cdba704b85070848b8cbcb566e8511f0c6f7a382a7f26c5f",
-      "version_id": "version_3bf551f97f5630a9893453fe5ecce00021a5fa7d7c969965b1fdcffe61e2f6c4",
+      "version_id": "version_032aa5110392c6dc9fef65cf4156b6aebb0dba99f675d1bc81304eceee5b6aab",
       "globaal_id": "131122024023",
       "group": "1026887",
       "title": "Lastekaitseseadus",
@@ -1155,7 +1169,7 @@
     },
     {
       "document_id": "document_ef2202c6477e71a7ad3e251a2ba089ef99cfa619c57ade5c8d9a24b0465e36cb",
-      "version_id": "version_dd996c9588c78b17ca58d00fdaa5bd06b335ab61b49f88dd0384a80ab75d705b",
+      "version_id": "version_4d14d9f0673bab381f98c3e1440e51ad3ad6048cdf994f2dccb6fe16c8ec6bf2",
       "globaal_id": "431082024012",
       "group": "1056916",
       "title": "Sotsiaalteenuste osutamise kord Rae vallas",
@@ -1182,6 +1196,20 @@
       "index_to": "2026-08-31"
     },
     {
+      "document_id": "document_f9f4d458bf5e531b51af452e2073e62721c3eaf56ab40decbc6d08260e38d3eb",
+      "version_id": "version_ab98b13f92da2fc4c8d2e120c193a38e284b93b5b45a34b9e9f956a90c2b7bc7",
+      "globaal_id": "430042026009",
+      "group": "1056688",
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "issuer": "Kose Vallavolikogu",
+      "regions": [
+        "kose_vald"
+      ],
+      "source_path": "oigusaktid/430042026009.xml",
+      "index_from": "2026-05-03",
+      "index_to": null
+    },
+    {
       "document_id": "document_fb5efaff1652bb2001c33d543389146eff7d0b81ffe32ff7da37ebfb0021714e",
       "version_id": "version_ab7d175aac9123d9b27745d99af1b170ead59354b2adb951c78070e936c692b3",
       "globaal_id": "403042024076",
@@ -1197,7 +1225,7 @@
     },
     {
       "document_id": "document_fcf16ae0d32720628993bd9756899b554d821ce45f1584a24315aab11c000d20",
-      "version_id": "version_8a0f7298d4f58a9c3ea5b84b9bb62f88a85a34b1869fa1db04d0112a6bd6611b",
+      "version_id": "version_191e707b81fc7ea4ea0ecf0761df01ab1a437a10801f686672990ca32321e533",
       "globaal_id": "412042025007",
       "group": "1052751",
       "title": "Sotsiaalhoolekandelise abi andmise kord",
