@@ -77,13 +77,16 @@ export async function actBundles(acts, inputRoot) {
   } finally { await fs.rm(root, { recursive: true, force: true }); }
 }
 
+/** An act's passages: its chunks in reading order. A passage's number is its place in this list. */
+export const actPassages = bundle => [...bundle.chunks].sort((a, b) => a.ordinal - b.ordinal);
+
 /** An act's provisions (every numbered subsection of every section; a section without them is one provision), each with
  *  the passage (chunk ordinal) that holds its start. */
 export function actProvisions(bundle) {
-  const sectionOf = bundle.chunks.map(chunkSection), spans = new Map(bundle.spans.map(span => [span.id, span]));
-  const passageAt = (unit, position) => bundle.chunks.findIndex(chunk => chunk.span_ids.some(key => { const span = spans.get(key); return span.source_unit_index === unit && span.start <= position && position < span.end; }));
+  const chunks = actPassages(bundle), sectionOf = chunks.map(chunkSection), spans = new Map(bundle.spans.map(span => [span.id, span]));
+  const passageAt = (unit, position) => chunks.findIndex(chunk => chunk.span_ids.some(key => { const span = spans.get(key); return span.source_unit_index === unit && span.start <= position && position < span.end; }));
   const units = new Map();
-  bundle.chunks.forEach((chunk, index) => { if (sectionOf[index] && !units.has(sectionOf[index])) units.set(sectionOf[index], spans.get(chunk.span_ids[0]).source_unit_index); });
+  chunks.forEach((chunk, index) => { if (sectionOf[index] && !units.has(sectionOf[index])) units.set(sectionOf[index], spans.get(chunk.span_ids[0]).source_unit_index); });
   const provisions = [];
   for (const [section, unit] of units) {
     const raw = bundle.source_units[unit].raw_text, marks = [...raw.matchAll(new RegExp(`(?:^|\\n)\\((\\d+${SUP}*)\\)\\s*(?=\\n|$)`, 'gu'))];
@@ -103,7 +106,7 @@ export function actProvisions(bundle) {
 /** The gold links and denials of one act, the reader's report, and where the model's cards stand on each stratum. */
 export function actGold(act, bundle, knowledge = { cards: [], dependencies: [] }) {
   const provisions = actProvisions(bundle), byId = new Map(provisions.map(provision => [provision.id, provision]));
-  const sections = actSections(bundle.chunks), exactNumbers = keepsSuperscripts(bundle.version);
+  const sections = actSections(actPassages(bundle)), exactNumbers = keepsSuperscripts(bundle.version);
   const links = [], report = { marks: 0, own: 0, other_act: 0, own_section: 0, unresolved: {} };
   for (const provision of provisions) {
     const { text } = provision, read = readReferences(text, sections, { exactNumbers });
@@ -170,6 +173,85 @@ export function actGold(act, bundle, knowledge = { cards: [], dependencies: [] }
       own_section_exception: stratum(of('own_section', true)), other_act: { links: of('other_act').length, resolved: of('other_act').filter(link => link.to_act).length },
       denials: { provisions: denials.length, with_card_relation: denials.filter(denial => inRelation.has(denial.provision)).length } },
     links: unique, denials };
+}
+
+/** Where another act's list points in that act: the first section it names, with its subsection when the list names one
+ *  ("§ 97 punkti 1 või 2" is § 97; "§ 25 lõikes 2" is § 25 lõige 2). */
+export function listTarget(list) {
+  const section = list.match(new RegExp(`§(?:-\\p{L}+)?\\s*(\\d+${SUP}*)`, 'u')), subsection = [...list.matchAll(SUBSECTIONS)][0];
+  return section ? { section: plain(section[1]), subsection: subsection ? listed(subsection[1])[0] : null } : null;
+}
+
+/**
+ * ADR-063, arm R: what following the acts' own pointers from the selected passages would add, read with no model. For
+ * each seed in its order: the pointers its provisions make to another section (the passage of the subsection named, the
+ * section's first passage when none is), to a subsection of the same section, the provisions elsewhere that point at it
+ * (incoming), and the pointers to a named other act that `otherAct` resolves. Within a class a pointer in an exception
+ * sentence comes first. `acts` maps a document ID to { act, bundle, gold } (gold: actGold's result); a seed of a
+ * document without it adds nothing. The first `limits.additions` candidates that fit `limits.tokens` are the additions;
+ * `candidates` lists every candidate in order, so a passage the cap cut is seen too.
+ */
+export function pointerAdditions({ seeds, acts, otherAct = () => null, limits = { additions: 4, tokens: 3000 }, tokens = text => text.length }) {
+  const key = (document, passage) => `${document}#${passage}`, taken = new Set(seeds.map(seed => key(seed.document_id, seed.passage)));
+  const candidates = [], seen = new Set();
+  const offer = (document, bundle, passage, link, kind) => {
+    const chunk = passage == null ? null : actPassages(bundle)[passage];
+    if (!chunk || taken.has(key(document, passage)) || seen.has(key(document, passage))) return;
+    seen.add(key(document, passage));
+    candidates.push({ document_id: document, passage, chunk_id: chunk.id, class: kind, exception: link.exception, from: link.from,
+      to: link.to ?? `${link.to_act}:${link.list}`, source_text: chunk.source_text, tokens: tokens(chunk.source_text) });
+  };
+  const first = links => [...links].sort((a, b) => Number(b.exception) - Number(a.exception));
+  for (const seed of seeds) {
+    const own = acts.get(seed.document_id);
+    if (!own) continue;
+    const { gold } = own, chunks = actPassages(own.bundle), section = chunkSection(chunks[seed.passage]);
+    const here = gold.links.filter(link => link.from_passage === seed.passage);
+    for (const link of first(here.filter(link => link.class === 'other_section' && link.to_passage != null))) {
+      offer(seed.document_id, own.bundle, link.to_passage, link, link.to.endsWith('/null') ? 'first_passage' : 'exact_subsection');
+    }
+    for (const link of first(here.filter(link => link.class === 'own_section' && link.to_passage != null))) offer(seed.document_id, own.bundle, link.to_passage, link, 'own_section');
+    for (const link of first(gold.links.filter(link => link.class !== 'other_act' && link.to_passage != null && link.from_passage !== seed.passage
+      && (link.to_passage === seed.passage || (link.to.endsWith('/null') && link.to_section === section))))) offer(seed.document_id, own.bundle, link.from_passage, link, 'incoming');
+    for (const link of first(here.filter(link => link.class === 'other_act' && link.to_act))) {
+      const other = otherAct(link.to_act), target = other && listTarget(link.list);
+      if (!target) continue;
+      const provisions = actProvisions(other.bundle);
+      const provision = provisions.find(item => item.id === `${target.section}/${target.subsection}`) || provisions.find(item => item.section === target.section);
+      if (provision) offer(other.document_id, other.bundle, provision.passage, link, 'other_act');
+    }
+  }
+  return withinRoom(candidates, limits);
+}
+
+// The candidates that fit the room, in order: at most `additions` passages within `tokens` tokens.
+function withinRoom(candidates, limits) {
+  const additions = [];
+  let used = 0;
+  for (const item of candidates) {
+    item.added = additions.length < limits.additions && used + item.tokens <= limits.tokens;
+    if (item.added) { additions.push(item); used += item.tokens; }
+  }
+  return { additions, candidates };
+}
+
+/** Today's rule on the same seeds (retrieval.js, profile v3), for checking the simulation: only pointers to another
+ *  section, and of each referenced section its first passage, whatever subsection the pointer names. */
+export function firstPassageAdditions({ seeds, acts, limits = { additions: 4, tokens: 3000 }, tokens = text => text.length }) {
+  const taken = new Set(seeds.map(seed => `${seed.document_id}#${seed.passage}`)), candidates = [];
+  for (const seed of seeds) {
+    const own = acts.get(seed.document_id);
+    if (!own) continue;
+    const chunks = actPassages(own.bundle);
+    for (const link of own.gold.links.filter(item => item.class === 'other_section' && item.from_passage === seed.passage)) {
+      const passage = chunks.findIndex(chunk => chunkSection(chunk) === link.to_section), id = `${seed.document_id}#${passage}`;
+      if (passage < 0 || taken.has(id)) continue;
+      taken.add(id);
+      candidates.push({ document_id: seed.document_id, passage, chunk_id: chunks[passage].id, class: 'first_passage', exception: link.exception, from: link.from,
+        to: `${link.to_section}/null`, source_text: chunks[passage].source_text, tokens: tokens(chunks[passage].source_text) });
+    }
+  }
+  return withinRoom(candidates, limits);
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
