@@ -75,41 +75,33 @@ html.liquid-cursor-on * {
    poolläbipaistev (klaas, taust kumab läbi), serv sama tooniga tihedam.
    Läike ja sisekuma annab SVG nagu varem. mix-blend-mode: difference andis
    soojal puidul sinise noole, seepärast mitte see. */
-.liquid-cursor-fill,
-.liquid-cursor-rim {
-  position: absolute;
-  transform-origin: 0 0;
-  -webkit-backdrop-filter: blur(8px) grayscale(1) invert(1) contrast(14) contrast(0.74);
-  backdrop-filter: blur(8px) grayscale(1) invert(1) contrast(14) contrast(0.74);
-  transition:
-    transform 0.32s var(--ease-soft, cubic-bezier(0.22, 1, 0.36, 1)),
-    opacity 0.32s var(--ease-soft, ease);
-}
+/* ÜKS kiht nii täitele kui servale. Mask on 1 px võrra noolest suurem (serva
+   joon ulatub kujust välja) ja tema alfa teeb vahe: sisu 0,58, serv 1. Kaks
+   eraldi kihti ei sobi — serva kiht näeks enda all juba toonitud täidet ja
+   pööraks tooni teist korda ümber (tumeda noole ümber hele serv; omanik
+   01.10: „midagi on imelikku, just servaga"). */
 .liquid-cursor-fill {
-  inset: 0;
-  opacity: 0.5;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2028'%3E%3Cpath%20d='M%200%200%20L%2021.98%2018.84%20Q%2023.55%2020.1%2021.04%2021.35%20L%206.91%2026.69%20Q%203.77%2027.95%203.14%2024.81%20L%200%200%20Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2028'%3E%3Cpath%20d='M%200%200%20L%2021.98%2018.84%20Q%2023.55%2020.1%2021.04%2021.35%20L%206.91%2026.69%20Q%203.77%2027.95%203.14%2024.81%20L%200%200%20Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
-}
-/* Serva mask on 1 px võrra noolest suurem (joon ulatub kujust välja). */
-.liquid-cursor-rim {
+  position: absolute;
   left: -1px;
   top: -1px;
   width: 26px;
   height: 30px;
   transform-origin: 1px 1px;
   opacity: 0.86;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='-1%20-1%2026%2030'%3E%3Cpath%20d='M%200%200%20L%2021.98%2018.84%20Q%2023.55%2020.1%2021.04%2021.35%20L%206.91%2026.69%20Q%203.77%2027.95%203.14%2024.81%20L%200%200%20Z'%20fill='none'%20stroke='black'%20stroke-width='1.3'%20stroke-linejoin='round'%20stroke-linecap='round'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='-1%20-1%2026%2030'%3E%3Cpath%20d='M%200%200%20L%2021.98%2018.84%20Q%2023.55%2020.1%2021.04%2021.35%20L%206.91%2026.69%20Q%203.77%2027.95%203.14%2024.81%20L%200%200%20Z'%20fill='none'%20stroke='black'%20stroke-width='1.3'%20stroke-linejoin='round'%20stroke-linecap='round'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
-}
-.liquid-cursor.is-active :is(.liquid-cursor-fill, .liquid-cursor-rim) {
-  transform: scale(1.02);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='-1%20-1%2026%2030'%3E%3Cpath%20d='M%200%200%20L%2021.98%2018.84%20Q%2023.55%2020.1%2021.04%2021.35%20L%206.91%2026.69%20Q%203.77%2027.95%203.14%2024.81%20L%200%200%20Z'%20fill='black'%20fill-opacity='0.58'%20stroke='black'%20stroke-width='1.3'%20stroke-linejoin='round'%20stroke-linecap='round'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='-1%20-1%2026%2030'%3E%3Cpath%20d='M%200%200%20L%2021.98%2018.84%20Q%2023.55%2020.1%2021.04%2021.35%20L%206.91%2026.69%20Q%203.77%2027.95%203.14%2024.81%20L%200%200%20Z'%20fill='black'%20fill-opacity='0.58'%20stroke='black'%20stroke-width='1.3'%20stroke-linejoin='round'%20stroke-linecap='round'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
+  -webkit-backdrop-filter: blur(8px) grayscale(1) invert(1) contrast(14) contrast(0.74);
+  backdrop-filter: blur(8px) grayscale(1) invert(1) contrast(14) contrast(0.74);
+  transition:
+    transform 0.32s var(--ease-soft, cubic-bezier(0.22, 1, 0.36, 1)),
+    opacity 0.32s var(--ease-soft, ease);
 }
 .liquid-cursor.is-active .liquid-cursor-fill {
-  opacity: 0.62;
+  transform: scale(1.02);
+  opacity: 1;
 }
 @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  /* Tooni ja serva annavad ülal olevad kihid. SVG-st jääb klaasi läige
+  /* Tooni ja serva annab ülal olev kiht. SVG-st jääb klaasi läige
      (õrnem, et tume klaas heledal taustal piimjaks ei läheks) ja sisekuma;
      SVG enda valge serv kataks kohanduva serva kinni. Toeta brauseris jääb
      vana klaasnool (atribuutidest). */
@@ -164,7 +156,7 @@ html.liquid-cursor-on * {
   stroke: #efefef;
   stroke-opacity: 0.72;
 }
-/* Kohanduva serva (.liquid-cursor-rim) korral ei tule hoveril SVG valget
+/* Kohanduva serva (.liquid-cursor-fill) korral ei tule hoveril SVG valget
    serva tagasi — tumedal noolel heledal taustal oleks see vale toon. */
 @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .liquid-cursor.is-active .lc-rim {
