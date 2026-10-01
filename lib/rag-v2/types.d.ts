@@ -9,8 +9,47 @@ export type SourceLocator = { kind: 'pdf'; pdf_page: number }
 export type SourceLocation = SourceLocator & {
   source_unit_id: Id; start: number; end: number; offset_basis: 'source_unit_text_utf16';
 };
+/** A Riigi Teataja amendment note (muutmismarge), read beside the text since source-structure-v30 (ADR-062).
+ * `in_force` is the amendment's entry into force for the provision; null when the source gives none, or gives a day
+ * before the note's own publication day that is not a court ruling's (a source error; report warning
+ * amendment_note_in_force_before_publication). `applies_from` is set only when the note's own
+ * words are nothing but "rakendatakse [tagasiulatuvalt] [alates] <date>" (the verb also as "rakendatake",
+ * "rakendatatakse" or "rakend."); `note` keeps those words always, up to the 2,000 characters the reader reads of
+ * them. `rt` cites Riigi Teataja by publication day ("RT IV, 21.03.2026, 7") or, before 2010, by year and issue
+ * ("RT I 2010, 22, 108", `published` null). `repeal` marks "Kehtetu" in any case and "välja jäetud". */
+export type Amendment = {
+  act_reference: string | null; rt: string; published: string | null; in_force: string | null;
+  adopted?: string; applies_from?: string; note?: string; repeal?: true;
+};
+/** `offset` is the length of raw_text before the note, so the end of its provision's text: the note belongs to the
+ * source location with `start < offset <= end` (the end counts, the start does not: a third of the notes lie on a
+ * chunk's end). Null when the text does not confirm the place (report warning amendment_note_position_unresolved).
+ * `path` tells a section's own note (".../paragrahv[n]/muutmismarge[k]") from one in an unnumbered subsection, which
+ * has the same `provision` ("§ N"). */
+export type UnitAmendment = Amendment & { provision: string; offset: number | null; path: string };
 export interface SourceUnit {
   id: Id; index: number; raw_text: string; locator: SourceLocator; offset_basis: 'source_unit_text_utf16';
+  amendments?: UnitAmendment[];
+}
+/** document.fields.legal_text.value of a Riigi Teataja act: the act's own dates, apart from the version's validity.
+ * `act_in_force_from` is the adoption's entry into force as the source gives it; of an original text never amended
+ * (text_kind "algtekst...") the validity start, and the adoption's day only without one. `original_published` is the
+ * publication day the adoption names (null: none, or a citation by year and issue). A consolidated text's
+ * `act_in_force_from` before it is kept and reported (report warning act_in_force_before_publication). */
+export interface LegalText {
+  schema_version: 'rag-v2/legal-text-1'; text_kind: string | null; adopted: string | null; original_reference: string | null;
+  original_published: string | null; act_in_force_from: string | null; version_from: string | null;
+  /** The adoption's own words, when it has any, and the day they give, read as a note's `note` and `applies_from` are. */
+  adoption_note?: string; act_applies_from?: string;
+  /** The amending acts named on the act itself. */
+  history: Amendment[];
+  /** What the amendment in force from `version_from` changed; `acts` are the history's acts of that day, by their own
+   * day or named by a note of that day. Empty `provisions` means no note carries that day, not that nothing changed. */
+  version_change?: { in_force: string; acts: (string | null)[]; provisions: string[] };
+  /** Notes outside a section's text: the preamble, a title, a chapter or division, an annex title, a wholly repealed section. */
+  structure: (Amendment & { target: string; path: string })[];
+  /** The act's own provisions on its application or entry into force that name a day. */
+  entry_into_force: { provision: string; unit_index: number; path: string; text: string }[];
 }
 export type LocalRights = { access: 'local_private'; usage: 'development_only' };
 export type Scope = { tenant_id: string; document_version_id: Id };

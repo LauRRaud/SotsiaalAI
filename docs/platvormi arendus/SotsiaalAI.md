@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**Uus aken alustab siit (30.09 hilisõhtu).** Seis pärast Codexi #283–#288 ülevaatuse parandusi (R1–R3) ja omavalitsuste vastuste mõõtmist.
+**Uus aken alustab siit (01.10).** Omanik valis M3. Käsil on kuupäevavea parandus ([ADR-062](../rag-v2/adr-062-provision-dates.md)); selle 1. etapp on koodis, korpus v47 ja 2. etapp järgnevad.
 - **Tootmises:** korpus v46 (indeks `5a959000`, 6470 dokumenti, Qdrantis 40 489 punkti). Vestlusplaani uuendab reliis ise (ADR-037): profiil v3, answer-12, dialoog 21, olek v5, arutlus medium.
 - **Tööviis:**
   - Codex kujundab põhikaustas, seega ära vaheta seal harusid. Töötle %TEMP% worktree's: `node_modules` junction, `generated/` koopia. Eemalda worktree ja haru pärast PR-i.
@@ -100,14 +100,31 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
   - Tasulised jooksud on kitsad: väikseim kataloog, suurem komplekt ainult hinnaga ette öeldes.
   - Päris mõõtmine käib päris vestluses: brauseripaanis `sotsiaal.ai/vestlus`, uus vestlus sessionStorage'i `:convId` võtme kustutamisega.
 - **Järgmised sammud:**
-  - 01.10: ühe küsimuse kontrollid, et vastused kasutaksid uut SHS-i ja abivahendite piirhindu.
+  - **Kuupäevaviga, ADR-062:** (1) korpus v47 lugejaga v30: 519 akti uuesti sisse, ostu pole, serveris `rag-v2-corpus-run.sh` ja `rag-v2-generation-compare.mjs` v46 vastu; (2) 2. etapp: kuupäevade näitamine mudelile (mudelikontekst json-3) ja dialoog 22, enne PR-i kaks tasulist küsimust (Märjamaa, Kuusalu).
+  - **M3 (omaniku valik 01.10, „M5 tuleb kunagi hiljem“):** kontrollitud seoste katse ja teine, teistsugune raskete küsimuste kataloog. Algab pärast kuupäevaviga.
   - 04.10: Maardu XML-id 415082017002 ja 402072013031 uuesti alla laadida, kui RT on kirjutanud neile lõpukuupäeva. Rada: `rag-v2-law-validity.mjs check --download`, `rag-v2-corpus-refresh.mjs`, serveris `rag-v2-corpus-run.sh` (runbook, jaotis 0).
   - Kontaktid pärast 04.10.
-  - Sätte muutmise märge mudelini (Märjamaa leid allpool): jõustumine, muutev akt ja „rakendatakse alates“ tulevad lõigu või allikakaardiga, et vastus ei dateeriks summat konsolideeritud teksti alguse järgi.
-  - Omaniku valik: M3 (kontrollitud seoste katse) või M5 (kümne aasta ülevaade).
-  - Codex vaatab üle R1–R3 paranduste PR-i ja #289.
+  - Codex vaatab üle #289, #290 ja ADR-062 PR-id.
   - Kiiruse mõõtmine päris vestluses teeb omanik.
 - **Võrk 30.09 õhtul:** SSH port 22 aegus korduvalt nii GitHubi kui serveri (`ssh sotsiaalai`) poole. Push õnnestus kordamisel. `gh` töötab HTTPS-i kaudu.
+
+**01.10 (Opus): 01.10 kontroll läbitud; kuupäevavea 1. etapp — lugeja v30 hoiab muutmismärked andmetena** ([ADR-062](../rag-v2/adr-062-provision-dates.md)). Omanik 01.10: „m3. M5 tuleb kunagi hiljem“; enne M3-e 01.10 kontroll ja kuupäevaviga.
+- **01.10 kontroll päris vestluses:** vastused kasutavad täna jõustunud redaktsioone.
+  - SHS: eriolukorras erihoolekandeteenust erandina osutaval inimesel „vähemalt põhiharidus“ (uus § 13² lg 1; vana redaktsioon ütles keskharidus).
+  - Abivahendid: kõrvasisese kuuldeaparaadi aktiivsusgrupi I piirhind 500 €, riik võtab üle 90% ehk 450 € (vana piirhind 350 €).
+  - Küsimused ja viited tulid kahe redaktsiooni võrdlusest ja kontrolliti sõltumatult üle.
+- **Viga:** vastus dateeris summa konsolideeritud teksti alguse järgi.
+  - Märjamaa: „kehtib alates 4. septembrist 2026“ ja asjatu kahtlus. 04.09 muudeti ainult preambulit; § 1 p 1 märge ütleb „rakendatakse alates 01.01.2026“.
+  - Kuusalu (30.09 kell 22:32, pärast #290): 12 €/m² „kehtib 15. septembrist 2026“. Määrust rakendatakse 01.05.2026-st (§ 5 lg 1).
+  - Põhjus: mudel näeb ainult redaktsiooni `valid_from`-i; sätte muutmismärge jäeti lugemisel välja.
+- **Lahendus valiti kolme sõltumatu kavandi seast** (ainult juhis; märked andmetena; ilma uuesti lugemata). Kolmest hindajast kaks eelistasid märkeid andmetena: ainult see annab mõlemal juhul õige päeva.
+- **1. etapp (see PR):** lugeja `source-structure-v30` loeb teksti nagu v29 ja lisab andmed teksti kõrvale.
+  - Üksuse `amendments[]`: säte, koht tekstis, muutev akt, jõustumine, „rakendatakse alates“, märke sõnad, kehtetuks tunnistamine.
+  - Dokumendi `legal_text`: akti jõustumine, redaktsiooni muudatus (mis sätteid see puudutas), akti enda jõustumis- ja rakendussätted.
+  - **Mudel ei näe veel midagi uut.** 519 aktist 519 annavad samad lõigud, 13 669 embedding'u sisendit on juba olemas, uusi 0.
+  - Kolm ülevaatusringi kahe sõltumatu ülevaatajaga (teksti samasus; kuupäevade lugemine kõigi 519 akti peal) ja lõppkontroll. Parandatud: vana vormingu RT viide, pakkimine Windowsis 519 versiooniga, `rag-v2-generation-compare.mjs` liigitus (sama tõendus teise mahuga on `different`), jõustumispäev enne avaldamist (hoiatus, seitse akti ja Haljala märge).
+  - `npm test` 479/479 (19 vahele jäetud).
+- **Järgmine:** korpus v47 ja 2. etapp (vt „Järgmised sammud“).
 
 **30.09 (Opus), hilisõhtu: Codexi #283–#288 ülevaatuse R1–R3 parandatud, omavalitsuste vastuste mõõtmine, vormi lingi suurus (#289)** ([Codexi raport](../audits/rag-v2-pr283-288-review-2026-09-30.md)).
 - **R1 (P1, [ADR-060](../rag-v2/adr-060-prune-unreferenced-versions.md)):** koristus ja indekseerimine välistavad teineteist rentniku Postgresi nõuandva lukuga.
