@@ -121,6 +121,12 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
   - Kiiruse mõõtmine päris vestluses teeb omanik.
 - **Võrk 30.09 õhtul:** SSH port 22 aegus korduvalt nii GitHubi kui serveri (`ssh sotsiaalai`) poole. Push õnnestus kordamisel. `gh` töötab HTTPS-i kaudu.
 
+**01.10 (Opus), kesköö eel: Codexi #300–#301 ülevaatuse leid parandatud** ([raport](../audits/rag-v2-pr300-301-review-2026-10-01.md), [ADR-064](../rag-v2/adr-064-named-other-act.md)).
+- **R1 (P2, #301):** nimetatud paragrahvi numbri täpsust küsiti sihtakti redaktsioonilt, kuigi number on loetud viitavast tekstist. PDF-i „§ 131“ võis seega tuua § 131, kuigi mõeldud oli § 13¹.
+- **Nüüd** tuleb täpsus viitava dokumendi redaktsioonilt. Mitmetähenduslik number ei too midagi; ainus võimalik vaste tuuakse. Sama reegel kehtib lõike numbri kohta.
+- Otsingukatse korratud samal 30 küsimusel: ükski valik ei muutunud (28 leitud). Tasulist jooksu ei tehtud.
+- #300 paranduste ja #301 mõõtmisarvude kohta Codex uut viga ei leidnud.
+
 **01.10 (Opus), hilisöö: M3 reegel — nimetatud teise akti säte jõuab tõenditesse (profiil v4)** ([ADR-064](../rag-v2/adr-064-named-other-act.md)). Omanik: „alusta“.
 - **Reegel:** valitud lõik nimetab teist seadust täielikult ja vahetult paragrahvi ees („sotsiaalhoolekande seaduse § 25 lõikes 2“) → otsing lisab selle akti kehtiva redaktsiooni lõigu, kus nimetatud lõige on. Kuni 2 lõiku omaette kohtadel; v3 valik jääb samaks.
 - **Otsingukatse** (server, v47, 30 küsimust, tasuta): v3 26, v4 28; juurde tulid Harku tugiisik ja pensionäritoetus õppiva lapsega; midagi ei kadunud; kontekst keskmiselt +300 tokenit. Väljundid: `docs/audits/evidence/graph-v4-hard-*.json`.

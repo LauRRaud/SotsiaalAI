@@ -73,6 +73,18 @@ Serveris, rakenduse ajutises koopias, korpus v47, kuupäev 15.10.2026. Koopia ja
 - `tests/rag-v2-graph-experiment.test.mjs`: v4 lisab lõigu, kus nimetatud lõige on, nii kataloogiga kui ilma; v3 ei lisa; kaks sama pealkirjaga dokumenti ei anna midagi; lõikude ridade pealkiri, mida allikal ei ole, ei anna midagi; v4 seaded on v3 seaded ja kaks kohta.
 - `tests/rag-v2-relation-gold.test.mjs`: otsingu lugeja nimetab seitsmel päris aktil samu teisi akte mis käsitsi kontrollitud kuldkomplekt (27 viidet; ainus erinevus on paragrahvide vahemik). Harku § 15 lg 3 annab SHS § 25 lõike 2 lõigu, kus otsustavad sõnad on.
 
+## Codexi ülevaatuse parandus R1 (01.10.2026): numbri täpsus tuleb viitavalt tekstilt
+
+- **Viga ([Codexi raport](../audits/rag-v2-pr300-301-review-2026-10-01.md), P2):** kas lihtne number „131“ on täpselt § 131, küsiti sihtakti redaktsioonilt. Number on aga loetud viitavast tekstist. PDF või vanema lugejaga XML võib olla ülaindeksi kaotanud ([ADR-056](adr-056-rt-xml-superscripts.md)), seega võib selle „§ 131“ olla § 13¹. Reegel lisas sel juhul § 131, kuigi sihtaktis olid mõlemad.
+- **Nüüd:** täpsus tuleb viitava lõigu dokumendi redaktsioonilt (`keepsSuperscripts`); sihtakti paragrahvide loend jääb sihtaktist.
+  - Viitav tekst ei hoia ülaindekseid ja sihtaktis on nii § 13¹ kui § 131: number on mitmetähenduslik, ei lisata kumbagi.
+  - Sihtaktis on ainult § 13¹: see on ainus paragrahv, mida number saab tähendada, ja see lisatakse.
+  - Kirjutatud ülaindeks („§ 13¹“) on täpne igas allikas. Ülaindekseid hoidvas tekstis on „131“ täpselt § 131.
+- **Sama kehtib lõike numbri kohta** (`provisionChunks`, `exactNumbers`): ülaindekseid mittehoidva teksti „lõikes 21“ on lõige 2¹ ainult siis, kui paragrahvis lõiget 21 ei ole; kahe võimaluse korral lisatakse paragrahvi esimene lõik.
+- **Testid:** Codexi tabeli neli juhtu ja kaks lisajuhtu mõlemal otsingurajal (kataloogiga ja ilma); lõike numbri juhud eraldi. Vana käitumisega uus test kukub.
+- **Mõju mõõdetud tulemusele:** otsingukatse korratud serveris samal 30 küsimusel: ükski valik ei muutunud (28 leitud, samad 14 lisandust). Tasulist jooksu ei tehtud.
+- **Hind:** SHS-is on nii §-d 13¹–13⁴ kui §-d 131–134. PDF-artikkel, mis nimetab „sotsiaalhoolekande seaduse § 131“, ei too enam seda paragrahvi kaasa, sest number on selles allikas mitmetähenduslik.
+
 ## Kasutuselevõtt
 
 - Profiil on vestlusplaani osa. Pärast deploy'd tehakse serveris uus plaan profiiliga v4 (`scripts/rag-v2-chat-plan.mjs --profile hybrid-estnltk-chat-v4 --activate`) ja teenus taaskäivitatakse.
@@ -85,3 +97,4 @@ Serveris, rakenduse ajutises koopias, korpus v47, kuupäev 15.10.2026. Koopia ja
 - Kaks eri akti, mille nimi lõpeb samade sõnadega, eristab pikem nimi. Akt, mida ulatuses ei ole, võib lõppeda ulatuses oleva akti nimega; sellist juhtu seitsmes kontrollitud aktis ei olnud.
 - Lisandus võib olla küsimuse jaoks kõrvaline: 14 lisatud lõigust tõid puuduva otsustava fraasi 2. Ülejäänute asjakohasust ei ole hinnatud; nende hind on keskmiselt 300 tokenit küsimuse kohta.
 - Kahe lõigu piir võib pika lõike korral jätta nimetatud punkti välja, kui lõige ulatub üle kahe lõigu.
+- Ülaindekseid mittehoidvast allikast (PDF, vanem XML) loetud number, mis sihtaktis sobib kahele paragrahvile, jääb järgimata.
