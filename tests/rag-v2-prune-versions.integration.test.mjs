@@ -21,7 +21,8 @@ import { PRUNE_LOCK } from '../lib/rag-v2/search/postgres.js';
 // ADR-060 against the local Postgres and Qdrant (node scripts/rag-v2-local.mjs up): the index of a version no generation
 // lists goes; the listed versions, their rows and points stay; a stopped run is completed; a version listed again is
 // indexed anew; while a run holds the tenant's prune lock no generation begins and no second run starts, and a run that
-// loses the lock's session stops.
+// loses the lock's session stops; from a run's marks to its last delete no generation begins, whether its session lives
+// or not.
 let root, postgres, qdrant, connections;
 const tenants = [], savedFetch = globalThis.fetch, savedConnect = net.Socket.prototype.connect;
 const rights = { access: 'local_private', usage: 'development_only' }, profile = { id: 'generic', version: '1', months: [], categoryLabels: [] };
@@ -48,7 +49,7 @@ after(async () => {
         await qdrant.request(`${qdrant.route(generation)}/points/delete?wait=true`, 'POST', { filter: { must: [{ key: 'tenant', match: { value: tenant } }] } })
           .catch(error => { if (error.status !== 404) throw error; });
       }
-      for (const table of ['rag_v2_index_job', 'rag_v2_unit', 'rag_v2_version_unit', 'rag_v2_version_index', 'rag_v2_generation_document', 'rag_v2_head', 'rag_v2_generation',
+      for (const table of ['rag_v2_prune_run', 'rag_v2_index_job', 'rag_v2_unit', 'rag_v2_version_unit', 'rag_v2_version_index', 'rag_v2_generation_document', 'rag_v2_head', 'rag_v2_generation',
         'rag_v2_object', 'rag_v2_version', 'rag_v2_document', 'rag_v2_vector_cache']) await postgres.pool.query(`DELETE FROM ${table} WHERE tenant=$1`, [tenant]);
     }
   } finally {
@@ -120,10 +121,14 @@ test('the index of a version no generation lists goes; the listed versions stay 
     ? Promise.reject(Object.assign(new Error('stopped'), { code: 'qdrant_request_failed' })) : qdrant.request(route, method, body)) };
   await assert.rejects(pruneUnreferencedVersions({ postgres, qdrant: failing, tenant: options.tenant, execute: true }), { code: 'qdrant_request_failed' });
   assert.deepEqual(await versionState(generation, options.tenant, oldVersion), { units: oldUnits, seal: 'staged', points: oldUnits });
+  assert.equal((await prune()).unresolved, true);
   const done = await prune({ execute: true });
   assert.deepEqual(done.deleted, { points: oldUnits, units: oldUnits, versions: 1 });
   assert.deepEqual(await versionState(generation, options.tenant, oldVersion), { units: 0, seal: null, points: 0 });
-  assert.equal((await prune({ execute: true })).versions, 0);
+  assert.deepEqual([(await prune({ execute: true })).versions, (await prune()).unresolved], [0, false]);
+  // A stopped run's row with nothing left to remove goes with the next run.
+  await postgres.pool.query('INSERT INTO rag_v2_prune_run(tenant) VALUES($1)', [options.tenant]);
+  assert.deepEqual([(await prune({ execute: true })).unresolved, (await prune()).unresolved], [true, false]);
 
   // The listed versions keep their rows, seals and points, and the full maintenance check passes.
   assert.equal((await versionState(generation, options.tenant, keptVersion)).seal, 'ready');
@@ -234,10 +239,71 @@ test('a run whose session (and with it the lock) is lost stops before its next d
   // One version's points went, the other's are all there.
   assert.deepEqual(stopped.map((state, index) => state.points === 0 ? 'deleted' : state.points === units[index] ? 'kept' : state.points).sort(), ['deleted', 'kept']);
   const remaining = stopped.reduce((sum, state) => sum + state.points, 0);
+  assert.equal((await pruneUnreferencedVersions({ postgres, qdrant, tenant: options.tenant })).unresolved, true);
 
   const done = await pruneUnreferencedVersions({ postgres, qdrant, tenant: options.tenant, execute: true });
   assert.deepEqual(done.deleted, { points: remaining, units: units[0] + units[1], versions: 2 });
   assert.deepEqual(await states(), units.map(() => ({ units: 0, seal: null, points: 0 })));
+  assert.equal((await pruneUnreferencedVersions({ postgres, qdrant, tenant: options.tenant })).unresolved, false);
+});
+
+test('a run that loses its session while a delete is on its way keeps every index job out until the next run has completed it', async () => {
+  const options = await fixture(), [changed] = options.documents;
+  const first = await plan(options, options.documents);
+  await run(options, first);
+  const oldVersion = first.source.documents[changed].version_id, oldUnits = first.items.find(item => item.document_id === changed).units;
+  await addDocument(options, 'guide-0', ['Päevahoiukeskus avab uksed hommikul.', 'Päevahoiukeskus pakub tegevusi.']);
+  const second = await plan(options, options.documents);
+  await run(options, second);
+  await dropGeneration(options.tenant, first.generation_id);
+  // The old text back, planned while its version is still sealed.
+  await addDocument(options, 'guide-0', guide(0));
+  const returning = await plan(options, options.documents);
+  const prune = extra => pruneUnreferencedVersions({ postgres, qdrant, tenant: options.tenant, ...extra });
+  const begun = async () => (await postgres.pool.query(`SELECT (SELECT count(*) FROM rag_v2_generation WHERE tenant=$1 AND id=$2)::integer
+    + (SELECT count(*) FROM rag_v2_index_job WHERE tenant=$1 AND generation_id=$2)::integer AS n`, [options.tenant, returning.generation_id])).rows[0].n;
+
+  // The lock's session ends when the delete has been handed over and not yet applied (Codex's review of #290). The
+  // lock is free then, but the job that would list the version again does not begin, so the delete removes no new point.
+  let interleaved = false;
+  const delayed = { request: async (route, method, body) => {
+    if (route.endsWith('/points/delete?wait=true') && !interleaved) {
+      interleaved = true;
+      const holders = (await postgres.pool.query(`SELECT pid FROM pg_locks WHERE locktype='advisory' AND granted AND objsubid=2
+        AND classid=hashtext('rag_v2_prune')::oid AND objid=hashtext($1)::oid`, [options.tenant])).rows;
+      assert.equal(holders.length, 1);
+      assert.equal((await postgres.pool.query('SELECT pg_terminate_backend($1,10000) AS done', [holders[0].pid])).rows[0].done, true);
+      assert.equal((await postgres.pool.query(`SELECT count(*)::integer AS n FROM pg_locks WHERE locktype='advisory' AND objsubid=2
+        AND classid=hashtext('rag_v2_prune')::oid AND objid=hashtext($1)::oid`, [options.tenant])).rows[0].n, 0);
+      await assert.rejects(run(options, returning), { code: 'index_prune_unresolved' });
+      assert.equal(await begun(), 0);
+    }
+    return qdrant.request(route, method, body);
+  } };
+  await assert.rejects(pruneUnreferencedVersions({ postgres, qdrant: delayed, tenant: options.tenant, execute: true }),
+    error => error.code === '57P01' || /not queryable|terminated/u.test(error.message));
+  assert(interleaved);
+  assert.equal(postgres.pool.totalCount, postgres.pool.idleCount);
+
+  // The run has ended, its row stands: still no job, and the active index is whole.
+  const active = await postgres.active(options.tenant);
+  assert.equal(active.id, second.generation_id);
+  assert.equal((await prune()).unresolved, true);
+  await assert.rejects(run(options, returning), { code: 'index_prune_unresolved' });
+  assert.equal(await begun(), 0);
+  assert.deepEqual(await versionState(active, options.tenant, oldVersion), { units: oldUnits, seal: 'staged', points: 0 });
+  assert.equal((await verifyIndexJob({ plan: second, storeRoot: options.storeRoot, postgres, qdrant, embedding: options.embedding })).verified_documents, 2);
+
+  // The next run deletes again, removes the rows and the barrier; then the job indexes the version anew with its points.
+  const done = await prune({ execute: true });
+  assert.deepEqual(done.deleted, { points: 0, units: oldUnits, versions: 1 });
+  assert.equal((await prune()).unresolved, false);
+  const result = await run(options, returning);
+  assert.equal(result.state, 'ready'); assert.equal(result.sealed_documents, 1); assert.equal(result.reused_documents, 1);
+  const generation = await postgres.active(options.tenant);
+  assert.equal(generation.id, returning.generation_id);
+  assert.deepEqual(await versionState(generation, options.tenant, oldVersion), { units: oldUnits, seal: 'ready', points: oldUnits });
+  assert.equal((await verifyIndexJob({ plan: returning, storeRoot: options.storeRoot, postgres, qdrant, embedding: options.embedding })).verified_documents, 2);
 });
 
 test('the CLI counts without --execute and names its errors', async () => {

@@ -96,6 +96,12 @@ model RagV2VersionIndex {
   @@id([tenant, config_id, version_id])
   @@map("rag_v2_version_index")
 }
+// ADR-060: a prune run between its marks and its last delete; while the row stands no generation of the tenant begins.
+model RagV2PruneRun {
+  tenant String @id
+  started_at DateTime @default(now()) @db.Timestamptz
+  @@map("rag_v2_prune_run")
+}
 model RagV2VersionUnit {
   tenant String
   config_id String

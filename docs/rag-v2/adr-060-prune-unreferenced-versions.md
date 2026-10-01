@@ -20,7 +20,7 @@
   1. Kandidaatide pitserid lähevad tagasi olekusse `staged`. Indeksitöö ei loe neid siis valmis versiooniks ja kirjutaks versiooni vajadusel ise uuesti.
   2. Märgitud versioonide punktid kustutatakse filtriga (rentnik, konfiguratsioon, versioonid) ja loetakse üle; alles ei tohi jääda ühtegi.
   3. Kustutatakse `staged` olekus ja endiselt loetlemata versioonide read ja pitserid. Kui mõni märgitud versioon sai vahepeal loendisse, peatub tööriist (`prune_version_listed_meanwhile`).
-- **Katkestus** jätab `staged` pitserid, mida ükski generatsioon ei loetle. Järgmine jooks jätkab neist.
+- **Katkestus** jätab `staged` pitserid, mida ükski generatsioon ei loetle, ja koristuse rea (`rag_v2_prune_run`). Järgmine jooks jätkab neist. Seni ei alga ükski indeksitöö (`index_prune_unresolved`).
 - **Kataloog jääb puutumata** (`rag_v2_version`, `rag_v2_object`, hoidla). Kui versioon tuleb tagasi, kirjutab indeksitöö selle indeksi uuesti.
 
 ## Kontroll
@@ -59,8 +59,24 @@
   - Seanss lõpetatakse (`pg_terminate_backend`) esimese kustutuse ajal: töö peatub enne teist kustutust, pitserid jäävad `staged` ja järgmine koristus lõpetab töö.
   - Vana koodiga uus test kukub (indeksitöö jõuab lõpuni), nagu Codexi sond näitas.
 
+## Codexi ülevaatuse parandus R1 (01.10.2026): tõke, mis elab üle seansi
+
+- **Viga ([Codexi raport](../audits/rag-v2-pr289-299-review-2026-10-01.md), P1):** lukk kaob koos koristuse Postgresi seansiga, aga juba teele saadetud Qdranti kustutus võib rakenduda pärast seda. Kui seanss katkes kustutuse ajal, sai uus indeksitöö alata, kustutatava versiooni uuesti indekseerida ja aktiveerida; seejärel kustutas koristuse päring selle uued punktid. Aktiivne indeks jäi `ready` olekusse 0 punktiga ja kordus ei parandanud seda.
+- **Nüüd:** koristusel on püsiv rida `rag_v2_prune_run` (rentniku kohta üks; migratsioon `202610010001_prune_run`).
+  - Rida kirjutatakse samas tehingus, mis märgib pitserid `staged` olekusse, ja kustutatakse samas tehingus, mis kustutab read ja pitserid.
+  - `beginGeneration` keeldub, kuni rida on olemas (`index_prune_unresolved`), olgu koristuse seanss elus või mitte.
+  - Katkenud koristuse lõpetab järgmine `--execute`: see kustutab märgitud versioonide punktid uuesti ja ootab kustutuse ära, loeb üle, kustutab read ja koos nendega tõkke. Ühe sõlmega Qdrant rakendab kollektsiooni muudatused vastuvõtmise järjekorras, seega on varem saadetud kustutus selleks ajaks rakendunud.
+  - Loendus (ilma `--execute`-ita) näitab väljal `unresolved`, kas tõke on üleval.
+  - Kui rida on olemas, aga kustutada pole enam midagi, eemaldab `--execute` ainult rea.
+- **Testid** (`tests/rag-v2-prune-versions.integration.test.mjs`, kohalik Postgres ja Qdrant):
+  - Codexi stsenaarium: seanss lõpetatakse hetkel, mil kustutus on teele saadetud. Lukk on vaba, aga versiooni tagasi toov indeksitöö keeldub ega jäta ühtegi rida. Aktiivne indeks läbib `verifyIndexJob`-i. Järgmine koristus lõpetab töö ja eemaldab tõkke; seejärel indekseerib sama töö versiooni uuesti ja kontroll läbib kõigi punktidega.
+  - Ilma `beginGeneration`-i kontrollita kukub see test (indeksitöö jõuab lõpuni), nagu Codexi sond näitas.
+  - Qdranti tõrkega peatunud koristus ja seansi kaotanud koristus jätavad `unresolved: true`; kordusjooks viib selle tagasi `false`-iks.
+- **Operaatorile:** kui indeksitöö annab `index_prune_unresolved`, veendu, et katkenud koristuse protsess on lõppenud, ja käivita `rag-v2-prune-versions.mjs --execute` uuesti. Alles siis korda indeksitööd.
+
 ## Piirid
 
 - Tööriista käivitab operaator ajal, mil indeksitööd ei käi. Lukk ei lase koristuse ajal uuel generatsioonil alata ja keeldub, kui mõni on pooleli.
+- Tõke ei kaitse elus protsessi eest, mis on kaotanud seansi, aga pole veel kustutust saatnud. Kontroll luku seansis käib vahetult enne iga kustutust; nende kahe sammu vahel peatunud protsess võiks kustutuse saata pärast järgmise koristuse lõppu. Seepärast peab katkenud koristuse protsess olema lõppenud enne uut jooksu.
 - Indeksitöö rida (`rag_v2_index_job`) lisatakse pärast `beginGeneration`-i tehingut. Valmis generatsioon, millelt on töörida käsitsi kustutatud, võiks koristuse ajal uuesti loendiridu saada. Tavarada seda seisu ei tekita.
 - Kataloogi (`rag_v2_object`, umbes 2,6 GB) tööriist ei puuduta.

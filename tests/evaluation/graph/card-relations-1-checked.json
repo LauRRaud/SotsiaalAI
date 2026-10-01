@@ -1,19 +1,30 @@
 {
- "schema_version": "rag-v2/card-relation-check-1",
+ "schema_version": "rag-v2/card-relation-check-2",
  "checked": "2026-10-01",
  "reader": "Claude Opus 5.5, in session: each pair read as the two card statements against the type definitions of lib/rag-v2/knowledge-preparation.js (REQUIRES from the claim to its conditions; EXCEPTION_TO, QUALIFIES and DEFINES from the card to the claim it concerns); doubtful rows checked in the act",
- "population": "every relation of the model’s cards (ADR-054) whose two cards are anchored in different passages, in the four card files of acts in force on 2026-10-15: SHS 130062026065 (39), HMS 106072023031 (18), Harku 404072025017 (17), the assistive devices regulation 126092026005 (1)",
+ "second_reader": "Codex, 2026-10-01 (docs/audits/evidence/card-relations-1-codex-2026-10-01.json): all 75 rows read again with the first verdicts visible; five verdicts changed (rows 38, 39, 45, 71, 72). The first reader read those five again in the act and accepts each; the row keeps its first verdict in first_verdict.",
+ "population": "every relation of the model’s cards (ADR-054) whose two cards stand in different passages, in the four card files of acts in force on 2026-10-15; a card stands in the passage that holds its first anchor (cardRelationPopulation in scripts/rag-v2-relation-gold.mjs): SHS 130062026065 (38), HMS 106072023031 (18), Harku 404072025017 (17), the assistive devices regulation 126092026005 (3)",
  "bar": "at most 3 wrong (target, type or direction) and no reversed exception",
  "result": {
-  "rows": 75,
-  "right": 55,
-  "wrong_target": 12,
-  "wrong_type": 5,
+  "rows": 76,
+  "right": 52,
+  "wrong_target": 15,
+  "wrong_type": 6,
   "wrong_direction": 3,
   "reversed_exceptions": 0,
   "bar_met": false
  },
- "conclusion": "The bar is not met: 20 of 75 are wrong. A typed relation made by the model is not shown to the model as a typed relation. One reader’s judgement; the type of a loose relation is a matter of reading, the wrong targets are not.",
+ "first_sample": {
+  "rows": 75,
+  "right": 50,
+  "wrong_target": 16,
+  "wrong_type": 6,
+  "wrong_direction": 3,
+  "reversed_exceptions": 0,
+  "bar_met": false,
+  "note": "the 75 rows as first drawn, by the passage a card’s provision begins in: row 39 has both cards in one passage (in_population false) and rows 76 and 77 were missing. The first reader’s own verdicts on them were 55 right and 20 wrong."
+ },
+ "conclusion": "The bar is not met: 24 of 76 are wrong (25 of the 75 first drawn). A typed relation made by the model is not shown to the model as a typed relation. Two readers; the second saw the first one’s verdicts.",
  "rows": [
   {
    "n": 1,
@@ -446,8 +457,9 @@
    "to": "p9-c15",
    "from_provision": "160/45",
    "to_provision": "160/24",
-   "verdict": "right",
-   "note": "loose but not wrong"
+   "verdict": "wrong_target",
+   "note": "second reader (Codex), accepted on re-reading the act: § 160 lg 45 is about the work support service and a person without the described finding of incapacity; lg 24 explains the incapacity condition of § 101 (another service). It is no condition of lg 45.",
+   "first_verdict": "right"
   },
   {
    "n": 39,
@@ -458,7 +470,11 @@
    "to": "p9-c27",
    "from_provision": "160/48",
    "to_provision": "160/49",
-   "verdict": "right"
+   "verdict": "wrong_target",
+   "first_verdict": "right",
+   "note": "second reader (Codex), accepted on re-reading the act: The consent of § 160 lg 49 belongs to the reassessment that subsection describes; the relation carries it to the continuation after the deadline (lg 48).",
+   "in_population": false,
+   "population_note": "both cards are anchored in passage 236 (the provisions begin in passages 235 and 236)"
   },
   {
    "n": 40,
@@ -529,7 +545,9 @@
    "to": "p2-c19",
    "from_provision": "58/null",
    "to_provision": "54/null",
-   "verdict": "right"
+   "verdict": "wrong_type",
+   "first_verdict": "right",
+   "note": "second reader (Codex), accepted on re-reading the act: HMS § 58 limits the demand to annul an act with a formal or procedural fault. It does not make the act lawful in the sense of § 54 and is no exception to its conditions."
   },
   {
    "n": 46,
@@ -825,7 +843,9 @@
    "to": "p1-c35",
    "from_provision": "27/7",
    "to_provision": "27/3",
-   "verdict": "right"
+   "verdict": "wrong_target",
+   "first_verdict": "right",
+   "note": "second reader (Codex), accepted on re-reading the act: Harku § 27 lg 7 is a ground for covering the costs of lg 2 while assets cannot be disposed of; it does not qualify the low-income compensation of lg 3."
   },
   {
    "n": 72,
@@ -836,7 +856,9 @@
    "to": "p1-c35",
    "from_provision": "27/8",
    "to_provision": "27/3",
-   "verdict": "right"
+   "verdict": "wrong_target",
+   "first_verdict": "right",
+   "note": "second reader (Codex), accepted on re-reading the act: Harku § 27 lg 8 is a separate ground for covering the costs of lg 2 when the persons obliged to maintain are out of reach; it does not qualify lg 3."
   },
   {
    "n": 73,
@@ -870,6 +892,30 @@
    "from_provision": "2/2^1",
    "to_provision": "2^1/1",
    "verdict": "right"
+  },
+  {
+   "n": 76,
+   "act": "126092026005",
+   "relation": "p1-d11",
+   "type": "REQUIRES",
+   "from": "p1-c7",
+   "to": "p1-c23",
+   "from_provision": "7/1",
+   "to_provision": "7/7",
+   "verdict": "right",
+   "note": "added by the population check: § 7 lg 7 begins in passage 10, the card is anchored in passage 11. A request to reduce the own contribution needs the reasons of lg 7 p 3."
+  },
+  {
+   "n": 77,
+   "act": "126092026005",
+   "relation": "p1-d12",
+   "type": "REQUIRES",
+   "from": "p1-c12",
+   "to": "p1-c25",
+   "from_provision": "7/3",
+   "to_provision": "7/7",
+   "verdict": "right",
+   "note": "added by the population check: the card is anchored in passage 11. A device outside the list needs the specialist’s certificate of lg 7 p 5."
   }
  ]
 }

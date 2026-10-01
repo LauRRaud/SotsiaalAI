@@ -4,7 +4,8 @@
 // Without --execute it only counts. Run it when no index job is running: it refuses while a generation or an index job
 // of the tenant is not ready, or while another run holds the tenant's prune lock (prune_index_work_pending). While it
 // runs, an index job of the tenant cannot begin (index_prune_running; run it again afterwards). A run stopped part-way
-// is completed by the next one.
+// is completed by the next one; until then the count reports "unresolved": true and no index job of the tenant begins
+// (index_prune_unresolved). Make sure the stopped run's process has ended before running it again.
 import { parseArgs } from 'node:util';
 import { readJson } from '../lib/rag-v2/catalog.js';
 import { PostgresCatalog } from '../lib/rag-v2/search/postgres.js';

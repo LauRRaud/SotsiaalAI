@@ -63,13 +63,16 @@ Kavand valiti 01.10 kolme sõltumatu ettepaneku seast (kolmest hindajast kaks ee
   - Muutmissätted (SHS §§ 161–189) tsiteerivad teiste sätete teksti, seega nende viited kordavad nende sätete oma (22 viidet).
   - Rakendussäte võib nimetada lõikeid enne hilisemat ümbersõnastamist kehtinud numbritega (SHS § 160 lg 40 ja § 13¹).
 
-**75 lõiguülest kaardiseost** nelja kehtiva akti kaardifailist ([card-relations-1-checked.json](../../tests/evaluation/graph/card-relations-1-checked.json)). Lävend: kõige rohkem 3 valet ja mitte ühtegi ümberpööratud erandit.
+**76 lõiguülest kaardiseost** nelja kehtiva akti kaardifailist ([card-relations-1-checked.json](../../tests/evaluation/graph/card-relations-1-checked.json)). Lävend: kõige rohkem 3 valet ja mitte ühtegi ümberpööratud erandit.
 
-- Tulemus: **55 õiget, 20 valet** (12 vale siht, 5 vale liik, 3 vale suund). Ümberpööratud erandeid 0.
-- Liigi kaupa: `REQUIRES` 9 valet 31-st, `EXCEPTION_TO` 6/14, `QUALIFIES` 3/21, `DESCRIBES` 2/2, `DEFINES` 0/7.
+- Tulemus kahe lugeja järel: **52 õiget, 24 valet** (15 vale siht, 6 vale liik, 3 vale suund). Ümberpööratud erandeid 0.
+- Liigi kaupa: `REQUIRES` 10 valet 32-st, `EXCEPTION_TO` 7/14, `QUALIFIES` 5/21, `DESCRIBES` 2/2, `DEFINES` 0/7.
 - Näited: „teenust ei tohi osutada isik, kes…“ on märgitud erandiks haldusakti koostamise sättele; SHS § 56 lg 1 tingimus on seotud abivahendi lepinguga (§ 54), kuigi säte nimetab § 65 lepingut.
 - **Lävend ei ole täidetud.** Mudeli tehtud tüübitud seost ei näidata mudelile tüübitud seosena.
-- See on ühe lugeja hinnang. Lõdva seose liik on lugemise küsimus, vale siht ei ole. Codex loeb valimi üle.
+- **Teine lugeja (Codex, 01.10, [raport](../audits/rag-v2-pr289-299-review-2026-10-01.md)):** luges kõik 75 rida uuesti, esimese lugeja hinnanguid nähes. Viis õigeks märgitud seost on valed (read 38, 39, 45, 71, 72); ülejäänud 70 hinnanguga nõustus. Esimene lugeja luges need viis sätet uuesti ja nõustub. Esimene hinnang (55 õiget, 20 valet) on failis iga muudetud rea juures alles.
+  - Näited: Harku § 27 lg 7 ja 8 on eraldi alused lõike 2 kulude katmiseks, mitte lõike 3 madala sissetuleku hüvitise täpsustused; HMS § 58 piirab kehtetuks tunnistamise nõuet, aga ei tee akti § 54 mõttes õiguspäraseks.
+- **Valim parandatud:** esimene valik võttis kaardi asukohaks lõigu, kus selle säte algab. Pikk lõige jätkub aga järgmises lõigus. Nüüd loeb kaardi ankru tegelik lõik (`cardRelationPopulation`): üks rida langes välja (mõlemad kaardid samas lõigus) ja kaks abivahendite määruse seost tulid juurde (mõlemad õiged). Algsel 75 real oli tulemus 50 õiget ja 25 valet.
+- Test kontrollib, et faili read on täpselt see üldkogum ja et tulemus on ridade loendus.
 
 ### 4. Kolmas raske kataloog, lukus enne seoste faili
 
@@ -96,7 +99,7 @@ Kavand valiti 01.10 kolme sõltumatu ettepaneku seast (kolmest hindajast kaks ee
 
 ## Vaheotsus
 
-- **Viide tekstist on usaldusväärne, mudeli seos ei ole.** 60 viitest 60 õiged; 75 kaardiseosest 20 valed.
+- **Viide tekstist on usaldusväärne, mudeli seos ei ole.** 60 viitest 60 õiged; 76 kaardiseosest 24 valed.
 - Järgmine samm mõõdab, kas tekstist loetud viited (teise lõiku, oma paragrahvi lõikele, sissetulevad viited, nimetatud teine akt) toovad otsustava sätte tõenditesse seal, kus praegune otsing selle kaotab.
 
 ## Tehtud (sammud 5–10)
@@ -105,7 +108,7 @@ Kavand valiti 01.10 kolme sõltumatu ettepaneku seast (kolmest hindajast kaks ee
 
 Kavand nägi ette kuni 40 käsitsi kontrollitavat seost eraldi failis ja harud F ja G. Seda ei tehtud, sest sammud 2–3 näitasid lihtsamat teed:
 
-- Mudeli tüübitud seos kukkus käsitsi kontrollis läbi (20 valet 75-st), seega seda mudelile ei näidata.
+- Mudeli tüübitud seos kukkus käsitsi kontrollis läbi (24 valet 76-st), seega seda mudelile ei näidata.
 - Akti enda viited on loetavad ilma mudelita ja kontrollis õiged (60/60). Neid saab katses järgida otse kuldkomplekti lugejaga.
 - Seoste faili asemel on katseskriptis kaks simuleeritud haru. Käsitsi kirjutatud seoseid ei ole, seega omanikule ülevaatuseks lehte ei tekkinud.
 - Mudeliga eraldamise jooksu (samm 9) ei tehtud. Eraldamise täpsuse vastus on sammudes 2–3: kaardid katavad SHS-i 322 lõiguülesest viitest 13 ja neljandik kontrollitud kaardiseostest on valed.
@@ -146,7 +149,7 @@ Server, korpus v47, kuupäev 15.10.2026, ilma vastuseta ja ilma rerank'ita. 45 t
 | S tänane reegel (simuleeritud) | 12 | 10 | 8621 |
 | **R viidete järgimine (simuleeritud)** | **14** | **12** | 10 071 |
 
-- **Simulatsiooni kontroll:** S ja L annavad sama tulemuse 15 küsimuses 15-st.
+- **Simulatsiooni kontroll:** S ja L leiavad otsustava fraasi samades küsimustes (15/15). See võrdleb ainult leidmist, mitte lõike: S lisas kokku 14 lõiku, L 23 (L-is on ka kaartide lisandused). S on katvuse kontroll, mitte tõend, et simulatsioon kordab päris rada.
 - **Akti sees ei kaota otsing midagi.** Kõik 12 akti sisest küsimust leiab juba alusotsing: lõige väljaspool esimest lõiku, oma paragrahvi hilisem lõige, sissetulev viide, nimetamata erand, mõiste, rakendussäte ja mõlemad kontrollid.
 - **Vahe on ainult kujus „teine akt“.** Kolmest küsimusest ei leia päris profiil ühtegi.
 
@@ -156,7 +159,7 @@ Server, korpus v47, kuupäev 15.10.2026, ilma vastuseta ja ilma rerank'ita. 45 t
 | Harku tugiisik (kord § 15 lg 3 → SHS § 25 lg 2) | ei | jah | nimetatud teine akt, ainus kandidaat |
 | Lapse abivajadus (SHS § 59 → LasteKS § 28) | ei | ei | viitav säte ise ei olnud leitud lõikude seas |
 
-- **R hind:** 47 lisatud lõiku 15 küsimuses, neist 2 otsustavad; kontekst kasvab V-ga võrreldes 2085 ja D-ga võrreldes 2557 tokenit küsimuse kohta.
+- **R hind:** 47 lisatud lõiku 15 küsimuses, neist 2 tõid kataloogi otsustava fraasi, mida enne ei olnud; kontekst kasvab V-ga võrreldes 2085 ja D-ga võrreldes 2557 tokenit küsimuse kohta.
 - Liigi „nimetatud teine akt“ lisandusi oli kokku 3, neist 2 otsustavad.
 
 ### Kavandi lävendite vastu
@@ -186,7 +189,7 @@ Tootmise plaan (profiil v3, dialoog 22), üks jooks, 3 pööret, 0,0165 USD plaa
 ## Otsus
 
 1. **Kontrollitud kaartide teed ei minda.** Mudeli tüübitud seosed ei läbi käsitsi kontrolli ja akti sees leiab otsing otsustava sätte ilma nendeta.
-2. **Üldist viidete järgimist (haru R tervikuna) ei ehitata.** See toob 47 lõigust 2 kasulikku ja kasvatab konteksti 2500 tokenit.
+2. **Üldist viidete järgimist (haru R tervikuna) ei ehitata.** 47 lisatud lõigust tõid puuduva otsustava fraasi 2 ja kontekst kasvab 2500 tokenit.
 3. **Viidete lugejat täiendatakse ühe reegliga:** kui leitud säte nimetab teist akti ja täpset paragrahvi, lisab otsing selle akti küsimuse kuupäeval kehtiva redaktsiooni nimetatud lõike. Esimesena valla määrus → SHS.
    - Eraldi PR, mis muudab otsinguprofiili. Mõõdetakse enne ühendamist kolme teise akti küsimusega (umbes 0,02 USD) ja ühe jooksuga väikseimast kataloogist.
    - Lävend: Harku küsimus läbib, kaks ülejäänut jäävad läbima, kontekst kasvab keskmiselt alla 800 tokeni.
@@ -200,5 +203,8 @@ Selle sammu tasuline kulu kokku: alla 0,02 USD plaani hindade järgi (eelarve ol
 - Teise akti viide lahendatakse ainult seitsme akti piires (28 viidet 138-st) ja ainult siis, kui akti nimi seisab vahetult loendi ees.
 - Kolmandas kataloogis on 15 küsimust, neist 3 teise akti kohta; iga jooks tehti üks kord. Üks küsimus vestluses on kitsas alus, seepärast mõõdetakse reegel enne ühendamist uuesti.
 - Haru R on simulatsioon profiili v1 leitud lõikudest ilma rerank'ita; vestluses valib lõigud rerank.
+- „2 otsustavat 47-st“ loeb ainult kataloogi sihtfraase. Ülejäänud 45 lõigu sisulist asjakohasust ei ole keegi hinnanud, seega ei ole see lisanduste täpsuse mõõt.
+- Sätte lõik on kuldkomplektis lõik, kus säte algab. Pikk lõige jätkub järgmises lõigus (abivahendite määruse § 7 lg 7). Järgmine reegel peab tooma lõigu, kus nimetatud lõike tekst tegelikult on.
+- Kaardiseoseid hindas kaks lugejat, kuid teine nägi esimese hinnanguid; see ei ole pimekatse.
 - Nimetamata tingimusi (71 keelavat sätet ilma viiteta) seostega ei mõõdetud. Kataloogi kaks sellist küsimust leidis alusotsing.
 - SHS-i teadmiskaardid on redaktsioonidel, mis kehtivad 30.11.2026-ni. Järgmistel redaktsioonidel kaarte pole; see on omaniku otsus.
