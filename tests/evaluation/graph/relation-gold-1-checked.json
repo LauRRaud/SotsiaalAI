@@ -1,0 +1,566 @@
+{
+ "schema_version": "rag-v2/relation-gold-check-1",
+ "checked": "2026-10-01",
+ "reader": "Claude Opus 5.5, in session: each row’s target read against the words quoted from the act",
+ "sample": "located own-act links (other_section, own_section) of relation-gold-1 as first built (763 links), ordered by sha256(\"relation-gold-1|act|class|from|to\"), the first 60",
+ "bar": "0 wrong targets in 60",
+ "result": {
+  "rows": 60,
+  "right": 60,
+  "wrong_target": 0
+ },
+ "findings": [
+  "A range of subsections gave only its two ends (rows 28, 45, 55); the builder now names every subsection of a plain range.",
+  "Amending provisions (SHS §§ 161–189) quote text of other provisions, so their pointers repeat those provisions’ own (row 18).",
+  "A transitional provision can name subsections as they were numbered before a later rewording (row 33)."
+ ],
+ "rows": [
+  {
+   "n": 1,
+   "act": "107052025017",
+   "class": "other_section",
+   "from": "12/1",
+   "to": "4/null",
+   "words": "i valdkonna eest vastutav minister ning käesoleva seaduse § 4 rikkumise korral ka muu isik, kelle õigusi on abie",
+   "verdict": "right"
+  },
+  {
+   "n": 2,
+   "act": "106072023031",
+   "class": "own_section",
+   "from": "10/4",
+   "to": "10/1",
+   "words": "ahvi lõikes 1 nimetatud asjaolud või kui menetlusosaline on käesoleva paragrahvi lõikes 1 loetletud alustel esitanud ametiisiku t",
+   "verdict": "right"
+  },
+  {
+   "n": 3,
+   "act": "107052025017",
+   "class": "own_section",
+   "from": "145/3",
+   "to": "145/2",
+   "words": "Kui laps viibib käesoleva paragrahvi lõikes 2 nimetatud vanema nõusolekul või kohtula",
+   "verdict": "right"
+  },
+  {
+   "n": 4,
+   "act": "130062026065",
+   "class": "own_section",
+   "from": "132/6",
+   "to": "132/4",
+   "words": "d esemete koosseisu muutumise korral esitab taotleja lisaks käesoleva paragrahvi lõigetes 1, 3 ja 4 nimetatud dokumentidele kirjaliku loete",
+   "verdict": "right"
+  },
+  {
+   "n": 5,
+   "act": "130062026065",
+   "class": "other_section",
+   "from": "45^16/1^1",
+   "to": "45^9/2",
+   "words": "lisele isikule, kes järelhooldusele suunamise ajal jätkab § 45⁹ lõikes 2 nimetatud õppevormis õppimist.",
+   "verdict": "right"
+  },
+  {
+   "n": 6,
+   "act": "107052025017",
+   "class": "other_section",
+   "from": "120/2",
+   "to": "119/null",
+   "words": "dusõigus või 2) talle on selles asjas käesoleva seaduse § 119 kohaselt otsustusõigus üle antud.",
+   "verdict": "right"
+  },
+  {
+   "n": 7,
+   "act": "106072023031",
+   "class": "own_section",
+   "from": "86/3",
+   "to": "86/2",
+   "words": "Käesoleva paragrahvi lõigete 1 ja 2 kohaselt vormistatakse ka vaide tagasta",
+   "verdict": "right"
+  },
+  {
+   "n": 8,
+   "act": "130062026065",
+   "class": "own_section",
+   "from": "131/6",
+   "to": "131/5",
+   "words": "metulekutoetuse taotlemise kuul 18-aastaseks, loetakse teda käesoleva paragrahvi lõike 5 tähenduses lapseks.",
+   "verdict": "right"
+  },
+  {
+   "n": 9,
+   "act": "130062026065",
+   "class": "other_section",
+   "from": "45^12/1",
+   "to": "45^13/1",
+   "words": "oleva perevanema ja kasvataja vastavuse käesoleva seaduse § 45¹³ lõikes 1 sätestatud nõuetele; 4) asendushoold",
+   "verdict": "right"
+  },
+  {
+   "n": 10,
+   "act": "130062026065",
+   "class": "other_section",
+   "from": "102/8",
+   "to": "103/null",
+   "words": "es ruumides ja samal ajal, arvestades käesoleva seaduse §-s 103 sätestatut.",
+   "verdict": "right"
+  },
+  {
+   "n": 11,
+   "act": "130062026065",
+   "class": "own_section",
+   "from": "62/3^1",
+   "to": "62/2",
+   "words": "ilitatsiooni teenuse vajadus, kui ta vajab abi vähemalt ühe käesoleva paragrahvi lõikes 2 nimetatud sotsiaalse rehabilitatsiooni",
+   "verdict": "right"
+  },
+  {
+   "n": 12,
+   "act": "130062026031",
+   "class": "own_section",
+   "from": "23/2",
+   "to": "23/1",
+   "words": "ndja otsustab haldusakti või halduslepinguga, välja arvatud käesoleva paragrahvi lõike 1 punktis 3 sätestatud juhul, hüvitise sa",
+   "verdict": "right"
+  },
+  {
+   "n": 13,
+   "act": "111072026042",
+   "class": "own_section",
+   "from": "29^1/4",
+   "to": "29^1/3",
+   "words": "Käesoleva paragrahvi lõike 3 punktis 2 nimetatud lapse ärakuulamise",
+   "verdict": "right"
+  },
+  {
+   "n": 14,
+   "act": "111072026042",
+   "class": "other_section",
+   "from": "38/5",
+   "to": "24/null",
+   "words": "käesoleva seaduse §-des 21 ja 22, § 23 lõikes 1 ning §-des 24, 27 ja 31 sätestatud nõuete täitmise üle.",
+   "verdict": "right"
+  },
+  {
+   "n": 15,
+   "act": "130062026065",
+   "class": "other_section",
+   "from": "13^3/5",
+   "to": "45^5/3",
+   "words": "ndushooldusteenust osutada pikemalt kui käesoleva seaduse § 45⁵ lõike 3 punktis 2 sätestatud tähtaja jooksul, ku",
+   "verdict": "right"
+  },
+  {
+   "n": 16,
+   "act": "130062026065",
+   "class": "own_section",
+   "from": "101/2",
+   "to": "101/1",
+   "words": "ügav või püsiva kuluga psüühikahäire, ning: 1) kes vastab käesoleva paragrahvi lõike 1 punktides 4–6 sätestatud tingimustele j",
+   "verdict": "right"
+  },
+  {
+   "n": 17,
+   "act": "130062026065",
+   "class": "own_section",
+   "from": "59/3",
+   "to": "59/1",
+   "words": "Käesoleva paragrahvi lõike 1 punktis 3 nimetatud isikul on õigus tao",
+   "verdict": "right"
+  },
+  {
+   "n": 18,
+   "act": "130062026065",
+   "class": "other_section",
+   "from": "176/null",
+   "to": "101/2",
+   "words": "aotus vähemalt 80&#160;protsenti. (25) Käesoleva seaduse § 101 lõike 2 punktis 2 ja lõike 3 punktis 2 sätestatu",
+   "verdict": "right",
+   "note": "right; the source is an amending provision (§ 176) that quotes the text of § 160 lõige 25, so the pointer is a duplicate of that provision’s"
+  },
+  {
+   "n": 19,
+   "act": "130062026065",
+   "class": "own_section",
+   "from": "45^13/3",
+   "to": "45^13/1",
+   "words": "uumides, peab sama eluruumi kasutav täisealine isik vastama käesoleva paragrahvi lõike 1 punktides 4–7 sätestatud nõuetele. Last",
+   "verdict": "right"
+  },
+  {
+   "n": 20,
+   "act": "111072026042",
+   "class": "other_section",
+   "from": "15/3",
+   "to": "29^1/null",
+   "words": "kohtlevalt käituva lapse abistamiseks käesoleva seaduse §-s 29¹ sätestatud meetmete pakkumine; 7) riikliku ja",
+   "verdict": "right"
+  },
+  {
+   "n": 21,
+   "act": "130062026065",
+   "class": "other_section",
+   "from": "160/25",
+   "to": "101/3",
+   "words": "Käesoleva seaduse § 101 lõike 2 punktis 2 ja lõike 3 punktis 2 sätestatu",
+   "verdict": "right"
+  },
+  {
+   "n": 22,
+   "act": "126092026005",
+   "class": "other_section",
+   "from": "2^1/1",
+   "to": "2/2^1",
+   "words": "Abivahendi tõendit on õigus väljastada § 2 lõikes 2¹ nimetatud isikutel.",
+   "verdict": "right"
+  },
+  {
+   "n": 23,
+   "act": "111072026042",
+   "class": "own_section",
+   "from": "33/3^1",
+   "to": "33/1",
+   "words": "ädaohus oleva lapse olukorra ja abivajaduse hindamiseks või käesoleva paragrahvi lõikes 1 nimetatud otsuse tegemiseks vajalikku t",
+   "verdict": "right"
+  },
+  {
+   "n": 24,
+   "act": "404072025017",
+   "class": "own_section",
+   "from": "27/6",
+   "to": "27/2",
+   "words": "jate varalist seisundit, otsustades põhjendatud juhul katta käesoleva paragrahvi lõike 2 kohased kulud osaliselt Harku valla eel",
+   "verdict": "right"
+  },
+  {
+   "n": 25,
+   "act": "130062026065",
+   "class": "own_section",
+   "from": "15^2/6",
+   "to": "15^2/2",
+   "words": "Käesoleva paragrahvi lõigetes 1 ja 2 nimetatud isiku abivajaduse väljaselgit",
+   "verdict": "right"
+  },
+  {
+   "n": 26,
+   "act": "404072025017",
+   "class": "own_section",
+   "from": "34^9/2",
+   "to": "34^9/3",
+   "words": "teenuse osutajale makstava tasu suuruse kui neid ei määrata käesoleva paragrahvi lõike 3 kohaselt sõlmitava lepinguga; 4) koos",
+   "verdict": "right"
+  },
+  {
+   "n": 27,
+   "act": "106072023031",
+   "class": "own_section",
+   "from": "48/2",
+   "to": "48/1",
+   "words": "Lisaks käesoleva paragrahvi lõikes 1 märgitud dokumentidele pannakse avalikk",
+   "verdict": "right"
+  },
+  {
+   "n": 28,
+   "act": "111072026042",
+   "class": "other_section",
+   "from": "38/2",
+   "to": "22/2",
+   "words": "tab riiklikku järelevalvet käesoleva seaduse §-des 19–21, § 22 lõigetes 2–4, § 24 lõikes 3, §-des 27 ja 28, § 29",
+   "verdict": "right",
+   "note": "right; the range \"lõigetes 2–4\" then gave only its ends (builder fixed: a plain range names every subsection)"
+  },
+  {
+   "n": 29,
+   "act": "106072023031",
+   "class": "own_section",
+   "from": "28/5",
+   "to": "28/4",
+   "words": "oleku korral, kui dokumenti ei olnud võimalik kätte anda ka käesoleva paragrahvi lõikes 4 märgitud isikule, märgib dokumenti kätt",
+   "verdict": "right"
+  },
+  {
+   "n": 30,
+   "act": "130062026065",
+   "class": "other_section",
+   "from": "13^3/1",
+   "to": "36/1",
+   "words": "etult osutada isik, kes vastab vähemalt käesoleva seaduse § 36 lõikes 1 sätestatud nõuetele.",
+   "verdict": "right"
+  },
+  {
+   "n": 31,
+   "act": "130062026065",
+   "class": "other_section",
+   "from": "160/25",
+   "to": "101/2",
+   "words": "Käesoleva seaduse § 101 lõike 2 punktis 2 ja lõike 3 punktis 2 sätestatu",
+   "verdict": "right"
+  },
+  {
+   "n": 32,
+   "act": "130062026065",
+   "class": "own_section",
+   "from": "133/6",
+   "to": "133/5",
+   "words": "omavalitsuse üksus kehtestab toimetulekutoetuse määramiseks käesoleva paragrahvi lõikes 5 nimetatud kulude piirmäärad, mis tagava",
+   "verdict": "right"
+  },
+  {
+   "n": 33,
+   "act": "130062026065",
+   "class": "other_section",
+   "from": "160/40",
+   "to": "13^1/3",
+   "words": "Käesoleva seaduse § 13¹ lõikeid 3–5 rakendatakse tagasiulatuvalt 2020. a",
+   "verdict": "right",
+   "note": "right as written; a transitional provision that names subsections of § 13¹ as they were before the section was reworded on 01.10.2026"
+  },
+  {
+   "n": 34,
+   "act": "107052025017",
+   "class": "other_section",
+   "from": "120/6",
+   "to": "180/null",
+   "words": "htudel, kui see on keelatud eestkostjal käesoleva seaduse § 180 kohaselt.",
+   "verdict": "right"
+  },
+  {
+   "n": 35,
+   "act": "107052025017",
+   "class": "own_section",
+   "from": "48/3",
+   "to": "48/2",
+   "words": "Käesoleva paragrahvi lõikes 2 nimetatud summat ei arvestata koguvaral",
+   "verdict": "right"
+  },
+  {
+   "n": 36,
+   "act": "107052025017",
+   "class": "own_section",
+   "from": "169/3",
+   "to": "169/2",
+   "words": "lapsendamise omal algatusel kehtetuks tunnistada, kui: 1) käesoleva paragrahvi lõikes 2 nimetatud juhul on teine abikaasa, regi",
+   "verdict": "right"
+  },
+  {
+   "n": 37,
+   "act": "107052025017",
+   "class": "other_section",
+   "from": "90/2",
+   "to": "88/null",
+   "words": "selleks antud nõusolek ei vastanud käesoleva seaduse §-des 87–89 või perekonnaseisutoimingute seaduses omaksvõt",
+   "verdict": "right"
+  },
+  {
+   "n": 38,
+   "act": "130062026065",
+   "class": "other_section",
+   "from": "64/5",
+   "to": "63/1",
+   "words": "imiseks 60 kalendripäeva jooksul alates käesoleva seaduse § 63 lõikes 1 nimetatud otsuse või käesoleva paragrahv",
+   "verdict": "right"
+  },
+  {
+   "n": 39,
+   "act": "130062026065",
+   "class": "own_section",
+   "from": "15^2/8",
+   "to": "15^2/1",
+   "words": "Kui käesoleva paragrahvi lõikes 1 nimetatud isikul tuvastatud puude rasku",
+   "verdict": "right"
+  },
+  {
+   "n": 40,
+   "act": "111072026042",
+   "class": "own_section",
+   "from": "33/2^1",
+   "to": "33/1",
+   "words": "Käesoleva paragrahvi lõikes 1 nimetatud otsuse resolutiivosa edastata",
+   "verdict": "right"
+  },
+  {
+   "n": 41,
+   "act": "111072026042",
+   "class": "own_section",
+   "from": "29^1/4",
+   "to": "29^1/5",
+   "words": "äilitamise ja väljastamise tingimused ja kord sätestatakse käesoleva paragrahvi lõike 5 alusel ./dyn=111072026042&id=128062022",
+   "verdict": "right",
+   "note": "right; the quoted words carry a link target left in the act’s text (\"./dyn=…\")"
+  },
+  {
+   "n": 42,
+   "act": "130062026065",
+   "class": "own_section",
+   "from": "15^2/7",
+   "to": "15^2/2",
+   "words": "Kui käesoleva paragrahvi lõikes 1 või 2 nimetatud isik ei soovi, et tema andmei",
+   "verdict": "right"
+  },
+  {
+   "n": 43,
+   "act": "107052025017",
+   "class": "other_section",
+   "from": "130/null",
+   "to": "186/null",
+   "words": "e ülalpidamiskulude katteks, järgides käesoleva seaduse §-s 186 sätestatut.",
+   "verdict": "right"
+  },
+  {
+   "n": 44,
+   "act": "130062026065",
+   "class": "other_section",
+   "from": "135/3",
+   "to": "156/1",
+   "words": "aliku omavalitsuse üksus riigieelarvest käesoleva seaduse § 156 lõike 1 alusel toimetulekutoetuse maksmiseks era",
+   "verdict": "right"
+  },
+  {
+   "n": 45,
+   "act": "130062026065",
+   "class": "own_section",
+   "from": "130^3/6",
+   "to": "130^3/5",
+   "words": "Käesoleva paragrahvi lõigetes 1–5 sätestatud nõuete täitmine tagatakse te",
+   "verdict": "right",
+   "note": "right; range ends only at the time (fixed)"
+  },
+  {
+   "n": 46,
+   "act": "130062026065",
+   "class": "other_section",
+   "from": "134/8",
+   "to": "133/5",
+   "words": "id tasunud, on kohaliku omavalitsuse üksusel õigus tasuda § 133 lõikes 5 nimetatud eluasemekulud toimetulekutoet",
+   "verdict": "right"
+  },
+  {
+   "n": 47,
+   "act": "130062026065",
+   "class": "other_section",
+   "from": "79/2",
+   "to": "71/6",
+   "words": "ja poole teenuse osutamise alustamiseks käesoleva seaduse § 71 lõigetes 6 ja 7 sätestatud tähtaja jooksul, tasub",
+   "verdict": "right"
+  },
+  {
+   "n": 48,
+   "act": "130062026065",
+   "class": "other_section",
+   "from": "139^2/2",
+   "to": "140/null",
+   "words": "pensioni netosuuruse kohta; 3) andmed käesoleva seaduse § 140 alusel makstava sotsiaaltoetuse määramise kohta;",
+   "verdict": "right"
+  },
+  {
+   "n": 49,
+   "act": "404072025017",
+   "class": "own_section",
+   "from": "62/4",
+   "to": "62/1",
+   "words": "Käesoleva paragrahvi lõike 1 punktis 1 sätestatud toetuse taotlust v",
+   "verdict": "right"
+  },
+  {
+   "n": 50,
+   "act": "107052025017",
+   "class": "other_section",
+   "from": "102/3",
+   "to": "101/null",
+   "words": "Kohus võib elatise välja mõista käesoleva seaduse § 101 alusel arvutatud summaga võrreldes suuremas summ",
+   "verdict": "right"
+  },
+  {
+   "n": 51,
+   "act": "130062026065",
+   "class": "other_section",
+   "from": "145^1/3^1",
+   "to": "142^1/null",
+   "words": "Käesoleva seaduse § 142¹ punktis 9 nimetatud andmeid säilitatakse kuni p",
+   "verdict": "right"
+  },
+  {
+   "n": 52,
+   "act": "404072025017",
+   "class": "own_section",
+   "from": "34^13/2",
+   "to": "34^13/3",
+   "words": "a ülalpidamisega seotud kulude suuruse, kui neid ei määrata käesoleva paragrahvi lõike 3 kohaselt sõlmitava lepinguga.",
+   "verdict": "right"
+  },
+  {
+   "n": 53,
+   "act": "130062026065",
+   "class": "own_section",
+   "from": "156/3^10",
+   "to": "156/3^9",
+   "words": "Käesoleva paragrahvi lõikes 3⁹ nimetatud toetuse kasutamisel peab koha",
+   "verdict": "right"
+  },
+  {
+   "n": 54,
+   "act": "130062026065",
+   "class": "other_section",
+   "from": "144/1",
+   "to": "135/null",
+   "words": "ed andmed: 1) toimetulekutoetuse ja käesoleva seaduse §-s 135 sätestatud riigieelarvest makstava täiendava sot",
+   "verdict": "right"
+  },
+  {
+   "n": 55,
+   "act": "111072026042",
+   "class": "other_section",
+   "from": "38/2",
+   "to": "29/2",
+   "words": "19–21, § 22 lõigetes 2–4, § 24 lõikes 3, §-des 27 ja 28, § 29 lõigetes 2–5, §-s 31, § 32 lõigetes 1–4 ja lõike",
+   "verdict": "right",
+   "note": "right; range ends only at the time (fixed)"
+  },
+  {
+   "n": 56,
+   "act": "107052025017",
+   "class": "own_section",
+   "from": "198/2",
+   "to": "198/1",
+   "words": "uriidiline isik peavad vähemalt üks kord aastas kontrollima käesoleva paragrahvi lõikes 1 nimetatud eelduste olemasolu ning esita",
+   "verdict": "right"
+  },
+  {
+   "n": 57,
+   "act": "130062026065",
+   "class": "other_section",
+   "from": "80/7",
+   "to": "71/6",
+   "words": "dunud erihoolekandeteenuse kasutamiseks käesoleva seaduse § 71 lõigetes 6 ja 7 sätestatud tähtaja jooksul kokkul",
+   "verdict": "right"
+  },
+  {
+   "n": 58,
+   "act": "130062026065",
+   "class": "own_section",
+   "from": "145^1/5",
+   "to": "145^1/2",
+   "words": "Pärast käesoleva paragrahvi lõigetes 2–4² nimetatud säilitamise tähtaega andmed a",
+   "verdict": "right",
+   "note": "right; \"lõigetes 2–4²\" has a superscript end, so only the two ends are linked"
+  },
+  {
+   "n": 59,
+   "act": "130062026065",
+   "class": "own_section",
+   "from": "134/5",
+   "to": "134/4",
+   "words": "mavalitsuse üksus ei või jätta toimetulekutoetust määramata käesoleva paragrahvi lõike 4 punktis 7 nimetatud põhjendusel, kui to",
+   "verdict": "right"
+  },
+  {
+   "n": 60,
+   "act": "111072026042",
+   "class": "own_section",
+   "from": "33/2",
+   "to": "33/1",
+   "words": "Käesoleva paragrahvi lõikes 1 nimetatud otsusega eraldatakse hädaohus",
+   "verdict": "right"
+  }
+ ]
+}

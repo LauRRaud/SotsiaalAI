@@ -1,0 +1,1414 @@
+{
+ "schema_version": "rag-v2/graph-experiment-1",
+ "generation": "search_generation_4b0506988a68391c5ddcef414f5f4116108a229dfc90715cfb23967b4a718068",
+ "date": "2026-10-15",
+ "catalogue": "tests/evaluation/graph/hard-conditions-1.json",
+ "eligible_documents": 1071,
+ "excluded_legal_versions": 34,
+ "summary": {
+  "A": {
+   "profile": "experiment-graph-a-base-v1",
+   "questions": 9,
+   "found_all": 3,
+   "found_any": 3,
+   "within_document": 3,
+   "across_documents": 0,
+   "mean_sources": 9,
+   "mean_context_tokens": 6432,
+   "median_ms": 7150
+  },
+  "B": {
+   "profile": "experiment-graph-b-text-v1",
+   "questions": 9,
+   "found_all": 4,
+   "found_any": 4,
+   "within_document": 4,
+   "across_documents": 0,
+   "mean_sources": 13,
+   "mean_context_tokens": 9008,
+   "median_ms": 3057
+  },
+  "C": {
+   "profile": "experiment-graph-c-cards-v1",
+   "questions": 9,
+   "found_all": 5,
+   "found_any": 5,
+   "within_document": 5,
+   "across_documents": 0,
+   "mean_sources": 9.78,
+   "mean_context_tokens": 8976,
+   "median_ms": 2713
+  },
+  "D": {
+   "profile": "experiment-graph-d-references-v1",
+   "questions": 9,
+   "found_all": 7,
+   "found_any": 7,
+   "within_document": 7,
+   "across_documents": 0,
+   "mean_sources": 10,
+   "mean_context_tokens": 7223,
+   "median_ms": 2606
+  },
+  "E": {
+   "profile": "experiment-graph-e-neighbours-v1",
+   "questions": 9,
+   "found_all": 3,
+   "found_any": 3,
+   "within_document": 3,
+   "across_documents": 0,
+   "mean_sources": 13,
+   "mean_context_tokens": 9053,
+   "median_ms": 2617
+  }
+ },
+ "rows": [
+  {
+   "question": "day-support-dementia-retirement",
+   "kind": "within_document",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 8702,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 5811,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "day-support-dementia-retirement",
+   "kind": "within_document",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 2066,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 7789,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "day-support-dementia-retirement",
+   "kind": "within_document",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 1894,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 6204,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "day-support-dementia-retirement",
+   "kind": "within_document",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 2273,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 6571,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "72"
+    }
+   ],
+   "cross_references": {
+    "candidates": 1,
+    "additions": 1,
+    "sections": [
+     "72"
+    ]
+   }
+  },
+  {
+   "question": "day-support-dementia-retirement",
+   "kind": "within_document",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 1999,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 9063,
+   "additions": [
+    {
+     "title": "Kuidas riik toetab dementsusega inimesi ja nende lähedasi?",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Kuidas riik toetab dementsusega inimesi ja nende lähedasi?",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Kuidas riik toetab dementsusega inimesi ja nende lähedasi?",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Hoolduskoormuse vähendamise esmased abinõud",
+     "reason": "structural_expansion"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "supported-living-alcohol",
+   "kind": "within_document",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 9391,
+   "found": [
+    {
+     "phrase": "sõltuvus alkoholist või narkootilisest ainest põhihaigusena",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 5820,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "supported-living-alcohol",
+   "kind": "within_document",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 8259,
+   "found": [
+    {
+     "phrase": "sõltuvus alkoholist või narkootilisest ainest põhihaigusena",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 8139,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "supported-living-alcohol",
+   "kind": "within_document",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 1978,
+   "found": [
+    {
+     "phrase": "sõltuvus alkoholist või narkootilisest ainest põhihaigusena",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 1
+   },
+   "context_tokens": 9748,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "supported-living-alcohol",
+   "kind": "within_document",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 2034,
+   "found": [
+    {
+     "phrase": "sõltuvus alkoholist või narkootilisest ainest põhihaigusena",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 6580,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "72"
+    }
+   ],
+   "cross_references": {
+    "candidates": 5,
+    "additions": 1,
+    "sections": [
+     "72"
+    ]
+   }
+  },
+  {
+   "question": "supported-living-alcohol",
+   "kind": "within_document",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 2218,
+   "found": [
+    {
+     "phrase": "sõltuvus alkoholist või narkootilisest ainest põhihaigusena",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 8138,
+   "additions": [
+    {
+     "title": "Teekond erilise lapse kõrval",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Teekond erilise lapse kõrval",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Erihoolekanne ja sotsiaalne rehabilitatsioon",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Erihoolekanne ja sotsiaalne rehabilitatsioon",
+     "reason": "structural_expansion"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "community-living-dementia",
+   "kind": "within_document",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 15714,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 5638,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "community-living-dementia",
+   "kind": "within_document",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 3057,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 7679,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "community-living-dementia",
+   "kind": "within_document",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 2915,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 6770,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "community-living-dementia",
+   "kind": "within_document",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 2788,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 6398,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "72"
+    }
+   ],
+   "cross_references": {
+    "candidates": 3,
+    "additions": 1,
+    "sections": [
+     "72"
+    ]
+   }
+  },
+  {
+   "question": "community-living-dementia",
+   "kind": "within_document",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 2747,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 8421,
+   "additions": [
+    {
+     "title": "Heade praktikate kogumik",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Heade praktikate kogumik",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Erihoolekande muutused ja kogukonda sulandumine",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Kohaliku omavalitsuse poolt isikult ja/või perekonnalt sotsiaalteenuste eest tasu nõudmine",
+     "reason": "structural_expansion"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "subsistence-care-home",
+   "kind": "within_document",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 21951,
+   "found": [
+    {
+     "phrase": "Toimetulekutoetust ei määrata isikule, kellele osutatakse väljaspool kodu ööpäevaringselt osutatavat üldhooldusteenust",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 7446,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "subsistence-care-home",
+   "kind": "within_document",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 3991,
+   "found": [
+    {
+     "phrase": "Toimetulekutoetust ei määrata isikule, kellele osutatakse väljaspool kodu ööpäevaringselt osutatavat üldhooldusteenust",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 10043,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "subsistence-care-home",
+   "kind": "within_document",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 3744,
+   "found": [
+    {
+     "phrase": "Toimetulekutoetust ei määrata isikule, kellele osutatakse väljaspool kodu ööpäevaringselt osutatavat üldhooldusteenust",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 11,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 2
+   },
+   "context_tokens": 12808,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "subsistence-care-home",
+   "kind": "within_document",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 4053,
+   "found": [
+    {
+     "phrase": "Toimetulekutoetust ei määrata isikule, kellele osutatakse väljaspool kodu ööpäevaringselt osutatavat üldhooldusteenust",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 8289,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "140"
+    }
+   ],
+   "cross_references": {
+    "candidates": 1,
+    "additions": 1,
+    "sections": [
+     "140"
+    ]
+   }
+  },
+  {
+   "question": "subsistence-care-home",
+   "kind": "within_document",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 3831,
+   "found": [
+    {
+     "phrase": "Toimetulekutoetust ei määrata isikule, kellele osutatakse väljaspool kodu ööpäevaringselt osutatavat üldhooldusteenust",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 10293,
+   "additions": [
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Uus toetus üksi elavatele pensionäridele",
+     "reason": "structural_expansion"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "subsistence-prison",
+   "kind": "within_document",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 3618,
+   "found": [
+    {
+     "phrase": "samuti isikule, kes viibib kinnipeetava või vahistatuna kinnipidamisasutuses",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 7186,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "subsistence-prison",
+   "kind": "within_document",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 2934,
+   "found": [
+    {
+     "phrase": "samuti isikule, kes viibib kinnipeetava või vahistatuna kinnipidamisasutuses",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 10485,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "subsistence-prison",
+   "kind": "within_document",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 2594,
+   "found": [
+    {
+     "phrase": "samuti isikule, kes viibib kinnipeetava või vahistatuna kinnipidamisasutuses",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 10285,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "subsistence-prison",
+   "kind": "within_document",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 2606,
+   "found": [
+    {
+     "phrase": "samuti isikule, kes viibib kinnipeetava või vahistatuna kinnipidamisasutuses",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 7186,
+   "additions": [],
+   "cross_references": {
+    "candidates": 0,
+    "additions": 0,
+    "sections": []
+   }
+  },
+  {
+   "question": "subsistence-prison",
+   "kind": "within_document",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 2617,
+   "found": [
+    {
+     "phrase": "samuti isikule, kes viibib kinnipeetava või vahistatuna kinnipidamisasutuses",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 10102,
+   "additions": [
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Vaesus Eestis",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Vaesus Eestis",
+     "reason": "structural_expansion"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "involuntary-placement",
+   "kind": "within_document",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 4173,
+   "found": [
+    {
+     "phrase": "varasemate abimeetmete rakendamine ei ole osutunud küllaldaseks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 7329,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "involuntary-placement",
+   "kind": "within_document",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 2037,
+   "found": [
+    {
+     "phrase": "varasemate abimeetmete rakendamine ei ole osutunud küllaldaseks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 10655,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "involuntary-placement",
+   "kind": "within_document",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 2285,
+   "found": [
+    {
+     "phrase": "varasemate abimeetmete rakendamine ei ole osutunud küllaldaseks",
+     "in_evidence": true,
+     "in_cards": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8329,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "involuntary-placement",
+   "kind": "within_document",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 2049,
+   "found": [
+    {
+     "phrase": "varasemate abimeetmete rakendamine ei ole osutunud küllaldaseks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 11,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 2
+   },
+   "context_tokens": 8592,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "106"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "107"
+    }
+   ],
+   "cross_references": {
+    "candidates": 3,
+    "additions": 2,
+    "sections": [
+     "106",
+     "107"
+    ]
+   }
+  },
+  {
+   "question": "involuntary-placement",
+   "kind": "within_document",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 2219,
+   "found": [
+    {
+     "phrase": "varasemate abimeetmete rakendamine ei ole osutunud küllaldaseks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 10291,
+   "additions": [
+    {
+     "title": "Õigus saada sotsiaalteenuseid võrdsetel alustel",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Õigus saada sotsiaalteenuseid võrdsetel alustel",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Vabatahtlikkuse põhimõte üldhooldusteenuse osutamisel",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Vabatahtlikkuse põhimõte üldhooldusteenuse osutamisel",
+     "reason": "structural_expansion"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "own-share-shortfall",
+   "kind": "within_document",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 4092,
+   "found": [
+    {
+     "phrase": "vähemalt 15 protsenti tema tuludest",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 7406,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "own-share-shortfall",
+   "kind": "within_document",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 3351,
+   "found": [
+    {
+     "phrase": "vähemalt 15 protsenti tema tuludest",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 10574,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "own-share-shortfall",
+   "kind": "within_document",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 4490,
+   "found": [
+    {
+     "phrase": "vähemalt 15 protsenti tema tuludest",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8274,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "own-share-shortfall",
+   "kind": "within_document",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 3529,
+   "found": [
+    {
+     "phrase": "vähemalt 15 protsenti tema tuludest",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 8373,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "71"
+    }
+   ],
+   "cross_references": {
+    "candidates": 4,
+    "additions": 1,
+    "sections": [
+     "71"
+    ]
+   }
+  },
+  {
+   "question": "own-share-shortfall",
+   "kind": "within_document",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 3474,
+   "found": [
+    {
+     "phrase": "vähemalt 15 protsenti tema tuludest",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 9510,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Uuring täisealiste puudega inimeste puude tuvastamise, abivajaduse hindamise ja toetamise süsteemist",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Uuring täisealiste puudega inimeste puude tuvastamise, abivajaduse hindamise ja toetamise süsteemist",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "structural_expansion"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "rehabilitation-student",
+   "kind": "within_document",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 7150,
+   "found": [
+    {
+     "phrase": "ega omanda põhi-, üldkesk-, kutse- või kõrgharidust",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 5740,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "rehabilitation-student",
+   "kind": "within_document",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 3477,
+   "found": [
+    {
+     "phrase": "ega omanda põhi-, üldkesk-, kutse- või kõrgharidust",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 7919,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "rehabilitation-student",
+   "kind": "within_document",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 4620,
+   "found": [
+    {
+     "phrase": "ega omanda põhi-, üldkesk-, kutse- või kõrgharidust",
+     "in_evidence": true,
+     "in_cards": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 12,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 3
+   },
+   "context_tokens": 9330,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "rehabilitation-student",
+   "kind": "within_document",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 3367,
+   "found": [
+    {
+     "phrase": "ega omanda põhi-, üldkesk-, kutse- või kõrgharidust",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 6745,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "62"
+    }
+   ],
+   "cross_references": {
+    "candidates": 1,
+    "additions": 1,
+    "sections": [
+     "62"
+    ]
+   }
+  },
+  {
+   "question": "rehabilitation-student",
+   "kind": "within_document",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 3552,
+   "found": [
+    {
+     "phrase": "ega omanda põhi-, üldkesk-, kutse- või kõrgharidust",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 7439,
+   "additions": [
+    {
+     "title": "Erihoolekanne ja sotsiaalne rehabilitatsioon",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Erihoolekanne ja sotsiaalne rehabilitatsioon",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Terviseseisundist või puudest tingitud erivajadustega noorte siirdumine koolist tööle",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Terviseseisundist või puudest tingitud erivajadustega noorte siirdumine koolist tööle",
+     "reason": "structural_expansion"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "day-care-retirement-age",
+   "kind": "within_document",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 2477,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 5516,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "day-care-retirement-age",
+   "kind": "within_document",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 1934,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 7791,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "day-care-retirement-age",
+   "kind": "within_document",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 2713,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 1
+   },
+   "context_tokens": 9035,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "day-care-retirement-age",
+   "kind": "within_document",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 2092,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 6276,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "72"
+    }
+   ],
+   "cross_references": {
+    "candidates": 5,
+    "additions": 1,
+    "sections": [
+     "72"
+    ]
+   }
+  },
+  {
+   "question": "day-care-retirement-age",
+   "kind": "within_document",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 2178,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 8220,
+   "additions": [
+    {
+     "title": "Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu kokkuvõte",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu kokkuvõte",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu kokkuvõte",
+     "reason": "structural_expansion"
+    }
+   ],
+   "cross_references": null
+  }
+ ]
+}
