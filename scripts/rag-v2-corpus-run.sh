@@ -26,7 +26,7 @@ chat_plan() {
   [ -n "$CURRENT" ] || fail "no active plan in rag.env"
   LOG=$S/chat-plan-v$VERSION.log
   (cd $A && sudo -n node --env-file=$ETC/frontend.env --env-file=$ETC/rag.env --import ./scripts/register-node-source-loader.mjs scripts/rag-v2-chat-plan.mjs \
-    --tenant sotsiaalai-corpus --profile hybrid-estnltk-chat-v3 --reasoning medium --template $ETC/m4-luna6-20260923.json --out $OUT --budget-usd 4 \
+    --tenant sotsiaalai-corpus --profile hybrid-estnltk-chat-v4 --reasoning medium --template $ETC/m4-luna6-20260923.json --out $OUT --budget-usd 4 \
     --basis "$BASIS_EN" --activate) > $LOG 2>&1
   STATUS=$?
   tail -2 $LOG

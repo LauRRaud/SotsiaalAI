@@ -1,7 +1,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
-import { GOLD_ACTS, actBundles, actGold, actProvisions, cardRelationPopulation, listTarget, pointerAdditions, firstPassageAdditions } from '../scripts/rag-v2-relation-gold.mjs';
+import { GOLD_ACTS, actBundles, actGold, actPassages, actProvisions, cardRelationPopulation, listTarget, pointerAdditions, firstPassageAdditions } from '../scripts/rag-v2-relation-gold.mjs';
+import { actGenitive, actSections, keepsSuperscripts, namedActReferences, provisionChunks, resolveSection } from '../lib/rag-v2/search/legal-references.js';
 
 // ADR-063: the pointer gold set is read from the act with no model, so the same act gives the same links. The Social
 // Welfare Act in force on 2026-10-15 pins the counts the ADR states; the committed file must be what the builder gives.
@@ -92,4 +93,41 @@ test('the hand-checked card relations are the cross-passage relations of the fou
   // A second reader's change keeps the first verdict beside it.
   assert.deepEqual(checked.rows.filter(row => row.first_verdict).map(row => [row.n, row.first_verdict, row.verdict]),
     [[38, 'right', 'wrong_target'], [39, 'right', 'wrong_target'], [45, 'right', 'wrong_type'], [71, 'right', 'wrong_target'], [72, 'right', 'wrong_target']]);
+});
+
+// ADR-063, the rule in the search: the reader the search uses names the same other acts as the hand-checked gold set, and
+// a named subsection gives the passages that hold its text.
+test('the search\'s named-act reader agrees with the gold set on the seven acts, and finds the passages of a named subsection', async () => {
+  const bundles = await actBundles(GOLD_ACTS, 'Andmebaasi'), names = new Map();
+  for (const [act, bundle] of bundles) { const name = actGenitive(bundle.document.fields.title.value); if (name) names.set(name, act); }
+  // The two regulations have no law's title; the five laws are named by theirs.
+  assert.deepEqual([...names.values()], GOLD_ACTS.slice(0, 5));
+  const passagesOf = (act, base, superscript, subsection) => {
+    const target = bundles.get(act), chunks = actPassages(target), key = resolveSection(base, superscript, actSections(chunks), keepsSuperscripts(target.version));
+    return provisionChunks(target, chunks, key, subsection);
+  };
+  const differences = [];
+  let pointers = 0;
+  for (const [act, bundle] of bundles) {
+    const gold = new Set(actGold(act, bundle).links.filter(link => link.class === 'other_act' && link.to_act).map(link => `${link.from}>${link.to_act}`)), read = new Set();
+    for (const provision of actProvisions(bundle)) for (const reference of namedActReferences(provision.text, names)) {
+      if (reference.act === act) continue;
+      read.add(`${provision.id}>${reference.act}`); pointers++;
+      // Every pointer names a section the other act has.
+      assert.equal(passagesOf(reference.act, reference.base, reference.superscript, reference.subsections[0] ?? null).length > 0, true);
+    }
+    for (const key of new Set([...gold, ...read])) if (gold.has(key) !== read.has(key)) differences.push(`${act}:${key}:${gold.has(key) ? 'gold' : 'reader'}`);
+  }
+  // The one difference is a range of sections ("§-de 31-35"), which the search leaves out.
+  assert.deepEqual([pointers, differences], [27, ['404072025017:70/1>130062026031:gold']]);
+  // Harku § 15 lõige 3 names SHS § 25 lõige 2: its passage holds the deciding words.
+  const harku = actProvisions(bundles.get('404072025017')).find(provision => provision.id === '15/3');
+  assert.deepEqual(namedActReferences(harku.text, names).map(({ act, base, subsections }) => [act, base, subsections]), [[SHS, '25', ['2']]]);
+  const held = passagesOf(SHS, '25', '', '2');
+  assert.deepEqual([held.length, held[0].source_text.includes('esimese või teise astme üleneja või alaneja sugulane')], [1, true]);
+  // A long subsection runs on: SHS § 133 lõige 5 is not in the section's first passage, and the regulation's § 7 lõige 7
+  // lies in two passages.
+  const ordinals = (...rest) => passagesOf(...rest).map(chunk => chunk.ordinal);
+  assert.deepEqual([ordinals(SHS, '133', '', null), ordinals(SHS, '133', '', '5'), ordinals('126092026005', '7', '', '7'), ordinals('126092026005', '7', '', '1')],
+    [[191], [192, 193], [10, 11], [10]]);
 });

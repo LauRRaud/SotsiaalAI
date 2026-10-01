@@ -22,7 +22,7 @@ import { performance } from 'node:perf_hooks';
 import { PostgresCatalog } from '../lib/rag-v2/search/postgres.js';
 import { QdrantIndex } from '../lib/rag-v2/search/qdrant.js';
 import { retrieve } from '../lib/rag-v2/search/retrieval.js';
-import { retrievalProfile, queryForProfile, assertProfileGeneration, GRAPH_EXPERIMENT_PROFILES, CHAT_PROFILE, CHAT_REFERENCES_PROFILE } from '../lib/rag-v2/search/profiles.js';
+import { retrievalProfile, queryForProfile, assertProfileGeneration, GRAPH_EXPERIMENT_PROFILES, CHAT_PROFILE, CHAT_REFERENCES_PROFILE, CHAT_NAMED_ACTS_PROFILE } from '../lib/rag-v2/search/profiles.js';
 import { tokenCount } from '../lib/rag-v2/search/embedding.js';
 import { chunkSection } from '../lib/rag-v2/search/legal-references.js';
 import { actGold, actPassages, pointerAdditions, firstPassageAdditions } from './rag-v2-relation-gold.mjs';
@@ -32,7 +32,7 @@ import { legalReference, legalValidityScope } from '../lib/rag-v2/search/legal-v
 const args = process.argv.slice(2), option = name => { const at = args.indexOf(name); return at >= 0 ? args[at + 1] : null; };
 const cataloguePath = option('--catalogue'), out = option('--out'), tenant = option('--tenant') || 'sotsiaalai-corpus';
 const manifestPath = option('--manifest') || 'docs/rag-v2/legal-acts-in-index.json';
-const ARMS = { ...GRAPH_EXPERIMENT_PROFILES, L: CHAT_REFERENCES_PROFILE, V: CHAT_PROFILE };
+const ARMS = { ...GRAPH_EXPERIMENT_PROFILES, L: CHAT_REFERENCES_PROFILE, N: CHAT_NAMED_ACTS_PROFILE, V: CHAT_PROFILE };
 const POINTER_ROOM = { additions: 4, tokens: 3000 };
 if (!cataloguePath || !out) { console.error('usage: --catalogue <json> --out <dir> [--tenant <id>]'); process.exit(2); }
 const catalogue = JSON.parse(await fs.readFile(cataloguePath, 'utf8'));
@@ -115,8 +115,11 @@ try {
         sources: evidence.length, reasons, context_tokens: packet.measurements?.context_tokens ?? null,
         additions: evidence.filter(entry => (entry.selection.reason?.type || entry.selection.reason) !== 'ranked_seed')
           .map(entry => ({ title: entry.bibliography?.title || '', reason: entry.selection.reason?.type || entry.selection.reason,
-            ...(entry.selection.reason?.section ? { section: entry.selection.reason.section } : {}) })),
-        cross_references: packet.measurements?.cross_references ?? null });
+            ...(entry.selection.reason?.section ? { section: entry.selection.reason.section } : {}),
+            ...(entry.selection.reason?.named_act ? { named_act: entry.selection.reason.named_act } : {}) })),
+        // What the arm selected, in order: v4 (N) must select what v3 (L) selects and then only a named act's passages.
+        selected: evidence.map(entry => entry.chunk_id),
+        cross_references: packet.measurements?.cross_references ?? null, named_act_references: packet.measurements?.named_act_references ?? null });
       if (arm !== 'V') continue;
       // R and S from V's passages. A seed is a selected passage of a Riigi Teataja act, in the selection's order.
       const seeds = [];
@@ -172,9 +175,23 @@ try {
   }
   const foundBy = arm => new Map(rows.filter(row => row.arm === arm).map(row => [row.question, row.found_all]));
   const live = foundBy('L'), today = foundBy('S');
-  const report = { schema_version: 'rag-v2/graph-experiment-2', generation: generation.id, date: catalogue.date, catalogue: cataloguePath,
+  // ADR-063: arm N against arm L, question by question: the same passages in the same order, then N's own additions.
+  const selectedBy = arm => new Map(rows.filter(row => row.arm === arm).map(row => [row.question, row]));
+  const v3 = selectedBy('L'), v4 = selectedBy('N');
+  const namedActs = { questions: v4.size, keeps_v3: 0, with_additions: 0, additions: 0, gained: [], lost: [], mean_added_tokens: 0 };
+  for (const [question, row] of v4) {
+    const base = v3.get(question), added = row.additions.filter(item => item.named_act).length;
+    if (base.selected.every((chunk, index) => row.selected[index] === chunk) && row.selected.length === base.selected.length + added) namedActs.keeps_v3++;
+    if (added) namedActs.with_additions++;
+    namedActs.additions += added;
+    if (row.found_all && !base.found_all) namedActs.gained.push(question);
+    if (!row.found_all && base.found_all) namedActs.lost.push(question);
+    namedActs.mean_added_tokens += (row.context_tokens - base.context_tokens) / v4.size;
+  }
+  namedActs.mean_added_tokens = Math.round(namedActs.mean_added_tokens);
+  const report = { schema_version: 'rag-v2/graph-experiment-3', generation: generation.id, date: catalogue.date, catalogue: cataloguePath,
     eligible_documents: eligible.length, excluded_legal_versions: legal.excluded.length, pointer_room: POINTER_ROOM,
-    simulation_check: { questions: live.size, s_equals_l: [...live].filter(([question, found]) => today.get(question) === found).length }, summary, shapes, rows };
+    simulation_check: { questions: live.size, s_equals_l: [...live].filter(([question, found]) => today.get(question) === found).length }, named_acts: namedActs, summary, shapes, rows };
   await fs.writeFile(path.join(out, 'graph-experiment.json'), JSON.stringify(report, null, 1));
-  console.log(JSON.stringify({ ok: true, summary }, null, 1));
+  console.log(JSON.stringify({ ok: true, summary, named_acts: namedActs }, null, 1));
 } finally { await postgres.close?.(); }
