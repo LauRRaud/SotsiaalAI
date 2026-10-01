@@ -1,0 +1,941 @@
+{
+ "schema_version": "rag-v2/graph-experiment-1",
+ "generation": "search_generation_4b0506988a68391c5ddcef414f5f4116108a229dfc90715cfb23967b4a718068",
+ "date": "2026-10-15",
+ "catalogue": "tests/evaluation/graph/hard-conditions-2.json",
+ "eligible_documents": 1071,
+ "excluded_legal_versions": 34,
+ "summary": {
+  "A": {
+   "profile": "experiment-graph-a-base-v1",
+   "questions": 6,
+   "found_all": 5,
+   "found_any": 5,
+   "within_document": 5,
+   "across_documents": 0,
+   "mean_sources": 9,
+   "mean_context_tokens": 6010,
+   "median_ms": 9445
+  },
+  "B": {
+   "profile": "experiment-graph-b-text-v1",
+   "questions": 6,
+   "found_all": 5,
+   "found_any": 5,
+   "within_document": 5,
+   "across_documents": 0,
+   "mean_sources": 13,
+   "mean_context_tokens": 8031,
+   "median_ms": 2781
+  },
+  "C": {
+   "profile": "experiment-graph-c-cards-v1",
+   "questions": 6,
+   "found_all": 5,
+   "found_any": 5,
+   "within_document": 5,
+   "across_documents": 0,
+   "mean_sources": 9.5,
+   "mean_context_tokens": 6892,
+   "median_ms": 2613
+  },
+  "D": {
+   "profile": "experiment-graph-d-references-v1",
+   "questions": 6,
+   "found_all": 5,
+   "found_any": 5,
+   "within_document": 5,
+   "across_documents": 0,
+   "mean_sources": 9.83,
+   "mean_context_tokens": 6488,
+   "median_ms": 2902
+  },
+  "E": {
+   "profile": "experiment-graph-e-neighbours-v1",
+   "questions": 6,
+   "found_all": 5,
+   "found_any": 5,
+   "within_document": 5,
+   "across_documents": 0,
+   "mean_sources": 13,
+   "mean_context_tokens": 8522,
+   "median_ms": 2651
+  }
+ },
+ "rows": [
+  {
+   "question": "reclaim-limitation",
+   "kind": "within_document",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 13054,
+   "found": [
+    {
+     "phrase": "aegumistähtaegade kohta sätestatut",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 3869,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "reclaim-limitation",
+   "kind": "within_document",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 2335,
+   "found": [
+    {
+     "phrase": "aegumistähtaegade kohta sätestatut",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 4605,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "reclaim-limitation",
+   "kind": "within_document",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 2225,
+   "found": [
+    {
+     "phrase": "aegumistähtaegade kohta sätestatut",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 3920,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "reclaim-limitation",
+   "kind": "within_document",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 2214,
+   "found": [
+    {
+     "phrase": "aegumistähtaegade kohta sätestatut",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 12,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 3
+   },
+   "context_tokens": 5700,
+   "additions": [
+    {
+     "title": "Sotsiaalseadustiku üldosa seadus",
+     "reason": "cross_reference",
+     "section": "27"
+    },
+    {
+     "title": "Sotsiaalseadustiku üldosa seadus",
+     "reason": "cross_reference",
+     "section": "15"
+    },
+    {
+     "title": "Riigilõivuseadus",
+     "reason": "cross_reference",
+     "section": "15"
+    }
+   ],
+   "cross_references": {
+    "candidates": 3,
+    "additions": 3,
+    "sections": [
+     "27",
+     "15",
+     "15"
+    ]
+   }
+  },
+  {
+   "question": "reclaim-limitation",
+   "kind": "within_document",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 2340,
+   "found": [
+    {
+     "phrase": "aegumistähtaegade kohta sätestatut",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 5424,
+   "additions": [
+    {
+     "title": "Teekond erilise lapse kõrval",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Teekond erilise lapse kõrval",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Kuidas vastata inimese pöördumisele",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Kuidas vastata inimese pöördumisele",
+     "reason": "structural_expansion"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "reclaim-enforcement",
+   "kind": "within_document",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 9445,
+   "found": [
+    {
+     "phrase": "Tagasinõude ettekirjutuse sundtäitmise aegumistähtaeg on seitse aastat",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 5242,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "reclaim-enforcement",
+   "kind": "within_document",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 2781,
+   "found": [
+    {
+     "phrase": "Tagasinõude ettekirjutuse sundtäitmise aegumistähtaeg on seitse aastat",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 6653,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "reclaim-enforcement",
+   "kind": "within_document",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 2613,
+   "found": [
+    {
+     "phrase": "Tagasinõude ettekirjutuse sundtäitmise aegumistähtaeg on seitse aastat",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 5293,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "reclaim-enforcement",
+   "kind": "within_document",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 2902,
+   "found": [
+    {
+     "phrase": "Tagasinõude ettekirjutuse sundtäitmise aegumistähtaeg on seitse aastat",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 11,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 2
+   },
+   "context_tokens": 6278,
+   "additions": [
+    {
+     "title": "Sotsiaalseadustiku üldosa seadus",
+     "reason": "cross_reference",
+     "section": "27"
+    },
+    {
+     "title": "Sotsiaalseadustiku üldosa seadus",
+     "reason": "cross_reference",
+     "section": "15"
+    }
+   ],
+   "cross_references": {
+    "candidates": 2,
+    "additions": 2,
+    "sections": [
+     "27",
+     "15"
+    ]
+   }
+  },
+  {
+   "question": "reclaim-enforcement",
+   "kind": "within_document",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 2723,
+   "found": [
+    {
+     "phrase": "Tagasinõude ettekirjutuse sundtäitmise aegumistähtaeg on seitse aastat",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 7723,
+   "additions": [
+    {
+     "title": "Võlanõustamisteenus aastatel 2018–2023",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Kohaliku omavalitsuse väljakutsed sotsiaalteenuste osutamisel",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Kohaliku omavalitsuse väljakutsed sotsiaalteenuste osutamisel",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Abivajaja omaosalus sotsiaalteenuse eest tasumisel",
+     "reason": "structural_expansion"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "coach-reports-child",
+   "kind": "within_document",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 6912,
+   "found": [
+    {
+     "phrase": "edastades vähimas vajalikus ulatuses",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 4380,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "coach-reports-child",
+   "kind": "within_document",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 2226,
+   "found": [
+    {
+     "phrase": "edastades vähimas vajalikus ulatuses",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 6741,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "coach-reports-child",
+   "kind": "within_document",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 1959,
+   "found": [
+    {
+     "phrase": "edastades vähimas vajalikus ulatuses",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 4431,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "coach-reports-child",
+   "kind": "within_document",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 2170,
+   "found": [
+    {
+     "phrase": "edastades vähimas vajalikus ulatuses",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 4380,
+   "additions": [],
+   "cross_references": {
+    "candidates": 0,
+    "additions": 0,
+    "sections": []
+   }
+  },
+  {
+   "question": "coach-reports-child",
+   "kind": "within_document",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 2202,
+   "found": [
+    {
+     "phrase": "edastades vähimas vajalikus ulatuses",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 6056,
+   "additions": [
+    {
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "reason": "structural_expansion"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "student-subsistence-own",
+   "kind": "within_document",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 7034,
+   "found": [
+    {
+     "phrase": "kuni 24-aastasel üliõpilasel, kes õpib ülikoolis, rakenduskõrgkoolis või kutseõppeasutuses",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 6894,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "student-subsistence-own",
+   "kind": "within_document",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 2603,
+   "found": [
+    {
+     "phrase": "kuni 24-aastasel üliõpilasel, kes õpib ülikoolis, rakenduskõrgkoolis või kutseõppeasutuses",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 9041,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "student-subsistence-own",
+   "kind": "within_document",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 2573,
+   "found": [
+    {
+     "phrase": "kuni 24-aastasel üliõpilasel, kes õpib ülikoolis, rakenduskõrgkoolis või kutseõppeasutuses",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 1
+   },
+   "context_tokens": 10178,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "student-subsistence-own",
+   "kind": "within_document",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 3551,
+   "found": [
+    {
+     "phrase": "kuni 24-aastasel üliõpilasel, kes õpib ülikoolis, rakenduskõrgkoolis või kutseõppeasutuses",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 6894,
+   "additions": [],
+   "cross_references": {
+    "candidates": 0,
+    "additions": 0,
+    "sections": []
+   }
+  },
+  {
+   "question": "student-subsistence-own",
+   "kind": "within_document",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 2651,
+   "found": [
+    {
+     "phrase": "kuni 24-aastasel üliõpilasel, kes õpib ülikoolis, rakenduskõrgkoolis või kutseõppeasutuses",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 10117,
+   "additions": [
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Pikaajalised toimetulekutoetuse saajad vajavad rohkem tuge",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Pikaajalised toimetulekutoetuse saajad vajavad rohkem tuge",
+     "reason": "structural_expansion"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "subsistence-new-job",
+   "kind": "within_document",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 13686,
+   "found": [
+    {
+     "phrase": "kahel kuul 100 protsenti töisest sissetulekust",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8432,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "subsistence-new-job",
+   "kind": "within_document",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 2988,
+   "found": [
+    {
+     "phrase": "kahel kuul 100 protsenti töisest sissetulekust",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 10881,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "subsistence-new-job",
+   "kind": "within_document",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 3142,
+   "found": [
+    {
+     "phrase": "kahel kuul 100 protsenti töisest sissetulekust",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8483,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "subsistence-new-job",
+   "kind": "within_document",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 3054,
+   "found": [
+    {
+     "phrase": "kahel kuul 100 protsenti töisest sissetulekust",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8432,
+   "additions": [],
+   "cross_references": {
+    "candidates": 0,
+    "additions": 0,
+    "sections": []
+   }
+  },
+  {
+   "question": "subsistence-new-job",
+   "kind": "within_document",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 3020,
+   "found": [
+    {
+     "phrase": "kahel kuul 100 protsenti töisest sissetulekust",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 12095,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Töötamise toetamine toimetulekutoetuse kaudu",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Töötamise toetamine toimetulekutoetuse kaudu",
+     "reason": "structural_expansion"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "subsistence-deadline",
+   "kind": "within_document",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 2749,
+   "found": [
+    {
+     "phrase": "hiljemalt kuu viimaseks tööpäevaks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 7243,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "subsistence-deadline",
+   "kind": "within_document",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 3991,
+   "found": [
+    {
+     "phrase": "hiljemalt kuu viimaseks tööpäevaks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 10262,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "subsistence-deadline",
+   "kind": "within_document",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 2620,
+   "found": [
+    {
+     "phrase": "hiljemalt kuu viimaseks tööpäevaks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 11,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 2
+   },
+   "context_tokens": 9046,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "subsistence-deadline",
+   "kind": "within_document",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 2243,
+   "found": [
+    {
+     "phrase": "hiljemalt kuu viimaseks tööpäevaks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 7243,
+   "additions": [],
+   "cross_references": {
+    "candidates": 0,
+    "additions": 0,
+    "sections": []
+   }
+  },
+  {
+   "question": "subsistence-deadline",
+   "kind": "within_document",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 2227,
+   "found": [
+    {
+     "phrase": "hiljemalt kuu viimaseks tööpäevaks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 9714,
+   "additions": [
+    {
+     "title": "Kas sotsiaalabi on (turva)võrk või hüppelaud? Kuidas aidata inimesed kiiresti taas jalule",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Kas sotsiaalabi on (turva)võrk või hüppelaud? Kuidas aidata inimesed kiiresti taas jalule",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "structural_expansion"
+    }
+   ],
+   "cross_references": null
+  }
+ ]
+}
