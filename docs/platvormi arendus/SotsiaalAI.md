@@ -111,14 +111,26 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
       - Lähtekoht: `pointerAdditions` ja `listTarget` failis `scripts/rag-v2-relation-gold.mjs` (liik `other_act`); päris viidete järgimine on `lib/rag-v2/search/retrieval.js`-is.
       - Mõõta enne ühendamist: `scenarios-hard-conditions-3.json` kolm teise akti stsenaariumi (umbes 0,02 USD) ja üks jooks väikseimast kataloogist. Lävend: Harku läbib, kaks ülejäänut jäävad läbima, kontekst kasvab keskmiselt alla 800 tokeni.
     - Kavandi suurem jooksukomplekt (umbes 0,40 USD) ei ole otsuse jaoks vajalik; tegemata, kuni omanik ei küsi.
+      - Reegel peab tooma lõigu, kus nimetatud lõike tekst tegelikult on: pikk lõige jätkub järgmises lõigus, kuldkomplekt aga märgib lõigu, kus säte algab.
     - Omaniku otsust ootab SHS-i teadmiskaartide saatus: need kehtivad 30.11.2026-ni, järgmistel redaktsioonidel kaarte pole. Mõõtmise järgi ei ole kaarte akti sees otsustava sätte leidmiseks vaja.
   - **Väike jääk kuupäevavea järel (päris vestlus 01.10 kell 19:37, pärast #296):** Märjamaa vastus andis õiged summad ja õige aluse („alates 1. jaanuarist 2026 rakendatav summa“), aga küsis sünniaastat, sest küsimuses oli ainult „augustis“. Eelmõõtmise jooksus seda küsimust ei olnud. Kui see kordub, lisada juhisesse, et aastata sündmus loetakse hiljutiseks; mõõta ühe jooksuga, mitte sõnastust tasuliste kordustega timmides.
   - **Serveri koristus tehtud 01.10 kell 19:46** (omanik: „serveri koristus tee“): generatsioonide v42–v46 loendid kustutatud (`drop-version-generations.mjs`), seejärel `rag-v2-prune-versions.mjs --execute`: 519 versiooni, 13 669 rida ja 13 669 punkti. Indeksi v47 tõend enne ja pärast sama (6470 versiooni, 40 489 rida ja punkti, samad räsid); kollektsioonis nüüd 40 489 punkti; kordusloendus 0; `VACUUM ANALYZE` tehtud. Ketas jäi 85% juurde (vaba 8,7 → 9,0 GB): suured on Docker 13 GB (Postgres ja Qdrant), hoidla 6,0 GB, ostetud vektorid 2,5 GB ja rakendus 5,9 GB. Serveris on nüüd ainult generatsioon v47, seega v46-le tagasi minna ei saa ilma uue indeksitööta.
   - 04.10: Maardu XML-id 415082017002 ja 402072013031 uuesti alla laadida, kui RT on kirjutanud neile lõpukuupäeva. Rada: `rag-v2-law-validity.mjs check --download`, `rag-v2-corpus-refresh.mjs`, serveris `rag-v2-corpus-run.sh` (runbook, jaotis 0).
   - Kontaktid pärast 04.10.
-  - Codex vaatab üle #289, #290, ADR-062 PR-id (#295, #296) ja M3 PR-id (#297, #298 ja sammude 5–10 PR).
+  - Codexi #289, #290, #295–#299 ülevaatus on tehtud ([raport](../audits/rag-v2-pr289-299-review-2026-10-01.md)) ja selle kolm leidu parandatud (vt 01.10 öö kirje allpool).
   - Kiiruse mõõtmine päris vestluses teeb omanik.
 - **Võrk 30.09 õhtul:** SSH port 22 aegus korduvalt nii GitHubi kui serveri (`ssh sotsiaalai`) poole. Push õnnestus kordamisel. `gh` töötab HTTPS-i kaudu.
+
+**01.10 (Opus), öö: Codexi #289–#299 ülevaatuse kolm leidu parandatud** ([raport](../audits/rag-v2-pr289-299-review-2026-10-01.md)).
+- **R1 (P1, #290): koristuse tõke elab üle seansi** ([ADR-060](../rag-v2/adr-060-prune-unreferenced-versions.md)). Lukk kadus koos Postgresi seansiga, teele saadetud Qdranti kustutus aga rakendus hiljem ja võis kustutada vahepeal uuesti indekseeritud versiooni punktid.
+  - Nüüd on koristusel püsiv rida `rag_v2_prune_run` (migratsioon `202610010001_prune_run`, deploy rakendab selle ise). Rida tekib koos pitserite märkimisega ja kaob koos ridade kustutamisega.
+  - `beginGeneration` keeldub, kuni rida on olemas (`index_prune_unresolved`). Katkenud koristuse lõpetab sama käsk `--execute`-iga; loendus näitab seisu väljal `unresolved`.
+  - Uus test kordab Codexi stsenaariumi kohaliku Postgresi ja Qdrantiga; ilma kontrollita see kukub.
+- **R2 (P2, #297): viis kaardiseost olid valesti õigeks märgitud.** Lugesin sätted uuesti ja nõustun Codexiga (read 38, 39, 45, 71, 72).
+- **R3 (P2, #297): valim lähtub nüüd kaardi ankru tegelikust lõigust** (`cardRelationPopulation`). Üks rida välja, kaks juurde.
+  - Tulemus: 76 seost, **52 õiget ja 24 valet** (enne 75 seost, 55 ja 20). M3 otsus ei muutu. Test hoiab üldkogumit ja loendust.
+- ADR-063 piirid täpsustatud Codexi märkuste järgi: S ja L võrdlus loeb ainult leidmist; „2 otsustavat 47-st“ ei ole lisanduste täpsuse mõõt.
+- Serveris pole praegu pooleliolevat koristust; järgmine koristus käib juba uue tõkkega.
 
 **01.10 (Opus), hilisõhtu: M3 mõõtmissammu lõpp — otsus on üks reegel viidete lugejasse** ([ADR-063](../rag-v2/adr-063-checked-relations.md)). Omanik: „jätka“.
 - **Kõrvalekalle kavandist:** seoste faili ja harude F, G asemel simuleerib katseskript akti enda viidete järgimist (haru R) ja tänast reeglit (haru S, kontroll päris profiili vastu: sama tulemus 15/15). Põhjus: mudeli tüübitud seosed kukkusid käsitsi kontrollis läbi, akti viited mitte.

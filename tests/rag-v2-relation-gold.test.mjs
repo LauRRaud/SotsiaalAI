@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
-import { GOLD_ACTS, actBundles, actGold, actProvisions, listTarget, pointerAdditions, firstPassageAdditions } from '../scripts/rag-v2-relation-gold.mjs';
+import { GOLD_ACTS, actBundles, actGold, actProvisions, cardRelationPopulation, listTarget, pointerAdditions, firstPassageAdditions } from '../scripts/rag-v2-relation-gold.mjs';
 
 // ADR-063: the pointer gold set is read from the act with no model, so the same act gives the same links. The Social
 // Welfare Act in force on 2026-10-15 pins the counts the ADR states; the committed file must be what the builder gives.
@@ -64,4 +64,32 @@ test('ADR-063 arm R: following the act’s own pointers from a selected passage 
   assert.deepEqual(run('131/2', { additions: 4, tokens: 10 }).additions, []);
   assert.deepEqual([listTarget('§ 97 punkti 1 või 2'), listTarget('§ 25 lõikes 2'), listTarget('§ 45¹³ lõike 1 punktides 1–7'), listTarget('lõikes 2')],
     [{ section: '97', subsection: null }, { section: '25', subsection: '2' }, { section: '45^13', subsection: '1' }, null]);
+});
+
+// Codex's review of #297: the hand-checked card relations are the relations whose cards stand in different passages by
+// their anchors (not by where their provisions begin), and the stated result is the count of the rows' verdicts.
+test('the hand-checked card relations are the cross-passage relations of the four card files, and their result is the rows’ count', async () => {
+  const checked = JSON.parse(await fs.readFile('tests/evaluation/graph/card-relations-1-checked.json', 'utf8'));
+  const acts = [...new Set(checked.rows.map(row => row.act))], bundles = await actBundles(acts, 'Andmebaasi');
+  const population = [];
+  for (const act of acts) {
+    const knowledge = JSON.parse(await fs.readFile(`Andmebaasi/teadmised/${act}.knowledge.json`, 'utf8')).knowledge;
+    for (const item of cardRelationPopulation(bundles.get(act), knowledge)) population.push(`${act}/${item.relation}/${item.from}/${item.to}`);
+  }
+  const inside = checked.rows.filter(row => row.in_population !== false), keyOf = row => `${row.act}/${row.relation}/${row.from}/${row.to}`;
+  assert.equal(population.length, 76);
+  assert.deepEqual(inside.map(keyOf).sort(), [...population].sort());
+  // The one row drawn by its provisions' first passages: both cards are anchored in the same passage.
+  assert.deepEqual(checked.rows.filter(row => row.in_population === false).map(row => row.n), [39]);
+  const count = (rows, verdict) => rows.filter(row => row.verdict === verdict).length;
+  const result = rows => ({ rows: rows.length, right: count(rows, 'right'), wrong_target: count(rows, 'wrong_target'), wrong_type: count(rows, 'wrong_type'),
+    wrong_direction: count(rows, 'wrong_direction') });
+  assert.deepEqual(result(inside), { rows: 76, right: 52, wrong_target: 15, wrong_type: 6, wrong_direction: 3 });
+  for (const [stated, rows] of [[checked.result, inside], [checked.first_sample, checked.rows.filter(row => row.n <= 75)]]) {
+    assert.deepEqual({ rows: stated.rows, right: stated.right, wrong_target: stated.wrong_target, wrong_type: stated.wrong_type, wrong_direction: stated.wrong_direction }, result(rows));
+  }
+  assert.equal(checked.result.bar_met, false);
+  // A second reader's change keeps the first verdict beside it.
+  assert.deepEqual(checked.rows.filter(row => row.first_verdict).map(row => [row.n, row.first_verdict, row.verdict]),
+    [[38, 'right', 'wrong_target'], [39, 'right', 'wrong_target'], [45, 'right', 'wrong_type'], [71, 'right', 'wrong_target'], [72, 'right', 'wrong_target']]);
 });

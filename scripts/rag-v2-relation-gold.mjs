@@ -175,6 +175,22 @@ export function actGold(act, bundle, knowledge = { cards: [], dependencies: [] }
     links: unique, denials };
 }
 
+/** The model's card relations whose two cards stand in different passages. A card stands in the passage that holds its
+ *  first anchor, which can be a later one than the passage its provision begins in (a long subsection runs on). */
+export function cardRelationPopulation(bundle, knowledge) {
+  const chunks = actPassages(bundle), spans = new Map(bundle.spans.map(span => [span.id, span]));
+  const places = new Map(knowledge.cards.map(card => {
+    const anchor = card.anchors[0], start = anchor.start ?? bundle.source_units[anchor.source_unit_index].raw_text.indexOf(anchor.quote);
+    return [card.key, chunks.findIndex(chunk => chunk.span_ids.some(key => {
+      const span = spans.get(key);
+      return span.source_unit_index === anchor.source_unit_index && span.start <= start && start < span.end;
+    }))];
+  }));
+  return knowledge.dependencies.flatMap(dependency => dependency.targets.filter(target => places.get(dependency.from) !== places.get(target.key))
+    .map(target => ({ relation: dependency.key, type: dependency.type, from: dependency.from, to: target.key,
+      from_passage: places.get(dependency.from), to_passage: places.get(target.key) })));
+}
+
 /** Where another act's list points in that act: the first section it names, with its subsection when the list names one
  *  ("§ 97 punkti 1 või 2" is § 97; "§ 25 lõikes 2" is § 25 lõige 2). */
 export function listTarget(list) {
