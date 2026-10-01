@@ -92,8 +92,8 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**Uus aken alustab siit (01.10 õhtu).** Kuupäevaviga on parandatud ([ADR-062](../rag-v2/adr-062-provision-dates.md), korpus v47, dialoog 22). Omanik valis M3; selle mõõtmissamm on lõpetatud ja otsus on allpool.
-- **Tootmises:** korpus v47 (indeks `34fe1590`, 6470 dokumenti, 40 489 lõiku; lugeja `source-structure-v30`). Vestlusplaani uuendab reliis ise (ADR-037): profiil v3, answer-12, dialoog 22, mudelikontekst json-3, olek v5, arutlus medium.
+**Uus aken alustab siit (01.10 õhtu).** Kuupäevaviga on parandatud ([ADR-062](../rag-v2/adr-062-provision-dates.md), korpus v47, dialoog 22). Omanik valis M3; selle mõõtmissamm ja esimene reegel (profiil v4, [ADR-064](../rag-v2/adr-064-named-other-act.md)) on tehtud.
+- **Tootmises:** korpus v47 (indeks `34fe1590`, 6470 dokumenti, 40 489 lõiku; lugeja `source-structure-v30`). Vestlusplaani uuendab reliis ise (ADR-037): profiil v4, answer-12, dialoog 22, mudelikontekst json-3, olek v5, arutlus medium. Profiil on plaani osa: v4 plaan tehakse serveris pärast ADR-064 PR-i deploy'd (`rag-v2-chat-plan.mjs --profile hybrid-estnltk-chat-v4 --activate`); kontrolli aktiivse plaani `profileId`.
 - **Tööviis:**
   - Codex kujundab põhikaustas, seega ära vaheta seal harusid. Töötle %TEMP% worktree's: `node_modules` junction, `generated/` koopia. Eemalda worktree ja haru pärast PR-i.
   - PR liidetakse ja deploy'takse ise. Enne PR-i jooksuta kogu `npm test`.
@@ -107,11 +107,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
       - Akti sees leiab alusotsing otsustava sätte kõigis 12 küsimuses. Vahe on ainult kujus „teine akt“ (päris profiil 0/3).
       - Akti enda viidete järgimine (simuleeritud haru R) leiab 14/15, aga toob 47 lõigust 2 kasulikku ja kasvatab konteksti 2500 tokenit.
       - Päris vestlus vastab kahele teise akti küsimusele õigesti. Harku tugiisiku küsimuses jääb SHS § 25 lg 2 tekst tõenditest välja ja vastus ütleb seda ausalt.
-    - **Otsus (ADR-063):** kaartide teed ei minda, üldist viidete järgimist ei ehitata. **Järgmine PR:** üks reegel viidete lugejasse — leitud säte nimetab teist akti ja täpset paragrahvi, otsing lisab selle akti kehtiva redaktsiooni nimetatud lõike. Esimesena valla määrus → SHS.
-      - Lähtekoht: `pointerAdditions` ja `listTarget` failis `scripts/rag-v2-relation-gold.mjs` (liik `other_act`); päris viidete järgimine on `lib/rag-v2/search/retrieval.js`-is.
-      - Mõõta enne ühendamist: `scenarios-hard-conditions-3.json` kolm teise akti stsenaariumi (umbes 0,02 USD) ja üks jooks väikseimast kataloogist. Lävend: Harku läbib, kaks ülejäänut jäävad läbima, kontekst kasvab keskmiselt alla 800 tokeni.
-    - Kavandi suurem jooksukomplekt (umbes 0,40 USD) ei ole otsuse jaoks vajalik; tegemata, kuni omanik ei küsi.
-      - Reegel peab tooma lõigu, kus nimetatud lõike tekst tegelikult on: pikk lõige jätkub järgmises lõigus, kuldkomplekt aga märgib lõigu, kus säte algab.
+    - **Otsus (ADR-063):** kaartide teed ei minda, üldist viidete järgimist ei ehitata; viidete lugeja saab ühe reegli. Kavandi suurem jooksukomplekt (umbes 0,40 USD) jäi tegemata, sest otsus seda ei vajanud.
+    - **Reegel tehtud 01.10 öösel ([ADR-064](../rag-v2/adr-064-named-other-act.md), profiil v4):** kui valitud lõik nimetab teist seadust täielikult ja vahetult paragrahvi ees, lisab otsing lõigu, kus nimetatud lõige on (kuni 2 lõiku, v3 valikut muutmata).
+      - Otsingukatse 30 küsimusel: v4 leiab 28 (v3 26), hoiab v3 valiku 30/30, kontekst +300 tokenit.
+      - Vestluse rada: Harku tugiisiku küsimus läbib; kaheksast pöördest 7 läbis, `coach-reports-child` on vana teadaolev otsingu möödalask.
+    - **M3 järgmine võimalik samm** (ootab omaniku sõna): `coach-reports-child` (LasteKS § 27 ja § 27¹ ei jõua vestluses tõenditesse, rerank valib ainult juhendid) või lühendiga nimetatud aktid („SHS § 25“). Kumbagi pole mõõdetud.
     - Omaniku otsust ootab SHS-i teadmiskaartide saatus: need kehtivad 30.11.2026-ni, järgmistel redaktsioonidel kaarte pole. Mõõtmise järgi ei ole kaarte akti sees otsustava sätte leidmiseks vaja.
   - **Väike jääk kuupäevavea järel (päris vestlus 01.10 kell 19:37, pärast #296):** Märjamaa vastus andis õiged summad ja õige aluse („alates 1. jaanuarist 2026 rakendatav summa“), aga küsis sünniaastat, sest küsimuses oli ainult „augustis“. Eelmõõtmise jooksus seda küsimust ei olnud. Kui see kordub, lisada juhisesse, et aastata sündmus loetakse hiljutiseks; mõõta ühe jooksuga, mitte sõnastust tasuliste kordustega timmides.
   - **Serveri koristus tehtud 01.10 kell 19:46** (omanik: „serveri koristus tee“): generatsioonide v42–v46 loendid kustutatud (`drop-version-generations.mjs`), seejärel `rag-v2-prune-versions.mjs --execute`: 519 versiooni, 13 669 rida ja 13 669 punkti. Indeksi v47 tõend enne ja pärast sama (6470 versiooni, 40 489 rida ja punkti, samad räsid); kollektsioonis nüüd 40 489 punkti; kordusloendus 0; `VACUUM ANALYZE` tehtud. Ketas jäi 85% juurde (vaba 8,7 → 9,0 GB): suured on Docker 13 GB (Postgres ja Qdrant), hoidla 6,0 GB, ostetud vektorid 2,5 GB ja rakendus 5,9 GB. Serveris on nüüd ainult generatsioon v47, seega v46-le tagasi minna ei saa ilma uue indeksitööta.
@@ -120,6 +120,13 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
   - Codexi #289, #290, #295–#299 ülevaatus on tehtud ([raport](../audits/rag-v2-pr289-299-review-2026-10-01.md)) ja selle kolm leidu parandatud (vt 01.10 öö kirje allpool).
   - Kiiruse mõõtmine päris vestluses teeb omanik.
 - **Võrk 30.09 õhtul:** SSH port 22 aegus korduvalt nii GitHubi kui serveri (`ssh sotsiaalai`) poole. Push õnnestus kordamisel. `gh` töötab HTTPS-i kaudu.
+
+**01.10 (Opus), hilisöö: M3 reegel — nimetatud teise akti säte jõuab tõenditesse (profiil v4)** ([ADR-064](../rag-v2/adr-064-named-other-act.md)). Omanik: „alusta“.
+- **Reegel:** valitud lõik nimetab teist seadust täielikult ja vahetult paragrahvi ees („sotsiaalhoolekande seaduse § 25 lõikes 2“) → otsing lisab selle akti kehtiva redaktsiooni lõigu, kus nimetatud lõige on. Kuni 2 lõiku omaette kohtadel; v3 valik jääb samaks.
+- **Otsingukatse** (server, v47, 30 küsimust, tasuta): v3 26, v4 28; juurde tulid Harku tugiisik ja pensionäritoetus õppiva lapsega; midagi ei kadunud; kontekst keskmiselt +300 tokenit. Väljundid: `docs/audits/evidence/graph-v4-hard-*.json`.
+- **Vestluse rada** (v4 plaan ajutises koopias, 8 pööret, 0,042 USD plaani hindade järgi): 7 läbis. Harku vastus on nüüd sisuline: vanaema ei tohi olla tugiisik. `coach-reports-child` jäi otsingu taha nagu varem.
+- **Leid teel:** esimene katse ei lisanud midagi, sest otsingu kataloogis pole pealkirju. Pealkirjad tulevad nüüd lõikude ridadelt (`documentTitles`) ja test käib ka kataloogiga rada.
+- **Kasutuselevõtt:** profiil on plaani osa, seega pärast deploy'd tehakse serveris uus plaan profiiliga v4. `rag-v2-corpus-run.sh` teeb edaspidi v4 plaani.
 
 **01.10 (Opus), öö: Codexi #289–#299 ülevaatuse kolm leidu parandatud** ([raport](../audits/rag-v2-pr289-299-review-2026-10-01.md)).
 - **R1 (P1, #290): koristuse tõke elab üle seansi** ([ADR-060](../rag-v2/adr-060-prune-unreferenced-versions.md)). Lukk kadus koos Postgresi seansiga, teele saadetud Qdranti kustutus aga rakendus hiljem ja võis kustutada vahepeal uuesti indekseeritud versiooni punktid.

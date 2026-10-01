@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { actSections, chunkSection, internalReferences, keepsSuperscripts, readReferences, sectionKey, REFERENCE_LIMITS, SUPERSCRIPT_NORMALIZATIONS } from '../lib/rag-v2/search/legal-references.js';
+import { actGenitive, actSections, chunkSection, internalReferences, keepsSuperscripts, namedActReferences, provisionChunks, readReferences, resolveSection, sectionKey,
+  REFERENCE_LIMITS, SUPERSCRIPT_NORMALIZATIONS } from '../lib/rag-v2/search/legal-references.js';
 import { DEFAULT_CONFIG } from '../lib/rag-v2/contracts.js';
 
 // The act's sections in the act's order, a section with a superscript between its neighbours.
@@ -115,4 +116,47 @@ test('an act named anywhere before a bare list, in any case form, and an earlier
   // An earlier version's section is not today's section of the same number.
   assert.deepEqual(reasons('käesoleva seaduse kuni 2015. aasta 31. detsembrini kehtinud redaktsiooni § 131 lõike 1 ja § 133 alusel'), ['other_version', 'other_version']);
   assert.deepEqual(reasons('seaduse kuni 2015. aasta 31. detsembrini kehtinud redaktsiooni § 131 alusel ja § 133 kohaselt'), ['other_version', 'act_scope_unclear']);
+});
+
+// ADR-063: another act named in full directly before its list.
+test('a named other act: its title in the genitive directly before the list names it; anything else names none', () => {
+  assert.deepEqual(['Sotsiaalhoolekande seadus', ' Perekonnaseadus ', 'Karistusseadustik', 'Halduskohtumenetluse  seadustik', 'Abivahendite loetelu', null].map(actGenitive),
+    ['sotsiaalhoolekande seaduse', 'perekonnaseaduse', 'karistusseadustiku', 'halduskohtumenetluse seadustiku', null, null]);
+  const names = new Map([['sotsiaalhoolekande seaduse', 'shs'], ['perekonnaseaduse', 'pks'], ['sotsiaalseadustiku üldosa seaduse', 'sys'], ['üldosa seaduse', 'short']]);
+  const read = text => namedActReferences(text, names).map(({ act, base, superscript, subsections }) => [act, base + superscript, subsections]);
+  assert.deepEqual(read('Teenust ei osuta isik, kes on sotsiaalhoolekande seaduse § 25 lõikes 2 nimetatud isik.'), [['shs', '25', ['2']]]);
+  assert.deepEqual(read('Laps on ülalpidamist saama õigustatud perekonnaseaduse § 97 punkti 1 või 2 alusel.'), [['pks', '97', []]]);
+  // What may stand between the name and the list; a superscript; several subsections; two sections of one list.
+  assert.deepEqual(read('Vastavalt Sotsiaalhoolekande  seaduse (RT I, 30.06.2026, 65) § 45¹³ lõigetes 5 ja 6 sätestatule.'), [['shs', '45¹³', ['5', '6']]]);
+  assert.deepEqual(read('Sotsiaalhoolekande seaduse §-des 131 ja 133 sätestatud alustel.'), [['shs', '131', []], ['shs', '133', []]]);
+  assert.deepEqual(read('Sotsiaalhoolekande seaduse § 17 lõike 2¹ kohaselt.'), [['shs', '17', ['2^1']]]);
+  // Of two names that both end the words before the list, the longer one.
+  assert.deepEqual(read('Sotsiaalseadustiku üldosa seaduse § 28 alusel.'), [['sys', '28', []]]);
+  // No name of the map, an abbreviation, the act itself, "sama seaduse", a name elsewhere in the sentence, a range, a
+  // name that only ends like one ("ohvriabi…" is not "…perekonnaseaduse").
+  for (const text of ['Lastekaitseseaduse § 28 lõike 1 kohaselt.', 'SHS § 25 lõikes 2 nimetatud isik.', 'Käesoleva seaduse § 25 lõikes 2 nimetatud isik.',
+    'Perekonnaseadus kehtib. Sama seaduse § 97 kohaselt.', 'Sotsiaalhoolekande seaduses sätestatud korras ja § 25 alusel.', 'Sotsiaalhoolekande seaduse §-des 131–133 sätestatud alustel.',
+    'Uusperekonnaseaduse § 97 kohaselt.']) assert.deepEqual(read(text), [], text);
+  // The number is as written; the other act's own sections say which section it is.
+  assert.deepEqual([resolveSection('25', '', ['24', '25', '26'], true), resolveSection('45', '¹³', ['45', '45^13'], true), resolveSection('131', '', ['13^1'], false),
+    resolveSection('131', '', ['13^1'], true), resolveSection('7', '', ['8'], true)], ['25', '45^13', '13^1', null, null]);
+});
+
+test('the passages that hold a named subsection: its own text, also when it runs on; without one, the section\'s start', () => {
+  // § 7 in three passages: lõige 1 and the mark of lõige 2 in the first, lõige 2 over the second and third; § 8 in one.
+  const raw = '\n(1)\nEsimene lõige.\n(2)\nTeise lõike algus.\nTeise lõike lõpp.\n(3)\nKolmas lõige.\n';
+  const offset = text => raw.indexOf(text), span = (id, text) => ({ id, source_unit_index: 0, start: offset(text), end: offset(text) + text.length });
+  const spans = [span('s1', '(1)\nEsimene lõige.\n(2)'), span('s2', 'Teise lõike algus.'), span('s3', 'Teise lõike lõpp.\n(3)\nKolmas lõige.'),
+    { id: 's4', source_unit_index: 1, start: 0, end: 12 }];
+  const chunk = (id, ordinal, section, spanId) => {
+    const heading = `Seadus > § ${section}. Pealkiri`;
+    return { id, ordinal, span_ids: [spanId], retrieval_text: `${heading}\n\ntekst`, retrieval_mapping: { prefix_length: heading.length } };
+  };
+  const chunks = [chunk('c1', 0, '7', 's1'), chunk('c2', 1, '7', 's2'), chunk('c3', 2, '7', 's3'), chunk('c4', 3, '8', 's4')];
+  const bundle = { spans, source_units: [{ raw_text: raw }, { raw_text: 'Üks säte ilma lõigeteta.' }] };
+  const held = (...rest) => provisionChunks(bundle, chunks, ...rest).map(item => item.id);
+  assert.deepEqual([held('7'), held('7', '1'), held('7', '2'), held('7', '2', 1), held('7', '3'), held('7', '9'), held('8', '2'), held('9', '1')],
+    [['c1'], ['c1'], ['c2', 'c3'], ['c2'], ['c3'], ['c1'], ['c4'], []]);
+  // A bundle without its source units gives the section's start.
+  assert.deepEqual(provisionChunks({ spans }, chunks, '7', '2').map(item => item.id), ['c1']);
 });

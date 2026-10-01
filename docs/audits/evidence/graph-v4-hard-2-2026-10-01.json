@@ -1,0 +1,2891 @@
+{
+ "schema_version": "rag-v2/graph-experiment-3",
+ "generation": "search_generation_34fe1590bbd5e2bf6a788bef196d50e26b5f573e2a63bc30fbbe1d56ab28c8f4",
+ "date": "2026-10-15",
+ "catalogue": "tests/evaluation/graph/hard-conditions-2.json",
+ "eligible_documents": 1071,
+ "excluded_legal_versions": 60,
+ "pointer_room": {
+  "additions": 4,
+  "tokens": 3000
+ },
+ "simulation_check": {
+  "questions": 6,
+  "s_equals_l": 6
+ },
+ "named_acts": {
+  "questions": 6,
+  "keeps_v3": 6,
+  "with_additions": 2,
+  "additions": 2,
+  "gained": [],
+  "lost": [],
+  "mean_added_tokens": 213
+ },
+ "summary": {
+  "A": {
+   "profile": "experiment-graph-a-base-v1",
+   "questions": 6,
+   "found_all": 5,
+   "found_any": 5,
+   "within_document": 5,
+   "across_documents": 0,
+   "mean_sources": 9,
+   "mean_context_tokens": 5988,
+   "median_ms": 7837
+  },
+  "B": {
+   "profile": "experiment-graph-b-text-v1",
+   "questions": 6,
+   "found_all": 5,
+   "found_any": 5,
+   "within_document": 5,
+   "across_documents": 0,
+   "mean_sources": 13,
+   "mean_context_tokens": 8032,
+   "median_ms": 1756
+  },
+  "C": {
+   "profile": "experiment-graph-c-cards-v1",
+   "questions": 6,
+   "found_all": 5,
+   "found_any": 5,
+   "within_document": 5,
+   "across_documents": 0,
+   "mean_sources": 9.5,
+   "mean_context_tokens": 6870,
+   "median_ms": 1657
+  },
+  "D": {
+   "profile": "experiment-graph-d-references-v1",
+   "questions": 6,
+   "found_all": 5,
+   "found_any": 5,
+   "within_document": 5,
+   "across_documents": 0,
+   "mean_sources": 10.17,
+   "mean_context_tokens": 6771,
+   "median_ms": 1631
+  },
+  "E": {
+   "profile": "experiment-graph-e-neighbours-v1",
+   "questions": 6,
+   "found_all": 5,
+   "found_any": 5,
+   "within_document": 5,
+   "across_documents": 0,
+   "mean_sources": 13,
+   "mean_context_tokens": 8500,
+   "median_ms": 1750
+  },
+  "L": {
+   "profile": "hybrid-estnltk-chat-v3",
+   "questions": 6,
+   "found_all": 5,
+   "found_any": 5,
+   "within_document": 5,
+   "across_documents": 0,
+   "mean_sources": 10.67,
+   "mean_context_tokens": 7654,
+   "median_ms": 1786
+  },
+  "N": {
+   "profile": "hybrid-estnltk-chat-v4",
+   "questions": 6,
+   "found_all": 5,
+   "found_any": 5,
+   "within_document": 5,
+   "across_documents": 0,
+   "mean_sources": 11,
+   "mean_context_tokens": 7867,
+   "median_ms": 1577
+  },
+  "V": {
+   "profile": "hybrid-estnltk-chat-v1",
+   "questions": 6,
+   "found_all": 5,
+   "found_any": 5,
+   "within_document": 5,
+   "across_documents": 0,
+   "mean_sources": 9,
+   "mean_context_tokens": 6940,
+   "median_ms": 1569
+  },
+  "R": {
+   "profile": "simulated-chat-v1-plus-pointers",
+   "questions": 6,
+   "found_all": 5,
+   "found_any": 5,
+   "within_document": 5,
+   "across_documents": 0,
+   "mean_sources": 11.67,
+   "mean_context_tokens": 8665,
+   "median_ms": 0
+  },
+  "S": {
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "questions": 6,
+   "found_all": 5,
+   "found_any": 5,
+   "within_document": 5,
+   "across_documents": 0,
+   "mean_sources": 10.17,
+   "mean_context_tokens": 7597,
+   "median_ms": 0
+  }
+ },
+ "shapes": {},
+ "rows": [
+  {
+   "question": "reclaim-limitation",
+   "kind": "within_document",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 9759,
+   "found": [
+    {
+     "phrase": "aegumistähtaegade kohta sätestatut",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 3869,
+   "additions": [],
+   "selected": [
+    "chunk_8d422044a09b4e37d7b26194d0a111a47efab86663e785126f02051788e7b25a",
+    "chunk_3b96165e64cbf08c948e81c6a0517ce75a8c0769fe56acb56aa93af8f20f4a68",
+    "chunk_2782fee85b40ab4066f57ba9ae54bde90ea0faeba3ccb4e8128c295e4219996b",
+    "chunk_8ba3c3673dd4122d9b2893d690592dd85d0524a2cb226ec6ac456b7e5144cef0",
+    "chunk_5ada97013fc400f1814b0d49f7bf2e4833fcb936ef1a11fcbfbe0597d5744cf5",
+    "chunk_229683e9bc0d143eceaa6653b975c9f52b8914e48a55824d2337f742eab06183",
+    "chunk_e345707be4d6aab03fcc63b1946a218a249482b784baee4e87a15dbe7e7042fb",
+    "chunk_0364beb9e4fe3b297c451fc9d3c1d837d6104bc32c93fead5a8e40db758f29a7",
+    "chunk_eb2f91ad02094f2d7d7d722c59b74e68987ac1dad41029a3b7dc0308816d79ee"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "reclaim-limitation",
+   "kind": "within_document",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 1599,
+   "found": [
+    {
+     "phrase": "aegumistähtaegade kohta sätestatut",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 4605,
+   "additions": [],
+   "selected": [
+    "chunk_8d422044a09b4e37d7b26194d0a111a47efab86663e785126f02051788e7b25a",
+    "chunk_3b96165e64cbf08c948e81c6a0517ce75a8c0769fe56acb56aa93af8f20f4a68",
+    "chunk_2782fee85b40ab4066f57ba9ae54bde90ea0faeba3ccb4e8128c295e4219996b",
+    "chunk_8ba3c3673dd4122d9b2893d690592dd85d0524a2cb226ec6ac456b7e5144cef0",
+    "chunk_5ada97013fc400f1814b0d49f7bf2e4833fcb936ef1a11fcbfbe0597d5744cf5",
+    "chunk_229683e9bc0d143eceaa6653b975c9f52b8914e48a55824d2337f742eab06183",
+    "chunk_e345707be4d6aab03fcc63b1946a218a249482b784baee4e87a15dbe7e7042fb",
+    "chunk_0364beb9e4fe3b297c451fc9d3c1d837d6104bc32c93fead5a8e40db758f29a7",
+    "chunk_eb2f91ad02094f2d7d7d722c59b74e68987ac1dad41029a3b7dc0308816d79ee",
+    "chunk_fecedbb1746099ee2fac64d00614010af7b5c44a635de036b56f6c6b46a21d39",
+    "chunk_102a1f62784fdefba7da4ad3ebd83e401d801fcd3d06dd6b5337cd3df95866de",
+    "chunk_9b18543b01b4bfbcd789f72b2a5ff4b8f52d1ea93059fc8c47cc8b49186f50d8",
+    "chunk_7723666cef9876e3a53b1f147a4d2be2d2065d878906433b9b814556976466c5"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "reclaim-limitation",
+   "kind": "within_document",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 1506,
+   "found": [
+    {
+     "phrase": "aegumistähtaegade kohta sätestatut",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 3920,
+   "additions": [],
+   "selected": [
+    "chunk_8d422044a09b4e37d7b26194d0a111a47efab86663e785126f02051788e7b25a",
+    "chunk_3b96165e64cbf08c948e81c6a0517ce75a8c0769fe56acb56aa93af8f20f4a68",
+    "chunk_2782fee85b40ab4066f57ba9ae54bde90ea0faeba3ccb4e8128c295e4219996b",
+    "chunk_8ba3c3673dd4122d9b2893d690592dd85d0524a2cb226ec6ac456b7e5144cef0",
+    "chunk_5ada97013fc400f1814b0d49f7bf2e4833fcb936ef1a11fcbfbe0597d5744cf5",
+    "chunk_229683e9bc0d143eceaa6653b975c9f52b8914e48a55824d2337f742eab06183",
+    "chunk_e345707be4d6aab03fcc63b1946a218a249482b784baee4e87a15dbe7e7042fb",
+    "chunk_0364beb9e4fe3b297c451fc9d3c1d837d6104bc32c93fead5a8e40db758f29a7",
+    "chunk_eb2f91ad02094f2d7d7d722c59b74e68987ac1dad41029a3b7dc0308816d79ee"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "reclaim-limitation",
+   "kind": "within_document",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 1596,
+   "found": [
+    {
+     "phrase": "aegumistähtaegade kohta sätestatut",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 12,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 3
+   },
+   "context_tokens": 5700,
+   "additions": [
+    {
+     "title": "Sotsiaalseadustiku üldosa seadus",
+     "reason": "cross_reference",
+     "section": "27"
+    },
+    {
+     "title": "Sotsiaalseadustiku üldosa seadus",
+     "reason": "cross_reference",
+     "section": "15"
+    },
+    {
+     "title": "Riigilõivuseadus",
+     "reason": "cross_reference",
+     "section": "15"
+    }
+   ],
+   "selected": [
+    "chunk_8d422044a09b4e37d7b26194d0a111a47efab86663e785126f02051788e7b25a",
+    "chunk_3b96165e64cbf08c948e81c6a0517ce75a8c0769fe56acb56aa93af8f20f4a68",
+    "chunk_2782fee85b40ab4066f57ba9ae54bde90ea0faeba3ccb4e8128c295e4219996b",
+    "chunk_8ba3c3673dd4122d9b2893d690592dd85d0524a2cb226ec6ac456b7e5144cef0",
+    "chunk_5ada97013fc400f1814b0d49f7bf2e4833fcb936ef1a11fcbfbe0597d5744cf5",
+    "chunk_229683e9bc0d143eceaa6653b975c9f52b8914e48a55824d2337f742eab06183",
+    "chunk_e345707be4d6aab03fcc63b1946a218a249482b784baee4e87a15dbe7e7042fb",
+    "chunk_0364beb9e4fe3b297c451fc9d3c1d837d6104bc32c93fead5a8e40db758f29a7",
+    "chunk_eb2f91ad02094f2d7d7d722c59b74e68987ac1dad41029a3b7dc0308816d79ee",
+    "chunk_6162214a16d0b6147a55196f706a4287820f2be76ed657825a2a76627883720e",
+    "chunk_e4ae6cad5d5eea12eb8b4c2f7ca300c0a212915efc1ecea76144e538c2c58ca1",
+    "chunk_642444212dbbeaa30344a534a14a81c4b3b552a3fe8be0a87a8aa79d8af161e1"
+   ],
+   "cross_references": {
+    "candidates": 3,
+    "additions": 3,
+    "sections": [
+     "27",
+     "15",
+     "15"
+    ]
+   },
+   "named_act_references": null
+  },
+  {
+   "question": "reclaim-limitation",
+   "kind": "within_document",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 1580,
+   "found": [
+    {
+     "phrase": "aegumistähtaegade kohta sätestatut",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 5424,
+   "additions": [
+    {
+     "title": "Teekond erilise lapse kõrval",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Teekond erilise lapse kõrval",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Kuidas vastata inimese pöördumisele",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Kuidas vastata inimese pöördumisele",
+     "reason": "structural_expansion"
+    }
+   ],
+   "selected": [
+    "chunk_8d422044a09b4e37d7b26194d0a111a47efab86663e785126f02051788e7b25a",
+    "chunk_3b96165e64cbf08c948e81c6a0517ce75a8c0769fe56acb56aa93af8f20f4a68",
+    "chunk_2782fee85b40ab4066f57ba9ae54bde90ea0faeba3ccb4e8128c295e4219996b",
+    "chunk_8ba3c3673dd4122d9b2893d690592dd85d0524a2cb226ec6ac456b7e5144cef0",
+    "chunk_5ada97013fc400f1814b0d49f7bf2e4833fcb936ef1a11fcbfbe0597d5744cf5",
+    "chunk_229683e9bc0d143eceaa6653b975c9f52b8914e48a55824d2337f742eab06183",
+    "chunk_e345707be4d6aab03fcc63b1946a218a249482b784baee4e87a15dbe7e7042fb",
+    "chunk_0364beb9e4fe3b297c451fc9d3c1d837d6104bc32c93fead5a8e40db758f29a7",
+    "chunk_eb2f91ad02094f2d7d7d722c59b74e68987ac1dad41029a3b7dc0308816d79ee",
+    "chunk_57173b0941afa3506eb777bbd9f6511ef56cb496512f7b2dcc7caae9a75b2291",
+    "chunk_8204ecf6239826d05226505ce00018d038b33e82b7032552e758853bd4937c07",
+    "chunk_373b743f3a01a894a7ee2a925a4f9b56ff58be383cee18ec2f62e6415cdd18cf",
+    "chunk_8619aedf503136b6c9c6a21a3f849658235c76bb534e57a934b98b1fa198dc09"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "reclaim-limitation",
+   "kind": "within_document",
+   "arm": "L",
+   "profile": "hybrid-estnltk-chat-v3",
+   "ms": 1492,
+   "found": [
+    {
+     "phrase": "aegumistähtaegade kohta sätestatut",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 12,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 3
+   },
+   "context_tokens": 5751,
+   "additions": [
+    {
+     "title": "Sotsiaalseadustiku üldosa seadus",
+     "reason": "cross_reference",
+     "section": "27"
+    },
+    {
+     "title": "Sotsiaalseadustiku üldosa seadus",
+     "reason": "cross_reference",
+     "section": "15"
+    },
+    {
+     "title": "Riigilõivuseadus",
+     "reason": "cross_reference",
+     "section": "15"
+    }
+   ],
+   "selected": [
+    "chunk_8d422044a09b4e37d7b26194d0a111a47efab86663e785126f02051788e7b25a",
+    "chunk_3b96165e64cbf08c948e81c6a0517ce75a8c0769fe56acb56aa93af8f20f4a68",
+    "chunk_2782fee85b40ab4066f57ba9ae54bde90ea0faeba3ccb4e8128c295e4219996b",
+    "chunk_8ba3c3673dd4122d9b2893d690592dd85d0524a2cb226ec6ac456b7e5144cef0",
+    "chunk_5ada97013fc400f1814b0d49f7bf2e4833fcb936ef1a11fcbfbe0597d5744cf5",
+    "chunk_229683e9bc0d143eceaa6653b975c9f52b8914e48a55824d2337f742eab06183",
+    "chunk_e345707be4d6aab03fcc63b1946a218a249482b784baee4e87a15dbe7e7042fb",
+    "chunk_0364beb9e4fe3b297c451fc9d3c1d837d6104bc32c93fead5a8e40db758f29a7",
+    "chunk_eb2f91ad02094f2d7d7d722c59b74e68987ac1dad41029a3b7dc0308816d79ee",
+    "chunk_6162214a16d0b6147a55196f706a4287820f2be76ed657825a2a76627883720e",
+    "chunk_e4ae6cad5d5eea12eb8b4c2f7ca300c0a212915efc1ecea76144e538c2c58ca1",
+    "chunk_642444212dbbeaa30344a534a14a81c4b3b552a3fe8be0a87a8aa79d8af161e1"
+   ],
+   "cross_references": {
+    "candidates": 3,
+    "additions": 3,
+    "sections": [
+     "27",
+     "15",
+     "15"
+    ]
+   },
+   "named_act_references": null
+  },
+  {
+   "question": "reclaim-limitation",
+   "kind": "within_document",
+   "arm": "N",
+   "profile": "hybrid-estnltk-chat-v4",
+   "ms": 1485,
+   "found": [
+    {
+     "phrase": "aegumistähtaegade kohta sätestatut",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 12,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 3
+   },
+   "context_tokens": 5751,
+   "additions": [
+    {
+     "title": "Sotsiaalseadustiku üldosa seadus",
+     "reason": "cross_reference",
+     "section": "27"
+    },
+    {
+     "title": "Sotsiaalseadustiku üldosa seadus",
+     "reason": "cross_reference",
+     "section": "15"
+    },
+    {
+     "title": "Riigilõivuseadus",
+     "reason": "cross_reference",
+     "section": "15"
+    }
+   ],
+   "selected": [
+    "chunk_8d422044a09b4e37d7b26194d0a111a47efab86663e785126f02051788e7b25a",
+    "chunk_3b96165e64cbf08c948e81c6a0517ce75a8c0769fe56acb56aa93af8f20f4a68",
+    "chunk_2782fee85b40ab4066f57ba9ae54bde90ea0faeba3ccb4e8128c295e4219996b",
+    "chunk_8ba3c3673dd4122d9b2893d690592dd85d0524a2cb226ec6ac456b7e5144cef0",
+    "chunk_5ada97013fc400f1814b0d49f7bf2e4833fcb936ef1a11fcbfbe0597d5744cf5",
+    "chunk_229683e9bc0d143eceaa6653b975c9f52b8914e48a55824d2337f742eab06183",
+    "chunk_e345707be4d6aab03fcc63b1946a218a249482b784baee4e87a15dbe7e7042fb",
+    "chunk_0364beb9e4fe3b297c451fc9d3c1d837d6104bc32c93fead5a8e40db758f29a7",
+    "chunk_eb2f91ad02094f2d7d7d722c59b74e68987ac1dad41029a3b7dc0308816d79ee",
+    "chunk_6162214a16d0b6147a55196f706a4287820f2be76ed657825a2a76627883720e",
+    "chunk_e4ae6cad5d5eea12eb8b4c2f7ca300c0a212915efc1ecea76144e538c2c58ca1",
+    "chunk_642444212dbbeaa30344a534a14a81c4b3b552a3fe8be0a87a8aa79d8af161e1"
+   ],
+   "cross_references": {
+    "candidates": 3,
+    "additions": 3,
+    "sections": [
+     "27",
+     "15",
+     "15"
+    ]
+   },
+   "named_act_references": {
+    "candidates": 0,
+    "additions": 0,
+    "acts": []
+   }
+  },
+  {
+   "question": "reclaim-limitation",
+   "kind": "within_document",
+   "arm": "V",
+   "profile": "hybrid-estnltk-chat-v1",
+   "ms": 1466,
+   "found": [
+    {
+     "phrase": "aegumistähtaegade kohta sätestatut",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 3920,
+   "additions": [],
+   "selected": [
+    "chunk_8d422044a09b4e37d7b26194d0a111a47efab86663e785126f02051788e7b25a",
+    "chunk_3b96165e64cbf08c948e81c6a0517ce75a8c0769fe56acb56aa93af8f20f4a68",
+    "chunk_2782fee85b40ab4066f57ba9ae54bde90ea0faeba3ccb4e8128c295e4219996b",
+    "chunk_8ba3c3673dd4122d9b2893d690592dd85d0524a2cb226ec6ac456b7e5144cef0",
+    "chunk_5ada97013fc400f1814b0d49f7bf2e4833fcb936ef1a11fcbfbe0597d5744cf5",
+    "chunk_229683e9bc0d143eceaa6653b975c9f52b8914e48a55824d2337f742eab06183",
+    "chunk_e345707be4d6aab03fcc63b1946a218a249482b784baee4e87a15dbe7e7042fb",
+    "chunk_0364beb9e4fe3b297c451fc9d3c1d837d6104bc32c93fead5a8e40db758f29a7",
+    "chunk_eb2f91ad02094f2d7d7d722c59b74e68987ac1dad41029a3b7dc0308816d79ee"
+   ],
+   "cross_references": null,
+   "named_act_references": null,
+   "seeds": [
+    {
+     "act": "130062026031",
+     "section": "31",
+     "passage": 31
+    },
+    {
+     "act": "130062026031",
+     "section": "32",
+     "passage": 32
+    },
+    {
+     "act": "130062026031",
+     "section": "34",
+     "passage": 34
+    },
+    {
+     "act": "130062026031",
+     "section": "35",
+     "passage": 35
+    },
+    {
+     "act": "130062026031",
+     "section": "33",
+     "passage": 33
+    },
+    {
+     "act": "106072023031",
+     "section": "69",
+     "passage": 68
+    },
+    {
+     "act": "111072026166",
+     "section": "12",
+     "passage": 11
+    }
+   ]
+  },
+  {
+   "question": "reclaim-limitation",
+   "kind": "within_document",
+   "arm": "R",
+   "profile": "simulated-chat-v1-plus-pointers",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "aegumistähtaegade kohta sätestatut",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 12,
+   "reasons": {},
+   "context_tokens": 5422,
+   "additions": [
+    {
+     "act": "130062026031",
+     "passage": 26,
+     "reason": "first_passage",
+     "exception": false,
+     "from": "32/5",
+     "to": "27/null"
+    },
+    {
+     "act": "130062026031",
+     "passage": 14,
+     "reason": "first_passage",
+     "exception": false,
+     "from": "34/1",
+     "to": "15/null"
+    },
+    {
+     "act": "111072026166",
+     "passage": 14,
+     "reason": "first_passage",
+     "exception": false,
+     "from": "12/1",
+     "to": "15/null"
+    }
+   ],
+   "candidates": 3,
+   "cross_references": null
+  },
+  {
+   "question": "reclaim-limitation",
+   "kind": "within_document",
+   "arm": "S",
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "aegumistähtaegade kohta sätestatut",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 12,
+   "reasons": {},
+   "context_tokens": 5422,
+   "additions": [
+    {
+     "act": "130062026031",
+     "passage": 26,
+     "reason": "first_passage",
+     "exception": false,
+     "from": "32/5",
+     "to": "27/null"
+    },
+    {
+     "act": "130062026031",
+     "passage": 14,
+     "reason": "first_passage",
+     "exception": false,
+     "from": "34/1",
+     "to": "15/null"
+    },
+    {
+     "act": "111072026166",
+     "passage": 14,
+     "reason": "first_passage",
+     "exception": false,
+     "from": "12/1",
+     "to": "15/null"
+    }
+   ],
+   "candidates": 3,
+   "cross_references": null
+  },
+  {
+   "question": "reclaim-enforcement",
+   "kind": "within_document",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 7837,
+   "found": [
+    {
+     "phrase": "Tagasinõude ettekirjutuse sundtäitmise aegumistähtaeg on seitse aastat",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 5242,
+   "additions": [],
+   "selected": [
+    "chunk_3b96165e64cbf08c948e81c6a0517ce75a8c0769fe56acb56aa93af8f20f4a68",
+    "chunk_8d422044a09b4e37d7b26194d0a111a47efab86663e785126f02051788e7b25a",
+    "chunk_8ba3c3673dd4122d9b2893d690592dd85d0524a2cb226ec6ac456b7e5144cef0",
+    "chunk_2595ecc674801304183e66281db3260deace1fc2ae600cdc96b90e57d093828f",
+    "chunk_cf0957d8d12002e887bdd138d07e3a2c30b04e4823475bb637f77f0d7be7db47",
+    "chunk_b4ae4910db3c36985efb54e1bc52c0596bf7fe4b7e679a48295ab20562d211da",
+    "chunk_2782fee85b40ab4066f57ba9ae54bde90ea0faeba3ccb4e8128c295e4219996b",
+    "chunk_bdaea3084eb54acba04f10a3a00461882b7214b976e8d1645db3701adfd6e015",
+    "chunk_9cd246bc654d9d82f06d9d4e2f413a0e5d04d6e903e4aced80d8bdb6513d62d7"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "reclaim-enforcement",
+   "kind": "within_document",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 1782,
+   "found": [
+    {
+     "phrase": "Tagasinõude ettekirjutuse sundtäitmise aegumistähtaeg on seitse aastat",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 6653,
+   "additions": [],
+   "selected": [
+    "chunk_3b96165e64cbf08c948e81c6a0517ce75a8c0769fe56acb56aa93af8f20f4a68",
+    "chunk_8d422044a09b4e37d7b26194d0a111a47efab86663e785126f02051788e7b25a",
+    "chunk_8ba3c3673dd4122d9b2893d690592dd85d0524a2cb226ec6ac456b7e5144cef0",
+    "chunk_2595ecc674801304183e66281db3260deace1fc2ae600cdc96b90e57d093828f",
+    "chunk_cf0957d8d12002e887bdd138d07e3a2c30b04e4823475bb637f77f0d7be7db47",
+    "chunk_b4ae4910db3c36985efb54e1bc52c0596bf7fe4b7e679a48295ab20562d211da",
+    "chunk_2782fee85b40ab4066f57ba9ae54bde90ea0faeba3ccb4e8128c295e4219996b",
+    "chunk_bdaea3084eb54acba04f10a3a00461882b7214b976e8d1645db3701adfd6e015",
+    "chunk_9cd246bc654d9d82f06d9d4e2f413a0e5d04d6e903e4aced80d8bdb6513d62d7",
+    "chunk_030638445402e598c0b6e3286c057eed0466e8bf37380292e7ce86a39771a0dc",
+    "chunk_2f7930f0b732a24eb817e079dc49df9bd5fa2ac0227a23f341500955679206c7",
+    "chunk_eac61e912eeb82dc841f6b24ab510383105f218a2c57ca6c3bf0e03055445ef2",
+    "chunk_e3ba980f4a2c98397d2f8fb5b4e5e37413c163fae55a03e6628341ca2ca719e2"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "reclaim-enforcement",
+   "kind": "within_document",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 1657,
+   "found": [
+    {
+     "phrase": "Tagasinõude ettekirjutuse sundtäitmise aegumistähtaeg on seitse aastat",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 5293,
+   "additions": [],
+   "selected": [
+    "chunk_3b96165e64cbf08c948e81c6a0517ce75a8c0769fe56acb56aa93af8f20f4a68",
+    "chunk_8d422044a09b4e37d7b26194d0a111a47efab86663e785126f02051788e7b25a",
+    "chunk_8ba3c3673dd4122d9b2893d690592dd85d0524a2cb226ec6ac456b7e5144cef0",
+    "chunk_2595ecc674801304183e66281db3260deace1fc2ae600cdc96b90e57d093828f",
+    "chunk_cf0957d8d12002e887bdd138d07e3a2c30b04e4823475bb637f77f0d7be7db47",
+    "chunk_b4ae4910db3c36985efb54e1bc52c0596bf7fe4b7e679a48295ab20562d211da",
+    "chunk_2782fee85b40ab4066f57ba9ae54bde90ea0faeba3ccb4e8128c295e4219996b",
+    "chunk_bdaea3084eb54acba04f10a3a00461882b7214b976e8d1645db3701adfd6e015",
+    "chunk_9cd246bc654d9d82f06d9d4e2f413a0e5d04d6e903e4aced80d8bdb6513d62d7"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "reclaim-enforcement",
+   "kind": "within_document",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 1781,
+   "found": [
+    {
+     "phrase": "Tagasinõude ettekirjutuse sundtäitmise aegumistähtaeg on seitse aastat",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 11,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 2
+   },
+   "context_tokens": 6278,
+   "additions": [
+    {
+     "title": "Sotsiaalseadustiku üldosa seadus",
+     "reason": "cross_reference",
+     "section": "27"
+    },
+    {
+     "title": "Sotsiaalseadustiku üldosa seadus",
+     "reason": "cross_reference",
+     "section": "15"
+    }
+   ],
+   "selected": [
+    "chunk_3b96165e64cbf08c948e81c6a0517ce75a8c0769fe56acb56aa93af8f20f4a68",
+    "chunk_8d422044a09b4e37d7b26194d0a111a47efab86663e785126f02051788e7b25a",
+    "chunk_8ba3c3673dd4122d9b2893d690592dd85d0524a2cb226ec6ac456b7e5144cef0",
+    "chunk_2595ecc674801304183e66281db3260deace1fc2ae600cdc96b90e57d093828f",
+    "chunk_cf0957d8d12002e887bdd138d07e3a2c30b04e4823475bb637f77f0d7be7db47",
+    "chunk_b4ae4910db3c36985efb54e1bc52c0596bf7fe4b7e679a48295ab20562d211da",
+    "chunk_2782fee85b40ab4066f57ba9ae54bde90ea0faeba3ccb4e8128c295e4219996b",
+    "chunk_bdaea3084eb54acba04f10a3a00461882b7214b976e8d1645db3701adfd6e015",
+    "chunk_9cd246bc654d9d82f06d9d4e2f413a0e5d04d6e903e4aced80d8bdb6513d62d7",
+    "chunk_6162214a16d0b6147a55196f706a4287820f2be76ed657825a2a76627883720e",
+    "chunk_e4ae6cad5d5eea12eb8b4c2f7ca300c0a212915efc1ecea76144e538c2c58ca1"
+   ],
+   "cross_references": {
+    "candidates": 2,
+    "additions": 2,
+    "sections": [
+     "27",
+     "15"
+    ]
+   },
+   "named_act_references": null
+  },
+  {
+   "question": "reclaim-enforcement",
+   "kind": "within_document",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 1847,
+   "found": [
+    {
+     "phrase": "Tagasinõude ettekirjutuse sundtäitmise aegumistähtaeg on seitse aastat",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 7723,
+   "additions": [
+    {
+     "title": "Võlanõustamisteenus aastatel 2018–2023",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Kohaliku omavalitsuse väljakutsed sotsiaalteenuste osutamisel",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Kohaliku omavalitsuse väljakutsed sotsiaalteenuste osutamisel",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Abivajaja omaosalus sotsiaalteenuse eest tasumisel",
+     "reason": "structural_expansion"
+    }
+   ],
+   "selected": [
+    "chunk_3b96165e64cbf08c948e81c6a0517ce75a8c0769fe56acb56aa93af8f20f4a68",
+    "chunk_8d422044a09b4e37d7b26194d0a111a47efab86663e785126f02051788e7b25a",
+    "chunk_8ba3c3673dd4122d9b2893d690592dd85d0524a2cb226ec6ac456b7e5144cef0",
+    "chunk_2595ecc674801304183e66281db3260deace1fc2ae600cdc96b90e57d093828f",
+    "chunk_cf0957d8d12002e887bdd138d07e3a2c30b04e4823475bb637f77f0d7be7db47",
+    "chunk_b4ae4910db3c36985efb54e1bc52c0596bf7fe4b7e679a48295ab20562d211da",
+    "chunk_2782fee85b40ab4066f57ba9ae54bde90ea0faeba3ccb4e8128c295e4219996b",
+    "chunk_bdaea3084eb54acba04f10a3a00461882b7214b976e8d1645db3701adfd6e015",
+    "chunk_9cd246bc654d9d82f06d9d4e2f413a0e5d04d6e903e4aced80d8bdb6513d62d7",
+    "chunk_916fd9547814d9c56c631853b7c62251083711c6ce548c0597d358fc4c070152",
+    "chunk_58d4270eab7e0e87c49f171a5c79876e571e9422f949382deaf634aba14c9158",
+    "chunk_d8b62fdade17be031b98f9d283b50a8eac3b2d36664f7dcf6e05c0023aae3299",
+    "chunk_498357ba30b54533e0f5d3d9c4b75a0fd2498c8c6ba9f3b52c14be705c68b697"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "reclaim-enforcement",
+   "kind": "within_document",
+   "arm": "L",
+   "profile": "hybrid-estnltk-chat-v3",
+   "ms": 1786,
+   "found": [
+    {
+     "phrase": "Tagasinõude ettekirjutuse sundtäitmise aegumistähtaeg on seitse aastat",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 11,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 2
+   },
+   "context_tokens": 6329,
+   "additions": [
+    {
+     "title": "Sotsiaalseadustiku üldosa seadus",
+     "reason": "cross_reference",
+     "section": "27"
+    },
+    {
+     "title": "Sotsiaalseadustiku üldosa seadus",
+     "reason": "cross_reference",
+     "section": "15"
+    }
+   ],
+   "selected": [
+    "chunk_3b96165e64cbf08c948e81c6a0517ce75a8c0769fe56acb56aa93af8f20f4a68",
+    "chunk_8d422044a09b4e37d7b26194d0a111a47efab86663e785126f02051788e7b25a",
+    "chunk_8ba3c3673dd4122d9b2893d690592dd85d0524a2cb226ec6ac456b7e5144cef0",
+    "chunk_2595ecc674801304183e66281db3260deace1fc2ae600cdc96b90e57d093828f",
+    "chunk_cf0957d8d12002e887bdd138d07e3a2c30b04e4823475bb637f77f0d7be7db47",
+    "chunk_b4ae4910db3c36985efb54e1bc52c0596bf7fe4b7e679a48295ab20562d211da",
+    "chunk_2782fee85b40ab4066f57ba9ae54bde90ea0faeba3ccb4e8128c295e4219996b",
+    "chunk_bdaea3084eb54acba04f10a3a00461882b7214b976e8d1645db3701adfd6e015",
+    "chunk_9cd246bc654d9d82f06d9d4e2f413a0e5d04d6e903e4aced80d8bdb6513d62d7",
+    "chunk_6162214a16d0b6147a55196f706a4287820f2be76ed657825a2a76627883720e",
+    "chunk_e4ae6cad5d5eea12eb8b4c2f7ca300c0a212915efc1ecea76144e538c2c58ca1"
+   ],
+   "cross_references": {
+    "candidates": 2,
+    "additions": 2,
+    "sections": [
+     "27",
+     "15"
+    ]
+   },
+   "named_act_references": null
+  },
+  {
+   "question": "reclaim-enforcement",
+   "kind": "within_document",
+   "arm": "N",
+   "profile": "hybrid-estnltk-chat-v4",
+   "ms": 1751,
+   "found": [
+    {
+     "phrase": "Tagasinõude ettekirjutuse sundtäitmise aegumistähtaeg on seitse aastat",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 11,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 2
+   },
+   "context_tokens": 6329,
+   "additions": [
+    {
+     "title": "Sotsiaalseadustiku üldosa seadus",
+     "reason": "cross_reference",
+     "section": "27"
+    },
+    {
+     "title": "Sotsiaalseadustiku üldosa seadus",
+     "reason": "cross_reference",
+     "section": "15"
+    }
+   ],
+   "selected": [
+    "chunk_3b96165e64cbf08c948e81c6a0517ce75a8c0769fe56acb56aa93af8f20f4a68",
+    "chunk_8d422044a09b4e37d7b26194d0a111a47efab86663e785126f02051788e7b25a",
+    "chunk_8ba3c3673dd4122d9b2893d690592dd85d0524a2cb226ec6ac456b7e5144cef0",
+    "chunk_2595ecc674801304183e66281db3260deace1fc2ae600cdc96b90e57d093828f",
+    "chunk_cf0957d8d12002e887bdd138d07e3a2c30b04e4823475bb637f77f0d7be7db47",
+    "chunk_b4ae4910db3c36985efb54e1bc52c0596bf7fe4b7e679a48295ab20562d211da",
+    "chunk_2782fee85b40ab4066f57ba9ae54bde90ea0faeba3ccb4e8128c295e4219996b",
+    "chunk_bdaea3084eb54acba04f10a3a00461882b7214b976e8d1645db3701adfd6e015",
+    "chunk_9cd246bc654d9d82f06d9d4e2f413a0e5d04d6e903e4aced80d8bdb6513d62d7",
+    "chunk_6162214a16d0b6147a55196f706a4287820f2be76ed657825a2a76627883720e",
+    "chunk_e4ae6cad5d5eea12eb8b4c2f7ca300c0a212915efc1ecea76144e538c2c58ca1"
+   ],
+   "cross_references": {
+    "candidates": 2,
+    "additions": 2,
+    "sections": [
+     "27",
+     "15"
+    ]
+   },
+   "named_act_references": {
+    "candidates": 0,
+    "additions": 0,
+    "acts": []
+   }
+  },
+  {
+   "question": "reclaim-enforcement",
+   "kind": "within_document",
+   "arm": "V",
+   "profile": "hybrid-estnltk-chat-v1",
+   "ms": 1725,
+   "found": [
+    {
+     "phrase": "Tagasinõude ettekirjutuse sundtäitmise aegumistähtaeg on seitse aastat",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 5293,
+   "additions": [],
+   "selected": [
+    "chunk_3b96165e64cbf08c948e81c6a0517ce75a8c0769fe56acb56aa93af8f20f4a68",
+    "chunk_8d422044a09b4e37d7b26194d0a111a47efab86663e785126f02051788e7b25a",
+    "chunk_8ba3c3673dd4122d9b2893d690592dd85d0524a2cb226ec6ac456b7e5144cef0",
+    "chunk_2595ecc674801304183e66281db3260deace1fc2ae600cdc96b90e57d093828f",
+    "chunk_cf0957d8d12002e887bdd138d07e3a2c30b04e4823475bb637f77f0d7be7db47",
+    "chunk_b4ae4910db3c36985efb54e1bc52c0596bf7fe4b7e679a48295ab20562d211da",
+    "chunk_2782fee85b40ab4066f57ba9ae54bde90ea0faeba3ccb4e8128c295e4219996b",
+    "chunk_bdaea3084eb54acba04f10a3a00461882b7214b976e8d1645db3701adfd6e015",
+    "chunk_9cd246bc654d9d82f06d9d4e2f413a0e5d04d6e903e4aced80d8bdb6513d62d7"
+   ],
+   "cross_references": null,
+   "named_act_references": null,
+   "seeds": [
+    {
+     "act": "130062026031",
+     "section": "32",
+     "passage": 32
+    },
+    {
+     "act": "130062026031",
+     "section": "31",
+     "passage": 31
+    },
+    {
+     "act": "130062026031",
+     "section": "35",
+     "passage": 35
+    },
+    {
+     "act": "130062026031",
+     "section": "34",
+     "passage": 34
+    }
+   ]
+  },
+  {
+   "question": "reclaim-enforcement",
+   "kind": "within_document",
+   "arm": "R",
+   "profile": "simulated-chat-v1-plus-pointers",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "Tagasinõude ettekirjutuse sundtäitmise aegumistähtaeg on seitse aastat",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 11,
+   "reasons": {},
+   "context_tokens": 6130,
+   "additions": [
+    {
+     "act": "130062026031",
+     "passage": 26,
+     "reason": "first_passage",
+     "exception": false,
+     "from": "32/5",
+     "to": "27/null"
+    },
+    {
+     "act": "130062026031",
+     "passage": 14,
+     "reason": "first_passage",
+     "exception": false,
+     "from": "34/1",
+     "to": "15/null"
+    }
+   ],
+   "candidates": 2,
+   "cross_references": null
+  },
+  {
+   "question": "reclaim-enforcement",
+   "kind": "within_document",
+   "arm": "S",
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "Tagasinõude ettekirjutuse sundtäitmise aegumistähtaeg on seitse aastat",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 11,
+   "reasons": {},
+   "context_tokens": 6130,
+   "additions": [
+    {
+     "act": "130062026031",
+     "passage": 26,
+     "reason": "first_passage",
+     "exception": false,
+     "from": "32/5",
+     "to": "27/null"
+    },
+    {
+     "act": "130062026031",
+     "passage": 14,
+     "reason": "first_passage",
+     "exception": false,
+     "from": "34/1",
+     "to": "15/null"
+    }
+   ],
+   "candidates": 2,
+   "cross_references": null
+  },
+  {
+   "question": "coach-reports-child",
+   "kind": "within_document",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 5008,
+   "found": [
+    {
+     "phrase": "edastades vähimas vajalikus ulatuses",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 4380,
+   "additions": [],
+   "selected": [
+    "chunk_4a44a0264f36bb66426498c00d1c676366f131711a06bf4cfaa17dc8c41d793d",
+    "chunk_b4742fe65f37a8720c099afc3dfc2788ae2d25f01c1c3301f0f9dbb029486227",
+    "chunk_8b3ccdeb576a07d12868961b5f08db11e3ccb57f2bbe9880c9293ed05823debc",
+    "chunk_6ed9c47b20d04075ee398e220aa82c687a3739bcd094d091870923cd0cc17891",
+    "chunk_58c02c88c2a83be8ab3018eeaeeac1d5f0463fc2978f8aefdf3e96da01a6fed7",
+    "chunk_e5e2f00a4ea863d93aa54cf11dc2056d7e1bf285cfe028bf9a57a353f1993bb1",
+    "chunk_d1c997ffed2a28e324a7d6de867d5c9f9a603f8ddf51b24c92fe89dcca0d6ca0",
+    "chunk_112a70f2100d374e59e2cdc8a0cc505514ce9f4680a350a43b885eb1ecbc8d50",
+    "chunk_f0558a534a3ff3ede0c15e638ab8c1926faa464ace16dcdb8f3c0011100088ac"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "coach-reports-child",
+   "kind": "within_document",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 1392,
+   "found": [
+    {
+     "phrase": "edastades vähimas vajalikus ulatuses",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 6741,
+   "additions": [],
+   "selected": [
+    "chunk_4a44a0264f36bb66426498c00d1c676366f131711a06bf4cfaa17dc8c41d793d",
+    "chunk_b4742fe65f37a8720c099afc3dfc2788ae2d25f01c1c3301f0f9dbb029486227",
+    "chunk_8b3ccdeb576a07d12868961b5f08db11e3ccb57f2bbe9880c9293ed05823debc",
+    "chunk_6ed9c47b20d04075ee398e220aa82c687a3739bcd094d091870923cd0cc17891",
+    "chunk_58c02c88c2a83be8ab3018eeaeeac1d5f0463fc2978f8aefdf3e96da01a6fed7",
+    "chunk_e5e2f00a4ea863d93aa54cf11dc2056d7e1bf285cfe028bf9a57a353f1993bb1",
+    "chunk_d1c997ffed2a28e324a7d6de867d5c9f9a603f8ddf51b24c92fe89dcca0d6ca0",
+    "chunk_112a70f2100d374e59e2cdc8a0cc505514ce9f4680a350a43b885eb1ecbc8d50",
+    "chunk_f0558a534a3ff3ede0c15e638ab8c1926faa464ace16dcdb8f3c0011100088ac",
+    "chunk_d4e74805a13ce8ff20e342e942694a92aeb58a771a60fef523b3eb191c33aa03",
+    "chunk_9366ff0146300ffb8ae7f67929dd1fc48266938a3c7caba17f68add33dd2e59a",
+    "chunk_8acc5d6ded30f789dd9a47cfe5df4672f6a315adc5b78eb26b991ae510ada52c",
+    "chunk_291e484ee742e9727f49874a71d4574cacc637507f2f0162b8ec37df47c14a15"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "coach-reports-child",
+   "kind": "within_document",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 1281,
+   "found": [
+    {
+     "phrase": "edastades vähimas vajalikus ulatuses",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 4431,
+   "additions": [],
+   "selected": [
+    "chunk_4a44a0264f36bb66426498c00d1c676366f131711a06bf4cfaa17dc8c41d793d",
+    "chunk_b4742fe65f37a8720c099afc3dfc2788ae2d25f01c1c3301f0f9dbb029486227",
+    "chunk_8b3ccdeb576a07d12868961b5f08db11e3ccb57f2bbe9880c9293ed05823debc",
+    "chunk_6ed9c47b20d04075ee398e220aa82c687a3739bcd094d091870923cd0cc17891",
+    "chunk_58c02c88c2a83be8ab3018eeaeeac1d5f0463fc2978f8aefdf3e96da01a6fed7",
+    "chunk_e5e2f00a4ea863d93aa54cf11dc2056d7e1bf285cfe028bf9a57a353f1993bb1",
+    "chunk_d1c997ffed2a28e324a7d6de867d5c9f9a603f8ddf51b24c92fe89dcca0d6ca0",
+    "chunk_112a70f2100d374e59e2cdc8a0cc505514ce9f4680a350a43b885eb1ecbc8d50",
+    "chunk_f0558a534a3ff3ede0c15e638ab8c1926faa464ace16dcdb8f3c0011100088ac"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "coach-reports-child",
+   "kind": "within_document",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 1295,
+   "found": [
+    {
+     "phrase": "edastades vähimas vajalikus ulatuses",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 4380,
+   "additions": [],
+   "selected": [
+    "chunk_4a44a0264f36bb66426498c00d1c676366f131711a06bf4cfaa17dc8c41d793d",
+    "chunk_b4742fe65f37a8720c099afc3dfc2788ae2d25f01c1c3301f0f9dbb029486227",
+    "chunk_8b3ccdeb576a07d12868961b5f08db11e3ccb57f2bbe9880c9293ed05823debc",
+    "chunk_6ed9c47b20d04075ee398e220aa82c687a3739bcd094d091870923cd0cc17891",
+    "chunk_58c02c88c2a83be8ab3018eeaeeac1d5f0463fc2978f8aefdf3e96da01a6fed7",
+    "chunk_e5e2f00a4ea863d93aa54cf11dc2056d7e1bf285cfe028bf9a57a353f1993bb1",
+    "chunk_d1c997ffed2a28e324a7d6de867d5c9f9a603f8ddf51b24c92fe89dcca0d6ca0",
+    "chunk_112a70f2100d374e59e2cdc8a0cc505514ce9f4680a350a43b885eb1ecbc8d50",
+    "chunk_f0558a534a3ff3ede0c15e638ab8c1926faa464ace16dcdb8f3c0011100088ac"
+   ],
+   "cross_references": {
+    "candidates": 0,
+    "additions": 0,
+    "sections": []
+   },
+   "named_act_references": null
+  },
+  {
+   "question": "coach-reports-child",
+   "kind": "within_document",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 1355,
+   "found": [
+    {
+     "phrase": "edastades vähimas vajalikus ulatuses",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 6056,
+   "additions": [
+    {
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "reason": "structural_expansion"
+    }
+   ],
+   "selected": [
+    "chunk_4a44a0264f36bb66426498c00d1c676366f131711a06bf4cfaa17dc8c41d793d",
+    "chunk_b4742fe65f37a8720c099afc3dfc2788ae2d25f01c1c3301f0f9dbb029486227",
+    "chunk_8b3ccdeb576a07d12868961b5f08db11e3ccb57f2bbe9880c9293ed05823debc",
+    "chunk_6ed9c47b20d04075ee398e220aa82c687a3739bcd094d091870923cd0cc17891",
+    "chunk_58c02c88c2a83be8ab3018eeaeeac1d5f0463fc2978f8aefdf3e96da01a6fed7",
+    "chunk_e5e2f00a4ea863d93aa54cf11dc2056d7e1bf285cfe028bf9a57a353f1993bb1",
+    "chunk_d1c997ffed2a28e324a7d6de867d5c9f9a603f8ddf51b24c92fe89dcca0d6ca0",
+    "chunk_112a70f2100d374e59e2cdc8a0cc505514ce9f4680a350a43b885eb1ecbc8d50",
+    "chunk_f0558a534a3ff3ede0c15e638ab8c1926faa464ace16dcdb8f3c0011100088ac",
+    "chunk_9ceda3286b6210ee1e88b04c8bcdd65ac7f566543a0edf2b3d11bf0d9a99a0df",
+    "chunk_9366ff0146300ffb8ae7f67929dd1fc48266938a3c7caba17f68add33dd2e59a",
+    "chunk_7e21a1568c3074e8eddcae3edd6525e553527bf7b25b8d9e0185bd1ab9f0cd99",
+    "chunk_d69a917b3d395a56ac1976b64c35f42dd09baf55349bd5d3cfd86d8451ddff45"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "coach-reports-child",
+   "kind": "within_document",
+   "arm": "L",
+   "profile": "hybrid-estnltk-chat-v3",
+   "ms": 1232,
+   "found": [
+    {
+     "phrase": "edastades vähimas vajalikus ulatuses",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 4431,
+   "additions": [],
+   "selected": [
+    "chunk_4a44a0264f36bb66426498c00d1c676366f131711a06bf4cfaa17dc8c41d793d",
+    "chunk_b4742fe65f37a8720c099afc3dfc2788ae2d25f01c1c3301f0f9dbb029486227",
+    "chunk_8b3ccdeb576a07d12868961b5f08db11e3ccb57f2bbe9880c9293ed05823debc",
+    "chunk_6ed9c47b20d04075ee398e220aa82c687a3739bcd094d091870923cd0cc17891",
+    "chunk_58c02c88c2a83be8ab3018eeaeeac1d5f0463fc2978f8aefdf3e96da01a6fed7",
+    "chunk_e5e2f00a4ea863d93aa54cf11dc2056d7e1bf285cfe028bf9a57a353f1993bb1",
+    "chunk_d1c997ffed2a28e324a7d6de867d5c9f9a603f8ddf51b24c92fe89dcca0d6ca0",
+    "chunk_112a70f2100d374e59e2cdc8a0cc505514ce9f4680a350a43b885eb1ecbc8d50",
+    "chunk_f0558a534a3ff3ede0c15e638ab8c1926faa464ace16dcdb8f3c0011100088ac"
+   ],
+   "cross_references": {
+    "candidates": 0,
+    "additions": 0,
+    "sections": []
+   },
+   "named_act_references": null
+  },
+  {
+   "question": "coach-reports-child",
+   "kind": "within_document",
+   "arm": "N",
+   "profile": "hybrid-estnltk-chat-v4",
+   "ms": 1361,
+   "found": [
+    {
+     "phrase": "edastades vähimas vajalikus ulatuses",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 4996,
+   "additions": [
+    {
+     "title": "Lastekaitseseadus",
+     "reason": "cross_reference",
+     "section": "27",
+     "named_act": "document_d965143779b80298b88acd8c0a901855a9d35311c9265fa8df7e60f1163bef9d"
+    }
+   ],
+   "selected": [
+    "chunk_4a44a0264f36bb66426498c00d1c676366f131711a06bf4cfaa17dc8c41d793d",
+    "chunk_b4742fe65f37a8720c099afc3dfc2788ae2d25f01c1c3301f0f9dbb029486227",
+    "chunk_8b3ccdeb576a07d12868961b5f08db11e3ccb57f2bbe9880c9293ed05823debc",
+    "chunk_6ed9c47b20d04075ee398e220aa82c687a3739bcd094d091870923cd0cc17891",
+    "chunk_58c02c88c2a83be8ab3018eeaeeac1d5f0463fc2978f8aefdf3e96da01a6fed7",
+    "chunk_e5e2f00a4ea863d93aa54cf11dc2056d7e1bf285cfe028bf9a57a353f1993bb1",
+    "chunk_d1c997ffed2a28e324a7d6de867d5c9f9a603f8ddf51b24c92fe89dcca0d6ca0",
+    "chunk_112a70f2100d374e59e2cdc8a0cc505514ce9f4680a350a43b885eb1ecbc8d50",
+    "chunk_f0558a534a3ff3ede0c15e638ab8c1926faa464ace16dcdb8f3c0011100088ac",
+    "chunk_af9bfa806095fc0aed59f6a92df2140135d9b18e060d1c2e9742cc0091a2e1c1"
+   ],
+   "cross_references": {
+    "candidates": 0,
+    "additions": 0,
+    "sections": []
+   },
+   "named_act_references": {
+    "candidates": 2,
+    "additions": 1,
+    "acts": [
+     "document_d965143779b80298b88acd8c0a901855a9d35311c9265fa8df7e60f1163bef9d:27"
+    ]
+   }
+  },
+  {
+   "question": "coach-reports-child",
+   "kind": "within_document",
+   "arm": "V",
+   "profile": "hybrid-estnltk-chat-v1",
+   "ms": 1372,
+   "found": [
+    {
+     "phrase": "edastades vähimas vajalikus ulatuses",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 4431,
+   "additions": [],
+   "selected": [
+    "chunk_4a44a0264f36bb66426498c00d1c676366f131711a06bf4cfaa17dc8c41d793d",
+    "chunk_b4742fe65f37a8720c099afc3dfc2788ae2d25f01c1c3301f0f9dbb029486227",
+    "chunk_8b3ccdeb576a07d12868961b5f08db11e3ccb57f2bbe9880c9293ed05823debc",
+    "chunk_6ed9c47b20d04075ee398e220aa82c687a3739bcd094d091870923cd0cc17891",
+    "chunk_58c02c88c2a83be8ab3018eeaeeac1d5f0463fc2978f8aefdf3e96da01a6fed7",
+    "chunk_e5e2f00a4ea863d93aa54cf11dc2056d7e1bf285cfe028bf9a57a353f1993bb1",
+    "chunk_d1c997ffed2a28e324a7d6de867d5c9f9a603f8ddf51b24c92fe89dcca0d6ca0",
+    "chunk_112a70f2100d374e59e2cdc8a0cc505514ce9f4680a350a43b885eb1ecbc8d50",
+    "chunk_f0558a534a3ff3ede0c15e638ab8c1926faa464ace16dcdb8f3c0011100088ac"
+   ],
+   "cross_references": null,
+   "named_act_references": null,
+   "seeds": []
+  },
+  {
+   "question": "coach-reports-child",
+   "kind": "within_document",
+   "arm": "R",
+   "profile": "simulated-chat-v1-plus-pointers",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "edastades vähimas vajalikus ulatuses",
+     "in_evidence": false,
+     "in_seeds": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {},
+   "context_tokens": 4431,
+   "additions": [],
+   "candidates": 0,
+   "cross_references": null
+  },
+  {
+   "question": "coach-reports-child",
+   "kind": "within_document",
+   "arm": "S",
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "edastades vähimas vajalikus ulatuses",
+     "in_evidence": false,
+     "in_seeds": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {},
+   "context_tokens": 4431,
+   "additions": [],
+   "candidates": 0,
+   "cross_references": null
+  },
+  {
+   "question": "student-subsistence-own",
+   "kind": "within_document",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 5977,
+   "found": [
+    {
+     "phrase": "kuni 24-aastasel üliõpilasel, kes õpib ülikoolis, rakenduskõrgkoolis või kutseõppeasutuses",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 6896,
+   "additions": [],
+   "selected": [
+    "chunk_8f9b3c0b3d4be1a0b55b90dcd7013c75fadb24b1f659ffffab80073bb46f798b",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_2fc26d164a3e6a23fa9d5ef1453d7887b4b6abf0e14f38bacc0c501642763691",
+    "chunk_ab06125f5d43835f31af9e873251215c46e516dcb36907c88b422d77b2faa621",
+    "chunk_9a56be8cb50d39cb3af5a07d7e06a6ad8770f0913cb087df8d02a03a141868da",
+    "chunk_dc1b496172bf9ecff366d35c42c8808340214a110debd42b9846d7d22d030aa0",
+    "chunk_eed47e7b055d1f38e1f480bcd9e97b919c2fdac51eafcc62bf76280b545bc8e7",
+    "chunk_4d6bf7cacbc46e26738485a95342ba8da18482be817c3f15e149475b16086c84"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "student-subsistence-own",
+   "kind": "within_document",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 1756,
+   "found": [
+    {
+     "phrase": "kuni 24-aastasel üliõpilasel, kes õpib ülikoolis, rakenduskõrgkoolis või kutseõppeasutuses",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 9043,
+   "additions": [],
+   "selected": [
+    "chunk_8f9b3c0b3d4be1a0b55b90dcd7013c75fadb24b1f659ffffab80073bb46f798b",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_2fc26d164a3e6a23fa9d5ef1453d7887b4b6abf0e14f38bacc0c501642763691",
+    "chunk_ab06125f5d43835f31af9e873251215c46e516dcb36907c88b422d77b2faa621",
+    "chunk_9a56be8cb50d39cb3af5a07d7e06a6ad8770f0913cb087df8d02a03a141868da",
+    "chunk_dc1b496172bf9ecff366d35c42c8808340214a110debd42b9846d7d22d030aa0",
+    "chunk_eed47e7b055d1f38e1f480bcd9e97b919c2fdac51eafcc62bf76280b545bc8e7",
+    "chunk_4d6bf7cacbc46e26738485a95342ba8da18482be817c3f15e149475b16086c84",
+    "chunk_0ee71ddf92ba24afbe762579edaa7dec46e6adeb31b12cedb83647dad970554e",
+    "chunk_58f4b947cd56aba8d10e94db8fef96d2c74fa5591a1bc25c93b1ca01083e68d8",
+    "chunk_dfb5abaf7ff28ee997c8f27d4948e2d496056c813b0faf3755cc469efb9e8e51",
+    "chunk_4a1e6b5205025a7848cade15cdf34c18e86a11b5702da2f31a3687882182739e"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "student-subsistence-own",
+   "kind": "within_document",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 1741,
+   "found": [
+    {
+     "phrase": "kuni 24-aastasel üliõpilasel, kes õpib ülikoolis, rakenduskõrgkoolis või kutseõppeasutuses",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 1
+   },
+   "context_tokens": 10180,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    }
+   ],
+   "selected": [
+    "chunk_8f9b3c0b3d4be1a0b55b90dcd7013c75fadb24b1f659ffffab80073bb46f798b",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_2fc26d164a3e6a23fa9d5ef1453d7887b4b6abf0e14f38bacc0c501642763691",
+    "chunk_ab06125f5d43835f31af9e873251215c46e516dcb36907c88b422d77b2faa621",
+    "chunk_9a56be8cb50d39cb3af5a07d7e06a6ad8770f0913cb087df8d02a03a141868da",
+    "chunk_dc1b496172bf9ecff366d35c42c8808340214a110debd42b9846d7d22d030aa0",
+    "chunk_eed47e7b055d1f38e1f480bcd9e97b919c2fdac51eafcc62bf76280b545bc8e7",
+    "chunk_4d6bf7cacbc46e26738485a95342ba8da18482be817c3f15e149475b16086c84",
+    "chunk_0ee71ddf92ba24afbe762579edaa7dec46e6adeb31b12cedb83647dad970554e"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "student-subsistence-own",
+   "kind": "within_document",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 1631,
+   "found": [
+    {
+     "phrase": "kuni 24-aastasel üliõpilasel, kes õpib ülikoolis, rakenduskõrgkoolis või kutseõppeasutuses",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 7813,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "133"
+    }
+   ],
+   "selected": [
+    "chunk_8f9b3c0b3d4be1a0b55b90dcd7013c75fadb24b1f659ffffab80073bb46f798b",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_2fc26d164a3e6a23fa9d5ef1453d7887b4b6abf0e14f38bacc0c501642763691",
+    "chunk_ab06125f5d43835f31af9e873251215c46e516dcb36907c88b422d77b2faa621",
+    "chunk_9a56be8cb50d39cb3af5a07d7e06a6ad8770f0913cb087df8d02a03a141868da",
+    "chunk_dc1b496172bf9ecff366d35c42c8808340214a110debd42b9846d7d22d030aa0",
+    "chunk_eed47e7b055d1f38e1f480bcd9e97b919c2fdac51eafcc62bf76280b545bc8e7",
+    "chunk_4d6bf7cacbc46e26738485a95342ba8da18482be817c3f15e149475b16086c84",
+    "chunk_6ff726e1ebb808c77459dd586ffeea1db87a50224ae31b488b4756c170598747"
+   ],
+   "cross_references": {
+    "candidates": 1,
+    "additions": 1,
+    "sections": [
+     "133"
+    ]
+   },
+   "named_act_references": null
+  },
+  {
+   "question": "student-subsistence-own",
+   "kind": "within_document",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 1750,
+   "found": [
+    {
+     "phrase": "kuni 24-aastasel üliõpilasel, kes õpib ülikoolis, rakenduskõrgkoolis või kutseõppeasutuses",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 10119,
+   "additions": [
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Pikaajalised toimetulekutoetuse saajad vajavad rohkem tuge",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Pikaajalised toimetulekutoetuse saajad vajavad rohkem tuge",
+     "reason": "structural_expansion"
+    }
+   ],
+   "selected": [
+    "chunk_8f9b3c0b3d4be1a0b55b90dcd7013c75fadb24b1f659ffffab80073bb46f798b",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_2fc26d164a3e6a23fa9d5ef1453d7887b4b6abf0e14f38bacc0c501642763691",
+    "chunk_ab06125f5d43835f31af9e873251215c46e516dcb36907c88b422d77b2faa621",
+    "chunk_9a56be8cb50d39cb3af5a07d7e06a6ad8770f0913cb087df8d02a03a141868da",
+    "chunk_dc1b496172bf9ecff366d35c42c8808340214a110debd42b9846d7d22d030aa0",
+    "chunk_eed47e7b055d1f38e1f480bcd9e97b919c2fdac51eafcc62bf76280b545bc8e7",
+    "chunk_4d6bf7cacbc46e26738485a95342ba8da18482be817c3f15e149475b16086c84",
+    "chunk_3c27892fae6e8937f5559fbeabd3a092cda550995f86d1b704c2e912c6602b23",
+    "chunk_a9162a3c39c069ae2a3e10a53a5cb8f08f16018d5a1db2bf72cb48a72da66062",
+    "chunk_b1e129cc314d6c78f6d4781e230baece3bda348a26cd89622beab14fd1e1b40c",
+    "chunk_83f1fa7ea4f4043313b2956dc2fc1567759d1d6cc05b5c6cd77145e19389a21d"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "student-subsistence-own",
+   "kind": "within_document",
+   "arm": "L",
+   "profile": "hybrid-estnltk-chat-v3",
+   "ms": 1800,
+   "found": [
+    {
+     "phrase": "kuni 24-aastasel üliõpilasel, kes õpib ülikoolis, rakenduskõrgkoolis või kutseõppeasutuses",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 11,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 1,
+    "cross_reference": 1
+   },
+   "context_tokens": 11097,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "133"
+    }
+   ],
+   "selected": [
+    "chunk_8f9b3c0b3d4be1a0b55b90dcd7013c75fadb24b1f659ffffab80073bb46f798b",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_2fc26d164a3e6a23fa9d5ef1453d7887b4b6abf0e14f38bacc0c501642763691",
+    "chunk_ab06125f5d43835f31af9e873251215c46e516dcb36907c88b422d77b2faa621",
+    "chunk_9a56be8cb50d39cb3af5a07d7e06a6ad8770f0913cb087df8d02a03a141868da",
+    "chunk_dc1b496172bf9ecff366d35c42c8808340214a110debd42b9846d7d22d030aa0",
+    "chunk_eed47e7b055d1f38e1f480bcd9e97b919c2fdac51eafcc62bf76280b545bc8e7",
+    "chunk_4d6bf7cacbc46e26738485a95342ba8da18482be817c3f15e149475b16086c84",
+    "chunk_0ee71ddf92ba24afbe762579edaa7dec46e6adeb31b12cedb83647dad970554e",
+    "chunk_6ff726e1ebb808c77459dd586ffeea1db87a50224ae31b488b4756c170598747"
+   ],
+   "cross_references": {
+    "candidates": 1,
+    "additions": 1,
+    "sections": [
+     "133"
+    ]
+   },
+   "named_act_references": null
+  },
+  {
+   "question": "student-subsistence-own",
+   "kind": "within_document",
+   "arm": "N",
+   "profile": "hybrid-estnltk-chat-v4",
+   "ms": 1577,
+   "found": [
+    {
+     "phrase": "kuni 24-aastasel üliõpilasel, kes õpib ülikoolis, rakenduskõrgkoolis või kutseõppeasutuses",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 11,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 1,
+    "cross_reference": 1
+   },
+   "context_tokens": 11097,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "133"
+    }
+   ],
+   "selected": [
+    "chunk_8f9b3c0b3d4be1a0b55b90dcd7013c75fadb24b1f659ffffab80073bb46f798b",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_2fc26d164a3e6a23fa9d5ef1453d7887b4b6abf0e14f38bacc0c501642763691",
+    "chunk_ab06125f5d43835f31af9e873251215c46e516dcb36907c88b422d77b2faa621",
+    "chunk_9a56be8cb50d39cb3af5a07d7e06a6ad8770f0913cb087df8d02a03a141868da",
+    "chunk_dc1b496172bf9ecff366d35c42c8808340214a110debd42b9846d7d22d030aa0",
+    "chunk_eed47e7b055d1f38e1f480bcd9e97b919c2fdac51eafcc62bf76280b545bc8e7",
+    "chunk_4d6bf7cacbc46e26738485a95342ba8da18482be817c3f15e149475b16086c84",
+    "chunk_0ee71ddf92ba24afbe762579edaa7dec46e6adeb31b12cedb83647dad970554e",
+    "chunk_6ff726e1ebb808c77459dd586ffeea1db87a50224ae31b488b4756c170598747"
+   ],
+   "cross_references": {
+    "candidates": 1,
+    "additions": 1,
+    "sections": [
+     "133"
+    ]
+   },
+   "named_act_references": {
+    "candidates": 0,
+    "additions": 0,
+    "acts": []
+   }
+  },
+  {
+   "question": "student-subsistence-own",
+   "kind": "within_document",
+   "arm": "V",
+   "profile": "hybrid-estnltk-chat-v1",
+   "ms": 1569,
+   "found": [
+    {
+     "phrase": "kuni 24-aastasel üliõpilasel, kes õpib ülikoolis, rakenduskõrgkoolis või kutseõppeasutuses",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 9723,
+   "additions": [],
+   "selected": [
+    "chunk_8f9b3c0b3d4be1a0b55b90dcd7013c75fadb24b1f659ffffab80073bb46f798b",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_2fc26d164a3e6a23fa9d5ef1453d7887b4b6abf0e14f38bacc0c501642763691",
+    "chunk_ab06125f5d43835f31af9e873251215c46e516dcb36907c88b422d77b2faa621",
+    "chunk_9a56be8cb50d39cb3af5a07d7e06a6ad8770f0913cb087df8d02a03a141868da",
+    "chunk_dc1b496172bf9ecff366d35c42c8808340214a110debd42b9846d7d22d030aa0",
+    "chunk_eed47e7b055d1f38e1f480bcd9e97b919c2fdac51eafcc62bf76280b545bc8e7",
+    "chunk_4d6bf7cacbc46e26738485a95342ba8da18482be817c3f15e149475b16086c84"
+   ],
+   "cross_references": null,
+   "named_act_references": null,
+   "seeds": [
+    {
+     "act": "130062026065",
+     "section": "131",
+     "passage": 187
+    },
+    {
+     "act": "130062026065",
+     "section": "131",
+     "passage": 186
+    }
+   ]
+  },
+  {
+   "question": "student-subsistence-own",
+   "kind": "within_document",
+   "arm": "R",
+   "profile": "simulated-chat-v1-plus-pointers",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "kuni 24-aastasel üliõpilasel, kes õpib ülikoolis, rakenduskõrgkoolis või kutseõppeasutuses",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {},
+   "context_tokens": 12580,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 192,
+     "reason": "exact_subsection",
+     "exception": false,
+     "from": "131/2",
+     "to": "133/5"
+    },
+    {
+     "act": "130062026065",
+     "passage": 193,
+     "reason": "exact_subsection",
+     "exception": false,
+     "from": "131/2",
+     "to": "133/6"
+    },
+    {
+     "act": "130062026065",
+     "passage": 188,
+     "reason": "incoming",
+     "exception": false,
+     "from": "132/2",
+     "to": "131/7"
+    },
+    {
+     "act": "130062026065",
+     "passage": 197,
+     "reason": "incoming",
+     "exception": false,
+     "from": "135/1",
+     "to": "131/7"
+    }
+   ],
+   "candidates": 5,
+   "cross_references": null
+  },
+  {
+   "question": "student-subsistence-own",
+   "kind": "within_document",
+   "arm": "S",
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "kuni 24-aastasel üliõpilasel, kes õpib ülikoolis, rakenduskõrgkoolis või kutseõppeasutuses",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {},
+   "context_tokens": 10524,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 191,
+     "reason": "first_passage",
+     "exception": false,
+     "from": "131/2",
+     "to": "133/null"
+    }
+   ],
+   "candidates": 1,
+   "cross_references": null
+  },
+  {
+   "question": "subsistence-new-job",
+   "kind": "within_document",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 11652,
+   "found": [
+    {
+     "phrase": "kahel kuul 100 protsenti töisest sissetulekust",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8296,
+   "additions": [],
+   "selected": [
+    "chunk_963d4eea42f12693d7700f25e13c0614cbb6bfc04acacde2746553699c8192ce",
+    "chunk_d3b13ea18d6a5a09068e985d187523f13729a516a56e42a0d344e1e838d85b5e",
+    "chunk_7b81f08bfd86af6b11652174b749917b55fb3cd82369ec3b90b2a53b87bba55b",
+    "chunk_7349ffe229e33ca9b619445095ba2109e42eef29d40704bf22d3a3a9d2a4cf23",
+    "chunk_8d4dd6ef83acaf85cb2f5cbed8b77bcd608891b1207759d3ebc3bbb366ad4d66",
+    "chunk_97e0d37a60da1d4b3b0fe758b0eab37d2891b889a7c2646255499bb474e08f72",
+    "chunk_2fc26d164a3e6a23fa9d5ef1453d7887b4b6abf0e14f38bacc0c501642763691",
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_3f14d6cdcda48834f609fcce0747836b69c22d6e6c161de534c5dce85ec4c96d"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "subsistence-new-job",
+   "kind": "within_document",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 2086,
+   "found": [
+    {
+     "phrase": "kahel kuul 100 protsenti töisest sissetulekust",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 10885,
+   "additions": [],
+   "selected": [
+    "chunk_963d4eea42f12693d7700f25e13c0614cbb6bfc04acacde2746553699c8192ce",
+    "chunk_d3b13ea18d6a5a09068e985d187523f13729a516a56e42a0d344e1e838d85b5e",
+    "chunk_7b81f08bfd86af6b11652174b749917b55fb3cd82369ec3b90b2a53b87bba55b",
+    "chunk_7349ffe229e33ca9b619445095ba2109e42eef29d40704bf22d3a3a9d2a4cf23",
+    "chunk_8d4dd6ef83acaf85cb2f5cbed8b77bcd608891b1207759d3ebc3bbb366ad4d66",
+    "chunk_97e0d37a60da1d4b3b0fe758b0eab37d2891b889a7c2646255499bb474e08f72",
+    "chunk_2fc26d164a3e6a23fa9d5ef1453d7887b4b6abf0e14f38bacc0c501642763691",
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_3f14d6cdcda48834f609fcce0747836b69c22d6e6c161de534c5dce85ec4c96d",
+    "chunk_e03f9be2fbc31988d050c07f649b94e38a39bedbf7f5304b9c0173f7e2fe43f1",
+    "chunk_4cec133c2bd21aa5d4c8d15ae2d48288a958cf0215f27838ba3d97966d47eb37",
+    "chunk_00b37c061f96b915537d705588ab92f4ce5ac6cfdafdb5f6eee30e750cb56573",
+    "chunk_df0ad46d4f83705e57fc4a8e7b5e35ed7bd76bd4edd64d28438b9f17cd6d14e4"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "subsistence-new-job",
+   "kind": "within_document",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 1959,
+   "found": [
+    {
+     "phrase": "kahel kuul 100 protsenti töisest sissetulekust",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8347,
+   "additions": [],
+   "selected": [
+    "chunk_963d4eea42f12693d7700f25e13c0614cbb6bfc04acacde2746553699c8192ce",
+    "chunk_d3b13ea18d6a5a09068e985d187523f13729a516a56e42a0d344e1e838d85b5e",
+    "chunk_7b81f08bfd86af6b11652174b749917b55fb3cd82369ec3b90b2a53b87bba55b",
+    "chunk_7349ffe229e33ca9b619445095ba2109e42eef29d40704bf22d3a3a9d2a4cf23",
+    "chunk_8d4dd6ef83acaf85cb2f5cbed8b77bcd608891b1207759d3ebc3bbb366ad4d66",
+    "chunk_97e0d37a60da1d4b3b0fe758b0eab37d2891b889a7c2646255499bb474e08f72",
+    "chunk_2fc26d164a3e6a23fa9d5ef1453d7887b4b6abf0e14f38bacc0c501642763691",
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_3f14d6cdcda48834f609fcce0747836b69c22d6e6c161de534c5dce85ec4c96d"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "subsistence-new-job",
+   "kind": "within_document",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 1882,
+   "found": [
+    {
+     "phrase": "kahel kuul 100 protsenti töisest sissetulekust",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8296,
+   "additions": [],
+   "selected": [
+    "chunk_963d4eea42f12693d7700f25e13c0614cbb6bfc04acacde2746553699c8192ce",
+    "chunk_d3b13ea18d6a5a09068e985d187523f13729a516a56e42a0d344e1e838d85b5e",
+    "chunk_7b81f08bfd86af6b11652174b749917b55fb3cd82369ec3b90b2a53b87bba55b",
+    "chunk_7349ffe229e33ca9b619445095ba2109e42eef29d40704bf22d3a3a9d2a4cf23",
+    "chunk_8d4dd6ef83acaf85cb2f5cbed8b77bcd608891b1207759d3ebc3bbb366ad4d66",
+    "chunk_97e0d37a60da1d4b3b0fe758b0eab37d2891b889a7c2646255499bb474e08f72",
+    "chunk_2fc26d164a3e6a23fa9d5ef1453d7887b4b6abf0e14f38bacc0c501642763691",
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_3f14d6cdcda48834f609fcce0747836b69c22d6e6c161de534c5dce85ec4c96d"
+   ],
+   "cross_references": {
+    "candidates": 0,
+    "additions": 0,
+    "sections": []
+   },
+   "named_act_references": null
+  },
+  {
+   "question": "subsistence-new-job",
+   "kind": "within_document",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 2149,
+   "found": [
+    {
+     "phrase": "kahel kuul 100 protsenti töisest sissetulekust",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 11959,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Töötamise toetamine toimetulekutoetuse kaudu",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Töötamise toetamine toimetulekutoetuse kaudu",
+     "reason": "structural_expansion"
+    }
+   ],
+   "selected": [
+    "chunk_963d4eea42f12693d7700f25e13c0614cbb6bfc04acacde2746553699c8192ce",
+    "chunk_d3b13ea18d6a5a09068e985d187523f13729a516a56e42a0d344e1e838d85b5e",
+    "chunk_7b81f08bfd86af6b11652174b749917b55fb3cd82369ec3b90b2a53b87bba55b",
+    "chunk_7349ffe229e33ca9b619445095ba2109e42eef29d40704bf22d3a3a9d2a4cf23",
+    "chunk_8d4dd6ef83acaf85cb2f5cbed8b77bcd608891b1207759d3ebc3bbb366ad4d66",
+    "chunk_97e0d37a60da1d4b3b0fe758b0eab37d2891b889a7c2646255499bb474e08f72",
+    "chunk_2fc26d164a3e6a23fa9d5ef1453d7887b4b6abf0e14f38bacc0c501642763691",
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_3f14d6cdcda48834f609fcce0747836b69c22d6e6c161de534c5dce85ec4c96d",
+    "chunk_6ff726e1ebb808c77459dd586ffeea1db87a50224ae31b488b4756c170598747",
+    "chunk_0284d2d3fe77959015f15aa9e46e868bd96023d88470fd25249c0d8ec3bef3a6",
+    "chunk_6def9df03d213227eb59e283f35d52112e4ef36a51eb233db94e1b25736b8589",
+    "chunk_58168e15c46719bbb2e3fcabeab7fabafa8c5d6e536c097f85f4b1e2240163d7"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "subsistence-new-job",
+   "kind": "within_document",
+   "arm": "L",
+   "profile": "hybrid-estnltk-chat-v3",
+   "ms": 1876,
+   "found": [
+    {
+     "phrase": "kahel kuul 100 protsenti töisest sissetulekust",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8347,
+   "additions": [],
+   "selected": [
+    "chunk_963d4eea42f12693d7700f25e13c0614cbb6bfc04acacde2746553699c8192ce",
+    "chunk_d3b13ea18d6a5a09068e985d187523f13729a516a56e42a0d344e1e838d85b5e",
+    "chunk_7b81f08bfd86af6b11652174b749917b55fb3cd82369ec3b90b2a53b87bba55b",
+    "chunk_7349ffe229e33ca9b619445095ba2109e42eef29d40704bf22d3a3a9d2a4cf23",
+    "chunk_8d4dd6ef83acaf85cb2f5cbed8b77bcd608891b1207759d3ebc3bbb366ad4d66",
+    "chunk_97e0d37a60da1d4b3b0fe758b0eab37d2891b889a7c2646255499bb474e08f72",
+    "chunk_2fc26d164a3e6a23fa9d5ef1453d7887b4b6abf0e14f38bacc0c501642763691",
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_3f14d6cdcda48834f609fcce0747836b69c22d6e6c161de534c5dce85ec4c96d"
+   ],
+   "cross_references": {
+    "candidates": 0,
+    "additions": 0,
+    "sections": []
+   },
+   "named_act_references": null
+  },
+  {
+   "question": "subsistence-new-job",
+   "kind": "within_document",
+   "arm": "N",
+   "profile": "hybrid-estnltk-chat-v4",
+   "ms": 1898,
+   "found": [
+    {
+     "phrase": "kahel kuul 100 protsenti töisest sissetulekust",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8347,
+   "additions": [],
+   "selected": [
+    "chunk_963d4eea42f12693d7700f25e13c0614cbb6bfc04acacde2746553699c8192ce",
+    "chunk_d3b13ea18d6a5a09068e985d187523f13729a516a56e42a0d344e1e838d85b5e",
+    "chunk_7b81f08bfd86af6b11652174b749917b55fb3cd82369ec3b90b2a53b87bba55b",
+    "chunk_7349ffe229e33ca9b619445095ba2109e42eef29d40704bf22d3a3a9d2a4cf23",
+    "chunk_8d4dd6ef83acaf85cb2f5cbed8b77bcd608891b1207759d3ebc3bbb366ad4d66",
+    "chunk_97e0d37a60da1d4b3b0fe758b0eab37d2891b889a7c2646255499bb474e08f72",
+    "chunk_2fc26d164a3e6a23fa9d5ef1453d7887b4b6abf0e14f38bacc0c501642763691",
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_3f14d6cdcda48834f609fcce0747836b69c22d6e6c161de534c5dce85ec4c96d"
+   ],
+   "cross_references": {
+    "candidates": 0,
+    "additions": 0,
+    "sections": []
+   },
+   "named_act_references": {
+    "candidates": 0,
+    "additions": 0,
+    "acts": []
+   }
+  },
+  {
+   "question": "subsistence-new-job",
+   "kind": "within_document",
+   "arm": "V",
+   "profile": "hybrid-estnltk-chat-v1",
+   "ms": 1978,
+   "found": [
+    {
+     "phrase": "kahel kuul 100 protsenti töisest sissetulekust",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8347,
+   "additions": [],
+   "selected": [
+    "chunk_963d4eea42f12693d7700f25e13c0614cbb6bfc04acacde2746553699c8192ce",
+    "chunk_d3b13ea18d6a5a09068e985d187523f13729a516a56e42a0d344e1e838d85b5e",
+    "chunk_7b81f08bfd86af6b11652174b749917b55fb3cd82369ec3b90b2a53b87bba55b",
+    "chunk_7349ffe229e33ca9b619445095ba2109e42eef29d40704bf22d3a3a9d2a4cf23",
+    "chunk_8d4dd6ef83acaf85cb2f5cbed8b77bcd608891b1207759d3ebc3bbb366ad4d66",
+    "chunk_97e0d37a60da1d4b3b0fe758b0eab37d2891b889a7c2646255499bb474e08f72",
+    "chunk_2fc26d164a3e6a23fa9d5ef1453d7887b4b6abf0e14f38bacc0c501642763691",
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_3f14d6cdcda48834f609fcce0747836b69c22d6e6c161de534c5dce85ec4c96d"
+   ],
+   "cross_references": null,
+   "named_act_references": null,
+   "seeds": [
+    {
+     "act": "130062026065",
+     "section": "133",
+     "passage": 192
+    }
+   ]
+  },
+  {
+   "question": "subsistence-new-job",
+   "kind": "within_document",
+   "arm": "R",
+   "profile": "simulated-chat-v1-plus-pointers",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "kahel kuul 100 protsenti töisest sissetulekust",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 12,
+   "reasons": {},
+   "context_tokens": 10785,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 191,
+     "reason": "own_section",
+     "exception": false,
+     "from": "133/2^3",
+     "to": "133/2"
+    },
+    {
+     "act": "130062026065",
+     "passage": 193,
+     "reason": "own_section",
+     "exception": false,
+     "from": "133/5",
+     "to": "133/6"
+    },
+    {
+     "act": "130062026065",
+     "passage": 186,
+     "reason": "incoming",
+     "exception": false,
+     "from": "131/2",
+     "to": "133/5"
+    }
+   ],
+   "candidates": 6,
+   "cross_references": null
+  },
+  {
+   "question": "subsistence-new-job",
+   "kind": "within_document",
+   "arm": "S",
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "kahel kuul 100 protsenti töisest sissetulekust",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {},
+   "context_tokens": 8347,
+   "additions": [],
+   "candidates": 0,
+   "cross_references": null
+  },
+  {
+   "question": "subsistence-deadline",
+   "kind": "within_document",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 1687,
+   "found": [
+    {
+     "phrase": "hiljemalt kuu viimaseks tööpäevaks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 7244,
+   "additions": [],
+   "selected": [
+    "chunk_7a666738aa4e2d17dcb12422ee6a85aad701215194c68e7ed997537de5749677",
+    "chunk_45bf9126aca0c7949923456c0a92b5a0e2bb1bc5c3fb875d33c022230192d559",
+    "chunk_9a56be8cb50d39cb3af5a07d7e06a6ad8770f0913cb087df8d02a03a141868da",
+    "chunk_0ee71ddf92ba24afbe762579edaa7dec46e6adeb31b12cedb83647dad970554e",
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_a9162a3c39c069ae2a3e10a53a5cb8f08f16018d5a1db2bf72cb48a72da66062",
+    "chunk_abcf353a4bf2b69675f1611f89390290530ccdcf9a1669db79cc5e2ff49d13cc",
+    "chunk_5ba0c727f6181db970ec7cd90e8060fe88abb2053c6e877142b2e89c8f64a5a0"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "subsistence-deadline",
+   "kind": "within_document",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 1502,
+   "found": [
+    {
+     "phrase": "hiljemalt kuu viimaseks tööpäevaks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 10263,
+   "additions": [],
+   "selected": [
+    "chunk_7a666738aa4e2d17dcb12422ee6a85aad701215194c68e7ed997537de5749677",
+    "chunk_45bf9126aca0c7949923456c0a92b5a0e2bb1bc5c3fb875d33c022230192d559",
+    "chunk_9a56be8cb50d39cb3af5a07d7e06a6ad8770f0913cb087df8d02a03a141868da",
+    "chunk_0ee71ddf92ba24afbe762579edaa7dec46e6adeb31b12cedb83647dad970554e",
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_a9162a3c39c069ae2a3e10a53a5cb8f08f16018d5a1db2bf72cb48a72da66062",
+    "chunk_abcf353a4bf2b69675f1611f89390290530ccdcf9a1669db79cc5e2ff49d13cc",
+    "chunk_5ba0c727f6181db970ec7cd90e8060fe88abb2053c6e877142b2e89c8f64a5a0",
+    "chunk_6998d00a118651d527818a5f7dc3f30cba8f2c2a4238a09bfb81c076143c3b91",
+    "chunk_df0ad46d4f83705e57fc4a8e7b5e35ed7bd76bd4edd64d28438b9f17cd6d14e4",
+    "chunk_dfb5abaf7ff28ee997c8f27d4948e2d496056c813b0faf3755cc469efb9e8e51",
+    "chunk_fdd9608ba10d8edf2b16a4a75dbb6af11ce632b23ec86e436ea106179186273c"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "subsistence-deadline",
+   "kind": "within_document",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 1557,
+   "found": [
+    {
+     "phrase": "hiljemalt kuu viimaseks tööpäevaks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 11,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 2
+   },
+   "context_tokens": 9049,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    }
+   ],
+   "selected": [
+    "chunk_7a666738aa4e2d17dcb12422ee6a85aad701215194c68e7ed997537de5749677",
+    "chunk_45bf9126aca0c7949923456c0a92b5a0e2bb1bc5c3fb875d33c022230192d559",
+    "chunk_9a56be8cb50d39cb3af5a07d7e06a6ad8770f0913cb087df8d02a03a141868da",
+    "chunk_0ee71ddf92ba24afbe762579edaa7dec46e6adeb31b12cedb83647dad970554e",
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_a9162a3c39c069ae2a3e10a53a5cb8f08f16018d5a1db2bf72cb48a72da66062",
+    "chunk_abcf353a4bf2b69675f1611f89390290530ccdcf9a1669db79cc5e2ff49d13cc",
+    "chunk_5ba0c727f6181db970ec7cd90e8060fe88abb2053c6e877142b2e89c8f64a5a0",
+    "chunk_8f9b3c0b3d4be1a0b55b90dcd7013c75fadb24b1f659ffffab80073bb46f798b",
+    "chunk_fdd9608ba10d8edf2b16a4a75dbb6af11ce632b23ec86e436ea106179186273c"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "subsistence-deadline",
+   "kind": "within_document",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 1432,
+   "found": [
+    {
+     "phrase": "hiljemalt kuu viimaseks tööpäevaks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 8161,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "133"
+    }
+   ],
+   "selected": [
+    "chunk_7a666738aa4e2d17dcb12422ee6a85aad701215194c68e7ed997537de5749677",
+    "chunk_45bf9126aca0c7949923456c0a92b5a0e2bb1bc5c3fb875d33c022230192d559",
+    "chunk_9a56be8cb50d39cb3af5a07d7e06a6ad8770f0913cb087df8d02a03a141868da",
+    "chunk_0ee71ddf92ba24afbe762579edaa7dec46e6adeb31b12cedb83647dad970554e",
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_a9162a3c39c069ae2a3e10a53a5cb8f08f16018d5a1db2bf72cb48a72da66062",
+    "chunk_abcf353a4bf2b69675f1611f89390290530ccdcf9a1669db79cc5e2ff49d13cc",
+    "chunk_5ba0c727f6181db970ec7cd90e8060fe88abb2053c6e877142b2e89c8f64a5a0",
+    "chunk_6ff726e1ebb808c77459dd586ffeea1db87a50224ae31b488b4756c170598747"
+   ],
+   "cross_references": {
+    "candidates": 4,
+    "additions": 1,
+    "sections": [
+     "133"
+    ]
+   },
+   "named_act_references": null
+  },
+  {
+   "question": "subsistence-deadline",
+   "kind": "within_document",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 1532,
+   "found": [
+    {
+     "phrase": "hiljemalt kuu viimaseks tööpäevaks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 9717,
+   "additions": [
+    {
+     "title": "Kas sotsiaalabi on (turva)võrk või hüppelaud? Kuidas aidata inimesed kiiresti taas jalule",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Kas sotsiaalabi on (turva)võrk või hüppelaud? Kuidas aidata inimesed kiiresti taas jalule",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "structural_expansion"
+    }
+   ],
+   "selected": [
+    "chunk_7a666738aa4e2d17dcb12422ee6a85aad701215194c68e7ed997537de5749677",
+    "chunk_45bf9126aca0c7949923456c0a92b5a0e2bb1bc5c3fb875d33c022230192d559",
+    "chunk_9a56be8cb50d39cb3af5a07d7e06a6ad8770f0913cb087df8d02a03a141868da",
+    "chunk_0ee71ddf92ba24afbe762579edaa7dec46e6adeb31b12cedb83647dad970554e",
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_a9162a3c39c069ae2a3e10a53a5cb8f08f16018d5a1db2bf72cb48a72da66062",
+    "chunk_abcf353a4bf2b69675f1611f89390290530ccdcf9a1669db79cc5e2ff49d13cc",
+    "chunk_5ba0c727f6181db970ec7cd90e8060fe88abb2053c6e877142b2e89c8f64a5a0",
+    "chunk_59b3bc9f83f790301badb19c15a539a31001135b65b1ad5a2ce42b8589426b3d",
+    "chunk_f0ba74dd8cb7abc27dbba73c567a2c30aa5a300bd72f797723c965feb732417b",
+    "chunk_3c27892fae6e8937f5559fbeabd3a092cda550995f86d1b704c2e912c6602b23",
+    "chunk_8f9b3c0b3d4be1a0b55b90dcd7013c75fadb24b1f659ffffab80073bb46f798b"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "subsistence-deadline",
+   "kind": "within_document",
+   "arm": "L",
+   "profile": "hybrid-estnltk-chat-v3",
+   "ms": 1497,
+   "found": [
+    {
+     "phrase": "hiljemalt kuu viimaseks tööpäevaks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 12,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 2,
+    "cross_reference": 1
+   },
+   "context_tokens": 9966,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "133"
+    }
+   ],
+   "selected": [
+    "chunk_7a666738aa4e2d17dcb12422ee6a85aad701215194c68e7ed997537de5749677",
+    "chunk_45bf9126aca0c7949923456c0a92b5a0e2bb1bc5c3fb875d33c022230192d559",
+    "chunk_9a56be8cb50d39cb3af5a07d7e06a6ad8770f0913cb087df8d02a03a141868da",
+    "chunk_0ee71ddf92ba24afbe762579edaa7dec46e6adeb31b12cedb83647dad970554e",
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_a9162a3c39c069ae2a3e10a53a5cb8f08f16018d5a1db2bf72cb48a72da66062",
+    "chunk_abcf353a4bf2b69675f1611f89390290530ccdcf9a1669db79cc5e2ff49d13cc",
+    "chunk_5ba0c727f6181db970ec7cd90e8060fe88abb2053c6e877142b2e89c8f64a5a0",
+    "chunk_8f9b3c0b3d4be1a0b55b90dcd7013c75fadb24b1f659ffffab80073bb46f798b",
+    "chunk_fdd9608ba10d8edf2b16a4a75dbb6af11ce632b23ec86e436ea106179186273c",
+    "chunk_6ff726e1ebb808c77459dd586ffeea1db87a50224ae31b488b4756c170598747"
+   ],
+   "cross_references": {
+    "candidates": 4,
+    "additions": 1,
+    "sections": [
+     "133"
+    ]
+   },
+   "named_act_references": null
+  },
+  {
+   "question": "subsistence-deadline",
+   "kind": "within_document",
+   "arm": "N",
+   "profile": "hybrid-estnltk-chat-v4",
+   "ms": 1520,
+   "found": [
+    {
+     "phrase": "hiljemalt kuu viimaseks tööpäevaks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 2,
+    "cross_reference": 2
+   },
+   "context_tokens": 10679,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "133"
+    },
+    {
+     "title": "Sotsiaalseadustiku üldosa seadus",
+     "reason": "cross_reference",
+     "section": "28",
+     "named_act": "document_e0d47b974b2166e1800a1945551de3aea22d26044f8a8166b36a0486daf5cbd4"
+    }
+   ],
+   "selected": [
+    "chunk_7a666738aa4e2d17dcb12422ee6a85aad701215194c68e7ed997537de5749677",
+    "chunk_45bf9126aca0c7949923456c0a92b5a0e2bb1bc5c3fb875d33c022230192d559",
+    "chunk_9a56be8cb50d39cb3af5a07d7e06a6ad8770f0913cb087df8d02a03a141868da",
+    "chunk_0ee71ddf92ba24afbe762579edaa7dec46e6adeb31b12cedb83647dad970554e",
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_a9162a3c39c069ae2a3e10a53a5cb8f08f16018d5a1db2bf72cb48a72da66062",
+    "chunk_abcf353a4bf2b69675f1611f89390290530ccdcf9a1669db79cc5e2ff49d13cc",
+    "chunk_5ba0c727f6181db970ec7cd90e8060fe88abb2053c6e877142b2e89c8f64a5a0",
+    "chunk_8f9b3c0b3d4be1a0b55b90dcd7013c75fadb24b1f659ffffab80073bb46f798b",
+    "chunk_fdd9608ba10d8edf2b16a4a75dbb6af11ce632b23ec86e436ea106179186273c",
+    "chunk_6ff726e1ebb808c77459dd586ffeea1db87a50224ae31b488b4756c170598747",
+    "chunk_2e870c60ce2c71cc23d4ed277e0c965a0462e40e9c8169edf5ea8d60551b0a9d"
+   ],
+   "cross_references": {
+    "candidates": 4,
+    "additions": 1,
+    "sections": [
+     "133"
+    ]
+   },
+   "named_act_references": {
+    "candidates": 1,
+    "additions": 1,
+    "acts": [
+     "document_e0d47b974b2166e1800a1945551de3aea22d26044f8a8166b36a0486daf5cbd4:28"
+    ]
+   }
+  },
+  {
+   "question": "subsistence-deadline",
+   "kind": "within_document",
+   "arm": "V",
+   "profile": "hybrid-estnltk-chat-v1",
+   "ms": 1378,
+   "found": [
+    {
+     "phrase": "hiljemalt kuu viimaseks tööpäevaks",
+     "in_evidence": true,
+     "in_cards": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 9926,
+   "additions": [],
+   "selected": [
+    "chunk_7a666738aa4e2d17dcb12422ee6a85aad701215194c68e7ed997537de5749677",
+    "chunk_45bf9126aca0c7949923456c0a92b5a0e2bb1bc5c3fb875d33c022230192d559",
+    "chunk_9a56be8cb50d39cb3af5a07d7e06a6ad8770f0913cb087df8d02a03a141868da",
+    "chunk_0ee71ddf92ba24afbe762579edaa7dec46e6adeb31b12cedb83647dad970554e",
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_a9162a3c39c069ae2a3e10a53a5cb8f08f16018d5a1db2bf72cb48a72da66062",
+    "chunk_abcf353a4bf2b69675f1611f89390290530ccdcf9a1669db79cc5e2ff49d13cc",
+    "chunk_5ba0c727f6181db970ec7cd90e8060fe88abb2053c6e877142b2e89c8f64a5a0"
+   ],
+   "cross_references": null,
+   "named_act_references": null,
+   "seeds": [
+    {
+     "act": "130062026065",
+     "section": "132",
+     "passage": 188
+    },
+    {
+     "act": "130062026065",
+     "section": "132",
+     "passage": 189
+    },
+    {
+     "act": "130062026065",
+     "section": "132",
+     "passage": 190
+    },
+    {
+     "act": "130062026065",
+     "section": "131",
+     "passage": 186
+    },
+    {
+     "act": "130062026065",
+     "section": "134",
+     "passage": 196
+    }
+   ]
+  },
+  {
+   "question": "subsistence-deadline",
+   "kind": "within_document",
+   "arm": "R",
+   "profile": "simulated-chat-v1-plus-pointers",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "hiljemalt kuu viimaseks tööpäevaks",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {},
+   "context_tokens": 12641,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 192,
+     "reason": "exact_subsection",
+     "exception": false,
+     "from": "132/4",
+     "to": "133/5"
+    },
+    {
+     "act": "130062026065",
+     "passage": 193,
+     "reason": "exact_subsection",
+     "exception": false,
+     "from": "131/2",
+     "to": "133/6"
+    },
+    {
+     "act": "130062026065",
+     "passage": 187,
+     "reason": "incoming",
+     "exception": true,
+     "from": "131/10",
+     "to": "131/8"
+    },
+    {
+     "act": "130062026065",
+     "passage": 197,
+     "reason": "incoming",
+     "exception": false,
+     "from": "135/1",
+     "to": "131/7"
+    }
+   ],
+   "candidates": 7,
+   "cross_references": null
+  },
+  {
+   "question": "subsistence-deadline",
+   "kind": "within_document",
+   "arm": "S",
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "hiljemalt kuu viimaseks tööpäevaks",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {},
+   "context_tokens": 10727,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 191,
+     "reason": "first_passage",
+     "exception": false,
+     "from": "132/4",
+     "to": "133/null"
+    }
+   ],
+   "candidates": 1,
+   "cross_references": null
+  }
+ ]
+}

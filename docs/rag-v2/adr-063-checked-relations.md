@@ -193,6 +193,7 @@ Tootmise plaan (profiil v3, dialoog 22), üks jooks, 3 pööret, 0,0165 USD plaa
 3. **Viidete lugejat täiendatakse ühe reegliga:** kui leitud säte nimetab teist akti ja täpset paragrahvi, lisab otsing selle akti küsimuse kuupäeval kehtiva redaktsiooni nimetatud lõike. Esimesena valla määrus → SHS.
    - Eraldi PR, mis muudab otsinguprofiili. Mõõdetakse enne ühendamist kolme teise akti küsimusega (umbes 0,02 USD) ja ühe jooksuga väikseimast kataloogist.
    - Lävend: Harku küsimus läbib, kaks ülejäänut jäävad läbima, kontekst kasvab keskmiselt alla 800 tokeni.
+   - **Tehtud 01.10: [ADR-064](adr-064-named-other-act.md), profiil v4.** Otsingukatses 28 küsimust 30-st (v3: 26), midagi ei kadunud; Harku küsimus läbib vestluses.
 4. Kavandi järgmise sammu suurem jooksukomplekt (umbes 0,40 USD) ei ole selle otsuse jaoks vajalik ja jääb tegemata, kuni omanik seda ei küsi.
 
 Selle sammu tasuline kulu kokku: alla 0,02 USD plaani hindade järgi (eelarve oli 0,10 USD).
