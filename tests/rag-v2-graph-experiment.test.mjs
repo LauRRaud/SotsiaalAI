@@ -100,9 +100,11 @@ test('graph experiment arms share one extra room; the chat profiles are unchange
 // legal text of the scope (a validity start, no region); its § 25 lies in two passages, lõige 2 in the second. A second
 // document with the same title makes the name ambiguous. directory: the search works from the retrieval directory, as
 // the chat does; it has no titles, so they come from the unit rows (titles: what those rows say, the documents' own by default).
-function namedActFixture({ twin = false, sameAct = false, directory = false, titles = null } = {}) {
+// source: the pointing document's version fields; pointer: the words it names the section with; sections: the act's
+// other section numbers (Codex review of #301: a number is read as exactly as the pointing text keeps it).
+function namedActFixture({ twin = false, sameAct = false, directory = false, titles = null, source = {}, pointer: named = null, sections: numbers = null } = {}) {
   const tenant = 'named-acts', embedding = new MockEmbedding(), config = searchConfig(embedding.config);
-  const act = (doc, title, fields, sections) => {
+  const act = (doc, title, fields, sections, versionFields = {}) => {
     const version = `${doc}-v1`, spans = [], chunks = [], source_units = [];
     sections.forEach(([number, passages], unit) => {
       const raw = passages.join('\n'); source_units.push({ raw_text: raw });
@@ -113,7 +115,7 @@ function namedActFixture({ twin = false, sameAct = false, directory = false, tit
           retrieval_text: `${heading}\n\n${text}`, retrieval_mapping: { prefix_length: heading.length } });
       });
     });
-    return { tenant_id: tenant, version: { id: version, pdf_hash: 'a'.repeat(64) },
+    return { tenant_id: tenant, version: { id: version, pdf_hash: 'a'.repeat(64), ...versionFields },
       document: { id: doc, rights: { access: 'local_private', usage: 'development_only' }, search_aids: {},
         fields: { title: { value: title }, authors: { value: [] }, publication_date: { value: null }, ...fields } },
       spans, chunks, source_units, report: { warnings: [] },
@@ -121,12 +123,15 @@ function namedActFixture({ twin = false, sameAct = false, directory = false, tit
       relations: chunks.flatMap(c => [{ id: `belongs-${c.id}`, type: 'BELONGS_TO', from_id: c.id, to_id: doc },
         { id: `parent-${c.id}`, type: 'PARENT_SECTION', from_id: c.id, to_id: c.parent_section_id }]) };
   };
-  const pointer = sameAct ? 'käesoleva korra § 2' : 'sotsiaalhoolekande seaduse § 25 lõikes 2';
+  const pointer = named ?? (sameAct ? 'käesoleva korra § 2' : 'sotsiaalhoolekande seaduse § 25 lõikes 2');
   const local = act('kord', 'Abi andmise kord', { valid_from: { value: '2026-01-01' }, regions: { value: ['harku_vald'] } },
-    [['15', [`Tugiisikuteenust ei osuta isik, kes on ${pointer} nimetatud isik.`]], ['2', ['Teenuse osutamise otsustab osakond.']]]);
+    [['15', [`Tugiisikuteenust ei osuta isik, kes on ${pointer} nimetatud isik.`]], ['2', ['Teenuse osutamise otsustab osakond.']]], source);
+  // The act itself is a Riigi Teataja XML that keeps its superscripts, whatever the pointing document is.
   const national = (doc = 'shs') => act(doc, 'Sotsiaalhoolekande seadus', { valid_from: { value: '2026-10-01' } },
     [['24', ['Tugiisikuteenuse eesmärk on toetada iseseisvat toimetulekut.']],
-      ['25', ['(1)\nKohaliku omavalitsuse üksus loob isikule võimalused teenuse saamiseks.\n(2)', 'Tugiisikuteenust ei või osutada isik, kes on teenuse saaja alaneja või üleneja sugulane.']]]);
+      ['25', ['(1)\nKohaliku omavalitsuse üksus loob isikule võimalused teenuse saamiseks.\n(2)', 'Tugiisikuteenust ei või osutada isik, kes on teenuse saaja alaneja või üleneja sugulane.']],
+      ...(numbers || []).map(number => [number, [`Paragrahvi ${number} tekst.`]])],
+    { source_format: 'xml', processing_config: { normalization: 'source-structure-v30' } });
   const bundles = [local, national(), ...(twin ? [national('shs-teine')] : [])], byDoc = new Map(bundles.map(b => [b.document.id, b]));
   const documents = Object.fromEntries(bundles.map(b => [b.document.id, { version_id: b.version.id }])), snapshot = { source_generation: 'source-v1', documents, snapshot_hash: hash(stable(documents)) };
   const generation = { id: id('search_generation', tenant, snapshot, config), config, snapshot };
@@ -176,4 +181,33 @@ test('chat profile v4 is v3 with two more places for a named other act, in the c
   const v3 = settings(CHAT_REFERENCES_PROFILE), v4 = settings(CHAT_NAMED_ACTS_PROFILE);
   assert.deepEqual([v3.finalLimit, v3.limits.perDocument, v3.flags.namedActs, v3.limits.namedActAdditions], [13, 13, undefined, undefined]);
   assert.deepEqual(v4, { finalLimit: 15, limits: { ...v3.limits, perDocument: 15, namedActAdditions: 2 }, flags: { ...v3.flags, namedActs: true } });
+});
+
+// Codex review of #301: the number of a named section is read as exactly as the POINTING text keeps its numbers. The act
+// here always keeps its superscripts (XML v30); what decides is the document the pointer stands in.
+test('chat profile v4 reads a named section\'s number by the pointing document: a text that may have lost a superscript names § 131 only when it can be nothing else', async () => {
+  const pdf = { source_format: 'pdf' }, older = { source_format: 'xml', processing_config: { normalization: 'source-structure-v27' } };
+  const exact = { source_format: 'xml', processing_config: { normalization: 'source-structure-v30' } };
+  const added = async options => {
+    const result = {};
+    for (const directory of [false, true]) {
+      const packet = await namedActFixture({ ...options, directory })(CHAT_NAMED_ACTS_PROFILE);
+      assert.equal(packet.state, 'ok');
+      result[directory ? 'directory' : 'eager'] = packet.evidence.filter(entry => entry.selection.reason?.named_act).map(entry => [entry.selection.reason.section, entry.source_text]);
+    }
+    assert.deepEqual(result.directory, result.eager);
+    return result.eager;
+  };
+  const plain = 'sotsiaalhoolekande seaduse § 131', written = 'sotsiaalhoolekande seaduse § 13¹';
+  for (const source of [pdf, older]) {
+    // The act has § 13¹ and § 131: the pointing text's "131" could be either, so neither is added.
+    assert.deepEqual(await added({ source, pointer: plain, sections: ['13¹', '131'] }), []);
+    // The act has only § 13¹: that is the one section the number can be.
+    assert.deepEqual(await added({ source, pointer: plain, sections: ['13¹'] }), [['13^1', 'Paragrahvi 13¹ tekst.']]);
+    // A superscript the text does have is exact in any source.
+    assert.deepEqual(await added({ source, pointer: written, sections: ['13¹', '131'] }), [['13^1', 'Paragrahvi 13¹ tekst.']]);
+  }
+  // A pointing text that keeps its superscripts: "131" is § 131, and with only § 13¹ in the act it names nothing.
+  assert.deepEqual(await added({ source: exact, pointer: plain, sections: ['13¹', '131'] }), [['131', 'Paragrahvi 131 tekst.']]);
+  assert.deepEqual(await added({ source: exact, pointer: plain, sections: ['13¹'] }), []);
 });

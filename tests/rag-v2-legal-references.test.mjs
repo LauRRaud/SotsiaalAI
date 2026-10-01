@@ -155,8 +155,18 @@ test('the passages that hold a named subsection: its own text, also when it runs
   const chunks = [chunk('c1', 0, '7', 's1'), chunk('c2', 1, '7', 's2'), chunk('c3', 2, '7', 's3'), chunk('c4', 3, '8', 's4')];
   const bundle = { spans, source_units: [{ raw_text: raw }, { raw_text: 'Üks säte ilma lõigeteta.' }] };
   const held = (...rest) => provisionChunks(bundle, chunks, ...rest).map(item => item.id);
-  assert.deepEqual([held('7'), held('7', '1'), held('7', '2'), held('7', '2', 1), held('7', '3'), held('7', '9'), held('8', '2'), held('9', '1')],
+  assert.deepEqual([held('7'), held('7', '1'), held('7', '2'), held('7', '2', { limit: 1 }), held('7', '3'), held('7', '9'), held('8', '2'), held('9', '1')],
     [['c1'], ['c1'], ['c2', 'c3'], ['c2'], ['c3'], ['c1'], ['c4'], []]);
+  // A subsection number from a text that may have lost a superscript (Codex review of #301): § 5 has lõiked 2, 2¹ and
+  // 21, § 6 has lõiked 2 and 2¹. A plain "21" is lõige 2¹ only where no lõige 21 stands beside it; a written "2¹" is exact.
+  const rawFive = '\n(2)\nTeine.\n(2¹)\nTeine prim.\n(21)\nKahekümne esimene.\n', rawSix = '\n(2)\nTeine.\n(2¹)\nTeine prim.\n';
+  const part = (id, unit, raw, text) => ({ id, source_unit_index: unit, start: raw.indexOf(text), end: raw.indexOf(text) + text.length });
+  const lost = { spans: [part('a1', 0, rawFive, 'Teine.'), part('a2', 0, rawFive, 'Teine prim.'), part('a3', 0, rawFive, 'Kahekümne esimene.'),
+    part('b1', 1, rawSix, 'Teine.'), part('b2', 1, rawSix, 'Teine prim.')], source_units: [{ raw_text: rawFive }, { raw_text: rawSix }] };
+  const lostChunks = [chunk('a1', 0, '5', 'a1'), chunk('a2', 1, '5', 'a2'), chunk('a3', 2, '5', 'a3'), chunk('b1', 3, '6', 'b1'), chunk('b2', 4, '6', 'b2')];
+  const from = (section, subsection, exactNumbers) => provisionChunks(lost, lostChunks, section, subsection, { exactNumbers }).map(item => item.id);
+  assert.deepEqual([from('5', '21', true), from('5', '21', false), from('5', '2^1', false), from('6', '21', false), from('6', '21', true), from('6', '2', false)],
+    [['a3'], ['a1'], ['a2'], ['b2'], ['b1'], ['b1']]);
   // A bundle without its source units gives the section's start.
   assert.deepEqual(provisionChunks({ spans }, chunks, '7', '2').map(item => item.id), ['c1']);
 });
