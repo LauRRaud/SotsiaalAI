@@ -8,7 +8,10 @@
 //   - no model call: the reranker's candidate pool (the fused 30 plus the national-law reserve) and the fused
 //     top-9 evidence are deterministic, and anchors are counted in both.
 // Each question also gets what reaches the model: its evidence passages, each as document#place, and the context's
-// tokens. A question that differs between the two generations is listed with its `class` (generationDifference):
+// tokens without the legal dates (budget_context_tokens, ADR-062: the dates are cut by their own cap in evidence order,
+// so with them the same evidence in another order differs by more than a token, and a generation that gained them
+// differs on every legal excerpt). A question that differs between the two generations is listed with its `class`
+// (generationDifference):
 //   - equal_score_order_only: every channel returned the same passages with the same scores in both (`same_scores`)
 //     and the evidence holds the same passages in another order. Equal scores are ordered by unit ID, and a version
 //     ingested again has new unit IDs (ADR-062);
@@ -95,7 +98,7 @@ for (const generationId of values.generations.split(',')) {
         pool_all: anchors.length ? inPool.every(Boolean) : null, pool_some: anchors.length ? inPool.some(Boolean) : null,
         fused_all: anchors.length ? inEvidence.every(Boolean) : null, fused_some: anchors.length ? inEvidence.some(Boolean) : null,
         anchor_ranks: anchors.map(a => { const i = poolTexts.findIndex(t => t.document_id === a.document_id && norm(t.text).includes(norm(a.contains))); return i < 0 ? null : i + 1; }),
-        evidence: packet.evidence.map(e => place.get(e.unit_id)), context_tokens: packet.measurements.model_context_tokens ?? null });
+        evidence: packet.evidence.map(e => place.get(e.unit_id)), context_tokens: packet.measurements.budget_context_tokens ?? packet.measurements.model_context_tokens ?? null });
     }
     const answerable = rows.filter(r => r.anchors > 0);
     results[generationId] = { summary: { questions: answerable.length, pool_all: answerable.filter(r => r.pool_all).length,

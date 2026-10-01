@@ -1,7 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { PROMPT_VERSION, READABLE_PROMPT_VERSIONS, answerInstructions, answerRequest } from '../lib/rag-v2/pilot/contracts.js';
-import { DIALOGUE_PROMPT_VERSION, READABLE_DIALOGUE_PROMPT_VERSIONS, dialogueRequest } from '../lib/rag-v2/pilot/dialogue.js';
+import { DIALOGUE_PROMPT_VERSION, READABLE_DIALOGUE_PROMPT_VERSIONS, COMPLETENESS_INSTRUCTIONS, dialogueRequest } from '../lib/rag-v2/pilot/dialogue.js';
+import { UNIFIED_RETRIEVAL_INSTRUCTIONS, UNIFIED_RETRIEVAL_VERSION } from '../lib/rag-v2/pilot/retrieval-plan.js';
+import { SEARCH_ASSIST_VERSION, queryPlanRequest, rerankRequest } from '../lib/rag-v2/pilot/search-assist.js';
+import { tokenCount } from '../lib/rag-v2/search/embedding.js';
+import { hash } from '../lib/rag-v2/contracts.js';
 
 // Guardrails carried from m4-grounded-answer-9. Each was added for a measured failure; a later
 // rewording must keep them or consciously remove one here.
@@ -25,7 +29,8 @@ test('prompt v10 keeps every v9 guardrail in each answer language, and v9 plans 
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-11'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-10'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-9'));
-  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-21');
+  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-22');
+  assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-21'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-20'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-19'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-18'));
@@ -117,4 +122,48 @@ test('answer-12: a person or author question is answered from what the evidence 
     // No real place or amount from the owner's example enters the instructions.
     assert.doesNotMatch(prompt, /Harku|500 euros|Raudsoo/u);
   }
+});
+
+test('dialogue prompt 22 (ADR-062): valid_from chooses the version and never dates a rule; the comparison sentence and everything else stay', () => {
+  // The sentence of v11 on which version is in force at the asked date, byte for byte.
+  const comparison = 'For a legal rule, compare the date the user asks about with each legal source\'s valid_from and valid_to. If no source in the evidence is in force at that date, say that the text in force then is not in the collection, name any excluded version with its dates, and do not state the rule from another version or from memory as the rule in force. ';
+  assert.equal(UNIFIED_RETRIEVAL_INSTRUCTIONS.split(comparison).length, 2);
+  assert.ok(comparison.includes('say that the text in force then is not in the collection') && comparison.includes('name any excluded version with its dates'));
+  // What v22 adds: a definition before the sentence (A), the rule on a provision's own dates after it (B), and one
+  // sentence in the completeness rules (C). Their texts are pinned whole; the phrases below say what they must keep.
+  const [before, after] = UNIFIED_RETRIEVAL_INSTRUCTIONS.split(comparison), next = 'evidence.retrieval.scope.municipality: ';
+  const A = before.slice(before.indexOf('A legal source\'s valid_from and valid_to are the days')), B = after.slice(0, after.indexOf(next));
+  const anchor = 'is never left out when any evidence excerpt states it. ', C = COMPLETENESS_INSTRUCTIONS.slice(COMPLETENESS_INSTRUCTIONS.indexOf(anchor) + anchor.length, COMPLETENESS_INSTRUCTIONS.indexOf('A percentage or share without its base'));
+  assert.deepEqual([[hash(A), tokenCount(A)], [hash(B), tokenCount(B)], [hash(C), tokenCount(C)]], [['4cb84e36c59a76fede948839fc8f8aa3ed8ede3371da761f6ca2a6c446be534e', 86],
+    ['dbc073727af566c3148d1ed3d43ffdfbf80b4bb6a0583079352bbf567315c137', 461], ['639e73c6216fc6c6212709813b4e03a258c8fbb7ffe8f761a48cd2b2c9760b64', 45]]);
+  for (const phrase of ['these dates choose the version to read and never say when a rule, amount or limit took effect or last changed']) assert.ok(A.includes(phrase), phrase);
+  for (const phrase of ['a valid_from later than it is no reason to doubt the rule', 'they are part of the source and are cited with the excerpt of the provision they are about',
+    'applies_from the day it is applied from (when given it decides, also for an earlier event)', 'say from when the present wording applies and that the earlier wording is not in the collection',
+    'act_dates.scoped_rules those that cover only a part of it (a provision, an amount, a transition)', 'act_dates.changed_on_valid_from_notes gives, as amendments entries, its notes on parts that have no excerpt (the preamble, an annex, a division, a wholly repealed section)',
+    'where several entries cover a provision, the one that names it most narrowly decides', 'has no recorded amendment, which is not proof it never changed', 'conclude nothing from what is missing', 'Give a start date only when the answer depends on it',
+    'Never present valid_from, publication_date or a checking date as the day a rule or amount began']) assert.ok(B.includes(phrase), phrase);
+  // Every key the model context can carry (json-3) is named, so a cut list is never read as a complete one.
+  for (const key of ['amendments', 'in_force', 'applies_from', 'note', 'repealed_from', 'act_dates.entry_into_force', 'act_dates.scoped_rules', 'act_dates.act_in_force_from', 'act_dates.changed_on_valid_from', 'act_dates.changed_on_valid_from_notes',
+    'more', 'more_provisions', 'entry_into_force_more', 'changed_on_valid_from_count', 'amendments_omitted', 'act_dates_omitted']) assert.ok(B.includes(key), key);
+  assert.equal(C, 'The period or date an amount applies to is one the provision itself states (per month, in a calendar year, until a deadline); a legal source\'s valid_from, valid_to or publication_date is never that date. ');
+  // The new text names no municipality, year or amount: its only digits number its two cases.
+  const added = A + B + C;
+  assert.deepEqual(added.match(/\d+/gu), ['1', '2', '2']);
+  assert.doesNotMatch(added, /Märjamaa|Kuusalu|\bvald\b|\blinn\b|euro|€|septemb|august/iu);
+  // Without the additions both texts are those of prompt 21, and the base answer instructions and the search assist are untouched.
+  assert.equal(hash(UNIFIED_RETRIEVAL_INSTRUCTIONS.replace(A, '').replace(B, '')), '68e3d455eade9e69f417a745268b100c53866462f0d12d3775e0c0d22f6459dd');
+  assert.equal(hash(COMPLETENESS_INSTRUCTIONS.replace(C, '')), '7ae786af60d384ae80f55632ed16c0dcb432a98a5739cf73062c0c86ba7c10be');
+  assert.ok(COMPLETENESS_INSTRUCTIONS.includes('keep with it, in the same block, what it is calculated from, any cap or maximum (such as a price cap), what the person pays themselves, the period or date it applies to, who decides'));
+  assert.equal(PROMPT_VERSION, 'm4-grounded-answer-12');
+  assert.deepEqual(Object.fromEntries(['et', 'en', 'ru'].map(language => [language, hash(answerInstructions(language))])), { et: '903c7afbcc35f137cbac71c66f78a69defec51dd69a24bfe839884d9e1007a0d',
+    en: 'f7b4c15c88f94d47341abdccbb45eaf19a77f8feaa9ab9f5ca0828639b583975', ru: '41f40c99eafb8de0397a0825eb16bf0a8ea34e2b61538a1c0459f7e0be6c7090' });
+  const assist = { model: 'gpt-6-luna', searchAssist: SEARCH_ASSIST_VERSION };
+  assert.deepEqual([SEARCH_ASSIST_VERSION, hash(queryPlanRequest(assist, ['küsimus'], 'et').instructions), hash(rerankRequest(assist, ['küsimus'], [{ id: 'P1', title: 't', text: 'x' }], '2026-10-01').instructions)],
+    ['rag-v2/search-assist-5', 'ac80d12eefde1aa4abce6b0f87f4bd03d395001bd35c347dca35e639fd13f6e7', '100f26ab81538a103a93e34d6f58e79d0156319c51dd6ca0e449a26b2db206d4']);
+  // The request: a unified-retrieval turn carries A, the sentence and B in that order; every dialogue turn carries C.
+  const config = { model: 'gpt-6-luna', maxOutputTokens: 4096, reasoning: 'medium' };
+  const unified = dialogueRequest({ ...config, retrievalRouting: UNIFIED_RETRIEVAL_VERSION }, 'Kui suur on toetus?', { evidence: [] }, 'et', {}).instructions;
+  assert.ok(unified.includes(A + comparison + B) && unified.includes(C) && unified.includes(`Dialogue extension: ${DIALOGUE_PROMPT_VERSION}.`));
+  const plain = dialogueRequest(config, 'Kui suur on toetus?', { evidence: [] }, 'et', {}).instructions;
+  assert.ok(!plain.includes(A) && !plain.includes(B) && plain.includes(C));
 });

@@ -158,3 +158,33 @@ test('Codex R4: the hard-conditions answer patterns keep the direction of the co
   assert.equal(verdict('coach-reports-child', 'Edasta ainult lapse õiguste kaitseks vajalik teave.'), 'passed');
   assert.equal(verdict('coach-reports-child', 'Võid vallale edastada kõik andmed, mitte ainult vajalikud.'), 'answer');
 });
+
+test('ADR-062: the provision-date patterns fail the 30.09 answers and pass an answer that dates the rule by the act\'s own provision', async () => {
+  const catalogue = JSON.parse(await fs.readFile('tests/evaluation/dialogue/scenarios-provision-dates-1.json', 'utf8'));
+  const turnOf = id => catalogue.scenarios.find(scenario => scenario.id === id).turns[0];
+  const failed = (id, text) => checkTurn(turnOf(id).expect, observed({ region: turnOf(id).expect.region, text,
+    cited: [{ title: 'Sotsiaaltoetuste määrad ja piirmäärad', documentId: 'marjamaa' }] })).checks.filter(check => !check.ok).map(check => check.detail.slice(0, 24));
+  // The questions of the 30.09 live check: Märjamaa's unchanged, Kuusalu's with one clause that asks for the date.
+  assert.equal(turnOf('provision-date-marjamaa').text, 'Meil sündis augustis laps ja elame Märjamaa vallas, kus olen ise elanud juba mitu aastat. Kui suure sünnitoetuse vald maksab ja kas see makstakse kõik korraga välja?');
+  assert.ok(turnOf('provision-date-kuusalu').text.endsWith('arvesse ja mis ajast see piirmäär kehtib?'));
+  // Märjamaa's answer of 30.09 as the chat gave it: its first block, its limitation and its question.
+  const given = ['Märjamaa vallas kehtib alates 4. septembrist 2026 sünnitoetusena kokku 800 eurot lapse kohta: 500 eurot lapse sünni registreerimisel ja 300 eurot pärast lapse aastaseks saamist. Seega ei maksta kogu toetust korraga.',
+    'Ma ei saa öelda, kas alates 4. septembrist 2026 kehtiv summa rakendub augustis sündinud lapsele. Siin esitatud teave ei ütle, milline summa kehtis enne 4. septembrit ega seda, kuidas uus summa augustis tekkinud õiguse korral rakendub.',
+    'Kas lapse sünd registreeriti enne või pärast 4. septembrit 2026?'];
+  assert.deepEqual(failed('provision-date-marjamaa', given.join('\n')), ['/(?<!\\d)4\\.\\s*septemb|(?', '/(ei saa|ei oska)\\s+(öel']);
+  assert.deepEqual(failed('provision-date-marjamaa', given[1]).length, 4, 'the doubt alone: both amounts missing, the day and the doubt present');
+  // The answer the act supports: both parts, no start day of the version, no doubt; the day the amounts are applied from may be named.
+  for (const text of ['Märjamaa vald maksab sünnitoetust kahes osas: 500 eurot lapse sünni registreerimisel ja 300 eurot lapse aastaseks saamisel. Korraga kogu summat ei maksta.',
+    'Sünnitoetus on 500 eurot sünni registreerimisel ja 300 eurot lapse aastaseks saamisel. Neid summasid rakendatakse alates 1. jaanuarist 2026, seega ka augustis sündinud lapsele.',
+    'Toetus on 500 + 300 eurot. Summad jõustusid 24.09.2025 ja 14. septembril esitatud taotlus ei muuda seda.']) assert.deepEqual(failed('provision-date-marjamaa', text), [], text);
+  // The act's year of entry into force beside the amount, in any written form of the day, is the other wrong date.
+  for (const text of ['Sünnitoetus on 500 eurot ja 300 eurot ning see kehtib alates 1. juulist 2018.', 'Alates 01.07.2018 on sünnitoetus 500 eurot ja 300 eurot.',
+    'Määrus jõustus 2018. aastal ja sünnitoetus on 500 eurot ning 300 eurot.']) assert.deepEqual(failed('provision-date-marjamaa', text), ['/2018(?:[^.\\n]|(?<=\\d)\\.'], text);
+  // Kuusalu: the amount and the day the regulation is applied from, in each written form; never the version's start day.
+  for (const day of ['1. maist 2026', '01.05.2026', '1.05.2026', '2026. aasta 1. maist']) assert.deepEqual(failed('provision-date-kuusalu', `Vald võtab üürist arvesse kuni 480 eurot (40 m² × 12 eurot). Määrust rakendatakse alates ${day}.`), [], day);
+  // The audit notes of 30.09 do not hold the answer with this day; the sentence is the defect as ADR-062 describes it.
+  assert.deepEqual(failed('provision-date-kuusalu', 'Vald võtab arvesse kuni 480 eurot. See piirmäär kehtib alates 15. septembrist 2026.'), ['/(?<!\\d)1\\.\\s*mai\\p{L}*\\', '/(?<!\\d)15\\.\\s*septemb|(']);
+  for (const text of ['Arvesse läheb 480 eurot. Piirmäär kehtib alates 15.09.2026, määrust rakendatakse alates 01.05.2026.', 'Arvesse läheb 480 eurot alates 11. maist 2026.', 'Arvesse läheb 480 eurot alates 31.05.2026.']) {
+    assert.equal(failed('provision-date-kuusalu', text).length, 1, text);
+  }
+});

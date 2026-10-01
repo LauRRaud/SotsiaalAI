@@ -33,6 +33,7 @@
 - 04.09.2026 on terviktekstis `401092026014` ainult konsolideeritud teksti algus. Sel päeval muudeti vaid preambulit (`401092026001`). § 1 p 1 summad tulid muudatusega `421022026007`: see jõustus 24.03.2026 märkega „rakendatakse alates 01.01.2026“.
 - **Põhjus:** mudel näeb versiooni kehtivuse algust, aga mitte sätte enda muutmise märget.
 - **Parandus (järgmine arendussamm):** sätte muutmise märge (jõustumine, muutev akt, „rakendatakse alates“) peab jõudma lõigu või allikakaardiga mudelini. Vastuse juhis dateerib summa selle märke järgi, mitte teksti alguse järgi.
+  - Tehtud kahes etapis: [ADR-062](../rag-v2/adr-062-provision-dates.md) (lugeja `v30` ja korpus v47; mudeli kontekst `json-3` ja dialoogi juhis 22).
 
 ## Väiksemad tähelepanekud
 

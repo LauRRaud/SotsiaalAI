@@ -92,19 +92,23 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**Uus aken alustab siit (01.10).** Omanik valis M3. Käsil on kuupäevavea parandus ([ADR-062](../rag-v2/adr-062-provision-dates.md)); selle 1. etapp on koodis, korpus v47 ja 2. etapp järgnevad.
-- **Tootmises:** korpus v46 (indeks `5a959000`, 6470 dokumenti, Qdrantis 40 489 punkti). Vestlusplaani uuendab reliis ise (ADR-037): profiil v3, answer-12, dialoog 21, olek v5, arutlus medium.
+**Uus aken alustab siit (01.10 õhtu).** Kuupäevaviga on parandatud ([ADR-062](../rag-v2/adr-062-provision-dates.md), korpus v47, dialoog 22). Omanik valis M3; selle järgmise sammu kavand on allpool.
+- **Tootmises:** korpus v47 (indeks `34fe1590`, 6470 dokumenti, 40 489 lõiku; lugeja `source-structure-v30`). Vestlusplaani uuendab reliis ise (ADR-037): profiil v3, answer-12, dialoog 22, mudelikontekst json-3, olek v5, arutlus medium.
 - **Tööviis:**
   - Codex kujundab põhikaustas, seega ära vaheta seal harusid. Töötle %TEMP% worktree's: `node_modules` junction, `generated/` koopia. Eemalda worktree ja haru pärast PR-i.
   - PR liidetakse ja deploy'takse ise. Enne PR-i jooksuta kogu `npm test`.
   - Tasulised jooksud on kitsad: väikseim kataloog, suurem komplekt ainult hinnaga ette öeldes.
   - Päris mõõtmine käib päris vestluses: brauseripaanis `sotsiaal.ai/vestlus`, uus vestlus sessionStorage'i `:convId` võtme kustutamisega.
 - **Järgmised sammud:**
-  - **Kuupäevaviga, ADR-062:** (1) korpus v47 lugejaga v30: 519 akti uuesti sisse, ostu pole, serveris `rag-v2-corpus-run.sh` ja `rag-v2-generation-compare.mjs` v46 vastu; (2) 2. etapp: kuupäevade näitamine mudelile (mudelikontekst json-3) ja dialoog 22, enne PR-i kaks tasulist küsimust (Märjamaa, Kuusalu).
-  - **M3 (omaniku valik 01.10, „M5 tuleb kunagi hiljem“):** kontrollitud seoste katse ja teine, teistsugune raskete küsimuste kataloog. Algab pärast kuupäevaviga.
+  - **M3 (omaniku valik 01.10, „M5 tuleb kunagi hiljem“):** järgmine samm on katse, mis vestluses midagi ei muuda. Kavand valiti kolme sõltumatu ettepaneku seast (kolmest hindajast kaks eelistasid kontrollitud seoseid). Täiskavand sammude, lävendite ja hindadega: [m3-next-step-plan-2026-10-01.json](../audits/evidence/m3-next-step-plan-2026-10-01.json).
+    - Tasuta: viidete kuldkomplekt aktist (`scripts/rag-v2-relation-gold.mjs`), käsitsi kontroll 60 viitel ja 76 kaardiseosel, kolmas raske kataloog (15 küsimust, ka teise akti ja valla määruse juhud; lukku enne seoste faili), kuni 40 kontrollitavat seost, katseskripti harud A, C, D, L (päris profiil v3), F ja G.
+    - Tasuline selles sammus alla 0,10 USD: üks otsingukatse (alla 0,001 USD) ja üks vestluse jooks kuni 15 küsimusega (kuni 0,09 USD).
+    - Otsus on üks kolmest: täiendada viidete lugejat, minna kontrollitud kaartide teed või jätta praegune lahendus.
+    - Omaniku jah-sõna ootavad järgmise sammu jooksud (kokku kuni umbes 0,40 USD) ja otsus SHS-i teadmiskaartide kohta: need kehtivad 30.11.2026-ni, järgmistel redaktsioonidel kaarte pole.
+  - **Koristus omaniku loal:** v46 generatsiooni loend maha ja `rag-v2-prune-versions.mjs` (519 vana versiooni read ja punktid; ketas 85%).
   - 04.10: Maardu XML-id 415082017002 ja 402072013031 uuesti alla laadida, kui RT on kirjutanud neile lõpukuupäeva. Rada: `rag-v2-law-validity.mjs check --download`, `rag-v2-corpus-refresh.mjs`, serveris `rag-v2-corpus-run.sh` (runbook, jaotis 0).
   - Kontaktid pärast 04.10.
-  - Codex vaatab üle #289, #290 ja ADR-062 PR-id.
+  - Codex vaatab üle #289, #290 ja ADR-062 PR-id (#295 ja 2. etapi PR).
   - Kiiruse mõõtmine päris vestluses teeb omanik.
 - **Võrk 30.09 õhtul:** SSH port 22 aegus korduvalt nii GitHubi kui serveri (`ssh sotsiaalai`) poole. Push õnnestus kordamisel. `gh` töötab HTTPS-i kaudu.
 
@@ -124,7 +128,17 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
   - **Mudel ei näe veel midagi uut.** 519 aktist 519 annavad samad lõigud, 13 669 embedding'u sisendit on juba olemas, uusi 0.
   - Kolm ülevaatusringi kahe sõltumatu ülevaatajaga (teksti samasus; kuupäevade lugemine kõigi 519 akti peal) ja lõppkontroll. Parandatud: vana vormingu RT viide, pakkimine Windowsis 519 versiooniga, `rag-v2-generation-compare.mjs` liigitus (sama tõendus teise mahuga on `different`), jõustumispäev enne avaldamist (hoiatus, seitse akti ja Haljala märge).
   - `npm test` 479/479 (19 vahele jäetud).
-- **Järgmine:** korpus v47 ja 2. etapp (vt „Järgmised sammud“).
+- **Korpus v47 serveris 01.10 kell 14:33:** 519 akti lugejaga v30, `external_inputs: 0`, 13 669 vektorit vahemälust. Plaan `m4-corpus-chat-20261001a.json`.
+  - `rag-v2-generation-compare.mjs` v46 vastu, 52 küsimust: 42 samad, 5 ainult järjekord, 5 `different`. Kõik viis on üle vaadatud: Sotsiaalhoolekande seaduse kuue redaktsiooni sama tekstiga lõikude vahetus (võrdlus ei filtreeri kehtivust) ja üks ankru koha nihe. Lekke tunnusega ridu ei ole.
+- **2. etapp (see PR): mudel näeb sätte kuupäevi.**
+  - Lõigu juures `amendments` (säte, jõustumine, „rakendatakse alates“, märke sõnad, kehtetuks tunnistamine), allikakaardil `act_dates` (akti jõustumine, mida redaktsiooni muudatus puudutas, akti enda jõustumis- ja rakendussätted). Mudelikontekst `json-3`, dialoog 22.
+  - Uued väljad ei osale üheski valiku- ega mahuarvestuses; neil on oma piir umbes 1500 tokenit. Tõenduse valik on sama mis enne.
+  - Juhis: `valid_from` valib redaktsiooni ega ütle, millal summa kehtima hakkas; alguskuupäev öeldakse ainult siis, kui vastus sellest sõltub.
+  - Kolm ülevaatusringi ja lõppkontroll; 58 mutatsiooni 58-st püüti testidega kinni. `npm test` 506/506 (19 vahele jäetud).
+- **Mõõtmine enne PR-i (ajutine koopia v47 peal, üks jooks, 0,0114 USD plaani hinnaga):**
+  - Salvestatud pöörete kontekst on sama, lisandusid ainult kuupäevad (Märjamaa 263 tokenit, Kuusalu 61).
+  - Märjamaa: 500 + 300 €, „4. septembrist“ ja kahtlus augusti sünni pärast on kadunud.
+  - Kuusalu: 480 €, „määrust rakendatakse alates 1. maist 2026“; „15. septembrist“ on kadunud.
 
 **30.09 (Opus), hilisõhtu: Codexi #283–#288 ülevaatuse R1–R3 parandatud, omavalitsuste vastuste mõõtmine, vormi lingi suurus (#289)** ([Codexi raport](../audits/rag-v2-pr283-288-review-2026-09-30.md)).
 - **R1 (P1, [ADR-060](../rag-v2/adr-060-prune-unreferenced-versions.md)):** koristus ja indekseerimine välistavad teineteist rentniku Postgresi nõuandva lukuga.
