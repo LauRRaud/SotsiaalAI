@@ -15,7 +15,7 @@ See samm on mõõtmine. Vestlus, indeks ja profiil ei muutu.
 
 Kavand valiti 01.10 kolme sõltumatu ettepaneku seast (kolmest hindajast kaks eelistasid kontrollitud seoseid). Täiskavand sammude, lävendite ja hindadega: [m3-next-step-plan-2026-10-01.json](../audits/evidence/m3-next-step-plan-2026-10-01.json).
 
-## Tehtud (sammud 1–3, tasuta)
+## Tehtud (sammud 1–4, tasuta)
 
 ### 1. Lähteseis
 
@@ -40,7 +40,7 @@ Kavand valiti 01.10 kolme sõltumatu ettepaneku seast (kolmest hindajast kaks ee
 
 | Akt | Sätteid | Viiteid teisele paragrahvile | neist väljaspool esimest lõiku | Oma paragrahvi viiteid teise lõiku | Teise akti viiteid (lahendatud) | Keelavaid sätteid ilma viiteta | Kaardiseosega kaetud lõiguüleseid viiteid |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Sotsiaalhoolekande seadus (`130062026065`) | 855 | 278 | 24 | 44 | 89 (32) | 17 | 13 / 322 |
+| Sotsiaalhoolekande seadus (`130062026065`) | 855 | 278 | 24 | 44 | 88 (20) | 17 | 13 / 322 |
 | Haldusmenetluse seadus (`106072023031`) | 324 | 24 | 0 | 0 | 0 | 9 | 0 / 24 |
 | Sotsiaalseadustiku üldosa seadus (`130062026031`) | 120 | 9 | 0 | 0 | 4 (0) | 2 | – |
 | Lastekaitseseadus (`111072026042`) | 155 | 53 | 4 | 16 | 15 (1) | 0 | – |
@@ -50,7 +50,7 @@ Kavand valiti 01.10 kolme sõltumatu ettepaneku seast (kolmest hindajast kaks ee
 
 - **Mudeli kaardid katavad viidetest väikese osa:** SHS-is 13 lõiguülest viidet 322-st (4%). Viide on tekstis olemas ja loetav ilma mudelita.
 - **30 viidet lähevad lõikele, mis ei ole paragrahvi esimeses lõigus.** Need jäävad praeguse otsinguga leidmata, kuigi viide on lahendatud. Näide: SHS § 131 viitab § 133 lõigetele 5 ja 6.
-- **62 oma paragrahvi viidet lähevad teise lõiku** ja 139 viidet nimetavad teist akti. Kumbagi praegune otsing ei kasuta.
+- **62 oma paragrahvi viidet lähevad teise lõiku** ja 138 viidet nimetavad teist akti. Kumbagi praegune otsing ei kasuta.
 - Test `tests/rag-v2-relation-gold.test.mjs` hoiab SHS-i arve ja kontrollib, et repos olev fail on see, mille skript annab.
 
 ### 3. Käsitsi kontroll
@@ -71,14 +71,36 @@ Kavand valiti 01.10 kolme sõltumatu ettepaneku seast (kolmest hindajast kaks ee
 - **Lävend ei ole täidetud.** Mudeli tehtud tüübitud seost ei näidata mudelile tüübitud seosena.
 - See on ühe lugeja hinnang. Lõdva seose liik on lugemise küsimus, vale siht ei ole. Codex loeb valimi üle.
 
+### 4. Kolmas raske kataloog, lukus enne seoste faili
+
+`tests/evaluation/graph/hard-conditions-3.json` ja selle vestluse kaksik `tests/evaluation/dialogue/scenarios-hard-conditions-3.json`. Kirjutatud 01.10.2026 enne ühtegi jooksu ja enne seoste faili.
+
+- **15 küsimust kujude kaupa**, mida kaks esimest kataloogi ei kata:
+
+| Kuju | Küsimusi | Näide |
+|---|---:|---|
+| Otsustav lõige väljaspool paragrahvi esimest lõiku | 2 | eluasemelaen toimetulekutoetuse arvestamisel (SHS § 131 lg 2 → § 133 lg 5) |
+| Hilisem lõige viitab oma paragrahvi varasemale | 2 | sel kuul 25-aastaseks saav üliõpilane (§ 131 lg 10 → lg 8) |
+| Otsustav säte nimetab teemaparagrahvi mujalt | 2 | teenuse lõpetamine sõjaseisukorra ajal (§ 13² lg 3 → § 80 lg 1 p 1) |
+| Teine akt | 3 | pensionäritoetus ja õppiv laps (SHS § 139¹ lg 4 → PKS § 97); lapse abivajadus (SHS § 59 → LasteKS § 28); Harku kord → SHS § 25 lg 2 (piirkonnaga) |
+| Erand, mis ei nimeta midagi | 2 | eestkostetav vend pere koosseisus (§ 131 lg 12); varasem võlg eluasemekuluna (§ 133 lg 7) |
+| Mõiste | 1 | ühise majapidamisega sõbrad (§ 131 lg 7 p 3) |
+| Rakendussäte | 1 | Kuusalu piirmäärade algus (§ 5 lg 1, piirkonnaga) |
+| Kontroll | 2 | üks, mille alusotsing peab leidma; üks, kus erand on olemas, aga ei kohaldu |
+
+- Päringud on sellised, nagu otsinguplaan kirjutaks, ega nimeta otsustavat paragrahvi. Iga fraas on kontrollitud selle akti lõigust, mis kehtib 15.10.2026.
+- Üks fraas ei ole ühene: Harku küsimuse fraas seisab SHS-is nii § 25 lg 2 (tugiisik) kui ka § 29 lg 2 (isiklik abistaja) all.
+- **Mustrite test:** iga `must` ja `must_not` on testitud kirjutatud õige ja vastupidise vastuse peal (`tests/rag-v2-conversation-eval.test.mjs`). ADR-057-s lükkasid mustrid neli õiget vastust tagasi ja lasid ühe vale läbi.
+- **Lukk:** kataloogi git-objekti räsi on `7b94a63a6b2e15c608ee405666803a4d92260afa`, kaksiku oma `7839df66ddd4aeea3eeabaab49b5d3f3e3a55942`. Seoste fail (samm 5) kirjutatakse pärast seda.
+- Kataloogi kirjutamisel leitud viga kuldkomplektis: teise akti nimi võeti kogu lausest, mitte vahetult loendi eest („nakkushaiguste ennetamise ja tõrje seaduse § 13“ läks perekonnaseaduseks). Parandatud; lahendatud viiteid on 28, mitte 40.
+
 ## Vaheotsus
 
 - **Viide tekstist on usaldusväärne, mudeli seos ei ole.** 60 viitest 60 õiged; 75 kaardiseosest 20 valed.
 - Järgmine samm mõõdab, kas tekstist loetud viited (teise lõiku, oma paragrahvi lõikele, sissetulevad viited, nimetatud teine akt) toovad otsustava sätte tõenditesse seal, kus praegune otsing selle kaotab.
 
-## Edasi (sammud 4–10)
+## Edasi (sammud 5–10)
 
-- **4.** Kolmas raske kataloog `hard-conditions-3.json` ja selle vestluse kaksik: 15 küsimust, ka teise akti ja valla määruse juhud. Lukku enne seoste faili.
 - **5–6.** Kuni 40 kontrollitavat seost (`checked-relations-1.json`) koos kontrollskriptiga; teine lugemine ilma inimeseta; omanikule üks leht käsitsi kirjutatud seostest.
 - **7–9.** Katseskripti harud A, C, D, L (päris profiil v3), F (ainult kontrollitud seosed) ja G; kuiv läbimine kohalikult; eraldamise täpsus kuldkomplekti vastu.
 - **10.** Otsus: täiendada viidete lugejat, minna kontrollitud kaartide teed või jätta praegune lahendus.
@@ -87,5 +109,5 @@ Kavand valiti 01.10 kolme sõltumatu ettepaneku seast (kolmest hindajast kaks ee
 ## Piirid
 
 - Kuldkomplekt loeb ainult viiteid, mille akt ise sõnades teeb. Tingimus, millele ükski viide ei osuta (71 keelavat sätet), jääb sellest välja; need on kontrollitud seoste ja kolmanda kataloogi töö.
-- Teise akti viide lahendatakse ainult seitsme akti piires (40 viidet 139-st).
+- Teise akti viide lahendatakse ainult seitsme akti piires (28 viidet 138-st) ja ainult siis, kui akti nimi seisab vahetult loendi ees.
 - SHS-i teadmiskaardid on redaktsioonidel, mis kehtivad 30.11.2026-ni. Järgmistel redaktsioonidel kaarte pole; see on omaniku otsus.

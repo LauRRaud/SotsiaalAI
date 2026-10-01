@@ -51,8 +51,8 @@
      "cross_passage_with_card_relation": 2
     },
     "other_act": {
-     "links": 89,
-     "resolved": 32
+     "links": 88,
+     "resolved": 20
     },
     "denials": {
      "provisions": 17,
@@ -1227,7 +1227,7 @@
     {
      "class": "other_act",
      "from": "45^13/1",
-     "to_act": "107052025017",
+     "to_act": "111072026042",
      "list": "§-s 20",
      "exception": true,
      "words": "ja kohustuste täitmiselt; 6) ta vastab lastekaitseseaduse §-s 20 sätestatud nõuetele; 7) tal ei ole sõ",
@@ -1236,7 +1236,7 @@
     {
      "class": "other_act",
      "from": "45^13/1",
-     "to_act": "107052025017",
+     "to_act": null,
      "list": "§ 13 lõike 1 punktile 3",
      "exception": true,
      "words": "esitab vastavalt nakkushaiguste ennetamise ja tõrje seaduse § 13 lõike 1 punktile 3 nakkushaiguste suhtes tervisekontrolli",
@@ -1245,7 +1245,7 @@
     {
      "class": "other_act",
      "from": "45^13/1",
-     "to_act": "107052025017",
+     "to_act": null,
      "list": "§ 13 lõikele 6",
      "exception": true,
      "words": "liselt vastavalt nakkushaiguste ennetamise ja tõrje seaduse § 13 lõikele 6; 11) hoolduspere vanem peab olema läb",
@@ -1677,7 +1677,7 @@
      "to_act": null,
      "list": "§ 2",
      "exception": false,
-     "words": ", kellel on puue puuetega inimeste sotsiaaltoetuste seaduse § 2 tähenduses; 2) lapsel, kellel on tuva",
+     "words": ", kellel on puue puuetega inimeste sotsiaaltoetuste seaduse § 2 tähenduses ning kellel on tuvastatud so",
      "from_passage": 95
     },
     {
@@ -1692,16 +1692,7 @@
     {
      "class": "other_act",
      "from": "59/1",
-     "to_act": "111072026042",
-     "list": "§ 2",
-     "exception": false,
-     "words": ", kellel on puue puuetega inimeste sotsiaaltoetuste seaduse § 2 tähenduses ning kellel on tuvastatud so",
-     "from_passage": 95
-    },
-    {
-     "class": "other_act",
-     "from": "59/1",
-     "to_act": "111072026042",
+     "to_act": null,
      "list": "§-s 7",
      "exception": false,
      "words": "teenuse vajadus; 5) riikliku pensionikindlustuse seaduse §-s 7 sätestatud vanaduspensioniealisel isiku",
@@ -1710,7 +1701,7 @@
     {
      "class": "other_act",
      "from": "59/1",
-     "to_act": "111072026042",
+     "to_act": null,
      "list": "§-s 9",
      "exception": false,
      "words": "teenuse vajadus; 6) riikliku pensionikindlustuse seaduse §-s 9 sätestatud ennetähtaegsele vanaduspensi",
@@ -1719,7 +1710,7 @@
     {
      "class": "other_act",
      "from": "59/1",
-     "to_act": "111072026042",
+     "to_act": null,
      "list": "§-s 19",
      "exception": false,
      "words": "ilitatsiooni teenuse vajadus; 7) päästeteenistuse seaduse §-s 19 sätestatud vanaduspensioni ootel oleva",
@@ -4224,7 +4215,7 @@
     {
      "class": "other_act",
      "from": "139^3/8",
-     "to_act": "130062026031",
+     "to_act": null,
      "list": "§-s 36",
      "exception": false,
      "words": "tud korras, arvestades riikliku pensionikindlustuse seaduse §-s 36 sätestatud erisusi.",
@@ -4494,7 +4485,7 @@
     {
      "class": "other_act",
      "from": "142^1/1",
-     "to_act": "111072026042",
+     "to_act": null,
      "list": "§ 91 lõikes 6",
      "exception": false,
      "words": "a eest välismaalasele rahvusvahelise kaitse andmise seaduse § 91 lõikes 6 nimetatud kulude katmise andmed; 8²)",
@@ -4584,7 +4575,7 @@
     {
      "class": "other_act",
      "from": "144/1",
-     "to_act": "111072026042",
+     "to_act": null,
      "list": "§ 91 lõikes 6",
      "exception": false,
      "words": "a eest välismaalasele rahvusvahelise kaitse andmise seaduse § 91 lõikes 6 nimetatud kulude katmise andmed, kui se",
@@ -4593,7 +4584,7 @@
     {
      "class": "other_act",
      "from": "144/1",
-     "to_act": "111072026042",
+     "to_act": null,
      "list": "§ 91 lõike 5",
      "exception": false,
      "words": "ude katmise andmed, kui selline kohustus tuleb sama seaduse § 91 lõike 5 alusel Sotsiaalkindlustusametiga sõlmit",
@@ -4698,7 +4689,7 @@
     {
      "class": "other_act",
      "from": "144/6",
-     "to_act": "111072026042",
+     "to_act": null,
      "list": "§ 91 lõikes 6",
      "exception": false,
      "words": "a eest välismaalasele rahvusvahelise kaitse andmise seaduse § 91 lõikes 6 nimetatud kulude katmise andmed, kui ne",
@@ -4707,7 +4698,7 @@
     {
      "class": "other_act",
      "from": "144/6",
-     "to_act": "111072026042",
+     "to_act": null,
      "list": "§ 91 lõike 5",
      "exception": false,
      "words": "tsiaalkindlustusamet on sõlminud halduslepingu sama seaduse § 91 lõike 5 alusel; 4³) andmed lastekaitseseaduse",

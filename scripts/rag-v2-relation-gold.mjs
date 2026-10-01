@@ -39,6 +39,17 @@ const listed = numbers => numbers.split(/\s*(?:,|ja|ning|või)\s*/u).flatMap(par
   return /^\d+$/u.test(from) && /^\d+$/u.test(to) && Number(to) > Number(from) && Number(to) - Number(from) <= 30
     ? Array.from({ length: Number(to) - Number(from) + 1 }, (_, index) => String(Number(from) + index)) : [plain(from), plain(to)];
 });
+// The act a list names: the act in scope whose name stands directly before the list's first mark ("lastekaitseseaduse
+// § 20", "perekonnaseaduse (RT I …) § 97"); another act's name, "sama seaduse" or the act itself give none.
+const namedAct = (text, at, own) => {
+  const before = text.slice(Math.max(0, at - 120), at).toLocaleLowerCase('et');
+  let nearest = null;
+  for (const [pattern, act] of NAMED_ACTS) {
+    const found = [...before.matchAll(new RegExp(pattern.source, 'gu'))].at(-1);
+    if (found && (!nearest || found.index > nearest.index)) nearest = { index: found.index, end: found.index + found[0].length, act };
+  }
+  return nearest && nearest.act !== own && /^\p{L}*\s*(?:\([^()]*\)\s*)?$/u.test(before.slice(nearest.end)) ? nearest.act : null;
+};
 const sentenceBefore = (text, at) => text.slice(Math.max(0, text.lastIndexOf('.', at) + 1), at);
 const words = (text, at, end) => text.slice(Math.max(0, at - 60), Math.min(text.length, end + 40)).replace(/\s+/gu, ' ').trim();
 
@@ -116,8 +127,7 @@ export function actGold(act, bundle, knowledge = { cards: [], dependencies: [] }
     }
     for (const list of read.other) {
       report.other_act++;
-      const named = sentenceBefore(text, list.at).toLocaleLowerCase('et'), target = NAMED_ACTS.findLast(([pattern]) => pattern.test(named));
-      links.push({ class: 'other_act', from: provision.id, to_act: target && target[1] !== act ? target[1] : null, list: text.slice(list.at, list.end).replace(/\s+/gu, ' '),
+      links.push({ class: 'other_act', from: provision.id, to_act: namedAct(text, list.at, act), list: text.slice(list.at, list.end).replace(/\s+/gu, ' '),
         exception: EXCEPTION.test(sentenceBefore(text, list.at)), words: words(text, list.at, list.end) });
     }
   }

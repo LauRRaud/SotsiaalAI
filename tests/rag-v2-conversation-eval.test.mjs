@@ -159,6 +159,39 @@ test('Codex R4: the hard-conditions answer patterns keep the direction of the co
   assert.equal(verdict('coach-reports-child', 'Võid vallale edastada kõik andmed, mitte ainult vajalikud.'), 'answer');
 });
 
+test('ADR-063: every pattern of the third hard catalogue passes a right answer and fails the opposite one', async () => {
+  const catalogue = JSON.parse(await fs.readFile('tests/evaluation/dialogue/scenarios-hard-conditions-3.json', 'utf8'));
+  const graph = JSON.parse(await fs.readFile('tests/evaluation/graph/hard-conditions-3.json', 'utf8'));
+  // The twin holds the graph catalogue's questions and phrases, one conversation each.
+  assert.deepEqual(catalogue.scenarios.map(scenario => [scenario.id, scenario.turns[0].text, scenario.turns[0].expect.evidence_text, scenario.turns[0].expect.region ?? null]),
+    graph.questions.map(question => [question.id, question.text, question.evidence_text, question.region ?? null]));
+  const expectOf = id => catalogue.scenarios.find(scenario => scenario.id === id).turns[0].expect;
+  const verdict = (id, text) => checkTurn(expectOf(id), observed({ region: expectOf(id).region ?? null, text, evidenceTexts: expectOf(id).evidence_text })).verdict;
+  // [right answer, opposite answer]: the right one states the deciding condition, the opposite one the rule without it.
+  const answers = {
+    'subsistence-home-loan': ['Jah, eluaseme soetamiseks võetud laenu tagasimakse koos intressiga võetakse eluasemekuluna arvesse valla piirmäära ulatuses.', 'Ei, laenumakse ei ole eluasemekulu.'],
+    'referral-deadline-emergency': ['Eriolukorra ajal pikeneb tähtaeg 14 päevani. Kui sa selle aja jooksul teenuseosutaja poole ei pöördu, ei saa sa sama suunamisotsuse alusel enam teenust.', 'Pead pöörduma seitsme päeva jooksul kokkulepitud tähtpäevast.'],
+    'student-turns-25': ['Ei. Kuul, mil poeg saab 25-aastaseks, õppija erisust enam ei kohaldata, seega teda sel alusel pere koosseisu ei arvata.', 'Jah, kuni 24-aastane üliõpilane arvatakse pere koosseisu, kui ta on teie juurde sisse kirjutatud.'],
+    'refusal-only-home': ['Ei tohi. Vald ei või jätta toetust määramata vara tõttu, kui sul on ainult üks aastaringselt elamiseks kasutatav eluruum.', 'Jah, vald võib keelduda, kui vara tagab piisavad elatusvahendid.'],
+    'service-ended-martial-law': ['Jah. Sõjaseisukorra ajal lõpetab teenuseosutaja teenuse, kui isik ei kasuta seda kauem kui 14 päeva, välja arvatud haiglaravi korral.', 'Ei, teenuse võib lõpetada alles siis, kui seda pole kasutatud kauem kui kaks kuud järjest.'],
+    'rent-from-mother': ['Ei. Kui üürileandja on sinu ema, siis üüri toimetulekutoetuse arvestamisel arvesse ei võeta.', 'Jah, üür läheb eluasemekuluna arvesse valla piirmäära ulatuses.'],
+    'pensioner-with-student-child': ['Jah, õigus säilib: üksi elamise nõuet ei kohaldata, kui sinuga elab laps, kes õpib ja ei ole veel 21-aastane.', 'Ei, sul ei ole õigust toetusele, sest sa ei ela registri järgi üksi.'],
+    'child-rehabilitation-need': ['Lapse abivajadust hindab lastekaitsetöötaja või lapsega töötav isik; rehabilitatsiooni vajaduse määrab vald.', 'Abivajadust hindab perearst.'],
+    'harku-support-person-relative': ['Ei. Tugiisikuteenust ei tohi vahetult osutada teenuse saaja esimese või teise astme sugulane, ja vanaema on teise astme üleneja sugulane.', 'Jah, vanaema võib olla tugiisik, kui vald ta määrab.'],
+    'guardian-ward-family': ['Ei. Eestkostetavat, kelle eestkostja on temaga koos elav pereliige, ei loeta toimetulekutoetuse määramisel perekonna liikmeks.', 'Jah, venna sissetulek arvestatakse pere sissetulekuks, sest elate ühes korteris.'],
+    'rent-debt-not-counted': ['Ei. Varem tekkinud võlgnevust ei arvata jooksva kuu eluasemekulude hulka.', 'Jah, võlg võetakse eluasemekuluna arvesse.'],
+    'household-definition': ['Jah, kui teid seob ühine kodune majapidamine, loetakse teid perekonnaliikmeteks.', 'Ei, sõpru ei loeta perekonnaks, sest te ei ole sugulased.'],
+    'kuusalu-limits-since': ['Määrust rakendatakse alates 1. maist 2026.', 'Piirmäärad kehtivad 15. septembrist 2026.'],
+    'special-care-decision-time': ['Amet otsustab 40 tööpäeva jooksul taotluse ja kõigi nõutavate dokumentide saamisest.', 'Amet otsustab 30 päeva jooksul.'],
+    'pensioner-day-centre': ['Ei võta. Õigus toetusele kaob ainult sellel, kellele osutatakse ööpäevaringset hooldusteenust väljaspool kodu; päevakeskus seda ei ole.', 'Jah, võtab: hooldusteenust saades sul ei ole õigust toetusele.'],
+  };
+  assert.deepEqual(Object.keys(answers), catalogue.scenarios.map(scenario => scenario.id));
+  for (const [id, [right, opposite]] of Object.entries(answers)) {
+    assert.equal(verdict(id, right), 'passed', `${id}: ${right}`);
+    assert.equal(verdict(id, opposite), 'answer', `${id}: ${opposite}`);
+  }
+});
+
 test('ADR-062: the provision-date patterns fail the 30.09 answers and pass an answer that dates the rule by the act\'s own provision', async () => {
   const catalogue = JSON.parse(await fs.readFile('tests/evaluation/dialogue/scenarios-provision-dates-1.json', 'utf8'));
   const turnOf = id => catalogue.scenarios.find(scenario => scenario.id === id).turns[0];

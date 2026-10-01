@@ -1,0 +1,326 @@
+{
+ "schema_version": "rag-v2/dialogue-eval-2",
+ "purpose": "ADR-063: the fifteen questions of tests/evaluation/graph/hard-conditions-3.json in the whole chat (search plan, rerank, answer model), each its own conversation. Written 01.10.2026 before any run. Every must and must_not pattern is tested in tests/rag-v2-conversation-eval.test.mjs against a written right answer and a written opposite answer.",
+ "expectation_help": {
+  "evidence_text": "the deciding provision’s exact phrase is in the evidence the answer was given",
+  "must": "the answer states the deciding condition or its effect",
+  "must_not": "the answer does not state the opposite",
+  "region": "the municipality the conversation is about"
+ },
+ "scenarios": [
+  {
+   "id": "subsistence-home-loan",
+   "title": "Eluasemelaenu makse toimetulekutoetuse arvestamisel",
+   "source": "SHS § 131 lg 2, § 133 lg 5 p 1¹",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Taotlen toimetulekutoetust ja maksan iga kuu oma korteri ostuks võetud laenu. Kas laenumakse läheb eluasemekuluna arvesse?",
+     "expect": {
+      "evidence_text": [
+       "eluaseme soetamiseks võetud laenu tagasimakse, mis sisaldab ka laenu intressi"
+      ],
+      "must": [
+       "laen",
+       "arvesse"
+      ],
+      "must_not": [
+       "(?:^|\\n)\\s*Ei[,. ]"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "referral-deadline-emergency",
+   "title": "Suunamisotsuse tähtaeg eriolukorra ajal",
+   "source": "SHS § 13² lg 4, § 71 lg 6",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Riigis kehtib eriolukord. Sain suunamisotsuse kogukonnas elamise teenusele. Mitme päeva jooksul pean teenuseosutaja poole pöörduma ja mis juhtub, kui ma ei jõua?",
+     "expect": {
+      "evidence_text": [
+       "ei ole tal enam õigust sama suunamisotsuse alusel teenust saada"
+      ],
+      "must": [
+       "14 päeva"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "student-turns-25",
+   "title": "Sel kuul 25-aastaseks saav üliõpilane pere koosseisus",
+   "source": "SHS § 131 lg 8, lg 10",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Meie poeg õpib teises linnas ülikoolis, on sisse kirjutatud meie juurde ja saab sel kuul 25. Kas ta loetakse toimetulekutoetuse taotlemisel veel meie pere liikmeks?",
+     "expect": {
+      "evidence_text": [
+       "saab toimetulekutoetuse taotlemise kuul 25-aastaseks"
+      ],
+      "must": [
+       "25",
+       "\\bei (loeta|arvata|arvestata|kohaldata|kehti|kuulu|laiene)|enam ei"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "refusal-only-home",
+   "title": "Toetusest keeldumine, kui ainus vara on kodu",
+   "source": "SHS § 134 lg 4 p 7, lg 5",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Vald keeldus mulle toimetulekutoetust määramast, sest mul on oma korter. Muud vara mul ei ole. Kas vald tohib nii teha?",
+     "expect": {
+      "evidence_text": [
+       "ainult üks aastaringselt elamiseks kasutatav eluruum"
+      ],
+      "must": [
+       "üks[^.]{0,40}(eluruum|eluase|korter|kodu)|ainsa(t)? (eluruumi|eluaseme|korteri|kodu)|ainus (eluruum|eluase|korter|kodu)"
+      ],
+      "must_not": [
+       "(?:^|\\n)\\s*Jah, vald (tohib|võib)"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "service-ended-martial-law",
+   "title": "Erihoolekandeteenuse lõpetamine sõjaseisukorra ajal",
+   "source": "SHS § 80 lg 1 p 1, § 13² lg 3",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Sõjaseisukorra ajal ei ole mu vend kolm nädalat kogukonnas elamise teenust kasutanud. Kas teenuseosutaja võib tema teenuse lõpetada?",
+     "expect": {
+      "evidence_text": [
+       "kui isik ei kasuta teenust kauem kui 14 päeva"
+      ],
+      "must": [
+       "14 päeva"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "rent-from-mother",
+   "title": "Emalt üüritud korteri üür",
+   "source": "SHS § 133 lg 5 p 1, lg 8; § 131 lg 7",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Üürin korterit oma emalt ja maksan talle iga kuu üüri. Kas see üür läheb toimetulekutoetuse arvestamisel arvesse?",
+     "expect": {
+      "evidence_text": [
+       "kui üürileandjaks ja üürnikuks on"
+      ],
+      "must": [
+       "\\bei (võeta|lähe|arvestata|arvata)[^.]{0,80}arvesse|arvesse ei (võeta|lähe)|jääb[^.]{0,40}arvestamata"
+      ],
+      "must_not": [
+       "(?:^|\\n)\\s*Jah[,.]"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "pensioner-with-student-child",
+   "title": "Pensionäritoetus, kui kodus elab õppiv laps",
+   "source": "SHS § 139¹ lg 2 p 1, lg 4 p 4; PKS § 97 p 2",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Olen 66-aastane pensionär ja minu juurde on sisse kirjutatud mu 20-aastane tütar, kes õpib ülikoolis. Kas mul on ikkagi õigus üksi elava pensionäri toetusele?",
+     "expect": {
+      "evidence_text": [
+       "kuid mitte kauem kui 21-aastaseks saamiseni"
+      ],
+      "must": [
+       "21"
+      ],
+      "must_not": [
+       "(sul|teil) ei ole (enam )?õigust|puudub (sul|teil) õigus|sa ei saa (seda )?toetust"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "child-rehabilitation-need",
+   "title": "Lapse abivajaduse hindamine rehabilitatsiooni jaoks",
+   "source": "SHS § 59 lg 1 p 2; LasteKS § 28 lg 1",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Minu 10-aastasel pojal ei ole puuet, kuid tal on tõsised käitumisraskused. Kes hindab, kas ta on abivajav laps, et ta saaks riigi kulul sotsiaalset rehabilitatsiooni?",
+     "expect": {
+      "evidence_text": [
+       "Lapse abivajadust hindab lastekaitsetöötaja või lapsega töötav isik"
+      ],
+      "must": [
+       "lastekaitsetöötaja"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "harku-support-person-relative",
+   "title": "Vanaema tugiisikuna Harku vallas",
+   "source": "Harku abi andmise kord § 15 lg 3; SHS § 25 lg 2 p 2",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Elame Harku vallas. Kas minu täisealise puudega poja tugiisikuks võib vald määrata tema vanaema?",
+     "expect": {
+      "region": "harku_vald",
+      "evidence_text": [
+       "kes on teenuse saaja esimese või teise astme üleneja või alaneja sugulane"
+      ],
+      "must": [
+       "\\bei (tohi|või|saa)|keelatud|ei ole lubatud",
+       "vanaema|sugulane|teise astme"
+      ],
+      "must_not": [
+       "(?:^|\\n)\\s*Jah[,.]"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "guardian-ward-family",
+   "title": "Eestkostetav vend pere koosseisus",
+   "source": "SHS § 131 lg 7, lg 12",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Olen oma täisealise venna eestkostja ja elame ühes korteris. Kas tema sissetulek arvestatakse minu toimetulekutoetuse taotlemisel meie pere sissetulekuks?",
+     "expect": {
+      "evidence_text": [
+       "ei loeta toimetulekutoetuse määramisel perekonnaliikmeks"
+      ],
+      "must": [
+       "\\bei (loeta|arvata|arvestata)[^.]{0,80}(pere|perekonna)|ei kuulu[^.]{0,40}(pere|perekonna)"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "rent-debt-not-counted",
+   "title": "Varasem kommunaalvõlg eluasemekuluna",
+   "source": "SHS § 133 lg 5, lg 7",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Mul on kahe eelmise kuu kommunaalmaksed maksmata. Kas toimetulekutoetuse arvestamisel võetakse see võlg eluasemekuluna arvesse?",
+     "expect": {
+      "evidence_text": [
+       "varem tekkinud võlgnevust ei arvata toimetulekutoetuse arvestamisel"
+      ],
+      "must": [
+       "\\bei (võeta|arvata|arvestata|lähe)[^.]{0,80}(arvesse|hulka)|ei kuulu[^.]{0,60}(katmisele|hulka)"
+      ],
+      "must_not": [
+       "(?:^|\\n)\\s*Jah[,.]"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "household-definition",
+   "title": "Sõbrad ühe perekonnana",
+   "source": "SHS § 131 lg 7 p 3",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Elan korteris koos sõbraga, jagame üüri ja ostame toidu ühiselt. Kas meid loetakse toimetulekutoetuse taotlemisel üheks perekonnaks?",
+     "expect": {
+      "evidence_text": [
+       "muud isikud, keda seob ühine kodune majapidamine"
+      ],
+      "must": [
+       "ühi(ne|se|st)[^.]{0,30}majapidami"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "kuusalu-limits-since",
+   "title": "Kuusalu piirmäärade algus",
+   "source": "Kuusalu eluasemekulude piirmäärade määrus § 3, § 5 lg 1",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Elan Kuusalu vallas. Mis ajast kehtivad vallas praegused toimetulekutoetuse eluasemekulude piirmäärad?",
+     "expect": {
+      "region": "kuusalu_vald",
+      "evidence_text": [
+       "Määrust rakendatakse alates 01.05.2026"
+      ],
+      "must": [
+       "(?<!\\d)1\\.\\s*mai\\p{L}*\\s+2026|(?<!\\d)0?1\\.0?5\\.2026|2026\\.\\s*aasta\\s+1\\.\\s*mai"
+      ],
+      "must_not": [
+       "(?<!\\d)15\\.\\s*septemb|(?<!\\d)15\\.0?9\\.2026"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "special-care-decision-time",
+   "title": "Erihoolekandeteenuse otsuse tähtaeg",
+   "source": "SHS § 70 lg 4",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Esitasin Sotsiaalkindlustusametile erihoolekandeteenuse taotluse. Kui kiiresti peab amet otsuse tegema?",
+     "expect": {
+      "evidence_text": [
+       "tööpäeva jooksul taotluse ja kõikide nõutavate dokumentide saamisest arvates"
+      ],
+      "must": [
+       "40 tööpäeva"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "pensioner-day-centre",
+   "title": "Päevakeskuses käiv üksi elav pensionär",
+   "source": "SHS § 139¹ lg 2, lg 5 p 3",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Olen 70-aastane, elan üksi oma kodus ja käin kaks korda nädalas päevakeskuses. Kas see võtab minult õiguse üksi elava pensionäri toetusele?",
+     "expect": {
+      "evidence_text": [
+       "kellele osutatakse väljaspool kodu osutatavat ööpäevaringset üldhooldusteenust"
+      ],
+      "must": [
+       "õigus"
+      ],
+      "must_not": [
+       "(sul|teil) ei ole (enam )?õigust|kaotad õiguse|sa ei saa (seda )?toetust|(?:^|\\n)\\s*Jah, (see )?võtab"
+      ]
+     }
+    }
+   ]
+  }
+ ]
+}
