@@ -1,0 +1,5208 @@
+{
+ "schema_version": "rag-v2/graph-experiment-2",
+ "generation": "search_generation_34fe1590bbd5e2bf6a788bef196d50e26b5f573e2a63bc30fbbe1d56ab28c8f4",
+ "date": "2026-10-15",
+ "catalogue": "tests/evaluation/graph/hard-conditions-3.json",
+ "eligible_documents": 1071,
+ "excluded_legal_versions": 60,
+ "pointer_room": {
+  "additions": 4,
+  "tokens": 3000
+ },
+ "simulation_check": {
+  "questions": 15,
+  "s_equals_l": 15
+ },
+ "summary": {
+  "A": {
+   "profile": "experiment-graph-a-base-v1",
+   "questions": 15,
+   "found_all": 12,
+   "found_any": 12,
+   "within_document": 12,
+   "across_documents": 0,
+   "mean_sources": 9,
+   "mean_context_tokens": 6775,
+   "median_ms": 4852
+  },
+  "B": {
+   "profile": "experiment-graph-b-text-v1",
+   "questions": 15,
+   "found_all": 13,
+   "found_any": 13,
+   "within_document": 12,
+   "across_documents": 1,
+   "mean_sources": 13,
+   "mean_context_tokens": 9564,
+   "median_ms": 2053
+  },
+  "C": {
+   "profile": "experiment-graph-c-cards-v1",
+   "questions": 15,
+   "found_all": 12,
+   "found_any": 12,
+   "within_document": 12,
+   "across_documents": 0,
+   "mean_sources": 9.87,
+   "mean_context_tokens": 9025,
+   "median_ms": 1809
+  },
+  "D": {
+   "profile": "experiment-graph-d-references-v1",
+   "questions": 15,
+   "found_all": 12,
+   "found_any": 12,
+   "within_document": 12,
+   "across_documents": 0,
+   "mean_sources": 9.93,
+   "mean_context_tokens": 7514,
+   "median_ms": 1820
+  },
+  "E": {
+   "profile": "experiment-graph-e-neighbours-v1",
+   "questions": 15,
+   "found_all": 12,
+   "found_any": 12,
+   "within_document": 12,
+   "across_documents": 0,
+   "mean_sources": 13,
+   "mean_context_tokens": 9557,
+   "median_ms": 2021
+  },
+  "L": {
+   "profile": "hybrid-estnltk-chat-v3",
+   "questions": 15,
+   "found_all": 12,
+   "found_any": 12,
+   "within_document": 12,
+   "across_documents": 0,
+   "mean_sources": 10.53,
+   "mean_context_tokens": 8752,
+   "median_ms": 1783
+  },
+  "V": {
+   "profile": "hybrid-estnltk-chat-v1",
+   "questions": 15,
+   "found_all": 12,
+   "found_any": 12,
+   "within_document": 12,
+   "across_documents": 0,
+   "mean_sources": 9,
+   "mean_context_tokens": 7986,
+   "median_ms": 1836
+  },
+  "R": {
+   "profile": "simulated-chat-v1-plus-pointers",
+   "questions": 15,
+   "found_all": 14,
+   "found_any": 14,
+   "within_document": 12,
+   "across_documents": 2,
+   "mean_sources": 12.13,
+   "mean_context_tokens": 10071,
+   "median_ms": 0
+  },
+  "S": {
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "questions": 15,
+   "found_all": 12,
+   "found_any": 12,
+   "within_document": 12,
+   "across_documents": 0,
+   "mean_sources": 9.93,
+   "mean_context_tokens": 8621,
+   "median_ms": 0
+  }
+ },
+ "shapes": {
+  "subsection_outside_first_passage": {
+   "A": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "B": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "C": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "D": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "E": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "L": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "V": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "R": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "S": {
+    "questions": 2,
+    "found_all": 2
+   }
+  },
+  "own_section_later_passage": {
+   "A": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "B": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "C": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "D": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "E": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "L": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "V": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "R": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "S": {
+    "questions": 2,
+    "found_all": 2
+   }
+  },
+  "incoming_reference": {
+   "A": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "B": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "C": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "D": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "E": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "L": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "V": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "R": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "S": {
+    "questions": 2,
+    "found_all": 2
+   }
+  },
+  "other_act": {
+   "A": {
+    "questions": 3,
+    "found_all": 0
+   },
+   "B": {
+    "questions": 3,
+    "found_all": 1
+   },
+   "C": {
+    "questions": 3,
+    "found_all": 0
+   },
+   "D": {
+    "questions": 3,
+    "found_all": 0
+   },
+   "E": {
+    "questions": 3,
+    "found_all": 0
+   },
+   "L": {
+    "questions": 3,
+    "found_all": 0
+   },
+   "V": {
+    "questions": 3,
+    "found_all": 0
+   },
+   "R": {
+    "questions": 3,
+    "found_all": 2
+   },
+   "S": {
+    "questions": 3,
+    "found_all": 0
+   }
+  },
+  "unnamed_exception": {
+   "A": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "B": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "C": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "D": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "E": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "L": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "V": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "R": {
+    "questions": 2,
+    "found_all": 2
+   },
+   "S": {
+    "questions": 2,
+    "found_all": 2
+   }
+  },
+  "definition": {
+   "A": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "B": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "C": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "D": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "E": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "L": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "V": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "R": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "S": {
+    "questions": 1,
+    "found_all": 1
+   }
+  },
+  "implementing_provision": {
+   "A": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "B": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "C": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "D": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "E": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "L": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "V": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "R": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "S": {
+    "questions": 1,
+    "found_all": 1
+   }
+  },
+  "control_found": {
+   "A": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "B": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "C": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "D": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "E": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "L": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "V": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "R": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "S": {
+    "questions": 1,
+    "found_all": 1
+   }
+  },
+  "control_exception_not_applying": {
+   "A": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "B": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "C": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "D": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "E": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "L": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "V": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "R": {
+    "questions": 1,
+    "found_all": 1
+   },
+   "S": {
+    "questions": 1,
+    "found_all": 1
+   }
+  }
+ },
+ "rows": [
+  {
+   "question": "subsistence-home-loan",
+   "kind": "within_document",
+   "shape": "subsection_outside_first_passage",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 13423,
+   "found": [
+    {
+     "phrase": "eluaseme soetamiseks võetud laenu tagasimakse, mis sisaldab ka laenu intressi",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8212,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "subsistence-home-loan",
+   "kind": "within_document",
+   "shape": "subsection_outside_first_passage",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 2136,
+   "found": [
+    {
+     "phrase": "eluaseme soetamiseks võetud laenu tagasimakse, mis sisaldab ka laenu intressi",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 11642,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "subsistence-home-loan",
+   "kind": "within_document",
+   "shape": "subsection_outside_first_passage",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 2005,
+   "found": [
+    {
+     "phrase": "eluaseme soetamiseks võetud laenu tagasimakse, mis sisaldab ka laenu intressi",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 11,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 2
+   },
+   "context_tokens": 12325,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "subsistence-home-loan",
+   "kind": "within_document",
+   "shape": "subsection_outside_first_passage",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 1965,
+   "found": [
+    {
+     "phrase": "eluaseme soetamiseks võetud laenu tagasimakse, mis sisaldab ka laenu intressi",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 9129,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "133"
+    }
+   ],
+   "cross_references": {
+    "candidates": 2,
+    "additions": 1,
+    "sections": [
+     "133"
+    ]
+   }
+  },
+  {
+   "question": "subsistence-home-loan",
+   "kind": "within_document",
+   "shape": "subsection_outside_first_passage",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 2200,
+   "found": [
+    {
+     "phrase": "eluaseme soetamiseks võetud laenu tagasimakse, mis sisaldab ka laenu intressi",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 11452,
+   "additions": [
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "structural_expansion"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "subsistence-home-loan",
+   "kind": "within_document",
+   "shape": "subsection_outside_first_passage",
+   "arm": "L",
+   "profile": "hybrid-estnltk-chat-v3",
+   "ms": 2120,
+   "found": [
+    {
+     "phrase": "eluaseme soetamiseks võetud laenu tagasimakse, mis sisaldab ka laenu intressi",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 12,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 2,
+    "cross_reference": 1
+   },
+   "context_tokens": 10201,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "133"
+    }
+   ],
+   "cross_references": {
+    "candidates": 2,
+    "additions": 1,
+    "sections": [
+     "133"
+    ]
+   }
+  },
+  {
+   "question": "subsistence-home-loan",
+   "kind": "within_document",
+   "shape": "subsection_outside_first_passage",
+   "arm": "V",
+   "profile": "hybrid-estnltk-chat-v1",
+   "ms": 2038,
+   "found": [
+    {
+     "phrase": "eluaseme soetamiseks võetud laenu tagasimakse, mis sisaldab ka laenu intressi",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 9812,
+   "additions": [],
+   "cross_references": null,
+   "seeds": [
+    {
+     "act": "130062026065",
+     "section": "133",
+     "passage": 192
+    },
+    {
+     "act": "130062026065",
+     "section": "131",
+     "passage": 186
+    },
+    {
+     "act": "130062026065",
+     "section": "133",
+     "passage": 193
+    },
+    {
+     "act": "130062026065",
+     "section": "132",
+     "passage": 189
+    }
+   ]
+  },
+  {
+   "question": "subsistence-home-loan",
+   "kind": "within_document",
+   "shape": "subsection_outside_first_passage",
+   "arm": "R",
+   "profile": "simulated-chat-v1-plus-pointers",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "eluaseme soetamiseks võetud laenu tagasimakse, mis sisaldab ka laenu intressi",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {},
+   "context_tokens": 12730,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 191,
+     "reason": "own_section",
+     "exception": false,
+     "from": "133/2^3",
+     "to": "133/2"
+    },
+    {
+     "act": "130062026065",
+     "passage": 188,
+     "reason": "incoming",
+     "exception": false,
+     "from": "132/4",
+     "to": "133/5"
+    },
+    {
+     "act": "130062026065",
+     "passage": 194,
+     "reason": "incoming",
+     "exception": false,
+     "from": "133/10",
+     "to": "133/5"
+    },
+    {
+     "act": "130062026065",
+     "passage": 196,
+     "reason": "incoming",
+     "exception": false,
+     "from": "134/8",
+     "to": "133/5"
+    }
+   ],
+   "candidates": 6,
+   "cross_references": null
+  },
+  {
+   "question": "subsistence-home-loan",
+   "kind": "within_document",
+   "shape": "subsection_outside_first_passage",
+   "arm": "S",
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "eluaseme soetamiseks võetud laenu tagasimakse, mis sisaldab ka laenu intressi",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {},
+   "context_tokens": 10613,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 191,
+     "reason": "first_passage",
+     "exception": false,
+     "from": "131/2",
+     "to": "133/null"
+    }
+   ],
+   "candidates": 1,
+   "cross_references": null
+  },
+  {
+   "question": "referral-deadline-emergency",
+   "kind": "within_document",
+   "shape": "subsection_outside_first_passage",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 5665,
+   "found": [
+    {
+     "phrase": "ei ole tal enam õigust sama suunamisotsuse alusel teenust saada",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 6871,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "referral-deadline-emergency",
+   "kind": "within_document",
+   "shape": "subsection_outside_first_passage",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 1649,
+   "found": [
+    {
+     "phrase": "ei ole tal enam õigust sama suunamisotsuse alusel teenust saada",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 9402,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "referral-deadline-emergency",
+   "kind": "within_document",
+   "shape": "subsection_outside_first_passage",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 1534,
+   "found": [
+    {
+     "phrase": "ei ole tal enam õigust sama suunamisotsuse alusel teenust saada",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 11,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 2
+   },
+   "context_tokens": 9155,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "referral-deadline-emergency",
+   "kind": "within_document",
+   "shape": "subsection_outside_first_passage",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 1636,
+   "found": [
+    {
+     "phrase": "ei ole tal enam õigust sama suunamisotsuse alusel teenust saada",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 4
+   },
+   "context_tokens": 9831,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "86"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "80"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "71"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "99"
+    }
+   ],
+   "cross_references": {
+    "candidates": 4,
+    "additions": 4,
+    "sections": [
+     "86",
+     "80",
+     "71",
+     "99"
+    ]
+   }
+  },
+  {
+   "question": "referral-deadline-emergency",
+   "kind": "within_document",
+   "shape": "subsection_outside_first_passage",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 1563,
+   "found": [
+    {
+     "phrase": "ei ole tal enam õigust sama suunamisotsuse alusel teenust saada",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 9933,
+   "additions": [
+    {
+     "title": "COVID-19 kriisi mõju sotsiaaltöö ja hoolekande korraldusele. Saaremaa kogemus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "COVID-19 kriisi mõju sotsiaaltöö ja hoolekande korraldusele. Saaremaa kogemus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Ülevaade erihoolekandeteenuste kättesaadavusest",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Ülevaade erihoolekandeteenuste kättesaadavusest",
+     "reason": "structural_expansion"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "referral-deadline-emergency",
+   "kind": "within_document",
+   "shape": "subsection_outside_first_passage",
+   "arm": "L",
+   "profile": "hybrid-estnltk-chat-v3",
+   "ms": 1616,
+   "found": [
+    {
+     "phrase": "ei ole tal enam õigust sama suunamisotsuse alusel teenust saada",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 2,
+    "cross_reference": 2
+   },
+   "context_tokens": 10664,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "86"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "80"
+    }
+   ],
+   "cross_references": {
+    "candidates": 18,
+    "additions": 2,
+    "sections": [
+     "86",
+     "80"
+    ]
+   }
+  },
+  {
+   "question": "referral-deadline-emergency",
+   "kind": "within_document",
+   "shape": "subsection_outside_first_passage",
+   "arm": "V",
+   "profile": "hybrid-estnltk-chat-v1",
+   "ms": 1476,
+   "found": [
+    {
+     "phrase": "ei ole tal enam õigust sama suunamisotsuse alusel teenust saada",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 7711,
+   "additions": [],
+   "cross_references": null,
+   "seeds": [
+    {
+     "act": "130062026065",
+     "section": "13^2",
+     "passage": 15
+    },
+    {
+     "act": "130062026065",
+     "section": "13^2",
+     "passage": 16
+    },
+    {
+     "act": "130062026065",
+     "section": "13^1",
+     "passage": 14
+    },
+    {
+     "act": "130062026065",
+     "section": "155^1",
+     "passage": 223
+    },
+    {
+     "act": "130062026065",
+     "section": "71",
+     "passage": 113
+    },
+    {
+     "act": "130062026065",
+     "section": "13^3",
+     "passage": 17
+    }
+   ]
+  },
+  {
+   "question": "referral-deadline-emergency",
+   "kind": "within_document",
+   "shape": "subsection_outside_first_passage",
+   "arm": "R",
+   "profile": "simulated-chat-v1-plus-pointers",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "ei ole tal enam õigust sama suunamisotsuse alusel teenust saada",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {},
+   "context_tokens": 10229,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 136,
+     "reason": "exact_subsection",
+     "exception": false,
+     "from": "13^2/1",
+     "to": "86/1"
+    },
+    {
+     "act": "130062026065",
+     "passage": 127,
+     "reason": "exact_subsection",
+     "exception": false,
+     "from": "13^2/3",
+     "to": "80/1"
+    },
+    {
+     "act": "130062026065",
+     "passage": 149,
+     "reason": "exact_subsection",
+     "exception": true,
+     "from": "13^2/9",
+     "to": "99/3"
+    },
+    {
+     "act": "130062026065",
+     "passage": 157,
+     "reason": "exact_subsection",
+     "exception": true,
+     "from": "13^2/9",
+     "to": "102/1"
+    }
+   ],
+   "candidates": 23,
+   "cross_references": null
+  },
+  {
+   "question": "referral-deadline-emergency",
+   "kind": "within_document",
+   "shape": "subsection_outside_first_passage",
+   "arm": "S",
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "ei ole tal enam õigust sama suunamisotsuse alusel teenust saada",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {},
+   "context_tokens": 10227,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 136,
+     "reason": "first_passage",
+     "exception": false,
+     "from": "13^2/1",
+     "to": "86/null"
+    },
+    {
+     "act": "130062026065",
+     "passage": 127,
+     "reason": "first_passage",
+     "exception": false,
+     "from": "13^2/3",
+     "to": "80/null"
+    },
+    {
+     "act": "130062026065",
+     "passage": 112,
+     "reason": "first_passage",
+     "exception": false,
+     "from": "13^2/4",
+     "to": "71/null"
+    },
+    {
+     "act": "130062026065",
+     "passage": 149,
+     "reason": "first_passage",
+     "exception": true,
+     "from": "13^2/9",
+     "to": "99/null"
+    }
+   ],
+   "candidates": 17,
+   "cross_references": null
+  },
+  {
+   "question": "student-turns-25",
+   "kind": "within_document",
+   "shape": "own_section_later_passage",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 10436,
+   "found": [
+    {
+     "phrase": "saab toimetulekutoetuse taotlemise kuul 25-aastaseks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 5900,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "student-turns-25",
+   "kind": "within_document",
+   "shape": "own_section_later_passage",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 2106,
+   "found": [
+    {
+     "phrase": "saab toimetulekutoetuse taotlemise kuul 25-aastaseks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 8241,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "student-turns-25",
+   "kind": "within_document",
+   "shape": "own_section_later_passage",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 2242,
+   "found": [
+    {
+     "phrase": "saab toimetulekutoetuse taotlemise kuul 25-aastaseks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 1
+   },
+   "context_tokens": 9184,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "student-turns-25",
+   "kind": "within_document",
+   "shape": "own_section_later_passage",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 1995,
+   "found": [
+    {
+     "phrase": "saab toimetulekutoetuse taotlemise kuul 25-aastaseks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 5900,
+   "additions": [],
+   "cross_references": {
+    "candidates": 1,
+    "additions": 0,
+    "sections": []
+   }
+  },
+  {
+   "question": "student-turns-25",
+   "kind": "within_document",
+   "shape": "own_section_later_passage",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 2143,
+   "found": [
+    {
+     "phrase": "saab toimetulekutoetuse taotlemise kuul 25-aastaseks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 8522,
+   "additions": [
+    {
+     "title": "Pikaajalised toimetulekutoetuse saajad vajavad rohkem tuge",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Pikaajalised toimetulekutoetuse saajad vajavad rohkem tuge",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Mida tähendavad toimetulekutoetuse määramise muudatused kohalikele omavalitsustele ja sotsiaaltöötajatele?",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Mida tähendavad toimetulekutoetuse määramise muudatused kohalikele omavalitsustele ja sotsiaaltöötajatele?",
+     "reason": "structural_expansion"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "student-turns-25",
+   "kind": "within_document",
+   "shape": "own_section_later_passage",
+   "arm": "L",
+   "profile": "hybrid-estnltk-chat-v3",
+   "ms": 1993,
+   "found": [
+    {
+     "phrase": "saab toimetulekutoetuse taotlemise kuul 25-aastaseks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 1
+   },
+   "context_tokens": 9184,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    }
+   ],
+   "cross_references": {
+    "candidates": 1,
+    "additions": 0,
+    "sections": []
+   }
+  },
+  {
+   "question": "student-turns-25",
+   "kind": "within_document",
+   "shape": "own_section_later_passage",
+   "arm": "V",
+   "profile": "hybrid-estnltk-chat-v1",
+   "ms": 2033,
+   "found": [
+    {
+     "phrase": "saab toimetulekutoetuse taotlemise kuul 25-aastaseks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8727,
+   "additions": [],
+   "cross_references": null,
+   "seeds": [
+    {
+     "act": "130062026065",
+     "section": "131",
+     "passage": 187
+    },
+    {
+     "act": "130062026065",
+     "section": "131",
+     "passage": 186
+    },
+    {
+     "act": "130062026065",
+     "section": "133",
+     "passage": 191
+    },
+    {
+     "act": "107052025017",
+     "section": "97",
+     "passage": 98
+    }
+   ]
+  },
+  {
+   "question": "student-turns-25",
+   "kind": "within_document",
+   "shape": "own_section_later_passage",
+   "arm": "R",
+   "profile": "simulated-chat-v1-plus-pointers",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "saab toimetulekutoetuse taotlemise kuul 25-aastaseks",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {},
+   "context_tokens": 11584,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 192,
+     "reason": "exact_subsection",
+     "exception": false,
+     "from": "131/2",
+     "to": "133/5"
+    },
+    {
+     "act": "130062026065",
+     "passage": 193,
+     "reason": "exact_subsection",
+     "exception": false,
+     "from": "131/2",
+     "to": "133/6"
+    },
+    {
+     "act": "130062026065",
+     "passage": 188,
+     "reason": "incoming",
+     "exception": false,
+     "from": "132/2",
+     "to": "131/7"
+    },
+    {
+     "act": "130062026065",
+     "passage": 197,
+     "reason": "incoming",
+     "exception": false,
+     "from": "135/1",
+     "to": "131/7"
+    }
+   ],
+   "candidates": 5,
+   "cross_references": null
+  },
+  {
+   "question": "student-turns-25",
+   "kind": "within_document",
+   "shape": "own_section_later_passage",
+   "arm": "S",
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "saab toimetulekutoetuse taotlemise kuul 25-aastaseks",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {},
+   "context_tokens": 8727,
+   "additions": [],
+   "candidates": 0,
+   "cross_references": null
+  },
+  {
+   "question": "refusal-only-home",
+   "kind": "within_document",
+   "shape": "own_section_later_passage",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 9737,
+   "found": [
+    {
+     "phrase": "ainult üks aastaringselt elamiseks kasutatav eluruum",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8216,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "refusal-only-home",
+   "kind": "within_document",
+   "shape": "own_section_later_passage",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 2053,
+   "found": [
+    {
+     "phrase": "ainult üks aastaringselt elamiseks kasutatav eluruum",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 11547,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "refusal-only-home",
+   "kind": "within_document",
+   "shape": "own_section_later_passage",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 1809,
+   "found": [
+    {
+     "phrase": "ainult üks aastaringselt elamiseks kasutatav eluruum",
+     "in_evidence": true,
+     "in_cards": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8920,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "refusal-only-home",
+   "kind": "within_document",
+   "shape": "own_section_later_passage",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 1820,
+   "found": [
+    {
+     "phrase": "ainult üks aastaringselt elamiseks kasutatav eluruum",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8216,
+   "additions": [],
+   "cross_references": {
+    "candidates": 1,
+    "additions": 0,
+    "sections": []
+   }
+  },
+  {
+   "question": "refusal-only-home",
+   "kind": "within_document",
+   "shape": "own_section_later_passage",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 2015,
+   "found": [
+    {
+     "phrase": "ainult üks aastaringselt elamiseks kasutatav eluruum",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 11348,
+   "additions": [
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Pikaajalised toimetulekutoetuse saajad vajavad rohkem tuge",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Pikaajalised toimetulekutoetuse saajad vajavad rohkem tuge",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+     "reason": "structural_expansion"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "refusal-only-home",
+   "kind": "within_document",
+   "shape": "own_section_later_passage",
+   "arm": "L",
+   "profile": "hybrid-estnltk-chat-v3",
+   "ms": 1769,
+   "found": [
+    {
+     "phrase": "ainult üks aastaringselt elamiseks kasutatav eluruum",
+     "in_evidence": true,
+     "in_cards": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8920,
+   "additions": [],
+   "cross_references": {
+    "candidates": 1,
+    "additions": 0,
+    "sections": []
+   }
+  },
+  {
+   "question": "refusal-only-home",
+   "kind": "within_document",
+   "shape": "own_section_later_passage",
+   "arm": "V",
+   "profile": "hybrid-estnltk-chat-v1",
+   "ms": 1836,
+   "found": [
+    {
+     "phrase": "ainult üks aastaringselt elamiseks kasutatav eluruum",
+     "in_evidence": true,
+     "in_cards": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8920,
+   "additions": [],
+   "cross_references": null,
+   "seeds": [
+    {
+     "act": "130062026065",
+     "section": "134",
+     "passage": 196
+    },
+    {
+     "act": "130062026065",
+     "section": "134",
+     "passage": 195
+    },
+    {
+     "act": "130062026065",
+     "section": "133",
+     "passage": 191
+    },
+    {
+     "act": "130062026065",
+     "section": "132",
+     "passage": 189
+    }
+   ]
+  },
+  {
+   "question": "refusal-only-home",
+   "kind": "within_document",
+   "shape": "own_section_later_passage",
+   "arm": "R",
+   "profile": "simulated-chat-v1-plus-pointers",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "ainult üks aastaringselt elamiseks kasutatav eluruum",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 12,
+   "reasons": {},
+   "context_tokens": 11226,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 192,
+     "reason": "exact_subsection",
+     "exception": false,
+     "from": "134/8",
+     "to": "133/5"
+    },
+    {
+     "act": "130062026031",
+     "passage": 27,
+     "reason": "other_act",
+     "exception": false,
+     "from": "134/6",
+     "to": "130062026031:§-le 28"
+    },
+    {
+     "act": "130062026065",
+     "passage": 188,
+     "reason": "own_section",
+     "exception": false,
+     "from": "132/6",
+     "to": "132/1"
+    }
+   ],
+   "candidates": 3,
+   "cross_references": null
+  },
+  {
+   "question": "refusal-only-home",
+   "kind": "within_document",
+   "shape": "own_section_later_passage",
+   "arm": "S",
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "ainult üks aastaringselt elamiseks kasutatav eluruum",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {},
+   "context_tokens": 8920,
+   "additions": [],
+   "candidates": 0,
+   "cross_references": null
+  },
+  {
+   "question": "service-ended-martial-law",
+   "kind": "within_document",
+   "shape": "incoming_reference",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 2500,
+   "found": [
+    {
+     "phrase": "kui isik ei kasuta teenust kauem kui 14 päeva",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 7036,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "service-ended-martial-law",
+   "kind": "within_document",
+   "shape": "incoming_reference",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 1507,
+   "found": [
+    {
+     "phrase": "kui isik ei kasuta teenust kauem kui 14 päeva",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 9955,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "service-ended-martial-law",
+   "kind": "within_document",
+   "shape": "incoming_reference",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 1483,
+   "found": [
+    {
+     "phrase": "kui isik ei kasuta teenust kauem kui 14 päeva",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8090,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "service-ended-martial-law",
+   "kind": "within_document",
+   "shape": "incoming_reference",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 1517,
+   "found": [
+    {
+     "phrase": "kui isik ei kasuta teenust kauem kui 14 päeva",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 4
+   },
+   "context_tokens": 10075,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "70"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "86"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "71"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "99"
+    }
+   ],
+   "cross_references": {
+    "candidates": 7,
+    "additions": 4,
+    "sections": [
+     "70",
+     "86",
+     "71",
+     "99"
+    ]
+   }
+  },
+  {
+   "question": "service-ended-martial-law",
+   "kind": "within_document",
+   "shape": "incoming_reference",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 1560,
+   "found": [
+    {
+     "phrase": "kui isik ei kasuta teenust kauem kui 14 päeva",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 10163,
+   "additions": [
+    {
+     "title": "Ülevaade erihoolekandeteenuste kättesaadavusest",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Ülevaade erihoolekandeteenuste kättesaadavusest",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Heade praktikate kogumik",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Heade praktikate kogumik",
+     "reason": "structural_expansion"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "service-ended-martial-law",
+   "kind": "within_document",
+   "shape": "incoming_reference",
+   "arm": "L",
+   "profile": "hybrid-estnltk-chat-v3",
+   "ms": 1407,
+   "found": [
+    {
+     "phrase": "kui isik ei kasuta teenust kauem kui 14 päeva",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 4
+   },
+   "context_tokens": 11129,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "70"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "86"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "71"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "99"
+    }
+   ],
+   "cross_references": {
+    "candidates": 7,
+    "additions": 4,
+    "sections": [
+     "70",
+     "86",
+     "71",
+     "99"
+    ]
+   }
+  },
+  {
+   "question": "service-ended-martial-law",
+   "kind": "within_document",
+   "shape": "incoming_reference",
+   "arm": "V",
+   "profile": "hybrid-estnltk-chat-v1",
+   "ms": 1332,
+   "found": [
+    {
+     "phrase": "kui isik ei kasuta teenust kauem kui 14 päeva",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8090,
+   "additions": [],
+   "cross_references": null,
+   "seeds": [
+    {
+     "act": "130062026065",
+     "section": "80",
+     "passage": 127
+    },
+    {
+     "act": "130062026065",
+     "section": "13^2",
+     "passage": 15
+    },
+    {
+     "act": "130062026065",
+     "section": "80",
+     "passage": 128
+    },
+    {
+     "act": "130062026065",
+     "section": "82",
+     "passage": 130
+    },
+    {
+     "act": "130062026065",
+     "section": "97",
+     "passage": 147
+    },
+    {
+     "act": "130062026065",
+     "section": "13^2",
+     "passage": 16
+    },
+    {
+     "act": "130062026065",
+     "section": "78",
+     "passage": 123
+    }
+   ]
+  },
+  {
+   "question": "service-ended-martial-law",
+   "kind": "within_document",
+   "shape": "incoming_reference",
+   "arm": "R",
+   "profile": "simulated-chat-v1-plus-pointers",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "kui isik ei kasuta teenust kauem kui 14 päeva",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {},
+   "context_tokens": 10631,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 110,
+     "reason": "exact_subsection",
+     "exception": true,
+     "from": "80/1",
+     "to": "70/4"
+    },
+    {
+     "act": "130062026065",
+     "passage": 136,
+     "reason": "exact_subsection",
+     "exception": false,
+     "from": "13^2/1",
+     "to": "86/1"
+    },
+    {
+     "act": "130062026065",
+     "passage": 113,
+     "reason": "exact_subsection",
+     "exception": false,
+     "from": "13^2/4",
+     "to": "71/6"
+    },
+    {
+     "act": "130062026065",
+     "passage": 149,
+     "reason": "incoming",
+     "exception": false,
+     "from": "99/1",
+     "to": "97/3"
+    }
+   ],
+   "candidates": 6,
+   "cross_references": null
+  },
+  {
+   "question": "service-ended-martial-law",
+   "kind": "within_document",
+   "shape": "incoming_reference",
+   "arm": "S",
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "kui isik ei kasuta teenust kauem kui 14 päeva",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {},
+   "context_tokens": 10648,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 110,
+     "reason": "first_passage",
+     "exception": true,
+     "from": "80/1",
+     "to": "70/null"
+    },
+    {
+     "act": "130062026065",
+     "passage": 136,
+     "reason": "first_passage",
+     "exception": false,
+     "from": "13^2/1",
+     "to": "86/null"
+    },
+    {
+     "act": "130062026065",
+     "passage": 112,
+     "reason": "first_passage",
+     "exception": false,
+     "from": "13^2/4",
+     "to": "71/null"
+    },
+    {
+     "act": "130062026065",
+     "passage": 149,
+     "reason": "first_passage",
+     "exception": true,
+     "from": "13^2/9",
+     "to": "99/null"
+    }
+   ],
+   "candidates": 6,
+   "cross_references": null
+  },
+  {
+   "question": "rent-from-mother",
+   "kind": "within_document",
+   "shape": "incoming_reference",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 1655,
+   "found": [
+    {
+     "phrase": "kui üürileandjaks ja üürnikuks on",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8087,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "rent-from-mother",
+   "kind": "within_document",
+   "shape": "incoming_reference",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 1332,
+   "found": [
+    {
+     "phrase": "kui üürileandjaks ja üürnikuks on",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 10900,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "rent-from-mother",
+   "kind": "within_document",
+   "shape": "incoming_reference",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 1339,
+   "found": [
+    {
+     "phrase": "kui üürileandjaks ja üürnikuks on",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 11,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 2
+   },
+   "context_tokens": 12200,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "rent-from-mother",
+   "kind": "within_document",
+   "shape": "incoming_reference",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 1180,
+   "found": [
+    {
+     "phrase": "kui üürileandjaks ja üürnikuks on",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8087,
+   "additions": [],
+   "cross_references": {
+    "candidates": 2,
+    "additions": 0,
+    "sections": []
+   }
+  },
+  {
+   "question": "rent-from-mother",
+   "kind": "within_document",
+   "shape": "incoming_reference",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 1336,
+   "found": [
+    {
+     "phrase": "kui üürileandjaks ja üürnikuks on",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 10630,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Kas sotsiaalabi on (turva)võrk või hüppelaud? Kuidas aidata inimesed kiiresti taas jalule",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Kas sotsiaalabi on (turva)võrk või hüppelaud? Kuidas aidata inimesed kiiresti taas jalule",
+     "reason": "structural_expansion"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "rent-from-mother",
+   "kind": "within_document",
+   "shape": "incoming_reference",
+   "arm": "L",
+   "profile": "hybrid-estnltk-chat-v3",
+   "ms": 1178,
+   "found": [
+    {
+     "phrase": "kui üürileandjaks ja üürnikuks on",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 11,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 2
+   },
+   "context_tokens": 9159,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    }
+   ],
+   "cross_references": {
+    "candidates": 2,
+    "additions": 0,
+    "sections": []
+   }
+  },
+  {
+   "question": "rent-from-mother",
+   "kind": "within_document",
+   "shape": "incoming_reference",
+   "arm": "V",
+   "profile": "hybrid-estnltk-chat-v1",
+   "ms": 1210,
+   "found": [
+    {
+     "phrase": "kui üürileandjaks ja üürnikuks on",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 9687,
+   "additions": [],
+   "cross_references": null,
+   "seeds": [
+    {
+     "act": "130062026065",
+     "section": "133",
+     "passage": 192
+    },
+    {
+     "act": "130062026065",
+     "section": "133",
+     "passage": 193
+    },
+    {
+     "act": "130062026065",
+     "section": "133",
+     "passage": 191
+    },
+    {
+     "act": "130062026065",
+     "section": "131",
+     "passage": 186
+    }
+   ]
+  },
+  {
+   "question": "rent-from-mother",
+   "kind": "within_document",
+   "shape": "incoming_reference",
+   "arm": "R",
+   "profile": "simulated-chat-v1-plus-pointers",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "kui üürileandjaks ja üürnikuks on",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {},
+   "context_tokens": 12538,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 188,
+     "reason": "incoming",
+     "exception": false,
+     "from": "132/4",
+     "to": "133/5"
+    },
+    {
+     "act": "130062026065",
+     "passage": 194,
+     "reason": "incoming",
+     "exception": false,
+     "from": "133/10",
+     "to": "133/5"
+    },
+    {
+     "act": "130062026065",
+     "passage": 196,
+     "reason": "incoming",
+     "exception": false,
+     "from": "134/8",
+     "to": "133/5"
+    },
+    {
+     "act": "130062026065",
+     "passage": 187,
+     "reason": "incoming",
+     "exception": true,
+     "from": "131/10",
+     "to": "131/8"
+    }
+   ],
+   "candidates": 5,
+   "cross_references": null
+  },
+  {
+   "question": "rent-from-mother",
+   "kind": "within_document",
+   "shape": "incoming_reference",
+   "arm": "S",
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "kui üürileandjaks ja üürnikuks on",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {},
+   "context_tokens": 9687,
+   "additions": [],
+   "candidates": 0,
+   "cross_references": null
+  },
+  {
+   "question": "pensioner-with-student-child",
+   "kind": "across_documents",
+   "shape": "other_act",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 9715,
+   "found": [
+    {
+     "phrase": "kuid mitte kauem kui 21-aastaseks saamiseni",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 5487,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "pensioner-with-student-child",
+   "kind": "across_documents",
+   "shape": "other_act",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 2438,
+   "found": [
+    {
+     "phrase": "kuid mitte kauem kui 21-aastaseks saamiseni",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 8585,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "pensioner-with-student-child",
+   "kind": "across_documents",
+   "shape": "other_act",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 2535,
+   "found": [
+    {
+     "phrase": "kuid mitte kauem kui 21-aastaseks saamiseni",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 12,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 3
+   },
+   "context_tokens": 11580,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "pensioner-with-student-child",
+   "kind": "across_documents",
+   "shape": "other_act",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 2532,
+   "found": [
+    {
+     "phrase": "kuid mitte kauem kui 21-aastaseks saamiseni",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 12,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 3
+   },
+   "context_tokens": 7895,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "140"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "139^2"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "133"
+    }
+   ],
+   "cross_references": {
+    "candidates": 4,
+    "additions": 3,
+    "sections": [
+     "140",
+     "139^2",
+     "133"
+    ]
+   }
+  },
+  {
+   "question": "pensioner-with-student-child",
+   "kind": "across_documents",
+   "shape": "other_act",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 2686,
+   "found": [
+    {
+     "phrase": "kuid mitte kauem kui 21-aastaseks saamiseni",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 8215,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Uuring täisealiste puudega inimeste puude tuvastamise, abivajaduse hindamise ja toetamise süsteemist",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Uuring täisealiste puudega inimeste puude tuvastamise, abivajaduse hindamise ja toetamise süsteemist",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Uuring täisealiste puudega inimeste puude tuvastamise, abivajaduse hindamise ja toetamise süsteemist",
+     "reason": "structural_expansion"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "pensioner-with-student-child",
+   "kind": "across_documents",
+   "shape": "other_act",
+   "arm": "L",
+   "profile": "hybrid-estnltk-chat-v3",
+   "ms": 2641,
+   "found": [
+    {
+     "phrase": "kuid mitte kauem kui 21-aastaseks saamiseni",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 3,
+    "cross_reference": 1
+   },
+   "context_tokens": 12423,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "140"
+    }
+   ],
+   "cross_references": {
+    "candidates": 5,
+    "additions": 1,
+    "sections": [
+     "140"
+    ]
+   }
+  },
+  {
+   "question": "pensioner-with-student-child",
+   "kind": "across_documents",
+   "shape": "other_act",
+   "arm": "V",
+   "profile": "hybrid-estnltk-chat-v1",
+   "ms": 2447,
+   "found": [
+    {
+     "phrase": "kuid mitte kauem kui 21-aastaseks saamiseni",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8660,
+   "additions": [],
+   "cross_references": null,
+   "seeds": [
+    {
+     "act": "130062026065",
+     "section": "139^1",
+     "passage": 198
+    },
+    {
+     "act": "130062026065",
+     "section": "160^3",
+     "passage": 239
+    },
+    {
+     "act": "130062026065",
+     "section": "131",
+     "passage": 186
+    }
+   ]
+  },
+  {
+   "question": "pensioner-with-student-child",
+   "kind": "across_documents",
+   "shape": "other_act",
+   "arm": "R",
+   "profile": "simulated-chat-v1-plus-pointers",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "kuid mitte kauem kui 21-aastaseks saamiseni",
+     "in_evidence": true,
+     "in_seeds": false,
+     "class": "other_act",
+     "position": 3,
+     "within_room": true,
+     "from": "139^1/4",
+     "to": "107052025017:§ 97 punkti 1 või 2"
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {},
+   "context_tokens": 10947,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 202,
+     "reason": "first_passage",
+     "exception": false,
+     "from": "139^1/3",
+     "to": "140/null"
+    },
+    {
+     "act": "130062026065",
+     "passage": 199,
+     "reason": "incoming",
+     "exception": false,
+     "from": "139^2/2",
+     "to": "139^1/4"
+    },
+    {
+     "act": "130062026065",
+     "passage": 200,
+     "reason": "incoming",
+     "exception": false,
+     "from": "139^3/5",
+     "to": "139^1/2"
+    },
+    {
+     "act": "107052025017",
+     "passage": 98,
+     "reason": "other_act",
+     "exception": true,
+     "from": "139^1/4",
+     "to": "107052025017:§ 97 punkti 1 või 2"
+    }
+   ],
+   "candidates": 10,
+   "cross_references": null
+  },
+  {
+   "question": "pensioner-with-student-child",
+   "kind": "across_documents",
+   "shape": "other_act",
+   "arm": "S",
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "kuid mitte kauem kui 21-aastaseks saamiseni",
+     "in_evidence": false,
+     "in_seeds": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 12,
+   "reasons": {},
+   "context_tokens": 10757,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 202,
+     "reason": "first_passage",
+     "exception": false,
+     "from": "139^1/3",
+     "to": "140/null"
+    },
+    {
+     "act": "130062026065",
+     "passage": 199,
+     "reason": "first_passage",
+     "exception": false,
+     "from": "160^3/2",
+     "to": "139^2/null"
+    },
+    {
+     "act": "130062026065",
+     "passage": 191,
+     "reason": "first_passage",
+     "exception": false,
+     "from": "131/2",
+     "to": "133/null"
+    }
+   ],
+   "candidates": 3,
+   "cross_references": null
+  },
+  {
+   "question": "child-rehabilitation-need",
+   "kind": "across_documents",
+   "shape": "other_act",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 7992,
+   "found": [
+    {
+     "phrase": "Lapse abivajadust hindab lastekaitsetöötaja või lapsega töötav isik",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 6369,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "child-rehabilitation-need",
+   "kind": "across_documents",
+   "shape": "other_act",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 1998,
+   "found": [
+    {
+     "phrase": "Lapse abivajadust hindab lastekaitsetöötaja või lapsega töötav isik",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 9415,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "child-rehabilitation-need",
+   "kind": "across_documents",
+   "shape": "other_act",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 1801,
+   "found": [
+    {
+     "phrase": "Lapse abivajadust hindab lastekaitsetöötaja või lapsega töötav isik",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 6420,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "child-rehabilitation-need",
+   "kind": "across_documents",
+   "shape": "other_act",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 1667,
+   "found": [
+    {
+     "phrase": "Lapse abivajadust hindab lastekaitsetöötaja või lapsega töötav isik",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 6369,
+   "additions": [],
+   "cross_references": {
+    "candidates": 0,
+    "additions": 0,
+    "sections": []
+   }
+  },
+  {
+   "question": "child-rehabilitation-need",
+   "kind": "across_documents",
+   "shape": "other_act",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 1815,
+   "found": [
+    {
+     "phrase": "Lapse abivajadust hindab lastekaitsetöötaja või lapsega töötav isik",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 8883,
+   "additions": [
+    {
+     "title": "Õigusrikkumise toime pannud lapse abistamine",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Rehabilitatsiooni teenuseosutajate infopäeva materjal",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Rehabilitatsiooni teenuseosutajate infopäeva materjal",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Uued võimalused mitmekülgse abivajadusega lastele",
+     "reason": "structural_expansion"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "child-rehabilitation-need",
+   "kind": "across_documents",
+   "shape": "other_act",
+   "arm": "L",
+   "profile": "hybrid-estnltk-chat-v3",
+   "ms": 1775,
+   "found": [
+    {
+     "phrase": "Lapse abivajadust hindab lastekaitsetöötaja või lapsega töötav isik",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 6420,
+   "additions": [],
+   "cross_references": {
+    "candidates": 0,
+    "additions": 0,
+    "sections": []
+   }
+  },
+  {
+   "question": "child-rehabilitation-need",
+   "kind": "across_documents",
+   "shape": "other_act",
+   "arm": "V",
+   "profile": "hybrid-estnltk-chat-v1",
+   "ms": 1812,
+   "found": [
+    {
+     "phrase": "Lapse abivajadust hindab lastekaitsetöötaja või lapsega töötav isik",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 6420,
+   "additions": [],
+   "cross_references": null,
+   "seeds": []
+  },
+  {
+   "question": "child-rehabilitation-need",
+   "kind": "across_documents",
+   "shape": "other_act",
+   "arm": "R",
+   "profile": "simulated-chat-v1-plus-pointers",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "Lapse abivajadust hindab lastekaitsetöötaja või lapsega töötav isik",
+     "in_evidence": false,
+     "in_seeds": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {},
+   "context_tokens": 6420,
+   "additions": [],
+   "candidates": 0,
+   "cross_references": null
+  },
+  {
+   "question": "child-rehabilitation-need",
+   "kind": "across_documents",
+   "shape": "other_act",
+   "arm": "S",
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "Lapse abivajadust hindab lastekaitsetöötaja või lapsega töötav isik",
+     "in_evidence": false,
+     "in_seeds": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {},
+   "context_tokens": 6420,
+   "additions": [],
+   "candidates": 0,
+   "cross_references": null
+  },
+  {
+   "question": "harku-support-person-relative",
+   "kind": "across_documents",
+   "shape": "other_act",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 5514,
+   "found": [
+    {
+     "phrase": "kes on teenuse saaja esimese või teise astme üleneja või alaneja sugulane",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 4810,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "harku-support-person-relative",
+   "kind": "across_documents",
+   "shape": "other_act",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 2092,
+   "found": [
+    {
+     "phrase": "kes on teenuse saaja esimese või teise astme üleneja või alaneja sugulane",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 6547,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "harku-support-person-relative",
+   "kind": "across_documents",
+   "shape": "other_act",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 1987,
+   "found": [
+    {
+     "phrase": "kes on teenuse saaja esimese või teise astme üleneja või alaneja sugulane",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 7247,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "harku-support-person-relative",
+   "kind": "across_documents",
+   "shape": "other_act",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 1855,
+   "found": [
+    {
+     "phrase": "kes on teenuse saaja esimese või teise astme üleneja või alaneja sugulane",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 4810,
+   "additions": [],
+   "cross_references": {
+    "candidates": 0,
+    "additions": 0,
+    "sections": []
+   }
+  },
+  {
+   "question": "harku-support-person-relative",
+   "kind": "across_documents",
+   "shape": "other_act",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 2021,
+   "found": [
+    {
+     "phrase": "kes on teenuse saaja esimese või teise astme üleneja või alaneja sugulane",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 7504,
+   "additions": [
+    {
+     "title": "Heade praktikate kogumik",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Heade praktikate kogumik",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Puudega lastega perede toimetuleku ja vajaduste uuring",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Puudega lastega perede toimetuleku ja vajaduste uuring",
+     "reason": "structural_expansion"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "harku-support-person-relative",
+   "kind": "across_documents",
+   "shape": "other_act",
+   "arm": "L",
+   "profile": "hybrid-estnltk-chat-v3",
+   "ms": 1894,
+   "found": [
+    {
+     "phrase": "kes on teenuse saaja esimese või teise astme üleneja või alaneja sugulane",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 7247,
+   "additions": [],
+   "cross_references": {
+    "candidates": 0,
+    "additions": 0,
+    "sections": []
+   }
+  },
+  {
+   "question": "harku-support-person-relative",
+   "kind": "across_documents",
+   "shape": "other_act",
+   "arm": "V",
+   "profile": "hybrid-estnltk-chat-v1",
+   "ms": 1883,
+   "found": [
+    {
+     "phrase": "kes on teenuse saaja esimese või teise astme üleneja või alaneja sugulane",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 7247,
+   "additions": [],
+   "cross_references": null,
+   "seeds": [
+    {
+     "act": "404072025017",
+     "section": "14",
+     "passage": 15
+    },
+    {
+     "act": "404072025017",
+     "section": "4",
+     "passage": 4
+    },
+    {
+     "act": "404072025017",
+     "section": "15",
+     "passage": 16
+    },
+    {
+     "act": "404072025017",
+     "section": "24^2",
+     "passage": 29
+    },
+    {
+     "act": "404072025017",
+     "section": "10",
+     "passage": 11
+    }
+   ]
+  },
+  {
+   "question": "harku-support-person-relative",
+   "kind": "across_documents",
+   "shape": "other_act",
+   "arm": "R",
+   "profile": "simulated-chat-v1-plus-pointers",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "kes on teenuse saaja esimese või teise astme üleneja või alaneja sugulane",
+     "in_evidence": true,
+     "in_seeds": false,
+     "class": "other_act",
+     "position": 0,
+     "within_room": true,
+     "from": "15/3",
+     "to": "130062026065:§ 25 lõikes 2"
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {},
+   "context_tokens": 7433,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 38,
+     "reason": "other_act",
+     "exception": false,
+     "from": "15/3",
+     "to": "130062026065:§ 25 lõikes 2"
+    }
+   ],
+   "candidates": 1,
+   "cross_references": null
+  },
+  {
+   "question": "harku-support-person-relative",
+   "kind": "across_documents",
+   "shape": "other_act",
+   "arm": "S",
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "kes on teenuse saaja esimese või teise astme üleneja või alaneja sugulane",
+     "in_evidence": false,
+     "in_seeds": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {},
+   "context_tokens": 7247,
+   "additions": [],
+   "candidates": 0,
+   "cross_references": null
+  },
+  {
+   "question": "guardian-ward-family",
+   "kind": "within_document",
+   "shape": "unnamed_exception",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 2431,
+   "found": [
+    {
+     "phrase": "ei loeta toimetulekutoetuse määramisel perekonnaliikmeks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 7306,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "guardian-ward-family",
+   "kind": "within_document",
+   "shape": "unnamed_exception",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 2400,
+   "found": [
+    {
+     "phrase": "ei loeta toimetulekutoetuse määramisel perekonnaliikmeks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 10173,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "guardian-ward-family",
+   "kind": "within_document",
+   "shape": "unnamed_exception",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 2168,
+   "found": [
+    {
+     "phrase": "ei loeta toimetulekutoetuse määramisel perekonnaliikmeks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 1
+   },
+   "context_tokens": 10590,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "guardian-ward-family",
+   "kind": "within_document",
+   "shape": "unnamed_exception",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 2012,
+   "found": [
+    {
+     "phrase": "ei loeta toimetulekutoetuse määramisel perekonnaliikmeks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 7306,
+   "additions": [],
+   "cross_references": {
+    "candidates": 1,
+    "additions": 0,
+    "sections": []
+   }
+  },
+  {
+   "question": "guardian-ward-family",
+   "kind": "within_document",
+   "shape": "unnamed_exception",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 2164,
+   "found": [
+    {
+     "phrase": "ei loeta toimetulekutoetuse määramisel perekonnaliikmeks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 10770,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Töötamise toetamine toimetulekutoetuse kaudu",
+     "reason": "structural_expansion"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "guardian-ward-family",
+   "kind": "within_document",
+   "shape": "unnamed_exception",
+   "arm": "L",
+   "profile": "hybrid-estnltk-chat-v3",
+   "ms": 2067,
+   "found": [
+    {
+     "phrase": "ei loeta toimetulekutoetuse määramisel perekonnaliikmeks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 1
+   },
+   "context_tokens": 7549,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    }
+   ],
+   "cross_references": {
+    "candidates": 1,
+    "additions": 0,
+    "sections": []
+   }
+  },
+  {
+   "question": "guardian-ward-family",
+   "kind": "within_document",
+   "shape": "unnamed_exception",
+   "arm": "V",
+   "profile": "hybrid-estnltk-chat-v1",
+   "ms": 2101,
+   "found": [
+    {
+     "phrase": "ei loeta toimetulekutoetuse määramisel perekonnaliikmeks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 7364,
+   "additions": [],
+   "cross_references": null,
+   "seeds": [
+    {
+     "act": "130062026065",
+     "section": "131",
+     "passage": 186
+    },
+    {
+     "act": "130062026065",
+     "section": "133",
+     "passage": 191
+    },
+    {
+     "act": "130062026065",
+     "section": "133",
+     "passage": 192
+    },
+    {
+     "act": "130062026065",
+     "section": "131",
+     "passage": 187
+    },
+    {
+     "act": "130062026065",
+     "section": "132",
+     "passage": 189
+    }
+   ]
+  },
+  {
+   "question": "guardian-ward-family",
+   "kind": "within_document",
+   "shape": "unnamed_exception",
+   "arm": "R",
+   "profile": "simulated-chat-v1-plus-pointers",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "ei loeta toimetulekutoetuse määramisel perekonnaliikmeks",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {},
+   "context_tokens": 9922,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 193,
+     "reason": "exact_subsection",
+     "exception": false,
+     "from": "131/2",
+     "to": "133/6"
+    },
+    {
+     "act": "130062026065",
+     "passage": 188,
+     "reason": "incoming",
+     "exception": false,
+     "from": "132/2",
+     "to": "131/7"
+    },
+    {
+     "act": "130062026065",
+     "passage": 194,
+     "reason": "incoming",
+     "exception": false,
+     "from": "133/9^1",
+     "to": "131/7"
+    },
+    {
+     "act": "130062026065",
+     "passage": 197,
+     "reason": "incoming",
+     "exception": false,
+     "from": "135/1",
+     "to": "131/7"
+    }
+   ],
+   "candidates": 5,
+   "cross_references": null
+  },
+  {
+   "question": "guardian-ward-family",
+   "kind": "within_document",
+   "shape": "unnamed_exception",
+   "arm": "S",
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "ei loeta toimetulekutoetuse määramisel perekonnaliikmeks",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {},
+   "context_tokens": 7364,
+   "additions": [],
+   "candidates": 0,
+   "cross_references": null
+  },
+  {
+   "question": "rent-debt-not-counted",
+   "kind": "within_document",
+   "shape": "unnamed_exception",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 1432,
+   "found": [
+    {
+     "phrase": "varem tekkinud võlgnevust ei arvata toimetulekutoetuse arvestamisel",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8126,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "rent-debt-not-counted",
+   "kind": "within_document",
+   "shape": "unnamed_exception",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 1480,
+   "found": [
+    {
+     "phrase": "varem tekkinud võlgnevust ei arvata toimetulekutoetuse arvestamisel",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 11011,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "rent-debt-not-counted",
+   "kind": "within_document",
+   "shape": "unnamed_exception",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 1276,
+   "found": [
+    {
+     "phrase": "varem tekkinud võlgnevust ei arvata toimetulekutoetuse arvestamisel",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8486,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "rent-debt-not-counted",
+   "kind": "within_document",
+   "shape": "unnamed_exception",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 1379,
+   "found": [
+    {
+     "phrase": "varem tekkinud võlgnevust ei arvata toimetulekutoetuse arvestamisel",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 9043,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "131"
+    }
+   ],
+   "cross_references": {
+    "candidates": 2,
+    "additions": 1,
+    "sections": [
+     "131"
+    ]
+   }
+  },
+  {
+   "question": "rent-debt-not-counted",
+   "kind": "within_document",
+   "shape": "unnamed_exception",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 1512,
+   "found": [
+    {
+     "phrase": "varem tekkinud võlgnevust ei arvata toimetulekutoetuse arvestamisel",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 11279,
+   "additions": [
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+     "reason": "structural_expansion"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "rent-debt-not-counted",
+   "kind": "within_document",
+   "shape": "unnamed_exception",
+   "arm": "L",
+   "profile": "hybrid-estnltk-chat-v3",
+   "ms": 1258,
+   "found": [
+    {
+     "phrase": "varem tekkinud võlgnevust ei arvata toimetulekutoetuse arvestamisel",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 9403,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "131"
+    }
+   ],
+   "cross_references": {
+    "candidates": 2,
+    "additions": 1,
+    "sections": [
+     "131"
+    ]
+   }
+  },
+  {
+   "question": "rent-debt-not-counted",
+   "kind": "within_document",
+   "shape": "unnamed_exception",
+   "arm": "V",
+   "profile": "hybrid-estnltk-chat-v1",
+   "ms": 1252,
+   "found": [
+    {
+     "phrase": "varem tekkinud võlgnevust ei arvata toimetulekutoetuse arvestamisel",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8486,
+   "additions": [],
+   "cross_references": null,
+   "seeds": [
+    {
+     "act": "130062026065",
+     "section": "133",
+     "passage": 193
+    },
+    {
+     "act": "130062026065",
+     "section": "133",
+     "passage": 194
+    },
+    {
+     "act": "130062026065",
+     "section": "133",
+     "passage": 192
+    },
+    {
+     "act": "130062026065",
+     "section": "133",
+     "passage": 191
+    }
+   ]
+  },
+  {
+   "question": "rent-debt-not-counted",
+   "kind": "within_document",
+   "shape": "unnamed_exception",
+   "arm": "R",
+   "profile": "simulated-chat-v1-plus-pointers",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "varem tekkinud võlgnevust ei arvata toimetulekutoetuse arvestamisel",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 12,
+   "reasons": {},
+   "context_tokens": 10820,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 186,
+     "reason": "exact_subsection",
+     "exception": true,
+     "from": "133/7^1",
+     "to": "131/8"
+    },
+    {
+     "act": "130062026065",
+     "passage": 188,
+     "reason": "incoming",
+     "exception": false,
+     "from": "132/4",
+     "to": "133/5"
+    },
+    {
+     "act": "130062026065",
+     "passage": 196,
+     "reason": "incoming",
+     "exception": false,
+     "from": "134/8",
+     "to": "133/5"
+    }
+   ],
+   "candidates": 3,
+   "cross_references": null
+  },
+  {
+   "question": "rent-debt-not-counted",
+   "kind": "within_document",
+   "shape": "unnamed_exception",
+   "arm": "S",
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "varem tekkinud võlgnevust ei arvata toimetulekutoetuse arvestamisel",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {},
+   "context_tokens": 9291,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 186,
+     "reason": "first_passage",
+     "exception": true,
+     "from": "133/7^1",
+     "to": "131/null"
+    }
+   ],
+   "candidates": 1,
+   "cross_references": null
+  },
+  {
+   "question": "household-definition",
+   "kind": "within_document",
+   "shape": "definition",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 2156,
+   "found": [
+    {
+     "phrase": "muud isikud, keda seob ühine kodune majapidamine",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 7693,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "household-definition",
+   "kind": "within_document",
+   "shape": "definition",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 2380,
+   "found": [
+    {
+     "phrase": "muud isikud, keda seob ühine kodune majapidamine",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 10915,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "household-definition",
+   "kind": "within_document",
+   "shape": "definition",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 2268,
+   "found": [
+    {
+     "phrase": "muud isikud, keda seob ühine kodune majapidamine",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 11,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 2
+   },
+   "context_tokens": 11806,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "household-definition",
+   "kind": "within_document",
+   "shape": "definition",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 2123,
+   "found": [
+    {
+     "phrase": "muud isikud, keda seob ühine kodune majapidamine",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 7693,
+   "additions": [],
+   "cross_references": {
+    "candidates": 1,
+    "additions": 0,
+    "sections": []
+   }
+  },
+  {
+   "question": "household-definition",
+   "kind": "within_document",
+   "shape": "definition",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 2257,
+   "found": [
+    {
+     "phrase": "muud isikud, keda seob ühine kodune majapidamine",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 10345,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "structural_expansion"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "household-definition",
+   "kind": "within_document",
+   "shape": "definition",
+   "arm": "L",
+   "profile": "hybrid-estnltk-chat-v3",
+   "ms": 2024,
+   "found": [
+    {
+     "phrase": "muud isikud, keda seob ühine kodune majapidamine",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 11,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 2
+   },
+   "context_tokens": 8765,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    }
+   ],
+   "cross_references": {
+    "candidates": 1,
+    "additions": 0,
+    "sections": []
+   }
+  },
+  {
+   "question": "household-definition",
+   "kind": "within_document",
+   "shape": "definition",
+   "arm": "V",
+   "profile": "hybrid-estnltk-chat-v1",
+   "ms": 2106,
+   "found": [
+    {
+     "phrase": "muud isikud, keda seob ühine kodune majapidamine",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 9293,
+   "additions": [],
+   "cross_references": null,
+   "seeds": [
+    {
+     "act": "130062026065",
+     "section": "131",
+     "passage": 186
+    },
+    {
+     "act": "130062026065",
+     "section": "132",
+     "passage": 189
+    },
+    {
+     "act": "130062026065",
+     "section": "133",
+     "passage": 191
+    }
+   ]
+  },
+  {
+   "question": "household-definition",
+   "kind": "within_document",
+   "shape": "definition",
+   "arm": "R",
+   "profile": "simulated-chat-v1-plus-pointers",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "muud isikud, keda seob ühine kodune majapidamine",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {},
+   "context_tokens": 12008,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 192,
+     "reason": "exact_subsection",
+     "exception": false,
+     "from": "131/2",
+     "to": "133/5"
+    },
+    {
+     "act": "130062026065",
+     "passage": 193,
+     "reason": "exact_subsection",
+     "exception": false,
+     "from": "131/2",
+     "to": "133/6"
+    },
+    {
+     "act": "130062026065",
+     "passage": 187,
+     "reason": "incoming",
+     "exception": true,
+     "from": "131/10",
+     "to": "131/8"
+    },
+    {
+     "act": "130062026065",
+     "passage": 197,
+     "reason": "incoming",
+     "exception": false,
+     "from": "135/1",
+     "to": "131/7"
+    }
+   ],
+   "candidates": 6,
+   "cross_references": null
+  },
+  {
+   "question": "household-definition",
+   "kind": "within_document",
+   "shape": "definition",
+   "arm": "S",
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "muud isikud, keda seob ühine kodune majapidamine",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {},
+   "context_tokens": 9293,
+   "additions": [],
+   "candidates": 0,
+   "cross_references": null
+  },
+  {
+   "question": "kuusalu-limits-since",
+   "kind": "within_document",
+   "shape": "implementing_provision",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 1397,
+   "found": [
+    {
+     "phrase": "Määrust rakendatakse alates 01.05.2026",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 4907,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "kuusalu-limits-since",
+   "kind": "within_document",
+   "shape": "implementing_provision",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 1409,
+   "found": [
+    {
+     "phrase": "Määrust rakendatakse alates 01.05.2026",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 7936,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "kuusalu-limits-since",
+   "kind": "within_document",
+   "shape": "implementing_provision",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 1181,
+   "found": [
+    {
+     "phrase": "Määrust rakendatakse alates 01.05.2026",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 4958,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "kuusalu-limits-since",
+   "kind": "within_document",
+   "shape": "implementing_provision",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 1170,
+   "found": [
+    {
+     "phrase": "Määrust rakendatakse alates 01.05.2026",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 4907,
+   "additions": [],
+   "cross_references": {
+    "candidates": 0,
+    "additions": 0,
+    "sections": []
+   }
+  },
+  {
+   "question": "kuusalu-limits-since",
+   "kind": "within_document",
+   "shape": "implementing_provision",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 1352,
+   "found": [
+    {
+     "phrase": "Määrust rakendatakse alates 01.05.2026",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 7845,
+   "additions": [
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+     "reason": "structural_expansion"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "kuusalu-limits-since",
+   "kind": "within_document",
+   "shape": "implementing_provision",
+   "arm": "L",
+   "profile": "hybrid-estnltk-chat-v3",
+   "ms": 1172,
+   "found": [
+    {
+     "phrase": "Määrust rakendatakse alates 01.05.2026",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 4958,
+   "additions": [],
+   "cross_references": {
+    "candidates": 0,
+    "additions": 0,
+    "sections": []
+   }
+  },
+  {
+   "question": "kuusalu-limits-since",
+   "kind": "within_document",
+   "shape": "implementing_provision",
+   "arm": "V",
+   "profile": "hybrid-estnltk-chat-v1",
+   "ms": 1147,
+   "found": [
+    {
+     "phrase": "Määrust rakendatakse alates 01.05.2026",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 4958,
+   "additions": [],
+   "cross_references": null,
+   "seeds": [
+    {
+     "act": "412092026022",
+     "section": "1",
+     "passage": 1
+    },
+    {
+     "act": "412092026022",
+     "section": null,
+     "passage": 0
+    },
+    {
+     "act": "412092026022",
+     "section": "3",
+     "passage": 3
+    },
+    {
+     "act": "412092026022",
+     "section": "4",
+     "passage": 5
+    },
+    {
+     "act": "412092026022",
+     "section": "5",
+     "passage": 6
+    },
+    {
+     "act": "412092026022",
+     "section": "3",
+     "passage": 4
+    }
+   ]
+  },
+  {
+   "question": "kuusalu-limits-since",
+   "kind": "within_document",
+   "shape": "implementing_provision",
+   "arm": "R",
+   "profile": "simulated-chat-v1-plus-pointers",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "Määrust rakendatakse alates 01.05.2026",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {},
+   "context_tokens": 4958,
+   "additions": [],
+   "candidates": 0,
+   "cross_references": null
+  },
+  {
+   "question": "kuusalu-limits-since",
+   "kind": "within_document",
+   "shape": "implementing_provision",
+   "arm": "S",
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "Määrust rakendatakse alates 01.05.2026",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {},
+   "context_tokens": 4958,
+   "additions": [],
+   "candidates": 0,
+   "cross_references": null
+  },
+  {
+   "question": "special-care-decision-time",
+   "kind": "within_document",
+   "shape": "control_found",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 4852,
+   "found": [
+    {
+     "phrase": "tööpäeva jooksul taotluse ja kõikide nõutavate dokumentide saamisest arvates",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 7451,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "special-care-decision-time",
+   "kind": "within_document",
+   "shape": "control_found",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 1910,
+   "found": [
+    {
+     "phrase": "tööpäeva jooksul taotluse ja kõikide nõutavate dokumentide saamisest arvates",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 9329,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "special-care-decision-time",
+   "kind": "within_document",
+   "shape": "control_found",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 1790,
+   "found": [
+    {
+     "phrase": "tööpäeva jooksul taotluse ja kõikide nõutavate dokumentide saamisest arvates",
+     "in_evidence": true,
+     "in_cards": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 7961,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "special-care-decision-time",
+   "kind": "within_document",
+   "shape": "control_found",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 1766,
+   "found": [
+    {
+     "phrase": "tööpäeva jooksul taotluse ja kõikide nõutavate dokumentide saamisest arvates",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 7451,
+   "additions": [],
+   "cross_references": {
+    "candidates": 0,
+    "additions": 0,
+    "sections": []
+   }
+  },
+  {
+   "question": "special-care-decision-time",
+   "kind": "within_document",
+   "shape": "control_found",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 2037,
+   "found": [
+    {
+     "phrase": "tööpäeva jooksul taotluse ja kõikide nõutavate dokumentide saamisest arvates",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 9216,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Teekond erilise lapse kõrval",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Teekond erilise lapse kõrval",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Abivahendite teenus muutub paindlikumaks ja inimesele kättesaadavamaks",
+     "reason": "structural_expansion"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "special-care-decision-time",
+   "kind": "within_document",
+   "shape": "control_found",
+   "arm": "L",
+   "profile": "hybrid-estnltk-chat-v3",
+   "ms": 1783,
+   "found": [
+    {
+     "phrase": "tööpäeva jooksul taotluse ja kõikide nõutavate dokumentide saamisest arvates",
+     "in_evidence": true,
+     "in_cards": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 7961,
+   "additions": [],
+   "cross_references": {
+    "candidates": 0,
+    "additions": 0,
+    "sections": []
+   }
+  },
+  {
+   "question": "special-care-decision-time",
+   "kind": "within_document",
+   "shape": "control_found",
+   "arm": "V",
+   "profile": "hybrid-estnltk-chat-v1",
+   "ms": 1727,
+   "found": [
+    {
+     "phrase": "tööpäeva jooksul taotluse ja kõikide nõutavate dokumentide saamisest arvates",
+     "in_evidence": true,
+     "in_cards": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 7961,
+   "additions": [],
+   "cross_references": null,
+   "seeds": [
+    {
+     "act": "130062026065",
+     "section": "70",
+     "passage": 110
+    }
+   ]
+  },
+  {
+   "question": "special-care-decision-time",
+   "kind": "within_document",
+   "shape": "control_found",
+   "arm": "R",
+   "profile": "simulated-chat-v1-plus-pointers",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "tööpäeva jooksul taotluse ja kõikide nõutavate dokumentide saamisest arvates",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {},
+   "context_tokens": 10816,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 127,
+     "reason": "incoming",
+     "exception": true,
+     "from": "80/1",
+     "to": "70/4"
+    },
+    {
+     "act": "130062026065",
+     "passage": 129,
+     "reason": "incoming",
+     "exception": false,
+     "from": "81/2",
+     "to": "70/4"
+    },
+    {
+     "act": "130062026065",
+     "passage": 130,
+     "reason": "incoming",
+     "exception": false,
+     "from": "82/2",
+     "to": "70/4"
+    },
+    {
+     "act": "130062026065",
+     "passage": 236,
+     "reason": "incoming",
+     "exception": false,
+     "from": "160/49",
+     "to": "70/null"
+    }
+   ],
+   "candidates": 5,
+   "cross_references": null
+  },
+  {
+   "question": "special-care-decision-time",
+   "kind": "within_document",
+   "shape": "control_found",
+   "arm": "S",
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "tööpäeva jooksul taotluse ja kõikide nõutavate dokumentide saamisest arvates",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {},
+   "context_tokens": 7961,
+   "additions": [],
+   "candidates": 0,
+   "cross_references": null
+  },
+  {
+   "question": "pensioner-day-centre",
+   "kind": "within_document",
+   "shape": "control_exception_not_applying",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 4118,
+   "found": [
+    {
+     "phrase": "kellele osutatakse väljaspool kodu osutatavat ööpäevaringset üldhooldusteenust",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 5154,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "pensioner-day-centre",
+   "kind": "within_document",
+   "shape": "control_exception_not_applying",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 2597,
+   "found": [
+    {
+     "phrase": "kellele osutatakse väljaspool kodu osutatavat ööpäevaringset üldhooldusteenust",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 7865,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "pensioner-day-centre",
+   "kind": "within_document",
+   "shape": "control_exception_not_applying",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 2323,
+   "found": [
+    {
+     "phrase": "kellele osutatakse väljaspool kodu osutatavat ööpäevaringset üldhooldusteenust",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 6456,
+   "additions": [],
+   "cross_references": null
+  },
+  {
+   "question": "pensioner-day-centre",
+   "kind": "within_document",
+   "shape": "control_exception_not_applying",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 2450,
+   "found": [
+    {
+     "phrase": "kellele osutatakse väljaspool kodu osutatavat ööpäevaringset üldhooldusteenust",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 5997,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "140"
+    }
+   ],
+   "cross_references": {
+    "candidates": 1,
+    "additions": 1,
+    "sections": [
+     "140"
+    ]
+   }
+  },
+  {
+   "question": "pensioner-day-centre",
+   "kind": "within_document",
+   "shape": "control_exception_not_applying",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 2611,
+   "found": [
+    {
+     "phrase": "kellele osutatakse väljaspool kodu osutatavat ööpäevaringset üldhooldusteenust",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 7244,
+   "additions": [
+    {
+     "title": "Uuring täisealiste puudega inimeste puude tuvastamise, abivajaduse hindamise ja toetamise süsteemist",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Uuring täisealiste puudega inimeste puude tuvastamise, abivajaduse hindamise ja toetamise süsteemist",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Vanemaealiste ja eakate toimetuleku uuring 2015",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Vanemaealiste ja eakate toimetuleku uuring 2015",
+     "reason": "structural_expansion"
+    }
+   ],
+   "cross_references": null
+  },
+  {
+   "question": "pensioner-day-centre",
+   "kind": "within_document",
+   "shape": "control_exception_not_applying",
+   "arm": "L",
+   "profile": "hybrid-estnltk-chat-v3",
+   "ms": 2375,
+   "found": [
+    {
+     "phrase": "kellele osutatakse väljaspool kodu osutatavat ööpäevaringset üldhooldusteenust",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 7299,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "140"
+    }
+   ],
+   "cross_references": {
+    "candidates": 1,
+    "additions": 1,
+    "sections": [
+     "140"
+    ]
+   }
+  },
+  {
+   "question": "pensioner-day-centre",
+   "kind": "within_document",
+   "shape": "control_exception_not_applying",
+   "arm": "V",
+   "profile": "hybrid-estnltk-chat-v1",
+   "ms": 2373,
+   "found": [
+    {
+     "phrase": "kellele osutatakse väljaspool kodu osutatavat ööpäevaringset üldhooldusteenust",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 6456,
+   "additions": [],
+   "cross_references": null,
+   "seeds": [
+    {
+     "act": "130062026065",
+     "section": "139^1",
+     "passage": 198
+    },
+    {
+     "act": "130062026065",
+     "section": "139^3",
+     "passage": 201
+    }
+   ]
+  },
+  {
+   "question": "pensioner-day-centre",
+   "kind": "within_document",
+   "shape": "control_exception_not_applying",
+   "arm": "R",
+   "profile": "simulated-chat-v1-plus-pointers",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "kellele osutatakse väljaspool kodu osutatavat ööpäevaringset üldhooldusteenust",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {},
+   "context_tokens": 8797,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 202,
+     "reason": "first_passage",
+     "exception": false,
+     "from": "139^1/3",
+     "to": "140/null"
+    },
+    {
+     "act": "130062026065",
+     "passage": 199,
+     "reason": "incoming",
+     "exception": false,
+     "from": "139^2/2",
+     "to": "139^1/4"
+    },
+    {
+     "act": "130062026065",
+     "passage": 200,
+     "reason": "incoming",
+     "exception": false,
+     "from": "139^3/5",
+     "to": "139^1/2"
+    },
+    {
+     "act": "130062026065",
+     "passage": 239,
+     "reason": "incoming",
+     "exception": false,
+     "from": "160^3/1",
+     "to": "139^1/2"
+    }
+   ],
+   "candidates": 6,
+   "cross_references": null
+  },
+  {
+   "question": "pensioner-day-centre",
+   "kind": "within_document",
+   "shape": "control_exception_not_applying",
+   "arm": "S",
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "kellele osutatakse väljaspool kodu osutatavat ööpäevaringset üldhooldusteenust",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {},
+   "context_tokens": 7198,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 202,
+     "reason": "first_passage",
+     "exception": false,
+     "from": "139^1/3",
+     "to": "140/null"
+    }
+   ],
+   "candidates": 1,
+   "cross_references": null
+  }
+ ]
+}

@@ -92,7 +92,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**Uus aken alustab siit (01.10 õhtu).** Kuupäevaviga on parandatud ([ADR-062](../rag-v2/adr-062-provision-dates.md), korpus v47, dialoog 22). Omanik valis M3; selle järgmise sammu kavand on allpool.
+**Uus aken alustab siit (01.10 õhtu).** Kuupäevaviga on parandatud ([ADR-062](../rag-v2/adr-062-provision-dates.md), korpus v47, dialoog 22). Omanik valis M3; selle mõõtmissamm on lõpetatud ja otsus on allpool.
 - **Tootmises:** korpus v47 (indeks `34fe1590`, 6470 dokumenti, 40 489 lõiku; lugeja `source-structure-v30`). Vestlusplaani uuendab reliis ise (ADR-037): profiil v3, answer-12, dialoog 22, mudelikontekst json-3, olek v5, arutlus medium.
 - **Tööviis:**
   - Codex kujundab põhikaustas, seega ära vaheta seal harusid. Töötle %TEMP% worktree's: `node_modules` junction, `generated/` koopia. Eemalda worktree ja haru pärast PR-i.
@@ -103,17 +103,28 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
   - **M3 (omaniku valik 01.10, „M5 tuleb kunagi hiljem“):** järgmine samm on katse, mis vestluses midagi ei muuda. Kavand valiti kolme sõltumatu ettepaneku seast (kolmest hindajast kaks eelistasid kontrollitud seoseid). Täiskavand sammude, lävendite ja hindadega: [m3-next-step-plan-2026-10-01.json](../audits/evidence/m3-next-step-plan-2026-10-01.json).
     - **Tehtud 01.10 ([ADR-063](../rag-v2/adr-063-checked-relations.md), sammud 1–3):** viidete kuldkomplekt seitsmest aktist ilma mudelita (`scripts/rag-v2-relation-gold.mjs`); käsitsi kontroll 60 viitel (60 õiget) ja 75 lõiguülesel kaardiseosel (20 valet, lävend oli 3). Vaheotsus: tekstist loetud viide on usaldusväärne, mudeli tüübitud seos ei ole.
     - **Tehtud 01.10 (samm 4):** kolmas raske kataloog `hard-conditions-3.json` ja vestluse kaksik: 15 küsimust kaheksast kujust (ka teise akti ja valla määruse juhud), iga muster testitud õige ja vastupidise vastusega; lukus enne seoste faili.
-    - **Järgmine (sammud 5–10):** kuni 40 kontrollitavat seost, katseskripti harud A, C, D, L (päris profiil v3), F ja G, kuiv läbimine, ADR-063 otsus.
-    - Tasuline selles sammus alla 0,10 USD: üks otsingukatse (alla 0,001 USD) ja üks vestluse jooks kuni 15 küsimusega (kuni 0,09 USD).
-    - Otsus on üks kolmest: täiendada viidete lugejat, minna kontrollitud kaartide teed või jätta praegune lahendus.
-    - Omaniku jah-sõna ootavad järgmise sammu jooksud (kokku kuni umbes 0,40 USD) ja otsus SHS-i teadmiskaartide kohta: need kehtivad 30.11.2026-ni, järgmistel redaktsioonidel kaarte pole.
+    - **Tehtud 01.10 (sammud 5–10), mõõtmissamm lõpetatud:** otsingukatse kolmandal kataloogil ja kolm teise akti küsimust päris vestluses. Kulu alla 0,02 USD.
+      - Akti sees leiab alusotsing otsustava sätte kõigis 12 küsimuses. Vahe on ainult kujus „teine akt“ (päris profiil 0/3).
+      - Akti enda viidete järgimine (simuleeritud haru R) leiab 14/15, aga toob 47 lõigust 2 kasulikku ja kasvatab konteksti 2500 tokenit.
+      - Päris vestlus vastab kahele teise akti küsimusele õigesti. Harku tugiisiku küsimuses jääb SHS § 25 lg 2 tekst tõenditest välja ja vastus ütleb seda ausalt.
+    - **Otsus (ADR-063):** kaartide teed ei minda, üldist viidete järgimist ei ehitata. **Järgmine PR:** üks reegel viidete lugejasse — leitud säte nimetab teist akti ja täpset paragrahvi, otsing lisab selle akti kehtiva redaktsiooni nimetatud lõike. Esimesena valla määrus → SHS.
+      - Lähtekoht: `pointerAdditions` ja `listTarget` failis `scripts/rag-v2-relation-gold.mjs` (liik `other_act`); päris viidete järgimine on `lib/rag-v2/search/retrieval.js`-is.
+      - Mõõta enne ühendamist: `scenarios-hard-conditions-3.json` kolm teise akti stsenaariumi (umbes 0,02 USD) ja üks jooks väikseimast kataloogist. Lävend: Harku läbib, kaks ülejäänut jäävad läbima, kontekst kasvab keskmiselt alla 800 tokeni.
+    - Kavandi suurem jooksukomplekt (umbes 0,40 USD) ei ole otsuse jaoks vajalik; tegemata, kuni omanik ei küsi.
+    - Omaniku otsust ootab SHS-i teadmiskaartide saatus: need kehtivad 30.11.2026-ni, järgmistel redaktsioonidel kaarte pole. Mõõtmise järgi ei ole kaarte akti sees otsustava sätte leidmiseks vaja.
   - **Väike jääk kuupäevavea järel (päris vestlus 01.10 kell 19:37, pärast #296):** Märjamaa vastus andis õiged summad ja õige aluse („alates 1. jaanuarist 2026 rakendatav summa“), aga küsis sünniaastat, sest küsimuses oli ainult „augustis“. Eelmõõtmise jooksus seda küsimust ei olnud. Kui see kordub, lisada juhisesse, et aastata sündmus loetakse hiljutiseks; mõõta ühe jooksuga, mitte sõnastust tasuliste kordustega timmides.
   - **Serveri koristus tehtud 01.10 kell 19:46** (omanik: „serveri koristus tee“): generatsioonide v42–v46 loendid kustutatud (`drop-version-generations.mjs`), seejärel `rag-v2-prune-versions.mjs --execute`: 519 versiooni, 13 669 rida ja 13 669 punkti. Indeksi v47 tõend enne ja pärast sama (6470 versiooni, 40 489 rida ja punkti, samad räsid); kollektsioonis nüüd 40 489 punkti; kordusloendus 0; `VACUUM ANALYZE` tehtud. Ketas jäi 85% juurde (vaba 8,7 → 9,0 GB): suured on Docker 13 GB (Postgres ja Qdrant), hoidla 6,0 GB, ostetud vektorid 2,5 GB ja rakendus 5,9 GB. Serveris on nüüd ainult generatsioon v47, seega v46-le tagasi minna ei saa ilma uue indeksitööta.
   - 04.10: Maardu XML-id 415082017002 ja 402072013031 uuesti alla laadida, kui RT on kirjutanud neile lõpukuupäeva. Rada: `rag-v2-law-validity.mjs check --download`, `rag-v2-corpus-refresh.mjs`, serveris `rag-v2-corpus-run.sh` (runbook, jaotis 0).
   - Kontaktid pärast 04.10.
-  - Codex vaatab üle #289, #290 ja ADR-062 PR-id (#295 ja 2. etapi PR).
+  - Codex vaatab üle #289, #290, ADR-062 PR-id (#295, #296) ja M3 PR-id (#297, #298 ja sammude 5–10 PR).
   - Kiiruse mõõtmine päris vestluses teeb omanik.
 - **Võrk 30.09 õhtul:** SSH port 22 aegus korduvalt nii GitHubi kui serveri (`ssh sotsiaalai`) poole. Push õnnestus kordamisel. `gh` töötab HTTPS-i kaudu.
+
+**01.10 (Opus), hilisõhtu: M3 mõõtmissammu lõpp — otsus on üks reegel viidete lugejasse** ([ADR-063](../rag-v2/adr-063-checked-relations.md)). Omanik: „jätka“.
+- **Kõrvalekalle kavandist:** seoste faili ja harude F, G asemel simuleerib katseskript akti enda viidete järgimist (haru R) ja tänast reeglit (haru S, kontroll päris profiili vastu: sama tulemus 15/15). Põhjus: mudeli tüübitud seosed kukkusid käsitsi kontrollis läbi, akti viited mitte.
+- **Otsingukatse** (server, v47, kuupäev 15.10.2026, 15 küsimust, alla 0,001 USD): A 12, B 13, C 12, D 12, E 12, päris profiil 12, R 14. Väljund: `docs/audits/evidence/graph-hard-3-2026-10-01.json`.
+- **Päris vestlus** (3 teise akti küsimust, 0,0165 USD plaani hindade järgi): 2 läbisid, Harku tugiisik jäi otsingu taha.
+- Muudatus on ainult skriptides, testides ja dokumentides; vestlus ei muutu. Serveri ajutised failid on eemaldatud.
 
 **01.10 (Opus), õhtu: M3 mõõtmissammu algus — viidete kuldkomplekt ja käsitsi kontroll** ([ADR-063](../rag-v2/adr-063-checked-relations.md)). Omanik 01.10: „serveri koristus tee ja siis M3“.
 - **Kuldkomplekt:** seitse 15.10.2026 kehtivat akti (SHS, HMS, SÜS, LasteKS, PKS, abivahendite määrus, Harku kord), viited loetud akti tekstist ilma mudelita.

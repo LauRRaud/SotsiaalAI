@@ -1,6 +1,6 @@
 # ADR-063 — M3: kontrollitud seosed (mõõtmissamm)
 
-01.10.2026, pooleli. Teostus Claude Opus 5.5. Omanik 01.10: „m3. M5 tuleb kunagi hiljem“. Järgib [ADR-054](adr-054-semantic-graph-pilot.md) (teadmiskaardid), [ADR-057](adr-057-graph-experiment.md) (akti enda viited, profiil v3) ja [ADR-062](adr-062-provision-dates.md) (sätte kuupäevad).
+01.10.2026, mõõtmissamm lõpetatud. Teostus Claude Opus 5.5. Omanik 01.10: „m3. M5 tuleb kunagi hiljem“. Järgib [ADR-054](adr-054-semantic-graph-pilot.md) (teadmiskaardid), [ADR-057](adr-057-graph-experiment.md) (akti enda viited, profiil v3) ja [ADR-062](adr-062-provision-dates.md) (sätte kuupäevad).
 
 ## Küsimus
 
@@ -99,15 +99,106 @@ Kavand valiti 01.10 kolme sõltumatu ettepaneku seast (kolmest hindajast kaks ee
 - **Viide tekstist on usaldusväärne, mudeli seos ei ole.** 60 viitest 60 õiged; 75 kaardiseosest 20 valed.
 - Järgmine samm mõõdab, kas tekstist loetud viited (teise lõiku, oma paragrahvi lõikele, sissetulevad viited, nimetatud teine akt) toovad otsustava sätte tõenditesse seal, kus praegune otsing selle kaotab.
 
-## Edasi (sammud 5–10)
+## Tehtud (sammud 5–10)
 
-- **5–6.** Kuni 40 kontrollitavat seost (`checked-relations-1.json`) koos kontrollskriptiga; teine lugemine ilma inimeseta; omanikule üks leht käsitsi kirjutatud seostest.
-- **7–9.** Katseskripti harud A, C, D, L (päris profiil v3), F (ainult kontrollitud seosed) ja G; kuiv läbimine kohalikult; eraldamise täpsus kuldkomplekti vastu.
-- **10.** Otsus: täiendada viidete lugejat, minna kontrollitud kaartide teed või jätta praegune lahendus.
-- **Tasuline selles sammus alla 0,10 USD:** üks otsingukatse (alla 0,001 USD) ja üks vestluse jooks kuni 15 küsimusega (kuni 0,09 USD). Järgmise sammu jooksud (kokku kuni umbes 0,40 USD) ootavad omaniku jah-sõna.
+### Kõrvalekalle kavandist
+
+Kavand nägi ette kuni 40 käsitsi kontrollitavat seost eraldi failis ja harud F ja G. Seda ei tehtud, sest sammud 2–3 näitasid lihtsamat teed:
+
+- Mudeli tüübitud seos kukkus käsitsi kontrollis läbi (20 valet 75-st), seega seda mudelile ei näidata.
+- Akti enda viited on loetavad ilma mudelita ja kontrollis õiged (60/60). Neid saab katses järgida otse kuldkomplekti lugejaga.
+- Seoste faili asemel on katseskriptis kaks simuleeritud haru. Käsitsi kirjutatud seoseid ei ole, seega omanikule ülevaatuseks lehte ei tekkinud.
+- Mudeliga eraldamise jooksu (samm 9) ei tehtud. Eraldamise täpsuse vastus on sammudes 2–3: kaardid katavad SHS-i 322 lõiguülesest viitest 13 ja neljandik kontrollitud kaardiseostest on valed.
+
+### Katseskripti uued harud
+
+`scripts/rag-v2-graph-experiment.mjs`, skeem `rag-v2/graph-experiment-2`:
+
+| Haru | Mis see on |
+|---|---|
+| L | päris vestluse profiil `hybrid-estnltk-chat-v3` |
+| V | `hybrid-estnltk-chat-v1` (v3 ilma akti viideteta); R ja S lähtekoht |
+| S | V + tänane reegel (viidatud paragrahvi esimene lõik), simuleeritud. Kontroll: peab andma sama tulemuse kui L |
+| R | V + akti enda viidete järgimine, simuleeritud |
+
+Haru R lisab V leitud lõikudele kuni 4 lõiku ja 3000 tokenit (sama ruum mis kaartide harul C), selles järjekorras:
+
+1. viide teisele paragrahvile: täpne lõige, kui viide seda nimetab, muidu paragrahvi esimene lõik;
+2. viide oma paragrahvi teisele lõikele;
+3. sissetulev viide: säte, mis nimetab leitud sätet;
+4. nimetatud teine akt: selle akti 15.10.2026 kehtiva redaktsiooni nimetatud paragrahv ja lõige.
+
+Iga liigi sees tulevad erandi sõnastusega viited enne. Küsimuse `region` rakendab valla piirangu nagu vestlus. Test `tests/rag-v2-relation-gold.test.mjs` kontrollib reegleid SHS-i ja PKS-i peal.
+
+### Otsingukatse kolmandal kataloogil
+
+Server, korpus v47, kuupäev 15.10.2026, ilma vastuseta ja ilma rerank'ita. 45 teksti vektoriteks: 1380 tokenit, alla 0,001 USD. Väljund küsimuste kaupa: [graph-hard-3-2026-10-01.json](../audits/evidence/graph-hard-3-2026-10-01.json).
+
+| Haru | Leidis otsustava fraasi (15-st) | Kontrollideta (13-st) | Keskmine kontekst (tokenit) |
+|---|---:|---:|---:|
+| A alus | 12 | 10 | 6775 |
+| B rohkem teksti | 13 | 11 | 9564 |
+| C kaardid | 12 | 10 | 9025 |
+| D akti viited | 12 | 10 | 7514 |
+| E naabrid | 12 | 10 | 9557 |
+| L päris profiil v3 | 12 | 10 | 8752 |
+| V profiil v1 | 12 | 10 | 7986 |
+| S tänane reegel (simuleeritud) | 12 | 10 | 8621 |
+| **R viidete järgimine (simuleeritud)** | **14** | **12** | 10 071 |
+
+- **Simulatsiooni kontroll:** S ja L annavad sama tulemuse 15 küsimuses 15-st.
+- **Akti sees ei kaota otsing midagi.** Kõik 12 akti sisest küsimust leiab juba alusotsing: lõige väljaspool esimest lõiku, oma paragrahvi hilisem lõige, sissetulev viide, nimetamata erand, mõiste, rakendussäte ja mõlemad kontrollid.
+- **Vahe on ainult kujus „teine akt“.** Kolmest küsimusest ei leia päris profiil ühtegi.
+
+| Küsimus | L | R | Kuidas R leidis |
+|---|---|---|---|
+| Pensionäritoetus ja õppiv laps (SHS § 139¹ lg 4 → PKS § 97) | ei | jah | nimetatud teine akt; 10 kandidaadist neljas ehk viimane, mis ruumi mahtus |
+| Harku tugiisik (kord § 15 lg 3 → SHS § 25 lg 2) | ei | jah | nimetatud teine akt, ainus kandidaat |
+| Lapse abivajadus (SHS § 59 → LasteKS § 28) | ei | ei | viitav säte ise ei olnud leitud lõikude seas |
+
+- **R hind:** 47 lisatud lõiku 15 küsimuses, neist 2 otsustavad; kontekst kasvab V-ga võrreldes 2085 ja D-ga võrreldes 2557 tokenit küsimuse kohta.
+- Liigi „nimetatud teine akt“ lisandusi oli kokku 3, neist 2 otsustavad.
+
+### Kavandi lävendite vastu
+
+| Lävend | Tulemus |
+|---|---|
+| Varajane peatus: L leiab vähemalt 11 kontrollideta küsimust 13-st | ei täitunud (10) |
+| H1: uus haru leiab vähemalt 10 ja vähemalt 4 rohkem kui D | 12, aga ainult 2 rohkem kui D |
+| H3: vähemalt kaks kolmandikku võidust tuleb tekstist loetud viidetest | jah, 2 kahest (mõlemad „nimetatud teine akt“) |
+| Tootekasutuse piir: lisatud lõikudest kuni veerand otsustavast sättest väljas | ei (45 lõiku 47-st) |
+| Tootekasutuse piir: kontekst kuni 800 tokenit üle D | ei (+2557) |
+
+### Kolm teise akti küsimust päris vestluses
+
+Tootmise plaan (profiil v3, dialoog 22), üks jooks, 3 pööret, 0,0165 USD plaani hindade järgi.
+
+| Küsimus | Tulemus | Vastus käsitsi loetuna |
+|---|---|---|
+| Pensionäritoetus ja õppiv laps | läbis | Õige: kuni 21-aastane õppiv laps ei välista toetust; viitab SHS-ile ja PKS-ile. |
+| Lapse abivajadus | läbis | Õige: hindab lastekaitsetöötaja või lapsega töötav isik; viitab LasteKS-ile ja SHS-ile. |
+| Harku tugiisik | otsing | Ütleb, et teenust ei tohi osutada SHS § 25 lõikes 2 nimetatud isik, annab valla kontakti ja lisab ausalt, et § 25 lõike 2 sisu ei ole tõendites. Vanaema kohta jääb vastus andmata. |
+
+- Vestlus leiab PKS-i ja LasteKS-i ise, sest otsinguplaan kirjutab mitu päringut. Ühe päringuga otsingukatse näitab seda vahet suuremana, kui see vestluses on.
+- Päris vahe on üks kuju: **valla määrus nimetab SHS-i sätet ja selle sätte tekst ei jõua tõenditesse.** Harku korras on 18 teise akti viidet.
+- Ühtegi valet vastust ei olnud. H4 lävend (vestlus vastab juba 80%-le) ei täitunud: R-i võidetud kahest küsimusest vastab vestlus ühele.
+
+## Otsus
+
+1. **Kontrollitud kaartide teed ei minda.** Mudeli tüübitud seosed ei läbi käsitsi kontrolli ja akti sees leiab otsing otsustava sätte ilma nendeta.
+2. **Üldist viidete järgimist (haru R tervikuna) ei ehitata.** See toob 47 lõigust 2 kasulikku ja kasvatab konteksti 2500 tokenit.
+3. **Viidete lugejat täiendatakse ühe reegliga:** kui leitud säte nimetab teist akti ja täpset paragrahvi, lisab otsing selle akti küsimuse kuupäeval kehtiva redaktsiooni nimetatud lõike. Esimesena valla määrus → SHS.
+   - Eraldi PR, mis muudab otsinguprofiili. Mõõdetakse enne ühendamist kolme teise akti küsimusega (umbes 0,02 USD) ja ühe jooksuga väikseimast kataloogist.
+   - Lävend: Harku küsimus läbib, kaks ülejäänut jäävad läbima, kontekst kasvab keskmiselt alla 800 tokeni.
+4. Kavandi järgmise sammu suurem jooksukomplekt (umbes 0,40 USD) ei ole selle otsuse jaoks vajalik ja jääb tegemata, kuni omanik seda ei küsi.
+
+Selle sammu tasuline kulu kokku: alla 0,02 USD plaani hindade järgi (eelarve oli 0,10 USD).
 
 ## Piirid
 
 - Kuldkomplekt loeb ainult viiteid, mille akt ise sõnades teeb. Tingimus, millele ükski viide ei osuta (71 keelavat sätet), jääb sellest välja; need on kontrollitud seoste ja kolmanda kataloogi töö.
 - Teise akti viide lahendatakse ainult seitsme akti piires (28 viidet 138-st) ja ainult siis, kui akti nimi seisab vahetult loendi ees.
+- Kolmandas kataloogis on 15 küsimust, neist 3 teise akti kohta; iga jooks tehti üks kord. Üks küsimus vestluses on kitsas alus, seepärast mõõdetakse reegel enne ühendamist uuesti.
+- Haru R on simulatsioon profiili v1 leitud lõikudest ilma rerank'ita; vestluses valib lõigud rerank.
+- Nimetamata tingimusi (71 keelavat sätet ilma viiteta) seostega ei mõõdetud. Kataloogi kaks sellist küsimust leidis alusotsing.
 - SHS-i teadmiskaardid on redaktsioonidel, mis kehtivad 30.11.2026-ni. Järgmistel redaktsioonidel kaarte pole; see on omaniku otsus.

@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
-import { GOLD_ACTS, actBundles, actGold } from '../scripts/rag-v2-relation-gold.mjs';
+import { GOLD_ACTS, actBundles, actGold, actProvisions, listTarget, pointerAdditions, firstPassageAdditions } from '../scripts/rag-v2-relation-gold.mjs';
 
 // ADR-063: the pointer gold set is read from the act with no model, so the same act gives the same links. The Social
 // Welfare Act in force on 2026-10-15 pins the counts the ADR states; the committed file must be what the builder gives.
@@ -32,4 +32,36 @@ test('the gold builder reads the Social Welfare Act’s pointers at subsection l
   const committed = JSON.parse(await fs.readFile('tests/evaluation/graph/relation-gold-1.json', 'utf8'));
   assert.deepEqual(committed.acts.map(item => item.act), GOLD_ACTS);
   assert.deepEqual(committed.acts.find(item => item.act === SHS), JSON.parse(JSON.stringify(gold)));
+});
+
+test('ADR-063 arm R: following the act’s own pointers from a selected passage adds the subsection named, the provisions that point at it and a named other act', async () => {
+  const PKS = '107052025017', bundles = await actBundles([SHS, PKS], 'Andmebaasi');
+  const acts = new Map([['shs', { act: SHS, bundle: bundles.get(SHS), gold: actGold(SHS, bundles.get(SHS)) }]]);
+  const passage = (act, id) => actProvisions(bundles.get(act)).find(provision => provision.id === id).passage;
+  const run = (id, limits) => pointerAdditions({ seeds: [{ document_id: 'shs', passage: passage(SHS, id) }], acts, limits,
+    otherAct: act => (act === PKS ? { document_id: 'pks', bundle: bundles.get(PKS) } : null), tokens: text => Math.ceil(text.length / 4) });
+  const places = result => result.additions.map(item => `${item.class}:${item.document_id}#${item.passage}`);
+  // § 131 lõige 2 names § 133 lõiked 5 and 6: the passages of those subsections, not the section's first one.
+  const benefit = run('131/2');
+  assert.deepEqual(places(benefit).slice(0, 2), [`exact_subsection:shs#${passage(SHS, '133/5')}`, `exact_subsection:shs#${passage(SHS, '133/6')}`]);
+  assert.match(benefit.additions[0].source_text, /eluaseme soetamiseks võetud laenu tagasimakse/u);
+  // Today's rule on the same seed adds § 133's first passage, where the list of housing costs is not.
+  const today = firstPassageAdditions({ seeds: [{ document_id: 'shs', passage: passage(SHS, '131/2') }], acts, tokens: text => Math.ceil(text.length / 4) });
+  assert.deepEqual(today.additions.map(item => [item.class, item.to]), [['first_passage', '133/null']]);
+  assert.doesNotMatch(today.additions[0].source_text, /eluaseme soetamiseks võetud laenu tagasimakse/u);
+  // § 80 lõige 1 is named by § 13² lõige 3 (martial law): an incoming pointer.
+  const ending = run('80/1');
+  assert.equal(ending.additions.some(item => item.class === 'incoming' && item.from === '13^2/3' && /kauem kui 14 päeva/u.test(item.source_text)), true);
+  // § 134 lõige 4 is qualified by lõige 5 of the same section, in the next passage.
+  assert.deepEqual(places(run('134/4')), [`incoming:shs#${passage(SHS, '134/5')}`]);
+  // § 139¹ lõige 4 names the Family Law Act § 97: it is the fifth candidate, so four places cut it and five keep it.
+  const pensioner = run('139^1/4'), other = pensioner.candidates.find(item => item.class === 'other_act');
+  assert.deepEqual([other.document_id, other.passage, other.added, pensioner.candidates.indexOf(other)], ['pks', passage(PKS, '97/null'), false, 4]);
+  assert.match(other.source_text, /mitte kauem kui 21-aastaseks saamiseni/u);
+  assert.equal(run('139^1/4', { additions: 5, tokens: 3000 }).additions.at(-1).class, 'other_act');
+  // A seed of a document whose pointers are not read adds nothing; a token room that is too small keeps nothing.
+  assert.deepEqual(pointerAdditions({ seeds: [{ document_id: 'other', passage: 0 }], acts }).additions, []);
+  assert.deepEqual(run('131/2', { additions: 4, tokens: 10 }).additions, []);
+  assert.deepEqual([listTarget('§ 97 punkti 1 või 2'), listTarget('§ 25 lõikes 2'), listTarget('§ 45¹³ lõike 1 punktides 1–7'), listTarget('lõikes 2')],
+    [{ section: '97', subsection: null }, { section: '25', subsection: '2' }, { section: '45^13', subsection: '1' }, null]);
 });
