@@ -14,6 +14,19 @@ export interface SearchQuery {
   filters?: { region?: string; publication_from?: string; publication_to?: string; valid_at?: string };
   limits?: { topK?: number; perDocument?: number; candidates?: number; contextTokens?: number; graphSteps?: number; graphAdditions?: number; dependencySteps?: number; dependencyAdditions?: number };
 }
+/** A legal act's dates as the answer model reads them (ADR-062, legal-dates.js). An amendment entry names the provisions
+ * whose notes share the days and words: a provision ("§ 1 p 1"), a whole section or subsection ("§ 13²", "§ 142⁴⁷ lg 3¹"),
+ * a heading ("§ 5 pealkiri") or opening words ("§ 2 sissejuhatav lauseosa", "§ 70 lg 1 sissejuhatav lauseosa"), a closing
+ * note that may be the whole section's or subsection's ("§ 9 lg 6 või kogu § 9", "§ 91 lg 2 p 2 või kogu § 91 lg 2"), an
+ * added division by its name. The last entry of a cut list is { more }. A day the source does not give is absent
+ * (in_force) or null (repealed_from). On a card, changed_on_valid_from_notes are such entries for the parts outside the
+ * sections (the preamble, an annex, a division) that the version's first day changed. */
+export type AmendmentEntry = { provisions: string[]; in_force?: string; repealed_from?: string | null; applies_from?: string;
+  note?: string; more_provisions?: number } | { more: number };
+export interface ActDates {
+  act_in_force_from?: string; changed_on_valid_from?: string[]; changed_on_valid_from_count?: number; changed_on_valid_from_notes?: AmendmentEntry[];
+  entry_into_force?: { provision: string; text: string }[]; scoped_rules?: { provision: string; text: string }[]; entry_into_force_more?: number;
+}
 export interface Evidence {
   evidence_id: Id; document_id: Id; document_version_id: Id; unit_id: Id; chunk_id: Id;
   span_ids: SourceSpan['id'][]; pdf_pages: number[]; source_locations?: SourceLocation[]; source_text: string;
@@ -25,6 +38,8 @@ export interface Evidence {
     | { type: 'semantic_dependency'; card_id: Id; dependency_id: Id | null; verification_state: 'source_anchored_unreviewed' };
     ranks: Record<string, number>; rrf_contributions: Record<string, number>; rrf_score: number | null };
   limitations: unknown[];
+  /** Only for a Riigi Teataja act read with its notes (source-structure-v30); outside every budget measure. */
+  legal_dates?: { act?: ActDates; amendments?: AmendmentEntry[] };
 }
 export interface EvidenceBundle {
   schema_version: 'rag-v2/evidence-1'; query_id: Id; tenant: string; generation_id: Id | null;
@@ -42,9 +57,11 @@ export interface EvidenceBundle {
     graph_steps?: number; graph_additions?: number; dependency_steps?: number; dependency_additions?: number };
 }
 export interface ModelContext {
-  schema_version: 'rag-v2/model-context-json-1'; sources: Record<string, Record<string, unknown>>;
+  /** A legal act's source card may carry act_dates (ActDates) or act_dates_omitted: true (json-3, ADR-062). */
+  schema_version: 'rag-v2/model-context-json-3'; sources: Record<string, Record<string, unknown>>;
   evidence: { ref: string; source: string; pdf_pages: number[]; text: string;
-    source_locations?: { kind: 'html' | 'xml' | 'json'; path: string; act_reference?: string; record_id?: string }[] }[];
+    source_locations?: { kind: 'html' | 'xml' | 'json'; path: string; act_reference?: string; record_id?: string }[];
+    amendments?: AmendmentEntry[]; amendments_omitted?: true }[];
   dependencies?: { schema_version: 'rag-v2/dependency-context-1'; known_context: 'included' | 'incomplete';
     corpus_completeness: 'not_assessed'; verification_state: 'source_anchored_unreviewed';
     claims: Record<string, unknown>[]; relations: Record<string, unknown>[]; unresolved: Record<string, unknown>[] };

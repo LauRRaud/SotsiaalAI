@@ -1,0 +1,21 @@
+{
+  "schema_version": "rag-v2/dialogue-eval-2",
+  "purpose": "Targeted check for ADR-062 (01.10.2026): a legal source's valid_from starts a consolidated version of the act and is not the day a provision or an amount began. On 30.09 the Märjamaa answer gave the birth grant as in force \"alates 4. septembrist 2026\" and could not say whether it covers a child born in August; a Kuusalu answer dated the housing cost limit from 15 September. Written before any run; one run on corpus v47 with model context json-3 and dialogue prompt 22.",
+  "expectation_help": {
+    "region": "the municipal scope of the turn",
+    "cited": "the act with the rates is among the cited sources",
+    "must / must_not": "regular expressions on the visible answer text. Märjamaa must_not: the version's start day as a date in the answer; a doubt about the August birth; the act's year of entry into force beside the amount in one sentence (the amount is of 2026; a dot after a digit, as in '1. juulist 2018', does not end the sentence). Kuusalu must: the amount and the day the regulation is applied from (§ 5 lg 1) in any of its written forms; must_not: the version's start day"
+  },
+  "scenarios": [
+    { "id": "provision-date-marjamaa", "title": "Märjamaa sünnitoetus, laps sündis augustis", "source": "live check 30.09, the question unchanged", "turns": [
+      { "mode": "new", "text": "Meil sündis augustis laps ja elame Märjamaa vallas, kus olen ise elanud juba mitu aastat. Kui suure sünnitoetuse vald maksab ja kas see makstakse kõik korraga välja?",
+        "expect": { "region": "marjamaa_vald", "cited": ["Sotsiaaltoetuste määrad ja piirmäärad"], "must": ["500", "300"],
+          "must_not": ["(?<!\\d)4\\.\\s*septemb|(?<!\\d)0?4\\.0?9\\.2026",
+            "(ei saa|ei oska)\\s+(öelda|kinnitada)[^\\n]{0,200}august|august[^\\n]{0,200}(ei saa|ei oska)\\s+(öelda|kinnitada)",
+            "2018(?:[^.\\n]|(?<=\\d)\\.){0,80}(500|300|800)|(500|300|800)(?:[^.\\n]|(?<=\\d)\\.){0,80}2018"] } } ] },
+    { "id": "provision-date-kuusalu", "title": "Kuusalu eluasemekulude piirmäär ja selle algus", "source": "live check 30.09, with one clause added so that the answer must give a date", "turns": [
+      { "mode": "new", "text": "Elan Kuusalu vallas üksi 1-toalises üürikorteris, mille üldpind on 40 m² ja üür 520 eurot kuus. Olen 38-aastane ja töövõimeline – kui suure osa üürist võtab vald toimetulekutoetuse arvutamisel arvesse ja mis ajast see piirmäär kehtib?",
+        "expect": { "region": "kuusalu_vald", "must": ["480", "(?<!\\d)1\\.\\s*mai\\p{L}*\\s+2026|(?<!\\d)0?1\\.0?5\\.2026|2026\\.\\s*aasta\\s+1\\.\\s*mai"],
+          "must_not": ["(?<!\\d)15\\.\\s*septemb|(?<!\\d)15\\.0?9\\.2026"] } } ] }
+  ]
+}
