@@ -28,7 +28,7 @@ Rada on kaheosaline. Sülearvutis on `scripts/rag-v2-corpus-refresh.mjs` (teek `
 3. **Ingest** käib nagu ennegi: `rag-v2-ingest-batch.mjs` režiimid `plan`, `run` ja `review`.
 4. **`refresh review`** kinnitab mustandi ilma käsitsi muutmata, kui iga kirje on puhas:
    - blokeerijaid pole;
-   - on ainult teadaolevad hoiatused (`collected_package_text`, `knowledge_import_unreviewed`), mille kohta kirjutatakse standardmärkus;
+   - on ainult teadaolevad hoiatused (`collected_package_text`, `knowledge_import_unreviewed` ja [ADR-062](adr-062-provision-dates.md) järgi `amendment_note_in_force_before_publication` ja `act_in_force_before_publication`), mille kohta kirjutatakse standardmärkus;
    - kehtivuse algus on olemas;
    - omavalitsuse akti omavalitsus on lahendatud.
 

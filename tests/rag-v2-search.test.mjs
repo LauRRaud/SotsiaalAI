@@ -9,6 +9,7 @@ import { searchConfig, verifySearchConfig } from '../lib/rag-v2/search/indexing.
 import { localPostgresUrl, localQdrantUrl } from '../lib/rag-v2/search/local-config.js';
 import { evidenceHtml } from '../lib/rag-v2/search/export.js';
 import { evaluationPlan } from '../lib/rag-v2/search/evaluation-plan.js';
+import { generationDifference, sameScores } from '../lib/rag-v2/search/evaluator.js';
 const savedFetch = globalThis.fetch, savedConnect = net.Socket.prototype.connect;
 let network = 0;
 before(() => {
@@ -66,6 +67,56 @@ test('ADR-022: query-time channel weights scale contributions without changing t
     assert.throws(() => rrf(channels, 60, weights), { code: 'invalid_channel_weights' });
   assert.throws(() => validateQuery({ text: 'abi', language: 'et', channelWeights: { vector: -1 } }), { code: 'invalid_channel_weights' });
   assert.deepEqual(validateQuery({ text: 'abi', language: 'et', channelWeights: { lexical: 1, vector: 2 } }).channelWeights, { lexical: 1, vector: 2 });
+});
+test('ADR-062: a version ingested again has new unit IDs, so equal scores may swap; the same passages and scores tell that from a real difference', () => {
+  // One passage first in each of two variant vector channels at the chat profile's weight: equal fused scores, ordered by unit ID.
+  const fused = (marjamaa, kuusalu) => rrf({ vector_1: [{ id: marjamaa }], vector_2: [{ id: kuusalu }] }, 60, { vector_1: 2, vector_2: 2 });
+  const stored = fused('unit_a', 'unit_b'), again = fused('unit_z', 'unit_c');
+  assert.deepEqual([stored.map(x => x.id), again.map(x => x.id), stored.map(x => x.score), again.map(x => x.score)],
+    [['unit_a', 'unit_b'], ['unit_c', 'unit_z'], [2 / 61, 2 / 61], [2 / 61, 2 / 61]]);
+  // The channel reads name a passage by its document and place, which a re-ingest keeps.
+  const read = (limit, ...rows) => ({ limit, rows });
+  const before = [read(50, ['m#1', 0.5], ['k#0', 0.5], ['law#0', 0.2]), read(50, ['m#1', 0.71]), read(50, ['k#0', 0.69])];
+  assert(sameScores(before, before));
+  assert(sameScores(before, [read(50, ['k#0', 0.5], ['m#1', 0.5], ['law#0', 0.2]), before[1], before[2]]), 'equal scores in another order');
+  // The limit cut a run of equal scores at another passage: both reads are full and the passages are at the lowest score.
+  assert(sameScores([read(2, ['m#1', 0.5], ['k#0', 0.2])], [read(2, ['m#1', 0.5], ['law#0', 0.2])]));
+  for (const [other, why] of [[[read(50, ['m#1', 0.6], ['k#0', 0.5], ['law#0', 0.2]), before[1], before[2]], 'a score changed'],
+    [[read(50, ['m#1', 0.5], ['k#0', 0.5], ['m#0', 0.2]), before[1], before[2]], 'another passage below the limit'],
+    [[read(50, ['m#1', 0.5], ['k#0', 0.5]), before[1], before[2]], 'a passage is missing'], [[read(30, ...before[0].rows), before[1], before[2]], 'another limit'],
+    [[before[0], before[1]], 'a read is missing'], [[before[0], before[1], null], 'a read failed']]) assert(!sameScores(before, other) && !sameScores(other, before), why);
+  assert(!sameScores([read(2, ['m#1', 0.5], ['k#0', 0.2])], [read(2, ['m#1', 0.5], ['law#0', 0.3])]), 'the cut passages have other scores');
+  assert(!sameScores([read(2, ['m#1', 0.5], ['k#0', 0.5])], [read(2, ['m#1', 0.5], ['law#0', 0.2])]), 'only one of the cut passages is at the lowest score of both');
+});
+test('ADR-062: two generations differ by order only when the reads are equal and the evidence is the same passages in another order', () => {
+  const read = (limit, ...rows) => ({ limit, rows });
+  const reads = [read(50, ['m#1', 0.5], ['k#0', 0.5], ['law#0', 0.2]), read(50, ['m#1', 0.71])], swapped = [read(50, ['k#0', 0.5], ['m#1', 0.5], ['law#0', 0.2]), reads[1]];
+  const row = { pool_all: true, fused_all: true, anchor_ranks: [1], evidence: ['m#1', 'k#0'], context_tokens: 4200 };
+  const kind = (other, otherReads = swapped, first = row) => [generationDifference(first, other, reads, otherReads), generationDifference(other, first, otherReads, reads)];
+  assert.deepEqual(kind({ ...row }, reads), ['same', 'same']);
+  // Equal scores swapped: the same passages in another order, with the anchor at another place in the pool.
+  assert.deepEqual(kind({ ...row, evidence: ['k#0', 'm#1'], anchor_ranks: [2], context_tokens: 4201 }), ['equal_score_order_only', 'equal_score_order_only']);
+  // Equal reads do not explain the rest. The same evidence with a larger context is what data leaked into the source
+  // card would look like; so is a lost anchor under the same evidence, and one passage more.
+  for (const [other, why] of [[{ ...row, context_tokens: 4580 }, 'the same evidence, more context tokens'],
+    [{ ...row, fused_all: false, anchor_ranks: [null] }, 'the same evidence, the anchor lost'],
+    [{ ...row, anchor_ranks: [2] }, 'the same evidence, the anchor at another place'],
+    [{ ...row, evidence: ['m#1', 'k#0', 'law#0'] }, 'one passage more'], [{ ...row, evidence: ['m#1', 'law#0'] }, 'another passage'],
+    [{ ...row, evidence: ['m#1', 'm#1'] }, 'a passage twice instead of the other'],
+    [{ ...row, evidence: ['k#0', 'm#1'], fused_all: false }, 'another order, and the same passages no longer cover the anchor'],
+    [{ ...row, evidence: ['k#0', 'm#1'], context_tokens: 4580 }, 'another order, and a context larger by more than a token']]) {
+    assert.deepEqual(kind(other, reads), ['different', 'different'], why);
+    assert.deepEqual(kind(other), ['different', 'different'], `${why}, equal scores swapped`);
+  }
+  // Another order under reads that differ, or with no reads to compare, is a real difference; so is a missing row.
+  const reordered = { ...row, evidence: ['k#0', 'm#1'] };
+  assert.deepEqual(kind(reordered, [read(50, ['k#0', 0.6], ['m#1', 0.5], ['law#0', 0.2]), reads[1]]), ['different', 'different']);
+  assert.deepEqual([generationDifference(row, reordered, [], []), generationDifference(row, reordered, undefined, undefined), generationDifference(row, undefined, reads, reads)],
+    ['different', 'different', 'different']);
+  // A question without anchors or a stored vector has nothing to differ in.
+  assert.deepEqual([generationDifference({ id: 'q', error: 'no_stored_question_vector' }, { id: 'q', error: 'no_stored_question_vector' }, [], []),
+    generationDifference({ ...row, pool_all: null, fused_all: null, anchor_ranks: [] }, { ...row, pool_all: null, fused_all: null, anchor_ranks: [], evidence: ['k#0', 'm#1'] }, reads, swapped)],
+  ['same', 'equal_score_order_only']);
 });
 test('M2.1-05/08: explicit local context, tenant and live revocation', async () => {
   const policy = new LocalPolicy({ tenants: { a: { worker: ['doc'] }, b: { worker: ['other'] } } });

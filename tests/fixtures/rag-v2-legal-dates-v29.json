@@ -1,0 +1,274 @@
+{
+ "made_with": "3c0e24f1",
+ "reader": "source-structure-v29",
+ "acts": {
+  "401092026014": {
+   "chunks": [
+    {
+     "embedding_input_hash": "a89f616b872c5341f48294e42d2999813ca9679395fb44d6d7f2c3a8487bf7eb",
+     "source_text_sha256": "c9cd91ac4c160230202b3650cae457b26a1d553f06a15ace6e66461dc7369a83",
+     "retrieval_text_sha256": "855bdfec40905015495fd3f5c31f2f25d174a08502630e515cc035ae9c470c7e"
+    },
+    {
+     "embedding_input_hash": "16e0e32ce67e2e78f9bec05a0a2605aeaa00851450b9b161e977724bde5df13f",
+     "source_text_sha256": "f125ba5ca1027f5d7733fe0f6437ac873b5ce81e37b5a0c817930b53484a7b8d",
+     "retrieval_text_sha256": "7e7904de147bc51f63e8d88ca6fd1beea676af2063fe35a5f4f05aa0efe170e0"
+    },
+    {
+     "embedding_input_hash": "fade66f7492cfb5788b727e5a28864fefe8b92a94f1e10399d8a231655e9b968",
+     "source_text_sha256": "c9c44d78adf3468061c578c0f463d452f29dba528e19ea06546747e48d92bd45",
+     "retrieval_text_sha256": "d17a3554e13f8f23d9cf064d17a4ad438aba0dae26269eb37175e98ecb03d3cf"
+    },
+    {
+     "embedding_input_hash": "4b94d034bd5628561ccf2c8947cd1e88e8fa519db6ebf8c00bdc9ae42fe9e9af",
+     "source_text_sha256": "982dd5c299a466bfb1fd93da884d9c2e9572ce39e1951938750c2b0021afb3ff",
+     "retrieval_text_sha256": "64f32f4f0f6d97c524e8c3c9874488d3ba445e656d6403902dc462fb907a7784"
+    },
+    {
+     "embedding_input_hash": "39898dcc97f937189c3ce13f136a896f743a11a0c19446289cc4b11540ad9c67",
+     "source_text_sha256": "3a4f346c195dc99c36455fc48ed6c025ebd0b657502f93e5beb9b2c7e56e6c2d",
+     "retrieval_text_sha256": "c4aa2bb8b644f76615a92a061f93821e71ba1f4b5b21b75f0752683b2310d378"
+    }
+   ],
+   "model_context": {
+    "schema_version": "rag-v2/model-context-json-2",
+    "sources": {
+     "D1": {
+      "title": "Sotsiaaltoetuste määrad ja piirmäärad",
+      "publication_date": "2026-09-01",
+      "source_type": "legal_act",
+      "authority": "Märjamaa Vallavolikogu",
+      "language": "et",
+      "valid_from": "2026-09-04",
+      "municipality_id": "marjamaa_vald",
+      "municipality_name": "Märjamaa vald",
+      "country": "EE",
+      "regions": [
+       "marjamaa_vald"
+      ],
+      "jurisdiction_level": "municipal"
+     }
+    },
+    "evidence": [
+     {
+      "ref": "S1",
+      "source": "D1",
+      "pdf_pages": [],
+      "source_locations": [
+       {
+        "kind": "xml",
+        "path": "/oigusakt[1]/sisu[1]/preambul[1]/tavatekst[1]",
+        "act_reference": "401092026014"
+       }
+      ],
+      "text": "Määrus kehtestatakse Märjamaa Vallavolikogu 17. septembri 2024 määruse nr 77 „Sotsiaalhoolekandelise abi andmise kord“ § 9 lõike 4 alusel."
+     },
+     {
+      "ref": "S2",
+      "source": "D1",
+      "pdf_pages": [],
+      "source_locations": [
+       {
+        "kind": "xml",
+        "path": "/oigusakt[1]/sisu[1]/paragrahv[1]",
+        "act_reference": "401092026014"
+       }
+      ],
+      "text": "§ 1.\n\nAbivajadusest sõltumatute sotsiaaltoetuste määrad\n\nAbivajadusest sõltumatute sotsiaaltoetuste määrad on järgmised:\n\n1)\n\nsünnitoetus – esimene osa 500 eurot lapse kohta sünni registreerimisel ja teine osa 300 eurot lapse kohta lapse aastaseks saamisel;\n\n2)\n\nranitsatoetus 400 eurot lapse kohta;\n\n3)\n\neakate sünnipäevatoetus 80., 85., 90 ja 95. sünnipäeva puhul 50 eurot, 100. sünnipäeva puhul 300 eurot ning alates 101. sünnipäevast on toetuse suurus eurodes võrdne sünnipäevalapse vanusega aastates;\n\n4)\n\nmatusetoetus 250 eurot."
+     },
+     {
+      "ref": "S3",
+      "source": "D1",
+      "pdf_pages": [],
+      "source_locations": [
+       {
+        "kind": "xml",
+        "path": "/oigusakt[1]/sisu[1]/paragrahv[2]",
+        "act_reference": "401092026014"
+       }
+      ],
+      "text": "§ 2.\n\nAbivajadusest sõltuvate mitteperioodiliste sotsiaaltoetuste piirmäärad\n\n(1)\n\nTervisetoetuse piirmäärad on järgmised:\n\n1)\n\nproteeside, tugiaparaatide ja muude erivajadusest tulenevate abivahendite soetamise või rentimise või omaosaluse kulude hüvitamiseks 130 eurot ühele taotlejale kalendriaastas;\n\n2)\n\nretseptiravimite ostmise kulude hüvitamiseks 130 eurot ühele taotlejale kalendriaastas;\n\n3)\n\nraviasutusse sõitmise kulude, sh sotsiaaltranspordikulude hüvitamiseks 100 eurot ühele taotlejale kalendriaastas;\n\n4)\n\nmuude raviks vajalike kulu hüvitamiseks 50 eurot ühele taotlejale kalendriaastas.\n\n(2)\n\nPuudega isikule eluruumi kohandamise toetuse piirmääraks on 1200 eurot ühele taotlejale kalendriaastas.\n\n(3)\n\nVajaduspõhiste ja toetavate teenuste toetuse määr sõltub tegelikest kuludest ja isiku (pere) toimetulekuvõimest ning elukondlikest vajadustest.\n\n(4)\n\nLaste toimetuleku tagamiseks makstavate toetuste piirmäärad on järgmised:\n\n1)\n\nlastele koolitarvete, riiete, jalanõude ja muu hädavajaliku ostmiseks 50 eurot ühele lapsele kalendriaastas;\n\n2)\n\nhuvitegevuse kulude hüvitamiseks 160 eurot ühe lapsele kalendriaastas.\n\n(5)\n\nRaske majandusliku olukorra puhul makstavate toetuste piirmäärad on järgmised:\n\n1)\n\nkütte maksumuse osaliseks hüvitamiseks 150 eurot ühele taotlejale kalendriaastas (ühes eluasemes);\n\n2)\n\nerakorraliste eluasemekulude hüvitamiseks 100 eurot ühele taotlejale kalendriaastas;\n\n3)\n\nmuude hädavajalike kulude hüvitamiseks 100 eurot ühele taotlejale kalendriaastas.\n\n(6)\n\nErakorralise toetuse piirmäär on 1000 eurot.\n\n(7)\n\nVältimatu sotsiaalabi toetust võib maksta ulatuses, mis tagab isikule kehtiva riikliku toimetulekupiiri."
+     },
+     {
+      "ref": "S4",
+      "source": "D1",
+      "pdf_pages": [],
+      "source_locations": [
+       {
+        "kind": "xml",
+        "path": "/oigusakt[1]/sisu[1]/paragrahv[3]",
+        "act_reference": "401092026014"
+       }
+      ],
+      "text": "§ 3.\n\nAbivajadusest sõltuvate perioodiliste sotsiaaltoetuste piirmäärad\n\n(1)\n\nKoolieelses lasteasutuses laste toitlustamiseks, koha- ja õppetasu hüvitamiseks makstakse toetust kuni 100% teenust osutava isiku määratud hinnast. Toetuse suurus sõltub isiku ja tema perekonna toimetulekuvõimest ning elukondlikest vajadustest.\n\n(2)\n\nÕpilaskodu üüri ja kommunaalkulude tasumiseks makstakse toetust kuni 100% teenust osutava isiku määratud hinnast. Toetuse suurus sõltub isiku ja tema perekonna toimetulekuvõimest ning elukondlikest vajadustest.\n\n(3)\n\nHooldajatoetuse määrad on järgmised:\n\n1)\n\nsuure hooldusvajadusega täisealise isiku hooldajale 30 eurot ühe hooldatava eest kalendrikuus;\n\n2)\n\nulatusliku hooldusvajadusega täisealise isiku hooldajale 50 eurot ühe hooldatava eest kalendrikuus;\n\n3)\n\n3-aastase kuni 18-aastase suure hooldus- ja abivajadusega lapse hooldamise eest 60 eurot ühe hooldatava eest kalendrikuus."
+     },
+     {
+      "ref": "S5",
+      "source": "D1",
+      "pdf_pages": [],
+      "source_locations": [
+       {
+        "kind": "xml",
+        "path": "/oigusakt[1]/sisu[1]/paragrahv[4]",
+        "act_reference": "401092026014"
+       }
+      ],
+      "text": "§ 4.\n\nMääruse jõustumine\n\nMäärus jõustub 1. juulil 2018."
+     }
+    ]
+   }
+  },
+  "412092026022": {
+   "chunks": [
+    {
+     "embedding_input_hash": "cfe7c810783f9e99e3f7ad7412da541d0866e0ed5be3fa1a034b460ef4c56f24",
+     "source_text_sha256": "8dd9ef37d344fdc677996d122efb29e3eacd28ae357acf454009e903737571be",
+     "retrieval_text_sha256": "81aac11af6579230ad7995339f68f7331d395cefd51a60d578ed5b0f72504d12"
+    },
+    {
+     "embedding_input_hash": "af4a379da6f2e0573c51b44d82575a4ffdf61022ca6fe92f108622057b8a179c",
+     "source_text_sha256": "a42cd10358ef14b008052d68100f28ba00b547db4328f4288726271b22b889e1",
+     "retrieval_text_sha256": "c38609a53afcfeb2a4a2aefa92876f24bc815c1fb376bf127994865671ebf1a6"
+    },
+    {
+     "embedding_input_hash": "040830a58e825cdc748d9f3d2916d73f4431c4acfb2e797672d3a87576c5f17f",
+     "source_text_sha256": "ba126506a949facb75675e0aeb3a7cc124da4359af49cd6dec9bf16e2598b946",
+     "retrieval_text_sha256": "a50955be2978f95fc39e1bfd694de285b5b9f6a67cca6f5382bd71d3ff194f67"
+    },
+    {
+     "embedding_input_hash": "0509ac93d931314d091b7befcfe292f4d2c33903345cf08641f2d2eff42f7026",
+     "source_text_sha256": "1620d3eea0665913c7cb40508eb222c3d6868e8cedd6c555647d20ba373d1823",
+     "retrieval_text_sha256": "9331cb9de295cd3d6d5ddd88da4377c5d8ee9a5c1a175a07bde4b82305440dae"
+    },
+    {
+     "embedding_input_hash": "05cf7ab57aa49df1dcf0e46338a73cd48f9fb0c81dba22697cc4b85d2b541ddf",
+     "source_text_sha256": "d06022b9640230e18a29d8056cc48fff64395ee7b9a161de4a4c70d305e42fd3",
+     "retrieval_text_sha256": "bca90b914f3cafb29fd7d7a0fe7def858fc17504eb0e30a837f38d01778e77e8"
+    },
+    {
+     "embedding_input_hash": "6d6cfb78f6c9b6910480deb7f0acf34749624681411d9c1984de829b9e130de9",
+     "source_text_sha256": "82b0c0cb4307b447f8b466b00459395f100d90782d7e305fcef4e13a54b92027",
+     "retrieval_text_sha256": "f3a3275563d1df491b5c4953d4cb0dce74804cc31b0ee28651ba7b3be38bddd1"
+    },
+    {
+     "embedding_input_hash": "ba8e72493f4d922f84b3671c18e985b7d4a6cd91d8cab420cd3bffe54946e0aa",
+     "source_text_sha256": "4a4e5d2415e2b80533fbd0682ec9966501aff4b5237f3e992092754f3ac8809d",
+     "retrieval_text_sha256": "3e12a33584044daab2f62f2d6bf53401f6a4f040676fba2a59810b59961abc4b"
+    }
+   ],
+   "model_context": {
+    "schema_version": "rag-v2/model-context-json-2",
+    "sources": {
+     "D1": {
+      "title": "Eluasemekulude piirmäärade kehtestamine toimetulekutoetuse määramisel",
+      "publication_date": "2026-09-12",
+      "source_type": "legal_act",
+      "authority": "Kuusalu Vallavalitsus",
+      "language": "et",
+      "valid_from": "2026-09-15",
+      "municipality_id": "kuusalu_vald",
+      "municipality_name": "Kuusalu vald",
+      "country": "EE",
+      "regions": [
+       "kuusalu_vald"
+      ],
+      "jurisdiction_level": "municipal"
+     }
+    },
+    "evidence": [
+     {
+      "ref": "S1",
+      "source": "D1",
+      "pdf_pages": [],
+      "source_locations": [
+       {
+        "kind": "xml",
+        "path": "/oigusakt[1]/sisu[1]/preambul[1]/tavatekst[1]",
+        "act_reference": "412092026022"
+       }
+      ],
+      "text": "Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 6 lõike 1 ja § 22 lõike 2, sotsiaalhoolekande seaduse § 133 lõike 6, Vabariigi Valitsuse 26.01.1999 määruse nr 38 „Eluruumi sotsiaalselt põhjendatud norm ja selle rakendamise erisused“ ning Kuusalu Vallavolikogu 26.08.2026 määruse nr 14 „ Õigusaktiga kohaliku omavalitsuse, omavalitsusüksuse või kohaliku omavalitsuse organi pädevusse antud küsimuste lahendamise delegeerimine Kuusalu Vallavalitsusele“ alusel."
+     },
+     {
+      "ref": "S2",
+      "source": "D1",
+      "pdf_pages": [],
+      "source_locations": [
+       {
+        "kind": "xml",
+        "path": "/oigusakt[1]/sisu[1]/paragrahv[1]",
+        "act_reference": "412092026022"
+       }
+      ],
+      "text": "§ 1.\n\nReguleerimisala\n\nMäärusega kehtestatakse eluasemekulude piirmäärad toimetulekutoetuse määramisel Kuusalu vallas."
+     },
+     {
+      "ref": "S3",
+      "source": "D1",
+      "pdf_pages": [],
+      "source_locations": [
+       {
+        "kind": "xml",
+        "path": "/oigusakt[1]/sisu[1]/paragrahv[2]",
+        "act_reference": "412092026022"
+       }
+      ],
+      "text": "§ 2.\n\nEluruumi normpind\n\n(1)\n\nToimetulekutoetuse määramisel võetakse arvesse elamuseaduse § 7 lõike 1 punkti 2 alusel kehtestatud eluruumi sotsiaalselt põhjendatud norm, mis on 18 m² eluruumide üldpinda perekonna iga liikme ja lisaks 15 m² perekonna kohta.\n\n(2)\n\nKui eluruumi tubade arv on võrdne selles eluruumis alaliselt elavate inimeste arvuga ja eluruumi üldpind on sotsiaalselt põhjendatud normist suurem, võetakse normpinnana arvesse eluruumi üldpind.\n\n(3)\n\nEluruumis üksinda elavatele pensionäridele ning osalise või puuduva töövõimega inimestele võib toimetulekutoetuse määramisel arvestada normpinnaks kuni 51 m²."
+     },
+     {
+      "ref": "S4",
+      "source": "D1",
+      "pdf_pages": [],
+      "source_locations": [
+       {
+        "kind": "xml",
+        "path": "/oigusakt[1]/sisu[1]/paragrahv[3]",
+        "act_reference": "412092026022"
+       }
+      ],
+      "text": "§ 3.\n\nEluasemekulude piirmäärad\n\n(1)\n\nToimetulekutoetuse määramisel on jooksval kuul tasumisele kuuluvad eluruumi alaliste kulude piirmäärad järgmised:\n\n1)\n\nÜür – kuni 12 eurot 1 m² kohta kuus.\n\n2)\n\nEluaseme soetamiseks võetud laenu tagasimakse, mis sisaldab ka laenu intressi ja kohustusliku eluasemekindlustuse makset – kuni 12 eurot 1 m² kohta kuus.Eluaseme soetamiseks võetud laenu tagasimakseid võetakse toimetulekutoetuse arvestamisel arvesse kuni kuus kuud kalendriaasta jooksul juhul, kui:1. eluaseme soetamiseks on laenu võtnud toimetulekutoetuse taotleja ise või tema perekonnaliige, kui toetust taotleb perekond;2. eluaseme soetamiseks võetud laenu puhul on ära kasutatud maksepuhkuse võimalus või esitab toimetulekutoetuse taotleja või tema perekonnaliige dokumendi, mis tõendab, et maksepuhkuse andmist ei ole peetud võimalikuks;3. isik ei ole sõlminud makseraskuste ennetamiseks vabatahtlikku kindlustust või see ei kata täies ulatuses eluaseme soetamiseks võetud laenu tagasimakset;4. laenuga soetatud eluase on taotleja rahvastikuregistrijärgne elukoht.\n\n3)\n\nKorterelamu haldamise kulu, sealhulgas remondiga seotud kulu – kuni 5 eurot 1 m² kohta kuus.\n\n4)\n\nKorterelamu renoveerimiseks võetud laenu tagasimakse – kuni 5 eurot 1 m² kohta kuus.\n\n5)\n\nVeevarustuse ja reovee ärajuhtimise teenuse maksumus – kuni 40 eurot pereliikme kohta kuus.\n\n6)\n\nSoojaveevarustuseks tarbitud soojusenergia või kütuse maksumus – kuni 35 eurot pereliikme kohta kuus.\n\n7)\n\nKütteks tarbitud soojusenergia või kütuse maksumus – kuni 15 eurot 1 m² kohta kuus.\n\n8)\n\nElektrienergia tarbimisega seotud kulu – kuni 90 eurot ühele pereliikmele ja 50 eurot iga järgneva pereliikme kohta kuus.\n\n9)\n\nMajapidamisgaasi maksumus – kuni 10 eurot pereliikme kohta kuus.\n\n10)\n\nMaamaksukulu – arvestamise aluseks on kolmekordne elamualune pind.\n\n11)\n\nHoonekindlustuse kulu – kuni 0,50 eurot 1 m² kohta kuus.\n\n12)\n\nOlmejäätmete veotasu – kuni 20 eurot ühele pereliikmele ja kuni 4 eurot iga järgneva pereliikme kohta kuus.\n\n(2)\n\nToimetulekutoetuse määramisel arvesse võetavaid eluasemekulusid tõendavateks dokumentideks on majavaldajate, majahaldajate, majaomanike või teenuse pakkujate poolt esitatud nõuetekohased arved.\n\n"
+     },
+     {
+      "ref": "S5",
+      "source": "D1",
+      "pdf_pages": [],
+      "source_locations": [
+       {
+        "kind": "xml",
+        "path": "/oigusakt[1]/sisu[1]/paragrahv[3]",
+        "act_reference": "412092026022"
+       }
+      ],
+      "text": "(3)\n\nJuhul, kui kuludokumendil kajastub taotlusele järgneva perioodi eluasemekulu (küte, majapidamisgaas, hoonekindlustus vms), kompenseeritakse see kuludokumendi esitamisele järgnevatel kuudel vastavalt kehtestatud piirmäärale kuludokumendil näidatud summa kompenseerimiseni või kuni uue kuludokumendi esitamiseni.\n\n(4)\n\nEluasemekulude tasumisel varem tekkinud võlgnevust ei arvata toimetulekutoetuse määramisel jooksval kuul tasumisele kuuluvate eluasemekulude hulka ja see ei kuulu katmisele toimetulekutoetuse vahenditest."
+     },
+     {
+      "ref": "S6",
+      "source": "D1",
+      "pdf_pages": [],
+      "source_locations": [
+       {
+        "kind": "xml",
+        "path": "/oigusakt[1]/sisu[1]/paragrahv[4]",
+        "act_reference": "412092026022"
+       }
+      ],
+      "text": "§ 4.\n\nÕigusaktide kehtetuks tunnistamine\n\n[Käesolevast tekstist välja jäetud.]"
+     },
+     {
+      "ref": "S7",
+      "source": "D1",
+      "pdf_pages": [],
+      "source_locations": [
+       {
+        "kind": "xml",
+        "path": "/oigusakt[1]/sisu[1]/paragrahv[5]",
+        "act_reference": "412092026022"
+       }
+      ],
+      "text": "§ 5.\n\nRakendussätted\n\n(1)\n\nMäärust rakendatakse alates 01.05.2026.\n\n(2)\n\nMäärus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist."
+     }
+    ]
+   }
+  }
+ }
+}

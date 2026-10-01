@@ -10,9 +10,10 @@
 //   review --draft WORK/review-draft.json --out WORK/review.json --reviewer "<who, on whose instruction>"
 //     Writes the review when every item is clean; otherwise lists the items a person has to decide (exit 2).
 //   package --store S --policy PREVIOUS/policy.json --review WORK/review.json --out OUT [--tenant T] [--remove FILE]
-//     After publication: OUT/policy.json, OUT/ship.tgz (the store head and the new versions) and OUT/ship.json with its
-//     hash and the head generations the server run checks (scripts/rag-v2-corpus-run.sh). --remove takes the municipal
-//     scan's report (its `superseded` acts) or a list of { document_id, reason } to leave the policy (ADR-058).
+//     After publication: OUT/policy.json, OUT/ship.tgz (the store head and the new versions, as OUT/ship-files.txt
+//     lists them) and OUT/ship.json with its hash and the head generations the server run checks
+//     (scripts/rag-v2-corpus-run.sh). --remove takes the municipal scan's report (its `superseded` acts) or a list of
+//     { document_id, reason } to leave the policy (ADR-058).
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
@@ -52,10 +53,11 @@ try {
     const next = nextPolicy(JSON.parse(await fs.readFile(values.policy, 'utf8')), review, active, values.tenant, remove);
     await fs.mkdir(values.out, { recursive: true });
     await fs.writeFile(path.join(values.out, 'policy.json'), JSON.stringify(next.policy));
-    // A relative archive name: GNU tar reads "C:\..." as a remote host.
+    // A relative archive name: GNU tar reads "C:\..." as a remote host. The names go in a file: as arguments, the version
+    // folders of a whole-corpus re-ingest (519 in v47) pass the Windows command-line limit.
     const ship = path.resolve(values.out, 'ship.tgz');
-    const tar = spawnSync('tar', ['czf', 'ship.tgz', '-C', tenantDir, 'active.json', 'publications', ...next.versions.map(version => `versions/${version}`)],
-      { cwd: path.resolve(values.out), stdio: 'inherit' });
+    await fs.writeFile(path.join(values.out, 'ship-files.txt'), ['active.json', 'publications', ...next.versions.map(version => `versions/${version}`), ''].join('\n'));
+    const tar = spawnSync('tar', ['czf', 'ship.tgz', '-C', tenantDir, '-T', 'ship-files.txt'], { cwd: path.resolve(values.out), stdio: 'inherit' });
     if (tar.status !== 0) throw Object.assign(new Error('tar'), { code: 'corpus_refresh_tar_failed' });
     const info = { sha256: hash(await fs.readFile(ship)), base_generation: review.base_generation, head_generation: active.generation,
       policy_documents: next.policy.tenants[values.tenant].operator.length, added_documents: next.added, removed_documents: next.removed,

@@ -25,6 +25,8 @@ import { evidenceHtml } from '../lib/rag-v2/search/export.js';
 import { PilotService } from '../lib/rag-v2/pilot/service.js';
 import { pilotChatResult } from '../lib/chat/m4PilotClientContract.js';
 import { referenceSpans, splitReferenceLists } from '../lib/rag-v2/chunking.js';
+import { appliesFrom } from '../lib/rag-v2/text-source.js';
+import { autoReview, KNOWN_WARNINGS } from '../lib/rag-v2/corpus-refresh.js';
 
 let root, networkCalls = 0;
 const savedFetch = globalThis.fetch, savedConnect = net.Socket.prototype.connect;
@@ -777,11 +779,12 @@ test('XML preserves legal units and distinct validity metadata; external entitie
 test('XML: superscript numbers read as the act is cited, amendment notes are left out, a repealed provision keeps only its number', async () => {
   const note = (text = '') => `<muutmismarge>${text ? `<tavatekst>${text}</tavatekst>` : ''}<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2025-04-03</avaldamineKuupaev><RTartikkel>17</RTartikkel><aktViide>403042025017</aktViide></avaldamismarge><joustumine>2025-04-06</joustumine></muutmismarge>`;
   const act = xml.replace(/<sisu>.*<\/sisu>/su, '<sisu><peatykk><kuvatavNr><![CDATA[7<sup class="number">1</sup>.]]></kuvatavNr><peatykkPealkiri>Fictional division</peatykkPealkiri>'
-    + '<paragrahv id="p1"><paragrahvNr ylaIndeks="1">15</paragrahvNr><kuvatavNr><![CDATA[§ 15<sup>1</sup>.]]></kuvatavNr><paragrahvPealkiri>Garden care</paragrahvPealkiri>'
+    + '<paragrahv id="p1"><paragrahvNr ylaIndeks="1">15</paragrahvNr><kuvatavNr><![CDATA[§ 15<sup>1</sup>.]]></kuvatavNr>'
+    + `<paragrahvPealkiri>Garden care${note()}</paragrahvPealkiri>`
     + `<loige><kuvatavNr>(1)</kuvatavNr><sisuTekst><tavatekst>The fictional garden is watered <b>daily</b> as § 45<sup>9</sup>, § 45<sup>16</sup>, § 13<sup><![CDATA[1]]></sup>, § 14<sup><b>2</b></sup> and § 22<sup>1 </sup>say.</tavatekst></sisuTekst>${note()}</loige>`
     + `<loige><kuvatavNr>(2)</kuvatavNr>${note('Kehtetu - ')}</loige></paragrahv>`
     + `<paragrahv id="p2"><kuvatavNr><![CDATA[§ 16.]]></kuvatavNr><paragrahvPealkiri>Old greenhouse</paragrahvPealkiri>${note('Kehtetu - ')}</paragrahv>`
-    + `${note('Kehtetu - ')}</peatykk></sisu>`);
+    + `${note('Kehtetu - ')}</peatykk></sisu><lisaViide><lisaPealkiri><lisaNimi>Old form</lisaNimi>${note('Kehtetu -')}</lisaPealkiri></lisaViide>`);
   const { bundle } = await ingest(await source('xml-amendments', 'xml', act));
   const text = bundle.chunks.map(chunk => chunk.source_text).join('\n'), retrieval = bundle.chunks.map(chunk => chunk.retrieval_text).join('\n');
   assert.equal(bundle.chunks.length, 1, 'the wholly repealed § 16 and the division-level repeal note make no text');
@@ -789,8 +792,201 @@ test('XML: superscript numbers read as the act is cited, amendment notes are lef
   // and in CDATA with attributes (source-structure-v29, Codex R3).
   assert.match(text, /^§ 15¹\.\n\nGarden care\n\n\(1\)\n\nThe fictional garden is watered daily as § 45⁹, § 45¹⁶, § 13¹, § 14² and § 22¹ say\.\n\n\(2\)\nKehtetu\.$/u);
   assert.match(retrieval, /7¹\. Fictional division > § 15¹\. Garden care/u);
-  for (const noise of ['<sup>', '<b>', 'RT IV', '403042025017', '2025-04-06', 'Old greenhouse']) assert(!`${text}\n${retrieval}`.includes(noise), noise);
+  for (const noise of ['<sup>', '<b>', 'RT IV', '403042025017', '2025-04-06', 'Old greenhouse', 'Old form']) assert(!`${text}\n${retrieval}`.includes(noise), noise);
   exactLocations(bundle);
+  // source-structure-v30 (ADR-062): each note is data beside that same text. A note's place is the length of the section's
+  // text before it, and a note in the section's title is the section's. The wholly repealed § 16, the chapter's own note
+  // and a repealed annex's title (named without the note's "Kehtetu.") lie outside every section's text.
+  const [unit] = bundle.source_units, at = '/oigusakt[1]/sisu[1]/peatykk[1]';
+  const mark = { act_reference: '403042025017', rt: 'RT IV, 03.04.2025, 17', published: '2025-04-03', in_force: '2025-04-06' };
+  assert.deepEqual(unit.amendments, [
+    { provision: '§ 15¹', offset: unit.raw_text.indexOf('Garden care') + 11, path: `${at}/paragrahv[1]/paragrahvPealkiri[1]/muutmismarge[1]`, ...mark },
+    { provision: '§ 15¹ lg 1', offset: unit.raw_text.indexOf(' say.') + 5, path: `${at}/paragrahv[1]/loige[1]/muutmismarge[1]`, ...mark },
+    { provision: '§ 15¹ lg 2', offset: unit.raw_text.indexOf('(2)') + 3, path: `${at}/paragrahv[1]/loige[2]/muutmismarge[1]`, ...mark, repeal: true }]);
+  assert.deepEqual(bundle.document.fields.legal_text.value.structure, [
+    { target: '§ 16', path: `${at}/paragrahv[2]`, ...mark, repeal: true }, { target: '7¹. Fictional division', path: at, ...mark, repeal: true },
+    { target: 'lisa Old form', path: '/oigusakt[1]/lisaViide[1]/lisaPealkiri[1]', ...mark, repeal: true }]);
+  assert.deepEqual(bundle.report.warnings.map(warning => warning.code).filter(code => code.startsWith('amendment')), []);
+});
+
+test('XML: amendment notes and the act\'s own dates are kept as data; only a note that is nothing but the clause gives a date (ADR-062)', async () => {
+  const mark = (act, published, inForce) => `<avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>${published}</avaldamineKuupaev><RTartikkel>7</RTartikkel><aktViide>${act}</aktViide></avaldamismarge><joustumine>${inForce}</joustumine>`;
+  const note = (after = '', before = '') => `<muutmismarge>${before ? `<tavatekst>${before}</tavatekst>` : ''}${mark('421022026007', '2026-03-21', '2026-03-24')}${after ? `<tavatekst>${after}</tavatekst>` : ''}</muutmismarge>`;
+  // One point per note, with the note's own words as Riigi Teataja writes them, and the date they give (null: the words only).
+  const points = [[', rakendatakse alates 01.01.2026', '2026-01-01'], [', rakendatakse alates 1. jaanuarist 2026.a', '2026-01-01'],
+    [', rakendatakse tagasiulatuvalt 2026. aasta 1. märtsist.', '2026-03-01'], ['; rakendatakse tagasiulatuvalt 15. juulist 2020. a.', '2020-07-15'],
+    [', lõikeid 1–3 rakendatakse tagasiulatuvalt 2022. aasta 15. märtsist', null], [', osaliselt 01.07.2026', null], ['', null]];
+  const meta = (kind, adopted) => `<metaandmed><valjaandja>Fixture issuer</valjaandja><tekstiliik>${kind}</tekstiliik>${adopted}<globaalID>fixture-456</globaalID>`
+    + '<kehtivus><kehtivuseAlgus>2026-09-04+03:00</kehtivuseAlgus></kehtivus></metaandmed>';
+  const adopted = `<vastuvoetud><aktikuupaev>2018-05-15</aktikuupaev>${mark('418052018022', '2018-05-18', '2018-07-01')}</vastuvoetud>`;
+  const body = '<sisu><preambul><tavatekst>Fictional basis.</tavatekst><muutmismarge>' + mark('401092026001', '2026-09-01', '2026-09-04') + '</muutmismarge></preambul>'
+    + '<paragrahv><kuvatavNr><![CDATA[§ 1. ]]></kuvatavNr><paragrahvPealkiri>Rates</paragrahvPealkiri><loige><kuvatavNr/><sisuTekst><tavatekst>The fictional rates are:</tavatekst></sisuTekst>'
+    + points.map(([words], index) => `<alampunkt><kuvatavNr><![CDATA[${index + 1}) ]]></kuvatavNr><sisuTekst><tavatekst>fictional rate ${index + 1};</tavatekst></sisuTekst>${note(words)}</alampunkt>`).join('')
+    + `<alampunkt><kuvatavNr><![CDATA[8) ]]></kuvatavNr>${note(', rakendatakse alates 1.01.2021', 'Kehtetu - ')}</alampunkt>`
+    + `<alampunkt><kuvatavNr><![CDATA[9) ]]></kuvatavNr>${note('', 'kehtetu - ')}</alampunkt>`
+    + `<alampunkt><kuvatavNr><![CDATA[10) ]]></kuvatavNr>${note('', 'välja jäetud - ')}</alampunkt>`
+    // A point changed on the version's first day, and a note whose words the 2,000 characters read of them would cut inside a character.
+    + `<alampunkt><kuvatavNr><![CDATA[11) ]]></kuvatavNr><sisuTekst><tavatekst>fictional rate 11;</tavatekst></sisuTekst><muutmismarge>${mark('402092026021', '2026-08-29', '2026-09-04')}</muutmismarge>`
+    + `${note(`, ${'a'.repeat(1997)}😀`)}</alampunkt></loige></paragrahv>`
+    + '<paragrahv><kuvatavNr><![CDATA[§ 2. ]]></kuvatavNr><paragrahvPealkiri>Application</paragrahvPealkiri>'
+    + '<loige><kuvatavNr>(1)</kuvatavNr><sisuTekst><tavatekst>Määrust rakendatakse alates 01.05.2026.</tavatekst></sisuTekst></loige>'
+    + '<loige><kuvatavNr>(2)</kuvatavNr><sisuTekst><tavatekst>Määrus jõustub kolmandal päeval pärast Riigi Teatajas avaldamist.</tavatekst></sisuTekst></loige></paragrahv></sisu>';
+  const act = (kind, start, history = '') => `<oigusakt xmlns="fixture">${meta(kind, start)}<aktinimi><nimi><pealkiri>Fictional rates</pealkiri></nimi></aktinimi>${history}${body}</oigusakt>`;
+  // The history: a citation of the form used before 2010, and an act whose entry into force on the version's first day is given only in words.
+  const amended = act('terviktekst', adopted, '<muutmismarge><aktikuupaev>2009-11-26</aktikuupaev><avaldamismarge><RTosa>RT I</RTosa><RTaasta>2010</RTaasta><RTnr>22</RTnr><RTartikkel>108</RTartikkel>'
+    + '<aktViide>13310847</aktViide></avaldamismarge><joustumine>2011-01-01</joustumine></muutmismarge>'
+    + `<muutmismarge><aktikuupaev>2026-03-17</aktikuupaev>${mark('421022026007', '2026-03-21', '2026-03-24')}<tavatekst>, rakendatakse alates 01.01.2026</tavatekst></muutmismarge>`
+    + `<muutmismarge><aktikuupaev>2026-08-20</aktikuupaev>${mark('402092026021', '2026-08-29', '2026-09-01')}<tavatekst>, osaliselt 04.09.2026</tavatekst></muutmismarge>`
+    + `<muutmismarge><aktikuupaev>2026-08-25</aktikuupaev>${mark('401092026001', '2026-09-01', '2026-09-04')}</muutmismarge>`);
+  const { bundle } = await ingest(await source('xml-legal-dates', 'xml', amended));
+  const [, rates, application] = bundle.source_units, notes = rates.amendments;
+  // The text is the act's alone: no note's words, reference or date. As before, the capital "Kehtetu" reads "Kehtetu." (ADR-034)
+  // and a lower-case one or "välja jäetud" leaves only the point's number; in the data all three are repeals.
+  assert.equal(rates.raw_text, `§ 1.\n\nRates\n\nThe fictional rates are:\n\n${points.map((_, index) => `${index + 1})\n\nfictional rate ${index + 1};`).join('\n\n')}\n\n8)\nKehtetu.\n\n9)\n\n10)\n\n11)\n\nfictional rate 11;`);
+  assert.deepEqual(notes.map(item => [item.provision, item.applies_from ?? null, item.note ?? null, item.repeal ?? false]), [
+    ...points.map(([words, date], index) => [`§ 1 p ${index + 1}`, date, words.replace(/^[,;] /u, '') || null, false]),
+    ['§ 1 p 8', '2021-01-01', 'rakendatakse alates 1.01.2021', true], ['§ 1 p 9', null, null, true], ['§ 1 p 10', null, null, true],
+    ['§ 1 p 11', null, null, false], ['§ 1 p 11', null, 'a'.repeat(1997), false]]);
+  assert.deepEqual(notes[4], { provision: '§ 1 p 5', offset: rates.raw_text.indexOf('fictional rate 5;') + 17, path: '/oigusakt[1]/sisu[1]/paragrahv[1]/loige[1]/alampunkt[5]/muutmismarge[1]',
+    act_reference: '421022026007', rt: 'RT IV, 21.03.2026, 7', published: '2026-03-21', in_force: '2026-03-24', note: 'lõikeid 1–3 rakendatakse tagasiulatuvalt 2022. aasta 15. märtsist' });
+  assert.deepEqual(notes.map(item => rates.raw_text.slice(0, item.offset).split('\n').at(-1)), [...points.map((_, index) => `fictional rate ${index + 1};`), '8)', '9)', '10)', 'fictional rate 11;', 'fictional rate 11;']);
+  // A consolidated text: the act's own start, the amending acts, and what the amendment of the version's first day changed.
+  assert.deepEqual(bundle.document.fields.legal_text.value, { schema_version: 'rag-v2/legal-text-1', text_kind: 'terviktekst', adopted: '2018-05-15',
+    original_reference: '418052018022', original_published: '2018-05-18', act_in_force_from: '2018-07-01', version_from: '2026-09-04',
+    history: [{ act_reference: '13310847', rt: 'RT I 2010, 22, 108', published: null, in_force: '2011-01-01', adopted: '2009-11-26' },
+      { act_reference: '421022026007', rt: 'RT IV, 21.03.2026, 7', published: '2026-03-21', in_force: '2026-03-24', adopted: '2026-03-17', applies_from: '2026-01-01', note: 'rakendatakse alates 01.01.2026' },
+      { act_reference: '402092026021', rt: 'RT IV, 29.08.2026, 7', published: '2026-08-29', in_force: '2026-09-01', adopted: '2026-08-20', note: 'osaliselt 04.09.2026' },
+      { act_reference: '401092026001', rt: 'RT IV, 01.09.2026, 7', published: '2026-09-01', in_force: '2026-09-04', adopted: '2026-08-25' }],
+    // The acts of the version's first day: by the history's day, or named by a note of that day when the history gives it in words.
+    version_change: { in_force: '2026-09-04', acts: ['402092026021', '401092026001'], provisions: ['preambul', '§ 1 p 11'] },
+    structure: [{ target: 'preambul', path: '/oigusakt[1]/sisu[1]/preambul[1]', act_reference: '401092026001', rt: 'RT IV, 01.09.2026, 7', published: '2026-09-01', in_force: '2026-09-04' }],
+    // Only a provision that names a day: "kolmandal päeval pärast avaldamist" (§ 2 lg 2) gives none.
+    entry_into_force: [{ provision: '§ 2 lg 1', unit_index: application.index, path: '/oigusakt[1]/sisu[1]/paragrahv[2]/loige[1]/sisuTekst[1]/tavatekst[1]', text: 'Määrust rakendatakse alates 01.05.2026.' }] });
+  assert.equal(bundle.document.fields.valid_from.value, '2026-09-04');
+  // An original text never amended names no entry-into-force day and has no history: it is in force from its validity start.
+  const original = await ingest(await source('xml-legal-dates-original', 'xml', act('algtekst-terviktekst', '').replaceAll(/<muutmismarge>.*?<\/muutmismarge>/gsu, '')));
+  const text = original.bundle.document.fields.legal_text.value;
+  assert.deepEqual([text.text_kind, text.act_in_force_from, text.version_from, text.history, text.structure, 'version_change' in text], ['algtekst-terviktekst', '2026-09-04', '2026-09-04', [], [], false]);
+  assert(original.bundle.source_units.every(item => item.amendments === undefined));
+  // Its validity start comes before the adoption's own day, which can be the day the act is applied from (Otepää
+  // 405072022009: adopted 29.06.2022 with the day 01.07.2022, published 05.07.2022, valid from 08.07.2022). Without a
+  // validity start the adoption's day is all there is.
+  const dates = async (name, kind, adoption, edit = value => value) => {
+    const { bundle: read } = await ingest(await source(name, 'xml', edit(act(kind, adoption).replaceAll(/<muutmismarge>.*?<\/muutmismarge>/gsu, ''))));
+    const value = read.document.fields.legal_text.value;
+    return [value.act_in_force_from, value.original_published, value.version_from, read.report.warnings.filter(warning => warning.code === 'act_in_force_before_publication')];
+  };
+  const applied = '<vastuvoetud><aktikuupaev>2026-08-26</aktikuupaev><joustumine>2026-09-01</joustumine></vastuvoetud>';
+  assert.deepEqual(await dates('xml-legal-dates-original-day', 'algtekst-terviktekst', applied), ['2026-09-04', null, '2026-09-04', []]);
+  assert.deepEqual(await dates('xml-legal-dates-original-no-start', 'algtekst', applied, value => value.replace(/<kehtivus>.*?<\/kehtivus>/u, '')), ['2026-09-01', null, null, []]);
+  // A consolidated text's own day before the publication its adoption names is kept as the source gives it, with that
+  // publication day beside it, and reported (Ruhnu 417032016009: 03.10.2012, as its § 5 lg 2 says, published 06.10.2012).
+  // A day on or after the publication is in order; an original text reads its validity start, whatever its adoption names.
+  const adoptedOn = (published, inForce) => `<vastuvoetud><aktikuupaev>2012-09-29</aktikuupaev>${mark('406102012038', published, inForce)}</vastuvoetud>`;
+  const reported = { code: 'act_in_force_before_publication',
+    detail: 'The act\'s entry into force (2012-10-03) is before the publication day its adoption names (2012-10-06); the day is kept as the source gives it.' };
+  assert.deepEqual(await dates('xml-legal-dates-early', 'terviktekst', adoptedOn('2012-10-06', '2012-10-03')), ['2012-10-03', '2012-10-06', '2026-09-04', [reported]]);
+  assert.deepEqual(await dates('xml-legal-dates-same-day', 'terviktekst', adoptedOn('2012-10-06', '2012-10-06')), ['2012-10-06', '2012-10-06', '2026-09-04', []]);
+  assert.deepEqual(await dates('xml-legal-dates-early-original', 'algtekst-terviktekst', adoptedOn('2012-10-06', '2012-10-03')), ['2026-09-04', '2012-10-06', '2026-09-04', []]);
+  // The contradiction is the source's and repeats in every later version of the act: a known warning, included with its note (ADR-059).
+  const kept = { item_id: '1', blockers: [], warnings: [reported], fields: { authority: { value: 'Riigikogu' }, valid_from: { value: '2026-09-04' }, title: { value: 'Seadus' } } };
+  assert.deepEqual(autoReview({ items: [kept] }, { reviewer: 'x' }).review.items.map(reviewed => [reviewed.decision, reviewed.note]), [['include', KNOWN_WARNINGS.act_in_force_before_publication]]);
+  // The adoption's own words are read as a note's are (Kambja 414032026010: no entry-into-force day, "Rakendatakse alates 01.01.2025").
+  const adoption = async (name, words) => (await ingest(await source(name, 'xml', act('terviktekst', `<vastuvoetud><tavatekst>${words}</tavatekst><aktikuupaev>2025-01-09</aktikuupaev></vastuvoetud>`))))
+    .bundle.document.fields.legal_text.value;
+  const own = await adoption('xml-legal-dates-adoption', 'Rakendatakse alates 01.01.2025'), partly = await adoption('xml-legal-dates-adoption-partly', ', osaliselt 01.07.2026');
+  assert.deepEqual([own.act_in_force_from, own.act_applies_from, own.adoption_note], [null, '2025-01-01', 'Rakendatakse alates 01.01.2025']);
+  assert.deepEqual([partly.act_applies_from, partly.adoption_note], [undefined, 'osaliselt 01.07.2026']);
+  // The words are kept whole (the longest registered note has 614 characters), as a note's are.
+  assert.equal((await adoption('xml-legal-dates-adoption-long', `Rakendatakse ${'x'.repeat(700)}`)).adoption_note, `Rakendatakse ${'x'.repeat(700)}`);
+  assert.equal(await ingest(await source('xml-legal-dates-plain', 'xml', xml)).then(result => result.bundle.document.fields.legal_text.value.act_in_force_from), null);
+  // Other formats have neither field.
+  const html = await ingest(await source('html-no-legal-dates', 'html', '<article><p>A complete source paragraph.</p></article>'));
+  assert.equal(html.bundle.document.fields.legal_text, undefined); assert(html.bundle.source_units.every(item => !('amendments' in item)));
+});
+
+test('XML: every wording of "rakendatakse" the registered acts\' notes use gives its day; a note that says more gives none', () => {
+  // Every form that gives a day among the amendment notes in Andmebaasi/oigusaktid (01.10.2026: 36 forms in 562 acts), as the
+  // reader hands the words over: without the separator and the repeal word before them.
+  const dated = [['rakendatakse alates 01.04.2026', '2026-04-01'], ['rakendatakse alates 1.01.2021', '2021-01-01'], ['rakendatakse alates 01.01.2024.', '2024-01-01'],
+    ['rakendatakse alates 01.07.2023. a.', '2023-07-01'], ['rakendatakse 01.01.2026', '2026-01-01'], ['rakendatakse tagasiulatuvalt alates 01.07.2022', '2022-07-01'],
+    ['rakendatakse tagasiulatuvalt alates 01.03.2022.', '2022-03-01'], ['rakendatakse tagasiulatuvalt 01.01.2026', '2026-01-01'],
+    ['rakendatakse tagasiulatuvalt 01.07.2022.', '2022-07-01'], ['rakendatakse alates 1. jaanuarist 2023.a', '2023-01-01'],
+    ['rakendatakse alates 1. jaanuarist 2026. a.', '2026-01-01'], ['rakendatakse alates 1. jaanuarist 2022', '2022-01-01'], ['rakendatakse 1. jaanuarist 2026', '2026-01-01'],
+    ['rakendatakse 1. jaanuarist 2025.', '2025-01-01'], ['rakendatakse 01. jaanuarist 2025', '2025-01-01'], ['rakendatakse 01. jaanuarist 2023.', '2023-01-01'],
+    ['rakendatakse 01. jaanuarist 2026. a.', '2026-01-01'], ['rakendatakse tagasiulatuvalt alates 1. jaanuarist 2018. a.', '2018-01-01'],
+    ['rakendatakse tagasiulatuvalt alates 31. jaanuar 2022.', '2022-01-31'], ['rakendatakse alates 01. veebruar 2026', '2026-02-01'],
+    ['rakendatakse tagasiulatuvalt alates 1. veebruarist 2026', '2026-02-01'], ['rakendatakse tagasiulatuvalt alates 24. veebruarist 2022', '2022-02-24'],
+    ['rakendatakse tagasiulatuvalt 2022. aasta 24. veebruarist.', '2022-02-24'], ['rakendatakse tagasiulatuvalt 2022. aasta 9. märtsist', '2022-03-09'],
+    ['rakendatakse alates 1. aprillist 2022', '2022-04-01'], ['rakendatakse tagasiulatuvalt 01. aprillist 2024. a.', '2024-04-01'],
+    ['rakendatakse tagasiulatuvalt 1. maist 2025. a.', '2025-05-01'], ['rakendatakse tagasiulatuvalt alates 1. juunist 2022', '2022-06-01'],
+    ['rakendatakse 01. juulist 2022', '2022-07-01'], ['rakendatakse tagasiulatuvalt 01. juulist 2020. a.', '2020-07-01'], ['rakendatakse 1. augustist 2023', '2023-08-01'],
+    ['rakendatakse 1. augustist 2023.', '2023-08-01'], ['rakendatakse 1. septembrist 2025', '2025-09-01'], ['rakendatakse 01. septembrist 2026. a.', '2026-09-01'],
+    ['rakendatakse 01. oktoobrist 2022.', '2022-10-01'], ['rakendatakse alates 1. novembrist 2024', '2024-11-01']];
+  assert.equal(dated.length, 36);
+  for (const [words, day] of dated) assert.equal(appliesFrom(words), day, words);
+  // The verb misspelt or shortened, each once in the registered acts (407042026033 § 49 lg 6, whose history and § 68 lg 3
+  // spell it out with the same day; the adoptions of 410022018020 and 401042026014). No other registered wording begins so.
+  for (const [words, day] of [['rakendatake alates 01.10.2021', '2021-10-01'], ['Rakendatatakse alates 01.01.2018.', '2018-01-01'], ['rakend. alates 01.07.2020', '2020-07-01']]) assert.equal(appliesFrom(words), day, words);
+  // Every month, in the forms a note uses: "1. detsembrist 2026", "1. detsember 2026", and after the year.
+  const months = ['jaanuar', 'veebruar', 'märts', 'aprill', 'mai', 'juuni', 'juuli', 'august', 'september', 'oktoober', 'november', 'detsember'];
+  const from = ['jaanuarist', 'veebruarist', 'märtsist', 'aprillist', 'maist', 'juunist', 'juulist', 'augustist', 'septembrist', 'oktoobrist', 'novembrist', 'detsembrist'];
+  for (const [index, month] of months.entries()) {
+    const day = `2026-${String(index + 1).padStart(2, '0')}-01`;
+    for (const words of [`rakendatakse alates 1. ${from[index]} 2026`, `rakendatakse alates 1. ${month} 2026`, `rakendatakse tagasiulatuvalt 2026. aasta 1. ${from[index]}`]) assert.equal(appliesFrom(words), day, words);
+  }
+  // Some of the provisions, part of the amendment, more than the clause, another verb, an unknown spelling, or no real day.
+  for (const words of ['§ 13¹ lõikeid 1–3 rakendatakse tagasiulatuvalt 01.01.2020', 'lõikeid 1–3 rakendatakse tagasiulatuvalt 2022. aasta 15. märtsist', '§ 12 lg 3 rakendatakse alates 01.01.2023',
+    '10. jagu rakendatakse alates 01.09.2025', 'määruse paragrahv 12 rakendatakse 1. juulist 2023', 'rakendatakse osaliselt alates 01.01.2024', 'osaliselt rakendatakse 1. augustist 2023.',
+    'osaliselt rakendatakse alates 01.01.2023 ja tagasiulatuvalt alates 01.07.2022', 'rakendatakse 15. jaanuarist 2021; osaliselt jõustub 01.01.2022',
+    'rakendatakse 1. jaanuarist 2019. Määruses on läbivalt asendatud mõiste „vajaduspõhine sotsiaaltoetus“ mõistega „sissetulekust sõltuv toetus“', 'osaliselt 01.07.2026',
+    'punkt 4 kohaldub alates 1.01.2024. a sündinud lastele.', 'rakendatkse alates 01.01.2023', 'rakend alates 01.01.2023', 'rakendamine alates 01.01.2023', 'jõustumisaeg muudetud [RT I, 28.02.2020, 2]', '01.01.2026',
+    'rakendatakse alates 31.02.2026', 'rakendatakse alates 1. jaanipäevast 2026', 'rakendatakse alates 2026. aastast', '']) assert.equal(appliesFrom(words), null, words);
+});
+
+test('XML: a note whose place the section\'s text does not confirm is kept without one and reported for review (ADR-062)', async () => {
+  const note = '<muutmismarge><avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2026-03-21</avaldamineKuupaev><RTartikkel>7</RTartikkel><aktViide>421022026007</aktViide></avaldamismarge><joustumine>2026-03-24</joustumine></muutmismarge>';
+  // Markup written as text and cut by the note: the whole text loses "<b ... >", the text before the note keeps "<b".
+  const act = xml.replace('<tavatekst>This fictional rule applies to the sample garden.</tavatekst>', `<tavatekst>The limit is &lt;b</tavatekst>${note}<tavatekst>old&gt; 5 euros.</tavatekst>${note}`);
+  const { bundle } = await ingest(await source('xml-note-unplaced', 'xml', act));
+  const [unit] = bundle.source_units;
+  assert.equal(unit.raw_text, '1\n\nScope\n\nThe limit is 5 euros.');
+  assert.deepEqual(unit.amendments.map(item => [item.provision, item.offset, item.in_force]), [['§ 1', null, '2026-03-24'], ['§ 1', unit.raw_text.length, '2026-03-24']]);
+  const warnings = bundle.report.warnings.filter(warning => warning.code === 'amendment_note_position_unresolved');
+  assert.deepEqual(warnings, [{ code: 'amendment_note_position_unresolved', detail: '1 amendment notes are kept without a place in their section\'s text; their provisions need review.' }]);
+  // The warning is not a known one, so the refresh review holds the act for a person instead of including it (ADR-059).
+  const item = { item_id: '1', blockers: [], warnings, fields: { authority: { value: 'Riigikogu' }, valid_from: { value: '2025-01-01' }, title: { value: 'Seadus' } } };
+  assert.deepEqual(autoReview({ items: [item] }, { reviewer: 'x' }).held.map(held => held.reasons), [['amendment_note_position_unresolved']]);
+});
+
+test('XML: an entry into force before the note\'s publication day is a source error, left out and reported; a court ruling\'s is kept (ADR-062)', async () => {
+  const note = (inForce, words = '') => `<muutmismarge><avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2022-01-29</avaldamineKuupaev><RTartikkel>5</RTartikkel><aktViide>429012022005</aktViide></avaldamismarge><joustumine>${inForce}</joustumine>${words ? `<tavatekst>${words}</tavatekst>` : ''}</muutmismarge>`;
+  // As in Haljala 429012022009 § 2 lg 1 p 4: the act's history gives 01.02.2022 and the provision's note 01.02.2020, for an act
+  // published 29.01.2022. A ruling of Riigikohus is in force on the judgment day, before it is published; the publication day
+  // itself is in order. The last note and § 2 show the cap: a note's words and a sentence are read up to 2,000 characters.
+  const ruling = 'Riigikohtu põhiseaduslikkuse järelevalve kolleegiumi otsus tunnistab sätte põhiseadusega vastuolus olevaks.';
+  const act = xml.replace('2025-01-01', '2022-02-01').replace('<sisu>', `${note('2022-02-01')}${note('2021-12-31')}<sisu>`)
+    .replace('<tavatekst>This fictional rule applies to the sample garden.</tavatekst>', `<tavatekst>The limit is 5 euros.</tavatekst>${note('2020-02-01', ', rakendatakse alates 1.01.2022')}`
+      + `${note('2022-01-27', ruling)}${note('2022-01-29')}${note('2022-01-30', `, x${'-'.repeat(2500)}y`)}${note('2022-02-30')}${note('2021-02-30')}`)
+    .replace('This fictional exception applies only to the sample greenhouse.', `Määrust rakendatakse ${'x '.repeat(1000)}alates 01.05.2026.`);
+  const { bundle } = await ingest(await source('xml-note-early', 'xml', act));
+  const [unit] = bundle.source_units, text = bundle.document.fields.legal_text.value;
+  assert.deepEqual(unit.amendments.map(item => [item.in_force, item.published, item.applies_from ?? null, item.note ?? null]), [
+    [null, '2022-01-29', '2022-01-01', 'rakendatakse alates 1.01.2022'], ['2022-01-27', '2022-01-29', null, ruling], ['2022-01-29', '2022-01-29', null, null],
+    // A day the calendar does not have (30 February) is no day, after the publication or before it: it is not passed on, and not reported as early.
+    ['2022-01-30', '2022-01-29', null, 'x'], [null, '2022-01-29', null, null], [null, '2022-01-29', null, null]]);
+  assert.deepEqual(text.history.map(item => item.in_force), ['2022-02-01', null]);
+  // The version's first day is the amending act's by the history. No note carries that day, so the provisions stay unnamed:
+  // an empty list is "not known", not "nothing changed".
+  assert.deepEqual(text.version_change, { in_force: '2022-02-01', acts: ['429012022005'], provisions: [] });
+  assert.deepEqual(text.entry_into_force, []);
+  const warnings = bundle.report.warnings.filter(warning => warning.code.startsWith('amendment'));
+  assert.deepEqual(warnings, [{ code: 'amendment_note_in_force_before_publication',
+    detail: '2 amendment notes name an entry into force before their publication day and are kept without it (history: 2021-12-31, published 2022-01-29; § 1: 2020-02-01, published 2022-01-29).' }]);
+  // Riigi Teataja's own error is nothing a review can mend, and the day is already left out: a known warning, included with its note (ADR-059).
+  const item = { item_id: '1', blockers: [], warnings, fields: { authority: { value: 'Riigikogu' }, valid_from: { value: '2022-02-01' }, title: { value: 'Seadus' } } };
+  assert.deepEqual(autoReview({ items: [item] }, { reviewer: 'x' }).review.items.map(reviewed => [reviewed.decision, reviewed.note]),
+    [['include', KNOWN_WARNINGS.amendment_note_in_force_before_publication]]);
 });
 
 test('JSON selectors retain exact field locations, allow disjoint records and reject overlapping asset identities', async () => {

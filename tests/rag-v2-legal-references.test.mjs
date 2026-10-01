@@ -78,6 +78,8 @@ test('a text that keeps its superscripts (ADR-056): a plain number is exactly th
   const version = normalization => ({ source_format: 'xml', processing_config: { normalization } });
   assert.equal(keepsSuperscripts(version('source-structure-v28')), true);
   assert.equal(keepsSuperscripts(version('source-structure-v29')), true);
+  // v30 reads the text exactly as v29 and adds amendment notes beside it (ADR-062).
+  assert.equal(keepsSuperscripts(version('source-structure-v30')), true);
   // A later normalization is not taken on trust (Codex R3): it is named only when it is known to keep the superscripts, and
   // the current one must be named, so a new normalization cannot pass without that decision.
   assert.equal(keepsSuperscripts(version('source-structure-v31')), false);

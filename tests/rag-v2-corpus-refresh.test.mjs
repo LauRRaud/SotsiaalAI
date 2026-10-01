@@ -279,4 +279,32 @@ test('the package holds the store head and the new versions, with the hash and h
   assert.deepEqual(JSON.parse(await fs.readFile(path.join(work, 'out', 'policy.json'), 'utf8')), { tenants: { t: { operator: ['d1', 'document_2'] } } });
   const listed = spawnSync('tar', ['tzf', 'ship.tgz'], { cwd: path.join(work, 'out'), encoding: 'utf8' }).stdout.split(/\r?\n/u).filter(Boolean).map(name => name.replace(/\/$/u, '')).sort();
   assert.deepEqual(listed, ['active.json', 'publications', 'publications/receipt.json', 'versions/version_b', 'versions/version_b/bundle.json']);
+  assert.equal(await fs.readFile(path.join(work, 'out', 'ship-files.txt'), 'utf8'), 'active.json\npublications\nversions/version_b\n');
+});
+
+test('the package takes a whole-corpus re-ingest: more version folders than a Windows command line holds', async () => {
+  const { spawnSync } = await import('node:child_process');
+  const { id } = await import('../lib/rag-v2/contracts.js');
+  // 600 version IDs of the real length (v47 has 519): as tar arguments about 49,000 characters, the limit is 32,767.
+  const versions = Array.from({ length: 600 }, (_, index) => `version_${hash(`v${index}`)}`), documents = versions.map((_, index) => `document_${index}`);
+  const store = path.join(dir, 'store-large'), tenantDir = path.join(store, id('tenant', 't')), work = path.join(dir, 'package-large');
+  await fs.mkdir(path.join(tenantDir, 'publications'), { recursive: true });
+  for (const version of versions) {
+    await fs.mkdir(path.join(tenantDir, 'versions', version), { recursive: true });
+    await fs.writeFile(path.join(tenantDir, 'versions', version, 'bundle.json'), '{}');
+  }
+  await fs.writeFile(path.join(tenantDir, 'active.json'), JSON.stringify({ schema_version: 'rag-v2/catalog-1', tenant_id: 't', generation: 'generation_new',
+    documents: Object.fromEntries(documents.map((document, index) => [document, { version_id: versions[index] }])) }));
+  await fs.mkdir(work, { recursive: true });
+  await fs.writeFile(path.join(work, 'previous-policy.json'), JSON.stringify({ tenants: { t: { operator: documents } } }));
+  await fs.writeFile(path.join(work, 'review.json'), JSON.stringify({ base_generation: 'generation_old',
+    items: documents.map((document_id, index) => ({ document_id, version_id: versions[index], decision: 'include' })) }));
+  const run = spawnSync(process.execPath, ['scripts/rag-v2-corpus-refresh.mjs', 'package', '--store', store, '--tenant', 't', '--policy', path.join(work, 'previous-policy.json'),
+    '--review', path.join(work, 'review.json'), '--out', path.join(work, 'out')], { encoding: 'utf8' });
+  assert.equal(run.status, 0, run.stdout + run.stderr);
+  const info = JSON.parse(await fs.readFile(path.join(work, 'out', 'ship.json'), 'utf8'));
+  assert.deepEqual([info.sha256, info.policy_documents, info.added_documents, info.versions], [hash(await fs.readFile(path.join(work, 'out', 'ship.tgz'))), 600, 0, 600]);
+  const listed = spawnSync('tar', ['tzf', 'ship.tgz'], { cwd: path.join(work, 'out'), encoding: 'utf8', maxBuffer: 1 << 24 }).stdout.split(/\r?\n/u).filter(Boolean);
+  assert.deepEqual(listed.filter(name => name.endsWith('/bundle.json')).sort(), versions.map(version => `versions/${version}/bundle.json`).sort());
+  assert(listed.includes('active.json'));
 });
