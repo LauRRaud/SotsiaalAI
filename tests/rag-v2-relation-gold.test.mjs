@@ -14,7 +14,7 @@ test('the gold builder reads the Social Welfare Act’s pointers at subsection l
   assert.deepEqual(gold.counts.other_section, { links: 282, located: 278, cross_passage: 278, outside_first_passage: 24, cross_passage_with_card_relation: 9 });
   assert.deepEqual(gold.counts.own_section, { links: 161, located: 161, cross_passage: 44, outside_first_passage: 18, cross_passage_with_card_relation: 4 });
   assert.deepEqual(gold.counts.other_section_exception, { links: 33, located: 32, cross_passage: 32, outside_first_passage: 0, cross_passage_with_card_relation: 1 });
-  assert.deepEqual([gold.counts.other_act, gold.counts.denials], [{ links: 89, resolved: 32 }, { provisions: 17, with_card_relation: 7 }]);
+  assert.deepEqual([gold.counts.other_act, gold.counts.denials], [{ links: 88, resolved: 20 }, { provisions: 17, with_card_relation: 7 }]);
   // Every § mark of the act's provisions is a resolved reference, another act's list or a named miss.
   assert.deepEqual(gold.reader, { marks: 405, own: 261, other_act: 92, own_section: 148, unresolved: { same_act_unknown: 1, other_version: 3, section_not_in_act: 3 } });
   // Known cases: § 131's pointer to § 133 lõiked 5 and 6 lands outside § 133's first passage; the dementia exclusion
@@ -25,6 +25,10 @@ test('the gold builder reads the Social Welfare Act’s pointers at subsection l
   assert.equal(link('12/1', '105/null').exception, true);
   // A range of subsections names every one of them: § 38 lõige 2 of no act here, but § 130³ lõige 6 says "lõigetes 1–5".
   assert.deepEqual(['1', '2', '3', '4', '5'].map(to => Boolean(link('130^3/6', `130^3/${to}`))), [true, true, true, true, true]);
+  // A list's act is the one named directly before it: the Family Law Act for § 139¹ lõige 4, none for another act's list.
+  const other = from => gold.links.filter(item => item.class === 'other_act' && item.from === from).map(item => [item.to_act, item.list]);
+  assert.deepEqual(other('139^1/4'), [['107052025017', '§ 97 punkti 1 või 2']]);
+  assert.deepEqual(other('45^13/1').map(([act]) => act), ['111072026042', null, null]);
   const committed = JSON.parse(await fs.readFile('tests/evaluation/graph/relation-gold-1.json', 'utf8'));
   assert.deepEqual(committed.acts.map(item => item.act), GOLD_ACTS);
   assert.deepEqual(committed.acts.find(item => item.act === SHS), JSON.parse(JSON.stringify(gold)));

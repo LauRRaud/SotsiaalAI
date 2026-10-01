@@ -1,0 +1,219 @@
+{
+ "schema_version": "rag-v2/graph-experiment-catalogue-1",
+ "purpose": "ADR-063, third catalogue: fifteen hard questions of the shapes the pointer gold set names and the first two catalogues lack. Two deciding subsections outside their section’s first passage, two later subsections that point back within their own section, two provisions that name the topic section from elsewhere (incoming), three other-act cases (the Family Law Act, the Child Protection Act, and a municipal act that names the Social Welfare Act, with its region), two exceptions that name nothing, one definition, one implementing provision of a municipal act (with its region) and two controls: one the base is expected to find and one where an exception exists and does not apply. None is an outgoing own-act reference to a section’s first passage, which arm D already follows. Written 01.10.2026 before any run and before the relation file exists; the queries are what a search plan writes and name no deciding section; the phrases are copied from the versions in force on the date (SHS RT 130062026065, LasteKS RT 111072026042, PKS RT 107052025017, Harku RT 404072025017, Kuusalu RT 412092026022), without superscript digits.",
+ "date": "2026-10-15",
+ "questions": [
+  {
+   "id": "subsistence-home-loan",
+   "shape": "subsection_outside_first_passage",
+   "kind": "within_document",
+   "note": "SHS § 131(2) names § 133(5) and (6); the list of housing costs is § 133(5), deep in the section.",
+   "text": "Taotlen toimetulekutoetust ja maksan iga kuu oma korteri ostuks võetud laenu. Kas laenumakse läheb eluasemekuluna arvesse?",
+   "queries": [
+    "toimetulekutoetuse saamise õigus ja netosissetulek pärast eluasemekulude mahaarvamist",
+    "eluasemelaen toimetulekutoetuse arvestamisel"
+   ],
+   "evidence_text": [
+    "eluaseme soetamiseks võetud laenu tagasimakse, mis sisaldab ka laenu intressi"
+   ]
+  },
+  {
+   "id": "referral-deadline-emergency",
+   "shape": "subsection_outside_first_passage",
+   "kind": "within_document",
+   "note": "SHS § 13²(4) lengthens the periods of § 71(6) and (7); what the period is for is § 71(6), not in the section’s first passage.",
+   "text": "Riigis kehtib eriolukord. Sain suunamisotsuse kogukonnas elamise teenusele. Mitme päeva jooksul pean teenuseosutaja poole pöörduma ja mis juhtub, kui ma ei jõua?",
+   "queries": [
+    "erihoolekandeteenuse osutamise erandid eriolukorra ajal",
+    "erihoolekandeteenuse suunamisotsuse tähtajad eriolukorras"
+   ],
+   "evidence_text": [
+    "ei ole tal enam õigust sama suunamisotsuse alusel teenust saada"
+   ]
+  },
+  {
+   "id": "student-turns-25",
+   "shape": "own_section_later_passage",
+   "kind": "within_document",
+   "note": "SHS § 131(8) counts a student up to 24 into the family; (10), in a later passage, lifts it in the month the student turns 25.",
+   "text": "Meie poeg õpib teises linnas ülikoolis, on sisse kirjutatud meie juurde ja saab sel kuul 25. Kas ta loetakse toimetulekutoetuse taotlemisel veel meie pere liikmeks?",
+   "queries": [
+    "õppiva pereliikme arvamine perekonna koosseisu toimetulekutoetuse määramisel",
+    "üliõpilane toimetulekutoetust taotleva perekonna liikmena"
+   ],
+   "evidence_text": [
+    "saab toimetulekutoetuse taotlemise kuul 25-aastaseks"
+   ]
+  },
+  {
+   "id": "refusal-only-home",
+   "shape": "own_section_later_passage",
+   "kind": "within_document",
+   "note": "SHS § 134(4) p 7 lets the municipality refuse because of assets; (5), in the next passage, forbids it when the only asset is the home.",
+   "text": "Vald keeldus mulle toimetulekutoetust määramast, sest mul on oma korter. Muud vara mul ei ole. Kas vald tohib nii teha?",
+   "queries": [
+    "toimetulekutoetuse määramata jätmine vara tõttu",
+    "toimetulekutoetuse andmisest keeldumise alused"
+   ],
+   "evidence_text": [
+    "ainult üks aastaringselt elamiseks kasutatav eluruum"
+   ]
+  },
+  {
+   "id": "service-ended-martial-law",
+   "shape": "incoming_reference",
+   "kind": "within_document",
+   "note": "SHS § 80(1) p 1 ends the service after two months of non-use; § 13²(3), which names it, makes that 14 days under martial law.",
+   "text": "Sõjaseisukorra ajal ei ole mu vend kolm nädalat kogukonnas elamise teenust kasutanud. Kas teenuseosutaja võib tema teenuse lõpetada?",
+   "queries": [
+    "erihoolekandeteenuse osutamise lõpetamine, kui isik teenust ei kasuta",
+    "kogukonnas elamise teenus sõjaseisukorra ajal"
+   ],
+   "evidence_text": [
+    "kui isik ei kasuta teenust kauem kui 14 päeva"
+   ]
+  },
+  {
+   "id": "rent-from-mother",
+   "shape": "incoming_reference",
+   "kind": "within_document",
+   "note": "SHS § 133(5) counts rent; (8), which names § 131(7), leaves it out when the landlord is a close relative.",
+   "text": "Üürin korterit oma emalt ja maksan talle iga kuu üüri. Kas see üür läheb toimetulekutoetuse arvestamisel arvesse?",
+   "queries": [
+    "üüri arvestamine toimetulekutoetuse määramisel",
+    "eluasemekulud toimetulekutoetuse arvestamisel, kui üürileandja on sugulane"
+   ],
+   "evidence_text": [
+    "kui üürileandjaks ja üürnikuks on"
+   ]
+  },
+  {
+   "id": "pensioner-with-student-child",
+   "shape": "other_act",
+   "kind": "across_documents",
+   "note": "SHS § 139¹(4) p 4 names the Family Law Act § 97 p 1 and 2; that the studying child counts until 21 is in the Family Law Act.",
+   "text": "Olen 66-aastane pensionär ja minu juurde on sisse kirjutatud mu 20-aastane tütar, kes õpib ülikoolis. Kas mul on ikkagi õigus üksi elava pensionäri toetusele?",
+   "queries": [
+    "üksi elava pensionäri toetuse saamise tingimused",
+    "pensionäritoetus, kui samas elukohas elab õppiv laps"
+   ],
+   "evidence_text": [
+    "kuid mitte kauem kui 21-aastaseks saamiseni"
+   ]
+  },
+  {
+   "id": "child-rehabilitation-need",
+   "shape": "other_act",
+   "kind": "across_documents",
+   "note": "SHS § 59(1) p 2 names the Child Protection Act § 28; who assesses the child’s need for help is there.",
+   "text": "Minu 10-aastasel pojal ei ole puuet, kuid tal on tõsised käitumisraskused. Kes hindab, kas ta on abivajav laps, et ta saaks riigi kulul sotsiaalset rehabilitatsiooni?",
+   "queries": [
+    "lapse õigus sotsiaalse rehabilitatsiooni teenusele",
+    "lapse abivajaduse hindamine"
+   ],
+   "evidence_text": [
+    "Lapse abivajadust hindab lastekaitsetöötaja või lapsega töötav isik"
+   ]
+  },
+  {
+   "id": "harku-support-person-relative",
+   "shape": "other_act",
+   "kind": "across_documents",
+   "region": "harku_vald",
+   "note": "Harku’s procedure § 15(3) names SHS § 25(2); who may not be the support person is in the Social Welfare Act (the same words stand in § 29(2) on the personal assistant).",
+   "text": "Elame Harku vallas. Kas minu täisealise puudega poja tugiisikuks võib vald määrata tema vanaema?",
+   "queries": [
+    "tugiisikuteenus Harku vallas",
+    "kes ei tohi tugiisikuteenust vahetult osutada"
+   ],
+   "evidence_text": [
+    "kes on teenuse saaja esimese või teise astme üleneja või alaneja sugulane"
+   ]
+  },
+  {
+   "id": "guardian-ward-family",
+   "shape": "unnamed_exception",
+   "kind": "within_document",
+   "note": "SHS § 131(7) makes people of one household a family; (12), which names nothing, leaves out a ward whose guardian is a family member living with them.",
+   "text": "Olen oma täisealise venna eestkostja ja elame ühes korteris. Kas tema sissetulek arvestatakse minu toimetulekutoetuse taotlemisel meie pere sissetulekuks?",
+   "queries": [
+    "perekonnaliikmed toimetulekutoetuse määramisel",
+    "eestkostetav toimetulekutoetust taotleva perekonna koosseisus"
+   ],
+   "evidence_text": [
+    "ei loeta toimetulekutoetuse määramisel perekonnaliikmeks"
+   ]
+  },
+  {
+   "id": "rent-debt-not-counted",
+   "shape": "unnamed_exception",
+   "kind": "within_document",
+   "note": "SHS § 133(5) lists the housing costs; (7), which names nothing, leaves out earlier arrears.",
+   "text": "Mul on kahe eelmise kuu kommunaalmaksed maksmata. Kas toimetulekutoetuse arvestamisel võetakse see võlg eluasemekuluna arvesse?",
+   "queries": [
+    "eluasemekulud toimetulekutoetuse arvestamisel",
+    "kommunaalmaksete võlg toimetulekutoetuse arvestamisel"
+   ],
+   "evidence_text": [
+    "varem tekkinud võlgnevust ei arvata toimetulekutoetuse arvestamisel"
+   ]
+  },
+  {
+   "id": "household-definition",
+   "shape": "definition",
+   "kind": "within_document",
+   "note": "SHS § 131(7) p 3 defines who else is a family member: people bound by a common household.",
+   "text": "Elan korteris koos sõbraga, jagame üüri ja ostame toidu ühiselt. Kas meid loetakse toimetulekutoetuse taotlemisel üheks perekonnaks?",
+   "queries": [
+    "perekonna koosseis toimetulekutoetuse määramisel",
+    "ühise majapidamisega koos elavad isikud toimetulekutoetuse taotlemisel"
+   ],
+   "evidence_text": [
+    "muud isikud, keda seob ühine kodune majapidamine"
+   ]
+  },
+  {
+   "id": "kuusalu-limits-since",
+   "shape": "implementing_provision",
+   "kind": "within_document",
+   "region": "kuusalu_vald",
+   "note": "Kuusalu’s limits are § 3; since when they apply is § 5(1), the act’s implementing provision (ADR-062 also shows it on the source card).",
+   "text": "Elan Kuusalu vallas. Mis ajast kehtivad vallas praegused toimetulekutoetuse eluasemekulude piirmäärad?",
+   "queries": [
+    "eluasemekulude piirmäärad toimetulekutoetuse määramisel Kuusalu vallas",
+    "Kuusalu valla eluasemekulude piirmäärade kehtivuse algus"
+   ],
+   "evidence_text": [
+    "Määrust rakendatakse alates 01.05.2026"
+   ]
+  },
+  {
+   "id": "special-care-decision-time",
+   "shape": "control_found",
+   "kind": "within_document",
+   "note": "SHS § 70(4): a control the base is expected to find.",
+   "text": "Esitasin Sotsiaalkindlustusametile erihoolekandeteenuse taotluse. Kui kiiresti peab amet otsuse tegema?",
+   "queries": [
+    "erihoolekandeteenuse taotluse menetlemine",
+    "Sotsiaalkindlustusameti otsus erihoolekandeteenuse osutamise kohta"
+   ],
+   "evidence_text": [
+    "tööpäeva jooksul taotluse ja kõikide nõutavate dokumentide saamisest arvates"
+   ]
+  },
+  {
+   "id": "pensioner-day-centre",
+   "shape": "control_exception_not_applying",
+   "kind": "within_document",
+   "note": "SHS § 139¹(5) p 3 excludes a person in round-the-clock care outside the home; a day centre is not that, so the exception exists and does not apply.",
+   "text": "Olen 70-aastane, elan üksi oma kodus ja käin kaks korda nädalas päevakeskuses. Kas see võtab minult õiguse üksi elava pensionäri toetusele?",
+   "queries": [
+    "üksi elava pensionäri toetuse saamise õigus",
+    "pensionäritoetus hooldusteenuse saamisel"
+   ],
+   "evidence_text": [
+    "kellele osutatakse väljaspool kodu osutatavat ööpäevaringset üldhooldusteenust"
+   ]
+  }
+ ]
+}

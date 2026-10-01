@@ -102,7 +102,8 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 - **Järgmised sammud:**
   - **M3 (omaniku valik 01.10, „M5 tuleb kunagi hiljem“):** järgmine samm on katse, mis vestluses midagi ei muuda. Kavand valiti kolme sõltumatu ettepaneku seast (kolmest hindajast kaks eelistasid kontrollitud seoseid). Täiskavand sammude, lävendite ja hindadega: [m3-next-step-plan-2026-10-01.json](../audits/evidence/m3-next-step-plan-2026-10-01.json).
     - **Tehtud 01.10 ([ADR-063](../rag-v2/adr-063-checked-relations.md), sammud 1–3):** viidete kuldkomplekt seitsmest aktist ilma mudelita (`scripts/rag-v2-relation-gold.mjs`); käsitsi kontroll 60 viitel (60 õiget) ja 75 lõiguülesel kaardiseosel (20 valet, lävend oli 3). Vaheotsus: tekstist loetud viide on usaldusväärne, mudeli tüübitud seos ei ole.
-    - **Järgmine (sammud 4–10):** kolmas raske kataloog (15 küsimust, ka teise akti ja valla määruse juhud; lukku enne seoste faili), kuni 40 kontrollitavat seost, katseskripti harud A, C, D, L (päris profiil v3), F ja G, kuiv läbimine, ADR-063 otsus.
+    - **Tehtud 01.10 (samm 4):** kolmas raske kataloog `hard-conditions-3.json` ja vestluse kaksik: 15 küsimust kaheksast kujust (ka teise akti ja valla määruse juhud), iga muster testitud õige ja vastupidise vastusega; lukus enne seoste faili.
+    - **Järgmine (sammud 5–10):** kuni 40 kontrollitavat seost, katseskripti harud A, C, D, L (päris profiil v3), F ja G, kuiv läbimine, ADR-063 otsus.
     - Tasuline selles sammus alla 0,10 USD: üks otsingukatse (alla 0,001 USD) ja üks vestluse jooks kuni 15 küsimusega (kuni 0,09 USD).
     - Otsus on üks kolmest: täiendada viidete lugejat, minna kontrollitud kaartide teed või jätta praegune lahendus.
     - Omaniku jah-sõna ootavad järgmise sammu jooksud (kokku kuni umbes 0,40 USD) ja otsus SHS-i teadmiskaartide kohta: need kehtivad 30.11.2026-ni, järgmistel redaktsioonidel kaarte pole.
