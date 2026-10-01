@@ -136,6 +136,10 @@ export default function LiquidCursor() {
   if (!enabled) return null;
   return (
     <div ref={elRef} className={`liquid-cursor${active ? " is-active" : ""}`} aria-hidden="true">
+      {/* Noole toon ja serv: hele või tume tema all oleva tausta järgi
+          (base.css .liquid-cursor-fill / -rim). Maskid on sama ARROW_D kuju. */}
+      <span className="liquid-cursor-fill" />
+      <span className="liquid-cursor-rim" />
       <svg className="liquid-cursor-svg" viewBox="0 0 24 28" aria-hidden="true">
         <defs>
           <linearGradient id="lc-glass" x1="0" y1="0" x2="0" y2="1">
