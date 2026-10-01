@@ -122,15 +122,15 @@
   /* Härmatis ILMA backdrop-filterita — vestluse mullide jaoks. Mullid on
      #chat-window-scroll'i sees, mille servamask on backdrop root: päris hägu
      näeks seal ainult kerimisala sisu, mitte tuba. Seega kannab mull ise
-     sama toa eelhägustatud koopiat (public/room/tuba-ohtu-haga.webp, heledas
-     teemas tuba-paev-haga.webp; --room-image on teravate piltide paar),
+     sama toa eelhägustatud koopiat (public/room/tuba-ohtu2-haga.webp, heledas
+     teemas tuba-paev2-haga.webp; --room-image on teravate piltide paar),
      ekraani külge kinnitatuna (background-attachment: fixed) täpselt sinna,
      kus .room-view pilti näitab: kast on vaade + 2×16px, cover, 50% 40%.
      Mõõdetud 23.09 (1567×856, 1280×1000): serv ei paista. Taustapildi
      vahetusel tuleb uuendada ka see fail ja suhe 1672/941.
      iOS Safari ei toeta fixed tausta — seal liigub hägus pilt mulliga kaasa. */
-  --room-image: url("/room/tuba-ohtu-2x.webp");
-  --room-frost-image: url("/room/tuba-ohtu-haga.webp");
+  --room-image: url("/room/tuba-ohtu2-2x.webp");
+  --room-frost-image: url("/room/tuba-ohtu2-haga.webp");
   --room-frost-size: max(calc(100vw + 32px), calc((100vh + 32px) * 1672 / 941)) auto;
   --room-frost-position: 50% calc(40% - 3.2px);
   /* Lugemispaneel on sama suitsuklaas, aga tihedam: pika teksti taga ei
@@ -421,8 +421,8 @@
 /* ---- Hele (light) ---- */
 html.theme-light {
   color-scheme: light;
-  --room-image: url("/room/tuba-paev-2x.webp");
-  --room-frost-image: url("/room/tuba-paev-haga.webp");
+  --room-image: url("/room/tuba-paev2-2x.webp");
+  --room-frost-image: url("/room/tuba-paev2-haga.webp");
 }
 /* Saabumine jääb ka heledas teemas pimedaks: kõnd ja ⏻-ooterežiim
    (.room[data-power="standby"]) on toa tuled kustus, nagu tumedas teemas,
