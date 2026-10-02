@@ -946,8 +946,15 @@ button[aria-controls="chat-window-scroll"] {
      defineerimata → langes 0px varule), seega veerg reserveeris 45 px, kuigi
      komposer sööb ~108 px, ja viimased mullid kerisid tema TAHA. JS-i mõõt
      jääb alles ja võidab `max()`-is siis, kui ta töötab ja on suurem (nt
-     mitmerealine sisend). */
-  --chat-composer-reserve: var(--chat-composer-occlusion, 0px);
+     mitmerealine sisend).
+     02.10: veerg ise lõpeb nüüd komposeri KOHAL (mõõdetud 375×812: veeru
+     põhi y=701, komposer 721; 720×500: 355 ja 381), aga see põrand ja
+     konteineri järgi arvutatud okluusioon peitsid veeru alumised ~100 px
+     ikkagi — pikk vastus lõigati all ära (omanik 02.10: "tekstimull ülevalt
+     ja alt ära lõigatud"). Reserv on nüüd see, kui palju komposer VEERGU
+     tegelikult katab (ChatBody: --chat-composer-scroll-overlap); kui ta ei
+     kata, on reserv 0. */
+  --chat-composer-reserve: var(--chat-composer-scroll-overlap, 0px);
   padding: clamp(3.4rem, 7lvh, 4.6rem) clamp(1.6rem, 4vw, 4rem)
     calc(var(--chat-composer-reserve) + var(--conv-bottom-fade) + 0.6rem);
   /* Kerimisriba peidus (tellija 12.07) — keritav jääb, riba nähtamatu */
@@ -2092,10 +2099,7 @@ html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] [role="article"
 @media (max-width: 768px),
   (max-width: 1024px) and (hover: none) and (pointer: coarse) and (orientation: portrait) {
   .panel-scrim[data-conversation="1"] #chat-window-scroll {
-    --chat-composer-reserve: max(
-      var(--chat-composer-occlusion, 0px),
-      calc(var(--chat-composer-inset, 2.5rem) + var(--inputbar-h, 3.08rem) + 0.9rem)
-    );
+    --chat-composer-reserve: var(--chat-composer-scroll-overlap, 0px);
   }
 }
 
@@ -2115,6 +2119,21 @@ html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] [role="article"
        kerivad jälle komposeri taha. */
     padding-top: clamp(4rem, 9vh, 5rem);
     padding-inline: 0.75rem;
+    /* Kitsal ekraanil on ☰, S/P/T ja × ühes reas veeru ülemises ~2.9rem-s
+       (mõõdetud 02.10: nuppude põhi 44–47 px veeru ülaservast). Senine
+       hääbumine algas servast ja tekst paistis 30–70% nähtavana nuppude
+       vahelt läbi, mulli hele taust aga sulas — tekst "jooksis üleval
+       mullist välja" (omanik 02.10). Nuppude vöönd on nüüd täiesti
+       läbipaistev ja sulamine lõpeb ülapolstri piiril, nii et puhkeasendis
+       esimene sõnum jääb teravaks. Alumine osa on sama mis baasreeglis. */
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 2.9rem,
+      #000 clamp(4rem, 9vh, 5rem),
+      #000 calc(100% - var(--chat-composer-reserve) - var(--conv-bottom-fade)),
+      transparent calc(100% - var(--chat-composer-reserve))
+    );
   }
   .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] {
     max-width: calc(100% - 1.6rem);

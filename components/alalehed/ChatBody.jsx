@@ -1532,6 +1532,7 @@ export default function ChatBody({
     if (!viewportIsMobile) {
       container.style.setProperty("--chat-composer-dynamic-extra", "0px");
       container.style.setProperty("--chat-composer-occlusion", "0px");
+      container.style.setProperty("--chat-composer-scroll-overlap", "0px");
       return;
     }
 
@@ -1539,6 +1540,7 @@ export default function ChatBody({
     if (!inputBar) {
       container.style.setProperty("--chat-composer-dynamic-extra", "0px");
       container.style.setProperty("--chat-composer-occlusion", "0px");
+      container.style.setProperty("--chat-composer-scroll-overlap", "0px");
       return;
     }
 
@@ -1578,6 +1580,17 @@ export default function ChatBody({
     container.style.setProperty(
       "--chat-composer-occlusion",
       `${Math.ceil(composerOcclusion)}px`
+    );
+    // How much of the message column itself the composer covers: the column usually ends above it, and then nothing of
+    // the column is held back for it (owner 02.10: a long answer was cut off at the bottom). The occlusion above stays for
+    // the scroll-down arrow, which is placed in the container.
+    const scrollRect = chatWindowRef.current?.getBoundingClientRect?.();
+    const scrollOverlap = scrollRect && Number.isFinite(inputTop)
+      ? Math.max(0, scrollRect.bottom - inputTop)
+      : 0;
+    container.style.setProperty(
+      "--chat-composer-scroll-overlap",
+      `${Math.ceil(scrollOverlap)}px`
     );
   }, [viewportIsMobile]);
   useIsomorphicLayoutEffect(() => {
@@ -1621,6 +1634,7 @@ export default function ChatBody({
       visualViewport?.removeEventListener("resize", scheduleUpdate);
       container.style.removeProperty("--chat-composer-dynamic-extra");
       container.style.removeProperty("--chat-composer-occlusion");
+      container.style.removeProperty("--chat-composer-scroll-overlap");
     };
   }, [updateComposerMobileReserve]);
   const handleComposerLayoutChange = useCallback(() => {
