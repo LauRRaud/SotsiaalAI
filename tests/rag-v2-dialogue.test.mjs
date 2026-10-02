@@ -9,7 +9,7 @@ function accepted(language) {
   const next = (question, mode = 'same', extra = {}) => {
     const id = `turn-${String(rows.length + 1).padStart(8, '0')}`;
     const result = acceptDialogue(config, { question, contextMode: mode, language, ...extra }, rows, head, id);
-    const row = { id, state: 'stopped', payload: { question, contextMode: mode, context: result.context } };
+    const row = { id, state: 'stopped', payload: { question, contextMode: mode, context: result.context, contextAudit: result } };
     rows.push(row); head = { configHash: config.configHash, turnId: id, revision: result.context.revision };
     return result;
   };
@@ -44,18 +44,20 @@ test('dialogue contract: ET/EN/RU preserve four user turns and correction proven
   }
 });
 
-test('dialogue contract: a full topic goes on in a new topic of the same person without clipping; expired head never falls back to an older scope', () => {
+test('dialogue contract: a full topic goes on in a new topic of the same person, which begins with its last message; expired head never falls back to an older scope', () => {
   const f = accepted('et');
   const first = f.next('Turn 0', 'new');
   for (let i = 1; i < DIALOGUE_LIMITS.scopeTurns; i++) f.next('Turn ' + i);
-  // The chat has no topic choice (02.10.2026): the next message of a full topic starts a new one for the same person,
-  // with nothing of the full one, and says which topic was full.
+  // The chat has no topic choice (02.10.2026): the next message of a full topic starts a new one for the same person and
+  // says which topic was full. ADR-070: the new topic begins with the full one's last message (and, with a saved state, the
+  // user's earlier statements: tests/rag-v2-dialogue-carry.test.mjs); the older messages stay behind.
   const ninth = f.next('One too many');
-  assert.deepEqual([ninth.context.mode, ninth.userTurns.map(turn => turn.text), ninth.context.personId, ninth.selection.previousScopeFull],
-    ['new', ['One too many'], first.context.personId, first.context.scopeId]);
+  assert.deepEqual([ninth.context.mode, ninth.userTurns.map(turn => [turn.text, turn.carried ?? null]), ninth.context.personId, ninth.selection.previousScopeFull],
+    ['new', [['Turn 7', 'message'], ['One too many', null]], first.context.personId, first.context.scopeId]);
   assert.notEqual(ninth.context.scopeId, first.context.scopeId);
   assert.equal(f.rows.length, DIALOGUE_LIMITS.scopeTurns + 1);
-  assert.equal(f.next('Tenth').context.scopeId, ninth.context.scopeId);
+  const tenth = f.next('Tenth');
+  assert.deepEqual([tenth.context.scopeId, tenth.userTurns.map(turn => turn.text)], [ninth.context.scopeId, ['Turn 7', 'One too many', 'Tenth']]);
   // An explicit choice of the full topic is still refused: it would have to clip it.
   assert.throws(() => f.next('Back to the full one', 'same', { contextTurnId: f.rows[0].id }), { code: 'context_window_full' });
   const head = { configHash: config.configHash, turnId: 'missing-turn', revision: 50 };
