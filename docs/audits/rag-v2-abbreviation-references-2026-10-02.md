@@ -188,7 +188,12 @@ Omanik 02.10: „Luba on antud ühele Põlva küsimuse pöördele praeguse tootm
 - **Mida saab korrata tasuta ja mida mitte:**
   - Tasuta: mudelita otsingukatse samade kolme küsimuse ja kataloogi päringutega (`graph/abbreviation-municipal-1.json`, salvestatud vektorid serveris `eval-files/abbreviation-municipal-1/vectors.json`). See näitab kandidaate ja mudelita lõppvalikut.
   - Tasuline: terviklik vestlushindamine. Otsinguplaani mudel kirjutab iga kord oma päringud, mis vajavad uut embedding'ut, ning eelvaliku ja vastuse mudel on tasulised. Salvestatud vektorid seda ei kata. Kolm pööret maksavad umbes 0,02 USD.
-- **Tehtud pärast otsust:** kolm küsimust on vestluse hindamiskataloogis `tests/evaluation/dialogue/scenarios-abbreviation-municipal-1.json` koos otsustava sätte kontrollidega (säte tõendites, vastus viitab SHS-ile, vastuse sisu). Ükski püsijooks seda ei sisalda; see valitakse `--scenarios` kaudu, kui muudatus puudutab kandidaate, varukohti, eelvalikut või viidete järgimist. Jooksu ei tehtud.
+- **Tehtud pärast otsust:** kolm küsimust on vestluse hindamiskataloogis `tests/evaluation/dialogue/scenarios-abbreviation-municipal-1.json`. Ükski püsijooks seda ei sisalda; see valitakse `--scenarios` kaudu, kui muudatus puudutab kandidaate, varukohti, eelvalikut või viidete järgimist. Jooksu ei tehtud.
+- **Kataloogi kontrollid pärast Codexi #320 ülevaatust** (kaks P2 leidu, parandatud samal õhtul):
+  - **Sätte identiteet.** Fraas üksi ei ütle, millisest paragrahvist see pärineb (sama lause on SHS § 25 ja § 29 all), ja viidatud pealkiri ei ütle, millisele lõigule vastus viitas. Hindajal on kaks uut kontrolli: `evidence_provision` (üks tõendilõik on nimetatud seaduse nimetatud paragrahvist ja sisaldab fraasi) ja `cited_provision` (vastus viitab selle paragrahvi lõigule). Paragrahv loetakse lõigu asukohast dokumendi struktuuris (pealkirjatee), mitte tekstis esinevast numbrist. Ainult § 29 sisaldav tõendipakett annab nüüd otsingu vea.
+  - **Sisu, mitte märksõna.** Vastuse mustrid seovad tingimuse selle subjektiga ühe lause piires ja keelavad sama asja eitamise: Narvas 240 eurot kuu kohta ja mitte „ei ole … 240/miinimumi“; Sillamäel järelhoolduse tagamine ja 25 aastat, mitte „ei tagata“; Põlvas vanaema või sugulane koos keeluga, mitte „vanaema võib olla tugiisik“. Codexi kolm vastunäidet (arvu eitamine, tagamise eitamine, kõrvaline keelulause) kukuvad nüüd läbi ja on testis.
+  - **Kontroll päris andmetel, tasuta:** parandatud kontrollid läbisid salvestatud Põlva pöörde (`c1c3d6ed`): tõendites ja viidetes tunti ära SHS § 25.
+  - Mustrid on regulaaravaldised vabal tekstil: need püüavad mõõdetud vastunäited, aga mitte iga võimalikku sõnastust. Läbi kukkunud kontrolli korral tuleb vastus raportist üle lugeda.
 
 ## Piirid
 

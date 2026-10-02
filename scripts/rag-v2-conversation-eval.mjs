@@ -17,7 +17,7 @@ import path from 'node:path';
 import { parseArgs } from 'node:util';
 import { randomUUID } from 'node:crypto';
 import { performance } from 'node:perf_hooks';
-import { checkTurn, validateCatalogue } from '../lib/rag-v2/pilot/conversation-eval.js';
+import { checkTurn, turnPassages, validateCatalogue } from '../lib/rag-v2/pilot/conversation-eval.js';
 
 const { values } = parseArgs({ options: { scenarios: { type: 'string', default: 'tests/evaluation/dialogue/scenarios-corpus-4.json' }, out: { type: 'string' },
   only: { type: 'string' }, 'max-usd': { type: 'string', default: '1.5' }, 'dry-run': { type: 'boolean', default: false },
@@ -189,10 +189,11 @@ try {
       // The caller's own view in this process: the first provisional text passed on and the whole turn.
       if (observed.stages) observed.stages.caller = { streamed: values.stream, firstTextMs: firstText === null ? null : Math.round(firstText), totalMs: Math.round(performance.now() - started) };
       spent += observed.usd;
-      // The evidence texts are read by the checks only; the report keeps titles, not the sources' text.
+      // The evidence texts are read by the checks only; the report keeps titles, not the sources' text. The provision
+      // checks read each passage with its act's title and its own section, and the passages the answer cites.
       const evidenceTexts = (row?.payload?.packet?.evidence || []).map(evidence => evidence.source_text || '');
       turns.push({ mode: turn.mode, ...(turn.listedMode ? { listed_mode: turn.listedMode } : {}), text: turn.text, expect: turn.expect || {}, note: turn.note, turn_id: row?.id ?? null, observed,
-        ...checkTurn(turn.expect, { ...observed, evidenceTexts }, { today, validity: id => legal.get(id) || null }) });
+        ...checkTurn(turn.expect, { ...observed, evidenceTexts, ...turnPassages(row?.payload?.packet, row?.payload?.answer) }, { today, validity: id => legal.get(id) || null }) });
       console.error(JSON.stringify({ scenario: scenario.id, turn: turns.length, verdict: turns.at(-1).verdict, usd: +spent.toFixed(4) }));
     }
     report.scenarios.push({ id: scenario.id, title: scenario.title, source: scenario.source, conversation: conversation.id, turns });
