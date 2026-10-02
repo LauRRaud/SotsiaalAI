@@ -212,6 +212,23 @@ html.theme-light:not(:has(.room[data-power="standby"]))[data-reduce-transparency
 html.theme-light:not(:has(.room[data-power="standby"]))[data-reduce-transparency="1"] .panel-scrim[data-conversation="1"] [role="article"][data-role="user"] {
   background: rgba(234, 230, 225, 0.98);
 }
+/* Ooteseis heledas: ainult tume S, ilma mullita (omanik 02.10: "imelik
+   taust on assistendi teksti laadimise taga"). Ülalolevad mullireeglid on
+   tugevamad kui chat.css-i ooteseisu oma ja andsid tühjale mullile
+   härmatise ja varju; see reegel on sama tugev kui nõrgendatud läbipaistvuse
+   oma ja tuleb pärast seda. S on teksti värvi (--text-warm), valge SVG on
+   ainult kuju. */
+html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"][data-thinking="true"] {
+  background: none;
+  box-shadow: none;
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] > span[aria-label]::before {
+  background: var(--text-warm);
+  -webkit-mask: url("/logo/sai-s-valge.svg") center / contain no-repeat;
+  mask: url("/logo/sai-s-valge.svg") center / contain no-repeat;
+  filter: none;
+  opacity: 0.78;
+}
 /* Vestluse nurganupud (☰ vestlused, × sulge) = kiirmenüü materjal ka
    heledas (omanik 30.09): hele juhtklaas, sama serv ja hover-kiht. */
 html.theme-light:not(:has(.room[data-power="standby"])):not([data-reduce-transparency="1"]) .panel-scrim[data-conversation="1"] :is(.panel-menu, .panel-close) {
