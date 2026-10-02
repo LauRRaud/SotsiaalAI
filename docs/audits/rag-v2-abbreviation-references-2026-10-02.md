@@ -2,7 +2,9 @@
 
 Teostus Claude Opus 5.5. Omanik 02.10: „Alusta B tasuta mõõtmisest … Too konkreetsed näited ja soovitus, kas uut reeglit on vaja. Arenduse otsustame mõõtmise tulemuse järgi.“ Taust: [ADR-064](../rag-v2/adr-064-named-other-act.md) järgib teist seadust ainult siis, kui see on nimetatud täisnimega; lühend jäeti [ADR-063](../rag-v2/adr-063-checked-relations.md) järel mõõtmata.
 
-**Seis pärast kolmandat mõõtmist (jaotis 7, ühendatud otsing):** üldist reeglit ei ole vaja. Kitsa reegli (ainult määrustest) kasu on väiksem, kui sõnaline katse näitas: ühendatud otsing leiab kolmest otsustavast sättest kaks ise ja kolmas jõuab eelvaliku mudeli kandidaatidesse. Reegel tooks juurde ühe sätte kolmest. Otsus on omanikul.
+**Lõplik soovitus (jaotis 9): lühendireeglit praegu mitte ehitada**, ei üldist ega kitsast. Neljas katses ei leidunud küsimust, kus päris vestlus jääks otsustava sätteta: ainsas juhtumis, kus mudelita otsing sätet lõppvalikusse ei toonud, võttis eelvaliku mudel selle riikliku õiguse varukohalt ja vastus viitas sellele (üksikvaatlus). Otsus on omanikul.
+
+Seis pärast kolmandat mõõtmist (jaotis 7, ühendatud otsing): ühendatud otsing leiab kolmest otsustavast sättest kaks ise ja kolmas jõuab eelvaliku mudeli kandidaatidesse.
 
 Teine mõõtmine (jaotis 6, ainult sõnaline otsing): kitsas reegel tooks kolmest küsimusest kahes puuduva sätte.
 
@@ -144,6 +146,41 @@ Omanik 02.10: „Luba on antud ühele embedding’u päringule kolme senise küs
 - Kolm küsimust, igaüks üks kord; kandidaatide ja lõppvaliku järjekord on mudelita.
 - Lühendireegel on simuleeritud mudelita lõppvalikul. Päris vestluses rakenduks see mudeli valitud lõikudele, mis võivad erineda.
 - Kataloogi päringud on käsitsi kirjutatud; vestluses kirjutab need otsinguplaani mudel.
+
+## 8. Põlva küsimus päris vestluse rajal (üks pööre, 02.10 õhtul)
+
+Omanik 02.10: „Luba on antud ühele Põlva küsimuse pöördele praeguse tootmisprofiiliga, eeldatava kuluga umbes 0,005 USD. Salvesta otsinguplaan, kandidaadid, eelvaliku tulemus ja vastuse viited … Ära käivita täiendavaid tasulisi kordusi ega ehita veel reeglit. Ühe pöörde tulemust käsitle üksikvaatlusena.“
+
+- **Jooks** ([skript](rag-v2-abbreviation-polva-turn-2026-10-02-probes.mjs), [tulemus](evidence/abbreviation-polva-turn-2026-10-02.json)): üks pööre päris teenuse kaudu, tootmisplaan (profiil v6, dialoogi juhis 23), otsinguplaani, eelvaliku ja vastuse mudeliga. Eelvaliku konks ainult salvestas, mida mudel sai ja mida tagastas. Pööre `c1c3d6ed`, **0,0063 USD** plaani hindadega (plaan 0,0002, embedding 0,00001, eelvalik 0,0019, vastus 0,0042), 32 s. Kordust ei tehtud.
+- Enne jooksu kinnitatud tasuta (salvestatud vektoritega): kandidaat kohal 32 on tõesti SHS § 25 (tugiisikuteenus), mitte sama sõnastusega § 29 (isiklik abistaja).
+
+| Samm | Mis juhtus |
+|---|---|
+| Otsinguplaan | Kolm päringut: valla tugiisikuteenus ja vanaema; „Tugiisikuteenuse osutaja lähedasele isikule piirangud“; teenuse korraldamine omavalitsuses. Inimene „laps“, vald Põlva. |
+| Kandidaadid | 36 (30 liidetud ja 6 varukohta). Määruse viitav lõik (§ 4) kohal 2. **SHS § 25 kohal 32, varukohana.** |
+| Eelvalik | Mudel valis neli lõiku ja pani **SHS § 25 esimeseks**; järgnesid määruse § 4, § 5 ja § 2. |
+| Tõendid vastuse mudelile | SHS § 25 (186 tokenit), määruse kolm lõiku, SHS § 24 teadmiskaardi kaudu ja valla kataloogikirjed. |
+| Vastus | „Ei. Vanaema ei saa olla lapse tugiisikuteenuse vahetu osutaja …“ Esimene lõik viitab SHS § 25-le ja määruse § 4-le, teine määruse § 5-le ja § 2-le. Täpsustust ega piirangut vastuses ei ole. |
+
+- **SHS § 25 lg 2 jõudis vastuse tõenditesse ja vastus viitas sellele**, ilma lühendireeglita. Tee: riikliku õiguse varukoht ([ADR-032](../rag-v2/adr-032-national-law-reserve-and-plan-restart.md)) → eelvaliku mudel.
+- **See on üks vaatlus.** Kandidaatidesse jõudmine sõltub otsinguplaani päringutest, mida mudel iga kord ise kirjutab, ja valik eelvaliku mudelist. Harku kaksikküsimuses jäi sama säte 01.10 päris vestluses tõenditest välja, kuigi varukohad olid siis juba olemas; seal aitas täisnime reegel.
+
+## 9. Lõplik soovitus kõigi katsete põhjal
+
+| Katse | Kulu | Tulemus |
+|---|---:|---|
+| 1. Loendus ja 30 rasket küsimust | 0 | 364 järgitavat viidet 64 dokumendis; reegel lisaks 11 lõiku ja ükski ei too puuduvat sätet |
+| 2. Kolm määruse küsimust, sõnaline otsing | 0 | 2 kolmest puudu; reegel tooks |
+| 3. Samad kolm, ühendatud otsing mudelita | 0,000035 USD | 1 kolmest puudu lõppvalikust, aga kandidaatides olemas |
+| 4. Põlva küsimus päris vestluse rajal | 0,0063 USD | säte jõudis tõenditesse ja vastus viitas sellele |
+
+**Soovitus: lühendireeglit praegu mitte ehitada.**
+
+- **Üldine reegel** (artiklitest ja juhenditest): kasu ei ole mõõdetud üheski katses, ja PDF-ide kadunud ülaindeks viib valesse sättesse.
+- **Kitsas reegel** (ainult määrustest): ühtegi küsimust, kus päris vestlus jääks sätteta, ei leitud. Olemasolev tee (vektorotsing, varukohad, eelvaliku mudel) kattis kõik kolm määruse küsimust.
+- **Mis jääb teadmata:** kui kindlalt see tee töötab. Tõendeid on mõlemas suunas: Põlvas töötas (üks vaatlus), Harkus 01.10 ei töötanud. Kitsas reegel teeks tulemuse mudelist sõltumatuks, väikese hinnaga (mõõdetud 0–333 tokenit küsimuse kohta, kuni kaks lõiku), nii et see on kindlustus, mitte parandus.
+- **Mis otsust muudaks:** päris vestluse vastus, mis jätab määruse lühendiga viidatud seaduse sätte tõenditest välja. Kataloog `abbreviation-municipal-1.json` ja salvestatud vektorid lubavad seda edaspidi tasuta jälgida (otsing mudelita) ja ühe pöördega üle kontrollida.
+- **Odavam samm, kui kindlust tahetakse:** lisada kolm küsimust vestluse hindamiskataloogi, et iga tulevane hindamisjooks neid mõõdaks; reeglit see ei eelda.
 
 ## Piirid
 
