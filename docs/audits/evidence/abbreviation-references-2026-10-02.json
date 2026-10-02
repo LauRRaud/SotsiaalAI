@@ -1,0 +1,1119 @@
+{
+ "census": {
+  "generation": "search_generation_34fe1590bbd5e2bf6a788bef196d50e26b5f573e2a63bc30fbbe1d56ab28c8f4",
+  "documents": 6470,
+  "units": 40489,
+  "by_kind": {
+   "journal": {
+    "documents": 892,
+    "units": 8224,
+    "abbreviation_references": 178,
+    "documents_with_any": 42,
+    "references_to_acts_in_index": 120,
+    "documents_with_those": 33
+   },
+   "record_service": {
+    "documents": 1253,
+    "units": 1253,
+    "abbreviation_references": 0,
+    "documents_with_any": 0,
+    "references_to_acts_in_index": 0,
+    "documents_with_those": 0
+   },
+   "law_municipal": {
+    "documents": 510,
+    "units": 9179,
+    "abbreviation_references": 63,
+    "documents_with_any": 24,
+    "references_to_acts_in_index": 54,
+    "documents_with_those": 19
+   },
+   "record_resource": {
+    "documents": 908,
+    "units": 910,
+    "abbreviation_references": 0,
+    "documents_with_any": 0,
+    "references_to_acts_in_index": 0,
+    "documents_with_those": 0
+   },
+   "record_benefit": {
+    "documents": 1036,
+    "units": 1039,
+    "abbreviation_references": 0,
+    "documents_with_any": 0,
+    "references_to_acts_in_index": 0,
+    "documents_with_those": 0
+   },
+   "guidance_or_report": {
+    "documents": 171,
+    "units": 12638,
+    "abbreviation_references": 559,
+    "documents_with_any": 32,
+    "references_to_acts_in_index": 190,
+    "documents_with_those": 12
+   },
+   "record_contact": {
+    "documents": 807,
+    "units": 1183,
+    "abbreviation_references": 0,
+    "documents_with_any": 0,
+    "references_to_acts_in_index": 0,
+    "documents_with_those": 0
+   },
+   "record_form": {
+    "documents": 870,
+    "units": 870,
+    "abbreviation_references": 0,
+    "documents_with_any": 0,
+    "references_to_acts_in_index": 0,
+    "documents_with_those": 0
+   },
+   "law_national": {
+    "documents": 23,
+    "units": 5193,
+    "abbreviation_references": 0,
+    "documents_with_any": 0,
+    "references_to_acts_in_index": 0,
+    "documents_with_those": 0
+   }
+  },
+  "abbreviations": [
+   {
+    "abbreviation": "SHS",
+    "count": 226,
+    "documents": 47,
+    "in_index": "Sotsiaalhoolekande seadus",
+    "kinds": {
+     "journal": 60,
+     "law_municipal": 48,
+     "guidance_or_report": 118
+    }
+   },
+   {
+    "abbreviation": "IKS",
+    "count": 79,
+    "documents": 2,
+    "in_index": null,
+    "kinds": {
+     "guidance_or_report": 79
+    }
+   },
+   {
+    "abbreviation": "LasteKS",
+    "count": 73,
+    "documents": 13,
+    "in_index": "Lastekaitseseadus",
+    "kinds": {
+     "guidance_or_report": 46,
+     "journal": 27
+    }
+   },
+   {
+    "abbreviation": "PGS",
+    "count": 56,
+    "documents": 7,
+    "in_index": null,
+    "kinds": {
+     "guidance_or_report": 54,
+     "law_municipal": 2
+    }
+   },
+   {
+    "abbreviation": "VÕS",
+    "count": 30,
+    "documents": 3,
+    "in_index": null,
+    "kinds": {
+     "guidance_or_report": 23,
+     "journal": 7
+    }
+   },
+   {
+    "abbreviation": "PKS",
+    "count": 30,
+    "documents": 8,
+    "in_index": "Perekonnaseadus",
+    "kinds": {
+     "journal": 7,
+     "guidance_or_report": 23
+    }
+   },
+   {
+    "abbreviation": "AvTS",
+    "count": 28,
+    "documents": 3,
+    "in_index": null,
+    "kinds": {
+     "journal": 14,
+     "guidance_or_report": 14
+    }
+   },
+   {
+    "abbreviation": "TTTSi",
+    "count": 23,
+    "documents": 1,
+    "in_index": null,
+    "kinds": {
+     "guidance_or_report": 23
+    }
+   },
+   {
+    "abbreviation": "TTKS",
+    "count": 22,
+    "documents": 3,
+    "in_index": null,
+    "kinds": {
+     "guidance_or_report": 22
+    }
+   },
+   {
+    "abbreviation": "SÜS",
+    "count": 21,
+    "documents": 11,
+    "in_index": "Sotsiaalseadustiku üldosa seadus",
+    "kinds": {
+     "journal": 12,
+     "law_municipal": 6,
+     "guidance_or_report": 3
+    }
+   },
+   {
+    "abbreviation": "TLS",
+    "count": 15,
+    "documents": 7,
+    "in_index": null,
+    "kinds": {
+     "guidance_or_report": 9,
+     "law_municipal": 6
+    }
+   },
+   {
+    "abbreviation": "SHSi",
+    "count": 14,
+    "documents": 3,
+    "in_index": null,
+    "kinds": {
+     "journal": 2,
+     "guidance_or_report": 12
+    }
+   },
+   {
+    "abbreviation": "HMS",
+    "count": 14,
+    "documents": 3,
+    "in_index": "Haldusmenetluse seadus",
+    "kinds": {
+     "journal": 14
+    }
+   },
+   {
+    "abbreviation": "PISTS",
+    "count": 14,
+    "documents": 2,
+    "in_index": null,
+    "kinds": {
+     "guidance_or_report": 14
+    }
+   },
+   {
+    "abbreviation": "PS",
+    "count": 14,
+    "documents": 7,
+    "in_index": null,
+    "kinds": {
+     "guidance_or_report": 8,
+     "journal": 6
+    }
+   },
+   {
+    "abbreviation": "PRÕK",
+    "count": 10,
+    "documents": 3,
+    "in_index": null,
+    "kinds": {
+     "guidance_or_report": 10
+    }
+   },
+   {
+    "abbreviation": "OAS",
+    "count": 10,
+    "documents": 4,
+    "in_index": null,
+    "kinds": {
+     "guidance_or_report": 9,
+     "journal": 1
+    }
+   },
+   {
+    "abbreviation": "THP",
+    "count": 10,
+    "documents": 1,
+    "in_index": null,
+    "kinds": {
+     "guidance_or_report": 10
+    }
+   },
+   {
+    "abbreviation": "VõrdKS",
+    "count": 10,
+    "documents": 2,
+    "in_index": null,
+    "kinds": {
+     "guidance_or_report": 10
+    }
+   },
+   {
+    "abbreviation": "TVTS",
+    "count": 10,
+    "documents": 5,
+    "in_index": null,
+    "kinds": {
+     "guidance_or_report": 10
+    }
+   },
+   {
+    "abbreviation": "SoVS",
+    "count": 10,
+    "documents": 2,
+    "in_index": null,
+    "kinds": {
+     "guidance_or_report": 10
+    }
+   },
+   {
+    "abbreviation": "MSVS",
+    "count": 9,
+    "documents": 1,
+    "in_index": null,
+    "kinds": {
+     "journal": 9
+    }
+   },
+   {
+    "abbreviation": "TuOS",
+    "count": 8,
+    "documents": 2,
+    "in_index": null,
+    "kinds": {
+     "guidance_or_report": 8
+    }
+   },
+   {
+    "abbreviation": "TsMS",
+    "count": 7,
+    "documents": 3,
+    "in_index": null,
+    "kinds": {
+     "journal": 2,
+     "guidance_or_report": 5
+    }
+   },
+   {
+    "abbreviation": "KOKS",
+    "count": 5,
+    "documents": 5,
+    "in_index": null,
+    "kinds": {
+     "journal": 2,
+     "law_municipal": 1,
+     "guidance_or_report": 2
+    }
+   },
+   {
+    "abbreviation": "PsAS",
+    "count": 5,
+    "documents": 2,
+    "in_index": null,
+    "kinds": {
+     "guidance_or_report": 5
+    }
+   },
+   {
+    "abbreviation": "LasteKSi",
+    "count": 4,
+    "documents": 2,
+    "in_index": null,
+    "kinds": {
+     "journal": 4
+    }
+   },
+   {
+    "abbreviation": "KarS",
+    "count": 4,
+    "documents": 3,
+    "in_index": null,
+    "kinds": {
+     "journal": 3,
+     "guidance_or_report": 1
+    }
+   },
+   {
+    "abbreviation": "PSAS",
+    "count": 4,
+    "documents": 1,
+    "in_index": null,
+    "kinds": {
+     "guidance_or_report": 4
+    }
+   },
+   {
+    "abbreviation": "NETS",
+    "count": 3,
+    "documents": 2,
+    "in_index": null,
+    "kinds": {
+     "guidance_or_report": 3
+    }
+   },
+   {
+    "abbreviation": "KorS",
+    "count": 3,
+    "documents": 1,
+    "in_index": null,
+    "kinds": {
+     "guidance_or_report": 3
+    }
+   },
+   {
+    "abbreviation": "PPVS",
+    "count": 3,
+    "documents": 1,
+    "in_index": null,
+    "kinds": {
+     "guidance_or_report": 3
+    }
+   },
+   {
+    "abbreviation": "TsÜS",
+    "count": 3,
+    "documents": 2,
+    "in_index": null,
+    "kinds": {
+     "guidance_or_report": 2,
+     "journal": 1
+    }
+   },
+   {
+    "abbreviation": "KrMS",
+    "count": 2,
+    "documents": 2,
+    "in_index": null,
+    "kinds": {
+     "guidance_or_report": 1,
+     "journal": 1
+    }
+   },
+   {
+    "abbreviation": "KLS",
+    "count": 2,
+    "documents": 1,
+    "in_index": null,
+    "kinds": {
+     "guidance_or_report": 2
+    }
+   },
+   {
+    "abbreviation": "LastekS",
+    "count": 2,
+    "documents": 1,
+    "in_index": null,
+    "kinds": {
+     "guidance_or_report": 2
+    }
+   },
+   {
+    "abbreviation": "TsMs",
+    "count": 2,
+    "documents": 1,
+    "in_index": null,
+    "kinds": {
+     "guidance_or_report": 2
+    }
+   },
+   {
+    "abbreviation": "TMS",
+    "count": 2,
+    "documents": 1,
+    "in_index": null,
+    "kinds": {
+     "journal": 2
+    }
+   },
+   {
+    "abbreviation": "GRÕK",
+    "count": 1,
+    "documents": 1,
+    "in_index": null,
+    "kinds": {
+     "guidance_or_report": 1
+    }
+   },
+   {
+    "abbreviation": "PISTSi",
+    "count": 1,
+    "documents": 1,
+    "in_index": null,
+    "kinds": {
+     "guidance_or_report": 1
+    }
+   }
+  ],
+  "distinct_abbreviations": 51,
+  "total_references": 800,
+  "acts_in_index": {
+   "Sotsiaalhoolekande seadus": {
+    "references": 226,
+    "documents": 47,
+    "in_the_act_itself": 0,
+    "by_kind": {
+     "journal": 60,
+     "law_municipal": 48,
+     "guidance_or_report": 118
+    },
+    "documents_that_define_the_abbreviation": 15,
+    "full_name_references_by_kind": {
+     "law_municipal": 720,
+     "guidance_or_report": 18,
+     "journal": 22,
+     "law_national": 13
+    }
+   },
+   "Lastekaitseseadus": {
+    "references": 73,
+    "documents": 13,
+    "in_the_act_itself": 0,
+    "by_kind": {
+     "guidance_or_report": 46,
+     "journal": 27
+    },
+    "documents_that_define_the_abbreviation": 3,
+    "full_name_references_by_kind": {
+     "law_national": 66,
+     "journal": 19,
+     "law_municipal": 8,
+     "guidance_or_report": 13
+    }
+   },
+   "Haldusmenetluse seadus": {
+    "references": 14,
+    "documents": 3,
+    "in_the_act_itself": 0,
+    "by_kind": {
+     "journal": 14
+    },
+    "documents_that_define_the_abbreviation": 0,
+    "full_name_references_by_kind": {
+     "journal": 2,
+     "law_municipal": 8
+    }
+   },
+   "Sotsiaalseadustiku üldosa seadus": {
+    "references": 21,
+    "documents": 11,
+    "in_the_act_itself": 0,
+    "by_kind": {
+     "journal": 12,
+     "law_municipal": 6,
+     "guidance_or_report": 3
+    },
+    "documents_that_define_the_abbreviation": 2,
+    "full_name_references_by_kind": {
+     "journal": 6,
+     "law_national": 47,
+     "law_municipal": 70,
+     "guidance_or_report": 3
+    }
+   },
+   "Perekonnaseadus": {
+    "references": 30,
+    "documents": 8,
+    "in_the_act_itself": 0,
+    "by_kind": {
+     "journal": 7,
+     "guidance_or_report": 23
+    },
+    "documents_that_define_the_abbreviation": 1,
+    "full_name_references_by_kind": {
+     "journal": 4,
+     "law_national": 6,
+     "law_municipal": 19,
+     "guidance_or_report": 1
+    }
+   }
+  },
+  "examples": [
+   {
+    "kind": "journal",
+    "title": "Vana inimene igatseb koju tagasi",
+    "reference": "SHS § 16"
+   },
+   {
+    "kind": "journal",
+    "title": "Vana inimene igatseb koju tagasi",
+    "reference": "SHS-i §-s 105"
+   },
+   {
+    "kind": "journal",
+    "title": "Uusi teadmisi võlanõustamise koolituselt",
+    "reference": "SHS\n§ 44"
+   },
+   {
+    "kind": "journal",
+    "title": "Uusi teadmisi võlanõustamise koolituselt",
+    "reference": "SHS § 45 lõike 1"
+   },
+   {
+    "kind": "law_municipal",
+    "title": "Asendus- ja järelhooldusteenuse osutamise kord Narva linnas",
+    "reference": "SHS § 45¹¹ lõikes 3"
+   },
+   {
+    "kind": "law_municipal",
+    "title": "Asendus- ja järelhooldusteenuse osutamise kord Narva linnas",
+    "reference": "SHS § 45¹¹ lõikes 4"
+   },
+   {
+    "kind": "law_municipal",
+    "title": "Asendus- ja järelhooldusteenuse osutamise kord Narva linnas",
+    "reference": "SHS § 45¹¹ lõikes 3"
+   },
+   {
+    "kind": "guidance_or_report",
+    "title": "MARAC-i mudeli juhend KOV lastekaitsele",
+    "reference": "LasteKS § 29 lg 3"
+   },
+   {
+    "kind": "guidance_or_report",
+    "title": "MARAC-i mudeli juhend KOV lastekaitsele",
+    "reference": "LasteKS § 4"
+   },
+   {
+    "kind": "law_municipal",
+    "title": "Sotsiaaltoetuste määramise ja maksmise kord",
+    "reference": "SHS § 141 lõike 1"
+   },
+   {
+    "kind": "guidance_or_report",
+    "title": "Uuring täisealiste puudega inimeste puude tuvastamise, abivajaduse hindamise ja toetamise süsteemist",
+    "reference": "SHS § 15²"
+   },
+   {
+    "kind": "guidance_or_report",
+    "title": "Uuring täisealiste puudega inimeste puude tuvastamise, abivajaduse hindamise ja toetamise süsteemist",
+    "reference": "SHS § 15 lõige 3"
+   }
+  ]
+ },
+ "simulation": {
+  "arm": "O (chat profile v6, no reranker)",
+  "catalogues": [
+   {
+    "catalogue": "hard-conditions-1",
+    "date": "2026-10-15",
+    "questions": 9,
+    "rows": [
+     {
+      "question": "day-support-dementia-retirement",
+      "kind": "within_document",
+      "found_all": true,
+      "missing_phrases": 0,
+      "selected": 10,
+      "references": []
+     },
+     {
+      "question": "supported-living-alcohol",
+      "kind": "within_document",
+      "found_all": true,
+      "missing_phrases": 0,
+      "selected": 12,
+      "references": []
+     },
+     {
+      "question": "community-living-dementia",
+      "kind": "within_document",
+      "found_all": true,
+      "missing_phrases": 0,
+      "selected": 10,
+      "references": []
+     },
+     {
+      "question": "subsistence-care-home",
+      "kind": "within_document",
+      "found_all": true,
+      "missing_phrases": 0,
+      "selected": 14,
+      "references": []
+     },
+     {
+      "question": "subsistence-prison",
+      "kind": "within_document",
+      "found_all": true,
+      "missing_phrases": 0,
+      "selected": 11,
+      "references": []
+     },
+     {
+      "question": "involuntary-placement",
+      "kind": "within_document",
+      "found_all": true,
+      "missing_phrases": 0,
+      "selected": 11,
+      "references": [
+       {
+        "from": "Vabatahtlikkuse põhimõte üldhooldusteenuse osutamisel",
+        "from_kind": "journal",
+        "reference": "PS § 20 lg 2",
+        "act": null,
+        "outcome": "act_not_in_index"
+       },
+       {
+        "from": "Vabatahtlikkuse põhimõte üldhooldusteenuse osutamisel",
+        "from_kind": "journal",
+        "reference": "PS § 20 lg 2",
+        "act": null,
+        "outcome": "act_not_in_index"
+       },
+       {
+        "from": "Vabatahtlikkuse põhimõte üldhooldusteenuse osutamisel",
+        "from_kind": "journal",
+        "reference": "PS § 20 lg 2",
+        "act": null,
+        "outcome": "act_not_in_index"
+       },
+       {
+        "from": "Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu kokkuvõte",
+        "from_kind": "guidance_or_report",
+        "reference": "SHS § 3",
+        "act": "Sotsiaalhoolekande seadus",
+        "section": "3",
+        "subsection": null,
+        "outcome": "would_add",
+        "passages": 1,
+        "added": 1,
+        "added_tokens": 495,
+        "brings_missing": 0
+       },
+       {
+        "from": "Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu kokkuvõte",
+        "from_kind": "guidance_or_report",
+        "reference": "SHS § 15",
+        "act": "Sotsiaalhoolekande seadus",
+        "section": "15",
+        "subsection": null,
+        "outcome": "would_add",
+        "passages": 1,
+        "added": 1,
+        "added_tokens": 551,
+        "brings_missing": 0
+       },
+       {
+        "from": "Vabatahtlikkuse põhimõte üldhooldusteenuse osutamisel",
+        "from_kind": "journal",
+        "reference": "PS § 20 lg 2",
+        "act": null,
+        "outcome": "act_not_in_index"
+       }
+      ]
+     },
+     {
+      "question": "own-share-shortfall",
+      "kind": "within_document",
+      "found_all": true,
+      "missing_phrases": 0,
+      "selected": 11,
+      "references": []
+     },
+     {
+      "question": "rehabilitation-student",
+      "kind": "within_document",
+      "found_all": true,
+      "missing_phrases": 0,
+      "selected": 13,
+      "references": []
+     },
+     {
+      "question": "day-care-retirement-age",
+      "kind": "within_document",
+      "found_all": true,
+      "missing_phrases": 0,
+      "selected": 12,
+      "references": []
+     }
+    ]
+   },
+   {
+    "catalogue": "hard-conditions-2",
+    "date": "2026-10-15",
+    "questions": 6,
+    "rows": [
+     {
+      "question": "reclaim-limitation",
+      "kind": "within_document",
+      "found_all": true,
+      "missing_phrases": 0,
+      "selected": 12,
+      "references": [
+       {
+        "from": "Kuidas vastata inimese pöördumisele",
+        "from_kind": "journal",
+        "reference": "HMS § 72",
+        "act": "Haldusmenetluse seadus",
+        "section": "72",
+        "subsection": null,
+        "outcome": "would_add",
+        "passages": 1,
+        "added": 1,
+        "added_tokens": 248,
+        "brings_missing": 0
+       },
+       {
+        "from": "Kuidas vastata inimese pöördumisele",
+        "from_kind": "journal",
+        "reference": "HMS § 78",
+        "act": "Haldusmenetluse seadus",
+        "section": "78",
+        "subsection": null,
+        "outcome": "would_add",
+        "passages": 1,
+        "added": 1,
+        "added_tokens": 81,
+        "brings_missing": 0
+       },
+       {
+        "from": "Kuidas vastata inimese pöördumisele",
+        "from_kind": "journal",
+        "reference": "HMS § 79",
+        "act": "Haldusmenetluse seadus",
+        "section": "79",
+        "subsection": null,
+        "outcome": "would_add",
+        "passages": 1,
+        "added": 1,
+        "added_tokens": 277,
+        "brings_missing": 0
+       },
+       {
+        "from": "Kuidas vastata inimese pöördumisele",
+        "from_kind": "journal",
+        "reference": "HMS § 83 lg 1",
+        "act": "Haldusmenetluse seadus",
+        "section": "83",
+        "subsection": "1",
+        "outcome": "would_add",
+        "passages": 1,
+        "added": 1,
+        "added_tokens": 129,
+        "brings_missing": 0
+       },
+       {
+        "from": "Kuidas vastata inimese pöördumisele",
+        "from_kind": "journal",
+        "reference": "HMS § 84 lg 1",
+        "act": "Haldusmenetluse seadus",
+        "section": "84",
+        "subsection": "1",
+        "outcome": "would_add",
+        "passages": 1,
+        "added": 1,
+        "added_tokens": 145,
+        "brings_missing": 0
+       },
+       {
+        "from": "Kuidas vastata inimese pöördumisele",
+        "from_kind": "journal",
+        "reference": "HMS § 87",
+        "act": "Haldusmenetluse seadus",
+        "section": "87",
+        "subsection": null,
+        "outcome": "would_add",
+        "passages": 1,
+        "added": 1,
+        "added_tokens": 238,
+        "brings_missing": 0
+       }
+      ]
+     },
+     {
+      "question": "reclaim-enforcement",
+      "kind": "within_document",
+      "found_all": true,
+      "missing_phrases": 0,
+      "selected": 11,
+      "references": [
+       {
+        "from": "Kohaliku omavalitsuse väljakutsed sotsiaalteenuste osutamisel",
+        "from_kind": "journal",
+        "reference": "SHS § 16",
+        "act": "Sotsiaalhoolekande seadus",
+        "section": "16",
+        "subsection": null,
+        "outcome": "would_add",
+        "passages": 1,
+        "added": 1,
+        "added_tokens": 190,
+        "brings_missing": 0
+       }
+      ]
+     },
+     {
+      "question": "coach-reports-child",
+      "kind": "within_document",
+      "found_all": false,
+      "missing_phrases": 1,
+      "selected": 10,
+      "references": [
+       {
+        "from": "Lapse heaolu hindamise käsiraamat",
+        "from_kind": "guidance_or_report",
+        "reference": "LasteKS § 27 lg 1",
+        "act": "Lastekaitseseadus",
+        "section": "27",
+        "subsection": "1",
+        "outcome": "already_selected",
+        "passages": 1,
+        "added": 0,
+        "added_tokens": 0,
+        "brings_missing": 0
+       },
+       {
+        "from": "Lapse heaolu hindamise käsiraamat",
+        "from_kind": "guidance_or_report",
+        "reference": "LasteKS § 27 lg 5",
+        "act": "Lastekaitseseadus",
+        "section": "27",
+        "subsection": "5",
+        "outcome": "already_selected",
+        "passages": 1,
+        "added": 0,
+        "added_tokens": 0,
+        "brings_missing": 0
+       }
+      ]
+     },
+     {
+      "question": "student-subsistence-own",
+      "kind": "within_document",
+      "found_all": true,
+      "missing_phrases": 0,
+      "selected": 12,
+      "references": []
+     },
+     {
+      "question": "subsistence-new-job",
+      "kind": "within_document",
+      "found_all": true,
+      "missing_phrases": 0,
+      "selected": 9,
+      "references": []
+     },
+     {
+      "question": "subsistence-deadline",
+      "kind": "within_document",
+      "found_all": true,
+      "missing_phrases": 0,
+      "selected": 14,
+      "references": []
+     }
+    ]
+   },
+   {
+    "catalogue": "hard-conditions-3",
+    "date": "2026-10-15",
+    "questions": 15,
+    "rows": [
+     {
+      "question": "subsistence-home-loan",
+      "kind": "within_document",
+      "found_all": true,
+      "missing_phrases": 0,
+      "selected": 11,
+      "references": []
+     },
+     {
+      "question": "referral-deadline-emergency",
+      "kind": "within_document",
+      "found_all": true,
+      "missing_phrases": 0,
+      "selected": 14,
+      "references": []
+     },
+     {
+      "question": "student-turns-25",
+      "kind": "within_document",
+      "found_all": true,
+      "missing_phrases": 0,
+      "selected": 12,
+      "references": []
+     },
+     {
+      "question": "refusal-only-home",
+      "kind": "within_document",
+      "found_all": true,
+      "missing_phrases": 0,
+      "selected": 12,
+      "references": []
+     },
+     {
+      "question": "service-ended-martial-law",
+      "kind": "within_document",
+      "found_all": true,
+      "missing_phrases": 0,
+      "selected": 13,
+      "references": []
+     },
+     {
+      "question": "rent-from-mother",
+      "kind": "within_document",
+      "found_all": true,
+      "missing_phrases": 0,
+      "selected": 11,
+      "references": []
+     },
+     {
+      "question": "pensioner-with-student-child",
+      "kind": "across_documents",
+      "found_all": true,
+      "missing_phrases": 0,
+      "selected": 14,
+      "references": []
+     },
+     {
+      "question": "child-rehabilitation-need",
+      "kind": "across_documents",
+      "found_all": false,
+      "missing_phrases": 1,
+      "selected": 11,
+      "references": [
+       {
+        "from": "Lapse heaolu hindamise käsiraamat",
+        "from_kind": "guidance_or_report",
+        "reference": "LasteKS § 26",
+        "act": "Lastekaitseseadus",
+        "section": "26",
+        "subsection": null,
+        "outcome": "would_add",
+        "passages": 1,
+        "added": 1,
+        "added_tokens": 103,
+        "brings_missing": 0
+       },
+       {
+        "from": "Lapse heaolu hindamise käsiraamat",
+        "from_kind": "guidance_or_report",
+        "reference": "LasteKS § 26",
+        "act": "Lastekaitseseadus",
+        "section": "26",
+        "subsection": null,
+        "outcome": "already_selected",
+        "passages": 1,
+        "added": 0,
+        "added_tokens": 0,
+        "brings_missing": 0
+       }
+      ]
+     },
+     {
+      "question": "harku-support-person-relative",
+      "kind": "across_documents",
+      "found_all": true,
+      "missing_phrases": 0,
+      "selected": 10,
+      "references": []
+     },
+     {
+      "question": "guardian-ward-family",
+      "kind": "within_document",
+      "found_all": true,
+      "missing_phrases": 0,
+      "selected": 11,
+      "references": []
+     },
+     {
+      "question": "rent-debt-not-counted",
+      "kind": "within_document",
+      "found_all": true,
+      "missing_phrases": 0,
+      "selected": 10,
+      "references": []
+     },
+     {
+      "question": "household-definition",
+      "kind": "within_document",
+      "found_all": true,
+      "missing_phrases": 0,
+      "selected": 13,
+      "references": []
+     },
+     {
+      "question": "kuusalu-limits-since",
+      "kind": "within_document",
+      "found_all": true,
+      "missing_phrases": 0,
+      "selected": 10,
+      "references": []
+     },
+     {
+      "question": "special-care-decision-time",
+      "kind": "within_document",
+      "found_all": true,
+      "missing_phrases": 0,
+      "selected": 9,
+      "references": [
+       {
+        "from": "Vana inimene igatseb koju tagasi",
+        "from_kind": "journal",
+        "reference": "SHS § 16",
+        "act": "Sotsiaalhoolekande seadus",
+        "section": "16",
+        "subsection": null,
+        "outcome": "would_add",
+        "passages": 1,
+        "added": 1,
+        "added_tokens": 190,
+        "brings_missing": 0
+       }
+      ]
+     },
+     {
+      "question": "pensioner-day-centre",
+      "kind": "within_document",
+      "found_all": true,
+      "missing_phrases": 0,
+      "selected": 12,
+      "references": []
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "questions": 30,
+   "found_all_now": 28,
+   "questions_with_any_abbreviation_reference": 6,
+   "references": 18,
+   "act_not_in_index": 4,
+   "own_act": 0,
+   "section_not_resolved": 0,
+   "already_selected": 3,
+   "would_add": 11,
+   "questions_with_an_addition": 5,
+   "added_tokens": 2647,
+   "additions_that_bring_a_missing_phrase": 0,
+   "questions_not_found_now": [
+    {
+     "question": "coach-reports-child",
+     "references": [
+      "LasteKS § 27 lg 1 → already_selected",
+      "LasteKS § 27 lg 5 → already_selected"
+     ]
+    },
+    {
+     "question": "child-rehabilitation-need",
+     "references": [
+      "LasteKS § 26 → would_add",
+      "LasteKS § 26 → already_selected"
+     ]
+    }
+   ]
+  }
+ }
+}
