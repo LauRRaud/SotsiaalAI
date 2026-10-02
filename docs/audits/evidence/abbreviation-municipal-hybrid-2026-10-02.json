@@ -1,0 +1,584 @@
+{
+ "catalogue": "/home/ubuntu/rag-v2-work/abbm-catalogue.json",
+ "date": "2026-10-02",
+ "profile": "hybrid-estnltk-chat-v6",
+ "search": "fused lexical and vector, no rerank model, no answer model",
+ "questions": [
+  {
+   "question": "narva-substitute-care-personal-costs",
+   "region": "narva_linn",
+   "scope_documents": 1090,
+   "channels": [
+    "postgres_lexical",
+    "qdrant_real_vector",
+    "search_variants_2",
+    "pool_reserve"
+   ],
+   "warnings": [
+    "rerank_unavailable_fused_order"
+   ],
+   "candidates": {
+    "read_by_the_rerank_model": 36,
+    "fused": 30,
+    "national_law_reserve": 6,
+    "pointing_passage": {
+     "place": 1,
+     "part": "fused",
+     "title": "Asendus- ja järelhooldusteenuse osutamise kord Narva linnas"
+    },
+    "deciding_passage": {
+     "place": 5,
+     "part": "fused",
+     "title": "Sotsiaalhoolekande seadus"
+    },
+    "titles": [
+     "Asendus- ja järelhooldusteenuse osutamise kord Narva linnas",
+     "Miks on vaja asendushooldust muuta?",
+     "Muudatused asendushoolduse korralduses",
+     "Sotsiaalhoolekande seadus",
+     "Sotsiaalteenuste maksumuse piirmäärade kinnitamine",
+     "Teekond erilise lapse kõrval",
+     "Suure hooldus- ja abivajadusega lastele sotsiaalteenuste osutamise tingimused ja kord",
+     "Heade praktikate kogumik",
+     "Kuidas on rakendunud muudatused asendus- ja järelhooldusteenuse valdkonnas?",
+     "Puue ja hoolekanne — SKA aastaraamatu PDF-osa 2025",
+     "Väljaspool kodu osutatavale üldhooldusteenusele suunamise kord Narva linnas",
+     "Puuetega lapse hooldajale hooldajatoetuse määramise ja maksmise kord",
+     "Koduteenuse osutamise tingimused ja kord Narva linnas",
+     "Omavalitsuse eestkostel oleva lapse elatisraha. Nõuda seda või mitte?",
+     "Narva-Jõesuu linnas on inimkesksus tulemusliku sotsiaaltöö nurgakivi",
+     "Narva sotsiaaltöös keskendutakse teenuste kvaliteedile ja koostööle",
+     "Laste turvakoduteenuse osutamise tingimused ja kord Narva linnas",
+     "Perekonnaseadus",
+     "Riigilõivuseadus"
+    ]
+   },
+   "final_without_model": {
+    "passages": 9,
+    "context_tokens": 5476,
+    "pointing_passage_selected": true,
+    "deciding_passage_selected": true,
+    "reasons": [
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed"
+    ],
+    "selected_titles": [
+     "Asendus- ja järelhooldusteenuse osutamise kord Narva linnas",
+     "Miks on vaja asendushooldust muuta?",
+     "Muudatused asendushoolduse korralduses",
+     "Sotsiaalhoolekande seadus",
+     "Sotsiaalteenuste maksumuse piirmäärade kinnitamine",
+     "Teekond erilise lapse kõrval",
+     "Suure hooldus- ja abivajadusega lastele sotsiaalteenuste osutamise tingimused ja kord"
+    ],
+    "named_act_references": {
+     "candidates": 0,
+     "additions": 0,
+     "acts": []
+    },
+    "cross_references": {
+     "candidates": 0,
+     "additions": 0,
+     "sections": []
+    }
+   },
+   "abbreviation_references_in_selection": [
+    {
+     "from": "Asendus- ja järelhooldusteenuse osutamise kord Narva linnas",
+     "from_legal_xml": true,
+     "reference": "SHS § 45¹¹ lõikes 3",
+     "act": "Sotsiaalhoolekande seadus",
+     "section": "45^11",
+     "subsection": "3",
+     "outcome": "resolved",
+     "passages": [
+      {
+       "chunk_id": "chunk_b6ccaab8e08b72170a0f98450317a873dd2e3c6b79b6b57e2b9dcc5ed4af8fb7",
+       "tokens": 333,
+       "deciding": true,
+       "already_selected": true
+      }
+     ]
+    },
+    {
+     "from": "Asendus- ja järelhooldusteenuse osutamise kord Narva linnas",
+     "from_legal_xml": true,
+     "reference": "SHS § 45¹¹ lõikes 4",
+     "act": "Sotsiaalhoolekande seadus",
+     "section": "45^11",
+     "subsection": "4",
+     "outcome": "resolved",
+     "passages": [
+      {
+       "chunk_id": "chunk_b6ccaab8e08b72170a0f98450317a873dd2e3c6b79b6b57e2b9dcc5ed4af8fb7",
+       "tokens": 333,
+       "deciding": true,
+       "already_selected": true
+      }
+     ]
+    },
+    {
+     "from": "Asendus- ja järelhooldusteenuse osutamise kord Narva linnas",
+     "from_legal_xml": true,
+     "reference": "SHS § 45¹¹ lõikes 3",
+     "act": "Sotsiaalhoolekande seadus",
+     "section": "45^11",
+     "subsection": "3",
+     "outcome": "resolved",
+     "passages": [
+      {
+       "chunk_id": "chunk_b6ccaab8e08b72170a0f98450317a873dd2e3c6b79b6b57e2b9dcc5ed4af8fb7",
+       "tokens": 333,
+       "deciding": true,
+       "already_selected": true
+      }
+     ]
+    },
+    {
+     "from": "Muudatused asendushoolduse korralduses",
+     "from_legal_xml": false,
+     "reference": "SHS § 45 lõige 3",
+     "act": "Sotsiaalhoolekande seadus",
+     "section": "45",
+     "subsection": "3",
+     "outcome": "resolved",
+     "passages": [
+      {
+       "chunk_id": "chunk_a4c703d8d404e523b167953b1852425444449b877c6eecb438d68165708325c2",
+       "tokens": 204,
+       "deciding": false,
+       "already_selected": false
+      }
+     ]
+    }
+   ],
+   "following_with_live_places": {
+    "additions": 1,
+    "tokens": 204,
+    "brings_deciding": false,
+    "other_additions": 1,
+    "other_tokens": 204,
+    "added": [
+     {
+      "reference": "SHS § 45 lõige 3",
+      "from": "Muudatused asendushoolduse korralduses",
+      "section": "45",
+      "subsection": "3",
+      "tokens": 204,
+      "deciding": false
+     }
+    ]
+   },
+   "following_without_cap": {
+    "additions": 1,
+    "tokens": 204,
+    "brings_deciding": false,
+    "other_additions": 1,
+    "other_tokens": 204,
+    "added": [
+     {
+      "reference": "SHS § 45 lõige 3",
+      "from": "Muudatused asendushoolduse korralduses",
+      "section": "45",
+      "subsection": "3",
+      "tokens": 204,
+      "deciding": false
+     }
+    ]
+   },
+   "following_from_legal_xml_only": {
+    "additions": 0,
+    "tokens": 0,
+    "brings_deciding": false,
+    "other_additions": 0,
+    "other_tokens": 0,
+    "added": []
+   }
+  },
+  {
+   "question": "sillamae-aftercare-student",
+   "region": "sillamae_linn",
+   "scope_documents": 1081,
+   "channels": [
+    "postgres_lexical",
+    "qdrant_real_vector",
+    "search_variants_2",
+    "pool_reserve"
+   ],
+   "warnings": [
+    "rerank_unavailable_fused_order"
+   ],
+   "candidates": {
+    "read_by_the_rerank_model": 36,
+    "fused": 30,
+    "national_law_reserve": 6,
+    "pointing_passage": {
+     "place": 4,
+     "part": "fused",
+     "title": "Asendus- ja järelhooldusteenuse osutamise tingimused ja kord"
+    },
+    "deciding_passage": {
+     "place": 5,
+     "part": "fused",
+     "title": "Sotsiaalhoolekande seadus"
+    },
+    "titles": [
+     "Suure hooldus- ja abivajadusega lastele sotsiaalteenuste osutamise tingimused ja kord",
+     "Asendus- ja järelhooldusteenuse osutamise tingimused ja kord",
+     "Saatjata alaealised välismaalased on riigile uus proovikivi",
+     "Sotsiaalhoolekande seadus",
+     "Miks on vaja asendushooldust muuta?",
+     "Hakkame parandama asendushoolduse kvaliteeti",
+     "Pille Vaiksaar: eesmärk on, et lapsed saaksid meie juurest lahkudes eluga paremini hakkama",
+     "Sotsiaalteenuste osutamise kord",
+     "Teekond erilise lapse kõrval",
+     "Heade praktikate kogumik",
+     "Tegevustest pikaajalise hoolduse vallas",
+     "Hooldajatoetus puudega lapse hooldajale",
+     "Kohaliku omavalitsuse poolt isikult ja/või perekonnalt sotsiaalteenuste eest tasu nõudmine",
+     "Puue ja hoolekanne — SKA aastaraamatu PDF-osa 2025",
+     "Kuidas muuta asendushoolduse noorte siirdumine iseseisvasse ellu sujuvamaks",
+     "Perekonnaseadus",
+     "Abivahendite loetelu: määruse „Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi andmed“ lisa (sotsiaalministri 24.09.2026 määruse nr 37 sõnastuses)"
+    ]
+   },
+   "final_without_model": {
+    "passages": 12,
+    "context_tokens": 7694,
+    "pointing_passage_selected": true,
+    "deciding_passage_selected": true,
+    "reasons": [
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "cross_reference",
+     "cross_reference",
+     "cross_reference"
+    ],
+    "selected_titles": [
+     "Suure hooldus- ja abivajadusega lastele sotsiaalteenuste osutamise tingimused ja kord",
+     "Asendus- ja järelhooldusteenuse osutamise tingimused ja kord",
+     "Saatjata alaealised välismaalased on riigile uus proovikivi",
+     "Sotsiaalhoolekande seadus",
+     "Miks on vaja asendushooldust muuta?",
+     "Hakkame parandama asendushoolduse kvaliteeti"
+    ],
+    "named_act_references": {
+     "candidates": 1,
+     "additions": 1,
+     "acts": [
+      "document_c32255b376cda0db1ac63e945ee75bed5b75c967b11d63699a789b53485f97f3:45"
+     ]
+    },
+    "cross_references": {
+     "candidates": 2,
+     "additions": 2,
+     "sections": [
+      "45^9",
+      "45^15"
+     ]
+    }
+   },
+   "abbreviation_references_in_selection": [
+    {
+     "from": "Saatjata alaealised välismaalased on riigile uus proovikivi",
+     "from_legal_xml": false,
+     "reference": "SHS-i § 126",
+     "act": "Sotsiaalhoolekande seadus",
+     "outcome": "section_not_resolved"
+    },
+    {
+     "from": "Asendus- ja järelhooldusteenuse osutamise tingimused ja kord",
+     "from_legal_xml": true,
+     "reference": "SHS § 45⁹ lõikes 3",
+     "act": "Sotsiaalhoolekande seadus",
+     "section": "45^9",
+     "subsection": "3",
+     "outcome": "resolved",
+     "passages": [
+      {
+       "chunk_id": "chunk_899e30647f7da22314b523be197f20da393fcca2cf4e7d73d23157607a175abd",
+       "tokens": 842,
+       "deciding": false,
+       "already_selected": true
+      }
+     ]
+    },
+    {
+     "from": "Asendus- ja järelhooldusteenuse osutamise tingimused ja kord",
+     "from_legal_xml": true,
+     "reference": "SHS § 45¹⁶ lõikes 1",
+     "act": "Sotsiaalhoolekande seadus",
+     "section": "45^16",
+     "subsection": "1",
+     "outcome": "resolved",
+     "passages": [
+      {
+       "chunk_id": "chunk_5f6622f604d598ddd2351d9a9056bb73edfeba93ef5127b787535967af7c1bde",
+       "tokens": 556,
+       "deciding": true,
+       "already_selected": true
+      }
+     ]
+    },
+    {
+     "from": "Asendus- ja järelhooldusteenuse osutamise tingimused ja kord",
+     "from_legal_xml": true,
+     "reference": "SHS § 45¹⁶ lõikes 2",
+     "act": "Sotsiaalhoolekande seadus",
+     "section": "45^16",
+     "subsection": "2",
+     "outcome": "resolved",
+     "passages": [
+      {
+       "chunk_id": "chunk_5f6622f604d598ddd2351d9a9056bb73edfeba93ef5127b787535967af7c1bde",
+       "tokens": 556,
+       "deciding": true,
+       "already_selected": true
+      }
+     ]
+    },
+    {
+     "from": "Asendus- ja järelhooldusteenuse osutamise tingimused ja kord",
+     "from_legal_xml": true,
+     "reference": "SHS § 45¹¹ lõikes 4",
+     "act": "Sotsiaalhoolekande seadus",
+     "section": "45^11",
+     "subsection": "4",
+     "outcome": "resolved",
+     "passages": [
+      {
+       "chunk_id": "chunk_b6ccaab8e08b72170a0f98450317a873dd2e3c6b79b6b57e2b9dcc5ed4af8fb7",
+       "tokens": 333,
+       "deciding": false,
+       "already_selected": false
+      }
+     ]
+    }
+   ],
+   "following_with_live_places": {
+    "additions": 1,
+    "tokens": 333,
+    "brings_deciding": false,
+    "other_additions": 1,
+    "other_tokens": 333,
+    "added": [
+     {
+      "reference": "SHS § 45¹¹ lõikes 4",
+      "from": "Asendus- ja järelhooldusteenuse osutamise tingimused ja kord",
+      "section": "45^11",
+      "subsection": "4",
+      "tokens": 333,
+      "deciding": false
+     }
+    ]
+   },
+   "following_without_cap": {
+    "additions": 1,
+    "tokens": 333,
+    "brings_deciding": false,
+    "other_additions": 1,
+    "other_tokens": 333,
+    "added": [
+     {
+      "reference": "SHS § 45¹¹ lõikes 4",
+      "from": "Asendus- ja järelhooldusteenuse osutamise tingimused ja kord",
+      "section": "45^11",
+      "subsection": "4",
+      "tokens": 333,
+      "deciding": false
+     }
+    ]
+   },
+   "following_from_legal_xml_only": {
+    "additions": 1,
+    "tokens": 333,
+    "brings_deciding": false,
+    "other_additions": 1,
+    "other_tokens": 333,
+    "added": [
+     {
+      "reference": "SHS § 45¹¹ lõikes 4",
+      "from": "Asendus- ja järelhooldusteenuse osutamise tingimused ja kord",
+      "section": "45^11",
+      "subsection": "4",
+      "tokens": 333,
+      "deciding": false
+     }
+    ]
+   }
+  },
+  {
+   "question": "polva-support-person-relative",
+   "region": "polva_vald",
+   "scope_documents": 1086,
+   "channels": [
+    "postgres_lexical",
+    "qdrant_real_vector",
+    "search_variants_2",
+    "pool_reserve"
+   ],
+   "warnings": [
+    "rerank_unavailable_fused_order"
+   ],
+   "candidates": {
+    "read_by_the_rerank_model": 36,
+    "fused": 30,
+    "national_law_reserve": 6,
+    "pointing_passage": {
+     "place": 1,
+     "part": "fused",
+     "title": "Raske ja sügava puudega lapse tugiisikuteenuse ja lapsehoiuteenuse osutamise tingimused ja kord"
+    },
+    "deciding_passage": {
+     "place": 32,
+     "part": "national_law_reserve",
+     "title": "Sotsiaalhoolekande seadus"
+    },
+    "titles": [
+     "Raske ja sügava puudega lapse tugiisikuteenuse ja lapsehoiuteenuse osutamise tingimused ja kord",
+     "Puudega lastega perede toimetuleku ja vajaduste uuring",
+     "Heade praktikate kogumik",
+     "Raske ja sügava puudega lastele suunatud tugiisiku- ja lapsehoiuteenus",
+     "Raske ja sügava puudega lastele sotsiaalteenuste osutamiseks toetuse andmise ja maksmise kord",
+     "Teekond erilise lapse kõrval",
+     "Õpilase toetamine koolis (varasem versioon)",
+     "Sotsiaaltöö Rakvere linnas",
+     "Juhendmaterjal õpilase toetamiseks koolis",
+     "Tugiisiku ja isikliku abistaja teenuse osutamise tingimused ja kord",
+     "Puudega lapse hoolduse korraldamise kord",
+     "Sotsiaalhoolekande seadus",
+     "Lastekaitseseadus",
+     "Abivahendite loetelu: määruse „Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi andmed“ lisa (sotsiaalministri 24.09.2026 määruse nr 37 sõnastuses)",
+     "Perekonnaseadus"
+    ]
+   },
+   "final_without_model": {
+    "passages": 9,
+    "context_tokens": 5171,
+    "pointing_passage_selected": true,
+    "deciding_passage_selected": false,
+    "reasons": [
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed"
+    ],
+    "selected_titles": [
+     "Raske ja sügava puudega lapse tugiisikuteenuse ja lapsehoiuteenuse osutamise tingimused ja kord",
+     "Puudega lastega perede toimetuleku ja vajaduste uuring",
+     "Heade praktikate kogumik",
+     "Raske ja sügava puudega lastele suunatud tugiisiku- ja lapsehoiuteenus",
+     "Raske ja sügava puudega lastele sotsiaalteenuste osutamiseks toetuse andmise ja maksmise kord"
+    ],
+    "named_act_references": {
+     "candidates": 0,
+     "additions": 0,
+     "acts": []
+    },
+    "cross_references": {
+     "candidates": 0,
+     "additions": 0,
+     "sections": []
+    }
+   },
+   "abbreviation_references_in_selection": [
+    {
+     "from": "Raske ja sügava puudega lapse tugiisikuteenuse ja lapsehoiuteenuse osutamise tingimused ja kord",
+     "from_legal_xml": true,
+     "reference": "SHS § 25",
+     "act": "Sotsiaalhoolekande seadus",
+     "section": "25",
+     "subsection": null,
+     "outcome": "resolved",
+     "passages": [
+      {
+       "chunk_id": "chunk_9ad9c97a0deb04cc6be3638e66dc913a733437be473613fabcbd498ffc1cbf5e",
+       "tokens": 186,
+       "deciding": true,
+       "already_selected": false
+      }
+     ]
+    }
+   ],
+   "following_with_live_places": {
+    "additions": 1,
+    "tokens": 186,
+    "brings_deciding": true,
+    "other_additions": 0,
+    "other_tokens": 0,
+    "added": [
+     {
+      "reference": "SHS § 25",
+      "from": "Raske ja sügava puudega lapse tugiisikuteenuse ja lapsehoiuteenuse osutamise tingimused ja kord",
+      "section": "25",
+      "subsection": null,
+      "tokens": 186,
+      "deciding": true
+     }
+    ]
+   },
+   "following_without_cap": {
+    "additions": 1,
+    "tokens": 186,
+    "brings_deciding": true,
+    "other_additions": 0,
+    "other_tokens": 0,
+    "added": [
+     {
+      "reference": "SHS § 25",
+      "from": "Raske ja sügava puudega lapse tugiisikuteenuse ja lapsehoiuteenuse osutamise tingimused ja kord",
+      "section": "25",
+      "subsection": null,
+      "tokens": 186,
+      "deciding": true
+     }
+    ]
+   },
+   "following_from_legal_xml_only": {
+    "additions": 1,
+    "tokens": 186,
+    "brings_deciding": true,
+    "other_additions": 0,
+    "other_tokens": 0,
+    "added": [
+     {
+      "reference": "SHS § 25",
+      "from": "Raske ja sügava puudega lapse tugiisikuteenuse ja lapsehoiuteenuse osutamise tingimused ja kord",
+      "section": "25",
+      "subsection": null,
+      "tokens": 186,
+      "deciding": true
+     }
+    ]
+   }
+  }
+ ],
+ "generation": "search_generation_34fe1590bbd5e2bf6a788bef196d50e26b5f573e2a63bc30fbbe1d56ab28c8f4",
+ "embedding": {
+  "requests": 1,
+  "texts": 9,
+  "tokens": 269,
+  "model": "text-embedding-3-large",
+  "usd_at_plan_price": 0.00003497,
+  "estimate_usd": 0.00003497
+ }
+}
