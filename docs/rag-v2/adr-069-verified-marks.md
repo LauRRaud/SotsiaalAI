@@ -33,7 +33,7 @@ Kontrolli tulemus ei kao koos protsessiga.
 ### Mida see ei muuda
 
 - Kontrollide sisu. Ridade muutus, uus korpuse versioon või uus dokument kontrollitakse enne kasutamist täielikult nagu enne.
-- Skriptid ja hindamisjooksud: nende protsessid märke ei loe ega kirjuta (`inheritVerified` kutsub ainult serveri käivitus).
+- Skriptid ja hindamisjooksud märke ei kirjuta. Alates 02.10 õhtust loevad kaks mõõtmisskripti neid (vt „Täiendus: mõõtmisskriptid“).
 - Esimene käivitus pärast seda muudatust on külm nagu enne: tabel on tühi.
 
 ### Teostus
@@ -68,10 +68,35 @@ Testid: `tests/rag-v2-verified-marks.test.mjs` (märk, pärimine, salvestus, usa
 - Pööre kokku 21,7 s, esimene tekst 19,4 s: sellest 15,1 s oli vastuse mudel (1993 arutlustokenit), 2,6 s plaan ja 1,1 s embedding. Need ei sõltu serveri soojusest.
 - Protsessi oma taustakontroll lõppes 335 s pärast starti (ootas pöörde ajal umbes 13 s).
 
+## Täiendus 02.10.2026 õhtul: mõõtmisskriptid loevad märke
+
+Omanik 02.10: „Jätka A-ga — hindamisjooksude kiirendamine. Kasuta olemasolevat kontrollimärkide lahendust … tasulisi mõõtmisjookse selle töö jaoks ei tee.“
+
+- **Probleem.** Iga hindamisjooks on uus protsess. See kontrollis oma allikad ise ja käivitas esimese pöördega taustal kogu 1596 allika soojenduse, millega pöörded võistlesid. Hindamise vestluse esimeste pöörete otsing võttis seetõttu 13–27 s ja hilisemate 4–6 s; päris serveri pöördes mõõdeti samal päeval 3,1 s. Hindamise ajad ei näidanud seda, mida kasutaja näeb.
+- **Otsus.** `inheritVerified({ keep: false })`: protsess loeb serveri märgid ja **ei kirjuta midagi**. See ei kustuta aegunud märke, ei salvesta enda kontrolle ega tühjenda tabelit, kui tema enda kontroll ebaõnnestub (siis lõpeb ainult tema enda usaldus). Põhjus: skript ei ole server ja võib joosta muudetud koodiga ajutises koopias.
+  - `scripts/rag-v2-conversation-eval.mjs` loeb märgid ja jätab siis oma taustasoojenduse käivitamata. Aruandes on `verified_marks`.
+  - `scripts/rag-v2-graph-experiment.mjs` loeb märgid; aruandes `verified_marks`.
+  - Mõlemal on valik `--cold`: ilma märkideta, kõik kontrollitakse selles protsessis nagu enne. Seda kasuta, kui mõõdetav muudatus puudutab kontrolle endid. `--warm` (hindaja) teeb endiselt enne jooksu täiskontrolli ise.
+  - Allikas, millel märki pole, ja rida, mis on pärast serveri kontrolli muutunud, kontrollitakse skriptis täielikult nagu enne.
+- **Mõõdetud tasuta** (server, ajutine koopia, otsingukatse kataloogil `hard-conditions-2`, 6 küsimust × 11 haru, vektorid taaskasutatud):
+
+| | Märkidega | `--cold` |
+|---|---:|---:|
+| Kogu jooks | 99 s | 122 s |
+| Iga küsimuse esimene haru (allikate esimene lugemine), kokku | 17,8 s | 41,8 s |
+| Esimese haru mediaan | 3,4 s | 8,0 s |
+
+  - Valikud on mõlemas jooksus samad (66 rida, samad lõigud ja tokenid). Märkide tabel jäi puutumata: 4928 rida ja sama viimane aeg enne ja pärast.
+  - Otsingukatses on võit väike, sest sama protsess loeb samu allikaid 11 haruga ja kontrollib neid ainult esimesel korral.
+  - **Vestluse hindaja mõju ei ole mõõdetud** (see oleks tasuline jooks). Oodatav: pöörde otsing serveri tasemel, sest oma kontrolli ja taustasoojendust enam ei ole. Järgmise vajaliku hindamisjooksu aruanne näitab seda (`verified_marks` ja pöörete otsinguajad).
+- **Testid:** `tests/rag-v2-verified-marks.test.mjs` (ainult lugev protsess: ei kustuta, ei salvesta, usalduse lõpp jätab tabeli alles) ja uus `tests/rag-v2-verified-marks.integration.test.mjs` päris kohaliku Postgresi ja Qdrantiga (märgiga allikas loetakse analüüsi ja objektide võrdluseta, märgita allikas kontrollitakse täielikult, muudetud rida lükatakse tagasi, tabel jääb muutmata, `--cold` kontrollib kõik).
+
 ## Piirid
 
 - Esimestel minutitel pärast käivitust kasutab vestlus allikaid, mille kontrollis eelmine protsess, mitte käimasolev. Kui deploy muudab kontrolli koodi nii, et salvestatud andmed enam ei sobi, selgub see selle protsessi taustakontrollis mõne minuti jooksul, mitte enne esimest kasutust.
 - Märk tugineb rea versioonile (`xmin`). Kettal riknenud rida, mille versioon ei muutunud, leiab alles taustakontroll.
 - Kui vestlusi tuleb vahetpidamata, venib taustakontroll kuni 10 min pikemaks; pärast seda võistleb see vestlusega nagu enne.
 - Bundle'ite vahemälu on uues protsessis tühi: esimene lugemine toob bundle'i andmebaasist (mõõdetud 35 ms allika kohta, soojalt 10 ms).
+- Taustasoojendus kontrollib uuesti ainult teadmusallikaid (1596). Kataloogikirjete (teenused, toetused, kontaktid) märgid tekivad pöörde enda kontrollist ja uus protsess neid ise üle ei kontrolli; selline märk kehtib kuni 30 päeva või rea muutumiseni.
+- Mõõtmisskript, mis jookseb muudetud koodiga, usaldab serveri koodiga tehtud kontrolle. Kui muudatus puudutab kontrolle, kasuta `--cold`.
 - Elavalt on mõõdetud üks pööre. Kui deploy ehitus tõrjub Qdranti vektorid mälust, loeb käivitus need uuesti (02.10 kuni 14 s); selle aja sees esitatud küsimus võib vektoripäringut oodata.
