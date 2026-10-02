@@ -192,6 +192,34 @@ test('ADR-063: every pattern of the third hard catalogue passes a right answer a
   }
 });
 
+// The municipal abbreviation catalogue (measured 02.10.2026, no rule built): chosen with --scenarios, never part of a standing run.
+test('the municipal abbreviation catalogue is the twin of its search catalogue, and its patterns pass a right answer and fail the opposite one', async () => {
+  const catalogue = JSON.parse(await fs.readFile('tests/evaluation/dialogue/scenarios-abbreviation-municipal-1.json', 'utf8'));
+  const graph = JSON.parse(await fs.readFile('tests/evaluation/graph/abbreviation-municipal-1.json', 'utf8'));
+  assert.deepEqual(catalogue.scenarios.map(scenario => [scenario.id, scenario.turns.length, scenario.turns[0].text, scenario.turns[0].expect.evidence_text, scenario.turns[0].expect.region]),
+    graph.questions.map(question => [question.id, 1, question.text, question.evidence_text, question.region]));
+  const expectOf = id => catalogue.scenarios.find(scenario => scenario.id === id).turns[0].expect;
+  const act = [{ title: 'Sotsiaalhoolekande seadus', documentId: 'shs' }], regulation = [{ title: 'Asendus- ja järelhooldusteenuse osutamise kord', documentId: 'kord' }];
+  const verdict = (id, text, extra = {}) => checkTurn(expectOf(id), observed({ region: expectOf(id).region, text, evidenceTexts: expectOf(id).evidence_text, cited: act, ...extra })).verdict;
+  // [right answer, opposite answer]: the right one gives what the Act's provision says, the opposite one the regulation without it.
+  const answers = {
+    'narva-substitute-care-personal-costs': ['Lapse isiklike kulude katteks tuleb iga kuu teha kulutusi keskmiselt 240 euro ulatuses ja vähemalt 2880 eurot aastas.',
+      'Narva kord tagab seaduses sätestatud miinimumi, aga summat ma öelda ei saa.'],
+    'sillamae-aftercare-student': ['Jah. Kui jätkad õppimist kutseõppes, tagab linn järelhooldusteenuse nominaalse õppeaja lõpuni, kuid mitte kauem kui sinu 25-aastaseks saamiseni.',
+      'Ei. Järelhooldusteenus lõpeb täisealiseks saamisel.'],
+    'polva-support-person-relative': ['Ei. Vanaema ei saa olla lapse tugiisikuteenuse vahetu osutaja, sest ta on teise astme üleneja sugulane.', 'Jah, vanaema võib olla tugiisik, kui ta annab kirjaliku nõusoleku.'],
+  };
+  assert.deepEqual(Object.keys(answers), catalogue.scenarios.map(scenario => scenario.id));
+  for (const [id, [right, opposite]] of Object.entries(answers)) {
+    assert.equal(verdict(id, right), 'passed', `${id}: ${right}`);
+    assert.equal(verdict(id, opposite), 'answer', `${id}: ${opposite}`);
+    // The Act's words missing from the evidence is a search failure; a right answer that cites only the regulation is an answer failure.
+    assert.equal(verdict(id, right, { evidenceTexts: ['Teenuse osutaja peab vastama SHS § 25 esitatud nõuetele.'] }), 'search', id);
+    assert.equal(verdict(id, right, { cited: regulation }), 'answer', id);
+    assert.equal(verdict(id, right, { region: 'kose_vald' }), 'state', id);
+  }
+});
+
 test('ADR-062: the provision-date patterns fail the 30.09 answers and pass an answer that dates the rule by the act\'s own provision', async () => {
   const catalogue = JSON.parse(await fs.readFile('tests/evaluation/dialogue/scenarios-provision-dates-1.json', 'utf8'));
   const turnOf = id => catalogue.scenarios.find(scenario => scenario.id === id).turns[0];
