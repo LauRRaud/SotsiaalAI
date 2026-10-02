@@ -40,14 +40,6 @@ const SOURCES_ICON = (
     <path d="M3.5 16 12 20.5 20.5 16" />
   </svg>
 );
-const DIAGNOSTICS_ICON = (
-  <svg {...ICON_PROPS}>
-    <path d="M4 5h16M4 12h16M4 19h16" />
-    <circle cx="8" cy="5" r="2" />
-    <circle cx="16" cy="12" r="2" />
-    <circle cx="10" cy="19" r="2" />
-  </svg>
-);
 
 
 function splitGraphemes(text) {
@@ -189,8 +181,6 @@ const ChatMessageItem = memo(function ChatMessageItem({
   onSpeak,
   messageSources = [],
   onShowSources,
-  onShowDiagnostics,
-  diagnosticRef = null,
   isStreaming = false,
   completionStatus = null,
   onRetry,
@@ -394,15 +384,6 @@ const ChatMessageItem = memo(function ChatMessageItem({
           icon: SOURCES_ICON
         });
       }
-    }
-    if (!isStreaming && onShowDiagnostics) {
-      messageActions.push({
-        key: "diagnostics",
-        label: tipLabel("diagnostics", "Diagnostika"),
-        ariaLabel: t("chat.diagnostics.open"),
-        onSelect: () => onShowDiagnostics(diagnosticRef || "missing"),
-        icon: DIAGNOSTICS_ICON
-      });
     }
   }
   const toggleUserTimestamp = () => {
