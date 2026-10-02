@@ -2,7 +2,9 @@
 
 Teostus Claude Opus 5.5. Omanik 02.10: „Alusta B tasuta mõõtmisest … Too konkreetsed näited ja soovitus, kas uut reeglit on vaja. Arenduse otsustame mõõtmise tulemuse järgi.“ Taust: [ADR-064](../rag-v2/adr-064-named-other-act.md) järgib teist seadust ainult siis, kui see on nimetatud täisnimega; lühend jäeti [ADR-063](../rag-v2/adr-063-checked-relations.md) järel mõõtmata.
 
-**Soovitus pärast teist mõõtmist (jaotis 6):** üldist reeglit ei ole vaja; **kitsas reegel ainult määrustest** tooks kolmest mõõdetud küsimusest kahes puuduva otsustava sätte. Otsus on omanikul.
+**Seis pärast kolmandat mõõtmist (jaotis 7, ühendatud otsing):** üldist reeglit ei ole vaja. Kitsa reegli (ainult määrustest) kasu on väiksem, kui sõnaline katse näitas: ühendatud otsing leiab kolmest otsustavast sättest kaks ise ja kolmas jõuab eelvaliku mudeli kandidaatidesse. Reegel tooks juurde ühe sätte kolmest. Otsus on omanikul.
+
+Teine mõõtmine (jaotis 6, ainult sõnaline otsing): kitsas reegel tooks kolmest küsimusest kahes puuduva sätte.
 
 Esimene mõõtmine (jaotised 1–5): 30 raskes küsimuses ei toonud lühendi järgimine ühtegi puuduvat otsustavat sätet.
 
@@ -112,6 +114,36 @@ Omanik 02.10: „Mõõda Narva-tüüpi määruste juhtum tasuta otsingukatsega, 
 - **Vektorikanal ja eelvaliku mudel puuduvad.** Päris otsing liidab sõnalise ja vektorjärjestuse ning mudel valib 30 kandidaadi seast; otsustav säte võib sealt tulla ka ilma reeglita (Narvas tuli see juba sõnalisest otsingust). Kindluse annaks sama katse vektoritega (kolme küsimuse embedding, alla 0,001 USD) ja üks vestluse raja jooks.
 - Kolm küsimust on minu valitud määruste seast, kus säte on sisuliselt seadusele delegeeritud; see ei ütle, kui sageli kasutajad selliseid küsimusi küsivad.
 - Kõrvalise teksti hulk sõltub viitava lõigu viidete järjekorrast; kaks kohta võib otsustava viite ka välja jätta, kui see on lõigus kolmas.
+
+## 7. Määruste juhtum ühendatud otsinguga (kolmas mõõtmine 02.10 õhtul)
+
+Omanik 02.10: „Luba on antud ühele embedding’u päringule kolme senise küsimusega, kogukulu kuni 0,001 USD. Salvesta vektorid korduskasutuseks ja korda katset sama tootmisprofiili ühendatud otsinguga. … Eelvaliku- ja vastusemudeli kutseid ega reegli teostust see luba ei hõlma.“
+
+- **Kulu:** üks embedding'u päring, 9 teksti (kolm küsimust ja kataloogi kuus päringut), 269 tokenit, **0,000035 USD** plaani hinnaga. Vektorid on serveris failis `eval-files/abbreviation-municipal-1/vectors.json`; kordusjooks ei saada midagi.
+- **Katse** ([skript](rag-v2-abbreviation-municipal-hybrid-2026-10-02-probes.mjs), [tulemus](evidence/abbreviation-municipal-hybrid-2026-10-02.json)): sama kataloog, profiil v6, teadmiste rada nii, nagu vestlus selle ehitab: sõnaline ja vektorotsing liidetult, valla määrused ja täna kehtivad seadused, riikliku õiguse varukohad. Eelvaliku mudelit ei kutsutud: selle asemel salvestati kandidaadid, mida mudel loeks (30 liidetud, kuni 10 ühest dokumendist, ja 6 varukohta), ning lõppvalik jäi liidetud järjestuse järgi.
+
+| Küsimus | Otsustav säte kandidaatides | Mudelita lõppvalikus | Mida lühendireegel lisaks (kaks kohta) | Ainult määrustest |
+|---|---|---|---|---|
+| Narva: isiklike kulude miinimum (SHS § 45¹¹ lg 3) | jah, koht 5 | **jah** | 1 lõik, 204 tokenit, vale säte (artikli PDF, kadunud ülaindeks) | ei midagi |
+| Sillamäe: järelhooldus (SHS § 45¹⁶ lg 1) | jah, koht 5 | **jah** | 1 lõik, 333 tokenit (SHS § 45¹¹), otsustav on juba olemas | sama |
+| Põlva: tugiisik ja vanaema (SHS § 25 lg 2) | jah, koht 32 (varukoht) | **ei** | **otsustav säte**, 186 tokenit, kõrvalist teksti ei ole | sama |
+
+- **Kaks kolmest leiab otsing ise.** Vektorikanal tõi Sillamäe sätte, mida sõnaline otsing ei toonud (seal koht 62). Reeglit neis kahes vaja ei ole; see lisaks ainult kõrvalise lõigu.
+- **Põlva säte on kandidaatides ainult varukohana** (36-st 32.) ja mudelita lõppvalikusse ei jõua. Kas eelvaliku mudel selle sealt võtab, on mõõtmata. Kaudne tõend, et ei pruugi: Harku kaksikküsimuses (sama säte, täisnimega viide) jäi SHS § 25 lg 2 tekst päris vestluses tõenditest välja, kuni täisnime reegel tehti ([ADR-063](../rag-v2/adr-063-checked-relations.md), [ADR-064](../rag-v2/adr-064-named-other-act.md)).
+- **Kõrvaline tekst** on reegli korral väike: 0–333 tokenit küsimuse kohta, kui järgida ainult määrusi. Artiklist tulev lisandus (Narva) on vale säte ja kinnitab, et PDF-idest järgida ei tohi.
+
+### Mida see ütleb
+
+- Sõnalise katse tulemus (2 kolmest) oli liiga optimistlik: ühendatud otsinguga on reeglist kasu **ühes küsimuses kolmest**.
+- See üks on sama kuju, mille pärast täisnime reegel tehti (määrus annab nõuded üle SHS-ile). Kitsas reegel paneks lühendi täisnimega samale pulgale: määrus, mis kirjutab „SHS § 25“, saaks sama, mis määrus, mis kirjutab „sotsiaalhoolekande seaduse § 25“.
+- Kulu oleks väike (kuni kaks lõiku, mõõdetud 186–333 tokenit) ja risk väike, kui järgida ainult õigusakti XML-ist.
+- Kindel vastus Põlva küsimusele tuleks ühest vestluse raja pöördest (eelvaliku ja vastuse mudel, umbes 0,005 USD); seda luba ei hõlmanud.
+
+### Piirid
+
+- Kolm küsimust, igaüks üks kord; kandidaatide ja lõppvaliku järjekord on mudelita.
+- Lühendireegel on simuleeritud mudelita lõppvalikul. Päris vestluses rakenduks see mudeli valitud lõikudele, mis võivad erineda.
+- Kataloogi päringud on käsitsi kirjutatud; vestluses kirjutab need otsinguplaani mudel.
 
 ## Piirid
 
