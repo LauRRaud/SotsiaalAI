@@ -22,7 +22,7 @@ import { performance } from 'node:perf_hooks';
 import { PostgresCatalog } from '../lib/rag-v2/search/postgres.js';
 import { QdrantIndex } from '../lib/rag-v2/search/qdrant.js';
 import { retrieve } from '../lib/rag-v2/search/retrieval.js';
-import { retrievalProfile, queryForProfile, assertProfileGeneration, GRAPH_EXPERIMENT_PROFILES, CHAT_PROFILE, CHAT_REFERENCES_PROFILE, CHAT_NAMED_ACTS_PROFILE } from '../lib/rag-v2/search/profiles.js';
+import { retrievalProfile, queryForProfile, assertProfileGeneration, GRAPH_EXPERIMENT_PROFILES, CHAT_PROFILE, CHAT_REFERENCES_PROFILE, CHAT_NAMED_ACTS_PROFILE, CHAT_SUBSECTIONS_PROFILE } from '../lib/rag-v2/search/profiles.js';
 import { tokenCount } from '../lib/rag-v2/search/embedding.js';
 import { chunkSection } from '../lib/rag-v2/search/legal-references.js';
 import { actGold, actPassages, pointerAdditions, firstPassageAdditions } from './rag-v2-relation-gold.mjs';
@@ -32,7 +32,9 @@ import { legalReference, legalValidityScope } from '../lib/rag-v2/search/legal-v
 const args = process.argv.slice(2), option = name => { const at = args.indexOf(name); return at >= 0 ? args[at + 1] : null; };
 const cataloguePath = option('--catalogue'), out = option('--out'), tenant = option('--tenant') || 'sotsiaalai-corpus';
 const manifestPath = option('--manifest') || 'docs/rag-v2/legal-acts-in-index.json';
-const ARMS = { ...GRAPH_EXPERIMENT_PROFILES, L: CHAT_REFERENCES_PROFILE, N: CHAT_NAMED_ACTS_PROFILE, V: CHAT_PROFILE };
+// O (ADR-068): chat v6, whose own-act cross-references add the named subsection's passages; without a reranker it
+// differs from N (v4) in that alone (v5's pool limit needs a reranker).
+const ARMS = { ...GRAPH_EXPERIMENT_PROFILES, L: CHAT_REFERENCES_PROFILE, N: CHAT_NAMED_ACTS_PROFILE, O: CHAT_SUBSECTIONS_PROFILE, V: CHAT_PROFILE };
 const POINTER_ROOM = { additions: 4, tokens: 3000 };
 if (!cataloguePath || !out) { console.error('usage: --catalogue <json> --out <dir> [--tenant <id>]'); process.exit(2); }
 const catalogue = JSON.parse(await fs.readFile(cataloguePath, 'utf8'));
@@ -189,9 +191,20 @@ try {
     namedActs.mean_added_tokens += (row.context_tokens - base.context_tokens) / v4.size;
   }
   namedActs.mean_added_tokens = Math.round(namedActs.mean_added_tokens);
-  const report = { schema_version: 'rag-v2/graph-experiment-3', generation: generation.id, date: catalogue.date, catalogue: cataloguePath,
+  // ADR-068: arm O against arm N, question by question: what the subsection rule changes, finds and loses.
+  const v6 = selectedBy('O');
+  const ownSubsections = { questions: v6.size, changed: [], gained: [], lost: [], mean_token_change: 0 };
+  for (const [question, row] of v6) {
+    const base = v4.get(question);
+    if (JSON.stringify(row.selected) !== JSON.stringify(base.selected)) ownSubsections.changed.push(question);
+    if (row.found_all && !base.found_all) ownSubsections.gained.push(question);
+    if (!row.found_all && base.found_all) ownSubsections.lost.push(question);
+    ownSubsections.mean_token_change += (row.context_tokens - base.context_tokens) / v6.size;
+  }
+  ownSubsections.mean_token_change = Math.round(ownSubsections.mean_token_change);
+  const report = { schema_version: 'rag-v2/graph-experiment-4', generation: generation.id, date: catalogue.date, catalogue: cataloguePath,
     eligible_documents: eligible.length, excluded_legal_versions: legal.excluded.length, pointer_room: POINTER_ROOM,
-    simulation_check: { questions: live.size, s_equals_l: [...live].filter(([question, found]) => today.get(question) === found).length }, named_acts: namedActs, summary, shapes, rows };
+    simulation_check: { questions: live.size, s_equals_l: [...live].filter(([question, found]) => today.get(question) === found).length }, named_acts: namedActs, own_subsections: ownSubsections, summary, shapes, rows };
   await fs.writeFile(path.join(out, 'graph-experiment.json'), JSON.stringify(report, null, 1));
-  console.log(JSON.stringify({ ok: true, summary, named_acts: namedActs }, null, 1));
+  console.log(JSON.stringify({ ok: true, summary, named_acts: namedActs, own_subsections: ownSubsections }, null, 1));
 } finally { await postgres.close?.(); }
