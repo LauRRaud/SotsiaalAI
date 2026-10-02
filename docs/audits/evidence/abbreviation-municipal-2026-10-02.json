@@ -1,0 +1,496 @@
+{
+ "catalogue": "/home/ubuntu/rag-v2-work/abbm-catalogue.json",
+ "date": "2026-10-02",
+ "channel": "postgres_lexical only (no embedding, no model call)",
+ "profile": "hybrid-estnltk-chat-v6",
+ "questions": [
+  {
+   "question": "narva-substitute-care-personal-costs",
+   "region": "narva_linn",
+   "scope_documents": 1090,
+   "channels": [
+    "postgres_lexical",
+    "search_variants_2"
+   ],
+   "today": {
+    "passages": 9,
+    "context_tokens": 6877,
+    "pointing_passage_selected": true,
+    "deciding_passage_selected": true,
+    "reasons": [
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed"
+    ],
+    "selected_titles": [
+     "Asendus- ja järelhooldusteenuse osutamise kord Narva linnas",
+     "Väljaspool kodu osutatavale üldhooldusteenusele suunamise kord Narva linnas",
+     "Täiendavate sotsiaaltoetuste maksmise kord Narva linnas",
+     "Sünnitoetuse maksmise kord Narva linnas",
+     "Muudatused asendushoolduse korralduses",
+     "Sotsiaalhoolekande seadus",
+     "Narva-Jõesuu linnas on inimkesksus tulemusliku sotsiaaltöö nurgakivi"
+    ],
+    "lexical_rank_of_pointing_passage": 1,
+    "lexical_rank_of_deciding_passage": 7,
+    "lexical_candidates": 300,
+    "named_act_references": {
+     "candidates": 0,
+     "additions": 0,
+     "acts": []
+    },
+    "cross_references": {
+     "candidates": 0,
+     "additions": 0,
+     "sections": []
+    }
+   },
+   "abbreviation_references_in_selection": [
+    {
+     "from": "Asendus- ja järelhooldusteenuse osutamise kord Narva linnas",
+     "reference": "SHS § 45¹¹ lõikes 3",
+     "act": "Sotsiaalhoolekande seadus",
+     "section": "45^11",
+     "subsection": "3",
+     "outcome": "resolved",
+     "passages": [
+      {
+       "chunk_id": "chunk_b6ccaab8e08b72170a0f98450317a873dd2e3c6b79b6b57e2b9dcc5ed4af8fb7",
+       "tokens": 333,
+       "deciding": true,
+       "already_selected": true
+      }
+     ]
+    },
+    {
+     "from": "Asendus- ja järelhooldusteenuse osutamise kord Narva linnas",
+     "reference": "SHS § 45¹¹ lõikes 4",
+     "act": "Sotsiaalhoolekande seadus",
+     "section": "45^11",
+     "subsection": "4",
+     "outcome": "resolved",
+     "passages": [
+      {
+       "chunk_id": "chunk_b6ccaab8e08b72170a0f98450317a873dd2e3c6b79b6b57e2b9dcc5ed4af8fb7",
+       "tokens": 333,
+       "deciding": true,
+       "already_selected": true
+      }
+     ]
+    },
+    {
+     "from": "Asendus- ja järelhooldusteenuse osutamise kord Narva linnas",
+     "reference": "SHS § 45¹¹ lõikes 3",
+     "act": "Sotsiaalhoolekande seadus",
+     "section": "45^11",
+     "subsection": "3",
+     "outcome": "resolved",
+     "passages": [
+      {
+       "chunk_id": "chunk_b6ccaab8e08b72170a0f98450317a873dd2e3c6b79b6b57e2b9dcc5ed4af8fb7",
+       "tokens": 333,
+       "deciding": true,
+       "already_selected": true
+      }
+     ]
+    },
+    {
+     "from": "Muudatused asendushoolduse korralduses",
+     "reference": "SHS § 45 lõige 3",
+     "act": "Sotsiaalhoolekande seadus",
+     "section": "45",
+     "subsection": "3",
+     "outcome": "resolved",
+     "passages": [
+      {
+       "chunk_id": "chunk_a4c703d8d404e523b167953b1852425444449b877c6eecb438d68165708325c2",
+       "tokens": 204,
+       "deciding": false,
+       "already_selected": false
+      }
+     ]
+    }
+   ],
+   "following_with_live_places": {
+    "additions": 1,
+    "tokens": 204,
+    "brings_deciding": false,
+    "other_additions": 1,
+    "other_tokens": 204,
+    "added": [
+     {
+      "reference": "SHS § 45 lõige 3",
+      "section": "45",
+      "subsection": "3",
+      "tokens": 204,
+      "deciding": false
+     }
+    ]
+   },
+   "following_without_cap": {
+    "additions": 1,
+    "tokens": 204,
+    "brings_deciding": false,
+    "other_additions": 1,
+    "other_tokens": 204,
+    "added": [
+     {
+      "reference": "SHS § 45 lõige 3",
+      "section": "45",
+      "subsection": "3",
+      "tokens": 204,
+      "deciding": false
+     }
+    ]
+   }
+  },
+  {
+   "question": "sillamae-aftercare-student",
+   "region": "sillamae_linn",
+   "scope_documents": 1081,
+   "channels": [
+    "postgres_lexical",
+    "search_variants_2"
+   ],
+   "today": {
+    "passages": 9,
+    "context_tokens": 7680,
+    "pointing_passage_selected": true,
+    "deciding_passage_selected": false,
+    "reasons": [
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed"
+    ],
+    "selected_titles": [
+     "Kuidas on rakendunud muudatused asendus- ja järelhooldusteenuse valdkonnas?",
+     "Asendus- ja järelhooldusteenuse osutamise tingimused ja kord",
+     "Narva-Jõesuu linnas on inimkesksus tulemusliku sotsiaaltöö nurgakivi",
+     "Õigus saada sotsiaalteenuseid võrdsetel alustel",
+     "Ida-Virumaa sotsiaalteenuste arendamist toetav projekt",
+     "Omavalitsuste tegevus erivajadustega inimeste toetamisel"
+    ],
+    "lexical_rank_of_pointing_passage": 2,
+    "lexical_rank_of_deciding_passage": 62,
+    "lexical_candidates": 300,
+    "named_act_references": {
+     "candidates": 0,
+     "additions": 0,
+     "acts": []
+    },
+    "cross_references": {
+     "candidates": 0,
+     "additions": 0,
+     "sections": []
+    }
+   },
+   "abbreviation_references_in_selection": [
+    {
+     "from": "Asendus- ja järelhooldusteenuse osutamise tingimused ja kord",
+     "reference": "SHS § 45⁹ lõikes 3",
+     "act": "Sotsiaalhoolekande seadus",
+     "section": "45^9",
+     "subsection": "3",
+     "outcome": "resolved",
+     "passages": [
+      {
+       "chunk_id": "chunk_899e30647f7da22314b523be197f20da393fcca2cf4e7d73d23157607a175abd",
+       "tokens": 842,
+       "deciding": false,
+       "already_selected": false
+      }
+     ]
+    },
+    {
+     "from": "Asendus- ja järelhooldusteenuse osutamise tingimused ja kord",
+     "reference": "SHS § 45¹⁶ lõikes 1",
+     "act": "Sotsiaalhoolekande seadus",
+     "section": "45^16",
+     "subsection": "1",
+     "outcome": "resolved",
+     "passages": [
+      {
+       "chunk_id": "chunk_5f6622f604d598ddd2351d9a9056bb73edfeba93ef5127b787535967af7c1bde",
+       "tokens": 556,
+       "deciding": true,
+       "already_selected": false
+      }
+     ]
+    },
+    {
+     "from": "Asendus- ja järelhooldusteenuse osutamise tingimused ja kord",
+     "reference": "SHS § 45¹⁶ lõikes 2",
+     "act": "Sotsiaalhoolekande seadus",
+     "section": "45^16",
+     "subsection": "2",
+     "outcome": "resolved",
+     "passages": [
+      {
+       "chunk_id": "chunk_5f6622f604d598ddd2351d9a9056bb73edfeba93ef5127b787535967af7c1bde",
+       "tokens": 556,
+       "deciding": true,
+       "already_selected": false
+      }
+     ]
+    },
+    {
+     "from": "Asendus- ja järelhooldusteenuse osutamise tingimused ja kord",
+     "reference": "SHS § 45⁹ lõigetes 1",
+     "act": "Sotsiaalhoolekande seadus",
+     "section": "45^9",
+     "subsection": "1",
+     "outcome": "resolved",
+     "passages": [
+      {
+       "chunk_id": "chunk_899e30647f7da22314b523be197f20da393fcca2cf4e7d73d23157607a175abd",
+       "tokens": 842,
+       "deciding": false,
+       "already_selected": false
+      }
+     ]
+    },
+    {
+     "from": "Asendus- ja järelhooldusteenuse osutamise tingimused ja kord",
+     "reference": "SHS § 45⁹ lõikes 3",
+     "act": "Sotsiaalhoolekande seadus",
+     "section": "45^9",
+     "subsection": "3",
+     "outcome": "resolved",
+     "passages": [
+      {
+       "chunk_id": "chunk_899e30647f7da22314b523be197f20da393fcca2cf4e7d73d23157607a175abd",
+       "tokens": 842,
+       "deciding": false,
+       "already_selected": false
+      }
+     ]
+    },
+    {
+     "from": "Asendus- ja järelhooldusteenuse osutamise tingimused ja kord",
+     "reference": "SHS § 45¹¹ lõikes 3",
+     "act": "Sotsiaalhoolekande seadus",
+     "section": "45^11",
+     "subsection": "3",
+     "outcome": "resolved",
+     "passages": [
+      {
+       "chunk_id": "chunk_b6ccaab8e08b72170a0f98450317a873dd2e3c6b79b6b57e2b9dcc5ed4af8fb7",
+       "tokens": 333,
+       "deciding": false,
+       "already_selected": false
+      }
+     ]
+    },
+    {
+     "from": "Asendus- ja järelhooldusteenuse osutamise tingimused ja kord",
+     "reference": "SHS § 45¹¹ lõikes 4",
+     "act": "Sotsiaalhoolekande seadus",
+     "section": "45^11",
+     "subsection": "4",
+     "outcome": "resolved",
+     "passages": [
+      {
+       "chunk_id": "chunk_b6ccaab8e08b72170a0f98450317a873dd2e3c6b79b6b57e2b9dcc5ed4af8fb7",
+       "tokens": 333,
+       "deciding": false,
+       "already_selected": false
+      }
+     ]
+    }
+   ],
+   "following_with_live_places": {
+    "additions": 2,
+    "tokens": 1398,
+    "brings_deciding": true,
+    "other_additions": 1,
+    "other_tokens": 842,
+    "added": [
+     {
+      "reference": "SHS § 45⁹ lõikes 3",
+      "section": "45^9",
+      "subsection": "3",
+      "tokens": 842,
+      "deciding": false
+     },
+     {
+      "reference": "SHS § 45¹⁶ lõikes 1",
+      "section": "45^16",
+      "subsection": "1",
+      "tokens": 556,
+      "deciding": true
+     }
+    ]
+   },
+   "following_without_cap": {
+    "additions": 3,
+    "tokens": 1731,
+    "brings_deciding": true,
+    "other_additions": 2,
+    "other_tokens": 1175,
+    "added": [
+     {
+      "reference": "SHS § 45⁹ lõikes 3",
+      "section": "45^9",
+      "subsection": "3",
+      "tokens": 842,
+      "deciding": false
+     },
+     {
+      "reference": "SHS § 45¹⁶ lõikes 1",
+      "section": "45^16",
+      "subsection": "1",
+      "tokens": 556,
+      "deciding": true
+     },
+     {
+      "reference": "SHS § 45¹¹ lõikes 3",
+      "section": "45^11",
+      "subsection": "3",
+      "tokens": 333,
+      "deciding": false
+     }
+    ]
+   }
+  },
+  {
+   "question": "polva-support-person-relative",
+   "region": "polva_vald",
+   "scope_documents": 1086,
+   "channels": [
+    "postgres_lexical",
+    "search_variants_2"
+   ],
+   "today": {
+    "passages": 10,
+    "context_tokens": 5484,
+    "pointing_passage_selected": true,
+    "deciding_passage_selected": false,
+    "reasons": [
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "ranked_seed",
+     "cross_reference"
+    ],
+    "selected_titles": [
+     "Raske ja sügava puudega lapse tugiisikuteenuse ja lapsehoiuteenuse osutamise tingimused ja kord",
+     "Raske ja sügava puudega lastele suunatud tugiisiku- ja lapsehoiuteenus",
+     "Sotsiaalhoolekande seadus"
+    ],
+    "lexical_rank_of_pointing_passage": 2,
+    "lexical_rank_of_deciding_passage": 78,
+    "lexical_candidates": 300,
+    "named_act_references": {
+     "candidates": 1,
+     "additions": 1,
+     "acts": [
+      "document_c32255b376cda0db1ac63e945ee75bed5b75c967b11d63699a789b53485f97f3:45^3"
+     ]
+    },
+    "cross_references": {
+     "candidates": 0,
+     "additions": 0,
+     "sections": []
+    }
+   },
+   "abbreviation_references_in_selection": [
+    {
+     "from": "Raske ja sügava puudega lapse tugiisikuteenuse ja lapsehoiuteenuse osutamise tingimused ja kord",
+     "reference": "SHS § 25",
+     "act": "Sotsiaalhoolekande seadus",
+     "section": "25",
+     "subsection": null,
+     "outcome": "resolved",
+     "passages": [
+      {
+       "chunk_id": "chunk_9ad9c97a0deb04cc6be3638e66dc913a733437be473613fabcbd498ffc1cbf5e",
+       "tokens": 186,
+       "deciding": true,
+       "already_selected": false
+      }
+     ]
+    },
+    {
+     "from": "Raske ja sügava puudega lapse tugiisikuteenuse ja lapsehoiuteenuse osutamise tingimused ja kord",
+     "reference": "SHS § 45⁴",
+     "act": "Sotsiaalhoolekande seadus",
+     "section": "45^4",
+     "subsection": null,
+     "outcome": "resolved",
+     "passages": [
+      {
+       "chunk_id": "chunk_165dd1044d51491d8c473049b41bfe63710fa2c5740230639d634dc9fad87067",
+       "tokens": 419,
+       "deciding": false,
+       "already_selected": false
+      }
+     ]
+    }
+   ],
+   "following_with_live_places": {
+    "additions": 2,
+    "tokens": 605,
+    "brings_deciding": true,
+    "other_additions": 1,
+    "other_tokens": 419,
+    "added": [
+     {
+      "reference": "SHS § 25",
+      "section": "25",
+      "subsection": null,
+      "tokens": 186,
+      "deciding": true
+     },
+     {
+      "reference": "SHS § 45⁴",
+      "section": "45^4",
+      "subsection": null,
+      "tokens": 419,
+      "deciding": false
+     }
+    ]
+   },
+   "following_without_cap": {
+    "additions": 2,
+    "tokens": 605,
+    "brings_deciding": true,
+    "other_additions": 1,
+    "other_tokens": 419,
+    "added": [
+     {
+      "reference": "SHS § 25",
+      "section": "25",
+      "subsection": null,
+      "tokens": 186,
+      "deciding": true
+     },
+     {
+      "reference": "SHS § 45⁴",
+      "section": "45^4",
+      "subsection": null,
+      "tokens": 419,
+      "deciding": false
+     }
+    ]
+   }
+  }
+ ],
+ "generation": "search_generation_34fe1590bbd5e2bf6a788bef196d50e26b5f573e2a63bc30fbbe1d56ab28c8f4"
+}

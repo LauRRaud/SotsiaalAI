@@ -1,0 +1,55 @@
+{
+  "schema_version": "rag-v2/graph-eval-1",
+  "purpose": "M3 measurement (owner 02.10.2026): a municipal regulation whose provision hands its content to the Social Welfare Act by the act's abbreviation (\"SHS § 45¹¹ lõikes 3\"). Three questions whose deciding provision is the Act's own text; for each, the regulation's pointing words and the Act's deciding words were fixed before any search was run. Compared: today's search and the same selection with the abbreviation followed. No model call: the lexical channel only.",
+  "date": "2026-10-02",
+  "questions": [
+    {
+      "id": "narva-substitute-care-personal-costs",
+      "shape": "abbreviated_act",
+      "kind": "across_documents",
+      "region": "narva_linn",
+      "note": "Narva's procedure § 3(1) guarantees \"at least the minimum of SHS § 45¹¹ lõige 3\"; the amount itself (240 euros a month on average, 2880 a year) is only in the Act.",
+      "text": "Minu õelaps on Narva linna kaudu asendushooldusel perekodus. Kui palju raha peab tema isiklike kulude jaoks kuus vähemalt kulutatama?",
+      "queries": [
+        "asendushooldusteenuse rahastamine Narva linnas",
+        "asendushooldusel oleva lapse isiklike kulude miinimum"
+      ],
+      "pointing_text": "tagatakse vähemalt SHS § 45¹¹ lõikes 3 sätestatud miinimum",
+      "evidence_text": [
+        "Lapse isiklike kulude katteks peab iga kuu tegema kulutusi keskmiselt 240 euro ulatuses"
+      ]
+    },
+    {
+      "id": "sillamae-aftercare-student",
+      "shape": "abbreviated_act",
+      "kind": "across_documents",
+      "region": "sillamae_linn",
+      "note": "Sillamäe's procedure § 5(2) guarantees aftercare to \"the adult named in SHS § 45¹⁶ lõige 1\"; who that is (continues studies, until 25) is only in the Act.",
+      "text": "Olen 20-aastane, kasvasin Sillamäel asenduskodus ja õpin nüüd kutsekoolis. Kas linn peab mulle järelhooldusteenuse tagama ja kui kaua?",
+      "queries": [
+        "järelhooldusteenuse saaja Sillamäe linnas",
+        "kellele ja kui kaua tagab kohalik omavalitsus järelhooldusteenuse õppimise ajal"
+      ],
+      "pointing_text": "SHS § 45¹⁶ lõikes 1 nimetatud täisealisele isikule",
+      "evidence_text": [
+        "esmase õppekavajärgse nominaalse õppeaja lõpuni, kuid mitte kauem kui isiku 25-aastaseks saamiseni"
+      ]
+    },
+    {
+      "id": "polva-support-person-relative",
+      "shape": "abbreviated_act",
+      "kind": "across_documents",
+      "region": "polva_vald",
+      "note": "Põlva's procedure lets the support person be \"a person who meets the requirements of SHS § 25\"; who may not provide the service (a first or second degree relative) is only in the Act. The Harku twin of hard-conditions-3 names the Act in full.",
+      "text": "Elame Põlva vallas ja mu lapsel on raske puue. Kas tema tugiisikuks võib olla lapse vanaema?",
+      "queries": [
+        "raske ja sügava puudega lapse tugiisikuteenus Põlva vallas",
+        "kes ei tohi tugiisikuteenust vahetult osutada"
+      ],
+      "pointing_text": "kes vastab SHS § 25 esitatud nõuetele",
+      "evidence_text": [
+        "kes on teenuse saaja esimese või teise astme üleneja või alaneja sugulane"
+      ]
+    }
+  ]
+}
