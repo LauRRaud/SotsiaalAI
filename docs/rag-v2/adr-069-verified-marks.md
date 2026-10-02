@@ -60,10 +60,18 @@ Kontrolli tulemus ei kao koos protsessiga.
 
 Testid: `tests/rag-v2-verified-marks.test.mjs` (märk, pärimine, salvestus, usalduse lõpp, vaikse hetke ootamine, käivituse järjekord), `tests/rag-v2-vector-warm-up.test.mjs` (vektorite korduskatse uue järjekorraga).
 
+## Elav kontroll 02.10.2026 (#311, `22500199`)
+
+- **Esimene käivitus (13:36):** `inherited 0 verified marks`, vektorid loetud 1 s pärast starti, allikate soojendus 322 s. Tabelis seejärel 4788 märki (1596 allikat × 3).
+- **Teine käivitus (13:41:54, v6 plaani aktiveerimine):** `inherited 4788 verified marks`, vektorid 0 s.
+- **Päris küsimus 30 s pärast teist käivitust** (treeneri küsimus, uus vestlus, pööre `641d1cbe`): otsingufaas 3,1 s (teadmiste rada: sõnaline päring 1,0 s, vektorid 0,9 s, eelvalik koos mudeliga 1,6 s). Külmas protsessis (sama päeva hindamisjooksud) oli sama rada 16–19 s, sellest eelvaliku laadimine 14–17 s.
+- Pööre kokku 21,7 s, esimene tekst 19,4 s: sellest 15,1 s oli vastuse mudel (1993 arutlustokenit), 2,6 s plaan ja 1,1 s embedding. Need ei sõltu serveri soojusest.
+- Protsessi oma taustakontroll lõppes 335 s pärast starti (ootas pöörde ajal umbes 13 s).
+
 ## Piirid
 
 - Esimestel minutitel pärast käivitust kasutab vestlus allikaid, mille kontrollis eelmine protsess, mitte käimasolev. Kui deploy muudab kontrolli koodi nii, et salvestatud andmed enam ei sobi, selgub see selle protsessi taustakontrollis mõne minuti jooksul, mitte enne esimest kasutust.
 - Märk tugineb rea versioonile (`xmin`). Kettal riknenud rida, mille versioon ei muutunud, leiab alles taustakontroll.
 - Kui vestlusi tuleb vahetpidamata, venib taustakontroll kuni 10 min pikemaks; pärast seda võistleb see vestlusega nagu enne.
 - Bundle'ite vahemälu on uues protsessis tühi: esimene lugemine toob bundle'i andmebaasist (mõõdetud 35 ms allika kohta, soojalt 10 ms).
-- Mõju päris vestluse esimesele pöördele pärast deploy'd mõõdetakse pärast teist käivitust (esimene täidab tabeli).
+- Elavalt on mõõdetud üks pööre. Kui deploy ehitus tõrjub Qdranti vektorid mälust, loeb käivitus need uuesti (02.10 kuni 14 s); selle aja sees esitatud küsimus võib vektoripäringut oodata.

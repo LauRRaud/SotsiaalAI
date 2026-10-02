@@ -93,7 +93,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
 **Uus aken alustab siit (02.10 hommik).** Kuupäevaviga on parandatud ([ADR-062](../rag-v2/adr-062-provision-dates.md), korpus v47, dialoog 22). Omanik valis M3; selle mõõtmissamm ja esimene reegel (profiil v4, [ADR-064](../rag-v2/adr-064-named-other-act.md)) on tehtud.
-- **Tootmises:** korpus v47 (indeks `34fe1590`, 6470 dokumenti, 40 489 lõiku; lugeja `source-structure-v30`). Vestlusplaani uuendab reliis ise (ADR-037): profiil v6 ([ADR-068](../rag-v2/adr-068-own-reference-subsections.md); v5 + akti enda viide toob nimetatud lõike), answer-12, dialoog 22, mudelikontekst json-3, olek v5, arutlus medium. Profiil on plaani osa: v5 plaan tehakse serveris pärast ADR-065 PR-i deploy'd (`rag-v2-chat-plan.mjs --profile hybrid-estnltk-chat-v5 --activate`); kontrolli aktiivse plaani `profileId`.
+- **Tootmises:** korpus v47 (indeks `34fe1590`, 6470 dokumenti, 40 489 lõiku; lugeja `source-structure-v30`). Vestlusplaani uuendab reliis ise (ADR-037): profiil v6 ([ADR-068](../rag-v2/adr-068-own-reference-subsections.md); v5 + akti enda viide toob nimetatud lõike), answer-12, dialoog 22, mudelikontekst json-3, olek v5, arutlus medium. Profiil on plaani osa ja reliis hoiab seda: v6 plaan `m4-corpus-chat-v47-profile6-20261002.json` aktiveeriti 02.10 kell 13:41; kontrolli aktiivse plaani `profileId`.
 - **Tööviis:**
   - Codex kujundab põhikaustas, seega ära vaheta seal harusid. Töötle %TEMP% worktree's: `node_modules` junction, `generated/` koopia. Eemalda worktree ja haru pärast PR-i.
   - PR liidetakse ja deploy'takse ise. Enne PR-i jooksuta kogu `npm test`.
@@ -119,6 +119,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
   - **Serveri koristus tehtud 01.10 kell 19:46** (omanik: „serveri koristus tee“): generatsioonide v42–v46 loendid kustutatud (`drop-version-generations.mjs`), seejärel `rag-v2-prune-versions.mjs --execute`: 519 versiooni, 13 669 rida ja 13 669 punkti. Indeksi v47 tõend enne ja pärast sama (6470 versiooni, 40 489 rida ja punkti, samad räsid); kollektsioonis nüüd 40 489 punkti; kordusloendus 0; `VACUUM ANALYZE` tehtud. Ketas jäi 85% juurde (vaba 8,7 → 9,0 GB): suured on Docker 13 GB (Postgres ja Qdrant), hoidla 6,0 GB, ostetud vektorid 2,5 GB ja rakendus 5,9 GB. Serveris on nüüd ainult generatsioon v47, seega v46-le tagasi minna ei saa ilma uue indeksitööta.
   - 04.10: Maardu XML-id 415082017002 ja 402072013031 uuesti alla laadida, kui RT on kirjutanud neile lõpukuupäeva. Rada: `rag-v2-law-validity.mjs check --download`, `rag-v2-corpus-refresh.mjs`, serveris `rag-v2-corpus-run.sh` (runbook, jaotis 0).
   - Kontaktid pärast 04.10.
+  - Codex pole veel üle vaadanud: #302–#311 (ADR-065–ADR-069).
   - Codexi #289, #290, #295–#299 ülevaatus on tehtud ([raport](../audits/rag-v2-pr289-299-review-2026-10-01.md)) ja selle kolm leidu parandatud (vt 01.10 öö kirje allpool).
   - Kiiruse mõõtmine päris vestluses teeb omanik.
 - **Võrk 30.09 õhtul:** SSH port 22 aegus korduvalt nii GitHubi kui serveri (`ssh sotsiaalai`) poole. Push õnnestus kordamisel. `gh` töötab HTTPS-i kaudu.
@@ -127,12 +128,12 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 - **Põhjus:** iga taaskäivitus kontrollis kõik 1596 teadmusallikat uuesti (325–349 s, 02.10 üheksa korda). 59% ajast kulus morfoloogia uuele analüüsile. Selle aja sees esitatud küsimus kontrollis oma allikad ise ja ootas külma Qdranti järel.
 - **Muudatus:** iga täielik kontroll jätab tabelisse `rag_v2_verified_read` märgi (lugemise võti, ridade versioonid, analüsaatori versioon). Uus protsess loeb märgid käivitusel ja kasutab samade ridade lugemisi kohe; taustal kontrollib ta kõik ise uuesti. Viga taustakontrollis tühjendab päritud märgid. Soojendus ootab vestluspöörde järel (kokku kuni 10 min) ja Qdranti vektorid loetakse kohe käivitusel.
 - **Mõõdetud serveris** (100 allikat, tasuta): külm lugemine 25,0 s, päritud märkidega 3,5 s, soe 1,0 s. Vea katse tühjendas märgid ja lugemine andis vea enne kasutamist.
-- **Jälgi logist:** `[rag-v2] inherited N verified marks`. Esimene käivitus pärast seda PR-i on külm (tabel tühi); mõju on näha alates teisest.
+- **Elav kontroll (#311):** esimene käivitus täitis tabeli (4788 märki), teine luges need (`[rag-v2] inherited 4788 verified marks`). Päris küsimus 30 s pärast taaskäivitust: otsingufaas 3,1 s (külmalt samal päeval 16–19 s); pööre kokku 21,7 s, millest 15,1 s oli vastuse mudel. Taustakontroll lõppes 335 s pärast starti.
 
 **02.10 (Opus), pärastlõuna: akti viide iseendale toob nimetatud lõike (profiil v6)** ([ADR-068](../rag-v2/adr-068-own-reference-subsections.md)). Omanik: „tee kuni neljandani ära“.
 - **Muudatus:** profiil v6 = v5 + reegel: kui valitud lõik viitab sama akti paragrahvi lõikele („§ 34² lõigetes 3 ja 4“), lisatakse lõik, kus see lõige algab. Ainult paragrahvi nimetav viide toob endiselt paragrahvi alguse. Kohad ja ruum on samad.
 - **Mõõtmine:** otsingukatse haru O haru N kõrval kolmel raskel kataloogil (tasuta): 28/30 mõlemal, valik muutub 10 küsimuses, kontekst keskmiselt +407 tokenit. Vestluse rajal v6 plaaniga ajutises koopias kõik 10 muutunud küsimust ja treeneri küsimus: 11/11, 0,057 USD.
-- **Kasutuselevõtt:** pärast deploy'd uus plaan `--profile hybrid-estnltk-chat-v6 --activate` ja teenuse taaskäivitus; `rag-v2-corpus-run.sh` teeb edaspidi v6 plaani.
+- **Kasutusel alates 02.10 kell 13:41** (#310, plaan `m4-corpus-chat-v47-profile6-20261002.json`); `rag-v2-corpus-run.sh` teeb edaspidi v6 plaani. Treeneri küsimus päris vestluses: vastus loetleb vajalikud andmed ja juhatab valda või numbrile 116 111, ilma märkuseta osalise väljavõtte kohta.
 - **Tervitus päris vestluses (#309):** „tere“ vastus tuli 4,3 sekundiga, 2 min pärast taaskäivitust.
 
 **02.10 (Opus), pärastlõuna: ainult tervitus saab vastuse ilma otsinguta** ([ADR-067](../rag-v2/adr-067-greeting-route.md)). Omanik: „tere“ ootas 10 sekundit; „vastus peaks tulema üsna kohe“.
