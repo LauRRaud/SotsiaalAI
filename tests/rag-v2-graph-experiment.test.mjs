@@ -7,7 +7,8 @@ import { searchConfig } from '../lib/rag-v2/search/indexing.js';
 import { LocalPolicy } from '../lib/rag-v2/search/policy.js';
 import { retrieve } from '../lib/rag-v2/search/retrieval.js';
 import { retrievalDirectory } from '../lib/rag-v2/search/discovery.js';
-import { retrievalProfile, queryForProfile, GRAPH_EXPERIMENT_PROFILES, CHAT_PROFILE, CHAT_GRAPH_PROFILE, CHAT_REFERENCES_PROFILE, CHAT_NAMED_ACTS_PROFILE } from '../lib/rag-v2/search/profiles.js';
+import { retrievalProfile, queryForProfile, GRAPH_EXPERIMENT_PROFILES, CHAT_PROFILE, CHAT_GRAPH_PROFILE, CHAT_REFERENCES_PROFILE, CHAT_NAMED_ACTS_PROFILE,
+  CHAT_POOL_PROFILE } from '../lib/rag-v2/search/profiles.js';
 
 const savedFetch = globalThis.fetch, savedConnect = net.Socket.prototype.connect;
 let network = 0;
@@ -210,4 +211,61 @@ test('chat profile v4 reads a named section\'s number by the pointing document: 
   // A pointing text that keeps its superscripts: "131" is § 131, and with only § 13¹ in the act it names nothing.
   assert.deepEqual(await added({ source: exact, pointer: plain, sections: ['13¹', '131'] }), [['131', 'Paragrahvi 131 tekst.']]);
   assert.deepEqual(await added({ source: exact, pointer: plain, sections: ['13¹'] }), []);
+});
+
+// ADR-065: a guide of 35 passages ranked above an act's 3; the reranker reads 30 fused candidates.
+function poolFixture() {
+  const tenant = 'pool-limit', embedding = new MockEmbedding(), config = searchConfig(embedding.config);
+  const document = (doc, title, count) => {
+    const version = `${doc}-v1`;
+    const texts = Array.from({ length: count }, (_, i) => `${title}: lõik ${i + 1} abivajavast lapsest teatamise kohta.`);
+    const chunks = texts.map((source_text, i) => {
+      const heading = `${title} > Osa ${i + 1}`;
+      return { id: `${doc}-c${i}`, ordinal: i, parent_section_id: `${doc}-p${i}`, span_ids: [`${doc}-s${i}`], pdf_pages: [1], source_text,
+        retrieval_text: `${heading}\n\n${source_text}`, retrieval_mapping: { prefix_length: heading.length } };
+    });
+    return { tenant_id: tenant, version: { id: version, pdf_hash: 'a'.repeat(64) },
+      document: { id: doc, rights: { access: 'local_private', usage: 'development_only' }, search_aids: {},
+        fields: { title: { value: title }, authors: { value: [] }, publication_date: { value: null } } },
+      spans: texts.map((source_text, i) => ({ id: `${doc}-s${i}`, tenant_id: tenant, document_version_id: version, pdf_page: 1, start: i * 100, source_text })),
+      chunks, report: { warnings: [] }, sections: chunks.map(c => ({ id: c.parent_section_id, parent_id: null, title: c.id, span_ids: c.span_ids })),
+      relations: chunks.flatMap(c => [{ id: `belongs-${c.id}`, type: 'BELONGS_TO', from_id: c.id, to_id: doc },
+        { id: `parent-${c.id}`, type: 'PARENT_SECTION', from_id: c.id, to_id: c.parent_section_id }]) };
+  };
+  const bundles = [document('juhend', 'Juhend', 35), document('seadus', 'Lastekaitseseadus', 3)], byDoc = new Map(bundles.map(b => [b.document.id, b]));
+  const documents = Object.fromEntries(bundles.map(b => [b.document.id, { version_id: b.version.id }])), snapshot = { source_generation: 'source-v1', documents, snapshot_hash: hash(stable(documents)) };
+  const generation = { id: id('search_generation', tenant, snapshot, config), config, snapshot };
+  const units = bundles.flatMap(b => b.chunks.map(c => indexUnit(c, b, embedding.config)));
+  // Every guide passage ranks above every passage of the act, in both channels.
+  const rows = units.map((unit, i) => ({ ...unit, score: 1000 - i }));
+  const postgres = { active: async () => generation, bundles: async (_t, _g, docs) => docs.map(doc => byDoc.get(doc)).filter(Boolean),
+    units: async (_t, _g, docs) => units.filter(unit => docs.includes(unit.document_id)), lexical: async () => rows.slice(0, 40) };
+  const policy = new LocalPolicy({ tenants: { [tenant]: { operator: [...byDoc.keys()] } } });
+  return async (profileId, rerank = null) => {
+    let read = null;
+    const packet = await retrieve({ postgres, qdrant: { query: async () => rows.slice(0, 40) }, embedding, policy, context: { tenant, subject: 'operator', usage: 'development_only' },
+      query: queryForProfile(retrievalProfile(profileId), { text: 'teatamine', language: 'et' }), allowLexicalFallback: false,
+      hooks: rerank ? { rerank: async passages => { read = passages.map(passage => passage.title); return rerank(passages); } } : {} });
+    return { packet, read };
+  };
+}
+
+test('chat profile v5 gives the reranker at most ten passages of one document and the freed places to the next documents; without a reranker it selects as v4', async () => {
+  const search = poolFixture(), count = (titles, title) => titles.filter(item => item === title).length;
+  // The reranker keeps the act's passages it is shown.
+  const keepAct = passages => passages.filter(passage => passage.title === 'Lastekaitseseadus').map(passage => passage.id);
+  const v4 = await search(CHAT_NAMED_ACTS_PROFILE, keepAct), v5 = await search(CHAT_POOL_PROFILE, keepAct);
+  assert.deepEqual([v4.read.length, count(v4.read, 'Juhend'), count(v4.read, 'Lastekaitseseadus')], [30, 30, 0]);
+  assert.equal(v4.packet.evidence.length, 0);
+  // Ten of the guide, then the act's three: the candidates past the guide's ten are not read, nothing else is added.
+  assert.deepEqual(v5.read, [...Array(10).fill('Juhend'), ...Array(3).fill('Lastekaitseseadus')]);
+  assert.deepEqual(v5.packet.evidence.map(entry => entry.document_id), ['seadus', 'seadus', 'seadus']);
+  assert.deepEqual(v5.packet.rerank.candidates.slice(0, 10), v4.packet.rerank.candidates.slice(0, 10));
+  // No reranker: the fused order stands and v5 selects what v4 selects.
+  const plain4 = await search(CHAT_NAMED_ACTS_PROFILE), plain5 = await search(CHAT_POOL_PROFILE);
+  assert.deepEqual(plain5.packet.evidence.map(entry => entry.chunk_id), plain4.packet.evidence.map(entry => entry.chunk_id));
+  // v5 is v4 with the limit.
+  const settings = profileId => queryForProfile(retrievalProfile(profileId), { text: 'x', language: 'et' });
+  const { limits: limits4, ...rest4 } = settings(CHAT_NAMED_ACTS_PROFILE), { limits: limits5, ...rest5 } = settings(CHAT_POOL_PROFILE);
+  assert.deepEqual([rest5, limits5], [rest4, { ...limits4, poolPerDocument: 10 }]);
 });

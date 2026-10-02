@@ -1,0 +1,695 @@
+{
+ "generation": "search_generation_34fe1590bbd5e2bf6a788bef196d50e26b5f573e2a63bc30fbbe1d56ab28c8f4",
+ "date": "2026-10-02",
+ "act": "Lastekaitseseadus",
+ "in_scope": 1071,
+ "national_acts": 8,
+ "wanted": [
+  "§ 27 #28",
+  "§ 27^1 #29",
+  "§ 34^2 #40",
+  "§ 34^2 #41",
+  "§ 34^2 #42"
+ ],
+ "sets": [
+  {
+   "name": "catalogue",
+   "text": "Olen treener ja märkasin, et üks laps vajab abi. Milliseid andmeid ma tohin tema kohta vallale edastada?",
+   "queries": [
+    "abivajavast lapsest teatamine",
+    "lapsega töötava isiku teatamiskohustus ja andmete edastamine"
+   ],
+   "channel_sizes": {
+    "lexical": 40,
+    "vector": 40,
+    "vector_1": 40,
+    "vector_2": 40,
+    "hybrid": 81,
+    "reserve": 100
+   },
+   "places": [
+    {
+     "passage": "§ 27 #28",
+     "lexical": null,
+     "vector": null,
+     "vector_1": 32,
+     "vector_2": null,
+     "hybrid": 63,
+     "reserve": 2,
+     "pool": 31,
+     "reserved": true,
+     "selected": true
+    },
+    {
+     "passage": "§ 27^1 #29",
+     "lexical": 34,
+     "vector": 33,
+     "vector_1": null,
+     "vector_2": 7,
+     "hybrid": 23,
+     "reserve": 1,
+     "pool": 23,
+     "reserved": false,
+     "selected": false
+    },
+    {
+     "passage": "§ 34^2 #40",
+     "lexical": null,
+     "vector": null,
+     "vector_1": null,
+     "vector_2": null,
+     "hybrid": null,
+     "reserve": 43,
+     "pool": null,
+     "reserved": false,
+     "selected": false
+    },
+    {
+     "passage": "§ 34^2 #41",
+     "lexical": null,
+     "vector": null,
+     "vector_1": null,
+     "vector_2": null,
+     "hybrid": null,
+     "reserve": 13,
+     "pool": null,
+     "reserved": false,
+     "selected": false
+    },
+    {
+     "passage": "§ 34^2 #42",
+     "lexical": null,
+     "vector": null,
+     "vector_1": null,
+     "vector_2": null,
+     "hybrid": null,
+     "reserve": 9,
+     "pool": null,
+     "reserved": false,
+     "selected": false
+    }
+   ],
+   "pool_size": 36,
+   "fused_pool": 30,
+   "pool": [
+    {
+     "n": 1,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Abivajavast lapsest teatamine ja andmekaitse Abivajavast lapsest teatamine ja andmekaitse"
+    },
+    {
+     "n": 2,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > JUHEND JUHEND"
+    },
+    {
+     "n": 3,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Abivajavast lapsest teatamine Näide Igal inimesel on kohustus abivajavast lapsest teatada! Laps"
+    },
+    {
+     "n": 4,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Abivajavast lapsest teatamine Naaber: Arst: ` Õiguslik alus: „Naaberkorterist on „Laps on käinu"
+    },
+    {
+     "n": 5,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > TEATA ABIVAJAVAST LAPSEST! Laps vajab abi, kui ohus on tema elu, tervis, turvatunne, areng või "
+    },
+    {
+     "n": 6,
+     "title": "Isikuandmed sotsiaalhoolekande- ja tervishoiusektoris",
+     "start": "Isikuandmed sotsiaalhoolekande- ja tervishoiusektoris > Tuleb meeles pidada, et haldusorganil (nt kohalikul omavalitsusel) on lubatud isikuandmeid Las"
+    },
+    {
+     "n": 7,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Abivajavast lapsest teataja isikuandmete kaitse 20 ` Õiguslik alus: Lastekaitseseaduse § 27. Ab"
+    },
+    {
+     "n": 8,
+     "title": "Lapse heaolu hindamise käsiraamat",
+     "start": "Lapse heaolu hindamise käsiraamat > 2. Teade abivajavast ja hädaohus olevast lapsest Lapse abivajaduse võimalikult varajane märkamine ja sellest teata"
+    },
+    {
+     "n": 9,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Abivajavast lapsest teatamine ja andmekaitse Andmekaitse ei takista abivajavast lapsest pädeval"
+    },
+    {
+     "n": 10,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Sissejuhatus Iga inimese kohustus on teatada abivajavast lapsest. Siinse juhendi eesmärk on jul"
+    },
+    {
+     "n": 11,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > lastekaitsetöös „Tahan, et ta „Tahan, et tal läheks § 22. Last kasvatava isiku ja lapsega tööta"
+    },
+    {
+     "n": 12,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Abivajava lapse, tema pere ja lähedaste isikuandmete kaitse Abivajavast ja hädaohus olevast lap"
+    },
+    {
+     "n": 13,
+     "title": "Isikuandmed sotsiaalhoolekande- ja tervishoiusektoris",
+     "start": "Isikuandmed sotsiaalhoolekande- ja tervishoiusektoris > Tuleb meeles pidada, et haldusorganil (nt kohalikul omavalitsusel) on lubatud isikuandmeid Abi"
+    },
+    {
+     "n": 14,
+     "title": "Lastega töötavad spetsialistid saavad lapse muresid märgata varakult",
+     "start": "Lastega töötavad spetsialistid saavad lapse muresid märgata varakult > Andmekaitse ei takista abivajavast lapsest teatamist Kohalikule omavalitsusele,"
+    },
+    {
+     "n": 15,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Varane märkamine ja võrgustikutöö Näide"
+    },
+    {
+     "n": 16,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > lastekaitsetöös Varane märkamine ja võrgustikutöö on lastekaitse olulised alustalad. Võrgustiku"
+    },
+    {
+     "n": 17,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Abivajav laps. Hädaohus olev laps Lapse vastu suunatud süüteo toimepanemise kahtlus (sh füüsili"
+    },
+    {
+     "n": 18,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Teata valla- või linnavalitsusele või lasteabitelefonil 116 111 ja vajadusel politseile Lapse a"
+    },
+    {
+     "n": 19,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Teata valla- või linnavalitsusele või lasteabitelefonil 116 111 ja vajadusel politseile Sotsiaa"
+    },
+    {
+     "n": 20,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Lapse abivajaduse hindamine ja abistamine 22 Lapse abistamisel valitud meetmetega võib valla- v"
+    },
+    {
+     "n": 21,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Teata valla- või linnavalitsusele või lasteabitelefonil 116 111 ja vajadusel politseile Politse"
+    },
+    {
+     "n": 22,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Abivajavast lapsest teataja isikuandmete kaitse Abivajavast lapsest teataja võib jääda anonüüms"
+    },
+    {
+     "n": 23,
+     "title": "Lastekaitseseadus",
+     "start": "Riigikogu > Lastekaitseseadus > 6. peatükk Abivajav laps > § 27¹. Lapsega töötava isiku teade abivajavast lapsest § 27¹. Lapsega töötava isiku teade a"
+    },
+    {
+     "n": 24,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Sisukord ` Sissejuhatus 5 ` Abivajav laps Hädaohus olev laps 6 ` Varane märkamine ja võrgustiku"
+    },
+    {
+     "n": 25,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Abivajavast lapsest teataja isikuandmete kaitse 1) teabenõude täitmisega; […] § 23. Teabenõude "
+    },
+    {
+     "n": 26,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Lapse abivajaduse hindamine ja abistamine Võrgustiku teised liikmed (kool, lasteaed, haigla, pe"
+    },
+    {
+     "n": 27,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Abivajava lapse, tema pere ja lähedaste isikuandmete kaitse Kolmandaks peavad valla- või linnav"
+    },
+    {
+     "n": 28,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Abivajavast lapsest teatamine ja andmekaitse Lastekaitseseaduse § 15 lg 3 punktid 3 ja 6 seavad"
+    },
+    {
+     "n": 29,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Lapse abivajaduse hindamine ja abistamine § 29. Abivajavale lapsele abi osutamine […] (2) Abi o"
+    },
+    {
+     "n": 30,
+     "title": "Lastega töötavad spetsialistid saavad lapse muresid märgata varakult",
+     "start": "Lastega töötavad spetsialistid saavad lapse muresid märgata varakult > Lapse heaolu peab olema esikohal Lapse abi ja kaitseta jäämise eest vastutab ig"
+    },
+    {
+     "n": 31,
+     "title": "Lastekaitseseadus",
+     "start": "Riigikogu > Lastekaitseseadus > 6. peatükk Abivajav laps > § 27. Abivajavast lapsest teatamine § 27. Abivajavast lapsest teatamine (1) Kohustus abivaj"
+    },
+    {
+     "n": 32,
+     "title": "Lastekaitseseadus",
+     "start": "Riigikogu > Lastekaitseseadus > 7. peatükk Hädaohus olev laps > § 31. Hädaohus olevast lapsest teatamine § 31. Hädaohus olevast lapsest teatamine (1) "
+    },
+    {
+     "n": 33,
+     "title": "Sotsiaalhoolekande seadus",
+     "start": "Riigikogu > Sotsiaalhoolekande seadus > 1. peatükk Üldsätted > § 13. Abivajadusest teatamise kohustus § 13. Abivajadusest teatamise kohustus Abi vajav"
+    },
+    {
+     "n": 34,
+     "title": "Sotsiaalhoolekande seadus",
+     "start": "Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 9¹. jagu Üksi elava pensionäri toetus > § 139². Isiku teavitamine pensionär"
+    },
+    {
+     "n": 35,
+     "title": "Perekonnaseadus",
+     "start": "Riigikogu > Perekonnaseadus > 2. osa SUGULUSEST TULENEVAD ÕIGUSED JA KOHUSTUSED > 10. peatükk VANEMA ÕIGUSED JA KOHUSTUSED > 4. jagu Vanema hooldusõig"
+    },
+    {
+     "n": 36,
+     "title": "Perekonnaseadus",
+     "start": "Riigikogu > Perekonnaseadus > 3. osa EESTKOSTE > 12. peatükk EESTKOSTE ALAEALISE ÜLE > 3. jagu Eestkoste lõppemine > § 199. Vara väljaandmine ja aruan"
+    }
+   ],
+   "selected": [
+    {
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "reason": "ranked_seed",
+     "section": null,
+     "start": "Abivajavast lapsest teatamine ja andmekaitse"
+    },
+    {
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "reason": "ranked_seed",
+     "section": null,
+     "start": "JUHEND"
+    },
+    {
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "reason": "ranked_seed",
+     "section": null,
+     "start": "Abivajavast lapsest teatamine Näide Igal inimesel on kohustus abivajavast lapsest teatada! Lapse abi ja kaitseta jäämise eest vastutab igaüks, kes mär"
+    },
+    {
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "reason": "ranked_seed",
+     "section": null,
+     "start": "Naaber: Arst: ` Õiguslik alus: „Naaberkorterist on „Laps on käinud õhtuti tihti kosta asjade mitmete traumadega Lastekaitseseaduse § 27. Abivajavast l"
+    },
+    {
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "reason": "ranked_seed",
+     "section": null,
+     "start": "TEATA ABIVAJAVAST LAPSEST! Laps vajab abi, kui ohus on tema elu, tervis, turvatunne, areng või heaolu. Igaühel on kohustus teatada abivajavast lapsest"
+    },
+    {
+     "title": "Isikuandmed sotsiaalhoolekande- ja tervishoiusektoris",
+     "reason": "ranked_seed",
+     "section": null,
+     "start": "Last kasvatav isik 4 ja lapsega töötav isik 5 on kohustatud lapse abivajaduse ilmnemisel otsima abi ja vajaduse korral tegema koostööd lastekaitsetööt"
+    },
+    {
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "reason": "ranked_seed",
+     "section": null,
+     "start": "20 ` Õiguslik alus: Lastekaitseseaduse § 27. Abivajavast lapsest teatamine […] (5) Abivajavast lapsest teatanud isikut ega teatamise fakti ei avalikus"
+    },
+    {
+     "title": "Lapse heaolu hindamise käsiraamat",
+     "reason": "ranked_seed",
+     "section": null,
+     "start": "2. Teade abivajavast ja hädaohus olevast lapsest Lapse abivajaduse võimalikult varajane märkamine ja sellest teatamine on esimene samm, mis loob võima"
+    },
+    {
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "reason": "ranked_seed",
+     "section": null,
+     "start": "Abivajavast lapsest teatamine ja andmekaitse Andmekaitse ei takista abivajavast lapsest pädevale asutusele teatamist! Abivajavast lapsest võib teatada"
+    },
+    {
+     "title": "Lastekaitseseadus",
+     "reason": "cross_reference",
+     "section": "27",
+     "start": "§ 27. Abivajavast lapsest teatamine (1) Kohustus abivajavast lapsest teatada on kõigil isikutel, kellel on olemas teave abivajavast lapsest. (2) Abiva"
+    }
+   ],
+   "named_act_references": {
+    "candidates": 2,
+    "additions": 1,
+    "acts": [
+     "document_d965143779b80298b88acd8c0a901855a9d35311c9265fa8df7e60f1163bef9d:27"
+    ]
+   },
+   "cross_references": {
+    "candidates": 0,
+    "additions": 0,
+    "sections": []
+   }
+  },
+  {
+   "name": "chat-plan-2026-10-01",
+   "text": "Olen treener ja märkasin, et üks laps vajab abi. Milliseid andmeid ma tohin tema kohta vallale edastada?",
+   "queries": [
+    "lapse abivajadusest teatamine kohaliku omavalitsuse lastekaitsetöötajale",
+    "treeneri õigus edastada lapse isikuandmeid vallale",
+    "lapse isikuandmete töötlemine ja saladuse hoidmise kohustus"
+   ],
+   "channel_sizes": {
+    "lexical": 40,
+    "vector": 40,
+    "vector_1": 40,
+    "vector_2": 40,
+    "vector_3": 40,
+    "hybrid": 116,
+    "reserve": 103
+   },
+   "places": [
+    {
+     "passage": "§ 27 #28",
+     "lexical": 10,
+     "vector": null,
+     "vector_1": 9,
+     "vector_2": null,
+     "vector_3": null,
+     "hybrid": 37,
+     "reserve": 3,
+     "pool": null,
+     "reserved": false,
+     "selected": true
+    },
+    {
+     "passage": "§ 27^1 #29",
+     "lexical": null,
+     "vector": 33,
+     "vector_1": 31,
+     "vector_2": null,
+     "vector_3": null,
+     "hybrid": 36,
+     "reserve": 6,
+     "pool": null,
+     "reserved": false,
+     "selected": false
+    },
+    {
+     "passage": "§ 34^2 #40",
+     "lexical": 23,
+     "vector": null,
+     "vector_1": null,
+     "vector_2": null,
+     "vector_3": null,
+     "hybrid": 105,
+     "reserve": 4,
+     "pool": null,
+     "reserved": false,
+     "selected": false
+    },
+    {
+     "passage": "§ 34^2 #41",
+     "lexical": null,
+     "vector": null,
+     "vector_1": null,
+     "vector_2": 37,
+     "vector_3": 34,
+     "hybrid": 38,
+     "reserve": 7,
+     "pool": null,
+     "reserved": false,
+     "selected": false
+    },
+    {
+     "passage": "§ 34^2 #42",
+     "lexical": null,
+     "vector": null,
+     "vector_1": null,
+     "vector_2": null,
+     "vector_3": 28,
+     "hybrid": 69,
+     "reserve": 2,
+     "pool": 32,
+     "reserved": true,
+     "selected": false
+    }
+   ],
+   "pool_size": 36,
+   "fused_pool": 30,
+   "pool": [
+    {
+     "n": 1,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Abivajavast lapsest teatamine ja andmekaitse Andmekaitse ei takista abivajavast lapsest pädeval"
+    },
+    {
+     "n": 2,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Abivajava lapse, tema pere ja lähedaste isikuandmete kaitse Abivajavast ja hädaohus olevast lap"
+    },
+    {
+     "n": 3,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > TEATA ABIVAJAVAST LAPSEST! Laps vajab abi, kui ohus on tema elu, tervis, turvatunne, areng või "
+    },
+    {
+     "n": 4,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > JUHEND JUHEND"
+    },
+    {
+     "n": 5,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Abivajavast lapsest teatamine ja andmekaitse Abivajavast lapsest teatamine ja andmekaitse"
+    },
+    {
+     "n": 6,
+     "title": "Lastega töötavad spetsialistid saavad lapse muresid märgata varakult",
+     "start": "Lastega töötavad spetsialistid saavad lapse muresid märgata varakult > Andmekaitse ei takista abivajavast lapsest teatamist Kohalikule omavalitsusele,"
+    },
+    {
+     "n": 7,
+     "title": "Isikuandmed sotsiaalhoolekande- ja tervishoiusektoris",
+     "start": "Isikuandmed sotsiaalhoolekande- ja tervishoiusektoris > Tuleb meeles pidada, et haldusorganil (nt kohalikul omavalitsusel) on lubatud isikuandmeid Abi"
+    },
+    {
+     "n": 8,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Abivajavast lapsest teatamine Naaber: Arst: ` Õiguslik alus: „Naaberkorterist on „Laps on käinu"
+    },
+    {
+     "n": 9,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Abivajavast lapsest teataja isikuandmete kaitse 1) teabenõude täitmisega; […] § 23. Teabenõude "
+    },
+    {
+     "n": 10,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > lastekaitsetöös Varane märkamine ja võrgustikutöö on lastekaitse olulised alustalad. Võrgustiku"
+    },
+    {
+     "n": 11,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Lapse abivajaduse hindamine ja abistamine 22 Lapse abistamisel valitud meetmetega võib valla- v"
+    },
+    {
+     "n": 12,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Abivajavast lapsest teatamine ja andmekaitse Lastekaitseseaduse § 15 lg 3 punktid 3 ja 6 seavad"
+    },
+    {
+     "n": 13,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Abivajavast lapsest teataja isikuandmete kaitse 20 ` Õiguslik alus: Lastekaitseseaduse § 27. Ab"
+    },
+    {
+     "n": 14,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Sissejuhatus Iga inimese kohustus on teatada abivajavast lapsest. Siinse juhendi eesmärk on jul"
+    },
+    {
+     "n": 15,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Abivajavast lapsest teatamine Näide Igal inimesel on kohustus abivajavast lapsest teatada! Laps"
+    },
+    {
+     "n": 16,
+     "title": "Isikuandmed sotsiaalhoolekande- ja tervishoiusektoris",
+     "start": "Isikuandmed sotsiaalhoolekande- ja tervishoiusektoris > Tuleb meeles pidada, et haldusorganil (nt kohalikul omavalitsusel) on lubatud isikuandmeid Las"
+    },
+    {
+     "n": 17,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Teata valla- või linnavalitsusele või lasteabitelefonil 116 111 ja vajadusel politseile Sotsiaa"
+    },
+    {
+     "n": 18,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Varane märkamine ja võrgustikutöö Näide"
+    },
+    {
+     "n": 19,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Teata valla- või linnavalitsusele või lasteabitelefonil 116 111 ja vajadusel politseile Politse"
+    },
+    {
+     "n": 20,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Abivajava lapse, tema pere ja lähedaste isikuandmete kaitse Kolmandaks peavad valla- või linnav"
+    },
+    {
+     "n": 21,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Abivajavast lapsest teataja isikuandmete kaitse Abivajavast lapsest teataja võib jääda anonüüms"
+    },
+    {
+     "n": 22,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Abivajav laps. Hädaohus olev laps Lapse vastu suunatud süüteo toimepanemise kahtlus (sh füüsili"
+    },
+    {
+     "n": 23,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > lastekaitsetöös „Tahan, et ta „Tahan, et tal läheks § 22. Last kasvatava isiku ja lapsega tööta"
+    },
+    {
+     "n": 24,
+     "title": "Lapse heaolu hindamise käsiraamat",
+     "start": "Lapse heaolu hindamise käsiraamat > 2. Teade abivajavast ja hädaohus olevast lapsest Lapse abivajaduse võimalikult varajane märkamine ja sellest teata"
+    },
+    {
+     "n": 25,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Abivajava lapse, tema pere ja lähedaste isikuandmete kaitse […] Isikuandmete kaitse üldmääruse "
+    },
+    {
+     "n": 26,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Lapse abivajaduse hindamine ja abistamine Võrgustiku teised liikmed (kool, lasteaed, haigla, pe"
+    },
+    {
+     "n": 27,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Abivajavast lapsest teatamine ja andmekaitse On ka teisi haldusorganeid, kellel on seaduse alus"
+    },
+    {
+     "n": 28,
+     "title": "Isikuandmed sotsiaalhoolekande- ja tervishoiusektoris",
+     "start": "Isikuandmed sotsiaalhoolekande- ja tervishoiusektoris > Tuleb meeles pidada, et haldusorganil (nt kohalikul omavalitsusel) on lubatud isikuandmeid 6 E"
+    },
+    {
+     "n": 29,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Teata valla- või linnavalitsusele või lasteabitelefonil 116 111 ja vajadusel politseile Lapse a"
+    },
+    {
+     "n": 30,
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "start": "Juhend: abivajavast lapsest teatamine ja andmekaitse > Isikuandmete edastamise kanalid ja turvameetmed Abivajavast lapsest teatamist ei tohiks takista"
+    },
+    {
+     "n": 31,
+     "title": "Lastekaitseseadus",
+     "start": "Riigikogu > Lastekaitseseadus > 6. peatükk Abivajav laps > § 27². Abivajava lapse väljaselgitamine § 27². Abivajava lapse väljaselgitamine (1) Lapse r"
+    },
+    {
+     "n": 32,
+     "title": "Lastekaitseseadus",
+     "start": "Riigikogu > Lastekaitseseadus > 8¹. peatükk Isikuandmete töötlemine lapse õiguste ja heaolu tagamiseks > § 34². Isikuandmete töötlemine kohaliku omava"
+    },
+    {
+     "n": 33,
+     "title": "Perekonnaseadus",
+     "start": "Riigikogu > Perekonnaseadus > 2. osa SUGULUSEST TULENEVAD ÕIGUSED JA KOHUSTUSED > 11. peatükk LAPSENDAMINE > § 164. Lapsendamissaladus § 164. Lapsenda"
+    },
+    {
+     "n": 34,
+     "title": "Sotsiaalhoolekande seadus",
+     "start": "Riigikogu > Sotsiaalhoolekande seadus > 2. peatükk Kohaliku omavalitsuse üksuse korraldatav abi > 1. jagu Üldsätted > § 15¹. Noore abivajaduse hindami"
+    },
+    {
+     "n": 35,
+     "title": "Sotsiaalhoolekande seadus",
+     "start": "Riigikogu > Sotsiaalhoolekande seadus > 2. peatükk Kohaliku omavalitsuse üksuse korraldatav abi > 2. jagu Kohaliku omavalitsuse üksuse sotsiaalteenuse"
+    },
+    {
+     "n": 36,
+     "title": "Perekonnaseadus",
+     "start": "Riigikogu > Perekonnaseadus > 2. osa SUGULUSEST TULENEVAD ÕIGUSED JA KOHUSTUSED > 10. peatükk VANEMA ÕIGUSED JA KOHUSTUSED > 4. jagu Vanema hooldusõig"
+    }
+   ],
+   "selected": [
+    {
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "reason": "ranked_seed",
+     "section": null,
+     "start": "Abivajavast lapsest teatamine ja andmekaitse Andmekaitse ei takista abivajavast lapsest pädevale asutusele teatamist! Abivajavast lapsest võib teatada"
+    },
+    {
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "reason": "ranked_seed",
+     "section": null,
+     "start": "Abivajava lapse, tema pere ja lähedaste isikuandmete kaitse Abivajavast ja hädaohus olevast lapsest teate saajana kohustuvad valla- või linna- valitsu"
+    },
+    {
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "reason": "ranked_seed",
+     "section": null,
+     "start": "TEATA ABIVAJAVAST LAPSEST! Laps vajab abi, kui ohus on tema elu, tervis, turvatunne, areng või heaolu. Igaühel on kohustus teatada abivajavast lapsest"
+    },
+    {
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "reason": "ranked_seed",
+     "section": null,
+     "start": "JUHEND"
+    },
+    {
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "reason": "ranked_seed",
+     "section": null,
+     "start": "Abivajavast lapsest teatamine ja andmekaitse"
+    },
+    {
+     "title": "Lastega töötavad spetsialistid saavad lapse muresid märgata varakult",
+     "reason": "ranked_seed",
+     "section": null,
+     "start": "Andmekaitse ei takista abivajavast lapsest teatamist Kohalikule omavalitsusele, sotsiaalkindlustusameti lasteabile ja politseile võib lapse või tema s"
+    },
+    {
+     "title": "Isikuandmed sotsiaalhoolekande- ja tervishoiusektoris",
+     "reason": "ranked_seed",
+     "section": null,
+     "start": "Abivajavast lapsest teatanud isikut ega teatamise fakti ei avalikustata, välja arvatud süüteomenetluses. Abivajavast lapsest teavitaval isikul on enda"
+    },
+    {
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "reason": "ranked_seed",
+     "section": null,
+     "start": "Naaber: Arst: ` Õiguslik alus: „Naaberkorterist on „Laps on käinud õhtuti tihti kosta asjade mitmete traumadega Lastekaitseseaduse § 27. Abivajavast l"
+    },
+    {
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+     "reason": "ranked_seed",
+     "section": null,
+     "start": "1) teabenõude täitmisega; […] § 23. Teabenõude täitmisest keeldumine (1) Teabevaldaja keeldub teabenõude täitmisest, kui: 1) taotletava teabe suhtes k"
+    },
+    {
+     "title": "Lastekaitseseadus",
+     "reason": "cross_reference",
+     "section": "27",
+     "start": "§ 27. Abivajavast lapsest teatamine (1) Kohustus abivajavast lapsest teatada on kõigil isikutel, kellel on olemas teave abivajavast lapsest. (2) Abiva"
+    }
+   ],
+   "named_act_references": {
+    "candidates": 1,
+    "additions": 1,
+    "acts": [
+     "document_d965143779b80298b88acd8c0a901855a9d35311c9265fa8df7e60f1163bef9d:27"
+    ]
+   },
+   "cross_references": {
+    "candidates": 0,
+    "additions": 0,
+    "sections": []
+   }
+  }
+ ]
+}

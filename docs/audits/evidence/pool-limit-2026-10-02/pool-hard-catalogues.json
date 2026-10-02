@@ -1,0 +1,1260 @@
+{
+ "generation": "search_generation_34fe1590bbd5e2bf6a788bef196d50e26b5f573e2a63bc30fbbe1d56ab28c8f4",
+ "fused_pool": 30,
+ "caps": [
+  6,
+  8,
+  10,
+  12,
+  15
+ ],
+ "catalogues": [
+  {
+   "file": "tests/evaluation/graph/hard-conditions-1.json",
+   "questions": [
+    {
+     "question": "day-support-dementia-retirement",
+     "ranked": 131,
+     "documents_in_pool": 13,
+     "top_document": {
+      "title": "Sotsiaalhoolekande seadus",
+      "passages": 8
+     },
+     "phrase_ranks": [],
+     "phrase_in_pool": false,
+     "phrase_in_reserve": false,
+     "with_cap": {
+      "6": {
+       "phrase_at": null,
+       "documents": 14,
+       "same_first_nine": true
+      },
+      "8": {
+       "phrase_at": null,
+       "documents": 13,
+       "same_first_nine": true
+      },
+      "10": {
+       "phrase_at": null,
+       "documents": 13,
+       "same_first_nine": true
+      },
+      "12": {
+       "phrase_at": null,
+       "documents": 13,
+       "same_first_nine": true
+      },
+      "15": {
+       "phrase_at": null,
+       "documents": 13,
+       "same_first_nine": true
+      }
+     }
+    },
+    {
+     "question": "supported-living-alcohol",
+     "ranked": 145,
+     "documents_in_pool": 12,
+     "top_document": {
+      "title": "Sotsiaalhoolekande seadus",
+      "passages": 9
+     },
+     "phrase_ranks": [
+      133
+     ],
+     "phrase_in_pool": false,
+     "phrase_in_reserve": false,
+     "with_cap": {
+      "6": {
+       "phrase_at": null,
+       "documents": 13,
+       "same_first_nine": true
+      },
+      "8": {
+       "phrase_at": null,
+       "documents": 13,
+       "same_first_nine": true
+      },
+      "10": {
+       "phrase_at": null,
+       "documents": 12,
+       "same_first_nine": true
+      },
+      "12": {
+       "phrase_at": null,
+       "documents": 12,
+       "same_first_nine": true
+      },
+      "15": {
+       "phrase_at": null,
+       "documents": 12,
+       "same_first_nine": true
+      }
+     }
+    },
+    {
+     "question": "community-living-dementia",
+     "ranked": 118,
+     "documents_in_pool": 20,
+     "top_document": {
+      "title": "Sotsiaalhoolekande seadus",
+      "passages": 8
+     },
+     "phrase_ranks": [
+      28
+     ],
+     "phrase_in_pool": true,
+     "phrase_in_reserve": false,
+     "with_cap": {
+      "6": {
+       "phrase_at": null,
+       "documents": 20,
+       "same_first_nine": true
+      },
+      "8": {
+       "phrase_at": 28,
+       "documents": 20,
+       "same_first_nine": true
+      },
+      "10": {
+       "phrase_at": 28,
+       "documents": 20,
+       "same_first_nine": true
+      },
+      "12": {
+       "phrase_at": 28,
+       "documents": 20,
+       "same_first_nine": true
+      },
+      "15": {
+       "phrase_at": 28,
+       "documents": 20,
+       "same_first_nine": true
+      }
+     }
+    },
+    {
+     "question": "subsistence-care-home",
+     "ranked": 123,
+     "documents_in_pool": 13,
+     "top_document": {
+      "title": "Sotsiaalhoolekande seadus",
+      "passages": 6
+     },
+     "phrase_ranks": [
+      32
+     ],
+     "phrase_in_pool": false,
+     "phrase_in_reserve": false,
+     "with_cap": {
+      "6": {
+       "phrase_at": null,
+       "documents": 13,
+       "same_first_nine": true
+      },
+      "8": {
+       "phrase_at": null,
+       "documents": 13,
+       "same_first_nine": true
+      },
+      "10": {
+       "phrase_at": null,
+       "documents": 13,
+       "same_first_nine": true
+      },
+      "12": {
+       "phrase_at": null,
+       "documents": 13,
+       "same_first_nine": true
+      },
+      "15": {
+       "phrase_at": null,
+       "documents": 13,
+       "same_first_nine": true
+      }
+     }
+    },
+    {
+     "question": "subsistence-prison",
+     "ranked": 116,
+     "documents_in_pool": 10,
+     "top_document": {
+      "title": "Sotsiaalhoolekande seadus",
+      "passages": 9
+     },
+     "phrase_ranks": [
+      3
+     ],
+     "phrase_in_pool": true,
+     "phrase_in_reserve": false,
+     "with_cap": {
+      "6": {
+       "phrase_at": 3,
+       "documents": 12,
+       "same_first_nine": true
+      },
+      "8": {
+       "phrase_at": 3,
+       "documents": 11,
+       "same_first_nine": true
+      },
+      "10": {
+       "phrase_at": 3,
+       "documents": 10,
+       "same_first_nine": true
+      },
+      "12": {
+       "phrase_at": 3,
+       "documents": 10,
+       "same_first_nine": true
+      },
+      "15": {
+       "phrase_at": 3,
+       "documents": 10,
+       "same_first_nine": true
+      }
+     }
+    },
+    {
+     "question": "involuntary-placement",
+     "ranked": 128,
+     "documents_in_pool": 13,
+     "top_document": {
+      "title": "Vabatahtlikkuse põhimõte üldhooldusteenuse osutamisel",
+      "passages": 6
+     },
+     "phrase_ranks": [
+      5,
+      79
+     ],
+     "phrase_in_pool": true,
+     "phrase_in_reserve": false,
+     "with_cap": {
+      "6": {
+       "phrase_at": 5,
+       "documents": 13,
+       "same_first_nine": true
+      },
+      "8": {
+       "phrase_at": 5,
+       "documents": 13,
+       "same_first_nine": true
+      },
+      "10": {
+       "phrase_at": 5,
+       "documents": 13,
+       "same_first_nine": true
+      },
+      "12": {
+       "phrase_at": 5,
+       "documents": 13,
+       "same_first_nine": true
+      },
+      "15": {
+       "phrase_at": 5,
+       "documents": 13,
+       "same_first_nine": true
+      }
+     }
+    },
+    {
+     "question": "own-share-shortfall",
+     "ranked": 128,
+     "documents_in_pool": 15,
+     "top_document": {
+      "title": "Sotsiaalhoolekande seadus",
+      "passages": 8
+     },
+     "phrase_ranks": [
+      4
+     ],
+     "phrase_in_pool": true,
+     "phrase_in_reserve": false,
+     "with_cap": {
+      "6": {
+       "phrase_at": 4,
+       "documents": 16,
+       "same_first_nine": true
+      },
+      "8": {
+       "phrase_at": 4,
+       "documents": 15,
+       "same_first_nine": true
+      },
+      "10": {
+       "phrase_at": 4,
+       "documents": 15,
+       "same_first_nine": true
+      },
+      "12": {
+       "phrase_at": 4,
+       "documents": 15,
+       "same_first_nine": true
+      },
+      "15": {
+       "phrase_at": 4,
+       "documents": 15,
+       "same_first_nine": true
+      }
+     }
+    },
+    {
+     "question": "rehabilitation-student",
+     "ranked": 122,
+     "documents_in_pool": 17,
+     "top_document": {
+      "title": "Erihoolekanne ja sotsiaalne rehabilitatsioon",
+      "passages": 4
+     },
+     "phrase_ranks": [
+      13
+     ],
+     "phrase_in_pool": true,
+     "phrase_in_reserve": false,
+     "with_cap": {
+      "6": {
+       "phrase_at": 13,
+       "documents": 17,
+       "same_first_nine": true
+      },
+      "8": {
+       "phrase_at": 13,
+       "documents": 17,
+       "same_first_nine": true
+      },
+      "10": {
+       "phrase_at": 13,
+       "documents": 17,
+       "same_first_nine": true
+      },
+      "12": {
+       "phrase_at": 13,
+       "documents": 17,
+       "same_first_nine": true
+      },
+      "15": {
+       "phrase_at": 13,
+       "documents": 17,
+       "same_first_nine": true
+      }
+     }
+    },
+    {
+     "question": "day-care-retirement-age",
+     "ranked": 130,
+     "documents_in_pool": 11,
+     "top_document": {
+      "title": "Sotsiaalhoolekande seadus",
+      "passages": 10
+     },
+     "phrase_ranks": [
+      105
+     ],
+     "phrase_in_pool": false,
+     "phrase_in_reserve": false,
+     "with_cap": {
+      "6": {
+       "phrase_at": null,
+       "documents": 16,
+       "same_first_nine": true
+      },
+      "8": {
+       "phrase_at": null,
+       "documents": 12,
+       "same_first_nine": true
+      },
+      "10": {
+       "phrase_at": null,
+       "documents": 11,
+       "same_first_nine": true
+      },
+      "12": {
+       "phrase_at": null,
+       "documents": 11,
+       "same_first_nine": true
+      },
+      "15": {
+       "phrase_at": null,
+       "documents": 11,
+       "same_first_nine": true
+      }
+     }
+    }
+   ]
+  },
+  {
+   "file": "tests/evaluation/graph/hard-conditions-2.json",
+   "questions": [
+    {
+     "question": "reclaim-limitation",
+     "ranked": 129,
+     "documents_in_pool": 18,
+     "top_document": {
+      "title": "Sotsiaalseadustiku üldosa seadus",
+      "passages": 6
+     },
+     "phrase_ranks": [
+      4
+     ],
+     "phrase_in_pool": true,
+     "phrase_in_reserve": false,
+     "with_cap": {
+      "6": {
+       "phrase_at": 4,
+       "documents": 18,
+       "same_first_nine": true
+      },
+      "8": {
+       "phrase_at": 4,
+       "documents": 18,
+       "same_first_nine": true
+      },
+      "10": {
+       "phrase_at": 4,
+       "documents": 18,
+       "same_first_nine": true
+      },
+      "12": {
+       "phrase_at": 4,
+       "documents": 18,
+       "same_first_nine": true
+      },
+      "15": {
+       "phrase_at": 4,
+       "documents": 18,
+       "same_first_nine": true
+      }
+     }
+    },
+    {
+     "question": "reclaim-enforcement",
+     "ranked": 148,
+     "documents_in_pool": 22,
+     "top_document": {
+      "title": "Sotsiaalseadustiku üldosa seadus",
+      "passages": 4
+     },
+     "phrase_ranks": [
+      3
+     ],
+     "phrase_in_pool": true,
+     "phrase_in_reserve": false,
+     "with_cap": {
+      "6": {
+       "phrase_at": 3,
+       "documents": 22,
+       "same_first_nine": true
+      },
+      "8": {
+       "phrase_at": 3,
+       "documents": 22,
+       "same_first_nine": true
+      },
+      "10": {
+       "phrase_at": 3,
+       "documents": 22,
+       "same_first_nine": true
+      },
+      "12": {
+       "phrase_at": 3,
+       "documents": 22,
+       "same_first_nine": true
+      },
+      "15": {
+       "phrase_at": 3,
+       "documents": 22,
+       "same_first_nine": true
+      }
+     }
+    },
+    {
+     "question": "coach-reports-child",
+     "ranked": 81,
+     "documents_in_pool": 5,
+     "top_document": {
+      "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+      "passages": 24
+     },
+     "phrase_ranks": [
+      23
+     ],
+     "phrase_in_pool": true,
+     "phrase_in_reserve": false,
+     "with_cap": {
+      "6": {
+       "phrase_at": 11,
+       "documents": 12,
+       "same_first_nine": false
+      },
+      "8": {
+       "phrase_at": 13,
+       "documents": 10,
+       "same_first_nine": true
+      },
+      "10": {
+       "phrase_at": 15,
+       "documents": 10,
+       "same_first_nine": true
+      },
+      "12": {
+       "phrase_at": 17,
+       "documents": 9,
+       "same_first_nine": true
+      },
+      "15": {
+       "phrase_at": 20,
+       "documents": 7,
+       "same_first_nine": true
+      }
+     }
+    },
+    {
+     "question": "student-subsistence-own",
+     "ranked": 104,
+     "documents_in_pool": 12,
+     "top_document": {
+      "title": "Sotsiaalhoolekande seadus",
+      "passages": 6
+     },
+     "phrase_ranks": [
+      1
+     ],
+     "phrase_in_pool": true,
+     "phrase_in_reserve": false,
+     "with_cap": {
+      "6": {
+       "phrase_at": 1,
+       "documents": 12,
+       "same_first_nine": true
+      },
+      "8": {
+       "phrase_at": 1,
+       "documents": 12,
+       "same_first_nine": true
+      },
+      "10": {
+       "phrase_at": 1,
+       "documents": 12,
+       "same_first_nine": true
+      },
+      "12": {
+       "phrase_at": 1,
+       "documents": 12,
+       "same_first_nine": true
+      },
+      "15": {
+       "phrase_at": 1,
+       "documents": 12,
+       "same_first_nine": true
+      }
+     }
+    },
+    {
+     "question": "subsistence-new-job",
+     "ranked": 95,
+     "documents_in_pool": 14,
+     "top_document": {
+      "title": "Töötamise toetamine toimetulekutoetuse kaudu",
+      "passages": 7
+     },
+     "phrase_ranks": [
+      4
+     ],
+     "phrase_in_pool": true,
+     "phrase_in_reserve": false,
+     "with_cap": {
+      "6": {
+       "phrase_at": 4,
+       "documents": 14,
+       "same_first_nine": true
+      },
+      "8": {
+       "phrase_at": 4,
+       "documents": 14,
+       "same_first_nine": true
+      },
+      "10": {
+       "phrase_at": 4,
+       "documents": 14,
+       "same_first_nine": true
+      },
+      "12": {
+       "phrase_at": 4,
+       "documents": 14,
+       "same_first_nine": true
+      },
+      "15": {
+       "phrase_at": 4,
+       "documents": 14,
+       "same_first_nine": true
+      }
+     }
+    },
+    {
+     "question": "subsistence-deadline",
+     "ranked": 110,
+     "documents_in_pool": 15,
+     "top_document": {
+      "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+      "passages": 10
+     },
+     "phrase_ranks": [
+      1,
+      7
+     ],
+     "phrase_in_pool": true,
+     "phrase_in_reserve": false,
+     "with_cap": {
+      "6": {
+       "phrase_at": 1,
+       "documents": 15,
+       "same_first_nine": true
+      },
+      "8": {
+       "phrase_at": 1,
+       "documents": 15,
+       "same_first_nine": true
+      },
+      "10": {
+       "phrase_at": 1,
+       "documents": 15,
+       "same_first_nine": true
+      },
+      "12": {
+       "phrase_at": 1,
+       "documents": 15,
+       "same_first_nine": true
+      },
+      "15": {
+       "phrase_at": 1,
+       "documents": 15,
+       "same_first_nine": true
+      }
+     }
+    }
+   ]
+  },
+  {
+   "file": "tests/evaluation/graph/hard-conditions-3.json",
+   "questions": [
+    {
+     "question": "subsistence-home-loan",
+     "ranked": 86,
+     "documents_in_pool": 7,
+     "top_document": {
+      "title": "Sotsiaalhoolekande seadus",
+      "passages": 10
+     },
+     "phrase_ranks": [
+      2
+     ],
+     "phrase_in_pool": true,
+     "phrase_in_reserve": false,
+     "with_cap": {
+      "6": {
+       "phrase_at": 2,
+       "documents": 8,
+       "same_first_nine": true
+      },
+      "8": {
+       "phrase_at": 2,
+       "documents": 8,
+       "same_first_nine": true
+      },
+      "10": {
+       "phrase_at": 2,
+       "documents": 7,
+       "same_first_nine": true
+      },
+      "12": {
+       "phrase_at": 2,
+       "documents": 7,
+       "same_first_nine": true
+      },
+      "15": {
+       "phrase_at": 2,
+       "documents": 7,
+       "same_first_nine": true
+      }
+     }
+    },
+    {
+     "question": "referral-deadline-emergency",
+     "ranked": 112,
+     "documents_in_pool": 13,
+     "top_document": {
+      "title": "Sotsiaalhoolekande seadus",
+      "passages": 11
+     },
+     "phrase_ranks": [
+      7
+     ],
+     "phrase_in_pool": true,
+     "phrase_in_reserve": false,
+     "with_cap": {
+      "6": {
+       "phrase_at": 7,
+       "documents": 15,
+       "same_first_nine": true
+      },
+      "8": {
+       "phrase_at": 7,
+       "documents": 14,
+       "same_first_nine": true
+      },
+      "10": {
+       "phrase_at": 7,
+       "documents": 14,
+       "same_first_nine": true
+      },
+      "12": {
+       "phrase_at": 7,
+       "documents": 13,
+       "same_first_nine": true
+      },
+      "15": {
+       "phrase_at": 7,
+       "documents": 13,
+       "same_first_nine": true
+      }
+     }
+    },
+    {
+     "question": "student-turns-25",
+     "ranked": 109,
+     "documents_in_pool": 13,
+     "top_document": {
+      "title": "Heade praktikate kogumik",
+      "passages": 8
+     },
+     "phrase_ranks": [
+      1
+     ],
+     "phrase_in_pool": true,
+     "phrase_in_reserve": false,
+     "with_cap": {
+      "6": {
+       "phrase_at": 1,
+       "documents": 14,
+       "same_first_nine": true
+      },
+      "8": {
+       "phrase_at": 1,
+       "documents": 13,
+       "same_first_nine": true
+      },
+      "10": {
+       "phrase_at": 1,
+       "documents": 13,
+       "same_first_nine": true
+      },
+      "12": {
+       "phrase_at": 1,
+       "documents": 13,
+       "same_first_nine": true
+      },
+      "15": {
+       "phrase_at": 1,
+       "documents": 13,
+       "same_first_nine": true
+      }
+     }
+    },
+    {
+     "question": "refusal-only-home",
+     "ranked": 115,
+     "documents_in_pool": 12,
+     "top_document": {
+      "title": "Sotsiaalhoolekande seadus",
+      "passages": 7
+     },
+     "phrase_ranks": [
+      2
+     ],
+     "phrase_in_pool": true,
+     "phrase_in_reserve": false,
+     "with_cap": {
+      "6": {
+       "phrase_at": 2,
+       "documents": 13,
+       "same_first_nine": true
+      },
+      "8": {
+       "phrase_at": 2,
+       "documents": 12,
+       "same_first_nine": true
+      },
+      "10": {
+       "phrase_at": 2,
+       "documents": 12,
+       "same_first_nine": true
+      },
+      "12": {
+       "phrase_at": 2,
+       "documents": 12,
+       "same_first_nine": true
+      },
+      "15": {
+       "phrase_at": 2,
+       "documents": 12,
+       "same_first_nine": true
+      }
+     }
+    },
+    {
+     "question": "service-ended-martial-law",
+     "ranked": 120,
+     "documents_in_pool": 12,
+     "top_document": {
+      "title": "Sotsiaalhoolekande seadus",
+      "passages": 16
+     },
+     "phrase_ranks": [
+      2
+     ],
+     "phrase_in_pool": true,
+     "phrase_in_reserve": false,
+     "with_cap": {
+      "6": {
+       "phrase_at": 2,
+       "documents": 19,
+       "same_first_nine": false
+      },
+      "8": {
+       "phrase_at": 2,
+       "documents": 18,
+       "same_first_nine": true
+      },
+      "10": {
+       "phrase_at": 2,
+       "documents": 17,
+       "same_first_nine": true
+      },
+      "12": {
+       "phrase_at": 2,
+       "documents": 16,
+       "same_first_nine": true
+      },
+      "15": {
+       "phrase_at": 2,
+       "documents": 13,
+       "same_first_nine": true
+      }
+     }
+    },
+    {
+     "question": "rent-from-mother",
+     "ranked": 91,
+     "documents_in_pool": 10,
+     "top_document": {
+      "title": "Sotsiaalhoolekande seadus",
+      "passages": 10
+     },
+     "phrase_ranks": [
+      2
+     ],
+     "phrase_in_pool": true,
+     "phrase_in_reserve": false,
+     "with_cap": {
+      "6": {
+       "phrase_at": 2,
+       "documents": 13,
+       "same_first_nine": true
+      },
+      "8": {
+       "phrase_at": 2,
+       "documents": 10,
+       "same_first_nine": true
+      },
+      "10": {
+       "phrase_at": 2,
+       "documents": 10,
+       "same_first_nine": true
+      },
+      "12": {
+       "phrase_at": 2,
+       "documents": 10,
+       "same_first_nine": true
+      },
+      "15": {
+       "phrase_at": 2,
+       "documents": 10,
+       "same_first_nine": true
+      }
+     }
+    },
+    {
+     "question": "pensioner-with-student-child",
+     "ranked": 114,
+     "documents_in_pool": 9,
+     "top_document": {
+      "title": "Sotsiaalhoolekande seadus",
+      "passages": 7
+     },
+     "phrase_ranks": [
+      33
+     ],
+     "phrase_in_pool": false,
+     "phrase_in_reserve": true,
+     "with_cap": {
+      "6": {
+       "phrase_at": null,
+       "documents": 10,
+       "same_first_nine": true
+      },
+      "8": {
+       "phrase_at": null,
+       "documents": 9,
+       "same_first_nine": true
+      },
+      "10": {
+       "phrase_at": null,
+       "documents": 9,
+       "same_first_nine": true
+      },
+      "12": {
+       "phrase_at": null,
+       "documents": 9,
+       "same_first_nine": true
+      },
+      "15": {
+       "phrase_at": null,
+       "documents": 9,
+       "same_first_nine": true
+      }
+     }
+    },
+    {
+     "question": "child-rehabilitation-need",
+     "ranked": 144,
+     "documents_in_pool": 17,
+     "top_document": {
+      "title": "Teekond erilise lapse kõrval",
+      "passages": 7
+     },
+     "phrase_ranks": [
+      59
+     ],
+     "phrase_in_pool": false,
+     "phrase_in_reserve": true,
+     "with_cap": {
+      "6": {
+       "phrase_at": null,
+       "documents": 17,
+       "same_first_nine": true
+      },
+      "8": {
+       "phrase_at": null,
+       "documents": 17,
+       "same_first_nine": true
+      },
+      "10": {
+       "phrase_at": null,
+       "documents": 17,
+       "same_first_nine": true
+      },
+      "12": {
+       "phrase_at": null,
+       "documents": 17,
+       "same_first_nine": true
+      },
+      "15": {
+       "phrase_at": null,
+       "documents": 17,
+       "same_first_nine": true
+      }
+     }
+    },
+    {
+     "question": "harku-support-person-relative",
+     "ranked": 149,
+     "documents_in_pool": 12,
+     "top_document": {
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "passages": 12
+     },
+     "phrase_ranks": [
+      11,
+      32,
+      124
+     ],
+     "phrase_in_pool": true,
+     "phrase_in_reserve": false,
+     "with_cap": {
+      "6": {
+       "phrase_at": 11,
+       "documents": 16,
+       "same_first_nine": true
+      },
+      "8": {
+       "phrase_at": 11,
+       "documents": 14,
+       "same_first_nine": true
+      },
+      "10": {
+       "phrase_at": 11,
+       "documents": 13,
+       "same_first_nine": true
+      },
+      "12": {
+       "phrase_at": 11,
+       "documents": 12,
+       "same_first_nine": true
+      },
+      "15": {
+       "phrase_at": 11,
+       "documents": 12,
+       "same_first_nine": true
+      }
+     }
+    },
+    {
+     "question": "guardian-ward-family",
+     "ranked": 106,
+     "documents_in_pool": 10,
+     "top_document": {
+      "title": "Sotsiaalhoolekande seadus",
+      "passages": 11
+     },
+     "phrase_ranks": [
+      7
+     ],
+     "phrase_in_pool": true,
+     "phrase_in_reserve": false,
+     "with_cap": {
+      "6": {
+       "phrase_at": 7,
+       "documents": 12,
+       "same_first_nine": true
+      },
+      "8": {
+       "phrase_at": 7,
+       "documents": 11,
+       "same_first_nine": true
+      },
+      "10": {
+       "phrase_at": 7,
+       "documents": 10,
+       "same_first_nine": true
+      },
+      "12": {
+       "phrase_at": 7,
+       "documents": 10,
+       "same_first_nine": true
+      },
+      "15": {
+       "phrase_at": 7,
+       "documents": 10,
+       "same_first_nine": true
+      }
+     }
+    },
+    {
+     "question": "rent-debt-not-counted",
+     "ranked": 81,
+     "documents_in_pool": 10,
+     "top_document": {
+      "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+      "passages": 10
+     },
+     "phrase_ranks": [
+      2
+     ],
+     "phrase_in_pool": true,
+     "phrase_in_reserve": false,
+     "with_cap": {
+      "6": {
+       "phrase_at": 2,
+       "documents": 10,
+       "same_first_nine": true
+      },
+      "8": {
+       "phrase_at": 2,
+       "documents": 10,
+       "same_first_nine": true
+      },
+      "10": {
+       "phrase_at": 2,
+       "documents": 10,
+       "same_first_nine": true
+      },
+      "12": {
+       "phrase_at": 2,
+       "documents": 10,
+       "same_first_nine": true
+      },
+      "15": {
+       "phrase_at": 2,
+       "documents": 10,
+       "same_first_nine": true
+      }
+     }
+    },
+    {
+     "question": "household-definition",
+     "ranked": 109,
+     "documents_in_pool": 9,
+     "top_document": {
+      "title": "Sotsiaalhoolekande seadus",
+      "passages": 8
+     },
+     "phrase_ranks": [
+      1
+     ],
+     "phrase_in_pool": true,
+     "phrase_in_reserve": false,
+     "with_cap": {
+      "6": {
+       "phrase_at": 1,
+       "documents": 9,
+       "same_first_nine": true
+      },
+      "8": {
+       "phrase_at": 1,
+       "documents": 9,
+       "same_first_nine": true
+      },
+      "10": {
+       "phrase_at": 1,
+       "documents": 9,
+       "same_first_nine": true
+      },
+      "12": {
+       "phrase_at": 1,
+       "documents": 9,
+       "same_first_nine": true
+      },
+      "15": {
+       "phrase_at": 1,
+       "documents": 9,
+       "same_first_nine": true
+      }
+     }
+    },
+    {
+     "question": "kuusalu-limits-since",
+     "ranked": 83,
+     "documents_in_pool": 7,
+     "top_document": {
+      "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+      "passages": 14
+     },
+     "phrase_ranks": [
+      5
+     ],
+     "phrase_in_pool": true,
+     "phrase_in_reserve": false,
+     "with_cap": {
+      "6": {
+       "phrase_at": 5,
+       "documents": 11,
+       "same_first_nine": true
+      },
+      "8": {
+       "phrase_at": 5,
+       "documents": 10,
+       "same_first_nine": true
+      },
+      "10": {
+       "phrase_at": 5,
+       "documents": 10,
+       "same_first_nine": true
+      },
+      "12": {
+       "phrase_at": 5,
+       "documents": 9,
+       "same_first_nine": true
+      },
+      "15": {
+       "phrase_at": 5,
+       "documents": 7,
+       "same_first_nine": true
+      }
+     }
+    },
+    {
+     "question": "special-care-decision-time",
+     "ranked": 120,
+     "documents_in_pool": 16,
+     "top_document": {
+      "title": "Sotsiaalhoolekande seadus",
+      "passages": 8
+     },
+     "phrase_ranks": [
+      1
+     ],
+     "phrase_in_pool": true,
+     "phrase_in_reserve": false,
+     "with_cap": {
+      "6": {
+       "phrase_at": 1,
+       "documents": 16,
+       "same_first_nine": true
+      },
+      "8": {
+       "phrase_at": 1,
+       "documents": 16,
+       "same_first_nine": true
+      },
+      "10": {
+       "phrase_at": 1,
+       "documents": 16,
+       "same_first_nine": true
+      },
+      "12": {
+       "phrase_at": 1,
+       "documents": 16,
+       "same_first_nine": true
+      },
+      "15": {
+       "phrase_at": 1,
+       "documents": 16,
+       "same_first_nine": true
+      }
+     }
+    },
+    {
+     "question": "pensioner-day-centre",
+     "ranked": 117,
+     "documents_in_pool": 16,
+     "top_document": {
+      "title": "Uus toetus üksi elavatele pensionäridele",
+      "passages": 5
+     },
+     "phrase_ranks": [
+      2
+     ],
+     "phrase_in_pool": true,
+     "phrase_in_reserve": false,
+     "with_cap": {
+      "6": {
+       "phrase_at": 2,
+       "documents": 16,
+       "same_first_nine": true
+      },
+      "8": {
+       "phrase_at": 2,
+       "documents": 16,
+       "same_first_nine": true
+      },
+      "10": {
+       "phrase_at": 2,
+       "documents": 16,
+       "same_first_nine": true
+      },
+      "12": {
+       "phrase_at": 2,
+       "documents": 16,
+       "same_first_nine": true
+      },
+      "15": {
+       "phrase_at": 2,
+       "documents": 16,
+       "same_first_nine": true
+      }
+     }
+    }
+   ]
+  }
+ ]
+}
