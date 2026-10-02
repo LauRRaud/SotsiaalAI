@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
-import { checkTurn, validateCatalogue } from '../lib/rag-v2/pilot/conversation-eval.js';
+import { checkTurn, turnPassages, validateCatalogue } from '../lib/rag-v2/pilot/conversation-eval.js';
 
 // The whole-conversation evaluation names what failed in a turn: search, answer or the conversation state.
 const observed = (extra = {}) => ({ state: 'completed', error: null, crisis: false, region: 'harku_vald', previousStateCleared: null,
@@ -193,31 +193,88 @@ test('ADR-063: every pattern of the third hard catalogue passes a right answer a
 });
 
 // The municipal abbreviation catalogue (measured 02.10.2026, no rule built): chosen with --scenarios, never part of a standing run.
-test('the municipal abbreviation catalogue is the twin of its search catalogue, and its patterns pass a right answer and fail the opposite one', async () => {
+test('the municipal abbreviation catalogue is the twin of its search catalogue; it names the provision itself, and its patterns bind the condition to its subject', async () => {
   const catalogue = JSON.parse(await fs.readFile('tests/evaluation/dialogue/scenarios-abbreviation-municipal-1.json', 'utf8'));
   const graph = JSON.parse(await fs.readFile('tests/evaluation/graph/abbreviation-municipal-1.json', 'utf8'));
   assert.deepEqual(catalogue.scenarios.map(scenario => [scenario.id, scenario.turns.length, scenario.turns[0].text, scenario.turns[0].expect.evidence_text, scenario.turns[0].expect.region]),
     graph.questions.map(question => [question.id, 1, question.text, question.evidence_text, question.region]));
   const expectOf = id => catalogue.scenarios.find(scenario => scenario.id === id).turns[0].expect;
-  const act = [{ title: 'Sotsiaalhoolekande seadus', documentId: 'shs' }], regulation = [{ title: 'Asendus- ja järelhooldusteenuse osutamise kord', documentId: 'kord' }];
-  const verdict = (id, text, extra = {}) => checkTurn(expectOf(id), observed({ region: expectOf(id).region, text, evidenceTexts: expectOf(id).evidence_text, cited: act, ...extra })).verdict;
-  // [right answer, opposite answer]: the right one gives what the Act's provision says, the opposite one the regulation without it.
+  // Every turn names the Act's section for the evidence and for the answer's references, with the twin's phrase.
+  for (const scenario of catalogue.scenarios) {
+    const expect = scenario.turns[0].expect;
+    assert.deepEqual([expect.evidence_provision.map(item => [item.section, item.text]), expect.cited_provision.map(item => item.section)],
+      [[[expect.evidence_provision[0].section, expect.evidence_text[0]]], [expect.evidence_provision[0].section]], scenario.id);
+  }
+  // What a turn's evidence and references look like to the checks: the deciding passage of the Act, and the regulation.
+  const SHS = 'Sotsiaalhoolekande seadus';
+  const deciding = id => ({ title: SHS, section: expectOf(id).evidence_provision[0].section, text: `Sätte algus. ${expectOf(id).evidence_text[0]}; sätte lõpp.` });
+  const regulation = { title: 'Valla kord', section: '4', text: 'Teenust võib osutada isik, kes vastab SHS § 25 esitatud nõuetele.' };
+  const verdictOf = (id, text, extra = {}) => {
+    const passages = extra.evidencePassages ?? [deciding(id), regulation];
+    return checkTurn(expectOf(id), observed({ region: expectOf(id).region, text, evidenceTexts: passages.map(passage => passage.text), evidencePassages: passages,
+      citedPassages: [deciding(id), regulation], ...extra }));
+  };
+  const verdict = (...args) => verdictOf(...args).verdict;
+  // Right answers state the Act's condition; opposite ones deny it, give the rule without it, or use the same words about
+  // something else (Codex review of #320: a bare number, or a prohibition elsewhere in the answer, passed before).
   const answers = {
-    'narva-substitute-care-personal-costs': ['Lapse isiklike kulude katteks tuleb iga kuu teha kulutusi keskmiselt 240 euro ulatuses ja vähemalt 2880 eurot aastas.',
-      'Narva kord tagab seaduses sätestatud miinimumi, aga summat ma öelda ei saa.'],
-    'sillamae-aftercare-student': ['Jah. Kui jätkad õppimist kutseõppes, tagab linn järelhooldusteenuse nominaalse õppeaja lõpuni, kuid mitte kauem kui sinu 25-aastaseks saamiseni.',
-      'Ei. Järelhooldusteenus lõpeb täisealiseks saamisel.'],
-    'polva-support-person-relative': ['Ei. Vanaema ei saa olla lapse tugiisikuteenuse vahetu osutaja, sest ta on teise astme üleneja sugulane.', 'Jah, vanaema võib olla tugiisik, kui ta annab kirjaliku nõusoleku.'],
+    'narva-substitute-care-personal-costs': {
+      right: ['Lapse isiklike kulude katteks tuleb iga kuu teha kulutusi keskmiselt 240 euro ulatuses ja vähemalt 2880 eurot aastas.',
+        'Narva kord ise summat ei nimeta, vaid viitab seadusele: lapse isiklikeks kuludeks tuleb kulutada keskmiselt 240 eurot kuus.',
+        'Miinimum ei ole kirjas Narva korras, vaid seaduses: keskmiselt 240 eurot kuus.'],
+      opposite: ['Narva kord tagab seaduses sätestatud miinimumi, aga summat ma öelda ei saa.',
+        'Narvas ei ole lapse isiklike kulude jaoks 240-eurost miinimumi; piisab 100 eurost kuus.',
+        'Seaduses miinimumi ei ole. Teenuse hind on 240 eurot.'] },
+    'sillamae-aftercare-student': {
+      right: ['Jah. Kui jätkad õppimist kutseõppes, tagab linn järelhooldusteenuse nominaalse õppeaja lõpuni, kuid mitte kauem kui sinu 25-aastaseks saamiseni.',
+        'Jah. Linn peab sulle järelhooldusteenuse tagama seni, kuni õpid, kõige kauem kuni 25-aastaseks saamiseni. Kui õpingud katkestad, linn teenust enam ei taga.'],
+      opposite: ['Ei. Järelhooldusteenus lõpeb täisealiseks saamisel.',
+        'Järelhooldust ei tagata kuni 25-aastaseks saamiseni; teenus lõpeb 21-aastaselt.',
+        'Linn ei pea sulle järelhooldusteenust tagama, sest oled juba 20-aastane; kuni 25-aastaseks saamiseni saad taotleda toimetulekutoetust.'] },
+    'polva-support-person-relative': {
+      right: ['Ei. Vanaema ei saa olla lapse tugiisikuteenuse vahetu osutaja, sest ta on teise astme üleneja sugulane.',
+        'Ei. Tugiisikuteenust ei tohi vahetult osutada teenuse saaja esimese või teise astme sugulane, ja vanaema on teise astme üleneja sugulane.',
+        'Vanaema ei või olla tugiisik, aga tugiisikuks võib olla muu isik, kes vastab nõuetele.'],
+      opposite: ['Jah, vanaema võib olla tugiisik, kui ta annab kirjaliku nõusoleku.',
+        'Vanaema võib olla lapse tugiisik. Tugiisik ei tohi avaldada lapse isikuandmeid.',
+        'Vanaema võib olla tugiisik, kui ta ei saa lapsega koos elada.'] },
   };
   assert.deepEqual(Object.keys(answers), catalogue.scenarios.map(scenario => scenario.id));
-  for (const [id, [right, opposite]] of Object.entries(answers)) {
-    assert.equal(verdict(id, right), 'passed', `${id}: ${right}`);
-    assert.equal(verdict(id, opposite), 'answer', `${id}: ${opposite}`);
-    // The Act's words missing from the evidence is a search failure; a right answer that cites only the regulation is an answer failure.
-    assert.equal(verdict(id, right, { evidenceTexts: ['Teenuse osutaja peab vastama SHS § 25 esitatud nõuetele.'] }), 'search', id);
-    assert.equal(verdict(id, right, { cited: regulation }), 'answer', id);
-    assert.equal(verdict(id, right, { region: 'kose_vald' }), 'state', id);
+  for (const [id, { right, opposite }] of Object.entries(answers)) {
+    for (const text of right) assert.equal(verdict(id, text), 'passed', `${id}: ${text} — ${JSON.stringify(verdictOf(id, text).checks.filter(check => !check.ok))}`);
+    for (const text of opposite) assert.equal(verdict(id, text), 'answer', `${id}: ${text}`);
+    // The Act's words missing from the evidence, or the Act's passage of another section holding them: a search failure.
+    assert.equal(verdict(id, right[0], { evidencePassages: [regulation] }), 'search', id);
+    assert.equal(verdict(id, right[0], { evidencePassages: [{ ...deciding(id), section: '29' }, regulation] }), 'search', `${id}: the same words in § 29`);
+    assert.equal(verdict(id, right[0], { evidencePassages: [{ ...deciding(id), title: 'Lastekaitseseadus' }, regulation] }), 'search', `${id}: another act`);
+    // A right answer that cites only the regulation, or another section of the Act: an answer failure.
+    assert.equal(verdict(id, right[0], { citedPassages: [regulation] }), 'answer', id);
+    assert.equal(verdict(id, right[0], { citedPassages: [{ ...deciding(id), section: '29' }] }), 'answer', `${id}: cites § 29`);
+    assert.equal(verdict(id, right[0], { region: 'kose_vald' }), 'state', id);
   }
+  // Codex's own case: only § 29's sentence in the evidence, the answer right and citing that source. No longer passed.
+  const section29 = { title: SHS, section: '29', text: 'Isikliku abistaja teenust ei tohi vahetult osutada isik, kes on teenuse saaja esimese või teise astme üleneja või alaneja sugulane.' };
+  const wrongSection = verdictOf('polva-support-person-relative', answers['polva-support-person-relative'].right[0], { evidencePassages: [section29, regulation], citedPassages: [section29] });
+  assert.deepEqual([wrongSection.verdict, wrongSection.checks.filter(check => !check.ok).map(check => check.key)], ['search', ['evidence_provision', 'cited_provision']]);
+});
+
+test('the provision checks read a saved turn\'s passages by their own section; a catalogue must name title, section and text', () => {
+  const entry = (id, title, heading, text) => ({ evidence_id: id, bibliography: { title }, search_aids: { heading_prefix: heading }, source_text: text });
+  const packet = { evidence: [entry('e1', 'Sotsiaalhoolekande seadus', 'Riigikogu > Sotsiaalhoolekande seadus > 3. jaotis Tugiisikuteenus > § 25. Nõuded teenust vahetult osutavale isikule', '§ 25. Nõuded … (2) Teenust ei tohi …'),
+    entry('e2', 'Sotsiaalhoolekande seadus', 'Riigikogu > Sotsiaalhoolekande seadus > 12. jaotis Asendushooldusteenus > § 45¹¹. Asendushooldusteenuse rahastamine', '(3) Lapse isiklike kulude katteks …'),
+    entry('e3', 'Teenuste kogumik', 'Teenuste kogumik > Sissejuhatus', 'Vaata SHS § 25.'), { evidence_id: 'e4', source_text: 'Kataloogikirje' }],
+    reference_map: { S1: { evidence_id: 'e1' }, S2: { evidence_id: 'e3' }, S3: { evidence_id: 'missing' } } };
+  const passages = turnPassages(packet, { blocks: [{ refs: ['S1', 'S2'] }, { refs: ['S1', 'S3'] }] });
+  // The section is the passage's place in the document (the heading path), not a number its text mentions.
+  assert.deepEqual(passages.evidencePassages.map(passage => [passage.title, passage.section]), [['Sotsiaalhoolekande seadus', '25'], ['Sotsiaalhoolekande seadus', '45^11'], ['Teenuste kogumik', null], ['', null]]);
+  assert.deepEqual(passages.citedPassages.map(passage => [passage.title, passage.section]), [['Sotsiaalhoolekande seadus', '25'], ['Teenuste kogumik', null]]);
+  assert.deepEqual(turnPassages(null, null), { evidencePassages: [], citedPassages: [] });
+  const turn = expect => validateCatalogue({ scenarios: [{ id: 'x', turns: [{ mode: 'new', text: 'a', expect }] }] });
+  assert.deepEqual(turn({ evidence_provision: [{ title: 'Seadus', section: '45^11', text: 'lause' }], cited_provision: [{ title: 'Seadus', section: '25' }] }), []);
+  assert.deepEqual(turn({ evidence_provision: [{ title: 'Seadus', section: '§ 25', text: 'lause' }], cited_provision: [{ title: 'Seadus', section: '25', text: 'lause' }] }),
+    ['x turn 1: evidence_provision needs title, section and text', 'x turn 1: cited_provision needs title, section']);
+  assert.deepEqual(turn({ evidence_provision: [{ title: 'Seadus', section: '25' }], cited_provision: [] }),
+    ['x turn 1: evidence_provision needs title, section and text', 'x turn 1: cited_provision needs title, section']);
 });
 
 test('ADR-062: the provision-date patterns fail the 30.09 answers and pass an answer that dates the rule by the act\'s own provision', async () => {

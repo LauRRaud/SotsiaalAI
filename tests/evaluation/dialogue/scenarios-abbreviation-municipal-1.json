@@ -1,39 +1,47 @@
 {
   "schema_version": "rag-v2/dialogue-eval-2",
-  "purpose": "Municipal regulations that hand a provision's content to the Social Welfare Act by the act's abbreviation (\"SHS § 25\"). The twin of tests/evaluation/graph/abbreviation-municipal-1.json: the same three questions, each with the Act's deciding words. No standing run includes it: choose it with --scenarios when a change touches the knowledge lane's candidates, the national-law reserve, the rerank or the following of act references. On 02.10.2026 only the Põlva question was run on the full route (it passed, once); the other two were measured in the search alone, without the rerank and answer models (docs/audits/rag-v2-abbreviation-references-2026-10-02.md). Three paid turns, about 0.02 USD at the plan's prices.",
+  "purpose": "Municipal regulations that hand a provision's content to the Social Welfare Act by the act's abbreviation (\"SHS § 25\"). The twin of tests/evaluation/graph/abbreviation-municipal-1.json: the same three questions, each with the Act's deciding words. No standing run includes it: choose it with --scenarios when a change touches the knowledge lane's candidates, the national-law reserve, the rerank or the following of act references. On 02.10.2026 only the Põlva question was run on the full route (it passed, once); the other two were measured in the search alone, without the rerank and answer models (docs/audits/rag-v2-abbreviation-references-2026-10-02.md). Three paid turns, about 0.02 USD at the plan's prices. After Codex's review of #320 each turn names the provision itself (the Act's section, not only its words) in the evidence and in the answer's references, and its answer patterns tie the condition to its subject within one sentence.",
   "expectation_help": {
     "region": "the municipality the conversation is about",
-    "evidence_text": "the deciding provision's exact phrase is in the evidence the answer was given",
-    "cited": "the answer cites the Social Welfare Act, not only the regulation that points at it",
-    "must": "the answer states the deciding condition or its effect",
-    "must_not": "the answer does not state the opposite"
+    "evidence_text": "the deciding provision's exact phrase is in the evidence the answer was given (the twin's phrase; it does not say which section it came from)",
+    "evidence_provision": "one evidence passage of the Social Welfare Act's named section holds that phrase",
+    "cited_provision": "the answer cites a passage of that section, not only the regulation or another section of the Act",
+    "must": "the answer states the deciding condition of its subject, in one sentence",
+    "must_not": "the answer does not state the opposite of it"
   },
   "scenarios": [
     { "id": "narva-substitute-care-personal-costs", "title": "Asendushooldusel lapse isiklike kulude miinimum Narvas", "source": "Narva asendus- ja järelhooldusteenuse kord § 3 lg 1; SHS § 45¹¹ lg 3", "turns": [
       { "mode": "new", "text": "Minu õelaps on Narva linna kaudu asendushooldusel perekodus. Kui palju raha peab tema isiklike kulude jaoks kuus vähemalt kulutatama?",
-        "note": "The regulation guarantees \"at least the minimum of SHS § 45¹¹ lõige 3\"; the amount is only in the Act.",
+        "note": "The regulation guarantees \"at least the minimum of SHS § 45¹¹ lõige 3\"; the amount is only in the Act. must: 240 as a monthly amount; must_not: the amount or the minimum denied in the same clause.",
         "expect": { "region": "narva_linn",
           "evidence_text": ["Lapse isiklike kulude katteks peab iga kuu tegema kulutusi keskmiselt 240 euro ulatuses"],
-          "cited": ["Sotsiaalhoolekande seadus"],
-          "must": ["(?<!\\d)240(?!\\d)"] } }
+          "evidence_provision": [{ "title": "^Sotsiaalhoolekande seadus$", "section": "45^11", "text": "Lapse isiklike kulude katteks peab iga kuu tegema kulutusi keskmiselt 240 euro ulatuses" }],
+          "cited_provision": [{ "title": "^Sotsiaalhoolekande seadus$", "section": "45^11" }],
+          "must": ["(?<!\\d)240(?!\\d)[^.!?\\n]{0,120}(?<!\\p{L})(kuus|kuu|igakuis\\p{L}*)(?!\\p{L})|(?<!\\p{L})(kuus|kuu|igakuis\\p{L}*)(?!\\p{L})[^.!?\\n]{0,120}(?<!\\d)240(?!\\d)"],
+          "must_not": ["(?<!\\p{L})(ei\\s+ole|pole|puudub)(?!\\p{L})[^.!?\\n,;:]{0,80}((?<!\\d)240(?!\\d)|miinimum)"] } }
     ] },
     { "id": "sillamae-aftercare-student", "title": "Järelhooldus õppivale noorele Sillamäel", "source": "Sillamäe asendus- ja järelhooldusteenuse kord § 5 lg 2; SHS § 45¹⁶ lg 1", "turns": [
       { "mode": "new", "text": "Olen 20-aastane, kasvasin Sillamäel asenduskodus ja õpin nüüd kutsekoolis. Kas linn peab mulle järelhooldusteenuse tagama ja kui kaua?",
-        "note": "The regulation guarantees aftercare to \"the adult named in SHS § 45¹⁶ lõige 1\"; who that is and until when is only in the Act.",
+        "note": "The regulation guarantees aftercare to \"the adult named in SHS § 45¹⁶ lõige 1\"; who that is and until when is only in the Act. must: aftercare is guaranteed, and until 25; must_not: the guarantee of aftercare or of the 25 years denied in the same clause.",
         "expect": { "region": "sillamae_linn",
           "evidence_text": ["esmase õppekavajärgse nominaalse õppeaja lõpuni, kuid mitte kauem kui isiku 25-aastaseks saamiseni"],
-          "cited": ["Sotsiaalhoolekande seadus"],
-          "must": ["(?<!\\d)25[- ]?aasta"],
-          "must_not": ["(?:^|\\n)\\s*Ei[,.]"] } }
+          "evidence_provision": [{ "title": "^Sotsiaalhoolekande seadus$", "section": "45^16", "text": "esmase õppekavajärgse nominaalse õppeaja lõpuni, kuid mitte kauem kui isiku 25-aastaseks saamiseni" }],
+          "cited_provision": [{ "title": "^Sotsiaalhoolekande seadus$", "section": "45^16" }],
+          "must": ["(?<!\\d)25[- ]?aastas\\p{L}*[^.!?\\n]{0,40}saamiseni|kuni\\s+25[- ]?aasta|(?<!\\d)25\\.\\s*eluaasta",
+            "järelhooldus\\p{L}*[^.!?\\n]{0,120}(?<!\\p{L})(tagab|tagama|tagada|tagatakse)(?!\\p{L})|(?<!\\p{L})(tagab|tagama|tagada|tagatakse)(?!\\p{L})[^.!?\\n]{0,120}järelhooldus"],
+          "must_not": ["(?:^|\\n)\\s*Ei[,.]",
+            "(?<!\\p{L})ei\\s+(taga|tagata|pea|ole\\s+kohustatud)(?!\\p{L})[^.!?\\n,;:]{0,80}(järelhooldus|(?<!\\d)25[- ]?aasta)|järelhooldus\\p{L}*\\s+ei\\s+(taga|tagata)(?!\\p{L})"] } }
     ] },
     { "id": "polva-support-person-relative", "title": "Vanaema tugiisikuna Põlva vallas", "source": "Põlva raske ja sügava puudega lapse tugiisikuteenuse kord § 4 lg 2; SHS § 25 lg 2 p 2", "turns": [
       { "mode": "new", "text": "Elame Põlva vallas ja mu lapsel on raske puue. Kas tema tugiisikuks võib olla lapse vanaema?",
-        "note": "The regulation lets the support person be \"a person who meets the requirements of SHS § 25\"; who may not provide the service is only in the Act. The same words stand in SHS § 29 lõige 2 (the personal assistant), so the phrase alone does not tell which section reached the evidence.",
+        "note": "The regulation lets the support person be \"a person who meets the requirements of SHS § 25\"; who may not provide the service is only in the Act. The same words stand in SHS § 29 lõige 2 (the personal assistant): the provision checks name § 25. must: the grandmother or the relative may not, in one sentence; must_not: the grandmother may be the support person.",
         "expect": { "region": "polva_vald",
           "evidence_text": ["kes on teenuse saaja esimese või teise astme üleneja või alaneja sugulane"],
-          "cited": ["Sotsiaalhoolekande seadus"],
-          "must": ["\\bei (tohi|või|saa)|keelatud|ei ole lubatud", "vanaema|sugulane|teise astme"],
-          "must_not": ["(?:^|\\n)\\s*Jah[,.]"] } }
+          "evidence_provision": [{ "title": "^Sotsiaalhoolekande seadus$", "section": "25", "text": "kes on teenuse saaja esimese või teise astme üleneja või alaneja sugulane" }],
+          "cited_provision": [{ "title": "^Sotsiaalhoolekande seadus$", "section": "25" }],
+          "must": ["(vanaema|sugula\\p{L}*)[^.!?\\n]{0,100}(?<!\\p{L})ei\\s+(tohi|või|saa)(?!\\p{L})|(?<!\\p{L})ei\\s+(tohi|või|saa)(?!\\p{L})[^.!?\\n]{0,120}(vanaema|sugula\\p{L}*)|(vanaema|sugula\\p{L}*)[^.!?\\n]{0,100}(keelatud|ei\\s+ole\\s+lubatud)"],
+          "must_not": ["(?:^|\\n)\\s*Jah[,.]",
+            "vanaema\\p{L}*\\s+(võib|saab|tohib)(?!\\p{L})[^.!?\\n]{0,60}tugiisik|tugiisik\\p{L}*\\s+(võib|saab|tohib)\\s+olla[^.!?\\n]{0,40}vanaema"] } }
     ] }
   ]
 }
