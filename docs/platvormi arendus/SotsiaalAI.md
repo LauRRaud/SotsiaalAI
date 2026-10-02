@@ -119,7 +119,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
   - **Serveri koristus tehtud 01.10 kell 19:46** (omanik: „serveri koristus tee“): generatsioonide v42–v46 loendid kustutatud (`drop-version-generations.mjs`), seejärel `rag-v2-prune-versions.mjs --execute`: 519 versiooni, 13 669 rida ja 13 669 punkti. Indeksi v47 tõend enne ja pärast sama (6470 versiooni, 40 489 rida ja punkti, samad räsid); kollektsioonis nüüd 40 489 punkti; kordusloendus 0; `VACUUM ANALYZE` tehtud. Ketas jäi 85% juurde (vaba 8,7 → 9,0 GB): suured on Docker 13 GB (Postgres ja Qdrant), hoidla 6,0 GB, ostetud vektorid 2,5 GB ja rakendus 5,9 GB. Serveris on nüüd ainult generatsioon v47, seega v46-le tagasi minna ei saa ilma uue indeksitööta.
   - 04.10: Maardu XML-id 415082017002 ja 402072013031 uuesti alla laadida, kui RT on kirjutanud neile lõpukuupäeva. Rada: `rag-v2-law-validity.mjs check --download`, `rag-v2-corpus-refresh.mjs`, serveris `rag-v2-corpus-run.sh` (runbook, jaotis 0).
   - Kontaktid pärast 04.10.
-  - Codex pole veel üle vaadanud: #302–#311 (ADR-065–ADR-069).
+  - Codexi #302–#312 ülevaatus on tehtud, uut kinnitatud viga ei leitud. Üle vaatamata: #313 (ADR-070).
   - Codexi #289, #290, #295–#299 ülevaatus on tehtud ([raport](../audits/rag-v2-pr289-299-review-2026-10-01.md)) ja selle kolm leidu parandatud (vt 01.10 öö kirje allpool).
   - Kiiruse mõõtmine päris vestluses teeb omanik.
 - **Võrk 30.09 õhtul:** SSH port 22 aegus korduvalt nii GitHubi kui serveri (`ssh sotsiaalai`) poole. Push õnnestus kordamisel. `gh` töötab HTTPS-i kaudu.
@@ -129,6 +129,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 - **Muudatus:** üheksas sõnum alustab uut teemat kolme asjaga: kasutaja varasemad väited olekust (kasutaja enda sõnadega, üks pööre), täis teema viimane sõnum, ning olek ja viimane vastus. Vanemate sõnumite tekst jääb maha. Jätkuteemas on kuus uut sõnumit, siis sama uuesti. Dialoogi juhis 23; kasutajapöörded on mudelile nummerdatud.
 - **Tsitaat kasutaja oma sõnades:** asjaolu tsitaat kehtib ka suurtähe, tühikute või kirjavahemärkide erinevusega või vale pöördenumbriga, kui täpselt üks pööre neid sõnu sisaldab (`quotedSupport`).
 - **Mõõdetud** (`scenarios-long-topic-1.json`, `--auto-modes`): üheksas sõnum teadis valda ja asjaolusid ega küsinud neid uuesti; 10. ja 11. sõnum said vastuse. Kahes jooksus 10/11 ja 8/11: läbi kukkunud kontrollid olid mudeli tsitaadilibastused (üks enne piiri), mille vastu on tsitaadi parandus; kontrollkataloog 6/6. Kulu 0,183 USD, kolm jooksu.
+- **Elav kontroll (#313):** kümme sõnumit järjest päris vestluses. Üheksas teadis Kose valda ja ema pensioni ega küsinud valda uuesti; kümnes („pension on hoopis 700“) sai vastuse ja olekus asendas uus summa vana. Umbes 0,07 USD.
 - **Testid:** kohalik andmebaasitest (`rag-v2-dialogue-store`, 21 testi) käib selles masinas: `M4_TEST_DATABASE_URL` tuleb põhikausta failist `tmp/rag-v2-m4/local-runtime.json`.
 
 **02.10 (Opus), pärastlõuna: kontrollimärgid püsivad taaskäivituse üle** ([ADR-069](../rag-v2/adr-069-verified-marks.md)). Omanik: „tee kuni neljandani ära“ (punkt 2: vestlus on pärast deploy'd esimesed minutid aeglane).
