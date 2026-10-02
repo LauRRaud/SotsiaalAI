@@ -79,14 +79,17 @@ test('the warm-up checks every source itself, and one that fails ends the inheri
     ['bundles', ['c'], { cache: false, own: true }], ['units', ['c'], { own: true }]]);
   assert.equal(postgres.inherited.size, 2, 'a warm-up that passes leaves the marks');
 
-  postgres.units = async () => { throw failure('index_morphology_integrity_failed'); };
-  await assert.rejects(postgres.warm('t', 'g', ['a']), { code: 'index_morphology_integrity_failed' });
-  assert.deepEqual([postgres.inherited.size, pool.marks.size, postgres.known('bundle\0t\0g\0v1\0h1', '11/12')], [0, 0, false]);
-  // Its own checks stand and are saved afterwards; a later failure without inherited marks leaves the table alone.
+  // What this process checked itself before the failure stands: its mark goes back into the table.
   postgres.rememberVerified('bundle\0t\0g\0v2\0h2', '21/22');
   assert.equal(await postgres.saveVerified(), 1);
+  postgres.units = async () => { throw failure('index_morphology_integrity_failed'); };
   await assert.rejects(postgres.warm('t', 'g', ['a']), { code: 'index_morphology_integrity_failed' });
-  assert.deepEqual([pool.marks.size, postgres.known('bundle\0t\0g\0v2\0h2', '21/22', true)], [1, true]);
+  assert.deepEqual([postgres.inherited.size, pool.marks.size, postgres.known('bundle\0t\0g\0v1\0h1', '11/12'), postgres.known('bundle\0t\0g\0v2\0h2', '21/22')], [0, 0, false, true]);
+  assert.equal(await postgres.saveVerified(), 1);
+  assert.deepEqual([...pool.marks], [verifiedMark('bundle\0t\0g\0v2\0h2', '21/22')]);
+  // A later failure without inherited marks leaves the table alone.
+  await assert.rejects(postgres.warm('t', 'g', ['a']), { code: 'index_morphology_integrity_failed' });
+  assert.equal(pool.marks.size, 1);
   await postgres.close();
 });
 
@@ -95,20 +98,20 @@ test('with inherited marks the warm-up waits for a moment without a chat turn, b
   const run = async (inherited, busy) => {
     const pool = table();
     if (inherited) pool.marks.add(verifiedMark('a', '1'));
-    const postgres = catalog(pool), started = Date.now();
+    const postgres = catalog(pool), started = Date.now(), batches = [];
     await postgres.inheritVerified();
-    let first = null;
-    postgres.bundles = async () => { first ??= Date.now() - started; }; postgres.units = async () => {};
+    postgres.bundles = async () => { batches.push(Date.now() - started); }; postgres.units = async () => {};
     postgres.foreground();
     const turn = busy ? setInterval(() => postgres.foreground(), 20) : null;
-    try { await postgres.warm('t', 'g', ['a'], { quiet }); } finally { clearInterval(turn); await postgres.close(); }
-    return first;
+    try { await postgres.warm('t', 'g', ['a', 'b'], { batch: 1, quiet }); } finally { clearInterval(turn); await postgres.close(); }
+    return batches;
   };
-  assert.ok(await run(false, true) < 100, 'no inherited marks: the warm-up runs at once, as before');
-  const waited = await run(true, false);
+  assert.ok((await run(false, true))[1] < 100, 'no inherited marks: the warm-up runs at once, as before');
+  const [waited] = await run(true, false);
   assert.ok(waited >= 110 && waited < 390, `one turn just before: waits for the quiet moment (${waited} ms)`);
-  const capped = await run(true, true);
-  assert.ok(capped >= 390, `turns without a pause: starts after the longest wait (${capped} ms)`);
+  // Turns without a pause: the warm-up spends its whole waiting time before the first batch and then runs on.
+  const [capped, next] = await run(true, true);
+  assert.ok(capped >= 390 && next - capped < 100, `starts after the longest wait and does not wait again (${capped}, ${next} ms)`);
 });
 
 test('the start warm-up inherits the marks, reads the vectors at once and again after the sources', async () => {
