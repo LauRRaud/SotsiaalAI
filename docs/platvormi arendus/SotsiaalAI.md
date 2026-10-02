@@ -98,6 +98,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
   - Codex kujundab põhikaustas, seega ära vaheta seal harusid. Töötle %TEMP% worktree's: `node_modules` junction, `generated/` koopia. Eemalda worktree ja haru pärast PR-i.
   - PR liidetakse ja deploy'takse ise. Enne PR-i jooksuta kogu `npm test`.
   - Tasulised jooksud on kitsad: väikseim kataloog, suurem komplekt ainult hinnaga ette öeldes.
+  - Hindaja ja otsingukatse loevad serveri kontrollimärke (ADR-069 täiendus): pöörete ajad on serveri tasemel, mitte külma protsessi omad. `--cold` ainult siis, kui muudatus puudutab allikate kontrolle.
   - Päris mõõtmine käib päris vestluses: brauseripaanis `sotsiaal.ai/vestlus`, uus vestlus sessionStorage'i `:convId` võtme kustutamisega.
 - **Järgmised sammud:**
   - **M3 (omaniku valik 01.10, „M5 tuleb kunagi hiljem“):** järgmine samm on katse, mis vestluses midagi ei muuda. Kavand valiti kolme sõltumatu ettepaneku seast (kolmest hindajast kaks eelistasid kontrollitud seoseid). Täiskavand sammude, lävendite ja hindadega: [m3-next-step-plan-2026-10-01.json](../audits/evidence/m3-next-step-plan-2026-10-01.json).
@@ -119,10 +120,16 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
   - **Serveri koristus tehtud 01.10 kell 19:46** (omanik: „serveri koristus tee“): generatsioonide v42–v46 loendid kustutatud (`drop-version-generations.mjs`), seejärel `rag-v2-prune-versions.mjs --execute`: 519 versiooni, 13 669 rida ja 13 669 punkti. Indeksi v47 tõend enne ja pärast sama (6470 versiooni, 40 489 rida ja punkti, samad räsid); kollektsioonis nüüd 40 489 punkti; kordusloendus 0; `VACUUM ANALYZE` tehtud. Ketas jäi 85% juurde (vaba 8,7 → 9,0 GB): suured on Docker 13 GB (Postgres ja Qdrant), hoidla 6,0 GB, ostetud vektorid 2,5 GB ja rakendus 5,9 GB. Serveris on nüüd ainult generatsioon v47, seega v46-le tagasi minna ei saa ilma uue indeksitööta.
   - 04.10: Maardu XML-id 415082017002 ja 402072013031 uuesti alla laadida, kui RT on kirjutanud neile lõpukuupäeva. Rada: `rag-v2-law-validity.mjs check --download`, `rag-v2-corpus-refresh.mjs`, serveris `rag-v2-corpus-run.sh` (runbook, jaotis 0).
   - Kontaktid pärast 04.10.
-  - Codexi #302–#312 ülevaatus on tehtud, uut kinnitatud viga ei leitud ([raport](../audits/rag-v2-pr302-312-review-2026-10-02.md)). Üle vaatamata: #313 (ADR-070).
+  - Codexi #302–#312 ülevaatus on tehtud, uut kinnitatud viga ei leitud ([raport](../audits/rag-v2-pr302-312-review-2026-10-02.md)). #313 ja #314 on samuti üle vaadatud, vigu ei leitud.
   - Codexi #289, #290, #295–#299 ülevaatus on tehtud ([raport](../audits/rag-v2-pr289-299-review-2026-10-01.md)) ja selle kolm leidu parandatud (vt 01.10 öö kirje allpool).
   - Kiiruse mõõtmine päris vestluses teeb omanik.
 - **Võrk 30.09 õhtul:** SSH port 22 aegus korduvalt nii GitHubi kui serveri (`ssh sotsiaalai`) poole. Push õnnestus kordamisel. `gh` töötab HTTPS-i kaudu.
+
+**02.10 (Opus), õhtu: mõõtmisskriptid loevad kontrollimärke** ([ADR-069](../rag-v2/adr-069-verified-marks.md), täiendus). Omanik: „Jätka A-ga … tasulisi mõõtmisjookse selle töö jaoks ei tee.“
+- **Muudatus:** `inheritVerified({ keep: false })` loeb serveri märgid ja ei kirjuta midagi. Vestluse hindaja (`rag-v2-conversation-eval.mjs`) ja otsingukatse (`rag-v2-graph-experiment.mjs`) kasutavad seda; hindaja ei käivita enam oma taustasoojendust. Valik `--cold` annab vana käitumise. Aruannetes on `verified_marks`.
+- **Mõõdetud tasuta:** otsingukatse 6 küsimusel 122 s → 99 s, allikate esimene lugemine 41,8 s → 17,8 s, valikud samad, märkide tabel muutmata. Vestluse hindaja mõju on mõõtmata; järgmine vajalik hindamisjooks näitab seda.
+- **Testid:** uus kohalik integratsioonitest `rag-v2-verified-marks.integration.test.mjs` (kohalik Postgres ja Qdrant; `node scripts/rag-v2-local.mjs up`).
+- Codex vaatas #313 ja #314 üle: uusi vigu ei leidnud. Päris mudeli kahe inimese vestlus üle teemapiiri on kontrollimata.
 
 **02.10 (Opus), õhtupoolik: täis teema annab asjaolud jätkule kaasa; kümnenda sõnumi viga** ([ADR-070](../rag-v2/adr-070-full-topic-hands-over.md)). Omanik: „tegutse“ (Codexi #302–#312 ülevaatuse piir).
 - **Viga:** alates #307-st ebaõnnestus vestluse kümnes sõnum (`dialogue_state_scope_mismatch`): üheksas saadeti kui „jätka“, võeti vastu kui „uus teema“, ja selle olek ei sobinud järgmise sõnumiga. Parandatud (režiim loetakse `context.mode` järgi).
