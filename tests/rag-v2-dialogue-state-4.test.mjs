@@ -26,6 +26,28 @@ test('the model records only changes; facts get stable ids, a correction replace
   assert.deepEqual(second.model, { accepted: true, dropped: [] });
 });
 
+// ADR-070: a quotation is kept in the user's own words when it differs only in letter case, spacing or punctuation, or
+// names the wrong turn while exactly one turn holds it; words the user did not write are still left out.
+test('a quotation is read in the user\'s own words: case, spacing and punctuation, or the one turn that holds it', () => {
+  const t = ['Minu ema elab Kose vallas.', 'Ema pension on 600 eurot.', 'Vabandust, ema pension on hoopis 700 eurot.'];
+  const merge = (facts, texts = t) => mergeFactState(null, { new_facts: facts, superseded: [], needs: [], unknowns: [], periods: [], language_hint: 'et' }, turns(texts), { people: [], focus: 'ema' });
+  const kept = merge([fact('pension', 'ema', 2, 'ema pension on 600 eurot'), fact('pension', 'ema', 3, 'Ema pension on hoopis  700 eurot'), fact('elukoht', 'ema', 3, 'Minu ema elab Kose vallas')]);
+  assert.deepEqual(kept.facts.map(entry => entry.support), [[{ turn: 2, quote: 'Ema pension on 600 eurot' }], [{ turn: 3, quote: 'ema pension on hoopis 700 eurot' }],
+    [{ turn: 1, quote: 'Minu ema elab Kose vallas' }]]);
+  assert.deepEqual(kept.model.dropped, []);
+  // Another word, a quotation two turns hold under a wrong number, a turn that is not there with no holder: left out.
+  const twice = ['Ema pension on 600 eurot.', 'Jah, ema pension on 600 eurot.', 'Mis edasi?'];
+  assert.deepEqual(merge([fact('pension', 'ema', 2, 'Ema pension on 650 eurot')]).model.dropped.map(item => item.reason), ['fact_not_quoted']);
+  assert.deepEqual(merge([fact('pension', 'ema', 3, 'ema pension on 600 eurot')], twice).model.dropped.map(item => item.reason), ['fact_not_quoted']);
+  assert.deepEqual(merge([fact('pension', 'ema', 9, 'ema pension on 800 eurot')]).model.dropped.map(item => item.reason), ['fact_not_quoted']);
+  // In the named turn the quotation is that turn's, also when another turn has the same words.
+  assert.deepEqual(merge([fact('pension', 'ema', 2, 'ema pension on 600 eurot')], twice).facts[0].support, [{ turn: 2, quote: 'ema pension on 600 eurot' }]);
+  // A correction then replaces the fact it corrects: the newer quotation is in a later turn.
+  const corrected = mergeFactState(merge([fact('pension', 'ema', 2, 'ema pension on 600 eurot')]), { new_facts: [fact('pension', 'ema', 2, 'Ema pension on hoopis 700 eurot')],
+    superseded: [{ fact: 'F1', by: 'N1' }], needs: [], unknowns: [], periods: [], language_hint: 'et' }, turns(t), { people: [], focus: 'ema' });
+  assert.deepEqual(corrected.facts.map(entry => [entry.id, entry.status, entry.support[0].turn]), [['F1', 'superseded', 2], ['F2', 'current', 3]]);
+});
+
 test('a bad item is left out and named; the rest of the state advances (no whole-state rejection)', () => {
   const t = ['Elan Harku vallas. Mul on võlad.'];
   const merged = mergeFactState(null, { new_facts: [fact('võlad', 'user', 1, 'Mul on võlad.'), fact('leiutatud', 'user', 1, 'Mul on kolm last.')],

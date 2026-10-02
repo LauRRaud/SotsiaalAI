@@ -344,6 +344,41 @@ test('M4-C real DB: eighth turn is retained, ninth goes on in a new topic of the
   assert.equal(after.scopes[0].userTurns, DIALOGUE_LIMITS.scopeTurns);
 });
 
+// ADR-070: the ninth message begins a new topic with the user's earlier statements, the last message, the full topic's
+// last answer and its state, and the turn is stored, restored and continued like any other.
+test('M4-C real DB (ADR-070): the ninth message carries the facts, the last message and the last answer into the new topic', async t => {
+  const inputs = [];
+  let draft = { new_facts: [{ topic: 'elukoht', person: 'ema', support: [{ turn: 1, quote: 'Minu ema elab Kose vallas' }] }], superseded: [], needs: [], unknowns: [], periods: [], language_hint: 'et' };
+  const f = await fixture(t, dialogue => { inputs.push(dialogue); return draft; }, FACT_STATE_VERSION);
+  const first = await f.run('Minu ema elab Kose vallas.', 'new');
+  draft = { new_facts: [], superseded: [], needs: [], unknowns: [], periods: [], language_hint: 'et' };
+  for (let i = 1; i < DIALOGUE_LIMITS.scopeTurns - 1; i++) await f.run(`Küsimus ${i}?`);
+  draft = { new_facts: [{ topic: 'pension', person: 'ema', support: [{ turn: 8, quote: 'Ema pension on 600 eurot' }] }], superseded: [], needs: [{ candidate: 'Hooldekodu koht', based_on: ['F1'] }], unknowns: [], periods: [], language_hint: 'et' };
+  const eighth = await f.run('Ema pension on 600 eurot.');
+  draft = { new_facts: [{ topic: 'küsimus', person: 'ema', support: [{ turn: 3, quote: 'kui palju see maksab' }] }], superseded: [], needs: [], unknowns: [], periods: [], language_hint: 'et' };
+  const ninth = await f.run('Aga kui palju see maksab?');
+  const row = (await f.row(ninth.id)).payload, scope = (await f.row(first.id)).payload.context.scopeId;
+  assert.deepEqual(row.dialogue.userTurns.map(turn => [turn.text, turn.carried ?? null]),
+    [['ema: Minu ema elab Kose vallas', 'statements'], ['Ema pension on 600 eurot.', 'message'], ['Aga kui palju see maksab?', null]]);
+  assert.match(row.query.text, /^ema: Minu ema elab Kose vallas\n\nEma pension on 600 eurot\.\n\nAga kui palju/u);
+  // The answer model saw the full topic's last answer and its facts, anchored in the carried turns.
+  assert.equal(row.dialogue.publishedAssistant.turnId, eighth.id);
+  assert.deepEqual(inputs.at(-1).previousState.facts.map(entry => [entry.id, entry.support]),
+    [['F1', [{ turn: 1, quote: 'Minu ema elab Kose vallas' }]], ['F2', [{ turn: 2, quote: 'Ema pension on 600 eurot' }]]]);
+  assert.deepEqual(inputs.at(-1).previousState.needs, [{ candidate: 'Hooldekodu koht', based_on: ['F1'] }]);
+  assert.deepEqual([row.previousDialogueState.carriedFrom.scopeId, row.previousDialogueState.scopeId, row.context.mode, row.contextAudit.selection.previousScopeFull],
+    [scope, row.context.scopeId, 'new', scope]);
+  // The new topic's own state goes on from it, and the stored turn is checked again as it is restored.
+  assert.equal(row.dialogueStateFallback, undefined);
+  assert.deepEqual(row.dialogueState.value.facts.map(entry => entry.id), ['F1', 'F2', 'F3']);
+  assert.equal((await f.service.restore(await f.row(ninth.id))).context.userTurns, 3);
+  draft = { new_facts: [], superseded: [], needs: [], unknowns: [], periods: [], language_hint: 'et' };
+  const tenth = (await f.row((await f.run('Ja kes selle otsustab?')).id)).payload;
+  assert.deepEqual([tenth.dialogue.userTurns.length, tenth.dialogue.publishedAssistant.turnId, tenth.previousDialogueState.sourceTurnIds.length, tenth.context.scopeId],
+    [4, ninth.id, 3, row.context.scopeId]);
+  assert.equal(f.calls.filter(c => c.stage === 'answer').length, 10);
+});
+
 test('M4-C real DB: equal questions in different scopes do not share vectors; legacy cache cannot supply a dialogue vector', async t => {
   const f = await fixture(t);
   const a = await f.run('Aga hind?', 'new'), b = await f.run('Aga hind?', 'new_person');

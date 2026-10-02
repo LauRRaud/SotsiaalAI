@@ -1,0 +1,32 @@
+{
+  "schema_version": "rag-v2/dialogue-eval-2",
+  "purpose": "ADR-070 (Codex review of #302-#312, 02.10.2026): a conversation that goes past the eight messages of one topic. The ninth message is sent as an ordinary follow-up; the new topic it begins must still know whose situation it is, the municipality and the stated circumstances, must not ask for them again, and the conversation must go on after it (the tenth message failed on 02.10). A correction after the boundary replaces a fact stated before it. Run with --auto-modes, as the chat sends. Written before any run.",
+  "expectation_help": {
+    "region": "the municipality whose catalogue the turn's search used",
+    "person_regions": "the saved state's municipality of that person",
+    "facts_present / fact_changes": "a current fact of the person whose quote matches / a fact that has become superseded",
+    "must_not on turn 9": "the answer does not ask again where the mother lives"
+  },
+  "scenarios": [
+    { "id": "mother-care-past-eight", "title": "Ema hooldus, üheksas sõnum ja edasi", "source": "ADR-070", "turns": [
+      { "mode": "new", "text": "Minu ema elab Kose vallas ja ta on 82-aastane. Ta ei saa enam üksi kodus hakkama.",
+        "expect": { "region": "kose_vald", "person_regions": { "ema": "kose_vald" }, "facts_present": [{ "person": "ema", "quote": "82" }] } },
+      { "mode": "same", "text": "Milliseid teenuseid vald talle pakkuda saab?", "expect": { "region": "kose_vald" } },
+      { "mode": "same", "text": "Mis vahe on koduteenusel ja hooldekodul?", "expect": {} },
+      { "mode": "same", "text": "Kuidas hooldekodu kohta taotleda?", "expect": { "region": "kose_vald" } },
+      { "mode": "same", "text": "Kes otsustab, kas ta saab koha?", "expect": {} },
+      { "mode": "same", "text": "Kui kaua otsuse tegemine aega võtab?", "expect": {} },
+      { "mode": "same", "text": "Ema pension on 600 eurot.", "expect": { "facts_present": [{ "person": "ema", "quote": "600" }] } },
+      { "mode": "same", "text": "Kas ma pean lapsena tema hooldekodu koha eest maksma?", "expect": { "person_regions": { "ema": "kose_vald" } } },
+      { "mode": "same", "text": "Aga kui palju see talle endale maksma läheb?",
+        "expect": { "region": "kose_vald", "person_regions": { "ema": "kose_vald" }, "state_kept": true,
+          "facts_present": [{ "person": "ema", "quote": "82" }, { "person": "ema", "quote": "600" }],
+          "must": ["hoold"], "must_not": ["(millises|mis) (vallas|linnas|omavalitsuses)", "kus (ta|su ema|sinu ema|ema) ela"] } },
+      { "mode": "same", "text": "Vabandust, ema pension on hoopis 700 eurot.",
+        "expect": { "state_kept": true, "facts_present": [{ "person": "ema", "quote": "700" }],
+          "fact_changes": [{ "person": "ema", "quote": "600", "status": "superseded" }], "must": ["700"] } },
+      { "mode": "same", "text": "Kelle poole ma vallas pöörduma peaksin?",
+        "expect": { "region": "kose_vald", "person_regions": { "ema": "kose_vald" }, "must": ["Kose"] } }
+    ] }
+  ]
+}

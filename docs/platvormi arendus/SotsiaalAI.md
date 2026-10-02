@@ -93,7 +93,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
 **Uus aken alustab siit (02.10 hommik).** Kuupäevaviga on parandatud ([ADR-062](../rag-v2/adr-062-provision-dates.md), korpus v47, dialoog 22). Omanik valis M3; selle mõõtmissamm ja esimene reegel (profiil v4, [ADR-064](../rag-v2/adr-064-named-other-act.md)) on tehtud.
-- **Tootmises:** korpus v47 (indeks `34fe1590`, 6470 dokumenti, 40 489 lõiku; lugeja `source-structure-v30`). Vestlusplaani uuendab reliis ise (ADR-037): profiil v6 ([ADR-068](../rag-v2/adr-068-own-reference-subsections.md); v5 + akti enda viide toob nimetatud lõike), answer-12, dialoog 22, mudelikontekst json-3, olek v5, arutlus medium. Profiil on plaani osa ja reliis hoiab seda: v6 plaan `m4-corpus-chat-v47-profile6-20261002.json` aktiveeriti 02.10 kell 13:41; kontrolli aktiivse plaani `profileId`.
+- **Tootmises:** korpus v47 (indeks `34fe1590`, 6470 dokumenti, 40 489 lõiku; lugeja `source-structure-v30`). Vestlusplaani uuendab reliis ise (ADR-037): profiil v6 ([ADR-068](../rag-v2/adr-068-own-reference-subsections.md); v5 + akti enda viide toob nimetatud lõike), answer-12, dialoog 23, mudelikontekst json-3, olek v5, arutlus medium. Profiil on plaani osa ja reliis hoiab seda: v6 plaan `m4-corpus-chat-v47-profile6-20261002.json` aktiveeriti 02.10 kell 13:41; kontrolli aktiivse plaani `profileId`.
 - **Tööviis:**
   - Codex kujundab põhikaustas, seega ära vaheta seal harusid. Töötle %TEMP% worktree's: `node_modules` junction, `generated/` koopia. Eemalda worktree ja haru pärast PR-i.
   - PR liidetakse ja deploy'takse ise. Enne PR-i jooksuta kogu `npm test`.
@@ -123,6 +123,13 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
   - Codexi #289, #290, #295–#299 ülevaatus on tehtud ([raport](../audits/rag-v2-pr289-299-review-2026-10-01.md)) ja selle kolm leidu parandatud (vt 01.10 öö kirje allpool).
   - Kiiruse mõõtmine päris vestluses teeb omanik.
 - **Võrk 30.09 õhtul:** SSH port 22 aegus korduvalt nii GitHubi kui serveri (`ssh sotsiaalai`) poole. Push õnnestus kordamisel. `gh` töötab HTTPS-i kaudu.
+
+**02.10 (Opus), õhtupoolik: täis teema annab asjaolud jätkule kaasa; kümnenda sõnumi viga** ([ADR-070](../rag-v2/adr-070-full-topic-hands-over.md)). Omanik: „tegutse“ (Codexi #302–#312 ülevaatuse piir).
+- **Viga:** alates #307-st ebaõnnestus vestluse kümnes sõnum (`dialogue_state_scope_mismatch`): üheksas saadeti kui „jätka“, võeti vastu kui „uus teema“, ja selle olek ei sobinud järgmise sõnumiga. Parandatud (režiim loetakse `context.mode` järgi).
+- **Muudatus:** üheksas sõnum alustab uut teemat kolme asjaga: kasutaja varasemad väited olekust (kasutaja enda sõnadega, üks pööre), täis teema viimane sõnum, ning olek ja viimane vastus. Vanemate sõnumite tekst jääb maha. Jätkuteemas on kuus uut sõnumit, siis sama uuesti. Dialoogi juhis 23; kasutajapöörded on mudelile nummerdatud.
+- **Tsitaat kasutaja oma sõnades:** asjaolu tsitaat kehtib ka suurtähe, tühikute või kirjavahemärkide erinevusega või vale pöördenumbriga, kui täpselt üks pööre neid sõnu sisaldab (`quotedSupport`).
+- **Mõõdetud** (`scenarios-long-topic-1.json`, `--auto-modes`): üheksas sõnum teadis valda ja asjaolusid ega küsinud neid uuesti; 10. ja 11. sõnum said vastuse. Kahes jooksus 10/11 ja 8/11: läbi kukkunud kontrollid olid mudeli tsitaadilibastused (üks enne piiri), mille vastu on tsitaadi parandus; kontrollkataloog 6/6. Kulu 0,183 USD, kolm jooksu.
+- **Testid:** kohalik andmebaasitest (`rag-v2-dialogue-store`, 21 testi) käib selles masinas: `M4_TEST_DATABASE_URL` tuleb põhikausta failist `tmp/rag-v2-m4/local-runtime.json`.
 
 **02.10 (Opus), pärastlõuna: kontrollimärgid püsivad taaskäivituse üle** ([ADR-069](../rag-v2/adr-069-verified-marks.md)). Omanik: „tee kuni neljandani ära“ (punkt 2: vestlus on pärast deploy'd esimesed minutid aeglane).
 - **Põhjus:** iga taaskäivitus kontrollis kõik 1596 teadmusallikat uuesti (325–349 s, 02.10 üheksa korda). 59% ajast kulus morfoloogia uuele analüüsile. Selle aja sees esitatud küsimus kontrollis oma allikad ise ja ootas külma Qdranti järel.
