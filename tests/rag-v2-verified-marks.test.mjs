@@ -14,7 +14,7 @@ function table() {
   const marks = new Set(), sql = [];
   return { marks, sql, async end() {}, async query(text, values = []) {
     sql.push(String(text));
-    if (/^DELETE FROM rag_v2_verified_read WHERE verified_at/u.test(text)) return { rows: [] };
+    if (/^DELETE FROM rag_v2_verified_read WHERE NOT \(verified_at >= /u.test(text)) return { rows: [] };
     if (/^DELETE FROM rag_v2_verified_read$/u.test(text)) { marks.clear(); return { rows: [] }; }
     if (/^SELECT mark FROM rag_v2_verified_read/u.test(text)) return { rows: [...marks].map(mark => ({ mark })) };
     if (/^INSERT INTO rag_v2_verified_read/u.test(text)) { for (const mark of JSON.parse(values[0])) marks.add(mark); return { rows: [] }; }
@@ -65,6 +65,32 @@ test('the next process knows a read by the mark the last one saved, but not as i
   assert.equal(await next.saveVerified(), 1);
   assert.equal(next.unsaved.size, 0);
   await next.close();
+});
+
+// A measurement script reads the server's marks and writes none.
+test('a process that only reads the marks uses them, saves none of its own and leaves the table alone when its trust ends', async () => {
+  const pool = table();
+  pool.marks.add(verifiedMark('bundle\0t\0g\0v1\0h1', '11/12')); pool.marks.add(verifiedMark('units\0t\0c\0d\0v1\0estnltk', '2/11,12'));
+  const script = catalog(pool);
+  assert.equal(await script.inheritVerified({ keep: false }), 2);
+  // Only fresh marks are read, and the reader deletes nothing, not even expired ones.
+  assert.deepEqual(pool.sql.map(text => text.split(' ')[0]), ['SELECT']);
+  assert.match(pool.sql[0], /WHERE verified_at >= clock_timestamp\(\) - interval '30 days'/u);
+  assert.deepEqual([script.known('bundle\0t\0g\0v1\0h1', '11/12'), script.known('bundle\0t\0g\0v1\0h1', '11/12', true), script.known('bundle\0t\0g\0v9\0h9', '1/2')], [true, false, false]);
+  // Its own full check of an unmarked read is its own knowledge only.
+  script.rememberVerified('bundle\0t\0g\0v9\0h9', '1/2');
+  assert.deepEqual([script.known('bundle\0t\0g\0v9\0h9', '1/2', true), script.unsaved.size, script.saveTimer, await script.saveVerified(), pool.marks.size], [true, 0, null, 0, 2]);
+  // A failed check ends its trust; the server's table stays as it was.
+  script.bundles = async () => { throw failure('source_integrity_failed'); }; script.units = async () => {};
+  await assert.rejects(script.warm('t', 'g', ['a']), { code: 'source_integrity_failed' });
+  assert.deepEqual([script.inherited.size, script.known('bundle\0t\0g\0v1\0h1', '11/12'), pool.marks.size], [0, false, 2]);
+  assert.ok(!pool.sql.some(text => /^(DELETE|INSERT)/u.test(text)));
+  await script.close();
+  // The server's own start still clears expired marks before reading.
+  const server = catalog(table());
+  await server.inheritVerified();
+  assert.deepEqual(server.pool.sql.map(text => text.split(' ')[0]), ['DELETE', 'SELECT']);
+  await server.close();
 });
 
 test('the warm-up checks every source itself, and one that fails ends the inherited trust here and in the table', async () => {

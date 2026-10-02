@@ -32,6 +32,8 @@ import { legalReference, legalValidityScope } from '../lib/rag-v2/search/legal-v
 const args = process.argv.slice(2), option = name => { const at = args.indexOf(name); return at >= 0 ? args[at + 1] : null; };
 const cataloguePath = option('--catalogue'), out = option('--out'), tenant = option('--tenant') || 'sotsiaalai-corpus';
 const manifestPath = option('--manifest') || 'docs/rag-v2/legal-acts-in-index.json';
+// --cold: without the server's verified marks, every source verified in this process as before (ADR-069).
+const cold = args.includes('--cold');
 // O (ADR-068): chat v6, whose own-act cross-references add the named subsection's passages; without a reranker it
 // differs from N (v4) in that alone (v5's pool limit needs a reranker).
 const ARMS = { ...GRAPH_EXPERIMENT_PROFILES, L: CHAT_REFERENCES_PROFILE, N: CHAT_NAMED_ACTS_PROFILE, O: CHAT_SUBSECTIONS_PROFILE, V: CHAT_PROFILE };
@@ -49,6 +51,8 @@ if (problems.length || !catalogue.questions?.length) { console.error(JSON.string
 await fs.mkdir(out, { recursive: true });
 
 const postgres = new PostgresCatalog(process.env.RAG_V2_POSTGRES_URL);
+// The server's marks, read only: sources it has checked are read at once; nothing is written.
+const verifiedMarks = cold ? 0 : await postgres.inheritVerified({ keep: false }).catch(() => 0);
 const qdrant = new QdrantIndex(process.env.RAG_V2_QDRANT_URL, process.env.RAG_V2_QDRANT_KEY);
 const context = { subject: 'graph-experiment', tenant, usage: 'development_only' };
 try {
@@ -202,7 +206,7 @@ try {
     ownSubsections.mean_token_change += (row.context_tokens - base.context_tokens) / v6.size;
   }
   ownSubsections.mean_token_change = Math.round(ownSubsections.mean_token_change);
-  const report = { schema_version: 'rag-v2/graph-experiment-4', generation: generation.id, date: catalogue.date, catalogue: cataloguePath,
+  const report = { schema_version: 'rag-v2/graph-experiment-4', generation: generation.id, date: catalogue.date, catalogue: cataloguePath, verified_marks: verifiedMarks,
     eligible_documents: eligible.length, excluded_legal_versions: legal.excluded.length, pointer_room: POINTER_ROOM,
     simulation_check: { questions: live.size, s_equals_l: [...live].filter(([question, found]) => today.get(question) === found).length }, named_acts: namedActs, own_subsections: ownSubsections, summary, shapes, rows };
   await fs.writeFile(path.join(out, 'graph-experiment.json'), JSON.stringify(report, null, 1));

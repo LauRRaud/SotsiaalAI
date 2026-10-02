@@ -9,6 +9,9 @@
 //   --auto-modes sends what the chat sends since it has no topic choice (02.10.2026): 'new' for a conversation's first
 //   message and 'same' for every later one, whatever mode the catalogue names; a turn's previous_state_cleared, which only
 //   an explicit new person can meet, is then not checked.
+//   The run reads the server's verified marks (ADR-069) and writes none: sources the server has checked are read at once
+//   and this process starts no background warm-up of its own. --cold: no marks, every source verified here as before
+//   (for a change to the checks themselves).
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
@@ -24,6 +27,7 @@ const { values } = parseArgs({ options: { scenarios: { type: 'string', default: 
   // --warm: verify the knowledge sources before the first conversation, as the chat server does at its start (ADR-033),
   // so the search times are a warm server's and not this new process's (Codex 7.8).
   warm: { type: 'boolean', default: false },
+  cold: { type: 'boolean', default: false },
   legal: { type: 'string', default: 'docs/rag-v2/legal-acts-in-index.json' } } });
 const catalogue = JSON.parse(await fs.readFile(values.scenarios, 'utf8'));
 const problems = validateCatalogue(catalogue);
@@ -52,8 +56,16 @@ const plan = JSON.parse(await fs.readFile(process.env.M4_PILOT_CONFIG, 'utf8'));
 const userId = plan.users[0];
 const readConfig = options => readPilotConfig(userId, options);
 const config = await readConfig({ purpose: 'execute' });
+const { processCatalog } = await import('../lib/rag-v2/search/postgres.js');
+// The server's marks, read only. Without them (--cold, no table, a failed read) the process verifies as before.
+const verifiedMarks = values.cold ? 0 : await processCatalog(process.env.RAG_V2_POSTGRES_URL).inheritVerified({ keep: false }).catch(() => 0);
+if (verifiedMarks && !values.warm) {
+  // No warm-up of this process's own: the first turn would start one and the turns would compete with it.
+  const generation = await processCatalog(process.env.RAG_V2_POSTGRES_URL).active(config.tenant);
+  (globalThis[Symbol.for('sotsiaalai.rag-v2.warming')] ||= new Set()).add(generation.id);
+}
+console.error(JSON.stringify({ verified_marks: verifiedMarks }));
 if (values.warm) {
-  const { processCatalog } = await import('../lib/rag-v2/search/postgres.js');
   const { unifiedDirectory } = await import('../lib/rag-v2/search/unified.js');
   const postgres = processCatalog(process.env.RAG_V2_POSTGRES_URL), generation = await postgres.active(config.tenant);
   const documents = Object.keys(plan.documents).filter(doc => generation.snapshot.documents[doc]?.version_id === plan.documents[doc]);
@@ -156,7 +168,7 @@ function rerankOf(rerank) {
 }
 
 await fs.mkdir(values.out, { recursive: true });
-const report = { schema_version: 'rag-v2/conversation-eval-report-1', started_at: new Date().toISOString(), today, plan: config.id,
+const report = { schema_version: 'rag-v2/conversation-eval-report-1', started_at: new Date().toISOString(), today, plan: config.id, verified_marks: verifiedMarks,
   generation: config.generationId, model: config.model, reasoning: config.reasoning, catalogue: values.scenarios, scenarios: [] };
 let spent = 0;
 try {
