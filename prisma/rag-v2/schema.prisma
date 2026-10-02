@@ -102,6 +102,12 @@ model RagV2PruneRun {
   started_at DateTime @default(now()) @db.Timestamptz
   @@map("rag_v2_prune_run")
 }
+// ADR-069: a read a server process verified in full, as a hash of its key, row versions, check scheme and analyzer.
+model RagV2VerifiedRead {
+  mark String @id
+  verified_at DateTime @default(now()) @db.Timestamptz
+  @@map("rag_v2_verified_read")
+}
 model RagV2VersionUnit {
   tenant String
   config_id String

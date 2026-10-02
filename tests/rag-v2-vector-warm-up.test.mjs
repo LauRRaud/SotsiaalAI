@@ -26,6 +26,7 @@ test('a failed vector warm-up is tried again; a running or finished one is not',
   assert.equal(calls, 2);
 });
 
+// ADR-069: the start reads the vectors at once and again after the sources, so a start makes two tries.
 test('the start warm-up tries the vectors again after a failure, without warming the sources again', async () => {
   const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'rag-v2-vector-retry-')), file = path.join(dir, 'plan.json');
   const url = `postgresql://127.0.0.1:1/vector-retry-${Date.now()}`; // never connected: the catalog below stands in for it
@@ -34,7 +35,7 @@ test('the start warm-up tries the vectors again after a failure, without warming
   (globalThis[Symbol.for('sotsiaalai.rag-v2.postgres-catalogs')] ||= new Map()).set(url,
     { active: async () => generation, retrievalDirectory: async () => [], warm: async () => { sources.push('warmed'); } });
   let calls = 0;
-  class Qdrant { async warm() { if (++calls === 1) throw failure(); return 1; } }
+  class Qdrant { async warm() { if (++calls <= 2) throw failure(); return 1; } }
   const env = { M4_PILOT_ENABLED: '1', M4_PILOT_CONFIG: file, RAG_V2_POSTGRES_URL: url,
     RAG_V2_QDRANT_URL: 'http://127.0.0.1:56333', RAG_V2_QDRANT_KEY: 'k'.repeat(24) };
   try {
@@ -42,12 +43,12 @@ test('the start warm-up tries the vectors again after a failure, without warming
       documents: { guide: 'v1' }, retrievalRouting: UNIFIED_RETRIEVAL_VERSION }));
     assert.equal(await warmPilotAtStart({ env, Qdrant }), true);
     await settle();
-    assert.deepEqual([sources.length, calls, vectorWarmState(generation.id)], [1, 1, 'failed']);
+    assert.deepEqual([sources.length, calls, vectorWarmState(generation.id)], [1, 2, 'failed']);
     assert.equal(await warmPilotAtStart({ env, Qdrant }), false, 'the sources are already warm');
     await settle();
-    assert.deepEqual([sources.length, calls, vectorWarmState(generation.id)], [1, 2, 'done']);
+    assert.deepEqual([sources.length, calls, vectorWarmState(generation.id)], [1, 3, 'done']);
     assert.equal(await warmPilotAtStart({ env, Qdrant }), false);
     await settle();
-    assert.equal(calls, 2, 'a finished vector warm-up is not repeated');
+    assert.equal(calls, 3, 'a finished vector warm-up is not repeated');
   } finally { await fs.rm(dir, { recursive: true, force: true }); }
 });
