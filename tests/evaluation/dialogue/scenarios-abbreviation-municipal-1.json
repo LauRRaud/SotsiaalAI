@@ -1,0 +1,39 @@
+{
+  "schema_version": "rag-v2/dialogue-eval-2",
+  "purpose": "Municipal regulations that hand a provision's content to the Social Welfare Act by the act's abbreviation (\"SHS § 25\"). The twin of tests/evaluation/graph/abbreviation-municipal-1.json: the same three questions, each with the Act's deciding words. No standing run includes it: choose it with --scenarios when a change touches the knowledge lane's candidates, the national-law reserve, the rerank or the following of act references. On 02.10.2026 only the Põlva question was run on the full route (it passed, once); the other two were measured in the search alone, without the rerank and answer models (docs/audits/rag-v2-abbreviation-references-2026-10-02.md). Three paid turns, about 0.02 USD at the plan's prices.",
+  "expectation_help": {
+    "region": "the municipality the conversation is about",
+    "evidence_text": "the deciding provision's exact phrase is in the evidence the answer was given",
+    "cited": "the answer cites the Social Welfare Act, not only the regulation that points at it",
+    "must": "the answer states the deciding condition or its effect",
+    "must_not": "the answer does not state the opposite"
+  },
+  "scenarios": [
+    { "id": "narva-substitute-care-personal-costs", "title": "Asendushooldusel lapse isiklike kulude miinimum Narvas", "source": "Narva asendus- ja järelhooldusteenuse kord § 3 lg 1; SHS § 45¹¹ lg 3", "turns": [
+      { "mode": "new", "text": "Minu õelaps on Narva linna kaudu asendushooldusel perekodus. Kui palju raha peab tema isiklike kulude jaoks kuus vähemalt kulutatama?",
+        "note": "The regulation guarantees \"at least the minimum of SHS § 45¹¹ lõige 3\"; the amount is only in the Act.",
+        "expect": { "region": "narva_linn",
+          "evidence_text": ["Lapse isiklike kulude katteks peab iga kuu tegema kulutusi keskmiselt 240 euro ulatuses"],
+          "cited": ["Sotsiaalhoolekande seadus"],
+          "must": ["(?<!\\d)240(?!\\d)"] } }
+    ] },
+    { "id": "sillamae-aftercare-student", "title": "Järelhooldus õppivale noorele Sillamäel", "source": "Sillamäe asendus- ja järelhooldusteenuse kord § 5 lg 2; SHS § 45¹⁶ lg 1", "turns": [
+      { "mode": "new", "text": "Olen 20-aastane, kasvasin Sillamäel asenduskodus ja õpin nüüd kutsekoolis. Kas linn peab mulle järelhooldusteenuse tagama ja kui kaua?",
+        "note": "The regulation guarantees aftercare to \"the adult named in SHS § 45¹⁶ lõige 1\"; who that is and until when is only in the Act.",
+        "expect": { "region": "sillamae_linn",
+          "evidence_text": ["esmase õppekavajärgse nominaalse õppeaja lõpuni, kuid mitte kauem kui isiku 25-aastaseks saamiseni"],
+          "cited": ["Sotsiaalhoolekande seadus"],
+          "must": ["(?<!\\d)25[- ]?aasta"],
+          "must_not": ["(?:^|\\n)\\s*Ei[,.]"] } }
+    ] },
+    { "id": "polva-support-person-relative", "title": "Vanaema tugiisikuna Põlva vallas", "source": "Põlva raske ja sügava puudega lapse tugiisikuteenuse kord § 4 lg 2; SHS § 25 lg 2 p 2", "turns": [
+      { "mode": "new", "text": "Elame Põlva vallas ja mu lapsel on raske puue. Kas tema tugiisikuks võib olla lapse vanaema?",
+        "note": "The regulation lets the support person be \"a person who meets the requirements of SHS § 25\"; who may not provide the service is only in the Act. The same words stand in SHS § 29 lõige 2 (the personal assistant), so the phrase alone does not tell which section reached the evidence.",
+        "expect": { "region": "polva_vald",
+          "evidence_text": ["kes on teenuse saaja esimese või teise astme üleneja või alaneja sugulane"],
+          "cited": ["Sotsiaalhoolekande seadus"],
+          "must": ["\\bei (tohi|või|saa)|keelatud|ei ole lubatud", "vanaema|sugulane|teise astme"],
+          "must_not": ["(?:^|\\n)\\s*Jah[,.]"] } }
+    ] }
+  ]
+}

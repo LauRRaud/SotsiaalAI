@@ -2,7 +2,9 @@
 
 Teostus Claude Opus 5.5. Omanik 02.10: „Alusta B tasuta mõõtmisest … Too konkreetsed näited ja soovitus, kas uut reeglit on vaja. Arenduse otsustame mõõtmise tulemuse järgi.“ Taust: [ADR-064](../rag-v2/adr-064-named-other-act.md) järgib teist seadust ainult siis, kui see on nimetatud täisnimega; lühend jäeti [ADR-063](../rag-v2/adr-063-checked-relations.md) järel mõõtmata.
 
-**Lõplik soovitus (jaotis 9): lühendireeglit praegu mitte ehitada**, ei üldist ega kitsast. Neljas katses ei leidunud küsimust, kus päris vestlus jääks otsustava sätteta: ainsas juhtumis, kus mudelita otsing sätet lõppvalikusse ei toonud, võttis eelvaliku mudel selle riikliku õiguse varukohalt ja vastus viitas sellele (üksikvaatlus). Otsus on omanikul.
+**Otsus (omanik 02.10.2026): B on lõpetatud, lühendireeglit praegu ei ehitata.** Kolm määruse küsimust on eraldi valitavas vestluse hindamiskataloogis `tests/evaluation/dialogue/scenarios-abbreviation-municipal-1.json` järgmise asjakohase hindamise jaoks.
+
+Soovitus, millele otsus toetus (jaotis 9): reeglit mitte ehitada, ei üldist ega kitsast. Täisrada (otsinguplaan, eelvaliku ja vastuse mudel) kontrolliti **ainult Põlva küsimusel**, üks kord: seal võttis eelvaliku mudel otsustava sätte riikliku õiguse varukohalt ja vastus viitas sellele. Narva ja Sillamäe kohta on teada ainult mudelita otsingu tulemus.
 
 Seis pärast kolmandat mõõtmist (jaotis 7, ühendatud otsing): ühendatud otsing leiab kolmest otsustavast sättest kaks ise ja kolmas jõuab eelvaliku mudeli kandidaatidesse.
 
@@ -177,10 +179,16 @@ Omanik 02.10: „Luba on antud ühele Põlva küsimuse pöördele praeguse tootm
 **Soovitus: lühendireeglit praegu mitte ehitada.**
 
 - **Üldine reegel** (artiklitest ja juhenditest): kasu ei ole mõõdetud üheski katses, ja PDF-ide kadunud ülaindeks viib valesse sättesse.
-- **Kitsas reegel** (ainult määrustest): ühtegi küsimust, kus päris vestlus jääks sätteta, ei leitud. Olemasolev tee (vektorotsing, varukohad, eelvaliku mudel) kattis kõik kolm määruse küsimust.
-- **Mis jääb teadmata:** kui kindlalt see tee töötab. Tõendeid on mõlemas suunas: Põlvas töötas (üks vaatlus), Harkus 01.10 ei töötanud. Kitsas reegel teeks tulemuse mudelist sõltumatuks, väikese hinnaga (mõõdetud 0–333 tokenit küsimuse kohta, kuni kaks lõiku), nii et see on kindlustus, mitte parandus.
-- **Mis otsust muudaks:** päris vestluse vastus, mis jätab määruse lühendiga viidatud seaduse sätte tõenditest välja. Kataloog `abbreviation-municipal-1.json` ja salvestatud vektorid lubavad seda edaspidi tasuta jälgida (otsing mudelita) ja ühe pöördega üle kontrollida.
-- **Odavam samm, kui kindlust tahetakse:** lisada kolm küsimust vestluse hindamiskataloogi, et iga tulevane hindamisjooks neid mõõdaks; reeglit see ei eelda.
+- **Kitsas reegel** (ainult määrustest): ühtegi küsimust, kus säte jääks mõõdetud rajal välja, ei leitud; päris vestluse rada on mõõdetud ainult ühel neist. Täpsemalt:
+  - **Põlva**: täisrada kontrollitud, üks pööre; säte jõudis tõenditesse varukoha ja eelvaliku mudeli kaudu.
+  - **Narva ja Sillamäe**: täisrada **ei ole** kontrollitud. Mudelita ühendatud otsingus oli otsustav säte kandidaatides kohal 5 ja lõppvalikus olemas; kas eelvaliku mudel selle alles jätab ja vastus sellele viitab, on mõõtmata.
+- **Reegel ei oleks sõltumatu eelvalikust.** Kavandatud reegel järgib viiteid ainult nendes lõikudes, mis on valitud. Päris vestluses valib lõigud eelvaliku mudel, seega tooks reegel seaduse sätte ainult siis, kui mudel valib määruse viitava lõigu. Kõigis kolmes küsimuses oli viitav lõik kandidaatides kohal 1–4 ja Põlva pöördes valis mudel selle, aga see on eeldus, mitte garantii.
+- **Mis jääb teadmata:** kui kindlalt see tee töötab. Tõendeid on mõlemas suunas: Põlvas töötas (üks vaatlus), Harkus 01.10 ei töötanud. Kitsas reegel võtaks ära ühe sõltuvuse (kas mudel võtab seaduse sätte varukohalt), aga mitte teist (kas mudel valib määruse viitava lõigu, vt eelmine punkt). Hind oleks väike (mõõdetud 0–333 tokenit küsimuse kohta, kuni kaks lõiku), nii et see oleks osaline kindlustus, mitte parandus.
+- **Mis otsust muudaks:** päris vestluse vastus, mis jätab määruse lühendiga viidatud seaduse sätte tõenditest välja.
+- **Mida saab korrata tasuta ja mida mitte:**
+  - Tasuta: mudelita otsingukatse samade kolme küsimuse ja kataloogi päringutega (`graph/abbreviation-municipal-1.json`, salvestatud vektorid serveris `eval-files/abbreviation-municipal-1/vectors.json`). See näitab kandidaate ja mudelita lõppvalikut.
+  - Tasuline: terviklik vestlushindamine. Otsinguplaani mudel kirjutab iga kord oma päringud, mis vajavad uut embedding'ut, ning eelvaliku ja vastuse mudel on tasulised. Salvestatud vektorid seda ei kata. Kolm pööret maksavad umbes 0,02 USD.
+- **Tehtud pärast otsust:** kolm küsimust on vestluse hindamiskataloogis `tests/evaluation/dialogue/scenarios-abbreviation-municipal-1.json` koos otsustava sätte kontrollidega (säte tõendites, vastus viitab SHS-ile, vastuse sisu). Ükski püsijooks seda ei sisalda; see valitakse `--scenarios` kaudu, kui muudatus puudutab kandidaate, varukohti, eelvalikut või viidete järgimist. Jooksu ei tehtud.
 
 ## Piirid
 
