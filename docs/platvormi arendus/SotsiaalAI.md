@@ -123,6 +123,12 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
   - Kiiruse mõõtmine päris vestluses teeb omanik.
 - **Võrk 30.09 õhtul:** SSH port 22 aegus korduvalt nii GitHubi kui serveri (`ssh sotsiaalai`) poole. Push õnnestus kordamisel. `gh` töötab HTTPS-i kaudu.
 
+**02.10 (Opus), pärastlõuna: kontrollimärgid püsivad taaskäivituse üle** ([ADR-069](../rag-v2/adr-069-verified-marks.md)). Omanik: „tee kuni neljandani ära“ (punkt 2: vestlus on pärast deploy'd esimesed minutid aeglane).
+- **Põhjus:** iga taaskäivitus kontrollis kõik 1596 teadmusallikat uuesti (325–349 s, 02.10 üheksa korda). 59% ajast kulus morfoloogia uuele analüüsile. Selle aja sees esitatud küsimus kontrollis oma allikad ise ja ootas külma Qdranti järel.
+- **Muudatus:** iga täielik kontroll jätab tabelisse `rag_v2_verified_read` märgi (lugemise võti, ridade versioonid, analüsaatori versioon). Uus protsess loeb märgid käivitusel ja kasutab samade ridade lugemisi kohe; taustal kontrollib ta kõik ise uuesti. Viga taustakontrollis tühjendab päritud märgid. Soojendus ootab vestluspöörde järel (kokku kuni 10 min) ja Qdranti vektorid loetakse kohe käivitusel.
+- **Mõõdetud serveris** (100 allikat, tasuta): külm lugemine 25,0 s, päritud märkidega 3,5 s, soe 1,0 s. Vea katse tühjendas märgid ja lugemine andis vea enne kasutamist.
+- **Jälgi logist:** `[rag-v2] inherited N verified marks`. Esimene käivitus pärast seda PR-i on külm (tabel tühi); mõju on näha alates teisest.
+
 **02.10 (Opus), pärastlõuna: akti viide iseendale toob nimetatud lõike (profiil v6)** ([ADR-068](../rag-v2/adr-068-own-reference-subsections.md)). Omanik: „tee kuni neljandani ära“.
 - **Muudatus:** profiil v6 = v5 + reegel: kui valitud lõik viitab sama akti paragrahvi lõikele („§ 34² lõigetes 3 ja 4“), lisatakse lõik, kus see lõige algab. Ainult paragrahvi nimetav viide toob endiselt paragrahvi alguse. Kohad ja ruum on samad.
 - **Mõõtmine:** otsingukatse haru O haru N kõrval kolmel raskel kataloogil (tasuta): 28/30 mõlemal, valik muutub 10 küsimuses, kontekst keskmiselt +407 tokenit. Vestluse rajal v6 plaaniga ajutises koopias kõik 10 muutunud küsimust ja treeneri küsimus: 11/11, 0,057 USD.
@@ -134,7 +140,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 - **Muudatus:** teema esimene sõnum, mis on ainult tervitus (`lib/rag-v2/pilot/greeting.js`: tere, hei, tsau, hello, привет jt), jätab plaani, embeddingu ja otsingu vahele. Vastuse kirjutab sama mudel tühja teadmiste rajaga ja pööre salvestub nagu iga teine. Kõik muu läheb täisrada.
 - **Mõõdetud** (`scenarios-greeting-1.json`, 6 pööret, 0,0135 USD): kõik läbisid; tervituse esimene tekst 2,3–2,8 s. Tervitus koos küsimusega ja küsimus pärast tervitust läksid täisrada.
 - Brauseris vastata ei saa: `hydrateFromServer` asendaks kohaliku tervituse serveri loendiga.
-- Jääb: päris küsimused on kohe pärast taaskäivitust aeglased, kuni allikad on soojad.
+- Päris küsimuste aeglus kohe pärast taaskäivitust: vt [ADR-069](../rag-v2/adr-069-verified-marks.md).
 
 **02.10 (Opus), päev: vestlus otsustab teema ja inimese ise; vestluse lehe kujunduse parandused** ([ADR-066](../rag-v2/adr-066-dialogue-decides-topic-and-person.md)). Omanik: „jätkuvestluse valikud on puhtalt AI jaoks, ise mõtle, kuidas peaks olema“.
 - **Paneel „Jätkuvestluse valikud“ eemaldatud.** Vestlus saadab esimese sõnumiga „uus“ ja edaspidi „jätka“; teise inimese mure ja parandused loevad otsinguplaan ja olek ise. Täis teema (8 sõnumit) jätkub uues teemas sama inimese kohta, varem lükati üheksas sõnum tagasi.
