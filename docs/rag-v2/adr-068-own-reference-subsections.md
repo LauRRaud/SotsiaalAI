@@ -59,6 +59,11 @@ Kõik 10 muutunud valikuga küsimust ja treeneri küsimus, iga üks kord: **11/1
 - Profiil on vestlusplaani osa. Pärast deploy'd tehakse serveris uus plaan profiiliga v6 ja teenus taaskäivitatakse, nagu v4 ja v5 puhul.
 - Tagasi v5 peale saab uue plaaniga profiilist v5.
 
+## Elav kontroll 02.10.2026
+
+- #310 (`19cdd064`) deploy'tud; plaan `/etc/sotsiaalai/m4-corpus-chat-v47-profile6-20261002.json` aktiveeritud 13:41 (eelarve 4 USD, uus arvestus). Eelmisest plaanist erineb ainult `profileId`.
+- Treeneri küsimus päris vestluses (uus vestlus, 30 s pärast taaskäivitust): vastus ütleb, et edastada tuleb ainult teate ja abivajaduse mõistmiseks vajalikud andmed, loetleb, mida need võivad puudutada (elutingimused ja toimetulek, tervis, teenused, õppimine ja huvitegevus, last kasvatava isiku asjaolud), ja juhatab valda või lasteabitelefonile 116 111. Märkust osalise väljavõtte kohta ei ole.
+
 ## Piirid
 
 - Vestluse rajal on iga küsimus mõõdetud üks kord. Laiemat regressioonijooksu ei tehtud: ilma lõiget nimetava viiteta küsimustes valik ei muutu.
