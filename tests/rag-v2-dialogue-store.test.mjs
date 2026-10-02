@@ -332,13 +332,16 @@ test('M4-C real DB: context summary restores latest correction and failed person
   assert.deepEqual((await f.store.contextSummary(f.config, f.user.id, randomUUID())).scopes, []);
 });
 
-test('M4-C real DB: eighth turn is retained, ninth is visibly rejected without silent clipping or context mutation', async t => {
+test('M4-C real DB: eighth turn is retained, ninth goes on in a new topic of the same person without clipping', async t => {
   const f = await fixture(t);
   for (let i = 0; i < DIALOGUE_LIMITS.scopeTurns; i++) await f.run(`Pööre ${i}`, i ? 'same' : 'new');
-  const before = await db.conversation.findUnique({ where: { id: f.conv.id } });
-  await assert.rejects(f.run('Liiga pikk jätk.'), { code: 'context_window_full' });
-  assert.deepEqual((await db.conversation.findUnique({ where: { id: f.conv.id } })).metadata, before.metadata);
-  assert.equal(f.calls.filter(c => c.stage === 'answer').length, 8);
+  const before = await f.store.contextSummary(f.config, f.user.id, f.conv.id);
+  await f.run('Liiga pikk jätk.');
+  const after = await f.store.contextSummary(f.config, f.user.id, f.conv.id);
+  assert.equal(f.calls.filter(c => c.stage === 'answer').length, 9);
+  assert.deepEqual([before.scopes.length, after.scopes.length, after.scopes[1].userTurns, after.scopes[1].person, after.active.mode],
+    [1, 2, 1, before.scopes[0].person, 'new']);
+  assert.equal(after.scopes[0].userTurns, DIALOGUE_LIMITS.scopeTurns);
 });
 
 test('M4-C real DB: equal questions in different scopes do not share vectors; legacy cache cannot supply a dialogue vector', async t => {
