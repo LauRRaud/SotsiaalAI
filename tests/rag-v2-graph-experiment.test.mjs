@@ -103,9 +103,9 @@ test('graph experiment arms share one extra room; the chat profiles are unchange
 // the chat does; it has no titles, so they come from the unit rows (titles: what those rows say, the documents' own by default).
 // source: the pointing document's version fields; pointer: the words it names the section with; sections: the act's
 // other section numbers (Codex review of #301: a number is read as exactly as the pointing text keeps it).
-// own: the passages of the pointing document's own § 2 (ADR-068).
+// own: the passages of the pointing document's own § 2; more: its further sections (ADR-068).
 function namedActFixture({ twin = false, sameAct = false, directory = false, titles = null, source = {}, pointer: named = null, sections: numbers = null,
-  own = ['Teenuse osutamise otsustab osakond.'] } = {}) {
+  own = ['Teenuse osutamise otsustab osakond.'], more = [] } = {}) {
   const tenant = 'named-acts', embedding = new MockEmbedding(), config = searchConfig(embedding.config);
   const act = (doc, title, fields, sections, versionFields = {}) => {
     const version = `${doc}-v1`, spans = [], chunks = [], source_units = [];
@@ -128,7 +128,7 @@ function namedActFixture({ twin = false, sameAct = false, directory = false, tit
   };
   const pointer = named ?? (sameAct ? 'käesoleva korra § 2' : 'sotsiaalhoolekande seaduse § 25 lõikes 2');
   const local = act('kord', 'Abi andmise kord', { valid_from: { value: '2026-01-01' }, regions: { value: ['harku_vald'] } },
-    [['15', [`Tugiisikuteenust ei osuta isik, kes on ${pointer} nimetatud isik.`]], ['2', own]], source);
+    [['15', [`Tugiisikuteenust ei osuta isik, kes on ${pointer} nimetatud isik.`]], ['2', own], ...more], source);
   // The act itself is a Riigi Teataja XML that keeps its superscripts, whatever the pointing document is.
   const national = (doc = 'shs') => act(doc, 'Sotsiaalhoolekande seadus', { valid_from: { value: '2026-10-01' } },
     [['24', ['Tugiisikuteenuse eesmärk on toetada iseseisvat toimetulekut.']],
@@ -294,6 +294,12 @@ test('chat profile v6 adds the passage that holds the subsection an own-act refe
     // A subsection the section does not have: the section's start.
     assert.deepEqual((await added(CHAT_SUBSECTIONS_PROFILE, 'käesoleva korra § 2 lõikes 7', directory))[0], [start]);
   }
+  // A subsection that runs on into a second passage: every reference gets its first passage before the continuation.
+  const long = await namedActFixture({ sameAct: true, pointer: 'käesoleva korra § 2 lõikes 2 ja § 3',
+    own: ['(1)\nTeenuse osutamise otsustab osakond.\n(2)', 'Teise lõike algus on siin.', 'Teise lõike lõpp on siin.'], more: [['3', ['Kolmas paragrahv.']]] })(CHAT_SUBSECTIONS_PROFILE);
+  assert.deepEqual(long.evidence.filter(entry => entry.selection.reason?.type === 'cross_reference').map(entry => [entry.selection.reason.section, entry.source_text]),
+    [['2', 'Teise lõike algus on siin.'], ['3', 'Kolmas paragrahv.'], ['2', 'Teise lõike lõpp on siin.']]);
+  assert.deepEqual(long.measurements.cross_references, { candidates: 3, additions: 3, sections: ['2', '3', '2'] });
   // v6 is v5 with the rule.
   const settings = profileId => queryForProfile(retrievalProfile(profileId), { text: 'x', language: 'et' });
   assert.deepEqual(settings(CHAT_SUBSECTIONS_PROFILE), { ...settings(CHAT_POOL_PROFILE), referenceSubsections: true });
