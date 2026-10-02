@@ -2,7 +2,9 @@
 
 Teostus Claude Opus 5.5. Omanik 02.10: „Alusta B tasuta mõõtmisest … Too konkreetsed näited ja soovitus, kas uut reeglit on vaja. Arenduse otsustame mõõtmise tulemuse järgi.“ Taust: [ADR-064](../rag-v2/adr-064-named-other-act.md) järgib teist seadust ainult siis, kui see on nimetatud täisnimega; lühend jäeti [ADR-063](../rag-v2/adr-063-checked-relations.md) järel mõõtmata.
 
-**Soovitus: uut reeglit praegu ei ole vaja.** 30 raskes küsimuses ei toonud lühendi järgimine ühtegi puuduvat otsustavat sätet. Põhjendus ja see, mis otsust muudaks, on all.
+**Soovitus pärast teist mõõtmist (jaotis 6):** üldist reeglit ei ole vaja; **kitsas reegel ainult määrustest** tooks kolmest mõõdetud küsimusest kahes puuduva otsustava sätte. Otsus on omanikul.
+
+Esimene mõõtmine (jaotised 1–5): 30 raskes küsimuses ei toonud lühendi järgimine ühtegi puuduvat otsustavat sätet.
 
 Mõõtmine oli tasuta ja ainult luges: serveris, korpus v47 (indeks `34fe1590`, 40 489 lõiku), ilma mudelikutseta. Skript: [rag-v2-abbreviation-references-2026-10-02-probes.mjs](rag-v2-abbreviation-references-2026-10-02-probes.mjs); tulemus: [evidence/abbreviation-references-2026-10-02.json](evidence/abbreviation-references-2026-10-02.json).
 
@@ -78,6 +80,38 @@ Viited, mida järgida ei saa: PS § 20 lg 2 (põhiseadus), IKS, PGS, VÕS — ne
 
 - **Määruste kitsas juhtum.** 19 määrust viitavad SHS-ile või SÜS-ile lühendiga (54 kohta), numbrid on seal täpsed (XML). Kui mõni päris küsimus puudutab just sellist sätet (näiteks Narva asendushoolduse isiklike kulude miinimum) ja vastus jääb SHS-i tekstita, tasub teha kitsas reegel: ainult õigusakti XML-ist, ainult korpuses olev seadus. Seda saab enne mõõta kahe-kolme küsimusega otsingukatses (embedding'u kulu alla 0,001 USD).
 - **Korpuse ulatus.** Kui kasutajate küsimused vajavad IKS-i, PGS-i, PISTS-i või VÕS-i sätteid, on see nende seaduste lisamise, mitte viidete järgimise küsimus.
+
+## 6. Määruste juhtum (teine mõõtmine 02.10 õhtul)
+
+Omanik 02.10: „Mõõda Narva-tüüpi määruste juhtum tasuta otsingukatsega, ilma mudelikutseteta. Vali 2–3 sisulist küsimust ning määra enne katset iga küsimuse otsustav säte.“
+
+- **Kataloog** [`abbreviation-municipal-1.json`](../../tests/evaluation/graph/abbreviation-municipal-1.json): kolm küsimust, iga kohta määruse viitav lause ja seaduse otsustav lause. Fail on lukus enne esimest otsingut (commit `65ce7c43`, 02.10 kell 19:33; blob `15bc2bb1`).
+- **Katse** ([skript](rag-v2-abbreviation-municipal-2026-10-02-probes.mjs), [tulemus](evidence/abbreviation-municipal-2026-10-02.json)): profiil v6, valla määrused ja täna kehtivad seadused nagu vestluses. **Ainult sõnaline otsing**, sest vektorikanal vajab küsimuse embedding'ut ehk mudelikutset. Eelvaliku mudelit ei ole.
+- **Järgimine** on simuleeritud valitud lõikudel samade funktsioonidega, mida täisnime reegel kasutab: nimetatud lõike lõik, kuni kaks lisandust lugemise järjekorras (praeguse reegli kohad).
+
+| Küsimus | Määruse viitav lõik valitud | Otsustav säte täna valitud | Otsustava sätte koht sõnalises järjestuses | Järgimine toob otsustava sätte | Kõrvaline tekst |
+|---|---|---|---:|---|---|
+| Narva: asendushooldusel lapse isiklike kulude miinimum (SHS § 45¹¹ lg 3) | jah | **jah** | 7 | pole vaja | 1 lõik, 204 tokenit |
+| Sillamäe: kellele ja kui kaua järelhooldus (SHS § 45¹⁶ lg 1) | jah | **ei** | 62 | **jah** (556 tokenit) | 1 lõik, 842 tokenit |
+| Põlva: kas tugiisik võib olla vanaema (SHS § 25 lg 2) | jah | **ei** | 78 | **jah** (186 tokenit) | 1 lõik, 419 tokenit |
+
+- **Otsing loeb 40 esimest kandidaati.** Sillamäe ja Põlva otsustav säte on kohal 62 ja 78, seega jääb välja. Määruse viitav lõik on kõigis kolmes kohal 1–2.
+- **Kahes küsimuses kolmest toob järgimine puuduva sätte**, kummaski koos ühe kõrvalise lõiguga: Sillamäel SHS § 45⁹ (kes saab asendushooldust), Põlvas SHS § 45⁴ (lapsehoiuteenuse nõuded). Mõlemale viitab sama määruse lõik, seega on need sama teema naabersätted, mitte juhuslik tekst.
+- **Sillamäel mahtus otsustav säte kahe koha sisse napilt:** viitavas lõigus on see teine viide. Ilma kohtade piirita lisanduks kolm lõiku (1731 tokenit).
+- **Narvas pole reeglit vaja:** otsing leidis SHS § 45¹¹ ise. Ainus lisandus tuleks ajakirja artiklist, mille PDF-is on „SHS § 45 lõige 3“; ülaindeks on kadunud ja viide läheks valesse paragrahvi (§ 45, mitte § 45⁹ või § 45¹¹). Määruste XML-is on numbrid täpsed ja seda viga seal ei ole.
+- **Kaksikküsimus kinnitab suunda.** Harku tugiisiku küsimuses (sama säte, määrus nimetab seadust täisnimega) ei leidnud sätet ka vektoriga otsing: profiilid v1 ja v3 ei leidnud, täisnime reegel (v4) leidis ([tõend](evidence/own-subsections-2026-10-02/graph-v6-hard-3.json)).
+
+### Mida see ütleb reegli kohta
+
+- **Üldine reegel** (ka artiklitest ja juhenditest): esimese mõõtmise järgi kasu ei ole ja PDF-ide kadunud ülaindeks viib valesse sättesse. Mitte teha.
+- **Kitsas reegel**: järgida korpuses oleva seaduse lühendit ainult õigusakti XML-ist (määrused), samade kohtade ja ruumiga nagu täisnime reegel. Mõõdetud kolmest küsimusest kahes tooks see puuduva otsustava sätte, hinnaga üks kõrvaline lõik (419–842 tokenit). Ulatus: 19 määrust (17 kehtivat), 54 viidet.
+- Lühendi tähendus peaks tulema kindlast allikast: korpuse seaduste ametlikud lühendid (SHS, LasteKS, PKS, HMS, SÜS, RLS) või määruse enda selgitus („edaspidi SHS“).
+
+### Mis on selles mõõtmises kinnitamata
+
+- **Vektorikanal ja eelvaliku mudel puuduvad.** Päris otsing liidab sõnalise ja vektorjärjestuse ning mudel valib 30 kandidaadi seast; otsustav säte võib sealt tulla ka ilma reeglita (Narvas tuli see juba sõnalisest otsingust). Kindluse annaks sama katse vektoritega (kolme küsimuse embedding, alla 0,001 USD) ja üks vestluse raja jooks.
+- Kolm küsimust on minu valitud määruste seast, kus säte on sisuliselt seadusele delegeeritud; see ei ütle, kui sageli kasutajad selliseid küsimusi küsivad.
+- Kõrvalise teksti hulk sõltub viitava lõigu viidete järjekorrast; kaks kohta võib otsustava viite ka välja jätta, kui see on lõigus kolmas.
 
 ## Piirid
 
