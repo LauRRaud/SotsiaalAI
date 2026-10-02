@@ -85,7 +85,7 @@ Viited, mida järgida ei saa: PS § 20 lg 2 (põhiseadus), IKS, PGS, VÕS — ne
 
 Omanik 02.10: „Mõõda Narva-tüüpi määruste juhtum tasuta otsingukatsega, ilma mudelikutseteta. Vali 2–3 sisulist küsimust ning määra enne katset iga küsimuse otsustav säte.“
 
-- **Kataloog** [`abbreviation-municipal-1.json`](../../tests/evaluation/graph/abbreviation-municipal-1.json): kolm küsimust, iga kohta määruse viitav lause ja seaduse otsustav lause. Fail on lukus enne esimest otsingut (commit `65ce7c43`, 02.10 kell 19:33; blob `15bc2bb1`).
+- **Kataloog** [`abbreviation-municipal-1.json`](../../tests/evaluation/graph/abbreviation-municipal-1.json): kolm küsimust, iga kohta määruse viitav lause ja seaduse otsustav lause. Fail pandi kirja 02.10 kell 19:33, enne esimest otsingut, ja seda pole pärast muudetud (git blob `15bc2bb1514feb75c9ed4fe4910ac18cf777c362`).
 - **Katse** ([skript](rag-v2-abbreviation-municipal-2026-10-02-probes.mjs), [tulemus](evidence/abbreviation-municipal-2026-10-02.json)): profiil v6, valla määrused ja täna kehtivad seadused nagu vestluses. **Ainult sõnaline otsing**, sest vektorikanal vajab küsimuse embedding'ut ehk mudelikutset. Eelvaliku mudelit ei ole.
 - **Järgimine** on simuleeritud valitud lõikudel samade funktsioonidega, mida täisnime reegel kasutab: nimetatud lõike lõik, kuni kaks lisandust lugemise järjekorras (praeguse reegli kohad).
 
