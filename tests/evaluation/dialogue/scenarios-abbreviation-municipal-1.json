@@ -12,13 +12,17 @@
   "scenarios": [
     { "id": "narva-substitute-care-personal-costs", "title": "Asendushooldusel lapse isiklike kulude miinimum Narvas", "source": "Narva asendus- ja järelhooldusteenuse kord § 3 lg 1; SHS § 45¹¹ lg 3", "turns": [
       { "mode": "new", "text": "Minu õelaps on Narva linna kaudu asendushooldusel perekodus. Kui palju raha peab tema isiklike kulude jaoks kuus vähemalt kulutatama?",
-        "note": "The regulation guarantees \"at least the minimum of SHS § 45¹¹ lõige 3\"; the amount is only in the Act. must: 240 as a monthly amount; must_not: the amount or the minimum denied in the same clause.",
+        "note": "The regulation guarantees \"at least the minimum of SHS § 45¹¹ lõige 3\"; the amount is only in the Act. must: 240 in the sentence that names the child's personal costs, as a monthly amount; must_not: the minimum, the amount or the duty to spend it denied, or a smaller amount said to be enough (Codex reviews of #320 and #321).",
         "expect": { "region": "narva_linn",
           "evidence_text": ["Lapse isiklike kulude katteks peab iga kuu tegema kulutusi keskmiselt 240 euro ulatuses"],
           "evidence_provision": [{ "title": "^Sotsiaalhoolekande seadus$", "section": "45^11", "text": "Lapse isiklike kulude katteks peab iga kuu tegema kulutusi keskmiselt 240 euro ulatuses" }],
           "cited_provision": [{ "title": "^Sotsiaalhoolekande seadus$", "section": "45^11" }],
-          "must": ["(?<!\\d)240(?!\\d)[^.!?\\n]{0,120}(?<!\\p{L})(kuus|kuu|igakuis\\p{L}*)(?!\\p{L})|(?<!\\p{L})(kuus|kuu|igakuis\\p{L}*)(?!\\p{L})[^.!?\\n]{0,120}(?<!\\d)240(?!\\d)"],
-          "must_not": ["(?<!\\p{L})(ei\\s+ole|pole|puudub)(?!\\p{L})[^.!?\\n,;:]{0,80}((?<!\\d)240(?!\\d)|miinimum)"] } }
+          "must": ["isiklik\\p{L}*\\s+kulu\\p{L}*[^.!?\\n]{0,160}(?<!\\d)240(?!\\d)|(?<!\\d)240(?!\\d)[^.!?\\n]{0,160}isiklik\\p{L}*\\s+kulu\\p{L}*",
+            "(?<!\\d)240(?!\\d)[^.!?\\n]{0,120}(?<!\\p{L})(kuus|kuu|igakuis\\p{L}*)(?!\\p{L})|(?<!\\p{L})(kuus|kuu|igakuis\\p{L}*)(?!\\p{L})[^.!?\\n]{0,120}(?<!\\d)240(?!\\d)"],
+          "must_not": ["(?<!\\p{L})(ei\\s+ole|pole|puudub)(?!\\p{L})[^.!?\\n,;:]{0,80}((?<!\\d)240(?!\\d)|miinimum)",
+            "miinimumi\\s+(ei\\s+ole|pole)(?!\\p{L})",
+            "(?<!\\p{L})ei\\s+(pea|tule|ole\\s+vaja|ole\\s+kohustus\\p{L}*)(?!\\p{L})[^.!?\\n,;:]{0,80}(?<!\\d)240(?!\\d)|(?<!\\d)240(?!\\d)[^.!?\\n,;:]{0,80}(?<!\\p{L})ei\\s+(pea|tule)(?!\\p{L})|(?<!\\d)240(?!\\d)[^.!?\\n]{0,120}(?<!\\p{L})(ei\\s+ole|pole)\\s+(kohustus|vaja|nõut)\\p{L}*",
+            "(?<!\\p{L})piisab(?!\\p{L})[^.!?\\n]{0,40}(?<!\\d)(?!240(?!\\d))\\d+\\s*euro"] } }
     ] },
     { "id": "sillamae-aftercare-student", "title": "Järelhooldus õppivale noorele Sillamäel", "source": "Sillamäe asendus- ja järelhooldusteenuse kord § 5 lg 2; SHS § 45¹⁶ lg 1", "turns": [
       { "mode": "new", "text": "Olen 20-aastane, kasvasin Sillamäel asenduskodus ja õpin nüüd kutsekoolis. Kas linn peab mulle järelhooldusteenuse tagama ja kui kaua?",
