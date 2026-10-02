@@ -63,4 +63,4 @@ Kulu 0,147 USD plaani hindade järgi, kolm jooksu.
 
 - Mõõdetud on 27 pööret, iga stsenaarium üks kord.
 - Kui sõnum viitab varasema vastuse punktile („teine punkt“), loeb mudel seda nüüd viimase vastuse järgi. Konkreetse vastuse valimist enam vestluses ei ole.
-- Täis teema uus algus ei kanna üle eelmise teema olekut (näiteks valda). Mudel võib vald uuesti küsida.
+- Täis teema uus algus ei kandnud üle eelmise teema olekut (näiteks valda), ja kümnes sõnum ebaõnnestus. Mõlemad on lahendatud: [ADR-070](adr-070-full-topic-hands-over.md).
