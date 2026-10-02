@@ -92,8 +92,8 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**Uus aken alustab siit (01.10 õhtu).** Kuupäevaviga on parandatud ([ADR-062](../rag-v2/adr-062-provision-dates.md), korpus v47, dialoog 22). Omanik valis M3; selle mõõtmissamm ja esimene reegel (profiil v4, [ADR-064](../rag-v2/adr-064-named-other-act.md)) on tehtud.
-- **Tootmises:** korpus v47 (indeks `34fe1590`, 6470 dokumenti, 40 489 lõiku; lugeja `source-structure-v30`). Vestlusplaani uuendab reliis ise (ADR-037): profiil v4, answer-12, dialoog 22, mudelikontekst json-3, olek v5, arutlus medium. Profiil on plaani osa: v4 plaan tehakse serveris pärast ADR-064 PR-i deploy'd (`rag-v2-chat-plan.mjs --profile hybrid-estnltk-chat-v4 --activate`); kontrolli aktiivse plaani `profileId`.
+**Uus aken alustab siit (02.10 hommik).** Kuupäevaviga on parandatud ([ADR-062](../rag-v2/adr-062-provision-dates.md), korpus v47, dialoog 22). Omanik valis M3; selle mõõtmissamm ja esimene reegel (profiil v4, [ADR-064](../rag-v2/adr-064-named-other-act.md)) on tehtud.
+- **Tootmises:** korpus v47 (indeks `34fe1590`, 6470 dokumenti, 40 489 lõiku; lugeja `source-structure-v30`). Vestlusplaani uuendab reliis ise (ADR-037): profiil v5 ([ADR-065](../rag-v2/adr-065-pool-limit-per-document.md)), answer-12, dialoog 22, mudelikontekst json-3, olek v5, arutlus medium. Profiil on plaani osa: v5 plaan tehakse serveris pärast ADR-065 PR-i deploy'd (`rag-v2-chat-plan.mjs --profile hybrid-estnltk-chat-v5 --activate`); kontrolli aktiivse plaani `profileId`.
 - **Tööviis:**
   - Codex kujundab põhikaustas, seega ära vaheta seal harusid. Töötle %TEMP% worktree's: `node_modules` junction, `generated/` koopia. Eemalda worktree ja haru pärast PR-i.
   - PR liidetakse ja deploy'takse ise. Enne PR-i jooksuta kogu `npm test`.
@@ -111,7 +111,8 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
     - **Reegel tehtud 01.10 öösel ([ADR-064](../rag-v2/adr-064-named-other-act.md), profiil v4):** kui valitud lõik nimetab teist seadust täielikult ja vahetult paragrahvi ees, lisab otsing lõigu, kus nimetatud lõige on (kuni 2 lõiku, v3 valikut muutmata).
       - Otsingukatse 30 küsimusel: v4 leiab 28 (v3 26), hoiab v3 valiku 30/30, kontekst +300 tokenit.
       - Vestluse rada: Harku tugiisiku küsimus läbib; kaheksast pöördest 7 läbis, `coach-reports-child` on vana teadaolev otsingu möödalask.
-    - **M3 järgmine võimalik samm** (ootab omaniku sõna): `coach-reports-child` (LasteKS § 27 ja § 27¹ ei jõua vestluses tõenditesse, rerank valib ainult juhendid) või lühendiga nimetatud aktid („SHS § 25“). Kumbagi pole mõõdetud.
+    - **Tehtud 02.10 ([ADR-065](../rag-v2/adr-065-pool-limit-per-document.md), profiil v5):** eelvalikus kuni 10 lõiku ühest dokumendist. Treeneri küsimuses võttis üks juhend 30 kohast 24 ja lastekaitseseaduse § 27¹ jäi välja; nüüd valib mudel seaduse ja vastus loetleb § 34² andmed. Piir muudab eelvalikut 8 küsimuses 46-st; kontrolljooksus 10 pöördest 9 läbis (Kuusalu vastus oli õige, aga nimetas jõustumise kuupäeva, mida kontroll keelab).
+    - **M3 järgmine võimalik samm** (ootab omaniku sõna): lühendiga nimetatud aktid („SHS § 25“), mõõtmata. Pikkade juhendite lühikesed tükid (pealkiri, „JUHEND“) tulevad liidetud järjestuses kõrgele; tükeldust pole uuritud.
     - Omaniku otsust ootab SHS-i teadmiskaartide saatus: need kehtivad 30.11.2026-ni, järgmistel redaktsioonidel kaarte pole. Mõõtmise järgi ei ole kaarte akti sees otsustava sätte leidmiseks vaja.
   - **Väike jääk kuupäevavea järel (päris vestlus 01.10 kell 19:37, pärast #296):** Märjamaa vastus andis õiged summad ja õige aluse („alates 1. jaanuarist 2026 rakendatav summa“), aga küsis sünniaastat, sest küsimuses oli ainult „augustis“. Eelmõõtmise jooksus seda küsimust ei olnud. Kui see kordub, lisada juhisesse, et aastata sündmus loetakse hiljutiseks; mõõta ühe jooksuga, mitte sõnastust tasuliste kordustega timmides.
   - **Serveri koristus tehtud 01.10 kell 19:46** (omanik: „serveri koristus tee“): generatsioonide v42–v46 loendid kustutatud (`drop-version-generations.mjs`), seejärel `rag-v2-prune-versions.mjs --execute`: 519 versiooni, 13 669 rida ja 13 669 punkti. Indeksi v47 tõend enne ja pärast sama (6470 versiooni, 40 489 rida ja punkti, samad räsid); kollektsioonis nüüd 40 489 punkti; kordusloendus 0; `VACUUM ANALYZE` tehtud. Ketas jäi 85% juurde (vaba 8,7 → 9,0 GB): suured on Docker 13 GB (Postgres ja Qdrant), hoidla 6,0 GB, ostetud vektorid 2,5 GB ja rakendus 5,9 GB. Serveris on nüüd ainult generatsioon v47, seega v46-le tagasi minna ei saa ilma uue indeksitööta.
@@ -120,6 +121,12 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
   - Codexi #289, #290, #295–#299 ülevaatus on tehtud ([raport](../audits/rag-v2-pr289-299-review-2026-10-01.md)) ja selle kolm leidu parandatud (vt 01.10 öö kirje allpool).
   - Kiiruse mõõtmine päris vestluses teeb omanik.
 - **Võrk 30.09 õhtul:** SSH port 22 aegus korduvalt nii GitHubi kui serveri (`ssh sotsiaalai`) poole. Push õnnestus kordamisel. `gh` töötab HTTPS-i kaudu.
+
+**02.10 (Opus), hommik: eelvalikus kuni kümme lõiku ühest dokumendist (profiil v5)** ([ADR-065](../rag-v2/adr-065-pool-limit-per-document.md)). Omanik: „tegutse“.
+- **Uurimine (tasuta):** treeneri küsimuses võttis juhend „Abivajavast lapsest teatamine ja andmekaitse“ mudeli eelvaliku 30 kohast 24–25; lastekaitseseaduse § 27¹ (treeneri teatamine, andmed vähimas vajalikus ulatuses) oli kohal 23–36. 30 raskest küsimusest oli selline ülekaal ainult selles.
+- **Muudatus:** profiil v5 = v4 + kuni 10 lõiku ühest dokumendist eelvaliku 30 liidetud kandidaadi seas; vabanenud kohad saavad järgmised teiste dokumentide kandidaadid. Ilma reranker'ita ei muutu midagi.
+- **Mõõtmine:** piirid 8–15 ei kaota 30 raskes küsimuses ühtegi otsustavat lõiku. Vestluse rajal läbis treeneri küsimus ja vastus loetleb § 34² andmed; kaheksast muudetud eelvalikuga stsenaariumist 9 pööret 10-st läbis. Kuusalu vastus oli õige, aga nimetas määruse jõustumise kuupäeva, mida kontroll keelab; sama küsimus v4-ga läbis. Kulu 0,062 USD plaani hindade järgi.
+- Tõendid ja diagnoosiskriptid: `docs/audits/evidence/pool-limit-2026-10-02/`.
 
 **01.10 (Opus), kesköö eel: Codexi #300–#301 ülevaatuse leid parandatud** ([raport](../audits/rag-v2-pr300-301-review-2026-10-01.md), [ADR-064](../rag-v2/adr-064-named-other-act.md)).
 - **R1 (P2, #301):** nimetatud paragrahvi numbri täpsust küsiti sihtakti redaktsioonilt, kuigi number on loetud viitavast tekstist. PDF-i „§ 131“ võis seega tuua § 131, kuigi mõeldud oli § 13¹.

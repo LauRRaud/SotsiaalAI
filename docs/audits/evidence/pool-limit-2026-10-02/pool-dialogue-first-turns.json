@@ -1,0 +1,420 @@
+{
+ "generation": "search_generation_34fe1590bbd5e2bf6a788bef196d50e26b5f573e2a63bc30fbbe1d56ab28c8f4",
+ "cap": 10,
+ "rows": [
+  {
+   "file": "scenarios-corpus-4.json",
+   "question": "money-harku-contact",
+   "text": "Mul on raha otsas ja toiduks ei jätku.",
+   "documents_in_pool": 20,
+   "top_document": "Kohaliku omavalitsuse poolt isikult ja/või perekonnalt sotsiaalteenuste eest tasu nõudmine",
+   "top_passages": 4,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-corpus-4.json",
+   "question": "mother-kose-corrected-harku",
+   "text": "Vajan emale kodus abi igapäevaste toimingutega.",
+   "documents_in_pool": 12,
+   "top_document": "Vajadustest lähtuv hool ja abi igas kodus",
+   "top_passages": 6,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-corpus-4.json",
+   "question": "father-tallinn-then-own-debts-kose",
+   "text": "Mu eakas isa ei saa enam üksi hakkama, kuhu pöörduda?",
+   "documents_in_pool": 21,
+   "top_document": "Kelle poole pöördub abi saamiseks Eesti 100-aastane?",
+   "top_passages": 7,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-corpus-4.json",
+   "question": "crisis-then-help-tallinn",
+   "text": "Olen üksi kodus, raske on toimetulek, tööd ei ole.",
+   "documents_in_pool": 22,
+   "top_document": "TÖÖLEHT: Kuidas sa ennast tunned?",
+   "top_passages": 5,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-corpus-4.json",
+   "question": "transport-kose",
+   "text": "Arsti juurde on raske sõita, kas on transporti?",
+   "documents_in_pool": 11,
+   "top_document": "Puudega lastega perede toimetuleku ja vajaduste uuring",
+   "top_passages": 8,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-corpus-4.json",
+   "question": "fire-harku",
+   "text": "Tulekahju hävitas kodu, kas vald aitab rahaga?",
+   "documents_in_pool": 8,
+   "top_document": "Päästeameti meelespea kohalikule omavalitsusele",
+   "top_passages": 19,
+   "changed_by_cap": 9
+  },
+  {
+   "file": "scenarios-corpus-4.json",
+   "question": "appeal-follow-up",
+   "text": "Omavalitsus keeldus mulle koduteenust andmast. Mida saan teha, kui ma otsusega e",
+   "documents_in_pool": 14,
+   "top_document": "Kohaliku omavalitsuse poolt isikult ja/või perekonnalt sotsiaalteenuste eest tasu nõudmine",
+   "top_passages": 8,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-corpus-4.json",
+   "question": "care-home-correction",
+   "text": "Kui palju pean ise hooldekodu koha eest maksma?",
+   "documents_in_pool": 9,
+   "top_document": "Kohaliku omavalitsuse poolt isikult ja/või perekonnalt sotsiaalteenuste eest tasu nõudmine",
+   "top_passages": 11,
+   "changed_by_cap": 1
+  },
+  {
+   "file": "scenarios-corpus-4.json",
+   "question": "income-support-move",
+   "text": "Kuidas saada toimetulekutoetust?",
+   "documents_in_pool": 13,
+   "top_document": "Sotsiaalhoolekande seadus",
+   "top_passages": 5,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-corpus-4.json",
+   "question": "law-on-dates",
+   "text": "Mida ütleb sotsiaalhoolekande seadus koduteenuse kohta 1. märtsil 2027?",
+   "documents_in_pool": 12,
+   "top_document": "Koduteenuste korraldus",
+   "top_passages": 10,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-corpus-4.json",
+   "question": "vague-then-details",
+   "text": "Kas mulle on mingi toetus ette nähtud?",
+   "documents_in_pool": 16,
+   "top_document": "Teekond erilise lapse kõrval",
+   "top_passages": 6,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-corpus-4.json",
+   "question": "child-alone-report",
+   "text": "Naabri väike laps on tihti öösiti üksi kodus ja nutab. Mida ma peaksin tegema?",
+   "documents_in_pool": 15,
+   "top_document": "Räägime Lastest logiraamat tööks peredega: 0–1-aastane laps",
+   "top_passages": 4,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-corpus-4.json",
+   "question": "tartu-parish-not-city",
+   "text": "Elan Tartu vallas, mitte Tartu linnas. Kuhu pöörduda sotsiaaltranspordi saamisek",
+   "documents_in_pool": 14,
+   "top_document": "Sotsiaalne transport Eestis ühiskondliku ja eraelu sidujana",
+   "top_passages": 15,
+   "changed_by_cap": 5
+  },
+  {
+   "file": "scenarios-corpus-4.json",
+   "question": "new-person-same-need",
+   "text": "Mu ema vajab kodus abi igapäevaste toimingutega. Ta elab Raasiku vallas.",
+   "documents_in_pool": 11,
+   "top_document": "Heade praktikate kogumik",
+   "top_passages": 9,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-corpus-4.json",
+   "question": "hearing-aid-cap",
+   "text": "Ema kuulmine halveneb ja pensionist ei jätku kuuldeaparaadi ostmiseks. Kust alus",
+   "documents_in_pool": 10,
+   "top_document": "Abivahendite loetelu: määruse „Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi andmed“ lisa (sotsiaalministri 24.09.2026 määruse nr 37 sõnastuses)",
+   "top_passages": 13,
+   "changed_by_cap": 3
+  },
+  {
+   "file": "scenarios-corpus-4.json",
+   "question": "shelter-tonight",
+   "text": "Mul pole täna öösel kusagil magada ega raha toidu ostmiseks. Kust saan kohe abi?",
+   "documents_in_pool": 16,
+   "top_document": "Seksuaalsest ahistamisest vaba ööelu juhend",
+   "top_passages": 8,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-hard-conditions-1.json",
+   "question": "day-support-dementia-retirement",
+   "text": "Minu 70-aastasel isal on dementsus. Kas ta saab riigi rahastatud igapäevaelu toe",
+   "documents_in_pool": 14,
+   "top_document": "Kuidas riik toetab dementsusega inimesi ja nende lähedasi?",
+   "top_passages": 10,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-hard-conditions-1.json",
+   "question": "supported-living-alcohol",
+   "text": "Mu täiskasvanud pojal on alkoholisõltuvus. Kas ta saab riigi rahastatud toetatud",
+   "documents_in_pool": 13,
+   "top_document": "Koos kainema ja tervema Eesti poole",
+   "top_passages": 8,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-hard-conditions-1.json",
+   "question": "community-living-dementia",
+   "text": "Kas 75-aastane dementsusega naine saab riigi kulul kogukonnas elamise teenust?",
+   "documents_in_pool": 20,
+   "top_document": "Kuidas riik toetab dementsusega inimesi ja nende lähedasi?",
+   "top_passages": 6,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-hard-conditions-1.json",
+   "question": "subsistence-care-home",
+   "text": "Mu ema elab hooldekodus ja tema pension ei kata kõiki kulusid. Kas ta saab toime",
+   "documents_in_pool": 14,
+   "top_document": "Heade praktikate kogumik",
+   "top_passages": 6,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-hard-conditions-1.json",
+   "question": "subsistence-prison",
+   "text": "Mu mees on vanglas. Kas ta saab toimetulekutoetust, et oma kulusid katta?",
+   "documents_in_pool": 14,
+   "top_document": "Eva Üprus: tugiisiku töö mõte on inimesi inspireerida",
+   "top_passages": 5,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-hard-conditions-1.json",
+   "question": "involuntary-placement",
+   "text": "Mu vend keeldub hooldusest ja on endale ohtlik. Kas teda saab paigutada hoolekan",
+   "documents_in_pool": 13,
+   "top_document": "Vabatahtlikkuse põhimõte üldhooldusteenuse osutamisel",
+   "top_passages": 10,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-hard-conditions-1.json",
+   "question": "own-share-shortfall",
+   "text": "Mu õde saab ööpäevaringset erihooldusteenust ja tema pensionist ei jätku omaosal",
+   "documents_in_pool": 15,
+   "top_document": "Sotsiaalhoolekande seadus",
+   "top_passages": 5,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-hard-conditions-1.json",
+   "question": "rehabilitation-student",
+   "text": "Mul on osaline töövõime ja ma õpin ülikoolis. Kas ma saan taotleda sotsiaalse re",
+   "documents_in_pool": 12,
+   "top_document": "Teekond erilise lapse kõrval",
+   "top_passages": 8,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-hard-conditions-1.json",
+   "question": "day-care-retirement-age",
+   "text": "Mu 68-aastasel emal on psüühikahäire. Kas riik maksab tema päeva- ja nädalahoiut",
+   "documents_in_pool": 15,
+   "top_document": "Sotsiaalhoolekande seadus",
+   "top_passages": 7,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-hard-conditions-2.json",
+   "question": "reclaim-limitation",
+   "text": "Vald nõuab minult tagasi toetust, mis maksti mulle kolm aastat tagasi ekslikult.",
+   "documents_in_pool": 20,
+   "top_document": "Sotsiaalseadustiku üldosa seadus",
+   "top_passages": 5,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-hard-conditions-2.json",
+   "question": "reclaim-enforcement",
+   "text": "Mulle tehti ettekirjutus liiga palju makstud toetuse tagasimaksmiseks. Kui kaua ",
+   "documents_in_pool": 15,
+   "top_document": "Sotsiaalseadustiku üldosa seadus",
+   "top_passages": 5,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-hard-conditions-2.json",
+   "question": "coach-reports-child",
+   "text": "Olen treener ja märkasin, et üks laps vajab abi. Milliseid andmeid ma tohin tema",
+   "documents_in_pool": 5,
+   "top_document": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+   "top_passages": 23,
+   "changed_by_cap": 13
+  },
+  {
+   "file": "scenarios-hard-conditions-2.json",
+   "question": "student-subsistence-own",
+   "text": "Olen 20-aastane üliõpilane ja elan vanematest eraldi teises linnas. Kas ma saan ",
+   "documents_in_pool": 13,
+   "top_document": "Sotsiaalhoolekande seadus",
+   "top_passages": 5,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-hard-conditions-2.json",
+   "question": "subsistence-new-job",
+   "text": "Sain mitu kuud toimetulekutoetust ja nüüd hakkasin tööle. Kas mu palk vähendab k",
+   "documents_in_pool": 13,
+   "top_document": "Töötamise toetamine toimetulekutoetuse kaudu",
+   "top_passages": 7,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-hard-conditions-2.json",
+   "question": "subsistence-deadline",
+   "text": "Mis ajaks pean ma toimetulekutoetuse taotluse esitama?",
+   "documents_in_pool": 15,
+   "top_document": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+   "top_passages": 6,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-hard-conditions-3.json",
+   "question": "subsistence-home-loan",
+   "text": "Taotlen toimetulekutoetust ja maksan iga kuu oma korteri ostuks võetud laenu. Ka",
+   "documents_in_pool": 10,
+   "top_document": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+   "top_passages": 10,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-hard-conditions-3.json",
+   "question": "referral-deadline-emergency",
+   "text": "Riigis kehtib eriolukord. Sain suunamisotsuse kogukonnas elamise teenusele. Mitm",
+   "documents_in_pool": 13,
+   "top_document": "Sotsiaalhoolekande seadus",
+   "top_passages": 10,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-hard-conditions-3.json",
+   "question": "student-turns-25",
+   "text": "Meie poeg õpib teises linnas ülikoolis, on sisse kirjutatud meie juurde ja saab ",
+   "documents_in_pool": 15,
+   "top_document": "Heade praktikate kogumik",
+   "top_passages": 7,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-hard-conditions-3.json",
+   "question": "refusal-only-home",
+   "text": "Vald keeldus mulle toimetulekutoetust määramast, sest mul on oma korter. Muud va",
+   "documents_in_pool": 14,
+   "top_document": "Kohaliku omavalitsuse poolt isikult ja/või perekonnalt sotsiaalteenuste eest tasu nõudmine",
+   "top_passages": 10,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-hard-conditions-3.json",
+   "question": "service-ended-martial-law",
+   "text": "Sõjaseisukorra ajal ei ole mu vend kolm nädalat kogukonnas elamise teenust kasut",
+   "documents_in_pool": 14,
+   "top_document": "Sotsiaalhoolekande seadus",
+   "top_passages": 12,
+   "changed_by_cap": 2
+  },
+  {
+   "file": "scenarios-hard-conditions-3.json",
+   "question": "rent-from-mother",
+   "text": "Üürin korterit oma emalt ja maksan talle iga kuu üüri. Kas see üür läheb toimetu",
+   "documents_in_pool": 9,
+   "top_document": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+   "top_passages": 9,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-hard-conditions-3.json",
+   "question": "pensioner-with-student-child",
+   "text": "Olen 66-aastane pensionär ja minu juurde on sisse kirjutatud mu 20-aastane tütar",
+   "documents_in_pool": 12,
+   "top_document": "Heade praktikate kogumik",
+   "top_passages": 6,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-hard-conditions-3.json",
+   "question": "child-rehabilitation-need",
+   "text": "Minu 10-aastasel pojal ei ole puuet, kuid tal on tõsised käitumisraskused. Kes h",
+   "documents_in_pool": 11,
+   "top_document": "Teekond erilise lapse kõrval",
+   "top_passages": 16,
+   "changed_by_cap": 6
+  },
+  {
+   "file": "scenarios-hard-conditions-3.json",
+   "question": "harku-support-person-relative",
+   "text": "Elame Harku vallas. Kas minu täisealise puudega poja tugiisikuks võib vald määra",
+   "documents_in_pool": 11,
+   "top_document": "Teekond erilise lapse kõrval",
+   "top_passages": 9,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-hard-conditions-3.json",
+   "question": "guardian-ward-family",
+   "text": "Olen oma täisealise venna eestkostja ja elame ühes korteris. Kas tema sissetulek",
+   "documents_in_pool": 11,
+   "top_document": "Sotsiaalhoolekande seadus",
+   "top_passages": 9,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-hard-conditions-3.json",
+   "question": "rent-debt-not-counted",
+   "text": "Mul on kahe eelmise kuu kommunaalmaksed maksmata. Kas toimetulekutoetuse arvesta",
+   "documents_in_pool": 10,
+   "top_document": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+   "top_passages": 7,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-hard-conditions-3.json",
+   "question": "household-definition",
+   "text": "Elan korteris koos sõbraga, jagame üüri ja ostame toidu ühiselt. Kas meid loetak",
+   "documents_in_pool": 13,
+   "top_document": "Sotsiaalhoolekande seadus",
+   "top_passages": 5,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-hard-conditions-3.json",
+   "question": "kuusalu-limits-since",
+   "text": "Elan Kuusalu vallas. Mis ajast kehtivad vallas praegused toimetulekutoetuse elua",
+   "documents_in_pool": 9,
+   "top_document": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+   "top_passages": 16,
+   "changed_by_cap": 6
+  },
+  {
+   "file": "scenarios-hard-conditions-3.json",
+   "question": "special-care-decision-time",
+   "text": "Esitasin Sotsiaalkindlustusametile erihoolekandeteenuse taotluse. Kui kiiresti p",
+   "documents_in_pool": 18,
+   "top_document": "Sotsiaalhoolekande seadus",
+   "top_passages": 5,
+   "changed_by_cap": 0
+  },
+  {
+   "file": "scenarios-hard-conditions-3.json",
+   "question": "pensioner-day-centre",
+   "text": "Olen 70-aastane, elan üksi oma kodus ja käin kaks korda nädalas päevakeskuses. K",
+   "documents_in_pool": 15,
+   "top_document": "Vanemaealiste ja eakate toimetuleku uuring 2015",
+   "top_passages": 6,
+   "changed_by_cap": 0
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "date": "2026-10-02",
+ "act": "Lastekaitseseadus",
+ "sections": ["27", "27^1", "34^2"],
+ "sets": [
+  { "name": "catalogue",
+    "text": "Olen treener ja märkasin, et üks laps vajab abi. Milliseid andmeid ma tohin tema kohta vallale edastada?",
+    "queries": ["abivajavast lapsest teatamine", "lapsega töötava isiku teatamiskohustus ja andmete edastamine"] },
+  { "name": "chat-plan-2026-10-01",
+    "text": "Olen treener ja märkasin, et üks laps vajab abi. Milliseid andmeid ma tohin tema kohta vallale edastada?",
+    "queries": ["lapse abivajadusest teatamine kohaliku omavalitsuse lastekaitsetöötajale", "treeneri õigus edastada lapse isikuandmeid vallale", "lapse isikuandmete töötlemine ja saladuse hoidmise kohustus"] }
+ ]
+}
