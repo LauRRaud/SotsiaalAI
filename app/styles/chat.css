@@ -955,7 +955,7 @@ button[aria-controls="chat-window-scroll"] {
      tegelikult katab (ChatBody: --chat-composer-scroll-overlap); kui ta ei
      kata, on reserv 0. */
   --chat-composer-reserve: var(--chat-composer-scroll-overlap, 0px);
-  padding: clamp(3.4rem, 7lvh, 4.6rem) clamp(1.6rem, 4vw, 4rem)
+  padding: clamp(5rem, 9.2lvh, 6rem) clamp(1.6rem, 4vw, 4rem)
     calc(var(--chat-composer-reserve) + var(--conv-bottom-fade) + 0.6rem);
   /* Kerimisriba peidus (tellija 12.07) — keritav jääb, riba nähtamatu */
   scrollbar-width: none;
@@ -970,11 +970,19 @@ button[aria-controls="chat-window-scroll"] {
      libisev mull lahustub ilma noalõiketa (omanik 25.07: "all on koledalt ära
      lõigatud" → esimene, polstri-sisene 1.3–2rem vöönd oli liiga arg —
      omanik 25.07 õhtul: "all ei ole fade'i peaaegu üldse"). Ülemine
-     jääb SIHILIKULT sügavam: ta peab katma ka ≡/× päisenupud. */
+     jääb SIHILIKULT sügavam: ta peab katma ka ≡/× päisenupud.
+     02.10 (omanik: "all on fade ja üleval ei ole"): ülemine sulamine algas
+     veeru servast ja lõppes 51 px all, ehk ≡/× vööndis ja toa lae tumeda
+     tala kohal — heleda mulli taust kadus seal kohe ja serv paistis
+     lõikena. Nüüd on ≡/× vöönd (veeru ülemised 2.8rem; nuppude põhi on
+     45 px veeru servast) täiesti läbipaistev ja sulamine käib selle all,
+     sama selgelt kui all. Ülapolster kasvas sama palju, et puhkeasendis
+     esimene sõnum algaks sulamise lõpus ja jääks teravaks. */
   mask-image: linear-gradient(
     to bottom,
     transparent 0,
-    #000 clamp(3.2rem, 6.6lvh, 4.4rem),
+    transparent 2.8rem,
+    #000 clamp(4.8rem, 8.8lvh, 5.8rem),
     #000 calc(100% - var(--chat-composer-reserve) - var(--conv-bottom-fade)),
     transparent calc(100% - var(--chat-composer-reserve))
   );
