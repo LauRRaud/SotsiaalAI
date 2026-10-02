@@ -139,6 +139,8 @@ function observe(row, error) {
     // The search plan and the rerank's candidates and choice: why a search check failed, read before the run's
     // conversations are deleted.
     queries: payload.searchAssist?.queries ?? [],
+    // The greeting route: no search plan and no search were made for this turn.
+    greeting: payload.searchAssist?.greeting === true,
     rerank: rerankOf(payload.searchAssist?.rerank),
     // A rejected answer's check (code, path, the value it refused) and the references it was allowed, read before the
     // run's conversations are deleted.

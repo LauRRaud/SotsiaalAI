@@ -1,0 +1,33 @@
+{
+  "schema_version": "rag-v2/dialogue-eval-2",
+  "purpose": "ADR-067 (02.10.2026): a topic that starts with only a greeting is answered without a search plan, an embedding or a search. On 02.10 \"tere\" took 20.8 s right after a restart and about 10 s on a warm server, after a plan with no queries, a search of the whole corpus and a rerank of 12 500 tokens. A greeting with a request in it, and the question after a greeting, take the whole route.",
+  "expectation_help": {
+    "greeting": "true: the turn took the greeting route (no plan, no search); false: it took the whole route",
+    "must / must_not": "regular expressions on the visible answer text. A greeting's answer greets back and does not talk about missing sources.",
+    "cited": "a source the answer cites"
+  },
+  "scenarios": [
+    { "id": "greeting-tere", "title": "Ainult tervitus", "source": "owner 02.10: tere waited ten seconds", "turns": [
+      { "mode": "new", "text": "tere",
+        "expect": { "greeting": true, "must": ["tere|tervist|hei"], "must_not": ["allika|tõend|materjal|ei leidnud|ei saa (siin|kinnitada)"] } }
+    ] },
+    { "id": "greeting-hei", "title": "Hei kirjavahemärgiga", "source": "owner 02.10: osad kirjutavad Hei vms", "turns": [
+      { "mode": "new", "text": "Hei!",
+        "expect": { "greeting": true, "must": ["tere|tervist|hei"], "must_not": ["allika|tõend|materjal|ei leidnud"] } }
+    ] },
+    { "id": "greeting-hello", "title": "Ingliskeelne tervitus saab ingliskeelse vastuse", "source": "the answer follows the language the user wrote in", "turns": [
+      { "mode": "new", "text": "Hello",
+        "expect": { "greeting": true, "must": ["hello|hi\\b|how can i help|how may i help"], "must_not": ["tere|kuidas saan"] } }
+    ] },
+    { "id": "greeting-with-request", "title": "Tervitus koos küsimusega läheb täisrada", "source": "anything more than a greeting is a request", "turns": [
+      { "mode": "new", "text": "Tere! Mul on suured võlad, kes mind aitab?",
+        "expect": { "greeting": false, "must": ["võlanõusta"] } }
+    ] },
+    { "id": "greeting-then-question", "title": "Küsimus pärast tervitust", "source": "the greeting turn is an ordinary saved turn; the next message continues the topic", "turns": [
+      { "mode": "new", "text": "Tere hommikust",
+        "expect": { "greeting": true, "must": ["tere|hommikust|tervist"] } },
+      { "mode": "same", "text": "Kuidas ma saan taotleda toimetulekutoetust?",
+        "expect": { "greeting": false, "cited": ["Sotsiaalhoolekande seadus"], "must": ["toimetulekutoetus"], "state_kept": true } }
+    ] }
+  ]
+}

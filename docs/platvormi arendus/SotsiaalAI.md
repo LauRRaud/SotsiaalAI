@@ -122,6 +122,13 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
   - Kiiruse mõõtmine päris vestluses teeb omanik.
 - **Võrk 30.09 õhtul:** SSH port 22 aegus korduvalt nii GitHubi kui serveri (`ssh sotsiaalai`) poole. Push õnnestus kordamisel. `gh` töötab HTTPS-i kaudu.
 
+**02.10 (Opus), pärastlõuna: ainult tervitus saab vastuse ilma otsinguta** ([ADR-067](../rag-v2/adr-067-greeting-route.md)). Omanik: „tere“ ootas 10 sekundit; „vastus peaks tulema üsna kohe“.
+- **Põhjus:** tervitus läbis kogu töövoo (plaan, embedding, otsing, eelvalik 12 500 tokenit), kuigi plaan andis 0 päringut. Kohe pärast taaskäivitust võttis see 20,8 s, soojalt umbes 10 s.
+- **Muudatus:** teema esimene sõnum, mis on ainult tervitus (`lib/rag-v2/pilot/greeting.js`: tere, hei, tsau, hello, привет jt), jätab plaani, embeddingu ja otsingu vahele. Vastuse kirjutab sama mudel tühja teadmiste rajaga ja pööre salvestub nagu iga teine. Kõik muu läheb täisrada.
+- **Mõõdetud** (`scenarios-greeting-1.json`, 6 pööret, 0,0135 USD): kõik läbisid; tervituse esimene tekst 2,3–2,8 s. Tervitus koos küsimusega ja küsimus pärast tervitust läksid täisrada.
+- Brauseris vastata ei saa: `hydrateFromServer` asendaks kohaliku tervituse serveri loendiga.
+- Jääb: päris küsimused on kohe pärast taaskäivitust aeglased, kuni allikad on soojad.
+
 **02.10 (Opus), päev: vestlus otsustab teema ja inimese ise; vestluse lehe kujunduse parandused** ([ADR-066](../rag-v2/adr-066-dialogue-decides-topic-and-person.md)). Omanik: „jätkuvestluse valikud on puhtalt AI jaoks, ise mõtle, kuidas peaks olema“.
 - **Paneel „Jätkuvestluse valikud“ eemaldatud.** Vestlus saadab esimese sõnumiga „uus“ ja edaspidi „jätka“; teise inimese mure ja parandused loevad otsinguplaan ja olek ise. Täis teema (8 sõnumit) jätkub uues teemas sama inimese kohta, varem lükati üheksas sõnum tagasi.
 - **Mõõdetud** (`--auto-modes`, kõik parandus-, uue teema ja uue inimese stsenaariumid): 27 pööret 27-st läbis, 0,147 USD. Näiteks „Mul on suured võlad“ pärast isa Tallinnas küsis kasutaja enda valda ega võtnud isa oma.
