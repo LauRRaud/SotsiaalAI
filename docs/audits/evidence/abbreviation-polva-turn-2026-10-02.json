@@ -1,0 +1,630 @@
+{
+ "question": "Elame Põlva vallas ja mu lapsel on raske puue. Kas tema tugiisikuks võib olla lapse vanaema?",
+ "at": "2026-10-02T17:15:43.126Z",
+ "plan": "m4-sotsiaalai-corpus-chat-20261002-142351-1bd3c66c-cf42-47b6-8190-adc1c743f0c0-r16a8dc5fa",
+ "profile": "hybrid-estnltk-chat-v6",
+ "prompt": "m4-grounded-dialogue-23",
+ "generation": "search_generation_34fe1590bbd5e2bf6a788bef196d50e26b5f573e2a63bc30fbbe1d56ab28c8f4",
+ "verified_marks": 4928,
+ "turn_id": "c1c3d6ed-3146-4e65-9897-9cc4b52728f7",
+ "state": "completed",
+ "error": null,
+ "ms": 32137,
+ "search_plan": {
+  "queries": [
+   "Põlva vald raske puudega lapse tugiisikuteenus vanaema",
+   "Tugiisikuteenuse osutaja lähedasele isikule piirangud",
+   "Lapse tugiisikuteenuse korraldamine kohaliku omavalitsuse poolt"
+  ],
+  "person": "laps",
+  "places": [
+   {
+    "turn": 1,
+    "quote": "Elame Põlva vallas",
+    "person": "user",
+    "region": "polva_vald",
+    "relation": "lives",
+    "sentence": "Elame Põlva vallas ja mu lapsel on raske puue"
+   },
+   {
+    "turn": 1,
+    "quote": "Elame Põlva vallas",
+    "person": "laps",
+    "reason": "shared_clause",
+    "region": "polva_vald",
+    "relation": "lives",
+    "sentence": "Elame Põlva vallas ja mu lapsel on raske puue"
+   }
+  ],
+  "failures": []
+ },
+ "region": "polva_vald",
+ "rerank": [
+  {
+   "candidates_read": 36,
+   "candidates": [
+    {
+     "place": 1,
+     "id": "P1",
+     "title": "Heade praktikate kogumik",
+     "sections": [],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 2,
+     "id": "P2",
+     "title": "Raske ja sügava puudega lapse tugiisikuteenuse ja lapsehoiuteenuse osutamise tingimused ja kord",
+     "sections": [
+      "4"
+     ],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": true
+    },
+    {
+     "place": 3,
+     "id": "P3",
+     "title": "Heade praktikate kogumik",
+     "sections": [],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 4,
+     "id": "P4",
+     "title": "Teekond erilise lapse kõrval",
+     "sections": [],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 5,
+     "id": "P5",
+     "title": "Puudega lastega perede toimetuleku ja vajaduste uuring",
+     "sections": [],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 6,
+     "id": "P6",
+     "title": "Raske ja sügava puudega lapse tugiisikuteenuse ja lapsehoiuteenuse osutamise tingimused ja kord",
+     "sections": [
+      "2"
+     ],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 7,
+     "id": "P7",
+     "title": "Raske ja sügava puudega lastele sotsiaalteenuste osutamiseks toetuse andmise ja maksmise kord",
+     "sections": [
+      "5"
+     ],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 8,
+     "id": "P8",
+     "title": "Raske ja sügava puudega lastele suunatud tugiisiku- ja lapsehoiuteenus",
+     "sections": [],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 9,
+     "id": "P9",
+     "title": "Teekond erilise lapse kõrval",
+     "sections": [],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 10,
+     "id": "P10",
+     "title": "Raske ja sügava puudega lastele suunatud tugiisiku- ja lapsehoiuteenus",
+     "sections": [],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 11,
+     "id": "P11",
+     "title": "Raske ja sügava puudega lastele suunatud tugiisiku- ja lapsehoiuteenus",
+     "sections": [],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 12,
+     "id": "P12",
+     "title": "Õpilase toetamine koolis (varasem versioon)",
+     "sections": [],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 13,
+     "id": "P13",
+     "title": "Heade praktikate kogumik",
+     "sections": [],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 14,
+     "id": "P14",
+     "title": "Teekond erilise lapse kõrval",
+     "sections": [],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 15,
+     "id": "P15",
+     "title": "Omavalitsuste tegevus erivajadustega inimeste toetamisel",
+     "sections": [],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 16,
+     "id": "P16",
+     "title": "Heade praktikate kogumik",
+     "sections": [],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 17,
+     "id": "P17",
+     "title": "Sotsiaaltöö Rakvere linnas",
+     "sections": [],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 18,
+     "id": "P18",
+     "title": "Raske ja sügava puudega lapse tugiisikuteenuse ja lapsehoiuteenuse osutamise tingimused ja kord",
+     "sections": [
+      "1"
+     ],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 19,
+     "id": "P19",
+     "title": "Raske ja sügava puudega lapse tugiisikuteenuse ja lapsehoiuteenuse osutamise tingimused ja kord",
+     "sections": [],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 20,
+     "id": "P20",
+     "title": "Raske ja sügava puudega lapse tugiisikuteenuse ja lapsehoiuteenuse osutamise tingimused ja kord",
+     "sections": [
+      "7"
+     ],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 21,
+     "id": "P21",
+     "title": "Puudega lapse hoolduse korraldamise kord",
+     "sections": [
+      "3"
+     ],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 22,
+     "id": "P22",
+     "title": "Raske ja sügava puudega lastele sotsiaalteenuste osutamiseks toetuse andmise ja maksmise kord",
+     "sections": [
+      "2"
+     ],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 23,
+     "id": "P23",
+     "title": "Tugiisiku ja isikliku abistaja teenuse osutamise tingimused ja kord",
+     "sections": [
+      "2"
+     ],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 24,
+     "id": "P24",
+     "title": "Vaesus Eestis",
+     "sections": [],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 25,
+     "id": "P25",
+     "title": "Raske ja sügava puudega lapse tugiisikuteenuse ja lapsehoiuteenuse osutamise tingimused ja kord",
+     "sections": [
+      "5"
+     ],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 26,
+     "id": "P26",
+     "title": "Isikliku abistaja teenuse reguleerimine kohaliku omavalitsuse õigusaktides",
+     "sections": [],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 27,
+     "id": "P27",
+     "title": "Isikliku abistaja teenuse reguleerimine kohaliku omavalitsuse õigusaktides",
+     "sections": [],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 28,
+     "id": "P28",
+     "title": "Raske ja sügava puudega lapse tugiisikuteenuse ja lapsehoiuteenuse osutamise tingimused ja kord",
+     "sections": [
+      "8"
+     ],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 29,
+     "id": "P29",
+     "title": "Puudega lapse hoolduse korraldamise kord",
+     "sections": [
+      "1"
+     ],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 30,
+     "id": "P30",
+     "title": "Raske ja sügava puudega lastele sotsiaalteenuste osutamiseks toetuse andmise ja maksmise kord",
+     "sections": [
+      "1"
+     ],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 31,
+     "id": "P31",
+     "title": "Sotsiaalhoolekande seadus",
+     "sections": [
+      "23"
+     ],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 32,
+     "id": "P32",
+     "title": "Sotsiaalhoolekande seadus",
+     "sections": [
+      "25"
+     ],
+     "deciding": true,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 33,
+     "id": "P33",
+     "title": "Lastekaitseseadus",
+     "sections": [
+      "27²"
+     ],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 34,
+     "id": "P34",
+     "title": "Lastekaitseseadus",
+     "sections": [
+      "29"
+     ],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 35,
+     "id": "P35",
+     "title": "Abivahendite loetelu: määruse „Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi andmed“ lisa (sotsiaalministri 24.09.2026 määruse nr 37 sõnastuses)",
+     "sections": [],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 36,
+     "id": "P36",
+     "title": "Perekonnaseadus",
+     "sections": [
+      "139"
+     ],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    }
+   ],
+   "selected": [
+    {
+     "place": 32,
+     "id": "P32",
+     "title": "Sotsiaalhoolekande seadus",
+     "sections": [
+      "25"
+     ],
+     "deciding": true,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 2,
+     "id": "P2",
+     "title": "Raske ja sügava puudega lapse tugiisikuteenuse ja lapsehoiuteenuse osutamise tingimused ja kord",
+     "sections": [
+      "4"
+     ],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": true
+    },
+    {
+     "place": 25,
+     "id": "P25",
+     "title": "Raske ja sügava puudega lapse tugiisikuteenuse ja lapsehoiuteenuse osutamise tingimused ja kord",
+     "sections": [
+      "5"
+     ],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    },
+    {
+     "place": 6,
+     "id": "P6",
+     "title": "Raske ja sügava puudega lapse tugiisikuteenuse ja lapsehoiuteenuse osutamise tingimused ja kord",
+     "sections": [
+      "2"
+     ],
+     "deciding": false,
+     "same_words_other_section": false,
+     "pointing": false
+    }
+   ],
+   "deciding_among_candidates": [
+    32
+   ],
+   "deciding_selected": true
+  }
+ ],
+ "evidence": {
+  "passages": 56,
+  "deciding_in_evidence": true,
+  "deciding_reason": "ranked_seed",
+  "pointing_in_evidence": true,
+  "same_words_other_section": false,
+  "entries": [
+   {
+    "title": "Sotsiaalhoolekande seadus",
+    "reason": "ranked_seed",
+    "tokens": 186,
+    "sections": [
+     "25"
+    ],
+    "deciding": true,
+    "same_words_other_section": false,
+    "pointing": false
+   },
+   {
+    "title": "Raske ja sügava puudega lapse tugiisikuteenuse ja lapsehoiuteenuse osutamise tingimused ja kord",
+    "reason": "ranked_seed",
+    "tokens": 155,
+    "sections": [
+     "4"
+    ],
+    "deciding": false,
+    "same_words_other_section": false,
+    "pointing": true
+   },
+   {
+    "title": "Raske ja sügava puudega lapse tugiisikuteenuse ja lapsehoiuteenuse osutamise tingimused ja kord",
+    "reason": "ranked_seed",
+    "tokens": 387,
+    "sections": [
+     "5"
+    ],
+    "deciding": false,
+    "same_words_other_section": false,
+    "pointing": false
+   },
+   {
+    "title": "Raske ja sügava puudega lapse tugiisikuteenuse ja lapsehoiuteenuse osutamise tingimused ja kord",
+    "reason": "ranked_seed",
+    "tokens": 240,
+    "sections": [
+     "2"
+    ],
+    "deciding": false,
+    "same_words_other_section": false,
+    "pointing": false
+   },
+   {
+    "title": "Sotsiaalhoolekande seadus",
+    "reason": "semantic_dependency",
+    "tokens": 229,
+    "sections": [
+     "24"
+    ],
+    "deciding": false,
+    "same_words_other_section": false,
+    "pointing": false
+   }
+  ],
+  "structured_record_entries": 51
+ },
+ "answer": {
+  "kind": "grounded",
+  "clarification": null,
+  "limitations": [],
+  "blocks": [
+   {
+    "block": 1,
+    "refs": [
+     {
+      "ref": "S1",
+      "title": "Sotsiaalhoolekande seadus",
+      "reason": "ranked_seed",
+      "tokens": 186,
+      "sections": [
+       "25"
+      ],
+      "deciding": true,
+      "same_words_other_section": false,
+      "pointing": false
+     },
+     {
+      "ref": "S2",
+      "title": "Raske ja sügava puudega lapse tugiisikuteenuse ja lapsehoiuteenuse osutamise tingimused ja kord",
+      "reason": "ranked_seed",
+      "tokens": 155,
+      "sections": [
+       "4"
+      ],
+      "deciding": false,
+      "same_words_other_section": false,
+      "pointing": true
+     }
+    ]
+   },
+   {
+    "block": 2,
+    "refs": [
+     {
+      "ref": "S3",
+      "title": "Raske ja sügava puudega lapse tugiisikuteenuse ja lapsehoiuteenuse osutamise tingimused ja kord",
+      "reason": "ranked_seed",
+      "tokens": 387,
+      "sections": [
+       "5"
+      ],
+      "deciding": false,
+      "same_words_other_section": false,
+      "pointing": false
+     },
+     {
+      "ref": "S4",
+      "title": "Raske ja sügava puudega lapse tugiisikuteenuse ja lapsehoiuteenuse osutamise tingimused ja kord",
+      "reason": "ranked_seed",
+      "tokens": 240,
+      "sections": [
+       "2"
+      ],
+      "deciding": false,
+      "same_words_other_section": false,
+      "pointing": false
+     }
+    ]
+   }
+  ],
+  "cites_deciding": true,
+  "cites_pointing": true,
+  "text_kept_on_server_only": true
+ },
+ "calls": [
+  {
+   "stage": "plan",
+   "usage": {
+    "input": 964,
+    "output": 164,
+    "reasoning": 52
+   },
+   "usd": 0.0002025
+  },
+  {
+   "stage": "embedding",
+   "usage": {
+    "input": 100,
+    "output": 0
+   },
+   "usd": 0.000013
+  },
+  {
+   "stage": "rerank",
+   "usage": {
+    "input": 14762,
+    "output": 26,
+    "reasoning": 0
+   },
+   "usd": 0.00185825
+  },
+  {
+   "stage": "answer",
+   "usage": {
+    "input": 20712,
+    "output": 3296,
+    "reasoning": 2663,
+    "cachedInput": 0,
+    "cacheWriteInput": 20709
+   },
+   "usd": 0.004237
+  }
+ ],
+ "usd": 0.00631075
+}
