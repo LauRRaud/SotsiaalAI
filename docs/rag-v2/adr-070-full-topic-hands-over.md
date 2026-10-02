@@ -57,7 +57,7 @@ Reliis uuendas plaani ise (profiil v6, dialoogi juhis 23). Päris vestluses sama
 
 - **9. sõnum** („Aga kui palju see talle endale maksma läheb?“): uus teema kolme kasutajapöördega (väited, viimane sõnum, uus sõnum), olek üle antud (neli kehtivat asjaolu, ema Kose vallas), viiteks eelmise teema viimane vastus. Vastus nimetas Kose valla piirmäära ja kontakti ning küsis ainult, kas 600 eurot on ema ainus sissetulek. Valda uuesti ei küsinud.
 - **10. sõnum** („Vabandust, ema pension on hoopis 700 eurot.“): vastus algas „Arvestan parandusega: ema pension on 700 eurot.“ Olekus on 600 euro asjaolu asendatud ja uus kirjas õige pöördenumbriga; midagi ei jäetud välja.
-- Otsingufaas 6–10 s, pööre 20–34 s (vastuse mudel). Kulu umbes 0,07 USD plaani hindade järgi.
+- Otsing oli valmis 6–10 s pärast sõnumi saatmist, pööre kokku 20–34 s (ülejäänu on vastuse mudel). Kulu umbes 0,07 USD plaani hindade järgi.
 
 ## Testid
 
