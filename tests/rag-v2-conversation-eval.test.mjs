@@ -166,7 +166,10 @@ test('ADR-063: every pattern of the third hard catalogue passes a right answer a
   assert.deepEqual(catalogue.scenarios.map(scenario => [scenario.id, scenario.turns[0].text, scenario.turns[0].expect.evidence_text, scenario.turns[0].expect.region ?? null]),
     graph.questions.map(question => [question.id, question.text, question.evidence_text, question.region ?? null]));
   const expectOf = id => catalogue.scenarios.find(scenario => scenario.id === id).turns[0].expect;
-  const verdict = (id, text) => checkTurn(expectOf(id), observed({ region: expectOf(id).region ?? null, text, evidenceTexts: expectOf(id).evidence_text })).verdict;
+  // A question that names its provision is given that provision's passage, in the evidence and in the answer's references.
+  const passagesOf = id => (expectOf(id).evidence_provision || []).map(item => ({ title: item.title.replace(/^\^|\$$/g, ''), section: item.section, text: item.text }));
+  const verdict = (id, text, extra = {}) => checkTurn(expectOf(id), observed({ region: expectOf(id).region ?? null, text, evidenceTexts: expectOf(id).evidence_text,
+    evidencePassages: passagesOf(id), citedPassages: passagesOf(id), ...extra })).verdict;
   // [right answer, opposite answer]: the right one states the deciding condition, the opposite one the rule without it.
   const answers = {
     'subsistence-home-loan': ['Jah, eluaseme soetamiseks võetud laenu tagasimakse koos intressiga võetakse eluasemekuluna arvesse valla piirmäära ulatuses.', 'Ei, laenumakse ei ole eluasemekulu.'],
@@ -190,6 +193,14 @@ test('ADR-063: every pattern of the third hard catalogue passes a right answer a
     assert.equal(verdict(id, right), 'passed', `${id}: ${right}`);
     assert.equal(verdict(id, opposite), 'answer', `${id}: ${opposite}`);
   }
+  // Harku's support person question is Põlva's in another municipality: the same checks (Codex review of #321). The deciding
+  // sentence also stands under SHS § 29, and a prohibition about something else is not the answer.
+  const harku = 'harku-support-person-relative', municipal = JSON.parse(await fs.readFile('tests/evaluation/dialogue/scenarios-abbreviation-municipal-1.json', 'utf8'));
+  assert.deepEqual({ ...expectOf(harku), region: null }, { ...municipal.scenarios.find(scenario => scenario.id === 'polva-support-person-relative').turns[0].expect, region: null });
+  const section29 = [{ title: 'Sotsiaalhoolekande seadus', section: '29', text: `Isikliku abistaja teenust ei tohi vahetult osutada isik, ${expectOf(harku).evidence_text[0]}.` }];
+  assert.equal(verdict(harku, answers[harku][0], { evidencePassages: section29, citedPassages: section29 }), 'search', 'only § 29 in the evidence');
+  assert.equal(verdict(harku, answers[harku][0], { citedPassages: section29 }), 'answer', 'cites § 29 only');
+  assert.equal(verdict(harku, 'Vanaema võib olla lapse tugiisik. Tugiisik ei tohi avaldada lapse isikuandmeid.'), 'answer');
 });
 
 // The municipal abbreviation catalogue (measured 02.10.2026, no rule built): chosen with --scenarios, never part of a standing run.
@@ -216,15 +227,23 @@ test('the municipal abbreviation catalogue is the twin of its search catalogue; 
   };
   const verdict = (...args) => verdictOf(...args).verdict;
   // Right answers state the Act's condition; opposite ones deny it, give the rule without it, or use the same words about
-  // something else (Codex review of #320: a bare number, or a prohibition elsewhere in the answer, passed before).
+  // something else (Codex review of #320: a bare number, or a prohibition elsewhere in the answer, passed before; of #321:
+  // the monthly amount of another cost, or the duty to spend the amount denied, passed).
   const answers = {
     'narva-substitute-care-personal-costs': {
       right: ['Lapse isiklike kulude katteks tuleb iga kuu teha kulutusi keskmiselt 240 euro ulatuses ja vähemalt 2880 eurot aastas.',
         'Narva kord ise summat ei nimeta, vaid viitab seadusele: lapse isiklikeks kuludeks tuleb kulutada keskmiselt 240 eurot kuus.',
-        'Miinimum ei ole kirjas Narva korras, vaid seaduses: keskmiselt 240 eurot kuus.'],
+        'Miinimum ei ole kirjas Narva korras, vaid seaduses: lapse isiklikeks kuludeks keskmiselt 240 eurot kuus.',
+        'Teenuseosutaja peab kulutama keskmiselt 240 eurot kuus lapse isiklike kulude katteks; perekodu muid kulusid see ei hõlma.'],
       opposite: ['Narva kord tagab seaduses sätestatud miinimumi, aga summat ma öelda ei saa.',
         'Narvas ei ole lapse isiklike kulude jaoks 240-eurost miinimumi; piisab 100 eurost kuus.',
-        'Seaduses miinimumi ei ole. Teenuse hind on 240 eurot.'] },
+        'Seaduses miinimumi ei ole. Teenuse hind on 240 eurot.',
+        'Perekodu kohatasu on 240 eurot kuus. Lapse isiklikele kuludele kohustuslikku miinimumi ei ole.',
+        'Lapse isiklike kulude katteks ei pea kulutama 240 eurot kuus; piisab 100 eurost kuus.',
+        'Perekodu kohatasu on 240 eurot kuus. Lapse isiklike kulude suuruse otsustab perevanem.',
+        'Lapse isiklikeks kuludeks 240 eurot kuus kulutama ei pea.',
+        'Lapse isiklike kulude katteks on soovituslik 240 eurot kuus, kuid see ei ole kohustuslik.',
+        'Lapse isiklike kulude jaoks on seaduses 240 eurot kuus, aga Narvas piisab 150 eurost.'] },
     'sillamae-aftercare-student': {
       right: ['Jah. Kui jätkad õppimist kutseõppes, tagab linn järelhooldusteenuse nominaalse õppeaja lõpuni, kuid mitte kauem kui sinu 25-aastaseks saamiseni.',
         'Jah. Linn peab sulle järelhooldusteenuse tagama seni, kuni õpid, kõige kauem kuni 25-aastaseks saamiseni. Kui õpingud katkestad, linn teenust enam ei taga.'],

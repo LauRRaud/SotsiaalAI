@@ -194,6 +194,11 @@ Omanik 02.10: „Luba on antud ühele Põlva küsimuse pöördele praeguse tootm
   - **Sisu, mitte märksõna.** Vastuse mustrid seovad tingimuse selle subjektiga ühe lause piires ja keelavad sama asja eitamise: Narvas 240 eurot kuu kohta ja mitte „ei ole … 240/miinimumi“; Sillamäel järelhoolduse tagamine ja 25 aastat, mitte „ei tagata“; Põlvas vanaema või sugulane koos keeluga, mitte „vanaema võib olla tugiisik“. Codexi kolm vastunäidet (arvu eitamine, tagamise eitamine, kõrvaline keelulause) kukuvad nüüd läbi ja on testis.
   - **Kontroll päris andmetel, tasuta:** parandatud kontrollid läbisid salvestatud Põlva pöörde (`c1c3d6ed`): tõendites ja viidetes tunti ära SHS § 25.
   - Mustrid on regulaaravaldised vabal tekstil: need püüavad mõõdetud vastunäited, aga mitte iga võimalikku sõnastust. Läbi kukkunud kontrolli korral tuleb vastus raportist üle lugeda.
+- **Pärast Codexi #321 ülevaatust** (sätte kontroll kinnitatud; Narvas üks P2 jääk, Harku kaksikus kaks vana puudust; parandatud ainult kohalike testidega, tasulist jooksu ei tehtud):
+  - **Narva.** Summa peab olema samas lauses lapse isiklike kuludega (240 eurot perekodu kohatasuna enam ei läbi) ja kulutamise kohustust ei tohi eitada: „ei pea kulutama 240“, „240 … ei ole kohustuslik“, „miinimumi ei ole“ ja „piisab 100 eurost“ kukuvad läbi. Codexi kaks vastunäidet ja neli sama liiki lisanäidet on testis.
+  - **Harku kaksikküsimus** (`scenarios-hard-conditions-3.json`, sama säte täisnimega viite kaudu) kasutab nüüd täpselt Põlva kontrolle: SHS § 25 tõendites ja viidetes ning vanaema või sugulase sidumine keeluga. Ainult § 29 tõend annab otsingu vea, „Vanaema võib olla lapse tugiisik. Tugiisik ei tohi avaldada lapse isikuandmeid.“ vastuse vea. Test hoiab kahe küsimuse kontrollid võrdsena.
+  - **Mida see varasemate tulemuste kohta ütleb:** Harku pöörded 01.10 hindamistes (ADR-063–065) hinnati vanade, nõrgemate kontrollidega. Neid uute kontrollidega üle ei hinnatud; järgmises jooksus võib Harku tulemus seetõttu erineda ilma, et vestlus oleks muutunud.
+  - **Teadaolev piir:** lühike õige vastus, mis summat küsimuse subjektiga samas lauses ei korda („Jah, vähemalt 240 eurot kuus.“), kukub Narva kontrollis läbi ja tuleb raportist üle lugeda.
 
 ## Piirid
 

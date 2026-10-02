@@ -187,14 +187,28 @@
       "evidence_text": [
        "kes on teenuse saaja esimese või teise astme üleneja või alaneja sugulane"
       ],
+      "evidence_provision": [
+       {
+        "title": "^Sotsiaalhoolekande seadus$",
+        "section": "25",
+        "text": "kes on teenuse saaja esimese või teise astme üleneja või alaneja sugulane"
+       }
+      ],
+      "cited_provision": [
+       {
+        "title": "^Sotsiaalhoolekande seadus$",
+        "section": "25"
+       }
+      ],
       "must": [
-       "\\bei (tohi|või|saa)|keelatud|ei ole lubatud",
-       "vanaema|sugulane|teise astme"
+       "(vanaema|sugula\\p{L}*)[^.!?\\n]{0,100}(?<!\\p{L})ei\\s+(tohi|või|saa)(?!\\p{L})|(?<!\\p{L})ei\\s+(tohi|või|saa)(?!\\p{L})[^.!?\\n]{0,120}(vanaema|sugula\\p{L}*)|(vanaema|sugula\\p{L}*)[^.!?\\n]{0,100}(keelatud|ei\\s+ole\\s+lubatud)"
       ],
       "must_not": [
-       "(?:^|\\n)\\s*Jah[,.]"
+       "(?:^|\\n)\\s*Jah[,.]",
+       "vanaema\\p{L}*\\s+(võib|saab|tohib)(?!\\p{L})[^.!?\\n]{0,60}tugiisik|tugiisik\\p{L}*\\s+(võib|saab|tohib)\\s+olla[^.!?\\n]{0,40}vanaema"
       ]
-     }
+     },
+     "note": "The deciding sentence also stands under SHS § 29 (the personal assistant): the provision checks name § 25. must: the grandmother or the relative may not, in one sentence; must_not: the grandmother may be the support person (Codex reviews of #320 and #321)."
     }
    ]
   },
