@@ -51,6 +51,14 @@ Serveris, rakenduse ajutises koopias, profiil v6, aktiveerimata plaan; koopia ja
 - Nende kahe libastuse vastu on tsitaadi lugemine kasutaja oma sõnades (vt Otsus). Seda kontrollivad ühiktestid; tasulist kordusjooksu selle järel ei tehtud.
 - Kulu kokku 0,183 USD, kolm jooksu.
 
+## Elav kontroll 02.10.2026 (#313, `37f81604`)
+
+Reliis uuendas plaani ise (profiil v6, dialoogi juhis 23). Päris vestluses sama kümme sõnumit järjest, uus vestlus:
+
+- **9. sõnum** („Aga kui palju see talle endale maksma läheb?“): uus teema kolme kasutajapöördega (väited, viimane sõnum, uus sõnum), olek üle antud (neli kehtivat asjaolu, ema Kose vallas), viiteks eelmise teema viimane vastus. Vastus nimetas Kose valla piirmäära ja kontakti ning küsis ainult, kas 600 eurot on ema ainus sissetulek. Valda uuesti ei küsinud.
+- **10. sõnum** („Vabandust, ema pension on hoopis 700 eurot.“): vastus algas „Arvestan parandusega: ema pension on 700 eurot.“ Olekus on 600 euro asjaolu asendatud ja uus kirjas õige pöördenumbriga; midagi ei jäetud välja.
+- Otsing oli valmis 6–10 s pärast sõnumi saatmist, pööre kokku 20–34 s (ülejäänu on vastuse mudel). Kulu umbes 0,07 USD plaani hindade järgi.
+
 ## Testid
 
 - `tests/rag-v2-dialogue-carry.test.mjs` (uus, ilma andmebaasita): üheksas sõnum, oleku ankurdus ja sidumine, valla ankur, jätkuteema järgmised sõnumid, teine üleandmine, lugemata viimane sõnum, olekuta plaan, ruumipiir, võõra oleku tagasilükkamine, kümnenda sõnumi viga.
@@ -60,7 +68,7 @@ Serveris, rakenduse ajutises koopias, profiil v6, aktiveerimata plaan; koopia ja
 ## Piirid
 
 - Kaasa läheb see, mis on olekus. Asjaolu, mida mudel kirja ei pannud, ja küsimused, mis polnud asjaolud, jäävad vanasse teemasse; viimane sõnum ja viimane vastus hoiavad teemat.
-- Tsitaadi lugemise parandust ei ole tasulise jooksuga kinnitatud; mudeli tegelikku vigast tsitaati ei saanud näha (hindaja kustutab oma vestlused), suurtähe erinevus on järeldus.
+- Tsitaadi lugemise parandust ei ole hindamisjooksuga kinnitatud; mudeli tegelikku vigast tsitaati ei saanud näha (hindaja kustutab oma vestlused), suurtähe erinevus on järeldus. Elavas kontrollis pandi kõik asjaolud kirja, aga see on üks vestlus.
 - Väidete pööre on kuni 1800 tähemärki. Väga paljude või pikkade asjaolude korral jäävad vanemad välja ja nendega seotud vajadused samuti.
 - Jätkuteemas on kuus uut sõnumit, siis antakse uuesti edasi; pikk vestlus teeb seda mitu korda ja iga kord sõltub oleku täpsusest.
 - Vestluses on kokku kuni 64 sõnumit (`conversationTurns`), see piir on muutmata.
