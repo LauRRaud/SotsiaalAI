@@ -44,11 +44,20 @@ test('dialogue contract: ET/EN/RU preserve four user turns and correction proven
   }
 });
 
-test('dialogue contract: limits reject without clipping; expired head never falls back to an older scope', () => {
+test('dialogue contract: a full topic goes on in a new topic of the same person without clipping; expired head never falls back to an older scope', () => {
   const f = accepted('et');
-  for (let i = 0; i < DIALOGUE_LIMITS.scopeTurns; i++) f.next('Turn ' + i, i ? 'same' : 'new');
-  assert.throws(() => f.next('One too many'), { code: 'context_window_full' });
-  assert.equal(f.rows.length, DIALOGUE_LIMITS.scopeTurns);
+  const first = f.next('Turn 0', 'new');
+  for (let i = 1; i < DIALOGUE_LIMITS.scopeTurns; i++) f.next('Turn ' + i);
+  // The chat has no topic choice (02.10.2026): the next message of a full topic starts a new one for the same person,
+  // with nothing of the full one, and says which topic was full.
+  const ninth = f.next('One too many');
+  assert.deepEqual([ninth.context.mode, ninth.userTurns.map(turn => turn.text), ninth.context.personId, ninth.selection.previousScopeFull],
+    ['new', ['One too many'], first.context.personId, first.context.scopeId]);
+  assert.notEqual(ninth.context.scopeId, first.context.scopeId);
+  assert.equal(f.rows.length, DIALOGUE_LIMITS.scopeTurns + 1);
+  assert.equal(f.next('Tenth').context.scopeId, ninth.context.scopeId);
+  // An explicit choice of the full topic is still refused: it would have to clip it.
+  assert.throws(() => f.next('Back to the full one', 'same', { contextTurnId: f.rows[0].id }), { code: 'context_window_full' });
   const head = { configHash: config.configHash, turnId: 'missing-turn', revision: 50 };
   assert.throws(() => acceptDialogue(config, { question: 'Continue', contextMode: 'same' }, f.rows, head, 'new-turn'), { code: 'context_unavailable' });
   assert.throws(() => acceptDialogue(config, { question: 'Continue', contextMode: 'same', contextTurnId: 'foreign-turn' }, f.rows, head, 'new-turn'), { code: 'context_reference_unavailable' });

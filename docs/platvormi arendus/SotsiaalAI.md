@@ -122,6 +122,15 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
   - Kiiruse mõõtmine päris vestluses teeb omanik.
 - **Võrk 30.09 õhtul:** SSH port 22 aegus korduvalt nii GitHubi kui serveri (`ssh sotsiaalai`) poole. Push õnnestus kordamisel. `gh` töötab HTTPS-i kaudu.
 
+**02.10 (Opus), päev: vestlus otsustab teema ja inimese ise; vestluse lehe kujunduse parandused** ([ADR-066](../rag-v2/adr-066-dialogue-decides-topic-and-person.md)). Omanik: „jätkuvestluse valikud on puhtalt AI jaoks, ise mõtle, kuidas peaks olema“.
+- **Paneel „Jätkuvestluse valikud“ eemaldatud.** Vestlus saadab esimese sõnumiga „uus“ ja edaspidi „jätka“; teise inimese mure ja parandused loevad otsinguplaan ja olek ise. Täis teema (8 sõnumit) jätkub uues teemas sama inimese kohta, varem lükati üheksas sõnum tagasi.
+- **Mõõdetud** (`--auto-modes`, kõik parandus-, uue teema ja uue inimese stsenaariumid): 27 pööret 27-st läbis, 0,147 USD. Näiteks „Mul on suured võlad“ pärast isa Tallinnas küsis kasutaja enda valda ega võtnud isa oma.
+- **Kujundus** (omaniku ekraanipildid 02.10):
+  - #304: heledas teemas on ootamise S tume ja ilma taustata. Kitsas aknas ei paista tekst ülal nuppude vahelt läbi ega peideta all ~100 px tühja ruumi.
+  - #305: ülemine hääbumine algab ☰/× nuppude alt, sama selgelt kui all.
+  - #306: sisestusriba ilmub oma kohale hajudes, mitte ei tõuse alt (klaasi taust nihkus tõusu ajal).
+  - Kõik kontrollitud päris lehel arvutatud stiilidega; pilti teha ei saanud.
+
 **02.10 (Opus), hommik: eelvalikus kuni kümme lõiku ühest dokumendist (profiil v5)** ([ADR-065](../rag-v2/adr-065-pool-limit-per-document.md)). Omanik: „tegutse“.
 - **Uurimine (tasuta):** treeneri küsimuses võttis juhend „Abivajavast lapsest teatamine ja andmekaitse“ mudeli eelvaliku 30 kohast 24–25; lastekaitseseaduse § 27¹ (treeneri teatamine, andmed vähimas vajalikus ulatuses) oli kohal 23–36. 30 raskest küsimusest oli selline ülekaal ainult selles.
 - **Muudatus:** profiil v5 = v4 + kuni 10 lõiku ühest dokumendist eelvaliku 30 liidetud kandidaadi seas; vabanenud kohad saavad järgmised teiste dokumentide kandidaadid. Ilma reranker'ita ei muutu midagi.

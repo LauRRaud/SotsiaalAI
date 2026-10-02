@@ -6,6 +6,9 @@
 //   sudo -n node --env-file=/etc/sotsiaalai/frontend.env --env-file=/etc/sotsiaalai/rag.env --import ./scripts/register-node-source-loader.mjs \
 //     scripts/rag-v2-conversation-eval.mjs --out /home/ubuntu/rag-v2-work/eval-files/conversations-<day> [--only id,id] [--max-usd 1.5]
 //   --dry-run checks the catalogue and prints the turns; no model call, no database write.
+//   --auto-modes sends what the chat sends since it has no topic choice (02.10.2026): 'new' for a conversation's first
+//   message and 'same' for every later one, whatever mode the catalogue names; a turn's previous_state_cleared, which only
+//   an explicit new person can meet, is then not checked.
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
@@ -17,6 +20,7 @@ const { values } = parseArgs({ options: { scenarios: { type: 'string', default: 
   only: { type: 'string' }, 'max-usd': { type: 'string', default: '1.5' }, 'dry-run': { type: 'boolean', default: false },
   // --stream: request the answer as a stream, as the chat does, so the first visible text is measured (Codex 7.8).
   stream: { type: 'boolean', default: false },
+  'auto-modes': { type: 'boolean', default: false },
   // --warm: verify the knowledge sources before the first conversation, as the chat server does at its start (ADR-033),
   // so the search times are a warm server's and not this new process's (Codex 7.8).
   warm: { type: 'boolean', default: false },
@@ -159,7 +163,9 @@ try {
     const conversation = await prisma.conversation.create({ data: { userId, role: 'CLIENT', title: `Hindamine ${scenario.id}`, metadata: { m4: true },
       expiresAt: pilotExpiry(config) } });
     const turns = [];
-    for (const turn of scenario.turns) {
+    for (const [index, listed] of scenario.turns.entries()) {
+      const turn = values['auto-modes'] ? { ...listed, mode: index ? 'same' : 'new', listedMode: listed.mode,
+        expect: Object.fromEntries(Object.entries(listed.expect || {}).filter(([key]) => key !== 'previous_state_cleared')) } : listed;
       let result = null, error = null, firstText = null;
       const started = performance.now(), streaming = values.stream ? { onAnswerText: () => { firstText ??= performance.now() - started; } } : {};
       try { result = await service.run(userId, { question: turn.text, contextMode: turn.mode, convId: conversation.id, clientTurnKey: randomUUID(), language: 'et' }, streaming); }
@@ -171,7 +177,7 @@ try {
       spent += observed.usd;
       // The evidence texts are read by the checks only; the report keeps titles, not the sources' text.
       const evidenceTexts = (row?.payload?.packet?.evidence || []).map(evidence => evidence.source_text || '');
-      turns.push({ mode: turn.mode, text: turn.text, expect: turn.expect || {}, note: turn.note, turn_id: row?.id ?? null, observed,
+      turns.push({ mode: turn.mode, ...(turn.listedMode ? { listed_mode: turn.listedMode } : {}), text: turn.text, expect: turn.expect || {}, note: turn.note, turn_id: row?.id ?? null, observed,
         ...checkTurn(turn.expect, { ...observed, evidenceTexts }, { today, validity: id => legal.get(id) || null }) });
       console.error(JSON.stringify({ scenario: scenario.id, turn: turns.length, verdict: turns.at(-1).verdict, usd: +spent.toFixed(4) }));
     }
@@ -201,7 +207,7 @@ function markdown(r) {
     lines.push(`## ${scenario.title} (\`${scenario.id}\`)`, '', `Allikas: ${scenario.source}. Vestlus: \`${scenario.conversation}\`.`, '');
     for (const [index, turn] of scenario.turns.entries()) {
       const o = turn.observed;
-      lines.push(`### ${index + 1}. [${turn.mode}] ${turn.text} — **${turn.verdict}**`, '');
+      lines.push(`### ${index + 1}. [${turn.mode}${turn.listed_mode && turn.listed_mode !== turn.mode ? ` (kataloogis ${turn.listed_mode})` : ""}] ${turn.text} — **${turn.verdict}**`, '');
       if (turn.note) lines.push(`_${turn.note}_`, '');
       lines.push(`- Piirkond ${o.region ?? '-'} (olek ${o.stateRegion ?? '-'}), vastuse liik ${o.kind ?? '-'}, täpsustus ${o.clarification}; otsing ${o.timings.search ?? '-'} ms, kokku ${o.timings.total ?? '-'} ms, ${o.usd.toFixed(4)} USD`);
       lines.push(`- Leitud allikad (${o.evidenceTitles.length}): ${o.evidenceTitles.slice(0, 12).join('; ') || '-'}${o.evidenceTitles.length > 12 ? ' …' : ''}`);
