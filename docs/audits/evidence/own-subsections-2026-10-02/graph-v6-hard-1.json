@@ -1,0 +1,5019 @@
+{
+ "schema_version": "rag-v2/graph-experiment-4",
+ "generation": "search_generation_34fe1590bbd5e2bf6a788bef196d50e26b5f573e2a63bc30fbbe1d56ab28c8f4",
+ "date": "2026-10-15",
+ "catalogue": "tests/evaluation/graph/hard-conditions-1.json",
+ "eligible_documents": 1071,
+ "excluded_legal_versions": 60,
+ "pointer_room": {
+  "additions": 4,
+  "tokens": 3000
+ },
+ "simulation_check": {
+  "questions": 9,
+  "s_equals_l": 7
+ },
+ "named_acts": {
+  "questions": 9,
+  "keeps_v3": 9,
+  "with_additions": 3,
+  "additions": 3,
+  "gained": [],
+  "lost": [],
+  "mean_added_tokens": 128
+ },
+ "own_subsections": {
+  "questions": 9,
+  "changed": [
+   "subsistence-care-home",
+   "subsistence-prison"
+  ],
+  "gained": [],
+  "lost": [],
+  "mean_token_change": 138
+ },
+ "summary": {
+  "A": {
+   "profile": "experiment-graph-a-base-v1",
+   "questions": 9,
+   "found_all": 3,
+   "found_any": 3,
+   "within_document": 3,
+   "across_documents": 0,
+   "mean_sources": 9,
+   "mean_context_tokens": 6433,
+   "median_ms": 6395
+  },
+  "B": {
+   "profile": "experiment-graph-b-text-v1",
+   "questions": 9,
+   "found_all": 4,
+   "found_any": 4,
+   "within_document": 4,
+   "across_documents": 0,
+   "mean_sources": 13,
+   "mean_context_tokens": 9009,
+   "median_ms": 2360
+  },
+  "C": {
+   "profile": "experiment-graph-c-cards-v1",
+   "questions": 9,
+   "found_all": 5,
+   "found_any": 5,
+   "within_document": 5,
+   "across_documents": 0,
+   "mean_sources": 9.78,
+   "mean_context_tokens": 8976,
+   "median_ms": 2203
+  },
+  "D": {
+   "profile": "experiment-graph-d-references-v1",
+   "questions": 9,
+   "found_all": 7,
+   "found_any": 7,
+   "within_document": 7,
+   "across_documents": 0,
+   "mean_sources": 10.22,
+   "mean_context_tokens": 7427,
+   "median_ms": 2317
+  },
+  "E": {
+   "profile": "experiment-graph-e-neighbours-v1",
+   "questions": 9,
+   "found_all": 3,
+   "found_any": 3,
+   "within_document": 3,
+   "across_documents": 0,
+   "mean_sources": 13,
+   "mean_context_tokens": 9054,
+   "median_ms": 2444
+  },
+  "L": {
+   "profile": "hybrid-estnltk-chat-v3",
+   "questions": 9,
+   "found_all": 9,
+   "found_any": 9,
+   "within_document": 9,
+   "across_documents": 0,
+   "mean_sources": 11.11,
+   "mean_context_tokens": 9595,
+   "median_ms": 2190
+  },
+  "N": {
+   "profile": "hybrid-estnltk-chat-v4",
+   "questions": 9,
+   "found_all": 9,
+   "found_any": 9,
+   "within_document": 9,
+   "across_documents": 0,
+   "mean_sources": 11.44,
+   "mean_context_tokens": 9723,
+   "median_ms": 2159
+  },
+  "O": {
+   "profile": "hybrid-estnltk-chat-v6",
+   "questions": 9,
+   "found_all": 9,
+   "found_any": 9,
+   "within_document": 9,
+   "across_documents": 0,
+   "mean_sources": 11.56,
+   "mean_context_tokens": 9861,
+   "median_ms": 2203
+  },
+  "V": {
+   "profile": "hybrid-estnltk-chat-v1",
+   "questions": 9,
+   "found_all": 3,
+   "found_any": 3,
+   "within_document": 3,
+   "across_documents": 0,
+   "mean_sources": 9,
+   "mean_context_tokens": 7603,
+   "median_ms": 2202
+  },
+  "R": {
+   "profile": "simulated-chat-v1-plus-pointers",
+   "questions": 9,
+   "found_all": 8,
+   "found_any": 8,
+   "within_document": 8,
+   "across_documents": 0,
+   "mean_sources": 12.11,
+   "mean_context_tokens": 9393,
+   "median_ms": 0
+  },
+  "S": {
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "questions": 9,
+   "found_all": 7,
+   "found_any": 7,
+   "within_document": 7,
+   "across_documents": 0,
+   "mean_sources": 10.22,
+   "mean_context_tokens": 8454,
+   "median_ms": 0
+  }
+ },
+ "shapes": {},
+ "rows": [
+  {
+   "question": "day-support-dementia-retirement",
+   "kind": "within_document",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 7797,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 5811,
+   "additions": [],
+   "selected": [
+    "chunk_5e581041c323a666c066abbb1ee8241e6ac71813ed8bc24a400dd2cf214b443d",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_7c475ee12ce85a3c63d407f9f18572ee2c2d00361677d00fb4f4774b4cb179d4",
+    "chunk_19f031eda1db0c975697e23d9d81c12ecb668505342413e9e40150f319a99b44",
+    "chunk_89af159f2327c963b7126631701ee2efd0eefd532d7ee67e7359d12bf7e7adeb",
+    "chunk_8dda0b28cfe419d3025a4d57ef05a4168f06f8c260e0a614e83a83ecd9f65739",
+    "chunk_ecb8d025c8b8e19898ee2d432cf8946d57c81ce3209218f5ac0165132795f1af",
+    "chunk_3d8cd8fcb9e081a7e353da7813d4c221b1b64ef11d7a71140cd44249d5cb16b5",
+    "chunk_f0aaaff3fba71a4e70f73ac3dbfaf44b10501bbbe682ebc1e86c15fd2d8cfa0d"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "day-support-dementia-retirement",
+   "kind": "within_document",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 1528,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 7789,
+   "additions": [],
+   "selected": [
+    "chunk_5e581041c323a666c066abbb1ee8241e6ac71813ed8bc24a400dd2cf214b443d",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_7c475ee12ce85a3c63d407f9f18572ee2c2d00361677d00fb4f4774b4cb179d4",
+    "chunk_19f031eda1db0c975697e23d9d81c12ecb668505342413e9e40150f319a99b44",
+    "chunk_89af159f2327c963b7126631701ee2efd0eefd532d7ee67e7359d12bf7e7adeb",
+    "chunk_8dda0b28cfe419d3025a4d57ef05a4168f06f8c260e0a614e83a83ecd9f65739",
+    "chunk_ecb8d025c8b8e19898ee2d432cf8946d57c81ce3209218f5ac0165132795f1af",
+    "chunk_3d8cd8fcb9e081a7e353da7813d4c221b1b64ef11d7a71140cd44249d5cb16b5",
+    "chunk_f0aaaff3fba71a4e70f73ac3dbfaf44b10501bbbe682ebc1e86c15fd2d8cfa0d",
+    "chunk_c89d8e419603e8e8d409bdd2b50295c716b731d3d78a82ad8ff3b7fabe847520",
+    "chunk_2747e689f59b778079a17455a8de515453a0af6f34f3825e9d4c6dd4b8a959f0",
+    "chunk_bf0fb2d620b7cbcc4023265420868bd07c6fef6a9c71b10a66b6675a989066cf",
+    "chunk_bf011e9f18603075b0d8ad69d8098adc0f68080bb279e6ffd6b2e348a53d8b2c"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "day-support-dementia-retirement",
+   "kind": "within_document",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 1369,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 6204,
+   "additions": [],
+   "selected": [
+    "chunk_5e581041c323a666c066abbb1ee8241e6ac71813ed8bc24a400dd2cf214b443d",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_7c475ee12ce85a3c63d407f9f18572ee2c2d00361677d00fb4f4774b4cb179d4",
+    "chunk_19f031eda1db0c975697e23d9d81c12ecb668505342413e9e40150f319a99b44",
+    "chunk_89af159f2327c963b7126631701ee2efd0eefd532d7ee67e7359d12bf7e7adeb",
+    "chunk_8dda0b28cfe419d3025a4d57ef05a4168f06f8c260e0a614e83a83ecd9f65739",
+    "chunk_ecb8d025c8b8e19898ee2d432cf8946d57c81ce3209218f5ac0165132795f1af",
+    "chunk_3d8cd8fcb9e081a7e353da7813d4c221b1b64ef11d7a71140cd44249d5cb16b5",
+    "chunk_f0aaaff3fba71a4e70f73ac3dbfaf44b10501bbbe682ebc1e86c15fd2d8cfa0d"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "day-support-dementia-retirement",
+   "kind": "within_document",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 1457,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 6571,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "72"
+    }
+   ],
+   "selected": [
+    "chunk_5e581041c323a666c066abbb1ee8241e6ac71813ed8bc24a400dd2cf214b443d",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_7c475ee12ce85a3c63d407f9f18572ee2c2d00361677d00fb4f4774b4cb179d4",
+    "chunk_19f031eda1db0c975697e23d9d81c12ecb668505342413e9e40150f319a99b44",
+    "chunk_89af159f2327c963b7126631701ee2efd0eefd532d7ee67e7359d12bf7e7adeb",
+    "chunk_8dda0b28cfe419d3025a4d57ef05a4168f06f8c260e0a614e83a83ecd9f65739",
+    "chunk_ecb8d025c8b8e19898ee2d432cf8946d57c81ce3209218f5ac0165132795f1af",
+    "chunk_3d8cd8fcb9e081a7e353da7813d4c221b1b64ef11d7a71140cd44249d5cb16b5",
+    "chunk_f0aaaff3fba71a4e70f73ac3dbfaf44b10501bbbe682ebc1e86c15fd2d8cfa0d",
+    "chunk_6e0262dcea35f4fa2b2193c4a0651247e3f2249387b335c5e0937b4a6fb8bbcc"
+   ],
+   "cross_references": {
+    "candidates": 1,
+    "additions": 1,
+    "sections": [
+     "72"
+    ]
+   },
+   "named_act_references": null
+  },
+  {
+   "question": "day-support-dementia-retirement",
+   "kind": "within_document",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 1531,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 9063,
+   "additions": [
+    {
+     "title": "Kuidas riik toetab dementsusega inimesi ja nende lähedasi?",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Kuidas riik toetab dementsusega inimesi ja nende lähedasi?",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Kuidas riik toetab dementsusega inimesi ja nende lähedasi?",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Hoolduskoormuse vähendamise esmased abinõud",
+     "reason": "structural_expansion"
+    }
+   ],
+   "selected": [
+    "chunk_5e581041c323a666c066abbb1ee8241e6ac71813ed8bc24a400dd2cf214b443d",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_7c475ee12ce85a3c63d407f9f18572ee2c2d00361677d00fb4f4774b4cb179d4",
+    "chunk_19f031eda1db0c975697e23d9d81c12ecb668505342413e9e40150f319a99b44",
+    "chunk_89af159f2327c963b7126631701ee2efd0eefd532d7ee67e7359d12bf7e7adeb",
+    "chunk_8dda0b28cfe419d3025a4d57ef05a4168f06f8c260e0a614e83a83ecd9f65739",
+    "chunk_ecb8d025c8b8e19898ee2d432cf8946d57c81ce3209218f5ac0165132795f1af",
+    "chunk_3d8cd8fcb9e081a7e353da7813d4c221b1b64ef11d7a71140cd44249d5cb16b5",
+    "chunk_f0aaaff3fba71a4e70f73ac3dbfaf44b10501bbbe682ebc1e86c15fd2d8cfa0d",
+    "chunk_a23f28b3232fa52f7f3b8c7d6f248ae2edc14e0dbb42b3af405c6520383aadb3",
+    "chunk_6da44e7a81e483bad4b42896c2d3eb65567219627b53c4d991d4a32993e0d37a",
+    "chunk_5b6961ec7112ade3069e9c75cfbcfada61843cbc8728f4c9c229f215de0dd7b2",
+    "chunk_25a89a5420f40fa88db439317391f525f8ef0ad507a2fc141af126e0f02fbb9a"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "day-support-dementia-retirement",
+   "kind": "within_document",
+   "arm": "L",
+   "profile": "hybrid-estnltk-chat-v3",
+   "ms": 1368,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 6964,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "72"
+    }
+   ],
+   "selected": [
+    "chunk_5e581041c323a666c066abbb1ee8241e6ac71813ed8bc24a400dd2cf214b443d",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_7c475ee12ce85a3c63d407f9f18572ee2c2d00361677d00fb4f4774b4cb179d4",
+    "chunk_19f031eda1db0c975697e23d9d81c12ecb668505342413e9e40150f319a99b44",
+    "chunk_89af159f2327c963b7126631701ee2efd0eefd532d7ee67e7359d12bf7e7adeb",
+    "chunk_8dda0b28cfe419d3025a4d57ef05a4168f06f8c260e0a614e83a83ecd9f65739",
+    "chunk_ecb8d025c8b8e19898ee2d432cf8946d57c81ce3209218f5ac0165132795f1af",
+    "chunk_3d8cd8fcb9e081a7e353da7813d4c221b1b64ef11d7a71140cd44249d5cb16b5",
+    "chunk_f0aaaff3fba71a4e70f73ac3dbfaf44b10501bbbe682ebc1e86c15fd2d8cfa0d",
+    "chunk_6e0262dcea35f4fa2b2193c4a0651247e3f2249387b335c5e0937b4a6fb8bbcc"
+   ],
+   "cross_references": {
+    "candidates": 1,
+    "additions": 1,
+    "sections": [
+     "72"
+    ]
+   },
+   "named_act_references": null
+  },
+  {
+   "question": "day-support-dementia-retirement",
+   "kind": "within_document",
+   "arm": "N",
+   "profile": "hybrid-estnltk-chat-v4",
+   "ms": 1396,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 6964,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "72"
+    }
+   ],
+   "selected": [
+    "chunk_5e581041c323a666c066abbb1ee8241e6ac71813ed8bc24a400dd2cf214b443d",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_7c475ee12ce85a3c63d407f9f18572ee2c2d00361677d00fb4f4774b4cb179d4",
+    "chunk_19f031eda1db0c975697e23d9d81c12ecb668505342413e9e40150f319a99b44",
+    "chunk_89af159f2327c963b7126631701ee2efd0eefd532d7ee67e7359d12bf7e7adeb",
+    "chunk_8dda0b28cfe419d3025a4d57ef05a4168f06f8c260e0a614e83a83ecd9f65739",
+    "chunk_ecb8d025c8b8e19898ee2d432cf8946d57c81ce3209218f5ac0165132795f1af",
+    "chunk_3d8cd8fcb9e081a7e353da7813d4c221b1b64ef11d7a71140cd44249d5cb16b5",
+    "chunk_f0aaaff3fba71a4e70f73ac3dbfaf44b10501bbbe682ebc1e86c15fd2d8cfa0d",
+    "chunk_6e0262dcea35f4fa2b2193c4a0651247e3f2249387b335c5e0937b4a6fb8bbcc"
+   ],
+   "cross_references": {
+    "candidates": 1,
+    "additions": 1,
+    "sections": [
+     "72"
+    ]
+   },
+   "named_act_references": {
+    "candidates": 0,
+    "additions": 0,
+    "acts": []
+   }
+  },
+  {
+   "question": "day-support-dementia-retirement",
+   "kind": "within_document",
+   "arm": "O",
+   "profile": "hybrid-estnltk-chat-v6",
+   "ms": 1341,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 6964,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "72"
+    }
+   ],
+   "selected": [
+    "chunk_5e581041c323a666c066abbb1ee8241e6ac71813ed8bc24a400dd2cf214b443d",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_7c475ee12ce85a3c63d407f9f18572ee2c2d00361677d00fb4f4774b4cb179d4",
+    "chunk_19f031eda1db0c975697e23d9d81c12ecb668505342413e9e40150f319a99b44",
+    "chunk_89af159f2327c963b7126631701ee2efd0eefd532d7ee67e7359d12bf7e7adeb",
+    "chunk_8dda0b28cfe419d3025a4d57ef05a4168f06f8c260e0a614e83a83ecd9f65739",
+    "chunk_ecb8d025c8b8e19898ee2d432cf8946d57c81ce3209218f5ac0165132795f1af",
+    "chunk_3d8cd8fcb9e081a7e353da7813d4c221b1b64ef11d7a71140cd44249d5cb16b5",
+    "chunk_f0aaaff3fba71a4e70f73ac3dbfaf44b10501bbbe682ebc1e86c15fd2d8cfa0d",
+    "chunk_6e0262dcea35f4fa2b2193c4a0651247e3f2249387b335c5e0937b4a6fb8bbcc"
+   ],
+   "cross_references": {
+    "candidates": 1,
+    "additions": 1,
+    "sections": [
+     "72"
+    ]
+   },
+   "named_act_references": {
+    "candidates": 0,
+    "additions": 0,
+    "acts": []
+   }
+  },
+  {
+   "question": "day-support-dementia-retirement",
+   "kind": "within_document",
+   "arm": "V",
+   "profile": "hybrid-estnltk-chat-v1",
+   "ms": 1425,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 6204,
+   "additions": [],
+   "selected": [
+    "chunk_5e581041c323a666c066abbb1ee8241e6ac71813ed8bc24a400dd2cf214b443d",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_7c475ee12ce85a3c63d407f9f18572ee2c2d00361677d00fb4f4774b4cb179d4",
+    "chunk_19f031eda1db0c975697e23d9d81c12ecb668505342413e9e40150f319a99b44",
+    "chunk_89af159f2327c963b7126631701ee2efd0eefd532d7ee67e7359d12bf7e7adeb",
+    "chunk_8dda0b28cfe419d3025a4d57ef05a4168f06f8c260e0a614e83a83ecd9f65739",
+    "chunk_ecb8d025c8b8e19898ee2d432cf8946d57c81ce3209218f5ac0165132795f1af",
+    "chunk_3d8cd8fcb9e081a7e353da7813d4c221b1b64ef11d7a71140cd44249d5cb16b5",
+    "chunk_f0aaaff3fba71a4e70f73ac3dbfaf44b10501bbbe682ebc1e86c15fd2d8cfa0d"
+   ],
+   "cross_references": null,
+   "named_act_references": null,
+   "seeds": [
+    {
+     "act": "130062026065",
+     "section": "88",
+     "passage": 138
+    }
+   ]
+  },
+  {
+   "question": "day-support-dementia-retirement",
+   "kind": "within_document",
+   "arm": "R",
+   "profile": "simulated-chat-v1-plus-pointers",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": true,
+     "in_seeds": false,
+     "class": "exact_subsection",
+     "position": 0,
+     "within_room": true,
+     "from": "88/null",
+     "to": "72/2"
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {},
+   "context_tokens": 6841,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 115,
+     "reason": "exact_subsection",
+     "exception": true,
+     "from": "88/null",
+     "to": "72/2"
+    }
+   ],
+   "candidates": 1,
+   "cross_references": null
+  },
+  {
+   "question": "day-support-dementia-retirement",
+   "kind": "within_document",
+   "arm": "S",
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": true,
+     "in_seeds": false,
+     "class": "first_passage",
+     "position": 0,
+     "within_room": true,
+     "from": "88/null",
+     "to": "72/null"
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {},
+   "context_tokens": 6841,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 115,
+     "reason": "first_passage",
+     "exception": true,
+     "from": "88/null",
+     "to": "72/null"
+    }
+   ],
+   "candidates": 1,
+   "cross_references": null
+  },
+  {
+   "question": "supported-living-alcohol",
+   "kind": "within_document",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 8607,
+   "found": [
+    {
+     "phrase": "sõltuvus alkoholist või narkootilisest ainest põhihaigusena",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 5820,
+   "additions": [],
+   "selected": [
+    "chunk_68011374e5dde71706065f845fc142cd75c8ad6c506b036b2fcc90aac67dd27c",
+    "chunk_ffdf7155e7979a06fc57c689aabfac3df0583c3b5d635f1025af995edc569681",
+    "chunk_8b8a86fcf87f8b4709d7ef8540908f64959b986da873d3c69a7ff6e107171029",
+    "chunk_2b4e23bfac882dc2e26accd277a03a5c42da2e05ab2e00381dfaad7c0a58f9eb",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_f53dd13065073db0cbb9463a6d7baa0a61c0ee087404ec6d491be08753a2b238",
+    "chunk_0517c80877cd9ebcfced431c20ab11895d0c861b964d15409567f142b95c187e",
+    "chunk_affcedf761bae33fae492b992e9eef40b6d6133fa5921585adac42e025aac2ea",
+    "chunk_1518621b5358cf9bd8ff0313a0204ccb9c4de00442cc3c563347fcbb54b796e0"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "supported-living-alcohol",
+   "kind": "within_document",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 1852,
+   "found": [
+    {
+     "phrase": "sõltuvus alkoholist või narkootilisest ainest põhihaigusena",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 8139,
+   "additions": [],
+   "selected": [
+    "chunk_68011374e5dde71706065f845fc142cd75c8ad6c506b036b2fcc90aac67dd27c",
+    "chunk_ffdf7155e7979a06fc57c689aabfac3df0583c3b5d635f1025af995edc569681",
+    "chunk_8b8a86fcf87f8b4709d7ef8540908f64959b986da873d3c69a7ff6e107171029",
+    "chunk_2b4e23bfac882dc2e26accd277a03a5c42da2e05ab2e00381dfaad7c0a58f9eb",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_f53dd13065073db0cbb9463a6d7baa0a61c0ee087404ec6d491be08753a2b238",
+    "chunk_0517c80877cd9ebcfced431c20ab11895d0c861b964d15409567f142b95c187e",
+    "chunk_affcedf761bae33fae492b992e9eef40b6d6133fa5921585adac42e025aac2ea",
+    "chunk_1518621b5358cf9bd8ff0313a0204ccb9c4de00442cc3c563347fcbb54b796e0",
+    "chunk_44fc77b536e644a65ce9378e231ae9a3ba33a33ed84e3d5c06edb385422d598e",
+    "chunk_0a619e58fe6ef6e2ae7c4f6a0d0a8a6ef0c2a26904fa4226c9ac1194db7f8f09",
+    "chunk_da2ed4c81941a012a381845d72bfeead8a8bdcec8205eeeff09389436d00c5bd",
+    "chunk_54bb03046fd70a82bed3011c1b3a8c7dcbb6c6193ac2ce813b8c01d99b84f119"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "supported-living-alcohol",
+   "kind": "within_document",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 1812,
+   "found": [
+    {
+     "phrase": "sõltuvus alkoholist või narkootilisest ainest põhihaigusena",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 1
+   },
+   "context_tokens": 9748,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    }
+   ],
+   "selected": [
+    "chunk_68011374e5dde71706065f845fc142cd75c8ad6c506b036b2fcc90aac67dd27c",
+    "chunk_ffdf7155e7979a06fc57c689aabfac3df0583c3b5d635f1025af995edc569681",
+    "chunk_8b8a86fcf87f8b4709d7ef8540908f64959b986da873d3c69a7ff6e107171029",
+    "chunk_2b4e23bfac882dc2e26accd277a03a5c42da2e05ab2e00381dfaad7c0a58f9eb",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_f53dd13065073db0cbb9463a6d7baa0a61c0ee087404ec6d491be08753a2b238",
+    "chunk_0517c80877cd9ebcfced431c20ab11895d0c861b964d15409567f142b95c187e",
+    "chunk_affcedf761bae33fae492b992e9eef40b6d6133fa5921585adac42e025aac2ea",
+    "chunk_1518621b5358cf9bd8ff0313a0204ccb9c4de00442cc3c563347fcbb54b796e0",
+    "chunk_1dae4abc5baeb49a4b8354b09d4ab434ef323d9add05ebb92e93d20a4d7b53e3"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "supported-living-alcohol",
+   "kind": "within_document",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 1705,
+   "found": [
+    {
+     "phrase": "sõltuvus alkoholist või narkootilisest ainest põhihaigusena",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 6580,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "72"
+    }
+   ],
+   "selected": [
+    "chunk_68011374e5dde71706065f845fc142cd75c8ad6c506b036b2fcc90aac67dd27c",
+    "chunk_ffdf7155e7979a06fc57c689aabfac3df0583c3b5d635f1025af995edc569681",
+    "chunk_8b8a86fcf87f8b4709d7ef8540908f64959b986da873d3c69a7ff6e107171029",
+    "chunk_2b4e23bfac882dc2e26accd277a03a5c42da2e05ab2e00381dfaad7c0a58f9eb",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_f53dd13065073db0cbb9463a6d7baa0a61c0ee087404ec6d491be08753a2b238",
+    "chunk_0517c80877cd9ebcfced431c20ab11895d0c861b964d15409567f142b95c187e",
+    "chunk_affcedf761bae33fae492b992e9eef40b6d6133fa5921585adac42e025aac2ea",
+    "chunk_1518621b5358cf9bd8ff0313a0204ccb9c4de00442cc3c563347fcbb54b796e0",
+    "chunk_6e0262dcea35f4fa2b2193c4a0651247e3f2249387b335c5e0937b4a6fb8bbcc"
+   ],
+   "cross_references": {
+    "candidates": 5,
+    "additions": 1,
+    "sections": [
+     "72"
+    ]
+   },
+   "named_act_references": null
+  },
+  {
+   "question": "supported-living-alcohol",
+   "kind": "within_document",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 1819,
+   "found": [
+    {
+     "phrase": "sõltuvus alkoholist või narkootilisest ainest põhihaigusena",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 8138,
+   "additions": [
+    {
+     "title": "Teekond erilise lapse kõrval",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Teekond erilise lapse kõrval",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Erihoolekanne ja sotsiaalne rehabilitatsioon",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Erihoolekanne ja sotsiaalne rehabilitatsioon",
+     "reason": "structural_expansion"
+    }
+   ],
+   "selected": [
+    "chunk_68011374e5dde71706065f845fc142cd75c8ad6c506b036b2fcc90aac67dd27c",
+    "chunk_ffdf7155e7979a06fc57c689aabfac3df0583c3b5d635f1025af995edc569681",
+    "chunk_8b8a86fcf87f8b4709d7ef8540908f64959b986da873d3c69a7ff6e107171029",
+    "chunk_2b4e23bfac882dc2e26accd277a03a5c42da2e05ab2e00381dfaad7c0a58f9eb",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_f53dd13065073db0cbb9463a6d7baa0a61c0ee087404ec6d491be08753a2b238",
+    "chunk_0517c80877cd9ebcfced431c20ab11895d0c861b964d15409567f142b95c187e",
+    "chunk_affcedf761bae33fae492b992e9eef40b6d6133fa5921585adac42e025aac2ea",
+    "chunk_1518621b5358cf9bd8ff0313a0204ccb9c4de00442cc3c563347fcbb54b796e0",
+    "chunk_8d0e853c85d44beed7c790b18e3356c6de9cd42c73b97d01bdb5cd3c15ded980",
+    "chunk_72af8d0aba4dd423620b26f7f255977280e5c07edf9977f69d630b2005934182",
+    "chunk_94c0874965ca2bd422d9f6dc260b4618ccc4a8445ca6a831f4684dcd903b98ca",
+    "chunk_0e181af6b518d823df1a5ce041691255d88f83e0a84e029d5b8c94b520dec349"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "supported-living-alcohol",
+   "kind": "within_document",
+   "arm": "L",
+   "profile": "hybrid-estnltk-chat-v3",
+   "ms": 1813,
+   "found": [
+    {
+     "phrase": "sõltuvus alkoholist või narkootilisest ainest põhihaigusena",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 12,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 1,
+    "cross_reference": 2
+   },
+   "context_tokens": 11466,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "72"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "105"
+    }
+   ],
+   "selected": [
+    "chunk_68011374e5dde71706065f845fc142cd75c8ad6c506b036b2fcc90aac67dd27c",
+    "chunk_ffdf7155e7979a06fc57c689aabfac3df0583c3b5d635f1025af995edc569681",
+    "chunk_8b8a86fcf87f8b4709d7ef8540908f64959b986da873d3c69a7ff6e107171029",
+    "chunk_2b4e23bfac882dc2e26accd277a03a5c42da2e05ab2e00381dfaad7c0a58f9eb",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_f53dd13065073db0cbb9463a6d7baa0a61c0ee087404ec6d491be08753a2b238",
+    "chunk_0517c80877cd9ebcfced431c20ab11895d0c861b964d15409567f142b95c187e",
+    "chunk_affcedf761bae33fae492b992e9eef40b6d6133fa5921585adac42e025aac2ea",
+    "chunk_1518621b5358cf9bd8ff0313a0204ccb9c4de00442cc3c563347fcbb54b796e0",
+    "chunk_1dae4abc5baeb49a4b8354b09d4ab434ef323d9add05ebb92e93d20a4d7b53e3",
+    "chunk_6e0262dcea35f4fa2b2193c4a0651247e3f2249387b335c5e0937b4a6fb8bbcc",
+    "chunk_5697ddad5380f56490d7ca3c186978051d3c1b87b6aa74802a95f6c944538ffd"
+   ],
+   "cross_references": {
+    "candidates": 6,
+    "additions": 2,
+    "sections": [
+     "72",
+     "105"
+    ]
+   },
+   "named_act_references": null
+  },
+  {
+   "question": "supported-living-alcohol",
+   "kind": "within_document",
+   "arm": "N",
+   "profile": "hybrid-estnltk-chat-v4",
+   "ms": 1664,
+   "found": [
+    {
+     "phrase": "sõltuvus alkoholist või narkootilisest ainest põhihaigusena",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 12,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 1,
+    "cross_reference": 2
+   },
+   "context_tokens": 11466,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "72"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "105"
+    }
+   ],
+   "selected": [
+    "chunk_68011374e5dde71706065f845fc142cd75c8ad6c506b036b2fcc90aac67dd27c",
+    "chunk_ffdf7155e7979a06fc57c689aabfac3df0583c3b5d635f1025af995edc569681",
+    "chunk_8b8a86fcf87f8b4709d7ef8540908f64959b986da873d3c69a7ff6e107171029",
+    "chunk_2b4e23bfac882dc2e26accd277a03a5c42da2e05ab2e00381dfaad7c0a58f9eb",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_f53dd13065073db0cbb9463a6d7baa0a61c0ee087404ec6d491be08753a2b238",
+    "chunk_0517c80877cd9ebcfced431c20ab11895d0c861b964d15409567f142b95c187e",
+    "chunk_affcedf761bae33fae492b992e9eef40b6d6133fa5921585adac42e025aac2ea",
+    "chunk_1518621b5358cf9bd8ff0313a0204ccb9c4de00442cc3c563347fcbb54b796e0",
+    "chunk_1dae4abc5baeb49a4b8354b09d4ab434ef323d9add05ebb92e93d20a4d7b53e3",
+    "chunk_6e0262dcea35f4fa2b2193c4a0651247e3f2249387b335c5e0937b4a6fb8bbcc",
+    "chunk_5697ddad5380f56490d7ca3c186978051d3c1b87b6aa74802a95f6c944538ffd"
+   ],
+   "cross_references": {
+    "candidates": 6,
+    "additions": 2,
+    "sections": [
+     "72",
+     "105"
+    ]
+   },
+   "named_act_references": {
+    "candidates": 0,
+    "additions": 0,
+    "acts": []
+   }
+  },
+  {
+   "question": "supported-living-alcohol",
+   "kind": "within_document",
+   "arm": "O",
+   "profile": "hybrid-estnltk-chat-v6",
+   "ms": 1732,
+   "found": [
+    {
+     "phrase": "sõltuvus alkoholist või narkootilisest ainest põhihaigusena",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 12,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 1,
+    "cross_reference": 2
+   },
+   "context_tokens": 11466,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "72"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "105"
+    }
+   ],
+   "selected": [
+    "chunk_68011374e5dde71706065f845fc142cd75c8ad6c506b036b2fcc90aac67dd27c",
+    "chunk_ffdf7155e7979a06fc57c689aabfac3df0583c3b5d635f1025af995edc569681",
+    "chunk_8b8a86fcf87f8b4709d7ef8540908f64959b986da873d3c69a7ff6e107171029",
+    "chunk_2b4e23bfac882dc2e26accd277a03a5c42da2e05ab2e00381dfaad7c0a58f9eb",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_f53dd13065073db0cbb9463a6d7baa0a61c0ee087404ec6d491be08753a2b238",
+    "chunk_0517c80877cd9ebcfced431c20ab11895d0c861b964d15409567f142b95c187e",
+    "chunk_affcedf761bae33fae492b992e9eef40b6d6133fa5921585adac42e025aac2ea",
+    "chunk_1518621b5358cf9bd8ff0313a0204ccb9c4de00442cc3c563347fcbb54b796e0",
+    "chunk_1dae4abc5baeb49a4b8354b09d4ab434ef323d9add05ebb92e93d20a4d7b53e3",
+    "chunk_6e0262dcea35f4fa2b2193c4a0651247e3f2249387b335c5e0937b4a6fb8bbcc",
+    "chunk_5697ddad5380f56490d7ca3c186978051d3c1b87b6aa74802a95f6c944538ffd"
+   ],
+   "cross_references": {
+    "candidates": 6,
+    "additions": 2,
+    "sections": [
+     "72",
+     "105"
+    ]
+   },
+   "named_act_references": {
+    "candidates": 0,
+    "additions": 0,
+    "acts": []
+   }
+  },
+  {
+   "question": "supported-living-alcohol",
+   "kind": "within_document",
+   "arm": "V",
+   "profile": "hybrid-estnltk-chat-v1",
+   "ms": 1693,
+   "found": [
+    {
+     "phrase": "sõltuvus alkoholist või narkootilisest ainest põhihaigusena",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 9114,
+   "additions": [],
+   "selected": [
+    "chunk_68011374e5dde71706065f845fc142cd75c8ad6c506b036b2fcc90aac67dd27c",
+    "chunk_ffdf7155e7979a06fc57c689aabfac3df0583c3b5d635f1025af995edc569681",
+    "chunk_8b8a86fcf87f8b4709d7ef8540908f64959b986da873d3c69a7ff6e107171029",
+    "chunk_2b4e23bfac882dc2e26accd277a03a5c42da2e05ab2e00381dfaad7c0a58f9eb",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_f53dd13065073db0cbb9463a6d7baa0a61c0ee087404ec6d491be08753a2b238",
+    "chunk_0517c80877cd9ebcfced431c20ab11895d0c861b964d15409567f142b95c187e",
+    "chunk_affcedf761bae33fae492b992e9eef40b6d6133fa5921585adac42e025aac2ea",
+    "chunk_1518621b5358cf9bd8ff0313a0204ccb9c4de00442cc3c563347fcbb54b796e0"
+   ],
+   "cross_references": null,
+   "named_act_references": null,
+   "seeds": [
+    {
+     "act": "130062026065",
+     "section": "101",
+     "passage": 155
+    },
+    {
+     "act": "130062026065",
+     "section": "95",
+     "passage": 145
+    },
+    {
+     "act": "130062026065",
+     "section": "99^2",
+     "passage": 151
+    },
+    {
+     "act": "130062026065",
+     "section": "88",
+     "passage": 138
+    },
+    {
+     "act": "130062026065",
+     "section": "101",
+     "passage": 156
+    }
+   ]
+  },
+  {
+   "question": "supported-living-alcohol",
+   "kind": "within_document",
+   "arm": "R",
+   "profile": "simulated-chat-v1-plus-pointers",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "sõltuvus alkoholist või narkootilisest ainest põhihaigusena",
+     "in_evidence": true,
+     "in_seeds": false,
+     "class": "exact_subsection",
+     "position": 0,
+     "within_room": true,
+     "from": "101/1",
+     "to": "72/2"
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {},
+   "context_tokens": 11730,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 115,
+     "reason": "exact_subsection",
+     "exception": true,
+     "from": "101/1",
+     "to": "72/2"
+    },
+    {
+     "act": "130062026065",
+     "passage": 157,
+     "reason": "incoming",
+     "exception": true,
+     "from": "102/8",
+     "to": "101/1"
+    },
+    {
+     "act": "130062026065",
+     "passage": 221,
+     "reason": "incoming",
+     "exception": false,
+     "from": "154/null",
+     "to": "101/1"
+    },
+    {
+     "act": "130062026065",
+     "passage": 233,
+     "reason": "incoming",
+     "exception": false,
+     "from": "160/24",
+     "to": "101/1"
+    }
+   ],
+   "candidates": 7,
+   "cross_references": null
+  },
+  {
+   "question": "supported-living-alcohol",
+   "kind": "within_document",
+   "arm": "S",
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "sõltuvus alkoholist või narkootilisest ainest põhihaigusena",
+     "in_evidence": true,
+     "in_seeds": false,
+     "class": "first_passage",
+     "position": 0,
+     "within_room": true,
+     "from": "101/1",
+     "to": "72/null"
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {},
+   "context_tokens": 9751,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 115,
+     "reason": "first_passage",
+     "exception": true,
+     "from": "101/1",
+     "to": "72/null"
+    }
+   ],
+   "candidates": 1,
+   "cross_references": null
+  },
+  {
+   "question": "community-living-dementia",
+   "kind": "within_document",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 14428,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 5638,
+   "additions": [],
+   "selected": [
+    "chunk_44fc77b536e644a65ce9378e231ae9a3ba33a33ed84e3d5c06edb385422d598e",
+    "chunk_9de47a842c2fc7dcbcbe86b07534f3179f60819defb3910539d593aec03f627a",
+    "chunk_21e01186ee7989215a34fe9d5acd01d85e0bd6ee1f72eb5dca99422228cc63f9",
+    "chunk_4fa3de51f1929dceb7c2a49f6960bdd76c6cafd9032f29a6fe2455fe3a6eb2bd",
+    "chunk_3b9511a32dd3f05b0039cf0343ee1c7c69d598786ebc3670b4d79b3cf5a10955",
+    "chunk_ffdf7155e7979a06fc57c689aabfac3df0583c3b5d635f1025af995edc569681",
+    "chunk_51791ea6cab90a4dbfb02c0789141a378a57884cc7db9089b4667850344309bf",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_7465a75c66e740ac754dc21b58ef9610711a3b49adf09bd118b9fe065377fbfc"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "community-living-dementia",
+   "kind": "within_document",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 2448,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 7679,
+   "additions": [],
+   "selected": [
+    "chunk_44fc77b536e644a65ce9378e231ae9a3ba33a33ed84e3d5c06edb385422d598e",
+    "chunk_9de47a842c2fc7dcbcbe86b07534f3179f60819defb3910539d593aec03f627a",
+    "chunk_21e01186ee7989215a34fe9d5acd01d85e0bd6ee1f72eb5dca99422228cc63f9",
+    "chunk_4fa3de51f1929dceb7c2a49f6960bdd76c6cafd9032f29a6fe2455fe3a6eb2bd",
+    "chunk_3b9511a32dd3f05b0039cf0343ee1c7c69d598786ebc3670b4d79b3cf5a10955",
+    "chunk_ffdf7155e7979a06fc57c689aabfac3df0583c3b5d635f1025af995edc569681",
+    "chunk_51791ea6cab90a4dbfb02c0789141a378a57884cc7db9089b4667850344309bf",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_7465a75c66e740ac754dc21b58ef9610711a3b49adf09bd118b9fe065377fbfc",
+    "chunk_f1e9be924ce723c47fe4ffaa02200a47dd3ab4a888417c67b7bcb0fa1ef55403",
+    "chunk_8be9ef8691d4150883deb95ec3f82a85145250c6984c229ccbc2b334d317af67",
+    "chunk_467f686b5a50c79df016b749ad37f5fa643ae7119a36b0fdbcad8fb1e1501f3f",
+    "chunk_4377c2a66ba9cc8d7477203f20d4356c55a59bc44167ee2a2375461944593f97"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "community-living-dementia",
+   "kind": "within_document",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 2289,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 6770,
+   "additions": [],
+   "selected": [
+    "chunk_44fc77b536e644a65ce9378e231ae9a3ba33a33ed84e3d5c06edb385422d598e",
+    "chunk_9de47a842c2fc7dcbcbe86b07534f3179f60819defb3910539d593aec03f627a",
+    "chunk_21e01186ee7989215a34fe9d5acd01d85e0bd6ee1f72eb5dca99422228cc63f9",
+    "chunk_4fa3de51f1929dceb7c2a49f6960bdd76c6cafd9032f29a6fe2455fe3a6eb2bd",
+    "chunk_3b9511a32dd3f05b0039cf0343ee1c7c69d598786ebc3670b4d79b3cf5a10955",
+    "chunk_ffdf7155e7979a06fc57c689aabfac3df0583c3b5d635f1025af995edc569681",
+    "chunk_51791ea6cab90a4dbfb02c0789141a378a57884cc7db9089b4667850344309bf",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_7465a75c66e740ac754dc21b58ef9610711a3b49adf09bd118b9fe065377fbfc"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "community-living-dementia",
+   "kind": "within_document",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 2350,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 6398,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "72"
+    }
+   ],
+   "selected": [
+    "chunk_44fc77b536e644a65ce9378e231ae9a3ba33a33ed84e3d5c06edb385422d598e",
+    "chunk_9de47a842c2fc7dcbcbe86b07534f3179f60819defb3910539d593aec03f627a",
+    "chunk_21e01186ee7989215a34fe9d5acd01d85e0bd6ee1f72eb5dca99422228cc63f9",
+    "chunk_4fa3de51f1929dceb7c2a49f6960bdd76c6cafd9032f29a6fe2455fe3a6eb2bd",
+    "chunk_3b9511a32dd3f05b0039cf0343ee1c7c69d598786ebc3670b4d79b3cf5a10955",
+    "chunk_ffdf7155e7979a06fc57c689aabfac3df0583c3b5d635f1025af995edc569681",
+    "chunk_51791ea6cab90a4dbfb02c0789141a378a57884cc7db9089b4667850344309bf",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_7465a75c66e740ac754dc21b58ef9610711a3b49adf09bd118b9fe065377fbfc",
+    "chunk_6e0262dcea35f4fa2b2193c4a0651247e3f2249387b335c5e0937b4a6fb8bbcc"
+   ],
+   "cross_references": {
+    "candidates": 3,
+    "additions": 1,
+    "sections": [
+     "72"
+    ]
+   },
+   "named_act_references": null
+  },
+  {
+   "question": "community-living-dementia",
+   "kind": "within_document",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 2607,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 8421,
+   "additions": [
+    {
+     "title": "Heade praktikate kogumik",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Heade praktikate kogumik",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Erihoolekande muutused ja kogukonda sulandumine",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Kohaliku omavalitsuse poolt isikult ja/või perekonnalt sotsiaalteenuste eest tasu nõudmine",
+     "reason": "structural_expansion"
+    }
+   ],
+   "selected": [
+    "chunk_44fc77b536e644a65ce9378e231ae9a3ba33a33ed84e3d5c06edb385422d598e",
+    "chunk_9de47a842c2fc7dcbcbe86b07534f3179f60819defb3910539d593aec03f627a",
+    "chunk_21e01186ee7989215a34fe9d5acd01d85e0bd6ee1f72eb5dca99422228cc63f9",
+    "chunk_4fa3de51f1929dceb7c2a49f6960bdd76c6cafd9032f29a6fe2455fe3a6eb2bd",
+    "chunk_3b9511a32dd3f05b0039cf0343ee1c7c69d598786ebc3670b4d79b3cf5a10955",
+    "chunk_ffdf7155e7979a06fc57c689aabfac3df0583c3b5d635f1025af995edc569681",
+    "chunk_51791ea6cab90a4dbfb02c0789141a378a57884cc7db9089b4667850344309bf",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_7465a75c66e740ac754dc21b58ef9610711a3b49adf09bd118b9fe065377fbfc",
+    "chunk_d078d77c459c263725948b0d356fadc4ce5dd579a175534941c0b27bb9f0c55d",
+    "chunk_6404aa0bd5c72adfd1cc22489e6e9f7e9f00f20188a6c7b7e6ae7f46a5ecdf0c",
+    "chunk_f1e9be924ce723c47fe4ffaa02200a47dd3ab4a888417c67b7bcb0fa1ef55403",
+    "chunk_181fd6fce722b9a36088278c12cd175861f40b12e92e782d180c4ccfc786c9b2"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "community-living-dementia",
+   "kind": "within_document",
+   "arm": "L",
+   "profile": "hybrid-estnltk-chat-v3",
+   "ms": 2373,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 7530,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "72"
+    }
+   ],
+   "selected": [
+    "chunk_44fc77b536e644a65ce9378e231ae9a3ba33a33ed84e3d5c06edb385422d598e",
+    "chunk_9de47a842c2fc7dcbcbe86b07534f3179f60819defb3910539d593aec03f627a",
+    "chunk_21e01186ee7989215a34fe9d5acd01d85e0bd6ee1f72eb5dca99422228cc63f9",
+    "chunk_4fa3de51f1929dceb7c2a49f6960bdd76c6cafd9032f29a6fe2455fe3a6eb2bd",
+    "chunk_3b9511a32dd3f05b0039cf0343ee1c7c69d598786ebc3670b4d79b3cf5a10955",
+    "chunk_ffdf7155e7979a06fc57c689aabfac3df0583c3b5d635f1025af995edc569681",
+    "chunk_51791ea6cab90a4dbfb02c0789141a378a57884cc7db9089b4667850344309bf",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_7465a75c66e740ac754dc21b58ef9610711a3b49adf09bd118b9fe065377fbfc",
+    "chunk_6e0262dcea35f4fa2b2193c4a0651247e3f2249387b335c5e0937b4a6fb8bbcc"
+   ],
+   "cross_references": {
+    "candidates": 3,
+    "additions": 1,
+    "sections": [
+     "72"
+    ]
+   },
+   "named_act_references": null
+  },
+  {
+   "question": "community-living-dementia",
+   "kind": "within_document",
+   "arm": "N",
+   "profile": "hybrid-estnltk-chat-v4",
+   "ms": 2218,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 7530,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "72"
+    }
+   ],
+   "selected": [
+    "chunk_44fc77b536e644a65ce9378e231ae9a3ba33a33ed84e3d5c06edb385422d598e",
+    "chunk_9de47a842c2fc7dcbcbe86b07534f3179f60819defb3910539d593aec03f627a",
+    "chunk_21e01186ee7989215a34fe9d5acd01d85e0bd6ee1f72eb5dca99422228cc63f9",
+    "chunk_4fa3de51f1929dceb7c2a49f6960bdd76c6cafd9032f29a6fe2455fe3a6eb2bd",
+    "chunk_3b9511a32dd3f05b0039cf0343ee1c7c69d598786ebc3670b4d79b3cf5a10955",
+    "chunk_ffdf7155e7979a06fc57c689aabfac3df0583c3b5d635f1025af995edc569681",
+    "chunk_51791ea6cab90a4dbfb02c0789141a378a57884cc7db9089b4667850344309bf",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_7465a75c66e740ac754dc21b58ef9610711a3b49adf09bd118b9fe065377fbfc",
+    "chunk_6e0262dcea35f4fa2b2193c4a0651247e3f2249387b335c5e0937b4a6fb8bbcc"
+   ],
+   "cross_references": {
+    "candidates": 3,
+    "additions": 1,
+    "sections": [
+     "72"
+    ]
+   },
+   "named_act_references": {
+    "candidates": 0,
+    "additions": 0,
+    "acts": []
+   }
+  },
+  {
+   "question": "community-living-dementia",
+   "kind": "within_document",
+   "arm": "O",
+   "profile": "hybrid-estnltk-chat-v6",
+   "ms": 2203,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 7530,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "72"
+    }
+   ],
+   "selected": [
+    "chunk_44fc77b536e644a65ce9378e231ae9a3ba33a33ed84e3d5c06edb385422d598e",
+    "chunk_9de47a842c2fc7dcbcbe86b07534f3179f60819defb3910539d593aec03f627a",
+    "chunk_21e01186ee7989215a34fe9d5acd01d85e0bd6ee1f72eb5dca99422228cc63f9",
+    "chunk_4fa3de51f1929dceb7c2a49f6960bdd76c6cafd9032f29a6fe2455fe3a6eb2bd",
+    "chunk_3b9511a32dd3f05b0039cf0343ee1c7c69d598786ebc3670b4d79b3cf5a10955",
+    "chunk_ffdf7155e7979a06fc57c689aabfac3df0583c3b5d635f1025af995edc569681",
+    "chunk_51791ea6cab90a4dbfb02c0789141a378a57884cc7db9089b4667850344309bf",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_7465a75c66e740ac754dc21b58ef9610711a3b49adf09bd118b9fe065377fbfc",
+    "chunk_6e0262dcea35f4fa2b2193c4a0651247e3f2249387b335c5e0937b4a6fb8bbcc"
+   ],
+   "cross_references": {
+    "candidates": 3,
+    "additions": 1,
+    "sections": [
+     "72"
+    ]
+   },
+   "named_act_references": {
+    "candidates": 0,
+    "additions": 0,
+    "acts": []
+   }
+  },
+  {
+   "question": "community-living-dementia",
+   "kind": "within_document",
+   "arm": "V",
+   "profile": "hybrid-estnltk-chat-v1",
+   "ms": 2202,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 6770,
+   "additions": [],
+   "selected": [
+    "chunk_44fc77b536e644a65ce9378e231ae9a3ba33a33ed84e3d5c06edb385422d598e",
+    "chunk_9de47a842c2fc7dcbcbe86b07534f3179f60819defb3910539d593aec03f627a",
+    "chunk_21e01186ee7989215a34fe9d5acd01d85e0bd6ee1f72eb5dca99422228cc63f9",
+    "chunk_4fa3de51f1929dceb7c2a49f6960bdd76c6cafd9032f29a6fe2455fe3a6eb2bd",
+    "chunk_3b9511a32dd3f05b0039cf0343ee1c7c69d598786ebc3670b4d79b3cf5a10955",
+    "chunk_ffdf7155e7979a06fc57c689aabfac3df0583c3b5d635f1025af995edc569681",
+    "chunk_51791ea6cab90a4dbfb02c0789141a378a57884cc7db9089b4667850344309bf",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_7465a75c66e740ac754dc21b58ef9610711a3b49adf09bd118b9fe065377fbfc"
+   ],
+   "cross_references": null,
+   "named_act_references": null,
+   "seeds": [
+    {
+     "act": "130062026065",
+     "section": "98",
+     "passage": 148
+    },
+    {
+     "act": "130062026065",
+     "section": "97",
+     "passage": 147
+    },
+    {
+     "act": "130062026065",
+     "section": "95",
+     "passage": 145
+    },
+    {
+     "act": "130062026065",
+     "section": "88",
+     "passage": 138
+    }
+   ]
+  },
+  {
+   "question": "community-living-dementia",
+   "kind": "within_document",
+   "arm": "R",
+   "profile": "simulated-chat-v1-plus-pointers",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": true,
+     "in_seeds": false,
+     "class": "exact_subsection",
+     "position": 0,
+     "within_room": true,
+     "from": "98/null",
+     "to": "72/2"
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 11,
+   "reasons": {},
+   "context_tokens": 7798,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 115,
+     "reason": "exact_subsection",
+     "exception": true,
+     "from": "98/null",
+     "to": "72/2"
+    },
+    {
+     "act": "130062026065",
+     "passage": 149,
+     "reason": "incoming",
+     "exception": false,
+     "from": "99/1",
+     "to": "97/3"
+    }
+   ],
+   "candidates": 2,
+   "cross_references": null
+  },
+  {
+   "question": "community-living-dementia",
+   "kind": "within_document",
+   "arm": "S",
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": true,
+     "in_seeds": false,
+     "class": "first_passage",
+     "position": 0,
+     "within_room": true,
+     "from": "98/null",
+     "to": "72/null"
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {},
+   "context_tokens": 7407,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 115,
+     "reason": "first_passage",
+     "exception": true,
+     "from": "98/null",
+     "to": "72/null"
+    }
+   ],
+   "candidates": 1,
+   "cross_references": null
+  },
+  {
+   "question": "subsistence-care-home",
+   "kind": "within_document",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 19967,
+   "found": [
+    {
+     "phrase": "Toimetulekutoetust ei määrata isikule, kellele osutatakse väljaspool kodu ööpäevaringselt osutatavat üldhooldusteenust",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 7446,
+   "additions": [],
+   "selected": [
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_e919cad4a494d4fa19f6527e7411d1da09925eeeebb04ed097fb2aa31be7f824",
+    "chunk_8b5f68fedf054d0fd841977029053ddec7c516941ca9dddf3e136e0d199cac99",
+    "chunk_fe227b7431ba457a8c275cda7209d5394fb1d7f46b2e36e4d0f4d60c2dfcbf0a",
+    "chunk_2a44e5612f3102be2343176579b3775240f064b341a1d3dc57572ede3a3259b9",
+    "chunk_a92ac42bbc4debfb6a212b2ebd9d192f3684f455fedbdab1357ffdd3ef580f68",
+    "chunk_205f8282759a89f85d7db81e5e45128dfaf60b8f5029f3aace6d1ef8faa513e7",
+    "chunk_93771c0c63e76942cf6c50a920ab7bef2983ba7bc2f2fb75ab07df32646bab1a"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "subsistence-care-home",
+   "kind": "within_document",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 3692,
+   "found": [
+    {
+     "phrase": "Toimetulekutoetust ei määrata isikule, kellele osutatakse väljaspool kodu ööpäevaringselt osutatavat üldhooldusteenust",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 10043,
+   "additions": [],
+   "selected": [
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_e919cad4a494d4fa19f6527e7411d1da09925eeeebb04ed097fb2aa31be7f824",
+    "chunk_8b5f68fedf054d0fd841977029053ddec7c516941ca9dddf3e136e0d199cac99",
+    "chunk_fe227b7431ba457a8c275cda7209d5394fb1d7f46b2e36e4d0f4d60c2dfcbf0a",
+    "chunk_2a44e5612f3102be2343176579b3775240f064b341a1d3dc57572ede3a3259b9",
+    "chunk_a92ac42bbc4debfb6a212b2ebd9d192f3684f455fedbdab1357ffdd3ef580f68",
+    "chunk_205f8282759a89f85d7db81e5e45128dfaf60b8f5029f3aace6d1ef8faa513e7",
+    "chunk_93771c0c63e76942cf6c50a920ab7bef2983ba7bc2f2fb75ab07df32646bab1a",
+    "chunk_31e4047d40cf72bbea0c94892f5ece52a28c137f7b7b16cd4085ee403a20160a",
+    "chunk_f169ecc6bf7ba47c3e57494e8ca1d6c29c7972b24d615a87a7bd7ce726cbd245",
+    "chunk_4ce0b33838bbc13c4fcc109abea23a365690b7529a1c9ac35e12ddba47f8aa3c",
+    "chunk_be52f685222b582b6f2ece0697164afca12e44b805130b3cdc662687416ac7dd"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "subsistence-care-home",
+   "kind": "within_document",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 3505,
+   "found": [
+    {
+     "phrase": "Toimetulekutoetust ei määrata isikule, kellele osutatakse väljaspool kodu ööpäevaringselt osutatavat üldhooldusteenust",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 11,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 2
+   },
+   "context_tokens": 12810,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    }
+   ],
+   "selected": [
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_e919cad4a494d4fa19f6527e7411d1da09925eeeebb04ed097fb2aa31be7f824",
+    "chunk_8b5f68fedf054d0fd841977029053ddec7c516941ca9dddf3e136e0d199cac99",
+    "chunk_fe227b7431ba457a8c275cda7209d5394fb1d7f46b2e36e4d0f4d60c2dfcbf0a",
+    "chunk_2a44e5612f3102be2343176579b3775240f064b341a1d3dc57572ede3a3259b9",
+    "chunk_a92ac42bbc4debfb6a212b2ebd9d192f3684f455fedbdab1357ffdd3ef580f68",
+    "chunk_205f8282759a89f85d7db81e5e45128dfaf60b8f5029f3aace6d1ef8faa513e7",
+    "chunk_93771c0c63e76942cf6c50a920ab7bef2983ba7bc2f2fb75ab07df32646bab1a",
+    "chunk_0ee71ddf92ba24afbe762579edaa7dec46e6adeb31b12cedb83647dad970554e",
+    "chunk_8f9b3c0b3d4be1a0b55b90dcd7013c75fadb24b1f659ffffab80073bb46f798b"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "subsistence-care-home",
+   "kind": "within_document",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 3396,
+   "found": [
+    {
+     "phrase": "Toimetulekutoetust ei määrata isikule, kellele osutatakse väljaspool kodu ööpäevaringselt osutatavat üldhooldusteenust",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 11,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 2
+   },
+   "context_tokens": 9206,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "133"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "140"
+    }
+   ],
+   "selected": [
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_e919cad4a494d4fa19f6527e7411d1da09925eeeebb04ed097fb2aa31be7f824",
+    "chunk_8b5f68fedf054d0fd841977029053ddec7c516941ca9dddf3e136e0d199cac99",
+    "chunk_fe227b7431ba457a8c275cda7209d5394fb1d7f46b2e36e4d0f4d60c2dfcbf0a",
+    "chunk_2a44e5612f3102be2343176579b3775240f064b341a1d3dc57572ede3a3259b9",
+    "chunk_a92ac42bbc4debfb6a212b2ebd9d192f3684f455fedbdab1357ffdd3ef580f68",
+    "chunk_205f8282759a89f85d7db81e5e45128dfaf60b8f5029f3aace6d1ef8faa513e7",
+    "chunk_93771c0c63e76942cf6c50a920ab7bef2983ba7bc2f2fb75ab07df32646bab1a",
+    "chunk_6ff726e1ebb808c77459dd586ffeea1db87a50224ae31b488b4756c170598747",
+    "chunk_946387adb7b7c968e15da39a2c18a1c4fea900650e9a5a6f3051b2eedc7d036c"
+   ],
+   "cross_references": {
+    "candidates": 2,
+    "additions": 2,
+    "sections": [
+     "133",
+     "140"
+    ]
+   },
+   "named_act_references": null
+  },
+  {
+   "question": "subsistence-care-home",
+   "kind": "within_document",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 3396,
+   "found": [
+    {
+     "phrase": "Toimetulekutoetust ei määrata isikule, kellele osutatakse väljaspool kodu ööpäevaringselt osutatavat üldhooldusteenust",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 10295,
+   "additions": [
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Uus toetus üksi elavatele pensionäridele",
+     "reason": "structural_expansion"
+    }
+   ],
+   "selected": [
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_e919cad4a494d4fa19f6527e7411d1da09925eeeebb04ed097fb2aa31be7f824",
+    "chunk_8b5f68fedf054d0fd841977029053ddec7c516941ca9dddf3e136e0d199cac99",
+    "chunk_fe227b7431ba457a8c275cda7209d5394fb1d7f46b2e36e4d0f4d60c2dfcbf0a",
+    "chunk_2a44e5612f3102be2343176579b3775240f064b341a1d3dc57572ede3a3259b9",
+    "chunk_a92ac42bbc4debfb6a212b2ebd9d192f3684f455fedbdab1357ffdd3ef580f68",
+    "chunk_205f8282759a89f85d7db81e5e45128dfaf60b8f5029f3aace6d1ef8faa513e7",
+    "chunk_93771c0c63e76942cf6c50a920ab7bef2983ba7bc2f2fb75ab07df32646bab1a",
+    "chunk_3c27892fae6e8937f5559fbeabd3a092cda550995f86d1b704c2e912c6602b23",
+    "chunk_a9162a3c39c069ae2a3e10a53a5cb8f08f16018d5a1db2bf72cb48a72da66062",
+    "chunk_8f9b3c0b3d4be1a0b55b90dcd7013c75fadb24b1f659ffffab80073bb46f798b",
+    "chunk_4ce0b33838bbc13c4fcc109abea23a365690b7529a1c9ac35e12ddba47f8aa3c"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "subsistence-care-home",
+   "kind": "within_document",
+   "arm": "L",
+   "profile": "hybrid-estnltk-chat-v3",
+   "ms": 3686,
+   "found": [
+    {
+     "phrase": "Toimetulekutoetust ei määrata isikule, kellele osutatakse väljaspool kodu ööpäevaringselt osutatavat üldhooldusteenust",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 2,
+    "cross_reference": 2
+   },
+   "context_tokens": 10278,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "133"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "140"
+    }
+   ],
+   "selected": [
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_e919cad4a494d4fa19f6527e7411d1da09925eeeebb04ed097fb2aa31be7f824",
+    "chunk_8b5f68fedf054d0fd841977029053ddec7c516941ca9dddf3e136e0d199cac99",
+    "chunk_fe227b7431ba457a8c275cda7209d5394fb1d7f46b2e36e4d0f4d60c2dfcbf0a",
+    "chunk_2a44e5612f3102be2343176579b3775240f064b341a1d3dc57572ede3a3259b9",
+    "chunk_a92ac42bbc4debfb6a212b2ebd9d192f3684f455fedbdab1357ffdd3ef580f68",
+    "chunk_205f8282759a89f85d7db81e5e45128dfaf60b8f5029f3aace6d1ef8faa513e7",
+    "chunk_93771c0c63e76942cf6c50a920ab7bef2983ba7bc2f2fb75ab07df32646bab1a",
+    "chunk_0ee71ddf92ba24afbe762579edaa7dec46e6adeb31b12cedb83647dad970554e",
+    "chunk_8f9b3c0b3d4be1a0b55b90dcd7013c75fadb24b1f659ffffab80073bb46f798b",
+    "chunk_6ff726e1ebb808c77459dd586ffeea1db87a50224ae31b488b4756c170598747",
+    "chunk_946387adb7b7c968e15da39a2c18a1c4fea900650e9a5a6f3051b2eedc7d036c"
+   ],
+   "cross_references": {
+    "candidates": 2,
+    "additions": 2,
+    "sections": [
+     "133",
+     "140"
+    ]
+   },
+   "named_act_references": null
+  },
+  {
+   "question": "subsistence-care-home",
+   "kind": "within_document",
+   "arm": "N",
+   "profile": "hybrid-estnltk-chat-v4",
+   "ms": 4399,
+   "found": [
+    {
+     "phrase": "Toimetulekutoetust ei määrata isikule, kellele osutatakse väljaspool kodu ööpäevaringselt osutatavat üldhooldusteenust",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 14,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 2,
+    "cross_reference": 3
+   },
+   "context_tokens": 10567,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "133"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "140"
+    },
+    {
+     "title": "Perekonnaseadus",
+     "reason": "cross_reference",
+     "section": "97",
+     "named_act": "document_c779eb5fc1ee4b5aecd76521c0ef28c84eb84fba1bd649c28406acb0984aedcb"
+    }
+   ],
+   "selected": [
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_e919cad4a494d4fa19f6527e7411d1da09925eeeebb04ed097fb2aa31be7f824",
+    "chunk_8b5f68fedf054d0fd841977029053ddec7c516941ca9dddf3e136e0d199cac99",
+    "chunk_fe227b7431ba457a8c275cda7209d5394fb1d7f46b2e36e4d0f4d60c2dfcbf0a",
+    "chunk_2a44e5612f3102be2343176579b3775240f064b341a1d3dc57572ede3a3259b9",
+    "chunk_a92ac42bbc4debfb6a212b2ebd9d192f3684f455fedbdab1357ffdd3ef580f68",
+    "chunk_205f8282759a89f85d7db81e5e45128dfaf60b8f5029f3aace6d1ef8faa513e7",
+    "chunk_93771c0c63e76942cf6c50a920ab7bef2983ba7bc2f2fb75ab07df32646bab1a",
+    "chunk_0ee71ddf92ba24afbe762579edaa7dec46e6adeb31b12cedb83647dad970554e",
+    "chunk_8f9b3c0b3d4be1a0b55b90dcd7013c75fadb24b1f659ffffab80073bb46f798b",
+    "chunk_6ff726e1ebb808c77459dd586ffeea1db87a50224ae31b488b4756c170598747",
+    "chunk_946387adb7b7c968e15da39a2c18a1c4fea900650e9a5a6f3051b2eedc7d036c",
+    "chunk_f02c2f88e6896d309f27decbe00416f72b191538354eedfd7ae85de0718878ab"
+   ],
+   "cross_references": {
+    "candidates": 2,
+    "additions": 2,
+    "sections": [
+     "133",
+     "140"
+    ]
+   },
+   "named_act_references": {
+    "candidates": 1,
+    "additions": 1,
+    "acts": [
+     "document_c779eb5fc1ee4b5aecd76521c0ef28c84eb84fba1bd649c28406acb0984aedcb:97"
+    ]
+   }
+  },
+  {
+   "question": "subsistence-care-home",
+   "kind": "within_document",
+   "arm": "O",
+   "profile": "hybrid-estnltk-chat-v6",
+   "ms": 3859,
+   "found": [
+    {
+     "phrase": "Toimetulekutoetust ei määrata isikule, kellele osutatakse väljaspool kodu ööpäevaringselt osutatavat üldhooldusteenust",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 14,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 2,
+    "cross_reference": 3
+   },
+   "context_tokens": 10767,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "133"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "133"
+    },
+    {
+     "title": "Perekonnaseadus",
+     "reason": "cross_reference",
+     "section": "97",
+     "named_act": "document_c779eb5fc1ee4b5aecd76521c0ef28c84eb84fba1bd649c28406acb0984aedcb"
+    }
+   ],
+   "selected": [
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_e919cad4a494d4fa19f6527e7411d1da09925eeeebb04ed097fb2aa31be7f824",
+    "chunk_8b5f68fedf054d0fd841977029053ddec7c516941ca9dddf3e136e0d199cac99",
+    "chunk_fe227b7431ba457a8c275cda7209d5394fb1d7f46b2e36e4d0f4d60c2dfcbf0a",
+    "chunk_2a44e5612f3102be2343176579b3775240f064b341a1d3dc57572ede3a3259b9",
+    "chunk_a92ac42bbc4debfb6a212b2ebd9d192f3684f455fedbdab1357ffdd3ef580f68",
+    "chunk_205f8282759a89f85d7db81e5e45128dfaf60b8f5029f3aace6d1ef8faa513e7",
+    "chunk_93771c0c63e76942cf6c50a920ab7bef2983ba7bc2f2fb75ab07df32646bab1a",
+    "chunk_0ee71ddf92ba24afbe762579edaa7dec46e6adeb31b12cedb83647dad970554e",
+    "chunk_8f9b3c0b3d4be1a0b55b90dcd7013c75fadb24b1f659ffffab80073bb46f798b",
+    "chunk_7349ffe229e33ca9b619445095ba2109e42eef29d40704bf22d3a3a9d2a4cf23",
+    "chunk_0284d2d3fe77959015f15aa9e46e868bd96023d88470fd25249c0d8ec3bef3a6",
+    "chunk_f02c2f88e6896d309f27decbe00416f72b191538354eedfd7ae85de0718878ab"
+   ],
+   "cross_references": {
+    "candidates": 3,
+    "additions": 2,
+    "sections": [
+     "133",
+     "133"
+    ]
+   },
+   "named_act_references": {
+    "candidates": 1,
+    "additions": 1,
+    "acts": [
+     "document_c779eb5fc1ee4b5aecd76521c0ef28c84eb84fba1bd649c28406acb0984aedcb:97"
+    ]
+   }
+  },
+  {
+   "question": "subsistence-care-home",
+   "kind": "within_document",
+   "arm": "V",
+   "profile": "hybrid-estnltk-chat-v1",
+   "ms": 3270,
+   "found": [
+    {
+     "phrase": "Toimetulekutoetust ei määrata isikule, kellele osutatakse väljaspool kodu ööpäevaringselt osutatavat üldhooldusteenust",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 7504,
+   "additions": [],
+   "selected": [
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_e919cad4a494d4fa19f6527e7411d1da09925eeeebb04ed097fb2aa31be7f824",
+    "chunk_8b5f68fedf054d0fd841977029053ddec7c516941ca9dddf3e136e0d199cac99",
+    "chunk_fe227b7431ba457a8c275cda7209d5394fb1d7f46b2e36e4d0f4d60c2dfcbf0a",
+    "chunk_2a44e5612f3102be2343176579b3775240f064b341a1d3dc57572ede3a3259b9",
+    "chunk_a92ac42bbc4debfb6a212b2ebd9d192f3684f455fedbdab1357ffdd3ef580f68",
+    "chunk_205f8282759a89f85d7db81e5e45128dfaf60b8f5029f3aace6d1ef8faa513e7",
+    "chunk_93771c0c63e76942cf6c50a920ab7bef2983ba7bc2f2fb75ab07df32646bab1a"
+   ],
+   "cross_references": null,
+   "named_act_references": null,
+   "seeds": [
+    {
+     "act": "130062026065",
+     "section": "131",
+     "passage": 186
+    },
+    {
+     "act": "130062026065",
+     "section": "139^1",
+     "passage": 198
+    }
+   ]
+  },
+  {
+   "question": "subsistence-care-home",
+   "kind": "within_document",
+   "arm": "R",
+   "profile": "simulated-chat-v1-plus-pointers",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "Toimetulekutoetust ei määrata isikule, kellele osutatakse väljaspool kodu ööpäevaringselt osutatavat üldhooldusteenust",
+     "in_evidence": false,
+     "in_seeds": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {},
+   "context_tokens": 10219,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 192,
+     "reason": "exact_subsection",
+     "exception": false,
+     "from": "131/2",
+     "to": "133/5"
+    },
+    {
+     "act": "130062026065",
+     "passage": 193,
+     "reason": "exact_subsection",
+     "exception": false,
+     "from": "131/2",
+     "to": "133/6"
+    },
+    {
+     "act": "130062026065",
+     "passage": 187,
+     "reason": "incoming",
+     "exception": true,
+     "from": "131/10",
+     "to": "131/8"
+    },
+    {
+     "act": "130062026065",
+     "passage": 197,
+     "reason": "incoming",
+     "exception": false,
+     "from": "135/1",
+     "to": "131/7"
+    }
+   ],
+   "candidates": 11,
+   "cross_references": null
+  },
+  {
+   "question": "subsistence-care-home",
+   "kind": "within_document",
+   "arm": "S",
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "Toimetulekutoetust ei määrata isikule, kellele osutatakse väljaspool kodu ööpäevaringselt osutatavat üldhooldusteenust",
+     "in_evidence": false,
+     "in_seeds": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 11,
+   "reasons": {},
+   "context_tokens": 9047,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 191,
+     "reason": "first_passage",
+     "exception": false,
+     "from": "131/2",
+     "to": "133/null"
+    },
+    {
+     "act": "130062026065",
+     "passage": 202,
+     "reason": "first_passage",
+     "exception": false,
+     "from": "139^1/3",
+     "to": "140/null"
+    }
+   ],
+   "candidates": 2,
+   "cross_references": null
+  },
+  {
+   "question": "subsistence-prison",
+   "kind": "within_document",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 2800,
+   "found": [
+    {
+     "phrase": "samuti isikule, kes viibib kinnipeetava või vahistatuna kinnipidamisasutuses",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 7188,
+   "additions": [],
+   "selected": [
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_8b5f68fedf054d0fd841977029053ddec7c516941ca9dddf3e136e0d199cac99",
+    "chunk_0ee71ddf92ba24afbe762579edaa7dec46e6adeb31b12cedb83647dad970554e",
+    "chunk_dfb5abaf7ff28ee997c8f27d4948e2d496056c813b0faf3755cc469efb9e8e51",
+    "chunk_df0ad46d4f83705e57fc4a8e7b5e35ed7bd76bd4edd64d28438b9f17cd6d14e4",
+    "chunk_6def9df03d213227eb59e283f35d52112e4ef36a51eb233db94e1b25736b8589",
+    "chunk_5c286a78ecb97b90aac8f231c2bbc3e7b1fc657c92051ba79637b8c4fc742cce",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_8f9b3c0b3d4be1a0b55b90dcd7013c75fadb24b1f659ffffab80073bb46f798b"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "subsistence-prison",
+   "kind": "within_document",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 2360,
+   "found": [
+    {
+     "phrase": "samuti isikule, kes viibib kinnipeetava või vahistatuna kinnipidamisasutuses",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 10487,
+   "additions": [],
+   "selected": [
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_8b5f68fedf054d0fd841977029053ddec7c516941ca9dddf3e136e0d199cac99",
+    "chunk_0ee71ddf92ba24afbe762579edaa7dec46e6adeb31b12cedb83647dad970554e",
+    "chunk_dfb5abaf7ff28ee997c8f27d4948e2d496056c813b0faf3755cc469efb9e8e51",
+    "chunk_df0ad46d4f83705e57fc4a8e7b5e35ed7bd76bd4edd64d28438b9f17cd6d14e4",
+    "chunk_6def9df03d213227eb59e283f35d52112e4ef36a51eb233db94e1b25736b8589",
+    "chunk_5c286a78ecb97b90aac8f231c2bbc3e7b1fc657c92051ba79637b8c4fc742cce",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_8f9b3c0b3d4be1a0b55b90dcd7013c75fadb24b1f659ffffab80073bb46f798b",
+    "chunk_963d4eea42f12693d7700f25e13c0614cbb6bfc04acacde2746553699c8192ce",
+    "chunk_6ff726e1ebb808c77459dd586ffeea1db87a50224ae31b488b4756c170598747",
+    "chunk_b6cc2b16bb9d52a1e9810b1eaf5849ea0e2bdd74206113ccf888f8427da111a3",
+    "chunk_45bf9126aca0c7949923456c0a92b5a0e2bb1bc5c3fb875d33c022230192d559"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "subsistence-prison",
+   "kind": "within_document",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 2203,
+   "found": [
+    {
+     "phrase": "samuti isikule, kes viibib kinnipeetava või vahistatuna kinnipidamisasutuses",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 10287,
+   "additions": [],
+   "selected": [
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_8b5f68fedf054d0fd841977029053ddec7c516941ca9dddf3e136e0d199cac99",
+    "chunk_0ee71ddf92ba24afbe762579edaa7dec46e6adeb31b12cedb83647dad970554e",
+    "chunk_dfb5abaf7ff28ee997c8f27d4948e2d496056c813b0faf3755cc469efb9e8e51",
+    "chunk_df0ad46d4f83705e57fc4a8e7b5e35ed7bd76bd4edd64d28438b9f17cd6d14e4",
+    "chunk_6def9df03d213227eb59e283f35d52112e4ef36a51eb233db94e1b25736b8589",
+    "chunk_5c286a78ecb97b90aac8f231c2bbc3e7b1fc657c92051ba79637b8c4fc742cce",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_8f9b3c0b3d4be1a0b55b90dcd7013c75fadb24b1f659ffffab80073bb46f798b"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "subsistence-prison",
+   "kind": "within_document",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 2317,
+   "found": [
+    {
+     "phrase": "samuti isikule, kes viibib kinnipeetava või vahistatuna kinnipidamisasutuses",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 8105,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "133"
+    }
+   ],
+   "selected": [
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_8b5f68fedf054d0fd841977029053ddec7c516941ca9dddf3e136e0d199cac99",
+    "chunk_0ee71ddf92ba24afbe762579edaa7dec46e6adeb31b12cedb83647dad970554e",
+    "chunk_dfb5abaf7ff28ee997c8f27d4948e2d496056c813b0faf3755cc469efb9e8e51",
+    "chunk_df0ad46d4f83705e57fc4a8e7b5e35ed7bd76bd4edd64d28438b9f17cd6d14e4",
+    "chunk_6def9df03d213227eb59e283f35d52112e4ef36a51eb233db94e1b25736b8589",
+    "chunk_5c286a78ecb97b90aac8f231c2bbc3e7b1fc657c92051ba79637b8c4fc742cce",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_8f9b3c0b3d4be1a0b55b90dcd7013c75fadb24b1f659ffffab80073bb46f798b",
+    "chunk_6ff726e1ebb808c77459dd586ffeea1db87a50224ae31b488b4756c170598747"
+   ],
+   "cross_references": {
+    "candidates": 1,
+    "additions": 1,
+    "sections": [
+     "133"
+    ]
+   },
+   "named_act_references": null
+  },
+  {
+   "question": "subsistence-prison",
+   "kind": "within_document",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 2444,
+   "found": [
+    {
+     "phrase": "samuti isikule, kes viibib kinnipeetava või vahistatuna kinnipidamisasutuses",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 10104,
+   "additions": [
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Vaesus Eestis",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Vaesus Eestis",
+     "reason": "structural_expansion"
+    }
+   ],
+   "selected": [
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_8b5f68fedf054d0fd841977029053ddec7c516941ca9dddf3e136e0d199cac99",
+    "chunk_0ee71ddf92ba24afbe762579edaa7dec46e6adeb31b12cedb83647dad970554e",
+    "chunk_dfb5abaf7ff28ee997c8f27d4948e2d496056c813b0faf3755cc469efb9e8e51",
+    "chunk_df0ad46d4f83705e57fc4a8e7b5e35ed7bd76bd4edd64d28438b9f17cd6d14e4",
+    "chunk_6def9df03d213227eb59e283f35d52112e4ef36a51eb233db94e1b25736b8589",
+    "chunk_5c286a78ecb97b90aac8f231c2bbc3e7b1fc657c92051ba79637b8c4fc742cce",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_8f9b3c0b3d4be1a0b55b90dcd7013c75fadb24b1f659ffffab80073bb46f798b",
+    "chunk_3c27892fae6e8937f5559fbeabd3a092cda550995f86d1b704c2e912c6602b23",
+    "chunk_a9162a3c39c069ae2a3e10a53a5cb8f08f16018d5a1db2bf72cb48a72da66062",
+    "chunk_7830bb07b556b9faa05f95f4d3a76e2157b214a36bbe5a2c763d8562867d82f0",
+    "chunk_2cce6fcbeb58527f9dd08a327a3af373dc0238832a7f85e274ec81cf2a878d26"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "subsistence-prison",
+   "kind": "within_document",
+   "arm": "L",
+   "profile": "hybrid-estnltk-chat-v3",
+   "ms": 2190,
+   "found": [
+    {
+     "phrase": "samuti isikule, kes viibib kinnipeetava või vahistatuna kinnipidamisasutuses",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 11204,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "133"
+    }
+   ],
+   "selected": [
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_8b5f68fedf054d0fd841977029053ddec7c516941ca9dddf3e136e0d199cac99",
+    "chunk_0ee71ddf92ba24afbe762579edaa7dec46e6adeb31b12cedb83647dad970554e",
+    "chunk_dfb5abaf7ff28ee997c8f27d4948e2d496056c813b0faf3755cc469efb9e8e51",
+    "chunk_df0ad46d4f83705e57fc4a8e7b5e35ed7bd76bd4edd64d28438b9f17cd6d14e4",
+    "chunk_6def9df03d213227eb59e283f35d52112e4ef36a51eb233db94e1b25736b8589",
+    "chunk_5c286a78ecb97b90aac8f231c2bbc3e7b1fc657c92051ba79637b8c4fc742cce",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_8f9b3c0b3d4be1a0b55b90dcd7013c75fadb24b1f659ffffab80073bb46f798b",
+    "chunk_6ff726e1ebb808c77459dd586ffeea1db87a50224ae31b488b4756c170598747"
+   ],
+   "cross_references": {
+    "candidates": 1,
+    "additions": 1,
+    "sections": [
+     "133"
+    ]
+   },
+   "named_act_references": null
+  },
+  {
+   "question": "subsistence-prison",
+   "kind": "within_document",
+   "arm": "N",
+   "profile": "hybrid-estnltk-chat-v4",
+   "ms": 2159,
+   "found": [
+    {
+     "phrase": "samuti isikule, kes viibib kinnipeetava või vahistatuna kinnipidamisasutuses",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 11204,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "133"
+    }
+   ],
+   "selected": [
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_8b5f68fedf054d0fd841977029053ddec7c516941ca9dddf3e136e0d199cac99",
+    "chunk_0ee71ddf92ba24afbe762579edaa7dec46e6adeb31b12cedb83647dad970554e",
+    "chunk_dfb5abaf7ff28ee997c8f27d4948e2d496056c813b0faf3755cc469efb9e8e51",
+    "chunk_df0ad46d4f83705e57fc4a8e7b5e35ed7bd76bd4edd64d28438b9f17cd6d14e4",
+    "chunk_6def9df03d213227eb59e283f35d52112e4ef36a51eb233db94e1b25736b8589",
+    "chunk_5c286a78ecb97b90aac8f231c2bbc3e7b1fc657c92051ba79637b8c4fc742cce",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_8f9b3c0b3d4be1a0b55b90dcd7013c75fadb24b1f659ffffab80073bb46f798b",
+    "chunk_6ff726e1ebb808c77459dd586ffeea1db87a50224ae31b488b4756c170598747"
+   ],
+   "cross_references": {
+    "candidates": 1,
+    "additions": 1,
+    "sections": [
+     "133"
+    ]
+   },
+   "named_act_references": {
+    "candidates": 0,
+    "additions": 0,
+    "acts": []
+   }
+  },
+  {
+   "question": "subsistence-prison",
+   "kind": "within_document",
+   "arm": "O",
+   "profile": "hybrid-estnltk-chat-v6",
+   "ms": 2438,
+   "found": [
+    {
+     "phrase": "samuti isikule, kes viibib kinnipeetava või vahistatuna kinnipidamisasutuses",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 11,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 2
+   },
+   "context_tokens": 12247,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "133"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "133"
+    }
+   ],
+   "selected": [
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_8b5f68fedf054d0fd841977029053ddec7c516941ca9dddf3e136e0d199cac99",
+    "chunk_0ee71ddf92ba24afbe762579edaa7dec46e6adeb31b12cedb83647dad970554e",
+    "chunk_dfb5abaf7ff28ee997c8f27d4948e2d496056c813b0faf3755cc469efb9e8e51",
+    "chunk_df0ad46d4f83705e57fc4a8e7b5e35ed7bd76bd4edd64d28438b9f17cd6d14e4",
+    "chunk_6def9df03d213227eb59e283f35d52112e4ef36a51eb233db94e1b25736b8589",
+    "chunk_5c286a78ecb97b90aac8f231c2bbc3e7b1fc657c92051ba79637b8c4fc742cce",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_8f9b3c0b3d4be1a0b55b90dcd7013c75fadb24b1f659ffffab80073bb46f798b",
+    "chunk_7349ffe229e33ca9b619445095ba2109e42eef29d40704bf22d3a3a9d2a4cf23",
+    "chunk_0284d2d3fe77959015f15aa9e46e868bd96023d88470fd25249c0d8ec3bef3a6"
+   ],
+   "cross_references": {
+    "candidates": 2,
+    "additions": 2,
+    "sections": [
+     "133",
+     "133"
+    ]
+   },
+   "named_act_references": {
+    "candidates": 0,
+    "additions": 0,
+    "acts": []
+   }
+  },
+  {
+   "question": "subsistence-prison",
+   "kind": "within_document",
+   "arm": "V",
+   "profile": "hybrid-estnltk-chat-v1",
+   "ms": 2267,
+   "found": [
+    {
+     "phrase": "samuti isikule, kes viibib kinnipeetava või vahistatuna kinnipidamisasutuses",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 7246,
+   "additions": [],
+   "selected": [
+    "chunk_80262dfacf0247663dea3a26990a3daafeb4815a37c5e42a0934effd58ae4e41",
+    "chunk_8b5f68fedf054d0fd841977029053ddec7c516941ca9dddf3e136e0d199cac99",
+    "chunk_0ee71ddf92ba24afbe762579edaa7dec46e6adeb31b12cedb83647dad970554e",
+    "chunk_dfb5abaf7ff28ee997c8f27d4948e2d496056c813b0faf3755cc469efb9e8e51",
+    "chunk_df0ad46d4f83705e57fc4a8e7b5e35ed7bd76bd4edd64d28438b9f17cd6d14e4",
+    "chunk_6def9df03d213227eb59e283f35d52112e4ef36a51eb233db94e1b25736b8589",
+    "chunk_5c286a78ecb97b90aac8f231c2bbc3e7b1fc657c92051ba79637b8c4fc742cce",
+    "chunk_b9ff42490c5677e35f4910c447425e41e844605bcb66fe11fed66d44a72f7a88",
+    "chunk_8f9b3c0b3d4be1a0b55b90dcd7013c75fadb24b1f659ffffab80073bb46f798b"
+   ],
+   "cross_references": null,
+   "named_act_references": null,
+   "seeds": [
+    {
+     "act": "130062026065",
+     "section": "132",
+     "passage": 190
+    },
+    {
+     "act": "130062026065",
+     "section": "131",
+     "passage": 186
+    },
+    {
+     "act": "130062026065",
+     "section": "131",
+     "passage": 187
+    }
+   ]
+  },
+  {
+   "question": "subsistence-prison",
+   "kind": "within_document",
+   "arm": "R",
+   "profile": "simulated-chat-v1-plus-pointers",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "samuti isikule, kes viibib kinnipeetava või vahistatuna kinnipidamisasutuses",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {},
+   "context_tokens": 10103,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 192,
+     "reason": "exact_subsection",
+     "exception": false,
+     "from": "131/2",
+     "to": "133/5"
+    },
+    {
+     "act": "130062026065",
+     "passage": 193,
+     "reason": "exact_subsection",
+     "exception": false,
+     "from": "131/2",
+     "to": "133/6"
+    },
+    {
+     "act": "130062026065",
+     "passage": 188,
+     "reason": "incoming",
+     "exception": false,
+     "from": "132/2",
+     "to": "131/7"
+    },
+    {
+     "act": "130062026065",
+     "passage": 197,
+     "reason": "incoming",
+     "exception": false,
+     "from": "135/1",
+     "to": "131/7"
+    }
+   ],
+   "candidates": 5,
+   "cross_references": null
+  },
+  {
+   "question": "subsistence-prison",
+   "kind": "within_document",
+   "arm": "S",
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "samuti isikule, kes viibib kinnipeetava või vahistatuna kinnipidamisasutuses",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {},
+   "context_tokens": 8047,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 191,
+     "reason": "first_passage",
+     "exception": false,
+     "from": "131/2",
+     "to": "133/null"
+    }
+   ],
+   "candidates": 1,
+   "cross_references": null
+  },
+  {
+   "question": "involuntary-placement",
+   "kind": "within_document",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 3965,
+   "found": [
+    {
+     "phrase": "varasemate abimeetmete rakendamine ei ole osutunud küllaldaseks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 7329,
+   "additions": [],
+   "selected": [
+    "chunk_f6d3c0b38362b6b6353661094b7d101b26c14fe135e219a6b76d9b07e6aa86e2",
+    "chunk_01ce3e19e8d6361e37e8646ad15aaff8102502cfc09a35b01741f0928e9d6e29",
+    "chunk_d2b182588136f20a9de6f70b055ac873817a2fea12822af354bd6dc25ef80938",
+    "chunk_ef4a88c1e0ca3618664bf99d87f19ed254b8c81b43d69af17002e2a748ec1268",
+    "chunk_5697ddad5380f56490d7ca3c186978051d3c1b87b6aa74802a95f6c944538ffd",
+    "chunk_37ad94283771e1402540f7f81b1b5d2c282f981689bb0eca39c02d29f9622b07",
+    "chunk_31aa23b1a80c90a615516e19e3f920ce58e4d5132a958585b5b57e8df5fc89af",
+    "chunk_3cf05e64d4414d79b1cae1fd6ebe6074a1dab3ec6b67f73f8bc1516fb8283f37",
+    "chunk_f9f8f427032926aec77149fa7b5025871e94006859535483231070ba0fe66f20"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "involuntary-placement",
+   "kind": "within_document",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 1831,
+   "found": [
+    {
+     "phrase": "varasemate abimeetmete rakendamine ei ole osutunud küllaldaseks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 10655,
+   "additions": [],
+   "selected": [
+    "chunk_f6d3c0b38362b6b6353661094b7d101b26c14fe135e219a6b76d9b07e6aa86e2",
+    "chunk_01ce3e19e8d6361e37e8646ad15aaff8102502cfc09a35b01741f0928e9d6e29",
+    "chunk_d2b182588136f20a9de6f70b055ac873817a2fea12822af354bd6dc25ef80938",
+    "chunk_ef4a88c1e0ca3618664bf99d87f19ed254b8c81b43d69af17002e2a748ec1268",
+    "chunk_5697ddad5380f56490d7ca3c186978051d3c1b87b6aa74802a95f6c944538ffd",
+    "chunk_37ad94283771e1402540f7f81b1b5d2c282f981689bb0eca39c02d29f9622b07",
+    "chunk_31aa23b1a80c90a615516e19e3f920ce58e4d5132a958585b5b57e8df5fc89af",
+    "chunk_3cf05e64d4414d79b1cae1fd6ebe6074a1dab3ec6b67f73f8bc1516fb8283f37",
+    "chunk_f9f8f427032926aec77149fa7b5025871e94006859535483231070ba0fe66f20",
+    "chunk_603fef74a697aa2efe7e981ac65371a402deca9c028fc59d5fcc9f11d04861a2",
+    "chunk_a825930121f7fec653cb7003dd2725c641e2ca1fc59526a849ebfe1cb0d2ffb9",
+    "chunk_b1d05304bce108787127a522328d02f782cc384ed02ecceb2c23b12f581ef3e1",
+    "chunk_4772810c156483950faef5e1f22a0ad71996283fb35bbb6618c2c3fda528d3ed"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "involuntary-placement",
+   "kind": "within_document",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 1632,
+   "found": [
+    {
+     "phrase": "varasemate abimeetmete rakendamine ei ole osutunud küllaldaseks",
+     "in_evidence": true,
+     "in_cards": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8329,
+   "additions": [],
+   "selected": [
+    "chunk_f6d3c0b38362b6b6353661094b7d101b26c14fe135e219a6b76d9b07e6aa86e2",
+    "chunk_01ce3e19e8d6361e37e8646ad15aaff8102502cfc09a35b01741f0928e9d6e29",
+    "chunk_d2b182588136f20a9de6f70b055ac873817a2fea12822af354bd6dc25ef80938",
+    "chunk_ef4a88c1e0ca3618664bf99d87f19ed254b8c81b43d69af17002e2a748ec1268",
+    "chunk_5697ddad5380f56490d7ca3c186978051d3c1b87b6aa74802a95f6c944538ffd",
+    "chunk_37ad94283771e1402540f7f81b1b5d2c282f981689bb0eca39c02d29f9622b07",
+    "chunk_31aa23b1a80c90a615516e19e3f920ce58e4d5132a958585b5b57e8df5fc89af",
+    "chunk_3cf05e64d4414d79b1cae1fd6ebe6074a1dab3ec6b67f73f8bc1516fb8283f37",
+    "chunk_f9f8f427032926aec77149fa7b5025871e94006859535483231070ba0fe66f20"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "involuntary-placement",
+   "kind": "within_document",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 1782,
+   "found": [
+    {
+     "phrase": "varasemate abimeetmete rakendamine ei ole osutunud küllaldaseks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 11,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 2
+   },
+   "context_tokens": 8592,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "106"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "107"
+    }
+   ],
+   "selected": [
+    "chunk_f6d3c0b38362b6b6353661094b7d101b26c14fe135e219a6b76d9b07e6aa86e2",
+    "chunk_01ce3e19e8d6361e37e8646ad15aaff8102502cfc09a35b01741f0928e9d6e29",
+    "chunk_d2b182588136f20a9de6f70b055ac873817a2fea12822af354bd6dc25ef80938",
+    "chunk_ef4a88c1e0ca3618664bf99d87f19ed254b8c81b43d69af17002e2a748ec1268",
+    "chunk_5697ddad5380f56490d7ca3c186978051d3c1b87b6aa74802a95f6c944538ffd",
+    "chunk_37ad94283771e1402540f7f81b1b5d2c282f981689bb0eca39c02d29f9622b07",
+    "chunk_31aa23b1a80c90a615516e19e3f920ce58e4d5132a958585b5b57e8df5fc89af",
+    "chunk_3cf05e64d4414d79b1cae1fd6ebe6074a1dab3ec6b67f73f8bc1516fb8283f37",
+    "chunk_f9f8f427032926aec77149fa7b5025871e94006859535483231070ba0fe66f20",
+    "chunk_1dae4abc5baeb49a4b8354b09d4ab434ef323d9add05ebb92e93d20a4d7b53e3",
+    "chunk_f87b44ad2d09344a80d4b2f71911f85d5f187495fdcc342cbffe0c04967953c3"
+   ],
+   "cross_references": {
+    "candidates": 3,
+    "additions": 2,
+    "sections": [
+     "106",
+     "107"
+    ]
+   },
+   "named_act_references": null
+  },
+  {
+   "question": "involuntary-placement",
+   "kind": "within_document",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 1845,
+   "found": [
+    {
+     "phrase": "varasemate abimeetmete rakendamine ei ole osutunud küllaldaseks",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 10291,
+   "additions": [
+    {
+     "title": "Õigus saada sotsiaalteenuseid võrdsetel alustel",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Õigus saada sotsiaalteenuseid võrdsetel alustel",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Vabatahtlikkuse põhimõte üldhooldusteenuse osutamisel",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Vabatahtlikkuse põhimõte üldhooldusteenuse osutamisel",
+     "reason": "structural_expansion"
+    }
+   ],
+   "selected": [
+    "chunk_f6d3c0b38362b6b6353661094b7d101b26c14fe135e219a6b76d9b07e6aa86e2",
+    "chunk_01ce3e19e8d6361e37e8646ad15aaff8102502cfc09a35b01741f0928e9d6e29",
+    "chunk_d2b182588136f20a9de6f70b055ac873817a2fea12822af354bd6dc25ef80938",
+    "chunk_ef4a88c1e0ca3618664bf99d87f19ed254b8c81b43d69af17002e2a748ec1268",
+    "chunk_5697ddad5380f56490d7ca3c186978051d3c1b87b6aa74802a95f6c944538ffd",
+    "chunk_37ad94283771e1402540f7f81b1b5d2c282f981689bb0eca39c02d29f9622b07",
+    "chunk_31aa23b1a80c90a615516e19e3f920ce58e4d5132a958585b5b57e8df5fc89af",
+    "chunk_3cf05e64d4414d79b1cae1fd6ebe6074a1dab3ec6b67f73f8bc1516fb8283f37",
+    "chunk_f9f8f427032926aec77149fa7b5025871e94006859535483231070ba0fe66f20",
+    "chunk_9ae5f9fdde467a43d2a89dcaca64faa2043a0fe7c304b7ac71e0d15c100edd26",
+    "chunk_bb4c687be190cad786c2c987f968129ec419c56d0b6dda5d6d0a18f020930bbd",
+    "chunk_d8407aa7cbc20d91d7c1111537c95b0902ef0d9edd4db0ce24c8c7aace72d2c4",
+    "chunk_e8908468e4f5ce4bb4b94aa50c9f923b30e4f810cd3f69f03a212dd7636c9909"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "involuntary-placement",
+   "kind": "within_document",
+   "arm": "L",
+   "profile": "hybrid-estnltk-chat-v3",
+   "ms": 1732,
+   "found": [
+    {
+     "phrase": "varasemate abimeetmete rakendamine ei ole osutunud küllaldaseks",
+     "in_evidence": true,
+     "in_cards": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 11,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 2
+   },
+   "context_tokens": 9592,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "106"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "107"
+    }
+   ],
+   "selected": [
+    "chunk_f6d3c0b38362b6b6353661094b7d101b26c14fe135e219a6b76d9b07e6aa86e2",
+    "chunk_01ce3e19e8d6361e37e8646ad15aaff8102502cfc09a35b01741f0928e9d6e29",
+    "chunk_d2b182588136f20a9de6f70b055ac873817a2fea12822af354bd6dc25ef80938",
+    "chunk_ef4a88c1e0ca3618664bf99d87f19ed254b8c81b43d69af17002e2a748ec1268",
+    "chunk_5697ddad5380f56490d7ca3c186978051d3c1b87b6aa74802a95f6c944538ffd",
+    "chunk_37ad94283771e1402540f7f81b1b5d2c282f981689bb0eca39c02d29f9622b07",
+    "chunk_31aa23b1a80c90a615516e19e3f920ce58e4d5132a958585b5b57e8df5fc89af",
+    "chunk_3cf05e64d4414d79b1cae1fd6ebe6074a1dab3ec6b67f73f8bc1516fb8283f37",
+    "chunk_f9f8f427032926aec77149fa7b5025871e94006859535483231070ba0fe66f20",
+    "chunk_1dae4abc5baeb49a4b8354b09d4ab434ef323d9add05ebb92e93d20a4d7b53e3",
+    "chunk_f87b44ad2d09344a80d4b2f71911f85d5f187495fdcc342cbffe0c04967953c3"
+   ],
+   "cross_references": {
+    "candidates": 3,
+    "additions": 2,
+    "sections": [
+     "106",
+     "107"
+    ]
+   },
+   "named_act_references": null
+  },
+  {
+   "question": "involuntary-placement",
+   "kind": "within_document",
+   "arm": "N",
+   "profile": "hybrid-estnltk-chat-v4",
+   "ms": 1641,
+   "found": [
+    {
+     "phrase": "varasemate abimeetmete rakendamine ei ole osutunud küllaldaseks",
+     "in_evidence": true,
+     "in_cards": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 11,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 2
+   },
+   "context_tokens": 9592,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "106"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "107"
+    }
+   ],
+   "selected": [
+    "chunk_f6d3c0b38362b6b6353661094b7d101b26c14fe135e219a6b76d9b07e6aa86e2",
+    "chunk_01ce3e19e8d6361e37e8646ad15aaff8102502cfc09a35b01741f0928e9d6e29",
+    "chunk_d2b182588136f20a9de6f70b055ac873817a2fea12822af354bd6dc25ef80938",
+    "chunk_ef4a88c1e0ca3618664bf99d87f19ed254b8c81b43d69af17002e2a748ec1268",
+    "chunk_5697ddad5380f56490d7ca3c186978051d3c1b87b6aa74802a95f6c944538ffd",
+    "chunk_37ad94283771e1402540f7f81b1b5d2c282f981689bb0eca39c02d29f9622b07",
+    "chunk_31aa23b1a80c90a615516e19e3f920ce58e4d5132a958585b5b57e8df5fc89af",
+    "chunk_3cf05e64d4414d79b1cae1fd6ebe6074a1dab3ec6b67f73f8bc1516fb8283f37",
+    "chunk_f9f8f427032926aec77149fa7b5025871e94006859535483231070ba0fe66f20",
+    "chunk_1dae4abc5baeb49a4b8354b09d4ab434ef323d9add05ebb92e93d20a4d7b53e3",
+    "chunk_f87b44ad2d09344a80d4b2f71911f85d5f187495fdcc342cbffe0c04967953c3"
+   ],
+   "cross_references": {
+    "candidates": 3,
+    "additions": 2,
+    "sections": [
+     "106",
+     "107"
+    ]
+   },
+   "named_act_references": {
+    "candidates": 0,
+    "additions": 0,
+    "acts": []
+   }
+  },
+  {
+   "question": "involuntary-placement",
+   "kind": "within_document",
+   "arm": "O",
+   "profile": "hybrid-estnltk-chat-v6",
+   "ms": 1611,
+   "found": [
+    {
+     "phrase": "varasemate abimeetmete rakendamine ei ole osutunud küllaldaseks",
+     "in_evidence": true,
+     "in_cards": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 11,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 2
+   },
+   "context_tokens": 9592,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "106"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "107"
+    }
+   ],
+   "selected": [
+    "chunk_f6d3c0b38362b6b6353661094b7d101b26c14fe135e219a6b76d9b07e6aa86e2",
+    "chunk_01ce3e19e8d6361e37e8646ad15aaff8102502cfc09a35b01741f0928e9d6e29",
+    "chunk_d2b182588136f20a9de6f70b055ac873817a2fea12822af354bd6dc25ef80938",
+    "chunk_ef4a88c1e0ca3618664bf99d87f19ed254b8c81b43d69af17002e2a748ec1268",
+    "chunk_5697ddad5380f56490d7ca3c186978051d3c1b87b6aa74802a95f6c944538ffd",
+    "chunk_37ad94283771e1402540f7f81b1b5d2c282f981689bb0eca39c02d29f9622b07",
+    "chunk_31aa23b1a80c90a615516e19e3f920ce58e4d5132a958585b5b57e8df5fc89af",
+    "chunk_3cf05e64d4414d79b1cae1fd6ebe6074a1dab3ec6b67f73f8bc1516fb8283f37",
+    "chunk_f9f8f427032926aec77149fa7b5025871e94006859535483231070ba0fe66f20",
+    "chunk_1dae4abc5baeb49a4b8354b09d4ab434ef323d9add05ebb92e93d20a4d7b53e3",
+    "chunk_f87b44ad2d09344a80d4b2f71911f85d5f187495fdcc342cbffe0c04967953c3"
+   ],
+   "cross_references": {
+    "candidates": 3,
+    "additions": 2,
+    "sections": [
+     "106",
+     "107"
+    ]
+   },
+   "named_act_references": {
+    "candidates": 0,
+    "additions": 0,
+    "acts": []
+   }
+  },
+  {
+   "question": "involuntary-placement",
+   "kind": "within_document",
+   "arm": "V",
+   "profile": "hybrid-estnltk-chat-v1",
+   "ms": 1624,
+   "found": [
+    {
+     "phrase": "varasemate abimeetmete rakendamine ei ole osutunud küllaldaseks",
+     "in_evidence": true,
+     "in_cards": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8329,
+   "additions": [],
+   "selected": [
+    "chunk_f6d3c0b38362b6b6353661094b7d101b26c14fe135e219a6b76d9b07e6aa86e2",
+    "chunk_01ce3e19e8d6361e37e8646ad15aaff8102502cfc09a35b01741f0928e9d6e29",
+    "chunk_d2b182588136f20a9de6f70b055ac873817a2fea12822af354bd6dc25ef80938",
+    "chunk_ef4a88c1e0ca3618664bf99d87f19ed254b8c81b43d69af17002e2a748ec1268",
+    "chunk_5697ddad5380f56490d7ca3c186978051d3c1b87b6aa74802a95f6c944538ffd",
+    "chunk_37ad94283771e1402540f7f81b1b5d2c282f981689bb0eca39c02d29f9622b07",
+    "chunk_31aa23b1a80c90a615516e19e3f920ce58e4d5132a958585b5b57e8df5fc89af",
+    "chunk_3cf05e64d4414d79b1cae1fd6ebe6074a1dab3ec6b67f73f8bc1516fb8283f37",
+    "chunk_f9f8f427032926aec77149fa7b5025871e94006859535483231070ba0fe66f20"
+   ],
+   "cross_references": null,
+   "named_act_references": null,
+   "seeds": [
+    {
+     "act": "130062026065",
+     "section": "105",
+     "passage": 160
+    },
+    {
+     "act": "130062026065",
+     "section": "12",
+     "passage": 12
+    }
+   ]
+  },
+  {
+   "question": "involuntary-placement",
+   "kind": "within_document",
+   "arm": "R",
+   "profile": "simulated-chat-v1-plus-pointers",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "varasemate abimeetmete rakendamine ei ole osutunud küllaldaseks",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 11,
+   "reasons": {},
+   "context_tokens": 9399,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 162,
+     "reason": "incoming",
+     "exception": false,
+     "from": "106/1",
+     "to": "105/null"
+    },
+    {
+     "act": "130062026065",
+     "passage": 163,
+     "reason": "first_passage",
+     "exception": true,
+     "from": "12/1",
+     "to": "107/null"
+    }
+   ],
+   "candidates": 2,
+   "cross_references": null
+  },
+  {
+   "question": "involuntary-placement",
+   "kind": "within_document",
+   "arm": "S",
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "varasemate abimeetmete rakendamine ei ole osutunud küllaldaseks",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 11,
+   "reasons": {},
+   "context_tokens": 9399,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 162,
+     "reason": "first_passage",
+     "exception": true,
+     "from": "12/1",
+     "to": "106/null"
+    },
+    {
+     "act": "130062026065",
+     "passage": 163,
+     "reason": "first_passage",
+     "exception": true,
+     "from": "12/1",
+     "to": "107/null"
+    }
+   ],
+   "candidates": 2,
+   "cross_references": null
+  },
+  {
+   "question": "own-share-shortfall",
+   "kind": "within_document",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 3729,
+   "found": [
+    {
+     "phrase": "vähemalt 15 protsenti tema tuludest",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 7406,
+   "additions": [],
+   "selected": [
+    "chunk_019796546fc2ae7301cd8890147ce5176e41ca5f3ebd0ccbf5bf8fbddbe6e677",
+    "chunk_d49db8bb74dcd68e82706a0ed6d694d178ac13e0c46cb8eeff94ae9339fb413a",
+    "chunk_affcedf761bae33fae492b992e9eef40b6d6133fa5921585adac42e025aac2ea",
+    "chunk_ed969f78573e0ad11d00067b30d1a540cf899f4da81a27e4cbc70710a483676c",
+    "chunk_222b805c92facaef7f0b7568a963884fc691476b5d9cc3bddd42b5c2d8419896",
+    "chunk_af6d97d3cc90488a98030e35887f928fcdc39a72708a5c31212728d1cb3fa117",
+    "chunk_c6e4734b77bc790e0e6891c83b8764db3eb412a20992f6db60f282cda806ad41",
+    "chunk_fb9b63d626db3b54c21c57f049796a05491da2d38c240e254d6a7568a337b38c",
+    "chunk_5cb0a849b2f4f173ea98595e6a1142c4bdd336d72948caacd77a20846c736b67"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "own-share-shortfall",
+   "kind": "within_document",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 3014,
+   "found": [
+    {
+     "phrase": "vähemalt 15 protsenti tema tuludest",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 10574,
+   "additions": [],
+   "selected": [
+    "chunk_019796546fc2ae7301cd8890147ce5176e41ca5f3ebd0ccbf5bf8fbddbe6e677",
+    "chunk_d49db8bb74dcd68e82706a0ed6d694d178ac13e0c46cb8eeff94ae9339fb413a",
+    "chunk_affcedf761bae33fae492b992e9eef40b6d6133fa5921585adac42e025aac2ea",
+    "chunk_ed969f78573e0ad11d00067b30d1a540cf899f4da81a27e4cbc70710a483676c",
+    "chunk_222b805c92facaef7f0b7568a963884fc691476b5d9cc3bddd42b5c2d8419896",
+    "chunk_af6d97d3cc90488a98030e35887f928fcdc39a72708a5c31212728d1cb3fa117",
+    "chunk_c6e4734b77bc790e0e6891c83b8764db3eb412a20992f6db60f282cda806ad41",
+    "chunk_fb9b63d626db3b54c21c57f049796a05491da2d38c240e254d6a7568a337b38c",
+    "chunk_5cb0a849b2f4f173ea98595e6a1142c4bdd336d72948caacd77a20846c736b67",
+    "chunk_21e01186ee7989215a34fe9d5acd01d85e0bd6ee1f72eb5dca99422228cc63f9",
+    "chunk_16a88053517eb7b6ff58eb5bc0636c45424ea9d28951e352709f118261daf190",
+    "chunk_bf2ef2536b3589c1801ae57bf587366795dac9330227a5c06c10d5b5f471ceee",
+    "chunk_0c9254f2143ae29eb79afe4826cb0ffd39d59b84056452af3b2e3b3e98975aa6"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "own-share-shortfall",
+   "kind": "within_document",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 2976,
+   "found": [
+    {
+     "phrase": "vähemalt 15 protsenti tema tuludest",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8274,
+   "additions": [],
+   "selected": [
+    "chunk_019796546fc2ae7301cd8890147ce5176e41ca5f3ebd0ccbf5bf8fbddbe6e677",
+    "chunk_d49db8bb74dcd68e82706a0ed6d694d178ac13e0c46cb8eeff94ae9339fb413a",
+    "chunk_affcedf761bae33fae492b992e9eef40b6d6133fa5921585adac42e025aac2ea",
+    "chunk_ed969f78573e0ad11d00067b30d1a540cf899f4da81a27e4cbc70710a483676c",
+    "chunk_222b805c92facaef7f0b7568a963884fc691476b5d9cc3bddd42b5c2d8419896",
+    "chunk_af6d97d3cc90488a98030e35887f928fcdc39a72708a5c31212728d1cb3fa117",
+    "chunk_c6e4734b77bc790e0e6891c83b8764db3eb412a20992f6db60f282cda806ad41",
+    "chunk_fb9b63d626db3b54c21c57f049796a05491da2d38c240e254d6a7568a337b38c",
+    "chunk_5cb0a849b2f4f173ea98595e6a1142c4bdd336d72948caacd77a20846c736b67"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "own-share-shortfall",
+   "kind": "within_document",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 2996,
+   "found": [
+    {
+     "phrase": "vähemalt 15 protsenti tema tuludest",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 8373,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "71"
+    }
+   ],
+   "selected": [
+    "chunk_019796546fc2ae7301cd8890147ce5176e41ca5f3ebd0ccbf5bf8fbddbe6e677",
+    "chunk_d49db8bb74dcd68e82706a0ed6d694d178ac13e0c46cb8eeff94ae9339fb413a",
+    "chunk_affcedf761bae33fae492b992e9eef40b6d6133fa5921585adac42e025aac2ea",
+    "chunk_ed969f78573e0ad11d00067b30d1a540cf899f4da81a27e4cbc70710a483676c",
+    "chunk_222b805c92facaef7f0b7568a963884fc691476b5d9cc3bddd42b5c2d8419896",
+    "chunk_af6d97d3cc90488a98030e35887f928fcdc39a72708a5c31212728d1cb3fa117",
+    "chunk_c6e4734b77bc790e0e6891c83b8764db3eb412a20992f6db60f282cda806ad41",
+    "chunk_fb9b63d626db3b54c21c57f049796a05491da2d38c240e254d6a7568a337b38c",
+    "chunk_5cb0a849b2f4f173ea98595e6a1142c4bdd336d72948caacd77a20846c736b67",
+    "chunk_66be03ca49bb153cec6874dc400d8681158f3a48731d1b9ca8f337e25a0f9bba"
+   ],
+   "cross_references": {
+    "candidates": 4,
+    "additions": 1,
+    "sections": [
+     "71"
+    ]
+   },
+   "named_act_references": null
+  },
+  {
+   "question": "own-share-shortfall",
+   "kind": "within_document",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 2985,
+   "found": [
+    {
+     "phrase": "vähemalt 15 protsenti tema tuludest",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 9510,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Uuring täisealiste puudega inimeste puude tuvastamise, abivajaduse hindamise ja toetamise süsteemist",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Uuring täisealiste puudega inimeste puude tuvastamise, abivajaduse hindamise ja toetamise süsteemist",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "structural_expansion"
+    }
+   ],
+   "selected": [
+    "chunk_019796546fc2ae7301cd8890147ce5176e41ca5f3ebd0ccbf5bf8fbddbe6e677",
+    "chunk_d49db8bb74dcd68e82706a0ed6d694d178ac13e0c46cb8eeff94ae9339fb413a",
+    "chunk_affcedf761bae33fae492b992e9eef40b6d6133fa5921585adac42e025aac2ea",
+    "chunk_ed969f78573e0ad11d00067b30d1a540cf899f4da81a27e4cbc70710a483676c",
+    "chunk_222b805c92facaef7f0b7568a963884fc691476b5d9cc3bddd42b5c2d8419896",
+    "chunk_af6d97d3cc90488a98030e35887f928fcdc39a72708a5c31212728d1cb3fa117",
+    "chunk_c6e4734b77bc790e0e6891c83b8764db3eb412a20992f6db60f282cda806ad41",
+    "chunk_fb9b63d626db3b54c21c57f049796a05491da2d38c240e254d6a7568a337b38c",
+    "chunk_5cb0a849b2f4f173ea98595e6a1142c4bdd336d72948caacd77a20846c736b67",
+    "chunk_63ceb3839401027d0d997f56e83785e191ec47312ff136d07b85883a025fa411",
+    "chunk_702f9ef68b5027d1c78e187078b674ef300422c9225ee9910d2980164ff7971d",
+    "chunk_cb965e6e32b436a9fd2e7db60b5641a9d9d56893cc9bea9eeaa0ab31ba22c8a1",
+    "chunk_69a32b385125880b68cdc1cb4a7b36f6a9beef62a4a0ebfd1ec30675af4ff6db"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "own-share-shortfall",
+   "kind": "within_document",
+   "arm": "L",
+   "profile": "hybrid-estnltk-chat-v3",
+   "ms": 3006,
+   "found": [
+    {
+     "phrase": "vähemalt 15 protsenti tema tuludest",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 9241,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "71"
+    }
+   ],
+   "selected": [
+    "chunk_019796546fc2ae7301cd8890147ce5176e41ca5f3ebd0ccbf5bf8fbddbe6e677",
+    "chunk_d49db8bb74dcd68e82706a0ed6d694d178ac13e0c46cb8eeff94ae9339fb413a",
+    "chunk_affcedf761bae33fae492b992e9eef40b6d6133fa5921585adac42e025aac2ea",
+    "chunk_ed969f78573e0ad11d00067b30d1a540cf899f4da81a27e4cbc70710a483676c",
+    "chunk_222b805c92facaef7f0b7568a963884fc691476b5d9cc3bddd42b5c2d8419896",
+    "chunk_af6d97d3cc90488a98030e35887f928fcdc39a72708a5c31212728d1cb3fa117",
+    "chunk_c6e4734b77bc790e0e6891c83b8764db3eb412a20992f6db60f282cda806ad41",
+    "chunk_fb9b63d626db3b54c21c57f049796a05491da2d38c240e254d6a7568a337b38c",
+    "chunk_5cb0a849b2f4f173ea98595e6a1142c4bdd336d72948caacd77a20846c736b67",
+    "chunk_66be03ca49bb153cec6874dc400d8681158f3a48731d1b9ca8f337e25a0f9bba"
+   ],
+   "cross_references": {
+    "candidates": 4,
+    "additions": 1,
+    "sections": [
+     "71"
+    ]
+   },
+   "named_act_references": null
+  },
+  {
+   "question": "own-share-shortfall",
+   "kind": "within_document",
+   "arm": "N",
+   "profile": "hybrid-estnltk-chat-v4",
+   "ms": 3024,
+   "found": [
+    {
+     "phrase": "vähemalt 15 protsenti tema tuludest",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 11,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 2
+   },
+   "context_tokens": 9511,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "71"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "16",
+     "named_act": "document_c32255b376cda0db1ac63e945ee75bed5b75c967b11d63699a789b53485f97f3"
+    }
+   ],
+   "selected": [
+    "chunk_019796546fc2ae7301cd8890147ce5176e41ca5f3ebd0ccbf5bf8fbddbe6e677",
+    "chunk_d49db8bb74dcd68e82706a0ed6d694d178ac13e0c46cb8eeff94ae9339fb413a",
+    "chunk_affcedf761bae33fae492b992e9eef40b6d6133fa5921585adac42e025aac2ea",
+    "chunk_ed969f78573e0ad11d00067b30d1a540cf899f4da81a27e4cbc70710a483676c",
+    "chunk_222b805c92facaef7f0b7568a963884fc691476b5d9cc3bddd42b5c2d8419896",
+    "chunk_af6d97d3cc90488a98030e35887f928fcdc39a72708a5c31212728d1cb3fa117",
+    "chunk_c6e4734b77bc790e0e6891c83b8764db3eb412a20992f6db60f282cda806ad41",
+    "chunk_fb9b63d626db3b54c21c57f049796a05491da2d38c240e254d6a7568a337b38c",
+    "chunk_5cb0a849b2f4f173ea98595e6a1142c4bdd336d72948caacd77a20846c736b67",
+    "chunk_66be03ca49bb153cec6874dc400d8681158f3a48731d1b9ca8f337e25a0f9bba",
+    "chunk_aedfb2cebc9f4e196b0837f941ac13508f8d69166db0a19382ec6acc6726d778"
+   ],
+   "cross_references": {
+    "candidates": 4,
+    "additions": 1,
+    "sections": [
+     "71"
+    ]
+   },
+   "named_act_references": {
+    "candidates": 1,
+    "additions": 1,
+    "acts": [
+     "document_c32255b376cda0db1ac63e945ee75bed5b75c967b11d63699a789b53485f97f3:16"
+    ]
+   }
+  },
+  {
+   "question": "own-share-shortfall",
+   "kind": "within_document",
+   "arm": "O",
+   "profile": "hybrid-estnltk-chat-v6",
+   "ms": 2825,
+   "found": [
+    {
+     "phrase": "vähemalt 15 protsenti tema tuludest",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 11,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 2
+   },
+   "context_tokens": 9511,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "71"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "16",
+     "named_act": "document_c32255b376cda0db1ac63e945ee75bed5b75c967b11d63699a789b53485f97f3"
+    }
+   ],
+   "selected": [
+    "chunk_019796546fc2ae7301cd8890147ce5176e41ca5f3ebd0ccbf5bf8fbddbe6e677",
+    "chunk_d49db8bb74dcd68e82706a0ed6d694d178ac13e0c46cb8eeff94ae9339fb413a",
+    "chunk_affcedf761bae33fae492b992e9eef40b6d6133fa5921585adac42e025aac2ea",
+    "chunk_ed969f78573e0ad11d00067b30d1a540cf899f4da81a27e4cbc70710a483676c",
+    "chunk_222b805c92facaef7f0b7568a963884fc691476b5d9cc3bddd42b5c2d8419896",
+    "chunk_af6d97d3cc90488a98030e35887f928fcdc39a72708a5c31212728d1cb3fa117",
+    "chunk_c6e4734b77bc790e0e6891c83b8764db3eb412a20992f6db60f282cda806ad41",
+    "chunk_fb9b63d626db3b54c21c57f049796a05491da2d38c240e254d6a7568a337b38c",
+    "chunk_5cb0a849b2f4f173ea98595e6a1142c4bdd336d72948caacd77a20846c736b67",
+    "chunk_66be03ca49bb153cec6874dc400d8681158f3a48731d1b9ca8f337e25a0f9bba",
+    "chunk_aedfb2cebc9f4e196b0837f941ac13508f8d69166db0a19382ec6acc6726d778"
+   ],
+   "cross_references": {
+    "candidates": 4,
+    "additions": 1,
+    "sections": [
+     "71"
+    ]
+   },
+   "named_act_references": {
+    "candidates": 1,
+    "additions": 1,
+    "acts": [
+     "document_c32255b376cda0db1ac63e945ee75bed5b75c967b11d63699a789b53485f97f3:16"
+    ]
+   }
+  },
+  {
+   "question": "own-share-shortfall",
+   "kind": "within_document",
+   "arm": "V",
+   "profile": "hybrid-estnltk-chat-v1",
+   "ms": 2816,
+   "found": [
+    {
+     "phrase": "vähemalt 15 protsenti tema tuludest",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8274,
+   "additions": [],
+   "selected": [
+    "chunk_019796546fc2ae7301cd8890147ce5176e41ca5f3ebd0ccbf5bf8fbddbe6e677",
+    "chunk_d49db8bb74dcd68e82706a0ed6d694d178ac13e0c46cb8eeff94ae9339fb413a",
+    "chunk_affcedf761bae33fae492b992e9eef40b6d6133fa5921585adac42e025aac2ea",
+    "chunk_ed969f78573e0ad11d00067b30d1a540cf899f4da81a27e4cbc70710a483676c",
+    "chunk_222b805c92facaef7f0b7568a963884fc691476b5d9cc3bddd42b5c2d8419896",
+    "chunk_af6d97d3cc90488a98030e35887f928fcdc39a72708a5c31212728d1cb3fa117",
+    "chunk_c6e4734b77bc790e0e6891c83b8764db3eb412a20992f6db60f282cda806ad41",
+    "chunk_fb9b63d626db3b54c21c57f049796a05491da2d38c240e254d6a7568a337b38c",
+    "chunk_5cb0a849b2f4f173ea98595e6a1142c4bdd336d72948caacd77a20846c736b67"
+   ],
+   "cross_references": null,
+   "named_act_references": null,
+   "seeds": [
+    {
+     "act": "130062026065",
+     "section": "74",
+     "passage": 118
+    },
+    {
+     "act": "130062026065",
+     "section": "75",
+     "passage": 120
+    },
+    {
+     "act": "130062026065",
+     "section": "73",
+     "passage": 116
+    }
+   ]
+  },
+  {
+   "question": "own-share-shortfall",
+   "kind": "within_document",
+   "arm": "R",
+   "profile": "simulated-chat-v1-plus-pointers",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "vähemalt 15 protsenti tema tuludest",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 12,
+   "reasons": {},
+   "context_tokens": 9888,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 119,
+     "reason": "own_section",
+     "exception": false,
+     "from": "74/6",
+     "to": "74/10"
+    },
+    {
+     "act": "130062026065",
+     "passage": 112,
+     "reason": "exact_subsection",
+     "exception": false,
+     "from": "75/3",
+     "to": "71/4"
+    },
+    {
+     "act": "130062026065",
+     "passage": 123,
+     "reason": "incoming",
+     "exception": false,
+     "from": "78/1",
+     "to": "73/null"
+    }
+   ],
+   "candidates": 3,
+   "cross_references": null
+  },
+  {
+   "question": "own-share-shortfall",
+   "kind": "within_document",
+   "arm": "S",
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "vähemalt 15 protsenti tema tuludest",
+     "in_evidence": true,
+     "in_seeds": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {},
+   "context_tokens": 9107,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 112,
+     "reason": "first_passage",
+     "exception": false,
+     "from": "75/3",
+     "to": "71/null"
+    }
+   ],
+   "candidates": 1,
+   "cross_references": null
+  },
+  {
+   "question": "rehabilitation-student",
+   "kind": "within_document",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 6395,
+   "found": [
+    {
+     "phrase": "ega omanda põhi-, üldkesk-, kutse- või kõrgharidust",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 5741,
+   "additions": [],
+   "selected": [
+    "chunk_746df521075d02cfeb8861e3d518a71730bd1db4596205d28ae62686411c99bf",
+    "chunk_7716312239c19372534bb907fbe44776a4d15d0bc9687602f13cac8a446918b4",
+    "chunk_850443cba9d3cbca30badd205287904f00fe697e21e0fe2414478bd6436311ba",
+    "chunk_fe3ac7bc7833e8c562112534864392b94bb0c996dd568966c597ee1a358ba5cb",
+    "chunk_ea0d16ccac774df0b4dd149c39711be630b6511acd4ee0c4ef0e89371d9e893c",
+    "chunk_b1aab0525de78df16c9f5729bcac8141e6090f8a632218ad5bf33c77fc16b418",
+    "chunk_cb3712442caf93f706451e6960e7f3d7062b1d34ea8f5ef561c75c9e7d12e3aa",
+    "chunk_50273649e3a5f6539e2b181f5cc2072d00c341156ca0953c9952f6ae3c5095bc",
+    "chunk_6757bdd8438a4f46e507b737d3ec11e2f4d44cc3850005bc08b1b0eeaa04697b"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "rehabilitation-student",
+   "kind": "within_document",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 3057,
+   "found": [
+    {
+     "phrase": "ega omanda põhi-, üldkesk-, kutse- või kõrgharidust",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 7920,
+   "additions": [],
+   "selected": [
+    "chunk_746df521075d02cfeb8861e3d518a71730bd1db4596205d28ae62686411c99bf",
+    "chunk_7716312239c19372534bb907fbe44776a4d15d0bc9687602f13cac8a446918b4",
+    "chunk_850443cba9d3cbca30badd205287904f00fe697e21e0fe2414478bd6436311ba",
+    "chunk_fe3ac7bc7833e8c562112534864392b94bb0c996dd568966c597ee1a358ba5cb",
+    "chunk_ea0d16ccac774df0b4dd149c39711be630b6511acd4ee0c4ef0e89371d9e893c",
+    "chunk_b1aab0525de78df16c9f5729bcac8141e6090f8a632218ad5bf33c77fc16b418",
+    "chunk_cb3712442caf93f706451e6960e7f3d7062b1d34ea8f5ef561c75c9e7d12e3aa",
+    "chunk_50273649e3a5f6539e2b181f5cc2072d00c341156ca0953c9952f6ae3c5095bc",
+    "chunk_6757bdd8438a4f46e507b737d3ec11e2f4d44cc3850005bc08b1b0eeaa04697b",
+    "chunk_655b754377ba43813f3b437b21535589a1428ac1ce660a5653b97514bfff3fc1",
+    "chunk_47d4270bb13e7894ec054e0254be8dd935271680ba4f8a6154609aabed826447",
+    "chunk_e151f77fd9cc7d733cebe8aac9e203bc7cb3a1a9e715962283a1fdff33e0fd5b",
+    "chunk_dc75df526e398ef5bd1e9209850bacf0a908b376d6d333898976b2398109ddbd"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "rehabilitation-student",
+   "kind": "within_document",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 3159,
+   "found": [
+    {
+     "phrase": "ega omanda põhi-, üldkesk-, kutse- või kõrgharidust",
+     "in_evidence": true,
+     "in_cards": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 12,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 3
+   },
+   "context_tokens": 9331,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    }
+   ],
+   "selected": [
+    "chunk_746df521075d02cfeb8861e3d518a71730bd1db4596205d28ae62686411c99bf",
+    "chunk_7716312239c19372534bb907fbe44776a4d15d0bc9687602f13cac8a446918b4",
+    "chunk_850443cba9d3cbca30badd205287904f00fe697e21e0fe2414478bd6436311ba",
+    "chunk_fe3ac7bc7833e8c562112534864392b94bb0c996dd568966c597ee1a358ba5cb",
+    "chunk_ea0d16ccac774df0b4dd149c39711be630b6511acd4ee0c4ef0e89371d9e893c",
+    "chunk_b1aab0525de78df16c9f5729bcac8141e6090f8a632218ad5bf33c77fc16b418",
+    "chunk_cb3712442caf93f706451e6960e7f3d7062b1d34ea8f5ef561c75c9e7d12e3aa",
+    "chunk_50273649e3a5f6539e2b181f5cc2072d00c341156ca0953c9952f6ae3c5095bc",
+    "chunk_6757bdd8438a4f46e507b737d3ec11e2f4d44cc3850005bc08b1b0eeaa04697b",
+    "chunk_f5b1276da0ecef9226dde875c2829c13014b3cc656e0adf50c263e2b738bf80b",
+    "chunk_dc75df526e398ef5bd1e9209850bacf0a908b376d6d333898976b2398109ddbd",
+    "chunk_cb32c69d97e2ea71998d1b55d739f36075d691f91a3ca13e8070d4ec04d40a07"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "rehabilitation-student",
+   "kind": "within_document",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 3002,
+   "found": [
+    {
+     "phrase": "ega omanda põhi-, üldkesk-, kutse- või kõrgharidust",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 6746,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "62"
+    }
+   ],
+   "selected": [
+    "chunk_746df521075d02cfeb8861e3d518a71730bd1db4596205d28ae62686411c99bf",
+    "chunk_7716312239c19372534bb907fbe44776a4d15d0bc9687602f13cac8a446918b4",
+    "chunk_850443cba9d3cbca30badd205287904f00fe697e21e0fe2414478bd6436311ba",
+    "chunk_fe3ac7bc7833e8c562112534864392b94bb0c996dd568966c597ee1a358ba5cb",
+    "chunk_ea0d16ccac774df0b4dd149c39711be630b6511acd4ee0c4ef0e89371d9e893c",
+    "chunk_b1aab0525de78df16c9f5729bcac8141e6090f8a632218ad5bf33c77fc16b418",
+    "chunk_cb3712442caf93f706451e6960e7f3d7062b1d34ea8f5ef561c75c9e7d12e3aa",
+    "chunk_50273649e3a5f6539e2b181f5cc2072d00c341156ca0953c9952f6ae3c5095bc",
+    "chunk_6757bdd8438a4f46e507b737d3ec11e2f4d44cc3850005bc08b1b0eeaa04697b",
+    "chunk_f5b1276da0ecef9226dde875c2829c13014b3cc656e0adf50c263e2b738bf80b"
+   ],
+   "cross_references": {
+    "candidates": 1,
+    "additions": 1,
+    "sections": [
+     "62"
+    ]
+   },
+   "named_act_references": null
+  },
+  {
+   "question": "rehabilitation-student",
+   "kind": "within_document",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 3239,
+   "found": [
+    {
+     "phrase": "ega omanda põhi-, üldkesk-, kutse- või kõrgharidust",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 7440,
+   "additions": [
+    {
+     "title": "Erihoolekanne ja sotsiaalne rehabilitatsioon",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Erihoolekanne ja sotsiaalne rehabilitatsioon",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Terviseseisundist või puudest tingitud erivajadustega noorte siirdumine koolist tööle",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Terviseseisundist või puudest tingitud erivajadustega noorte siirdumine koolist tööle",
+     "reason": "structural_expansion"
+    }
+   ],
+   "selected": [
+    "chunk_746df521075d02cfeb8861e3d518a71730bd1db4596205d28ae62686411c99bf",
+    "chunk_7716312239c19372534bb907fbe44776a4d15d0bc9687602f13cac8a446918b4",
+    "chunk_850443cba9d3cbca30badd205287904f00fe697e21e0fe2414478bd6436311ba",
+    "chunk_fe3ac7bc7833e8c562112534864392b94bb0c996dd568966c597ee1a358ba5cb",
+    "chunk_ea0d16ccac774df0b4dd149c39711be630b6511acd4ee0c4ef0e89371d9e893c",
+    "chunk_b1aab0525de78df16c9f5729bcac8141e6090f8a632218ad5bf33c77fc16b418",
+    "chunk_cb3712442caf93f706451e6960e7f3d7062b1d34ea8f5ef561c75c9e7d12e3aa",
+    "chunk_50273649e3a5f6539e2b181f5cc2072d00c341156ca0953c9952f6ae3c5095bc",
+    "chunk_6757bdd8438a4f46e507b737d3ec11e2f4d44cc3850005bc08b1b0eeaa04697b",
+    "chunk_3edfd3c4e1b1fb9c1c0b7ead65b6d3f78db9feca6d417c18c648e1a5cbf87af5",
+    "chunk_0e181af6b518d823df1a5ce041691255d88f83e0a84e029d5b8c94b520dec349",
+    "chunk_3d667dacd12331a3257bd54ccddcf710455aef413f5d86621688caff97b080f6",
+    "chunk_534f8b1a4aa6bc856ade7e336e9294d0b9bc2f5902cc8328bf3fa47b17d9ad1e"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "rehabilitation-student",
+   "kind": "within_document",
+   "arm": "L",
+   "profile": "hybrid-estnltk-chat-v3",
+   "ms": 3230,
+   "found": [
+    {
+     "phrase": "ega omanda põhi-, üldkesk-, kutse- või kõrgharidust",
+     "in_evidence": true,
+     "in_cards": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 12,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 3
+   },
+   "context_tokens": 9331,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    }
+   ],
+   "selected": [
+    "chunk_746df521075d02cfeb8861e3d518a71730bd1db4596205d28ae62686411c99bf",
+    "chunk_7716312239c19372534bb907fbe44776a4d15d0bc9687602f13cac8a446918b4",
+    "chunk_850443cba9d3cbca30badd205287904f00fe697e21e0fe2414478bd6436311ba",
+    "chunk_fe3ac7bc7833e8c562112534864392b94bb0c996dd568966c597ee1a358ba5cb",
+    "chunk_ea0d16ccac774df0b4dd149c39711be630b6511acd4ee0c4ef0e89371d9e893c",
+    "chunk_b1aab0525de78df16c9f5729bcac8141e6090f8a632218ad5bf33c77fc16b418",
+    "chunk_cb3712442caf93f706451e6960e7f3d7062b1d34ea8f5ef561c75c9e7d12e3aa",
+    "chunk_50273649e3a5f6539e2b181f5cc2072d00c341156ca0953c9952f6ae3c5095bc",
+    "chunk_6757bdd8438a4f46e507b737d3ec11e2f4d44cc3850005bc08b1b0eeaa04697b",
+    "chunk_f5b1276da0ecef9226dde875c2829c13014b3cc656e0adf50c263e2b738bf80b",
+    "chunk_dc75df526e398ef5bd1e9209850bacf0a908b376d6d333898976b2398109ddbd",
+    "chunk_cb32c69d97e2ea71998d1b55d739f36075d691f91a3ca13e8070d4ec04d40a07"
+   ],
+   "cross_references": {
+    "candidates": 3,
+    "additions": 0,
+    "sections": []
+   },
+   "named_act_references": null
+  },
+  {
+   "question": "rehabilitation-student",
+   "kind": "within_document",
+   "arm": "N",
+   "profile": "hybrid-estnltk-chat-v4",
+   "ms": 3761,
+   "found": [
+    {
+     "phrase": "ega omanda põhi-, üldkesk-, kutse- või kõrgharidust",
+     "in_evidence": true,
+     "in_cards": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 3,
+    "cross_reference": 1
+   },
+   "context_tokens": 9922,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Lastekaitseseadus",
+     "reason": "cross_reference",
+     "section": "28",
+     "named_act": "document_d965143779b80298b88acd8c0a901855a9d35311c9265fa8df7e60f1163bef9d"
+    }
+   ],
+   "selected": [
+    "chunk_746df521075d02cfeb8861e3d518a71730bd1db4596205d28ae62686411c99bf",
+    "chunk_7716312239c19372534bb907fbe44776a4d15d0bc9687602f13cac8a446918b4",
+    "chunk_850443cba9d3cbca30badd205287904f00fe697e21e0fe2414478bd6436311ba",
+    "chunk_fe3ac7bc7833e8c562112534864392b94bb0c996dd568966c597ee1a358ba5cb",
+    "chunk_ea0d16ccac774df0b4dd149c39711be630b6511acd4ee0c4ef0e89371d9e893c",
+    "chunk_b1aab0525de78df16c9f5729bcac8141e6090f8a632218ad5bf33c77fc16b418",
+    "chunk_cb3712442caf93f706451e6960e7f3d7062b1d34ea8f5ef561c75c9e7d12e3aa",
+    "chunk_50273649e3a5f6539e2b181f5cc2072d00c341156ca0953c9952f6ae3c5095bc",
+    "chunk_6757bdd8438a4f46e507b737d3ec11e2f4d44cc3850005bc08b1b0eeaa04697b",
+    "chunk_f5b1276da0ecef9226dde875c2829c13014b3cc656e0adf50c263e2b738bf80b",
+    "chunk_dc75df526e398ef5bd1e9209850bacf0a908b376d6d333898976b2398109ddbd",
+    "chunk_cb32c69d97e2ea71998d1b55d739f36075d691f91a3ca13e8070d4ec04d40a07",
+    "chunk_5002700e01e00522b064869d5989ca37d7ae4d93a1f255efd2c82c9f9bc18e8a"
+   ],
+   "cross_references": {
+    "candidates": 3,
+    "additions": 0,
+    "sections": []
+   },
+   "named_act_references": {
+    "candidates": 1,
+    "additions": 1,
+    "acts": [
+     "document_d965143779b80298b88acd8c0a901855a9d35311c9265fa8df7e60f1163bef9d:28"
+    ]
+   }
+  },
+  {
+   "question": "rehabilitation-student",
+   "kind": "within_document",
+   "arm": "O",
+   "profile": "hybrid-estnltk-chat-v6",
+   "ms": 3305,
+   "found": [
+    {
+     "phrase": "ega omanda põhi-, üldkesk-, kutse- või kõrgharidust",
+     "in_evidence": true,
+     "in_cards": true
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 3,
+    "cross_reference": 1
+   },
+   "context_tokens": 9922,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Lastekaitseseadus",
+     "reason": "cross_reference",
+     "section": "28",
+     "named_act": "document_d965143779b80298b88acd8c0a901855a9d35311c9265fa8df7e60f1163bef9d"
+    }
+   ],
+   "selected": [
+    "chunk_746df521075d02cfeb8861e3d518a71730bd1db4596205d28ae62686411c99bf",
+    "chunk_7716312239c19372534bb907fbe44776a4d15d0bc9687602f13cac8a446918b4",
+    "chunk_850443cba9d3cbca30badd205287904f00fe697e21e0fe2414478bd6436311ba",
+    "chunk_fe3ac7bc7833e8c562112534864392b94bb0c996dd568966c597ee1a358ba5cb",
+    "chunk_ea0d16ccac774df0b4dd149c39711be630b6511acd4ee0c4ef0e89371d9e893c",
+    "chunk_b1aab0525de78df16c9f5729bcac8141e6090f8a632218ad5bf33c77fc16b418",
+    "chunk_cb3712442caf93f706451e6960e7f3d7062b1d34ea8f5ef561c75c9e7d12e3aa",
+    "chunk_50273649e3a5f6539e2b181f5cc2072d00c341156ca0953c9952f6ae3c5095bc",
+    "chunk_6757bdd8438a4f46e507b737d3ec11e2f4d44cc3850005bc08b1b0eeaa04697b",
+    "chunk_f5b1276da0ecef9226dde875c2829c13014b3cc656e0adf50c263e2b738bf80b",
+    "chunk_dc75df526e398ef5bd1e9209850bacf0a908b376d6d333898976b2398109ddbd",
+    "chunk_cb32c69d97e2ea71998d1b55d739f36075d691f91a3ca13e8070d4ec04d40a07",
+    "chunk_5002700e01e00522b064869d5989ca37d7ae4d93a1f255efd2c82c9f9bc18e8a"
+   ],
+   "cross_references": {
+    "candidates": 4,
+    "additions": 0,
+    "sections": []
+   },
+   "named_act_references": {
+    "candidates": 1,
+    "additions": 1,
+    "acts": [
+     "document_d965143779b80298b88acd8c0a901855a9d35311c9265fa8df7e60f1163bef9d:28"
+    ]
+   }
+  },
+  {
+   "question": "rehabilitation-student",
+   "kind": "within_document",
+   "arm": "V",
+   "profile": "hybrid-estnltk-chat-v1",
+   "ms": 3203,
+   "found": [
+    {
+     "phrase": "ega omanda põhi-, üldkesk-, kutse- või kõrgharidust",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 6586,
+   "additions": [],
+   "selected": [
+    "chunk_746df521075d02cfeb8861e3d518a71730bd1db4596205d28ae62686411c99bf",
+    "chunk_7716312239c19372534bb907fbe44776a4d15d0bc9687602f13cac8a446918b4",
+    "chunk_850443cba9d3cbca30badd205287904f00fe697e21e0fe2414478bd6436311ba",
+    "chunk_fe3ac7bc7833e8c562112534864392b94bb0c996dd568966c597ee1a358ba5cb",
+    "chunk_ea0d16ccac774df0b4dd149c39711be630b6511acd4ee0c4ef0e89371d9e893c",
+    "chunk_b1aab0525de78df16c9f5729bcac8141e6090f8a632218ad5bf33c77fc16b418",
+    "chunk_cb3712442caf93f706451e6960e7f3d7062b1d34ea8f5ef561c75c9e7d12e3aa",
+    "chunk_50273649e3a5f6539e2b181f5cc2072d00c341156ca0953c9952f6ae3c5095bc",
+    "chunk_6757bdd8438a4f46e507b737d3ec11e2f4d44cc3850005bc08b1b0eeaa04697b"
+   ],
+   "cross_references": null,
+   "named_act_references": null,
+   "seeds": [
+    {
+     "act": "130062026065",
+     "section": "59",
+     "passage": 95
+    }
+   ]
+  },
+  {
+   "question": "rehabilitation-student",
+   "kind": "within_document",
+   "arm": "R",
+   "profile": "simulated-chat-v1-plus-pointers",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "ega omanda põhi-, üldkesk-, kutse- või kõrgharidust",
+     "in_evidence": true,
+     "in_seeds": false,
+     "class": "incoming",
+     "position": 2,
+     "within_room": true,
+     "from": "59/3",
+     "to": "59/1"
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {},
+   "context_tokens": 8010,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 99,
+     "reason": "exact_subsection",
+     "exception": false,
+     "from": "59/1",
+     "to": "62/3"
+    },
+    {
+     "act": "130062026065",
+     "passage": 100,
+     "reason": "exact_subsection",
+     "exception": false,
+     "from": "59/1",
+     "to": "62/4"
+    },
+    {
+     "act": "130062026065",
+     "passage": 96,
+     "reason": "incoming",
+     "exception": false,
+     "from": "59/3",
+     "to": "59/1"
+    },
+    {
+     "act": "130062026065",
+     "passage": 98,
+     "reason": "incoming",
+     "exception": false,
+     "from": "61/1",
+     "to": "59/null"
+    }
+   ],
+   "candidates": 8,
+   "cross_references": null
+  },
+  {
+   "question": "rehabilitation-student",
+   "kind": "within_document",
+   "arm": "S",
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "ega omanda põhi-, üldkesk-, kutse- või kõrgharidust",
+     "in_evidence": false,
+     "in_seeds": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 10,
+   "reasons": {},
+   "context_tokens": 7446,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 99,
+     "reason": "first_passage",
+     "exception": false,
+     "from": "59/1",
+     "to": "62/null"
+    }
+   ],
+   "candidates": 1,
+   "cross_references": null
+  },
+  {
+   "question": "day-care-retirement-age",
+   "kind": "within_document",
+   "arm": "A",
+   "profile": "experiment-graph-a-base-v1",
+   "ms": 2410,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 5516,
+   "additions": [],
+   "selected": [
+    "chunk_2dc23cae2d74f08cd75f31ab1a0130946058cc90e31db06fbabeebe863b6616a",
+    "chunk_68011374e5dde71706065f845fc142cd75c8ad6c506b036b2fcc90aac67dd27c",
+    "chunk_8b8a86fcf87f8b4709d7ef8540908f64959b986da873d3c69a7ff6e107171029",
+    "chunk_6f6ebbe2c65d4df72822de3ddea606bf43b7bc4f32a1753c5605d8d1a2ad5730",
+    "chunk_ffdf7155e7979a06fc57c689aabfac3df0583c3b5d635f1025af995edc569681",
+    "chunk_2b4e23bfac882dc2e26accd277a03a5c42da2e05ab2e00381dfaad7c0a58f9eb",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_44fc77b536e644a65ce9378e231ae9a3ba33a33ed84e3d5c06edb385422d598e",
+    "chunk_1d326b874d694fa423ebc80de0d68eccf77de3d7e9fdab150d8d845ffe3f9766"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "day-care-retirement-age",
+   "kind": "within_document",
+   "arm": "B",
+   "profile": "experiment-graph-b-text-v1",
+   "ms": 2154,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 13
+   },
+   "context_tokens": 7791,
+   "additions": [],
+   "selected": [
+    "chunk_2dc23cae2d74f08cd75f31ab1a0130946058cc90e31db06fbabeebe863b6616a",
+    "chunk_68011374e5dde71706065f845fc142cd75c8ad6c506b036b2fcc90aac67dd27c",
+    "chunk_8b8a86fcf87f8b4709d7ef8540908f64959b986da873d3c69a7ff6e107171029",
+    "chunk_6f6ebbe2c65d4df72822de3ddea606bf43b7bc4f32a1753c5605d8d1a2ad5730",
+    "chunk_ffdf7155e7979a06fc57c689aabfac3df0583c3b5d635f1025af995edc569681",
+    "chunk_2b4e23bfac882dc2e26accd277a03a5c42da2e05ab2e00381dfaad7c0a58f9eb",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_44fc77b536e644a65ce9378e231ae9a3ba33a33ed84e3d5c06edb385422d598e",
+    "chunk_1d326b874d694fa423ebc80de0d68eccf77de3d7e9fdab150d8d845ffe3f9766",
+    "chunk_9c5c3419a2ec9435a678cd96e4b73c53d389637db88c503e2dff4f3a18308a13",
+    "chunk_54bb03046fd70a82bed3011c1b3a8c7dcbb6c6193ac2ce813b8c01d99b84f119",
+    "chunk_a322a7a3b97b14828a1735c1f1e2698de27dcb67e2015975a8b9938db986f68c",
+    "chunk_21e01186ee7989215a34fe9d5acd01d85e0bd6ee1f72eb5dca99422228cc63f9"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "day-care-retirement-age",
+   "kind": "within_document",
+   "arm": "C",
+   "profile": "experiment-graph-c-cards-v1",
+   "ms": 1919,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 1
+   },
+   "context_tokens": 9035,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    }
+   ],
+   "selected": [
+    "chunk_2dc23cae2d74f08cd75f31ab1a0130946058cc90e31db06fbabeebe863b6616a",
+    "chunk_68011374e5dde71706065f845fc142cd75c8ad6c506b036b2fcc90aac67dd27c",
+    "chunk_8b8a86fcf87f8b4709d7ef8540908f64959b986da873d3c69a7ff6e107171029",
+    "chunk_6f6ebbe2c65d4df72822de3ddea606bf43b7bc4f32a1753c5605d8d1a2ad5730",
+    "chunk_ffdf7155e7979a06fc57c689aabfac3df0583c3b5d635f1025af995edc569681",
+    "chunk_2b4e23bfac882dc2e26accd277a03a5c42da2e05ab2e00381dfaad7c0a58f9eb",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_44fc77b536e644a65ce9378e231ae9a3ba33a33ed84e3d5c06edb385422d598e",
+    "chunk_1d326b874d694fa423ebc80de0d68eccf77de3d7e9fdab150d8d845ffe3f9766",
+    "chunk_1dae4abc5baeb49a4b8354b09d4ab434ef323d9add05ebb92e93d20a4d7b53e3"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "day-care-retirement-age",
+   "kind": "within_document",
+   "arm": "D",
+   "profile": "experiment-graph-d-references-v1",
+   "ms": 1913,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {
+    "ranked_seed": 9,
+    "cross_reference": 1
+   },
+   "context_tokens": 6276,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "72"
+    }
+   ],
+   "selected": [
+    "chunk_2dc23cae2d74f08cd75f31ab1a0130946058cc90e31db06fbabeebe863b6616a",
+    "chunk_68011374e5dde71706065f845fc142cd75c8ad6c506b036b2fcc90aac67dd27c",
+    "chunk_8b8a86fcf87f8b4709d7ef8540908f64959b986da873d3c69a7ff6e107171029",
+    "chunk_6f6ebbe2c65d4df72822de3ddea606bf43b7bc4f32a1753c5605d8d1a2ad5730",
+    "chunk_ffdf7155e7979a06fc57c689aabfac3df0583c3b5d635f1025af995edc569681",
+    "chunk_2b4e23bfac882dc2e26accd277a03a5c42da2e05ab2e00381dfaad7c0a58f9eb",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_44fc77b536e644a65ce9378e231ae9a3ba33a33ed84e3d5c06edb385422d598e",
+    "chunk_1d326b874d694fa423ebc80de0d68eccf77de3d7e9fdab150d8d845ffe3f9766",
+    "chunk_6e0262dcea35f4fa2b2193c4a0651247e3f2249387b335c5e0937b4a6fb8bbcc"
+   ],
+   "cross_references": {
+    "candidates": 5,
+    "additions": 1,
+    "sections": [
+     "72"
+    ]
+   },
+   "named_act_references": null
+  },
+  {
+   "question": "day-care-retirement-age",
+   "kind": "within_document",
+   "arm": "E",
+   "profile": "experiment-graph-e-neighbours-v1",
+   "ms": 1963,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 13,
+   "reasons": {
+    "ranked_seed": 9,
+    "structural_expansion": 4
+   },
+   "context_tokens": 8220,
+   "additions": [
+    {
+     "title": "Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu kokkuvõte",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu kokkuvõte",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "structural_expansion"
+    },
+    {
+     "title": "Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu kokkuvõte",
+     "reason": "structural_expansion"
+    }
+   ],
+   "selected": [
+    "chunk_2dc23cae2d74f08cd75f31ab1a0130946058cc90e31db06fbabeebe863b6616a",
+    "chunk_68011374e5dde71706065f845fc142cd75c8ad6c506b036b2fcc90aac67dd27c",
+    "chunk_8b8a86fcf87f8b4709d7ef8540908f64959b986da873d3c69a7ff6e107171029",
+    "chunk_6f6ebbe2c65d4df72822de3ddea606bf43b7bc4f32a1753c5605d8d1a2ad5730",
+    "chunk_ffdf7155e7979a06fc57c689aabfac3df0583c3b5d635f1025af995edc569681",
+    "chunk_2b4e23bfac882dc2e26accd277a03a5c42da2e05ab2e00381dfaad7c0a58f9eb",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_44fc77b536e644a65ce9378e231ae9a3ba33a33ed84e3d5c06edb385422d598e",
+    "chunk_1d326b874d694fa423ebc80de0d68eccf77de3d7e9fdab150d8d845ffe3f9766",
+    "chunk_76a35a5e805b0816504b69cd6723e591aca39404619e33152a03e8e217a155c5",
+    "chunk_34899e7c9023051909938203197c89073c37e7cc1719b03521a051ef94ac5362",
+    "chunk_0517c80877cd9ebcfced431c20ab11895d0c861b964d15409567f142b95c187e",
+    "chunk_5eb8b59ba92cbdec3dc18a4a605d7a848ff435b79116dd2c4d14d403da36b4d3"
+   ],
+   "cross_references": null,
+   "named_act_references": null
+  },
+  {
+   "question": "day-care-retirement-age",
+   "kind": "within_document",
+   "arm": "L",
+   "profile": "hybrid-estnltk-chat-v3",
+   "ms": 2175,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 12,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 1,
+    "cross_reference": 2
+   },
+   "context_tokens": 10753,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "72"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "105"
+    }
+   ],
+   "selected": [
+    "chunk_2dc23cae2d74f08cd75f31ab1a0130946058cc90e31db06fbabeebe863b6616a",
+    "chunk_68011374e5dde71706065f845fc142cd75c8ad6c506b036b2fcc90aac67dd27c",
+    "chunk_8b8a86fcf87f8b4709d7ef8540908f64959b986da873d3c69a7ff6e107171029",
+    "chunk_6f6ebbe2c65d4df72822de3ddea606bf43b7bc4f32a1753c5605d8d1a2ad5730",
+    "chunk_ffdf7155e7979a06fc57c689aabfac3df0583c3b5d635f1025af995edc569681",
+    "chunk_2b4e23bfac882dc2e26accd277a03a5c42da2e05ab2e00381dfaad7c0a58f9eb",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_44fc77b536e644a65ce9378e231ae9a3ba33a33ed84e3d5c06edb385422d598e",
+    "chunk_1d326b874d694fa423ebc80de0d68eccf77de3d7e9fdab150d8d845ffe3f9766",
+    "chunk_1dae4abc5baeb49a4b8354b09d4ab434ef323d9add05ebb92e93d20a4d7b53e3",
+    "chunk_6e0262dcea35f4fa2b2193c4a0651247e3f2249387b335c5e0937b4a6fb8bbcc",
+    "chunk_5697ddad5380f56490d7ca3c186978051d3c1b87b6aa74802a95f6c944538ffd"
+   ],
+   "cross_references": {
+    "candidates": 6,
+    "additions": 2,
+    "sections": [
+     "72",
+     "105"
+    ]
+   },
+   "named_act_references": null
+  },
+  {
+   "question": "day-care-retirement-age",
+   "kind": "within_document",
+   "arm": "N",
+   "profile": "hybrid-estnltk-chat-v4",
+   "ms": 2128,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 12,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 1,
+    "cross_reference": 2
+   },
+   "context_tokens": 10753,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "72"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "105"
+    }
+   ],
+   "selected": [
+    "chunk_2dc23cae2d74f08cd75f31ab1a0130946058cc90e31db06fbabeebe863b6616a",
+    "chunk_68011374e5dde71706065f845fc142cd75c8ad6c506b036b2fcc90aac67dd27c",
+    "chunk_8b8a86fcf87f8b4709d7ef8540908f64959b986da873d3c69a7ff6e107171029",
+    "chunk_6f6ebbe2c65d4df72822de3ddea606bf43b7bc4f32a1753c5605d8d1a2ad5730",
+    "chunk_ffdf7155e7979a06fc57c689aabfac3df0583c3b5d635f1025af995edc569681",
+    "chunk_2b4e23bfac882dc2e26accd277a03a5c42da2e05ab2e00381dfaad7c0a58f9eb",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_44fc77b536e644a65ce9378e231ae9a3ba33a33ed84e3d5c06edb385422d598e",
+    "chunk_1d326b874d694fa423ebc80de0d68eccf77de3d7e9fdab150d8d845ffe3f9766",
+    "chunk_1dae4abc5baeb49a4b8354b09d4ab434ef323d9add05ebb92e93d20a4d7b53e3",
+    "chunk_6e0262dcea35f4fa2b2193c4a0651247e3f2249387b335c5e0937b4a6fb8bbcc",
+    "chunk_5697ddad5380f56490d7ca3c186978051d3c1b87b6aa74802a95f6c944538ffd"
+   ],
+   "cross_references": {
+    "candidates": 6,
+    "additions": 2,
+    "sections": [
+     "72",
+     "105"
+    ]
+   },
+   "named_act_references": {
+    "candidates": 0,
+    "additions": 0,
+    "acts": []
+   }
+  },
+  {
+   "question": "day-care-retirement-age",
+   "kind": "within_document",
+   "arm": "O",
+   "profile": "hybrid-estnltk-chat-v6",
+   "ms": 2040,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": true,
+     "in_cards": false
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 12,
+   "reasons": {
+    "ranked_seed": 9,
+    "semantic_dependency": 1,
+    "cross_reference": 2
+   },
+   "context_tokens": 10753,
+   "additions": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "semantic_dependency"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "72"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "reason": "cross_reference",
+     "section": "105"
+    }
+   ],
+   "selected": [
+    "chunk_2dc23cae2d74f08cd75f31ab1a0130946058cc90e31db06fbabeebe863b6616a",
+    "chunk_68011374e5dde71706065f845fc142cd75c8ad6c506b036b2fcc90aac67dd27c",
+    "chunk_8b8a86fcf87f8b4709d7ef8540908f64959b986da873d3c69a7ff6e107171029",
+    "chunk_6f6ebbe2c65d4df72822de3ddea606bf43b7bc4f32a1753c5605d8d1a2ad5730",
+    "chunk_ffdf7155e7979a06fc57c689aabfac3df0583c3b5d635f1025af995edc569681",
+    "chunk_2b4e23bfac882dc2e26accd277a03a5c42da2e05ab2e00381dfaad7c0a58f9eb",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_44fc77b536e644a65ce9378e231ae9a3ba33a33ed84e3d5c06edb385422d598e",
+    "chunk_1d326b874d694fa423ebc80de0d68eccf77de3d7e9fdab150d8d845ffe3f9766",
+    "chunk_1dae4abc5baeb49a4b8354b09d4ab434ef323d9add05ebb92e93d20a4d7b53e3",
+    "chunk_6e0262dcea35f4fa2b2193c4a0651247e3f2249387b335c5e0937b4a6fb8bbcc",
+    "chunk_5697ddad5380f56490d7ca3c186978051d3c1b87b6aa74802a95f6c944538ffd"
+   ],
+   "cross_references": {
+    "candidates": 6,
+    "additions": 2,
+    "sections": [
+     "72",
+     "105"
+    ]
+   },
+   "named_act_references": {
+    "candidates": 0,
+    "additions": 0,
+    "acts": []
+   }
+  },
+  {
+   "question": "day-care-retirement-age",
+   "kind": "within_document",
+   "arm": "V",
+   "profile": "hybrid-estnltk-chat-v1",
+   "ms": 1866,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": false,
+     "in_cards": false
+    }
+   ],
+   "found_all": false,
+   "found_any": false,
+   "sources": 9,
+   "reasons": {
+    "ranked_seed": 9
+   },
+   "context_tokens": 8401,
+   "additions": [],
+   "selected": [
+    "chunk_2dc23cae2d74f08cd75f31ab1a0130946058cc90e31db06fbabeebe863b6616a",
+    "chunk_68011374e5dde71706065f845fc142cd75c8ad6c506b036b2fcc90aac67dd27c",
+    "chunk_8b8a86fcf87f8b4709d7ef8540908f64959b986da873d3c69a7ff6e107171029",
+    "chunk_6f6ebbe2c65d4df72822de3ddea606bf43b7bc4f32a1753c5605d8d1a2ad5730",
+    "chunk_ffdf7155e7979a06fc57c689aabfac3df0583c3b5d635f1025af995edc569681",
+    "chunk_2b4e23bfac882dc2e26accd277a03a5c42da2e05ab2e00381dfaad7c0a58f9eb",
+    "chunk_46e4578b69a597083217745131a19e3e4a1e71993cbc47e54c23600563f52800",
+    "chunk_44fc77b536e644a65ce9378e231ae9a3ba33a33ed84e3d5c06edb385422d598e",
+    "chunk_1d326b874d694fa423ebc80de0d68eccf77de3d7e9fdab150d8d845ffe3f9766"
+   ],
+   "cross_references": null,
+   "named_act_references": null,
+   "seeds": [
+    {
+     "act": "130062026065",
+     "section": "101",
+     "passage": 155
+    },
+    {
+     "act": "130062026065",
+     "section": "99^2",
+     "passage": 151
+    },
+    {
+     "act": "130062026065",
+     "section": "95",
+     "passage": 145
+    },
+    {
+     "act": "130062026065",
+     "section": "88",
+     "passage": 138
+    },
+    {
+     "act": "130062026065",
+     "section": "98",
+     "passage": 148
+    }
+   ]
+  },
+  {
+   "question": "day-care-retirement-age",
+   "kind": "within_document",
+   "arm": "R",
+   "profile": "simulated-chat-v1-plus-pointers",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": true,
+     "in_seeds": false,
+     "class": "exact_subsection",
+     "position": 0,
+     "within_room": true,
+     "from": "101/1",
+     "to": "72/2"
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 13,
+   "reasons": {},
+   "context_tokens": 10553,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 115,
+     "reason": "exact_subsection",
+     "exception": true,
+     "from": "101/1",
+     "to": "72/2"
+    },
+    {
+     "act": "130062026065",
+     "passage": 156,
+     "reason": "incoming",
+     "exception": true,
+     "from": "101/3",
+     "to": "101/1"
+    },
+    {
+     "act": "130062026065",
+     "passage": 157,
+     "reason": "incoming",
+     "exception": true,
+     "from": "102/8",
+     "to": "101/1"
+    },
+    {
+     "act": "130062026065",
+     "passage": 221,
+     "reason": "incoming",
+     "exception": false,
+     "from": "154/null",
+     "to": "101/1"
+    }
+   ],
+   "candidates": 8,
+   "cross_references": null
+  },
+  {
+   "question": "day-care-retirement-age",
+   "kind": "within_document",
+   "arm": "S",
+   "profile": "simulated-chat-v1-plus-first-passages",
+   "ms": 0,
+   "found": [
+    {
+     "phrase": "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule",
+     "in_evidence": true,
+     "in_seeds": false,
+     "class": "first_passage",
+     "position": 0,
+     "within_room": true,
+     "from": "101/1",
+     "to": "72/null"
+    }
+   ],
+   "found_all": true,
+   "found_any": true,
+   "sources": 10,
+   "reasons": {},
+   "context_tokens": 9038,
+   "additions": [
+    {
+     "act": "130062026065",
+     "passage": 115,
+     "reason": "first_passage",
+     "exception": true,
+     "from": "101/1",
+     "to": "72/null"
+    }
+   ],
+   "candidates": 1,
+   "cross_references": null
+  }
+ ]
+}

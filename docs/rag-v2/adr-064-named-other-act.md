@@ -34,7 +34,7 @@ Uus otsinguprofiil `hybrid-estnltk-chat-v4`: profiil v3 ja üks reegel juurde.
 - `lib/rag-v2/search/postgres.js`: `documentTitles` loeb dokumentide pealkirjad lõikude ridadelt. Otsingu kataloogis pealkirju ei ole. Pealkirja kontrollitakse pärast laadimist allika enda pealkirja vastu.
 - `lib/rag-v2/search/profiles.js`: `CHAT_NAMED_ACTS_PROFILE`. Profiil v3 on muutmata.
 - `scripts/rag-v2-corpus-run.sh` teeb uue vestlusplaani profiiliga v4.
-- `scripts/rag-v2-graph-experiment.mjs`: haru N (profiil v4) ja võrdlus haruga L (skeem `rag-v2/graph-experiment-3`).
+- `scripts/rag-v2-graph-experiment.mjs`: haru N (profiil v4) ja võrdlus haruga L (skeem `rag-v2/graph-experiment-3`; alates [ADR-068](adr-068-own-reference-subsections.md) `-4`).
 
 ## Mõõtmine enne ühendamist
 

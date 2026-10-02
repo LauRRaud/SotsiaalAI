@@ -93,7 +93,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
 **Uus aken alustab siit (02.10 hommik).** Kuupäevaviga on parandatud ([ADR-062](../rag-v2/adr-062-provision-dates.md), korpus v47, dialoog 22). Omanik valis M3; selle mõõtmissamm ja esimene reegel (profiil v4, [ADR-064](../rag-v2/adr-064-named-other-act.md)) on tehtud.
-- **Tootmises:** korpus v47 (indeks `34fe1590`, 6470 dokumenti, 40 489 lõiku; lugeja `source-structure-v30`). Vestlusplaani uuendab reliis ise (ADR-037): profiil v5 ([ADR-065](../rag-v2/adr-065-pool-limit-per-document.md)), answer-12, dialoog 22, mudelikontekst json-3, olek v5, arutlus medium. Profiil on plaani osa: v5 plaan tehakse serveris pärast ADR-065 PR-i deploy'd (`rag-v2-chat-plan.mjs --profile hybrid-estnltk-chat-v5 --activate`); kontrolli aktiivse plaani `profileId`.
+- **Tootmises:** korpus v47 (indeks `34fe1590`, 6470 dokumenti, 40 489 lõiku; lugeja `source-structure-v30`). Vestlusplaani uuendab reliis ise (ADR-037): profiil v6 ([ADR-068](../rag-v2/adr-068-own-reference-subsections.md); v5 + akti enda viide toob nimetatud lõike), answer-12, dialoog 22, mudelikontekst json-3, olek v5, arutlus medium. Profiil on plaani osa: v5 plaan tehakse serveris pärast ADR-065 PR-i deploy'd (`rag-v2-chat-plan.mjs --profile hybrid-estnltk-chat-v5 --activate`); kontrolli aktiivse plaani `profileId`.
 - **Tööviis:**
   - Codex kujundab põhikaustas, seega ära vaheta seal harusid. Töötle %TEMP% worktree's: `node_modules` junction, `generated/` koopia. Eemalda worktree ja haru pärast PR-i.
   - PR liidetakse ja deploy'takse ise. Enne PR-i jooksuta kogu `npm test`.
@@ -112,6 +112,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
       - Otsingukatse 30 küsimusel: v4 leiab 28 (v3 26), hoiab v3 valiku 30/30, kontekst +300 tokenit.
       - Vestluse rada: Harku tugiisiku küsimus läbib; kaheksast pöördest 7 läbis, `coach-reports-child` on vana teadaolev otsingu möödalask.
     - **Tehtud 02.10 ([ADR-065](../rag-v2/adr-065-pool-limit-per-document.md), profiil v5):** eelvalikus kuni 10 lõiku ühest dokumendist. Treeneri küsimuses võttis üks juhend 30 kohast 24 ja lastekaitseseaduse § 27¹ jäi välja; nüüd valib mudel seaduse ja vastus loetleb § 34² andmed. Piir muudab eelvalikut 8 küsimuses 46-st; kontrolljooksus 10 pöördest 9 läbis (Kuusalu vastus oli õige, aga nimetas jõustumise kuupäeva, mida kontroll keelab).
+    - **Tehtud 02.10 pärastlõunal ([ADR-068](../rag-v2/adr-068-own-reference-subsections.md), profiil v6):** akti viide iseendale toob lõigu, kus nimetatud lõige algab, mitte paragrahvi esimese lõigu. Otsingukatse 30 küsimusel: valik muutub 10-s, leitud 28/30 nagu enne, kontekst +4%. Vestluse rajal 11/11 (0,057 USD); treeneri vastus loetleb § 34² andmed ilma märkuseta, et väljavõte on osaline.
     - **M3 järgmine võimalik samm** (ootab omaniku sõna): lühendiga nimetatud aktid („SHS § 25“), mõõtmata. Pikkade juhendite lühikesed tükid (pealkiri, „JUHEND“) tulevad liidetud järjestuses kõrgele; tükeldust pole uuritud.
     - Omaniku otsust ootab SHS-i teadmiskaartide saatus: need kehtivad 30.11.2026-ni, järgmistel redaktsioonidel kaarte pole. Mõõtmise järgi ei ole kaarte akti sees otsustava sätte leidmiseks vaja.
   - **Väike jääk kuupäevavea järel (päris vestlus 01.10 kell 19:37, pärast #296):** Märjamaa vastus andis õiged summad ja õige aluse („alates 1. jaanuarist 2026 rakendatav summa“), aga küsis sünniaastat, sest küsimuses oli ainult „augustis“. Eelmõõtmise jooksus seda küsimust ei olnud. Kui see kordub, lisada juhisesse, et aastata sündmus loetakse hiljutiseks; mõõta ühe jooksuga, mitte sõnastust tasuliste kordustega timmides.
@@ -121,6 +122,12 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
   - Codexi #289, #290, #295–#299 ülevaatus on tehtud ([raport](../audits/rag-v2-pr289-299-review-2026-10-01.md)) ja selle kolm leidu parandatud (vt 01.10 öö kirje allpool).
   - Kiiruse mõõtmine päris vestluses teeb omanik.
 - **Võrk 30.09 õhtul:** SSH port 22 aegus korduvalt nii GitHubi kui serveri (`ssh sotsiaalai`) poole. Push õnnestus kordamisel. `gh` töötab HTTPS-i kaudu.
+
+**02.10 (Opus), pärastlõuna: akti viide iseendale toob nimetatud lõike (profiil v6)** ([ADR-068](../rag-v2/adr-068-own-reference-subsections.md)). Omanik: „tee kuni neljandani ära“.
+- **Muudatus:** profiil v6 = v5 + reegel: kui valitud lõik viitab sama akti paragrahvi lõikele („§ 34² lõigetes 3 ja 4“), lisatakse lõik, kus see lõige algab. Ainult paragrahvi nimetav viide toob endiselt paragrahvi alguse. Kohad ja ruum on samad.
+- **Mõõtmine:** otsingukatse haru O haru N kõrval kolmel raskel kataloogil (tasuta): 28/30 mõlemal, valik muutub 10 küsimuses, kontekst keskmiselt +407 tokenit. Vestluse rajal v6 plaaniga ajutises koopias kõik 10 muutunud küsimust ja treeneri küsimus: 11/11, 0,057 USD.
+- **Kasutuselevõtt:** pärast deploy'd uus plaan `--profile hybrid-estnltk-chat-v6 --activate` ja teenuse taaskäivitus; `rag-v2-corpus-run.sh` teeb edaspidi v6 plaani.
+- **Tervitus päris vestluses (#309):** „tere“ vastus tuli 4,3 sekundiga, 2 min pärast taaskäivitust.
 
 **02.10 (Opus), pärastlõuna: ainult tervitus saab vastuse ilma otsinguta** ([ADR-067](../rag-v2/adr-067-greeting-route.md)). Omanik: „tere“ ootas 10 sekundit; „vastus peaks tulema üsna kohe“.
 - **Põhjus:** tervitus läbis kogu töövoo (plaan, embedding, otsing, eelvalik 12 500 tokenit), kuigi plaan andis 0 päringut. Kohe pärast taaskäivitust võttis see 20,8 s, soojalt umbes 10 s.
