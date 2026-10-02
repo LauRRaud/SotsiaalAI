@@ -82,7 +82,8 @@ test('the ninth message begins a new topic with the user\'s earlier statements, 
   await validateStateRegion(state.value, { regions }, analyzer, ninth.userTurns);
   // The answer model reads it as the previous state, with the carried turns marked.
   const input = dialogueInput(ninth, null, { previous: state, context: {} }).value;
-  assert.deepEqual([input.previousState.facts.map(entry => entry.id), input.userTurns.map(turn => turn.carried ?? null)], [['F1', 'F2', 'F4'], ['statements', 'message', null]]);
+  assert.deepEqual([input.previousState.facts.map(entry => entry.id), input.userTurns.map(turn => [turn.turn, turn.carried ?? null])],
+    [['F1', 'F2', 'F4'], [[1, 'statements'], [2, 'message'], [3, null]]]);
   // A new fact of the ninth message replaces a carried one like any other.
   const merged = mergeFactState(state.value, { new_facts: [{ topic: 'pension', person: 'ema', support: [{ turn: 3, quote: 'kui palju see maksab' }] }],
     superseded: [{ fact: 'F4', by: 'N1' }], needs: [], unknowns: [], periods: [], language_hint: 'et' }, ninth.userTurns, { people: state.value.people, focus: 'ema' });
