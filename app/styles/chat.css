@@ -1615,23 +1615,21 @@ html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] [role="article"
   width: min(37rem, calc(100% - clamp(1rem, 3vw, 2rem)));
   margin-inline: auto;
   padding: var(--conv-composer-pad-t) 0 var(--conv-composer-pad-b);
-  /* Vorm ise ainult tõuseb; hajumine ja hägu käivad elementidel, mis EI
-     OLE pilli (triibu ::before) vanemad, ja pillil endal. Hajuv vanem
-     (opacity < 1, filter) oleks pilli härmatise backdrop root ja hägu
-     hüppaks sisse alles lõpus — sama põhjus, miks dokk hajub lastega
-     (carousel.css .gc-shortcut-menu). */
-  animation: conv-composer-rise 760ms var(--ease-drift) 320ms backwards;
+  /* Pill ilmub oma kohale, ainult hajudes (omanik 02.10: "see peaks ilmuma
+     sealt kus see on fade in efektiga"), nagu mullid (vt conv-stage-enter).
+     Varem tõusis vorm 2.3rem alt üles; pilli härmatis on toa eelhägustatud
+     koopia, kinnitatud ekraani külge, ja liikuv pill näitas tõusu ajal enda
+     sees teist tükki tuba — "taust on sel nihkes". Hajumine ja hägu käivad
+     elementidel, mis EI OLE pilli (triibu ::before) vanemad, ja pillil
+     endal: hajuv vanem (opacity < 1, filter) oleks pilli härmatise
+     backdrop root ja hägu hüppaks sisse alles lõpus — sama põhjus, miks
+     dokk hajub lastega (carousel.css .gc-shortcut-menu). */
 }
 .panel-scrim[data-conversation="1"] form:has(#chat-input) > :not(div:has(#chat-input)),
 .panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > :not(div:has(#chat-input)),
 .panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > div:has(#chat-input) > *,
 .panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > div:has(#chat-input)::before {
   animation: conv-composer-fade 760ms var(--ease-drift) 320ms backwards;
-}
-@keyframes conv-composer-rise {
-  from {
-    transform: translateY(2.3rem);
-  }
 }
 @keyframes conv-composer-fade {
   from {
@@ -1767,9 +1765,8 @@ html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] [role="article"
    vöö. Eelhägustatud pilt ei loe tausta üldse, seega pole midagi valesti
    lugeda. Sama võte mis vestlusmullidel (--room-frost-*, tokens.css);
    toon on sama --control-glass-bg. Puutel kursorit ei ole ja iOS ei toeta
-   fixed tausta, seega seal jääb päris hägu. Vorm tõuseb sisse `top`-iga,
-   mitte transformiga: transform teeks fixed-tausta scroll-iks ja muster
-   hüppaks tõusu lõpus (vt conv-stage-enter). */
+   fixed tausta, seega seal jääb päris hägu. Vorm ei liigu sisenedes (vt
+   vormi reeglit ülal): liikuv pill näitaks fixed-mustrist teist tükki. */
 html.liquid-cursor-on:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > div:has(#chat-input)::before {
   background:
     linear-gradient(var(--control-glass-bg), var(--control-glass-bg)),
@@ -1780,33 +1777,6 @@ html.liquid-cursor-on:not([data-contrast="hc"]):not([data-reduce-transparency="1
   background-position: 0 0, var(--room-frost-position);
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
-}
-/* Sama tõus nihkega: tavaasendis on vorm voos (relative) ja liigub
-   `top`-iga; kitsas aknas on ta ChatComposeri inline'iga absolute ja
-   ankurdatud `bottom`-iga, mille tõus peab samast avaldisest lähtuma
-   (siin on `to` inline'i väärtus ise, seega interpoleerub). */
-html.liquid-cursor-on:not([data-contrast="hc"]):not([data-reduce-transparency="1"]):not([data-reduce-motion="1"]) .panel-scrim[data-conversation="1"] form:has(#chat-input) {
-  animation-name: conv-composer-rise-top;
-}
-@media (max-width: 768px) {
-  html.liquid-cursor-on:not([data-contrast="hc"]):not([data-reduce-transparency="1"]):not([data-reduce-motion="1"]) .panel-scrim[data-conversation="1"] form:has(#chat-input) {
-    animation-name: conv-composer-rise-bottom;
-  }
-}
-/* `to` on kohustuslik: vormi enda `top` on `auto`, ja `auto`-ni ei
-   interpoleerita — ilma selleta hüppas pill poole pealt 37 px (mõõdetud). */
-@keyframes conv-composer-rise-top {
-  from {
-    top: 2.3rem;
-  }
-  to {
-    top: 0;
-  }
-}
-@keyframes conv-composer-rise-bottom {
-  from {
-    bottom: calc(var(--chat-composer-inset, 2.5rem) + var(--chat-vk-offset, 0px) - 2.3rem);
-  }
 }
 .panel-scrim[data-conversation="1"] #chat-input {
   /* Tihe, aga alaservas ruumi tähtede sabale (p, g, j) — tellija 12.07:
