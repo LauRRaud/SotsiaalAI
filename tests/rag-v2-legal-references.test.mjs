@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { actGenitive, actSections, chunkSection, internalReferences, keepsSuperscripts, namedActReferences, provisionChunks, readReferences, resolveSection, sectionKey,
+import { actGenitive, actSections, chunkSection, internalReferences, keepsSuperscripts, namedActReferences, provisionChunks, readReferences, resolveSection, sectionKey, sectionReferences,
   REFERENCE_LIMITS, SUPERSCRIPT_NORMALIZATIONS } from '../lib/rag-v2/search/legal-references.js';
 import { DEFAULT_CONFIG } from '../lib/rag-v2/contracts.js';
 
@@ -169,4 +169,19 @@ test('the passages that hold a named subsection: its own text, also when it runs
     [['a3'], ['a1'], ['a2'], ['b2'], ['b1'], ['b1']]);
   // A bundle without its source units gives the section's start.
   assert.deepEqual(provisionChunks({ spans }, chunks, '7', '2').map(item => item.id), ['c1']);
+});
+
+// ADR-068: the act's own sections with the subsections named for each.
+test('own references with their subsections: each section once, its named subsections in order, whole when a mention names the section alone', () => {
+  const sections = ['9', '16', '34', '34^2', '46', '72'], kept = { exactNumbers: true };
+  const read = (text, options) => sectionReferences(text, sections, options).map(({ key, subsections, whole }) => [key, subsections, whole]);
+  assert.deepEqual(read('käesoleva seaduse § 34² lõigetes 3 ja 4 nimetatud andmed', kept), [['34^2', ['3', '4'], false]]);
+  assert.deepEqual(read('käesoleva seaduse § 72 kohaselt'), [['72', [], true]]);
+  // Two mentions of one section: the subsections of both, and its start because one names the section alone.
+  assert.deepEqual(read('käesoleva seaduse § 46 lõikes 2 ja § 9 alusel ning § 46 kohaselt ja § 46 lõike 2¹ alusel', kept), [['46', ['2', '2^1'], true], ['9', [], true]]);
+  // A point or a sentence without a subsection names the section.
+  assert.deepEqual(read('käesoleva seaduse § 16 punktis 3'), [['16', [], true]]);
+  // The sections are the ones internalReferences gives, in its order; another act's are none.
+  for (const text of ['käesoleva seaduse §-s 9 sätestatud korras ja § 46 lõikes 1', 'lastekaitseseaduse § 9 lõikes 2 ja § 16', '§ 999 lõikes 1 ja § 72 lõikes 1'])
+    assert.deepEqual(read(text).map(([key]) => key), internalReferences(text, sections), text);
 });
