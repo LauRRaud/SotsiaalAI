@@ -2,6 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import { checkTurn, turnPassages, validateCatalogue } from '../lib/rag-v2/pilot/conversation-eval.js';
+import { DIALOGUE_LIMITS } from '../lib/rag-v2/pilot/dialogue.js';
+import { loneGreeting } from '../lib/rag-v2/pilot/greeting.js';
 
 // The whole-conversation evaluation names what failed in a turn: search, answer or the conversation state.
 const observed = (extra = {}) => ({ state: 'completed', error: null, crisis: false, region: 'harku_vald', previousStateCleared: null,
@@ -142,6 +144,43 @@ test('the fact lifecycle (Codex 7.6): each check has its failing pair, and an ac
   assert.deepEqual(validateCatalogue({ scenarios: [{ id: 'x', turns: [{ mode: 'new', text: 'a', expect: { facts_present: [{ person: 'user' }],
     fact_changes: [{ person: 'user', quote: 'x', status: 'gone' }], allowed_dropped: [{ kind: 'fact' }] } }] }] }),
   ['x turn 1: facts_present needs person and quote', 'x turn 1: fact_changes status', 'x turn 1: allowed_dropped needs kind and reason']);
+});
+
+// ADR-070 with two people (owner 03.10.2026: one paid run). The catalogue is fixed before the run; these checks are local.
+test('the two-people boundary catalogue: the ninth message crosses the topic\'s eight, and mixed people or amounts fail it', async () => {
+  const catalogue = JSON.parse(await fs.readFile('tests/evaluation/dialogue/scenarios-two-people-boundary-1.json', 'utf8'));
+  assert.deepEqual(validateCatalogue(catalogue), []);
+  const turns = catalogue.scenarios[0].turns, last = turns.at(-1).expect;
+  // Eight messages fill a topic; the first is a lone greeting (the cheap route), the ninth the correction.
+  assert.deepEqual([catalogue.scenarios.length, turns.length, DIALOGUE_LIMITS.scopeTurns + 1, Boolean(loneGreeting(turns[0].text)), turns.slice(1).some(turn => loneGreeting(turn.text))],
+    [1, 9, 9, true, false]);
+  assert.ok(turns[8].text.includes('700') && turns[1].text.includes('600') && turns[3].text.includes('450'));
+  const fact = (id, person, quote, status = 'current') => ({ id, person, status, support: [{ turn: 1, quote }] });
+  const run = (facts, extra = {}) => checkTurn(last, observed({ region: 'kose_vald', personRegions: { ema: 'kose_vald', isa: 'harku_vald' }, facts, dropped: [], stateFallback: null,
+    text: 'Arvestan nüüd, et ema pension on 700 eurot.', ...extra }));
+  const failed = result => result.checks.filter(check => !check.ok).map(check => check.key);
+  const right = [fact('F1', 'ema', 'tema pension on 600 eurot', 'superseded'), fact('F2', 'isa', 'tema pension on 450 eurot'), fact('F3', 'ema', 'ema pension on hoopis 700 eurot')];
+  assert.equal(run(right).verdict, 'passed');
+  // The correction lands on the father: his 450 is superseded and 700 is his.
+  const onFather = [fact('F1', 'ema', 'tema pension on 600 eurot'), fact('F2', 'isa', 'tema pension on 450 eurot', 'superseded'), fact('F3', 'isa', 'ema pension on hoopis 700 eurot')];
+  assert.deepEqual([run(onFather).verdict, failed(run(onFather))], ['state', ['facts_present', 'facts_present', 'facts_absent', 'facts_absent', 'fact_changes']]);
+  // The mother's old amount stays current beside the new one; the father's amount is lost over the boundary.
+  assert.deepEqual(failed(run([fact('F1', 'ema', 'tema pension on 600 eurot'), right[1], right[2]])), ['facts_absent', 'fact_changes']);
+  assert.deepEqual(failed(run([right[0], right[2]])), ['facts_present']);
+  // The father's municipality is lost, the search used his municipality, or the new state was rejected.
+  assert.deepEqual(failed(run(right, { personRegions: { ema: 'kose_vald', isa: null } })), ['person_regions']);
+  assert.deepEqual([run(right, { region: 'harku_vald' }).verdict, failed(run(right, { stateFallback: 'invalid_dialogue_state' }))], ['state', ['state_kept']]);
+  // A fact the server left out is a lost change, whatever the remaining facts say.
+  assert.deepEqual(failed(run(right, { dropped: [{ kind: 'superseded', reason: 'fact_not_quoted', person: 'ema' }] })), ['allowed_dropped']);
+  // The answer: the amount is there; it does not ask where the mother lives or give one parent's amount as the other's.
+  for (const text of ['Selge, arvestan edaspidi, et ema pension on 700 eurot, mitte 600. Isa pension on endiselt 450 eurot.',
+    'Aitäh täpsustuse eest. Ema 700-eurose pensioni juures tuleb hooldekodu koha eest maksta tal endal.']) assert.equal(run(right, { text }).verdict, 'passed', text);
+  for (const text of ['Aitäh, panin kirja.', 'Arvestan, et isa pension on nüüd 700 eurot.', 'Ema pension on 700 eurot. Millises vallas ta elab?',
+    'Arvestan 700 euroga. Kus su ema elab?', 'Ema pension oli 450 eurot ja on nüüd 700 eurot.']) assert.equal(run(right, { text }).verdict, 'answer', text);
+  // Before the boundary: an answer about one parent that names the other's municipality or gives the other's pension fails.
+  const answer = (index, text) => checkTurn({ must: turns[index].expect.must, must_not: turns[index].expect.must_not }, observed({ text })).verdict;
+  assert.deepEqual([answer(4, 'Pöördu Harku valla sotsiaalosakonda.'), answer(4, 'Pöördu Kose valla sotsiaalosakonda.'), answer(6, 'Jah, isa võib toimetulekutoetust taotleda oma vallast.'),
+    answer(6, 'Isa pension on 600 eurot, seega tasub taotleda.'), answer(5, 'Ema pensionist 450 eurot ei piisa.')], ['passed', 'answer', 'passed', 'answer', 'answer']);
 });
 
 test('Codex R4: the hard-conditions answer patterns keep the direction of the condition; the opposite answer fails', async () => {

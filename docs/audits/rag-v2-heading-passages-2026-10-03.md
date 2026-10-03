@@ -2,10 +2,12 @@
 
 Teostus Claude Opus 5.5. Omanik 03.10: „tegutse“ ettepanekule mõõta M3 viimane kandidaat tasuta. Taust: [ADR-065](../rag-v2/adr-065-pool-limit-per-document.md) märkis, et pikad juhendid jagunevad lühikesteks tükkideks (pealkiri, sõna „JUHEND“), mis tulevad liidetud järjestuses kõrgele; dokumendi piir (kuni kümme lõiku) vähendas nende kohti, aga ei eemaldanud neid.
 
-**Soovitus: parandust praegu mitte ehitada.** Otsus on omaniku.
+**Otsus (omanik 03.10.2026): pealkirjafiltrit praegu ei ehitata.**
 
-- **Vastuseid need lõigud ei mõjuta.** 93 salvestatud päris vestluse pöördes ei jõudnud ükski selline lõik vastuse tõenditesse (0 lõiku 498-st): eelvaliku mudel jätab need iga kord välja.
-- **Otsustava sätte leidmist need ei mõjuta.** 33 küsimuses, kus otsustav lõik on teada, on see nende lõikudega ja ilma täpselt samal kohal.
+Soovitus, millele otsus toetus: parandust praegu mitte ehitada.
+
+- **Vaadeldud pööretes neid lõike tõendites ei olnud.** 93 salvestatud hindamispöörde tõendites ei olnud ühtegi sellist lõiku (0 lõiku 498-st). **Üldine mõju vastustele ei ole sellega tõendatud:** need on hindaja kataloogiküsimused, mitte kasutajate küsimused, ja mõõtmata on, kas kandidaadikohtade kaotus teeb mõne vastuse halvemaks.
+- **Mõõdetud küsimustes otsustava sätte koht ei muutunud.** 33 küsimuses, kus otsustav lõik on teada, on see nende lõikudega ja ilma täpselt samal kohal.
 - **Kulu on kandidaadikohad.** 49 küsimusest üheksas võtab selline lõik eelvaliku 30 kohast vähemalt ühe, halvimal juhul seitse.
 
 Mõõtmine oli tasuta ja ainult luges: serveris, korpus v47 (indeks `34fe1590`, 40 489 lõiku), ilma mudelikutseta ja ilma embedding'u päringuta. Skript: [rag-v2-heading-passages-2026-10-03-probes.mjs](rag-v2-heading-passages-2026-10-03-probes.mjs); tulemused: [evidence/heading-passages-2026-10-03/](evidence/heading-passages-2026-10-03/).
@@ -101,9 +103,13 @@ Otsingukatse ei ütle, mida eelvaliku mudel nende kandidaatidega teeb. Seda näi
 - **Kõigis 93 pöördes valis lõigud eelvaliku mudel.**
 - **Tõendites oli 498 teadmuslõiku. Ainult pealkirjast koosnevaid nende seas: 0. Muid alla 100 tähemärgi lõike: 0.** Ühelegi sellisele lõigule ei viidatud.
 
-Järeldus: eelvaliku mudel jätab need lõigud välja. Vastuse mudel neid ei näe.
+Järeldus piirdub vaadelduga: nendes 93 pöördes jättis eelvaliku mudel sellised lõigud välja ja vastuse mudel neid ei näinud. See ei tõenda, et nii on iga küsimusega, ega seda, et need lõigud vastuseid ei mõjuta:
 
-Erand on olukord, kus eelvaliku mudel ei vasta ja otsing jääb liidetud järjestuse peale. Siis kehtib mudelita valik, kus viies küsimuses 49-st oleks üheksa lähtelõigu seas üks kuni kolm sellist lõiku. 93 pöörde seas seda olukorda ei olnud.
+- pöörded on hindaja kataloogide küsimused, mitte kasutajate küsimused;
+- 93 pöörde seas ei ole teada, mitmes oli selline lõik üldse kandidaatide seas (salvestatud pööre hoiab kandidaatide pealkirju, mitte lõike);
+- mõõtmata on, kas kandidaadikohta võttev sisutu lõik tõrjub välja lõigu, mis oleks vastust parandanud.
+
+Lisaks on olukord, kus eelvaliku mudel ei vasta ja otsing jääb liidetud järjestuse peale. Siis kehtib mudelita valik, kus viies küsimuses 49-st oleks üheksa lähtelõigu seas üks kuni kolm sellist lõiku. 93 pöörde seas seda olukorda ei olnud.
 
 ## 5. Mida parandus nõuaks
 
@@ -115,9 +121,9 @@ Autoriread ja fotoviited ei ole pealkirjad, nii et kaks esimest varianti neid ei
 
 ## 6. Soovitus
 
-**Praegu mitte ehitada.**
+**Praegu mitte ehitada.** Omanik otsustas 03.10 samamoodi.
 
-- Mõõdetud mõju vastustele puudub: päris pööretes 0 lõiku 498-st, otsustav lõik 33 küsimuses samal kohal.
+- Mõju vastustele ei ole tõendatud kummaski suunas. Vaadeldud 93 hindamispöörde tõendites neid lõike ei olnud (0 lõiku 498-st) ja 33 küsimuses on otsustav lõik samal kohal; kas vabanenud kandidaadikohad teeksid mõne vastuse paremaks, on mõõtmata.
 - Mõõdetud kulu on kandidaadikohad: keskmiselt 0,5 kohta 30-st, halvimal juhul seitse.
 - Odavaim parandus (eelvaliku reegel) vabastaks need kohad, aga ühtegi küsimust, kus see tulemust muudaks, ei leitud.
 
