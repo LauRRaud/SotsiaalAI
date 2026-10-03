@@ -2,7 +2,7 @@
 
 03.10.2026. Teostus Claude Opus 5.5. Omanik 03.10: „Juhise 24 jätame alles. Järgmisena paranda otsinguplaani parandussõnumi käsitlust: parandus peab seostuma nimetatud inimesega ning juba vastatud küsimus ei tohi automaatselt muutuda uueks ülesandeks. Kasuta mõlema salvestatud vigase plaani põhjal kohalikke regressioonikontrolle; kontroll peab püüdma ka õige vallaga, kuid vale teemaga otsingu. Lahendus olgu üldine, ilma nimede või valdade eranditeta. Tasulisi jookse ei tee.“ Järgib [ADR-071](adr-071-bare-correction-and-prior-claim.md).
 
-**Mõõdetud pärast kasutuselevõttu, omaniku loal** (jaotis „Mõõtmine“): mõlemas kahe inimese kataloogis luges plaan paranduse ema omaks, otsis Kose vallast ega kirjutanud ühtegi päringut; kõik 115 kontrolli läbisid. Üks jooks kataloogi kohta.
+**Mõõdetud pärast kasutuselevõttu, omaniku loal** (jaotis „Mõõtmine“): mõlemas kahe inimese kataloogis luges plaan paranduse ema omaks ega lisanud ühtegi otsingupäringut; põhiotsing toimus Kose vallas. Kõik 115 kontrolli läbisid. Üks jooks kataloogi kohta.
 
 Muudatus läks tootmisse mõõtmata, sest ülesanne ei lubanud tasulisi jookse; siis näitasid ainult kohalikud testid, et uus rida on juhises ja et kontrollid püüavad salvestatud vigased plaanid. Mõõtmine tehti samal päeval hiljem eraldi loaga.
 
@@ -83,7 +83,7 @@ Kulukaitse ei rakendunud.
 
 **Paranduspöörde plaan, kõik kuus jooksu kõrvuti:**
 
-| Jooks | Otsinguplaan | Plaani inimene | Otsingu vald | Päringuid | Plaani kontrollid |
+| Jooks | Otsinguplaan | Plaani inimene | Otsingu vald | Plaani lisapäringuid | Plaani kontrollid |
 |---|---|---|---|---:|---|
 | Üle piiri, 1. jooks | search-assist-5 | ema | Kose | 3, vastatud küsimus | ei läbi |
 | Üle piiri, juhise 24 ring | search-assist-5 | ema | Kose | 2, vastatud küsimus | ei läbi |
@@ -99,17 +99,20 @@ Kulukaitse ei rakendunud.
 > Arvestan parandusega: ema pension on 700 eurot. Ma ei saa selle põhjal öelda, kas ema toetuse või teenuse saamine muutub.
 
 - Olek on mõlemas õige: ema 700 kehtiv ja 600 asendatud, isa 450 kehtiv, kumbki oma vallaga; midagi ei jäetud välja.
-- **Teiste sõnumite plaanid on endised.** Ülejäänud kümme sisulist sõnumit said igaüks kaks või kolm päringut oma inimese ja valla kohta; sõnum, kus on mõlemad inimesed, sai päringu kummagi kohta. Märki, et uus rida teiste sõnumite päringuid vähendaks, nendes jooksudes ei ole.
+- **Teised sõnumid said neis jooksudes lisapäringud.** Ülejäänud kümnel sisulisel sõnumil oli kaks või kolm plaani päringut. Mõlemat vanemat tutvustavas sõnumis oli plaani inimene „ebaselge“ ja päringud olid kummagi vanema kohta. See on nende kahe jooksu tulemus: see ei tõenda, et teiste sõnumite plaanid on muutumatud ega et uus rida mujal midagi ei halvenda.
+- **Tühi päringuloend ei tähenda, et otsingut ei tehtud.** Plaani päringud on lisapäringud. Põhiotsing tehakse igal pöördel teema kasutajasõnumite tekstiga ja see toimus ka paranduspöördes: hindaja täisraportite järgi luges eelvaliku mudel mõlemas jooksus 36 kandidaati ja jättis alles kaks (üle piiri) ja kolm (teema sees) lõiku.
 
 **Mida see ei näita:**
 
 - Iga kataloog jooksis üks kord. Varem kõikus sama pöörde plaan jooksust jooksu (teema sees kord ema, kord isa), seega kaks läbinud jooksu ei tõesta, et viga enam ei kordu.
-- **Paranduse tagajärgi vastus ei nimeta.** Plaan ei otsinud midagi ja vastus ütleb, et valitud teabe põhjal ei saa öelda, kas parandus midagi muudab. Üle piiri vestluses oli ema hooldekodu tasust juba räägitud; kas plaan, mis otsiks seda, mida summa ema jaoks muudab, annaks parema vastuse, ei ole mõõdetud.
+- **Paranduse tagajärgi vastus ei nimeta.** Vastus ütleb, et valitud teabe põhjal ei saa öelda, kas parandus midagi muudab. Miks, ei ole kindlaks tehtud: plaan ei lisanud uusi päringuid, aga põhiotsing toimus, ja nende pöörete tõendipakette tõendifailis ei ole, seega on kontrollimata, kas sobiv teave oli tõendite seas. Üle piiri vestluses oli ema hooldekodu tasust juba räägitud; kas plaan, mis otsiks seda, mida summa ema jaoks muudab, annaks parema vastuse, ei ole mõõdetud.
 - Parandust koos uue küsimusega ja varasema vastuse kontrollimise palvet ei ole endiselt mudeliga mõõdetud.
 
 Tõendid: [evidence/search-assist-6-measured-2026-10-03.json](../audits/evidence/search-assist-6-measured-2026-10-03.json) (iga sõnumi plaan, paranduspöörete olek, kontrollid ja vastused). Täisraportid on serveris (`eval-files/plan6-*-20261003/`).
 
 ## Piirid
+
+- Codexi #329–#330 ülevaatus (03.10) koodiviga ei leidnud ja täpsustas kaks sõnastust, mis on siin parandatud: tühi lisapäringute loend ei ole otsingu puudumine, ja teiste sõnumite päringud näitavad nende jooksude tulemust, mitte plaanide muutumatust. Üldine töökindlus ning parandus koos uue küsimusega on nende kahe vaatlusega tõendamata.
 
 - **Põhiotsing on muutmata.** Otsingutekst on endiselt teema kõik kasutaja sõnumid kokku ja eelvaliku mudel loeb samuti kõiki sõnumeid. Vastatud küsimuse sõnad osalevad seetõttu otsingus ka siis, kui plaan seda küsimust ei otsi.
 - Kontrollide mustrid on selle stsenaariumi omad (tähtaeg, toimetulekutoetus, võlad); üldine on juhise reegel, mitte mustrid.
