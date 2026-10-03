@@ -4233,11 +4233,11 @@
     },
     "contact": {
       "title": "Contact",
-      "email_value": "info@sotsiaal.ai",
+      "email_value": "info@sotsiaal.pro",
       "company": "SotsiaalAI OÜ",
       "registry_value": "14206225",
       "address_value": "Harju maakond, Harku vald, Tabasalu, Kolde tn 6/1, 76901, Estonia",
-      "modal_body": "<p><strong>SotsiaalAI OÜ</strong><br />Registry code 14206225<br />Address: Harju maakond, Harku vald, Tabasalu, Kolde tn 6/1, 76901, Estonia<br /><a href=\"mailto:info@sotsiaal.ai\">info@sotsiaal.ai</a></p>"
+      "modal_body": "<p><strong>SotsiaalAI OÜ</strong><br />Registry code 14206225<br />Address: Harju maakond, Harku vald, Tabasalu, Kolde tn 6/1, 76901, Estonia<br /><a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a></p>"
     },
     "cta": {
       "title": "SotsiaalAI"
@@ -4650,7 +4650,7 @@
       "title": "Your last monthly payment failed.",
       "retrying": "We will retry the payment automatically. Next attempt: {date}. You do not need to do anything right now.",
       "ended": "The monthly payment did not succeed and the subscription is paused. Activate the subscription again to restore access.",
-      "support": "If something looks wrong, email us at info@sotsiaal.ai."
+      "support": "If something looks wrong, email us at info@sotsiaal.pro."
     },
     "button": {
       "open_profile": "Open profile",
@@ -4902,13 +4902,13 @@
       },
       "pin_changed": {
         "subject": "Your SotsiaalAI PIN was changed",
-        "text": "Hello!\n\nThe PIN for your SotsiaalAI account was just changed.\n\nIf this was not you, write to info@sotsiaal.ai immediately and reset your PIN.",
-        "html": "<p>Hello!</p><p>The PIN for your SotsiaalAI account was just changed.</p><p>If this was not you, write to <a href=\"mailto:info@sotsiaal.ai\">info@sotsiaal.ai</a> immediately and reset your PIN.</p>"
+        "text": "Hello!\n\nThe PIN for your SotsiaalAI account was just changed.\n\nIf this was not you, write to info@sotsiaal.pro immediately and reset your PIN.",
+        "html": "<p>Hello!</p><p>The PIN for your SotsiaalAI account was just changed.</p><p>If this was not you, write to <a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a> immediately and reset your PIN.</p>"
       },
       "email_changed_notice": {
         "subject": "Your SotsiaalAI account email was changed",
-        "text": "Hello!\n\nThe email address for your SotsiaalAI account has been changed. This notice was sent to your previous address.\n\nIf you did not request this, write to info@sotsiaal.ai immediately.",
-        "html": "<p>Hello!</p><p>The email address for your SotsiaalAI account has been changed. This notice was sent to your previous address.</p><p>If you did not request this, write to <a href=\"mailto:info@sotsiaal.ai\">info@sotsiaal.ai</a> immediately.</p>"
+        "text": "Hello!\n\nThe email address for your SotsiaalAI account has been changed. This notice was sent to your previous address.\n\nIf you did not request this, write to info@sotsiaal.pro immediately.",
+        "html": "<p>Hello!</p><p>The email address for your SotsiaalAI account has been changed. This notice was sent to your previous address.</p><p>If you did not request this, write to <a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a> immediately.</p>"
       }
     },
     "auth": {
@@ -4944,8 +4944,8 @@
       },
       "account_deleted": {
         "subject": "Your SotsiaalAI account was deleted",
-        "text": "Hello!\n\nYour SotsiaalAI account was deleted.\n\nIf this was not you, please contact us immediately at info@sotsiaal.ai.",
-        "html": "<p>Hello!</p><p>Your SotsiaalAI account was deleted.</p><p>If this was not you, please contact us immediately at <a href=\"mailto:info@sotsiaal.ai\">info@sotsiaal.ai</a>.</p>"
+        "text": "Hello!\n\nYour SotsiaalAI account was deleted.\n\nIf this was not you, please contact us immediately at info@sotsiaal.pro.",
+        "html": "<p>Hello!</p><p>Your SotsiaalAI account was deleted.</p><p>If this was not you, please contact us immediately at <a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a>.</p>"
       }
     },
     "invite": {

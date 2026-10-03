@@ -13,7 +13,7 @@ import { ReadingToc, useHashNavigation } from "@/components/alalehed/readingLaye
 
 const emailReplacement = {
   aEmail: {
-    open: `<a href="mailto:info@sotsiaal.ai">`,
+    open: `<a href="mailto:info@sotsiaal.pro">`,
     close: "</a>"
   }
 };

@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import { getLocaleFromCookies, getMessagesSync } from "@/lib/i18n";
 import { buildLocalizedMetadata } from "@/lib/metadata";
+import { getPublicSiteUrl } from "@/lib/siteUrl";
 
 export async function generateMetadata() {
   const cookieStore = await cookies();
@@ -25,15 +26,15 @@ export async function generateMetadata() {
  * otsimootorile ja liikumise vähendajale.
  */
 /* T10 E6: avalik Organization JSON-LD — ainult avalikud, staatilised andmed
-   (samad, mis avalehe kontaktimodaalis). Ei sisalda env-väärtusi. */
+   (samad, mis avalehe kontaktimodaalis). URL kasutab ainult avalikku saidi aadressi. */
 const ORGANIZATION_JSONLD = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "SotsiaalAI",
   legalName: "SotsiaalAI OÜ",
-  url: "https://sotsiaal.ai",
-  logo: "https://sotsiaal.ai/og/sotsiaalai-share.png",
-  email: "info@sotsiaal.ai"
+  url: getPublicSiteUrl(),
+  logo: `${getPublicSiteUrl()}/og/sotsiaalai-share.png`,
+  email: "info@sotsiaal.pro"
 };
 
 export default async function HomeRoot() {

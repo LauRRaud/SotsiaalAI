@@ -18,7 +18,7 @@ function resolvePublicOrigin() {
     process.env.NEXT_PUBLIC_APP_URL,
     process.env.NEXTAUTH_URL,
     process.env.SITE_URL,
-    "https://sotsiaal.ai"
+    "https://sotsiaal.pro"
   ];
   for (const raw of candidates) {
     if (!raw) continue;
@@ -28,7 +28,7 @@ function resolvePublicOrigin() {
       return `${u.protocol}//${u.host}`;
     } catch {}
   }
-  return "https://sotsiaal.ai";
+  return "https://sotsiaal.pro";
 }
 
 const PUBLIC_ORIGIN = resolvePublicOrigin();

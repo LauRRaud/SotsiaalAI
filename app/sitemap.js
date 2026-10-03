@@ -1,5 +1,7 @@
+import { getPublicSiteUrl } from "@/lib/siteUrl";
+
 export default function sitemap() {
-  const base = (process.env.NEXT_PUBLIC_SITE_URL || "https://sotsiaal.ai").replace(/\/$/, "");
+  const base = getPublicSiteUrl();
   const now = new Date().toISOString();
   const paths = [
     "/",

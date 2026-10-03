@@ -1962,7 +1962,7 @@
     "title": "Privaatsus",
     "section1": {
       "heading": "1. Vastutav töötleja ja ulatus",
-      "paragraph1": "<p><strong>SotsiaalAI OÜ</strong> on veebiplatvormi <strong>SotsiaalAI</strong> vastutav töötleja nende töötluste osas, mille eesmärgid ja vahendid määrab SotsiaalAI ise. Meie üldine kontakt e-posti aadress on <strong>info@sotsiaal.ai</strong>. Sama aadressi kaudu saad esitada andmekaitsealaseid küsimusi ja kasutada oma andmesubjekti õigusi.</p><p>See privaatsuspoliitika selgitab, milliseid andmeid kogume, milleks neid kasutame, kui kaua neid säilitame, kuidas kasutus- ja salvestuspiirid võivad säilitamist mõjutada ning milliseid automatiseeritud süsteeme kasutame vastuste, mustandite, liigituste või otsingutulemuste loomiseks.</p>",
+      "paragraph1": "<p><strong>SotsiaalAI OÜ</strong> on veebiplatvormi <strong>SotsiaalAI</strong> vastutav töötleja nende töötluste osas, mille eesmärgid ja vahendid määrab SotsiaalAI ise. Meie üldine kontakt e-posti aadress on <strong>info@sotsiaal.pro</strong>. Sama aadressi kaudu saad esitada andmekaitsealaseid küsimusi ja kasutada oma andmesubjekti õigusi.</p><p>See privaatsuspoliitika selgitab, milliseid andmeid kogume, milleks neid kasutame, kui kaua neid säilitame, kuidas kasutus- ja salvestuspiirid võivad säilitamist mõjutada ning milliseid automatiseeritud süsteeme kasutame vastuste, mustandite, liigituste või otsingutulemuste loomiseks.</p>",
       "paragraph2": "<p>Käesolev privaatsuspoliitika selgitab, kuidas töötleme isikuandmeid konto loomisel, sisselogimisel, tellimuste haldamisel, vestlustes, ruumides, abiandmete töövoogudes, dokumentide halduses, dokumendi koostamises, dokumendi analüüsis, süvauuringus ning häälfunktsioonides. Töötleme andmeid kooskõlas Eesti isikuandmete kaitse <aLawEst>seadusega</aLawEst> ja Euroopa Liidu isikuandmete kaitse <aGdpr>üldmäärusega</aGdpr>. Õiguste kasutamise taotlustele vastame üldjuhul ühe kuu jooksul.</p><p>Käesolev poliitika kirjeldab eelkõige SotsiaalAI tavapärast kasutust, kus platvormi kasutatakse isikliku konto alt. Kui kasutaja kasutab SotsiaalAI-d tööalases rollis või organisatsiooni nimel, võivad teatud töövoogude suhtes lisaks kohalduda tööandja või organisatsiooni sisereeglid ning eraldi tööalase kasutuse või andmetöötluse raamistik.</p>"
     },
     "section2": {
@@ -1981,7 +1981,7 @@
     },
     "section5": {
       "heading": "5. Volitatud töötlejad ja võimalikud välisülekanded",
-      "body": "<p>SotsiaalAI kasutab teenuse osutamiseks volitatud töötlejaid ja teenusepakkujaid, näiteks:</p><ul><li>Zone Media OÜ-d tehnilise majutuse ja serveriinfrastruktuuri jaoks;</li><li>Maksekeskus AS-i makseteenuste jaoks;</li><li>OpenAI-d teatud tehisintellekti funktsioonide jaoks;</li><li>Google Cloud Text-to-Speech teenust teatud kõnefunktsioonide jaoks;</li><li>Tartu Ülikooli kõnesünteesi teenust (TartuNLP) eestikeelse ettelugemise jaoks;</li><li>e-posti, logimise ja monitooringu pakkujaid.</li></ul><p>Zone Media OÜ VPS-teenuse kaudu toimub platvormi tehniline majutamine Euroopa Majanduspiirkonnas, sealhulgas Eestis.</p><p><strong>Ettelugemine.</strong> Kui kasutaja vajutab vastuse juures ettelugemise nuppu, edastatakse ette loetav tekst kõnesünteesi teenusele. Eestikeelse ettelugemise puhul on selleks Tartu Ülikooli teenus (TartuNLP), mis asub Eestis. Edastatakse ainult ette loetav tekst — kasutaja kontot, e-posti aadressi ega muid tunnuseid sellega kaasa ei saadeta. Ettelugemine ei käivitu iseenesest, vaid ainult kasutaja vajutusel. Ingliskeelne ja venekeelne ettelugemine kasutab kasutaja enda brauseri kõnesünteesi ning platvorm ei edasta seda teksti ühelegi teenusepakkujale.</p><p>Need teenusepakkujad töötlevad andmeid ainult vajalikus ulatuses ning nende kasutamisel rakendame lepingulisi ja tehnilisi kaitsemeetmeid. Kui mõni teenusepakkuja töötleb andmeid väljaspool EL-i või EMP-d, lähtume sobivast õiguslikust ülekandemehhanismist, näiteks Euroopa Komisjoni piisavusotsusest või standardsetest lepingutingimustest koos täiendavate kaitsemeetmetega. Kasutaja võib küsida lisateavet kohaldatavate kaitsemeetmete kohta või taotleda nende koopiat, kui see on õiguslikult võimalik, võttes meiega ühendust aadressil info@sotsiaal.ai.</p>"
+      "body": "<p>SotsiaalAI kasutab teenuse osutamiseks volitatud töötlejaid ja teenusepakkujaid, näiteks:</p><ul><li>Zone Media OÜ-d tehnilise majutuse ja serveriinfrastruktuuri jaoks;</li><li>Maksekeskus AS-i makseteenuste jaoks;</li><li>OpenAI-d teatud tehisintellekti funktsioonide jaoks;</li><li>Google Cloud Text-to-Speech teenust teatud kõnefunktsioonide jaoks;</li><li>Tartu Ülikooli kõnesünteesi teenust (TartuNLP) eestikeelse ettelugemise jaoks;</li><li>e-posti, logimise ja monitooringu pakkujaid.</li></ul><p>Zone Media OÜ VPS-teenuse kaudu toimub platvormi tehniline majutamine Euroopa Majanduspiirkonnas, sealhulgas Eestis.</p><p><strong>Ettelugemine.</strong> Kui kasutaja vajutab vastuse juures ettelugemise nuppu, edastatakse ette loetav tekst kõnesünteesi teenusele. Eestikeelse ettelugemise puhul on selleks Tartu Ülikooli teenus (TartuNLP), mis asub Eestis. Edastatakse ainult ette loetav tekst — kasutaja kontot, e-posti aadressi ega muid tunnuseid sellega kaasa ei saadeta. Ettelugemine ei käivitu iseenesest, vaid ainult kasutaja vajutusel. Ingliskeelne ja venekeelne ettelugemine kasutab kasutaja enda brauseri kõnesünteesi ning platvorm ei edasta seda teksti ühelegi teenusepakkujale.</p><p>Need teenusepakkujad töötlevad andmeid ainult vajalikus ulatuses ning nende kasutamisel rakendame lepingulisi ja tehnilisi kaitsemeetmeid. Kui mõni teenusepakkuja töötleb andmeid väljaspool EL-i või EMP-d, lähtume sobivast õiguslikust ülekandemehhanismist, näiteks Euroopa Komisjoni piisavusotsusest või standardsetest lepingutingimustest koos täiendavate kaitsemeetmetega. Kasutaja võib küsida lisateavet kohaldatavate kaitsemeetmete kohta või taotleda nende koopiat, kui see on õiguslikult võimalik, võttes meiega ühendust aadressil info@sotsiaal.pro.</p>"
     },
     "section6": {
       "heading": "6. Andmete jagamine",
@@ -4233,11 +4233,11 @@
     },
     "contact": {
       "title": "Kontakt",
-      "email_value": "info@sotsiaal.ai",
+      "email_value": "info@sotsiaal.pro",
       "company": "SotsiaalAI OÜ",
       "registry_value": "14206225",
       "address_value": "Harju maakond, Harku vald, Tabasalu, Kolde tn 6/1, 76901, Eesti",
-      "modal_body": "<p><strong>SotsiaalAI OÜ</strong><br />Registrikood 14206225<br />Aadress: Harju maakond, Harku vald, Tabasalu, Kolde tn 6/1, 76901, Eesti<br /><a href=\"mailto:info@sotsiaal.ai\">info@sotsiaal.ai</a></p>"
+      "modal_body": "<p><strong>SotsiaalAI OÜ</strong><br />Registrikood 14206225<br />Aadress: Harju maakond, Harku vald, Tabasalu, Kolde tn 6/1, 76901, Eesti<br /><a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a></p>"
     },
     "cta": {
       "title": "SotsiaalAI"
@@ -4650,7 +4650,7 @@
       "title": "Viimane kuumakse ebaõnnestus.",
       "retrying": "Proovime makset automaatselt uuesti. Järgmine katse: {date}. Praegu ei pea sa midagi tegema.",
       "ended": "Kuumakse ei õnnestunud ja tellimus on peatatud. Ligipääsu taastamiseks aktiveeri tellimus uuesti.",
-      "support": "Kui midagi tundub valesti, kirjuta meile aadressil info@sotsiaal.ai."
+      "support": "Kui midagi tundub valesti, kirjuta meile aadressil info@sotsiaal.pro."
     },
     "button": {
       "open_profile": "Ava profiil",
@@ -4902,13 +4902,13 @@
       },
       "pin_changed": {
         "subject": "SotsiaalAI PIN-kood on muudetud",
-        "text": "Tere!\n\nSinu SotsiaalAI konto PIN-kood on äsja muudetud.\n\nKui sina seda ei teinud, kirjuta kohe aadressile info@sotsiaal.ai ja taasta oma PIN.",
-        "html": "<p>Tere!</p><p>Sinu SotsiaalAI konto PIN-kood on äsja muudetud.</p><p>Kui sina seda ei teinud, kirjuta kohe aadressile <a href=\"mailto:info@sotsiaal.ai\">info@sotsiaal.ai</a> ja taasta oma PIN.</p>"
+        "text": "Tere!\n\nSinu SotsiaalAI konto PIN-kood on äsja muudetud.\n\nKui sina seda ei teinud, kirjuta kohe aadressile info@sotsiaal.pro ja taasta oma PIN.",
+        "html": "<p>Tere!</p><p>Sinu SotsiaalAI konto PIN-kood on äsja muudetud.</p><p>Kui sina seda ei teinud, kirjuta kohe aadressile <a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a> ja taasta oma PIN.</p>"
       },
       "email_changed_notice": {
         "subject": "SotsiaalAI konto e-post on muudetud",
-        "text": "Tere!\n\nSinu SotsiaalAI konto e-posti aadress on muudetud. See teavitus saadeti sinu senisele aadressile.\n\nKui sina seda ei algatanud, kirjuta kohe aadressile info@sotsiaal.ai.",
-        "html": "<p>Tere!</p><p>Sinu SotsiaalAI konto e-posti aadress on muudetud. See teavitus saadeti sinu senisele aadressile.</p><p>Kui sina seda ei algatanud, kirjuta kohe aadressile <a href=\"mailto:info@sotsiaal.ai\">info@sotsiaal.ai</a>.</p>"
+        "text": "Tere!\n\nSinu SotsiaalAI konto e-posti aadress on muudetud. See teavitus saadeti sinu senisele aadressile.\n\nKui sina seda ei algatanud, kirjuta kohe aadressile info@sotsiaal.pro.",
+        "html": "<p>Tere!</p><p>Sinu SotsiaalAI konto e-posti aadress on muudetud. See teavitus saadeti sinu senisele aadressile.</p><p>Kui sina seda ei algatanud, kirjuta kohe aadressile <a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a>.</p>"
       }
     },
     "auth": {
@@ -4944,8 +4944,8 @@
       },
       "account_deleted": {
         "subject": "SotsiaalAI konto on kustutatud",
-        "text": "Tere!\n\nTeie SotsiaalAI konto on kustutatud.\n\nKui te ei algatanud seda tegevust, palun kirjutage kohe aadressile info@sotsiaal.ai.",
-        "html": "<p>Tere!</p><p>Teie SotsiaalAI konto on kustutatud.</p><p>Kui te ei algatanud seda tegevust, palun kirjutage kohe aadressile <a href=\"mailto:info@sotsiaal.ai\">info@sotsiaal.ai</a>.</p>"
+        "text": "Tere!\n\nTeie SotsiaalAI konto on kustutatud.\n\nKui te ei algatanud seda tegevust, palun kirjutage kohe aadressile info@sotsiaal.pro.",
+        "html": "<p>Tere!</p><p>Teie SotsiaalAI konto on kustutatud.</p><p>Kui te ei algatanud seda tegevust, palun kirjutage kohe aadressile <a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a>.</p>"
       }
     },
     "invite": {

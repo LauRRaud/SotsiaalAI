@@ -1,7 +1,8 @@
 import { DEFAULT_LOCALE, LOCALES } from "@/lib/localizePath";
+import { getPublicSiteUrl } from "@/lib/siteUrl";
 
 export default function robots() {
-  const base = process.env.NEXT_PUBLIC_SITE_URL || "https://sotsiaal.ai";
+  const base = getPublicSiteUrl();
   const privatePaths = [
     "/profiil",
     "/vestlus",

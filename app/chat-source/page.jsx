@@ -2,13 +2,14 @@ import { pilotGet } from '@/lib/chat/m4PilotServer';
 import { serverT } from '@/lib/i18n/serverMessages';
 import { cookies } from 'next/headers';
 import { notFound } from 'next/navigation';
+import { getPublicSiteUrl } from '@/lib/siteUrl';
 export const dynamic = 'force-dynamic';
 export default async function ChatSourcePage({ searchParams }) {
   const params = await searchParams;
   const query = new URLSearchParams();
   for (const key of ['convId', 'turnId', 'ref']) if (typeof params[key] === 'string') query.set(key, params[key]);
   if (query.size !== 3) notFound();
-  const response = await pilotGet(new Request(`https://sotsiaal.ai/api/chat/pilot?${query}`));
+  const response = await pilotGet(new Request(`${getPublicSiteUrl()}/api/chat/pilot?${query}`));
   const source = await response.json();
   const locale = (await cookies()).get('NEXT_LOCALE')?.value || 'et';
   const t = (key, values) => serverT(locale, `m4Pilot.${key}`, values);

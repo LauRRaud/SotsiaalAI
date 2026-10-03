@@ -16,7 +16,7 @@ import { backWithTransition, pushWithTransition } from "@/lib/routeTransition";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 const emailReplacement = {
   email: {
-    open: `<a href="mailto:info@sotsiaal.ai">`,
+    open: `<a href="mailto:info@sotsiaal.pro">`,
     close: "</a>"
   }
 };

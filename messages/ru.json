@@ -4233,11 +4233,11 @@
     },
     "contact": {
       "title": "Контакты",
-      "email_value": "info@sotsiaal.ai",
+      "email_value": "info@sotsiaal.pro",
       "company": "SotsiaalAI OÜ",
       "registry_value": "14206225",
       "address_value": "Harju maakond, Harku vald, Tabasalu, Kolde tn 6/1, 76901, Эстония",
-      "modal_body": "<p><strong>SotsiaalAI OÜ</strong><br />Регистрационный код 14206225<br />Адрес: Harju maakond, Harku vald, Tabasalu, Kolde tn 6/1, 76901, Эстония<br /><a href=\"mailto:info@sotsiaal.ai\">info@sotsiaal.ai</a></p>"
+      "modal_body": "<p><strong>SotsiaalAI OÜ</strong><br />Регистрационный код 14206225<br />Адрес: Harju maakond, Harku vald, Tabasalu, Kolde tn 6/1, 76901, Эстония<br /><a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a></p>"
     },
     "cta": {
       "title": "SotsiaalAI"
@@ -4650,7 +4650,7 @@
       "title": "Последний ежемесячный платеж не прошел.",
       "retrying": "Мы автоматически повторим платеж. Следующая попытка: {date}. Сейчас ничего делать не нужно.",
       "ended": "Ежемесячный платеж не прошел, и подписка приостановлена. Чтобы восстановить доступ, активируйте подписку заново.",
-      "support": "Если что-то выглядит не так, напишите нам на info@sotsiaal.ai."
+      "support": "Если что-то выглядит не так, напишите нам на info@sotsiaal.pro."
     },
     "button": {
       "open_profile": "Открыть профиль",
@@ -4902,13 +4902,13 @@
       },
       "pin_changed": {
         "subject": "PIN-код SotsiaalAI изменён",
-        "text": "Здравствуйте!\n\nPIN-код вашего аккаунта SotsiaalAI только что изменён.\n\nЕсли это были не вы, немедленно напишите на info@sotsiaal.ai и сбросьте PIN.",
-        "html": "<p>Здравствуйте!</p><p>PIN-код вашего аккаунта SotsiaalAI только что изменён.</p><p>Если это были не вы, немедленно напишите на <a href=\"mailto:info@sotsiaal.ai\">info@sotsiaal.ai</a> и сбросьте PIN.</p>"
+        "text": "Здравствуйте!\n\nPIN-код вашего аккаунта SotsiaalAI только что изменён.\n\nЕсли это были не вы, немедленно напишите на info@sotsiaal.pro и сбросьте PIN.",
+        "html": "<p>Здравствуйте!</p><p>PIN-код вашего аккаунта SotsiaalAI только что изменён.</p><p>Если это были не вы, немедленно напишите на <a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a> и сбросьте PIN.</p>"
       },
       "email_changed_notice": {
         "subject": "Email аккаунта SotsiaalAI изменён",
-        "text": "Здравствуйте!\n\nEmail вашего аккаунта SotsiaalAI изменён. Это уведомление отправлено на ваш прежний адрес.\n\nЕсли это были не вы, немедленно напишите на info@sotsiaal.ai.",
-        "html": "<p>Здравствуйте!</p><p>Email вашего аккаунта SotsiaalAI изменён. Это уведомление отправлено на ваш прежний адрес.</p><p>Если это были не вы, немедленно напишите на <a href=\"mailto:info@sotsiaal.ai\">info@sotsiaal.ai</a>.</p>"
+        "text": "Здравствуйте!\n\nEmail вашего аккаунта SotsiaalAI изменён. Это уведомление отправлено на ваш прежний адрес.\n\nЕсли это были не вы, немедленно напишите на info@sotsiaal.pro.",
+        "html": "<p>Здравствуйте!</p><p>Email вашего аккаунта SotsiaalAI изменён. Это уведомление отправлено на ваш прежний адрес.</p><p>Если это были не вы, немедленно напишите на <a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a>.</p>"
       }
     },
     "auth": {
@@ -4944,8 +4944,8 @@
       },
       "account_deleted": {
         "subject": "Аккаунт SotsiaalAI удален",
-        "text": "Здравствуйте!\n\nВаш аккаунт SotsiaalAI удален.\n\nЕсли это сделали не вы, пожалуйста, сразу напишите на info@sotsiaal.ai.",
-        "html": "<p>Здравствуйте!</p><p>Ваш аккаунт SotsiaalAI удален.</p><p>Если это сделали не вы, пожалуйста, сразу напишите на <a href=\"mailto:info@sotsiaal.ai\">info@sotsiaal.ai</a>.</p>"
+        "text": "Здравствуйте!\n\nВаш аккаунт SotsiaalAI удален.\n\nЕсли это сделали не вы, пожалуйста, сразу напишите на info@sotsiaal.pro.",
+        "html": "<p>Здравствуйте!</p><p>Ваш аккаунт SotsiaalAI удален.</p><p>Если это сделали не вы, пожалуйста, сразу напишите на <a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a>.</p>"
       }
     },
     "invite": {
