@@ -290,6 +290,23 @@ test('the correction cases: a bare correction, a correction with a new question,
   assert.deepEqual(failed(run('correction-with-new-question', asked, { person: 'isa', queries: careHome })), ['person']);
   assert.equal(run('verification-request', verified, { queries: ['toimetulekutoetuse taotluse menetlemise tähtaeg'] }).verdict, 'passed');
   assert.deepEqual(failed(run('verification-request', verified, { person: 'ema' })), ['person']);
+
+  // The one run of two of the cases with the model (03.10.2026, owner's permission): the answers as given, with the plans
+  // the turns stored. The correction with a new question passed every check.
+  const givenWithQuestion = ['Arvestan parandusega: ema pension on 700 eurot. Kose vallas tasub teenuse saaja majutus-, toitlustus- ja muud teenusega seotud kulud. Kose valla teenusekirjelduses on valla makstava hoolduskulu piirmäär 650 eurot kuus. Piirmäära ületavad kulud tasub inimene või tema pereliige; kui nad ei suuda maksta, hindab ametnik nende maksevõimet ja otsustab, kas vald katab kulud. [S1, S2, S60]',
+    'Ema ei pea tingimata kõiki kulusid ise katma. Kui vald on välja selgitanud, et ta vajab ööpäevaringset üldhooldusteenust, rahastavad kohta vald ja teenuse saaja. Kui ema arvestatav sissetulek jääb alla võrdluseks oleva keskmise vanaduspensioni, katab vald teenuse saaja tasutavate kulude ja tema sissetuleku vahe, kuid mitte rohkem kui selle pensionisuuruse ja sissetuleku vahe. Riiklik pension on selle sissetuleku arvestuses üks arvesse minev tulu. [S2]',
+    'Järgmise sammuna esita Kose Vallavalitsusele üldhooldusteenuse taotlus. Kose vallal on selleks taotlusvorm. [S32, S60]',
+    'Ma ei saa 700-eurose pensioni põhjal öelda, kas ema jääb keskmise vanaduspensioni võrdluspiirist allapoole ega arvutada tema omaosalust. Siin ei ole võrdluspiiri suurust ega konkreetse teenuskoha kogukulu.'];
+  assert.equal(run('correction-with-new-question', givenWithQuestion.join('\n\n'), { queries: ['Üldhooldusteenuse rahastamine hoolduskulud omaosalus ja erandid',
+    'Kose vald üldhooldusteenuse kulude katmine inimese omaosalus', 'Üldhooldusteenuse eest tasumine pensioni ja sissetuleku arvestamine'] }).verdict, 'passed');
+  // The verification answer examined the claim and cited the Act, with the numeral in the nominative ("viis tööpäeva").
+  // The pattern of that day accepted "viie tööpäeva" and "5 tööpäeva" only, so the run recorded one failed check. The
+  // pattern now accepts the numeral in any case form, and the answer passes; another deadline still does not.
+  const givenVerified = 'Jah. Isa toimetulekutoetuse määramise tähtaeg on viis tööpäeva pärast kõigi vajalike dokumentide esitamist. See on otsuse tegemise tähtaeg, mitte väljamakse tähtaeg: arvestatud toetus makstakse välja kolme tööpäeva jooksul otsuse tegemisest. [S1, S2]';
+  assert.equal(checkTurn({ must: ['(viie|5)\\s+tööpäeva'] }, observed({ text: givenVerified })).verdict, 'answer', 'the pattern the run of 03.10 used');
+  assert.equal(run('verification-request', givenVerified, { queries: ['toimetulekutoetuse taotluse menetlemise tähtaeg viis tööpäeva'] }).verdict, 'passed');
+  for (const text of ['Jah, viiel tööpäeval pärast dokumentide esitamist. [S1]', 'Jah, 5 tööpäeva jooksul. [S1]']) assert.equal(run('verification-request', text).verdict, 'passed', text);
+  for (const text of ['Ei, tähtaeg on kümme tööpäeva. [S1]', 'Tähtaeg on 15 tööpäeva. [S1]', 'Toetus makstakse välja kolme tööpäeva jooksul. [S1]']) assert.deepEqual(failed(run('verification-request', text)), ['must'], text);
 });
 
 // ADR-072 (owner 03.10.2026: local regression checks from the stored faulty plans). The search plans the correction turn
