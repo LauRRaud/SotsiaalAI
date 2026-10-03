@@ -157,8 +157,8 @@ test('dialogue prompt 22 (ADR-062): valid_from chooses the version and never dat
   assert.equal(hash(COMPLETENESS_INSTRUCTIONS.replace(C, '')), '7ae786af60d384ae80f55632ed16c0dcb432a98a5739cf73062c0c86ba7c10be');
   assert.ok(COMPLETENESS_INSTRUCTIONS.includes('keep with it, in the same block, what it is calculated from, any cap or maximum (such as a price cap), what the person pays themselves, the period or date it applies to, who decides'));
   assert.equal(PROMPT_VERSION, 'm4-grounded-answer-12');
-  assert.deepEqual(Object.fromEntries(['et', 'en', 'ru'].map(language => [language, hash(answerInstructions(language))])), { et: '903c7afbcc35f137cbac71c66f78a69defec51dd69a24bfe839884d9e1007a0d',
-    en: 'f7b4c15c88f94d47341abdccbb45eaf19a77f8feaa9ab9f5ca0828639b583975', ru: '41f40c99eafb8de0397a0825eb16bf0a8ea34e2b61538a1c0459f7e0be6c7090' });
+  assert.deepEqual(Object.fromEntries(['et', 'en', 'ru'].map(language => [language, hash(answerInstructions(language))])), { et: 'a6b0c4f78016b90198b9ce8026e8f35524cf61f005a03212dc67db3e9748a0f1',
+    en: '012bb27ea0bf8c8eba7db32d2c9ae123ea2edac255695f0eca0b21c5cda27ba3', ru: 'd21da15b0fcb98b0a5c7e98ff2e39ca5dc4a7c6dd574710ab8dbb2901e67c989' });
   const assist = { model: 'gpt-6-luna', searchAssist: SEARCH_ASSIST_VERSION };
   // search-assist-6 (ADR-072) adds one line to the plan's instructions; without it both texts are those of search-assist-5.
   const asFive = text => text.replaceAll('rag-v2/search-assist-6', 'rag-v2/search-assist-5');
