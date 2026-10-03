@@ -12,6 +12,8 @@ Teostus Claude Opus 5.5. Omanik 03.10: „tee üks kahe inimese vestluse kontrol
 
 Kummalgi pool on üks jooks: see on viide, mitte mõõtmine.
 
+**Järg (omanik 03.10):** dialoogi juhist parandati ([ADR-071](../rag-v2/adr-071-bare-correction-and-prior-claim.md), jaotis 9). Jaotised 1–8 kirjeldavad jookse juhisega 23 ja on jäetud nii, nagu need kirjutati.
+
 ## 1. Mis pandi enne kirja
 
 Kataloog `tests/evaluation/dialogue/scenarios-two-people-boundary-1.json` (blob `6340eaa5`) ühendati [#324](https://github.com/LauRRaud/SotsiaalAI/pull/324)-ga kell 13:46; jooks algas kell 13:54 samast juurutatud koodist (`038cb3d2`), sama blob'iga.
@@ -195,6 +197,14 @@ Omanik 03.10: „tee“ ettepanekule teha üks võrdlusjooks samade viimaste sõ
 - Ühe inimesega vestluses (ADR-070 elav kontroll 02.10) puudutasid parandus ja eelmine küsimus sama inimest ning vastus algas paranduse kinnitusega.
 
 **Kõrvaline tähelepanek, mida ei kontrollitud:** esimeses sõnumis oli kaks inimest kahes vallas. Otsinguplaan märkis inimese ebaselgeks, vallakataloog võeti Harku vallast ja vastus käsitles mõlemat vanemat, nimetades mõlemat valda. Mõlema inimese asjaolud pandi õigesti kirja.
+
+## 9. Pärast seda: dialoogi juhis 24
+
+Omanik 03.10: „Tee väike üldine juhiseparandus … Säilita ajaloolised tulemused.“ Tehtud [ADR-071](../rag-v2/adr-071-bare-correction-and-prior-claim.md)-s.
+
+- **Juhis:** pelk parandus saab kinnituse esimeses lauses ja selle, mida parandus muudab; vastatud küsimust uuesti ei lahendata. Varasemat väidet kontrollitakse ainult siis, kui kasutaja seda küsib või palve seda vajab. Varasem vastus ei ole endiselt tõend.
+- **Kataloogid:** mõlema kataloogi paranduspöörde kontrollid on nüüd üks tekst. Jaotiste 1–8 jooksud tehti varasemate versioonidega (blob'id `6340eaa5` ja `cdb25935`); kummagi kataloogi `history` ütleb, mida siis kontrolliti. Siinsed tulemused, tabelid ja tõendifailid on muutmata.
+- **Mõõtmisring juhisega 24** (üks jooks kataloogi kohta, 0,1176 USD): mõlemad paranduse vastused algavad kinnitusega ega vasta eelmisele küsimusele uuesti. Üle piiri 9/9; teema sees 3/4, sest otsinguplaan luges paranduse pöörde isa omaks ja otsis Harku vallast. Üksikasjad ja piirid on ADR-is.
 
 ## Tõendid
 

@@ -17,9 +17,13 @@
     "person_regions": "the saved state's municipality of that person",
     "facts_present / facts_absent / fact_changes": "a current fact of the person whose quote matches / no such current fact / a fact that has become superseded",
     "state_kept": "the model's new state was not rejected",
-    "must on message 4": "the answer's first sentence names the corrected amount (the dialogue instruction's rule for a correction)",
-    "clarification and must_not on message 4": "the four things the boundary run's ninth answer did: it does not ask whose application is meant, does not attach an application to the mother, does not say an earlier statement cannot be confirmed; and, as in the boundary catalogue, it does not ask where the mother lives or give one parent's amount as the other's"
+    "must on the correction": "the answer's first sentence names the corrected amount (the dialogue instruction's rule for a correction)",
+    "must_not on the correction": "a message that only corrects an amount is not answered with anything else (ADR-071): the answer does not ask again where the mother lives, give one parent's amount as the other's, solve the answered question about the father's application again (a deadline), say that an earlier statement cannot be confirmed, or ask whose application is meant"
   },
+  "history": [
+    "03.10.2026: the one run of docs/audits/rag-v2-two-people-boundary-2026-10-03.md (section 8) used this catalogue as it was written before the run (git blob cdb25935): 3 of 4 turns passed, the correction's answer failed two checks. The correction turn then also required that the answer ask for nothing (clarification false) and attach no application to the mother.",
+    "03.10.2026, after both runs (ADR-071, dialogue instructions 24): the correction turn's answer checks are one text with the boundary catalogue's ninth turn. In place of the two checks named above stands one on solving the answered question again (a deadline); a question the correction itself calls for is no longer a failure. The answer given in the run of 03.10 still does not pass (tests/rag-v2-conversation-eval.test.mjs keeps it)."
+  ],
   "scenarios": [
     { "id": "mother-father-correction-within-topic", "title": "Ema ja isa, parandus teema sees pärast isa küsimust", "source": "docs/audits/rag-v2-two-people-boundary-2026-10-03.md; owner 03.10.2026", "turns": [
       { "mode": "new", "text": "Minu ema elab Kose vallas ja tema pension on 600 eurot. Ta ei saa enam üksi kodus hakkama. Minu isa elab Harku vallas ja tema pension on 450 eurot. Tal on võlad ja ta ei tule rahaga toime.",
@@ -40,12 +44,11 @@
           "facts_present": [{ "person": "ema", "quote": "700" }, { "person": "isa", "quote": "450" }],
           "fact_changes": [{ "person": "ema", "quote": "600", "status": "superseded" }],
           "facts_absent": [{ "person": "ema", "quote": "600" }, { "person": "isa", "quote": "700" }, { "person": "isa", "quote": "600" }, { "person": "ema", "quote": "450" }],
-          "clarification": false,
           "must": ["^[^.!?\\n]*(?<!\\d)700(?!\\d)"],
           "must_not": ["(millises|mis) (vallas|linnas|omavalitsuses)", "kus (ta|su ema|sinu ema|ema) ela",
             "(?<!\\p{L})isa\\p{L}*\\s+pension\\p{L}*[^.!?\\n,;:]{0,15}(?<!\\d)700(?!\\d)",
             "(?<!\\p{L})ema\\p{L}*\\s+pension\\p{L}*[^.!?\\n,;:]{0,15}(?<!\\d)450(?!\\d)",
-            "(?<!\\p{L})ema\\p{L}*[^.!?\\n]{0,60}taotlus",
+            "päeva\\s+jooksul|tööpäeva|(?<!\\p{L})tähta(eg|ja)\\p{L}*",
             "ei\\s+saa[^.!?\\n]{0,30}kinnitada",
             "Kas küsid|kumma\\p{L}*\\s+taotlus"] } }
     ] }

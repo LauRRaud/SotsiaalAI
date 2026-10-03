@@ -14,8 +14,13 @@
     "facts_present / facts_absent / fact_changes": "a current fact of the person whose quote matches / no such current fact / a fact that has become superseded",
     "state_kept": "the model's new state was not rejected",
     "must_not on messages 5-7": "an answer about one parent does not name the other parent's municipality or give the other's pension as theirs",
-    "must_not on message 9": "the answer does not ask again where the mother lives and does not give 700 as the father's pension or 450 as the mother's"
+    "must on the correction": "the answer's first sentence names the corrected amount (the dialogue instruction's rule for a correction)",
+    "must_not on the correction": "a message that only corrects an amount is not answered with anything else (ADR-071): the answer does not ask again where the mother lives, give one parent's amount as the other's, solve the answered question about the father's application again (a deadline), say that an earlier statement cannot be confirmed, or ask whose application is meant"
   },
+  "history": [
+    "03.10.2026: the one run of docs/audits/rag-v2-two-people-boundary-2026-10-03.md used this catalogue as it was written before the run (git blob 6340eaa5): 9 of 9 turns passed. Its ninth turn then checked only that the answer named 700, did not ask where the mother lives and did not give one parent's amount as the other's.",
+    "03.10.2026, after both runs (ADR-071, dialogue instructions 24): the ninth turn's answer checks are those of the within-topic catalogue's correction turn, word for word. The answer given in the run of 03.10 does not pass them (tests/rag-v2-conversation-eval.test.mjs keeps it)."
+  ],
   "scenarios": [
     { "id": "mother-father-past-eight", "title": "Ema ja isa, eri summad, parandus pärast kaheksandat sõnumit", "source": "ADR-070; Codex review of #313-#314; owner 03.10.2026", "turns": [
       { "mode": "new", "text": "Tere",
@@ -49,10 +54,13 @@
           "facts_present": [{ "person": "ema", "quote": "700" }, { "person": "isa", "quote": "450" }],
           "fact_changes": [{ "person": "ema", "quote": "600", "status": "superseded" }],
           "facts_absent": [{ "person": "ema", "quote": "600" }, { "person": "isa", "quote": "700" }, { "person": "isa", "quote": "600" }, { "person": "ema", "quote": "450" }],
-          "must": ["(?<!\\d)700(?!\\d)"],
+          "must": ["^[^.!?\\n]*(?<!\\d)700(?!\\d)"],
           "must_not": ["(millises|mis) (vallas|linnas|omavalitsuses)", "kus (ta|su ema|sinu ema|ema) ela",
             "(?<!\\p{L})isa\\p{L}*\\s+pension\\p{L}*[^.!?\\n,;:]{0,15}(?<!\\d)700(?!\\d)",
-            "(?<!\\p{L})ema\\p{L}*\\s+pension\\p{L}*[^.!?\\n,;:]{0,15}(?<!\\d)450(?!\\d)"] } }
+            "(?<!\\p{L})ema\\p{L}*\\s+pension\\p{L}*[^.!?\\n,;:]{0,15}(?<!\\d)450(?!\\d)",
+            "päeva\\s+jooksul|tööpäeva|(?<!\\p{L})tähta(eg|ja)\\p{L}*",
+            "ei\\s+saa[^.!?\\n]{0,30}kinnitada",
+            "Kas küsid|kumma\\p{L}*\\s+taotlus"] } }
     ] }
   ]
 }
