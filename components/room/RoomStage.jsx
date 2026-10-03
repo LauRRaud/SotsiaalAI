@@ -1813,11 +1813,12 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         </>
       ) : null}
 
-      {/* Laadimisloor — vana Sotsiaal.pro sõnamärk on uue logo valmimiseni eemaldatud. */}
+      {/* Kinnitatud Exo 2 sõnamärk vana logo mõõdus ja alaserva keskjoonel. */}
       <div
         className="room-veil"
         ref={veilRef}
         data-state={veil}
+        data-logo-ready="1"
         role="dialog"
         aria-modal={veil !== "gone" ? "true" : undefined}
         aria-labelledby="room-veil-message"
@@ -1831,6 +1832,16 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
             kutsel läveks. Kunstikiht ei püüa sündmusi; päris tekst ja
             nupp jäävad selle kohal ligipääsetavaks. */}
         {veil !== "gone" ? <VeilArt effect={VEIL_EFFECTS.DIRECT} onAbsorbed={finishVeilEntry} /> : null}
+        <div className="room-veil-logo">
+          {/* eslint-disable-next-line @next/next/no-img-element -- Kontuur-SVG ei vaja rasterpildi optimeerimist. */}
+          <img
+            src="/logo/sotsiaal-pro-corner.svg"
+            alt="Sotsiaal.pro"
+            width={2400}
+            height={432}
+            decoding="async"
+          />
+        </div>
         <p id="room-veil-message" className="room-veil-line">
           {/* Iga sõna oma span'is: töölaual voolavad inline ühte ritta,
               mobiilis muutuvad plokk-ridadeks (keskmine nihkes) ja
