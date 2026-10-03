@@ -4505,7 +4505,7 @@
         },
         "home": {
           "title": "Avaleht ja platvormiga ühendamine",
-          "body": "<p><strong>Esmakülastuse järjestus</strong></p><ol><li>Vali Keel ja ligipääsetavus moodulis sobivad seaded.</li><li>Valmidusvaates „Kõik algab selgusest” vajuta <strong>Sisenen</strong>.</li><li>Sissejuhatuses saad teksti kerida või valida <strong>Jäta vahele</strong>. Taustaheli saad sisse või välja lülitada. Lugusid saad vahetada heli kõrval oleva noolega.</li><li>Vaates „Ühenda sotsiaal.pro platvormiga” vajuta keskel olevat toitenuppu.</li></ol><p><strong>Avalehe kaardid ja menüüd</strong></p><ul><li>Sisselogimata vaates on 9 kaarti: Tutvu võimalustega, Kasutusjuhend, Logi sisse, Meist, Paigalda, Kasutustingimused, Privaatsuspoliitika, Hinnastus ja Kontakt.</li><li>Küljenooled kerivad kaarte ükshaaval. Alumine kiirmenüü viib otse soovitud kaardile.</li><li>Ülaserva peidetud käepide avaneb kursori või fookusega. Seal on taustaheli, Keel ja ligipääsetavus ning Ooterežiim.</li><li>Sisselogitud kasutaja näeb Ruumid, Töölaud, Vestlus ja Profiil.</li></ul>"
+          "body": "<p><strong>Esmakülastuse järjestus</strong></p><ol><li>Vali Keel ja ligipääsetavus moodulis sobivad seaded.</li><li>Valmidusvaates „Kõik algab selgusest” vajuta <strong>Sisenen</strong>.</li><li>Sissejuhatuses saad teksti kerida või valida <strong>Jäta vahele</strong>. Taustaheli saad sisse või välja lülitada. Lugusid saad vahetada heli kõrval oleva noolega.</li><li>Vaates „Ühenda sotsiaal.pro platvormiga” vajuta keskel olevat toitenuppu.</li></ol><p><strong>Avalehe kaardid ja menüüd</strong></p><ul><li>Sisselogimata vaates on 9 kaarti: Tutvu võimalustega, Kasutusjuhend, Logi sisse, Meist, Paigalda, Kasutustingimused, Privaatsuspoliitika, Hinnastus ja Kontakt.</li><li>Küljenooled kerivad kaarte ükshaaval. Alumine kiirmenüü viib otse soovitud kaardile.</li><li>Ülaserva peidetud käepide avaneb kursori või fookusega. Seal on taustaheli, Keel ja ligipääsetavus ning Ooterežiim.</li><li>Sisselogitud kasutaja näeb Ruumid, töölaud, Vestlus ja Profiil.</li></ul>"
         },
         "register": {
           "title": "Konto loomine ja ligipääs",
@@ -4557,11 +4557,11 @@
         },
         "pro_tools": {
           "title": "Töölaud kolmele rollile",
-          "body": "<p>Pöördujal on 9, sotsiaaltöö spetsialistil 19 ja teenuseosutajal 19 Töölauda valikut. Meetodipeegel ja Tööheaolu kuuluvad sotsiaaltöö spetsialistile; Teenuspäevik ja Teenuseprofiil teenuseosutajale. Täpne rolliloend kuvatakse selle lehe ülaosas tehtud rollivaliku järgi.</p>"
+          "body": "<p>Pöördujal on 9, sotsiaaltöö spetsialistil 19 ja teenuseosutajal 19 töölauda valikut. Meetodipeegel ja Tööheaolu kuuluvad sotsiaaltöö spetsialistile; Teenuspäevik ja Teenuseprofiil teenuseosutajale. Täpne rolliloend kuvatakse selle lehe ülaosas tehtud rollivaliku järgi.</p>"
         },
         "quickstart": {
           "title": "Kiire alustamine",
-          "body": "<p>Vali selle juhendi ülaosas oma roll, loo konto registreerimislehel, kinnita e-post ja ligipääs ning logi sisse. Ava Töölaud või Vestlus, vali vajalik töövoog ning vaata iga mustand, allikas ja jagatav info enne kinnitamist üle.</p>"
+          "body": "<p>Vali selle juhendi ülaosas oma roll, loo konto registreerimislehel, kinnita e-post ja ligipääs ning logi sisse. Ava töölaud või Vestlus, vali vajalik töövoog ning vaata iga mustand, allikas ja jagatav info enne kinnitamist üle.</p>"
         },
         "privacy_safety": {
           "title": "Privaatsushoiatused ja kiire abi",
@@ -4577,8 +4577,8 @@
       "role_sections": {
         "client": {
           "workspace": {
-            "title": "Pöörduja Töölaud",
-            "body": "<p>Pöörduja Töölaud sisaldab 9 valikut.</p><ul><li><strong>Teekond</strong> hoiab olukorra kokkuvõtte ja järgmised sammud koos.</li><li><strong>Eelpöördumine</strong> aitab pöördumise enne esitamist läbi mõelda.</li><li><strong>Abisoovid</strong> ja <strong>Abipakkumised</strong> aitavad tuge küsida või pakkuda.</li><li><strong>Kutsu osaleja</strong> avab kutse koostamise.</li><li><strong>Teenusekaart</strong> aitab leida teenuseid, kontakte ning avaldatud abiinfot.</li><li><strong>Minu otsing</strong> otsib ainult sinu enda sisust.</li><li><strong>Koosta dokument</strong> aitab luua taotluse, avalduse või muu mustandi.</li><li><strong>Minu jagamised</strong> näitab, mida oled jaganud, ja võimaldab jagamise tagasi võtta.</li></ul>"
+            "title": "Pöörduja töölaud",
+            "body": "<p>Pöörduja töölaud sisaldab 9 valikut.</p><ul><li><strong>Teekond</strong> hoiab olukorra kokkuvõtte ja järgmised sammud koos.</li><li><strong>Eelpöördumine</strong> aitab pöördumise enne esitamist läbi mõelda.</li><li><strong>Abisoovid</strong> ja <strong>Abipakkumised</strong> aitavad tuge küsida või pakkuda.</li><li><strong>Kutsu osaleja</strong> avab kutse koostamise.</li><li><strong>Teenusekaart</strong> aitab leida teenuseid, kontakte ning avaldatud abiinfot.</li><li><strong>Minu otsing</strong> otsib ainult sinu enda sisust.</li><li><strong>Koosta dokument</strong> aitab luua taotluse, avalduse või muu mustandi.</li><li><strong>Minu jagamised</strong> näitab, mida oled jaganud, ja võimaldab jagamise tagasi võtta.</li></ul>"
           },
           "workflows": {
             "title": "Pöörduja peamised töövood",
@@ -4586,13 +4586,13 @@
           },
           "quickstart": {
             "title": "Alusta pöördujana",
-            "body": "<ol><li>Vali konto loomisel roll <strong>Pöörduja</strong> ja kinnita e-post.</li><li>Logi sisse e-posti ja PIN-iga.</li><li>Ava Vestlus või Töölaud ning vali Teekond, Eelpöördumine või muu vajalik töövoog.</li><li>Kirjelda olukorda oma sõnadega; vajaduse korral palu vastust lihtsamas keeles.</li><li>Kontrolli kasutatud allikaid, kui vastusel on Allikate nupp.</li><li>Vaata mustand või jagatav info enne kinnitamist alati ise üle.</li></ol>"
+            "body": "<ol><li>Vali konto loomisel roll <strong>Pöörduja</strong> ja kinnita e-post.</li><li>Logi sisse e-posti ja PIN-iga.</li><li>Ava Vestlus või töölaud ning vali Teekond, Eelpöördumine või muu vajalik töövoog.</li><li>Kirjelda olukorda oma sõnadega; vajaduse korral palu vastust lihtsamas keeles.</li><li>Kontrolli kasutatud allikaid, kui vastusel on Allikate nupp.</li><li>Vaata mustand või jagatav info enne kinnitamist alati ise üle.</li></ol>"
           }
         },
         "specialist": {
           "workspace": {
-            "title": "Sotsiaaltöö spetsialisti Töölaud",
-            "body": "<p>Sotsiaaltöö spetsialisti Töölaud sisaldab 19 valikut.</p><p><strong>Pöördumised · Abisoovid · Abipakkumised · Kutsu osaleja · Välitöö · Minu juhtumid · Juhtumitöö laud · Teenusekaart · Minu otsing · Materjalid · Koosta dokument · Dokumendid · Supervisioon · Mentorlus · Kovisioon · Meetodipeegel · Tööheaolu · Organisatsioonid · Minu jagamised.</strong></p><p>Meetodipeegel ja Tööheaolu kuuluvad spetsialisti töövahendite hulka; Teenuspäevik ja Teenuseprofiil kuuluvad teenuseosutaja Töölauda.</p>"
+            "title": "Sotsiaaltöö spetsialisti töölaud",
+            "body": "<p>Sotsiaaltöö spetsialisti töölaud sisaldab 19 valikut.</p><p><strong>Pöördumised · Abisoovid · Abipakkumised · Kutsu osaleja · Välitöö · Minu juhtumid · Juhtumitöö laud · Teenusekaart · Minu otsing · Materjalid · Koosta dokument · Dokumendid · Supervisioon · Mentorlus · Kovisioon · Meetodipeegel · Tööheaolu · Organisatsioonid · Minu jagamised.</strong></p><p>Meetodipeegel ja Tööheaolu kuuluvad spetsialisti töövahendite hulka; Teenuspäevik ja Teenuseprofiil kuuluvad teenuseosutaja töölauda.</p>"
           },
           "workflows": {
             "title": "Spetsialisti juhtumi- ja töövood",
@@ -4600,13 +4600,13 @@
           },
           "quickstart": {
             "title": "Alusta sotsiaaltöö spetsialistina",
-            "body": "<ol><li>Vali konto loomisel roll <strong>Sotsiaaltöö spetsialist</strong> ja kinnita e-post.</li><li>Enne tuvastatavate kliendiandmete tööalast kasutamist kontrolli organisatsiooni kokkuleppeid ja tööalase kasutuse raamistikku.</li><li>Logi sisse ning ava Töölaud.</li><li>Alusta Pöördumistest, Minu juhtumitest või Juhtumitöö lauast; üldise küsimuse saad esitada Vestluses.</li><li>Kasuta ainult vajalikku infot ja reageeri privaatsushoiatustele.</li><li>Vaata AI loodud tekst, kokkuvõte ja allikad enne professionaalset kasutamist ise üle.</li></ol>"
+            "body": "<ol><li>Vali konto loomisel roll <strong>Sotsiaaltöö spetsialist</strong> ja kinnita e-post.</li><li>Enne tuvastatavate kliendiandmete tööalast kasutamist kontrolli organisatsiooni kokkuleppeid ja tööalase kasutuse raamistikku.</li><li>Logi sisse ning ava töölaud.</li><li>Alusta Pöördumistest, Minu juhtumitest või Juhtumitöö lauast; üldise küsimuse saad esitada Vestluses.</li><li>Kasuta ainult vajalikku infot ja reageeri privaatsushoiatustele.</li><li>Vaata AI loodud tekst, kokkuvõte ja allikad enne professionaalset kasutamist ise üle.</li></ol>"
           }
         },
         "provider": {
           "workspace": {
-            "title": "Teenuseosutaja Töölaud",
-            "body": "<p>Teenuseosutaja Töölaud sisaldab 19 valikut.</p><p><strong>Pöördumised · Abisoovid · Abipakkumised · Kutsu osaleja · Välitöö · Teenuspäevik · Minu juhtumid · Juhtumitöö laud · Teenusekaart · Minu otsing · Materjalid · Koosta dokument · Dokumendid · Teenuseprofiil · Supervisioon · Mentorlus · Kovisioon · Organisatsioonid · Minu jagamised.</strong></p><p>Teenuspäevik ja Teenuseprofiil kuuluvad teenuseosutaja töövahendite hulka. Meetodipeegel ja Tööheaolu kuuluvad sotsiaaltöö spetsialisti Töölauda.</p>"
+            "title": "Teenuseosutaja töölaud",
+            "body": "<p>Teenuseosutaja töölaud sisaldab 19 valikut.</p><p><strong>Pöördumised · Abisoovid · Abipakkumised · Kutsu osaleja · Välitöö · Teenuspäevik · Minu juhtumid · Juhtumitöö laud · Teenusekaart · Minu otsing · Materjalid · Koosta dokument · Dokumendid · Teenuseprofiil · Supervisioon · Mentorlus · Kovisioon · Organisatsioonid · Minu jagamised.</strong></p><p>Teenuspäevik ja Teenuseprofiil kuuluvad teenuseosutaja töövahendite hulka. Meetodipeegel ja Tööheaolu kuuluvad sotsiaaltöö spetsialisti töölauda.</p>"
           },
           "workflows": {
             "title": "Teenuse osutamise töövood",
@@ -5791,7 +5791,7 @@
       "unread": "Lugemata teavitused",
       "dismiss": "Peida teavitus",
       "retry": "Proovi uuesti",
-      "target_gone": "See tegevus ei ole enam saadaval. Töölaud on värskendatud."
+      "target_gone": "See tegevus ei ole enam saadaval. töölaud on värskendatud."
     },
     "email_preference": "Saada valikulised tööjärje märguanded ka e-postiga",
     "email_preference_hint": "Kirjad ei sisalda pöördumiste, ruumide ega mustandite sisu.",
@@ -5821,7 +5821,7 @@
     "preference_error": "Seadet ei saanud salvestada.",
     "all_tools": "Kõik töövahendid",
     "role_changed": "Töölaua rollivaade muutus. Andmeid värskendatakse.",
-    "target_gone": "See tegevus ei ole enam saadaval. Töölaud on värskendatud.",
+    "target_gone": "See tegevus ei ole enam saadaval. töölaud on värskendatud.",
     "target_check_failed": "Tegevuse ligipääsu ei saanud kontrollida. Proovi uuesti.",
     "loading": "Koondan sinu pooleliolevaid tegevusi…",
     "error": "Pooleliolevate tegevuste koond ei ole praegu saadaval.",
@@ -7949,8 +7949,8 @@
     "s3_body": "Sinu sammud püsivad Teekonnal koos: kokkuvõte senisest, seotud teemad, puuduolev info ja järgmised sammud. Teekond on privaatne. Sina otsustad, kas ja kellega seda jagad; jagamine käib sinu kinnitusega ning ülevaate oma jagamistest ja tagasivõtmise leiad vaatest Minu jagamised.",
     "s4_title": "Sinu kontroll ja turvalisus",
     "s4_body": "Enne kui sõnum teele läheb, märkab privaatsuse eelkiht üleliigseid isikuandmeid ja pakub võimalust need eemaldada. Jagamine käib alati sinu kinnitusega. Kui kirjeldatud olukord on kiireloomuline, kuvame kohe õiged kontaktid — 112, Lasteabi ja Ohvriabi.",
-    "s5_title": "Rollipõhine Töölaud",
-    "s5_body": "Pöörduja Töölaud sisaldab 9 valikut: Teekond, Eelpöördumine, Abisoovid, Abipakkumised, Kutsu osaleja, Teenusekaart, Minu otsing, Koosta dokument ja Minu jagamised. Sotsiaaltöö spetsialisti Töölaud sisaldab 19 valikut: Pöördumised, Abisoovid, Abipakkumised, Kutsu osaleja, Välitöö, Minu juhtumid, Juhtumitöö laud, Teenusekaart, Minu otsing, Materjalid, Koosta dokument, Dokumendid, Supervisioon, Mentorlus, Kovisioon, Meetodipeegel, Tööheaolu, Organisatsioonid ja Minu jagamised. Teenuseosutaja Töölaud sisaldab 19 valikut: Pöördumised, Abisoovid, Abipakkumised, Kutsu osaleja, Välitöö, Teenuspäevik, Minu juhtumid, Juhtumitöö laud, Teenusekaart, Minu otsing, Materjalid, Koosta dokument, Dokumendid, Teenuseprofiil, Supervisioon, Mentorlus, Kovisioon, Organisatsioonid ja Minu jagamised.",
+    "s5_title": "Rollipõhine töölaud",
+    "s5_body": "Pöörduja töölaud sisaldab 9 valikut: Teekond, Eelpöördumine, Abisoovid, Abipakkumised, Kutsu osaleja, Teenusekaart, Minu otsing, Koosta dokument ja Minu jagamised. Sotsiaaltöö spetsialisti töölaud sisaldab 19 valikut: Pöördumised, Abisoovid, Abipakkumised, Kutsu osaleja, Välitöö, Minu juhtumid, Juhtumitöö laud, Teenusekaart, Minu otsing, Materjalid, Koosta dokument, Dokumendid, Supervisioon, Mentorlus, Kovisioon, Meetodipeegel, Tööheaolu, Organisatsioonid ja Minu jagamised. Teenuseosutaja töölaud sisaldab 19 valikut: Pöördumised, Abisoovid, Abipakkumised, Kutsu osaleja, Välitöö, Teenuspäevik, Minu juhtumid, Juhtumitöö laud, Teenusekaart, Minu otsing, Materjalid, Koosta dokument, Dokumendid, Teenuseprofiil, Supervisioon, Mentorlus, Kovisioon, Organisatsioonid ja Minu jagamised.",
     "s6_title": "Pöördumised ja eelpöördumine",
     "s6_body": "Eelpöördumine aitab pöördumise läbi mõelda enne selle esitamist. Alustada saad kolmel viisil: jätkates vestlusest, kus kokkuvõte on juba olemas, täites vormi või tühjalt lehelt. Kokkuvõte ja mustand valmivad koos sinuga — esitad alles siis, kui oled ise kõik üle vaadanud. Pöördumine jõuab vastuvõtja Töölauale, ja vajadusel saab osapooltega avada ühise vestlusruumi.",
     "s7_title": "Abisoovid ja abipakkumised",
@@ -8004,7 +8004,7 @@
     "s24_title": "Minu jagamised",
     "s24_body": "Kõigile rollidele. Minu jagamised on kasutaja privaatsuse juhtpult: seal näed, millist Teekonna, juhtumi või muu töövoo infot oled kellele jaganud, ning saad aktiivse jagamise tagasi võtta. Jagamine ei toimu ilma kasutaja teadliku tegevuse ja kinnitamiseta.",
     "s25_title": "Kutsed, sponsoreeritud ligipääs ja teavitused",
-    "s25_body": "Kõigile rollidele. Kasutaja saab kutsuda ruumi pöörduja, spetsialisti, teenuseosutaja või kolleegi ning vajaduse korral tasuda kutsutu rollipõhise ligipääsu eest. Teavituskeskus toob kokku olulised kutsed, vastused, kinnitused ja töövoo muutused; Töölaud aitab pooleli jäänud töö juurde tagasi pöörduda.",
+    "s25_body": "Kõigile rollidele. Kasutaja saab kutsuda ruumi pöörduja, spetsialisti, teenuseosutaja või kolleegi ning vajaduse korral tasuda kutsutu rollipõhise ligipääsu eest. Teavituskeskus toob kokku olulised kutsed, vastused, kinnitused ja töövoo muutused; töölaud aitab pooleli jäänud töö juurde tagasi pöörduda.",
     "s26_title": "Minu juhtumid ja Juhtumitöö laud",
     "s26_body": "Sotsiaaltöö spetsialistile ja teenuseosutajale. Minu juhtumid koondab juhtumi põhinfo, seosed, tööobjektid ja säilituse. Juhtumitöö laud annab päeva koondvaate: ettevalmistused, puuduoleva info, kohtumised, tööülesanded, mustandid ja järgmised sammud. AI aitab ette valmistada, kuid ei tee ametlikke otsuseid ega kanna infot teise süsteemi ilma inimese kontrollita.",
     "s27_title": "Teenuspäevik",
