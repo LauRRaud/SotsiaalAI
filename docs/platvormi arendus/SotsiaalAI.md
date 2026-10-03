@@ -92,6 +92,9 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**03.10: platvormi põhiaadress on https://sotsiaal.pro.** Üleminek on tootmises;
+vana domeeni Välitöö ja API-d säilivad kohaliku sünkroonimise jaoks. Vaata S10 tõendit.
+
 **Uus aken alustab siit (02.10 hommik).** Kuupäevaviga on parandatud ([ADR-062](../rag-v2/adr-062-provision-dates.md), korpus v47, dialoog 22). Omanik valis M3; selle mõõtmissamm ja esimene reegel (profiil v4, [ADR-064](../rag-v2/adr-064-named-other-act.md)) on tehtud.
 - **Tootmises:** korpus v47 (indeks `34fe1590`, 6470 dokumenti, 40 489 lõiku; lugeja `source-structure-v30`). Vestlusplaani uuendab reliis ise (ADR-037): profiil v6 ([ADR-068](../rag-v2/adr-068-own-reference-subsections.md); v5 + akti enda viide toob nimetatud lõike), answer-12, dialoog 24 ([ADR-071](../rag-v2/adr-071-bare-correction-and-prior-claim.md)), mudelikontekst json-3, olek v5, arutlus medium. Profiil on plaani osa ja reliis hoiab seda: v6 plaan `m4-corpus-chat-v47-profile6-20261002.json` aktiveeriti 02.10 kell 13:41; kontrolli aktiivse plaani `profileId`.
 - **Tööviis:**
@@ -4447,6 +4450,15 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 ---
 
 ## S10. Avalik pind ja release
+
+**Põhidomeen sotsiaal.pro (03.10).** Muudatus `769cf4e4` läbis quality-gate'i ja
+automaatse deploy. Uuel domeenil on HTTPS, authi URL-id ja otsingumootorite viited;
+avalik kontakt on `info@sotsiaal.pro` (suunamine senisele postkastile).
+Vana veebiaadress ja mõlema domeeni `www` suunavad 308-ga põhidomeenile.
+Vana domeeni Välitöö kest, API-d ja varad säilivad samal originil saatmata kohalike
+märkmete ning maksete POST-tagasiside jaoks. Uuel domeenil tuleb uuesti sisse logida.
+Logo lõplik valik jääb eraldi tööks. Kontrollid ja piirid:
+[domeeni ülemineku audit](../audits/domain-migration-sotsiaal-pro-2026-10-03.md).
 
 ### Tehtud
 

@@ -1,0 +1,100 @@
+{
+  "checkedAt": "2026-10-03T13:04:22.499167+00:00",
+  "codeCommit": "769cf4e408c01cf5c505823cb3998bbdbbdfcee1",
+  "qualityGate": {
+    "result": "PASS",
+    "run": "https://github.com/LauRRaud/SotsiaalAI/actions/runs/37124447451"
+  },
+  "deploy": {
+    "result": "PASS",
+    "run": "https://github.com/LauRRaud/SotsiaalAI/actions/runs/37124638308"
+  },
+  "newDomain": {
+    "tls": "PASS",
+    "certificateDomains": [
+      "sotsiaal.pro",
+      "www.sotsiaal.pro"
+    ],
+    "renewalDryRun": "PASS",
+    "health": "PASS",
+    "canonical": "https://sotsiaal.pro",
+    "organizationUrl": "https://sotsiaal.pro",
+    "publicContact": "info@sotsiaal.pro",
+    "legalNamePreserved": true,
+    "sitemapUrls": 10,
+    "robots": "PASS",
+    "authProviderUrls": "PASS",
+    "csrfSecureHttpOnly": "PASS",
+    "anonymousSession": "PASS"
+  },
+  "redirects": [
+    {
+      "request": "http://sotsiaal.ai/kasutusjuhend?domain-migration=1",
+      "status": 308,
+      "location": "https://sotsiaal.pro/kasutusjuhend?domain-migration=1"
+    },
+    {
+      "request": "https://sotsiaal.ai/kasutusjuhend?domain-migration=1",
+      "status": 308,
+      "location": "https://sotsiaal.pro/kasutusjuhend?domain-migration=1"
+    },
+    {
+      "request": "http://www.sotsiaal.ai/kasutusjuhend?domain-migration=1",
+      "status": 308,
+      "location": "https://sotsiaal.pro/kasutusjuhend?domain-migration=1"
+    },
+    {
+      "request": "https://www.sotsiaal.ai/kasutusjuhend?domain-migration=1",
+      "status": 308,
+      "location": "https://sotsiaal.pro/kasutusjuhend?domain-migration=1"
+    },
+    {
+      "request": "http://www.sotsiaal.pro/kasutusjuhend?domain-migration=1",
+      "status": 308,
+      "location": "https://sotsiaal.pro/kasutusjuhend?domain-migration=1"
+    },
+    {
+      "request": "https://www.sotsiaal.pro/kasutusjuhend?domain-migration=1",
+      "status": 308,
+      "location": "https://sotsiaal.pro/kasutusjuhend?domain-migration=1"
+    },
+    {
+      "request": "http://sotsiaal.pro/kasutusjuhend?domain-migration=1",
+      "status": 308,
+      "location": "https://sotsiaal.pro/kasutusjuhend?domain-migration=1"
+    }
+  ],
+  "legacyWebhookInvalidPayload": {
+    "status": 400,
+    "location": null
+  },
+  "legacyCallbackInvalidPayload": {
+    "status": 302,
+    "location": "https://sotsiaal.ai/tellimus?payment=failed"
+  },
+  "legacyCallbackDestination": {
+    "status": 308,
+    "location": "https://sotsiaal.pro/tellimus?payment=failed"
+  },
+  "legacyHealth": "PASS",
+  "notProven": [
+    "Authenticated account login on new domain",
+    "Real email delivery",
+    "Real signed payment or recurring charge",
+    "Video session with camera/microphone",
+    "Synchronisation of existing browser-local offline field notes"
+  ],
+  "legacyOfflineCompatibility": {
+    "hashedStaticAsset": 200,
+    "/valitoo": 200,
+    "/api/field/visits": 401,
+    "/api/auth/session": 200,
+    "/sw.js": 200,
+    "/site.webmanifest": 200,
+    "/api/health": 200
+  },
+  "legacyOfflineCompatibilityScope": "Same-origin field shell, APIs, worker, manifest, icons and Next assets; no local notes are copied or deleted.",
+  "browser": "Chrome opened https://sotsiaal.pro/ without a certificate warning; first-run accessibility setup shown on the new origin.",
+  "legacyCertificateRenewalDryRun": "PASS",
+  "nginxTemplatesMatchServer": true
+}
