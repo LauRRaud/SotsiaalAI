@@ -1532,8 +1532,8 @@
       "role_label_question": "Кто вы?",
       "worker_use_org": "Я использую Sotsiaal.pro в рабочих задачах с персональными данными",
       "worker_framework_title": "Рамочный документ рабочего использования",
-      "worker_framework_ack": "Подтверждаю, что я ознакомился с эстонским рамочным договором Sotsiaal.pro и скачал подписанный файл DigiDoc.",
-      "worker_framework_download_signed": "Подписанный DigiDoc",
+      "worker_framework_ack": "Подтверждаю, что ознакомился(-ась) с рамочным договором Sotsiaal.pro на эстонском языке и скачал(-а) подписанный файл DigiDoc предыдущей версии.",
+      "worker_framework_download_signed": "DigiDoc предыдущей версии",
       "worker_framework_download_docx": "Документ DOCX",
       "agreement": "Согласен с <terms>условиями</terms> и <privacy>политикой</privacy>.",
       "guide_ack": "Я ознакомился&nbsp;с&nbsp;<guide1>руко&shy;водством</guide1>&nbsp;<guide2>платформы.</guide2>",
@@ -1566,7 +1566,8 @@
         "worker": "Рабочее использование",
         "gate": "Подтверждение",
         "success": "Готово"
-      }
+      },
+      "worker_framework_signed_version_note": "Веб-текст и DOCX используют название Sotsiaal.pro и наименование компании Küberloome OÜ. Подписанный DigiDoc — более ранний документ со старым названием; он не является подписанной копией опубликованной здесь версии."
     },
     "reset": {
       "title": "Обновление PIN",

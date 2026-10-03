@@ -1536,8 +1536,8 @@
       "worker_use_org": "I use Sotsiaal.pro in work tasks with personal data",
       "worker_framework_title": "Professional-use framework",
       "worker_framework_open": "Open framework",
-      "worker_framework_ack": "I confirm that I have reviewed the Estonian Sotsiaal.pro framework agreement and downloaded the signed DigiDoc file.",
-      "worker_framework_download_signed": "Signed DigiDoc",
+      "worker_framework_ack": "I confirm that I have reviewed the Estonian Sotsiaal.pro framework agreement and downloaded the signed DigiDoc file of the previous version.",
+      "worker_framework_download_signed": "Previous version DigiDoc",
       "worker_framework_download_docx": "DOCX document",
       "agreement": "I agree to <terms>Terms of Use</terms> and <privacy>Privacy Policy</privacy>.",
       "guide_ack": "I have read the <guide>platform guide</guide>.",
@@ -1567,7 +1567,8 @@
         "worker": "Work use",
         "gate": "Confirmation",
         "success": "Done"
-      }
+      },
+      "worker_framework_signed_version_note": "The web text and DOCX use the name Sotsiaal.pro and the company name Küberloome OÜ. The signed DigiDoc is an earlier document bearing the old name; it is not a signed copy of the version published here."
     },
     "reset": {
       "title": "Update PIN",

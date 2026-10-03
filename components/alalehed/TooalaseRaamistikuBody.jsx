@@ -450,6 +450,7 @@ export default function TooalaseRaamistikuBody({ frameworkDocument }) {
               {introCopy.introTitle}
             </h2>
             <p>{introCopy.lead}</p>
+            <p>{t("auth.register.worker_framework_signed_version_note")}</p>
             {introCopy.paragraphs.map((paragraph, index) => (
               <p key={index}>
                 {paragraph}

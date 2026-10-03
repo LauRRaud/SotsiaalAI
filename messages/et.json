@@ -1536,8 +1536,8 @@
       "worker_use_org": "Kasutan platvormi tööks kliendi isikuandmetega",
       "worker_framework_title": "Tööalase kasutuse raamistik",
       "worker_framework_open": "Ava raamistik",
-      "worker_framework_ack": "Kinnitan, et olen tutvunud Sotsiaal.pro eestikeelse raamlepinguga ning alla laadinud allkirjastatud DigiDoc-faili.",
-      "worker_framework_download_signed": "Allkirjastatud DigiDoc",
+      "worker_framework_ack": "Kinnitan, et olen tutvunud Sotsiaal.pro eestikeelse raamlepinguga ning alla laadinud varasema versiooni allkirjastatud DigiDoc-faili.",
+      "worker_framework_download_signed": "Varasema versiooni DigiDoc",
       "worker_framework_download_docx": "DOCX dokument",
       "agreement": "Nõustun <terms>kasutustingimuste</terms> ja <privacy>privaatsuspoliitikaga</privacy>.",
       "guide_ack": "Olen tutvunud <guide1>platvormi</guide1> <guide2>kasutusjuhendiga</guide2>.",
@@ -1567,7 +1567,8 @@
         "worker": "Töökasutus",
         "gate": "Kinnitus",
         "success": "Valmis"
-      }
+      },
+      "worker_framework_signed_version_note": "Veebitekst ja DOCX kasutavad nime Sotsiaal.pro ning ettevõttenime Küberloome OÜ. Allkirjastatud DigiDoc on varasem dokument vana nimega; see ei ole siin avaldatud versiooni allkirjastatud koopia."
     },
     "reset": {
       "title": "Uuenda PIN",
