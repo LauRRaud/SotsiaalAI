@@ -1,0 +1,4193 @@
+{
+ "generation": "search_generation_34fe1590bbd5e2bf6a788bef196d50e26b5f573e2a63bc30fbbe1d56ab28c8f4",
+ "profile": "hybrid-estnltk-chat-v6",
+ "heading_only_passages": 511,
+ "search": "fused lexical and vector, no rerank model, no answer model, saved query vectors only",
+ "catalogues": [
+  {
+   "catalogue": "tests/evaluation/graph/hard-conditions-1.json",
+   "date": "2026-10-15",
+   "questions": [
+    {
+     "question": "day-support-dementia-retirement",
+     "region": null,
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 13,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 2,
+      "other_under_100_chars_examples": [
+       {
+        "place": 1,
+        "title": "Kuidas riik toetab dementsusega inimesi ja nende lähedasi?",
+        "class": "journal",
+        "text": "Maarja seppel sotsiaalministeeriumi hoolekande osakonna nõunik",
+        "lexical": null,
+        "vector": 3
+       },
+       {
+        "place": 13,
+        "title": "Dementsusega inimesi toetavad kohandatud keskkond ja abivahendid",
+        "class": "journal",
+        "text": "liis Kroonmäe tegevusterapeut",
+        "lexical": null,
+        "vector": 14
+       }
+      ],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 10,
+       "seeds": 9,
+       "context_tokens": 6964,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 13,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 2,
+      "other_under_100_chars_examples": [
+       {
+        "place": 1,
+        "title": "Kuidas riik toetab dementsusega inimesi ja nende lähedasi?",
+        "class": "journal",
+        "text": "Maarja seppel sotsiaalministeeriumi hoolekande osakonna nõunik",
+        "lexical": null,
+        "vector": 3
+       },
+       {
+        "place": 13,
+        "title": "Dementsusega inimesi toetavad kohandatud keskkond ja abivahendid",
+        "class": "journal",
+        "text": "liis Kroonmäe tegevusterapeut",
+        "lexical": null,
+        "vector": 14
+       }
+      ],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 10,
+       "seeds": 9,
+       "context_tokens": 6964,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "supported-living-alcohol",
+     "region": null,
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 12,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 12,
+       "seeds": 9,
+       "context_tokens": 11466,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 12,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 12,
+       "seeds": 9,
+       "context_tokens": 11466,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "community-living-dementia",
+     "region": null,
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 5,
+      "documents_in_fused": 20,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 2,
+      "other_under_100_chars_examples": [
+       {
+        "place": 12,
+        "title": "Isikukeskne (eri)hoolekanne: paindliku rahastusega toetus kogukonna keskel",
+        "class": "journal",
+        "text": "Kristi Kähär Eesti puuetega inimeste koja toetuste- ja teenustealase huvikaitse nõunik",
+        "lexical": null,
+        "vector": 1
+       },
+       {
+        "place": 17,
+        "title": "Terviklik abi kodu lähedalt – isikukeskne erihoolekanne omavalitsustes",
+        "class": "journal",
+        "text": "Katrin Tsuiman projektijuht, sotsiaalkindlustusamet",
+        "lexical": null,
+        "vector": 11
+       }
+      ],
+      "deciding_place": 28,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 10,
+       "seeds": 9,
+       "context_tokens": 7530,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 5,
+      "documents_in_fused": 20,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 2,
+      "other_under_100_chars_examples": [
+       {
+        "place": 12,
+        "title": "Isikukeskne (eri)hoolekanne: paindliku rahastusega toetus kogukonna keskel",
+        "class": "journal",
+        "text": "Kristi Kähär Eesti puuetega inimeste koja toetuste- ja teenustealase huvikaitse nõunik",
+        "lexical": null,
+        "vector": 1
+       },
+       {
+        "place": 17,
+        "title": "Terviklik abi kodu lähedalt – isikukeskne erihoolekanne omavalitsustes",
+        "class": "journal",
+        "text": "Katrin Tsuiman projektijuht, sotsiaalkindlustusamet",
+        "lexical": null,
+        "vector": 11
+       }
+      ],
+      "deciding_place": 28,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 10,
+       "seeds": 9,
+       "context_tokens": 7530,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "subsistence-care-home",
+     "region": null,
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 13,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 1,
+      "other_under_100_chars_examples": [
+       {
+        "place": 16,
+        "title": "Pikaajalised toimetulekutoetuse saajad vajavad rohkem tuge",
+        "class": "journal",
+        "text": "Kelly Toim, Kirsti Melesk uuringu autorid, poliitikauuringute keskus Praxis",
+        "lexical": null,
+        "vector": 13
+       }
+      ],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 14,
+       "seeds": 9,
+       "context_tokens": 10767,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 13,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 1,
+      "other_under_100_chars_examples": [
+       {
+        "place": 16,
+        "title": "Pikaajalised toimetulekutoetuse saajad vajavad rohkem tuge",
+        "class": "journal",
+        "text": "Kelly Toim, Kirsti Melesk uuringu autorid, poliitikauuringute keskus Praxis",
+        "lexical": null,
+        "vector": 13
+       }
+      ],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 14,
+       "seeds": 9,
+       "context_tokens": 10767,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "subsistence-prison",
+     "region": null,
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 10,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 2,
+      "other_under_100_chars_examples": [
+       {
+        "place": 17,
+        "title": "Pikaajalised toimetulekutoetuse saajad vajavad rohkem tuge",
+        "class": "journal",
+        "text": "Kelly Toim, Kirsti Melesk uuringu autorid, poliitikauuringute keskus Praxis",
+        "lexical": null,
+        "vector": 13
+       },
+       {
+        "place": 20,
+        "title": "Mida tähendavad toimetulekutoetuse määramise muudatused kohalikele omavalitsustele ja sotsiaaltöötajatele?",
+        "class": "journal",
+        "text": "toimetulekutoetus, kohalik omavalitsus",
+        "lexical": null,
+        "vector": 15
+       }
+      ],
+      "deciding_place": 3,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 11,
+       "seeds": 9,
+       "context_tokens": 12247,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 10,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 2,
+      "other_under_100_chars_examples": [
+       {
+        "place": 17,
+        "title": "Pikaajalised toimetulekutoetuse saajad vajavad rohkem tuge",
+        "class": "journal",
+        "text": "Kelly Toim, Kirsti Melesk uuringu autorid, poliitikauuringute keskus Praxis",
+        "lexical": null,
+        "vector": 13
+       },
+       {
+        "place": 20,
+        "title": "Mida tähendavad toimetulekutoetuse määramise muudatused kohalikele omavalitsustele ja sotsiaaltöötajatele?",
+        "class": "journal",
+        "text": "toimetulekutoetus, kohalik omavalitsus",
+        "lexical": null,
+        "vector": 15
+       }
+      ],
+      "deciding_place": 3,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 11,
+       "seeds": 9,
+       "context_tokens": 12247,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "involuntary-placement",
+     "region": null,
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 13,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": 5,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 11,
+       "seeds": 9,
+       "context_tokens": 9592,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 13,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": 5,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 11,
+       "seeds": 9,
+       "context_tokens": 9592,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "own-share-shortfall",
+     "region": null,
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 15,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": 4,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 11,
+       "seeds": 9,
+       "context_tokens": 9511,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 15,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": 4,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 11,
+       "seeds": 9,
+       "context_tokens": 9511,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "change": {
+      "entered_candidates": 1,
+      "left_candidates": 1,
+      "entered_titles": [
+       "Omastehooldus. Perekonna ja ühiskonna liit?"
+      ],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "rehabilitation-student",
+     "region": null,
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 17,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 2,
+      "other_under_100_chars_examples": [
+       {
+        "place": 17,
+        "title": "Erihoolekanne ja sotsiaalne rehabilitatsioon",
+        "class": "journal",
+        "text": "Lagle Kalberg erihoolekande ja rehabilitatsiooni talituse juhataja, sotsiaalkindlustusamet",
+        "lexical": null,
+        "vector": 13
+       },
+       {
+        "place": 30,
+        "title": "Töövõimereformi võimalused ja kitsaskohad",
+        "class": "journal",
+        "text": "anne Klettenberg, MA sotsiaalhoolekandespetsialist",
+        "lexical": null,
+        "vector": 2
+       }
+      ],
+      "deciding_place": 13,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 13,
+       "seeds": 9,
+       "context_tokens": 9922,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 17,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 2,
+      "other_under_100_chars_examples": [
+       {
+        "place": 17,
+        "title": "Erihoolekanne ja sotsiaalne rehabilitatsioon",
+        "class": "journal",
+        "text": "Lagle Kalberg erihoolekande ja rehabilitatsiooni talituse juhataja, sotsiaalkindlustusamet",
+        "lexical": null,
+        "vector": 13
+       },
+       {
+        "place": 30,
+        "title": "Töövõimereformi võimalused ja kitsaskohad",
+        "class": "journal",
+        "text": "anne Klettenberg, MA sotsiaalhoolekandespetsialist",
+        "lexical": null,
+        "vector": 2
+       }
+      ],
+      "deciding_place": 13,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 13,
+       "seeds": 9,
+       "context_tokens": 9922,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "day-care-retirement-age",
+     "region": null,
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 11,
+      "heading_only_in_fused": 1,
+      "heading_only_places": [
+       27
+      ],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {
+       "national_law": 1
+      },
+      "heading_only_examples": [
+       {
+        "place": 27,
+        "title": "Sotsiaalhoolekande seadus",
+        "class": "national_law",
+        "text": "§ 115.",
+        "lexical": null,
+        "vector": 3
+       }
+      ],
+      "other_under_100_chars_in_fused": 1,
+      "other_under_100_chars_examples": [
+       {
+        "place": 25,
+        "title": "Heade praktikate kogumik",
+        "class": "other_knowledge",
+        "text": "III juhtum Omastehooldus – eakas ema hooldamas sügava vaimupuudega tütar t",
+        "lexical": null,
+        "vector": 2
+       }
+      ],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 12,
+       "seeds": 9,
+       "context_tokens": 10753,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 11,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 1,
+      "other_under_100_chars_examples": [
+       {
+        "place": 25,
+        "title": "Heade praktikate kogumik",
+        "class": "other_knowledge",
+        "text": "III juhtum Omastehooldus – eakas ema hooldamas sügava vaimupuudega tütar t",
+        "lexical": null,
+        "vector": 2
+       }
+      ],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 12,
+       "seeds": 9,
+       "context_tokens": 10753,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "change": {
+      "entered_candidates": 1,
+      "left_candidates": 1,
+      "entered_titles": [
+       "Sotsiaalhoolekande seadus"
+      ],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    }
+   ],
+   "skipped_no_saved_vector": []
+  },
+  {
+   "catalogue": "tests/evaluation/graph/hard-conditions-2.json",
+   "date": "2026-10-15",
+   "questions": [
+    {
+     "question": "reclaim-limitation",
+     "region": null,
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 18,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 2,
+      "other_under_100_chars_examples": [
+       {
+        "place": 12,
+        "title": "Vana inimene igatseb koju tagasi",
+        "class": "journal",
+        "text": "Kärt Muller, Merle Malvet õiguskantsleri nõunikud",
+        "lexical": null,
+        "vector": 8
+       },
+       {
+        "place": 25,
+        "title": "Sotsiaalkindlustusameti tugi lastekaitsetöötajatele",
+        "class": "journal",
+        "text": "nõustamisteenuste talituse spetsialistid sotsiaalkindlustusameti laste heaolu osakond",
+        "lexical": null,
+        "vector": 5
+       }
+      ],
+      "deciding_place": 4,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 12,
+       "seeds": 9,
+       "context_tokens": 5751,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 18,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 2,
+      "other_under_100_chars_examples": [
+       {
+        "place": 12,
+        "title": "Vana inimene igatseb koju tagasi",
+        "class": "journal",
+        "text": "Kärt Muller, Merle Malvet õiguskantsleri nõunikud",
+        "lexical": null,
+        "vector": 8
+       },
+       {
+        "place": 25,
+        "title": "Sotsiaalkindlustusameti tugi lastekaitsetöötajatele",
+        "class": "journal",
+        "text": "nõustamisteenuste talituse spetsialistid sotsiaalkindlustusameti laste heaolu osakond",
+        "lexical": null,
+        "vector": 5
+       }
+      ],
+      "deciding_place": 4,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 12,
+       "seeds": 9,
+       "context_tokens": 5751,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "reclaim-enforcement",
+     "region": null,
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 22,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 2,
+      "other_under_100_chars_examples": [
+       {
+        "place": 4,
+        "title": "Võlanõustamisteenus aastatel 2018–2023",
+        "class": "journal",
+        "text": "Sotsiaaltöö",
+        "lexical": null,
+        "vector": 7
+       },
+       {
+        "place": 10,
+        "title": "Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi andmed",
+        "class": "national_law",
+        "text": "Määrus kehtestatakse",
+        "lexical": null,
+        "vector": 2
+       }
+      ],
+      "deciding_place": 3,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 11,
+       "seeds": 9,
+       "context_tokens": 6329,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 22,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 2,
+      "other_under_100_chars_examples": [
+       {
+        "place": 4,
+        "title": "Võlanõustamisteenus aastatel 2018–2023",
+        "class": "journal",
+        "text": "Sotsiaaltöö",
+        "lexical": null,
+        "vector": 7
+       },
+       {
+        "place": 12,
+        "title": "Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi andmed",
+        "class": "national_law",
+        "text": "Määrus kehtestatakse",
+        "lexical": null,
+        "vector": 2
+       }
+      ],
+      "deciding_place": 3,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 11,
+       "seeds": 9,
+       "context_tokens": 7065,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 1,
+      "context_tokens": 736
+     }
+    },
+    {
+     "question": "coach-reports-child",
+     "region": null,
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 10,
+      "heading_only_in_fused": 2,
+      "heading_only_places": [
+       1,
+       2
+      ],
+      "heading_only_in_first_nine": 2,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {
+       "other_knowledge": 2
+      },
+      "heading_only_examples": [
+       {
+        "place": 1,
+        "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+        "class": "other_knowledge",
+        "text": "Abivajavast lapsest teatamine ja andmekaitse",
+        "lexical": 28,
+        "vector": 2
+       },
+       {
+        "place": 2,
+        "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+        "class": "other_knowledge",
+        "text": "JUHEND",
+        "lexical": 32,
+        "vector": 1
+       }
+      ],
+      "other_under_100_chars_in_fused": 1,
+      "other_under_100_chars_examples": [
+       {
+        "place": 27,
+        "title": "TÖÖLEHT: Lapse tunnustamine",
+        "class": "other_knowledge",
+        "text": "Praktiline nõu lapsevanemale – tarkvanem.ee tähelepanu. Kui me vanematena lapse positiivse",
+        "lexical": null,
+        "vector": 12
+       }
+      ],
+      "deciding_place": 15,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 10,
+       "seeds": 9,
+       "context_tokens": 4996,
+       "heading_only": 2,
+       "heading_only_seeds": 2,
+       "deciding_selected": false
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 10,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 2,
+      "other_under_100_chars_examples": [
+       {
+        "place": 5,
+        "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+        "class": "other_knowledge",
+        "text": "Näide",
+        "lexical": 30,
+        "vector": 1
+       },
+       {
+        "place": 27,
+        "title": "TÖÖLEHT: Lapse tunnustamine",
+        "class": "other_knowledge",
+        "text": "Praktiline nõu lapsevanemale – tarkvanem.ee tähelepanu. Kui me vanematena lapse positiivse",
+        "lexical": null,
+        "vector": 10
+       }
+      ],
+      "deciding_place": 15,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 10,
+       "seeds": 9,
+       "context_tokens": 5575,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "change": {
+      "entered_candidates": 2,
+      "left_candidates": 2,
+      "entered_titles": [
+       "Juhend: abivajavast lapsest teatamine ja andmekaitse"
+      ],
+      "final_entered": 2,
+      "context_tokens": 579
+     }
+    },
+    {
+     "question": "student-subsistence-own",
+     "region": null,
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 12,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 2,
+      "other_under_100_chars_examples": [
+       {
+        "place": 20,
+        "title": "Heade praktikate kogumik",
+        "class": "other_knowledge",
+        "text": "Foto: Stock.xchng hooldamisel oleva lapse toetus Üksikvanema lapse toetus Eestkostel või p",
+        "lexical": null,
+        "vector": 4
+       },
+       {
+        "place": 24,
+        "title": "Pikaajalised toimetulekutoetuse saajad vajavad rohkem tuge",
+        "class": "journal",
+        "text": "Kelly Toim, Kirsti Melesk uuringu autorid, poliitikauuringute keskus Praxis",
+        "lexical": null,
+        "vector": 14
+       }
+      ],
+      "deciding_place": 1,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 12,
+       "seeds": 9,
+       "context_tokens": 12140,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 12,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 2,
+      "other_under_100_chars_examples": [
+       {
+        "place": 20,
+        "title": "Heade praktikate kogumik",
+        "class": "other_knowledge",
+        "text": "Foto: Stock.xchng hooldamisel oleva lapse toetus Üksikvanema lapse toetus Eestkostel või p",
+        "lexical": null,
+        "vector": 4
+       },
+       {
+        "place": 24,
+        "title": "Pikaajalised toimetulekutoetuse saajad vajavad rohkem tuge",
+        "class": "journal",
+        "text": "Kelly Toim, Kirsti Melesk uuringu autorid, poliitikauuringute keskus Praxis",
+        "lexical": null,
+        "vector": 14
+       }
+      ],
+      "deciding_place": 1,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 12,
+       "seeds": 9,
+       "context_tokens": 12140,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "subsistence-new-job",
+     "region": null,
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 14,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 1,
+      "other_under_100_chars_examples": [
+       {
+        "place": 11,
+        "title": "Mida tähendavad toimetulekutoetuse määramise muudatused kohalikele omavalitsustele ja sotsiaaltöötajatele?",
+        "class": "journal",
+        "text": "toimetulekutoetus, kohalik omavalitsus",
+        "lexical": null,
+        "vector": 9
+       }
+      ],
+      "deciding_place": 4,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 9,
+       "seeds": 9,
+       "context_tokens": 8347,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 14,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 1,
+      "other_under_100_chars_examples": [
+       {
+        "place": 11,
+        "title": "Mida tähendavad toimetulekutoetuse määramise muudatused kohalikele omavalitsustele ja sotsiaaltöötajatele?",
+        "class": "journal",
+        "text": "toimetulekutoetus, kohalik omavalitsus",
+        "lexical": null,
+        "vector": 9
+       }
+      ],
+      "deciding_place": 4,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 9,
+       "seeds": 9,
+       "context_tokens": 8347,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "subsistence-deadline",
+     "region": null,
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 15,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 1,
+      "other_under_100_chars_examples": [
+       {
+        "place": 16,
+        "title": "Mida tähendavad toimetulekutoetuse määramise muudatused kohalikele omavalitsustele ja sotsiaaltöötajatele?",
+        "class": "journal",
+        "text": "toimetulekutoetus, kohalik omavalitsus",
+        "lexical": null,
+        "vector": 2
+       }
+      ],
+      "deciding_place": 1,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 14,
+       "seeds": 9,
+       "context_tokens": 11722,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 15,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 1,
+      "other_under_100_chars_examples": [
+       {
+        "place": 16,
+        "title": "Mida tähendavad toimetulekutoetuse määramise muudatused kohalikele omavalitsustele ja sotsiaaltöötajatele?",
+        "class": "journal",
+        "text": "toimetulekutoetus, kohalik omavalitsus",
+        "lexical": null,
+        "vector": 2
+       }
+      ],
+      "deciding_place": 1,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 14,
+       "seeds": 9,
+       "context_tokens": 11722,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    }
+   ],
+   "skipped_no_saved_vector": []
+  },
+  {
+   "catalogue": "tests/evaluation/graph/hard-conditions-3.json",
+   "date": "2026-10-15",
+   "questions": [
+    {
+     "question": "subsistence-home-loan",
+     "region": null,
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 7,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 1,
+      "other_under_100_chars_examples": [
+       {
+        "place": 14,
+        "title": "Mida tähendavad toimetulekutoetuse määramise muudatused kohalikele omavalitsustele ja sotsiaaltöötajatele?",
+        "class": "journal",
+        "text": "toimetulekutoetus, kohalik omavalitsus",
+        "lexical": null,
+        "vector": 9
+       }
+      ],
+      "deciding_place": 2,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 11,
+       "seeds": 9,
+       "context_tokens": 9284,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 7,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 1,
+      "other_under_100_chars_examples": [
+       {
+        "place": 14,
+        "title": "Mida tähendavad toimetulekutoetuse määramise muudatused kohalikele omavalitsustele ja sotsiaaltöötajatele?",
+        "class": "journal",
+        "text": "toimetulekutoetus, kohalik omavalitsus",
+        "lexical": null,
+        "vector": 9
+       }
+      ],
+      "deciding_place": 2,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 11,
+       "seeds": 9,
+       "context_tokens": 9284,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "referral-deadline-emergency",
+     "region": null,
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 14,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 2,
+      "other_under_100_chars_examples": [
+       {
+        "place": 14,
+        "title": "Hoolekandeasutuste tegevusjuhis COVID-19 tingimustes",
+        "class": "other_knowledge",
+        "text": "07.12.2023 HOOLEKANDEASUTUSE TEGEVUSJUHIS COVID-19 TINGIMUSTES",
+        "lexical": null,
+        "vector": 7
+       },
+       {
+        "place": 23,
+        "title": "Raviteekonna jätkumine väljaspool haigla seinu",
+        "class": "journal",
+        "text": "Eva Paalma tervisekassa raviteenuste osakonna teenusejuht",
+        "lexical": null,
+        "vector": 13
+       }
+      ],
+      "deciding_place": 7,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 14,
+       "seeds": 9,
+       "context_tokens": 11773,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 14,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 2,
+      "other_under_100_chars_examples": [
+       {
+        "place": 14,
+        "title": "Hoolekandeasutuste tegevusjuhis COVID-19 tingimustes",
+        "class": "other_knowledge",
+        "text": "07.12.2023 HOOLEKANDEASUTUSE TEGEVUSJUHIS COVID-19 TINGIMUSTES",
+        "lexical": null,
+        "vector": 7
+       },
+       {
+        "place": 23,
+        "title": "Raviteekonna jätkumine väljaspool haigla seinu",
+        "class": "journal",
+        "text": "Eva Paalma tervisekassa raviteenuste osakonna teenusejuht",
+        "lexical": null,
+        "vector": 13
+       }
+      ],
+      "deciding_place": 7,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 14,
+       "seeds": 9,
+       "context_tokens": 11773,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "student-turns-25",
+     "region": null,
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 13,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 1,
+      "other_under_100_chars_examples": [
+       {
+        "place": 5,
+        "title": "Heade praktikate kogumik",
+        "class": "other_knowledge",
+        "text": "Foto: Stock.xchng hooldamisel oleva lapse toetus Üksikvanema lapse toetus Eestkostel või p",
+        "lexical": null,
+        "vector": 2
+       }
+      ],
+      "deciding_place": 1,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 12,
+       "seeds": 9,
+       "context_tokens": 11144,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 13,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 1,
+      "other_under_100_chars_examples": [
+       {
+        "place": 5,
+        "title": "Heade praktikate kogumik",
+        "class": "other_knowledge",
+        "text": "Foto: Stock.xchng hooldamisel oleva lapse toetus Üksikvanema lapse toetus Eestkostel või p",
+        "lexical": null,
+        "vector": 2
+       }
+      ],
+      "deciding_place": 1,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 12,
+       "seeds": 9,
+       "context_tokens": 11144,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "refusal-only-home",
+     "region": null,
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 12,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 1,
+      "other_under_100_chars_examples": [
+       {
+        "place": 16,
+        "title": "Mida tähendavad toimetulekutoetuse määramise muudatused kohalikele omavalitsustele ja sotsiaaltöötajatele?",
+        "class": "journal",
+        "text": "toimetulekutoetus, kohalik omavalitsus",
+        "lexical": null,
+        "vector": 11
+       }
+      ],
+      "deciding_place": 2,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 12,
+       "seeds": 9,
+       "context_tokens": 11593,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 12,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 1,
+      "other_under_100_chars_examples": [
+       {
+        "place": 16,
+        "title": "Mida tähendavad toimetulekutoetuse määramise muudatused kohalikele omavalitsustele ja sotsiaaltöötajatele?",
+        "class": "journal",
+        "text": "toimetulekutoetus, kohalik omavalitsus",
+        "lexical": null,
+        "vector": 11
+       }
+      ],
+      "deciding_place": 2,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 12,
+       "seeds": 9,
+       "context_tokens": 11593,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "service-ended-martial-law",
+     "region": null,
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 17,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": 2,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 13,
+       "seeds": 9,
+       "context_tokens": 11070,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 17,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": 2,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 13,
+       "seeds": 9,
+       "context_tokens": 11070,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "rent-from-mother",
+     "region": null,
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 10,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 1,
+      "other_under_100_chars_examples": [
+       {
+        "place": 28,
+        "title": "Mida tähendavad toimetulekutoetuse määramise muudatused kohalikele omavalitsustele ja sotsiaaltöötajatele?",
+        "class": "journal",
+        "text": "toimetulekutoetus, kohalik omavalitsus",
+        "lexical": null,
+        "vector": 18
+       }
+      ],
+      "deciding_place": 2,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 11,
+       "seeds": 9,
+       "context_tokens": 9159,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 10,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 1,
+      "other_under_100_chars_examples": [
+       {
+        "place": 28,
+        "title": "Mida tähendavad toimetulekutoetuse määramise muudatused kohalikele omavalitsustele ja sotsiaaltöötajatele?",
+        "class": "journal",
+        "text": "toimetulekutoetus, kohalik omavalitsus",
+        "lexical": null,
+        "vector": 18
+       }
+      ],
+      "deciding_place": 2,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 11,
+       "seeds": 9,
+       "context_tokens": 9159,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "pensioner-with-student-child",
+     "region": null,
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 9,
+      "heading_only_in_fused": 1,
+      "heading_only_places": [
+       29
+      ],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {
+       "other_knowledge": 1
+      },
+      "heading_only_examples": [
+       {
+        "place": 29,
+        "title": "Mul on õigus 2025",
+        "class": "other_knowledge",
+        "text": "ÜKSIPÄINI OLEKS LAPSEL VÄGA RASKE ELADA - MUL ON ÕIGUS OLLA KOOS NII ISAGA KUI EMAGA.",
+        "lexical": null,
+        "vector": 8
+       }
+      ],
+      "other_under_100_chars_in_fused": 1,
+      "other_under_100_chars_examples": [
+       {
+        "place": 17,
+        "title": "Heade praktikate kogumik",
+        "class": "other_knowledge",
+        "text": "Foto: Stock.xchng hooldamisel oleva lapse toetus Üksikvanema lapse toetus Eestkostel või p",
+        "lexical": null,
+        "vector": 7
+       }
+      ],
+      "deciding_place": 33,
+      "deciding_part": "national_law_reserve",
+      "final": {
+       "passages": 14,
+       "seeds": 9,
+       "context_tokens": 12712,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 10,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 1,
+      "other_under_100_chars_examples": [
+       {
+        "place": 17,
+        "title": "Heade praktikate kogumik",
+        "class": "other_knowledge",
+        "text": "Foto: Stock.xchng hooldamisel oleva lapse toetus Üksikvanema lapse toetus Eestkostel või p",
+        "lexical": null,
+        "vector": 7
+       }
+      ],
+      "deciding_place": 33,
+      "deciding_part": "national_law_reserve",
+      "final": {
+       "passages": 14,
+       "seeds": 9,
+       "context_tokens": 8244,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "change": {
+      "entered_candidates": 2,
+      "left_candidates": 2,
+      "entered_titles": [
+       "Puudega lastega perede toimetuleku ja vajaduste uuring",
+       "Töövõimetoetuse maksmise tingimused"
+      ],
+      "final_entered": 1,
+      "context_tokens": -4468
+     }
+    },
+    {
+     "question": "child-rehabilitation-need",
+     "region": null,
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 17,
+      "heading_only_in_fused": 2,
+      "heading_only_places": [
+       16,
+       29
+      ],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {
+       "other_knowledge": 2
+      },
+      "heading_only_examples": [
+       {
+        "place": 16,
+        "title": "Täiskasvanud erivajadusega inimeste abivajaduse hindamine ja teenuste osutamine",
+        "class": "other_knowledge",
+        "text": "Megatrendid",
+        "lexical": null,
+        "vector": 2
+       },
+       {
+        "place": 29,
+        "title": "Lapse heaolu hindamise käsiraamat",
+        "class": "other_knowledge",
+        "text": "Lapse heaolu hindamise käsiraamat",
+        "lexical": null,
+        "vector": 8
+       }
+      ],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": 33,
+      "deciding_part": "national_law_reserve",
+      "final": {
+       "passages": 11,
+       "seeds": 9,
+       "context_tokens": 8439,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 17,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": 33,
+      "deciding_part": "national_law_reserve",
+      "final": {
+       "passages": 11,
+       "seeds": 9,
+       "context_tokens": 8439,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "change": {
+      "entered_candidates": 3,
+      "left_candidates": 3,
+      "entered_titles": [
+       "Lapse heaolu hindamise käsiraamat",
+       "Täisealise inimese abivajaduse hindamine – uued võimalused STAR-is",
+       "Lapse abivajaduse hindamisest lastekaitseseadus kontekstis Jõgevamaa näitel"
+      ],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "harku-support-person-relative",
+     "region": "harku_vald",
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 13,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": 11,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 10,
+       "seeds": 9,
+       "context_tokens": 7630,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 13,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": 11,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 10,
+       "seeds": 9,
+       "context_tokens": 7630,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "guardian-ward-family",
+     "region": null,
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 10,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 2,
+      "other_under_100_chars_examples": [
+       {
+        "place": 8,
+        "title": "Heade praktikate kogumik",
+        "class": "other_knowledge",
+        "text": "Foto: Stock.xchng hooldamisel oleva lapse toetus Üksikvanema lapse toetus Eestkostel või p",
+        "lexical": null,
+        "vector": 4
+       },
+       {
+        "place": 20,
+        "title": "Riiklik perelepitusteenus",
+        "class": "journal",
+        "text": "Liisa-Lotta raag laste ja perede osakonna nõunik, sotsiaalministeerium",
+        "lexical": null,
+        "vector": 7
+       }
+      ],
+      "deciding_place": 7,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 11,
+       "seeds": 9,
+       "context_tokens": 11539,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 10,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 2,
+      "other_under_100_chars_examples": [
+       {
+        "place": 8,
+        "title": "Heade praktikate kogumik",
+        "class": "other_knowledge",
+        "text": "Foto: Stock.xchng hooldamisel oleva lapse toetus Üksikvanema lapse toetus Eestkostel või p",
+        "lexical": null,
+        "vector": 4
+       },
+       {
+        "place": 20,
+        "title": "Riiklik perelepitusteenus",
+        "class": "journal",
+        "text": "Liisa-Lotta raag laste ja perede osakonna nõunik, sotsiaalministeerium",
+        "lexical": null,
+        "vector": 7
+       }
+      ],
+      "deciding_place": 7,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 11,
+       "seeds": 9,
+       "context_tokens": 11539,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "rent-debt-not-counted",
+     "region": null,
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 10,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 1,
+      "other_under_100_chars_examples": [
+       {
+        "place": 30,
+        "title": "Mida tähendavad toimetulekutoetuse määramise muudatused kohalikele omavalitsustele ja sotsiaaltöötajatele?",
+        "class": "journal",
+        "text": "toimetulekutoetus, kohalik omavalitsus",
+        "lexical": null,
+        "vector": 6
+       }
+      ],
+      "deciding_place": 2,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 10,
+       "seeds": 9,
+       "context_tokens": 9403,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 10,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 1,
+      "other_under_100_chars_examples": [
+       {
+        "place": 30,
+        "title": "Mida tähendavad toimetulekutoetuse määramise muudatused kohalikele omavalitsustele ja sotsiaaltöötajatele?",
+        "class": "journal",
+        "text": "toimetulekutoetus, kohalik omavalitsus",
+        "lexical": null,
+        "vector": 6
+       }
+      ],
+      "deciding_place": 2,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 10,
+       "seeds": 9,
+       "context_tokens": 9403,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "household-definition",
+     "region": null,
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 9,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 1,
+      "other_under_100_chars_examples": [
+       {
+        "place": 20,
+        "title": "Heade praktikate kogumik",
+        "class": "other_knowledge",
+        "text": "Foto: Stock.xchng hooldamisel oleva lapse toetus Üksikvanema lapse toetus Eestkostel või p",
+        "lexical": null,
+        "vector": 5
+       }
+      ],
+      "deciding_place": 1,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 13,
+       "seeds": 9,
+       "context_tokens": 10725,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 9,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 1,
+      "other_under_100_chars_examples": [
+       {
+        "place": 20,
+        "title": "Heade praktikate kogumik",
+        "class": "other_knowledge",
+        "text": "Foto: Stock.xchng hooldamisel oleva lapse toetus Üksikvanema lapse toetus Eestkostel või p",
+        "lexical": null,
+        "vector": 5
+       }
+      ],
+      "deciding_place": 1,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 13,
+       "seeds": 9,
+       "context_tokens": 10725,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "kuusalu-limits-since",
+     "region": "kuusalu_vald",
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 10,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 3,
+      "other_under_100_chars_examples": [
+       {
+        "place": 4,
+        "title": "Eluasemekulude piirmäärade kehtestamine toimetulekutoetuse määramisel",
+        "class": "municipal_act",
+        "text": "§ 4. Õigusaktide kehtetuks tunnistamine [Käesolevast tekstist välja jäetud.]",
+        "lexical": 7,
+        "vector": 4
+       },
+       {
+        "place": 24,
+        "title": "Sotsiaaltoetuste taotlemise, määramise ja maksmise kord",
+        "class": "municipal_act",
+        "text": "§ 31. Määruse jõustumine Määrus jõustub 01.01.2024.",
+        "lexical": null,
+        "vector": 7
+       },
+       {
+        "place": 26,
+        "title": "Sotsiaaltoetuste taotlemise, määramise ja maksmise kord",
+        "class": "municipal_act",
+        "text": "§ 30. Määruse kehtetuks tunnistamine [Käesolevast tekstist välja jäetud.]",
+        "lexical": null,
+        "vector": 17
+       }
+      ],
+      "deciding_place": 5,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 10,
+       "seeds": 9,
+       "context_tokens": 6013,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 10,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 3,
+      "other_under_100_chars_examples": [
+       {
+        "place": 4,
+        "title": "Eluasemekulude piirmäärade kehtestamine toimetulekutoetuse määramisel",
+        "class": "municipal_act",
+        "text": "§ 4. Õigusaktide kehtetuks tunnistamine [Käesolevast tekstist välja jäetud.]",
+        "lexical": 7,
+        "vector": 4
+       },
+       {
+        "place": 24,
+        "title": "Sotsiaaltoetuste taotlemise, määramise ja maksmise kord",
+        "class": "municipal_act",
+        "text": "§ 31. Määruse jõustumine Määrus jõustub 01.01.2024.",
+        "lexical": null,
+        "vector": 7
+       },
+       {
+        "place": 26,
+        "title": "Sotsiaaltoetuste taotlemise, määramise ja maksmise kord",
+        "class": "municipal_act",
+        "text": "§ 30. Määruse kehtetuks tunnistamine [Käesolevast tekstist välja jäetud.]",
+        "lexical": null,
+        "vector": 17
+       }
+      ],
+      "deciding_place": 5,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 10,
+       "seeds": 9,
+       "context_tokens": 6013,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "special-care-decision-time",
+     "region": null,
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 16,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": 1,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 9,
+       "seeds": 9,
+       "context_tokens": 7961,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 16,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": 1,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 9,
+       "seeds": 9,
+       "context_tokens": 7961,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "change": {
+      "entered_candidates": 1,
+      "left_candidates": 1,
+      "entered_titles": [
+       "Ülevaade erihoolekandeteenuste kättesaadavusest"
+      ],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "pensioner-day-centre",
+     "region": null,
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 16,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": 2,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 12,
+       "seeds": 9,
+       "context_tokens": 8301,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 16,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": 2,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 12,
+       "seeds": 9,
+       "context_tokens": 8301,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    }
+   ],
+   "skipped_no_saved_vector": []
+  },
+  {
+   "catalogue": "tests/evaluation/graph/abbreviation-municipal-1.json",
+   "date": "2026-10-02",
+   "questions": [
+    {
+     "question": "narva-substitute-care-personal-costs",
+     "region": "narva_linn",
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 17,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": 5,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 9,
+       "seeds": 9,
+       "context_tokens": 5476,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 17,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": 5,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 9,
+       "seeds": 9,
+       "context_tokens": 5476,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "sillamae-aftercare-student",
+     "region": "sillamae_linn",
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 15,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 1,
+      "other_under_100_chars_examples": [
+       {
+        "place": 18,
+        "title": "Tegevustest pikaajalise hoolduse vallas",
+        "class": "journal",
+        "text": "Maarja Krais-Leosk nõunik, sotsiaalministeerium",
+        "lexical": null,
+        "vector": 25
+       }
+      ],
+      "deciding_place": 5,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 12,
+       "seeds": 9,
+       "context_tokens": 7694,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 15,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 1,
+      "other_under_100_chars_examples": [
+       {
+        "place": 18,
+        "title": "Tegevustest pikaajalise hoolduse vallas",
+        "class": "journal",
+        "text": "Maarja Krais-Leosk nõunik, sotsiaalministeerium",
+        "lexical": null,
+        "vector": 24
+       }
+      ],
+      "deciding_place": 5,
+      "deciding_part": "fused",
+      "final": {
+       "passages": 12,
+       "seeds": 9,
+       "context_tokens": 7694,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": true
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "polva-support-person-relative",
+     "region": "polva_vald",
+     "has_phrase": true,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 11,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": 32,
+      "deciding_part": "national_law_reserve",
+      "final": {
+       "passages": 9,
+       "seeds": 9,
+       "context_tokens": 5171,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 11,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": 32,
+      "deciding_part": "national_law_reserve",
+      "final": {
+       "passages": 9,
+       "seeds": 9,
+       "context_tokens": 5171,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    }
+   ],
+   "skipped_no_saved_vector": []
+  },
+  {
+   "catalogue": "tests/evaluation/dialogue/scenarios-corpus-4.json",
+   "date": "2026-10-03",
+   "questions": [
+    {
+     "question": "money-harku-contact",
+     "region": null,
+     "has_phrase": false,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 20,
+      "heading_only_in_fused": 2,
+      "heading_only_places": [
+       1,
+       16
+      ],
+      "heading_only_in_first_nine": 1,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {
+       "other_knowledge": 2
+      },
+      "heading_only_examples": [
+       {
+        "place": 1,
+        "title": "Harjutuste kogu",
+        "class": "other_knowledge",
+        "text": "Avastasin just, et minu söök on läinud pahaks ja hallitab.",
+        "lexical": null,
+        "vector": 1
+       },
+       {
+        "place": 16,
+        "title": "Harjutuste kogu",
+        "class": "other_knowledge",
+        "text": "Minu võimetel ei ole piire.",
+        "lexical": null,
+        "vector": 16
+       }
+      ],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 9,
+       "seeds": 9,
+       "context_tokens": 4054,
+       "heading_only": 1,
+       "heading_only_seeds": 1,
+       "deciding_selected": false
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 19,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 9,
+       "seeds": 9,
+       "context_tokens": 4851,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "change": {
+      "entered_candidates": 2,
+      "left_candidates": 2,
+      "entered_titles": [
+       "Marelle Erlenheim: mulle meeldib, kui saan kasulik olla",
+       "Puudega lastega perede toimetuleku ja vajaduste uuring"
+      ],
+      "final_entered": 1,
+      "context_tokens": 797
+     }
+    },
+    {
+     "question": "mother-kose-corrected-harku",
+     "region": null,
+     "has_phrase": false,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 12,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 2,
+      "other_under_100_chars_examples": [
+       {
+        "place": 4,
+        "title": "Vajadustest lähtuv hool ja abi igas kodus",
+        "class": "journal",
+        "text": "Annika Sõna Päevakeskus Kalda juhataja",
+        "lexical": 20,
+        "vector": 2
+       },
+       {
+        "place": 21,
+        "title": "Heade praktikate kogumik",
+        "class": "other_knowledge",
+        "text": "III juhtum Omastehooldus – eakas ema hooldamas sügava vaimupuudega tütar t",
+        "lexical": null,
+        "vector": 19
+       }
+      ],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 9,
+       "seeds": 9,
+       "context_tokens": 5031,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 12,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 2,
+      "other_under_100_chars_examples": [
+       {
+        "place": 4,
+        "title": "Vajadustest lähtuv hool ja abi igas kodus",
+        "class": "journal",
+        "text": "Annika Sõna Päevakeskus Kalda juhataja",
+        "lexical": 20,
+        "vector": 2
+       },
+       {
+        "place": 21,
+        "title": "Heade praktikate kogumik",
+        "class": "other_knowledge",
+        "text": "III juhtum Omastehooldus – eakas ema hooldamas sügava vaimupuudega tütar t",
+        "lexical": null,
+        "vector": 19
+       }
+      ],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 9,
+       "seeds": 9,
+       "context_tokens": 5031,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "father-tallinn-then-own-debts-kose",
+     "region": null,
+     "has_phrase": false,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 21,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 1,
+      "other_under_100_chars_examples": [
+       {
+        "place": 25,
+        "title": "TÖÖLEHT: Tugevate tunnetega toimetulek",
+        "class": "other_knowledge",
+        "text": "Otsi keeruliste tunnetega toimetulemiseks abi. Koos arutades on lihtsam probleemi tuumani ",
+        "lexical": null,
+        "vector": 24
+       }
+      ],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 9,
+       "seeds": 9,
+       "context_tokens": 7112,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 21,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 1,
+      "other_under_100_chars_examples": [
+       {
+        "place": 25,
+        "title": "TÖÖLEHT: Tugevate tunnetega toimetulek",
+        "class": "other_knowledge",
+        "text": "Otsi keeruliste tunnetega toimetulemiseks abi. Koos arutades on lihtsam probleemi tuumani ",
+        "lexical": null,
+        "vector": 24
+       }
+      ],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 9,
+       "seeds": 9,
+       "context_tokens": 7112,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "crisis-then-help-tallinn",
+     "region": null,
+     "has_phrase": false,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 22,
+      "heading_only_in_fused": 3,
+      "heading_only_places": [
+       10,
+       22,
+       24
+      ],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {
+       "other_knowledge": 3
+      },
+      "heading_only_examples": [
+       {
+        "place": 10,
+        "title": "TÖÖLEHT: Tugevate tunnetega toimetulek",
+        "class": "other_knowledge",
+        "text": "5",
+        "lexical": null,
+        "vector": 8
+       },
+       {
+        "place": 22,
+        "title": "Harjutuste kogu",
+        "class": "other_knowledge",
+        "text": "Ma ei varja oma tundeid.",
+        "lexical": null,
+        "vector": 20
+       },
+       {
+        "place": 24,
+        "title": "TÖÖLEHT: Kuidas sa ennast tunned?",
+        "class": "other_knowledge",
+        "text": "TUNNED?",
+        "lexical": null,
+        "vector": 22
+       }
+      ],
+      "other_under_100_chars_in_fused": 6,
+      "other_under_100_chars_examples": [
+       {
+        "place": 3,
+        "title": "TÖÖLEHT: Kuidas sa ennast tunned?",
+        "class": "other_knowledge",
+        "text": "Võõrastav Süüdi Innukas Ebalev Hüljatud Energiline Optimistlik",
+        "lexical": null,
+        "vector": 1
+       },
+       {
+        "place": 5,
+        "title": "TÖÖLEHT: Tugevate tunnetega toimetulek",
+        "class": "other_knowledge",
+        "text": "Otsi keeruliste tunnetega toimetulemiseks abi. Koos arutades on lihtsam probleemi tuumani ",
+        "lexical": null,
+        "vector": 3
+       },
+       {
+        "place": 15,
+        "title": "TÖÖLEHT: Kuidas sa ennast tunned?",
+        "class": "other_knowledge",
+        "text": "Frustreeritud Šokeeritud Kartlik Eemalolev Kohutatud Süüdistav Kriitiline Jälestav Ehmunud",
+        "lexical": null,
+        "vector": 13
+       },
+       {
+        "place": 16,
+        "title": "Harjutuste kogu",
+        "class": "other_knowledge",
+        "text": "Harjutus 2.6",
+        "lexical": null,
+        "vector": 14
+       },
+       {
+        "place": 17,
+        "title": "Elutööpreemia laureaat Kai Rannastu: „Üksi sotsiaaltööd ei tee!“",
+        "class": "journal",
+        "text": "Foto: erakogu",
+        "lexical": null,
+        "vector": 15
+       },
+       {
+        "place": 18,
+        "title": "Võin olla puudega – laste piltsõnastik puuetest",
+        "class": "other_knowledge",
+        "text": "liikumine iseseisvalt on raske või võimatu.",
+        "lexical": null,
+        "vector": 16
+       }
+      ],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 9,
+       "seeds": 9,
+       "context_tokens": 5381,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 24,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 6,
+      "other_under_100_chars_examples": [
+       {
+        "place": 3,
+        "title": "TÖÖLEHT: Kuidas sa ennast tunned?",
+        "class": "other_knowledge",
+        "text": "Võõrastav Süüdi Innukas Ebalev Hüljatud Energiline Optimistlik",
+        "lexical": null,
+        "vector": 1
+       },
+       {
+        "place": 5,
+        "title": "TÖÖLEHT: Tugevate tunnetega toimetulek",
+        "class": "other_knowledge",
+        "text": "Otsi keeruliste tunnetega toimetulemiseks abi. Koos arutades on lihtsam probleemi tuumani ",
+        "lexical": null,
+        "vector": 3
+       },
+       {
+        "place": 15,
+        "title": "TÖÖLEHT: Kuidas sa ennast tunned?",
+        "class": "other_knowledge",
+        "text": "Frustreeritud Šokeeritud Kartlik Eemalolev Kohutatud Süüdistav Kriitiline Jälestav Ehmunud",
+        "lexical": null,
+        "vector": 12
+       },
+       {
+        "place": 16,
+        "title": "Harjutuste kogu",
+        "class": "other_knowledge",
+        "text": "Harjutus 2.6",
+        "lexical": null,
+        "vector": 13
+       },
+       {
+        "place": 17,
+        "title": "Elutööpreemia laureaat Kai Rannastu: „Üksi sotsiaaltööd ei tee!“",
+        "class": "journal",
+        "text": "Foto: erakogu",
+        "lexical": null,
+        "vector": 14
+       },
+       {
+        "place": 18,
+        "title": "Võin olla puudega – laste piltsõnastik puuetest",
+        "class": "other_knowledge",
+        "text": "liikumine iseseisvalt on raske või võimatu.",
+        "lexical": null,
+        "vector": 15
+       }
+      ],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 9,
+       "seeds": 9,
+       "context_tokens": 5388,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "change": {
+      "entered_candidates": 3,
+      "left_candidates": 3,
+      "entered_titles": [
+       "Tegevuspiiranguga inimeste toimetulekut kodus tuleb toetada senisest rohkem",
+       "Marelle Erlenheim: mulle meeldib, kui saan kasulik olla",
+       "Elutöö auhind ei anna õigust loorberitele puhkama jääda"
+      ],
+      "final_entered": 1,
+      "context_tokens": 7
+     }
+    },
+    {
+     "question": "transport-kose",
+     "region": null,
+     "has_phrase": false,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 11,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 9,
+       "seeds": 9,
+       "context_tokens": 7780,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 11,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 9,
+       "seeds": 9,
+       "context_tokens": 7780,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "fire-harku",
+     "region": null,
+     "has_phrase": false,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 14,
+      "heading_only_in_fused": 7,
+      "heading_only_places": [
+       8,
+       9,
+       10,
+       11,
+       12,
+       13,
+       17
+      ],
+      "heading_only_in_first_nine": 2,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {
+       "other_knowledge": 7
+      },
+      "heading_only_examples": [
+       {
+        "place": 8,
+        "title": "Päästeameti meelespea kohalikule omavalitsusele",
+        "class": "other_knowledge",
+        "text": "16662",
+        "lexical": null,
+        "vector": 8
+       },
+       {
+        "place": 9,
+        "title": "Päästeameti meelespea kohalikule omavalitsusele",
+        "class": "other_knowledge",
+        "text": "WWW.RESCUE.EE FACEBOOK.COM/PAASTEAMET/",
+        "lexical": null,
+        "vector": 9
+       },
+       {
+        "place": 10,
+        "title": "Päästeameti meelespea kohalikule omavalitsusele",
+        "class": "other_knowledge",
+        "text": "TULEOHUTUSE MEELESPEA",
+        "lexical": null,
+        "vector": 10
+       },
+       {
+        "place": 11,
+        "title": "Päästeameti meelespea kohalikule omavalitsusele",
+        "class": "other_knowledge",
+        "text": "ENNETUSALANE MEELESPEA",
+        "lexical": null,
+        "vector": 11
+       },
+       {
+        "place": 12,
+        "title": "Päästeameti meelespea kohalikule omavalitsusele",
+        "class": "other_knowledge",
+        "text": "ENNETUSALANE MEELESPEA",
+        "lexical": null,
+        "vector": 12
+       },
+       {
+        "place": 13,
+        "title": "Päästeameti meelespea kohalikule omavalitsusele",
+        "class": "other_knowledge",
+        "text": "PÄÄSTEAMETI MEELESPEA",
+        "lexical": null,
+        "vector": 13
+       },
+       {
+        "place": 17,
+        "title": "Päästeameti meelespea kohalikule omavalitsusele",
+        "class": "other_knowledge",
+        "text": "1220",
+        "lexical": null,
+        "vector": 17
+       }
+      ],
+      "other_under_100_chars_in_fused": 3,
+      "other_under_100_chars_examples": [
+       {
+        "place": 3,
+        "title": "Päästeameti meelespea kohalikule omavalitsusele",
+        "class": "other_knowledge",
+        "text": "KOGUNEMISKOHT",
+        "lexical": null,
+        "vector": 3
+       },
+       {
+        "place": 14,
+        "title": "Tuleohutuse infohommik: mida iga hoolekandeasutus peab teadma?",
+        "class": "other_knowledge",
+        "text": "Tulekahju korral tegutsemise plaan Hoone Tegevus Paigaldised Võimalikkused Evakueerimised",
+        "lexical": null,
+        "vector": 14
+       },
+       {
+        "place": 16,
+        "title": "Tuleohutuse infohommik: mida iga hoolekandeasutus peab teadma?",
+        "class": "other_knowledge",
+        "text": "Hõõgpõlemine Kontrollimatu Kütus Hapnik Ärritaja Ahelrekatsioon Foto: Päästeamet",
+        "lexical": null,
+        "vector": 16
+       }
+      ],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 9,
+       "seeds": 9,
+       "context_tokens": 1997,
+       "heading_only": 3,
+       "heading_only_seeds": 3,
+       "deciding_selected": false
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 14,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 4,
+      "other_under_100_chars_examples": [
+       {
+        "place": 3,
+        "title": "Päästeameti meelespea kohalikule omavalitsusele",
+        "class": "other_knowledge",
+        "text": "KOGUNEMISKOHT",
+        "lexical": null,
+        "vector": 3
+       },
+       {
+        "place": 8,
+        "title": "Tuleohutuse infohommik: mida iga hoolekandeasutus peab teadma?",
+        "class": "other_knowledge",
+        "text": "Tulekahju korral tegutsemise plaan Hoone Tegevus Paigaldised Võimalikkused Evakueerimised",
+        "lexical": null,
+        "vector": 8
+       },
+       {
+        "place": 10,
+        "title": "Tuleohutuse infohommik: mida iga hoolekandeasutus peab teadma?",
+        "class": "other_knowledge",
+        "text": "Hõõgpõlemine Kontrollimatu Kütus Hapnik Ärritaja Ahelrekatsioon Foto: Päästeamet",
+        "lexical": null,
+        "vector": 10
+       },
+       {
+        "place": 28,
+        "title": "Tuleohutuse infohommik: mida iga hoolekandeasutus peab teadma?",
+        "class": "other_knowledge",
+        "text": "TKTP ÕPPUS KOOSTÖÖ HÄDAABI 112 PÄÄSTEMEESKOND",
+        "lexical": null,
+        "vector": 34
+       }
+      ],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 9,
+       "seeds": 9,
+       "context_tokens": 2497,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "change": {
+      "entered_candidates": 13,
+      "left_candidates": 13,
+      "entered_titles": [
+       "Päästeameti meelespea kohalikule omavalitsusele",
+       "Maapiirkondade elamufondi probleemidega kaasnevad sotsiaalsed kitsaskohad",
+       "Juhendmaterjal praktilise väljaõppe läbiviimiseks haiglas ja hooldekodus",
+       "Eakad on Türi vallas kogukonna väärtuslik ja hoitud osa",
+       "Tuleohutuse infohommik: mida iga hoolekandeasutus peab teadma?",
+       "Arendame koos valmisolekut kriisiolukordadeks"
+      ],
+      "final_entered": 3,
+      "context_tokens": 500
+     }
+    },
+    {
+     "question": "appeal-follow-up",
+     "region": null,
+     "has_phrase": false,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 14,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 9,
+       "seeds": 9,
+       "context_tokens": 6673,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 14,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 9,
+       "seeds": 9,
+       "context_tokens": 6673,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "care-home-correction",
+     "region": null,
+     "has_phrase": false,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 10,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 10,
+       "seeds": 9,
+       "context_tokens": 7188,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 10,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 10,
+       "seeds": 9,
+       "context_tokens": 7188,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "income-support-move",
+     "region": null,
+     "has_phrase": false,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 13,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 2,
+      "other_under_100_chars_examples": [
+       {
+        "place": 24,
+        "title": "Mida tähendavad toimetulekutoetuse määramise muudatused kohalikele omavalitsustele ja sotsiaaltöötajatele?",
+        "class": "journal",
+        "text": "toimetulekutoetus, kohalik omavalitsus",
+        "lexical": null,
+        "vector": 21
+       },
+       {
+        "place": 30,
+        "title": "Pikaajalised toimetulekutoetuse saajad vajavad rohkem tuge",
+        "class": "journal",
+        "text": "Kelly Toim, Kirsti Melesk uuringu autorid, poliitikauuringute keskus Praxis",
+        "lexical": null,
+        "vector": 28
+       }
+      ],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 13,
+       "seeds": 9,
+       "context_tokens": 11006,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 13,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 2,
+      "other_under_100_chars_examples": [
+       {
+        "place": 24,
+        "title": "Mida tähendavad toimetulekutoetuse määramise muudatused kohalikele omavalitsustele ja sotsiaaltöötajatele?",
+        "class": "journal",
+        "text": "toimetulekutoetus, kohalik omavalitsus",
+        "lexical": null,
+        "vector": 21
+       },
+       {
+        "place": 30,
+        "title": "Pikaajalised toimetulekutoetuse saajad vajavad rohkem tuge",
+        "class": "journal",
+        "text": "Kelly Toim, Kirsti Melesk uuringu autorid, poliitikauuringute keskus Praxis",
+        "lexical": null,
+        "vector": 28
+       }
+      ],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 13,
+       "seeds": 9,
+       "context_tokens": 11006,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "law-on-dates",
+     "region": null,
+     "has_phrase": false,
+     "now": {
+      "fused": 30,
+      "reserve": 2,
+      "documents_in_fused": 12,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 13,
+       "seeds": 9,
+       "context_tokens": 12784,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 2,
+      "documents_in_fused": 12,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 13,
+       "seeds": 9,
+       "context_tokens": 12784,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "vague-then-details",
+     "region": null,
+     "has_phrase": false,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 16,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 13,
+       "seeds": 9,
+       "context_tokens": 11802,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 16,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 13,
+       "seeds": 9,
+       "context_tokens": 11802,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "child-alone-report",
+     "region": null,
+     "has_phrase": false,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 15,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 1,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 10,
+       "seeds": 9,
+       "context_tokens": 7862,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 15,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 10,
+       "seeds": 9,
+       "context_tokens": 7862,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "change": {
+      "entered_candidates": 1,
+      "left_candidates": 1,
+      "entered_titles": [
+       "Sotsiaalhoolekande seadus"
+      ],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "tartu-parish-not-city",
+     "region": "tartu_vald",
+     "has_phrase": false,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 15,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 9,
+       "seeds": 9,
+       "context_tokens": 5242,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 15,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 9,
+       "seeds": 9,
+       "context_tokens": 5242,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "new-person-same-need",
+     "region": "raasiku_vald",
+     "has_phrase": false,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 11,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 5,
+      "other_under_100_chars_examples": [
+       {
+        "place": 3,
+        "title": "Vajadustest lähtuv hool ja abi igas kodus",
+        "class": "journal",
+        "text": "Annika Sõna Päevakeskus Kalda juhataja",
+        "lexical": null,
+        "vector": 1
+       },
+       {
+        "place": 10,
+        "title": "Heade praktikate kogumik",
+        "class": "other_knowledge",
+        "text": "III juhtum Omastehooldus – eakas ema hooldamas sügava vaimupuudega tütar t",
+        "lexical": null,
+        "vector": 8
+       },
+       {
+        "place": 12,
+        "title": "Terviklik abi kodu lähedalt – isikukeskne erihoolekanne omavalitsustes",
+        "class": "journal",
+        "text": "Katrin Tsuiman projektijuht, sotsiaalkindlustusamet",
+        "lexical": null,
+        "vector": 10
+       },
+       {
+        "place": 21,
+        "title": "Suure hoolduskoormusega inimesed vajavad täiendavat abi",
+        "class": "journal",
+        "text": "Vaike Vainu Turu-uuringute AS-i analüütik",
+        "lexical": null,
+        "vector": 20
+       },
+       {
+        "place": 30,
+        "title": "Mäluhäiretega inimeste toetamisest isikuabini – koduteenus Keilas",
+        "class": "journal",
+        "text": "Riina Sippol Keila sotsiaalkeskuse juhataja",
+        "lexical": null,
+        "vector": 30
+       }
+      ],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 9,
+       "seeds": 9,
+       "context_tokens": 4577,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 11,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 5,
+      "other_under_100_chars_examples": [
+       {
+        "place": 3,
+        "title": "Vajadustest lähtuv hool ja abi igas kodus",
+        "class": "journal",
+        "text": "Annika Sõna Päevakeskus Kalda juhataja",
+        "lexical": null,
+        "vector": 1
+       },
+       {
+        "place": 10,
+        "title": "Heade praktikate kogumik",
+        "class": "other_knowledge",
+        "text": "III juhtum Omastehooldus – eakas ema hooldamas sügava vaimupuudega tütar t",
+        "lexical": null,
+        "vector": 8
+       },
+       {
+        "place": 12,
+        "title": "Terviklik abi kodu lähedalt – isikukeskne erihoolekanne omavalitsustes",
+        "class": "journal",
+        "text": "Katrin Tsuiman projektijuht, sotsiaalkindlustusamet",
+        "lexical": null,
+        "vector": 10
+       },
+       {
+        "place": 21,
+        "title": "Suure hoolduskoormusega inimesed vajavad täiendavat abi",
+        "class": "journal",
+        "text": "Vaike Vainu Turu-uuringute AS-i analüütik",
+        "lexical": null,
+        "vector": 20
+       },
+       {
+        "place": 30,
+        "title": "Mäluhäiretega inimeste toetamisest isikuabini – koduteenus Keilas",
+        "class": "journal",
+        "text": "Riina Sippol Keila sotsiaalkeskuse juhataja",
+        "lexical": null,
+        "vector": 30
+       }
+      ],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 9,
+       "seeds": 9,
+       "context_tokens": 4577,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "change": {
+      "entered_candidates": 0,
+      "left_candidates": 0,
+      "entered_titles": [],
+      "final_entered": 0,
+      "context_tokens": 0
+     }
+    },
+    {
+     "question": "hearing-aid-cap",
+     "region": null,
+     "has_phrase": false,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 11,
+      "heading_only_in_fused": 1,
+      "heading_only_places": [
+       2
+      ],
+      "heading_only_in_first_nine": 1,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {
+       "other_knowledge": 1
+      },
+      "heading_only_examples": [
+       {
+        "place": 2,
+        "title": "Võin olla puudega – laste piltsõnastik puuetest",
+        "class": "other_knowledge",
+        "text": "K Kuuldeaparaat",
+        "lexical": null,
+        "vector": 2
+       }
+      ],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 9,
+       "seeds": 9,
+       "context_tokens": 6390,
+       "heading_only": 1,
+       "heading_only_seeds": 1,
+       "deciding_selected": false
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 11,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 0,
+      "other_under_100_chars_examples": [],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 9,
+       "seeds": 9,
+       "context_tokens": 6802,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "change": {
+      "entered_candidates": 1,
+      "left_candidates": 1,
+      "entered_titles": [
+       "Abivahendite teatmik 2025"
+      ],
+      "final_entered": 1,
+      "context_tokens": 412
+     }
+    },
+    {
+     "question": "shelter-tonight",
+     "region": null,
+     "has_phrase": false,
+     "now": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 16,
+      "heading_only_in_fused": 6,
+      "heading_only_places": [
+       6,
+       8,
+       9,
+       15,
+       25,
+       28
+      ],
+      "heading_only_in_first_nine": 3,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {
+       "other_knowledge": 5,
+       "journal": 1
+      },
+      "heading_only_examples": [
+       {
+        "place": 6,
+        "title": "Seksuaalsest ahistamisest vaba ööelu juhend",
+        "class": "other_knowledge",
+        "text": "palunabi.ee/ooelu",
+        "lexical": null,
+        "vector": 6
+       },
+       {
+        "place": 8,
+        "title": "Seksuaalsest ahistamisest vaba ööelu juhend",
+        "class": "other_knowledge",
+        "text": "panu mujale",
+        "lexical": null,
+        "vector": 8
+       },
+       {
+        "place": 9,
+        "title": "Seksuaalsest ahistamisest vaba ööelu juhend",
+        "class": "other_knowledge",
+        "text": "Toeta",
+        "lexical": null,
+        "vector": 9
+       },
+       {
+        "place": 15,
+        "title": "Seksuaalsest ahistamisest vaba ööelu juhend",
+        "class": "other_knowledge",
+        "text": "Sekku ja aita - vali",
+        "lexical": null,
+        "vector": 15
+       },
+       {
+        "place": 25,
+        "title": "Seksuaalsest ahistamisest vaba ööelu juhend",
+        "class": "other_knowledge",
+        "text": "ohvriabi ÄR, S Tallinn TARTU CM)",
+        "lexical": null,
+        "vector": 25
+       },
+       {
+        "place": 28,
+        "title": "Sotsiaalkiirabi või pigem sotsiaal- ja kriisiabi? Soome kogemus",
+        "class": "journal",
+        "text": "Länsi-Uusimaa sotsiaal- ja kriisikeskus arvudes",
+        "lexical": null,
+        "vector": 28
+       }
+      ],
+      "other_under_100_chars_in_fused": 1,
+      "other_under_100_chars_examples": [
+       {
+        "place": 19,
+        "title": "Seksuaalsest ahistamisest vaba ööelu juhend",
+        "class": "other_knowledge",
+        "text": "Tallinna linn Sotsiaalkindlustusamet Tallinna Linnakantselei",
+        "lexical": null,
+        "vector": 19
+       }
+      ],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 9,
+       "seeds": 9,
+       "context_tokens": 4369,
+       "heading_only": 3,
+       "heading_only_seeds": 3,
+       "deciding_selected": false
+      }
+     },
+     "without": {
+      "fused": 30,
+      "reserve": 6,
+      "documents_in_fused": 18,
+      "heading_only_in_fused": 0,
+      "heading_only_places": [],
+      "heading_only_in_first_nine": 0,
+      "heading_only_in_reserve": 0,
+      "heading_only_by_class": {},
+      "heading_only_examples": [],
+      "other_under_100_chars_in_fused": 1,
+      "other_under_100_chars_examples": [
+       {
+        "place": 15,
+        "title": "Seksuaalsest ahistamisest vaba ööelu juhend",
+        "class": "other_knowledge",
+        "text": "Tallinna linn Sotsiaalkindlustusamet Tallinna Linnakantselei",
+        "lexical": null,
+        "vector": 15
+       }
+      ],
+      "deciding_place": null,
+      "deciding_part": null,
+      "final": {
+       "passages": 9,
+       "seeds": 9,
+       "context_tokens": 5622,
+       "heading_only": 0,
+       "heading_only_seeds": 0,
+       "deciding_selected": false
+      }
+     },
+     "change": {
+      "entered_candidates": 6,
+      "left_candidates": 6,
+      "entered_titles": [
+       "Seksuaalvägivalla kriisiabikeskusi tutvustav voldik (EST)",
+       "Heade praktikate kogumik",
+       "Sotsiaaltöö aastal 2050. Unistus sotsiaalkiirabist",
+       "Kas sotsiaalabi on (turva)võrk või hüppelaud? Kuidas aidata inimesed kiiresti taas jalule",
+       "Sotsiaalkiirabi või pigem sotsiaal- ja kriisiabi? Soome kogemus",
+       "Harjutuste kogu"
+      ],
+      "final_entered": 3,
+      "context_tokens": 1253
+     }
+    }
+   ],
+   "skipped_no_saved_vector": []
+  }
+ ],
+ "heading_only_among_candidates": {
+  "places": 25,
+  "of_candidate_places": 1470,
+  "by_class": {
+   "national_law": 1,
+   "other_knowledge": 23,
+   "journal": 1
+  },
+  "found_by": {
+   "vector only": 23,
+   "both channels": 2
+  }
+ },
+ "other_short_among_candidates": {
+  "places": 54,
+  "questions": 30,
+  "by_class": {
+   "journal": 30,
+   "other_knowledge": 20,
+   "national_law": 1,
+   "municipal_act": 3
+  }
+ },
+ "summary": {
+  "questions": 49,
+  "with_deciding_phrase": 33,
+  "skipped": 0,
+  "now": {
+   "mean_heading_only_in_fused": 0.51,
+   "max_heading_only_in_fused": 7,
+   "questions_with_one_or_more": 9,
+   "with_three_or_more": 3,
+   "with_five_or_more": 2,
+   "with_one_in_first_nine": 5,
+   "heading_only_seeds_in_final": 10,
+   "questions_with_heading_only_seed": 5,
+   "heading_only_in_final": 10,
+   "deciding_among_candidates": 29,
+   "deciding_in_fused": 26,
+   "mean_deciding_place": 8.07,
+   "deciding_in_final_without_model": 30,
+   "mean_context_tokens": 8415.76
+  },
+  "without": {
+   "mean_heading_only_in_fused": 0,
+   "max_heading_only_in_fused": 0,
+   "questions_with_one_or_more": 0,
+   "with_three_or_more": 0,
+   "with_five_or_more": 0,
+   "with_one_in_first_nine": 0,
+   "heading_only_seeds_in_final": 0,
+   "questions_with_heading_only_seed": 0,
+   "heading_only_in_final": 0,
+   "deciding_among_candidates": 29,
+   "deciding_in_fused": 26,
+   "mean_deciding_place": 8.07,
+   "deciding_in_final_without_model": 30,
+   "mean_context_tokens": 8412
+  },
+  "questions_whose_candidates_change": 12,
+  "questions_whose_final_changes": 8,
+  "deciding_gained": [],
+  "deciding_lost": [],
+  "deciding_candidate_gained": [],
+  "deciding_candidate_lost": []
+ }
+}
