@@ -1312,7 +1312,7 @@ export default function JourneyDetail({ journeyId }) {
                           {t("journey.assistiveDevices.description", "Siia saab koondada info abivahendite, kodukohanduse või abivahendi kasutamise toe kohta.")}
                         </p>
                         <p>
-                          {t("journey.assistiveDevices.safetyNote", "SotsiaalAI ei määra ametlikult abivahendit ega otsusta hüvitamist. Vajadusel täpsusta sobivust KOV-i, spetsialisti, rehabilitatsioonimeeskonna või abivahendi teenuseosutajaga.")}
+                          {t("journey.assistiveDevices.safetyNote", "Sotsiaal.pro ei määra ametlikult abivahendit ega otsusta hüvitamist. Vajadusel täpsusta sobivust KOV-i, spetsialisti, rehabilitatsioonimeeskonna või abivahendi teenuseosutajaga.")}
                         </p>
                       </div>
                       <div>
@@ -1642,7 +1642,7 @@ export default function JourneyDetail({ journeyId }) {
                         {t("journey.healthContact.description", "Sinu kirjelduses võib olla tervisega seotud küsimus. Esmane järgmine samm võib olla perearstikeskus, tervisekeskus või ametlik tervisenõu kontakt.")}
                       </p>
                       <p>
-                        {t("journey.healthContact.notMedicalAdvice", "SotsiaalAI ei anna meditsiinilist hinnangut, diagnoosi ega ravisoovitust, kuid saab aidata küsimused selgelt sõnastada. Kui on vahetu oht, tuleb pöörduda hädaabinumbrile või erakorralise abi poole.")}
+                        {t("journey.healthContact.notMedicalAdvice", "Sotsiaal.pro ei anna meditsiinilist hinnangut, diagnoosi ega ravisoovitust, kuid saab aidata küsimused selgelt sõnastada. Kui on vahetu oht, tuleb pöörduda hädaabinumbrile või erakorralise abi poole.")}
                       </p>
                     </div>
                     <Button type="button" variant="primary" onClick={handleCreateHealthQuestions} disabled={busy}>

@@ -20,8 +20,8 @@ import WorkplaceViolenceWorkflow from "./WorkplaceViolenceWorkflow";
 import WorkBoundariesWorkflow from "./WorkBoundariesWorkflow";
 import WorkProcessesWorkflow from "./WorkProcessesWorkflow";
 
-const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAALAI_CHAT_WORKSPACE_RESTORE__";
-const WORKSPACE_SUBPAGE_ENTRY_STORAGE_KEY = "__SOTSIAALAI_WORKSPACE_SUBPAGE_ENTRY__";
+const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAAL.PRO_CHAT_WORKSPACE_RESTORE__";
+const WORKSPACE_SUBPAGE_ENTRY_STORAGE_KEY = "__SOTSIAAL.PRO_WORKSPACE_SUBPAGE_ENTRY__";
 
 function markChatWorkspaceRestore() {
   if (typeof window === "undefined") return;

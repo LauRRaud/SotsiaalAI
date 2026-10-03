@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 export const revalidate = 0;
 export const metadata = {
-  title: "Tasutud ligipääs - SotsiaalAI",
+  title: "Tasutud ligipääs - Sotsiaal.pro",
   robots: { index: false, follow: false, nocache: true }
 };
 

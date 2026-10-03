@@ -37,7 +37,7 @@ const DEFAULT_LIFE_DOMAINS = Object.freeze([
   "kriis ja turvalisus"
 ]);
 
-const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAALAI_CHAT_WORKSPACE_RESTORE__";
+const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAAL.PRO_CHAT_WORKSPACE_RESTORE__";
 /**
  * TEEKONNA MUSTANDI RIDA (SOL-JOUR-02, P0).
  *
@@ -878,7 +878,7 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
                   {t("journey.sections.review_title", "Ülevaade enne salvestamist")}
                 </h2>
                 <p>
-                  {t("journey.sections.review_description", "Vaata üle, kas SotsiaalAI korrastas olukorra õigesti. Teekond salvestatakse alles siis, kui kinnitad.")}
+                  {t("journey.sections.review_description", "Vaata üle, kas Sotsiaal.pro korrastas olukorra õigesti. Teekond salvestatakse alles siis, kui kinnitad.")}
                 </p>
               </div>
             </div>

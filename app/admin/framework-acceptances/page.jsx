@@ -19,7 +19,7 @@ export const metadata = {
     "en",
     "admin.pages.framework_acceptances.meta_title",
     undefined,
-    "Framework acceptances - SotsiaalAI"
+    "Framework acceptances - Sotsiaal.pro"
   ),
   robots: {
     index: false,

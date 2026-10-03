@@ -1,7 +1,7 @@
 "use client";
 
 /*
- * Avalik SotsiaalAI funktsioonikataloog. Omaniku 24.08.2026 korraldus:
+ * Avalik Sotsiaal.pro funktsioonikataloog. Omaniku 24.08.2026 korraldus:
  * loend peab kirjeldama kõiki ehitatud kasutaja-, organisatsiooni- ja
  * haldusvõimeid avalikus toote- ja teenusekeeles.
  */

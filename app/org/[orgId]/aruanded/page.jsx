@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 export const revalidate = 0;
 export const metadata = {
-  title: "Teenuspäeviku aruanded - SotsiaalAI",
+  title: "Teenuspäeviku aruanded - Sotsiaal.pro",
   robots: { index: false, follow: false, nocache: true }
 };
 

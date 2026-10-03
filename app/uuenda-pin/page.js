@@ -8,7 +8,7 @@ export async function generateMetadata() {
   const messages = getMessagesSync(locale);
   const meta = messages?.meta?.pin_update || messages?.meta?.reset || {};
   const fallbackTitle = messages?.profile?.change_password_cta
-    ? `${messages.profile.change_password_cta} - SotsiaalAI`
+    ? `${messages.profile.change_password_cta} - Sotsiaal.pro`
     : "";
   const fallbackDescription = messages?.profile?.pin_help || "";
   return buildLocalizedMetadata({

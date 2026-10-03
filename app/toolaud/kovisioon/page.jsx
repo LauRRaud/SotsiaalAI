@@ -16,7 +16,7 @@ export async function generateMetadata() {
   return buildLocalizedMetadata({
     locale,
     pathname: "/toolaud/kovisioon",
-    title: `${copy.title} | SotsiaalAI`,
+    title: `${copy.title} | Sotsiaal.pro`,
     description: copy.description
   });
 }

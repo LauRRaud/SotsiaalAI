@@ -4,7 +4,7 @@ import { getLocaleFromCookies, getMessagesSync } from "@/lib/i18n";
 import "./logo-export.css";
 
 export const metadata = {
-  title: "SotsiaalAI logo eksport",
+  title: "Sotsiaal.pro logo eksport",
   robots: { index: false, follow: false }
 };
 

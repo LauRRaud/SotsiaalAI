@@ -1813,7 +1813,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         </>
       ) : null}
 
-      {/* Laadimisloor — vana SotsiaalAI sõnamärk on uue logo valmimiseni eemaldatud. */}
+      {/* Laadimisloor — vana Sotsiaal.pro sõnamärk on uue logo valmimiseni eemaldatud. */}
       <div
         className="room-veil"
         ref={veilRef}

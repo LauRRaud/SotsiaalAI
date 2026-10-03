@@ -16,7 +16,7 @@ export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 export const revalidate = 0;
 export const metadata = {
-  title: "Service availability - SotsiaalAI",
+  title: "Service availability - Sotsiaal.pro",
   robots: { index: false, follow: false, nocache: true }
 };
 

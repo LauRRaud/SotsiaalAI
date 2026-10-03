@@ -30,7 +30,7 @@ import { WORKER_FRAMEWORK_SIGNED_HREF, WORKER_FRAMEWORK_VERSION } from "@/lib/fr
 import { localizePath } from "@/lib/localizePath"
 import { pushWithTransition } from "@/lib/routeTransition"
 
-const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAALAI_CHAT_WORKSPACE_RESTORE__"
+const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAAL.PRO_CHAT_WORKSPACE_RESTORE__"
 const WORKSPACE_WINDOW = 50
 
 // Ühtse loendi kerge rühmafilter (mitte tabeli-juhtpaneel — üks selge loend, valikuline vaade).

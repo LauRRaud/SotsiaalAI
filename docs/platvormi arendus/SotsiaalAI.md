@@ -96,6 +96,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 vana domeeni Välitöö ja API-d säilivad kohaliku sünkroonimise jaoks. Vaata S10 tõendit.
 Avalik ettevõttenimi on omaniku korraldusel Küberloome OÜ; vana avalehe logo
 on ajutiselt eemaldatud. Mõlemad muudatused on tootmises ja brauseris kontrollitud.
+**03.10 nimeuuendus (kohalik; tootmises kontrollimata):** nähtavad lehepealkirjad,
+tekstid, e-kirjamallid ja installitava rakenduse nimi kasutavad nime `Sotsiaal.pro`.
+Sotsiaalinfo algne lugu jääb autoriteksti ja tingimustesse. Favicon ning PWA ikoon
+kasutavad vestluse S-tähist. Kohalik ESLint, i18n ja brauserikontroll läbisid;
+tootmise seis tuleb pärast automaatset deploy'd mõõta.
 
 **Uus aken alustab siit (02.10 hommik).** Kuupäevaviga on parandatud ([ADR-062](../rag-v2/adr-062-provision-dates.md), korpus v47, dialoog 22). Omanik valis M3; selle mõõtmissamm ja esimene reegel (profiil v4, [ADR-064](../rag-v2/adr-064-named-other-act.md)) on tehtud.
 - **Tootmises:** korpus v47 (indeks `34fe1590`, 6470 dokumenti, 40 489 lõiku; lugeja `source-structure-v30`). Vestlusplaani uuendab reliis ise (ADR-037): profiil v6 ([ADR-068](../rag-v2/adr-068-own-reference-subsections.md); v5 + akti enda viide toob nimetatud lõike), answer-12, dialoog 24 ([ADR-071](../rag-v2/adr-071-bare-correction-and-prior-claim.md)), otsinguplaan search-assist-6 ([ADR-072](../rag-v2/adr-072-plan-reads-a-correction.md)), mudelikontekst json-3, olek v5, arutlus medium. Profiil on plaani osa ja reliis hoiab seda: v6 plaan `m4-corpus-chat-v47-profile6-20261002.json` aktiveeriti 02.10 kell 13:41; kontrolli aktiivse plaani `profileId`.
@@ -4461,6 +4466,12 @@ Vana domeeni Välitöö kest, API-d ja varad säilivad samal originil saatmata k
 märkmete ning maksete POST-tagasiside jaoks. Uuel domeenil tuleb uuesti sisse logida.
 Logo lõplik valik jääb eraldi tööks. Kontrollid ja piirid:
 [domeeni ülemineku audit](../audits/domain-migration-sotsiaal-pro-2026-10-03.md).
+**Sotsiaal.pro nimekujud (03.10, kohalik muudatus):** ET/EN/RU tekstid, ametlikud
+tingimused, privaatsusteave, kasutusjuhend, autorilugu, metaandmed, e-kirjad ja
+paigaldusnimi kasutavad uut nime; autoriloos säilib algne `Sotsiaalinfo`. PWA ja
+brauseri ikoon kasutavad sama S-tähist. ESLint, `i18n:check`, `git diff --check`
+ning kohalik brauserikontroll autorilehel, tingimustes, privaatsuslehel ja juhendis
+läbisid. Tootmise deploy-järgne kontroll on veel tegemata.
 
 Maksekeskuse konto poe domeen on 03.10 veel `sotsiaal.ai` ja kirjutuskaitstud.
 Omanikul tuleb teatada `support@maksekeskus.ee`-le ning vormistada domeenivahetuse

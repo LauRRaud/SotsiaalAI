@@ -277,7 +277,7 @@ function appendAccessPath(parent, entry, t) {
       section,
       "p",
       "service-map-popup__access-path-note",
-      readText(t, "serviceMap.healthContact.notMedicalPlatform", "SotsiaalAI ei anna meditsiinilist hinnangut, diagnoosi ega ravisoovitust.")
+      readText(t, "serviceMap.healthContact.notMedicalPlatform", "Sotsiaal.pro ei anna meditsiinilist hinnangut, diagnoosi ega ravisoovitust.")
     );
   }
 

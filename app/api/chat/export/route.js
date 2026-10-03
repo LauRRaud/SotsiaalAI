@@ -35,7 +35,7 @@ function parseFormat(value) {
   return null;
 }
 
-function sanitizeFileBase(value, fallback = "sotsiaalai-summary") {
+function sanitizeFileBase(value, fallback = "sotsiaal-pro-summary") {
   const raw = String(value || "")
     .toLowerCase()
     .trim();
@@ -180,7 +180,7 @@ export async function GET(req) {
       });
     }
 
-    const docx = createChatDocxBuffer(msg.content, "SotsiaalAI summary");
+    const docx = createChatDocxBuffer(msg.content, "Sotsiaal.pro summary");
     try {
       await writeExportAudit();
     } catch (auditError) {

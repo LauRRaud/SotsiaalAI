@@ -17,7 +17,7 @@ export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 export const revalidate = 0;
 export const metadata = {
-  title: "KOV piloodi koondvaade - SotsiaalAI",
+  title: "KOV piloodi koondvaade - Sotsiaal.pro",
   robots: {
     index: false,
     follow: false,

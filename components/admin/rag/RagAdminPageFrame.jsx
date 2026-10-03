@@ -35,7 +35,7 @@ export default function RagAdminPageFrame({
     <section className="ra-shell">
       <header className="ra-head">
         <div className="ra-head-text">
-          <div className="ra-head-kicker">SotsiaalAI · RAG</div>
+          <div className="ra-head-kicker">Sotsiaal.pro · RAG</div>
           <h1>{title || copy.heading}</h1>
           {subtitle ? <p className="ra-head-sub">{subtitle}</p> : null}
         </div>

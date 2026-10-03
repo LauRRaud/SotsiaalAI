@@ -15,7 +15,7 @@ export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 export const revalidate = 0;
 export const metadata = {
-  title: serverT("en", "admin.pages.analytics.meta_title", undefined, "Analytics - SotsiaalAI"),
+  title: serverT("en", "admin.pages.analytics.meta_title", undefined, "Analytics - Sotsiaal.pro"),
   robots: {
     index: false,
     follow: false,

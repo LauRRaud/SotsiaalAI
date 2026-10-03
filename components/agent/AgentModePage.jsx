@@ -33,7 +33,7 @@ import { localizePath } from "@/lib/localizePath"
 import { pushWithTransition } from "@/lib/routeTransition"
 import { buildIntentSignature, resolveIntentKey } from "@/lib/usage/intentKey"
 
-const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAALAI_CHAT_WORKSPACE_RESTORE__"
+const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAAL.PRO_CHAT_WORKSPACE_RESTORE__"
 const WORKSPACE_VERSION_LIMIT = 8
 const CLIENT_MAX_DOCUMENTS = 2
 const CLIENT_AGENT_TASK_OPTIONS = [

@@ -9,17 +9,17 @@
  */
 
 /* Eksport ei tohi pärida avalehe juhtnuppe ega taustaruumi. */
-html:has(main[aria-label="SotsiaalAI logo"]),
-body:has(main[aria-label="SotsiaalAI logo"]) {
+html:has(main[aria-label="Sotsiaal.pro logo"]),
+body:has(main[aria-label="Sotsiaal.pro logo"]) {
   background: #000;
 }
 
-body:has(main[aria-label="SotsiaalAI logo"]) .room,
-body:has(main[aria-label="SotsiaalAI logo"]) .room-topbar {
+body:has(main[aria-label="Sotsiaal.pro logo"]) .room,
+body:has(main[aria-label="Sotsiaal.pro logo"]) .room-topbar {
   display: none;
 }
 
-main#main:has(main[aria-label="SotsiaalAI logo"]) {
+main#main:has(main[aria-label="Sotsiaal.pro logo"]) {
   position: fixed;
   z-index: 2147483647;
   inset: 0;

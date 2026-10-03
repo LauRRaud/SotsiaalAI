@@ -12,7 +12,7 @@ export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 export const revalidate = 0;
 export const metadata = {
-  title: "Organisatsiooni vastuvõtt - SotsiaalAI",
+  title: "Organisatsiooni vastuvõtt - Sotsiaal.pro",
   robots: { index: false, follow: false, nocache: true }
 };
 

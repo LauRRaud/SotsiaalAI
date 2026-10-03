@@ -64,8 +64,8 @@ function normalizePathname(pathname) {
 /* Töölaualt avatud täis-marsruut (nt /tooheaolu) märgib sisenemise (WorkspacePanel
    markWorkspaceSubpageEntry). Sulge-rist peab siis viima TAGASI TÖÖLAUALE, mitte
    ruumi (tellija 07.07). Restore-lipp paneb /vestlus taasavama töölaua-näo. */
-const WORKSPACE_SUBPAGE_ENTRY_STORAGE_KEY = "__SOTSIAALAI_WORKSPACE_SUBPAGE_ENTRY__";
-const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAALAI_CHAT_WORKSPACE_RESTORE__";
+const WORKSPACE_SUBPAGE_ENTRY_STORAGE_KEY = "__SOTSIAAL.PRO_WORKSPACE_SUBPAGE_ENTRY__";
+const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAAL.PRO_CHAT_WORKSPACE_RESTORE__";
 
 /* Kui kaua tohib aken sisu oodata, enne kui ta ennast igal juhul näitab.
    Pikem ootamine teeks aeglase võrgu puhul tühja ekraani; lühem laseks

@@ -8,7 +8,7 @@ export const runtime = "nodejs";
 export const revalidate = 0;
 
 export const metadata = {
-  title: "Source feedback - SotsiaalAI",
+  title: "Source feedback - Sotsiaal.pro",
   robots: { index: false, follow: false, nocache: true }
 };
 

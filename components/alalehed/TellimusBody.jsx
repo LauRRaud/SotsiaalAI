@@ -155,14 +155,14 @@ export default function TellimusBody() {
       })
     : t("subscription.info");
   const sponsoredInfoText = t("subscription.sponsored_info");
-  const recurringTitle = t("subscription.checkout.recurring_title", "SotsiaalAI kuutellimus");
+  const recurringTitle = t("subscription.checkout.recurring_title", "Sotsiaal.pro kuutellimus");
   const recurringDescription = t("subscription.checkout.recurring_description", {
     role: planRoleLabel,
     amount: monthlyAmountLabel || ""
   });
   const recurringConfirmation = t(
     "subscription.checkout.recurring_confirmation",
-    "Kinnitan, et nõustun korduva kuumaksega ja volitan SotsiaalAI-d võtma igakuise makse sama kaardiga kuni tellimuse tühistamiseni."
+    "Kinnitan, et nõustun korduva kuumaksega ja volitan Sotsiaal.pro-d võtma igakuise makse sama kaardiga kuni tellimuse tühistamiseni."
   );
   const subscriptionActiveSummary = monthlyAmountLabel
     ? t("subscription.active.summary_priced", {

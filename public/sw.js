@@ -1,5 +1,5 @@
 /**
- * SotsiaalAI service worker — FIELD-V1 offline shell (doc ptk 4.10 contract).
+ * Sotsiaal.pro service worker — FIELD-V1 offline shell (doc ptk 4.10 contract).
  *
  * HARD CONTRACT:
  *  1. No "/api/" response is EVER cached or served from a cache. The guard
@@ -20,7 +20,7 @@ const KNOWN_CACHES = [STATIC_CACHE, SHELL_CACHE];
 const OFFLINE_FALLBACK_HTML = `<!doctype html>
 <html lang="et"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SotsiaalAI — võrguta</title>
+<title>Sotsiaal.pro — võrguta</title>
 <style>body{font-family:system-ui,sans-serif;background:#140b07;color:#f5ede4;display:flex;min-height:100vh;align-items:center;justify-content:center;margin:0;padding:24px;text-align:center}main{max-width:28rem}h1{font-size:1.25rem}</style>
 </head><body><main><h1>Oled võrguta</h1>
 <p>See leht vajab ühendust. Välitöö vaade <a style="color:#e8b98a" href="/valitoo">/valitoo</a> töötab võrguta, kui oled seda varem avanud.</p>

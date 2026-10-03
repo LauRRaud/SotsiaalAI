@@ -30,7 +30,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 const LEAFLET_SCRIPT_URL = "/vendor/leaflet/leaflet.js";
 const LEAFLET_CSS_URL = "/vendor/leaflet/leaflet.css";
 const TILE_URL =
-  "https://tiles.maaamet.ee/tm/tms/1.0.0/hallkaart@GMC/{z}/{x}/{y}.png&ASUTUS=SOTSIAALAI&KESKKOND=LIVE&IS=TEENUSPAEVIK";
+  "https://tiles.maaamet.ee/tm/tms/1.0.0/hallkaart@GMC/{z}/{x}/{y}.png&ASUTUS=SOTSIAAL.PRO&KESKKOND=LIVE&IS=TEENUSPAEVIK";
 const ATTRIBUTION = "Maa- ja Ruumiamet";
 
 let leafletPromise = null;

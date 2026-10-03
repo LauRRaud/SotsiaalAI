@@ -31,7 +31,7 @@
     "signIn": "Ava sisselogimine",
     "closed": "Sisepiloot pole avatud",
     "denied": "Sellele sessioonile pole aktiivset piloodiluba.",
-    "eyebrow": "SOTSIAALAI · PIIRATUD SISEPILOOT",
+    "eyebrow": "SOTSIAAL.PRO · PIIRATUD SISEPILOOT",
     "test": "TESTREŽIIM — fikseeritud testvastaja, välismudelikutseid 0.",
     "real": "Piiratud pärisrežiim · arenduskorpus",
     "checking": "Kontrollin piloodiluba…",
@@ -75,7 +75,7 @@
   "calls": {
     "recording_consent_intro": "{requesterName} soovib selle helikõne salvestada.",
     "recording_consent_purpose": "Salvestust kasutatakse ainult märgitud eesmärgil: {recordingPurpose}.",
-    "recording_consent_custody": "Salvestis läheb ainult salvestamise taotlejale ({requesterName}) tema SotsiaalAI dokumentide vaatesse. Sina annad nõusoleku salvestamiseks, mitte koopia saamiseks — salvestis sinuni ei jõua.",
+    "recording_consent_custody": "Salvestis läheb ainult salvestamise taotlejale ({requesterName}) tema Sotsiaal.pro dokumentide vaatesse. Sina annad nõusoleku salvestamiseks, mitte koopia saamiseks — salvestis sinuni ei jõua.",
     "recording_consent_body": "Salvestus võib sisaldada isikuandmeid või tundlikku infot. Salvestust ei transkribeerita ega kasutata kokkuvõtte koostamiseks automaatselt; need tegevused käivitatakse eraldi kasutaja toiminguna.",
     "recording_consent_question": "Kas nõustud selle kõne salvestamisega?",
     "recording_consent_yes": "Nõustun salvestamisega",
@@ -1165,7 +1165,7 @@
       "info_limits_no_others": "Sa ei näe kellegi teise lauda ja keegi teine ei näe sinu oma. Ka administraator ei näe sisu.",
       "info_limits_no_ai": "AI siin midagi ei otsusta ega järjesta. Järjekord on ajaline ja loendid tulevad allikatest, mitte mudelilt.",
       "meta": {
-        "title": "Juhtumitöö laud — SotsiaalAI",
+        "title": "Juhtumitöö laud — Sotsiaal.pro",
         "description": "Sotsiaaltöötaja ja teenuseosutaja enda juhtumitöö koondvaade."
       },
       "section_draftsAwaitingTransfer": "STAR2-sse kandmist ootavad mustandid",
@@ -1306,7 +1306,7 @@
       "read_only_notice": "Juhtum on kirjutuskaitstud. Alles on ainult lugemine ja kliendiviite kustutamine.",
       "retention_state": "Seis",
       "meta": {
-        "title": "Minu juhtumid — SotsiaalAI",
+        "title": "Minu juhtumid — Sotsiaal.pro",
         "description": "Sotsiaaltöötaja enda töökorralduse juhtumid."
       },
       "retention_countdown": "Arhiveeritud. Juhtum ja kõik selle sisu kustuvad {date} — jäänud on {days} päeva.",
@@ -1387,72 +1387,72 @@
   },
   "meta": {
     "home": {
-      "title": "sotsiaal.pro",
-      "description": "SotsiaalAI aitab leida tuge, teenuseid ja tööriistu igapäevaste eluküsimuste lahendamiseks."
+      "title": "Sotsiaal.pro",
+      "description": "Sotsiaal.pro aitab leida tuge, teenuseid ja tööriistu igapäevaste eluküsimuste lahendamiseks."
     },
     "chat": {
-      "title": "Vestlus | sotsiaal.pro",
-      "description": "Arutage oma küsimusi ja järgmisi samme SotsiaalAI vestluses."
+      "title": "Vestlus | Sotsiaal.pro",
+      "description": "Arutage oma küsimusi ja järgmisi samme Sotsiaal.pro vestluses."
     },
     "profile": {
-      "title": "Profiil | sotsiaal.pro",
-      "description": "Halda oma SotsiaalAI profiili, eelistusi ja konto seadeid."
+      "title": "Profiil | Sotsiaal.pro",
+      "description": "Halda oma Sotsiaal.pro profiili, eelistusi ja konto seadeid."
     },
     "pricing": {
-      "title": "Hinnastus | sotsiaal.pro",
-      "description": "Vaata SotsiaalAI pakette ja tellimuste hinnastust."
+      "title": "Hinnastus | Sotsiaal.pro",
+      "description": "Vaata Sotsiaal.pro pakette ja tellimuste hinnastust."
     },
     "features": {
-      "title": "Võimalused | sotsiaal.pro",
-      "description": "Tutvu SotsiaalAI võimaluste ja tööriistadega."
+      "title": "Võimalused | Sotsiaal.pro",
+      "description": "Tutvu Sotsiaal.pro võimaluste ja tööriistadega."
     },
     "register": {
-      "title": "Registreeru | sotsiaal.pro",
-      "description": "Loo SotsiaalAI konto ja alusta platvormi kasutamist."
+      "title": "Registreeru | Sotsiaal.pro",
+      "description": "Loo Sotsiaal.pro konto ja alusta platvormi kasutamist."
     },
     "subscription": {
-      "title": "Tellimus | sotsiaal.pro",
-      "description": "Halda oma SotsiaalAI tellimust ja makseandmeid."
+      "title": "Tellimus | Sotsiaal.pro",
+      "description": "Halda oma Sotsiaal.pro tellimust ja makseandmeid."
     },
     "terms": {
-      "title": "Kasutustingimused | sotsiaal.pro",
-      "description": "Loe SotsiaalAI kasutustingimusi."
+      "title": "Kasutustingimused | Sotsiaal.pro",
+      "description": "Loe Sotsiaal.pro kasutustingimusi."
     },
     "privacy": {
-      "title": "Privaatsustingimused | sotsiaal.pro",
-      "description": "Loe, kuidas SotsiaalAI töötleb ja kaitseb isikuandmeid."
+      "title": "Privaatsustingimused | Sotsiaal.pro",
+      "description": "Loe, kuidas Sotsiaal.pro töötleb ja kaitseb isikuandmeid."
     },
     "guide": {
-      "title": "Kasutusjuhend | sotsiaal.pro",
-      "description": "Leia juhised SotsiaalAI kasutamiseks."
+      "title": "Kasutusjuhend | Sotsiaal.pro",
+      "description": "Leia juhised Sotsiaal.pro kasutamiseks."
     },
     "framework": {
-      "title": "Tööalase kasutuse raamistik | sotsiaal.pro",
-      "description": "SotsiaalAI tööalase kasutuse ja isikuandmete töötlemise raamleping: loe täisteksti, laadi alla DOCX ja allkirjastatud DigiDoc ning salvesta kinnitus."
+      "title": "Tööalase kasutuse raamistik | Sotsiaal.pro",
+      "description": "Sotsiaal.pro tööalase kasutuse ja isikuandmete töötlemise raamleping: loe täisteksti, laadi alla DOCX ja allkirjastatud DigiDoc ning salvesta kinnitus."
     },
     "author": {
-      "title": "Autorilt | sotsiaal.pro",
-      "description": "Loe SotsiaalAI autori selgitusi ja mõtteid."
+      "title": "Autorilt | Sotsiaal.pro",
+      "description": "Loe Sotsiaal.pro autori selgitusi ja mõtteid."
     },
     "rooms": {
-      "title": "Ruumid | sotsiaal.pro",
-      "description": "Vaata oma SotsiaalAI ruume ja ühiseid vestlusi."
+      "title": "Ruumid | Sotsiaal.pro",
+      "description": "Vaata oma Sotsiaal.pro ruume ja ühiseid vestlusi."
     },
     "workspace": {
-      "title": "Töölaud | sotsiaal.pro",
+      "title": "Töölaud | Sotsiaal.pro",
       "description": "Ava oma rolli tööriistad: teenusekaart, pöördumised, dokumendid ja tugivormid."
     },
     "reset": {
-      "title": "Taasta PIN-kood | sotsiaal.pro",
-      "description": "Taasta oma SotsiaalAI konto PIN-kood."
+      "title": "Taasta PIN-kood | Sotsiaal.pro",
+      "description": "Taasta oma Sotsiaal.pro konto PIN-kood."
     },
     "email_update": {
-      "title": "Uuenda e-posti aadressi | sotsiaal.pro",
-      "description": "Uuenda oma SotsiaalAI konto e-posti aadressi."
+      "title": "Uuenda e-posti aadressi | Sotsiaal.pro",
+      "description": "Uuenda oma Sotsiaal.pro konto e-posti aadressi."
     },
     "pin_update": {
-      "title": "Uuenda PIN-koodi | sotsiaal.pro",
-      "description": "Uuenda oma SotsiaalAI konto PIN-koodi."
+      "title": "Uuenda PIN-koodi | Sotsiaal.pro",
+      "description": "Uuenda oma Sotsiaal.pro konto PIN-koodi."
     }
   },
   "buttons": {
@@ -1536,7 +1536,7 @@
       "worker_use_org": "Kasutan platvormi tööks kliendi isikuandmetega",
       "worker_framework_title": "Tööalase kasutuse raamistik",
       "worker_framework_open": "Ava raamistik",
-      "worker_framework_ack": "Kinnitan, et olen tutvunud SotsiaalAI eestikeelse raamlepinguga ning alla laadinud allkirjastatud DigiDoc-faili.",
+      "worker_framework_ack": "Kinnitan, et olen tutvunud Sotsiaal.pro eestikeelse raamlepinguga ning alla laadinud allkirjastatud DigiDoc-faili.",
       "worker_framework_download_signed": "Allkirjastatud DigiDoc",
       "worker_framework_download_docx": "DOCX dokument",
       "agreement": "Nõustun <terms>kasutustingimuste</terms> ja <privacy>privaatsuspoliitikaga</privacy>.",
@@ -1887,9 +1887,15 @@
   },
   "accessibility": {
     "dock": {
-      "language": "Keel", "contrast": "Kontrast", "text_scale": "Tekst",
-      "theme": "Teema", "screen_profile": "Ekraan", "motion": "Liikumine",
-      "ambient": "Heli", "install": "Rakendus", "save": "Salvesta"
+      "language": "Keel",
+      "contrast": "Kontrast",
+      "text_scale": "Tekst",
+      "theme": "Teema",
+      "screen_profile": "Ekraan",
+      "motion": "Liikumine",
+      "ambient": "Heli",
+      "install": "Rakendus",
+      "save": "Salvesta"
     },
     "language": "Keel",
     "text_scale": "Teksti suurus",
@@ -1899,7 +1905,7 @@
     "ambient": "Taustaheli",
     "ambient_previous": "Eelmine taustaheli",
     "ambient_next": "Järgmine taustaheli",
-    "install": "SotsiaalAI rakendus",
+    "install": "Sotsiaal.pro rakendus",
     "install_nav": "Rakendus",
     "options": {
       "language": {
@@ -1962,8 +1968,8 @@
     "title": "Privaatsus",
     "section1": {
       "heading": "1. Vastutav töötleja ja ulatus",
-      "paragraph1": "<p><strong>Küberloome OÜ</strong> on veebiplatvormi <strong>SotsiaalAI</strong> vastutav töötleja nende töötluste osas, mille eesmärgid ja vahendid määrab SotsiaalAI ise. Meie üldine kontakt e-posti aadress on <strong>info@sotsiaal.pro</strong>. Sama aadressi kaudu saad esitada andmekaitsealaseid küsimusi ja kasutada oma andmesubjekti õigusi.</p><p>See privaatsuspoliitika selgitab, milliseid andmeid kogume, milleks neid kasutame, kui kaua neid säilitame, kuidas kasutus- ja salvestuspiirid võivad säilitamist mõjutada ning milliseid automatiseeritud süsteeme kasutame vastuste, mustandite, liigituste või otsingutulemuste loomiseks.</p>",
-      "paragraph2": "<p>Käesolev privaatsuspoliitika selgitab, kuidas töötleme isikuandmeid konto loomisel, sisselogimisel, tellimuste haldamisel, vestlustes, ruumides, abiandmete töövoogudes, dokumentide halduses, dokumendi koostamises, dokumendi analüüsis, süvauuringus ning häälfunktsioonides. Töötleme andmeid kooskõlas Eesti isikuandmete kaitse <aLawEst>seadusega</aLawEst> ja Euroopa Liidu isikuandmete kaitse <aGdpr>üldmäärusega</aGdpr>. Õiguste kasutamise taotlustele vastame üldjuhul ühe kuu jooksul.</p><p>Käesolev poliitika kirjeldab eelkõige SotsiaalAI tavapärast kasutust, kus platvormi kasutatakse isikliku konto alt. Kui kasutaja kasutab SotsiaalAI-d tööalases rollis või organisatsiooni nimel, võivad teatud töövoogude suhtes lisaks kohalduda tööandja või organisatsiooni sisereeglid ning eraldi tööalase kasutuse või andmetöötluse raamistik.</p>"
+      "paragraph1": "<p><strong>Küberloome OÜ</strong> on veebiplatvormi <strong>Sotsiaal.pro</strong> vastutav töötleja nende töötluste osas, mille eesmärgid ja vahendid määrab Sotsiaal.pro ise. Meie üldine kontakt e-posti aadress on <strong>info@sotsiaal.pro</strong>. Sama aadressi kaudu saad esitada andmekaitsealaseid küsimusi ja kasutada oma andmesubjekti õigusi.</p><p>See privaatsuspoliitika selgitab, milliseid andmeid kogume, milleks neid kasutame, kui kaua neid säilitame, kuidas kasutus- ja salvestuspiirid võivad säilitamist mõjutada ning milliseid automatiseeritud süsteeme kasutame vastuste, mustandite, liigituste või otsingutulemuste loomiseks.</p>",
+      "paragraph2": "<p>Käesolev privaatsuspoliitika selgitab, kuidas töötleme isikuandmeid konto loomisel, sisselogimisel, tellimuste haldamisel, vestlustes, ruumides, abiandmete töövoogudes, dokumentide halduses, dokumendi koostamises, dokumendi analüüsis, süvauuringus ning häälfunktsioonides. Töötleme andmeid kooskõlas Eesti isikuandmete kaitse <aLawEst>seadusega</aLawEst> ja Euroopa Liidu isikuandmete kaitse <aGdpr>üldmäärusega</aGdpr>. Õiguste kasutamise taotlustele vastame üldjuhul ühe kuu jooksul.</p><p>Käesolev poliitika kirjeldab eelkõige Sotsiaal.pro tavapärast kasutust, kus platvormi kasutatakse isikliku konto alt. Kui kasutaja kasutab Sotsiaal.pro platvormi tööalases rollis või organisatsiooni nimel, võivad teatud töövoogude suhtes lisaks kohalduda tööandja või organisatsiooni sisereeglid ning eraldi tööalase kasutuse või andmetöötluse raamistik.</p>"
     },
     "section2": {
       "heading": "2. Milliseid andmeid töötleme",
@@ -1973,19 +1979,19 @@
     },
     "section3": {
       "heading": "3. Eesmärgid ja õiguslikud alused",
-      "items": "<li>Konto loomine, sisselogimine, rolli määramine, tellimuse haldus ning platvormi põhifunktsioonide pakkumine põhinevad lepingu täitmisel (GDPR art 6 lg 1 p b). Teenuse kasutamiseks vajalikud põhiandmed on üldjuhul e-posti aadress, kasutajaroll ja autentimisandmed; kui kasutaja neid ei esita, ei saa kontot luua ega teenust kasutada.</li><li>Turvakontrollid, kuritarvituse ennetamine, logimine, teenuse töökindlus, tehniliste vigade diagnoosimine ning teenuse kaitsmine pahatahtliku kasutuse eest põhinevad õigustatud huvil tagada platvormi turvaline ja usaldusväärne toimimine (GDPR art 6 lg 1 p f).</li><li>Maksete minimaalsed andmed, raamatupidamine ja seadusest tulenevate kohustuste täitmine põhinevad õiguslikul kohustusel (GDPR art 6 lg 1 p c).</li><li>Mikrofoni, ettelugemise või seadme lokaalse salvestuse kasutamine toimub kasutaja tegevuse, brauseriloa või seadme seadistuse alusel ning ainult vastava funktsiooni pakkumiseks. Seal, kus töötlus põhineb nõusolekul, saab nõusoleku jätta andmata või selle hiljem tagasi võtta, kuid see võib piirata vastava funktsiooni kasutamist.</li><li>Kui platvormi sisestatakse eriliigilisi andmeid, näiteks tervise- või sotsiaalhoolekande andmeid, peab lisaks tavapärasele õiguslikule alusele olemas olema ka sobiv erand selliste andmete töötlemiseks. SotsiaalAI eeldab, et kasutaja sisestab ainult minimaalselt vajaliku info ning tal on õigus vastavaid andmeid sisestada.</li>"
+      "items": "<li>Konto loomine, sisselogimine, rolli määramine, tellimuse haldus ning platvormi põhifunktsioonide pakkumine põhinevad lepingu täitmisel (GDPR art 6 lg 1 p b). Teenuse kasutamiseks vajalikud põhiandmed on üldjuhul e-posti aadress, kasutajaroll ja autentimisandmed; kui kasutaja neid ei esita, ei saa kontot luua ega teenust kasutada.</li><li>Turvakontrollid, kuritarvituse ennetamine, logimine, teenuse töökindlus, tehniliste vigade diagnoosimine ning teenuse kaitsmine pahatahtliku kasutuse eest põhinevad õigustatud huvil tagada platvormi turvaline ja usaldusväärne toimimine (GDPR art 6 lg 1 p f).</li><li>Maksete minimaalsed andmed, raamatupidamine ja seadusest tulenevate kohustuste täitmine põhinevad õiguslikul kohustusel (GDPR art 6 lg 1 p c).</li><li>Mikrofoni, ettelugemise või seadme lokaalse salvestuse kasutamine toimub kasutaja tegevuse, brauseriloa või seadme seadistuse alusel ning ainult vastava funktsiooni pakkumiseks. Seal, kus töötlus põhineb nõusolekul, saab nõusoleku jätta andmata või selle hiljem tagasi võtta, kuid see võib piirata vastava funktsiooni kasutamist.</li><li>Kui platvormi sisestatakse eriliigilisi andmeid, näiteks tervise- või sotsiaalhoolekande andmeid, peab lisaks tavapärasele õiguslikule alusele olemas olema ka sobiv erand selliste andmete töötlemiseks. Sotsiaal.pro eeldab, et kasutaja sisestab ainult minimaalselt vajaliku info ning tal on õigus vastavaid andmeid sisestada.</li>"
     },
     "section4": {
       "heading": "4. Rollijaotus, tundlikud andmed ja AI kasutus",
-      "body": "<p><strong>4.1 Kasutuse ulatus.</strong> Kui inimene kasutab SotsiaalAI-d enda küsimuste, dokumentide või töövoogude jaoks oma isikliku konto alt, on SotsiaalAI üldjuhul vastutav töötleja oma teenuse osutamise ulatuses.</p><p>SotsiaalAI-d võib kasutada töövahendina ka sellistes töövoogudes, kus ei sisestata kliendi või muu andmesubjekti tuvastatavaid isikuandmeid. Kui kasutaja soovib kasutada SotsiaalAI-d tööandja või organisatsiooni nimel tuvastatavate isikuandmetega, peab tal selleks olema tööandja või organisatsiooni selge luba ning vajaduse korral ka eraldi lepinguline andmetöötlusraamistik.</p><p>Tööandja ja töötaja sisemised kinnitused või kasutusload ei loo iseenesest SotsiaalAI ja organisatsiooni vahelist volitatud töötleja suhet. Kui SotsiaalAI töötleb isikuandmeid organisatsiooni nimel, peab selleks olema olemas ka SotsiaalAI poolt siduvalt aktsepteeritud kirjalik või elektrooniline lepinguline raamistik.</p><p><strong>4.2 Tundlikud andmed.</strong> Platvormis võib liikuda sotsiaal- ja terviseandmeid ning muud tundlikku infot. Sellise info sisestamine peab piirduma minimaalselt vajalikuga ning kasutaja peab tagama, et töötlemiseks on olemas asjakohane õiguslik alus. Kui töödeldakse eriliigilisi andmeid, peab lisaks tavapärasele õiguslikule alusele olemas olema ka sobiv erand selliste andmete töötlemiseks.</p><p><strong>4.3 AI ja kõneteenused.</strong> Vestlustes, dokumendi koostamises, dokumendi analüüsis, süvauuringus, dikteerimises ja ettelugemises võidakse kasutada väliseid teenusepakkujaid, sealhulgas OpenAI-d, Google Cloud Text-to-Speech teenust, maksete puhul Maksekeskus AS-i ning muid platvormil või lepingutes nimetatud teenusepakkujaid. Neile edastatakse ainult see sisend, mida on vaja vastava funktsiooni tehniliseks pakkumiseks.</p><p>AI väljund on abistav ega ole automaatselt siduv otsus, ametlik seisukoht ega professionaalne hinnang. Kasutaja peab AI väljundi enne kasutamist ise üle vaatama, vajaduse korral parandama ja kinnitama.</p><p><strong>4.4 Automatiseeritud otsused.</strong> Platvorm võib kasutada automaatset töövoo tuvastust, liigitamist, sobitamist või järjestamist, kuid lõplikud sisulised otsused peavad jääma inimesele. SotsiaalAI ei tee üksnes automatiseeritud töötlusel põhinevaid otsuseid, millel oleks kasutaja jaoks õiguslik või samaväärselt oluline mõju.</p><p><strong>4.5 Ajutised failid.</strong> Vestlusesse lisatud ajutised failid on mõeldud konkreetse sessiooni või töövoo jaoks. Neid ei lisata automaatselt püsivasse dokumentide teeki, kui kasutaja ei kasuta selleks eraldi dokumendihalduse töövoogu.</p><p><strong>4.6 Mudelite treenimine.</strong> SotsiaalAI ei kasuta platvormi kasutajasisu omaenda üldiste tehisintellektimudelite treenimiseks. Väliste teenusepakkujate töötlus toimub nende lepinguliste ja andmekaitseliste raamistikute järgi.</p><p><strong>4.7 Tööalase kasutuse raamistik.</strong> SotsiaalAI võib teha platvormis kättesaadavaks tööalase kasutuse ja andmetöötluse standardse raamdokumendi või muud sarnased tingimused. Sellise dokumendiga tutvumine, selle allalaadimine või töötaja tasandi kinnitus ei muuda seda automaatselt organisatsiooni suhtes siduvaks. Kui dokument on mõeldud organisatsiooni nimel andmete töötlemise raamistikuks, muutub see organisatsiooni suhtes siduvaks alles pärast nõuetekohast allkirjastamist või muud tõendatavat elektroonilist aktsepteerimist.</p><p><strong>4.8 Privaatsuse eelkontroll.</strong> Tundlikes töövoogudes võib platvorm kasutada lokaalseid või serveripoolseid eelkontrolle, mis tuvastavad lihtsamaid isikuandmete, kontaktandmete, isikukoodi, aadressi, lapse ohutuse või kriisi riski signaale. Selline kontroll aitab kasutajat hoiatada ja andmeid minimeerida, kuid ei ole täielik anonüümimine ega õiguslik vastavussertifikaat.</p><p><strong>4.9 Rollipõhine ligipääs.</strong> Tundlikumad võimalused avatakse rolli, organisatsiooni, tööalase kinnituse ja tehniliste õiguste alusel. Administraatori- või organisatsiooniroll ei tähenda vaikimisi ligipääsu kasutaja isiklikele vestlustele, dokumentidele ega failidele.</p>"
+      "body": "<p><strong>4.1 Kasutuse ulatus.</strong> Kui inimene kasutab Sotsiaal.pro platvormi enda küsimuste, dokumentide või töövoogude jaoks oma isikliku konto alt, on Sotsiaal.pro üldjuhul vastutav töötleja oma teenuse osutamise ulatuses.</p><p>Sotsiaal.pro platvormi võib kasutada töövahendina ka sellistes töövoogudes, kus ei sisestata kliendi või muu andmesubjekti tuvastatavaid isikuandmeid. Kui kasutaja soovib kasutada Sotsiaal.pro platvormi tööandja või organisatsiooni nimel tuvastatavate isikuandmetega, peab tal selleks olema tööandja või organisatsiooni selge luba ning vajaduse korral ka eraldi lepinguline andmetöötlusraamistik.</p><p>Tööandja ja töötaja sisemised kinnitused või kasutusload ei loo iseenesest Sotsiaal.pro ja organisatsiooni vahelist volitatud töötleja suhet. Kui Sotsiaal.pro töötleb isikuandmeid organisatsiooni nimel, peab selleks olema olemas ka Sotsiaal.pro poolt siduvalt aktsepteeritud kirjalik või elektrooniline lepinguline raamistik.</p><p><strong>4.2 Tundlikud andmed.</strong> Platvormis võib liikuda sotsiaal- ja terviseandmeid ning muud tundlikku infot. Sellise info sisestamine peab piirduma minimaalselt vajalikuga ning kasutaja peab tagama, et töötlemiseks on olemas asjakohane õiguslik alus. Kui töödeldakse eriliigilisi andmeid, peab lisaks tavapärasele õiguslikule alusele olemas olema ka sobiv erand selliste andmete töötlemiseks.</p><p><strong>4.3 AI ja kõneteenused.</strong> Vestlustes, dokumendi koostamises, dokumendi analüüsis, süvauuringus, dikteerimises ja ettelugemises võidakse kasutada väliseid teenusepakkujaid, sealhulgas OpenAI-d, Google Cloud Text-to-Speech teenust, maksete puhul Maksekeskus AS-i ning muid platvormil või lepingutes nimetatud teenusepakkujaid. Neile edastatakse ainult see sisend, mida on vaja vastava funktsiooni tehniliseks pakkumiseks.</p><p>AI väljund on abistav ega ole automaatselt siduv otsus, ametlik seisukoht ega professionaalne hinnang. Kasutaja peab AI väljundi enne kasutamist ise üle vaatama, vajaduse korral parandama ja kinnitama.</p><p><strong>4.4 Automatiseeritud otsused.</strong> Platvorm võib kasutada automaatset töövoo tuvastust, liigitamist, sobitamist või järjestamist, kuid lõplikud sisulised otsused peavad jääma inimesele. Sotsiaal.pro ei tee üksnes automatiseeritud töötlusel põhinevaid otsuseid, millel oleks kasutaja jaoks õiguslik või samaväärselt oluline mõju.</p><p><strong>4.5 Ajutised failid.</strong> Vestlusesse lisatud ajutised failid on mõeldud konkreetse sessiooni või töövoo jaoks. Neid ei lisata automaatselt püsivasse dokumentide teeki, kui kasutaja ei kasuta selleks eraldi dokumendihalduse töövoogu.</p><p><strong>4.6 Mudelite treenimine.</strong> Sotsiaal.pro ei kasuta platvormi kasutajasisu omaenda üldiste tehisintellektimudelite treenimiseks. Väliste teenusepakkujate töötlus toimub nende lepinguliste ja andmekaitseliste raamistikute järgi.</p><p><strong>4.7 Tööalase kasutuse raamistik.</strong> Sotsiaal.pro võib teha platvormis kättesaadavaks tööalase kasutuse ja andmetöötluse standardse raamdokumendi või muud sarnased tingimused. Sellise dokumendiga tutvumine, selle allalaadimine või töötaja tasandi kinnitus ei muuda seda automaatselt organisatsiooni suhtes siduvaks. Kui dokument on mõeldud organisatsiooni nimel andmete töötlemise raamistikuks, muutub see organisatsiooni suhtes siduvaks alles pärast nõuetekohast allkirjastamist või muud tõendatavat elektroonilist aktsepteerimist.</p><p><strong>4.8 Privaatsuse eelkontroll.</strong> Tundlikes töövoogudes võib platvorm kasutada lokaalseid või serveripoolseid eelkontrolle, mis tuvastavad lihtsamaid isikuandmete, kontaktandmete, isikukoodi, aadressi, lapse ohutuse või kriisi riski signaale. Selline kontroll aitab kasutajat hoiatada ja andmeid minimeerida, kuid ei ole täielik anonüümimine ega õiguslik vastavussertifikaat.</p><p><strong>4.9 Rollipõhine ligipääs.</strong> Tundlikumad võimalused avatakse rolli, organisatsiooni, tööalase kinnituse ja tehniliste õiguste alusel. Administraatori- või organisatsiooniroll ei tähenda vaikimisi ligipääsu kasutaja isiklikele vestlustele, dokumentidele ega failidele.</p>"
     },
     "section5": {
       "heading": "5. Volitatud töötlejad ja võimalikud välisülekanded",
-      "body": "<p>SotsiaalAI kasutab teenuse osutamiseks volitatud töötlejaid ja teenusepakkujaid, näiteks:</p><ul><li>Zone Media OÜ-d tehnilise majutuse ja serveriinfrastruktuuri jaoks;</li><li>Maksekeskus AS-i makseteenuste jaoks;</li><li>OpenAI-d teatud tehisintellekti funktsioonide jaoks;</li><li>Google Cloud Text-to-Speech teenust teatud kõnefunktsioonide jaoks;</li><li>Tartu Ülikooli kõnesünteesi teenust (TartuNLP) eestikeelse ettelugemise jaoks;</li><li>e-posti, logimise ja monitooringu pakkujaid.</li></ul><p>Zone Media OÜ VPS-teenuse kaudu toimub platvormi tehniline majutamine Euroopa Majanduspiirkonnas, sealhulgas Eestis.</p><p><strong>Ettelugemine.</strong> Kui kasutaja vajutab vastuse juures ettelugemise nuppu, edastatakse ette loetav tekst kõnesünteesi teenusele. Eestikeelse ettelugemise puhul on selleks Tartu Ülikooli teenus (TartuNLP), mis asub Eestis. Edastatakse ainult ette loetav tekst — kasutaja kontot, e-posti aadressi ega muid tunnuseid sellega kaasa ei saadeta. Ettelugemine ei käivitu iseenesest, vaid ainult kasutaja vajutusel. Ingliskeelne ja venekeelne ettelugemine kasutab kasutaja enda brauseri kõnesünteesi ning platvorm ei edasta seda teksti ühelegi teenusepakkujale.</p><p>Need teenusepakkujad töötlevad andmeid ainult vajalikus ulatuses ning nende kasutamisel rakendame lepingulisi ja tehnilisi kaitsemeetmeid. Kui mõni teenusepakkuja töötleb andmeid väljaspool EL-i või EMP-d, lähtume sobivast õiguslikust ülekandemehhanismist, näiteks Euroopa Komisjoni piisavusotsusest või standardsetest lepingutingimustest koos täiendavate kaitsemeetmetega. Kasutaja võib küsida lisateavet kohaldatavate kaitsemeetmete kohta või taotleda nende koopiat, kui see on õiguslikult võimalik, võttes meiega ühendust aadressil info@sotsiaal.pro.</p>"
+      "body": "<p>Sotsiaal.pro kasutab teenuse osutamiseks volitatud töötlejaid ja teenusepakkujaid, näiteks:</p><ul><li>Zone Media OÜ-d tehnilise majutuse ja serveriinfrastruktuuri jaoks;</li><li>Maksekeskus AS-i makseteenuste jaoks;</li><li>OpenAI-d teatud tehisintellekti funktsioonide jaoks;</li><li>Google Cloud Text-to-Speech teenust teatud kõnefunktsioonide jaoks;</li><li>Tartu Ülikooli kõnesünteesi teenust (TartuNLP) eestikeelse ettelugemise jaoks;</li><li>e-posti, logimise ja monitooringu pakkujaid.</li></ul><p>Zone Media OÜ VPS-teenuse kaudu toimub platvormi tehniline majutamine Euroopa Majanduspiirkonnas, sealhulgas Eestis.</p><p><strong>Ettelugemine.</strong> Kui kasutaja vajutab vastuse juures ettelugemise nuppu, edastatakse ette loetav tekst kõnesünteesi teenusele. Eestikeelse ettelugemise puhul on selleks Tartu Ülikooli teenus (TartuNLP), mis asub Eestis. Edastatakse ainult ette loetav tekst — kasutaja kontot, e-posti aadressi ega muid tunnuseid sellega kaasa ei saadeta. Ettelugemine ei käivitu iseenesest, vaid ainult kasutaja vajutusel. Ingliskeelne ja venekeelne ettelugemine kasutab kasutaja enda brauseri kõnesünteesi ning platvorm ei edasta seda teksti ühelegi teenusepakkujale.</p><p>Need teenusepakkujad töötlevad andmeid ainult vajalikus ulatuses ning nende kasutamisel rakendame lepingulisi ja tehnilisi kaitsemeetmeid. Kui mõni teenusepakkuja töötleb andmeid väljaspool EL-i või EMP-d, lähtume sobivast õiguslikust ülekandemehhanismist, näiteks Euroopa Komisjoni piisavusotsusest või standardsetest lepingutingimustest koos täiendavate kaitsemeetmetega. Kasutaja võib küsida lisateavet kohaldatavate kaitsemeetmete kohta või taotleda nende koopiat, kui see on õiguslikult võimalik, võttes meiega ühendust aadressil info@sotsiaal.pro.</p>"
     },
     "section6": {
       "heading": "6. Andmete jagamine",
-      "body": "<p>SotsiaalAI ei müü isikuandmeid. Andmeid jagatakse ainult ulatuses, mis on vajalik teenuse toimimiseks: volitatud töötlejatele, makseteenuse osutajale, kasutaja kutsutud või sobitatud osapooltele ruumides ja abiandmete töövoos ning pädevatele asutustele, kui seadus seda nõuab.</p><p>Kasutaja isiklikud vestlused ja dokumendid on seotud kasutaja kontoga. Ruumide ja grupivestluste sisu on nähtav ruumi liikmetele ning ainult selles ulatuses, mis on vastava töövoo jaoks vajalik. Organisatsiooni või tööandja administraatorile ei anta automaatselt üldist ligipääsu töötaja isiklikele vestlustele, dokumentidele ega failidele.</p><p>Platvormi administraatori ligipääs sisule on erandlik tehniline haldusligipääs, mida kasutatakse ainult põhjendatud vajaduse korral, näiteks toe osutamiseks, vea või turbeintsidendi uurimiseks, teenuse töökindluse tagamiseks, kuritarvituse vältimiseks või õigusnõude täitmiseks.</p><p>Kui kasutaja loob kutse, salvestab nähtava abikirje või ühendab osapooli ruumi kaudu, jagatakse vastav info platvormi sees ainult nende kasutajatega, kellele see töövoog on mõeldud.</p><p>Kui kasutaja või organisatsiooni esindaja aktsepteerib tööalase kasutuse või andmetöötluse raamistiku, võidakse selle kinnitusega seotud tõendikirjeid säilitada ja vajaduse korral jagada vastava organisatsiooni või kasutajaga, et tõendada aktsepteerimise olemasolu, versiooni ja aega.</p>"
+      "body": "<p>Sotsiaal.pro ei müü isikuandmeid. Andmeid jagatakse ainult ulatuses, mis on vajalik teenuse toimimiseks: volitatud töötlejatele, makseteenuse osutajale, kasutaja kutsutud või sobitatud osapooltele ruumides ja abiandmete töövoos ning pädevatele asutustele, kui seadus seda nõuab.</p><p>Kasutaja isiklikud vestlused ja dokumendid on seotud kasutaja kontoga. Ruumide ja grupivestluste sisu on nähtav ruumi liikmetele ning ainult selles ulatuses, mis on vastava töövoo jaoks vajalik. Organisatsiooni või tööandja administraatorile ei anta automaatselt üldist ligipääsu töötaja isiklikele vestlustele, dokumentidele ega failidele.</p><p>Platvormi administraatori ligipääs sisule on erandlik tehniline haldusligipääs, mida kasutatakse ainult põhjendatud vajaduse korral, näiteks toe osutamiseks, vea või turbeintsidendi uurimiseks, teenuse töökindluse tagamiseks, kuritarvituse vältimiseks või õigusnõude täitmiseks.</p><p>Kui kasutaja loob kutse, salvestab nähtava abikirje või ühendab osapooli ruumi kaudu, jagatakse vastav info platvormi sees ainult nende kasutajatega, kellele see töövoog on mõeldud.</p><p>Kui kasutaja või organisatsiooni esindaja aktsepteerib tööalase kasutuse või andmetöötluse raamistiku, võidakse selle kinnitusega seotud tõendikirjeid säilitada ja vajaduse korral jagada vastava organisatsiooni või kasutajaga, et tõendada aktsepteerimise olemasolu, versiooni ja aega.</p>"
     },
     "section7": {
       "heading": "7. Säilitamine",
@@ -2003,7 +2009,7 @@
     },
     "section9": {
       "heading": "9. Küpsised ja brauseri salvestus",
-      "body": "<p>SotsiaalAI kasutab hädavajalikke küpsiseid ja brauseri lokaalseid salvestusi sisselogimise, seansi, usaldatud seadme, keele, ligipääsetavuse, aktiivse vestluse ning muude kasutusmugavuse eelistuste hoidmiseks. Reklaami- ega kolmanda osapoole turundusküpsiseid me ei kasuta. Samuti ei kasuta platvorm praegu avalikul kasutajaliidesel reklaamijälgijaid.</p>"
+      "body": "<p>Sotsiaal.pro kasutab hädavajalikke küpsiseid ja brauseri lokaalseid salvestusi sisselogimise, seansi, usaldatud seadme, keele, ligipääsetavuse, aktiivse vestluse ning muude kasutusmugavuse eelistuste hoidmiseks. Reklaami- ega kolmanda osapoole turundusküpsiseid me ei kasuta. Samuti ei kasuta platvorm praegu avalikul kasutajaliidesel reklaamijälgijaid.</p>"
     },
     "section10": {
       "heading": "10. Turvalisus",
@@ -2015,7 +2021,7 @@
     },
     "privacy_filter": {
       "heading": "4.10 Privaatsuse eelkontroll ja Privacy Filter",
-      "body": "<p>Platvorm võib tundlikes töövoogudes kasutada privaatsuse eelkontrolli, mis tuvastab ja maskeerib tekstis võimalikke isikuandmeid enne AI-töötlust, RAG-indekseerimist, dokumendi koostamist, logimist või avaliku abikirje salvestamist. Kontroll võib põhineda SotsiaalAI lokaalsel mustripõhisel filtril ning serveris lokaalselt töötaval OpenAI Privacy Filteri mudelil, kui see on kasutusele võetud.</p><p>Kui kasutaja sisendis leitakse võimalikud isikuandmed, võib süsteem pakkuda valikuid: kasutaja muudab teksti, süsteem saadab edasi maskeeritud versiooni või privaatses tööalases töövoos saadetakse algne tekst edasi kasutaja selge valiku alusel. Avalikes abisoovides ja abipakkumistes kasutatakse rangemat andmete minimeerimist ning algse tundliku tekstiga jätkamine võib olla piiratud.</p><p>Privaatsuse eelkontroll ei taga, et kõik isikuandmed või tundlikud detailid alati leitakse. See on lisakaitse, mis aitab vähendada juhuslikku ülemäärast andmetöötlust; kasutaja ja vajaduse korral organisatsioon peavad endiselt hindama õiguslikku alust, andmete vajalikkust ja sobivat töövoogu.</p>"
+      "body": "<p>Platvorm võib tundlikes töövoogudes kasutada privaatsuse eelkontrolli, mis tuvastab ja maskeerib tekstis võimalikke isikuandmeid enne AI-töötlust, RAG-indekseerimist, dokumendi koostamist, logimist või avaliku abikirje salvestamist. Kontroll võib põhineda Sotsiaal.pro lokaalsel mustripõhisel filtril ning serveris lokaalselt töötaval OpenAI Privacy Filteri mudelil, kui see on kasutusele võetud.</p><p>Kui kasutaja sisendis leitakse võimalikud isikuandmed, võib süsteem pakkuda valikuid: kasutaja muudab teksti, süsteem saadab edasi maskeeritud versiooni või privaatses tööalases töövoos saadetakse algne tekst edasi kasutaja selge valiku alusel. Avalikes abisoovides ja abipakkumistes kasutatakse rangemat andmete minimeerimist ning algse tundliku tekstiga jätkamine võib olla piiratud.</p><p>Privaatsuse eelkontroll ei taga, et kõik isikuandmed või tundlikud detailid alati leitakse. See on lisakaitse, mis aitab vähendada juhuslikku ülemäärast andmetöötlust; kasutaja ja vajaduse korral organisatsioon peavad endiselt hindama õiguslikku alust, andmete vajalikkust ja sobivat töövoogu.</p>"
     }
   },
   "legal": {
@@ -2026,11 +2032,11 @@
     "title": "Tingimused",
     "section1": {
       "heading": "1. Üldsätted",
-      "body": "<p>Käesolevad kasutustingimused reguleerivad <strong>Küberloome OÜ</strong> hallatava platvormi <strong>SotsiaalAI</strong> kasutamist. Registreerudes või platvormi kasutades kinnitad, et oled tingimustega tutvunud ja nõustud nendega.</p><p>Platvormi stabiilse, turvalise ja mõistliku kasutamise tagamiseks võivad teenuses kehtida teatud tehnilised piirangud ja kasutusreeglid. Need võivad puudutada näiteks vestluste mahtu, süvauuringu kasutamist, dokumentide korduvalt täiendamist või parandamist ning failide arvu, mahtu ja säilitamist. Piirangud võivad sõltuda kasutatavast funktsioonist või paketist ning need on kirjeldatud käesolevates tingimustes või kuvatud vajaduse korral kasutajaliideses.</p><p>Platvormi kasutamine eeldab nende tingimustega nõustumist. Kui sa nendega ei nõustu, palume platvormi mitte kasutada. Kasutustingimused ja privaatsuspoliitika moodustavad koos teenuse kasutamise aluse.</p>"
+      "body": "<p>Käesolevad kasutustingimused reguleerivad <strong>Küberloome OÜ</strong> hallatava platvormi <strong>Sotsiaal.pro</strong> kasutamist. Registreerudes või platvormi kasutades kinnitad, et oled tingimustega tutvunud ja nõustud nendega. Sotsiaalinfo, millest on tänaseks kasvanud Sotsiaal.pro, sündis soovist luua sotsiaalvaldkonna infoportaal.</p><p>Platvormi stabiilse, turvalise ja mõistliku kasutamise tagamiseks võivad teenuses kehtida teatud tehnilised piirangud ja kasutusreeglid. Need võivad puudutada näiteks vestluste mahtu, süvauuringu kasutamist, dokumentide korduvalt täiendamist või parandamist ning failide arvu, mahtu ja säilitamist. Piirangud võivad sõltuda kasutatavast funktsioonist või paketist ning need on kirjeldatud käesolevates tingimustes või kuvatud vajaduse korral kasutajaliideses.</p><p>Platvormi kasutamine eeldab nende tingimustega nõustumist. Kui sa nendega ei nõustu, palume platvormi mitte kasutada. Kasutustingimused ja privaatsuspoliitika moodustavad koos teenuse kasutamise aluse.</p>"
     },
     "section2": {
       "heading": "2. Teenuse kirjeldus",
-      "body": "<p>SotsiaalAI on rollipõhine veebiplatvorm, kus kasutaja saab vestluses küsida infot, saada juhendamist, kirjeldada abisoove ja abipakkumisi, kasutada dokumentide töövooge, hallata dokumente, avada ruume, saata kutseid ning kasutada profiili-, tellimuse- ja ligipääsetavuse seadeid.</p><p>Platvorm kasutab tehisintellekti, teadmuspõhist otsingut ja kasutaja valitud töövooge, et toetada nii sotsiaalvaldkonna spetsialiste kui ka abi otsivaid inimesi. Teenus ei ole hädaabikanal ega asenda siduvat ametlikku otsust, professionaalset nõustamist, erakorralist abi ega muud olukorras vajalikku vahetut sekkumist.</p><p>Spetsialistirollidele on lisaks saadaval professionaalsed töövahendid, näiteks kovisioon, supervisioon, mentorlus, välitöö, refleksioonid, tööheaolu vaated ja isiklik otsing. Ruumides saab osapoolte nõusolekul pidada helikõnesid; kõnesid ei salvestata.</p>"
+      "body": "<p>Sotsiaal.pro on rollipõhine veebiplatvorm, kus kasutaja saab vestluses küsida infot, saada juhendamist, kirjeldada abisoove ja abipakkumisi, kasutada dokumentide töövooge, hallata dokumente, avada ruume, saata kutseid ning kasutada profiili-, tellimuse- ja ligipääsetavuse seadeid.</p><p>Platvorm kasutab tehisintellekti, teadmuspõhist otsingut ja kasutaja valitud töövooge, et toetada nii sotsiaalvaldkonna spetsialiste kui ka abi otsivaid inimesi. Teenus ei ole hädaabikanal ega asenda siduvat ametlikku otsust, professionaalset nõustamist, erakorralist abi ega muud olukorras vajalikku vahetut sekkumist.</p><p>Spetsialistirollidele on lisaks saadaval professionaalsed töövahendid, näiteks kovisioon, supervisioon, mentorlus, välitöö, refleksioonid, tööheaolu vaated ja isiklik otsing. Ruumides saab osapoolte nõusolekul pidada helikõnesid; kõnesid ei salvestata.</p>"
     },
     "section3": {
       "heading": "3. Konto ja ligipääs",
@@ -2038,29 +2044,29 @@
     },
     "section4": {
       "heading": "4. Lubatud kasutus",
-      "items": "<li>Platvormi tuleb kasutada kooskõlas seaduse, heade tavade ja käesolevate tingimustega.</li><li>Keelatud on ebaseaduslik, ähvardav, petlik, laimav, vaenu õhutav või teiste õigusi rikkuv sisu, sealhulgas selliste abisoovide, abipakkumiste või kutsete loomine, mis eksitavad teisi kasutajaid.</li><li>Keelatud on turvapiirangute ületamine, automatiseeritud masspäringud, funktsioonipõhistest kasutus-, salvestus- või tellimuspiiridest möödahiilimine või nende teadlik vältimine, pahavara levitamine või teenuse töö takistamine.</li><li>Keelatud on teise isiku konto kasutamine ilma loata, valeidentiteedi loomine või platvormi kasutamine viisil, mis kahjustab teisi kasutajaid või SotsiaalAI-d.</li><li>Keelatud on platvormi, selle tehnilise lahenduse, andmestruktuuride või muude teenuse osade süstemaatiline kopeerimine, levitamine, ümberpakkumine või kasutamine konkureeriva teenuse loomiseks ilma SotsiaalAI kirjaliku loata.</li>"
+      "items": "<li>Platvormi tuleb kasutada kooskõlas seaduse, heade tavade ja käesolevate tingimustega.</li><li>Keelatud on ebaseaduslik, ähvardav, petlik, laimav, vaenu õhutav või teiste õigusi rikkuv sisu, sealhulgas selliste abisoovide, abipakkumiste või kutsete loomine, mis eksitavad teisi kasutajaid.</li><li>Keelatud on turvapiirangute ületamine, automatiseeritud masspäringud, funktsioonipõhistest kasutus-, salvestus- või tellimuspiiridest möödahiilimine või nende teadlik vältimine, pahavara levitamine või teenuse töö takistamine.</li><li>Keelatud on teise isiku konto kasutamine ilma loata, valeidentiteedi loomine või platvormi kasutamine viisil, mis kahjustab teisi kasutajaid või Sotsiaal.pro platvormi.</li><li>Keelatud on platvormi, selle tehnilise lahenduse, andmestruktuuride või muude teenuse osade süstemaatiline kopeerimine, levitamine, ümberpakkumine või kasutamine konkureeriva teenuse loomiseks ilma Sotsiaal.pro kirjaliku loata.</li>"
     },
     "section5": {
       "heading": "5. Tellimus, maksed ja tühistamine",
       "paragraph1": "<p>Platvormi tasulised funktsioonid põhinevad rollipõhisel kuutellimusel. Eluküsimusega pöörduja kuutasu on 7,99 eurot kuus, sotsiaaltöö spetsialisti kuutasu on 14,99 eurot kuus ja teenuseosutaja kuutasu on 19,99 eurot kuus, kui platvormil ei ole tellimuse vormistamise hetkel näidatud teisiti. Kehtivad hinnad on alati nähtavad lehel <a href=\"/hinnastus\">Hinnastus</a>. Makseid vahendab Maksekeskus AS.</p>",
       "paragraph2": "<p>Ligipääs võib olla kas kasutaja enda tasutud või kutsuja poolt sponsoreeritud. Sponsoreeritud ligipääs kehtib praeguse lahenduse järgi ühe kuu ning ei muutu automaatselt kasutaja enda tasuliseks tellimuseks. Kui kutsutud kasutajal on juba aktiivne oma tellimus, võib sponsoreeritud makse algatamine olla blokeeritud.</p>",
-      "paragraph3": "<p>Tellimust saad hallata lehel <a href=\"/tellimus\">Tellimus</a>, kus näed aktiivset paketti, sponsoreeritud ligipääsu lõppkuupäeva ja tühistamise võimalust, ning lehel <a href=\"/profiil\">Profiil</a>, kust saad tellimuse ülevaate avada ja konto seadeid muuta. Pärast makse algatamist suunatakse kasutaja Maksekeskuse makselehele ning ligipääs aktiveeritakse kohe pärast makseteenuse kinnitust. Makselehel kuvatavad makseviisid on need, mida Maksekeskus selle tehingu jaoks pakub. Kui kasutaja tühistab tellimuse, lõpeb järgmise arveldusperioodi automaatne uuendus, kuid juba tasutud periood jääb kehtima oma lõpuni, kui seadus ei näe ette teisiti. Pärast teenuse aktiveerimist ja kasutamise algust tagastusi üldjuhul ei tehta, kui seadus ei nõua teisiti. SotsiaalAI võib hinnastust, pakette või tasuliste funktsioonide ulatust muuta mõistliku etteteatamisega.</p>"
+      "paragraph3": "<p>Tellimust saad hallata lehel <a href=\"/tellimus\">Tellimus</a>, kus näed aktiivset paketti, sponsoreeritud ligipääsu lõppkuupäeva ja tühistamise võimalust, ning lehel <a href=\"/profiil\">Profiil</a>, kust saad tellimuse ülevaate avada ja konto seadeid muuta. Pärast makse algatamist suunatakse kasutaja Maksekeskuse makselehele ning ligipääs aktiveeritakse kohe pärast makseteenuse kinnitust. Makselehel kuvatavad makseviisid on need, mida Maksekeskus selle tehingu jaoks pakub. Kui kasutaja tühistab tellimuse, lõpeb järgmise arveldusperioodi automaatne uuendus, kuid juba tasutud periood jääb kehtima oma lõpuni, kui seadus ei näe ette teisiti. Pärast teenuse aktiveerimist ja kasutamise algust tagastusi üldjuhul ei tehta, kui seadus ei nõua teisiti. Sotsiaal.pro võib hinnastust, pakette või tasuliste funktsioonide ulatust muuta mõistliku etteteatamisega.</p>"
     },
     "section6": {
       "heading": "6. Kättesaadavus ja hooldus",
-      "body": "<p>SotsiaalAI teeb mõistlikke pingutusi teenuse kättesaadavuse tagamiseks, kuid ei taga katkestusteta tööd. Hooldustööd, uuendused, turvaparandused, väliste teenuste häired või kasutuspiirangud võivad platvormi ajutiselt piirata.</p><p>Praegu kehtivad teenuses järgmised tehnilised piirangud: ühes vestluses kuni 50 kasutajapööret; süvauuringus korraga kuni 1 aktiivne töö kasutaja kohta ning paketipõhine kuine kasutusmaht; sama dokumenti saab järjest kuni 3 korda täiendada või parandada; materjale saab üles laadida kuni 10 faili korraga ja kokku kuni 100 MB päevas.</p><p>SotsiaalAI võib rakendada tehnilisi limiite, mõistliku kasutuse kontrolle ja kuritarvituse vastaseid meetmeid teenuse töö, turvalisuse ja ausa ligipääsu kaitsmiseks. Kui kasutus on ebatavaliselt mahukas, korduv või näib piiridest möödahiilimisena, võib SotsiaalAI mõjutatud funktsioone ajutiselt aeglustada, piirata, peatada või ümber seadistada, isegi kui konto ise jääb aktiivseks.</p>"
+      "body": "<p>Sotsiaal.pro teeb mõistlikke pingutusi teenuse kättesaadavuse tagamiseks, kuid ei taga katkestusteta tööd. Hooldustööd, uuendused, turvaparandused, väliste teenuste häired või kasutuspiirangud võivad platvormi ajutiselt piirata.</p><p>Praegu kehtivad teenuses järgmised tehnilised piirangud: ühes vestluses kuni 50 kasutajapööret; süvauuringus korraga kuni 1 aktiivne töö kasutaja kohta ning paketipõhine kuine kasutusmaht; sama dokumenti saab järjest kuni 3 korda täiendada või parandada; materjale saab üles laadida kuni 10 faili korraga ja kokku kuni 100 MB päevas.</p><p>Sotsiaal.pro võib rakendada tehnilisi limiite, mõistliku kasutuse kontrolle ja kuritarvituse vastaseid meetmeid teenuse töö, turvalisuse ja ausa ligipääsu kaitsmiseks. Kui kasutus on ebatavaliselt mahukas, korduv või näib piiridest möödahiilimisena, võib Sotsiaal.pro mõjutatud funktsioone ajutiselt aeglustada, piirata, peatada või ümber seadistada, isegi kui konto ise jääb aktiivseks.</p>"
     },
     "section7": {
       "heading": "7. Platvormi töövood ja tulemused",
-      "body": "<p>SotsiaalAI toetab kasutajaid vestluste, dokumentide, abi- ja ruumifunktsioonide kasutamisel vastavalt platvormil kirjeldatud töövoogudele.</p><p>Dokumentide, mustandite, kokkuvõtete, liigituste, sobituste ja muude väljundite eesmärk on kasutajat abistada. Kui platvorm koostab dokumendi, aruande või muu teksti, on tulemuseks üldjuhul mustand või abistav tööversioon, mida kasutaja peab enne kasutamist ise üle vaatama, vajaduse korral parandama ja kinnitama.</p><p>SotsiaalAI ei tee kasutaja eest siduvaid ametlikke, õiguslikke ega professionaalseid otsuseid ning platvormi väljund ei tohi olla ainus alus otsusele, mis võib mõjutada inimese õigusi, kohustusi või olukorda oluliselt.</p><p>Kriisi, vägivalla, lapse ohutuse või enesevigastamise riski korral võib platvorm kuvada kiire abi juhiseid ja suunata kasutaja sobiva Eesti abikanali või pädeva inimese poole. Selline suunamine ei asenda hädaabi, lastekaitset, ohvriabi ega professionaalset abi.</p>"
+      "body": "<p>Sotsiaal.pro toetab kasutajaid vestluste, dokumentide, abi- ja ruumifunktsioonide kasutamisel vastavalt platvormil kirjeldatud töövoogudele.</p><p>Dokumentide, mustandite, kokkuvõtete, liigituste, sobituste ja muude väljundite eesmärk on kasutajat abistada. Kui platvorm koostab dokumendi, aruande või muu teksti, on tulemuseks üldjuhul mustand või abistav tööversioon, mida kasutaja peab enne kasutamist ise üle vaatama, vajaduse korral parandama ja kinnitama.</p><p>Sotsiaal.pro ei tee kasutaja eest siduvaid ametlikke, õiguslikke ega professionaalseid otsuseid ning platvormi väljund ei tohi olla ainus alus otsusele, mis võib mõjutada inimese õigusi, kohustusi või olukorda oluliselt.</p><p>Kriisi, vägivalla, lapse ohutuse või enesevigastamise riski korral võib platvorm kuvada kiire abi juhiseid ja suunata kasutaja sobiva Eesti abikanali või pädeva inimese poole. Selline suunamine ei asenda hädaabi, lastekaitset, ohvriabi ega professionaalset abi.</p>"
     },
     "section8": {
       "heading": "8. Tööalane kasutus ja andmetöötluse raamistik",
-      "body": "<p>SotsiaalAI-d võib kasutada eraisikuna ning töövahendina ka sellistes töövoogudes, kus ei sisestata kliendi või muu andmesubjekti tuvastatavaid isikuandmeid.</p><p>Kui kasutaja soovib kasutada SotsiaalAI-d tööandja või organisatsiooni nimel kliendi või muu andmesubjekti tuvastatavate isikuandmetega, peab tal selleks olema tööandja või organisatsiooni selge luba ning vajaduse korral ka eraldi lepinguline andmetöötlusraamistik.</p><p>Organisatsiooni või tööandja administraatori roll ei anna iseenesest üldist ligipääsu töötaja isiklikele vestlustele, dokumentidele ega failidele. Ruumide ja grupivestluste sisu on nähtav ruumi liikmetele ning kasutaja jagatud andmeid käsitletakse vastava töövoo nähtavusreeglite järgi.</p><p>Tööandja ja töötaja sisemised kinnitused, juhised või kasutusload ei loo iseenesest SotsiaalAI ja organisatsiooni vahelist volitatud töötleja suhet. Kui SotsiaalAI töötleb isikuandmeid organisatsiooni nimel, peab selleks olema olemas ka SotsiaalAI poolt siduvalt aktsepteeritud kirjalik või elektrooniline lepinguline raamistik.</p><p>SotsiaalAI võib teha platvormis kättesaadavaks tööalase kasutuse ja andmetöötluse standardse raamdokumendi või muud sarnased tingimused. Sellise dokumendiga tutvumine, selle allalaadimine või töötaja tasandi kinnitus ei muuda seda automaatselt organisatsiooni suhtes siduvaks. Kui dokument on mõeldud organisatsiooni nimel andmete töötlemise raamistikuks, muutub see organisatsiooni suhtes siduvaks alles pärast nõuetekohast allkirjastamist või muud tõendatavat elektroonilist aktsepteerimist.</p><p>Tööalases kasutuses tuleb enne tundlike töövoogude kasutamist määrata rollid, õigused, lubatud andmekategooriad, andmete minimeerimise reeglid, kinnitamise kord ja auditijälje vajadus. Tundlikumad võimekused võivad olla piiratud spetsialistidele, teenuseosutajatele, KOV-ile või organisatsiooniga seotud kasutajatele.</p>"
+      "body": "<p>Sotsiaal.pro platvormi võib kasutada eraisikuna ning töövahendina ka sellistes töövoogudes, kus ei sisestata kliendi või muu andmesubjekti tuvastatavaid isikuandmeid.</p><p>Kui kasutaja soovib kasutada Sotsiaal.pro platvormi tööandja või organisatsiooni nimel kliendi või muu andmesubjekti tuvastatavate isikuandmetega, peab tal selleks olema tööandja või organisatsiooni selge luba ning vajaduse korral ka eraldi lepinguline andmetöötlusraamistik.</p><p>Organisatsiooni või tööandja administraatori roll ei anna iseenesest üldist ligipääsu töötaja isiklikele vestlustele, dokumentidele ega failidele. Ruumide ja grupivestluste sisu on nähtav ruumi liikmetele ning kasutaja jagatud andmeid käsitletakse vastava töövoo nähtavusreeglite järgi.</p><p>Tööandja ja töötaja sisemised kinnitused, juhised või kasutusload ei loo iseenesest Sotsiaal.pro ja organisatsiooni vahelist volitatud töötleja suhet. Kui Sotsiaal.pro töötleb isikuandmeid organisatsiooni nimel, peab selleks olema olemas ka Sotsiaal.pro poolt siduvalt aktsepteeritud kirjalik või elektrooniline lepinguline raamistik.</p><p>Sotsiaal.pro võib teha platvormis kättesaadavaks tööalase kasutuse ja andmetöötluse standardse raamdokumendi või muud sarnased tingimused. Sellise dokumendiga tutvumine, selle allalaadimine või töötaja tasandi kinnitus ei muuda seda automaatselt organisatsiooni suhtes siduvaks. Kui dokument on mõeldud organisatsiooni nimel andmete töötlemise raamistikuks, muutub see organisatsiooni suhtes siduvaks alles pärast nõuetekohast allkirjastamist või muud tõendatavat elektroonilist aktsepteerimist.</p><p>Tööalases kasutuses tuleb enne tundlike töövoogude kasutamist määrata rollid, õigused, lubatud andmekategooriad, andmete minimeerimise reeglid, kinnitamise kord ja auditijälje vajadus. Tundlikumad võimekused võivad olla piiratud spetsialistidele, teenuseosutajatele, KOV-ile või organisatsiooniga seotud kasutajatele.</p>"
     },
     "section9": {
       "heading": "9. Tehisintellekti kasutus",
-      "paragraph1": "<p>SotsiaalAI kasutab tehisintellekti, teadmuspõhist otsingut ja teisi tehnilisi teenuseid, et vastata küsimustele, pakkuda juhendamist, aidata dokumente koostada ning toetada abisoovide ja abipakkumiste töövooge. Platvorm võib paluda kasutajal vestluses kinnitada, millises töörežiimis sama vestlus jätkub.</p><p>AI võib pakkuda kasutajale kõige tõenäolisema töörežiimi, vastuse, liigituse, sobituse või mustandi, kuid lõplik otsus töövoo jätkamise ja väljundi kasutamise kohta jääb kasutajale. Kasutaja mõistab, et AI väljund võib olla ebatäpne, mittetäielik või vajada parandamist.</p>",
+      "paragraph1": "<p>Sotsiaal.pro kasutab tehisintellekti, teadmuspõhist otsingut ja teisi tehnilisi teenuseid, et vastata küsimustele, pakkuda juhendamist, aidata dokumente koostada ning toetada abisoovide ja abipakkumiste töövooge. Platvorm võib paluda kasutajal vestluses kinnitada, millises töörežiimis sama vestlus jätkub.</p><p>AI võib pakkuda kasutajale kõige tõenäolisema töörežiimi, vastuse, liigituse, sobituse või mustandi, kuid lõplik otsus töövoo jätkamise ja väljundi kasutamise kohta jääb kasutajale. Kasutaja mõistab, et AI väljund võib olla ebatäpne, mittetäielik või vajada parandamist.</p>",
       "paragraph2": "<p>AI väljundit ei tohi käsitleda automaatselt siduva tõe, ametliku seisukoha, professionaalse otsuse ega ainsa otsustusalusena.</p><p>Platvorm teavitab kasutajat, et ta suhtleb tehisintellekti funktsioonidega, välja arvatud juhul, kui see on töövoo olemusest või kasutajaliidesest selgelt ilmne.</p>"
     },
     "section10": {
@@ -2071,15 +2077,15 @@
     },
     "section11": {
       "heading": "11. Intellektuaalomand",
-      "body": "<p>Platvormi tarkvara, kujundus, andmestruktuurid, kaubamärgid ja muu SotsiaalAI loodud sisu kuuluvad SotsiaalAI-le või selle partneritele, kui ei ole märgitud teisiti. Kasutaja omab oma sisestatud andmeid ulatuses, mis tuleneb seadusest ja tema õigustest nendele andmetele.</p><p>Kasutaja võib platvormi abil loodud väljundeid kasutada õiguspärasel eesmärgil oma tööks, suhtluseks ja dokumenteerimiseks. Ilma SotsiaalAI kirjaliku loata ei tohi platvormi tehnilist lahendust, ülesehitust, teenuse osi ega väljundite süstemaatilist kogumit kopeerida, levitada, ümber pakkuda ega kasutada konkureeriva teenuse loomiseks.</p>"
+      "body": "<p>Platvormi tarkvara, kujundus, andmestruktuurid, kaubamärgid ja muu Sotsiaal.pro loodud sisu kuuluvad Sotsiaal.pro-le või selle partneritele, kui ei ole märgitud teisiti. Kasutaja omab oma sisestatud andmeid ulatuses, mis tuleneb seadusest ja tema õigustest nendele andmetele.</p><p>Kasutaja võib platvormi abil loodud väljundeid kasutada õiguspärasel eesmärgil oma tööks, suhtluseks ja dokumenteerimiseks. Ilma Sotsiaal.pro kirjaliku loata ei tohi platvormi tehnilist lahendust, ülesehitust, teenuse osi ega väljundite süstemaatilist kogumit kopeerida, levitada, ümber pakkuda ega kasutada konkureeriva teenuse loomiseks.</p>"
     },
     "section12": {
       "heading": "12. Lepingu lõpetamine",
-      "body": "<p>Kasutaja võib platvormi kasutamise igal ajal lõpetada, sealhulgas konto kustutamise või tellimuse tühistamise kaudu. Konto kustutamine võib kaasa tuua ligipääsu kaotuse seotud dokumentidele, vestlustele, mustanditele ja muule tööruumi sisule vastavalt privaatsuspoliitikas kirjeldatud säilitamis- ja kustutusreeglitele. Tehnilised auditikirjed, kustutustööde kirjed, varukoopiad ning süsteemi-, proxy- või teenusepakkuja logid võivad piiratud aja jooksul jääda alles privaatsuspoliitikas kirjeldatud ulatuses.</p><p>SotsiaalAI võib kasutaja ligipääsu peatada või lõpetada, kui kasutaja rikub oluliselt tingimusi, kuritarvitab teenust, ületab korduvalt või üritab mööda hiilida funktsioonipõhistest piiridest, seab ohtu teiste kasutajate turvalisuse või kahjustab platvormi toimimist. SotsiaalAI võib ka ajutiselt piirata konkreetseid funktsioone, et kaitsta teenuse stabiilsust, turvalisust või mõistlikku kasutust.</p>"
+      "body": "<p>Kasutaja võib platvormi kasutamise igal ajal lõpetada, sealhulgas konto kustutamise või tellimuse tühistamise kaudu. Konto kustutamine võib kaasa tuua ligipääsu kaotuse seotud dokumentidele, vestlustele, mustanditele ja muule tööruumi sisule vastavalt privaatsuspoliitikas kirjeldatud säilitamis- ja kustutusreeglitele. Tehnilised auditikirjed, kustutustööde kirjed, varukoopiad ning süsteemi-, proxy- või teenusepakkuja logid võivad piiratud aja jooksul jääda alles privaatsuspoliitikas kirjeldatud ulatuses.</p><p>Sotsiaal.pro võib kasutaja ligipääsu peatada või lõpetada, kui kasutaja rikub oluliselt tingimusi, kuritarvitab teenust, ületab korduvalt või üritab mööda hiilida funktsioonipõhistest piiridest, seab ohtu teiste kasutajate turvalisuse või kahjustab platvormi toimimist. Sotsiaal.pro võib ka ajutiselt piirata konkreetseid funktsioone, et kaitsta teenuse stabiilsust, turvalisust või mõistlikku kasutust.</p>"
     },
     "section13": {
       "heading": "13. Tingimuste muutmine",
-      "body": "<p>SotsiaalAI võib kasutustingimusi ajakohastada, kui teenus, hinnastamine, töövood või õigusnõuded muutuvad. Uus redaktsioon avaldatakse platvormil ning olulisest muudatusest teavitatakse kasutajaid mõistliku etteteatamisega.</p><p>Platvormi kasutamise jätkamine pärast muudatuste jõustumist tähendab uuendatud tingimustega nõustumist, kui kohaldatav õigus ei nõua muud korda.</p>"
+      "body": "<p>Sotsiaal.pro võib kasutustingimusi ajakohastada, kui teenus, hinnastamine, töövood või õigusnõuded muutuvad. Uus redaktsioon avaldatakse platvormil ning olulisest muudatusest teavitatakse kasutajaid mõistliku etteteatamisega.</p><p>Platvormi kasutamise jätkamine pärast muudatuste jõustumist tähendab uuendatud tingimustega nõustumist, kui kohaldatav õigus ei nõua muud korda.</p>"
     },
     "section14": {
       "heading": "14. Kohaldatav õigus ja vaidluste lahendamine",
@@ -2087,7 +2093,7 @@
     },
     "privacy_filter": {
       "heading": "10.1 Privaatsuse eelkontroll ja maskeerimine",
-      "body": "<p>SotsiaalAI võib enne AI-töötlust, RAG-otsingut, dokumendi koostamist, logimist või avaliku abikirje salvestamist kontrollida, kas sisend sisaldab isikuandmeid või muud tundlikku infot. Kontroll võib kasutada nii platvormi enda lokaalseid reegleid kui ka serveris lokaalselt töötavat OpenAI Privacy Filteri mudelit, kui see on kasutusele võetud.</p><p>Kui kontroll leiab näiteks nime, isikukoodi, aadressi, telefoninumbri, e-posti aadressi või muu äratuntava detaili, võib platvorm kuvada hoiatuse ja pakkuda valikuid: muuta teksti, saata tekst maskeeritult või lubatud privaatses töövoos jätkata algse tekstiga. Avalikes abisoovides ja abipakkumistes ei pruugi algse tundliku tekstiga jätkamine olla lubatud.</p><p>Maskeerimine on andmete minimeerimise abivahend, mitte täielik anonüümimine ega õiguslik garantii. Kasutaja vastutab jätkuvalt selle eest, et sisestatav info oleks töövoo jaoks vajalik ja et tal oleks selle töötlemiseks asjakohane alus.</p>"
+      "body": "<p>Sotsiaal.pro võib enne AI-töötlust, RAG-otsingut, dokumendi koostamist, logimist või avaliku abikirje salvestamist kontrollida, kas sisend sisaldab isikuandmeid või muud tundlikku infot. Kontroll võib kasutada nii platvormi enda lokaalseid reegleid kui ka serveris lokaalselt töötavat OpenAI Privacy Filteri mudelit, kui see on kasutusele võetud.</p><p>Kui kontroll leiab näiteks nime, isikukoodi, aadressi, telefoninumbri, e-posti aadressi või muu äratuntava detaili, võib platvorm kuvada hoiatuse ja pakkuda valikuid: muuta teksti, saata tekst maskeeritult või lubatud privaatses töövoos jätkata algse tekstiga. Avalikes abisoovides ja abipakkumistes ei pruugi algse tundliku tekstiga jätkamine olla lubatud.</p><p>Maskeerimine on andmete minimeerimise abivahend, mitte täielik anonüümimine ega õiguslik garantii. Kasutaja vastutab jätkuvalt selle eest, et sisestatav info oleks töövoo jaoks vajalik ja et tal oleks selle töötlemiseks asjakohane alus.</p>"
     }
   },
   "service_provider_profile": {
@@ -2248,12 +2254,12 @@
         "kov": "KOV kontakt",
         "kov_general": "KOV üldkontakt",
         "organization_inbox": "Organisatsiooni vastuvõtutiim",
-        "organization_inbox_description": "Organisatsiooni postkast SotsiaalAI platvormis",
+        "organization_inbox_description": "Organisatsiooni postkast Sotsiaal.pro platvormis",
         "provider": "Teenuseosutaja",
         "selected": "Valitud kontakt"
       },
       "delivery": {
-        "internal": "SotsiaalAI sisene",
+        "internal": "Sotsiaal.pro sisene",
         "external_email": "E-post"
       },
       "receiving": {
@@ -2549,7 +2555,7 @@
         "mixed": "Mitut tüüpi"
       },
       "pre_inquiries": {
-        "accepts_platform": "Võtab vastu SotsiaalAI siseseid eelpöördumisi",
+        "accepts_platform": "Võtab vastu Sotsiaal.pro siseseid eelpöördumisi",
         "accepts_email": "Lubab e-kirja koostamist",
         "platform_help": "Inimene saab saata sisemise eelpöördumise selle teenuseosutaja kontole.",
         "email_help": "Kasutaja saab koostada e-kirja eelvaate, mille ta vaatab enne saatmist üle.",
@@ -3313,7 +3319,7 @@
       "summary": "Dokumendi tekst",
       "summary_show": "Näita",
       "summary_hide": "Peida",
-      "context_hint": "Valitud analüüsiviis määrab, kas assistent kasutab ainult üleslaetud dokumenti või ka SotsiaalAI andmebaasi lisateadmisi.",
+      "context_hint": "Valitud analüüsiviis määrab, kas assistent kasutab ainult üleslaetud dokumenti või ka Sotsiaal.pro andmebaasi lisateadmisi.",
       "limit_reached": "Selles vestluses saad lisada kuni {limit} faili.",
       "usage": "Tänane analüüs: {used}/{limit}",
       "error_size": "Fail on liiga suur ({size}MB > {limit}MB).",
@@ -4222,14 +4228,14 @@
   "about": {
     "title": "Meist",
     "intro": {
-      "paragraph1": "<p><strong>SotsiaalAI</strong> on järgmise põlvkonna sotsiaalvaldkonna abiplatvorm, mis pakub ühes digikeskkonnas usaldusväärset infot, tehisintellekti tuge, praktilisi tööriistu ja suhtlusvõimalusi. Platvorm on mõeldud inimestele, kes otsivad selgust elulistes küsimustes, sotsiaalvaldkonna spetsialistidele ning teenuseosutajatele.</p>",
-      "paragraph2": "<p>Sotsiaalvaldkonda iseloomustavad <strong>suur töökoormus, killustunud info ja keeruline orienteerumine teenuste, toetuste ja kontaktide süsteemis</strong> - sellele viitab ka <oska>OSKA raport (2025)</oska>. SotsiaalAI eesmärk on muuta valdkonna teadmine paremini kättesaadavaks ja arusaadavaks, lihtsustada tööprotsesse ning aidata inimesel oma olukorrast selgemalt aru saada. Selleks koondab platvorm sotsiaalvaldkonna allikaid, juhiseid, õigusraamistikku, metoodikaid ja praktilisi materjale.</p>",
+      "paragraph1": "<p><strong>Sotsiaal.pro</strong> on järgmise põlvkonna sotsiaalvaldkonna abiplatvorm, mis pakub ühes digikeskkonnas usaldusväärset infot, tehisintellekti tuge, praktilisi tööriistu ja suhtlusvõimalusi. Platvorm on mõeldud inimestele, kes otsivad selgust elulistes küsimustes, sotsiaalvaldkonna spetsialistidele ning teenuseosutajatele.</p>",
+      "paragraph2": "<p>Sotsiaalvaldkonda iseloomustavad <strong>suur töökoormus, killustunud info ja keeruline orienteerumine teenuste, toetuste ja kontaktide süsteemis</strong> - sellele viitab ka <oska>OSKA raport (2025)</oska>. Sotsiaal.pro eesmärk on muuta valdkonna teadmine paremini kättesaadavaks ja arusaadavaks, lihtsustada tööprotsesse ning aidata inimesel oma olukorrast selgemalt aru saada. Selleks koondab platvorm sotsiaalvaldkonna allikaid, juhiseid, õigusraamistikku, metoodikaid ja praktilisi materjale.</p>",
       "paragraph3": "<p>Platvormi keskne kasutuskoht on <strong>vestlusaken</strong>, kus saab kirjeldada olukorda, küsida teenuste, toetuste, õiguste ja tööpraktika kohta ning täpsustada võimalikke lahendusi. <strong>Tehisintellekt</strong> aitab esile tuua asjakohaseid võimalusi, selgitada seoseid ning valmistada ette vajalikke tekste ja järgmisi samme. Vastuste juures kuvatakse allikad, et info oleks kontrollitav ja kasutaja saaks vajadusel algallikani liikuda. Samalt lehelt saab alustada ka eraldi <strong>töövooge</strong>, näiteks abisoovi, abipakkumist, süvauuringut, eelpöördumist ja dokumendi analüüsi.</p>",
-      "paragraph4": "<p>SotsiaalAI põhimõte on, et AI <strong>ei asenda spetsialisti ega tee inimese eest lõplikku otsust</strong>. AI aitab teadmise, õiguste, teenuste ja töövahendite juurde jõuda kiiremini, kuid tundlikud andmed, kriisiolukorrad, laste ja noorte ohutus ning tööalased otsused vajavad inimese kontrolli, selget rollijaotust ja vajadusel päris abikanalisse suunamist.</p>",
+      "paragraph4": "<p>Sotsiaal.pro põhimõte on, et AI <strong>ei asenda spetsialisti ega tee inimese eest lõplikku otsust</strong>. AI aitab teadmise, õiguste, teenuste ja töövahendite juurde jõuda kiiremini, kuid tundlikud andmed, kriisiolukorrad, laste ja noorte ohutus ning tööalased otsused vajavad inimese kontrolli, selget rollijaotust ja vajadusel päris abikanalisse suunamist.</p>",
       "paragraph5": "<p><strong>Vestlusruumid</strong> on eraldi suhtluskohad, kuhu saab kutsuda pöörduja, sotsiaaltöö spetsialisti, teenuseosutaja või kolleegi. Ruum võib tekkida näiteks abisoovi ja abipakkumise sobituse või pöördumise jagamise järel, et osapooled saaksid suhtlust jätkata ja järgmisi samme täpsustada.</p>",
-      "paragraph6": "<p><strong>Teenusekaart</strong> on SotsiaalAI kaardipõhine rakendus, mis aitab leida sotsiaalvaldkonna pöördumiskohti ja kontakte. Esmalt keskendub teenusekaart KOV-i sotsiaalhoolekande kontaktidele ja teenuseosutajatele, et vajalik info ja olukorraga seotud võimalused oleksid kasutajale paremini nähtavad.</p>",
-      "paragraph7": "<p>Meie <strong>visioon</strong> on kujuneda sotsiaalvaldkonna digikeskkonnaks, mis ühendab usaldusväärse info, praktilised tööriistad, teenuseosutajad ja suhtluse. SotsiaalAI toetab inimest erinevates elu- ja tööolukordades - olgu küsimus seotud teenuse, toetuse, dokumendi, abisoovi või abipakkumise, karjäärinõustamise, töövõimaluse või abivahendi leidmisega.</p>",
-      "paragraph8": "<p>SotsiaalAI-d arendatakse <strong>sotsiaalse ettevõttena</strong> ja <strong>sotsiaalse innovatsiooni algatusena</strong>. Ühendame tehnoloogia ja sotsiaalvaldkonna praktika, et vähendada infobarjääre ning muuta töövood, koostöö ja abi leidmine selgemaks, kiiremaks ja ligipääsetavamaks. Platvormi arendamisel peame oluliseks turvalist kasutust, andmekaitset ja selgeid kasutusreegleid.</p>"
+      "paragraph6": "<p><strong>Teenusekaart</strong> on Sotsiaal.pro kaardipõhine rakendus, mis aitab leida sotsiaalvaldkonna pöördumiskohti ja kontakte. Esmalt keskendub teenusekaart KOV-i sotsiaalhoolekande kontaktidele ja teenuseosutajatele, et vajalik info ja olukorraga seotud võimalused oleksid kasutajale paremini nähtavad.</p>",
+      "paragraph7": "<p>Meie <strong>visioon</strong> on kujuneda sotsiaalvaldkonna digikeskkonnaks, mis ühendab usaldusväärse info, praktilised tööriistad, teenuseosutajad ja suhtluse. Sotsiaal.pro toetab inimest erinevates elu- ja tööolukordades - olgu küsimus seotud teenuse, toetuse, dokumendi, abisoovi või abipakkumise, karjäärinõustamise, töövõimaluse või abivahendi leidmisega.</p>",
+      "paragraph8": "<p>Sotsiaal.pro platvormi arendatakse <strong>sotsiaalse ettevõttena</strong> ja <strong>sotsiaalse innovatsiooni algatusena</strong>. Ühendame tehnoloogia ja sotsiaalvaldkonna praktika, et vähendada infobarjääre ning muuta töövood, koostöö ja abi leidmine selgemaks, kiiremaks ja ligipääsetavamaks. Platvormi arendamisel peame oluliseks turvalist kasutust, andmekaitset ja selgeid kasutusreegleid.</p>"
     },
     "contact": {
       "title": "Kontakt",
@@ -4255,23 +4261,23 @@
       "title": "Ühest mõttest päris platvormini",
       "byline": "Laur Raudsoo, omanik ja juhatuse liige",
       "paragraphs": [
-        "SotsiaalAI lugu sai alguse ligi kümme aastat tagasi, 2017. aastal, kui tekkis mõte luua portaal nimega sotsiaalinfo.ee. Tol hetkel ei olnud mul veel pikka tööstaaži sotsiaalvaldkonnas, kuid praktiline side valdkonnaga oli juba kujunenud õpingute, töö, praktika ja erialase vabatahtliku tegevuse kaudu. Olin äsja lõpetanud Tallinna Ülikoolis sotsiaaltöö bakalaureuseõppe, tegutsenud Eesti Sotsiaaltöö Assotsiatsioonis, töötanud isikliku abistajana, olnud seotud MTÜ Helpific platvormiarenduse ja rahvusvahelise koostööga ning läbinud Sotsiaalministeeriumis praktika, mille fookuses oli puuetega inimeste toetuste ja hüvitiste analüüs. Samal aastal alustasin tööd ajakirja Sotsiaaltöö tegevtoimetajana.",
+        "Sotsiaalinfo, millest on tänaseks kasvanud Sotsiaal.pro, sündis soovist luua 2017. aastal portaal sotsiaalinfo.ee. Tol hetkel ei olnud mul veel pikka tööstaaži sotsiaalvaldkonnas, kuid praktiline side valdkonnaga oli juba kujunenud õpingute, töö, praktika ja erialase vabatahtliku tegevuse kaudu. Olin äsja lõpetanud Tallinna Ülikoolis sotsiaaltöö bakalaureuseõppe, tegutsenud Eesti Sotsiaaltöö Assotsiatsioonis, töötanud isikliku abistajana, olnud seotud MTÜ Helpific platvormiarenduse ja rahvusvahelise koostööga ning läbinud Sotsiaalministeeriumis praktika, mille fookuses oli puuetega inimeste toetuste ja hüvitiste analüüs. Samal aastal alustasin tööd ajakirja Sotsiaaltöö tegevtoimetajana.",
         "Nii kasvas idee välja minu kokkupuutest sotsiaalvaldkonna, ligipääsetavuse, digilahenduste ja sotsiaalse ettevõtlusega. Juba siis oli lähtekoht selge: sama keskkond ei saa kõnetada kõiki ühtemoodi. Sotsiaalvaldkonna spetsialist vajab tööks sügavamat teadmusruumi ja professionaalseid töövahendeid, eluküsimusega pöörduja aga selget, arusaadavat ja ligipääsetavat tuge.",
         "Nii tekkis varakult arusaam lahendusest, mis ühendab mõlemad pooled, kuid arvestab kummagi vajadustega. Ühele poole pidi koonduma spetsialistile vajalik erialane sisu praktikate, ajakirja Sotsiaaltöö, uuringute, juhendmaterjalide, seadusandluse, kohtulahendite, sündmuste ja koostööpartnerite infoga. Teisele poole kujunes mõte keskkonnast, kus keskmes on inimesele arusaadav ja praktiline abi.",
         "Järgmine oluline samm tuli 2020. aastal, kui idee liikus edasi sotsiaalabi mobiilirakenduse suunas. Keskseks muutus küsimus, kuidas inimene jõuab teenuste, toetuste ja abi taotlemiseni lihtsamal, arusaadavamal ja praktilisemal viisil. Just selles etapis tekkis ka mõte rakendada platvormil tehisintellekti - ligikaudu kaks aastat enne ChatGPT jõudmist avalikkuse ette.",
         "Mõne aasta pärast, 2022. aastaks, oli visioon muutunud märksa selgemaks ja terviklikumaks. Ühelt poolt joonistus välja sotsiaaltöötajatele mõeldud platvormi mõte, mis toetaks kovisiooni, anonüümsete juhtumite arutamist ja professionaalset koostööd. Teisalt püsis sama olulisena suund, kus eluküsimusega pöördujal oleks lihtsam jõuda vajaliku info, teenuste ja järgmiste sammudeni.",
         "Samal ajal muutus konkreetsemaks ka tehisintellekti roll: AI-d nähti abilisena, mis võiks vähendada töökoormust, analüüsida andmeid, toetada ennetust, aidata juhtumite lahendamisel ja pakkuda eluküsimusega pöördujale selgemat tuge. Nii hakkas kujunema terviklikum digilahenduse visioon, milles spetsialisti töövood, eluküsimusega pöörduja kasutustee, andmed ja tehisintellekti võimalused moodustavad omavahel seotud terviku.",
         "Reaalne arendustöö algas 2025. aasta mais. Selleks ajaks oli varasemast portaali- ja mobiilirakenduse ideest kujunenud üks lahendus, mida saab kasutada nii arvutis kui ka mobiiliseadmes ning paigaldada ka rakendusena. Arendustöö eesmärk oli viia aastatega kujunenud visioon lahenduseks, kus nii spetsialistile kui ka eluküsimusega pöördujale on kujundatud oma loogika, materjalid ja töövood. Selle kõrval algas ka platvormi teadmiste ja materjalide koondamine, millele tehisintellekti assistendid saavad vastamisel toetuda.",
-        "Peaaegu aasta hiljem, 2026. aasta aprilliks, oli algsest ideest kujunenud tehisintellektil põhinev abiplatvorm SotsiaalAI. Platvormil on kaks tehisintellekti assistenti: üks sotsiaalvaldkonna spetsialistile ja teine eluküsimusega pöördujale. SotsiaalAI keskmes on vestluspõhine kasutusloogika, mis aitab leida infot, saada juhiseid ja liikuda edasi järgmiste sammudeni. Platvormis saab liikuda eri režiimide, agentide ja töövoogude vahel, näiteks koostada dokumente ja tekste, hallata faile, analüüsida materjale ning teha süvauuringut. Spetsialistidele pakub platvorm ka ühiseid vestlusruume koostööks, kovisiooniks ja vajadusel kliendiga suhtlemiseks.",
+        "Peaaegu aasta hiljem, 2026. aasta aprilliks, oli algsest ideest kujunenud terviklik sotsiaalvaldkonna abi- ja tööplatvorm Sotsiaal.pro. Platvormil on kaks tehisintellekti assistenti: üks sotsiaalvaldkonna spetsialistile ja teine eluküsimusega pöördujale. Need aitavad leida infot, saada juhiseid ja liikuda edasi järgmiste sammudeni. Lisaks saab platvormis kasutada eri režiime, agente ja töövooge, näiteks koostada dokumente ja tekste, hallata faile, analüüsida materjale ning teha süvauuringut. Spetsialistidele pakub platvorm ka ühiseid vestlusruume koostööks, kovisiooniks ja vajadusel kliendiga suhtlemiseks.",
         "Samuti saab platvormil kirjeldada nii vabatahtlikke kui ka tasulisi abisoove ja abipakkumisi ning vormistada need tehisaru abil kuulutusteks. See võimalus on kõigile platvormi kasutajatele tasuta.",
         "Ligipääsetavuse toetamiseks saab kasutaja kohandada platvormi keelt, kontrasti, teksti suurust, teemat, ekraani profiili ning liikumise ja jõudluse seadeid. Vestluses saab kasutada ka dikteerimist ja vastuste ettelugemist, mis muudab platvormi kasutamise paindlikumaks eri vajaduste, seadmete ja kasutusolukordade korral.",
-        "SotsiaalAI visioon on kujuneda järgmise põlvkonna sotsiaalvaldkonna abiplatvormiks, mille keskmes on üks vestlusaken. SotsiaalAI ühendab sotsiaalvaldkonna teadmised, tehisintellekti toe, praktilised töövahendid ning abisoovide ja -pakkumiste kokkuviimise. Arengusuund on liikuda tervikliku elulise toimetuleku keskkonna poole, mis aitab leida tuge ka võlanõustamise, karjäärinõustamise, töö- ja elamisvõimaluste ning abivahenditega seotud küsimustes.",
-        "SotsiaalAI lugu on ligi kümne aasta pikkune teekond esimesest ideest toimiva lahenduseni. Selles peegelduvad nii sotsiaalne ettevõtlus kui ka innovatsioon: platvormi arendatakse teadlikult ja hoolikalt, et SotsiaalAI-st kujuneks sisuliselt väärtuslik, hästi toimiv ja turvaline platvorm, mis võiks jõuda iga eestlase taskusse."
+        "Sotsiaal.pro visioon on kujuneda järgmise põlvkonna sotsiaalvaldkonna abiplatvormiks, mille keskmes on üks vestlusaken. Sotsiaal.pro ühendab sotsiaalvaldkonna teadmised, tehisintellekti toe, praktilised töövahendid ning abisoovide ja -pakkumiste kokkuviimise. Arengusuund on liikuda tervikliku elulise toimetuleku keskkonna poole, mis aitab leida tuge ka võlanõustamise, karjäärinõustamise, töö- ja elamisvõimaluste ning abivahenditega seotud küsimustes.",
+        "Sotsiaal.pro lugu on ligi kümne aasta pikkune teekond esimesest ideest toimiva lahenduseni. Selles peegelduvad nii sotsiaalne ettevõtlus kui ka innovatsioon: platvormi arendatakse teadlikult ja hoolikalt, et sellest kujuneks sisuliselt väärtuslik, hästi toimiv ja turvaline lahendus, mis võiks jõuda iga eestlase taskusse."
       ]
     },
     "pricing": {
       "title": "Hinnastus",
-      "intro": "Vali pakett selle järgi, kui põhjalikult soovid SotsiaalAI-d kasutada.",
+      "intro": "Vali pakett selle järgi, kui põhjalikult soovid Sotsiaal.pro platvormi kasutada.",
       "columns": {
         "feature": "Võimalus",
         "free": "Tasuta",
@@ -4305,8 +4311,8 @@
         "workspace": "Töölaud",
         "help": "Abisoovid ja abipakkumised",
         "service_card": "Teenusekaart",
-        "knowledge_base": "SotsiaalAI teadmusbaas",
-        "assistants_agents": "SotsiaalAI assistendid ja agendid",
+        "knowledge_base": "Sotsiaal.pro teadmusbaas",
+        "assistants_agents": "Sotsiaal.pro assistendid ja agendid",
         "sources": "Allikate kuvamine",
         "drafting": "Dokumentide koostamine",
         "analysis": "Dokumendi analüüs",
@@ -4338,7 +4344,7 @@
         "by_agreement": "Kokkuleppel",
         "not_included": "Ei sisaldu"
       },
-      "note": "„Piiratud” tähendab väiksemat ja „Laiendatud” suuremat kasutusmahtu; ükski AI-maht ei ole piiramatu. SotsiaalAI areneb pidevalt ning lisame uusi võimalusi järk-järgult. Hinnad sõltuvad kasutajate arvust ja teenuse kuludest. Võimaluse korral langetame hindu.",
+      "note": "„Piiratud” tähendab väiksemat ja „Laiendatud” suuremat kasutusmahtu; ükski AI-maht ei ole piiramatu. Sotsiaal.pro areneb pidevalt ning lisame uusi võimalusi järk-järgult. Hinnad sõltuvad kasutajate arvust ja teenuse kuludest. Võimaluse korral langetame hindu.",
       "taglines": {
         "free": "Alustamiseks ja tutvumiseks",
         "client": "Igapäevaseks abiks ja suhtluseks",
@@ -4375,8 +4381,8 @@
       }
     },
     "features_page": {
-      "title": "SotsiaalAI võimalused",
-      "intro": "Siit leiad SotsiaalAI põhifunktsioonide lühiselgitused: mida iga võimalus teeb, kellele see on mõeldud ja millised privaatsus-, turva- ja inimese kontrolli põhimõtted töövoogudes kehtivad.",
+      "title": "Sotsiaal.pro võimalused",
+      "intro": "Siit leiad Sotsiaal.pro põhifunktsioonide lühiselgitused: mida iga võimalus teeb, kellele see on mõeldud ja millised privaatsus-, turva- ja inimese kontrolli põhimõtted töövoogudes kehtivad.",
       "items": {
         "workspace": {
           "title": "Töölaud",
@@ -4384,23 +4390,23 @@
         },
         "help": {
           "title": "Abisoovid ja abipakkumised",
-          "body": "Kasutaja kirjeldab abisoovi või abipakkumist oma sõnadega. SotsiaalAI aitab kirjelduse selgemaks vormistada, küsib vajadusel täpsustusi ja valmistab ette avaldatava kuulutuse. Pärast kuulutuse kinnitamist näitab platvorm sobivaid abisoove või abipakkumisi kategooria, piirkonna, abi vormi ja muude tunnuste põhjal. Kui kasutaja ühendab kaks sobivat kuulutust, luuakse ühine vestlusruum osapoolte edasiseks suhtluseks."
+          "body": "Kasutaja kirjeldab abisoovi või abipakkumist oma sõnadega. Sotsiaal.pro aitab kirjelduse selgemaks vormistada, küsib vajadusel täpsustusi ja valmistab ette avaldatava kuulutuse. Pärast kuulutuse kinnitamist näitab platvorm sobivaid abisoove või abipakkumisi kategooria, piirkonna, abi vormi ja muude tunnuste põhjal. Kui kasutaja ühendab kaks sobivat kuulutust, luuakse ühine vestlusruum osapoolte edasiseks suhtluseks."
         },
         "service_card": {
           "title": "Teenusekaart",
-          "body": "Teenusekaart on SotsiaalAI kaardivaade avaldatud KOV sotsiaalhoolekande kontaktide ja teenuseosutajate leidmiseks. Otsida saab nime, kirjelduse, aadressi, teenuse, kategooria, sihtrühma või piirkonna järgi. Otsing arvestab ka teenuseosutaja profiili all olevaid teenuseid, nende teeninduskohti, kirjeldusi ja hinnainfot. Marker tekib asukoha järgi: ühes teeninduskohas saab kuvada mitu teenust ning sama teenus võib olla seotud mitme asukohaga."
+          "body": "Teenusekaart on Sotsiaal.pro kaardivaade avaldatud KOV sotsiaalhoolekande kontaktide ja teenuseosutajate leidmiseks. Otsida saab nime, kirjelduse, aadressi, teenuse, kategooria, sihtrühma või piirkonna järgi. Otsing arvestab ka teenuseosutaja profiili all olevaid teenuseid, nende teeninduskohti, kirjeldusi ja hinnainfot. Marker tekib asukoha järgi: ühes teeninduskohas saab kuvada mitu teenust ning sama teenus võib olla seotud mitme asukohaga."
         },
         "journey": {
           "title": "Teekond",
           "body": "Teekond aitab olukorra kirjelduse põhjal hoida koos kokkuvõtet, seotud teemasid, puuduolevat infot, ettevaatlikke tähelepanekuid ja soovitatud järgmisi samme. Teekond on alguses privaatne ning seda ei jagata spetsialisti, teenuseosutaja ega muu osapoolega enne kasutaja teadlikku kinnitust."
         },
         "knowledge_base": {
-          "title": "SotsiaalAI teadmusbaas",
-          "body": "SotsiaalAI teadmusbaas on platvormi taustakiht, mis toetab assistendi vastuseid valdkondliku infoga. Sinna kuuluvad KOV teenuse- ja kontaktinfo, taotlusvormid, õigusaktid, juhendid, metoodikamaterjalid, organisatsioonide ja teenuseosutajate info, praktilised materjalid ning valdkondlikud artiklid või uuringud. Automaatkontrollid ja uuendamise töövood aitavad märgata KOV, Riigi Teataja ja kontaktinfo muutusi ning värskendada sisu kontrollitult. See aitab hoida vastused sotsiaalvaldkonna kontekstis ja vähendab vajadust otsida sama infot käsitsi mitmest eri kohast."
+          "title": "Sotsiaal.pro teadmusbaas",
+          "body": "Sotsiaal.pro teadmusbaas on platvormi taustakiht, mis toetab assistendi vastuseid valdkondliku infoga. Sinna kuuluvad KOV teenuse- ja kontaktinfo, taotlusvormid, õigusaktid, juhendid, metoodikamaterjalid, organisatsioonide ja teenuseosutajate info, praktilised materjalid ning valdkondlikud artiklid või uuringud. Automaatkontrollid ja uuendamise töövood aitavad märgata KOV, Riigi Teataja ja kontaktinfo muutusi ning värskendada sisu kontrollitult. See aitab hoida vastused sotsiaalvaldkonna kontekstis ja vähendab vajadust otsida sama infot käsitsi mitmest eri kohast."
         },
         "assistants_agents": {
-          "title": "SotsiaalAI assistendid ja agendid",
-          "body": "SotsiaalAI assistendid ja agendid toetavad kasutajat küsimuse, dokumendi või olukorra kirjeldusega töötamisel. Vestlus toetab info küsimist, olukorra mõtestamist ja kasutaja valitud töövooge, näiteks dokumendi koostamist, dokumendi analüüsi, süvauuringut, eelpöördumist, abisoovi või abipakkumist. Kasutaja otsustab ise, millist töövahendit kasutada. Assistent aitab vajadusel infot korrastada, küsimusi täpsustada ja sisu ette valmistada."
+          "title": "Sotsiaal.pro assistendid ja agendid",
+          "body": "Sotsiaal.pro assistendid ja agendid toetavad kasutajat küsimuse, dokumendi või olukorra kirjeldusega töötamisel. Vestlus toetab info küsimist, olukorra mõtestamist ja kasutaja valitud töövooge, näiteks dokumendi koostamist, dokumendi analüüsi, süvauuringut, eelpöördumist, abisoovi või abipakkumist. Kasutaja otsustab ise, millist töövahendit kasutada. Assistent aitab vajadusel infot korrastada, küsimusi täpsustada ja sisu ette valmistada."
         },
         "sources": {
           "title": "Allikate kuvamine",
@@ -4412,11 +4418,11 @@
         },
         "analysis": {
           "title": "Dokumendi analüüs",
-          "body": "Dokumendi analüüs algab kasutaja üles laaditud failist. SotsiaalAI loeb failist välja teksti, jagab selle analüüsiks sobivateks osadeks ja vastab kasutaja küsimustele dokumendi sisu põhjal. See sobib näiteks ametliku vastuse, juhendi, lepingu, aruande, otsuse või muu dokumendi mõistmiseks, kokkuvõtmiseks ja oluliste kohtade leidmiseks. Vaikimisi keskendub analüüs üles laaditud dokumendile. Laiendatud analüüsis võib kasutaja lisada valdkondliku tausta SotsiaalAI teadmistebaasist. Vestlusesse lisatud fail on ajutine ega liigu automaatselt dokumentide hoidlasse."
+          "body": "Dokumendi analüüs algab kasutaja üles laaditud failist. Sotsiaal.pro loeb failist välja teksti, jagab selle analüüsiks sobivateks osadeks ja vastab kasutaja küsimustele dokumendi sisu põhjal. See sobib näiteks ametliku vastuse, juhendi, lepingu, aruande, otsuse või muu dokumendi mõistmiseks, kokkuvõtmiseks ja oluliste kohtade leidmiseks. Vaikimisi keskendub analüüs üles laaditud dokumendile. Laiendatud analüüsis võib kasutaja lisada valdkondliku tausta Sotsiaal.pro teadmistebaasist. Vestlusesse lisatud fail on ajutine ega liigu automaatselt dokumentide hoidlasse."
         },
         "research": {
           "title": "Süvauuring",
-          "body": "Süvauuring aitab koostada põhjalikumat ülevaadet sotsiaalvaldkonna teemast, teenusest, seadusest, juhendist või praktilisest küsimusest. SotsiaalAI otsib seotud allikaid, koondab leitud info struktureeritud vastuseks või raporti tööversiooniks ning toob välja peamised tähelepanekud, seosed, lüngad ja võimalikud järgmised sammud."
+          "body": "Süvauuring aitab koostada põhjalikumat ülevaadet sotsiaalvaldkonna teemast, teenusest, seadusest, juhendist või praktilisest küsimusest. Sotsiaal.pro otsib seotud allikaid, koondab leitud info struktureeritud vastuseks või raporti tööversiooniks ning toob välja peamised tähelepanekud, seosed, lüngad ja võimalikud järgmised sammud."
         },
         "rooms": {
           "title": "Vestlusruumid",
@@ -4428,7 +4434,7 @@
         },
         "pre_inquiry": {
           "title": "Eelpöördumine",
-          "body": "Eelpöördumises saab alustada kolmel viisil: kirjeldada olukorda oma sõnadega, vastata lühemale probleemidele suunatud eelkaardistusele või täita põhjalikum eelkaardistus. Küsimustega alustamisel koondab töövoog eluvaldkondade kaupa infot igapäevase toimetuleku, tervise, elukeskkonna, võrgustiku, senise abi, inimese enda soovi ja peamiste vajaduste kohta. Töövoog aitab märgata võimalikke riske ja liigseid isikuandmeid ning koostab kontrollitava kokkuvõtte ja pöördumise mustandi. Kui infot on piisavalt, otsib SotsiaalAI teenusekaardi andmetest kirjelduse ja piirkonna järgi võimalikke KOV sotsiaalvaldkonna kontakte või teenuseosutajaid. Kasutaja saab mustandit muuta, salvestada, kopeerida, alla laadida või avada e-kirjana. SotsiaalAI-sisese vastuvõtu korral saab vastuvõtja pöördumise platvormis avada, eelkaardistuse eelinfo alla laadida ja vajadusel vestlusruumis edasi suhelda."
+          "body": "Eelpöördumises saab alustada kolmel viisil: kirjeldada olukorda oma sõnadega, vastata lühemale probleemidele suunatud eelkaardistusele või täita põhjalikum eelkaardistus. Küsimustega alustamisel koondab töövoog eluvaldkondade kaupa infot igapäevase toimetuleku, tervise, elukeskkonna, võrgustiku, senise abi, inimese enda soovi ja peamiste vajaduste kohta. Töövoog aitab märgata võimalikke riske ja liigseid isikuandmeid ning koostab kontrollitava kokkuvõtte ja pöördumise mustandi. Kui infot on piisavalt, otsib Sotsiaal.pro teenusekaardi andmetest kirjelduse ja piirkonna järgi võimalikke KOV sotsiaalvaldkonna kontakte või teenuseosutajaid. Kasutaja saab mustandit muuta, salvestada, kopeerida, alla laadida või avada e-kirjana. platvormisisese vastuvõtu korral saab vastuvõtja pöördumise platvormis avada, eelkaardistuse eelinfo alla laadida ja vajadusel vestlusruumis edasi suhelda."
         },
         "intake": {
           "title": "Pöördumiste vastuvõtt",
@@ -4448,7 +4454,7 @@
         },
         "materials_adding": {
           "title": "Materjalide lisamine",
-          "body": "Materjalide lisamine võimaldab spetsialistil või teenuseosutajal saata SotsiaalAI teadmistebaasi täiendamiseks faile, näiteks juhendeid, teenusekirjeldusi, vorme või muid allikaid. Failile saab lisada kommentaari, mis aitab materjali konteksti mõista. Saadetud materjal jõuab ülevaatusse ega lisandu teadmistebaasi automaatselt. Pärast ülevaatust otsustatakse, kas materjal sobib teadmistebaasi lisamiseks."
+          "body": "Materjalide lisamine võimaldab spetsialistil või teenuseosutajal saata Sotsiaal.pro teadmistebaasi täiendamiseks faile, näiteks juhendeid, teenusekirjeldusi, vorme või muid allikaid. Failile saab lisada kommentaari, mis aitab materjali konteksti mõista. Saadetud materjal jõuab ülevaatusse ega lisandu teadmistebaasi automaatselt. Pärast ülevaatust otsustatakse, kas materjal sobib teadmistebaasi lisamiseks."
         },
         "service_card_listing": {
           "title": "Teenuseosutaja kaardiprofiil",
@@ -4464,7 +4470,7 @@
         },
         "crisis_routing": {
           "title": "Kriisi- ja ohusuunamine",
-          "body": "Kui kasutaja kirjeldab vahetut ohtu, enesevigastamise või suitsiidiriski, vägivalda või muud rasket kriisi, kuvab SotsiaalAI kiire abi juhised ja Eesti abikanalid. Esile tuuakse näiteks 112, Lasteabi 116 111 ja Ohvriabi 116 006. AI ei asenda hädaabi, lastekaitset, ohvriabi ega professionaalset kriisiabi."
+          "body": "Kui kasutaja kirjeldab vahetut ohtu, enesevigastamise või suitsiidiriski, vägivalda või muud rasket kriisi, kuvab Sotsiaal.pro kiire abi juhised ja Eesti abikanalid. Esile tuuakse näiteks 112, Lasteabi 116 111 ja Ohvriabi 116 006. AI ei asenda hädaabi, lastekaitset, ohvriabi ega professionaalset kriisiabi."
         },
         "youth_child_safety": {
           "title": "Noorte ja laste ohutus",
@@ -4480,7 +4486,7 @@
         },
         "domain_knowledge": {
           "title": "Sotsiaalvaldkonna teadmuskeskkond",
-          "body": "SotsiaalAI väärtus ei ole üldine chatbot, vaid sotsiaalvaldkonna jaoks ehitatud teadmuspõhi ja tööloogika. Platvorm kasutab SHS-i, lastekaitseseaduse, KOV-i teenuste, SKA, Sotsiaalministeeriumi, Töötukassa, Tervisekassa ja valdkondlike materjalide põhist infot seal, kus allikad on olemas."
+          "body": "Sotsiaal.pro väärtus ei ole üldine chatbot, vaid sotsiaalvaldkonna jaoks ehitatud teadmuspõhi ja tööloogika. Platvorm kasutab SHS-i, lastekaitseseaduse, KOV-i teenuste, SKA, Sotsiaalministeeriumi, Töötukassa, Tervisekassa ja valdkondlike materjalide põhist infot seal, kus allikad on olemas."
         }
       }
     },
@@ -4530,7 +4536,7 @@
         },
         "about": {
           "title": "Avalik info ja kontaktid",
-          "body": "<p>Avalehe kaartidelt ja alumisest kiirmenüüst avanevad <a href=\"/voimalused\">Võimalused</a>, Kasutusjuhend, <a href=\"/meist\">Meist</a>, Paigalda, <a href=\"/kasutustingimused\">Kasutustingimused</a>, <a href=\"/privaatsustingimused\">Privaatsuspoliitika</a>, <a href=\"/hinnastus\">Hinnastus</a> ja <button type=\"button\" data-contact-open>Kontakt</button>. Autori ja platvormi kujunemise loo leiad lehelt <a href=\"/autorilt\">Autorilt</a>.</p><p>Ülaserva peidetud menüü haldab taustaheli, lugude vahetamist, ligipääsetavuse moodulit ja Ooterežiimi. Toetatud brauseris saab Paigalda kaardilt SotsiaalAI telefoni või arvutisse rakendusena lisada.</p>"
+          "body": "<p>Avalehe kaartidelt ja alumisest kiirmenüüst avanevad <a href=\"/voimalused\">Võimalused</a>, Kasutusjuhend, <a href=\"/meist\">Meist</a>, Paigalda, <a href=\"/kasutustingimused\">Kasutustingimused</a>, <a href=\"/privaatsustingimused\">Privaatsuspoliitika</a>, <a href=\"/hinnastus\">Hinnastus</a> ja <button type=\"button\" data-contact-open>Kontakt</button>. Autori ja platvormi kujunemise loo leiad lehelt <a href=\"/autorilt\">Autorilt</a>.</p><p>Ülaserva peidetud menüü haldab taustaheli, lugude vahetamist, ligipääsetavuse moodulit ja Ooterežiimi. Toetatud brauseris saab Paigalda kaardilt Sotsiaal.pro telefoni või arvutisse rakendusena lisada.</p>"
         },
         "before_use": {
           "title": "Enne tööalast kasutamist",
@@ -4558,7 +4564,7 @@
         },
         "privacy_safety": {
           "title": "Privaatsushoiatused ja kiire abi",
-          "body": "<p>Kui privaatsuse eelkontroll märkab võimalikku nime, isikukoodi, aadressi, telefoni, e-posti või muud tundlikku detaili, kuvab platvorm hoiatuse enne saatmist.</p><ul><li><strong>Muudan teksti</strong> jätab teksti sulle parandamiseks.</li><li><strong>Saada maskeeritult</strong> asendab tuvastatud osad märgenditega.</li><li><strong>Saada siiski</strong> on kasutatav ainult lubatud privaatses töövoos. Avalikes abisoovides ja abipakkumistes on andmete minimeerimine rangem.</li></ul><p>Kiireloomulise või ohtliku olukorra korral järgi kohe kuvatud 112, Lasteabi või Ohvriabi juhiseid. SotsiaalAI ei ole hädaabikanal.</p>"
+          "body": "<p>Kui privaatsuse eelkontroll märkab võimalikku nime, isikukoodi, aadressi, telefoni, e-posti või muud tundlikku detaili, kuvab platvorm hoiatuse enne saatmist.</p><ul><li><strong>Muudan teksti</strong> jätab teksti sulle parandamiseks.</li><li><strong>Saada maskeeritult</strong> asendab tuvastatud osad märgenditega.</li><li><strong>Saada siiski</strong> on kasutatav ainult lubatud privaatses töövoos. Avalikes abisoovides ja abipakkumistes on andmete minimeerimine rangem.</li></ul><p>Kiireloomulise või ohtliku olukorra korral järgi kohe kuvatud 112, Lasteabi või Ohvriabi juhiseid. Sotsiaal.pro ei ole hädaabikanal.</p>"
         }
       },
       "role_picker": {
@@ -4664,15 +4670,15 @@
     "cancel": {
       "confirm_text": "Kas oled kindel? Ligipääs jääb kehtima kuni {date} ja uut kuumakset ei võeta. Lõpetamist ei saa enne perioodi lõppu tagasi võtta."
     },
-    "info": "SotsiaalAI teadmusbaasi, assistentide ja töövoogude aktiivne kasutus vajab igakuist rollipõhist tellimust; tasuta paketiga saab alustada ning abisoovi ja -pakkumise vood on tasuta. Kuutasu sõltub paketist. Tellimus pikeneb automaatselt ja seda saad igal ajal siitsamalt tellimuse lehelt lõpetada.",
-    "info_priced": "SotsiaalAI kasutamiseks on vajalik igakuine tellimus. Rolli \"{role}\" kuutasu on {amount}. Tellimus pikeneb automaatselt ja seda saad igal ajal siitsamalt tellimuse lehelt lõpetada.",
+    "info": "Sotsiaal.pro teadmusbaasi, assistentide ja töövoogude aktiivne kasutus vajab igakuist rollipõhist tellimust; tasuta paketiga saab alustada ning abisoovi ja -pakkumise vood on tasuta. Kuutasu sõltub paketist. Tellimus pikeneb automaatselt ja seda saad igal ajal siitsamalt tellimuse lehelt lõpetada.",
+    "info_priced": "Sotsiaal.pro kasutamiseks on vajalik igakuine tellimus. Rolli \"{role}\" kuutasu on {amount}. Tellimus pikeneb automaatselt ja seda saad igal ajal siitsamalt tellimuse lehelt lõpetada.",
     "sponsored_info": "Kui sinu ligipääs tuleb sponsoreeritud kutse kaudu, kehtib see ühe kuu. Pärast seda aktiveeri oma tellimus.",
     "checkout": {
       "title": "Enne maksmist",
       "agreement": "Nõustun <terms>kasutustingimustega</terms> ja <privacy>privaatsustingimustega</privacy>. Mõistan, et liitun kuutasulise teenusega ja soovin makse algatada Maksekeskuse kaudu.",
       "details": "Makseviisi valid Maksekeskuse makselehel. Ligipääs aktiveerub kohe pärast kinnitust. Kui maksega on probleem, lähtutakse Maksekeskuse tingimustest ja kohaldatavatest õigusnormidest.",
       "error_required": "Enne maksmist peab linnuke olema nõusolekul märgitud.",
-      "recurring_title": "SotsiaalAI kuutellimus",
+      "recurring_title": "Sotsiaal.pro kuutellimus",
       "recurring_description": "Roll: {role}. Kuutasu: {amount}. Tellimus pikeneb iga kuu automaatselt kuni selle tühistad.",
       "recurring_confirmation": "Kinnitan, et nõustun korduva kuumaksega ja annan loa võtta edasised kuumaksed samalt kaardilt kuni tellimuse tühistamiseni."
     },
@@ -4686,11 +4692,11 @@
     "install_short": "Paigalda",
     "fullscreen_body": "Parima kasutuskogemuse saad täisekraanil.",
     "installed_heading": "Rakendusvaade on kasutusel",
-    "installed_body": "SotsiaalAI on selles aknas avatud paigaldatud rakendusena.",
-    "promotion_title": "Ava SotsiaalAI täisekraanil",
+    "installed_body": "Sotsiaal.pro on selles aknas avatud paigaldatud rakendusena.",
+    "promotion_title": "Ava Sotsiaal.pro täisekraanil",
     "promotion_cta": "Paigalda",
     "promotion_later": "Hiljem",
-    "promotion_announcement": "SotsiaalAI saab avada täisekraanilise rakendusena.",
+    "promotion_announcement": "Sotsiaal.pro saab avada täisekraanilise rakendusena.",
     "instructions": {
       "ios": "Vajuta \"Jaga\" ja seejärel \"Vaata veel\". Ekraanile lisamiseks vajuta.",
       "ios_other_browser": "Salvesta esmalt eelistused. Seejärel ava see leht iPhone'is või iPadis Safaris, vajuta „Jaga” ja vali „Lisa avakuvale”.",
@@ -4897,43 +4903,43 @@
     "account": {
       "email_change_confirm": {
         "subject": "Kinnita oma uus e-posti aadress",
-        "text": "Tere!\n\nSaime taotluse muuta sinu SotsiaalAI konto e-posti aadressi. Kinnita uus aadress alloleva lingi kaudu:\n{confirmUrl}\n\nKui sina seda ei algatanud, võid selle kirja eirata — kontot ei muudeta enne kinnitamist.",
-        "html": "<p>Tere!</p><p>Saime taotluse muuta sinu SotsiaalAI konto e-posti aadressi. Kinnita uus aadress alloleva lingi kaudu:</p><p><a href=\"{confirmUrl}\">{confirmUrl}</a></p><p>Kui sina seda ei algatanud, võid selle kirja eirata — kontot ei muudeta enne kinnitamist.</p>"
+        "text": "Tere!\n\nSaime taotluse muuta sinu Sotsiaal.pro konto e-posti aadressi. Kinnita uus aadress alloleva lingi kaudu:\n{confirmUrl}\n\nKui sina seda ei algatanud, võid selle kirja eirata — kontot ei muudeta enne kinnitamist.",
+        "html": "<p>Tere!</p><p>Saime taotluse muuta sinu Sotsiaal.pro konto e-posti aadressi. Kinnita uus aadress alloleva lingi kaudu:</p><p><a href=\"{confirmUrl}\">{confirmUrl}</a></p><p>Kui sina seda ei algatanud, võid selle kirja eirata — kontot ei muudeta enne kinnitamist.</p>"
       },
       "pin_changed": {
-        "subject": "SotsiaalAI PIN-kood on muudetud",
-        "text": "Tere!\n\nSinu SotsiaalAI konto PIN-kood on äsja muudetud.\n\nKui sina seda ei teinud, kirjuta kohe aadressile info@sotsiaal.pro ja taasta oma PIN.",
-        "html": "<p>Tere!</p><p>Sinu SotsiaalAI konto PIN-kood on äsja muudetud.</p><p>Kui sina seda ei teinud, kirjuta kohe aadressile <a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a> ja taasta oma PIN.</p>"
+        "subject": "Sotsiaal.pro PIN-kood on muudetud",
+        "text": "Tere!\n\nSinu Sotsiaal.pro konto PIN-kood on äsja muudetud.\n\nKui sina seda ei teinud, kirjuta kohe aadressile info@sotsiaal.pro ja taasta oma PIN.",
+        "html": "<p>Tere!</p><p>Sinu Sotsiaal.pro konto PIN-kood on äsja muudetud.</p><p>Kui sina seda ei teinud, kirjuta kohe aadressile <a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a> ja taasta oma PIN.</p>"
       },
       "email_changed_notice": {
-        "subject": "SotsiaalAI konto e-post on muudetud",
-        "text": "Tere!\n\nSinu SotsiaalAI konto e-posti aadress on muudetud. See teavitus saadeti sinu senisele aadressile.\n\nKui sina seda ei algatanud, kirjuta kohe aadressile info@sotsiaal.pro.",
-        "html": "<p>Tere!</p><p>Sinu SotsiaalAI konto e-posti aadress on muudetud. See teavitus saadeti sinu senisele aadressile.</p><p>Kui sina seda ei algatanud, kirjuta kohe aadressile <a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a>.</p>"
+        "subject": "Sotsiaal.pro konto e-post on muudetud",
+        "text": "Tere!\n\nSinu Sotsiaal.pro konto e-posti aadress on muudetud. See teavitus saadeti sinu senisele aadressile.\n\nKui sina seda ei algatanud, kirjuta kohe aadressile info@sotsiaal.pro.",
+        "html": "<p>Tere!</p><p>Sinu Sotsiaal.pro konto e-posti aadress on muudetud. See teavitus saadeti sinu senisele aadressile.</p><p>Kui sina seda ei algatanud, kirjuta kohe aadressile <a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a>.</p>"
       }
     },
     "auth": {
       "reset": {
-        "subject": "SotsiaalAI PIN-i taastamine",
+        "subject": "Sotsiaal.pro PIN-i taastamine",
         "text": "Tere!\n\nSaad PIN-i lähtestada lingi kaudu:\n{resetUrl}\n\nKui sa ei soovinud PIN-i taastada, võid selle kirja eirata.",
         "html": "<p>Tere!</p><p>Saad PIN-i lähtestada lingi kaudu:</p><p><a href=\"{resetUrl}\">{resetUrl}</a></p><p>Kui sa ei soovinud PIN-i taastada, võid selle kirja eirata.</p>"
       },
       "login_link": {
-        "subject": "SotsiaalAI sisselogimise kinnitamine",
+        "subject": "Sotsiaal.pro sisselogimise kinnitamine",
         "text": "Tere!\n\nSisselogimise kinnitamiseks ava see link:\n{confirmUrl}\n\nKinnituslink kehtib {minutes} minutit.\n\nKui sa ei proovinud sisse logida, eira seda kirja.",
         "html": "<div style=\"font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1a1a1a;line-height:1.55\"><p>Tere!</p><p>Sisselogimise kinnitamiseks vajuta nuppu:</p><p style=\"margin:24px 0\"><a href=\"{confirmUrl}\" style=\"display:inline-block;background-color:#4d4d4d;background-color:rgba(26,26,26,0.78);background-image:linear-gradient(180deg,rgba(255,255,255,0.20) 0%,rgba(255,255,255,0.05) 45%,rgba(255,255,255,0) 100%);color:#f7f7f7;text-decoration:none;padding:14px 34px;border:1px solid rgba(255,255,255,0.30);border-radius:14px;font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-weight:500;font-size:19px;letter-spacing:.04em;box-shadow:0 6px 18px rgba(26,26,26,0.18)\">KINNITAN</a></p><p>Kinnituslink kehtib {minutes} minutit. Kui avad lingi samas brauseris, kus sisestasid PIN-koodi, viib nupp sind otse sisse. Muidu jätkub sisselogimine aknas, kus seda alustasid.</p><p style=\"color:#888888;font-size:13px\">Kui sa ei proovinud sisse logida, eira seda kirja.</p></div>"
       },
       "login_otp": {
-        "subject": "SotsiaalAI sisselogimise kinnituskood",
+        "subject": "Sotsiaal.pro sisselogimise kinnituskood",
         "text": "Tere!\n\nSinu kinnituskood on: {code}\nKood kehtib {minutes} minutit.\n\nKui sa ei proovinud sisse logida, eira seda kirja.",
         "html": "<p>Tere!</p><p>Sinu kinnituskood on: <strong>{code}</strong></p><p>Kood kehtib {minutes} minutit.</p><p>Kui sa ei proovinud sisse logida, eira seda kirja.</p>"
       },
       "login_otp_resend": {
-        "subject": "SotsiaalAI uus kinnituskood",
+        "subject": "Sotsiaal.pro uus kinnituskood",
         "text": "Tere!\n\nSinu uus kinnituskood on: {code}\nKood kehtib {minutes} minutit.\n\nKui sa ei proovinud sisse logida, eira seda kirja.",
         "html": "<p>Tere!</p><p>Sinu uus kinnituskood on: <strong>{code}</strong></p><p>Kood kehtib {minutes} minutit.</p><p>Kui sa ei proovinud sisse logida, eira seda kirja.</p>"
       },
       "login_device_alert": {
-        "subject": "SotsiaalAI sisselogimine uuest või tundmatust seadmest",
+        "subject": "Sotsiaal.pro sisselogimine uuest või tundmatust seadmest",
         "text": "Tere!\n\nMärkasime sisselogimiskatset uuest või tundmatust seadmest.\n\nAeg: {time}\nSeade: {device}\nIP-aadress: {ip}\n\nKui see olid sina, saad sisselogimist e-posti lingiga jätkata. Kui mitte, muuda palun kohe oma PIN-i.",
         "html": "<p>Tere!</p><p>Märkasime sisselogimiskatset uuest või tundmatust seadmest.</p><ul><li><strong>Aeg:</strong> {time}</li><li><strong>Seade:</strong> {device}</li><li><strong>IP-aadress:</strong> {ip}</li></ul><p>Kui see olid sina, saad sisselogimist e-posti lingiga jätkata. Kui mitte, muuda palun kohe oma PIN-i.</p>"
       },
@@ -4943,21 +4949,21 @@
         "html": "<div style=\"font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1a1a1a;line-height:1.55\"><p>Tere!</p><p>Konto aktiveerimiseks kinnita oma e-posti aadress:</p><p style=\"margin:24px 0\"><a href=\"{verifyUrl}\" style=\"display:inline-block;background-color:#4d4d4d;background-color:rgba(26,26,26,0.78);background-image:linear-gradient(180deg,rgba(255,255,255,0.20) 0%,rgba(255,255,255,0.05) 45%,rgba(255,255,255,0) 100%);color:#f7f7f7;text-decoration:none;padding:14px 34px;border:1px solid rgba(255,255,255,0.30);border-radius:14px;font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-weight:500;font-size:19px;letter-spacing:.04em;box-shadow:0 6px 18px rgba(26,26,26,0.18)\">AKTIVEERIN</a></p><p style=\"color:#888888;font-size:13px\">Kui sa ei loonud kontot, võid selle kirja eirata.</p></div>"
       },
       "account_deleted": {
-        "subject": "SotsiaalAI konto on kustutatud",
-        "text": "Tere!\n\nTeie SotsiaalAI konto on kustutatud.\n\nKui te ei algatanud seda tegevust, palun kirjutage kohe aadressile info@sotsiaal.pro.",
-        "html": "<p>Tere!</p><p>Teie SotsiaalAI konto on kustutatud.</p><p>Kui te ei algatanud seda tegevust, palun kirjutage kohe aadressile <a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a>.</p>"
+        "subject": "Sotsiaal.pro konto on kustutatud",
+        "text": "Tere!\n\nTeie Sotsiaal.pro konto on kustutatud.\n\nKui te ei algatanud seda tegevust, palun kirjutage kohe aadressile info@sotsiaal.pro.",
+        "html": "<p>Tere!</p><p>Teie Sotsiaal.pro konto on kustutatud.</p><p>Kui te ei algatanud seda tegevust, palun kirjutage kohe aadressile <a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a>.</p>"
       }
     },
     "invite": {
       "create": {
         "subject": "Kutse koostööruumi: {roomTitle}",
-        "text": "Tere!\n\n{inviterName} kutsus sind SotsiaalAI koostööruumi \"{roomTitle}\".\n\nKutse annab ligipääsu ainult sellele ruumile, mitte kutsuja teistele ruumidele, eravestlustele, dokumentidele ega Teekonnale.\n\nLiitu: {joinLink}\n\nKui sa seda kutset ei oodanud, võid kirja eirata.",
-        "html": "<p>Tere!</p><p>{inviterName} kutsus sind SotsiaalAI koostööruumi <strong>{roomTitle}</strong>.</p><p>Kutse annab ligipääsu ainult sellele ruumile, mitte kutsuja teistele ruumidele, eravestlustele, dokumentidele ega Teekonnale.</p><p><a href=\"{joinLink}\">Liitu ruumiga</a></p><p>Kui sa seda kutset ei oodanud, võid kirja eirata.</p>"
+        "text": "Tere!\n\n{inviterName} kutsus sind Sotsiaal.pro koostööruumi \"{roomTitle}\".\n\nKutse annab ligipääsu ainult sellele ruumile, mitte kutsuja teistele ruumidele, eravestlustele, dokumentidele ega Teekonnale.\n\nLiitu: {joinLink}\n\nKui sa seda kutset ei oodanud, võid kirja eirata.",
+        "html": "<p>Tere!</p><p>{inviterName} kutsus sind Sotsiaal.pro koostööruumi <strong>{roomTitle}</strong>.</p><p>Kutse annab ligipääsu ainult sellele ruumile, mitte kutsuja teistele ruumidele, eravestlustele, dokumentidele ega Teekonnale.</p><p><a href=\"{joinLink}\">Liitu ruumiga</a></p><p>Kui sa seda kutset ei oodanud, võid kirja eirata.</p>"
       },
       "sponsored": {
         "subject": "Sponsoreeritud kutse: {roomTitle}",
-        "text": "Tere!\n\n{inviterName} kutsus sind ruumi \"{roomTitle}\" ja tasus sinu eest ühe kuu SotsiaalAI kasutuse.\n\nSinu roll: {roleLabel}\n\nÜhe kuu jooksul saad kasutada kogu SotsiaalAI-d oma rollis — vestlused assistendiga, teadmusbaas ja töövood. Jagatud on ainult ruum \"{roomTitle}\"; kõik muu, mida platvormil teed, jääb sinu privaatseks.\n\nLiitu: {joinLink}\n\nPärast ühe kuu lõppu saad kasutamise jätkamiseks tellimuse ise aktiveerida lehel Tellimus.\n\nKui sa ei oodanud seda kirja, võid selle eirata.",
-        "html": "<div style=\"font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1a1a1a;line-height:1.55\"><p>Tere!</p><p><strong>{inviterName}</strong> kutsus sind ruumi <strong>{roomTitle}</strong> ja tasus sinu eest ühe kuu SotsiaalAI kasutuse.</p><p><strong>Sinu roll:</strong> {roleLabel}</p><p>Ühe kuu jooksul saad kasutada kogu SotsiaalAI-d oma rollis — vestlused assistendiga, teadmusbaas ja töövood. Jagatud on ainult ruum <strong>{roomTitle}</strong>; kõik muu, mida platvormil teed, jääb sinu privaatseks.</p><p style=\"margin:24px 0\"><a href=\"{joinLink}\" style=\"display:inline-block;background-color:#4d4d4d;background-color:rgba(26,26,26,0.78);background-image:linear-gradient(180deg,rgba(255,255,255,0.20) 0%,rgba(255,255,255,0.05) 45%,rgba(255,255,255,0) 100%);color:#f7f7f7;text-decoration:none;padding:14px 34px;border:1px solid rgba(255,255,255,0.30);border-radius:14px;font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-weight:500;font-size:19px;letter-spacing:.04em;box-shadow:0 6px 18px rgba(26,26,26,0.18)\">LIITUN</a></p><p>Pärast ühe kuu lõppu saad kasutamise jätkamiseks tellimuse ise aktiveerida lehel Tellimus.</p><p style=\"color:#888888;font-size:13px\">Kui sa ei oodanud seda kirja, võid selle eirata.</p></div>"
+        "text": "Tere!\n\n{inviterName} kutsus sind ruumi \"{roomTitle}\" ja tasus sinu eest ühe kuu Sotsiaal.pro kasutuse.\n\nSinu roll: {roleLabel}\n\nÜhe kuu jooksul saad kasutada kogu Sotsiaal.pro platvormi oma rollis — vestlused assistendiga, teadmusbaas ja töövood. Jagatud on ainult ruum \"{roomTitle}\"; kõik muu, mida platvormil teed, jääb sinu privaatseks.\n\nLiitu: {joinLink}\n\nPärast ühe kuu lõppu saad kasutamise jätkamiseks tellimuse ise aktiveerida lehel Tellimus.\n\nKui sa ei oodanud seda kirja, võid selle eirata.",
+        "html": "<div style=\"font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1a1a1a;line-height:1.55\"><p>Tere!</p><p><strong>{inviterName}</strong> kutsus sind ruumi <strong>{roomTitle}</strong> ja tasus sinu eest ühe kuu Sotsiaal.pro kasutuse.</p><p><strong>Sinu roll:</strong> {roleLabel}</p><p>Ühe kuu jooksul saad kasutada kogu Sotsiaal.pro platvormi oma rollis — vestlused assistendiga, teadmusbaas ja töövood. Jagatud on ainult ruum <strong>{roomTitle}</strong>; kõik muu, mida platvormil teed, jääb sinu privaatseks.</p><p style=\"margin:24px 0\"><a href=\"{joinLink}\" style=\"display:inline-block;background-color:#4d4d4d;background-color:rgba(26,26,26,0.78);background-image:linear-gradient(180deg,rgba(255,255,255,0.20) 0%,rgba(255,255,255,0.05) 45%,rgba(255,255,255,0) 100%);color:#f7f7f7;text-decoration:none;padding:14px 34px;border:1px solid rgba(255,255,255,0.30);border-radius:14px;font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-weight:500;font-size:19px;letter-spacing:.04em;box-shadow:0 6px 18px rgba(26,26,26,0.18)\">LIITUN</a></p><p>Pärast ühe kuu lõppu saad kasutamise jätkamiseks tellimuse ise aktiveerida lehel Tellimus.</p><p style=\"color:#888888;font-size:13px\">Kui sa ei oodanud seda kirja, võid selle eirata.</p></div>"
       },
       "sponsored_revoked": {
         "subject": "Sponsoreeritud ligipääs ruumis \"{roomTitle}\" on lõppenud",
@@ -4972,13 +4978,13 @@
     },
     "payment": {
       "owner_webhook": {
-        "subject": "[SotsiaalAI] Makse veebikonks: {status} ({providerPaymentId})",
+        "subject": "[Sotsiaal.pro] Makse veebikonks: {status} ({providerPaymentId})",
         "text": "Makse veebikonks töödeldi.\n\nOlek: {status}\nMakseteenuse makse ID: {providerPaymentId}\nMakse ID: {paymentId}\nSumma: {amount} {currency}\nTasutud: {paidAt}\nLoodud: {createdAt}\nKasutaja e-post: {userEmail}\nKasutaja ID: {userId}\nTellimuse ID: {subscriptionId}\nTellimuspakett: {subscriptionPlan}\nTellimuse olek: {subscriptionStatus}\nTellimus kehtib kuni: {subscriptionValidUntil}\nTellimus tühistati: {subscriptionCanceledAt}\nTellimuse tegevus: {subscriptionAction}\nSündmuse aeg: {eventTime}\n\nAdministraatori analüütika: {adminUrl}",
         "html": "<p>Makse veebikonks töödeldi.</p><ul><li><strong>Olek:</strong> {status}</li><li><strong>Makseteenuse makse ID:</strong> {providerPaymentId}</li><li><strong>Makse ID:</strong> {paymentId}</li><li><strong>Summa:</strong> {amount} {currency}</li><li><strong>Tasutud:</strong> {paidAt}</li><li><strong>Loodud:</strong> {createdAt}</li><li><strong>Kasutaja e-post:</strong> {userEmail}</li><li><strong>Kasutaja ID:</strong> {userId}</li><li><strong>Tellimuse ID:</strong> {subscriptionId}</li><li><strong>Tellimuspakett:</strong> {subscriptionPlan}</li><li><strong>Tellimuse olek:</strong> {subscriptionStatus}</li><li><strong>Tellimus kehtib kuni:</strong> {subscriptionValidUntil}</li><li><strong>Tellimus tühistati:</strong> {subscriptionCanceledAt}</li><li><strong>Tellimuse tegevus:</strong> {subscriptionAction}</li><li><strong>Sündmuse aeg:</strong> {eventTime}</li></ul><p><a href=\"{adminUrl}\">Ava administraatori analüütika</a></p>"
       },
       "customer_confirmation": {
         "subscription": {
-          "subject": "Makse õnnestus — SotsiaalAI tellimus on aktiivne",
+          "subject": "Makse õnnestus — Sotsiaal.pro tellimus on aktiivne",
           "text": "Tere!\n\nTäname! Sinu makse õnnestus ja tellimus on aktiivne.\n\nMakstud: {amount} {currency}\nKuupäev: {paidAt}\nPakett: {subscriptionPlan}\nKehtib kuni: {subscriptionValidUntil}\n\nTellimus pikeneb automaatselt. Saad seda hallata või lõpetada oma profiililt.\n\nKüsimuste korral kirjuta: {supportEmail}",
           "html": "<div style=\"font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1a1a1a;line-height:1.55\"><p>Tere!</p><p>Täname! Sinu makse õnnestus ja tellimus on aktiivne.</p><p><strong>Makstud:</strong> {amount} {currency}<br><strong>Kuupäev:</strong> {paidAt}<br><strong>Pakett:</strong> {subscriptionPlan}<br><strong>Kehtib kuni:</strong> {subscriptionValidUntil}</p><p>Tellimus pikeneb automaatselt. Saad seda hallata või lõpetada oma profiililt.</p><p style=\"margin:24px 0\"><a href=\"{profileUrl}\" style=\"display:inline-block;background-color:#4d4d4d;background-color:rgba(26,26,26,0.78);background-image:linear-gradient(180deg,rgba(255,255,255,0.20) 0%,rgba(255,255,255,0.05) 45%,rgba(255,255,255,0) 100%);color:#f7f7f7;text-decoration:none;padding:14px 34px;border:1px solid rgba(255,255,255,0.30);border-radius:14px;font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-weight:500;font-size:19px;letter-spacing:.04em;box-shadow:0 6px 18px rgba(26,26,26,0.18)\">TELLIMUS</a></p><p style=\"color:#888888;font-size:13px\">Küsimuste korral kirjuta {supportEmail}.</p></div>"
         },
@@ -5788,8 +5794,8 @@
     },
     "email_preference": "Saada valikulised tööjärje märguanded ka e-postiga",
     "email_preference_hint": "Kirjad ei sisalda pöördumiste, ruumide ega mustandite sisu.",
-    "email_subject": "SotsiaalAI märguanne",
-    "email_intro": "SotsiaalAI-s on sulle uus märguanne.",
+    "email_subject": "Sotsiaal.pro märguanne",
+    "email_intro": "Platvormis Sotsiaal.pro on sulle uus märguanne.",
     "email_action": "Logi selle vaatamiseks turvaliselt sisse:"
   },
   "workspace_continuity": {
@@ -6152,13 +6158,13 @@
     },
     "pages": {
       "analytics": {
-        "meta_title": "Analüütika - SotsiaalAI"
+        "meta_title": "Analüütika - Sotsiaal.pro"
       },
       "framework_acceptances": {
-        "meta_title": "Tööalase kasutuse kinnitused - SotsiaalAI"
+        "meta_title": "Tööalase kasutuse kinnitused - Sotsiaal.pro"
       },
       "rag": {
-        "meta_title": "RAG-i haldus - SotsiaalAI",
+        "meta_title": "RAG-i haldus - Sotsiaal.pro",
         "meta_description": "Lae üles ja halda RAG-materjale."
       }
     },
@@ -7297,7 +7303,7 @@
     "sections": {
       "start_description": "Tere. Alustame sinu teekonda. Kirjelda olukorda oma sõnadega. Sa ei pea kõike teadma ega õigesti sõnastama, kirjuta lihtsalt, mis toimub.",
       "review_title": "Ülevaade enne salvestamist",
-      "review_description": "Vaata üle, kas SotsiaalAI korrastas olukorra õigesti. Teekond salvestatakse alles siis, kui kinnitad.",
+      "review_description": "Vaata üle, kas Sotsiaal.pro korrastas olukorra õigesti. Teekond salvestatakse alles siis, kui kinnitad.",
       "active_title": "Aktiivne teekond",
       "archived_title": "Varasemad teekonnad"
     },
@@ -7356,7 +7362,7 @@
     "healthContact": {
       "title": "Tervisekontakti võimalus",
       "description": "Sinu kirjelduses võib olla tervisega seotud küsimus. Esmane järgmine samm võib olla perearstikeskus, tervisekeskus või ametlik tervisenõu kontakt.",
-      "notMedicalAdvice": "SotsiaalAI ei anna meditsiinilist hinnangut, diagnoosi ega ravisoovitust, kuid saab aidata küsimused selgelt sõnastada. Kui on vahetu oht, tuleb pöörduda hädaabinumbrile või erakorralise abi poole.",
+      "notMedicalAdvice": "Sotsiaal.pro ei anna meditsiinilist hinnangut, diagnoosi ega ravisoovitust, kuid saab aidata küsimused selgelt sõnastada. Kui on vahetu oht, tuleb pöörduda hädaabinumbrile või erakorralise abi poole.",
       "createQuestions": "Koosta küsimused tervisekontaktile",
       "questionsDraftTitle": "Küsimused tervisekontaktile",
       "privateNote": "Küsimused jäävad sinu kätte. Neid ei saadeta automaatselt perearstikeskusele, tervisekeskusele ega muule osapoolele.",
@@ -7477,7 +7483,7 @@
     "assistiveDevices": {
       "title": "Abivahendid ja kohandused",
       "description": "Siia saab koondada info abivahendite, kodukohanduse või abivahendi kasutamise toe kohta.",
-      "safetyNote": "SotsiaalAI ei määra ametlikult abivahendit ega otsusta hüvitamist. Vajadusel täpsusta sobivust KOV-i, spetsialisti, rehabilitatsioonimeeskonna või abivahendi teenuseosutajaga.",
+      "safetyNote": "Sotsiaal.pro ei määra ametlikult abivahendit ega otsusta hüvitamist. Vajadusel täpsusta sobivust KOV-i, spetsialisti, rehabilitatsioonimeeskonna või abivahendi teenuseosutajaga.",
       "addDocument": "Lisa dokument",
       "createPracticalHelpRequest": "Loo abisoov praktiliseks abiks"
     },
@@ -7527,7 +7533,7 @@
     "healthContact": {
       "title": "Tervisekontakt",
       "description": "See kontakt võib sobida tervisega seotud küsimuse esmaseks täpsustamiseks.",
-      "notMedicalPlatform": "SotsiaalAI ei anna meditsiinilist hinnangut, diagnoosi ega ravisoovitust."
+      "notMedicalPlatform": "Sotsiaal.pro ei anna meditsiinilist hinnangut, diagnoosi ega ravisoovitust."
     }
   },
   "wellbeing": {
@@ -7932,12 +7938,12 @@
     }
   },
   "voimalused": {
-    "title": "SotsiaalAI võimalused",
-    "intro": "Siin on terviklik ülevaade SotsiaalAI teenustest ja töövahenditest. Iga funktsiooni juures on kirjeldatud, kellele see on mõeldud ja mida sellega teha saab; täpne ligipääs sõltub kasutaja rollist ja paketist.",
+    "title": "Sotsiaal.pro võimalused",
+    "intro": "Siin on terviklik ülevaade Sotsiaal.pro teenustest ja töövahenditest. Iga funktsiooni juures on kirjeldatud, kellele see on mõeldud ja mida sellega teha saab; täpne ligipääs sõltub kasutaja rollist ja paketist.",
     "s1_title": "Vestlus ja rollile sobiv vastamisviis",
-    "s1_body": "Kõigile kolmele rollile. Vestluses saad kirjeldada olukorda oma sõnadega, küsida teenuste, toetuste, õiguste või tööpraktika kohta ning paluda vastust lihtsamas keeles. SotsiaalAI arvestab vastamisviisis kasutaja rolli, aitab mõtteid korrastada ja pakub järgmisi samme; otsus jääb alati inimesele. Allikate nupp kuvatakse siis, kui vastus kasutab kontrollitavaid allikaid.",
-    "s2_title": "SotsiaalAI teadmusbaas",
-    "s2_body": "SotsiaalAI vastused toetuvad platvormi teadmusbaasile, kuhu on koondatud sotsiaalvaldkonna õigusaktid, juhendid, metoodikad, kohalike omavalitsuste info ja vormid. Allikatele toetuva vastuse juures saab avada kasutatud materjalid ning kontrollida, kust info pärineb. Teadmusbaasi hoitakse ajakohasena ja spetsialistide esitatud materjalid jõuavad sinna pärast ülevaatust.",
+    "s1_body": "Kõigile kolmele rollile. Vestluses saad kirjeldada olukorda oma sõnadega, küsida teenuste, toetuste, õiguste või tööpraktika kohta ning paluda vastust lihtsamas keeles. Sotsiaal.pro arvestab vastamisviisis kasutaja rolli, aitab mõtteid korrastada ja pakub järgmisi samme; otsus jääb alati inimesele. Allikate nupp kuvatakse siis, kui vastus kasutab kontrollitavaid allikaid.",
+    "s2_title": "Sotsiaal.pro teadmusbaas",
+    "s2_body": "Sotsiaal.pro vastused toetuvad platvormi teadmusbaasile, kuhu on koondatud sotsiaalvaldkonna õigusaktid, juhendid, metoodikad, kohalike omavalitsuste info ja vormid. Allikatele toetuva vastuse juures saab avada kasutatud materjalid ning kontrollida, kust info pärineb. Teadmusbaasi hoitakse ajakohasena ja spetsialistide esitatud materjalid jõuavad sinna pärast ülevaatust.",
     "s3_title": "Teekond",
     "s3_body": "Sinu sammud püsivad Teekonnal koos: kokkuvõte senisest, seotud teemad, puuduolev info ja järgmised sammud. Teekond on privaatne. Sina otsustad, kas ja kellega seda jagad; jagamine käib sinu kinnitusega ning ülevaate oma jagamistest ja tagasivõtmise leiad vaatest Minu jagamised.",
     "s4_title": "Sinu kontroll ja turvalisus",
@@ -7959,7 +7965,7 @@
     "s12_title": "Tööheaolu tööriistad",
     "s12_body": "Sotsiaaltöö spetsialistile. Tööheaolu vaade koondab Minu kirjed, kiirkontrolli, nädala ja kuu ülevaate, raske juhtumi, töövägivalla, taastumise, tööpiirid, katkestused, tööprotsessid, rollipiirid ja alustaja toe. Kirjed aitavad märgata koormust ja sõnastada järgmise väikese sammu; isiklikku tööheaoluinfot ei jagata vaikimisi teistega.",
     "s13_title": "Materjalid",
-    "s13_body": "Spetsialist saab esitada juhendeid, metoodikaid ja praktilisi materjale SotsiaalAI teadmusbaasi täiendamiseks. Materjal jõuab andmebaasi pärast ülevaatust. Nii kasvab keskkond koos valdkonna praktikaga.",
+    "s13_body": "Spetsialist saab esitada juhendeid, metoodikaid ja praktilisi materjale Sotsiaal.pro teadmusbaasi täiendamiseks. Materjal jõuab andmebaasi pärast ülevaatust. Nii kasvab keskkond koos valdkonna praktikaga.",
     "s14_title": "Teenusekaart",
     "s14_body": "Kõigile rollidele. Teenusekaart aitab leida kohalike omavalitsuste sotsiaalvaldkonna kontakte, teenuseosutajaid, teenuseid, teeninduskohti ning avaldatud abisoove ja abipakkumisi. Otsida saab nime, kirjelduse, teenuse, kategooria, sihtrühma, aadressi või piirkonna järgi.",
     "s15_title": "Supervisioon",
@@ -7991,7 +7997,7 @@
     "s21_title": "Süvauuring",
     "s21_body": "Kõigile rollidele. Süvauuring aitab koostada põhjalikuma, allikatele toetuva ülevaate sotsiaalvaldkonna teemast, teenusest, seadusest, juhendist või praktilisest küsimusest. Tulemuses tuuakse välja peamised tähelepanekud, seosed, lüngad ja järgmised sammud ning valminud uurimused jäävad kasutajale avatavaks.",
     "s22_title": "Dokumendi analüüs",
-    "s22_body": "Kõigile rollidele. Laadi fail vestlusse, küsi selle sisu kohta ja lase leida olulised kohad, selgitused või kokkuvõte. Vaikimisi keskendub analüüs üles laaditud dokumendile; vajaduse korral saab lisada SotsiaalAI valdkondliku tausta. Vestluse ajutine analüüsifail ei muutu automaatselt püsidokumendiks.",
+    "s22_body": "Kõigile rollidele. Laadi fail vestlusse, küsi selle sisu kohta ja lase leida olulised kohad, selgitused või kokkuvõte. Vaikimisi keskendub analüüs üles laaditud dokumendile; vajaduse korral saab lisada Sotsiaal.pro valdkondliku tausta. Vestluse ajutine analüüsifail ei muutu automaatselt püsidokumendiks.",
     "s23_title": "Allikad ja allikatagasiside",
     "s23_body": "Kõigile rollidele. Kui vastus kasutab allikaid, saab avada allikapaneeli ja kontrollida kasutatud õigusakti, juhendit, KOV-i lehte, teenuseinfot, artiklit või muud materjali. Kasutaja saab märku anda ebatäpsest või aegunud allikast; tagasiside jõuab ülevaatusse.",
     "s24_title": "Minu jagamised",
@@ -8011,9 +8017,9 @@
     "s31_title": "Toimetulekutoetuse eelhinnang",
     "s31_body": "Pöördujale. Toimetulekutoetuse tööriist aitab sisestatud leibkonna, eluasemekulude ja sissetuleku andmete põhjal teha brauseris esialgse arvutuse ning mõista, millist infot ametlikuks taotluseks vaja võib minna. Tulemus on eelhinnang, mitte kohaliku omavalitsuse otsus.",
     "s32_title": "Teenuseprofiil",
-    "s32_body": "Teenuseosutajale. Teenuseprofiilis saab hallata organisatsiooni üldandmeid, kontakte, ligipääsetavust, teeninduspiirkonda ja teeninduskohti ning kirjeldada iga teenuse sihtrühma, hinda, kättesaadavust, ooteaega, suunamisnõudeid ja pöördumisviise. Avaldatud info muudab teenuse leitavaks Teenusekaardil ja SotsiaalAI soovitustes.",
+    "s32_body": "Teenuseosutajale. Teenuseprofiilis saab hallata organisatsiooni üldandmeid, kontakte, ligipääsetavust, teeninduspiirkonda ja teeninduskohti ning kirjeldada iga teenuse sihtrühma, hinda, kättesaadavust, ooteaega, suunamisnõudeid ja pöördumisviise. Avaldatud info muudab teenuse leitavaks Teenusekaardil ja Sotsiaal.pro soovitustes.",
     "s33_title": "Profiil, tellimus ja ligipääsetavus",
-    "s33_body": "Kõigile rollidele. Profiilis saab muuta PIN-koodi ja e-posti aadressi, hallata tellimust või sponsoreeritud ligipääsu, vaadata kasutusmahtu, logida välja ning avada keele ja ligipääsetavuse seaded. Kohandada saab keelt, teksti suurust, kontrasti, ekraani profiili, liikumist ja läbipaistvust; SotsiaalAI saab paigaldada telefoni või arvutisse rakendusena.",
+    "s33_body": "Kõigile rollidele. Profiilis saab muuta PIN-koodi ja e-posti aadressi, hallata tellimust või sponsoreeritud ligipääsu, vaadata kasutusmahtu, logida välja ning avada keele ja ligipääsetavuse seaded. Kohandada saab keelt, teksti suurust, kontrasti, ekraani profiili, liikumist ja läbipaistvust; Sotsiaal.pro saab paigaldada telefoni või arvutisse rakendusena.",
     "s34_title": "Seansid, andmekoopia ja konto kustutamine",
     "s34_body": "Kõigile rollidele. Kasutaja saab lõpetada praeguse või kõik aktiivsed seansid, taotleda oma andmetest koopiat ning alustada konto kustutamist. Andmekoopia ja kustutamine järgivad rolli-, omandi-, jagamis- ja säilituspiire, et teise inimese või organisatsiooni sisu ei satuks kasutaja ekspordi või kustutuse sisse.",
     "s35_title": "Teadmusbaasi ja allikate haldus",
@@ -8031,12 +8037,12 @@
   },
   "meist": {
     "title": "Meist",
-    "meta_description": "SotsiaalAI on sotsiaalvaldkonna digikeskkond: selgus küsides, tehisintellekti tugi ja praktilised töövahendid — otsused jäävad alati inimesele.",
+    "meta_description": "Sotsiaal.pro on sotsiaalvaldkonna digikeskkond: selgus küsides, tehisintellekti tugi ja praktilised töövahendid — otsused jäävad alati inimesele.",
     "h_intro": "Kõik algab selgusest",
     "intro1a": "Kui elus läheb keeruliseks — töö kaob, jaks saab otsa, lähedane vajab hooldust —, ei ole esimene takistus enamasti abi puudumine. Esimene takistus on teadmatus: mida ma üldse küsida saan, kellelt ja mis sõnadega? Vastused on olemas seadustes, ametites ja registrites, aga need on kirjutatud süsteemi keeles, mitte inimese omas. Sama ütleb valdkonna enda ",
     "oska_link": "OSKA tööjõuraport (2025)",
     "intro1b": ": orienteerumine teenuste, toetuste ja kontaktide vahel nõuab aega, mida sageli ei ole. Ja mure ei vaata kella — kõige raskemad küsimused tekivad tihti siis, kui ükski kontor ei ole avatud.",
-    "intro2": "SotsiaalAI on Eesti platvorm, mis on ehitatud selle vahe peale. Ühes kohas on usaldusväärne info, tehisintellekti tugi, praktilised töövahendid ja suhtlus — inimesele, kes otsib selgust; spetsialistile, kes teeb sotsiaaltööd; ja organisatsioonile, kes teenuseid osutab. Meie põhimõte on lihtne: selguseni peaks jõudma küsides, mitte otsides. Sa kirjeldad oma olukorda oma sõnadega — eesti, vene või inglise keeles — ja saad vastuse, mis on inimkeelne ja mille juures on alati allikad.",
+    "intro2": "Sotsiaal.pro on Eesti platvorm, mis on ehitatud selle vahe peale. Ühes kohas on usaldusväärne info, tehisintellekti tugi, praktilised töövahendid ja suhtlus — inimesele, kes otsib selgust; spetsialistile, kes teeb sotsiaaltööd; ja organisatsioonile, kes teenuseid osutab. Meie põhimõte on lihtne: selguseni peaks jõudma küsides, mitte otsides. Sa kirjeldad oma olukorda oma sõnadega — eesti, vene või inglise keeles — ja saad vastuse, mis on inimkeelne ja mille juures on alati allikad.",
     "h_never": "Kolm asja, mida me kunagi ei tee",
     "never_intro": "Tehisintellekt tekitab sotsiaalvaldkonnas õigustatud küsimusi. Meie vastame neile kolme kindla lubadusega.",
     "never1_title": "Masin ei otsusta kunagi sinu üle.",
@@ -8055,7 +8061,7 @@
     "h_success": "Kuidas me edu mõõdame",
     "success_body": "Enamik digiteenuseid mõõdab edu sellega, kui kaua sa nende juures oled. Meie mõõdame vastupidist: kui kiiresti sa saad tagasi oma elu juurde. Meie edu on see, kui sa jõuad selguseni, saad abi õigest kohast — ja vajad meid iga korraga natuke vähem.",
     "h_we": "Kes me oleme",
-    "we_body": "SotsiaalAI on Eestis ehitatud sotsiaalse mõjuga ettevõte: meie eesmärk on ühiskondlik kasu ja tulu teenib selle eesmärgi täitmist. Platvormi ehitab sotsiaaltöö taustaga inimene, kes on ise töötanud nii abistajana, valdkonna ajakirjas kui ka süsteemi sees. Arendame platvormi teadlikult ja samm-sammult, koos valdkonna inimestega, ja ütleme alati ausalt, mida tehisintellekt siin teeb — ja mida ta kunagi tegema ei hakka.",
+    "we_body": "Sotsiaal.pro on Eestis ehitatud sotsiaalse mõjuga ettevõte: meie eesmärk on ühiskondlik kasu ja tulu teenib selle eesmärgi täitmist. Platvormi ehitab sotsiaaltöö taustaga inimene, kes on ise töötanud nii abistajana, valdkonna ajakirjas kui ka süsteemi sees. Arendame platvormi teadlikult ja samm-sammult, koos valdkonna inimestega, ja ütleme alati ausalt, mida tehisintellekt siin teeb — ja mida ta kunagi tegema ei hakka.",
     "we_link": "Loe ka autori lugu — ühest mõttest päris platvormini.",
     "closing": "Alusta küsimusest. Kõik algab selgusest."
   },
@@ -8088,7 +8094,7 @@
     "walk_5a": "Näed ise, kust info pärineb.",
     "walk_5b": "Ja sina otsustad, mida jagad.",
     "walk_6": "Kõik vajalik on nüüd sinu ees.",
-    "standby_connect": "Ühenda sotsiaal.pro platvormiga",
+    "standby_connect": "Ühenda platvormiga",
     "power_on": "Käivita",
     "exit_card": "Välja",
     "back_card": "Tagasi",

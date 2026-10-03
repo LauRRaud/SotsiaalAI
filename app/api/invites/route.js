@@ -402,7 +402,7 @@ export async function POST(request) {
         tokenRaw: raw,
         tokenHash: hash,
         roomTitle: room.title || serverT(locale, "rooms.fallback_title", undefined, "Room"),
-        inviterName: auth.email || "SotsiaalAI",
+        inviterName: auth.email || "Sotsiaal.pro",
         locale: mailLocale
       });
 

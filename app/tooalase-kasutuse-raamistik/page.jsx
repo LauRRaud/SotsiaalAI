@@ -7,7 +7,7 @@ import { buildLocalizedMetadata } from "@/lib/metadata";
 
 function getEmptyFrameworkDocument(messages) {
   return {
-    title: messages?.auth?.register?.worker_framework_title || "SotsiaalAI framework",
+    title: messages?.auth?.register?.worker_framework_title || "Sotsiaal.pro framework",
     prefaceBlocks: [],
     documentBlocks: []
   };

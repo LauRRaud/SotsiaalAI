@@ -11,7 +11,7 @@ const FACEBOOK_PROFILE_SIZE = 2048;
 const EXPORT_DELAY_MS = 34500;
 
 /**
- * SotsiaalAI logo ekspordilava.
+ * Sotsiaal.pro logo ekspordilava.
  *
  * AI-kihi parameetrid on teadlikult samad mis avalehe laadimislooris
  * (RoomStage). Nii ei teki sotsiaalmeedia failis staatilist või teise
@@ -139,7 +139,7 @@ export default function LogoExportStage({ loadingLine, variant = "cover" }) {
   return (
     <main
       className={styles.stage}
-      aria-label="SotsiaalAI logo"
+      aria-label="Sotsiaal.pro logo"
       data-metal-ready={metalReady ? "1" : "0"}
       data-variant={variant}
       ref={stageRef}
@@ -153,7 +153,7 @@ export default function LogoExportStage({ loadingLine, variant = "cover" }) {
           ref={wordmarkRef}
           className={isProfile ? styles.profileS : undefined}
           src={isProfile ? "/logo/sotsiaalai-sai-valge.svg" : "/logo/sotsiaalai-h-valge.svg"}
-          alt={isProfile ? "SAI" : "SotsiaalAI"}
+          alt={isProfile ? "SAI" : "Sotsiaal.pro"}
           width={isProfile ? 786 : 264}
           height={isProfile ? 500 : 50}
           decoding="sync"

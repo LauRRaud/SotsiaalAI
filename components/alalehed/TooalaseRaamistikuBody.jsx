@@ -34,8 +34,8 @@ function getUpdatedFrameworkIntroCopy(locale) {
       lead:
         "Laadi uus raamleping alla või loe täisteksti allpool. Kinnituse saad salvestada pärast raamlepingu ja allkirjastatud DigiDoc-faili allalaadimist.",
       paragraphs: [
-        "SotsiaalAI platvormi tavapäraseks kasutamiseks ei ole eraldi raamlepingut vaja. Raamleping on mõeldud tööülesanneteks, mille käigus võib esineda isikuandmete töötlemist.",
-        "Organisatsioon peab enne tööalase kasutuse lubamist määrama, kes võib SotsiaalAI-d kasutada, millistel eesmärkidel, milliseid andmeid võib sisestada ja kes kontrollib lõpptulemuse enne kasutamist üle."
+        "Sotsiaal.pro platvormi tavapäraseks kasutamiseks ei ole eraldi raamlepingut vaja. Raamleping on mõeldud tööülesanneteks, mille käigus võib esineda isikuandmete töötlemist.",
+        "Organisatsioon peab enne tööalase kasutuse lubamist määrama, kes võib Sotsiaal.pro-d kasutada, millistel eesmärkidel, milliseid andmeid võib sisestada ja kes kontrollib lõpptulemuse enne kasutamist üle."
       ]
     },
     en: {
@@ -43,8 +43,8 @@ function getUpdatedFrameworkIntroCopy(locale) {
       lead:
         "Download the updated framework agreement or read the full text below. You can save the confirmation after downloading the agreement and the signed DigiDoc file.",
       paragraphs: [
-        "No separate framework agreement is required for ordinary use of the SotsiaalAI platform. The framework agreement is intended for work-related tasks in the course of which personal data may be processed.",
-        "Before permitting work-related use, the organisation must define who may use SotsiaalAI, for which purposes, which data may be entered, and who checks the final output before use."
+        "No separate framework agreement is required for ordinary use of the Sotsiaal.pro platform. The framework agreement is intended for work-related tasks in the course of which personal data may be processed.",
+        "Before permitting work-related use, the organisation must define who may use Sotsiaal.pro, for which purposes, which data may be entered, and who checks the final output before use."
       ]
     },
     ru: {
@@ -52,8 +52,8 @@ function getUpdatedFrameworkIntroCopy(locale) {
       lead:
         "Скачайте обновленное рамочное соглашение или прочитайте полный текст ниже. Подтверждение можно сохранить после скачивания соглашения и подписанного файла DigiDoc.",
       paragraphs: [
-        "Для обычного использования платформы SotsiaalAI отдельное рамочное соглашение не требуется. Рамочное соглашение предназначено для рабочих задач, в ходе которых может происходить обработка персональных данных.",
-        "Перед разрешением рабочего использования организация должна определить, кто может использовать SotsiaalAI, для каких целей, какие данные можно вводить и кто проверяет итоговый результат перед использованием."
+        "Для обычного использования платформы Sotsiaal.pro отдельное рамочное соглашение не требуется. Рамочное соглашение предназначено для рабочих задач, в ходе которых может происходить обработка персональных данных.",
+        "Перед разрешением рабочего использования организация должна определить, кто может использовать Sotsiaal.pro, для каких целей, какие данные можно вводить и кто проверяет итоговый результат перед использованием."
       ]
     }
   };
@@ -158,7 +158,7 @@ function getIntroCopy(locale) {
       lead:
         "Laadi raamleping alla või loe täisteksti allpool. Kinnituse saad salvestada pärast raamlepingu ja allkirjastatud DigiDoc-faili allalaadimist.",
       paragraphs: [
-        "SotsiaalAI platvormi kasutamiseks ei ole vaja lepingut. Lepinguline raamistik on mõeldud tööülesannete jaoks, kus SotsiaalAI abil töödeldakse kliendi või muu isiku isikuandmeid."
+        "Sotsiaal.pro platvormi kasutamiseks ei ole vaja lepingut. Lepinguline raamistik on mõeldud tööülesannete jaoks, kus Sotsiaal.pro abil töödeldakse kliendi või muu isiku isikuandmeid."
       ]
     },
     en: {
@@ -166,7 +166,7 @@ function getIntroCopy(locale) {
       lead:
         "Download the framework agreement or read the full text below. You can save the confirmation after downloading the agreement and the signed DigiDoc file.",
       paragraphs: [
-        "You do not need an agreement to use the SotsiaalAI platform. The contractual framework is intended for work tasks where SotsiaalAI is used to process a client's or another person's personal data."
+        "You do not need an agreement to use the Sotsiaal.pro platform. The contractual framework is intended for work tasks where Sotsiaal.pro is used to process a client's or another person's personal data."
       ]
     },
     ru: {
@@ -174,7 +174,7 @@ function getIntroCopy(locale) {
       lead:
         "Скачайте рамочный договор или прочитайте полный текст ниже. Подтверждение можно сохранить после скачивания договора и подписанного файла DigiDoc.",
       paragraphs: [
-        "Для использования платформы SotsiaalAI договор не требуется. Договорная рамка предназначена для рабочих задач, в которых с помощью SotsiaalAI обрабатываются персональные данные клиента или другого лица."
+        "Для использования платформы Sotsiaal.pro договор не требуется. Договорная рамка предназначена для рабочих задач, в которых с помощью Sotsiaal.pro обрабатываются персональные данные клиента или другого лица."
       ]
     }
   };
@@ -190,9 +190,9 @@ function getNormalizedIntroCopy(locale) {
     return {
       introTitle: "Для чего нужен этот документ?",
       lead:
-        "Документ объединяет разрешение на профессиональное использование SotsiaalAI, основные правила, подтверждение работника и соглашение об обработке данных. Прокрутите вниз, чтобы прочитать документ на сайте.",
+        "Документ объединяет разрешение на профессиональное использование Sotsiaal.pro, основные правила, подтверждение работника и соглашение об обработке данных. Прокрутите вниз, чтобы прочитать документ на сайте.",
       paragraphs: [
-        "Если SotsiaalAI используется в рабочих задачах с данными клиента или другого лица, до начала работы организация должна убедиться, что использование необходимо, разрешено и соответствует ее инструкциям.",
+        "Если Sotsiaal.pro используется в рабочих задачах с данными клиента или другого лица, до начала работы организация должна убедиться, что использование необходимо, разрешено и соответствует ее инструкциям.",
         "Подтверждение на платформе является подтверждением на уровне пользователя. Основание профессионального использования и соглашение об обработке данных вступают в силу в объеме, указанном в рамочном договоре после его подписания сторонами."
       ]
     };
@@ -202,9 +202,9 @@ function getNormalizedIntroCopy(locale) {
     return {
       introTitle: "What is this document for?",
       lead:
-        "This document combines the SotsiaalAI professional-use permission, the main use rules, the worker confirmation, and the data-processing agreement. Scroll down to read the document on the web.",
+        "This document combines the Sotsiaal.pro professional-use permission, the main use rules, the worker confirmation, and the data-processing agreement. Scroll down to read the document on the web.",
       paragraphs: [
-        "If SotsiaalAI is used in work tasks with client or other personal data, the organisation must first make sure that the use is necessary, permitted, and aligned with its instructions.",
+        "If Sotsiaal.pro is used in work tasks with client or other personal data, the organisation must first make sure that the use is necessary, permitted, and aligned with its instructions.",
         "The confirmation given in the platform is a user-level confirmation. The professional-use basis and the data-processing agreement take effect within the scope described in the framework agreement after the parties sign it."
       ]
     };
@@ -213,9 +213,9 @@ function getNormalizedIntroCopy(locale) {
   return {
     introTitle: "Milleks see dokument on?",
     lead:
-      "Dokument koondab SotsiaalAI tööalase kasutuse loa, kasutamise põhireeglid, töötaja kinnituse ning andmete töötlemise kokkuleppe ühte faili. Keri alla, et dokumenti veebis lugeda.",
+      "Dokument koondab Sotsiaal.pro tööalase kasutuse loa, kasutamise põhireeglid, töötaja kinnituse ning andmete töötlemise kokkuleppe ühte faili. Keri alla, et dokumenti veebis lugeda.",
     paragraphs: [
-      "Kui SotsiaalAI-d kasutatakse tööülesannetes kliendi või muu isiku andmetega, tuleb enne alustamist veenduda, et kasutamine on vajalik, lubatud ja organisatsiooni juhistega kooskõlas.",
+      "Kui Sotsiaal.pro-d kasutatakse tööülesannetes kliendi või muu isiku andmetega, tuleb enne alustamist veenduda, et kasutamine on vajalik, lubatud ja organisatsiooni juhistega kooskõlas.",
       "Platvormis antav kinnitus on kasutaja tasandi kinnitus. Tööalase kasutuse alus ja andmetöötluse kokkulepe jõustuvad raamlepingus kirjeldatud ulatuses pärast poolte allkirjastamist."
     ]
   };

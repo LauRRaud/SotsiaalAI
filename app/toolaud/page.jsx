@@ -10,7 +10,7 @@ export async function generateMetadata() {
   return buildLocalizedMetadata({
     locale,
     pathname: "/toolaud",
-    title: meta.title || "Töölaud | SotsiaalAI",
+    title: meta.title || "Töölaud | Sotsiaal.pro",
     description: meta.description || ""
   });
 }

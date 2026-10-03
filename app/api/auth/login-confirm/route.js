@@ -29,18 +29,18 @@ const NO_STORE_HEADERS = {
    - `ok`: kinnitus on tehtud teises brauseris või seadmes. Siin brauseris
      sessiooni teha ei saa (see oleks postkasti omanikule sisselogimine ilma
      PIN-ita), seega on see lõppteade ilma ootamise ja nuputa. Endine „Ava
-     SotsiaalAI“ viis siin väljalogitud avalehele. */
+     Sotsiaal.pro“ viis siin väljalogitud avalehele. */
 const COPY = {
   et: {
     okTitle: "Sisenemine kinnitatud",
     okBody: "Sisselogimine jätkub aknas, kus sisestasid PIN-koodi. Selle akna võid sulgeda.",
-    waitBody: "Avan SotsiaalAI …",
+    waitBody: "Avan Sotsiaal.pro …",
     signinFallbackTitle: "Sisselogimine ei õnnestunud",
     signinFallbackBody:
       "Kinnitus on antud, aga siin aknas sisse logida ei saanud. Mine tagasi aknasse, kus sisestasid PIN-koodi — sisselogimine lõpeb seal.",
     invalidTitle: "Kinnituslink ei kehti",
     invalidBody: "Link on aegunud või juba kasutatud. Palun alusta sisselogimist uuesti.",
-    openLabel: "Ava SotsiaalAI",
+    openLabel: "Ava Sotsiaal.pro",
     confirmTitle: "Kinnita sisselogimine",
     confirmBody:
       "Keegi sisestas sinu PIN-koodi ja ootab kinnitust. Kui see olid sina, vajuta nuppu. Kui ei olnud, sulge see aken ja vaheta PIN — kinnitamata jääb sisselogimine pooleli.",
@@ -52,13 +52,13 @@ const COPY = {
   en: {
     okTitle: "Sign-in confirmed",
     okBody: "Sign-in continues in the window where you entered your PIN. You can close this window.",
-    waitBody: "Opening SotsiaalAI …",
+    waitBody: "Opening Sotsiaal.pro …",
     signinFallbackTitle: "Sign-in did not finish",
     signinFallbackBody:
       "Confirmation received, but signing in failed in this window. Return to the window where you entered your PIN — sign-in finishes there.",
     invalidTitle: "Confirmation link is invalid",
     invalidBody: "The link has expired or has already been used. Please start sign-in again.",
-    openLabel: "Open SotsiaalAI",
+    openLabel: "Open Sotsiaal.pro",
     confirmTitle: "Confirm sign-in",
     confirmBody:
       "Someone entered your PIN and is waiting for confirmation. If that was you, press the button. If it was not, close this window and change your PIN — without confirmation the sign-in cannot continue.",
@@ -70,13 +70,13 @@ const COPY = {
   ru: {
     okTitle: "Вход подтвержден",
     okBody: "Вход продолжится в окне, где вы ввели PIN-код. Это окно можно закрыть.",
-    waitBody: "Открываю SotsiaalAI …",
+    waitBody: "Открываю Sotsiaal.pro …",
     signinFallbackTitle: "Вход не завершён",
     signinFallbackBody:
       "Подтверждение получено, но войти в этом окне не удалось. Вернитесь в окно, где вы ввели PIN-код, — вход завершится там.",
     invalidTitle: "Ссылка подтверждения недействительна",
     invalidBody: "Ссылка устарела или уже использована. Начните вход заново.",
-    openLabel: "Открыть SotsiaalAI",
+    openLabel: "Открыть Sotsiaal.pro",
     confirmTitle: "Подтвердите вход",
     confirmBody:
       "Кто-то ввел ваш PIN-код и ожидает подтверждения. Если это были вы, нажмите кнопку. Если нет — закройте это окно и смените PIN: без подтверждения вход не продолжится.",

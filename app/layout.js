@@ -24,7 +24,8 @@ const fontExo2 = Exo_2({
   variable: "--font-exo2",
   display: "swap"
 });
-const ICON_VERSION = "v20260712";
+const ICON_VERSION = "v20261003";
+const FAVICON_VERSION = "v20261003";
 const UI_SCALE_STORAGE_KEY = "sotsiaalai.uiScale";
 const UI_PROFILE_STORAGE_KEY = "sotsiaalai.uiProfile";
 const ROOM_ARRIVAL_COMPLETE_COOKIE = "sotsiaalai_room_arrival_complete";
@@ -242,37 +243,37 @@ const LAYOUT_INIT_SCRIPT = `(function () {
   });
 })();`;
 export const metadata = {
-  title: "sotsiaal.pro",
-  description: "Platvormil on kaks rollipõhist tehisintellekti assistenti: üks sotsiaalvaldkonna spetsialistidele ja teine eluküsimusega pöördujatele.",
+  title: "Sotsiaal.pro",
+  description: "Sotsiaal.pro koondab sotsiaalvaldkonna info, teenused ja töövahendid ühele platvormile.",
   manifest: `/site.webmanifest?${ICON_VERSION}`,
   // iOS reads installation metadata before client-side theme synchronization.
   // Keep content below an opaque status bar instead of behind its native blur.
   appleWebApp: {
     capable: true,
-    title: "sotsiaal.pro",
+    title: "Sotsiaal.pro",
     statusBarStyle: "black"
   },
   icons: {
     icon: [{
-      url: `/favicon-16x16.png?${ICON_VERSION}`,
+      url: `/favicon.svg?${FAVICON_VERSION}`,
+      sizes: "any",
+      type: "image/svg+xml"
+    }, {
+      url: `/favicon-16x16.png?${FAVICON_VERSION}`,
       sizes: "16x16",
       type: "image/png"
     }, {
-      url: `/favicon-32x32.png?${ICON_VERSION}`,
+      url: `/favicon-32x32.png?${FAVICON_VERSION}`,
       sizes: "32x32",
       type: "image/png"
     }, {
-      url: `/icons/icon-192-${ICON_VERSION}.png`,
-      sizes: "192x192",
+      url: `/favicon-48x48.png?${FAVICON_VERSION}`,
+      sizes: "48x48",
       type: "image/png"
     }, {
-      url: `/icons/icon-512-${ICON_VERSION}.png`,
-      sizes: "512x512",
-      type: "image/png"
-    }, {
-      url: `/favicon.ico?${ICON_VERSION}`
+      url: `/favicon.ico?${FAVICON_VERSION}`
     }],
-    shortcut: `/icons/icon-192-${ICON_VERSION}.png`,
+    shortcut: `/favicon.ico?${FAVICON_VERSION}`,
     apple: `/apple-touch-icon-${ICON_VERSION}.png`
   }
 };

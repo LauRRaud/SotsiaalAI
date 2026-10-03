@@ -9,7 +9,7 @@ export const runtime = "nodejs";
 export const revalidate = 0;
 
 export const metadata = {
-  title: serverT("en", "admin.pages.rag.meta_title", undefined, "RAG Admin - SotsiaalAI"),
+  title: serverT("en", "admin.pages.rag.meta_title", undefined, "RAG Admin - Sotsiaal.pro"),
   description: serverT("en", "admin.pages.rag.meta_description", undefined, "Upload and manage RAG materials."),
   robots: {
     index: false,

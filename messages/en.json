@@ -31,7 +31,7 @@
     "signIn": "Open sign in",
     "closed": "The internal pilot is closed",
     "denied": "This session has no active pilot permission.",
-    "eyebrow": "SOTSIAALAI · LIMITED INTERNAL PILOT",
+    "eyebrow": "SOTSIAAL.PRO · LIMITED INTERNAL PILOT",
     "test": "TEST MODE — fixed test responder, 0 external model calls.",
     "real": "Limited real mode · development corpus",
     "checking": "Checking pilot permission…",
@@ -75,7 +75,7 @@
   "calls": {
     "recording_consent_intro": "{requesterName} would like to record this audio call.",
     "recording_consent_purpose": "The recording will be used only for the stated purpose: {recordingPurpose}.",
-    "recording_consent_custody": "The recording goes only to the person who requested it ({requesterName}), into their SotsiaalAI documents view. You are consenting to being recorded, not to receiving a copy — the recording will not reach you.",
+    "recording_consent_custody": "The recording goes only to the person who requested it ({requesterName}), into their Sotsiaal.pro documents view. You are consenting to being recorded, not to receiving a copy — the recording will not reach you.",
     "recording_consent_body": "The recording may contain personal or sensitive information. The recording is not transcribed or used to generate a summary automatically; those actions are triggered separately by a user.",
     "recording_consent_question": "Do you agree to this call being recorded?",
     "recording_consent_yes": "I agree to recording",
@@ -1165,7 +1165,7 @@
       "info_limits_no_others": "You do not see anyone else's desk and no one sees yours. Administrators cannot see the content either.",
       "info_limits_no_ai": "AI decides nothing and ranks nothing here. The order is chronological and the lists come from the sources, not from a model.",
       "meta": {
-        "title": "Casework desk — SotsiaalAI",
+        "title": "Casework desk — Sotsiaal.pro",
         "description": "A combined view of a social worker's or service provider's own casework."
       },
       "section_draftsAwaitingTransfer": "Drafts awaiting transfer to STAR2",
@@ -1306,7 +1306,7 @@
       "read_only_notice": "The case is write-protected. Only reading and erasing the client reference remain.",
       "retention_state": "State",
       "meta": {
-        "title": "My cases — SotsiaalAI",
+        "title": "My cases — Sotsiaal.pro",
         "description": "A social worker's own case work organisation."
       },
       "retention_countdown": "Archived. The case and all of its content are deleted on {date} — {days} days left.",
@@ -1387,72 +1387,72 @@
   },
   "meta": {
     "home": {
-      "title": "sotsiaal.pro",
-      "description": "SotsiaalAI helps you find support, services and tools for everyday life questions."
+      "title": "Sotsiaal.pro",
+      "description": "Sotsiaal.pro helps you find support, services and tools for everyday life questions."
     },
     "chat": {
-      "title": "Chat | sotsiaal.pro",
-      "description": "Discuss your questions and next steps in SotsiaalAI chat."
+      "title": "Chat | Sotsiaal.pro",
+      "description": "Discuss your questions and next steps in Sotsiaal.pro chat."
     },
     "profile": {
-      "title": "Profile | sotsiaal.pro",
-      "description": "Manage your SotsiaalAI profile, preferences and account settings."
+      "title": "Profile | Sotsiaal.pro",
+      "description": "Manage your Sotsiaal.pro profile, preferences and account settings."
     },
     "pricing": {
-      "title": "Pricing | sotsiaal.pro",
-      "description": "View SotsiaalAI plans and subscription pricing."
+      "title": "Pricing | Sotsiaal.pro",
+      "description": "View Sotsiaal.pro plans and subscription pricing."
     },
     "features": {
-      "title": "Features | sotsiaal.pro",
-      "description": "Explore SotsiaalAI features and tools."
+      "title": "Features | Sotsiaal.pro",
+      "description": "Explore Sotsiaal.pro features and tools."
     },
     "register": {
-      "title": "Register | sotsiaal.pro",
-      "description": "Create a SotsiaalAI account and start using the platform."
+      "title": "Register | Sotsiaal.pro",
+      "description": "Create a Sotsiaal.pro account and start using the platform."
     },
     "subscription": {
-      "title": "Subscription | sotsiaal.pro",
-      "description": "Manage your SotsiaalAI subscription and payment details."
+      "title": "Subscription | Sotsiaal.pro",
+      "description": "Manage your Sotsiaal.pro subscription and payment details."
     },
     "terms": {
-      "title": "Terms of use | sotsiaal.pro",
-      "description": "Read the SotsiaalAI terms of use."
+      "title": "Terms of use | Sotsiaal.pro",
+      "description": "Read the Sotsiaal.pro terms of use."
     },
     "privacy": {
-      "title": "Privacy terms | sotsiaal.pro",
-      "description": "Read how SotsiaalAI processes and protects personal data."
+      "title": "Privacy terms | Sotsiaal.pro",
+      "description": "Read how Sotsiaal.pro processes and protects personal data."
     },
     "guide": {
-      "title": "User guide | sotsiaal.pro",
-      "description": "Find guidance for using SotsiaalAI."
+      "title": "User guide | Sotsiaal.pro",
+      "description": "Find guidance for using Sotsiaal.pro."
     },
     "framework": {
-      "title": "Professional-use framework | sotsiaal.pro",
-      "description": "SotsiaalAI professional-use and data-processing framework agreement: read the full text, download the DOCX and signed DigiDoc, and save your confirmation."
+      "title": "Professional-use framework | Sotsiaal.pro",
+      "description": "Sotsiaal.pro professional-use and data-processing framework agreement: read the full text, download the DOCX and signed DigiDoc, and save your confirmation."
     },
     "author": {
-      "title": "From the author | sotsiaal.pro",
-      "description": "Read explanations and thoughts from the author of SotsiaalAI."
+      "title": "From the author | Sotsiaal.pro",
+      "description": "Read explanations and thoughts from the author of Sotsiaal.pro."
     },
     "rooms": {
-      "title": "Rooms | sotsiaal.pro",
-      "description": "View your SotsiaalAI rooms and shared conversations."
+      "title": "Rooms | Sotsiaal.pro",
+      "description": "View your Sotsiaal.pro rooms and shared conversations."
     },
     "workspace": {
-      "title": "Workspace | sotsiaal.pro",
+      "title": "Workspace | Sotsiaal.pro",
       "description": "Open the tools for your role: service map, inquiries, documents and support forms."
     },
     "reset": {
-      "title": "Reset PIN | sotsiaal.pro",
-      "description": "Reset the PIN for your SotsiaalAI account."
+      "title": "Reset PIN | Sotsiaal.pro",
+      "description": "Reset the PIN for your Sotsiaal.pro account."
     },
     "email_update": {
-      "title": "Update email address | sotsiaal.pro",
-      "description": "Update the email address for your SotsiaalAI account."
+      "title": "Update email address | Sotsiaal.pro",
+      "description": "Update the email address for your Sotsiaal.pro account."
     },
     "pin_update": {
-      "title": "Update PIN | sotsiaal.pro",
-      "description": "Update the PIN for your SotsiaalAI account."
+      "title": "Update PIN | Sotsiaal.pro",
+      "description": "Update the PIN for your Sotsiaal.pro account."
     }
   },
   "buttons": {
@@ -1533,10 +1533,10 @@
       "role_label_question": "Who are you?",
       "role_label": "Role:",
       "role_hint": "Choose a role with arrow keys. Options: Social Work Specialist, Person seeking help, or Service provider.",
-      "worker_use_org": "I use SotsiaalAI in work tasks with personal data",
+      "worker_use_org": "I use Sotsiaal.pro in work tasks with personal data",
       "worker_framework_title": "Professional-use framework",
       "worker_framework_open": "Open framework",
-      "worker_framework_ack": "I confirm that I have reviewed the Estonian SotsiaalAI framework agreement and downloaded the signed DigiDoc file.",
+      "worker_framework_ack": "I confirm that I have reviewed the Estonian Sotsiaal.pro framework agreement and downloaded the signed DigiDoc file.",
       "worker_framework_download_signed": "Signed DigiDoc",
       "worker_framework_download_docx": "DOCX document",
       "agreement": "I agree to <terms>Terms of Use</terms> and <privacy>Privacy Policy</privacy>.",
@@ -1887,9 +1887,15 @@
   },
   "accessibility": {
     "dock": {
-      "language": "Language", "contrast": "Contrast", "text_scale": "Text",
-      "theme": "Theme", "screen_profile": "Screen", "motion": "Motion",
-      "ambient": "Sound", "install": "App", "save": "Save"
+      "language": "Language",
+      "contrast": "Contrast",
+      "text_scale": "Text",
+      "theme": "Theme",
+      "screen_profile": "Screen",
+      "motion": "Motion",
+      "ambient": "Sound",
+      "install": "App",
+      "save": "Save"
     },
     "language": "Language",
     "text_scale": "Text size",
@@ -1899,7 +1905,7 @@
     "ambient": "Background sound",
     "ambient_previous": "Previous background sound",
     "ambient_next": "Next background sound",
-    "install": "SotsiaalAI app",
+    "install": "Sotsiaal.pro app",
     "install_nav": "App",
     "options": {
       "language": {
@@ -1962,8 +1968,8 @@
     "title": "Privacy",
     "section1": {
       "heading": "1. General Provisions",
-      "paragraph1": "<p>This Privacy Policy explains how <strong>Küberloome OÜ</strong> processes personal data when you use the <strong>SotsiaalAI</strong> web platform. It covers account creation, sign-in, subscriptions, chats, rooms, help requests and offers, documents, deep research, file uploads, logs, and other platform workflows. It also explains what data is stored, for how long, how feature limits and storage quotas can affect retention, and which automated systems are used to generate responses, drafts, classifications, or search results.</p>",
-      "paragraph2": "<p>SotsiaalAI processes personal data in accordance with the Estonian Personal Data Protection <aLawEst>Act</aLawEst> and the EU General Data Protection <aGdpr>Regulation</aGdpr>. If you have questions about data processing, contact us before continuing to use the service.</p>"
+      "paragraph1": "<p>This Privacy Policy explains how <strong>Küberloome OÜ</strong> processes personal data when you use the <strong>Sotsiaal.pro</strong> web platform. It covers account creation, sign-in, subscriptions, chats, rooms, help requests and offers, documents, deep research, file uploads, logs, and other platform workflows. It also explains what data is stored, for how long, how feature limits and storage quotas can affect retention, and which automated systems are used to generate responses, drafts, classifications, or search results.</p>",
+      "paragraph2": "<p>Sotsiaal.pro processes personal data in accordance with the Estonian Personal Data Protection <aLawEst>Act</aLawEst> and the EU General Data Protection <aGdpr>Regulation</aGdpr>. If you have questions about data processing, contact us before continuing to use the service.</p>"
     },
     "section2": {
       "heading": "2. Data We Collect",
@@ -1981,11 +1987,11 @@
     },
     "section5": {
       "heading": "5. Processors",
-      "body": "<p>SotsiaalAI uses processors where needed to provide the service, for example payment processing, email delivery, AI and speech services, hosting, and logging infrastructure. Processors handle data only under SotsiaalAI's instructions and subject to contractual and technical safeguards.</p><p><strong>Read-aloud.</strong> When a user presses the listen button on an answer, the text to be read is sent to a speech synthesis service. For Estonian read-aloud this is the University of Tartu service (TartuNLP), located in Estonia. Only the text being read is sent — no account, email address or other identifier is sent with it. Read-aloud never starts on its own. English and Russian read-aloud uses the user's own browser speech synthesis, and the platform does not send that text to any service provider.</p>"
+      "body": "<p>Sotsiaal.pro uses processors where needed to provide the service, for example payment processing, email delivery, AI and speech services, hosting, and logging infrastructure. Processors handle data only under Sotsiaal.pro's instructions and subject to contractual and technical safeguards.</p><p><strong>Read-aloud.</strong> When a user presses the listen button on an answer, the text to be read is sent to a speech synthesis service. For Estonian read-aloud this is the University of Tartu service (TartuNLP), located in Estonia. Only the text being read is sent — no account, email address or other identifier is sent with it. Read-aloud never starts on its own. English and Russian read-aloud uses the user's own browser speech synthesis, and the platform does not send that text to any service provider.</p>"
     },
     "section6": {
       "heading": "6. Data Disclosure and Sharing",
-      "body": "<p>SotsiaalAI does not sell personal data. Data is shared only to the extent needed to run the service: with processors, with the payment provider, with users you invite or are matched with in rooms and help-mediation workflows, and with competent authorities where required by law.</p><p>A user's personal conversations and documents are linked to that user's account. Room and group conversation content is visible to room members, and only to the extent needed for the relevant workflow. An organisation or employer administrator is not automatically given general access to an employee's personal conversations, documents, or files.</p><p>Platform administrator access to content is exceptional technical administration access used only where justified, for example to provide support, investigate an error or security incident, maintain service reliability, prevent abuse, or comply with a legal claim or obligation.</p><p>If you create an invite, save a visible help listing, or connect parties through a room, the relevant information is shared inside the platform only with the users for whom that workflow is intended.</p><p>If a user or organisation representative accepts a professional-use or data-processing framework, evidence records related to that acceptance may be retained and, where necessary, shared with the relevant organisation or user to prove the existence, version, and time of acceptance.</p>"
+      "body": "<p>Sotsiaal.pro does not sell personal data. Data is shared only to the extent needed to run the service: with processors, with the payment provider, with users you invite or are matched with in rooms and help-mediation workflows, and with competent authorities where required by law.</p><p>A user's personal conversations and documents are linked to that user's account. Room and group conversation content is visible to room members, and only to the extent needed for the relevant workflow. An organisation or employer administrator is not automatically given general access to an employee's personal conversations, documents, or files.</p><p>Platform administrator access to content is exceptional technical administration access used only where justified, for example to provide support, investigate an error or security incident, maintain service reliability, prevent abuse, or comply with a legal claim or obligation.</p><p>If you create an invite, save a visible help listing, or connect parties through a room, the relevant information is shared inside the platform only with the users for whom that workflow is intended.</p><p>If a user or organisation representative accepts a professional-use or data-processing framework, evidence records related to that acceptance may be retained and, where necessary, shared with the relevant organisation or user to prove the existence, version, and time of acceptance.</p>"
     },
     "section7": {
       "heading": "7. Retention",
@@ -2003,7 +2009,7 @@
     },
     "section9": {
       "heading": "9. Cookies and Browser Storage",
-      "body": "<p>SotsiaalAI uses essential cookies and browser storage for sign-in, session handling, language, accessibility, trusted-device state, active conversation state, and other usability preferences. We do not use advertising cookies or third-party marketing trackers. The public product UI also does not currently use advertising trackers.</p>"
+      "body": "<p>Sotsiaal.pro uses essential cookies and browser storage for sign-in, session handling, language, accessibility, trusted-device state, active conversation state, and other usability preferences. We do not use advertising cookies or third-party marketing trackers. The public product UI also does not currently use advertising trackers.</p>"
     },
     "section10": {
       "heading": "10. Security",
@@ -2015,7 +2021,7 @@
     },
     "privacy_filter": {
       "heading": "4.10 Privacy pre-check and Privacy Filter",
-      "body": "<p>In sensitive workflows, the platform may use a privacy pre-check to detect and mask possible personal data before AI processing, RAG indexing, document drafting, logging, or saving a public help listing. The check may rely on SotsiaalAI's local pattern-based filter and, where deployed, the locally running OpenAI Privacy Filter model.</p><p>If possible personal data is detected in the user input, the system may offer choices: the user can edit the text, the system can send a masked version, or in a private professional workflow the original text can be sent after the user's explicit choice. Public help requests and help offers use stricter data minimisation, and continuing with the original sensitive text may be restricted.</p><p>The privacy pre-check does not guarantee that every personal-data item or sensitive detail will always be detected. It is an additional safeguard that helps reduce accidental excessive processing; the user and, where relevant, the organisation must still assess the legal basis, necessity of the data, and appropriate workflow.</p>"
+      "body": "<p>In sensitive workflows, the platform may use a privacy pre-check to detect and mask possible personal data before AI processing, RAG indexing, document drafting, logging, or saving a public help listing. The check may rely on Sotsiaal.pro's local pattern-based filter and, where deployed, the locally running OpenAI Privacy Filter model.</p><p>If possible personal data is detected in the user input, the system may offer choices: the user can edit the text, the system can send a masked version, or in a private professional workflow the original text can be sent after the user's explicit choice. Public help requests and help offers use stricter data minimisation, and continuing with the original sensitive text may be restricted.</p><p>The privacy pre-check does not guarantee that every personal-data item or sensitive detail will always be detected. It is an additional safeguard that helps reduce accidental excessive processing; the user and, where relevant, the organisation must still assess the legal basis, necessity of the data, and appropriate workflow.</p>"
     }
   },
   "legal": {
@@ -2026,11 +2032,11 @@
     "title": "Terms",
     "section1": {
       "heading": "1. General Provisions",
-      "body": "<p>These Terms of Use govern the use of the <strong>SotsiaalAI</strong> platform operated by <strong>Küberloome OÜ</strong>. By using the platform, you confirm that you have read and accepted these Terms.</p><p>To keep the service stable, secure, and reasonably usable, the platform may apply technical limits and usage rules. These may cover chat volume, deep research usage, repeated document refinement, and limits on file count, file size, and storage. The applicable limits may depend on the feature or package and are described in these Terms or shown in the product UI where needed.</p><p>If you do not agree with these Terms, you must not use the platform. The Privacy Policy and these Terms together form the basis for using the service.</p>"
+      "body": "<p>These Terms of Use govern the use of the <strong>Sotsiaal.pro</strong> platform operated by <strong>Küberloome OÜ</strong>. By using the platform, you confirm that you have read and accepted these Terms. Sotsiaalinfo, which has since grown into Sotsiaal.pro, began with the wish to create an information portal for the social sector.</p><p>To keep the service stable, secure, and reasonably usable, the platform may apply technical limits and usage rules. These may cover chat volume, deep research usage, repeated document refinement, and limits on file count, file size, and storage. The applicable limits may depend on the feature or package and are described in these Terms or shown in the product UI where needed.</p><p>If you do not agree with these Terms, you must not use the platform. The Privacy Policy and these Terms together form the basis for using the service.</p>"
     },
     "section2": {
       "heading": "2. Service Description",
-      "body": "<p>SotsiaalAI is a role-based web platform where a user can ask questions in chat, continue in guidance mode, describe help requests and help offers, use document workflows, manage documents, open rooms, send invites, and use profile, subscription, and accessibility settings.</p><p>The platform combines AI, retrieval-based knowledge access, and user-selected workflows to support both social work professionals and people seeking help. It is not an emergency channel and does not replace binding official decisions, professional advice, or urgent assistance.</p><p>For professional roles, additional work tools are available, such as covision, supervision, mentoring, field work, reflections, well-being views, and personal search. Voice calls can be held in rooms with the parties’ consent; calls are not recorded.</p>"
+      "body": "<p>Sotsiaal.pro is a role-based web platform where a user can ask questions in chat, continue in guidance mode, describe help requests and help offers, use document workflows, manage documents, open rooms, send invites, and use profile, subscription, and accessibility settings.</p><p>The platform combines AI, retrieval-based knowledge access, and user-selected workflows to support both social work professionals and people seeking help. It is not an emergency channel and does not replace binding official decisions, professional advice, or urgent assistance.</p><p>For professional roles, additional work tools are available, such as covision, supervision, mentoring, field work, reflections, well-being views, and personal search. Voice calls can be held in rooms with the parties’ consent; calls are not recorded.</p>"
     },
     "section3": {
       "heading": "3. Account and Access",
@@ -2038,29 +2044,29 @@
     },
     "section4": {
       "heading": "4. Permitted Use",
-      "items": "<li>You must use the platform in compliance with law, good practice, and these Terms.</li><li>Unlawful, threatening, deceptive, defamatory, hateful, or rights-infringing content is prohibited, including help listings or invites that mislead other users.</li><li>It is prohibited to bypass security controls, send automated mass requests, exceed or attempt to evade feature-specific usage limits, storage limits, or subscription limits, spread malware, or disrupt the service.</li><li>It is prohibited to use another person's account without permission, create a false identity, or use the platform in a way that harms other users or SotsiaalAI.</li><li>It is prohibited to systematically copy platform data or outputs, or use them to build a competing service, without SotsiaalAI's permission.</li>"
+      "items": "<li>You must use the platform in compliance with law, good practice, and these Terms.</li><li>Unlawful, threatening, deceptive, defamatory, hateful, or rights-infringing content is prohibited, including help listings or invites that mislead other users.</li><li>It is prohibited to bypass security controls, send automated mass requests, exceed or attempt to evade feature-specific usage limits, storage limits, or subscription limits, spread malware, or disrupt the service.</li><li>It is prohibited to use another person's account without permission, create a false identity, or use the platform in a way that harms other users or Sotsiaal.pro.</li><li>It is prohibited to systematically copy platform data or outputs, or use them to build a competing service, without Sotsiaal.pro's permission.</li>"
     },
     "section5": {
       "heading": "5. Subscription, Payments and Cancellation",
       "paragraph1": "<p>Paid platform features are provided through a role-based monthly subscription. The monthly fee is 7.99 EUR for a person seeking help, 14.99 EUR for a social work professional, and 19.99 EUR for a service provider, unless a different price is shown on the platform at the time of checkout. Current prices are always shown on the <a href=\"/hinnastus\">Pricing</a> page. Payments are processed by Maksekeskus AS.</p>",
       "paragraph2": "<p>Access may be self-paid or sponsored by the person who invited you. Under the current product rules, sponsored access lasts for one month and does not automatically convert into the invitee's own paid subscription. If the invited user already has an active subscription, sponsored checkout may be blocked.</p>",
-      "paragraph3": "<p>You can manage your subscription on the <a href=\"/tellimus\">Subscription</a> page, where you see the active plan, sponsored access end date, and cancellation option, and on the <a href=\"/profiil\">Profile</a> page, where you can open the subscription overview and change account settings. After payment is started, the user is redirected to the Maksekeskus checkout page, and access is activated immediately after payment-provider confirmation. The payment methods shown in checkout are the methods available for that transaction. When cancelled, the next automatic billing cycle stops, but the already paid period remains active until its end unless the law requires otherwise. After the service has been activated and used, refunds are generally not provided unless required by law. SotsiaalAI may change pricing or package terms with reasonable advance notice.</p>"
+      "paragraph3": "<p>You can manage your subscription on the <a href=\"/tellimus\">Subscription</a> page, where you see the active plan, sponsored access end date, and cancellation option, and on the <a href=\"/profiil\">Profile</a> page, where you can open the subscription overview and change account settings. After payment is started, the user is redirected to the Maksekeskus checkout page, and access is activated immediately after payment-provider confirmation. The payment methods shown in checkout are the methods available for that transaction. When cancelled, the next automatic billing cycle stops, but the already paid period remains active until its end unless the law requires otherwise. After the service has been activated and used, refunds are generally not provided unless required by law. Sotsiaal.pro may change pricing or package terms with reasonable advance notice.</p>"
     },
     "section6": {
       "heading": "6. Availability and Maintenance",
-      "body": "<p>SotsiaalAI makes reasonable efforts to keep the service available, but uninterrupted operation is not guaranteed. Maintenance, updates, security fixes, failures of external providers, or usage limits may temporarily restrict the platform.</p><p>At present, the service applies the following technical limits: up to 50 user turns in one chat; deep research limited to one active job per user and a plan-based monthly usage allowance; the same document may be refined or corrected up to 3 times in a row; and materials may be uploaded up to 10 files at a time and up to 100 MB per day.</p><p>SotsiaalAI may apply technical limits, reasonable-use controls, and abuse-prevention measures to protect service operation, security, and fair access. If usage is unusually heavy, repetitive, or appears to bypass limits, SotsiaalAI may temporarily slow, restrict, pause, or reconfigure affected features even if the account itself remains active.</p>"
+      "body": "<p>Sotsiaal.pro makes reasonable efforts to keep the service available, but uninterrupted operation is not guaranteed. Maintenance, updates, security fixes, failures of external providers, or usage limits may temporarily restrict the platform.</p><p>At present, the service applies the following technical limits: up to 50 user turns in one chat; deep research limited to one active job per user and a plan-based monthly usage allowance; the same document may be refined or corrected up to 3 times in a row; and materials may be uploaded up to 10 files at a time and up to 100 MB per day.</p><p>Sotsiaal.pro may apply technical limits, reasonable-use controls, and abuse-prevention measures to protect service operation, security, and fair access. If usage is unusually heavy, repetitive, or appears to bypass limits, Sotsiaal.pro may temporarily slow, restrict, pause, or reconfigure affected features even if the account itself remains active.</p>"
     },
     "section7": {
       "heading": "7. Platform Workflows and Results",
-      "body": "<p>SotsiaalAI supports users through the platform's chat, document, help, and room workflows as described on the platform.</p><p>In situations involving crisis, violence, child safety, or self-harm risk, the platform may display urgent-help guidance and route the user toward an Estonian support channel or a competent person. This routing does not replace emergency services, child protection, victim support, or professional help.</p>"
+      "body": "<p>Sotsiaal.pro supports users through the platform's chat, document, help, and room workflows as described on the platform.</p><p>In situations involving crisis, violence, child safety, or self-harm risk, the platform may display urgent-help guidance and route the user toward an Estonian support channel or a competent person. This routing does not replace emergency services, child protection, victim support, or professional help.</p>"
     },
     "section8": {
       "heading": "8. Professional Use and Processing Framework",
-      "body": "<p>SotsiaalAI may be used as a private individual and also as a work tool in workflows where no identifiable personal data of a client or other data subject is entered.</p><p>If a user wishes to use SotsiaalAI on behalf of an employer or organisation with identifiable personal data of a client or other data subject, the user must have clear permission from the employer or organisation and, where necessary, a separate contractual data processing framework.</p><p>An organisation or employer administrator role does not by itself provide general access to an employee's personal conversations, documents, or files. Room and group conversation content is visible to room members, and data shared by a user is handled according to the visibility rules of the relevant workflow.</p><p>Internal confirmations, instructions, or usage permissions between employer and employee do not by themselves create a processor relationship between SotsiaalAI and the organisation. If SotsiaalAI processes personal data on behalf of an organisation, there must also be a written or electronic contractual framework bindingly accepted by SotsiaalAI.</p><p>SotsiaalAI may make available on the platform a standard framework document for professional use and data processing or similar terms. Reading such a document, downloading it, or confirming it at employee level does not automatically make it binding on the organisation. If the document is intended to serve as a framework for processing data on behalf of an organisation, it becomes binding on the organisation only after proper signing or other provable electronic acceptance.</p><p>For professional use, the organisation should define roles, permissions, allowed data categories, data minimisation rules, review and confirmation procedures, and audit-trail needs before sensitive workflows are used. More sensitive capabilities may be limited to specialists, service providers, municipalities, or organisation-linked users.</p>"
+      "body": "<p>Sotsiaal.pro may be used as a private individual and also as a work tool in workflows where no identifiable personal data of a client or other data subject is entered.</p><p>If a user wishes to use Sotsiaal.pro on behalf of an employer or organisation with identifiable personal data of a client or other data subject, the user must have clear permission from the employer or organisation and, where necessary, a separate contractual data processing framework.</p><p>An organisation or employer administrator role does not by itself provide general access to an employee's personal conversations, documents, or files. Room and group conversation content is visible to room members, and data shared by a user is handled according to the visibility rules of the relevant workflow.</p><p>Internal confirmations, instructions, or usage permissions between employer and employee do not by themselves create a processor relationship between Sotsiaal.pro and the organisation. If Sotsiaal.pro processes personal data on behalf of an organisation, there must also be a written or electronic contractual framework bindingly accepted by Sotsiaal.pro.</p><p>Sotsiaal.pro may make available on the platform a standard framework document for professional use and data processing or similar terms. Reading such a document, downloading it, or confirming it at employee level does not automatically make it binding on the organisation. If the document is intended to serve as a framework for processing data on behalf of an organisation, it becomes binding on the organisation only after proper signing or other provable electronic acceptance.</p><p>For professional use, the organisation should define roles, permissions, allowed data categories, data minimisation rules, review and confirmation procedures, and audit-trail needs before sensitive workflows are used. More sensitive capabilities may be limited to specialists, service providers, municipalities, or organisation-linked users.</p>"
     },
     "section9": {
       "heading": "9. Use of AI",
-      "paragraph1": "<p>SotsiaalAI uses AI, retrieval-backed knowledge access, and other technical services to answer questions, provide guidance, help draft documents, and support help-request and help-offer workflows. The platform may ask the user to confirm in chat which work mode the current conversation should continue in.</p><p>The AI may propose the most likely work mode, answer, classification, match, or draft, but the final decision to continue the workflow and use the output remains with the user. The user understands that AI output may be inaccurate, incomplete, or require correction.</p>",
+      "paragraph1": "<p>Sotsiaal.pro uses AI, retrieval-backed knowledge access, and other technical services to answer questions, provide guidance, help draft documents, and support help-request and help-offer workflows. The platform may ask the user to confirm in chat which work mode the current conversation should continue in.</p><p>The AI may propose the most likely work mode, answer, classification, match, or draft, but the final decision to continue the workflow and use the output remains with the user. The user understands that AI output may be inaccurate, incomplete, or require correction.</p>",
       "paragraph2": "<p>AI output must not be treated as automatically binding truth, an official position, a professional decision, or the sole basis for a decision.</p><p>The platform informs the user that they are interacting with AI functions unless this is already clear from the nature of the workflow or the user interface.</p>"
     },
     "section10": {
@@ -2071,15 +2077,15 @@
     },
     "section11": {
       "heading": "11. Intellectual Property",
-      "body": "<p>The platform software, design, data structures, trademarks, and other content created by SotsiaalAI belong to SotsiaalAI or its partners unless stated otherwise. The user retains rights to their own submitted data to the extent provided by law and by their rights in that data.</p><p>The user may use outputs created through the platform for lawful purposes in their work, communication, and documentation. Without SotsiaalAI's written permission, you may not systematically copy, distribute, repackage, or reuse the platform's technical solution, structure, service components, or systematic collections of outputs to create a competing service.</p>"
+      "body": "<p>The platform software, design, data structures, trademarks, and other content created by Sotsiaal.pro belong to Sotsiaal.pro or its partners unless stated otherwise. The user retains rights to their own submitted data to the extent provided by law and by their rights in that data.</p><p>The user may use outputs created through the platform for lawful purposes in their work, communication, and documentation. Without Sotsiaal.pro's written permission, you may not systematically copy, distribute, repackage, or reuse the platform's technical solution, structure, service components, or systematic collections of outputs to create a competing service.</p>"
     },
     "section12": {
       "heading": "12. Termination of the Agreement",
-      "body": "<p>The user may stop using the platform at any time, including by deleting the account or cancelling the subscription. Account deletion may result in loss of access to related documents, conversations, drafts, and other workspace content in accordance with the retention and deletion rules described in the Privacy Policy. Technical audit records, deletion-job records, backups, and system, proxy, or service-provider logs may remain for a limited period to the extent described in the Privacy Policy.</p><p>SotsiaalAI may suspend or terminate access if the user materially breaches the Terms, abuses the service, repeatedly exceeds or attempts to bypass feature limits, threatens the safety of other users, or harms the operation of the platform. SotsiaalAI may also temporarily limit specific features to protect service stability, security, or reasonable use.</p>"
+      "body": "<p>The user may stop using the platform at any time, including by deleting the account or cancelling the subscription. Account deletion may result in loss of access to related documents, conversations, drafts, and other workspace content in accordance with the retention and deletion rules described in the Privacy Policy. Technical audit records, deletion-job records, backups, and system, proxy, or service-provider logs may remain for a limited period to the extent described in the Privacy Policy.</p><p>Sotsiaal.pro may suspend or terminate access if the user materially breaches the Terms, abuses the service, repeatedly exceeds or attempts to bypass feature limits, threatens the safety of other users, or harms the operation of the platform. Sotsiaal.pro may also temporarily limit specific features to protect service stability, security, or reasonable use.</p>"
     },
     "section13": {
       "heading": "13. Changes to the Terms",
-      "body": "<p>SotsiaalAI may update these Terms if the service, pricing, workflows, or legal requirements change. A new version will be published on the platform, and material changes will be communicated with reasonable prior notice.</p><p>Continuing to use the platform after the changes take effect means you accept the updated Terms unless applicable law requires a different process.</p>"
+      "body": "<p>Sotsiaal.pro may update these Terms if the service, pricing, workflows, or legal requirements change. A new version will be published on the platform, and material changes will be communicated with reasonable prior notice.</p><p>Continuing to use the platform after the changes take effect means you accept the updated Terms unless applicable law requires a different process.</p>"
     },
     "section14": {
       "heading": "14. Governing Law and Dispute Resolution",
@@ -2087,7 +2093,7 @@
     },
     "privacy_filter": {
       "heading": "10.1 Privacy pre-check and masking",
-      "body": "<p>Before AI processing, RAG search, document drafting, logging, or saving a public help listing, SotsiaalAI may check whether the input contains personal data or other sensitive information. The check may use the platform's own local rules and, where deployed on the server, the locally running OpenAI Privacy Filter model.</p><p>If the check finds a name, personal identification code, address, phone number, email address, or another identifiable detail, the platform may show a warning and offer choices: edit the text, send a masked version, or continue with the original text in an allowed private workflow. Continuing with the original sensitive text may not be available for public help requests or help offers.</p><p>Masking is a data-minimisation aid, not full anonymisation or a legal guarantee. The user remains responsible for ensuring that the information entered is necessary for the workflow and that there is an appropriate basis for processing it.</p>"
+      "body": "<p>Before AI processing, RAG search, document drafting, logging, or saving a public help listing, Sotsiaal.pro may check whether the input contains personal data or other sensitive information. The check may use the platform's own local rules and, where deployed on the server, the locally running OpenAI Privacy Filter model.</p><p>If the check finds a name, personal identification code, address, phone number, email address, or another identifiable detail, the platform may show a warning and offer choices: edit the text, send a masked version, or continue with the original text in an allowed private workflow. Continuing with the original sensitive text may not be available for public help requests or help offers.</p><p>Masking is a data-minimisation aid, not full anonymisation or a legal guarantee. The user remains responsible for ensuring that the information entered is necessary for the workflow and that there is an appropriate basis for processing it.</p>"
     }
   },
   "service_provider_profile": {
@@ -2248,12 +2254,12 @@
         "kov": "Municipality contact",
         "kov_general": "General municipality contact",
         "organization_inbox": "Organization intake team",
-        "organization_inbox_description": "Organization inbox inside SotsiaalAI",
+        "organization_inbox_description": "Organization inbox inside Sotsiaal.pro",
         "provider": "Service provider",
         "selected": "Selected contact"
       },
       "delivery": {
-        "internal": "Inside SotsiaalAI",
+        "internal": "Inside Sotsiaal.pro",
         "external_email": "Email"
       },
       "receiving": {
@@ -2549,7 +2555,7 @@
         "mixed": "Mixed"
       },
       "pre_inquiries": {
-        "accepts_platform": "Accept internal SotsiaalAI pre-inquiries",
+        "accepts_platform": "Accept internal Sotsiaal.pro pre-inquiries",
         "accepts_email": "Allow email composition",
         "platform_help": "People can send an internal pre-inquiry to this provider account.",
         "email_help": "The user can compose an email preview and review it before sending.",
@@ -3314,7 +3320,7 @@
       "preview": "Document text",
       "summary_show": "Show text",
       "summary_hide": "Hide preview",
-      "context_hint": "If the \"Analyse in chat\" toggle is on, the assistant can use this document in answers — summarise, explain, compare, translate, and help draft letters and applications. If the toggle is off, the answer relies only on the SotsiaalAI knowledge base. The document is never stored regardless of the toggle.",
+      "context_hint": "If the \"Analyse in chat\" toggle is on, the assistant can use this document in answers — summarise, explain, compare, translate, and help draft letters and applications. If the toggle is off, the answer relies only on the Sotsiaal.pro knowledge base. The document is never stored regardless of the toggle.",
       "limit_reached": "You can add up to {limit} files in this conversation.",
       "jump_to_chat": "Back to chat",
       "usage": "Today's analysis: {used}/{limit}",
@@ -4222,14 +4228,14 @@
   "about": {
     "title": "About",
     "intro": {
-      "paragraph1": "<p><strong>SotsiaalAI</strong> is a next-generation support platform for the social sector that provides trustworthy information, AI support, practical tools, and communication options in one digital environment. The platform is intended for people seeking clarity in life-related questions, social-sector professionals, and service providers.</p>",
-      "paragraph2": "<p>The social sector is characterised by <strong>heavy workloads, fragmented information, and difficult navigation across the system of services, benefits, and contacts</strong> - as also noted by <oska>the OSKA report (2025)</oska>. SotsiaalAI aims to make social-sector knowledge more accessible and understandable, simplify workflows, and help people gain a clearer understanding of their situation. To do this, the platform brings together social-sector sources, guidance, legal frameworks, methodologies, and practical materials.</p>",
+      "paragraph1": "<p><strong>Sotsiaal.pro</strong> is a next-generation support platform for the social sector that provides trustworthy information, AI support, practical tools, and communication options in one digital environment. The platform is intended for people seeking clarity in life-related questions, social-sector professionals, and service providers.</p>",
+      "paragraph2": "<p>The social sector is characterised by <strong>heavy workloads, fragmented information, and difficult navigation across the system of services, benefits, and contacts</strong> - as also noted by <oska>the OSKA report (2025)</oska>. Sotsiaal.pro aims to make social-sector knowledge more accessible and understandable, simplify workflows, and help people gain a clearer understanding of their situation. To do this, the platform brings together social-sector sources, guidance, legal frameworks, methodologies, and practical materials.</p>",
       "paragraph3": "<p>The central place to use the platform is the <strong>chat window</strong>, where users can describe a situation, ask about services, benefits, rights, and professional practice, and clarify possible next steps. <strong>AI</strong> helps surface relevant options, explain connections, and prepare useful texts and next steps. Sources are shown with answers so the information can be checked. From the same page, users can also start separate <strong>workflows</strong>, such as help requests, help offers, deep research, pre-inquiries, and document analysis.</p>",
-      "paragraph4": "<p>SotsiaalAI is built on the principle that AI <strong>does not replace a specialist or make the final decision for a person</strong>. AI helps people reach knowledge, rights, services, and work tools faster, but sensitive data, crisis situations, child and youth safety, and professional decisions require human review, clear role boundaries, and, when needed, routing to real support channels.</p>",
+      "paragraph4": "<p>Sotsiaal.pro is built on the principle that AI <strong>does not replace a specialist or make the final decision for a person</strong>. AI helps people reach knowledge, rights, services, and work tools faster, but sensitive data, crisis situations, child and youth safety, and professional decisions require human review, clear role boundaries, and, when needed, routing to real support channels.</p>",
       "paragraph5": "<p><strong>Chat rooms</strong> are separate communication spaces where a person seeking help, a social work professional, a service provider, or a colleague can be invited. A room may be created, for example, after matching a request for help with an offer of help or after sharing a request, so that the parties can continue communication and clarify next steps.</p>",
-      "paragraph6": "<p>The <strong>service map</strong> is SotsiaalAI's map-based application that helps users find social-sector points of contact and contact details. At first, the service map focuses on local-government social welfare contacts and service providers so that the necessary information and situation-related options are more visible to the user.</p>",
-      "paragraph7": "<p>Our <strong>vision</strong> is to become a digital environment for the social sector that connects trustworthy information, practical tools, service providers, and communication. SotsiaalAI supports people in different life and work situations - whether the question is related to finding a service, benefit, document, request for help or offer of help, career counselling, job opportunity, or assistive aid.</p>",
-      "paragraph8": "<p>SotsiaalAI is being developed as a <strong>social enterprise</strong> and a <strong>social innovation initiative</strong>. We combine technology and social-sector practice to reduce information barriers and make workflows, collaboration, and finding help clearer, faster, and more accessible. In developing the platform, we consider safe use, data protection, and clear usage rules important.</p>"
+      "paragraph6": "<p>The <strong>service map</strong> is Sotsiaal.pro's map-based application that helps users find social-sector points of contact and contact details. At first, the service map focuses on local-government social welfare contacts and service providers so that the necessary information and situation-related options are more visible to the user.</p>",
+      "paragraph7": "<p>Our <strong>vision</strong> is to become a digital environment for the social sector that connects trustworthy information, practical tools, service providers, and communication. Sotsiaal.pro supports people in different life and work situations - whether the question is related to finding a service, benefit, document, request for help or offer of help, career counselling, job opportunity, or assistive aid.</p>",
+      "paragraph8": "<p>Sotsiaal.pro is being developed as a <strong>social enterprise</strong> and a <strong>social innovation initiative</strong>. We combine technology and social-sector practice to reduce information barriers and make workflows, collaboration, and finding help clearer, faster, and more accessible. In developing the platform, we consider safe use, data protection, and clear usage rules important.</p>"
     },
     "contact": {
       "title": "Contact",
@@ -4255,23 +4261,23 @@
       "title": "From one idea to a real platform",
       "byline": "Laur Raudsoo, owner and management board member",
       "paragraphs": [
-        "The story of SotsiaalAI began nearly ten years ago, in 2017, with the idea of creating a portal called sotsiaalinfo.ee. At the time I did not yet have a long employment history in the social field, but a practical connection with it had already taken shape through studies, work, internships and professional volunteering. I had just completed a bachelor's degree in social work at Tallinn University, been active in the Estonian Association of Social Workers, worked as a personal assistant, been involved in the platform development and international cooperation of the NGO Helpific, and completed an internship at the Ministry of Social Affairs focused on analysing benefits and allowances for people with disabilities. That same year I began working as the managing editor of the journal Sotsiaaltöö.",
+        "Sotsiaalinfo, which has since grown into Sotsiaal.pro, began with the wish to create the sotsiaalinfo.ee portal in 2017. At the time I did not yet have a long employment history in the social field, but a practical connection with it had already taken shape through studies, work, internships and professional volunteering. I had just completed a bachelor's degree in social work at Tallinn University, been active in the Estonian Association of Social Workers, worked as a personal assistant, been involved in the platform development and international cooperation of the NGO Helpific, and completed an internship at the Ministry of Social Affairs focused on analysing benefits and allowances for people with disabilities. That same year I began working as the managing editor of the journal Sotsiaaltöö.",
         "The idea grew out of my contact with the social field, accessibility, digital solutions and social entrepreneurship. Even then the starting point was clear: the same environment cannot speak to everyone in the same way. A social-field specialist needs a deeper knowledge space and professional tools, while a person turning to it with a life question needs clear, understandable and accessible support.",
         "This led early on to the idea of a solution that unites both sides while taking the needs of each into account. One side was to gather the professional content a specialist needs — practices, the journal Sotsiaaltöö, research, guidance materials, legislation, court decisions, events and cooperation partners. The other side took shape as an environment centred on help that is understandable and practical for the person.",
         "The next significant step came in 2020, when the idea moved towards a social-assistance mobile application. The central question became how a person can reach services, benefits and applying for help in a simpler, clearer and more practical way. It was at this stage that the idea of applying artificial intelligence on the platform emerged — roughly two years before ChatGPT reached the public.",
         "A few years later, by 2022, the vision had become considerably clearer and more complete. On the one hand, the idea of a platform for social workers took shape, supporting covision, the discussion of anonymised cases and professional cooperation. On the other hand, the direction where a person with a life question could more easily reach the necessary information, services and next steps remained just as important.",
         "At the same time, the role of artificial intelligence became more concrete: AI was seen as an assistant that could reduce workload, analyse data, support prevention, help resolve cases and offer clearer support to a person with a life question. A more complete vision of a digital solution began to form, in which the specialist's workflows, the user journey of a person with a life question, data and the possibilities of artificial intelligence make up an interconnected whole.",
         "Actual development work began in May 2025. By then, the earlier portal and mobile-app ideas had evolved into a single solution that can be used on both computers and mobile devices and also installed as an app. The aim of the development was to turn the vision shaped over the years into a solution where both the specialist and the person with a life question have their own logic, materials and workflows. Alongside this, the gathering of the platform's knowledge and materials began, on which the artificial-intelligence assistants can rely when answering.",
-        "Almost a year later, by April 2026, the original idea had grown into SotsiaalAI, an AI-based support platform. The platform has two artificial-intelligence assistants: one for the social-field specialist and one for the person with a life question. At the heart of SotsiaalAI is a conversation-based logic that helps find information, get guidance and move on to the next steps. The platform lets you move between different modes, agents and workflows — for example drafting documents and texts, managing files, analysing materials and carrying out deep research. For specialists the platform also offers shared rooms for cooperation, covision and, where needed, communication with the client.",
+        "Almost a year later, by April 2026, the original idea had grown into a broad support and work platform for the social sector: Sotsiaal.pro. The platform includes two AI assistants: one for social-sector specialists and one for people seeking help with life questions. They help users find information, get guidance and move on to next steps. Alongside the assistants, users can work across different modes, agents and workflows—for example, drafting documents and texts, managing files, analysing materials and conducting in-depth research. Specialists can also use shared rooms for collaboration, covision and, when appropriate, communication with clients.",
         "The platform also lets you describe both voluntary and paid help requests and help offers and turn them into listings with the help of AI. This feature is free for all platform users.",
         "To support accessibility, the user can adjust the platform's language, contrast, text size, theme, screen profile, and motion and performance settings. In conversations, dictation and read-aloud are also available, making the platform more flexible to use across different needs, devices and situations.",
-        "SotsiaalAI's vision is to become a next-generation support platform for the social sector, centred around a single chat window. SotsiaalAI brings together social-sector knowledge, AI support, practical tools, and matching requests for help with offers of help. Its direction of development is to move toward a comprehensive everyday coping environment that can also help people find support with debt counselling, career counselling, work and housing opportunities, and questions related to assistive aids.",
-        "The story of SotsiaalAI is a journey of nearly ten years from the first idea to a working solution. It reflects both social entrepreneurship and innovation: the platform is being developed deliberately and carefully so that SotsiaalAI grows into a genuinely valuable, well-functioning and secure platform that could reach the pocket of every Estonian."
+        "Sotsiaal.pro's vision is to become a next-generation support platform for the social sector, centred around a single chat window. Sotsiaal.pro brings together social-sector knowledge, AI support, practical tools, and matching requests for help with offers of help. Its direction of development is to move toward a comprehensive everyday coping environment that can also help people find support with debt counselling, career counselling, work and housing opportunities, and questions related to assistive aids.",
+        "The story of Sotsiaal.pro is a journey of nearly ten years from the first idea to a working solution. It reflects both social entrepreneurship and innovation: the platform is being developed deliberately and carefully so that Sotsiaal.pro grows into a genuinely valuable, well-functioning and secure platform that could reach the pocket of every Estonian."
       ]
     },
     "pricing": {
       "title": "Pricing",
-      "intro": "Choose a package based on how extensively you want to use SotsiaalAI.",
+      "intro": "Choose a package based on how extensively you want to use Sotsiaal.pro.",
       "columns": {
         "feature": "Feature",
         "free": "Free",
@@ -4305,8 +4311,8 @@
         "workspace": "Workspace",
         "help": "Help requests and help offers",
         "service_card": "Service card",
-        "knowledge_base": "SotsiaalAI knowledge base",
-        "assistants_agents": "SotsiaalAI assistants and agents",
+        "knowledge_base": "Sotsiaal.pro knowledge base",
+        "assistants_agents": "Sotsiaal.pro assistants and agents",
         "sources": "Source display",
         "drafting": "Document drafting",
         "analysis": "Document analysis",
@@ -4338,7 +4344,7 @@
         "by_agreement": "By agreement",
         "not_included": "Not included"
       },
-      "note": "\"Limited\" means a smaller and \"Extended\" a larger usage volume; no AI allowance is unlimited. SotsiaalAI is continuously evolving, and we add new features gradually. Prices depend on the number of users and the cost of the service. Whenever possible, we lower prices.",
+      "note": "\"Limited\" means a smaller and \"Extended\" a larger usage volume; no AI allowance is unlimited. Sotsiaal.pro is continuously evolving, and we add new features gradually. Prices depend on the number of users and the cost of the service. Whenever possible, we lower prices.",
       "taglines": {
         "free": "To get started and explore",
         "client": "For everyday help and communication",
@@ -4375,8 +4381,8 @@
       }
     },
     "features_page": {
-      "title": "SotsiaalAI features",
-      "intro": "This page summarises SotsiaalAI's core functions: what each feature does, who it is for, and which privacy, safety, and human-review principles apply in the workflows.",
+      "title": "Sotsiaal.pro features",
+      "intro": "This page summarises Sotsiaal.pro's core functions: what each feature does, who it is for, and which privacy, safety, and human-review principles apply in the workflows.",
       "items": {
         "workspace": {
           "title": "Workspace",
@@ -4384,23 +4390,23 @@
         },
         "help": {
           "title": "Help requests and help offers",
-          "body": "The user describes a help request or help offer in their own words. SotsiaalAI helps make the description clearer, asks follow-up questions when needed, and prepares the listing for publication. After the listing is confirmed, the platform shows suitable help requests or help offers based on category, region, form of help, and other signals. When the user connects two suitable listings, a shared chat room is created for the parties to continue communication."
+          "body": "The user describes a help request or help offer in their own words. Sotsiaal.pro helps make the description clearer, asks follow-up questions when needed, and prepares the listing for publication. After the listing is confirmed, the platform shows suitable help requests or help offers based on category, region, form of help, and other signals. When the user connects two suitable listings, a shared chat room is created for the parties to continue communication."
         },
         "service_card": {
           "title": "Service card",
-          "body": "The service card is SotsiaalAI's map view for finding published local-government social-welfare contacts and service providers. Users can search by name, description, address, service, category, target group, or area. Search also uses the services, service locations, descriptions, and price information listed under a service provider profile. Markers are created by location: one service location can show several services, and the same service can be linked to several locations."
+          "body": "The service card is Sotsiaal.pro's map view for finding published local-government social-welfare contacts and service providers. Users can search by name, description, address, service, category, target group, or area. Search also uses the services, service locations, descriptions, and price information listed under a service provider profile. Markers are created by location: one service location can show several services, and the same service can be linked to several locations."
         },
         "journey": {
           "title": "Journey",
           "body": "Journey keeps a situation summary, related topics, missing information, careful notes, and suggested next steps together. The journey is private at first and is not shared with a specialist, service provider, or another party before the user knowingly confirms sharing."
         },
         "knowledge_base": {
-          "title": "SotsiaalAI knowledge base",
-          "body": "The SotsiaalAI knowledge base is a background layer that supports assistant answers with domain information. It includes municipal service and contact information, application forms, legal acts, guidance, methodology materials, organisation and service-provider information, practical materials, and field articles or studies. Automated checks and update workflows help detect changes in municipal, Riigi Teataja, and contact-information sources and refresh content in a controlled way. This helps keep answers in a social-sector context and reduces the need to search for the same information manually across separate places."
+          "title": "Sotsiaal.pro knowledge base",
+          "body": "The Sotsiaal.pro knowledge base is a background layer that supports assistant answers with domain information. It includes municipal service and contact information, application forms, legal acts, guidance, methodology materials, organisation and service-provider information, practical materials, and field articles or studies. Automated checks and update workflows help detect changes in municipal, Riigi Teataja, and contact-information sources and refresh content in a controlled way. This helps keep answers in a social-sector context and reduces the need to search for the same information manually across separate places."
         },
         "assistants_agents": {
-          "title": "SotsiaalAI assistants and agents",
-          "body": "SotsiaalAI assistants and agents support users as they work with a question, document, or situation description. The conversation supports asking for information, making sense of a situation, and user-selected workflows such as document drafting, document analysis, deep research, a pre-inquiry, a help request, or a help offer. The user decides which tool to use. The assistant can help organize information, clarify questions, and prepare content when needed."
+          "title": "Sotsiaal.pro assistants and agents",
+          "body": "Sotsiaal.pro assistants and agents support users as they work with a question, document, or situation description. The conversation supports asking for information, making sense of a situation, and user-selected workflows such as document drafting, document analysis, deep research, a pre-inquiry, a help request, or a help offer. The user decides which tool to use. The assistant can help organize information, clarify questions, and prepare content when needed."
         },
         "sources": {
           "title": "Source display",
@@ -4412,11 +4418,11 @@
         },
         "analysis": {
           "title": "Document analysis",
-          "body": "Document analysis starts from the file uploaded by the user. SotsiaalAI extracts text from the file, splits it into parts suitable for analysis, and answers the user’s questions based on the document content. It is useful for understanding, summarising, and finding important points in an official response, guide, contract, report, decision, or another document. By default, the analysis focuses on the uploaded document. In extended analysis, the user may add domain context from the SotsiaalAI knowledge base. A file added in chat is temporary and is not automatically moved to the Documents library."
+          "body": "Document analysis starts from the file uploaded by the user. Sotsiaal.pro extracts text from the file, splits it into parts suitable for analysis, and answers the user’s questions based on the document content. It is useful for understanding, summarising, and finding important points in an official response, guide, contract, report, decision, or another document. By default, the analysis focuses on the uploaded document. In extended analysis, the user may add domain context from the Sotsiaal.pro knowledge base. A file added in chat is temporary and is not automatically moved to the Documents library."
         },
         "research": {
           "title": "Deep research",
-          "body": "Deep research helps prepare a more thorough overview of a social-sector topic, service, law, guide, or practical question. SotsiaalAI searches related sources, gathers the information into a structured answer or working report draft, and highlights the main observations, connections, gaps, and possible next steps."
+          "body": "Deep research helps prepare a more thorough overview of a social-sector topic, service, law, guide, or practical question. Sotsiaal.pro searches related sources, gathers the information into a structured answer or working report draft, and highlights the main observations, connections, gaps, and possible next steps."
         },
         "rooms": {
           "title": "Chat rooms",
@@ -4428,7 +4434,7 @@
         },
         "pre_inquiry": {
           "title": "Pre-inquiry",
-          "body": "A pre-inquiry can start in three ways: describing the situation in the user's own words, answering a shorter problem-focused pre-assessment, or completing a more detailed pre-assessment. When starting with questions, the workflow gathers information by life domain about daily functioning, health, living environment, support network, previous help, the person's own wishes, and main needs. The workflow helps notice possible risks and excessive personal data, then creates a reviewable summary and inquiry draft. When there is enough information, SotsiaalAI looks through service-map data for possible municipal social-sector contacts or service providers based on the description and area. The user can edit, save, copy, download, or open the draft as an email. When internal SotsiaalAI intake is available, the recipient can open the inquiry in the platform, download the pre-assessment details, and continue in a chat room if needed."
+          "body": "A pre-inquiry can start in three ways: describing the situation in the user's own words, answering a shorter problem-focused pre-assessment, or completing a more detailed pre-assessment. When starting with questions, the workflow gathers information by life domain about daily functioning, health, living environment, support network, previous help, the person's own wishes, and main needs. The workflow helps notice possible risks and excessive personal data, then creates a reviewable summary and inquiry draft. When there is enough information, Sotsiaal.pro looks through service-map data for possible municipal social-sector contacts or service providers based on the description and area. The user can edit, save, copy, download, or open the draft as an email. When internal Sotsiaal.pro intake is available, the recipient can open the inquiry in the platform, download the pre-assessment details, and continue in a chat room if needed."
         },
         "intake": {
           "title": "Inquiry intake",
@@ -4448,7 +4454,7 @@
         },
         "materials_adding": {
           "title": "Adding materials",
-          "body": "Adding materials lets a professional or service provider send files to supplement the SotsiaalAI knowledge base, for example guides, service descriptions, forms, or other sources. A comment can be added to help explain the material's context. Submitted material goes into review and is not added to the knowledge base automatically. After review, it is decided whether the material is suitable for adding to the knowledge base."
+          "body": "Adding materials lets a professional or service provider send files to supplement the Sotsiaal.pro knowledge base, for example guides, service descriptions, forms, or other sources. A comment can be added to help explain the material's context. Submitted material goes into review and is not added to the knowledge base automatically. After review, it is decided whether the material is suitable for adding to the knowledge base."
         },
         "service_card_listing": {
           "title": "Service provider card profile",
@@ -4464,7 +4470,7 @@
         },
         "crisis_routing": {
           "title": "Crisis and risk routing",
-          "body": "When a user describes immediate danger, self-harm or suicide risk, violence, or another serious crisis, SotsiaalAI shows urgent-help guidance and Estonian support channels. These include 112, Child Helpline 116 111, and Victim Support 116 006. AI does not replace emergency services, child protection, victim support, or professional crisis help."
+          "body": "When a user describes immediate danger, self-harm or suicide risk, violence, or another serious crisis, Sotsiaal.pro shows urgent-help guidance and Estonian support channels. These include 112, Child Helpline 116 111, and Victim Support 116 006. AI does not replace emergency services, child protection, victim support, or professional crisis help."
         },
         "youth_child_safety": {
           "title": "Youth and child safety",
@@ -4480,7 +4486,7 @@
         },
         "domain_knowledge": {
           "title": "Social-sector knowledge environment",
-          "body": "The value of SotsiaalAI is not a generic chatbot, but a knowledge base and workflow logic built for the social sector. The platform uses information grounded in social welfare law, child protection law, municipal services, national guidance, and domain materials where sources are available."
+          "body": "The value of Sotsiaal.pro is not a generic chatbot, but a knowledge base and workflow logic built for the social sector. The platform uses information grounded in social welfare law, child protection law, municipal services, national guidance, and domain materials where sources are available."
         }
       }
     },
@@ -4530,7 +4536,7 @@
         },
         "about": {
           "title": "Public information and contact",
-          "body": "<p>Home-page cards and the bottom quick menu open <a href=\"/voimalused\">Features</a>, User guide, <a href=\"/meist\">About</a>, Install, <a href=\"/kasutustingimused\">Terms</a>, <a href=\"/privaatsustingimused\">Privacy policy</a>, <a href=\"/hinnastus\">Pricing</a> and <button type=\"button\" data-contact-open>Contact</button>. The platform’s origin story is on <a href=\"/autorilt\">From the author</a>.</p><p>The hidden top menu controls background audio, track switching, accessibility and Standby. In a supported browser, Install adds SotsiaalAI to a phone or computer as an app.</p>"
+          "body": "<p>Home-page cards and the bottom quick menu open <a href=\"/voimalused\">Features</a>, User guide, <a href=\"/meist\">About</a>, Install, <a href=\"/kasutustingimused\">Terms</a>, <a href=\"/privaatsustingimused\">Privacy policy</a>, <a href=\"/hinnastus\">Pricing</a> and <button type=\"button\" data-contact-open>Contact</button>. The platform’s origin story is on <a href=\"/autorilt\">From the author</a>.</p><p>The hidden top menu controls background audio, track switching, accessibility and Standby. In a supported browser, Install adds Sotsiaal.pro to a phone or computer as an app.</p>"
         },
         "before_use": {
           "title": "Before professional use",
@@ -4558,7 +4564,7 @@
         },
         "privacy_safety": {
           "title": "Privacy warnings and urgent help",
-          "body": "<p>If the privacy pre-check notices a possible name, personal code, address, phone, email or another sensitive detail, it warns before sending.</p><ul><li><strong>Edit text</strong> leaves the text for correction.</li><li><strong>Send masked</strong> replaces detected parts with labels.</li><li><strong>Send anyway</strong> is available only in an allowed private workflow. Public help requests and offers use stricter minimisation.</li></ul><p>In an urgent or dangerous situation, follow the displayed 112, Child Helpline or Victim Support guidance immediately. SotsiaalAI is not an emergency channel.</p>"
+          "body": "<p>If the privacy pre-check notices a possible name, personal code, address, phone, email or another sensitive detail, it warns before sending.</p><ul><li><strong>Edit text</strong> leaves the text for correction.</li><li><strong>Send masked</strong> replaces detected parts with labels.</li><li><strong>Send anyway</strong> is available only in an allowed private workflow. Public help requests and offers use stricter minimisation.</li></ul><p>In an urgent or dangerous situation, follow the displayed 112, Child Helpline or Victim Support guidance immediately. Sotsiaal.pro is not an emergency channel.</p>"
         }
       },
       "role_picker": {
@@ -4664,15 +4670,15 @@
     "cancel": {
       "confirm_text": "Are you sure? Your access stays active until {date} and no further monthly payment is taken. Cancelling cannot be undone before the period ends."
     },
-    "info": "Active use of SotsiaalAI's knowledge base, assistants, and workflows requires a role-based monthly subscription; the free plan lets you get started, and the help request and help offer flows are free. The fee depends on the plan. The subscription renews automatically and you can cancel it at any time right here on the subscription page.",
-    "info_priced": "To use SotsiaalAI you need a monthly subscription. For the \"{role}\" role, the fee is {amount} per month. The subscription renews automatically and you can cancel it at any time right here on the subscription page.",
+    "info": "Active use of Sotsiaal.pro's knowledge base, assistants, and workflows requires a role-based monthly subscription; the free plan lets you get started, and the help request and help offer flows are free. The fee depends on the plan. The subscription renews automatically and you can cancel it at any time right here on the subscription page.",
+    "info_priced": "To use Sotsiaal.pro you need a monthly subscription. For the \"{role}\" role, the fee is {amount} per month. The subscription renews automatically and you can cancel it at any time right here on the subscription page.",
     "sponsored_info": "If your access comes through a sponsored invite, it lasts one month. After that, activate your own subscription to continue.",
     "checkout": {
       "title": "Before payment",
       "agreement": "I agree to the <terms>Terms of Use</terms> and <privacy>Privacy Policy</privacy>. I understand that I am joining a monthly subscription and want to start payment through Maksekeskus.",
       "details": "You choose the payment method on the Maksekeskus checkout page. Access is activated immediately after confirmation. If there is a payment issue, Maksekeskus terms and applicable legal requirements govern the handling.",
       "error_required": "Please check the consent box before continuing to payment.",
-      "recurring_title": "SotsiaalAI monthly subscription",
+      "recurring_title": "Sotsiaal.pro monthly subscription",
       "recurring_description": "Role: {role}. Monthly fee: {amount}. The subscription renews automatically every month until you cancel it.",
       "recurring_confirmation": "I confirm that I agree to the recurring monthly charge and authorize future monthly payments from the same card until the subscription is canceled."
     },
@@ -4684,13 +4690,13 @@
     "cta_mobile": "Install on mobile",
     "cta_desktop": "Install on desktop",
     "install_short": "Install",
-    "fullscreen_body": "For the best experience, use SotsiaalAI full screen.",
+    "fullscreen_body": "For the best experience, use Sotsiaal.pro full screen.",
     "installed_heading": "App view is in use",
-    "installed_body": "SotsiaalAI is open in this window as an installed app.",
-    "promotion_title": "Open SotsiaalAI full screen",
+    "installed_body": "Sotsiaal.pro is open in this window as an installed app.",
+    "promotion_title": "Open Sotsiaal.pro full screen",
     "promotion_cta": "Install",
     "promotion_later": "Later",
-    "promotion_announcement": "SotsiaalAI can be opened as a full-screen app.",
+    "promotion_announcement": "Sotsiaal.pro can be opened as a full-screen app.",
     "instructions": {
       "ios": "1. Tap \"Share\". 2. Choose \"More\". 3. Tap \"Add to Home Screen\".",
       "ios_other_browser": "Save your preferences first. Then open this page in Safari on iPhone or iPad, tap Share, and choose Add to Home Screen.",
@@ -4897,43 +4903,43 @@
     "account": {
       "email_change_confirm": {
         "subject": "Confirm your new email address",
-        "text": "Hello!\n\nWe received a request to change your SotsiaalAI account email. Confirm the new address using the link below:\n{confirmUrl}\n\nIf you did not request this, you can ignore this email — nothing changes until you confirm.",
-        "html": "<p>Hello!</p><p>We received a request to change your SotsiaalAI account email. Confirm the new address using the link below:</p><p><a href=\"{confirmUrl}\">{confirmUrl}</a></p><p>If you did not request this, you can ignore this email — nothing changes until you confirm.</p>"
+        "text": "Hello!\n\nWe received a request to change your Sotsiaal.pro account email. Confirm the new address using the link below:\n{confirmUrl}\n\nIf you did not request this, you can ignore this email — nothing changes until you confirm.",
+        "html": "<p>Hello!</p><p>We received a request to change your Sotsiaal.pro account email. Confirm the new address using the link below:</p><p><a href=\"{confirmUrl}\">{confirmUrl}</a></p><p>If you did not request this, you can ignore this email — nothing changes until you confirm.</p>"
       },
       "pin_changed": {
-        "subject": "Your SotsiaalAI PIN was changed",
-        "text": "Hello!\n\nThe PIN for your SotsiaalAI account was just changed.\n\nIf this was not you, write to info@sotsiaal.pro immediately and reset your PIN.",
-        "html": "<p>Hello!</p><p>The PIN for your SotsiaalAI account was just changed.</p><p>If this was not you, write to <a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a> immediately and reset your PIN.</p>"
+        "subject": "Your Sotsiaal.pro PIN was changed",
+        "text": "Hello!\n\nThe PIN for your Sotsiaal.pro account was just changed.\n\nIf this was not you, write to info@sotsiaal.pro immediately and reset your PIN.",
+        "html": "<p>Hello!</p><p>The PIN for your Sotsiaal.pro account was just changed.</p><p>If this was not you, write to <a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a> immediately and reset your PIN.</p>"
       },
       "email_changed_notice": {
-        "subject": "Your SotsiaalAI account email was changed",
-        "text": "Hello!\n\nThe email address for your SotsiaalAI account has been changed. This notice was sent to your previous address.\n\nIf you did not request this, write to info@sotsiaal.pro immediately.",
-        "html": "<p>Hello!</p><p>The email address for your SotsiaalAI account has been changed. This notice was sent to your previous address.</p><p>If you did not request this, write to <a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a> immediately.</p>"
+        "subject": "Your Sotsiaal.pro account email was changed",
+        "text": "Hello!\n\nThe email address for your Sotsiaal.pro account has been changed. This notice was sent to your previous address.\n\nIf you did not request this, write to info@sotsiaal.pro immediately.",
+        "html": "<p>Hello!</p><p>The email address for your Sotsiaal.pro account has been changed. This notice was sent to your previous address.</p><p>If you did not request this, write to <a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a> immediately.</p>"
       }
     },
     "auth": {
       "reset": {
-        "subject": "SotsiaalAI PIN reset",
+        "subject": "Sotsiaal.pro PIN reset",
         "text": "Hello!\n\nYou can reset your PIN using this link:\n{resetUrl}\n\nIf you did not request this, you can ignore this email.",
         "html": "<p>Hello!</p><p>You can reset your PIN using this link:</p><p><a href=\"{resetUrl}\">{resetUrl}</a></p><p>If you did not request this, you can ignore this email.</p>"
       },
       "login_link": {
-        "subject": "Confirm your SotsiaalAI sign-in",
+        "subject": "Confirm your Sotsiaal.pro sign-in",
         "text": "Hello!\n\nOpen this link to confirm sign-in:\n{confirmUrl}\n\nThe confirmation link is valid for {minutes} minutes.\n\nIf you did not try to sign in, please ignore this email.",
         "html": "<div style=\"font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1a1a1a;line-height:1.55\"><p>Hello!</p><p>To confirm your sign-in, press the button:</p><p style=\"margin:24px 0\"><a href=\"{confirmUrl}\" style=\"display:inline-block;background-color:#4d4d4d;background-color:rgba(26,26,26,0.78);background-image:linear-gradient(180deg,rgba(255,255,255,0.20) 0%,rgba(255,255,255,0.05) 45%,rgba(255,255,255,0) 100%);color:#f7f7f7;text-decoration:none;padding:14px 34px;border:1px solid rgba(255,255,255,0.30);border-radius:14px;font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-weight:500;font-size:19px;letter-spacing:.04em;box-shadow:0 6px 18px rgba(26,26,26,0.18)\">CONFIRM</a></p><p>The confirmation link is valid for {minutes} minutes. If you open the link in the same browser where you entered your PIN, the button signs you straight in. Otherwise sign-in continues in the window where you started it.</p><p style=\"color:#888888;font-size:13px\">If you did not try to sign in, ignore this email.</p></div>"
       },
       "login_otp": {
-        "subject": "SotsiaalAI sign-in verification code",
+        "subject": "Sotsiaal.pro sign-in verification code",
         "text": "Hello!\n\nYour verification code is: {code}\nThe code is valid for {minutes} minutes.\n\nIf you did not try to sign in, please ignore this email.",
         "html": "<p>Hello!</p><p>Your verification code is: <strong>{code}</strong></p><p>The code is valid for {minutes} minutes.</p><p>If you did not try to sign in, please ignore this email.</p>"
       },
       "login_otp_resend": {
-        "subject": "SotsiaalAI new verification code",
+        "subject": "Sotsiaal.pro new verification code",
         "text": "Hello!\n\nYour new verification code is: {code}\nThe code is valid for {minutes} minutes.\n\nIf you did not try to sign in, please ignore this email.",
         "html": "<p>Hello!</p><p>Your new verification code is: <strong>{code}</strong></p><p>The code is valid for {minutes} minutes.</p><p>If you did not try to sign in, please ignore this email.</p>"
       },
       "login_device_alert": {
-        "subject": "SotsiaalAI sign-in from a new or unrecognized device",
+        "subject": "Sotsiaal.pro sign-in from a new or unrecognized device",
         "text": "Hello!\n\nWe noticed a sign-in attempt from a new or unrecognized device.\n\nTime: {time}\nDevice: {device}\nIP address: {ip}\n\nIf this was you, you can continue signing in with the email link. If this was not you, please change your PIN immediately.",
         "html": "<p>Hello!</p><p>We noticed a sign-in attempt from a new or unrecognized device.</p><ul><li><strong>Time:</strong> {time}</li><li><strong>Device:</strong> {device}</li><li><strong>IP address:</strong> {ip}</li></ul><p>If this was you, you can continue signing in with the email link. If this was not you, please change your PIN immediately.</p>"
       },
@@ -4943,21 +4949,21 @@
         "html": "<div style=\"font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1a1a1a;line-height:1.55\"><p>Hello!</p><p>To activate your account, confirm your email address:</p><p style=\"margin:24px 0\"><a href=\"{verifyUrl}\" style=\"display:inline-block;background-color:#4d4d4d;background-color:rgba(26,26,26,0.78);background-image:linear-gradient(180deg,rgba(255,255,255,0.20) 0%,rgba(255,255,255,0.05) 45%,rgba(255,255,255,0) 100%);color:#f7f7f7;text-decoration:none;padding:14px 34px;border:1px solid rgba(255,255,255,0.30);border-radius:14px;font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-weight:500;font-size:19px;letter-spacing:.04em;box-shadow:0 6px 18px rgba(26,26,26,0.18)\">ACTIVATE</a></p><p style=\"color:#888888;font-size:13px\">If you did not create an account, you can ignore this email.</p></div>"
       },
       "account_deleted": {
-        "subject": "Your SotsiaalAI account was deleted",
-        "text": "Hello!\n\nYour SotsiaalAI account was deleted.\n\nIf this was not you, please contact us immediately at info@sotsiaal.pro.",
-        "html": "<p>Hello!</p><p>Your SotsiaalAI account was deleted.</p><p>If this was not you, please contact us immediately at <a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a>.</p>"
+        "subject": "Your Sotsiaal.pro account was deleted",
+        "text": "Hello!\n\nYour Sotsiaal.pro account was deleted.\n\nIf this was not you, please contact us immediately at info@sotsiaal.pro.",
+        "html": "<p>Hello!</p><p>Your Sotsiaal.pro account was deleted.</p><p>If this was not you, please contact us immediately at <a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a>.</p>"
       }
     },
     "invite": {
       "create": {
         "subject": "Invitation to a collaboration room: {roomTitle}",
-        "text": "Hello!\n\n{inviterName} invited you to the SotsiaalAI collaboration room \"{roomTitle}\".\n\nThe invitation gives access only to this room, not to the inviter's other rooms, private conversations, documents or Journey.\n\nJoin: {joinLink}\n\nIf you did not expect this invitation, you can ignore this email.",
-        "html": "<p>Hello!</p><p>{inviterName} invited you to the SotsiaalAI collaboration room <strong>{roomTitle}</strong>.</p><p>The invitation gives access only to this room, not to the inviter's other rooms, private conversations, documents or Journey.</p><p><a href=\"{joinLink}\">Join the room</a></p><p>If you did not expect this invitation, you can ignore this email.</p>"
+        "text": "Hello!\n\n{inviterName} invited you to the Sotsiaal.pro collaboration room \"{roomTitle}\".\n\nThe invitation gives access only to this room, not to the inviter's other rooms, private conversations, documents or Journey.\n\nJoin: {joinLink}\n\nIf you did not expect this invitation, you can ignore this email.",
+        "html": "<p>Hello!</p><p>{inviterName} invited you to the Sotsiaal.pro collaboration room <strong>{roomTitle}</strong>.</p><p>The invitation gives access only to this room, not to the inviter's other rooms, private conversations, documents or Journey.</p><p><a href=\"{joinLink}\">Join the room</a></p><p>If you did not expect this invitation, you can ignore this email.</p>"
       },
       "sponsored": {
         "subject": "Sponsored invitation: {roomTitle}",
-        "text": "Hello!\n\n{inviterName} invited you to the room \"{roomTitle}\" and paid for one month of SotsiaalAI on your behalf.\n\nYour role: {roleLabel}\n\nFor one month you can use all of SotsiaalAI for your role — assistant conversations, the knowledge base and workflows. The only shared space is the room \"{roomTitle}\"; everything else you do on the platform stays private to you.\n\nJoin: {joinLink}\n\nAfter the month ends, activate your own subscription on the Subscription page to continue.\n\nIf you did not expect this email, you can ignore it.",
-        "html": "<div style=\"font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1a1a1a;line-height:1.55\"><p>Hello!</p><p><strong>{inviterName}</strong> invited you to the room <strong>{roomTitle}</strong> and paid for one month of SotsiaalAI on your behalf.</p><p><strong>Your role:</strong> {roleLabel}</p><p>For one month you can use all of SotsiaalAI for your role — assistant conversations, the knowledge base and workflows. The only shared space is the room <strong>{roomTitle}</strong>; everything else you do on the platform stays private to you.</p><p style=\"margin:24px 0\"><a href=\"{joinLink}\" style=\"display:inline-block;background-color:#4d4d4d;background-color:rgba(26,26,26,0.78);background-image:linear-gradient(180deg,rgba(255,255,255,0.20) 0%,rgba(255,255,255,0.05) 45%,rgba(255,255,255,0) 100%);color:#f7f7f7;text-decoration:none;padding:14px 34px;border:1px solid rgba(255,255,255,0.30);border-radius:14px;font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-weight:500;font-size:19px;letter-spacing:.04em;box-shadow:0 6px 18px rgba(26,26,26,0.18)\">JOIN</a></p><p>After the month ends, activate your own subscription on the Subscription page to continue.</p><p style=\"color:#888888;font-size:13px\">If you did not expect this email, you can ignore it.</p></div>"
+        "text": "Hello!\n\n{inviterName} invited you to the room \"{roomTitle}\" and paid for one month of Sotsiaal.pro on your behalf.\n\nYour role: {roleLabel}\n\nFor one month you can use all of Sotsiaal.pro for your role — assistant conversations, the knowledge base and workflows. The only shared space is the room \"{roomTitle}\"; everything else you do on the platform stays private to you.\n\nJoin: {joinLink}\n\nAfter the month ends, activate your own subscription on the Subscription page to continue.\n\nIf you did not expect this email, you can ignore it.",
+        "html": "<div style=\"font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1a1a1a;line-height:1.55\"><p>Hello!</p><p><strong>{inviterName}</strong> invited you to the room <strong>{roomTitle}</strong> and paid for one month of Sotsiaal.pro on your behalf.</p><p><strong>Your role:</strong> {roleLabel}</p><p>For one month you can use all of Sotsiaal.pro for your role — assistant conversations, the knowledge base and workflows. The only shared space is the room <strong>{roomTitle}</strong>; everything else you do on the platform stays private to you.</p><p style=\"margin:24px 0\"><a href=\"{joinLink}\" style=\"display:inline-block;background-color:#4d4d4d;background-color:rgba(26,26,26,0.78);background-image:linear-gradient(180deg,rgba(255,255,255,0.20) 0%,rgba(255,255,255,0.05) 45%,rgba(255,255,255,0) 100%);color:#f7f7f7;text-decoration:none;padding:14px 34px;border:1px solid rgba(255,255,255,0.30);border-radius:14px;font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-weight:500;font-size:19px;letter-spacing:.04em;box-shadow:0 6px 18px rgba(26,26,26,0.18)\">JOIN</a></p><p>After the month ends, activate your own subscription on the Subscription page to continue.</p><p style=\"color:#888888;font-size:13px\">If you did not expect this email, you can ignore it.</p></div>"
       },
       "sponsored_revoked": {
         "subject": "Sponsored access to \"{roomTitle}\" has ended",
@@ -4972,13 +4978,13 @@
     },
     "payment": {
       "owner_webhook": {
-        "subject": "[SotsiaalAI] Payment webhook: {status} ({providerPaymentId})",
+        "subject": "[Sotsiaal.pro] Payment webhook: {status} ({providerPaymentId})",
         "text": "Payment webhook was processed.\n\nStatus: {status}\nProvider payment ID: {providerPaymentId}\nPayment ID: {paymentId}\nAmount: {amount} {currency}\nPaid at: {paidAt}\nCreated at: {createdAt}\nUser email: {userEmail}\nUser ID: {userId}\nSubscription ID: {subscriptionId}\nSubscription plan: {subscriptionPlan}\nSubscription status: {subscriptionStatus}\nSubscription valid until: {subscriptionValidUntil}\nSubscription canceled at: {subscriptionCanceledAt}\nSubscription action: {subscriptionAction}\nEvent time: {eventTime}\n\nAdmin analytics: {adminUrl}",
         "html": "<p>Payment webhook was processed.</p><ul><li><strong>Status:</strong> {status}</li><li><strong>Provider payment ID:</strong> {providerPaymentId}</li><li><strong>Payment ID:</strong> {paymentId}</li><li><strong>Amount:</strong> {amount} {currency}</li><li><strong>Paid at:</strong> {paidAt}</li><li><strong>Created at:</strong> {createdAt}</li><li><strong>User email:</strong> {userEmail}</li><li><strong>User ID:</strong> {userId}</li><li><strong>Subscription ID:</strong> {subscriptionId}</li><li><strong>Subscription plan:</strong> {subscriptionPlan}</li><li><strong>Subscription status:</strong> {subscriptionStatus}</li><li><strong>Subscription valid until:</strong> {subscriptionValidUntil}</li><li><strong>Subscription canceled at:</strong> {subscriptionCanceledAt}</li><li><strong>Subscription action:</strong> {subscriptionAction}</li><li><strong>Event time:</strong> {eventTime}</li></ul><p><a href=\"{adminUrl}\">Open admin analytics</a></p>"
       },
       "customer_confirmation": {
         "subscription": {
-          "subject": "Payment successful — your SotsiaalAI subscription is active",
+          "subject": "Payment successful — your Sotsiaal.pro subscription is active",
           "text": "Hello!\n\nThank you! Your payment was successful and your subscription is active.\n\nPaid: {amount} {currency}\nDate: {paidAt}\nPlan: {subscriptionPlan}\nValid until: {subscriptionValidUntil}\n\nThe subscription renews automatically. You can manage or cancel it from your profile.\n\nQuestions? Write to {supportEmail}",
           "html": "<div style=\"font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1a1a1a;line-height:1.55\"><p>Hello!</p><p>Thank you! Your payment was successful and your subscription is active.</p><p><strong>Paid:</strong> {amount} {currency}<br><strong>Date:</strong> {paidAt}<br><strong>Plan:</strong> {subscriptionPlan}<br><strong>Valid until:</strong> {subscriptionValidUntil}</p><p>The subscription renews automatically. You can manage or cancel it from your profile.</p><p style=\"margin:24px 0\"><a href=\"{profileUrl}\" style=\"display:inline-block;background-color:#4d4d4d;background-color:rgba(26,26,26,0.78);background-image:linear-gradient(180deg,rgba(255,255,255,0.20) 0%,rgba(255,255,255,0.05) 45%,rgba(255,255,255,0) 100%);color:#f7f7f7;text-decoration:none;padding:14px 34px;border:1px solid rgba(255,255,255,0.30);border-radius:14px;font-family:'Exo 2','Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-weight:500;font-size:19px;letter-spacing:.04em;box-shadow:0 6px 18px rgba(26,26,26,0.18)\">SUBSCRIPTION</a></p><p style=\"color:#888888;font-size:13px\">Questions? Write to {supportEmail}.</p></div>"
         },
@@ -5788,8 +5794,8 @@
     },
     "email_preference": "Also send optional work-queue notifications by email",
     "email_preference_hint": "Emails never include inquiry, room, or draft content.",
-    "email_subject": "SotsiaalAI notification",
-    "email_intro": "There is a new notification for you in SotsiaalAI.",
+    "email_subject": "Sotsiaal.pro notification",
+    "email_intro": "There is a new notification for you in Sotsiaal.pro.",
     "email_action": "Sign in securely to view it:"
   },
   "workspace_continuity": {
@@ -6152,13 +6158,13 @@
     },
     "pages": {
       "analytics": {
-        "meta_title": "Analytics - SotsiaalAI"
+        "meta_title": "Analytics - Sotsiaal.pro"
       },
       "framework_acceptances": {
-        "meta_title": "Framework acceptances - SotsiaalAI"
+        "meta_title": "Framework acceptances - Sotsiaal.pro"
       },
       "rag": {
-        "meta_title": "RAG Admin - SotsiaalAI",
+        "meta_title": "RAG Admin - Sotsiaal.pro",
         "meta_description": "Upload and manage RAG materials."
       }
     },
@@ -7297,7 +7303,7 @@
     "sections": {
       "start_description": "Hello. Let us start your journey. Describe the situation in your own words. You do not need to know everything or phrase it perfectly, just write what is happening.",
       "review_title": "Overview before saving",
-      "review_description": "Review whether SotsiaalAI organized the situation correctly. The journey is saved only when you confirm.",
+      "review_description": "Review whether Sotsiaal.pro organized the situation correctly. The journey is saved only when you confirm.",
       "active_title": "Active journey",
       "archived_title": "Previous journeys"
     },
@@ -7356,7 +7362,7 @@
     "healthContact": {
       "title": "Health contact option",
       "description": "Your description may include a health-related question. A possible first step may be a family doctor center, health center, or official health advice contact.",
-      "notMedicalAdvice": "SotsiaalAI does not provide medical assessment, diagnosis, or treatment advice, but can help phrase questions clearly. If there is immediate danger, use emergency or urgent care channels.",
+      "notMedicalAdvice": "Sotsiaal.pro does not provide medical assessment, diagnosis, or treatment advice, but can help phrase questions clearly. If there is immediate danger, use emergency or urgent care channels.",
       "createQuestions": "Create questions for a health contact",
       "questionsDraftTitle": "Questions for a health contact",
       "privateNote": "The questions stay with you. They are not sent automatically to a family doctor center, health center, or any other party.",
@@ -7477,7 +7483,7 @@
     "assistiveDevices": {
       "title": "Assistive Devices and Adaptations",
       "description": "This collects information about assistive devices, home adaptations, or support with using a device.",
-      "safetyNote": "SotsiaalAI does not officially prescribe an assistive device or decide reimbursement. When needed, clarify suitability with the local government, a specialist, a rehabilitation team, or an assistive-device provider.",
+      "safetyNote": "Sotsiaal.pro does not officially prescribe an assistive device or decide reimbursement. When needed, clarify suitability with the local government, a specialist, a rehabilitation team, or an assistive-device provider.",
       "addDocument": "Add document",
       "createPracticalHelpRequest": "Create help request for practical support"
     },
@@ -7527,7 +7533,7 @@
     "healthContact": {
       "title": "Health contact",
       "description": "This contact may be suitable for first clarification of a health-related question.",
-      "notMedicalPlatform": "SotsiaalAI does not provide medical assessment, diagnosis, or treatment advice."
+      "notMedicalPlatform": "Sotsiaal.pro does not provide medical assessment, diagnosis, or treatment advice."
     }
   },
   "wellbeing": {
@@ -7932,12 +7938,12 @@
     }
   },
   "voimalused": {
-    "title": "SotsiaalAI features",
-    "intro": "This is a complete overview of SotsiaalAI services and tools. Each feature explains who it is for and what it enables; exact access depends on the user's role and plan.",
+    "title": "Sotsiaal.pro features",
+    "intro": "This is a complete overview of Sotsiaal.pro services and tools. Each feature explains who it is for and what it enables; exact access depends on the user's role and plan.",
     "s1_title": "Chat and role-aware responses",
-    "s1_body": "For all three roles. In chat you can describe a situation in your own words, ask about services, benefits, rights, or professional practice, and ask for a simpler explanation. SotsiaalAI adapts its response style to the user's role, helps organise the issue, and suggests next steps; decisions always remain with people. The Sources action appears when a response uses verifiable sources.",
-    "s2_title": "The SotsiaalAI knowledge base",
-    "s2_body": "SotsiaalAI answers draw on the platform knowledge base, which brings together social-sector legislation, guidance, methods, local-government information and forms. When an answer uses sources, you can open the materials and verify where the information came from. The knowledge base is maintained and professional submissions are added after review.",
+    "s1_body": "For all three roles. In chat you can describe a situation in your own words, ask about services, benefits, rights, or professional practice, and ask for a simpler explanation. Sotsiaal.pro adapts its response style to the user's role, helps organise the issue, and suggests next steps; decisions always remain with people. The Sources action appears when a response uses verifiable sources.",
+    "s2_title": "The Sotsiaal.pro knowledge base",
+    "s2_body": "Sotsiaal.pro answers draw on the platform knowledge base, which brings together social-sector legislation, guidance, methods, local-government information and forms. When an answer uses sources, you can open the materials and verify where the information came from. The knowledge base is maintained and professional submissions are added after review.",
     "s3_title": "Journey",
     "s3_body": "Your steps stay together on the Journey: a summary of what has happened, related topics, missing information and next steps. The Journey is private. You decide whether and with whom to share it; sharing happens with your confirmation, and you can review and revoke your shares in the My shares view.",
     "s4_title": "Your control and safety",
@@ -7959,7 +7965,7 @@
     "s12_title": "Wellbeing tools",
     "s12_body": "For social work professionals. The Wellbeing area includes My records, a quick check, weekly and monthly overview, difficult case, workplace violence, recovery, work boundaries, interruptions, work processes, role boundaries, and starter support. Records help identify strain and choose a small next step; personal wellbeing information is not shared with others by default.",
     "s13_title": "Materials",
-    "s13_body": "A specialist can submit guidance, methodologies and practical materials to enrich the SotsiaalAI knowledge base. Material reaches the database after review. This way the environment grows together with the field's practice.",
+    "s13_body": "A specialist can submit guidance, methodologies and practical materials to enrich the Sotsiaal.pro knowledge base. Material reaches the database after review. This way the environment grows together with the field's practice.",
     "s14_title": "Service map",
     "s14_body": "For all roles. The Service map helps find municipal social-service contacts, service providers, services, service locations, and published help requests and offers. Search by name, description, service, category, target group, address, or area.",
     "s15_title": "Supervision",
@@ -7991,7 +7997,7 @@
     "s21_title": "Deep research",
     "s21_body": "For all roles. Deep research creates a more detailed, source-based overview of a social topic, service, law, guide, or practical question. It highlights findings, connections, gaps, and next steps, and completed research remains available to the user.",
     "s22_title": "Document analysis",
-    "s22_body": "For all roles. Add a file to chat, ask about its contents, and find important passages, explanations, or summaries. By default the analysis focuses on the uploaded document; SotsiaalAI domain context can be added when needed. A temporary analysis file does not automatically become a persistent document.",
+    "s22_body": "For all roles. Add a file to chat, ask about its contents, and find important passages, explanations, or summaries. By default the analysis focuses on the uploaded document; Sotsiaal.pro domain context can be added when needed. A temporary analysis file does not automatically become a persistent document.",
     "s23_title": "Sources and source feedback",
     "s23_body": "For all roles. When a response uses sources, the source panel lets you inspect the law, guide, municipal page, service information, article, or other material used. Users can report an inaccurate or outdated source for review.",
     "s24_title": "My shares",
@@ -8011,9 +8017,9 @@
     "s31_title": "Subsistence-benefit estimate",
     "s31_body": "For help seekers. The tool uses entered household, housing-cost, and income information to make a preliminary browser-based estimate and explain what may be needed for an official application. The result is an estimate, not a municipal decision.",
     "s32_title": "Service profile",
-    "s32_body": "For service providers. A Service profile manages organisation details, contacts, accessibility, service area and locations, plus each service's target group, price, availability, waiting time, referral requirements, and contact routes. Published information makes the service discoverable on the Service map and in SotsiaalAI recommendations.",
+    "s32_body": "For service providers. A Service profile manages organisation details, contacts, accessibility, service area and locations, plus each service's target group, price, availability, waiting time, referral requirements, and contact routes. Published information makes the service discoverable on the Service map and in Sotsiaal.pro recommendations.",
     "s33_title": "Profile, subscription, and accessibility",
-    "s33_body": "For all roles. Profile lets users change PIN and email, manage a subscription or sponsored access, view usage, sign out, and open language and accessibility settings. Users can adjust language, text size, contrast, screen profile, motion, and transparency, and install SotsiaalAI as an app on a phone or computer.",
+    "s33_body": "For all roles. Profile lets users change PIN and email, manage a subscription or sponsored access, view usage, sign out, and open language and accessibility settings. Users can adjust language, text size, contrast, screen profile, motion, and transparency, and install Sotsiaal.pro as an app on a phone or computer.",
     "s34_title": "Sessions, data copy, and account deletion",
     "s34_body": "For all roles. Users can end the current or all active sessions, request a copy of their data, and start account deletion. Export and deletion follow role, ownership, sharing, and retention boundaries so another person's or organisation's content is not included.",
     "s35_title": "Knowledge and source administration",
@@ -8021,7 +8027,7 @@
     "s36_title": "Platform administration and analytics",
     "s36_body": "For administrators. Platform administration covers usage and AI-cost analytics, urgent desks, wellbeing pilots, mentoring administration, professional-framework acceptances, and service availability. Operational views help detect problems and make controlled changes without opening users' private content by default.",
     "s37_title": "Public information, guides, and installation",
-    "s37_body": "For every visitor. The public area includes About, From the author, Features, Guide, Pricing, Terms of Use, Privacy Policy, contact information, and the professional-use framework. In supported browsers SotsiaalAI can be installed on a phone or computer and opened from its own app icon.",
+    "s37_body": "For every visitor. The public area includes About, From the author, Features, Guide, Pricing, Terms of Use, Privacy Policy, contact information, and the professional-use framework. In supported browsers Sotsiaal.pro can be installed on a phone or computer and opened from its own app icon.",
     "toc_title": "Feature groups"
   },
   "subscriptionGate": {
@@ -8031,12 +8037,12 @@
   },
   "meist": {
     "title": "About us",
-    "meta_description": "SotsiaalAI is a digital environment for the social field: clarity by asking, AI support and practical tools — decisions always stay with people.",
+    "meta_description": "Sotsiaal.pro is a digital environment for the social field: clarity by asking, AI support and practical tools — decisions always stay with people.",
     "h_intro": "Everything starts with clarity",
     "intro1a": "When life gets hard — a job is lost, strength runs out, a loved one needs care — the first obstacle is usually not the absence of help. The first obstacle is not knowing: what can I even ask for, from whom, and in what words? The answers exist in laws, agencies and registers, but they are written in the language of the system, not of people. The field's own ",
     "oska_link": "OSKA workforce report (2025)",
     "intro1b": " says the same: finding your way between services, benefits and contacts takes time that is often not there. And worry does not watch the clock — the hardest questions tend to come when no office is open.",
-    "intro2": "SotsiaalAI is an Estonian platform built for exactly that gap. In one place you find trustworthy information, AI support, practical tools and communication — for a person seeking clarity, for a specialist doing social work, and for an organisation providing services. Our principle is simple: clarity should come from asking, not searching. You describe your situation in your own words — in Estonian, Russian or English — and get an answer in plain language, always with its sources.",
+    "intro2": "Sotsiaal.pro is an Estonian platform built for exactly that gap. In one place you find trustworthy information, AI support, practical tools and communication — for a person seeking clarity, for a specialist doing social work, and for an organisation providing services. Our principle is simple: clarity should come from asking, not searching. You describe your situation in your own words — in Estonian, Russian or English — and get an answer in plain language, always with its sources.",
     "h_never": "Three things we will never do",
     "never_intro": "Artificial intelligence raises fair questions in the social field. We answer them with three firm promises.",
     "never1_title": "A machine will never decide about you.",
@@ -8055,7 +8061,7 @@
     "h_success": "How we measure success",
     "success_body": "Most digital services measure success by how long they can keep you. We measure the opposite: how quickly you get back to your life. Our success is when you reach clarity, get help from the right place — and need us a little less each time.",
     "h_we": "Who we are",
-    "we_body": "SotsiaalAI is a social impact company built in Estonia: our goal is public good, and revenue serves that goal. The platform is built by a person with a social work background who has worked as a personal assistant, at the field's professional journal and inside the system. We develop the platform deliberately and step by step, together with people from the field, and we always say honestly what AI does here — and what it will never do.",
+    "we_body": "Sotsiaal.pro is a social impact company built in Estonia: our goal is public good, and revenue serves that goal. The platform is built by a person with a social work background who has worked as a personal assistant, at the field's professional journal and inside the system. We develop the platform deliberately and step by step, together with people from the field, and we always say honestly what AI does here — and what it will never do.",
     "we_link": "Read the author's story — from one idea to a working platform.",
     "closing": "Start with a question. Everything starts with clarity."
   },
@@ -8088,7 +8094,7 @@
     "walk_5a": "You can see where the information comes from.",
     "walk_5b": "And you decide what you share.",
     "walk_6": "Everything you need is now in front of you.",
-    "standby_connect": "Connect to the sotsiaal.pro platform",
+    "standby_connect": "Connect to the platform",
     "power_on": "Power on",
     "exit_card": "Exit",
     "back_card": "Back",

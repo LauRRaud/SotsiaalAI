@@ -55,7 +55,7 @@ import ServiceMapLeaflet from "./ServiceMapLeaflet";
 import ServiceLicenceStatus, { useServiceLicenceStatuses } from "@/components/service-provider/ServiceLicenceStatus";
 import { SERVICE_PROFILE_LIMITS } from "@/lib/serviceProviderProfileLimits";
 
-const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAALAI_CHAT_WORKSPACE_RESTORE__";
+const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAAL.PRO_CHAT_WORKSPACE_RESTORE__";
 const SERVICE_MAP_RESULT_BUTTON_LIMIT = 24;
 
 const bodyTextClassName = "feature-page__copy";
@@ -80,7 +80,7 @@ const PRE_INQUIRY_START_OPTIONS = Object.freeze([
   {
     id: "find_recipient",
     title: "Aita mul leida, kelle poole pöörduda",
-    description: "Kirjelda olukorda. SotsiaalAI küsib vajadusel täpsustusi ja aitab leida sobiva KOV kontakti, lastekaitse kontakti või teenuseosutaja."
+    description: "Kirjelda olukorda. Sotsiaal.pro küsib vajadusel täpsustusi ja aitab leida sobiva KOV kontakti, lastekaitse kontakti või teenuseosutaja."
   },
   {
     id: "known_contact",
@@ -432,7 +432,7 @@ function getPreInquiryChannelLabel(t, channel) {
   if (channel === "EXTERNAL_EMAIL") {
     return readText(t, "workspace_feature_pages.pre_inquiries.delivery.external_email", "E-post");
   }
-  return readText(t, "workspace_feature_pages.pre_inquiries.delivery.internal", "SotsiaalAI sisene");
+  return readText(t, "workspace_feature_pages.pre_inquiries.delivery.internal", "Sotsiaal.pro sisene");
 }
 
 function getPreInquiryRecipientTypeLabel(t, entry) {
@@ -451,7 +451,7 @@ function getPreInquiryRecipientTypeLabel(t, entry) {
 function getPreInquiryRecipientSubtitle(t, entry) {
   if (!entry) return "";
   if (entry.type === "ORGANIZATION_INBOX") {
-    return readText(t, "workspace_feature_pages.pre_inquiries.recipient.organization_inbox_description", "Organisatsiooni postkast SotsiaalAI platvormis");
+    return readText(t, "workspace_feature_pages.pre_inquiries.recipient.organization_inbox_description", "Organisatsiooni postkast Sotsiaal.pro platvormis");
   }
   if (entry.type === "SERVICE_PROVIDER") {
     return entry.description || entry.providerProfile?.shortDescription || entry.providerServices?.join(", ") || "";
@@ -2892,7 +2892,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       {activeWorkflowStep === "recipient" ? (
       <SectionCard flat={embedded} title={readText(t, "workspace_feature_pages.pre_inquiries.sections.recipient", "Sobivad kontaktid")}>
         <p className={bodyTextClassName}>
-          {readText(t, "workspace_feature_pages.pre_inquiries.recipients_lead", "Kontaktid tulevad teenusekaardi struktureeritud andmekihist pärast seda, kui olukord, piirkond ja soovitud pöördumise suund on piisavalt selged. SotsiaalAI ei ole selles nimekirjas eelpöördumise adressaat.")}
+          {readText(t, "workspace_feature_pages.pre_inquiries.recipients_lead", "Kontaktid tulevad teenusekaardi struktureeritud andmekihist pärast seda, kui olukord, piirkond ja soovitud pöördumise suund on piisavalt selged. Sotsiaal.pro ei ole selles nimekirjas eelpöördumise adressaat.")}
         </p>
         <div>
           <div role="group" aria-label={readText(t, "workspace_feature_pages.pre_inquiries.fields.recipient_type", "Adressaadi tüüp")}>
@@ -5354,7 +5354,7 @@ function ServiceProfileSurface({ t, locale }) {
                 <ToggleRow
                   checked={service.acceptsPlatformPreInquiries}
                   onChange={(value) => updateServiceItem(index, "acceptsPlatformPreInquiries", value)}
-                  title={readText(t, "workspace_feature_pages.service_profile.pre_inquiries.accepts_platform", "Võtab vastu SotsiaalAI siseseid eelpöördumisi")}
+                  title={readText(t, "workspace_feature_pages.service_profile.pre_inquiries.accepts_platform", "Võtab vastu Sotsiaal.pro siseseid eelpöördumisi")}
                 />
                 <ToggleRow
                   checked={service.acceptsEmailPreInquiries}
@@ -5476,7 +5476,7 @@ function ServiceProfileSurface({ t, locale }) {
           <ToggleRow
             checked={form.acceptsPlatformPreInquiries}
             onChange={(value) => updateField("acceptsPlatformPreInquiries", value)}
-            title={readText(t, "workspace_feature_pages.service_profile.pre_inquiries.accepts_platform", "Võtab vastu SotsiaalAI siseseid eelpöördumisi")}
+            title={readText(t, "workspace_feature_pages.service_profile.pre_inquiries.accepts_platform", "Võtab vastu Sotsiaal.pro siseseid eelpöördumisi")}
             body={readText(t, "workspace_feature_pages.service_profile.pre_inquiries.platform_help", "Inimene saab saata sisemise eelpöördumise selle teenuseosutaja kontole.")}
           />
           <ToggleRow

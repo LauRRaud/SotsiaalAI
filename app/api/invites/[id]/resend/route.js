@@ -187,7 +187,7 @@ export async function POST(request, { params }) {
       tokenRaw: raw,
       tokenHash: hash,
       roomTitle: invite.room?.title || serverT(locale, "rooms.fallback_title", undefined, "Room"),
-      inviterName: auth.email || "SotsiaalAI",
+      inviterName: auth.email || "Sotsiaal.pro",
       locale
     });
 
