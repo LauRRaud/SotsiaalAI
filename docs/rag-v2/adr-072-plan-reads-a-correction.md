@@ -2,7 +2,9 @@
 
 03.10.2026. Teostus Claude Opus 5.5. Omanik 03.10: „Juhise 24 jätame alles. Järgmisena paranda otsinguplaani parandussõnumi käsitlust: parandus peab seostuma nimetatud inimesega ning juba vastatud küsimus ei tohi automaatselt muutuda uueks ülesandeks. Kasuta mõlema salvestatud vigase plaani põhjal kohalikke regressioonikontrolle; kontroll peab püüdma ka õige vallaga, kuid vale teemaga otsingu. Lahendus olgu üldine, ilma nimede või valdade eranditeta. Tasulisi jookse ei tee.“ Järgib [ADR-071](adr-071-bare-correction-and-prior-claim.md).
 
-**Mudeliga mõõtmata.** Selle muudatuse kohta ei ole tehtud ühtegi tasulist jooksu. Kohalikud testid näitavad, et uus rida on juhises ja et kontrollid püüavad salvestatud vigased plaanid; need ei näita, et mudel uut rida järgib.
+**Mõõdetud pärast kasutuselevõttu, omaniku loal** (jaotis „Mõõtmine“): mõlemas kahe inimese kataloogis luges plaan paranduse ema omaks, otsis Kose vallast ega kirjutanud ühtegi päringut; kõik 115 kontrolli läbisid. Üks jooks kataloogi kohta.
+
+Muudatus läks tootmisse mõõtmata, sest ülesanne ei lubanud tasulisi jookse; siis näitasid ainult kohalikud testid, et uus rida on juhises ja et kontrollid püüavad salvestatud vigased plaanid. Mõõtmine tehti samal päeval hiljem eraldi loaga.
 
 ## Probleem
 
@@ -65,11 +67,50 @@ Lisaks kontrollib test, et läbib plaan, mis otsib seda, mida parandatud summa e
 - `tests/rag-v2-conversation-eval.test.mjs`: uus kontroll, kataloogide võrdsus, salvestatud plaanid.
 - Ühiktestid 542 läbis, 19 vahele jäetud; kohalik andmebaasitest `rag-v2-dialogue-store` 21/21.
 
-## Mõõtmata ja piirid
+## Mõõtmine
 
-- **Mudeli käitumine uue reaga on mõõtmata.** Kas plaan loeb paranduse nüüd õige inimese omaks ja jätab vastatud küsimuse otsimata, selgub alles jooksust.
-- Mõõtmata on ka, kas uus rida muudab teiste sõnumite plaane. Rida on sõnastatud kitsalt, aga seda kitsust ei ole mudeliga kontrollitud.
-- Mõõtmine oleks kaks kahe inimese kataloogi (13 pööret, umbes 0,08 USD plaani hindade järgi). Seda ei tehtud; see vajab omaniku luba.
+**Luba:** omanik 03.10.2026, „tee kahe inimese kataloog“; täpsustava küsimuse peale: mõlemad kahe inimese kataloogid, kumbki üks kord, umbes 0,08 USD plaani hindade järgi, jooks peatub enne pööret, mis võiks viia kulu üle 0,09 USD.
+
+Tootmisplaaniga (profiil v6, dialoogi juhis 24, otsinguplaan search-assist-6), juurutatud koodist (`a680afa7`) ja selle kataloogidest, sõnumid nii, nagu vestlus saadab (`--auto-modes`).
+
+| Kataloog | Pöördeid | Läbis | Kontrolle | Kulu (plaani hinnad) |
+|---|---:|---:|---:|---:|
+| Kaks inimest üle teemapiiri | 9 | 9 | 68 | 0,0559 USD |
+| Kaks inimest teema sees | 4 | 4 | 47 | 0,0282 USD |
+| **Kokku** | 13 | 13 | 115 | **0,0841 USD** |
+
+Kulukaitse ei rakendunud.
+
+**Paranduspöörde plaan, kõik kuus jooksu kõrvuti:**
+
+| Jooks | Otsinguplaan | Plaani inimene | Otsingu vald | Päringuid | Plaani kontrollid |
+|---|---|---|---|---:|---|
+| Üle piiri, 1. jooks | search-assist-5 | ema | Kose | 3, vastatud küsimus | ei läbi |
+| Üle piiri, juhise 24 ring | search-assist-5 | ema | Kose | 2, vastatud küsimus | ei läbi |
+| **Üle piiri, see mõõtmine** | search-assist-6 | ema | Kose | 0 | läbib |
+| Teema sees, 1. jooks | search-assist-5 | ema | Kose | 0 | läbib |
+| Teema sees, juhise 24 ring | search-assist-5 | isa | Harku | 2, isa teema ja vastatud küsimus | ei läbi |
+| **Teema sees, see mõõtmine** | search-assist-6 | ema | Kose | 0 | läbib |
+
+**Paranduse vastused:**
+
+> Arvestan parandusega: ema pension on 700 eurot. Valitud teabe põhjal ei saa ma öelda, kas see muudab tema toetuse või teenuse hindamist.
+
+> Arvestan parandusega: ema pension on 700 eurot. Ma ei saa selle põhjal öelda, kas ema toetuse või teenuse saamine muutub.
+
+- Olek on mõlemas õige: ema 700 kehtiv ja 600 asendatud, isa 450 kehtiv, kumbki oma vallaga; midagi ei jäetud välja.
+- **Teiste sõnumite plaanid on endised.** Ülejäänud kümme sisulist sõnumit said igaüks kaks või kolm päringut oma inimese ja valla kohta; sõnum, kus on mõlemad inimesed, sai päringu kummagi kohta. Märki, et uus rida teiste sõnumite päringuid vähendaks, nendes jooksudes ei ole.
+
+**Mida see ei näita:**
+
+- Iga kataloog jooksis üks kord. Varem kõikus sama pöörde plaan jooksust jooksu (teema sees kord ema, kord isa), seega kaks läbinud jooksu ei tõesta, et viga enam ei kordu.
+- **Paranduse tagajärgi vastus ei nimeta.** Plaan ei otsinud midagi ja vastus ütleb, et valitud teabe põhjal ei saa öelda, kas parandus midagi muudab. Üle piiri vestluses oli ema hooldekodu tasust juba räägitud; kas plaan, mis otsiks seda, mida summa ema jaoks muudab, annaks parema vastuse, ei ole mõõdetud.
+- Parandust koos uue küsimusega ja varasema vastuse kontrollimise palvet ei ole endiselt mudeliga mõõdetud.
+
+Tõendid: [evidence/search-assist-6-measured-2026-10-03.json](../audits/evidence/search-assist-6-measured-2026-10-03.json) (iga sõnumi plaan, paranduspöörete olek, kontrollid ja vastused). Täisraportid on serveris (`eval-files/plan6-*-20261003/`).
+
+## Piirid
+
 - **Põhiotsing on muutmata.** Otsingutekst on endiselt teema kõik kasutaja sõnumid kokku ja eelvaliku mudel loeb samuti kõiki sõnumeid. Vastatud küsimuse sõnad osalevad seetõttu otsingus ka siis, kui plaan seda küsimust ei otsi.
 - Kontrollide mustrid on selle stsenaariumi omad (tähtaeg, toimetulekutoetus, võlad); üldine on juhise reegel, mitte mustrid.
 - Üleandmine teemapiiril on muutmata.
