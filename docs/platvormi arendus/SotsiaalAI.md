@@ -4460,6 +4460,11 @@ märkmete ning maksete POST-tagasiside jaoks. Uuel domeenil tuleb uuesti sisse l
 Logo lõplik valik jääb eraldi tööks. Kontrollid ja piirid:
 [domeeni ülemineku audit](../audits/domain-migration-sotsiaal-pro-2026-10-03.md).
 
+Maksekeskuse konto poe domeen on 03.10 veel `sotsiaal.ai` ja kirjutuskaitstud.
+Omanikul tuleb teatada `support@maksekeskus.ee`-le ning vormistada domeenivahetuse
+lepingu lisa ([ametlik KKK](https://maksekeskus.ee/kkk/)); uue domeeni kooskõlastus
+on kontrollimata. Konto seadeid ei muudetud ega kirja saadetud.
+
 ### Tehtud
 
 **Klaaspindade järelparanduste väljalase (23.09, serveris `00fb25ac0`).**

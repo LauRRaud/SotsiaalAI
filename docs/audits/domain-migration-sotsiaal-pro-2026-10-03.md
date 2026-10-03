@@ -57,6 +57,16 @@ edastus, allkirjastatud päris makse või korduvmakse, kaamera/mikrofoniga video
 ning olemasolevate kohalike Välitöö märkmete tegelik sünkroonimine. Kontrollid ei
 lugenud tootmiskasutajate sisu ega saatnud päris kirju.
 
+## Maksekeskuse konto kooskõlastus — avatud omaniku tegevus
+
+03.10 loeti olemasoleva poe Üldseadeid. Poe nimi ja URL kasutavad veel vana domeeni;
+`Poe domeen` on kirjutuskaitstud ja sisaldab seniseid `.ai` nimesid.
+[Maksekeskuse ametlik KKK](https://maksekeskus.ee/kkk/) nõuab domeenivahetusest
+teatamist `support@maksekeskus.ee`-le ning lepingu lisa vormistamist. Uue domeeni
+kooskõlastus ei ole tõendatud. Omanikule anti teavituskirja tekst ning uued
+kasutajatoe, teenusetingimuste ja privaatsuspoliitika aadressid. Konto seadeid,
+makseandmeid ega API-võtmeid ei muudetud ja kirja ei saadetud.
+
 ## Taastamine
 
 Enne muudatust säilitati serveris piiratud õigustega kaustas
