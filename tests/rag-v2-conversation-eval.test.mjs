@@ -183,6 +183,41 @@ test('the two-people boundary catalogue: the ninth message crosses the topic\'s 
     answer(6, 'Isa pension on 600 eurot, seega tasub taotleda.'), answer(5, 'Ema pensionist 450 eurot ei piisa.')], ['passed', 'answer', 'passed', 'answer', 'answer']);
 });
 
+// The comparison for the boundary run of 03.10.2026: the same last messages inside one topic. Fixed before its run.
+test('the within-topic comparison holds the boundary scenario\'s last messages, and its answer checks fail the boundary run\'s ninth answer', async () => {
+  const read = async name => JSON.parse(await fs.readFile(`tests/evaluation/dialogue/${name}`, 'utf8'));
+  const catalogue = await read('scenarios-two-people-within-topic-1.json'), boundary = (await read('scenarios-two-people-boundary-1.json')).scenarios[0].turns;
+  assert.deepEqual(validateCatalogue(catalogue), []);
+  const turns = catalogue.scenarios[0].turns, last = turns.at(-1).expect;
+  // No boundary: the whole conversation fits one topic. The introductions are the boundary scenario's, joined; the
+  // last three messages are its seventh to ninth, word for word.
+  assert.ok(turns.length <= DIALOGUE_LIMITS.scopeTurns && !turns.some(turn => loneGreeting(turn.text)));
+  assert.deepEqual(turns.map(turn => turn.text), [`${boundary[1].text} ${boundary[3].text}`, boundary[6].text, boundary[7].text, boundary[8].text]);
+  // The state checks of the correction are the boundary catalogue's.
+  const state = expect => Object.fromEntries(['region', 'person_regions', 'state_kept', 'facts_present', 'fact_changes', 'facts_absent'].map(key => [key, expect[key]]));
+  assert.deepEqual(state(last), state(boundary[8].expect));
+  const fact = (id, person, quote, status = 'current') => ({ id, person, status, support: [{ turn: 1, quote }] });
+  const facts = [fact('F1', 'ema', 'tema pension on 600 eurot', 'superseded'), fact('F2', 'isa', 'tema pension on 450 eurot'), fact('F3', 'ema', 'ema pension on hoopis 700 eurot')];
+  const run = (text, clarification = false) => checkTurn(last, observed({ region: 'kose_vald', personRegions: { ema: 'kose_vald', isa: 'harku_vald' }, facts, dropped: [], stateFallback: null, text, clarification }));
+  // A failed must_not check is named by its pattern's place in the catalogue's list.
+  const failed = result => result.checks.filter(check => !check.ok).map(check => check.key === 'must_not'
+    ? `must_not ${last.must_not.indexOf(check.detail.slice(1, check.detail.lastIndexOf('/ not in the answer')))}` : check.key);
+  // The ninth answer of the boundary run, as it was given (it asked for a circumstance): each of the four things fails.
+  const given = ['Kui mõtled ema Kose valla taotlust, teeb vald teenuse või toetuse määramise või määramata jätmise otsuse kümne tööpäeva jooksul alates vajaliku viimase dokumendi saamisest või dokumendi esitamise tähtpäevast. [S1]',
+    'Isa Harku valla taotluse puhul ei saa ma siin kinnitada varem nimetatud viie tööpäeva tähtaega.',
+    'Arvestan parandusega: ema pension on 700 eurot. Kas küsid ema Kose valla või isa Harku valla taotluse otsustamise aega?'];
+  assert.deepEqual([run(given.join('\n\n'), true).verdict, failed(run(given.join('\n\n'), true))],
+    ['answer', ['must', 'must_not 4', 'must_not 5', 'must_not 6', 'clarification']]);
+  // Each on its own: the confirmation not first, the earlier deadline put in doubt, an application attached to the mother.
+  assert.deepEqual(failed(run(`Vald otsustab kümne tööpäeva jooksul. ${given[2].split(' Kas ')[0]}`)), ['must']);
+  assert.deepEqual(failed(run(`Arvestan parandusega: ema pension on 700 eurot.\n\n${given[1]}`)), ['must_not 5']);
+  assert.deepEqual(failed(run('Arvestan parandusega: ema pension on 700 eurot. Ema taotluse üle otsustab vald kümne tööpäeva jooksul.')), ['must_not 4']);
+  assert.deepEqual(failed(run('Arvestan parandusega: ema pension on 700 eurot.', true)), ['clarification']);
+  // Answers that only take the correction into account pass; so does one that says what it changes for the mother.
+  for (const text of ['Arvestan parandusega: ema pension on 700 eurot.', 'Arvestan parandusega: ema pension on 700 eurot. Isa pension on endiselt 450 eurot ja tema toimetulekutoetuse kohta öeldu jääb samaks.',
+    'Selge, ema pension on 700 eurot, mitte 600. Hooldekodu kohatasu arvestamisel lähtutakse nüüd sellest summast.']) assert.equal(run(text).verdict, 'passed', text);
+});
+
 test('Codex R4: the hard-conditions answer patterns keep the direction of the condition; the opposite answer fails', async () => {
   const catalogue = JSON.parse(await fs.readFile('tests/evaluation/dialogue/scenarios-hard-conditions-2.json', 'utf8'));
   const expectOf = id => catalogue.scenarios.find(scenario => scenario.id === id).turns[0].expect;

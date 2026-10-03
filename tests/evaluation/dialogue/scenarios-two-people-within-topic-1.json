@@ -1,0 +1,53 @@
+{
+  "schema_version": "rag-v2/dialogue-eval-2",
+  "purpose": "The comparison run for the two-people boundary check of 03.10.2026 (docs/audits/rag-v2-two-people-boundary-2026-10-03.md). There the ninth message, a correction of the mother's amount sent right after a question about the father, crossed the topic boundary, and its answer answered the father's question again for the mother, put the deadline given for the father in doubt, confirmed the correction last and asked whose application was meant. Here the same last three messages stand inside one topic, with no boundary: does the same happen? Owner 03.10.2026: \"tee\" to one run of about 0.03 USD. Written and merged before the run; run once with --auto-modes. The first message joins the boundary scenario's two introductions (its messages 2 and 4, word for word) so that the run is four full turns; messages 2-4 are the boundary scenario's messages 7-9, word for word.",
+  "how_to_read": {
+    "the correction's answer is clean here": "the boundary's hand-over (the full topic's last message carried word for word) is the likely cause of the 03.10 finding",
+    "the correction's answer is confused here too": "the cause is not the boundary but a correction about one person right after a question about the other; changing the hand-over would not help",
+    "either way": "one run on each side: an indication, not a measurement"
+  },
+  "expected_facts": {
+    "ema": "lives in Kose vald; pension 600 euros, corrected to 700 euros by message 4; cannot manage alone at home",
+    "isa": "lives in Harku vald; pension 450 euros, never changed; has debts",
+    "focus": "both introduced (1), father (2-3), mother (4, the correction)",
+    "after_the_correction": "mother: 700 current and 600 superseded, Kose vald; father: 450 current, Harku vald; no fact of one person holds the other's amount"
+  },
+  "expectation_help": {
+    "region": "the municipality whose catalogue the turn's search used: the person the message is about",
+    "person_regions": "the saved state's municipality of that person",
+    "facts_present / facts_absent / fact_changes": "a current fact of the person whose quote matches / no such current fact / a fact that has become superseded",
+    "state_kept": "the model's new state was not rejected",
+    "must on message 4": "the answer's first sentence names the corrected amount (the dialogue instruction's rule for a correction)",
+    "clarification and must_not on message 4": "the four things the boundary run's ninth answer did: it does not ask whose application is meant, does not attach an application to the mother, does not say an earlier statement cannot be confirmed; and, as in the boundary catalogue, it does not ask where the mother lives or give one parent's amount as the other's"
+  },
+  "scenarios": [
+    { "id": "mother-father-correction-within-topic", "title": "Ema ja isa, parandus teema sees pärast isa küsimust", "source": "docs/audits/rag-v2-two-people-boundary-2026-10-03.md; owner 03.10.2026", "turns": [
+      { "mode": "new", "text": "Minu ema elab Kose vallas ja tema pension on 600 eurot. Ta ei saa enam üksi kodus hakkama. Minu isa elab Harku vallas ja tema pension on 450 eurot. Tal on võlad ja ta ei tule rahaga toime.",
+        "note": "Both people in one message: whose need the search reads is not checked here, only that each fact is saved with its person.",
+        "expect": { "person_regions": { "ema": "kose_vald", "isa": "harku_vald" }, "state_kept": true,
+          "facts_present": [{ "person": "ema", "quote": "600" }, { "person": "isa", "quote": "450" }],
+          "facts_absent": [{ "person": "isa", "quote": "600" }, { "person": "ema", "quote": "450" }] } },
+      { "mode": "same", "text": "Ja kas isa võib taotleda toimetulekutoetust?",
+        "expect": { "region": "harku_vald", "must_not": ["Kose", "(?<!\\p{L})isa\\p{L}*\\s+pension\\p{L}*[^.!?\\n,;:]{0,15}(?<!\\d)600(?!\\d)"] } },
+      { "mode": "same", "text": "Kui kiiresti vald tema taotluse üle otsustab?",
+        "note": "The question the boundary run carried over as the full topic's last message.",
+        "expect": { "region": "harku_vald", "person_regions": { "ema": "kose_vald", "isa": "harku_vald" }, "state_kept": true,
+          "facts_present": [{ "person": "ema", "quote": "600" }, { "person": "isa", "quote": "450" }],
+          "facts_absent": [{ "person": "isa", "quote": "600" }, { "person": "ema", "quote": "450" }] } },
+      { "mode": "same", "text": "Vabandust, ema pension on hoopis 700 eurot.",
+        "note": "The correction, inside the topic. The state checks are the boundary catalogue's; the answer checks name what the boundary run's ninth answer did.",
+        "expect": { "region": "kose_vald", "person_regions": { "ema": "kose_vald", "isa": "harku_vald" }, "state_kept": true,
+          "facts_present": [{ "person": "ema", "quote": "700" }, { "person": "isa", "quote": "450" }],
+          "fact_changes": [{ "person": "ema", "quote": "600", "status": "superseded" }],
+          "facts_absent": [{ "person": "ema", "quote": "600" }, { "person": "isa", "quote": "700" }, { "person": "isa", "quote": "600" }, { "person": "ema", "quote": "450" }],
+          "clarification": false,
+          "must": ["^[^.!?\\n]*(?<!\\d)700(?!\\d)"],
+          "must_not": ["(millises|mis) (vallas|linnas|omavalitsuses)", "kus (ta|su ema|sinu ema|ema) ela",
+            "(?<!\\p{L})isa\\p{L}*\\s+pension\\p{L}*[^.!?\\n,;:]{0,15}(?<!\\d)700(?!\\d)",
+            "(?<!\\p{L})ema\\p{L}*\\s+pension\\p{L}*[^.!?\\n,;:]{0,15}(?<!\\d)450(?!\\d)",
+            "(?<!\\p{L})ema\\p{L}*[^.!?\\n]{0,60}taotlus",
+            "ei\\s+saa[^.!?\\n]{0,30}kinnitada",
+            "Kas küsid|kumma\\p{L}*\\s+taotlus"] } }
+    ] }
+  ]
+}
