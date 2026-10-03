@@ -96,7 +96,7 @@ Serveris, rakenduse ajutises koopias muudetud failidega, aktiveerimata plaan (pr
 
 **Luba:** omanik 03.10.2026, „tee see ära“ kahe seni mõõtmata dialoogijuhu kohta, mida pakuti umbes 0,08 USD jooksuna. Jooksid kaks stsenaariumi, kumbki üks kord (8 pööret). „Pelk parandus“ ei jooksnud uuesti: see on teemasisese kataloogi pööre, mida on kaks korda mõõdetud.
 
-Tootmisplaaniga (profiil v6, juhis 24, otsinguplaan search-assist-6, [ADR-072](adr-072-plan-reads-a-correction.md)), juurutatud koodist (`f7f720c7`), kataloogi blob `9573c217`, sõnumid nii, nagu vestlus saadab. Kulu 0,0576 USD plaani hindade järgi; kulukaitse (ülempiir 0,08 USD) ei rakendunud.
+Tootmisplaaniga (profiil v6, juhis 24, otsinguplaan search-assist-6, [ADR-072](adr-072-plan-reads-a-correction.md)), juurutatud koodist (`f7f720c7`), kataloogi blob `9573c217`, sõnumid nii, nagu vestlus saadab. Pärast seda jooksu asendas brändinime muudatus (`94665855`) vastuse põhijuhises nime SotsiaalAI nimega Sotsiaal.pro; dialoogi ja otsinguplaani reegleid see ei muutnud ja versioonitähised jäid samaks. Ainult „dialoog 24“ ei erista seega muudatuse-eelset ja -järgset juhiseteksti: mõõtmise lähtekoht on see commit. Kulu 0,0576 USD plaani hindade järgi; kulukaitse (ülempiir 0,08 USD) ei rakendunud.
 
 | Juht | Pöördeid | Läbis | Neljanda pöörde kontrollid |
 |---|---:|---:|---:|
@@ -115,7 +115,8 @@ Tootmisplaaniga (profiil v6, juhis 24, otsinguplaan search-assist-6, [ADR-072](a
 - Otsinguplaan: isa, Harku vald, üks päring taotluse menetlemise tähtaja kohta. Eelvaliku mudel jättis alles ühe lõigu, sotsiaalhoolekande seadusest.
 - Vastus: „Jah. Isa toimetulekutoetuse määramise tähtaeg on viis tööpäeva pärast kõigi vajalike dokumentide esitamist. See on otsuse tegemise tähtaeg, mitte väljamakse tähtaeg: arvestatud toetus makstakse välja kolme tööpäeva jooksul otsuse tegemisest. [S1, S2]“
 - Väide on kontrollitud selle pöörde tõendite järgi ja viidatud seadusele; varasemale vastusele kui alusele vastus ei toetu. Kummagi summa ega vald ei muutunud.
-- **Kontroll, mis ei läbinud, oli kontrolli enda viga.** Muster lubas kujusid „viie tööpäeva“ ja „5 tööpäeva“; vastus kirjutas nimetavas „viis tööpäeva“. Muster on pärast jooksu parandatud (arvsõna igas käändes) ja jooksu vastus on testis sõna-sõnalt. Jooksu ei korratud; selle tulemus jääb kirja nii, nagu see oli: 7 pööret 8-st.
+- **Kontroll, mis ei läbinud, oli kontrolli enda viga.** Muster lubas kujusid „viie tööpäeva“ ja „5 tööpäeva“; vastus kirjutas nimetavas „viis tööpäeva“. Muster on pärast jooksu parandatud ja jooksu vastus on testis sõna-sõnalt. Jooksu ei korratud; selle tulemus jääb kirja nii, nagu see oli: 7 pööret 8-st.
+- **Paranduse parandus (Codexi #332 ülevaatus, P2):** esimene parandus lubas iga sõna, mis algab tähtedega „viis“ või „viie“, seega ka „viisteist“, „viiskümmend“ ja „viissada tööpäeva“. Muster loetleb nüüd arvu viis käändevormid tervete sõnadena ega luba viit suurema arvsõna viimase sõnana („kakskümmend viis“). Suuremad arvud sõnade ja numbritega on testis vastunäidetena. Kontrollitud kohalikult; jooksu ei tehtud.
 
 **Mida see ei näita:**
 

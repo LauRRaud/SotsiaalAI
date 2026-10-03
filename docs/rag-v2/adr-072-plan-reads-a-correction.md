@@ -71,7 +71,7 @@ Lisaks kontrollib test, et läbib plaan, mis otsib seda, mida parandatud summa e
 
 **Luba:** omanik 03.10.2026, „tee kahe inimese kataloog“; täpsustava küsimuse peale: mõlemad kahe inimese kataloogid, kumbki üks kord, umbes 0,08 USD plaani hindade järgi, jooks peatub enne pööret, mis võiks viia kulu üle 0,09 USD.
 
-Tootmisplaaniga (profiil v6, dialoogi juhis 24, otsinguplaan search-assist-6), juurutatud koodist (`a680afa7`) ja selle kataloogidest, sõnumid nii, nagu vestlus saadab (`--auto-modes`).
+Tootmisplaaniga (profiil v6, dialoogi juhis 24, otsinguplaan search-assist-6), juurutatud koodist (`a680afa7`) ja selle kataloogidest, sõnumid nii, nagu vestlus saadab (`--auto-modes`). Pärast seda jooksu asendas brändinime muudatus (`94665855`) vastuse põhijuhises nime SotsiaalAI nimega Sotsiaal.pro; dialoogi ja otsinguplaani reegleid see ei muutnud ja versioonitähised jäid samaks. Ainult „dialoog 24“ ei erista seega muudatuse-eelset ja -järgset juhiseteksti: mõõtmise lähtekoht on see commit.
 
 | Kataloog | Pöördeid | Läbis | Kontrolle | Kulu (plaani hinnad) |
 |---|---:|---:|---:|---:|
