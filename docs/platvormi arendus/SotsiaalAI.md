@@ -94,6 +94,8 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 **03.10: platvormi põhiaadress on https://sotsiaal.pro.** Üleminek on tootmises;
 vana domeeni Välitöö ja API-d säilivad kohaliku sünkroonimise jaoks. Vaata S10 tõendit.
+Avalik ettevõttenimi on omaniku korraldusel Küberloome OÜ; vana avalehe logo
+on ajutiselt eemaldatud. Mõlemad muudatused on tootmises ja brauseris kontrollitud.
 
 **Uus aken alustab siit (02.10 hommik).** Kuupäevaviga on parandatud ([ADR-062](../rag-v2/adr-062-provision-dates.md), korpus v47, dialoog 22). Omanik valis M3; selle mõõtmissamm ja esimene reegel (profiil v4, [ADR-064](../rag-v2/adr-064-named-other-act.md)) on tehtud.
 - **Tootmises:** korpus v47 (indeks `34fe1590`, 6470 dokumenti, 40 489 lõiku; lugeja `source-structure-v30`). Vestlusplaani uuendab reliis ise (ADR-037): profiil v6 ([ADR-068](../rag-v2/adr-068-own-reference-subsections.md); v5 + akti enda viide toob nimetatud lõike), answer-12, dialoog 24 ([ADR-071](../rag-v2/adr-071-bare-correction-and-prior-claim.md)), mudelikontekst json-3, olek v5, arutlus medium. Profiil on plaani osa ja reliis hoiab seda: v6 plaan `m4-corpus-chat-v47-profile6-20261002.json` aktiveeriti 02.10 kell 13:41; kontrolli aktiivse plaani `profileId`.
@@ -4464,6 +4466,14 @@ Maksekeskuse konto poe domeen on 03.10 veel `sotsiaal.ai` ja kirjutuskaitstud.
 Omanikul tuleb teatada `support@maksekeskus.ee`-le ning vormistada domeenivahetuse
 lepingu lisa ([ametlik KKK](https://maksekeskus.ee/kkk/)); uue domeeni kooskõlastus
 on kontrollimata. Konto seadeid ei muudetud ega kirja saadetud.
+
+**Ettevõttenimi ja logo (03.10).** Avalikud ettevõtteandmed, tingimused ET/EN/RU
+ja Organization `legalName` kasutavad omaniku korraldusel nime `Küberloome OÜ`.
+Registrikande lõplik kinnitamine ei ole veel tõendatud. Vana SotsiaalAI sõnamärk
+on avalehe sisenemisloorist ajutiselt eemaldatud; slogan ja sisenemisnupp säilisid.
+`11be1918` ja `24fc69a6` läbisid quality-gate'i ning automaatse deploy;
+ettevõttenimi, logo puudumine ja sisenemine kontrolliti päris lehel.
+Tõendid ja piirid on eespool viidatud domeeni ülemineku auditi viimases jaotises.
 
 ### Tehtud
 

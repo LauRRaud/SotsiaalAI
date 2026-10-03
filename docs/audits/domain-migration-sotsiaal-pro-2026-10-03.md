@@ -77,3 +77,36 @@ ainult protsessi restart ei asenda build'i sisse kirjutatud avalikku aadressi.
 Kohalik varasem pooleliolev töö säilitati Git stash'is ja `.git` varukoopias.
 Järgnev ainult Nginxi ja tõendite commit ei vaja rakenduse kordusbuild'i: Nginx
 kontrolliti ja rakendati otse ning rakenduskood on eespool nimetatud rohelises reliisis.
+
+
+## Ettevõttenimi ja vana avalehe logo — 03.10
+
+Omaniku selgel korraldusel muudeti avalik ettevõttenimi `Küberloome OÜ`-ks
+(`11be1918`): kontaktandmed, privaatsus- ja kasutustingimused ET/EN/RU ning
+avalehe Organization JSON-LD `legalName`. Registrikood ja kontaktkanalid säilisid.
+Äriregistri värske avalik vaade näitas kontrolli ajal veel `SotsiaalAI OÜ`;
+omanik palus nime siiski juba päris veebilehel avaldada. Registrikande lõplik
+kinnitamine on **NOT_PROVEN**; maksekinnitus üksi seda ei tõenda.
+
+Omaniku järgmise täpsustuse järgi eemaldati sisenemisloori alumine vana
+SotsiaalAI sõnamärk koos metalse AI-kihi ja nende laadimisolekutega (`24fc69a6`).
+Slogan, sisenemisnupp ja sisenemise ajastus säilisid. Uut logo ei valitud;
+olemasolevad logofailid ja kujundusstiilid jäid hilisemaks kasutuseks alles.
+
+Kontrollid:
+
+- PASS: sihitud ESLint `app/page.js` ja `components/room/RoomStage.jsx`,
+  `i18n:check`, tavaline ja stage'itud `git diff --check`.
+- PASS: ettevõttenime quality-gate `37129018494` ja deploy `37129232816`.
+- PASS: tootmise privaatsus- ja kasutustingimused vastasid ET/EN/RU korral
+  HTTP 200-ga, sisaldasid uut ettevõttenime ega sisaldanud vana ettevõttenime.
+  Eesti privaatsuspoliitika vastutava töötleja nimi kontrolliti ka Chrome'is.
+- PASS: logo eemaldamise quality-gate `37129510288` ja deploy `37129746146`.
+  Serveri mõõdetud HEAD: `24fc69a6655ab2c48aaf5bd2f7f6013fccd75580`.
+- PASS: tootmise avaleht HTTP 200; vana `.room-veil-logo` puudub HTML-ist ja
+  brauseri DOM-ist. Chrome'is säilis slogan, SISENEN muutus kasutatavaks ning
+  vajutuse järel avanes ruum ja loori `data-state` oli `gone`.
+  [Avaliku avalehe kuvatõmmis](evidence/sotsiaal-pro-entry-without-old-logo-2026-10-03.jpg).
+
+Kohalik port 3000 kuulus teisele projektile; seda ei peatatud ega kasutatud
+Sotsiaali runtime'i tõendina. Küberloome eraldi veebiprojekti ei muudetud.
