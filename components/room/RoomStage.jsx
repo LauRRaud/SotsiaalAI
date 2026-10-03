@@ -115,7 +115,6 @@ import VeilArt, { VEIL_EFFECTS } from "@/components/room/VeilArt";
 import GlassButton from "@/components/glass/GlassButton";
 import Button from "@/components/ui/Button";
 import JourneyText from "@/components/glass/JourneyText";
-import MetallicPaint from "@/components/brand/MetallicPaint";
 import {
   getAmbientMode,
   setAmbientMode,
@@ -450,13 +449,6 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
   /* Käivituse vahepala: pärast klaaside teket sähvatab keskele animeeritud
      SAI-monogramm, alles siis laetakse kaartidele sisu (tellija 06.07) */
   const [introSai, setIntroSai] = useState(false);
-  /* Sõnamärk ilmub SVG laadimisel. Metall lisandub pärast oma renderdust,
-     kuid selle viibimine ei tohi kogu logo peita. */
-  const [veilMetalReady, setVeilMetalReady] = useState(false);
-  const [veilWordmarkReady, setVeilWordmarkReady] = useState(false);
-  // The SVG is a complete logo; a delayed WebGL frame must not hide it on iOS.
-  const veilLogoReady = veilWordmarkReady;
-
   const displayed = useRef(0);
   const target = useRef(0);
   const rafId = useRef(0);
@@ -923,7 +915,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     window.clearTimeout(enterFallbackRef.current);
     enterFallbackRef.current = null;
     setVeil("fading");
-    // Esmalt hajub jaluse logo (420 ms), seejärel loor ise (900 ms).
+    // Säilita loori senine ülemineku ajastus (420 ms viivitus + 900 ms hajumine).
     window.setTimeout(() => setVeil("gone"), 1320);
   }, []);
   useEffect(() => () => window.clearTimeout(enterFallbackRef.current), []);
@@ -1821,15 +1813,11 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         </>
       ) : null}
 
-      {/* Laadimisloor — ootab kasutaja sisenemist. Logo alaservas:
-          UUS sõnamärk (Exo 2 + originaal-AI, tellija 07.07); "AI" saab
-          MetallicPaint kihi AI enda kastis (ai-mark.svg + CSS-piirkond
-          .room-veil-logo-metal) — voolamisväli nagu kinnitatud näidisel. */}
+      {/* Laadimisloor — vana SotsiaalAI sõnamärk on uue logo valmimiseni eemaldatud. */}
       <div
         className="room-veil"
         ref={veilRef}
         data-state={veil}
-        data-logo-ready={veilLogoReady ? "1" : "0"}
         role="dialog"
         aria-modal={veil !== "gone" ? "true" : undefined}
         aria-labelledby="room-veil-message"
@@ -1843,61 +1831,6 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
             kutsel läveks. Kunstikiht ei püüa sündmusi; päris tekst ja
             nupp jäävad selle kohal ligipääsetavaks. */}
         {veil !== "gone" ? <VeilArt effect={VEIL_EFFECTS.DIRECT} onAbsorbed={finishVeilEntry} /> : null}
-        <div
-          className="room-veil-logo"
-          /* Critical pre-CSS guard: SSR must never expose the default canvas
-             rectangle while the stylesheet and WebGL texture are loading. */
-          style={veilLogoReady ? undefined : { opacity: 0 }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element -- SVG sõnamärk ref/complete-loogikaga; next/image lõhuks laadimisvärava */}
-          <img
-            ref={image => {
-              // Cached SVG can already be complete before React receives onLoad.
-              // In that case reveal the wordmark without waiting for WebGL.
-              if (image?.complete && image.naturalWidth > 0) {
-                setVeilWordmarkReady(true);
-              }
-            }}
-            src="/logo/sotsiaalai-h-valge.svg"
-            alt="SotsiaalAI"
-            width={264}
-            height={50}
-            decoding="async"
-            onLoad={() => setVeilWordmarkReady(true)}
-          />
-          {veil !== "gone" ? (
-            <div className="room-veil-logo-metal" aria-hidden="true" style={{ opacity: veilMetalReady ? 1 : 0 }}>
-              {/* Tähed = platina (jahe hõbe-valge põhitoon: light/dark);
-                  liikuv sära = šampanja/kuld (tintColor) — tellija 06.07.
-                  chromaticSpread ~0: RGB-kanalite lahknemine tegi ROHELISI
-                  servi; blur/sharpness/noise pehmemaks (sujuvam helk).
-                  Ainult metall ootab oma stabiilset WebGL-kaadrit. */}
-              <MetallicPaint
-                imageSrc="/logo/ai-mark.svg"
-                onReady={() => setVeilMetalReady(true)}
-                seed={7}
-                scale={3}
-                speed={0.11}
-                brightness={1.42}
-                contrast={0.6}
-                liquid={0.38}
-                waveAmplitude={0.65}
-                refraction={0.012}
-                chromaticSpread={0}
-                blur={0.026}
-                patternSharpness={0.55}
-                noiseScale={0.3}
-                distortion={0.55}
-                lightColor="#e5e2db"
-                darkColor="#464a55"
-                tintColor="#e6d3c0"
-                tintPulse={0.6}
-                radial={3.5}
-                preserveDrawingBuffer
-              />
-            </div>
-          ) : null}
-        </div>
         <p id="room-veil-message" className="room-veil-line">
           {/* Iga sõna oma span'is: töölaual voolavad inline ühte ritta,
               mobiilis muutuvad plokk-ridadeks (keskmine nihkes) ja
