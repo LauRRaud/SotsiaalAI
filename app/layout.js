@@ -242,14 +242,14 @@ const LAYOUT_INIT_SCRIPT = `(function () {
   });
 })();`;
 export const metadata = {
-  title: "SotsiaalAI",
+  title: "sotsiaal.pro",
   description: "Platvormil on kaks rollipõhist tehisintellekti assistenti: üks sotsiaalvaldkonna spetsialistidele ja teine eluküsimusega pöördujatele.",
   manifest: `/site.webmanifest?${ICON_VERSION}`,
   // iOS reads installation metadata before client-side theme synchronization.
   // Keep content below an opaque status bar instead of behind its native blur.
   appleWebApp: {
     capable: true,
-    title: "SotsiaalAI",
+    title: "sotsiaal.pro",
     statusBarStyle: "black"
   },
   icons: {

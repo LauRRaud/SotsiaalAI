@@ -1387,71 +1387,71 @@
   },
   "meta": {
     "home": {
-      "title": "SotsiaalAI",
+      "title": "sotsiaal.pro",
       "description": "SotsiaalAI aitab leida tuge, teenuseid ja tööriistu igapäevaste eluküsimuste lahendamiseks."
     },
     "chat": {
-      "title": "Vestlus | SotsiaalAI",
+      "title": "Vestlus | sotsiaal.pro",
       "description": "Arutage oma küsimusi ja järgmisi samme SotsiaalAI vestluses."
     },
     "profile": {
-      "title": "Profiil | SotsiaalAI",
+      "title": "Profiil | sotsiaal.pro",
       "description": "Halda oma SotsiaalAI profiili, eelistusi ja konto seadeid."
     },
     "pricing": {
-      "title": "Hinnastus | SotsiaalAI",
+      "title": "Hinnastus | sotsiaal.pro",
       "description": "Vaata SotsiaalAI pakette ja tellimuste hinnastust."
     },
     "features": {
-      "title": "Võimalused | SotsiaalAI",
+      "title": "Võimalused | sotsiaal.pro",
       "description": "Tutvu SotsiaalAI võimaluste ja tööriistadega."
     },
     "register": {
-      "title": "Registreeru | SotsiaalAI",
+      "title": "Registreeru | sotsiaal.pro",
       "description": "Loo SotsiaalAI konto ja alusta platvormi kasutamist."
     },
     "subscription": {
-      "title": "Tellimus | SotsiaalAI",
+      "title": "Tellimus | sotsiaal.pro",
       "description": "Halda oma SotsiaalAI tellimust ja makseandmeid."
     },
     "terms": {
-      "title": "Kasutustingimused | SotsiaalAI",
+      "title": "Kasutustingimused | sotsiaal.pro",
       "description": "Loe SotsiaalAI kasutustingimusi."
     },
     "privacy": {
-      "title": "Privaatsustingimused | SotsiaalAI",
+      "title": "Privaatsustingimused | sotsiaal.pro",
       "description": "Loe, kuidas SotsiaalAI töötleb ja kaitseb isikuandmeid."
     },
     "guide": {
-      "title": "Kasutusjuhend | SotsiaalAI",
+      "title": "Kasutusjuhend | sotsiaal.pro",
       "description": "Leia juhised SotsiaalAI kasutamiseks."
     },
     "framework": {
-      "title": "Tööalase kasutuse raamistik | SotsiaalAI",
+      "title": "Tööalase kasutuse raamistik | sotsiaal.pro",
       "description": "SotsiaalAI tööalase kasutuse ja isikuandmete töötlemise raamleping: loe täisteksti, laadi alla DOCX ja allkirjastatud DigiDoc ning salvesta kinnitus."
     },
     "author": {
-      "title": "Autorilt | SotsiaalAI",
+      "title": "Autorilt | sotsiaal.pro",
       "description": "Loe SotsiaalAI autori selgitusi ja mõtteid."
     },
     "rooms": {
-      "title": "Ruumid | SotsiaalAI",
+      "title": "Ruumid | sotsiaal.pro",
       "description": "Vaata oma SotsiaalAI ruume ja ühiseid vestlusi."
     },
     "workspace": {
-      "title": "Töölaud | SotsiaalAI",
+      "title": "Töölaud | sotsiaal.pro",
       "description": "Ava oma rolli tööriistad: teenusekaart, pöördumised, dokumendid ja tugivormid."
     },
     "reset": {
-      "title": "Taasta PIN-kood | SotsiaalAI",
+      "title": "Taasta PIN-kood | sotsiaal.pro",
       "description": "Taasta oma SotsiaalAI konto PIN-kood."
     },
     "email_update": {
-      "title": "Uuenda e-posti aadressi | SotsiaalAI",
+      "title": "Uuenda e-posti aadressi | sotsiaal.pro",
       "description": "Uuenda oma SotsiaalAI konto e-posti aadressi."
     },
     "pin_update": {
-      "title": "Uuenda PIN-koodi | SotsiaalAI",
+      "title": "Uuenda PIN-koodi | sotsiaal.pro",
       "description": "Uuenda oma SotsiaalAI konto PIN-koodi."
     }
   },
@@ -3032,7 +3032,7 @@
         "aborted": "Vastus katkestati; lõpetatud vastuse kvaliteeti ei hinnata."
       }
     },
-    "title": "SotsiaalAI",
+    "title": "sotsiaal.pro",
     "crisis": {
       "notice": "Vahetu ohu korral helista 112. Laste ja peredega seotud mure korral saab ööpäevaringselt tasuta abi telefonil 116 111. Vägivalla või kuriteo korral saab nõu ohvriabi kriisitelefonilt 116 006."
     },
@@ -3387,7 +3387,7 @@
     },
     "voice": {
       "open": "Ava häälvestlus",
-      "title": "SotsiaalAI",
+      "title": "sotsiaal.pro",
       "eyebrow": "Häälvestlus",
       "live": "Otse",
       "ready": "Valmis",
@@ -4240,7 +4240,7 @@
       "modal_body": "<p><strong>Küberloome OÜ</strong><br />Registrikood 14206225<br />Aadress: Harju maakond, Harku vald, Tabasalu, Kolde tn 6/1, 76901, Eesti<br /><a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a></p>"
     },
     "cta": {
-      "title": "SotsiaalAI"
+      "title": "sotsiaal.pro"
     },
     "links": {
       "privacy": "Privaatsuspoliitika",
@@ -4498,7 +4498,7 @@
         },
         "home": {
           "title": "Avaleht ja platvormiga ühendamine",
-          "body": "<p><strong>Esmakülastuse järjestus</strong></p><ol><li>Vali Keel ja ligipääsetavus moodulis sobivad seaded.</li><li>Valmidusvaates „Kõik algab selgusest” vajuta <strong>Sisenen</strong>.</li><li>Sissejuhatuses saad teksti kerida või valida <strong>Jäta vahele</strong>. Taustaheli saad sisse või välja lülitada. Lugusid saad vahetada heli kõrval oleva noolega.</li><li>Vaates „Ühenda SotsiaalAI platvormiga” vajuta keskel olevat toitenuppu.</li></ol><p><strong>Avalehe kaardid ja menüüd</strong></p><ul><li>Sisselogimata vaates on 9 kaarti: Tutvu võimalustega, Kasutusjuhend, Logi sisse, Meist, Paigalda, Kasutustingimused, Privaatsuspoliitika, Hinnastus ja Kontakt.</li><li>Küljenooled kerivad kaarte ükshaaval. Alumine kiirmenüü viib otse soovitud kaardile.</li><li>Ülaserva peidetud käepide avaneb kursori või fookusega. Seal on taustaheli, Keel ja ligipääsetavus ning Ooterežiim.</li><li>Sisselogitud kasutaja näeb Ruumid, Töölaud, Vestlus ja Profiil.</li></ul>"
+          "body": "<p><strong>Esmakülastuse järjestus</strong></p><ol><li>Vali Keel ja ligipääsetavus moodulis sobivad seaded.</li><li>Valmidusvaates „Kõik algab selgusest” vajuta <strong>Sisenen</strong>.</li><li>Sissejuhatuses saad teksti kerida või valida <strong>Jäta vahele</strong>. Taustaheli saad sisse või välja lülitada. Lugusid saad vahetada heli kõrval oleva noolega.</li><li>Vaates „Ühenda sotsiaal.pro platvormiga” vajuta keskel olevat toitenuppu.</li></ol><p><strong>Avalehe kaardid ja menüüd</strong></p><ul><li>Sisselogimata vaates on 9 kaarti: Tutvu võimalustega, Kasutusjuhend, Logi sisse, Meist, Paigalda, Kasutustingimused, Privaatsuspoliitika, Hinnastus ja Kontakt.</li><li>Küljenooled kerivad kaarte ükshaaval. Alumine kiirmenüü viib otse soovitud kaardile.</li><li>Ülaserva peidetud käepide avaneb kursori või fookusega. Seal on taustaheli, Keel ja ligipääsetavus ning Ooterežiim.</li><li>Sisselogitud kasutaja näeb Ruumid, Töölaud, Vestlus ja Profiil.</li></ul>"
         },
         "register": {
           "title": "Konto loomine ja ligipääs",
@@ -8088,7 +8088,7 @@
     "walk_5a": "Näed ise, kust info pärineb.",
     "walk_5b": "Ja sina otsustad, mida jagad.",
     "walk_6": "Kõik vajalik on nüüd sinu ees.",
-    "standby_connect": "Ühenda SotsiaalAI platvormiga",
+    "standby_connect": "Ühenda sotsiaal.pro platvormiga",
     "power_on": "Käivita",
     "exit_card": "Välja",
     "back_card": "Tagasi",

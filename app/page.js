@@ -14,7 +14,7 @@ export async function generateMetadata() {
     pathname: "/",
     // Keep the home document title short because some screen readers
     // announce repeated title updates during the initial page load.
-    title: "SotsiaalAI",
+    title: "sotsiaal.pro",
     description: meta.description || ""
   });
 }
@@ -30,7 +30,7 @@ export async function generateMetadata() {
 const ORGANIZATION_JSONLD = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "SotsiaalAI",
+  name: "sotsiaal.pro",
   legalName: "Küberloome OÜ",
   url: getPublicSiteUrl(),
   logo: `${getPublicSiteUrl()}/og/sotsiaalai-share.png`,
@@ -58,7 +58,7 @@ export default async function HomeRoot() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION_JSONLD) }}
       />
       <div className="room-static-copy">
-        <h1>{room.loading_line || "SotsiaalAI"}</h1>
+        <h1>{room.loading_line || "sotsiaal.pro"}</h1>
         {walkCopy.map((keys) => (
           <p key={keys.join("-")}>
             {keys.map((key) => room[key]).filter(Boolean).join(" ")}

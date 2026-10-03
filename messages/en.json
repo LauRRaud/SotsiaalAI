@@ -1387,71 +1387,71 @@
   },
   "meta": {
     "home": {
-      "title": "SotsiaalAI",
+      "title": "sotsiaal.pro",
       "description": "SotsiaalAI helps you find support, services and tools for everyday life questions."
     },
     "chat": {
-      "title": "Chat | SotsiaalAI",
+      "title": "Chat | sotsiaal.pro",
       "description": "Discuss your questions and next steps in SotsiaalAI chat."
     },
     "profile": {
-      "title": "Profile | SotsiaalAI",
+      "title": "Profile | sotsiaal.pro",
       "description": "Manage your SotsiaalAI profile, preferences and account settings."
     },
     "pricing": {
-      "title": "Pricing | SotsiaalAI",
+      "title": "Pricing | sotsiaal.pro",
       "description": "View SotsiaalAI plans and subscription pricing."
     },
     "features": {
-      "title": "Features | SotsiaalAI",
+      "title": "Features | sotsiaal.pro",
       "description": "Explore SotsiaalAI features and tools."
     },
     "register": {
-      "title": "Register | SotsiaalAI",
+      "title": "Register | sotsiaal.pro",
       "description": "Create a SotsiaalAI account and start using the platform."
     },
     "subscription": {
-      "title": "Subscription | SotsiaalAI",
+      "title": "Subscription | sotsiaal.pro",
       "description": "Manage your SotsiaalAI subscription and payment details."
     },
     "terms": {
-      "title": "Terms of use | SotsiaalAI",
+      "title": "Terms of use | sotsiaal.pro",
       "description": "Read the SotsiaalAI terms of use."
     },
     "privacy": {
-      "title": "Privacy terms | SotsiaalAI",
+      "title": "Privacy terms | sotsiaal.pro",
       "description": "Read how SotsiaalAI processes and protects personal data."
     },
     "guide": {
-      "title": "User guide | SotsiaalAI",
+      "title": "User guide | sotsiaal.pro",
       "description": "Find guidance for using SotsiaalAI."
     },
     "framework": {
-      "title": "Professional-use framework | SotsiaalAI",
+      "title": "Professional-use framework | sotsiaal.pro",
       "description": "SotsiaalAI professional-use and data-processing framework agreement: read the full text, download the DOCX and signed DigiDoc, and save your confirmation."
     },
     "author": {
-      "title": "From the author | SotsiaalAI",
+      "title": "From the author | sotsiaal.pro",
       "description": "Read explanations and thoughts from the author of SotsiaalAI."
     },
     "rooms": {
-      "title": "Rooms | SotsiaalAI",
+      "title": "Rooms | sotsiaal.pro",
       "description": "View your SotsiaalAI rooms and shared conversations."
     },
     "workspace": {
-      "title": "Workspace | SotsiaalAI",
+      "title": "Workspace | sotsiaal.pro",
       "description": "Open the tools for your role: service map, inquiries, documents and support forms."
     },
     "reset": {
-      "title": "Reset PIN | SotsiaalAI",
+      "title": "Reset PIN | sotsiaal.pro",
       "description": "Reset the PIN for your SotsiaalAI account."
     },
     "email_update": {
-      "title": "Update email address | SotsiaalAI",
+      "title": "Update email address | sotsiaal.pro",
       "description": "Update the email address for your SotsiaalAI account."
     },
     "pin_update": {
-      "title": "Update PIN | SotsiaalAI",
+      "title": "Update PIN | sotsiaal.pro",
       "description": "Update the PIN for your SotsiaalAI account."
     }
   },
@@ -3032,7 +3032,7 @@
         "aborted": "The answer was interrupted; completed-answer quality is not graded."
       }
     },
-    "title": "SotsiaalAI",
+    "title": "sotsiaal.pro",
     "crisis": {
       "notice": "If you are in immediate danger, call 112. For concerns related to children and families, free 24/7 help is available on 116 111. For violence or crime-related support in Estonia, call Victim Support on 116 006."
     },
@@ -3387,7 +3387,7 @@
     },
     "voice": {
       "open": "Open voice conversation",
-      "title": "SotsiaalAI",
+      "title": "sotsiaal.pro",
       "eyebrow": "Voice conversation",
       "live": "Live",
       "ready": "Ready",
@@ -4240,7 +4240,7 @@
       "modal_body": "<p><strong>Küberloome OÜ</strong><br />Registry code 14206225<br />Address: Harju maakond, Harku vald, Tabasalu, Kolde tn 6/1, 76901, Estonia<br /><a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a></p>"
     },
     "cta": {
-      "title": "SotsiaalAI"
+      "title": "sotsiaal.pro"
     },
     "links": {
       "privacy": "Privacy",
@@ -4498,7 +4498,7 @@
         },
         "home": {
           "title": "Home page and connecting to the platform",
-          "body": "<p><strong>First-visit sequence</strong></p><ol><li>Choose settings in the Language and accessibility module.</li><li>In the “Everything starts with clarity” readiness view, select <strong>Enter</strong>.</li><li>Scroll through the introduction or choose <strong>Skip</strong>. Switch background audio on or off. Use the arrow next to the audio control to change tracks.</li><li>In “Connect to the SotsiaalAI platform”, press the central power button.</li></ol><p><strong>Cards and menus</strong></p><ul><li>Signed-out view has 9 cards: Explore features, User guide, Sign in, About, Install, Terms, Privacy policy, Pricing and Contact.</li><li>Side arrows move one card at a time. The bottom quick menu jumps directly to a card.</li><li>Focus or hover the hidden top handle to open background audio, Language and accessibility and Standby.</li><li>A signed-in user sees Rooms, Workspace, Chat and Profile.</li></ul>"
+          "body": "<p><strong>First-visit sequence</strong></p><ol><li>Choose settings in the Language and accessibility module.</li><li>In the “Everything starts with clarity” readiness view, select <strong>Enter</strong>.</li><li>Scroll through the introduction or choose <strong>Skip</strong>. Switch background audio on or off. Use the arrow next to the audio control to change tracks.</li><li>In “Connect to the sotsiaal.pro platform”, press the central power button.</li></ol><p><strong>Cards and menus</strong></p><ul><li>Signed-out view has 9 cards: Explore features, User guide, Sign in, About, Install, Terms, Privacy policy, Pricing and Contact.</li><li>Side arrows move one card at a time. The bottom quick menu jumps directly to a card.</li><li>Focus or hover the hidden top handle to open background audio, Language and accessibility and Standby.</li><li>A signed-in user sees Rooms, Workspace, Chat and Profile.</li></ul>"
         },
         "register": {
           "title": "Create an account and activate access",
@@ -8088,7 +8088,7 @@
     "walk_5a": "You can see where the information comes from.",
     "walk_5b": "And you decide what you share.",
     "walk_6": "Everything you need is now in front of you.",
-    "standby_connect": "Connect to the SotsiaalAI platform",
+    "standby_connect": "Connect to the sotsiaal.pro platform",
     "power_on": "Power on",
     "exit_card": "Exit",
     "back_card": "Back",

@@ -1387,71 +1387,71 @@
   },
   "meta": {
     "home": {
-      "title": "SotsiaalAI",
+      "title": "sotsiaal.pro",
       "description": "SotsiaalAI помогает найти поддержку, услуги и инструменты для решения повседневных жизненных вопросов."
     },
     "chat": {
-      "title": "Чат | SotsiaalAI",
+      "title": "Чат | sotsiaal.pro",
       "description": "Обсуждайте ваши вопросы и следующие шаги в чате SotsiaalAI."
     },
     "profile": {
-      "title": "Профиль | SotsiaalAI",
+      "title": "Профиль | sotsiaal.pro",
       "description": "Управляйте профилем, настройками и учётной записью SotsiaalAI."
     },
     "pricing": {
-      "title": "Тарифы | SotsiaalAI",
+      "title": "Тарифы | sotsiaal.pro",
       "description": "Ознакомьтесь с тарифами и стоимостью подписок SotsiaalAI."
     },
     "features": {
-      "title": "Возможности | SotsiaalAI",
+      "title": "Возможности | sotsiaal.pro",
       "description": "Ознакомьтесь с возможностями и инструментами SotsiaalAI."
     },
     "register": {
-      "title": "Регистрация | SotsiaalAI",
+      "title": "Регистрация | sotsiaal.pro",
       "description": "Создайте учётную запись SotsiaalAI и начните пользоваться платформой."
     },
     "subscription": {
-      "title": "Подписка | SotsiaalAI",
+      "title": "Подписка | sotsiaal.pro",
       "description": "Управляйте подпиской и платёжными данными SotsiaalAI."
     },
     "terms": {
-      "title": "Условия использования | SotsiaalAI",
+      "title": "Условия использования | sotsiaal.pro",
       "description": "Прочитайте условия использования SotsiaalAI."
     },
     "privacy": {
-      "title": "Условия конфиденциальности | SotsiaalAI",
+      "title": "Условия конфиденциальности | sotsiaal.pro",
       "description": "Узнайте, как SotsiaalAI обрабатывает и защищает персональные данные."
     },
     "guide": {
-      "title": "Руководство пользователя | SotsiaalAI",
+      "title": "Руководство пользователя | sotsiaal.pro",
       "description": "Найдите руководство по использованию SotsiaalAI."
     },
     "framework": {
-      "title": "Рамочный договор рабочего использования | SotsiaalAI",
+      "title": "Рамочный договор рабочего использования | sotsiaal.pro",
       "description": "Рамочный договор SotsiaalAI об использовании в профессиональной деятельности и обработке персональных данных: полный текст, загрузка DOCX и подписанного DigiDoc, сохранение подтверждения."
     },
     "author": {
-      "title": "От автора | SotsiaalAI",
+      "title": "От автора | sotsiaal.pro",
       "description": "Прочитайте пояснения и мысли автора SotsiaalAI."
     },
     "rooms": {
-      "title": "Комнаты | SotsiaalAI",
+      "title": "Комнаты | sotsiaal.pro",
       "description": "Просматривайте комнаты и общие диалоги SotsiaalAI."
     },
     "workspace": {
-      "title": "Рабочий стол | SotsiaalAI",
+      "title": "Рабочий стол | sotsiaal.pro",
       "description": "Откройте инструменты своей роли: карту услуг, обращения, документы и формы поддержки."
     },
     "reset": {
-      "title": "Восстановление PIN-кода | SotsiaalAI",
+      "title": "Восстановление PIN-кода | sotsiaal.pro",
       "description": "Восстановите PIN-код учётной записи SotsiaalAI."
     },
     "email_update": {
-      "title": "Обновление адреса эл. почты | SotsiaalAI",
+      "title": "Обновление адреса эл. почты | sotsiaal.pro",
       "description": "Обновите адрес эл. почты учётной записи SotsiaalAI."
     },
     "pin_update": {
-      "title": "Обновление PIN-кода | SotsiaalAI",
+      "title": "Обновление PIN-кода | sotsiaal.pro",
       "description": "Обновите PIN-код учётной записи SotsiaalAI."
     }
   },
@@ -3032,7 +3032,7 @@
         "aborted": "Ответ прерван; качество завершённого ответа не оценивается."
       }
     },
-    "title": "SotsiaalAI",
+    "title": "sotsiaal.pro",
     "crisis": {
       "notice": "При непосредственной опасности звоните 112. По вопросам, связанным с детьми и семьями, круглосуточная бесплатная помощь доступна по телефону 116 111. При насилии или преступлении в Эстонии можно обратиться в службу помощи жертвам по номеру 116 006."
     },
@@ -3387,7 +3387,7 @@
     },
     "voice": {
       "open": "Открыть голосовой разговор",
-      "title": "SotsiaalAI",
+      "title": "sotsiaal.pro",
       "eyebrow": "Голосовой разговор",
       "live": "В эфире",
       "ready": "Готово",
@@ -4240,7 +4240,7 @@
       "modal_body": "<p><strong>Küberloome OÜ</strong><br />Регистрационный код 14206225<br />Адрес: Harju maakond, Harku vald, Tabasalu, Kolde tn 6/1, 76901, Эстония<br /><a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a></p>"
     },
     "cta": {
-      "title": "SotsiaalAI"
+      "title": "sotsiaal.pro"
     },
     "links": {
       "privacy": "Конфиденциальность",
@@ -8088,7 +8088,7 @@
     "walk_5a": "Вы сами видите, откуда информация.",
     "walk_5b": "И вы решаете, чем делиться.",
     "walk_6": "Всё необходимое теперь перед вами.",
-    "standby_connect": "Подключитесь к платформе SotsiaalAI",
+    "standby_connect": "Подключитесь к платформе sotsiaal.pro",
     "power_on": "Включить",
     "exit_card": "Выход",
     "back_card": "Назад",
