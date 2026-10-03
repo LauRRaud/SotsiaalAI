@@ -1,0 +1,1253 @@
+{
+ "run": {
+  "date": "2026-10-03",
+  "app_commit": "038cb3d2",
+  "catalogue": "tests/evaluation/dialogue/scenarios-two-people-boundary-1.json",
+  "catalogue_blob": "6340eaa5f72e9f1d3661330b8138076d6105e923",
+  "flags": "--auto-modes --max-usd 0.06",
+  "plan": "m4-sotsiaalai-corpus-chat-20261002-190633-81ccbd84-16c4-4a3d-a4c0-fd6a9ad7ae45-ra086d2744",
+  "generation": "search_generation_34fe1590bbd5e2bf6a788bef196d50e26b5f573e2a63bc30fbbe1d56ab28c8f4",
+  "model": "gpt-6-luna",
+  "reasoning": "medium",
+  "started_at": "2026-10-03T10:54:16.746Z",
+  "finished_at": "2026-10-03T10:57:08.549Z",
+  "estimated_usd_at_plan_prices": 0.0559,
+  "cost_limit_usd": 0.06,
+  "summary": {
+   "passed": 9,
+   "search": 0,
+   "answer": 0,
+   "state": 0
+  },
+  "states": {
+   "continuing": 8,
+   "rejected": 0
+  },
+  "runs": 1,
+  "repeats": 0
+ },
+ "scenario": "mother-father-past-eight",
+ "messages": [
+  {
+   "message": 1,
+   "text": "Tere",
+   "verdict": "passed",
+   "usd": 0.001,
+   "total_ms": 6126,
+   "greeting_route": true,
+   "search_region": null,
+   "plan_person": null,
+   "state_people": {},
+   "state_rejected": null,
+   "left_out": [],
+   "facts": [],
+   "checks": [
+    {
+     "key": "completed",
+     "kind": "answer",
+     "ok": true,
+     "detail": "completed"
+    },
+    {
+     "key": "greeting",
+     "kind": "search",
+     "ok": true,
+     "detail": "greeting route true, expected true"
+    }
+   ],
+   "answer_kind": "clarification",
+   "asks_for_a_circumstance": true,
+   "answer": "Tere! Kuidas saan sind aidata?"
+  },
+  {
+   "message": 2,
+   "text": "Minu ema elab Kose vallas ja tema pension on 600 eurot. Ta ei saa enam üksi kodus hakkama.",
+   "verdict": "passed",
+   "usd": 0.0077,
+   "total_ms": 28411,
+   "greeting_route": false,
+   "search_region": "kose_vald",
+   "plan_person": "ema",
+   "state_people": {
+    "ema": "kose_vald"
+   },
+   "state_rejected": null,
+   "left_out": [],
+   "facts": [
+    {
+     "id": "F1",
+     "person": "ema",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 2,
+       "quote": "Minu ema elab Kose vallas"
+      }
+     ]
+    },
+    {
+     "id": "F2",
+     "person": "ema",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 2,
+       "quote": "tema pension on 600 eurot."
+      }
+     ]
+    },
+    {
+     "id": "F3",
+     "person": "ema",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 2,
+       "quote": "Ta ei saa enam üksi kodus hakkama."
+      }
+     ]
+    }
+   ],
+   "checks": [
+    {
+     "key": "completed",
+     "kind": "answer",
+     "ok": true,
+     "detail": "completed"
+    },
+    {
+     "key": "region",
+     "kind": "state",
+     "ok": true,
+     "detail": "region kose_vald, expected kose_vald"
+    },
+    {
+     "key": "greeting",
+     "kind": "search",
+     "ok": true,
+     "detail": "greeting route false, expected false"
+    },
+    {
+     "key": "person_regions",
+     "kind": "state",
+     "ok": true,
+     "detail": "ema: state region kose_vald, expected kose_vald"
+    },
+    {
+     "key": "facts_present",
+     "kind": "state",
+     "ok": true,
+     "detail": "ema: /600/ among the current facts"
+    },
+    {
+     "key": "allowed_dropped",
+     "kind": "state",
+     "ok": true,
+     "detail": "0 facts or changes left out, each allowed"
+    }
+   ],
+   "answer_kind": "partial",
+   "asks_for_a_circumstance": false
+  },
+  {
+   "message": 3,
+   "text": "Milliseid teenuseid vald talle pakkuda saab?",
+   "verdict": "passed",
+   "usd": 0.0065,
+   "total_ms": 20472,
+   "greeting_route": false,
+   "search_region": "kose_vald",
+   "plan_person": "ema",
+   "state_people": {
+    "ema": "kose_vald"
+   },
+   "state_rejected": null,
+   "left_out": [],
+   "facts": [
+    {
+     "id": "F1",
+     "person": "ema",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 2,
+       "quote": "Minu ema elab Kose vallas"
+      }
+     ]
+    },
+    {
+     "id": "F2",
+     "person": "ema",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 2,
+       "quote": "tema pension on 600 eurot."
+      }
+     ]
+    },
+    {
+     "id": "F3",
+     "person": "ema",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 2,
+       "quote": "Ta ei saa enam üksi kodus hakkama."
+      }
+     ]
+    }
+   ],
+   "checks": [
+    {
+     "key": "completed",
+     "kind": "answer",
+     "ok": true,
+     "detail": "completed"
+    },
+    {
+     "key": "region",
+     "kind": "state",
+     "ok": true,
+     "detail": "region kose_vald, expected kose_vald"
+    }
+   ],
+   "answer_kind": "partial",
+   "asks_for_a_circumstance": false
+  },
+  {
+   "message": 4,
+   "text": "Minu isa elab Harku vallas ja tema pension on 450 eurot. Tal on võlad ja ta ei tule rahaga toime.",
+   "verdict": "passed",
+   "usd": 0.0063,
+   "total_ms": 21080,
+   "greeting_route": false,
+   "search_region": "harku_vald",
+   "plan_person": "isa",
+   "state_people": {
+    "isa": "harku_vald",
+    "ema": "kose_vald"
+   },
+   "state_rejected": null,
+   "left_out": [],
+   "facts": [
+    {
+     "id": "F1",
+     "person": "ema",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 2,
+       "quote": "Minu ema elab Kose vallas"
+      }
+     ]
+    },
+    {
+     "id": "F2",
+     "person": "ema",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 2,
+       "quote": "tema pension on 600 eurot."
+      }
+     ]
+    },
+    {
+     "id": "F3",
+     "person": "ema",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 2,
+       "quote": "Ta ei saa enam üksi kodus hakkama."
+      }
+     ]
+    },
+    {
+     "id": "F4",
+     "person": "isa",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 4,
+       "quote": "Minu isa elab Harku vallas"
+      }
+     ]
+    },
+    {
+     "id": "F5",
+     "person": "isa",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 4,
+       "quote": "tema pension on 450 eurot."
+      }
+     ]
+    },
+    {
+     "id": "F6",
+     "person": "isa",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 4,
+       "quote": "Tal on võlad"
+      }
+     ]
+    },
+    {
+     "id": "F7",
+     "person": "isa",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 4,
+       "quote": "ta ei tule rahaga toime."
+      }
+     ]
+    }
+   ],
+   "checks": [
+    {
+     "key": "completed",
+     "kind": "answer",
+     "ok": true,
+     "detail": "completed"
+    },
+    {
+     "key": "region",
+     "kind": "state",
+     "ok": true,
+     "detail": "region harku_vald, expected harku_vald"
+    },
+    {
+     "key": "person_regions",
+     "kind": "state",
+     "ok": true,
+     "detail": "ema: state region kose_vald, expected kose_vald"
+    },
+    {
+     "key": "person_regions",
+     "kind": "state",
+     "ok": true,
+     "detail": "isa: state region harku_vald, expected harku_vald"
+    },
+    {
+     "key": "state_kept",
+     "kind": "state",
+     "ok": true,
+     "detail": "new state kept"
+    },
+    {
+     "key": "facts_present",
+     "kind": "state",
+     "ok": true,
+     "detail": "isa: /450/ among the current facts"
+    },
+    {
+     "key": "facts_present",
+     "kind": "state",
+     "ok": true,
+     "detail": "ema: /600/ among the current facts"
+    },
+    {
+     "key": "facts_absent",
+     "kind": "state",
+     "ok": true,
+     "detail": "isa: /600/ not among the current facts"
+    },
+    {
+     "key": "facts_absent",
+     "kind": "state",
+     "ok": true,
+     "detail": "ema: /450/ not among the current facts"
+    },
+    {
+     "key": "allowed_dropped",
+     "kind": "state",
+     "ok": true,
+     "detail": "0 facts or changes left out, each allowed"
+    }
+   ],
+   "answer_kind": "partial",
+   "asks_for_a_circumstance": false
+  },
+  {
+   "message": 5,
+   "text": "Kuhu ta saab oma vallas pöörduda?",
+   "verdict": "passed",
+   "usd": 0.0058,
+   "total_ms": 12354,
+   "greeting_route": false,
+   "search_region": "harku_vald",
+   "plan_person": "isa",
+   "state_people": {
+    "isa": "harku_vald",
+    "ema": "kose_vald"
+   },
+   "state_rejected": null,
+   "left_out": [],
+   "facts": [
+    {
+     "id": "F1",
+     "person": "ema",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 2,
+       "quote": "Minu ema elab Kose vallas"
+      }
+     ]
+    },
+    {
+     "id": "F2",
+     "person": "ema",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 2,
+       "quote": "tema pension on 600 eurot."
+      }
+     ]
+    },
+    {
+     "id": "F3",
+     "person": "ema",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 2,
+       "quote": "Ta ei saa enam üksi kodus hakkama."
+      }
+     ]
+    },
+    {
+     "id": "F4",
+     "person": "isa",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 4,
+       "quote": "Minu isa elab Harku vallas"
+      }
+     ]
+    },
+    {
+     "id": "F5",
+     "person": "isa",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 4,
+       "quote": "tema pension on 450 eurot."
+      }
+     ]
+    },
+    {
+     "id": "F6",
+     "person": "isa",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 4,
+       "quote": "Tal on võlad"
+      }
+     ]
+    },
+    {
+     "id": "F7",
+     "person": "isa",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 4,
+       "quote": "ta ei tule rahaga toime."
+      }
+     ]
+    }
+   ],
+   "checks": [
+    {
+     "key": "completed",
+     "kind": "answer",
+     "ok": true,
+     "detail": "completed"
+    },
+    {
+     "key": "region",
+     "kind": "state",
+     "ok": true,
+     "detail": "region harku_vald, expected harku_vald"
+    },
+    {
+     "key": "must",
+     "kind": "answer",
+     "ok": true,
+     "detail": "/Harku/ in the answer"
+    },
+    {
+     "key": "must_not",
+     "kind": "answer",
+     "ok": true,
+     "detail": "/Kose/ not in the answer"
+    }
+   ],
+   "answer_kind": "grounded",
+   "asks_for_a_circumstance": false
+  },
+  {
+   "message": 6,
+   "text": "Tagasi ema juurde: kas ta peab hooldekodu koha eest ise maksma?",
+   "verdict": "passed",
+   "usd": 0.0074,
+   "total_ms": 26290,
+   "greeting_route": false,
+   "search_region": "kose_vald",
+   "plan_person": "ema",
+   "state_people": {
+    "ema": "kose_vald",
+    "isa": "harku_vald"
+   },
+   "state_rejected": null,
+   "left_out": [],
+   "facts": [
+    {
+     "id": "F1",
+     "person": "ema",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 2,
+       "quote": "Minu ema elab Kose vallas"
+      }
+     ]
+    },
+    {
+     "id": "F2",
+     "person": "ema",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 2,
+       "quote": "tema pension on 600 eurot."
+      }
+     ]
+    },
+    {
+     "id": "F3",
+     "person": "ema",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 2,
+       "quote": "Ta ei saa enam üksi kodus hakkama."
+      }
+     ]
+    },
+    {
+     "id": "F4",
+     "person": "isa",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 4,
+       "quote": "Minu isa elab Harku vallas"
+      }
+     ]
+    },
+    {
+     "id": "F5",
+     "person": "isa",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 4,
+       "quote": "tema pension on 450 eurot."
+      }
+     ]
+    },
+    {
+     "id": "F6",
+     "person": "isa",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 4,
+       "quote": "Tal on võlad"
+      }
+     ]
+    },
+    {
+     "id": "F7",
+     "person": "isa",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 4,
+       "quote": "ta ei tule rahaga toime."
+      }
+     ]
+    }
+   ],
+   "checks": [
+    {
+     "key": "completed",
+     "kind": "answer",
+     "ok": true,
+     "detail": "completed"
+    },
+    {
+     "key": "region",
+     "kind": "state",
+     "ok": true,
+     "detail": "region kose_vald, expected kose_vald"
+    },
+    {
+     "key": "person_regions",
+     "kind": "state",
+     "ok": true,
+     "detail": "ema: state region kose_vald, expected kose_vald"
+    },
+    {
+     "key": "person_regions",
+     "kind": "state",
+     "ok": true,
+     "detail": "isa: state region harku_vald, expected harku_vald"
+    },
+    {
+     "key": "must_not",
+     "kind": "answer",
+     "ok": true,
+     "detail": "/Harku/ not in the answer"
+    },
+    {
+     "key": "must_not",
+     "kind": "answer",
+     "ok": true,
+     "detail": "/(?<!\\p{L})ema\\p{L}*\\s+pension\\p{L}*[^.!?\\n,;:]{0,15}(?<!\\d)450(?!\\d)/ not in the answer"
+    }
+   ],
+   "answer_kind": "partial",
+   "asks_for_a_circumstance": false
+  },
+  {
+   "message": 7,
+   "text": "Ja kas isa võib taotleda toimetulekutoetust?",
+   "verdict": "passed",
+   "usd": 0.0073,
+   "total_ms": 17130,
+   "greeting_route": false,
+   "search_region": "harku_vald",
+   "plan_person": "isa",
+   "state_people": {
+    "isa": "harku_vald",
+    "ema": "kose_vald"
+   },
+   "state_rejected": null,
+   "left_out": [],
+   "facts": [
+    {
+     "id": "F1",
+     "person": "ema",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 2,
+       "quote": "Minu ema elab Kose vallas"
+      }
+     ]
+    },
+    {
+     "id": "F2",
+     "person": "ema",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 2,
+       "quote": "tema pension on 600 eurot."
+      }
+     ]
+    },
+    {
+     "id": "F3",
+     "person": "ema",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 2,
+       "quote": "Ta ei saa enam üksi kodus hakkama."
+      }
+     ]
+    },
+    {
+     "id": "F4",
+     "person": "isa",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 4,
+       "quote": "Minu isa elab Harku vallas"
+      }
+     ]
+    },
+    {
+     "id": "F5",
+     "person": "isa",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 4,
+       "quote": "tema pension on 450 eurot."
+      }
+     ]
+    },
+    {
+     "id": "F6",
+     "person": "isa",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 4,
+       "quote": "Tal on võlad"
+      }
+     ]
+    },
+    {
+     "id": "F7",
+     "person": "isa",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 4,
+       "quote": "ta ei tule rahaga toime."
+      }
+     ]
+    }
+   ],
+   "checks": [
+    {
+     "key": "completed",
+     "kind": "answer",
+     "ok": true,
+     "detail": "completed"
+    },
+    {
+     "key": "region",
+     "kind": "state",
+     "ok": true,
+     "detail": "region harku_vald, expected harku_vald"
+    },
+    {
+     "key": "must_not",
+     "kind": "answer",
+     "ok": true,
+     "detail": "/Kose/ not in the answer"
+    },
+    {
+     "key": "must_not",
+     "kind": "answer",
+     "ok": true,
+     "detail": "/(?<!\\p{L})isa\\p{L}*\\s+pension\\p{L}*[^.!?\\n,;:]{0,15}(?<!\\d)600(?!\\d)/ not in the answer"
+    }
+   ],
+   "answer_kind": "partial",
+   "asks_for_a_circumstance": false
+  },
+  {
+   "message": 8,
+   "text": "Kui kiiresti vald tema taotluse üle otsustab?",
+   "verdict": "passed",
+   "usd": 0.007,
+   "total_ms": 14815,
+   "greeting_route": false,
+   "search_region": "harku_vald",
+   "plan_person": "isa",
+   "state_people": {
+    "isa": "harku_vald",
+    "ema": "kose_vald"
+   },
+   "state_rejected": null,
+   "left_out": [],
+   "facts": [
+    {
+     "id": "F1",
+     "person": "ema",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 2,
+       "quote": "Minu ema elab Kose vallas"
+      }
+     ]
+    },
+    {
+     "id": "F2",
+     "person": "ema",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 2,
+       "quote": "tema pension on 600 eurot."
+      }
+     ]
+    },
+    {
+     "id": "F3",
+     "person": "ema",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 2,
+       "quote": "Ta ei saa enam üksi kodus hakkama."
+      }
+     ]
+    },
+    {
+     "id": "F4",
+     "person": "isa",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 4,
+       "quote": "Minu isa elab Harku vallas"
+      }
+     ]
+    },
+    {
+     "id": "F5",
+     "person": "isa",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 4,
+       "quote": "tema pension on 450 eurot."
+      }
+     ]
+    },
+    {
+     "id": "F6",
+     "person": "isa",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 4,
+       "quote": "Tal on võlad"
+      }
+     ]
+    },
+    {
+     "id": "F7",
+     "person": "isa",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 4,
+       "quote": "ta ei tule rahaga toime."
+      }
+     ]
+    }
+   ],
+   "checks": [
+    {
+     "key": "completed",
+     "kind": "answer",
+     "ok": true,
+     "detail": "completed"
+    },
+    {
+     "key": "region",
+     "kind": "state",
+     "ok": true,
+     "detail": "region harku_vald, expected harku_vald"
+    },
+    {
+     "key": "person_regions",
+     "kind": "state",
+     "ok": true,
+     "detail": "ema: state region kose_vald, expected kose_vald"
+    },
+    {
+     "key": "person_regions",
+     "kind": "state",
+     "ok": true,
+     "detail": "isa: state region harku_vald, expected harku_vald"
+    },
+    {
+     "key": "state_kept",
+     "kind": "state",
+     "ok": true,
+     "detail": "new state kept"
+    },
+    {
+     "key": "facts_present",
+     "kind": "state",
+     "ok": true,
+     "detail": "ema: /600/ among the current facts"
+    },
+    {
+     "key": "facts_present",
+     "kind": "state",
+     "ok": true,
+     "detail": "isa: /450/ among the current facts"
+    },
+    {
+     "key": "facts_absent",
+     "kind": "state",
+     "ok": true,
+     "detail": "isa: /600/ not among the current facts"
+    },
+    {
+     "key": "facts_absent",
+     "kind": "state",
+     "ok": true,
+     "detail": "ema: /450/ not among the current facts"
+    },
+    {
+     "key": "allowed_dropped",
+     "kind": "state",
+     "ok": true,
+     "detail": "0 facts or changes left out, each allowed"
+    }
+   ],
+   "answer_kind": "grounded",
+   "asks_for_a_circumstance": false,
+   "cited": [
+    "Sotsiaalhoolekande seadus"
+   ],
+   "search_plan_queries": [
+    "toimetulekutoetuse taotluse menetlemise ja otsustamise tähtaeg",
+    "Harku vald toimetulekutoetuse taotlus otsus tähtaeg"
+   ],
+   "answer": "Kui mõtled isa toimetulekutoetuse taotlust Harku vallas, peab vald otsuse tegema viie tööpäeva jooksul pärast kõigi dokumentide esitamist. Toetus makstakse välja kolme tööpäeva jooksul pärast otsuse tegemist. [S9]"
+  },
+  {
+   "message": 9,
+   "text": "Vabandust, ema pension on hoopis 700 eurot.",
+   "verdict": "passed",
+   "usd": 0.0068,
+   "total_ms": 22087,
+   "greeting_route": false,
+   "search_region": "kose_vald",
+   "plan_person": "ema",
+   "state_people": {
+    "ema": "kose_vald",
+    "isa": "harku_vald"
+   },
+   "state_rejected": null,
+   "left_out": [],
+   "facts": [
+    {
+     "id": "F1",
+     "person": "ema",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 1,
+       "quote": "Minu ema elab Kose vallas"
+      }
+     ]
+    },
+    {
+     "id": "F2",
+     "person": "ema",
+     "status": "superseded",
+     "quotes": [
+      {
+       "turn": 1,
+       "quote": "tema pension on 600 eurot."
+      }
+     ]
+    },
+    {
+     "id": "F3",
+     "person": "ema",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 1,
+       "quote": "Ta ei saa enam üksi kodus hakkama."
+      }
+     ]
+    },
+    {
+     "id": "F4",
+     "person": "isa",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 1,
+       "quote": "Minu isa elab Harku vallas"
+      }
+     ]
+    },
+    {
+     "id": "F5",
+     "person": "isa",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 1,
+       "quote": "tema pension on 450 eurot."
+      }
+     ]
+    },
+    {
+     "id": "F6",
+     "person": "isa",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 1,
+       "quote": "Tal on võlad"
+      }
+     ]
+    },
+    {
+     "id": "F7",
+     "person": "isa",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 1,
+       "quote": "ta ei tule rahaga toime."
+      }
+     ]
+    },
+    {
+     "id": "F8",
+     "person": "ema",
+     "status": "current",
+     "quotes": [
+      {
+       "turn": 3,
+       "quote": "ema pension on hoopis 700 eurot."
+      }
+     ]
+    }
+   ],
+   "checks": [
+    {
+     "key": "completed",
+     "kind": "answer",
+     "ok": true,
+     "detail": "completed"
+    },
+    {
+     "key": "region",
+     "kind": "state",
+     "ok": true,
+     "detail": "region kose_vald, expected kose_vald"
+    },
+    {
+     "key": "person_regions",
+     "kind": "state",
+     "ok": true,
+     "detail": "ema: state region kose_vald, expected kose_vald"
+    },
+    {
+     "key": "person_regions",
+     "kind": "state",
+     "ok": true,
+     "detail": "isa: state region harku_vald, expected harku_vald"
+    },
+    {
+     "key": "state_kept",
+     "kind": "state",
+     "ok": true,
+     "detail": "new state kept"
+    },
+    {
+     "key": "facts_present",
+     "kind": "state",
+     "ok": true,
+     "detail": "ema: /700/ among the current facts"
+    },
+    {
+     "key": "facts_present",
+     "kind": "state",
+     "ok": true,
+     "detail": "isa: /450/ among the current facts"
+    },
+    {
+     "key": "facts_absent",
+     "kind": "state",
+     "ok": true,
+     "detail": "ema: /600/ not among the current facts"
+    },
+    {
+     "key": "facts_absent",
+     "kind": "state",
+     "ok": true,
+     "detail": "isa: /700/ not among the current facts"
+    },
+    {
+     "key": "facts_absent",
+     "kind": "state",
+     "ok": true,
+     "detail": "isa: /600/ not among the current facts"
+    },
+    {
+     "key": "facts_absent",
+     "kind": "state",
+     "ok": true,
+     "detail": "ema: /450/ not among the current facts"
+    },
+    {
+     "key": "fact_changes",
+     "kind": "state",
+     "ok": true,
+     "detail": "ema: /600/ F2 superseded, expected superseded"
+    },
+    {
+     "key": "allowed_dropped",
+     "kind": "state",
+     "ok": true,
+     "detail": "0 facts or changes left out, each allowed"
+    },
+    {
+     "key": "must",
+     "kind": "answer",
+     "ok": true,
+     "detail": "/(?<!\\d)700(?!\\d)/ in the answer"
+    },
+    {
+     "key": "must_not",
+     "kind": "answer",
+     "ok": true,
+     "detail": "/(millises|mis) (vallas|linnas|omavalitsuses)/ not in the answer"
+    },
+    {
+     "key": "must_not",
+     "kind": "answer",
+     "ok": true,
+     "detail": "/kus (ta|su ema|sinu ema|ema) ela/ not in the answer"
+    },
+    {
+     "key": "must_not",
+     "kind": "answer",
+     "ok": true,
+     "detail": "/(?<!\\p{L})isa\\p{L}*\\s+pension\\p{L}*[^.!?\\n,;:]{0,15}(?<!\\d)700(?!\\d)/ not in the answer"
+    },
+    {
+     "key": "must_not",
+     "kind": "answer",
+     "ok": true,
+     "detail": "/(?<!\\p{L})ema\\p{L}*\\s+pension\\p{L}*[^.!?\\n,;:]{0,15}(?<!\\d)450(?!\\d)/ not in the answer"
+    }
+   ],
+   "answer_kind": "partial",
+   "asks_for_a_circumstance": true,
+   "cited": [
+    "Sotsiaalhoolekandelise abi andmise kord"
+   ],
+   "search_plan_queries": [
+    "Kose vald koduteenuse taotluse menetlemise tähtaeg",
+    "sotsiaalteenuse taotluse otsustamise tähtaeg kohaliku omavalitsuse korraldus",
+    "koduteenuse määramine taotlus abivajaduse hindamine tähtaeg"
+   ],
+   "answer": "Kui mõtled ema Kose valla taotlust, teeb vald teenuse või toetuse määramise või määramata jätmise otsuse kümne tööpäeva jooksul alates vajaliku viimase dokumendi saamisest või dokumendi esitamise tähtpäevast. [S1]\n\nIsa Harku valla taotluse puhul ei saa ma siin kinnitada varem nimetatud viie tööpäeva tähtaega.\n\nArvestan parandusega: ema pension on 700 eurot. Kas küsid ema Kose valla või isa Harku valla taotluse otsustamise aega?"
+  }
+ ],
+ "handed_over": [
+  {
+   "message": 8,
+   "mode_sent": "same",
+   "mode_accepted": "same",
+   "begins_a_new_topic": false,
+   "previous_topic_full": false,
+   "carried": null,
+   "assistant_answer": "latest_published_answer",
+   "state_focus": "isa",
+   "plan_person": "isa",
+   "answer_kind": "grounded",
+   "user_turns": [
+    {
+     "turn": 1,
+     "carried": null,
+     "mode": "new",
+     "text": "Tere"
+    },
+    {
+     "turn": 2,
+     "carried": null,
+     "mode": "same",
+     "text": "Minu ema elab Kose vallas ja tema pension on 600 eurot. Ta ei saa enam üksi kodus hakkama."
+    },
+    {
+     "turn": 3,
+     "carried": null,
+     "mode": "same",
+     "text": "Milliseid teenuseid vald talle pakkuda saab?"
+    },
+    {
+     "turn": 4,
+     "carried": null,
+     "mode": "same",
+     "text": "Minu isa elab Harku vallas ja tema pension on 450 eurot. Tal on võlad ja ta ei tule rahaga toime."
+    },
+    {
+     "turn": 5,
+     "carried": null,
+     "mode": "same",
+     "text": "Kuhu ta saab oma vallas pöörduda?"
+    },
+    {
+     "turn": 6,
+     "carried": null,
+     "mode": "same",
+     "text": "Tagasi ema juurde: kas ta peab hooldekodu koha eest ise maksma?"
+    },
+    {
+     "turn": 7,
+     "carried": null,
+     "mode": "same",
+     "text": "Ja kas isa võib taotleda toimetulekutoetust?"
+    },
+    {
+     "turn": 8,
+     "carried": null,
+     "mode": "same",
+     "text": "Kui kiiresti vald tema taotluse üle otsustab?"
+    }
+   ]
+  },
+  {
+   "message": 9,
+   "mode_sent": "same",
+   "mode_accepted": "new",
+   "begins_a_new_topic": true,
+   "previous_topic_full": true,
+   "carried": {
+    "read": 2,
+    "turns": 1,
+    "state_turn": true
+   },
+   "assistant_answer": "carried_published_answer",
+   "state_focus": "ema",
+   "plan_person": "ema",
+   "answer_kind": "partial",
+   "user_turns": [
+    {
+     "turn": 1,
+     "carried": "statements",
+     "mode": "same",
+     "text": "isa: Minu isa elab Harku vallas ja tema pension on 450 eurot\nema: Minu ema elab Kose vallas ja tema pension on 600 eurot\nema: tema pension on 600 eurot.\nema: Ta ei saa enam üksi kodus hakkama.\nisa: tema pension on 450 eurot.\nisa: Tal on võlad\nisa: ta ei tule rahaga toime."
+    },
+    {
+     "turn": 2,
+     "carried": "message",
+     "mode": "same",
+     "text": "Kui kiiresti vald tema taotluse üle otsustab?"
+    },
+    {
+     "turn": 3,
+     "carried": null,
+     "mode": "new",
+     "text": "Vabandust, ema pension on hoopis 700 eurot."
+    }
+   ]
+  }
+ ]
+}
