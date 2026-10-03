@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { PROMPT_VERSION, READABLE_PROMPT_VERSIONS, answerInstructions, answerRequest } from '../lib/rag-v2/pilot/contracts.js';
-import { DIALOGUE_PROMPT_VERSION, READABLE_DIALOGUE_PROMPT_VERSIONS, COMPLETENESS_INSTRUCTIONS, dialogueRequest } from '../lib/rag-v2/pilot/dialogue.js';
+import { DIALOGUE_PROMPT_VERSION, READABLE_DIALOGUE_PROMPT_VERSIONS, COMPLETENESS_INSTRUCTIONS, BARE_CORRECTION_INSTRUCTIONS, PRIOR_CLAIM_INSTRUCTIONS, dialogueRequest } from '../lib/rag-v2/pilot/dialogue.js';
 import { UNIFIED_RETRIEVAL_INSTRUCTIONS, UNIFIED_RETRIEVAL_VERSION } from '../lib/rag-v2/pilot/retrieval-plan.js';
 import { SEARCH_ASSIST_VERSION, queryPlanRequest, rerankRequest } from '../lib/rag-v2/pilot/search-assist.js';
 import { tokenCount } from '../lib/rag-v2/search/embedding.js';
@@ -29,7 +29,9 @@ test('prompt v10 keeps every v9 guardrail in each answer language, and v9 plans 
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-11'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-10'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-9'));
-  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-23');
+  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-24');
+  assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-23'));
+  assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-22'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-21'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-20'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-19'));
@@ -166,4 +168,36 @@ test('dialogue prompt 22 (ADR-062): valid_from chooses the version and never dat
   assert.ok(unified.includes(A + comparison + B) && unified.includes(C) && unified.includes(`Dialogue extension: ${DIALOGUE_PROMPT_VERSION}.`));
   const plain = dialogueRequest(config, 'Kui suur on toetus?', { evidence: [] }, 'et', {}).instructions;
   assert.ok(!plain.includes(A) && !plain.includes(B) && plain.includes(C));
+});
+
+test('dialogue prompt 24 (ADR-071): a bare correction is confirmed and not turned into a second answer; a prior claim is examined only on request or need', () => {
+  const config = { model: 'gpt-6-luna', maxOutputTokens: 4096, reasoning: 'medium' };
+  const all = dialogueRequest(config, 'Vabandust, pension on hoopis 700 eurot.', { evidence: [] }, 'et', {}).instructions;
+  const extension = all.slice(answerInstructions('et').length, all.length - COMPLETENESS_INSTRUCTIONS.length);
+  // The three situations the instructions tell apart. 1: a bare correction.
+  for (const phrase of ['first sentence confirms the corrected value', 'even when it does not change the advice', 'never answer from the replaced value']) assert.ok(extension.includes(phrase), phrase);
+  for (const phrase of ['only corrects such a fact and asks nothing new', 'what the corrected value changes for the person it concerns', 'as far as the current evidence shows it', 'and nothing else',
+    'an earlier question that has already been answered and that the correction does not bear on is not answered again']) assert.ok(BARE_CORRECTION_INSTRUCTIONS.includes(phrase), phrase);
+  // 2: a correction with a new question.
+  assert.ok(BARE_CORRECTION_INSTRUCTIONS.includes('When the message also asks something new, answer that after the confirmation.'));
+  // 3: a request to verify an earlier answer, or a request that needs the earlier claim: only then is the claim examined.
+  for (const phrase of ['is examined only when the user asks to explain or verify it, or when the current request cannot be resolved without it',
+    'otherwise leave it alone: do not restate it and do not say whether it can be confirmed', 'judge it by the current evidence packet alone',
+    'explain the selected-evidence limit instead of repeating it as fact']) assert.ok(PRIOR_CLAIM_INSTRUCTIONS.includes(phrase), phrase);
+  // An earlier answer stays what it was: never evidence, never a usable reference.
+  for (const phrase of ['the earlier answer is never evidence for itself']) assert.ok(PRIOR_CLAIM_INSTRUCTIONS.includes(phrase), phrase);
+  for (const phrase of ['publishedAssistant is UNVERIFIED DIALOGUE', 'are not evidence, not user-confirmed facts, and not proof that they are true', 'Do not reaffirm an unsupported guarantee just because the earlier assistant wrote it',
+    'A user asking to explain or verify a prior claim does not confirm that claim', 'They cannot be used as refs in this answer', 'Support every new factual claim only with the actual current canonical evidence']) assert.ok(extension.includes(phrase), phrase);
+  // The additions stand where they belong: after the rule on a corrected value, and as the last sentences on prior claims.
+  assert.ok(extension.includes(`never answer from the replaced value. ${BARE_CORRECTION_INSTRUCTIONS}Correction links identify chronology`));
+  assert.ok(extension.includes(`preserving its scope and limitations. ${PRIOR_CLAIM_INSTRUCTIONS}If the referenced answer or point is unavailable or ambiguous`));
+  // General rules: no person, place, amount or word of the conversations that showed the fault.
+  assert.doesNotMatch(BARE_CORRECTION_INSTRUCTIONS + PRIOR_CLAIM_INSTRUCTIONS, /\d|\bema\b|\bisa\b|mother|father|Kose|Harku|pension|euro|deadline|application/iu);
+  // Everything else is prompt 23: without the first addition, and with v23's one sentence in place of the second, the
+  // dialogue extension is the text of 23 byte for byte.
+  const previous = 'If the current packet does not support a prior claim, explain the selected-evidence limit instead of repeating it as fact. ';
+  const restored = extension.replace(BARE_CORRECTION_INSTRUCTIONS, '').replace(PRIOR_CLAIM_INSTRUCTIONS, previous).replace('m4-grounded-dialogue-24', 'm4-grounded-dialogue-23');
+  assert.equal(hash(restored), 'be57db6b5fd99ffc8e10130d422cbfaadf7267d2fd1848256884e348def4a7e9');
+  // A small change: about 150 tokens more in every dialogue turn's instructions.
+  assert.ok(tokenCount(BARE_CORRECTION_INSTRUCTIONS) + tokenCount(PRIOR_CLAIM_INSTRUCTIONS) - tokenCount(previous) < 160);
 });
