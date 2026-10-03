@@ -31,7 +31,7 @@ const ORGANIZATION_JSONLD = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "SotsiaalAI",
-  legalName: "SotsiaalAI OÜ",
+  legalName: "Küberloome OÜ",
   url: getPublicSiteUrl(),
   logo: `${getPublicSiteUrl()}/og/sotsiaalai-share.png`,
   email: "info@sotsiaal.pro"
