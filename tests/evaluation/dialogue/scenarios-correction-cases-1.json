@@ -12,7 +12,8 @@
   },
   "history": [
     "03.10.2026 (owner: \"tee see ära\", offered as about 0.08 USD): correction-with-new-question and verification-request were run once each on the live plan (dialogue instructions 24, search-assist-6), with this catalogue at git blob 9573c217; 0.0576 USD at the plan's prices. correction-only was not run: it is the within-topic comparison's turn, measured twice. Result: 7 of 8 turns passed. The correction with a new question passed all 24 checks. The verification turn failed one check, must: the answer verified the claim and cited the Act, in the words \"viis tööpäeva\", and the pattern then accepted only \"viie tööpäeva\" and \"5 tööpäeva\". docs/rag-v2/adr-071-bare-correction-and-prior-claim.md has the answers.",
-    "03.10.2026, after that run: the verification turn's must pattern accepts the numeral in any case form (viis, viie, viiel). The answer given in the run passes it (tests/rag-v2-conversation-eval.test.mjs keeps the answer). The run was not repeated."
+    "03.10.2026, after that run: the verification turn's must pattern accepts the numeral in any case form (viis, viie, viiel). The answer given in the run passes it (tests/rag-v2-conversation-eval.test.mjs keeps the answer). The run was not repeated.",
+    "03.10.2026, Codex's review of #332 (one P2): that pattern (vii[se] and any letters) also accepted viisteist, viiskümmend and viissada tööpäeva. It now lists the case forms of the numeral five as whole words and refuses five as the last word of a larger numeral (kakskümmend viis, kahekümne viie). Checked locally; no run."
   ],
   "scenarios": [
     { "id": "correction-only", "title": "Pelk parandus pärast teise inimese küsimust", "source": "ADR-071; the within-topic comparison of 03.10.2026", "turns": [
@@ -65,7 +66,7 @@
         "expect": { "region": "harku_vald", "person": "isa", "person_regions": { "ema": "kose_vald", "isa": "harku_vald" }, "state_kept": true,
           "facts_present": [{ "person": "ema", "quote": "600" }, { "person": "isa", "quote": "450" }],
           "cited": ["^Sotsiaalhoolekande seadus$"],
-          "must": ["(?<![\\p{L}\\d])(vii[se]\\p{L}*|5)\\s+tööpäev\\p{L}*"],
+          "must": ["(?<![\\p{L}\\d])(?<!(?:kümmend|kümne|sada|saja|tuhat|tuhande)\\s+)(viis|viit|viie|viiel|viiele|viielt|viieks|viiest|viiega|viieni|5)\\s+tööpäev\\p{L}*"],
           "must_not": ["Kose",
             "(nagu|kuna|sest)\\s+(ma\\s+)?(juba\\s+)?(varem|eelnevalt|eespool|enne)\\s+(ütlesin|kirjutasin|märkisin|vastasin|mainisin)",
             "(eelmi|varasem)\\p{L}*\\s+vastus\\p{L}*\\s+(järgi|põhjal|kohaselt)"] } }

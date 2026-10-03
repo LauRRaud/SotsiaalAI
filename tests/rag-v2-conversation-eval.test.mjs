@@ -305,8 +305,26 @@ test('the correction cases: a bare correction, a correction with a new question,
   const givenVerified = 'Jah. Isa toimetulekutoetuse määramise tähtaeg on viis tööpäeva pärast kõigi vajalike dokumentide esitamist. See on otsuse tegemise tähtaeg, mitte väljamakse tähtaeg: arvestatud toetus makstakse välja kolme tööpäeva jooksul otsuse tegemisest. [S1, S2]';
   assert.equal(checkTurn({ must: ['(viie|5)\\s+tööpäeva'] }, observed({ text: givenVerified })).verdict, 'answer', 'the pattern the run of 03.10 used');
   assert.equal(run('verification-request', givenVerified, { queries: ['toimetulekutoetuse taotluse menetlemise tähtaeg viis tööpäeva'] }).verdict, 'passed');
-  for (const text of ['Jah, viiel tööpäeval pärast dokumentide esitamist. [S1]', 'Jah, 5 tööpäeva jooksul. [S1]']) assert.equal(run('verification-request', text).verdict, 'passed', text);
+  for (const text of ['Jah, viiel tööpäeval pärast dokumentide esitamist. [S1]', 'Jah, 5 tööpäeva jooksul. [S1]', 'Jah, otsus tuleb viie tööpäeva jooksul. [S1]',
+    'Otsuseks on aega viis tööpäeva. [S1]', 'Vald peab hakkama saama viie tööpäevaga, see tähendab viit tööpäeva dokumentide esitamisest. [S1]']) assert.equal(run('verification-request', text).verdict, 'passed', text);
   for (const text of ['Ei, tähtaeg on kümme tööpäeva. [S1]', 'Tähtaeg on 15 tööpäeva. [S1]', 'Toetus makstakse välja kolme tööpäeva jooksul. [S1]']) assert.deepEqual(failed(run('verification-request', text)), ['must'], text);
+  // Codex's review of #332 (P2): the pattern of #332 took any word beginning with "viis" or "viie" for the numeral five.
+  // The answer of the run with only the numeral replaced: a larger number in words, in the nominative or the genitive, as
+  // the last word of a compound numeral, or in digits, is another deadline and fails.
+  const widened = '(?<![\\p{L}\\d])(vii[se]\\p{L}*|5)\\s+tööpäev\\p{L}*';
+  for (const numeral of ['viisteist', 'viisteistkümmend', 'viiskümmend', 'viissada', 'viieteistkümne', 'viiekümne', 'viiesaja', 'kakskümmend viis', 'kahekümne viie', 'sada viis', 'saja viie',
+    '15', '25', '50', '500', 'viiendal']) {
+    const text = givenVerified.replace('viis tööpäeva', `${numeral} tööpäeva`);
+    assert.notEqual(text, givenVerified);
+    assert.deepEqual([run('verification-request', text).verdict, failed(run('verification-request', text))], ['answer', ['must']], numeral);
+  }
+  // What the pattern of #332 let through, so that the fault stays shown.
+  for (const numeral of ['viisteist', 'viiskümmend', 'viissada']) {
+    assert.equal(checkTurn({ must: [widened] }, observed({ text: givenVerified.replace('viis tööpäeva', `${numeral} tööpäeva`) })).verdict, 'passed', numeral);
+  }
+  // The pattern lists the numeral's forms as whole words; nothing in it stands for "any letters".
+  const pattern = lastOf('verification-request').expect.must[0];
+  assert.ok(pattern.includes('(viis|viit|viie|viiel|viiele|viielt|viieks|viiest|viiega|viieni|5)\\s+tööpäev') && !pattern.includes('vii[se]'));
 });
 
 // ADR-072 (owner 03.10.2026: local regression checks from the stored faulty plans). The search plans the correction turn
