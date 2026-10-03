@@ -204,7 +204,7 @@ Omanik 03.10: „Tee väike üldine juhiseparandus … Säilita ajaloolised tule
 
 - **Juhis:** pelk parandus saab kinnituse esimeses lauses ja selle, mida parandus muudab; vastatud küsimust uuesti ei lahendata. Varasemat väidet kontrollitakse ainult siis, kui kasutaja seda küsib või palve seda vajab. Varasem vastus ei ole endiselt tõend.
 - **Kataloogid:** mõlema kataloogi paranduspöörde kontrollid on nüüd üks tekst. Jaotiste 1–8 jooksud tehti varasemate versioonidega (blob'id `6340eaa5` ja `cdb25935`); kummagi kataloogi `history` ütleb, mida siis kontrolliti. Siinsed tulemused, tabelid ja tõendifailid on muutmata.
-- **Mõõtmisring juhisega 24** (üks jooks kataloogi kohta, 0,1176 USD): mõlemad paranduse vastused algavad kinnitusega ega vasta eelmisele küsimusele uuesti. Üle piiri 9/9; teema sees 3/4, sest otsinguplaan luges paranduse pöörde isa omaks ja otsis Harku vallast. Üksikasjad ja piirid on ADR-is.
+- **Mõõtmisring juhisega 24** (üks jooks kataloogi kohta, 0,1176 USD; **kõrvalekalle: tehtud ilma omaniku loata**, vt ADR-071): mõlemad paranduse vastused algavad kinnitusega ega vasta eelmisele küsimusele uuesti. Üle piiri 9/9; teema sees 3/4, sest otsinguplaan luges paranduse pöörde isa omaks ja otsis Harku vallast. Üksikasjad ja piirid on ADR-is.
 
 ## Tõendid
 

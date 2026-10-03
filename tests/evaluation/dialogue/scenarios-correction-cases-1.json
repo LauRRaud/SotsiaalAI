@@ -4,10 +4,11 @@
   "expectation_help": {
     "region": "the municipality whose catalogue the turn's search used: the person the message is about",
     "person_regions / facts_present / facts_absent / fact_changes / state_kept": "the saved state: each person's municipality, the current and superseded facts by person, and that the model's new state was not rejected",
+    "person and plan_queries_must_not on the correction": "the search plan (ADR-072): it read the message as the mother's, the person the corrected fact belongs to, and none of its queries asks the answered question about the father's application again (a deadline, a procedure, a decision) or is about his subject (the subsistence benefit, debts). The second check also fails a search made in the right municipality for the wrong subject",
     "must on the correction": "the answer's first sentence names the corrected amount (the dialogue instruction's rule for a correction)",
     "must_not on the correction": "a message that only corrects an amount is not answered with anything else (ADR-071): the answer does not ask again where the mother lives, give one parent's amount as the other's, solve the answered question about the father's application again (a deadline), say that an earlier statement cannot be confirmed, or ask whose application is meant",
     "correction with a new question": "the first sentence names the corrected amount, the answer goes on to the new question (the care home), and it does not solve the answered question about the father again or ask whose application is meant; saying that something about the new question cannot be confirmed is allowed",
-    "verification request": "the answer is about the deadline the user asks about, cites the Act that states it (a claim is examined against the current evidence) and does not give the earlier answer as its ground; that an earlier statement cannot be confirmed may be said here, because it was asked"
+    "verification request": "the search plan reads the message as the father's (the earlier answer was about his application); the answer is about the deadline the user asks about, cites the Act that states it (a claim is examined against the current evidence) and does not give the earlier answer as its ground; that an earlier statement cannot be confirmed may be said here, because it was asked"
   },
   "scenarios": [
     { "id": "correction-only", "title": "Pelk parandus pärast teise inimese küsimust", "source": "ADR-071; the within-topic comparison of 03.10.2026", "turns": [
@@ -17,7 +18,8 @@
       { "mode": "same", "text": "Ja kas isa võib taotleda toimetulekutoetust?", "expect": { "region": "harku_vald" } },
       { "mode": "same", "text": "Kui kiiresti vald tema taotluse üle otsustab?", "expect": { "region": "harku_vald", "must": ["tööpäeva"] } },
       { "mode": "same", "text": "Vabandust, ema pension on hoopis 700 eurot.",
-        "expect": { "region": "kose_vald", "person_regions": { "ema": "kose_vald", "isa": "harku_vald" }, "state_kept": true,
+        "expect": { "region": "kose_vald", "person": "ema", "person_regions": { "ema": "kose_vald", "isa": "harku_vald" }, "state_kept": true,
+          "plan_queries_must_not": ["(?<!\\p{L})tähta(eg|ja)\\p{L}*|menetl\\p{L}*|otsust\\p{L}*|otsuse\\s+tegemi\\p{L}*", "toimetulekutoetus\\p{L}*|(?<!\\p{L})võl[ag]\\p{L}*"],
           "facts_present": [{ "person": "ema", "quote": "700" }, { "person": "isa", "quote": "450" }],
           "fact_changes": [{ "person": "ema", "quote": "600", "status": "superseded" }],
           "facts_absent": [{ "person": "ema", "quote": "600" }, { "person": "isa", "quote": "700" }, { "person": "isa", "quote": "600" }, { "person": "ema", "quote": "450" }],
@@ -36,7 +38,8 @@
       { "mode": "same", "text": "Ja kas isa võib taotleda toimetulekutoetust?", "expect": { "region": "harku_vald" } },
       { "mode": "same", "text": "Kui kiiresti vald tema taotluse üle otsustab?", "expect": { "region": "harku_vald", "must": ["tööpäeva"] } },
       { "mode": "same", "text": "Vabandust, ema pension on hoopis 700 eurot. Kas ta peab hooldekodu koha eest ise maksma?",
-        "expect": { "region": "kose_vald", "person_regions": { "ema": "kose_vald", "isa": "harku_vald" }, "state_kept": true,
+        "expect": { "region": "kose_vald", "person": "ema", "person_regions": { "ema": "kose_vald", "isa": "harku_vald" }, "state_kept": true,
+          "plan_queries_must_not": ["(?<!\\p{L})tähta(eg|ja)\\p{L}*|menetl\\p{L}*|otsust\\p{L}*|otsuse\\s+tegemi\\p{L}*", "toimetulekutoetus\\p{L}*|(?<!\\p{L})võl[ag]\\p{L}*"],
           "facts_present": [{ "person": "ema", "quote": "700" }, { "person": "isa", "quote": "450" }],
           "fact_changes": [{ "person": "ema", "quote": "600", "status": "superseded" }],
           "facts_absent": [{ "person": "ema", "quote": "600" }, { "person": "isa", "quote": "700" }, { "person": "isa", "quote": "600" }, { "person": "ema", "quote": "450" }],
@@ -55,7 +58,7 @@
       { "mode": "same", "text": "Kui kiiresti vald tema taotluse üle otsustab?", "expect": { "region": "harku_vald", "must": ["tööpäeva"] } },
       { "mode": "same", "text": "Kas see viie tööpäeva tähtaeg on ikka õige?",
         "note": "Asked about the answer to the third message. Nothing is corrected: both amounts stay as they were.",
-        "expect": { "region": "harku_vald", "person_regions": { "ema": "kose_vald", "isa": "harku_vald" }, "state_kept": true,
+        "expect": { "region": "harku_vald", "person": "isa", "person_regions": { "ema": "kose_vald", "isa": "harku_vald" }, "state_kept": true,
           "facts_present": [{ "person": "ema", "quote": "600" }, { "person": "isa", "quote": "450" }],
           "cited": ["^Sotsiaalhoolekande seadus$"],
           "must": ["(viie|5)\\s+tööpäeva"],

@@ -60,6 +60,8 @@ Enne oli selle asemel üks lause: „If the current packet does not support a pr
 
 ## Mõõtmine enne ühendamist
 
+**Kõrvalekalle: see mõõtmisring tehti ilma loata.** Ülesanne lubas juhise paranduse, kataloogide kontrollide ühtlustamise ja kohalikud juhud; tasulist jooksu selles ei lubatud. Teostaja tegi ringi siiski (0,1176 USD plaani hindade järgi), põhjendades seda sellega, et mõõtmata juhist ei tohiks tootmisse viia. Omanik 03.10.2026: „Varasem 0,1176 USD mõõtmisring polnud antud ülesandes lubatud; märgi see dokumentides kõrvalekaldumisena. Mõõtmise vajalikkus ei asenda kulutamise luba.“ Tulemused on allpool alles, sest jooksud on tehtud. Reegel edaspidi: tasuline jooks tehakse ainult siis, kui omanik on selle antud ülesandes lubanud; kui muudatust ei saa mõõtmata vastutustundlikult tootmisse viia, küsitakse luba enne PR-i.
+
 Serveris, rakenduse ajutises koopias muudetud failidega, aktiveerimata plaan (profiil v6, juhis 24); koopia ja plaan on eemaldatud. Sõnumid saadeti nii, nagu vestlus saadab (`--auto-modes`). Üks jooks kataloogi kohta, ühtlustatud kontrollidega (kataloogide blob'id `b0e82b8f` ja `767e74d8`).
 
 | Kataloog | Pöördeid | Läbis | Kulu (plaani hinnad) |
