@@ -1,0 +1,563 @@
+{
+ "generation": "search_generation_34fe1590bbd5e2bf6a788bef196d50e26b5f573e2a63bc30fbbe1d56ab28c8f4",
+ "documents": 6470,
+ "passages": 40489,
+ "heading_only": 511,
+ "heading_only_share": 0.0126,
+ "heading_only_tokens": 20515,
+ "classes": {
+  "record": {
+   "documents": 4874,
+   "passages": 5255,
+   "not_evidence_already": 376,
+   "heading_only": 0,
+   "heading_only_tokens": 0,
+   "other_under_100_chars": 534,
+   "other_under_200_chars": 731,
+   "documents_with_heading_only": 0,
+   "heading_only_share": 0
+  },
+  "other_knowledge": {
+   "documents": 171,
+   "passages": 12638,
+   "not_evidence_already": 0,
+   "heading_only": 490,
+   "heading_only_tokens": 19296,
+   "other_under_100_chars": 307,
+   "other_under_200_chars": 230,
+   "documents_with_heading_only": 73,
+   "heading_only_share": 0.0388
+  },
+  "journal": {
+   "documents": 892,
+   "passages": 8224,
+   "not_evidence_already": 42,
+   "heading_only": 12,
+   "heading_only_tokens": 468,
+   "other_under_100_chars": 274,
+   "other_under_200_chars": 98,
+   "documents_with_heading_only": 11,
+   "heading_only_share": 0.0015
+  },
+  "municipal_act": {
+   "documents": 510,
+   "passages": 9179,
+   "not_evidence_already": 0,
+   "heading_only": 0,
+   "heading_only_tokens": 0,
+   "other_under_100_chars": 533,
+   "other_under_200_chars": 1207,
+   "documents_with_heading_only": 0,
+   "heading_only_share": 0
+  },
+  "national_law": {
+   "documents": 23,
+   "passages": 5193,
+   "not_evidence_already": 0,
+   "heading_only": 9,
+   "heading_only_tokens": 751,
+   "other_under_100_chars": 208,
+   "other_under_200_chars": 665,
+   "documents_with_heading_only": 8,
+   "heading_only_share": 0.0017
+  }
+ },
+ "documents_with_heading_only": {
+  "one_or_more": 92,
+  "five_or_more": 21,
+  "ten_or_more": 11,
+  "twenty_or_more": 5
+ },
+ "heading_only_body_chars": {
+  "under_20": 288,
+  "under_50": 432,
+  "under_100": 508,
+  "all": 511
+ },
+ "commonest_heading_only_texts": [
+  [
+   "§ 115.",
+   6
+  ],
+  [
+   "3",
+   4
+  ],
+  [
+   "märkmed",
+   4
+  ],
+  [
+   "tegevussuunad",
+   4
+  ],
+  [
+   "uuringu aruanne",
+   4
+  ],
+  [
+   "viidatud allikad",
+   4
+  ],
+  [
+   "2",
+   3
+  ],
+  [
+   "21",
+   3
+  ],
+  [
+   "37",
+   3
+  ],
+  [
+   "43",
+   3
+  ],
+  [
+   "6",
+   3
+  ],
+  [
+   "eessõna",
+   3
+  ],
+  [
+   "k",
+   3
+  ],
+  [
+   "1. etapp",
+   2
+  ],
+  [
+   "10",
+   2
+  ],
+  [
+   "112",
+   2
+  ],
+  [
+   "12",
+   2
+  ],
+  [
+   "14",
+   2
+  ],
+  [
+   "15",
+   2
+  ],
+  [
+   "2. etapp",
+   2
+  ],
+  [
+   "2. tulekahjusignalisatsioon",
+   2
+  ],
+  [
+   "20",
+   2
+  ],
+  [
+   "2019",
+   2
+  ],
+  [
+   "2021",
+   2
+  ],
+  [
+   "3. tuge vajava õpilase toetamine koolis",
+   2
+  ],
+  [
+   "32",
+   2
+  ],
+  [
+   "34",
+   2
+  ],
+  [
+   "35",
+   2
+  ],
+  [
+   "36",
+   2
+  ],
+  [
+   "4. etapp",
+   2
+  ],
+  [
+   "42",
+   2
+  ],
+  [
+   "46%",
+   2
+  ],
+  [
+   "5",
+   2
+  ],
+  [
+   "67% 72%",
+   2
+  ],
+  [
+   "8",
+   2
+  ],
+  [
+   "83%",
+   2
+  ],
+  [
+   "89%",
+   2
+  ],
+  [
+   "a",
+   2
+  ],
+  [
+   "aitäh!",
+   2
+  ],
+  [
+   "d",
+   2
+  ]
+ ],
+ "documents_with_most": [
+  {
+   "title": "Võin olla puudega – laste piltsõnastik puuetest",
+   "class": "other_knowledge",
+   "passages": 214,
+   "heading_only": 80
+  },
+  {
+   "title": "Harjutuste kogu",
+   "class": "other_knowledge",
+   "passages": 353,
+   "heading_only": 63
+  },
+  {
+   "title": "Inimkaubanduse ennetamine: metodoloogia tööks noortega",
+   "class": "other_knowledge",
+   "passages": 348,
+   "heading_only": 41
+  },
+  {
+   "title": "Mul on õigus 2025",
+   "class": "other_knowledge",
+   "passages": 38,
+   "heading_only": 31
+  },
+  {
+   "title": "Seksuaalsest ahistamisest vaba ööelu juhend",
+   "class": "other_knowledge",
+   "passages": 50,
+   "heading_only": 23
+  },
+  {
+   "title": "Tuleohutuskonsultandi koolitusmaterjal",
+   "class": "other_knowledge",
+   "passages": 412,
+   "heading_only": 19
+  },
+  {
+   "title": "Päästeameti meelespea kohalikule omavalitsusele",
+   "class": "other_knowledge",
+   "passages": 61,
+   "heading_only": 19
+  },
+  {
+   "title": "MARAC-i juhendmaterjal",
+   "class": "other_knowledge",
+   "passages": 135,
+   "heading_only": 18
+  },
+  {
+   "title": "Heade praktikate kogumik",
+   "class": "other_knowledge",
+   "passages": 193,
+   "heading_only": 16
+  },
+  {
+   "title": "Teekond erilise lapse kõrval",
+   "class": "other_knowledge",
+   "passages": 133,
+   "heading_only": 12
+  },
+  {
+   "title": "OSKA sotsiaaltöö uuringu lühiversioon 2021",
+   "class": "other_knowledge",
+   "passages": 84,
+   "heading_only": 10
+  },
+  {
+   "title": "Eesti elanikkonna teadlikkuse uuring soopõhise vägivalla ja inimkaubanduse valdkonnas",
+   "class": "other_knowledge",
+   "passages": 109,
+   "heading_only": 9
+  },
+  {
+   "title": "Päästevõrgustiku strateegia aastani 2025",
+   "class": "other_knowledge",
+   "passages": 77,
+   "heading_only": 9
+  },
+  {
+   "title": "Võrdõiguslikkus Eestis 2024",
+   "class": "other_knowledge",
+   "passages": 183,
+   "heading_only": 8
+  },
+  {
+   "title": "Elanikkonna hoiakud ja teadlikkus perevägivallast",
+   "class": "other_knowledge",
+   "passages": 45,
+   "heading_only": 7
+  },
+  {
+   "title": "Vanemaealiste ja eakate toimetuleku uuring 2015",
+   "class": "other_knowledge",
+   "passages": 295,
+   "heading_only": 7
+  },
+  {
+   "title": "TÖÖLEHT: Rahunemispaus",
+   "class": "other_knowledge",
+   "passages": 8,
+   "heading_only": 6
+  },
+  {
+   "title": "TAI arengukava 2025–2028",
+   "class": "other_knowledge",
+   "passages": 32,
+   "heading_only": 6
+  },
+  {
+   "title": "Eesti täiskasvanud rahvastiku uimastite tarvitamise uuring 2023",
+   "class": "other_knowledge",
+   "passages": 81,
+   "heading_only": 6
+  },
+  {
+   "title": "Täiskasvanud erivajadusega inimeste abivajaduse hindamine ja teenuste osutamine",
+   "class": "other_knowledge",
+   "passages": 119,
+   "heading_only": 6
+  },
+  {
+   "title": "Perevägivalla toimepanijatele suunatud programmide Euroopa standardid",
+   "class": "other_knowledge",
+   "passages": 75,
+   "heading_only": 5
+  },
+  {
+   "title": "Enesekontrolli tuleohutusaruanne",
+   "class": "other_knowledge",
+   "passages": 90,
+   "heading_only": 4
+  },
+  {
+   "title": "Transpordi ja tehiskeskkonna ligipääsetavuse analüüs",
+   "class": "other_knowledge",
+   "passages": 117,
+   "heading_only": 3
+  },
+  {
+   "title": "Seksuaalvägivalla levimus ja hoiakud Eestis",
+   "class": "other_knowledge",
+   "passages": 83,
+   "heading_only": 3
+  },
+  {
+   "title": "Lapse heaolu hindamise käsiraamat",
+   "class": "other_knowledge",
+   "passages": 151,
+   "heading_only": 3
+  }
+ ],
+ "other_short_passages": {
+  "under_100_chars": 1856,
+  "commonest_texts": [
+   [
+    "web_form [ \"in_person\", \"online\", \"email\" ]",
+    13
+   ],
+   [
+    "2013",
+    8
+   ],
+   [
+    "application_form [ \"kirjalik\", \"\" ]",
+    8
+   ],
+   [
+    "doc",
+    8
+   ],
+   [
+    "määrus kehtestatakse sotsiaalhoolekande seaduse § 133 lõike 6 alusel.",
+    8
+   ],
+   [
+    "rühm: 18 kodu ja muude ruumide sisustus ja kohandused (abivahendite loetelu, lisa lk 12)",
+    8
+   ],
+   [
+    "rühm: 22 suhtlus- ja teabevahetuse abivahendid (abivahendite loetelu, lisa lk 15)",
+    8
+   ],
+   [
+    "määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5 alusel.",
+    7
+   ],
+   [
+    "tytti solantaus 2023",
+    7
+   ],
+   [
+    "uus lahendus sotsiaaltöös",
+    7
+   ],
+   [
+    "foto: rain uusen",
+    6
+   ],
+   [
+    "rühm: 09 enesehoolde- ja kaitseabivahendid (abivahendite loetelu, lisa lk 5)",
+    6
+   ],
+   [
+    "rühm: 12 liikumise abivahendid (abivahendite loetelu, lisa lk 11)",
+    6
+   ],
+   [
+    "rühm: 12 liikumise abivahendid (abivahendite loetelu, lisa lk 8)",
+    6
+   ],
+   [
+    "§ 108. lapsehoiuteenus –",
+    6
+   ],
+   [
+    "§ 161. –",
+    6
+   ],
+   [
+    "§ 175. [käesolevast tekstist välja jäetud.]",
+    6
+   ],
+   [
+    "§ 177. –",
+    6
+   ],
+   [
+    "§ 182. [käesolevast tekstist välja jäetud.]",
+    6
+   ],
+   [
+    "2 e e ssõna",
+    5
+   ],
+   [
+    "foto: erakogu",
+    5
+   ],
+   [
+    "määrus kehtestatakse sotsiaalhoolekande seaduse § 22¹ lõike 3 alusel.",
+    5
+   ],
+   [
+    "rühm: 22 suhtlus- ja teabevahetuse abivahendid (abivahendite loetelu, lisa lk 14)",
+    5
+   ],
+   [
+    "§ 112. registritoimikuga tutvumine registritoimikuga tutvumise eest tasutakse riigilõivu 8 eurot.",
+    5
+   ],
+   [
+    "§ 116¹. koondumise menetlemine koondumise menetlemise eest tasutakse riigilõivu 1920 eurot.",
+    5
+   ],
+   [
+    "§ 261¹³. sundlitsentsi andmine sundlitsentsi andmise eest tasutakse riigilõivu 64 eurot.",
+    5
+   ],
+   [
+    "§ 308. muu tõestamistoiming muu tõestamistoimingu eest tasutakse riigilõivu 25 eurot.",
+    5
+   ],
+   [
+    "§ 338. abielukande tegemine abielukande tegemise eest tasutakse riigilõivu 70 eurot.",
+    5
+   ],
+   [
+    "§ 363. pandilepingu registreerimine pandilepingu registreerimisel on tehinguväärtuseks pandisumma.",
+    5
+   ],
+   [
+    "§ 366. –",
+    5
+   ],
+   [
+    "§ 371. [käesolevast tekstist välja jäetud.]",
+    5
+   ],
+   [
+    "§ 4. määruse jõustumine määrus jõustub kolmandal päeval pärast riigi teatajas avaldamist.",
+    5
+   ],
+   [
+    "§ 62¹. ärinime broneerimine ärinime broneerimise eest tasutakse riigilõivu 150 eurot.",
+    5
+   ],
+   [
+    "§ 75. kinnistusregistriosa avamine kinnistusregistriosa avamise eest tasutakse riigilõivu täismäär.",
+    5
+   ],
+   [
+    "(abivahendite loetelu, lisa lk 1)",
+    4
+   ],
+   [
+    "eesti statistika statistics estonia",
+    4
+   ],
+   [
+    "foto: kristina traks",
+    4
+   ],
+   [
+    "kairiin nuudi ajakirja sotsiaaltöö toimetaja",
+    4
+   ],
+   [
+    "regina lind ajakirja sotsiaaltöö vastutav toimetaja",
+    4
+   ],
+   [
+    "rühm: 04 abivahendid inimese raviks (abivahendite loetelu, lisa lk 1)",
+    4
+   ]
+  ],
+  "by_class": {
+   "record": 534,
+   "other_knowledge": 307,
+   "journal": 274,
+   "municipal_act": 533,
+   "national_law": 208
+  }
+ }
+}

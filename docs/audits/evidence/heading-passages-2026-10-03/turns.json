@@ -1,0 +1,17 @@
+{
+ "runs": 19,
+ "turns_listed": 97,
+ "turns_stored": 97,
+ "turns_with_evidence": 93,
+ "turns_reranked_by_the_model": 93,
+ "evidence_passages": 498,
+ "heading_only_in_evidence": 0,
+ "turns_with_heading_only_evidence": 0,
+ "heading_only_kept_by_the_model": 0,
+ "heading_only_cited": 0,
+ "turns_citing_heading_only": 0,
+ "other_under_100_chars_in_evidence": 0,
+ "other_under_100_chars_cited": 0,
+ "heading_only_reasons": {},
+ "items": []
+}
