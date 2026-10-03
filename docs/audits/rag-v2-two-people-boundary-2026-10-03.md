@@ -206,6 +206,7 @@ Omanik 03.10: „Tee väike üldine juhiseparandus … Säilita ajaloolised tule
 - **Kataloogid:** mõlema kataloogi paranduspöörde kontrollid on nüüd üks tekst. Jaotiste 1–8 jooksud tehti varasemate versioonidega (blob'id `6340eaa5` ja `cdb25935`); kummagi kataloogi `history` ütleb, mida siis kontrolliti. Siinsed tulemused, tabelid ja tõendifailid on muutmata.
 - **Mõõtmisring juhisega 24** (üks jooks kataloogi kohta, 0,1176 USD; **kõrvalekalle: tehtud ilma omaniku loata**, vt ADR-071): mõlemad paranduse vastused algavad kinnitusega ega vasta eelmisele küsimusele uuesti. Üle piiri 9/9; teema sees 3/4, sest otsinguplaan luges paranduse pöörde isa omaks ja otsis Harku vallast. Üksikasjad ja piirid on ADR-is.
 - **Otsinguplaan** ([ADR-072](../rag-v2/adr-072-plan-reads-a-correction.md), search-assist-6): parandus on selle inimese kohta, kelle asjaolu parandatakse, ja see ei ava varasemat küsimust uuesti. Mõõdetud omaniku loal mõlema kataloogiga (üks jooks kummagi kohta, 0,0841 USD): üle piiri 9/9 ja teema sees 4/4; paranduspöörde plaan nimetas mõlemal korral ema ega lisanud ühtegi otsingupäringut (põhiotsing toimus). Kaks vaatlust ei tõenda üldist töökindlust.
+- **Kaks seni mõõtmata juhtu** (omaniku loal, üks jooks kummagi kohta, 0,0576 USD; ADR-071): parandus koos uue küsimusega läbis kõik kontrollid; kontrollimispalve vastus kontrollis väidet praeguste tõendite järgi ja viitas seadusele, aga üks kontroll ei läbinud, sest muster ei tundnud ära kuju „viis tööpäeva“. Muster on parandatud, jooksu ei korratud.
 
 ## Tõendid
 

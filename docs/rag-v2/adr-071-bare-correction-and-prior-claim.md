@@ -56,7 +56,7 @@ Enne oli selle asemel üks lause: „If the current packet does not support a pr
   - ei küsi, kumma taotlust mõeldakse.
 - **Ajalugu on alles.** Kummagi kataloogi `history` ütleb, millise blob'iga 03.10 jooks tehti ja mida siis kontrolliti. Raportid ja tõendifailid on muutmata. Mõlema jooksu vastused on testis sõna-sõnalt ja ei läbi ühtlustatud kontrolle.
 - Teemasisesest kataloogist jäi välja nõue, et vastus ei küsi midagi: parandusest endast tulenev küsimus ei ole viga.
-- **Kolm kohalikku juhtu** (`scenarios-correction-cases-1.json`): pelk parandus, parandus koos uue küsimusega, otsene palve varasemat vastust kontrollida. Igaüks on teemasisese vestluse kolm esimest sõnumit ja oma neljas sõnum. Neid kontrollib kohalik test näidisvastustega; tasulist jooksu selle kataloogiga ei tehtud.
+- **Kolm kohalikku juhtu** (`scenarios-correction-cases-1.json`): pelk parandus, parandus koos uue küsimusega, otsene palve varasemat vastust kontrollida. Igaüks on teemasisese vestluse kolm esimest sõnumit ja oma neljas sõnum. Neid kontrollib kohalik test näidisvastustega. Juhise ühendamise ajal ei olnud selle kataloogiga ühtegi jooksu tehtud; kaks juhtu jooksid hiljem samal päeval omaniku loal (jaotis „Kahe juhu mõõtmine mudeliga“).
 
 ## Mõõtmine enne ühendamist
 
@@ -92,6 +92,39 @@ Serveris, rakenduse ajutises koopias muudetud failidega, aktiveerimata plaan (pr
 - See ei tule juhise muudatusest: otsinguplaanil on oma juhis, mida ei muudetud. Sama pööre 03.10 varasemas jooksus sai plaanilt ema ja Kose valla. Kahest jooksust üks ei ütle, kui sage see on.
 - **Kontroll:** ühe inimese parandused algavad endiselt kinnitusega („Arvestan parandusega: sinu enda võlg on 3000 eurot.“, „Arvestan parandusega: sa ei ole töötu, vaid töötad osalise ajaga.“).
 
+## Kahe juhu mõõtmine mudeliga
+
+**Luba:** omanik 03.10.2026, „tee see ära“ kahe seni mõõtmata dialoogijuhu kohta, mida pakuti umbes 0,08 USD jooksuna. Jooksid kaks stsenaariumi, kumbki üks kord (8 pööret). „Pelk parandus“ ei jooksnud uuesti: see on teemasisese kataloogi pööre, mida on kaks korda mõõdetud.
+
+Tootmisplaaniga (profiil v6, juhis 24, otsinguplaan search-assist-6, [ADR-072](adr-072-plan-reads-a-correction.md)), juurutatud koodist (`f7f720c7`), kataloogi blob `9573c217`, sõnumid nii, nagu vestlus saadab. Kulu 0,0576 USD plaani hindade järgi; kulukaitse (ülempiir 0,08 USD) ei rakendunud.
+
+| Juht | Pöördeid | Läbis | Neljanda pöörde kontrollid |
+|---|---:|---:|---:|
+| Parandus koos uue küsimusega | 4 | 4 | 24/24 |
+| Palve varasemat vastust kontrollida | 4 | 3 | 13/14 |
+
+**Parandus koos uue küsimusega** („Vabandust, ema pension on hoopis 700 eurot. Kas ta peab hooldekodu koha eest ise maksma?“):
+
+- Otsinguplaan: ema, Kose vald, kolm päringut üldhooldusteenuse rahastamise ja omaosaluse kohta.
+- Vastus algab kinnitusega ja vastab seejärel uuele küsimusele: „Arvestan parandusega: ema pension on 700 eurot. Kose vallas tasub teenuse saaja majutus-, toitlustus- ja muud teenusega seotud kulud. … Ema ei pea tingimata kõiki kulusid ise katma. …“ Viited on Kose valla korrale ja sotsiaalhoolekande seadusele.
+- Vastus lõpeb piiranguga uue küsimuse kohta: 700-eurose pensioni põhjal ei saa öelda, kas ema jääb võrdluspiirist allapoole, sest võrdluspiiri suurust ja teenuskoha kogukulu tõendites ei ole.
+- Isa taotluse tähtaega vastus uuesti ei lahenda. Olek on õige: ema 700 kehtiv ja 600 asendatud, isa 450 kehtiv.
+
+**Palve varasemat vastust kontrollida** („Kas see viie tööpäeva tähtaeg on ikka õige?“):
+
+- Otsinguplaan: isa, Harku vald, üks päring taotluse menetlemise tähtaja kohta. Eelvaliku mudel jättis alles ühe lõigu, sotsiaalhoolekande seadusest.
+- Vastus: „Jah. Isa toimetulekutoetuse määramise tähtaeg on viis tööpäeva pärast kõigi vajalike dokumentide esitamist. See on otsuse tegemise tähtaeg, mitte väljamakse tähtaeg: arvestatud toetus makstakse välja kolme tööpäeva jooksul otsuse tegemisest. [S1, S2]“
+- Väide on kontrollitud selle pöörde tõendite järgi ja viidatud seadusele; varasemale vastusele kui alusele vastus ei toetu. Kummagi summa ega vald ei muutunud.
+- **Kontroll, mis ei läbinud, oli kontrolli enda viga.** Muster lubas kujusid „viie tööpäeva“ ja „5 tööpäeva“; vastus kirjutas nimetavas „viis tööpäeva“. Muster on pärast jooksu parandatud (arvsõna igas käändes) ja jooksu vastus on testis sõna-sõnalt. Jooksu ei korratud; selle tulemus jääb kirja nii, nagu see oli: 7 pööret 8-st.
+
+**Mida see ei näita:**
+
+- Kumbki juht jooksis üks kord.
+- Kontrollimispalves toetasid tõendid varasemat väidet. Haru, kus tõendid väidet ei toeta ja vastus peab seda ütlema, selles jooksus ei esinenud.
+- Varasemat väidet vajav palve, mis ei ole otsene kontrollimispalve, on mõõtmata.
+
+Tõendid: [evidence/correction-cases-measured-2026-10-03.json](../audits/evidence/correction-cases-measured-2026-10-03.json) (iga sõnumi plaan, neljandate pöörete olek, kontrollid ja vastused). Täisraport on serveris (`eval-files/cases-20261003/`).
+
 ## Testid
 
 - `tests/rag-v2-answer-prompt.test.mjs`: juhise 24 kolm olukorda, varasema vastuse tõendina kasutamise keeld, lisatud teksti üldisus; ilma kahe muudatuseta on tekst juhise 23 oma (räsi).
@@ -101,7 +134,7 @@ Serveris, rakenduse ajutises koopias muudetud failidega, aktiveerimata plaan (pr
 ## Piirid
 
 - Iga kataloog jooksis üks kord. Vahe juhise 23 ja 24 vastuste vahel võib osalt olla juhus.
-- Parandust koos uue küsimusega ja varasema vastuse kontrollimise palvet ei ole mudeliga mõõdetud; neid katavad juhise tekst ja kohalikud näidisvastused.
+- Parandus koos uue küsimusega ja varasema vastuse kontrollimise palve on mudeliga mõõdetud üks kord (jaotis „Kahe juhu mõõtmine mudeliga“); ühendamise ajal katsid neid ainult juhise tekst ja kohalikud näidisvastused.
 - Kelle vajaduseks otsinguplaan pelga paranduse loeb, kõigub (ühes jooksus ema, teises isa). Kui plaan valib teise inimese, tulevad tõendid tema teema kohta ja lause paranduse tagajärgedest kaldub sinna. Seda siin ei muudetud.
 - Üleandmine teemapiiril on muutmata: eelmise teema viimane sõnum antakse edasi ilma inimeseta, kelle kohta see käis. Selles mõõtmisringis see vastuses ei ilmnenud.
 - Vastuse kontrollid on regulaaravaldised; läbi kukkunud või kahtlane vastus tuleb raportist üle lugeda.
