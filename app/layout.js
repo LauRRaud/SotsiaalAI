@@ -25,7 +25,7 @@ const fontExo2 = Exo_2({
   display: "swap"
 });
 const ICON_VERSION = "v20261003";
-const FAVICON_VERSION = "v20261003";
+const FAVICON_VERSION = "v20261003b";
 const UI_SCALE_STORAGE_KEY = "sotsiaalai.uiScale";
 const UI_PROFILE_STORAGE_KEY = "sotsiaalai.uiProfile";
 const ROOM_ARRIVAL_COMPLETE_COOKIE = "sotsiaalai_room_arrival_complete";

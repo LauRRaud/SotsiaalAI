@@ -11,7 +11,7 @@ const appSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512"
 </svg>`;
 const favSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
 <rect width="512" height="512" rx="96" fill="#141414"/>
-<svg x="126" y="36" width="260" height="440" viewBox="0 8 25.2 41.6">${sMark}</svg>
+<svg x="126" y="36" width="260" height="440" viewBox="0 8 25.2 41.6"><g stroke="#f4f1ec" stroke-width="0.7" stroke-linejoin="round">${sMark}</g></svg>
 </svg>`;
 
 const render = (svg, sz) => sharp(Buffer.from(svg)).resize(sz, sz).png().toBuffer();
