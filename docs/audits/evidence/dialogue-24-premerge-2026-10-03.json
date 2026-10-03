@@ -1,6 +1,7 @@
 {
  "round": {
   "date": "2026-10-03",
+  "deviation": "This round was not permitted. The task allowed the instruction fix, the unified catalogue checks and local cases, and no paid run; the round was made nevertheless (0.1176 USD at the plan's prices). Owner 03.10.2026: the need for a measurement does not replace permission to spend. The results are kept because the runs were made.",
   "purpose": "ADR-071, dialogue instructions m4-grounded-dialogue-24, before the merge",
   "where": "a temporary copy of the deployed app with the changed files, an inactive plan of the live profile; both removed after the round",
   "flags": "--auto-modes",

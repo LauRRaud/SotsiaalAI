@@ -17,12 +17,14 @@
     "person_regions": "the saved state's municipality of that person",
     "facts_present / facts_absent / fact_changes": "a current fact of the person whose quote matches / no such current fact / a fact that has become superseded",
     "state_kept": "the model's new state was not rejected",
+    "person and plan_queries_must_not on the correction": "the search plan (ADR-072): it read the message as the mother's, the person the corrected fact belongs to, and none of its queries asks the answered question about the father's application again (a deadline, a procedure, a decision) or is about his subject (the subsistence benefit, debts). The second check also fails a search made in the right municipality for the wrong subject",
     "must on the correction": "the answer's first sentence names the corrected amount (the dialogue instruction's rule for a correction)",
     "must_not on the correction": "a message that only corrects an amount is not answered with anything else (ADR-071): the answer does not ask again where the mother lives, give one parent's amount as the other's, solve the answered question about the father's application again (a deadline), say that an earlier statement cannot be confirmed, or ask whose application is meant"
   },
   "history": [
     "03.10.2026: the one run of docs/audits/rag-v2-two-people-boundary-2026-10-03.md (section 8) used this catalogue as it was written before the run (git blob cdb25935): 3 of 4 turns passed, the correction's answer failed two checks. The correction turn then also required that the answer ask for nothing (clarification false) and attach no application to the mother.",
-    "03.10.2026, after both runs (ADR-071, dialogue instructions 24): the correction turn's answer checks are one text with the boundary catalogue's ninth turn. In place of the two checks named above stands one on solving the answered question again (a deadline); a question the correction itself calls for is no longer a failure. The answer given in the run of 03.10 still does not pass (tests/rag-v2-conversation-eval.test.mjs keeps it)."
+    "03.10.2026, after both runs (ADR-071, dialogue instructions 24): the correction turn's answer checks are one text with the boundary catalogue's ninth turn. In place of the two checks named above stands one on solving the answered question again (a deadline); a question the correction itself calls for is no longer a failure. The answer given in the run of 03.10 still does not pass (tests/rag-v2-conversation-eval.test.mjs keeps it).",
+    "03.10.2026 (ADR-072, search-assist-6): the correction turn also checks the search plan, its person and what its queries ask for. Added after the runs named above; the plans those runs stored do not pass (tests/rag-v2-conversation-eval.test.mjs keeps them). No run has been made with these checks."
   ],
   "scenarios": [
     { "id": "mother-father-correction-within-topic", "title": "Ema ja isa, parandus teema sees pärast isa küsimust", "source": "docs/audits/rag-v2-two-people-boundary-2026-10-03.md; owner 03.10.2026", "turns": [
@@ -40,7 +42,8 @@
           "facts_absent": [{ "person": "isa", "quote": "600" }, { "person": "ema", "quote": "450" }] } },
       { "mode": "same", "text": "Vabandust, ema pension on hoopis 700 eurot.",
         "note": "The correction, inside the topic. The state checks are the boundary catalogue's; the answer checks name what the boundary run's ninth answer did.",
-        "expect": { "region": "kose_vald", "person_regions": { "ema": "kose_vald", "isa": "harku_vald" }, "state_kept": true,
+        "expect": { "region": "kose_vald", "person": "ema", "person_regions": { "ema": "kose_vald", "isa": "harku_vald" }, "state_kept": true,
+          "plan_queries_must_not": ["(?<!\\p{L})tähta(eg|ja)\\p{L}*|menetl\\p{L}*|otsust\\p{L}*|otsuse\\s+tegemi\\p{L}*", "toimetulekutoetus\\p{L}*|(?<!\\p{L})võl[ag]\\p{L}*"],
           "facts_present": [{ "person": "ema", "quote": "700" }, { "person": "isa", "quote": "450" }],
           "fact_changes": [{ "person": "ema", "quote": "600", "status": "superseded" }],
           "facts_absent": [{ "person": "ema", "quote": "600" }, { "person": "isa", "quote": "700" }, { "person": "isa", "quote": "600" }, { "person": "ema", "quote": "450" }],

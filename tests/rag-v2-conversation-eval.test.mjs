@@ -156,7 +156,7 @@ test('the two-people boundary catalogue: the ninth message crosses the topic\'s 
     [1, 9, 9, true, false]);
   assert.ok(turns[8].text.includes('700') && turns[1].text.includes('600') && turns[3].text.includes('450'));
   const fact = (id, person, quote, status = 'current') => ({ id, person, status, support: [{ turn: 1, quote }] });
-  const run = (facts, extra = {}) => checkTurn(last, observed({ region: 'kose_vald', personRegions: { ema: 'kose_vald', isa: 'harku_vald' }, facts, dropped: [], stateFallback: null,
+  const run = (facts, extra = {}) => checkTurn(last, observed({ region: 'kose_vald', person: 'ema', queries: [], personRegions: { ema: 'kose_vald', isa: 'harku_vald' }, facts, dropped: [], stateFallback: null,
     text: 'Arvestan nüüd, et ema pension on 700 eurot.', ...extra }));
   const failed = result => result.checks.filter(check => !check.ok).map(check => check.key);
   const right = [fact('F1', 'ema', 'tema pension on 600 eurot', 'superseded'), fact('F2', 'isa', 'tema pension on 450 eurot'), fact('F3', 'ema', 'ema pension on hoopis 700 eurot')];
@@ -205,10 +205,10 @@ test('the within-topic comparison holds the boundary scenario\'s last messages; 
   // The correction turn is checked alike across the boundary and inside the topic: state and answer.
   assert.deepEqual(last, boundary[8].expect);
   assert.deepEqual([Object.keys(last), last.must.length, last.must_not.length],
-    [['region', 'person_regions', 'state_kept', 'facts_present', 'fact_changes', 'facts_absent', 'must', 'must_not'], 1, 7]);
+    [['region', 'person', 'person_regions', 'state_kept', 'plan_queries_must_not', 'facts_present', 'fact_changes', 'facts_absent', 'must', 'must_not'], 1, 7]);
   const fact = (id, person, quote, status = 'current') => ({ id, person, status, support: [{ turn: 1, quote }] });
   const facts = [fact('F1', 'ema', 'tema pension on 600 eurot', 'superseded'), fact('F2', 'isa', 'tema pension on 450 eurot'), fact('F3', 'ema', 'ema pension on hoopis 700 eurot')];
-  const run = (text, clarification = false) => checkTurn(last, observed({ region: 'kose_vald', personRegions: { ema: 'kose_vald', isa: 'harku_vald' }, facts, dropped: [], stateFallback: null, text, clarification }));
+  const run = (text, clarification = false) => checkTurn(last, observed({ region: 'kose_vald', person: 'ema', queries: [], personRegions: { ema: 'kose_vald', isa: 'harku_vald' }, facts, dropped: [], stateFallback: null, text, clarification }));
   // A failed must_not check is named by its pattern's place in the catalogue's list.
   const failed = result => result.checks.filter(check => !check.ok).map(check => check.key === 'must_not'
     ? `must_not ${last.must_not.indexOf(check.detail.slice(1, check.detail.lastIndexOf('/ not in the answer')))}` : check.key);
@@ -248,7 +248,8 @@ test('the correction cases: a bare correction, a correction with a new question,
   const corrected = [fact('F1', 'ema', 'tema pension on 600 eurot', 'superseded'), fact('F2', 'isa', 'tema pension on 450 eurot'), fact('F3', 'ema', 'ema pension on hoopis 700 eurot')];
   const unchanged = [fact('F1', 'ema', 'tema pension on 600 eurot'), fact('F2', 'isa', 'tema pension on 450 eurot')];
   const ACT = { title: 'Sotsiaalhoolekande seadus', documentId: 'shs-now' };
-  const run = (id, text, extra = {}) => checkTurn(lastOf(id).expect, observed({ region: id === 'verification-request' ? 'harku_vald' : 'kose_vald', personRegions: { ema: 'kose_vald', isa: 'harku_vald' },
+  const run = (id, text, extra = {}) => checkTurn(lastOf(id).expect, observed({ region: id === 'verification-request' ? 'harku_vald' : 'kose_vald', person: id === 'verification-request' ? 'isa' : 'ema', queries: [],
+    personRegions: { ema: 'kose_vald', isa: 'harku_vald' },
     facts: id === 'verification-request' ? unchanged : corrected, dropped: [], stateFallback: null, cited: id === 'verification-request' ? [ACT] : [], text, ...extra }));
   const failed = result => result.checks.filter(check => !check.ok).map(check => check.key);
 
@@ -281,6 +282,67 @@ test('the correction cases: a bare correction, a correction with a new question,
   // The question is about the father: the mother's municipality or a change to anyone's amount is a failure of state.
   assert.equal(run('verification-request', verified, { region: 'kose_vald' }).verdict, 'state');
   assert.deepEqual(failed(run('verification-request', verified, { facts: corrected })), ['facts_present']);
+  // ADR-072, the search plan of each case: a correction with a new question searches that question for the mother; a
+  // verification request is the father's, and there the deadline is what the plan is meant to look up.
+  const careHome = ['hooldekodu kohatasu inimese omaosalus', 'üldhooldusteenuse eest tasumine pension'];
+  assert.equal(run('correction-with-new-question', asked, { queries: careHome }).verdict, 'passed');
+  assert.deepEqual(failed(run('correction-with-new-question', asked, { queries: [...careHome, 'toimetulekutoetuse taotluse menetlemise tähtaeg'] })), ['plan_queries_must_not', 'plan_queries_must_not']);
+  assert.deepEqual(failed(run('correction-with-new-question', asked, { person: 'isa', queries: careHome })), ['person']);
+  assert.equal(run('verification-request', verified, { queries: ['toimetulekutoetuse taotluse menetlemise tähtaeg'] }).verdict, 'passed');
+  assert.deepEqual(failed(run('verification-request', verified, { person: 'ema' })), ['person']);
+});
+
+// ADR-072 (owner 03.10.2026: local regression checks from the stored faulty plans). The search plans the correction turn
+// got in the four runs of 03.10, as the evaluator's reports stored them (docs/audits/evidence keeps the queries). Two
+// kinds of fault, and one plan with none.
+const STORED_PLANS = {
+  // Across the boundary, dialogue instructions 23: the right person and municipality, the answered question searched again.
+  boundaryRun: { person: 'ema', region: 'kose_vald', queries: ['Kose vald koduteenuse taotluse menetlemise tähtaeg', 'sotsiaalteenuse taotluse otsustamise tähtaeg kohaliku omavalitsuse korraldus',
+    'koduteenuse määramine taotlus abivajaduse hindamine tähtaeg'] },
+  // The same fault across the boundary in the round of dialogue instructions 24.
+  boundaryRound: { person: 'ema', region: 'kose_vald', queries: ['Kose vald sotsiaalteenuse taotluse otsustamise tähtaeg', 'Kohaliku omavalitsuse sotsiaalhoolekande otsuse tegemise tähtaeg'] },
+  // Inside the topic, the round of instructions 24: the correction read as the father's turn, his subject searched.
+  withinRound: { person: 'isa', region: 'harku_vald', queries: ['Harku valla toimetulekutoetus pension võlad taotlemine', 'Toimetulekutoetuse taotluse menetlemise tähtaeg kohaliku omavalitsuse otsus'] },
+  // Inside the topic, the run of instructions 23: the mother, no query.
+  withinRun: { person: 'ema', region: 'kose_vald', queries: [] },
+};
+test('ADR-072: the stored plans of the correction turn fail the catalogues\' plan checks; the right municipality with the wrong subject is caught', async () => {
+  const read = async name => JSON.parse(await fs.readFile(`tests/evaluation/dialogue/${name}`, 'utf8'));
+  const turns = [(await read('scenarios-two-people-boundary-1.json')).scenarios[0].turns[8], (await read('scenarios-two-people-within-topic-1.json')).scenarios[0].turns[3],
+    (await read('scenarios-correction-cases-1.json')).scenarios[0].turns[3]];
+  // The three correction turns check the plan alike: whom it read the message as about, and what its queries ask for.
+  for (const turn of turns) assert.deepEqual([turn.text, turn.expect.person, turn.expect.plan_queries_must_not], ['Vabandust, ema pension on hoopis 700 eurot.', 'ema', turns[0].expect.plan_queries_must_not]);
+  assert.equal(turns[0].expect.plan_queries_must_not.length, 2);
+  const fact = (id, person, quote, status = 'current') => ({ id, person, status, support: [{ turn: 1, quote }] });
+  const facts = [fact('F1', 'ema', 'tema pension on 600 eurot', 'superseded'), fact('F2', 'isa', 'tema pension on 450 eurot'), fact('F3', 'ema', 'ema pension on hoopis 700 eurot')];
+  // The state and the answer are right in every case below: only the plan differs.
+  const run = plan => checkTurn(turns[0].expect, observed({ personRegions: { ema: 'kose_vald', isa: 'harku_vald' }, facts, dropped: [], stateFallback: null,
+    text: 'Arvestan parandusega: ema pension on 700 eurot.', ...plan }));
+  const failed = result => result.checks.filter(check => !check.ok).map(check => check.key);
+  const passed = (result, key) => result.checks.filter(check => check.key === key).every(check => check.ok);
+  // The right person and the right municipality, the wrong subject: only the check of the queries fails, and it is a
+  // failure of the search.
+  for (const name of ['boundaryRun', 'boundaryRound']) {
+    const result = run(STORED_PLANS[name]);
+    assert.deepEqual([result.verdict, failed(result), passed(result, 'region'), passed(result, 'person')], ['search', ['plan_queries_must_not'], true, true], name);
+    assert.match(result.checks.find(check => !check.ok).detail, /tähtaeg/u, name);
+  }
+  // The other person: the municipality, the person and both subjects (the answered question, and his own matter).
+  const other = run(STORED_PLANS.withinRound);
+  assert.deepEqual([other.verdict, failed(other)], ['search', ['region', 'person', 'plan_queries_must_not', 'plan_queries_must_not']]);
+  // No fault: a plan with no query, or one that looks up what the corrected amount changes for the mother.
+  assert.equal(run(STORED_PLANS.withinRun).verdict, 'passed');
+  assert.equal(run({ person: 'ema', region: 'kose_vald', queries: ['hooldekodu kohatasu inimese omaosalus pension', 'koduteenuse tasu suurus sissetulek'] }).verdict, 'passed');
+  // The right municipality again, with the father's subject instead of the answered question.
+  assert.deepEqual(failed(run({ person: 'ema', region: 'kose_vald', queries: ['Kose vald toimetulekutoetuse taotlemine pension'] })), ['plan_queries_must_not']);
+  assert.deepEqual(failed(run({ person: 'ema', region: 'kose_vald', queries: ['võlanõustamine Kose vallas'] })), ['plan_queries_must_not']);
+  // The right queries with the wrong person, or with the wrong municipality, are failures of state.
+  assert.deepEqual([run({ person: 'isa', region: 'kose_vald', queries: [] }).verdict, failed(run({ person: 'isa', region: 'kose_vald', queries: [] }))], ['state', ['person']]);
+  assert.deepEqual(failed(run({ person: 'ema', region: 'harku_vald', queries: [] })), ['region']);
+  // The check reads the plan's queries, never the answer: the same words in the answer are the answer checks' matter.
+  assert.deepEqual(failed(checkTurn({ plan_queries_must_not: ['tähtaeg'] }, observed({ queries: [], text: 'Tähtaeg on viis tööpäeva.' }))), []);
+  assert.deepEqual(failed(checkTurn({ plan_queries_must_not: ['tähtaeg'] }, observed({ text: 'x' }))), [], 'a turn with no stored plan has no query');
+  assert.deepEqual(validateCatalogue({ scenarios: [{ id: 'x', turns: [{ mode: 'new', text: 'a', expect: { plan_queries_must_not: 'tähtaeg' } }] }] }), ['x turn 1: plan_queries_must_not needs a list of patterns']);
 });
 
 test('Codex R4: the hard-conditions answer patterns keep the direction of the condition; the opposite answer fails', async () => {

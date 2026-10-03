@@ -90,7 +90,37 @@ test('search-assist-2: the plan names the message language, and the answer follo
   // A plan approved for search-assist-1 keeps the interface language.
   assert.equal(planLanguage({ searchAssist: 'rag-v2/search-assist-1' }, { queries: [], language: 'en' }), null);
   assert.equal(planLanguage({ searchAssist: 'rag-v2/search-assist-2' }, { queries: [], language: 'en' }), 'en');
-  assert.deepEqual(SEARCH_ASSIST_VERSIONS, ['rag-v2/search-assist-1', 'rag-v2/search-assist-2', 'rag-v2/search-assist-3', 'rag-v2/search-assist-4', 'rag-v2/search-assist-5']);
+  assert.deepEqual(SEARCH_ASSIST_VERSIONS, ['rag-v2/search-assist-1', 'rag-v2/search-assist-2', 'rag-v2/search-assist-3', 'rag-v2/search-assist-4', 'rag-v2/search-assist-5', 'rag-v2/search-assist-6']);
+});
+
+test('search-assist-6 (ADR-072): a bare correction is about the person its fact belongs to and does not reopen an earlier question', async () => {
+  const { planPerson, planPlaces, PLAN_CORRECTION_INSTRUCTIONS } = await import('../lib/rag-v2/pilot/search-assist.js');
+  assert.equal(SEARCH_ASSIST_VERSION, 'rag-v2/search-assist-6');
+  const plan = queryPlanRequest(config, ['Kas A võib taotleda toetust?', 'Kui kiiresti otsustatakse?', 'Vabandust, B sissetulek on hoopis teine.'], 'et', ['user', 'A', 'B']);
+  const lines = plan.instructions.split('\n');
+  // One line, after the rule on person and before the rule on places; the rest of the instructions is unchanged.
+  assert.deepEqual([lines.filter(line => line === PLAN_CORRECTION_INSTRUCTIONS).length, lines.indexOf(PLAN_CORRECTION_INSTRUCTIONS) - lines.findIndex(line => line.startsWith('people lists the persons')),
+    lines.findIndex(line => line.startsWith('places: every municipality')) - lines.indexOf(PLAN_CORRECTION_INSTRUCTIONS)], [1, 1, 1]);
+  // Whom it is about: the person the corrected fact belongs to, whoever the message before was about.
+  for (const phrase of ['only corrects or updates a fact the user gave earlier (an amount, a date, a circumstance) and asks nothing new', 'it is about the person that fact belongs to: person is that person',
+    'also when the message before it was about someone else']) assert.ok(PLAN_CORRECTION_INSTRUCTIONS.includes(phrase), phrase);
+  // What it searches: an answered question is not a new task.
+  for (const phrase of ['Such a message does not reopen an earlier question', 'earlier questions have had their answers', 'write queries only for what the corrected fact changes for that person',
+    'or none when nothing needs looking up', 'never for an earlier question about another person or about a matter the fact does not change']) assert.ok(PLAN_CORRECTION_INSTRUCTIONS.includes(phrase), phrase);
+  // It is limited to corrections: a message that describes a situation or asks something keeps the rules it had.
+  assert.match(plan.instructions, /person: whose situation or need the current request is about/);
+  assert.match(plan.instructions, /Return an empty list only when the message asks for no information, such as a greeting\./);
+  // General: no person, relative, place, amount or subject of the conversations that showed the fault.
+  assert.doesNotMatch(PLAN_CORRECTION_INSTRUCTIONS, /\d|\bema\b|\bisa\b|mother|father|parent|Kose|Harku|vald|pension|euro|deadline|application|benefit/iu);
+  // The instructions never carry the conversation, and the contract of the answer is the one of search-assist-5.
+  assert.ok(!plan.instructions.includes('Vabandust'));
+  assert.deepEqual(plan.text.format.schema.required, ['queries', 'language', 'person', 'places']);
+  assert.deepEqual(JSON.parse(plan.input[0].content), { language: 'et', messages: ['Kas A võib taotleda toetust?', 'Kui kiiresti otsustatakse?', 'Vabandust, B sissetulek on hoopis teine.'], people: ['user', 'A', 'B'], place_messages: 1 });
+  // Plans approved for search-assist-5 and -6 both name a person and places.
+  for (const version of ['rag-v2/search-assist-5', SEARCH_ASSIST_VERSION]) {
+    assert.equal(planPerson({ searchAssist: version }, { person: 'B' }), 'B');
+    assert.deepEqual(planPlaces({ searchAssist: version }, { places: [] }), []);
+  }
 });
 
 test('search-assist-4 (ADR-051): the plan names whose need the message is about and whose each named place is', async () => {
