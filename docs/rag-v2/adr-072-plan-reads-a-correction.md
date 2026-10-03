@@ -106,7 +106,7 @@ Kulukaitse ei rakendunud.
 
 - Iga kataloog jooksis üks kord. Varem kõikus sama pöörde plaan jooksust jooksu (teema sees kord ema, kord isa), seega kaks läbinud jooksu ei tõesta, et viga enam ei kordu.
 - **Paranduse tagajärgi vastus ei nimeta.** Vastus ütleb, et valitud teabe põhjal ei saa öelda, kas parandus midagi muudab. Miks, ei ole kindlaks tehtud: plaan ei lisanud uusi päringuid, aga põhiotsing toimus, ja nende pöörete tõendipakette tõendifailis ei ole, seega on kontrollimata, kas sobiv teave oli tõendite seas. Üle piiri vestluses oli ema hooldekodu tasust juba räägitud; kas plaan, mis otsiks seda, mida summa ema jaoks muudab, annaks parema vastuse, ei ole mõõdetud.
-- Parandust koos uue küsimusega ja varasema vastuse kontrollimise palvet ei ole endiselt mudeliga mõõdetud.
+- Parandus koos uue küsimusega ja varasema vastuse kontrollimise palve olid selle mõõtmise ajal mudeliga mõõtmata. Need jooksid hiljem samal päeval üks kord ([ADR-071](adr-071-bare-correction-and-prior-claim.md), „Kahe juhu mõõtmine mudeliga“): mõlema plaan nimetas õige inimese ja otsis õiget teemat.
 
 Tõendid: [evidence/search-assist-6-measured-2026-10-03.json](../audits/evidence/search-assist-6-measured-2026-10-03.json) (iga sõnumi plaan, paranduspöörete olek, kontrollid ja vastused). Täisraportid on serveris (`eval-files/plan6-*-20261003/`).
 

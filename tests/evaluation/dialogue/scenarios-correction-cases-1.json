@@ -1,6 +1,6 @@
 {
   "schema_version": "rag-v2/dialogue-eval-2",
-  "purpose": "ADR-071 (dialogue instructions 24, 03.10.2026): the three situations the instructions tell apart after an answered question about another person. A message that only corrects a fact gets its confirmation and what the correction changes, and the answered question is not solved again; a correction with a new question gets the confirmation and then the answer to that question; a request to verify the earlier answer gets the claim examined against the current evidence, never against the earlier answer. Owner 03.10.2026: local cases. They are checked locally with example answers (tests/rag-v2-conversation-eval.test.mjs); no paid run has been made with this catalogue. Each case is the within-topic comparison's conversation up to its third message; the first case is that comparison's scenario with the same checks. A run of all three would be twelve full turns, about 0.08 USD at the plan's prices.",
+  "purpose": "ADR-071 (dialogue instructions 24, 03.10.2026): the three situations the instructions tell apart after an answered question about another person. A message that only corrects a fact gets its confirmation and what the correction changes, and the answered question is not solved again; a correction with a new question gets the confirmation and then the answer to that question; a request to verify the earlier answer gets the claim examined against the current evidence, never against the earlier answer. Owner 03.10.2026: local cases. They are checked locally with example answers (tests/rag-v2-conversation-eval.test.mjs); two of them were run once with the model on 03.10.2026, with the owner's permission (see history). Each case is the within-topic comparison's conversation up to its third message; the first case is that comparison's scenario with the same checks. A run of all three would be twelve full turns, about 0.08 USD at the plan's prices.",
   "expectation_help": {
     "region": "the municipality whose catalogue the turn's search used: the person the message is about",
     "person_regions / facts_present / facts_absent / fact_changes / state_kept": "the saved state: each person's municipality, the current and superseded facts by person, and that the model's new state was not rejected",
@@ -10,6 +10,10 @@
     "correction with a new question": "the first sentence names the corrected amount, the answer goes on to the new question (the care home), and it does not solve the answered question about the father again or ask whose application is meant; saying that something about the new question cannot be confirmed is allowed",
     "verification request": "the search plan reads the message as the father's (the earlier answer was about his application); the answer is about the deadline the user asks about, cites the Act that states it (a claim is examined against the current evidence) and does not give the earlier answer as its ground; that an earlier statement cannot be confirmed may be said here, because it was asked"
   },
+  "history": [
+    "03.10.2026 (owner: \"tee see ära\", offered as about 0.08 USD): correction-with-new-question and verification-request were run once each on the live plan (dialogue instructions 24, search-assist-6), with this catalogue at git blob 9573c217; 0.0576 USD at the plan's prices. correction-only was not run: it is the within-topic comparison's turn, measured twice. Result: 7 of 8 turns passed. The correction with a new question passed all 24 checks. The verification turn failed one check, must: the answer verified the claim and cited the Act, in the words \"viis tööpäeva\", and the pattern then accepted only \"viie tööpäeva\" and \"5 tööpäeva\". docs/rag-v2/adr-071-bare-correction-and-prior-claim.md has the answers.",
+    "03.10.2026, after that run: the verification turn's must pattern accepts the numeral in any case form (viis, viie, viiel). The answer given in the run passes it (tests/rag-v2-conversation-eval.test.mjs keeps the answer). The run was not repeated."
+  ],
   "scenarios": [
     { "id": "correction-only", "title": "Pelk parandus pärast teise inimese küsimust", "source": "ADR-071; the within-topic comparison of 03.10.2026", "turns": [
       { "mode": "new", "text": "Minu ema elab Kose vallas ja tema pension on 600 eurot. Ta ei saa enam üksi kodus hakkama. Minu isa elab Harku vallas ja tema pension on 450 eurot. Tal on võlad ja ta ei tule rahaga toime.",
@@ -61,7 +65,7 @@
         "expect": { "region": "harku_vald", "person": "isa", "person_regions": { "ema": "kose_vald", "isa": "harku_vald" }, "state_kept": true,
           "facts_present": [{ "person": "ema", "quote": "600" }, { "person": "isa", "quote": "450" }],
           "cited": ["^Sotsiaalhoolekande seadus$"],
-          "must": ["(viie|5)\\s+tööpäeva"],
+          "must": ["(?<![\\p{L}\\d])(vii[se]\\p{L}*|5)\\s+tööpäev\\p{L}*"],
           "must_not": ["Kose",
             "(nagu|kuna|sest)\\s+(ma\\s+)?(juba\\s+)?(varem|eelnevalt|eespool|enne)\\s+(ütlesin|kirjutasin|märkisin|vastasin|mainisin)",
             "(eelmi|varasem)\\p{L}*\\s+vastus\\p{L}*\\s+(järgi|põhjal|kohaselt)"] } }
