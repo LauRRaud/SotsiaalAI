@@ -1,0 +1,58 @@
+{
+  "schema_version": "rag-v2/dialogue-eval-2",
+  "purpose": "ADR-070, the case Codex left unchecked in its review of #313 and #314: a conversation about two people that goes past the eight messages of one topic, with the real plan and answer model. Owner 03.10.2026: one run, at most 0.06 USD at the plan's prices, no repeat and no development in this task. Written and merged before the run. Run with --auto-modes, as the chat sends. The first message is a lone greeting: it is an ordinary saved turn of the topic (ADR-067) and costs about 0.001 USD, so eight messages fill the topic and the ninth crosses the boundary within the cost limit (a full turn cost 0.0056-0.0081 USD in the runs of 02.10; nine turns here are expected to cost about 0.055 USD). There is no room for a tenth message, so what the answer does with the father's amount after the boundary is not asked: that his amount is kept is read from the saved state, which the next answer is built from.",
+  "expected_facts": {
+    "ema": "lives in Kose vald; pension 600 euros (message 2), corrected to 700 euros after the boundary (message 9); cannot manage alone at home",
+    "isa": "lives in Harku vald; pension 450 euros (message 4), never changed; has debts",
+    "focus": "mother (2-3), father (4-5), mother (6), father (7-8), mother (9, the correction)",
+    "boundary": "messages 1-8 are the first topic's eight; message 9 is sent as an ordinary follow-up and begins the topic that continues it",
+    "after_the_boundary": "mother: 700 current and 600 superseded, Kose vald; father: 450 current, Harku vald; no fact of one person holds the other's amount"
+  },
+  "expectation_help": {
+    "region": "the municipality whose catalogue the turn's search used: the person the message is about",
+    "person_regions": "the saved state's municipality of that person",
+    "facts_present / facts_absent / fact_changes": "a current fact of the person whose quote matches / no such current fact / a fact that has become superseded",
+    "state_kept": "the model's new state was not rejected",
+    "must_not on messages 5-7": "an answer about one parent does not name the other parent's municipality or give the other's pension as theirs",
+    "must_not on message 9": "the answer does not ask again where the mother lives and does not give 700 as the father's pension or 450 as the mother's"
+  },
+  "scenarios": [
+    { "id": "mother-father-past-eight", "title": "Ema ja isa, eri summad, parandus pärast kaheksandat sõnumit", "source": "ADR-070; Codex review of #313-#314; owner 03.10.2026", "turns": [
+      { "mode": "new", "text": "Tere",
+        "expect": { "greeting": true } },
+      { "mode": "same", "text": "Minu ema elab Kose vallas ja tema pension on 600 eurot. Ta ei saa enam üksi kodus hakkama.",
+        "expect": { "greeting": false, "region": "kose_vald", "person_regions": { "ema": "kose_vald" }, "facts_present": [{ "person": "ema", "quote": "600" }] } },
+      { "mode": "same", "text": "Milliseid teenuseid vald talle pakkuda saab?",
+        "expect": { "region": "kose_vald" } },
+      { "mode": "same", "text": "Minu isa elab Harku vallas ja tema pension on 450 eurot. Tal on võlad ja ta ei tule rahaga toime.",
+        "note": "The focus moves to the father; the mother's facts stay hers.",
+        "expect": { "region": "harku_vald", "person_regions": { "ema": "kose_vald", "isa": "harku_vald" }, "state_kept": true,
+          "facts_present": [{ "person": "isa", "quote": "450" }, { "person": "ema", "quote": "600" }],
+          "facts_absent": [{ "person": "isa", "quote": "600" }, { "person": "ema", "quote": "450" }] } },
+      { "mode": "same", "text": "Kuhu ta saab oma vallas pöörduda?",
+        "expect": { "region": "harku_vald", "must": ["Harku"], "must_not": ["Kose"] } },
+      { "mode": "same", "text": "Tagasi ema juurde: kas ta peab hooldekodu koha eest ise maksma?",
+        "note": "The focus moves back to the mother.",
+        "expect": { "region": "kose_vald", "person_regions": { "ema": "kose_vald", "isa": "harku_vald" },
+          "must_not": ["Harku", "(?<!\\p{L})ema\\p{L}*\\s+pension\\p{L}*[^.!?\\n,;:]{0,15}(?<!\\d)450(?!\\d)"] } },
+      { "mode": "same", "text": "Ja kas isa võib taotleda toimetulekutoetust?",
+        "note": "The focus moves to the father again.",
+        "expect": { "region": "harku_vald", "must_not": ["Kose", "(?<!\\p{L})isa\\p{L}*\\s+pension\\p{L}*[^.!?\\n,;:]{0,15}(?<!\\d)600(?!\\d)"] } },
+      { "mode": "same", "text": "Kui kiiresti vald tema taotluse üle otsustab?",
+        "note": "The eighth message: the topic is full after it. Its state is what the next topic is handed.",
+        "expect": { "region": "harku_vald", "person_regions": { "ema": "kose_vald", "isa": "harku_vald" }, "state_kept": true,
+          "facts_present": [{ "person": "ema", "quote": "600" }, { "person": "isa", "quote": "450" }],
+          "facts_absent": [{ "person": "isa", "quote": "600" }, { "person": "ema", "quote": "450" }] } },
+      { "mode": "same", "text": "Vabandust, ema pension on hoopis 700 eurot.",
+        "note": "The ninth message, across the boundary: a correction of the mother's amount while the father was in focus. The mother's 600 becomes superseded and 700 current; the father's 450 stays current and his; both keep their municipalities.",
+        "expect": { "region": "kose_vald", "person_regions": { "ema": "kose_vald", "isa": "harku_vald" }, "state_kept": true,
+          "facts_present": [{ "person": "ema", "quote": "700" }, { "person": "isa", "quote": "450" }],
+          "fact_changes": [{ "person": "ema", "quote": "600", "status": "superseded" }],
+          "facts_absent": [{ "person": "ema", "quote": "600" }, { "person": "isa", "quote": "700" }, { "person": "isa", "quote": "600" }, { "person": "ema", "quote": "450" }],
+          "must": ["(?<!\\d)700(?!\\d)"],
+          "must_not": ["(millises|mis) (vallas|linnas|omavalitsuses)", "kus (ta|su ema|sinu ema|ema) ela",
+            "(?<!\\p{L})isa\\p{L}*\\s+pension\\p{L}*[^.!?\\n,;:]{0,15}(?<!\\d)700(?!\\d)",
+            "(?<!\\p{L})ema\\p{L}*\\s+pension\\p{L}*[^.!?\\n,;:]{0,15}(?<!\\d)450(?!\\d)"] } }
+    ] }
+  ]
+}
