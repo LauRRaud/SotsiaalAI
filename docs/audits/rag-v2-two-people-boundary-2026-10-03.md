@@ -8,8 +8,9 @@ Teostus Claude Opus 5.5. Omanik 03.10: „tee üks kahe inimese vestluse kontrol
 - **Kõik kirja pandud kontrollid läbisid:** üheksa pööret, 62 kontrolli, 0 viga.
 - **Leid, mida kontrollid ei püüdnud:** üheksas vastus vastas uuesti kaheksandale küsimusele, mis käis isa kohta, ja sidus selle emaga. Summad on vastuses õiged, aga vastus on segane (jaotis 4).
 - **Kulu 0,0559 USD** plaani hindade järgi (piir 0,06). Üks jooks, kordust ei tehtud.
+- **Võrdlusjooks teema sees (jaotis 8, omanik 03.10: „tee“, 0,0293 USD):** sama parandus ilma teemapiirita sai samuti vastuse, mis vastas uuesti eelmisele küsimusele, seadis isa kohta antud tähtaja kahtluse alla ja kinnitas paranduse alles teises lõigus. **Leiu põhiosa ei tule seega teemapiirist.** Ainult üle piiri seoti eelmine küsimus emaga ja küsiti, kumma taotlust mõeldakse.
 
-See on üks vaatlus. Kas leid kordub ja kas selle põhjus on teemapiir, ei ole mõõdetud.
+Kummalgi pool on üks jooks: see on viide, mitte mõõtmine.
 
 ## 1. Mis pandi enne kirja
 
@@ -128,7 +129,7 @@ Kataloog `tests/evaluation/dialogue/scenarios-two-people-boundary-1.json` (blob 
 
 - kas sama kordub; see on üks jooks;
 - mida vastus isa summaga pärast piiri teeb; kümnendat sõnumit ei olnud, isa summa säilimine on loetud olekust;
-- kas üheksanda vastuse segadus tuleb teemapiirist või tekiks ka teema sees, kui teise inimese kohta käivale küsimusele järgneb parandus; võrdlusjooksu ei tehtud;
+- kas üheksanda vastuse segadus tuleb teemapiirist või tekiks ka teema sees, kui teise inimese kohta käivale küsimusele järgneb parandus; selle kohta tehti hiljem üks võrdlusjooks (jaotis 8);
 - midagi kasutajate päris vestluste kohta; see on kirja pandud stsenaarium.
 
 ## 6. Kulu ja aeg
@@ -140,14 +141,65 @@ Kataloog `tests/evaluation/dialogue/scenarios-two-people-boundary-1.json` (blob 
 
 ## 7. Võimalikud järgmised sammud
 
-Selles ülesandes neid ei tehtud; otsus on omaniku.
+Arendust ei tehtud; otsus on omaniku. Võrdlusjooks on tehtud (jaotis 8) ja muudab siinset järjekorda.
 
-- **Võrdlusjooks teema sees** (tasuline, umbes 0,03 USD): samad neli viimast sõnumit ühes teemas ilma piirita. Ütleks, kas segadus tuleb piirist.
-- **Kontrolli lisamine kataloogi** järgmise jooksu jaoks: üheksas vastus algab paranduse kinnitusega ega küsi, kumma taotlust mõeldakse.
-- **Muudatus üleandmises** (arendus), kui võrdlusjooks näitab piiri: näiteks anda viimane sõnum edasi koos inimesega, kelle kohta see käis, või märkida see vastatuks.
+- **Dialoogi juhise täpsustus** (arendus ja mõõtmine): kui parandus käib teise inimese kohta kui eelmine küsimus, kinnitab vastus paranduse esimese lausena ega vasta eelmisele küsimusele uuesti. See puudutab mõlemas jooksus nähtud käitumist. Mõõtmiseks on olemas need kaks kataloogi ja asjaolude kataloog `fact-lifecycle-1`; üks mõõtmisring maksaks umbes 0,12 USD.
+- **Muudatus üleandmises** (arendus): anda eelmise teema viimane sõnum edasi koos inimesega, kelle kohta see käis. See puudutab ainult seda osa, mis ilmnes üle piiri (eelmine küsimus seoti emaga). Põhiosa see ei parandaks.
+- **Kontrollide lisamine piiri-kataloogi:** võrdluskataloogi vastuse kontrollid (jaotis 8) tasub lisada ka piiri-kataloogi üheksandale sõnumile enne järgmist jooksu, et mõlemat hinnataks sama mõõduga.
+- **Jätta nii.** Olek on mõlemas jooksus õige ja vastused ei väida midagi valet; need on segased, mitte ekslikud.
+
+## 8. Võrdlusjooks teema sees
+
+Omanik 03.10: „tee“ ettepanekule teha üks võrdlusjooks samade viimaste sõnumitega ühe teema sees (umbes 0,03 USD). Kataloog `tests/evaluation/dialogue/scenarios-two-people-within-topic-1.json` (blob `cdb25935`) ühendati [#326](https://github.com/LauRRaud/SotsiaalAI/pull/326)-ga kell 14:30; jooks algas kell 14:36 juurutatud koodist (`b777ed08`), sama blob'iga. Üks jooks, kordust ei tehtud.
+
+| # | Sõnum | Otsingu vald | Kelle vajadus | Tulemus | Kulu, USD |
+|---:|---|---|---|---|---:|
+| 1 | Piiri-stsenaariumi sõnumid 2 ja 4 ühes sõnumis (ema ja isa tutvustus) | Harku | ebaselge | läbis | 0,0086 |
+| 2 | Ja kas isa võib taotleda toimetulekutoetust? | Harku | isa | läbis | 0,0076 |
+| 3 | Kui kiiresti vald tema taotluse üle otsustab? | Harku | isa | läbis | 0,0063 |
+| 4 | Vabandust, ema pension on hoopis 700 eurot. | Kose | ema | **vastus** | 0,0067 |
+
+- Kokku 0,0293 USD, 45 kontrolli, neist kaks ei läbinud, mõlemad neljanda vastuse kohta: paranduse kinnitus ei olnud esimene lause ja vastus ütles, et ei saa varasemat kinnitada. Jooks kestis 1 min 41 s.
+- Paranduse vastuse kontrollid pandi kirja piiri-jooksu leiu järgi; piiri-jooksu üheksas vastus ei läbiks neist viit (kohalik test).
+- **Olek on jälle õige:** ema 700 eurot kehtiv ja 600 asendatud, isa 450 eurot kehtiv, kumbki oma vallaga; midagi ei jäetud välja.
+- Kolmas vastus (isa taotluse kohta): „Isa toimetulekutoetuse taotluse kohta peab Harku vald otsuse tegema viie tööpäeva jooksul pärast kõigi vajalike dokumentide esitamist.“
+
+**Neljas vastus (parandus teema sees):**
+
+> 2023. aasta auditis kirjeldati, et kohalik omavalitsus teeb toimetulekutoetuse taotluse kohta otsuse viie tööpäeva jooksul pärast kogu vajaliku info saamist. [S2]
+>
+> Arvestan parandusega: ema pension on 700 eurot. Ma ei saa selle auditi põhjal kinnitada, kas isa taotluse puhul kehtib praegu sama tähtaeg.
+
+**Kaks vastust kõrvuti:**
+
+| Mida vastus tegi | Üle piiri (9. sõnum) | Teema sees (4. sõnum) |
+|---|---|---|
+| Vastas eelmisele küsimusele uuesti | jah | jah |
+| Seadis isa kohta varem antud tähtaja kahtluse alla | jah | jah |
+| Kinnitas paranduse esimese lausena | ei, viimases lõigus | ei, teises lõigus |
+| Sidus eelmise küsimuse emaga | jah | ei |
+| Küsis, kumma taotlust mõeldakse | jah | ei |
+| Summad ja inimesed vastuses õiged | jah | jah |
+| Olek õige | jah | jah |
+
+**Mida see ütleb:**
+
+- **Põhiosa ei tule teemapiirist.** Eelmisele küsimusele uuesti vastamine, varasema vastuse kahtluse alla seadmine ja paranduse kinnitus mitte esimese lausena ilmnesid ka ühe teema sees.
+- **Ainult üle piiri** kaotas eelmine küsimus oma inimese: vastus sidus selle emaga ja küsis, kumma taotlust mõeldakse. Teema sees teadis vastus, et küsimus käis isa kohta.
+- Üks jooks kummalgi pool; kumbki tulemus võib korduses teisiti tulla.
+
+**Tõenäoline seletus (juhise teksti ja kahe pöörde lugemise järgi, katsega kinnitamata):**
+
+- Paranduse pöördes tehakse otsing selle inimese kohta, keda parandus puudutab (ema, Kose vald). Eelmise vastuse allikat (isa küsimus, sotsiaalhoolekande seadus) selle pöörde tõendites ei ole.
+- Juhis ütleb, et varasemat väidet, mida praegused tõendid ei toeta, ei tohi faktina korrata, vaid tuleb öelda, et seda ei saa kinnitada. Kui mudel otsustab eelmise küsimuse juurde tagasi minna, järgneb sellest „ei saa kinnitada“.
+- Ühe inimesega vestluses (ADR-070 elav kontroll 02.10) puudutasid parandus ja eelmine küsimus sama inimest ning vastus algas paranduse kinnitusega.
+
+**Kõrvaline tähelepanek, mida ei kontrollitud:** esimeses sõnumis oli kaks inimest kahes vallas. Otsinguplaan märkis inimese ebaselgeks, vallakataloog võeti Harku vallast ja vastus käsitles mõlemat vanemat, nimetades mõlemat valda. Mõlema inimese asjaolud pandi õigesti kirja.
 
 ## Tõendid
 
+- [evidence/two-people-within-topic-2026-10-03.json](evidence/two-people-within-topic-2026-10-03.json): võrdlusjooksu iga sõnumi otsingu vald, otsinguplaani inimene, olek, kõik kontrollid, kulu; sõnumite 3 ja 4 vastused. Täisraport on serveris (`eval-files/two-people-within-topic-20261003/`).
+- Kahe jooksu kulu kokku 0,0852 USD plaani hindade järgi.
 - [evidence/two-people-boundary-2026-10-03.json](evidence/two-people-boundary-2026-10-03.json): iga sõnumi otsingu vald, otsinguplaani inimene, olek asjaolude kaupa, kõik kontrollid, kulu; sõnumite 1, 8 ja 9 vastused; mida üheksas sõnum kaasa sai.
 - Hindaja täisraport on serveris (`eval-files/two-people-boundary-20261003/`). Siia seda ei pandud, sest sõnumite 4 ja 5 vastustes on valla ametniku kontaktandmed.
 - Vestlus on omaniku kontol nähtav pealkirjaga „Hindamine mother-father-past-eight“.
