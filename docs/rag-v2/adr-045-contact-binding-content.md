@@ -135,3 +135,26 @@ Claude Opus 5.5 vaatas läbi, miks 424 paketikontakti (404 ilma kandidaadita ja 
 - **20 topeltrida:** seo kinnitatud reaga, mille roll vastab paketi rollile. Kui neid on mitu, siis viimati kontrollitud reaga. Kanalid on samad, nii et vestluse vastus ei muutu. Register võiks topeltread ise ühendada.
 - **186 kinnitamata rida:** oota 04.10 iganädalast kontrolli. Kui inimene on lehel tagasi, saab reast kandidaat. Kui ei, on paketi kontakt vananenud ja seda ei avaldata.
 - **Avalda ühe partiina pärast 04.10:** 20 topeltrida ja uuesti kinnitatud read koos. Kontroll peab ka kinnitama, et 376 avaldatud kontakti on endiselt lubatud (seos 2 peab kontrolliaja muutust taluma). Nii piisab ühest uuest indeksipõlvkonnast ja käsitsi plaanist.
+
+## Kontroll pärast 04.10.2026
+
+Claude Opus 5.5 luges 04.10 iganädalase registrikontrolli (kell 05.30) järel seisu uuesti üle. Ainult lugemine, tasuta; midagi ei avaldatud. Nimedega tabel on serveris: `rag-v2-work/eval-files/contact-recheck-2026-10-04.csv`.
+
+- **Seos 2 pidas.** Kontrolliaja ülekirjutamine ei tühistanud ühtki muutumata kontakti.
+- **Vestlus annab 363 kontakti 376-st.** 13 langes välja, sest kontroll neid enam ei kinnita; nädal varem olid kõik 13 kinnitatud.
+  - Anija 6, Jõhvi 2, Valga 2, Tapa 1, Luunja 1, Otepää 1. Anija ei anna nüüd ühtki kontakti.
+  - Anija kuue e-post on lehel alles, kuid kujul, mida kontroll ei loe. Jõhvi kahel ja Valga ühel on telefon ja e-post lehel, aga mitte enam kohe nime järel. Ühel ei leita rolli nime kõrvalt, ühel on nimi teisiti kirjutatud. Päris muutus paistab kahel.
+- **Avaldatud kontakte on 59 omavalitsusel, täna annab neid 58.** Ülal kirjas olev „60 omavalitsusest“ oli kandidaatide arv.
+- **Ootamine ei andnud oodatut.** 186 kinnitamata reast kinnitus 3; 183 on samas seisus mis nädal varem.
+
+  | Kontakte | Miks 183 rida ei kinnitu |
+  |---:|---|
+  | 48 | registris olevat lehte ei saa kätte (404) |
+  | 26 | nime lehel pole, telefon või e-post on |
+  | 22 | inimest lehel pole |
+  | 21 | nimi, telefon ja e-post on lehel koos, registri rollitekst ei klapi |
+  | 16 | leht ei näita ühtki oma inimest |
+  | 50 | muu: telefon või e-post pole lehel või pole nime kõrval, e-post peidetud, nimi teisiti kirjutatud |
+
+- **Partii oleks 20 kontakti:** 3 uuesti kinnitatud rida läbivad 28.09 ülevaatusreegli ja 20 topeltreast on reegliga seotavad 17 (kolmel pole registris telefoni ega e-posti). 28.09 välja jäetud seitse kukuvad läbi samadel põhjustel.
+- **Partiid ei avaldatud.** Kitsaskoht on register ja selle kontroll, mitte seos: vt [ADR-073](adr-073-kov-staff-from-official-page.md).
