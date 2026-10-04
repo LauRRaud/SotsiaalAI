@@ -2,7 +2,7 @@
 
 04.10.2026. Teostus Claude Opus 5.5. Omanik 04.10: „Valmista ette korpuse täiendus v49 (puuduv seadus, üleriigiline määr)“. Lähtekoht: [päris vestluse küsimustik 04.10](../audits/rag-v2-live-questionnaire-2026-10-04.md), jaotised 5 ja 6, ning Codexi järjekorra punkt 3.
 
-**Seis: ette valmistatud, ostmata.** Kolm akti on registris ja kohalikus hoidlas, saadetis serveri jaoks on valmis. Vektoreid ei ole ostetud ja serveris pole midagi muudetud; ost ja aktiveerimine ootavad omaniku luba. Vestluses neid allikaid veel ei ole.
+**Seis: ostetud ja aktiivne (04.10.2026 16:59 EEST), omaniku loal.** 51 sisendit, 25 275 tokenit, 0,0033 USD. Indeks `f3c7ed7a` (6474 dokumenti), vestlusplaan `m4-corpus-chat-20261004b.json`. Mõju vastustele on mõõtmata.
 
 ## Probleem
 
@@ -32,7 +32,7 @@
 - **Uus redaktsioon pärib valiku.** Värskendusrada (`rag-v2-corpus-refresh.mjs register`) annab alla laaditud aktile sama valiku, kui registris on sama pealkirja ja väljaandjaga akt valikuga.
 - **Töötlussilt ei muutu** (`source-structure-v30`). Olemasolevate allikate väljund on sama: `rag-v2-reader-compare.mjs` luges kõik 520 indeksi akti uue koodiga uuesti, 520 identset, uusi vektorisisendeid 0. Salvestati ainult uus töötluse sõrmejälg.
 
-## Korpus v49 (ette valmistatud)
+## Korpus v49
 
 | Akt | Riigi Teataja | Kehtib | Lõike | Uusi sisendeid |
 |---|---|---|---:|---:|
@@ -64,8 +64,18 @@
 - **176 ja 264 eurot ei ole üheski üleriigilises tekstis.** Riigieelarve seadus annab 220 eurot; 80% ja 120% on SHS-is. Vastus peab need kokku panema või jääb valla kirje juurde.
 - **Aastavahetus.** Registreeritud redaktsioon lõpeb 31.12.2026. 2027. aasta määrad on teises aktis („2027. aasta riigieelarve seadus“), mis tuleb lisada käsitsi koos väljaga `xml_sections`, enne 01.01.2027. 2026. aasta seaduse 2027. aastal kehtiva redaktsiooni (118122025023) leiab kehtivuse kontroll ise ja see pärib valiku.
 - **§ 2 sisaldab ka muid määrasid** (õppetoetused, sotsiaalmaksu kuumäär, muuseumide näituste tagatised). Need on neli lõiku ja tulevad kaasa; lõigete kaupa valikut ei tehtud.
-- Aktiveerimise samm serveris on pärast 04.10 avaldamise muudatust päris täiendusega proovimata ([runbook](runbook-corpus-increment.md), jaotis 9): `rag-v2-corpus-run.sh` peab trükkima `running plan: <fail>`.
+
+## Ost ja aktiveerimine (04.10.2026)
+
+Omanik 04.10: „jah“ küsimusele, kas lubada ost ja aktiveerimine (51 sisendit, umbes 0,0033 USD, piir 0,01 USD).
+
+- **Jooks:** `rag-v2-corpus-run.sh 49 48` töötavalt väljalaskelt `773ff4bc`, koopiana ühe lisareaga, mis oleks peatunud enne kinnitust, kui plaan näitab üle 51 sisendi. Kogu jooks 13:58:55–13:59:51 UTC (56 s).
+- **Plaan ja ost:** serveri tasuta plaan andis 51 välist sisendit ja 25 275 tokenit, sama mis kohalik loendus. Ostetud 51/51, teadmata tulemusega 0; kulu 0,003286 USD (arvutatud kinnitatud kasutusest, mitte arvelt). Vektorid `pilot_747587d3…`.
+- **Indeks:** `search_generation_f3c7ed7a…`, 6474 dokumenti ja 40 615 lõiku (enne 6471 ja 40 542); kolm uut dokumenti, ülejäänud taaskasutatud. Eelmise põlvkonna tõend oli enne ja pärast sama.
+- **Vestlusplaan:** `/etc/sotsiaalai/m4-corpus-chat-20261004b.json`. Eelmisest erineb ainult põlvkonna, tunnuste, loa aluse ja kinnituse poolest; seadeid (profiil, juhiste versioonid, mudel) võrdlus erinevana ei näidanud.
+- **Aktiveerimine uue avaldamisviisiga on nüüd päris täiendusega tehtud.** Skript aktiveeris plaani nii `rag.env`-is kui töötava väljalaske env-failis, kontrollis (`ready`), taaskäivitas teenuse ja trükkis `running plan: /etc/sotsiaalai/m4-corpus-chat-20261004b.json`. Väljalaske env-failis on üks plaanirida.
+- **Pärast jooksu:** teenus aktiivne, leht vastab, hoidla pea serveris `84f71b2a` (sama mis sülearvutis), `docs/rag-v2/legal-acts-in-index.json` uuendatud (523 akti). Serveri ketas 93% (4,4 GB vaba).
 
 ## Järgmine samm
 
-Omaniku luba ostuks (51 sisendit, umbes 0,0033 USD, piir 0,01 USD). Seejärel serveris `rag-v2-corpus-run.sh 49 48 …` kaitsega, mis peatub enne kinnitust, kui plaani sisendite arv on üle 51; pärast aktiveerimist `docs/rag-v2/legal-acts-in-index.json` uuendus.
+Mõõta omaniku loal kaks küsimust päris vestluses: toimetulekupiir ilma vallata (küsimustiku Q9) ja puuetega inimeste toetus (Q12). Umbes 0,01 USD.
