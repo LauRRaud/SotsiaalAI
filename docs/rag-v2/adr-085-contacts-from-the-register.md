@@ -32,7 +32,7 @@ Iga omavalitsus saab ressursikirje „Sotsiaalvaldkonna kontaktid: <omavalitsus>
 
 - **Midagi ei oletata:** ühtegi teenust ei seota inimesega ameti või nime järgi.
 - Kirjeldus nimetab registris olevad ametid („Ametid: lastekaitsespetsialist, sotsiaaltööspetsialist“), et ameti kohta käiv küsimus kirje üles leiaks.
-- **Üle 12 kontaktiga omavalitsus loetletakse osakondade kaupa:** iga vähemalt kolme kontaktiga osakond saab oma kirje, ülejäänud jäävad üldkirjesse; üle 12 kontaktiga rühm jagatakse võrdseteks osadeks ametite järjekorras, nii et ühes osas on sama ametiga inimesed ja kirjeldus nimetab just neid ameteid. Põhjus on kontekstieelarve (jaotis „Korpus v52“): kontakt võtab umbes 150 tokenit, kirjete kontekst on 12 000 tokenit.
+- **Üle 12 kontaktiga omavalitsus loetletakse osakondade kaupa:** iga vähemalt kolme kontaktiga osakond saab oma kirje, ülejäänud jäävad üldkirjesse; üle 12 kontaktiga rühm jagatakse võrdseteks osadeks ametite järjekorras, nii et ühes osas on sama ametiga inimesed ja kirjeldus nimetab just neid ameteid. Üle 60 kontaktiga omavalitsuses (Tallinn) on kirjes kuni 5 kontakti. Põhjus on kontekstieelarve (jaotised „Korpus v52“ ja „Korpus v53“): näidatud kontakt võtab umbes 450 tokenit, kirjete kontekst on 12 000 tokenit.
 - Kirjete nimed on püsivad (omavalitsus ja osakonna nime räsi), nii et järgmine eksport asendab sama kirje.
 
 ### Mida ei muudetud
@@ -83,6 +83,27 @@ Esimene eksport päris andmetel (avaldamata) näitas kaht asja, mida väljamõel
 - **Kirjete rada loobub avatud kirjetest ükshaaval** (`structured-record-source.js`): kui kolm küsimusele lähimat kirjet täies mahus ei mahu, proovitakse kahte, siis ühte, ja alles siis mitte ühtegi. Enne loobuti kõigist kolmest. See puudutab iga pööret, kus kolm avatud kirjet eelarvesse ei mahu: nüüd jääb sinna rohkem infot, mitte vähem. Paketi kuju ja versioon ei muutu.
 - Raja muudatusel kohalikku ühiktesti ei ole (raja testid on integratsioonitestid); kontroll on sama tasuta mõõtmine serveris pärast avaldamist.
 
-## Käivitus pärast parandust
+## Korpus v53 (04.10 kell 23.08)
 
-Tegemata selle kirjutamise hetkel; lisatakse pärast uut eksporti ja korpuse täiendust v53.
+- **Eksport:** kõik 753 inimest on hoidlas juba olemas (uusi kontakte 0); 102 kontaktide kirjet (enne 75). Üheksa v52 kirjet, mille nime enam ei teki, eemaldati poliitikast.
+- **Korpus v53:** 102 dokumenti, ostetud 43 sisendit (59 kirje tekst oli sama), 4846 tokenit, 0,0006 USD (usage `pilot_47146485…`); indeks `3574091e` (6959 dokumenti, 41 506 lõiku), plaan `/etc/sotsiaalai/m4-corpus-chat-20261004f.json`.
+- **Tasuta kontroll kirjete rajal** (sama küsimus sotsiaaltööspetsialisti kohta, sõnaotsingu kanal):
+
+| Omavalitsus | Näidatud kontakte v52 | v53 |
+|---|---:|---:|
+| Tartu linn | 0 | 10 |
+| Pärnu linn | 0 | 12 |
+| Valga vald | 0 | 10 |
+| Saaremaa vald | 0 (mõõtmata) | 11 |
+| Kohtla-Järve linn | 0 (mõõtmata) | 16 |
+| Võru vald | 8 | 8 |
+| Anija vald | 8 | 8 |
+| Nõo vald | 2 | 2 |
+| Tallinn | 0 | 0 |
+
+- **Tallinn:** õige kirje on küsimusele lähim (Lasnamäe osakonna kirje esimesel kohal), aga 11 kontaktiga kirje ei mahu: Tallinna 84 kirje pealkirjad võtavad umbes 8300 tokenit ja näidatud kontakt umbes 450 (Tartus 17 kontakti ja 54 pealkirja = 11 940 tokenit). Seepärast saab üle 60 kontaktiga omavalitsus kuni 5 kontaktiga kirjed.
+- Teistsuguse sõnastusega küsimus („Kellele ma saan helistada, kui vajan lastekaitse abi?“, „Mul on raha otsas. Kellele ma saan helistada?“) kontaktide kirjet sõnaotsinguga esimeste hulka ei toonud (Tartu 0, Nõo 0–1). Vestlus järjestab vektoriga, mida see kontroll ei mõõda.
+
+## Käivitus pärast Tallinna parandust
+
+Tegemata selle kirjutamise hetkel; lisatakse pärast eksporti ja korpuse täiendust v54.
