@@ -143,6 +143,9 @@ function observe(row, error) {
     dropped: payload.dialogueState?.value?.model?.dropped ?? [],
     // The plan's checked places (state v5: turn, person, region, relation or why unresolved): a place the plan left out shows here.
     places: (payload.searchAssist?.places || []).map(({ turn, person, region, relation, reason }) => ({ turn, person, region, relation, ...(reason ? { reason } : {}) })),
+    // ADR-074: how the turn's municipality was chosen (the person's own, the asked one, or the plan's queries), and the
+    // plan's place attributions as it gave them, before the server's check.
+    scopeState: records.scope?.state ?? null, plannedPlaces: payload.searchAssist?.plannedPlaces ?? null,
     personRegions: Object.fromEntries((payload.dialogueState?.value?.people || []).map(entry => [entry.person.trim().toLowerCase(), entry.region.id])),
     timings: { searched: payload.timings?.phases?.searched ?? null, answered: payload.timings?.phases?.answered ?? null,
       search: payload.timings?.search?.since_start_ms?.merged ?? null, total: payload.timings?.validatedDraftMs ?? null },

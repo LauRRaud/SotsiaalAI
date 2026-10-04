@@ -214,7 +214,9 @@ test('a residence the plan left out: the user\'s own first-person home is read, 
   assert.deepEqual(await after('Elan nüüd Harku vallas ja mul on raske.', [], only), { user: ['harku_vald', 'reported'] });
   assert.deepEqual(await after('Я живу в Харку.', [], only), { user: ['harku_vald', 'reported'] });
   assert.deepEqual(await after('Olen Harku vallas tööl.', [], only), { user: [null, 'unresolved'] });
-  assert.deepEqual(await after('Käin Harku vallas arsti juures.', [], only), { user: [null, 'unresolved'] });
+  // ADR-074 (04.10): a mention that says nothing of living there and names nobody leaves the home as it is (before:
+  // unresolved; measured 04.10, a question about another municipality erased the user's own).
+  assert.deepEqual(await after('Käin Harku vallas arsti juures.', [], only), { user: ['kose_vald', 'reported'] });
   // "Me elame …": the user's home, and the target's when the target has none yet; it never replaces a known place.
   const child = [saved('user', 'kose_vald'), { person: 'naabri laps', region: { id: null, status: 'unknown', candidates: [], excluded: [], support: [] } }];
   const plan = [place(2, 'Me elame Harku vallas', 'user', 'lives', 'Harku vald')];

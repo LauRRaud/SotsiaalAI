@@ -434,8 +434,10 @@ async function regionConversation(t) {
     checkedPlaces: (c, query, places) => runtime.checkedPlaces(c, query, places),
     search: async (c, query, vector, assist) => {
       const { scope, knowledgeRegion } = await runtime.searchScope(c, query, directory, assist?.variants || []);
-      scopes.push({ person: scope.person ?? query.person, region: knowledgeRegion.region ?? null, state: scope.state });
-      return { ...packet, query_id: randomUUID() };
+      scopes.push({ person: scope.person ?? query.person, region: knowledgeRegion.region ?? null, state: scope.state,
+        own: scope.region ?? null, source: knowledgeRegion.state });
+      // As the retrieval adapter saves it: the turn's source scope with the catalogue (the next turn's follow-up reads it).
+      return { ...packet, query_id: randomUUID(), record_context: { entries: [], scope: knowledgeRegion } };
     } };
   const unit = Array.from({ length: 3072 }, (_, i) => i === 0 ? 1 : 0);
   const service = new PilotService({ store: new PilotStore(db), readConfig: async () => config, adapters, call: async ({ stage, body }) => {
@@ -454,9 +456,11 @@ async function regionConversation(t) {
     assert.deepEqual(saved_.dialogueStateContext.regions, directory);
     const searched = scopes.at(-1), saved = value.people.find(entry => entry.person === searched.person);
     // The same turn: the catalogue and the knowledge lane (one knowledgeRegion) and the saved state read one region.
-    assert.equal(searched.region, saved?.region.id ?? null);
+    // ADR-074: in a question about another municipality both lanes read the asked one, and the saved state is still
+    // the person's own scope of that turn.
+    assert.equal(searched.source.startsWith('question_') ? searched.own : searched.region, saved?.region.id ?? null);
     assert.equal(value.focus, searched.person);
-    return { searched, people: Object.fromEntries(value.people.map(entry => [entry.person, [entry.region.id, entry.region.status]])) };
+    return { searched, assist: saved_.searchAssist, query: saved_.query, people: Object.fromEntries(value.people.map(entry => [entry.person, [entry.region.id, entry.region.status]])) };
   };
   return turn;
 }
@@ -494,4 +498,33 @@ test('dialogue state DB (Codex review of state v5, V1): a place change the plan 
   const again = await turn('Kui palju emale koduteenus maksab?', 'same', { queries: ['Harku vald koduteenuse hind'], person: 'ema',
     places: [{ turn: 4, quote: 'Ema elab Harku vallas', name: 'Harku vald', person: 'ema', relation: 'lives' }] });
   assert.deepEqual([again.searched.region, again.people.ema], ['harku_vald', ['harku_vald', 'reported']]);
+});
+
+test('dialogue state DB (ADR-074): a question about another municipality is searched there, its follow-up too, the saved residence stays, and a request about the user is the residence again', async t => {
+  const turn = await regionConversation(t);
+  await turn('Elan Kose vallas ja mul on raske.', 'new', { queries: ['Kose vald toimetulek'], person: 'user',
+    places: [{ turn: 1, quote: 'Elan Kose vallas', name: 'Kose vald', person: 'user', relation: 'lives' }] });
+  const planned = [{ turn: 2, quote: 'Kas Harku vallas saab koduteenust?', name: 'Harku vald', person: 'user', relation: 'other' }];
+  const asked = await turn('Kas Harku vallas saab koduteenust?', 'same', { queries: ['Harku vald koduteenus'], person: 'user', places: planned });
+  assert.deepEqual([asked.searched.source, asked.searched.region, asked.searched.own, asked.people.user], ['question_region', 'harku_vald', 'kose_vald', ['kose_vald', 'reported']]);
+  // The turn record keeps the plan's own attributions beside the checked ones, and the server's reading of the mention.
+  assert.deepEqual(asked.assist.plannedPlaces, planned);
+  assert.deepEqual(asked.assist.places.map(item => [item.region, item.relation, item.asking]), [['harku_vald', 'other', true]]);
+  // Codex F1: the follow-up names no municipality; the service hands on what the last answer was asked about.
+  const price = await turn('Ja mis see maksab?', 'same', { queries: ['Harku vald koduteenuse hind'], person: 'user', places: [] });
+  assert.deepEqual([price.searched.source, price.searched.region, price.query.askedRegions, price.people.user], ['question_region', 'harku_vald', ['harku_vald'], ['kose_vald', 'reported']]);
+  // The user's own request: the plan's queries are not about the asked municipality any more.
+  const own = await turn('Millist abi ma ise saan?', 'same', { queries: ['toimetulekutoetuse taotlemine'], person: 'user', places: [] });
+  assert.deepEqual([own.searched.source, own.searched.region, own.people.user], ['person_region', 'kose_vald', ['kose_vald', 'reported']]);
+  // After it nothing is handed on: a query that names the other municipality again does not move the search.
+  const later = await turn('Ja kui palju see on?', 'same', { queries: ['Harku vald toimetulekutoetuse suurus'], person: 'user', places: [] });
+  assert.deepEqual([later.searched.source, later.searched.region, later.query.askedRegions], ['person_region', 'kose_vald', undefined]);
+  // The plan names no place: the server reads the mention as another one, and the record shows the plan gave none.
+  const bare = await turn('Kust leian Harku valla koduteenuse taotluse?', 'same', { queries: ['Harku valla koduteenuse taotlus'], person: 'user', places: [] });
+  assert.deepEqual([bare.searched.source, bare.searched.region, bare.people.user], ['question_region', 'harku_vald', ['kose_vald', 'reported']]);
+  assert.deepEqual([bare.assist.plannedPlaces, bare.assist.places.map(item => [item.reason, item.asking])], [[], [['unattributed_other_mention', true]]]);
+  // Codex F2: a place of work, with a plan whose only query names it.
+  const work = await turn('Töötan Harku vallas. Millist koduteenust ma saan?', 'same', { queries: ['Harku vald koduteenus'], person: 'user',
+    places: [{ turn: 7, quote: 'Töötan Harku vallas', name: 'Harku vald', person: 'user', relation: 'other' }] });
+  assert.deepEqual([work.searched.source, work.searched.region, work.people.user], ['person_region', 'kose_vald', ['kose_vald', 'reported']]);
 });
