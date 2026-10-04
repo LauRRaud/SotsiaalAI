@@ -2,7 +2,7 @@
 
 04.10.2026. Teostus Claude Opus 5.5. Omanik 04.10 õhtul: „sa toimeta edasi, kuni vigu ei ole. võid teha teste, raha pole probleem.“ Täiendab [ADR-076](adr-076-act-sections-as-source.md).
 
-**Mõõtmata selle kirjutamise hetkel.** Tõend on kohalikud testid hoidla failiga. Korpuse täiendus v50 ja mõõtmine tehakse pärast avaldamist ning lisatakse jaotisesse „Mõõtmine“.
+**Mõõdetud korpusel v50: ei aidanud** (jaotis „Mõõtmine“). Lõige 5 ei saanud kandidaadiks; riigieelarve seaduse kandidaat oli lõige 4. Järg: [ADR-083](adr-083-list-subsection-by-point.md) (loetelu punktide kaupa).
 
 ## Probleem
 
@@ -43,8 +43,13 @@ Registrikirje uus väli **`xml_units: "subsection"`** (ainult koos väljaga `xml
 
 - **Leidmine on endiselt otsingu teha.** Lõik on nüüd täpsem (üks lõige, oma avasõnadega), aga kandidaadiks saamine sõltub ikka päringust. Seda näitab ainult mõõtmine.
 - Lõikest pikem tekst (lõige 7) lõigatakse endiselt pikkuse järgi.
-- Punktide kaupa lugemist ei ole: punkt üksi („seaduse § 131 lõike 1 alusel …“) ei ütle, millise seaduse määr see on.
+- Punktide kaupa lugemist selles otsuses ei olnud: punkt üksi („seaduse § 131 lõike 3 alusel …“) ei ütle, millise seaduse määr see on. ADR-083 lisas selle, lõike avasõnad punkti pealkirjaks.
 
-## Mõõtmine
+## Mõõtmine (04.10.2026, korpus v50)
 
-Tegemata selle kirjutamise hetkel; lisatakse pärast korpuse täiendust v50.
+- **Korpus v50:** riigieelarve seaduse § 2 uus redaktsioon (9 üksust, 10 lõiku). Ostetud 9 sisendit, 3098 tokenit, 0,0004 USD (usage `pilot_22f19f4a…`); indeks `9da75af5` (6474 dokumenti, 40 621 lõiku), plaan `/etc/sotsiaalai/m4-corpus-chat-20261004c.json`.
+- **Üks pööre** („Kui suur on toimetulekupiir ja kuidas toimetulekutoetust arvutatakse?“, 0,0056 USD): **ei läbinud**, vastus summat ei andnud. [Tõendifail](../audits/evidence/corpus-v50-measured-2026-10-04.json).
+- Riigieelarve seaduse ainus kandidaat oli **lõige 4** (töötutoetuse päevamäär), mitte lõige 5. Lõige 5 on kuue määraga loetelu, millest neli on erihoolekandeteenuste omaosalused ja toimetulekupiir viies: lõik tervikuna ei ole toimetulekupiiri päringule lähedane.
+- Järeldus: lõige on selle loetelu jaoks liiga suur üksus. [ADR-083](adr-083-list-subsection-by-point.md) loeb loetelu punktide kaupa.
+
+Üks pööre, üks jooks.

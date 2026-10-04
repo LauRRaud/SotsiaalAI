@@ -1,0 +1,122 @@
+{
+ "schema": "sotsiaalai/conversation-run-evidence-1",
+ "run": "ADR-082 on corpus v50; the owner on 04.10.2026 evening: tests allowed for this work (one turn): the subsistence level question as a first message",
+ "measured_commit": "25fb1c64b20b71b80cc65f2bb12b004ef953d583",
+ "catalogues": [
+  {
+   "name": "national-sources",
+   "catalogue": "tests/evaluation/dialogue/scenarios-national-sources-1.json, --only subsistence-level-no-municipality",
+   "started_at": "2026-10-04T17:16:22.378Z",
+   "finished_at": "2026-10-04T17:16:40.464Z",
+   "summary": {
+    "passed": 0,
+    "search": 1,
+    "answer": 0,
+    "state": 0
+   },
+   "states": {
+    "continuing": 0,
+    "rejected": 0
+   },
+   "plan_price_usd": 0.0056
+  }
+ ],
+ "plan_price_usd": 0.00561,
+ "turns": [
+  {
+   "run": "national-sources",
+   "scenario": "subsistence-level-no-municipality",
+   "turn": 1,
+   "turn_id": "84289fdc-426e-42a8-ae05-0e8644912cd9",
+   "text": "Kui suur on toimetulekupiir ja kuidas toimetulekutoetust arvutatakse?",
+   "verdict": "search",
+   "checks": 7,
+   "failed": [
+    {
+     "key": "evidence",
+     "detail": "/2026. aasta riigieelarve seadus/ among 1 found sources"
+    },
+    {
+     "key": "cited",
+     "detail": "/2026. aasta riigieelarve seadus/ among cited: Sotsiaalhoolekande seadus"
+    },
+    {
+     "key": "must",
+     "detail": "/220/ in the answer"
+    },
+    {
+     "key": "found_valid_on",
+     "detail": "found legal texts for 2026-10-04: -"
+    }
+   ],
+   "region": null,
+   "scope_state": "region_required",
+   "queries": [
+    "toimetulekupiiri suurus ja toimetulekutoetuse arvutamise kord"
+   ],
+   "answer_kind": "partial",
+   "clarification": false,
+   "state_rejected": null,
+   "candidates": 36,
+   "selected": [
+    "P2 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 8. jagu Toimetulekutoetus > § 131. Toimetulekutoetus § 131. Toimetulekutoetus (1) Toi",
+    "P16 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 8. jagu Toimetulekutoetus > § 133. Toimetulekutoetuse arvestamise alused § 133. Toime",
+    "P21 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 8. jagu Toimetulekutoetus > § 133. Toimetulekutoetuse arvestamise alused (2¹) Kui toi",
+    "P27 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 8. jagu Toimetulekutoetus > § 133. Toimetulekutoetuse arvestamise alused 4) veevarust"
+   ],
+   "legal_candidates_not_selected": [
+    "P17 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 8. jagu Toimetulekutoetus > § 134. Toimetulekutoetuse määramine ja maksmine § 134. To",
+    "P20 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 8. jagu Toimetulekutoetus > § 134. Toimetulekutoetuse määramine ja maksmine 7) kohali",
+    "P31 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 8. jagu Toimetulekutoetus > § 132. Toimetulekutoetuse taotlemine § 132. Toimetulekuto",
+    "P32 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 1. peatükk Üldsätted > § 13⁴. Toimetulekutoetuse määramise ja maksmise erandid kriisiolukorra ajal § 13⁴. Toimetulekutoe",
+    "P33 | alates 2026-10-01 | Riigikogu > Puuetega inimeste sotsiaaltoetuste seadus > 3. peatükk RAKENDAMISE KORD > § 20¹. Sotsiaaltoetuse ümberarvutamise tähtajad § 20¹. Sotsiaaltoetuse ümb",
+    "P34 | alates 2025-01-01 | Riigikogu > Perekonnaseadus > 2. osa SUGULUSEST TULENEVAD ÕIGUSED JA KOHUSTUSED > 8. peatükk PÕLVNEMISEST TULENEV ÜLALPIDAMISKOHUSTUS > 1. jagu Üldsätted > § 10",
+    "P35 | alates 2026-07-13 | Riigikogu > 2026. aasta riigieelarve seadus > § 2. Seadustest tulenevate määrade ja piirsummade kehtestamine (4) Tööturumeetmete seaduse § 23 lõike 1 alusel koo",
+    "P36 | alates 2026-10-01 | Riigikogu > Puuetega inimeste sotsiaaltoetuste seadus > 2. peatükk TOETUSED > § 7. Puudega tööealise inimese toetus § 7. Puudega tööealise inimese toetus (1) Pu"
+   ],
+   "found_legal": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "rt": "130062026065",
+     "from": "2026-10-01",
+     "to": "2026-11-30"
+    }
+   ],
+   "cited": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "rt": "130062026065",
+     "from": "2026-10-01",
+     "to": "2026-11-30"
+    }
+   ],
+   "plan_price_usd": 0.00561,
+   "search_ms": 4327,
+   "total_ms": 17727,
+   "answer": "Toimetulekupiiri eurodes suuruse kehtestab Riigikogu igaks eelarveaastaks riigieelarvega. Perekonna teise ja iga järgmise täisealise liikme piir on 80% esimese liikme piirist ning iga lapse piir 120%. [S1]\n\nToetuse arvestuse lähtekoht on arvestatav toimetulekupiir koos lubatud eluasemekuludega, millest lahutatakse arvestatav netosissetulek. Aluseks on üldjuhul kõigi pereliikmete eelmisel kuul saadud netosissetulek; põhjendatud juhul võib kasutada taotlusele eelnenud 30 päeva sissetulekut. Arvestusest lahutatakse ka makstud elatis ja täitemenetluses kinni peetud summad. Arvesse võetakse jooksval kuul tasumisele kuuluvad eluasemekulud, kuid kohaliku omavalitsuse kehtestatud piirmäärade järgi. Varasemat eluasemekulude võlga ei arvestata. [S2, S4]\n\nSiin oleva info põhjal ei saa ma toimetulekupiiri selle aasta eurodes suurust kinnitada. See näitab, et piir kehtestatakse igaks eelarveaastaks, kuid ei anna konkreetset summat."
+  }
+ ],
+ "plan": "m4-sotsiaalai-corpus-chat-20261004-171527-ad076e39-c288-4189-88dd-4a16c26a4f82",
+ "generation": "search_generation_9da75af53e575254394f9f4f2fd93a82ba80a29162dbeb4978f0863448a40b07",
+ "model": "gpt-6-luna",
+ "reasoning": "medium",
+ "source": "the evaluator's report on the server (rag-v2-work/eval-files/corpus-v50-2026-10-04/national-sources/conversation-eval.json)",
+ "masking": "none needed: the answer names institutions only",
+ "corpus": {
+  "version": 50,
+  "index_generation": "search_generation_9da75af53e575254394f9f4f2fd93a82ba80a29162dbeb4978f0863448a40b07",
+  "documents": 6474,
+  "units": 40621,
+  "bought": {
+   "inputs": 9,
+   "tokens": 3098,
+   "usd": 0.00040274,
+   "usage": "pilot_22f19f4a2845085d5fbdb0d40c74740221172362c1839b64b6cbd1df77303ea7"
+  },
+  "plan_file": "/etc/sotsiaalai/m4-corpus-chat-20261004c.json"
+ },
+ "notes": {
+  "result": "failed: the answer gives no amount. The State Budget Act's one candidate was subsection 4 of § 2 (the unemployment allowance's daily rate); subsection 5, which holds the subsistence level, was not a candidate. Read by subsection, that passage is a list of six rates of the Social Welfare Act, four of them on special care services, the subsistence level the fifth.",
+  "attempts": "one turn, one run."
+ }
+}
