@@ -1,0 +1,67 @@
+{
+ "schema_version": "rag-v2/dialogue-eval-2",
+ "purpose": "ADR-076 (04.10.2026): corpus v49 added two national sources the live questionnaire of 04.10.2026 found missing: § 2 of the 2026 State Budget Act, which sets the subsistence level (Q9 got the calculation from the Social Welfare Act but no amount), and the disability benefits act (Q12 answered from a journal article). Two conversations, each one first message, the questions word for word. Q12 was the fourth message of its conversation on 04.10, here it is a first message, so the plan's earlier topics are not part of this turn. Written before any run with the model. Run with --auto-modes (what the chat sends).",
+ "expectation_help": {
+  "region": "state: a general question names no municipality, so no municipal scope is chosen",
+  "evidence / found_valid_on": "search: a passage of the named act is among the found sources, and of that act a version in force today",
+  "cited / valid_on": "answer: it has a source block that cites the named act, and every national legal text it cites is cited in a version in force today",
+  "must": "answer: the subsistence level's amount for the first family member as the State Budget Act sets it (220 euros); for the disability question the authority that establishes the severity (Sotsiaalkindlustusamet, § 2³ of the act). The amounts for the other family members (176 and 264 euros) are in no national text: 80 and 120 per cent are in the Social Welfare Act, so whether the answer gives them is read from the answer and not required. Read the whole answer as well, a pattern is a coarse check"
+ },
+ "history": [
+  "04.10.2026, first run (commit 7332eaa9, corpus v49, plan m4-corpus-chat-20261004b): the catalogue as written before any run, 2 turns: 2 passed, 0.0104 USD. The subsistence level answer cites the State Budget Act and the Social Welfare Act and gives 220, 176 and 264 euros; the disability answer cites the act's version in force and a study (docs/audits/evidence/national-sources-measured-2026-10-04.json)."
+ ],
+ "scenarios": [
+  {
+   "id": "subsistence-level-no-municipality",
+   "title": "Toimetulekupiiri summa ilma vallata",
+   "source": "live questionnaire 04.10.2026, Q9",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Kui suur on toimetulekupiir ja kuidas toimetulekutoetust arvutatakse?",
+     "expect": {
+      "region": null,
+      "evidence": [
+       "2026. aasta riigieelarve seadus"
+      ],
+      "found_valid_on": "today",
+      "cited": [
+       "2026. aasta riigieelarve seadus"
+      ],
+      "valid_on": "today",
+      "must": [
+       "220"
+      ]
+     },
+     "note": "04.10 (Q9): no municipality was chosen, the six evidence passages were all of the Social Welfare Act and the answer said it could not give the amount in euros. The amount is in § 2 lg 5 p 5 of the State Budget Act; the passage that holds it starts at point 3 of that subsection, and the subsection's opening words are in the passage before it."
+    }
+   ]
+  },
+  {
+   "id": "disability-severity-adult",
+   "title": "Täisealise puude raskusastme tuvastamine",
+   "source": "live questionnaire 04.10.2026, Q12",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Kuidas määratakse täisealisele puude raskusaste?",
+     "expect": {
+      "region": null,
+      "evidence": [
+       "Puuetega inimeste sotsiaaltoetuste seadus"
+      ],
+      "found_valid_on": "today",
+      "cited": [
+       "Puuetega inimeste sotsiaaltoetuste seadus"
+      ],
+      "valid_on": "today",
+      "must": [
+       "Sotsiaalkindlustusamet"
+      ]
+     },
+     "note": "04.10 (Q12): the act was not in the index; the answer cited a 2026 study and asked whether a working-age or a pension-age adult was meant. The act has two versions in the index (in force until 31.01.2027 and from 01.02.2027); today's is the one to be found and cited."
+    }
+   ]
+  }
+ ]
+}

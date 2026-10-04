@@ -1,0 +1,172 @@
+{
+ "schema": "sotsiaalai/conversation-run-evidence-1",
+ "run": "ADR-076, Q9 and Q12 of the live questionnaire once on the live plan after corpus v49 was activated; permitted by the owner on 04.10.2026 (two turns, about 0.01 USD, --max-usd 0.02)",
+ "measured_commit": "7332eaa937e26678ec59871ef2b1564ae5161c38",
+ "catalogue": "tests/evaluation/dialogue/scenarios-national-sources-1.json as committed before the run, --auto-modes",
+ "started_at": "2026-10-04T14:12:21.659Z",
+ "finished_at": "2026-10-04T14:12:56.583Z",
+ "plan": "m4-sotsiaalai-corpus-chat-20261004-135943-5e4dfab5-5509-4fab-84c2-d4772b8c228f",
+ "generation": "search_generation_f3c7ed7a72ee8d40d3b7711442bd349763a77e46e6bce31618a594f20cc29b3e",
+ "model": "gpt-6-luna",
+ "reasoning": "medium",
+ "plan_price_usd": 0.01035,
+ "summary": {
+  "passed": 2,
+  "search": 0,
+  "answer": 0,
+  "state": 0
+ },
+ "states": {
+  "continuing": 0,
+  "rejected": 0
+ },
+ "stopped": null,
+ "source": "the evaluator's report on the server (rag-v2-work/eval-files/national-sources-2026-10-04/conversation-eval.json)",
+ "masking": "none needed: the answers name national institutions only",
+ "notes": {
+  "subsistence_level": "Q9 on 04.10 (the same first message): six passages of the Social Welfare Act, no amount, the answer said it could not give the amount in euros. Now the State Budget Act is found and cited in the version in force, and the answer gives 220 euros and, from the Act's 80 and 120 per cent, 176 and 264 euros.",
+  "disability_severity": "Q12 on 04.10 was the fourth message of its conversation and the act was not in the index; the answer cited a study and asked back. Here it is a first message, so the two runs differ in context as well as in the corpus. The act is found and cited in the version in force today; the version from 01.02.2027 is not among the found sources.",
+  "attempts": "one turn each, once: a difference from the model's variation is not separated. What the amounts and the cited versions are is read from the report; the rest of each answer was not checked against the source texts."
+ },
+ "turns": [
+  {
+   "scenario": "subsistence-level-no-municipality",
+   "turn": 1,
+   "turn_id": "92485368-bb2b-4f29-bd21-b985d190031c",
+   "text": "Kui suur on toimetulekupiir ja kuidas toimetulekutoetust arvutatakse?",
+   "verdict": "passed",
+   "checks": 7,
+   "failed": [],
+   "check_details": [
+    "ok completed: completed",
+    "ok region: region null, expected null",
+    "ok evidence: /2026. aasta riigieelarve seadus/ among 2 found sources",
+    "ok cited: /2026. aasta riigieelarve seadus/ among cited: 2026. aasta riigieelarve seadus, Sotsiaalhoolekande seadus",
+    "ok must: /220/ in the answer",
+    "ok found_valid_on: found legal texts for 2026-10-04: 2026. aasta riigieelarve seadus 2026-07-13..2026-12-31",
+    "ok valid_on: cited for 2026-10-04: 2026. aasta riigieelarve seadus 2026-07-13..2026-12-31; Sotsiaalhoolekande seadus 2026-10-01..2026-11-30"
+   ],
+   "region": null,
+   "scope_state": "region_required",
+   "plan_person": "user",
+   "queries": [
+    "toimetulekupiir suurus kehtiv toimetulekutoetus",
+    "toimetulekutoetuse arvutamine sissetulek eluasemekulud"
+   ],
+   "answer_kind": "grounded",
+   "clarification": false,
+   "state_rejected": null,
+   "found_sources": 2,
+   "found_legal_acts": [
+    {
+     "title": "2026. aasta riigieelarve seadus",
+     "rt": "103072026024",
+     "in_force": "2026-07-13..2026-12-31",
+     "national": true
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "rt": "130062026065",
+     "in_force": "2026-10-01..2026-11-30",
+     "national": true
+    }
+   ],
+   "found_other_titles": [],
+   "cited": [
+    {
+     "title": "2026. aasta riigieelarve seadus",
+     "rt": "103072026024",
+     "in_force": "2026-07-13..2026-12-31",
+     "national": true
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "rt": "130062026065",
+     "in_force": "2026-10-01..2026-11-30",
+     "national": true
+    }
+   ],
+   "rerank": {
+    "candidates": 36,
+    "selected": [
+     "2026. aasta riigieelarve seadus",
+     "Sotsiaalhoolekande seadus",
+     "Sotsiaalhoolekande seadus",
+     "Sotsiaalhoolekande seadus",
+     "Sotsiaalhoolekande seadus"
+    ]
+   },
+   "plan_price_usd": 0.00575,
+   "search_ms": 4112,
+   "total_ms": 18236,
+   "answer": "2026. aastal on üksi elava inimese ja pere esimese liikme toimetulekupiir 220 eurot kuus. Pere iga järgmise täisealise liikme piir on 176 eurot kuus ja iga lapse oma 264 eurot kuus. Kui laps saab toetuse taotlemise kuul 18-aastaseks, arvestatakse teda lapse määraga. [S1, S2]\n\nLihtsustatult arvutatakse toetust nii: pere toimetulekupiir + arvesse minevad jooksva kuu eluasemekulud − arvesse minev pere eelmise kuu netosissetulek. Arvesse võetakse ka seaduses nimetatud mahaarvamised, näiteks makstud elatis ja täitemenetluses kinni peetud summad. Toetuse saamise tingimus on, et pärast eluasemekulude mahaarvamist jääb kuu netosissetulek alla kehtestatud toimetulekupiiri. [S2, S3]\n\nEluasemekuludest võib arvesse minna näiteks üür, eluasemelaenu tagasimakse, kommunaalkulud ja küte, kuid omavalitsus kehtestab neile piirmäärad. Varem tekkinud eluasemekulude võlgnevust toetuse arvestusse ei lisata. [S4, S5]"
+  },
+  {
+   "scenario": "disability-severity-adult",
+   "turn": 1,
+   "turn_id": "0bbf15c9-fb8f-4d25-ae6f-8d72958bcad4",
+   "text": "Kuidas määratakse täisealisele puude raskusaste?",
+   "verdict": "passed",
+   "checks": 7,
+   "failed": [],
+   "check_details": [
+    "ok completed: completed",
+    "ok region: region null, expected null",
+    "ok evidence: /Puuetega inimeste sotsiaaltoetuste seadus/ among 2 found sources",
+    "ok cited: /Puuetega inimeste sotsiaaltoetuste seadus/ among cited: Puuetega inimeste sotsiaaltoetuste seadus, Uuring täisealiste puudega inimeste puude tuvastamise, abivajaduse hindamise ja toetamise süsteemist",
+    "ok must: /Sotsiaalkindlustusamet/ in the answer",
+    "ok found_valid_on: found legal texts for 2026-10-04: Puuetega inimeste sotsiaaltoetuste seadus 2026-10-01..2027-01-31",
+    "ok valid_on: cited for 2026-10-04: Puuetega inimeste sotsiaaltoetuste seadus 2026-10-01..2027-01-31"
+   ],
+   "region": null,
+   "scope_state": "region_required",
+   "plan_person": "user",
+   "queries": [
+    "täisealise puude raskusastme tuvastamine",
+    "puude raskusastme hindamine taotluse alusel",
+    "täisealise puude raskusastme määramise kriteeriumid"
+   ],
+   "answer_kind": "grounded",
+   "clarification": false,
+   "state_rejected": null,
+   "found_sources": 2,
+   "found_legal_acts": [
+    {
+     "title": "Puuetega inimeste sotsiaaltoetuste seadus",
+     "rt": "130062026020",
+     "in_force": "2026-10-01..2027-01-31",
+     "national": true
+    }
+   ],
+   "found_other_titles": [
+    "Uuring täisealiste puudega inimeste puude tuvastamise, abivajaduse hindamise ja toetamise süsteemist"
+   ],
+   "cited": [
+    {
+     "title": "Puuetega inimeste sotsiaaltoetuste seadus",
+     "rt": "130062026020",
+     "in_force": "2026-10-01..2027-01-31",
+     "national": true
+    },
+    {
+     "title": "Uuring täisealiste puudega inimeste puude tuvastamise, abivajaduse hindamise ja toetamise süsteemist"
+    }
+   ],
+   "rerank": {
+    "candidates": 36,
+    "selected": [
+     "Puuetega inimeste sotsiaaltoetuste seadus",
+     "Uuring täisealiste puudega inimeste puude tuvastamise, abivajaduse hindamise ja toetamise süsteemist",
+     "Uuring täisealiste puudega inimeste puude tuvastamise, abivajaduse hindamise ja toetamise süsteemist",
+     "Uuring täisealiste puudega inimeste puude tuvastamise, abivajaduse hindamise ja toetamise süsteemist",
+     "Uuring täisealiste puudega inimeste puude tuvastamise, abivajaduse hindamise ja toetamise süsteemist",
+     "Puuetega inimeste sotsiaaltoetuste seadus"
+    ]
+   },
+   "plan_price_usd": 0.0046,
+   "search_ms": 4759,
+   "total_ms": 16187,
+   "answer": "Puude raskusastme tuvastab Sotsiaalkindlustusamet. Hindamisel arvestatakse terviseseisundit ja sellest tulenevaid tegutsemispiiranguid, kõrvalabi, juhendamise või järelevalve vajadust, abivahendite kasutamist, elukeskkonda ning olemasolu korral rehabilitatsiooniplaani tegevusi. Diagnoosist üksi ei piisa: hinnatakse, kuidas tervis mõjutab igapäevast toimetulekut. [S1, S3]\n\nTööealisel inimesel lähtutakse igapäevase tegutsemise ja ühiskonnaelus osalemise piirangutest. Piiranguid hinnatakse valdkondade ja võtmetegevuste kaupa; raskusastme määramisel lähtutakse suurima piiranguga valdkonnast. Vanaduspensioniealisel inimesel hinnatakse eeskätt kõrvalabi, juhendamise ja järelevalve vajadust igapäevaelu põhitegevustega toimetulekul. Seega sõltub täpsem hindamisviis sellest, kumb rühm inimesele kohaldub. [S2, S3, S4]\n\nTaotlus esitatakse Sotsiaalkindlustusametile. Puude raskusastme tuvastamise taotluse saab esitada ka Töötukassa kaudu, kui esitad selle koos töövõime hindamise taotlusega. [S6]"
+  }
+ ]
+}
