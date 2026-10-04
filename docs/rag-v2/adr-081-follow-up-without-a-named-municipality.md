@@ -2,7 +2,7 @@
 
 04.10.2026. Teostus Claude Opus 5.5. Omanik 04.10 õhtul: „sa toimeta edasi, kuni vigu ei ole. võid teha teste, raha pole probleem.“ Lähtekoht: [ADR-080](adr-080-one-query-per-message.md) mõõtmine; täiendab [ADR-074](adr-074-question-region-not-residence.md).
 
-**Mõõtmata selle kirjutamise hetkel.** Tõend on kohalikud testid mõõdetud plaaniga. Mõõtmise tulemus lisatakse jaotisesse „Mõõtmine“.
+**Reegel ise on mõõtmata.** Pärast avaldamist tehtud jooksus (jaotis „Mõõtmine“) nimetas plaan Maardut ja uus reegel ei rakendunud. Tõend on kohalikud testid eelmise jooksu plaaniga.
 
 ## Probleem
 
@@ -36,6 +36,12 @@ Serveri reegel; juhiseid ja versioone ei muudetud.
 - **„Kas see teenus on ka minu vallas olemas?“** viitab tagasi ja ei nimeta valda nimepidi. Kui plaan kirjutab päringu Nõo valla nimega, läheb otsing Nõo valda (nagu enne). Kui plaan valla nime ei kirjuta, jääb otsing nüüd Maardusse. Vastus nimetab valda, mille allikatest ta räägib, nii et viga on nähtav; mõõdetud see juht ei ole.
 - Tagasiviite loend on sõnaloend (eesti, inglise, vene); muu sõnastusega jätk („Ja kuidas taotleda?“) sõltub endiselt plaanist.
 
-## Mõõtmine
+## Mõõtmine (04.10.2026, pärast avaldamist)
 
-Tegemata selle kirjutamise hetkel; lisatakse pärast jooksu.
+Jätkuküsimuse vestlus (4 pööret) töötavalt väljalaskelt `19b0031f`: 4/4, 0,0230 USD plaanihindades. [Tõendifail](../audits/evidence/follow-up-measured-2026-10-04.json).
+
+- **Reegel ei rakendunud.** Kolmanda pöörde plaan kirjutas seekord kaks päringut ja teine nimetab Maardut („Isikliku abistaja teenuse hind Maardu linnas“). Otsingu hoidis Maardus juba ADR-074 reegel.
+- Kolmas vastus ütleb, et Maardus kehtestab hinna ja omaosaluse linnavalitsus, ja et summat eurodes ta siit öelda ei saa. Neljas pööre läks tagasi Nõo valda.
+- Viiest jooksust neljas nimetas plaan jätkuküsimuses valda, ühes mitte. Uue reegli tõend on kohalikud testid selle ühe jooksu plaaniga (sama funktsioon, mida teenus kutsub, ja teenuse test päris hoidlaga).
+
+Üks jooks. „Läbis“ tähendab kataloogi kontrolle; vastused on läbi loetud, allikatekstidega võrdlemata.

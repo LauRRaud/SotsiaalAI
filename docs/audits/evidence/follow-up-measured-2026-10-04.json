@@ -1,0 +1,335 @@
+{
+ "schema": "sotsiaalai/conversation-run-evidence-1",
+ "run": "ADR-081 on the live plan after the deploy of #361; the owner on 04.10.2026 evening: tests allowed for this work (four turns): the follow-up conversation",
+ "measured_commit": "19b0031fd822221dc7ab4bc2ce972fbee8271730",
+ "catalogues": [
+  {
+   "name": "follow-up",
+   "catalogue": "tests/evaluation/dialogue/scenarios-question-region-1.json, --only asks-another-municipality",
+   "started_at": "2026-10-04T16:37:06.013Z",
+   "finished_at": "2026-10-04T16:38:26.890Z",
+   "summary": {
+    "passed": 4,
+    "search": 0,
+    "answer": 0,
+    "state": 0
+   },
+   "states": {
+    "continuing": 3,
+    "rejected": 0
+   },
+   "plan_price_usd": 0.023
+  }
+ ],
+ "plan_price_usd": 0.02297,
+ "turns": [
+  {
+   "run": "follow-up",
+   "scenario": "asks-another-municipality",
+   "turn": 1,
+   "turn_id": "dd68bdc8-67b3-48f8-8e59-1b7862469755",
+   "text": "Elan Nõo vallas ja mul on raske toime tulla. Kust ma abi saan?",
+   "verdict": "passed",
+   "checks": 3,
+   "failed": [],
+   "region": "noo_vald",
+   "scope_state": "person_mentioned_region",
+   "queries": [
+    "Nõo valla sotsiaalabi toimetulekuraskustes inimesele"
+   ],
+   "answer_kind": "partial",
+   "clarification": true,
+   "state_rejected": null,
+   "candidates": 36,
+   "selected": [
+    "P1 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 4. peatükk NÕO VALLA EELARVEST MAKSTAVAD TOETUSED > 3. jagu Sissetulekust sõltuvad toetused > § 40. Toetus ",
+    "P5 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk SOTSIAALTEENUSED > 2. jagu Nõo vallas osutatavad ja korraldatavad sotsiaalteenused > § 26. Täien",
+    "P7 | alates 2026-06-09 | Nõo vald > Nõo valla eelarvest makstavate sotsiaaltoetuste määrad > § 2. Sissetulekust sõltuvad toetused § 2. Sissetulekust sõltuvad toetused Sissetulekust sõlt",
+    "P18 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk SOTSIAALTEENUSED > 2. jagu Nõo vallas osutatavad ja korraldatavad sotsiaalteenused > § 28. Välti",
+    "P23 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 2. peatükk SOTSIAALHOOLEKANDELISE ABI ANDMISE PÕHIMÕTTED > § 7. Sotsiaalhoolekandelise abi määramine ja toe",
+    "P25 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 4. peatükk NÕO VALLA EELARVEST MAKSTAVAD TOETUSED > 1. jagu Toetuste maksmise üldised alused > § 31. Toetus",
+    "P27 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 4. peatükk NÕO VALLA EELARVEST MAKSTAVAD TOETUSED > 5. jagu Riigieelarvest Nõo vallale eraldatud toetused >",
+    "P28 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 2. peatükk SOTSIAALHOOLEKANDELISE ABI ANDMISE PÕHIMÕTTED > § 5. Sotsiaalhoolekandelise abi taotlemine ja ta"
+   ],
+   "legal_candidates_not_selected": [
+    "P2 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk SOTSIAALTEENUSED > 2. jagu Nõo vallas osutatavad ja korraldatavad sotsiaalteenused > § 21. Võlan",
+    "P6 | alates 2026-06-09 | Nõo vald > Nõo valla eelarvest makstavate sotsiaaltoetuste määrad Määrus kehtestatakse „Kohaliku omavalitsuse korralduse seaduse“ § 30 lõike 1 punkti 2 ja Nõo V",
+    "P8 | alates 2026-06-09 | Nõo vald > Nõo valla eelarvest makstavate sotsiaaltoetuste määrad > § 3. Erivajadusest tulenevad toetused § 3. Erivajadusest tulenevad toetused Erivajadustest t",
+    "P9 | alates 2026-06-09 | Nõo vald > Nõo valla eelarvest makstavate sotsiaaltoetuste määrad > § 1. Sissetulekust mittesõltuvad toetused § 1. Sissetulekust mittesõltuvad toetused Sissetul",
+    "P10 | alates 2026-06-09 | Nõo vald > Nõo valla eelarvest makstavate sotsiaaltoetuste määrad > § 4. Erandkorras toetuste suurendamine § 4. Erandkorras toetuste suurendamine Erandkorras võ",
+    "P13 | alates 2026-06-09 | Nõo vald > Nõo valla eelarvest makstavate sotsiaaltoetuste määrad > § 6. Määruse rakendamine § 6. Määruse rakendamine Määrust rakendatakse alates 01.06.2026.",
+    "P14 | alates 2026-06-09 | Nõo vald > Nõo valla eelarvest makstavate sotsiaaltoetuste määrad > § 5. Määruste kehtetuks tunnistamine § 5. Määruste kehtetuks tunnistamine Tunnistada kehtetu",
+    "P19 | alates 2023-01-01 | Nõo vald > Toimetulekutoetuse määramiseks eluruumi alaliste kulude piirmäärade kehtestamine Määrus antakse „Sotsiaalhoolekande seaduse“ § 133 lõigete 5 ja 6 alu",
+    "P20 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord Määrus kehtestatakse „Kohaliku omavalitsuse korralduse seaduse“ § 22 lõike 1 punkti 5 ning „Sotsiaalhoolekand",
+    "P31 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 1. peatükk Üldsätted > § 8. Vältimatu sotsiaalabi § 8. Vältimatu sotsiaalabi (1) Isikule, kes on sattunud sotsiaalselt a",
+    "P32 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 1. peatükk Üldsätted > § 5. Sotsiaalhoolekandega hõlmatus § 5. Sotsiaalhoolekandega hõlmatus (1) Isikule on kohustatud s",
+    "P33 | alates 2026-10-01 | Sotsiaalkaitseminister > Abivahendite loetelu: määruse „Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi and",
+    "P34 | alates 2026-10-01 | Riigikogu > Puuetega inimeste sotsiaaltoetuste seadus > 2. peatükk TOETUSED > § 7¹. Puudega vanaduspensioniealise inimese toetus § 7¹. Puudega vanaduspensioniea",
+    "P35 | alates 2026-10-01 | Riigikogu > Puuetega inimeste sotsiaaltoetuste seadus > 2. peatükk TOETUSED > § 7. Puudega tööealise inimese toetus § 7. Puudega tööealise inimese toetus (1) Pu",
+    "P36 | alates 2026-10-01 | Riigikogu > Sotsiaalseadustiku üldosa seadus > 1. peatükk Üldsätted > 3. jagu Sotsiaalkaitse korraldus > § 14. Mitterahaline hüvitis § 14. Mitterahaline hüvitis"
+   ],
+   "found_legal": [
+    {
+     "title": "Sotsiaalhoolekandelise abi andmise kord",
+     "rt": "427052026006",
+     "from": "2026-06-01",
+     "to": null
+    },
+    {
+     "title": "Nõo valla eelarvest makstavate sotsiaaltoetuste määrad",
+     "rt": "406062026037",
+     "from": "2026-06-09",
+     "to": null
+    }
+   ],
+   "cited": [
+    {
+     "title": "Sotsiaalhoolekandelise abi andmise kord",
+     "rt": "427052026006",
+     "from": "2026-06-01",
+     "to": null
+    },
+    {
+     "title": "Nõo valla eelarvest makstavate sotsiaaltoetuste määrad",
+     "rt": "406062026037",
+     "from": "2026-06-09",
+     "to": null
+    },
+    {
+     "title": "Tugiisikuteenus"
+    }
+   ],
+   "plan_price_usd": 0.00523,
+   "search_ms": 5053,
+   "total_ms": 20995,
+   "answer": "Mul on kahju, et sul on praegu raske. Nõo valla sotsiaalosakonnalt saad paluda oma abivajaduse hindamist ja rääkida, millist tuge vajad. Abi taotlemiseks esita vallavalitsusele taotlus, kus ütled, millist abi vajad ja miks; vajaduse korral võidakse küsida lisadokumente. [S1]\n\nKui raskus on seotud rahaga, võib sobida toetus raske majandusliku olukorra leevendamiseks. Nõo vallas on see sissetulekust sõltuv toetus ajutise raske olukorra ja hädavajalike kulude katmiseks. Seda saab taotleda, kui sinu pere netosissetulek kuus — eelmise kuu sissetulek, millest on maha arvatud sel kuul tasumisele kuuluvad tõendatud eluasemekulud — jääb alla kahekordse riikliku toimetulekupiiri pereliikme kohta. Toetuse ülempiir on 300 eurot aastas. [S3, S4, S5]\n\nKui vajad tuge igapäevase toimetulekuga, võid sotsiaalosakonnast küsida tugiisikuteenuse kohta. See võib aidata sotsiaalsete, majanduslike, psühholoogiliste või tervisemurede korral; vajadust hindab sotsiaalosakond. Nõo valla elanikele on teenus tasuta. [S46]\n\nKui sul puuduvad elatusvahendid ja oled seetõttu sotsiaalselt abitus olukorras, on Nõo vallas võimalik saada vältimatut sotsiaalabi, näiteks hädavajalikku toitu, riideid, ajutist peavarju ja nõustamist. Abi on tasuta, kuid ajaliselt ja koguseliselt piiratud. [S2]\n\nMis on sul praegu kõige raskem: raha, igapäevatoimingud, eluase või midagi muud?"
+  },
+  {
+   "run": "follow-up",
+   "scenario": "asks-another-municipality",
+   "turn": 2,
+   "turn_id": "cc69f287-f47f-475b-afef-82c3fcf9367e",
+   "text": "Kas Maardus saab isikliku abistaja teenust?",
+   "verdict": "passed",
+   "checks": 9,
+   "failed": [],
+   "region": "maardu_linn",
+   "scope_state": "question_region",
+   "queries": [
+    "Maardu isikliku abistaja teenuse korraldus"
+   ],
+   "answer_kind": "partial",
+   "clarification": true,
+   "state_rejected": null,
+   "candidates": 36,
+   "selected": [
+    "P3 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 5. Teenuse taotlemine § 5. Teenuse taotlemine Teenuse taotlemiseks esitab taotleja või ",
+    "P4 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 3. Teenuse sisu ja tingimused § 3. Teenuse sisu ja tingimused (1) Isikliku abistaja tee",
+    "P7 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 4. Teenuse saaja § 4. Teenuse saaja (1) Teenust on õigus saada eelkõige sügava liikumis",
+    "P8 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 7. Isikliku abistaja teenuse osutajad § 7. Isikliku abistaja teenuse osutajad Isikliku ",
+    "P9 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 6. Teenuse osutamise otsustamine § 6. Teenuse osutamise otsustamine (1) Teenuse osutami",
+    "P31 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 2. peatükk Kohaliku omavalitsuse üksuse korraldatav abi > 2. jagu Kohaliku omavalitsuse üksuse sotsiaalteenused > 5. jao",
+    "P32 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 2. peatükk Kohaliku omavalitsuse üksuse korraldatav abi > 2. jagu Kohaliku omavalitsuse üksuse sotsiaalteenused > 5. jao"
+   ],
+   "legal_candidates_not_selected": [
+    "P1 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 30 lõike 1 punkti 2, sotsia",
+    "P2 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 2. Teenuse eesmärk § 2. Teenuse eesmärk Teenuse eesmärk on suurendada füüsilist kõrvala",
+    "P5 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 1. Üldsätted § 1. Üldsätted Määrusega sätestatakse isikliku abistaja teenuse (edaspidi ",
+    "P6 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 13. Määruse jõustumine § 13. Määruse jõustumine Määrus jõustub 01.09.2017",
+    "P10 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 10. Teenuse osutamise lõpetamine § 10. Teenuse osutamise lõpetamine (1) Teenuse osutami",
+    "P12 | alates 2026-04-03 | Maardu linn > Sotsiaalteenuste osutamise kord > § 4. Teenuse taotlemine § 4. Teenuse taotlemine (1) Teenuse taotlemiseks esitab taotleja või tema esindaja linna",
+    "P13 | alates 2023-07-01 | Maardu linn > Üldhooldusteenuse osutamise kord > § 3. Teenuse taotlemine ja abivajaduse hindamine § 3. Teenuse taotlemine ja abivajaduse hindamine (1) Teenuse s",
+    "P14 | alates 2020-11-09 | Maardu linn > Koduteenuse osutamise tingimused ja kord > § 4. Koduteenuse osutamise taotlemine § 4. Koduteenuse osutamise taotlemine (1) Koduteenuse osutamiseks",
+    "P16 | alates 2026-04-03 | Maardu linn > Sotsiaalteenuste osutamise kord > § 2. Sotsiaalteenuste liigid § 2. Sotsiaalteenuste liigid (1) Linnavalitsuse poolt osutatavad või korraldatavad ",
+    "P17 | alates 2016-04-09 | Maardu linn > Lastega peredele tugiisikuteenuse osutamise kord > § 5. Teenuse taotlemine ja määramine § 5. Teenuse taotlemine ja määramine (1) Tugiisikuteenust ",
+    "P18 | alates 2026-04-03 | Maardu linn > Sotsiaalteenuste osutamise kord > § 5. Taotluse menetlemine ja abivajaduse hindamine § 5. Taotluse menetlemine ja abivajaduse hindamine (1) Sotsia",
+    "P19 | alates 2020-11-09 | Maardu linn > Koduteenuse osutamise tingimused ja kord > § 3. Koduteenusele õigust omavad isikud § 3. Koduteenusele õigust omavad isikud (1) Koduteenust osutata",
+    "P20 | alates 2016-04-09 | Maardu linn > Lastega peredele tugiisikuteenuse osutamise kord > § 4. Teenuse saajad § 4. Teenuse saajad Tugiisiku teenust on õigus taotleda last kasvataval isi",
+    "P21 | alates 2021-05-07 | Maardu linn > Hoolduse seadmise, hooldaja määramise ning hooldajatoetuse määramise ja maksmise kord > § 4. Hooldusvajaduse ja hooldaja sobivuse hindamine § 4. H",
+    "P22 | alates 2020-11-09 | Maardu linn > Koduteenuse osutamise tingimused ja kord > § 2. Mõisted § 2. Mõisted Käesolevas korras kasutatakse mõisteid alljärgnevas tähenduses: 1) koduteenus",
+    "P27 | alates 2016-04-09 | Maardu linn > Lastega peredele tugiisikuteenuse osutamise kord Määrus kehtestatakse sotsiaalhoolekande seaduse § 14 lõike 1 ja § 23 lõike 1 alusel.",
+    "P30 | alates 2020-11-09 | Maardu linn > Koduteenuse osutamise tingimused ja kord > § 6. Koduteenuse osutamine § 6. Koduteenuse osutamine (1) Koduteenust osutab Maardu Sotsiaalmaja, kui l",
+    "P33 | alates 2026-10-01 | Sotsiaalkaitseminister > Abivahendite loetelu: määruse „Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi and",
+    "P34 | alates 2026-10-01 | Sotsiaalkaitseminister > Abivahendite loetelu: määruse „Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi and",
+    "P35 | alates 2026-10-01 | Sotsiaalkaitseminister > Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi andmed Määrus kehtestatakse",
+    "P36 | alates 2026-10-01 | Sotsiaalkaitseminister > Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi andmed § 47 lõigete 1¹, 3⁴, 5 ja 8"
+   ],
+   "found_legal": [
+    {
+     "title": "Isikliku abistaja teenuse osutamise tingimused ja kord",
+     "rt": "401102026040",
+     "from": "2026-10-04",
+     "to": null
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "rt": "130062026065",
+     "from": "2026-10-01",
+     "to": "2026-11-30"
+    },
+    {
+     "title": "Puuetega inimeste sotsiaaltoetuste seadus",
+     "rt": "130062026020",
+     "from": "2026-10-01",
+     "to": "2027-01-31"
+    }
+   ],
+   "cited": [
+    {
+     "title": "Isikliku abistaja teenuse osutamise tingimused ja kord",
+     "rt": "401102026040",
+     "from": "2026-10-04",
+     "to": null
+    }
+   ],
+   "plan_price_usd": 0.0059,
+   "search_ms": 5040,
+   "total_ms": 21324,
+   "answer": "Jah, Maardus on isikliku abistaja teenus. Maardu korra järgi on seda eelkõige õigus saada täisealisel sügava liikumis- või nägemispuudega inimesel, kelle rahvastikuregistri järgne elukoht on Maardu linn. [S1]\n\nTaotleja või tema esindaja esitab avalduse Maardu Linnavalitsusele. Abivajadust ja selle mahtu hinnatakse kodukülastusel ning linnavalitsus otsustab teenuse andmise või sellest keeldumise 10 tööpäeva jooksul pärast avalduse saamist. Teenust osutab Maardu Sotsiaalmaja. [S2, S4, S5]\n\nKas küsid enda või kellegi teise kohta, ja kas selle inimese rahvastikuregistri järgne elukoht on Maardu linnas?"
+  },
+  {
+   "run": "follow-up",
+   "scenario": "asks-another-municipality",
+   "turn": 3,
+   "turn_id": "aa1126cb-82e2-479d-a3a3-48f6c3bde499",
+   "text": "Ja mis see maksab?",
+   "verdict": "passed",
+   "checks": 4,
+   "failed": [],
+   "region": "maardu_linn",
+   "scope_state": "question_region",
+   "queries": [
+    "Isikliku abistaja teenuse tasu suuruse ja omaosaluse määramine",
+    "Isikliku abistaja teenuse hind Maardu linnas"
+   ],
+   "answer_kind": "partial",
+   "clarification": false,
+   "state_rejected": null,
+   "candidates": 36,
+   "selected": [
+    "P1 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 9. Teenuse eest tasumine § 9. Teenuse eest tasumine (1) Teenuse hinna kehtestab linnava",
+    "P19 | Kuidas hinnata abivajadust ja pakkuda sotsiaalhoolekandelist abi? > Tasu sotsiaalteenuse eest Sotsiaalteenuste eest võib vald või linn võtta tasu (SHS § 16 lg 1"
+   ],
+   "legal_candidates_not_selected": [
+    "P5 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 3. Teenuse sisu ja tingimused § 3. Teenuse sisu ja tingimused (1) Isikliku abistaja tee",
+    "P8 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 1. Üldsätted § 1. Üldsätted Määrusega sätestatakse isikliku abistaja teenuse (edaspidi ",
+    "P10 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 2. Teenuse eesmärk § 2. Teenuse eesmärk Teenuse eesmärk on suurendada füüsilist kõrvala",
+    "P11 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 6. Teenuse osutamise otsustamine § 6. Teenuse osutamise otsustamine (1) Teenuse osutami",
+    "P21 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 30 lõike 1 punkti 2, sotsia",
+    "P22 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 7. Isikliku abistaja teenuse osutajad § 7. Isikliku abistaja teenuse osutajad Isikliku ",
+    "P24 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 4. Teenuse saaja § 4. Teenuse saaja (1) Teenust on õigus saada eelkõige sügava liikumis",
+    "P26 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 5. Teenuse taotlemine § 5. Teenuse taotlemine Teenuse taotlemiseks esitab taotleja või ",
+    "P27 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 13. Määruse jõustumine § 13. Määruse jõustumine Määrus jõustub 01.09.2017",
+    "P31 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 2. peatükk Kohaliku omavalitsuse üksuse korraldatav abi > 2. jagu Kohaliku omavalitsuse üksuse sotsiaalteenused > 5. jao",
+    "P32 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 2. peatükk Kohaliku omavalitsuse üksuse korraldatav abi > 2. jagu Kohaliku omavalitsuse üksuse sotsiaalteenused > 5. jao",
+    "P33 | alates 2026-10-01 | Sotsiaalkaitseminister > Abivahendite loetelu: määruse „Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi and",
+    "P34 | alates 2026-10-01 | Sotsiaalkaitseminister > Abivahendite loetelu: määruse „Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi and",
+    "P35 | alates 2026-10-01 | Sotsiaalkaitseminister > Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi andmed > § 7. Tasu maksmise kohust",
+    "P36 | alates 2026-08-01 | Riigikogu > Riigilõivuseadus > 3. osa RIIGILÕIVUMÄÄRAD > 12. peatükk Sotsiaalministeeriumi valitsemisala toimingud > 1. jagu Ravimiameti toimingud > 4. jaotis M"
+   ],
+   "found_legal": [
+    {
+     "title": "Isikliku abistaja teenuse osutamise tingimused ja kord",
+     "rt": "401102026040",
+     "from": "2026-10-04",
+     "to": null
+    }
+   ],
+   "cited": [
+    {
+     "title": "Isikliku abistaja teenuse osutamise tingimused ja kord",
+     "rt": "401102026040",
+     "from": "2026-10-04",
+     "to": null
+    },
+    {
+     "title": "Isikliku abistaja teenus"
+    }
+   ],
+   "plan_price_usd": 0.00548,
+   "search_ms": 5242,
+   "total_ms": 17097,
+   "answer": "Maardus kehtestab linnavalitsus isikliku abistaja teenuse hinna ja omaosaluse määra ehk selle osa tasust, mille inimene ise maksab. [S1, S40]\n\nMa ei saa siit öelda konkreetset hinda ega omaosaluse summat eurodes."
+  },
+  {
+   "run": "follow-up",
+   "scenario": "asks-another-municipality",
+   "turn": 4,
+   "turn_id": "18f3cc0a-1507-409d-8893-81d828e9d7ca",
+   "text": "Aga millist koduteenust ma ise saan?",
+   "verdict": "passed",
+   "checks": 4,
+   "failed": [],
+   "region": "noo_vald",
+   "scope_state": "person_region",
+   "queries": [
+    "Nõo valla koduteenuse saamise tingimused ja sisu"
+   ],
+   "answer_kind": "partial",
+   "clarification": true,
+   "state_rejected": null,
+   "candidates": 36,
+   "selected": [
+    "P1 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk SOTSIAALTEENUSED > 2. jagu Nõo vallas osutatavad ja korraldatavad sotsiaalteenused > § 12. Kodut",
+    "P32 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 2. peatükk Kohaliku omavalitsuse üksuse korraldatav abi > 2. jagu Kohaliku omavalitsuse üksuse sotsiaalteenused > 1. jao"
+   ],
+   "legal_candidates_not_selected": [
+    "P20 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk SOTSIAALTEENUSED > 1. jagu Teenuste osutamise üldised sätted > § 10. Teenuste maksumus § 10. Tee",
+    "P23 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk SOTSIAALTEENUSED > 1. jagu Teenuste osutamise üldised sätted > § 9. Teenuste loetelu § 9. Teenus",
+    "P27 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 2. peatükk Kohaliku omavalitsuse üksuse korraldatav abi > 2. jagu Kohaliku omavalitsuse üksuse sotsiaalteenused > 1. jao",
+    "P29 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk SOTSIAALTEENUSED > 2. jagu Nõo vallas osutatavad ja korraldatavad sotsiaalteenused > § 13. Välja",
+    "P30 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk SOTSIAALTEENUSED > 2. jagu Nõo vallas osutatavad ja korraldatavad sotsiaalteenused > § 26. Täien",
+    "P31 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 3. jagu Erihoolekandeteenused > 2. jaotis Igapäevaelu toetamise teenus > § 90. Nõuded",
+    "P33 | alates 2026-10-01 | Sotsiaalkaitseminister > Abivahendite loetelu: määruse „Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi and",
+    "P34 | alates 2026-10-01 | Sotsiaalkaitseminister > Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi andmed > § 3. Abivahendi kaart § 3",
+    "P35 | alates 2026-10-01 | Sotsiaalkaitseminister > Abivahendite loetelu: määruse „Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi and",
+    "P36 | alates 2026-10-01 | Sotsiaalkaitseminister > Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi andmed > § 1. Reguleerimisala § 1."
+   ],
+   "found_legal": [
+    {
+     "title": "Sotsiaalhoolekandelise abi andmise kord",
+     "rt": "427052026006",
+     "from": "2026-06-01",
+     "to": null
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "rt": "130062026065",
+     "from": "2026-10-01",
+     "to": "2026-11-30"
+    }
+   ],
+   "cited": [
+    {
+     "title": "Sotsiaalhoolekandelise abi andmise kord",
+     "rt": "427052026006",
+     "from": "2026-06-01",
+     "to": null
+    },
+    {
+     "title": "Koduteenus"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "rt": "130062026065",
+     "from": "2026-10-01",
+     "to": "2026-11-30"
+    }
+   ],
+   "plan_price_usd": 0.00636,
+   "search_ms": 4523,
+   "total_ms": 20206,
+   "answer": "Kui oled täisealine eakas või puudega inimene ja vajad kodus kõrvalabi, võib sulle sobida Nõo valla koduteenus. See aitab toimingutes, mida sa terviseseisundi, tegutsemisvõime või elukeskkonna tõttu üksi teha ei saa, näiteks kütmisel, toiduvalmistamisel, kodu ja riiete korrastamisel ning poes või asjaajamisel käimisel. [S1, S33]\n\nPöördu Nõo valla sotsiaalosakonna poole. Pärast taotlust või sinu abivajadusest teada saamist tehakse kodukülastus ja hinnatakse, millist abi vajad. Kui teenus määratakse, lepitakse lepingus ja hoolduskavas kokku abi sisu, sagedus ja tasu. [S1, S2, S33]\n\nSinu kirjeldusest ei selgu, kas vastad teenuse sihtrühma tingimustele ega milliseid toiminguid ja kui sageli sa abi vajaksid. Seda hinnatakse eraldi.\n\nKas oled täisealine ja millistes kodustes või igapäevatoimingutes vajad kõige rohkem kõrvalabi?"
+  }
+ ],
+ "plan": "m4-sotsiaalai-corpus-chat-20261004-163628-33f76f7f-59a2-45d5-9c33-bb477012582f-r19b0031fd822221dc7ab4bc2ce972fbee8271730",
+ "generation": "search_generation_f3c7ed7a72ee8d40d3b7711442bd349763a77e46e6bce31618a594f20cc29b3e",
+ "model": "gpt-6-luna",
+ "reasoning": "medium",
+ "source": "the evaluator's report on the server (rag-v2-work/eval-files/follow-up-2026-10-04/follow-up/conversation-eval.json)",
+ "masking": "none needed: the answers name institutions only (scanned for addresses and phone numbers)",
+ "notes": {
+  "rule": "ADR-081's rule did not act in this run: the plan of turn 3 wrote two queries and the second names Maardu (\"Isikliku abistaja teenuse hind Maardu linnas\"), so the rule of ADR-074 alone kept the search in Maardu. The rule is shown by local tests with the plan of the run before (one query, no municipality).",
+  "attempts": "one run. \"Passed\" is the catalogue's checks; the answers were read, not compared with the source texts."
+ }
+}
