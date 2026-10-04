@@ -146,12 +146,36 @@ Omavalitsuste info muutub (töötajad, teenused, hinnakirjad) ja platvorm peab s
 - **Kinnitamise reegel tuleb otsustada enne ühendamist.** Võimalused: operaatori ülevaatus; sama tulemus kahel järjestikusel lugemisel; ainult lisamine ja kinnitamine automaatselt, muutmine ja eemaldamine ülevaatusega.
 - **Sama kehtib teenuste ja hinnakirjade kohta.** Seal on korjamine raskem kui kontaktidel (vaba tekst, PDF-id) ja eksimise hind suurem; see on eraldi töö, mida see muudatus ei alusta.
 
-## Tegemata, vajab omaniku otsust
+## Päris jooks ja omaniku otsused (04.10.2026 õhtu)
 
-1. ~~Tuvastaja ühendamine iganädalase kontrolliga.~~ Tehtud 04.10, vt „Kontroll kasutab tuvastajat“.
-2. **Lehe aadressi leidmine.** Kui registris olev aadress ei tööta, proovida avalehelt viidatud kontaktilehte. Andmebaasis on omavalitsuse koduleht kirjas ainult 11 omavalitsusel; ülejäänutel saab selle registri lehe aadressist.
-3. **Registri uuendamine tuvastaja järgi:** muutunud kanalid, uued inimesed, lahkunud inimesed. See on tootmisandmebaasi muutmine ja käib ülaltoodud põhimõtte järgi ettepanekutena, mitte ülekirjutamisena.
-4. **Vestluse rada.** Vestlus nõuab praegu ka samanimelist kontakti korpuse pakettides (ADR-045); kinnitatud registririda ilma paketikontaktita vestlusse ei jõua.
+- **Päris jooks kell 11.47** (kontroll käivitati pärast kasutuselevõttu ühe korra käsitsi): 858 kinnitatud rida, 136 uut ja 4 vähem, täpselt nagu kuivjooksus. Vestluse 376 avaldatud kontaktist oli lubatud 369.
+- **Omanik kontrollis nimekirja** inimestest, kelle nime lehel enam pole (166 rida, saadetud failina, mitte repos): „sinu failis olevaid inimesi ma ei leia jah enam, nii et õige“. Paide 17 ja Mustvee 12 rida on erand: registris olev aadress viib vanale `kovtp.ee` lehele ja inimesed võivad uuel lehel alles olla.
+- **Kaks numbrit parandati registris** omaniku loal („jah kõigele“): üks Nõo ja üks Viljandi valla rida, kus registris oli lehel järgmise inimese telefon. Omanik kontrollis mõlemad lehed ise üle.
+  - Muudatus järgis registri enda reeglit muutunud kontakti kohta (`kovContactSync.js`): revisjon +1 ja `checkedAt` tühjaks; vana ja uus väärtus on auditikirjes `SERVICE_MAP_CONTACT_CORRECTION`.
+  - Enne kirjutamist kontrollis skript, et registris on oodatud vana number ja et leht näitab inimese enda kirjel uut numbrit.
+  - Kontroll käivitati uuesti: **860 kinnitatud rida.**
+  - Mõlemad read on `LEGACY_KOV_CONTACT`, mida failisünkroon ei oma, nii et parandust ei kirjuta miski üle.
+- **Leid: vestlus andis neid kaht kontakti vale numbriga 28.09–04.10.** Mõlemad olid vestluses avaldatud ([ADR-045](adr-045-contact-binding-content.md)) registrist võetud vale telefoniga. Alates uuest kontrollist vestlus neid ei anna: enne ei kinnitunud rida, pärast parandust ei klapi seose revisjon. Tagasi tulevad need uue ekspordi ja indeksiga.
+
+## Järgmine samm: ettepanekute kiht (omanik 04.10: „jah kõigele“)
+
+Omanik kiitis heaks nii ehitamise kui reegli: **muudatus jõustub kahe järjestikuse sama tulemusega lugemise järel või omaniku heakskiidul; automaatselt ei kustutata midagi.** Kehtib ka põhimõte ülal: korjatud info on ettepanek, vana väärtus jääb alles, kuni uus on kinnitatud.
+
+Mida kiht peab tegema:
+
+1. **Kolinud lehe aadress** (110 rida 12 lehel, lisaks Paide 17 ja Mustvee 12 vanal `kovtp.ee` lehel).
+   - Kui registris olev aadress ei vasta või leht ei näita ühtki oma inimest, otsida praegune kontaktileht: avalehelt viidatud `/kontakt` töötas 04.10 üheksal saidil kümnest; Paide praegune leht on `paide.ee/linn-uudised-ja-kontakt/kontakt-ja-uudised/kontakt/`, Mustvee oma `mustvee.ee/juhtimine/kontaktid/`; Raasiku annab kontrolli päringule 403.
+   - Uus aadress on ettepanek rea `sourceUrl` kohta. Tõend: mitu selle lehe registririda leidub uuel lehel nime järgi.
+2. **Muutunud telefon, e-post või amet** (47 rida erineva kanaliga; 22 rida, mille ametinimetust leht teisiti sõnastab, on auditikirjes `roleDiffersContactIds`).
+3. **Uued inimesed:** lehel olevad sotsiaalvaldkonna töötajad, keda registris pole (04.10 mõõtmises 327, lisaks kolinud lehtede omad). Uus rida vajab registri kohustuslikke välju ja päritolu, mida värskusreegel lubab (`SERVICE_MAP_VERIFIABLE_CONTACT_NAMESPACES`); selle faili muutmine muudab vestluse plaani räsi.
+4. **Lahkunud inimesed** jäävad nagu praegu: rida ei kinnitu ja on peidus; ei kustutata.
+
+Mida tuleb enne ehitamist otsustada või läbi mõelda:
+
+- **Kus ettepanekud ja lugemiste ajalugu elavad.** Kontrolli enda seis on auditikirje metas; sama koht ei vaja andmebaasi migratsiooni. Eraldi tabel on puhtam, aga on skeemimuudatus tootmises.
+- **Esimene partii on suur** (suurusjärgus 500–650 ettepanekut) ja sündis tuvastaja esimesest lugemisest. Korduslugemine ei kaitse tuvastaja enda vea eest, sest tuvastaja annab samal lehel sama tulemuse. Esimene partii tuleks anda omanikule failina üle vaadata, nagu „lehel enam pole“ nimekiri; kahe lugemise reegel sobib edasiste väikeste nädalamuutuste jaoks.
+- **Registrisse kirjutamine:** muudetud real revisjon +1 ja `checkedAt` tühjaks, iga muudatus auditikirjega (vana ja uus väärtus), nagu 04.10 kaks parandust. Muudetud rea vestluse seos lõpeb (ADR-045), seega vajab vestlus pärast partiid uut eksporti ja indeksit; see on tasuline samm ja vajab eraldi luba.
+- **Tuvastaja teadaolevad piirid** on jaotises „Piirid“; 12 rida, mille nimi on lehe tekstis, aga nimekirjas mitte, on läbi vaatamata.
 
 ## Kus on andmed
 
