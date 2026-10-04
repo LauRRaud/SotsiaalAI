@@ -92,6 +92,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**04.10: päris vestluse küsimustik** ([raport](../audits/rag-v2-live-questionnaire-2026-10-04.md), [tõendid](../audits/evidence/live-questionnaire-2026-10-04.json); Codexi ülevaatus tehtud).
+- **Tulemus:** 32 pööret, 25 küsimusejuhtu; esimeses katses 17 head, 3 osalist, 5 ebaõnnestunut. Kulu plaanihindades 0,1656 USD. Täiskirjed on serveris (`rag-v2-work/eval-files/live-questionnaire-2026-10-04/`).
+- **Pöördekirjetest loetud põhjused:** teise valla küsimus jääb inimese elukoha valda (plaan tunneb valla ära, kataloog ei kasuta); pikas vestluses jääb koht plaanis sidumata; plaan otsib juba vastatud küsimusi uuesti; aastata kuupäevast ei teki perioodi; toimetulekupiiri summa on valdade kirjetes olemas, aga ei jõua kindlalt vastusesse; puuetega inimeste sotsiaaltoetuste seadust indeksis pole.
+- **Järgmine arendus (Codexi järjekord, alustamata):** eristada küsimuse allikapiirkond inimese elukohast, kohalike regressioonikontrollidega; tasuline jooks ei ole alustamise eeltingimus.
+
 **04.10 õhtu: omavalitsuste kontaktid, ettepanekute kiht ootab omaniku ülevaatust** ([ADR-073](../rag-v2/adr-073-kov-staff-from-official-page.md), jaotis „Ettepanekute kiht“).
 - **Seis:** iganädalane kontaktikontroll kasutab töötajate tuvastajat (PR-id #336–#338); avalik kaart näitab 860 kinnitatud kontakti, registris on 1197 rida. Ettepanekute kiht on ehitatud (`lib/admin/rag/contactRegistry/proposals.js`, `proposalService.js`, `npm run service-map:contacts:proposals`): loeb lehti ja pakub, **registrisse pole midagi kirjutatud**.
 - **Esimene partii on omanikul üle vaadata** (fail saadetud 04.10; nimekiri serveris `rag-v2-work/eval-files/contact-proposals-2026-10-04.json`): 355 ettepanekut, neist 278 ilma märketa (107 kolinud lehe rida, 30 muutunud telefoni või e-posti, 22 ametit, 119 uut inimest) ja 77 omaniku otsust ootavat. Kõik 149 lehte said loetud või leiti uus aadress (14 kolinud lehte).
