@@ -1,0 +1,247 @@
+{
+ "schema": "sotsiaalai/conversation-run-evidence-1",
+ "run": "ADR-074, the follow-up conversation of the question-region catalogue once on the live plan after the deploy of #346; permitted by the owner on 04.10.2026 (4 turns, about 0.025 USD, stop before 0.04 USD)",
+ "measured_commit": "ae7703fd9db60dcb626f89538318e4d202e7dd31",
+ "catalogue": "tests/evaluation/dialogue/scenarios-question-region-1.json at that commit, --only asks-another-municipality, --auto-modes",
+ "started_at": "2026-10-04T12:22:50.714Z",
+ "finished_at": "2026-10-04T12:24:20.752Z",
+ "plan": "m4-sotsiaalai-corpus-chat-20261004-122141-d5704e17-1adf-423b-9d73-7332d2bbc520-rae7703fd9db60dcb626f89538318e4d202e7dd31",
+ "generation": "search_generation_df8f5537e0a5ac132e27cbcef10a0267e98efdb9b05ec8d3590392963527664e",
+ "model": "gpt-6-luna",
+ "reasoning": "medium",
+ "plan_price_usd": 0.0218,
+ "summary": {
+  "passed": 3,
+  "search": 0,
+  "answer": 1,
+  "state": 0
+ },
+ "states": {
+  "continuing": 3,
+  "rejected": 0
+ },
+ "stopped": null,
+ "source": "the evaluator's report on the server (rag-v2-work/eval-files/question-region-followup-20261004/conversation-eval.json)",
+ "masking": "none needed: the answers name institutions only",
+ "notes": {
+  "turn_2": "the one failed check is clarification=false: the answer gave Maardu's service and conditions from Maardu's regulation and then asked whether the service is for the user, who lives in Nõo vald, or for someone else. In the first run (a88dfe78) the same turn asked nothing. The catalogue's check was changed after this run; the verdict here is the one the run gave.",
+  "turn_3": "the follow-up was searched in Maardu. This time the plan wrote no query about the user's own municipality, so the correction for that case (#345, #346) was not exercised by this run.",
+  "planned_places": "in turns 3 and 4 the plan named the first message's home again (turn 1); the server leaves a place of a message the state has read aside."
+ },
+ "turns": [
+  {
+   "scenario": "asks-another-municipality",
+   "turn": 1,
+   "turn_id": "63729fec-8b5d-488e-85bb-857e5b7a09ba",
+   "text": "Elan Nõo vallas ja mul on raske toime tulla. Kust ma abi saan?",
+   "verdict": "passed",
+   "checks": 3,
+   "failed": [],
+   "region": "noo_vald",
+   "scope_state": "person_mentioned_region",
+   "plan_person": "user",
+   "person_regions": {
+    "user": "noo_vald"
+   },
+   "planned_places": [
+    {
+     "name": "Nõo vald",
+     "turn": 1,
+     "quote": "Elan Nõo vallas",
+     "person": "user",
+     "relation": "lives"
+    }
+   ],
+   "places": [
+    {
+     "turn": 1,
+     "person": "user",
+     "region": "noo_vald",
+     "relation": "lives"
+    }
+   ],
+   "queries": [
+    "Nõo vald sotsiaalabi sotsiaaltöötaja abi saamine",
+    "Nõo vald toimetulekuraskustes inimese toetamine sotsiaalteenused"
+   ],
+   "answer_kind": "partial",
+   "clarification": true,
+   "state_rejected": null,
+   "cited": [
+    "Sotsiaalhoolekandelise abi andmise kord",
+    "Toimetulekutoetus"
+   ],
+   "rerank": {
+    "candidates": 36,
+    "selected": [
+     "Sotsiaalhoolekandelise abi andmise kord",
+     "Sotsiaalhoolekandelise abi andmise kord",
+     "Sotsiaalhoolekandelise abi andmise kord",
+     "Sotsiaalhoolekandelise abi andmise kord",
+     "Sotsiaalhoolekandelise abi andmise kord",
+     "Sotsiaalhoolekandelise abi andmise kord"
+    ]
+   },
+   "plan_price_usd": 0.00523,
+   "total_ms": 24559,
+   "answer": "Pöördu Nõo vallavalitsuse poole ja kirjelda, milles abi vajad. Kui vallavalitsus saab sinu abivajadusest teada, peab ta seda hindama ning vajaduse korral abi tagama. Taotluse koostamisel ja esitamise viisi valimisel peab vallavalitsus sind aitama. [S1, S2]\n\nKui raskus on rahaline, küsi toimetulekutoetuse kohta. See on ajutine abi esmavajaduste katmiseks ning arvestuses võetakse arvesse sissetulekut, eluasemekulusid ja toimetulekupiiri. 2026. aastal on toimetulekupiir esimesele pereliikmele 220 eurot, alaealisele 264 eurot ning teisele ja järgmisele täisealisele 176 eurot. [S21]\n\nKui oled sattunud ajutisse raskesse majanduslikku olukorda, küsi ka selle leevendamiseks mõeldud ühekordse toetuse kohta. See on mõeldud hädavajalike sotsiaalsete ja majanduslike kulude katmiseks. [S4]\n\nKas sul on praegu kõige rohkem raskusi rahaga, eluasemega või igapäevaste toimingutega?"
+  },
+  {
+   "scenario": "asks-another-municipality",
+   "turn": 2,
+   "turn_id": "4a51d23b-9d2e-420a-b9a4-29baaf07813c",
+   "text": "Kas Maardus saab isikliku abistaja teenust?",
+   "verdict": "answer",
+   "checks": 8,
+   "failed": [
+    {
+     "key": "clarification",
+     "detail": "asks for a circumstance: true"
+    }
+   ],
+   "region": "maardu_linn",
+   "scope_state": "question_region",
+   "plan_person": "user",
+   "person_regions": {
+    "user": "noo_vald"
+   },
+   "planned_places": [
+    {
+     "name": "Maardu linn",
+     "turn": 2,
+     "quote": "Kas Maardus saab isikliku abistaja teenust?",
+     "person": "user",
+     "relation": "other"
+    }
+   ],
+   "places": [
+    {
+     "turn": 2,
+     "person": "user",
+     "region": "maardu_linn",
+     "relation": "other"
+    }
+   ],
+   "queries": [
+    "Maardu isikliku abistaja teenuse tingimused taotlemine",
+    "Maardu isikliku abistaja teenuse korraldamine määrus"
+   ],
+   "answer_kind": "partial",
+   "clarification": true,
+   "state_rejected": null,
+   "cited": [
+    "Isikliku abistaja teenuse osutamise tingimused ja kord"
+   ],
+   "rerank": {
+    "candidates": 36,
+    "selected": [
+     "Isikliku abistaja teenuse osutamise tingimused ja kord",
+     "Isikliku abistaja teenuse osutamise tingimused ja kord",
+     "Isikliku abistaja teenuse osutamise tingimused ja kord",
+     "Isikliku abistaja teenuse osutamise tingimused ja kord",
+     "Isikliku abistaja teenuse osutamise tingimused ja kord"
+    ]
+   },
+   "plan_price_usd": 0.00477,
+   "total_ms": 22583,
+   "answer": "Jah, Maardu linnas osutatakse isikliku abistaja teenust. Seda on õigus saada eelkõige täisealisel sügava liikumis- või nägemispuudega inimesel, kelle rahvastikuregistrijärgne elukoht on Maardu linn. Teenus aitab igapäevatoimingutes, kus inimene vajab puude tõttu füüsilist kõrvalabi. [S1, S2]\n\nTaotluse saab esitada Maardu Linnavalitsusele. Linn hindab abivajadust kodukülastusel ja teeb teenuse osutamise või sellest keeldumise otsuse 10 tööpäeva jooksul pärast taotluse saamist. [S4, S5]\n\nSa ütlesid varem, et elad Nõo vallas. Ma ei saa aru, kas küsid teenust endale või kellelegi teisele ega kas taotleja rahvastikuregistrijärgne elukoht on Maardu linnas.\n\nKas küsid teenust endale või kellelegi teisele, ja kas selle inimese rahvastikuregistrijärgne elukoht on Maardu linnas?"
+  },
+  {
+   "scenario": "asks-another-municipality",
+   "turn": 3,
+   "turn_id": "a9aba474-2fcd-4692-afba-4c7359581281",
+   "text": "Ja mis see maksab?",
+   "verdict": "passed",
+   "checks": 4,
+   "failed": [],
+   "region": "maardu_linn",
+   "scope_state": "question_region",
+   "plan_person": "user",
+   "person_regions": {
+    "user": "noo_vald"
+   },
+   "planned_places": [
+    {
+     "name": "Nõo vald",
+     "turn": 1,
+     "quote": "Elan Nõo vallas",
+     "person": "user",
+     "relation": "lives"
+    }
+   ],
+   "places": [],
+   "queries": [
+    "Maardu isikliku abistaja teenuse korraldus",
+    "Maardu isikliku abistaja teenuse hind omaosalus",
+    "isikliku abistaja teenuse omaosaluse määramine erandid"
+   ],
+   "answer_kind": "partial",
+   "clarification": false,
+   "state_rejected": null,
+   "cited": [
+    "Isikliku abistaja teenuse osutamise tingimused ja kord",
+    "Isikliku abistaja teenus"
+   ],
+   "rerank": {
+    "candidates": 36,
+    "selected": [
+     "Isikliku abistaja teenuse osutamise tingimused ja kord",
+     "Maardu linna eelarvest sotsiaaltoetuste maksmise kord",
+     "Isikliku abistaja teenuse reguleerimine kohaliku omavalitsuse õigusaktides"
+    ]
+   },
+   "plan_price_usd": 0.00523,
+   "total_ms": 18183,
+   "answer": "Maardu linnavalitsus kehtestab isikliku abistaja teenuse hinna ja inimese omaosaluse määra korraldusega. [S1, S41]\n\nMul ei ole siin konkreetset eurohinda ega omaosaluse määra, seega ei saa öelda, kui palju inimene maksab."
+  },
+  {
+   "scenario": "asks-another-municipality",
+   "turn": 4,
+   "turn_id": "250aa8a6-00ab-47c2-9a03-772c734d9f79",
+   "text": "Aga millist koduteenust ma ise saan?",
+   "verdict": "passed",
+   "checks": 4,
+   "failed": [],
+   "region": "noo_vald",
+   "scope_state": "person_region",
+   "plan_person": "user",
+   "person_regions": {
+    "user": "noo_vald"
+   },
+   "planned_places": [
+    {
+     "name": "Nõo vald",
+     "turn": 1,
+     "quote": "Elan Nõo vallas",
+     "person": "user",
+     "relation": "lives"
+    }
+   ],
+   "places": [],
+   "queries": [
+    "Nõo valla koduteenuse sisu ja osutamise tingimused",
+    "koduteenuse vajaduse hindamine ja teenuse määramine"
+   ],
+   "answer_kind": "partial",
+   "clarification": true,
+   "state_rejected": null,
+   "cited": [
+    "Sotsiaalhoolekandelise abi andmise kord",
+    "Koduteenus"
+   ],
+   "rerank": {
+    "candidates": 36,
+    "selected": [
+     "Sotsiaalhoolekandelise abi andmise kord",
+     "Sotsiaalhoolekande seadus",
+     "Koduteenuste korraldus",
+     "Koduteenuste korraldus",
+     "Koduteenuste korraldus"
+    ]
+   },
+   "plan_price_usd": 0.00659,
+   "total_ms": 23469,
+   "answer": "Kui oled täisealine ja sul on terviseseisundi, tegutsemisvõime või koduse keskkonna tõttu raske vajalikke igapäevatoiminguid üksi teha, võib Nõo valla koduteenus sulle sobida. Abi võib hõlmata näiteks kütmist, toidu valmistamist, kodu ja riiete korrastamist, toidu või majapidamistarvete ostmist ning asjaajamist väljaspool kodu. [S1, S36]\n\nPärast taotlust või seda, kui vallavalitsus saab sinu abivajadusest teada, hindab sotsiaalosakonna töötaja kodukülastusel sinu toimetulekut ja koduteenuse vajadust. Pöördu Nõo valla sotsiaalosakonda. Hinnangu põhjal lepitakse kokku, milles ja kui sageli abi osutatakse, kui kaua teenus kestab ning mis on selle tasu. [S1, S36]\n\nMa ei saa praeguse info põhjal öelda, millised konkreetsed toimingud sinu teenuse hulka määratakse või kas teenus sulle määratakse. Seda hinnatakse sinu olukorra põhjal.\n\nMillistes kodustes toimingutes on sul kõige raskem üksi toime tulla?"
+  }
+ ]
+}

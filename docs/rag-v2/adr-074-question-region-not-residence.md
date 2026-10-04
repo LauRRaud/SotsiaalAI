@@ -6,7 +6,9 @@
 
 Muudatus on serveri otsustusloogikas; ühtegi mudeli juhist ei muudetud. #344 läks tootmisse mõõtmata, kohalike testidega.
 
-**Codexi ülevaatus pärast #345 (04.10)** leidis järelküsimuse otsuses veel kaks viga; need on parandatud jaotises „Parandus pärast Codexi teist ülevaatust“, kohalike testidega.
+**Codexi ülevaatus pärast #345 (04.10)** leidis järelküsimuse otsuses veel kaks viga; need on parandatud jaotises „Parandus pärast Codexi teist ülevaatust“ (#346).
+
+**Teine mõõtmine pärast #346, omaniku loal** (jaotis „Teine mõõtmine“): 4 pööret, 3 läbis, 0,0218 USD. Järelküsimus otsiti nüüd küsitud vallast. Maardu küsimuse vastus andis Maardu teenuse ja tingimused ning küsis lisaks, kellele teenust küsitakse; kataloogi kontroll „ei küsi tagasi“ luges selle veaks ja on pärast jooksu täpsustatud.
 
 **Codexi ülevaatus enne liitmist (04.10)** leidis esimeses versioonis kaks viga: järelküsimus kaotas küsitud valla (F1) ja töökoht võitis elukoha, kui plaani päring nimetas ainult töökoha valda (F2). Mõlemad on siin parandatud; reegli teine tingimus ja järelküsimuse jätkamine tulid sellest ülevaatusest.
 
@@ -181,18 +183,41 @@ Codex taasesitas #345 koodil kaks viga, mõlemad järelküsimuse otsuses.
 
 Kontrollitud Codexi sondide sisenditega kohalikult (`tests/rag-v2-question-region.test.mjs`, 13 testi; andmebaasitestis mõlemad juhud läbi päris teenuse). Mudeliga ei jooksutatud. Codexi sond kutsub `searchScope`-i otse ja annab kaasa ainult `askedRegions`; nüüd tuleb anda ka `askedPerson`, nagu teenus teeb.
 
+## Teine mõõtmine (04.10.2026, pärast #346)
+
+Omaniku loal üks jooks: kataloogi esimene vestlus (4 pööret, `--only asks-another-municipality`, `--auto-modes`) töötaval plaanil pärast #346 avaldamist (väljalase `ae7703fd`, plaan uuendatud). **3 pööret 4-st läbis, kulu plaanihindades 0,0218 USD** (luba: umbes 0,025, peatus enne 0,04). Tõendid: [evidence/question-region-followup-measured-2026-10-04.json](../audits/evidence/question-region-followup-measured-2026-10-04.json). Vastused on loetud tervikuna.
+
+| Pööre | Plaani päringud | Otsingu piirkond | Elukoht olekus | Tulemus |
+|---|---|---|---|---|
+| Elan Nõo vallas … Kust ma abi saan? | Nõost | Nõo | Nõo | läbis |
+| Kas Maardus saab isikliku abistaja teenust? | kaks päringut Maardust | Maardu (`question_region`) | Nõo | **ei läbinud kontrolli „ei küsi tagasi“**: vastus andis Maardu teenuse, tingimused ja taotlemise ning küsis siis, kas teenust küsitakse endale või kellelegi teisele |
+| **Ja mis see maksab?** | kolm päringut, kaks Maardust, kolmas vallata | **Maardu** (`question_region`, jätk) | Nõo | **läbis**: Maardu linnavalitsus kehtestab hinna ja omaosaluse korraldusega; konkreetset summat allikates polnud ja vastus ütles seda |
+| Aga millist koduteenust ma ise saan? | Nõost | Nõo | Nõo | läbis |
+
+**Mida jooks näitas**
+
+- **Järelküsimus jätkas küsitud valda** ja vastas Maardu allikatest. Esimeses jooksus läks sama pööre Nõosse.
+- **Mõõtmisjärgseid parandusi see jooks ei proovinud.** Plaan ei kirjutanud seekord päringut kasutaja enda valla kohta, nii et jätk oleks toiminud ka #344 reegliga. Päring varasema oma palve kohta (#345), esimeses isikus järelküsimus ja teise inimese palve (#346) on endiselt ainult kohalike testidega näidatud.
+- **Maardu vastus küsis tagasi, aga mitte nii nagu 04.10.** Siis sai kasutaja Nõo valla info ja küsimuse; nüüd sai ta Maardu teenuse kirjelduse Maardu korrast ja seejärel küsimuse, kellele teenust soovitakse („Sa ütlesid varem, et elad Nõo vallas“). Vastus ei teinud teenusest kasutaja õigust. Esimeses jooksus sama pööre tagasi ei küsinud: kaks jooksu, kaks eri vastust.
+- **Kataloogi kontroll oli liiga lai.** `clarification: false` oli kirjutatud 04.10 vea vastu (küsimus küsitud valla info asemel). Vastus, mis annab info ja küsib korra järgi otsustavat asjaolu, ei ole see viga. Kontroll on pärast jooksu asendatud mustriga, mis nimetab viga ennast („kohalik info … Nõo“); jooksu tulemus jääb kirja nii, nagu jooks selle andis (3/4). Mõlemad vastused on testis sõna-sõnalt.
+- Olek: ühtki mudeli olekut ei lükatud tagasi. Plaan nimetas pööretes 3 ja 4 jälle esimese sõnumi elukohta; server jättis selle kõrvale.
+
+Kaks jooksu kokku: 12 pööret, 0,0694 USD plaanihindades.
+
 ## Mis on mõõdetud ja mis mitte
 
 | Väide | Alus |
 |---|---|
 | Q3 ja Q5 otsisid elukoha vallast, kuigi plaan nimetas küsitud valda | 04.10 pöördekirjed |
 | Q6 kustutas kasutaja elukoha | 04.10 pöördekirje (`dialogueState`) |
-| Teise valla küsimus otsitakse küsitud vallast, elukoht jääb, vastus ei küsi tagasi | **mõõdetud**, kaks pööret, üks jooks |
+| Teise valla küsimus otsitakse küsitud vallast, elukoht jääb | **mõõdetud**, kolm pööret kahes jooksus |
+| Vastus ei küsi tagasi | **mõõdetud**: kahes pöördes ei küsinud, ühes küsis pärast vastust, kellele teenust soovitakse |
 | Töökoha mainimisel jääb otsing elukoha valda | **mõõdetud**, üks pööre; plaani päringud olid elukoha vallast |
 | Inimese enda palve pärast teise valla küsimust läheb elukoha juurde | **mõõdetud**, üks pööre |
-| Järelküsimus jätkab küsitud valda | mõõdetud reegliga **ei jätkanud**; parandatud reegel (kaks parandust pärast mõõtmist) ainult kohalike testidega |
+| Järelküsimus jätkab küsitud valda | **mõõdetud** kaks korda: esimeses jooksus ei jätkanud (plaan kirjutas ka oma valla päringu), teises jätkas (plaan ei kirjutanud) |
+| Järelküsimus jätkab ka siis, kui plaan kirjutab päringu varasema oma palve kohta; esimeses isikus järelküsimus | kohalikud testid (mõõdetud plaani ja Codexi sondide sisenditega) |
 | Teise inimese palve ei jätka eelmise inimese küsitud valda | kohalikud testid |
 | Kaks valda, teine inimene küsitud vallaga, kohaseoseta mainimine (Q6/Q7 kuju) | kohalikud testid |
 | Kui sageli kohaseos serverini ei jõua | mõõtmata (04.10 küsimustikus kahel neljast; selles jooksus mitte ühelgi kaheksast) |
 
-Üks jooks ei erista reegli mõju mudeli kõikumisest.
+Kaks jooksu ei erista reegli mõju mudeli kõikumisest; sama küsimus sai neis kaks eri vastust.

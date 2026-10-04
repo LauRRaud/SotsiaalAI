@@ -5,8 +5,13 @@
   "region": "the municipal scope of the turn (the catalogue and the knowledge lane's municipal texts): the asked municipality in a question about another one and in its follow-up, the residence otherwise",
   "person_regions / state_kept": "the saved dialogue state: each person's own municipality is unchanged by a question about another municipality, and the model's new state was not rejected",
   "evidence": "search: a source of the asked municipality is among the found sources",
-  "must / must_not / clarification": "answer: it speaks of the asked service, does not ask back which municipality is meant, and does not turn the asked municipality's service into the user's own entitlement; read the whole answer as well, a pattern is a coarse check"
+  "must / must_not / clarification": "answer: it speaks of the asked service, does not turn the asked municipality's service into the user's own entitlement and does not say that its local information is about the municipality of residence; read the whole answer as well, a pattern is a coarse check"
  },
+ "history": [
+  "04.10.2026, first run (commit a88dfe78, #344): the catalogue as written before any run, 8 turns: 7 passed, 0.0476 USD. The follow-up (\"Ja mis see maksab?\") failed its region check (docs/audits/evidence/question-region-measured-2026-10-04.json).",
+  "04.10.2026, second run (commit ae7703fd, #346): the first conversation only, 4 turns: 3 passed, 0.0218 USD. The follow-up passed. The question about Maardu failed clarification=false: its answer gave Maardu's service and conditions and then asked whether the service is for the user, who lives in Nõo vald, or for someone else (docs/audits/evidence/question-region-followup-measured-2026-10-04.json).",
+  "04.10.2026, after the second run: clarification=false was taken off that turn. It was written against the fault of 04.10 (a question back instead of the asked municipality's information); an answer that gives the information and then asks for a circumstance the regulation makes decisive is not that fault. In its place must_not names the fault itself. tests/rag-v2-question-region.test.mjs keeps both answers: the one of the second run passes the changed checks, the one of 04.10 does not. No run has been made with the changed check."
+ ],
  "scenarios": [
   {
    "id": "asks-another-municipality",
@@ -39,11 +44,11 @@
        "isikliku abistaja"
       ],
       "must_not": [
-       "(sul|sinul|teil) on õigus (seda|sellele|maardu|teenus)"
-      ],
-      "clarification": false
+       "(sul|sinul|teil) on õigus (seda|sellele|maardu|teenus)",
+       "kohalik (info|teenusekirje)[^.]*Nõo"
+      ]
      },
-     "note": "04.10 (Q5): the catalogue was Nõo vald's and the answer asked back (\"Siin on kohalik info Nõo valla kohta\"). As a first message (R5) the answer came from Maardu's regulation and gave the condition of registered residence in Maardu linn."
+     "note": "04.10 (Q5): the catalogue was Nõo vald's and the answer asked back (\"Siin on kohalik info Nõo valla kohta\"). As a first message (R5) the answer came from Maardu's regulation and gave the condition of registered residence in Maardu linn. must_not: the answer does not make the service the user's entitlement and does not say its local information is about the residence. A question back about whom the service is for is allowed (see history)."
     },
     {
      "mode": "same",
