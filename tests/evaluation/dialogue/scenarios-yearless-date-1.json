@@ -6,7 +6,9 @@
   "evidence": "search: a passage of the municipality's regulation is among the found sources. Both versions share the title; which version was found is read from the report (observed.found and observed.cited hold the document ids: the version in force until 05.10.2026 is document_75ca1a9e…, the one from 06.10.2026 is document_2fde9fdc…)",
   "cited / must": "answer: it has a source block that cites the regulation and names at least one thing the version from 06.10.2026 really changes (the word \"spetsialist\" for \"sotsiaaltöötaja\", applications within three months, a disabled child from 18 months, care set for up to five years, the low-income household); read the whole answer as well, a pattern is a coarse check"
  },
- "history": [],
+ "history": [
+  "04.10.2026, first run (commit a9f88988, after #348): the catalogue as written before any run, 1 turn: passed, 0.0052 USD. The record holds the period 2026-10-06; the rerank chose six passages of the version in force from 06.10.2026 and none of the earlier one, and the answer cites the new version and says it cannot compare the wordings (docs/audits/evidence/yearless-date-measured-2026-10-04.json)."
+ ],
  "scenarios": [
   {
    "id": "yearless-date-first-message",

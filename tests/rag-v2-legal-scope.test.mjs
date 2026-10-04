@@ -1,11 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
 import { estonianDate, declaredValidity, validityState, legalReference, legalValidityScope, LEGAL_VALIDITY_VERSION } from '../lib/rag-v2/search/legal-validity.js';
 import { municipalScope, mergeUnifiedPackets, UNIFIED_RETRIEVAL_VERSION } from '../lib/rag-v2/search/unified.js';
 import { DISCOVERY_SCHEMA } from '../lib/rag-v2/search/discovery.js';
 import { retrievalPlan } from '../lib/rag-v2/pilot/retrieval-plan.js';
 import { resolveRecordScope, knowledgeRegionScope } from '../lib/rag-v2/pilot/record-scope.js';
 import { TYPED_DIALOGUE_STATE_VERSION } from '../lib/rag-v2/pilot/dialogue-state.js';
+import { checkTurn, validateCatalogue } from '../lib/rag-v2/pilot/conversation-eval.js';
 
 // Codex review 27.09.2026: legal validity at the asked date, and a municipality's own texts only for that
 // municipality. Synthetic directory rows; no network, no database, no morphology service.
@@ -289,4 +291,26 @@ test('a date with a year is read as before, once; more than two dates are still 
   const next = retrievalPlan({ previousState: recorded, scopeTurns: [{ turnId: 'first', text: 'Mis muutub alates 6. oktoobrist?', mode: 'new' },
     { turnId: 'second', text: 'Selgita lihtsamalt.', mode: 'same' }] }, '2026-10-04');
   assert.deepEqual(next.legalPeriods.map(period => period.from), ['2026-10-06']);
+});
+
+// The one paid turn of 04.10.2026 (ADR-075, the owner's permission): the catalogue's checks on what the run recorded and on
+// what R6 recorded before the change (docs/audits/evidence/live-questionnaire-2026-10-04.json).
+test('the measured turn passes the yearless date catalogue; the record of R6 before the change does not', async () => {
+  const catalogue = JSON.parse(await fs.readFile('tests/evaluation/dialogue/scenarios-yearless-date-1.json', 'utf8'));
+  assert.deepEqual(validateCatalogue(catalogue), []);
+  const turn = catalogue.scenarios[0].turns[0];
+  assert.deepEqual(daysOf(turn.text, '2026-10-04'), ['2026-10-06']);
+  const run = JSON.parse(await fs.readFile('docs/audits/evidence/yearless-date-measured-2026-10-04.json', 'utf8')), measured = run.turns[0];
+  assert.equal(measured.text, turn.text);
+  assert.deepEqual([run.legal_validity.as_of, run.legal_validity.periods], ['2026-10-04', [{ from: '2026-10-06', to: '2026-10-06', basis: 'unspecified' }]]);
+  assert.deepEqual(measured.cited.map(source => source.version), ['in force from 2026-10-06 (403102026022)']);
+  const observed = extra => ({ state: 'completed', region: 'pohja_sakala_vald', summaries: [], details: [], contacts: 0, ...extra });
+  const after = checkTurn(turn.expect, observed({ evidenceTitles: measured.found_regulation.map(source => source.title),
+    cited: measured.cited.map(source => ({ title: source.title, documentId: 'regulation' })), text: measured.answer }));
+  assert.deepEqual([after.verdict, after.checks.length, measured.verdict, measured.checks], ['passed', 5, 'passed', 5]);
+  // R6: the knowledge lane selected nothing, the evidence held the municipality's benefit records only, nothing was cited.
+  const before = checkTurn(turn.expect, observed({ evidenceTitles: ['Matusetoetus', 'Sünnitoetus', 'Täiendav sotsiaaltoetus'], cited: [],
+    text: 'Ma ei saa siinse info põhjal öelda, mis Põhja-Sakala valla sotsiaalabi korras 6. oktoobrist muutub. Siin kirjeldatud toetuste ja teenuste juures ei ole nimetatud sel kuupäeval '
+      + 'jõustuvaid muudatusi.\n\nKas pead silmas mõnd konkreetset teadet või toetust? Kui saad, saada teate tekst või ütle toetuse nimi.' }));
+  assert.deepEqual(before.checks.filter(check => !check.ok).map(check => check.key), ['evidence', 'cited', 'must']);
 });

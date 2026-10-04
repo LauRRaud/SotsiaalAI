@@ -1,0 +1,114 @@
+{
+ "schema": "sotsiaalai/conversation-run-evidence-1",
+ "run": "ADR-075, the R6 question of the live questionnaire once on the live plan after the deploy of #348 and #349; permitted by the owner on 04.10.2026 (one turn, about 0.005 USD, --max-usd 0.02)",
+ "measured_commit": "a9f889886f1b61cd06462acf577ab9780bc51b6a",
+ "catalogue": "tests/evaluation/dialogue/scenarios-yearless-date-1.json as committed before the run, --auto-modes",
+ "started_at": "2026-10-04T13:04:34.807Z",
+ "finished_at": "2026-10-04T13:04:59.066Z",
+ "plan": "m4-sotsiaalai-corpus-chat-20261004-125305-07daea8a-6b01-484e-8f0e-119449f4562c-r00cd775730e35c5e79957f0d910da72dc8266a26",
+ "generation": "search_generation_df8f5537e0a5ac132e27cbcef10a0267e98efdb9b05ec8d3590392963527664e",
+ "model": "gpt-6-luna",
+ "reasoning": "medium",
+ "plan_price_usd": 0.0052,
+ "summary": {
+  "passed": 1,
+  "search": 0,
+  "answer": 0,
+  "state": 0
+ },
+ "states": {
+  "continuing": 0,
+  "rejected": 0
+ },
+ "stopped": null,
+ "source": "the evaluator's report on the server (rag-v2-work/eval-files/yearless-date-2026-10-04/conversation-eval.json) and the turn's record (M4PilotTurn.payload.packet)",
+ "masking": "none needed: the answer names the municipality's institutions only",
+ "legal_validity": {
+  "as_of": "2026-10-04",
+  "periods": [
+   {
+    "from": "2026-10-06",
+    "to": "2026-10-06",
+    "basis": "unspecified"
+   }
+  ],
+  "regulation_versions_excluded": 0,
+  "evidence_passages": {
+   "in force from 2026-10-06": 6,
+   "in force until 2026-10-05": 0
+  },
+  "evidence_items": 51
+ },
+ "notes": {
+  "period": "the turn's record holds the period 2026-10-06 beside as_of 2026-10-04; neither version of the regulation is among the excluded. In R6 before the change (live-questionnaire-2026-10-04.json) legal_periods was empty and the knowledge lane selected nothing.",
+  "versions": "the rerank chose six passages, all of the version in force from 06.10.2026; no passage of the version in force until 05.10.2026 is in the evidence, so the answer could not compare the two wordings and says so.",
+  "must": "the pattern matched the word \"spetsialist\"; read as a whole, the answer gives provisions of the new version that carry a change mark (§ 5) and names the limit of its evidence.",
+  "attempts": "one turn, once: it shows the period reached the search and the new version was found and cited; it does not separate the change's effect on the rerank's choice from the model's variation."
+ },
+ "turns": [
+  {
+   "scenario": "yearless-date-first-message",
+   "turn": 1,
+   "turn_id": "3ec2f0ca-32a8-49fa-9fdf-4ca3a6724178",
+   "text": "Mis muutub Põhja-Sakala valla sotsiaalabi korras alates 6. oktoobrist?",
+   "verdict": "passed",
+   "checks": 5,
+   "failed": [],
+   "region": "pohja_sakala_vald",
+   "scope_state": "search_plan_region",
+   "plan_person": "user",
+   "planned_places": [
+    {
+     "name": "Põhja-Sakala vald",
+     "turn": 1,
+     "quote": "Põhja-Sakala valla sotsiaalabi korras",
+     "person": "user",
+     "relation": "other"
+    }
+   ],
+   "places": [
+    {
+     "turn": 1,
+     "person": "user",
+     "region": "pohja_sakala_vald",
+     "relation": "other"
+    }
+   ],
+   "queries": [
+    "Põhja-Sakala valla sotsiaalabi andmise korra muudatused 6. oktoobrist",
+    "Põhja-Sakala valla sotsiaalabi kord määruse muutmine jõustumine"
+   ],
+   "answer_kind": "partial",
+   "clarification": false,
+   "state_rejected": null,
+   "found_sources": 46,
+   "found_regulation": [
+    {
+     "title": "Sotsiaalhoolekandelise abi osutamise kord",
+     "version": "in force from 2026-10-06 (403102026022)"
+    }
+   ],
+   "cited": [
+    {
+     "title": "Sotsiaalhoolekandelise abi osutamise kord",
+     "version": "in force from 2026-10-06 (403102026022)"
+    }
+   ],
+   "rerank": {
+    "candidates": 36,
+    "selected": [
+     "Sotsiaalhoolekandelise abi osutamise kord",
+     "Sotsiaalhoolekandelise abi osutamise kord",
+     "Sotsiaalhoolekandelise abi osutamise kord",
+     "Sotsiaalhoolekandelise abi osutamise kord",
+     "Sotsiaalhoolekandelise abi osutamise kord",
+     "Sotsiaalhoolekandelise abi osutamise kord"
+    ]
+   },
+   "plan_price_usd": 0.0052,
+   "search_ms": 4106,
+   "total_ms": 23886,
+   "answer": "Alates 6. oktoobrist käsitleb muudetud kord sotsiaalabi taotlemist. Taotlus tuleb esitada valla sotsiaalosakonnale. Rahalise abi taotluses tuleb märkida makseviis ja pangakonto andmed; kolmanda eraisiku kontole maksmiseks on vaja konto omaniku nõusolekut, välja arvatud taotleja alaealise lapse konto. Sissetulekust sõltuva toetuse taotlusele tuleb lisada kuni kolme eelneva kuu sissetulekud ja vähemalt eelneva kuu eluasemekulude tõendid. Muudatuse märge nimetab § 5 lõiget 1 ning § 5 lõike 3 punkti 4 või kogu lõiget 3. [S1]\n\nMuudetud korra järgi võib abi vajava Põhja-Sakala vallas elava inimese huvides toetust või teenust taotleda ka eestkostja, hooldaja, spetsialist, õpetaja või muu inimene, kellel on tema abivajaduse kohta teavet. Vallal on õigus teha abi andmiseks päringuid taotleja, tema leibkonnaliikmete ja ülalpidamiskohustusega inimeste andmete kohta. [S3]\n\nMuudetud korras täpsustatakse ka ülesannete jaotust: üldjuhul täidab valla sotsiaalhoolekande ülesandeid Põhja-Sakala Vallavalitsus ametiasutusena; korras sätestamata juhtudel otsustab sotsiaalkaitse korralduse või tagamise vallavalitsus täitevorganina. [S4]\n\nValitsusel või sotsiaalosakonnal on õigus määrata sissetulekust sõltumatut rahalist või mitterahalist toetust majanduslike raskuste ennetamiseks ning perede motivatsiooni või heaolu tõstmiseks. [S5]\n\nMääruses kasutatud terminid peavad olema kooskõlas valdkonda reguleerivates seadustes toodud tähendustega. [S6]\n\nMa ei saa nende väljavõtete põhjal täpselt võrrelda, milline sõnastus või kohustus on uus, sest varasemat redaktsiooni siin ei ole. Ka § 5 lõike 3 muudatuse ulatus on märgitud ebaselgelt: see võib puudutada punkti 4 või tervet lõiget 3."
+  }
+ ]
+}
