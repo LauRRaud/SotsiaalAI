@@ -2,7 +2,7 @@
 
 04.10.2026. Teostus Claude Opus 5.5. Omanik 04.10 õhtul: „kontaktide värske korjandus oli vist üle 800 jah, need tuleb panna platvormile, ingestida, indekseerida, graph ja siduda KOViga jne.“ Täiendab [ADR-017](adr-017-verified-contact-export.md) ja [ADR-045](adr-045-contact-binding-content.md).
 
-**Mõõtmata mudeliga selle kirjutamise hetkel.** Tõend on kohalikud testid väljamõeldud ridadega. Eksport, korpuse täiendus ja kontroll päris andmetel lisatakse jaotisesse „Käivitus“.
+**Töös korpusega v55 (jaotis „Seis pärast korpust v55“); mudeliga mõõtmata.** 65 omavalitsuse 643 kontakti on vestluses kontaktide kirjete kaudu; Tallinn (110 kontakti) jäi välja, sest need ei mahu kirjete konteksti. Kontroll päris andmetel on tasuta mõõtmine kirjete rajal (sõnaotsingu kanal); kas vestlus kontaktide kirje vektoriga üles leiab ja kuidas mudel kontakte vastuses kasutab, on mõõtmata.
 
 ## Lähteseis (loetud serverist 04.10, ainult lugemine)
 
@@ -115,6 +115,32 @@ Esimene eksport päris andmetel (avaldamata) näitas kaht asja, mida väljamõel
 - **Mida Tallinn vajab:** odavamat kontakti vaadet kirjete kontekstis (praegu umbes 490 tokenit kontakti kohta) ja kontaktiotsust ainult näidatavate kontaktide kohta. See on kirjete raja muudatus ja vajab mudeliga mõõtmist; alustamata.
 - Eksport loeb nüüd, millised dokumendid on indeksi poliitikas (`--policy`): poliitikast välja jäetud dokumenti ei loeta olemasolevaks, muidu viitaks kontaktide kirje kontaktile, mida vestlus avada ei saa.
 
-## Käivitus pärast Tallinna otsust
+## Seis pärast korpust v55 (04.10 kell 23.35)
 
-Tegemata selle kirjutamise hetkel; lisatakse pärast eksporti ja korpuse täiendust v55.
+- **Eksport:** 869 kinnitatud rida; 19 ilma telefoni ja e-postita; 97 sama inimese kordust; Tallinn välja jäetud (110 inimest). 65 omavalitsust, 643 kontakti (370 paketikontakti ja 273 registrist), 89 kontaktide kirjet.
+- **Korpus v55:** 89 kirjet uuesti (ostu ei olnud, kõik tekstid olid olemas); Tallinna 27 kirjet ja 110 kontakti eemaldatud poliitikast; indeks `5e1c79dd` (6836 dokumenti, 41 273 lõiku), plaan `/etc/sotsiaalai/m4-corpus-chat-20261004h.json`.
+- **Kulu kokku:** v52 0,0154 + v53 0,0006 + v54 0,0004 + v55 0 = 0,0164 USD (vektorid). Mudelijookse ei tehtud.
+- **Tasuta kontroll kirjete rajal** (küsimus „Kes on sotsiaaltööspetsialist ja kuidas temaga ühendust saab?“, sõnaotsingu kanal):
+
+| Omavalitsus | Näidatud kontakte enne (v51) | v55 |
+|---|---:|---:|
+| Tartu linn | 2 | 10 |
+| Pärnu linn | 1 | 12 |
+| Valga vald | mõõtmata | 11 |
+| Saaremaa vald | mõõtmata | 11 |
+| Kohtla-Järve linn | mõõtmata | 17 |
+| Võru vald | 7 | 8 |
+| Anija vald | mõõtmata | 8 |
+| Nõo vald | 0 | 2 |
+| Tallinn | 0 | 0 (välja jäetud) |
+
+- Tallinn on samas seisus mis enne: 85 kirjet, pealkirjad 4646 tokenit, kontaktiotsuseid 0.
+- Kirjete raja aeg koos kontaktiotsustega: 0,6–1,8 s omavalitsuse kohta esimesel päringul (Tartu 69 otsust 0,57 s).
+
+### Mis jääb lahti
+
+- **Tallinn:** kontakti odavam vaade kirjete kontekstis ja kontaktiotsus ainult näidatavatele kontaktidele (kirjete raja muudatus, vajab mudeliga mõõtmist).
+- **Mõõtmine mudeliga:** kas vestlus leiab kontaktide kirje (vektor) ja nimetab õige inimese. Teistsuguse sõnastusega küsimused („Kellele ma saan helistada …?“) kontaktide kirjet sõnaotsinguga esile ei toonud.
+- **Eksport on hetkeseis:** registris muutunud rida kaob vestlusest kohe, uus jõuab sinna järgmise ekspordi ja korpuse täiendusega. Regulaarset eksporti ei ole.
+- **Kontaktiettepanekud** (355, omaniku ülevaatusel) on rakendamata; pärast rakendamist ja kontrolli tuleb eksport uuesti teha.
+- Registris on sama inimene mitmel real (97 kordust kinnitatud ridade seas); eksport näitab inimest üks kord, register on muutmata.
