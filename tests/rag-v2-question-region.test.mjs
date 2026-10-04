@@ -420,3 +420,80 @@ test('the catalogue for a model run of these cases is well formed, and its check
   // The work place scenario (Codex F2) keeps the residence.
   assert.deepEqual(catalogue.scenarios.find(item => item.id === 'workplace-keeps-residence').turns.map(item => item.expect.region), ['noo_vald']);
 });
+
+// ADR-081. The run after ADR-080 (04.10.2026, release 9aabbf6f, eval-files/plan-guard-2026-10-04): the plan of the
+// follow-up wrote one query, word for word below, that names no municipality, and the search read Nõo vald.
+const UNNAMED = ['Isikliku abistaja teenuse tasu kujunemine inimese omaosalus'];
+
+test('ADR-081: a follow-up that points back goes on with the asked municipality when the plan names none; the plan can still take the search elsewhere', async () => {
+  const question = await turn({ before: nooState, texts: MEASURED.slice(0, 2), plan: { person: 'user', places: [place(2, MEASURED[1], 'Maardu linn', 'user', 'other')],
+    queries: ['Maardu linn isikliku abistaja teenuse korraldamine ja taotlemine'] } });
+  const follow = (text, queries, person = 'user') => turn({ before: question.value, after: question, texts: [...MEASURED.slice(0, 2), text], plan: { person, places: [], queries } });
+  const price = await follow(MEASURED[2], UNNAMED);
+  assert.deepEqual(price.source, asked('maardu_linn', home('noo_vald'), 'earlier_question'));
+  assert.deepEqual(keptTexts(price.source), ['maardu_linn']);
+  assert.deepEqual(price.people, { user: ['noo_vald', 'reported'] });
+  // The same without any query (a failed plan), in the first person, and in the other languages of the word list.
+  for (const [text, queries] of [[MEASURED[2], []], ['Kuidas ma seda taotleda saan?', ['isikliku abistaja teenuse taotlemine']], ['How much is it?', UNNAMED], ['А сколько это стоит?', UNNAMED]]) {
+    assert.equal((await follow(text, queries)).source.region, 'maardu_linn', text);
+  }
+  // And the turn after it goes on from the follow-up's own scope.
+  const apply = await turn({ before: price.value, after: price, texts: [...MEASURED.slice(0, 3), 'Kuidas seda taotleda?'], plan: { person: 'user', places: [], queries: ['isikliku abistaja teenuse taotlemine'] } });
+  assert.deepEqual([apply.source.region, apply.source.asked_in, apply.people.user], ['maardu_linn', 'earlier_question', ['noo_vald', 'reported']]);
+  // The plan takes the search away by naming the person's own municipality or a third one.
+  for (const queries of [['Nõo valla isikliku abistaja teenuse tasu'], ['Viimsi valla isikliku abistaja teenuse tasu'], [...UNNAMED, 'Viimsi valla isikliku abistaja teenuse tasu']]) {
+    assert.deepEqual((await follow(MEASURED[2], queries)).source, home('noo_vald'), queries.join(' | '));
+  }
+  // A message that points back at nothing still needs the plan to name the asked municipality.
+  for (const text of ['Aga millist koduteenust ma ise saan?', 'Ja kuidas taotleda?', 'Mis teenuse tasu on?']) {
+    assert.deepEqual((await follow(text, UNNAMED)).source, home('noo_vald'), text);
+  }
+  // Another person's request is never a follow-up of this one's question.
+  const before = { people: [saved('user', 'noo_vald'), saved('ema', 'kose_vald')], focus: 'user' };
+  const forUser = await turn({ before, texts: MEASURED.slice(0, 2), plan: { person: 'user', places: [place(2, MEASURED[1], 'Maardu linn', 'user', 'other')], queries: ['Maardu isikliku abistaja teenus'] } });
+  const hers = await turn({ before: forUser.value, after: forUser, texts: [...MEASURED.slice(0, 2), 'Kas ema saaks seda ka?'], plan: { person: 'ema', places: [], queries: UNNAMED } });
+  assert.deepEqual(hers.source, home('kose_vald', 'ema'));
+  // A message that names a municipality itself is read for itself.
+  const work = await turn({ before: question.value, after: question, texts: [...MEASURED.slice(0, 2), 'Töötan muide Viimsis. Ja mis see maksab?'],
+    plan: { person: 'user', places: [place(3, 'Töötan muide Viimsis', 'Viimsi vald', 'user', 'other')], queries: UNNAMED } });
+  assert.deepEqual(work.source, home('noo_vald'));
+  // Two asked municipalities: the follow-up keeps both, as the question did.
+  const text = 'Kas Maardus või Viimsi vallas on isikliku abistaja teenus?';
+  const compare = await turn({ before: nooState, texts: ['Elan Nõo vallas.', text], plan: { person: 'user',
+    places: [place(2, text, 'Maardu linn', 'user', 'other'), place(2, text, 'Viimsi vald', 'user', 'other')], queries: ['Maardu isikliku abistaja teenus', 'Viimsi valla isikliku abistaja teenus'] } });
+  const both = await turn({ before: compare.value, after: compare, texts: ['Elan Nõo vallas.', text, MEASURED[2]], plan: { person: 'user', places: [], queries: UNNAMED } });
+  assert.deepEqual([both.source.state, both.source.candidates, both.source.asked_in], ['question_regions', ['maardu_linn', 'viimsi_vald'], 'earlier_question']);
+});
+
+test('ADR-081: a person who has given no residence: the follow-up that points back is searched where the question before it was', async () => {
+  const continued = (region, person = 'user') => ({ state: 'continued_region', region, person, asked_in: 'earlier_question', interpretation: 'source_scope_only_not_confirmed_residence' });
+  const r5 = await turn(STORED.R5);
+  assert.deepEqual([r5.source.state, askedRegions(r5.source), askedPerson(r5.source)], ['search_plan_region', ['maardu_linn'], 'user']);
+  const follow = (text, queries, person = 'user') => turn({ before: r5.value, after: r5, texts: [LIVE[4], text], plan: { person, places: [], queries } });
+  const price = await follow(MEASURED[2], UNNAMED);
+  assert.deepEqual(price.source, continued('maardu_linn'));
+  assert.deepEqual(keptTexts(price.source), ['maardu_linn']);
+  // Nothing is saved as anybody's residence.
+  assert.deepEqual(price.people, {});
+  // The next follow-up goes on from it; a failed plan (no queries) does too.
+  const apply = await turn({ before: price.value, after: price, texts: [LIVE[4], MEASURED[2], 'Kuidas seda taotleda?'], plan: { person: 'user', places: [], queries: ['isikliku abistaja teenuse taotlemine'] } });
+  assert.deepEqual(apply.source, continued('maardu_linn'));
+  assert.deepEqual((await follow(MEASURED[2], [])).source, continued('maardu_linn'));
+  // A plan that names a municipality decides, as before: the same one, or another.
+  assert.deepEqual([(await follow(MEASURED[2], ['Maardu isikliku abistaja teenuse hind'])).source.state, (await follow(MEASURED[2], ['Viimsi valla isikliku abistaja teenuse hind'])).source.region],
+    ['search_plan_region', 'viimsi_vald']);
+  // A message that points back at nothing, or is about another person, gets no municipality from the question before.
+  for (const [text, person] of [['Aga millist koduteenust ma ise saan?', 'user'], ['Ja kuidas taotleda?', 'user'], ['Kas ema saaks seda ka?', 'ema']]) {
+    const own = await follow(text, UNNAMED, person);
+    assert.deepEqual([own.source.state, own.source.region], ['region_required', null], text);
+  }
+  // A message that gives a home is the home.
+  const moved = await turn({ before: r5.value, after: r5, texts: [LIVE[4], 'Elan Nõo vallas. Ja mis see maksab?'], plan: { person: 'user',
+    places: [place(2, 'Elan Nõo vallas', 'Nõo vald', 'user', 'lives')], queries: UNNAMED } });
+  assert.deepEqual([moved.source.state, moved.source.region, moved.people.user], ['person_mentioned_region', 'noo_vald', ['noo_vald', 'reported']]);
+  // A base name two municipalities share: both stay candidates in the follow-up.
+  const shared = await turn({ texts: ['Kas Tartus on sotsiaaltransport?'], plan: { person: 'user', places: [place(1, 'Kas Tartus on sotsiaaltransport?', 'Tartu', 'user', 'other')], queries: ['Tartu sotsiaaltransporditeenus'] } });
+  assert.equal(shared.source.state, 'search_plan_ambiguous_region');
+  const sharedPrice = await turn({ before: shared.value, after: shared, texts: ['Kas Tartus on sotsiaaltransport?', MEASURED[2]], plan: { person: 'user', places: [], queries: ['sotsiaaltransporditeenuse tasu'] } });
+  assert.deepEqual([sharedPrice.source.state, sharedPrice.source.candidates], ['continued_regions', ['tartu_linn', 'tartu_vald']]);
+});
