@@ -86,3 +86,5 @@ Samad kolm kataloogi, töötavalt väljalaskelt `fa56b2f1`. Kulu 0,0543 USD plaa
 
 - **Perekonnaseaduse § 96–97 leitavus.** Vajab otsinguabi seaduse lõigu juurde (igapäevakeelne vaste sõnadele „ülenejad ja alanejad sugulased“), mitte uut juhist. Alustamata.
 - **Toimetulekupiiri summa** (korpuse muudatus).
+
+Järgmises jooksus ([ADR-080](adr-080-one-query-per-message.md), „Mõõtmine“) leiti perekonnaseaduse § 97, § 99 ja § 103 ning esimene pööre andis summad. Mõlemad sõltusid plaani päringu sõnastusest, nii et kumbki punkt ei ole sellega suletud.

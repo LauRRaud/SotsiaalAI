@@ -457,8 +457,9 @@ async function regionConversation(t) {
     const searched = scopes.at(-1), saved = value.people.find(entry => entry.person === searched.person);
     // The same turn: the catalogue and the knowledge lane (one knowledgeRegion) and the saved state read one region.
     // ADR-074: in a question about another municipality both lanes read the asked one, and the saved state is still
-    // the person's own scope of that turn.
-    assert.equal(searched.source.startsWith('question_') ? searched.own : searched.region, saved?.region.id ?? null);
+    // the person's own scope of that turn. ADR-081: the same where nobody's place is decided and the municipality comes
+    // from the plan's queries or from the question before.
+    assert.equal(/^(question_|search_plan_|continued_)/u.test(searched.source) ? searched.own : searched.region, saved?.region.id ?? null);
     assert.equal(value.focus, searched.person);
     return { searched, assist: saved_.searchAssist, query: saved_.query, people: Object.fromEntries(value.people.map(entry => [entry.person, [entry.region.id, entry.region.status]])) };
   };
@@ -585,4 +586,27 @@ test('dialogue state DB (ADR-080): a plan with one query per message searches wi
   // A follow-up keeps both of its queries.
   const third = await turn('Ja mida see teatamine kaasa toob?', 'same', { queries: ['abivajavast lapsest teatamise tagajärjed', 'lastekaitsetöötaja tegevus pärast teadet', 'abivajava lapse hindamine'], person: 'user', places: [] });
   assert.deepEqual([third.assist.queries.length, third.assist.droppedQueries ?? null], [3, null]);
+});
+
+test('dialogue state DB (ADR-081): a follow-up that points back is searched where the question before it was, also when the plan names no municipality', async t => {
+  const turn = await regionConversation(t);
+  const question = 'Kas Harku vallas saab koduteenust?', unnamed = ['koduteenuse tasu kujunemine inimese omaosalus'];
+  // No residence given: the plan's query decides the question's municipality and the follow-up goes on with it.
+  const asked = await turn(question, 'new', { queries: ['Harku vald koduteenus'], person: 'user', places: [{ turn: 1, quote: question, name: 'Harku vald', person: 'user', relation: 'other' }] });
+  assert.deepEqual([asked.searched.source, asked.searched.region, asked.searched.own], ['search_plan_region', 'harku_vald', null]);
+  const price = await turn('Ja mis see maksab?', 'same', { queries: unnamed, person: 'user', places: [] });
+  assert.deepEqual([price.searched.source, price.searched.region, price.searched.own, price.query.askedRegions, price.query.askedPerson],
+    ['continued_region', 'harku_vald', null, ['harku_vald'], 'user']);
+  // The user gives a home: the search is the user's own, and nothing of the question before is the residence.
+  const home = await turn('Elan Kose vallas. Millist abi ma saan?', 'same', { queries: ['Kose vald sotsiaalabi'], person: 'user',
+    places: [{ turn: 3, quote: 'Elan Kose vallas', name: 'Kose vald', person: 'user', relation: 'lives' }] });
+  assert.deepEqual([home.searched.source, home.searched.region, home.people.user], ['person_mentioned_region', 'kose_vald', ['kose_vald', 'reported']]);
+  // With a residence: the question about Harku, and the follow-up with the kind of plan the run of 04.10 recorded.
+  const again = await turn(question, 'same', { queries: ['Harku vald koduteenus'], person: 'user', places: [{ turn: 4, quote: question, name: 'Harku vald', person: 'user', relation: 'other' }] });
+  assert.deepEqual([again.searched.source, again.searched.region], ['question_region', 'harku_vald']);
+  const cost = await turn('Ja mis see mulle maksma läheb?', 'same', { queries: unnamed, person: 'user', places: [] });
+  assert.deepEqual([cost.searched.source, cost.searched.region, cost.people.user], ['question_region', 'harku_vald', ['kose_vald', 'reported']]);
+  // The user's own request points back at nothing: the residence, with the same kind of plan.
+  const own = await turn('Millist abi ma ise saan?', 'same', { queries: ['toimetulekutoetuse taotlemine'], person: 'user', places: [] });
+  assert.deepEqual([own.searched.source, own.searched.region, own.query.askedRegions], ['person_region', 'kose_vald', ['harku_vald']]);
 });

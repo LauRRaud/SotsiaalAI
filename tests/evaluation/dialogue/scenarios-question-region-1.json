@@ -14,7 +14,8 @@
   "04.10.2026, Codex review of #346-#347 (F1): with clarification=false gone, a bare question back that names the service (\"Kas küsid isikliku abistaja teenust Nõo vallas või Maardu linnas? Ma ei saa enne täpsustust Maardu teenuse kohta vastata.\") passed every check. The turn now also expects cited: the answer has a source block that cites Maardu's regulation of the service. The second run's answer cited it and passes; the bare question cites nothing and fails. tests/rag-v2-question-region.test.mjs keeps both. No run has been made with this check.",
   "04.10.2026, third run (commit eb71cf9b, search-assist-7, ADR-077): the first conversation only, as a check that the rule \"queries for the current message only\" keeps a follow-up; 4 turns: 4 passed, 0.0245 USD. \"Ja mis see maksab?\" got queries about Maardu's service price and Maardu's § 9 (docs/audits/evidence/search-assist-7-measured-2026-10-04.json).",
   "04.10.2026, fourth run (commit 5b775d8f, search-6, ADR-078): the first conversation only, as a check that a follow-up is kept when the search text is the current message; 4 turns: 4 passed, 0.0235 USD.",
-  "04.10.2026, fifth run (commit fa56b2f1, search-assist-8, ADR-079): the first conversation only; 4 turns: 4 passed, 0.0229 USD."
+  "04.10.2026, fifth run (commit fa56b2f1, search-assist-8, ADR-079): the first conversation only; 4 turns: 4 passed, 0.0229 USD.",
+  "04.10.2026, sixth run (commit 9aabbf6f, ADR-080): the first conversation only; 4 turns: 3 passed, 1 state, 0.0234 USD. Turn 3 (\"Ja mis see maksab?\"): the plan's one query named no municipality and the search read Nõo vald. The rule for a follow-up needed a query that names the asked municipality; changed by ADR-081."
  ],
  "scenarios": [
   {
