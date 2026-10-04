@@ -86,6 +86,8 @@ if (values.warm) {
 const service = new PilotService({ store: new PilotStore(prisma), readConfig, adapters: runtimeAdapters(readConfig, userId, municipalDirectoryAdapter(prisma)) });
 const legal = new Map(JSON.parse(await fs.readFile(values.legal, 'utf8')).acts.filter(act => !act.regions.length)
   .map(act => [act.document_id, { from: act.index_from, to: act.index_to }]));
+// Every indexed act's validity, a municipal one's too: which version of an act a source is (ADR-077).
+const versions = new Map(JSON.parse(await fs.readFile(values.legal, 'utf8')).acts.map(act => [act.document_id, { from: act.index_from, to: act.index_to }]));
 const today = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Tallinn' });
 const titleOf = entry => entry.fields?.title?.value || entry.fields?.name?.value || '';
 const maxUsd = Number(values['max-usd']);
@@ -173,7 +175,10 @@ function observe(row, error) {
 function rerankOf(rerank) {
   if (!rerank) return null;
   const title = id => rerank.candidates.find(candidate => candidate.id === id)?.title || id;
-  return { candidates: rerank.candidates.map(candidate => candidate.title), selected: rerank.selected.map(title) };
+  // Which passage each candidate is (ADR-077): an act's versions and its passages share the title.
+  const told = candidate => [candidate.id, candidate.valid_from ? `alates ${candidate.valid_from}` : null, candidate.lead ?? null].filter(Boolean).join(' | ');
+  return { candidates: rerank.candidates.map(candidate => candidate.title), selected: rerank.selected.map(title),
+    ...(rerank.candidates.some(candidate => candidate.lead) ? { passages: rerank.candidates.map(told), selected_ids: rerank.selected } : {}) };
 }
 
 await fs.mkdir(values.out, { recursive: true });
@@ -202,7 +207,7 @@ try {
       // checks read each passage with its act's title and its own section, and the passages the answer cites.
       const evidenceTexts = (row?.payload?.packet?.evidence || []).map(evidence => evidence.source_text || '');
       turns.push({ mode: turn.mode, ...(turn.listedMode ? { listed_mode: turn.listedMode } : {}), text: turn.text, expect: turn.expect || {}, note: turn.note, turn_id: row?.id ?? null, observed,
-        ...checkTurn(turn.expect, { ...observed, evidenceTexts, ...turnPassages(row?.payload?.packet, row?.payload?.answer) }, { today, validity: id => legal.get(id) || null }) });
+        ...checkTurn(turn.expect, { ...observed, evidenceTexts, ...turnPassages(row?.payload?.packet, row?.payload?.answer) }, { today, validity: id => legal.get(id) || null, version: id => versions.get(id) || null }) });
       console.error(JSON.stringify({ scenario: scenario.id, turn: turns.length, verdict: turns.at(-1).verdict, usd: +spent.toFixed(4) }));
     }
     report.scenarios.push({ id: scenario.id, title: scenario.title, source: scenario.source, conversation: conversation.id, turns });

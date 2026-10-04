@@ -226,7 +226,9 @@ test('ADR-044: a range of days or months is one period, so a version in force on
     assert.deepEqual(firstTurn(text).legalPeriods.map(p => [p.from, p.to]), [['2027-01-01', '2027-03-31']], text);
   }
   // Two dates without a dash or "kuni" stay two days (a comparison), and a reversed range is not a date.
-  assert.deepEqual(keptOn('Võrdle 1. jaanuaril 2027 ja 1. aprillil 2027.'), ['shs-now', 'shs-jan27', 'shs-apr27', 'rls-aug']);
+  // Since legal-validity-2 (ADR-077) each asked day also brings the version that ended the day before it: the one that day's
+  // version replaced (shs-feb27 ended 31.03.2027, rls-nov 31.12.2026). The range above takes no such neighbour.
+  assert.deepEqual(keptOn('Võrdle 1. jaanuaril 2027 ja 1. aprillil 2027.'), ['shs-now', 'shs-jan27', 'shs-feb27', 'shs-apr27', 'rls-aug', 'rls-nov']);
   assert.deepEqual(firstTurn('31.03.2027–01.01.2027').legalPeriods, []);
   // A day range is a legal period, not a publication period of journals; a year range stays both.
   assert.deepEqual(firstTurn('01.01.–31.03.2027').publicationCandidates, []);
@@ -313,4 +315,56 @@ test('the measured turn passes the yearless date catalogue; the record of R6 bef
     text: 'Ma ei saa siinse info põhjal öelda, mis Põhja-Sakala valla sotsiaalabi korras 6. oktoobrist muutub. Siin kirjeldatud toetuste ja teenuste juures ei ole nimetatud sel kuupäeval '
       + 'jõustuvaid muudatusi.\n\nKas pead silmas mõnd konkreetset teadet või toetust? Kui saad, saada teate tekst või ütle toetuse nimi.' }));
   assert.deepEqual(before.checks.filter(check => !check.ok).map(check => check.key), ['evidence', 'cited', 'must']);
+});
+
+// ADR-077: a question about what changes on a date needs both versions of the act. The measured turn of ADR-075 found
+// and cited the version from 06.10.2026 alone; the catalogue's version checks fail it and pass a turn with both.
+test('ADR-077: the version checks fail the measured turn that found the new version alone and pass a turn with both', async () => {
+  const catalogue = JSON.parse(await fs.readFile('tests/evaluation/dialogue/scenarios-version-change-1.json', 'utf8'));
+  assert.deepEqual(validateCatalogue(catalogue), []);
+  const turn = catalogue.scenarios[0].turns[0];
+  const run = JSON.parse(await fs.readFile('docs/audits/evidence/yearless-date-measured-2026-10-04.json', 'utf8')), measured = run.turns[0];
+  assert.equal(measured.text, turn.text);
+  // The two versions as the index names them (docs/rag-v2/legal-acts-in-index.json): a municipal act's validity is read too.
+  const acts = JSON.parse(await fs.readFile('docs/rag-v2/legal-acts-in-index.json', 'utf8')).acts.filter(act => ['404072025051', '403102026022'].includes(act.globaal_id));
+  assert.deepEqual(acts.map(act => [act.globaal_id, act.index_from, act.regions]).sort(), [['403102026022', '2026-10-06', ['pohja_sakala_vald']], ['404072025051', '2025-09-01', ['pohja_sakala_vald']]]);
+  assert.deepEqual([turn.expect.found_versions_from, turn.expect.cited_versions_from], [['2025-09-01', '2026-10-06'], ['2025-09-01', '2026-10-06']]);
+  const version = id => { const act = acts.find(item => item.document_id === id); return act ? { from: act.index_from, to: act.index_to } : null; };
+  const [older, newer] = ['404072025051', '403102026022'].map(rt => ({ title: 'Sotsiaalhoolekandelise abi osutamise kord', documentId: acts.find(act => act.globaal_id === rt).document_id }));
+  const observed = (found, cited, text = measured.answer) => ({ state: 'completed', region: 'pohja_sakala_vald', summaries: [], details: [], contacts: 0,
+    evidenceTitles: found.map(source => source.title), found, cited, text });
+  const failed = result => result.checks.filter(check => !check.ok).map(check => [check.key, check.detail.match(/from (\S+) among/u)[1]]);
+  // As measured on 04.10: the new version alone, found and cited.
+  const alone = checkTurn(turn.expect, observed([newer], [newer]), { today: '2026-10-04', version });
+  assert.deepEqual([alone.verdict, failed(alone)], ['search', [['found_versions_from', '2025-09-01'], ['cited_versions_from', '2025-09-01']]]);
+  // Both found but only the new one cited: the search did its part, the answer did not compare.
+  const uncited = checkTurn(turn.expect, observed([older, newer], [newer]), { today: '2026-10-04', version });
+  assert.deepEqual([uncited.verdict, failed(uncited)], ['answer', [['cited_versions_from', '2025-09-01']]]);
+  assert.equal(checkTurn(turn.expect, observed([older, newer], [newer, older]), { today: '2026-10-04', version }).verdict, 'passed');
+  // Another act of the same municipality does not stand in for a version of the asked one.
+  const other = { title: 'Puudega inimesele eluruumi kohandamiseks toetuse määramise ja maksmise kord', documentId: older.documentId };
+  assert.deepEqual(failed(checkTurn(turn.expect, observed([other, newer], [newer, older]), { today: '2026-10-04', version })), [['found_versions_from', '2025-09-01']]);
+  // A catalogue names days and the act.
+  assert.equal(validateCatalogue({ scenarios: [{ id: 'x', turns: [{ mode: 'new', text: 'a', expect: { found_versions_from: ['2026-10-06'] } }] }] }).length, 1);
+  assert.equal(validateCatalogue({ scenarios: [{ id: 'x', turns: [{ mode: 'new', text: 'a', expect: { evidence: ['Kord'], cited_versions_from: ['6. oktoober'] } }] }] }).length, 1);
+});
+
+test('legal-validity-2 (ADR-077): an asked single day also takes the day before it, so the replaced version stays after the change day', () => {
+  assert.equal(LEGAL_VALIDITY_VERSION, 'rag-v2/legal-validity-2');
+  const day = (from, to = from) => legalReference('2026-10-10', [{ from, to, basis: 'unspecified' }]).periods.map(period => [period.from, period.to]);
+  assert.deepEqual(day('2026-10-06'), [['2026-10-05', '2026-10-06']]);
+  // Over the end of a month and of a year, and a leap day; a range is taken as it is.
+  assert.deepEqual([day('2027-01-01'), day('2026-03-01'), day('2028-03-01')], [[['2026-12-31', '2027-01-01']], [['2026-02-28', '2026-03-01']], [['2028-02-29', '2028-03-01']]]);
+  assert.deepEqual(day('2026-10-06', '2026-10-07'), [['2026-10-06', '2026-10-07']]);
+  const versions = [row('kord-kuni-05-10', { from: '2025-09-01', to: '2026-10-05' }), row('kord-alates-06-10', { from: '2026-10-06', open: true }),
+    row('kord-kuni-31-08', { from: '2024-01-01', to: '2025-08-31' })];
+  const kept = (text, today) => legalValidityScope(versions, legalReference(today, yearless(text, today).legalPeriods)).eligible.map(item => item.document_id);
+  // Before the change day today's law brings the earlier version; from that day on only the day before the asked day does.
+  for (const today of ['2026-10-04', '2026-10-06', '2026-10-10', '2026-12-01']) {
+    assert.deepEqual(kept('Mis muutus sotsiaalabi korras 6. oktoobril?', today), ['kord-kuni-05-10', 'kord-alates-06-10'], today);
+  }
+  assert.deepEqual(kept('Mis kord kehtib?', '2026-10-10'), ['kord-alates-06-10']);
+  // A day that is no change day brings nothing more: the version in force the day before is the same one.
+  assert.deepEqual(kept('Mis kehtis 1. detsembril 2025?', '2026-10-10'), ['kord-kuni-05-10', 'kord-alates-06-10']);
+  assert.deepEqual(kept('Mis kehtis 1. septembril 2025?', '2026-10-10'), ['kord-kuni-05-10', 'kord-alates-06-10', 'kord-kuni-31-08']);
 });
