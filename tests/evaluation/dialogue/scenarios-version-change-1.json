@@ -1,0 +1,45 @@
+{
+ "schema_version": "rag-v2/dialogue-eval-2",
+ "purpose": "ADR-077 (04.10.2026): a question about what changes in an act on a date needs the act's version in force before that date and the one in force from it. In the measured turn of ADR-075 (the same question, 04.10.2026) the period reached the search and both versions were allowed, but the selection kept six passages of the new version and none of the earlier one, so the answer described the amended provisions and said it could not compare the wordings. search-assist-7 tells the selection to keep the same provision in both versions. One conversation, one first message, the question word for word. Written before any run with the model. Run with --auto-modes (what the chat sends).",
+ "expectation_help": {
+  "region": "the municipal scope of the turn: the municipality the question asks about",
+  "evidence / found_versions_from": "search: passages of the municipality's regulation are among the found sources, of the version in force from 01.09.2025 (until 05.10.2026) and of the one in force from 06.10.2026",
+  "cited / cited_versions_from": "answer: it has source blocks that cite both versions",
+  "must": "answer: it names at least one thing the version from 06.10.2026 really changes (the word \"spetsialist\" for \"sotsiaaltöötaja\", applications within three months, a disabled child from 18 months, care set for up to five years, the low-income household); read the whole answer as well, a pattern is a coarse check"
+ },
+ "history": [],
+ "scenarios": [
+  {
+   "id": "what-changes-both-versions",
+   "title": "Mis muutub: akti mõlemad redaktsioonid kõrvuti",
+   "source": "live questionnaire 04.10.2026, R6; ADR-075 measured turn",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Mis muutub Põhja-Sakala valla sotsiaalabi korras alates 6. oktoobrist?",
+     "expect": {
+      "region": "pohja_sakala_vald",
+      "evidence": [
+       "Sotsiaalhoolekandelise abi osutamise kord"
+      ],
+      "found_versions_from": [
+       "2025-09-01",
+       "2026-10-06"
+      ],
+      "cited": [
+       "Sotsiaalhoolekandelise abi osutamise kord"
+      ],
+      "cited_versions_from": [
+       "2025-09-01",
+       "2026-10-06"
+      ],
+      "must": [
+       "spetsialist|kolme kuu jooksul|18[- ]kuu|viis aastat|viie aasta|vähekindlustatud"
+      ]
+     },
+     "note": "Until 05.10.2026 today's law is the earlier version and the asked day brings the new one. From 06.10.2026 the new one is today's law and the earlier one is in the search only because an asked day also takes the day before it (legal-validity-2). The checks are the same on either side of the day."
+    }
+   ]
+  }
+ ]
+}

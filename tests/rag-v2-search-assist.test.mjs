@@ -90,12 +90,13 @@ test('search-assist-2: the plan names the message language, and the answer follo
   // A plan approved for search-assist-1 keeps the interface language.
   assert.equal(planLanguage({ searchAssist: 'rag-v2/search-assist-1' }, { queries: [], language: 'en' }), null);
   assert.equal(planLanguage({ searchAssist: 'rag-v2/search-assist-2' }, { queries: [], language: 'en' }), 'en');
-  assert.deepEqual(SEARCH_ASSIST_VERSIONS, ['rag-v2/search-assist-1', 'rag-v2/search-assist-2', 'rag-v2/search-assist-3', 'rag-v2/search-assist-4', 'rag-v2/search-assist-5', 'rag-v2/search-assist-6']);
+  assert.deepEqual(SEARCH_ASSIST_VERSIONS, ['rag-v2/search-assist-1', 'rag-v2/search-assist-2', 'rag-v2/search-assist-3', 'rag-v2/search-assist-4', 'rag-v2/search-assist-5', 'rag-v2/search-assist-6', 'rag-v2/search-assist-7']);
 });
 
 test('search-assist-6 (ADR-072): a bare correction is about the person its fact belongs to and does not reopen an earlier question', async () => {
   const { planPerson, planPlaces, PLAN_CORRECTION_INSTRUCTIONS } = await import('../lib/rag-v2/pilot/search-assist.js');
-  assert.equal(SEARCH_ASSIST_VERSION, 'rag-v2/search-assist-6');
+  // The line of search-assist-6 is kept as it was in search-assist-7.
+  assert.equal(SEARCH_ASSIST_VERSION, 'rag-v2/search-assist-7');
   const plan = queryPlanRequest(config, ['Kas A võib taotleda toetust?', 'Kui kiiresti otsustatakse?', 'Vabandust, B sissetulek on hoopis teine.'], 'et', ['user', 'A', 'B']);
   const lines = plan.instructions.split('\n');
   // One line, after the rule on person and before the rule on places; the rest of the instructions is unchanged.
@@ -117,7 +118,7 @@ test('search-assist-6 (ADR-072): a bare correction is about the person its fact 
   assert.deepEqual(plan.text.format.schema.required, ['queries', 'language', 'person', 'places']);
   assert.deepEqual(JSON.parse(plan.input[0].content), { language: 'et', messages: ['Kas A võib taotleda toetust?', 'Kui kiiresti otsustatakse?', 'Vabandust, B sissetulek on hoopis teine.'], people: ['user', 'A', 'B'], place_messages: 1 });
   // Plans approved for search-assist-5 and -6 both name a person and places.
-  for (const version of ['rag-v2/search-assist-5', SEARCH_ASSIST_VERSION]) {
+  for (const version of ['rag-v2/search-assist-5', 'rag-v2/search-assist-6', SEARCH_ASSIST_VERSION]) {
     assert.equal(planPerson({ searchAssist: version }, { person: 'B' }), 'B');
     assert.deepEqual(planPlaces({ searchAssist: version }, { places: [] }), []);
   }
@@ -154,4 +155,106 @@ test('search-assist-4 (ADR-051): the plan names whose need the message is about 
   // An older plan names nobody and no place, so the scope falls back as before.
   assert.equal(planPerson({ searchAssist: 'rag-v2/search-assist-3' }, { person: 'user' }), null);
   assert.equal(planPlaces({ searchAssist: 'rag-v2/search-assist-3' }, { places: [] }), null);
+});
+
+// ADR-077: the plans the live questionnaire of 04.10.2026 recorded for one conversation of five unrelated legal questions
+// (docs/audits/evidence/live-questionnaire-2026-10-04.json, Q9-Q13 and the clean repeat R13), word for word. The catalogue's
+// checks must fail the plans that searched answered questions again and pass the ones that did not, whatever the answer.
+test('ADR-077: the catalogue fails the stored plans that searched answered questions again and passes the clean ones', async () => {
+  const fs = await import('node:fs/promises');
+  const { checkTurn, validateCatalogue } = await import('../lib/rag-v2/pilot/conversation-eval.js');
+  const catalogue = JSON.parse(await fs.readFile('tests/evaluation/dialogue/scenarios-answered-questions-1.json', 'utf8'));
+  assert.deepEqual(validateCatalogue(catalogue), []);
+  const turns = catalogue.scenarios[0].turns;
+  const stored = JSON.parse(await fs.readFile('docs/audits/evidence/live-questionnaire-2026-10-04.json', 'utf8'));
+  const recorded = name => Object.values(stored).find(Array.isArray).find(turn => turn.case === name);
+  // The catalogue asks the questionnaire's five questions, in its order.
+  assert.deepEqual(turns.map(turn => turn.text), ['Q9', 'Q10', 'Q11', 'Q12', 'Q13'].map(name => recorded(name).question));
+  assert.deepEqual(turns.map(turn => (turn.expect.plan_queries_must_not || []).length), [0, 1, 2, 3, 4]);
+  // Only the plan is judged here: every other check is given what it expects.
+  const planOnly = (turn, queries) => checkTurn({ plan_queries_must_not: turn.expect.plan_queries_must_not }, { state: 'completed', summaries: [], details: [], contacts: 0, evidenceTitles: [], cited: [], text: '', queries });
+  const failed = result => result.checks.filter(check => !check.ok).map(check => check.detail.match(/^\/([^/]+)\//u)[1]);
+  assert.deepEqual(failed(planOnly(turns[1], recorded('Q10').plan.queries)), []);
+  assert.deepEqual(failed(planOnly(turns[2], recorded('Q11').plan.queries)), ['toimetulek', 'abivajava']);
+  assert.deepEqual(failed(planOnly(turns[3], recorded('Q12').plan.queries)), ['toimetulek', 'abivajava', 'eestkost']);
+  assert.deepEqual(failed(planOnly(turns[4], recorded('Q13').plan.queries)), ['toimetulek', 'abivajava', 'eestkost', 'puude raskusast']);
+  assert.equal(planOnly(turns[4], recorded('Q13').plan.queries).verdict, 'search');
+  // The same question as a first message: its two queries are about the fee and the maintenance duty.
+  assert.deepEqual(recorded('R13').plan.queries, ['täisealiste laste ülalpidamiskohustus hooldekodu kohatasu', 'üldhooldusteenuse rahastamine lähedaste ülalpidamiskohustus kohatasu']);
+  assert.deepEqual([planOnly(turns[4], recorded('R13').plan.queries).verdict, failed(planOnly(turns[4], recorded('R13').plan.queries))], ['passed', []]);
+  // A query that joins an earlier subject to the current one fails too (Q13's third query did).
+  assert.deepEqual(failed(planOnly(turns[4], ['hooldekodu kohatasu ülalpidamiskohustus eestkoste'])), ['eestkost']);
+  // What the selection kept in those turns: the titles of the kept passages, as the record has them.
+  const kept = name => recorded(name).plan.rerank_selected.map(index => recorded(name).plan.rerank_candidates[index]);
+  const selectedOnly = (patterns, name) => checkTurn({ selected_must_not: patterns }, { state: 'completed', summaries: [], details: [], contacts: 0, evidenceTitles: [], cited: [], text: '',
+    rerank: { candidates: recorded(name).plan.rerank_candidates, selected: kept(name) } });
+  const patternsOf = turn => turn.expect.selected_must_not;
+  assert.deepEqual(failed(selectedOnly(patternsOf(turns[1]), 'Q10')), ['toimetulekutoetus']);
+  assert.deepEqual(failed(selectedOnly(patternsOf(turns[2]), 'Q11')), ['toimetulekutoetus', 'abivajavast lapsest']);
+  assert.deepEqual(failed(selectedOnly(patternsOf(turns[3]), 'Q12')), ['toimetulekutoetus', 'abivajavast lapsest']);
+  assert.deepEqual(failed(selectedOnly(patternsOf(turns[4]), 'Q13')), ['abivajavast lapsest', 'puude raskusast|puude tuvastam']);
+  assert.deepEqual([selectedOnly(patternsOf(turns[4]), 'Q13').verdict, selectedOnly(patternsOf(turns[4]), 'R13').verdict], ['search', 'passed']);
+  // The same fault with a clean plan, in another conversation of the questionnaire: a guide on another subject was kept
+  // for the third and the fifth question.
+  for (const name of ['Q22', 'Q24']) {
+    assert.ok(recorded(name).plan.queries.every(query => !/MARAC/iu.test(query)), name);
+    assert.deepEqual(failed(selectedOnly(['MARAC'], name)), ['MARAC'], name);
+  }
+  // A turn without a recorded selection (the greeting route, an unavailable selection) has nothing to fail.
+  assert.deepEqual(failed(checkTurn({ selected_must_not: ['x'] }, { state: 'completed', summaries: [], details: [], contacts: 0, evidenceTitles: [], cited: [], text: '' })), []);
+  assert.deepEqual(validateCatalogue({ scenarios: [{ id: 'x', turns: [{ mode: 'new', text: 'a', expect: { selected_must_not: 'x' } }] }] }).length, 1);
+  // The last turn also asks for the legal basis: R13's record (no passage of the act cited) fails on the citation.
+  const last = checkTurn(turns[4].expect, { state: 'completed', region: null, summaries: [], details: [], contacts: 0, queries: recorded('R13').plan.queries,
+    evidenceTitles: recorded('R13').evidence.titles.map(item => item.title), cited: recorded('R13').cited.map(item => ({ title: item.title, documentId: item.title })),
+    text: 'Täiskasvanud lastel võib olla ülalpidamiskohustus, kuid kogu hooldekodu kohatasu ei lähe automaatselt laste kanda.' });
+  assert.deepEqual(last.checks.filter(check => !check.ok).map(check => check.key), ['evidence', 'cited']);
+});
+
+test('search-assist-7 (ADR-077): the plan searches the current message only; a question about what changes keeps both versions', async () => {
+  const { PLAN_ANSWERED_INSTRUCTIONS, RERANK_ANSWERED_INSTRUCTIONS, RERANK_CHANGE_INSTRUCTIONS, PLAN_CORRECTION_INSTRUCTIONS, candidateRecord, CANDIDATE_LEAD_CHARS } = await import('../lib/rag-v2/pilot/search-assist.js');
+  assert.equal(SEARCH_ASSIST_VERSION, 'rag-v2/search-assist-7');
+  const messages = ['Mis on A?', 'Kes otsustab B üle?', 'Kuidas taotleda C-d?'];
+  const plan = queryPlanRequest(config, messages, 'et'), lines = plan.instructions.split('\n');
+  // One line, right after the rule on what the queries are for; the correction's line stays where it was.
+  assert.deepEqual([lines.filter(line => line === PLAN_ANSWERED_INSTRUCTIONS).length,
+    lines.indexOf(PLAN_ANSWERED_INSTRUCTIONS) - lines.findIndex(line => line.startsWith('Write up to 3 search queries')),
+    lines.filter(line => line === PLAN_CORRECTION_INSTRUCTIONS).length], [1, 1, 1]);
+  // What it says: earlier questions are answered; queries are for the current message; a message that continues an earlier
+  // request (a reference to it, or a short reply that adds a detail, such as an answer to the assistant's question) is that request.
+  for (const phrase of ['Earlier messages are context, not requests', 'every earlier question has had its answer', 'Write queries only for what the current message asks',
+    'When the current message continues an earlier one, write the queries for that request as the current message completes it',
+    'it continues one when it refers to it (it, that service, there, that person) or is a short reply that only adds a detail to it', 'Facts about the person that still apply are kept',
+    'Do not write a query for an earlier question the current message neither asks again nor continues', 'do not add the subject of such a question to a query for the current one']) {
+    assert.ok(PLAN_ANSWERED_INSTRUCTIONS.includes(phrase), phrase);
+  }
+  // General: no subject, act, person or place of the conversation that showed the fault.
+  assert.doesNotMatch(PLAN_ANSWERED_INSTRUCTIONS, /\d|toimetulek|eestkost|puue|puude|hooldekodu|laps|child|guardian|disab|benefit|subsistence|care home|vald|Riigikogu/iu);
+  // The instructions never carry the conversation; the plan's contract and input are those of search-assist-6.
+  assert.ok(!plan.instructions.includes('Kes otsustab'));
+  assert.deepEqual(plan.text.format.schema.required, ['queries', 'language', 'person', 'places']);
+  assert.deepEqual(JSON.parse(plan.input[0].content), { language: 'et', messages, people: ['user'], place_messages: 1 });
+  // The selection: the same rule said for passages, right after the rule on what to return, and one line after the rule on an act's versions.
+  const passages = [{ id: 'P1', title: 'Kord', valid_from: '2026-01-01', valid_to: '2026-06-30', text: 'Kord\n§ 1\nvana' }, { id: 'P2', title: 'Kord', valid_from: '2026-07-01', valid_to: null, text: 'Kord\n§ 1\nuus' }];
+  const selection = rerankRequest(config, ['Mis muutub korras alates 1. juulist?'], passages, '2026-06-15'), rules = selection.instructions.split('\n');
+  assert.deepEqual([rules.filter(line => line === RERANK_CHANGE_INSTRUCTIONS).length,
+    rules.indexOf(RERANK_CHANGE_INSTRUCTIONS) - rules.findIndex(line => line.startsWith('A passage from a legal act may give the validity of its version'))], [1, 1]);
+  for (const phrase of ['asks what changes, changed or will change in an act on or from a date', 'compares the version in force before that date with the one in force from it',
+    'for the provisions that differ keep the passage of each of the two versions (the same provision in both)', 'not only the newer one']) {
+    assert.ok(RERANK_CHANGE_INSTRUCTIONS.includes(phrase), phrase);
+  }
+  assert.doesNotMatch(RERANK_CHANGE_INSTRUCTIONS, /\d|oktoob|Sakala|vald|sotsiaal/iu);
+  assert.deepEqual([rules.filter(line => line === RERANK_ANSWERED_INSTRUCTIONS).length,
+    rules.indexOf(RERANK_ANSWERED_INSTRUCTIONS) - rules.findIndex(line => line.startsWith('Return the ids of the passages that contain information the answer needs'))], [1, 1]);
+  for (const phrase of ['Earlier messages are context, not requests', 'every earlier question has had its answer', 'Keep passages only for what the current message asks',
+    'or for the earlier request it continues', 'it continues one when it refers to it (it, that service, there, that person) or is a short reply that only adds a detail to it',
+    'Facts about the person that still apply are kept in mind', 'A passage that answers an earlier question the current message neither asks again nor continues is not useful']) {
+    assert.ok(RERANK_ANSWERED_INSTRUCTIONS.includes(phrase), phrase);
+  }
+  assert.doesNotMatch(RERANK_ANSWERED_INSTRUCTIONS, /\d|toimetulek|eestkost|puue|puude|hooldekodu|laps|child|guardian|disab|benefit|MARAC|vald/iu);
+  // What the selection is sent is unchanged: the passages as they were, and today's date.
+  assert.deepEqual(JSON.parse(selection.input[0].content), { today: '2026-06-15', messages: ['Mis muutub korras alates 1. juulist?'], passages });
+  // The turn record tells the candidates apart: two versions of one act share the title, two passages of one act too.
+  assert.deepEqual(passages.map(candidateRecord), [{ id: 'P1', title: 'Kord', valid_from: '2026-01-01', lead: 'Kord § 1 vana' }, { id: 'P2', title: 'Kord', valid_from: '2026-07-01', lead: 'Kord § 1 uus' }]);
+  assert.deepEqual(candidateRecord({ id: 'P3', title: 'Artikkel', year: '2017', text: `Artikkel\n${'x'.repeat(400)}` }), { id: 'P3', title: 'Artikkel', lead: `Artikkel ${'x'.repeat(CANDIDATE_LEAD_CHARS - 9)}` });
+  assert.deepEqual(candidateRecord({ id: 'P4', title: 'Tühi' }), { id: 'P4', title: 'Tühi' });
 });

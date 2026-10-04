@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { PROMPT_VERSION, READABLE_PROMPT_VERSIONS, answerInstructions, answerRequest } from '../lib/rag-v2/pilot/contracts.js';
 import { DIALOGUE_PROMPT_VERSION, READABLE_DIALOGUE_PROMPT_VERSIONS, COMPLETENESS_INSTRUCTIONS, BARE_CORRECTION_INSTRUCTIONS, PRIOR_CLAIM_INSTRUCTIONS, dialogueRequest } from '../lib/rag-v2/pilot/dialogue.js';
 import { UNIFIED_RETRIEVAL_INSTRUCTIONS, UNIFIED_RETRIEVAL_VERSION } from '../lib/rag-v2/pilot/retrieval-plan.js';
-import { SEARCH_ASSIST_VERSION, PLAN_CORRECTION_INSTRUCTIONS, queryPlanRequest, rerankRequest } from '../lib/rag-v2/pilot/search-assist.js';
+import { SEARCH_ASSIST_VERSION, PLAN_CORRECTION_INSTRUCTIONS, PLAN_ANSWERED_INSTRUCTIONS, RERANK_ANSWERED_INSTRUCTIONS, RERANK_CHANGE_INSTRUCTIONS, queryPlanRequest, rerankRequest } from '../lib/rag-v2/pilot/search-assist.js';
 import { tokenCount } from '../lib/rag-v2/search/embedding.js';
 import { hash } from '../lib/rag-v2/contracts.js';
 
@@ -160,11 +160,13 @@ test('dialogue prompt 22 (ADR-062): valid_from chooses the version and never dat
   assert.deepEqual(Object.fromEntries(['et', 'en', 'ru'].map(language => [language, hash(answerInstructions(language))])), { et: 'a6b0c4f78016b90198b9ce8026e8f35524cf61f005a03212dc67db3e9748a0f1',
     en: '012bb27ea0bf8c8eba7db32d2c9ae123ea2edac255695f0eca0b21c5cda27ba3', ru: 'd21da15b0fcb98b0a5c7e98ff2e39ca5dc4a7c6dd574710ab8dbb2901e67c989' });
   const assist = { model: 'gpt-6-luna', searchAssist: SEARCH_ASSIST_VERSION };
-  // search-assist-6 (ADR-072) adds one line to the plan's instructions; without it both texts are those of search-assist-5.
-  const asFive = text => text.replaceAll('rag-v2/search-assist-6', 'rag-v2/search-assist-5');
-  assert.deepEqual([SEARCH_ASSIST_VERSION, hash(asFive(queryPlanRequest(assist, ['küsimus'], 'et').instructions.replace(`${PLAN_CORRECTION_INSTRUCTIONS}\n`, ''))),
-    hash(asFive(rerankRequest(assist, ['küsimus'], [{ id: 'P1', title: 't', text: 'x' }], '2026-10-01').instructions))],
-  ['rag-v2/search-assist-6', 'ac80d12eefde1aa4abce6b0f87f4bd03d395001bd35c347dca35e639fd13f6e7', '100f26ab81538a103a93e34d6f58e79d0156319c51dd6ca0e449a26b2db206d4']);
+  // search-assist-6 (ADR-072) adds one line to the plan's instructions and search-assist-7 (ADR-077) one to the plan's and
+  // two to the selection's; without those four lines both texts are those of search-assist-5.
+  const asFive = text => text.replaceAll('rag-v2/search-assist-7', 'rag-v2/search-assist-5');
+  const without = (text, ...lines) => lines.reduce((rest, line) => { assert.equal(rest.split(`${line}\n`).length, 2, line.slice(0, 40)); return rest.replace(`${line}\n`, ''); }, text);
+  assert.deepEqual([SEARCH_ASSIST_VERSION, hash(asFive(without(queryPlanRequest(assist, ['küsimus'], 'et').instructions, PLAN_CORRECTION_INSTRUCTIONS, PLAN_ANSWERED_INSTRUCTIONS))),
+    hash(asFive(without(rerankRequest(assist, ['küsimus'], [{ id: 'P1', title: 't', text: 'x' }], '2026-10-01').instructions, RERANK_ANSWERED_INSTRUCTIONS, RERANK_CHANGE_INSTRUCTIONS)))],
+  ['rag-v2/search-assist-7', 'ac80d12eefde1aa4abce6b0f87f4bd03d395001bd35c347dca35e639fd13f6e7', '100f26ab81538a103a93e34d6f58e79d0156319c51dd6ca0e449a26b2db206d4']);
   // The request: a unified-retrieval turn carries A, the sentence and B in that order; every dialogue turn carries C.
   const config = { model: 'gpt-6-luna', maxOutputTokens: 4096, reasoning: 'medium' };
   const unified = dialogueRequest({ ...config, retrievalRouting: UNIFIED_RETRIEVAL_VERSION }, 'Kui suur on toetus?', { evidence: [] }, 'et', {}).instructions;

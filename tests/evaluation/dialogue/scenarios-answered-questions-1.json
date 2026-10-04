@@ -1,0 +1,130 @@
+{
+ "schema_version": "rag-v2/dialogue-eval-2",
+ "purpose": "ADR-077 (04.10.2026): the search plan and the selection work for the current message only. In the live questionnaire of 04.10.2026 one conversation asked five unrelated legal questions in a row (Q9-Q13). From the third message on the plan searched the earlier, answered questions again and joined their subjects into the query for the current one; from the second message on the selection kept passages about earlier questions; the fifth turn's evidence was mostly about the earlier subjects and its answer was unsupported. The same five messages, word for word. Each later turn checks what the plan set out to find and what the selection kept; the last one also checks that the Family Law Act, the legal basis of the maintenance duty, is found and cited (in the clean repeat R13 two of its passages were candidates and neither was selected). Written before any run with the model. Run with --auto-modes (what the chat sends).",
+ "expectation_help": {
+  "plan_queries_must_not": "search: none of the plan's queries is about an earlier message's subject (subsistence, reporting a child in need, guardianship, severity of disability). A query that joins an earlier subject to the current one fails as well",
+  "selected_must_not": "search: none of the passages the selection kept is from a source whose title names an earlier message's subject. A title is a coarse sign: an act that serves several subjects (the Social Welfare Act) is not named here",
+  "region": "state: these are general questions, no municipal scope is chosen",
+  "evidence / cited": "the act that answers the turn's question is among the found sources and the answer has a source block that cites it; an answer that only asks back or says it cannot tell cites nothing",
+  "must": "answer: it speaks of the current question's subject. Read the whole answer as well, a pattern is a coarse check"
+ },
+ "history": [],
+ "scenarios": [
+  {
+   "id": "five-unrelated-legal-questions",
+   "title": "Viis üksteisega sidumata õigusküsimust samas vestluses",
+   "source": "live questionnaire 04.10.2026, Q9-Q13",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Kui suur on toimetulekupiir ja kuidas toimetulekutoetust arvutatakse?",
+     "expect": {
+      "region": null,
+      "cited": [
+       "Sotsiaalhoolekande seadus"
+      ],
+      "must": [
+       "toimetulekupiir"
+      ]
+     },
+     "note": "The first message: nothing earlier to search again. Since corpus v49 the amount has a national source (ADR-076); it is measured by scenarios-national-sources-1 and not required here."
+    },
+    {
+     "mode": "same",
+     "text": "Kes peab teatama abivajavast lapsest ja kuhu?",
+     "expect": {
+      "region": null,
+      "plan_queries_must_not": [
+       "toimetulek"
+      ],
+      "selected_must_not": [
+       "toimetulekutoetus"
+      ],
+      "cited": [
+       "Lastekaitseseadus"
+      ],
+      "must": [
+       "abivajava"
+      ]
+     },
+     "note": "04.10 (Q10): the plan's three queries were all about reporting a child in need and the answer was grounded, but the selection kept a passage of an article on subsistence benefit."
+    },
+    {
+     "mode": "same",
+     "text": "Mis vahe on eestkostel ja toetatud otsustamisel?",
+     "expect": {
+      "region": null,
+      "plan_queries_must_not": [
+       "toimetulek",
+       "abivajava"
+      ],
+      "selected_must_not": [
+       "toimetulekutoetus",
+       "abivajavast lapsest"
+      ],
+      "must": [
+       "eestkost"
+      ]
+     },
+     "note": "04.10 (Q11): the first turn whose plan had the fault. Two of the three queries searched the first and the second question again; the selection kept passages on subsistence benefit and on reporting a child in need."
+    },
+    {
+     "mode": "same",
+     "text": "Kuidas määratakse täisealisele puude raskusaste?",
+     "expect": {
+      "region": null,
+      "plan_queries_must_not": [
+       "toimetulek",
+       "abivajava",
+       "eestkost"
+      ],
+      "selected_must_not": [
+       "toimetulekutoetus",
+       "abivajavast lapsest",
+       "toetatud otsustam|eestkostekorraldus|eestkostja"
+      ],
+      "evidence": [
+       "Puuetega inimeste sotsiaaltoetuste seadus"
+      ],
+      "cited": [
+       "Puuetega inimeste sotsiaaltoetuste seadus"
+      ],
+      "must": [
+       "Sotsiaalkindlustusamet"
+      ]
+     },
+     "note": "04.10 (Q12): two queries searched earlier questions again and the third joined guardianship to the severity of disability. The act was not in the index then; as a first message on corpus v49 the turn found and cited it (scenarios-national-sources-1)."
+    },
+    {
+     "mode": "same",
+     "text": "Kas hooldekodu kohatasu võib nõuda lastelt?",
+     "expect": {
+      "region": null,
+      "plan_queries_must_not": [
+       "toimetulek",
+       "abivajava",
+       "eestkost",
+       "puude raskusast"
+      ],
+      "selected_must_not": [
+       "toimetulekutoetus",
+       "abivajavast lapsest",
+       "toetatud otsustam|eestkostekorraldus|eestkostja",
+       "puude raskusast|puude tuvastam"
+      ],
+      "evidence": [
+       "Perekonnaseadus"
+      ],
+      "cited": [
+       "Perekonnaseadus"
+      ],
+      "must": [
+       "ülalpidamis"
+      ]
+     },
+     "note": "04.10 (Q13): all three queries carried earlier subjects, the selection kept passages on reporting a child and on the severity of disability, and the answer was unsupported. As a first message (R13) the plan's two queries were about the care home fee and the maintenance duty, two passages of the Family Law Act were candidates, neither was selected, and the answer said the basis of the children's duty stayed unconfirmed. Which passages they were is not in that record; from search-assist-7 on the record keeps each candidate's first words."
+    }
+   ]
+  }
+ ]
+}
