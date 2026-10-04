@@ -1,0 +1,3311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="474bfef6-3c56-4c6d-b511-6a2e20f5d982" xsi:schemaLocation="tyviseadus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/tyviseadus_1_10.02.2010.xsd" xmlns="tyviseadus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Riigikogu</valjaandja>
+		<dokumentLiik>seadus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		
+		<lyhend>PISTS</lyhend><dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<tavatekst>jõustunud vastavalt §-le 26.</tavatekst>
+			<aktikuupaev>1999-01-27</aktikuupaev>
+			<avaldamismarge>
+				<RTosa>RT I</RTosa>
+				<RTaasta>1999</RTaasta>
+				<RTnr>16</RTnr>
+				<RTartikkel>273</RTartikkel>
+				<aktViide>77099</aktViide>
+			</avaldamismarge>
+		</vastuvoetud>
+		<avaldamismarge><RTosa>RT I</RTosa><avaldamineKuupaev>2026-06-30</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>21</RTartikkel><aktViide>130062026021</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2027-02-01</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioonKuupaev>2012-07-02</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>tyviseadus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>130062026021</globaalID>
+		<metaandmedVersioon>98</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2026-06-29</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Maret Mauer</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>159387</terviktekstiGrupiID>
+		<eesmark>Tüviseaduse raamskeem XML struktuuri koostamiseks</eesmark>
+	</metaandmed>
+	<aktinimi>
+		<nimi>
+			<pealkiri>Puuetega inimeste sotsiaaltoetuste seadus</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge>
+		<aktikuupaev>1999-10-13</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>1999</RTaasta>
+			<RTnr>82</RTnr>
+			<RTartikkel>749</RTartikkel>
+			<aktViide>77821</aktViide>
+		</avaldamismarge>
+		<joustumine>2000-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>1999-11-10</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>1999</RTaasta>
+			<RTnr>88</RTnr>
+			<RTartikkel>803</RTartikkel>
+			<aktViide>77876</aktViide>
+		</avaldamismarge>
+		<joustumine>1999-12-10</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2000-12-20</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2001</RTaasta>
+			<RTnr>3</RTnr>
+			<RTartikkel>10</RTartikkel>
+			<aktViide>72596</aktViide>
+		</avaldamismarge>
+		<joustumine>2001-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2001-12-05</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2001</RTaasta>
+			<RTnr>100</RTnr>
+			<RTartikkel>648</RTartikkel>
+			<aktViide>27442</aktViide>
+		</avaldamismarge>
+		<joustumine>2002-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2001-12-12</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2001</RTaasta>
+			<RTnr>102</RTnr>
+			<RTartikkel>671</RTartikkel>
+			<aktViide>73415</aktViide>
+		</avaldamismarge>
+		<joustumine>2002-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2002-04-09</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2002</RTaasta>
+			<RTnr>35</RTnr>
+			<RTartikkel>219</RTartikkel>
+			<aktViide>95224</aktViide>
+		</avaldamismarge>
+		<joustumine>2002-04-25</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<tavatekst>terviktekst RT paberkandjal</tavatekst>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2002</RTaasta>
+			<RTnr>39</RTnr>
+			<RTartikkel>245</RTartikkel>
+			<aktViide>95250</aktViide>
+		</avaldamismarge>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2002-06-19</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2002</RTaasta>
+			<RTnr>61</RTnr>
+			<RTartikkel>375</RTartikkel>
+			<aktViide>184811</aktViide>
+		</avaldamismarge>
+		<joustumine>2002-08-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2004-12-08</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2004</RTaasta>
+			<RTnr>89</RTnr>
+			<RTartikkel>603</RTartikkel>
+			<aktViide>831311</aktViide>
+		</avaldamismarge>
+		<joustumine>2005-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2004-12-08</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2004</RTaasta>
+			<RTnr>89</RTnr>
+			<RTartikkel>604</RTartikkel>
+			<aktViide>831323</aktViide>
+		</avaldamismarge>
+		<joustumine>2005-04-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2005-06-16</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2005</RTaasta>
+			<RTnr>38</RTnr>
+			<RTartikkel>299</RTartikkel>
+			<aktViide>917071</aktViide>
+		</avaldamismarge>
+		<joustumine>2005-07-17</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2005-06-15</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2005</RTaasta>
+			<RTnr>39</RTnr>
+			<RTartikkel>308</RTartikkel>
+			<aktViide>919178</aktViide>
+		</avaldamismarge>
+		<joustumine>2006-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2005-12-15</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2005</RTaasta>
+			<RTnr>71</RTnr>
+			<RTartikkel>544</RTartikkel>
+			<aktViide>972399</aktViide>
+		</avaldamismarge>
+		<joustumine>2006-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2006-05-17</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2006</RTaasta>
+			<RTnr>26</RTnr>
+			<RTartikkel>191</RTartikkel>
+			<aktViide>1034665</aktViide>
+		</avaldamismarge>
+		<joustumine>2006-08-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2006-11-16</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2006</RTaasta>
+			<RTnr>55</RTnr>
+			<RTartikkel>409</RTartikkel>
+			<aktViide>12758732</aktViide>
+		</avaldamismarge>
+		<joustumine>2007-09-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2007-02-15</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2007</RTaasta>
+			<RTnr>22</RTnr>
+			<RTartikkel>116</RTartikkel>
+			<aktViide>12799771</aktViide>
+		</avaldamismarge>
+		<joustumine>2008-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2007-12-19</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2007</RTaasta>
+			<RTnr>71</RTnr>
+			<RTartikkel>437</RTartikkel>
+			<aktViide>12902050</aktViide>
+		</avaldamismarge>
+		<joustumine>2008-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2007-12-19</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2007</RTaasta>
+			<RTnr>71</RTnr>
+			<RTartikkel>437</RTartikkel>
+			<aktViide>12902050</aktViide>
+		</avaldamismarge>
+		<joustumine>2008-10-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2008-10-22</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2008</RTaasta>
+			<RTnr>48</RTnr>
+			<RTartikkel>264</RTartikkel>
+			<aktViide>13062998</aktViide>
+		</avaldamismarge>
+		<joustumine>2008-11-23</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2008-12-17</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2008</RTaasta>
+			<RTnr>58</RTnr>
+			<RTartikkel>329</RTartikkel>
+			<aktViide>13099718</aktViide>
+		</avaldamismarge>
+		<joustumine>2009-03-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2009-10-29</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2009</RTaasta>
+			<RTnr>53</RTnr>
+			<RTartikkel>360</RTartikkel>
+			<aktViide>13231864</aktViide>
+		</avaldamismarge>
+		<joustumine>2010-01-01</joustumine>
+		<tavatekst>, osaliselt 21.11.2009</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2010-04-22</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2010</RTaasta>
+			<RTnr>22</RTnr>
+			<RTartikkel>108</RTartikkel>
+			<aktViide>13310847</aktViide>
+		</avaldamismarge>
+		<joustumine>2011-01-01</joustumine>
+		<tavatekst> jõustub päeval, mis on kindlaks määratud Euroopa Liidu Nõukogu otsuses Eesti Vabariigi suhtes kehtestatud erandi kehtetuks tunnistamise kohta Euroopa Liidu toimimise lepingu artikli 140 lõikes 2 sätestatud alusel, Euroopa Liidu Nõukogu 13.07.2010. a otsus Nr 2010/416/EL (ELT L 196, 28.07.2010, lk 24–26).</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2010-06-17</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<RTaasta>2010</RTaasta>
+			<RTnr>38</RTnr>
+			<RTartikkel>231</RTartikkel>
+			<aktViide>13332386</aktViide>
+		</avaldamismarge>
+		<joustumine>2010-07-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2012-03-08</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2012-03-27</avaldamineKuupaev>
+			<RTartikkel>6</RTartikkel>
+			<aktViide>127032012006</aktViide>
+		</avaldamismarge>
+		<joustumine>2012-06-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2012-06-14</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2012-07-05</avaldamineKuupaev>
+			<RTartikkel>14</RTartikkel>
+			<aktViide>105072012014</aktViide>
+		</avaldamismarge>
+		<joustumine>2012-09-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2012-11-14</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2012-12-06</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>106122012001</aktViide>
+		</avaldamismarge>
+		<joustumine>2013-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2013-06-12</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2013-07-02</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>102072013001</aktViide>
+		</avaldamismarge>
+		<joustumine>2013-09-01</joustumine>
+		<tavatekst>, osaliselt 01.01.2014</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2014-02-26</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2014-03-21</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>121032014001</aktViide>
+		</avaldamismarge>
+		<joustumine>2014-03-31</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2014-03-26</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2014-04-16</avaldamineKuupaev>
+			<RTartikkel>3</RTartikkel>
+			<aktViide>116042014003</aktViide>
+		</avaldamismarge>
+		<joustumine>2014-07-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2014-06-19</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2014-06-29</avaldamineKuupaev>
+			<RTartikkel>109</RTartikkel>
+			<aktViide>129062014109</aktViide>
+		</avaldamismarge>
+		<joustumine>2014-07-01</joustumine>
+		<tavatekst>, Vabariigi Valitsuse seaduse § 107³ lõike 4 alusel asendatud ministrite ametinimetused.</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2014-11-19</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2014-12-13</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>113122014001</aktViide>
+		</avaldamismarge>
+		<joustumine>2016-01-01</joustumine>
+		<tavatekst>, osaliselt 01.01.2015 ja 01.07.2016; jõustumisaeg muudetud 01.07.2016 [RT I, 17.12.2015, 1]</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2014-11-19</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2014-12-13</avaldamineKuupaev>
+			<RTartikkel>2</RTartikkel>
+			<aktViide>113122014002</aktViide>
+		</avaldamismarge>
+		<joustumine>2016-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2015-02-18</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2015-03-23</avaldamineKuupaev>
+			<RTartikkel>5</RTartikkel>
+			<aktViide>123032015005</aktViide>
+		</avaldamismarge>
+		<joustumine>2015-07-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2015-11-25</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2015-12-17</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>117122015001</aktViide>
+		</avaldamismarge>
+		<joustumine>2015-12-20</joustumine>
+		<tavatekst>, osaliselt 01.01.2016 ja 01.07.2016</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2015-12-09</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2015-12-30</avaldamineKuupaev>
+			<RTartikkel>5</RTartikkel>
+			<aktViide>130122015005</aktViide>
+		</avaldamismarge>
+		<joustumine>2016-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2016-06-15</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2016-07-08</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>108072016001</aktViide>
+		</avaldamismarge>
+		<joustumine>2017-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2017-06-14</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2017-06-29</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>129062017001</aktViide>
+		</avaldamismarge>
+		<joustumine>2017-07-09</joustumine>
+		<tavatekst>, osaliselt 01.07.2017</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2017-11-15</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2017-11-28</avaldamineKuupaev>
+			<RTartikkel>2</RTartikkel>
+			<aktViide>128112017002</aktViide>
+		</avaldamismarge>
+		<joustumine>2018-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2019-02-13</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2019-02-27</avaldamineKuupaev>
+			<RTartikkel>11</RTartikkel>
+			<aktViide>127022019011</aktViide>
+		</avaldamismarge>
+		<joustumine>2020-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2020-04-08</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2020-04-09</avaldamineKuupaev>
+			<RTartikkel>14</RTartikkel>
+			<aktViide>109042020014</aktViide>
+		</avaldamismarge>
+		<joustumine>2020-05-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2020-04-15</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2020-04-21</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>121042020001</aktViide>
+		</avaldamismarge>
+		<joustumine>2020-04-22</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2021-03-10</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2021-03-22</avaldamineKuupaev>
+			<RTartikkel>2</RTartikkel>
+			<aktViide>122032021002</aktViide>
+		</avaldamismarge>
+		<joustumine>2021-04-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2022-04-13</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2022-04-28</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>128042022001</aktViide>
+		</avaldamismarge>
+		<joustumine>2022-05-08</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2023-06-20</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2023-06-30</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>130062023001</aktViide>
+		</avaldamismarge>
+		<joustumine>2023-07-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2024-07-29</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2024-08-17</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>117082024001</aktViide>
+		</avaldamismarge>
+		<joustumine>2025-01-01</joustumine>
+		<tavatekst>, osaliselt 01.06.2025 ja 01.01.2026</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2024-11-20</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2024-12-12</avaldamineKuupaev>
+			<RTartikkel>2</RTartikkel>
+			<aktViide>112122024002</aktViide>
+		</avaldamismarge>
+		<joustumine>2024-12-22</joustumine>
+		<tavatekst>, osaliselt 01.01.2025</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2024-12-11</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+			<RTartikkel>3</RTartikkel>
+			<aktViide>131122024003</aktViide>
+		</avaldamismarge>
+		<joustumine>2025-01-10</joustumine>
+		<tavatekst>, osaliselt 01.01.2025</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2025-05-21</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2025-06-12</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>112062025001</aktViide>
+		</avaldamismarge>
+		<joustumine>2025-06-22</joustumine>
+		<tavatekst>, osaliselt 01.02.2027</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2026-05-04</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2026-05-21</avaldamineKuupaev>
+			<RTartikkel>2</RTartikkel>
+			<aktViide>121052026002</aktViide>
+		</avaldamismarge>
+		<joustumine>2026-05-22</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2026-05-18</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2026-06-03</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>103062026001</aktViide>
+		</avaldamismarge>
+		<joustumine>2026-06-12</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2026-06-02</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2026-06-30</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>130062026001</aktViide>
+		</avaldamismarge>
+		<joustumine>2026-10-01</joustumine>
+	</muutmismarge>
+	<sisu>
+		<peatykk id="ptk1">
+			<peatykkNr>1</peatykkNr>
+			<kuvatavNr><![CDATA[1. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>ÜLDSÄTTED</peatykkPealkiri>
+			<paragrahv id="para1">
+				<paragrahvNr>1</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 1. ]]></kuvatavNr>
+				<paragrahvPealkiri>Seaduse reguleerimisala ja eesmärk</paragrahvPealkiri>
+				<loige id="para1lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesolev seadus sätestab puuetega inimeste sotsiaaltoetuste liigid, nende saamise tingimused, nende suurused ning määramise ja maksmise korra.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para1lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse eesmärk on puuetega inimeste iseseisva toimetuleku, sotsiaalse integratsiooni ja võrdsete võimaluste toetamine ning õppimise ja töötamise soodustamine puudest tingitud lisakulude osalise hüvitamise kaudu.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2007</RTaasta>
+							<RTnr>71</RTnr>
+							<RTartikkel>437</RTartikkel>
+							<aktViide>12902050</aktViide>
+						</avaldamismarge>
+						<joustumine>2008-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para1lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesolevas seaduses ettenähtud sotsiaalkaitsele kohaldatakse sotsiaalseadustiku üldosa seaduse sätteid, arvestades käesoleva seaduse erisusi.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2016-07-08</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>108072016001</aktViide>
+						</avaldamismarge>
+						<joustumine>2017-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para2">
+				<paragrahvNr>2</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 2. ]]></kuvatavNr>
+				<paragrahvPealkiri>Mõisted</paragrahvPealkiri>
+				<loige id="para2lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puue on inimese anatoomilise, füsioloogilise või psüühilise struktuuri või funktsiooni kaotus või kõrvalekalle, mis koostoimes erinevate suhtumuslike ja keskkondlike takistustega tõkestab ühiskonnaelus osalemist teistega võrdsetel alustel.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2007</RTaasta>
+							<RTnr>71</RTnr>
+							<RTartikkel>437</RTartikkel>
+							<aktViide>12902050</aktViide>
+						</avaldamismarge>
+						<joustumine>2008-10-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para2lg1b1">
+					<loigeNr ylaIndeks="1">1</loigeNr>
+					<kuvatavNr><![CDATA[(1<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse alusel tuvastatakse kuni 18-aastasel lapsel ning vanaduspensioniealisel inimesel lähtuvalt kõrvalabi, juhendamise või järelevalve vajadusest sügav, raske või keskmine puude raskusaste. Käesoleva lõike mõistes on puudel järgmised raskusastmed:</tavatekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2025-06-12</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>112062025001</aktViide>
+							</avaldamismarge>
+							<joustumine>2027-02-01</joustumine>
+						</muutmismarge>
+					</sisuTekst>
+					<alampunkt id="para2lg1b1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>sügav puue on inimese anatoomilise, füsioloogilise või psüühilise struktuuri või funktsiooni kaotus või kõrvalekalle, millest tingituna vajab isik pidevat kõrvalabi, juhendamist või järelevalvet ööpäevaringselt;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2lg1b1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>raske puue on inimese anatoomilise, füsioloogilise või psüühilise struktuuri või funktsiooni kaotus või kõrvalekalle, millest tingituna vajab isik kõrvalabi, juhendamist või järelevalvet igal ööpäeval;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2lg1b1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>keskmine puue on inimese anatoomilise, füsioloogilise või psüühilise struktuuri või funktsiooni kaotus või kõrvalekalle, millest tingituna vajab isik regulaarset kõrvalabi või juhendamist väljaspool oma elamiskohta vähemalt korra nädalas.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<RTaasta>2007</RTaasta>
+								<RTnr>71</RTnr>
+								<RTartikkel>437</RTartikkel>
+								<aktViide>12902050</aktViide>
+							</avaldamismarge>
+							<joustumine>2008-10-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para2lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kõrvalabi või juhendamine on abi osutamine inimesele, kes ei tule iseseisvalt toime söömise, ravitoimingute, hügieenitoimingute, riietumise, liikumise või suhtlemisega. Järelevalve on ohutuse tagamine inimese suhtes, kes oma tegevuse või tegevusetusega võib tekitada kahju iseenda või teiste inimeste elule, tervisele või varale.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2022-04-28</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>128042022001</aktViide>
+						</avaldamismarge>
+						<joustumine>2022-05-08</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para2lg2b1">
+					<loigeNr ylaIndeks="1">2</loigeNr>
+					<kuvatavNr><![CDATA[(2<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse alusel tuvastatakse 18-aastasel kuni vanaduspensioniealisel inimesel (edaspidi <i>tööealine inimene</i>) lähtuvalt igapäevastest tegutsemis- ja ühiskonnaelus osalemise piirangutest sügava, raske või keskmise raskusastmega puue. Käesoleva lõike mõistes on puudel järgmised raskusastmed:</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2025-06-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>112062025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2027-02-01</joustumine>
+					</muutmismarge>
+					<alampunkt id="para2lg2b1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>sügav puue on inimesel, kellel igapäevane tegutsemine või ühiskonnaelus osalemine on täielikult takistatud;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2lg2b1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>raske puue on inimesel, kellel igapäevane tegutsemine või ühiskonnaelus osalemine on piiratud;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2lg2b1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>keskmine puue on inimesel, kellel igapäevases tegutsemises või ühiskonnaelus osalemises esineb raskusi.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<RTaasta>2007</RTaasta>
+								<RTnr>71</RTnr>
+								<RTartikkel>437</RTartikkel>
+								<aktViide>12902050</aktViide>
+							</avaldamismarge>
+							<joustumine>2008-10-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para2lg2b2">
+					<loigeNr ylaIndeks="2">2</loigeNr>
+					<kuvatavNr><![CDATA[(2<sup>2</sup>)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2015-12-17</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>117122015001</aktViide>
+						</avaldamismarge>
+						<joustumine>2016-07-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para2lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Mõistet «töötamine» kasutatakse käesolevas seaduses riikliku pensionikindlustuse seaduse tähenduses.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2007</RTaasta>
+							<RTnr>71</RTnr>
+							<RTartikkel>437</RTartikkel>
+							<aktViide>12902050</aktViide>
+						</avaldamismarge>
+						<joustumine>2008-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para2b1">
+				<paragrahvNr ylaIndeks="1">2</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 2<sup>1</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Rehabilitatsiooniplaani koostamine</paragrahvPealkiri>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2022-04-28</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>128042022001</aktViide>
+					</avaldamismarge>
+					<joustumine>2022-05-08</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para2b2">
+				<paragrahvNr ylaIndeks="2">2</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 2<sup>2</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Puude raskusastme tuvastamise taotlemine</paragrahvPealkiri>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2015-12-17</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>117122015001</aktViide>
+					</avaldamismarge>
+					<joustumine>2016-07-01</joustumine>
+				</muutmismarge>
+				<loige id="para2b2lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puude raskusastme tuvastamiseks esitatakse taotlus Sotsiaalkindlustusametile.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para2b2lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Isik võib esitada puude raskusastme tuvastamise taotluse Eesti Töötukassa (edaspidi <i>töötukassa</i>) kaudu, kui taotlus esitatakse koos töövõimetoetuse seaduse alusel töötukassale esitatava töövõime hindamise taotlusega.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para2b2lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<viide>
+							<kuvatavTekst><![CDATA[Valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=130062026021&id=119052016001]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> kehtestab määrusega tööealise inimese puude raskusastme tuvastamise taotlusele kantavate andmete loetelu, milles sisalduvad:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para2b2lg3p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>puude raskusastme tuvastamist taotleva isiku nimi, sünniaeg ja sugu või isikukood, kontaktandmed, andmed hariduse ja töötamise, abivahendite ja kõrvalise abi kasutamise ning rehabilitatsiooni kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2b2lg3p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>töövõimet välistavate seisundite loetelu ning isiku kehalist ja vaimset võimekust iseloomustavate valdkondade loetelu.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para2b2lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<viide>
+							<kuvatavTekst><![CDATA[Valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=130062026021&id=119052016003]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> kehtestab määrusega lapse ja vanaduspensioniealise inimese puude raskusastme tuvastamise taotlusele kantavate andmete loetelu, milles sisalduvad puude raskusastme tuvastamist taotleva isiku nimi, sünniaeg ja sugu või isikukood, kontaktandmed, andmed õppimise või töötamise, terviseseisundist tingitud kõrvalabi, juhendamise ja järelevalve vajaduse, elutingimuste ning terviseseisundi muutuste kohta.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para2b2lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puude raskusastme taotluse esitamise päevaks loetakse päev, millal taotlus esitatakse Sotsiaalkindlustusametile või käesoleva paragrahvi lõikes 2 sätestatud juhul töötukassale. Kui puude raskusastme tuvastamise taotlus saadetakse posti teel, loetakse taotluse esitamise päevaks lähtekoha postitempli kuupäev.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2015-12-17</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>117122015001</aktViide>
+						</avaldamismarge>
+						<joustumine>2016-07-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para2b3">
+				<paragrahvNr ylaIndeks="3">2</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 2<sup>3</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Puude raskusastme tuvastamine</paragrahvPealkiri>
+				<loige id="para2b3lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puude raskusastme tuvastab Sotsiaalkindlustusamet, kaasates vajaduse korral arstiõppe läbinud isikuid.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para2b3lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalkindlustusametil on puude raskusastme tuvastamiseks isiku nõusolekul juurdepääs tervise infosüsteemi andmeid esitanud arsti ees- ja perekonnanimele.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para2b3lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Arstiõppe läbinud isikul on isiku nõusolekul juurdepääs järgmistele tervise infosüsteemis olevatele puude raskusastme tuvastamiseks vajalikele andmetele:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para2b3lg3p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed andmete esitaja kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2b3lg3p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed ambulatoorsete visiitide ja haiglas viibimise kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2b3lg3p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmed ravimite kohta.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para2b3lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui käesoleva paragrahvi lõikes 3 sätestatud andmed tervise infosüsteemis puuduvad või need on puude raskusastme tuvastamiseks ebapiisavad, edastab isiku pere- või eriarst puuduvad andmed tervise infosüsteemi ja teavitab sellest Sotsiaalkindlustusametit või edastab terviseseisundit kirjeldavad andmed Sotsiaalkindlustusametile 15 päeva jooksul Sotsiaalkindlustusametilt asjakohase taotluse saamisest arvates.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para2b3lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puude raskusastme tuvastamiseks vajalike tervise infosüsteemi andmete loetelu ja päringute perioodid kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=130062026021&id=126022016007]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para2b3lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puude raskusastme tuvastamisel võetakse arvesse järgmist:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para2b3lg6p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>terviseseisund;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2b3lg6p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>tegevusvõime;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2b3lg6p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kõrvalabi, juhendamise ja järelevalve vajadus, mis on suurem inimese eakohasest abivajadusest;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2b3lg6p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kõrvalabi ja juhendamise vajadus, mis esineb inimesel tehniliste abivahendite kasutamisele vaatamata;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2b3lg6p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>elukeskkond;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2b3lg6p6">
+						<alampunktNr>6</alampunktNr>
+						<kuvatavNr><![CDATA[6) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>rehabilitatsiooniplaani olemasolu korral selles ettenähtud tegevused.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para2b3lg7">
+					<loigeNr>7</loigeNr>
+					<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui tööealine isik taotleb samal ajal puude raskusastme tuvastamist ning töövõime hindamist, kasutatakse puude raskusastme tuvastamiseks töövõime hindamise käigus koostatud eksperdiarvamust (edaspidi <i>eksperdiarvamus</i>) ja töötukassa antud töövõime hindamise otsust.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para2b3lg8">
+					<loigeNr>8</loigeNr>
+					<kuvatavNr><![CDATA[(8)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui tööealine isik taotleb puude raskusastme tuvastamist ning töötukassa on tema töövõimet hinnanud puude raskusastme tuvastamise taotluse esitamisele eelneva kuue kuu jooksul, kasutatakse puude raskusastme tuvastamiseks eksperdiarvamust ja töötukassa antud töövõime hindamise otsust.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2020-04-09</avaldamineKuupaev>
+							<RTartikkel>14</RTartikkel>
+							<aktViide>109042020014</aktViide>
+						</avaldamismarge>
+						<joustumine>2020-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para2b3lg8b1">
+					<loigeNr ylaIndeks="1">8</loigeNr>
+					<kuvatavNr><![CDATA[(8<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puudega lapse seisundi muutumise kohta info saamisel on Sotsiaalkindlustusametil kohustus lapse abivajadust uuesti hinnata. Kohustus teavitada Sotsiaalkindlustusametit puudega lapse seisundi muutumisest on igal isikul, kellel on vastav teave olemas.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2020-04-09</avaldamineKuupaev>
+							<RTartikkel>14</RTartikkel>
+							<aktViide>109042020014</aktViide>
+						</avaldamismarge>
+						<joustumine>2020-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para2b3lg9">
+					<loigeNr>9</loigeNr>
+					<kuvatavNr><![CDATA[(9)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puude raskusastme tuvastamise tingimused ja korra kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=130062026021&id=101032016011]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-08-17</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>117082024001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-06-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para2b3lg10">
+					<loigeNr>10</loigeNr>
+					<kuvatavNr><![CDATA[(10)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puude raskusastme tuvastamise päevaks loetakse käesoleva seaduse § 2<sup>2</sup> lõikes 5 sätestatud päev.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2015-12-17</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>117122015001</aktViide>
+						</avaldamismarge>
+						<joustumine>2016-07-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para2b4">
+				<paragrahvNr ylaIndeks="4">2</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 2<sup>4</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Puude raskusastme otsuse tegemise tähtaeg ja puude raskusastme kestus</paragrahvPealkiri>
+				<loige id="para2b4lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalkindlustusamet teeb puude raskusastme tuvastamise või tuvastamata jätmise otsuse 30 tööpäeva jooksul ekspertiisiks piisavate andmete saamise päevast arvates.</tavatekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2024-12-12</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>112122024002</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-01-01</joustumine>
+						</muutmismarge>
+					</sisuTekst>
+				</loige>
+				<loige id="para2b4lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui puude raskusastme tuvastamiseks kasutatakse eksperdiarvamust ja töötukassa antud töövõime hindamise otsust, teeb Sotsiaalkindlustusamet puude raskusastme tuvastamise otsuse 30 tööpäeva jooksul eksperdiarvamuse ja töötukassa tehtud töövõime hindamise otsuse saamise päevast arvates.</tavatekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2024-12-12</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>112122024002</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-01-01</joustumine>
+						</muutmismarge>
+					</sisuTekst>
+				</loige>
+				<loige id="para2b4lg2b1">
+					<loigeNr ylaIndeks="1">2</loigeNr>
+					<kuvatavNr><![CDATA[(2<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui puude raskusastme tuvastamiseks kasutatakse eksperdiarvamust ja töötukassa antud töövõime hindamise otsust ning isik on puude raskusastme tuvastamise taotluse esitanud korduvekspertiisi tähtajal, kuid puude raskusastme tuvastamise otsust ei ole tehtud enne senise puude raskusastme tuvastamise otsuse kestuse lõppu, pikendab Sotsiaalkindlustusamet puude raskusastme tuvastamise otsuse kestust kuni uue puude raskusastme tuvastamise või mittetuvastamise otsuse tegemiseni.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2017-06-29</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>129062017001</aktViide>
+						</avaldamismarge>
+						<joustumine>2017-07-09</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para2b4lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puude raskusaste tuvastatakse:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para2b4lg3p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>vanaduspensioniealisele puudega inimesele kestusega kuus kuud, üks aasta, kaks aastat, kolm aastat või viis aastat;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2b4lg3p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>tööealisele puudega inimesele kestusega kuni viis aastat, kuid mitte kauemaks kui vanaduspensionieani;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2b4lg3p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lapsele kestusega kuus kuud, üks aasta, kaks aastat või kolm aastat, kuid mitte kauemaks kui 18-aastaseks saamiseni.</tavatekst>
+							<muutmismarge>
+								<avaldamismarge>
+									<RTosa>RT I</RTosa>
+									<avaldamineKuupaev>2025-06-12</avaldamineKuupaev>
+									<RTartikkel>1</RTartikkel>
+									<aktViide>112062025001</aktViide>
+								</avaldamismarge>
+								<joustumine>2027-02-01</joustumine>
+							</muutmismarge>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para2b4lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui tööealisel inimesel on tuvastatud puuduv töövõime töövõimetoetuse seaduse § 8 lõike 2 alusel kuni vanaduspensionieani, võib puude raskusastme tuvastada kuni vanaduspensionieani.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2015-12-17</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>117122015001</aktViide>
+						</avaldamismarge>
+						<joustumine>2016-07-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para2b4lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui lapsel on muutumatu või progresseeruv püsiv seisund, mis ei ole kompenseeritav ravi, ravimite, abivahendite või teenustega, võib puude raskusastme tuvastada kestusega kuni 18-aastaseks saamiseni.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2025-06-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>112062025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2027-02-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para2b4lg5b1">
+					<loigeNr ylaIndeks="1">5</loigeNr>
+					<kuvatavNr><![CDATA[(5<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui vanaduspensioniealisel inimesel on muutumatu või progresseeruv püsiv seisund, mis ei ole kompenseeritav ravi, ravimite, abivahendite või teenustega, võib puude raskusastme tuvastada eluajaks.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2022-04-28</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>128042022001</aktViide>
+						</avaldamismarge>
+						<joustumine>2022-05-08</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para2b4lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõikes 5 nimetatud muutumatu ja progresseeruva püsiva seisundiga laste ning lõikes 5<sup>1</sup> nimetatud vanaduspensioniealiste inimeste puude raskusastme tuvastamise täpsustatud tingimused ja korra kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=130062026021&id=128062022021]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2022-04-28</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>128042022001</aktViide>
+						</avaldamismarge>
+						<joustumine>2022-05-08</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para2b5">
+				<paragrahvNr ylaIndeks="5">2</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 2<sup>5</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Puudega isiku kaart</paragrahvPealkiri>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2015-12-17</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>117122015001</aktViide>
+					</avaldamismarge>
+					<joustumine>2016-07-01</joustumine>
+					<tavatekst> - muudetud paragrahvi number 2.3 numbriks 2.5</tavatekst>
+				</muutmismarge>
+				<loige id="para2b5lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalkindlustusamet väljastab isiku soovi korral pensionitunnistust mitteomavale puudega isikule puudega isiku kaardi, mis tõendab puude raskusastet, puude liiki ja kestust. Puudega isiku kaart kehtib koos isikut tõendava dokumendiga isikut tõendavate dokumentide seaduse §-de 2 või 4 tähenduses.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2017-11-28</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>128112017002</aktViide>
+						</avaldamismarge>
+						<joustumine>2018-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para2b5lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puudega isiku kaardile kantavate andmete loetelu ja väljastamise korra kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=130062026021&id=126062019001]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2016-07-08</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>108072016001</aktViide>
+						</avaldamismarge>
+						<joustumine>2017-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para2b6">
+				<paragrahvNr ylaIndeks="6">2</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 2<sup>6</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Terviseseisundist tingitud püsiva toevajadusega lapsel puude raskusastme tuvastamine</paragrahvPealkiri>
+				<loige id="para2b6lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui lapsel on terviseseisundist tingitud püsiv toevajadus, mille kohta on kantud andmed tervise infosüsteemi, ja kohaliku omavalitsuse üksus on edastanud lapse kohta andmed Sotsiaalkindlustusametile puude raskusastme tuvastamiseks, algatab Sotsiaalkindlustusamet puude raskusastme tuvastamise.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para2b6lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lapsel terviseseisundist tingitud püsivat toevajadust põhjustavate seisundite loetelu kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=130062026021&id=121122024021]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2024-12-31</avaldamineKuupaev>
+								<RTartikkel>3</RTartikkel>
+								<aktViide>131122024003</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-01-01</joustumine>
+						</muutmismarge>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para3">
+				<paragrahvNr>3</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 3. ]]></kuvatavNr>
+				<paragrahvPealkiri>Puuetega inimeste sotsiaaltoetuste subjekt</paragrahvPealkiri>
+				<loige id="para3lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puuetega inimeste sotsiaaltoetusi määratakse ja makstakse keskmisest, raskest või sügavast puudest tingitud lisakulude hüvitamiseks ning käesoleva seaduse § 6 lõikes 1<sup>1</sup> sätestatud juhul puude ennetamiseks ja sellest tingitud lisakulude hüvitamiseks järgmistele isikutele:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para3lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Eesti alaline elanik;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para3lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>tähtajalise elamisloa või elamisõiguse alusel Eestis elav välismaalane;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para3lg1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lühiajaliseks Eestis töötamiseks antud pikaajalise viisa alusel Eestis viibiv ja töötav välismaalane.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2026-05-21</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>121052026002</aktViide>
+							</avaldamismarge>
+							<joustumine>2026-05-22</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para3lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2026-06-03</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>103062026001</aktViide>
+						</avaldamismarge>
+						<joustumine>2026-06-12</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para3lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui Eesti Vabariigi poolt sõlmitud välisleping sisaldab puuetega inimeste sotsiaaltoetuste määramiseks ja maksmiseks käesolevast seadusest erinevaid sätteid, kohaldatakse välislepingut.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para4">
+				<paragrahvNr>4</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 4. ]]></kuvatavNr>
+				<paragrahvPealkiri>Puuetega inimeste sotsiaaltoetuste liigid</paragrahvPealkiri>
+				<loige id="para4lg1">
+					<sisuTekst>
+						<tavatekst>Käesolev seadus kehtestab järgmised puuetega inimeste sotsiaaltoetused:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para4lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>puudega lapse toetus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>puudega tööealise inimese toetus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>puudega vanaduspensioniealise inimese toetus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4) ]]></kuvatavNr>
+						<muutmismarge>
+							<tavatekst>kehtetu - </tavatekst>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<RTaasta>2008</RTaasta>
+								<RTnr>58</RTnr>
+								<RTartikkel>329</RTartikkel>
+								<aktViide>13099718</aktViide>
+							</avaldamismarge>
+							<joustumine>2009-03-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para4lg1p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>puudega vanema toetus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p6">
+						<alampunktNr>6</alampunktNr>
+						<kuvatavNr><![CDATA[6) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>õppetoetus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4lg1p7">
+						<alampunktNr>7</alampunktNr>
+						<kuvatavNr><![CDATA[7) ]]></kuvatavNr>
+						<muutmismarge>
+							<tavatekst>kehtetu - </tavatekst>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2015-12-17</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>117122015001</aktViide>
+							</avaldamismarge>
+							<joustumine>2016-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para4lg1p8">
+						<alampunktNr>8</alampunktNr>
+						<kuvatavNr><![CDATA[8) ]]></kuvatavNr>
+						<muutmismarge>
+							<tavatekst>kehtetu - </tavatekst>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2014-12-13</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>113122014002</aktViide>
+							</avaldamismarge>
+							<joustumine>2016-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para4lg1p9">
+						<alampunktNr>9</alampunktNr>
+						<kuvatavNr><![CDATA[9) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>täienduskoolitustoetus.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<RTaasta>2007</RTaasta>
+								<RTnr>71</RTnr>
+								<RTartikkel>437</RTartikkel>
+								<aktViide>12902050</aktViide>
+							</avaldamismarge>
+							<joustumine>2008-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para5">
+				<paragrahvNr>5</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 5. ]]></kuvatavNr>
+				<paragrahvPealkiri>Puuetega inimeste sotsiaaltoetuste määr</paragrahvPealkiri>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2024-08-17</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>117082024001</aktViide>
+					</avaldamismarge>
+					<joustumine>2025-06-01</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para5b1">
+				<paragrahvNr ylaIndeks="1">5</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 5<sup>1</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Puude raskusastme kestuse pikendamine erakorralise olukorra ajal</paragrahvPealkiri>
+				<loige id="para5b1lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Kriisiolukorra ajal võib Sotsiaalkindlustusamet valdkonna eest vastutava ministri ettepanekul pikendada isiku puude raskusastme kestust, kui puude raskusastme tuvastamine on kriisiolukorra tõttu objektiivsetel põhjustel oluliselt takistatud ja pikendamine on vajalik puudega inimesele tema sotsiaalsete tagatiste säilimiseks, kuni kriisiolukorrast tingitud ümberkorralduse vajadus on ära langenud.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2026-06-30</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>130062026001</aktViide>
+						</avaldamismarge>
+						<joustumine>2026-10-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk2">
+			<peatykkNr>2</peatykkNr>
+			<kuvatavNr><![CDATA[2. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>TOETUSED</peatykkPealkiri>
+			<paragrahv id="para6">
+				<paragrahvNr>6</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 6. ]]></kuvatavNr>
+				<paragrahvPealkiri>Puudega lapse toetus</paragrahvPealkiri>
+				<loige id="para6lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puudega lapse toetust makstakse igakuiselt keskmise, raske või sügava puudega lapsele puudest tingitud lisakulude hüvitamiseks ja rehabilitatsiooniplaanis ettenähtud tegevusteks, välja arvatud ravikindlustuse ja riigieelarve muudest vahenditest finantseeritavateks tegevusteks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para6lg1b1">
+					<loigeNr ylaIndeks="1">1</loigeNr>
+					<kuvatavNr><![CDATA[(1<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse tähenduses on käesoleva paragrahvi lõikes 1 nimetatud puudega lapse toetusele õigus ka harvikhaiguse diagnoosiga lapsel, kellel ei ole tuvastatud puude raskusastet, ning toetust makstakse puude ennetamiseks ja sellest tingitud lisakulude hüvitamiseks, kui puude väljakujunemine oleks ennetuseta vältimatu.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2020-04-09</avaldamineKuupaev>
+							<RTartikkel>14</RTartikkel>
+							<aktViide>109042020014</aktViide>
+						</avaldamismarge>
+						<joustumine>2020-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para6lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puudega lapse toetust makstakse kuni lapse 18-aastaseks saamiseni.</tavatekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2025-06-12</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>112062025001</aktViide>
+							</avaldamismarge>
+							<joustumine>2027-02-01</joustumine>
+						</muutmismarge>
+					</sisuTekst>
+				</loige>
+				<loige id="para6lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puudega lapse toetus makstakse lapse, vanema või eestkostja arvelduskontole.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2022-04-28</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>128042022001</aktViide>
+						</avaldamismarge>
+						<joustumine>2022-05-08</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para6lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2001</RTaasta>
+							<RTnr>102</RTnr>
+							<RTartikkel>671</RTartikkel>
+							<aktViide>73415</aktViide>
+						</avaldamismarge>
+						<joustumine>2002-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para6lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puudega lapse toetust makstakse järgmistes suurustes:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para6lg5p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>sügava puudega lapsele – 270 eurot;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para6lg5p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>raske puudega lapsele ja käesoleva paragrahvi lõikes 1<sup>1</sup> nimetatud lapsele – 180 eurot;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para6lg5p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>keskmise puudega lapsele – 139 eurot.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2024-08-17</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>117082024001</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-06-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para6lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<viide>
+							<kuvatavTekst><![CDATA[Valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=130062026021&id=108052020011]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> kehtestab määrusega nende harvikhaiguste loetelu, mille puhul makstakse käesoleva paragrahvi lõikes 1<sup>1</sup> sätestatud juhul puudega lapse toetust.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2020-04-09</avaldamineKuupaev>
+							<RTartikkel>14</RTartikkel>
+							<aktViide>109042020014</aktViide>
+						</avaldamismarge>
+						<joustumine>2020-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para6lg7">
+					<loigeNr>7</loigeNr>
+					<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõikes 6 nimetatud loetelu täiendatakse arstliku ekspertiisikomisjoni ettepanekul ning peale konsulteerimist huvigruppidega.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2020-04-09</avaldamineKuupaev>
+							<RTartikkel>14</RTartikkel>
+							<aktViide>109042020014</aktViide>
+						</avaldamismarge>
+						<joustumine>2020-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para7">
+				<paragrahvNr>7</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 7. ]]></kuvatavNr>
+				<paragrahvPealkiri>Puudega tööealise inimese toetus</paragrahvPealkiri>
+				<loige id="para7lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puudega tööealise inimese toetust makstakse igakuiselt puudega tööealisele inimesele puudest tingitud lisakulude hüvitamiseks, välja arvatud ravikindlustuse ja riigieelarve muudest vahenditest finantseeritavateks tegevusteks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para7lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puudega tööealise inimese toetust makstakse järgmistes suurustes:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para7lg2p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>sügava puudega tööealisele inimesele – 100 eurot;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para7lg2p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>raske puudega tööealisele inimesele – 50 eurot;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para7lg2p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>keskmise puudega tööealisele inimesele vastavalt valdkonnale, milles funktsiooni kaotus või kõrvalekalle esineb, – 29–42 eurot.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2024-08-17</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>117082024001</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-06-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para7lg2b1">
+					<loigeNr ylaIndeks="1">2</loigeNr>
+					<kuvatavNr><![CDATA[(2<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Keskmise puudega tööealise inimese toetuse maksmise täpsemad tingimused ja suurused kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=130062026021&id=129052025004]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-08-17</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>117082024001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-06-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para7lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-08-17</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>117082024001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-06-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para7b1">
+				<paragrahvNr ylaIndeks="1">7</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 7<sup>1</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Puudega vanaduspensioniealise inimese toetus</paragrahvPealkiri>
+				<loige id="para7b1lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puudega vanaduspensioniealise inimese toetust makstakse igakuiselt keskmise, raske või sügava puudega vanaduspensioniealisele inimesele puudest tingitud lisakulude hüvitamiseks ja rehabilitatsiooniplaani olemasolu korral selles ettenähtud tegevusteks, välja arvatud ravikindlustuse ja riigieelarve muudest vahenditest finantseeritavateks tegevusteks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para7b1lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puudega vanaduspensioniealise inimese toetust makstakse järgmistes suurustes:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para7b1lg2p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>sügava puudega vanaduspensioniealisele inimesele – 41 eurot;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para7b1lg2p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>raske puudega vanaduspensioniealisele inimesele – 27 eurot;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para7b1lg2p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>keskmise puudega vanaduspensioniealisele inimesele – 13 eurot.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2024-08-17</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>117082024001</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-06-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para8">
+				<paragrahvNr>8</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 8. ]]></kuvatavNr>
+				<paragrahvPealkiri>Hooldajatoetus</paragrahvPealkiri>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<RTaasta>2008</RTaasta>
+						<RTnr>58</RTnr>
+						<RTartikkel>329</RTartikkel>
+						<aktViide>13099718</aktViide>
+					</avaldamismarge>
+					<joustumine>2009-03-01</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para9">
+				<paragrahvNr>9</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 9. ]]></kuvatavNr>
+				<paragrahvPealkiri>Puudega vanema toetus</paragrahvPealkiri>
+				<loige id="para9lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Last üksi kasvatavale puudega vanemale, hoolduspere vanemale või eestkostjale või ühele puudega vanematest makstakse kuni 16-aastase lapse ja põhikoolis, gümnaasiumis, kutseõppeasutuse või rakenduskõrgkooli kutseõppe tasemeõppes õppiva või Haridus- ja Teadusministeeriumi hallatava riigiasutuse statsionaarse õppega täienduskoolituse kursuse nimekirja arvatud keskhariduseta kuni 19-aastase lapse kasvatamisel igakuiselt puudega vanema toetust 19,18 eurot. Kui laps saab 19-aastaseks, makstakse puudega vanema toetust jooksva õppeaasta lõpuni või õpilase kooli nimekirjast väljaarvamiseni või täienduskoolituse kursuse lõppemiseni või õpilase täienduskoolituse kursuse nimekirjast väljaarvamiseni.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-08-17</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>117082024001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-06-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para10">
+				<paragrahvNr>10</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 10. ]]></kuvatavNr>
+				<paragrahvPealkiri>Õppetoetus</paragrahvPealkiri>
+				<loige id="para10lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Mittetöötavale puudega õppurile, kes õpib gümnaasiumi 10.–12. klassis, kutseõppeasutuses või kõrgkoolis või on arvatud Haridus- ja Teadusministeeriumi hallatava riigiasutuse statsionaarse õppega täienduskoolituse kursuse nimekirja ja kellel on puudest tingituna õppetööga seotud lisakulutusi, makstakse igakuiselt, välja arvatud juuli- ja augustikuu, õppetoetust.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2023-06-30</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>130062023001</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-07-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para10lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Õppetoetust makstakse vastavalt isiku tegelikele lisakulutustele, kuid mitte vähem kui 6,39 eurot ega rohkem kui 25,57 eurot kuus.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-08-17</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>117082024001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-06-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para10b1">
+				<paragrahvNr ylaIndeks="1">10</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 10<sup>1</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Töötamistoetus</paragrahvPealkiri>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2015-12-17</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>117122015001</aktViide>
+					</avaldamismarge>
+					<joustumine>2016-01-01</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para11">
+				<paragrahvNr>11</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 11. ]]></kuvatavNr>
+				<paragrahvPealkiri>Rehabilitatsioonitoetus</paragrahvPealkiri>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2014-12-13</avaldamineKuupaev>
+						<RTartikkel>2</RTartikkel>
+						<aktViide>113122014002</aktViide>
+					</avaldamismarge>
+					<joustumine>2016-01-01</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para12">
+				<paragrahvNr>12</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 12. ]]></kuvatavNr>
+				<paragrahvPealkiri>Täienduskoolitustoetus</paragrahvPealkiri>
+				<loige id="para12lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Täienduskoolitustoetust makstakse töötava puudega inimese täienduskoolituseks tööalase enesetäiendamise eesmärgil ja tasemeõppeks.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2015-03-23</avaldamineKuupaev>
+							<RTartikkel>5</RTartikkel>
+							<aktViide>123032015005</aktViide>
+						</avaldamismarge>
+						<joustumine>2015-07-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para12lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Täienduskoolitustoetust makstakse tegelike koolituskulude osaliseks hüvitamiseks kuni 613,68 eurot kolme kalendriaasta jooksul, arvates toetuse esmakordsest määramisest.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-08-17</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>117082024001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-06-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para13">
+				<paragrahvNr>13</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 13. ]]></kuvatavNr>
+				<paragrahvPealkiri>Transporditoetus</paragrahvPealkiri>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<RTaasta>2001</RTaasta>
+						<RTnr>102</RTnr>
+						<RTartikkel>671</RTartikkel>
+						<aktViide>73415</aktViide>
+					</avaldamismarge>
+					<joustumine>2002-01-01</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para14">
+				<paragrahvNr>14</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 14. ]]></kuvatavNr>
+				<paragrahvPealkiri>Telefoni kasutamise toetus</paragrahvPealkiri>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<RTaasta>2001</RTaasta>
+						<RTnr>102</RTnr>
+						<RTartikkel>671</RTartikkel>
+						<aktViide>73415</aktViide>
+					</avaldamismarge>
+					<joustumine>2002-01-01</joustumine>
+				</muutmismarge>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk3">
+			<peatykkNr>3</peatykkNr>
+			<kuvatavNr><![CDATA[3. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>RAKENDAMISE KORD</peatykkPealkiri>
+			<paragrahv id="para15">
+				<paragrahvNr>15</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 15. ]]></kuvatavNr>
+				<paragrahvPealkiri>Andmed</paragrahvPealkiri>
+				<loige id="para15lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Andmed puuetega inimeste sotsiaaltoetuste määramise ja maksmise kohta kantakse sotsiaalkaitse infosüsteemi.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2016-07-08</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>108072016001</aktViide>
+						</avaldamismarge>
+						<joustumine>2017-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para15lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Andmed õppetoetuse ja täienduskoolitustoetuse taotleja ning saaja töötamise kohta kantakse sotsiaalkaitse infosüsteemi maksukorralduse seaduse §-s 25<sup>1</sup> sätestatud töötamise registrist.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2016-07-08</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>108072016001</aktViide>
+						</avaldamismarge>
+						<joustumine>2017-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para16">
+				<paragrahvNr>16</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 16. ]]></kuvatavNr>
+				<paragrahvPealkiri>Puuetega inimeste sotsiaaltoetuste taotlemine</paragrahvPealkiri>
+				<loige id="para16lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Taotlus puuetega inimeste sotsiaaltoetuste määramiseks esitatakse Sotsiaalkindlustusametile.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2007</RTaasta>
+							<RTnr>71</RTnr>
+							<RTartikkel>437</RTartikkel>
+							<aktViide>12902050</aktViide>
+						</avaldamismarge>
+						<joustumine>2008-10-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para16lg1b1">
+					<loigeNr ylaIndeks="1">1</loigeNr>
+					<kuvatavNr><![CDATA[(1<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse § 2<sup>2</sup> lõikes 2 sätestatud juhul võib taotluse puuetega inimeste sotsiaaltoetuste määramiseks koos puude raskusastme tuvastamise taotlusega esitada Sotsiaalkindlustusametile töötukassa kaudu.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2015-12-17</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>117122015001</aktViide>
+						</avaldamismarge>
+						<joustumine>2016-07-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para16lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puuetega inimeste sotsiaaltoetuste taotlemiseks vajalikud põhidokumendid on:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para16lg2p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>toetuse taotlus, milles sisalduvad toetust taotleva isiku nimi, sünniaeg ja sugu või isikukood, kontaktandmed, pangakonto number ja toetuse liik ning puudega lapse toetuse taotlemisel lapse nimi, sünniaeg ja sugu või isikukood;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2015-12-17</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>117122015001</aktViide>
+							</avaldamismarge>
+							<joustumine>2016-07-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para16lg2p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2) ]]></kuvatavNr>
+						<muutmismarge>
+							<tavatekst>kehtetu - </tavatekst>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2015-12-17</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>117122015001</aktViide>
+							</avaldamismarge>
+							<joustumine>2016-07-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para16lg2p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>isikut tõendavate dokumentide seaduse § 2 lõikes 2 või §-s 4 sätestatud dokument.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2016-07-08</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>108072016001</aktViide>
+							</avaldamismarge>
+							<joustumine>2017-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para16lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puuetega inimeste sotsiaaltoetuste taotlemiseks vajalike täiendavate dokumentide loetelu ja taotluse andmete loetelu kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=130062026021&id=13133466]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst>.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2015-12-17</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>117122015001</aktViide>
+						</avaldamismarge>
+						<joustumine>2016-07-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para16lg3b1">
+					<loigeNr ylaIndeks="1">3</loigeNr>
+					<kuvatavNr><![CDATA[(3<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Taotluse puuetega inimeste sotsiaaltoetuste määramiseks võib esitada ka koos puude raskusastme tuvastamise taotlusega.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2015-12-17</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>117122015001</aktViide>
+						</avaldamismarge>
+						<joustumine>2016-07-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para16lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puuetega inimeste sotsiaaltoetuste taotlemise päevaks loetakse päev, millal Sotsiaalkindlustusamet võtab vastu taotluse.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2016-07-08</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>108072016001</aktViide>
+						</avaldamismarge>
+						<joustumine>2017-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para16lg4b1">
+					<loigeNr ylaIndeks="1">4</loigeNr>
+					<kuvatavNr><![CDATA[(4<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõikes 1<sup>1</sup> sätestatud juhul loetakse puuetega inimeste sotsiaaltoetuste taotlemise päevaks päev, millal taotlus esitati töötukassale.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2015-12-17</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>117122015001</aktViide>
+						</avaldamismarge>
+						<joustumine>2016-07-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para16lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui puuetega inimeste sotsiaaltoetuste taotlus on saadetud posti teel, loetakse toetuse taotlemise päevaks taotluse lähtekohas postitamise kuupäev.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2016-07-08</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>108072016001</aktViide>
+						</avaldamismarge>
+						<joustumine>2017-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para16lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2016-07-08</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>108072016001</aktViide>
+						</avaldamismarge>
+						<joustumine>2017-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para17">
+				<paragrahvNr>17</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 17. ]]></kuvatavNr>
+				<paragrahvPealkiri>Puuetega inimeste sotsiaaltoetuste määramine</paragrahvPealkiri>
+				<loige id="para17lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puuetega inimeste sotsiaaltoetused määrab ja nende suuruse otsustab Sotsiaalkindlustusamet. Puuetega inimeste sotsiaaltoetuste määramise ja väljamaksmise korra ning tähtajad kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=130062026021&id=13199136]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2007</RTaasta>
+							<RTnr>71</RTnr>
+							<RTartikkel>437</RTartikkel>
+							<aktViide>12902050</aktViide>
+						</avaldamismarge>
+						<joustumine>2008-10-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para17lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse §-des 6–7<sup>1</sup> nimetatud puuetega inimeste sotsiaaltoetused määratakse puude raskusastme tuvastamise päevast, kui toetuse taotlemise avaldus on esitatud hiljemalt kolme kuu jooksul vastava otsuse tegemisest arvates.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2007</RTaasta>
+							<RTnr>71</RTnr>
+							<RTartikkel>437</RTartikkel>
+							<aktViide>12902050</aktViide>
+						</avaldamismarge>
+						<joustumine>2008-10-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para17lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse §-des 6–7<sup>1</sup> sätestatud puuetega inimeste sotsiaaltoetuste hilisemal taotlemisel määratakse igakuine toetus tagantjärele, kuid mitte rohkem kui taotlemisele eelneva kolme kuu eest.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2007</RTaasta>
+							<RTnr>71</RTnr>
+							<RTartikkel>437</RTartikkel>
+							<aktViide>12902050</aktViide>
+						</avaldamismarge>
+						<joustumine>2008-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para17lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse §-des 9–12 sätestatud puuetega inimeste sotsiaaltoetused määratakse toetuse taotlemise avalduse esitamise päevast, kuid mitte varem kui toetusele õiguse tekkimise päevast.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2014-12-13</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>113122014002</aktViide>
+						</avaldamismarge>
+						<joustumine>2016-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para17lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puuetega inimeste sotsiaaltoetused määratakse ajaks, mil isik vastab käesolevas seaduses sätestatud toetuste saamise tingimustele.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para18">
+				<paragrahvNr>18</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 18. ]]></kuvatavNr>
+				<paragrahvPealkiri>Piirangud puuetega inimeste sotsiaaltoetuste maksmisel</paragrahvPealkiri>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<RTaasta>2007</RTaasta>
+						<RTnr>22</RTnr>
+						<RTartikkel>116</RTartikkel>
+						<aktViide>12799771</aktViide>
+					</avaldamismarge>
+					<joustumine>2008-01-01</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para19">
+				<paragrahvNr>19</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 19. ]]></kuvatavNr>
+				<paragrahvPealkiri>Puudega lapse toetuse, puudega vanema toetuse ja alla 18-aastasele isikule määratud puudega tööealise inimese toetuse maksmise peatamine, jätkamine ja lõpetamine</paragrahvPealkiri>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2016-07-08</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>108072016001</aktViide>
+					</avaldamismarge>
+					<joustumine>2017-01-01</joustumine>
+				</muutmismarge>
+				<loige id="para19lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalkindlustusamet peatab puudega lapse toetuse, puudega vanema toetuse ja alla 18-aastasele isikule määratud puudega tööealise inimese toetuse maksmise, kui laps eraldatakse perest.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para19lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2017-11-28</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>128112017002</aktViide>
+						</avaldamismarge>
+						<joustumine>2018-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para19lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalkindlustusamet jätkab puudega lapse toetuse, puudega vanema toetuse ja alla 18-aastasele isikule määratud puudega tööealise inimese toetuse maksmist lapse vanemale, kui käesoleva paragrahvi lõikes 1 nimetatud põhjus on ära langenud.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2017-11-28</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>128112017002</aktViide>
+						</avaldamismarge>
+						<joustumine>2018-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para19lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalkindlustusamet lõpetab puudega lapse toetuse, puudega vanema toetuse ja alla 18-aastasele isikule määratud tööealise inimese toetuse maksmise vanemale, kui vanemalt on perekonnaseaduse § 135 alusel hooldusõigus ära võetud või kui tema alaealisele lapsele määratakse eestkostja või laps suunatakse asendushooldusele sotsiaalhoolekande seaduse § 45<sup>9</sup> lõike 1 alusel.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2017-11-28</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>128112017002</aktViide>
+						</avaldamismarge>
+						<joustumine>2018-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para19lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalkindlustusamet maksab puudega lapse toetust, puudega vanema toetust ja alla 18-aastasele isikule määratud tööealise inimese toetust käesoleva paragrahvi lõikes 4 sätestatud juhtudel teisele taotlejale käesolevas seaduses sätestatud tingimustel tagantjärele, kuid mitte rohkem kui vastava taotluse esitamise kuule eelnenud kuue kalendrikuu eest.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2016-07-08</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>108072016001</aktViide>
+						</avaldamismarge>
+						<joustumine>2017-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para20">
+				<paragrahvNr>20</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 20. ]]></kuvatavNr>
+				<paragrahvPealkiri>Muudatused puuetega inimeste sotsiaaltoetuste maksmisel</paragrahvPealkiri>
+				<loige id="para20lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puuetega inimeste sotsiaaltoetuste maksmine lõpetatakse, peatatakse või nende suurus arvutatakse ümber, kui toetust saav inimene on niivõrd paranenud, et see muudab käesolevas seaduses sätestatud puuetega inimeste sotsiaaltoetuste saamise õigust või saadava toetuse suurust.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para20lg1b1">
+					<loigeNr ylaIndeks="1">1</loigeNr>
+					<kuvatavNr><![CDATA[(1<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puuetega inimeste sotsiaaltoetust makstakse inimesele varem määratud suuruses kuni uue puude raskusastme tuvastamise või mittetuvastamise otsuse tegemiseni, kui Sotsiaalkindlustusamet on pikendanud kehtiva puude raskusastme tuvastamise otsuse kestust käesoleva seaduse § 2<sup>4</sup> lõikes 2<sup>1</sup> sätestatud juhul.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2017-06-29</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>129062017001</aktViide>
+						</avaldamismarge>
+						<joustumine>2017-07-09</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para20lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2016-07-08</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>108072016001</aktViide>
+						</avaldamismarge>
+						<joustumine>2017-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para20lg2b1">
+					<loigeNr ylaIndeks="1">2</loigeNr>
+					<kuvatavNr><![CDATA[(2<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puuetega inimeste sotsiaaltoetuste maksmine peatatakse süüdimõistetud toetuse saaja vanglas või arestimajas vangistuse kandmise ajaks.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2025-06-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>112062025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-06-22</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para20lg2b2">
+					<loigeNr ylaIndeks="2">2</loigeNr>
+					<kuvatavNr><![CDATA[(2<sup>2</sup>)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2025-06-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>112062025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-06-22</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para20lg2b3">
+					<loigeNr ylaIndeks="3">2</loigeNr>
+					<kuvatavNr><![CDATA[(2<sup>3</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui isiku suhtes on tõkendina kasutatud vahi alla võtmist, peatatakse vahi all oleku ajaks puuetega inimeste sotsiaaltoetuste maksmine. Sotsiaaltoetus makstakse isikule tagantjärele välja pärast kohtuotsuse jõustumist juhul, kui isik mõisteti õigeks või teda ei karistatud vangistusega.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2025-06-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>112062025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-06-22</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para20lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2016-07-08</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>108072016001</aktViide>
+						</avaldamismarge>
+						<joustumine>2017-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para20lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2015-12-17</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>117122015001</aktViide>
+						</avaldamismarge>
+						<joustumine>2016-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para20lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puudest tingitud lisakuludeks ei loeta vanglas või arestimajas viibiva isiku majutus- ja toitlustamiskulusid ning kulusid, mis kaetakse riigi või kohaliku omavalitsuse eelarvest, kaasa arvatud vangla või arestimaja üldiste teenustega seotud kulusid.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2015-12-17</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>117122015001</aktViide>
+						</avaldamismarge>
+						<joustumine>2016-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para20lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2008</RTaasta>
+							<RTnr>58</RTnr>
+							<RTartikkel>329</RTartikkel>
+							<aktViide>13099718</aktViide>
+						</avaldamismarge>
+						<joustumine>2009-03-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para20lg7">
+					<loigeNr>7</loigeNr>
+					<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puuetega inimeste sotsiaaltoetuste saaja on kohustatud kümne päeva jooksul teatama Sotsiaalkindlustusametile kirjalikult asjaoludest, mis toovad kaasa puuetega inimeste sotsiaaltoetuste maksmise lõpetamise, peatamise või suuruse muutuse.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para20lg8">
+					<loigeNr>8</loigeNr>
+					<kuvatavNr><![CDATA[(8)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui valla- või linnavalitsus teavitab Sotsiaalkindlustusametit asjaoludest, mis mõjutavad perehüvitiste seaduse alusel perehüvitiste maksmise peatamist, jätkamist või lõpetamist, siis võetakse puuetega inimeste sotsiaaltoetuste maksmisel need asjaolud arvesse ning Sotsiaalkindlustusamet otsustab käesoleva seaduse alusel puuetega inimeste sotsiaaltoetuste peatamise, jätkamise või lõpetamise.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2016-07-08</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>108072016001</aktViide>
+						</avaldamismarge>
+						<joustumine>2017-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para20b1">
+				<paragrahvNr ylaIndeks="1">20</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 20<sup>1</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Sotsiaaltoetuse ümberarvutamise tähtajad</paragrahvPealkiri>
+				<loige id="para20b1lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puuetega inimeste sotsiaaltoetuste suurendamist tingivate asjaolude tekkimisel arvutatakse toetus ümber vastava avalduse ja vajalike dokumentide esitamise päevast, kui avaldus ja vajalikud dokumendid on esitatud ühe kuu jooksul, arvates toetuste suurendamist tingivate asjaolude tekkimisest. Hilisemal avalduse ja vajalike dokumentide esitamisel arvutatakse toetus ümber vastava avalduse ja vajalike dokumentide esitamise kuule järgneva kuu esimesest kuupäevast.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para20b1lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puuetega inimeste sotsiaaltoetuste vähendamist tingivate asjaolude tekkimisel arvutatakse toetus ümber nende asjaolude tekkimise kuule järgneva kuu esimesest kuupäevast.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para21">
+				<paragrahvNr>21</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 21. ]]></kuvatavNr>
+				<paragrahvPealkiri>Kulude katmine</paragrahvPealkiri>
+				<loige id="para21lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kulutused käesoleva seadusega sätestatud puuetega inimeste sotsiaaltoetusteks kaetakse riigieelarvest Sotsiaalministeeriumi eelarve kaudu.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para21lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puuetega inimeste sotsiaaltoetuste määramise ja maksmisega ning arstliku ekspertiisiga seotud kulutused kaetakse riigieelarvest Sotsiaalministeeriumi eelarve kaudu.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2014-12-13</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>113122014001</aktViide>
+						</avaldamismarge>
+						<joustumine>2016-07-01</joustumine>
+						<tavatekst> (jõustumine muudetud - RT I, 17.12.2015, 1)</tavatekst>
+					</muutmismarge>
+				</loige>
+				<loige id="para21lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui isik taotleb puude raskusastme tuvastamisega samaaegselt töövõime hindamist, kaetakse arstliku ekspertiisiga seotud kulutused Sotsiaalkindlustusameti eelarvest juhul, kui isikul on tuvastatud töövõimet välistav seisund töövõimetoetuse seaduse tähenduses.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2015-12-17</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>117122015001</aktViide>
+						</avaldamismarge>
+						<joustumine>2016-07-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para22">
+				<paragrahvNr>22</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 22. ]]></kuvatavNr>
+				<paragrahvPealkiri>Puuetega inimeste sotsiaaltoetuste maksmine</paragrahvPealkiri>
+				<loige id="para22lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse alusel saadavat rahalist hüvitist makstakse iga kuu jooksva kuu eest sotsiaalseadustiku üldosa seaduse §-s 28 sätestatud korras.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2016-07-08</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>108072016001</aktViide>
+						</avaldamismarge>
+						<joustumine>2017-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para22lg1b1">
+					<loigeNr ylaIndeks="1">1</loigeNr>
+					<kuvatavNr><![CDATA[(1<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalkindlustusameti otsusel makstakse käesoleva seaduse §-s 12 sätestatud toetus toetusesaajale teenust osutanud asutusele.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2014-12-13</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>113122014001</aktViide>
+						</avaldamismarge>
+						<joustumine>2016-07-01</joustumine>
+						<tavatekst> (jõustumine muudetud - RT I, 17.12.2015, 1)</tavatekst>
+					</muutmismarge>
+				</loige>
+				<loige id="para22lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2008</RTaasta>
+							<RTnr>48</RTnr>
+							<RTartikkel>264</RTartikkel>
+							<aktViide>13062998</aktViide>
+						</avaldamismarge>
+						<joustumine>2008-11-23</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para22lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2008</RTaasta>
+							<RTnr>48</RTnr>
+							<RTartikkel>264</RTartikkel>
+							<aktViide>13062998</aktViide>
+						</avaldamismarge>
+						<joustumine>2008-11-23</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para22lg3b1">
+					<loigeNr ylaIndeks="1">3</loigeNr>
+					<kuvatavNr><![CDATA[(3<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalkindlustusametile esitatud põhjendatud taotluse alusel makstakse puuetega inimeste sotsiaaltoetusi maksja kulul posti teel kojukandega isikule, kellel on liikumistakistus või kes elab hajaasustusalal ja kellele pangateenus on raskesti kättesaadav ning kes on:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para22lg3b1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>sügava puudega isik, kellel on tuvastatud osaline või puuduv töövõime või</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2014-12-13</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>113122014001</aktViide>
+							</avaldamismarge>
+							<joustumine>2016-07-01</joustumine>
+							<tavatekst> (jõustumine muudetud - RT I, 17.12.2015, 1)</tavatekst>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para22lg3b1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2) ]]></kuvatavNr>
+						<muutmismarge>
+							<tavatekst>kehtetu - </tavatekst>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2014-12-13</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>113122014001</aktViide>
+							</avaldamismarge>
+							<joustumine>2016-07-01</joustumine>
+							<tavatekst> (jõustumine muudetud - RT I, 17.12.2015, 1)</tavatekst>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para22lg3b1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>vanaduspensioniealine isik.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<RTaasta>2008</RTaasta>
+								<RTnr>48</RTnr>
+								<RTartikkel>264</RTartikkel>
+								<aktViide>13062998</aktViide>
+							</avaldamismarge>
+							<joustumine>2008-11-23</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para22lg3b2">
+					<loigeNr ylaIndeks="2">3</loigeNr>
+					<kuvatavNr><![CDATA[(3<sup>2</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalkindlustusamet teeb käesoleva paragrahvi lõikes 3<sup>1</sup> nimetatud taotluse alusel otsuse kuni üheaastase kehtivusajaga. Sotsiaalkindlustusamet võib lõikes 3<sup>1</sup> nimetatud taotluse alusel otsuse teha pikema kehtivusajaga, kui selleks tuleneb vajadus põhjuste iseloomust, millele tuginedes Sotsiaalkindlustusamet lõikes 3<sup>1</sup> nimetatud taotluse alusel otsuse teeb. Sotsiaalkindlustusamet teeb lõikes 3<sup>1</sup> nimetatud taotluse alusel otsuse 10 tööpäeva jooksul vastava taotluse esitamisest arvates.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2008</RTaasta>
+							<RTnr>48</RTnr>
+							<RTartikkel>264</RTartikkel>
+							<aktViide>13062998</aktViide>
+						</avaldamismarge>
+						<joustumine>2008-11-23</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para22lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui posti teel makstav puuetega inimeste sotsiaaltoetus on välja võtmata vähemalt kaks kuud, peatatakse sotsiaaltoetuse maksmine. Pärast vastava avalduse ja isikut tõendavate dokumentide seaduse § 2 lõikes 2 või §-s 4 sätestatud dokumendi esitamist makstakse sotsiaaltoetus tagantjärele välja.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2016-07-08</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>108072016001</aktViide>
+						</avaldamismarge>
+						<joustumine>2017-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para22lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puuetega inimeste sotsiaaltoetuste maksmisel ümardatakse summa sendi täpsusega.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2010</RTaasta>
+							<RTnr>22</RTnr>
+							<RTartikkel>108</RTartikkel>
+							<aktViide>13310847</aktViide>
+						</avaldamismarge>
+						<joustumine>2011-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para22lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2016-07-08</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>108072016001</aktViide>
+						</avaldamismarge>
+						<joustumine>2017-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para22lg7">
+					<loigeNr>7</loigeNr>
+					<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2016-07-08</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>108072016001</aktViide>
+						</avaldamismarge>
+						<joustumine>2017-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para22lg8">
+					<loigeNr>8</loigeNr>
+					<kuvatavNr><![CDATA[(8)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2016-07-08</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>108072016001</aktViide>
+						</avaldamismarge>
+						<joustumine>2017-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para22lg9">
+					<loigeNr>9</loigeNr>
+					<kuvatavNr><![CDATA[(9)]]></kuvatavNr>
+					<muutmismarge>
+						<tavatekst>Kehtetu - </tavatekst>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2016-07-08</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>108072016001</aktViide>
+						</avaldamismarge>
+						<joustumine>2017-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para23">
+				<paragrahvNr>23</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 23. ]]></kuvatavNr>
+				<paragrahvPealkiri>Vaidluste lahendamine</paragrahvPealkiri>
+				<loige id="para23lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Kui isik ei nõustu Sotsiaalkindlustusameti poolt käesoleva seaduse alusel tehtud otsusega, on tal õigus esitada vaie Sotsiaalkindlustusametile sotsiaalseadustiku üldosa seaduses sätestatud korras.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2016-07-08</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>108072016001</aktViide>
+						</avaldamismarge>
+						<joustumine>2017-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para24">
+				<paragrahvNr>24</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 24. ]]></kuvatavNr>
+				<paragrahvPealkiri>Puuetega inimeste sotsiaaltoetusteks liigselt makstud summad</paragrahvPealkiri>
+				<loige id="para24lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse alusel puuetega inimeste sotsiaaltoetusteks liigselt makstud summad makstakse tagasi vabatahtlikult, nõutakse tagasi või tehakse tasaarvestus sotsiaalseadustiku üldosa seaduses sätestatud korras.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para24lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui isik ei maksa alusetult saadud sotsiaaltoetusi tagasi, võidakse talle liigselt makstud summad Sotsiaalkindlustusameti otsuse alusel igakuiselt makstavatest sotsiaaltoetustega tasaarvestada. Tasaarvestatav osa ei või ületada 20 protsenti isikule määratud toetuste summast.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para24lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui puuetega inimeste sotsiaaltoetuste maksmine lõpetatakse enne liigselt makstud summade täielikku tasaarvestamist, nõutakse isikult alusetult makstud summad tagasi sotsiaalseadustiku üldosa seaduses sätestatud korras.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para24lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui Sotsiaalkindlustusamet teeb isikule ettekirjutuse sundtäitmise algatamise kohta tagasinõude täitmata jätmise kohustuse korral, ent puuduvad andmed isiku aadressi kohta, või kui isik ei ela teadaoleval aadressil ja tema tegelik viibimiskoht ei ole teada ning ettekirjutust ei ole võimalik sotsiaalseadustiku üldosa seaduses sätestatud viisil teatavaks teha, avaldatakse ettekirjutuse resolutiivosa ametlikus väljaandes Ametlikud Teadaanded.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2016-07-08</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>108072016001</aktViide>
+						</avaldamismarge>
+						<joustumine>2017-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para24b1">
+				<paragrahvNr ylaIndeks="1">24</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 24<sup>1</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Puudega täiskasvanu toetuse maksmine</paragrahvPealkiri>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2025-06-12</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>112062025001</aktViide>
+					</avaldamismarge>
+					<joustumine>2025-06-22</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para24b2">
+				<paragrahvNr ylaIndeks="2">24</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 24<sup>2</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Puudega täiskasvanu toetuse või puudega tööealise inimese toetuse maksmine</paragrahvPealkiri>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2025-06-12</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>112062025001</aktViide>
+					</avaldamismarge>
+					<joustumine>2025-06-22</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para24b3">
+				<paragrahvNr ylaIndeks="3">24</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 24<sup>3</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Töötamistoetuse maksmine</paragrahvPealkiri>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2025-06-12</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>112062025001</aktViide>
+					</avaldamismarge>
+					<joustumine>2025-06-22</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para25">
+				<paragrahvNr>25</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 25. ]]></kuvatavNr>
+				<paragrahvPealkiri>Muudatused varasemates õigusaktides</paragrahvPealkiri>
+				<sisuTekst>
+					<tavatekst>[Käesolevast tekstist välja jäetud.]</tavatekst>
+				</sisuTekst>
+			</paragrahv>
+			<paragrahv id="para25b1">
+				<paragrahvNr ylaIndeks="1">25</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 25<sup>1</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Puuetega inimeste sotsiaaltoetuste väljamaksmine</paragrahvPealkiri>
+				<loige id="para25b1lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puuetega inimeste sotsiaaltoetuste väljamaksmine § 22 lõigetes 1 ja 3<sup>1</sup> sätestatud korras toimub alates 2009. aasta 1. veebruarist.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para25b1lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kuni 2009. aasta 1. veebruarini makstakse puuetega inimeste sotsiaaltoetused elukohajärgse pensioniameti kaudu vastavalt toetusesaaja soovile tema arvelduskontole või posti teel maksja kulul.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2012-12-06</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>106122012001</aktViide>
+						</avaldamismarge>
+						<joustumine>2013-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para25b1lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Enne 2009. aasta 1. veebruari määratud puuetega inimeste sotsiaaltoetused makstakse alates 2009. aasta 1. veebruarist välja käesoleva seaduse §-s 22 sätestatud korras.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para25b1lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui toetuse saaja ei ole Sotsiaalkindlustusametile teatanud oma arvelduskonto numbrit ega teinud või edastanud § 22 lõike 1 kohast avaldust ja seetõttu ei ole käesoleva seaduse §-s 22 sätestatud korras võimalik toetust maksta, peatatakse alates 2009. aasta 1. veebruarist toetuse maksmine. Pärast vastava avalduse ja isikut tõendavate dokumentide seaduse § 2 lõikes 2 või §-s 4 sätestatud dokumendi esitamist makstakse toetus välja tagantjärele.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2016-07-08</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>108072016001</aktViide>
+						</avaldamismarge>
+						<joustumine>2017-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para25b1lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse § 22 lõigetes 3<sup>1</sup> ja 3<sup>2</sup> sätestatud tingimustel ja korras makstakse puuetega inimeste sotsiaaltoetusi ka sügava puudega töövõimetuspensionärile ja sügava puudega püsivalt töövõimetuks tunnistatud rahvapensioni saavale isikule.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2014-12-13</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>113122014001</aktViide>
+						</avaldamismarge>
+						<joustumine>2016-07-01</joustumine>
+						<tavatekst> (jõustumine muudetud - RT I, 17.12.2015, 1)</tavatekst>
+					</muutmismarge>
+				</loige>
+				<loige id="para25b1lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalkindlustusamet määrab rehabilitatsioonitoetuse isikule, kes kandis kuni 2015. aasta 31. detsembrini rehabilitatsioonikulusid ja oli puuetega inimeste sotsiaaltoetuste seaduse kuni 2015. aasta 31. detsembrini kehtinud redaktsiooni kohaselt õigustatud saama rehabilitatsioonitoetust ning kes esitab taotluse hiljemalt 2016. aasta 30. juunil.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2014-12-13</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>113122014002</aktViide>
+						</avaldamismarge>
+						<joustumine>2016-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para25b2">
+				<paragrahvNr ylaIndeks="2">25</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 25<sup>2</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Käesoleva seaduse § 5<sup>1</sup> rakendamine</paragrahvPealkiri>
+				<loige id="para25b2lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Vabariigi Valitsuse 2020. aasta 12. märtsil väljakuulutatud eriolukorra ajal võib Sotsiaalkindlustusamet käesoleva seaduse §-s 5<sup>1</sup> sätestatud võimalust isiku puude raskusastme kestuse pikendamiseks rakendada tagasiulatuvalt 2020. aasta 12. märtsist.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2020-04-21</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>121042020001</aktViide>
+						</avaldamismarge>
+						<joustumine>2020-04-22</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para25b3">
+				<paragrahvNr ylaIndeks="3">25</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 25<sup>3</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Mootorsõidukimaksust tuleneva mõju leevendamise toetus</paragrahvPealkiri>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2024-08-17</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>117082024001</aktViide>
+					</avaldamismarge>
+					<joustumine>2026-01-01</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para25b4">
+				<paragrahvNr id="2d560b00-3e8a-4b45-b85c-2ac1bcdd7807" ylaIndeks="4">25</paragrahvNr>
+				<kuvatavNr id="fa07f015-09c7-4232-99b4-77d5865f8889"><![CDATA[§ 25<sup>4</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri id="0fdb4d5d-0c88-4deb-9c5e-f7c673c1abaf">Puudega lapse vanusepiiri muutmine</paragrahvPealkiri>
+				<loige id="para25b4lg1">
+					<loigeNr id="f391b15b-573f-4d60-9a69-c7c1c9421294">1</loigeNr>
+					<kuvatavNr id="6fca3572-8541-4fe7-8187-5563e5b33b90"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="12f92a83-1ff2-4a53-a8d5-fabd7332030d">
+						<tavatekst id="eae1dc32-839a-47e5-b0c2-7daea52841ca">Vähemalt 16-aastasele lapsele, kellel on tuvastatud puude raskusaste ja kellele on määratud puudega tööealise inimese toetus enne 2027. aasta 1. veebruari, makstakse toetust kuni toetuse määramise otsuse kehtivuse lõppemiseni.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para25b4lg2">
+					<loigeNr id="1945cecc-95ca-4312-9d9e-20cf13c8812c">2</loigeNr>
+					<kuvatavNr id="6e1c31ca-56b6-4344-93c4-663a788134b9"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="1568873e-8cbe-4b47-8c60-923ef9d5e8c1">
+						<tavatekst id="8fc2ac5d-8e6b-49f6-86a6-5befc1662225">Käesoleva seaduse kuni 2027. aasta 31. jaanuarini kehtinud redaktsiooni kohaldatakse puude raskusastme tuvastamisel:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para25b4lg2p1">
+						<alampunktNr id="ed8ab92e-ea18-4386-b5d5-a2745a3892e9">1</alampunktNr>
+						<kuvatavNr id="52a240af-deff-4681-8aaf-8f91ed46ed35"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="1095d822-1918-420b-87a2-9ca8dce602f8">
+							<tavatekst id="3e810ed3-e1e9-4980-89ba-ffc6ff37eaeb">lapsele, kes on saanud 16-aastaseks ja esitanud tööealise inimese puude raskusastme tuvastamise taotluse enne 2027. aasta 1. veebruari ja kelle taotluse kohta ei ole vastavat otsust tehtud;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para25b4lg2p2">
+						<alampunktNr id="ff4c6023-823b-4205-b498-75a2ee1c256f">2</alampunktNr>
+						<kuvatavNr id="ba51edd0-5cf3-4f32-a128-f5bdf1747767"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="b2c7ffe0-e9fa-4e26-8c31-63a745016892">
+							<tavatekst id="1c5bb868-c83f-46ac-8e2e-bb2d0b97b858">lapsele, kes on saanud 16-aastaseks ja kelle tööealise inimese puude raskusastme tuvastamise otsuse või töövõime vähenemise tuvastamise otsuse kehtivus on lõppenud enne 2027. aasta 1. veebruari, aga kes on esitanud uue puude raskusastme tuvastamise taotluse pärast 2027. aasta 31. jaanuari;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para25b4lg2p3">
+						<alampunktNr id="a64025ec-de4c-4d99-80b8-ff5481008885">3</alampunktNr>
+						<kuvatavNr id="5c51cf41-413d-4360-bbd9-b5b0bf2fc486"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="91456351-f80b-4ea5-bf6c-15bf69c2e806">
+							<tavatekst id="60dbf7b7-d512-4c7e-a634-0a0aad48b193">lapsele, kes on saanud 16-aastaseks enne 2027. aasta 1. veebruari ja kellel on 2027. aasta 1. veebruaril kehtiv töövõime hindamise või puude raskusastme tuvastamise otsus.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para25b4lg3">
+					<loigeNr id="0234d974-6b2c-41c2-b948-f9d6fce4af33">3</loigeNr>
+					<kuvatavNr id="3718fc5e-4ef1-42b1-86ad-d6744da8a4c9"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="665aa4a6-77bf-4867-ad75-a3cab7c52d2b">
+						<tavatekst id="28ea2f3d-d380-4d65-92bd-f08cd37ffa99">Kui lapsel on 2027. aasta 1. veebruaril puude raskusastme tuvastamise otsus, mis kehtib kuni tema 16-aastaseks saamiseni, pikendab Sotsiaalkindlustusamet otsuse kehtivust ja puudega lapse toetuse maksmise perioodi kuni lapse 18-aastaseks saamiseni.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para25b4lg4">
+					<loigeNr id="b454a991-09be-4490-b4bf-7c45fb4c1456">4</loigeNr>
+					<kuvatavNr id="189101e4-cfb7-49fd-ae17-bbb1ca2bfd1b"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="8eca63e4-8b36-4962-974b-83a1fb379870">
+						<tavatekst id="092f34fd-09ff-4185-ba76-c8ba585d0a8f">Kui vähemalt 16-aastasel lapsel on 2027. aasta 1. veebruaril puude raskusastme tuvastamise otsus, mille kehtivus lõppeb enne tema 18-aastaseks saamist, pikendab Sotsiaalkindlustusamet otsuse kehtivust ja puudega tööealise inimese toetuse maksmise perioodi kuni lapse 18-aastaseks saamiseni.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2025-06-12</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>112062025001</aktViide>
+						</avaldamismarge>
+						<joustumine>2027-02-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para26">
+				<paragrahvNr>26</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 26. ]]></kuvatavNr>
+				<paragrahvPealkiri>Seaduse jõustumine</paragrahvPealkiri>
+				<loige id="para26lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Isikule, kellele enne käesoleva seaduse jõustumist oli määratud kas invaliidsuspension lapsinvaliidile kehtestatud määras või ülalpidamistoetus lapsinvaliidi kasvatamise eest või invaliidistunud üksikvanema lapse toetus ja kellel selle asemel tekib käesoleva seaduse alusel õigus saada puuetega inimeste sotsiaaltoetusi, arvutatakse varasem pension või toetus puuetega inimeste sotsiaaltoetusteks ümber. Kui ümberarvutatud toetus osutub väiksemaks varemmakstud pensionist või toetusest, makstakse puuetega inimeste sotsiaaltoetusi endise pensioni või toetuse suuruses varem määratud tähtaja lõpuni või uue arstliku ekspertiisini.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para26lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesolev seadus jõustub 2000. aasta 1. jaanuaril.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para26lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse § 7, § 8 lõike 1 punkt 2, lõike 2 punktid 2 ja 3 ning §-d 11 ja 12 jõustuvad 2001. aasta 1. jaanuaril.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para26lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kuni 2001. aasta 1. jaanuarini makstakse hooldajatoetust käesoleva seaduse § 8 lõike 1 punkti 1 alusel § 8 lõike 2 punktis 1 kehtestatud suuruses 3–18-aastast keskmise, raske või sügava puudega last kasvatavale ühele mittetöötavale vanemale.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para26lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puudega inimesel, kellele oli määratud puuetega inimeste sotsiaaltoetus enne 2001. aasta 1. jaanuari ja kellel ei teki õigust saada puuetega inimeste sotsiaaltoetust pärast 2001. aasta 1. jaanuari, makstakse sotsiaaltoetust endises suuruses kuni määratud tähtajani, välja arvatud transporditoetus ja telefoni kasutamise toetus, mille maksmine lõpetatakse 16-aastase ja vanema inimese toetuse määramise päevast.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para26lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Isikule, kellele olid määratud puuetega inimeste sotsiaaltoetused, välja arvatud puudega lapse toetus, transporditoetus ja telefoni kasutamise toetus enne 2002. aasta 1. jaanuari, jätkatakse nende toetuste maksmist endistel alustel ja endistes suurustes kuni määratud tähtajani.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para26lg7">
+					<loigeNr>7</loigeNr>
+					<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puudega lapse toetus arvutatakse ümber 2002. aasta 1. jaanuarist kehtiva seaduse alusel. Kui ümberarvutatud toetus osutub väiksemaks kui varem makstud puudega lapse toetuse ning transporditoetuse ja telefoni kasutamise toetuse summa, makstakse puudega lapse toetust nende toetuste kogusummas kuni määratud tähtajani.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para26lg8">
+					<loigeNr>8</loigeNr>
+					<kuvatavNr><![CDATA[(8)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>18-aastase ja vanema isiku hooldajale või eestkostjale Sotsiaalkindlustusameti kaudu määratud hooldajatoetuse määramise otsus tunnistatakse kehtetuks. Sotsiaalkindlustusamet teatab kirjalikult hooldajatoetuse saajale ja valla- või linnavalitsusele, kelle halduspiirkonnas hooldajatoetuse saaja elab, hooldajatoetuse määramise otsuse kehtetuks tunnistamisest.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2004</RTaasta>
+							<RTnr>89</RTnr>
+							<RTartikkel>604</RTartikkel>
+							<aktViide>831323</aktViide>
+						</avaldamismarge>
+						<joustumine>2005-04-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para26lg9">
+					<loigeNr>9</loigeNr>
+					<kuvatavNr><![CDATA[(9)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Puudega lapse vanemale või võõrasvanemale Sotsiaalkindlustusameti kaudu määratud hooldajatoetuse määramise otsus tunnistatakse kehtetuks. Sotsiaalkindlustusamet teatab kirjalikult hooldajatoetuse saajale ja hooldajatoetuse saaja rahvastikuregistrijärgsele valla- või linnavalitsusele hooldajatoetuse määramise otsuse kehtetuks tunnistamisest.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<RTaasta>2008</RTaasta>
+							<RTnr>58</RTnr>
+							<RTartikkel>329</RTartikkel>
+							<aktViide>13099718</aktViide>
+						</avaldamismarge>
+						<joustumine>2009-03-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para26lg10">
+					<loigeNr>10</loigeNr>
+					<kuvatavNr><![CDATA[(10)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Isikule, kes on esitanud ekspertiisitaotluse puude raskusastme ja lisakulude tuvastamiseks enne käesoleva seaduse § 2<sup>2</sup> lõigetes 1<sup>1</sup> ja 1<sup>2</sup> sätestatud tingimuste jõustumist, kohaldatakse menetlust, mis kehtis taotluse esitamise ajal.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2012-03-27</avaldamineKuupaev>
+							<RTartikkel>6</RTartikkel>
+							<aktViide>127032012006</aktViide>
+						</avaldamismarge>
+						<joustumine>2012-06-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para26lg11">
+					<loigeNr>11</loigeNr>
+					<kuvatavNr><![CDATA[(11)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse 2016. aasta 1. jaanuaril jõustunud redaktsiooni koos rakendusaktidega kohaldatakse isikule, kes ei ole esitanud töövõime hindamise taotlust koos puude raskusastme tuvastamise taotlusega enne 2017. aasta 1. jaanuari.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2015-12-17</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>117122015001</aktViide>
+						</avaldamismarge>
+						<joustumine>2016-07-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+		</peatykk>
+	</sisu>
+</oigusakt>

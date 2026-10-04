@@ -79,6 +79,19 @@ test('downloaded acts: a new one is added, changed bytes replace the registered 
   assert.deepEqual([again.added, again.replaced, again.annexes, again.selection], [[], [], [], []]);
 });
 
+test('ADR-076: the next version of an act registered as selected sections is registered as the same sections', async () => {
+  const { root, from } = await registry('sections');
+  const file = path.join(root, 'REGISTER.json'), register = JSON.parse(await fs.readFile(file, 'utf8'));
+  register.entries.find(entry => entry.path === POLVA).xml_sections = ['1'];
+  await fs.writeFile(file, `${JSON.stringify(register, null, 2)}\n`);
+  // Põlva's next version (the same title and issuer) and nothing of Kose's.
+  await fs.copyFile(path.join('Andmebaasi', NEW), path.join(from, '429092026004.xml'));
+  const result = await registerDownloads({ root, from, work: path.join(dir, 'sections-work') });
+  assert.deepEqual(result.added, [NEW]);
+  const entries = JSON.parse(await fs.readFile(file, 'utf8')).entries;
+  assert.deepEqual(entries.filter(entry => entry.xml_sections !== undefined).map(entry => [entry.path, entry.xml_sections]), [[POLVA, ['1']], [NEW, ['1']]]);
+});
+
 test('a downloaded file must be the act its name says', async () => {
   const { root, from } = await registry('wrong-name');
   await fs.copyFile(path.join('Andmebaasi', NEW), path.join(from, '111111111111.xml'));
