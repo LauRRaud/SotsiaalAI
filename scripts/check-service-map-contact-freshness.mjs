@@ -16,6 +16,7 @@ async function main() {
   console.info(`[service-map:contacts:check] verified contact identities: ${result.verifiedIdentityContacts}`);
   console.info(`[service-map:contacts:check] review candidates: ${result.changedContacts}`);
   console.info(`[service-map:contacts:check] fetch failures: ${result.fetchedFailed}`);
+  console.info(`[service-map:contacts:check] staff read off the pages: ${result.staffPeople}; contacts decided by a staff record: ${result.staffDecidedContacts}; confirmed with a role the page words differently: ${result.roleDiffersContacts}`);
 }
 
 let exitCode = 0;

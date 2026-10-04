@@ -2,7 +2,7 @@
 
 04.10.2026. Teostus Claude Opus 5.5. Omanik 04.10: „kodeering või kontroll peab olema selline, et suudame tuvastada kõik sotsiaalvadkonna töötajad KOV lehelt“ ja samal päeval: „oluline, et uus info võib olla valesti korjatud ja vale, et vana õige üle ei kirjutaks“. Jätkab [ADR-017](adr-017-verified-contact-export.md) ja [ADR-045](adr-045-contact-binding-content.md) kontaktiteemat.
 
-**Selle muudatusega lisandub ainult tuvastaja ja selle testid.** Iganädalane kontroll, avalik teenusekaart, register ja vestlus töötavad nagu enne; tuvastajat ei kutsu veel miski. Ühendamine ja registri muutmine on eraldi sammud ja vajavad omaniku otsust (jaotis „Tegemata“).
+**Seis 04.10.2026 õhtul:** iganädalane kontroll kasutab tuvastajat (omanik 04.10: „võib kasutada jah kord nädalas“; jaotis „Kontroll kasutab tuvastajat“). Registri sisu kontroll ei muuda: uued inimesed, muutunud numbrid ja kolinud lehtede aadressid on järgmine samm ja vajavad omaniku otsust (jaotis „Tegemata“).
 
 ## Probleem
 
@@ -88,6 +88,45 @@ Esimeses mõõtmises oli erinevusi veel kaheksa ja need olid tuvastaja vead, nü
 - **Kaardile järgnevad lõigud kuuluvad samale inimesele** kuni järgmise kaardi, pealkirja, e-posti või nimeni. Tallinna Haabersti lehel on mobiilinumber ja tegevusvaldkond kaardi järel eraldi lõigus (7 rida).
 - **Kaitstud aadress võib ise olla protsentkodeeritud** (`%c3%b6`); see dekodeeritakse.
 
+## Kontroll kasutab tuvastajat (04.10.2026)
+
+Omanik 04.10: „võib kasutada jah kord nädalas“ ja „kui kontaktide uuendamine on lihtne ja ei häiri platvormi tööd, siis ehk iga nädal“.
+
+- **Mis muutus.** `lib/admin/rag/contactRegistry/pageCheck.js` (uus fail; lehe lugemise funktsioonid toodi sinna `databaseService.js`-ist muutmata kujul üle, et neid saaks andmebaasita testida) otsustab iga registririda nii:
+  - **Kui lehe töötajate nimekirjas on sama nimega inimene, otsustab tema enda kirje.** Rida kinnitub, kui kirjel on kõik registri telefonid ja e-postid ning amet klapib. Naabri number enam ei kinnita.
+  - **Amet klapib,** kui tekst on sama, üks on teise sees tervete sõnadena („sotsiaaltöö peaspetsialist, asenduskoht“; mitte „linnapea“ sõnas „abilinnapea“), liitsõna on lahku kirjutatud või selle algus on inimese kohal olevas pealkirjas („Sotsiaalosakond“ + „Osakonna juhataja“). Kui kirje ametit ei näita, kinnitab ameti vana tekstiaken.
+  - **Sotsiaalkontakt, kelle ametinimetust leht nüüd teisiti sõnastab** („lastekaitse vanemspetsialist“ → „lastekaitse peaspetsialist“), kinnitub, kui leht näitab teda endiselt sotsiaalvaldkonnas. Sellised read loetakse kokku (`roleDiffersContactIds`), et registri amet hiljem ajakohastada. Kes lehe järgi enam sotsiaalvaldkonnas ei tööta, ei kinnitu.
+  - **Lehe järgi eemal olev inimene** (töösuhe peatatud, lapsehoolduspuhkusel) ei kinnitu.
+  - **Kui nimekirjas sellist nime pole, otsustab vana tekstiaken nagu enne** (näiteks rida, mille nimi on ametinimetus).
+- **Mis ei muutunud.** Kontrolli versioon (4), auditikirje kuju, värskusreegel (`contactFreshnessProjection.js`) ja registri sisu. Auditikirjesse lisandusid `staffPeople`, `staffDecidedContacts` ja `roleDiffersContactIds`. Vestluse plaani räsi ei muutu.
+- **Kuivjooks serveris enne kasutuselevõttu** (ainult lugemine, sama kood, võrdlus 04.10 hommikuse kontrolliga):
+
+  | | Ridu |
+  |---|---:|
+  | kinnitatud enne ja nüüd | 722 |
+  | uuesti kinnitatud | 136 |
+  | enam ei kinnitu | 4 |
+  | **kinnitatud kokku** | **858** (enne 726) |
+
+  - Neli, mis enam ei kinnitu: kaks rida, kus registris on naabri telefon (Nõo, Viljandi vald), ja kaks, kus leht ütleb, et inimene on eemal (Keila, Sillamäe).
+  - 136 uuest 72 on Tallinnas (amet seisab lehel nime ees või on kaitstud e-post), 8 Anijas ja 7 Raplas (peidetud e-post).
+  - Vestluse 376 avaldatud kontaktist on lubatud 370 (hommikul 364; Anija kuus tulid tagasi).
+- **Miks mitte kõik 1197.** Registriridu on 1197, eri inimesi (nimi ja omavalitsus) 1066; 131 on sama inimese topeltread. Kuivjooksu järgi:
+
+  | Ridu | Seis |
+  |---:|---|
+  | 858 | kinnitatud (neist 21 teisiti sõnastatud ametinimetusega) |
+  | 110 | registris olev lehe aadress ei vasta (12 lehte) |
+  | 89 | nime, telefoni ega e-posti lehel pole |
+  | 77 | nime lehel pole, telefon või e-post on |
+  | 47 | inimene on lehel, telefon või e-post on muutunud |
+  | 12 | nimi on lehe tekstis, aga töötajate nimekirjas mitte ja tekstiaken ei kinnita |
+  | 3 | leht ütleb, et inimene on eemal |
+  | 1 | amet on muutunud ja pole enam sotsiaalvaldkonnas |
+
+  Esimesed kaks rühma pärast kinnitatuid (110 ja 166) ei tule tagasi kontrolli reegliga: esimesel on vaja uut lehe aadressi, teisel pole inimest enam lehel ja tema asemel on lehel uued inimesed, keda registris pole.
+- **Testid:** `tests/service-map-contact-page-check.test.mjs` (13 testi, väljamõeldud andmetega).
+
 ## Piirid
 
 - **Sotsiaalvaldkonna reegli täpsust pole silmaga kontrollitud**, välja arvatud Narva näide. 1112 ja 327 on reegli tulemus, mitte ülevaadatud nimekiri; osakonnapealkirja järgi võib sisse tulla ka asutuse töötaja, kes pole ametnik.
@@ -109,7 +148,7 @@ Omavalitsuste info muutub (töötajad, teenused, hinnakirjad) ja platvorm peab s
 
 ## Tegemata, vajab omaniku otsust
 
-1. **Tuvastaja ühendamine iganädalase kontrolliga.** Praegune reegel (kontrolli versioon 4) nõuab registri rollitekstiga täpset vastet; uus reegel oleks „inimene on lehel selle telefoni ja e-postiga“ ning roll võetaks lehelt. See muudab, mida avalik kaart näitab.
+1. ~~Tuvastaja ühendamine iganädalase kontrolliga.~~ Tehtud 04.10, vt „Kontroll kasutab tuvastajat“.
 2. **Lehe aadressi leidmine.** Kui registris olev aadress ei tööta, proovida avalehelt viidatud kontaktilehte. Andmebaasis on omavalitsuse koduleht kirjas ainult 11 omavalitsusel; ülejäänutel saab selle registri lehe aadressist.
 3. **Registri uuendamine tuvastaja järgi:** muutunud kanalid, uued inimesed, lahkunud inimesed. See on tootmisandmebaasi muutmine ja käib ülaltoodud põhimõtte järgi ettepanekutena, mitte ülekirjutamisena.
 4. **Vestluse rada.** Vestlus nõuab praegu ka samanimelist kontakti korpuse pakettides (ADR-045); kinnitatud registririda ilma paketikontaktita vestlusse ei jõua.
