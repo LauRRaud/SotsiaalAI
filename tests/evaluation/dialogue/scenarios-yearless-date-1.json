@@ -1,0 +1,36 @@
+{
+ "schema_version": "rag-v2/dialogue-eval-2",
+ "purpose": "ADR-075 (04.10.2026): a day and a month without a year is a legal validity period. In the live questionnaire of 04.10.2026 the question below (Q6, R6) gave no period, so the version of Põhja-Sakala vald's regulation in force from 06.10.2026 stayed out of the search; as a first message (R6) the municipality was right, the rerank chose no passage and the answer had only the municipality's benefit records. One conversation, one first message, the question word for word. Written before any run with the model. Run with --auto-modes (what the chat sends).",
+ "expectation_help": {
+  "region": "the municipal scope of the turn: the municipality the question asks about",
+  "evidence": "search: a passage of the municipality's regulation is among the found sources. Both versions share the title; which version was found is read from the report (observed.found and observed.cited hold the document ids: the version in force until 05.10.2026 is document_75ca1a9e…, the one from 06.10.2026 is document_2fde9fdc…)",
+  "cited / must": "answer: it has a source block that cites the regulation and names at least one thing the version from 06.10.2026 really changes (the word \"spetsialist\" for \"sotsiaaltöötaja\", applications within three months, a disabled child from 18 months, care set for up to five years, the low-income household); read the whole answer as well, a pattern is a coarse check"
+ },
+ "history": [],
+ "scenarios": [
+  {
+   "id": "yearless-date-first-message",
+   "title": "Aastata kuupäev: mis muutub Põhja-Sakala korras alates 6. oktoobrist",
+   "source": "live questionnaire 04.10.2026, R6",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Mis muutub Põhja-Sakala valla sotsiaalabi korras alates 6. oktoobrist?",
+     "expect": {
+      "region": "pohja_sakala_vald",
+      "evidence": [
+       "Sotsiaalhoolekandelise abi osutamise kord"
+      ],
+      "cited": [
+       "Sotsiaalhoolekandelise abi osutamise kord"
+      ],
+      "must": [
+       "spetsialist|kolme kuu jooksul|18[- ]kuu|viis aastat|viie aasta|vähekindlustatud"
+      ]
+     },
+     "note": "04.10 (R6): legal_periods was empty, the rerank chose none of the regulation's passages (all of the version in force until 05.10) and the answer was unsupported. With the period both versions are allowed into the search. Whether the search then chooses passages of the new version, and whether the answer can say what changes without a text that lists the changes, is what this turn measures."
+    }
+   ]
+  }
+ ]
+}
