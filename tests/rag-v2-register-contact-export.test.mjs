@@ -30,7 +30,7 @@ test('every verified row without a matching document is exported; a row whose bo
     { entry_id: 'c4', revision: 2, content_sha256: hash(stable(contactContent({ ...rows[3], revision: 2 }))), item_id: 'kose-contact-peeter' }];
   const { source, counts } = await prepareRegisterContactExport({ db: register(rows), bound, now: () => new Date('2026-10-04T18:00:00Z') });
   assert.equal(source.schema_version, REGISTER_EXPORT_SCHEMA);
-  assert.deepEqual(counts, { verified_rows: 4, exported_contacts: 3, kept_bound: 1, municipalities: 2, directories: 2, skipped: { no_channel: 0, page_address: 0, no_name: 0 } });
+  assert.deepEqual(counts, { verified_rows: 4, exported_contacts: 3, kept_bound: 1, same_person_rows: 0, municipalities: 2, directories: 2, skipped: { no_channel: 0, page_address: 0, no_name: 0 } });
   assert.deepEqual(source.items.map(item => [item.itemType, item.id]), [['contact', 'service-map-contact:c2'], ['contact', 'service-map-contact:c3'], ['contact', 'service-map-contact:c4'],
     ['resource', 'service-map-contacts:kose_vald'], ['resource', 'service-map-contacts:noo_vald']]);
   // The contact carries the register's own values and its municipality, and nothing else.
@@ -143,4 +143,45 @@ test('the exported package is read as records: the contact with its binding, the
   const anchored = new Set(directory.chunks.flatMap(chunk => (chunk.source_locations || []).map(location => location.path)));
   assert.deepEqual(listed.links.filter(link => !anchored.has(link.path)), []);
   assert.deepEqual(directory.document.fields.regions.value, ['noo_vald']);
+});
+
+// Measured on the first export (04.10.2026): 97 of 480 exported rows repeated a person, one sector head 18 times.
+test('the rows of one person are one contact: the bound document stands for them, else the first row', async () => {
+  const same = (id, extra = {}) => row(id, 'suur-linn', 'Suur linn', 'Mari  Maasikas', { phone: '+372 5550 0001', email: 'Mari@example.invalid', ...extra });
+  const rows = [same('c3', { sourceUrl: 'https://www.suur-linn.example/lasnamae' }), same('c1', { email: 'mari@example.invalid', title: 'Mari Maasikas' }), same('c2', { description: 'Roll: sektori juht' }),
+    // The same name with another phone is not shown to be the same person; another municipality is another contact.
+    same('c4', { phone: '+372 5550 0002' }), row('c5', 'noo-vald', 'Nõo vald', 'Mari Maasikas', { phone: '+372 5550 0001', email: 'mari@example.invalid' })];
+  const first = await prepareRegisterContactExport({ db: register(rows) });
+  assert.deepEqual([first.counts.verified_rows, first.counts.exported_contacts, first.counts.same_person_rows], [5, 3, 2]);
+  assert.deepEqual(first.source.items.filter(item => item.itemType === 'contact').map(item => item.id), ['service-map-contact:c1', 'service-map-contact:c4', 'service-map-contact:c5']);
+  assert.deepEqual(first.source.items.find(item => item.id === registerDirectoryId('suur_linn')).relatedContacts, ['service-map-contact:c1', 'service-map-contact:c4']);
+  // A bound document of any of the person's rows stands for the person, whatever its place in the order.
+  const bound = [{ entry_id: 'c3', revision: 1, content_sha256: hash(stable(contactContent(rows[0]))), item_id: 'suur-contact-mari' }];
+  const second = await prepareRegisterContactExport({ db: register(rows), bound });
+  assert.deepEqual([second.counts.exported_contacts, second.counts.kept_bound, second.counts.same_person_rows], [2, 1, 2]);
+  assert.deepEqual(second.source.items.find(item => item.id === registerDirectoryId('suur_linn')).relatedContacts, ['service-map-contact:c4', 'suur-contact-mari']);
+});
+
+test('the contact decisions of a turn read the freshness rule once, and each reads its own row', async () => {
+  const rows = ['c1', 'c2', 'c3'].map(id => row(id, 'noo-vald', 'Nõo vald', `Inimene ${id}`));
+  const { source } = await prepareRegisterContactExport({ db: register(rows) });
+  let ruleReads = 0, rowReads = 0, time = 1000;
+  const db = { dataAuditLog: { findFirst: async () => { ruleReads++; return null; } },
+    serviceMapEntry: { findFirst: async input => { rowReads++; return register(rows).serviceMapEntry.findFirst(input); }, findMany: async () => { rowReads++; return []; } } };
+  const adapter = municipalDirectoryAdapter(db, { clock: () => time });
+  const records = rows.map(item => recordOf(source, registerContactId(item.id)));
+  assert.deepEqual(await Promise.all(records.map(record => adapter.authorizeContact({ record }))), [true, true, true]);
+  assert.deepEqual([ruleReads, rowReads], [1, 3]);
+  // A package contact without a binding is decided with the same reading.
+  const { bindings: _bindings, ...unbound } = records[0];
+  assert.equal(await adapter.authorizeContact({ record: unbound }), false);
+  assert.deepEqual([ruleReads, rowReads], [1, 4]);
+  // After a few seconds the rule is read again: a new check's record takes effect.
+  time += 6000;
+  assert.equal(await adapter.authorizeContact({ record: records[1] }), true);
+  assert.deepEqual([ruleReads, rowReads], [2, 5]);
+  // A failed reading is not kept.
+  const failing = municipalDirectoryAdapter({ dataAuditLog: { findFirst: async () => { ruleReads++; if (ruleReads === 3) throw new Error('database away'); return null; } }, serviceMapEntry: db.serviceMapEntry }, { clock: () => time });
+  await assert.rejects(failing.authorizeContact({ record: records[0] }), /database away/u);
+  assert.equal(await failing.authorizeContact({ record: records[0] }), true);
 });

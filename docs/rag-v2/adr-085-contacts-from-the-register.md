@@ -60,6 +60,13 @@ Kirjete rajal on omavalitsuse kohta 300 dokumenti ja 300 kirjet, kirjel 200 viid
 - Kui osakondade jaotus muutub, jääb vana kontaktide kirje korpusesse, kuni see poliitikast eemaldatakse (`refresh package --remove`). Esimesel ekspordil vanu kirjeid ei ole.
 - Nimed ja kontaktandmed on ekspordifailis; see ei lähe repositooriumisse.
 
+## Täiendus pärast esimest eksporti (04.10 hilisõhtu)
+
+Esimene eksport päris andmetel (avaldamata) näitas kaht asja, mida väljamõeldud read ei näidanud.
+
+- **Sama inimene on registris mitmel real** (iga lehe või teeninduskoha kohta oma rida): 480 eksporditud reast 97 kordasid inimest, üks Tallinna sektorijuht 18 korda. Nüüd on üks inimene üks kontakt: sama omavalitsuse read, millel on sama nimi, telefon ja e-post, on sama inimene. Teda esindab rida, mille seotud dokument on hoidlas olemas, muidu esimene rida. Sama nimi teise telefoniga jääb eraldi kontaktiks.
+- **Kontakti kontroll luges kehtivusreeglit iga kontakti jaoks uuesti** (viimase kontrolli kirje, umbes 15 ms kontakti kohta; mõõdetud Pärnus 25 kontakti = 0,4 s). Tallinna kontaktidega oleks see olnud üle sekundi pöörde kohta. Reegel loetakse nüüd kuni viieks sekundiks üks kord; iga kontakti enda rida loetakse endiselt iga kord.
+
 ## Käivitus
 
 Tegemata selle kirjutamise hetkel; lisatakse pärast eksporti ja korpuse täiendust.
