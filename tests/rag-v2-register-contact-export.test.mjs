@@ -91,32 +91,39 @@ test('rows that cannot be shown are left out and counted; a changed row stops th
 });
 
 test('a municipality of more than twelve contacts is listed by department, and a larger group in even parts ordered by role', async () => {
-  // 164 contacts: 70 in one department, 40 in another, 14 of two roles in a third, 3 in a small one, 37 without a
-  // department; the register writes a reception line after some departments.
+  // 56 contacts: 26 in one department, 14 of two roles in another, 3 in a small one, 13 without a department; the
+  // register writes a reception line after some departments.
   const unit = (count, description, from) => Array.from({ length: count }, (_, index) => row(`c${from + index}`, 'suur-linn', 'Suur linn', `Inimene ${from + index}`, { description }));
   const mixed = Array.from({ length: 14 }, (_, index) => row(`c${5000 + index}`, 'suur-linn', 'Suur linn', `Inimene ${5000 + index}`,
     { description: `Roll: ${index % 2 ? 'eestkostespetsialist' : 'lastekaitsespetsialist'} Osakond: Perede osakond` }));
-  const rows = [...unit(70, 'Roll: sotsiaaltöö spetsialist Osakond: Lasnamäe sotsiaalhoolekande osakond\nVastuvõtt: E 9-12', 1000), ...unit(40, 'Roll: lastekaitsespetsialist Osakond: Laste heaolu osakond', 2000),
-    ...unit(3, 'Roll: juhataja Osakond: Väike üksus', 3000), ...unit(37, 'Roll: nõunik', 4000), ...mixed];
+  const rows = [...unit(26, 'Roll: sotsiaaltöö spetsialist Osakond: Lasnamäe sotsiaalhoolekande osakond\nVastuvõtt: E 9-12', 1000),
+    ...unit(3, 'Roll: juhataja Osakond: Väike üksus', 3000), ...unit(13, 'Roll: nõunik', 4000), ...mixed];
+  const sizesOf = directories => {
+    const sizes = {};
+    for (const item of directories) { const label = item.title.replace('Sotsiaalvaldkonna kontaktid: Suur linn', '').replace(/ \(\d+\/\d+\)$/u, '').replace(/^, /u, '') || '(üld)'; (sizes[label] ||= []).push(item.relatedContacts.length); }
+    return sizes;
+  };
   const { source, counts } = await prepareRegisterContactExport({ db: register(rows) });
   const directories = source.items.filter(item => item.itemType === 'resource');
-  assert.deepEqual([counts.exported_contacts, counts.municipalities, counts.directories], [164, 1, 17]);
-  const sizes = {};
-  for (const item of directories) { const label = item.title.replace('Sotsiaalvaldkonna kontaktid: Suur linn', '').replace(/ \(\d+\/\d+\)$/u, '').replace(/^, /u, '') || '(üld)'; (sizes[label] ||= []).push(item.relatedContacts.length); }
-  assert.deepEqual(sizes, { '(üld)': [10, 10, 10, 7], 'Lasnamäe sotsiaalhoolekande osakond': [12, 12, 12, 12, 12, 10], 'Laste heaolu osakond': [10, 10, 10, 10], 'Perede osakond': [7, 7], 'Väike üksus': [3] });
-  assert.equal(Math.max(...directories.map(item => item.relatedContacts.length)), 12);
+  assert.deepEqual([counts.exported_contacts, counts.municipalities, counts.directories], [56, 1, 8]);
+  assert.deepEqual(sizesOf(directories), { '(üld)': [7, 6], 'Lasnamäe sotsiaalhoolekande osakond': [9, 9, 8], 'Perede osakond': [7, 7], 'Väike üksus': [3] });
   // A part holds people of the same roles, and its summary names them: a question about a role finds its part.
   const families = directories.filter(item => item.title.includes('Perede osakond'));
   assert.deepEqual(families.map(item => [item.title.slice(-5), item.summary.split('Ametid: ')[1]]), [['(1/2)', 'eestkostespetsialist.'], ['(2/2)', 'lastekaitsespetsialist.']]);
   // Every contact is linked from exactly one directory; the names are distinct and do not depend on the rows' order.
   const linked = directories.flatMap(item => item.relatedContacts);
-  assert.deepEqual([linked.length, new Set(linked).size, new Set(directories.map(item => item.id)).size], [164, 164, 17]);
+  assert.deepEqual([linked.length, new Set(linked).size, new Set(directories.map(item => item.id)).size], [56, 56, 8]);
   assert.deepEqual(directories.filter(item => !/^service-map-contacts:suur_linn(?::[a-f0-9]{12})?(?::p\d+)?$/u.test(item.id)), []);
   const again = await prepareRegisterContactExport({ db: register([...rows].reverse()) });
   assert.deepEqual(again.source.items.filter(item => item.itemType === 'resource').map(item => [item.id, item.relatedContacts]), directories.map(item => [item.id, item.relatedContacts]));
   // Twelve contacts are still one directory, whatever their departments.
-  const twelve = await prepareRegisterContactExport({ db: register([...rows.slice(0, 6), ...rows.slice(70, 76)]) });
+  const twelve = await prepareRegisterContactExport({ db: register([...rows.slice(0, 6), ...rows.slice(26, 32)]) });
   assert.deepEqual(twelve.source.items.filter(item => item.itemType === 'resource').map(item => [item.id, item.relatedContacts.length]), [['service-map-contacts:suur_linn', 12]]);
+  // A municipality with more than sixty contacts has the longest catalogue: its directories hold five (measured in
+  // Tallinn on corpus v53: a directory of eleven did not fit beside the catalogue).
+  const large = await prepareRegisterContactExport({ db: register([...rows, ...unit(8, 'Roll: hooldustöötaja Osakond: Hoolekande osakond', 6000)]) });
+  assert.deepEqual(sizesOf(large.source.items.filter(item => item.itemType === 'resource')), { '(üld)': [5, 4, 4], 'Hoolekande osakond': [4, 4],
+    'Lasnamäe sotsiaalhoolekande osakond': [5, 5, 4, 4, 4, 4], 'Perede osakond': [5, 5, 4], 'Väike üksus': [3] });
 });
 
 // Through the reader: the exported package is a source like a municipal package; no model, no network.
