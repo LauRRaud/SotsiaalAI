@@ -434,7 +434,8 @@ async function regionConversation(t) {
     checkedPlaces: (c, query, places) => runtime.checkedPlaces(c, query, places),
     search: async (c, query, vector, assist) => {
       const { scope, knowledgeRegion } = await runtime.searchScope(c, query, directory, assist?.variants || []);
-      scopes.push({ person: scope.person ?? query.person, region: knowledgeRegion.region ?? null, state: scope.state });
+      scopes.push({ person: scope.person ?? query.person, region: knowledgeRegion.region ?? null, state: scope.state,
+        own: scope.region ?? null, source: knowledgeRegion.state });
       return { ...packet, query_id: randomUUID() };
     } };
   const unit = Array.from({ length: 3072 }, (_, i) => i === 0 ? 1 : 0);
@@ -454,9 +455,11 @@ async function regionConversation(t) {
     assert.deepEqual(saved_.dialogueStateContext.regions, directory);
     const searched = scopes.at(-1), saved = value.people.find(entry => entry.person === searched.person);
     // The same turn: the catalogue and the knowledge lane (one knowledgeRegion) and the saved state read one region.
-    assert.equal(searched.region, saved?.region.id ?? null);
+    // ADR-074: in a question about another municipality both lanes read the asked one, and the saved state is still
+    // the person's own scope of that turn.
+    assert.equal(searched.source.startsWith('question_') ? searched.own : searched.region, saved?.region.id ?? null);
     assert.equal(value.focus, searched.person);
-    return { searched, people: Object.fromEntries(value.people.map(entry => [entry.person, [entry.region.id, entry.region.status]])) };
+    return { searched, assist: saved_.searchAssist, people: Object.fromEntries(value.people.map(entry => [entry.person, [entry.region.id, entry.region.status]])) };
   };
   return turn;
 }
@@ -494,4 +497,22 @@ test('dialogue state DB (Codex review of state v5, V1): a place change the plan 
   const again = await turn('Kui palju emale koduteenus maksab?', 'same', { queries: ['Harku vald koduteenuse hind'], person: 'ema',
     places: [{ turn: 4, quote: 'Ema elab Harku vallas', name: 'Harku vald', person: 'ema', relation: 'lives' }] });
   assert.deepEqual([again.searched.region, again.people.ema], ['harku_vald', ['harku_vald', 'reported']]);
+});
+
+test('dialogue state DB (ADR-074): a question about another municipality is searched there, the saved residence stays, and the next turn is the residence again', async t => {
+  const turn = await regionConversation(t);
+  await turn('Elan Kose vallas ja mul on raske.', 'new', { queries: ['Kose vald toimetulek'], person: 'user',
+    places: [{ turn: 1, quote: 'Elan Kose vallas', name: 'Kose vald', person: 'user', relation: 'lives' }] });
+  const planned = [{ turn: 2, quote: 'Kas Harku vallas saab koduteenust?', name: 'Harku vald', person: 'user', relation: 'other' }];
+  const asked = await turn('Kas Harku vallas saab koduteenust?', 'same', { queries: ['Harku vald koduteenus'], person: 'user', places: planned });
+  assert.deepEqual([asked.searched.source, asked.searched.region, asked.searched.own, asked.people.user], ['question_region', 'harku_vald', 'kose_vald', ['kose_vald', 'reported']]);
+  // The turn record keeps the plan's own attributions beside the checked ones.
+  assert.deepEqual(asked.assist.plannedPlaces, planned);
+  assert.deepEqual(asked.assist.places.map(item => [item.region, item.relation]), [['harku_vald', 'other']]);
+  // The plan names no place: the server reads the mention as another one, and the record shows the plan gave none.
+  const bare = await turn('Kust leian Harku valla koduteenuse taotluse?', 'same', { queries: ['Harku valla koduteenuse taotlus'], person: 'user', places: [] });
+  assert.deepEqual([bare.searched.source, bare.searched.region, bare.people.user], ['question_region', 'harku_vald', ['kose_vald', 'reported']]);
+  assert.deepEqual([bare.assist.plannedPlaces, bare.assist.places.map(item => item.reason)], [[], ['unattributed_other_mention']]);
+  const own = await turn('Millist abi ma ise saan?', 'same', { queries: ['Harku vald toimetulekutoetus'], person: 'user', places: [] });
+  assert.deepEqual([own.searched.source, own.searched.region, own.people.user], ['person_region', 'kose_vald', ['kose_vald', 'reported']]);
 });

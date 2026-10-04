@@ -1,0 +1,139 @@
+{
+ "schema_version": "rag-v2/dialogue-eval-2",
+ "purpose": "ADR-074 (04.10.2026): the municipality a question asks about is not where the person lives. In the live questionnaire of 04.10.2026 a question about another municipality, asked after the user had said where they live, was searched in the municipality of residence (Q3, Q5: docs/audits/rag-v2-live-questionnaire-2026-10-04.md). The asked municipality is now the turn's source scope, and the saved residence stays as it was. Written before any run with the model; never run paid when written. Run with --auto-modes (what the chat sends).",
+ "expectation_help": {
+  "region": "the municipal scope of the turn (the catalogue and the knowledge lane's municipal texts): the asked municipality in a question about another one, the residence otherwise",
+  "person_regions / state_kept": "the saved dialogue state: each person's own municipality is unchanged by a question about another municipality, and the model's new state was not rejected",
+  "evidence": "search: a source of the asked municipality is among the found sources",
+  "must / must_not / clarification": "answer: it speaks of the asked service, does not ask back which municipality is meant, and does not turn the asked municipality's service into the user's own entitlement; read the whole answer as well, a pattern is a coarse check"
+ },
+ "scenarios": [
+  {
+   "id": "asks-another-municipality",
+   "title": "Elab Nõo vallas, küsib Maardu teenuse kohta",
+   "source": "live questionnaire 04.10.2026, Q4-Q5",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Elan Nõo vallas ja mul on raske toime tulla. Kust ma abi saan?",
+     "expect": {
+      "region": "noo_vald",
+      "person_regions": {
+       "user": "noo_vald"
+      }
+     }
+    },
+    {
+     "mode": "same",
+     "text": "Kas Maardus saab isikliku abistaja teenust?",
+     "expect": {
+      "region": "maardu_linn",
+      "person_regions": {
+       "user": "noo_vald"
+      },
+      "state_kept": true,
+      "evidence": [
+       "Isikliku abistaja teenuse"
+      ],
+      "must": [
+       "isikliku abistaja"
+      ],
+      "must_not": [
+       "(sul|sinul|teil) on õigus (seda|sellele|maardu|teenus)"
+      ],
+      "clarification": false
+     },
+     "note": "04.10 (Q5): the catalogue was Nõo vald's and the answer asked back (\"Siin on kohalik info Nõo valla kohta\"). As a first message (R5) the answer came from Maardu's regulation and gave the condition of registered residence in Maardu linn."
+    },
+    {
+     "mode": "same",
+     "text": "Aga millist koduteenust ma ise saan?",
+     "expect": {
+      "region": "noo_vald",
+      "person_regions": {
+       "user": "noo_vald"
+      },
+      "state_kept": true
+     },
+     "note": "The residence is the scope again; the asked municipality of the turn before is not carried on."
+    }
+   ]
+  },
+  {
+   "id": "workplace-keeps-residence",
+   "title": "Elab Nõo vallas, töötab Maardus",
+   "source": "Codex review 04.10.2026",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Elan Nõo vallas, töötan Maardus. Millist koduteenust ma saan?",
+     "expect": {
+      "region": "noo_vald",
+      "person": "user",
+      "person_regions": {
+       "user": "noo_vald"
+      }
+     },
+     "note": "A named municipality does not win by being named: the place of work is another mention and the request is about the user's own help."
+    }
+   ]
+  },
+  {
+   "id": "mother-then-another-municipality",
+   "title": "Kasutaja Anija vallas, ema Kose vallas, küsimus Tartu valla kohta",
+   "source": "live questionnaire 04.10.2026, Q1-Q3",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Elan Anija vallas ja mul on raha otsas. Kellele ma saan helistada?",
+     "expect": {
+      "region": "anija_vald"
+     }
+    },
+    {
+     "mode": "same",
+     "text": "Mu ema elab Kose vallas ja vajab koduteenust. Kuidas seda taotleda ja kelle poole pöörduda?",
+     "expect": {
+      "region": "kose_vald",
+      "person_regions": {
+       "user": "anija_vald",
+       "ema": "kose_vald"
+      }
+     }
+    },
+    {
+     "mode": "same",
+     "text": "Kas Tartu vallas on sotsiaaltransport ja mis see maksab?",
+     "expect": {
+      "region": "tartu_vald",
+      "person_regions": {
+       "user": "anija_vald",
+       "ema": "kose_vald"
+      },
+      "state_kept": true,
+      "evidence": [
+       "Sotsiaaltransporditeenus"
+      ],
+      "must": [
+       "sotsiaaltranspor"
+      ],
+      "clarification": false
+     },
+     "note": "04.10 (Q3): the catalogue was Anija vald's and the answer stayed general. As a first message (R3) it named Tartu vald's own prices; those were not checked against the source."
+    },
+    {
+     "mode": "same",
+     "text": "Ja kuidas ema koduteenust taotleb?",
+     "expect": {
+      "region": "kose_vald",
+      "person_regions": {
+       "user": "anija_vald",
+       "ema": "kose_vald"
+      },
+      "state_kept": true
+     }
+    }
+   ]
+  }
+ ]
+}
