@@ -2,7 +2,9 @@
 
 04.10.2026. Teostus Claude Opus 5.5. Lähtekoht: [päris vestluse küsimustik 04.10](../audits/rag-v2-live-questionnaire-2026-10-04.md), jaotis 4, ja Codexi ülevaatuse järjekord („aastata kuupäev“).
 
-**Mõõtmata.** Muudatus on serveri kuupäevalugemises; ühtegi mudeli juhist ei muudetud ja ühtegi tasulist kutset ei tehtud. Tõend on kohalikud testid. Need näitavad, et periood tekib ja õige redaktsioon lubatakse otsingusse, **mitte** seda, et vastus muudatuse üles leiab (vt „Piirid“).
+**Mõõdetud pärast avaldamist, omaniku loal** (jaotis „Mõõtmine“): üks pööre, läbis, 0,0052 USD. Pöördekirjes on periood 06.10.2026, otsing leidis 6. oktoobrist kehtiva redaktsiooni ja vastus viitab sellele. Varasemat redaktsiooni tõenditesse ei valitud, nii et vastus ei võrdle sõnastusi ja ütleb seda ise.
+
+Muudatus on serveri kuupäevalugemises; ühtegi mudeli juhist ei muudetud. #348 läks tootmisse mõõtmata, kohalike testidega.
 
 ## Probleem
 
@@ -38,7 +40,8 @@ Päev ja kuu ilma aastata on kuupäev: **tänasele lähim selline päev**, möö
 
 ## Piirid
 
-- **Vastuse paranemine on tõendamata.** R6-s oli piirkond õige, aga teadmiste rada ei valinud ühtki õigusakti lõiku; tõendites olid ainult valla toetuste kirjed. Periood lubab 6. oktoobri redaktsiooni otsingusse, kuid ei taga, et otsing ta valib ega et vastus kahte redaktsiooni võrdleb. Seda näitab ainult päris pööre.
+- **Üks pööre, üks kord.** Mõõtmine näitab, et periood jõuab otsinguni ning uus redaktsioon leitakse ja sellele viidatakse. See ei erista muudatuse mõju mudeli kõikumisest: R6-s ei valinud järjestaja vana redaktsiooni lõikudest ühtki, nüüd valis kuus uue redaktsiooni lõiku.
+- **Vastus ei võrdle redaktsioone.** Tõendites olid ainult uue redaktsiooni lõigud. Vastus kirjeldab sätteid, millel on muutmismärge, ja ütleb, et ei saa öelda, milline sõnastus on uus. Küsimusele „mis muutub“ on see osaline vastus.
 - Paljas „6.10“ ilma kuupäevasõnata jääb lugemata (teadlik valik valehäirete vastu).
 - „Lähim päev“ on eeldus. Kes küsib oktoobris „mis muutus 1. märtsil“, saab möödunud märtsi (õige); kes küsib jaanuaris „mis muutub 1. detsembrist“, saab möödunud detsembri, kuigi võis mõelda tulevat. Vale lugemine lisab ainult ühe lubatud perioodi; tänane õigus jääb alles.
 - Lause lõpu number ja järgmise lause algus („Lapsi on 3. Mai lõpus …“) loetakse kuupäevaks. Mõju on sama: üks lisaperiood.
@@ -53,9 +56,31 @@ Päev ja kuu ilma aastata on kuupäev: **tänasele lähim selline päev**, möö
 2. Lähim päev möödunud ja tuleva vahel (sh aastavahetus, võrdne kaugus, olematu päev).
 3. Vastunäited annavad „perioodi pole“.
 4. Aastaga kuupäevad on muutmata; kolm aastata kuupäeva on „liiga palju“; mudeli varem salvestatud periood jääb alles, kui uues sõnumis kuupäeva pole.
+5. Pärast mõõtmist lisatud: mõõdetud pööre läbib kataloogi kontrollid, R6 kirje enne muudatust ei läbi (otsing, viide, sisu).
 
 Versioonid ei muutunud (plaan 6, dialoog 24, vastus 12): juhiste tekst on sama. Vestlusplaani teostuse räsi uueneb väljalaskega nagu iga koodimuudatuse puhul ([ADR-037](adr-037-release-chat-plan.md)).
 
+## Mõõtmine (04.10.2026, pärast avaldamist)
+
+Omaniku luba 04.10 („tegutse“ pakkumisele: üks päris pööre sama küsimusega, umbes 0,005 USD). Kataloog `tests/evaluation/dialogue/scenarios-yearless-date-1.json` on kirjutatud ja kohalikult salvestatud enne jooksu; küsimus on R6 sõna-sõnalt, vestluse esimese sõnumina. Jooks töötavalt väljalaskelt `a9f88988`, `--auto-modes`, `--max-usd 0.02`. [Tõendifail](../audits/evidence/yearless-date-measured-2026-10-04.json).
+
+| | R6 enne (küsimustik 04.10) | Nüüd |
+|---|---|---|
+| Periood pöördekirjes | puudub (`no_period`) | 06.10.2026, aluskuupäev 04.10.2026 |
+| Piirkond | Põhja-Sakala | Põhja-Sakala |
+| Teadmiste rada | ei valinud ühtki lõiku | kuus lõiku, kõik 6. oktoobrist kehtivast redaktsioonist |
+| Vana redaktsioon (kuni 05.10) tõendites | – | 0 lõiku; välja jäetud ei olnud kumbki redaktsioon |
+| Viidatud | mitte midagi | kord, 6. oktoobrist kehtiv redaktsioon |
+| Vastuse liik | toetuseta, küsis tagasi | osaline, ei küsinud tagasi |
+| Kulu plaanihindades | 0,0045 USD | 0,0052 USD |
+| Aeg | 12,4 s | 23,9 s |
+
+**Mida vastus ütles.** Taotluse esitamine ja lisatavad andmed (kuni kolme kuu sissetulekud, eelneva kuu eluasemekulude tõendid), kes võib abi vajava inimese eest taotleda, valla õigus teha päringuid, ülesannete jaotus ametiasutuse ja valitsuse vahel. Need sätted on uues redaktsioonis tõesti muudetud (võrdlus lähtefailidega `Andmebaasi/oigusaktid/404072025051.xml` ja `403102026022.xml`). Lõpus ütleb vastus, et ei saa väljavõtete põhjal täpselt võrrelda, milline sõnastus või kohustus on uus, sest varasemat redaktsiooni tal ei ole.
+
+**Mida kontrollid näitasid.** Kõik viis läbisid. `must` tabas sõna „spetsialist“ lauses, kus uus redaktsioon selle sõna tõesti vahetas; muster üksi on jäme, hinnang tugineb kogu vastuse lugemisele.
+
+**Mida jooks ei näidanud.** Kas vastus toob välja suuremad sisulised muudatused (sünni- ja matusetoetuse taotlemise tähtaeg kolm kuud, puudega lapse hooldajatoetus alates 18 kuu vanusest, hoolduse seadmine kuni viieks aastaks, vähekindlustatud leibkonna mõiste): neid lõike järjestaja ei valinud. Kas numbritega kuju („alates 6.10“) käitub päris vestluses samamoodi.
+
 ## Järgmine samm
 
-Üks päris pööre küsimusega R6 näitaks, kas periood jõuab vastuseni. See on tasuline (küsimustiku järgi umbes 0,005 USD pööre) ja vajab omaniku luba.
+Otsustada, kas „mis muutub“ küsimus vajab mõlema redaktsiooni lõike kõrvuti. Praegu lubab periood mõlemad redaktsioonid otsingusse, aga järjestaja valib lõigud küsimuse järgi ja võrdluspaari ei taga. See on eraldi muudatus (otsing või vastuse juhis), mille mõju tuleks mõõta; alustamata.
