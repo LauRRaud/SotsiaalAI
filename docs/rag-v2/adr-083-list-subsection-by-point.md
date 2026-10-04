@@ -2,7 +2,7 @@
 
 04.10.2026. Teostus Claude Opus 5.5. Omanik 04.10 õhtul: „sa toimeta edasi, kuni vigu ei ole. võid teha teste, raha pole probleem.“ Täiendab [ADR-082](adr-082-selected-section-by-subsection.md).
 
-**Mõõtmata selle kirjutamise hetkel.** Tõend on kohalikud testid hoidla failiga. Korpuse täiendus v51 ja mõõtmine tehakse pärast avaldamist ning lisatakse jaotisesse „Mõõtmine“.
+**Mõõdetud korpusel v51: üks pööre, läbis** (jaotis „Mõõtmine“). Summaga punkt sai kandidaadiks, valiti ja vastus viitab sellele.
 
 ## Probleem
 
@@ -40,6 +40,12 @@ Registrivälja `xml_units` teine väärtus **`"point"`**: valitud paragrahv loet
 - Punkti lõik on lühike. Vastuse jaoks vajalikud osakaalud (80% ja 120%) on sotsiaalhoolekande seaduses, mitte siin.
 - Loetelu alapunkte (punkti sees) eraldi ei loeta.
 
-## Mõõtmine
+## Mõõtmine (04.10.2026, korpus v51)
 
-Tegemata selle kirjutamise hetkel; lisatakse pärast korpuse täiendust v51.
+- **Korpus v51:** riigieelarve seaduse § 2 uus redaktsioon (27 üksust ja lõiku). Ostetud 22 sisendit (viis lõiku olid v50-st olemas), 3984 tokenit, 0,0005 USD (usage `pilot_8eeb9095…`); indeks `74639553` (6474 dokumenti, 40 638 lõiku), plaan `/etc/sotsiaalai/m4-corpus-chat-20261004d.json`.
+- **Üks pööre** („Kui suur on toimetulekupiir ja kuidas toimetulekutoetust arvutatakse?“, 0,0058 USD): **läbis, 7 kontrolli 7-st.** [Tõendifail](../audits/evidence/corpus-v51-measured-2026-10-04.json).
+- Riigieelarve seadusel oli kaks kandidaati: lõige 4 (nagu v50-s) ja toimetulekupiiri punkt oma pealkirjaga. Eelvalik hoidis punkti; vastus viitab riigieelarve seadusele ja sotsiaalhoolekande seadusele.
+- Vastus: 220 eurot (punkti enda tekst), 176 ja 264 eurot (80% ja 120%, sotsiaalhoolekande seaduse osakaalud), kahe täiskasvanu kohta 396 eurot (vastuse enda liitmine).
+- Sama küsimus ei läbinud tund varem korpusel v50 peaaegu sama päringuga („toimetulekupiiri suurus ja toimetulekutoetuse arvutamise kord“ ja „toimetulekupiir toimetulekutoetuse arvutamise kord“).
+
+Üks pööre, üks jooks: see näitab, et punkt on leitav, mitte et ta leitakse iga kord.

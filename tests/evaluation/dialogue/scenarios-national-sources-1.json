@@ -9,7 +9,8 @@
  },
  "history": [
   "04.10.2026, first run (commit 7332eaa9, corpus v49, plan m4-corpus-chat-20261004b): the catalogue as written before any run, 2 turns: 2 passed, 0.0104 USD. The subsistence level answer cites the State Budget Act and the Social Welfare Act and gives 220, 176 and 264 euros; the disability answer cites the act's version in force and a study (docs/audits/evidence/national-sources-measured-2026-10-04.json).",
-  "04.10.2026, corpus v50 (commit 25fb1c64, ADR-082: § 2 of the State Budget Act read by subsection): the first scenario only; 1 turn: search, 0.0056 USD. The act's candidate was subsection 4, not subsection 5 with the amount (docs/audits/evidence/corpus-v50-measured-2026-10-04.json). Followed by ADR-083 (by point)."
+  "04.10.2026, corpus v50 (commit 25fb1c64, ADR-082: § 2 of the State Budget Act read by subsection): the first scenario only; 1 turn: search, 0.0056 USD. The act's candidate was subsection 4, not subsection 5 with the amount (docs/audits/evidence/corpus-v50-measured-2026-10-04.json). Followed by ADR-083 (by point).",
+  "04.10.2026, corpus v51 (commit ccbf1d09, ADR-083: the lists of § 2 read point by point): the first scenario only; 1 turn: passed, 0.0058 USD. The point with the subsistence level was a candidate, selected and cited; the answer gives 220, 176 and 264 euros (docs/audits/evidence/corpus-v51-measured-2026-10-04.json)."
  ],
  "scenarios": [
   {

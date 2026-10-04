@@ -1,8 +1,8 @@
 {
   "schema_version": "rag-v2/legal-acts-in-index-1",
-  "generated_at": "2026-10-04T14:01:15.391Z",
+  "generated_at": "2026-10-04T17:39:17.858Z",
   "tenant": "sotsiaalai-corpus",
-  "store_generation": "generation_84f71b2ab5b97c441998622fa29f8a52fabf1b99bad5ae3d76c8f43fa095b146",
+  "store_generation": "generation_d762fe05313eb4b55d1869e54f4ebf2469db2f4618ae831720e9f02d68ce77cc",
   "policy_documents": 6474,
   "acts": [
     {
@@ -2737,7 +2737,7 @@
     },
     {
       "document_id": "document_60983d8ecbd35a3b1bf0c3585d1fed426debd1000819dfcd76ee63752374c75e",
-      "version_id": "version_ae0fada6993c8449469a2febb1ed7a977d8e329f68aab9e295dcaf77538d659f",
+      "version_id": "version_712adbc18439c699992d466ab486d9952eb981a3d1b32e825f98b9de34572ce5",
       "globaal_id": "103072026024",
       "group": "1062439",
       "title": "2026. aasta riigieelarve seadus",

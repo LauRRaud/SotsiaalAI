@@ -1,0 +1,118 @@
+{
+ "schema": "sotsiaalai/conversation-run-evidence-1",
+ "run": "ADR-083 on corpus v51; the owner on 04.10.2026 evening: tests allowed for this work (one turn): the subsistence level question as a first message",
+ "measured_commit": "ccbf1d09d639d8b2d61630ba1ab19221c1529b1a",
+ "catalogues": [
+  {
+   "name": "national-sources",
+   "catalogue": "tests/evaluation/dialogue/scenarios-national-sources-1.json, --only subsistence-level-no-municipality",
+   "started_at": "2026-10-04T17:37:52.593Z",
+   "finished_at": "2026-10-04T17:38:15.151Z",
+   "summary": {
+    "passed": 1,
+    "search": 0,
+    "answer": 0,
+    "state": 0
+   },
+   "states": {
+    "continuing": 0,
+    "rejected": 0
+   },
+   "plan_price_usd": 0.0058
+  }
+ ],
+ "plan_price_usd": 0.00584,
+ "turns": [
+  {
+   "run": "national-sources",
+   "scenario": "subsistence-level-no-municipality",
+   "turn": 1,
+   "turn_id": "11c8c652-5190-4277-9c6f-6fdaafc1e653",
+   "text": "Kui suur on toimetulekupiir ja kuidas toimetulekutoetust arvutatakse?",
+   "verdict": "passed",
+   "checks": 7,
+   "failed": [],
+   "region": null,
+   "scope_state": "region_required",
+   "queries": [
+    "toimetulekupiir toimetulekutoetuse arvutamise kord"
+   ],
+   "answer_kind": "grounded",
+   "clarification": false,
+   "state_rejected": null,
+   "candidates": 36,
+   "selected": [
+    "P2 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 8. jagu Toimetulekutoetus > § 131. Toimetulekutoetus § 131. Toimetulekutoetus (1) Toi",
+    "P13 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 8. jagu Toimetulekutoetus > § 133. Toimetulekutoetuse arvestamise alused § 133. Toime",
+    "P22 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 8. jagu Toimetulekutoetus > § 133. Toimetulekutoetuse arvestamise alused 4) veevarust",
+    "P34 | alates 2026-07-13 | Riigikogu > 2026. aasta riigieelarve seadus > § 2. Seadustest tulenevate määrade ja piirsummade kehtestamine > (5) Sotsiaalhoolekande seaduse alusel kehtestatav"
+   ],
+   "legal_candidates_not_selected": [
+    "P17 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 8. jagu Toimetulekutoetus > § 133. Toimetulekutoetuse arvestamise alused (2¹) Kui toi",
+    "P19 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 8. jagu Toimetulekutoetus > § 134. Toimetulekutoetuse määramine ja maksmine § 134. To",
+    "P20 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 8. jagu Toimetulekutoetus > § 134. Toimetulekutoetuse määramine ja maksmine 7) kohali",
+    "P31 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 8. jagu Toimetulekutoetus > § 132. Toimetulekutoetuse taotlemine § 132. Toimetulekuto",
+    "P32 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 1. peatükk Üldsätted > § 13⁴. Toimetulekutoetuse määramise ja maksmise erandid kriisiolukorra ajal § 13⁴. Toimetulekutoe",
+    "P33 | alates 2026-07-13 | Riigikogu > 2026. aasta riigieelarve seadus > § 2. Seadustest tulenevate määrade ja piirsummade kehtestamine (4) Tööturumeetmete seaduse § 23 lõike 1 alusel koo",
+    "P35 | alates 2026-10-01 | Riigikogu > Puuetega inimeste sotsiaaltoetuste seadus > 3. peatükk RAKENDAMISE KORD > § 20¹. Sotsiaaltoetuse ümberarvutamise tähtajad § 20¹. Sotsiaaltoetuse ümb",
+    "P36 | alates 2026-10-01 | Riigikogu > Puuetega inimeste sotsiaaltoetuste seadus > 2. peatükk TOETUSED > § 7. Puudega tööealise inimese toetus § 7. Puudega tööealise inimese toetus (1) Pu"
+   ],
+   "found_legal": [
+    {
+     "title": "2026. aasta riigieelarve seadus",
+     "rt": "103072026024",
+     "from": "2026-07-13",
+     "to": "2026-12-31"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "rt": "130062026065",
+     "from": "2026-10-01",
+     "to": "2026-11-30"
+    }
+   ],
+   "cited": [
+    {
+     "title": "2026. aasta riigieelarve seadus",
+     "rt": "103072026024",
+     "from": "2026-07-13",
+     "to": "2026-12-31"
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "rt": "130062026065",
+     "from": "2026-10-01",
+     "to": "2026-11-30"
+    }
+   ],
+   "plan_price_usd": 0.00584,
+   "search_ms": 4685,
+   "total_ms": 22250,
+   "answer": "2026. aastal on toimetulekupiir üksi elavale inimesele või perekonna esimesele liikmele 220 eurot kuus. Iga järgmise täiskasvanud pereliikme piir on 176 eurot kuus (80% esimesest piirist) ja iga lapse piir 264 eurot kuus (120%). Näiteks kahe täiskasvanu piir kokku on 396 eurot kuus. [S1, S2]\n\nToetuse arvestamisel lähtutakse üldjuhul kõigi pereliikmete eelmise kalendrikuu netosissetulekust. Põhjendatud juhul võib aluseks võtta taotlusele eelnenud 30 päeva sissetuleku. Üldjoontes kujuneb toetus nii: pere toimetulekupiirile liidetakse arvesse võetavad jooksva kuu eluasemekulud ja sellest lahutatakse arvestatav sissetulek, millest on tehtud seaduses nimetatud mahaarvamised. Eluasemekulusid arvestatakse kohaliku omavalitsuse kehtestatud piirmäärade ja seaduse tingimuste järgi; varasemat eluasemekulude võlga arvesse ei võeta. [S2, S3, S4, S7]\n\nToetuse saamise tingimus on, et rahalised vahendid ei ole toimetulekuks piisavad ning kuu netosissetulek pärast arvesse võetavate eluasemekulude mahaarvamist jääb alla kehtestatud toimetulekupiiri. [S2]"
+  }
+ ],
+ "plan": "m4-sotsiaalai-corpus-chat-20261004-173707-ebdc42eb-f492-4e2d-bae7-7996dd20b1aa",
+ "generation": "search_generation_7463955343591e22b1181ee31d3f6620798c6dcfc33117c9a00be6b9ea5b934a",
+ "model": "gpt-6-luna",
+ "reasoning": "medium",
+ "source": "the evaluator's report on the server (rag-v2-work/eval-files/corpus-v51-2026-10-04/national-sources/conversation-eval.json)",
+ "masking": "none needed: the answer names institutions only",
+ "corpus": {
+  "version": 51,
+  "index_generation": "search_generation_7463955343591e22b1181ee31d3f6620798c6dcfc33117c9a00be6b9ea5b934a",
+  "documents": 6474,
+  "units": 40638,
+  "bought": {
+   "inputs": 22,
+   "tokens": 3984,
+   "usd": 0.00051792,
+   "usage": "pilot_8eeb909519a8ce8069a512625f1aa2da322b8b9125ed2cc0004784fc5d563210"
+  },
+  "plan_file": "/etc/sotsiaalai/m4-corpus-chat-20261004d.json"
+ },
+ "notes": {
+  "result": "passed, seven checks of seven. The State Budget Act had two candidates: subsection 4 again, and the point with the subsistence level under its subsection's opening words; the selection kept the point and the answer cites it.",
+  "amounts": "220 euros is the point's own text. 176 and 264 euros are 80 and 120 per cent of it, the shares of the Social Welfare Act (checked against Andmebaasi/oigusaktid/130062026065.xml earlier the same day); 396 euros for two adults is the answer's own sum of 220 and 176.",
+  "attempts": "one turn, one run. The same question failed on corpus v50 an hour before with a plan query of nearly the same words."
+ }
+}
