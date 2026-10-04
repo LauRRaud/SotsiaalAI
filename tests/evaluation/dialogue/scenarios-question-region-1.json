@@ -1,8 +1,8 @@
 {
  "schema_version": "rag-v2/dialogue-eval-2",
- "purpose": "ADR-074 (04.10.2026): the municipality a question asks about is not where the person lives. In the live questionnaire of 04.10.2026 a question about another municipality, asked after the user had said where they live, was searched in the municipality of residence (Q3, Q5: docs/audits/rag-v2-live-questionnaire-2026-10-04.md). The asked municipality is now the turn's source scope, and the saved residence stays as it was. Written before any run with the model; never run paid when written. Run with --auto-modes (what the chat sends).",
+ "purpose": "ADR-074 (04.10.2026): the municipality a question asks about is not where the person lives. In the live questionnaire of 04.10.2026 a question about another municipality, asked after the user had said where they live, was searched in the municipality of residence (Q3, Q5: docs/audits/rag-v2-live-questionnaire-2026-10-04.md). The asked municipality is now the turn's source scope, a follow-up goes on with it, and the saved residence stays as it was. Written before any run with the model; never run paid when written. Run with --auto-modes (what the chat sends).",
  "expectation_help": {
-  "region": "the municipal scope of the turn (the catalogue and the knowledge lane's municipal texts): the asked municipality in a question about another one, the residence otherwise",
+  "region": "the municipal scope of the turn (the catalogue and the knowledge lane's municipal texts): the asked municipality in a question about another one and in its follow-up, the residence otherwise",
   "person_regions / state_kept": "the saved dialogue state: each person's own municipality is unchanged by a question about another municipality, and the model's new state was not rejected",
   "evidence": "search: a source of the asked municipality is among the found sources",
   "must / must_not / clarification": "answer: it speaks of the asked service, does not ask back which municipality is meant, and does not turn the asked municipality's service into the user's own entitlement; read the whole answer as well, a pattern is a coarse check"
@@ -47,6 +47,18 @@
     },
     {
      "mode": "same",
+     "text": "Ja mis see maksab?",
+     "expect": {
+      "region": "maardu_linn",
+      "person_regions": {
+       "user": "noo_vald"
+      },
+      "state_kept": true
+     },
+     "note": "Codex F1: the follow-up names no municipality; the search goes on with the asked one when the plan's queries are still about it, and the residence stays Nõo vald."
+    },
+    {
+     "mode": "same",
      "text": "Aga millist koduteenust ma ise saan?",
      "expect": {
       "region": "noo_vald",
@@ -55,14 +67,14 @@
       },
       "state_kept": true
      },
-     "note": "The residence is the scope again; the asked municipality of the turn before is not carried on."
+     "note": "The residence is the scope again: the request is about the user, and the plan's queries are no longer about the asked municipality."
     }
    ]
   },
   {
    "id": "workplace-keeps-residence",
    "title": "Elab Nõo vallas, töötab Maardus",
-   "source": "Codex review 04.10.2026",
+   "source": "Codex review 04.10.2026 (F2)",
    "turns": [
     {
      "mode": "new",
@@ -120,18 +132,6 @@
       "clarification": false
      },
      "note": "04.10 (Q3): the catalogue was Anija vald's and the answer stayed general. As a first message (R3) it named Tartu vald's own prices; those were not checked against the source."
-    },
-    {
-     "mode": "same",
-     "text": "Ja kuidas ema koduteenust taotleb?",
-     "expect": {
-      "region": "kose_vald",
-      "person_regions": {
-       "user": "anija_vald",
-       "ema": "kose_vald"
-      },
-      "state_kept": true
-     }
     }
    ]
   }

@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
-import { resolvePersonRegions, regionTarget } from '../lib/rag-v2/pilot/person-places.js';
+import { resolvePersonRegions, regionTarget, askedRegions } from '../lib/rag-v2/pilot/person-places.js';
+import { placeOccurrences } from '../lib/rag-v2/pilot/record-scope.js';
 import { runtimeAdapters } from '../lib/rag-v2/pilot/retrieval.js';
 import { REGION_STATE_VERSION } from '../lib/rag-v2/pilot/dialogue-state.js';
 import { SEARCH_ASSIST_VERSION } from '../lib/rag-v2/pilot/search-assist.js';
@@ -18,7 +19,7 @@ import { validateCatalogue, checkTurn } from '../lib/rag-v2/pilot/conversation-e
 // catalogue and the knowledge lane read `source`, the saved state is resolvePersonRegions of the same checked places.
 // A stand-in for EstNLTK: each word reads as itself and, for the inflected fixture words, its lemma. The directory has
 // the shape the municipal adapter gives: the display name and the base name of each municipality.
-const LEMMAS = { vallas: 'vald', valla: 'vald', valda: 'vald', linnas: 'linn', linna: 'linn', maardus: 'maardu', nõos: 'nõo', tartus: 'tartu', viimsis: 'viimsi', koses: 'kose' };
+const LEMMAS = { vallas: 'vald', valla: 'vald', valda: 'vald', vallast: 'vald', linnas: 'linn', linna: 'linn', maardus: 'maardu', nõos: 'nõo', tartus: 'tartu', viimsis: 'viimsi', koses: 'kose' };
 const analyzer = { analyze: async words => words.map(word => { const lower = word.toLowerCase(); return `vmet${lower}${LEMMAS[lower] ? ` vmet${LEMMAS[lower]}` : ''}`; }) };
 const directory = [['anija_vald', 'Anija vald', 'Anija'], ['harku_vald', 'Harku vald', 'Harku'], ['kose_vald', 'Kose vald', 'Kose'], ['maardu_linn', 'Maardu linn', 'Maardu'],
   ['marjamaa_vald', 'Märjamaa vald', 'Märjamaa'], ['noo_vald', 'Nõo vald', 'Nõo'], ['pohja_sakala_vald', 'Põhja-Sakala vald', 'Põhja-Sakala'], ['tartu_linn', 'Tartu linn', 'Tartu'],
@@ -35,11 +36,13 @@ const keptTexts = scope => municipalScope(municipalTexts, scope).eligible.map(ro
 
 /**
  * One turn as the service runs it: texts are the topic's user messages (the last one is the current message, the state
- * has read the earlier ones), before is the saved state's value, plan the search plan's person, places and queries.
+ * has read the earlier ones), before is the saved state's value, plan the search plan's person, places and queries,
+ * after the turn whose answer was published last (the service hands on the municipality that turn was asked about).
  */
-async function turn({ before = null, texts, plan }) {
+async function turn({ before = null, texts, plan, after = null }) {
   const scopeTurns = texts.map((text, index) => ({ turnId: `t${index + 1}`, text, mode: index ? 'same' : 'new' }));
-  const query = { scopeTurns, person: plan.person, previousState: before ? { value: before, sourceTurnIds: scopeTurns.slice(0, -1).map(item => item.turnId) } : null };
+  const query = { scopeTurns, person: plan.person, previousState: before ? { value: before, sourceTurnIds: scopeTurns.slice(0, -1).map(item => item.turnId) } : null,
+    ...(after && askedRegions(after.source).length ? { askedRegions: askedRegions(after.source) } : {}) };
   query.places = await runtime.checkedPlaces(config, query, plan.places || []);
   const { scope, knowledgeRegion } = await runtime.searchScope(config, query, directory, plan.queries || []);
   const focus = regionTarget(plan.person, before, texts.at(-1)), people = resolvePersonRegions(before?.people, query.places, focus);
@@ -77,8 +80,10 @@ const STORED = {
   R7: { texts: [LIVE[6]], plan: { person: 'user', places: [place(1, 'Harku valla toimetulekutoetuse taotluse vormi', 'Harku vald', 'user', 'other')],
     queries: ['Harku valla toimetulekutoetuse taotluse vorm'] } },
 };
-const asked = (region, own) => ({ state: 'question_region', region, person_scope: own, interpretation: 'asked_municipality_source_scope_not_residence' });
 const home = (region, person = 'user', state = 'person_region') => ({ state, region, person, interpretation: 'source_scope_only_not_confirmed_residence' });
+const asked = (region, own, askedIn = 'current_message') => ({ state: 'question_region', region, asked_in: askedIn, person_scope: own,
+  interpretation: 'asked_municipality_source_scope_not_residence' });
+const nooState = { people: [saved('user', 'noo_vald')], focus: 'user' };
 
 test('Q3 and Q5 of 04.10: a question about another municipality is searched there, and the residence stays as it was', async () => {
   const q3 = await turn(STORED.Q3);
@@ -94,22 +99,43 @@ test('Q3 and Q5 of 04.10: a question about another municipality is searched ther
   assert.equal('person' in q5.source, false);
 });
 
-test('the residence holds in the turns after such a question, and a later statement of a new home still replaces it', async () => {
-  const q5 = await turn(STORED.Q5);
-  const own = await turn({ before: q5.value, texts: [...LIVE.slice(0, 5), 'Millist koduteenust ma ise saan?'], plan: { person: 'user', places: [], queries: ['koduteenuse taotlemine ja tingimused'] } });
-  assert.deepEqual(own.source, home('noo_vald'));
-  // A query that names the asked municipality again, without the message naming it, selects nothing but the residence.
-  const drift = await turn({ before: q5.value, texts: [...LIVE.slice(0, 5), 'Ja mis see maksab?'], plan: { person: 'user', places: [], queries: ['Maardu isikliku abistaja teenuse hind'] } });
-  assert.deepEqual(drift.source, home('noo_vald'));
-  const moved = await turn({ before: q5.value, texts: [...LIVE.slice(0, 5), 'Kolisin vahepeal ära, elan nüüd Maardus.'],
+test('Codex F1: a follow-up goes on with the asked municipality; a request about the person, or a new home, returns to the person', async () => {
+  const q5 = await turn(STORED.Q5), texts = LIVE.slice(0, 5);
+  // "Ja mis see maksab?": the message names no municipality, the plan's query still is about Maardu.
+  const price = await turn({ before: q5.value, after: q5, texts: [...texts, 'Ja mis see maksab?'], plan: { person: 'user', places: [], queries: ['Maardu isikliku abistaja teenuse hind'] } });
+  assert.deepEqual(price.source, asked('maardu_linn', home('noo_vald'), 'earlier_question'));
+  assert.deepEqual(price.people, { user: ['noo_vald', 'reported'], ema: ['kose_vald', 'reported'] });
+  // And once more: the follow-up's own scope is what the next turn goes on from.
+  const apply = await turn({ before: price.value, after: price, texts: [...texts, 'Ja mis see maksab?', 'Kuidas seda taotleda?'],
+    plan: { person: 'user', places: [], queries: ['Maardu isikliku abistaja teenuse taotlemine'] } });
+  assert.deepEqual([apply.source.region, apply.source.asked_in, apply.people.user], ['maardu_linn', 'earlier_question', ['noo_vald', 'reported']]);
+  // The user's own request: the plan's queries name the home or no municipality.
+  for (const queries of [['koduteenuse taotlemine ja tingimused'], ['Nõo valla koduteenus'], ['Maardu koduteenus', 'Nõo valla koduteenus']]) {
+    const own = await turn({ before: q5.value, after: q5, texts: [...texts, 'Aga millist koduteenust ma ise saan?'], plan: { person: 'user', places: [], queries } });
+    assert.deepEqual(own.source, home('noo_vald'), queries.join(' | '));
+    // After it, a query that names Maardu again has nothing to go on with: the last answer was about the home.
+    const later = await turn({ before: own.value, after: own, texts: [...texts, 'Aga millist koduteenust ma ise saan?', 'Ja mis see maksab?'],
+      plan: { person: 'user', places: [], queries: ['Maardu isikliku abistaja teenuse hind'] } });
+    assert.deepEqual(later.source, home('noo_vald'), queries.join(' | '));
+  }
+  // A message that names a municipality itself is read for itself, not as a follow-up.
+  const work = await turn({ before: q5.value, after: q5, texts: [...texts, 'Töötan muide Viimsis. Ja mis see maksab?'],
+    plan: { person: 'user', places: [place(6, 'Töötan muide Viimsis', 'Viimsi vald', 'user', 'other')], queries: ['Maardu isikliku abistaja teenuse hind'] } });
+  assert.deepEqual(work.source, home('noo_vald'));
+  // A real move replaces the residence.
+  const moved = await turn({ before: q5.value, after: q5, texts: [...texts, 'Kolisin vahepeal ära, elan nüüd Maardus.'],
     plan: { person: 'user', places: [place(6, 'elan nüüd Maardus', 'Maardu linn', 'user', 'lives')], queries: ['Maardu sotsiaalteenused'] } });
   assert.deepEqual([moved.source.state, moved.source.region, moved.people.user], ['person_mentioned_region', 'maardu_linn', ['maardu_linn', 'reported']]);
+  // Without a known residence the follow-up reads the plan's queries, as it did before.
+  const r5 = await turn(STORED.R5);
+  const clean = await turn({ before: r5.value, after: r5, texts: [LIVE[4], 'Ja mis see maksab?'], plan: { person: 'user', places: [], queries: ['Maardu isikliku abistaja teenuse hind'] } });
+  assert.deepEqual([clean.source.state, clean.source.region], ['search_plan_region', 'maardu_linn']);
 });
 
 test('Q6 and Q7 of 04.10: a mention the plan left unattributed, that says nothing of living there, no longer erases the residence', async () => {
   for (const [name, region] of [['Q6', 'pohja_sakala_vald'], ['Q7', 'harku_vald']]) {
     const result = await turn(STORED[name]);
-    assert.deepEqual(result.places.map(item => [item.person, item.region, item.relation, item.reason]), [['user', region, 'other', 'unattributed_other_mention']], name);
+    assert.deepEqual(result.places.map(item => [item.person, item.region, item.relation, item.reason, item.asking]), [['user', region, 'other', 'unattributed_other_mention', true]], name);
     assert.deepEqual(result.people, { user: ['noo_vald', 'reported'], ema: ['kose_vald', 'reported'] }, name);
     assert.deepEqual(result.source, asked(region, home('noo_vald')), name);
   }
@@ -117,9 +143,8 @@ test('Q6 and Q7 of 04.10: a mention the plan left unattributed, that says nothin
   const wrongTurn = await turn({ ...STORED.Q7, plan: { ...STORED.Q7.plan, places: [place(6, 'Harku valla toimetulekutoetuse taotluse vormi', 'Harku vald', 'user', 'other')] } });
   assert.deepEqual([wrongTurn.source.region, wrongTurn.people.user], ['harku_vald', ['noo_vald', 'reported']]);
   // A mention that does speak of living somewhere, or negates it, with nobody named, is still nobody's to assume.
-  const before = { people: [saved('user', 'noo_vald')], focus: 'user' };
   for (const text of ['Ei ela enam Nõo vallas.', 'Elab nüüd Harku vallas.']) {
-    const unclear = await turn({ before, texts: ['Elan Nõo vallas.', text], plan: { person: 'user', places: [], queries: ['Harku valla toimetulekutoetus'] } });
+    const unclear = await turn({ before: nooState, texts: ['Elan Nõo vallas.', text], plan: { person: 'user', places: [], queries: ['Harku valla toimetulekutoetus'] } });
     assert.deepEqual([unclear.source.region, unclear.people.user], [null, [null, 'unresolved']], text);
   }
 });
@@ -135,19 +160,53 @@ test('the same questions as a first message keep the scope the answers of 04.10 
   assert.deepEqual([bare.source.state, bare.source.region, bare.people], ['search_plan_region', 'harku_vald', {}]);
 });
 
-test('a place of work stays a mention: the search keeps the residence, whatever municipality the message also names', async () => {
+test('Codex F2: a place of work is a circumstance; the search keeps the residence, also when the plan\'s queries name only the work place', async () => {
   const text = 'Elan Nõo vallas, töötan Maardus; millist koduteenust ma saan?';
   const places = [place(1, 'Elan Nõo vallas', 'Nõo vald', 'user', 'lives'), place(1, 'töötan Maardus', 'Maardu linn', 'user', 'other')];
-  for (const queries of [['Nõo valla koduteenuse taotlemine', 'koduteenuse tingimused'], ['koduteenuse taotlemine ja tingimused'], ['Nõo valla koduteenus', 'Maardu linna koduteenus']]) {
-    const result = await turn({ texts: [text], plan: { person: 'user', places, queries } });
-    assert.deepEqual([result.source.state, result.source.region, result.people], ['person_mentioned_region', 'noo_vald', { user: ['noo_vald', 'reported'] }], queries.join(' | '));
+  const queries = [['Nõo valla koduteenuse taotlemine', 'koduteenuse tingimused'], ['koduteenuse taotlemine ja tingimused'], ['Nõo valla koduteenus', 'Maardu linna koduteenus'],
+    ['Maardu linna koduteenuse taotlemine ja tingimused']];
+  for (const list of queries) {
+    const result = await turn({ texts: [text], plan: { person: 'user', places, queries: list } });
+    assert.deepEqual([result.source.state, result.source.region, result.people], ['person_mentioned_region', 'noo_vald', { user: ['noo_vald', 'reported'] }], list.join(' | '));
   }
-  // The work place in a later message, with the plan's attribution and without it.
-  const before = { people: [saved('user', 'noo_vald')], focus: 'user' }, later = ['Elan Nõo vallas.', 'Töötan Maardus. Millist koduteenust ma saan?'];
-  for (const planned of [[place(2, 'Töötan Maardus', 'Maardu linn', 'user', 'other')], []]) {
-    const result = await turn({ before, texts: later, plan: { person: 'user', places: planned, queries: ['koduteenuse taotlemine ja tingimused'] } });
-    assert.deepEqual([result.source, result.people], [home('noo_vald'), { user: ['noo_vald', 'reported'] }]);
+  // The work place in a later message, written in several ways, with the plan's attribution and without it.
+  const later = [['Töötan Maardus. Millist koduteenust ma saan?', 'Töötan Maardus'], ['töötan maardus millist koduteenust ma saan', 'töötan maardus'],
+    ['Käin Maardus tööl, kas ma saan koduteenust?', 'Käin Maardus tööl'], ['Kas ma saan koduteenust, kui töötan Maardus?', 'kui töötan Maardus']];
+  for (const [message, quote] of later) {
+    // Unchanged for a message without punctuation: its one clause is in the first person ("ma"), and a first-person
+    // clause the plan left unattributed still leaves the residence unresolved; no municipality is searched then.
+    const unattributed = message === later[1][0] ? [] : [[]];
+    for (const planned of [[place(2, quote, 'Maardu linn', 'user', 'other')], ...unattributed]) {
+      for (const list of queries) {
+        const result = await turn({ before: nooState, texts: ['Elan Nõo vallas.', message], plan: { person: 'user', places: planned, queries: list } });
+        assert.deepEqual([result.source, result.people], [home('noo_vald'), { user: ['noo_vald', 'reported'] }], `${message} | ${planned.length} | ${list[0]}`);
+      }
+    }
   }
+  const firstPerson = await turn({ before: nooState, texts: ['Elan Nõo vallas.', later[1][0]], plan: { person: 'user', places: [], queries: queries[3] } });
+  assert.deepEqual([firstPerson.source.region, firstPerson.people.user], [null, [null, 'unresolved']]);
+  // Asking about that municipality's service is still a question about it, beside the work place and without it.
+  for (const message of ['Töötan Maardus. Kas Maardus saab isikliku abistaja teenust?', 'Tahan teada, kas Maardus saab isikliku abistaja teenust.',
+    'Räägi Maardu isikliku abistaja teenusest.', 'Maardus saab isikliku abistaja teenust?', 'Kui palju Maardus isikliku abistaja teenus maksab?']) {
+    const result = await turn({ before: nooState, texts: ['Elan Nõo vallas.', message], plan: { person: 'user', places: [], queries: ['Maardu isikliku abistaja teenus'] } });
+    assert.deepEqual([result.source.region, result.source.state, result.people.user], ['maardu_linn', 'question_region', ['noo_vald', 'reported']], message);
+  }
+  // A limit, not a goal: a request with no question in it is not read as one, and stays with the residence.
+  for (const message of ['Maardu isikliku abistaja teenus', 'Soovin infot Maardu isikliku abistaja teenuse kohta.']) {
+    const result = await turn({ before: nooState, texts: ['Elan Nõo vallas.', message], plan: { person: 'user', places: [], queries: ['Maardu isikliku abistaja teenus'] } });
+    assert.deepEqual([result.source, result.people.user], [home('noo_vald'), ['noo_vald', 'reported']], message);
+  }
+});
+
+test('a mention stands in the question when a question word or a request precedes it in its clause, or its one-clause sentence ends with a question mark', async () => {
+  const asking = async text => (await placeOccurrences(text, directory, analyzer)).map(item => item.asking);
+  for (const [text, expected] of [
+    ['Kas Maardus saab isikliku abistaja teenust?', [true]], ['Mis toetusi Tartu vald maksab', [true]], ['Kust leian Harku valla toimetulekutoetuse taotluse vormi?', [true]],
+    ['Ütle, mida Kose vald pakub.', [true]], ['Kui palju maksab Maardus koduteenus?', [true]], ['Maardus on koduteenus?', [true]],
+    ['Можно ли в Маарду получить услугу?', [true]], ['Where in Maardu can I get help?', [true]],
+    ['Töötan Maardus.', [false]], ['Elan Nõo vallas, töötan Maardus; millist koduteenust ma saan?', [false, false]], ['töötan maardus millist koduteenust ma saan', [false]],
+    ['Kas ma saan koduteenust, kui töötan Maardus?', [false]], ['Töötan Maardus. Kas Maardus saab abi?', [false, true]], ['Maardu isikliku abistaja teenus', [false]],
+  ]) assert.deepEqual(await asking(text), expected, text);
 });
 
 test('two municipalities in one message: the home it gives is saved and the asked one searched; two asked ones are both kept, none chosen', async () => {
@@ -156,21 +215,21 @@ test('two municipalities in one message: the home it gives is saved and the aske
     queries: ['Maardu isikliku abistaja teenuse korraldamine'] } });
   assert.deepEqual(both.source, asked('maardu_linn', home('noo_vald', 'user', 'person_mentioned_region')));
   assert.deepEqual(both.people, { user: ['noo_vald', 'reported'] });
-  const before = { people: [saved('user', 'noo_vald')], focus: 'user' }, text = 'Kas Maardus või Viimsi vallas on isikliku abistaja teenus?';
+  const text = 'Kas Maardus või Viimsi vallas on isikliku abistaja teenus?';
   const places = [place(2, text, 'Maardu linn', 'user', 'other'), place(2, text, 'Viimsi vald', 'user', 'other')];
-  const compare = await turn({ before, texts: ['Elan Nõo vallas.', text], plan: { person: 'user', places, queries: ['Maardu isikliku abistaja teenus', 'Viimsi valla isikliku abistaja teenus'] } });
-  assert.deepEqual(compare.source, { state: 'question_regions', region: null, candidates: ['maardu_linn', 'viimsi_vald'], person_scope: home('noo_vald'),
+  const compare = await turn({ before: nooState, texts: ['Elan Nõo vallas.', text], plan: { person: 'user', places, queries: ['Maardu isikliku abistaja teenus', 'Viimsi valla isikliku abistaja teenus'] } });
+  assert.deepEqual(compare.source, { state: 'question_regions', region: null, candidates: ['maardu_linn', 'viimsi_vald'], asked_in: 'current_message', person_scope: home('noo_vald'),
     interpretation: 'asked_municipality_source_scope_not_residence' });
   assert.deepEqual(keptTexts(compare.source), ['maardu_linn', 'viimsi_vald']);
   assert.deepEqual(compare.people, { user: ['noo_vald', 'reported'] });
   // The plan searches one of the two: that one. It searches the person's own municipality beside an asked one: the residence.
-  const one = await turn({ before, texts: ['Elan Nõo vallas.', text], plan: { person: 'user', places, queries: ['Viimsi valla isikliku abistaja teenus'] } });
+  const one = await turn({ before: nooState, texts: ['Elan Nõo vallas.', text], plan: { person: 'user', places, queries: ['Viimsi valla isikliku abistaja teenus'] } });
   assert.equal(one.source.region, 'viimsi_vald');
-  const withHome = await turn({ before, texts: ['Elan Nõo vallas.', 'Kas Maardus on koduteenus odavam kui Nõo vallas?'], plan: { person: 'user',
+  const withHome = await turn({ before: nooState, texts: ['Elan Nõo vallas.', 'Kas Maardus on koduteenus odavam kui Nõo vallas?'], plan: { person: 'user',
     places: [place(2, 'Kas Maardus on koduteenus odavam', 'Maardu linn', 'user', 'other')], queries: ['Maardu koduteenuse hind', 'Nõo valla koduteenuse hind'] } });
   assert.deepEqual(withHome.source, home('noo_vald'));
   // A base name two municipalities share: both stay candidates, as in a conversation with no residence.
-  const shared = await turn({ before, texts: ['Elan Nõo vallas.', 'Kas Tartus on sotsiaaltransport?'], plan: { person: 'user',
+  const shared = await turn({ before: nooState, texts: ['Elan Nõo vallas.', 'Kas Tartus on sotsiaaltransport?'], plan: { person: 'user',
     places: [place(2, 'Kas Tartus on sotsiaaltransport?', 'Tartu', 'user', 'other')], queries: ['Tartu sotsiaaltransporditeenus'] } });
   assert.deepEqual([shared.source.state, shared.source.candidates, shared.people.user], ['question_regions', ['tartu_linn', 'tartu_vald'], ['noo_vald', 'reported']]);
 });
@@ -182,7 +241,7 @@ test('another person: the mother keeps Kose vald, a question about another munic
     places: [place(3, 'Kas ema saaks Tartu vallas sotsiaaltransporti?', 'Tartu vald', 'ema', 'other')], queries: ['Tartu valla sotsiaaltransporditeenus'] } });
   assert.deepEqual(forHer.source, asked('tartu_vald', home('kose_vald', 'ema')));
   assert.deepEqual(forHer.people, { user: ['anija_vald', 'reported'], ema: ['kose_vald', 'reported'] });
-  const hers = await turn({ before: forHer.value, texts: [...texts, 'Kas ema saaks Tartu vallas sotsiaaltransporti?', 'Kuidas ema koduteenust taotleb?'],
+  const hers = await turn({ before: forHer.value, after: forHer, texts: [...texts, 'Kas ema saaks Tartu vallas sotsiaaltransporti?', 'Kuidas ema koduteenust taotleb?'],
     plan: { person: 'ema', places: [], queries: ['koduteenuse taotlemine'] } });
   assert.deepEqual(hers.source, home('kose_vald', 'ema'));
   // The mother's work place in a request about the user: not the user's question, also when a query names only that place.
@@ -198,18 +257,18 @@ test('what stays decided: a negated place is not asked back by a query, and a me
   // Codex J1: the user's own negation, with a query that still names the place.
   const negated = await turn({ before, texts: ['Elan Kose vallas.', 'Ma ei ela enam Kose vallas.'], plan: { person: 'user', places: [], queries: ['Kose vald toimetulekutoetus'] } });
   assert.deepEqual([negated.source.state, negated.source.region], ['region_required_after_negation', null]);
-  // The same place negated and mentioned again in one message is no question about it.
-  const text = 'Ma ei ela enam Kose vallas. Käin Kose vallas tööl.';
-  const work = await turn({ before, texts: ['Elan Kose vallas.', text], plan: { person: 'user', places: [place(2, 'Käin Kose vallas tööl', 'Kose vald', 'user', 'other')], queries: ['Kose vald toimetulekutoetus'] } });
+  // The same place negated and asked about in one message is no question about it.
+  const text = 'Ma ei ela enam Kose vallas. Kas Kose vallas saab tööd?';
+  const work = await turn({ before, texts: ['Elan Kose vallas.', text], plan: { person: 'user', places: [place(2, 'Kas Kose vallas saab tööd?', 'Kose vald', 'user', 'other')], queries: ['Kose vald toimetulekutoetus'] } });
   assert.deepEqual([work.source.region, work.people.user], [null, [null, 'negated']]);
   // A quote the server cannot read as one mention (the place twice) was an unresolved residence before; for a mention
   // the plan calls "other" the server now reads the message's mentions itself.
   const twice = 'Kas Maardus on isikliku abistaja teenus ja mis see Maardus maksab?';
-  const repeated = await turn({ before: { people: [saved('user', 'noo_vald')], focus: 'user' }, texts: ['Elan Nõo vallas.', twice],
+  const repeated = await turn({ before: nooState, texts: ['Elan Nõo vallas.', twice],
     plan: { person: 'user', places: [place(2, twice, 'Maardu linn', 'user', 'other')], queries: ['Maardu isikliku abistaja teenuse hind'] } });
   assert.deepEqual([repeated.source.region, repeated.people.user], ['maardu_linn', ['noo_vald', 'reported']]);
   // A residence claim the server cannot verify stays unresolved, as before.
-  const claim = await turn({ before: { people: [saved('user', 'noo_vald')], focus: 'user' }, texts: ['Elan Nõo vallas.', twice],
+  const claim = await turn({ before: nooState, texts: ['Elan Nõo vallas.', twice],
     plan: { person: 'user', places: [place(2, twice, 'Maardu linn', 'user', 'lives')], queries: ['Maardu isikliku abistaja teenuse hind'] } });
   assert.deepEqual([claim.source.region, claim.people.user], [null, [null, 'unresolved']]);
 });
@@ -217,9 +276,14 @@ test('what stays decided: a negated place is not asked back by a query, and a me
 test('the catalogue for a model run of these cases is well formed, and its checks tell the asked municipality from the residence', async () => {
   const catalogue = JSON.parse(await fs.readFile(new URL('./evaluation/dialogue/scenarios-question-region-1.json', import.meta.url), 'utf8'));
   assert.deepEqual(validateCatalogue(catalogue), []);
+  assert.equal(catalogue.scenarios.reduce((sum, item) => sum + item.turns.length, 0), 8);
   const scenario = catalogue.scenarios.find(item => item.id === 'asks-another-municipality'), askedTurn = scenario.turns[1];
   assert.deepEqual([askedTurn.expect.region, askedTurn.expect.person_regions], ['maardu_linn', { user: 'noo_vald' }]);
-  const observed = extra => ({ state: 'completed', region: 'maardu_linn', personRegions: { user: 'noo_vald' }, person: 'user', summaries: [], details: [], contacts: 0, evidenceTitles: ['Isikliku abistaja teenuse osutamise tingimused ja kord'], cited: [],
+  // The follow-up stays with the asked municipality, the user's own request returns to the residence (Codex F1).
+  assert.deepEqual(scenario.turns.slice(2).map(item => [item.text, item.expect.region, item.expect.person_regions.user]),
+    [['Ja mis see maksab?', 'maardu_linn', 'noo_vald'], ['Aga millist koduteenust ma ise saan?', 'noo_vald', 'noo_vald']]);
+  const observed = extra => ({ state: 'completed', region: 'maardu_linn', personRegions: { user: 'noo_vald' }, person: 'user', summaries: [], details: [], contacts: 0,
+    evidenceTitles: ['Isikliku abistaja teenuse osutamise tingimused ja kord'], cited: [],
     text: 'Jah, Maardus on isikliku abistaja teenus. See on mõeldud inimesele, kelle rahvastikuregistri järgne elukoht on Maardu linn.', clarification: false, ...extra });
   assert.equal(checkTurn(askedTurn.expect, observed({})).verdict, 'passed');
   // What 04.10 gave: the residence's catalogue and a question back; and the opposite fault, the residence overwritten.
@@ -229,4 +293,6 @@ test('the catalogue for a model run of these cases is well formed, and its check
   // An answer that makes the asked municipality's service the user's own entitlement fails.
   const entitled = checkTurn(askedTurn.expect, observed({ text: 'Jah, Maardus on isikliku abistaja teenus ja sul on õigus seda saada.' }));
   assert.deepEqual(entitled.checks.filter(check => !check.ok).map(check => check.key), ['must_not']);
+  // The work place scenario (Codex F2) keeps the residence.
+  assert.deepEqual(catalogue.scenarios.find(item => item.id === 'workplace-keeps-residence').turns.map(item => item.expect.region), ['noo_vald']);
 });
