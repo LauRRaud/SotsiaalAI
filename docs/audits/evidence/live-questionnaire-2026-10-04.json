@@ -1,0 +1,4321 @@
+{
+ "schema": "sotsiaalai/live-questionnaire-evidence-1",
+ "run": "2026-10-04 09:09-09:28 UTC, the owner's session, in-app browser",
+ "source": "M4PilotTurn records of the 32 turns; full records on the server (rag-v2-work/eval-files/live-questionnaire-2026-10-04/turns-full.json)",
+ "masking": "contact names, phone numbers and e-mail addresses are replaced; article authors are bibliographic data and stay",
+ "summary": {
+  "turns": 32,
+  "plan": "m4-sotsiaalai-corpus-chat-20261004-064453-c6d4cf74-d514-4bd4-8f3a-c3165273be35",
+  "plan_price_usd": 0.1656,
+  "tokens": {
+   "input": 1112065,
+   "output": 53090
+  },
+  "first_text_ms": {
+   "median": 12595,
+   "min": 8405,
+   "max": 22680,
+   "turns": 31
+  },
+  "answered_ms": {
+   "median": 14696,
+   "min": 9034,
+   "max": 28185
+  },
+  "greeting_ms": {
+   "planned": null,
+   "searched": 235,
+   "first_text": 1294,
+   "answered": 1646
+  }
+ },
+ "rows": [
+  {
+   "case": "Q1",
+   "n": 1,
+   "conversation": "ca1748f0-24b0-4c99-89f7-6a4d467868e7",
+   "order_in_conversation": 1,
+   "turn_id": "11303f06-2eaf-45ba-8d76-10b112774300",
+   "created_at": "2026-10-04T09:09:17.029Z",
+   "state": "completed",
+   "question": "Elan Anija vallas ja mul on raha otsas. Kellele ma saan helistada?",
+   "plan": {
+    "person": "user",
+    "places": [
+     {
+      "region": "anija_vald",
+      "relation": "lives"
+     }
+    ],
+    "queries": [
+     "Anija valla sotsiaalhoolekanne vältimatu sotsiaalabi",
+     "Anija vallavalitsuse sotsiaaltöötaja kontaktandmed",
+     "Vältimatu abi taotlemine rahalistes raskustes"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": false,
+   "scope": {
+    "municipality": {
+     "state": "person_mentioned_region",
+     "regions": [
+      "anija_vald"
+     ]
+    },
+    "records": {
+     "state": "person_mentioned_region",
+     "region": "anija_vald"
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "no_period"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "selected",
+     "refs": 3
+    },
+    {
+     "kind": "local_records",
+     "state": "selected",
+     "refs": 12
+    }
+   ],
+   "evidence": {
+    "items": 42,
+    "titles": [
+     {
+      "title": "[kontaktikirje]",
+      "count": 3
+     },
+     {
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "count": 2
+     },
+     {
+      "title": "Sotsiaalhoolekande seadus",
+      "count": 1
+     },
+     {
+      "title": "Erakorraline toetus",
+      "count": 1
+     },
+     {
+      "title": "Hooldajatoetus",
+      "count": 1
+     },
+     {
+      "title": "Igapäevase toimetuleku soodustamise toetus",
+      "count": 1
+     },
+     {
+      "title": "Koolitoetus",
+      "count": 1
+     },
+     {
+      "title": "Küttetoetus",
+      "count": 1
+     },
+     {
+      "title": "Laagritoetus",
+      "count": 1
+     },
+     {
+      "title": "Laste toitlustamise toetus",
+      "count": 1
+     }
+    ]
+   },
+   "cited": [
+    {
+     "ref": "S1",
+     "title": "Sotsiaalhoolekandelise abi andmise kord"
+    },
+    {
+     "ref": "S4",
+     "title": "Erakorraline toetus"
+    },
+    {
+     "ref": "S19",
+     "title": "[kontaktikirje]"
+    },
+    {
+     "ref": "S3",
+     "title": "Sotsiaalhoolekande seadus"
+    }
+   ],
+   "answer": {
+    "kind": "grounded",
+    "clarification": null,
+    "limitations": [],
+    "text": "Mul on kahju, et sul on praegu raha otsas. Helista Anija valla toetuste sotsiaaltööspetsialistile [kontaktisik]ile numbril [telefon]. Räägi, millest sul praegu puudu on, ja küsi abi. Vallavalitsus peab sinu abivajadust hindama ning selgitama välja sobiva abi. [S1, S4, S19]\n\nKui elatusvahendite puudumise tõttu oled sattunud sotsiaalselt abitusse olukorda, peab sulle osutama vältimatut sotsiaalabi. See tagab vähemalt toidu, riietuse ja ajutise majutuse. [S3]",
+    "sha256_of_stored_answer": "0eadbeee66078a2995dea65db2c8cc1fead374a4684781631184da21705085a7"
+   },
+   "ms": {
+    "planned": 3786,
+    "searched": 9405,
+    "first_text": 18201,
+    "answered": 19466
+   },
+   "tokens": {
+    "input": 34091,
+    "output": 1935
+   },
+   "plan_price_usd": 0.00523,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.00024,
+     "ms": 3654
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00001,
+     "ms": 1716
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.0017,
+     "ms": 2028
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00327,
+     "ms": 9747
+    }
+   ],
+   "judgment": "hea",
+   "reason": "Anija kontakt on registris kinnitatud ja telefon klapib vastusega (kontrollitud registrist)."
+  },
+  {
+   "case": "Q2",
+   "n": 2,
+   "conversation": "ca1748f0-24b0-4c99-89f7-6a4d467868e7",
+   "order_in_conversation": 2,
+   "turn_id": "a3b1a1da-1e0a-48d3-88f2-ca2f0107786b",
+   "created_at": "2026-10-04T09:11:34.188Z",
+   "state": "completed",
+   "question": "Mu ema elab Kose vallas ja vajab koduteenust. Kuidas seda taotleda ja kelle poole pöörduda?",
+   "plan": {
+    "person": "ema",
+    "places": [
+     {
+      "region": "kose_vald",
+      "relation": "lives"
+     }
+    ],
+    "queries": [
+     "Kose vald koduteenuse taotlemine ja korraldamine",
+     "Kose valla sotsiaaltööspetsialist koduteenus kontakt"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": true,
+   "scope": {
+    "municipality": {
+     "state": "person_mentioned_region",
+     "regions": [
+      "kose_vald"
+     ]
+    },
+    "records": {
+     "state": "person_mentioned_region",
+     "region": "kose_vald"
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "previous_model_interpretation"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "selected",
+     "refs": 2
+    },
+    {
+     "kind": "local_records",
+     "state": "selected",
+     "refs": 12
+    }
+   ],
+   "evidence": {
+    "items": 58,
+    "titles": [
+     {
+      "title": "[kontaktikirje]",
+      "count": 3
+     },
+     {
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "count": 1
+     },
+     {
+      "title": "Koduteenuste korraldus",
+      "count": 1
+     },
+     {
+      "title": "Eakate tähtpäeva toetus",
+      "count": 1
+     },
+     {
+      "title": "Eluasemekulude toetus",
+      "count": 1
+     },
+     {
+      "title": "Erakorraline sotsiaalabi toetus",
+      "count": 1
+     },
+     {
+      "title": "Esmakordselt kooli mineva lapse toetus",
+      "count": 1
+     },
+     {
+      "title": "Hooldajatoetus puudega lapse hooldajale",
+      "count": 1
+     },
+     {
+      "title": "Hooldajatoetus täisealise isiku hooldajale",
+      "count": 1
+     },
+     {
+      "title": "Huvihariduse ja huvitegevuse toetus paljulapselistele ja vähekindlustatud peredele",
+      "count": 1
+     }
+    ]
+   },
+   "cited": [
+    {
+     "ref": "S1",
+     "title": "Sotsiaalhoolekandelise abi andmise kord"
+    },
+    {
+     "ref": "S45",
+     "title": "Koduteenus"
+    },
+    {
+     "ref": "S24",
+     "title": "[kontaktikirje]"
+    },
+    {
+     "ref": "S27",
+     "title": "Avaldus koduteenuse taotlemiseks"
+    }
+   ],
+   "answer": {
+    "kind": "grounded",
+    "clarification": null,
+    "limitations": [
+     "Ma ei saa nende andmete põhjal öelda, kui palju teenus maksab."
+    ],
+    "text": "Kui su ema on täisealine ja vajab kodus kõrvalabi toimingutes, mida ta oma tervise, toimetuleku või elukeskkonna tõttu ise teha ei saa, võib Kose koduteenus talle sobida. Teenusevajadus selgitatakse välja kodukülastusel ning koostatakse hooldusplaan ehk kokkulepe vajaliku abi kohta. Teenus on tasuline. [S1, S45]\n\nTäida vorm „Avaldus koduteenuse taotlemiseks“, digiallkirjasta see ning saada Kose vallavalitsusele e-postiga või esita kohapeal. Teenust osutab Kose Sotsiaalkeskus. Võid alustada keskuse juhataja [kontaktisik]ga ühendust võttes: helista [telefon] või kirjuta [e-post]. [S24, S27, S45]",
+    "sha256_of_stored_answer": "a882bda4b0741a7e5acbaf0404e969f923b516c4258f69917c0a768e1d22bd53"
+   },
+   "ms": {
+    "planned": 2983,
+    "searched": 8073,
+    "first_text": 17143,
+    "answered": 19406
+   },
+   "tokens": {
+    "input": 38165,
+    "output": 2346
+   },
+   "plan_price_usd": 0.00594,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.00028,
+     "ms": 2709
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00001,
+     "ms": 1204
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.00216,
+     "ms": 2054
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00349,
+     "ms": 11001
+    }
+   ],
+   "judgment": "hea",
+   "reason": "Kose kontakt on registris kinnitatud, telefon ja e-post klapivad (kontrollitud); hinda ei teadnud ja ütles seda."
+  },
+  {
+   "case": "Q3",
+   "n": 3,
+   "conversation": "ca1748f0-24b0-4c99-89f7-6a4d467868e7",
+   "order_in_conversation": 3,
+   "turn_id": "e907111f-ba15-472f-b7d7-2065cf887d5c",
+   "created_at": "2026-10-04T09:12:05.212Z",
+   "state": "completed",
+   "question": "Kas Tartu vallas on sotsiaaltransport ja mis see maksab?",
+   "plan": {
+    "person": "user",
+    "places": [
+     {
+      "region": "tartu_vald",
+      "relation": "other"
+     }
+    ],
+    "queries": [
+     "Tartu valla sotsiaaltransporditeenus taotlemine tingimused",
+     "Tartu vald sotsiaaltransporditeenuse hind omaosalus tasu arvestamine"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": true,
+   "scope": {
+    "municipality": {
+     "state": "person_region",
+     "regions": [
+      "anija_vald"
+     ]
+    },
+    "records": {
+     "state": "person_region",
+     "region": "anija_vald"
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "previous_model_interpretation"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "selected",
+     "refs": 3
+    },
+    {
+     "kind": "local_records",
+     "state": "selected",
+     "refs": 12
+    }
+   ],
+   "evidence": {
+    "items": 42,
+    "titles": [
+     {
+      "title": "[kontaktikirje]",
+      "count": 3
+     },
+     {
+      "title": "Sotsiaalhoolekande seadus",
+      "count": 2
+     },
+     {
+      "title": "Kuidas hinnata abivajadust ja pakkuda sotsiaalhoolekandelist abi?",
+      "count": 1
+     },
+     {
+      "title": "Erakorraline toetus",
+      "count": 1
+     },
+     {
+      "title": "Hooldajatoetus",
+      "count": 1
+     },
+     {
+      "title": "Igapäevase toimetuleku soodustamise toetus",
+      "count": 1
+     },
+     {
+      "title": "Koolitoetus",
+      "count": 1
+     },
+     {
+      "title": "Küttetoetus",
+      "count": 1
+     },
+     {
+      "title": "Laagritoetus",
+      "count": 1
+     },
+     {
+      "title": "Laste toitlustamise toetus",
+      "count": 1
+     }
+    ]
+   },
+   "cited": [
+    {
+     "ref": "S1",
+     "title": "Sotsiaalhoolekande seadus"
+    },
+    {
+     "ref": "S2",
+     "title": "Sotsiaalhoolekande seadus"
+    }
+   ],
+   "answer": {
+    "kind": "partial",
+    "clarification": null,
+    "limitations": [
+     "Ma ei saa siin oleva info põhjal kinnitada, kas Tartu vald teenust praegu osutab ega öelda selle valla konkreetset hinda. Täpse hinna kohta küsi Tartu vallast."
+    ],
+    "text": "Sotsiaaltransporditeenust korraldab kohalik omavalitsus. Seaduses nimetatud sihtrühm on puudega inimene, kelle puue takistab isikliku või ühissõiduki kasutamist; teenus aitab sõita tööle või õppeasutusse või kasutada avalikke teenuseid. [S1]\n\nLiiniveo korral võib tasu olla sama vahemaa läbimise kulu soodsaima olemasoleva transpordivahendiga, arvestades olukorda, kus puudest tulenevat takistust ei oleks. Juhu- või taksoveo eest võib küsida suuremat tasu. [S2]",
+    "sha256_of_stored_answer": "259dbd26dc24e0c966687276748f1314deef730d85448c199b61f7400ee1f493"
+   },
+   "ms": {
+    "planned": 3654,
+    "searched": 8708,
+    "first_text": 17259,
+    "answered": 18668
+   },
+   "tokens": {
+    "input": 40979,
+    "output": 2305
+   },
+   "plan_price_usd": 0.00628,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.00037,
+     "ms": 3350
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00002,
+     "ms": 320
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.00255,
+     "ms": 2783
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00334,
+     "ms": 9683
+    }
+   ],
+   "judgment": "ebaõnnestus",
+   "reason": "Plaan märkis Tartu valla (seos „other“), kataloog jäi kasutaja elukoha Anija valda."
+  },
+  {
+   "case": "Q4",
+   "n": 4,
+   "conversation": "ca1748f0-24b0-4c99-89f7-6a4d467868e7",
+   "order_in_conversation": 4,
+   "turn_id": "ede849e0-1c14-4a31-aab5-cfa55bc4fac3",
+   "created_at": "2026-10-04T09:12:38.685Z",
+   "state": "completed",
+   "question": "Elan Nõo vallas. Kes on seal sotsiaaltööspetsialist?",
+   "plan": {
+    "person": "user",
+    "places": [
+     {
+      "region": "noo_vald",
+      "relation": "lives"
+     }
+    ],
+    "queries": [
+     "Nõo valla sotsiaaltööspetsialist kontaktandmed"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": true,
+   "scope": {
+    "municipality": {
+     "state": "person_mentioned_region",
+     "regions": [
+      "noo_vald"
+     ]
+    },
+    "records": {
+     "state": "person_mentioned_region",
+     "region": "noo_vald"
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "previous_model_interpretation"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "no_evidence",
+     "refs": 0
+    },
+    {
+     "kind": "local_records",
+     "state": "selected",
+     "refs": 12
+    }
+   ],
+   "evidence": {
+    "items": 44,
+    "titles": [
+     {
+      "title": "Eluruumi kohandamise toetus",
+      "count": 1
+     },
+     {
+      "title": "Gümnaasiumi lõpetamise toetus",
+      "count": 1
+     },
+     {
+      "title": "Koolitoetus esimesse klassi minevale lapsele",
+      "count": 1
+     },
+     {
+      "title": "Kriisiabi",
+      "count": 1
+     },
+     {
+      "title": "Küttetoetus",
+      "count": 1
+     },
+     {
+      "title": "Lapsetoetus",
+      "count": 1
+     },
+     {
+      "title": "Matusetoetus",
+      "count": 1
+     },
+     {
+      "title": "Põhikooli lõpetamise toetus",
+      "count": 1
+     },
+     {
+      "title": "Puudega lapse hooldajatoetus",
+      "count": 1
+     },
+     {
+      "title": "Puudest tingitud lisakulude katmise toetus",
+      "count": 1
+     }
+    ]
+   },
+   "cited": [
+    {
+     "ref": "S16",
+     "title": "[kontaktikirje]"
+    },
+    {
+     "ref": "S44",
+     "title": "Võlanõustamisteenus"
+    }
+   ],
+   "answer": {
+    "kind": "partial",
+    "clarification": null,
+    "limitations": [
+     "Ma ei saa nende andmete põhjal öelda, kes on Nõo valla sotsiaaltööspetsialist."
+    ],
+    "text": "Nõo valla kontaktina on nimetatud [kontaktisik], kelle ametinimetus on lastekaitsespetsialist. Võlanõustamisteenuse vajadust hindab sotsiaaltööspetsialist ja suunab nõustamisele. [S16, S44]",
+    "sha256_of_stored_answer": "1e9aaa67403a630944ed108fa358cb396cb9cf484544494c8fe77fe25323d176"
+   },
+   "ms": {
+    "planned": 2134,
+    "searched": 6131,
+    "first_text": 10379,
+    "answered": 11292
+   },
+   "tokens": {
+    "input": 37159,
+    "output": 1064
+   },
+   "plan_price_usd": 0.00518,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.00022,
+     "ms": 1829
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00002,
+     "ms": 426
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.0022,
+     "ms": 2059
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00273,
+     "ms": 4856
+    }
+   ],
+   "judgment": "hea",
+   "reason": "Vana vale numbriga kontakti ei andnud; sotsiaaltööspetsialisti ei nimetanud ja ütles seda."
+  },
+  {
+   "case": "Q5",
+   "n": 5,
+   "conversation": "ca1748f0-24b0-4c99-89f7-6a4d467868e7",
+   "order_in_conversation": 5,
+   "turn_id": "5bbff45a-a9e4-4123-a7de-82889b667621",
+   "created_at": "2026-10-04T09:13:15.854Z",
+   "state": "completed",
+   "question": "Kas Maardus saab isikliku abistaja teenust?",
+   "plan": {
+    "person": "user",
+    "places": [
+     {
+      "region": "maardu_linn",
+      "relation": "other"
+     }
+    ],
+    "queries": [
+     "Maardu isikliku abistaja teenuse korraldamine",
+     "Maardu isikliku abistaja teenuse taotlemine"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": true,
+   "scope": {
+    "municipality": {
+     "state": "person_region",
+     "regions": [
+      "noo_vald"
+     ]
+    },
+    "records": {
+     "state": "person_region",
+     "region": "noo_vald"
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "previous_model_interpretation"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "no_evidence",
+     "refs": 0
+    },
+    {
+     "kind": "local_records",
+     "state": "selected",
+     "refs": 12
+    }
+   ],
+   "evidence": {
+    "items": 44,
+    "titles": [
+     {
+      "title": "Eluruumi kohandamise toetus",
+      "count": 1
+     },
+     {
+      "title": "Gümnaasiumi lõpetamise toetus",
+      "count": 1
+     },
+     {
+      "title": "Koolitoetus esimesse klassi minevale lapsele",
+      "count": 1
+     },
+     {
+      "title": "Kriisiabi",
+      "count": 1
+     },
+     {
+      "title": "Küttetoetus",
+      "count": 1
+     },
+     {
+      "title": "Lapsetoetus",
+      "count": 1
+     },
+     {
+      "title": "Matusetoetus",
+      "count": 1
+     },
+     {
+      "title": "Põhikooli lõpetamise toetus",
+      "count": 1
+     },
+     {
+      "title": "Puudega lapse hooldajatoetus",
+      "count": 1
+     },
+     {
+      "title": "Puudest tingitud lisakulude katmise toetus",
+      "count": 1
+     }
+    ]
+   },
+   "cited": [],
+   "answer": {
+    "kind": "clarification",
+    "clarification": "Kas küsid Maardu teenuse kohta endale või kellelegi teisele?",
+    "limitations": [
+     "Ma ei saa siin oleva kohaliku info põhjal kinnitada, kas Maardus osutatakse isikliku abistaja teenust. Siin on kohalik info Nõo valla kohta."
+    ],
+    "text": "",
+    "sha256_of_stored_answer": "0110a4fe38da6368816b5f75f3f77ed8649927116b7ad27031080e21e220c395"
+   },
+   "ms": {
+    "planned": 2330,
+    "searched": 6302,
+    "first_text": 14155,
+    "answered": 14742
+   },
+   "tokens": {
+    "input": 38134,
+    "output": 1539
+   },
+   "plan_price_usd": 0.00554,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.00024,
+     "ms": 1999
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00002,
+     "ms": 273
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.00235,
+     "ms": 2042
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00293,
+     "ms": 8213
+    }
+   ],
+   "judgment": "ebaõnnestus",
+   "reason": "Plaan märkis Maardu („other“), kataloog jäi Nõo valda; vastus küsis täpsustust."
+  },
+  {
+   "case": "Q6",
+   "n": 6,
+   "conversation": "ca1748f0-24b0-4c99-89f7-6a4d467868e7",
+   "order_in_conversation": 6,
+   "turn_id": "7cfe0399-2470-4cd3-8458-f6583d2ac0dd",
+   "created_at": "2026-10-04T09:13:34.955Z",
+   "state": "completed",
+   "question": "Mis muutub Põhja-Sakala valla sotsiaalabi korras alates 6. oktoobrist?",
+   "plan": {
+    "person": "user",
+    "places": [
+     {
+      "region": null,
+      "relation": "unresolved",
+      "reason": "place_not_attributed"
+     }
+    ],
+    "queries": [
+     "Põhja-Sakala valla sotsiaalhoolekandelise abi andmise kord 6. oktoober muudatused",
+     "Põhja-Sakala valla sotsiaalabi korra muudatuste jõustumine 6. oktoobril"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": true,
+   "scope": {
+    "municipality": {
+     "state": "region_required",
+     "regions": []
+    },
+    "records": {
+     "state": "region_required",
+     "region": null,
+     "reason": "attribution_unresolved"
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "previous_model_interpretation"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "selected",
+     "refs": 1
+    },
+    {
+     "kind": "local_records",
+     "state": "no_evidence",
+     "refs": 0
+    }
+   ],
+   "evidence": {
+    "items": 1,
+    "titles": [
+     {
+      "title": "Sotsiaalhoolekande seadus",
+      "count": 1
+     }
+    ]
+   },
+   "cited": [
+    {
+     "ref": "S1",
+     "title": "Sotsiaalhoolekande seadus"
+    }
+   ],
+   "answer": {
+    "kind": "partial",
+    "clarification": "Kas sul on Põhja-Sakala valla korra või määruse pealkiri või tekst, mille muudatusi mõtled?",
+    "limitations": [
+     "Ma ei saa siin oleva info põhjal kindlaks teha, mida Põhja-Sakala valla enda sotsiaalabi korras 6. oktoobrist muudetakse ega kas need riikliku seaduse muudatused jõustuvad just siis."
+    ],
+    "text": "Riikliku sotsiaalhoolekande seaduse muudatuste hulgas on § 47 ja § 59 tingimuste ning § 101 töövõimega seotud tingimuste muutmine. Lisaks lisatakse töövõime hindamise andmete hulka Töötukassa eksperdiarvamus ning § 73 järgi arvestatakse sissetulekuna ka töövõimetoetust. Loetelus on ka § 93 kehtetuks tunnistamine. [S1]",
+    "sha256_of_stored_answer": "81f93c1d49dafa2f160b252397a4f42e0c77b437901e339cba9c1419446a3cba"
+   },
+   "ms": {
+    "planned": 2747,
+    "searched": 5613,
+    "first_text": 19244,
+    "answered": 20905
+   },
+   "tokens": {
+    "input": 26884,
+    "output": 2894
+   },
+   "plan_price_usd": 0.00481,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.00031,
+     "ms": 2516
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00003,
+     "ms": 271
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.00205,
+     "ms": 1233
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00243,
+     "ms": 15138
+    }
+   ],
+   "judgment": "ebaõnnestus",
+   "reason": "Koht jäi plaanis sidumata, piirkonda ei valitud; kuupäevast ei tekkinud perioodi."
+  },
+  {
+   "case": "Q7",
+   "n": 7,
+   "conversation": "ca1748f0-24b0-4c99-89f7-6a4d467868e7",
+   "order_in_conversation": 7,
+   "turn_id": "5b8efc5a-3f58-4a8b-85ee-b0691963425f",
+   "created_at": "2026-10-04T09:14:53.023Z",
+   "state": "completed",
+   "question": "Kust leian Harku valla toimetulekutoetuse taotluse vormi?",
+   "plan": {
+    "person": "user",
+    "places": [
+     {
+      "region": null,
+      "relation": "unresolved",
+      "reason": "place_not_attributed"
+     }
+    ],
+    "queries": [
+     "Harku valla toimetulekutoetuse taotluse vorm"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": true,
+   "scope": {
+    "municipality": {
+     "state": "region_required",
+     "regions": []
+    },
+    "records": {
+     "state": "region_required",
+     "region": null,
+     "reason": "attribution_unresolved"
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "previous_model_interpretation"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "no_evidence",
+     "refs": 0
+    },
+    {
+     "kind": "local_records",
+     "state": "no_evidence",
+     "refs": 0
+    }
+   ],
+   "evidence": {
+    "items": 0,
+    "titles": []
+   },
+   "cited": [],
+   "answer": {
+    "kind": "unsupported",
+    "clarification": null,
+    "limitations": [
+     "Mul pole siin piisavalt teavet, et öelda, kust Harku valla toimetulekutoetuse taotluse vormi leiad."
+    ],
+    "text": "",
+    "sha256_of_stored_answer": "e97f4967fe1c5e5f2fb227701ab58c83f98381491ddc337441baf544ec504a59"
+   },
+   "ms": {
+    "planned": 2243,
+    "searched": 4781,
+    "first_text": 8823,
+    "answered": 9252
+   },
+   "tokens": {
+    "input": 32643,
+    "output": 938
+   },
+   "plan_price_usd": 0.00455,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.00028,
+     "ms": 2023
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00002,
+     "ms": 293
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.00288,
+     "ms": 1144
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00136,
+     "ms": 4327
+    }
+   ],
+   "judgment": "ebaõnnestus",
+   "reason": "Koht jäi plaanis sidumata, piirkonda ei valitud, tõendeid 0."
+  },
+  {
+   "case": "Q8",
+   "n": 8,
+   "conversation": "ca1748f0-24b0-4c99-89f7-6a4d467868e7",
+   "order_in_conversation": 8,
+   "turn_id": "16f5e00c-9601-47b0-9b94-fbdc8c3b9198",
+   "created_at": "2026-10-04T09:15:07.128Z",
+   "state": "completed",
+   "question": "Sündis laps, elan Märjamaa vallas. Mis toetust saan?",
+   "plan": {
+    "person": "user",
+    "places": [
+     {
+      "region": "marjamaa_vald",
+      "relation": "lives"
+     }
+    ],
+    "queries": [
+     "Märjamaa valla sünnitoetus tingimused taotlemine",
+     "riiklik sünnitoetus ja perehüvitised lapse sünni korral"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": true,
+   "scope": {
+    "municipality": {
+     "state": "person_mentioned_region",
+     "regions": [
+      "marjamaa_vald"
+     ]
+    },
+    "records": {
+     "state": "person_mentioned_region",
+     "region": "marjamaa_vald"
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "previous_model_interpretation"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "selected",
+     "refs": 5
+    },
+    {
+     "kind": "local_records",
+     "state": "selected",
+     "refs": 12
+    }
+   ],
+   "evidence": {
+    "items": 38,
+    "titles": [
+     {
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "count": 4
+     },
+     {
+      "title": "[kontaktikirje]",
+      "count": 4
+     },
+     {
+      "title": "Sotsiaaltoetuste määrad ja piirmäärad",
+      "count": 1
+     },
+     {
+      "title": "Erakorraline toetus",
+      "count": 1
+     },
+     {
+      "title": "Hooldajatoetus",
+      "count": 1
+     },
+     {
+      "title": "Matusetoetus",
+      "count": 1
+     },
+     {
+      "title": "Ranitsatoetus",
+      "count": 1
+     },
+     {
+      "title": "Sotsiaaltranspordikulude hüvitis",
+      "count": 1
+     },
+     {
+      "title": "Sünnitoetus",
+      "count": 1
+     },
+     {
+      "title": "Toimetulekutoetus",
+      "count": 1
+     }
+    ]
+   },
+   "cited": [
+    {
+     "ref": "S1",
+     "title": "Sotsiaalhoolekandelise abi andmise kord"
+    },
+    {
+     "ref": "S2",
+     "title": "Sotsiaaltoetuste määrad ja piirmäärad"
+    },
+    {
+     "ref": "S3",
+     "title": "Sotsiaalhoolekandelise abi andmise kord"
+    }
+   ],
+   "answer": {
+    "kind": "partial",
+    "clarification": "Kas lapse rahvastikuregistrijärgne elukoht on Märjamaa vald ning kas vähemalt ühe vanema registrijärgne elukoht oli seal juba aasta enne lapse sündi?",
+    "limitations": [
+     "Sa ütlesid, et elad Märjamaa vallas, kuid sellest üksi ei selgu, kas sinu ja lapse rahvastikuregistrijärgne elukoht vastab toetuse tingimustele."
+    ],
+    "text": "Kui registritingimused on täidetud, saad taotleda Märjamaa valla sünnitoetust. Esimene osa on 500 eurot ja seda makstakse lapse sünni registreerimisel. Teine osa on 300 eurot ning seda makstakse pärast lapse aastaseks saamist, kui laps ja vähemalt üks vanem on olnud sünnist saadik katkematult Märjamaa valla registrijärgsed elanikud ning esimene osa on välja makstud. Esimese osa jaoks peab lapse registrijärgne elukoht olema Märjamaa vald ja vähemalt ühe vanema registrijärgne elukoht peab olema seal olnud vähemalt aasta enne sündi. [S1, S2]\n\nToetuse saamiseks esita vallavalitsusele vormikohane taotlus kolme kuu jooksul toetuse saamise õiguse tekkimisest. [S3]",
+    "sha256_of_stored_answer": "99c626057fc9e74ec43a3580e4dc20d0fab0dd832b48ebf3a51187c097279c8a"
+   },
+   "ms": {
+    "planned": 2236,
+    "searched": 5685,
+    "first_text": 15352,
+    "answered": 17921
+   },
+   "tokens": {
+    "input": 39253,
+    "output": 2169
+   },
+   "plan_price_usd": 0.00599,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.00025,
+     "ms": 2034
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00003,
+     "ms": 603
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.00218,
+     "ms": 1259
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00353,
+     "ms": 11924
+    }
+   ],
+   "judgment": "hea",
+   "reason": "500 + 300 eurot klapib valla lähtefailiga (kontrollitud)."
+  },
+  {
+   "case": "Q9",
+   "n": 9,
+   "conversation": "conv-ebe11481-72fa-4994-a458-9563f56e7f84",
+   "order_in_conversation": 1,
+   "turn_id": "033a4456-be61-4bad-afb9-568007eedb8e",
+   "created_at": "2026-10-04T09:16:21.574Z",
+   "state": "completed",
+   "question": "Kui suur on toimetulekupiir ja kuidas toimetulekutoetust arvutatakse?",
+   "plan": {
+    "person": "user",
+    "places": [],
+    "queries": [
+     "toimetulekupiiri suurus kehtiv määr",
+     "toimetulekutoetuse arvestamine sissetulek eluasemekulud"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": false,
+   "scope": {
+    "municipality": {
+     "state": "region_required",
+     "regions": []
+    },
+    "records": {
+     "state": "region_required",
+     "region": null
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "no_period"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "selected",
+     "refs": 6
+    },
+    {
+     "kind": "local_records",
+     "state": "no_evidence",
+     "refs": 0
+    }
+   ],
+   "evidence": {
+    "items": 6,
+    "titles": [
+     {
+      "title": "Sotsiaalhoolekande seadus",
+      "count": 6
+     }
+    ]
+   },
+   "cited": [
+    {
+     "ref": "S1",
+     "title": "Sotsiaalhoolekande seadus"
+    },
+    {
+     "ref": "S2",
+     "title": "Sotsiaalhoolekande seadus"
+    },
+    {
+     "ref": "S3",
+     "title": "Sotsiaalhoolekande seadus"
+    },
+    {
+     "ref": "S4",
+     "title": "Sotsiaalhoolekande seadus"
+    }
+   ],
+   "answer": {
+    "kind": "partial",
+    "clarification": null,
+    "limitations": [
+     "Ma ei saa siin öelda toimetulekupiiri täpset eurodes suurust, sest kasutatud teave ei anna kehtivat summat."
+    ],
+    "text": "Üksi elava inimese ja pere esimese liikme toimetulekupiiri kehtestab Riigikogu igaks eelarveaastaks riigieelarvega. Pere teise ja iga järgmise täisealise liikme piir on 80% esimese liikme piirist ning iga lapse piir 120%. [S1]\n\nToetuse arvestamisel võetakse aluseks pere kõigi liikmete eelmise kuu netosissetulek. Sellest arvestatakse maha makstud elatis, täitemenetluses kinnipeetud summad ja jooksva kuu arvesse võetavad eluasemekulud. Toetuse saamise tingimus on, et kuu netosissetulek pärast seaduse tingimustel eluasemekulude mahaarvamist jääb alla perele kehtiva toimetulekupiiri. [S1, S2]\n\nArvesse saab võtta näiteks üüri, kütte-, vee-, elektri- ja muid seaduses nimetatud eluasemekulusid. Nende kulude piirmäärad kehtestab kohalik omavalitsus. Eluasemekulude varasemat võlga toetuse arvestusse ei lisata. [S3, S4]",
+    "sha256_of_stored_answer": "8fc963cd6e8c1b8f58c34c3cc7d41dd4cde25702a0d38b8ec4b584973eba0ba5"
+   },
+   "ms": {
+    "planned": 1892,
+    "searched": 4859,
+    "first_text": 9204,
+    "answered": 11208
+   },
+   "tokens": {
+    "input": 38935,
+    "output": 1031
+   },
+   "plan_price_usd": 0.00538,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.00021,
+     "ms": 1763
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00001,
+     "ms": 395
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.0029,
+     "ms": 1084
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00226,
+     "ms": 6155
+    }
+   ],
+   "judgment": "osaline",
+   "reason": "Arvutuskäik seadusest; summat tõendites ei olnud, sest piirkonnata küsimus ei loe valdade kirjeid, kus summa on."
+  },
+  {
+   "case": "Q10",
+   "n": 10,
+   "conversation": "conv-ebe11481-72fa-4994-a458-9563f56e7f84",
+   "order_in_conversation": 2,
+   "turn_id": "3b9ba308-148d-42dc-a97e-cf3d6e0f6902",
+   "created_at": "2026-10-04T09:16:38.982Z",
+   "state": "completed",
+   "question": "Kes peab teatama abivajavast lapsest ja kuhu?",
+   "plan": {
+    "person": "abivajav laps",
+    "places": [],
+    "queries": [
+     "abivajavast lapsest teatamise kohustus lastekaitseseadus",
+     "abivajavast lapsest teatamine kohaliku omavalitsuse üksus Lasteabi 116111",
+     "abivajavast lapsest teatamine vahetu oht politsei"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": true,
+   "scope": {
+    "municipality": {
+     "state": "region_required",
+     "regions": []
+    },
+    "records": {
+     "state": "region_required",
+     "region": null
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "previous_model_interpretation"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "selected",
+     "refs": 8
+    },
+    {
+     "kind": "local_records",
+     "state": "no_evidence",
+     "refs": 0
+    }
+   ],
+   "evidence": {
+    "items": 8,
+    "titles": [
+     {
+      "title": "Sotsiaalhoolekande seadus",
+      "count": 5
+     },
+     {
+      "title": "Lastekaitseseadus",
+      "count": 2
+     },
+     {
+      "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+      "count": 1
+     }
+    ]
+   },
+   "cited": [
+    {
+     "ref": "S3",
+     "title": "Lastekaitseseadus"
+    },
+    {
+     "ref": "S4",
+     "title": "Lastekaitseseadus"
+    }
+   ],
+   "answer": {
+    "kind": "grounded",
+    "clarification": null,
+    "limitations": [],
+    "text": "Teatama peab igaüks, kellel on teavet abivajavast lapsest. Teata sellest viivitamata kohaliku omavalitsuse üksusele või lasteabitelefonil 116 111. [S3]\n\nKui laps on hädaohus, peab igaüks, kellel on selle kohta teavet, teatama viivitamata hädaabinumbril 112. Abivajavast lapsest teataja nime ega teatamise fakti ei avalikustata, välja arvatud süüteomenetluses; enda või oma pere kaitseks võid jätta teatamisel enda andmed avaldamata. [S3, S4]",
+    "sha256_of_stored_answer": "b8c005da622e8cc8ca42fe0059d48663a4bd89ad5540d360431f42dd879dc57b"
+   },
+   "ms": {
+    "planned": 2659,
+    "searched": 7469,
+    "first_text": 9775,
+    "answered": 10717
+   },
+   "tokens": {
+    "input": 34298,
+    "output": 884
+   },
+   "plan_price_usd": 0.00473,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.00024,
+     "ms": 2396
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00001,
+     "ms": 363
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.00228,
+     "ms": 2740
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00219,
+     "ms": 3056
+    }
+   ],
+   "judgment": "hea",
+   "reason": "Lastekaitseseadus; sisu lähteteksti vastu kontrollimata."
+  },
+  {
+   "case": "Q11",
+   "n": 11,
+   "conversation": "conv-ebe11481-72fa-4994-a458-9563f56e7f84",
+   "order_in_conversation": 3,
+   "turn_id": "59cdabf7-80f1-4e70-92e6-2df6ed739964",
+   "created_at": "2026-10-04T09:17:19.924Z",
+   "state": "completed",
+   "question": "Mis vahe on eestkostel ja toetatud otsustamisel?",
+   "plan": {
+    "person": "user",
+    "places": [],
+    "queries": [
+     "toimetulekupiir toimetulekutoetuse arvestamine sissetulek eluasemekulud",
+     "abivajavast lapsest teatamise kohustus kuhu teatada",
+     "eestkoste ja toetatud otsustamise erinevus"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": true,
+   "scope": {
+    "municipality": {
+     "state": "region_required",
+     "regions": []
+    },
+    "records": {
+     "state": "region_required",
+     "region": null
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "previous_model_interpretation"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "selected",
+     "refs": 12
+    },
+    {
+     "kind": "local_records",
+     "state": "no_evidence",
+     "refs": 0
+    }
+   ],
+   "evidence": {
+    "items": 12,
+    "titles": [
+     {
+      "title": "Sotsiaalhoolekande seadus",
+      "count": 6
+     },
+     {
+      "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+      "count": 2
+     },
+     {
+      "title": "Eestkostekorralduse kitsaskohad ja võimalused üleminekuks toetatud otsustamisele",
+      "count": 2
+     },
+     {
+      "title": "Lastekaitseseadus",
+      "count": 1
+     },
+     {
+      "title": "Perekonnaseadus",
+      "count": 1
+     }
+    ]
+   },
+   "cited": [
+    {
+     "ref": "S5",
+     "title": "Eestkostekorralduse kitsaskohad ja võimalused üleminekuks toetatud otsustamisele"
+    },
+    {
+     "ref": "S12",
+     "title": "Perekonnaseadus"
+    },
+    {
+     "ref": "S6",
+     "title": "Eestkostekorralduse kitsaskohad ja võimalused üleminekuks toetatud otsustamisele"
+    }
+   ],
+   "answer": {
+    "kind": "partial",
+    "clarification": null,
+    "limitations": [
+     "Siin oleva teabe põhjal ei saa ma kinnitada, et toetatud otsustamine oleks kehtestatud üldise õigusliku menetlusena."
+    ],
+    "text": "Eestkoste on kohtu määratud õiguslik korraldus: eestkostja võib teha inimese eest otsuseid ainult neis ülesannetes, milleks eestkoste on vajalik. Eestkostet ei ole vaja, kui inimese huve saab kaitsta volituse ning pereliikmete või teiste abiliste toel. [S5, S12]\n\nToetatud otsustamise puhul teeb inimene otsuse ise. Teda abistavad usaldusväärsed inimesed, kes selgitavad otsuse seoseid ja tagajärgi. See on eestkostest erinev lähenemine, sest otsust ei tehta inimese eest. Seda on soovitatud rakendada järk-järgult ja osaliselt. [S6]",
+    "sha256_of_stored_answer": "a5d17ff384a21573225f5cc25586fad49967eda86aa777de9429a33e7425cfde"
+   },
+   "ms": {
+    "planned": 2227,
+    "searched": 7300,
+    "first_text": 12105,
+    "answered": 13142
+   },
+   "tokens": {
+    "input": 40526,
+    "output": 1317
+   },
+   "plan_price_usd": 0.00572,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.00021,
+     "ms": 1927
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00002,
+     "ms": 343
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.00268,
+     "ms": 2826
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00282,
+     "ms": 5636
+    }
+   ],
+   "judgment": "hea",
+   "reason": "Perekonnaseadus ja Sotsiaaltöö 2/2024; sisu lähteteksti vastu kontrollimata."
+  },
+  {
+   "case": "Q12",
+   "n": 12,
+   "conversation": "conv-ebe11481-72fa-4994-a458-9563f56e7f84",
+   "order_in_conversation": 4,
+   "turn_id": "0fd73800-fbb0-4428-983e-e2ef62f8f6a3",
+   "created_at": "2026-10-04T09:17:36.956Z",
+   "state": "completed",
+   "question": "Kuidas määratakse täisealisele puude raskusaste?",
+   "plan": {
+    "person": "user",
+    "places": [],
+    "queries": [
+     "toimetulekupiir toimetulekutoetuse arvutamine arvestatavad tulud",
+     "abivajavast lapsest teatamise kohustus kuhu teatada",
+     "täisealise puude raskusastme tuvastamine eestkoste toetatud otsustamine"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": true,
+   "scope": {
+    "municipality": {
+     "state": "region_required",
+     "regions": []
+    },
+    "records": {
+     "state": "region_required",
+     "region": null
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "previous_model_interpretation"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "selected",
+     "refs": 12
+    },
+    {
+     "kind": "local_records",
+     "state": "no_evidence",
+     "refs": 0
+    }
+   ],
+   "evidence": {
+    "items": 15,
+    "titles": [
+     {
+      "title": "Sotsiaalhoolekande seadus",
+      "count": 8
+     },
+     {
+      "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+      "count": 2
+     },
+     {
+      "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+      "count": 1
+     },
+     {
+      "title": "Perekonnaseadus",
+      "count": 1
+     },
+     {
+      "title": "Täisealiste puudega inimeste puude tuvastamise ja toetuste ning hüvede võimaliku nüüdisajastamise uuring",
+      "count": 1
+     },
+     {
+      "title": "Lastekaitseseadus",
+      "count": 1
+     },
+     {
+      "title": "Sotsiaalseadustiku üldosa seadus",
+      "count": 1
+     }
+    ]
+   },
+   "cited": [
+    {
+     "ref": "S9",
+     "title": "Täisealiste puudega inimeste puude tuvastamise ja toetuste ning hüvede võimaliku nüüdisajastamise uuring"
+    }
+   ],
+   "answer": {
+    "kind": "partial",
+    "clarification": "Kas pead silmas tööealist täisealist või vanaduspensioniealist?",
+    "limitations": [
+     "Siin toodud teabest ei selgu, millised skoorid vastavad eri puude raskusastmetele ega kuidas hindamine käib teiste täisealiste puhul."
+    ],
+    "text": "Kui küsid tööealise täisealise kohta, saab ta esitada ühise töövõime hindamise ja puude raskusastme tuvastamise taotluse. Töötukassa ekspertarst hindab tervise infosüsteemi andmete põhjal inimese tegutsemis- ja osalemispiiranguid seitsmes valdkonnas, kasutades skaalat 1-st (kerge probleem) 4-ni (täielik probleem). Puude raskusastme tuvastamisel kasutatakse sama hindamiskäsitlust ning raskusaste leitakse võtmetegevuste skooride aritmeetilise keskmise järgi. [S9]",
+    "sha256_of_stored_answer": "bde06a2983d1bd2b67081ce66ebac284fb50623b5a48ab0ca75fea928d64b0ba"
+   },
+   "ms": {
+    "planned": 2364,
+    "searched": 7805,
+    "first_text": 15838,
+    "answered": 17168
+   },
+   "tokens": {
+    "input": 39783,
+    "output": 2159
+   },
+   "plan_price_usd": 0.00605,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.00026,
+     "ms": 2154
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00002,
+     "ms": 279
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.0027,
+     "ms": 3009
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00307,
+     "ms": 9125
+    }
+   ],
+   "judgment": "osaline",
+   "reason": "Puuetega inimeste sotsiaaltoetuste seadust indeksis ei ole; vastas 2026. aasta artiklist; tõendites olid ka varasemate küsimuste teemad."
+  },
+  {
+   "case": "Q13",
+   "n": 13,
+   "conversation": "conv-ebe11481-72fa-4994-a458-9563f56e7f84",
+   "order_in_conversation": 5,
+   "turn_id": "9c1c6592-0336-4a82-97ed-706927469b8c",
+   "created_at": "2026-10-04T09:17:57.649Z",
+   "state": "completed",
+   "question": "Kas hooldekodu kohatasu võib nõuda lastelt?",
+   "plan": {
+    "person": "user",
+    "places": [],
+    "queries": [
+     "toimetulekupiir toimetulekutoetuse arvutamine",
+     "abivajavast lapsest teatamise kohustus eestkoste toetatud otsustamine",
+     "täisealise puude raskusastme tuvastamine hooldekodu kohatasu ülalpidamiskohustus lastel"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": true,
+   "scope": {
+    "municipality": {
+     "state": "region_required",
+     "regions": []
+    },
+    "records": {
+     "state": "region_required",
+     "region": null
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "previous_model_interpretation"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "selected",
+     "refs": 12
+    },
+    {
+     "kind": "local_records",
+     "state": "no_evidence",
+     "refs": 0
+    }
+   ],
+   "evidence": {
+    "items": 12,
+    "titles": [
+     {
+      "title": "Sotsiaalhoolekande seadus",
+      "count": 8
+     },
+     {
+      "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+      "count": 1
+     },
+     {
+      "title": "Eestkostekorralduse kitsaskohad ja võimalused üleminekuks toetatud otsustamisele",
+      "count": 1
+     },
+     {
+      "title": "Lastekaitseseadus",
+      "count": 1
+     },
+     {
+      "title": "Perekonnaseadus",
+      "count": 1
+     }
+    ]
+   },
+   "cited": [],
+   "answer": {
+    "kind": "unsupported",
+    "clarification": null,
+    "limitations": [
+     "Siin kasutada olev teave ei selgita, kas hooldekodu võib nõuda kohatasu inimese lastelt."
+    ],
+    "text": "",
+    "sha256_of_stored_answer": "40ed8ff5d0ac870aa96a67417e229732a6ecfd35f081d258c323653808e77f37"
+   },
+   "ms": {
+    "planned": 2786,
+    "searched": 7953,
+    "first_text": 11033,
+    "answered": 11431
+   },
+   "tokens": {
+    "input": 37984,
+    "output": 1106
+   },
+   "plan_price_usd": 0.0053,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.00032,
+     "ms": 2573
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00002,
+     "ms": 494
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.00229,
+     "ms": 2859
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00267,
+     "ms": 3294
+    }
+   ],
+   "judgment": "ebaõnnestus",
+   "reason": "12 tõendit, enamik varasemate küsimuste teemadest; vastus „unsupported“."
+  },
+  {
+   "case": "Q14",
+   "n": 14,
+   "conversation": "conv-21dc5344-889e-42f7-8c00-f16e43826faf",
+   "order_in_conversation": 1,
+   "turn_id": "659e8289-2837-40cb-ba35-9b75a2f3ed4a",
+   "created_at": "2026-10-04T09:18:40.742Z",
+   "state": "completed",
+   "question": "Mida on ajakirjas Sotsiaaltöö kirjutatud eakate seksuaalsusest hooldekodudes?",
+   "plan": {
+    "person": "unclear",
+    "places": [],
+    "queries": [
+     "Sotsiaaltöö ajakiri eakate seksuaalsus hooldekodus",
+     "eakate seksuaalsus hoolekandeasutuses privaatsus",
+     "seksuaalsus ja intiimsus hooldekodu elanikel"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": false,
+   "scope": {
+    "municipality": {
+     "state": "region_required",
+     "regions": []
+    },
+    "records": {
+     "state": "region_required",
+     "region": null
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "no_period"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "selected",
+     "refs": 8
+    },
+    {
+     "kind": "local_records",
+     "state": "no_evidence",
+     "refs": 0
+    }
+   ],
+   "evidence": {
+    "items": 8,
+    "titles": [
+     {
+      "title": "„Nad on ju vanad, mis seksuaalsusest me siin enam räägime?!“ Eakate seksuaalse eneseteostuse võimalused hoolde…",
+      "count": 5
+     },
+     {
+      "title": "Intiimsuse ja seksuaalsuse käsitlus üldhooldusteenusel",
+      "count": 3
+     }
+    ]
+   },
+   "cited": [
+    {
+     "ref": "S1",
+     "title": "„Nad on ju vanad, mis seksuaalsusest me siin enam räägime?!“ Eakate seksuaalse eneseteostuse võimalused hoolde…"
+    },
+    {
+     "ref": "S2",
+     "title": "„Nad on ju vanad, mis seksuaalsusest me siin enam räägime?!“ Eakate seksuaalse eneseteostuse võimalused hoolde…"
+    },
+    {
+     "ref": "S5",
+     "title": "Intiimsuse ja seksuaalsuse käsitlus üldhooldusteenusel"
+    },
+    {
+     "ref": "S6",
+     "title": "Intiimsuse ja seksuaalsuse käsitlus üldhooldusteenusel"
+    },
+    {
+     "ref": "S7",
+     "title": "Intiimsuse ja seksuaalsuse käsitlus üldhooldusteenusel"
+    },
+    {
+     "ref": "S4",
+     "title": "„Nad on ju vanad, mis seksuaalsusest me siin enam räägime?!“ Eakate seksuaalse eneseteostuse võimalused hoolde…"
+    },
+    {
+     "ref": "S8",
+     "title": "„Nad on ju vanad, mis seksuaalsusest me siin enam räägime?!“ Eakate seksuaalse eneseteostuse võimalused hoolde…"
+    }
+   ],
+   "answer": {
+    "kind": "partial",
+    "clarification": null,
+    "limitations": [
+     "Saan siin kokku võtta kaks 2024. aasta artiklit; see kokkuvõte ei pruugi hõlmata kõiki ajakirjas ilmunud käsitlusi."
+    ],
+    "text": "2024. aasta ajakirja Sotsiaaltöö 3. numbris käsitlesid eakate seksuaalsust hooldekodudes Raili Pütsepp ja Piret Salmistu. Pütsepp kirjutab, et seksuaalsus ei kao vanusega ning hoolduses tuleb arvestada elanike privaatsuse, väärikuse ja turvalisusega. Harjumaa hooldekodude juhtide uuringu põhjal rõhutab ta töötajate järjepideva koolitamise, väärkohtlemise ennetamise, seksuaalvähemustesse kuuluvate elanike toetamise ja privaatsust võimaldavate ruumide tähtsust. [S1, S2]\n\nSalmistu uuris hooldekodu elanikelt ja töötajatelt, kuidas nad mõistavad intiimsust ja seksuaalsust. Elanikud väljendasid seksuaalsust eri viisidel, kuid privaatsuse ja iseseisva otsustamise piiratus võib nende vajadusi mõjutada. Salmistu soovitab elanike soovide kohta ise küsida ning panna seksuaalsusega seotud olukordade käsitlemise põhimõtted kirja hooldekodu kodukorras; privaatsust võib aidata kaitsta ka uksele pandav „Mitte segada“ silt. [S5, S6, S7]\n\nPütsepp pakub võimalike parandustena töötajate koolitamist, privaatsust võimaldavaid ruume, supervisiooni ehk töötajate juhendatud arutelusid ning spetsialistide kaasamist. Ta nimetab ka hindamisvahendit ISEP, mis on mõeldud kerge või mõõduka dementsusega inimese intiimsete ja seksuaalsete soovide ning eelistuste tundmaõppimiseks. [S4, S8]",
+    "sha256_of_stored_answer": "8343166df691b21e4f0c709c145f0e3caa805e9196f024211e4ebcaa62c22b6d"
+   },
+   "ms": {
+    "planned": 2237,
+    "searched": 5693,
+    "first_text": 11464,
+    "answered": 13768
+   },
+   "tokens": {
+    "input": 33642,
+    "output": 1525
+   },
+   "plan_price_usd": 0.00497,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.00023,
+     "ms": 2125
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00001,
+     "ms": 320
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.00237,
+     "ms": 1718
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00236,
+     "ms": 7879
+    }
+   ],
+   "judgment": "hea",
+   "reason": "Sobivad allikad; sisu lähteteksti vastu kontrollimata."
+  },
+  {
+   "case": "Q15",
+   "n": 15,
+   "conversation": "conv-21dc5344-889e-42f7-8c00-f16e43826faf",
+   "order_in_conversation": 2,
+   "turn_id": "e6633949-e71b-4b4c-bb3d-3bbe07bc12be",
+   "created_at": "2026-10-04T09:18:57.555Z",
+   "state": "completed",
+   "question": "Mida tähendavad toimetulekutoetuse määramise muudatused sotsiaaltöötajale?",
+   "plan": {
+    "person": "user",
+    "places": [],
+    "queries": [
+     "toimetulekutoetuse määramise muudatused sotsiaaltöötaja töökorraldus",
+     "toimetulekutoetuse määramise tingimused ja arvestamise kord",
+     "toimetulekutoetuse taotluse menetlemine kohaliku omavalitsuse sotsiaaltöötaja"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": true,
+   "scope": {
+    "municipality": {
+     "state": "region_required",
+     "regions": []
+    },
+    "records": {
+     "state": "region_required",
+     "region": null
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "previous_model_interpretation"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "selected",
+     "refs": 6
+    },
+    {
+     "kind": "local_records",
+     "state": "no_evidence",
+     "refs": 0
+    }
+   ],
+   "evidence": {
+    "items": 6,
+    "titles": [
+     {
+      "title": "Mida tähendavad toimetulekutoetuse määramise muudatused kohalikele omavalitsustele ja sotsiaaltöötajatele?",
+      "count": 6
+     }
+    ]
+   },
+   "cited": [
+    {
+     "ref": "S3",
+     "title": "Mida tähendavad toimetulekutoetuse määramise muudatused kohalikele omavalitsustele ja sotsiaaltöötajatele?"
+    },
+    {
+     "ref": "S2",
+     "title": "Mida tähendavad toimetulekutoetuse määramise muudatused kohalikele omavalitsustele ja sotsiaaltöötajatele?"
+    },
+    {
+     "ref": "S5",
+     "title": "Mida tähendavad toimetulekutoetuse määramise muudatused kohalikele omavalitsustele ja sotsiaaltöötajatele?"
+    },
+    {
+     "ref": "S6",
+     "title": "Mida tähendavad toimetulekutoetuse määramise muudatused kohalikele omavalitsustele ja sotsiaaltöötajatele?"
+    }
+   ],
+   "answer": {
+    "kind": "partial",
+    "clarification": null,
+    "limitations": [
+     "Ma ei saa siin oleva teabe põhjal kinnitada, kas kavandatud muudatused on praeguseks vastu võetud ja millised neist kehtivad. Samuti ei ole siin kirjas, milliste kuude pangaväljavõtteid tuleb esitada ega vara hindamise täpseid juhiseid."
+    ],
+    "text": "Sotsiaaltöötaja jaoks tähendaksid kirjeldatud muudatused seda, et toetuse vajadust hinnates tuleks arvestada ka inimese kontol oleva raha ja säästudega. Kuni kahekordse toimetulekupiirini ulatuvat kontosummat ei arvestataks sissetuleku ega varana. Inimest ei kohustataks müüma kodu või töölesõiduks vajalikku autot; kui muud vara saaks kasutada sissetulekuallikana, võiks sotsiaaltöötaja teha kaalutlusotsuse toetuse määramata jätmise kohta. [S3]\n\nEluasemekulude puhul ei arvestataks toetuse arvutamisel üürilepinguid, mis on sõlmitud toetuse saaja enda või pereliikme äriühinguga. Varem hüvitatud eluasemekulud peaksid olema tegelikult tasutud ning korduva taotluse korral tuleks seda vajaduse korral tõendada. See annaks sotsiaaltöötajale selgema aluse kulude kontrollimiseks ja otsustamiseks. [S2]\n\nMuudatuste siht on vähendada tarbetut andmete kogumist ja keerulist tõlgendamist, et sotsiaaltöötaja saaks keskenduda rohkem inimese toetamisele. 2025. aastal kirjeldatud esialgse ajakava järgi pidid suurem osa muudatusi jõustuma 1. jaanuaril 2026 ning STAR-i arendusi vajavad muudatused, näiteks õppivate täisealiste laste arvestamine pereliikmena, 1. aprillil 2027. [S5, S6]",
+    "sha256_of_stored_answer": "ce2d8dcddc9e5bdcdceaa5cd099c798343b8089d9ecf7ad99af354c530a8b319"
+   },
+   "ms": {
+    "planned": 1975,
+    "searched": 5775,
+    "first_text": 15137,
+    "answered": 18857
+   },
+   "tokens": {
+    "input": 31457,
+    "output": 2056
+   },
+   "plan_price_usd": 0.00496,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.00023,
+     "ms": 1771
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00002,
+     "ms": 332
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.00248,
+     "ms": 2283
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00224,
+     "ms": 12889
+    }
+   ],
+   "judgment": "hea",
+   "reason": "Sobivad allikad; sisu lähteteksti vastu kontrollimata."
+  },
+  {
+   "case": "Q16",
+   "n": 16,
+   "conversation": "conv-21dc5344-889e-42f7-8c00-f16e43826faf",
+   "order_in_conversation": 3,
+   "turn_id": "5e8e5a6e-94a1-47e2-81d5-618f8dee4f05",
+   "created_at": "2026-10-04T09:19:19.677Z",
+   "state": "completed",
+   "question": "Mis on Allardti heaoluteooria ja kuidas seda sotsiaaltöös kasutada?",
+   "plan": {
+    "person": "user",
+    "places": [],
+    "queries": [
+     "Allardti heaoluteooria having loving being sotsiaaltöö",
+     "Allardti heaoluteooria rakendamine sotsiaaltöös",
+     "Allardti heaoluteooria vajaduste hindamine sotsiaaltöös"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": true,
+   "scope": {
+    "municipality": {
+     "state": "region_required",
+     "regions": []
+    },
+    "records": {
+     "state": "region_required",
+     "region": null
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "previous_model_interpretation"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "selected",
+     "refs": 8
+    },
+    {
+     "kind": "local_records",
+     "state": "no_evidence",
+     "refs": 0
+    }
+   ],
+   "evidence": {
+    "items": 8,
+    "titles": [
+     {
+      "title": "Erik Allardti heaoluteooria kasutamine Tallinna ülikooli sotsiaalkaitse suuna magistritöödes",
+      "count": 8
+     }
+    ]
+   },
+   "cited": [
+    {
+     "ref": "S1",
+     "title": "Erik Allardti heaoluteooria kasutamine Tallinna ülikooli sotsiaalkaitse suuna magistritöödes"
+    },
+    {
+     "ref": "S7",
+     "title": "Erik Allardti heaoluteooria kasutamine Tallinna ülikooli sotsiaalkaitse suuna magistritöödes"
+    },
+    {
+     "ref": "S2",
+     "title": "Erik Allardti heaoluteooria kasutamine Tallinna ülikooli sotsiaalkaitse suuna magistritöödes"
+    },
+    {
+     "ref": "S3",
+     "title": "Erik Allardti heaoluteooria kasutamine Tallinna ülikooli sotsiaalkaitse suuna magistritöödes"
+    },
+    {
+     "ref": "S4",
+     "title": "Erik Allardti heaoluteooria kasutamine Tallinna ülikooli sotsiaalkaitse suuna magistritöödes"
+    }
+   ],
+   "answer": {
+    "kind": "partial",
+    "clarification": null,
+    "limitations": [
+     "Siin kirjeldatud kasutusnäited keskenduvad peamiselt teooria rakendamisele sotsiaaltöö magistriuurimustes. Need ei anna valmis ega hinnatud juhist igapäevaseks klienditööks."
+    ],
+    "text": "Allardti heaoluteooria käsitleb heaolu kolme vajaduste mõõtme kaudu: „omamine“ ehk elatustase (näiteks sissetulek, eluase, tervis ja haridus), „armastamine“ ehk suhted ja kontaktid ning „olemine“ ehk võimalus oma elu mõjutada, tegutseda ja end teostada. Need mõõtmed on seotud, kuid neid ei seata kindlasse hierarhiasse. Heaolu mõistmiseks on oluline arvestada nii inimese enda hinnanguid kui ka olukorra objektiivseid näitajaid. [S1, S7]\n\nSotsiaaltöös saad kasutada neid kolme mõõdet vestluse või juhtumi arutelu raamistikuna. Näiteks küsi eraldi inimese elutingimuste ja tervise, suhete ja tugivõrgustiku ning osalemise ja eneseteostuse kohta. See aitab märgata, millised heaolu osad on toetatud ja millised võivad vajada tähelepanu. Teooria abil saab ka juhtumi analüüsi üles ehitada ning tulemusi selle kolme mõõtmega seostada. [S1, S2, S3, S4]",
+    "sha256_of_stored_answer": "91bbd1118f50ee714db6c69bc2891961aa7a70477abb01ddc4a8ec8e6bfc345d"
+   },
+   "ms": {
+    "planned": 1681,
+    "searched": 4760,
+    "first_text": 11102,
+    "answered": 13205
+   },
+   "tokens": {
+    "input": 31005,
+    "output": 1483
+   },
+   "plan_price_usd": 0.00462,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.0002,
+     "ms": 1474
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00002,
+     "ms": 281
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.00207,
+     "ms": 1431
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00233,
+     "ms": 8249
+    }
+   ],
+   "judgment": "hea",
+   "reason": "Sobivad allikad; sisu lähteteksti vastu kontrollimata."
+  },
+  {
+   "case": "Q17",
+   "n": 17,
+   "conversation": "conv-21dc5344-889e-42f7-8c00-f16e43826faf",
+   "order_in_conversation": 4,
+   "turn_id": "4792aa76-2048-437e-9c95-816c28946675",
+   "created_at": "2026-10-04T09:19:49.156Z",
+   "state": "completed",
+   "question": "Mida on kirjutatud sotsiaaltöötajate enda heaolu hoidmisest?",
+   "plan": {
+    "person": "unclear",
+    "places": [],
+    "queries": [
+     "sotsiaaltöötajate heaolu hoidmine enesehoid läbipõlemise ennetamine",
+     "sotsiaaltöötaja tööheaolu vaimne tervis supervisioon",
+     "sotsiaaltöö ajakiri sotsiaaltöötajate enesehoid"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": true,
+   "scope": {
+    "municipality": {
+     "state": "region_required",
+     "regions": []
+    },
+    "records": {
+     "state": "region_required",
+     "region": null
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "previous_model_interpretation"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "selected",
+     "refs": 9
+    },
+    {
+     "kind": "local_records",
+     "state": "no_evidence",
+     "refs": 0
+    }
+   ],
+   "evidence": {
+    "items": 9,
+    "titles": [
+     {
+      "title": "Sotsiaaltöö spetsialistide enesehoiu arusaamad ja kogemused",
+      "count": 4
+     },
+     {
+      "title": "Enesejuhtimine ja enesehoid sotsiaaltöös",
+      "count": 4
+     },
+     {
+      "title": "Töötingimused on sotsiaal- ja lastekaitsetöötajate heaolu põhiküsimus",
+      "count": 1
+     }
+    ]
+   },
+   "cited": [
+    {
+     "ref": "S4",
+     "title": "Enesejuhtimine ja enesehoid sotsiaaltöös"
+    },
+    {
+     "ref": "S5",
+     "title": "Enesejuhtimine ja enesehoid sotsiaaltöös"
+    },
+    {
+     "ref": "S1",
+     "title": "Sotsiaaltöö spetsialistide enesehoiu arusaamad ja kogemused"
+    },
+    {
+     "ref": "S2",
+     "title": "Sotsiaaltöö spetsialistide enesehoiu arusaamad ja kogemused"
+    },
+    {
+     "ref": "S3",
+     "title": "Sotsiaaltöö spetsialistide enesehoiu arusaamad ja kogemused"
+    },
+    {
+     "ref": "S6",
+     "title": "Enesejuhtimine ja enesehoid sotsiaaltöös"
+    }
+   ],
+   "answer": {
+    "kind": "grounded",
+    "clarification": null,
+    "limitations": [],
+    "text": "Sotsiaaltöötaja enda eest hoolitsemist käsitletakse professionaalse töö osana: see aitab hoida töövõimet ja olla kliendiga päriselt kohal. Järjepidev enesehoid võib aidata ennetada läbipõlemist ja kaastundeväsimust. [S4, S5]\n\nKümne sotsiaaltöötajaga tehtud intervjuudes peeti enesehoidu oluliseks, kuid sellega ei tegeletud piisavalt. Enesehoiu tähtsuse mõistmist mõjutavad isiklikud hoiakud ja teadlikkus; kolleegide umbusk enesehoiu ja vaimse tervise probleemide ennetamise suhtes võib seda takistada. [S1]\n\nHeaolu eest vastutamine ei peaks jääma ainult töötaja enda kanda. Tööandja ja juhid saavad luua enesehoiuks sobiva keskkonna ning näidata, et töötajate heaolu väärtustatakse. Uuringus osalenud töötajad tundsid puudust korrapärasest supervisioonist ja kovisioonist ning soovisid enesehoiu täienduskoolitusi. [S2, S3]\n\nEnesehoiu võimalustena nimetatakse näiteks teadveloleku harjutusi, lugemist, kunsti ja muud loomingut, supervisiooni või kovisiooni, õppimist ning suhtlemist teiste inimestega. Hingehoidlik tegevus võib sobida neile, kelle jaoks on oluline vaimne või usuline mõõde. [S6]",
+    "sha256_of_stored_answer": "7fcd10f4ca6a00586ef7fab47c33e6e160c16ef9bc9197fe180f2e3f657aaf8d"
+   },
+   "ms": {
+    "planned": 2157,
+    "searched": 5192,
+    "first_text": 13535,
+    "answered": 15819
+   },
+   "tokens": {
+    "input": 32813,
+    "output": 1893
+   },
+   "plan_price_usd": 0.00505,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.00023,
+     "ms": 1935
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00002,
+     "ms": 342
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.0022,
+     "ms": 1146
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00259,
+     "ms": 10421
+    }
+   ],
+   "judgment": "hea",
+   "reason": "Sobivad allikad; sisu lähteteksti vastu kontrollimata."
+  },
+  {
+   "case": "Q18",
+   "n": 18,
+   "conversation": "conv-21dc5344-889e-42f7-8c00-f16e43826faf",
+   "order_in_conversation": 5,
+   "turn_id": "d105e62b-1143-47b3-98aa-edc04b0091a3",
+   "created_at": "2026-10-04T09:20:08.546Z",
+   "state": "completed",
+   "question": "Kuidas korraldada supervisiooni valla sotsiaaltöötajatele?",
+   "plan": {
+    "person": "valla sotsiaaltöötajad",
+    "places": [],
+    "queries": [
+     "sotsiaaltöötajate supervisiooni korraldamine",
+     "supervisioon kohaliku omavalitsuse sotsiaaltöötajatele",
+     "sotsiaaltöö supervisiooni eesmärk ja meetodid"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": true,
+   "scope": {
+    "municipality": {
+     "state": "region_required",
+     "regions": []
+    },
+    "records": {
+     "state": "region_required",
+     "region": null
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "previous_model_interpretation"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "selected",
+     "refs": 9
+    },
+    {
+     "kind": "local_records",
+     "state": "no_evidence",
+     "refs": 0
+    }
+   ],
+   "evidence": {
+    "items": 9,
+    "titles": [
+     {
+      "title": "Supervisiooniteenus kohalike omavalitsuste sotsiaaltöötajatele",
+      "count": 4
+     },
+     {
+      "title": "Supervisioon",
+      "count": 3
+     },
+     {
+      "title": "Ministeerium toetab sotsiaaltöö tegijaid",
+      "count": 1
+     },
+     {
+      "title": "Sotsiaaltöötajate tööalase toetuse kogemused",
+      "count": 1
+     }
+    ]
+   },
+   "cited": [
+    {
+     "ref": "S5",
+     "title": "Supervisioon"
+    },
+    {
+     "ref": "S6",
+     "title": "Supervisioon"
+    }
+   ],
+   "answer": {
+    "kind": "partial",
+    "clarification": null,
+    "limitations": [
+     "Ma ei saa selle info põhjal öelda, milline on sinu vallas supervisiooni hind või võimalik rahastus."
+    ],
+    "text": "Alusta vajaduse ja eesmärgi selgitamisest. Räägi töötajate kontaktisiku ja superviisoriga, millised tööolukorrad tuge vajavad, millised on töötajate rollid ja milline aeg ning koht neile sobib. Küsi osalejatelt enne esimest kohtumist lühidalt nende ootusi. Kui valid grupisupervisiooni, arvesta, et soovituslik rühma suurus on 10–12 inimest; rühma koosseis võib sõltuda eesmärgist ja osalejate tööülesannetest. [S5]\n\nKüsi superviisorilt korraldusettepanek, kus on kirjas koht, kohtumiste kestus ja sagedus, rühma koosseis, kasutatavad meetodid ning tasu. Sobiv ruum peaks olema kaitstud kõrvaliste segajate eest. Enne töö alustamist leppige kokku supervisiooni tähendus, ootused, grupi reeglid ja eesmärgid. [S5, S6]\n\nKohtumistel saab arutada keerulisi tööjuhtumeid ja kavandada sekkumisi, analüüsida töö edenemist ning pöörata tähelepanu tööga seotud tunnetele ja meeskonna koostööle. Hinda protsessi jooksvalt kohtumiste teemade logi ja osalejate tagasiside abil. Lõpus otsustage koos superviisoriga, kas protsess lõpetada või kavandada lisakohtumisi. [S6]",
+    "sha256_of_stored_answer": "683966f0cdac64e098b348210ffa0cc8cccad229e65d7a060fdcb1f8c0f4d29c"
+   },
+   "ms": {
+    "planned": 2274,
+    "searched": 5352,
+    "first_text": 11188,
+    "answered": 13547
+   },
+   "tokens": {
+    "input": 32510,
+    "output": 1574
+   },
+   "plan_price_usd": 0.00485,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.00025,
+     "ms": 2063
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00003,
+     "ms": 460
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.0022,
+     "ms": 1207
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00238,
+     "ms": 7904
+    }
+   ],
+   "judgment": "hea",
+   "reason": "Sobivad allikad; sisu lähteteksti vastu kontrollimata."
+  },
+  {
+   "case": "Q19",
+   "n": 19,
+   "conversation": "conv-21dc5344-889e-42f7-8c00-f16e43826faf",
+   "order_in_conversation": 6,
+   "turn_id": "5294403a-c6a5-4f74-9a9a-7be253e3f553",
+   "created_at": "2026-10-04T09:20:25.829Z",
+   "state": "completed",
+   "question": "Mida räägib ajakiri tervisealasest kirjaoskusest?",
+   "plan": {
+    "person": "user",
+    "places": [],
+    "queries": [
+     "tervisealane kirjaoskus ajakiri Sotsiaaltöö",
+     "tervisekirjaoskus sotsiaaltöö tähendus ja arendamine"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": true,
+   "scope": {
+    "municipality": {
+     "state": "region_required",
+     "regions": []
+    },
+    "records": {
+     "state": "region_required",
+     "region": null
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "previous_model_interpretation"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "selected",
+     "refs": 4
+    },
+    {
+     "kind": "local_records",
+     "state": "no_evidence",
+     "refs": 0
+    }
+   ],
+   "evidence": {
+    "items": 4,
+    "titles": [
+     {
+      "title": "Tervisealane kirjaoskus – kuidas jõuda tervise võrdsuseni?",
+      "count": 4
+     }
+    ]
+   },
+   "cited": [
+    {
+     "ref": "S4",
+     "title": "Tervisealane kirjaoskus – kuidas jõuda tervise võrdsuseni?"
+    },
+    {
+     "ref": "S2",
+     "title": "Tervisealane kirjaoskus – kuidas jõuda tervise võrdsuseni?"
+    },
+    {
+     "ref": "S3",
+     "title": "Tervisealane kirjaoskus – kuidas jõuda tervise võrdsuseni?"
+    }
+   ],
+   "answer": {
+    "kind": "grounded",
+    "clarification": null,
+    "limitations": [],
+    "text": "Ajakirja Sotsiaaltöö 2/2025 artiklis käsitleb Kadi Lubi tervisealast kirjaoskust inimese oskusena ja motivatsioonina terviseinfot saada, sellest aru saada ning seda tervise ja heaolu toetamiseks kasutada. See eeldab nii kognitiivseid kui ka sotsiaalseid oskusi. [S4]\n\nTervisealane kirjaoskus ei ole ainult inimese enda vastutus. Selle arengut saavad ja peavad toetama tervishoiu-, sotsiaal- ja haridussüsteem ning ametkonnad. Oluline on ka see, kas inimene oskab süsteemis liikuda ja teab, kust nõu küsida või abi leida. [S2]\n\nTervishoiu- ja sotsiaalvaldkonna spetsialistide suhtlusoskust ning oskust tervisealast kirjaoskust toetada tuleb pidevalt täiendada. Inimestele antav teave peaks toetama ka emotsionaalset, psühholoogilist ja sotsiaalset kohanemist, mitte ainult kliiniliste küsimustega toimetulekut. [S3]",
+    "sha256_of_stored_answer": "f648a6b3450ffa49ce351f964e5ac14f0790c1387e799ae591620b9a39212947"
+   },
+   "ms": {
+    "planned": 1936,
+    "searched": 5653,
+    "first_text": 8593,
+    "answered": 10042
+   },
+   "tokens": {
+    "input": 29678,
+    "output": 818
+   },
+   "plan_price_usd": 0.00412,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.00022,
+     "ms": 1722
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00003,
+     "ms": 302
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.00224,
+     "ms": 1091
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00163,
+     "ms": 4204
+    }
+   ],
+   "judgment": "hea",
+   "reason": "Sobivad allikad; sisu lähteteksti vastu kontrollimata."
+  },
+  {
+   "case": "Q20",
+   "n": 20,
+   "conversation": "conv-c5ece885-795a-4bf4-9d65-203afc0a2527",
+   "order_in_conversation": 1,
+   "turn_id": "24f169cc-444f-4237-86b8-fa3fcaa4be95",
+   "created_at": "2026-10-04T09:20:59.210Z",
+   "state": "completed",
+   "question": "Mis on MARAC ja millal juhtum sinna suunata?",
+   "plan": {
+    "person": "user",
+    "places": [],
+    "queries": [
+     "MARAC võrgustikupõhine juhtumikorraldus Eestis",
+     "MARAC-i suunamise kriteeriumid ja kord"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": false,
+   "scope": {
+    "municipality": {
+     "state": "region_required",
+     "regions": []
+    },
+    "records": {
+     "state": "region_required",
+     "region": null
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "no_period"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "selected",
+     "refs": 6
+    },
+    {
+     "kind": "local_records",
+     "state": "no_evidence",
+     "refs": 0
+    }
+   ],
+   "evidence": {
+    "items": 6,
+    "titles": [
+     {
+      "title": "MARAC-i juhendmaterjal",
+      "count": 4
+     },
+     {
+      "title": "MARAC-i teavitusleht",
+      "count": 1
+     },
+     {
+      "title": "Elude päästmine võrgustikutöös MARACi abil",
+      "count": 1
+     }
+    ]
+   },
+   "cited": [
+    {
+     "ref": "S2",
+     "title": "MARAC-i juhendmaterjal"
+    },
+    {
+     "ref": "S1",
+     "title": "MARAC-i teavitusleht"
+    },
+    {
+     "ref": "S3",
+     "title": "MARAC-i juhendmaterjal"
+    },
+    {
+     "ref": "S4",
+     "title": "MARAC-i juhendmaterjal"
+    },
+    {
+     "ref": "S5",
+     "title": "MARAC-i juhendmaterjal"
+    },
+    {
+     "ref": "S6",
+     "title": "Elude päästmine võrgustikutöös MARACi abil"
+    }
+   ],
+   "answer": {
+    "kind": "grounded",
+    "clarification": null,
+    "limitations": [],
+    "text": "MARAC on võrgustikupõhine juhtumikorraldus: eri asutuste spetsialistid hindavad koos lähisuhtevägivalla riski, kavandavad ohvri turvalisuse tagamiseks tegevused ning jagavad vastutust. Selle peamine eesmärk on kaitsta täiskasvanud ohvrit; koostöös pööratakse tähelepanu ka laste kaitsele. [S2]\n\nJuhtum suunatakse MARAC-i arutamiseks siis, kui riskihindamisel leitakse, et täiskasvanud ohvril on kõrge lähisuhtevägivalla risk. Riskihindamiseks kasutatakse muu hulgas DASH-i ankeeti. MARAC-i täpse künnise lepib kokku kohalik võrgustik, seega võib see piirkonniti erineda. [S1, S3, S4]\n\nKui spetsialist ei ole valmis riskihindamist ise tegema, võib ta suunata ohvri hindamisele ohvriabitöötaja juurde. Hindamise teinud spetsialist edastab info MARAC-i koordinaatorile, kui juhtumi risk ületab kohaliku künnise. [S4, S5]\n\n2020. aasta artiklis kirjeldatud praktikas ei välistanud ohvri nõusoleku puudumine kõrge riskiga lähisuhtevägivalla juhtumi võrgustikutööd. [S6]",
+    "sha256_of_stored_answer": "7a3dd060c6e154509043151a2bb9305dd1cd400ce5360f71dc255f17a7e6b171"
+   },
+   "ms": {
+    "planned": 2063,
+    "searched": 6403,
+    "first_text": 12879,
+    "answered": 14696
+   },
+   "tokens": {
+    "input": 29325,
+    "output": 1557
+   },
+   "plan_price_usd": 0.00444,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.0002,
+     "ms": 1931
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00001,
+     "ms": 343
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.00231,
+     "ms": 2031
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00193,
+     "ms": 8102
+    }
+   ],
+   "judgment": "hea",
+   "reason": "Sobivad allikad; sisu lähteteksti vastu kontrollimata."
+  },
+  {
+   "case": "Q21",
+   "n": 21,
+   "conversation": "conv-c5ece885-795a-4bf4-9d65-203afc0a2527",
+   "order_in_conversation": 2,
+   "turn_id": "30a64482-345d-467b-999e-4518a96226f0",
+   "created_at": "2026-10-04T09:21:17.599Z",
+   "state": "completed",
+   "question": "Kuidas kaasata last teda puudutavasse otsusesse?",
+   "plan": {
+    "person": "laps",
+    "places": [],
+    "queries": [
+     "lapse kaasamine teda puudutava otsuse tegemisse",
+     "lapse ärakuulamine ja arvamuse arvestamine lastekaitses"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": true,
+   "scope": {
+    "municipality": {
+     "state": "region_required",
+     "regions": []
+    },
+    "records": {
+     "state": "region_required",
+     "region": null
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "previous_model_interpretation"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "selected",
+     "refs": 6
+    },
+    {
+     "kind": "local_records",
+     "state": "no_evidence",
+     "refs": 0
+    }
+   ],
+   "evidence": {
+    "items": 6,
+    "titles": [
+     {
+      "title": "Lapse osalusõiguse rakendamise juhend",
+      "count": 2
+     },
+     {
+      "title": "Lastekaitseseadus",
+      "count": 2
+     },
+     {
+      "title": "Lapse heaolu hindamise käsiraamat",
+      "count": 2
+     }
+    ]
+   },
+   "cited": [
+    {
+     "ref": "S2",
+     "title": "Lastekaitseseadus"
+    },
+    {
+     "ref": "S1",
+     "title": "Lapse osalusõiguse rakendamise juhend"
+    },
+    {
+     "ref": "S4",
+     "title": "Lapse heaolu hindamise käsiraamat"
+    },
+    {
+     "ref": "S5",
+     "title": "Lapse osalusõiguse rakendamise juhend"
+    }
+   ],
+   "answer": {
+    "kind": "grounded",
+    "clarification": null,
+    "limitations": [],
+    "text": "Last mõjutava otsuse tegemisel selgita välja lapse huvid ja lähtu neist kui esmatähtsast kaalutlusest. Selgita lapsele, mida kavandatakse ja miks, kuula teda tema vanust ja arengutaset arvestades sobival viisil ning arvesta tema arvamusega huvide hindamisel. Arvesta ka teiste lapse olukorra ja isikuga seotud oluliste asjaoludega. [S2]\n\nLastekaitsetöös kaasa last kogu juhtumikorralduse vältel. Kaasamisel ei ole vanuse alampiiri, kuid vestlus ja info tuleb kohandada lapse vanuse ning arengutasemega. Anna talle aega ja turvaline võimalus oma mõtteid väljendada, kuula tema olukorra, tunnete ja soovide kohta ning ära suru talle oma seisukohti peale ega pane teda keeruliste valikute ette. Küsi lapse arvamust uuesti iga teda puudutava otsuse puhul, sest see võib muutuda. Kui otsus ei lähe lapse arvamusega kokku, selgita talle, miks tema arvamust ei järgitud. [S1, S4, S5, S2]",
+    "sha256_of_stored_answer": "70515647726e8ad6a7f082311cb4cc5c047b9c2bb92f67f14d19797eba845771"
+   },
+   "ms": {
+    "planned": 2349,
+    "searched": 5748,
+    "first_text": 10287,
+    "answered": 11777
+   },
+   "tokens": {
+    "input": 31149,
+    "output": 1171
+   },
+   "plan_price_usd": 0.00448,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.00024,
+     "ms": 2130
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00001,
+     "ms": 360
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.00239,
+     "ms": 1045
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00184,
+     "ms": 5843
+    }
+   ],
+   "judgment": "hea",
+   "reason": "Sobivad allikad; sisu lähteteksti vastu kontrollimata."
+  },
+  {
+   "case": "Q22",
+   "n": 22,
+   "conversation": "conv-c5ece885-795a-4bf4-9d65-203afc0a2527",
+   "order_in_conversation": 3,
+   "turn_id": "b65189a8-5110-44f5-b94b-ac5543d542b0",
+   "created_at": "2026-10-04T09:21:33.009Z",
+   "state": "completed",
+   "question": "Mida näitas uuring puudega lastega perede toimetulekust?",
+   "plan": {
+    "person": "puudega laps",
+    "places": [],
+    "queries": [
+     "puudega lastega perede toimetulek uuringu tulemused",
+     "puudega lapsega perede majanduslik olukord ja toimetulek",
+     "puudega lastega perede teenuste vajadus ja toetused"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": true,
+   "scope": {
+    "municipality": {
+     "state": "region_required",
+     "regions": []
+    },
+    "records": {
+     "state": "region_required",
+     "region": null
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "previous_model_interpretation"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "selected",
+     "refs": 9
+    },
+    {
+     "kind": "local_records",
+     "state": "no_evidence",
+     "refs": 0
+    }
+   ],
+   "evidence": {
+    "items": 9,
+    "titles": [
+     {
+      "title": "Puudega lastega perede toimetuleku ja vajaduste uuring",
+      "count": 4
+     },
+     {
+      "title": "Lastekaitseseadus",
+      "count": 2
+     },
+     {
+      "title": "MARAC-i teavitusleht",
+      "count": 1
+     },
+     {
+      "title": "MARAC-i mudeli juhend KOV lastekaitsele",
+      "count": 1
+     },
+     {
+      "title": "Puudega laste perede teenuste kasutamine ja nende vajadus",
+      "count": 1
+     }
+    ]
+   },
+   "cited": [
+    {
+     "ref": "S5",
+     "title": "Puudega lastega perede toimetuleku ja vajaduste uuring"
+    },
+    {
+     "ref": "S9",
+     "title": "Puudega laste perede teenuste kasutamine ja nende vajadus"
+    },
+    {
+     "ref": "S7",
+     "title": "Puudega lastega perede toimetuleku ja vajaduste uuring"
+    },
+    {
+     "ref": "S6",
+     "title": "Puudega lastega perede toimetuleku ja vajaduste uuring"
+    },
+    {
+     "ref": "S8",
+     "title": "Puudega lastega perede toimetuleku ja vajaduste uuring"
+    }
+   ],
+   "answer": {
+    "kind": "partial",
+    "clarification": null,
+    "limitations": [
+     "Need on 2017. aasta küsitluse tulemused. Ma ei saa nende põhjal öelda, kas perede olukord on praeguseks samasugune."
+    ],
+    "text": "2017. aasta küsitluses hindasid puudega lastega pered oma majanduslikku toimetulekut kehvemaks kui lastega pered keskmiselt: hõlpsalt tuli toime 19–26% puudega lastega leibkondadest, võrreldes 40–51%-ga kõigist lastega leibkondadest. Kommunaalkulude maksmisega oli viimase aasta jooksul raskusi 28–34%-l puudega lastega peredest, kellel neid kulusid oli; kõigi lastega perede võrdlusnäitaja oli 8–13%. [S5, S9]\n\nHoolduskoormus mõjutas ka vanemate tööd ja puhkeaega. Umbes kahel kolmandikul puudega lastest olid vanemad, kes olid viimase 12 kuu jooksul pidanud töö või õpingute osas järeleandmisi tegema. Ligi 80% laste vanematest oli saanud teha mõnd tegevust soovitust vähem ning kolmel neljandikul oli olnud vähem aega puhkamiseks. [S7]\n\nPerede hinnangul ei katnud puudega lapse toetused sageli puudest tulenevaid lisakulusid: 53–60%-l olid need kaetud vähesel määral või üldse mitte. Toetuste taotlemisel oli probleeme ligikaudu pooltel peredest; sageli nimetati infopuudust olemasolevate toetuste kohta ja ebaselgust selles, kellel on neile õigus. [S6, S8]",
+    "sha256_of_stored_answer": "8624a0efc2155fdca581cc234aa7a890d22b5a1bd7b533b6e63d87b0d8e62d3f"
+   },
+   "ms": {
+    "planned": 2541,
+    "searched": 8160,
+    "first_text": 14309,
+    "answered": 16575
+   },
+   "tokens": {
+    "input": 35822,
+    "output": 1962
+   },
+   "plan_price_usd": 0.00546,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.00029,
+     "ms": 2298
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00001,
+     "ms": 339
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.0027,
+     "ms": 1934
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00246,
+     "ms": 8176
+    }
+   ],
+   "judgment": "hea",
+   "reason": "Sobivad allikad; sisu lähteteksti vastu kontrollimata."
+  },
+  {
+   "case": "Q23",
+   "n": 23,
+   "conversation": "conv-c5ece885-795a-4bf4-9d65-203afc0a2527",
+   "order_in_conversation": 4,
+   "turn_id": "fb5252d0-b434-4ffa-bf8a-b830ed9b7414",
+   "created_at": "2026-10-04T09:22:29.957Z",
+   "state": "completed",
+   "question": "Milliseid andmeid tohin abivajavast lapsest teatades jagada?",
+   "plan": {
+    "person": "abivajav laps",
+    "places": [],
+    "queries": [
+     "Lastekaitseseadus abivajavast lapsest teatamine andmete jagamine",
+     "Abivajavast lapsest teatamisel isikuandmete töötlemine",
+     "Lastekaitsetöötajale andmete edastamine saladuse hoidmise kohustus"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": true,
+   "scope": {
+    "municipality": {
+     "state": "region_required",
+     "regions": []
+    },
+    "records": {
+     "state": "region_required",
+     "region": null
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "previous_model_interpretation"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "selected",
+     "refs": 9
+    },
+    {
+     "kind": "local_records",
+     "state": "no_evidence",
+     "refs": 0
+    }
+   ],
+   "evidence": {
+    "items": 9,
+    "titles": [
+     {
+      "title": "Lastekaitseseadus",
+      "count": 6
+     },
+     {
+      "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+      "count": 2
+     },
+     {
+      "title": "Lastega töötavad spetsialistid saavad lapse muresid märgata varakult",
+      "count": 1
+     }
+    ]
+   },
+   "cited": [
+    {
+     "ref": "S4",
+     "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse"
+    },
+    {
+     "ref": "S7",
+     "title": "Lastekaitseseadus"
+    },
+    {
+     "ref": "S8",
+     "title": "Lastekaitseseadus"
+    },
+    {
+     "ref": "S1",
+     "title": "Lastekaitseseadus"
+    },
+    {
+     "ref": "S2",
+     "title": "Lastega töötavad spetsialistid saavad lapse muresid märgata varakult"
+    },
+    {
+     "ref": "S6",
+     "title": "Lastekaitseseadus"
+    }
+   ],
+   "answer": {
+    "kind": "grounded",
+    "clarification": null,
+    "limitations": [],
+    "text": "Võid abivajavast lapsest teatades jagada kohaliku omavalitsuse lastekaitsetöötajale, lasteabile või politseile lapse abivajadusega seotud infot ka siis, kui laps või tema seaduslik esindaja sellest ei tea või pole nõus. Teatesse lisa lapse ja teda kasvatava inimese andmed ning vajaduse korral täpsem info, mis kirjeldab abivajadust ja selgitab, miks sa muretsed. [S4]\n\nJaga infot ainult selles ulatuses, mis aitab lapse abivajadust hinnata ja sobivat abi leida. See võib hõlmata lapse üldandmeid ning infot tema pere, elutingimuste, tervise, saadavate teenuste, hariduse või lapsega seotud vägivalla kohta, kui need on abivajaduse seisukohalt vajalikud. [S7, S8]\n\nKui oled lapsega töötav spetsialist, tuleb sul töös märgatud abivajavast lapsest teatada ning edastada vähimas vajalikus ulatuses sulle teada olevad seaduses nimetatud andmed. Teatada võib ka asutuse määratud kontaktisiku kaudu. [S1]\n\nMuule inimesele, asutusele või organisatsioonile, kellel pole seadusest tulenevat õigust neid andmeid töödelda, võid lapse isikuandmeid edastada ainult lapse või tema seadusliku esindaja nõusolekul. [S2]\n\nAbivajavast lapsest tuleb teatada viivitamata lapse elukohajärgsele kohalikule omavalitsusele või lasteabitelefonil 116 111. Teataja nime ja teatamise fakti ei avalikustata, välja arvatud süüteomenetluses; enda andmed võid enda või oma pere kaitseks avaldamata jätta. [S6]",
+    "sha256_of_stored_answer": "d08dd6fce3d2fbbdc6844989ffa509d6d92bb9b7715b2290e4f99782615aa5dc"
+   },
+   "ms": {
+    "planned": 2984,
+    "searched": 7346,
+    "first_text": 12595,
+    "answered": 14778
+   },
+   "tokens": {
+    "input": 33337,
+    "output": 1750
+   },
+   "plan_price_usd": 0.00504,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.00026,
+     "ms": 2674
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00002,
+     "ms": 460
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.00239,
+     "ms": 2551
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00238,
+     "ms": 7250
+    }
+   ],
+   "judgment": "hea",
+   "reason": "Sobivad allikad; sisu lähteteksti vastu kontrollimata."
+  },
+  {
+   "case": "Q24",
+   "n": 24,
+   "conversation": "conv-c5ece885-795a-4bf4-9d65-203afc0a2527",
+   "order_in_conversation": 5,
+   "turn_id": "6f8dd2c3-2f72-4e40-80fd-a36ca4bdf356",
+   "created_at": "2026-10-04T09:22:49.425Z",
+   "state": "completed",
+   "question": "Mida peab hooldekodu tuleohutusest teadma?",
+   "plan": {
+    "person": "user",
+    "places": [],
+    "queries": [
+     "hooldekodu tuleohutusnõuded ja tuleohutuskorraldus",
+     "hoolekandeasutuse evakuatsioon tulekahju korral",
+     "hooldekodu elanike tuleohutuse tagamine"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": true,
+   "scope": {
+    "municipality": {
+     "state": "region_required",
+     "regions": []
+    },
+    "records": {
+     "state": "region_required",
+     "region": null
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "previous_model_interpretation"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "selected",
+     "refs": 9
+    },
+    {
+     "kind": "local_records",
+     "state": "no_evidence",
+     "refs": 0
+    }
+   ],
+   "evidence": {
+    "items": 9,
+    "titles": [
+     {
+      "title": "Tuleohutuse infohommik: mida iga hoolekandeasutus peab teadma?",
+      "count": 4
+     },
+     {
+      "title": "Hoolekande- ja tervishoiuasutuste tuleohutus",
+      "count": 3
+     },
+     {
+      "title": "Tuleohutuspaigaldised ja päästevahendid haiglates/hooldekodudes",
+      "count": 1
+     },
+     {
+      "title": "Juhendmaterjal praktilise väljaõppe läbiviimiseks haiglas ja hooldekodus",
+      "count": 1
+     }
+    ]
+   },
+   "cited": [
+    {
+     "ref": "S1",
+     "title": "Tuleohutuspaigaldised ja päästevahendid haiglates/hooldekodudes"
+    },
+    {
+     "ref": "S2",
+     "title": "Hoolekande- ja tervishoiuasutuste tuleohutus"
+    },
+    {
+     "ref": "S3",
+     "title": "Hoolekande- ja tervishoiuasutuste tuleohutus"
+    },
+    {
+     "ref": "S7",
+     "title": "Tuleohutuse infohommik: mida iga hoolekandeasutus peab teadma?"
+    },
+    {
+     "ref": "S8",
+     "title": "Juhendmaterjal praktilise väljaõppe läbiviimiseks haiglas ja hooldekodus"
+    },
+    {
+     "ref": "S9",
+     "title": "Tuleohutuse infohommik: mida iga hoolekandeasutus peab teadma?"
+    }
+   ],
+   "answer": {
+    "kind": "partial",
+    "clarification": null,
+    "limitations": [
+     "Ma ei saa siin oleva teabe põhjal hinnata konkreetse hooldekodu hoone nõuetele vastavust ega koostada täielikku tehnilist kontrollnimekirja."
+    ],
+    "text": "Hooldekodu tuleohutuse eesmärk on takistada tule ja suitsu levikut ning tagada, et inimesed saaksid ohutusse kohta või neid saaks hoonest evakueerida. Arvestada tuleb ka päästemeeskondade ohutuse ja tegutsemisvõimalustega. [S1]\n\nEvakueerimise viis sõltub hoolealuste seisundist ja hoone võimalustest. Kui inimesed sõltuvad töötajate abist, võib evakueerimine toimuda etapiti: esmalt viiakse inimesed ohualast järgmisse tuletõkkesektsiooni ehk tule ja suitsu levikut piiravasse hooneossa. Mõnes olukorras võib jääda ajutiselt kohale ja oodata päästmist, kuid siis peab olema plaan inimeste hilisemaks väljatoimetamiseks. [S2]\n\nHäire korral käsitle tulekahjusignalisatsiooni käivitumist tõsiselt. Tulekahju puhul helista viivitamata 112 ja alusta inimeste evakueerimist. Tuld kustuta ainult siis, kui oskad ja see on võimalik; kui pead lahkuma, sulge enda järel ruumi uks. [S3]\n\nTee tulekahju korral tegutsemise plaanist töötajatele hõlpsasti loetav ja arusaadav ning kajasta selles kõik vajalikud teemad. Tuleohutuspaigaldise omaniku ülesannete hulka kuuluvad muu hulgas töötajate väljaõppe korraldamine ning paigaldiste töökindluse ja hoolduse tagamine. Harjutamisel käsitle nii teooriat kui ka praktilisi tegevusi. [S7, S8, S9]",
+    "sha256_of_stored_answer": "f2eed3b655282f797f553f5714a8fd1e05bb27fc97a1418a7dddda43092d5973"
+   },
+   "ms": {
+    "planned": 2253,
+    "searched": 7044,
+    "first_text": 12271,
+    "answered": 14478
+   },
+   "tokens": {
+    "input": 27465,
+    "output": 1551
+   },
+   "plan_price_usd": 0.00421,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.00023,
+     "ms": 2025
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00002,
+     "ms": 323
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.00194,
+     "ms": 1982
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00202,
+     "ms": 7226
+    }
+   ],
+   "judgment": "hea",
+   "reason": "Sobivad allikad; sisu lähteteksti vastu kontrollimata."
+  },
+  {
+   "case": "Q25a",
+   "n": 25,
+   "conversation": "conv-10c9bb0a-e507-4b9d-b9b2-7dc66e01c50c",
+   "order_in_conversation": 1,
+   "turn_id": "54a82d27-8ee1-4137-89b7-1e17f311c082",
+   "created_at": "2026-10-04T09:23:29.787Z",
+   "state": "completed",
+   "question": "Tere",
+   "plan": {
+    "person": null,
+    "places": [],
+    "queries": [],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": false,
+   "scope": {
+    "municipality": {
+     "state": "region_required",
+     "regions": []
+    },
+    "records": {
+     "state": "region_required",
+     "region": null
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "no_period"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "no_evidence",
+     "refs": 0
+    },
+    {
+     "kind": "local_records",
+     "state": "no_evidence",
+     "refs": 0
+    }
+   ],
+   "evidence": {
+    "items": 0,
+    "titles": []
+   },
+   "cited": [],
+   "answer": {
+    "kind": "clarification",
+    "clarification": "Tere. Kuidas saan sind aidata?",
+    "limitations": [],
+    "text": "",
+    "sha256_of_stored_answer": "d7c18a8606f749e5fd3793f60b9ae6c9f66a8e72f70df919f80cf7d5d91c7ab3"
+   },
+   "ms": {
+    "planned": null,
+    "searched": 235,
+    "first_text": 1294,
+    "answered": 1646
+   },
+   "tokens": {
+    "input": 7306,
+    "output": 97
+   },
+   "plan_price_usd": 0.00096,
+   "stages": [
+    {
+     "stage": "answer",
+     "usd": 0.00096,
+     "ms": 1274
+    }
+   ],
+   "judgment": "hea",
+   "reason": "Tervitus kiirel rajal."
+  },
+  {
+   "case": "Q25b",
+   "n": 26,
+   "conversation": "conv-10c9bb0a-e507-4b9d-b9b2-7dc66e01c50c",
+   "order_in_conversation": 2,
+   "turn_id": "e137b6f1-0d48-47b0-b576-07893413c0c2",
+   "created_at": "2026-10-04T09:23:37.085Z",
+   "state": "completed",
+   "question": "Mu isa elab Harku vallas ja saab pensioni 450 eurot. Kas ta saab toimetulekutoetust?",
+   "plan": {
+    "person": "isa",
+    "places": [
+     {
+      "region": "harku_vald",
+      "relation": "lives"
+     }
+    ],
+    "queries": [
+     "toimetulekutoetuse saamise tingimused pensionäri pension sissetulek",
+     "toimetulekutoetuse arvestamine leibkonna sissetulek pension",
+     "toimetulekutoetus Harku vald"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": true,
+   "scope": {
+    "municipality": {
+     "state": "person_mentioned_region",
+     "regions": [
+      "harku_vald"
+     ]
+    },
+    "records": {
+     "state": "person_mentioned_region",
+     "region": "harku_vald"
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "previous_model_interpretation"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "selected",
+     "refs": 10
+    },
+    {
+     "kind": "local_records",
+     "state": "selected",
+     "refs": 12
+    }
+   ],
+   "evidence": {
+    "items": 57,
+    "titles": [
+     {
+      "title": "Sotsiaalhoolekande seadus",
+      "count": 6
+     },
+     {
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "count": 3
+     },
+     {
+      "title": "[kontaktikirje]",
+      "count": 3
+     },
+     {
+      "title": "Harku valla eelarvest makstavate sotsiaaltoetuste määrad ja piirmäärad: Harku Vallavolikogu määruse „Sotsiaalh…",
+      "count": 1
+     },
+     {
+      "title": "Hooldajatoetus",
+      "count": 1
+     },
+     {
+      "title": "Jõulutoetus",
+      "count": 1
+     },
+     {
+      "title": "Koolitoetus eestkostel või peres hooldamisel olevale lapsele",
+      "count": 1
+     },
+     {
+      "title": "Koolitoetus põhikooli või gümnaasiumi lõpetamisel",
+      "count": 1
+     },
+     {
+      "title": "Koolitoetus peredele, kus õpib vähemalt kaks last",
+      "count": 1
+     },
+     {
+      "title": "Koolitoetus peredele, kus õpib vähemalt üks laps",
+      "count": 1
+     }
+    ]
+   },
+   "cited": [
+    {
+     "ref": "S1",
+     "title": "Sotsiaalhoolekande seadus"
+    },
+    {
+     "ref": "S2",
+     "title": "Sotsiaalhoolekande seadus"
+    },
+    {
+     "ref": "S28",
+     "title": "Toimetulekutoetus"
+    },
+    {
+     "ref": "S36",
+     "title": "Toimetulekutoetuse taotlus"
+    }
+   ],
+   "answer": {
+    "kind": "partial",
+    "clarification": "Kas isa elab üksi või kellegagi ühises majapidamises ning millised on leibkonna muud eelmise kuu netosissetulekud ja isa jooksva kuu arvesse minevad eluasemekulud?",
+    "limitations": [
+     "Ma ei saa tema õigust nende andmete põhjal kindlaks teha: mõjuvad leibkonna koosseis, muud sissetulekud ja arvesse minevad eluasemekulud. Siin esitatud õigusakt ei anna kehtiva toimetulekupiiri konkreetset summat."
+    ],
+    "text": "Ainult 450 euro suuruse pensioni põhjal ei saa öelda, kas isa saab toimetulekutoetust. Õigus võib tekkida siis, kui tema või tema pere rahalised vahendid ei ole toimetulekuks piisavad ning kuu netosissetulek pärast arvesse minevate eluasemekulude mahaarvamist jääb alla kehtestatud toimetulekupiiri. Arvestuses võetakse arvesse leibkonna eelmise kuu netosissetulekud ja jooksval kuul tasumisele kuuluvad arvestatavad eluasemekulud. [S1, S2]\n\nIsa saab Harkus toetust taotleda. Taotluse saab esitada kuu viimaseks tööpäevaks; lisa eelmise kuu sissetulekut tõendavad dokumendid ning vajaduse korral eluasemekulude tõendid. [S28, S36]",
+    "sha256_of_stored_answer": "32cc99d8d67dd00e6b694bc23d02b57cb11ee9c1800fa2f722a772455d365e48"
+   },
+   "ms": {
+    "planned": 3691,
+    "searched": 7854,
+    "first_text": 22121,
+    "answered": 28185
+   },
+   "tokens": {
+    "input": 47346,
+    "output": 3045
+   },
+   "plan_price_usd": 0.00744,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.00022,
+     "ms": 3480
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00001,
+     "ms": 323
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.0022,
+     "ms": 1253
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00501,
+     "ms": 19994
+    }
+   ],
+   "judgment": "osaline",
+   "reason": "Harku kirje summadega 220/176/264 oli tõendites ja viidatud, vastus ütles, et summat ei ole."
+  },
+  {
+   "case": "Q25c",
+   "n": 27,
+   "conversation": "conv-10c9bb0a-e507-4b9d-b9b2-7dc66e01c50c",
+   "order_in_conversation": 3,
+   "turn_id": "30afc7f4-f4af-427a-8bbf-3942c00b1717",
+   "created_at": "2026-10-04T09:24:10.325Z",
+   "state": "completed",
+   "question": "Vabandust, pension on 520.",
+   "plan": {
+    "person": "isa",
+    "places": [],
+    "queries": [
+     "toimetulekutoetuse arvestamine pension sissetulekuna",
+     "toimetulekupiir ja toetuse arvutamine pensionäri puhul"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": true,
+   "scope": {
+    "municipality": {
+     "state": "person_region",
+     "regions": [
+      "harku_vald"
+     ]
+    },
+    "records": {
+     "state": "person_region",
+     "region": "harku_vald"
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "previous_model_interpretation"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "selected",
+     "refs": 10
+    },
+    {
+     "kind": "local_records",
+     "state": "selected",
+     "refs": 12
+    }
+   ],
+   "evidence": {
+    "items": 58,
+    "titles": [
+     {
+      "title": "Sotsiaalhoolekande seadus",
+      "count": 7
+     },
+     {
+      "title": "[kontaktikirje]",
+      "count": 3
+     },
+     {
+      "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus",
+      "count": 1
+     },
+     {
+      "title": "Harku valla eelarvest makstavate sotsiaaltoetuste määrad ja piirmäärad: Harku Vallavolikogu määruse „Sotsiaalh…",
+      "count": 1
+     },
+     {
+      "title": "Sotsiaalseadustiku üldosa seadus",
+      "count": 1
+     },
+     {
+      "title": "Hooldajatoetus",
+      "count": 1
+     },
+     {
+      "title": "Jõulutoetus",
+      "count": 1
+     },
+     {
+      "title": "Koolitoetus eestkostel või peres hooldamisel olevale lapsele",
+      "count": 1
+     },
+     {
+      "title": "Koolitoetus põhikooli või gümnaasiumi lõpetamisel",
+      "count": 1
+     },
+     {
+      "title": "Koolitoetus peredele, kus õpib vähemalt kaks last",
+      "count": 1
+     }
+    ]
+   },
+   "cited": [
+    {
+     "ref": "S1",
+     "title": "Sotsiaalhoolekande seadus"
+    },
+    {
+     "ref": "S2",
+     "title": "Sotsiaalhoolekande seadus"
+    }
+   ],
+   "answer": {
+    "kind": "partial",
+    "clarification": null,
+    "limitations": [
+     "Ainuüksi 520-eurose pensioni põhjal ei saa isa toetuse saamise õigust kindlaks teha; arvesse lähevad ka leibkonna muud sissetulekud ja eluasemekulud."
+    ],
+    "text": "Arvestan parandusega: isa pension on 520 eurot. Toimetulekutoetuse arvestuses lähtutakse leibkonna eelmise kuu netosissetulekutest ning jooksval kuul tasumisele kuuluvatest arvesse minevatest eluasemekuludest. [S1, S2]",
+    "sha256_of_stored_answer": "133a1603ca75c7c9ae32eb399aee975789a86a6e37bbf866158af2990590ce7d"
+   },
+   "ms": {
+    "planned": 3835,
+    "searched": 8371,
+    "first_text": 15294,
+    "answered": 16896
+   },
+   "tokens": {
+    "input": 52370,
+    "output": 1757
+   },
+   "plan_price_usd": 0.00743,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.00033,
+     "ms": 3569
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00001,
+     "ms": 637
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.00264,
+     "ms": 1729
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00444,
+     "ms": 8214
+    }
+   ],
+   "judgment": "hea",
+   "reason": "Kinnitas paranduse esimeses lauses ega vastanud vanale küsimusele uuesti."
+  },
+  {
+   "case": "R3",
+   "n": 28,
+   "conversation": "conv-2874c256-77db-44bd-a6c9-b8b0020446cc",
+   "order_in_conversation": 1,
+   "turn_id": "f1728663-f414-42cb-a912-6b6a88555683",
+   "created_at": "2026-10-04T09:24:51.520Z",
+   "state": "completed",
+   "question": "Kas Tartu vallas on sotsiaaltransport ja mis see maksab?",
+   "plan": {
+    "person": "user",
+    "places": [
+     {
+      "region": "tartu_vald",
+      "relation": "other"
+     }
+    ],
+    "queries": [
+     "Tartu valla sotsiaaltransporditeenuse korraldamine",
+     "Tartu valla sotsiaaltransporditeenuse hind omaosalus tasu"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": false,
+   "scope": {
+    "municipality": {
+     "state": "search_plan_region",
+     "regions": [
+      "tartu_vald"
+     ]
+    },
+    "records": {
+     "state": "search_plan_region",
+     "region": "tartu_vald"
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "no_period"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "selected",
+     "refs": 5
+    },
+    {
+     "kind": "local_records",
+     "state": "selected",
+     "refs": 12
+    }
+   ],
+   "evidence": {
+    "items": 50,
+    "titles": [
+     {
+      "title": "[kontaktikirje]",
+      "count": 5
+     },
+     {
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "count": 3
+     },
+     {
+      "title": "Sotsiaalhoolekande seadus",
+      "count": 2
+     },
+     {
+      "title": "Erakorraliste kulude hüvitamine",
+      "count": 1
+     },
+     {
+      "title": "Hapniku tootmiseks vajaliku elektri kompenseerimine",
+      "count": 1
+     },
+     {
+      "title": "Koolisõidutoetus",
+      "count": 1
+     },
+     {
+      "title": "Koolitoetus",
+      "count": 1
+     },
+     {
+      "title": "Kriisiabi",
+      "count": 1
+     },
+     {
+      "title": "Küttetoetus",
+      "count": 1
+     },
+     {
+      "title": "Lapse toiduraha katmise toetus",
+      "count": 1
+     }
+    ]
+   },
+   "cited": [
+    {
+     "ref": "S43",
+     "title": "Sotsiaaltransporditeenus"
+    },
+    {
+     "ref": "S3",
+     "title": "Sotsiaalhoolekandelise abi andmise kord"
+    },
+    {
+     "ref": "S27",
+     "title": "Sotsiaaltranspordi teenuse avaldus"
+    },
+    {
+     "ref": "S2",
+     "title": "Sotsiaalhoolekandelise abi andmise kord"
+    }
+   ],
+   "answer": {
+    "kind": "grounded",
+    "clarification": null,
+    "limitations": [],
+    "text": "Jah, Tartu vallas on sotsiaaltransporditeenus. See on mõeldud Tartu valla puudega elanikule, kelle puue takistab isikliku või ühistranspordi kasutamist ning kes vajab sõitu tööle, õppeasutusse või avalikke teenuseid kasutama. Tartu valla piires maksab sõit 3 eurot ja Tartu maakonna piires 5 eurot ühe sõidusuuna eest; hind ei sõltu sõidu pikkusest. Tasu suuruse määramisel arvestatakse ka teenuse mahtu ja maksumust ning sinu ja su pere majanduslikku olukorda. Põhjendatud otsusega võib täitevorgan tasust täielikult või osaliselt vabastada. [S43, S3]\n\nTaotlemiseks täida sotsiaaltranspordi avaldus ning saada see e-postiga või vii sotsiaalosakonda. Märgi taotlusse teenuse vajaduse aeg, sihtkoht või marsruut ja sõidu põhjus. Avalike teenuste kasutamiseks mõeldud sõidu taotlus esita üldjuhul vähemalt kolm tööpäeva enne sõitu. [S27, S2]",
+    "sha256_of_stored_answer": "2ce1e8331f011ce7262759dd25f2ccb10edb63619a6f19f42565219dcd1a2224"
+   },
+   "ms": {
+    "planned": 1979,
+    "searched": 5843,
+    "first_text": 15515,
+    "answered": 16978
+   },
+   "tokens": {
+    "input": 37528,
+    "output": 2082
+   },
+   "plan_price_usd": 0.00573,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.00022,
+     "ms": 1853
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00001,
+     "ms": 305
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.00207,
+     "ms": 1457
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00343,
+     "ms": 10809
+    }
+   ],
+   "judgment": "hea",
+   "reason": "Puhtas vestluses valis plaan Tartu valla; hinnad lähtefailist kontrollimata."
+  },
+  {
+   "case": "R5",
+   "n": 29,
+   "conversation": "conv-4200f584-f475-4942-bdf6-4109036f9965",
+   "order_in_conversation": 1,
+   "turn_id": "f19a014d-53d4-435b-9c16-552cf2b22c60",
+   "created_at": "2026-10-04T09:25:16.039Z",
+   "state": "completed",
+   "question": "Kas Maardus saab isikliku abistaja teenust?",
+   "plan": {
+    "person": "user",
+    "places": [
+     {
+      "region": "maardu_linn",
+      "relation": "other"
+     }
+    ],
+    "queries": [
+     "Maardu isikliku abistaja teenuse korraldus ja saamise tingimused"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": false,
+   "scope": {
+    "municipality": {
+     "state": "search_plan_region",
+     "regions": [
+      "maardu_linn"
+     ]
+    },
+    "records": {
+     "state": "search_plan_region",
+     "region": "maardu_linn"
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "no_period"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "selected",
+     "refs": 5
+    },
+    {
+     "kind": "local_records",
+     "state": "selected",
+     "refs": 12
+    }
+   ],
+   "evidence": {
+    "items": 57,
+    "titles": [
+     {
+      "title": "Isikliku abistaja teenuse osutamise tingimused ja kord",
+      "count": 5
+     },
+     {
+      "title": "Toetus isiklike abivahendite ja hooldusvahendite ostmisel või rentimisel",
+      "count": 1
+     },
+     {
+      "title": "Toetus elluastujatele",
+      "count": 1
+     },
+     {
+      "title": "Hooldajatoetus",
+      "count": 1
+     },
+     {
+      "title": "Huvihariduse ja huvitegevuse toetus",
+      "count": 1
+     },
+     {
+      "title": "Koolitoetus",
+      "count": 1
+     },
+     {
+      "title": "Lapsehoiutoetus",
+      "count": 1
+     },
+     {
+      "title": "Lasteaiatoidu toetus",
+      "count": 1
+     },
+     {
+      "title": "Lasterikaste perede lasteaiatoidu toetus",
+      "count": 1
+     },
+     {
+      "title": "Põhikooli ja gümnaasiumi lõpetamise kulude toetus",
+      "count": 1
+     }
+    ]
+   },
+   "cited": [
+    {
+     "ref": "S1",
+     "title": "Isikliku abistaja teenuse osutamise tingimused ja kord"
+    },
+    {
+     "ref": "S2",
+     "title": "Isikliku abistaja teenuse osutamise tingimused ja kord"
+    },
+    {
+     "ref": "S3",
+     "title": "Isikliku abistaja teenuse osutamise tingimused ja kord"
+    },
+    {
+     "ref": "S4",
+     "title": "Isikliku abistaja teenuse osutamise tingimused ja kord"
+    },
+    {
+     "ref": "S5",
+     "title": "Isikliku abistaja teenuse osutamise tingimused ja kord"
+    }
+   ],
+   "answer": {
+    "kind": "grounded",
+    "clarification": null,
+    "limitations": [],
+    "text": "Jah, Maardus on isikliku abistaja teenus. Seda on eelkõige õigus saada täisealisel inimesel, kellel on sügav liikumis- või nägemispuue ning kelle rahvastikuregistri järgne elukoht on Maardu linn. Abistaja aitab igapäevatoimingutes, kus inimene vajab puude tõttu füüsilist kõrvalabi. Teenuse saaja peab suutma ise oma elu puudutavaid otsuseid teha ja oma vajadustest abistajale selgelt rääkida. [S1, S2]\n\nTaotlus esitatakse Maardu Linnavalitsusele. Lisa soovi korral oma arvamus sobiva abistaja kohta ja puude raskusastme kehtiv otsus, kui see on olemas. Linn hindab vajadust kodukülastusel ja teeb teenuse osutamise või sellest keeldumise otsuse 10 tööpäeva jooksul taotluse saamisest. Teenust osutab Maardu Sotsiaalmaja. [S3, S4, S5]",
+    "sha256_of_stored_answer": "c215b45279920c5bdef5fadacaad19aa1b0cace4473f94799495be8503b7d5a9"
+   },
+   "ms": {
+    "planned": 1847,
+    "searched": 5293,
+    "first_text": 11020,
+    "answered": 12232
+   },
+   "tokens": {
+    "input": 33851,
+    "output": 1331
+   },
+   "plan_price_usd": 0.0049,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.0002,
+     "ms": 1744
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00001,
+     "ms": 372
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.00168,
+     "ms": 1342
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00301,
+     "ms": 6676
+    }
+   ],
+   "judgment": "hea",
+   "reason": "Vastas 04.10 kehtima hakanud korra järgi (kehtivus kontrollitud indeksist)."
+  },
+  {
+   "case": "R6",
+   "n": 30,
+   "conversation": "conv-299ae4ae-e181-4fcb-8fbd-6ad627909689",
+   "order_in_conversation": 1,
+   "turn_id": "4969e5b6-34a2-4d68-a45b-19709a227515",
+   "created_at": "2026-10-04T09:26:50.109Z",
+   "state": "completed",
+   "question": "Mis muutub Põhja-Sakala valla sotsiaalabi korras alates 6. oktoobrist?",
+   "plan": {
+    "person": "user",
+    "places": [
+     {
+      "region": "pohja_sakala_vald",
+      "relation": "other"
+     }
+    ],
+    "queries": [
+     "Põhja-Sakala valla sotsiaalabi korra muudatused alates 6. oktoobrist"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": false,
+   "scope": {
+    "municipality": {
+     "state": "search_plan_region",
+     "regions": [
+      "pohja_sakala_vald"
+     ]
+    },
+    "records": {
+     "state": "search_plan_region",
+     "region": "pohja_sakala_vald"
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "no_period"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "no_evidence",
+     "refs": 0
+    },
+    {
+     "kind": "local_records",
+     "state": "selected",
+     "refs": 12
+    }
+   ],
+   "evidence": {
+    "items": 45,
+    "titles": [
+     {
+      "title": "Puuetega inimeste eluaseme kohandamise toetus",
+      "count": 1
+     },
+     {
+      "title": "Toetus lastele prillide ostmiseks",
+      "count": 1
+     },
+     {
+      "title": "Laste toitlustamise toetus",
+      "count": 1
+     },
+     {
+      "title": "Matusetoetus",
+      "count": 1
+     },
+     {
+      "title": "Õnnetusjuhtumiga kaasnenud kulutuste toetus",
+      "count": 1
+     },
+     {
+      "title": "Puudega lapse hooldajatoetus",
+      "count": 1
+     },
+     {
+      "title": "Ranitsatoetus",
+      "count": 1
+     },
+     {
+      "title": "Riiklik toimetulekutoetus",
+      "count": 1
+     },
+     {
+      "title": "Sünnitoetus",
+      "count": 1
+     },
+     {
+      "title": "Täiendav sotsiaaltoetus",
+      "count": 1
+     }
+    ]
+   },
+   "cited": [],
+   "answer": {
+    "kind": "unsupported",
+    "clarification": "Kas pead silmas mõnd konkreetset teadet või toetust? Kui saad, saada teate tekst või ütle toetuse nimi.",
+    "limitations": [
+     "Ma ei saa siinse info põhjal öelda, mis Põhja-Sakala valla sotsiaalabi korras 6. oktoobrist muutub. Siin kirjeldatud toetuste ja teenuste juures ei ole nimetatud sel kuupäeval jõustuvaid muudatusi."
+    ],
+    "text": "",
+    "sha256_of_stored_answer": "253c104c260997125a3e5e6244f5380a8bb1e8de94db5df3c424a1caa5bb07b7"
+   },
+   "ms": {
+    "planned": 2320,
+    "searched": 6264,
+    "first_text": 11660,
+    "answered": 12440
+   },
+   "tokens": {
+    "input": 31121,
+    "output": 1297
+   },
+   "plan_price_usd": 0.00454,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.00022,
+     "ms": 2201
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00001,
+     "ms": 548
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.00162,
+     "ms": 2160
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00269,
+     "ms": 5935
+    }
+   ],
+   "judgment": "ebaõnnestus",
+   "reason": "Piirkond õige, kuupäevast ei tekkinud perioodi; uut redaktsiooni tõendites ei olnud."
+  },
+  {
+   "case": "R7",
+   "n": 31,
+   "conversation": "conv-2ee9c8e0-5d32-4d8d-afa1-ea067a6ec0f8",
+   "order_in_conversation": 1,
+   "turn_id": "6ba5c5e9-0067-48e7-a6f6-70e3eeca1978",
+   "created_at": "2026-10-04T09:27:10.634Z",
+   "state": "completed",
+   "question": "Kust leian Harku valla toimetulekutoetuse taotluse vormi?",
+   "plan": {
+    "person": "user",
+    "places": [
+     {
+      "region": "harku_vald",
+      "relation": "other"
+     }
+    ],
+    "queries": [
+     "Harku valla toimetulekutoetuse taotluse vorm"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": false,
+   "scope": {
+    "municipality": {
+     "state": "search_plan_region",
+     "regions": [
+      "harku_vald"
+     ]
+    },
+    "records": {
+     "state": "search_plan_region",
+     "region": "harku_vald"
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "no_period"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "selected",
+     "refs": 4
+    },
+    {
+     "kind": "local_records",
+     "state": "selected",
+     "refs": 12
+    }
+   ],
+   "evidence": {
+    "items": 51,
+    "titles": [
+     {
+      "title": "Sotsiaalhoolekandelise abi andmise kord",
+      "count": 4
+     },
+     {
+      "title": "[kontaktikirje]",
+      "count": 3
+     },
+     {
+      "title": "Hooldajatoetus",
+      "count": 1
+     },
+     {
+      "title": "Jõulutoetus",
+      "count": 1
+     },
+     {
+      "title": "Koolitoetus eestkostel või peres hooldamisel olevale lapsele",
+      "count": 1
+     },
+     {
+      "title": "Koolitoetus põhikooli või gümnaasiumi lõpetamisel",
+      "count": 1
+     },
+     {
+      "title": "Koolitoetus peredele, kus õpib vähemalt kaks last",
+      "count": 1
+     },
+     {
+      "title": "Koolitoetus peredele, kus õpib vähemalt üks laps",
+      "count": 1
+     },
+     {
+      "title": "Koolitoetus kultuuri- ja spordiüritustel osalemiseks",
+      "count": 1
+     },
+     {
+      "title": "Küttetoetus",
+      "count": 1
+     }
+    ]
+   },
+   "cited": [
+    {
+     "ref": "S30",
+     "title": "Toimetulekutoetuse taotlus"
+    }
+   ],
+   "answer": {
+    "kind": "grounded",
+    "clarification": null,
+    "limitations": [],
+    "text": "Harku valla toimetulekutoetuse taotluse PDF-vormi leiad siit: https://harku.ee/sites/default/files/documents/2025-08/Toimetulekutoetuse%20taotlus.pdf. Taotlusele lisa eelmise kuu netosissetulekuid tõendavad dokumendid ja vajaduse korral eluasemekulude andmed. [S30]",
+    "sha256_of_stored_answer": "02042f0766767df055b7d091bb6912838ce7809d8f355c897c57e25c82be9ff4"
+   },
+   "ms": {
+    "planned": 2116,
+    "searched": 5058,
+    "first_text": 8405,
+    "answered": 9034
+   },
+   "tokens": {
+    "input": 40636,
+    "output": 745
+   },
+   "plan_price_usd": 0.00545,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.00021,
+     "ms": 1986
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00001,
+     "ms": 273
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.00217,
+     "ms": 884
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00306,
+     "ms": 3672
+    }
+   ],
+   "judgment": "hea",
+   "reason": "Andis vormi lingi."
+  },
+  {
+   "case": "R13",
+   "n": 32,
+   "conversation": "conv-4123f1db-d194-4a5f-a4a1-a4ac496f9411",
+   "order_in_conversation": 1,
+   "turn_id": "141f8100-74a6-4c24-b14d-fe8a3e1e6d9d",
+   "created_at": "2026-10-04T09:27:39.889Z",
+   "state": "completed",
+   "question": "Kas hooldekodu kohatasu võib nõuda lastelt?",
+   "plan": {
+    "person": "unclear",
+    "places": [],
+    "queries": [
+     "täisealiste laste ülalpidamiskohustus hooldekodu kohatasu",
+     "üldhooldusteenuse rahastamine lähedaste ülalpidamiskohustus kohatasu"
+    ],
+    "version": "rag-v2/search-assist-6",
+    "rerank_selected": null,
+    "rerank_candidates": null
+   },
+   "base_query_holds_earlier_messages": false,
+   "scope": {
+    "municipality": {
+     "state": "region_required",
+     "regions": []
+    },
+    "records": {
+     "state": "region_required",
+     "region": null
+    },
+    "legal_as_of": "2026-10-04",
+    "legal_periods": [],
+    "temporal_state": "no_period"
+   },
+   "lanes": [
+    {
+     "kind": "knowledge",
+     "state": "selected",
+     "refs": 5
+    },
+    {
+     "kind": "local_records",
+     "state": "no_evidence",
+     "refs": 0
+    }
+   ],
+   "evidence": {
+    "items": 5,
+    "titles": [
+     {
+      "title": "Sotsiaalhoolekande seadus",
+      "count": 3
+     },
+     {
+      "title": "Hooldekodude rahastamise põhimõtted muutuvad",
+      "count": 1
+     },
+     {
+      "title": "Kohaliku omavalitsuse väljakutsed sotsiaalteenuste osutamisel",
+      "count": 1
+     }
+    ]
+   },
+   "cited": [
+    {
+     "ref": "S1",
+     "title": "Sotsiaalhoolekande seadus"
+    },
+    {
+     "ref": "S2",
+     "title": "Hooldekodude rahastamise põhimõtted muutuvad"
+    },
+    {
+     "ref": "S3",
+     "title": "Kohaliku omavalitsuse väljakutsed sotsiaalteenuste osutamisel"
+    }
+   ],
+   "answer": {
+    "kind": "partial",
+    "clarification": null,
+    "limitations": [
+     "Ma ei saa nende andmete põhjal kinnitada laste isikliku maksekohustuse praegust täpset alust ega konkreetset summat: laste kohustust käsitlev tekst on 2017. aastast, samas kui esitatud kehtiv seadusesäte kirjeldab teenuse rahastamist, mitte laste vastutust."
+    ],
+    "text": "Lühidalt: täiskasvanud lastel võib olla ülalpidamiskohustus, kuid kogu hooldekodu kohatasu ei lähe automaatselt laste kanda. Hooldekodu ööpäevaringse üldhooldusteenuse puhul rahastab teenusekoha maksumust inimese elukohajärgne omavalitsus ja tasu teenuse saajalt. Teenuse saaja tasub majutuse, toitlustuse ja muud teenusega seotud kulud; omavalitsus katab seaduses nimetatud hooldustöötajate kulud. Kui inimese sissetulek on väiksem kui eelarveaastale eelnenud aasta teise kvartali keskmine vanaduspension, katab omavalitsus inimese tasutavate kulude ja sissetuleku vahe, kuid mitte rohkem kui selle pensionisumma ja sissetuleku vahe. Sissetulekuna arvestatakse riiklikku ja kogumispensioni, töövõimetoetust ning sotsiaalmaksuga maksustatavat tulu. [S1]\n\n2023. aasta käsitluses on eristatud hoolduskulu muudest kohatasu osadest: hoolduskulu rahastamisel ei arvestata ülalpidajate maksevõimet. Kui inimese sissetulekust ja omavalitsuse kaetavast osast kohatasu maksmiseks ei piisa, võib puudujääk tulla inimese varast või säästudest või ülalpidajate toest. 2017. aasta käsitluses nimetati täisealisi lapsi ülalpidamiskohustuslasteks ning öeldi, et enne neilt raha nõudmist hindab omavalitsus, kas ja kui palju nad peavad maksma, kui kohus pole seda juba otsustanud. [S2, S3]\n\nJärgmise sammuna küsi omavalitsuselt, millist osa kuludest ta sinult või teistelt lastelt ootab ja kuidas see summa on arvestatud. [S1, S2, S3]",
+    "sha256_of_stored_answer": "04a987167e03dc4ebc57f70485132016ec244ce00c970dc98c0f16a7b2e274ce"
+   },
+   "ms": {
+    "planned": 2522,
+    "searched": 5432,
+    "first_text": 22680,
+    "answered": 25676
+   },
+   "tokens": {
+    "input": 34870,
+    "output": 3709
+   },
+   "plan_price_usd": 0.00621,
+   "stages": [
+    {
+     "stage": "plan",
+     "usd": 0.00024,
+     "ms": 2408
+    },
+    {
+     "stage": "embedding",
+     "usd": 0.00001,
+     "ms": 366
+    },
+    {
+     "stage": "rerank",
+     "usd": 0.00269,
+     "ms": 951
+    },
+    {
+     "stage": "answer",
+     "usd": 0.00327,
+     "ms": 20071
+    }
+   ],
+   "judgment": "osaline",
+   "reason": "Seadus ja kaks artiklit; perekonnaseaduse alust ei viidanud ja ütles seda."
+  }
+ ]
+}
