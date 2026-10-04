@@ -389,7 +389,20 @@ test('the catalogue for a model run of these cases is well formed, and its check
   assert.equal(checkTurn(askedTurn.expect, observed({})).verdict, 'passed');
   // What 04.10 gave: the residence's catalogue and a question back; and the opposite fault, the residence overwritten.
   const stayed = checkTurn(askedTurn.expect, observed({ region: 'noo_vald', text: 'Siin on kohalik info Nõo valla kohta. Kas küsid Nõo või Maardu kohta?', clarification: true }));
-  assert.deepEqual(stayed.checks.filter(check => !check.ok).map(check => check.key), ['region', 'must', 'clarification']);
+  assert.deepEqual(stayed.checks.filter(check => !check.ok).map(check => check.key), ['region', 'must', 'must_not']);
+  // The answer of the second run (04.10, commit ae7703fd), word for word: Maardu's service and conditions, then a question
+  // about whom the service is for. The catalogue as it was run failed it on clarification=false; that check was written
+  // against the fault of 04.10 and is replaced by a pattern for the fault itself.
+  const secondRun = 'Jah, Maardu linnas osutatakse isikliku abistaja teenust. Seda on õigus saada eelkõige täisealisel sügava liikumis- või nägemispuudega inimesel, kelle rahvastikuregistrijärgne elukoht on Maardu linn. '
+    + 'Teenus aitab igapäevatoimingutes, kus inimene vajab puude tõttu füüsilist kõrvalabi. [S1, S2]\n\nTaotluse saab esitada Maardu Linnavalitsusele. Linn hindab abivajadust kodukülastusel ja teeb teenuse osutamise või sellest '
+    + 'keeldumise otsuse 10 tööpäeva jooksul pärast taotluse saamist. [S4, S5]\n\nSa ütlesid varem, et elad Nõo vallas. Ma ei saa aru, kas küsid teenust endale või kellelegi teisele ega kas taotleja rahvastikuregistrijärgne elukoht on '
+    + 'Maardu linnas.\n\nKas küsid teenust endale või kellelegi teisele, ja kas selle inimese rahvastikuregistrijärgne elukoht on Maardu linnas?';
+  assert.equal(checkTurn(askedTurn.expect, observed({ text: secondRun, clarification: true })).verdict, 'passed');
+  assert.deepEqual(checkTurn({ ...askedTurn.expect, clarification: false }, observed({ text: secondRun, clarification: true })).checks.filter(check => !check.ok).map(check => check.key), ['clarification']);
+  // The first run's follow-up answer (commit a88dfe78) named the fault in its own words; that wording fails too.
+  assert.deepEqual(checkTurn(askedTurn.expect, observed({ text: 'Isikliku abistaja teenuse eest võidakse tasu küsida. Kohalik teenusekirje puudutab Nõo valda, mitte Maardut.' }))
+    .checks.filter(check => !check.ok).map(check => check.key), ['must_not']);
+  assert.equal(catalogue.history.length, 3);
   assert.deepEqual(checkTurn(askedTurn.expect, observed({ personRegions: { user: 'maardu_linn' } })).checks.filter(check => !check.ok).map(check => check.key), ['person_regions']);
   // An answer that makes the asked municipality's service the user's own entitlement fails.
   const entitled = checkTurn(askedTurn.expect, observed({ text: 'Jah, Maardus on isikliku abistaja teenus ja sul on õigus seda saada.' }));
