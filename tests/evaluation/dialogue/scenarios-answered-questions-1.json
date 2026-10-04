@@ -10,7 +10,8 @@
  },
  "history": [
   "04.10.2026, first run (commit eb71cf9b, search-assist-7): the catalogue as written before any run, 5 turns: 2 passed, 2 search, 1 answer, 0.0255 USD. Turn 3: the plan searched both earlier questions again (the selection kept none of their passages). Turn 4: the act was found and selected, the answer cited a study alone. Turn 5: plan and selection clean, but no passage of the Family Law Act on the maintenance duty was a candidate: its two reserved candidates were sections on guardianship (docs/audits/evidence/search-assist-7-measured-2026-10-04.json).",
-  "04.10.2026, second run (commit 5b775d8f, search-6, ADR-078: the search text is the current message): 5 turns: 3 passed, 2 search, 0.0249 USD. Turn 3: the plan searched both earlier questions again, as before. Turn 4 passed. Turn 5: still no passage of the Family Law Act on maintenance among the candidates (its two were § 191 and § 192), so the earlier messages were not the cause (docs/audits/evidence/search-6-measured-2026-10-04.json)."
+  "04.10.2026, second run (commit 5b775d8f, search-6, ADR-078: the search text is the current message): 5 turns: 3 passed, 2 search, 0.0249 USD. Turn 3: the plan searched both earlier questions again, as before. Turn 4 passed. Turn 5: still no passage of the Family Law Act on maintenance among the candidates (its two were § 191 and § 192), so the earlier messages were not the cause (docs/audits/evidence/search-6-measured-2026-10-04.json).",
+  "04.10.2026, third run (commit fa56b2f1, search-assist-8, ADR-079): 5 turns: 3 passed, 2 search, 0.0252 USD. Turn 3: three queries again, one per message. Turn 5: one query for the duty itself, twelve passages of the Family Law Act among the candidates but not § 96 or § 97; the answer states the maintenance duty from an article (docs/audits/evidence/search-assist-8-measured-2026-10-04.json)."
  ],
  "scenarios": [
   {
