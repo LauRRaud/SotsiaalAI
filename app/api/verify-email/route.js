@@ -156,9 +156,16 @@ function renderVerifyPage({
     <title>${safeTitle}</title>
     <style>
       :root { color-scheme: dark; }
+      /* Kerimisribad on platvormil kõikjal peidetud (base.css); see leht on
+         eraldiseisev HTML ega päri seda reeglit. */
+      html { scrollbar-width: none; -ms-overflow-style: none; }
+      html::-webkit-scrollbar { display: none; }
       body {
+        /* border-box: muidu lisandub polsterdus 100vh-le ja leht kerib 48px. */
+        box-sizing: border-box;
         margin: 0;
         min-height: 100vh;
+        min-height: 100dvh;
         display: grid;
         place-items: center;
         padding: 24px;
