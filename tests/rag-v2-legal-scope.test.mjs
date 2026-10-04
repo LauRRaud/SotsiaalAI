@@ -230,3 +230,63 @@ test('ADR-044: a range of days or months is one period, so a version in force on
   assert.deepEqual(firstTurn('01.01.–31.03.2027').publicationCandidates, []);
   assert.equal(firstTurn('2020 kuni 2022').publicationCandidates.length, 1);
 });
+
+// ADR-075 (the live questionnaire of 04.10.2026, Codex's review): "Mis muutub ... alates 6. oktoobrist?" named no year,
+// so the search got no period and the version in force from 06.10 was left out. Fictional acts; the day is fixed.
+const yearless = (text, today = '2026-10-04') => retrievalPlan({ scopeTurns: [{ turnId: 'first', text, mode: 'new' }], previousState: null }, today);
+const daysOf = (text, today) => yearless(text, today).legalPeriods.map(period => period.from === period.to ? period.from : `${period.from}..${period.to}`);
+
+test('a day and a month without a year is the nearest such day, and its version is kept beside today\'s', () => {
+  const versions = [row('kord-kuni-05-10', { from: '2025-09-01', to: '2026-10-05' }), row('kord-alates-06-10', { from: '2026-10-06', open: true })];
+  const kept = text => legalValidityScope(versions, legalReference('2026-10-04', yearless(text).legalPeriods)).eligible.map(item => item.document_id);
+  assert.deepEqual(kept('Mis muutub valla sotsiaalabi korras?'), ['kord-kuni-05-10']);
+  assert.deepEqual(kept('Mis muutub valla sotsiaalabi korras alates 6. oktoobrist?'), ['kord-kuni-05-10', 'kord-alates-06-10']);
+  const plan = yearless('Mis muutub valla sotsiaalabi korras alates 6. oktoobrist?');
+  assert.deepEqual(plan.temporal.periods.map(({ from, to, basis, precision, support }) => ({ from, to, basis, precision, support })), [
+    { from: '2026-10-06', to: '2026-10-06', basis: 'unspecified', precision: 'day', support: [{ turn: 1, quote: '6. oktoobrist' }] }]);
+  // A single day is not a publication period of journals.
+  assert.deepEqual(plan.publicationCandidates, []);
+  for (const text of ['6. oktoobril', '6 oktoober', 'Kehtib kuni 6. oktoobrini.', '6. oktoobriks', 'Mis kehtis enne 6. oktoobrit?', 'Alates 6. Oktoobrist', 'alates 6.10', 'kuni 06.10 kehtib', 'seisuga 6.10.', 'с 6 октября', 'from 6 october']) {
+    assert.deepEqual(daysOf(text), ['2026-10-06'], text);
+  }
+});
+
+test('the nearest day may be past or coming; a day that does not exist then is not a date', () => {
+  assert.deepEqual(daysOf('alates 6. oktoobrist', '2026-10-10'), ['2026-10-06']);
+  assert.deepEqual(daysOf('alates 6. oktoobrist', '2027-03-01'), ['2026-10-06']);
+  assert.deepEqual(daysOf('alates 1. jaanuarist', '2026-10-04'), ['2027-01-01']);
+  assert.deepEqual(daysOf('alates 1. jaanuarist', '2026-02-10'), ['2026-01-01']);
+  assert.deepEqual(daysOf('alates 2. juulist', '2026-12-31'), ['2026-07-02']); // 182 days back, 183 ahead
+  assert.deepEqual(daysOf('alates 1. juulist', '2026-12-31'), ['2027-07-01']); // 183 days back, 182 ahead
+  // Equally far both ways (183 days, across the leap day of 2028): the coming one.
+  assert.deepEqual(daysOf('alates 6. oktoobrist', '2028-04-06'), ['2028-10-06']);
+  assert.deepEqual(daysOf('1. mail', '2026-10-04'), ['2026-05-01']);
+  assert.deepEqual(daysOf('29. veebruaril', '2026-10-04'), []);
+  assert.deepEqual(daysOf('29. veebruaril', '2028-01-15'), ['2028-02-29']);
+  assert.deepEqual(daysOf('31. aprillil'), []);
+  assert.deepEqual(daysOf('alates 31.04'), []);
+  assert.deepEqual(daysOf('alates 6.13'), []);
+});
+
+test('digits alone are a date only after a word that asks for one; a price, a time, a clause and a count are not dates', () => {
+  for (const text of ['Hind on 6.10 eurot.', 'Toetus on kuni 6.10 eurot.', 'kuni 6.10 % sissetulekust', 'Tule kell 6.10.', 'Avatud alates kell 6.10', '§ 6 lg 10 järgi', '§ 6.10 järgi', 'punkt 6.10', 'versioon 6.10',
+    'Hooldasin teda 1.5 aastat.', 'Hind oli 6.10.', 'Mis muutub 6.10?', 'alates 6.10.26', 'tel 5550 0610', '3 mainitud toetust', 'Saatsin 5 maili.', 'Sain 5 juulikuu arvet.',
+    '10 augustikuist päeva', 'Elan aadressil Mai 6.', 'kokku 6,10 eurot alates maist']) {
+    assert.deepEqual([yearless(text).temporal.state, daysOf(text)], ['no_period', []], text);
+  }
+});
+
+test('a date with a year is read as before, once; more than two dates are still too many', () => {
+  assert.deepEqual(daysOf('Mida ütleb seadus 1. märtsil 2027?'), ['2027-03-01']);
+  assert.deepEqual(daysOf('Seisuga 01.03.2027'), ['2027-03-01']);
+  assert.deepEqual(daysOf('Jaanuarist märtsini 2027'), ['2027-01-01..2027-03-31']);
+  assert.deepEqual(daysOf('Olen sündinud 1. märtsil 1958. Mis muutub alates 6. oktoobrist?'), ['1958-03-01', '2026-10-06']);
+  assert.deepEqual(daysOf('Võrdle 6. oktoobrit 2025 ja 6. oktoobrit.'), ['2025-10-06', '2026-10-06']);
+  assert.equal(yearless('6. oktoobrist, 7. novembrist ja 8. detsembrist').temporal.state, 'too_many_date_candidates');
+  // A later turn without a date keeps the period the model recorded, as before.
+  const recorded = { version: TYPED_DIALOGUE_STATE_VERSION, sourceTurnIds: ['first'], value: { periods: [
+    { from: '2026-10-06', to: '2026-10-06', basis: 'validity', support: [{ turn: 1, quote: '6. oktoobrist' }] }] } };
+  const next = retrievalPlan({ previousState: recorded, scopeTurns: [{ turnId: 'first', text: 'Mis muutub alates 6. oktoobrist?', mode: 'new' },
+    { turnId: 'second', text: 'Selgita lihtsamalt.', mode: 'same' }] }, '2026-10-04');
+  assert.deepEqual(next.legalPeriods.map(period => period.from), ['2026-10-06']);
+});
