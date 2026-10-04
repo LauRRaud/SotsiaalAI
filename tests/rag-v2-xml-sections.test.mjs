@@ -35,7 +35,7 @@ const read = async ({ dir, entry }) => (await ingest({ tenant, inputRoot: dir, m
 test('the committed register names § 2 of the State Budget Act, and the file is Riigi Teataja\'s own bytes', async () => {
   const register = JSON.parse(await fs.readFile('Andmebaasi/REGISTER.json', 'utf8'));
   const entry = register.entries.find(item => item.path === `oigusaktid/${BUDGET}.xml`);
-  assert.deepEqual([entry.role, entry.xml_sections, entry.xml_units, entry.original_path], ['source', ['2'], 'subsection', `riigiteataja.ee/et/akt/${BUDGET}.xml`]);
+  assert.deepEqual([entry.role, entry.xml_sections, entry.xml_units, entry.original_path], ['source', ['2'], 'point', `riigiteataja.ee/et/akt/${BUDGET}.xml`]);
   assert.equal(hash(await fs.readFile(path.join('Andmebaasi', entry.path))), entry.sha256);
   // No other registered source selects sections: every other act is read whole, as before.
   assert.deepEqual(register.entries.filter(item => item.xml_sections !== undefined).map(item => item.path), [entry.path]);
@@ -150,7 +150,7 @@ test('ADR-082: read by subsection, the passage with the amount is the whole of i
   const plain = await read(await registry('budget-plain', BUDGET, { xml_sections: ['2'] }));
   assert.deepEqual([plain.source_units.length, plain.version.id === bundle.version.id, plain.document.id === bundle.document.id], [1, false, true]);
   // The field stands only beside a selection of sections and has one value.
-  for (const [name, extra] of [['alone', { xml_units: 'subsection' }], ['other', { xml_sections: ['2'], xml_units: 'point' }], ['flag', { xml_sections: ['2'], xml_units: true }]]) {
+  for (const [name, extra] of [['alone', { xml_units: 'subsection' }], ['other', { xml_sections: ['2'], xml_units: 'sentence' }], ['flag', { xml_sections: ['2'], xml_units: true }]]) {
     const bad = await registry(`units-${name}`, BUDGET, extra);
     await assert.rejects(registeredSource(bad.dir, bad.entry), error => error.code === 'invalid_source_selector', name);
   }
@@ -194,4 +194,69 @@ ${section(3, 'Üks lõige', sub(1, '<tavatekst>Ainus lõige.</tavatekst>'))}
     assert.equal(result.structured.source_units[0].amendments.length, 3);
   }
   assert.throws(() => read({ xml_units: 'subsection' }), error => error.code === 'invalid_source_selector');
+});
+
+// ADR-083. Measured on corpus v50 (04.10.2026, docs/audits/evidence/corpus-v50-measured-2026-10-04.json): read by
+// subsection, the State Budget Act's candidate for "Kui suur on toimetulekupiir ...?" was subsection 4 (the unemployment
+// allowance's daily rate), not subsection 5: there the subsistence level is the fifth of six rates, after four on
+// special care services.
+test('ADR-083: a subsection that is a list is read point by point, its opening words as the heading; the amount is a passage of its own', async () => {
+  const source = await registry('budget-points', BUDGET, { xml_sections: ['2'], xml_units: 'point' });
+  assert.deepEqual((await registeredSource(source.dir, source.entry)).source_selector, { xml_sections: ['2'], xml_units: 'point' });
+  const bundle = await read(source);
+  // Five subsections are lists (5, 6, 8 and 3 points, and subsection 1 with 5); the four others are one unit each.
+  const place = unit => unit.locator.path.replace('/oigusakt[1]/sisu[1]/paragrahv[2]/', '');
+  const count = {};
+  for (const unit of bundle.source_units) { const [, subsection, point] = place(unit).match(/^loige\[(\d+)\](\/alampunkt\[\d+\])?$/u); count[subsection] = (count[subsection] || 0) + (point ? 1 : 0); }
+  assert.deepEqual(count, { 1: 5, 2: 0, 3: 0, 4: 0, 5: 6, 6: 0, 7: 8, 8: 3, 9: 0 });
+  assert.deepEqual([bundle.source_units.length, bundle.chunks.length], [27, 27]);
+  const amount = bundle.chunks.filter(chunk => /toimetulekupiir\s220\seurot/u.test(chunk.source_text));
+  assert.equal(amount.length, 1);
+  // The passage is the one point; which act's rate it is stands in its heading, the subsection's opening words.
+  assert.match(amount[0].source_text, /^5\)\s+seaduse § 131 lõike 3 alusel kehtestatav üksi elava isiku või perekonna esimese liikme toimetulekupiir\s220\seurot\skalendrikuus;$/u);
+  assert.match(amount[0].retrieval_text, /> § 2\. Seadustest tulenevate määrade ja piirsummade kehtestamine > \(5\) Sotsiaalhoolekande seaduse alusel kehtestatavad määrad on järgmised:\n\n5\) seaduse § 131/u);
+  assert.deepEqual(amount[0].section_path.at(-1), '§ 2. Seadustest tulenevate määrade ja piirsummade kehtestamine > (5) Sotsiaalhoolekande seaduse alusel kehtestatavad määrad on järgmised:');
+  // A subsection that is no list is one passage under the section's heading, as read by subsection.
+  const parental = bundle.chunks.find(chunk => /vanemahüvitise määr/u.test(chunk.source_text));
+  assert.deepEqual([parental.section_path.at(-1), /^\(3\)\s+Perehüvitiste seaduse/u.test(parental.source_text)], ['§ 2. Seadustest tulenevate määrade ja piirsummade kehtestamine', true]);
+  // Nothing of the section's text is lost: every subsection's own text is its opening words and its points.
+  const bySubsection = await read(await registry('budget-subsections', BUDGET, { xml_sections: ['2'], xml_units: 'subsection' }));
+  const squeeze = value => value.replace(/\s+/gu, ' ').trim();
+  for (const whole of bySubsection.source_units) {
+    const parts = bundle.source_units.filter(unit => unit.locator.path.startsWith(whole.locator.path));
+    const lead = bundle.sections.find(section => section.id === bundle.chunks.find(chunk => chunk.source_text === parts[0].raw_text).parent_section_id).title.split(' > ')[1];
+    assert.equal(squeeze([lead, ...parts.map(unit => unit.raw_text)].filter(Boolean).join(' ')), squeeze(whole.raw_text), whole.locator.path);
+  }
+});
+
+test('ADR-083 on a made-up act: a list is read by point only where the subsection ends in its points; a note stays with its point', async () => {
+  const { parseTextSource } = await import('../lib/rag-v2/text-source.js');
+  const mark = (words, rt) => `<muutmismarge><aktikuupaev>2025-05-20</aktikuupaev><avaldamismarge><RTosa>RT I</RTosa><avaldamineKuupaev>2025-06-01</avaldamineKuupaev><RTartikkel>${rt}</RTartikkel><aktViide>10106202500${rt}</aktViide></avaldamismarge><joustumine>2025-07-01</joustumine><tavatekst>${words}</tavatekst></muutmismarge>`;
+  const point = (number, body) => `<alampunkt><alampunktNr>${number}</alampunktNr><kuvatavNr>${number})</kuvatavNr><sisuTekst>${body}</sisuTekst></alampunkt>`;
+  const sub = (number, body) => `<loige><loigeNr>${number}</loigeNr><kuvatavNr>(${number})</kuvatavNr>${body}</loige>`;
+  const words = text => `<sisuTekst><tavatekst>${text}</tavatekst></sisuTekst>`;
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt><metaandmed><valjaandja>Riigikogu</valjaandja><dokumentLiik>seadus</dokumentLiik><globaalID>100000000002</globaalID>
+<kehtivus><kehtivuseAlgus>2026-01-01</kehtivuseAlgus></kehtivus></metaandmed><aktinimi><nimi><pealkiri>Näidisseadus</pealkiri></nimi></aktinimi><sisu>
+<paragrahv><paragrahvNr>1</paragrahvNr><kuvatavNr>§ 1.</kuvatavNr><paragrahvPealkiri>Määrad</paragrahvPealkiri>
+${sub(1, words('Esimese seaduse määrad on järgmised:') + point(1, '<tavatekst>toetus on 10 eurot;</tavatekst>') + point(2, mark('Kehtetu -', 1)) + point(3, `<tavatekst>piirmäär on 30 eurot.</tavatekst>${mark('Määr muudetud', 2)}`))}
+${sub(2, words('Üks määr on 40 eurot.'))}
+${sub(3, words('Loetelu, mille järel on tekst:') + point(1, '<tavatekst>üks;</tavatekst>') + point(2, '<tavatekst>kaks.</tavatekst>') + words('Lõpulause.'))}
+${sub(4, words('Ühe punktiga loetelu:') + point(1, '<tavatekst>ainus.</tavatekst>'))}
+</paragrahv></sisu></oigusakt>`;
+  const read = units => parseTextSource(Buffer.from(xml), 'xml', { title: 'Näidisseadus', source_selector: { xml_sections: ['1'], ...(units ? { xml_units: units } : {}) } },
+    { tenant_id: tenant, document_version_id: 'made-up-points' }, DEFAULT_CONFIG);
+  const paths = result => result.structured.source_units.map(unit => unit.locator.path.replace('/oigusakt[1]/sisu[1]/paragrahv[1]', '') || '/');
+  const byPoint = read('point');
+  // Subsection 1 by point, without the repealed one; 2 (no list), 3 (text after the points) and 4 (one point) whole.
+  assert.deepEqual(paths(byPoint), ['/loige[1]/alampunkt[1]', '/loige[1]/alampunkt[3]', '/loige[2]', '/loige[3]', '/loige[4]']);
+  const [first, third] = byPoint.structured.source_units;
+  assert.deepEqual([first.raw_text, third.raw_text], ['1)\n\ntoetus on 10 eurot;', '3)\n\npiirmäär on 30 eurot.']);
+  assert.deepEqual(third.amendments.map(item => [item.provision, item.act_reference, item.offset]), [['§ 1 lg 1 p 3', '101062025002', third.raw_text.length]]);
+  const titles = byPoint.structured.sections.map(section => section.title).filter(Boolean);
+  assert.deepEqual([...new Set(titles)], ['§ 1. Määrad > (1) Esimese seaduse määrad on järgmised:', '§ 1. Määrad']);
+  // The repealed point's note is listed with the notes outside the text.
+  assert.deepEqual(byPoint.parsed.legal_text.structure.map(item => [item.target, item.act_reference, item.repeal ?? false]), [['§ 1 lg 1 p 2', '101062025001', true]]);
+  // By subsection and with the selection alone the same section is four units and one.
+  assert.deepEqual([paths(read('subsection')), paths(read(null))], [['/loige[1]', '/loige[2]', '/loige[3]', '/loige[4]'], ['/']]);
 });
