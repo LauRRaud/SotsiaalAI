@@ -114,6 +114,34 @@ test('a social department page as Narva writes it: a vacant post and a service m
   assert.equal(recordsWithoutName, 2);
 });
 
+test('what the reader sees wins over the link behind it: a card copied from another person keeps the old link targets', () => {
+  const person = one(`<div class="wp-block-columns kontaktimuster"><div class="wp-block-column">
+    <p class="ankur has-medium-font-size">Mari Maasikas</p><p class="ankur has-small-font-size">ennetustöö peaspetsialist</p></div>
+    <div class="wp-block-column"><p><a href="mailto:teine.inimene@example.invalid">mari.maasikas@example.invalid</a></p>
+    <p><a href="tel:55509999">5550 0001</a></p><p><a href="tel:55500002">Helista</a></p></div></div>`);
+  assert.deepEqual([person.emails, [...person.phones].sort()], [['mari.maasikas@example.invalid'], ['55500001', '55500002']]);
+});
+
+test('paragraphs after a person\'s card belong to that person up to the next card (Tallinn district pages)', () => {
+  const card = (name, role, phone) => `<span><article class="node"><h2 class="node__title"><span>${name}</span></h2><div class="node__content">
+    <p>${role}</p><p>${phone}</p><a href="/cdn-cgi/l/email-protection#${cloudflare(`${name.toLowerCase().replace(' ', '.')}@example.invalid`)}"><span class="__cf_email__" data-cfemail="${cloudflare(`${name.toLowerCase().replace(' ', '.')}@example.invalid`)}">[email&#160;protected]</span></a></div>
+    <div class="node__files"><a href="/juhend.rtf">Ametijuhend</a></div></article></span>`;
+  const { people } = extractStaffFromHtml(page(`<h1>Näidise linnaosa sotsiaalhoolekande osakond</h1><div class="content">
+    ${card('Sirje Sarv', 'sotsiaaltöö spetsialist', '5550 0031')}
+    <p><br><span>Mobiiltelefon</span>: 55 500 032<br>Kabinet 108<br>Tegevusvaldkond: toimetulekutoetus, matusetoetus</p>
+    ${card('Kalle Kuusk', 'sotsiaaltöö juhtivspetsialist', '5550 0033')}
+    <p>Asendaja: Sirje Sarv</p></div>`));
+  assert.deepEqual(people.map(person => [person.name, person.role, person.phones, person.notes]), [
+    ['Sirje Sarv', 'sotsiaaltöö spetsialist', ['55500031', '55500032'], 'Tegevusvaldkond: toimetulekutoetus, matusetoetus'],
+    ['Kalle Kuusk', 'sotsiaaltöö juhtivspetsialist', ['55500033'], null]]);
+});
+
+test('a protected e-mail that is itself percent-encoded', () => {
+  const person = one(`<p><strong>Sotsiaaltöö spetsialist</strong> Ülle Õun<br>Telefon 5550 0034<br>
+    <a href="/cdn-cgi/l/email-protection#${cloudflare('ylle.%c3%b5un@example.invalid')}"><span class="__cf_email__" data-cfemail="${cloudflare('ylle.%c3%b5un@example.invalid')}">[email&#160;protected]</span></a></p>`);
+  assert.deepEqual([person.name, person.emails], ['Ülle Õun', ['ylle.õun@example.invalid']]);
+});
+
 test('an e-mail written with "(ät)" in the text of the card (Rapla)', () => {
   const person = one(`<h2 class="wp-block-heading">Sotsiaalosakond</h2><div class="wp-block-columns kontaktimuster"><div class="wp-block-column">
     <p class="ankur has-medium-font-size">Anna-Liisa Tuvi</p><p class="ankur has-small-font-size">eestkostespetsialist</p></div>
