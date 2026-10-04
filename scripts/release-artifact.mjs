@@ -58,7 +58,8 @@ export async function packageRelease(revision, output) {
   const fileList = path.join(output, 'files.txt');
   await fs.writeFile(fileList, [...files, '.release-metadata.json', '.next', 'node_modules', 'generated'].join('\n') + '\n');
   const archive = path.join(output, 'release.tar.gz');
-  execFileSync('tar', ['--exclude=.next/cache', '--exclude=.next/dev', '--exclude=node_modules/.cache', '-czf', archive, '-T', fileList], { stdio: 'inherit' });
+  // Fast compression: the first release spent 50 s at gzip's default level.
+  execFileSync('tar', ['--exclude=.next/cache', '--exclude=.next/dev', '--exclude=node_modules/.cache', '-I', 'gzip -1', '-cf', archive, '-T', fileList], { stdio: 'inherit' });
   await fs.writeFile(path.join(output, 'release.sha256'), `${sha256(await fs.readFile(archive))}  release.tar.gz\n`);
   await fs.rm(fileList);
   await fs.rm('.release-metadata.json');

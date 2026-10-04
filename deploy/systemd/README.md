@@ -5,9 +5,9 @@
 - `/etc/sotsiaalai/frontend.env`: rakenduse seaded ja saladused, sh OpenAI võti.
 - `/etc/sotsiaalai/rag.env`: RAG v2 ühendused (Postgres, Qdrant, EstNLTK), admin-RAG-i ja vestluspiloodi lülitid ning plaanid.
 
-Mõlemad failid on loetavad ainult root'ile. `sotsiaalai-frontend.service` loeb need samas järjekorras, `rag.env` on valikuline. `scripts/deploy-server.mjs` loeb neid samas järjekorras. Vana RAG-teenuse (`sotsiaalai-rag`, Chroma) seadeid seal enam pole.
+Mõlemad failid on loetavad ainult root'ile. Avaldamine teeb neist samas järjekorras root'i õigustega versioonikoopia `/etc/sotsiaalai/releases/<SHA>.env`; üks `sotsiaalai-frontend.service` loeb seda. Aktiivne väljalase on kirjas `/home/ubuntu/apps/sotsiaalai-releases/active.json`-is ning systemd `WorkingDirectory`-s. Vana checkout säilib andmehoidlate ja esimese tagasipöördumise jaoks; selle HEAD ei ole aktiivse versiooni tunnus.
 
-Vestluspiloodi plaan on seotud täpse käituskoodiga (`implementationHash`). Kui deploy muudab seda koodi, kirjutab deploy logisse ja GitHubi hoiatuse: vestluspiloot uusi vastuseid ei anna, kuni uus plaan on kinnitatud.
+Vestluspiloodi plaan on seotud täpse käituskoodiga (`implementationHash`). Avaldamine uuendab vajadusel kinnitatud plaani uuele koodile, säilitades omaniku kinnitatud kasutajad, eelarve ja andmete väljasaatmise load. See töövalmiduse kontroll ei tee mudelikutseid. Serveris rakendatakse GitHubis valmis ehitatud artefakt; lint'i, teste, sõltuvuste installi ega build'i serveris ei korrata. Failide ettevalmistamise järel peatatakse senine frontend ning käivitatakse uus samal pordil. Korraga töötab üks rakenduse protsess.
 
 ## LiveKit, egress ja OSRM
 
@@ -17,7 +17,7 @@ Unit-failid on repos, et nende versioonid ja käsuread oleksid näha ning muudat
 - `livekit-egress.service` kasutab tõmmist `livekit/egress`, mis on lukustatud versiooni ja räsiga (`v1.14.1@sha256:…`), mitte sildiga `latest`.
 - `sotsiaalai-osrm.service` kasutab tõmmist `ghcr.io/project-osrm/osrm-backend:v26.9.0-debian@sha256:…` ja kaarti kaustas `/home/ubuntu/osrm-26.9`.
 
-Deploy paigaldab muudetud unit-failid ja käivitab `daemon-reload`, aga neid teenuseid ei taaskäivita. Pärast muudatust tuleb teenus käsitsi taaskäivitada (`sudo systemctl restart <teenus>`).
+LiveKiti ja OSRM-i muudetud unit-failid paigaldab AI vajadusel eraldi ning käivitab `daemon-reload`; rakenduse tavaline avaldamine neid teenuseid ei muuda. Pärast nende konfiguratsiooni muudatust tuleb vastav teenus taaskäivitada (`sudo systemctl restart <teenus>`).
 
 OSRM-i kaardi uuendamiseks tehakse uus graaf kõrvalkausta, seda testitakse pordil 5001 ja alles siis vahetatakse unit-failis kaust:
 

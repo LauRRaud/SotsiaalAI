@@ -92,6 +92,12 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**04.10 avaldamine ja logo (`a154e98d`, tootmises):** vajalikud kontrollid valib AI;
+GitHub ehitab tootmisartefakti üks kord ja server kasutab sama artefakti. Serveris
+töötab korraga üks frontend, mille kiire vahetus võib põhjustada lühikese katkestuse.
+Suure S-i ja nurgaruuduga Exo 2 logo on all keskel ning 25% väiksem (1280 px
+vaates 384 px). Suurust rohkem ei muudeta. Mõõtmised ja piirid on S10-s.
+
 **03.10: platvormi põhiaadress on https://sotsiaal.pro.** Üleminek on tootmises;
 vana domeeni Välitöö ja API-d säilivad kohaliku sünkroonimise jaoks. Vaata S10 tõendit.
 Avalik ettevõttenimi on omaniku korraldusel Küberloome OÜ; vana avalehe logo
@@ -4457,6 +4463,25 @@ DNS-kontrolli läbinud avaliku aadressiga, et DNS-i ümberseadmine ei avaks sise
 ---
 
 ## S10. Avalik pind ja release
+
+**Avaldamise töökord (04.10).** AI valib lint'i, sihttestid, tõlkekontrolli ja
+vajadusel migratsioonikontrolli konkreetse muudatuse järgi. GitHubi ühekordne
+tootmisbuild läheb sama SHA artefaktina serverisse; server ei korda build'i ega
+arenduskontrolle. Muutumatud migratsioonid jäetakse vahele. Üks frontend-protsess
+peatatakse alles pärast failide ettevalmistust, käivitatakse uue koodiga ning
+töövalmiduse vea korral taastatakse eelmine. Aktiivse versiooni tunnus on
+`sotsiaalai-releases/active.json` ja systemd töökataloog, mitte vana checkout'i HEAD.
+Tootmises on `a154e98d`; ühe protsessi vahetus andis 180 tervisepäringu seas ühe
+502 vastuse. Peatamise algusest kinnitatud töövalmiduseni kulus 3,6 s (varem oli
+teenus 52 s peatatud). Katkematut teenust see ühe protsessi lahendus ei taga.
+[Mõõtmised ja kontrollid](../audits/release-build-once-2026-10-04.md).
+
+**Avalehe kinnitatud logo.** Suure S-iga `Sotsiaal.pro` kasutab Exo 2 kontuure;
+`pro` joonepaksus on põhisõnaga sobitatud, punkt on all ning `o` ülanurgas on
+peen ümardatud ruut ja vaba ruumiga väljalõige. Ruudu ülaserv on põhisõna kõrgusel.
+Logol pole tunnuslauset. Avalehel on üks logo all keskel, varasemast 25% väiksem;
+1280 px vaates on laius 384 px. Tootmise brauseris kontrollitud.
+[Kujunduse tõend](../audits/release-build-once-2026-10-04.md).
 
 **Põhidomeen sotsiaal.pro (03.10).** Muudatus `769cf4e4` läbis quality-gate'i ja
 automaatse deploy. Uuel domeenil on HTTPS, authi URL-id ja otsingumootorite viited;
