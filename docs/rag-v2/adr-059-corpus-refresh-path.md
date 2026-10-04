@@ -101,6 +101,24 @@ Rada on kaheosaline. Sülearvutis on `scripts/rag-v2-corpus-refresh.mjs` (teek `
 - **Test:** puhtas jooksus loetakse kõik 13 ümbernimetamist. Iga ümbernimetamise juures katkestatakse töö ja korratakse sama käsuga. Registri, töö ja failide lõppseis võrdub katkestuseta jooksuga.
 - Päris registris (578 allikat, 551 RT XML-i) klapivad arvud ja read.
 
+## Täiendus 04.10.2026: serveriskript väljalaskekaustade korral
+
+Samal päeval muutus avaldamine ([audit](../audits/release-build-once-2026-10-04.md)). Teenus töötab kaustast `/home/ubuntu/apps/sotsiaalai-releases/<commit>` ja loeb ainult selle väljalaske env-faili `/etc/sotsiaalai/releases/<commit>.env`, mille deploy teeb paigaldamise hetkel `frontend.env`-ist ja `rag.env`-ist. Vana kaust `/home/ubuntu/apps/sotsiaalai` jäi commit'ile `209337bc` ja hoiab jagatud andmeid.
+
+- **Viga, mis sellest tekkis:** skript kopeeris koodi vanast kaustast, tegi plaani seal `frontend.env`-i ja `rag.env`-iga ning aktiveeris selle ainult `rag.env`-is. Töötav teenus oleks taaskäivitunud vana plaaniga ja lükanud pärast uut indeksit pöörded tagasi (`active_index_mismatch`) kuni järgmise deploy'ni. v48 läks 04.10 läbi ainult sellepärast, et esimese väljalaske env-fail tehti kaks minutit pärast plaani aktiveerimist.
+- **Nüüd:**
+  - Töötava väljalaske ütleb teenus ise (`systemctl show`: `WorkingDirectory`, `EnvironmentFiles`). Muu paigutus (vana kaust, mitu env-faili) peatab skripti enne esimest muudatust.
+  - Kood ja paketid tulevad sellest väljalaskest; töökausta `node_modules` link seatakse iga käigu alguses. Ühenduste fail jääb jagatud andmete juurde (`/home/ubuntu/apps/sotsiaalai/tmp/`).
+  - Plaani samm hoiab deploy lukku (`sotsiaalai-releases/deploy.lock`, ootab kuni 15 minutit), et deploy ei saaks samal ajal `rag.env`-i lugeda ega teenust vahetada.
+  - Plaan tehakse väljalaske kaustas selle env-failiga ja aktiveeritakse kaks korda: `rag.env`-is järgmise väljalaske jaoks ja väljalaske env-failis töötava teenuse jaoks (`rag-v2-plan-release.mjs activate --rag-env <env-fail>`).
+  - Enne taaskäivitust jookseb `rag-v2-plan-release.mjs ready`, sama kontroll, mille deploy teeb. Pärast taaskäivitust loeb skript protsessi keskkonnast `M4_PILOT_CONFIG`-i ja nõuab, et see on uus plaan (`running plan: <fail>`).
+  - Iga uus samm annab vea korral nullist erineva koodi, ütleb seisu ja jätab paki alles. `RESUME=plan` kordab ainult plaani sammu.
+- **Kontroll:**
+  - `tests/rag-v2-corpus-run.test.mjs` (aseained `sudo`, `systemctl`, `flock` ja `sleep`; skripti käivitab `dash`, kui see on olemas, nagu serveris): plaan tehakse väljalaske kaustas selle env-failiga; `rag.env`, väljalaske env-fail ja taaskäivitatud protsess nimetavad uut plaani; luku, plaani, env-faili, `ready`, taaskäivituse ja vana plaaniga käivitunud protsessi viga peatavad käigu; muu paigutus peatab enne kopeerimist; täiskäik võtab koodi ja paketid väljalaskest.
+  - `tests/rag-v2-chat-plan.test.mjs`: päris `activate` väljalaske kujuga env-failil, kus plaanirida on kaks korda, jätab ühe plaanirea.
+  - Serveris 04.10 midagi muutmata: skripti lugemisread leidsid väljalaske `9cea0c92`, selle env-faili ja plaani `m4-corpus-chat-20261004a.json` nii failist kui protsessi keskkonnast; skripti ja deploy lukuvorm välistasid teineteist (ajutises kaustas); hindaja `--dry-run` töötas väljalaske kaustas kataloogi teega ja ilma teeta kataloogi ei leidnud.
+- **Tõendamata:** plaani tegemine, kahekordne aktiveerimine, `ready` uuel plaanil ja taaskäivitus päris serveris. Seda näitab järgmine korpusekäik. Deploy sama `ready` käsk samas kaustas läbis 04.10 väljalaskel `9cea0c92` senise plaaniga.
+
 ## Piirid
 
 - Rada ei otsusta sisu üle. Uue tüübi hoiatus, lahendamata omavalitsus või kaart, mis vajab uuesti sidumist, peatab raja.

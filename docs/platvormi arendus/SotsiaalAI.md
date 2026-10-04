@@ -113,6 +113,7 @@ tootmise seis tuleb pärast automaatset deploy'd mõõta.
 - **Tööviis:**
   - Codex kujundab põhikaustas, seega ära vaheta seal harusid. Töötle %TEMP% worktree's: `node_modules` junction, `generated/` koopia. Eemalda worktree ja haru pärast PR-i.
   - PR liidetakse ja deploy'takse ise. Enne PR-i jooksuta kogu `npm test`.
+  - Serveris töötab teenus väljalaske kaustast (04.10): käsud käivad kaustas `R=$(systemctl show -p WorkingDirectory --value sotsiaalai-frontend)` env-failiga `/etc/sotsiaalai/releases/${R##*/}.env`, mitte vanas kaustas `/home/ubuntu/apps/sotsiaalai`. `rag-v2-corpus-run.sh` leiab väljalaske ise ja aktiveerib plaani nii `rag.env`-is kui väljalaske env-failis ([runbook](../rag-v2/runbook-corpus-increment.md), jaotis 9; [ADR-059 täiendus](../rag-v2/adr-059-corpus-refresh-path.md)). Väljalaskes pole `tests/` ega `docs/rag-v2/` kausta: hindajale anna `--scenarios` ja `--legal` teega. Uus plaanisamm on päris korpusekäiguga kontrollimata; järgmine käik (v49) näitab seda.
   - Tasulised jooksud on kitsad: väikseim kataloog, suurem komplekt ainult hinnaga ette öeldes.
   - Hindaja ja otsingukatse loevad serveri kontrollimärke (ADR-069 täiendus): pöörete ajad on serveri tasemel, mitte külma protsessi omad. `--cold` ainult siis, kui muudatus puudutab allikate kontrolle.
   - Päris mõõtmine käib päris vestluses: brauseripaanis `sotsiaal.ai/vestlus`, uus vestlus sessionStorage'i `:convId` võtme kustutamisega.

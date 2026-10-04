@@ -4,6 +4,7 @@ import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { parseEnv } from 'node:util';
 import { budgetLedgerId, digest } from '../lib/rag-v2/pilot/contracts.js';
 import { activateChatPlan, approvedChatPlan, approvedScope, codeContract, newChatPlan, preflightChatPlan, renewChatPlan,
   RELEASE_RENEWAL } from '../lib/rag-v2/pilot/chat-plan.js';
@@ -95,6 +96,29 @@ test('the release command reports a plan it cannot use without printing it, and 
     assert.equal(activation.status, 1); assert.match(activation.stderr, /unapproved_plan/);
     const ready = run(['ready']);
     assert.equal(ready.status, 1); assert.match(ready.stderr, /pilot_disabled/);
+  } finally { await fs.rm(dir, { recursive: true, force: true }); }
+});
+
+// 04.10.2026: the service reads only its release's env file: frontend.env, rag.env as it was at the deploy and what the
+// deploy appended (scripts/deploy-release-host.mjs). A plan made by hand reaches the running release by the same
+// activation on that file (scripts/rag-v2-corpus-run.sh).
+test('activation on a release env file leaves one plan line, the one every later reader takes', async () => {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'rag-v2-release-env-')), file = name => path.join(dir, name).replace(/\\/gu, '/');
+  try {
+    const current = await plan(), releaseEnv = file('release.env'), before = 'NODE_ENV=production\nOPENAI_MODEL=gpt-6-luna\n\nRAG_V2_POSTGRES_URL=postgres://x\n'
+      + 'M4_PILOT_ENABLED=1\nM4_PILOT_CONFIG=/etc/sotsiaalai/before-renewal.json\nRAG_V2_ESTNLTK_IDLE_MS=3600000\n\nNODE_ENV=production\n'
+      + 'M4_PILOT_CONFIG=/etc/sotsiaalai/renewed.json\nM4_PILOT_ENABLED=1\n';
+    await fs.writeFile(releaseEnv, before);
+    await fs.writeFile(file('new.json'), JSON.stringify(current));
+    const result = spawnSync(process.execPath, ['--import', './scripts/register-node-source-loader.mjs', 'scripts/rag-v2-plan-release.mjs',
+      'activate', '--plan', file('new.json'), '--rag-env', releaseEnv], { encoding: 'utf8' });
+    assert.equal(result.status, 0, result.stderr);
+    assert.equal(result.stdout.trim(), `${releaseEnv}.before-${current.id}`);
+    assert.equal(await fs.readFile(result.stdout.trim(), 'utf8'), before);
+    const next = await fs.readFile(releaseEnv, 'utf8');
+    assert.deepEqual(next.match(/^M4_PILOT_CONFIG=.*$/gm), [`M4_PILOT_CONFIG=${file('new.json')}`]);
+    assert.deepEqual(parseEnv(next), { NODE_ENV: 'production', OPENAI_MODEL: 'gpt-6-luna', RAG_V2_POSTGRES_URL: 'postgres://x',
+      M4_PILOT_ENABLED: '1', M4_PILOT_CONFIG: file('new.json'), RAG_V2_ESTNLTK_IDLE_MS: '3600000' });
   } finally { await fs.rm(dir, { recursive: true, force: true }); }
 });
 
