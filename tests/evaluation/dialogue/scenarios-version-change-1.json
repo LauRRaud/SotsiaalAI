@@ -5,10 +5,12 @@
   "region": "the municipal scope of the turn: the municipality the question asks about",
   "evidence / found_versions_from": "search: passages of the municipality's regulation are among the found sources, of the version in force from 01.09.2025 (until 05.10.2026) and of the one in force from 06.10.2026",
   "cited / cited_versions_from": "answer: it has source blocks that cite both versions",
-  "must": "answer: it names at least one thing the version from 06.10.2026 really changes (the word \"spetsialist\" for \"sotsiaaltöötaja\", applications within three months, a disabled child from 18 months, care set for up to five years, the low-income household); read the whole answer as well, a pattern is a coarse check"
+  "must": "answer: it names at least one thing the version from 06.10.2026 really changes (the word \"spetsialist\" for \"sotsiaaltöötaja\", applications within three months, a disabled child from 18 months, care set for up to five years, the low-income household); read the whole answer as well, a pattern is a coarse check",
+  "must_not": "answer: it does not present an unchanged rule as a change. § 5 lg 5 (a time limit for remedying deficiencies in an application) has the same words in both versions; in the first run the answer said the time limit is given \"now\". The same section found in both versions does not mean the same text was compared: a section is cut into passages by length, and this subsection is in the second passage of the earlier version and in the first of the new one"
  },
  "history": [
-  "04.10.2026, first run (commit eb71cf9b, search-assist-7, legal-validity-2): the catalogue as written before any run, 1 turn: passed, 0.0059 USD. The selection kept §§ 3-6 in both versions; both are cited and the answer compares the wordings of § 5 (docs/audits/evidence/search-assist-7-measured-2026-10-04.json)."
+  "04.10.2026, first run (commit eb71cf9b, search-assist-7, legal-validity-2): the catalogue as written before any run, 1 turn: passed, 0.0059 USD. The selection kept §§ 3-6 in both versions; both are cited and the answer compares the wordings of § 5 (docs/audits/evidence/search-assist-7-measured-2026-10-04.json).",
+  "04.10.2026, Codex review of #354 and #356 (F1): the first run's answer passed every check while it presented § 5 lg 5, unchanged between the versions, as new (\"antakse nüüd tähtaeg nende parandamiseks\"), and its first sentence can be read as if income for up to three months were new, which the earlier version required too. The earlier version's passage that holds lg 5 was a candidate (P18) and was not selected; the new version holds it in the selected first passage of § 5. must_not was added after the run; the run's verdict stays as the run gave it (1 of 1) and the stored answer fails the new check (tests/rag-v2-legal-scope.test.mjs). No run has been made with it."
  ],
  "scenarios": [
   {
@@ -37,6 +39,9 @@
       ],
       "must": [
        "spetsialist|kolme kuu jooksul|18[- ]kuu|viis aastat|viie aasta|vähekindlustatud"
+      ],
+      "must_not": [
+       "(nüüd|edaspidi|uuena|uue nõudena|lisandu\\p{L}*)[^.]{0,80}tähtaeg[^.]{0,40}(puudus|parand|kõrvald)|tähtaeg[^.]{0,60}(puudus|parand|kõrvald)[^.]{0,60}(on uus|uuena|lisandu\\p{L}*)|(puudus|parand|kõrvald)[^.]{0,40}tähtaeg[^.]{0,40}(on uus|uuena|lisandu\\p{L}*)"
       ]
      },
      "note": "Until 05.10.2026 today's law is the earlier version and the asked day brings the new one. From 06.10.2026 the new one is today's law and the earlier one is in the search only because an asked day also takes the day before it (legal-validity-2). The checks are the same on either side of the day."

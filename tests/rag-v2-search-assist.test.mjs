@@ -297,7 +297,11 @@ test('ADR-077 measured: the follow-up and both versions hold; in the five-questi
   const change = of('version-change')[0], sections = start => change.selected.filter(lead => lead.includes(`alates ${start}`)).map(lead => lead.match(/§ (\d+)\./u)[1]).sort();
   assert.deepEqual([sections('2025-09-01'), sections('2026-10-06')], [['1', '3', '4', '5', '6'], ['3', '4', '5', '6']]);
   assert.deepEqual(change.cited.map(source => source.from).sort(), ['2025-09-01', '2026-10-06']);
+  // The answer compares ("Varem tuli esitada ..."), and one of its changes is false: the time limit it calls new is in
+  // both versions (Codex review of #354 and #356, F1; tests/rag-v2-legal-scope.test.mjs reads the two source files).
   assert.match(change.answer, /Varem tuli esitada/u);
+  assert.match(change.answer, /antakse nüüd tähtaeg nende parandamiseks/u);
+  assert.equal(change.verdict, 'passed');
   // The follow-up: queries about the asked municipality's price, and its regulation's section on paying.
   const follow = of('follow-up')[2];
   assert.deepEqual([follow.text, follow.region, follow.verdict], ['Ja mis see maksab?', 'maardu_linn', 'passed']);

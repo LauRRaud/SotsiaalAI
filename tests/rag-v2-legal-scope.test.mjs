@@ -368,3 +368,54 @@ test('legal-validity-2 (ADR-077): an asked single day also takes the day before 
   assert.deepEqual(kept('Mis kehtis 1. detsembril 2025?', '2026-10-10'), ['kord-kuni-05-10', 'kord-alates-06-10']);
   assert.deepEqual(kept('Mis kehtis 1. septembril 2025?', '2026-10-10'), ['kord-kuni-05-10', 'kord-alates-06-10', 'kord-kuni-31-08']);
 });
+
+// Codex review of #354 and #356 (F1): the measured answer to "what changes from 6 October" passed every check while it
+// presented an unchanged provision as new. The two versions are read from Andmebaasi as committed; no network, no model.
+test('Codex F1: the catalogue fails an answer that presents the unchanged time limit as new; the same section is not the same text', async () => {
+  const { parseTextSource } = await import('../lib/rag-v2/text-source.js');
+  const { makeChunks } = await import('../lib/rag-v2/chunking.js');
+  const { DEFAULT_CONFIG } = await import('../lib/rag-v2/contracts.js');
+  const compact = value => value.replace(/\s+/gu, ' ').trim();
+  const section = async rt => {
+    const scope = { tenant_id: 'version-change-test', document_version_id: rt }, metadata = { title: 'Sotsiaalhoolekandelise abi osutamise kord' };
+    const { structured } = parseTextSource(await fs.readFile(`Andmebaasi/oigusaktid/${rt}.xml`), 'xml', metadata, scope, DEFAULT_CONFIG);
+    const unit = structured.source_units.find(item => /^§ 5\./u.test(item.raw_text));
+    const chunks = makeChunks({ ...structured, metadata, scope, versionId: rt, config: DEFAULT_CONFIG }).filter(chunk => chunk.section_path.some(title => /§ 5\./u.test(title)));
+    return { text: compact(unit.raw_text), chunks: chunks.map(chunk => compact(chunk.source_text)) };
+  };
+  const older = await section('404072025051'), newer = await section('403102026022');
+  // What is the same in both versions: the time limit of lg 5, and income for up to three months in lg 3 p 4.
+  const limit = '(5) Kui taotleja ei ole taotlusega esitanud otsustamiseks vajalikke andmeid või dokumente või kui taotluses on muid puudusi, antakse isikule tähtaeg puuduste kõrvaldamiseks.';
+  assert.ok(older.text.includes(limit) && newer.text.includes(limit));
+  assert.match(older.text, /sissetulekust sõltuva toetuse maksmisel eelneva kuni 3 kuu sissetulekud/u);
+  assert.match(newer.text, /sissetulekust sõltuva toetuse maksmisel eelneva kuni kolme kuu sissetulekud/u);
+  // What differs in that point: fixed expenses became housing costs, and the documents went from recommended to required.
+  assert.match(older.text, /soovitavalt koos tõendavate dokumentidega ning vähemalt eelneva kuu püsiväljaminekud/u);
+  assert.match(newer.text, /vähemalt eelneva kuu eluasemekulud koos tõendavate dokumentidega/u);
+  // The section is cut by length: lg 5 is in the second passage of the earlier version and in the first of the new one.
+  assert.deepEqual([older.chunks.findIndex(chunk => chunk.includes(limit)), newer.chunks.findIndex(chunk => chunk.includes(limit))], [1, 0]);
+  // As measured: the first passage of § 5 was kept in both versions; the earlier version's passage with lg 5 was a candidate
+  // and was not kept.
+  const run = JSON.parse(await fs.readFile('docs/audits/evidence/search-assist-7-measured-2026-10-04.json', 'utf8')), measured = run.turns.find(turn => turn.run === 'version-change');
+  assert.ok(measured.selected.some(lead => /^P16 \| alates 2025-09-01/u.test(lead) && /§ 5\./u.test(lead)) && measured.selected.some(lead => /^P20 \| alates 2026-10-06/u.test(lead) && /§ 5\./u.test(lead)));
+  assert.ok(measured.legal_candidates_not_selected.some(lead => /^P18 \| alates 2025-09-01/u.test(lead) && /\(5\) Kui taotleja/u.test(lead)));
+  // The catalogue: the run's verdict was "passed"; with the check added after the review the stored answer fails on it alone.
+  const catalogue = JSON.parse(await fs.readFile('tests/evaluation/dialogue/scenarios-version-change-1.json', 'utf8'));
+  assert.deepEqual(validateCatalogue(catalogue), []);
+  const expect = catalogue.scenarios[0].turns[0].expect;
+  assert.equal(expect.must_not.length, 1);
+  const version = rt => { const source = measured.found_legal.find(item => item.rt === rt); return source ? { from: source.from, to: source.to } : null; };
+  const sources = list => list.map(source => ({ title: source.title, documentId: source.rt }));
+  const observed = answer => ({ state: 'completed', region: measured.region, summaries: [], details: [], contacts: 0, evidenceTitles: measured.found_legal.map(source => source.title),
+    found: sources(measured.found_legal), cited: sources(measured.cited), text: answer });
+  const stored = checkTurn(expect, observed(measured.answer), { today: '2026-10-04', version });
+  assert.deepEqual([measured.verdict, stored.verdict, stored.checks.filter(check => !check.ok).map(check => check.key)], ['passed', 'answer', ['must_not']]);
+  // An answer that names the real change and says the time limit is as before passes.
+  const right = 'Sissetulekust sõltuva toetuse taotlemisel tuleb alates 6. oktoobrist esitada vähemalt eelneva kuu eluasemekulud koos tõendavate dokumentidega; varem küsiti eelneva kuu püsiväljaminekuid ja tõendid olid soovituslikud. '
+    + 'Kuni kolme kuu sissetulekud tuli esitada ka varem. Taotlust menetleva sotsiaaltöötaja asemel nimetatakse spetsialisti. Puuduste kõrvaldamiseks antakse tähtaeg nagu varemgi.';
+  assert.equal(checkTurn(expect, observed(right), { today: '2026-10-04', version }).verdict, 'passed');
+  // Other wordings of the same false change fail too; a time limit named without calling it new does not.
+  for (const wrong of ['Edaspidi antakse taotlejale tähtaeg puuduste kõrvaldamiseks.', 'Korda lisandub tähtaeg puuduste kõrvaldamiseks.', 'Puuduste kõrvaldamiseks antav tähtaeg lisandub korda.']) {
+    assert.deepEqual(checkTurn(expect, observed(`${right} ${wrong}`), { today: '2026-10-04', version }).checks.filter(check => !check.ok).map(check => check.key), ['must_not'], wrong);
+  }
+});
