@@ -92,10 +92,13 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
-**04.10 õhtu: omavalitsuste kontaktid, pooleli töö uuele aknale** ([ADR-073](../rag-v2/adr-073-kov-staff-from-official-page.md)).
-- **Seis:** iganädalane kontaktikontroll kasutab töötajate tuvastajat (`lib/serviceMap/kovStaffExtract.js`, `lib/admin/rag/contactRegistry/pageCheck.js`; PR-id #336–#338). Avalik kaart näitab 860 kinnitatud kontakti (hommikul 726); registris on 1197 rida ehk 1066 eri inimest. Kaks vale telefoniga rida on omaniku loal parandatud.
-- **Järgmine samm, omaniku loaga („jah kõigele“):** ettepanekute kiht, mis toob registrisse kolinud lehtede aadressid, muutunud numbrid ja ametid ning lehtedelt leitud uued inimesed. Reegel: muudatus jõustub kahe järjestikuse sama tulemusega lugemise järel või omaniku heakskiidul; automaatselt ei kustutata midagi; korjatud info ei kirjuta vana õiget üle. Täpne ülesanne ja läbi mõtlemist vajavad kohad on ADR-073 jaotises „Järgmine samm: ettepanekute kiht“.
-- **Tööviis:** nimedega tabelid ei lähe reposse (omanikule failina); serveris ainult lugemine, kuni omanik on registrisse kirjutamise lubanud; iga registrimuudatus auditikirjega; tasuline samm (vestluse uus indeks) vajab eraldi luba.
+**04.10 õhtu: omavalitsuste kontaktid, ettepanekute kiht ootab omaniku ülevaatust** ([ADR-073](../rag-v2/adr-073-kov-staff-from-official-page.md), jaotis „Ettepanekute kiht“).
+- **Seis:** iganädalane kontaktikontroll kasutab töötajate tuvastajat (PR-id #336–#338); avalik kaart näitab 860 kinnitatud kontakti, registris on 1197 rida. Ettepanekute kiht on ehitatud (`lib/admin/rag/contactRegistry/proposals.js`, `proposalService.js`, `npm run service-map:contacts:proposals`): loeb lehti ja pakub, **registrisse pole midagi kirjutatud**.
+- **Esimene partii on omanikul üle vaadata** (fail saadetud 04.10; nimekiri serveris `rag-v2-work/eval-files/contact-proposals-2026-10-04.json`): 355 ettepanekut, neist 278 ilma märketa (107 kolinud lehe rida, 30 muutunud telefoni või e-posti, 22 ametit, 119 uut inimest) ja 77 omaniku otsust ootavat. Kõik 149 lehte said loetud või leiti uus aadress (14 kolinud lehte).
+- **Järgmine samm pärast omaniku vastust:** rakenda lubatud numbrid jooksvalt väljalaskelt (`--apply <nimekiri> --approved-by … --except … --pages …`, esmalt ilma `--yes` liputa), käivita kontroll ja võrdle kaardil nähtavat arvu (ootus märketa ettepanekute korral 1125). Tagasivõtmine: `--revert <partii>`.
+- **Tuvastaja parandused samas muudatuses** kinnitavad järgmises kontrollis 9 rida juurde (869; Haapsalu e-post looksulgudes, Tallinna amet nime ees).
+- **Lahti:** iganädalane ühendamine (kahe lugemise reegel on kood ja testid, kontrolliga ühendamata); vestluse uus eksport ja indeks (tasuline, vajab eraldi luba; kuus ametimuudatusega rida kaob seniks vestlusest); Väike-Maarja ja kuus Tallinna lehte.
+- **Tööviis:** nimedega tabelid ei lähe reposse (omanikule failina); iga registrimuudatus auditikirjega; registrisse kirjutamine ainult omaniku loal.
 
 
 **04.10 avaldamine ja logo (`a154e98d`, tootmises):** vajalikud kontrollid valib AI;
