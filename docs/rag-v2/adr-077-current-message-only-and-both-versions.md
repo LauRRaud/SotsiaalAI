@@ -2,7 +2,9 @@
 
 04.10.2026. Teostus Claude Opus 5.5. Omanik 04.10: „alusta“ küsimustiku kolme lahtise asjaga (plaan otsib juba vastatud küsimusi uuesti; „mis muutub“ küsimus ei saa kahe redaktsiooni lõike kõrvuti; perekonnaseaduse lõiguvalik). Lähtekoht: [päris vestluse küsimustik 04.10](../audits/rag-v2-live-questionnaire-2026-10-04.md), jaotised 3 ja 6, ning [ADR-075](adr-075-date-without-year-is-a-period.md) „Järgmine samm“.
 
-**Mõõtmata.** Muudatus on kahe mudelijuhise tekstis ja serveri kehtivusreeglis; tõend on kohalikud testid. Need näitavad, et read on juhises ja et kontrollid tabavad salvestatud vigased plaanid ja valikud. **Kas mudel nende ridade järgi ka käitub, näitab ainult tasuline jooks**, mida pole tehtud (jaotis „Mõõtmine“).
+**Mõõdetud pärast avaldamist, omaniku loal** (jaotis „Mõõtmine“): 10 pööret, 0,056 USD. Jätkuküsimus töötab (4/4). „Mis muutub“ sai mõlemad redaktsioonid ja vastus võrdleb sõnastusi. Viie küsimuse vestluses läbis 2 pööret viiest: eelvalik oli igas pöördes puhas, plaan otsis ühes pöördes vastatud küsimusi ikka uuesti ja perekonnaseaduse ülalpidamise sätted ei jõudnud kandidaatide hulka. Üks jooks kataloogi kohta.
+
+Muudatus on kahe mudelijuhise tekstis ja serveri kehtivusreeglis; #354 läks tootmisse mõõtmata, kohalike testidega.
 
 ## Mida kirjed näitasid
 
@@ -109,7 +111,7 @@ Täiskomplekt: 650 testi, 631 läbis, 19 vahele jäetud, 0 ebaõnnestus.
 
 ## Piirid
 
-- **Mudeli käitumine on mõõtmata.** Kohalik test ei näita, kas plaan ja eelvalik uusi ridu järgivad.
+- **Üks jooks kataloogi kohta.** Mõõtmine ei erista ridade mõju mudeli kõikumisest. Plaani rida ei pidanud ühes pöördes neljast.
 - **Jätku oht.** Reegel „ainult praegune sõnum“ võib kahjustada jätkuküsimust või vastust täpsustavale küsimusele, kui mudel loeb selle uueks palveks. Rida ütleb jätku kohta selgelt, aga see on just see, mida tuleb mõõta olemasoleva jätkukataloogiga.
 - **Plaan ei näe assistendi vastuseid.** Kas lühike sõnum on vastus täpsustavale küsimusele, peab plaan järeldama kasutaja sõnumitest.
 - **Põhiotsing toob varasemad teemad endiselt kandidaatide hulka.** Parandus on eelvalikus; kui eelvalik on kättesaamatu, jääb ühendatud järjestus.
@@ -117,14 +119,48 @@ Täiskomplekt: 650 testi, 631 läbis, 19 vahele jäetud, 0 ebaõnnestus.
 - **„Mis muutub“ sõltub eelvaliku võrdlusest.** Eelvalik peab ise leidma, millised sätted kahes redaktsioonis erinevad; kandidaate on 36 ja valituid kuni üheksa, seega paare mahub kuni neli. Kui sellest ei piisa, on järgmine samm serveri reegel, mis lisab muudetud sätte vana redaktsiooni vaste ise.
 - **Perekonnaseaduse lõiguvalik on parandamata.** Uus kirje näitab järgmisel jooksul, millised lõigud kandidaadid olid; alles siis saab otsustada, kas viga on otsingus (õiged sätted ei jõua kahe koha hulka) või eelvalikus.
 
-## Mõõtmine
+## Mõõtmine (04.10.2026, pärast avaldamist)
 
-Tegemata; vajab omaniku luba. Ettepanek, kõik töötavalt väljalaskelt pärast avaldamist:
+Omaniku luba 04.10 („jah“ ettepanekule: 10 pööret, umbes 0,06 USD). Kolm kataloogi järjest töötavalt väljalaskelt `eb71cf9b`, `--auto-modes`; kataloogid olid kirjutatud enne jooksu. Kulu 0,0559 USD plaanihindades. [Tõendifail](../audits/evidence/search-assist-7-measured-2026-10-04.json).
 
-| Kataloog | Pöördeid | Hinnang | Mida näitab |
-|---|---:|---:|---|
-| `scenarios-answered-questions-1` | 5 | 0,03 USD | plaan ja eelvalik praeguse sõnumi jaoks; perekonnaseaduse kandidaadid |
-| `scenarios-version-change-1` | 1 | 0,006 USD | mõlemad redaktsioonid |
-| `scenarios-question-region-1`, vestlus `asks-another-municipality` | 4 | 0,022 USD | jätkuküsimus töötab endiselt |
+| Kataloog | Pöördeid | Läbis | Kulu |
+|---|---:|---:|---:|
+| Jätkuküsimus (`scenarios-question-region-1`, Maardu vestlus) | 4 | 4 | 0,0245 |
+| Mis muutub (`scenarios-version-change-1`) | 1 | 1 | 0,0059 |
+| Viis sidumata küsimust (`scenarios-answered-questions-1`) | 5 | 2 | 0,0255 |
 
-Kokku 10 pööret, umbes 0,06 USD plaanihindades.
+### Mis töötab
+
+- **Jätkuküsimus.** „Ja mis see maksab?“ sai päringud Maardu isikliku abistaja teenuse hinna kohta ja eelvalik hoidis Maardu korra § 9. Reegel „ainult praegune sõnum“ jätku ei rikkunud.
+- **Mis muutub.** Eelvalik hoidis §-d 3, 4, 5 ja 6 mõlemas redaktsioonis (lisaks vana § 1); mõlemad redaktsioonid on leitud ja viidatud. Vastus ütleb, mida nõuti varem ja mida alates 6. oktoobrist (§ 5: varem eelmise kuu püsiväljaminekud ja sissetulekute tõendamine soovituslik; nüüd kolme kuu sissetulekud ja eelmise kuu eluasemekulud tõenditega). Selle võrdluse kontrollisin lähtefailidest. Vastus ütleb ise, et esitab ainult osa muudatustest.
+- **Eelvalik on puhas.** Viie küsimuse vestluse neljas hilisemas pöördes ei hoidnud eelvalik pealkirja järgi ühtki varasema küsimuse lõiku. Hommikul hoidis kõigis neljas.
+
+### Mis ei tööta
+
+| Pööre | Tulemus | Kirjest loetud |
+|---|---|---|
+| 1. toimetulekupiir | läbis, aga summat ei andnud | riigieelarve seaduse kandidaat oli § 2 esimene lõik, kus summat ei ole; summaga lõik ei olnud 36 kandidaadi hulgas |
+| 3. eestkoste | otsingu viga | plaan kirjutas päringud ka kahe varasema küsimuse kohta, sõna-sõnalt nagu hommikul; eelvalik neid lõike ei hoidnud ja vastus oli teemakohane |
+| 4. puude raskusaste | vastuse viga | plaan puhas; seaduse § 2⁴ leitud ja valitud; vastus viitas ainult uuringule ja küsis tagasi |
+| 5. hooldekodu kohatasu | otsingu viga | plaan ja eelvalik puhtad; perekonnaseaduse kaks kandidaati olid § 192 ja § 216 (eestkoste), mitte ülalpidamiskohustus |
+
+- **Plaani rida ei pea kindlalt.** Neljast hilisemast pöördest oli plaan puhas kolmes (hommikul ühes). Kolmandas pöördes otsis ta mõlemat varasemat küsimust uuesti.
+- **Perekonnaseaduse lõiguvaliku põhjus on nüüd näha.** Viiendas pöördes läksid üleriigiliste seaduste kuus kohta varasemate teemade sätetele: perekonnaseaduse § 192 ja § 216 (eestkoste), riigilõivuseadus kaks, sotsiaalhoolekande seadus kaks. Ülalpidamiskohustuse sätted ei olnud kandidaadid, nii et eelvalikul polnud midagi valida. Põhiotsingu päringutekst on kõigi vestluse kasutajasõnumite summa (`buildDialogueQuery`), seega järjestab varasemate küsimuste sõnavara ka seaduste kohti.
+  - Tõendamata: et ainult praeguse sõnumiga päringutekst tooks § 96–97 kandidaatide hulka. Puhtas vestluses (R13, hommikul) ei valitud perekonnaseadust samuti ja selle kandidaate vana kirje ei näidanud.
+- **Toimetulekupiiri summa ei ole kindel.** Korpus v49 mõõtmisel sai sama esimene sõnum summa; nüüd mitte. Riigieelarve seaduse § 2 on neli lõiku ja summa on teises; kuue koha hulka jõudis esimene. Plaani päringud olid kahes jooksus erinevad.
+
+### Mida jooks ei näidanud
+
+- Kas lühike vastus assistendi täpsustavale küsimusele loetakse jätkuks (kataloogis sellist pööret ei ole).
+- Kas „mis muutub“ töötab pärast 6. oktoobrit: jooks tehti 4. oktoobril, kui vana redaktsioon on veel tänane õigus. Päev-varem reegel on näidatud ainult kohaliku testiga.
+- Vigade kordumise sagedust.
+
+## Järgmine samm
+
+Otsustada põhiotsingu päringuteksti üle. Praegu on see kõigi vestluse kasutajasõnumite summa (kavandatud käitumine, ADR-070 lahtine punkt „põhiotsing loeb kõiki sõnumeid“). Mõõtmine näitab, et sidumata küsimuste vestluses viib see üleriigiliste seaduste kohad varasemate teemade sätetele. Võimalused:
+
+1. Kui plaan andis päringuid, otsida praeguse sõnumi ja plaani päringutega; varasemad sõnumid jäävad päringutekstist välja. Jätkuküsimuse konteksti kannavad plaani päringud (mõõdetud: „Maardu isikliku abistaja teenuse hind“).
+2. Jätta päringutekst samaks ja arvutada üleriigiliste seaduste kohad ainult plaani päringute järgi.
+3. Riigieelarve seaduse allikas lõike täpsusega (§ 2 lg 5), et summaga lõik nimetaks seadust ja oleks akti ainus kandidaat. See on korpuse täiendus.
+
+Kõik kolm muudavad otsingut iga pöörde jaoks ja vajavad uut mõõtmist; alustamata.

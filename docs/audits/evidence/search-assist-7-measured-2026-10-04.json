@@ -1,0 +1,764 @@
+{
+ "schema": "sotsiaalai/conversation-run-evidence-1",
+ "run": "ADR-077, search-assist-7 on the live plan after the deploy of #354; permitted by the owner on 04.10.2026 (ten turns, about 0.06 USD): three catalogues one after another",
+ "measured_commit": "eb71cf9b7d2abd92bf74bae480a64cd6a3143296",
+ "catalogues": [
+  {
+   "name": "answered-questions",
+   "catalogue": "tests/evaluation/dialogue/scenarios-answered-questions-1.json",
+   "started_at": "2026-10-04T14:57:09.543Z",
+   "finished_at": "2026-10-04T14:58:44.596Z",
+   "summary": {
+    "passed": 2,
+    "search": 2,
+    "answer": 1,
+    "state": 0
+   },
+   "states": {
+    "continuing": 4,
+    "rejected": 0
+   },
+   "plan_price_usd": 0.0255
+  },
+  {
+   "name": "version-change",
+   "catalogue": "tests/evaluation/dialogue/scenarios-version-change-1.json",
+   "started_at": "2026-10-04T14:58:45.399Z",
+   "finished_at": "2026-10-04T14:59:08.123Z",
+   "summary": {
+    "passed": 1,
+    "search": 0,
+    "answer": 0,
+    "state": 0
+   },
+   "states": {
+    "continuing": 0,
+    "rejected": 0
+   },
+   "plan_price_usd": 0.0059
+  },
+  {
+   "name": "follow-up",
+   "catalogue": "tests/evaluation/dialogue/scenarios-question-region-1.json, --only asks-another-municipality",
+   "started_at": "2026-10-04T14:59:08.924Z",
+   "finished_at": "2026-10-04T15:00:39.691Z",
+   "summary": {
+    "passed": 4,
+    "search": 0,
+    "answer": 0,
+    "state": 0
+   },
+   "states": {
+    "continuing": 3,
+    "rejected": 0
+   },
+   "plan_price_usd": 0.0245
+  }
+ ],
+ "plan_price_usd": 0.05595,
+ "turns": [
+  {
+   "run": "answered-questions",
+   "scenario": "five-unrelated-legal-questions",
+   "turn": 1,
+   "turn_id": "60aa2fc7-810f-4e5e-8d71-8497430fbd5c",
+   "text": "Kui suur on toimetulekupiir ja kuidas toimetulekutoetust arvutatakse?",
+   "verdict": "passed",
+   "checks": 4,
+   "failed": [],
+   "region": null,
+   "scope_state": "region_required",
+   "queries": [
+    "toimetulekupiiri suurus Eestis",
+    "toimetulekutoetuse arvutamise kord ja valem"
+   ],
+   "answer_kind": "partial",
+   "clarification": false,
+   "state_rejected": null,
+   "candidates": 36,
+   "selected": [
+    "P1 | Toimetulekutoetuse kui riikliku sotsiaalabi korraldus > Probleemid toimetulekutoetuse määramisel omavalitsuste tasandil 6 Toimetulekutoetuse taotleja koormust a",
+    "P2 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 8. jagu Toimetulekutoetus > § 131. Toimetulekutoetus § 131. Toimetulekutoetus (1) Toi",
+    "P18 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 8. jagu Toimetulekutoetus > § 133. Toimetulekutoetuse arvestamise alused § 133. Toime",
+    "P20 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 8. jagu Toimetulekutoetus > § 133. Toimetulekutoetuse arvestamise alused (2¹) Kui toi",
+    "P30 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 8. jagu Toimetulekutoetus > § 133. Toimetulekutoetuse arvestamise alused 4) veevarust"
+   ],
+   "legal_candidates_not_selected": [
+    "P19 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 8. jagu Toimetulekutoetus > § 134. Toimetulekutoetuse määramine ja maksmine § 134. To",
+    "P25 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 8. jagu Toimetulekutoetus > § 134. Toimetulekutoetuse määramine ja maksmine 7) kohali",
+    "P31 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 1. peatükk Üldsätted > § 13⁴. Toimetulekutoetuse määramise ja maksmise erandid kriisiolukorra ajal § 13⁴. Toimetulekutoe",
+    "P32 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 8. jagu Toimetulekutoetus > § 132. Toimetulekutoetuse taotlemine § 132. Toimetulekuto",
+    "P33 | alates 2026-07-13 | Riigikogu > 2026. aasta riigieelarve seadus > § 2. Seadustest tulenevate määrade ja piirsummade kehtestamine § 2. Seadustest tulenevate määrade ja piirsummade k",
+    "P34 | alates 2026-10-01 | Riigikogu > Puuetega inimeste sotsiaaltoetuste seadus > 2. peatükk TOETUSED > § 7. Puudega tööealise inimese toetus § 7. Puudega tööealise inimese toetus (1) Pu",
+    "P35 | alates 2026-10-01 | Riigikogu > Puuetega inimeste sotsiaaltoetuste seadus > 2. peatükk TOETUSED > § 7¹. Puudega vanaduspensioniealise inimese toetus § 7¹. Puudega vanaduspensioniea",
+    "P36 | alates 2025-01-01 | Riigikogu > Perekonnaseadus > § 217². Elatis § 217². Elatis (1) Kui enne 2022. aasta 1. jaanuari tehtud kohtulahendi kohaselt on vanem kohustatud tasuma alaeali"
+   ],
+   "found_legal": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "rt": "130062026065",
+     "from": "2026-10-01",
+     "to": "2026-11-30"
+    }
+   ],
+   "cited": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "rt": "130062026065",
+     "from": "2026-10-01",
+     "to": "2026-11-30"
+    },
+    {
+     "title": "Toimetulekutoetuse kui riikliku sotsiaalabi korraldus"
+    }
+   ],
+   "plan_price_usd": 0.00601,
+   "search_ms": 7300,
+   "total_ms": 23722,
+   "answer": "Lihtsustatult arvutatakse toimetulekutoetus nii: pere toimetulekupiir + arvesse võetavad eluasemekulud − arvesse minev netosissetulek. Sissetuleku arvestuses võetakse aluseks eelmisel kuul saadud netosissetulekud; sellest arvestatakse maha makstud elatis ja täitemenetluses kinni peetud summad. Põhjendatud juhul võib arvesse võtta taotlusele eelnenud 30 päeva sissetulekut. [S2, S5]\n\nArvesse võib minna jooksval kuul tasumisele kuuluv eluasemekulu, näiteks üür, küte, vesi, elekter ja olmejäätmete vedu. Omavalitsus kehtestab selliste kulude piirmäärad, millest suuremat kulu ei pruugita arvutusse võtta. [S3, S4]\n\nPere esimese liikme toimetulekupiiri kehtestab Riigikogu igaks eelarveaastaks. Teise ja iga järgmise täisealise pereliikme piir on 80% esimese liikme piirist ning iga lapse piir 120% sellest. [S1]\n\nAjaloolise võrdlusena: 2023. aasta ülevaates toodud näite järgi oli alates 2022. aasta juunist üksinda elava täiskasvanu või pere esimese täiskasvanu toimetulekupiir 200 eurot kuus. [S5]\n\nMa ei saa siin öelda 2026. aasta täpset toimetulekupiiri: kasutatud seadusetekst ütleb, et piir kehtestatakse igaks eelarveaastaks, kuid selle aasta summat siin ei ole."
+  },
+  {
+   "run": "answered-questions",
+   "scenario": "five-unrelated-legal-questions",
+   "turn": 2,
+   "turn_id": "76007025-7c79-49e0-ac5e-b37d90b3ccf5",
+   "text": "Kes peab teatama abivajavast lapsest ja kuhu?",
+   "verdict": "passed",
+   "checks": 6,
+   "failed": [],
+   "region": null,
+   "scope_state": "region_required",
+   "queries": [
+    "abivajavast lapsest teatamise kohustus ja isikud",
+    "kuhu teatada abivajavast lapsest lastekaitsetöötaja",
+    "hädaohus olevast lapsest teatamine 112"
+   ],
+   "answer_kind": "grounded",
+   "clarification": false,
+   "state_rejected": null,
+   "candidates": 36,
+   "selected": [
+    "P5 | Juhend: abivajavast lapsest teatamine ja andmekaitse > Teata valla- või linnavalitsusele või lasteabitelefonil 116 111 ja vajadusel politseile Lapse abivajadust",
+    "P13 | alates 2026-10-01 | Riigikogu > Lastekaitseseadus > 6. peatükk Abivajav laps > § 27. Abivajavast lapsest teatamine § 27. Abivajavast lapsest teatamine (1) Kohustus abivajavast laps",
+    "P14 | alates 2026-10-01 | Riigikogu > Lastekaitseseadus > 7. peatükk Hädaohus olev laps > § 31. Hädaohus olevast lapsest teatamine § 31. Hädaohus olevast lapsest teatamine (1) Kohustus h"
+   ],
+   "legal_candidates_not_selected": [
+    "P19 | alates 2026-10-01 | Riigikogu > Lastekaitseseadus > 6. peatükk Abivajav laps > § 27¹. Lapsega töötava isiku teade abivajavast lapsest § 27¹. Lapsega töötava isiku teade abivajavast",
+    "P27 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 8. jagu Toimetulekutoetus > § 131. Toimetulekutoetus § 131. Toimetulekutoetus (1) Toi",
+    "P31 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 1. peatükk Üldsätted > § 13. Abivajadusest teatamise kohustus § 13. Abivajadusest teatamise kohustus Abi vajava isiku pe",
+    "P32 | alates 2026-10-01 | Riigikogu > Lastekaitseseadus > 6. peatükk Abivajav laps > § 29. Abivajavale lapsele abi osutamine § 29. Abivajavale lapsele abi osutamine (1) Abivajavale lapse",
+    "P33 | alates 2026-10-01 | Riigikogu > Lastekaitseseadus > 6. peatükk Abivajav laps > § 28. Abivajaduse hindamine § 28. Abivajaduse hindamine (1) Enne abivajavale lapsele sobiva meetme ko",
+    "P34 | alates 2025-01-01 | Riigikogu > Perekonnaseadus > 3. osa EESTKOSTE > 12. peatükk EESTKOSTE ALAEALISE ÜLE > 1. jagu Eestkoste seadmine > § 171. Eestkoste seadmise eeldused § 171. Ee",
+    "P35 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 5. jagu Lapsehoiuteenus > § 115. § 115.",
+    "P36 | alates 2025-01-01 | Riigikogu > Perekonnaseadus > 2. osa SUGULUSEST TULENEVAD ÕIGUSED JA KOHUSTUSED > 10. peatükk VANEMA ÕIGUSED JA KOHUSTUSED > 4. jagu Vanema hooldusõiguse piiram"
+   ],
+   "found_legal": [
+    {
+     "title": "Lastekaitseseadus",
+     "rt": "111072026042",
+     "from": "2026-10-01",
+     "to": "2026-12-31"
+    }
+   ],
+   "cited": [
+    {
+     "title": "Lastekaitseseadus",
+     "rt": "111072026042",
+     "from": "2026-10-01",
+     "to": "2026-12-31"
+    }
+   ],
+   "plan_price_usd": 0.00398,
+   "search_ms": 4819,
+   "total_ms": 12628,
+   "answer": "Teatama peab igaüks, kellel on teavet abivajava lapse kohta. Teata viivitamata kohaliku omavalitsuse üksusele või lasteabitelefonil 116 111. [S1]\n\nKui laps on hädaohus, teata viivitamata hädaabinumbril 112. [S3]\n\nTeatanud inimese nime ega teatamise fakti ei avalikustata, välja arvatud süüteomenetluses. Soovi korral võid enda või oma pere kaitseks jätta teatamisel enda andmed avaldamata. [S1]"
+  },
+  {
+   "run": "answered-questions",
+   "scenario": "five-unrelated-legal-questions",
+   "turn": 3,
+   "turn_id": "e554af64-5323-4580-abdd-d5797dad90e6",
+   "text": "Mis vahe on eestkostel ja toetatud otsustamisel?",
+   "verdict": "search",
+   "checks": 7,
+   "failed": [
+    {
+     "key": "plan_queries_must_not",
+     "detail": "/toimetulek/ in the search plan: toimetulekupiir toimetulekutoetuse arvutamine"
+    },
+    {
+     "key": "plan_queries_must_not",
+     "detail": "/abivajava/ in the search plan: abivajavast lapsest teatamise kohustus kuhu teatada"
+    }
+   ],
+   "region": null,
+   "scope_state": "region_required",
+   "queries": [
+    "toimetulekupiir toimetulekutoetuse arvutamine",
+    "abivajavast lapsest teatamise kohustus kuhu teatada",
+    "eestkoste ja toetatud otsustamise erinevus"
+   ],
+   "answer_kind": "grounded",
+   "clarification": false,
+   "state_rejected": null,
+   "candidates": 36,
+   "selected": [
+    "P3 | Eestkostekorralduse kitsaskohad ja võimalused üleminekuks toetatud otsustamisele kokku V õ TE Tartu ülikooli sotsiaalteaduslike rakendusuuringute keskus tegi 20",
+    "P20 | Eestkostekorralduse kitsaskohad ja võimalused üleminekuks toetatud otsustamisele > Mida teha? 3. Üleminek toetatud otsustamise süsteemile, mille käigus liigutak",
+    "P27 | Psüühilise erivajadusega inimese osalus oma eestkostes > Asendatud või toetatud otsuste tegemine Selle asemel et lasta eestkostjal inimese eest valikuid teha, o",
+    "P30 | Eestkostekorralduse kitsaskohad ja võimalused üleminekuks toetatud otsustamisele otsustusraskustega inimeste toetamise võimalused Eesti rakendab otsustamisrasku"
+   ],
+   "legal_candidates_not_selected": [
+    "P4 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 8. jagu Toimetulekutoetus > § 131. Toimetulekutoetus § 131. Toimetulekutoetus (1) Toi",
+    "P21 | alates 2026-10-01 | Riigikogu > Lastekaitseseadus > 6. peatükk Abivajav laps > § 27. Abivajavast lapsest teatamine § 27. Abivajavast lapsest teatamine (1) Kohustus abivajavast laps",
+    "P31 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 8. jagu Toimetulekutoetus > § 134. Toimetulekutoetuse määramine ja maksmine 7) kohali",
+    "P32 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 8. jagu Toimetulekutoetus > § 134. Toimetulekutoetuse määramine ja maksmine § 134. To",
+    "P33 | alates 2025-01-01 | Riigikogu > Perekonnaseadus > 3. osa EESTKOSTE > 12. peatükk EESTKOSTE ALAEALISE ÜLE > 1. jagu Eestkoste seadmine > § 171. Eestkoste seadmise eeldused § 171. Ee",
+    "P34 | alates 2026-10-01 | Riigikogu > Lastekaitseseadus > 6. peatükk Abivajav laps > § 29. Abivajavale lapsele abi osutamine § 29. Abivajavale lapsele abi osutamine (1) Abivajavale lapse",
+    "P35 | alates 2026-10-01 | Riigikogu > Puuetega inimeste sotsiaaltoetuste seadus > 2. peatükk TOETUSED > § 7¹. Puudega vanaduspensioniealise inimese toetus § 7¹. Puudega vanaduspensioniea",
+    "P36 | alates 2026-10-01 | Riigikogu > Lastekaitseseadus > 6. peatükk Abivajav laps > § 29¹. Sotsiaalkindlustusameti meetmed seksuaalselt väärkoheldud lapse ja seksuaalselt väärkohtlevalt"
+   ],
+   "found_legal": [
+    {
+     "title": "Perekonnaseadus",
+     "rt": "107052025017",
+     "from": "2025-01-01",
+     "to": null
+    }
+   ],
+   "cited": [
+    {
+     "title": "Perekonnaseadus",
+     "rt": "107052025017",
+     "from": "2025-01-01",
+     "to": null
+    },
+    {
+     "title": "Eestkostekorralduse kitsaskohad ja võimalused üleminekuks toetatud otsustamisele"
+    },
+    {
+     "title": "Psüühilise erivajadusega inimese osalus oma eestkostes"
+    }
+   ],
+   "plan_price_usd": 0.00437,
+   "search_ms": 5082,
+   "total_ms": 11813,
+   "answer": "Eestkoste korral määrab kohus eestkostja, kes võib teha inimese eest otsuseid neis ülesannetes, milleks eestkoste on vajalik. Eestkostet ei ole vaja, kui inimese huve saab kaitsta näiteks volituse või lähedaste ja teiste abiliste kaudu. [S5]\n\nToetatud otsustamisel teeb inimene ise oma valikud. Usaldusväärne toetaja aitab tal võimalusi mõista ja otsuse tagajärgi läbi mõelda, kuid ei otsusta tema eest. Seda on pakutud eestkoste asemel järkjärgulise ja osalise võimalusena, jättes eestkoste alles olukordadeks, kus inimene ei suuda oma tahet väljendada ega otsuse sisu või tagajärgi mõista. [S1, S4]"
+  },
+  {
+   "run": "answered-questions",
+   "scenario": "five-unrelated-legal-questions",
+   "turn": 4,
+   "turn_id": "cc050749-e0db-4f5f-99a2-a47e7e2a1c2a",
+   "text": "Kuidas määratakse täisealisele puude raskusaste?",
+   "verdict": "answer",
+   "checks": 11,
+   "failed": [
+    {
+     "key": "cited",
+     "detail": "/Puuetega inimeste sotsiaaltoetuste seadus/ among cited: Uuring täisealiste puudega inimeste puude tuvastamise, abivajaduse hindamise ja toetamise süsteemist"
+    }
+   ],
+   "region": null,
+   "scope_state": "region_required",
+   "queries": [
+    "täisealise puude raskusastme tuvastamine taotlemine",
+    "puude raskusastme määramise kriteeriumid täisealisel",
+    "Sotsiaalkindlustusamet puude raskusastme tuvastamise menetlus"
+   ],
+   "answer_kind": "partial",
+   "clarification": true,
+   "state_rejected": null,
+   "candidates": 36,
+   "selected": [
+    "P2 | Uuring täisealiste puudega inimeste puude tuvastamise, abivajaduse hindamise ja toetamise süsteemist > 5. Puude, töövõime ulatuse ja abivajaduse tuvastamise met",
+    "P4 | Täisealiste puudega inimeste puude tuvastamise ja toetuste ning hüvede võimaliku nüüdisajastamise uuring > Praegune süsteem * 30 päeva eest. Toetusi indekseerit",
+    "P12 | Uuring täisealiste puudega inimeste puude tuvastamise, abivajaduse hindamise ja toetamise süsteemist > Puude raskusastme tuvastamise metoodika Puude raskusastme",
+    "P18 | Uuring täisealiste puudega inimeste puude tuvastamise, abivajaduse hindamise ja toetamise süsteemist > Puude raskusastme tuvastamise metoodika Puude raskusastme",
+    "P19 | Puude raskusastme tuvastamine ja töövõime hindamine nõustamisteenuse praktika põhjal > Töövõime hindamise ja/või puude raskusastme taotlemine Esmalt, s.o enne t",
+    "P26 | Uuring täisealiste puudega inimeste puude tuvastamise, abivajaduse hindamise ja toetamise süsteemist > Puude ja puude raskusastme mõisted PISTS-s kasutatakse ni",
+    "P33 | alates 2026-10-01 | Riigikogu > Puuetega inimeste sotsiaaltoetuste seadus > 1. peatükk ÜLDSÄTTED > § 2⁴. Puude raskusastme otsuse tegemise tähtaeg ja puude raskusastme kestus § 2⁴."
+   ],
+   "legal_candidates_not_selected": [
+    "P31 | alates 2026-10-01 | Riigikogu > Puuetega inimeste sotsiaaltoetuste seadus > 1. peatükk ÜLDSÄTTED > § 2³. Puude raskusastme tuvastamine (8¹) Puudega lapse seisundi muutumise kohta i",
+    "P32 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 2. peatükk Kohaliku omavalitsuse üksuse korraldatav abi > 1. jagu Üldsätted > § 15². Puudega täisealise isiku abivajadus",
+    "P34 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 2. peatükk Kohaliku omavalitsuse üksuse korraldatav abi > 1. jagu Üldsätted > § 15². Puudega täisealise isiku abivajadus",
+    "P35 | alates 2026-10-01 | Sotsiaalkaitseminister > Abivahendite loetelu: määruse „Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi and",
+    "P36 | alates 2026-10-01 | Riigikogu > Lastekaitseseadus > 6. peatükk Abivajav laps > § 28. Abivajaduse hindamine § 28. Abivajaduse hindamine (1) Enne abivajavale lapsele sobiva meetme ko"
+   ],
+   "found_legal": [
+    {
+     "title": "Puuetega inimeste sotsiaaltoetuste seadus",
+     "rt": "130062026020",
+     "from": "2026-10-01",
+     "to": "2027-01-31"
+    }
+   ],
+   "cited": [
+    {
+     "title": "Uuring täisealiste puudega inimeste puude tuvastamise, abivajaduse hindamise ja toetamise süsteemist"
+    }
+   ],
+   "plan_price_usd": 0.00476,
+   "search_ms": 4894,
+   "total_ms": 16801,
+   "answer": "Täisealise hindamine sõltub sellest, kas ta on tööealine või vanaduspensioniealine. Vanaduspensioniealise puhul lähtutakse kõrvalabi, juhendamise ja järelevalve vajadusest ning sellest, kuidas ta tuleb toime igapäevaelu põhitegevustega. [S7]\n\nTööealise puhul hinnatakse terviseandmete põhjal tegutsemispiiranguid eri valdkondades ja võtmetegevustes. Raskusaste leitakse võtmetegevuste punktide aritmeetilise keskmise järgi: üldiselt vastab keskmine 2–2,75 keskmisele, 2,76–3,49 raskele ja üle 3,5 sügavale puudele; alla 2 puuet ei tuvastata. Teadvusel püsimise ja enesehoolduse valdkonnas on võimalik tuvastada ainult keskmine või raske puue. Kui piiranguid on mitmes valdkonnas, lähtutakse suurima piiranguga valdkonnast; erandina võib keskmise puude tuvastada ka kergemate piirangute koosmõjul. [S3]\n\nTööealine võib esitada puude raskusastme tuvastamiseks eraldi taotluse või ühise taotluse koos töövõime hindamisega. Ühistaotluse korral hindab esmalt Töötukassa ning seejärel teeb Sotsiaalkindlustusamet puude raskusastme otsuse hindamise andmete põhjal. Kui taotletakse ainult puude raskusastet, hindab piiranguid Sotsiaalkindlustusameti ekspertarst. [S1, S2]\n\nKas mõtled tööealist või vanaduspensioniealist inimest?"
+  },
+  {
+   "run": "answered-questions",
+   "scenario": "five-unrelated-legal-questions",
+   "turn": 5,
+   "turn_id": "c4f00884-652b-4d32-8791-92f823ab8506",
+   "text": "Kas hooldekodu kohatasu võib nõuda lastelt?",
+   "verdict": "search",
+   "checks": 13,
+   "failed": [
+    {
+     "key": "evidence",
+     "detail": "/Perekonnaseadus/ among 4 found sources"
+    },
+    {
+     "key": "cited",
+     "detail": "/Perekonnaseadus/ among cited: Sotsiaalhoolekande seadus, Hooldekodude rahastamise põhimõtted muutuvad, Kohaliku omavalitsuse väljakutsed sotsiaalteenuste osutamisel, Sotsiaalhoolekande seaduse ja teiste seaduste muutmise seadus toob uuendusi"
+    }
+   ],
+   "region": null,
+   "scope_state": "region_required",
+   "queries": [
+    "Täisealise lapse ülalpidamiskohustus hooldekodu tasu",
+    "Üldhooldusteenuse rahastamine kohaliku omavalitsuse kohustus",
+    "Ülalpidamiskohustusest vabastamine hooldekodu kulude katmisel"
+   ],
+   "answer_kind": "partial",
+   "clarification": false,
+   "state_rejected": null,
+   "candidates": 36,
+   "selected": [
+    "P1 | Hooldekodude rahastamise põhimõtted muutuvad > Täiendav hüvitis väikese sissetuleku korral Kui aga soovitakse minna kallimasse (näiteks 1600-eurose kohatasuga) ",
+    "P13 | Kohaliku omavalitsuse väljakutsed sotsiaalteenuste osutamisel > Vajadustele vastav abi Tasu ei või võtta kõigilt ühesuuruses summas. SHS § 16 kohustab omavalits",
+    "P19 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 2. peatükk Kohaliku omavalitsuse üksuse korraldatav abi > 2. jagu Kohaliku omavalitsuse üksuse sotsiaalteenused > 2. jao",
+    "P26 | Sotsiaalhoolekande seaduse ja teiste seaduste muutmise seadus toob uuendusi > Pikaajalise hoolduse süsteemi muudatused Pikaajalise hoolduse teenuseid osutatakse"
+   ],
+   "legal_candidates_not_selected": [
+    "P31 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 5. jagu Lapsehoiuteenus > § 115. § 115.",
+    "P32 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 2. peatükk Kohaliku omavalitsuse üksuse korraldatav abi > 2. jagu Kohaliku omavalitsuse üksuse sotsiaalteenused > 12. ja",
+    "P33 | alates 2026-08-01 | Riigikogu > Riigilõivuseadus > 3. osa RIIGILÕIVUMÄÄRAD > 12. peatükk Sotsiaalministeeriumi valitsemisala toimingud > 2. jagu Sotsiaalkindlustusameti toimingud >",
+    "P34 | alates 2025-01-01 | Riigikogu > Perekonnaseadus > 3. osa EESTKOSTE > 12. peatükk EESTKOSTE ALAEALISE ÜLE > 2. jagu Eestkoste teostamine > § 192. Tasu eestkoste teostamise eest § 19",
+    "P35 | alates 2025-01-01 | Riigikogu > Perekonnaseadus > § 216. Eestkoste täisealise üle § 216. Eestkoste täisealise üle Täisealiste isikute üle enne käesoleva seaduse jõustumist nende te",
+    "P36 | alates 2026-08-01 | Riigikogu > Riigilõivuseadus > 3. osa RIIGILÕIVUMÄÄRAD > 12. peatükk Sotsiaalministeeriumi valitsemisala toimingud > 2. jagu Sotsiaalkindlustusameti toimingud >"
+   ],
+   "found_legal": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "rt": "130062026065",
+     "from": "2026-10-01",
+     "to": "2026-11-30"
+    }
+   ],
+   "cited": [
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "rt": "130062026065",
+     "from": "2026-10-01",
+     "to": "2026-11-30"
+    },
+    {
+     "title": "Hooldekodude rahastamise põhimõtted muutuvad"
+    },
+    {
+     "title": "Kohaliku omavalitsuse väljakutsed sotsiaalteenuste osutamisel"
+    },
+    {
+     "title": "Sotsiaalhoolekande seaduse ja teiste seaduste muutmise seadus toob uuendusi"
+    }
+   ],
+   "plan_price_usd": 0.0064,
+   "search_ms": 5854,
+   "total_ms": 28895,
+   "answer": "Kui kohaliku omavalitsuse üksus on inimese vajaduse ööpäevaringse üldhooldusteenuse järele välja selgitanud, rahastavad teenuskoha maksumust omavalitsus ja teenuse saaja. Teenuse saaja tasub majutuse, toitlustuse ja muud teenuse osutamisega seotud kulud; teatud väikese sissetuleku korral katab omavalitsus seaduses sätestatud vahe, kuid kindla ülempiirini. [S1]\n\nTäisealiste laste võimalikku ülalpidamiskohustust on käsitletud eraldi hooldekodu tasust. See ei tähenda automaatselt, et laps peab tasuma kogu kohatasu: ülalpidajate abi võib vaja minna siis, kui inimese sissetulekust ja omavalitsuse kaetavast osast ei piisa. Vanavanema ja lapselapse vaheline ülalpidamiskohustus muudeti 2022. aastal kehtetuks. [S2, S3, S4]\n\nEsitatud seadusesätted ei sisalda täisealise lapse ülalpidamiskohustuse praeguseid üksikasju. Seetõttu ei saa nende põhjal öelda, kas just sinult võib konkreetse nõude alusel raha nõuda või kui suur oleks sinu osa."
+  },
+  {
+   "run": "version-change",
+   "scenario": "what-changes-both-versions",
+   "turn": 1,
+   "turn_id": "551d76e0-3f40-4382-a6ea-af0a652718f5",
+   "text": "Mis muutub Põhja-Sakala valla sotsiaalabi korras alates 6. oktoobrist?",
+   "verdict": "passed",
+   "checks": 9,
+   "failed": [],
+   "region": "pohja_sakala_vald",
+   "scope_state": "search_plan_region",
+   "queries": [
+    "Põhja-Sakala valla sotsiaalabi andmise kord muudatused 6. oktoobrist"
+   ],
+   "answer_kind": "partial",
+   "clarification": false,
+   "state_rejected": null,
+   "candidates": 36,
+   "selected": [
+    "P1 | alates 2025-09-01 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 1. Määruse reguleerimisala § 1. Määruse reguleerimisala (1) Määrusega s",
+    "P2 | alates 2026-10-06 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 3. Sotsiaalhoolekandelise abi korraldamise pädevus kohalikule omavalits",
+    "P4 | alates 2025-09-01 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 3. Sotsiaalhoolekandelise abi korraldamise pädevus kohalikule omavalits",
+    "P5 | alates 2025-09-01 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 4. Sotsiaalhoolekandelisele abile õigustatud isik § 4. Sotsiaalhoolekan",
+    "P6 | alates 2026-10-06 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 4. Sotsiaalhoolekandelisele abile õigustatud isik § 4. Sotsiaalhoolekan",
+    "P12 | alates 2025-09-01 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 6. Abivajaduse hindamine § 6. Abivajaduse hindamine (1) Abi andmise alu",
+    "P15 | alates 2026-10-06 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 6. Abivajaduse hindamine § 6. Abivajaduse hindamine (1) Abi andmise alu",
+    "P16 | alates 2025-09-01 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 5. Sotsiaalhoolekandelise abi taotlemine § 5. Sotsiaalhoolekandelise ab",
+    "P20 | alates 2026-10-06 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 5. Sotsiaalhoolekandelise abi taotlemine § 5. Sotsiaalhoolekandelise ab"
+   ],
+   "legal_candidates_not_selected": [
+    "P3 | alates 2026-10-06 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 1. Määruse reguleerimisala § 1. Määruse reguleerimisala (1) Määrusega s",
+    "P7 | alates 2025-09-01 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 6 lõike 1, § 22 lõike 1 punkti 5 j",
+    "P8 | alates 2026-10-06 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 6 lõike 1, § 22 lõike 1 punkti 5 j",
+    "P9 | alates 2026-10-06 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 2. Sotsiaalhoolekandelise abi eesmärk § 2. Sotsiaalhoolekandelise abi e",
+    "P10 | alates 2025-09-01 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 2. Sotsiaalhoolekandelise abi eesmärk § 2. Sotsiaalhoolekandelise abi e",
+    "P11 | alates 2026-10-06 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 5. peatükk RAKENDUSSÄTTED > § 42. Määruse rakendamine ja jõustumine § 42. Määruse rakendamine ja",
+    "P13 | alates 2025-09-01 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 5. peatükk RAKENDUSSÄTTED > § 42. Määruse rakendamine ja jõustumine § 42. Määruse rakendamine ja",
+    "P14 | alates 2018-05-12 | Põhja-Sakala vald > Puudega inimesele eluruumi kohandamiseks toetuse määramise ja maksmise kord > 2. peatükk Toetuse taotlemine ja määramine > § 6. Taotluse men",
+    "P17 | alates 2026-10-06 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 7. Hüvitise määramine (9) Teenuse määramisel otsustatakse teenuse saami",
+    "P18 | alates 2025-09-01 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 5. Sotsiaalhoolekandelise abi taotlemine (5) Kui taotleja ei ole taotlu",
+    "P19 | alates 2025-09-01 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 7. Hüvitise määramine Sotsiaalosakonna ettepaneku alusel sõlmitakse tee",
+    "P21 | alates 2026-10-06 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 5. Sotsiaalhoolekandelise abi taotlemine (6) Puuduste mittekõrvaldamise",
+    "P23 | alates 2022-07-12 | Põhja-Sakala vald > Eluasemekulude piirmäärad toimetulekutoetuse määramisel > 3. peatükk RAKENDUSSÄTTED > § 11. Määruse jõustumine § 11. Määruse jõustumine Määr",
+    "P27 | alates 2023-01-01 | Põhja-Sakala vald > Asendus- ja järelhooldusteenuse osutamise ja rahastamise kord Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 pun",
+    "P29 | alates 2018-05-12 | Põhja-Sakala vald > Puudega inimesele eluruumi kohandamiseks toetuse määramise ja maksmise kord Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § ",
+    "P30 | alates 2023-07-01 | Põhja-Sakala vald > Väljaspool kodu osutatava üldhooldusteenuse korraldamise ja rahastamise kord Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse §",
+    "P31 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 2. peatükk Kohaliku omavalitsuse üksuse korraldatav abi > 1. jagu Üldsätted > § 14. Sotsiaalhoolekandelise abi andmise k",
+    "P32 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 9. peatükk Rakendussätted > 2. jagu Seaduste muutmine ja kehtetuks tunnistamine > § 176. Sotsiaalhoolekande seaduse muut",
+    "P33 | alates 2026-10-01 | Sotsiaalkaitseminister > Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi andmed Määrus kehtestatakse",
+    "P34 | alates 2026-10-01 | Sotsiaalkaitseminister > Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi andmed > § 8. Rakendussätted § 8. ",
+    "P35 | alates 2026-10-01 | Riigikogu > Puuetega inimeste sotsiaaltoetuste seadus > 3. peatükk RAKENDAMISE KORD > § 20. Muudatused puuetega inimeste sotsiaaltoetuste maksmisel § 20. Muudat",
+    "P36 | alates 2026-10-01 | Riigikogu > Sotsiaalseadustiku üldosa seadus > 6. peatükk Rakendussätted > § 40. Seaduse jõustumine § 40. Seaduse jõustumine (1) Käesoleva seaduse jõustumise ae"
+   ],
+   "found_legal": [
+    {
+     "title": "Sotsiaalhoolekandelise abi osutamise kord",
+     "rt": "404072025051",
+     "from": "2025-09-01",
+     "to": "2026-10-05"
+    },
+    {
+     "title": "Sotsiaalhoolekandelise abi osutamise kord",
+     "rt": "403102026022",
+     "from": "2026-10-06",
+     "to": null
+    }
+   ],
+   "cited": [
+    {
+     "title": "Sotsiaalhoolekandelise abi osutamise kord",
+     "rt": "404072025051",
+     "from": "2025-09-01",
+     "to": "2026-10-05"
+    },
+    {
+     "title": "Sotsiaalhoolekandelise abi osutamise kord",
+     "rt": "403102026022",
+     "from": "2026-10-06",
+     "to": null
+    }
+   ],
+   "plan_price_usd": 0.00594,
+   "search_ms": 5901,
+   "total_ms": 22324,
+   "answer": "Alates 6. oktoobrist tuleb rahalise abi taotluses esitada eelneva kuni kolme kuu sissetulekud ja vähemalt eelmise kuu eluasemekulud koos tõendavate dokumentidega. Varem tuli esitada eelmise kuu püsiväljaminekud ning sissetulekuid soovitati tõendada. Kui taotluses puuduvad otsustamiseks vajalikud andmed või dokumendid või on muid puudusi, antakse nüüd tähtaeg nende parandamiseks. [S1, S2]\n\nMõned taotlemisega seotud rollinimetused muutuvad: taotluse esitab inimene ametiasutuse sotsiaalosakonnale ning taotlusi menetleva sotsiaaltöötaja asemel nimetatakse spetsialisti. Kolmandale eraisikule raha ülekandmise sooviavaldus kinnitatakse edaspidi spetsialisti juuresolekul; alaealise lapse konto puhul on erand endiselt kehtiv. [S1, S2]\n\nKorda lisandub sõnaselge säte, et ametiasutus võib abi andmiseks teha päringuid taotleja, tema leibkonnaliikmete ja tema suhtes ülalpidamiskohustusega inimeste andmete saamiseks infosüsteemidest ja andmekogudest. [S3, S4]\n\nMa ei saa siinse teabe põhjal loetleda kõiki 6. oktoobril jõustuvaid muudatusi; siin on esitatud vaid osa muudetud sätetest."
+  },
+  {
+   "run": "follow-up",
+   "scenario": "asks-another-municipality",
+   "turn": 1,
+   "turn_id": "6ed7f192-2d34-414e-961e-ad2b116573d4",
+   "text": "Elan Nõo vallas ja mul on raske toime tulla. Kust ma abi saan?",
+   "verdict": "passed",
+   "checks": 3,
+   "failed": [],
+   "region": "noo_vald",
+   "scope_state": "person_mentioned_region",
+   "queries": [
+    "Nõo valla sotsiaalabi ja sotsiaaltöötaja vastuvõtt",
+    "Nõo vald toimetulekuraskustes inimese abistamine",
+    "toimetulekutoetus taotlemine Nõo vallas"
+   ],
+   "answer_kind": "partial",
+   "clarification": true,
+   "state_rejected": null,
+   "candidates": 36,
+   "selected": [
+    "P1 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 4. peatükk NÕO VALLA EELARVEST MAKSTAVAD TOETUSED > 3. jagu Sissetulekust sõltuvad toetused > § 40. Toetus ",
+    "P2 | alates 2026-06-09 | Nõo vald > Nõo valla eelarvest makstavate sotsiaaltoetuste määrad > § 2. Sissetulekust sõltuvad toetused § 2. Sissetulekust sõltuvad toetused Sissetulekust sõlt",
+    "P3 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 2. peatükk SOTSIAALHOOLEKANDELISE ABI ANDMISE PÕHIMÕTTED > § 5. Sotsiaalhoolekandelise abi taotlemine ja ta",
+    "P5 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 2. peatükk SOTSIAALHOOLEKANDELISE ABI ANDMISE PÕHIMÕTTED > § 6. Sotsiaalhoolekandelise abi saajad § 6. Sots",
+    "P8 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk SOTSIAALTEENUSED > 2. jagu Nõo vallas osutatavad ja korraldatavad sotsiaalteenused > § 28. Välti",
+    "P11 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 1. peatükk ÜLDSÄTTED > § 2. Sotsiaalkaitse korraldamise põhimõtted § 2. Sotsiaalkaitse korraldamise põhimõt"
+   ],
+   "legal_candidates_not_selected": [
+    "P4 | alates 2026-06-09 | Nõo vald > Nõo valla eelarvest makstavate sotsiaaltoetuste määrad Määrus kehtestatakse „Kohaliku omavalitsuse korralduse seaduse“ § 30 lõike 1 punkti 2 ja Nõo V",
+    "P6 | alates 2023-01-01 | Nõo vald > Toimetulekutoetuse määramiseks eluruumi alaliste kulude piirmäärade kehtestamine Määrus antakse „Sotsiaalhoolekande seaduse“ § 133 lõigete 5 ja 6 alu",
+    "P7 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord Määrus kehtestatakse „Kohaliku omavalitsuse korralduse seaduse“ § 22 lõike 1 punkti 5 ning „Sotsiaalhoolekand",
+    "P9 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 2. peatükk SOTSIAALHOOLEKANDELISE ABI ANDMISE PÕHIMÕTTED > § 7. Sotsiaalhoolekandelise abi määramine ja toe",
+    "P10 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk SOTSIAALTEENUSED > 2. jagu Nõo vallas osutatavad ja korraldatavad sotsiaalteenused > § 21. Võlan",
+    "P13 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 2. peatükk SOTSIAALHOOLEKANDELISE ABI ANDMISE PÕHIMÕTTED > § 5. Sotsiaalhoolekandelise abi taotlemine ja ta",
+    "P14 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 1. peatükk ÜLDSÄTTED > § 1. Määruse reguleerimisala § 1. Määruse reguleerimisala (1) Sotsiaalhoolekandelise",
+    "P16 | alates 2026-06-09 | Nõo vald > Nõo valla eelarvest makstavate sotsiaaltoetuste määrad > § 3. Erivajadusest tulenevad toetused § 3. Erivajadusest tulenevad toetused Erivajadustest t",
+    "P18 | alates 2026-06-09 | Nõo vald > Nõo valla eelarvest makstavate sotsiaaltoetuste määrad > § 1. Sissetulekust mittesõltuvad toetused § 1. Sissetulekust mittesõltuvad toetused Sissetul",
+    "P19 | alates 2026-06-09 | Nõo vald > Nõo valla eelarvest makstavate sotsiaaltoetuste määrad > § 4. Erandkorras toetuste suurendamine § 4. Erandkorras toetuste suurendamine Erandkorras võ",
+    "P31 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 2. peatükk Kohaliku omavalitsuse üksuse korraldatav abi > 1. jagu Üldsätted > § 15¹. Noore abivajaduse hindamine § 15¹. ",
+    "P32 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 2. peatükk Kohaliku omavalitsuse üksuse korraldatav abi > 1. jagu Üldsätted > § 15¹. Noore abivajaduse hindamine (7) Abi",
+    "P33 | alates 2026-10-01 | Riigikogu > Sotsiaalseadustiku üldosa seadus > 1. peatükk Üldsätted > 2. jagu Sotsiaalkaitse põhimõtted > § 7. Avaliku võimu selgitamis- ja abistamiskohustus § ",
+    "P34 | alates 2026-10-01 | Sotsiaalkaitseminister > Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi andmed Määrus kehtestatakse",
+    "P35 | alates 2026-10-01 | Sotsiaalkaitseminister > Abivahendite loetelu: määruse „Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi and",
+    "P36 | alates 2026-10-01 | Sotsiaalkaitseminister > Abivahendite loetelu: määruse „Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi and"
+   ],
+   "found_legal": [
+    {
+     "title": "Sotsiaalhoolekandelise abi andmise kord",
+     "rt": "427052026006",
+     "from": "2026-06-01",
+     "to": null
+    },
+    {
+     "title": "Nõo valla eelarvest makstavate sotsiaaltoetuste määrad",
+     "rt": "406062026037",
+     "from": "2026-06-09",
+     "to": null
+    }
+   ],
+   "cited": [
+    {
+     "title": "Sotsiaalhoolekandelise abi andmise kord",
+     "rt": "427052026006",
+     "from": "2026-06-01",
+     "to": null
+    },
+    {
+     "title": "Nõo valla eelarvest makstavate sotsiaaltoetuste määrad",
+     "rt": "406062026037",
+     "from": "2026-06-09",
+     "to": null
+    }
+   ],
+   "plan_price_usd": 0.00562,
+   "search_ms": 4503,
+   "total_ms": 21630,
+   "answer": "Pöördu Nõo valla sotsiaalosakonna poole ja kirjelda, millega sul on raske toime tulla. Vallavalitsus peab sinu abivajadust hindama ning sind abi taotlemisel nõustama ja vajadusel taotluse koostamisel aitama. [S1, S2]\n\nNõo valla sotsiaaltoetust või -teenust saad taotleda, kui sinu elukoht on rahvastikuregistris Nõo vald ja sa elad tegelikult Nõo vallas. Kui sul puuduvad elatusvahendid ja oled sotsiaalselt abitus olukorras, võib Nõo vallas elavale või viibivale inimesele osutada vältimatut sotsiaalabi: vajalikku toitu, riietust, ajutist peavarju ja nõustamist. See abi on tasuta, kuid ajaliselt ja koguseliselt piiritletud. [S3, S4]\n\nKui raskus on seotud ajutise tõsise majandusliku olukorraga, on Nõo vallas olemas ühekordne toetus hädavajalike sotsiaalsete ja majanduslike kulude katmiseks. See on sissetulekust sõltuv ning selle ülempiir on kuni 300 eurot aastas. [S5, S6]\n\nMa ei saa sinu kirjelduse põhjal veel öelda, milline toetus või teenus sinu olukorrale kõige paremini sobib või kas selle tingimused on täidetud.\n\nMis on praegu kõige raskem: raha ja esmavajadused, eluase või igapäevased toimingud?"
+  },
+  {
+   "run": "follow-up",
+   "scenario": "asks-another-municipality",
+   "turn": 2,
+   "turn_id": "9ff017dd-dd43-4857-8d3b-0edb19946de8",
+   "text": "Kas Maardus saab isikliku abistaja teenust?",
+   "verdict": "passed",
+   "checks": 9,
+   "failed": [],
+   "region": "maardu_linn",
+   "scope_state": "question_region",
+   "queries": [
+    "Maardu isikliku abistaja teenuse tingimused ja taotlemine",
+    "Maardu isikliku abistaja teenuse korraldus ja rahastamine"
+   ],
+   "answer_kind": "partial",
+   "clarification": true,
+   "state_rejected": null,
+   "candidates": 36,
+   "selected": [
+    "P1 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 5. Teenuse taotlemine § 5. Teenuse taotlemine Teenuse taotlemiseks esitab taotleja või ",
+    "P5 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 3. Teenuse sisu ja tingimused § 3. Teenuse sisu ja tingimused (1) Isikliku abistaja tee",
+    "P6 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 7. Isikliku abistaja teenuse osutajad § 7. Isikliku abistaja teenuse osutajad Isikliku ",
+    "P7 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 4. Teenuse saaja § 4. Teenuse saaja (1) Teenust on õigus saada eelkõige sügava liikumis",
+    "P9 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 6. Teenuse osutamise otsustamine § 6. Teenuse osutamise otsustamine (1) Teenuse osutami"
+   ],
+   "legal_candidates_not_selected": [
+    "P2 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 30 lõike 1 punkti 2, sotsia",
+    "P3 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 1. Üldsätted § 1. Üldsätted Määrusega sätestatakse isikliku abistaja teenuse (edaspidi ",
+    "P4 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 2. Teenuse eesmärk § 2. Teenuse eesmärk Teenuse eesmärk on suurendada füüsilist kõrvala",
+    "P8 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 13. Määruse jõustumine § 13. Määruse jõustumine Määrus jõustub 01.09.2017",
+    "P10 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 10. Teenuse osutamise lõpetamine § 10. Teenuse osutamise lõpetamine (1) Teenuse osutami",
+    "P12 | alates 2026-04-03 | Maardu linn > Sotsiaalteenuste osutamise kord > § 4. Teenuse taotlemine § 4. Teenuse taotlemine (1) Teenuse taotlemiseks esitab taotleja või tema esindaja linna",
+    "P13 | alates 2020-11-09 | Maardu linn > Koduteenuse osutamise tingimused ja kord > § 4. Koduteenuse osutamise taotlemine § 4. Koduteenuse osutamise taotlemine (1) Koduteenuse osutamiseks",
+    "P14 | alates 2020-11-09 | Maardu linn > Koduteenuse osutamise tingimused ja kord > § 3. Koduteenusele õigust omavad isikud § 3. Koduteenusele õigust omavad isikud (1) Koduteenust osutata",
+    "P17 | alates 2023-07-01 | Maardu linn > Üldhooldusteenuse osutamise kord > § 3. Teenuse taotlemine ja abivajaduse hindamine § 3. Teenuse taotlemine ja abivajaduse hindamine (1) Teenuse s",
+    "P18 | alates 2026-04-03 | Maardu linn > Sotsiaalteenuste osutamise kord > § 2. Sotsiaalteenuste liigid § 2. Sotsiaalteenuste liigid (1) Linnavalitsuse poolt osutatavad või korraldatavad ",
+    "P19 | alates 2026-04-03 | Maardu linn > Sotsiaalteenuste osutamise kord > § 5. Taotluse menetlemine ja abivajaduse hindamine § 5. Taotluse menetlemine ja abivajaduse hindamine (1) Sotsia",
+    "P20 | alates 2016-04-09 | Maardu linn > Lastega peredele tugiisikuteenuse osutamise kord > § 5. Teenuse taotlemine ja määramine § 5. Teenuse taotlemine ja määramine (1) Tugiisikuteenust ",
+    "P22 | alates 2016-04-09 | Maardu linn > Lastega peredele tugiisikuteenuse osutamise kord Määrus kehtestatakse sotsiaalhoolekande seaduse § 14 lõike 1 ja § 23 lõike 1 alusel.",
+    "P23 | alates 2020-11-09 | Maardu linn > Koduteenuse osutamise tingimused ja kord Käesolev määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 22 lõike 1 punkti 5 ja § 22 lõik",
+    "P24 | alates 2020-11-09 | Maardu linn > Koduteenuse osutamise tingimused ja kord > § 6. Koduteenuse osutamine § 6. Koduteenuse osutamine (1) Koduteenust osutab Maardu Sotsiaalmaja, kui l",
+    "P25 | alates 2021-05-07 | Maardu linn > Hoolduse seadmise, hooldaja määramise ning hooldajatoetuse määramise ja maksmise kord > § 4. Hooldusvajaduse ja hooldaja sobivuse hindamine § 4. H",
+    "P26 | alates 2023-07-01 | Maardu linn > Üldhooldusteenuse osutamise kord > § 1. Üldsätted § 1. Üldsätted (1) Määrus reguleerib Maardu linna eelarvest rahastatava väljaspool kodu osutatav",
+    "P31 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 2. peatükk Kohaliku omavalitsuse üksuse korraldatav abi > 2. jagu Kohaliku omavalitsuse üksuse sotsiaalteenused > 5. jao",
+    "P32 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 2. peatükk Kohaliku omavalitsuse üksuse korraldatav abi > 2. jagu Kohaliku omavalitsuse üksuse sotsiaalteenused > 5. jao",
+    "P33 | alates 2026-10-01 | Sotsiaalkaitseminister > Abivahendite loetelu: määruse „Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi and",
+    "P34 | alates 2026-10-01 | Sotsiaalkaitseminister > Abivahendite loetelu: määruse „Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi and",
+    "P35 | alates 2026-10-01 | Sotsiaalkaitseminister > Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi andmed > § 6. Abivahendi kasutamis",
+    "P36 | alates 2026-10-01 | Riigikogu > Puuetega inimeste sotsiaaltoetuste seadus > 3. peatükk RAKENDAMISE KORD > § 16. Puuetega inimeste sotsiaaltoetuste taotlemine § 16. Puuetega inimest"
+   ],
+   "found_legal": [
+    {
+     "title": "Isikliku abistaja teenuse osutamise tingimused ja kord",
+     "rt": "401102026040",
+     "from": "2026-10-04",
+     "to": null
+    }
+   ],
+   "cited": [
+    {
+     "title": "Isikliku abistaja teenuse osutamise tingimused ja kord",
+     "rt": "401102026040",
+     "from": "2026-10-04",
+     "to": null
+    }
+   ],
+   "plan_price_usd": 0.00563,
+   "search_ms": 4059,
+   "total_ms": 20918,
+   "answer": "Jah, Maardus osutatakse isikliku abistaja teenust. Maardu korra järgi on seda õigus saada eelkõige täisealisel sügava liikumis- või nägemispuudega inimesel, kelle rahvastikuregistrijärgne elukoht on Maardu linn. Abistaja aitab puudest tuleneva füüsilise kõrvalabi vajaduse korral näiteks liikuda, süüa, riietuda ja teha hügieenitoiminguid. [S1, S2]\n\nTeenust osutab Maardu Sotsiaalmaja. Taotlus tuleb esitada Maardu Linnavalitsusele. Enne otsustamist hinnatakse kodukülastusel abivajadust ja selle mahtu; otsus tehakse 10 tööpäeva jooksul taotluse saamisest. [S3, S4, S5]\n\nKas küsid teenust enda või kellegi teise jaoks? Kui enda jaoks, kas sinu rahvastikuregistrijärgne elukoht on samuti Nõo vald?"
+  },
+  {
+   "run": "follow-up",
+   "scenario": "asks-another-municipality",
+   "turn": 3,
+   "turn_id": "5526ce89-e350-48a2-afaf-eefa2d7b3134",
+   "text": "Ja mis see maksab?",
+   "verdict": "passed",
+   "checks": 4,
+   "failed": [],
+   "region": "maardu_linn",
+   "scope_state": "question_region",
+   "queries": [
+    "Maardu isikliku abistaja teenuse hind kliendi omaosalus",
+    "Isikliku abistaja teenuse eest tasu kehtestamine ja erandid"
+   ],
+   "answer_kind": "partial",
+   "clarification": false,
+   "state_rejected": null,
+   "candidates": 36,
+   "selected": [
+    "P3 | Isikliku abistaja teenuse reguleerimine kohaliku omavalitsuse õigusaktides > Inimene ei tohi rahapuuduse tõttu jääda abita Sotsiaalteenuse osutamise eest võib i",
+    "P8 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 9. Teenuse eest tasumine § 9. Teenuse eest tasumine (1) Teenuse hinna kehtestab linnava",
+    "P16 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 4. Teenuse saaja § 4. Teenuse saaja (1) Teenust on õigus saada eelkõige sügava liikumis"
+   ],
+   "legal_candidates_not_selected": [
+    "P1 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 3. Teenuse sisu ja tingimused § 3. Teenuse sisu ja tingimused (1) Isikliku abistaja tee",
+    "P6 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord Määrus kehtestatakse kohaliku omavalitsuse korralduse seaduse § 30 lõike 1 punkti 2, sotsia",
+    "P7 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 1. Üldsätted § 1. Üldsätted Määrusega sätestatakse isikliku abistaja teenuse (edaspidi ",
+    "P11 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 13. Määruse jõustumine § 13. Määruse jõustumine Määrus jõustub 01.09.2017",
+    "P12 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 2. Teenuse eesmärk § 2. Teenuse eesmärk Teenuse eesmärk on suurendada füüsilist kõrvala",
+    "P13 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 6. Teenuse osutamise otsustamine § 6. Teenuse osutamise otsustamine (1) Teenuse osutami",
+    "P17 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 5. Teenuse taotlemine § 5. Teenuse taotlemine Teenuse taotlemiseks esitab taotleja või ",
+    "P18 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 7. Isikliku abistaja teenuse osutajad § 7. Isikliku abistaja teenuse osutajad Isikliku ",
+    "P22 | alates 2025-09-07 | Maardu linn > Maardu linna eelarvest sotsiaaltoetuste maksmise kord > 3. peatükk Perekonna sissetulekust mittesõltuvate toetuste liigid > § 16. Toetus täisealis",
+    "P26 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 2. peatükk Kohaliku omavalitsuse üksuse korraldatav abi > 2. jagu Kohaliku omavalitsuse üksuse sotsiaalteenused > 5. jao",
+    "P31 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 2. peatükk Kohaliku omavalitsuse üksuse korraldatav abi > 2. jagu Kohaliku omavalitsuse üksuse sotsiaalteenused > 5. jao",
+    "P32 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 2. peatükk Kohaliku omavalitsuse üksuse korraldatav abi > 2. jagu Kohaliku omavalitsuse üksuse sotsiaalteenused > 5. jao",
+    "P33 | alates 2026-10-01 | Sotsiaalkaitseminister > Abivahendite loetelu: määruse „Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi and",
+    "P34 | alates 2026-10-01 | Sotsiaalkaitseminister > Abivahendite loetelu: määruse „Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi and",
+    "P35 | alates 2026-10-01 | Riigikogu > Puuetega inimeste sotsiaaltoetuste seadus > 2. peatükk TOETUSED > § 7. Puudega tööealise inimese toetus § 7. Puudega tööealise inimese toetus (1) Pu",
+    "P36 | alates 2026-08-01 | Riigikogu > Riigilõivuseadus > 3. osa RIIGILÕIVUMÄÄRAD > 12. peatükk Sotsiaalministeeriumi valitsemisala toimingud > 2. jagu Sotsiaalkindlustusameti toimingud >"
+   ],
+   "found_legal": [
+    {
+     "title": "Isikliku abistaja teenuse osutamise tingimused ja kord",
+     "rt": "401102026040",
+     "from": "2026-10-04",
+     "to": null
+    }
+   ],
+   "cited": [
+    {
+     "title": "Isikliku abistaja teenuse osutamise tingimused ja kord",
+     "rt": "401102026040",
+     "from": "2026-10-04",
+     "to": null
+    },
+    {
+     "title": "Isikliku abistaja teenus"
+    }
+   ],
+   "plan_price_usd": 0.00578,
+   "search_ms": 3298,
+   "total_ms": 17989,
+   "answer": "Maardu isikliku abistaja teenuse hinna ja omaosaluse määra kehtestab Maardu Linnavalitsus. Küsi neilt kehtivat hinda ja omaosalust. [S1, S41]\n\nMa ei saa siin öelda konkreetset eurohinda ega omaosaluse suurust, sest neid summasid pole siin kirjas."
+  },
+  {
+   "run": "follow-up",
+   "scenario": "asks-another-municipality",
+   "turn": 4,
+   "turn_id": "b1f95704-3641-4b2d-9367-7df1d8ab5b16",
+   "text": "Aga millist koduteenust ma ise saan?",
+   "verdict": "passed",
+   "checks": 4,
+   "failed": [],
+   "region": "noo_vald",
+   "scope_state": "person_region",
+   "queries": [
+    "Nõo vald koduteenus saamise tingimused",
+    "koduteenuse sisu ja abivajaduse hindamine"
+   ],
+   "answer_kind": "partial",
+   "clarification": true,
+   "state_rejected": null,
+   "candidates": 36,
+   "selected": [
+    "P4 | Koduteenuste korraldus 7. Levinud praktika on kasutada hindamise dokumenteerimisel nn hindamisinstrumenti, mis on standardiseeritud küsimustik. Selle täitmisel ",
+    "P5 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk SOTSIAALTEENUSED > 2. jagu Nõo vallas osutatavad ja korraldatavad sotsiaalteenused > § 16. Isikl",
+    "P7 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk SOTSIAALTEENUSED > 2. jagu Nõo vallas osutatavad ja korraldatavad sotsiaalteenused > § 12. Kodut",
+    "P26 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 2. peatükk SOTSIAALHOOLEKANDELISE ABI ANDMISE PÕHIMÕTTED > § 6. Sotsiaalhoolekandelise abi saajad § 6. Sots",
+    "P31 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 2. peatükk Kohaliku omavalitsuse üksuse korraldatav abi > 2. jagu Kohaliku omavalitsuse üksuse sotsiaalteenused > 1. jao"
+   ],
+   "legal_candidates_not_selected": [
+    "P21 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk SOTSIAALTEENUSED > 1. jagu Teenuste osutamise üldised sätted > § 9. Teenuste loetelu § 9. Teenus",
+    "P28 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord Määrus kehtestatakse „Kohaliku omavalitsuse korralduse seaduse“ § 22 lõike 1 punkti 5 ning „Sotsiaalhoolekand",
+    "P32 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 2. peatükk Kohaliku omavalitsuse üksuse korraldatav abi > 1. jagu Üldsätted > § 15¹. Noore abivajaduse hindamine § 15¹. ",
+    "P33 | alates 2026-10-01 | Sotsiaalkaitseminister > Abivahendite loetelu: määruse „Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi and",
+    "P34 | alates 2026-10-01 | Riigikogu > Lastekaitseseadus > 6. peatükk Abivajav laps > § 28. Abivajaduse hindamine § 28. Abivajaduse hindamine (1) Enne abivajavale lapsele sobiva meetme ko",
+    "P35 | alates 2026-10-01 | Sotsiaalkaitseminister > Abivahendite loetelu: määruse „Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi and",
+    "P36 | alates 2026-10-01 | Riigikogu > Lastekaitseseadus > 9. peatükk Lasteasutus > § 37. Lasteasutuse sisehindamine § 37. Lasteasutuse sisehindamine (1) Lasteasutuse sisehindamine on teg"
+   ],
+   "found_legal": [
+    {
+     "title": "Sotsiaalhoolekandelise abi andmise kord",
+     "rt": "427052026006",
+     "from": "2026-06-01",
+     "to": null
+    },
+    {
+     "title": "Sotsiaalhoolekande seadus",
+     "rt": "130062026065",
+     "from": "2026-10-01",
+     "to": "2026-11-30"
+    }
+   ],
+   "cited": [
+    {
+     "title": "Sotsiaalhoolekandelise abi andmise kord",
+     "rt": "427052026006",
+     "from": "2026-06-01",
+     "to": null
+    },
+    {
+     "title": "Koduteenus"
+    }
+   ],
+   "plan_price_usd": 0.00747,
+   "search_ms": 4285,
+   "total_ms": 29100,
+   "answer": "Kui oled täisealine ega saa tervise, tegutsemisvõime või koduse keskkonna tõttu vajalikke toiminguid üksi teha, võib sulle sobida Nõo valla koduteenus. Abi võib olla näiteks kütmisel, toidu valmistamisel, kodu ja riiete korrastamisel, toidu ja majapidamistarvete ostmisel ning asjaajamisel. Teenuse taotlemiseks peab sinu rahvastikuregistrijärgne ja tegelik elukoht olema Nõo vald. [S1, S3]\n\nPöördu Nõo valla sotsiaalosakonna poole. Pärast nõuetekohase taotluse saamist või sinu abivajadusest teada saamist tehakse kodukülastus, et hinnata sinu toimetulekut ja vajaliku abi ulatust. Lepingus lepitakse kokku abi liigid, sagedus ja tasu. [S1, S36]\n\nMa ei saa sinu kirjelduse põhjal öelda, kas koduteenus sulle määratakse või millist abi vaja läheb; seda hinnatakse sinu olukorra järgi.\n\nKas oled täisealine? Millistes igapäevatoimingutes vajad kõige rohkem kõrvalabi?"
+  }
+ ],
+ "plan": "m4-sotsiaalai-corpus-chat-20261004-145240-4064935b-1e22-44a4-b00a-4a1bd4fc8a88-reb71cf9b7d2abd92bf74bae480a64cd6a3143296",
+ "generation": "search_generation_f3c7ed7a72ee8d40d3b7711442bd349763a77e46e6bce31618a594f20cc29b3e",
+ "model": "gpt-6-luna",
+ "reasoning": "medium",
+ "source": "the evaluator's reports on the server (rag-v2-work/eval-files/search-assist-7-2026-10-04/<run>/conversation-eval.json)",
+ "masking": "none needed: the answers name institutions only (scanned for addresses, phone numbers and personal names)",
+ "notes": {
+  "plan": "of the four later turns of the five-question conversation the plan wrote queries for the current message only in three (2, 4, 5) and searched both earlier questions again in the third; in the questionnaire of the same morning it was clean in one of four (Q10).",
+  "selection": "by the title check the selection kept no passage of an earlier question in any of the four later turns; in the questionnaire it had in all four.",
+  "family_law_act": "turn 5: the six reserved candidates of national law were sections of earlier subjects (the Family Law Act's § 192 and § 216 on guardianship, two of the state fees act, two of the Social Welfare Act); no section on the maintenance duty was a candidate. The base search text is all user messages of the conversation joined (buildDialogueQuery).",
+  "subsistence_amount": "turn 1: the State Budget Act's candidate was the first passage of § 2, which does not hold the amount; the passage with the amount was not among the 36 candidates and the answer gave no amount. In the run of scenarios-national-sources-1 the same first message got the amount (other plan queries).",
+  "disability": "turn 4: the act's § 2⁴ was selected and found, the answer cited the study alone and asked back.",
+  "both_versions": "the selection kept §§ 3, 4, 5 and 6 in both versions and § 1 of the earlier one; the answer states what was required before and what is required from 06.10, and says it lists only part of the changes.",
+  "attempts": "one run of each catalogue: a difference from the model's variation is not separated. The answers were read; apart from the compared wording of § 5 their statements were not checked against the source texts."
+ }
+}

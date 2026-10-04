@@ -8,7 +8,9 @@
   "evidence / cited": "the act that answers the turn's question is among the found sources and the answer has a source block that cites it; an answer that only asks back or says it cannot tell cites nothing",
   "must": "answer: it speaks of the current question's subject. Read the whole answer as well, a pattern is a coarse check"
  },
- "history": [],
+ "history": [
+  "04.10.2026, first run (commit eb71cf9b, search-assist-7): the catalogue as written before any run, 5 turns: 2 passed, 2 search, 1 answer, 0.0255 USD. Turn 3: the plan searched both earlier questions again (the selection kept none of their passages). Turn 4: the act was found and selected, the answer cited a study alone. Turn 5: plan and selection clean, but no passage of the Family Law Act on the maintenance duty was a candidate: its two reserved candidates were sections on guardianship (docs/audits/evidence/search-assist-7-measured-2026-10-04.json)."
+ ],
  "scenarios": [
   {
    "id": "five-unrelated-legal-questions",

@@ -410,7 +410,8 @@ test('the catalogue for a model run of these cases is well formed, and its check
   assert.deepEqual([bare.verdict, bare.checks.filter(check => !check.ok).map(check => check.key)], ['answer', ['cited']]);
   // The same information cited from another source (a national guide, not the municipality's regulation) fails as well.
   assert.deepEqual(checkTurn(askedTurn.expect, observed({ cited: [{ title: 'Isikliku abi juhend', documentId: 'guide' }] })).checks.filter(check => !check.ok).map(check => check.key), ['cited']);
-  assert.equal(catalogue.history.length, 4);
+  // The fifth entry is the third run (ADR-077): the same conversation as a check that a follow-up is kept.
+  assert.equal(catalogue.history.length, 5);
   assert.deepEqual(checkTurn(askedTurn.expect, observed({ personRegions: { user: 'maardu_linn' } })).checks.filter(check => !check.ok).map(check => check.key), ['person_regions']);
   // An answer that makes the asked municipality's service the user's own entitlement fails.
   const entitled = checkTurn(askedTurn.expect, observed({ text: 'Jah, Maardus on isikliku abistaja teenus ja sul on õigus seda saada.' }));

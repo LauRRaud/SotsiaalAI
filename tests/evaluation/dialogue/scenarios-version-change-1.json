@@ -7,7 +7,9 @@
   "cited / cited_versions_from": "answer: it has source blocks that cite both versions",
   "must": "answer: it names at least one thing the version from 06.10.2026 really changes (the word \"spetsialist\" for \"sotsiaaltöötaja\", applications within three months, a disabled child from 18 months, care set for up to five years, the low-income household); read the whole answer as well, a pattern is a coarse check"
  },
- "history": [],
+ "history": [
+  "04.10.2026, first run (commit eb71cf9b, search-assist-7, legal-validity-2): the catalogue as written before any run, 1 turn: passed, 0.0059 USD. The selection kept §§ 3-6 in both versions; both are cited and the answer compares the wordings of § 5 (docs/audits/evidence/search-assist-7-measured-2026-10-04.json)."
+ ],
  "scenarios": [
   {
    "id": "what-changes-both-versions",
