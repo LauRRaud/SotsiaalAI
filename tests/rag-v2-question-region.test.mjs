@@ -132,6 +132,49 @@ test('Codex F1: a follow-up goes on with the asked municipality; a request about
   assert.deepEqual([clean.source.state, clean.source.region], ['search_plan_region', 'maardu_linn']);
 });
 
+// The run on the live plan after the deploy (04.10.2026, 8 turns; docs/audits/evidence/question-region-measured-2026-10-04.json):
+// the plans the model gave, word for word (searchAssist.plannedPlaces and queries of the turn records).
+const MEASURED = ['Elan Nõo vallas ja mul on raske toime tulla. Kust ma abi saan?', 'Kas Maardus saab isikliku abistaja teenust?', 'Ja mis see maksab?', 'Aga millist koduteenust ma ise saan?'];
+const relisted = place(1, 'Elan Nõo vallas', 'Nõo vald', 'user', 'lives'); // the plan named the first message's home again in turns 3 and 4
+
+test('the measured run: the follow-up\'s plan also searched the user\'s own earlier request, and that query no longer takes the follow-up home', async () => {
+  const question = await turn({ before: nooState, texts: MEASURED.slice(0, 2), plan: { person: 'user', places: [place(2, MEASURED[1], 'Maardu', 'user', 'other')],
+    queries: ['Maardu isikliku abistaja teenuse korraldus taotlemine', 'Maardu isikliku abistaja teenuse saamise tingimused'] } });
+  assert.deepEqual(question.source, asked('maardu_linn', home('noo_vald')));
+  // Measured: the catalogue was Nõo vald's and the answer said it could not give Maardu's price.
+  const price = await turn({ before: question.value, after: question, texts: MEASURED.slice(0, 3), plan: { person: 'user', places: [relisted],
+    queries: ['isikliku abistaja teenus Maardu linnas korraldamine', 'isikliku abistaja teenuse tasu omaosalus hinna kehtestamine', 'Nõo valla sotsiaalabi toimetulekuraskustes'] } });
+  assert.deepEqual(price.places, []);
+  assert.deepEqual(price.source, asked('maardu_linn', home('noo_vald'), 'earlier_question'));
+  assert.deepEqual(price.people, { user: ['noo_vald', 'reported'] });
+  const own = await turn({ before: price.value, after: price, texts: MEASURED, plan: { person: 'user', places: [relisted],
+    queries: ['Nõo valla koduteenus taotlemine ja abivajaduse hindamine', 'Koduteenuse sisu ja osutatavad toimingud Eestis'] } });
+  assert.deepEqual(own.source, home('noo_vald'));
+  // The same in a question itself: a query about the user's own earlier request beside the asked municipality.
+  const reopened = await turn({ before: nooState, texts: MEASURED.slice(0, 2), plan: { person: 'user', places: [place(2, MEASURED[1], 'Maardu', 'user', 'other')],
+    queries: ['Maardu isikliku abistaja teenuse korraldus', 'Nõo valla sotsiaalabi toimetulekuraskustes'] } });
+  assert.deepEqual(reopened.source, asked('maardu_linn', home('noo_vald')));
+  // Not set aside: a follow-up in the first person with queries about both, and a query about a third municipality.
+  const mine = await turn({ before: question.value, after: question, texts: [...MEASURED.slice(0, 2), 'Kuidas ma seda taotleda saan?'], plan: { person: 'user', places: [],
+    queries: ['Maardu isikliku abistaja teenuse taotlemine', 'Nõo valla sotsiaalabi'] } });
+  assert.deepEqual(mine.source, home('noo_vald'));
+  const third = await turn({ before: question.value, after: question, texts: MEASURED.slice(0, 3), plan: { person: 'user', places: [],
+    queries: ['Maardu isikliku abistaja teenuse hind', 'Viimsi valla isikliku abistaja teenuse hind'] } });
+  assert.deepEqual(third.source, home('noo_vald'));
+  // A follow-up whose only named municipality is the user's own has nothing to go on with.
+  const home_ = await turn({ before: question.value, after: question, texts: MEASURED.slice(0, 3), plan: { person: 'user', places: [], queries: ['Nõo valla sotsiaalabi toimetulekuraskustes'] } });
+  assert.deepEqual(home_.source, home('noo_vald'));
+  // The other measured turns: the work place and the question in a conversation about two people.
+  const work = await turn({ texts: ['Elan Nõo vallas, töötan Maardus. Millist koduteenust ma saan?'], plan: { person: 'user',
+    places: [place(1, 'Elan Nõo vallas', 'Nõo vald', 'user', 'lives'), place(1, 'töötan Maardus', 'Maardu', 'user', 'other')],
+    queries: ['Nõo valla koduteenus saamise tingimused', 'koduteenuse sisu ja korraldamine sotsiaalhoolekande seadus'] } });
+  assert.deepEqual([work.source.state, work.source.region], ['person_mentioned_region', 'noo_vald']);
+  const tartu = await turn({ before: { people: [saved('user', 'anija_vald'), saved('ema', 'kose_vald')], focus: 'ema' }, texts: LIVE.slice(0, 3), plan: { person: 'user',
+    places: [place(3, 'Kas Tartu vallas on sotsiaaltransport', 'Tartu vald', 'user', 'other')],
+    queries: ['Tartu vald sotsiaaltransporditeenus olemasolu', 'Tartu vald sotsiaaltransporditeenuse hind omaosalus hinnakiri'] } });
+  assert.deepEqual([tartu.source.region, tartu.people], ['tartu_vald', { user: ['anija_vald', 'reported'], ema: ['kose_vald', 'reported'] }]);
+});
+
 test('Q6 and Q7 of 04.10: a mention the plan left unattributed, that says nothing of living there, no longer erases the residence', async () => {
   for (const [name, region] of [['Q6', 'pohja_sakala_vald'], ['Q7', 'harku_vald']]) {
     const result = await turn(STORED[name]);

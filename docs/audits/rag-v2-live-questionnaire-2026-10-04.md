@@ -17,13 +17,13 @@
 - **Seis:** plaan `m4-sotsiaalai-corpus-chat-20261004-064453-…`, korpus v48, otsinguplaan `rag-v2/search-assist-6`.
 - **Ülesehitus:** viis vestlust teemade kaupa (omavalitsused Q1–Q8, seadused Q9–Q13, ajakiri Q14–Q19, juhendid Q20–Q24, vestluse käitumine Q25a–c), seejärel viis küsimust uuesti igaüks puhtas vestluses (R3, R5, R6, R7, R13).
 - **Iga küsimus on igas kontekstis küsitud üks kord.** See on tähelepanek, mitte mõõtmine: üks katse ei erista konteksti mõju mudeli kõikumisest.
-- **Luba ja kulu:** enne jooksu nimetasin umbes 0,2 USD 27 pöörde eest. Tegin 32 pööret; viis kordust tegin omaniku loa „järjest kui ka ükshaaval“ alusel. Etapiti: plaan 0,0073, eelvalik 0,0714, vastus 0,0861 USD; vektorite etapp ümardub nulli.
+- **Luba ja kulu:** enne jooksu nimetasin umbes 0,2 USD 27 pöörde eest. Tegin 32 pööret; viis kordust tegin omaniku loa „järjest kui ka ükshaaval“ alusel. Etapiti (avaldatud ridade summa): plaan 0,00765, vektorid 0,00051, eelvalik 0,07128, vastus 0,08612 USD.
 - **Hinnang** on minu oma: „hea“ tähendab, et vastus kattis küsimuse ja viitas sobivatele allikatele; „osaline“, et oluline osa jäi puudu; „ebaõnnestus“, et küsitud sisu ei tulnud. Sobiv allikas üksi ei tõenda iga vastuses oleva tingimuse või summa õigsust; mis on lähteandmete vastu kontrollitud, on kirjas eraldi jaotises.
 
 ## Kus on tõendid
 
 - **Serveris, täielik:** `rag-v2-work/eval-files/live-questionnaire-2026-10-04/turns-full.json` (32 pöördekirjet nii, nagu vestlus need salvestas: küsimus, plaan, päringu tekst, tõendipakett, vastus, etappide tokenid ja ajad; loetav ainult juurkasutajale). Vastustes on omavalitsuse kontaktisikute nimed, seepärast jääb see serverisse.
-- **Repos, nimedeta:** [evidence/live-questionnaire-2026-10-04.json](evidence/live-questionnaire-2026-10-04.json): üks rida pöörde kohta (juht, vestlus ja järjekord, pöörde ID, täpne küsimus, plaani inimene, kohad ja päringud, otsingu piirkond ja perioodid, tõendite pealkirjad, viited, vastus, ajad, tokenid, kulu, hinnang ja selle põhjus). Kontaktisikute nimed, telefonid ja e-postid on asendatud; artiklite autorid on bibliograafia ja jäid sisse.
+- **Repos, nimedeta:** [evidence/live-questionnaire-2026-10-04.json](evidence/live-questionnaire-2026-10-04.json): üks rida pöörde kohta (juht, vestlus ja järjekord, pöörde ID, täpne küsimus, plaani inimene ja päringud, serveri kontrollitud kohad, eelvaliku kandidaadid ja valik pealkirjadena, otsingu piirkond ja perioodid, tõendite pealkirjad, viited, vastus, ajad, tokenid, kulu, hinnang ja selle põhjus; elukoha muutus pööretes, kus see muutus). Kontaktisikute nimed, telefonid ja e-postid on asendatud; artiklite autorid on bibliograafia ja jäid sisse.
 
 ## Tulemused
 
@@ -35,17 +35,19 @@
 
 Kordused: Q3 → R3 hea, Q5 → R5 hea, Q7 → R7 hea, Q13 → R13 osaline, Q6 → R6 ebaõnnestus.
 
+Veerg „Plaani inimene ja kontrollitud koht“ näitab kohta pärast serveri kontrolli, mitte plaani enda vastust: plaan saab anda ainult seose `lives`, `not` või `other`; „lahendamata“ lisab server.
+
 Veerg „Kataloogi piirkond“ näitab, millise omavalitsuse kirjetest otsiti ja mille alusel: `person_mentioned_region` (inimese elukoht selles sõnumis), `person_region` (inimese varem teada elukoht), `search_plan_region` (plaani nimetatud koht, kui elukohta teada pole).
 
-| Juht | Vestlus/pööre | Pöörde ID | Plaani inimene ja koht | Kataloogi piirkond | Perioodid | Tõendeid / viiteid | Vastuse liik | Esimene tekst / kokku (s) | Kulu (USD) | Hinnang |
+| Juht | Vestlus/pööre | Pöörde ID | Plaani inimene ja kontrollitud koht | Kataloogi piirkond | Perioodid | Tõendeid / viiteid | Vastuse liik | Esimene tekst / kokku (s) | Kulu (USD) | Hinnang |
 |---|---|---|---|---|---|---:|---|---:|---:|---|
 | Q1 | ca1748f0 / 1 | `11303f06` | user; anija_vald:lives | anija_vald (person_mentioned_region) | – | 42 / 4 | grounded | 18.2 / 19.5 | 0.0052 | hea |
 | Q2 | ca1748f0 / 2 | `a3b1a1da` | ema; kose_vald:lives | kose_vald (person_mentioned_region) | – | 58 / 4 | grounded | 17.1 / 19.4 | 0.0059 | hea |
 | Q3 | ca1748f0 / 3 | `e907111f` | user; tartu_vald:other | anija_vald (person_region) | – | 42 / 2 | partial | 17.3 / 18.7 | 0.0063 | ebaõnnestus |
 | Q4 | ca1748f0 / 4 | `ede849e0` | user; noo_vald:lives | noo_vald (person_mentioned_region) | – | 44 / 2 | partial | 10.4 / 11.3 | 0.0052 | hea |
 | Q5 | ca1748f0 / 5 | `5bbff45a` | user; maardu_linn:other | noo_vald (person_region) | – | 44 / 0 | clarification | 14.2 / 14.7 | 0.0055 | ebaõnnestus |
-| Q6 | ca1748f0 / 6 | `7cfe0399` | user; sidumata:unresolved | piirkonda pole (attribution_unresolved) | – | 1 / 1 | partial | 19.2 / 20.9 | 0.0048 | ebaõnnestus |
-| Q7 | ca1748f0 / 7 | `5b8efc5a` | user; sidumata:unresolved | piirkonda pole (attribution_unresolved) | – | 0 / 0 | unsupported | 8.8 / 9.3 | 0.0046 | ebaõnnestus |
+| Q6 | ca1748f0 / 6 | `7cfe0399` | user; serveri kontroll: lahendamata | piirkonda pole (attribution_unresolved) | – | 1 / 1 | partial | 19.2 / 20.9 | 0.0048 | ebaõnnestus |
+| Q7 | ca1748f0 / 7 | `5b8efc5a` | user; serveri kontroll: lahendamata | piirkonda pole (attribution_unresolved) | – | 0 / 0 | unsupported | 8.8 / 9.3 | 0.0046 | ebaõnnestus |
 | Q8 | ca1748f0 / 8 | `16f5e00c` | user; marjamaa_vald:lives | marjamaa_vald (person_mentioned_region) | – | 38 / 3 | partial | 15.4 / 17.9 | 0.0060 | hea |
 | Q9 | ebe11481 / 1 | `033a4456` | user; kohta pole | piirkonda pole | – | 6 / 4 | partial | 9.2 / 11.2 | 0.0054 | osaline |
 | Q10 | ebe11481 / 2 | `3b9ba308` | abivajav laps; kohta pole | piirkonda pole | – | 8 / 2 | grounded | 9.8 / 10.7 | 0.0047 | hea |
@@ -80,12 +82,17 @@ Veerg „Kataloogi piirkond“ näitab, millise omavalitsuse kirjetest otsiti ja
 - **Kataloog otsis siiski elukoha vallast:** Q3 `person_region` = Anija (kasutaja ütles Q1-s „elan Anija vallas“), Q5 `person_region` = Nõo (Q4).
 - **Puhtas vestluses** (R3, R5) oli sama plaan ja kataloogi piirkond `search_plan_region` = küsitud vald; vastus tuli õigesti.
 - See kinnitab Codexi sondiga leitud koodiraja nende kahe pöörde kohta: kui inimese piirkond on teada, ei kasutata teise valla nime allikapiirkonnana, kuigi plaan selle ära tundis.
+- **Parandatud 04.10** ([ADR-074](../rag-v2/adr-074-question-region-not-residence.md), #344): küsitud vald on pöörde allikapiirkond, elukoht jääb alles. Sama muudatus ei lase punkti 2 mainimisel elukohta kustutada ja salvestab edaspidi ka plaani enda kohaseosed.
 
-### 2. Koht jäi plaanis sidumata (Q6, Q7)
+### 2. Koht jäi serveri kohakontrolli järel lahendamata (Q6, Q7)
 
-- Samas pikas vestluses andis plaan Q6 ja Q7 kohta `relation: unresolved`, põhjus `place_not_attributed`. Kataloogi olek oli `region_required`, piirkonda ei valitud.
+- Samas pikas vestluses on Q6 ja Q7 kirjes ainult serveri enda märge: seos `unresolved`, põhjus `place_not_attributed`. Kataloogi olek oli `region_required`, piirkonda ei valitud.
+- **See ei ole plaani antud väärtus.** Plaani skeem lubab ainult `lives`, `not` ja `other`; `place_not_attributed` lisab server, kui praeguse sõnumi kohamainimist ei kata ükski kontrollitud kohaseos. Kirje hoidis ainult kontrolli tulemust, mitte plaani enda kohaseoseid.
+- **Põhjus on teadmata.** Sama tulemuse annavad nii plaan, mis kohta ei nimetanud, kui ka kohaseos, mille server tagasi lükkas (näiteks vale sõnumi number või tsitaat, mida sõnumis pole). Kumb juhtus, kirjest ei selgu.
+- **Q6 kustutas kasutaja elukoha:** salvestatud olekus oli kasutaja piirkond enne Nõo vald ja pärast lahendamata; Q8 („elan Märjamaa vallas“) andis uue elukoha.
 - Q7 sai 0 tõendit ja vastus oli „unsupported“. Puhtas vestluses (R7) oli koht `harku_vald`, `other`, piirkond `search_plan_region` ja vastus andis vormi lingi.
-- See on teine mehhanism kui punktis 1: siin ei jõudnud vald plaanist kaugemale. Miks mudel pikas vestluses kohta ei sidunud, kirjest ei selgu.
+- See on teine mehhanism kui punktis 1: siin ei jõudnud vald serveri kontrollist kaugemale.
+- **Minu esimene sõnastus oli vale:** kirjutasin, et plaan jättis koha sidumata ja mudel ei sidunud kohta. Kirje seda ei näita.
 
 ### 3. Plaan avas varasemad küsimused uuesti (Q12, Q13)
 
@@ -107,6 +114,7 @@ Veerg „Kataloogi piirkond“ näitab, millise omavalitsuse kirjetest otsiti ja
 - **Summa on lähteandmetes olemas.** 78 omavalitsuse lähtefailist 48 sisaldavad toimetulekutoetuse kirjes 2026. aasta summasid 220, 176 ja 264 eurot, sh Anija ja Harku.
 - **Q9** (üldine küsimus, valda ei nimetatud): piirkonda ei valitud, valdade kirjeid ei loetud; kuues tõendis (kõik sotsiaalhoolekande seadusest) summat ei olnud.
 - **Q25b** (isa Harku vallas): Harku toimetulekutoetuse kirje koos summadega oli tõendites ja vastus viitas sellele, aga ütles: „Siin esitatud õigusakt ei anna kehtiva toimetulekupiiri konkreetset summat.“ Summa jäi kasutamata vastuse etapis.
+  - **Mudelile saadetud lause** (pöörde päringust, viide S28, kirje „Toimetulekutoetus“; dokumendi, versiooni ja lõigu tunnused on tõendifailis): „Toetust arvutatakse riikliku toimetulekupiiri alusel: 220 € esimese pereliikme kohta, 176 € iga täisealuse kohta ja 264 € lapse kohta.“ Sama lause oli nii tõendi tekstis kui kirje kokkuvõttes; kirje summa väljal oli lisaks „220 € esimese pereliikme kohta, 176 € iga täisealuse kohta ja 264 € iga alaealise kohta; pere netosissetulek lahutatakse toetuse arvutamisel.“
 - **Minu esimene väide „summa puudub korpusest“ oli vale.** Üleriigiline määr jõuab praegu vastusesse ainult valla kirjelduse kaudu ja ka siis mitte kindlalt.
 
 ### 6. Kaks seadust on eri juhtumid
@@ -127,6 +135,15 @@ Kontrollimata: ajakirja- ja juhendivastuste sisu lähtetekstide vastu (kontrolli
 
 Serveri enda etapiaegade järgi, 31 täispööret: esimene tekst mediaan 12,6 s (8,4–22,7 s), vastus valmis mediaan 14,7 s (9,0–28,2 s). Tervitus: esimene tekst 1,3 s, valmis 1,6 s. Üks katse pöörde kohta.
 
+## Parandused pärast Codexi järelkontrolli (04.10)
+
+Uusi pöördeid ei tehtud; kõik on loetud samadest serveri kirjetest.
+
+- **Q6/Q7:** jaotis 2 ja tabel ei omista lahendamata kohta enam plaanile; põhjus on märgitud teadmata. Lisatud on kirjest loetud elukoha muutus.
+- **Eelvalik:** tõendifailis olid kõigil ridadel eelvaliku kandidaadid ja valik `null`. Nüüd on 31 pöördel loetud lõikude dokumendipealkirjad lugemise järjekorras ja valitud lõikude kohad; tervitusel eelvalikut polnud. `null` ei tähendanud null kandidaati. Lõikude tekste failis ei ole.
+- **Q25b summalause:** mudelile tegelikult saadetud lause koos allika tunnustega on tõendifailis (`excerpts`) ja punktis 5.
+- **Etappide kulud:** plaan 0,00765, vektorid 0,00051, eelvalik 0,07128, vastus 0,08612 USD (enne 0,0073, 0,0714, 0,0861 ja „ümardub nulli“). Kogukulu 0,1656 USD ei muutunud.
+
 ## Mida see raport ei tõenda
 
 - Et kontekst on ebaõnnestumiste ainus põhjus: neli küsimust õnnestusid puhtas vestluses, aga kummaski olukorras on üks katse.
@@ -136,6 +153,6 @@ Serveri enda etapiaegade järgi, 31 täispööret: esimene tekst mediaan 12,6 s 
 ## Järgmised sammud (Codexi järjekorras)
 
 1. ~~Talletada jooksu tõendid ja parandada järeldused.~~ See dokument.
-2. **Eristada küsimuse allikapiirkond inimese elukohast**, kohalike regressioonikontrollidega. Maardu kohta küsimine ei tähenda sinna kolimist ega tohi elukohta üle kirjutada; iga mainitud vald ei saa ka automaatselt võita („elan Nõos, töötan Maardus“). Tasuline jooks ei ole alustamise eeltingimus.
+2. ~~Eristada küsimuse allikapiirkond inimese elukohast, kohalike regressioonikontrollidega.~~ Tehtud 04.10: [ADR-074](../rag-v2/adr-074-question-region-not-residence.md) (#344), mõõtmine samas dokumendis.
 3. Aastata kuupäeva lugemine; üleriigilise määra allikas, mis ei sõltu valla kirjeldusest; puuduva seaduse lisamine eraldi olemasoleva seaduse otsingu kontrollist. Siia kuulub ka punkt 3 ülal: plaan ei peaks juba vastatud küsimusi uuesti otsima.
 4. Kontaktide uus eksport ja indeks on eraldi avaldamistöö oma hinnangu ja loaga. Registri 860 kinnitatud rida ei ole vestluse kontaktide arv: vestluses on avaldatud 376, neist oli 04.10 lubatud 369.
