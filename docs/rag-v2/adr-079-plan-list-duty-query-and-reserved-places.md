@@ -2,7 +2,7 @@
 
 04.10.2026. Teostus Claude Opus 5.5. Omanik 04.10 õhtul: „sa toimeta edasi, kuni vigu ei ole. võid teha teste, raha pole probleem.“ Lähtekoht: [ADR-078](adr-078-search-text-is-the-current-message.md) mõõtmine.
 
-**Mõõtmata selle kirjutamise hetkel.** Tõend on kohalikud testid. Mõõtmine tehakse pärast avaldamist ja tulemus lisatakse jaotisesse „Mõõtmine“.
+**Mõõdetud pärast avaldamist** (jaotis „Mõõtmine“): 10 pööret, 0,0543 USD. Kohustuse päring töötab (viienda pöörde plaan kirjutas ühe päringu kohustuse enda kohta ja vastus nimetab laste ülalpidamiskohustust), aga perekonnaseaduse § 96–97 ei jõudnud ikka kandidaatide hulka. Kolmanda pöörde plaan kordas sama viga; selle jaoks on serveri kaitse ([ADR-080](adr-080-one-query-per-message.md)).
 
 ## Mida mõõtmised näitasid
 
@@ -62,6 +62,27 @@ Eelvaliku juhis, dialoogi ja vastuse juhis, otsinguprofiil, kohtade koguarv. Pla
 - **Kuue koha sisse mahub vähem ühise järjestuse lõike,** kui plaanil on kolm päringut (kuni kolm kohta lähevad päringute lähimatele).
 - **Toimetulekupiiri summa** (esimene pööre) seda muudatust ei vaja ega saa: riigieelarve seaduse summaga lõik ei ole kandidaat, sest § 2 on lõigatud pikkuse järgi. See on eraldi korpuse muudatus.
 
-## Mõõtmine
+## Mõõtmine (04.10.2026, pärast avaldamist)
 
-Tegemata selle kirjutamise hetkel; lisatakse pärast jooksu.
+Samad kolm kataloogi, töötavalt väljalaskelt `fa56b2f1`. Kulu 0,0543 USD plaanihindades. [Tõendifail](../audits/evidence/search-assist-8-measured-2026-10-04.json).
+
+| Kataloog | Pöördeid | Läbis | Enne (ADR-078) |
+|---|---:|---:|---:|
+| Jätkuküsimus | 4 | 4 | 4 |
+| Mis muutub | 1 | 1 | 1 |
+| Viis sidumata küsimust | 5 | 3 | 3 |
+
+- **Plaanid on lühemad:** üheksa plaani kümnest kirjutas ühe päringu (enne kaks või kolm). Jätkuküsimus ja teised pöörded läbisid sellega.
+- **Kolmas pööre kordas viga neljandat jooksu järjest:** kolm päringut, üks iga sõnumi kohta sõnumite järjekorras. Lause „üks päring piisab“ seda ei muutnud. Kolme sõnumi puhul kirjutab plaan päringu igale sõnumile; nelja ja viie sõnumi puhul mitte. Selle mustri jaoks on serveri kaitse (ADR-080).
+- **Viies pööre: kohustuse päring tekkis, õige säte mitte.** Plaan kirjutas ühe päringu: „Täisealise lapse ülalpidamiskohustus vanema hoolduskulude tasumisel“. Kandidaatide hulgas oli 12 perekonnaseaduse lõiku (§ 113–118, 132–133, 157 jt), aga mitte § 96 ega § 97.
+  - Põhjus on sõnavaras: seadus räägib „ülenejatest ja alanejatest sugulastest“, päring lastest ja vanematest. Seda lõhet ei ületa ei sõnaotsing ega vektorotsing.
+  - Eelvalik hoidis artikli „Ülalpidamiskohustus eaka pereliikme seisukohast“ kaks lõiku ja vastus nimetab kohustatud isikute järjekorda (abikaasa, siis täisealised lapsed). Artikkel on vanem kui seaduse praegune sõnastus; seaduse lõiku tõendites ei olnud, seega vastuse õiguslik täpsus on kontrollimata.
+- **Mis muutub:** eelvalik hoidis § 5 mõlemad lõigud mõlemas redaktsioonis ning §-d 3 ja 4; vastus võrdleb sõnastusi ja läbib pärast Codexi ülevaatust lisatud kontrolli.
+- **Esimene pööre:** summat ei tulnud (riigieelarve seaduse kandidaat oli jälle § 2 esimene lõik).
+
+Üks jooks kataloogi kohta.
+
+## Mis jääb lahti
+
+- **Perekonnaseaduse § 96–97 leitavus.** Vajab otsinguabi seaduse lõigu juurde (igapäevakeelne vaste sõnadele „ülenejad ja alanejad sugulased“), mitte uut juhist. Alustamata.
+- **Toimetulekupiiri summa** (korpuse muudatus).

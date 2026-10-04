@@ -572,3 +572,17 @@ test('dialogue state DB (ADR-078): with a plan\'s queries the search text is the
   const fifth = await turn(messages[4], 'same', { queries: 'not a list' });
   assert.deepEqual([fifth.query.text, fifth.query.textBasis ?? null, fifth.assist.failures.map(failure => failure.stage)], [messages.join('\n\n'), null, ['plan']]);
 });
+
+test('dialogue state DB (ADR-080): a plan with one query per message searches with the current message\'s query; the record keeps what was left out', async t => {
+  const turn = await regionConversation(t);
+  const lives = [{ turn: 1, quote: 'Elan Kose vallas', name: 'Kose vald', person: 'user', relation: 'lives' }];
+  await turn('Elan Kose vallas ja mul on raha otsas.', 'new', { queries: ['Kose vald toimetulek'], person: 'user', places: lives });
+  const second = await turn('Kes peab teatama abivajavast lapsest ja kuhu?', 'same', { queries: ['Kose vald toimetulek raha otsas', 'abivajavast lapsest teatamise kohustus'], person: 'user', places: [] });
+  assert.deepEqual([second.assist.queries, second.assist.droppedQueries], [['abivajavast lapsest teatamise kohustus'], ['Kose vald toimetulek raha otsas']]);
+  assert.deepEqual([second.query.text, second.query.textBasis], ['Kes peab teatama abivajavast lapsest ja kuhu?', 'current_message']);
+  // The residence the state holds is untouched: the earlier request's query no longer takes part in the search.
+  assert.deepEqual(second.people.user, ['kose_vald', 'reported']);
+  // A follow-up keeps both of its queries.
+  const third = await turn('Ja mida see teatamine kaasa toob?', 'same', { queries: ['abivajavast lapsest teatamise tagajärjed', 'lastekaitsetöötaja tegevus pärast teadet', 'abivajava lapse hindamine'], person: 'user', places: [] });
+  assert.deepEqual([third.assist.queries.length, third.assist.droppedQueries ?? null], [3, null]);
+});

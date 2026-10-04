@@ -162,6 +162,8 @@ function observe(row, error) {
     // The search plan and the rerank's candidates and choice: why a search check failed, read before the run's
     // conversations are deleted.
     queries: payload.searchAssist?.queries ?? [],
+    // ADR-080: the planned queries the server left out as searches of earlier messages.
+    ...(payload.searchAssist?.droppedQueries?.length ? { droppedQueries: payload.searchAssist.droppedQueries } : {}),
     // The greeting route: no search plan and no search were made for this turn.
     greeting: payload.searchAssist?.greeting === true,
     rerank: rerankOf(payload.searchAssist?.rerank),
