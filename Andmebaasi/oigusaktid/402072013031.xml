@@ -24,15 +24,15 @@
  
  
  
- <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2013-07-02</avaldamineKuupaev><RTaasta>2013</RTaasta><RTartikkel>31</RTartikkel><aktViide>402072013031</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2013-07-05+03:00</kehtivuseAlgus></kehtivus><versioon>
+ <avaldamismarge><RTosa>RT IV</RTosa><avaldamineKuupaev>2013-07-02</avaldamineKuupaev><RTaasta>2013</RTaasta><RTartikkel>31</RTartikkel><aktViide>402072013031</aktViide></avaldamismarge><kehtivus><kehtivuseAlgus>2013-07-05+03:00</kehtivuseAlgus><kehtivuseLopp>2026-10-03+03:00</kehtivuseLopp></kehtivus><versioon>
   <dokumentVersioon>1</dokumentVersioon>
   <dokumentVersioonKuupaev>2013-06-28</dokumentVersioonKuupaev>
  </versioon>
  <skeemiNimi>maarus_1_10.02.2010.xsd</skeemiNimi>
  <globaalID>402072013031</globaalID>
- <metaandmedVersioon>6</metaandmedVersioon>
- <metaandmedVersioonKuupaev>2013-07-01</metaandmedVersioonKuupaev>
- <metaandmedVersioonPohjustaja>Marike Võime</metaandmedVersioonPohjustaja>
+ <metaandmedVersioon>7</metaandmedVersioon>
+ <metaandmedVersioonKuupaev>2026-09-30</metaandmedVersioonKuupaev>
+ <metaandmedVersioonPohjustaja>Gerly Kuivkaev</metaandmedVersioonPohjustaja>
  
  <terviktekstiGrupiID>1015063</terviktekstiGrupiID><eesmark>Määruse raamskeem XML struktuuri koostamiseks</eesmark>
 <versiooniMuutus><dokumentEtapp>avaldamine</dokumentEtapp><dokumentStaatus>esitatud avaldamiseks</dokumentStaatus><metaandmedVersioon>1</metaandmedVersioon><metaandmedVersioonKuupaev>2013-06-28</metaandmedVersioonKuupaev><metaandmedVersioonPohjustaja>Natalja Gorbunova</metaandmedVersioonPohjustaja></versiooniMuutus></metaandmed>
