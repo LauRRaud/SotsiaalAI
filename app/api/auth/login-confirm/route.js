@@ -153,6 +153,10 @@ function htmlResponse(
     <style>
       :root { color-scheme: dark; }
       *, *::before, *::after { box-sizing: border-box; }
+      /* Kerimisribad on platvormil kõikjal peidetud (base.css); see leht on
+         eraldiseisev HTML ega päri seda reeglit. */
+      html { scrollbar-width: none; -ms-overflow-style: none; }
+      html::-webkit-scrollbar { display: none; }
       body {
         margin: 0;
         min-height: 100vh;

@@ -17,11 +17,16 @@ const STATIC_CACHE = `field-static-${SW_VERSION}`;
 const SHELL_CACHE = `field-shell-${SW_VERSION}`;
 const KNOWN_CACHES = [STATIC_CACHE, SHELL_CACHE];
 
+// Standalone page: it inherits nothing from the app's stylesheets, so the
+// platform rules are repeated here by hand. The background is the one the
+// sign-in confirmation pages use, scrollbars are hidden as everywhere on the
+// site (base.css), and the body is border-box so its padding does not push
+// the page 48px past the viewport.
 const OFFLINE_FALLBACK_HTML = `<!doctype html>
 <html lang="et"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sotsiaal.pro — võrguta</title>
-<style>body{font-family:system-ui,sans-serif;background:#140b07;color:#f5ede4;display:flex;min-height:100vh;align-items:center;justify-content:center;margin:0;padding:24px;text-align:center}main{max-width:28rem}h1{font-size:1.25rem}</style>
+<style>html{scrollbar-width:none;-ms-overflow-style:none}html::-webkit-scrollbar{display:none}body{box-sizing:border-box;font-family:system-ui,sans-serif;background:linear-gradient(180deg,#0d0d0d 0%,#161616 100%);color:#f5ede4;display:flex;min-height:100vh;min-height:100dvh;align-items:center;justify-content:center;margin:0;padding:24px;text-align:center}main{max-width:28rem}h1{font-size:1.25rem}</style>
 </head><body><main><h1>Oled võrguta</h1>
 <p>See leht vajab ühendust. Välitöö vaade <a style="color:#e8b98a" href="/valitoo">/valitoo</a> töötab võrguta, kui oled seda varem avanud.</p>
 </main></body></html>`;
