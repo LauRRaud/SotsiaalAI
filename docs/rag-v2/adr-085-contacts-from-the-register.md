@@ -32,7 +32,7 @@ Iga omavalitsus saab ressursikirje „Sotsiaalvaldkonna kontaktid: <omavalitsus>
 
 - **Midagi ei oletata:** ühtegi teenust ei seota inimesega ameti või nime järgi.
 - Kirjeldus nimetab registris olevad ametid („Ametid: lastekaitsespetsialist, sotsiaaltööspetsialist“), et ameti kohta käiv küsimus kirje üles leiaks.
-- **Suur omavalitsus (üle 60 kontakti) loetletakse osakondade kaupa:** iga vähemalt viie kontaktiga osakond saab oma kirje, ülejäänud jäävad üldkirjesse; üle 60 kontaktiga rühm jagatakse võrdseteks osadeks. Põhjus on kontekstieelarve: umbes 50 tokenit kontakti kohta, 12 000 tokenit kogu kirjete kontekstile.
+- **Üle 12 kontaktiga omavalitsus loetletakse osakondade kaupa:** iga vähemalt kolme kontaktiga osakond saab oma kirje, ülejäänud jäävad üldkirjesse; üle 12 kontaktiga rühm jagatakse võrdseteks osadeks ametite järjekorras, nii et ühes osas on sama ametiga inimesed ja kirjeldus nimetab just neid ameteid. Põhjus on kontekstieelarve (jaotis „Korpus v52“): kontakt võtab umbes 150 tokenit, kirjete kontekst on 12 000 tokenit.
 - Kirjete nimed on püsivad (omavalitsus ja osakonna nime räsi), nii et järgmine eksport asendab sama kirje.
 
 ### Mida ei muudetud
@@ -67,6 +67,22 @@ Esimene eksport päris andmetel (avaldamata) näitas kaht asja, mida väljamõel
 - **Sama inimene on registris mitmel real** (iga lehe või teeninduskoha kohta oma rida): 480 eksporditud reast 97 kordasid inimest, üks Tallinna sektorijuht 18 korda. Nüüd on üks inimene üks kontakt: sama omavalitsuse read, millel on sama nimi, telefon ja e-post, on sama inimene. Teda esindab rida, mille seotud dokument on hoidlas olemas, muidu esimene rida. Sama nimi teise telefoniga jääb eraldi kontaktiks.
 - **Kontakti kontroll luges kehtivusreeglit iga kontakti jaoks uuesti** (viimase kontrolli kirje, umbes 15 ms kontakti kohta; mõõdetud Pärnus 25 kontakti = 0,4 s). Tallinna kontaktidega oleks see olnud üle sekundi pöörde kohta. Reegel loetakse nüüd kuni viieks sekundiks üks kord; iga kontakti enda rida loetakse endiselt iga kord.
 
-## Käivitus
+## Korpus v52 ja mida see näitas (04.10 kell 22.50)
 
-Tegemata selle kirjutamise hetkel; lisatakse pärast eksporti ja korpuse täiendust.
+- **Tallinna read seotud omavalitsusega:** 253 rida (`municipalityId`), iga rea kohta auditikirje `SERVICE_MAP_CONTACT_CORRECTION`; registri reegli järgi revisjon +1 ja kontroll uuesti. Kontaktikontroll pärast seda: 869 kinnitatud rida.
+- **Eksport:** 869 kinnitatud rida, 19 ilma telefoni ja e-postita, 97 sama inimese kordust; 370 inimest jätsid oma senise dokumendi, 383 said uue kontaktikirje; 66 omavalitsust, 75 kontaktide kirjet.
+- **Korpus v52:** 458 dokumenti, 850 sisendit, 118 838 tokenit, 0,0154 USD (usage `pilot_f5166dc6…`); indeks `d0684ad3` (6932 dokumenti, 41 488 lõiku), plaan `/etc/sotsiaalai/m4-corpus-chat-20261004e.json`.
+- **Tasuta kontroll kirjete rajal** (küsimus sotsiaaltööspetsialisti kohta, sõnaotsingu kanal, ilma mudelita):
+  - piirid peavad (suurim Tallinn: 219 dokumenti), vigu ei ole; uute kontaktide luba kehtib (Tallinn 110/110);
+  - kiirus: Tallinn 110 kontaktiotsust 0,55 s;
+  - **väikestes omavalitsustes kontaktid paistavad** (Võru 8, Anija 8, Nõo 2), **suurtes mitte** (Tallinn, Tartu, Pärnu, Valga: 0). 35–53 kontaktiga kirje avamine ei mahu eelarvesse ja rada loobus siis kõigist kolmest automaatselt avatud kirjest korraga.
+
+## Parandus pärast v52
+
+- Kontaktide kirjes on kuni 12 kontakti (vt „Otsus“ punkt 3).
+- **Kirjete rada loobub avatud kirjetest ükshaaval** (`structured-record-source.js`): kui kolm küsimusele lähimat kirjet täies mahus ei mahu, proovitakse kahte, siis ühte, ja alles siis mitte ühtegi. Enne loobuti kõigist kolmest. See puudutab iga pööret, kus kolm avatud kirjet eelarvesse ei mahu: nüüd jääb sinna rohkem infot, mitte vähem. Paketi kuju ja versioon ei muutu.
+- Raja muudatusel kohalikku ühiktesti ei ole (raja testid on integratsioonitestid); kontroll on sama tasuta mõõtmine serveris pärast avaldamist.
+
+## Käivitus pärast parandust
+
+Tegemata selle kirjutamise hetkel; lisatakse pärast uut eksporti ja korpuse täiendust v53.
