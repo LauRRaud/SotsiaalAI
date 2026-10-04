@@ -85,6 +85,15 @@ test('"role - name" paragraphs, each with its own e-mail', () => {
   assert.deepEqual(people.map(person => [person.name, person.role]), [['Epp Eha', 'Lastekaitse spetsialist'], ['Uku Urb', 'Eakate hoolekande spetsialist']]);
 });
 
+test('a capitalised job title in front of the name is the role, not a first name', () => {
+  const { people } = extractStaffFromHtml(page(`<h2>Sotsiaalhoolekanne</h2><div class="node__content">
+    <p>Spetsialist Mari Maasikas<br>Telefon: 5550 0023<br><a href="mailto:mari.maasikas@example.invalid">mari.maasikas@example.invalid</a></p>
+    <p>Juhataja Anna-Liisa Tuvi<br>Telefon: 5550 0024<br><a href="mailto:annaliisa.tuvi@example.invalid">annaliisa.tuvi@example.invalid</a></p>
+    <p>Mari Liis Karst<br>Telefon: 5550 0025<br><a href="mailto:mari.karst@example.invalid">mari.karst@example.invalid</a></p></div>`));
+  // A three-word name stays whole: "Karst" ends like "arst" and is a surname all the same.
+  assert.deepEqual(people.map(person => [person.name, person.role]), [['Mari Maasikas', 'Spetsialist'], ['Anna-Liisa Tuvi', 'Juhataja'], ['Mari Liis Karst', null]]);
+});
+
 test('a one-person page laid out as a form: the role is the value of "Ametikoht", not a label or a link text', () => {
   const person = one(`<h1>Siim Saar</h1><table><tr><td>Eesnimi</td><td>Siim</td></tr><tr><td>Perekonnanimi</td><td>Saar</td></tr>
     <tr><td>Ametikoht</td><td>lapse heaolu spetsialist</td></tr><tr><td>E-post</td><td><a href="mailto:siim.saar@example.invalid">siim.saar@example.invalid</a></td></tr>
@@ -147,6 +156,9 @@ test('an e-mail written with "(ät)" in the text of the card (Rapla)', () => {
     <p class="ankur has-medium-font-size">Anna-Liisa Tuvi</p><p class="ankur has-small-font-size">eestkostespetsialist</p></div>
     <div class="wp-block-column"><p>annaliisa.tuvi(ät)example.invalid</p><p>5550 0021</p><details><summary>täiendav info</summary></details></div></div>`);
   assert.deepEqual([person.name, person.role, person.emails, person.phones], ['Anna-Liisa Tuvi', 'eestkostespetsialist', ['annaliisa.tuvi@example.invalid'], ['55500021']]);
+  // The same in curly brackets (Haapsalu).
+  const curly = one(`<div class="wp-block-columns kontaktimuster"><p class="ankur">Siim Saar</p><p class="ankur">sotsiaaltööspetsialist</p><p>siim.saar{ätt}example.invalid</p><p>5550 0022</p></div>`);
+  assert.deepEqual([curly.emails, curly.phones], [['siim.saar@example.invalid'], ['55500022']]);
 });
 
 test('the social field is read from the role or from the department heading, not from look-alike words', () => {
@@ -157,4 +169,11 @@ test('the social field is read from the role or from the department heading, not
     assert.equal(isSocialFieldStaff({ role, section: 'Vallavalitsus' }), false, role);
   assert.equal(isSocialFieldStaff({ role: 'sekretär', section: 'Sotsiaal- ja tervishoiuosakond' }), true);
   assert.equal(isSocialFieldStaff({ role: null, section: null }), false);
+  // Social media and a party are not the social field; a council committee and its members are not staff; a driver
+  // of the social department is a support job.
+  for (const role of ['sotsiaalmeedia spetsialist', 'Sotsiaaldemokraatliku Erakonna fraktsiooni nõunik', 'sotsiaal- ja tervishoiukomisjoni liige', 'volikogu liige, sotsiaalkomisjoni esimees',
+    'linnavalitsuse liige (sotsiaaltöö)', 'sotsiaalteenistuse bussijuht'])
+    assert.equal(isSocialFieldStaff({ role, section: 'Vallavalitsus' }), false, role);
+  assert.equal(isSocialFieldStaff({ role: 'esimees', section: 'Sotsiaalkomisjon' }), false);
+  assert.equal(isSocialFieldStaff({ role: 'sotsiaalmeedia ja sotsiaaltöö spetsialist', section: null }), true);
 });
