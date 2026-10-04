@@ -26291,7 +26291,8 @@
       "review_status": "version_and_jurisdiction_validation_pending",
       "xml_sections": [
         "2"
-      ]
+      ],
+      "xml_units": "subsection"
     },
     {
       "path": "oigusaktid/130062026020.xml",

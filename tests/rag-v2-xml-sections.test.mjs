@@ -35,7 +35,7 @@ const read = async ({ dir, entry }) => (await ingest({ tenant, inputRoot: dir, m
 test('the committed register names § 2 of the State Budget Act, and the file is Riigi Teataja\'s own bytes', async () => {
   const register = JSON.parse(await fs.readFile('Andmebaasi/REGISTER.json', 'utf8'));
   const entry = register.entries.find(item => item.path === `oigusaktid/${BUDGET}.xml`);
-  assert.deepEqual([entry.role, entry.xml_sections, entry.original_path], ['source', ['2'], `riigiteataja.ee/et/akt/${BUDGET}.xml`]);
+  assert.deepEqual([entry.role, entry.xml_sections, entry.xml_units, entry.original_path], ['source', ['2'], 'subsection', `riigiteataja.ee/et/akt/${BUDGET}.xml`]);
   assert.equal(hash(await fs.readFile(path.join('Andmebaasi', entry.path))), entry.sha256);
   // No other registered source selects sections: every other act is read whole, as before.
   assert.deepEqual(register.entries.filter(item => item.xml_sections !== undefined).map(item => item.path), [entry.path]);
@@ -127,4 +127,71 @@ test('an act without a selection is read as before; a selection on it reads that
   assert.deepEqual(legal(part).history, legal(whole).history);
   assert.deepEqual(legal(part).structure, []);
   assert(DEFAULT_CONFIG.maxTextChars < 4000000);
+});
+
+// ADR-082: the register may ask a selected section to be read subsection by subsection (xml_units: "subsection").
+test('ADR-082: read by subsection, the passage with the amount is the whole of its subsection, opening words and all', async () => {
+  const source = await registry('budget-units', BUDGET, { xml_sections: ['2'], xml_units: 'subsection' });
+  const metadata = await registeredSource(source.dir, source.entry);
+  assert.deepEqual(metadata.source_selector, { xml_sections: ['2'], xml_units: 'subsection' });
+  const bundle = await read(source);
+  assert.deepEqual(bundle.source_units.map(unit => unit.locator.path), Array.from({ length: 9 }, (_, index) => `/oigusakt[1]/sisu[1]/paragrahv[2]/loige[${index + 1}]`));
+  assert.deepEqual([...new Set(bundle.sections.map(section => section.title).filter(Boolean))], ['§ 2. Seadustest tulenevate määrade ja piirsummade kehtestamine']);
+  // Before: the section was one unit cut by length, the amount in a passage that began in the middle of the list and
+  // the subsection's opening words in the passage before it.
+  const amount = bundle.chunks.filter(chunk => /toimetulekupiir\s220\seurot/u.test(chunk.source_text));
+  assert.equal(amount.length, 1);
+  assert.match(amount[0].source_text, /^\(5\)\s+Sotsiaalhoolekande seaduse alusel kehtestatavad määrad on järgmised:/u);
+  assert.match(amount[0].retrieval_text, /> § 2\. Seadustest tulenevate määrade ja piirsummade kehtestamine\n\n\(5\) Sotsiaalhoolekande seaduse alusel/u);
+  // Each subsection is passages of its own: only the long subsection 7 is cut, and no passage holds two subsections.
+  const subsection = chunk => bundle.source_units.find(unit => unit.raw_text.includes(chunk.source_text)).locator.path.match(/loige\[(\d+)\]$/u)[1];
+  assert.deepEqual(bundle.chunks.map(subsection), ['1', '2', '3', '4', '5', '6', '7', '7', '8', '9']);
+  // The same file and section without the field is another version of the document, read as before: one unit.
+  const plain = await read(await registry('budget-plain', BUDGET, { xml_sections: ['2'] }));
+  assert.deepEqual([plain.source_units.length, plain.version.id === bundle.version.id, plain.document.id === bundle.document.id], [1, false, true]);
+  // The field stands only beside a selection of sections and has one value.
+  for (const [name, extra] of [['alone', { xml_units: 'subsection' }], ['other', { xml_sections: ['2'], xml_units: 'point' }], ['flag', { xml_sections: ['2'], xml_units: true }]]) {
+    const bad = await registry(`units-${name}`, BUDGET, extra);
+    await assert.rejects(registeredSource(bad.dir, bad.entry), error => error.code === 'invalid_source_selector', name);
+  }
+  // A municipal act's section with a note: the note stands in the subsection that holds its provision, at the same place.
+  const whole = await read(await registry('act-whole-units', MARJAMAA)), part = await read(await registry('act-part-units', MARJAMAA, { xml_sections: ['3'], xml_units: 'subsection' }));
+  const third = whole.source_units.find(unit => unit.locator.path === '/oigusakt[1]/sisu[1]/paragrahv[3]');
+  assert.deepEqual(part.source_units.map(unit => unit.locator.path), [1, 2, 3].map(number => `${third.locator.path}/loige[${number}]`));
+  assert(part.source_units.every(unit => third.raw_text.includes(unit.raw_text)));
+  assert.deepEqual([third.amendments.length, third.amendments[0].offset], [1, third.raw_text.length]);
+  const note = ({ offset: _offset, path: _path, ...rest }) => rest;
+  assert.deepEqual(part.source_units.map(unit => (unit.amendments || []).map(item => [note(item), item.offset === unit.raw_text.length])), [[], [], [[note(third.amendments[0]), true]]]);
+});
+
+test('ADR-082 on a made-up act: by subsection only where the section\'s whole text stands in subsections; a repealed subsection is left out, its note listed', async () => {
+  const { parseTextSource } = await import('../lib/rag-v2/text-source.js');
+  const mark = (words, rt) => `<muutmismarge><aktikuupaev>2025-05-20</aktikuupaev><avaldamismarge><RTosa>RT I</RTosa><avaldamineKuupaev>2025-06-01</avaldamineKuupaev><RTartikkel>${rt}</RTartikkel><aktViide>10106202500${rt}</aktViide></avaldamismarge><joustumine>2025-07-01</joustumine><tavatekst>${words}</tavatekst></muutmismarge>`;
+  const sub = (number, body) => `<loige><loigeNr>${number}</loigeNr><kuvatavNr>(${number})</kuvatavNr><sisuTekst>${body}</sisuTekst></loige>`;
+  const section = (number, title, body) => `<paragrahv><paragrahvNr>${number}</paragrahvNr><kuvatavNr>§ ${number}.</kuvatavNr><paragrahvPealkiri>${title}</paragrahvPealkiri>${body}</paragrahv>`;
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt><metaandmed><valjaandja>Riigikogu</valjaandja><dokumentLiik>seadus</dokumentLiik><globaalID>100000000001</globaalID>
+<kehtivus><kehtivuseAlgus>2026-01-01</kehtivuseAlgus></kehtivus></metaandmed><aktinimi><nimi><pealkiri>Näidisseadus</pealkiri></nimi></aktinimi><sisu>
+${section(1, 'Määrad', mark('Pealkiri muudetud', 1) + sub(1, '<tavatekst>Esimene määr on 10 eurot.</tavatekst>') + sub(2, mark('Kehtetu -', 2))
+    + sub(3, `<tavatekst>Kolmas määr on 30 eurot.</tavatekst>${mark('Määr muudetud', 3)}`))}
+${section(2, 'Lõigeteta', '<sisuTekst><tavatekst>Selle paragrahvi tekst ei seisa lõigetes.</tavatekst></sisuTekst>')}
+${section(3, 'Üks lõige', sub(1, '<tavatekst>Ainus lõige.</tavatekst>'))}
+</sisu></oigusakt>`;
+  const read = selector => parseTextSource(Buffer.from(xml), 'xml', { title: 'Näidisseadus', ...(selector ? { source_selector: selector } : {}) }, { tenant_id: tenant, document_version_id: 'made-up' }, DEFAULT_CONFIG);
+  const paths = result => result.structured.source_units.map(unit => unit.locator.path.replace('/oigusakt[1]/sisu[1]/', ''));
+  const all = ['1', '2', '3'], selected = read({ xml_sections: all, xml_units: 'subsection' });
+  // § 1 by subsection, without the repealed one; § 2 (text outside subsections) and § 3 (one subsection) whole.
+  assert.deepEqual(paths(selected), ['paragrahv[1]/loige[1]', 'paragrahv[1]/loige[3]', 'paragrahv[2]', 'paragrahv[3]']);
+  const [first, third] = selected.structured.source_units;
+  assert.deepEqual([first.raw_text, first.amendments ?? null], ['(1)\n\nEsimene määr on 10 eurot.', null]);
+  assert.deepEqual([third.raw_text, third.amendments.map(item => [item.provision, item.act_reference, item.offset])], ['(3)\n\nKolmas määr on 30 eurot.', [['§ 1 lg 3', '101062025003', third.raw_text.length]]]);
+  // The notes outside the subsections that were read (the title's, the repealed subsection's) are listed, not dropped.
+  assert.deepEqual(selected.parsed.legal_text.structure.map(item => [item.target, item.act_reference, item.repeal ?? false]), [['§ 1', '101062025001', false], ['§ 1 lg 2', '101062025002', true]]);
+  // The selection alone, and no selection: every section is one unit, as before, the repealed subsection's word in its text.
+  for (const result of [read({ xml_sections: all }), read(null)]) {
+    assert.deepEqual(paths(result), ['paragrahv[1]', 'paragrahv[2]', 'paragrahv[3]']);
+    assert.match(result.structured.source_units[0].raw_text, /\(2\)\s+Kehtetu\./u);
+    assert.equal(result.structured.source_units[0].amendments.length, 3);
+  }
+  assert.throws(() => read({ xml_units: 'subsection' }), error => error.code === 'invalid_source_selector');
 });
