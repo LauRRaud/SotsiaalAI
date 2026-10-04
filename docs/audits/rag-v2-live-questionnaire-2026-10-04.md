@@ -155,4 +155,5 @@ Uusi pöördeid ei tehtud; kõik on loetud samadest serveri kirjetest.
 1. ~~Talletada jooksu tõendid ja parandada järeldused.~~ See dokument.
 2. ~~Eristada küsimuse allikapiirkond inimese elukohast, kohalike regressioonikontrollidega.~~ Tehtud 04.10: [ADR-074](../rag-v2/adr-074-question-region-not-residence.md) (#344), mõõtmine samas dokumendis.
 3. Aastata kuupäeva lugemine; üleriigilise määra allikas, mis ei sõltu valla kirjeldusest; puuduva seaduse lisamine eraldi olemasoleva seaduse otsingu kontrollist. Siia kuulub ka punkt 3 ülal: plaan ei peaks juba vastatud küsimusi uuesti otsima.
+   - Tehtud 04.10: aastata kuupäev ([ADR-075](../rag-v2/adr-075-date-without-year-is-a-period.md), mõõdetud üks pööre); üleriigilise määra allikas ja puuduv seadus (korpus v49, [ADR-076](../rag-v2/adr-076-act-sections-as-source.md), mõõdetud Q9 ja Q12 uuesti: mõlemad läbisid). Tegemata: juba vastatud küsimuste uuesti otsimine; perekonnaseaduse lõiguvalik (Q13).
 4. Kontaktide uus eksport ja indeks on eraldi avaldamistöö oma hinnangu ja loaga. Registri 860 kinnitatud rida ei ole vestluse kontaktide arv: vestluses on avaldatud 376, neist oli 04.10 lubatud 369.

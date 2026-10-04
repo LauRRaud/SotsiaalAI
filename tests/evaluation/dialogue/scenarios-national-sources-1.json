@@ -7,7 +7,9 @@
   "cited / valid_on": "answer: it has a source block that cites the named act, and every national legal text it cites is cited in a version in force today",
   "must": "answer: the subsistence level's amount for the first family member as the State Budget Act sets it (220 euros); for the disability question the authority that establishes the severity (Sotsiaalkindlustusamet, § 2³ of the act). The amounts for the other family members (176 and 264 euros) are in no national text: 80 and 120 per cent are in the Social Welfare Act, so whether the answer gives them is read from the answer and not required. Read the whole answer as well, a pattern is a coarse check"
  },
- "history": [],
+ "history": [
+  "04.10.2026, first run (commit 7332eaa9, corpus v49, plan m4-corpus-chat-20261004b): the catalogue as written before any run, 2 turns: 2 passed, 0.0104 USD. The subsistence level answer cites the State Budget Act and the Social Welfare Act and gives 220, 176 and 264 euros; the disability answer cites the act's version in force and a study (docs/audits/evidence/national-sources-measured-2026-10-04.json)."
+ ],
  "scenarios": [
   {
    "id": "subsistence-level-no-municipality",

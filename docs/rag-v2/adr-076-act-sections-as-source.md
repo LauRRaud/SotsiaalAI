@@ -2,7 +2,7 @@
 
 04.10.2026. Teostus Claude Opus 5.5. Omanik 04.10: „Valmista ette korpuse täiendus v49 (puuduv seadus, üleriigiline määr)“. Lähtekoht: [päris vestluse küsimustik 04.10](../audits/rag-v2-live-questionnaire-2026-10-04.md), jaotised 5 ja 6, ning Codexi järjekorra punkt 3.
 
-**Seis: ostetud ja aktiivne (04.10.2026 16:59 EEST), omaniku loal.** 51 sisendit, 25 275 tokenit, 0,0033 USD. Indeks `f3c7ed7a` (6474 dokumenti), vestlusplaan `m4-corpus-chat-20261004b.json`. Mõju vastustele on mõõtmata.
+**Seis: ostetud ja aktiivne (04.10.2026 16:59 EEST), omaniku loal.** 51 sisendit, 25 275 tokenit, 0,0033 USD. Indeks `f3c7ed7a` (6474 dokumenti), vestlusplaan `m4-corpus-chat-20261004b.json`. **Mõõdetud kaks pööret** (jaotis „Mõõtmine“): mõlemad läbisid, 0,0104 USD; toimetulekupiiri vastus annab nüüd summad ja viitab riigieelarve seadusele, puude raskusastme vastus viitab kehtivale seadusele.
 
 ## Probleem
 
@@ -59,7 +59,7 @@
 
 ## Piirid
 
-- **Mõõtmata.** Kas vestlus pärast aktiveerimist toimetulekupiiri ja puuetega inimeste toetuste küsimustele paremini vastab, näitab ainult päris pööre. See on tasuline ja vajab eraldi luba.
+- **Üks katse küsimuse kohta.** Mõõtmine ei erista allika mõju mudeli kõikumisest. Puude raskusastme küsimus oli küsimustikus vestluse neljas sõnum, siin esimene: kaks jooksu erinevad ka konteksti poolest.
 - **Summa lõik ei nimeta seadust.** § 2 on üks pikk paragrahv ja lõigatakse pikkuse järgi neljaks. Lõik summaga algab punktist 3; sissejuhatav lause „Sotsiaalhoolekande seaduse alusel kehtestatavad määrad on järgmised“ on eelmises lõigus. Lõigu pealkiri (§ 2 „Seadustest tulenevate määrade ja piirsummade kehtestamine“) on kaasas. Sama kehtib iga pika paragrahvi kohta igas aktis.
 - **176 ja 264 eurot ei ole üheski üleriigilises tekstis.** Riigieelarve seadus annab 220 eurot; 80% ja 120% on SHS-is. Vastus peab need kokku panema või jääb valla kirje juurde.
 - **Aastavahetus.** Registreeritud redaktsioon lõpeb 31.12.2026. 2027. aasta määrad on teises aktis („2027. aasta riigieelarve seadus“), mis tuleb lisada käsitsi koos väljaga `xml_sections`, enne 01.01.2027. 2026. aasta seaduse 2027. aastal kehtiva redaktsiooni (118122025023) leiab kehtivuse kontroll ise ja see pärib valiku.
@@ -76,6 +76,20 @@ Omanik 04.10: „jah“ küsimusele, kas lubada ost ja aktiveerimine (51 sisendi
 - **Aktiveerimine uue avaldamisviisiga on nüüd päris täiendusega tehtud.** Skript aktiveeris plaani nii `rag.env`-is kui töötava väljalaske env-failis, kontrollis (`ready`), taaskäivitas teenuse ja trükkis `running plan: /etc/sotsiaalai/m4-corpus-chat-20261004b.json`. Väljalaske env-failis on üks plaanirida.
 - **Pärast jooksu:** teenus aktiivne, leht vastab, hoidla pea serveris `84f71b2a` (sama mis sülearvutis), `docs/rag-v2/legal-acts-in-index.json` uuendatud (523 akti). Serveri ketas 93% (4,4 GB vaba).
 
+## Mõõtmine (04.10.2026, pärast aktiveerimist)
+
+Omaniku luba 04.10 („jah“ küsimusele, kas teha kahe küsimusega kontroll, umbes 0,01 USD). Kataloog `tests/evaluation/dialogue/scenarios-national-sources-1.json` on kirjutatud ja kohalikult salvestatud enne jooksu; küsimused on küsimustiku Q9 ja Q12 sõna-sõnalt, kumbki oma vestluse esimese sõnumina. Jooks töötavalt väljalaskelt `7332eaa9`, `--auto-modes`, `--max-usd 0.02`. [Tõendifail](../audits/evidence/national-sources-measured-2026-10-04.json).
+
+| Küsimus | Enne (küsimustik 04.10) | Nüüd |
+|---|---|---|
+| Kui suur on toimetulekupiir ja kuidas toimetulekutoetust arvutatakse? | tõendites kuus SHS-i lõiku, summat ei olnud; vastus: „ei saa öelda täpset eurodes suurust“ | leitud ja viidatud 2026. aasta riigieelarve seadus (kehtiv redaktsioon) ja SHS; vastus: 220 eurot, järgmine täisealine 176, laps 264 eurot; arvutuskäik SHS-ist |
+| Kuidas määratakse täisealisele puude raskusaste? | seadust indeksis polnud; vastus viitas uuringule ja küsis tagasi | leitud ja viidatud puuetega inimeste sotsiaaltoetuste seadus (kehtiv redaktsioon 01.10.2026–31.01.2027) ja uuring; vastus: tuvastab Sotsiaalkindlustusamet, tööealise ja vanaduspensioniealise erinev alus, taotlus ametile või Töötukassa kaudu; tagasi ei küsinud |
+
+- **Kontrollid:** kummalgi seitse, kõik läbisid: piirkonda ei valitud, akt on leitud ja viidatud, leitud ja viidatud redaktsioon kehtib täna, vastuses on 220 ning Sotsiaalkindlustusamet.
+- **176 ja 264 eurot** pani vastus kokku riigieelarve seaduse 220 eurost ja SHS-i 80 ja 120 protsendist; kataloog seda ei nõudnud.
+- **Kulu ja aeg:** 0,0058 ja 0,0046 USD plaanihindades; 18,2 ja 16,2 s.
+- **Kontrollimata:** vastuste ülejäänud väited lähtetekstide vastu (arvutuskäigu üksikasjad, „suurima piiranguga valdkond“ puude hindamisel). 01.02.2027 jõustuvat seaduse redaktsiooni leitud allikate hulgas ei olnud; kas see tuleb välja, kui küsida 2027. aasta kohta, ei ole proovitud.
+
 ## Järgmine samm
 
-Mõõta omaniku loal kaks küsimust päris vestluses: toimetulekupiir ilma vallata (küsimustiku Q9) ja puuetega inimeste toetus (Q12). Umbes 0,01 USD.
+Lisada 2027. aasta riigieelarve seaduse § 2 enne 01.01.2027. Küsimustikust on lahti: plaan otsib juba vastatud küsimusi uuesti; „mis muutub“ küsimus ei saa kahe redaktsiooni lõike kõrvuti ([ADR-075](adr-075-date-without-year-is-a-period.md)).
