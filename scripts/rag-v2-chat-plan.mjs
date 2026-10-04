@@ -1,11 +1,16 @@
 // Builds, checks and (with --activate) switches the chat page to an approved RAG v2 dialogue plan over
 // one tenant's active search generation: open questions, typed dialogue state, the unified retrieval
-// route and the municipal catalogue, bounded by a money cap. Run on the server from the app root:
-//   sudo -n env $(sudo -n cat /etc/sotsiaalai/rag.env | xargs) node --import ./scripts/register-node-source-loader.mjs \
+// route and the municipal catalogue, bounded by a money cap. Run on the server in the running release's directory with
+// that release's env file, so the plan is bound to the code and the settings the service runs:
+//   R=$(systemctl show -p WorkingDirectory --value sotsiaalai-frontend); cd $R
+//   sudo -n node --env-file=/etc/sotsiaalai/releases/${R##*/}.env --import ./scripts/register-node-source-loader.mjs \
 //     scripts/rag-v2-chat-plan.mjs --tenant sotsiaalai-corpus --profile hybrid-estnltk-chat-v1 \
 //     --template /etc/sotsiaalai/m4-luna6-20260923.json --out /etc/sotsiaalai/m4-corpus-chat-20260927.json \
 //     --budget-usd 3 --basis "<owner instruction>" [--activate]
 // The template supplies only the approved user, account project and prices. Nothing is sent to a provider.
+// --activate writes rag.env, which the next release's env file is made from. The running release reads only its own
+// env file: `scripts/rag-v2-plan-release.mjs activate --plan <out> --rag-env <that file>` and a restart bring the plan
+// to it (scripts/rag-v2-corpus-run.sh does both; docs/rag-v2/runbook-corpus-increment.md, section 9).
 // A release renews the active plan for its own code without this script (scripts/rag-v2-plan-release.mjs, ADR-037).
 import fs from 'node:fs/promises';
 import { parseArgs } from 'node:util';

@@ -6,8 +6,9 @@
 // Prints the cards and excerpts that carry dates, the tokens they take against their cap, any cap hit, which
 // provisions of each act the evidence holds, and the audit packet's bytes (as stored, as it would be stored now, and as
 // the 512000 limit counts it: without the dates). Reads only; no search, no model call, no embedding call, no write.
-//   server, a stored turn and the active index generation:
-//     sudo -n node --env-file=/etc/sotsiaalai/frontend.env --env-file=/etc/sotsiaalai/rag.env --import ./scripts/register-node-source-loader.mjs \
+//   server, a stored turn and the active index generation (in the running release's directory, with its env file):
+//     R=$(systemctl show -p WorkingDirectory --value sotsiaalai-frontend); cd $R
+//     sudo -n node --env-file=/etc/sotsiaalai/releases/${R##*/}.env --import ./scripts/register-node-source-loader.mjs \
 //       scripts/rag-v2-context-replay.mjs --turn <m4 turn id> [--turn <id> ...]
 //   offline, a packet file and a local store:
 //     node --import ./scripts/register-node-source-loader.mjs scripts/rag-v2-context-replay.mjs --packet packet.json --store tmp/rag-v2-corpus-store-v25

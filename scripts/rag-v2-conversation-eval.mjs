@@ -3,8 +3,14 @@
 // conversation of the plan's first user ("Hindamine <id>", visible in the chat), every turn through the real service, so
 // search, model and checks are the production ones. Paid: the plan's model and ledger; --max-usd stops the run before
 // a scenario would start above it. The report names for every turn what failed: search, answer or state.
-//   sudo -n node --env-file=/etc/sotsiaalai/frontend.env --env-file=/etc/sotsiaalai/rag.env --import ./scripts/register-node-source-loader.mjs \
-//     scripts/rag-v2-conversation-eval.mjs --out /home/ubuntu/rag-v2-work/eval-files/conversations-<day> [--only id,id] [--max-usd 1.5]
+// On the server it runs in the running release's directory with that release's env file: since 04.10.2026 the service
+// no longer runs /home/ubuntu/apps/sotsiaalai, and frontend.env with rag.env are not what it reads. A release has no
+// tests/ and no docs/rag-v2/, so the catalogue and the legal acts' manifest are given by path, as copies from the
+// commit that is measured:
+//   R=$(systemctl show -p WorkingDirectory --value sotsiaalai-frontend); cd $R
+//   sudo -n node --env-file=/etc/sotsiaalai/releases/${R##*/}.env --import ./scripts/register-node-source-loader.mjs \
+//     scripts/rag-v2-conversation-eval.mjs --scenarios <dir>/scenarios-corpus-4.json --legal <dir>/legal-acts-in-index.json \
+//     --out /home/ubuntu/rag-v2-work/eval-files/conversations-<day> [--only id,id] [--max-usd 1.5]
 //   --dry-run checks the catalogue and prints the turns; no model call, no database write.
 //   --auto-modes sends what the chat sends since it has no topic choice (02.10.2026): 'new' for a conversation's first
 //   message and 'same' for every later one, whatever mode the catalogue names; a turn's previous_state_cleared, which only

@@ -78,17 +78,20 @@ PR-id liidetakse ja paigaldatakse automaatselt pärast quality-gate'i. Käsitsi 
 
 Plaan kannab koodi räsi, mille arvutab `implementationManifest()` (`lib/rag-v2/pilot/provenance.js`). Räsi katab muu hulgas `lib/rag-v2/**`, `lib/chat/m4Pilot*.js`, vestluse kasutajaliidese failid, `app/chat-source/page.jsx` ja `messages/*.json`. Kui väljalase muudab mõnda neist, ei anna vana plaan uusi vastuseid (`implementation_approval_mismatch`). Alates [ADR-037](adr-037-release-chat-plan.md)-st uuendab deploy plaani ise: sama kinnituse ulatus ja indeksipõlvkond, uue koodi räsi. Kontroll käib mudelikutseta enne põhiandmebaasi migratsiooni. Kui ükski plaan uue koodiga ei läbi, taastub eelmine väljalase koos oma plaaniga.
 
-Uue indeksipõlvkonna, eelarve või mudeli jaoks ehita plaan serveris rakenduse juurkaustas käsitsi:
+Uue indeksipõlvkonna, eelarve või mudeli jaoks ehita plaan serveris käsitsi, töötava väljalaske kaustas ja selle env-failiga (alates 04.10.2026 ei tööta teenus enam kaustast `/home/ubuntu/apps/sotsiaalai`). Täielik käsujada deploy luku ja kontrollidega on [runbooki jaotises 9](runbook-corpus-increment.md#9-aktiveerimine-ja-vestlusplaan); tuum on:
 
 ```sh
-sudo -n node --env-file=/etc/sotsiaalai/frontend.env --env-file=/etc/sotsiaalai/rag.env --import ./scripts/register-node-source-loader.mjs \
-  scripts/rag-v2-chat-plan.mjs --tenant sotsiaalai-corpus --profile hybrid-estnltk-chat-v1 --reasoning medium \
+R=$(systemctl show -p WorkingDirectory --value sotsiaalai-frontend); ENVF=/etc/sotsiaalai/releases/${R##*/}.env; cd $R
+N="sudo -n node --env-file=$ENVF --import ./scripts/register-node-source-loader.mjs"
+$N scripts/rag-v2-chat-plan.mjs --tenant sotsiaalai-corpus --profile <profiil> --reasoning medium \
   --template /etc/sotsiaalai/m4-luna6-20260923.json --out /etc/sotsiaalai/<uus-unikaalne-nimi>.json --budget-usd 4 --basis "..." --activate
-sudo -n chown root:ubuntu <out>; sudo -n systemctl restart sotsiaalai-frontend
+sudo -n chown root:ubuntu <out>
+$N scripts/rag-v2-plan-release.mjs activate --plan <out> --rag-env $ENVF
+sudo -n systemctl restart sotsiaalai-frontend
 ```
 
 - `--out` peab olema uus fail `/etc/sotsiaalai/` all. Olemasolevat faili üle ei kirjutata.
-- `--activate` varundab `rag.env`-i ja seab `M4_PILOT_ENABLED`, `M4_PILOT_CONFIG` ja `RAG_V2_ESTNLTK_IDLE_MS=3600000`.
+- `--activate` varundab `rag.env`-i ja seab `M4_PILOT_ENABLED`, `M4_PILOT_CONFIG` ja `RAG_V2_ESTNLTK_IDLE_MS=3600000`. `rag.env`-ist saab plaani järgmine väljalase. Töötav teenus loeb ainult oma env-faili `/etc/sotsiaalai/releases/<commit>.env`, seega teeb `rag-v2-plan-release.mjs activate --rag-env $ENVF` sama seal.
 - Plaani ID-s on minutitempel. Iga plaan saab oma kulupäeviku.
 - Vestluse ajalugu filtreeritakse plaani `configHash` järgi. Pärast ümberehitust vanemad pöörded peituvad, kuid ei kustu. Sellise vestluse järgmine sõnum alustab uue teema ka valikuga „Jätkan sama teemat“ ([ADR-032](adr-032-national-law-reserve-and-plan-restart.md)).
 - Pärast taaskäivitust soojendab server kirjeteta allikad mällu (1124 allikat, ~4,7 min), riiklikud õigustekstid esimesena. Soojendus algab serveri käivitusel (`instrumentation.js`, [ADR-033](adr-033-warm-up-at-server-start.md)), mitte esimesel küsimusel. Logis: `[rag-v2] start warm-up started`, siis `[rag-v2] warmed … sources`.
@@ -107,7 +110,7 @@ sudo -n chown root:ubuntu <out>; sudo -n systemctl restart sotsiaalai-frontend
 | Allikad | `Andmebaasi/` ja `Andmebaasi/REGISTER.json` (Gitis) |
 | Kohalik töö (`tmp/`, Gitis pole) | hoidla `tmp/rag-v2-corpus-store-v25` (vana pea varu `tmp/rag-v2-corpus-store-v25-backup-20260927`), partiid `tmp/rag-v2-corpus-batches-v26/`, indeksipoliitika `tmp/rag-v2-corpus-index-v26/policy.json` |
 | Serveri töökaust | `/home/ubuntu/rag-v2-work/rag-v2-v25` (enne 27.09 `/home/ubuntu/apps/sotsiaalai/tmp/rag-v2-v25`): `run-v26.sh`, hoidla koopia `tmp/rag-v2-corpus-store-v25`, ostud ja vektorid `tmp/rag-v2-corpus-embeddings/usage/` |
-| Serveri seadistus | `/etc/sotsiaalai/rag.env` (RAG v2 ühendused ja lülitid), `/etc/sotsiaalai/frontend.env`, vestlusplaanid `/etc/sotsiaalai/*.json`; SSH alias `sotsiaalai` |
+| Serveri seadistus | `/etc/sotsiaalai/rag.env` (RAG v2 ühendused ja lülitid), `/etc/sotsiaalai/frontend.env`, vestlusplaanid `/etc/sotsiaalai/*.json`; töötav teenus loeb nende väljalaskeaegset koopiat `/etc/sotsiaalai/releases/<commit>.env`; SSH alias `sotsiaalai` |
 | Serveri abiskriptid | rakenduse juurkaustast: `tmp/turn-status.mjs`, `tmp/chat-spend.mjs`, `tmp/restore-time.mjs`; hindamisetapid (sümlingid rakendusele, oma `lib`) `/home/ubuntu/rag-v2-work/eval-*`, tulemused `/home/ubuntu/rag-v2-work/eval-files/` |
 | Arendustööriistad | `tmp/rag-v2-dev-2026-09-27/`: `law-check.mjs` (valitud allikad küsimuse kohta), `replay.mjs` (vastuse kordus salvestatud pööretel), `assist-eval-v26.mjs` (52 küsimust), `run-v26.sh`, `make-approval-v26.mjs`, `job.mjs`, `sizes.mjs`; seis `FACTS.md` ja `HANDOFF.md` |
 

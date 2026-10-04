@@ -44,3 +44,10 @@ Kinnitatud vestlusplaan on seotud täpse koodiga (`implementationHash`, [ADR-028
 - Mudeli, eelarve, kasutajate või hindade muutus vajab uut plaani. Kui näiteks `OPENAI_MODEL` muutub, ei läbi uuendus kontrolli ja väljalase pöördub tagasi.
 - Tagasipöördumine katab ainult `prepare` vea (enne põhimigratsiooni). Kui `ready` pärast taaskäivitust ebaõnnestub, jääb uus kood koos uuendatud plaaniga tööle ja deploy on punane. Varasem `prepare` teeb sama kontrolli, nii et see tähendab vahepealset muutust keskkonnas. `unready` (plaan polnud ka enne väljalaset töökorras) jätkab väljalaset hoiatusega.
 - Iga uuendus jätab `/etc/sotsiaalai/` alla uue plaanifaili ja `rag.env` koopia. Koristus on käsitsi.
+
+## Täiendus 04.10.2026: käsitsi tehtud plaan ja väljalaskekaustad
+
+Avaldamine käib nüüd väljalaskekaustadega (`scripts/deploy-release-host.mjs`, [audit](../audits/release-build-once-2026-10-04.md)). Iga väljalase saab oma env-faili `/etc/sotsiaalai/releases/<commit>.env`, mis tehakse `frontend.env`-ist ja `rag.env`-ist. Uuendatud plaani kirjutab deploy sellesse faili ja pärast õnnestunud vahetust ka `rag.env`-i. Ülal kirjeldatud deploy-skripti sammude järjekord ja testid on 27.09 seis.
+
+- Käsitsi tehtud plaan (`rag-v2-chat-plan.mjs --activate`) jõuab ainult `rag.env`-i, kust selle saab järgmine väljalase. Töötav teenus loeb ainult oma väljalaske env-faili.
+- Seepärast tehakse sama aktiveerimine ka seal: `rag-v2-plan-release.mjs activate --plan <fail> --rag-env /etc/sotsiaalai/releases/<commit>.env`, siis `ready` ja taaskäivitus. `scripts/rag-v2-corpus-run.sh` teeb seda ise ([ADR-059 täiendus](adr-059-corpus-refresh-path.md#täiendus-04102026-serveriskript-väljalaskekaustade-korral)); käsitsi käsud on [runbooki jaotises 9](runbook-corpus-increment.md#9-aktiveerimine-ja-vestlusplaan).
