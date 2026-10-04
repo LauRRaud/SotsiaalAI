@@ -546,3 +546,29 @@ test('dialogue state DB (ADR-074, Codex\'s review of #345, F2): another person\'
   assert.deepEqual([hers.searched.source, hers.searched.region, hers.searched.person, hers.query.askedPerson], ['person_region', 'tartu_vald', 'ema', 'user']);
   assert.deepEqual(hers.people, { user: ['kose_vald', 'reported'], ema: ['tartu_vald', 'reported'] });
 });
+
+test('dialogue state DB (ADR-078): with a plan\'s queries the search text is the current message; without queries it is the scope\'s text', async t => {
+  const turn = await regionConversation(t);
+  const messages = ['Elan Kose vallas ja mul on raske.', 'Kui suur on toimetulekupiir?', 'Kas hooldekodu kohatasu võib nõuda lastelt?', 'Vabandust, elan hoopis Harku vallas.', 'Ja mis see maksab?'];
+  const lives = [{ turn: 1, quote: 'Elan Kose vallas', name: 'Kose vald', person: 'user', relation: 'lives' }];
+  // The first message: one message, the text is the message either way.
+  const first = await turn(messages[0], 'new', { queries: ['Kose vald toimetulek'], person: 'user', places: lives });
+  assert.deepEqual([first.query.text, first.query.textBasis ?? null, first.assist.queries], [messages[0], null, ['Kose vald toimetulek']]);
+  // A later message with a plan: the current message alone; the scope's messages and the residence stay.
+  const second = await turn(messages[1], 'same', { queries: ['toimetulekupiiri suurus'], person: 'user', places: [] });
+  assert.deepEqual([second.query.text, second.query.question, second.query.textBasis], [messages[1], messages[1], 'current_message']);
+  assert.deepEqual([second.query.scopeTurns.map(item => item.text), second.searched.region, second.people.user], [messages.slice(0, 2), 'kose_vald', ['kose_vald', 'reported']]);
+  const third = await turn(messages[2], 'same', { queries: ['täisealise lapse ülalpidamiskohustus', messages[2]], person: 'user', places: [] });
+  assert.deepEqual([third.query.text, third.query.textBasis], [messages[2], 'current_message']);
+  assert.doesNotMatch(third.query.text, /toimetulekupiir|Kose/u);
+  // A planned query that only repeats the current message is not searched twice.
+  assert.deepEqual(third.assist.queries, ['täisealise lapse ülalpidamiskohustus']);
+  // A plan that writes no query (a bare correction, ADR-072): the scope's text, as before.
+  const moved = [{ turn: 4, quote: 'elan hoopis Harku vallas', name: 'Harku vald', person: 'user', relation: 'lives' }];
+  const fourth = await turn(messages[3], 'same', { queries: [], person: 'user', places: moved });
+  assert.deepEqual([fourth.query.text, fourth.query.textBasis ?? null, fourth.assist.queries], [messages.slice(0, 4).join('\n\n'), null, []]);
+  assert.deepEqual(fourth.people.user, ['harku_vald', 'reported']);
+  // A plan that fails: the scope's text, and the failure is in the record.
+  const fifth = await turn(messages[4], 'same', { queries: 'not a list' });
+  assert.deepEqual([fifth.query.text, fifth.query.textBasis ?? null, fifth.assist.failures.map(failure => failure.stage)], [messages.join('\n\n'), null, ['plan']]);
+});

@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { acceptDialogue, buildDialogueQuery, dialogueInput, dialogueRequest, DIALOGUE_VERSION, DIALOGUE_LIMITS } from '../lib/rag-v2/pilot/dialogue.js';
+import { acceptDialogue, buildDialogueQuery, currentMessageQuery, dialogueInput, dialogueRequest, DIALOGUE_VERSION, DIALOGUE_LIMITS, DIALOGUE_SEARCH_VERSION,
+  READABLE_DIALOGUE_SEARCH_VERSIONS } from '../lib/rag-v2/pilot/dialogue.js';
 
 const config = { configHash: 'config', embedding: { model: 'test' }, model: 'test', maxOutputTokens: 1000, reasoning: 'low' };
 function accepted(language) {
@@ -104,4 +105,34 @@ test('synthetic guarantee: old assistant is explicitly unverified dialogue, its 
   assert.equal(data.dialogue.publishedAssistant.evidenceStatus, 'NOT_A_FACT_SOURCE');
   assert.equal(data.dialogue.version, DIALOGUE_VERSION);
   // This is a prompt/input contract assertion, NOT a Luna semantic-quality assertion.
+});
+
+test('ADR-078: with a plan\'s queries the search text is the current message; the scope, the question and the version stay', () => {
+  assert.equal(DIALOGUE_SEARCH_VERSION, 'm4-user-scope-search-6');
+  assert.deepEqual(READABLE_DIALOGUE_SEARCH_VERSIONS.slice(-2), ['m4-user-scope-search-5', 'm4-user-scope-search-6']);
+  const messages = ['Kui suur on toimetulekupiir?', 'Kes peab teatama abivajavast lapsest?', 'Kas hooldekodu kohatasu võib nõuda lastelt?'];
+  const f = accepted('et');
+  f.next(messages[0], 'new'); f.next(messages[1]);
+  const third = f.next(messages[2]);
+  const whole = { ...buildDialogueQuery(third, { ...config, recordCatalogue: 'records' }), language: 'et', person: 'user' };
+  assert.equal(whole.text, messages.join('\n\n'));
+  const narrowed = currentMessageQuery(whole, third, { ...config, recordCatalogue: 'records' });
+  // The search text and what is derived from it change; nothing else does.
+  assert.deepEqual([narrowed.text, narrowed.question, narrowed.textBasis, narrowed.version], [messages[2], messages[2], 'current_message', DIALOGUE_SEARCH_VERSION]);
+  assert.ok(narrowed.hash !== whole.hash && narrowed.cacheKey !== whole.cacheKey && narrowed.tokens < whole.tokens);
+  const { text: _t, hash: _h, tokens: _n, cacheKey: _k, textBasis: _b, ...rest } = narrowed, { text: _t2, hash: _h2, tokens: _n2, cacheKey: _k2, ...before } = whole;
+  assert.deepEqual(rest, before);
+  // The scope's messages stay for the person, the places and the periods; an earlier message's words are out of the search text.
+  assert.deepEqual(narrowed.scopeTurns.map(turn => turn.text), messages);
+  assert.doesNotMatch(narrowed.text, /toimetulekupiir|abivajava/u);
+  // The same text gives the same cache key again; the key is made as the scope text's is, of the narrowed text.
+  assert.equal(currentMessageQuery(whole, third, { ...config, recordCatalogue: 'records' }).cacheKey, narrowed.cacheKey);
+  assert.notEqual(currentMessageQuery(whole, third, { ...config, configHash: 'another', recordCatalogue: 'records' }).cacheKey, narrowed.cacheKey);
+  // One message: the text would not change.
+  const single = accepted('et'), first = single.next(messages[0], 'new');
+  assert.equal(currentMessageQuery(buildDialogueQuery(first, config), first, config), null);
+  // An answer block the user explicitly selected stays in the search text, as before.
+  const assistant = { blocks: [{ text: 'Esimene punkt.' }, { text: 'Teine punkt hooldekodu tasust.' }] };
+  const explicit = { ...third, selection: { ...third.selection, replyToBlock: 2 } };
+  assert.equal(currentMessageQuery(buildDialogueQuery(explicit, config, assistant), explicit, config, assistant).text, `${messages[2]}\n\n${assistant.blocks[1].text}`);
 });
