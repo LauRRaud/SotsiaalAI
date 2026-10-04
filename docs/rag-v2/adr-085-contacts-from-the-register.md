@@ -32,7 +32,7 @@ Iga omavalitsus saab ressursikirje „Sotsiaalvaldkonna kontaktid: <omavalitsus>
 
 - **Midagi ei oletata:** ühtegi teenust ei seota inimesega ameti või nime järgi.
 - Kirjeldus nimetab registris olevad ametid („Ametid: lastekaitsespetsialist, sotsiaaltööspetsialist“), et ameti kohta käiv küsimus kirje üles leiaks.
-- **Üle 12 kontaktiga omavalitsus loetletakse osakondade kaupa:** iga vähemalt kolme kontaktiga osakond saab oma kirje, ülejäänud jäävad üldkirjesse; üle 12 kontaktiga rühm jagatakse võrdseteks osadeks ametite järjekorras, nii et ühes osas on sama ametiga inimesed ja kirjeldus nimetab just neid ameteid. Üle 60 kontaktiga omavalitsuses (Tallinn) on kirjes kuni 5 kontakti. Põhjus on kontekstieelarve (jaotised „Korpus v52“ ja „Korpus v53“): näidatud kontakt võtab umbes 450 tokenit, kirjete kontekst on 12 000 tokenit.
+- **Üle 12 kontaktiga omavalitsus loetletakse osakondade kaupa:** iga vähemalt kolme kontaktiga osakond saab oma kirje, ülejäänud jäävad üldkirjesse; üle 12 kontaktiga rühm jagatakse võrdseteks osadeks ametite järjekorras, nii et ühes osas on sama ametiga inimesed ja kirjeldus nimetab just neid ameteid. **Üle 60 kontaktiga omavalitsus (Tallinn, 110 inimest) jäetakse ekspordist välja** (jaotis „Korpus v54“). Põhjus on kontekstieelarve: näidatud kontakt võtab umbes 490 tokenit ja kontaktide kirje pealkiri umbes 210, kirjete kontekst on 12 000 tokenit.
 - Kirjete nimed on püsivad (omavalitsus ja osakonna nime räsi), nii et järgmine eksport asendab sama kirje.
 
 ### Mida ei muudetud
@@ -104,6 +104,17 @@ Esimene eksport päris andmetel (avaldamata) näitas kaht asja, mida väljamõel
 - **Tallinn:** õige kirje on küsimusele lähim (Lasnamäe osakonna kirje esimesel kohal), aga 11 kontaktiga kirje ei mahu: Tallinna 84 kirje pealkirjad võtavad umbes 8300 tokenit ja näidatud kontakt umbes 450 (Tartus 17 kontakti ja 54 pealkirja = 11 940 tokenit). Seepärast saab üle 60 kontaktiga omavalitsus kuni 5 kontaktiga kirjed.
 - Teistsuguse sõnastusega küsimus („Kellele ma saan helistada, kui vajan lastekaitse abi?“, „Mul on raha otsas. Kellele ma saan helistada?“) kontaktide kirjet sõnaotsinguga esimeste hulka ei toonud (Tartu 0, Nõo 0–1). Vestlus järjestab vektoriga, mida see kontroll ei mõõda.
 
-## Käivitus pärast Tallinna parandust
+## Korpus v54 ja otsus Tallinna kohta (04.10 kell 23.25)
 
-Tegemata selle kirjutamise hetkel; lisatakse pärast eksporti ja korpuse täiendust v54.
+- **Korpus v54:** Tallinn 27 kirjega (kuni 5 kontakti), kokku 116 kirjet; ostetud 27 sisendit, 0,0004 USD (usage `pilot_a689c5e1…`); indeks `14e7f321`, plaan `/etc/sotsiaalai/m4-corpus-chat-20261004g.json`.
+- **Tallinnas ei paistnud ikka ühtegi kontakti.** Mõõdetud otse: Tallinna 98 kirje pealkirjad võtavad 10 334 tokenit 12 000-st (enne kontaktide kirjeid 4646); ühe 5 kontaktiga kirje avamine maksab umbes 2460 tokenit ja ei mahu.
+  - Kontaktide kirje pealkiri ise maksab umbes 210 tokenit (pikk pealkiri seisab kontekstis kaks korda koos allika andmetega). 13 kirjet võtsid 2900 ja 27 kirjet 5700 tokenit.
+  - See võttis ruumi ka Tallinna teenuste infolt: enne jäi avatud kirjetele ja kokkuvõtetele umbes 7350 tokenit, v54-s 1670.
+  - Iga Tallinna pööre otsustas lisaks kõik 110 kontakti (0,55–0,85 s).
+- **Otsus:** üle 60 kontaktiga omavalitsus jäetakse ekspordist tervikuna välja ja nimetatakse (`too_large`). Tallinna kontaktid ja kontaktide kirjed eemaldatakse indeksi poliitikast: Tallinna seis vestluses on sama mis enne (v51). Kaardil on Tallinna kontaktid endiselt, nüüd omavalitsusega seotud.
+- **Mida Tallinn vajab:** odavamat kontakti vaadet kirjete kontekstis (praegu umbes 490 tokenit kontakti kohta) ja kontaktiotsust ainult näidatavate kontaktide kohta. See on kirjete raja muudatus ja vajab mudeliga mõõtmist; alustamata.
+- Eksport loeb nüüd, millised dokumendid on indeksi poliitikas (`--policy`): poliitikast välja jäetud dokumenti ei loeta olemasolevaks, muidu viitaks kontaktide kirje kontaktile, mida vestlus avada ei saa.
+
+## Käivitus pärast Tallinna otsust
+
+Tegemata selle kirjutamise hetkel; lisatakse pärast eksporti ja korpuse täiendust v55.
