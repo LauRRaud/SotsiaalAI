@@ -76,6 +76,7 @@ Riigi Teataja õigusakti puhul:
 - Pane fail kausta `Andmebaasi/<kategooria>/`, näiteks `Andmebaasi/oigusaktid/130062026065.xml`.
 - Lisa `Andmebaasi/REGISTER.json` kirje: `path`, `category`, `role: "source"`, `sha256` (faili räsi), `original_path` ja `review_status`.
   - `original_path` on tavaliselt `original_path_base` suhtes. Allalaaditud faili puhul kirjutati v26-s teadlikult allika aadress (`riigiteataja.ee/et/akt/<id>.xml`).
+- Kui aktist on allikas ainult osa paragrahve (riigieelarve seaduse § 2, [ADR-076](adr-076-act-sections-as-source.md)), lisa registrikirjele `"xml_sections": ["2"]`. Fail jääb Riigi Teataja algfailiks; ilma selle väljata peatub suur akt sisestuses veaga `text_limit`. Sama akti järgmine redaktsioon pärib valiku värskendusrajal ise (sama pealkiri ja väljaandja); uue aasta riigieelarve seadus on uus akt ja vajab välja käsitsi.
 - Suurenda `counts.<kategooria>.files` ja `.sources`.
 - `Andmebaasi/REGISTER.md` failis uuenda kokkuvõtte tabeli kategooria arv (v26: oigusaktid 104 → 106) ja lisa failirida.
 - `Andmebaasi/` on gitis: muudatus läheb PR-iga. See ei muuda rakenduse implementatsiooniräsi ega aegu vestlusplaani.
