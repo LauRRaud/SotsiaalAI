@@ -2,7 +2,7 @@
 
 04.10.2026. Teostus Claude Opus 5.5. Omanik 04.10 õhtul: „sa toimeta edasi, kuni vigu ei ole. võid teha teste, raha pole probleem.“ Lähtekoht: [ADR-077](adr-077-current-message-only-and-both-versions.md) mõõtmine ja „Järgmine samm“ (esimene võimalus) ning Codexi ülevaatus #354 ja #356 kohta.
 
-**Mõõtmata selle kirjutamise hetkel.** Tõend on kohalikud testid, sh andmebaasiga test, mis käivitab teenuse päris hoidlaga. Mõõtmine tehakse pärast avaldamist samade kataloogidega kui ADR-077 ja tulemus lisatakse jaotisesse „Mõõtmine“.
+**Mõõdetud pärast avaldamist** (jaotis „Mõõtmine“): 10 pööret, 0,0532 USD. Jätkuküsimus töötab (4/4), viie küsimuse vestluses läbis 3 pööret viiest (enne 2). **Oletus, et perekonnaseaduse valed kandidaadid tulid varasematest sõnumitest, ei leidnud kinnitust:** ka ainult praeguse sõnumiga otsides olid kandidaadid eestkoste sätted. Muudatus läks tootmisse kohalike testidega, sh andmebaasiga test, mis käivitab teenuse päris hoidlaga.
 
 ## Probleem
 
@@ -40,6 +40,22 @@
 - Täiskomplekt: 653 testi, 634 läbis, 19 vahele jäetud, 0 ebaõnnestus.
 - Kaks integratsioonitesti (`rag-v2-unified.integration`, `rag-v2-dialogue-scenarios.integration`) ei käi selles masinas: sõnavormide teenust (EstNLTK) siin ei ole (`morphology_unavailable`).
 
-## Mõõtmine
+## Mõõtmine (04.10.2026, pärast avaldamist)
 
-Tegemata selle kirjutamise hetkel; lisatakse pärast jooksu.
+Omanik 04.10 õhtul: „võid teha teste, raha pole probleem“. Samad kolm kataloogi kui ADR-077 mõõtmisel, töötavalt väljalaskelt `5b775d8f`. Kulu 0,0532 USD plaanihindades. [Tõendifail](../audits/evidence/search-6-measured-2026-10-04.json).
+
+| Kataloog | Pöördeid | Läbis nüüd | Läbis enne (ADR-077) |
+|---|---:|---:|---:|
+| Jätkuküsimus (Maardu vestlus) | 4 | 4 | 4 |
+| Mis muutub | 1 | 1 | 1 |
+| Viis sidumata küsimust | 5 | 3 | 2 |
+
+- **Otsingutekst pöördekirjetes:** kõik seitse hilisemat pööret otsisid praeguse sõnumiga (`textBasis: current_message`), kolm esimest sõnumit oma ühe sõnumiga.
+- **Jätkuküsimus jäi terveks.** „Ja mis see maksab?“ sai päringud Maardu teenuse tasu kohta ja Maardu korra § 9.
+- **Neljas pööre (puude raskusaste) läbis:** seadusest valiti § 2³ ja vastus viitab sellele. Eelmises jooksus valiti § 2⁴ ja vastus viitas ainult uuringule.
+- **Viies pööre (hooldekodu kohatasu) ei läbinud ja oletus ei pidanud.** Otsingutekst oli ainult praegune sõnum ja plaani kolm päringut olid õiged, aga perekonnaseaduse kaks kandidaati olid § 191 ja § 192 (alaealise eestkoste kulud ja tasu). Ülalpidamiskohustuse sätted (§ 96–97) ei olnud kandidaadid. Põhjus on seega seaduste kohtade järjestuses endas, mitte varasemates sõnumites.
+- **Kolmas pööre:** plaan kirjutas kolmandat jooksu järjest sama plaani: üks päring oma küsimuse ja kaks varasemate kohta. Pöörded, mis vajasid ise kaht või kolme päringut (2., 4., 5.), olid puhtad. See viitab, et plaan täidab loetelu, kui praegune küsimus vajab ainult ühte päringut.
+- **Esimene pööre:** summat ei tulnud; riigieelarve seaduse kandidaat oli jälle § 2 esimene lõik.
+- **Mis muutub:** eelvalik hoidis seekord §-d 1, 3 ja 6 mõlemas redaktsioonis; vastus nimetab §-de 3 ja 6 muutunud sõnastust ega esita muutumata reeglit uuena.
+
+Üks jooks kataloogi kohta. Järgmine samm on [ADR-079](adr-079-plan-list-duty-query-and-reserved-places.md).

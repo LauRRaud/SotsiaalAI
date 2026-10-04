@@ -35,7 +35,7 @@ function source(doc, count, text, fields = {}) {
       { id: `parent-${c.id}`, type: 'PARENT_SECTION', from_id: c.id, to_id: `${doc}-section` }]) };
 }
 
-function fixture({ lawFirst = false, first = null } = {}) {
+function fixture({ lawFirst = false, first = null, nearest = null } = {}) {
   const embedding = new MockEmbedding(), config = searchConfig(embedding.config);
   // Forty municipal passages on appeals outrank every passage of the national law in both channels.
   const municipal = source('municipal', 40, 'A municipal regulation on contesting a benefit decision, paragraph',
@@ -62,7 +62,11 @@ function fixture({ lawFirst = false, first = null } = {}) {
     units: async (_t, _g, docs) => units.filter(u => docs.includes(u.document_id)),
     lexical: async (_t, _g, docs, _text, limit, ids) => { calls.lexical.push(docs); return rows(docs, limit, ids); },
   };
-  const qdrant = { query: async (_g, docs, _v, limit, ids) => { calls.vector.push(docs); return rows(docs, limit, ids); } };
+  const qdrant = { query: async (_g, docs, vector, limit, ids) => {
+    calls.vector.push(docs);
+    const list = rows(docs, limit, ids), lead = nearest ? list.find(row => row.chunk_id === nearest(vector, docs)) : null;
+    return lead ? [lead, ...list.filter(row => row !== lead)].map((row, i) => ({ ...row, score: 100 - i })) : list;
+  } };
   const policy = new LocalPolicy({ tenants: { [tenant]: { operator: bundles.map(b => b.document.id) } } });
   const context = { tenant, subject: 'operator', usage: 'development_only' };
   const query = extra => ({ text: 'How do I contest a decision?', language: 'en', includeDocumentLabels: false,
@@ -179,4 +183,29 @@ test('ADR-033: the warm-up verifies national legal texts first, once per generat
     await writeFile(file, JSON.stringify({ mode: 'test', tenant, documents: { law: 'law-v1' } }));
     assert.equal(await warmPilotAtStart({ env: { M4_PILOT_ENABLED: '1', M4_PILOT_CONFIG: file, RAG_V2_POSTGRES_URL: 'postgres://127.0.0.1:1/none' } }), false);
   } finally { await rm(dir, { recursive: true, force: true }); }
+});
+
+test('ADR-079: a planned query\'s own nearest reserved passage comes first; the fused order fills the rest', async () => {
+  const embedding = new MockEmbedding(), variant = 'the second act on benefits', target = JSON.stringify(await embedding.embed(variant));
+  // The variant's vector is nearest to the second act's last section; every other list ranks the first law's sections first.
+  const nearest = (vector, docs) => (JSON.stringify(vector) === target && docs.includes('act') && !docs.includes('municipal') ? 'act-c2' : null);
+  const seen = [], rerank = async passages => { seen.push(passages); return [passages.at(-1).id]; };
+  const plain = await fixture({ nearest }).run({ variants: [variant], poolReserve: { documents: ['law', 'act'], size: 2, perDocument: 2 } }, { rerank });
+  assert.deepEqual(plain.rerank.reserved.map(unit => plain.rerank.candidates.includes(unit) && seen[0].at(plain.rerank.candidates.indexOf(unit)).title), ['Title law', 'Title law']);
+  const first = await fixture({ nearest }).run({ variants: [variant], poolReserve: { documents: ['law', 'act'], size: 2, perDocument: 2, perQuery: 1 } }, { rerank });
+  assert.equal(first.state, 'ok', first.error);
+  assert.deepEqual(seen[1].slice(RERANK_POOL).map(passage => passage.title), ['Title act', 'Title law']);
+  assert.deepEqual(first.selection_config.pool_reserve, { documents: 2, size: 2, per_document: 2, per_query: 1 });
+  // The limits still hold: the size, and one document's share.
+  const one = await fixture({ nearest }).run({ variants: [variant], poolReserve: { documents: ['law', 'act'], size: 1, perDocument: 1, perQuery: 1 } }, { rerank });
+  assert.deepEqual(seen[2].slice(RERANK_POOL).map(passage => passage.title), ['Title act']);
+  assert.equal(one.rerank.reserved.length, 1);
+  // Without a variant there is no query of the plan's: the fused order alone, as before.
+  const bare = await fixture({ nearest }).run({ poolReserve: { documents: ['law', 'act'], size: 2, perDocument: 2, perQuery: 1 } }, { rerank });
+  assert.deepEqual(seen[3].slice(RERANK_POOL).map(passage => passage.title), ['Title law', 'Title law']);
+  assert.equal(bare.rerank.reserved.length, 2);
+  // The query's validation: a whole number from one to three, kept only when given.
+  const base = { text: 'q', language: 'et', limits: { topK: 5, perDocument: 5, candidates: 40, contextTokens: 6000 } };
+  assert.deepEqual(validateQuery({ ...base, poolReserve: { documents: ['a'], size: 6, perDocument: 2, perQuery: 1 } }).poolReserve, { documents: ['a'], size: 6, perDocument: 2, perQuery: 1 });
+  for (const perQuery of [0, 4, 1.5, '1']) assert.throws(() => validateQuery({ ...base, poolReserve: { documents: ['a'], size: 6, perQuery } }), { code: 'invalid_pool_reserve' }, String(perQuery));
 });
