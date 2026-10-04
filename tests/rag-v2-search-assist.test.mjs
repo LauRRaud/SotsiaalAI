@@ -90,13 +90,13 @@ test('search-assist-2: the plan names the message language, and the answer follo
   // A plan approved for search-assist-1 keeps the interface language.
   assert.equal(planLanguage({ searchAssist: 'rag-v2/search-assist-1' }, { queries: [], language: 'en' }), null);
   assert.equal(planLanguage({ searchAssist: 'rag-v2/search-assist-2' }, { queries: [], language: 'en' }), 'en');
-  assert.deepEqual(SEARCH_ASSIST_VERSIONS, ['rag-v2/search-assist-1', 'rag-v2/search-assist-2', 'rag-v2/search-assist-3', 'rag-v2/search-assist-4', 'rag-v2/search-assist-5', 'rag-v2/search-assist-6', 'rag-v2/search-assist-7']);
+  assert.deepEqual(SEARCH_ASSIST_VERSIONS, ['rag-v2/search-assist-1', 'rag-v2/search-assist-2', 'rag-v2/search-assist-3', 'rag-v2/search-assist-4', 'rag-v2/search-assist-5', 'rag-v2/search-assist-6', 'rag-v2/search-assist-7', 'rag-v2/search-assist-8']);
 });
 
 test('search-assist-6 (ADR-072): a bare correction is about the person its fact belongs to and does not reopen an earlier question', async () => {
   const { planPerson, planPlaces, PLAN_CORRECTION_INSTRUCTIONS } = await import('../lib/rag-v2/pilot/search-assist.js');
-  // The line of search-assist-6 is kept as it was in search-assist-7.
-  assert.equal(SEARCH_ASSIST_VERSION, 'rag-v2/search-assist-7');
+  // The line of search-assist-6 is kept as it was in the later versions.
+  assert.equal(SEARCH_ASSIST_VERSION, 'rag-v2/search-assist-8');
   const plan = queryPlanRequest(config, ['Kas A võib taotleda toetust?', 'Kui kiiresti otsustatakse?', 'Vabandust, B sissetulek on hoopis teine.'], 'et', ['user', 'A', 'B']);
   const lines = plan.instructions.split('\n');
   // One line, after the rule on person and before the rule on places; the rest of the instructions is unchanged.
@@ -118,7 +118,7 @@ test('search-assist-6 (ADR-072): a bare correction is about the person its fact 
   assert.deepEqual(plan.text.format.schema.required, ['queries', 'language', 'person', 'places']);
   assert.deepEqual(JSON.parse(plan.input[0].content), { language: 'et', messages: ['Kas A võib taotleda toetust?', 'Kui kiiresti otsustatakse?', 'Vabandust, B sissetulek on hoopis teine.'], people: ['user', 'A', 'B'], place_messages: 1 });
   // Plans approved for search-assist-5 and -6 both name a person and places.
-  for (const version of ['rag-v2/search-assist-5', 'rag-v2/search-assist-6', SEARCH_ASSIST_VERSION]) {
+  for (const version of ['rag-v2/search-assist-5', 'rag-v2/search-assist-6', 'rag-v2/search-assist-7', SEARCH_ASSIST_VERSION]) {
     assert.equal(planPerson({ searchAssist: version }, { person: 'B' }), 'B');
     assert.deepEqual(planPlaces({ searchAssist: version }, { places: [] }), []);
   }
@@ -212,7 +212,8 @@ test('ADR-077: the catalogue fails the stored plans that searched answered quest
 
 test('search-assist-7 (ADR-077): the plan searches the current message only; a question about what changes keeps both versions', async () => {
   const { PLAN_ANSWERED_INSTRUCTIONS, RERANK_ANSWERED_INSTRUCTIONS, RERANK_CHANGE_INSTRUCTIONS, PLAN_CORRECTION_INSTRUCTIONS, candidateRecord, CANDIDATE_LEAD_CHARS } = await import('../lib/rag-v2/pilot/search-assist.js');
-  assert.equal(SEARCH_ASSIST_VERSION, 'rag-v2/search-assist-7');
+  // The lines of search-assist-7 stay in search-assist-8; the plan's line got one more sentence there (ADR-079).
+  assert.equal(SEARCH_ASSIST_VERSION, 'rag-v2/search-assist-8');
   const messages = ['Mis on A?', 'Kes otsustab B üle?', 'Kuidas taotleda C-d?'];
   const plan = queryPlanRequest(config, messages, 'et'), lines = plan.instructions.split('\n');
   // One line, right after the rule on what the queries are for; the correction's line stays where it was.
@@ -306,4 +307,25 @@ test('ADR-077 measured: the follow-up and both versions hold; in the five-questi
   const follow = of('follow-up')[2];
   assert.deepEqual([follow.text, follow.region, follow.verdict], ['Ja mis see maksab?', 'maardu_linn', 'passed']);
   assert.ok(follow.queries.every(query => /Maardu|isikliku abistaja/iu.test(query)) && follow.selected.some(lead => /§ 9\. Teenuse eest tasumine/u.test(lead)));
+});
+
+test('search-assist-8 (ADR-079): the plan does not fill its list with earlier questions, and a duty gets a query of its own', async () => {
+  const { PLAN_ANSWERED_INSTRUCTIONS, PLAN_DUTY_INSTRUCTIONS, planPerson } = await import('../lib/rag-v2/pilot/search-assist.js');
+  assert.equal(SEARCH_ASSIST_VERSION, 'rag-v2/search-assist-8');
+  const plan = queryPlanRequest(config, ['Mis on A?', 'Kas B-lt võib nõuda C tasumist?'], 'et'), lines = plan.instructions.split('\n');
+  // The measured plans (docs/audits/evidence/search-assist-7-measured-2026-10-04.json and the run after ADR-078): the third
+  // question needs one query and got it with two for the earlier questions; the last sentence of the line is about that.
+  assert.ok(PLAN_ANSWERED_INSTRUCTIONS.endsWith('One query is enough when the current message asks one thing: never fill the list with queries for earlier questions.'));
+  assert.match(plan.instructions, /Write up to 3 search queries/u);
+  // The duty's line: once, right after the rule on costs.
+  assert.deepEqual([lines.filter(line => line === PLAN_DUTY_INSTRUCTIONS).length,
+    lines.indexOf(PLAN_DUTY_INSTRUCTIONS) - lines.findIndex(line => line.startsWith('When the request is about what something costs'))], [1, 1]);
+  for (const phrase of ['asks whether a person must do or pay something, or can be required to', 'make one query for that duty itself in the terms of the law that sets it',
+    '(who owes what to whom, and on what conditions)', 'without the name of the service or the place']) assert.ok(PLAN_DUTY_INSTRUCTIONS.includes(phrase), phrase);
+  // General: no duty, service, act, relative or place of the question that showed the fault.
+  assert.doesNotMatch(PLAN_DUTY_INSTRUCTIONS, /\d|hooldekodu|care home|ülalpidam|maintenance|laps|child|vanem|parent|perekonna|family|vald/iu);
+  // The plan's contract and input are unchanged, and plans approved for search-assist-7 are still read.
+  assert.deepEqual(plan.text.format.schema.required, ['queries', 'language', 'person', 'places']);
+  assert.deepEqual(JSON.parse(plan.input[0].content), { language: 'et', messages: ['Mis on A?', 'Kas B-lt võib nõuda C tasumist?'], people: ['user'], place_messages: 1 });
+  assert.equal(planPerson({ searchAssist: 'rag-v2/search-assist-7' }, { person: 'B' }), 'B');
 });
