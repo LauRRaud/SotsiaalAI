@@ -1838,7 +1838,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
             src="/logo/sotsiaal-pro-corner.svg"
             alt="Sotsiaal.pro"
             width={2400}
-            height={432}
+            height={428}
             decoding="async"
           />
         </div>
