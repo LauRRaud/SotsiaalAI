@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // `npm test`: kõik `tests/*.test.mjs` failid, mis ei vaja kohalikku andmebaasi ega
-// EstNLTK-d. CI ja auto-merge'i värav jooksutab just seda komplekti.
+// EstNLTK-d. AI käivitab vajadusel selle komplekti või ühe asjakohase testifaili.
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";

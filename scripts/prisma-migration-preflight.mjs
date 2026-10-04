@@ -21,14 +21,15 @@ import { classifyMigrationStatements, createdMigrationTables } from "../lib/pris
 dotenv.config({ path: ".env.local", quiet: true });
 dotenv.config({ path: ".env", quiet: true });
 
-const sourceUrl = String(process.env.DATABASE_URL || "").trim();
-if (!sourceUrl) throw new Error("DATABASE_URL is required");
+const ragV2 = process.argv.includes("--rag-v2");
+const sourceUrl = String((ragV2 ? process.env.RAG_V2_POSTGRES_URL : process.env.DATABASE_URL) || "").trim();
+if (!sourceUrl) throw new Error(ragV2 ? "RAG_V2_POSTGRES_URL is required" : "DATABASE_URL is required");
 
 const maxBytes = Number(process.env.MIGRATION_PREFLIGHT_MAX_LOCKING_BYTES || 100 * 1024 * 1024);
 const maxRows = Number(process.env.MIGRATION_PREFLIGHT_MAX_LOCKING_ROWS || 100_000);
 const allowLarge = process.env.MIGRATION_PREFLIGHT_ALLOW_LARGE_LOCKING === "true";
 const requireNoPending = process.argv.includes("--require-no-pending");
-const migrationsDir = path.resolve("prisma", "migrations");
+const migrationsDir = path.resolve("prisma", ...(ragV2 ? ["rag-v2"] : []), "migrations");
 
 function quoteIdentifier(value) {
   return `"${String(value).replaceAll('"', '""')}"`;

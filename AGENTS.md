@@ -14,25 +14,25 @@
 - Tee sidus muudatus olemasoleva arhitektuuri järgi. Väldi ülesandega mitteseotud ümberkirjutusi ja laia repo-uurimist.
 - Push ja merge ei vaja omaniku luba, kui muudatuse kontrollid on läbitud. `main`-i ajalugu ei kirjutata ümber (force-push, rebase avaldatud commit'idel).
 - Pilvesessiooni PR merge'itakse automaatselt, kui nõutud kontrollid on rohelised. Skeemi, õiguste, maksete, privaatsuse või kriisiabi muudatusel nimeta PR-i kirjelduses risk ja tehtud kontroll.
-- Deploy: `main`-i roheline quality-gate käivitab `deploy` workflow'i (`scripts/deploy-server.mjs` + smoke-test `/api/health` vastu). Käsitsi `npm run deploy:server` ja päris sõnumite saatmine vajavad omaniku selget luba. Juba antud luba kehtib kokkulepitud ulatuses; ära küsi seda uuesti. Valmista ülevaadatav tulemus enne loaküsimust ette.
+- Deploy: GitHub ehitab `main`-i tootmisartefakti üks kord; `deploy` paigaldab sama SHA artefakti serverisse. Serveris ei korrata build'i, lint'i ega teste. Serveris töötab korraga üks frontend: failide ettevalmistus → senise protsessi peatamine → uue käivitamine → töövalmiduse kontroll; vea korral eelmine versioon tagasi. Paralleelset uut rakendust ei käivitata. Käsitsi `npm run deploy:server` käivitab sama GitHubi avaldamisraja ja vajab omaniku selget luba. Juba antud luba kehtib kokkulepitud ulatuses; ära küsi uuesti. Päris sõnumite saatmiseks on samuti vaja selget luba.
 - Tasuliste teenuste kasutamisel järgi kokkulepitud ulatust ja kulupiiri. Uus tasuline teenus või kokkuleppimata mahutöö vajab eraldi kokkulepet; selle puudumine ei peata sõltumatut kohalikku arendust.
 - Puuduva tooteotsuse korral tee sõltumatu töö valmis ja küsi ainult vajalik otsus. Lahenda tagasipööratavad teostusvalikud ise ning nimeta oluline eeldus tulemuse juures. Jätka ülesande piires järgmise vajaliku sammuga, kui takistus puudutab ainult üht tööosa.
 - Commit'i sõnum selgitab parandatavat probleemi ja lahenduse põhjust.
 
 ## Kontrollid
 
-Kasuta väikseimat kontrolli, mis tõendab muudatuse riski. Dokumentatsioonimuudatus ei vaja teste ega build'i.
+AI valib muudatuse järgi väikseima vajaliku kontrolli. Kiirus ja tavakasutajate töö säilimine on eesmärk; täislint, kõik testid, kaks build'i ega muu üldine kontrolliring ei käivitu automaatselt iga muudatusega. Dokumentatsioonimuudatus ei vaja teste ega build'i.
 
 - Tasulised mudelitestid ega eraldi AI-hindamisring ei ole arenduse või töö valmimise nõue. Ära lisa neid kohustuslikuks järgmiseks sammuks ega peata tööd nende loa ootamiseks. Kasuta tehnilise käitumise kontrollimiseks kohalikke sihtteste, testadaptereid ja olemasolevaid tõendeid; kirjelda ausalt sisulise kvaliteedi kontrollimata osa.
-- Muudetud JS/JSX: `npx eslint <failid>`.
-- Unit-testid: `npm test` (sama komplekt jookseb CI-s) või üks fail `node --import ./scripts/register-node-source-loader.mjs --test tests/<fail>`. `*.integration.test.mjs` ja `scripts/run-unit-tests.mjs`-is nimetatud failid vajavad kohalikku andmebaasi või EstNLTK-d.
-- Tõlked või tõlkevõtmed: `npm run i18n:check`.
-- Prisma skeem/migratsioon: `npx prisma validate` ja vajalik migratsiooni käitumise kontroll.
+- Vajadusel JS/JSX lint: `npx eslint <failid>`.
+- Unit-testid vajadusel: `npm test` või üks fail `node --import ./scripts/register-node-source-loader.mjs --test tests/<fail>`. `*.integration.test.mjs` ja `scripts/run-unit-tests.mjs`-is nimetatud failid vajavad kohalikku andmebaasi või EstNLTK-d.
+- Tõlgete kontroll vajadusel: `npm run i18n:check`.
+- Prisma skeemi/migratsiooni korral vali vajalik kontroll (`npx prisma validate`, migratsiooni sihttest või proov eraldatud andmebaasis). Migratsioon peab sobima ka eelmise rakenduse versiooniga; destruktiivne muutus vajab eraldi andmesäilituse ja ülemineku lahendust. Serveris rakendatakse ainult muutunud migratsioonikomplekte, piiratud lukuaegadega.
 - Iga muudatus: `git diff --check`; enne commit'i ka stage'itud diffi kontroll.
 - Käitumise muutus: vajalik sihttest. Õiguste, privaatsuse, maksete, skeemi ja võistlusolukordade puhul tõenda konkreetne risk; UI-/teenuserada kontrolli vajadusel päris keskkonnas.
 - Väike madala riskiga CSS/UI-parandus: piisab `git diff --check`-ist ja sihitud brauserikontrollist; kogu repo lint'i, i18n-kontrolli ega kohalikku build'i ei käivitata, kui muudatus nende pinda ei puuduta.
 - Järjestikused visuaalsed täpsustused koonda ning tee vajalik laiem värav üks kord stabiilse tulemuse järel, mitte iga väikese paranduse vahel.
-- Kui deploy-käsk teeb serveris tootmisbuild'i, ära dubleeri seda vahetult enne kohaliku build'iga. Kohalik `npm run build` on vajalik ainult siis, kui risk vajab build'i tõendit enne push'i/deploy'd; brauseri/serveri impordipiiri või CI ehituse muutusel ka `npm run build:webpack`.
+- Tootmisbuild tehakse GitHubis üks kord. Kohalik build või `npm run build:webpack` on AI valikul ainult konkreetse ehitusriski uurimiseks; neid ei nõuta iga muudatuse puhul. `NEXT_PUBLIC_*` ehitusväärtused asuvad `config/production-public-env.json`-is ja peavad vastama serveri avalikule konfiguratsioonile.
 
 Ära korda sama muutumatu koodi läbitud kontrolle dokumentatsiooni või commit'ide jaotuse pärast. Ajatundlikud kontrollid käivita `TZ=UTC` all. Testi või build'i edu ei tõenda kontrollimata runtime'i: märgi see `not_run`/`NOT_PROVEN`.
 
@@ -42,3 +42,13 @@ Kasuta väikseimat kontrolli, mis tõendab muudatuse riski. Dokumentatsioonimuud
 - Kasuta eraldatud testandmeid. Ära loe tootmiskasutajate sisu ega kasuta päris kasutajaid testimiseks. Saladusi ei kirjutata koodi, raportitesse ega logidesse.
 - Admini RAG-i käsitsi käivitatav enesetest on tootefunktsioon ja peab säilima.
 - GraphRAG-tuuma hoia kliendist sõltumatuna; kliendi eripärad kuuluvad konfiguratsiooni või adapterisse. Allika nime/ID või oodatud vastuse järgi runtime-erandeid ei lisata.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

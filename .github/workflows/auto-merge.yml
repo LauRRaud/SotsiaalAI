@@ -1,7 +1,8 @@
 name: auto-merge
 
 # Lülitab PR-il sisse GitHubi auto-merge'i: PR merge'itakse `main`-i siis, kui
-# branch protection'i nõutud kontrollid (quality-gate, webpack-build) on rohelised.
+# branch protection lubab. Vajalikud sihtkontrollid valib AI enne PR-i valmimist;
+# main-i tootmisbuild tehakse üks kord ja sama artefakt läheb serverisse.
 #
 # `pull_request_target`, mitte `pull_request`: workflow jookseb `main`-i versioonist
 # ja PR-i koodi siin ei käivitata ega checkout'ita.

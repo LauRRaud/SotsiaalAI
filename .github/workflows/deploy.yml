@@ -1,33 +1,30 @@
 name: deploy
 
-# `main`-i quality-gate õnnestus → tootmisserverisse olemasoleva
-# `scripts/deploy-server.mjs`-iga → smoke-test serveris.
-#
-# Ilma DEPLOY_SSH_KEY ja DEPLOY_KNOWN_HOSTS secret'ita workflow ei tee midagi.
 on:
   workflow_run:
     workflows: [quality-gate]
     types: [completed]
     branches: [main]
   workflow_dispatch:
+    inputs:
+      run_id:
+        description: Successful main quality-gate run whose artifact should be deployed
+        required: true
+        type: string
 
 permissions:
   contents: read
+  actions: read
 
-# Deploy'd ei katkestata poole pealt; ootele jääb ainult viimane.
 concurrency:
   group: production-deploy
   cancel-in-progress: false
 
 jobs:
   deploy:
-    if: >-
-      github.event_name == 'workflow_dispatch' ||
-      (github.event.workflow_run.conclusion == 'success' &&
-       github.event.workflow_run.event == 'push')
-    runs-on: ubuntu-latest
-    timeout-minutes: 40
-    # Settings → Environments → production: siia saab lisada nõutud kinnitaja.
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
     environment: production
     env:
       DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
@@ -36,30 +33,37 @@ jobs:
       DEPLOY_USER: ${{ secrets.DEPLOY_USER || 'ubuntu' }}
       DEPLOY_PORT: ${{ secrets.DEPLOY_PORT || '22' }}
     steps:
-      - name: Check deploy secrets
-        id: secrets
-        run: |
-          if [ -z "$DEPLOY_SSH_KEY" ] || [ -z "$DEPLOY_KNOWN_HOSTS" ] || [ -z "$DEPLOY_HOST" ]; then
-            echo "::notice::Deploy secret'id puuduvad (DEPLOY_SSH_KEY, DEPLOY_KNOWN_HOSTS, DEPLOY_HOST); deploy vahele jäetud."
-            echo "ready=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "ready=true" >> "$GITHUB_OUTPUT"
-          fi
-
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
-        if: steps.secrets.outputs.ready == 'true'
-        with:
-          ref: main
-
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
-        if: steps.secrets.outputs.ready == 'true'
-        with:
-          node-version: 24
-
-      - name: Configure SSH
-        if: steps.secrets.outputs.ready == 'true'
+      - name: Resolve the exact successful main build
+        id: release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RUN_ID: ${{ inputs.run_id || github.event.workflow_run.id }}
         run: |
           set -euo pipefail
+          [[ "$RUN_ID" =~ ^[0-9]+$ ]]
+          gh api "repos/$GH_REPO/actions/runs/$RUN_ID" > /tmp/release-run.json
+          jq -e '.name == "quality-gate" and .conclusion == "success" and .head_branch == "main" and (.event == "push" or .event == "workflow_dispatch")' /tmp/release-run.json
+          SHA=$(jq -r .head_sha /tmp/release-run.json)
+          [[ "$SHA" =~ ^[a-f0-9]{40}$ ]]
+          echo "sha=$SHA" >> "$GITHUB_OUTPUT"
+          echo "run_id=$RUN_ID" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          ref: ${{ steps.release.outputs.sha }}
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: release-${{ steps.release.outputs.sha }}
+          path: .release
+          run-id: ${{ steps.release.outputs.run_id }}
+          github-token: ${{ github.token }}
+      - name: Configure SSH
+        run: |
+          set -euo pipefail
+          test -n "$DEPLOY_SSH_KEY" && test -n "$DEPLOY_KNOWN_HOSTS" && test -n "$DEPLOY_HOST"
           install -d -m 700 ~/.ssh
           printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
@@ -75,33 +79,10 @@ jobs:
             ServerAliveInterval 30
           EOF
           chmod 600 ~/.ssh/config
-
-      - name: Deploy to production
-        if: steps.secrets.outputs.ready == 'true'
+      - name: Install artifact and restart the single frontend service
         env:
-          DEPLOY_SSH_HOST: sotsiaalai
-        run: node scripts/deploy-server.mjs
-
-      - name: Smoke test on server
-        if: steps.secrets.outputs.ready == 'true'
-        run: |
-          set -euo pipefail
-          ssh sotsiaalai 'bash -s' <<'EOF'
-          set -uo pipefail
-          for attempt in $(seq 1 30); do
-            if curl -fsS --max-time 10 http://127.0.0.1:3000/api/health >/dev/null \
-              && curl -fsS --max-time 20 -o /dev/null http://127.0.0.1:3000/; then
-              echo "[smoke] OK after attempt $attempt"
-              exit 0
-            fi
-            sleep 5
-          done
-          echo "[smoke] Health or home page did not respond after deploy" >&2
-          # Teenuse logi ei kopeerita Actionsisse: see võib sisaldada kasutajaandmeid.
-          systemctl status sotsiaalai-frontend.service --no-pager --lines=0 >&2 || true
-          exit 1
-          EOF
-
+          RELEASE_SHA: ${{ steps.release.outputs.sha }}
+        run: node scripts/deploy-server.mjs --artifact .release --revision "$RELEASE_SHA"
       - name: Clean up SSH key
         if: always()
         run: rm -f ~/.ssh/deploy_key

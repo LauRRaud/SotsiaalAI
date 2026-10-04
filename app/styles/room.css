@@ -171,7 +171,7 @@ main#main:focus-visible {
   top: auto;
   bottom: max(-0.1375rem, env(safe-area-inset-bottom, 0px) - 0.1375rem);
   translate: -50%;
-  width: clamp(17rem, 40vw, 33rem);
+  width: clamp(12.75rem, 30vw, 24.75rem);
   opacity: 0;
 }
 .room-veil-logo img {
@@ -376,7 +376,7 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
   .room-veil-logo {
     top: auto;
     bottom: max(-0.1rem, env(safe-area-inset-bottom, 0px) - 0.1rem);
-    width: clamp(18rem, 88vw, 26rem);
+    width: clamp(13.5rem, 66vw, 19.5rem);
   }
   .room-veil-line {
     top: 19%;

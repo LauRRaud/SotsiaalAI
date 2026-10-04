@@ -1,96 +1,67 @@
 name: quality-gate
 
+# One production build, used directly by deployment. The AI chooses lint/tests
+# before publishing; broad validation and the webpack build remain opt-in tools.
 on:
-  pull_request:
   push:
     branches: [main]
+    paths-ignore:
+      - 'docs/audits/**'
+      - 'docs/platvormi arendus/**'
+      - 'AGENTS.md'
+      - '**/SKILL.md'
+      - 'README.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 concurrency:
-  group: quality-gate-${{ github.ref }}
+  group: release-build-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  # SOL-BUILD-01: dokumenteeritud varurada `build:webpack` peab samuti
-  # kompileeruma. Eraldi töö, et ta ei segaks põhitöö `.next` kausta ega
-  # tootmis-smoke'i; jookseb quality-gate'iga paralleelselt.
-  webpack-build:
-    runs-on: ubuntu-latest
-    timeout-minutes: 25
+  build:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
     env:
       DATABASE_URL: postgresql://sotsiaal_user@127.0.0.1:5432/sotsiaal_ai_ci
-      NEXT_PUBLIC_SITE_URL: http://127.0.0.1:3000
-      APP_URL: http://127.0.0.1:3000
-      NEXTAUTH_URL: http://127.0.0.1:3000
+      NEXT_PUBLIC_SITE_URL: https://sotsiaal.pro
+      APP_URL: https://sotsiaal.pro
+      NEXTAUTH_URL: https://sotsiaal.pro
       NEXTAUTH_SECRET: ${{ github.sha }}
       AUTH_SECRET: ${{ github.sha }}
       OPENAI_API_KEY: ${{ github.sha }}
       RAG_SERVICE_API_KEY: ${{ github.sha }}
       RAG_INTERNAL_HOST: 127.0.0.1
       RAG_API_BASE: http://127.0.0.1:8000
-      EMAIL_FROM: ci@sotsiaal.ai
-    steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
-
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
-        with:
-          node-version: 24
-          cache: npm
-
-      - name: Install locked dependencies
-        run: npm ci
-
-      - name: Generate Prisma client
-        run: npx prisma generate
-
-      - name: Build production application with webpack
-        run: npm run build:webpack
-
-  quality-gate:
-    runs-on: ubuntu-latest
-    timeout-minutes: 25
-    env:
-      DATABASE_URL: postgresql://sotsiaal_user@127.0.0.1:5432/sotsiaal_ai_ci
-      NEXT_PUBLIC_SITE_URL: http://127.0.0.1:3000
-      APP_URL: http://127.0.0.1:3000
-      NEXTAUTH_URL: http://127.0.0.1:3000
-      NEXTAUTH_SECRET: ${{ github.sha }}
-      AUTH_SECRET: ${{ github.sha }}
-      OPENAI_API_KEY: ${{ github.sha }}
-      RAG_SERVICE_API_KEY: ${{ github.sha }}
-      RAG_INTERNAL_HOST: 127.0.0.1
-      RAG_API_BASE: http://127.0.0.1:8000
-      EMAIL_FROM: ci@sotsiaal.ai
+      EMAIL_FROM: ci@sotsiaal.pro
       DATA_RETENTION_DAYS: 90
       CONVERSATION_TTL_DAYS: 90
       PAYMENT_RETENTION_DAYS: 2555
       PAYMENT_RAW_RETENTION_DAYS: 90
       LOG_RETENTION_DAYS: 90
-
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
-
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: 24
           cache: npm
-
-      - name: Install locked dependencies
-        run: npm ci
-
-      - name: Validate Prisma schema
-        run: npx prisma validate
-
-      - name: Generate Prisma client
-        run: npx prisma generate
-
-      - name: Run lint
-        run: npm run lint
-
-      - name: Check translation parity
-        run: npm run i18n:check
-
-      - name: Run unit tests
-        run: npm test
-
-      - name: Build production application
-        run: npm run build
+      - name: Install locked dependencies and generate Prisma client
+        run: npm ci --no-audit --no-fund
+      - name: Load public production build configuration
+        run: node --input-type=module -e 'import fs from "node:fs"; const env=JSON.parse(fs.readFileSync("config/production-public-env.json","utf8")); fs.appendFileSync(process.env.GITHUB_ENV,Object.entries(env).map(([k,v])=>`${k}=${v}`).join("\n")+"\n");'
+      - name: Build the production artifact once
+        run: node node_modules/next/dist/bin/next build --turbopack
+      - name: Package built application and Linux dependencies
+        run: node scripts/release-artifact.mjs "$GITHUB_SHA"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: release-${{ github.sha }}
+          path: |
+            .release/release.tar.gz
+            .release/release.sha256
+          compression-level: 0
+          retention-days: 7
+          if-no-files-found: error
