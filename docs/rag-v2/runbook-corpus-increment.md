@@ -141,7 +141,7 @@ tar cf - tmp/rag-v2-corpus-store-v25 tmp/rag-v2-corpus-index-v26 | gzip -1 | ssh
 
 ## 6. Tasuta vektoriplaan
 
-Hinnafail kehtib 24 tundi alates `checked_at` ajast. Vana hinnaga peatub juba plaan (`price_verification_stale`). Kontrolli hind üle aadressil `https://developers.openai.com/api/docs/models/text-embedding-3-large` ja kirjuta uus fail samas vormis:
+Hinnafail kehtib 24 tundi alates `checked_at` ajast. Vana hinnaga peatub juba plaan (`price_verification_stale`). Sama viga tuleb ka siis, kui `checked_at` on tulevikus: kirjuta aeg serveris käsuga `date -u +%Y-%m-%dT%H:%M:%S.000Z` (04.10.2026 peatus v48 esimene katse selle taga pärast hoidla pea tõstmist; `rag-v2-corpus-run.sh` uuesti käivitamiseks tuli pea ja poliitikafail varukoopiast tagasi panna). Kontrolli hind üle aadressil `https://developers.openai.com/api/docs/models/text-embedding-3-large` ja kirjuta uus fail samas vormis:
 
 ```json
 { "input_per_million": "0.13", "currency": "USD", "version": "openai-text-embedding-3-large-standard-<kuupäev>",

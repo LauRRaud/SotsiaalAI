@@ -26,8 +26,8 @@
       "sources": 1
     },
     "oigusaktid": {
-      "files": 592,
-      "sources": 578
+      "files": 593,
+      "sources": 579
     },
     "register": {
       "files": 2,
@@ -22850,7 +22850,7 @@
       "path": "oigusaktid/404072025051.xml",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "f6a95b884d84bcb1b26bddc3cb65fc0494489ba56ee4d74840787c246dd693fd",
+      "sha256": "d9258a18f085bd60867caae3cfd159cd40214f756b9fbda7f6394560379dbf2f",
       "original_path": "riigiteataja.ee/et/akt/404072025051.xml",
       "review_status": "version_and_jurisdiction_validation_pending"
     },
@@ -23270,7 +23270,7 @@
       "path": "oigusaktid/402072013031.xml",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "797b807d4bb8b701a00dd653bd65d5402079639ad6cae1114ba4c68af4adc9b5",
+      "sha256": "d8e1b6c103ab5c850d65748f92036819ef6e8f727b8e3d5dca5ef1f8b1379ee3",
       "original_path": "riigiteataja.ee/et/akt/402072013031.xml",
       "review_status": "version_and_jurisdiction_validation_pending"
     },
@@ -24550,7 +24550,7 @@
       "path": "oigusaktid/415082017002.xml",
       "category": "oigusaktid",
       "role": "source",
-      "sha256": "268ecdc2515680ad80a519ab3e13a53957cd61fd60c7049670addad4bbc217c0",
+      "sha256": "9f7c45c9bb71377f2b6d52273482f618e24ac215d2c99bce502c21e06ecf3c7c",
       "original_path": "riigiteataja.ee/et/akt/415082017002.xml",
       "review_status": "version_and_jurisdiction_validation_pending"
     },
@@ -26272,6 +26272,14 @@
       "role": "source",
       "sha256": "fc34830f29690b6e4ddc073cb7b1700a61f0cc675991df27aeeb2331d2bb1f31",
       "original_path": "riigiteataja.ee/et/akt/430012026034.xml",
+      "review_status": "version_and_jurisdiction_validation_pending"
+    },
+    {
+      "path": "oigusaktid/403102026022.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "a643610c14ad71bc5ef90f2e12ceb70d7c684fcf20b21e5d6f215b1b21619b33",
+      "original_path": "riigiteataja.ee/et/akt/403102026022.xml",
       "review_status": "version_and_jurisdiction_validation_pending"
     }
   ],

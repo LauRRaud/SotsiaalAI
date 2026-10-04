@@ -1,9 +1,9 @@
 {
   "schema_version": "rag-v2/legal-acts-in-index-1",
-  "generated_at": "2026-10-01T16:21:08.711Z",
+  "generated_at": "2026-10-04T06:46:24.446Z",
   "tenant": "sotsiaalai-corpus",
-  "store_generation": "generation_7f1d7c93440fc0d38a6d93870363391f89897d2ed548ad1dfa6a4f006373d75b",
-  "policy_documents": 6470,
+  "store_generation": "generation_34e83d81cb35003e185dc91393a083edb7c6170613f5eea927faccc7f4613fdb",
+  "policy_documents": 6471,
   "acts": [
     {
       "document_id": "document_005199d74750ea0e1516034366803c9226115d36349d91b74b6ec0e360d34f6a",
@@ -1443,6 +1443,20 @@
       ],
       "source_path": "oigusaktid/408122023043.xml",
       "index_from": "2023-12-11",
+      "index_to": null
+    },
+    {
+      "document_id": "document_2fde9fdc629975391795829e06b53b85df6544f05805f7e12af3cdc6d8337883",
+      "version_id": "version_d980c402b431edcb38e3c89f97635fd1ddaea7c720424dd3a12dc9b7f130f8f7",
+      "globaal_id": "403102026022",
+      "group": "1056728",
+      "title": "Sotsiaalhoolekandelise abi osutamise kord",
+      "issuer": "Põhja-Sakala Vallavolikogu",
+      "regions": [
+        "pohja_sakala_vald"
+      ],
+      "source_path": "oigusaktid/403102026022.xml",
+      "index_from": "2026-10-06",
       "index_to": null
     },
     {
@@ -3283,7 +3297,7 @@
     },
     {
       "document_id": "document_75ca1a9e88e8dfcf04463cdef24452122c6cad366f7d8bb08bae67a1b4ab7a3d",
-      "version_id": "version_cc37e756d527560ef8c167b4679553572b8b9751a81551103d72897db6769187",
+      "version_id": "version_029999370375b2d9b917c1770b5ce27f84756cd005ec014a0ec1fae9c9dc3158",
       "globaal_id": "404072025051",
       "group": "1056728",
       "title": "Sotsiaalhoolekandelise abi osutamise kord",
@@ -3293,7 +3307,7 @@
       ],
       "source_path": "oigusaktid/404072025051.xml",
       "index_from": "2025-09-01",
-      "index_to": null
+      "index_to": "2026-10-05"
     },
     {
       "document_id": "document_76182fc8b78456b52abe1ce1acb4602669c1905ab617de1ec55f512d814173a1",
@@ -3395,7 +3409,7 @@
     },
     {
       "document_id": "document_7a494f99ba1bd0e9d787d3c9117a7746104305724dd5bfc87ec1cded73742a13",
-      "version_id": "version_93e1c0e65f781f322e93cd7be1a338dab1a154329ed27ca40235a437053cfc9e",
+      "version_id": "version_367bd6cc8f99a37abd0817fa7bf998a0643bbe4f2e3a9fd1cd137ae24fe42b83",
       "globaal_id": "415082017002",
       "group": "1039669",
       "title": "Isikliku abistaja teenuse osutamise tingimused ja kord",
@@ -3405,7 +3419,7 @@
       ],
       "source_path": "oigusaktid/415082017002.xml",
       "index_from": "2017-09-01",
-      "index_to": null
+      "index_to": "2026-10-03"
     },
     {
       "document_id": "document_7a856448839c28621cb1ef4b0329bf1587c81f1b41d30b96971f1b09e4f90f5e",
@@ -4061,7 +4075,7 @@
     },
     {
       "document_id": "document_8be0d2739452024d0a5a7fbb42d237633f42043009ca1dc4d3475dedccdf01ec",
-      "version_id": "version_1e04b702d2cb8bc76f1fdfdec3a2904104e8a2c59f34735b21694eafdaf30ed0",
+      "version_id": "version_92275b8c6aa13a906cd5c61bc2fed41fd69fe02242ec87fa88acd0084a8a4560",
       "globaal_id": "402072013031",
       "group": "1015063",
       "title": "Hooldajatoetuse määra kehtestamine puudega lapse hooldajale",
@@ -4071,7 +4085,7 @@
       ],
       "source_path": "oigusaktid/402072013031.xml",
       "index_from": "2013-07-05",
-      "index_to": null
+      "index_to": "2026-10-03"
     },
     {
       "document_id": "document_8c55bde4d4854e238e169b883dab525ed6b78c2807a32d379640bac84dce01ca",
