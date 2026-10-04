@@ -424,7 +424,7 @@ async function regionConversation(t) {
     prices: { embeddingInput: 1, answerInput: 1, answerOutput: 1 }, budget: { attempts: 24, embeddingAttempts: 12, answerAttempts: 12, tokens: 1000000, nanoUsd: 1000000 } };
   t.after(async () => { await db.user.delete({ where: { id: user.id } }); await db.m4PilotLedger.deleteMany({ where: { id: config.id } }); });
   // A stand-in for EstNLTK and the municipal directory.
-  const directory = [{ region: 'harku_vald', names: ['Harku vald', 'Harku'] }, { region: 'kose_vald', names: ['Kose vald', 'Kose'] }];
+  const directory = [{ region: 'harku_vald', names: ['Harku vald', 'Harku'] }, { region: 'kose_vald', names: ['Kose vald', 'Kose'] }, { region: 'tartu_vald', names: ['Tartu vald'] }];
   const analyzer = { analyze: async words => words.map(word => { const lower = word.toLowerCase(); return `vmet${lower}${lower === 'vallas' ? ' vmetvald' : ''}`; }) };
   const runtime = runtimeAdapters(async () => config, user.id, { loadRegions: async () => directory, analyzer });
   const scopes = [], plans = [];
@@ -512,7 +512,11 @@ test('dialogue state DB (ADR-074): a question about another municipality is sear
   assert.deepEqual(asked.assist.places.map(item => [item.region, item.relation, item.asking]), [['harku_vald', 'other', true]]);
   // Codex F1: the follow-up names no municipality; the service hands on what the last answer was asked about.
   const price = await turn('Ja mis see maksab?', 'same', { queries: ['Harku vald koduteenuse hind'], person: 'user', places: [] });
-  assert.deepEqual([price.searched.source, price.searched.region, price.query.askedRegions, price.people.user], ['question_region', 'harku_vald', ['harku_vald'], ['kose_vald', 'reported']]);
+  assert.deepEqual([price.searched.source, price.searched.region, price.query.askedRegions, price.query.askedPerson, price.people.user],
+    ['question_region', 'harku_vald', ['harku_vald'], 'user', ['kose_vald', 'reported']]);
+  // Codex's review of #345, F1: the same follow-up in the first person, beside a query about the user's own earlier request.
+  const apply = await turn('Kuidas ma seda taotleda saan?', 'same', { queries: ['Harku vald koduteenuse taotlemine', 'Kose vald toimetulek'], person: 'user', places: [] });
+  assert.deepEqual([apply.searched.source, apply.searched.region, apply.people.user], ['question_region', 'harku_vald', ['kose_vald', 'reported']]);
   // The user's own request: the plan's queries are not about the asked municipality any more.
   const own = await turn('Millist abi ma ise saan?', 'same', { queries: ['toimetulekutoetuse taotlemine'], person: 'user', places: [] });
   assert.deepEqual([own.searched.source, own.searched.region, own.people.user], ['person_region', 'kose_vald', ['kose_vald', 'reported']]);
@@ -525,6 +529,20 @@ test('dialogue state DB (ADR-074): a question about another municipality is sear
   assert.deepEqual([bare.assist.plannedPlaces, bare.assist.places.map(item => [item.reason, item.asking])], [[], [['unattributed_other_mention', true]]]);
   // Codex F2: a place of work, with a plan whose only query names it.
   const work = await turn('Töötan Harku vallas. Millist koduteenust ma saan?', 'same', { queries: ['Harku vald koduteenus'], person: 'user',
-    places: [{ turn: 7, quote: 'Töötan Harku vallas', name: 'Harku vald', person: 'user', relation: 'other' }] });
+    places: [{ turn: 8, quote: 'Töötan Harku vallas', name: 'Harku vald', person: 'user', relation: 'other' }] });
   assert.deepEqual([work.searched.source, work.searched.region, work.people.user], ['person_region', 'kose_vald', ['kose_vald', 'reported']]);
+  assert.deepEqual(work.assist.places.map(item => [item.region, item.relation, item.asking, item.reason ?? null]), [['harku_vald', 'other', false, null]]);
+});
+
+test('dialogue state DB (ADR-074, Codex\'s review of #345, F2): another person\'s request is not a follow-up of the user\'s question about another municipality', async t => {
+  const turn = await regionConversation(t);
+  await turn('Elan Kose vallas.', 'new', { queries: ['Kose vald toimetulek'], person: 'user', places: [{ turn: 1, quote: 'Elan Kose vallas', name: 'Kose vald', person: 'user', relation: 'lives' }] });
+  await turn('Mu ema elab Tartu vallas.', 'same', { queries: ['Tartu vald koduteenus'], person: 'ema', places: [{ turn: 2, quote: 'Mu ema elab Tartu vallas', name: 'Tartu vald', person: 'ema', relation: 'lives' }] });
+  const asked = await turn('Kas Harku vallas saab koduteenust?', 'same', { queries: ['Harku vald koduteenus'], person: 'user',
+    places: [{ turn: 3, quote: 'Kas Harku vallas saab koduteenust?', name: 'Harku vald', person: 'user', relation: 'other' }] });
+  assert.deepEqual([asked.searched.source, asked.searched.region, asked.searched.person], ['question_region', 'harku_vald', 'user']);
+  // The plan reads the mother and still writes a query about the user's earlier question.
+  const hers = await turn('Aga millist koduteenust ema saab?', 'same', { queries: ['Tartu vald koduteenuse tingimused', 'Harku vald koduteenuse hind'], person: 'ema', places: [] });
+  assert.deepEqual([hers.searched.source, hers.searched.region, hers.searched.person, hers.query.askedPerson], ['person_region', 'tartu_vald', 'ema', 'user']);
+  assert.deepEqual(hers.people, { user: ['kose_vald', 'reported'], ema: ['tartu_vald', 'reported'] });
 });

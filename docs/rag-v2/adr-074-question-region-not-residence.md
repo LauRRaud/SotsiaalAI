@@ -6,6 +6,8 @@
 
 Muudatus on serveri otsustusloogikas; ühtegi mudeli juhist ei muudetud. #344 läks tootmisse mõõtmata, kohalike testidega.
 
+**Codexi ülevaatus pärast #345 (04.10)** leidis järelküsimuse otsuses veel kaks viga; need on parandatud jaotises „Parandus pärast Codexi teist ülevaatust“, kohalike testidega.
+
 **Codexi ülevaatus enne liitmist (04.10)** leidis esimeses versioonis kaks viga: järelküsimus kaotas küsitud valla (F1) ja töökoht võitis elukoha, kui plaani päring nimetas ainult töökoha valda (F2). Mõlemad on siin parandatud; reegli teine tingimus ja järelküsimuse jätkamine tulid sellest ülevaatusest.
 
 ## Probleem
@@ -61,9 +63,9 @@ Otsingu piirkonna kirje:
 
 „Ja mis see maksab?“ pärast Maardu küsimust ei nimeta valda. Otsing jääb Maardusse, kui (Codex F1):
 
-- **viimane avaldatud vastus anti küsitud valla kohta** (selle pöörde salvestatud piirkonnakirje on `question_region`; teenus annab selle järgmisele pöördele kaasa väljal `query.askedRegions`);
-- **praegune sõnum ei nimeta ühtegi valda**;
-- **plaani päringud nimetavad seda küsitud valda** ega nimeta muud valda. Erand pärast mõõtmist: päring inimese enda valla kohta ei loe, kui sõnum ei räägi esimeses isikus.
+- **viimane avaldatud vastus anti küsitud valla kohta** (selle pöörde salvestatud piirkonnakirje on `question_region`; teenus annab järgmisele pöördele kaasa valla ja inimese, kelle küsimus see oli: `query.askedRegions`, `query.askedPerson`);
+- **praegune sõnum käib sama inimese kohta** ega nimeta ühtegi valda;
+- **plaani päringud nimetavad seda küsitud valda** ega nimeta muud valda. Erand: päring inimese enda valla kohta ei loe, kui sõnum viitab tagasi sellele, millest just räägiti („see“, „seda“, „sealt“), kes iganes räägib.
 
 Kirjes on siis `"asked_in": "earlier_question"`. Jätk kestab pöördest pöördesse, kuni plaan kirjutab päringud selle valla kohta. Inimese enda kohta käiv palve („Millist koduteenust ma ise saan?“), mille päringud nimetavad elukohta või ei nimeta valda, läheb elukoha juurde tagasi; pärast seda pole enam midagi jätkata. Elukoht on kõigis neis pööretes sama.
 
@@ -96,7 +98,8 @@ Kirjes on siis `"asked_in": "earlier_question"`. Jätk kestab pöördest pöörd
 - **Vald, millele küsimus viitab asesõnaga** („Töötan Maardus, kas sealt saab …?“), ei ole küsimuse sees nimetatud: otsing jääb elukoha valda.
 - **Töökoht küsimuse sees pärast küsisõna**, kirjavahemärkideta („kas ma saan koduteenust kui töötan Maardus“), loetakse küsimuse osaks. Vale piirkond tekib siis ainult juhul, kui ka plaani päringud nimetavad üksnes töökoha valda.
 - **Järelküsimus toetub plaani päringutele.** Kui plaan kirjutab pärast Maardu küsimust inimese enda palve kohta päringud ainult Maardust, jätkub otsing Maardus. Server ei saa seda sõnumist eristada.
-- **Esimeses isikus järelküsimus** („Kuidas ma seda taotleda saan?“), mille plaan nimetab nii küsitud kui oma valda, läheb elukoha juurde. Ainult küsitud valda nimetava plaaniga jätkab see küsitud valda.
+- **Tagasiviiteta järelküsimus** („Ja kuidas taotleda?“), mille plaan nimetab nii küsitud kui inimese oma valda, läheb elukoha juurde. Ainult küsitud valda nimetava plaaniga jätkab see küsitud valda.
+- **Teise inimese palve ei jätka eelmise inimese küsimust:** pärast kasutaja Maardu küsimust otsitakse „Kas ema saaks seda ka?“ ema enda vallast.
 - **Järelküsimus, mille plaan küsitud valda ei nimeta**, läheb elukoha juurde.
 - **Võrdlus oma vallaga** („kas Maardus on odavam kui Nõos?“) jääb elukoha valda, sest päring nimetab ka inimese enda valda.
 - **Kohaseoseta esimeses isikus küsimus** („Kas ma saan Maardus …?“) muudab elukoha endiselt lahendamatuks, kui kohaseos serverini ei jõua. Kohaseosega (`other`) töötab see nagu Q5.
@@ -106,13 +109,15 @@ Kirjes on siis `"asked_in": "earlier_question"`. Jätk kestab pöördest pöörd
 
 ## Kontrollid
 
-`tests/rag-v2-question-region.test.mjs` (11 testi) viib iga pöörde läbi päris otsinguadapteri kohakontrolli ja piirkonnavaliku (`runtimeAdapters`: `checkedPlaces`, `searchScope`); salvestatud olek on sama `resolvePersonRegions`. Mudelit ega andmebaasi ei kasutata. Enne parandust kukkus esimese versiooni 9 testist 8.
+`tests/rag-v2-question-region.test.mjs` (13 testi) viib iga pöörde läbi päris otsinguadapteri kohakontrolli ja piirkonnavaliku (`runtimeAdapters`: `checkedPlaces`, `searchScope`); salvestatud olek on sama `resolvePersonRegions`. Mudelit ega andmebaasi ei kasutata. Enne parandust kukkus esimese versiooni 9 testist 8.
 
 | Nõue | Test | Tulemus |
 |---|---|---|
 | Selgesõnaline teise valla infopäring | Q3 ja Q5 plaanid ja sõnumid kirjest sõna-sõnalt | otsing Tartu vallas / Maardus; elukoht Anija / Nõo |
 | Järelküsimus (Codex F1) | „Ja mis see maksab?“ ja „Kuidas seda taotleda?“ Maardu päringuga | Maardu, elukoht Nõo |
 | Mõõdetud plaanid | 04.10 jooksu kohaseosed ja päringud sõna-sõnalt: küsimus, järelküsimus kolme päringuga, oma palve, töökoht, Tartu vald | Maardu; Maardu; Nõo; Nõo; Tartu vald |
+| Esimeses isikus järelküsimus (Codexi teine ülevaatus, F1) | „Kuidas seda taotleda?“, „Kuidas ma seda taotleda saan?“ ja kaks muud tagasiviitega sõnastust, kõrval päring kasutaja varasema palve kohta; uus oma palve kolme päringukomplektiga | Maardu igas sõnastuses; oma palve Nõo |
+| Teise inimese palve (Codexi teine ülevaatus, F2) | kasutaja Maardu küsimuse järel ema palve nelja päringukomplektiga, sh ainult Maardu; ema enda Maardu küsimus ja selle järelküsimus | Kose (ema); Maardu ema nimel; kasutaja järgmine palve Nõo |
 | Elukoha säilimine ja tagasitulek | „Aga millist koduteenust ma ise saan?“ kolme päringukomplektiga; pärast seda Maardut nimetav päring; päris kolimine | Nõo; Nõo; Maardu saab elukohaks |
 | Töökoha mainimine (Codex F2) | „Elan Nõo vallas, töötan Maardus …“ nelja päringukomplektiga, sh ainult Maardu; töökoht hilisemas sõnumis neljas sõnastuses, kohaseosega ja ilma | Nõo igal juhul |
 | Küsimus töökoha kõrval | „Töötan Maardus. Kas Maardus saab …?“, kaudne küsimus, palve, küsimärgiga lause, „kui palju“ | Maardu, elukoht Nõo |
@@ -125,8 +130,8 @@ Kirjes on siis `"asked_in": "earlier_question"`. Jätk kestab pöördest pöörd
 - **Kahe inimese kataloogid:** kõik `tests/evaluation/dialogue/*.json` kataloogid läbivad kuju kontrolli ja nende testid on muutmata. Nende pöörete piirkonnaootused ei puutu uude reeglisse: seal pole küsimuse sees `other`-mainimist, mida päringud üksi nimetaksid.
 - **Muudetud kinnitatud ootus** (`tests/rag-v2-region-state-5.test.mjs`): „Käin Harku vallas arsti juures.“ ilma kohaseoseta jätab nüüd Kose elukohaks. Varem muutus elukoht lahendamatuks (Codex V1, 30.09). See on teadlik muutus jaotise 3 järgi; Codex pidas seda 04.10 põhjendatuks.
 - **Kataloog `scenarios-region-state-1.json`, `moved-away-no-new-place`, teine pööre** („Kas Kose vallas on mingi toetus, mida ma veel saaksin?“): elukoht jääb teadmata nagu ootus nõuab; otsingu piirkond võib nüüd olla Kose kui küsitud vald. Kataloog piirkonda ei kontrolli.
-- **Kohalik andmebaasitest** (`tests/rag-v2-dialogue-store.test.mjs`, 22/22): üks vestlus läbi päris teenuse: elukoht Kose, küsimus Harku kohta, järelküsimus, oma palve, hilisem Harkut nimetav päring, kohaseoseta küsimus, töökoht ainult Harkut nimetava päringuga. Järelküsimuse piirkond tuleb eelmise pöörde salvestatud kirjest; `plannedPlaces` ja `asking` on pöördekirjes.
-- **Täiskomplekt** `node scripts/run-unit-tests.mjs`: 632 testi, 613 läbis, 19 vahele jäetud, 0 ebaõnnestus (pärast mõõtmisjärgset parandust). ESLint muudetud failidel puhas.
+- **Kohalik andmebaasitest** (`tests/rag-v2-dialogue-store.test.mjs`, 23/23; lisatud esimeses isikus järelküsimus ja teise inimese palve): üks vestlus läbi päris teenuse: elukoht Kose, küsimus Harku kohta, järelküsimus, oma palve, hilisem Harkut nimetav päring, kohaseoseta küsimus, töökoht ainult Harkut nimetava päringuga. Järelküsimuse piirkond tuleb eelmise pöörde salvestatud kirjest; `plannedPlaces` ja `asking` on pöördekirjes.
+- **Täiskomplekt** `node scripts/run-unit-tests.mjs`: 634 testi, 615 läbis, 19 vahele jäetud, 0 ebaõnnestus (pärast Codexi teise ülevaatuse parandust). ESLint muudetud failidel puhas.
 - **Codexi sondide kohta:** F2 sondi sisend (kohaseosed `Nõo=lives`, `Maardu=other`, päring ainult Maardust) on testis sõna-sõnalt. F1 sond kutsub `searchScope`-i otse; järelküsimuse jaoks tuleb sellele anda eelmise pöörde küsitud vald (`query.askedRegions`), nagu teenus seda teeb.
 
 ## Mõõtmine (04.10.2026, pärast avaldamist)
@@ -157,10 +162,24 @@ Omaniku loal üks jooks: kataloog `tests/evaluation/dialogue/scenarios-question-
 **Päring inimese enda valla kohta, mida praegune sõnum ei nimeta, käib varasema asja kohta ega otsusta pöörde piirkonda.**
 
 - Küsimuses endas: küsitud vald jääb piirkonnaks, kui plaan kirjutab selle kõrvale päringu kasutaja varasema palve kohta. Võrdlus, kus sõnum nimetab ka oma valda, jääb elukoha juurde nagu enne.
-- Järelküsimuses kehtib see ainult sõnumi kohta, mis ei räägi esimeses isikus. „Ja mis see maksab?“ jätkab Maardut; „Aga millist koduteenust ma ise saan?“ või „Kuidas ma seda taotleda saan?“ koos mõlema valla päringutega läheb elukoha juurde.
+- Järelküsimuses kehtis see #345-s ainult sõnumi kohta, mis ei räägi esimeses isikus. See tingimus oli vale ja on asendatud (järgmine jaotis).
 - Kolmandat valda nimetav päring jätab otsingu endiselt inimese juurde.
 
-Kontrollitud kohalikult mõõdetud plaanidega sõna-sõnalt (`tests/rag-v2-question-region.test.mjs`, 11 testi): mõõdetud järelküsimuse plaan annab nüüd Maardu, mõõdetud oma palve plaan Nõo. Uut jooksu ei tehtud; luba oli ühele jooksule.
+Kontrollitud kohalikult mõõdetud plaanidega sõna-sõnalt (`tests/rag-v2-question-region.test.mjs`): mõõdetud järelküsimuse plaan annab nüüd Maardu, mõõdetud oma palve plaan Nõo. Uut jooksu ei tehtud; luba oli ühele jooksule.
+
+### Parandus pärast Codexi teist ülevaatust (#344–#345; mudeliga kontrollimata)
+
+Codex taasesitas #345 koodil kaks viga, mõlemad järelküsimuse otsuses.
+
+- **F1: esimene isik ei ole teemavahetus.** „Kuidas seda taotleda?“ jätkas Maardut, aga „Kuidas ma seda taotleda saan?“ läks Nõosse, kui plaanis oli kõrval päring kasutaja varasema palve kohta. #345 jättis oma valla päringu kõrvale ainult siis, kui sõnum ei rääkinud esimeses isikus.
+  - **Nüüd:** oma valla päring jäetakse kõrvale siis, kui sõnum viitab tagasi sellele, millest just räägiti („see“, „seda“, „sealt“; inglise ja vene keeles samamoodi). Kes räägib, ei loe.
+  - Sõnum, mis tagasi ei viita („Aga millist koduteenust ma ise saan?“), alustab oma palvet: seal on oma valla päring palve ise ja küsitud valla päring jääk, kummas järjekorras tahes. Otsing läheb elukoha juurde.
+- **F2: küsitud vald kuulub selle inimese küsimusele, kelle kohta see esitati.** Pärast kasutaja Maardu küsimust valis plaan „Aga millist koduteenust ema saab?“ jaoks õigesti ema ja kirjutas päringud Kose ja Maardu kohta; server jätkas Maardut. Edasi anti ainult vald, mitte inimene.
+  - **Nüüd:** teenus annab järgmisele pöördele kaasa ka inimese (`query.askedPerson`, eelmise pöörde kirje `person_scope.person`). Järelküsimus jätkab küsitud valda ainult siis, kui praegune sõnum käib sama inimese kohta. Ema palve otsitakse ema vallast, ka siis, kui plaanis on Maardu päring.
+  - Ema enda teise valla küsimus („Kas ema saaks Maardus …?“) ja selle järelküsimus jätkavad ema nimel; kasutaja järgmine palve mitte.
+  - Kutsuja, kes annab edasi valla ilma inimeseta, jätkamist ei saa.
+
+Kontrollitud Codexi sondide sisenditega kohalikult (`tests/rag-v2-question-region.test.mjs`, 13 testi; andmebaasitestis mõlemad juhud läbi päris teenuse). Mudeliga ei jooksutatud. Codexi sond kutsub `searchScope`-i otse ja annab kaasa ainult `askedRegions`; nüüd tuleb anda ka `askedPerson`, nagu teenus teeb.
 
 ## Mis on mõõdetud ja mis mitte
 
@@ -171,7 +190,8 @@ Kontrollitud kohalikult mõõdetud plaanidega sõna-sõnalt (`tests/rag-v2-quest
 | Teise valla küsimus otsitakse küsitud vallast, elukoht jääb, vastus ei küsi tagasi | **mõõdetud**, kaks pööret, üks jooks |
 | Töökoha mainimisel jääb otsing elukoha valda | **mõõdetud**, üks pööre; plaani päringud olid elukoha vallast |
 | Inimese enda palve pärast teise valla küsimust läheb elukoha juurde | **mõõdetud**, üks pööre |
-| Järelküsimus jätkab küsitud valda | mõõdetud reegliga **ei jätkanud**; parandatud reegel ainult kohalike testidega |
+| Järelküsimus jätkab küsitud valda | mõõdetud reegliga **ei jätkanud**; parandatud reegel (kaks parandust pärast mõõtmist) ainult kohalike testidega |
+| Teise inimese palve ei jätka eelmise inimese küsitud valda | kohalikud testid |
 | Kaks valda, teine inimene küsitud vallaga, kohaseoseta mainimine (Q6/Q7 kuju) | kohalikud testid |
 | Kui sageli kohaseos serverini ei jõua | mõõtmata (04.10 küsimustikus kahel neljast; selles jooksus mitte ühelgi kaheksast) |
 
