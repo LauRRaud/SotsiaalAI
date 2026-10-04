@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import { resolvePersonRegions, regionTarget, askedRegions, askedPerson } from '../lib/rag-v2/pilot/person-places.js';
+import { namesPlaceByCommonWord } from '../lib/rag-v2/pilot/record-scope.js';
 import { placeOccurrences, refersBack } from '../lib/rag-v2/pilot/record-scope.js';
 import { runtimeAdapters } from '../lib/rag-v2/pilot/retrieval.js';
 import { REGION_STATE_VERSION } from '../lib/rag-v2/pilot/dialogue-state.js';
@@ -19,7 +20,8 @@ import { validateCatalogue, checkTurn } from '../lib/rag-v2/pilot/conversation-e
 // catalogue and the knowledge lane read `source`, the saved state is resolvePersonRegions of the same checked places.
 // A stand-in for EstNLTK: each word reads as itself and, for the inflected fixture words, its lemma. The directory has
 // the shape the municipal adapter gives: the display name and the base name of each municipality.
-const LEMMAS = { vallas: 'vald', valla: 'vald', valda: 'vald', vallast: 'vald', linnas: 'linn', linna: 'linn', maardus: 'maardu', nõos: 'nõo', tartus: 'tartu', viimsis: 'viimsi', koses: 'kose' };
+const LEMMAS = { vallas: 'vald', valla: 'vald', valda: 'vald', vallast: 'vald', linnas: 'linn', linna: 'linn', maardus: 'maardu', nõos: 'nõo', tartus: 'tartu', viimsis: 'viimsi', koses: 'kose',
+  omavalitsuses: 'omavalitsus', elukohas: 'elukoht', linnades: 'linn' };
 const analyzer = { analyze: async words => words.map(word => { const lower = word.toLowerCase(); return `vmet${lower}${LEMMAS[lower] ? ` vmet${LEMMAS[lower]}` : ''}`; }) };
 const directory = [['anija_vald', 'Anija vald', 'Anija'], ['harku_vald', 'Harku vald', 'Harku'], ['kose_vald', 'Kose vald', 'Kose'], ['maardu_linn', 'Maardu linn', 'Maardu'],
   ['marjamaa_vald', 'Märjamaa vald', 'Märjamaa'], ['noo_vald', 'Nõo vald', 'Nõo'], ['pohja_sakala_vald', 'Põhja-Sakala vald', 'Põhja-Sakala'], ['tartu_linn', 'Tartu linn', 'Tartu'],
@@ -496,4 +498,36 @@ test('ADR-081: a person who has given no residence: the follow-up that points ba
   assert.equal(shared.source.state, 'search_plan_ambiguous_region');
   const sharedPrice = await turn({ before: shared.value, after: shared, texts: ['Kas Tartus on sotsiaaltransport?', MEASURED[2]], plan: { person: 'user', places: [], queries: ['sotsiaaltransporditeenuse tasu'] } });
   assert.deepEqual([sharedPrice.source.state, sharedPrice.source.candidates], ['continued_regions', ['tartu_linn', 'tartu_vald']]);
+});
+
+// Codex's review of #357-#364 (docs/audits/rag-v2-pr357-364-review-2026-10-04.md in the main checkout), F2, its probe's
+// message and query: "see" points at the service, "minu vallas" says where the question asks.
+test('ADR-084 (Codex F2): a follow-up that names a municipality by a common word is searched in the person\'s own, whatever the plan names', async () => {
+  const question = await turn({ before: nooState, texts: MEASURED.slice(0, 2), plan: { person: 'user', places: [place(2, MEASURED[1], 'Maardu linn', 'user', 'other')],
+    queries: ['Maardu linn isikliku abistaja teenuse korraldamine ja taotlemine'] } });
+  const follow = (text, queries) => turn({ before: question.value, after: question, texts: [...MEASURED.slice(0, 2), text], plan: { person: 'user', places: [], queries } });
+  const common = ['Isikliku abistaja teenuse kättesaadavus elukohajärgses omavalitsuses'];
+  const plans = [common, [], ['Nõo valla isikliku abistaja teenus'], ['Maardu isikliku abistaja teenus'], ['Maardu isikliku abistaja teenus', 'Nõo valla isikliku abistaja teenus']];
+  for (const text of ['Kas see teenus on ka minu vallas olemas?', 'Kas seda saab ka minu elukohas?', 'Ja mis see meie omavalitsuses maksab?', 'Is it available in my municipality too?', 'А это есть в моём городе?']) {
+    for (const queries of plans) {
+      const own = await follow(text, queries);
+      assert.deepEqual([own.source, keptTexts(own.source), own.people], [home('noo_vald'), ['noo_vald'], { user: ['noo_vald', 'reported'] }], `${text} | ${queries.join(' | ')}`);
+    }
+  }
+  // A question about municipalities in general is no follow-up of the asked one either: the person's own scope stands.
+  assert.deepEqual((await follow('Kas see on teistes linnades ka nii?', common)).source, home('noo_vald'));
+  // What stays: a follow-up that names no place goes on with the asked municipality, with the measured plan and with none.
+  for (const text of ['Ja mis see maksab?', 'Kuidas ma seda taotleda saan?', 'Ja mis see mulle maksma läheb?']) {
+    for (const queries of [UNNAMED, [], ['Maardu isikliku abistaja teenuse tasu']]) assert.equal((await follow(text, queries)).source.region, 'maardu_linn', `${text} | ${queries.join(' | ')}`);
+  }
+  // A person without a residence: the municipality of the question before is not "my municipality"; none is chosen.
+  const r5 = await turn(STORED.R5);
+  const unknown = await turn({ before: r5.value, after: r5, texts: [LIVE[4], 'Kas see teenus on ka minu vallas olemas?'], plan: { person: 'user', places: [], queries: common } });
+  assert.deepEqual([unknown.source.state, unknown.source.region], ['region_required', null]);
+  assert.equal((await turn({ before: r5.value, after: r5, texts: [LIVE[4], 'Ja mis see maksab?'], plan: { person: 'user', places: [], queries: UNNAMED } })).source.region, 'maardu_linn');
+  // The reading itself: a common word for a municipality, by lemma; a name alone or no place is not one.
+  for (const [text, expected] of [['Kas see teenus on ka minu vallas olemas?', true], ['oma elukohas', true], ['elukohajärgses omavalitsuses', true], ['in my town', true], ['в нашей волости', true],
+    ['Ja mis see maksab?', false], ['Kas Maardus saab isikliku abistaja teenust?', false], ['Kuidas ma seda taotleda saan?', false], ['', false]]) {
+    assert.equal(await namesPlaceByCommonWord(text, analyzer), expected, text);
+  }
 });

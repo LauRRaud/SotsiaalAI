@@ -2,7 +2,7 @@
 
 04.10.2026. Teostus Claude Opus 5.5. Omanik 04.10 õhtul: „sa toimeta edasi, kuni vigu ei ole. võid teha teste, raha pole probleem.“ Lähtekoht: [ADR-079](adr-079-plan-list-duty-query-and-reserved-places.md) mõõtmine.
 
-**Reegel ise on mõõtmata.** Pärast avaldamist tehtud jooksus (jaotis „Mõõtmine“) kirjutas plaan kolmandas pöördes ise ühe päringu ja reegel ei rakendunud. Tõend on kohalikud testid salvestatud plaanidega.
+**Tagasi võetud 04.10.2026 ([ADR-084](adr-084-codex-review-357-364.md)).** Codexi ülevaatus (#357–#364, F1) tõendas, et reegel jätab välja päringu, mis kannab varasemas sõnumis kirjeldatud olukorda („Mul on raske liikumispuue ja vajan eluruumi kohandamist.“ ja siis „Millist rahalist abi saan taotleda?“). Server ei jäta enam plaani päringuid sõnade võrdluse järgi välja. Allolev tekst on ajalugu; jaotises „Piirid“ nimetatud juht oligi see viga.
 
 ## Probleem
 
