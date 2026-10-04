@@ -30,11 +30,11 @@ test('every verified row without a matching document is exported; a row whose bo
     { entry_id: 'c4', revision: 2, content_sha256: hash(stable(contactContent({ ...rows[3], revision: 2 }))), item_id: 'kose-contact-peeter' }];
   const { source, counts } = await prepareRegisterContactExport({ db: register(rows), bound, now: () => new Date('2026-10-04T18:00:00Z') });
   assert.equal(source.schema_version, REGISTER_EXPORT_SCHEMA);
-  assert.deepEqual(counts, { verified_rows: 4, exported_contacts: 3, kept_bound: 1, same_person_rows: 0, municipalities: 2, directories: 2, skipped: { no_channel: 0, page_address: 0, no_name: 0 } });
-  assert.deepEqual(source.items.map(item => [item.itemType, item.id]), [['contact', 'service-map-contact:c2'], ['contact', 'service-map-contact:c3'], ['contact', 'service-map-contact:c4'],
+  assert.deepEqual(counts, { verified_rows: 4, exported_contacts: 3, kept_bound: 1, same_person_rows: 0, municipalities: 2, directories: 2, too_large: [], skipped: { no_channel: 0, page_address: 0, no_name: 0 } });
+  assert.deepEqual(source.items.map(item => [item.itemType, item.id]), [['contact', 'service-map-contact:c3'], ['contact', 'service-map-contact:c4'], ['contact', 'service-map-contact:c2'],
     ['resource', 'service-map-contacts:kose_vald'], ['resource', 'service-map-contacts:noo_vald']]);
   // The contact carries the register's own values and its municipality, and nothing else.
-  const second = source.items[0];
+  const second = source.items.find(item => item.id === 'service-map-contact:c2');
   assert.deepEqual({ ...second, registry_binding: null }, { id: 'service-map-contact:c2', canonical_item_id: 'service-map-contact:c2', itemType: 'contact', municipality_id: 'noo_vald',
     municipality_name: 'Nõo vald', source_type: 'municipal_contact', language: 'et', name: 'Jüri Tamm', role: 'lastekaitsespetsialist', phone: '+372 5550 0000',
     email: 'c2@example.invalid', officialUrl: 'https://www.noo-vald.example/kontaktid', checked_at: checked.toISOString(), registry_binding: null });
@@ -119,11 +119,11 @@ test('a municipality of more than twelve contacts is listed by department, and a
   // Twelve contacts are still one directory, whatever their departments.
   const twelve = await prepareRegisterContactExport({ db: register([...rows.slice(0, 6), ...rows.slice(26, 32)]) });
   assert.deepEqual(twelve.source.items.filter(item => item.itemType === 'resource').map(item => [item.id, item.relatedContacts.length]), [['service-map-contacts:suur_linn', 12]]);
-  // A municipality with more than sixty contacts has the longest catalogue: its directories hold five (measured in
-  // Tallinn on corpus v53: a directory of eleven did not fit beside the catalogue).
-  const large = await prepareRegisterContactExport({ db: register([...rows, ...unit(8, 'Roll: hooldustöötaja Osakond: Hoolekande osakond', 6000)]) });
-  assert.deepEqual(sizesOf(large.source.items.filter(item => item.itemType === 'resource')), { '(üld)': [5, 4, 4], 'Hoolekande osakond': [4, 4],
-    'Lasnamäe sotsiaalhoolekande osakond': [5, 5, 4, 4, 4, 4], 'Perede osakond': [5, 5, 4], 'Väike üksus': [3] });
+  // A municipality with more than sixty contacts is left out whole and named (measured in Tallinn on corpora v52 to
+  // v54: its directories filled the record context and no contact of theirs was ever shown).
+  const large = await prepareRegisterContactExport({ db: register([...rows, ...unit(8, 'Roll: hooldustöötaja Osakond: Hoolekande osakond', 6000), row('c9', 'noo-vald', 'Nõo vald', 'Mari Maasikas')]) });
+  assert.deepEqual([large.counts.too_large, large.counts.municipalities, large.counts.exported_contacts, large.counts.directories], [[{ region: 'suur_linn', contacts: 64 }], 1, 1, 1]);
+  assert.deepEqual(large.source.items.map(item => [item.itemType, item.municipality_id]), [['contact', 'noo_vald'], ['resource', 'noo_vald']]);
 });
 
 // Through the reader: the exported package is a source like a municipal package; no model, no network.
@@ -165,7 +165,7 @@ test('the rows of one person are one contact: the bound document stands for them
     same('c4', { phone: '+372 5550 0002' }), row('c5', 'noo-vald', 'Nõo vald', 'Mari Maasikas', { phone: '+372 5550 0001', email: 'mari@example.invalid' })];
   const first = await prepareRegisterContactExport({ db: register(rows) });
   assert.deepEqual([first.counts.verified_rows, first.counts.exported_contacts, first.counts.same_person_rows], [5, 3, 2]);
-  assert.deepEqual(first.source.items.filter(item => item.itemType === 'contact').map(item => item.id), ['service-map-contact:c1', 'service-map-contact:c4', 'service-map-contact:c5']);
+  assert.deepEqual(first.source.items.filter(item => item.itemType === 'contact').map(item => item.id), ['service-map-contact:c5', 'service-map-contact:c1', 'service-map-contact:c4']);
   assert.deepEqual(first.source.items.find(item => item.id === registerDirectoryId('suur_linn')).relatedContacts, ['service-map-contact:c1', 'service-map-contact:c4']);
   // A bound document of any of the person's rows stands for the person, whatever its place in the order.
   const bound = [{ entry_id: 'c3', revision: 1, content_sha256: hash(stable(contactContent(rows[0]))), item_id: 'suur-contact-mari' }];
