@@ -39,7 +39,7 @@
 
 ## Kontroll
 
-- **`tests/kov-staff-extract.test.mjs`** (uus, 13 testi, väljamõeldud nimede ja aadressidega): mõlema platvormi kaart, kaart ilma kanaliteta, tagurpidi kirjutatud e-post, Cloudflare'i kaitse, „(ät)“ tekstis, tabel (amet nime ees, vastuvõtuaeg pole amet, e-postita rida), Tartu pealkiri, mitu inimest ühes lõigus, „amet - nimi“ lõigud, vormileht, mis ei ole inimene (üldaadress, menüü, jalus), Narva moodi sotsiaalameti leht (täitmata ametikoht, teenuse postkast, peatatud töösuhe, raamatupidaja) ja sotsiaalvaldkonna reegel koos sarnaste sõnadega (teedehooldus, heakord).
+- **`tests/kov-staff-extract.test.mjs`** (16 testi, väljamõeldud nimede ja aadressidega): mõlema platvormi kaart, kaart ilma kanaliteta, tagurpidi kirjutatud e-post, Cloudflare'i kaitse, „(ät)“ tekstis, tabel (amet nime ees, vastuvõtuaeg pole amet, e-postita rida), Tartu pealkiri, mitu inimest ühes lõigus, „amet - nimi“ lõigud, vormileht, mis ei ole inimene (üldaadress, menüü, jalus), Narva moodi sotsiaalameti leht (täitmata ametikoht, teenuse postkast, peatatud töösuhe, raamatupidaja), kopeeritud kaart vale lingiga, kaardile järgnev lõik, protsentkodeeritud kaitstud aadress ja sotsiaalvaldkonna reegel koos sarnaste sõnadega (teedehooldus, heakord).
 - `npm test` ja ESLint läbisid.
 
 ## Mõõtmine 04.10.2026
@@ -51,12 +51,14 @@ Ainult lugemine, tasuta, mudelita. Tuvastaja jooksis serveris samade 149 ametlik
 
   | Tuvastaja tulemus | Ridu |
   |---|---:|
-  | sama nimi, sama telefon ja e-post | 711 |
-  | — neist roll sama | 651 |
+  | sama nimi, sama telefon ja e-post | 719 |
+  | — neist roll sama | 659 |
   | — roll sarnane (üks sisaldab teist) | 54 |
   | — roll erineb | 6 |
-  | nimi leitud, telefon või e-post erineb | 12 |
+  | nimi leitud, telefon või e-post erineb | 4 |
   | nime ei leitud | 3 |
+
+  Esimene mõõtmine (PR #336 koodiga) andis 711 ja 12. Omanik küsis näidet („too näide, kontrollin“), erinevused vaadati ükshaaval läbi ja kolm tuvastaja viga parandati (jaotis „Seitse erinevust ükshaaval“).
 
 - **Kontrollis kinnitamata 361 rida kättesaadud lehtedel:**
 
@@ -69,14 +71,30 @@ Ainult lugemine, tasuta, mudelita. Tuvastaja jooksis serveris samade 149 ametlik
 - **Sotsiaalvaldkonna inimesed, keda registris pole:** 327 (sama lehe registriridade nimede järgi).
 - **Kolinud lehed.** 12 vigasest aadressist kümnel saidil töötab avalehelt viidatud `/kontakt`; tuvastaja luges sealt töötajad: Narva 196 (36 sotsiaalvaldkonnas), Kuusalu 59 (9), Maardu 54 (11), Jõelähtme 49 (13), Põhja-Sakala 36 (9), Lääneranna 34 (6), Narva-Jõesuu 34 (8), Rakvere vald 32 (5), Kiili 27 (9). Raasiku annab kontrolli päringule 403. Paide (53, 16) ja Väike-Maarja (38, 14) loeti nende praeguselt kontaktilehelt; Mustvee uus leht on leidmata.
 - **Narva leht omaniku näitel.** Omanik kleepis 04.10 Narva sotsiaalabiameti lehe teksti. Tuvastaja luges samalt lehelt 36 sotsiaalvaldkonna inimest (Sotsiaalabiamet 8, Lastekaitse osakond 11, Tervise- ja sotsiaalosakond 17), mis vastab kleebitud tekstis nimega inimeste arvule; kaks täitmata ametikohta ja teenuse postkast jäid välja, üks inimene sai märke `away`. Lehe 36 raamatupidamise ametit sotsiaalvaldkonda ei loetud.
-- Kõik selle jaotise arvud on mõõdetud PR-i koodiga (faili räsi algus `7570c24f`, LF reavahetustega).
+- Kinnitatud ridade tabel on mõõdetud parandatud koodiga (faili räsi algus `e489bb49`, LF reavahetustega); ülejäänud arvud andis sama jooks samad mis PR #336 kood (`7570c24f`).
+
+### Seitse erinevust ükshaaval
+
+Kinnitatud 726 reast ei ole tuvastaja tulemus sama seitsmel. Ükski neist ei ole lehelt leidmata jäänud inimene.
+
+- **Kolm „leidmata“ rida ei ole inimesed:** registri nimeväljal on ametinimetus (Vormsi „Hooldustöötaja“, Tallinnas kaks rida „sotsiaaltöö spetsialist“).
+- **Kahel real on registris naabri telefon** (üks Nõo ja üks Viljandi valla rida). Lehel on inimese kaardil teine number; registris olev number kuulub lehel järgmisele inimesele. **Praegune kontroll kinnitas vale numbri**, sest tema aken ulatub nimest järgmise registris oleva nimeni ja hõlmab ka vahepealse inimese, keda registris pole. Tuvastaja loeb numbri inimese enda kaardilt.
+- **Ühel real on registri e-posti väljal kaks aadressi** (Muhu); leht näitab mõlemat, võrdlus luges välja üheks aadressiks.
+- **Ühel real kirjutab leht aadressi täpitähega,** register ilma (Tallinn, Kristiine).
+
+Esimeses mõõtmises oli erinevusi veel kaheksa ja need olid tuvastaja vead, nüüd parandatud:
+
+- **Nähtav tekst võidab lingi sihtmärgi.** Kohtla-Järve ühel kaardil näitab tekst inimese enda e-posti ja telefoni, aga `mailto:` ja `tel:` lingid viivad teise inimese juurde (kaart on kopeeritud). Tuvastaja luges lingid; nüüd loeb seda, mida lugeja näeb, ja lingi sihtmärki ainult siis, kui tekstis aadressi või numbrit pole.
+- **Kaardile järgnevad lõigud kuuluvad samale inimesele** kuni järgmise kaardi, pealkirja, e-posti või nimeni. Tallinna Haabersti lehel on mobiilinumber ja tegevusvaldkond kaardi järel eraldi lõigus (7 rida).
+- **Kaitstud aadress võib ise olla protsentkodeeritud** (`%c3%b6`); see dekodeeritakse.
 
 ## Piirid
 
 - **Sotsiaalvaldkonna reegli täpsust pole silmaga kontrollitud**, välja arvatud Narva näide. 1112 ja 327 on reegli tulemus, mitte ülevaadatud nimekiri; osakonnapealkirja järgi võib sisse tulla ka asutuse töötaja, kes pole ametnik.
 - **Jagatud postkast.** Kui tundmatu platvormi lehel on mitmel inimesel üks ja sama e-post ning muid aadresse selles lehe osas pole, loeb tuvastaja nad üheks kirjeks. Kahe ühise platvormi kaartidel seda ei juhtu.
 - **Võrdlus on nime järgi sama lehe piires.** Sama nimega kaks inimest või teisiti kirjutatud nimi annab vale vaste.
-- **12 kinnitatud rida erineva kanaliga ja 3 leidmata** on põhjuseta: neid pole ükshaaval vaadatud.
+- **Kinnitamata 361 rea erinevusi pole ükshaaval vaadatud.** Seal on 47 rida erineva kanaliga ja 178 leidmata nimega; kinnitatud ridade näidete järgi võib osa neist olla registri viga, osa tuvastaja oma.
+- **Leht ise võib eksida.** Kohtla-Järve kopeeritud kaart ja Kristiine täpitähega aadress on lehe vead; tuvastaja loeb lehte, ta ei tea, mis on õige.
 - **Lehte, mille sisu tekib brauseris skriptiga,** tuvastaja ei loe. 04.10 lehtede hulgas selliseid ei leitud, aga seda pole eraldi kontrollitud.
 - **Tallinna telefoniraamat** annab ametid ilma osakonnata; sealt leiab reegel vähe sotsiaalvaldkonna inimesi.
 
@@ -85,6 +103,7 @@ Ainult lugemine, tasuta, mudelita. Tuvastaja jooksis serveris samade 149 ametlik
 Omavalitsuste info muutub (töötajad, teenused, hinnakirjad) ja platvorm peab seda uuendada saama, aga uus info võib olla valesti korjatud. Seepärast:
 
 - **Korjatud info ei kirjuta olemasolevat üle.** Tuvastaja tulemus on ettepanek. Vana väärtus jääb alles, kuni uus on kinnitatud.
+- **Lugemine iga nädal** (omanik 04.10: „kui kontaktide uuendamine on lihtne ja ei häiri platvormi tööd, siis ehk iga nädal“). 149 lehe tõmbamine ja lugemine võtab umbes minuti, mudelit ei kasuta ja saidi ega vestluse tööd ei puuduta; praegune kontroll jookseb samamoodi pühapäeva varahommikul.
 - **Kinnitamise reegel tuleb otsustada enne ühendamist.** Võimalused: operaatori ülevaatus; sama tulemus kahel järjestikusel lugemisel; ainult lisamine ja kinnitamine automaatselt, muutmine ja eemaldamine ülevaatusega.
 - **Sama kehtib teenuste ja hinnakirjade kohta.** Seal on korjamine raskem kui kontaktidel (vaba tekst, PDF-id) ja eksimise hind suurem; see on eraldi töö, mida see muudatus ei alusta.
 
