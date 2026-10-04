@@ -161,10 +161,7 @@ function htmlResponse(
         place-items: center;
         padding: 24px;
         font-family: "Segoe UI", Arial, sans-serif;
-        background:
-          radial-gradient(circle at 18% 14%, rgba(255,255,255,0.05), transparent 26%),
-          radial-gradient(circle at 82% 84%, rgba(255,255,255,0.03), transparent 32%),
-          linear-gradient(180deg, #0d0d0d 0%, #161616 100%);
+        background: linear-gradient(180deg, #0d0d0d 0%, #161616 100%);
         color: #e4e4e4;
       }
       main {
