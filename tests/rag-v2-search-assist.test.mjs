@@ -258,3 +258,48 @@ test('search-assist-7 (ADR-077): the plan searches the current message only; a q
   assert.deepEqual(candidateRecord({ id: 'P3', title: 'Artikkel', year: '2017', text: `Artikkel\n${'x'.repeat(400)}` }), { id: 'P3', title: 'Artikkel', lead: `Artikkel ${'x'.repeat(CANDIDATE_LEAD_CHARS - 9)}` });
   assert.deepEqual(candidateRecord({ id: 'P4', title: 'Tühi' }), { id: 'P4', title: 'Tühi' });
 });
+
+// The ten paid turns of 04.10.2026 on search-assist-7 (the owner's permission): what the run recorded, read against the
+// catalogues it ran (docs/audits/evidence/search-assist-7-measured-2026-10-04.json).
+test('ADR-077 measured: the follow-up and both versions hold; in the five-question conversation the plan reopened once and the reserved law places went to earlier subjects', async () => {
+  const fs = await import('node:fs/promises');
+  const { checkTurn } = await import('../lib/rag-v2/pilot/conversation-eval.js');
+  const run = JSON.parse(await fs.readFile('docs/audits/evidence/search-assist-7-measured-2026-10-04.json', 'utf8'));
+  assert.deepEqual([run.turns.length, run.plan_price_usd, run.measured_commit.slice(0, 8)], [10, 0.05595, 'eb71cf9b']);
+  assert.deepEqual(run.catalogues.map(item => [item.name, item.summary.passed, item.summary.search, item.summary.answer]),
+    [['answered-questions', 2, 2, 1], ['version-change', 1, 0, 0], ['follow-up', 4, 0, 0]]);
+  const of = name => run.turns.filter(turn => turn.run === name);
+  const catalogue = async name => JSON.parse(await fs.readFile(`tests/evaluation/dialogue/${name}.json`, 'utf8'));
+  const answered = (await catalogue('scenarios-answered-questions-1')).scenarios[0].turns, five = of('answered-questions');
+  assert.deepEqual(five.map(turn => turn.text), answered.map(turn => turn.text));
+  assert.deepEqual(five.map(turn => [turn.verdict, turn.failed.map(check => check.key)]),
+    [['passed', []], ['passed', []], ['search', ['plan_queries_must_not', 'plan_queries_must_not']], ['answer', ['cited']], ['search', ['evidence', 'cited']]]);
+  // The plan: the third turn's queries are the morning's, word for word; the fourth and fifth are about their own question.
+  const stored = Object.values(JSON.parse(await fs.readFile('docs/audits/evidence/live-questionnaire-2026-10-04.json', 'utf8'))).find(Array.isArray);
+  assert.deepEqual(five[2].queries.slice(0, 2), ['toimetulekupiir toimetulekutoetuse arvutamine', 'abivajavast lapsest teatamise kohustus kuhu teatada']);
+  assert.equal(five[2].queries[1], stored.find(turn => turn.case === 'Q11').plan.queries[1]);
+  const planOnly = (turn, queries) => checkTurn({ plan_queries_must_not: turn.expect.plan_queries_must_not }, { state: 'completed', summaries: [], details: [], contacts: 0, evidenceTitles: [], cited: [], text: '', queries });
+  assert.deepEqual([1, 3, 4].map(index => planOnly(answered[index], five[index].queries).verdict), ['passed', 'passed', 'passed']);
+  // The selection kept nothing of an earlier subject in any later turn: none of the failed checks is selected_must_not.
+  assert.ok(five.every(turn => turn.failed.every(check => check.key !== 'selected_must_not')));
+  // Turn 5: what the selection could choose from of national law. The Family Law Act's two candidates are on guardianship;
+  // no candidate is a section on maintenance.
+  const reserved = five[4].legal_candidates_not_selected;
+  assert.deepEqual(reserved.map(lead => lead.match(/> (Sotsiaalhoolekande seadus|Riigilõivuseadus|Perekonnaseadus) >/u)[1]),
+    ['Sotsiaalhoolekande seadus', 'Sotsiaalhoolekande seadus', 'Riigilõivuseadus', 'Perekonnaseadus', 'Perekonnaseadus', 'Riigilõivuseadus']);
+  assert.deepEqual(reserved.filter(lead => lead.includes('Perekonnaseadus')).map(lead => lead.match(/§ \d+/u)[0]), ['§ 192', '§ 216']);
+  assert.ok([...five[4].selected, ...reserved].every(lead => !/lalpidamiskohust|§ 9[67]\b/u.test(lead) || !lead.includes('Perekonnaseadus')));
+  // Turn 1: the State Budget Act's one candidate is the first passage of its section, not the one with the amount.
+  const budget = five[0].legal_candidates_not_selected.filter(lead => lead.includes('riigieelarve seadus'));
+  assert.equal(budget.length, 1);
+  assert.ok(!/220/u.test(five[0].answer) && five[0].found_legal.every(source => !source.title.includes('riigieelarve')));
+  // Both versions: the same sections of the earlier and the new version were kept, and both are cited.
+  const change = of('version-change')[0], sections = start => change.selected.filter(lead => lead.includes(`alates ${start}`)).map(lead => lead.match(/§ (\d+)\./u)[1]).sort();
+  assert.deepEqual([sections('2025-09-01'), sections('2026-10-06')], [['1', '3', '4', '5', '6'], ['3', '4', '5', '6']]);
+  assert.deepEqual(change.cited.map(source => source.from).sort(), ['2025-09-01', '2026-10-06']);
+  assert.match(change.answer, /Varem tuli esitada/u);
+  // The follow-up: queries about the asked municipality's price, and its regulation's section on paying.
+  const follow = of('follow-up')[2];
+  assert.deepEqual([follow.text, follow.region, follow.verdict], ['Ja mis see maksab?', 'maardu_linn', 'passed']);
+  assert.ok(follow.queries.every(query => /Maardu|isikliku abistaja/iu.test(query)) && follow.selected.some(lead => /§ 9\. Teenuse eest tasumine/u.test(lead)));
+});
