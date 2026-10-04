@@ -1,0 +1,492 @@
+{
+ "schema": "sotsiaalai/conversation-run-evidence-1",
+ "run": "ADR-074, the question-region catalogue once on the live plan after the deploy of #344; permitted by the owner on 04.10.2026 (about 0.06 USD, stop before 0.08 USD)",
+ "measured_commit": "a88dfe785000310fc598d058a74c56ced30f24e4",
+ "catalogue": "tests/evaluation/dialogue/scenarios-question-region-1.json at that commit, --auto-modes",
+ "started_at": "2026-10-04T11:46:18.923Z",
+ "finished_at": "2026-10-04T11:49:05.125Z",
+ "plan": "m4-sotsiaalai-corpus-chat-20261004-114521-6bcacb53-a81d-4563-a343-d73151f7eae8-ra88dfe785000310fc598d058a74c56ced30f24e4",
+ "generation": "search_generation_df8f5537e0a5ac132e27cbcef10a0267e98efdb9b05ec8d3590392963527664e",
+ "model": "gpt-6-luna",
+ "reasoning": "medium",
+ "plan_price_usd": 0.0476,
+ "summary": {
+  "passed": 7,
+  "search": 0,
+  "answer": 0,
+  "state": 1
+ },
+ "states": {
+  "continuing": 5,
+  "rejected": 0
+ },
+ "stopped": null,
+ "source": "the evaluator's report on the server (rag-v2-work/eval-files/question-region-20261004/conversation-eval.json)",
+ "masking": "contact record titles are replaced by [kontaktikirje]; the answers of the two turns that name municipal contact persons are left out",
+ "notes": {
+  "planned_places": "the plan's own place attributions, as the model gave them (searchAssist.plannedPlaces, kept since ADR-074)",
+  "places": "the server's checked places",
+  "scope_state": "how the turn's municipality was chosen: the person's own (person_region, person_mentioned_region) or the asked one (question_region)",
+  "after_the_run": "the follow-up (asks-another-municipality, turn 3) failed its region check: the plan's third query named the user's own municipality. The rule was changed after this run (a query about the person's own municipality that the message does not name is set aside); the changed rule is tested locally with these plans and was not run with the model."
+ },
+ "turns": [
+  {
+   "scenario": "asks-another-municipality",
+   "turn": 1,
+   "turn_id": "5c77e34f-a56a-4acf-86e7-9291208a4d93",
+   "text": "Elan Nõo vallas ja mul on raske toime tulla. Kust ma abi saan?",
+   "verdict": "passed",
+   "checks": 3,
+   "failed": [],
+   "region": "noo_vald",
+   "scope_state": "person_mentioned_region",
+   "plan_person": "user",
+   "person_regions": {
+    "user": "noo_vald"
+   },
+   "planned_places": [
+    {
+     "name": "Nõo vald",
+     "turn": 1,
+     "quote": "Elan Nõo vallas",
+     "person": "user",
+     "relation": "lives"
+    }
+   ],
+   "places": [
+    {
+     "turn": 1,
+     "person": "user",
+     "region": "noo_vald",
+     "relation": "lives"
+    }
+   ],
+   "queries": [
+    "Nõo valla sotsiaalabi ja sotsiaalnõustamine",
+    "Nõo valla sotsiaaltöötaja abi taotlemine"
+   ],
+   "answer_kind": "partial",
+   "clarification": true,
+   "state_rejected": null,
+   "cited": [
+    "Sotsiaalhoolekandelise abi andmise kord",
+    "Nõo valla eelarvest makstavate sotsiaaltoetuste määrad",
+    "Toetus majandusliku olukorra leevendamiseks",
+    "Tugiisikuteenus"
+   ],
+   "rerank": {
+    "candidates": 36,
+    "selected": [
+     "Sotsiaalhoolekandelise abi andmise kord",
+     "Sotsiaalhoolekandelise abi andmise kord",
+     "Sotsiaalhoolekandelise abi andmise kord",
+     "Nõo valla eelarvest makstavate sotsiaaltoetuste määrad",
+     "Sotsiaalhoolekandelise abi andmise kord",
+     "Sotsiaalhoolekandelise abi andmise kord"
+    ]
+   },
+   "plan_price_usd": 0.00547,
+   "total_ms": 24282,
+   "answer": "Alusta Nõo vallavalitsuse sotsiaalosakonnast. Abi taotlemisel peab vallavalitsus aitama sul valida taotlemise viisi, taotluse koostada ja vajalikud andmed esitada. Abivajadust hinnatakse sinu olukorra ja konkreetsete vajaduste järgi. [S1, S2]\n\nKui sul on raske eeskätt rahalise olukorra tõttu, küsi Nõo valla sissetulekust sõltuvat toetust majandusliku olukorra leevendamiseks. Selle ülempiir on 300 eurot aastas; toetuse saamine sõltub sissetulekust. [S4, S20]\n\nKui vajad igapäevases toimetulekus kõrvalabi sotsiaalsete, majanduslike, psühholoogiliste või terviseprobleemide tõttu, küsi sotsiaalosakonnalt tugiisikuteenuse vajaduse hindamist. Vajadust hindab sotsiaalosakond ja teenuse määrab vallavalitsus. [S44]\n\nKui sul puuduvad elatusvahendid ja oled Nõo valla territooriumil sotsiaalselt abitus olukorras, saab vältimatu sotsiaalabi kaudu hädavajalikku toitu, riietust, ajutist peavarju ja nõustamist. See abi on tasuta, kuid ajaliselt ja koguseliselt piiratud. [S3]\n\nMis on sul praegu kõige raskem: raha, igapäevatoimingutega hakkamasaamine või toidu ja peavarju puudumine?"
+  },
+  {
+   "scenario": "asks-another-municipality",
+   "turn": 2,
+   "turn_id": "cafae2f4-c37b-4cd7-8363-5a57c8917ce8",
+   "text": "Kas Maardus saab isikliku abistaja teenust?",
+   "verdict": "passed",
+   "checks": 8,
+   "failed": [],
+   "region": "maardu_linn",
+   "scope_state": "question_region",
+   "plan_person": "user",
+   "person_regions": {
+    "user": "noo_vald"
+   },
+   "planned_places": [
+    {
+     "name": "Maardu",
+     "turn": 2,
+     "quote": "Kas Maardus saab isikliku abistaja teenust?",
+     "person": "user",
+     "relation": "other"
+    }
+   ],
+   "places": [
+    {
+     "turn": 2,
+     "person": "user",
+     "region": "maardu_linn",
+     "relation": "other"
+    }
+   ],
+   "queries": [
+    "Maardu isikliku abistaja teenuse korraldus taotlemine",
+    "Maardu isikliku abistaja teenuse saamise tingimused"
+   ],
+   "answer_kind": "grounded",
+   "clarification": false,
+   "state_rejected": null,
+   "cited": [
+    "Isikliku abistaja teenuse osutamise tingimused ja kord"
+   ],
+   "rerank": {
+    "candidates": 36,
+    "selected": [
+     "Isikliku abistaja teenuse osutamise tingimused ja kord",
+     "Isikliku abistaja teenuse osutamise tingimused ja kord",
+     "Isikliku abistaja teenuse osutamise tingimused ja kord",
+     "Isikliku abistaja teenuse osutamise tingimused ja kord",
+     "Isikliku abistaja teenuse osutamise tingimused ja kord"
+    ]
+   },
+   "plan_price_usd": 0.00532,
+   "total_ms": 19550,
+   "answer": "Jah, Maardus on isikliku abistaja teenus. Maardu korra järgi on teenuse saamise õigus eelkõige täisealisel sügava liikumis- või nägemispuudega inimesel, kelle rahvastikuregistrijärgne elukoht on Maardu. Teenus aitab puude tõttu kõrvalabi vajavates igapäevatoimingutes. Teenuse saamiseks esita avaldus Maardu Linnavalitsusele; abivajadust ja selle mahtu hinnatakse kodukülastusel ning teenust osutab Maardu Sotsiaalmaja. [S1, S2, S3, S4, S5]"
+  },
+  {
+   "scenario": "asks-another-municipality",
+   "turn": 3,
+   "turn_id": "9ca9daae-022c-4650-98ee-c2e7f9b09d3c",
+   "text": "Ja mis see maksab?",
+   "verdict": "state",
+   "checks": 4,
+   "failed": [
+    {
+     "key": "region",
+     "detail": "region noo_vald, expected maardu_linn"
+    }
+   ],
+   "region": "noo_vald",
+   "scope_state": "person_region",
+   "plan_person": "user",
+   "person_regions": {
+    "user": "noo_vald"
+   },
+   "planned_places": [
+    {
+     "name": "Nõo vald",
+     "turn": 1,
+     "quote": "Elan Nõo vallas",
+     "person": "user",
+     "relation": "lives"
+    }
+   ],
+   "places": [],
+   "queries": [
+    "isikliku abistaja teenus Maardu linnas korraldamine",
+    "isikliku abistaja teenuse tasu omaosalus hinna kehtestamine",
+    "Nõo valla sotsiaalabi toimetulekuraskustes"
+   ],
+   "answer_kind": "partial",
+   "clarification": false,
+   "state_rejected": null,
+   "cited": [
+    "Isikliku abistaja teenuse reguleerimine kohaliku omavalitsuse õigusaktides"
+   ],
+   "rerank": {
+    "candidates": 36,
+    "selected": [
+     "Sotsiaalhoolekandelise abi andmise kord",
+     "Isikliku abistaja teenuse reguleerimine kohaliku omavalitsuse õigusaktides",
+     "Sotsiaalhoolekande seadus",
+     "Sotsiaalhoolekande seadus"
+    ]
+   },
+   "plan_price_usd": 0.00625,
+   "total_ms": 20739,
+   "answer": "Sotsiaalteenuse eest võidakse tasu küsida. Tasu suurus sõltub sellest, kui palju teenust vajad, teenuse maksumusest ning sinu ja pere maksevõimest. Tasu ei tohi takistada abi saamist; kui ka pere osalusel ei jätku maksmiseks raha, peab kohalik omavalitsus teenuse kulude katmises osalema. [S2]\n\nMa ei saa siinsete andmete põhjal öelda Maardu isikliku abistaja teenuse konkreetset hinda. Kohalik teenusekirje puudutab Nõo valda, mitte Maardut."
+  },
+  {
+   "scenario": "asks-another-municipality",
+   "turn": 4,
+   "turn_id": "31eca63d-1531-47ab-b05c-1d43d9766c3c",
+   "text": "Aga millist koduteenust ma ise saan?",
+   "verdict": "passed",
+   "checks": 4,
+   "failed": [],
+   "region": "noo_vald",
+   "scope_state": "person_region",
+   "plan_person": "user",
+   "person_regions": {
+    "user": "noo_vald"
+   },
+   "planned_places": [
+    {
+     "name": "Nõo vald",
+     "turn": 1,
+     "quote": "Elan Nõo vallas",
+     "person": "user",
+     "relation": "lives"
+    }
+   ],
+   "places": [],
+   "queries": [
+    "Nõo valla koduteenus taotlemine ja abivajaduse hindamine",
+    "Koduteenuse sisu ja osutatavad toimingud Eestis"
+   ],
+   "answer_kind": "partial",
+   "clarification": true,
+   "state_rejected": null,
+   "cited": [
+    "Sotsiaalhoolekandelise abi andmise kord"
+   ],
+   "rerank": {
+    "candidates": 36,
+    "selected": [
+     "Sotsiaalhoolekandelise abi andmise kord",
+     "Sotsiaalhoolekande seadus",
+     "Sotsiaalhoolekandelise abi andmise kord",
+     "Sotsiaalhoolekande seadus"
+    ]
+   },
+   "plan_price_usd": 0.00603,
+   "total_ms": 15593,
+   "answer": "Kui oled täisealine ja terviseseisundi, tegevusvõime või koduse keskkonna tõttu ei saa sa mõnda vajalikku igapäevatoimingut üksi teha, võib Nõo valla koduteenus aidata näiteks kütmise, toiduvalmistamise, kodu ja riiete korrastamise, toidu või majapidamistarvete ostmise ning asjaajamisega. Vallavalitsuse sotsiaalosakond hindab sinu vajadust kodukülastusel. Teenuse täpne sisu, sagedus ja tasu lepitakse kokku lepingus. [S1]\n\nAbi saamiseks esita taotlus Nõo Vallavalitsusele. Kirjuta sinna, millist teenust ja miks vajad, ning lisa oma nimi, isikukood või sünniaeg ja kontaktandmed. [S3]\n\nSinu kirjelduse põhjal ei saa ma öelda, milliseid toiminguid või kui sageli sulle abi määrataks; see selgub vajaduse hindamisel.\n\nKas oled täisealine ning millistes igapäevatoimingutes vajad kõige rohkem kõrvalabi?"
+  },
+  {
+   "scenario": "workplace-keeps-residence",
+   "turn": 1,
+   "turn_id": "3b57bbc7-e7c8-4d0e-8fe5-19086c7a753c",
+   "text": "Elan Nõo vallas, töötan Maardus. Millist koduteenust ma saan?",
+   "verdict": "passed",
+   "checks": 4,
+   "failed": [],
+   "region": "noo_vald",
+   "scope_state": "person_mentioned_region",
+   "plan_person": "user",
+   "person_regions": {
+    "user": "noo_vald"
+   },
+   "planned_places": [
+    {
+     "name": "Nõo vald",
+     "turn": 1,
+     "quote": "Elan Nõo vallas",
+     "person": "user",
+     "relation": "lives"
+    },
+    {
+     "name": "Maardu",
+     "turn": 1,
+     "quote": "töötan Maardus",
+     "person": "user",
+     "relation": "other"
+    }
+   ],
+   "places": [
+    {
+     "turn": 1,
+     "person": "user",
+     "region": "noo_vald",
+     "relation": "lives"
+    },
+    {
+     "turn": 1,
+     "person": "user",
+     "region": "maardu_linn",
+     "relation": "other"
+    }
+   ],
+   "queries": [
+    "Nõo valla koduteenus saamise tingimused",
+    "koduteenuse sisu ja korraldamine sotsiaalhoolekande seadus"
+   ],
+   "answer_kind": "partial",
+   "clarification": true,
+   "state_rejected": null,
+   "cited": [
+    "Sotsiaalhoolekandelise abi andmise kord"
+   ],
+   "rerank": {
+    "candidates": 34,
+    "selected": [
+     "Sotsiaalhoolekandelise abi andmise kord",
+     "Sotsiaalhoolekandelise abi andmise kord",
+     "Sotsiaalhoolekandelise abi andmise kord",
+     "Sotsiaalhoolekande seadus",
+     "Sotsiaalhoolekande seadus",
+     "Koduteenuste korraldus"
+    ]
+   },
+   "plan_price_usd": 0.00609,
+   "total_ms": 18699,
+   "answer": "Nõo vald pakub täisealisele koduteenust, kui terviseseisundi, tegevusvõime või elukeskkonna tõttu ei saa inimene vajalikke igapäevatoiminguid kõrvalabita teha. Abi võib olla näiteks kütmisel, toidu valmistamisel, eluruumi ja riiete korrastamisel, toiduainete või majapidamistarvete ostmisel ning asjaajamisel väljaspool kodu. Nõo vallast sotsiaalteenuse taotlemiseks peab sinu rahvastikuregistrijärgne elukoht olema Nõo vald ja tegelik elukoht samuti Nõo vald. Nõo korra elukohatingimuses sinu töökohta ei nimetata. [S1, S2]\n\nTaotle abi Nõo vallavalitsuselt ning kirjelda, milles abi vajad ja miks. Pärast taotluse saamist või sinu abivajadusest teada saamist teeb sotsiaalosakonna töötaja kodukülastuse ja hindab vajadust. Seejärel lepitakse lepingus kokku vajalikud toimingud, teenuse sagedus ja tasu. [S1, S3]\n\nKas sinu rahvastikuregistrijärgne elukoht on samuti Nõo vald? Millistes igapäevastes kodustes toimingutes vajad abi?"
+  },
+  {
+   "scenario": "mother-then-another-municipality",
+   "turn": 1,
+   "turn_id": "aef53e80-8000-404e-a696-a8ca210d4f7d",
+   "text": "Elan Anija vallas ja mul on raha otsas. Kellele ma saan helistada?",
+   "verdict": "passed",
+   "checks": 2,
+   "failed": [],
+   "region": "anija_vald",
+   "scope_state": "person_mentioned_region",
+   "plan_person": "user",
+   "person_regions": {
+    "user": "anija_vald"
+   },
+   "planned_places": [
+    {
+     "name": "Anija vald",
+     "turn": 1,
+     "quote": "Elan Anija vallas",
+     "person": "user",
+     "relation": "lives"
+    }
+   ],
+   "places": [
+    {
+     "turn": 1,
+     "person": "user",
+     "region": "anija_vald",
+     "relation": "lives"
+    }
+   ],
+   "queries": [
+    "Anija vald sotsiaalosakond vältimatu sotsiaalabi kontakt",
+    "Anija vald sotsiaaltöötaja telefon rahalise abi vajadus"
+   ],
+   "answer_kind": "grounded",
+   "clarification": false,
+   "state_rejected": null,
+   "cited": [
+    "[kontaktikirje]",
+    "Erakorraline toetus",
+    "Toimetulekutoetus",
+    "Sotsiaalhoolekandelise abi andmise kord",
+    "Sotsiaalhoolekande seadus"
+   ],
+   "rerank": {
+    "candidates": 36,
+    "selected": [
+     "Sotsiaalhoolekandelise abi andmise kord",
+     "Sotsiaalhoolekande seadus",
+     "Sotsiaalhoolekandelise abi andmise kord",
+     "Sotsiaalhoolekandelise abi andmise kord"
+    ]
+   },
+   "plan_price_usd": 0.00586,
+   "total_ms": 23914,
+   "answer_omitted": "names a municipal contact person"
+  },
+  {
+   "scenario": "mother-then-another-municipality",
+   "turn": 2,
+   "turn_id": "c1ebcf74-31fc-4141-8f4d-abb9b18a287a",
+   "text": "Mu ema elab Kose vallas ja vajab koduteenust. Kuidas seda taotleda ja kelle poole pöörduda?",
+   "verdict": "passed",
+   "checks": 4,
+   "failed": [],
+   "region": "kose_vald",
+   "scope_state": "person_mentioned_region",
+   "plan_person": "ema",
+   "person_regions": {
+    "user": "anija_vald",
+    "ema": "kose_vald"
+   },
+   "planned_places": [
+    {
+     "name": "Kose vald",
+     "turn": 2,
+     "quote": "Mu ema elab Kose vallas",
+     "person": "ema",
+     "relation": "lives"
+    }
+   ],
+   "places": [
+    {
+     "turn": 2,
+     "person": "ema",
+     "region": "kose_vald",
+     "relation": "lives"
+    }
+   ],
+   "queries": [
+    "Kose vald koduteenuse taotlemine",
+    "Kose valla sotsiaaltöötaja koduteenus kontakt"
+   ],
+   "answer_kind": "partial",
+   "clarification": false,
+   "state_rejected": null,
+   "cited": [
+    "Koduteenus",
+    "Avaldus koduteenuse taotlemiseks",
+    "Sotsiaalhoolekandelise abi andmise kord",
+    "[kontaktikirje]",
+    "[kontaktikirje]"
+   ],
+   "rerank": {
+    "candidates": 36,
+    "selected": [
+     "Sotsiaalhoolekandelise abi andmise kord",
+     "Sotsiaalhoolekandelise abi andmise kord",
+     "Koduteenuste korraldus",
+     "Koduteenuste korraldus",
+     "Sotsiaalhoolekandelise abi andmise kord"
+    ]
+   },
+   "plan_price_usd": 0.00644,
+   "total_ms": 22012,
+   "answer_omitted": "names a municipal contact person"
+  },
+  {
+   "scenario": "mother-then-another-municipality",
+   "turn": 3,
+   "turn_id": "7a0a21df-3a81-413c-b750-94b8cf526424",
+   "text": "Kas Tartu vallas on sotsiaaltransport ja mis see maksab?",
+   "verdict": "passed",
+   "checks": 8,
+   "failed": [],
+   "region": "tartu_vald",
+   "scope_state": "question_region",
+   "plan_person": "user",
+   "person_regions": {
+    "user": "anija_vald",
+    "ema": "kose_vald"
+   },
+   "planned_places": [
+    {
+     "name": "Tartu vald",
+     "turn": 3,
+     "quote": "Kas Tartu vallas on sotsiaaltransport",
+     "person": "user",
+     "relation": "other"
+    }
+   ],
+   "places": [
+    {
+     "turn": 3,
+     "person": "user",
+     "region": "tartu_vald",
+     "relation": "other"
+    }
+   ],
+   "queries": [
+    "Tartu vald sotsiaaltransporditeenus olemasolu",
+    "Tartu vald sotsiaaltransporditeenuse hind omaosalus hinnakiri"
+   ],
+   "answer_kind": "grounded",
+   "clarification": false,
+   "state_rejected": null,
+   "cited": [
+    "Sotsiaaltransporditeenus",
+    "Sotsiaalhoolekandelise abi andmise kord",
+    "Sotsiaaltranspordi teenuse avaldus"
+   ],
+   "rerank": {
+    "candidates": 36,
+    "selected": [
+     "Sotsiaalhoolekandelise abi andmise kord",
+     "Kuidas hinnata abivajadust ja pakkuda sotsiaalhoolekandelist abi?",
+     "Sotsiaalhoolekande seadus",
+     "Sotsiaalhoolekandelise abi andmise kord"
+    ]
+   },
+   "plan_price_usd": 0.0061,
+   "total_ms": 19035,
+   "answer": "Jah. Tartu vallas on sotsiaaltransporditeenus puudega vallaelanikele, kelle puue takistab isikliku või ühissõiduki kasutamist. Teenust saab kasutada tööle, õppeasutusse või avalikke teenuseid kasutama sõitmiseks. [S41]\n\nTasu on Tartu valla piires 3 eurot ja maakonna piires 5 eurot ühe sõidusuuna eest. Hind ei sõltu sõidu pikkusest. [S41]\n\nTaotlemiseks täida sotsiaaltranspordi avaldus ja saada see e-postiga või vii Tartu Vallavalitsuse sotsiaalosakonda. Märgi taotlusse sõidu vajaduse aeg, sihtkoht või marsruut ning sõidu põhjus. Avaliku teenuse sõiduks esita taotlus üldjuhul kolm tööpäeva enne sõidu vajadust. [S1, S25, S41]"
+  }
+ ]
+}
