@@ -33,7 +33,7 @@ Serveri reegel; juhiseid ja versioone ei muudetud.
 
 ## Piirid
 
-- **„Kas see teenus on ka minu vallas olemas?“** viitab tagasi ja ei nimeta valda nimepidi. Kui plaan kirjutab päringu Nõo valla nimega, läheb otsing Nõo valda (nagu enne). Kui plaan valla nime ei kirjuta, jääb otsing nüüd Maardusse. Vastus nimetab valda, mille allikatest ta räägib, nii et viga on nähtav; mõõdetud see juht ei ole.
+- **„Kas see teenus on ka minu vallas olemas?“** viitab tagasi teenusele ja küsib inimese oma valla kohta. Siin oli see kirjas mõõtmata riskina; Codexi ülevaatus (#357–#364, F2) tõendas vea kordusega (otsing jäi Maardusse, kuigi elukoht on Nõo). Parandatud: [ADR-084](adr-084-codex-review-357-364.md).
 - Tagasiviite loend on sõnaloend (eesti, inglise, vene); muu sõnastusega jätk („Ja kuidas taotleda?“) sõltub endiselt plaanist.
 
 ## Mõõtmine (04.10.2026, pärast avaldamist)
