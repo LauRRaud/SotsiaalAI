@@ -113,7 +113,7 @@ Siis loevad kataloog ja teadmiste raja kohalikud õigusaktid seda valda. Otsingu
 | Plaani päringud töökoha mainimise korral | **mõõtmata** |
 | Kui sageli kohaseos serverini ei jõua | **mõõtmata** (04.10: pikas vestluses kahel neljast teise valla küsimusest, puhtas vestluses mitte ühelgi neljast) |
 
-## Mudeliga kontroll (tegemata)
+## Mudeliga kontroll (lubatud, tegemata)
 
 Kataloog `tests/evaluation/dialogue/scenarios-question-region-1.json`, kirjutatud enne ühtki jooksu: kolm vestlust, 8 pööret.
 
@@ -121,4 +121,4 @@ Kataloog `tests/evaluation/dialogue/scenarios-question-region-1.json`, kirjutatu
 - „Elan Nõo vallas, töötan Maardus. Millist koduteenust ma saan?“: piirkond Nõo.
 - 04.10 vestluse algus (Anija, ema Kose vallas, küsimus Tartu valla kohta, siis ema koduteenus).
 
-Hinnang plaanihindades umbes 0,06 USD (8 pööret, 0,0056–0,0081 USD pööre). Jooks vajab omaniku luba. Muster on jäme kontroll: otsustav vastus tuleb lugeda tervikuna.
+Hinnang plaanihindades umbes 0,06 USD (8 pööret, 0,0056–0,0081 USD pööre). Omanik lubas 04.10 ühe jooksu pärast avaldamist, peatudes enne 0,08 USD; tulemus lisatakse siia eraldi muudatusega. Muster on jäme kontroll: otsustav vastus tuleb lugeda tervikuna.

@@ -99,7 +99,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
   - Kui praegune sõnum nimetab valda muu mainimisena (`other`) ja plaani päringud nimetavad ainult seda valda, otsivad kataloog ja kohalikud õigusaktid sealt (`question_region`). Elukoha olek ei muutu; järgmine pööre on jälle elukoha vald.
   - Töökoht, teise inimese koht ja inimese enda vald ei saa küsitud vallaks. Mainimine, mis ei räägi elamisest ega nimeta inimest, ei muuda enam elukohta lahendamatuks.
   - Juhiseid ei muudetud (plaan 6, dialoog 24). Pöördekirjes on nüüd ka plaani enda kohaseosed (`searchAssist.plannedPlaces`).
-  - Tõend: 04.10 kirjed (probleem) ja kohalikud testid salvestatud plaanidega (`tests/rag-v2-question-region.test.mjs`, andmebaasitest). Vastuse sõnastus uue piirkonnaga on mudeliga kontrollimata; kataloog `scenarios-question-region-1.json` (8 pööret, umbes 0,06 USD) ootab omaniku luba.
+  - Tõend: 04.10 kirjed (probleem) ja kohalikud testid salvestatud plaanidega (`tests/rag-v2-question-region.test.mjs`, andmebaasitest). Vastuse sõnastus uue piirkonnaga on mudeliga kontrollimata; omanik lubas 04.10 ühe jooksu pärast avaldamist (kataloog `scenarios-question-region-1.json`, 8 pööret, umbes 0,06 USD, piir 0,08); tulemus lisatakse ADR-i.
 - **Järgmine (Codexi järjekord, alustamata):** aastata kuupäev, üleriigilise määra allikas, puuduv seadus, juba vastatud küsimuste uuesti otsimine.
 
 **04.10 õhtu: omavalitsuste kontaktid, ettepanekute kiht ootab omaniku ülevaatust** ([ADR-073](../rag-v2/adr-073-kov-staff-from-official-page.md), jaotis „Ettepanekute kiht“).
