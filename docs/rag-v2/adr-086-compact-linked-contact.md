@@ -2,7 +2,7 @@
 
 05.10.2026. Teostus Claude Opus 5.5. Omanik 05.10: „teeme need tugevaks“ (viiest tööst teine: Tallinna kontaktid on vestlusest väljas, Narva ei andnud ühtki). Täiendab [ADR-085](adr-085-contacts-from-the-register.md) ja [ADR-025](adr-025-compact-record-model-context.md).
 
-**Kood on kontrollitud kohalike testide ja päris andmete tasuta mõõtmisega (kirjekanal serveris, sõnaline järjestus, mudelita). Mudeliga mõõtmata.** Tallinna kontaktid jõuavad vestlusse alles järgmise ekspordi ja indeksiga (embedding'u ost).
+**Töös korpusega v57 (jaotis „Korpus v57“): Tallinna kontaktid on vestluse kirjekanalis.** Kood on kontrollitud kohalike testide ja päris andmete tasuta mõõtmisega (kirjekanal serveris, sõnaline järjestus, mudelita). Mudeliga mõõtmata.
 
 ## Lähteseis (mõõdetud 05.10 korpusel v56, ainult lugemine)
 
@@ -55,6 +55,17 @@ Vana ja uus kirjekanal samal indeksil; uus kood käivitati serveris väljalaske 
 
 Küsimuseta pöördes ei ava pealkirjade vaade ühtki kirjet, seega ei otsustata seal nüüd ühtki kontakti; 148 otsust on kolme omavalitsuse kokkuvõttevaate kontaktid.
 
+## Korpus v57 (05.10.2026)
+
+Omaniku luba 05.10: „alusta tasuta ja luba antud ka tasuliseks jooksuks, mis ei ole suur summa poolest“. Ulatus öeldi enne ostu: kuni 398 sisendit, kaitsepiir 0,02 USD.
+
+- **Eksport** väljalaskelt `f1539d20` pärast registri parandust ([ADR-073](adr-073-kov-staff-from-official-page.md)): 1181 kinnitatud rida, 129 uut kontaktidokumenti, 926 alles jäänud seotud dokumenti, 105 sama inimese kordusrida, 21 rida ilma telefoni ja e-postita; 77 omavalitsust, 140 kontaktide kirjet, ühtki omavalitsust ei jäetud välja. **Tallinn: 119 inimest 14 kirjes** (linnaosade sotsiaalhoolekande osakonnad ja laste heaolu osakonna sektorid).
+- **Poliitikast eemaldati** kuue peidetud registrirea kontaktidokumendid (read, mis ei olnud inimesed).
+- **Ost:** 161 sisendit, 23 539 tokenit, **0,0031 USD** (`pilot_86b43074…`). Ülejäänud 237 sisendit olid juba ostetud.
+- **Indeks** `e294d5dc`: 7305 dokumenti, 42 160 lõiku; vestlusplaan `/etc/sotsiaalai/m4-corpus-chat-20261005b.json`; teenus töötab selle plaaniga. Varasema põlvkonna tõend enne ja pärast sama.
+- **Tasuta kontroll aktiivsel väljalaskel** (sõnaline järjestus, mudelita): Tallinnas näidatakse küsimusega „Kes on Mustamäe lastekaitsespetsialist ja mis on tema telefon?“ 23 kontakti kahest kirjest (laste heaolu osakonna sektor ja Mustamäe sotsiaalhoolekande osakond), küsimusega „Kes on sotsiaaltöö spetsialist …“ 20 kontakti; kontekst 11 976 ja 11 978 tokenit, otsuseid kaks näidatud kontakti kohta. Narva 27 ja Tartu 31 nagu enne.
+- **Allikakaardi kuupäev:** registrikontakti kontrolliaeg on millisekundi täpsusega ja erineb leheti, mistõttu Tallinnas oli peaaegu igal kontaktil oma kaart (22 kaarti 23 kontakti kohta). Mudeli kaardil on nüüd kontrolli päev; täpne aeg jääb paketti.
+
 ## Testid
 
 - `tests/rag-v2-record-catalogue-compact.test.mjs`: ühine kaart samade väärtuste korral ja oma kaart erineva korral; kontakti kirje ja seoste kuju; pakett hoiab kõik väljad.
@@ -65,6 +76,6 @@ Küsimuseta pöördes ei ava pealkirjade vaade ühtki kirjet, seega ei otsustata
 ## Piirid
 
 - **Mudeliga mõõtmata.** Kas Luna loeb telefoni tõenditekstist kindlalt, näitab töö lõpu mõõtmisjooks.
-- **Tallinna tegelik mahtumine on mõõtmata**, kuni tema kontaktid on indeksis. Arvutuslikult: 71 kirjet, umbes 27 kontaktide kirje pealkirja ja kolme avatud kirje kuni 36 kontakti mahuvad 12 000 tokeni sisse.
+- **Tallinna mahtumine on mõõdetud kahe küsimusega** (jaotis „Korpus v57“), mitte iga küsimuse jaoks: avatakse kuni kolm kirjet, mahtus kaks kontaktide kirjet ja üks teenus.
 - Tasuta kontroll järjestab kirjeid sõnade järgi; päris vestluse vektorjärjestus võib avada teised kirjed.
 - Auditipaketis on viidatud kontaktil kaks välja vähem kui enne (lehe aadress, kontrolli aeg); varasemate pöörete paketid loetakse nagu enne (`record-catalogue-2` on loetav leping).
