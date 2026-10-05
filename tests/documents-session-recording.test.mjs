@@ -1,9 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  RECORDED_AUDIO_SOURCE, RECORDING_CONSENT_STATEMENT, SESSION_RECORDING_BITS_PER_SECOND, SESSION_RECORDING_MAX_PARTS,
+  RECORDED_AUDIO_SOURCE, RECORDING_CONSENT_STATEMENT, SESSION_RECORDING_AAC_BITS_PER_SECOND, SESSION_RECORDING_BITS_PER_SECOND, SESSION_RECORDING_MAX_PARTS,
   SESSION_RECORDING_PART_MAX_BYTES, SESSION_RECORDING_PART_MS, UPLOADED_AUDIO_SOURCE,
-  audioSourceMetadata, nextRecordingChunk, pickRecordingMime, readRecordingOrigin, recordedAudioInfo, recordingFileName, recordingSeconds,
+  audioSourceMetadata, nextRecordingChunk, pickRecordingMime, readRecordingOrigin, recordedAudioInfo, recordingBitsPerSecond, recordingFileName, recordingSeconds,
 } from '../lib/documents/sessionRecording.js';
 import { assertAudioSignature, ensureAllowedAudioUpload, serializeAudioSourceDocument } from '../lib/documents/audioWorkflow.js';
 
@@ -56,8 +56,15 @@ test('a part stays under the transcription limits: 10 minutes, far below 25 minu
   assert.equal(SESSION_RECORDING_PART_MS, 10 * 60 * 1000);
   // The transcription model takes at most 1500 seconds in one request.
   assert(SESSION_RECORDING_PART_MS / 1000 < 1500);
-  const expectedBytes = SESSION_RECORDING_BITS_PER_SECOND / 8 * SESSION_RECORDING_PART_MS / 1000;
-  assert(expectedBytes < SESSION_RECORDING_PART_MAX_BYTES / 4, 'a part at the chosen bit rate is far below its own size limit');
+  // The browser may exceed the asked rate (measured: MP4/AAC about 100 kbit/s where 64 was asked): even at twice the
+  // asked rate a part stays under its own size limit.
+  for (const rate of [SESSION_RECORDING_BITS_PER_SECOND, SESSION_RECORDING_AAC_BITS_PER_SECOND]) {
+    const worstBytes = 2 * rate / 8 * SESSION_RECORDING_PART_MS / 1000;
+    assert(worstBytes < SESSION_RECORDING_PART_MAX_BYTES / 2, 'a part at twice the chosen bit rate is still far below its size limit');
+  }
+  assert.equal(recordingBitsPerSecond('audio/mp4;codecs=mp4a.40.2'), SESSION_RECORDING_AAC_BITS_PER_SECOND);
+  assert.equal(recordingBitsPerSecond('audio/webm;codecs=opus'), SESSION_RECORDING_BITS_PER_SECOND);
+  assert.equal(recordingBitsPerSecond(''), SESSION_RECORDING_BITS_PER_SECOND);
   // The server's upload limit on production is 25 MB (TRANSCRIPTION_MAX_FILE_SIZE_MB); a part may not outgrow it.
   assert(SESSION_RECORDING_PART_MAX_BYTES <= 25 * 1024 * 1024);
   assert.equal(recordingSeconds(SESSION_RECORDING_PART_MS * SESSION_RECORDING_MAX_PARTS + 60000), 90 * 60);
@@ -73,9 +80,11 @@ test('a part closes when its size limit is reached, without taking the chunk tha
 });
 
 test('the recorded file passes the same upload checks as an uploaded audio file', () => {
+  // MP4 with AAC first (opens on every phone and computer); WebM where the browser cannot record MP4.
+  assert.equal(pickRecordingMime(() => true), 'audio/mp4;codecs=mp4a.40.2');
+  assert.equal(pickRecordingMime(candidate => candidate === 'audio/mp4' || candidate.startsWith('audio/webm')), 'audio/mp4');
   assert.equal(pickRecordingMime(candidate => candidate === 'audio/webm'), 'audio/webm');
   assert.equal(pickRecordingMime(candidate => candidate.startsWith('audio/webm')), 'audio/webm;codecs=opus');
-  assert.equal(pickRecordingMime(candidate => candidate === 'audio/mp4'), 'audio/mp4');
   assert.equal(pickRecordingMime(() => false), '');
   assert.equal(pickRecordingMime(() => { throw new Error('no'); }), '');
   assert.equal(pickRecordingMime(undefined), '');
@@ -83,7 +92,8 @@ test('the recorded file passes the same upload checks as an uploaded audio file'
   assert.equal(recordingFileName('audio/mp4', 1), 'kohtumise-salvestis-osa-1.m4a');
   assert.equal(recordingFileName('', 0), 'kohtumise-salvestis-osa-1.webm');
   const env = { TRANSCRIPTION_MAX_FILE_SIZE_MB: '25' };
-  for (const mime of ['audio/webm;codecs=opus', 'audio/webm', 'audio/mp4']) {
+  assert.equal(recordingFileName('audio/mp4;codecs=mp4a.40.2', 3), 'kohtumise-salvestis-osa-3.m4a');
+  for (const mime of ['audio/mp4;codecs=mp4a.40.2', 'audio/mp4', 'audio/webm;codecs=opus', 'audio/webm']) {
     const file = { name: recordingFileName(mime, 1), type: mime, size: 2_400_000 };
     assert.equal(ensureAllowedAudioUpload(file, env), mime);
   }

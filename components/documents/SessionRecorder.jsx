@@ -21,11 +21,11 @@ import { useCallback, useEffect, useRef, useState } from "react"
 
 import { useI18n } from "@/components/i18n/I18nProvider"
 import {
-  SESSION_RECORDING_BITS_PER_SECOND,
   SESSION_RECORDING_MAX_PARTS,
   SESSION_RECORDING_PART_MS,
   nextRecordingChunk,
   pickRecordingMime,
+  recordingBitsPerSecond,
   recordingFileName,
   recordingSeconds
 } from "@/lib/documents/sessionRecording"
@@ -153,7 +153,7 @@ export default function SessionRecorder({
     const mimeType = pickRecordingMime((candidate) => window.MediaRecorder.isTypeSupported(candidate))
     const recorder = new MediaRecorder(stream, {
       ...(mimeType ? { mimeType } : {}),
-      audioBitsPerSecond: SESSION_RECORDING_BITS_PER_SECOND
+      audioBitsPerSecond: recordingBitsPerSecond(mimeType)
     })
     const chunks = []
     let bytes = 0
