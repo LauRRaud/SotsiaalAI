@@ -68,6 +68,14 @@ test('ADR-086: records that declare the same values share one source card; a car
   assert.deepEqual(context.sources, { D1: { source_type: 'municipal_benefit' }, D2: { source_type: 'municipal_contact' }, D3: { source_type: 'municipal_benefit', historical: true, source_status: 'repealed' } });
   // Every reference still names its own document.
   assert.deepEqual(Object.values(references).map(reference => reference.document_id), ['a', 'b', 'c', 'd', 'e']);
+  // A card states the day of the check: contacts checked at different moments of one day share a card, and the packet
+  // keeps each exact time.
+  const checked = [compactEntry(entry('m', { source_type: 'municipal_contact', source_checked_at: '2026-10-05T11:29:07.758Z' })),
+    compactEntry(entry('n', { source_type: 'municipal_contact', source_checked_at: '2026-10-05T11:29:09.120Z' })), compactEntry(entry('o', { source_type: 'municipal_contact', source_checked_at: '2026-10-04T08:00:00.000Z' }))];
+  const days = modelProjection(checked, { tenant: 't', query_id: 'q', generation_id: 'g', ...records(checked) }).context;
+  assert.deepEqual([days.evidence.map(item => item.source), days.records.source_defaults, days.sources], [['D1', 'D1', 'D2'], { source_type: 'municipal_contact' },
+    { D1: { source_checked_at: '2026-10-05' }, D2: { source_checked_at: '2026-10-04' } }]);
+  assert.equal(checked[0].source_metadata.source_checked_at.value, '2026-10-05T11:29:07.758Z');
   // Evidence that is not a record keeps a card of its own, also when two documents declare the same values.
   const ranked = id => ({ ...compactEntry(entry(id, {})), selection: { reason: 'ranked', ranks: {}, rrf_contributions: {}, rrf_score: 1 } });
   assert.deepEqual(modelProjection([ranked('x'), ranked('y')], { tenant: 't' }).context.evidence.map(item => item.source), ['D1', 'D2']);
