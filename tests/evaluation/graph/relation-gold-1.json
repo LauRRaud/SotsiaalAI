@@ -5,9 +5,9 @@
   {
    "act": "130062026065",
    "title": "Sotsiaalhoolekande seadus",
-   "normalization": "source-structure-v30",
+   "normalization": "source-structure-v31",
    "provisions": 855,
-   "passages": 251,
+   "passages": 250,
    "cards": 244,
    "card_relations": 122,
    "reader": {
@@ -26,7 +26,7 @@
      "links": 282,
      "located": 278,
      "cross_passage": 278,
-     "outside_first_passage": 24,
+     "outside_first_passage": 22,
      "cross_passage_with_card_relation": 9
     },
     "other_section_exception": {
@@ -191,7 +191,7 @@
      "exception": true,
      "words": "statakse isiku tahet, välja arvatud käesoleva seaduse §-des 105, 106 ja 107 sätestatud juhtudel.",
      "from_passage": 12,
-     "to_passage": 160,
+     "to_passage": 159,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -203,7 +203,7 @@
      "exception": true,
      "words": "kse isiku tahet, välja arvatud käesoleva seaduse §-des 105, 106 ja 107 sätestatud juhtudel.",
      "from_passage": 12,
-     "to_passage": 162,
+     "to_passage": 161,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -215,7 +215,7 @@
      "exception": true,
      "words": "ku tahet, välja arvatud käesoleva seaduse §-des 105, 106 ja 107 sätestatud juhtudel.",
      "from_passage": 12,
-     "to_passage": 163,
+     "to_passage": 162,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -272,7 +272,7 @@
      "exception": false,
      "words": "ähemalt põhiharidus ning kui on tagatud, et teda juhendab § 86 lõikes 1 sätestatud nõuetele vastav isik.",
      "from_passage": 15,
-     "to_passage": 136,
+     "to_passage": 135,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -284,7 +284,7 @@
      "exception": false,
      "words": "ine ja teovõimeline ning kui on tagatud, et teda juhendab § 86 lõikes 1 sätestatud nõuetele vastav isik.",
      "from_passage": 15,
-     "to_passage": 136,
+     "to_passage": 135,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -296,7 +296,7 @@
      "exception": false,
      "words": "aseisukorra ajal lõpetab teenuseosutaja käesoleva seaduse § 80 lõike 1 punktis 1 sätestatud juhul majutamisega e",
      "from_passage": 15,
-     "to_passage": 127,
+     "to_passage": 126,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -368,7 +368,7 @@
      "exception": true,
      "words": "se või sõjaseisukorra ajal ei kohaldata käesoleva seaduse § 99 lõikes 3 ja § 102 lõike 1 punktis 4 sätestatut, k",
      "from_passage": 16,
-     "to_passage": 149,
+     "to_passage": 148,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -380,7 +380,7 @@
      "exception": true,
      "words": "orra ajal ei kohaldata käesoleva seaduse § 99 lõikes 3 ja § 102 lõike 1 punktis 4 sätestatut, kui see on vajalik",
      "from_passage": 16,
-     "to_passage": 157,
+     "to_passage": 156,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -392,7 +392,7 @@
      "exception": false,
      "words": "ralise või sõjaseisukorra ajal ei kehti käesoleva seaduse § 102 lõikes 3 nimetatud seaduslikult esindajalt nõuso",
      "from_passage": 16,
-     "to_passage": 157,
+     "to_passage": 156,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -962,7 +962,7 @@
      "exception": false,
      "words": "miseks peab olema tegevusluba vastavalt käesoleva seaduse § 151 punktile 3. Lastele ja täisealistele isikutele t",
      "from_passage": 51,
-     "to_passage": 218,
+     "to_passage": 217,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -1013,7 +1013,7 @@
      "exception": false,
      "words": "võib hoiuteenuse rahastamiseks kasutada käesoleva seaduse § 156 lõikes 3¹ sätestatud vahendeid.",
      "from_passage": 61,
-     "to_passage": 224,
+     "to_passage": 223,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -1070,7 +1070,7 @@
      "exception": false,
      "words": "asendushooldusele paigutamist kasutama käesoleva seaduse § 130⁶ lõike 3 alusel sätestatud kohanemistoe teenust.",
      "from_passage": 65,
-     "to_passage": 176,
+     "to_passage": 175,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -1118,7 +1118,7 @@
      "exception": true,
      "words": "peres, peab olema tegevusluba vastavalt käesoleva seaduse § 151 punktile 2.",
      "from_passage": 70,
-     "to_passage": 218,
+     "to_passage": 217,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -1130,7 +1130,7 @@
      "exception": false,
      "words": "kelle Sotsiaalkindlustusamet on kandnud käesoleva seaduse § 141 lõike 1 alusel asutatud registrisse.",
      "from_passage": 70,
-     "to_passage": 205,
+     "to_passage": 204,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -1585,7 +1585,7 @@
      "to_section": "54",
      "exception": false,
      "words": "Abivahendi müüja või üürija peab käesoleva seaduse §-s 54 nimetatud lepingu kehtivuse ajal tagama, et medit",
-     "from_passage": 91,
+     "from_passage": 90,
      "to_passage": 89,
      "cross_passage": true,
      "in_first_passage": true
@@ -1597,7 +1597,7 @@
      "list": "§ 29",
      "exception": false,
      "words": "lepingu kehtivuse ajal tagama, et meditsiiniseadme seaduse § 29 alusel asutatud meditsiiniseadmete ja a",
-     "from_passage": 91
+     "from_passage": 90
     },
     {
      "class": "other_section",
@@ -2048,7 +2048,7 @@
      "exception": false,
      "words": "ust saama õigustatud isiku poolt ning käesoleva seaduse §-s 89 sätestatud juhul kohaliku omavalitsuse üksuse poo",
      "from_passage": 115,
-     "to_passage": 139,
+     "to_passage": 138,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -2485,7 +2485,7 @@
      "to_section": "70",
      "exception": true,
      "words": "kindlustusamet on tunnistanud kehtetuks käesoleva seaduse § 70 lõikes 4 nimetatud otsuse.",
-     "from_passage": 127,
+     "from_passage": 126,
      "to_passage": 110,
      "cross_passage": true,
      "in_first_passage": true
@@ -2497,8 +2497,8 @@
      "to_section": "80",
      "exception": false,
      "words": "deasutusse paigutatud isikule lõpetatakse teenuse osutamine käesoleva paragrahvi lõike 1 punktis 2 sätestatud juhul ning juhul,",
-     "from_passage": 127,
-     "to_passage": 127,
+     "from_passage": 126,
+     "to_passage": 126,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -2509,8 +2509,8 @@
      "to_section": "80",
      "exception": false,
      "words": "Kui isik ei ole suuteline käesoleva paragrahvi lõikes 4 nimetatud kirjalikku kinnitust esitama,",
-     "from_passage": 128,
-     "to_passage": 127,
+     "from_passage": 127,
+     "to_passage": 126,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -2521,8 +2521,8 @@
      "to_section": "80",
      "exception": false,
      "words": "usteenuse osutaja, esitades sellekohase kirjaliku kinnituse käesoleva paragrahvi lõikes 4 sätestatud korras ja tähtpäevaks.",
-     "from_passage": 128,
-     "to_passage": 127,
+     "from_passage": 127,
+     "to_passage": 126,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -2533,7 +2533,7 @@
      "to_section": "71",
      "exception": false,
      "words": "dunud erihoolekandeteenuse kasutamiseks käesoleva seaduse § 71 lõigetes 6 ja 7 sätestatud tähtaja jooksul kokkul",
-     "from_passage": 128,
+     "from_passage": 127,
      "to_passage": 113,
      "cross_passage": true,
      "in_first_passage": false
@@ -2545,7 +2545,7 @@
      "to_section": "71",
      "exception": false,
      "words": "dunud erihoolekandeteenuse kasutamiseks käesoleva seaduse § 71 lõigetes 6 ja 7 sätestatud tähtaja jooksul kokkul",
-     "from_passage": 128,
+     "from_passage": 127,
      "to_passage": 113,
      "cross_passage": true,
      "in_first_passage": false
@@ -2557,7 +2557,7 @@
      "to_section": "70",
      "exception": false,
      "words": "enuseosutaja juurde, kui teenuseosutaja käesoleva seaduse § 70 lõikes 4 nimetatud otsuses sellekohast teenust os",
-     "from_passage": 129,
+     "from_passage": 128,
      "to_passage": 110,
      "cross_passage": true,
      "in_first_passage": true
@@ -2569,7 +2569,7 @@
      "to_section": "76",
      "exception": false,
      "words": "oolekandeteenuse järjekorda, lähtudes käesoleva seaduse §-s 76 sätestatust.",
-     "from_passage": 129,
+     "from_passage": 128,
      "to_passage": 121,
      "cross_passage": true,
      "in_first_passage": true
@@ -2581,8 +2581,8 @@
      "to_section": "81",
      "exception": false,
      "words": "ovitud teenuseosutaja juures vaba koht puudub, kohaldatakse käesoleva paragrahvi lõikes 3 sätestatut, välja arvatud kohtumääruseg",
-     "from_passage": 129,
-     "to_passage": 129,
+     "from_passage": 128,
+     "to_passage": 128,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -2593,7 +2593,7 @@
      "to_section": "70",
      "exception": false,
      "words": "stele, tunnistab Sotsiaalkindlustusamet käesoleva seaduse § 70 lõikes 4 nimetatud otsuse kehtetuks (edaspidi eri",
-     "from_passage": 130,
+     "from_passage": 129,
      "to_passage": 110,
      "cross_passage": true,
      "in_first_passage": true
@@ -2605,8 +2605,8 @@
      "to_section": "86",
      "exception": false,
      "words": "v teenust vahetult osutav isik vastab käesoleva seaduse §-s 86 ja selle alusel kehtestatud nõuetele; 6) koosta",
-     "from_passage": 131,
-     "to_passage": 136,
+     "from_passage": 130,
+     "to_passage": 135,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -2617,7 +2617,7 @@
      "to_section": "11",
      "exception": false,
      "words": "i aruandeid erihoolekandeteenuste kohta käesoleva seaduse § 11 lõike 4 alusel kehtestatud korras ja esitama need",
-     "from_passage": 131,
+     "from_passage": 130,
      "to_passage": 11,
      "cross_passage": true,
      "in_first_passage": true
@@ -2629,7 +2629,7 @@
      "list": "§ 7 lõikes 2",
      "exception": false,
      "words": "selt. Välisriigi kutsekvalifikatsiooni tunnustamise seaduse § 7 lõikes 2 sätestatud pädev asutus on Sotsiaalkind",
-     "from_passage": 136
+     "from_passage": 135
     },
     {
      "class": "other_section",
@@ -2638,7 +2638,7 @@
      "to_section": "72",
      "exception": true,
      "words": "st on täisealisel isikul, välja arvatud käesoleva seaduse § 72 lõikes 2 nimetatud isikul, kes vastab järgmistele",
-     "from_passage": 138,
+     "from_passage": 137,
      "to_passage": 115,
      "cross_passage": true,
      "in_first_passage": true
@@ -2650,7 +2650,7 @@
      "to_section": "72",
      "exception": true,
      "words": "st on täisealisel isikul, välja arvatud käesoleva seaduse § 72 lõikes 2 nimetatud isikul, kes vastab järgmistele",
-     "from_passage": 142,
+     "from_passage": 141,
      "to_passage": 115,
      "cross_passage": true,
      "in_first_passage": true
@@ -2662,7 +2662,7 @@
      "list": "§-s 7",
      "exception": true,
      "words": "hul, kui ta on jõudnud riikliku pensionikindlustuse seaduse §-s 7 sätestatud vanaduspensioniikka; 2) ta",
-     "from_passage": 142
+     "from_passage": 141
     },
     {
      "class": "own_section",
@@ -2671,8 +2671,8 @@
      "to_section": "93",
      "exception": false,
      "words": "toetamise teenuse osutaja teavitab Sotsiaalkindlustusametit käesoleva paragrahvi lõikes 3 nimetatud tähtaja möödumisest, misjärel",
-     "from_passage": 143,
-     "to_passage": 143,
+     "from_passage": 142,
+     "to_passage": 142,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -2683,8 +2683,8 @@
      "to_section": "91",
      "exception": false,
      "words": "tamise toetamise teenuse sisuks olevaid käesoleva seaduse § 91 lõike 2 punktides 1 ja 3–6 nimetatud tegevusi tul",
-     "from_passage": 143,
-     "to_passage": 141,
+     "from_passage": 142,
+     "to_passage": 140,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -2695,7 +2695,7 @@
      "to_section": "72",
      "exception": true,
      "words": "st on täisealisel isikul, välja arvatud käesoleva seaduse § 72 lõikes 2 nimetatud isikul, kes vastab järgmistele",
-     "from_passage": 145,
+     "from_passage": 144,
      "to_passage": 115,
      "cross_passage": true,
      "in_first_passage": true
@@ -2707,8 +2707,8 @@
      "to_section": "94",
      "exception": false,
      "words": "Toetatud elamise teenuse sisuks olevaid käesoleva seaduse § 94 lõikes 2 nimetatud tegevusi võib ellu viia toetat",
-     "from_passage": 146,
-     "to_passage": 144,
+     "from_passage": 145,
+     "to_passage": 143,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -2719,7 +2719,7 @@
      "list": "§ 11 lõike 4",
      "exception": false,
      "words": "isiku kasutusse antav eluruum peab vastama ehitusseadustiku § 11 lõike 4 ja elamuseaduse § 7 lõike 1 punkti 2 al",
-     "from_passage": 146
+     "from_passage": 145
     },
     {
      "class": "other_act",
@@ -2728,7 +2728,7 @@
      "list": "§ 7 lõike 1 punkti 2",
      "exception": false,
      "words": "peab vastama ehitusseadustiku § 11 lõike 4 ja elamuseaduse § 7 lõike 1 punkti 2 alusel kehtestatud nõuetele.",
-     "from_passage": 146
+     "from_passage": 145
     },
     {
      "class": "own_section",
@@ -2737,8 +2737,8 @@
      "to_section": "96",
      "exception": false,
      "words": "Lisaks käesoleva paragrahvi lõikes 3 nimetatule peab eluruumis olema: 1) v",
-     "from_passage": 146,
-     "to_passage": 146,
+     "from_passage": 145,
+     "to_passage": 145,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -2749,8 +2749,8 @@
      "to_section": "94",
      "exception": false,
      "words": "Käesoleva seaduse § 94 lõikes 2 nimetatud tegevusi tuleb toetatud elamis",
-     "from_passage": 146,
-     "to_passage": 144,
+     "from_passage": 145,
+     "to_passage": 143,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -2761,7 +2761,7 @@
      "to_section": "72",
      "exception": true,
      "words": "st on täisealisel isikul, välja arvatud käesoleva seaduse § 72 lõikes 2 nimetatud isikul, kes vastab järgmistele",
-     "from_passage": 148,
+     "from_passage": 147,
      "to_passage": 115,
      "cross_passage": true,
      "in_first_passage": true
@@ -2773,8 +2773,8 @@
      "to_section": "97",
      "exception": false,
      "words": "Käesoleva seaduse § 97 lõikes 3 nimetatud tegevusi tuleb kogukonnas elam",
-     "from_passage": 149,
-     "to_passage": 147,
+     "from_passage": 148,
+     "to_passage": 146,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -2785,8 +2785,8 @@
      "to_section": "83",
      "exception": false,
      "words": "Kogukonnas elamise teenuse osutaja peab tagama § 83 lõike 1 punktis 13 sätestatud nõude täitmise, kui",
-     "from_passage": 149,
-     "to_passage": 131,
+     "from_passage": 148,
+     "to_passage": 130,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -2797,7 +2797,7 @@
      "to_section": "72",
      "exception": true,
      "words": "st on täisealisel isikul, välja arvatud käesoleva seaduse § 72 lõikes 2 nimetatud isikul, kes vastab järgmistele",
-     "from_passage": 151,
+     "from_passage": 150,
      "to_passage": 115,
      "cross_passage": true,
      "in_first_passage": true
@@ -2809,7 +2809,7 @@
      "list": "§-s 7",
      "exception": true,
      "words": "hul, kui ta on jõudnud riikliku pensionikindlustuse seaduse §-s 7 sätestatud vanaduspensioniikka; 3) te",
-     "from_passage": 151
+     "from_passage": 150
     },
     {
      "class": "other_section",
@@ -2818,8 +2818,8 @@
      "to_section": "99^1",
      "exception": false,
      "words": "va- ja nädalahoiuteenuse sisuks olevaid käesoleva seaduse § 99¹ lõikes 2 nimetatud tegevusi tuleb päeva- ja näda",
-     "from_passage": 152,
-     "to_passage": 150,
+     "from_passage": 151,
+     "to_passage": 149,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -2830,8 +2830,8 @@
      "to_section": "99^3",
      "exception": true,
      "words": "nel päeval ja maksimaalselt 23 ööpäeval kuus, välja arvatud käesoleva paragrahvi lõikes 2 sätestatud juhul.",
-     "from_passage": 152,
-     "to_passage": 152,
+     "from_passage": 151,
+     "to_passage": 151,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -2842,8 +2842,8 @@
      "to_section": "99^1",
      "exception": false,
      "words": "äeva on kohanemisaeg, mille kestel võib käesoleva seaduse § 99¹ lõikes 2 nimetatud tegevusi päeva- ja nädalahoiu",
-     "from_passage": 152,
-     "to_passage": 150,
+     "from_passage": 151,
+     "to_passage": 149,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -2854,7 +2854,7 @@
      "to_section": "22",
      "exception": false,
      "words": "loluga juhul, kui hooldustöötaja vastab käesoleva seaduse § 22 lõikes 4 sätestatud nõuetele.",
-     "from_passage": 153,
+     "from_passage": 152,
      "to_passage": 33,
      "cross_passage": true,
      "in_first_passage": true
@@ -2866,8 +2866,8 @@
      "to_section": "87",
      "exception": false,
      "words": "teenuse saamise eesmärgist: 1) täitma käesoleva seaduse § 87 lõikes 2 sätestatud kohustusi; 2) tagama ööpäev",
-     "from_passage": 154,
-     "to_passage": 137,
+     "from_passage": 153,
+     "to_passage": 136,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -2878,7 +2878,7 @@
      "to_section": "72",
      "exception": true,
      "words": "st on täisealisel isikul, välja arvatud käesoleva seaduse § 72 lõikes 2 nimetatud täisealisel isikul, kes vastab",
-     "from_passage": 155,
+     "from_passage": 154,
      "to_passage": 115,
      "cross_passage": true,
      "in_first_passage": true
@@ -2890,7 +2890,7 @@
      "list": "§-s 7",
      "exception": true,
      "words": "3) 18-aastasel kuni riikliku pensionikindlustuse seaduse §-s 7 sätestatud vanaduspensioniikka jõudnud",
-     "from_passage": 155
+     "from_passage": 154
     },
     {
      "class": "other_section",
@@ -2899,7 +2899,7 @@
      "to_section": "72",
      "exception": true,
      "words": "enust täisealisel isikul, välja arvatud käesoleva seaduse § 72 lõikes 2 nimetatud täisealisel isikul, kellel on",
-     "from_passage": 155,
+     "from_passage": 154,
      "to_passage": 115,
      "cross_passage": true,
      "in_first_passage": true
@@ -2911,8 +2911,8 @@
      "to_section": "101",
      "exception": true,
      "words": "ügav või püsiva kuluga psüühikahäire, ning: 1) kes vastab käesoleva paragrahvi lõike 1 punktides 4–6 sätestatud tingimustele j",
-     "from_passage": 155,
-     "to_passage": 155,
+     "from_passage": 154,
+     "to_passage": 154,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -2923,7 +2923,7 @@
      "list": "§-s 7",
      "exception": true,
      "words": "öövõime, välja arvatud riikliku pensionikindlustuse seaduse §-s 7 sätestatud vanaduspensioniikka jõudnud",
-     "from_passage": 155
+     "from_passage": 154
     },
     {
      "class": "other_section",
@@ -2932,7 +2932,7 @@
      "to_section": "72",
      "exception": true,
      "words": "enust täisealisel isikul, välja arvatud käesoleva seaduse § 72 lõikes 2 nimetatud täisealisel isikul, kellel on",
-     "from_passage": 156,
+     "from_passage": 155,
      "to_passage": 115,
      "cross_passage": true,
      "in_first_passage": true
@@ -2944,8 +2944,8 @@
      "to_section": "101",
      "exception": true,
      "words": "el on äärmuslik abi- ja toetusvajadus ning: 1) kes vastab käesoleva paragrahvi lõike 1 punktides 4–6 sätestatud tingimustele j",
-     "from_passage": 156,
-     "to_passage": 155,
+     "from_passage": 155,
+     "to_passage": 154,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -2956,8 +2956,8 @@
      "to_section": "101",
      "exception": false,
      "words": "Lisaks käesoleva paragrahvi lõigetes 1 ja 2 nimetatud täisealistele isikutele on õi",
-     "from_passage": 156,
-     "to_passage": 155,
+     "from_passage": 155,
+     "to_passage": 154,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -2968,7 +2968,7 @@
      "list": "§-s 7",
      "exception": true,
      "words": "öövõime, välja arvatud riikliku pensionikindlustuse seaduse §-s 7 sätestatud vanaduspensioniikka jõudnud",
-     "from_passage": 156
+     "from_passage": 155
     },
     {
      "class": "own_section",
@@ -2977,8 +2977,8 @@
      "to_section": "101",
      "exception": false,
      "words": "Riigieelarvest kaetakse lisaks käesoleva paragrahvi lõigetes 1–3 nimetatud täisealistele isikutele kohtu",
-     "from_passage": 156,
-     "to_passage": 155,
+     "from_passage": 155,
+     "to_passage": 154,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -2989,8 +2989,8 @@
      "to_section": "101",
      "exception": false,
      "words": "Riigieelarvest kaetakse lisaks käesoleva paragrahvi lõigetes 1–3 nimetatud täisealistele isikutele kohtu",
-     "from_passage": 156,
-     "to_passage": 155,
+     "from_passage": 155,
+     "to_passage": 154,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3001,8 +3001,8 @@
      "to_section": "101",
      "exception": false,
      "words": "Riigieelarvest kaetakse lisaks käesoleva paragrahvi lõigetes 1–3 nimetatud täisealistele isikutele kohtu",
-     "from_passage": 156,
-     "to_passage": 156,
+     "from_passage": 155,
+     "to_passage": 155,
      "cross_passage": false,
      "in_first_passage": false
     },
@@ -3013,8 +3013,8 @@
      "to_section": "101",
      "exception": false,
      "words": "evaringset erihooldusteenust osutatakse käesoleva seaduse § 101 lõikes 1 nimetatud täisealistele isikutele, äärm",
-     "from_passage": 157,
-     "to_passage": 155,
+     "from_passage": 156,
+     "to_passage": 154,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3025,8 +3025,8 @@
      "to_section": "83",
      "exception": false,
      "words": "Ööpäevaringse erihooldusteenuse osutaja peab tagama § 83 lõike 1 punktis 13 sätestatud nõude täitmise, kui",
-     "from_passage": 157,
-     "to_passage": 131,
+     "from_passage": 156,
+     "to_passage": 130,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3037,8 +3037,8 @@
      "to_section": "101",
      "exception": true,
      "words": "gutatud täisealistele isikutele osutada käesoleva seaduse § 101 lõikes 1 nimetatud täisealiste isikutega, äärmus",
-     "from_passage": 157,
-     "to_passage": 155,
+     "from_passage": 156,
+     "to_passage": 154,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3049,8 +3049,8 @@
      "to_section": "103",
      "exception": true,
      "words": "es ruumides ja samal ajal, arvestades käesoleva seaduse §-s 103 sätestatut.",
-     "from_passage": 157,
-     "to_passage": 158,
+     "from_passage": 156,
+     "to_passage": 157,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3061,8 +3061,8 @@
      "to_section": "102",
      "exception": false,
      "words": "ldusteenuse osutaja kohustatud lisaks käesoleva seaduse §-s 102 sätestatud nõuetele tagama, et: 1) kohtumäärus",
-     "from_passage": 158,
-     "to_passage": 157,
+     "from_passage": 157,
+     "to_passage": 156,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3073,7 +3073,7 @@
      "to_section": "22",
      "exception": false,
      "words": "loluga juhul, kui hooldustöötaja vastab käesoleva seaduse § 22 lõikes 4 sätestatud nõuetele.",
-     "from_passage": 159,
+     "from_passage": 158,
      "to_passage": 33,
      "cross_passage": true,
      "in_first_passage": true
@@ -3085,8 +3085,8 @@
      "to_section": "105",
      "exception": false,
      "words": "vates. Kui nimetatud tähtaja möödumisel ei ole ära langenud käesoleva paragrahvi lõikes 1 loetletud asjaolud, võib kohus täiseali",
-     "from_passage": 160,
-     "to_passage": 160,
+     "from_passage": 159,
+     "to_passage": 159,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -3097,8 +3097,8 @@
      "to_section": "105",
      "exception": false,
      "words": "utusse kohtumääruse alusel vastavalt käesoleva seaduse §-le 105; 2) saab ööpäevaringset erihooldusteenust, kui",
-     "from_passage": 162,
-     "to_passage": 160,
+     "from_passage": 161,
+     "to_passage": 159,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3109,8 +3109,8 @@
      "to_section": "107",
      "exception": false,
      "words": "taja täisealise isiku enne teavitamist eraldada, arvestades käesoleva paragrahvi lõikes 4 sätestatut.",
-     "from_passage": 163,
-     "to_passage": 163,
+     "from_passage": 162,
+     "to_passage": 162,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -3121,7 +3121,7 @@
      "to_section": "45^9",
      "exception": false,
      "words": "Käesoleva seaduse § 45⁹ lõike 4 punktides 2–5 sätestatud kohustusi täida",
-     "from_passage": 168,
+     "from_passage": 167,
      "to_passage": 68,
      "cross_passage": true,
      "in_first_passage": true
@@ -3133,8 +3133,8 @@
      "to_section": "130^3",
      "exception": false,
      "words": "ööpäevaringne teenus, mida osutatakse käesoleva seaduse §-s 130³ sätestatud tingimustel lapsele, kelle vabadust",
-     "from_passage": 169,
-     "to_passage": 172,
+     "from_passage": 168,
+     "to_passage": 171,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3145,7 +3145,7 @@
      "list": "§ 534",
      "exception": false,
      "words": "ata esialgset õiguskaitset tsiviilkohtumenetluse seadustiku § 534 tähenduses; 2) paigutamise eelduseks",
-     "from_passage": 170
+     "from_passage": 169
     },
     {
      "class": "other_act",
@@ -3154,7 +3154,7 @@
      "list": "§ 537",
      "exception": false,
      "words": "i ole ekspertiisi tegemine tsiviilkohtumenetluse seadustiku § 537 tähenduses; 3) paigutamise menetluses",
-     "from_passage": 170
+     "from_passage": 169
     },
     {
      "class": "other_act",
@@ -3163,7 +3163,7 @@
      "list": "§ 536 lõikes 2",
      "exception": false,
      "words": "enetluses peab kohus peale tsiviilkohtumenetluse seadustiku § 536 lõikes 2 sätestatud isikute ära kuulama ka lapse",
-     "from_passage": 170
+     "from_passage": 169
     },
     {
      "class": "other_act",
@@ -3172,7 +3172,7 @@
      "list": "§-s 543",
      "exception": false,
      "words": "buse esitamise õigus peale tsiviilkohtumenetluse seadustiku §-s 543 sätestatud isikute ka lapse hooldusõigu",
-     "from_passage": 170
+     "from_passage": 169
     },
     {
      "class": "other_act",
@@ -3181,7 +3181,7 @@
      "list": "§-s 28",
      "exception": false,
      "words": "visele; 2) hinnang lapse abivajadusele lastekaitseseaduse §-s 28 sätestatud alustel; 3) ülevaade lapse",
-     "from_passage": 170
+     "from_passage": 169
     },
     {
      "class": "own_section",
@@ -3190,8 +3190,8 @@
      "to_section": "130^3",
      "exception": false,
      "words": "ate lastega head ja usalduslikud suhted ning tagada seeläbi käesoleva paragrahvi lõikes 1 sätestatud ülesannete tulemuslik täitmi",
-     "from_passage": 172,
-     "to_passage": 172,
+     "from_passage": 171,
+     "to_passage": 171,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -3202,8 +3202,8 @@
      "to_section": "130^3",
      "exception": false,
      "words": "piirangute seadmisel lapse vajadustega ja piirangute mõjuga käesoleva paragrahvi lõike 1 punktides 2–5 sätestatud ülesannete täi",
-     "from_passage": 172,
-     "to_passage": 172,
+     "from_passage": 171,
+     "to_passage": 171,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -3214,7 +3214,7 @@
      "to_section": "6",
      "exception": false,
      "words": "se tagamiseks õigus: 1) kohaldada käesoleva seaduse §-des 6 ja 130⁴ sätestatut; 2) paigutada laps, kelle käi",
-     "from_passage": 172,
+     "from_passage": 171,
      "to_passage": 6,
      "cross_passage": true,
      "in_first_passage": true
@@ -3226,8 +3226,8 @@
      "to_section": "130^4",
      "exception": false,
      "words": "gamiseks õigus: 1) kohaldada käesoleva seaduse §-des 6 ja 130⁴ sätestatut; 2) paigutada laps, kelle käitumin",
-     "from_passage": 172,
-     "to_passage": 174,
+     "from_passage": 171,
+     "to_passage": 173,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3238,8 +3238,8 @@
      "to_section": "107",
      "exception": false,
      "words": "2 sätestatud eraldamisele kohaldatakse käesoleva seaduse § 107 lõigetes 7–9 sätestatud nõudeid.",
-     "from_passage": 172,
-     "to_passage": 163,
+     "from_passage": 171,
+     "to_passage": 162,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3250,10 +3250,10 @@
      "to_section": "107",
      "exception": false,
      "words": "2 sätestatud eraldamisele kohaldatakse käesoleva seaduse § 107 lõigetes 7–9 sätestatud nõudeid.",
-     "from_passage": 172,
-     "to_passage": 164,
+     "from_passage": 171,
+     "to_passage": 162,
      "cross_passage": true,
-     "in_first_passage": false
+     "in_first_passage": true
     },
     {
      "class": "other_section",
@@ -3262,8 +3262,8 @@
      "to_section": "107",
      "exception": false,
      "words": "2 sätestatud eraldamisele kohaldatakse käesoleva seaduse § 107 lõigetes 7–9 sätestatud nõudeid.",
-     "from_passage": 172,
-     "to_passage": 164,
+     "from_passage": 171,
+     "to_passage": 163,
      "cross_passage": true,
      "in_first_passage": false
     },
@@ -3274,8 +3274,8 @@
      "to_section": "130^3",
      "exception": false,
      "words": "Käesoleva paragrahvi lõike 4 punktis 2 sätestatud eraldamisele kohal",
-     "from_passage": 172,
-     "to_passage": 172,
+     "from_passage": 171,
+     "to_passage": 171,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -3286,8 +3286,8 @@
      "to_section": "130^3",
      "exception": false,
      "words": "Käesoleva paragrahvi lõigetes 1–5 sätestatud nõuete täitmine tagatakse te",
-     "from_passage": 173,
-     "to_passage": 172,
+     "from_passage": 172,
+     "to_passage": 171,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3298,8 +3298,8 @@
      "to_section": "130^3",
      "exception": false,
      "words": "Käesoleva paragrahvi lõigetes 1–5 sätestatud nõuete täitmine tagatakse te",
-     "from_passage": 173,
-     "to_passage": 172,
+     "from_passage": 172,
+     "to_passage": 171,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3310,8 +3310,8 @@
      "to_section": "130^3",
      "exception": false,
      "words": "Käesoleva paragrahvi lõigetes 1–5 sätestatud nõuete täitmine tagatakse te",
-     "from_passage": 173,
-     "to_passage": 172,
+     "from_passage": 172,
+     "to_passage": 171,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3322,8 +3322,8 @@
      "to_section": "130^3",
      "exception": false,
      "words": "Käesoleva paragrahvi lõigetes 1–5 sätestatud nõuete täitmine tagatakse te",
-     "from_passage": 173,
-     "to_passage": 172,
+     "from_passage": 172,
+     "to_passage": 171,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3334,8 +3334,8 @@
      "to_section": "130^3",
      "exception": false,
      "words": "Käesoleva paragrahvi lõigetes 1–5 sätestatud nõuete täitmine tagatakse te",
-     "from_passage": 173,
-     "to_passage": 172,
+     "from_passage": 172,
+     "to_passage": 171,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3346,7 +3346,7 @@
      "list": "§-des 21 ja 22",
      "exception": false,
      "words": "ond ja toitlustamine peavad vastama rahvatervishoiu seaduse §-des 21 ja 22 sätestatud ning nende alusel kehtestatu",
-     "from_passage": 173
+     "from_passage": 172
     },
     {
      "class": "other_section",
@@ -3355,7 +3355,7 @@
      "to_section": "6",
      "exception": false,
      "words": "eritud posti- või muu saadetis sisaldab käesoleva seaduse § 6 lõikes 1 või 2 nimetatud asju, on teenuseosutajal",
-     "from_passage": 174,
+     "from_passage": 173,
      "to_passage": 6,
      "cross_passage": true,
      "in_first_passage": true
@@ -3367,7 +3367,7 @@
      "to_section": "6",
      "exception": false,
      "words": "eritud posti- või muu saadetis sisaldab käesoleva seaduse § 6 lõikes 1 või 2 nimetatud asju, on teenuseosutajal",
-     "from_passage": 174,
+     "from_passage": 173,
      "to_passage": 6,
      "cross_passage": true,
      "in_first_passage": true
@@ -3379,7 +3379,7 @@
      "to_section": "6",
      "exception": false,
      "words": ", politseile üleandmise või hävitamise. Käesoleva seaduse § 6 lõike 1 punktis 4 nimetatud asja äravõtmise korral",
-     "from_passage": 174,
+     "from_passage": 173,
      "to_passage": 6,
      "cross_passage": true,
      "in_first_passage": true
@@ -3391,8 +3391,8 @@
      "to_section": "130^3",
      "exception": false,
      "words": "2 alusel sõlmitud halduslepingu alusel käesoleva seaduse § 130³ lõigetes 1 ja 2 sätestatud ülesannete täitmist",
-     "from_passage": 175,
-     "to_passage": 172,
+     "from_passage": 174,
+     "to_passage": 171,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3403,8 +3403,8 @@
      "to_section": "130^3",
      "exception": false,
      "words": "2 alusel sõlmitud halduslepingu alusel käesoleva seaduse § 130³ lõigetes 1 ja 2 sätestatud ülesannete täitmist",
-     "from_passage": 175,
-     "to_passage": 172,
+     "from_passage": 174,
+     "to_passage": 171,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3415,8 +3415,8 @@
      "to_section": "130^5",
      "exception": false,
      "words": "Käesoleva paragrahvi lõike 2 alusel sõlmitud halduslepingu alusel kä",
-     "from_passage": 175,
-     "to_passage": 175,
+     "from_passage": 174,
+     "to_passage": 174,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -3427,7 +3427,7 @@
      "list": "§-s 20",
      "exception": false,
      "words": "jalikud isiksuseomadused; 2) ta vastab lastekaitseseaduse §-s 20 sätestatud nõuetele; 3) tal on nõusta",
-     "from_passage": 177
+     "from_passage": 176
     },
     {
      "class": "own_section",
@@ -3436,8 +3436,8 @@
      "to_section": "130^9",
      "exception": false,
      "words": "Tasu maksmise kohustuse ülevõtmise taotlemiseks esitab käesoleva paragrahvi lõikes 1 nimetatud isik taotluse Sotsiaalkindlus",
-     "from_passage": 179,
-     "to_passage": 179,
+     "from_passage": 178,
+     "to_passage": 178,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -3448,8 +3448,8 @@
      "to_section": "130^8",
      "exception": false,
      "words": "enuste eest tasu maksmise kohustuse üle käesoleva seaduse § 130⁸ lõike 2 alusel sätestatud mahus ja maksumuses,",
-     "from_passage": 179,
-     "to_passage": 178,
+     "from_passage": 178,
+     "to_passage": 177,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3460,8 +3460,8 @@
      "to_section": "130^6",
      "exception": false,
      "words": "tugiteenuste osutaja on kokku leppinud käesoleva seaduse § 130⁶ lõike 3 alusel sätestatud teenuste osutamises;",
-     "from_passage": 179,
-     "to_passage": 176,
+     "from_passage": 178,
+     "to_passage": 175,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3472,8 +3472,8 @@
      "to_section": "130^10",
      "exception": false,
      "words": "ja Sotsiaalkindlustusamet on sõlminud käesoleva seaduse §-s 130¹⁰ nimetatud lepingu.",
-     "from_passage": 179,
-     "to_passage": 180,
+     "from_passage": 178,
+     "to_passage": 179,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3484,8 +3484,8 @@
      "to_section": "130^6",
      "exception": false,
      "words": "Käesoleva seaduse § 130⁶ lõike 3 alusel sätestatud peretoe teenuse eest",
-     "from_passage": 179,
-     "to_passage": 176,
+     "from_passage": 178,
+     "to_passage": 175,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3496,8 +3496,8 @@
      "to_section": "130^6",
      "exception": false,
      "words": "aga, kellel on valmisolek pakkuda kõiki käesoleva seaduse § 130⁶ lõike 3 alusel sätestatud perepõhise asendushoo",
-     "from_passage": 180,
-     "to_passage": 176,
+     "from_passage": 179,
+     "to_passage": 175,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3508,8 +3508,8 @@
      "to_section": "130^7",
      "exception": false,
      "words": "suhtes olevad teenust vahetult osutavad isikud vastavad §-s 130⁷ sätestatud nõuetele.",
-     "from_passage": 180,
-     "to_passage": 177,
+     "from_passage": 179,
+     "to_passage": 176,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3520,8 +3520,8 @@
      "to_section": "130^7",
      "exception": false,
      "words": "vahetult osutavate isikute vastavuse käesoleva seaduse §-s 130⁷ sätestatud nõuetele; 3) aitama kaasa uute hoo",
-     "from_passage": 181,
-     "to_passage": 177,
+     "from_passage": 180,
+     "to_passage": 176,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3532,8 +3532,8 @@
      "to_section": "133",
      "exception": false,
      "words": "avad ja kelle kuu netosissetulek pärast käesoleva seaduse § 133 lõigetes 5 ja 6 sätestatud tingimustel arvestatu",
-     "from_passage": 186,
-     "to_passage": 192,
+     "from_passage": 185,
+     "to_passage": 191,
      "cross_passage": true,
      "in_first_passage": false
     },
@@ -3544,8 +3544,8 @@
      "to_section": "133",
      "exception": false,
      "words": "avad ja kelle kuu netosissetulek pärast käesoleva seaduse § 133 lõigetes 5 ja 6 sätestatud tingimustel arvestatu",
-     "from_passage": 186,
-     "to_passage": 193,
+     "from_passage": 185,
+     "to_passage": 192,
      "cross_passage": true,
      "in_first_passage": false
     },
@@ -3556,8 +3556,8 @@
      "to_section": "131",
      "exception": false,
      "words": "metulekutoetuse taotlemise kuul 18-aastaseks, loetakse teda käesoleva paragrahvi lõike 5 tähenduses lapseks.",
-     "from_passage": 186,
-     "to_passage": 186,
+     "from_passage": 185,
+     "to_passage": 185,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -3568,8 +3568,8 @@
      "to_section": "131",
      "exception": false,
      "words": "ikuregistrisse kantud elukoha aadressiandmed langevad kokku käesoleva paragrahvi lõikes 7 nimetatud perekonnaliikmete elukoha aad",
-     "from_passage": 186,
-     "to_passage": 186,
+     "from_passage": 185,
+     "to_passage": 185,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -3580,8 +3580,8 @@
      "to_section": "131",
      "exception": false,
      "words": "ikuregistrisse kantud elukoha aadressiandmed ei lange kokku käesoleva paragrahvi lõikes 7 nimetatud perekonnaliikmete elukoha aad",
-     "from_passage": 187,
-     "to_passage": 186,
+     "from_passage": 186,
+     "to_passage": 185,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3592,8 +3592,8 @@
      "to_section": "131",
      "exception": false,
      "words": "ikuregistrisse kantud elukoha aadressiandmed ei lange kokku käesoleva paragrahvi lõikes 7 nimetatud perekonnaliikmete elukoha aad",
-     "from_passage": 187,
-     "to_passage": 186,
+     "from_passage": 186,
+     "to_passage": 185,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3604,8 +3604,8 @@
      "to_section": "131",
      "exception": true,
      "words": "tuse taotlemise kuul 25-aastaseks, ei kohaldata tema suhtes käesoleva paragrahvi lõikeid 8‒9¹.",
-     "from_passage": 187,
-     "to_passage": 186,
+     "from_passage": 186,
+     "to_passage": 185,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3616,8 +3616,8 @@
      "to_section": "131",
      "exception": true,
      "words": "ritud kooselus või lapse vanem või eestkostja, ei kohaldata käesoleva paragrahvi lõikeid 8‒9¹, kui õpilase või üliõpilase tegelik",
-     "from_passage": 187,
-     "to_passage": 186,
+     "from_passage": 186,
+     "to_passage": 185,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3628,8 +3628,8 @@
      "to_section": "131",
      "exception": true,
      "words": "eid 8‒9¹, kui õpilase või üliõpilase tegelik elukoht erineb käesoleva paragrahvi lõikes 7 nimetatud perekonnaliikmete tegelikust",
-     "from_passage": 187,
-     "to_passage": 186,
+     "from_passage": 186,
+     "to_passage": 185,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3640,8 +3640,8 @@
      "to_section": "132",
      "exception": false,
      "words": "Käesoleva paragrahvi lõike 1 tähenduses loetakse isiku tegelikuks el",
-     "from_passage": 188,
-     "to_passage": 188,
+     "from_passage": 187,
+     "to_passage": 187,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -3652,8 +3652,8 @@
      "to_section": "131",
      "exception": false,
      "words": "Taotluses märgib taotleja käesoleva seaduse § 131 lõigete 7 ja 8 järgi toimetulekutoetuse määramis",
-     "from_passage": 188,
-     "to_passage": 186,
+     "from_passage": 187,
+     "to_passage": 185,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3664,8 +3664,8 @@
      "to_section": "131",
      "exception": false,
      "words": "Taotluses märgib taotleja käesoleva seaduse § 131 lõigete 7 ja 8 järgi toimetulekutoetuse määramis",
-     "from_passage": 188,
-     "to_passage": 186,
+     "from_passage": 187,
+     "to_passage": 185,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3676,8 +3676,8 @@
      "to_section": "132",
      "exception": false,
      "words": "Käesoleva paragrahvi lõikes 1 nimetatud taotlusele lisatakse dokumend",
-     "from_passage": 188,
-     "to_passage": 188,
+     "from_passage": 187,
+     "to_passage": 187,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -3688,7 +3688,7 @@
      "list": "§-de 131 ja 132",
      "exception": false,
      "words": "ekuid, makstud elatise suurust ja täitemenetluse seadustiku §-de 131 ja 132 kohaselt täitemenetluses kinnipeetud su",
-     "from_passage": 188
+     "from_passage": 187
     },
     {
      "class": "other_section",
@@ -3697,8 +3697,8 @@
      "to_section": "133",
      "exception": false,
      "words": "tamise õigusliku aluse muutumisel; 2) käesoleva seaduse § 133 lõikes 5 nimetatud jooksval kuul tasumisele kuul",
-     "from_passage": 188,
-     "to_passage": 192,
+     "from_passage": 187,
+     "to_passage": 191,
      "cross_passage": true,
      "in_first_passage": false
     },
@@ -3709,8 +3709,8 @@
      "to_section": "131",
      "exception": false,
      "words": "anik, aktsionär või juhtorgani liige on käesoleva seaduse § 131 lõikes 7 või 8 nimetatud isik või taotleja ise.",
-     "from_passage": 188,
-     "to_passage": 186,
+     "from_passage": 187,
+     "to_passage": 185,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3721,8 +3721,8 @@
      "to_section": "131",
      "exception": false,
      "words": "anik, aktsionär või juhtorgani liige on käesoleva seaduse § 131 lõikes 7 või 8 nimetatud isik või taotleja ise.",
-     "from_passage": 188,
-     "to_passage": 186,
+     "from_passage": 187,
+     "to_passage": 185,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3733,8 +3733,8 @@
      "to_section": "132",
      "exception": false,
      "words": "d esemete koosseisu muutumise korral esitab taotleja lisaks käesoleva paragrahvi lõigetes 1, 3 ja 4 nimetatud dokumentidele kirjaliku loete",
-     "from_passage": 189,
-     "to_passage": 188,
+     "from_passage": 188,
+     "to_passage": 187,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3745,8 +3745,8 @@
      "to_section": "132",
      "exception": false,
      "words": "d esemete koosseisu muutumise korral esitab taotleja lisaks käesoleva paragrahvi lõigetes 1, 3 ja 4 nimetatud dokumentidele kirjaliku loete",
-     "from_passage": 189,
-     "to_passage": 188,
+     "from_passage": 188,
+     "to_passage": 187,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3757,8 +3757,8 @@
      "to_section": "132",
      "exception": false,
      "words": "d esemete koosseisu muutumise korral esitab taotleja lisaks käesoleva paragrahvi lõigetes 1, 3 ja 4 nimetatud dokumentidele kirjaliku loete",
-     "from_passage": 189,
-     "to_passage": 188,
+     "from_passage": 188,
+     "to_passage": 187,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3769,7 +3769,7 @@
      "list": "§-de 131 ja 132",
      "exception": false,
      "words": "arvestatakse maha makstud elatis, täitemenetluse seadustiku §-de 131 ja 132 kohaselt täitemenetluses kinnipeetud su",
-     "from_passage": 191
+     "from_passage": 190
     },
     {
      "class": "own_section",
@@ -3778,8 +3778,8 @@
      "to_section": "133",
      "exception": false,
      "words": "Käesoleva paragrahvi lõikes 1 nimetatud eelmise kuu netosissetulekuks",
-     "from_passage": 191,
-     "to_passage": 191,
+     "from_passage": 190,
+     "to_passage": 190,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -3790,8 +3790,8 @@
      "to_section": "133",
      "exception": false,
      "words": "Käesoleva paragrahvi lõikes 2¹ sätestatut kohaldatakse toimetulekutoet",
-     "from_passage": 192,
-     "to_passage": 192,
+     "from_passage": 191,
+     "to_passage": 191,
      "cross_passage": false,
      "in_first_passage": false
     },
@@ -3802,8 +3802,8 @@
      "to_section": "133",
      "exception": false,
      "words": "Töiseks sissetulekuks käesoleva paragrahvi lõike 2 punkti 9 ja lõike 2¹ tähenduses loetaks",
-     "from_passage": 192,
-     "to_passage": 191,
+     "from_passage": 191,
+     "to_passage": 190,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3814,8 +3814,8 @@
      "to_section": "133",
      "exception": false,
      "words": "Lisaks käesoleva paragrahvi lõigetes 2 ja 2¹ nimetatule võib kohaliku omavalitsuse ü",
-     "from_passage": 192,
-     "to_passage": 191,
+     "from_passage": 191,
+     "to_passage": 190,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3826,8 +3826,8 @@
      "to_section": "133",
      "exception": false,
      "words": "Lisaks käesoleva paragrahvi lõigetes 2 ja 2¹ nimetatule võib kohaliku omavalitsuse ü",
-     "from_passage": 192,
-     "to_passage": 192,
+     "from_passage": 191,
+     "to_passage": 191,
      "cross_passage": false,
      "in_first_passage": false
     },
@@ -3838,8 +3838,8 @@
      "to_section": "133",
      "exception": false,
      "words": "Arvestades käesoleva paragrahvi lõike 6 alusel kehtestatud piirmäärasid ja elam",
-     "from_passage": 192,
-     "to_passage": 193,
+     "from_passage": 191,
+     "to_passage": 192,
      "cross_passage": true,
      "in_first_passage": false
     },
@@ -3850,7 +3850,7 @@
      "list": "§ 7 lõike 1 punkti 2",
      "exception": false,
      "words": "hvi lõike 6 alusel kehtestatud piirmäärasid ja elamuseaduse § 7 lõike 1 punkti 2 alusel kehtestatud eluruumi sotsiaalsel",
-     "from_passage": 192
+     "from_passage": 191
     },
     {
      "class": "own_section",
@@ -3859,8 +3859,8 @@
      "to_section": "133",
      "exception": false,
      "words": "omavalitsuse üksus kehtestab toimetulekutoetuse määramiseks käesoleva paragrahvi lõikes 5 nimetatud kulude piirmäärad, mis tagava",
-     "from_passage": 193,
-     "to_passage": 192,
+     "from_passage": 192,
+     "to_passage": 191,
      "cross_passage": true,
      "in_first_passage": false
     },
@@ -3871,8 +3871,8 @@
      "to_section": "133",
      "exception": false,
      "words": "Lisaks käesoleva paragrahvi lõikes 5 nimetatule võib kohaliku omavalitsuse ü",
-     "from_passage": 193,
-     "to_passage": 192,
+     "from_passage": 192,
+     "to_passage": 191,
      "cross_passage": true,
      "in_first_passage": false
     },
@@ -3883,8 +3883,8 @@
      "to_section": "131",
      "exception": true,
      "words": "kust toetust taotletakse, välja arvatud käesoleva seaduse § 131 lõikes 8 nimetatud isiku puhul.",
-     "from_passage": 193,
-     "to_passage": 186,
+     "from_passage": 192,
+     "to_passage": 185,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3895,8 +3895,8 @@
      "to_section": "131",
      "exception": false,
      "words": "esse, kui üürileandjaks ja üürnikuks on käesoleva seaduse § 131 lõike 7 punktis 1 või 2 nimetatud isikud või kui",
-     "from_passage": 193,
-     "to_passage": 186,
+     "from_passage": 192,
+     "to_passage": 185,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3907,7 +3907,7 @@
      "list": "§ 11",
      "exception": false,
      "words": "umisest täielikult või osaliselt vabastatud maamaksuseaduse § 11 alusel.",
-     "from_passage": 194
+     "from_passage": 193
     },
     {
      "class": "other_section",
@@ -3916,8 +3916,8 @@
      "to_section": "131",
      "exception": false,
      "words": "oimetulekutoetuse taotleja ise või tema käesoleva seaduse § 131 lõikes 7 nimetatud perekonnaliige, kui toetust t",
-     "from_passage": 194,
-     "to_passage": 186,
+     "from_passage": 193,
+     "to_passage": 185,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3928,8 +3928,8 @@
      "to_section": "131",
      "exception": false,
      "words": "lselt põhjendatud normile lisatakse iga käesoleva seaduse § 131 lõikes 8 sätestatud isiku kohta ühe perekonnalii",
-     "from_passage": 194,
-     "to_passage": 186,
+     "from_passage": 193,
+     "to_passage": 185,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3940,8 +3940,8 @@
      "to_section": "133",
      "exception": false,
      "words": "e § 131 lõikes 8 sätestatud isikute eluasemekulud vastavalt käesoleva paragrahvi lõigetes 5 ja 6 sätestatule. Perekonna kohta arvestatud",
-     "from_passage": 194,
-     "to_passage": 192,
+     "from_passage": 193,
+     "to_passage": 191,
      "cross_passage": true,
      "in_first_passage": false
     },
@@ -3952,8 +3952,8 @@
      "to_section": "133",
      "exception": false,
      "words": "e § 131 lõikes 8 sätestatud isikute eluasemekulud vastavalt käesoleva paragrahvi lõigetes 5 ja 6 sätestatule. Perekonna kohta arvestatud",
-     "from_passage": 194,
-     "to_passage": 193,
+     "from_passage": 193,
+     "to_passage": 192,
      "cross_passage": true,
      "in_first_passage": false
     },
@@ -3964,7 +3964,7 @@
      "list": "§ 25¹",
      "exception": false,
      "words": "k on esitanud avalduse riikliku pensionikindlustuse seaduse § 25¹ alusel pensioni suuruse vähendamiseks v",
-     "from_passage": 195
+     "from_passage": 194
     },
     {
      "class": "own_section",
@@ -3973,8 +3973,8 @@
      "to_section": "134",
      "exception": false,
      "words": "mavalitsuse üksus ei või jätta toimetulekutoetust määramata käesoleva paragrahvi lõike 4 punktis 7 nimetatud põhjendusel, kui to",
-     "from_passage": 196,
-     "to_passage": 195,
+     "from_passage": 195,
+     "to_passage": 194,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -3985,7 +3985,7 @@
      "list": "§-le 28",
      "exception": false,
      "words": "päevast arvates vastavalt sotsiaalseadustiku üldosa seaduse §-le 28 või posti teel või sularahas, arvestade",
-     "from_passage": 196
+     "from_passage": 195
     },
     {
      "class": "other_section",
@@ -3994,8 +3994,8 @@
      "to_section": "133",
      "exception": false,
      "words": "id tasunud, on kohaliku omavalitsuse üksusel õigus tasuda § 133 lõikes 5 nimetatud eluasemekulud toimetulekutoet",
-     "from_passage": 196,
-     "to_passage": 192,
+     "from_passage": 195,
+     "to_passage": 191,
      "cross_passage": true,
      "in_first_passage": false
     },
@@ -4006,8 +4006,8 @@
      "to_section": "131",
      "exception": false,
      "words": "use saajal, kelle kõik perekonnaliikmed käesoleva seaduse § 131 lõigete 7 ja 8 tähenduses on lapsed, on õigus sa",
-     "from_passage": 197,
-     "to_passage": 186,
+     "from_passage": 196,
+     "to_passage": 185,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -4018,8 +4018,8 @@
      "to_section": "131",
      "exception": false,
      "words": "use saajal, kelle kõik perekonnaliikmed käesoleva seaduse § 131 lõigete 7 ja 8 tähenduses on lapsed, on õigus sa",
-     "from_passage": 197,
-     "to_passage": 186,
+     "from_passage": 196,
+     "to_passage": 185,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -4030,8 +4030,8 @@
      "to_section": "135",
      "exception": false,
      "words": "metulekutoetuse taotlemise kuul 18-aastaseks, loetakse teda käesoleva paragrahvi lõike 1 tähenduses lapseks.",
-     "from_passage": 197,
-     "to_passage": 197,
+     "from_passage": 196,
+     "to_passage": 196,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -4042,8 +4042,8 @@
      "to_section": "156",
      "exception": false,
      "words": "aliku omavalitsuse üksus riigieelarvest käesoleva seaduse § 156 lõike 1 alusel toimetulekutoetuse maksmiseks era",
-     "from_passage": 197,
-     "to_passage": 224,
+     "from_passage": 196,
+     "to_passage": 223,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -4054,8 +4054,8 @@
      "to_section": "135",
      "exception": false,
      "words": "Käesoleva paragrahvi lõikes 1 nimetatud täiendavat sotsiaaltoetust ma",
-     "from_passage": 197,
-     "to_passage": 197,
+     "from_passage": 196,
+     "to_passage": 196,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -4066,7 +4066,7 @@
      "list": "§-s 7",
      "exception": false,
      "words": "aselt üksi; 2) ta on riikliku pensionikindlustuse seaduse §-s 7 sätestatud vanaduspensionieas; 3) tal",
-     "from_passage": 198
+     "from_passage": 197
     },
     {
      "class": "other_section",
@@ -4075,8 +4075,8 @@
      "to_section": "140",
      "exception": false,
      "words": "tud tingimustele ning kellele makstakse käesoleva seaduse § 140 alusel sotsiaaltoetust.",
-     "from_passage": 198,
-     "to_passage": 202,
+     "from_passage": 197,
+     "to_passage": 201,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -4087,8 +4087,8 @@
      "to_section": "139^1",
      "exception": false,
      "words": "Pensionäritoetuse saamisele on õigus ka isikul, kes vastab käesoleva paragrahvi lõike 2 punktides 1 ja 2 sätestatud tingimustel",
-     "from_passage": 198,
-     "to_passage": 198,
+     "from_passage": 197,
+     "to_passage": 197,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -4099,8 +4099,8 @@
      "to_section": "139^1",
      "exception": false,
      "words": "Käesoleva paragrahvi lõike 2 punktis 1 sätestatut ei kohaldata isiku",
-     "from_passage": 198,
-     "to_passage": 198,
+     "from_passage": 197,
+     "to_passage": 197,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -4111,7 +4111,7 @@
      "list": "§ 97 punkti 1 või 2",
      "exception": true,
      "words": "temalt ülalpidamist saama õigustatud isik perekonnaseaduse § 97 punkti 1 või 2 tähenduses.",
-     "from_passage": 198
+     "from_passage": 197
     },
     {
      "class": "other_act",
@@ -4120,7 +4120,7 @@
      "list": "§ 27 lõike 1 punktis 2 või 3",
      "exception": false,
      "words": "iku e-posti aadressil või sotsiaalseadustiku üldosa seaduse § 27 lõike 1 punktis 2 või 3 nimetatud viisil.",
-     "from_passage": 199
+     "from_passage": 198
     },
     {
      "class": "other_section",
@@ -4129,8 +4129,8 @@
      "to_section": "140",
      "exception": false,
      "words": "pensioni netosuuruse kohta; 3) andmed käesoleva seaduse § 140 alusel makstava sotsiaaltoetuse määramise kohta;",
-     "from_passage": 199,
-     "to_passage": 202,
+     "from_passage": 198,
+     "to_passage": 201,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -4141,8 +4141,8 @@
      "to_section": "139^1",
      "exception": false,
      "words": "nnas elamise teenuse kohta; 5) andmed käesoleva seaduse § 139¹ lõike 4 punktis 4 nimetatud isiku haridustaseme",
-     "from_passage": 199,
-     "to_passage": 198,
+     "from_passage": 198,
+     "to_passage": 197,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -4153,8 +4153,8 @@
      "to_section": "139^2",
      "exception": false,
      "words": "Käesoleva paragrahvi lõikes 1 nimetatud isiku vastavust toetuse saami",
-     "from_passage": 199,
-     "to_passage": 199,
+     "from_passage": 198,
+     "to_passage": 198,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -4165,7 +4165,7 @@
      "list": "§ 27 lõike 1 punktis 2 või 3",
      "exception": false,
      "words": "iku e-posti aadressil või sotsiaalseadustiku üldosa seaduse § 27 lõike 1 punktis 2 või 3 nimetatud viisil.",
-     "from_passage": 200
+     "from_passage": 199
     },
     {
      "class": "other_section",
@@ -4174,8 +4174,8 @@
      "to_section": "139^1",
      "exception": false,
      "words": "Käesoleva seaduse § 139¹ lõikes 2 nimetatud isik, kes soovib saada pensi",
-     "from_passage": 200,
-     "to_passage": 198,
+     "from_passage": 199,
+     "to_passage": 197,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -4186,8 +4186,8 @@
      "to_section": "139^3",
      "exception": false,
      "words": "Käesoleva paragrahvi lõike 5 punktis 1 toodud juhul esitab isik Sots",
-     "from_passage": 200,
-     "to_passage": 200,
+     "from_passage": 199,
+     "to_passage": 199,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -4198,8 +4198,8 @@
      "to_section": "139^3",
      "exception": false,
      "words": "Sotsiaalkindlustusamet otsustab käesoleva paragrahvi lõike 5 punktis 2 sätestatud teabe alusel pensi",
-     "from_passage": 200,
-     "to_passage": 200,
+     "from_passage": 199,
+     "to_passage": 199,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -4210,7 +4210,7 @@
      "list": "§-s 28",
      "exception": false,
      "words": "äritoetus makstakse välja sotsiaalseadustiku üldosa seaduse §-s 28 sätestatud korras, arvestades riikliku",
-     "from_passage": 201
+     "from_passage": 200
     },
     {
      "class": "other_act",
@@ -4219,7 +4219,7 @@
      "list": "§-s 36",
      "exception": false,
      "words": "tud korras, arvestades riikliku pensionikindlustuse seaduse §-s 36 sätestatud erisusi.",
-     "from_passage": 201
+     "from_passage": 200
     },
     {
      "class": "other_act",
@@ -4228,7 +4228,7 @@
      "list": "§-s 7",
      "exception": false,
      "words": "anemal, kes on jõudnud riikliku pensionikindlustuse seaduse §-s 7 sätestatud vanaduspensioniikka, on õigu",
-     "from_passage": 202
+     "from_passage": 201
     },
     {
      "class": "own_section",
@@ -4237,8 +4237,8 @@
      "to_section": "140",
      "exception": false,
      "words": "Taotlus käesoleva paragrahvi lõikes 1 nimetatud sotsiaaltoetuse määramiseks e",
-     "from_passage": 202,
-     "to_passage": 202,
+     "from_passage": 201,
+     "to_passage": 201,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -4249,8 +4249,8 @@
      "to_section": "140",
      "exception": false,
      "words": "Käesoleva paragrahvi lõikes 1 nimetatud sotsiaaltoetuse määrab Sotsia",
-     "from_passage": 202,
-     "to_passage": 202,
+     "from_passage": 201,
+     "to_passage": 201,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -4261,8 +4261,8 @@
      "to_section": "140",
      "exception": false,
      "words": "s. Sotsiaaltoetus määratakse perioodiks, millal isik vastab käesoleva paragrahvi lõikes 1 sätestatud tingimustele.",
-     "from_passage": 202,
-     "to_passage": 202,
+     "from_passage": 201,
+     "to_passage": 201,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -4273,8 +4273,8 @@
      "to_section": "140",
      "exception": false,
      "words": "Käesoleva paragrahvi lõikes 1 nimetatud sotsiaaltoetus makstakse vast",
-     "from_passage": 202,
-     "to_passage": 202,
+     "from_passage": 201,
+     "to_passage": 201,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -4285,7 +4285,7 @@
      "list": "§-le 28",
      "exception": false,
      "words": "oetus makstakse vastavalt sotsiaalseadustiku üldosa seaduse §-le 28 või posti teel, arvestades sotsiaaltoet",
-     "from_passage": 202
+     "from_passage": 201
     },
     {
      "class": "own_section",
@@ -4294,8 +4294,8 @@
      "to_section": "140",
      "exception": false,
      "words": "Käesoleva paragrahvi lõikes 1 nimetatud sotsiaaltoetuse saaja on kohu",
-     "from_passage": 202,
-     "to_passage": 202,
+     "from_passage": 201,
+     "to_passage": 201,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -4306,8 +4306,8 @@
      "to_section": "140",
      "exception": false,
      "words": "Käesoleva paragrahvi lõikes 1 nimetatud taotluse andmete ja vajalike",
-     "from_passage": 202,
-     "to_passage": 202,
+     "from_passage": 201,
+     "to_passage": 201,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -4318,8 +4318,8 @@
      "to_section": "140",
      "exception": false,
      "words": "Käesoleva paragrahvi lõikes 1 nimetatud sotsiaaltoetuste kulud kaetak",
-     "from_passage": 202,
-     "to_passage": 202,
+     "from_passage": 201,
+     "to_passage": 201,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -4330,8 +4330,8 @@
      "to_section": "140^1",
      "exception": false,
      "words": "Käesoleva paragrahvi lõikes 1 nimetatud sotsiaaltoetusele on õigus jä",
-     "from_passage": 203,
-     "to_passage": 203,
+     "from_passage": 202,
+     "to_passage": 202,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -4342,8 +4342,8 @@
      "to_section": "140^1",
      "exception": false,
      "words": "Käesoleva paragrahvi lõikes 1 nimetatud sotsiaaltoetusele ei ole õigu",
-     "from_passage": 203,
-     "to_passage": 203,
+     "from_passage": 202,
+     "to_passage": 202,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -4354,8 +4354,8 @@
      "to_section": "140^1",
      "exception": false,
      "words": "Käesoleva paragrahvi lõikes 1 nimetatud sotsiaaltoetuse saamiseks esi",
-     "from_passage": 203,
-     "to_passage": 203,
+     "from_passage": 202,
+     "to_passage": 202,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -4366,8 +4366,8 @@
      "to_section": "140^1",
      "exception": false,
      "words": "t represseeritud isiku seaduse § 12 punkti 2 alusel, esitab käesoleva paragrahvi lõikes 1 nimetatud sotsiaaltoetuse saamiseks Sot",
-     "from_passage": 203,
-     "to_passage": 203,
+     "from_passage": 202,
+     "to_passage": 202,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -4378,7 +4378,7 @@
      "list": "§ 12 punkti 2",
      "exception": false,
      "words": "ni okupatsioonirežiimide poolt represseeritud isiku seaduse § 12 punkti 2 alusel, esitab käesoleva paragrahvi lõi",
-     "from_passage": 203
+     "from_passage": 202
     },
     {
      "class": "own_section",
@@ -4387,8 +4387,8 @@
      "to_section": "140^1",
      "exception": false,
      "words": "Käesoleva paragrahvi lõikes 1 nimetatud sotsiaaltoetus makstakse välj",
-     "from_passage": 203,
-     "to_passage": 203,
+     "from_passage": 202,
+     "to_passage": 202,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -4399,7 +4399,7 @@
      "list": "§-s 28",
      "exception": false,
      "words": "a üks kord kalendriaastas sotsiaalseadustiku üldosa seaduse §-s 28 sätestatud korras.",
-     "from_passage": 203
+     "from_passage": 202
     },
     {
      "class": "own_section",
@@ -4408,8 +4408,8 @@
      "to_section": "140^1",
      "exception": false,
      "words": "Käesoleva paragrahvi lõikes 1 nimetatud sotsiaaltoetust rahastatakse",
-     "from_passage": 203,
-     "to_passage": 203,
+     "from_passage": 202,
+     "to_passage": 202,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -4420,7 +4420,7 @@
      "list": "§ 3 lõikes 1",
      "exception": false,
      "words": "ise toetamise meetmele on sotsiaalseadustiku üldosa seaduse § 3 lõikes 1 nimetatud ja eriolukorrast, erakorralis",
-     "from_passage": 204
+     "from_passage": 203
     },
     {
      "class": "own_section",
@@ -4429,8 +4429,8 @@
      "to_section": "140^2",
      "exception": false,
      "words": "õib rakendada Vabariigi Valitsuse volitatud asutus või isik käesoleva paragrahvi lõikes 1 nimetatud määruses toodud tingimustel j",
-     "from_passage": 204,
-     "to_passage": 204,
+     "from_passage": 203,
+     "to_passage": 203,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -4441,8 +4441,8 @@
      "to_section": "140^2",
      "exception": false,
      "words": "Käesoleva paragrahvi lõike 1 alusel kehtestatud rahalise toetamise m",
-     "from_passage": 204,
-     "to_passage": 204,
+     "from_passage": 203,
+     "to_passage": 203,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -4453,8 +4453,8 @@
      "to_section": "140^2",
      "exception": false,
      "words": "Käesoleva paragrahvi lõike 1 alusel kehtestatud rahalise toetamise m",
-     "from_passage": 204,
-     "to_passage": 204,
+     "from_passage": 203,
+     "to_passage": 203,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -4465,7 +4465,7 @@
      "to_section": "45^13",
      "exception": false,
      "words": "ereuuringu ja tehtud otsuse andmed ning käesoleva seaduse § 45¹³ lõigetes 1 ja 2 loetletud nõuetele vastavust ki",
-     "from_passage": 206,
+     "from_passage": 205,
      "to_passage": 73,
      "cross_passage": true,
      "in_first_passage": true
@@ -4477,7 +4477,7 @@
      "to_section": "45^13",
      "exception": false,
      "words": "ereuuringu ja tehtud otsuse andmed ning käesoleva seaduse § 45¹³ lõigetes 1 ja 2 loetletud nõuetele vastavust ki",
-     "from_passage": 206,
+     "from_passage": 205,
      "to_passage": 73,
      "cross_passage": true,
      "in_first_passage": true
@@ -4489,7 +4489,7 @@
      "list": "§ 91 lõikes 6",
      "exception": false,
      "words": "a eest välismaalasele rahvusvahelise kaitse andmise seaduse § 91 lõikes 6 nimetatud kulude katmise andmed; 8²)",
-     "from_passage": 206
+     "from_passage": 205
     },
     {
      "class": "other_act",
@@ -4498,7 +4498,7 @@
      "list": "§ 15 lõikes 5",
      "exception": false,
      "words": "6 nimetatud kulude katmise andmed; 8²) lastekaitseseaduse § 15 lõikes 5 sätestatud ülesannete täitmisega seotud",
-     "from_passage": 206
+     "from_passage": 205
     },
     {
      "class": "own_section",
@@ -4507,8 +4507,8 @@
      "to_section": "142^1",
      "exception": false,
      "words": "Lisaks käesoleva paragrahvi lõikes 1 nimetatud andmetele töödeldakse sotsiaa",
-     "from_passage": 207,
-     "to_passage": 206,
+     "from_passage": 206,
+     "to_passage": 205,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -4519,8 +4519,8 @@
      "to_section": "135",
      "exception": false,
      "words": "ed andmed: 1) toimetulekutoetuse ja käesoleva seaduse §-s 135 sätestatud riigieelarvest makstava täiendava sot",
-     "from_passage": 208,
-     "to_passage": 197,
+     "from_passage": 207,
+     "to_passage": 196,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -4531,7 +4531,7 @@
      "to_section": "26",
      "exception": false,
      "words": "se ja hooldaja määramise andmed; 4) käesoleva seaduse §-s 26 sätestatud täisealise isiku hoolduse eest makstav",
-     "from_passage": 208,
+     "from_passage": 207,
      "to_passage": 39,
      "cross_passage": true,
      "in_first_passage": true
@@ -4543,7 +4543,7 @@
      "to_section": "45^5",
      "exception": false,
      "words": "a maksmiseks vajalikud andmed; 5) käesoleva seaduse §-des 45⁵ ja 45¹⁵ sätestatud asendus- ja järelhooldusteenu",
-     "from_passage": 208,
+     "from_passage": 207,
      "to_passage": 64,
      "cross_passage": true,
      "in_first_passage": true
@@ -4555,7 +4555,7 @@
      "to_section": "45^15",
      "exception": false,
      "words": "iseks vajalikud andmed; 5) käesoleva seaduse §-des 45⁵ ja 45¹⁵ sätestatud asendus- ja järelhooldusteenuse raha",
-     "from_passage": 208,
+     "from_passage": 207,
      "to_passage": 77,
      "cross_passage": true,
      "in_first_passage": true
@@ -4567,8 +4567,8 @@
      "to_section": "156",
      "exception": false,
      "words": ", osutamise ja saajate andmed; 6) 7) käesoleva seaduse § 156 lõikes 3² nimetatud suure hooldus- ja abivajadus",
-     "from_passage": 208,
-     "to_passage": 224,
+     "from_passage": 207,
+     "to_passage": 223,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -4579,7 +4579,7 @@
      "list": "§ 91 lõikes 6",
      "exception": false,
      "words": "a eest välismaalasele rahvusvahelise kaitse andmise seaduse § 91 lõikes 6 nimetatud kulude katmise andmed, kui se",
-     "from_passage": 208
+     "from_passage": 207
     },
     {
      "class": "other_act",
@@ -4588,7 +4588,7 @@
      "list": "§ 91 lõike 5",
      "exception": false,
      "words": "ude katmise andmed, kui selline kohustus tuleb sama seaduse § 91 lõike 5 alusel Sotsiaalkindlustusametiga sõlmit",
-     "from_passage": 208
+     "from_passage": 207
     },
     {
      "class": "other_section",
@@ -4597,7 +4597,7 @@
      "to_section": "15^1",
      "exception": false,
      "words": "Käesoleva seaduse § 15¹ lõikes 2 ning § 15² lõigetes 1 ja 2 nimetatud is",
-     "from_passage": 209,
+     "from_passage": 208,
      "to_passage": 22,
      "cross_passage": true,
      "in_first_passage": true
@@ -4609,7 +4609,7 @@
      "to_section": "15^2",
      "exception": false,
      "words": "Käesoleva seaduse § 15¹ lõikes 2 ning § 15² lõigetes 1 ja 2 nimetatud isikute abivajaduse ja",
-     "from_passage": 209,
+     "from_passage": 208,
      "to_passage": 24,
      "cross_passage": true,
      "in_first_passage": true
@@ -4621,7 +4621,7 @@
      "to_section": "15^2",
      "exception": false,
      "words": "Käesoleva seaduse § 15¹ lõikes 2 ning § 15² lõigetes 1 ja 2 nimetatud isikute abivajaduse ja",
-     "from_passage": 209,
+     "from_passage": 208,
      "to_passage": 24,
      "cross_passage": true,
      "in_first_passage": true
@@ -4633,8 +4633,8 @@
      "to_section": "142^1",
      "exception": false,
      "words": "-toetuste andmeregistrisse lähtutakse käesoleva seaduse §-s 142¹ nimetatud andmekoosseisudest.",
-     "from_passage": 209,
-     "to_passage": 206,
+     "from_passage": 208,
+     "to_passage": 205,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -4645,8 +4645,8 @@
      "to_section": "144",
      "exception": false,
      "words": "Käesoleva paragrahvi lõikes 2 nimetatud andmete kandmisel sotsiaaltee",
-     "from_passage": 209,
-     "to_passage": 209,
+     "from_passage": 208,
+     "to_passage": 208,
      "cross_passage": false,
      "in_first_passage": false
     },
@@ -4657,8 +4657,8 @@
      "to_section": "144",
      "exception": false,
      "words": "7 ja 11 alusel isikule teenuse osutamise kohta; 2) andmed käesoleva paragrahvi lõike 1 punktis 5 nimetatud teenust saama suuna",
-     "from_passage": 209,
-     "to_passage": 208,
+     "from_passage": 208,
+     "to_passage": 207,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -4669,8 +4669,8 @@
      "to_section": "144",
      "exception": false,
      "words": "enust saama suunatud isiku asukoha kohta; 3) andmed isiku käesoleva paragrahvi lõike 6 punktis 6 nimetatud ohvriabile suunamis",
-     "from_passage": 209,
-     "to_passage": 210,
+     "from_passage": 208,
+     "to_passage": 209,
      "cross_passage": true,
      "in_first_passage": false
     },
@@ -4681,8 +4681,8 @@
      "to_section": "142^1",
      "exception": false,
      "words": "lõpetamisest: 1) teenust saava isiku käesoleva seaduse § 142¹ lõike 1 punktis 1 nimetatud üldandmed; 2) isi",
-     "from_passage": 210,
-     "to_passage": 206,
+     "from_passage": 209,
+     "to_passage": 205,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -4693,7 +4693,7 @@
      "list": "§ 91 lõikes 6",
      "exception": false,
      "words": "a eest välismaalasele rahvusvahelise kaitse andmise seaduse § 91 lõikes 6 nimetatud kulude katmise andmed, kui ne",
-     "from_passage": 210
+     "from_passage": 209
     },
     {
      "class": "other_act",
@@ -4702,7 +4702,7 @@
      "list": "§ 91 lõike 5",
      "exception": false,
      "words": "tsiaalkindlustusamet on sõlminud halduslepingu sama seaduse § 91 lõike 5 alusel; 4³) andmed lastekaitseseaduse",
-     "from_passage": 210
+     "from_passage": 209
     },
     {
      "class": "other_act",
@@ -4711,7 +4711,7 @@
      "list": "§ 15 lõikes 5",
      "exception": false,
      "words": "eaduse § 91 lõike 5 alusel; 4³) andmed lastekaitseseaduse § 15 lõikes 5 sätestatud ülesannete täitmisega seotud",
-     "from_passage": 210
+     "from_passage": 209
     },
     {
      "class": "other_act",
@@ -4720,7 +4720,7 @@
      "list": "§ 91 lõike 5",
      "exception": false,
      "words": "epingu välismaalasele rahvusvahelise kaitse andmise seaduse § 91 lõike 5 alusel, kannab sotsiaalteenuste ja -toe",
-     "from_passage": 211
+     "from_passage": 210
     },
     {
      "class": "other_act",
@@ -4729,7 +4729,7 @@
      "list": "§ 91 lõikes 6",
      "exception": false,
      "words": "ahelise kaitse saanud isiku või perekonna eest sama seaduse § 91 lõikes 6 nimetatud kulude katmise andmed, kui se",
-     "from_passage": 211
+     "from_passage": 210
     },
     {
      "class": "other_section",
@@ -4738,8 +4738,8 @@
      "to_section": "142^1",
      "exception": false,
      "words": "vastatav. Töödeldavateks andmeteks on käesoleva seaduse §-s 142¹ nimetatud isikuandmed, välja arvatud isikukood,",
-     "from_passage": 212,
-     "to_passage": 206,
+     "from_passage": 211,
+     "to_passage": 205,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -4750,8 +4750,8 @@
      "to_section": "145^1",
      "exception": false,
      "words": "Pärast käesoleva paragrahvi lõikes 1 nimetatud säilitamise tähtaja möödumist",
-     "from_passage": 213,
-     "to_passage": 213,
+     "from_passage": 212,
+     "to_passage": 212,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -4762,7 +4762,7 @@
      "to_section": "15^1",
      "exception": false,
      "words": "Käesoleva seaduse § 15¹ lõike 4 alusel töödeldud ning sotsiaalteenuste j",
-     "from_passage": 213,
+     "from_passage": 212,
      "to_passage": 22,
      "cross_passage": true,
      "in_first_passage": true
@@ -4774,8 +4774,8 @@
      "to_section": "142^1",
      "exception": false,
      "words": "Käesoleva seaduse § 142¹ punktis 9 nimetatud andmeid säilitatakse kuni p",
-     "from_passage": 213,
-     "to_passage": 206,
+     "from_passage": 212,
+     "to_passage": 205,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -4786,7 +4786,7 @@
      "to_section": "15^2",
      "exception": false,
      "words": "Käesoleva seaduse §-s 15² sätestatud puudega täisealise isiku abivajaduse",
-     "from_passage": 213,
+     "from_passage": 212,
      "to_passage": 24,
      "cross_passage": true,
      "in_first_passage": true
@@ -4798,7 +4798,7 @@
      "to_section": "15^2",
      "exception": false,
      "words": "strisse kantud andmeid järgmiselt: 1) käesoleva seaduse § 15² lõikes 5 nimetatud isikuandmeid puude raskusastm",
-     "from_passage": 213,
+     "from_passage": 212,
      "to_passage": 24,
      "cross_passage": true,
      "in_first_passage": true
@@ -4810,7 +4810,7 @@
      "list": "§ 27² lõigetes 2 ja 3",
      "exception": false,
      "words": "Lastekaitseseaduse § 27² lõigetes 2 ja 3 nimetatud isikuandmeid säilitatakse sot",
-     "from_passage": 213
+     "from_passage": 212
     },
     {
      "class": "own_section",
@@ -4819,8 +4819,8 @@
      "to_section": "145^1",
      "exception": false,
      "words": "Käesoleva paragrahvi lõikes 4¹ sätestatud säilitustähtaja lõppemisel k",
-     "from_passage": 213,
-     "to_passage": 213,
+     "from_passage": 212,
+     "to_passage": 212,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -4831,8 +4831,8 @@
      "to_section": "145^1",
      "exception": false,
      "words": "Pärast käesoleva paragrahvi lõigetes 2–4² nimetatud säilitamise tähtaega andmed a",
-     "from_passage": 213,
-     "to_passage": 213,
+     "from_passage": 212,
+     "to_passage": 212,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -4843,8 +4843,8 @@
      "to_section": "145^1",
      "exception": false,
      "words": "Pärast käesoleva paragrahvi lõigetes 2–4² nimetatud säilitamise tähtaega andmed a",
-     "from_passage": 213,
-     "to_passage": 213,
+     "from_passage": 212,
+     "to_passage": 212,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -4855,8 +4855,8 @@
      "to_section": "144",
      "exception": false,
      "words": "Käesoleva seaduse § 144 lõikes 5² nimetatud andmeid säilitatakse isikule",
-     "from_passage": 213,
-     "to_passage": 210,
+     "from_passage": 212,
+     "to_passage": 209,
      "cross_passage": true,
      "in_first_passage": false
     },
@@ -4867,7 +4867,7 @@
      "to_section": "57",
      "exception": false,
      "words": "enuse osutaja tegevusloa taotluses need käesoleva seaduse § 57 alusel valdkonna eest vastutava ministri määruseg",
-     "from_passage": 215,
+     "from_passage": 214,
      "to_passage": 93,
      "cross_passage": true,
      "in_first_passage": true
@@ -4879,7 +4879,7 @@
      "to_section": "66",
      "exception": false,
      "words": "rehabilitatsioonimeeskond vastavad käesoleva seaduse §-des 66 ja 68 sätestatud nõuetele.",
-     "from_passage": 216,
+     "from_passage": 215,
      "to_passage": 104,
      "cross_passage": true,
      "in_first_passage": true
@@ -4891,7 +4891,7 @@
      "to_section": "68",
      "exception": false,
      "words": "ilitatsioonimeeskond vastavad käesoleva seaduse §-des 66 ja 68 sätestatud nõuetele.",
-     "from_passage": 216,
+     "from_passage": 215,
      "to_passage": 106,
      "cross_passage": true,
      "in_first_passage": true
@@ -4903,7 +4903,7 @@
      "to_section": "69",
      "exception": false,
      "words": ": 1) rehabilitatsiooniprogramm vastab käesoleva seaduse § 69 lõigetes 2 ja 4–6 sätestatud nõuetele; 2) rehab",
-     "from_passage": 217,
+     "from_passage": 216,
      "to_passage": 108,
      "cross_passage": true,
      "in_first_passage": true
@@ -4915,7 +4915,7 @@
      "to_section": "69",
      "exception": false,
      "words": ": 1) rehabilitatsiooniprogramm vastab käesoleva seaduse § 69 lõigetes 2 ja 4–6 sätestatud nõuetele; 2) rehab",
-     "from_passage": 217,
+     "from_passage": 216,
      "to_passage": 108,
      "cross_passage": true,
      "in_first_passage": true
@@ -4927,7 +4927,7 @@
      "to_section": "69",
      "exception": false,
      "words": ": 1) rehabilitatsiooniprogramm vastab käesoleva seaduse § 69 lõigetes 2 ja 4–6 sätestatud nõuetele; 2) rehab",
-     "from_passage": 217,
+     "from_passage": 216,
      "to_passage": 108,
      "cross_passage": true,
      "in_first_passage": true
@@ -4939,7 +4939,7 @@
      "to_section": "69",
      "exception": false,
      "words": ": 1) rehabilitatsiooniprogramm vastab käesoleva seaduse § 69 lõigetes 2 ja 4–6 sätestatud nõuetele; 2) rehab",
-     "from_passage": 217,
+     "from_passage": 216,
      "to_passage": 108,
      "cross_passage": true,
      "in_first_passage": true
@@ -4951,7 +4951,7 @@
      "to_section": "69",
      "exception": false,
      "words": "tsiooniprogramm on kinnitatud vastavalt käesoleva seaduse § 69 lõikele 11.",
-     "from_passage": 217,
+     "from_passage": 216,
      "to_passage": 109,
      "cross_passage": true,
      "in_first_passage": false
@@ -4963,8 +4963,8 @@
      "to_section": "151",
      "exception": false,
      "words": "osutaja tegevusloa taotluse lahendab käesoleva seaduse §-s 151 nimetatud teenuste osutamiseks Sotsiaalkindlustu",
-     "from_passage": 219,
-     "to_passage": 218,
+     "from_passage": 218,
+     "to_passage": 217,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -4975,8 +4975,8 @@
      "to_section": "152",
      "exception": false,
      "words": "utamise tegevusloa taotlemise korral esitab taotleja lisaks käesoleva paragrahvi lõikes 3 nimetatule turvakodus teenust vahetult",
-     "from_passage": 219,
-     "to_passage": 219,
+     "from_passage": 218,
+     "to_passage": 218,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -4987,8 +4987,8 @@
      "to_section": "152",
      "exception": false,
      "words": "apsehoidja või perevanema eluruumides, tuleb esitada lisaks käesoleva paragrahvi lõigetes 3 ja 4 nimetatud dokumentidele: 1) eluruumi",
-     "from_passage": 219,
-     "to_passage": 219,
+     "from_passage": 218,
+     "to_passage": 218,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -4999,8 +4999,8 @@
      "to_section": "152",
      "exception": false,
      "words": "apsehoidja või perevanema eluruumides, tuleb esitada lisaks käesoleva paragrahvi lõigetes 3 ja 4 nimetatud dokumentidele: 1) eluruumi",
-     "from_passage": 219,
-     "to_passage": 219,
+     "from_passage": 218,
+     "to_passage": 218,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -5011,8 +5011,8 @@
      "to_section": "152",
      "exception": false,
      "words": "utamise tegevusloa taotlemise korral esitab taotleja lisaks käesoleva paragrahvi lõikes 3 nimetatud andmetele tegevusjuhendaja te",
-     "from_passage": 219,
-     "to_passage": 219,
+     "from_passage": 218,
+     "to_passage": 218,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -5023,8 +5023,8 @@
      "to_section": "151",
      "exception": false,
      "words": "se koht vastab tuleohutusnõuetele; 5) käesoleva seaduse § 151 punktides 1–3 nimetatud teenuse puhul on täidetu",
-     "from_passage": 220,
-     "to_passage": 218,
+     "from_passage": 219,
+     "to_passage": 217,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -5035,7 +5035,7 @@
      "list": "§-s 20",
      "exception": false,
      "words": "1–3 nimetatud teenuse puhul on täidetud lastekaitseseaduse §-s 20 sätestatud nõuded.",
-     "from_passage": 220
+     "from_passage": 219
     },
     {
      "class": "other_section",
@@ -5044,8 +5044,8 @@
      "to_section": "101",
      "exception": false,
      "words": "al on õigus osutada seda teenust lisaks käesoleva seaduse § 101 lõikes 1 nimetatud isikule ka äärmusliku abi- ja",
-     "from_passage": 221,
-     "to_passage": 155,
+     "from_passage": 220,
+     "to_passage": 154,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -5056,8 +5056,8 @@
      "to_section": "151",
      "exception": false,
      "words": "emalt kolm kuud ette. Ajutine loobumine käesoleva seaduse § 151 punktides 2 ja 5–9 nimetatud teenuste osutamises",
-     "from_passage": 222,
-     "to_passage": 218,
+     "from_passage": 221,
+     "to_passage": 217,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -5068,8 +5068,8 @@
      "to_section": "151",
      "exception": false,
      "words": "kuud enne teenuse osutamise lõpetamist. Käesoleva seaduse § 151 punktis 2, 7, 8, 8¹ või 9 nimetatud teenuse osut",
-     "from_passage": 222,
-     "to_passage": 218,
+     "from_passage": 221,
+     "to_passage": 217,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -5080,8 +5080,8 @@
      "to_section": "152",
      "exception": true,
      "words": "t kriisiolukorra lõppemist ei kohaldata käesoleva seaduse § 152 lõikes 4, lõike 5 punktis 2 ja lõikes 7 sätestat",
-     "from_passage": 223,
-     "to_passage": 219,
+     "from_passage": 222,
+     "to_passage": 218,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -5092,8 +5092,8 @@
      "to_section": "152",
      "exception": true,
      "words": "t kriisiolukorra lõppemist ei kohaldata käesoleva seaduse § 152 lõikes 4, lõike 5 punktis 2 ja lõikes 7 sätestat",
-     "from_passage": 223,
-     "to_passage": 219,
+     "from_passage": 222,
+     "to_passage": 218,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -5104,8 +5104,8 @@
      "to_section": "152",
      "exception": true,
      "words": "t kriisiolukorra lõppemist ei kohaldata käesoleva seaduse § 152 lõikes 4, lõike 5 punktis 2 ja lõikes 7 sätestat",
-     "from_passage": 223,
-     "to_passage": 219,
+     "from_passage": 222,
+     "to_passage": 218,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -5116,8 +5116,8 @@
      "to_section": "151",
      "exception": true,
      "words": "gevusloa nõuet ning sotsiaalteenuse osutajal tuleb enne §-s 151 nimetatud teenuste osutamise alustamist esitada",
-     "from_passage": 223,
-     "to_passage": 218,
+     "from_passage": 222,
+     "to_passage": 217,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -5128,8 +5128,8 @@
      "to_section": "156",
      "exception": false,
      "words": "Käesoleva paragrahvi lõikes 1 nimetatud toetuse menetlemise ja väljam",
-     "from_passage": 224,
-     "to_passage": 224,
+     "from_passage": 223,
+     "to_passage": 223,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -5140,8 +5140,8 @@
      "to_section": "156",
      "exception": false,
      "words": "Kohaliku omavalitsuse üksus võib kasutada käesoleva paragrahvi lõikes 3¹ nimetatud toetust, et osutada suure hoo",
-     "from_passage": 224,
-     "to_passage": 224,
+     "from_passage": 223,
+     "to_passage": 223,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -5152,8 +5152,8 @@
      "to_section": "156",
      "exception": false,
      "words": "Suure hooldus- ja abivajadusega lapse puhul võib käesoleva paragrahvi lõikes 3¹ nimetatud toetust kasutada kuni lapse 1",
-     "from_passage": 224,
-     "to_passage": 224,
+     "from_passage": 223,
+     "to_passage": 223,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -5164,7 +5164,7 @@
      "list": "§ 48 lõike 4",
      "exception": false,
      "words": "1/250 ja maksimaalne toetus kuni 1/16 riigieelarve seaduse § 48 lõike 4 alusel määratud toetusfondi vaimse terv",
-     "from_passage": 225
+     "from_passage": 224
     },
     {
      "class": "own_section",
@@ -5173,8 +5173,8 @@
      "to_section": "156",
      "exception": false,
      "words": "Käesoleva paragrahvi lõikes 3⁹ nimetatud toetuse kasutamisel peab koha",
-     "from_passage": 225,
-     "to_passage": 225,
+     "from_passage": 224,
+     "to_passage": 224,
      "cross_passage": false,
      "in_first_passage": false
     },
@@ -5185,7 +5185,7 @@
      "to_section": "45^3",
      "exception": true,
      "words": "ktides sätestatud nõuete, välja arvatud käesoleva seaduse § 45³ lõike 4 punktis 2 ja § 45¹³ lõikes 2 sätestatud",
-     "from_passage": 226,
+     "from_passage": 225,
      "to_passage": null,
      "cross_passage": null,
      "in_first_passage": null
@@ -5197,7 +5197,7 @@
      "to_section": "45^13",
      "exception": true,
      "words": "älja arvatud käesoleva seaduse § 45³ lõike 4 punktis 2 ja § 45¹³ lõikes 2 sätestatud nõuete täitmise üle teeb So",
-     "from_passage": 226,
+     "from_passage": 225,
      "to_passage": 73,
      "cross_passage": true,
      "in_first_passage": true
@@ -5209,7 +5209,7 @@
      "to_section": "45^3",
      "exception": false,
      "words": "Riiklikku järelevalvet käesoleva seaduse § 45³ lõike 4 punktis 2 ja § 45¹³ lõikes 2 sätestatud",
-     "from_passage": 226,
+     "from_passage": 225,
      "to_passage": null,
      "cross_passage": null,
      "in_first_passage": null
@@ -5221,7 +5221,7 @@
      "to_section": "45^13",
      "exception": false,
      "words": "järelevalvet käesoleva seaduse § 45³ lõike 4 punktis 2 ja § 45¹³ lõikes 2 sätestatud nõuete täitmise üle teeb Te",
-     "from_passage": 226,
+     "from_passage": 225,
      "to_passage": 73,
      "cross_passage": true,
      "in_first_passage": true
@@ -5233,7 +5233,7 @@
      "list": "§-s 25¹",
      "exception": false,
      "words": "ooni ja kontrollida andmete õigsust maksukorralduse seaduse §-s 25¹ sätestatud töötamise registri andmete a",
-     "from_passage": 226
+     "from_passage": 225
     },
     {
      "class": "other_act",
@@ -5242,7 +5242,7 @@
      "list": "§-des 30, 32 ja 49–51",
      "exception": false,
      "words": "kliku järelevalve teostamiseks kohaldada korrakaitseseaduse §-des 30, 32 ja 49–51 sätestatud riikliku järelevalve erimeet",
-     "from_passage": 227
+     "from_passage": 226
     },
     {
      "class": "other_section",
@@ -5251,7 +5251,7 @@
      "to_section": "45^11",
      "exception": true,
      "words": "oldamise lepinguid jätkata, arvestamata käesoleva seaduse § 45¹¹ lõikes 4 sätestatut, kuni lapse asendushooldust",
-     "from_passage": 229,
+     "from_passage": 228,
      "to_passage": 71,
      "cross_passage": true,
      "in_first_passage": true
@@ -5263,7 +5263,7 @@
      "to_section": "45^9",
      "exception": true,
      "words": "vajaduse äralangemiseni, lapse 18-aastaseks saamiseni või § 45⁹ lõikes 2 nimetatud ajani, kui see on lapse huvid",
-     "from_passage": 229,
+     "from_passage": 228,
      "to_passage": 68,
      "cross_passage": true,
      "in_first_passage": true
@@ -5275,7 +5275,7 @@
      "to_section": "45^13",
      "exception": false,
      "words": "Käesoleva seaduse § 45¹³ lõike 1 punktis 12 nimetatud täienduskoolituse",
-     "from_passage": 229,
+     "from_passage": 228,
      "to_passage": 73,
      "cross_passage": true,
      "in_first_passage": true
@@ -5287,7 +5287,7 @@
      "to_section": "45^16",
      "exception": false,
      "words": "sikud võivad asendushooldusel viibida käesoleva seaduse §-s 45¹⁶ nimetatud tingimustel kuni 2018. aasta 31. dets",
-     "from_passage": 229,
+     "from_passage": 228,
      "to_passage": 78,
      "cross_passage": true,
      "in_first_passage": true
@@ -5299,8 +5299,8 @@
      "to_section": "86",
      "exception": false,
      "words": "malt põhiharidus, kes on registreerunud käesoleva seaduse § 86 lõike 7 alusel kehtestatud kava kohasele koolitus",
-     "from_passage": 229,
-     "to_passage": 136,
+     "from_passage": 228,
+     "to_passage": 135,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -5311,8 +5311,8 @@
      "to_section": "86",
      "exception": false,
      "words": "tatud nõuetele ja kes on registreerunud käesoleva seaduse § 86 lõike 7 alusel kehtestatud kava kohasele täiendus",
-     "from_passage": 229,
-     "to_passage": 136,
+     "from_passage": 228,
+     "to_passage": 135,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -5323,8 +5323,8 @@
      "to_section": "160",
      "exception": false,
      "words": "sse paigutatud isikule osutada tegevusjuhendaja, kes vastab käesoleva paragrahvi lõikes 3 nimetatud nõuetele ja kes on registreer",
-     "from_passage": 229,
-     "to_passage": 229,
+     "from_passage": 228,
+     "to_passage": 228,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -5335,8 +5335,8 @@
      "to_section": "86",
      "exception": false,
      "words": "ahäirega isikule teenust osutada lisaks käesoleva seaduse § 86 lõikes 6 nimetatud tegevusjuhendajale ka tegevusj",
-     "from_passage": 229,
-     "to_passage": 136,
+     "from_passage": 228,
+     "to_passage": 135,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -5347,8 +5347,8 @@
      "to_section": "86",
      "exception": false,
      "words": "tööks suurema ohtlikkusastmega isikutega on võrdsustatud § 86 lõikes 7 nimetatud koolitusega.",
-     "from_passage": 230,
-     "to_passage": 136,
+     "from_passage": 229,
+     "to_passage": 135,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -5359,8 +5359,8 @@
      "to_section": "86",
      "exception": false,
      "words": "utada tegevusjuhendaja, kellel on põhiharidus, kes vastab § 86 lõikes 3 sätestatud nõudele ning kes on läbinud n",
-     "from_passage": 230,
-     "to_passage": 136,
+     "from_passage": 229,
+     "to_passage": 135,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -5371,8 +5371,8 @@
      "to_section": "160",
      "exception": false,
      "words": "otsus oli tehtud hiljemalt 2015. aasta 31. detsembril ning käesoleva paragrahvi lõikes 8 sätestatud juhul võtab Sotsiaalkindlust",
-     "from_passage": 230,
-     "to_passage": 230,
+     "from_passage": 229,
+     "to_passage": 229,
      "cross_passage": false,
      "in_first_passage": false
     },
@@ -5383,7 +5383,7 @@
      "to_section": "62",
      "exception": false,
      "words": "kohustuse üle, kui isikul tuvastatakse käesoleva seaduse § 62 kohaselt sotsiaalse rehabilitatsiooni teenuse vaj",
-     "from_passage": 231,
+     "from_passage": 230,
      "to_passage": 99,
      "cross_passage": true,
      "in_first_passage": true
@@ -5395,7 +5395,7 @@
      "to_section": "68",
      "exception": false,
      "words": "Rehabilitatsioonimeeskond peab vastama käesoleva seaduse § 68 lõikes 6 sätestatud nõetele hiljemalt 2020. aasta",
-     "from_passage": 232,
+     "from_passage": 231,
      "to_passage": 107,
      "cross_passage": true,
      "in_first_passage": false
@@ -5407,7 +5407,7 @@
      "to_section": "48",
      "exception": false,
      "words": "le kantud abivahendi nimetuse osas kuni käesoleva seaduse § 48 lõigetes 6 ja 7 sätestatud tähenduses abivahendi",
-     "from_passage": 232,
+     "from_passage": 231,
      "to_passage": 83,
      "cross_passage": true,
      "in_first_passage": true
@@ -5419,7 +5419,7 @@
      "to_section": "48",
      "exception": false,
      "words": "le kantud abivahendi nimetuse osas kuni käesoleva seaduse § 48 lõigetes 6 ja 7 sätestatud tähenduses abivahendi",
-     "from_passage": 232,
+     "from_passage": 231,
      "to_passage": 83,
      "cross_passage": true,
      "in_first_passage": true
@@ -5431,7 +5431,7 @@
      "to_section": "47",
      "exception": false,
      "words": "Käesoleva seaduse § 47 lõigetes 6 ja 7 sätestatut kohaldatakse ka isikul",
-     "from_passage": 232,
+     "from_passage": 231,
      "to_passage": 82,
      "cross_passage": true,
      "in_first_passage": false
@@ -5443,7 +5443,7 @@
      "to_section": "47",
      "exception": false,
      "words": "Käesoleva seaduse § 47 lõigetes 6 ja 7 sätestatut kohaldatakse ka isikul",
-     "from_passage": 232,
+     "from_passage": 231,
      "to_passage": 82,
      "cross_passage": true,
      "in_first_passage": false
@@ -5455,7 +5455,7 @@
      "to_section": "47",
      "exception": false,
      "words": "Käesoleva seaduse § 47 lõigetes 1 ja 2 nimetatud isikule, kellel muutub",
-     "from_passage": 232,
+     "from_passage": 231,
      "to_passage": 81,
      "cross_passage": true,
      "in_first_passage": true
@@ -5467,7 +5467,7 @@
      "to_section": "47",
      "exception": false,
      "words": "Käesoleva seaduse § 47 lõigetes 1 ja 2 nimetatud isikule, kellel muutub",
-     "from_passage": 232,
+     "from_passage": 231,
      "to_passage": 81,
      "cross_passage": true,
      "in_first_passage": true
@@ -5479,7 +5479,7 @@
      "to_section": "51",
      "exception": true,
      "words": "ardi kehtivus on lõppenud, ei kohaldata käesoleva seaduse § 51 lõiget 4.",
-     "from_passage": 232,
+     "from_passage": 231,
      "to_passage": 87,
      "cross_passage": true,
      "in_first_passage": true
@@ -5491,10 +5491,10 @@
      "to_section": "55",
      "exception": false,
      "words": "bivahendi müüja või üürija peab vastama käesoleva seaduse § 55 lõikes 4 nimetatud nõuetele hiljemalt 2017. aasta",
-     "from_passage": 232,
-     "to_passage": 91,
+     "from_passage": 231,
+     "to_passage": 90,
      "cross_passage": true,
-     "in_first_passage": false
+     "in_first_passage": true
     },
     {
      "class": "other_section",
@@ -5503,8 +5503,8 @@
      "to_section": "144",
      "exception": false,
      "words": "oksul alates seaduse jõustumisest; 2) käesoleva seaduse § 144 lõike 1 punktides 8–10 nimetatud andmed kuue kuu",
-     "from_passage": 232,
-     "to_passage": 208,
+     "from_passage": 231,
+     "to_passage": 207,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -5515,7 +5515,7 @@
      "to_section": "47",
      "exception": false,
      "words": "Käesoleva seaduse § 47 lõike 1 punktis 2 nimetatud isiku puhul on osalis",
-     "from_passage": 233,
+     "from_passage": 232,
      "to_passage": 81,
      "cross_passage": true,
      "in_first_passage": true
@@ -5527,7 +5527,7 @@
      "list": "§ 58",
      "exception": false,
      "words": "ud invaliidsusgrupp on riikliku pensionikindlustuse seaduse § 58 kohaselt arvatud vastavaks vanaduspensi",
-     "from_passage": 233
+     "from_passage": 232
     },
     {
      "class": "other_section",
@@ -5536,8 +5536,8 @@
      "to_section": "101",
      "exception": false,
      "words": "Käesoleva seaduse § 101 lõike 1 punktis 3 sätestatud puuduva töövõime ti",
-     "from_passage": 233,
-     "to_passage": 155,
+     "from_passage": 232,
+     "to_passage": 154,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -5548,8 +5548,8 @@
      "to_section": "101",
      "exception": false,
      "words": "Käesoleva seaduse § 101 lõike 2 punktis 2 ja lõike 3 punktis 2 sätestatu",
-     "from_passage": 233,
-     "to_passage": 155,
+     "from_passage": 232,
+     "to_passage": 154,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -5560,8 +5560,8 @@
      "to_section": "101",
      "exception": false,
      "words": "Käesoleva seaduse § 101 lõike 2 punktis 2 ja lõike 3 punktis 2 sätestatu",
-     "from_passage": 233,
-     "to_passage": 156,
+     "from_passage": 232,
+     "to_passage": 155,
      "cross_passage": true,
      "in_first_passage": false
     },
@@ -5572,8 +5572,8 @@
      "to_section": "144",
      "exception": false,
      "words": "iaalkindlustusamet on kohustatud kandma käesoleva seaduse § 144 lõike 6 punktis 3 nimetatud ning 2017. aasta 1.",
-     "from_passage": 233,
-     "to_passage": 210,
+     "from_passage": 232,
+     "to_passage": 209,
      "cross_passage": true,
      "in_first_passage": false
     },
@@ -5584,7 +5584,7 @@
      "to_section": "65",
      "exception": false,
      "words": "Käesoleva seaduse § 65 alusel sõlmitud tasu maksmise kohustuse ülevõtmis",
-     "from_passage": 234,
+     "from_passage": 233,
      "to_passage": 103,
      "cross_passage": true,
      "in_first_passage": true
@@ -5596,8 +5596,8 @@
      "to_section": "144",
      "exception": false,
      "words": "omavalitsuse üksus on kohustatud kandma käesoleva seaduse § 144 lõike 1 punktides 11–14 nimetatud ning 2027. aas",
-     "from_passage": 234,
-     "to_passage": 208,
+     "from_passage": 233,
+     "to_passage": 207,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -5608,8 +5608,8 @@
      "to_section": "144",
      "exception": false,
      "words": "üksuse eelarvest, on kohustatud kandma käesoleva seaduse § 144 lõike 1 punktis 11 nimetatud ning 2027. aasta 1.",
-     "from_passage": 234,
-     "to_passage": 208,
+     "from_passage": 233,
+     "to_passage": 207,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -5620,7 +5620,7 @@
      "to_section": "13^1",
      "exception": false,
      "words": "Käesoleva seaduse § 13¹ lõikeid 3–5 rakendatakse tagasiulatuvalt 2020. a",
-     "from_passage": 234,
+     "from_passage": 233,
      "to_passage": 14,
      "cross_passage": true,
      "in_first_passage": true
@@ -5632,7 +5632,7 @@
      "to_section": "13^1",
      "exception": false,
      "words": "Käesoleva seaduse § 13¹ lõikeid 3–5 rakendatakse tagasiulatuvalt 2020. a",
-     "from_passage": 234,
+     "from_passage": 233,
      "to_passage": 14,
      "cross_passage": true,
      "in_first_passage": true
@@ -5644,7 +5644,7 @@
      "to_section": "13^1",
      "exception": false,
      "words": "Käesoleva seaduse § 13¹ lõikeid 3–5 rakendatakse tagasiulatuvalt 2020. a",
-     "from_passage": 234,
+     "from_passage": 233,
      "to_passage": null,
      "cross_passage": null,
      "in_first_passage": null
@@ -5656,7 +5656,7 @@
      "to_section": "16^1",
      "exception": false,
      "words": "aaltöötaja ettevalmistus peab vastama käesoleva seaduse §-s 16¹ sätestatud nõudele hiljemalt 2026. aasta 1. juul",
-     "from_passage": 235,
+     "from_passage": 234,
      "to_passage": 27,
      "cross_passage": true,
      "in_first_passage": true
@@ -5668,7 +5668,7 @@
      "to_section": "15^2",
      "exception": false,
      "words": "Käesoleva seaduse §-s 15² sätestatud puudega täisealise isiku abivajaduse",
-     "from_passage": 235,
+     "from_passage": 234,
      "to_passage": 24,
      "cross_passage": true,
      "in_first_passage": true
@@ -5680,7 +5680,7 @@
      "to_section": "22^1",
      "exception": false,
      "words": "023. aasta 31. detsembrini kohaldatakse käesoleva seaduse § 22¹ lõikes 5 sätestatud väljaspool kodu osutatava öö",
-     "from_passage": 235,
+     "from_passage": 234,
      "to_passage": 34,
      "cross_passage": true,
      "in_first_passage": true
@@ -5692,8 +5692,8 @@
      "to_section": "92",
      "exception": false,
      "words": "Käesoleva seaduse § 92 punktis 1¹ sätestatud puuduva töövõime tingimus o",
-     "from_passage": 235,
-     "to_passage": 142,
+     "from_passage": 234,
+     "to_passage": 141,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -5704,7 +5704,7 @@
      "to_section": "71",
      "exception": false,
      "words": "enuse saamiseks, kui on täidetud muud käesoleva seaduse §-s 71 sätestatud tingimused.",
-     "from_passage": 235,
+     "from_passage": 234,
      "to_passage": 112,
      "cross_passage": true,
      "in_first_passage": true
@@ -5716,8 +5716,8 @@
      "to_section": "99^2",
      "exception": false,
      "words": "Käesoleva seaduse § 99² punktis 2 sätestatud puuduva töövõime tingimus o",
-     "from_passage": 235,
-     "to_passage": 151,
+     "from_passage": 234,
+     "to_passage": 150,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -5728,8 +5728,8 @@
      "to_section": "99^2",
      "exception": false,
      "words": "andeteenuse vajadust. Kui isik vastab käesoleva seaduse §-s 99² sätestatud päeva- ja nädalahoiuteenuse saamise t",
-     "from_passage": 235,
-     "to_passage": 151,
+     "from_passage": 234,
+     "to_passage": 150,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -5740,7 +5740,7 @@
      "to_section": "70",
      "exception": false,
      "words": "stab Sotsiaalkindlustusamet teenuse osutamise vastavalt §-s 70 sätestatule ning teavitab isikut tema võtmisest p",
-     "from_passage": 235,
+     "from_passage": 234,
      "to_passage": 110,
      "cross_passage": true,
      "in_first_passage": true
@@ -5752,8 +5752,8 @@
      "to_section": "99^2",
      "exception": false,
      "words": "s märgitud teenuse osutamise tähtaega käesoleva seaduse §-s 99² sätestatud päeva- ja nädalahoiuteenuse saamise t",
-     "from_passage": 235,
-     "to_passage": 151,
+     "from_passage": 234,
+     "to_passage": 150,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -5764,7 +5764,7 @@
      "to_section": "70",
      "exception": false,
      "words": "tingimustele, otsustab Sotsiaalkindlustusamet vastavalt §-s 70 sätestatule ning väljastab suunamisotsuse päeva-",
-     "from_passage": 235,
+     "from_passage": 234,
      "to_passage": 110,
      "cross_passage": true,
      "in_first_passage": true
@@ -5776,7 +5776,7 @@
      "to_section": "71",
      "exception": false,
      "words": "sotsuse päeva- ja nädalahoiuteenuse saamiseks vastavalt §-s 71 sätestatule.",
-     "from_passage": 235,
+     "from_passage": 234,
      "to_passage": 112,
      "cross_passage": true,
      "in_first_passage": true
@@ -5788,8 +5788,8 @@
      "to_section": "99^2",
      "exception": false,
      "words": ". aasta 1. september. Kui isik vastab käesoleva seaduse §-s 99² sätestatud päeva- ja nädalahoiuteenuse saamise t",
-     "from_passage": 236,
-     "to_passage": 151,
+     "from_passage": 235,
+     "to_passage": 150,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -5800,7 +5800,7 @@
      "to_section": "70",
      "exception": false,
      "words": "isiku nõusolekul teenuse osutamise jätkamise vastavalt §-s 70 sätestatule ning väljastab uue suunamisotsuse päe",
-     "from_passage": 236,
+     "from_passage": 235,
      "to_passage": 110,
      "cross_passage": true,
      "in_first_passage": true
@@ -5812,7 +5812,7 @@
      "to_section": "71",
      "exception": false,
      "words": "sotsuse päeva- ja nädalahoiuteenuse saamiseks vastavalt §-s 71 sätestatule. Uue suunamisotsuse tähtaeg ei tohi o",
-     "from_passage": 236,
+     "from_passage": 235,
      "to_passage": 112,
      "cross_passage": true,
      "in_first_passage": true
@@ -5824,7 +5824,7 @@
      "to_section": "15^1",
      "exception": false,
      "words": "rium analüüsib hiljemalt 2020. aastal käesoleva seaduse §-s 15¹ sätestatud noore abivajaduse hindamise regulatsi",
-     "from_passage": 237,
+     "from_passage": 236,
      "to_passage": 22,
      "cross_passage": true,
      "in_first_passage": true
@@ -5836,8 +5836,8 @@
      "to_section": "139^1",
      "exception": false,
      "words": "Käesoleva seaduse § 139¹ lõike 2 punktis 1 sätestatut ei kohaldata isiku",
-     "from_passage": 239,
-     "to_passage": 198,
+     "from_passage": 238,
+     "to_passage": 197,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -5848,8 +5848,8 @@
      "to_section": "139^2",
      "exception": false,
      "words": "olu kinnitamiseks kontrollitakse lisaks käesoleva seaduse § 139² lõikes 2 nimetatud andmetele isiku vastavust pe",
-     "from_passage": 239,
-     "to_passage": 199,
+     "from_passage": 238,
+     "to_passage": 198,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -5860,8 +5860,8 @@
      "to_section": "160^3",
      "exception": false,
      "words": "Käesoleva paragrahvi lõikes 1 nimetatud asjaolu kinnitamiseks kontrol",
-     "from_passage": 239,
-     "to_passage": 239,
+     "from_passage": 238,
+     "to_passage": 238,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -5872,8 +5872,8 @@
      "to_section": "156",
      "exception": false,
      "words": "netlemise ja väljamaksmise kulud lisaks käesoleva seaduse § 156 lõikes 2 toodud juhtumitele ka iga taotluse eest",
-     "from_passage": 240,
-     "to_passage": 224,
+     "from_passage": 239,
+     "to_passage": 223,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -5884,8 +5884,8 @@
      "to_section": "140",
      "exception": false,
      "words": "§ 160⁶. Paragrahvi 140 rakendamine Käesoleva seaduse §-s 140 nimetatud sotsiaaltoetust on õigus saada isikul,",
-     "from_passage": 241,
-     "to_passage": 202,
+     "from_passage": 240,
+     "to_passage": 201,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -5896,7 +5896,7 @@
      "list": "§ 151 punkti 1",
      "exception": false,
      "words": "aalkindlustusamet on väljastanud sotsiaalhoolekande seaduse § 151 punkti 1 alusel lapsehoiuteenuse osutamise tegev",
-     "from_passage": 242
+     "from_passage": 241
     },
     {
      "class": "own_section",
@@ -5905,8 +5905,8 @@
      "to_section": "160^7",
      "exception": false,
      "words": "Pärast käesoleva paragrahvi lõikes 1 nimetatud teavituse esitamist loetakse",
-     "from_passage": 242,
-     "to_passage": 242,
+     "from_passage": 241,
+     "to_passage": 241,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -5917,7 +5917,7 @@
      "to_section": "47",
      "exception": false,
      "words": "tega 23–25 järgmises sõnastuses: „(23) Käesoleva seaduse § 47 lõike 1 punktis 2 nimetatud isiku puhul on osalis",
-     "from_passage": 245,
+     "from_passage": 244,
      "to_passage": 81,
      "cross_passage": true,
      "in_first_passage": true
@@ -5929,8 +5929,8 @@
      "to_section": "101",
      "exception": false,
      "words": "kaotusega 40–100&#160;protsenti. (24) Käesoleva seaduse § 101 lõike 1 punktis 3 sätestatud puuduva töövõime ti",
-     "from_passage": 245,
-     "to_passage": 155,
+     "from_passage": 244,
+     "to_passage": 154,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -5941,8 +5941,8 @@
      "to_section": "101",
      "exception": false,
      "words": "aotus vähemalt 80&#160;protsenti. (25) Käesoleva seaduse § 101 lõike 2 punktis 2 ja lõike 3 punktis 2 sätestatu",
-     "from_passage": 245,
-     "to_passage": 155,
+     "from_passage": 244,
+     "to_passage": 154,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -5953,8 +5953,8 @@
      "to_section": "101",
      "exception": false,
      "words": "aotus vähemalt 80&#160;protsenti. (25) Käesoleva seaduse § 101 lõike 2 punktis 2 ja lõike 3 punktis 2 sätestatu",
-     "from_passage": 245,
-     "to_passage": 156,
+     "from_passage": 244,
+     "to_passage": 155,
      "cross_passage": true,
      "in_first_passage": false
     },
@@ -5965,7 +5965,7 @@
      "list": "§ 2",
      "exception": false,
      "words": ", kellel on puue puuetega inimeste sotsiaaltoetuste seaduse § 2 tähenduses või kes on tunnistatud püsiv",
-     "from_passage": 245
+     "from_passage": 244
     },
     {
      "class": "other_act",
@@ -5974,7 +5974,7 @@
      "list": "§-s 7",
      "exception": false,
      "words": "„3) 18-aastasel kuni riikliku pensionikindlustuse seaduse §-s 7 sätestatud vanaduspensioniikka jõudnud",
-     "from_passage": 245
+     "from_passage": 244
     },
     {
      "class": "own_section",
@@ -5983,8 +5983,8 @@
      "to_section": "183",
      "exception": false,
      "words": "Käesoleva paragrahvi lõikes 1 nimetatud seaduse alusel kehtestatud ko",
-     "from_passage": 249,
-     "to_passage": 249,
+     "from_passage": 248,
+     "to_passage": 248,
      "cross_passage": false,
      "in_first_passage": true
     },
@@ -5995,7 +5995,7 @@
      "to_section": "68",
      "exception": false,
      "words": "Käesoleva seaduse § 68 lõige 3, § 86 lõige 8, § 115 lõige 3 ja § 123 lõi",
-     "from_passage": 250,
+     "from_passage": 249,
      "to_passage": 106,
      "cross_passage": true,
      "in_first_passage": true
@@ -6007,8 +6007,8 @@
      "to_section": "86",
      "exception": false,
      "words": "Käesoleva seaduse § 68 lõige 3, § 86 lõige 8, § 115 lõige 3 ja § 123 lõige 9 jõustuvad",
-     "from_passage": 250,
-     "to_passage": 136,
+     "from_passage": 249,
+     "to_passage": 135,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -6019,7 +6019,7 @@
      "to_section": "115",
      "exception": false,
      "words": "Käesoleva seaduse § 68 lõige 3, § 86 lõige 8, § 115 lõige 3 ja § 123 lõige 9 jõustuvad 2016. aasta 1",
-     "from_passage": 250,
+     "from_passage": 249,
      "to_passage": null,
      "cross_passage": null,
      "in_first_passage": null
@@ -6031,7 +6031,7 @@
      "to_section": "59",
      "exception": false,
      "words": "Käesoleva seaduse § 59 lõike 1 punkt 4, § 176 punktid 1–2, 4–9 ja 11, §",
-     "from_passage": 250,
+     "from_passage": 249,
      "to_passage": 95,
      "cross_passage": true,
      "in_first_passage": true
@@ -6043,8 +6043,8 @@
      "to_section": "176",
      "exception": false,
      "words": "Käesoleva seaduse § 59 lõike 1 punkt 4, § 176 punktid 1–2, 4–9 ja 11, § 177 punkt 3, § 179 pun",
-     "from_passage": 250,
-     "to_passage": 245,
+     "from_passage": 249,
+     "to_passage": 244,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -6055,8 +6055,8 @@
      "to_section": "177",
      "exception": false,
      "words": "aduse § 59 lõike 1 punkt 4, § 176 punktid 1–2, 4–9 ja 11, § 177 punkt 3, § 179 punkt 4 ja § 180 jõustuvad 2016.",
-     "from_passage": 250,
-     "to_passage": 247,
+     "from_passage": 249,
+     "to_passage": 246,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -6067,7 +6067,7 @@
      "to_section": "52",
      "exception": false,
      "words": "Käesoleva seaduse § 52 lõige 2 ja § 55 lõike 1 punkt 5 jõustuvad 2018. a",
-     "from_passage": 250,
+     "from_passage": 249,
      "to_passage": 88,
      "cross_passage": true,
      "in_first_passage": true
@@ -6079,7 +6079,7 @@
      "to_section": "55",
      "exception": false,
      "words": "Käesoleva seaduse § 52 lõige 2 ja § 55 lõike 1 punkt 5 jõustuvad 2018. aasta 1. jaanuari",
-     "from_passage": 250,
+     "from_passage": 249,
      "to_passage": 90,
      "cross_passage": true,
      "in_first_passage": true
@@ -6091,8 +6091,8 @@
      "to_section": "176",
      "exception": false,
      "words": "Käesoleva seaduse § 176 punkt 10 jõustub 2018. aasta 1. juulil.",
-     "from_passage": 250,
-     "to_passage": 245,
+     "from_passage": 249,
+     "to_passage": 244,
      "cross_passage": true,
      "in_first_passage": true
     },
@@ -6103,7 +6103,7 @@
      "to_section": "22",
      "exception": false,
      "words": "Käesoleva seaduse § 22 lõiked 3 ja 4, § 36 lõige 2, § 55 lõiked 2 ja 2¹",
-     "from_passage": 250,
+     "from_passage": 249,
      "to_passage": 33,
      "cross_passage": true,
      "in_first_passage": true
@@ -6115,7 +6115,7 @@
      "to_section": "22",
      "exception": false,
      "words": "Käesoleva seaduse § 22 lõiked 3 ja 4, § 36 lõige 2, § 55 lõiked 2 ja 2¹",
-     "from_passage": 250,
+     "from_passage": 249,
      "to_passage": 33,
      "cross_passage": true,
      "in_first_passage": true
@@ -6127,7 +6127,7 @@
      "to_section": "36",
      "exception": false,
      "words": "Käesoleva seaduse § 22 lõiked 3 ja 4, § 36 lõige 2, § 55 lõiked 2 ja 2¹ ning § 151 punktid 3",
-     "from_passage": 250,
+     "from_passage": 249,
      "to_passage": 50,
      "cross_passage": true,
      "in_first_passage": true
@@ -6139,7 +6139,7 @@
      "to_section": "55",
      "exception": false,
      "words": "Käesoleva seaduse § 22 lõiked 3 ja 4, § 36 lõige 2, § 55 lõiked 2 ja 2¹ ning § 151 punktid 3 ja 4 jõustuva",
-     "from_passage": 250,
+     "from_passage": 249,
      "to_passage": 90,
      "cross_passage": true,
      "in_first_passage": true
@@ -6151,7 +6151,7 @@
      "to_section": "55",
      "exception": false,
      "words": "Käesoleva seaduse § 22 lõiked 3 ja 4, § 36 lõige 2, § 55 lõiked 2 ja 2¹ ning § 151 punktid 3 ja 4 jõustuva",
-     "from_passage": 250,
+     "from_passage": 249,
      "to_passage": 90,
      "cross_passage": true,
      "in_first_passage": true
@@ -6163,8 +6163,8 @@
      "to_section": "151",
      "exception": false,
      "words": "22 lõiked 3 ja 4, § 36 lõige 2, § 55 lõiked 2 ja 2¹ ning § 151 punktid 3 ja 4 jõustuvad 2020. aasta 1. jaanuari",
-     "from_passage": 250,
-     "to_passage": 218,
+     "from_passage": 249,
+     "to_passage": 217,
      "cross_passage": true,
      "in_first_passage": true
     }
@@ -6217,42 +6217,42 @@
     },
     {
      "provision": "130^4/4",
-     "passage": 174,
+     "passage": 173,
      "words": "Teenuseosutaja peab lapse valdusest äravõetud asja, mida ei anta üle politseile, säilitama, andma üle lapse se"
     },
     {
      "provision": "131/3",
-     "passage": 186,
+     "passage": 185,
      "words": "Toimetulekupiiri üksi elavale isikule või perekonna esimesele liikmele kehtestab Riigikogu igaks eelarveaastak"
     },
     {
      "provision": "131/12",
-     "passage": 187,
+     "passage": 186,
      "words": "Eestkostetavat, kelle eestkostjaks on temaga koos elav perekonnaliige, ei loeta toimetulekutoetuse määramisel "
     },
     {
      "provision": "132/7",
-     "passage": 190,
+     "passage": 189,
      "words": "Toimetulekutoetust ei määrata isikule, kellele osutatakse väljaspool kodu ööpäevaringselt osutatavat üldhooldu"
     },
     {
      "provision": "133/7",
-     "passage": 193,
+     "passage": 192,
      "words": "Eluasemekulude tasumisel varem tekkinud võlgnevust ei arvata toimetulekutoetuse arvestamisel jooksval kuul tas"
     },
     {
      "provision": "134/1",
-     "passage": 195,
+     "passage": 194,
      "words": "Toimetulekutoetust määrab ja maksab kohaliku omavalitsuse üksus jooksvaks kuuks käesoleva seadusega kehtestatu"
     },
     {
      "provision": "139^1/5",
-     "passage": 198,
+     "passage": 197,
      "words": "Pensionäritoetuse saamisele ei ole õigust isikul: 1) kes viibib vangistuses või eelvangistuses; 2) kellele koh"
     },
     {
      "provision": "140^2/4",
-     "passage": 204,
+     "passage": 203,
      "words": "Rahalise toetamise meetme ühekordne maksumus ei tohi olla väiksem kui 5 eurot ning suurem kui kümnekordne toim"
     }
    ]
@@ -6260,7 +6260,7 @@
   {
    "act": "106072023031",
    "title": "Haldusmenetluse seadus",
-   "normalization": "source-structure-v30",
+   "normalization": "source-structure-v31",
    "provisions": 324,
    "passages": 112,
    "cards": 120,
@@ -6863,7 +6863,7 @@
     {
      "provision": "23/1",
      "passage": 22,
-     "words": "Allkirja õigsuse ametliku kinnitamise õigus on Vabariigi Valitsuse ./dyn=106072023031&id=621369 määratud haldu"
+     "words": "Allkirja õigsuse ametliku kinnitamise õigus on Vabariigi Valitsuse määratud haldusorganitel. Ametlikult ei või"
     },
     {
      "provision": "24/2",
@@ -6905,7 +6905,7 @@
   {
    "act": "130062026031",
    "title": "Sotsiaalseadustiku üldosa seadus",
-   "normalization": "source-structure-v30",
+   "normalization": "source-structure-v31",
    "provisions": 120,
    "passages": 43,
    "cards": 0,
@@ -7213,7 +7213,7 @@
   {
    "act": "111072026042",
    "title": "Lastekaitseseadus",
-   "normalization": "source-structure-v30",
+   "normalization": "source-structure-v31",
    "provisions": 155,
    "passages": 59,
    "cards": 0,
@@ -7651,7 +7651,7 @@
      "to": "29^1/5",
      "to_section": "29^1",
      "exception": false,
-     "words": "äilitamise ja väljastamise tingimused ja kord sätestatakse käesoleva paragrahvi lõike 5 alusel ./dyn=111072026042&id=128062022",
+     "words": "äilitamise ja väljastamise tingimused ja kord sätestatakse käesoleva paragrahvi lõike 5 alusel kehtestatud määruses.",
      "from_passage": 33,
      "to_passage": 33,
      "cross_passage": false,
@@ -8557,7 +8557,7 @@
   {
    "act": "107052025017",
    "title": "Perekonnaseadus",
-   "normalization": "source-structure-v30",
+   "normalization": "source-structure-v31",
    "provisions": 594,
    "passages": 227,
    "cards": 0,
@@ -10789,7 +10789,7 @@
   {
    "act": "126092026005",
    "title": "Abivahendite loetelu, tasu maksmise kohustuse ülevõtmise tingimused ning abivahendi tõendi ja kaardi andmed",
-   "normalization": "source-structure-v30",
+   "normalization": "source-structure-v31",
    "provisions": 33,
    "passages": 15,
    "cards": 33,
@@ -10920,7 +10920,7 @@
   {
    "act": "404072025017",
    "title": "Sotsiaalhoolekandelise abi andmise kord",
-   "normalization": "source-structure-v30",
+   "normalization": "source-structure-v31",
    "provisions": 288,
    "passages": 95,
    "cards": 81,

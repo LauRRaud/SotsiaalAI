@@ -59,7 +59,7 @@ const legal = bundle => bundle.document.fields.legal_text.value;
 
 test('Märjamaa: the birth grant\'s own note dates it, and the amendment that starts the version changed only the preamble', () => {
   const bundle = bundles[MARJAMAA], unit = section(bundle, 1), [birth, school, third] = unit.amendments;
-  assert.equal(bundle.version.processing_config.normalization, 'source-structure-v30');
+  assert.equal(bundle.version.processing_config.normalization, DEFAULT_CONFIG.normalization);
   // § 1 p 1 (sünnitoetus 500 + 300): in force 24.03.2026, applied from 01.01.2026; not 04.09.2026, the version's start.
   assert.deepEqual(birth, { provision: '§ 1 p 1', offset: unit.raw_text.indexOf('lapse aastaseks saamisel;') + 'lapse aastaseks saamisel;'.length,
     path: '/oigusakt[1]/sisu[1]/paragrahv[1]/loige[1]/alampunkt[1]/muutmismarge[1]', act_reference: '421022026007', rt: 'RT IV, 21.03.2026, 7',
@@ -345,7 +345,7 @@ test('reader-compare: a stored version read again gives the same units, chunks, 
   const result = run('--store', path.join(root, 'store'), '--manifest', manifest, '--registry', root);
   assert.equal(result.status, 0, result.stderr);
   const report = JSON.parse(result.stdout), chunks = Object.values(bundles).reduce((sum, bundle) => sum + bundle.chunks.length, 0);
-  assert.deepEqual({ ...report, notes: undefined }, { reader: 'source-structure-v30', stored_normalizations: { 'source-structure-v30': 2 }, acts: 2, identical_acts: 2,
+  assert.deepEqual({ ...report, notes: undefined }, { reader: DEFAULT_CONFIG.normalization, stored_normalizations: { [DEFAULT_CONFIG.normalization]: 2 }, acts: 2, identical_acts: 2,
     stored_chunks: chunks, embedding_inputs_already_stored: chunks, embedding_inputs_new: 0, registry_xml_differs_from_stored: 0, different: [], notes: undefined, position_unresolved_acts: [],
     in_force_before_publication_acts: [], act_in_force_before_publication_acts: [] });
   assert.deepEqual(report.notes, { unit_notes: 4, with_applies_from: 2, with_own_words: 2, repeals: 0, position_unresolved: 0, structure_notes: 3, history_entries: 5,

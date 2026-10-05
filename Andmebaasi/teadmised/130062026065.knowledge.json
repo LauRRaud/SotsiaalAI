@@ -41,6 +41,11 @@
         "normalization": "source-structure-v28",
         "reason": "superscript_digits",
         "anchors": 25
+      },
+      {
+        "normalization": "source-structure-v31",
+        "reason": "link_targets_removed",
+        "anchors": 32
       }
     ]
   },
@@ -1102,7 +1107,7 @@
         "anchors": [
           {
             "source_unit_index": 74,
-            "start": 510,
+            "start": 474,
             "quote": "Tasu maksmise kohustuse ülevõtmise taotlemise õigust, välja arvatud individuaalse abivahendi korral, ei ole vangistuses või eelvangistuses viibival isikul."
           }
         ]
@@ -1118,7 +1123,7 @@
         "anchors": [
           {
             "source_unit_index": 74,
-            "start": 673,
+            "start": 637,
             "quote": "Väljaspool kodu osutataval ööpäevaringsel üldhooldusteenusel, kogukonnas elamise teenusel, kui teenust osutatakse rohkem kui kümnele erivajadusega isikule, või ööpäevaringsel erihooldusteenusel viibival isikul ei ole tasu maksmise kohustuse ülevõtmise taotlemise õigust abivahendi eest, mis on otseselt seotud hooldusteenuse osutamise või teenuse osutamiseks kasutatava hoonega."
           }
         ]
@@ -1134,12 +1139,12 @@
         "anchors": [
           {
             "source_unit_index": 74,
-            "start": 1559,
+            "start": 1523,
             "quote": "hõlbustab eelkõige hooldaja tööd, mitte inimese individuaalset hakkamasaamist;"
           },
           {
             "source_unit_index": 74,
-            "start": 2148,
+            "start": 2112,
             "quote": "on hoone või mööbli külge kinnitatav ja hõlbustab hoones liikumist."
           }
         ]
@@ -1192,7 +1197,7 @@
         "anchors": [
           {
             "source_unit_index": 75,
-            "start": 1816,
+            "start": 1780,
             "quote": "Riik ei võta tasu maksmise kohustust üle abivahendi eest, mille kasutusaeg on lõppenud."
           }
         ]
@@ -1591,7 +1596,7 @@
         "anchors": [
           {
             "source_unit_index": 94,
-            "start": 2441,
+            "start": 2405,
             "quote": "Vähemalt üks rehabilitatsioonimeeskonna spetsialist peab olema läbinud valdkonna eest vastutava ministri määrusega kehtestatud rehabilitatsioonivaldkonna koolituse või käesoleva paragrahvi lõikes 2 nimetatud eriala omandamisel läbinud rehabilitatsioonivaldkonna koolituse õppekava moodulites nimetatud ained."
           }
         ]
@@ -1607,7 +1612,7 @@
         "anchors": [
           {
             "source_unit_index": 94,
-            "start": 2918,
+            "start": 2846,
             "quote": "Rehabilitatsioonimeeskonna spetsialist ei tohi olla isik, kellel on kehtiv karistus tahtlikult toimepandud kuriteo eest, mis võib ohtu seada teenust saama õigustatud isiku elu, tervise või vara."
           }
         ]
@@ -1803,7 +1808,7 @@
         "anchors": [
           {
             "source_unit_index": 102,
-            "start": 487,
+            "start": 451,
             "quote": "Sotsiaalkindlustusamet võib erihoolekandeteenuse järjekorda panna vähemalt 16-aastase teenust saama õigustatud isiku juhul, kui tema toetusvajaduse hindamisel on tuvastatud erihoolekandeteenuse vajadus."
           }
         ]
@@ -1819,12 +1824,12 @@
         "anchors": [
           {
             "source_unit_index": 102,
-            "start": 711,
+            "start": 675,
             "quote": "Erihoolekandeteenuste järjekorda võetud isik on kohustatud asuma teenust kasutama ühe kuu jooksul teenuse osutamise otsuse tegemise kuupäevast arvates, kui riigieelarves on olemas rahalised vahendid isikule erihoolekandeteenuse osutamiseks ja erihoolekandeteenuse osutajal, kelle juurde isik soovib teenust saama minna, on olemas vaba koht."
           },
           {
             "source_unit_index": 102,
-            "start": 1052,
+            "start": 1016,
             "quote": "Kui isik keeldub mõjuva põhjuseta minemast erihoolekandeteenust saama, arvatakse ta erihoolekandeteenuste järjekorrast välja."
           }
         ]
@@ -2701,22 +2706,22 @@
         "anchors": [
           {
             "source_unit_index": 137,
-            "start": 833,
+            "start": 797,
             "quote": "on täisealisest isikust tulenev otsene oht täisealise isiku enda või teise täisealise isiku elule, kehalisele puutumatusele või füüsilisele vabadusele;"
           },
           {
             "source_unit_index": 137,
-            "start": 990,
+            "start": 954,
             "quote": "täisealise isiku suusõnaline rahustamine või muude teenuseosutajale teadaolevate konkreetse täisealise isiku kohta arsti poolt märgitud abimeetmete kasutamine ei ole osutunud küllaldaseks;"
           },
           {
             "source_unit_index": 137,
-            "start": 1184,
+            "start": 1148,
             "quote": "arst ei ole teenuseosutajale teadaolevalt eraldamise kasutamist konkreetse täisealise isiku suhtes välistanud."
           },
           {
             "source_unit_index": 137,
-            "start": 1301,
+            "start": 1265,
             "quote": "Käesoleva paragrahvi lõikes 4 nimetatud asjaolude ilmnemisel ja enne eraldamist teavitab ööpäevaringse erihooldusteenuse osutaja kiirabiteenuse osutajat või politseid."
           }
         ]
@@ -2732,7 +2737,7 @@
         "anchors": [
           {
             "source_unit_index": 137,
-            "start": 1629,
+            "start": 1593,
             "quote": "Täisealise isiku võib eraldada teistest teenust saavatest täisealistest isikutest kuni kiirabiteenuse osutaja või politsei saabumiseni, kuid kõige kauem kolmeks tunniks järjest."
           }
         ]
@@ -3413,7 +3418,7 @@
         "anchors": [
           {
             "source_unit_index": 167,
-            "start": 189,
+            "start": 169,
             "quote": "võib eriolukorra, erakorralise seisukorra või sõjaseisukorra ajal eriolukorrast, erakorralisest seisukorrast või sõjaseisukorrast tulenevate toimetulekuraskuste leevendamiseks ja ennetamiseks kehtestada määrusega täiendavaid rahalise toetamise meetmeid."
           }
         ]
@@ -3429,7 +3434,7 @@
         "anchors": [
           {
             "source_unit_index": 167,
-            "start": 449,
+            "start": 429,
             "quote": "Õigus rahalise toetamise meetmele on sotsiaalseadustiku üldosa seaduse § 3 lõikes 1 nimetatud ja eriolukorrast, erakorralisest seisukorrast või sõjaseisukorrast eriliselt puudutatud inimestel, kelle toimetulek võib olla eriolukorrast, erakorralisest seisukorrast või sõjaseisukorrast tulenevalt oluliselt halvenenud."
           }
         ]
@@ -3445,7 +3450,7 @@
         "anchors": [
           {
             "source_unit_index": 167,
-            "start": 772,
+            "start": 752,
             "quote": "Rahalise toetamise meetmeid võib rakendada Vabariigi Valitsuse volitatud asutus või isik käesoleva paragrahvi lõikes 1 nimetatud määruses toodud tingimustel ja korras."
           }
         ]
@@ -3461,7 +3466,7 @@
         "anchors": [
           {
             "source_unit_index": 167,
-            "start": 946,
+            "start": 926,
             "quote": "Rahalise toetamise meetme ühekordne maksumus ei tohi olla väiksem kui 5 eurot ning suurem kui kümnekordne toimetulekupiir."
           }
         ]
@@ -3477,12 +3482,12 @@
         "anchors": [
           {
             "source_unit_index": 167,
-            "start": 1414,
+            "start": 1394,
             "quote": "Meetmeid võib kohaldada tagasiulatuvalt eriolukorra, erakorralise seisukorra või sõjaseisukorra väljakuulutamisest arvates."
           },
           {
             "source_unit_index": 167,
-            "start": 1307,
+            "start": 1287,
             "quote": "kuid mitte kauem kui 60 päeva eriolukorra, erakorralise seisukorra või sõjaseisukorra lõppemisest arvates."
           }
         ]
@@ -4668,7 +4673,7 @@
         "anchors": [
           {
             "source_unit_index": 74,
-            "start": 510,
+            "start": 474,
             "quote": "Tasu maksmise kohustuse ülevõtmise taotlemise õigust, välja arvatud individuaalse abivahendi korral, ei ole vangistuses või eelvangistuses viibival isikul."
           }
         ]
@@ -4687,7 +4692,7 @@
         "anchors": [
           {
             "source_unit_index": 74,
-            "start": 883,
+            "start": 847,
             "quote": "ei ole tasu maksmise kohustuse ülevõtmise taotlemise õigust abivahendi eest, mis on otseselt seotud hooldusteenuse osutamise või teenuse osutamiseks kasutatava hoonega."
           }
         ]
@@ -4752,7 +4757,7 @@
         "anchors": [
           {
             "source_unit_index": 75,
-            "start": 1816,
+            "start": 1780,
             "quote": "Riik ei võta tasu maksmise kohustust üle abivahendi eest, mille kasutusaeg on lõppenud."
           }
         ]
@@ -5021,7 +5026,7 @@
         "anchors": [
           {
             "source_unit_index": 94,
-            "start": 2441,
+            "start": 2405,
             "quote": "Vähemalt üks rehabilitatsioonimeeskonna spetsialist peab olema läbinud valdkonna eest vastutava ministri määrusega kehtestatud rehabilitatsioonivaldkonna koolituse"
           }
         ]
@@ -5059,7 +5064,7 @@
         "anchors": [
           {
             "source_unit_index": 94,
-            "start": 2918,
+            "start": 2846,
             "quote": "Rehabilitatsioonimeeskonna spetsialist ei tohi olla isik"
           }
         ]
@@ -5116,7 +5121,7 @@
         "anchors": [
           {
             "source_unit_index": 102,
-            "start": 611,
+            "start": 575,
             "quote": "kui tema toetusvajaduse hindamisel on tuvastatud erihoolekandeteenuse vajadus."
           }
         ]
@@ -5489,7 +5494,7 @@
         "anchors": [
           {
             "source_unit_index": 137,
-            "start": 721,
+            "start": 685,
             "quote": "Eraldamist võib kasutada ööpäevaringset erihooldusteenust saava täisealise isiku suhtes ainult juhul, kui:"
           }
         ]
@@ -5896,7 +5901,7 @@
         "anchors": [
           {
             "source_unit_index": 167,
-            "start": 449,
+            "start": 429,
             "quote": "Õigus rahalise toetamise meetmele on"
           }
         ]
@@ -5915,7 +5920,7 @@
         "anchors": [
           {
             "source_unit_index": 167,
-            "start": 861,
+            "start": 841,
             "quote": "käesoleva paragrahvi lõikes 1 nimetatud määruses toodud tingimustel ja korras."
           }
         ]
@@ -5934,7 +5939,7 @@
         "anchors": [
           {
             "source_unit_index": 167,
-            "start": 946,
+            "start": 926,
             "quote": "Rahalise toetamise meetme ühekordne maksumus ei tohi olla väiksem kui 5 eurot"
           }
         ]
@@ -5953,7 +5958,7 @@
         "anchors": [
           {
             "source_unit_index": 167,
-            "start": 1414,
+            "start": 1394,
             "quote": "Meetmeid võib kohaldada tagasiulatuvalt eriolukorra, erakorralise seisukorra või sõjaseisukorra väljakuulutamisest arvates."
           }
         ]
