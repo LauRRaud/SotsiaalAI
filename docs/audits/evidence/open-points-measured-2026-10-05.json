@@ -1,0 +1,847 @@
+{
+ "schema": "sotsiaalai/conversation-run-evidence-1",
+ "run": "strengthening-2-2026-10-05",
+ "measured_commit": "add0624c4b90499fe1350d50eb488eccdc5a2152",
+ "catalogues": [
+  {
+   "name": "open-points",
+   "catalogue": "tests/evaluation/dialogue/scenarios-strengthening-2.json",
+   "started_at": "2026-10-05T14:43:54.916Z",
+   "finished_at": "2026-10-05T14:44:49.660Z",
+   "summary": {
+    "passed": 2,
+    "search": 1,
+    "answer": 0,
+    "state": 0
+   },
+   "states": {
+    "continuing": 0,
+    "rejected": 0
+   },
+   "plan_price_usd": 0.0166
+  },
+  {
+   "name": "municipal-tone",
+   "catalogue": "tests/evaluation/dialogue/scenarios-municipal-tone-1.json",
+   "started_at": "2026-10-05T14:44:50.616Z",
+   "finished_at": "2026-10-05T14:46:55.777Z",
+   "summary": {
+    "passed": 5,
+    "search": 0,
+    "answer": 0,
+    "state": 0
+   },
+   "states": {
+    "continuing": 0,
+    "rejected": 0
+   },
+   "plan_price_usd": 0.0293
+  },
+  {
+   "name": "before-after",
+   "catalogue": "tests/evaluation/dialogue/scenarios-strengthening-1.json",
+   "started_at": "2026-10-05T14:46:56.662Z",
+   "finished_at": "2026-10-05T14:47:59.405Z",
+   "summary": {
+    "passed": 3,
+    "search": 0,
+    "answer": 0,
+    "state": 0
+   },
+   "states": {
+    "continuing": 2,
+    "rejected": 0
+   },
+   "plan_price_usd": 0.017
+  }
+ ],
+ "plan_price_usd": 0.0629,
+ "turns": [
+  {
+   "run": "open-points",
+   "scenario": "contacts-tallinn-no-district",
+   "turn": 1,
+   "turn_id": "10ad8be7-b484-4ed9-a539-d728c988c07e",
+   "text": "Elan Tallinnas ja tahan taotleda toimetulekutoetust. Kelle poole ma pöörduma peaksin?",
+   "verdict": "passed",
+   "checks": 6,
+   "failed": [],
+   "region": "tallinn",
+   "scope_state": "person_mentioned_region",
+   "queries": [
+    "Toimetulekutoetuse taotlemine Tallinnas kuhu pöörduda"
+   ],
+   "answer_kind": "partial",
+   "clarification": true,
+   "records": {
+    "version": "rag-v2/record-catalogue-4",
+    "view": "titles",
+    "listed": 85,
+    "relevant_summaries": 1,
+    "opened": [
+     "#50 contact_directory resource | Sotsiaalvaldkonna kontaktid: Tallinna linn",
+     "#3 relevant_detail benefit | Sissetulekust sõltuv toetus toimetuleku tagamiseks",
+     "#1 relevant_detail benefit | Toimetulekutoetus",
+     "#2 relevant_detail service | Toimetulekunõustamine"
+    ],
+    "contacts_shown": 12
+   },
+   "contacts_named_in_answer": 0,
+   "roles_of_the_named": [],
+   "channels_in_answer": 0,
+   "channels_in_context": 0,
+   "channels_of_a_named_person": 0,
+   "candidates": 36,
+   "selected": [
+    "P2 | alates 2026-06-14 | Tallinn > Sotsiaaltoetuste maksmise tingimused ja kord > 2. peatükk Toetuste kirjeldused > 2. jagu Sissetulekust sõltuvad universaaltoetused > § ",
+    "P6 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 8. jagu Toimetulekutoetus > § 132. Toimetulekutoetuse taotlemine § 132"
+   ],
+   "cited": [
+    {
+     "title": "Sotsiaalhoolekande seadus"
+    },
+    {
+     "title": "Sotsiaaltoetuste maksmise tingimused ja kord"
+    }
+   ],
+   "cited_contact_records": 0,
+   "plan_price_usd": 0.0060494,
+   "search_ms": 5250,
+   "total_ms": 18708,
+   "answer": "Pöördu selle Tallinna linnaosa valitsuse sotsiaalhoolekande osakonda, kus sa tegelikult elad. Toimetulekutoetuse taotluse jooksva kuu eest esita hiljemalt kuu viimaseks tööpäevaks. Lisa eelmise kuu sissetulekuid tõendavad dokumendid; kui soovid, et eluasemekulusid arvestataks, lisa ka eluruumi kasutamise õigust ja jooksva kuu eluasemekulusid tõendavad dokumendid. [S1, S2]\n\nSa ei ole nimetanud Tallinna linnaosa, kus tegelikult elad, seega ei saa ma öelda, millise linnaosa osakonna konkreetset kontakti kasutada.\n\nMillises Tallinna linnaosas sa tegelikult elad?"
+  },
+  {
+   "run": "open-points",
+   "scenario": "what-changes-national-law",
+   "turn": 1,
+   "turn_id": "d653f31d-ce4a-4e52-b9c3-5b02cc1a72d7",
+   "text": "Mis muutub lastekaitseseaduses alates 1. jaanuarist 2027?",
+   "verdict": "search",
+   "checks": 10,
+   "failed": [
+    {
+     "key": "evidence",
+     "kind": "search",
+     "detail": "/Lastekaitseseadus/ among 1 found sources"
+    },
+    {
+     "key": "cited",
+     "kind": "answer",
+     "detail": "/Lastekaitseseadus/ among cited: Seadusemuudatus muudab lastekaitse juhtumikorralduse sihipärasemaks"
+    },
+    {
+     "key": "found_versions_from",
+     "kind": "search",
+     "detail": "a version from 2026-10-01 among the found versions of the act: -"
+    },
+    {
+     "key": "found_versions_from",
+     "kind": "search",
+     "detail": "a version from 2027-01-01 among the found versions of the act: -"
+    },
+    {
+     "key": "cited_versions_from",
+     "kind": "answer",
+     "detail": "a version from 2026-10-01 among the cited versions of the act: -"
+    },
+    {
+     "key": "cited_versions_from",
+     "kind": "answer",
+     "detail": "a version from 2027-01-01 among the cited versions of the act: -"
+    }
+   ],
+   "region": null,
+   "scope_state": "region_required",
+   "queries": [
+    "Lastekaitseseaduse muudatused jõustuvad 1. jaanuaril 2027"
+   ],
+   "answer_kind": "partial",
+   "clarification": false,
+   "contacts_named_in_answer": 0,
+   "roles_of_the_named": [],
+   "channels_in_answer": 0,
+   "channels_in_context": 0,
+   "channels_of_a_named_person": 0,
+   "candidates": 36,
+   "selected": [
+    "P1 | Seadusemuudatus muudab lastekaitse juhtumikorralduse sihipärasemaks Anne Haller, sotsiaalministeeriumi laste ja perede osakonna nõunik Sotsiaalministeeriumis va",
+    "P3 | Seadusemuudatus muudab lastekaitse juhtumikorralduse sihipärasemaks > Kokkuvõte Lastekaitseseaduse muudatused aitavad paremini kaitsta abivajava lapse õigusi. Õ",
+    "P16 | Seadusemuudatus muudab lastekaitse juhtumikorralduse sihipärasemaks Eelnõu järgi eristatakse senisest selgemalt olukorrad, kus sekkumine eeldab lastekaitsetööta",
+    "P18 | Seadusemuudatus muudab lastekaitse juhtumikorralduse sihipärasemaks > Lastekaitse juhtumikorralduse algatamise muudatused Kõige suurem muudatus LasteKS-is on ab",
+    "P21 | Seadusemuudatus muudab lastekaitse juhtumikorralduse sihipärasemaks > Lastekaitse juhtumikorralduse algatamise muudatused Eelnõuga muudetakse kirjeldatud korda.",
+    "P23 | Seadusemuudatus muudab lastekaitse juhtumikorralduse sihipärasemaks > Muudatused suurendavad abi osutamise korralduse paindlikkust KOV-ides Juhtumikorralduse mu"
+   ],
+   "cited": [
+    {
+     "title": "Seadusemuudatus muudab lastekaitse juhtumikorralduse sihipärasemaks"
+    }
+   ],
+   "cited_contact_records": 0,
+   "plan_price_usd": 0.00445099,
+   "search_ms": 3794,
+   "total_ms": 15549,
+   "answer": "Eelnõu järgi olid muudatused kavandatud jõustuma 1. jaanuaril 2027, kui eelnõu seadusena vastu võetakse. [S6]\n\nSuurim muudatus puudutab seda, millal algatatakse abivajavale lapsele juhtumikorraldus ehk mitme spetsialisti koostöös antava abi pikemaajaline koordineerimine. Eelnõu järgi algataks KOV-i lastekaitsetöötaja selle siis, kui lapse heaolu toetavaid meetmeid on vaja rakendada korraga mitmes heaolu valdkonnas. Juhtumikorraldus tuleks algatada ka väärkohtlemise, hooletusse jätmise või lapse õigusi rikkuva olukorra kahtluse korral ning juhul, kui KOV saab teate perevägivalla ohvriks langenud hädaohus oleva täiskasvanu kasvatatavast lapsest. [S2, S3]\n\nKui lapse abivajadus puudutab üht valdkonda, võib abi korraldada selle valdkonna võimalusi kasutades. Lastekaitsetöötaja saaks siiski juhtumikorralduse algatada ka ühe valdkonna puhul, kui ta peab seda lapse toetamiseks vajalikuks. Kui lapsele ei anta abi valdkonnas, kus tal seda vaja on, jääks abi pakkumine KOV-i lastekaitsetöötaja ülesandeks; seda saaks teha STAR-i lihtmenetlusena. [S1, S4]\n\nEelnõu täpsustaks lasteasutuste ja lapsega töötavate inimeste toetavat rolli ning kohustaks lasteasutust looma tingimused, et asutuse esindaja saaks osaleda lapse abivajaduse hindamisel ja sobiva abi korraldamisel asutuse ülesannete piires. Samuti täpsustataks lastekaitsetöötaja ülesandeid lapse hindamisel ja abistamisel, sealhulgas lapse üleandmisel ning lapsega suhtlemise võimaldamisel täitemenetluses. Täitemenetluses täpsustataks ka kohtutäituri ja politsei ülesandeid ning loodaks alus täitetoimingu peatamiseks, kui selle jätkamine võib kahjustada lapse heaolu. [S1, S4]\n\nMuudatuste hulka kuuluks ka lapse ja pere sisulisem ning järjepidevam kaasamine, arvestades lapse võimeid ja arengutaset. [S1, S5]\n\nMa ei saa siin oleva info põhjal kinnitada, kas eelnõu võeti vastu või milline on 1. jaanuaril 2027 jõustuv lõplik seadusetekst."
+  },
+  {
+   "run": "open-points",
+   "scenario": "what-changes-one-rule",
+   "turn": 1,
+   "turn_id": "eaf20f15-3fd3-4b4b-9588-17ea8f80370a",
+   "text": "Milliseid dokumente tuleb Põhja-Sakala vallas alates 6. oktoobrist sissetulekust sõltuva toetuse taotlusele lisada ja mis selles muutub?",
+   "verdict": "passed",
+   "checks": 10,
+   "failed": [],
+   "region": "pohja_sakala_vald",
+   "scope_state": "search_plan_region",
+   "queries": [
+    "Põhja-Sakala valla sissetulekust sõltuva toetuse taotluse lisadokumendid alates 6. oktoobrist muudatused"
+   ],
+   "answer_kind": "partial",
+   "clarification": false,
+   "records": {
+    "version": "rag-v2/record-catalogue-4",
+    "view": "titles",
+    "listed": 43,
+    "relevant_summaries": 11,
+    "opened": [
+     "#3 relevant_detail benefit | Laste toitlustamise toetus",
+     "#1 relevant_detail benefit | Riiklik toimetulekutoetus",
+     "#2 relevant_detail benefit | Täiendav sotsiaaltoetus",
+     "#32 contact_directory resource | Sotsiaalvaldkonna kontaktid: Põhja-Sakala vald"
+    ],
+    "contacts_shown": 9
+   },
+   "contacts_named_in_answer": 0,
+   "roles_of_the_named": [],
+   "channels_in_answer": 0,
+   "channels_in_context": 0,
+   "channels_of_a_named_person": 0,
+   "candidates": 36,
+   "selected": [
+    "P2 | alates 2026-10-06 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 5. Sotsiaalhoolekandelise abi taotlemine § 5. Sotsiaalho",
+    "P3 | alates 2025-09-01 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 5. Sotsiaalhoolekandelise abi taotlemine § 5. Sotsiaalho"
+   ],
+   "cited": [
+    {
+     "title": "Sotsiaalhoolekandelise abi osutamise kord"
+    },
+    {
+     "title": "Sotsiaalhoolekandelise abi osutamise kord"
+    }
+   ],
+   "cited_contact_records": 0,
+   "version_changes": {
+    "acts": [
+     {
+      "act": "Sotsiaalhoolekandelise abi osutamise kord",
+      "newer": {
+       "refs": [
+        "S1"
+       ],
+       "valid_to": null,
+       "valid_from": "2026-10-06"
+      },
+      "older": {
+       "refs": [
+        "S2"
+       ],
+       "valid_to": "2026-10-05",
+       "valid_from": "2025-09-01"
+      },
+      "differences": [
+       {
+        "newer": [
+         "S1"
+        ],
+        "older": [
+         "S2"
+        ],
+        "state": "changed",
+        "provision": "§ 5 lg 1"
+       },
+       {
+        "newer": [
+         "S1"
+        ],
+        "older": [
+         "S2"
+        ],
+        "state": "changed",
+        "provision": "§ 5 lg 3"
+       },
+       {
+        "newer": [
+         "S1"
+        ],
+        "older": [
+         "S2"
+        ],
+        "state": "changed",
+        "provision": "§ 5 lg 4"
+       }
+      ],
+      "same_wording": [
+       "§ 5",
+       "§ 5 lg 2",
+       "§ 5 lg 5"
+      ],
+      "not_in_evidence": {
+       "added": [
+        "§ 1¹",
+        "§ 1¹ lg 1",
+        "§ 1¹ lg 2",
+        "§ 1¹ lg 3",
+        "§ 1¹ lg 4",
+        "§ 1¹ lg 5",
+        "§ 1¹ lg 6",
+        "§ 1¹ lg 7",
+        "§ 1¹ lg 8",
+        "§ 4 lg 6",
+        "§ 22 lg 9",
+        "§ 25 lg 7"
+       ],
+       "changed": {
+        "count": 44,
+        "first": [
+         "§ 1 lg 4",
+         "§ 3 lg 1",
+         "§ 3 lg 2",
+         "§ 4 lg 2",
+         "§ 6 lg 2",
+         "§ 6 lg 4",
+         "§ 7 lg 1",
+         "§ 7 lg 2",
+         "§ 7 lg 4",
+         "§ 7 lg 7",
+         "§ 7 lg 10",
+         "§ 8 lg 2",
+         "§ 8 lg 3",
+         "§ 10 lg 5",
+         "§ 12 lg 1",
+         "§ 13 lg 7",
+         "§ 15 lg 1",
+         "§ 18 lg 1",
+         "§ 18 lg 4",
+         "§ 18 lg 5",
+         "§ 19 lg 2",
+         "§ 21 lg 2",
+         "§ 22 lg 1",
+         "§ 22 lg 2",
+         "§ 22 lg 3",
+         "§ 22 lg 5",
+         "§ 22 lg 6",
+         "§ 24 lg 1",
+         "§ 26 lg 5",
+         "§ 26 lg 6",
+         "§ 27 lg 4",
+         "§ 27 lg 5",
+         "§ 27 lg 7",
+         "§ 31 lg 2",
+         "§ 31 lg 6",
+         "§ 32 lg 4",
+         "§ 34 lg 3",
+         "§ 37",
+         "§ 37¹ lg 3",
+         "§ 38 lg 5"
+        ]
+       },
+       "removed": [
+        "§ 22 lg 8"
+       ]
+      }
+     }
+    ],
+    "basis": "the wording of each section and subsection of the two versions, compared on the server",
+    "version": "rag-v2/version-comparison-2"
+   },
+   "plan_price_usd": 0.00606799,
+   "search_ms": 5108,
+   "total_ms": 19522,
+   "answer": "Alates 6. oktoobrist 2026 tuleb Põhja-Sakala vallas sissetulekust sõltuva toetuse taotlusele lisada eelneva kuni kolme kuu sissetulekuid ja vähemalt eelneva kuu eluasemekulusid tõendavad dokumendid. Varem olid sissetulekute tõendid soovituslikud ning nõuti vähemalt eelneva kuu püsiväljaminekuid. Seega muutuvad tõendid kohustuslikuks ja püsiväljaminekute asemel nimetatakse eluasemekulud. [S1, S2]\n\nSama paragrahvi järgi esitatakse taotlus edaspidi ametiasutuse sotsiaalosakonnale; varem nimetati vallavalitsuse sotsiaalosakonda. Taotlusvorme koostab nüüd ametiasutus, varem kehtestas need vallavalitsus. Taotlust menetlevat töötajat nimetatakse uues sõnastuses spetsialistiks, varem sotsiaaltöötajaks. [S1, S2]\n\nMa ei saa kirjeldada määruse muid muudatusi: nende sätete uus ja varasem sõnastus ei ole siin esitatud."
+  },
+  {
+   "run": "municipal-tone",
+   "scenario": "tone-tartu-transport",
+   "turn": 1,
+   "turn_id": "c1410983-6e63-4b27-8763-5eac562df4b6",
+   "text": "Elan Tartu vallas, mitte Tartu linnas. Kuhu pöörduda sotsiaaltranspordi saamiseks?",
+   "verdict": "passed",
+   "checks": 5,
+   "failed": [],
+   "region": "tartu_vald",
+   "scope_state": "person_mentioned_region",
+   "queries": [
+    "Tartu valla sotsiaaltransporditeenus taotlemine kuhu pöörduda"
+   ],
+   "answer_kind": "grounded",
+   "clarification": false,
+   "records": {
+    "version": "rag-v2/record-catalogue-4",
+    "view": "titles",
+    "listed": 40,
+    "relevant_summaries": 11,
+    "opened": [
+     "#18 contact_directory resource | Sotsiaalvaldkonna kontaktid: Tartu vald",
+     "#2 relevant_detail resource | Sotsiaalteenuste Keskus",
+     "#1 relevant_detail service | Sotsiaaltransporditeenus",
+     "#3 relevant_detail service | Vältimatu sotsiaalabi teenus"
+    ],
+    "contacts_shown": 10
+   },
+   "contacts_named_in_answer": 2,
+   "roles_of_the_named": [
+    "sotsiaaltööspetsialist-erihoolekandeteenuste koordinaator",
+    "sotsiaaltöö- ja eestkostespetsialist"
+   ],
+   "channels_in_answer": 4,
+   "channels_in_context": 4,
+   "channels_of_a_named_person": 4,
+   "candidates": 36,
+   "selected": [
+    "P2 | alates 2026-05-01 | Tartu vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk SOTSIAALTEENUSED > 2. jagu Kohaliku omavalitsuse üksuse sotsiaalteenused > 8. j",
+    "P4 | alates 2026-05-01 | Tartu vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk SOTSIAALTEENUSED > 1. jagu Üldsätted > § 7. Teenuste taotlemine § 7. Teenuste t",
+    "P7 | alates 2026-05-01 | Tartu vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk SOTSIAALTEENUSED > 2. jagu Kohaliku omavalitsuse üksuse sotsiaalteenused > 8. j"
+   ],
+   "cited": [
+    {
+     "title": "Sotsiaaltransporditeenus"
+    },
+    {
+     "title": "Sotsiaaltranspordi teenuse avaldus"
+    },
+    {
+     "title": "Sotsiaalhoolekandelise abi andmise kord"
+    }
+   ],
+   "cited_contact_records": 2,
+   "plan_price_usd": 0.005582435,
+   "search_ms": 5068,
+   "total_ms": 18043,
+   "answer_omitted": "names a contact person; the answer is in the report on the server"
+  },
+  {
+   "run": "municipal-tone",
+   "scenario": "tone-kose-transport",
+   "turn": 1,
+   "turn_id": "ecd4e103-bfe4-40c5-b24c-819c4e70c35d",
+   "text": "Mu naabrimees vajab transporti arsti juurde, ta elab Kose vallas. Kellele ta saab helistada?",
+   "verdict": "passed",
+   "checks": 5,
+   "failed": [],
+   "region": "kose_vald",
+   "scope_state": "person_mentioned_region",
+   "queries": [
+    "Kose valla sotsiaaltransport arsti juurde taotlemine kontakttelefon"
+   ],
+   "answer_kind": "partial",
+   "clarification": false,
+   "records": {
+    "version": "rag-v2/record-catalogue-4",
+    "view": "titles",
+    "listed": 52,
+    "relevant_summaries": 19,
+    "opened": [
+     "#3 relevant_detail resource | Hädaabinumber",
+     "#1 relevant_detail resource | Perearsti nõuandeliin 1220",
+     "#2 relevant_detail service | Sotsiaaltransporditeenus",
+     "#32 contact_directory resource | Sotsiaalvaldkonna kontaktid: Kose vald"
+    ],
+    "contacts_shown": 8
+   },
+   "contacts_named_in_answer": 2,
+   "roles_of_the_named": [
+    "sotsiaaltöö vanemspetsialist",
+    "sotsiaaltöö vanemspetsialist"
+   ],
+   "channels_in_answer": 2,
+   "channels_in_context": 2,
+   "channels_of_a_named_person": 2,
+   "candidates": 36,
+   "selected": [
+    "P9 | Kes aitab ja kuhu pöörduda, kui sul on tuvastatud puude raskusaste? > Kes aitab ja kuhu pöörduda, kui sul on tuvastatud puude raskusaste ning vajad tuge? Abivah"
+   ],
+   "cited": [
+    {
+     "title": "Sotsiaaltransporditeenus"
+    }
+   ],
+   "cited_contact_records": 2,
+   "plan_price_usd": 0.00551065,
+   "search_ms": 7537,
+   "total_ms": 21420,
+   "answer_omitted": "names a contact person; the answer is in the report on the server"
+  },
+  {
+   "run": "municipal-tone",
+   "scenario": "tone-harku-food",
+   "turn": 1,
+   "turn_id": "1443c246-d8ad-4342-854c-d906c323ff64",
+   "text": "Mul on raha otsas ja toiduks ei jätku. Elan Harku vallas.",
+   "verdict": "passed",
+   "checks": 5,
+   "failed": [],
+   "region": "harku_vald",
+   "scope_state": "person_mentioned_region",
+   "queries": [
+    "vältimatu sotsiaalabi toiduabi Harku vallas"
+   ],
+   "answer_kind": "partial",
+   "clarification": true,
+   "records": {
+    "version": "rag-v2/record-catalogue-4",
+    "view": "titles",
+    "listed": 44,
+    "relevant_summaries": 12,
+    "opened": [
+     "#2 relevant_detail benefit | Toidutoetus vähekindlustatud peredele",
+     "#3 relevant_detail benefit | Toimetulekutoetus",
+     "#1 relevant_detail service | Toidupank",
+     "#36 contact_directory resource | Sotsiaalvaldkonna kontaktid: Harku vald"
+    ],
+    "contacts_shown": 4
+   },
+   "contacts_named_in_answer": 1,
+   "roles_of_the_named": [
+    "sotsiaalhoolekandespetsialist"
+   ],
+   "channels_in_answer": 2,
+   "channels_in_context": 2,
+   "channels_of_a_named_person": 2,
+   "candidates": 36,
+   "selected": [
+    "P1 | alates 2025-09-01 | Harku vald > Harku valla eelarvest makstavate sotsiaaltoetuste määrad ja piirmäärad: Harku Vallavolikogu määruse „Sotsiaalhoolekandelise abi andm",
+    "P2 | alates 2025-09-01 | Harku vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk Harku vallas makstavad toetused > 4. jagu Pere tulust sõltuvad toetused > § 61.",
+    "P3 | alates 2025-09-01 | Harku vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk Harku vallas makstavad toetused > 5. jagu Erijuhud > § 67. Vältimatu sotsiaalab",
+    "P5 | alates 2025-09-01 | Harku vald > Sotsiaalhoolekandelise abi andmise kord > 1. peatükk ÜLDSÄTTED > § 2. Määruses kasutatavad mõisted § 2. Määruses kasutatavad mõisted",
+    "P11 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 1. peatükk Üldsätted > § 8. Vältimatu sotsiaalabi § 8. Vältimatu sotsiaalabi (1) Isikule, kes on sattunu",
+    "P17 | alates 2025-09-01 | Harku vald > Sotsiaalhoolekandelise abi andmise kord > 1. peatükk ÜLDSÄTTED > § 4. Toetusele ja teenusele õigust omavad isikud § 4. Toetusele ja"
+   ],
+   "cited": [
+    {
+     "title": "Sotsiaalhoolekande seadus"
+    },
+    {
+     "title": "Sotsiaalhoolekandelise abi andmise kord"
+    },
+    {
+     "title": "Toidupank"
+    }
+   ],
+   "cited_contact_records": 1,
+   "plan_price_usd": 0.00673659,
+   "search_ms": 7707,
+   "total_ms": 31695,
+   "answer_omitted": "names a contact person; the answer is in the report on the server"
+  },
+  {
+   "run": "municipal-tone",
+   "scenario": "tone-tartu-shelter",
+   "turn": 1,
+   "turn_id": "748053d6-c7c8-4256-ad90-e6be41d4855f",
+   "text": "Elan Tartu vallas. Mul pole täna öösel kusagil magada ega raha toidu ostmiseks. Kust saan kohe abi?",
+   "verdict": "passed",
+   "checks": 4,
+   "failed": [],
+   "region": "tartu_vald",
+   "scope_state": "person_mentioned_region",
+   "queries": [
+    "Tartu vald vältimatu sotsiaalabi öömaja toiduabi"
+   ],
+   "answer_kind": "partial",
+   "clarification": true,
+   "records": {
+    "version": "rag-v2/record-catalogue-4",
+    "view": "titles",
+    "listed": 40,
+    "relevant_summaries": 12,
+    "opened": [
+     "#40 contact_directory resource | Sotsiaalvaldkonna kontaktid: Tartu vald",
+     "#3 relevant_detail service | Turvakoduteenus",
+     "#2 relevant_detail service | Vältimatu sotsiaalabi teenus",
+     "#1 relevant_detail service | Varjupaigateenus"
+    ],
+    "contacts_shown": 10
+   },
+   "contacts_named_in_answer": 2,
+   "roles_of_the_named": [
+    "sotsiaaltööspetsialist-erihoolekandeteenuste koordinaator",
+    "sotsiaaltöö- ja eestkostespetsialist"
+   ],
+   "channels_in_answer": 2,
+   "channels_in_context": 2,
+   "channels_of_a_named_person": 2,
+   "candidates": 36,
+   "selected": [
+    "P1 | alates 2026-05-01 | Tartu vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk SOTSIAALTEENUSED > 1. jagu Üldsätted > § 7. Teenuste taotlemine § 7. Teenuste t",
+    "P2 | alates 2026-05-01 | Tartu vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk SOTSIAALTEENUSED > 2. jagu Kohaliku omavalitsuse üksuse sotsiaalteenused > 6. j",
+    "P3 | alates 2026-05-01 | Tartu vald > Sotsiaalhoolekandelise abi andmise kord > 4. peatükk VÄLTIMATU SOTSIAALABI > § 44. Vältimatu sotsiaalabi eesmärk ja sisu § 44. Välti",
+    "P4 | alates 2026-05-01 | Tartu vald > Sotsiaalhoolekandelise abi andmise kord > 4. peatükk VÄLTIMATU SOTSIAALABI > § 45. Teenuse osutamine ja selle eest tasumine § 45. Te",
+    "P17 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 1. peatükk Üldsätted > § 8. Vältimatu sotsiaalabi § 8. Vältimatu sotsiaalabi (1) Isikule, kes on sattunu",
+    "P31 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 1. peatükk Üldsätted > § 5. Sotsiaalhoolekandega hõlmatus § 5. Sotsiaalhoolekandega hõlmatus (1) Isikule"
+   ],
+   "cited": [
+    {
+     "title": "Sotsiaalhoolekande seadus"
+    },
+    {
+     "title": "Sotsiaalhoolekandelise abi andmise kord"
+    },
+    {
+     "title": "Vältimatu sotsiaalabi teenus"
+    },
+    {
+     "title": "Varjupaigateenus"
+    }
+   ],
+   "cited_contact_records": 2,
+   "plan_price_usd": 0.00566168,
+   "search_ms": 12164,
+   "total_ms": 27696,
+   "answer_omitted": "names a contact person; the answer is in the report on the server"
+  },
+  {
+   "run": "municipal-tone",
+   "scenario": "tone-harku-home-care",
+   "turn": 1,
+   "turn_id": "256dfcc1-aa4f-4e2b-894a-749d6cbbd9d1",
+   "text": "Vajan emale kodus abi igapäevaste toimingutega. Ema elab Harku vallas.",
+   "verdict": "passed",
+   "checks": 4,
+   "failed": [],
+   "region": "harku_vald",
+   "scope_state": "person_mentioned_region",
+   "queries": [
+    "Koduteenus eakale igapäevatoimingutes Harku vallas"
+   ],
+   "answer_kind": "grounded",
+   "clarification": false,
+   "records": {
+    "version": "rag-v2/record-catalogue-4",
+    "view": "titles",
+    "listed": 44,
+    "relevant_summaries": 14,
+    "opened": [
+     "#3 relevant_detail resource | Harku Sotsiaalkeskus",
+     "#2 relevant_detail service | Isikliku abistaja teenus",
+     "#1 relevant_detail service | Koduteenus",
+     "#24 contact_directory resource | Sotsiaalvaldkonna kontaktid: Harku vald, Hooldustöötajad"
+    ],
+    "contacts_shown": 7
+   },
+   "contacts_named_in_answer": 1,
+   "roles_of_the_named": [
+    "sotsiaalhoolekandespetsialist"
+   ],
+   "channels_in_answer": 2,
+   "channels_in_context": 2,
+   "channels_of_a_named_person": 2,
+   "candidates": 36,
+   "selected": [
+    "P7 | alates 2025-09-01 | Harku vald > Sotsiaalhoolekandelise abi andmise kord > 2. peatükk Harku vallas osutatavad sotsiaalteenused > 2. jagu Koduteenus > § 11. Koduteenu",
+    "P18 | alates 2025-06-15 | Harku vald > Koduteenuse eest võetava tasu suurus ja tingimused Määrus kehtestatakse Harku Vallavolikogu 31. märtsi 2016. a määruse nr 11 „Sotsi",
+    "P21 | alates 2025-06-15 | Harku vald > Koduteenuse eest võetava tasu suurus ja tingimused > § 1. Koduteenuse eest võetava tasu suurus ja tingimused § 1. Koduteenuse eest ",
+    "P24 | alates 2025-09-01 | Harku vald > Sotsiaalhoolekandelise abi andmise kord > 2. peatükk Harku vallas osutatavad sotsiaalteenused > 2. jagu Koduteenus > § 12. Koduteen",
+    "P30 | alates 2025-09-01 | Harku vald > Sotsiaalhoolekandelise abi andmise kord > 2. peatükk Harku vallas osutatavad sotsiaalteenused > 2. jagu Koduteenus > § 13. Kulude k"
+   ],
+   "cited": [
+    {
+     "title": "Sotsiaalhoolekandelise abi andmise kord"
+    },
+    {
+     "title": "Koduteenus"
+    },
+    {
+     "title": "Koduteenuse eest võetava tasu suurus ja tingimused"
+    }
+   ],
+   "cited_contact_records": 1,
+   "plan_price_usd": 0.005774855,
+   "search_ms": 9719,
+   "total_ms": 24742,
+   "answer_omitted": "names a contact person; the answer is in the report on the server"
+  },
+  {
+   "run": "before-after",
+   "scenario": "my-municipality-after-another",
+   "turn": 1,
+   "turn_id": "5e852f09-6960-4d56-b0f1-5e183f3d02ce",
+   "text": "Elan Nõo vallas ja mul on raske toime tulla. Kust ma abi saan?",
+   "verdict": "passed",
+   "checks": 3,
+   "failed": [],
+   "region": "noo_vald",
+   "scope_state": "person_mentioned_region",
+   "queries": [
+    "Nõo valla sotsiaalabi ja toimetulekuraskustes inimese abistamine"
+   ],
+   "answer_kind": "partial",
+   "clarification": true,
+   "records": {
+    "version": "rag-v2/record-catalogue-4",
+    "view": "titles",
+    "listed": 42,
+    "relevant_summaries": 20,
+    "opened": [
+     "#2 relevant_detail benefit | Kriisiabi",
+     "#3 relevant_detail service | Tugiisikuteenus",
+     "#1 relevant_detail service | Võlanõustamisteenus",
+     "#32 contact_directory resource | Sotsiaalvaldkonna kontaktid: Nõo vald"
+    ],
+    "contacts_shown": 7
+   },
+   "contacts_named_in_answer": 1,
+   "roles_of_the_named": [
+    "Sotsiaaltööspetsialist"
+   ],
+   "channels_in_answer": 3,
+   "channels_in_context": 3,
+   "channels_of_a_named_person": 3,
+   "candidates": 36,
+   "selected": [
+    "P1 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 4. peatükk NÕO VALLA EELARVEST MAKSTAVAD TOETUSED > 3. jagu Sissetulekust sõltuvad toetused ",
+    "P2 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk SOTSIAALTEENUSED > 2. jagu Nõo vallas osutatavad ja korraldatavad sotsiaalteenuse",
+    "P4 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk SOTSIAALTEENUSED > 2. jagu Nõo vallas osutatavad ja korraldatavad sotsiaalteenuse",
+    "P7 | alates 2026-06-09 | Nõo vald > Nõo valla eelarvest makstavate sotsiaaltoetuste määrad > § 2. Sissetulekust sõltuvad toetused § 2. Sissetulekust sõltuvad toetused Sis",
+    "P15 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk SOTSIAALTEENUSED > 2. jagu Nõo vallas osutatavad ja korraldatavad sotsiaalteenus",
+    "P20 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 2. peatükk SOTSIAALHOOLEKANDELISE ABI ANDMISE PÕHIMÕTTED > § 5. Sotsiaalhoolekandelise abi ",
+    "P23 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 1. peatükk ÜLDSÄTTED > § 2. Sotsiaalkaitse korraldamise põhimõtted § 2. Sotsiaalkaitse korr",
+    "P27 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 2. peatükk SOTSIAALHOOLEKANDELISE ABI ANDMISE PÕHIMÕTTED > § 6. Sotsiaalhoolekandelise abi ",
+    "P31 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 1. peatükk Üldsätted > § 8. Vältimatu sotsiaalabi § 8. Vältimatu sotsiaalabi (1) Isikule, kes on sattunu"
+   ],
+   "cited": [
+    {
+     "title": "Sotsiaalhoolekandelise abi andmise kord"
+    },
+    {
+     "title": "Nõo valla eelarvest makstavate sotsiaaltoetuste määrad"
+    },
+    {
+     "title": "Toetus majandusliku olukorra leevendamiseks"
+    },
+    {
+     "title": "Tugiisikuteenus"
+    }
+   ],
+   "cited_contact_records": 1,
+   "plan_price_usd": 0.005713365,
+   "search_ms": 5277,
+   "total_ms": 23581,
+   "answer_omitted": "names a contact person; the answer is in the report on the server"
+  },
+  {
+   "run": "before-after",
+   "scenario": "my-municipality-after-another",
+   "turn": 2,
+   "turn_id": "6b2ec88e-8933-4821-9ef5-380e3758a67a",
+   "text": "Kas Maardus saab isikliku abistaja teenust?",
+   "verdict": "passed",
+   "checks": 4,
+   "failed": [],
+   "region": "maardu_linn",
+   "scope_state": "question_region",
+   "queries": [
+    "Maardu linna isikliku abistaja teenuse korraldus"
+   ],
+   "answer_kind": "partial",
+   "clarification": true,
+   "records": {
+    "version": "rag-v2/record-catalogue-4",
+    "view": "titles",
+    "listed": 51,
+    "relevant_summaries": 30,
+    "opened": [
+     "#1 relevant_detail service | Isikliku abistaja teenus",
+     "#3 relevant_detail service | Koduteenus",
+     "#2 relevant_detail service | Tugiisikuteenus",
+     "#43 contact_directory resource | Sotsiaalvaldkonna kontaktid: Maardu linn"
+    ],
+    "contacts_shown": 10
+   },
+   "contacts_named_in_answer": 1,
+   "roles_of_the_named": [
+    "sotsiaaltöö peaspetsialist"
+   ],
+   "channels_in_answer": 2,
+   "channels_in_context": 2,
+   "channels_of_a_named_person": 2,
+   "candidates": 36,
+   "selected": [
+    "P2 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 5. Teenuse taotlemine § 5. Teenuse taotlemine Teenuse taotlemiseks esita",
+    "P6 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 3. Teenuse sisu ja tingimused § 3. Teenuse sisu ja tingimused (1) Isikli",
+    "P7 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 6. Teenuse osutamise otsustamine § 6. Teenuse osutamise otsustamine (1) ",
+    "P8 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 7. Isikliku abistaja teenuse osutajad § 7. Isikliku abistaja teenuse osu",
+    "P9 | alates 2026-10-04 | Maardu linn > Isikliku abistaja teenuse osutamise tingimused ja kord > § 4. Teenuse saaja § 4. Teenuse saaja (1) Teenust on õigus saada eelkõige "
+   ],
+   "cited": [
+    {
+     "title": "Isikliku abistaja teenuse osutamise tingimused ja kord"
+    }
+   ],
+   "cited_contact_records": 1,
+   "plan_price_usd": 0.005492045,
+   "search_ms": 3971,
+   "total_ms": 20423,
+   "answer_omitted": "names a contact person; the answer is in the report on the server"
+  },
+  {
+   "run": "before-after",
+   "scenario": "my-municipality-after-another",
+   "turn": 3,
+   "turn_id": "9f1e0e42-ed6e-47d5-afa5-2c719d4c7d04",
+   "text": "Kas see teenus on ka minu vallas olemas?",
+   "verdict": "passed",
+   "checks": 5,
+   "failed": [],
+   "region": "noo_vald",
+   "scope_state": "person_region",
+   "queries": [
+    "Nõo valla isikliku abistaja teenuse osutamine"
+   ],
+   "answer_kind": "partial",
+   "clarification": false,
+   "records": {
+    "version": "rag-v2/record-catalogue-4",
+    "view": "titles",
+    "listed": 42,
+    "relevant_summaries": 20,
+    "opened": [
+     "#3 relevant_detail service | Pesupesemisteenus",
+     "#1 relevant_detail service | Täiendavad vajaduspõhised teenused",
+     "#2 relevant_detail service | Tugiisikuteenus",
+     "#40 contact_directory resource | Sotsiaalvaldkonna kontaktid: Nõo vald"
+    ],
+    "contacts_shown": 7
+   },
+   "contacts_named_in_answer": 1,
+   "roles_of_the_named": [
+    "sotsiaaltööspetsialist"
+   ],
+   "channels_in_answer": 3,
+   "channels_in_context": 3,
+   "channels_of_a_named_person": 3,
+   "candidates": 36,
+   "selected": [
+    "P5 | Kohaliku omavalitsuse väljakutsed sotsiaalteenuste osutamisel > Vajadustele vastav abi Oluline nüanss sotsiaalteenuste juures on see, et inimesel ei ole automaa",
+    "P7 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk SOTSIAALTEENUSED > 1. jagu Teenuste osutamise üldised sätted > § 9. Teenuste loet",
+    "P12 | Isikliku abistaja teenuse reguleerimine kohaliku omavalitsuse õigusaktides > Inimene võib pöörduda omavalitsuse poole ka suuliselt Juba paarkümmend aastat on he",
+    "P15 | alates 2026-06-01 | Nõo vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk SOTSIAALTEENUSED > 2. jagu Nõo vallas osutatavad ja korraldatavad sotsiaalteenus"
+   ],
+   "cited": [
+    {
+     "title": "Sotsiaalhoolekandelise abi andmise kord"
+    }
+   ],
+   "cited_contact_records": 1,
+   "plan_price_usd": 0.005787285,
+   "search_ms": 5752,
+   "total_ms": 17723,
+   "answer_omitted": "names a contact person; the answer is in the report on the server"
+  }
+ ],
+ "plan": "m4-sotsiaalai-corpus-chat-20261005-144321-26496c17-f964-4f80-8317-7c77b282c575-radd0624c4b90499fe1350d50eb488eccdc5a2152",
+ "generation": "search_generation_4336293a31086af0190543a4c3cd0d146b2fc1a6576a334a1148542b5830eaff",
+ "model": "gpt-6-luna",
+ "reasoning": "medium",
+ "source": "the evaluator's reports on the server (rag-v2-work/eval-files/strengthening-2-2026-10-05/<run>/conversation-eval.json) and each turn's own record",
+ "masking": "an answer that names a contact person (also in a declined form) is left out whole, with the roles of the people it names; in a kept answer a capitalised word that starts like a part of a shown contact's name is masked, which can hide a place name; a contact's own record is counted, not listed, among the cited sources; e-mail addresses and phone numbers are masked"
+}
