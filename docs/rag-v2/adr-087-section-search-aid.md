@@ -2,7 +2,7 @@
 
 05.10.2026. Teostus Claude Opus 5.5. Omanik 05.10: „teeme need tugevaks“ (viiest tööst viies: perekonnaseaduse §-d 96–97 ei tule otsingus kindlalt välja). Lähtekoht: [ADR-079](adr-079-plan-list-duty-query-and-reserved-places.md) mõõtmine ja käsiraamatu S1.0 kirje „otsinguabi seaduse lõigu juurde“.
 
-**Kood ja registrikirje on kontrollitud kohalike testidega. Mõju otsingule on mõõtmata, kuni perekonnaseadus on uue registrikirjega indeksis (korpus v58); mõõtmiskataloog ja ootused on enne jooksu kirjas.**
+**Töös korpusega v58. Mõõdetud mudelita (jaotis „Mõõtmine“): § 96 on nüüd eelvaliku kandidaatide seas kõigis neljas küsimuses, § 97 kahes kolmest. Mudeliga mõõtmata: kas eelvalik need lõigud hoiab ja mida Luna vastab.**
 
 ## Diagnoos (05.10, tasuta: indeks v56/v57, sõnaline kanal, mudelita)
 
@@ -43,7 +43,20 @@
 
 **Enne (korpus v57, abita; 05.10, omaniku loal ost 6 päringuteksti, 142 tokenit, 0,00002 USD):** vestluse otsinguprofiiliga (v6, eelvalikuta, 10 allikat) ei jõudnud § 96 ega § 97 sõnad tõenditesse üheski neljast küsimusest (0/7 otsustavat fraasi). Sama tulemus alusprofiiliga v1.
 
-Tulemus abidega kirjutatakse siia pärast korpust v58.
+**Korpus v58 (05.10 kell 15.24):** perekonnaseadus sisestati registri abidega (227 lõiku, uus versioon), ost 3 sisendit, 986 tokenit, 0,00013 USD (omaniku 05.10 luba; ulatus öeldi enne: kuni 3 sisendit, piir 0,01 USD). Indeks `4336293a`, vestlusplaan `/etc/sotsiaalai/m4-corpus-chat-20261005c.json`. Esimene käivitus peatus enne ostu failikontrollis, sest ühe faili üleslaadimine oli katkenud; midagi ei ostetud ja hoidla jäi puutumata.
+
+**Pärast (korpus v58, samad päringuvektorid, tasuta):**
+
+| Küsimus | Eelvalikuta 10 allikat: § 96, § 97 | Eelvaliku kandidaadid (36): § 96, § 97 |
+|---|---|---|
+| hooldekodu kohatasu lastelt, plaanipäring A | ei, ei (enne: ei, ei) | jah, ei |
+| sama, plaanipäring B | ei, ei (enne: ei, ei) | jah, jah |
+| kas täiskasvanud laps peab vanemat ülal pidama | jah, jah (enne: ei, ei) | jah, jah |
+| ema hooldekodu puuduv osa (seadust ei nimeta) | ei (enne: ei) | jah (varukohal) |
+
+- **Eelvaliku kandidaadid** on päris otsingurada: vestluse profiil, plaani päringud, üleriigiliste seaduste varukohad ([ADR-032](adr-032-national-law-reserve-and-plan-restart.md), ADR-079), tänane kehtivus; eelvaliku mudeli asemel märgiti kandidaadid üles (`rerank_unavailable`). Võrdlus varasemaga on kahe esimese küsimuse kohta 04.10 mõõdetud pöörete kirjetest: plaanipäringuga A ei olnud kandidaatide seas ei § 96 ega § 97, plaanipäringuga B oli § 97 ja ei olnud § 96. Kahe viimase küsimuse kandidaate enne abisid ei mõõdetud.
+- **Eelvalikuta** jõuavad mõlemad lõigud kümne allika hulka ainult otse küsitud küsimuses. Hooldekodu kohatasu küsimustes on seal ees artiklid ja teised allikad; kas seaduse lõik jõuab vastusesse, otsustab eelvalik.
+- **Sõnaline kanal** (seaduse sees): § 96 koht plaanipäringule A 81 → 59, plaanipäringule B 54 → 42, otse küsimusele 89 → 32; § 97 koht plaanipäringule A 102 → 99. Sõnaline mõju on väike, sest järjestus loeb tabamuste arvu ja abi lisab sõna üks-kaks korda.
 
 ## Piirid
 
