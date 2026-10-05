@@ -4,7 +4,7 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { parseEnv } from 'node:util';
 import { isRevision, migrationHashes, migrationChanges } from './release-artifact.mjs';
-import { publishRelease } from './release-switch.mjs';
+import { publishRelease, jobUnit, releaseUnit, outsideRelease } from './release-switch.mjs';
 
 const [revision, archive] = process.argv.slice(2);
 if (!isRevision(revision) || process.platform !== 'linux') throw new Error('Linux and a full release SHA are required');
@@ -113,13 +113,19 @@ await publishRelease({
   async checkPublic() { await checkUrl('https://sotsiaal.pro/api/health', 5); await checkUrl('https://sotsiaal.pro/'); },
   async commit() {
     if (plan) planBackup = planCommand('activate', '--plan', plan, '--rag-env', '/etc/sotsiaalai/rag.env');
-    // Future timer invocations must use the same code/dependencies as the frontend.
-    // Do not start or enable timers, or restart any running maintenance job.
-    for (const name of ['sotsiaalai-casework-retention.service', 'sotsiaalai-notifications.service', 'sotsiaalai-service-map-contact-check.service']) {
-      const file = `/etc/systemd/system/${name}`;
-      maintenanceBackups.set(file, readRoot(file));
-      const contents = (await fs.readFile(`${directory}/deploy/systemd/${name}`, 'utf8')).replaceAll(app, directory);
-      await install(file, contents);
+    // Future timer invocations must use the same code/dependencies as the frontend: every job unit of the
+    // repository is written for this release. A named list left out the jobs added later, and they ran on from
+    // the first checkout. deploy/systemd is installed or updated; a unit of ops/systemd is off until the operator
+    // installs it, so it is only updated. Do not start or enable timers, or restart any running maintenance job.
+    for (const [folder, always] of [['deploy/systemd', true], ['ops/systemd', false]]) {
+      for (const name of (await fs.readdir(`${directory}/${folder}`)).filter(name => name.endsWith('.service')).sort()) {
+        const text = await fs.readFile(`${directory}/${folder}/${name}`, 'utf8'), file = `/etc/systemd/system/${name}`;
+        if (!jobUnit(name, text, app)) continue;
+        const installed = await exists(file) ? readRoot(file) : null;
+        if (installed === null && !always) continue;
+        maintenanceBackups.set(file, installed);
+        await install(file, releaseUnit(text, app, directory));
+      }
     }
     sudo('systemctl', 'daemon-reload');
     const state = { revision, directory, activatedAt: new Date().toISOString(), previous: { revision: old.revision, directory: old.directory } };
@@ -154,3 +160,15 @@ for (const name of await fs.readdir(root)) {
   await fs.rm(file, { recursive: true });
   sudo('rm', '-f', '--', `/etc/sotsiaalai/releases/${name}.env`);
 }
+
+// A job of the app that still runs from the first checkout is named, not repaired: a unit that the repository does not
+// hold is the operator's to move or remove. The warning stands outside the transaction and cannot fail the release.
+try {
+  for (const name of (await fs.readdir('/etc/systemd/system')).filter(name => /^sotsiaalai-[a-z0-9-]+\.service$/.test(name)).sort()) {
+    const show = property => command('systemctl', ['show', '-p', property, '--value', name]).trim();
+    if (!outsideRelease({ workingDirectory: show('WorkingDirectory'), execStart: show('ExecStart') }, app)) continue;
+    const message = `${name} runs from ${app}, not from the live release`;
+    console.log(`::warning title=Scheduled job outside the live release::${message}`);
+    log(`WARNING: ${message}`);
+  }
+} catch (error) { log(`WARNING: the scheduled jobs' folders were not checked: ${error.message}`); }

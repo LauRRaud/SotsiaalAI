@@ -61,9 +61,10 @@ Safety notes:
 ## Install / update on the server
 
 ```bash
-cd /home/ubuntu/apps/sotsiaalai
+R=$(systemctl show -p WorkingDirectory --value sotsiaalai-frontend)   # the live release folder
+cd "$R"
 for u in sotsiaalai-payment-emails sotsiaalai-subscription-reconcile sotsiaalai-subscription-renewals; do
-  sudo cp ops/systemd/$u.service /etc/systemd/system/$u.service
+  sed "s#^WorkingDirectory=.*#WorkingDirectory=$R#" ops/systemd/$u.service | sudo tee /etc/systemd/system/$u.service > /dev/null
   sudo cp ops/systemd/$u.timer   /etc/systemd/system/$u.timer
 done
 sudo systemctl daemon-reload
@@ -96,5 +97,8 @@ curl -s -X POST -H "x-payment-email-key: $PAYMENT_EMAIL_JOB_KEY" \
 | subscription-reconcile | every 15 min (`*:0/15`) | stuck payments are not time-critical |
 | subscription-renewals | hourly | due-date based (`nextBilling`), retries are day-granular |
 
-`scripts/deploy-server.mjs` does not restart these (they are timer-driven oneshots, not
-long-running services), so no deploy change is needed once installed.
+A release does not restart these (they are timer-driven oneshots, not long-running services).
+Once a unit is installed, every release rewrites its `.service` file so that it runs from the
+live release folder (see `deploy/systemd/README.md`, "Ajastatud tööd käivad aktiivsest
+väljalaskest"); a unit that is not installed stays uninstalled. Until 05.10.2026 the installed
+units ran on from the first checkout `/home/ubuntu/apps/sotsiaalai`, whose code no release updates.
