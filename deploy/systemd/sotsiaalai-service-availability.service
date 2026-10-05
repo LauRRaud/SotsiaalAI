@@ -1,0 +1,10 @@
+[Unit]
+Description=SotsiaalAI service availability reminder dispatcher
+After=network-online.target postgresql.service
+
+[Service]
+Type=oneshot
+User=ubuntu
+WorkingDirectory=/home/ubuntu/apps/sotsiaalai
+EnvironmentFile=/etc/sotsiaalai/frontend.env
+ExecStart=/usr/bin/npm run service-availability:remind

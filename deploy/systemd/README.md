@@ -69,6 +69,23 @@ kustunud ülekantud mustandite sisu 12 kuu järel ja arhiveeritud juhtumid ei
 saanud hoiatust ega kustunud tähtajal — ilma ühegi veateate või puuduva rea
 märgita. Koodis olev säilitusreegel ei muutu iseenesest päris tööks.
 
+## Ajastatud tööd käivad aktiivsest väljalaskest
+
+Iga avaldamine kirjutab ajastatud tööde unit-failid `/etc/systemd/system/`-i uue väljalaske kaustaga (`WorkingDirectory`, `ExecStart`, `ReadWritePaths`), et järgmine taimerijooks kasutaks sama koodi ja samu sõltuvusi mis frontend. Repo failides on kirjas esimese checkout'i tee `/home/ubuntu/apps/sotsiaalai`; avaldamine asendab selle väljalaske kaustaga.
+
+- Reegel kehtib iga `sotsiaalai-*.service` faili kohta kaustades `deploy/systemd/` ja `ops/systemd/`, mis seda teed nimetab. Nimelist loendit koodis ei ole: uus fail tuleb kaasa juurutusskripti muutmata. Frontendil on oma `30-release.conf`; OSRM ja hoidla kontroll rakenduse koodi ei käivita ja neid ei puututa.
+- `deploy/systemd/` failid paigaldatakse või uuendatakse alati. `ops/systemd/` failid (maksetööd) on vaikimisi välja lülitatud ja neid uuendatakse ainult siis, kui operaator on need serverisse paigaldanud.
+- Taimereid avaldamine ei luba ega käivita ning käimasolevat tööd ei katkesta.
+- Pärast avaldamist vaadatakse üle kõik serveri `sotsiaalai-*.service` üksused. Kui mõni käib endiselt esimesest checkout'ist, kirjutab avaldamine logisse hoiatuse (`WARNING: … runs from …`; GitHubi töövoos märkus „Scheduled job outside the live release”). Hoiatus väljalaset ei peata: üksus, mida repos ei ole, on operaatori teisaldada või eemaldada.
+
+**Miks.** Kuni 05.10.2026 oli juurutusskriptis kolme töö nimeline loend. Maksekirjade, tellimuste uuendamise ja teenuste saadavuse meeldetuletuse üksused jäid loendist välja ja käisid edasi esimesest checkout'ist, mille kood seisis väljalaskekaustadele ülemineku päeva (04.10.2026) seisus. Kaks esimest on õhukesed käivitajad, mis kutsuvad töötava rakenduse API-t; meeldetuletuse töö käivitas vana koodi otse.
+
+**Uue ajastatud töö lisamine.** Pane `.service` ja `.timer` fail kausta `deploy/systemd/`, kirjuta teeks `/home/ubuntu/apps/sotsiaalai` ja luba taimer serveris ühe käsuga. Test `tests/deploy-plan-release.test.mjs` kontrollib, et repo iga tööüksus kirjutatakse väljalaske kausta.
+
+## `sotsiaalai-service-availability`
+
+`sotsiaalai-service-availability.timer` käivitab iga päev kell 4.00 `npm run service-availability:remind`: teenuseosutaja saab e-kirja, kui tema teenuse saadavuse info on aegumas. Unit-failid olid kuni 05.10.2026 ainult serveris; nüüd on need repos. Kuivjooks midagi ei saada: `npm run service-availability:remind:dry`.
+
 ## `sotsiaalai-casework-retention` (JTA-V1 E7)
 
 | | |
@@ -88,7 +105,7 @@ piiratud partiid. RAG-taaste `dead_letter` või sama jooksu tõrge muudab job'i 
 ebaõnnestunuks, nii et systemd jätab nähtava failed-jälje journal'i; järgmine timerijooks
 proovib parandatavaid töid uuesti.
 
-Deploy paigaldab või uuendab unit-failid, kuid ei luba uut taimerit esimest korda sisse.
+Deploy paigaldab või uuendab `.service` faili (väljalaske kaustaga), kuid ei paigalda `.timer` faili ega luba uut taimerit esimest korda sisse.
 Esmasel aktiveerimisel kontrolli `/etc/sotsiaalai/frontend.env` võtmeid ja käivita:
 
 ```sh
