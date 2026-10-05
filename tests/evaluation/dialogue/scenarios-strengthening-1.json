@@ -1,0 +1,187 @@
+{
+ "schema_version": "rag-v2/dialogue-eval-2",
+ "purpose": "Owner 05.10.2026, 'teeme need tugevaks', item 1: the changes of 04.-05.10 that only local tests and model-free checks had shown, measured once with the model. Contacts in an answer (ADR-085, ADR-086: the contact directories of 76 municipalities and Tallinn, the compact view), the two server rules of ADR-084 (a situation told in an earlier message stays in the search; 'in my municipality' is the person's own one) and the Family Law Act's maintenance sections found for a question that names neither the duty nor the act (ADR-087). 'What changes' (ADR-088) is measured by scenarios-version-change-1 and the five unrelated questions by scenarios-answered-questions-1, in the same run. Written before any run with the model. Run with --auto-modes (what the chat sends). No person's name, phone or e-mail is in this file: a contact is checked by the form of a phone number or an address, and the answers with names stay on the server.",
+ "expectation_help": {
+  "region": "the municipal scope of the turn",
+  "contacts": "search: the record context shows at least one contact person",
+  "must (contacts)": "answer: it gives a phone number or an e-mail address; whether it is the right person's is read from the answer and the record context on the server, a pattern cannot tell",
+  "must_not (contacts)": "answer: no sentence on when the records were collected or whether they are still current (owner 28.09.2026)",
+  "evidence_text": "search: the words of the situation told in the earlier message are in the evidence of the turn that asks the question (ADR-084 F1)",
+  "person_regions / state_kept": "the saved dialogue state: the residence is unchanged by a question about another municipality",
+  "evidence / cited / evidence_provision": "the act is among the found sources, the answer has a source block that cites it, and a passage of the named section with the deciding words is in the evidence the answer was given"
+ },
+ "history": [
+  "05.10.2026, first run (commit d43f3458, corpus v58, record-catalogue-3, dialogue prompt 26): the catalogue as written before any run, 9 turns: 6 passed, 2 answer, 1 search, 0.0475 USD. Contacts: in Antsla the directory was one of the three closest records, eight people were shown and the answer gave their phones and addresses, every one of them from the context. In Tallinn and Narva no contact was shown and the answer gave none: the three closest records were services, and the right directory (Lasnamäe's, the Social Welfare Board's) stood 21st and 22nd in the relevance order and was listed by its title only; the Narva answer said it had no phone number. Both ADR-084 conversations passed: the adaptation stayed in the second turn's search, and 'minu vallas' was searched in Nõo vald. The care home question: § 96 and § 97 of the Family Law Act were candidates, the selection kept another passage of the chapter and the article on the duty, so the check on § 96 in the evidence failed; the answer states the duty and its limits and cites the act (docs/audits/evidence/strengthening-measured-2026-10-05.json). Cause of the contact failures and the change that followed: ADR-089."
+ ],
+ "scenarios": [
+  {
+   "id": "contacts-tallinn-district",
+   "title": "Kontakt Tallinnas: linnaosa nimetatud",
+   "source": "ADR-086: Tallinn's 119 people in 14 contact directories since corpus v57; never measured with the model",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Elan Tallinnas Lasnamäel ja tahan taotleda toimetulekutoetust. Kelle poole ma pöörduma peaksin?",
+     "expect": {
+      "region": "tallinn",
+      "contacts": true,
+      "must": [
+       "@|\\d{3} ?\\d{4}"
+      ],
+      "must_not": [
+       "ei saa[^.]{0,120}(kinnita|öelda)[^.]{0,120}(praegu|kehti|samasugune|ajakohane|kättesaadav)",
+       "(kogutud|kontrollitud|pärinevad)[^.]{0,40}\\d{1,2}\\.\\d{1,2}\\.\\d{4}"
+      ]
+     },
+     "note": "Whether the contact is the named district's is read from the answer; the directories' titles were not looked up for this check."
+    }
+   ]
+  },
+  {
+   "id": "contacts-narva",
+   "title": "Kontakt Narvas",
+   "source": "ADR-086: the free lane check showed 0 contacts in Narva for a question with a word its role texts do not have; with another wording 27 are shown",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Elan Narvas ja mu ema vajab koduteenust. Kellele ma helistama peaksin?",
+     "expect": {
+      "region": "narva_linn",
+      "contacts": true,
+      "must": [
+       "@|\\d{3} ?\\d{4}"
+      ],
+      "must_not": [
+       "ei saa[^.]{0,120}(kinnita|öelda)[^.]{0,120}(praegu|kehti|samasugune|ajakohane|kättesaadav)",
+       "(kogutud|kontrollitud|pärinevad)[^.]{0,40}\\d{1,2}\\.\\d{1,2}\\.\\d{4}"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "contacts-small-municipality",
+   "title": "Kontakt väikeses vallas",
+   "source": "ADR-085: contacts of 76 municipalities from the register through contact directories (corpus v56); never measured with the model",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Kellega saan Antsla vallas sotsiaaltoetuste asjus ühendust võtta?",
+     "expect": {
+      "region": "antsla_vald",
+      "contacts": true,
+      "must": [
+       "@|\\d{3} ?\\d{4}"
+      ],
+      "must_not": [
+       "ei saa[^.]{0,120}(kinnita|öelda)[^.]{0,120}(praegu|kehti|samasugune|ajakohane|kättesaadav)",
+       "(kogutud|kontrollitud|pärinevad)[^.]{0,40}\\d{1,2}\\.\\d{1,2}\\.\\d{4}"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "situation-then-question",
+   "title": "Olukord ühes sõnumis, küsimus järgmises",
+   "source": "ADR-084 F1 (Codex review of #357-#364), the review's conversation word for word",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Mul on raske liikumispuue ja vajan eluruumi kohandamist.",
+     "expect": {
+      "region": null
+     }
+    },
+    {
+     "mode": "same",
+     "text": "Millist rahalist abi saan taotleda?",
+     "expect": {
+      "region": null,
+      "evidence_text": [
+       "eluruumi kohandami"
+      ],
+      "must": [
+       "kohand"
+      ]
+     },
+     "note": "Before ADR-084 the server left the plan's query about the earlier message out by word overlap, and the search held no word of the disability or the adaptation. No municipality is named, so the answer may also ask for one; it must still speak of the adaptation."
+    }
+   ]
+  },
+  {
+   "id": "my-municipality-after-another",
+   "title": "„Minu vallas“ pärast küsimust teise valla kohta",
+   "source": "ADR-084 F2 (Codex review of #357-#364); the first two turns are scenarios-question-region-1's, measured 04.10.2026",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Elan Nõo vallas ja mul on raske toime tulla. Kust ma abi saan?",
+     "expect": {
+      "region": "noo_vald",
+      "person_regions": {
+       "user": "noo_vald"
+      }
+     }
+    },
+    {
+     "mode": "same",
+     "text": "Kas Maardus saab isikliku abistaja teenust?",
+     "expect": {
+      "region": "maardu_linn",
+      "person_regions": {
+       "user": "noo_vald"
+      },
+      "state_kept": true
+     }
+    },
+    {
+     "mode": "same",
+     "text": "Kas see teenus on ka minu vallas olemas?",
+     "expect": {
+      "region": "noo_vald",
+      "person_regions": {
+       "user": "noo_vald"
+      },
+      "state_kept": true,
+      "must_not": [
+       "Maardu[^.]{0,80}(sinu|teie|oma) (vald|linn|kodu)"
+      ]
+     },
+     "note": "'See' points to the service, 'minu vallas' says where: the search goes to the residence whatever the plan's queries name."
+    }
+   ]
+  },
+  {
+   "id": "who-pays-for-mother-in-care-home",
+   "title": "Ema hooldekodu puuduv osa: seadust ega kohustust ei nimetata",
+   "source": "ADR-087; the fourth question of tests/evaluation/graph/maintenance-duty-1.json, word for word",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Ema läheb hooldekodusse ja tema pensionist ei jätku. Kas mina ja mu vend peame puuduva osa maksma?",
+     "expect": {
+      "region": null,
+      "evidence": [
+       "Perekonnaseadus"
+      ],
+      "cited": [
+       "Perekonnaseadus"
+      ],
+      "evidence_provision": [
+       {
+        "title": "Perekonnaseadus",
+        "section": "96",
+        "text": "esimese astme ülenejad ja alanejad sugulased"
+       }
+      ],
+      "must": [
+       "ülalpidamis"
+      ]
+     },
+     "note": "Model-free on corpus v58: § 96 is among the selection's candidates on a reserved place for this question. Whether the selection keeps it and what the answer says was not measured."
+    }
+   ]
+  }
+ ]
+}

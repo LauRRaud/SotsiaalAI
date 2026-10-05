@@ -62,3 +62,12 @@
 
 - Abi on käsitsi kirjutatud rida; selle sõnastuse õigsuse eest vastutab registri toimetaja. Vale abi toob lõigu valede küsimuste juurde, aga ei jõua vastuse tõenditesse.
 - Otsingukatse ei kasuta eelvalikut ega üleriigiliste seaduste varukohti; mida Luna vastab, näitab töö lõpu mõõtmisjooks.
+
+## Mõõtmine mudeliga (05.10, omaniku loal; töö lõpu jooks, korpus v58)
+
+Kaks pööret ([tõend](../audits/evidence/strengthening-measured-2026-10-05.json)): „Ema läheb hooldekodusse ja tema pensionist ei jätku. Kas mina ja mu vend peame puuduva osa maksma?“ esimese sõnumina ja „Kas hooldekodu kohatasu võib nõuda lastelt?“ viie sidumata küsimuse viimasena.
+
+- **Kandidaadid:** esimeses olid § 96 ja § 97 mõlemad eelvaliku 36 kandidaadi seas, teises § 96. 04.10 pööretes ei olnud § 96 kandidaat kummaski.
+- **Eelvalik neid ei hoidnud.** Mõlemas pöördes valis ta sama peatüki teisi lõike (esimeses ühe, teises kaks) ja artikli „Ülalpidamiskohustus eaka pereliikme seisukohast“, mis ütleb sama tavakeeles. Kataloogi kontroll „§ 96 on vastuse tõendites“ kukkus esimeses pöördes läbi.
+- **Vastus** ütles mõlemas pöördes, et täisealisel lapsel võib olla abivajava vanema ülalpidamise kohustus, nimetas järjekorra ja piirid ning viitas perekonnaseadusele.
+- **Järeldus:** otsinguabi tegi oma osa (lõigud jõuavad kandidaatideks). Kas § 96 ise jõuab vastusesse, otsustab eelvalik, ja kahes pöördes ta seda ei valinud.

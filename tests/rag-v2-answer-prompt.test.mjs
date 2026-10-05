@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { PROMPT_VERSION, READABLE_PROMPT_VERSIONS, answerInstructions, answerRequest } from '../lib/rag-v2/pilot/contracts.js';
-import { DIALOGUE_PROMPT_VERSION, READABLE_DIALOGUE_PROMPT_VERSIONS, COMPLETENESS_INSTRUCTIONS, BARE_CORRECTION_INSTRUCTIONS, PRIOR_CLAIM_INSTRUCTIONS, CONTACT_ENTRY_INSTRUCTIONS, VERSION_CHANGES_INSTRUCTIONS, dialogueRequest } from '../lib/rag-v2/pilot/dialogue.js';
+import { DIALOGUE_PROMPT_VERSION, READABLE_DIALOGUE_PROMPT_VERSIONS, COMPLETENESS_INSTRUCTIONS, BARE_CORRECTION_INSTRUCTIONS, PRIOR_CLAIM_INSTRUCTIONS, CONTACT_ENTRY_INSTRUCTIONS, CONTACT_DIRECTORY_INSTRUCTIONS, VERSION_CHANGES_INSTRUCTIONS, dialogueRequest } from '../lib/rag-v2/pilot/dialogue.js';
 import { UNIFIED_RETRIEVAL_INSTRUCTIONS, UNIFIED_RETRIEVAL_VERSION } from '../lib/rag-v2/pilot/retrieval-plan.js';
 import { SEARCH_ASSIST_VERSION, PLAN_CORRECTION_INSTRUCTIONS, PLAN_ANSWERED_INSTRUCTIONS, PLAN_DUTY_INSTRUCTIONS, RERANK_ANSWERED_INSTRUCTIONS, RERANK_CHANGE_INSTRUCTIONS, queryPlanRequest, rerankRequest } from '../lib/rag-v2/pilot/search-assist.js';
 import { tokenCount } from '../lib/rag-v2/search/embedding.js';
@@ -29,7 +29,8 @@ test('prompt v10 keeps every v9 guardrail in each answer language, and v9 plans 
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-11'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-10'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-9'));
-  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-26');
+  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-27');
+  assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-26'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-25'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-24'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-23'));
@@ -96,8 +97,13 @@ test('dialogue prompt v9: numbers keep their conditions, limitations add no fact
   // Prompt 19: the first sentence confirms a corrected value even when it does not change the advice.
   assert.ok(et.includes('first sentence confirms the corrected value') && et.includes('even when it does not change the advice') && et.includes('never answer from the replaced value'));
   // v13: with municipal records the sources list carries each source's date; the answer does not repeat it.
-  const records = dialogueRequest({ ...config, recordCatalogue: 'rag-v2/record-catalogue-3' }, 'Kellele helistada?', { evidence: [] }, 'et', {}).instructions;
+  const records = dialogueRequest({ ...config, recordCatalogue: 'rag-v2/record-catalogue-4' }, 'Kellele helistada?', { evidence: [] }, 'et', {}).instructions;
   assert.ok(records.includes('The sources list shows when each source was collected or checked'));
+  // v27 (ADR-089): with records the instructions say what a contact_directory entry is; that sentence is the only
+  // difference from v26, and without records nothing differs but the version's name.
+  assert.ok(records.includes(`but its relevance is still not proof of fit or eligibility. ${CONTACT_DIRECTORY_INSTRUCTIONS}records.source_defaults apply`));
+  for (const phrase of ['it is not one of the records closest to the request', 'Choose a person from it by the role', 'unless the role says so']) assert.ok(CONTACT_DIRECTORY_INSTRUCTIONS.includes(phrase), phrase);
+  assert.ok(!dialogueRequest(config, 'Kellele helistada?', { evidence: [] }, 'et', {}).instructions.includes(CONTACT_DIRECTORY_INSTRUCTIONS));
   // v25 (ADR-086): with records the instructions say where a contact's unit and channels are; that sentence is the only
   // difference from v24, and without records nothing differs but the version's name.
   assert.ok(records.includes(`An unavailable link gives no contact identity, phone or email. ${CONTACT_ENTRY_INSTRUCTIONS}Contact identity and channels are rechecked by the server`));
