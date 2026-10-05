@@ -57,3 +57,42 @@ test('ADR-025: record evidence reaches the model as ref, source and text only; t
   assert.equal(plain.sources.D1.title, 'Toetus a');
   assert.equal(plain.sources.D1.source_type, 'municipal_benefit');
 });
+
+test('ADR-086: records that declare the same values share one source card; a card with its own value stays apart', () => {
+  const evidence = [compactEntry(entry('a', {})), compactEntry(entry('b', {})), compactEntry(entry('c', { source_type: 'municipal_contact' })), compactEntry(entry('d', { source_type: 'municipal_contact' })),
+    compactEntry(entry('e', { historical: true, source_status: 'repealed' }))];
+  const { context, references } = modelProjection(evidence, { tenant: 't', query_id: 'q', generation_id: 'g', ...records(evidence) });
+  assert.deepEqual(context.evidence.map(item => item.source), ['D1', 'D1', 'D2', 'D2', 'D3']);
+  // What every card shares is still stated once; each card keeps what is its own.
+  assert.deepEqual(context.records.source_defaults, { source_checked_at: '2026-09-24' });
+  assert.deepEqual(context.sources, { D1: { source_type: 'municipal_benefit' }, D2: { source_type: 'municipal_contact' }, D3: { source_type: 'municipal_benefit', historical: true, source_status: 'repealed' } });
+  // Every reference still names its own document.
+  assert.deepEqual(Object.values(references).map(reference => reference.document_id), ['a', 'b', 'c', 'd', 'e']);
+  // Evidence that is not a record keeps a card of its own, also when two documents declare the same values.
+  const ranked = id => ({ ...compactEntry(entry(id, {})), selection: { reason: 'ranked', ranks: {}, rrf_contributions: {}, rrf_score: 1 } });
+  assert.deepEqual(modelProjection([ranked('x'), ranked('y')], { tenant: 't' }).context.evidence.map(item => item.source), ['D1', 'D2']);
+});
+
+test('ADR-086: the entry of a contact names the person and the role, its text holds the channels; the links of one record are one relation', () => {
+  const evidence = [compactEntry(entry('directory', {})), compactEntry(entry('one', { source_type: 'municipal_contact' })), compactEntry(entry('two', { source_type: 'municipal_contact' }))];
+  const contact = (key, ref, name) => ({ key, record_id: 'record-' + key, kind: 'contact', region: 'r', fields: Object.fromEntries(Object.entries({ name, role: 'sotsiaaltöö spetsialist',
+    department: 'Sotsiaalosakond', phone: '5550 0001', email: 'x@example.invalid' }).map(([field, value]) => [field, { value, refs: [ref] }])) });
+  const scope = { tenant: 't', query_id: 'q', generation_id: 'g', record_context: { version: 'synthetic', region: 'r', entries: [
+    { key: 'R1', record_id: 'record-directory', kind: 'resource', region: 'r', fields: { title: { value: 'Kontaktid', refs: ['S1'] } }, detail: 'relevant_detail' },
+    contact('R2', 'S2', 'Mari Maasikas'), { ...contact('R3', 'S3', 'Jaan Tamm'), fields: { name: { value: 'Jaan Tamm', refs: ['S3'] }, phone: { value: '5550 0002', refs: ['S3'] } } }],
+  relations: [{ from: 'R1', relation: 'contact', to: 'R2', state: 'source_declared', refs: ['S1'] }, { from: 'R1', relation: 'contact', to: 'R3', state: 'source_declared', refs: ['S1'] },
+    { from: 'R1', relation: 'contact', to: null, state: 'unavailable', refs: [] }, { from: 'R1', relation: 'contact', to: null, state: 'unavailable', refs: [] },
+    { from: 'R1', relation: 'form', to: 'R4', state: 'source_declared', refs: ['S1'] }, { from: 'R1', relation: 'service', to: null, state: 'unavailable', refs: [] }] } };
+  const { context } = modelProjection(evidence, scope);
+  assert.deepEqual(context.records.entries.slice(1), [
+    { key: 'R2', kind: 'contact', fields: { name: { value: 'Mari Maasikas', refs: ['S2'] }, role: { value: 'sotsiaaltöö spetsialist', refs: ['S2'] } } },
+    { key: 'R3', kind: 'contact', fields: { name: { value: 'Jaan Tamm', refs: ['S3'] } } }]);
+  assert.deepEqual(context.records.relations, [
+    { from: 'R1', relation: 'contact', to: ['R2', 'R3'], state: 'source_declared', refs: ['S1'] },
+    { from: 'R1', relation: 'contact', to: null, state: 'unavailable', refs: [], count: 2 },
+    { from: 'R1', relation: 'form', to: 'R4', state: 'source_declared', refs: ['S1'] },
+    { from: 'R1', relation: 'service', to: null, state: 'unavailable', refs: [] }]);
+  // The packet keeps every field and every link as the record lane read them.
+  assert.equal(scope.record_context.entries[1].fields.phone.value, '5550 0001');
+  assert.equal(scope.record_context.relations.length, 6);
+});

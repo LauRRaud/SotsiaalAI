@@ -581,7 +581,7 @@ const actCard = { act_in_force_from: '2016-01-01', changed_on_valid_from: ['prea
 const scope = { tenant: 't', query_id: 'q', generation_id: 'g' };
 
 test('the projection: act_dates closes a legal source card and amendments stands before the excerpt\'s text, only in the context a turn sends', () => {
-  assert.equal(MODEL_SERIALIZER, 'rag-v2/model-context-json-3');
+  assert.equal(MODEL_SERIALIZER, 'rag-v2/model-context-json-4');
   const evidence = [entry('a', 1, { act: actCard, amendments: amendmentsOf(1, 2) }), entry('b', 1), entry('a', 2, { act: actCard })];
   const sent = modelProjection(evidence, scope), plain = modelProjection(evidence, scope, { annotations: false });
   assert.deepEqual(Object.keys(sent.context.sources.D1), ['title', 'publication_date', 'source_type', 'valid_from', 'act_dates']);
