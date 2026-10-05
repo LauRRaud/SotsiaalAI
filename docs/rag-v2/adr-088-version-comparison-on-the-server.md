@@ -73,5 +73,5 @@ Kataloog `scenarios-strengthening-2` (kirjutatud enne jooksu), [tõend](../audit
 
 ## Mõõtmata ja lahti
 
-- **Muudetud sätted kandidaatideks** „mis muutub“ küsimuses, kui küsitud päeval algab akti uus redaktsioon (vt eelmine jaotis). Kuni selleni töötab võrdlus siis, kui otsing muudetud sätted ise leiab (lühike akt).
-- Pööre, kus tõendites on üleriigilise seaduse kaks redaktsiooni, on seetõttu mudeliga mõõtmata.
+- **Muudetud sätted kandidaatideks** „mis muutub“ küsimuses, kui küsitud päeval algab akti uus redaktsioon (vt eelmine jaotis): **tehtud 05.10 õhtul, [ADR-091](adr-091-version-change-places.md).** Server võrdleb redaktsioonid enne otsingut ja erinevate sätete lõigud saavad valiku kandidaatide seas kaheksa kohta. Tasuta kordus samal pöördel tõi § 29 mõlemas redaktsioonis kandidaatide hulka.
+- Pööre, kus tõendites on üleriigilise seaduse kaks redaktsiooni, on mudeliga endiselt mõõtmata.
