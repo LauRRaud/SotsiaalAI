@@ -2,7 +2,7 @@
 
 05.10.2026. Teostus Claude Opus 5.5. Omanik 05.10: „teeme need tugevaks“ (viiest tööst teine ja esimene: Tallinna ja Narva kontaktid; mõõtmata muudatused). Lähtekoht: töö lõpu mõõtejooks ([tõend](../audits/evidence/strengthening-measured-2026-10-05.json)), [ADR-085](adr-085-contacts-from-the-register.md), [ADR-086](adr-086-compact-linked-contact.md).
 
-**Töös alates #385. Kontrollitud mudelita (jaotis „Kontroll“) ja mõõdetud mudeliga viie pöördega (jaotis „Mõõtmine“): Tallinnas ja Narvas annab vastus nüüd kontakti ja kanalid on selle inimese omad. Kaks nõrka kohta jäi: kohmakas lisalause ameti kohta ja kontakti pakkumine seal, kus seda ei küsitud.**
+**Töös alates #385. Kontrollitud mudelita (jaotis „Kontroll“) ja mõõdetud mudeliga 14 pöördega (jaotised „Mõõtmine“ ja „Mõõtmine 2“): Tallinnas ja Narvas annab vastus nüüd kontakti ja kanalid on selle inimese omad. Lahti: Luna pakub kontakti nüüd peaaegu igas omavalitsuse vastuses, ka küsimata (omaniku otsus); Tallinna üldine kirje jätab ruumi ühele kokkuvõttele; kohmakas lisalause ameti kohta.**
 
 ## Mida mõõtmine näitas
 
@@ -74,9 +74,20 @@ Töötaval versioonil `3e2ac388` ([tõend](../audits/evidence/contact-directory-
 - **Kanalid:** igas vastuses on iga telefon ja e-post kontekstis olemas ja kuulub inimesele, keda vastus nimetab (kontrollitud pöördekirjest, mitte silma järgi).
 - **Nõrk koht 1, lisalause (Narva):** juhise lause „ära ütle, et inimene asjaga tegeleb, kui amet seda ei ütle“ jõudis vastusesse piiranguna. See on juhise sõnastuse tagajärg.
 - **Nõrk koht 2, küsimata kontakt ja ameti valik (Tartu vald):** vastus pakkus kontakti, kuigi seda ei küsitud, ja valis koduhooldustöötaja, kuigi sama vastus ütleb, et teenuse määrab sotsiaaltöö spetsialist. Kas esimese sammuna kontakti pakkumine on soovitud, on omaniku otsus; ameti valik on küsitav.
-- **Mida need viis pööret ei näita:** kokkuvõtete vähenemise mõju teistele vastustele; Tallinna küsimus, mis linnaosa ei nimeta.
+- **Mida need viis pööret ei näita:** kokkuvõtete vähenemise mõju teistele vastustele; Tallinna küsimus, mis linnaosa ei nimeta. Mõlemad mõõdeti samal õhtul (järgmine jaotis).
+
+## Mõõtmine 2 (05.10 õhtu, omaniku korraldus „tee teised mõõtmised“; üheksa pööret sellest reeglist, versioon `add0624c`)
+
+[Tõend](../audits/evidence/open-points-measured-2026-10-05.json); kontakti nimetavad vastused on tõendist välja jäetud ja loetud serveris nimesid näitamata. Kõik üheksa pööret läbisid kataloogi kontrollid.
+
+- **Tallinn ilma linnaosata** (`scenarios-strengthening-2`): avati linna üldine kontaktide kirje (12 inimest). Vastus ütles, et otsustab tegeliku elukoha linnaosa, **ei andnud ühegi linnaosa kontakti** ja küsis linnaosa. Kirje võttis aga peaaegu kogu kokkuvõtete ruumi: kokkuvõtteid jäi 1 (linnaosaga küsimuses enne reeglit 9, reegliga 4).
+- **Viis igapäevaküsimust** (`scenarios-municipal-tone-1`; Tartu vald, Kose, Harku): iga vastus nimetab ühe või kaks sotsiaaltöö spetsialisti telefoni või e-postiga. Kolmes küsiti, kuhu pöörduda või kellele helistada; kahes ei küsitud („raha on otsas ja toiduks ei jätku“, „vajan emale kodus abi“) ja kontakt anti esimese sammuna. Summad ja tingimused on vastustes alles (koduteenuse tunnihind, toidupank, vältimatu abi).
+- **Sama vestlus enne ja pärast** (Nõo → Maardu → Nõo; võrdlus sama päeva esimese jooksuga enne reeglit). Kokkuvõtteid 24, 42, 24 → 20, 30, 20. Teine ja kolmas vastus ütlevad sama palju või rohkem (kolmas kirjeldab nüüd teenust, enne andis ainult lehe aadressi). **Esimene vastus nimetab kaks abi liiki vähem** (toimetulekutoetust ja vältimatut sotsiaalabi enam ei mainita). Üks jooks kummastki: kas see on reegli mõju või juhus, ei saa selle põhjal öelda.
+- **Kanalid:** kõigis kaheksas kontaktiga vastuses kuulub iga telefon ja e-post inimesele, keda vastus nimetab (pöördekirjest). Nimetatud ametid on sotsiaaltöö spetsialistid; koduhooldustöötajat ega muud teenuse osutajat seekord ei valitud.
+- **Kokkuvõte:** reegel teeb seda, milleks ta tehti, ja rohkemgi: Luna lõpetab nüüd peaaegu iga omavalitsuse vastuse nimelise ametniku kontaktiga, ka siis, kui seda ei küsitud.
 
 ## Lahti
 
-- **Juhise täpsustus** (omaniku otsus): kas Luna pakub kontakti ainult siis, kui inimene küsib, kelle poole pöörduda, või ka esimese sammuna; lisalause ärajätmine; ameti valik (pigem see, kes taotlusi vastu võtab või otsustab, või üksuse üldkontakt). Vajab juhise uut versiooni ja paari pöörde mõõtmist.
-- Kontaktide kirje, mille tekst küsimusele kõige lähemal on, ei pruugi olla õige üksus, kui küsimus linnaosa ega teemat ei nimeta (Tallinnas 14 kirjet).
+- **Juhise täpsustus** (omaniku otsus): kas Luna pakub kontakti ainult siis, kui inimene küsib, kelle poole pöörduda, või ka esimese sammuna (praegu peaaegu alati); lisalause ärajätmine; ameti valik (pigem see, kes taotlusi vastu võtab või otsustab, või üksuse üldkontakt). Vajab juhise uut versiooni ja paari pöörde mõõtmist.
+- **Kontaktide kirje maht suures omavalitsuses:** Tallinna üldine kirje jättis ruumi ühele kokkuvõttele. Kaaluda piiri (näiteks avada kirje ainult siis, kui pärast seda mahub teatud arv kokkuvõtteid).
+- Kas kokkuvõtete vähenemine jätab vastusest abi liike välja (üks kolmest võrdlusest viitab sellele), vajab mitut jooksu samal küsimusel.

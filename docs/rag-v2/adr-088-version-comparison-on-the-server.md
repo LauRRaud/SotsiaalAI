@@ -2,7 +2,7 @@
 
 05.10.2026. Teostus Claude Opus 5.5. Omanik 05.10: „teeme need tugevaks“ (viiest tööst neljas: „mis muutub“ ei ole usaldusväärne). Lähtekoht: [ADR-077](adr-077-current-message-only-and-both-versions.md) leid F1.
 
-**Töös alates #384. Kontrollitud mudelita päris indeksi peal (jaotis „Kontroll“) ja mõõdetud mudeliga ühe pöördega (jaotis „Mõõtmine“): plokk jõudis mudelini ja vastuse väited erinevuste kohta peavad paika.**
+**Töös alates #384. Kontrollitud mudelita päris indeksi peal (jaotis „Kontroll“) ja mõõdetud mudeliga (jaotised „Mõõtmine“ ja „Mõõtmine 2“): valla akti puhul jõudis plokk mudelini, vastuse väited peavad paika ja 04.10 olukorras ei esitatud muutumata sätet uuena. Üleriigilise seaduse puhul ei jõudnud muudetud sätted otsingust tõenditesse ja võrdlust ei tehtud; see on lahti.**
 
 ## Probleem
 
@@ -58,9 +58,20 @@ Kataloog `scenarios-version-change-1` töötaval versioonil `d43f3458` ([tõend]
 - **§ 6 lg 2 ja 4:** vana sõnastusega lõiku tõendites ei olnud (plokk andis ainult uue lõigu viite). Vastus kirjeldas uut sõnastust ja ütles lõpus, et ei saa neid lõikeid varasemaga võrrelda. Tegelik erinevus on seal üks sõna („sotsiaaltöötaja“ → „spetsialist“).
 - **Nõrk koht, mis jääb:** muudetud sätte uut sõnastust kirjeldades ei ütle vastus alati, mis täpselt teisiti on (§ 3 lg 1 puhul muutus sõnastus, sisu mitte). Plokk ütleb „muutus“, mitte „kuidas“.
 - **Teine pööre samal päeval** (versioon `3e2ac388`, 0,0060 USD, [tõend](../audits/evidence/contact-directory-measured-2026-10-05.json)): läbis. Vastus ütles iga muudatuse kujul „varem … nüüd“ ja abivajaduse hindamise kohta, et vaadatakse endiselt samu asjaolusid; muutumata sätet uuena ei esitatud.
-- **Mida need pöörded ei näidanud:** eelvalik hoidis esimeses pöördes § 5 mõlemad lõigud mõlemast redaktsioonist, nii et 04.10 olukord (vana teine lõik valikust väljas) ei kordunud. Selle olukorra kohta on tõend ainult mudelita (jaotis „Kontroll“).
+- **Parandus varasemale väitele:** kirjutasin siia, et 04.10 olukord (muutumata säte tõendites ainult ühe redaktsiooni lõigus) nendes pööretes ei kordunud. § 5 kohta see kehtib, aga esimese pöörde kirjest uuesti arvutades oli sama olukord §-s 6: selle pealkiri ning lõiked 1 ja 3 on mõlemas redaktsioonis samad ja tõendites oli ainult uue redaktsiooni lõik. Vastus neid uuena ei esitanud.
 
-## Mõõtmata
+## Mõõtmine 2 (05.10 õhtu, omaniku korraldus „tee teised mõõtmised“; versioon `add0624c`, `version-comparison-2`)
 
-- Pööre, kus muutumata sätte vana lõik on valikust väljas (04.10 olukord), mudeliga.
-- Pööre, kus tõendites on üleriigilise seaduse kaks redaktsiooni.
+Kataloog `scenarios-strengthening-2` (kirjutatud enne jooksu), [tõend](../audits/evidence/open-points-measured-2026-10-05.json).
+
+- **04.10 olukord, mõõdetud** („Milliseid dokumente tuleb Põhja-Sakala vallas alates 6. oktoobrist sissetulekust sõltuva toetuse taotlusele lisada ja mis selles muutub?“; läbis, 0,0061 USD). Eelvalik hoidis kummastki redaktsioonist ühe lõigu, nii et § 5 lg 5 seisis ainult uue redaktsiooni lõigus, täpselt nagu 04.10. Plokk nimetas lõike 5 samade sätete all. Vastus ütles tegeliku muudatuse (tõendid kohustuslikuks, püsiväljaminekute asemel eluasemekulud) ega esitanud tähtaega uuena.
+- **Üleriigiline seadus ei jõudnud võrdluseni** („Mis muutub lastekaitseseaduses alates 1. jaanuarist 2027?“; kukkus otsingus, 0,0045 USD).
+  - Seaduse kahest redaktsioonist oli kandidaatide seas 11 lõiku, aga kõik olid rakendussätted (§-d 41–47: kohaldamine, jõustumine). Plaani päring „Lastekaitseseaduse muudatused jõustuvad 1. jaanuaril 2027“ leiab sätted, mis räägivad jõustumisest, mitte sätted, mis muutuvad (§ 29, § 36¹ jt).
+  - Eelvalik valis kuus lõiku eelnõu tutvustavast artiklist. Tõendites ei olnud seaduse lõike, seega võrdlust ei tehtud.
+  - Vastus kirjeldas eelnõu ja ütles, et ei saa kinnitada, kas see vastu võeti, kuigi 1. jaanuarist 2027 kehtiv redaktsioon on indeksis.
+  - **Järeldus:** pika seaduse puhul ei too tähenduse järgi otsing muudetud sätteid kandidaatideks. Server teab, millised sätted erinevad (see võrdlus ja Riigi Teataja muutmismärked); need tuleb tuua kandidaatideks otsingu ajal. See on eraldi töö.
+
+## Mõõtmata ja lahti
+
+- **Muudetud sätted kandidaatideks** „mis muutub“ küsimuses, kui küsitud päeval algab akti uus redaktsioon (vt eelmine jaotis). Kuni selleni töötab võrdlus siis, kui otsing muudetud sätted ise leiab (lühike akt).
+- Pööre, kus tõendites on üleriigilise seaduse kaks redaktsiooni, on seetõttu mudeliga mõõtmata.

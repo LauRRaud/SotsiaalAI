@@ -10,7 +10,9 @@
   "must (what changes)": "answer: it names at least one thing the new version really changes; read the whole answer and compare it with both texts, a pattern is a coarse check",
   "must_not (what changes)": "answer: it does not present an unchanged rule as new. In the Child Protection Act the sentence on who organises child protection is the same in both versions (§ 11 became § 11 lg 1). In Põhja-Sakala's act § 5 lg 5 (a time limit for remedying deficiencies) is the same in both"
  },
- "history": [],
+ "history": [
+  "05.10.2026, first run (commit add0624c, record-catalogue-4, dialogue prompt 27, version-comparison-2): the catalogue as written before any run, 3 turns: 2 passed, 1 search, 0.0166 USD. Tallinn without a district: the city's general directory was opened (twelve people, one summary left beside it); the answer says the district of residence decides, names no contact and asks for the district. One rule of Põhja-Sakala's act: the selection kept one passage of each version, so § 5 lg 5 stood in the new version's passage alone, the situation of 04.10; the block listed it as the same wording and the answer states the real change of § 5 lg 3 p 4 and no time limit as new. The Child Protection Act: failed at the search. Eleven passages of the act's two versions were candidates, all of them its final provisions (§§ 41-47, on application and entry into force) and none a provision that changes; the selection kept six passages of an article on the bill, no comparison was made, and the answer describes the bill and says it cannot confirm that it was adopted (docs/audits/evidence/open-points-measured-2026-10-05.json)."
+ ],
  "scenarios": [
   {
    "id": "contacts-tallinn-no-district",
