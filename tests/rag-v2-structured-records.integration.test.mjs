@@ -67,7 +67,7 @@ before(async () => {
       conditions: ['Esimene näidistingimus', 'Teine näidistingimus'], application: 'Esita näidisavaldus.',
       relatedContacts: ['contact_ok', 'hidden_contact_sentinel', 'another_region_only'], relatedForms: ['form'] }));
     items.push({ id: 'contact_ok', itemType: 'contact', name: 'Näidiskontakt', role: 'Näidisnõustaja',
-      phone: '+372 0000000', email: 'contact@example.invalid', relatedTo: ['service_0'] },
+      phone: '+372 0000000', email: 'contact@example.invalid', officialUrl: 'https://example.invalid/kontaktileht', relatedTo: ['service_0'] },
     { id: 'hidden_contact_sentinel', itemType: 'contact', name: 'HIDDEN NAME', phone: 'HIDDEN PHONE' },
     { id: 'form', itemType: 'form', title: 'Näidisavaldus', url: `https://example.invalid/${region.region}/form`, relatedTo: ['service_0'] });
     if (region.region === 'kose_vald') items.push({ id: 'another_region_only', itemType: 'contact', name: 'OTHER REGION SECRET' });
@@ -119,6 +119,20 @@ test('reviewed JSON -> indexed record catalogue keeps every service, typed field
   const contact = packet.record_context.entries.find(entry => entry.kind === 'contact');
   assert.equal(contact.fields.phone.value, '+372 0000000');
   assert.equal(contact.fields.email.value, 'contact@example.invalid');
+  // ADR-086: a linked contact is shown without its page address (and without its check time, which this fixture's
+  // contact does not carry). The model's entry names the person and the role; the channels are in the entry's
+  // evidence text, and the page address is nowhere in the model's context.
+  assert.deepEqual(Object.keys(contact.fields).sort(), ['email', 'name', 'phone', 'role']);
+  const shown = packet.model_context.records.entries.find(entry => entry.kind === 'contact');
+  assert.deepEqual(Object.keys(shown.fields), ['name', 'role']);
+  const contactText = packet.model_context.evidence.find(item => item.ref === shown.fields.name.refs[0]).text;
+  assert.equal(contactText, 'Näidiskontakt\nNäidisnõustaja\n+372 0000000\ncontact@example.invalid');
+  assert.doesNotMatch(JSON.stringify(packet.model_context), /kontaktileht/);
+  // Each service links to the shown contact, to two contacts that are not available and to a form: three relations
+  // for the model, four links in the packet.
+  assert.equal(packet.record_context.relations.length, 24);
+  assert.deepEqual(packet.model_context.records.relations.filter(link => link.from === packet.model_context.records.relations[0].from).map(link => [link.relation, Array.isArray(link.to) ? link.to.length : link.to === null ? null : 1, link.count ?? 1]),
+    [['contact', 1, 1], ['contact', null, 2], ['form', 1, 1]]);
   for (const link of packet.record_context.relations.filter(link => link.to)) assert(link.refs.length);
   const record = snapshot.bundles.find(bundle => bundle.document.fields.structured_record?.value.id === 'harku_vald:service_0').document.fields.structured_record.value;
   assert.deepEqual(record.fields.conditions.value, ['Esimene näidistingimus', 'Teine näidistingimus']);
@@ -229,6 +243,32 @@ test('catalogue budgets fail explicitly; permission and contact revocation durin
     { code: 'record_contact_access_changed' });
 });
 
+test('ADR-086: a contact is decided only when a view shows the record that links to it', async () => {
+  let decided = [];
+  const counting = async input => { decided.push(input.record.id.split(':')[1]); return authorizeContact(input); };
+  const tally = () => Object.fromEntries([...new Set(decided)].sort().map(id => [id, decided.filter(item => item === id).length]));
+  // The summary view shows the contacts of every record: each of the region's two linked contacts is decided once,
+  // and the shown one once more before the packet leaves.
+  const full = await source({ authorizeContact: counting }).retrieve(query());
+  assert.equal(full.record_context.view, 'summary');
+  assert.deepEqual(tally(), { contact_ok: 2, hidden_contact_sentinel: 1 });
+  // A budget the summaries do not fit even without contacts: the title list opens no record and decides nobody.
+  decided = [];
+  const titles = await source({ authorizeContact: counting }).retrieve(query({ limits: { contextTokens: full.measurements.model_context_tokens - 1 } }));
+  const tight = { contextTokens: titles.measurements.model_context_tokens };
+  decided = [];
+  const listed = await source({ authorizeContact: counting }).retrieve(query({ limits: tight }));
+  assert.equal(listed.record_context.view, 'titles');
+  assert(!listed.record_context.entries.some(entry => entry.kind === 'contact'));
+  assert.deepEqual(tally(), {});
+  // The same budget with a question: the record closest to it is opened, and only its contacts are decided.
+  decided = [];
+  const asked = await source({ authorizeContact: counting }).retrieve(query({ question: 'Näidisteenus 5', limits: { contextTokens: full.measurements.model_context_tokens - 1 } }));
+  assert.equal(asked.record_context.view, 'titles');
+  assert.equal(asked.record_context.entries.filter(entry => entry.kind === 'contact').length, 1);
+  assert.equal(tally().hidden_contact_sentinel, 1);
+});
+
 test('EstNLTK resolves canonical locality forms, preserves ambiguity and clears an unrecognized correction', async () => {
   const turns = texts => texts.map((text, i) => ({ turnId: String(i), text, mode: 'same' }));
   assert.equal((await resolveRecordScope(turns(['Elan Harkus.', 'Kellele helistan?']), directory)).region, 'harku_vald');
@@ -326,7 +366,10 @@ test('municipal adapter uses the public verification policy and exact source ide
   const meta = { contactVerificationVersion: 4, verifiedContactIds: [contact.id],
     contactDecisionObservedAt: { [contact.id]: checkedAt.toISOString() }, contactDecisionRevision: { [contact.id]: 1 } };
   audit = await db.dataAuditLog.create({ data: { action: 'SERVICE_MAP_CONTACT_FRESHNESS_CHECK', resourceType: 'ServiceMapContactRegistry', meta } });
-  const adapter = municipalDirectoryAdapter(db);
+  // The adapter reads the freshness rule once for the decisions of the next five seconds (ADR-085): the test's clock
+  // moves past that after it has changed the check record.
+  let time = 0;
+  const adapter = municipalDirectoryAdapter(db, { clock: () => time });
   assert((await adapter.loadRegions()).some(row => row.region === slug.replaceAll('-', '_')));
   const record = { aliases: ['fixture_contact'], region: slug.replaceAll('-', '_'), fields: { name: { value: contact.title }, phone: { value: contact.phone }, email: { value: contact.email } } };
   assert.equal(await adapter.authorizeContact({ record }), true);
@@ -340,6 +383,9 @@ test('municipal adapter uses the public verification policy and exact source ide
   await db.serviceMapEntry.update({ where: { id: contact.id }, data: { revision: 1 } });
   meta.contactDecisionObservedAt[contact.id] = '2000-01-01T00:00:00.000Z';
   await db.dataAuditLog.update({ where: { id: audit.id }, data: { meta } });
+  // Within the five seconds the rule read before the change still decides; after them the new check record does.
+  assert.equal(await adapter.authorizeContact({ record }), true);
+  time += 6000;
   assert.equal(await adapter.authorizeContact({ record }), false);
 });
 
@@ -441,7 +487,9 @@ test('verified registry export bridges explicit package IDs, publishes anchored 
   await indexSnapshot({ snapshot: exportedSnapshot, postgres, qdrant, embedding: exportEmbedding });
   const exportedGeneration = await postgres.active(exportTenant); extraCollections.push(exportedGeneration.collection);
   const exportedPolicy = new LocalPolicy({ tenants: { [exportTenant]: { reader: Object.keys(exportedSnapshot.documents) } } });
-  const adapter = municipalDirectoryAdapter(db), exportedContext = { ...context, tenant: exportTenant };
+  // The test's clock moves past the adapter's five seconds whenever the check record has changed (ADR-085).
+  let time = 0;
+  const adapter = municipalDirectoryAdapter(db, { clock: () => time }), exportedContext = { ...context, tenant: exportTenant };
   const retrieval = new StructuredRecordSource({ postgres, policy: exportedPolicy, authorizeContact: adapter.authorizeContact });
   const query = { context: exportedContext, region: exported.items[0].municipality_id, generationId: exportedGeneration.id };
   const callCount = exportEmbedding.calls;
@@ -474,6 +522,7 @@ test('verified registry export bridges explicit package IDs, publishes anchored 
   await db.serviceMapEntry.update({ where: { id: contacts[0].id }, data: { checkedAt: rechecked } });
   meta.contactDecisionObservedAt[contacts[0].id] = rechecked.toISOString();
   await db.dataAuditLog.update({ where: { id: audit.id }, data: { meta } });
+  time += 6000;
   assert.equal(await adapter.authorizeContact({ record }), true);
   assert(!record.fields.checked_at || record.fields.checked_at.value === exported.items[0].checked_at, 'the record keeps the export\'s check time');
   // A new role in the register ends the binding like a new channel, also without a new revision.
@@ -499,6 +548,7 @@ test('verified registry export bridges explicit package IDs, publishes anchored 
   await db.serviceMapEntry.update({ where: { id: contacts[0].id }, data: { phone: contacts[0].phone, revision: 2 } });
   meta.contactDecisionRevision[contacts[0].id] = 2;
   await db.dataAuditLog.update({ where: { id: audit.id }, data: { meta } });
+  time += 6000;
   assert.equal(await adapter.authorizeContact({ record }), false); // Newly verified revision still needs a new immutable export.
   const newer = await prepare();
   assert.equal(newer.items[0].registry_binding.revision, 2);

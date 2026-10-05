@@ -119,10 +119,15 @@ test('a municipality of more than twelve contacts is listed by department, and a
   // Twelve contacts are still one directory, whatever their departments.
   const twelve = await prepareRegisterContactExport({ db: register([...rows.slice(0, 6), ...rows.slice(26, 32)]) });
   assert.deepEqual(twelve.source.items.filter(item => item.itemType === 'resource').map(item => [item.id, item.relatedContacts.length]), [['service-map-contacts:suur_linn', 12]]);
-  // A municipality with more than a hundred contacts is left out whole and named (measured in Tallinn on corpora v52 to
-  // v54: its directories filled the record context and no contact of theirs was ever shown).
-  const large = await prepareRegisterContactExport({ db: register([...rows, ...unit(48, 'Roll: hooldustöötaja Osakond: Hoolekande osakond', 6000), row('c9', 'noo-vald', 'Nõo vald', 'Mari Maasikas')]) });
-  assert.deepEqual([large.counts.too_large, large.counts.municipalities, large.counts.exported_contacts, large.counts.directories], [[{ region: 'suur_linn', contacts: 104 }], 1, 1, 1]);
+  // ADR-086: a municipality of over a hundred contacts is exported (Tallinn has 125), in directories of at most twelve.
+  const big = await prepareRegisterContactExport({ db: register([...rows, ...unit(69, 'Roll: hooldustöötaja Osakond: Hoolekande osakond', 6000)]) });
+  const bigDirectories = big.source.items.filter(item => item.itemType === 'resource');
+  assert.deepEqual([big.counts.too_large, big.counts.exported_contacts, Math.max(...bigDirectories.map(item => item.relatedContacts.length)), bigDirectories.flatMap(item => item.relatedContacts).length],
+    [[], 125, 12, 125]);
+  // Above the record lane's room for one municipality it is left out whole and named: the lane reads at most 300
+  // records of a municipality and fails above that, so its contacts must leave room for its services.
+  const large = await prepareRegisterContactExport({ db: register([...rows, ...unit(95, 'Roll: hooldustöötaja Osakond: Hoolekande osakond', 6000), row('c9', 'noo-vald', 'Nõo vald', 'Mari Maasikas')]) });
+  assert.deepEqual([large.counts.too_large, large.counts.municipalities, large.counts.exported_contacts, large.counts.directories], [[{ region: 'suur_linn', contacts: 151 }], 1, 1, 1]);
   assert.deepEqual(large.source.items.map(item => [item.itemType, item.municipality_id]), [['contact', 'noo_vald'], ['resource', 'noo_vald']]);
 });
 

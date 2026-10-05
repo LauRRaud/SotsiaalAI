@@ -123,7 +123,7 @@ test('text, retrieval text and embedding inputs are the v29 reader\'s; without t
     // Every chunk as evidence. What a budget, a selection step or a reference check reads is the v29 bundle's context
     // (model-context-json-2) with the label alone changed: the source card and each excerpt are byte for byte the same.
     assert.equal(before.model_context.schema_version, 'rag-v2/model-context-json-2');
-    const expected = { ...before.model_context, schema_version: 'rag-v2/model-context-json-3' }, evidence = entriesOf(bundle);
+    const expected = { ...before.model_context, schema_version: 'rag-v2/model-context-json-4' }, evidence = entriesOf(bundle);
     for (const options of [{ annotations: false }, { measure: 'budget' }, { measure: 'none' }]) assert.deepEqual(modelProjection(evidence, scope, options).context, expected, `${act} ${JSON.stringify(options)}`);
     // A bundle without the data projects so in the context a turn sends too, and its entries carry nothing new.
     const earlier = entriesOf(withoutData(bundle)), plain = modelProjection(earlier, scope);
