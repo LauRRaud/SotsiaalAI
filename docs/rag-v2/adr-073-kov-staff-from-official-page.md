@@ -344,3 +344,17 @@ Vana ja uus tuvastaja samadel 147 lehel (156 lehest 9 ei vastanud):
 - ettepanekuid annab uus kood 33 (vana 20): juurde tulevad 11 päris inimese ametiparandused (Räpina 3, Võru vald 7, Tartu 1) märketa ettepanekutena; üks ametinimetuseta tekst jääb pakkumata (`roleKept` 1).
 
 Piirid: kaks rida, mis ei ole inimesed, loeb ka uus tuvastaja inimeseks (linnaosa üksuse nimi ja ingliskeelne võrgustiku nimi), sest nimes ei ole ühtki asutusesõna; uue inimesena jääksid need märkega omaniku otsustada. Reeglid on sõnaloendid: loendist puuduv asutusesõna või ametinimetus jääb vahele.
+
+### Registri parandus (05.10.2026, pärast juurutamist väljalaskelt `ee914ccb`)
+
+Kõik sammud tehti registri enda käskudega, igaüks kõigepealt ilma kirjutamata; iga muudatus sai auditikirje ja midagi ei kustutatud.
+
+- **12 rida peideti** esimese partii tagasivõtmisega võtme järgi (`--revert bdb99a37-… --keys …`): 11 rida, mis ei ole inimesed, ja rida, kus amet oli loetud nime osaks (sama inimene on registris õige nimega real, mis uue tuvastajaga kinnitub). Read on olekus `HIDDEN`, auditikirje `SERVICE_MAP_CONTACT_PROPOSAL_REVERTED`.
+- **11 päris inimese amet parandati** ettepanekutena, mille uus kood ise lehtedelt luges (partii `24142126-c348-43f4-9a75-c10f32113331`, alus `owner_approval`; ülejäänud 22 ettepanekut jäeti ootele, ühtki ei lükatud tagasi): Räpina 3 („Hooldustöötaja“, „Sotsiaaltööspetsialist“), Võru vald 7 („Hooldustöötaja“ koos piirkonnaga), Tartu 1 („võrgustikujuht“).
+- **Narva rea amet taastati** käsitsi parandusena (`SERVICE_MAP_CONTACT_CORRECTION`): partii eelne „eluruumi tagamise teenuse kontakt“; partii toodud lehe aadress jäi.
+- **Kontaktikontroll pärast seda** (156 lehte, 9 ei vastanud): kaardil ja vestluses loetakse kinnitatuks **1181 rida** (enne 1194). Vahe: 12 peidetud rida, 2 rida, mida leht enam ei kinnita (üks leht ei vastanud, ühel on sama ametikoha juures teine nimi), ja 1 juurde tulnud rida. Kõik 12 parandatud rida kinnitusid uuesti.
+- **Ametite audit uuesti:** ametita ridu 0; ametinimetuse sõnata tekste 9, kõik päris ametid („logopeed“, „Linnaarst“, „võlanõustaja“ jt) või Narva taastatud tekst.
+
+Vestluses kaovad peidetud read kohe (kontakti luba loetakse registrist iga pöörde ajal). 12 parandatud rida tulevad vestlusse tagasi järgmise ekspordi ja indeksiga, sest muudetud rida lõpetab sidumise (ADR-045).
+
+Tegemata: 22 ootele jäetud ettepanekut (9 Keila rida kolinud lehega, 4 Tallinna e-posti muudatust, 4 ametisõnastust, 5 uut inimest) lähevad tavalist rada: kaks lugemist või omaniku otsus.
