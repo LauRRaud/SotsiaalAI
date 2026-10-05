@@ -284,3 +284,62 @@ test('ADR-091: without a reranker the change reserve is unused, and a result out
   const packet = await f.run({ changeReserve }, { rerank: async () => ['P1'] });
   assert.equal(packet.state, 'error'); assert.equal(packet.error, 'channel_result_outside_scope');
 });
+
+// ADR-091, places-3: the selection kept the newer version's passages of a rewritten section without the older one's,
+// although both were among its candidates (measured 05.10.2026). The search adds the rest of a kept passage's group
+// after the selection's own passages, which all stay.
+test('ADR-091: a section the selection kept in one version comes in the other too, after the passages the selection kept', async () => {
+  const f = fixture(), unit = chunk => f.units.find(u => u.chunk_id === chunk).id;
+  // One section in three passages: two of the law (the newer version) and one of the second act (the older one).
+  const groups = [[unit('law-c0'), unit('law-c1'), unit('act-c0')], [unit('law-c3'), unit('act-c2')]];
+  // The selection keeps one municipal passage and the section's first passage of the newer version only.
+  const keep = wanted => async passages => wanted.map(at => passages.at(at).id);
+  const packet = await f.run({ changeReserve: { groups, size: 8 } }, { rerank: keep([0, RERANK_POOL]) });
+  assert.equal(packet.state, 'ok', packet.error);
+  assert.deepEqual(packet.rerank.change_reserved, ['law-c0', 'law-c1', 'act-c0', 'law-c3', 'act-c2'].map(unit));
+  // The record keeps what the selection chose and what the server added, apart.
+  assert.deepEqual(packet.rerank.selected, ['municipal-c0', 'law-c0'].map(unit));
+  assert.deepEqual(packet.rerank.change_completed, ['law-c1', 'act-c0'].map(unit));
+  assert.deepEqual(packet.evidence.map(e => e.chunk_id), ['municipal-c0', 'law-c0', 'law-c1', 'act-c0']);
+  // An added passage says which kept passage brought it.
+  assert.deepEqual(packet.evidence.map(e => e.selection.reason), ['ranked_seed', 'ranked_seed',
+    ...[1, 1].map(at => ({ type: 'version_counterpart', seed_evidence_id: packet.evidence[at].evidence_id }))]);
+  // A group the selection kept nothing of is not added, and a whole kept group adds nothing.
+  const whole = await f.run({ changeReserve: { groups, size: 8 } }, { rerank: keep([RERANK_POOL + 3, RERANK_POOL + 4]) });
+  assert.deepEqual(whole.rerank.change_completed, []);
+  assert.deepEqual(whole.evidence.map(e => e.chunk_id), ['law-c3', 'act-c2']);
+  const none = await f.run({ changeReserve: { groups, size: 8 } }, { rerank: keep([0, 1]) });
+  assert.deepEqual(none.rerank.change_completed, []);
+  assert.deepEqual(none.evidence.map(e => e.chunk_id), ['municipal-c0', 'municipal-c1']);
+
+  // Every passage the selection kept stays a seed (five, the seed limit); the other version follows where the final
+  // limit leaves room (seven here), and no further.
+  const many = await f.run({ changeReserve: { groups, size: 8 } }, { rerank: keep([RERANK_POOL, 0, 1, 2, 3]) });
+  assert.deepEqual(many.rerank.selected, ['law-c0', 'municipal-c0', 'municipal-c1', 'municipal-c2', 'municipal-c3'].map(unit));
+  assert.deepEqual(many.evidence.map(e => e.chunk_id), ['law-c0', 'municipal-c0', 'municipal-c1', 'municipal-c2', 'municipal-c3', 'law-c1', 'act-c0']);
+  const tight = await f.run({ changeReserve: { groups, size: 8 }, finalLimit: 6 }, { rerank: keep([RERANK_POOL, 0, 1, 2, 3]) });
+  assert.deepEqual(tight.evidence.map(e => e.chunk_id), ['law-c0', 'municipal-c0', 'municipal-c1', 'municipal-c2', 'municipal-c3', 'law-c1']);
+  assert.deepEqual(tight.rerank.change_completed, [unit('law-c1')]);
+  assert.deepEqual(tight.selection_trace.filter(row => row.reason === 'final_limit').map(row => row.unit_id), [unit('act-c0')]);
+});
+
+test('ADR-091: the other version is added also when it had no place among the candidates; an unavailable selection adds nothing', async () => {
+  const f = fixture(), unit = chunk => f.units.find(u => u.chunk_id === chunk).id;
+  // Three places and two sections. The first section's two passages outside the pool take two; the second section's
+  // two no longer fit, so the selection sees of that section only the passage the corpus-wide order brought.
+  const groups = [[unit('municipal-c0'), unit('law-c2'), unit('law-c3')], [unit('municipal-c5'), unit('law-c0'), unit('act-c0')]];
+  const packet = await f.run({ changeReserve: { groups, size: 3 } }, { rerank: async passages => [passages[5].id, passages[1].id] });
+  assert.equal(packet.state, 'ok', packet.error);
+  assert.deepEqual(packet.rerank.change_reserved, ['law-c2', 'law-c3'].map(unit));
+  assert.equal(packet.rerank.candidates.length, RERANK_POOL + 2);
+  assert.deepEqual(packet.rerank.selected, ['municipal-c5', 'municipal-c1'].map(unit));
+  assert.deepEqual(packet.rerank.change_completed, ['law-c0', 'act-c0'].map(unit));
+  assert.deepEqual(packet.evidence.map(e => e.chunk_id), ['municipal-c5', 'municipal-c1', 'law-c0', 'act-c0']);
+  // How the added passage was found is in its record: the search among the differing passages ranked it.
+  assert.deepEqual(Object.keys(packet.evidence[2].selection.ranks).sort(), ['change_lexical', 'change_vector']);
+  // The selection was unavailable: the fused order stands as it is.
+  const fused = await f.run({ changeReserve: { groups, size: 3 } }, { rerank: async () => null });
+  assert.equal(fused.rerank.selected, null);
+  assert.deepEqual(fused.rerank.change_completed, []);
+  assert.deepEqual(fused.evidence.map(e => e.chunk_id), ['municipal-c0', 'municipal-c1', 'municipal-c2', 'municipal-c3', 'municipal-c4']);
+});
