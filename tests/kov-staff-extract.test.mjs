@@ -177,3 +177,63 @@ test('the social field is read from the role or from the department heading, not
   assert.equal(isSocialFieldStaff({ role: 'esimees', section: 'Sotsiaalkomisjon' }), false);
   assert.equal(isSocialFieldStaff({ role: 'sotsiaalmeedia ja sotsiaaltöö spetsialist', section: null }), true);
 });
+
+// The cases below repeat what the applied contact proposals of 05.10.2026 brought into the register: roles that are
+// no role and "people" that are an institution, a company or a title.
+test('a table row: the job title before the name wins over a place of reception after it', () => {
+  const { people } = extractStaffFromHtml(page(`<h3>Sotsiaalosakond</h3><table><tbody>
+    <tr><th>Amet</th><th>Nimi</th><th>Telefon</th><th>E-post</th><th>Vastuvõtt</th></tr>
+    <tr class="row-2"><td>Hooldustöötaja</td><td>Tiit Toom </td><td></td><td></td><td>Veriora</td></tr>
+    <tr class="row-3"><td><a href="/juhend.pdf">Sotsiaaltööspetsialist</a></td><td>Anne Aas</td><td>5550 0004</td><td><a href="mailto:anne.aas@example.invalid">anne.aas@example.invalid</a></td>
+      <td><strong>Ruusal</strong> <br> E 9-12<br> <strong>Räpinas</strong> E 13-16 ja T,K 9-12</td></tr></tbody></table>`));
+  assert.deepEqual(people.map(person => [person.name, person.role]), [['Tiit Toom', 'Hooldustöötaja'], ['Anne Aas', 'Sotsiaaltööspetsialist']]);
+});
+
+test('a capitalised title with a place is the role of the card, not a second name', () => {
+  const person = one(`<h2>Sotsiaalosakond</h2><div class="vp-employee"><div class="vp-employee__name"><p>Jaan Tamm</p><p class="vp-employee__office">Hooldustöötaja Lasva</p></div>
+    <div class="vp-employee__contact"><p><a href="mailto:hooldus@example.invalid" class="vp-employee__email">hooldus@example.invalid</a></p><p>5550 0041</p></div></div>`);
+  assert.deepEqual([person.name, person.role, person.phones], ['Jaan Tamm', 'Hooldustöötaja Lasva', ['55500041']]);
+});
+
+test('a short job title in bold in front of the name is the role, and the end date of a post is not part of it', () => {
+  const lawyer = one(`<h2>Sotsiaalhoolekande osakond</h2><p><strong>Jurist</strong> Mari Maasikas<br>Telefon 5550 0042<br>
+    <a href="mailto:mari.maasikas@example.invalid">mari.maasikas@example.invalid</a><br>Tegevusvaldkonnad: eestkoste juriidilised küsimused</p>`);
+  assert.deepEqual([lawyer.name, lawyer.role], ['Mari Maasikas', 'Jurist']);
+  const lead = one(`<div class="entry-contact"><h2><a href="/isik/2">Kati Kask - võrgustikujuht kuni 31.12.2026</a></h2><p>Juhib koostöövõrgustiku arendamist.</p>
+    <div class="row"><p>-</p><p>5550 0043</p><p>Näidise 3, ruum 5</p></div></div>`);
+  assert.deepEqual([lead.name, lead.role], ['Kati Kask', 'võrgustikujuht']);
+});
+
+test('a label, a footnote, a web address and a statement are not a role', () => {
+  const card = (name, lines) => `<div class="vp-employee"><div class="vp-employee__name"><p>${name}</p>${lines.map(line => `<p>${line}</p>`).join('')}</div>
+    <div class="vp-employee__contact"><p>5550 0044</p></div></div>`;
+  const { people } = extractStaffFromHtml(page(`<h2>Sotsiaalosakond</h2>
+    ${card('Reet Rebane', ['Pank:'])}${card('Ott Orav', ['*Ligipääsetav erivajadusega inimesele'])}${card('Epp Eha', ['Rohkem infot: www.example.invalid'])}
+    ${card('Uku Urb', ['Päevakeskus on avatud :'])}${card('Liis Lepp', ['Linnaosade kontaktid on siin', 'koduteenuse koordinaator'])}
+    ${card('Siim Saar', ['Alus: ametijuhend'])}${card('Mall Mets', ['juhiabi', 'linnapea ja abilinnapeade assisteerimine'])}${card('Peeter Paju', ['Spordispetsialisti kt'])}`));
+  assert.deepEqual(people.map(person => [person.name, person.role]), [['Reet Rebane', null], ['Ott Orav', null], ['Epp Eha', null], ['Uku Urb', null], ['Liis Lepp', 'koduteenuse koordinaator'],
+    ['Siim Saar', null], ['Mall Mets', 'juhiabi'], ['Peeter Paju', 'Spordispetsialisti kt']]);
+  // A job title with a colon after it is still the title; a vacant post is nobody.
+  const titled = extractStaffFromHtml(page(`<h2>Sotsiaalosakond</h2><div class="vp-employee"><p><strong>Lastekaitsespetsialist:</strong></p><p>Anne Aas</p><p>5550 0051</p></div>
+    ${card('Koht Täitmata', ['Lastekaitsespetsialist'])}`)).people;
+  assert.deepEqual(titled.map(person => [person.name, person.role]), [['Anne Aas', 'Lastekaitsespetsialist']]);
+});
+
+test('an institution or a company is not a person, also when the e-mail next to it carries its word', () => {
+  const { people } = extractStaffFromHtml(page(`<h2>Täisealiste heaolu teenistus</h2>
+    <div class="box"><p><strong>Näidise Linnavalitsus</strong><br>Pikk tn 1, 71020 Näidise<br>Pank:<br>EE001234567890123456<br><a href="mailto:naidise@example.invalid">naidise@example.invalid</a></p></div>
+    <ul class="list"><li>Pikk tn 1, Näidise linn<br><em>*Ligipääsetav erivajadusega inimesele</em><br>+372 5550 0045<br><a href="mailto:vald@naidis.invalid">vald@naidis.invalid</a></li>
+      <li>Registrikood: <span>77000001</span><br>Näidispank AS: <span>EE001234567890123457</span></li></ul>
+    <div class="entry-contact"><h2><a href="/asutus/1">Näidise Hooldekodu</a></h2><div class="row"><p><a href="mailto:hooldekodu@example.invalid">hooldekodu@example.invalid</a></p><p>5550 0046</p></div></div>
+    <div class="entry-contact"><h2><a href="/asutus/2">Päevakeskus Kalda</a></h2><div class="row"><p><a href="mailto:kalda@example.invalid">kalda@example.invalid</a></p><p>5550 0047</p></div></div>
+    <div class="entry-contact"><h2><a href="/asutus/3">Näidise Varjupaik</a></h2><div class="row"><p><a href="mailto:varjupaik@example.invalid">varjupaik@example.invalid</a></p><p>5550 0048</p></div></div>
+    <div class="node"><h3>Põhja-Näidise Valitsuse sotsiaalhoolekande osakond</h3><p>Näidise Sotsiaalmaja, Haabersti Tegevuskeskus<br>5550 0049</p></div>
+    <div class="general"><p><strong>Näidise Vallavalitsus</strong><br><a href="mailto:naidise@naidis.invalid">naidise@naidis.invalid</a><br>Vallavanem Tiina Teder<br>SEB Pank EE001234567890123458<br>Riigilõivud</p></div>
+    <div class="bank"><p>Coop Pank: EE001234567890123459<br><a href="mailto:arved@naidis.invalid">arved@naidis.invalid</a></p></div>`));
+  // The general block names the mayor too, next to the municipality's mailbox: the mayor's own record is elsewhere.
+  assert.deepEqual(people, []);
+  // A surname that is also such a word is still a person when the e-mail is the person's own.
+  const person = one(`<div class="vp-employee"><div class="vp-employee__name"><p>Krista Kool</p><p class="vp-employee__office">sotsiaaltöö assistent</p></div>
+    <div class="vp-employee__contact"><p><a href="mailto:krista.kool@example.invalid" class="vp-employee__email">krista.kool@example.invalid</a></p><p>5550 0050</p></div></div>`);
+  assert.deepEqual([person.name, person.role], ['Krista Kool', 'sotsiaaltöö assistent']);
+});
