@@ -119,10 +119,10 @@ test('a municipality of more than twelve contacts is listed by department, and a
   // Twelve contacts are still one directory, whatever their departments.
   const twelve = await prepareRegisterContactExport({ db: register([...rows.slice(0, 6), ...rows.slice(26, 32)]) });
   assert.deepEqual(twelve.source.items.filter(item => item.itemType === 'resource').map(item => [item.id, item.relatedContacts.length]), [['service-map-contacts:suur_linn', 12]]);
-  // A municipality with more than sixty contacts is left out whole and named (measured in Tallinn on corpora v52 to
+  // A municipality with more than a hundred contacts is left out whole and named (measured in Tallinn on corpora v52 to
   // v54: its directories filled the record context and no contact of theirs was ever shown).
-  const large = await prepareRegisterContactExport({ db: register([...rows, ...unit(8, 'Roll: hooldustöötaja Osakond: Hoolekande osakond', 6000), row('c9', 'noo-vald', 'Nõo vald', 'Mari Maasikas')]) });
-  assert.deepEqual([large.counts.too_large, large.counts.municipalities, large.counts.exported_contacts, large.counts.directories], [[{ region: 'suur_linn', contacts: 64 }], 1, 1, 1]);
+  const large = await prepareRegisterContactExport({ db: register([...rows, ...unit(48, 'Roll: hooldustöötaja Osakond: Hoolekande osakond', 6000), row('c9', 'noo-vald', 'Nõo vald', 'Mari Maasikas')]) });
+  assert.deepEqual([large.counts.too_large, large.counts.municipalities, large.counts.exported_contacts, large.counts.directories], [[{ region: 'suur_linn', contacts: 104 }], 1, 1, 1]);
   assert.deepEqual(large.source.items.map(item => [item.itemType, item.municipality_id]), [['contact', 'noo_vald'], ['resource', 'noo_vald']]);
 });
 
