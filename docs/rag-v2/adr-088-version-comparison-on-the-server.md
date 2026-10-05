@@ -2,7 +2,7 @@
 
 05.10.2026. Teostus Claude Opus 5.5. Omanik 05.10: „teeme need tugevaks“ (viiest tööst neljas: „mis muutub“ ei ole usaldusväärne). Lähtekoht: [ADR-077](adr-077-current-message-only-and-both-versions.md) leid F1.
 
-**Kood on valmis ja kontrollitud mudelita päris indeksi peal (jaotis „Kontroll“). Mudeliga mõõtmata: mida Luna selle plokiga vastab.**
+**Töös alates #384. Kontrollitud mudelita päris indeksi peal (jaotis „Kontroll“) ja mõõdetud mudeliga ühe pöördega (jaotis „Mõõtmine“): plokk jõudis mudelini ja vastuse väited erinevuste kohta peavad paika.**
 
 ## Probleem
 
@@ -48,7 +48,17 @@ Paragrahv lõigatakse lõikudeks pikkuse järgi. Sama säte seisab seetõttu kah
   - Võrdlus leidis 279 erinevust; 70-l ei ole märget. Viies aktis vaadati need läbi: akti läbiv sõnaasendus, mida märge iga sätte juures ei nimeta (Põhja-Sakala: „sotsiaaltöötaja“ → „spetsialist“), uue paragrahvi lõiked ja ümber kirjutatud paragrahvid. Kõiki 70 ei vaadatud.
   - 04.10 pöörde tõendid ehitati otsingu oma funktsiooniga uuesti: plokk on 1377 baiti, § 5 lg 5 on `same_wording` all, võrdlus võttis 9 ms.
 
+## Mõõtmine (05.10, omaniku loal; üks pööre, 0,0061 USD)
+
+Kataloog `scenarios-version-change-1` töötaval versioonil `d43f3458` ([tõend](../audits/evidence/strengthening-measured-2026-10-05.json)): „Mis muutub Põhja-Sakala valla sotsiaalabi korras alates 6. oktoobrist?“ Pööre läbis kataloogi kõik kontrollid.
+
+- **Plokk jõudis mudelini** (pöörde kirjest loetud): üks akt, 1897 baiti; üheksa tõendites olevat sätet erinevana (§ 3 lg 1–2, § 4 lg 2 ja lisatud lg 6, § 5 lg 1, 3, 4, § 6 lg 2 ja 4), viisteist samana, nende seas § 5 lg 5.
+- **Vastus** nimetas muudatused §-des 3–6 ja ei esitanud lõiget 5 muudatusena. Väited selle kohta, mis erineb, võrdlesin mõlema redaktsiooni tekstiga: peavad paika (sh § 5 lg 3 p 4: püsiväljaminekute asemel eluasemekulud, tõendid soovitusliku asemel nõutavad; uus § 4 lg 6).
+- **§ 6 lg 2 ja 4:** vana sõnastusega lõiku tõendites ei olnud (plokk andis ainult uue lõigu viite). Vastus kirjeldas uut sõnastust ja ütles lõpus, et ei saa neid lõikeid varasemaga võrrelda. Tegelik erinevus on seal üks sõna („sotsiaaltöötaja“ → „spetsialist“).
+- **Nõrk koht, mis jääb:** muudetud sätte uut sõnastust kirjeldades ei ütle vastus alati, mis täpselt teisiti on (§ 3 lg 1 puhul muutus sõnastus, sisu mitte). Plokk ütleb „muutus“, mitte „kuidas“.
+- **Mida see pööre ei näidanud:** eelvalik hoidis seekord § 5 mõlemad lõigud mõlemast redaktsioonist, nii et 04.10 olukord (vana teine lõik valikust väljas) ei kordunud. Selle olukorra kohta on tõend ainult mudelita (jaotis „Kontroll“).
+
 ## Mõõtmata
 
-- Mida Luna plokiga vastab (töö lõpu jooks, kataloog `scenarios-version-change-1`, mille kontroll `must_not` keelab tähtaega uuena esitada).
-- Päris vestluse pööre, kus tõendites on kaks redaktsiooni koos kirjete ja ajakirjade lõikudega.
+- Pööre, kus muutumata sätte vana lõik on valikust väljas (04.10 olukord), mudeliga.
+- Pööre, kus tõendites on üleriigilise seaduse kaks redaktsiooni.

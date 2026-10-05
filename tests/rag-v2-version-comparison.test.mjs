@@ -213,8 +213,8 @@ test('nothing is compared without two versions of one act in the evidence', asyn
   assert.deepEqual(await versionComparisons([first, entryOf(older, ofSection(older, 5)[0], OLDER)], async ids => ids.map(id => (id === older.document.id ? stale : newer))), []);
 });
 
-test('dialogue prompt 26 says what version_changes is and that a change is stated only as it lists it', () => {
-  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-26');
+test('the dialogue prompt (since 26) says what version_changes is and that a change is stated only as it lists it', () => {
+  assert.ok(Number(DIALOGUE_PROMPT_VERSION.split('-').at(-1)) >= 26);
   const config = { model: 'gpt-6-luna', reasoning: 'medium', maxOutputTokens: 4096 };
   const instructions = dialogueRequest(config, 'Mis muutub?', { evidence: [] }, 'et', {}).instructions;
   assert.ok(instructions.includes(VERSION_CHANGES_INSTRUCTIONS));

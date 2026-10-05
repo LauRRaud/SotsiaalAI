@@ -75,7 +75,7 @@ Omaniku luba 05.10: „alusta tasuta ja luba antud ka tasuliseks jooksuks, mis e
 
 ## Piirid
 
-- **Mudeliga mõõtmata.** Kas Luna loeb telefoni tõenditekstist kindlalt, näitab töö lõpu mõõtmisjooks.
+- **Mõõdetud mudeliga 05.10** ([tõend](../audits/evidence/strengthening-measured-2026-10-05.json)): kus kontaktid olid näidatud (Antsla, 8 inimest), luges Luna telefonid ja e-posti tõenditekstist õigesti; kõik üheksa vastuses antud kanalit on kontekstis olemas. Tallinnas ja Narvas ei näidatud teenuse küsimusele ühtegi kontakti ja vastus ei andnud ühtegi: kontaktide kirje ei olnud kolme lähima kirje seas. Põhjus ja parandus: [ADR-089](adr-089-closest-contact-directory.md).
 - **Tallinna mahtumine on mõõdetud kahe küsimusega** (jaotis „Korpus v57“), mitte iga küsimuse jaoks: avatakse kuni kolm kirjet, mahtus kaks kontaktide kirjet ja üks teenus.
 - Tasuta kontroll järjestab kirjeid sõnade järgi; päris vestluse vektorjärjestus võib avada teised kirjed.
 - Auditipaketis on viidatud kontaktil kaks välja vähem kui enne (lehe aadress, kontrolli aeg); varasemate pöörete paketid loetakse nagu enne (`record-catalogue-2` on loetav leping).

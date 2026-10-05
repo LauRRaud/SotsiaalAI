@@ -2,7 +2,7 @@
 
 04.10.2026. Teostus Claude Opus 5.5. Lähtekoht: Codexi sõltumatu ülevaatus (`docs/audits/rag-v2-pr357-364-review-2026-10-04.md` põhikaustas, omaniku edastatud), kaks P2 leidu. Mõlemad kordasin enne parandamist Codexi sondidega (4/4).
 
-**Mõõtmata mudeliga.** Mõlemad vead ja parandused on serveri reeglites ja deterministlikud; tõend on kohalikud testid Codexi sondide sisenditega. Tasulisi jookse ei tehtud.
+**Mõõdetud mudeliga 05.10** (jaotis „Mõõtmine“): mõlemad Codexi vestlused läbisid. Kuni selleni oli tõend ainult kohalikud testid Codexi sondide sisenditega.
 
 ## F1 — sõnade kattumise järgi jäeti välja vajalik päring ([ADR-080](adr-080-one-query-per-message.md))
 
@@ -37,3 +37,11 @@
 - **„Kas siin ka on?“, „Aga minu juures?“** ei nimeta valda üldsõnaga; need sõltuvad endiselt plaanist (jätkuvad küsitud vallas, kui plaan valda ei nimeta).
 - Küsimus valdade kohta üldiselt („Kas see on teistes linnades ka nii?“) otsitakse inimese oma vallast.
 - Kui plaan kirjutab ainult ühe üldise päringu ja jätab olukorra välja, on otsingutekst ikka ainult praegune sõnum (ADR-078). See on plaani viga, mida server ei paranda.
+
+## Mõõtmine (05.10, omaniku loal; töö lõpu jooks, versioon `d43f3458`)
+
+Kataloog `scenarios-strengthening-1` (kirjutatud enne jooksu) ja `scenarios-answered-questions-1`, igaüks üks jooks ([tõend](../audits/evidence/strengthening-measured-2026-10-05.json)).
+
+- **F1, olukord ühes sõnumis ja küsimus järgmises** (Codexi vestlus sõna-sõnalt, 2 pööret): läbis. Teise pöörde plaan kirjutas ühe päringu, mis nimetab nii puuet kui ka kohandamist („Puudega inimese eluruumi kohandamise toetus taotlemine“); kohandamise tekst oli tõendites ja vastus rääkis kohandamisest. Plaan ei kirjutanud seekord eraldi päringut varasema sõnumi kohta, nii et ADR-080 reegel ei oleks siin midagi välja jätnud: pööre näitab, et olukord jõuab otsingusse, mitte seda, mis oleks juhtunud vana reegliga.
+- **F2, „minu vallas“ pärast küsimust teise valla kohta** (3 pööret): läbis. Nõo → Maardu → „Kas see teenus on ka minu vallas olemas?“ otsiti Nõo vallast; elukoht jäi Nõo vallaks.
+- **F1 tagajärg, mida ADR ette ütles:** viie sidumata küsimuse kolmas pööre sai jälle päringu igale sõnumile (kontroll `plan_queries_must_not` kukkus, 4/5). Eelvalik varasemate teemade lõike ei hoidnud ja vastus oli eestkoste kohta.

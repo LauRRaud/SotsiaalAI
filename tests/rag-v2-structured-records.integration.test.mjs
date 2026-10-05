@@ -77,6 +77,23 @@ before(async () => {
     await fs.writeFile(path.join(root, file), bytes);
     for (const item of items) inputs.push(await registeredSource(root, { role: 'source', path: file, sha256: hash(bytes) }, { itemId: item.id }));
   }
+  // A third region, used by the contact directory's test only (ADR-089): twenty-four services without a contact of
+  // their own (enough that their summaries do not all fit beside the opened records) and a contact directory,
+  // declared as the register's export declares it, that links to two people.
+  {
+    const region = 'saue_vald', items = Array.from({ length: 24 }, (_, i) => ({ id: `help_${i}`, itemType: 'service', title: `Koduabi ${i}`,
+      summary: `Sünteetiline koduabi ${i} toetab igapäevast toimetulekut. Teenust osutatakse kodus ja selle sisu lepitakse kokku iga inimesega eraldi.`,
+      conditions: ['Esimene näidistingimus', 'Teine näidistingimus'], application: 'Esita näidisavaldus.' }));
+    for (const letter of ['a', 'b']) items.push({ id: `directory_contact_${letter}`, itemType: 'contact', name: `Näidisinimene ${letter.toUpperCase()}`, role: `Näidisspetsialist ${letter.toUpperCase()}`,
+      phone: `+372 000000${letter === 'a' ? 1 : 2}`, email: `${letter}@example.invalid`, officialUrl: 'https://example.invalid/kontaktid' });
+    items.push({ id: 'directory', itemType: 'resource', title: 'Sotsiaalvaldkonna kontaktid: Näidisvald', summary: 'Kinnitatud töötajad: nimi, amet, telefon ja e-post.',
+      officialUrl: 'https://example.invalid/kontaktid', relatedContacts: ['directory_contact_a', 'directory_contact_b'] });
+    for (const item of items) Object.assign(item, { canonical_item_id: `${region}:${item.id}`, municipality_id: region, municipality_name: 'Näidisvald',
+      source_type: item.id === 'directory' ? 'municipal_contact_directory' : `municipal_${item.itemType}`, language: 'et', last_checked: '2026-09-23' });
+    const file = `${region}.json`, bytes = JSON.stringify({ items });
+    await fs.writeFile(path.join(root, file), bytes);
+    for (const item of items) inputs.push(await registeredSource(root, { role: 'source', path: file, sha256: hash(bytes) }, { itemId: item.id }));
+  }
   const plan = await planIngestBatch({ tenant, inputRoot: root, inputs, rights: { access: 'local_private', usage: 'development_only' },
     profile: { id: 'generic', version: '1', months: [], categoryLabels: [] } });
   await postgres.enqueue(plan);
@@ -267,6 +284,44 @@ test('ADR-086: a contact is decided only when a view shows the record that links
   assert.equal(asked.record_context.view, 'titles');
   assert.equal(asked.record_context.entries.filter(entry => entry.kind === 'contact').length, 1);
   assert.equal(tally().hidden_contact_sentinel, 1);
+});
+
+test('ADR-089: the closest contact directory is opened beside the closest records, marked as a directory, and is the first to go', async () => {
+  const everyone = async () => true, region = 'saue_vald', records = extra => source({ authorizeContact: everyone }).retrieve(query({ region, ...extra }));
+  const all = await records();
+  assert.equal(all.record_context.view, 'summary');
+  const limits = { contextTokens: all.measurements.model_context_tokens - 1 };
+  // Without a question nothing is ranked: no record is opened and nobody of the directory is shown.
+  const plain = await records({ limits });
+  assert.equal(plain.record_context.view, 'titles');
+  assert(!plain.record_context.entries.some(entry => entry.kind === 'contact' || entry.detail !== 'catalogue'));
+  // A question about a service: the three closest records are services, none of the directory's words is in the
+  // question, and the directory is opened too, with its two people.
+  const asked = await records({ question: 'Koduabi 14', limits }), marked = (packet, detail) => packet.record_context.entries.filter(entry => entry.detail === detail);
+  assert.equal(asked.record_context.view, 'titles');
+  assert.deepEqual([marked(asked, 'relevant_detail').length, marked(asked, 'relevant_detail').every(entry => entry.kind === 'service')], [3, true]);
+  assert.deepEqual(marked(asked, 'contact_directory').map(entry => entry.record_id), ['saue_vald:directory']);
+  assert.deepEqual(asked.record_context.entries.filter(entry => entry.kind === 'contact').map(entry => entry.fields.name.value).sort(), ['Näidisinimene A', 'Näidisinimene B']);
+  assert.equal(asked.record_context.listed_count, asked.record_context.catalogue_count);
+  // The model reads the mark, the people by name and role, and their channels in the evidence text.
+  const model = asked.model_context.records, directory = model.entries.find(entry => entry.detail === 'contact_directory');
+  assert.equal(directory.fields.title.value, 'Sotsiaalvaldkonna kontaktid: Näidisvald');
+  assert.deepEqual(model.entries.filter(entry => entry.kind === 'contact').map(entry => Object.keys(entry.fields)), [['name', 'role'], ['name', 'role']]);
+  assert.deepEqual(model.relations.filter(link => link.from === directory.key).map(link => [link.relation, link.state, link.to.length]), [['contact', 'source_declared', 2]]);
+  assert.ok(asked.model_context.evidence.some(entry => entry.text.includes('+372 0000001')) && asked.model_context.evidence.some(entry => entry.text.includes('b@example.invalid')));
+  // A directory that is itself among the closest records is a relevant detail like any other.
+  const named = await records({ question: 'Sotsiaalvaldkonna kontaktid', limits });
+  assert.deepEqual([marked(named, 'contact_directory').length, marked(named, 'relevant_detail').map(entry => entry.record_id)], [0, ['saue_vald:directory']]);
+  // The directory is the first to go: the largest budget that no longer holds it still holds the three closest
+  // records in full and every title.
+  let low = plain.measurements.model_context_tokens, high = asked.measurements.model_context_tokens - 1, without = null;
+  while (low <= high) {
+    const middle = Math.floor((low + high) / 2), attempt = await records({ question: 'Koduabi 14', limits: { contextTokens: middle } });
+    if (marked(attempt, 'contact_directory').length) high = middle - 1; else { without = attempt; low = middle + 1; }
+  }
+  assert.ok(without);
+  assert.deepEqual([marked(without, 'relevant_detail').length, without.record_context.entries.filter(entry => entry.kind === 'contact').length], [3, 0]);
+  assert.equal(without.record_context.listed_count, without.record_context.catalogue_count);
 });
 
 test('EstNLTK resolves canonical locality forms, preserves ambiguity and clears an unrecognized correction', async () => {
