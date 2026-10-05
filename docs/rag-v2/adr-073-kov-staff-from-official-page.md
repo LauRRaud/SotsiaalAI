@@ -200,7 +200,7 @@ Korduslugemine ei kaitse lugemisvea eest: sama leht annab tuvastajale kaks korda
 - uus inimene on sotsiaalvaldkonnas ainult osakonna pealkirja järgi;
 - sama e-post on lehel mitmel inimesel;
 - e-posti aadressis on täpitäht;
-- ametitekst ei sisalda ühtki ametinimetuse sõna (lehel seisab nime kõrval näiteks kohanimi);
+- uue inimese ametitekst ei sisalda ühtki ametinimetuse sõna (lehel seisab nime kõrval näiteks kohanimi); olemasoleva rea ametit selline tekst alates 05.10.2026 ei asenda üldse (vt „Ametitekstide audit“);
 - muudetud rida ei kinnituks.
 
 ### Kus seis elab
@@ -305,3 +305,42 @@ Omanik 05.10.2026: „rakenda 355 ettepanekut“. Enne seda oli omanikule selgit
 - **Kontaktikontroll pärast seda:** 1385 rida, **1194 kinnitatud** (enne 869); lehti 156, neist 8 ei vastanud (enne 12).
 - **Tagasivõtmine:** `node scripts/service-map-contact-proposals.mjs --revert bdb99a37-785d-4987-964f-ff17de5c3ee2 [--keys <võti,võti>] --yes` taastab vanad väärtused ja peidab lisatud read.
 - **Märkega ettepanekute hulgas oli lugemisvigu ameti tekstis.** Koondpildis (ilma nimedeta) on vähemalt neli rida, mille „amet“ ei ole amet: „Pank:“, „Ruusal“, „*Ligipääsetav erivajadusega inimesele“, „Eluruumi tagamise teenus“; 12 uuel real ametit ei ole. Need on omanikule nimetatud; parandamata.
+
+## Ametitekstide audit ja tuvastaja parandus (05.10.2026)
+
+Omanik 05.10.2026: „teeme need tugevaks“ (viiest tööst kolmas: kontaktide ametinimetused).
+
+### Audit (ainult lugemine)
+
+Kõigi 1194 kinnitatud rea amet loeti nii, nagu vestlus seda loeb (`registerRole`): 286 eri ametiteksti. Varasem kiire SQL-muster oli leidnud kaks vigast rida; päris nimekiri:
+
+- **11 rida ei ole inimesed.** Asutuse, üksuse, panga või võrgustiku nimi loeti inimese nimeks (näiteks „Viljandi Linnavalitsus“, „Tartu Hooldekodu“, „Nõmme Sotsiaalmaja“, „Swedbank AS“). Kõik lisas 05.10 partii. Seitsmel oli ametiks lehe muu tekst („Pank:“, „Päevakeskus on avatud :“, „Rohkem infot: www…“, „*Ligipääsetav erivajadusega inimesele“), neljal ametit ei olnud.
+- **4 päris inimese amet asendati tekstiga, mis ei ole amet.** Räpina kolmel real võeti ametiks tabeli viimase veeru vastuvõtukoht („Veriora“, „Ruusal“); ametinimetus seisab seal nime ees. Narva ühel real kirjutab leht ameti kohale teenuse nime („Eluruumi tagamise teenus“).
+- **9 päris inimest olid ametita.** Võru valla seitse hooldustöötajat (lehel „Hooldustöötaja Lasva“: kaks suure tähega sõna loeti nimeks ja jäeti ametist välja), Tartu üks („võrgustikujuht kuni <kuupäev>“: numbriga tekst ei olnud amet) ja Tallinna üks, kelle nime ette loeti amet („Jurist“ eesnimena; sama inimene on registris juba õige nimega real).
+
+### Tuvastaja reeglid (`lib/serviceMap/kovStaffExtract.js`)
+
+1. **Asutus ei ole inimene, ka siis, kui kõrval olev e-post kannab tema nime sõna.** Senine reegel päästis e-posti järgi iga nime (seda on vaja perekonnanimedele nagu Kool või Linn), nii et „Viljandi Linnavalitsus“ koos linna üldpostkastiga sai inimeseks. Nüüd ei ole inimene: asutusesõna mis tahes käändes või liitsõnas (valitsus, keskus, osakond, teenistus, hooldekodu, varjupaik, sotsiaalmaja, volikogu jt), ärivorm suurtähtedega (AS, OÜ, MTÜ, SA) ega panga nimi. Kirje, kus asutuse nimi seisab oma postkasti kõrval, on asutuse oma ega anna ühtki inimest; lihttekstis lõpetab asutuse või panga nimi eelmise inimese kirje.
+2. **Amet võetakse nime järel olevast tekstist, välja arvatud siis, kui ametinimetus on ainult nime ees olevas tekstis** (tabelirida „Hooldustöötaja | nimi | Veriora“).
+3. **Amet ei ole** kooloniga silt („Pank:“, „Alus: ametijuhend“), tärniga märkus, veebiaadress ega lause sõnaga „on“. Ametinimetus, mille järel on koolon („Kommunikatsioonispetsialist:“), on amet ilma koolonita.
+4. **Suure tähega ametinimetus koos kohaga** („Hooldustöötaja Lasva“) on amet, mitte teine nimi. Lühike ametinimetus nime ees („Jurist“, „Arst“) on amet, mitte eesnimi. Ametikoha lõpukuupäev („kuni 31.12.2026“) ei kuulu ametinimetusse.
+5. **„Koht Täitmata“ ja „… IBAN“** ei ole nimed.
+
+Nime ja ameti sõnaloendid on eraldi: nime üle otsustav loend on kitsas (perekonnanimi võib lõppeda sõnaga „meister“), ametiteksti loend (`hasJobTitle`) on laiem ja tunneb ka käändevormi ning lõppu „kt“ ja „abi“.
+
+### Ettepanekute kihi reeglid (`lib/admin/rag/contactRegistry/proposals.js`)
+
+- **Tekst, milles ei ole ametinimetust, ei asenda registri ametit** (seis `role_kept`). Sama rea muud muudatused (telefon, e-post, leht) pakutakse endiselt. Uue inimese puhul jääb selline tekst märkega omaniku otsustada.
+- **Ametita rida saab lehelt ametinimetuse.** Kontroll loeb ametita rea ametiks osakonna ja kinnitab selle, mistõttu selline rida ei saanud seni kunagi ettepanekut.
+- Ametisõnade loend on tuvastajaga ühine.
+
+### Kuivjooks päris lehtedel (05.10.2026, ainult lugemine, mudelita)
+
+Vana ja uus tuvastaja samadel 147 lehel (156 lehest 9 ei vastanud):
+
+- inimesi loeti 3591 ja 3551; 52 kirjet kadus (asutused, pangad, volikogud, kaks täitmata ametikohta ja üks nimi, mille ette oli loetud amet) ja 12 tuli juurde (inimesed, kelle kirje oli seni asutuse kirje sees);
+- amet muutus 34 kirjel: sildid ja hariduse kirjeldused asendusid ametinimetusega või jäid tühjaks („Alus: ametijuhend“ kaheksal, „Kõrgharidus …“ → „Juhtiv IT-spetsialist“), Võru valla seitse hooldustöötajat said ameti;
+- registri ridadest kinnituks 1176 (vana koodiga samadel lehtedel 1183): kaovad kaheksa rida, mis ei ole inimesed, ja juurde tuleb üks varem kinnitamata rida;
+- ettepanekuid annab uus kood 33 (vana 20): juurde tulevad 11 päris inimese ametiparandused (Räpina 3, Võru vald 7, Tartu 1) märketa ettepanekutena; üks ametinimetuseta tekst jääb pakkumata (`roleKept` 1).
+
+Piirid: kaks rida, mis ei ole inimesed, loeb ka uus tuvastaja inimeseks (linnaosa üksuse nimi ja ingliskeelne võrgustiku nimi), sest nimes ei ole ühtki asutusesõna; uue inimesena jääksid need märkega omaniku otsustada. Reeglid on sõnaloendid: loendist puuduv asutusesõna või ametinimetus jääb vahele.

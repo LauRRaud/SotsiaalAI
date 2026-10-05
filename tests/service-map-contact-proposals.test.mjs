@@ -136,9 +136,25 @@ test('a department of several fields does not make its culture adviser a social 
   // Under a social department a teacher of another field is left out too; the place name next to a name is no role.
   const social = newPersonProposals(staff(card('Kalle Kuusk', 'Haridusspetsialist', 'kalle.kuusk@example.invalid', '555 0027') + card('Tiina Teder', 'Veriora', 'tiina.teder@example.invalid', '555 0025')), context);
   assert.deepEqual([social.proposals.map(proposal => [proposal.name, proposal.flags]), social.skipped.other_field], [[['Tiina Teder', ['role_unusual', 'social_by_heading']]], 1]);
-  const reworded = contactRowProposal(row('Tiina Teder', 'hooldustöötaja', '555 0025', 'tiina.teder@example.invalid'), staff(card('Tiina Teder', 'Veriora', 'tiina.teder@example.invalid', '555 0025'))).proposal;
-  assert.deepEqual([reworded.fields.description.after, reworded.flags], ['Roll: Veriora\nOsakond: Sotsiaalosakond', ['role_unusual']]);
-  assert.deepEqual(automaticProposals([reworded], { reads: { [reworded.key]: { signature: reworded.signature, count: 2 } } }).held.map(item => item.reason), ['owner_only']);
+  // A text that is no job title never replaces a role that is one (05.10.2026: "Veriora" replaced "hooldustöötaja");
+  // the other fields of the row are still proposed.
+  const veriora = staff(card('Tiina Teder', 'Veriora', 'tiina.teder@example.invalid', '555 0025'));
+  assert.deepEqual(contactRowProposal(row('Tiina Teder', 'hooldustöötaja', '555 0025', 'tiina.teder@example.invalid'), veriora), { state: 'role_kept' });
+  const phoneOnly = contactRowProposal(row('Tiina Teder', 'hooldustöötaja', '555 0099', 'tiina.teder@example.invalid'), veriora).proposal;
+  assert.deepEqual([Object.keys(phoneOnly.fields), phoneOnly.flags], [['phone'], []]);
+  // The same where the register's own role is not a job title: one wording of a service does not replace another.
+  assert.equal(contactRowProposal(row('Tiina Teder', 'teenuse kontakt', '555 0025', 'tiina.teder@example.invalid'), veriora).state, 'role_kept');
+  // A new person's role that is no job title still waits for the owner.
+  const unusual = newPersonProposals(veriora, context).proposals[0];
+  assert.deepEqual(automaticProposals([unusual], { reads: { [unusual.key]: { signature: unusual.signature, count: 2 } } }).held.map(item => item.reason), ['owner_only']);
+  // A row without a role takes the page's job title and keeps its department; a text that is no title is not taken.
+  const bare = row('Tiina Teder', null, '555 0025', 'tiina.teder@example.invalid', { description: 'Osakond: Sotsiaalosakond' });
+  const added = contactRowProposal(bare, staff(card('Tiina Teder', 'Hooldustöötaja Lasva', 'tiina.teder@example.invalid', '555 0025'))).proposal;
+  assert.deepEqual([added.fields, added.flags], [{ description: { before: 'Osakond: Sotsiaalosakond', after: 'Roll: Hooldustöötaja Lasva\nOsakond: Sotsiaalosakond' } }, []]);
+  assert.equal(contactRowProposal(bare, veriora).state, 'same');
+  // A job title replaces a text that is none without a flag.
+  const titled = contactRowProposal(row('Tiina Teder', 'Veriora', '555 0025', 'tiina.teder@example.invalid'), staff(card('Tiina Teder', 'Hooldustöötaja', 'tiina.teder@example.invalid', '555 0025'))).proposal;
+  assert.deepEqual([titled.fields.description.after, titled.flags], ['Roll: Hooldustöötaja\nOsakond: Sotsiaalosakond', []]);
 });
 
 test('the two-read rule: the same result at least five days later counts, a changed or missing one starts over', () => {
@@ -250,7 +266,7 @@ test('reading the pages: confirmed rows give nothing, a moved page is found from
     ['https://linn.example.invalid/vana', 'moved', ['https://uus-linn.example.invalid/kontakt', 'https://uus-linn.example.invalid/hoolekanne/tootajad'], { moved: 3 }],
     [URL_OLD, 'read', 200, { confirmed: 1, changed: 1, not_on_page: 1 }]]);
   assert.deepEqual({ ...result.counts }, { registerRows: 7, pages: 3, pagesRead: 1, pagesMoved: 1, pagesUnreachable: 1, rowsOnUnreachablePages: 1, confirmed: 1, movedRows: 3, changedRows: 1,
-    rewordedRoles: 0, notOnPage: 1, away: 0, leftSocialField: 0, sameNameTwice: 0, unexplained: 0, newPeople: 2, proposals: 6, ownerOnly: 1 });
+    rewordedRoles: 0, notOnPage: 1, away: 0, leftSocialField: 0, roleKept: 0, sameNameTwice: 0, unexplained: 0, newPeople: 2, proposals: 6, ownerOnly: 1 });
   // The operator's candidate is used instead of the front page.
   const named = await readContactProposals({ prisma: db, fetchPage, candidatePages: { 'https://linn.example.invalid/vana': ['https://linn.example.invalid/puudub'] } });
   assert.equal(named.pages.find(page => page.url === 'https://linn.example.invalid/vana').state, 'unreachable');
