@@ -1072,7 +1072,12 @@
       "history_empty": "Parandusi ega tagasivõtmisi ei ole.",
       "revision_kind_CORRECTION": "Parandus",
       "revision_kind_RETRACTION": "Tagasivõtmine",
-      "revision_reason": "Põhjus"
+      "revision_reason": "Põhjus",
+      "audio_title": "Kohtumise heli",
+      "audio_hint": "Salvesta näost näkku kohtumine. Salvestis läheb sinu dokumentidesse ja seotakse selle juhtumiga. Märkme ridu see ei kirjuta: transkribeeri dokumentide lehel ja kanna vajalik märkmesse ise.",
+      "audio_linked": "Salvestise osa on sinu dokumentides ja juhtumiga seotud.",
+      "audio_link_failed": "Salvestis on sinu dokumentides, kuid juhtumiga sidumine ebaõnnestus. Lisa seos seoste alt käsitsi.",
+      "audio_open_documents": "Ava dokumentide leht"
     },
     "prep": {
       "load_more": "Näita rohkem",
@@ -3871,7 +3876,8 @@
         ],
         "sources": {
           "upload_file": "Laadi üles helifail",
-          "choose_existing": "Vali olemasolev helisalvestus dokumentidest"
+          "choose_existing": "Vali olemasolev helisalvestus dokumentidest",
+          "record_now": "Salvesta heli siin"
         },
         "draft_types": {
           "meeting_summary": "kohtumise kokkuvõte",
@@ -3897,7 +3903,10 @@
         "create_summary": "Koosta kokkuvõte",
         "summary_creating": "Kokkuvõte on koostamisel...",
         "summary_ready": "Kokkuvõte valmis muudetava mustandina.",
-        "summary_link": "Ava kokkuvõte"
+        "summary_link": "Ava kokkuvõte",
+        "source_recorded": "Siin salvestatud heli",
+        "record_help": "Salvesta näost näkku kohtumine seadme mikrofoniga. Salvestis läheb sinu dokumentidesse ega muutu avalikuks.",
+        "record_success": "Salvestise osa on dokumentides. Vali see ja transkribeeri."
       },
       "conversation_intro_empty": "Tere! Too esmalt dokumendid kaasa ja siis kirjelda, mida soovid koostada.",
       "conversation_intro_with_docs": "Tere! Kirjelda, mida pean valitud {count} dokumendi põhjal koostama.",
@@ -4043,7 +4052,9 @@
       "daily_upload_quota_exceeded": "Päevane üleslaadimise limiit on täitunud. Proovi homme uuesti.",
       "storage_quota_exceeded": "Salvestusmaht on täis. Kustuta mõni fail ja proovi uuesti.",
       "transcript_required": "Transkript puudub või ei ole kasutatav.",
-      "summary_failed": "Kokkuvõtte koostamine ebaõnnestus."
+      "summary_failed": "Kokkuvõtte koostamine ebaõnnestus.",
+      "recording_consent_required": "Salvestist ei saa hoiule võtta ilma kinnituseta, et kohalolijad on nõus.",
+      "recording_invalid": "Salvestise andmed on vigased. Alusta salvestamist uuesti."
     },
     "artifacts": {
       "search_placeholder": "Otsi pealkirja, sisu, liigi või allikdokumendi järgi",
@@ -4208,6 +4219,26 @@
       "purpose": "Salvestamise eesmärk",
       "consent_status": "Nõusoleku staatus",
       "retention_until": "Säilitustähtaeg"
+    },
+    "recorder": {
+      "consent_label": "Kõik kohalolijad teavad salvestamisest ja on sellega nõus.",
+      "consent_first": "Kinnita enne salvestamist, et kohalolijad on nõus.",
+      "start": "Alusta salvestamist",
+      "starting": "Avan mikrofoni…",
+      "stop": "Lõpeta salvestamine",
+      "closing": "Lõpetan salvestamist…",
+      "recording_status": "Salvestab: {time}, osa {part}",
+      "saving": "Salvestan osa dokumentidesse…",
+      "saved_count": "Dokumentidesse salvestatud osi: {count}.",
+      "finished": "Salvestamine on lõpetatud.",
+      "limit_reached": "Salvestamise ajapiir sai täis ja salvestamine lõpetati.",
+      "limit_help": "Salvestis jaguneb 10-minutilisteks osadeks, kokku kuni 90 minutit. Iga osa on eraldi helifail ja transkribeeritakse eraldi. Lehelt lahkumine lõpetab salvestamise.",
+      "save_failed": "Osa salvestamine ebaõnnestus. Salvestis on selles aknas alles: ära sulge lehte ja proovi uuesti.",
+      "retry": "Proovi uuesti salvestada ({count})",
+      "microphone_failed": "Mikrofoni ei saanud kasutada. Kontrolli brauseri luba.",
+      "microphone_lost": "Mikrofon katkes ja salvestamine lõpetati. Seni salvestatud osad on alles.",
+      "unsupported": "See brauser ei toeta heli salvestamist. Salvesta telefoni diktofoniga ja laadi fail üles.",
+      "part_title": "Kohtumise salvestis {date}, osa {part}"
     }
   },
   "research": {

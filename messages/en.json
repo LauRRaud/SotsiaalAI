@@ -1072,7 +1072,12 @@
       "history_empty": "There are no corrections or retractions.",
       "revision_kind_CORRECTION": "Correction",
       "revision_kind_RETRACTION": "Retraction",
-      "revision_reason": "Reason"
+      "revision_reason": "Reason",
+      "audio_title": "Meeting audio",
+      "audio_hint": "Record a meeting in person. The recording goes to your documents and is linked to this case. It writes no note lines: transcribe it on the documents page and enter what is needed yourself.",
+      "audio_linked": "A part of the recording is in your documents and linked to the case.",
+      "audio_link_failed": "The recording is in your documents, but linking it to the case failed. Add the link by hand under linked items.",
+      "audio_open_documents": "Open the documents page"
     },
     "prep": {
       "load_more": "Show more",
@@ -3871,7 +3876,8 @@
         ],
         "sources": {
           "upload_file": "Upload an audio file",
-          "choose_existing": "Choose an existing audio recording from Documents"
+          "choose_existing": "Choose an existing audio recording from Documents",
+          "record_now": "Record audio here"
         },
         "draft_types": {
           "meeting_summary": "meeting summary",
@@ -3897,7 +3903,10 @@
         "create_summary": "Create summary",
         "summary_creating": "Summary is being created...",
         "summary_ready": "Summary ready as an editable draft.",
-        "summary_link": "Open summary"
+        "summary_link": "Open summary",
+        "source_recorded": "Audio recorded here",
+        "record_help": "Record a meeting in person with the device's microphone. The recording goes to your documents and does not become public.",
+        "record_success": "A part of the recording is in Documents. Select it and transcribe."
       },
       "conversation_intro_empty": "Hello! First bring documents into Document drafting and then describe what you want me to create.",
       "conversation_intro_with_docs": "Hello! Describe what I should create based on the {count} selected document(s).",
@@ -4043,7 +4052,9 @@
       "daily_upload_quota_exceeded": "Daily upload limit reached. Please try again tomorrow.",
       "storage_quota_exceeded": "Storage quota reached. Delete some files and try again.",
       "transcript_required": "Transcript is missing or cannot be used.",
-      "summary_failed": "Summary creation failed."
+      "summary_failed": "Summary creation failed.",
+      "recording_consent_required": "A recording cannot be stored without the confirmation that those present agree.",
+      "recording_invalid": "The recording's data is invalid. Start the recording again."
     },
     "artifacts": {
       "search_placeholder": "Search by title, text, type, or source document",
@@ -4208,6 +4219,26 @@
       "purpose": "Recording purpose",
       "consent_status": "Consent status",
       "retention_until": "Retention deadline"
+    },
+    "recorder": {
+      "consent_label": "Everyone present knows about the recording and agrees to it.",
+      "consent_first": "Before recording, confirm that those present agree.",
+      "start": "Start recording",
+      "starting": "Opening the microphone…",
+      "stop": "Stop recording",
+      "closing": "Finishing the recording…",
+      "recording_status": "Recording: {time}, part {part}",
+      "saving": "Saving a part to Documents…",
+      "saved_count": "Parts saved to Documents: {count}.",
+      "finished": "The recording has ended.",
+      "limit_reached": "The recording time limit was reached and the recording was stopped.",
+      "limit_help": "The recording is split into parts of 10 minutes, up to 90 minutes in all. Each part is an audio file of its own and is transcribed separately. Leaving the page ends the recording.",
+      "save_failed": "A part could not be saved. The recording is still in this window: do not close the page and try again.",
+      "retry": "Try saving again ({count})",
+      "microphone_failed": "The microphone could not be used. Check the browser's permission.",
+      "microphone_lost": "The microphone was lost and the recording was stopped. The parts saved so far are kept.",
+      "unsupported": "This browser cannot record audio. Record with the phone's recorder and upload the file.",
+      "part_title": "Meeting recording {date}, part {part}"
     }
   },
   "research": {

@@ -16,7 +16,9 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import SessionRecorder from "@/components/documents/SessionRecorder";
 import { useI18n } from "@/components/i18n/I18nProvider";
+import { localizePath } from "@/lib/localizePath";
 import { PROVENANCES, provenanceLabelKey } from "@/lib/workspaces/provenance";
 
 import ConfirmButton from "./ConfirmButton";
@@ -43,7 +45,7 @@ export const NOTE_LAYER_ORDER = Object.freeze([
 const PRIVATE_LAYER = "PRIVAATNE_REFLEKSIOON";
 const PAGE_SIZE = 25;
 
-export default function MeetingNoteSection({ caseId, writeDisabled, onChanged }) {
+export default function MeetingNoteSection({ caseId, writeDisabled, onChanged, onLinked }) {
   const { t, locale } = useI18n();
 
   const [notes, setNotes] = useState([]);
@@ -56,6 +58,11 @@ export default function MeetingNoteSection({ caseId, writeDisabled, onChanged })
   const [errorKey, setErrorKey] = useState(null);
   const [busy, setBusy] = useState(false);
   const [meetingAt, setMeetingAt] = useState("");
+  /* KOHTUMISE HELI. Salvestis on töötaja helidokument ja juhtumiga seob teda
+     olemasolev seoseregister (0 kopeeritud rida). Märkme ridu ta EI kirjuta:
+     transkript on masina tekst ja märkme rea päritolu kinnitab inimene ise. */
+  const [audioNoticeKey, setAudioNoticeKey] = useState(null);
+  const [audioErrorKey, setAudioErrorKey] = useState(null);
 
   /* AVATUD MÄRKME ID SEISAB `ref`-is, mitte ainult olekus. Kaks `loadNote()`
      päringut võivad lõppeda VALES JÄRJEKORRAS ja aeglasem vastus kirjutaks
@@ -147,6 +154,32 @@ export default function MeetingNoteSection({ caseId, writeDisabled, onChanged })
     [caseId, loadNote, loadNotes, locale, meetingAt, onChanged, run]
   );
 
+  /**
+   * SALVESTATUD OSA SEOTAKSE JUHTUMIGA KOHE, olemasoleva seoseregistri kaudu.
+   *
+   * Sidumise tõrge EI KAOTA salvestist: helifail on selleks hetkeks juba töötaja
+   * dokumentides ja seose saab lisada seoste alt käsitsi. Seepärast on tõrkel oma
+   * tekst, mitte üldine veateade.
+   */
+  const linkRecordedPart = useCallback(
+    async (audioSource) => {
+      setAudioErrorKey(null);
+      try {
+        await caseWorkRequest(`/cases/${encodeURIComponent(caseId)}/items`, {
+          method: "POST",
+          locale,
+          body: { targetType: "USER_DOCUMENT", targetId: audioSource.id }
+        });
+        setAudioNoticeKey("casework.note.audio_linked");
+        await onLinked?.();
+      } catch {
+        setAudioNoticeKey(null);
+        setAudioErrorKey("casework.note.audio_link_failed");
+      }
+    },
+    [caseId, locale, onLinked]
+  );
+
   const addEntry = useCallback(
     async (layer, text, provenance) => {
       const done = await run(() =>
@@ -215,6 +248,27 @@ export default function MeetingNoteSection({ caseId, writeDisabled, onChanged })
           {t("casework.note.create", "")}
         </button>
       </form>
+
+      <div className="cw-field">
+        <h3 className="cw-section-title">{t("casework.note.audio_title", "")}</h3>
+        <p className="cw-hint">{t("casework.note.audio_hint", "")}</p>
+        <SessionRecorder
+          disabled={disabled}
+          classNames={{ button: "cw-button", hint: "cw-hint", status: "cw-hint", error: "cw-error", consent: "cw-label" }}
+          onPartSaved={linkRecordedPart}
+        />
+        {audioNoticeKey ? (
+          <p className="cw-hint" role="status">
+            {t(audioNoticeKey, "")}{" "}
+            <a href={localizePath("/dokreziim", locale)}>{t("casework.note.audio_open_documents", "")}</a>
+          </p>
+        ) : null}
+        {audioErrorKey ? (
+          <p className="cw-error" role="alert">
+            {t(audioErrorKey, "")}
+          </p>
+        ) : null}
+      </div>
 
       {!notes.length ? <p className="cw-empty">{t("casework.note.empty", "")}</p> : null}
 

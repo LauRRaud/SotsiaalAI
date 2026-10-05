@@ -12,6 +12,7 @@ import ChatMessageItem from "@/components/alalehed/chat/ChatMessageItem"
 import ConversationView from "@/components/alalehed/chat/ConversationView"
 import { detectMobileViewport } from "@/components/alalehed/chat/chatLayoutVars"
 import DocumentsDropdown from "@/components/documents/DocumentsDropdown"
+import SessionRecorder from "@/components/documents/SessionRecorder"
 import Button from "@/components/ui/Button"
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot"
 import { SubpageHeader } from "@/components/ui/SubpageHeader"
@@ -74,6 +75,7 @@ function templateOptionLabel(template, t) {
 }
 
 const audioInputSourceOptions = [
+  { value: "record_now", labelKey: "documents.agent_workspace.audio_input.sources.record_now" },
   { value: "upload_file", labelKey: "documents.agent_workspace.audio_input.sources.upload_file" },
   { value: "choose_existing", labelKey: "documents.agent_workspace.audio_input.sources.choose_existing" }
 ]
@@ -952,6 +954,18 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
     } finally {
       setAudioUploading(false)
     }
+  }
+
+  // A part of a meeting recorded here is an audio source like an uploaded file; the newest part is the selected one.
+  function handleRecordedPart(audioSource) {
+    if (!audioSource?.id) return
+    setAudioSources((sources) => [audioSource, ...sources.filter((source) => source.id !== audioSource.id)])
+    setSelectedAudioDocumentId(audioSource.id)
+    setAudioTranscriptDocument(null)
+    setAudioTranscriptDraft("")
+    setAudioSummaryArtifact(null)
+    setAudioWorkflowError("")
+    setAudioWorkflowFeedback(t("documents.agent_workspace.audio_input.record_success"))
   }
 
   async function handleTranscribeAudio() {
@@ -1841,7 +1855,9 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
                                     const isSelected = source.id === selectedAudioDocumentId
                                     const sourceLabel = source.kind === "CALL_AUDIO_RECORDING"
                                       ? t("documents.agent_workspace.audio_input.source_recording")
-                                      : t("documents.agent_workspace.audio_input.source_upload")
+                                      : source.recording
+                                        ? t("documents.agent_workspace.audio_input.source_recorded")
+                                        : t("documents.agent_workspace.audio_input.source_upload")
                                     return (
                                       <article key={source.id}>
                                         <div>
@@ -1880,6 +1896,19 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
                                   })}
                                 </div>
                               ) : null}
+                            </div>
+                          ) : null}
+
+                          {audioSourceMode === "record_now" ? (
+                            <div>
+                              <p>
+                                {t("documents.agent_workspace.audio_input.record_help")}
+                              </p>
+                              <SessionRecorder
+                                ButtonComponent={Button}
+                                buttonProps={{ size: "sm" }}
+                                onPartSaved={handleRecordedPart}
+                              />
                             </div>
                           ) : null}
 

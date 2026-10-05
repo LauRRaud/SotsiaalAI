@@ -117,6 +117,14 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
     [caseId, locale]
   );
 
+  /* KOHTUMISE HELI salvestab osi ka siis, kui töötaja parasjagu vormi täidab.
+     `loadCase()` kirjutaks vormiväljad serveri seisuga üle ja pooleli tekst
+     kaoks; seepärast värskendatakse ainult seoste loendit ja loendurit. */
+  const refreshLinkedItems = useCallback(async () => {
+    await loadItems();
+    setCounts((previous) => ({ ...previous, items: previous.items + 1 }));
+  }, [loadItems]);
+
   const loadMissingInfo = useCallback(
     async ({ cursor = null, append = false } = {}) => {
       const params = new URLSearchParams({ limit: String(MISSING_INFO_PAGE_SIZE) });
@@ -732,7 +740,7 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
       {/* JTA-V1 E4 — kohtumise märge. Ta seisab ettevalmistuse JÄREL, sest
           ajaline järjekord on sama: enne kohtumist valmistutakse, pärast
           kirjutatakse üles. */}
-      <MeetingNoteSection caseId={caseId} writeDisabled={writeDisabled} onChanged={loadCase} />
+      <MeetingNoteSection caseId={caseId} writeDisabled={writeDisabled} onChanged={loadCase} onLinked={refreshLinkedItems} />
 
       {/* JTA-V1 E5 — STAR2 mustandi ahel. Seisab markme JAREL, sest ajaline
           jarjekord on sama: kohtumine, markme, siis see, mis registrisse

@@ -8,6 +8,7 @@ import {
   serializeAudioSourceDocument
 } from "@/lib/documents/audioWorkflow"
 import { logDocumentsAudit } from "@/lib/documents/audit"
+import { audioSourceMetadata, readRecordingOrigin } from "@/lib/documents/sessionRecording"
 import { enforceDocumentsRateLimit, readDocumentsRateLimit } from "@/lib/documents/rateLimit"
 import { getUtcDayStart } from "@/lib/storageGuardrails"
 import { withStorageQuota } from "@/lib/documents/storageQuota"
@@ -98,6 +99,7 @@ export async function GET(request) {
         kind: true,
         mime: true,
         size: true,
+        metadata: true,
         createdAt: true,
         updatedAt: true,
         ...buildAudioInclude()
@@ -144,8 +146,17 @@ export async function POST(request) {
   const file = formData.get("file")
   const title = normalizeDocumentTitle(formData.get("title"), file?.name || "Helifail")
   let storagePath = ""
+  let recorded = false
 
   try {
+    // A recording made on the platform carries the worker's consent attestation; without it nothing is stored.
+    const origin = readRecordingOrigin({
+      origin: formData.get("origin"),
+      consent: formData.get("consent"),
+      sessionId: formData.get("sessionId"),
+      part: formData.get("part")
+    })
+    recorded = origin.recorded
     const mime = ensureAllowedAudioUpload(file)
     const role = effectiveRoleFromSession(auth.session)
 
@@ -180,9 +191,7 @@ export async function POST(request) {
               size: staged.size,
               sha256: staged.sha256,
               storagePath,
-              metadata: {
-                source: "DOCUMENT_AUDIO_UPLOAD"
-              }
+              metadata: audioSourceMetadata(origin, { userId: auth.userId })
             },
             select: {
               id: true,
@@ -191,6 +200,7 @@ export async function POST(request) {
               kind: true,
               mime: true,
               size: true,
+              metadata: true,
               createdAt: true,
               updatedAt: true,
               ...buildAudioInclude()
@@ -206,13 +216,14 @@ export async function POST(request) {
       throw error
     }
 
-    await logDocumentsAudit("document.audio_uploaded", {
+    await logDocumentsAudit(origin.recorded ? "document.audio_recorded" : "document.audio_uploaded", {
       userId: auth.userId,
       documentId: document.id,
       title: document.title,
       kind: document.kind,
       mime: document.mime,
-      size: document.size
+      size: document.size,
+      ...(origin.recorded ? { recordingPart: origin.part, consentAttested: true } : {})
     })
 
     return json({
@@ -235,6 +246,7 @@ export async function POST(request) {
       title,
       originalName: String(file?.name || ""),
       kind: "UPLOADED_AUDIO_SOURCE",
+      recorded,
       status
     })
     return errorJson(status === 500 ? "documents.errors.audio_upload_failed" : error?.message || "documents.errors.audio_upload_failed", status, locale, {
