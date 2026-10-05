@@ -78,6 +78,24 @@ test('a repealed subsection keeps its number without its words: it is removed, n
   assert.deepEqual(compareProvisions(older, newer), { changed: ['§ 13¹ lg 4'], added: ['§ 13¹ lg 5'], removed: ['§ 13¹ lg 1', '§ 13¹ lg 2'], renumbered: [], unchanged: ['§ 13¹ lg 3'] });
 });
 
+test('a section whose one text became its first subsection keeps its words: the subsection is renumbered, the heading unchanged', async () => {
+  const item = (label, text, section = '11') => ({ label, section, path: `/p[${section}]`, start: 0, end: text.length, text });
+  const single = [item('§ 11', '§ 11. Korraldamine Lastekaitset korraldavad asutused.'), item('§ 12', '§ 12. Teine Vana tekst.', '12')];
+  const split = [item('§ 11', '§ 11. Korraldamine'), item('§ 11 lg 1', '(1) Lastekaitset korraldavad asutused.'), item('§ 11 lg 2', '(2) Uus lõige.'),
+    item('§ 12', '§ 12. Teine', '12'), item('§ 12 lg 1', '(1) Hoopis uus tekst.', '12')];
+  // By the labels alone § 11 would read as changed and its subsection 1 as added. § 12 was rewritten into subsections: changed and added.
+  assert.deepEqual(compareProvisions(single, split), { changed: ['§ 12'], added: ['§ 11 lg 2', '§ 12 lg 1'], removed: [], renumbered: [{ label: '§ 11 lg 1', was: '§ 11' }], unchanged: ['§ 11'] });
+  // The other way round: the subsections were taken away and one of them is the section's text.
+  assert.deepEqual(compareProvisions(split, single), { changed: ['§ 12'], added: [], removed: ['§ 11 lg 2', '§ 12 lg 1'], renumbered: [{ label: '§ 11', was: '§ 11 lg 1' }], unchanged: [] });
+  // The Child Protection Act from 01.01.2027 (Riigi Teataja's own bytes): the sentence of § 11 is its subsection 1 now.
+  const read = async rt => actProvisions({ source_units: parseTextSource(await fs.readFile(`Andmebaasi/oigusaktid/${rt}.xml`), 'xml', { title: 'Lastekaitseseadus' },
+    { tenant_id: 'version-comparison-test', document_version_id: `version-${rt}` }, DEFAULT_CONFIG).structured.source_units });
+  const [before, after] = [await read('111072026042'), await read('111072026043')], result = compareProvisions(before, after);
+  assert.deepEqual(result.renumbered, [{ label: '§ 11 lg 1', was: '§ 11' }, { label: '§ 40¹ lg 1', was: '§ 40¹' }]);
+  assert.ok(result.unchanged.includes('§ 11') && result.added.includes('§ 11 lg 2') && !result.changed.includes('§ 11') && !result.added.includes('§ 11 lg 1'));
+  assert.equal(before.find(entry => entry.label === '§ 11').text, `${after.find(entry => entry.label === '§ 11').text} ${after.find(entry => entry.label === '§ 11 lg 1').text.replace('(1) ', '')}`);
+});
+
 test('the target of a link to an implementing act names its own version and is no wording', () => {
   // As a national law is read: the link's target is a block of its own between the words of the sentence.
   const act = number => ({ source_units: [{ locator: { kind: 'xml', path: '/oigusakt[1]/sisu[1]/paragrahv[1]' },
