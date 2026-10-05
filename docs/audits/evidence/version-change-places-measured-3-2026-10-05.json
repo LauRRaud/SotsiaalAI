@@ -1,0 +1,312 @@
+{
+ "schema": "sotsiaalai/conversation-run-evidence-1",
+ "run": "version-change-places-1-2026-10-05",
+ "measured_commit": "cb1becf52f2cdd241594e73deb7848409ef3f3f0",
+ "catalogues": [
+  {
+   "name": "places-3",
+   "catalogue": "tests/evaluation/dialogue/scenarios-version-change-places-1.json",
+   "started_at": "2026-10-05T17:31:06.589Z",
+   "finished_at": "2026-10-05T17:31:30.948Z",
+   "summary": {
+    "passed": 1,
+    "search": 0,
+    "answer": 0,
+    "state": 0
+   },
+   "states": {
+    "continuing": 0,
+    "rejected": 0
+   },
+   "plan_price_usd": 0.006
+  }
+ ],
+ "plan_price_usd": 0.006,
+ "turns": [
+  {
+   "run": "places-3",
+   "scenario": "what-changes-national-law",
+   "turn": 1,
+   "turn_id": "f3d571ba-e4aa-4fa3-9d1c-edf43f2c0be4",
+   "text": "Mis muutub lastekaitseseaduses alates 1. jaanuarist 2027?",
+   "verdict": "passed",
+   "checks": 10,
+   "failed": [],
+   "region": null,
+   "scope_state": "region_required",
+   "queries": [
+    "Lastekaitseseaduse muudatused jõustuvad 1. jaanuaril 2027"
+   ],
+   "answer_kind": "partial",
+   "clarification": false,
+   "contacts_named_in_answer": 0,
+   "roles_of_the_named": [],
+   "channels_in_answer": 0,
+   "channels_in_context": 0,
+   "channels_of_a_named_person": 0,
+   "candidates": 44,
+   "selected": [
+    "P1 | Seadusemuudatus muudab lastekaitse juhtumikorralduse sihipärasemaks Anne Haller, sotsiaalministeeriumi laste ja perede osakonna nõunik Sotsiaalministeeriumis va",
+    "P3 | Seadusemuudatus muudab lastekaitse juhtumikorralduse sihipärasemaks > Kokkuvõte Lastekaitseseaduse muudatused aitavad paremini kaitsta abivajava lapse õigusi. Õ",
+    "P16 | Seadusemuudatus muudab lastekaitse juhtumikorralduse sihipärasemaks Eelnõu järgi eristatakse senisest selgemalt olukorrad, kus sekkumine eeldab lastekaitsetööta",
+    "P18 | Seadusemuudatus muudab lastekaitse juhtumikorralduse sihipärasemaks > Lastekaitse juhtumikorralduse algatamise muudatused Kõige suurem muudatus LasteKS-is on ab",
+    "P21 | Seadusemuudatus muudab lastekaitse juhtumikorralduse sihipärasemaks > Lastekaitse juhtumikorralduse algatamise muudatused Eelnõuga muudetakse kirjeldatud korda.",
+    "P23 | Seadusemuudatus muudab lastekaitse juhtumikorralduse sihipärasemaks > Muudatused suurendavad abi osutamise korralduse paindlikkust KOV-ides Juhtumikorralduse mu",
+    "P40 | alates 2027-01-01 | Riigikogu > Lastekaitseseadus > 6. peatükk Abivajav laps > § 29. Abivajavale lapsele abi osutamine § 29. Abivajavale lapsele abi osutamine (1) A",
+    "P41 | alates 2027-01-01 | Riigikogu > Lastekaitseseadus > 6. peatükk Abivajav laps > § 29. Abivajavale lapsele abi osutamine Kui kohaliku omavalitsuse üksus saab teada la",
+    "P43 | alates 2027-01-01 | Riigikogu > Lastekaitseseadus > 6. peatükk Abivajav laps > § 28. Abivajaduse hindamine § 28. Abivajaduse hindamine (1) Enne abivajavale lapsele "
+   ],
+   "cited": [
+    {
+     "title": "Lastekaitseseadus"
+    },
+    {
+     "title": "Lastekaitseseadus"
+    }
+   ],
+   "cited_contact_records": 0,
+   "version_changes": {
+    "acts": [
+     {
+      "act": "Lastekaitseseadus",
+      "newer": {
+       "refs": [
+        "S1",
+        "S2",
+        "S3",
+        "S11",
+        "S12"
+       ],
+       "valid_to": null,
+       "valid_from": "2027-01-01"
+      },
+      "older": {
+       "refs": [
+        "S10"
+       ],
+       "valid_to": "2026-12-31",
+       "valid_from": "2026-10-01"
+      },
+      "differences": [
+       {
+        "newer": [
+         "S3"
+        ],
+        "state": "added",
+        "provision": "§ 28 lg 5"
+       },
+       {
+        "newer": [
+         "S3"
+        ],
+        "state": "added",
+        "provision": "§ 28 lg 6"
+       },
+       {
+        "newer": [
+         "S1"
+        ],
+        "older": [
+         "S10"
+        ],
+        "state": "changed",
+        "provision": "§ 29 lg 1"
+       },
+       {
+        "newer": [
+         "S1"
+        ],
+        "older": [
+         "S10"
+        ],
+        "state": "changed",
+        "provision": "§ 29 lg 2"
+       },
+       {
+        "newer": [
+         "S1"
+        ],
+        "older": [
+         "S10"
+        ],
+        "state": "changed",
+        "provision": "§ 29 lg 3"
+       },
+       {
+        "newer": [
+         "S1"
+        ],
+        "older": [
+         "S10"
+        ],
+        "state": "changed",
+        "provision": "§ 29 lg 4"
+       },
+       {
+        "newer": [
+         "S1"
+        ],
+        "older": [
+         "S10"
+        ],
+        "state": "changed",
+        "provision": "§ 29 lg 5"
+       },
+       {
+        "newer": [
+         "S1",
+         "S2"
+        ],
+        "state": "added",
+        "provision": "§ 29 lg 6"
+       },
+       {
+        "newer": [
+         "S2"
+        ],
+        "state": "added",
+        "provision": "§ 29 lg 7"
+       },
+       {
+        "newer": [
+         "S2"
+        ],
+        "state": "added",
+        "provision": "§ 29 lg 8"
+       },
+       {
+        "newer": [
+         "S2"
+        ],
+        "state": "added",
+        "provision": "§ 29 lg 9"
+       },
+       {
+        "newer": [
+         "S2"
+        ],
+        "state": "added",
+        "provision": "§ 29 lg 10"
+       },
+       {
+        "newer": [
+         "S2"
+        ],
+        "state": "added",
+        "provision": "§ 29 lg 11"
+       },
+       {
+        "newer": [
+         "S2"
+        ],
+        "state": "added",
+        "provision": "§ 29 lg 12"
+       },
+       {
+        "older": [
+         "S10"
+        ],
+        "state": "removed",
+        "provision": "§ 29 lg 3¹"
+       }
+      ],
+      "same_wording": [
+       "§ 4",
+       "§ 27¹",
+       "§ 27¹ lg 1",
+       "§ 27¹ lg 2",
+       "§ 28",
+       "§ 28 lg 1",
+       "§ 28 lg 2",
+       "§ 28 lg 3",
+       "§ 28 lg 4",
+       "§ 29"
+      ],
+      "not_in_evidence": {
+       "added": [
+        "§ 11 lg 2",
+        "§ 15 lg 6",
+        "§ 36¹",
+        "§ 40¹ lg 2",
+        "§ 40¹ lg 3",
+        "§ 41³"
+       ],
+       "changed": [
+        "§ 14 lg 1",
+        "§ 15 lg 2",
+        "§ 15 lg 3",
+        "§ 17 lg 1",
+        "§ 18 lg 1",
+        "§ 21 lg 2",
+        "§ 30",
+        "§ 34² lg 7",
+        "§ 36 lg 1",
+        "§ 36 lg 3",
+        "§ 38 lg 2"
+       ],
+       "renumbered": [
+        "§ 11 lg 1",
+        "§ 40¹ lg 1"
+       ]
+      }
+     }
+    ],
+    "basis": "the wording of each section and subsection of the two versions, compared on the server",
+    "version": "rag-v2/version-comparison-2"
+   },
+   "change_places": {
+    "version": "rag-v2/version-change-places-3",
+    "acts": [
+     {
+      "act": "Sotsiaalhoolekande seadus",
+      "day": "2027-01-01",
+      "groups": 2,
+      "provisions": 2
+     },
+     {
+      "act": "Lastekaitseseadus",
+      "day": "2027-01-01",
+      "groups": 15,
+      "provisions": 32
+     },
+     {
+      "act": "Riigilõivuseadus",
+      "day": "2027-01-01",
+      "groups": 18,
+      "provisions": 41
+     },
+     {
+      "act": "Haldusmenetluse seadus",
+      "day": "2027-01-01",
+      "groups": 2,
+      "provisions": 10
+     }
+    ],
+    "groups": 37,
+    "added_candidates": [
+     "  P37 | Lastekaitseseadus | from 2027-01-01",
+     "  P38 | Lastekaitseseadus | from 2027-01-01",
+     "  P39 | Lastekaitseseadus | from 2026-10-01",
+     "* P40 | Lastekaitseseadus | from 2027-01-01",
+     "* P41 | Lastekaitseseadus | from 2027-01-01",
+     "  P42 | Lastekaitseseadus | from 2026-10-01",
+     "* P43 | Lastekaitseseadus | from 2027-01-01",
+     "  P44 | Haldusmenetluse seadus | from 2027-01-01"
+    ],
+    "added_by_server": [
+     "Lastekaitseseadus | from 2026-10-01 | Riigikogu > Lastekaitseseadus > 6. peatükk Abivajav laps > § 29. Abivajavale lapsele abi osutamine"
+    ]
+   },
+   "plan_price_usd": 0.006012115,
+   "search_ms": 5244,
+   "total_ms": 24002,
+   "answer": "Alates 1. jaanuarist 2027 lisandub abivajaduse hindamisele eelhindamine enne otsust, kas juhtumikorraldus algatada, algatamata jätta või juhtum pädevale ametiisikule edastada. Juhtumikorralduse algatamisel tuleb lapse abivajadust hinnata esimesel võimalusel; erandjuhul võib selleks kuluda kuni kaks kuud lapse abivajadusest teada saamisest. [S3]\n\nJuhtumikorraldus tähendab lapsele abi andmise koordineeritud korraldamist. Uue korra järgi saab last toetada ühe heaoluvaldkonna piires, kui puudub kahtlus väärkohtlemise, hooletusse jätmise või muu lapse õigusi rikkuva olukorra suhtes; vajaduse korral võib kaasata kohaliku omavalitsuse lastekaitsetöötaja. Kui abi ei mõju või seda ei saa valdkonnast sõltumatutel põhjustel rakendada, tuleb abivajavast lapsest teatada. Lastekaitsetöötaja peab juhtumikorralduse algatama, kui abi on vaja mitmes heaoluvaldkonnas või tekib kahtlus lapse õiguste rikkumise kohta. [S1]\n\nKui omavalitsus saab teada, et last kasvatav inimene on hädaohus olev perevägivalla ohver, peab omavalitsus algatama lapse abistamiseks juhtumikorralduse ning tegema koostööd ohvrit abistavate asutuste ja organisatsioonidega. Otsus juhtumikorralduse algatamise, algatamata jätmise või juhtumi edasiandmise kohta tuleb teha kümne päeva jooksul; varem kehtinud sõnastuses oli tähtaeg „kümne päeva möödumisel“. Lapse arvamus tuleb abivajaduse hindamisel ja abi osutamisel välja selgitada, dokumenteerida ning lisada juhtumiplaanile. Juhtumiplaani tuleb vaadata üle vähemalt kord aastas. Lapsel peab olema tema võimetele vastav iseseisev võimalus omavalitsuse tegevuse kohta arvamust või kaebust esitada ning saada sellele viivitamata sobiv tagasiside. [S2, S10]\n\nJuhtumikorraldus lõpetatakse, kui tegevuskava eesmärgid on täidetud, lapse abivajadus on rahuldatud ja see pole kuue kuu jooksul uuesti ilmnenud, või kui laps saab täisealiseks või sureb. Kui laps asub elama teise omavalitsuse territooriumile, annab senine omavalitsus juhtumikorralduse üle ja uus omavalitsus võtab selle üle. [S2]\n\nMuudatusi tehakse ka mitmes muus paragrahvis, kuid nende täpne sõnastus ei ole siin kättesaadav. Seetõttu ei saa ma nende sisu täpsustada."
+  }
+ ],
+ "plan": "m4-sotsiaalai-corpus-chat-20261005-172809-28187ec9-aa09-40e6-b797-09a975f0993d-rcb1becf52f2cdd241594e73deb7848409ef3f3f0",
+ "generation": "search_generation_2e4b3572aa6d8768387607cf9e4f6e0438b619809e0e86327a1e34874f4986d4",
+ "model": "gpt-6-luna",
+ "reasoning": "medium",
+ "source": "the evaluator's reports on the server (rag-v2-work/eval-files/version-change-places-1-2026-10-05/<run>/conversation-eval.json) and each turn's own record",
+ "masking": "an answer that names a contact person (also in a declined form) is left out whole, with the roles of the people it names; in a kept answer a capitalised word that starts like a part of a shown contact's name is masked, which can hide a place name; a contact's own record is counted, not listed, among the cited sources; e-mail addresses and phone numbers are masked"
+}

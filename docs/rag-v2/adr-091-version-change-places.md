@@ -2,7 +2,7 @@
 
 05.10.2026. Teostus Claude Opus 5.5. Omanik 05.10: „Too muudetud sätted 'mis muutub' küsimuse kandidaatideks“. Lähtekoht: [ADR-088](adr-088-version-comparison-on-the-server.md) jaotis „Mõõtmine 2“.
 
-**Töös alates #392 (05.10.2026 õhtul), kolmas versioon `version-change-places-3` alates sellest PR-ist. Mõõdetud mudeliga kaks korda (jaotised „Mõõtmine“ ja „Mõõtmine 2“, kokku 5 pööret, 0,0290 USD): kolm pööret läbisid, lastekaitseseaduse pööre kukkus mõlemal korral. Esimesel korral ei jõudnud § 29 vana lõik kandidaatide hulka (parandatud: rühm paragrahvi kaupa). Teisel korral oli see kandidaatide seas, aga valik ei jätnud seda alles (parandatud: server lisab alles jäetud paragrahvi teise redaktsiooni ise). Viimane parandus on kontrollitud tasuta kordusega mudeli enda valikuga; mudeliga mõõtmata.**
+**Töös alates #392 (05.10.2026 õhtul), kolmas versioon `version-change-places-3` alates #394. Mõõdetud mudeliga kolm korda (jaotised „Mõõtmine“, „Mõõtmine 2“ ja „Mõõtmine 3“). Esimeses mõõtmises läbis kolm pööret neljast; lastekaitseseaduse pööre kukkus kahel esimesel korral. Esimesel korral ei jõudnud § 29 vana lõik kandidaatide hulka (parandatud: rühm paragrahvi kaupa). Teisel korral oli see kandidaatide seas, aga valik ei jätnud seda alles (parandatud: server lisab alles jäetud paragrahvi teise redaktsiooni ise). Viimane parandus on kontrollitud tasuta kordusega mudeli enda valikuga ja mõõdetud (jaotis „Mõõtmine 3“): **lastekaitseseaduse pööre läbis**, vastus võrdleb redaktsioone ja viitab mõlemale. Kokku 6 pööret, 0,0350 USD.**
 
 ## Probleem
 
@@ -100,9 +100,20 @@ Sama kataloogi esimene küsimus pärast paragrahvi kaupa rühmi (väljalase `f60
 
 Valla akti pöördes ütles mõõdetud vastus, et § 4 lõike 2 ja § 6 varasemat sõnastust tal võrdluseks ei ole; need on nüüd tõendites. Kõik mudeli valitud lõigud jäid alles.
 
+## Mõõtmine 3 (05.10.2026 õhtul, omaniku luba: 1 pööre, ülempiir 0,01 USD)
+
+Sama küsimus kolmanda versiooniga (väljalase `cb1becf5`, `version-change-places-3`). **Kulu 0,0060 USD. Pööre läbis kõik kontrollid.** [Tõend](../audits/evidence/version-change-places-measured-3-2026-10-05.json).
+
+- **Valik tegi sama mis enne:** jättis alles § 29 uue redaktsiooni kaks lõiku, § 28 ja kuus lõiku artiklist. § 29 vana redaktsiooni lõiku, mis oli kandidaatide seas, ta alles ei jätnud.
+- **Server lisas selle ise** (üks lõik: lastekaitseseadus, redaktsioon alates 01.10.2026, § 29). Võrdluse plokk loetles 15 erinevust, § 29 lg 1–5 mõlema redaktsiooni lõiguga.
+- **Vastus võrdleb nüüd redaktsioone ja viitab mõlemale.** Näide: otsus juhtumikorralduse algatamise kohta tuleb teha „kümne päeva jooksul“, varem kehtinud sõnastuses „kümne päeva möödumisel“. Vastus kirjeldab eelhindamist (§ 28 lg 5–6), juhtumikorralduse algatamise eeldusi, juhtumiplaani ülevaatust, lapse kaebeõigust, juhtumikorralduse lõpetamist ja üleandmist (§ 29) ning ütleb lõpus, et muudatusi on ka teistes paragrahvides, mille sõnastust tal ei ole.
+- Kontrollisin vastuse väited akti kahe redaktsiooni teksti vastu: peavad paika. Perevägivalla ohvri reegel, mis oli ka vanas redaktsioonis (§ 29 lg 3¹), on vastuses kirjas, aga mitte uuena.
+
+**Kolme mõõtmise kokkuvõte:** 6 pööret, **0,0350 USD** plaani hindade järgi (load: 4 pööret / 0,05; 1 / 0,01; 1 / 0,01).
+
 ## Lahti
 
-- **Kolmas versioon on mudeliga mõõtmata.** Tasuta kordus näitab, et lastekaitseseaduse pöördes on § 29 mõlemad redaktsioonid tõendites ja võrdluse plokk olemas. Nägemata on vastus. Üks pööre, vajab omaniku luba.
+- **Kolmas versioon on mõõdetud ühe pöördega.** Valla akti ja väikese seaduse pöörded on selle versiooniga kontrollitud ainult tasuta kordusega (mudeli varasema valikuga), mitte uue vastusega.
 - **Kaheksa kohta on kaks kuni neli paragrahvi mõlemas redaktsioonis.** Lastekaitseseaduses erineb 15 paragrahvi. Ülejäänud nimetab võrdluse plokk nime järgi (`not_in_evidence`), sisu neist vastus ei saa. Kohtade arv on seadistus, mida mõõtmine võib muuta.
 - **Rühmade järjekord tuleb küsimuse sarnasusest.** Teemata küsimuse puhul ei ütle see, milline muudatus on tähtsam.
 - **Valik eelistab artiklit seaduse lõikudele** (lastekaitseseaduse pöördes viis lõiku kaheksast). Serveri lisatud lõigud seda ei muuda.
