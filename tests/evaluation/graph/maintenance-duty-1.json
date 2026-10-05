@@ -1,0 +1,60 @@
+{
+  "schema_version": "rag-v2/graph-eval-1",
+  "purpose": "ADR-087 (owner 05.10.2026, 'teeme need tugevaks', item 5): do the Family Law Act's sections on who owes maintenance (§ 96) and who may receive it (§ 97) reach the evidence of a question asked in everyday words? The act says 'ülenejad ja alanejad sugulased'; a person asks about children and parents. The questions, the plan queries (the two that the measured turns of 04.10.2026 recorded, and two written here) and the deciding words of each section were fixed before any run. Compared: the same search on corpus v57 (no search aid) and on the corpus that gives the three sections their aids. No reranker and no answer model; the query texts are embedded once and kept.",
+  "date": "2026-10-05",
+  "questions": [
+    {
+      "id": "care-home-fee-from-children-query-a",
+      "shape": "everyday_words_for_a_legal_term",
+      "kind": "within_document",
+      "note": "The turn of docs/audits/evidence/search-assist-8-measured-2026-10-04.json: twelve passages of the act were candidates, none of them § 96 or § 97.",
+      "text": "Kas hooldekodu kohatasu võib nõuda lastelt?",
+      "queries": [
+        "Täisealise lapse ülalpidamiskohustus vanema hoolduskulude tasumisel"
+      ],
+      "evidence_text": [
+        "Ülalpidamist on kohustatud andma täisealised esimese astme ülenejad ja alanejad sugulased",
+        "muu abivajav alaneja või üleneja sugulane, kes ei ole võimeline ennast ise ülal pidama"
+      ]
+    },
+    {
+      "id": "care-home-fee-from-children-query-b",
+      "shape": "everyday_words_for_a_legal_term",
+      "kind": "within_document",
+      "note": "The same question with the plan query of docs/audits/evidence/plan-guard-measured-2026-10-04.json, where §§ 97, 99 and 103 were candidates and § 96 was not.",
+      "text": "Kas hooldekodu kohatasu võib nõuda lastelt?",
+      "queries": [
+        "täisealise lapse ülalpidamiskohustus vanema suhtes tingimused"
+      ],
+      "evidence_text": [
+        "Ülalpidamist on kohustatud andma täisealised esimese astme ülenejad ja alanejad sugulased",
+        "muu abivajav alaneja või üleneja sugulane, kes ei ole võimeline ennast ise ülal pidama"
+      ]
+    },
+    {
+      "id": "adult-child-maintains-parent",
+      "shape": "everyday_words_for_a_legal_term",
+      "kind": "within_document",
+      "note": "The question in a person's own words, without a plan query.",
+      "text": "Kas täiskasvanud laps peab oma vanemat ülal pidama?",
+      "queries": [],
+      "evidence_text": [
+        "Ülalpidamist on kohustatud andma täisealised esimese astme ülenejad ja alanejad sugulased",
+        "muu abivajav alaneja või üleneja sugulane, kes ei ole võimeline ennast ise ülal pidama"
+      ]
+    },
+    {
+      "id": "who-pays-for-mother-in-care-home",
+      "shape": "everyday_words_for_a_legal_term",
+      "kind": "within_document",
+      "note": "A question that names neither the duty nor the act; the plan query names the duty.",
+      "text": "Ema läheb hooldekodusse ja tema pensionist ei jätku. Kas mina ja mu vend peame puuduva osa maksma?",
+      "queries": [
+        "laste ülalpidamiskohustus vanema hooldekodu kulude katmisel"
+      ],
+      "evidence_text": [
+        "Ülalpidamist on kohustatud andma täisealised esimese astme ülenejad ja alanejad sugulased"
+      ]
+    }
+  ]
+}

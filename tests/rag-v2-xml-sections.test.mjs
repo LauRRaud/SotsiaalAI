@@ -6,7 +6,8 @@ import os from 'node:os';
 import { DEFAULT_CONFIG, hash, stable } from '../lib/rag-v2/contracts.js';
 import { ingest } from '../lib/rag-v2/ingestion.js';
 import { registeredSource } from '../lib/rag-v2/registered-source.js';
-import { xmlSections } from '../lib/rag-v2/text-source.js';
+import { xmlSearchAids, xmlSections } from '../lib/rag-v2/text-source.js';
+import { indexUnit } from '../lib/rag-v2/search/embedding.js';
 import { checkTurn, validateCatalogue } from '../lib/rag-v2/pilot/conversation-eval.js';
 
 // ADR-076: a registered source may be named sections of a Riigi Teataja act. The State Budget Act of 2026 is 4 MB of
@@ -259,4 +260,75 @@ ${sub(4, words('Ühe punktiga loetelu:') + point(1, '<tavatekst>ainus.</tavateks
   assert.deepEqual(byPoint.parsed.legal_text.structure.map(item => [item.target, item.act_reference, item.repeal ?? false]), [['§ 1 lg 1 p 2', '101062025001', true]]);
   // By subsection and with the selection alone the same section is four units and one.
   assert.deepEqual([paths(read('subsection')), paths(read(null))], [['/loige[1]', '/loige[2]', '/loige[3]', '/loige[4]'], ['/']]);
+});
+
+// ADR-087: the register may give a section a line of everyday words by which a search finds it (xml_search_aids). The
+// Family Law Act says who owes maintenance as "ülenejad ja alanejad sugulased"; a person asks about children and parents.
+const FAMILY = '107052025017';
+test('ADR-087: the search aid of a section stands in the retrieval text and word index of its passage, never in its source text; other passages are untouched', async () => {
+  const aid = 'Tavakeeles: vanemad ja täisealised lapsed; vanavanemad alaealiste lapselaste suhtes.';
+  const plain = await read(await registry('aid-none', MARJAMAA)), aided = await read(await registry('aid-one', MARJAMAA, { xml_search_aids: { 3: aid } }));
+  const third = bundle => bundle.chunks.filter(chunk => chunk.source_locations.some(location => location.path.startsWith('/oigusakt[1]/sisu[1]/paragrahv[3]')));
+  assert.equal(aided.chunks.length, plain.chunks.length);
+  assert(third(aided).length >= 1);
+  for (const [at, chunk] of aided.chunks.entries()) {
+    const before = plain.chunks[at], own = third(aided).includes(chunk);
+    // The text an answer quotes is the act's own, with or without the aid.
+    assert.equal(chunk.source_text, before.source_text);
+    assert.equal(chunk.embedding_input_hash === before.embedding_input_hash, !own, `chunk ${at}`);
+    if (!own) continue;
+    // The aid is a line of its own between the heading path and the text, inside the prefix a search reads.
+    const prefix = chunk.retrieval_text.slice(0, chunk.retrieval_mapping.prefix_length), earlier = before.retrieval_text.slice(0, before.retrieval_mapping.prefix_length);
+    assert.equal(prefix, `${earlier.trimEnd()}\n${aid}\n\n`);
+    assert.equal(chunk.retrieval_text.slice(prefix.length), before.retrieval_text.slice(earlier.length));
+    assert(!chunk.source_text.includes(aid));
+  }
+  // The word search reads the aid for that section's passages only.
+  const config = { input_version: 'title-section-text-v1', model: 'synthetic', dimensions: 8, max_input_tokens: 8192 };
+  assert.deepEqual(aided.chunks.map(chunk => indexUnit(chunk, aided, config).search_aids.includes(aid)), aided.chunks.map(chunk => third(aided).includes(chunk)));
+  assert(plain.chunks.every(chunk => !indexUnit(chunk, plain, config).search_aids.includes(aid)));
+  // With a selection of sections and their units the aid goes with every unit of its section.
+  const points = await read(await registry('aid-points', BUDGET, { xml_sections: ['2'], xml_units: 'point', xml_search_aids: { 2: aid } }));
+  assert(points.chunks.length > 5 && points.chunks.every(chunk => chunk.retrieval_text.slice(0, chunk.retrieval_mapping.prefix_length).endsWith(`\n${aid}\n\n`)));
+});
+
+test('ADR-087: an aid for a section the act does not have, or a malformed one, is an error', async () => {
+  await assert.rejects(read(await registry('aid-missing', MARJAMAA, { xml_search_aids: { 999: 'Tavakeeles: seda paragrahvi aktis ei ole.' } })), error => error.code === 'xml_section_not_found');
+  // A section outside the selection is not read, so its aid would be lost.
+  await assert.rejects(read(await registry('aid-outside', BUDGET, { xml_sections: ['2'], xml_search_aids: { 1: 'Tavakeeles: eelarve tabelid ei ole valitud.' } })), error => error.code === 'xml_section_not_found');
+  for (const [name, bad] of [['empty', {}], ['list', ['tekst tavakeeles']], ['key', { '§ 3': 'Tavakeeles: vale võti.' }], ['short', { 3: 'lühike' }], ['lines', { 3: 'Tavakeeles: kaks\nrida ei sobi.' }],
+    ['long', { 3: 'a'.repeat(301) }], ['padded', { 3: ' Tavakeeles: tühik ees. ' }], ['number', { 3: 12345678901 }]]) {
+    const source = await registry(`aid-bad-${name}`, MARJAMAA, { xml_search_aids: bad });
+    await assert.rejects(registeredSource(source.dir, source.entry), error => error.code === 'invalid_source_selector', name);
+  }
+  assert.equal(xmlSearchAids({}), null);
+  assert.deepEqual([...xmlSearchAids({ source_selector: { xml_search_aids: { '15¹': 'Tavakeeles: ülaindeksiga paragrahv.' } } })], [['15¹', 'Tavakeeles: ülaindeksiga paragrahv.']]);
+});
+
+test('ADR-087: the committed register gives the maintenance sections of the Family Law Act their aids, and the act reads with them', async () => {
+  const register = JSON.parse(await fs.readFile('Andmebaasi/REGISTER.json', 'utf8'));
+  const entry = register.entries.find(item => item.path === `oigusaktid/${FAMILY}.xml`);
+  assert.deepEqual(Object.keys(entry.xml_search_aids), ['96', '97', '105']);
+  // No other registered source carries a search aid.
+  assert.deepEqual(register.entries.filter(item => item.xml_search_aids !== undefined).map(item => item.path), [entry.path]);
+  const dir = path.join(root, 'family');
+  await fs.mkdir(path.join(dir, 'oigusaktid'), { recursive: true });
+  await fs.copyFile(path.join('Andmebaasi', entry.path), path.join(dir, entry.path));
+  const { xml_search_aids: aids, ...bare } = entry;
+  const readAs = async (name, item) => {
+    await fs.writeFile(path.join(dir, 'REGISTER.json'), JSON.stringify({ entries: [item] }));
+    return (await ingest({ tenant, inputRoot: dir, metadataJson: stable(await registeredSource(dir, item)), storeRoot: path.join(dir, name), rights, profile })).bundle;
+  };
+  const aided = await readAs('store-aided', entry), plain = await readAs('store-plain', bare);
+  // The same passages; only those of §§ 96, 97 and 105 get a new embedding input, one passage each.
+  assert.equal(aided.chunks.length, plain.chunks.length);
+  const section = chunk => /§ (\d+)\./u.exec(chunk.source_text)[1];
+  const changed = aided.chunks.filter((chunk, at) => chunk.embedding_input_hash !== plain.chunks[at].embedding_input_hash);
+  assert.deepEqual(changed.map(section), ['96', '97', '105']);
+  for (const chunk of changed) {
+    assert(chunk.retrieval_text.slice(0, chunk.retrieval_mapping.prefix_length).endsWith(`\n${aids[section(chunk)]}\n\n`), section(chunk));
+    assert.equal(chunk.source_text, plain.chunks[chunk.ordinal].source_text);
+  }
+  // The aids use the everyday words the act's own terms stand for.
+  for (const number of ['96', '97', '105']) { assert.match(aids[number], /vanem/u); assert.match(aids[number], /laps/u); }
 });

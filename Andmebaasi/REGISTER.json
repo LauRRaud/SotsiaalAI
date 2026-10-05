@@ -21825,7 +21825,12 @@
       "duplicate_original_paths": [
         "KOV/Seadused_rt/107052025017.akt"
       ],
-      "review_status": "version_and_jurisdiction_validation_pending"
+      "review_status": "version_and_jurisdiction_validation_pending",
+      "xml_search_aids": {
+        "96": "Tavakeeles: kes peab ülalpidamist andma – vanemad ja täisealised lapsed (täiskasvanud laps oma ema või isa suhtes, vanem oma lapse suhtes), vanavanemad alaealiste lapselaste suhtes.",
+        "97": "Tavakeeles: kellel on õigus ülalpidamist saada – alaealine laps, õppiv täisealine laps, abivajav vanem või vanavanem (ema, isa), abivajav täiskasvanud laps või lapselaps, kes ei tule ise toime.",
+        "105": "Tavakeeles: kes annab ülalpidamist esimesena – lapsed ja lapselapsed enne vanemaid ja vanavanemaid, lähem sugulane enne kaugemat; mitu last jagavad kohustust omavahel."
+      }
     },
     {
       "path": "oigusaktid/109042026003.xml",
