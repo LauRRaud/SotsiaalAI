@@ -2,7 +2,7 @@
 
 05.10.2026. Teostus Claude Opus 5.5. Omanik 05.10: „Too muudetud sätted 'mis muutub' küsimuse kandidaatideks“. Lähtekoht: [ADR-088](adr-088-version-comparison-on-the-server.md) jaotis „Mõõtmine 2“.
 
-**Töös alates sellest PR-ist. Kontrollitud testidega ja serveris tasuta kordusega (jaotis „Kontroll“). Mudeliga mõõtmata: seda, kas valik jätab lisatud lõigud alles ja kas vastus loetleb muudatused õigesti, ei ole veel nähtud.**
+**Töös alates #392 (05.10.2026 õhtul). Mõõdetud mudeliga samal õhtul (jaotis „Mõõtmine“): neljast pöördest kolm läbis; lastekaitseseaduse pööre kukkus uuesti, sest rühmad olid lõigete kaupa ja § 29 uus lõik tuli kandidaatideks ilma vanata. Rühm on nüüd paragrahvi kaupa (`version-change-places-2`); see parandus on kontrollitud tasuta kordusega, mudeliga mõõtmata.**
 
 ## Probleem
 
@@ -21,9 +21,10 @@ Põhjus on otsingus, mitte valikus. Küsimus ei nimeta teemat: ükski selle sõn
    - muudetud säte: lõigud mõlemas redaktsioonis;
    - lisatud säte: lõigud uues redaktsioonis;
    - kehtetuks tunnistatud säte: lõigud vanas redaktsioonis.
-   Ümber nummerdatud ja sama sõnastusega säte ei ole erinevus. Samades lõikudes seisvad sätted on üks rühm. Pikast sättest võetakse kummastki redaktsioonist kuni kaks esimest lõiku.
+   Ümber nummerdatud ja sama sõnastusega säte ei ole erinevus.
+   **Üks rühm on ühe paragrahvi erinevate sätete lõigud mõlemas redaktsioonis** (`version-change-places-2`). Kummastki redaktsioonist võetakse paragrahvi kohta kuni kaks esimest sellist lõiku. Esimene versioon tegi rühma iga sätte kohta eraldi; miks see ei sobinud, on jaotises „Mõõtmine“.
 3. **Need lõigud saavad valiku kandidaatide seas oma kohad** (`VERSION_CHANGE_RESERVE`, 8 kohta). Nad otsitakse omavahel läbi sama küsimuse ja samade plaanipäringutega (sõnaline ja vektorotsing, sama liitmine) ning parimad rühmad lisatakse kandidaatide lõppu.
-   - Rühm tuleb tervikuna või üldse mitte: sama säte mõlemas redaktsioonis.
+   - Rühm tuleb tervikuna või üldse mitte: sama paragrahv mõlemas redaktsioonis.
    - Rühm, mis enam ei mahu, jäetakse vahele; järgmine väiksem võib veel tulla.
    - Lõik, mis on juba kandidaatide seas, ei võta teist kohta.
 4. **Kandidaate on nüüd kuni 44** (30 üldist, 6 üleriigilise seaduse varukohta, 8 muudetud sätete kohta). Enne oli kuni 36.
@@ -40,9 +41,9 @@ Põhjus on otsingus, mitte valikus. Küsimus ei nimeta teemat: ükski selle sõn
 
 ## Kontroll
 
-**Testid** (`tests/rag-v2-version-change-places.test.mjs`, `tests/rag-v2-pool-reserve.test.mjs`): lastekaitseseaduse kaks redaktsiooni Andmebaasist (Riigi Teataja enda baidid). 32 erinevat sätet annavad 19 rühma; § 29 esimesed lõiked on kummaski redaktsioonis ühes lõigus; lisatud § 36¹ on ainult uues, kehtetu § 29 lg 3¹ ainult vanas. Midagi ei loeta, kui päeval ei alga redaktsiooni, kui eelmine redaktsioon puudub või kui akt on teine (pealkiri, andja, omavalitsus, vastuvõtmise päev). Otsingus tuleb rühm tervikuna, mittemahtuv jäetakse vahele, juba kandidaatide seas olev lõik ei kordu, ilma valikuta midagi ei lisata.
+**Testid** (`tests/rag-v2-version-change-places.test.mjs`, `tests/rag-v2-pool-reserve.test.mjs`): lastekaitseseaduse kaks redaktsiooni Andmebaasist (Riigi Teataja enda baidid). 32 erinevat sätet annavad 15 rühma, ühe iga paragrahvi kohta; § 29 rühmas on uue redaktsiooni kaks lõiku ja vana üks; lisatud § 36¹ on ainult uues. Midagi ei loeta, kui päeval ei alga redaktsiooni, kui eelmine redaktsioon puudub või kui akt on teine (pealkiri, andja, omavalitsus, vastuvõtmise päev). Otsingus tuleb rühm tervikuna, mittemahtuv jäetakse vahele, juba kandidaatide seas olev lõik ei kordu, ilma valikuta midagi ei lisata.
 
-**Serveris, tasuta** (05.10.2026 õhtul, korpus v59, töötav väljalase `ba4e529c` pluss muudetud failid kõrvalkaustas). Mõõdetud pöörete salvestatud küsimusevektoriga jooksis vestluse enda otsing uuesti; mudelit ega embedding'ut ei kutsutud. Valiku asemel oli asendus, mis ainult salvestab kandidaadid.
+**Serveris, tasuta, esimene versioon (rühm sätte kaupa)** (05.10.2026 õhtul, korpus v59, töötav väljalase `ba4e529c` pluss muudetud failid kõrvalkaustas). Mõõdetud pöörete salvestatud küsimusevektoriga jooksis vestluse enda otsing uuesti; mudelit ega embedding'ut ei kutsutud. Valiku asemel oli asendus, mis ainult salvestab kandidaadid.
 
 | Pööre | Väljalaske kood | Muudetud kood |
 |---|---|---|
@@ -55,9 +56,28 @@ Põhjus on otsingus, mitte valikus. Küsimus ei nimeta teemat: ükski selle sõn
 - Aeg: võrdlus võttis nelja seaduse puhul 223–259 ms ja ühe valla akti puhul 30–34 ms (äsja käivitatud protsessis). Otsingu koguaeg jäi samaks (3,5–4,8 s äsja käivitatud protsessis mõlema koodiga).
 - **Korduse piir:** plaanipäringute vektoreid pöörde kirjes ei ole, nende asemel oli küsimuse vektor. Sõnaline otsing ja omavalitsuse otsus olid nagu päris pöördes.
 
+## Mõõtmine (05.10.2026 õhtul, omaniku luba: 4 pööret, ülempiir 0,05 USD)
+
+Kataloog `scenarios-version-change-places-1` (kirjutatud enne jooksu), väljalase `491de89e`, korpus v59. **Kulu 0,0234 USD** plaani hindade järgi. [Tõend](../audits/evidence/version-change-places-measured-2026-10-05.json), kontaktisikute nimedeta.
+
+| Pööre | Tulemus | Lisatud 8 lõigust jäi valikusse | Võrdluse plokk |
+|---|---|---|---|
+| Lastekaitseseadus, 1. jaanuar 2027 | **kukkus otsingus** | 3 (kõik uuest redaktsioonist) | puudus |
+| Puuetega inimeste sotsiaaltoetuste seadus, 1. veebruar 2027 | läbis | 6 (kolm paragrahvi mõlemas redaktsioonis) | kõik 10 erinevat sätet, 5 mõlema redaktsiooni lõiguga |
+| Põhja-Sakala kord, 6. oktoober | läbis (nagu enne) | 2 (§ 7 mõlemas redaktsioonis) | 13 erinevust, 9 mõlema redaktsiooni lõiguga |
+| Kontroll: vaide tähtaeg, otsus 1. jaanuaril 2027 | läbis | 0 | puudus, nagu peab |
+
+- **Puuetega inimeste sotsiaaltoetuste seadus: täielik vastus.** Vastus ütleb, et lapse vanusepiir tõuseb 16-lt 18-le kõigis kolmes kohas (puude raskusastme tuvastamine, selle kestus, puudega lapse toetus), et toetuse summad on võrreldud redaktsioonides samad, ja kirjeldab üleminekusätet § 25⁴. Kontrollisin väited akti kahe redaktsiooni teksti vastu: peavad paika. Enne ADR-091 seda pööret ei mõõdetud.
+- **Lastekaitseseadus: vastus paranes, aga pööre kukkus.** Vastus kirjeldab nüüd seaduse enda uut § 29 ja § 28 (juhtumikorralduse algatamine, eelhindamine, kahe kuu tähtaeg) ja viitab seadusele. Eelmises mõõtmises kirjeldas vastus eelnõu ja ütles, et ei tea, kas see vastu võeti. Kukkus see, et tõendites oli ainult uus redaktsioon: võrdlust ei tehtud ja vastus ütleb, et ei saa kõiki muudatusi loetleda.
+  - **Põhjus, loetud pöörde kirjest (lisatud lõigud ja nende järjekord) ja rühmade loogikast:** rühm oli iga sätte kohta eraldi ja ühe paragrahvi lõiked kattusid. Lisatud § 29 lg 6 ulatub uue redaktsiooni kahte lõiku; see rühm tõi § 29 esimese lõigu sisse üksi. Muudetud lõigete 1–5 rühmale (sama lõik pluss vana redaktsiooni lõik) ei jäänud siis enam kohta. Valik jättis alles need kolm uue redaktsiooni lõiku, mis talle pakuti.
+  - Kahe teise paragrahvi puhul (§ 38, § 21) pakuti mõlemad redaktsioonid ja valik ei jätnud kumbagi alles. Valik võttis selle, mis küsimusega kõige rohkem haakub.
+  - **Parandus (`version-change-places-2`):** üks rühm paragrahvi kohta. Tasuta kordus samal pöördel (salvestatud vektor, mudelit kutsumata): kandidaatideks tulevad § 29 (uues kaks lõiku, vanas üks), § 15 (uues kaks, vanas üks), § 28 ja § 40¹ (uues). Kui asendus jätab need alles, on võrdluse plokis § 29 lg 1–5 mõlema redaktsiooni lõiguga.
+- **Kontrollküsimus:** lisatud kaheksa lõiku (lastekaitseseadus, riigilõivuseadus, haldusmenetluse seadus) ei seganud. Valik jättis alles ühe lõigu, haldusmenetluse seaduse § 75, ja vastus ütleb 30 päeva.
+- **Aeg:** võrdluse samm võttis esimeses pöördes 281 ms (neli seadust), järgmistes 21–36 ms.
+
 ## Lahti
 
-- **Mudeliga mõõtmata.** Näha on, et lõigud jõuavad kandidaatide hulka. Nägemata on, kas valik jätab need alles ja kas vastus loetleb muudatused. Mõõtmine vajab omaniku luba.
-- **Kaheksa kohta on umbes neli sätet mõlemas redaktsioonis.** Lastekaitseseaduses erineb 32 sätet. Ülejäänud nimetab võrdluse plokk nime järgi (`not_in_evidence`), sisu neist vastus ei saa. Koha arv on seadistus, mida mõõtmine võib muuta.
+- **Paragrahvi kaupa rühm on mudeliga mõõtmata.** Tasuta kordus näitab, et § 29 vana lõik on nüüd kandidaatide seas. Nägemata on, kas valik jätab selle alles. Üks pööre, vajab omaniku luba.
+- **Kaheksa kohta on kaks kuni neli paragrahvi mõlemas redaktsioonis.** Lastekaitseseaduses erineb 15 paragrahvi. Ülejäänud nimetab võrdluse plokk nime järgi (`not_in_evidence`), sisu neist vastus ei saa. Kohtade arv on seadistus, mida mõõtmine võib muuta.
 - **Rühmade järjekord tuleb küsimuse sarnasusest.** Teemata küsimuse puhul ei ütle see, milline muudatus on tähtsam.
-- **Märge lõigul** („see lõik sisaldab erinevat sätet“) koos valiku juhise uue versiooniga on kaalutud ja edasi lükatud, kuni mõõtmine näitab, et valik lisatud lõike ei kasuta.
+- **Valik ei jäta alati mõlemat redaktsiooni alles**, kuigi mõlemad on pakutud (§ 38 ja § 21 lastekaitseseaduse pöördes). Märge lõigul („see lõik sisaldab erinevat sätet“) koos valiku juhise uue versiooniga on kaalutud ja edasi lükatud, kuni paragrahvi kaupa rühm on mõõdetud.

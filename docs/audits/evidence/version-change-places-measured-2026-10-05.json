@@ -1,0 +1,725 @@
+{
+ "schema": "sotsiaalai/conversation-run-evidence-1",
+ "run": "version-change-places-1-2026-10-05",
+ "measured_commit": "491de89e08fbd1df5034639584a4783f80892b3d",
+ "catalogues": [
+  {
+   "name": "places",
+   "catalogue": "tests/evaluation/dialogue/scenarios-version-change-places-1.json",
+   "started_at": "2026-10-05T16:56:49.373Z",
+   "finished_at": "2026-10-05T16:58:12.990Z",
+   "summary": {
+    "passed": 3,
+    "search": 1,
+    "answer": 0,
+    "state": 0
+   },
+   "states": {
+    "continuing": 0,
+    "rejected": 0
+   },
+   "plan_price_usd": 0.0234
+  }
+ ],
+ "plan_price_usd": 0.0234,
+ "turns": [
+  {
+   "run": "places",
+   "scenario": "what-changes-national-law",
+   "turn": 1,
+   "turn_id": "52dd534d-bcb1-4054-a590-a78aeeb46a6d",
+   "text": "Mis muutub lastekaitseseaduses alates 1. jaanuarist 2027?",
+   "verdict": "search",
+   "checks": 10,
+   "failed": [
+    {
+     "key": "found_versions_from",
+     "kind": "search",
+     "detail": "a version from 2026-10-01 among the found versions of the act: 2027-01-01"
+    },
+    {
+     "key": "cited_versions_from",
+     "kind": "answer",
+     "detail": "a version from 2026-10-01 among the cited versions of the act: 2027-01-01"
+    }
+   ],
+   "region": null,
+   "scope_state": "region_required",
+   "queries": [
+    "lastekaitseseaduse muudatused jõustuvad 1. jaanuaril 2027"
+   ],
+   "answer_kind": "partial",
+   "clarification": false,
+   "contacts_named_in_answer": 0,
+   "roles_of_the_named": [],
+   "channels_in_answer": 0,
+   "channels_in_context": 0,
+   "channels_of_a_named_person": 0,
+   "candidates": 44,
+   "selected": [
+    "P1 | Seadusemuudatus muudab lastekaitse juhtumikorralduse sihipärasemaks Anne Haller, sotsiaalministeeriumi laste ja perede osakonna nõunik Sotsiaalministeeriumis va",
+    "P2 | Seadusemuudatus muudab lastekaitse juhtumikorralduse sihipärasemaks > Kokkuvõte Lastekaitseseaduse muudatused aitavad paremini kaitsta abivajava lapse õigusi. Õ",
+    "P25 | Seadusemuudatus muudab lastekaitse juhtumikorralduse sihipärasemaks > Lastekaitse juhtumikorralduse algatamise muudatused Kõige suurem muudatus LasteKS-is on ab",
+    "P26 | Seadusemuudatus muudab lastekaitse juhtumikorralduse sihipärasemaks Eelnõu järgi eristatakse senisest selgemalt olukorrad, kus sekkumine eeldab lastekaitsetööta",
+    "P28 | Seadusemuudatus muudab lastekaitse juhtumikorralduse sihipärasemaks > Lastekaitse juhtumikorralduse algatamise muudatused Eelnõuga muudetakse kirjeldatud korda.",
+    "P40 | alates 2027-01-01 | Riigikogu > Lastekaitseseadus > 6. peatükk Abivajav laps > § 29. Abivajavale lapsele abi osutamine § 29. Abivajavale lapsele abi osutamine (1) A",
+    "P41 | alates 2027-01-01 | Riigikogu > Lastekaitseseadus > 6. peatükk Abivajav laps > § 29. Abivajavale lapsele abi osutamine Kui kohaliku omavalitsuse üksus saab teada la",
+    "P42 | alates 2027-01-01 | Riigikogu > Lastekaitseseadus > 6. peatükk Abivajav laps > § 28. Abivajaduse hindamine § 28. Abivajaduse hindamine (1) Enne abivajavale lapsele "
+   ],
+   "cited": [
+    {
+     "title": "Lastekaitseseadus"
+    },
+    {
+     "title": "Seadusemuudatus muudab lastekaitse juhtumikorralduse sihipärasemaks"
+    }
+   ],
+   "cited_contact_records": 0,
+   "change_places": {
+    "version": "rag-v2/version-change-places-1",
+    "acts": [
+     {
+      "act": "Sotsiaalhoolekande seadus",
+      "day": "2027-01-01",
+      "groups": 2,
+      "provisions": 2
+     },
+     {
+      "act": "Lastekaitseseadus",
+      "day": "2027-01-01",
+      "groups": 19,
+      "provisions": 32
+     },
+     {
+      "act": "Riigilõivuseadus",
+      "day": "2027-01-01",
+      "groups": 20,
+      "provisions": 41
+     },
+     {
+      "act": "Haldusmenetluse seadus",
+      "day": "2027-01-01",
+      "groups": 2,
+      "provisions": 10
+     }
+    ],
+    "groups": 43,
+    "added_candidates": [
+     "  P37 | Lastekaitseseadus | from 2027-01-01",
+     "  P38 | Lastekaitseseadus | from 2027-01-01",
+     "  P39 | Lastekaitseseadus | from 2026-10-01",
+     "* P40 | Lastekaitseseadus | from 2027-01-01",
+     "* P41 | Lastekaitseseadus | from 2027-01-01",
+     "* P42 | Lastekaitseseadus | from 2027-01-01",
+     "  P43 | Lastekaitseseadus | from 2027-01-01",
+     "  P44 | Lastekaitseseadus | from 2026-10-01"
+    ]
+   },
+   "plan_price_usd": 0.005326365,
+   "search_ms": 7226,
+   "total_ms": 23221,
+   "answer": "Alates 1. jaanuarist 2027 algatab kohaliku omavalitsuse lastekaitsetöötaja juhtumikorralduse siis, kui laps vajab samal ajal tuge mitmes heaoluvaldkonnas või on tekkinud kahtlus väärkohtlemise, hooletusse jätmise või muu lapse õigusi rikkuva olukorra kohta. Kui abi vajatakse ühes valdkonnas ja sellist kahtlust pole, korraldatakse abi üldjuhul selles valdkonnas ning tehakse seal võrgustikutööd; vajaduse korral võib kaasata lastekaitsetöötaja. Kui valdkonnas rakendatud meetmed ei mõju või neid ei saa valdkonnast sõltumatutel põhjustel rakendada, tuleb lapsest teatada seaduses ette nähtud korras. [S2, S4]\n\nEnne otsust, kas juhtumikorraldus algatada, peab lastekaitsetöötaja tegema lapse abivajaduse eelhindamise ja hindama juhtumikorralduse algatamise eeldusi. Kui juhtumikorraldus algatatakse, tuleb põhjalikum abivajaduse hindamine teha esimesel võimalusel. Erandjuhul võib seda teha kauem, kuid mitte hiljem kui kahe kuu jooksul lapse abivajadusest teada saamisest. [S3, S6]\n\nMa ei saa nende väljavõtete põhjal loetleda kõiki 1. jaanuaril 2027 jõustuvaid seadusemuudatusi; need käsitlevad eelkõige abivajavale lapsele abi andmise korda ja abivajaduse hindamist."
+  },
+  {
+   "run": "places",
+   "scenario": "what-changes-national-law-small",
+   "turn": 1,
+   "turn_id": "76c81b13-1f9f-4b63-b4bc-eb425fe3a894",
+   "text": "Mis muutub puuetega inimeste sotsiaaltoetuste seaduses alates 1. veebruarist 2027?",
+   "verdict": "passed",
+   "checks": 10,
+   "failed": [],
+   "region": null,
+   "scope_state": "region_required",
+   "queries": [
+    "puuetega inimeste sotsiaaltoetuste seaduse muudatused 1. veebruar 2027"
+   ],
+   "answer_kind": "grounded",
+   "clarification": false,
+   "contacts_named_in_answer": 0,
+   "roles_of_the_named": [],
+   "channels_in_answer": 0,
+   "channels_in_context": 0,
+   "channels_of_a_named_person": 0,
+   "candidates": 44,
+   "selected": [
+    "P1 | alates 2027-02-01 | Riigikogu > Puuetega inimeste sotsiaaltoetuste seadus > 3. peatükk RAKENDAMISE KORD > § 25⁴. Puudega lapse vanusepiiri muutmine § 25⁴. Puudega la",
+    "P37 | alates 2027-02-01 | Riigikogu > Puuetega inimeste sotsiaaltoetuste seadus > 1. peatükk ÜLDSÄTTED > § 2. Mõisted § 2. Mõisted (1) Puue on inimese anatoomilise, füsio",
+    "P38 | alates 2026-10-01 | Riigikogu > Puuetega inimeste sotsiaaltoetuste seadus > 1. peatükk ÜLDSÄTTED > § 2. Mõisted § 2. Mõisted (1) Puue on inimese anatoomilise, füsio",
+    "P39 | alates 2027-02-01 | Riigikogu > Puuetega inimeste sotsiaaltoetuste seadus > 2. peatükk TOETUSED > § 6. Puudega lapse toetus § 6. Puudega lapse toetus (1) Puudega la",
+    "P40 | alates 2026-10-01 | Riigikogu > Puuetega inimeste sotsiaaltoetuste seadus > 2. peatükk TOETUSED > § 6. Puudega lapse toetus § 6. Puudega lapse toetus (1) Puudega la",
+    "P41 | alates 2027-02-01 | Riigikogu > Puuetega inimeste sotsiaaltoetuste seadus > 1. peatükk ÜLDSÄTTED > § 2⁴. Puude raskusastme otsuse tegemise tähtaeg ja puude raskusas",
+    "P42 | alates 2026-10-01 | Riigikogu > Puuetega inimeste sotsiaaltoetuste seadus > 1. peatükk ÜLDSÄTTED > § 2⁴. Puude raskusastme otsuse tegemise tähtaeg ja puude raskusas"
+   ],
+   "cited": [
+    {
+     "title": "Puuetega inimeste sotsiaaltoetuste seadus"
+    },
+    {
+     "title": "Puuetega inimeste sotsiaaltoetuste seadus"
+    }
+   ],
+   "cited_contact_records": 0,
+   "version_changes": {
+    "acts": [
+     {
+      "act": "Puuetega inimeste sotsiaaltoetuste seadus",
+      "newer": {
+       "refs": [
+        "S1",
+        "S3",
+        "S5",
+        "S7"
+       ],
+       "valid_to": null,
+       "valid_from": "2027-02-01"
+      },
+      "older": {
+       "refs": [
+        "S2",
+        "S4",
+        "S6"
+       ],
+       "valid_to": "2027-01-31",
+       "valid_from": "2026-10-01"
+      },
+      "differences": [
+       {
+        "newer": [
+         "S3"
+        ],
+        "older": [
+         "S2"
+        ],
+        "state": "changed",
+        "provision": "§ 2 lg 1¹"
+       },
+       {
+        "newer": [
+         "S3"
+        ],
+        "older": [
+         "S2"
+        ],
+        "state": "changed",
+        "provision": "§ 2 lg 2¹"
+       },
+       {
+        "newer": [
+         "S7"
+        ],
+        "older": [
+         "S6"
+        ],
+        "state": "changed",
+        "provision": "§ 2⁴ lg 3"
+       },
+       {
+        "newer": [
+         "S7"
+        ],
+        "older": [
+         "S6"
+        ],
+        "state": "changed",
+        "provision": "§ 2⁴ lg 5"
+       },
+       {
+        "newer": [
+         "S5"
+        ],
+        "older": [
+         "S4"
+        ],
+        "state": "changed",
+        "provision": "§ 6 lg 2"
+       },
+       {
+        "newer": [
+         "S1"
+        ],
+        "state": "added",
+        "provision": "§ 25⁴"
+       },
+       {
+        "newer": [
+         "S1"
+        ],
+        "state": "added",
+        "provision": "§ 25⁴ lg 1"
+       },
+       {
+        "newer": [
+         "S1"
+        ],
+        "state": "added",
+        "provision": "§ 25⁴ lg 2"
+       },
+       {
+        "newer": [
+         "S1"
+        ],
+        "state": "added",
+        "provision": "§ 25⁴ lg 3"
+       },
+       {
+        "newer": [
+         "S1"
+        ],
+        "state": "added",
+        "provision": "§ 25⁴ lg 4"
+       }
+      ],
+      "same_wording": [
+       "§ 2",
+       "§ 2 lg 1",
+       "§ 2 lg 2",
+       "§ 2 lg 2²",
+       "§ 2⁴",
+       "§ 2⁴ lg 1",
+       "§ 2⁴ lg 2",
+       "§ 2⁴ lg 2¹",
+       "§ 2⁴ lg 4",
+       "§ 2⁴ lg 5¹",
+       "§ 6",
+       "§ 6 lg 1",
+       "§ 6 lg 1¹",
+       "§ 6 lg 3",
+       "§ 6 lg 4",
+       "§ 6 lg 5",
+       "§ 6 lg 6",
+       "§ 6 lg 7"
+      ],
+      "not_in_evidence": {}
+     }
+    ],
+    "basis": "the wording of each section and subsection of the two versions, compared on the server",
+    "version": "rag-v2/version-comparison-2"
+   },
+   "change_places": {
+    "version": "rag-v2/version-change-places-1",
+    "acts": [
+     {
+      "act": "Puuetega inimeste sotsiaaltoetuste seadus",
+      "day": "2027-02-01",
+      "groups": 4,
+      "provisions": 10
+     },
+     {
+      "act": "Sotsiaalhoolekande seadus",
+      "day": "2027-02-01",
+      "groups": 5,
+      "provisions": 8
+     }
+    ],
+    "groups": 9,
+    "added_candidates": [
+     "* P37 | Puuetega inimeste sotsiaaltoetuste seadus | from 2027-02-01",
+     "* P38 | Puuetega inimeste sotsiaaltoetuste seadus | from 2026-10-01",
+     "* P39 | Puuetega inimeste sotsiaaltoetuste seadus | from 2027-02-01",
+     "* P40 | Puuetega inimeste sotsiaaltoetuste seadus | from 2026-10-01",
+     "* P41 | Puuetega inimeste sotsiaaltoetuste seadus | from 2027-02-01",
+     "* P42 | Puuetega inimeste sotsiaaltoetuste seadus | from 2026-10-01",
+     "  P43 | Sotsiaalhoolekande seadus | from 2027-02-01",
+     "  P44 | Sotsiaalhoolekande seadus | from 2027-01-01"
+    ]
+   },
+   "plan_price_usd": 0.006448925,
+   "search_ms": 4616,
+   "total_ms": 17492,
+   "answer": "Alates 1. veebruarist 2027 loetakse lapseks puude raskusastme tuvastamisel kuni 18-aastane inimene; tööealiseks loetakse 18-aastane kuni vanaduspensioniealine inimene. Varem algas tööealise vanusevahemik 16. eluaastast. [S2, S3]\n\nLapse puude raskusastme saab tuvastada kuni 18-aastaseks saamiseni, varem kuni 16-aastaseks saamiseni. Muutumatu või progresseeruva püsiva seisundi korral, mida ravi, ravimid, abivahendid või teenused ei kompenseeri, saab puude raskusastme samuti tuvastada kuni 18. eluaastani; varem oli piir 16. eluaasta. [S6, S7]\n\nPuudega lapse toetust makstakse edaspidi kuni lapse 18-aastaseks saamiseni, varem maksti seda kuni 16. eluaastani. Võrreldud redaktsioonides on toetuse summad samad: sügava puudega lapsele 270 eurot, raske puudega lapsele ja seaduses nimetatud harvikhaigusega lapsele 180 eurot ning keskmise puudega lapsele 139 eurot. [S4, S5]\n\nÜleminekureeglid puudutavad 16-aastaseks saanud lapsi. Teatud juhtudel kohaldatakse nende puude raskusastme tuvastamisel kuni 31. jaanuarini 2027 kehtinud redaktsiooni: kui laps esitas tööealise inimese puude tuvastamise taotluse enne 1. veebruari ja otsust pole veel tehtud; kui varasem tööealise inimese puude või vähenenud töövõime otsus lõppes enne seda kuupäeva ning uus puude tuvastamise taotlus esitatakse pärast 31. jaanuari; või kui lapsel on 1. veebruaril kehtiv töövõime hindamise või puude raskusastme tuvastamise otsus. Samuti jätkatakse enne 1. veebruari määratud tööealise inimese toetuse maksmist vähemalt 16-aastasele lapsele otsuse kehtivuse lõpuni. [S1]\n\nKui lapsel kehtib 1. veebruaril 2027 puude raskusastme otsus kuni 16-aastaseks saamiseni, pikendab Sotsiaalkindlustusamet otsust ja puudega lapse toetuse maksmise perioodi kuni 18. eluaastani. Kui vähemalt 16-aastase lapse otsus lõpeks enne 18. eluaastat, pikendab amet otsust ja puudega tööealise inimese toetuse maksmise perioodi samuti kuni 18. eluaastani. [S1]"
+  },
+  {
+   "run": "places",
+   "scenario": "what-changes-both-versions",
+   "turn": 1,
+   "turn_id": "15d80390-3d6f-4a78-9fbf-c9831fabf717",
+   "text": "Mis muutub Põhja-Sakala valla sotsiaalabi korras alates 6. oktoobrist?",
+   "verdict": "passed",
+   "checks": 10,
+   "failed": [],
+   "region": "pohja_sakala_vald",
+   "scope_state": "search_plan_region",
+   "queries": [
+    "Põhja-Sakala valla sotsiaalabi kord muudatused alates 6. oktoobrist"
+   ],
+   "answer_kind": "partial",
+   "clarification": false,
+   "records": {
+    "version": "rag-v2/record-catalogue-4",
+    "view": "titles",
+    "listed": 43,
+    "relevant_summaries": 9,
+    "opened": [
+     "#3 relevant_detail benefit | Laste toitlustamise toetus",
+     "#2 relevant_detail benefit | Riiklik toimetulekutoetus",
+     "#1 relevant_detail benefit | Täiendav sotsiaaltoetus",
+     "#10 contact_directory resource | Sotsiaalvaldkonna kontaktid: Põhja-Sakala vald"
+    ],
+    "contacts_shown": 9
+   },
+   "contacts_named_in_answer": 0,
+   "roles_of_the_named": [],
+   "channels_in_answer": 0,
+   "channels_in_context": 0,
+   "channels_of_a_named_person": 0,
+   "candidates": 44,
+   "selected": [
+    "P2 | alates 2026-10-06 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 3. Sotsiaalhoolekandelise abi korraldamise pädevus kohal",
+    "P4 | alates 2025-09-01 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 3. Sotsiaalhoolekandelise abi korraldamise pädevus kohal",
+    "P6 | alates 2026-10-06 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 4. Sotsiaalhoolekandelisele abile õigustatud isik § 4. S",
+    "P13 | alates 2026-10-06 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 6. Abivajaduse hindamine § 6. Abivajaduse hindamine (1)",
+    "P16 | alates 2025-09-01 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 5. Sotsiaalhoolekandelise abi taotlemine § 5. Sotsiaalh",
+    "P18 | alates 2026-10-06 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 5. Sotsiaalhoolekandelise abi taotlemine § 5. Sotsiaalh",
+    "P20 | alates 2026-10-06 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 5. Sotsiaalhoolekandelise abi taotlemine (6) Puuduste m",
+    "P42 | alates 2026-10-06 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 7. Hüvitise määramine § 7. Hüvitise määramine (1) Otsus",
+    "P43 | alates 2025-09-01 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 7. Hüvitise määramine § 7. Hüvitise määramine (1) Otsus"
+   ],
+   "cited": [
+    {
+     "title": "Sotsiaalhoolekandelise abi osutamise kord"
+    },
+    {
+     "title": "Sotsiaalhoolekandelise abi osutamise kord"
+    }
+   ],
+   "cited_contact_records": 0,
+   "version_changes": {
+    "acts": [
+     {
+      "act": "Sotsiaalhoolekandelise abi osutamise kord",
+      "newer": {
+       "refs": [
+        "S1",
+        "S3",
+        "S4",
+        "S6",
+        "S7",
+        "S8"
+       ],
+       "valid_to": null,
+       "valid_from": "2026-10-06"
+      },
+      "older": {
+       "refs": [
+        "S2",
+        "S5",
+        "S9"
+       ],
+       "valid_to": "2026-10-05",
+       "valid_from": "2025-09-01"
+      },
+      "differences": [
+       {
+        "newer": [
+         "S1"
+        ],
+        "older": [
+         "S2"
+        ],
+        "state": "changed",
+        "provision": "§ 3 lg 1"
+       },
+       {
+        "newer": [
+         "S1"
+        ],
+        "older": [
+         "S2"
+        ],
+        "state": "changed",
+        "provision": "§ 3 lg 2"
+       },
+       {
+        "newer": [
+         "S3"
+        ],
+        "state": "changed",
+        "provision": "§ 4 lg 2"
+       },
+       {
+        "newer": [
+         "S3"
+        ],
+        "state": "added",
+        "provision": "§ 4 lg 6"
+       },
+       {
+        "newer": [
+         "S6"
+        ],
+        "older": [
+         "S5"
+        ],
+        "state": "changed",
+        "provision": "§ 5 lg 1"
+       },
+       {
+        "newer": [
+         "S6"
+        ],
+        "older": [
+         "S5"
+        ],
+        "state": "changed",
+        "provision": "§ 5 lg 3"
+       },
+       {
+        "newer": [
+         "S6"
+        ],
+        "older": [
+         "S5"
+        ],
+        "state": "changed",
+        "provision": "§ 5 lg 4"
+       },
+       {
+        "newer": [
+         "S4"
+        ],
+        "state": "changed",
+        "provision": "§ 6 lg 2"
+       },
+       {
+        "newer": [
+         "S4"
+        ],
+        "state": "changed",
+        "provision": "§ 6 lg 4"
+       },
+       {
+        "newer": [
+         "S8"
+        ],
+        "older": [
+         "S9"
+        ],
+        "state": "changed",
+        "provision": "§ 7 lg 1"
+       },
+       {
+        "newer": [
+         "S8"
+        ],
+        "older": [
+         "S9"
+        ],
+        "state": "changed",
+        "provision": "§ 7 lg 2"
+       },
+       {
+        "newer": [
+         "S8"
+        ],
+        "older": [
+         "S9"
+        ],
+        "state": "changed",
+        "provision": "§ 7 lg 4"
+       },
+       {
+        "newer": [
+         "S8"
+        ],
+        "older": [
+         "S9"
+        ],
+        "state": "changed",
+        "provision": "§ 7 lg 7"
+       }
+      ],
+      "same_wording": [
+       "§ 3",
+       "§ 4",
+       "§ 4 lg 1",
+       "§ 4 lg 3",
+       "§ 4 lg 4",
+       "§ 4 lg 5",
+       "§ 5",
+       "§ 5 lg 2",
+       "§ 5 lg 5",
+       "§ 5 lg 6",
+       "§ 5 lg 7",
+       "§ 5 lg 8",
+       "§ 6",
+       "§ 6 lg 1",
+       "§ 6 lg 3",
+       "§ 7",
+       "§ 7 lg 3",
+       "§ 7 lg 5",
+       "§ 7 lg 6",
+       "§ 7 lg 8",
+       "§ 7 lg 9"
+      ],
+      "not_in_evidence": {
+       "added": [
+        "§ 1¹",
+        "§ 1¹ lg 1",
+        "§ 1¹ lg 2",
+        "§ 1¹ lg 3",
+        "§ 1¹ lg 4",
+        "§ 1¹ lg 5",
+        "§ 1¹ lg 6",
+        "§ 1¹ lg 7",
+        "§ 1¹ lg 8",
+        "§ 22 lg 9",
+        "§ 25 lg 7"
+       ],
+       "changed": [
+        "§ 1 lg 4",
+        "§ 7 lg 10",
+        "§ 8 lg 2",
+        "§ 8 lg 3",
+        "§ 10 lg 5",
+        "§ 12 lg 1",
+        "§ 13 lg 7",
+        "§ 15 lg 1",
+        "§ 18 lg 1",
+        "§ 18 lg 4",
+        "§ 18 lg 5",
+        "§ 19 lg 2",
+        "§ 21 lg 2",
+        "§ 22 lg 1",
+        "§ 22 lg 2",
+        "§ 22 lg 3",
+        "§ 22 lg 5",
+        "§ 22 lg 6",
+        "§ 24 lg 1",
+        "§ 26 lg 5",
+        "§ 26 lg 6",
+        "§ 27 lg 4",
+        "§ 27 lg 5",
+        "§ 27 lg 7",
+        "§ 31 lg 2",
+        "§ 31 lg 6",
+        "§ 32 lg 4",
+        "§ 34 lg 3",
+        "§ 37",
+        "§ 37¹ lg 3",
+        "§ 38 lg 5",
+        "§ 38 lg 8",
+        "§ 39 lg 1",
+        "§ 40 lg 1",
+        "§ 41 lg 1"
+       ],
+       "removed": [
+        "§ 22 lg 8"
+       ]
+      }
+     }
+    ],
+    "basis": "the wording of each section and subsection of the two versions, compared on the server",
+    "version": "rag-v2/version-comparison-2"
+   },
+   "change_places": {
+    "version": "rag-v2/version-change-places-1",
+    "acts": [
+     {
+      "act": "Sotsiaalhoolekandelise abi osutamise kord",
+      "day": "2026-10-06",
+      "groups": 34,
+      "provisions": 60
+     }
+    ],
+    "groups": 34,
+    "added_candidates": [
+     "  P37 | Sotsiaalhoolekandelise abi osutamise kord | from 2026-10-06",
+     "  P38 | Sotsiaalhoolekandelise abi osutamise kord | from 2025-09-01",
+     "  P39 | Sotsiaalhoolekandelise abi osutamise kord | from 2026-10-06",
+     "  P40 | Sotsiaalhoolekandelise abi osutamise kord | from 2026-10-06",
+     "  P41 | Sotsiaalhoolekandelise abi osutamise kord | from 2025-09-01",
+     "* P42 | Sotsiaalhoolekandelise abi osutamise kord | from 2026-10-06",
+     "* P43 | Sotsiaalhoolekandelise abi osutamise kord | from 2025-09-01",
+     "  P44 | Sotsiaalhoolekandelise abi osutamise kord | from 2026-10-06"
+    ]
+   },
+   "plan_price_usd": 0.00725592,
+   "search_ms": 3525,
+   "total_ms": 28009,
+   "answer": "§ 3 muudab seda, kuidas valla ülesannete täitjat nimetatakse: uues sõnastuses täidab ülesandeid üldiselt Põhja-Sakala Vallavalitsus kui ametiasutus ning määruses sätestamata juhtudel otsustab abi korraldamise või tagamise vallavalitsus kui täitevorgan. Uus tekst ütleb ka, et sotsiaalosakonna teenistujate pädevus määratakse ametiasutuse sisepädevuse dokumentidega. [S1, S2]\n\n§ 4 lõige 2 nimetab isikud, kes võivad abi vajava inimese huvides toetust või teenust taotleda: eestkostja, hooldaja, spetsialist, õpetaja või muu inimene, kellel on andmeid vallas elava abi vajava inimese kohta. Lisandub § 4 lõige 6, mille järgi võib ametiasutus abi andmiseks küsida andmeid taotleja, tema leibkonnaliikmete või ülalpidamiskohustusega inimeste kohta asjaomastest infosüsteemidest ja andmekogudest. [S3]\n\nTaotluse esitamise ja vormidega tegeleb uue sõnastuse järgi ametiasutuse sotsiaalosakond ning taotlusvormid koostab ametiasutus. Sissetulekust sõltuva toetuse taotlemisel tuleb esitada eelneva kuni kolme kuu sissetulekud ja vähemalt eelneva kuu eluasemekulud koos tõendavate dokumentidega. Varasemas sõnastuses olid sissetulekut tõendavad dokumendid soovituslikud ja nimetati eluasemekulude asemel püsiväljaminekuid. Samuti asendub taotlusi menetleva sotsiaaltöötaja nimetus „spetsialistiga“. [S5, S6]\n\nAbivajaduse hindamise uues sõnastuses nimetatakse hinnatavate asjaoludena inimese tegevusvõimet ning füüsilist ja sotsiaalset elukeskkonda. Vajaduse korral võib spetsialist tulla inimest koju või tema viibimiskohta hindama tema toimetulekut ja abi- või hooldusvajadust. [S4]\n\nOtsustamise korraldus muutub: toetuse või teenuse määramise või määramata jätmise otsuse teeb sotsiaalosakond ning keeruka juhtumi või laiema otsustajate ringi vajaduse korral võib ta suunata asja valitsusele. Kui otsus puudutab volikogu kehtestatud määra ületavat toetust, teeb selle valitsus sotsiaalosakonna ettepanekul. Toimetulekutoetuse ja sissetulekust sõltuva toetuse otsus saadetakse edaspidi taotlejale kirjalikult nii määramise kui ka määramata jätmise korral. Otsuse tähtaeg — kümme tööpäeva vajaliku viimase dokumendi saamisest või esitamise tähtpäevast — jääb samaks. [S8, S9]\n\nMa ei saa siin anda täielikku ülevaadet kõigist määruse muudatustest. § 4 lõike 2 ja § 6 varasemat sõnastust pole mul täpseks võrdluseks."
+  },
+  {
+   "run": "places",
+   "scenario": "ordinary-question-on-a-version-day",
+   "turn": 1,
+   "turn_id": "8a520f44-303c-46a1-a275-93de16d80905",
+   "text": "Kui vald teeb 1. jaanuaril 2027 otsuse, millega keeldub mulle toetust andmast, siis kui kaua on mul aega see vaidlustada?",
+   "verdict": "passed",
+   "checks": 4,
+   "failed": [],
+   "region": null,
+   "scope_state": "region_required",
+   "queries": [
+    "kohaliku omavalitsuse toetuse andmisest keeldumise otsuse vaidlustamise tähtaeg vaie"
+   ],
+   "answer_kind": "partial",
+   "clarification": false,
+   "contacts_named_in_answer": 0,
+   "roles_of_the_named": [],
+   "channels_in_answer": 0,
+   "channels_in_context": 0,
+   "channels_of_a_named_person": 0,
+   "candidates": 44,
+   "selected": [
+    "P6 | alates 2027-01-01 | Riigikogu > Haldusmenetluse seadus > 2. osa ERIOSA > 5. peatükk VAIDEMENETLUS > 2. jagu Vaidemenetluse algatamine > § 75. Vaide esitamise tähtaeg"
+   ],
+   "cited": [
+    {
+     "title": "Haldusmenetluse seadus"
+    }
+   ],
+   "cited_contact_records": 0,
+   "change_places": {
+    "version": "rag-v2/version-change-places-1",
+    "acts": [
+     {
+      "act": "Sotsiaalhoolekande seadus",
+      "day": "2027-01-01",
+      "groups": 2,
+      "provisions": 2
+     },
+     {
+      "act": "Lastekaitseseadus",
+      "day": "2027-01-01",
+      "groups": 19,
+      "provisions": 32
+     },
+     {
+      "act": "Riigilõivuseadus",
+      "day": "2027-01-01",
+      "groups": 20,
+      "provisions": 41
+     },
+     {
+      "act": "Haldusmenetluse seadus",
+      "day": "2027-01-01",
+      "groups": 2,
+      "provisions": 10
+     }
+    ],
+    "groups": 43,
+    "added_candidates": [
+     "  P37 | Lastekaitseseadus | from 2027-01-01",
+     "  P38 | Lastekaitseseadus | from 2027-01-01",
+     "  P39 | Riigilõivuseadus | from 2027-01-01",
+     "  P40 | Riigilõivuseadus | from 2026-11-01",
+     "  P41 | Haldusmenetluse seadus | from 2027-01-01",
+     "  P42 | Haldusmenetluse seadus | from 2027-01-01",
+     "  P43 | Lastekaitseseadus | from 2027-01-01",
+     "  P44 | Lastekaitseseadus | from 2026-10-01"
+    ]
+   },
+   "plan_price_usd": 0.00432791,
+   "search_ms": 3855,
+   "total_ms": 14043,
+   "answer": "Kui vald teeb otsuse 1. jaanuaril 2027, on vaide esitamiseks üldjuhul aega 30 päeva alates päevast, mil said otsusest teada või pidid teada saama, kui seadus ei sätesta teisiti. [S1]\n\nAinult otsuse kuupäeva põhjal ei saa ma öelda viimast vaide esitamise päeva. Samuti ei saa ma selle sätte põhjal kindlaks teha, kas sinu toetuse kohta kehtib teistsugune tähtaeg."
+  }
+ ],
+ "plan": "m4-sotsiaalai-corpus-chat-20261005-165204-d4659712-9cc1-4856-a6f7-e330cdb35a63-r491de89e08fbd1df5034639584a4783f80892b3d",
+ "generation": "search_generation_2e4b3572aa6d8768387607cf9e4f6e0438b619809e0e86327a1e34874f4986d4",
+ "model": "gpt-6-luna",
+ "reasoning": "medium",
+ "source": "the evaluator's reports on the server (rag-v2-work/eval-files/version-change-places-1-2026-10-05/<run>/conversation-eval.json) and each turn's own record",
+ "masking": "an answer that names a contact person (also in a declined form) is left out whole, with the roles of the people it names; in a kept answer a capitalised word that starts like a part of a shown contact's name is masked, which can hide a place name; a contact's own record is counted, not listed, among the cited sources; e-mail addresses and phone numbers are masked"
+}

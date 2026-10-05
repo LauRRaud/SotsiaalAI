@@ -1,0 +1,96 @@
+{
+  "schema_version": "rag-v2/dialogue-eval-2",
+  "purpose": "ADR-091, written on 05.10.2026 before any measurement of it: does the evidence selection keep the passages of the provisions that differ between two versions of an act, now that the server brings them among its candidates, and does the answer state the changes. The first scenario is the turn that failed at the search on 05.10.2026 (scenarios-strengthening-2, the same text and expectations). The second is a national law never measured: its differing provisions fit the eight places whole. The third is the municipal act of scenarios-version-change-1, which passed before ADR-091 and must still pass. The fourth is a control: an ordinary question that names a day on which versions of four national laws start, so the eight places are filled with passages it does not need.",
+  "expectation_help": {
+    "region": "the municipal scope of the turn: the municipality the question asks about; null when it names none",
+    "evidence / found_versions_from": "search: passages of the act are among the found sources, of the version that ends the day before the asked day and of the one that starts on it",
+    "cited / cited_versions_from": "answer: it has source blocks that cite both versions",
+    "must": "answer: it names at least one thing the new version really changes; read the whole answer as well, a pattern is a coarse check",
+    "must_not": "answer: it does not present an unchanged rule as a change"
+  },
+  "history": [
+    "05.10.2026: written with ADR-091 (#392), before a measurement. Checked free on the server for the first and third question: the differing provisions' passages are among the candidates (36 to 44 candidates).",
+    "05.10.2026 evening: measured on release 491de89e (4 turns, 0.0234 USD by the plan's prices). The second, third and fourth scenario passed. The first failed at the search again: the answer described the new section 29 from the act itself, but only the new version was in the evidence. Groups were one per provision then, and an added subsection that runs over two passages brought the new version's first passage of section 29 in without the older one. Groups are one per section since version-change-places-2; that correction is checked by a free replay and not yet measured."
+  ],
+  "scenarios": [
+    {
+      "id": "what-changes-national-law",
+      "title": "Mis muutub: üleriigilise seaduse kaks redaktsiooni",
+      "source": "scenarios-strengthening-2, failed at the search on 05.10.2026 (ADR-088, Mõõtmine 2); ADR-091",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Mis muutub lastekaitseseaduses alates 1. jaanuarist 2027?",
+          "expect": {
+            "region": null,
+            "evidence": ["Lastekaitseseadus"],
+            "found_versions_from": ["2026-10-01", "2027-01-01"],
+            "cited": ["Lastekaitseseadus"],
+            "cited_versions_from": ["2026-10-01", "2027-01-01"],
+            "must": ["juhtumikorraldus|võrgustikutöö|haldusjärelevalve"],
+            "must_not": ["(uus|uuena|lisandu\\p{L}*|nüüdsest)[^.]{0,60}lastekaitset korralda\\p{L}*[^.]{0,40}Vabariigi Valitsus|lastekaitset korralda\\p{L}*[^.]{0,160}(on uus|uuena|lisandu\\p{L}*)"]
+          },
+          "note": "Between the versions of 01.10.2026 and 01.01.2027 sixteen provisions changed, fifteen were added and one was removed (§ 29 on helping a child in need was rewritten: case management and network work; §§ 36¹ and 41³ are new); the one sentence of § 11 and of § 40¹ became their subsection 1. The differing provisions stand in fifteen sections, so the eight places hold a part of them; which part is read from the turn's record."
+        }
+      ]
+    },
+    {
+      "id": "what-changes-national-law-small",
+      "title": "Mis muutub: seadus, mille erinevad sätted mahuvad kaheksale kohale",
+      "source": "ADR-091: a national law whose differing provisions (four sections, seven passages) fit the places whole",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Mis muutub puuetega inimeste sotsiaaltoetuste seaduses alates 1. veebruarist 2027?",
+          "expect": {
+            "region": null,
+            "evidence": ["Puuetega inimeste sotsiaaltoetuste seadus"],
+            "found_versions_from": ["2026-10-01", "2027-02-01"],
+            "cited": ["Puuetega inimeste sotsiaaltoetuste seadus"],
+            "cited_versions_from": ["2026-10-01", "2027-02-01"],
+            "must": ["18[- ]aasta", "16"]
+          },
+          "note": "From 01.02.2027 a child is a child for this act until 18, not 16: § 2 lg 1¹ and lg 2¹ (whose degree of disability is established as a child's), § 2⁴ lg 3 and lg 5 (for how long), § 6 lg 2 (the disabled child's allowance is paid until 18). § 25⁴ is new: the transition for children who turned 16 before that day. Nothing else differs."
+        }
+      ]
+    },
+    {
+      "id": "what-changes-both-versions",
+      "title": "Mis muutub: valla akti mõlemad redaktsioonid kõrvuti",
+      "source": "scenarios-version-change-1 (passed on 05.10.2026 before ADR-091); must still pass",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Mis muutub Põhja-Sakala valla sotsiaalabi korras alates 6. oktoobrist?",
+          "expect": {
+            "region": "pohja_sakala_vald",
+            "evidence": ["Sotsiaalhoolekandelise abi osutamise kord"],
+            "found_versions_from": ["2025-09-01", "2026-10-06"],
+            "cited": ["Sotsiaalhoolekandelise abi osutamise kord"],
+            "cited_versions_from": ["2025-09-01", "2026-10-06"],
+            "must": ["spetsialist|kolme kuu jooksul|18[- ]kuu|viis aastat|viie aasta|vähekindlustatud"],
+            "must_not": ["(nüüd|edaspidi|uuena|uue nõudena|lisandu\\p{L}*)[^.]{0,80}tähtaeg[^.]{0,40}(puudus|parand|kõrvald)|tähtaeg[^.]{0,60}(puudus|parand|kõrvald)[^.]{0,60}(on uus|uuena|lisandu\\p{L}*)|(puudus|parand|kõrvald)[^.]{0,40}tähtaeg[^.]{0,40}(on uus|uuena|lisandu\\p{L}*)"]
+          },
+          "note": "Until 05.10.2026 today's law is the earlier version and the asked day brings the new one; from 06.10.2026 the new one is today's law and the earlier one is in the search only because an asked day also takes the day before it (legal-validity-2). § 5 lg 5 (a time limit for remedying deficiencies) reads the same in both versions."
+        }
+      ]
+    },
+    {
+      "id": "ordinary-question-on-a-version-day",
+      "title": "Kontroll: tavaline küsimus päeva kohta, mil algavad nelja seaduse redaktsioonid",
+      "source": "ADR-091 control: the eight places are filled (four national laws start a version on 01.01.2027) with passages the question does not need",
+      "turns": [
+        {
+          "mode": "new",
+          "text": "Kui vald teeb 1. jaanuaril 2027 otsuse, millega keeldub mulle toetust andmast, siis kui kaua on mul aega see vaidlustada?",
+          "expect": {
+            "region": null,
+            "evidence": ["Haldusmenetluse seadus"],
+            "must": ["30 päeva"]
+          },
+          "note": "The Administrative Procedure Act's version from 01.01.2027 adds § 7¹ and § 111¹; its rules on a challenge (30 days from learning of the act) read the same in both versions. The answer is the ordinary one; that the added candidates did not displace it is read from the turn's record."
+        }
+      ]
+    }
+  ]
+}

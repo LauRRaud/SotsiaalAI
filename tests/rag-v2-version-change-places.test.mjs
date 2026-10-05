@@ -27,8 +27,9 @@ const rowOf = (bundle, [from, to]) => ({ document_id: bundle.document.id, versio
   units: bundle.chunks.map(chunk => ({ id: `unit/${bundle.version.id}/${chunk.ordinal}`, chunk_id: chunk.id, role: { evidence_eligible: true } })) });
 const loader = (bundles, calls = []) => async ids => { calls.push(ids); return bundles.filter(bundle => ids.includes(bundle.document.id)); };
 const holds = (bundle, chunkId, pattern) => pattern.test(bundle.chunks.find(chunk => chunk.id === chunkId).source_text);
+const inSection = (bundle, chunkId, number) => bundle.chunks.find(chunk => chunk.id === chunkId).section_path.some(title => new RegExp(`§ ${number}\\.`, 'u').test(title));
 
-test('the passages of what differs between two versions: each changed provision in both, an added one in the newer, a removed one in the older', async () => {
+test('the passages of what differs between two versions, a group per section: its differing provisions\' passages in the newer version and in the older', async () => {
   const [older, newer] = [await version(OLDER), await version(NEWER)], groups = changedPassages(older, newer);
   const difference = compareProvisions(actProvisions(older), actProvisions(newer));
   // Every provision that differs is in exactly one group; one that only moved to another number or reads the same is in none.
@@ -36,24 +37,34 @@ test('the passages of what differs between two versions: each changed provision 
   assert.deepEqual([...listed].sort(), [...difference.changed, ...difference.added, ...difference.removed].sort());
   assert.equal(new Set(listed).size, listed.length);
   assert.ok(difference.renumbered.length && difference.renumbered.every(item => !listed.includes(item.label)));
-  // Provisions held by the same passages are one group; every passage is of its own version.
+  // One group per section, each with its own passages; every passage is of its own version.
+  assert.equal(groups.length, 15);
   assert.equal(new Set(groups.map(group => JSON.stringify([group.newer, group.older]))).size, groups.length);
+  assert.equal(new Set(groups.map(group => group.provisions[0].split(' lg ')[0])).size, groups.length);
   const [olderIds, newerIds] = [new Set(older.chunks.map(chunk => chunk.id)), new Set(newer.chunks.map(chunk => chunk.id))];
   for (const group of groups) {
+    assert.equal(new Set(group.provisions.map(label => label.split(' lg ')[0])).size, 1, group.provisions.join());
     assert.ok(group.newer.every(chunk => newerIds.has(chunk)) && group.older.every(chunk => olderIds.has(chunk)));
     assert.ok(group.newer.length <= VERSION_CHANGE_RESERVE.perSide && group.older.length <= VERSION_CHANGE_RESERVE.perSide);
     assert.ok(group.newer.length + group.older.length >= 1 && group.newer.length + group.older.length <= VERSION_CHANGE_RESERVE.size);
   }
-  // Section 29, which the amendment rewrote: its first subsections stand in a passage of each version.
+  // Section 29, which the amendment rewrote, is one group: its two passages of the newer version and its passage of the
+  // older one, whichever of its subsections changed, was added or was repealed. As separate groups of subsections the
+  // newer version's first passage came to the selection without the older one (the turn measured on 05.10.2026).
   const rewritten = groups.find(group => group.provisions.includes('§ 29 lg 1'));
-  assert.deepEqual([rewritten.newer.length, rewritten.older.length], [1, 1]);
+  assert.deepEqual([rewritten.newer.length, rewritten.older.length], [2, 1]);
+  assert.ok(['§ 29 lg 5', '§ 29 lg 6', '§ 29 lg 12', '§ 29 lg 3¹'].every(label => rewritten.provisions.includes(label)));
+  assert.ok(rewritten.newer.every(chunk => inSection(newer, chunk, 29)) && inSection(older, rewritten.older[0], 29));
   assert.ok(holds(newer, rewritten.newer[0], /§ 29\./u) && holds(older, rewritten.older[0], /§ 29\./u));
-  // An added provision has a passage only in the newer version, a removed one only in the older.
-  const added = groups.find(group => group.provisions.includes('§ 36¹')), removed = groups.find(group => group.provisions.includes('§ 29 lg 3¹'));
+  // A new section has passages only in the newer version.
+  const added = groups.find(group => group.provisions.includes('§ 36¹'));
   assert.deepEqual([added.newer.length, added.older.length], [1, 0]);
-  assert.deepEqual([removed.newer.length, removed.older.length], [0, 1]);
-  // In the newer version's reading order, what was removed last.
-  assert.equal(groups[0].provisions[0], '§ 11 lg 2'); assert.equal(groups.at(-1), removed);
+  // In the newer version's reading order.
+  assert.equal(groups[0].provisions[0], '§ 11 lg 2'); assert.deepEqual(groups.at(-1).provisions, ['§ 41³']);
+  // A section whose only difference is a repealed subsection keeps the passage of each version (the number still stands).
+  const [before, after] = [await version('404072025051', { title: 'Kord', authority: 'Vallavolikogu' }), await version('403102026022', { title: 'Kord', authority: 'Vallavolikogu' })];
+  const repealed = changedPassages(before, after).find(group => group.provisions.includes('§ 22 lg 8'));
+  assert.ok(repealed.newer.length && repealed.older.length);
   // The same version against itself differs in nothing.
   assert.deepEqual(changedPassages(newer, newer), []);
 });
