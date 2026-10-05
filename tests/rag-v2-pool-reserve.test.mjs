@@ -72,7 +72,7 @@ function fixture({ lawFirst = false, first = null, nearest = null } = {}) {
   const query = extra => ({ text: 'How do I contest a decision?', language: 'en', includeDocumentLabels: false,
     limits: { topK: 5, perDocument: 5, candidates: 40, contextTokens: 6000 }, ...extra });
   const run = (extra, hooks) => retrieve({ postgres, qdrant, embedding, policy, context, query: query(extra), allowLexicalFallback: false, hooks });
-  return { bundles, units, calls, run, postgres };
+  return { bundles, units, calls, run, postgres, qdrant };
 }
 
 test('the national-law group is the legal acts with a validity start and no municipality', () => {
@@ -208,4 +208,79 @@ test('ADR-079: a planned query\'s own nearest reserved passage comes first; the 
   const base = { text: 'q', language: 'et', limits: { topK: 5, perDocument: 5, candidates: 40, contextTokens: 6000 } };
   assert.deepEqual(validateQuery({ ...base, poolReserve: { documents: ['a'], size: 6, perDocument: 2, perQuery: 1 } }).poolReserve, { documents: ['a'], size: 6, perDocument: 2, perQuery: 1 });
   for (const perQuery of [0, 4, 1.5, '1']) assert.throws(() => validateQuery({ ...base, poolReserve: { documents: ['a'], size: 6, perQuery } }), { code: 'invalid_pool_reserve' }, String(perQuery));
+});
+
+// ADR-091: the passages that hold the provisions which differ between two versions of an act come to the reranker in
+// groups (one provision's passages of both versions), a group whole or not at all.
+test('ADR-091: the passages of the provisions that differ join the pool in whole groups, in the order they rank for the request', async () => {
+  const f = fixture(), unit = chunk => f.units.find(u => u.chunk_id === chunk).id, seen = [];
+  const rerank = async passages => { seen.push(passages); return passages.slice(RERANK_POOL).map(p => p.id).slice(0, 5); };
+  // Three provisions that differ: one stands in a passage of each act, one in three passages of the law, one in the second act alone.
+  const groups = [[unit('law-c3'), unit('act-c2')], [unit('law-c0'), unit('law-c1'), unit('law-c2')], [unit('act-c0')]];
+  const packet = await f.run({ changeReserve: { groups, size: 4 } }, { rerank });
+  assert.equal(packet.state, 'ok', packet.error);
+  // law-c0 ranks first among these passages, so its group comes whole. The group of two no longer fits and is passed
+  // over; the single passage after it still does.
+  assert.deepEqual(packet.rerank.change_reserved, ['law-c0', 'law-c1', 'law-c2', 'act-c0'].map(unit));
+  assert.deepEqual(packet.rerank.candidates.slice(RERANK_POOL), packet.rerank.change_reserved);
+  assert.deepEqual(seen[0].slice(RERANK_POOL).map(p => [p.id, p.title]), [['P31', 'Title law'], ['P32', 'Title law'], ['P33', 'Title law'], ['P34', 'Title act']]);
+  assert.deepEqual(packet.evidence.map(e => e.chunk_id), ['law-c0', 'law-c1', 'law-c2', 'act-c0']);
+  assert.deepEqual(Object.keys(packet.evidence[0].selection.ranks).sort(), ['change_lexical', 'change_vector']);
+  assert.deepEqual(packet.selection_config.change_reserve, { groups: 3, units: 6, documents: 2, size: 4 });
+  assert(packet.channels.includes('change_reserve') && !packet.channels.includes('pool_reserve'));
+  assert.equal(packet.measurements.candidate_counts.change_lexical, 6);
+  assert.deepEqual(packet.raw_rankings.change.map(rank => rank.id), ['law-c0', 'law-c1', 'law-c2', 'law-c3', 'act-c0', 'act-c2'].map(unit));
+  // Only the differing passages are searched, with the question's own vector.
+  assert.deepEqual(f.calls.lexical.at(-1), ['law', 'act']);
+  assert.equal(packet.measurements.mock_embedding_calls, 1);
+
+  // With room for all, every group comes, each together.
+  const all = await f.run({ changeReserve: { groups, size: 8 } }, { rerank });
+  assert.deepEqual(all.rerank.change_reserved, ['law-c0', 'law-c1', 'law-c2', 'law-c3', 'act-c2', 'act-c0'].map(unit));
+  // Beside the national reserve: a passage that already has a reserved place takes no second one.
+  const both = await f.run({ poolReserve: { documents: ['law'], size: 1 }, changeReserve: { groups, size: 8 } }, { rerank });
+  assert.deepEqual(both.rerank.reserved, [unit('law-c0')]);
+  assert.deepEqual(both.rerank.change_reserved, ['law-c1', 'law-c2', 'law-c3', 'act-c2', 'act-c0'].map(unit));
+  assert.equal(new Set(both.rerank.candidates).size, both.rerank.candidates.length);
+  assert.deepEqual(both.rerank.candidates.slice(RERANK_POOL), [...both.rerank.reserved, ...both.rerank.change_reserved]);
+  // A unit the search's scope does not hold is left out of its group; a query whose groups are all outside adds nothing.
+  const partial = await f.run({ changeReserve: { groups: [[unit('act-c1'), 'unit-outside'], ['another-outside']], size: 4 } }, { rerank });
+  assert.deepEqual(partial.rerank.change_reserved, [unit('act-c1')]);
+  assert.deepEqual(partial.selection_config.change_reserve, { groups: 1, units: 1, documents: 1, size: 4 });
+  const outside = await f.run({ changeReserve: { groups: [['unit-outside']], size: 4 } }, { rerank });
+  assert.equal(outside.rerank.change_reserved, undefined); assert.equal(outside.selection_config.change_reserve, undefined);
+  assert.equal(seen.at(-1).length, RERANK_POOL);
+});
+
+test('ADR-091: a passage of a group that the search did not rank comes with its group; one the pool already has is not added twice', async () => {
+  const f = fixture(), unit = chunk => f.units.find(u => u.chunk_id === chunk).id, lexical = f.postgres.lexical, vector = f.qdrant.query;
+  // The search among the differing passages returns its first hit only.
+  f.postgres.lexical = async (t, g, docs, text, limit, ids) => (await lexical(t, g, docs, text, limit, ids)).slice(0, docs.length === 1 ? 1 : limit);
+  f.qdrant.query = async (g, docs, v, limit, ids) => (await vector(g, docs, v, limit, ids)).slice(0, docs.length === 1 ? 1 : limit);
+  const packet = await f.run({ changeReserve: { groups: [[unit('law-c2'), unit('law-c0'), unit('law-c3')]], size: 4 } }, { rerank: async passages => passages.slice(RERANK_POOL).map(p => p.id) });
+  assert.equal(packet.state, 'ok', packet.error);
+  assert.deepEqual(packet.rerank.change_reserved, ['law-c2', 'law-c0', 'law-c3'].map(unit), 'in the group\'s own order');
+  const byChunk = Object.fromEntries(packet.evidence.map(e => [e.chunk_id, e.selection]));
+  assert.deepEqual(Object.keys(byChunk['law-c0'].ranks).sort(), ['change_lexical', 'change_vector']);
+  assert.deepEqual([byChunk['law-c2'].ranks, byChunk['law-c2'].rrf_score], [{}, 0]);
+
+  // The corpus-wide order already has the law and the second act in the pool: nothing is added.
+  const seen = [], leading = await fixture({ lawFirst: true }).run({ changeReserve: { groups: [[unit('law-c0'), unit('act-c0')], [unit('law-c3')]], size: 4 } },
+    { rerank: async passages => { seen.push(passages); return ['P1']; } });
+  assert.equal(leading.state, 'ok', leading.error);
+  assert.deepEqual(leading.rerank.change_reserved, []);
+  assert.equal(seen[0].length, RERANK_POOL); assert.equal(new Set(seen[0].map(p => p.text)).size, RERANK_POOL);
+});
+
+test('ADR-091: without a reranker the change reserve is unused, and a result outside the differing passages stops the search', async () => {
+  const f = fixture(), unit = chunk => f.units.find(u => u.chunk_id === chunk).id, changeReserve = { groups: [[unit('law-c0'), unit('act-c0')]], size: 4 };
+  const calls = f.calls.lexical.length;
+  const without = await f.run({ changeReserve }), baseline = await f.run({});
+  assert.equal(f.calls.lexical.length, calls + 2, 'no search among the differing passages without a reranker');
+  assert.deepEqual(without.evidence, baseline.evidence);
+  assert.equal(without.selection_config.change_reserve, undefined);
+  const lexical = f.postgres.lexical;
+  f.postgres.lexical = async (t, g, docs, text, limit, ids) => (docs.length === 2 ? (await lexical(t, g, ['law', 'act'], text, limit)).slice(0, 3) : lexical(t, g, docs, text, limit, ids));
+  const packet = await f.run({ changeReserve }, { rerank: async () => ['P1'] });
+  assert.equal(packet.state, 'error'); assert.equal(packet.error, 'channel_result_outside_scope');
 });
