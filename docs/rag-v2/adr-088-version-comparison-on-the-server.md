@@ -56,7 +56,8 @@ Kataloog `scenarios-version-change-1` töötaval versioonil `d43f3458` ([tõend]
 - **Vastus** nimetas muudatused §-des 3–6 ja ei esitanud lõiget 5 muudatusena. Väited selle kohta, mis erineb, võrdlesin mõlema redaktsiooni tekstiga: peavad paika (sh § 5 lg 3 p 4: püsiväljaminekute asemel eluasemekulud, tõendid soovitusliku asemel nõutavad; uus § 4 lg 6).
 - **§ 6 lg 2 ja 4:** vana sõnastusega lõiku tõendites ei olnud (plokk andis ainult uue lõigu viite). Vastus kirjeldas uut sõnastust ja ütles lõpus, et ei saa neid lõikeid varasemaga võrrelda. Tegelik erinevus on seal üks sõna („sotsiaaltöötaja“ → „spetsialist“).
 - **Nõrk koht, mis jääb:** muudetud sätte uut sõnastust kirjeldades ei ütle vastus alati, mis täpselt teisiti on (§ 3 lg 1 puhul muutus sõnastus, sisu mitte). Plokk ütleb „muutus“, mitte „kuidas“.
-- **Mida see pööre ei näidanud:** eelvalik hoidis seekord § 5 mõlemad lõigud mõlemast redaktsioonist, nii et 04.10 olukord (vana teine lõik valikust väljas) ei kordunud. Selle olukorra kohta on tõend ainult mudelita (jaotis „Kontroll“).
+- **Teine pööre samal päeval** (versioon `3e2ac388`, 0,0060 USD, [tõend](../audits/evidence/contact-directory-measured-2026-10-05.json)): läbis. Vastus ütles iga muudatuse kujul „varem … nüüd“ ja abivajaduse hindamise kohta, et vaadatakse endiselt samu asjaolusid; muutumata sätet uuena ei esitatud.
+- **Mida need pöörded ei näidanud:** eelvalik hoidis esimeses pöördes § 5 mõlemad lõigud mõlemast redaktsioonist, nii et 04.10 olukord (vana teine lõik valikust väljas) ei kordunud. Selle olukorra kohta on tõend ainult mudelita (jaotis „Kontroll“).
 
 ## Mõõtmata
 
