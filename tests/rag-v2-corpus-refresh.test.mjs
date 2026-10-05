@@ -93,6 +93,20 @@ test('ADR-076: the next version of an act registered as selected sections is reg
   assert.deepEqual(entries.filter(entry => entry.xml_sections !== undefined).map(entry => [entry.path, entry.xml_sections, entry.xml_units]), [[POLVA, ['1'], 'point'], [NEW, ['1'], 'point']]);
 });
 
+test('ADR-087: the next version of an act whose sections have search aids is registered with the same aids', async () => {
+  const { root, from } = await registry('aids');
+  const file = path.join(root, 'REGISTER.json'), register = JSON.parse(await fs.readFile(file, 'utf8'));
+  const aids = { 1: 'Tavakeeles: mida see kord reguleerib ja kellele see kehtib.' };
+  Object.assign(register.entries.find(entry => entry.path === POLVA), { xml_search_aids: aids });
+  await fs.writeFile(file, `${JSON.stringify(register, null, 2)}\n`);
+  await fs.copyFile(path.join('Andmebaasi', NEW), path.join(from, '429092026004.xml'));
+  const result = await registerDownloads({ root, from, work: path.join(dir, 'aids-work') });
+  assert.deepEqual(result.added, [NEW]);
+  const entries = JSON.parse(await fs.readFile(file, 'utf8')).entries;
+  // The act is read whole in both versions: no selection of sections came with the aids.
+  assert.deepEqual(entries.filter(entry => entry.xml_search_aids !== undefined).map(entry => [entry.path, entry.xml_search_aids, entry.xml_sections ?? null]), [[POLVA, aids, null], [NEW, aids, null]]);
+});
+
 test('a downloaded file must be the act its name says', async () => {
   const { root, from } = await registry('wrong-name');
   await fs.copyFile(path.join('Andmebaasi', NEW), path.join(from, '111111111111.xml'));
