@@ -1,5 +1,5 @@
 {
-  "normalization": "source-structure-v30",
+  "normalization": "source-structure-v31",
   "chunking": "structure-blocks-v19",
   "parser": "pdfjs-dist@5.4.296",
   "files": [
@@ -19,5 +19,5 @@
     "lib/rag-v2/structured-record.js",
     "lib/rag-v2/text-source.js"
   ],
-  "sha256": "54f2e82cfcf2ce10bff98841845faedd983b77a7e184d10c163c336a81a85cb3"
+  "sha256": "812e46480ffd42572bd96fad9c70ea827b7e69adcf423cccce3a6a690346e5ab"
 }

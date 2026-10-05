@@ -37,7 +37,7 @@ Paragrahv lõigatakse lõikudeks pikkuse järgi. Sama säte seisab seetõttu kah
 
 ### Kõrvalleid: lingi sihtkoht seaduse tekstis
 
-Üleriigiliste seaduste tekstis seisab rakendusakti lingi sihtkoht omaette plokina („./dyn=<redaktsiooni number>&id=<akti number>“; 21 aktis 326 kohta). See nimetab redaktsiooni, milles ta seisab, ja erineb seega igas redaktsioonis. Sotsiaalhoolekande seaduse 01.02.2027 ja 01.04.2027 redaktsiooni 46 erinevast lõikest erines 38 ainult selle poolest. Võrdlus jätab sihtkoha sõnastusest välja. **Lugejat ei muudetud:** sihtkoht on endiselt lõikude tekstis ja embedding'u sisendis; selle eemaldamine muudab 21 akti lõike ja vajab eraldi tööd.
+Üleriigiliste seaduste tekstis seisab rakendusakti lingi sihtkoht omaette plokina („./dyn=<redaktsiooni number>&id=<akti number>“; 21 aktis 326 kohta). See nimetab redaktsiooni, milles ta seisab, ja erineb seega igas redaktsioonis. Sotsiaalhoolekande seaduse 01.02.2027 ja 01.04.2027 redaktsiooni 46 erinevast lõikest erines 38 ainult selle poolest. Võrdlus jätab sihtkoha sõnastusest välja. **Lugeja parandus on [ADR-090](adr-090-link-targets-out-of-text.md) (samal päeval).** Selle otsuse ajal lugejat ei muudetud: sihtkoht on endiselt lõikude tekstis ja embedding'u sisendis; selle eemaldamine muudab 21 akti lõike ja vajab eraldi tööd.
 
 ## Kontroll
 

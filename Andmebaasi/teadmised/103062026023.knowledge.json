@@ -41,6 +41,11 @@
         "normalization": "source-structure-v28",
         "reason": "superscript_digits",
         "anchors": 29
+      },
+      {
+        "normalization": "source-structure-v31",
+        "reason": "link_targets_removed",
+        "anchors": 28
       }
     ]
   },
@@ -1082,7 +1087,7 @@
         "anchors": [
           {
             "source_unit_index": 71,
-            "start": 510,
+            "start": 474,
             "quote": "Tasu maksmise kohustuse ülevõtmise taotlemise õigust, välja arvatud individuaalse abivahendi korral, ei ole vangistuses või eelvangistuses viibival isikul."
           }
         ]
@@ -1098,7 +1103,7 @@
         "anchors": [
           {
             "source_unit_index": 71,
-            "start": 673,
+            "start": 637,
             "quote": "Väljaspool kodu osutataval ööpäevaringsel üldhooldusteenusel, kogukonnas elamise teenusel, kui teenust osutatakse rohkem kui kümnele erivajadusega isikule, või ööpäevaringsel erihooldusteenusel viibival isikul ei ole tasu maksmise kohustuse ülevõtmise taotlemise õigust abivahendi eest"
           }
         ]
@@ -1114,12 +1119,12 @@
         "anchors": [
           {
             "source_unit_index": 71,
-            "start": 1559,
+            "start": 1523,
             "quote": "hõlbustab eelkõige hooldaja tööd, mitte inimese individuaalset hakkamasaamist"
           },
           {
             "source_unit_index": 71,
-            "start": 2148,
+            "start": 2112,
             "quote": "on hoone või mööbli külge kinnitatav ja hõlbustab hoones liikumist."
           }
         ]
@@ -1135,7 +1140,7 @@
         "anchors": [
           {
             "source_unit_index": 71,
-            "start": 2804,
+            "start": 2696,
             "quote": "Sotsiaalkindlustusamet võib tasu maksmise kohustuse ülevõtmisel erandkorras otsustada:"
           }
         ]
@@ -1151,7 +1156,7 @@
         "anchors": [
           {
             "source_unit_index": 72,
-            "start": 1816,
+            "start": 1780,
             "quote": "Riik ei võta tasu maksmise kohustust üle abivahendi eest, mille kasutusaeg on lõppenud."
           }
         ]
@@ -1508,7 +1513,7 @@
         "anchors": [
           {
             "source_unit_index": 91,
-            "start": 2441,
+            "start": 2405,
             "quote": "Vähemalt üks rehabilitatsioonimeeskonna spetsialist peab olema läbinud valdkonna eest vastutava ministri määrusega kehtestatud rehabilitatsioonivaldkonna koolituse või käesoleva paragrahvi lõikes 2 nimetatud eriala omandamisel läbinud rehabilitatsioonivaldkonna koolituse õppekava moodulites nimetatud ained."
           }
         ]
@@ -1524,7 +1529,7 @@
         "anchors": [
           {
             "source_unit_index": 91,
-            "start": 2918,
+            "start": 2846,
             "quote": "Rehabilitatsioonimeeskonna spetsialist ei tohi olla isik, kellel on kehtiv karistus tahtlikult toimepandud kuriteo eest, mis võib ohtu seada teenust saama õigustatud isiku elu, tervise või vara."
           }
         ]
@@ -1540,12 +1545,12 @@
         "anchors": [
           {
             "source_unit_index": 92,
-            "start": 2772,
+            "start": 2736,
             "quote": "Sotsiaalkindlustusamet hindab rehabilitatsiooniprogrammi järgmiste kriteeriumide põhjal:"
           },
           {
             "source_unit_index": 92,
-            "start": 3313,
+            "start": 3277,
             "quote": "rehabilitatsiooniprogramm on planeeritud kulutõhusalt ja selle eelarve on läbipaistev."
           }
         ]
@@ -1561,7 +1566,7 @@
         "anchors": [
           {
             "source_unit_index": 92,
-            "start": 3581,
+            "start": 3496,
             "quote": "Sotsiaalkindlustusamet kinnitab rehabilitatsiooniprogrammi, kui käesoleva paragrahvi lõikes 9 nimetatud kriteeriumid on täidetud."
           }
         ]
@@ -2220,7 +2225,7 @@
           },
           {
             "source_unit_index": 109,
-            "start": 868,
+            "start": 832,
             "quote": "kui tema kutsekvalifikatsiooni on tunnustatud välisriigi kutsekvalifikatsiooni tunnustamise seaduse kohaselt"
           }
         ]
@@ -2838,12 +2843,12 @@
         "anchors": [
           {
             "source_unit_index": 134,
-            "start": 721,
+            "start": 685,
             "quote": "Eraldamist võib kasutada ööpäevaringset erihooldusteenust saava täisealise isiku suhtes ainult juhul, kui:"
           },
           {
             "source_unit_index": 134,
-            "start": 1184,
+            "start": 1148,
             "quote": "arst ei ole teenuseosutajale teadaolevalt eraldamise kasutamist konkreetse täisealise isiku suhtes välistanud."
           }
         ]
@@ -2859,12 +2864,12 @@
         "anchors": [
           {
             "source_unit_index": 134,
-            "start": 1469,
+            "start": 1433,
             "quote": "Viivitamatu eraldamisvajaduse korral võib teenuseosutaja täisealise isiku enne teavitamist eraldada"
           },
           {
             "source_unit_index": 134,
-            "start": 1765,
+            "start": 1729,
             "quote": "kuid kõige kauem kolmeks tunniks järjest"
           }
         ]
@@ -2933,7 +2938,7 @@
         "anchors": [
           {
             "source_unit_index": 141,
-            "start": 1209,
+            "start": 1173,
             "quote": "õigus vajalikul määral piirata lapse liikumisvabadust teenuse osutamise kohas ja teenuse osutamise kohast väljaspool"
           }
         ]
@@ -3384,12 +3389,12 @@
         "anchors": [
           {
             "source_unit_index": 161,
-            "start": 1183,
+            "start": 1147,
             "quote": "ta saab välisriigist pensioni – teabe pensioni saamise kohta 1. aprilli seisuga;"
           },
           {
             "source_unit_index": 161,
-            "start": 1689,
+            "start": 1653,
             "quote": "esitab isik Sotsiaalkindlustusametile jooksva kalendriaasta 31. detsembriks ka vastava välisriigi ametiasutuse kinnitatud tõendi välisriigist saadava pensioni igakuise netosumma kohta 1. aprillist kuni 30. septembrini."
           }
         ]
@@ -4620,7 +4625,7 @@
         "anchors": [
           {
             "source_unit_index": 71,
-            "start": 564,
+            "start": 528,
             "quote": "välja arvatud individuaalse abivahendi korral"
           }
         ]
@@ -4639,7 +4644,7 @@
         "anchors": [
           {
             "source_unit_index": 71,
-            "start": 883,
+            "start": 847,
             "quote": "ei ole tasu maksmise kohustuse ülevõtmise taotlemise õigust abivahendi eest"
           }
         ]
@@ -4658,7 +4663,7 @@
         "anchors": [
           {
             "source_unit_index": 71,
-            "start": 1410,
+            "start": 1374,
             "quote": "Käesoleva paragrahvi lõike 3¹ tähenduses on hooldusteenuse osutamise või teenuse osutamiseks kasutatava hoonega otseselt seotud abivahend, mis:"
           }
         ]
@@ -4677,7 +4682,7 @@
         "anchors": [
           {
             "source_unit_index": 72,
-            "start": 1816,
+            "start": 1780,
             "quote": "Riik ei võta tasu maksmise kohustust üle abivahendi eest, mille kasutusaeg on lõppenud."
           }
         ]
@@ -4908,7 +4913,7 @@
         "anchors": [
           {
             "source_unit_index": 91,
-            "start": 2441,
+            "start": 2405,
             "quote": "Vähemalt üks rehabilitatsioonimeeskonna spetsialist peab olema läbinud"
           }
         ]
@@ -4927,7 +4932,7 @@
         "anchors": [
           {
             "source_unit_index": 91,
-            "start": 2918,
+            "start": 2846,
             "quote": "Rehabilitatsioonimeeskonna spetsialist ei tohi olla isik"
           }
         ]
@@ -4946,7 +4951,7 @@
         "anchors": [
           {
             "source_unit_index": 92,
-            "start": 3641,
+            "start": 3556,
             "quote": "kui käesoleva paragrahvi lõikes 9 nimetatud kriteeriumid on täidetud"
           }
         ]
@@ -5357,7 +5362,7 @@
         "anchors": [
           {
             "source_unit_index": 134,
-            "start": 1570,
+            "start": 1534,
             "quote": "arvestades käesoleva paragrahvi lõikes 4 sätestatut"
           }
         ]
@@ -5648,7 +5653,7 @@
         "anchors": [
           {
             "source_unit_index": 161,
-            "start": 1183,
+            "start": 1147,
             "quote": "ta saab välisriigist pensioni – teabe pensioni saamise kohta 1. aprilli seisuga;"
           }
         ]

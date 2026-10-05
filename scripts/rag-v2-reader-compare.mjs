@@ -46,9 +46,13 @@ try {
     // The stored version's ID keeps every derived ID comparable. The metadata is the registry's when its file is the stored
     // one; otherwise the stored bundle's, and the run fails on the file.
     const scope = { tenant_id: bundle.tenant_id, document_version_id: bundle.version.id }, fields = bundle.document.fields;
-    const { parsed, structured } = parseTextSource(xml, 'xml', {}, scope, config);
-    const metadata = same ? await registeredSource(values.registry, entry)
-      : { title: parsed.source_metadata.title ?? fields.title.value, authority: parsed.source_metadata.authority ?? fields.authority?.value, municipality_name: fields.municipality_name?.value };
+    // The registry may name the sections of the act that are this source, how they are cut and their search aids
+    // (ADR-076, ADR-082, ADR-087): the act is read with that selection, as the ingest reads it. Read whole, the State
+    // Budget Act (4 MB, registered as its § 2) passes the text limit.
+    const registered = same ? await registeredSource(values.registry, entry) : null;
+    const { parsed, structured } = parseTextSource(xml, 'xml', registered?.source_selector ? { source_selector: registered.source_selector } : {}, scope, config);
+    const metadata = registered
+      ?? { title: parsed.source_metadata.title ?? fields.title.value, authority: parsed.source_metadata.authority ?? fields.authority?.value, municipality_name: fields.municipality_name?.value };
     const chunks = makeChunks({ ...structured, metadata: { title: metadata.title, retrieval_context: metadata.municipality_name || metadata.authority || null },
       versionId: bundle.version.id, scope, config });
     const text = list => stable(list.map(chunk => [chunk.source_text, chunk.retrieval_text, chunk.source_locations, chunk.embedding_input_hash, chunk.span_ids]));

@@ -48,6 +48,7 @@ Kavand valiti 01.10 kolme sõltumatu ettepaneku seast (kolmest hindajast kaks ee
 | Abivahendite määrus (`126092026005`) | 33 | 3 | 1 | 0 | 4 (2) | 0 | 1 / 3 |
 | Harku abi andmise kord (`404072025017`) | 288 | 10 | 1 | 2 | 18 (5) | 4 | 0 / 12 |
 
+- **Täpsustus 05.10.2026 ([ADR-090](adr-090-link-targets-out-of-text.md)):** tabeli arvud on loetud lugejaga v30. Lugeja v31 jätab lingi sihtkoha tekstist välja; sotsiaalhoolekande seadusel on seetõttu üks lõik vähem ja „väljaspool esimest lõiku“ on 22 (oli 24). Teised arvud ja teised aktid ei muutunud; kuldkomplekti fail on uuesti loetud.
 - **Mudeli kaardid katavad viidetest väikese osa:** SHS-is 13 lõiguülest viidet 322-st (4%). Viide on tekstis olemas ja loetav ilma mudelita.
 - **30 viidet lähevad lõikele, mis ei ole paragrahvi esimeses lõigus.** Need jäävad praeguse otsinguga leidmata, kuigi viide on lahendatud. Näide: SHS § 131 viitab § 133 lõigetele 5 ja 6.
 - **62 oma paragrahvi viidet lähevad teise lõiku** ja 138 viidet nimetavad teist akti. Kumbagi praegune otsing ei kasuta.

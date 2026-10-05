@@ -6,13 +6,15 @@ import { actGenitive, actSections, keepsSuperscripts, namedActReferences, provis
 
 // ADR-063: the pointer gold set is read from the act with no model, so the same act gives the same links. The Social
 // Welfare Act in force on 2026-10-15 pins the counts the ADR states; the committed file must be what the builder gives.
+// Since source-structure-v31 (ADR-090) the act's text is without the targets of its links: it has one passage fewer (250),
+// and two pointers that landed outside their section's first passage now land in it (22, the ADR's 24 was read with v30).
 const SHS = '130062026065';
 test('the gold builder reads the Social Welfare Act’s pointers at subsection level and counts the card relations on them', async () => {
   const bundle = (await actBundles([SHS], 'Andmebaasi')).get(SHS);
   const knowledge = JSON.parse(await fs.readFile(`Andmebaasi/teadmised/${SHS}.knowledge.json`, 'utf8')).knowledge;
   const gold = actGold(SHS, bundle, knowledge);
-  assert.deepEqual([gold.title, gold.normalization, gold.provisions], ['Sotsiaalhoolekande seadus', 'source-structure-v30', 855]);
-  assert.deepEqual(gold.counts.other_section, { links: 282, located: 278, cross_passage: 278, outside_first_passage: 24, cross_passage_with_card_relation: 9 });
+  assert.deepEqual([gold.title, gold.normalization, gold.provisions], ['Sotsiaalhoolekande seadus', 'source-structure-v31', 855]);
+  assert.deepEqual(gold.counts.other_section, { links: 282, located: 278, cross_passage: 278, outside_first_passage: 22, cross_passage_with_card_relation: 9 });
   assert.deepEqual(gold.counts.own_section, { links: 161, located: 161, cross_passage: 44, outside_first_passage: 18, cross_passage_with_card_relation: 4 });
   assert.deepEqual(gold.counts.other_section_exception, { links: 33, located: 32, cross_passage: 32, outside_first_passage: 0, cross_passage_with_card_relation: 1 });
   assert.deepEqual([gold.counts.other_act, gold.counts.denials], [{ links: 88, resolved: 20 }, { provisions: 17, with_card_relation: 7 }]);
@@ -129,5 +131,5 @@ test('the search\'s named-act reader agrees with the gold set on the seven acts,
   // lies in two passages.
   const ordinals = (...rest) => passagesOf(...rest).map(chunk => chunk.ordinal);
   assert.deepEqual([ordinals(SHS, '133', '', null), ordinals(SHS, '133', '', '5'), ordinals('126092026005', '7', '', '7'), ordinals('126092026005', '7', '', '1')],
-    [[191], [192, 193], [10, 11], [10]]);
+    [[190], [191, 192], [10, 11], [10]]);
 });
