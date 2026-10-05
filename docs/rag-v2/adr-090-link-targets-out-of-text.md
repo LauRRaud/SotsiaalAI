@@ -2,7 +2,7 @@
 
 05.10.2026. Teostus Claude Opus 5.5. Omanik 05.10: „Eemalda lingi sihtkohad seaduste lõikude tekstist“. Lähtekoht: [ADR-088](adr-088-version-comparison-on-the-server.md) kõrvalleid.
 
-**Lugeja on muudetud ja kontrollitud tasuta (jaotis „Kontroll“). Indeksis on aktid endiselt vana tekstiga, kuni need uuesti sisestatakse: see vajab embedding'u ostu (354 sisendit, umbes 0,025 USD) ja omaniku luba.**
+**Töös: lugeja alates #389 ja indeks alates korpusest v59 (05.10.2026 kell 18.54). Töötavas indeksis ei ole ühtegi lingi sihtkohaga lõiku (jaotis „Korpus v59“).**
 
 ## Probleem
 
@@ -49,8 +49,17 @@ Mõõdetud: registri 555 aktifailist loeb lugeja tervikuna 552 (riigieelarve sea
 - **Viidete kuldkomplekt** ([ADR-063](adr-063-checked-relations.md), `tests/evaluation/graph/relation-gold-1.json`) on uuesti loetud: tsiteeritud lausetest kadusid sihtkohad, sotsiaalhoolekande seadusel on üks lõik vähem (250) ja kaks viidet, mis langesid sihtparagrahvi esimesest lõigust välja, langevad nüüd sinna (22; ADR-063 arv 24 on loetud v30-ga).
 - **Õigusaktide manifest** (`docs/rag-v2/legal-acts-in-index.json`) on 04.10 seisuga ja vananenud (perekonnaseaduse vana versioon). Uuendatakse koos korpuse täiendusega.
 
-## Järgmine samm: korpus v59 (tasuline, vajab luba)
+## Korpus v59 (05.10.2026 kell 18.54)
 
-- 21 akti uuesti sisestamine ([runbook](runbook-corpus-increment.md)): avaldamine sülearvuti hoidlas, pakk serverisse, embedding'ute ost, indeks, vestlusplaan.
-- **Ost:** kuni 354 sisendit, 190 837 tokenit, umbes 0,025 USD.
-- Dokumente ei lisandu ega kao: iga akt saab sama dokumendi uue versiooni.
+Omaniku luba samal päeval, küsitud ulatuse ja ülempiiriga (umbes 77 sisendit, ülempiir 0,02 USD), vastus „Jah, tee v59“.
+
+- **Sisestus:** 21 akti uuesti (sülearvuti hoidla, [runbook](runbook-corpus-increment.md)): takistusi ei olnud, kolm tavapärast teadmiskaartide hoiatust; iga nihutatud ankur läbis sisestuse ankrukontrolli. Dokumente ei lisandunud ega kadunud (7305), iga akt sai sama dokumendi uue versiooni.
+- **Ost:** tasuta plaan näitas 77 sisendit (kaitse piir 80): **77 sisendit, 41 332 tokenit, 0,0054 USD**. Akti kaupa loetuna oli uusi sisendeid 354; sama tekst mitmes redaktsioonis osteti üks kord.
+- **Indeks** `2e4b3572`: 7305 dokumenti, 42 154 lõiku (enne 42 160; sotsiaalhoolekande seaduse kuuel redaktsioonil on igaühel üks lõik vähem). Vestlusplaan `/etc/sotsiaalai/m4-corpus-chat-20261005d.json`.
+- **Kontroll töötavas indeksis (ainult lugedes):** 537 õigusakti dokumenti, 14 515 lõiku, lingi sihtkohaga lõike 0 ja tekstiüksusi 0 (enne 342 lõiku). Lugeja sildid: 502 akti v30, 21 akti v31, 14 lisa v29. Plaan on valmis (`rag-v2-plan-release.mjs ready`), teenus töötab.
+- **Õigusaktide manifest** (`docs/rag-v2/legal-acts-in-index.json`) on uuesti koostatud korpuse v59 seisuga (523 akti, 7305 poliitika dokumenti); enne oli see 04.10 seisus.
+
+## Mõõtmata
+
+- Mudeliga ei mõõdetud midagi: muudatus eemaldab tekstist müra ega lisa ühtegi sõna. Kas vastused nendest seadustest paranesid, ei ole näidatud.
+- Embedding'u vektorid muutusid 77 lõigul; otsingu järjestuse muutust ei mõõdetud.

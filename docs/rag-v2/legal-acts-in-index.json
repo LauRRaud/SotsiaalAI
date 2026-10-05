@@ -1,9 +1,9 @@
 {
   "schema_version": "rag-v2/legal-acts-in-index-1",
-  "generated_at": "2026-10-04T17:39:17.858Z",
+  "generated_at": "2026-10-05T15:52:47.050Z",
   "tenant": "sotsiaalai-corpus",
-  "store_generation": "generation_d762fe05313eb4b55d1869e54f4ebf2469db2f4618ae831720e9f02d68ce77cc",
-  "policy_documents": 6474,
+  "store_generation": "generation_b24e0a0630b378cac82c597ea07c85e6128dd5106dac3ec3faac49f280d71e95",
+  "policy_documents": 7305,
   "acts": [
     {
       "document_id": "document_005199d74750ea0e1516034366803c9226115d36349d91b74b6ec0e360d34f6a",
@@ -917,7 +917,7 @@
     },
     {
       "document_id": "document_2056eca70950ed945ed9e80cfdc3f24a213d974d76bbd066574df9cc93a11a94",
-      "version_id": "version_67b98ca0e40a5c66ad1eee803be13e7cdad355b81b15c04f2458ef5a6cbc77dc",
+      "version_id": "version_74ddded2fb27922ccadec9ac93468654a6e82ed7ec1cbec61ec8f6f76a82fcc2",
       "globaal_id": "111072026166",
       "group": "1027446",
       "title": "Riigilõivuseadus",
@@ -1391,7 +1391,7 @@
     },
     {
       "document_id": "document_2e46c78bdd4500ad18a8d41bb56aaff784d8dd1bd7f8f3986448989e4fd8aaa9",
-      "version_id": "version_43905fc8131dc41420604a7fbb365952a57c2dc10f6996ded82740cfd11c5cf7",
+      "version_id": "version_13822ccf21c6d0c4df78936110358f358dd7213b572dba75ed6000674edd0f7e",
       "globaal_id": "130062026021",
       "group": "159387",
       "title": "Puuetega inimeste sotsiaaltoetuste seadus",
@@ -1473,7 +1473,7 @@
     },
     {
       "document_id": "document_2fe557ae8dee59eadc6af5130c87257769e9842645ce57b4101274026fc01c61",
-      "version_id": "version_867322239cfb2180de164179f64c2ca977dd151a7db927b7db5342e14bed1b19",
+      "version_id": "version_b818368c2a82f2cee7cc4bc6b8bf8fbb3bc1ba1bb2e6753f1fd8f4beee41a496",
       "globaal_id": "103062026023",
       "group": "1032355",
       "title": "Sotsiaalhoolekande seadus",
@@ -1919,7 +1919,7 @@
     },
     {
       "document_id": "document_41d06b5f2784216a24c6d1720bb15f16ab5af00b8eb0717e64d2060460dfa3d3",
-      "version_id": "version_3e312c0e8c38c01f99f11ee239277a33149dd8a6efc682176d76f10b2e636357",
+      "version_id": "version_2a16555c024503a709bd0397679bc5e3bfc8e601f5b228cef2ed6d120d96b8bd",
       "globaal_id": "111072026120",
       "group": "1032355",
       "title": "Sotsiaalhoolekande seadus",
@@ -2001,7 +2001,7 @@
     },
     {
       "document_id": "document_499dc0949f78657d021b4659528265514bf353fcb19919b3f4387e278218d415",
-      "version_id": "version_d9be1abb3005f94ebc9fbaa2a1c59229aff7a7711b4f12205d9bd5087e29ee1f",
+      "version_id": "version_2580742a0b400d394141d83a2ea32fac35a1359bb0d4bea25146d3a98a0d27e6",
       "globaal_id": "111072026167",
       "group": "1027446",
       "title": "Riigilõivuseadus",
@@ -2333,7 +2333,7 @@
     },
     {
       "document_id": "document_54b8e5436f0f38cc36a3f5c8143b5139b4d7624dec68b838b57d30fab04c0db6",
-      "version_id": "version_3c89b33b3f5575ae67c4a4a0d29d553ac69530f5a92e72020e6f35a3a9db93d3",
+      "version_id": "version_d1454bc44c5e079e154cd3aa5fc10bfe314aa21a67340ec04728753166f78586",
       "globaal_id": "111072026121",
       "group": "1032355",
       "title": "Sotsiaalhoolekande seadus",
@@ -2777,7 +2777,7 @@
     },
     {
       "document_id": "document_6142489bf560f9cf825e7ae885fec4168688504329f27330160652b3cd7e0cfe",
-      "version_id": "version_83e16f056544788122e86f17644996a5170665cbe13c8e3020a5a97f4fa01b53",
+      "version_id": "version_a9f65552475e66383b17e70ae82de80bbcb24e846fc3ffa92f4a30d2784c9fc4",
       "globaal_id": "111072026043",
       "group": "1026887",
       "title": "Lastekaitseseadus",
@@ -3531,7 +3531,7 @@
     },
     {
       "document_id": "document_7bc08e4d57743ae10bdc1547093811a6e2f18ca63bb2c0056f2636adfb334f3e",
-      "version_id": "version_10dafba90589ecec590ea1fa0024607b36faa8f5f78ac9dcd6e221a71c3c2faf",
+      "version_id": "version_595c3b0fe5153fd4c4313e03bd2122c2e847305cc11d89aca79e424403f0aa4b",
       "globaal_id": "111072026169",
       "group": "1027446",
       "title": "Riigilõivuseadus",
@@ -3641,7 +3641,7 @@
     },
     {
       "document_id": "document_7e43477320e342495fcd5e708ff197a14ccea877b7996c289e35fba33a325d11",
-      "version_id": "version_584d8bf54809d8abd8a53b2f9b907ce2b59af91f55a90c92e89a8fb8b6065ab3",
+      "version_id": "version_62dc099770fb2dfe8d063f334365f11b8ca43bf7d3fb8996a6d8d4f4494ad487",
       "globaal_id": "109042026003",
       "group": "1027446",
       "title": "Riigilõivuseadus",
@@ -3737,7 +3737,7 @@
     },
     {
       "document_id": "document_810322b67a0145baea5458c1f3f8fc7c426c394eaf71a28fb70a9c71f53d9035",
-      "version_id": "version_c74e986ff67ba7272ce43ba0a8feefb8cf80572dffdaf469bf5b4592aca48c26",
+      "version_id": "version_96ecb173e6dd49f7c12ed9e7f6971d75d282fbc7d4aed86b4cc4bd80f74c0d72",
       "globaal_id": "111072026168",
       "group": "1027446",
       "title": "Riigilõivuseadus",
@@ -4981,7 +4981,7 @@
     },
     {
       "document_id": "document_ae0c90e47b6de61e562751c6578edb2696672be8954968c387afe3a9e44c25b5",
-      "version_id": "version_8d223a68ec0a9e061f123e357fc949a945e4b3d535c608b0805a4d36df46b709",
+      "version_id": "version_d8bebc44e1cdc268fdfb63aa1ca12637816589f4ce5c8f0f6333873a1c9fd390",
       "globaal_id": "130122025036",
       "group": "1032299",
       "title": "Sotsiaalseadustiku üldosa seadus",
@@ -5525,7 +5525,7 @@
     },
     {
       "document_id": "document_c32255b376cda0db1ac63e945ee75bed5b75c967b11d63699a789b53485f97f3",
-      "version_id": "version_656ae01563b0fc3f14c38039311c480413c2f42d30f649f6caf0954deb35eb2c",
+      "version_id": "version_aedf3ac7be7b30f3d5cb1c6c6d0bf2a367d5f7dd209b7a02e7993316a2d6ee42",
       "globaal_id": "130062026065",
       "group": "1032355",
       "title": "Sotsiaalhoolekande seadus",
@@ -5593,7 +5593,7 @@
     },
     {
       "document_id": "document_c779eb5fc1ee4b5aecd76521c0ef28c84eb84fba1bd649c28406acb0984aedcb",
-      "version_id": "version_f183ea17a257cf18be37a0352d6f7c651d7f2de995a0a83f9e0d27dfdb3de1fc",
+      "version_id": "version_7c33b2bc2a3ab1ae2a9aa1016acdfb3869904b4be54a84948ae1873a482351ce",
       "globaal_id": "107052025017",
       "group": "339043",
       "title": "Perekonnaseadus",
@@ -5633,7 +5633,7 @@
     },
     {
       "document_id": "document_c7db5224ab443116d9f9dfb9686f2e95c125fe661eff9ed0fa075ab84d235f28",
-      "version_id": "version_a9d1c7abc677f0eb5ebb012037157ae9a1e6d7324e0630d1e5438c70294fe372",
+      "version_id": "version_38fa176b71c70e811060b59223aa38cd7e2ec0be19b08ecbc938277bc581e1f3",
       "globaal_id": "111072026123",
       "group": "1032355",
       "title": "Sotsiaalhoolekande seadus",
@@ -6315,7 +6315,7 @@
     },
     {
       "document_id": "document_d965143779b80298b88acd8c0a901855a9d35311c9265fa8df7e60f1163bef9d",
-      "version_id": "version_734afd8946e72b1028b54e1f3665559e37b15fafe121162dbad56139d905cd55",
+      "version_id": "version_ae015fe4730d26ce8fd91b9cd831f9e9f50defd55ec5df4aee5f37a25ca67064",
       "globaal_id": "111072026042",
       "group": "1026887",
       "title": "Lastekaitseseadus",
@@ -6327,7 +6327,7 @@
     },
     {
       "document_id": "document_d9e7b9017eb175b355334d66c985724acbe21f9348137b0dcf816b78e1f95f56",
-      "version_id": "version_62128ebbbfd9c9ec130059b043dd649e5ef74514c3a6ebd1c0c30ea69e605906",
+      "version_id": "version_b28d182dd3e5eecede8ac70d0dc50e5f1531561feb58a327445b20db4c67d99e",
       "globaal_id": "111072026122",
       "group": "1032355",
       "title": "Sotsiaalhoolekande seadus",
@@ -6367,7 +6367,7 @@
     },
     {
       "document_id": "document_db6295dc196047e71a82e952b16936d20182ecb4b9f37ac416cbc4ca31d504bc",
-      "version_id": "version_4f2b8e303c0660d81c44e7c3e347537973bb1a3b75c17fb1d6bcbea611234e81",
+      "version_id": "version_36803501a7739305835b6e9ad16860593ab714dff20652afa6e15a0626242e42",
       "globaal_id": "109072026076",
       "group": "153445",
       "title": "Haldusmenetluse seadus",
@@ -6421,7 +6421,7 @@
     },
     {
       "document_id": "document_de16c7fc7ba25827239c4b9e0567e6d2ad57fbce3e134b48439d4a37f0ac972e",
-      "version_id": "version_dc667fa092e2bd9bea3a81c39bd2583f62c2975bc2e8f90cb6931e212d85b1ea",
+      "version_id": "version_a6eb1833b442f64474c26490fdbc60cdb8439f607dc03de2da76a7465c55c0dc",
       "globaal_id": "130062026020",
       "group": "159387",
       "title": "Puuetega inimeste sotsiaaltoetuste seadus",
@@ -6475,7 +6475,7 @@
     },
     {
       "document_id": "document_e0d47b974b2166e1800a1945551de3aea22d26044f8a8166b36a0486daf5cbd4",
-      "version_id": "version_d61028dd867b3a35557d5f9e342990c595418d83dd3c40ef1a21d2bf776212eb",
+      "version_id": "version_a198228183f6182c48d42f16004ee42cc2d4c8cb396bac2c3e45ebd36f9af4ce",
       "globaal_id": "130062026031",
       "group": "1032299",
       "title": "Sotsiaalseadustiku üldosa seadus",
@@ -6585,7 +6585,7 @@
     },
     {
       "document_id": "document_e51b5fb428fb19e84e0a6849922b117855b19954ebe7c96af74ff6b1092f56e8",
-      "version_id": "version_a0ad449f0293c93f590111f2774b4e1daaf3ae5583141edb4dd2649a7f6a5038",
+      "version_id": "version_8ccfa2f2e5d8de017d36920925adacd2abb13ffec7ead23782b9e00db7887369",
       "globaal_id": "106072023031",
       "group": "153445",
       "title": "Haldusmenetluse seadus",
@@ -6667,7 +6667,7 @@
     },
     {
       "document_id": "document_e8d605b2f0f123f8cdba704b85070848b8cbcb566e8511f0c6f7a382a7f26c5f",
-      "version_id": "version_ab6292c5e2fdb5fccf3b3581c80db23ae46f18acb1bc48cc3b8b9b352f53bc15",
+      "version_id": "version_d5ec44ac293eae999d29c161b9537259cda98f3b99fc6becc5200eee89b7325f",
       "globaal_id": "131122024023",
       "group": "1026887",
       "title": "Lastekaitseseadus",
