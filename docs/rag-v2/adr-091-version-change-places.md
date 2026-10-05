@@ -2,7 +2,7 @@
 
 05.10.2026. Teostus Claude Opus 5.5. Omanik 05.10: „Too muudetud sätted 'mis muutub' küsimuse kandidaatideks“. Lähtekoht: [ADR-088](adr-088-version-comparison-on-the-server.md) jaotis „Mõõtmine 2“.
 
-**Töös alates #392 (05.10.2026 õhtul). Mõõdetud mudeliga samal õhtul (jaotis „Mõõtmine“): neljast pöördest kolm läbis; lastekaitseseaduse pööre kukkus uuesti, sest rühmad olid lõigete kaupa ja § 29 uus lõik tuli kandidaatideks ilma vanata. Rühm on nüüd paragrahvi kaupa (`version-change-places-2`); see parandus on kontrollitud tasuta kordusega, mudeliga mõõtmata.**
+**Töös alates #392 (05.10.2026 õhtul), kolmas versioon `version-change-places-3` alates sellest PR-ist. Mõõdetud mudeliga kaks korda (jaotised „Mõõtmine“ ja „Mõõtmine 2“, kokku 5 pööret, 0,0290 USD): kolm pööret läbisid, lastekaitseseaduse pööre kukkus mõlemal korral. Esimesel korral ei jõudnud § 29 vana lõik kandidaatide hulka (parandatud: rühm paragrahvi kaupa). Teisel korral oli see kandidaatide seas, aga valik ei jätnud seda alles (parandatud: server lisab alles jäetud paragrahvi teise redaktsiooni ise). Viimane parandus on kontrollitud tasuta kordusega mudeli enda valikuga; mudeliga mõõtmata.**
 
 ## Probleem
 
@@ -27,9 +27,14 @@ Põhjus on otsingus, mitte valikus. Küsimus ei nimeta teemat: ükski selle sõn
    - Rühm tuleb tervikuna või üldse mitte: sama paragrahv mõlemas redaktsioonis.
    - Rühm, mis enam ei mahu, jäetakse vahele; järgmine väiksem võib veel tulla.
    - Lõik, mis on juba kandidaatide seas, ei võta teist kohta.
-4. **Kandidaate on nüüd kuni 44** (30 üldist, 6 üleriigilise seaduse varukohta, 8 muudetud sätete kohta). Enne oli kuni 36.
-5. **Prompte ei muudetud.** Valiku juhis (`search-assist-8`) ütleb juba, et erineva sätte kohta tuleb alles jätta mõlema redaktsiooni lõik. Vastuse juhis (dialoog 27) ja võrdluse plokk `version_changes` jäävad samaks.
-6. **Pöörde kirjes** on näha, mida tehti: `searchAssist.changePlaces` (võrreldud aktid, rühmade arv, lisatud lõigud), otsingu ajakirjes samm `version_changes`, lisatud lõigu valikukirjes kanalid `change_lexical` ja `change_vector`.
+4. **Server lisab alles jäetud paragrahvi teise redaktsiooni ise** (`version-change-places-3`). Kui valik jätab alles lõigu, mis kuulub mõnda rühma, lisab server sama rühma ülejäänud lõigud tõendite hulka pärast valiku enda lõike.
+   - Valiku enda lõigud jäävad kõik alles; lisatav lõik saab koha ainult seal, kus lõigupiir ja mahupiir seda lubavad.
+   - Lisatud lõik on tõendis märgitud (`version_counterpart`) koos lõiguga, mille pärast ta lisati; pöörde kirjes on `change_completed`.
+   - Kui valik ei olnud saadaval, ei lisata midagi.
+   Põhjus on jaotises „Mõõtmine 2“: valik luges 44 lõiku ja jättis ümber kirjutatud paragrahvist alles ainult uue redaktsiooni, kuigi vana oli talle pakutud. Millised lõigud kuuluvad kokku, teab server; mudel peaks selle 44 lõigu tekstist ise välja lugema.
+5. **Kandidaate on nüüd kuni 44** (30 üldist, 6 üleriigilise seaduse varukohta, 8 muudetud sätete kohta). Enne oli kuni 36.
+6. **Prompte ei muudetud.** Valiku juhis (`search-assist-8`) ütleb juba, et erineva sätte kohta tuleb alles jätta mõlema redaktsiooni lõik. Vastuse juhis (dialoog 27) ja võrdluse plokk `version_changes` jäävad samaks.
+7. **Pöörde kirjes** on näha, mida tehti: `searchAssist.changePlaces` (võrreldud aktid, rühmade arv, kandidaatideks lisatud lõigud, serveri lisatud teise redaktsiooni lõigud), otsingu ajakirjes samm `version_changes`, lisatud lõigu valikukirjes kanalid `change_lexical` ja `change_vector`.
 
 ## Mida see ei tee
 
@@ -75,9 +80,30 @@ Kataloog `scenarios-version-change-places-1` (kirjutatud enne jooksu), väljalas
 - **Kontrollküsimus:** lisatud kaheksa lõiku (lastekaitseseadus, riigilõivuseadus, haldusmenetluse seadus) ei seganud. Valik jättis alles ühe lõigu, haldusmenetluse seaduse § 75, ja vastus ütleb 30 päeva.
 - **Aeg:** võrdluse samm võttis esimeses pöördes 281 ms (neli seadust), järgmistes 21–36 ms.
 
+## Mõõtmine 2 (05.10.2026 õhtul, omaniku luba: 1 pööre, ülempiir 0,01 USD)
+
+Sama kataloogi esimene küsimus pärast paragrahvi kaupa rühmi (väljalase `f60b7c27`, `version-change-places-2`). **Kulu 0,0056 USD.** [Tõend](../audits/evidence/version-change-places-remeasured-2026-10-05.json).
+
+- **Kukkus uuesti otsingu kontrollis, aga põhjus on nüüd valikus.** Kandidaatide seas olid § 29 uue redaktsiooni kaks lõiku ja vana redaktsiooni lõik, § 15 (uues kaks, vanas üks), § 28 ja haldusmenetluse seaduse § 111¹. Valik jättis alles § 29 uue redaktsiooni kaks lõiku, § 28 ja viis lõiku eelnõu tutvustavast artiklist. § 29 vana redaktsiooni lõiku ta alles ei jätnud.
+- Vastus kirjeldab uut korda täpsemalt kui esimesel korral (juhtumikorralduse algatamine, kümne päeva ja kahe kuu tähtajad, üleandmine teisele omavalitsusele), aga võrdlust varasemaga ei ole ja vastus ütleb, et kõiki muudatusi ta loetleda ei saa.
+- Valiku juhis ütleb, et erineva sätte kohta tuleb alles jätta mõlema redaktsiooni lõik. Teises kahes pöördes (puuetega inimeste sotsiaaltoetuste seadus, Põhja-Sakala kord) valik nii ka tegi, selles mitte. Juhisele üksi ei saa seega loota.
+- **Parandus (`version-change-places-3`, Otsuse punkt 4):** server lisab alles jäetud paragrahvi teise redaktsiooni ise.
+
+**Tasuta kordus mudeli enda valikuga** (korpus v59, väljalase `f60b7c27` pluss muudetud failid kõrvalkaustas; asendus jätab alles täpselt need lõigud, mille mudel mõõdetud pöördes alles jättis):
+
+| Pööre | Server lisas | Võrdluse plokk enne | Võrdluse plokk nüüd |
+|---|---|---|---|
+| Lastekaitseseadus (Mõõtmine 2 valik) | 1 lõik: § 29 vana redaktsioon | puudus | 15 erinevust, § 29 lg 1–5 mõlema redaktsiooni lõiguga |
+| Põhja-Sakala kord (Mõõtmine valik) | 4 lõiku: § 4 ja § 6 vana redaktsioon, § 7 teised lõigud | 13 erinevust, 9 mõlema redaktsiooni lõiguga | 14 erinevust, 13 mõlema redaktsiooni lõiguga |
+| Puuetega inimeste sotsiaaltoetuste seadus (Mõõtmine valik) | 0 | kõik 10 erinevust | sama |
+| Kontrollküsimus (Mõõtmine valik) | 0 | puudus | puudus |
+
+Valla akti pöördes ütles mõõdetud vastus, et § 4 lõike 2 ja § 6 varasemat sõnastust tal võrdluseks ei ole; need on nüüd tõendites. Kõik mudeli valitud lõigud jäid alles.
+
 ## Lahti
 
-- **Paragrahvi kaupa rühm on mudeliga mõõtmata.** Tasuta kordus näitab, et § 29 vana lõik on nüüd kandidaatide seas. Nägemata on, kas valik jätab selle alles. Üks pööre, vajab omaniku luba.
+- **Kolmas versioon on mudeliga mõõtmata.** Tasuta kordus näitab, et lastekaitseseaduse pöördes on § 29 mõlemad redaktsioonid tõendites ja võrdluse plokk olemas. Nägemata on vastus. Üks pööre, vajab omaniku luba.
 - **Kaheksa kohta on kaks kuni neli paragrahvi mõlemas redaktsioonis.** Lastekaitseseaduses erineb 15 paragrahvi. Ülejäänud nimetab võrdluse plokk nime järgi (`not_in_evidence`), sisu neist vastus ei saa. Kohtade arv on seadistus, mida mõõtmine võib muuta.
 - **Rühmade järjekord tuleb küsimuse sarnasusest.** Teemata küsimuse puhul ei ütle see, milline muudatus on tähtsam.
-- **Valik ei jäta alati mõlemat redaktsiooni alles**, kuigi mõlemad on pakutud (§ 38 ja § 21 lastekaitseseaduse pöördes). Märge lõigul („see lõik sisaldab erinevat sätet“) koos valiku juhise uue versiooniga on kaalutud ja edasi lükatud, kuni paragrahvi kaupa rühm on mõõdetud.
+- **Valik eelistab artiklit seaduse lõikudele** (lastekaitseseaduse pöördes viis lõiku kaheksast). Serveri lisatud lõigud seda ei muuda.
+- **Lisatud lõigud suurendavad konteksti:** valla akti pöördes 9 lõigult 13-le. Mahupiir (10 000 tokenit teadmiskanalile) kehtib endiselt.

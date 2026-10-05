@@ -10,7 +10,8 @@
   },
   "history": [
     "05.10.2026: written with ADR-091 (#392), before a measurement. Checked free on the server for the first and third question: the differing provisions' passages are among the candidates (36 to 44 candidates).",
-    "05.10.2026 evening: measured on release 491de89e (4 turns, 0.0234 USD by the plan's prices). The second, third and fourth scenario passed. The first failed at the search again: the answer described the new section 29 from the act itself, but only the new version was in the evidence. Groups were one per provision then, and an added subsection that runs over two passages brought the new version's first passage of section 29 in without the older one. Groups are one per section since version-change-places-2; that correction is checked by a free replay and not yet measured."
+    "05.10.2026 evening: measured on release 491de89e (4 turns, 0.0234 USD by the plan's prices). The second, third and fourth scenario passed. The first failed at the search again: the answer described the new section 29 from the act itself, but only the new version was in the evidence. Groups were one per provision then, and an added subsection that runs over two passages brought the new version's first passage of section 29 in without the older one. Groups are one per section since version-change-places-2; that correction is checked by a free replay and not yet measured.",
+    "05.10.2026 evening, second measurement: the first scenario alone on release f60b7c27 (0.0056 USD). The older version's passage of section 29 was among the candidates and the selection did not keep it; the turn failed the same two checks. Since version-change-places-3 the server adds the other version's passages of a section the selection kept; checked by a free replay with the model's own selection, not yet measured."
   ],
   "scenarios": [
     {
