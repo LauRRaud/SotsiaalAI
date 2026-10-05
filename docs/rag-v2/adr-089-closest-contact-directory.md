@@ -2,7 +2,7 @@
 
 05.10.2026. Teostus Claude Opus 5.5. Omanik 05.10: „teeme need tugevaks“ (viiest tööst teine ja esimene: Tallinna ja Narva kontaktid; mõõtmata muudatused). Lähtekoht: töö lõpu mõõtejooks ([tõend](../audits/evidence/strengthening-measured-2026-10-05.json)), [ADR-085](adr-085-contacts-from-the-register.md), [ADR-086](adr-086-compact-linked-contact.md).
 
-**Kood on valmis ja kontrollitud mudelita: mõõdetud pöörete kirjeotsing korrati nende endi päringuvektoriga (jaotis „Kontroll“). Mudeliga mõõtmata: mida Luna avatud kontaktide kirjega vastab.**
+**Töös alates #385. Kontrollitud mudelita (jaotis „Kontroll“) ja mõõdetud mudeliga viie pöördega (jaotis „Mõõtmine“): Tallinnas ja Narvas annab vastus nüüd kontakti ja kanalid on selle inimese omad. Kaks nõrka kohta jäi: kohmakas lisalause ameti kohta ja kontakti pakkumine seal, kus seda ei küsitud.**
 
 ## Mida mõõtmine näitas
 
@@ -59,8 +59,24 @@ Kontaktid mahuvad samasse 12 000 tokeni sisse, mis enne; ruum tuleb lähimate ki
 
 Kõigis seitsmes jäid kõik pealkirjad loendisse ja kontekst 12 000 tokeni sisse.
 
-## Mõõtmata ja lahti
+## Mõõtmine (05.10, omaniku loal; viis pööret, 0,028 USD, ülempiir 0,05)
 
-- **Mida Luna vastab.** Kas ta annab Tallinnas ja Narvas nüüd õige kontakti, ja kas ta hakkab kontakte pakkuma seal, kus neid ei küsitud (näiteks „mis muutub“ küsimuses). Vajab tasulist kordusmõõtmist.
-- **Kokkuvõtete vähenemise mõju** vastustele (Maardus 42 → 30).
+Töötaval versioonil `3e2ac388` ([tõend](../audits/evidence/contact-directory-measured-2026-10-05.json); kontakti nimetavad vastused on tõendist välja jäetud ja loetud serveris nimesid näitamata). Kõik viis pööret läbisid kataloogi kontrollid.
+
+| Pööre | Näidatud kontakte | Vastus |
+|---|---|---|
+| Tallinn, Lasnamäe, toimetulekutoetus | 11 (Lasnamäe kirje) | nimetab linnaosa sotsiaalhoolekande osakonna ja ühe sotsiaaltöö spetsialisti telefoni ja e-postiga |
+| Narva, koduteenus | 7 (Sotsiaalabiamet) | annab ameti sekretäri kahe telefoninumbriga ja lisab lause, et ametinimetuse põhjal ei saa öelda, kas sekretär ise taotlusi menetleb |
+| Antsla, sotsiaaltoetused | 8 | nagu enne: peaspetsialist ja spetsialist kanalitega |
+| Põhja-Sakala, „mis muutub“ (kontakti ei küsitud) | 9 | **kontakti ei nimeta**; võrdleb muudatusi kujul „varem … nüüd“ |
+| Tartu vald, „kuidas saada koduteenust?“ (kontakti ei küsitud) | 10 | kirjeldab taotlemist ja lõpetab kontaktiga: koduhooldustöötaja telefon ja e-post |
+
+- **Kanalid:** igas vastuses on iga telefon ja e-post kontekstis olemas ja kuulub inimesele, keda vastus nimetab (kontrollitud pöördekirjest, mitte silma järgi).
+- **Nõrk koht 1, lisalause (Narva):** juhise lause „ära ütle, et inimene asjaga tegeleb, kui amet seda ei ütle“ jõudis vastusesse piiranguna. See on juhise sõnastuse tagajärg.
+- **Nõrk koht 2, küsimata kontakt ja ameti valik (Tartu vald):** vastus pakkus kontakti, kuigi seda ei küsitud, ja valis koduhooldustöötaja, kuigi sama vastus ütleb, et teenuse määrab sotsiaaltöö spetsialist. Kas esimese sammuna kontakti pakkumine on soovitud, on omaniku otsus; ameti valik on küsitav.
+- **Mida need viis pööret ei näita:** kokkuvõtete vähenemise mõju teistele vastustele; Tallinna küsimus, mis linnaosa ei nimeta.
+
+## Lahti
+
+- **Juhise täpsustus** (omaniku otsus): kas Luna pakub kontakti ainult siis, kui inimene küsib, kelle poole pöörduda, või ka esimese sammuna; lisalause ärajätmine; ameti valik (pigem see, kes taotlusi vastu võtab või otsustab, või üksuse üldkontakt). Vajab juhise uut versiooni ja paari pöörde mõõtmist.
 - Kontaktide kirje, mille tekst küsimusele kõige lähemal on, ei pruugi olla õige üksus, kui küsimus linnaosa ega teemat ei nimeta (Tallinnas 14 kirjet).

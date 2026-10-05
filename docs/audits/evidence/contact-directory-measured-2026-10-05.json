@@ -1,0 +1,535 @@
+{
+ "schema": "sotsiaalai/conversation-run-evidence-1",
+ "run": "strengthening-1-rerun-2026-10-05",
+ "measured_commit": "3e2ac3886e65b1c175b6cca548949002b353356a",
+ "catalogues": [
+  {
+   "name": "contacts",
+   "catalogue": "tests/evaluation/dialogue/scenarios-strengthening-1.json",
+   "started_at": "2026-10-05T14:08:06.674Z",
+   "finished_at": "2026-10-05T14:08:58.160Z",
+   "summary": {
+    "passed": 3,
+    "search": 0,
+    "answer": 0,
+    "state": 0
+   },
+   "states": {
+    "continuing": 0,
+    "rejected": 0
+   },
+   "plan_price_usd": 0.0163
+  },
+  {
+   "name": "version-change",
+   "catalogue": "tests/evaluation/dialogue/scenarios-version-change-1.json",
+   "started_at": "2026-10-05T14:08:59.012Z",
+   "finished_at": "2026-10-05T14:09:23.175Z",
+   "summary": {
+    "passed": 1,
+    "search": 0,
+    "answer": 0,
+    "state": 0
+   },
+   "states": {
+    "continuing": 0,
+    "rejected": 0
+   },
+   "plan_price_usd": 0.006
+  },
+  {
+   "name": "no-contact-asked",
+   "catalogue": "tests/evaluation/dialogue/scenarios-municipal-tone-1.json",
+   "started_at": "2026-10-05T14:09:23.949Z",
+   "finished_at": "2026-10-05T14:09:41.172Z",
+   "summary": {
+    "passed": 1,
+    "search": 0,
+    "answer": 0,
+    "state": 0
+   },
+   "states": {
+    "continuing": 0,
+    "rejected": 0
+   },
+   "plan_price_usd": 0.0056
+  }
+ ],
+ "plan_price_usd": 0.0279,
+ "turns": [
+  {
+   "run": "contacts",
+   "scenario": "contacts-tallinn-district",
+   "turn": 1,
+   "turn_id": "ad83cb37-68c2-4d79-ba21-ed555f9f771f",
+   "text": "Elan Tallinnas Lasnamäel ja tahan taotleda toimetulekutoetust. Kelle poole ma pöörduma peaksin?",
+   "verdict": "passed",
+   "checks": 6,
+   "failed": [],
+   "region": "tallinn",
+   "scope_state": "person_mentioned_region",
+   "queries": [
+    "Tallinna toimetulekutoetuse taotlemine kuhu pöörduda Lasnamäe"
+   ],
+   "answer_kind": "grounded",
+   "clarification": false,
+   "records": {
+    "version": "rag-v2/record-catalogue-4",
+    "view": "titles",
+    "listed": 85,
+    "relevant_summaries": 4,
+    "opened": [
+     "#21 contact_directory resource | Sotsiaalvaldkonna kontaktid: Tallinna linn, Lasnamäe Linnaosa Valitsuse sotsiaalhoolekande",
+     "#3 relevant_detail benefit | Sissetulekust sõltuv toetus toimetuleku tagamiseks",
+     "#1 relevant_detail benefit | Toimetulekutoetus",
+     "#2 relevant_detail service | Toimetulekunõustamine"
+    ],
+    "contacts_shown": 11
+   },
+   "contacts_named_in_answer": 1,
+   "roles_of_the_named": [
+    "sotsiaaltöö spetsialist"
+   ],
+   "channels_in_answer": 2,
+   "channels_in_context": 2,
+   "channels_of_a_named_person": 2,
+   "candidates": 36,
+   "selected": [
+    "P2 | alates 2026-06-14 | Tallinn > Sotsiaaltoetuste maksmise tingimused ja kord > 2. peatükk Toetuste kirjeldused > 2. jagu Sissetulekust sõltuvad universaaltoetused > § ",
+    "P3 | alates 2026-10-01 | Riigikogu > Sotsiaalhoolekande seadus > 3. peatükk Riigi korraldatav abi > 8. jagu Toimetulekutoetus > § 132. Toimetulekutoetuse taotlemine § 132"
+   ],
+   "cited": [
+    {
+     "title": "Sotsiaalhoolekande seadus"
+    },
+    {
+     "title": "Sotsiaaltoetuste maksmise tingimused ja kord"
+    }
+   ],
+   "cited_contact_records": 1,
+   "plan_price_usd": 0.006099445,
+   "search_ms": 6632,
+   "total_ms": 22663,
+   "answer_omitted": "names a contact person; the answer is in the report on the server"
+  },
+  {
+   "run": "contacts",
+   "scenario": "contacts-narva",
+   "turn": 1,
+   "turn_id": "923f2f67-ab16-4916-9980-ff6b5f8eba27",
+   "text": "Elan Narvas ja mu ema vajab koduteenust. Kellele ma helistama peaksin?",
+   "verdict": "passed",
+   "checks": 6,
+   "failed": [],
+   "region": "narva_linn",
+   "scope_state": "search_plan_region",
+   "queries": [
+    "Narva koduteenus taotlemine sotsiaalosakonna kontakt"
+   ],
+   "answer_kind": "partial",
+   "clarification": true,
+   "records": {
+    "version": "rag-v2/record-catalogue-4",
+    "view": "titles",
+    "listed": 51,
+    "relevant_summaries": 8,
+    "opened": [
+     "#1 relevant_detail service | Koduteenus",
+     "#2 relevant_detail service | Turvakoduteenus",
+     "#3 relevant_detail service | Väljaspool kodu osutatav üldhooldusteenus",
+     "#22 contact_directory resource | Sotsiaalvaldkonna kontaktid: Narva linn, Sotsiaalabiamet"
+    ],
+    "contacts_shown": 7
+   },
+   "contacts_named_in_answer": 1,
+   "roles_of_the_named": [
+    "sekretär"
+   ],
+   "channels_in_answer": 2,
+   "channels_in_context": 2,
+   "channels_of_a_named_person": 2,
+   "candidates": 36,
+   "selected": [
+    "P5 | alates 2021-04-04 | Narva linn > Koduteenuse osutamise tingimused ja kord Narva linnas > § 7. Teenuse määramine § 7. Teenuse määramine (1) Teenuse osutamise otsustam",
+    "P8 | alates 2021-04-04 | Narva linn > Koduteenuse osutamise tingimused ja kord Narva linnas > § 6. Teenuse taotlemine § 6. Teenuse taotlemine (1) Teenuse saamiseks esitab",
+    "P12 | alates 2021-04-04 | Narva linn > Koduteenuse osutamise tingimused ja kord Narva linnas > § 1. Üldsätted § 1. Üldsätted (1) Käesolev kord sätestab koduteenuse (edasp"
+   ],
+   "cited": [
+    {
+     "title": "Koduteenus"
+    }
+   ],
+   "cited_contact_records": 1,
+   "plan_price_usd": 0.005568845,
+   "search_ms": 3933,
+   "total_ms": 16797,
+   "answer_omitted": "names a contact person; the answer is in the report on the server"
+  },
+  {
+   "run": "contacts",
+   "scenario": "contacts-small-municipality",
+   "turn": 1,
+   "turn_id": "46c27d5e-c023-49ba-9544-213f51ac503a",
+   "text": "Kellega saan Antsla vallas sotsiaaltoetuste asjus ühendust võtta?",
+   "verdict": "passed",
+   "checks": 6,
+   "failed": [],
+   "region": "antsla_vald",
+   "scope_state": "search_plan_region",
+   "queries": [
+    "Antsla valla sotsiaaltoetused sotsiaaltöötaja kontaktandmed"
+   ],
+   "answer_kind": "grounded",
+   "clarification": false,
+   "records": {
+    "version": "rag-v2/record-catalogue-4",
+    "view": "titles",
+    "listed": 41,
+    "relevant_summaries": 12,
+    "opened": [
+     "#3 relevant_detail resource | Lastekaitse",
+     "#1 relevant_detail service | Tugiisikuteenus",
+     "#2 relevant_detail resource | Sotsiaalvaldkonna kontaktid: Antsla vald"
+    ],
+    "contacts_shown": 8
+   },
+   "contacts_named_in_answer": 2,
+   "roles_of_the_named": [
+    "sotsiaaltöö peaspetsialist",
+    "sotsiaaltöö spetsialist"
+   ],
+   "channels_in_answer": 6,
+   "channels_in_context": 6,
+   "channels_of_a_named_person": 6,
+   "candidates": 36,
+   "selected": [
+    "P7 | alates 2025-07-01 | Antsla vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk ANTSLA VALLA EELARVEST MAKSTAVAD SOTSIAALTOETUSED > 1. jagu Üldsätted > § 28. ",
+    "P10 | alates 2025-07-01 | Antsla vald > Sotsiaalhoolekandelise abi andmise kord > 1. peatükk ÜLDSÄTTED > § 3. Sotsiaalhoolekandelise abi korraldamise pädevus § 3. Sotsiaa"
+   ],
+   "cited": [
+    {
+     "title": "Sotsiaalhoolekandelise abi andmise kord"
+    }
+   ],
+   "cited_contact_records": 2,
+   "plan_price_usd": 0.004622355,
+   "search_ms": 5058,
+   "total_ms": 11071,
+   "answer_omitted": "names a contact person; the answer is in the report on the server"
+  },
+  {
+   "run": "version-change",
+   "scenario": "what-changes-both-versions",
+   "turn": 1,
+   "turn_id": "0d41bf56-1bbb-428a-8eba-ab9168d72448",
+   "text": "Mis muutub Põhja-Sakala valla sotsiaalabi korras alates 6. oktoobrist?",
+   "verdict": "passed",
+   "checks": 10,
+   "failed": [],
+   "region": "pohja_sakala_vald",
+   "scope_state": "search_plan_region",
+   "queries": [
+    "Põhja-Sakala valla sotsiaalabi korra muudatused 6. oktoobrist"
+   ],
+   "answer_kind": "partial",
+   "clarification": false,
+   "records": {
+    "version": "rag-v2/record-catalogue-4",
+    "view": "titles",
+    "listed": 43,
+    "relevant_summaries": 9,
+    "opened": [
+     "#3 relevant_detail benefit | Laste toitlustamise toetus",
+     "#2 relevant_detail benefit | Riiklik toimetulekutoetus",
+     "#1 relevant_detail benefit | Täiendav sotsiaaltoetus",
+     "#10 contact_directory resource | Sotsiaalvaldkonna kontaktid: Põhja-Sakala vald"
+    ],
+    "contacts_shown": 9
+   },
+   "contacts_named_in_answer": 0,
+   "roles_of_the_named": [],
+   "channels_in_answer": 0,
+   "channels_in_context": 0,
+   "channels_of_a_named_person": 0,
+   "candidates": 36,
+   "selected": [
+    "P3 | alates 2026-10-06 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 3. Sotsiaalhoolekandelise abi korraldamise pädevus kohal",
+    "P4 | alates 2025-09-01 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 3. Sotsiaalhoolekandelise abi korraldamise pädevus kohal",
+    "P5 | alates 2025-09-01 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 4. Sotsiaalhoolekandelisele abile õigustatud isik § 4. S",
+    "P7 | alates 2026-10-06 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 4. Sotsiaalhoolekandelisele abile õigustatud isik § 4. S",
+    "P10 | alates 2025-09-01 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 6. Abivajaduse hindamine § 6. Abivajaduse hindamine (1)",
+    "P11 | alates 2026-10-06 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 6. Abivajaduse hindamine § 6. Abivajaduse hindamine (1)",
+    "P16 | alates 2025-09-01 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 5. Sotsiaalhoolekandelise abi taotlemine § 5. Sotsiaalh",
+    "P19 | alates 2026-10-06 | Põhja-Sakala vald > Sotsiaalhoolekandelise abi osutamise kord > 1. peatükk ÜLDSÄTTED > § 5. Sotsiaalhoolekandelise abi taotlemine § 5. Sotsiaalh"
+   ],
+   "cited": [
+    {
+     "title": "Sotsiaalhoolekandelise abi osutamise kord"
+    },
+    {
+     "title": "Sotsiaalhoolekandelise abi osutamise kord"
+    }
+   ],
+   "cited_contact_records": 0,
+   "version_changes": {
+    "acts": [
+     {
+      "act": "Sotsiaalhoolekandelise abi osutamise kord",
+      "newer": {
+       "refs": [
+        "S1",
+        "S3",
+        "S5",
+        "S7"
+       ],
+       "valid_to": null,
+       "valid_from": "2026-10-06"
+      },
+      "older": {
+       "refs": [
+        "S2",
+        "S4",
+        "S6",
+        "S8"
+       ],
+       "valid_to": "2026-10-05",
+       "valid_from": "2025-09-01"
+      },
+      "differences": [
+       {
+        "newer": [
+         "S5"
+        ],
+        "older": [
+         "S6"
+        ],
+        "state": "changed",
+        "provision": "§ 3 lg 1"
+       },
+       {
+        "newer": [
+         "S5"
+        ],
+        "older": [
+         "S6"
+        ],
+        "state": "changed",
+        "provision": "§ 3 lg 2"
+       },
+       {
+        "newer": [
+         "S1"
+        ],
+        "older": [
+         "S2"
+        ],
+        "state": "changed",
+        "provision": "§ 4 lg 2"
+       },
+       {
+        "newer": [
+         "S1"
+        ],
+        "state": "added",
+        "provision": "§ 4 lg 6"
+       },
+       {
+        "newer": [
+         "S3"
+        ],
+        "older": [
+         "S4"
+        ],
+        "state": "changed",
+        "provision": "§ 5 lg 1"
+       },
+       {
+        "newer": [
+         "S3"
+        ],
+        "older": [
+         "S4"
+        ],
+        "state": "changed",
+        "provision": "§ 5 lg 3"
+       },
+       {
+        "newer": [
+         "S3"
+        ],
+        "older": [
+         "S4"
+        ],
+        "state": "changed",
+        "provision": "§ 5 lg 4"
+       },
+       {
+        "newer": [
+         "S7"
+        ],
+        "older": [
+         "S8"
+        ],
+        "state": "changed",
+        "provision": "§ 6 lg 2"
+       },
+       {
+        "newer": [
+         "S7"
+        ],
+        "older": [
+         "S8"
+        ],
+        "state": "changed",
+        "provision": "§ 6 lg 4"
+       }
+      ],
+      "same_wording": [
+       "§ 3",
+       "§ 4",
+       "§ 4 lg 1",
+       "§ 4 lg 3",
+       "§ 4 lg 4",
+       "§ 4 lg 5",
+       "§ 5",
+       "§ 5 lg 2",
+       "§ 5 lg 5",
+       "§ 6",
+       "§ 6 lg 1",
+       "§ 6 lg 3"
+      ],
+      "not_in_evidence": {
+       "added": [
+        "§ 1¹",
+        "§ 1¹ lg 1",
+        "§ 1¹ lg 2",
+        "§ 1¹ lg 3",
+        "§ 1¹ lg 4",
+        "§ 1¹ lg 5",
+        "§ 1¹ lg 6",
+        "§ 1¹ lg 7",
+        "§ 1¹ lg 8",
+        "§ 22 lg 9",
+        "§ 25 lg 7"
+       ],
+       "changed": [
+        "§ 1 lg 4",
+        "§ 7 lg 1",
+        "§ 7 lg 2",
+        "§ 7 lg 4",
+        "§ 7 lg 7",
+        "§ 7 lg 10",
+        "§ 8 lg 2",
+        "§ 8 lg 3",
+        "§ 10 lg 5",
+        "§ 12 lg 1",
+        "§ 13 lg 7",
+        "§ 15 lg 1",
+        "§ 18 lg 1",
+        "§ 18 lg 4",
+        "§ 18 lg 5",
+        "§ 19 lg 2",
+        "§ 21 lg 2",
+        "§ 22 lg 1",
+        "§ 22 lg 2",
+        "§ 22 lg 3",
+        "§ 22 lg 5",
+        "§ 22 lg 6",
+        "§ 24 lg 1",
+        "§ 26 lg 5",
+        "§ 26 lg 6",
+        "§ 27 lg 4",
+        "§ 27 lg 5",
+        "§ 27 lg 7",
+        "§ 31 lg 2",
+        "§ 31 lg 6",
+        "§ 32 lg 4",
+        "§ 34 lg 3",
+        "§ 37",
+        "§ 37¹ lg 3",
+        "§ 38 lg 5",
+        "§ 38 lg 8",
+        "§ 39 lg 1",
+        "§ 40 lg 1",
+        "§ 41 lg 1"
+       ],
+       "removed": [
+        "§ 22 lg 8"
+       ]
+      }
+     }
+    ],
+    "basis": "the wording of each section and subsection of the two versions, compared on the server",
+    "version": "rag-v2/version-comparison-1"
+   },
+   "plan_price_usd": 0.00600366,
+   "search_ms": 6305,
+   "total_ms": 23756,
+   "answer": "Alates 6. oktoobrist muutub Põhja-Sakala valla korras see, kes abi korraldab: ülesandeid täidab üldiselt vallavalitsus ametiasutusena ning sotsiaalosakonna töötajate asemel kasutatakse määruses nimetust „spetsialist“. Spetsialistide õigused ja pädevus määratakse ametiasutuse sisepädevust reguleerivate aktidega. [S5, S6]\n\nAbi vajava inimese huvides võib taotluse esitada eestkostja, hooldaja, spetsialist, õpetaja või muu inimene, kellel on andmeid vallas elava abivajaja kohta. Varasemas sõnastuses nimetati eraldi sotsiaalosakonna teenistujat ehk sotsiaaltöötajat. Uue korra järgi võib ametiasutus abi andmiseks teha päringuid ka taotleja leibkonnaliikmete ja tema suhtes ülalpidamiskohustusega inimeste andmete saamiseks. [S1, S2]\n\nTaotlus esitatakse nüüd ametiasutuse sotsiaalosakonnale ja taotlemist hõlbustavad vormid koostab ametiasutus; varem esitati taotlus vallavalitsuse sotsiaalosakonnale ja vormid kehtestas vallavalitsus. Rahalist abi taotledes tuleb sissetulekust sõltuva toetuse puhul esitada eelneva kuni kolme kuu sissetulekud ning vähemalt eelneva kuu eluasemekulud koos tõendavate dokumentidega. Varem küsiti eelneva kuni kolme kuu sissetulekuid, soovitatavalt tõenditega, ja vähemalt eelneva kuu püsiväljaminekuid. Samuti muutub kolmandale eraisikule raha ülekandmise nõusoleku kinnitamise koht: see kinnitatakse nüüd spetsialisti, varem sotsiaaltöötaja juuresolekul. [S3, S4]\n\nAbivajadust hindab ja vajaduse korral kodu või viibimiskohta külastab nüüd spetsialist; varasemas sõnastuses oli selleks sotsiaaltöötaja. Hindamisel vaadatakse endiselt inimese toimetulekut, ühiskonnaelus osalemist ning tema elu- ja tegevuskeskkonda. [S7, S8]\n\nMa ei saa selle info põhjal kirjeldada kõiki alates 6. oktoobrist loetletud muudatusi: teiste muudetud sätete varasem ja uus sõnastus pole siin esitatud."
+  },
+  {
+   "run": "no-contact-asked",
+   "scenario": "tone-tartu-home-care",
+   "turn": 1,
+   "turn_id": "6fc88c40-9713-4e3b-b7df-d204dfec18a9",
+   "text": "Kuidas saada koduteenust Tartu vallas?",
+   "verdict": "passed",
+   "checks": 4,
+   "failed": [],
+   "region": "tartu_vald",
+   "scope_state": "search_plan_region",
+   "queries": [
+    "Tartu valla koduteenuse taotlemine ja saamise tingimused"
+   ],
+   "answer_kind": "grounded",
+   "clarification": false,
+   "records": {
+    "version": "rag-v2/record-catalogue-4",
+    "view": "titles",
+    "listed": 40,
+    "relevant_summaries": 11,
+    "opened": [
+     "#29 contact_directory resource | Sotsiaalvaldkonna kontaktid: Tartu vald",
+     "#2 relevant_detail service | Hooldusteenus väljaspool kodu",
+     "#1 relevant_detail service | Koduteenus",
+     "#3 relevant_detail service | Turvakoduteenus"
+    ],
+    "contacts_shown": 10
+   },
+   "contacts_named_in_answer": 1,
+   "roles_of_the_named": [
+    "koduhooldustöötaja"
+   ],
+   "channels_in_answer": 2,
+   "channels_in_context": 2,
+   "channels_of_a_named_person": 2,
+   "candidates": 36,
+   "selected": [
+    "P2 | alates 2026-05-01 | Tartu vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk SOTSIAALTEENUSED > 2. jagu Kohaliku omavalitsuse üksuse sotsiaalteenused > 1. j",
+    "P4 | alates 2026-05-01 | Tartu vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk SOTSIAALTEENUSED > 1. jagu Üldsätted > § 7. Teenuste taotlemine § 7. Teenuste t",
+    "P5 | alates 2026-05-01 | Tartu vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk SOTSIAALTEENUSED > 2. jagu Kohaliku omavalitsuse üksuse sotsiaalteenused > 1. j",
+    "P25 | alates 2026-05-01 | Tartu vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk SOTSIAALTEENUSED > 1. jagu Üldsätted > § 9. Teenuste määramine § 9. Teenuste m",
+    "P29 | alates 2026-05-01 | Tartu vald > Sotsiaalhoolekandelise abi andmise kord > 3. peatükk SOTSIAALTEENUSED > 1. jagu Üldsätted > § 8. Abivajaduse hindamine § 8. Abivaja"
+   ],
+   "cited": [
+    {
+     "title": "Sotsiaalhoolekandelise abi andmise kord"
+    },
+    {
+     "title": "Koduteenus"
+    }
+   ],
+   "cited_contact_records": 1,
+   "plan_price_usd": 0.00555292,
+   "search_ms": 4302,
+   "total_ms": 16827,
+   "answer_omitted": "names a contact person; the answer is in the report on the server"
+  }
+ ],
+ "plan": "m4-sotsiaalai-corpus-chat-20261005-133205-9522697e-43a2-46fb-ab6c-e8e0d96c8f47-r3e2ac3886e65b1c175b6cca548949002b353356a",
+ "generation": "search_generation_4336293a31086af0190543a4c3cd0d146b2fc1a6576a334a1148542b5830eaff",
+ "model": "gpt-6-luna",
+ "reasoning": "medium",
+ "source": "the evaluator's reports on the server (rag-v2-work/eval-files/strengthening-1-rerun-2026-10-05/<run>/conversation-eval.json) and each turn's own record",
+ "masking": "an answer that names a contact person (also in a declined form) is left out whole, with the roles of the people it names; in a kept answer a capitalised word that starts like a part of a shown contact's name is masked, which can hide a place name; a contact's own record is counted, not listed, among the cited sources; e-mail addresses and phone numbers are masked"
+}
