@@ -1,0 +1,109 @@
+{
+ "schema_version": "rag-v2/dialogue-eval-2",
+ "purpose": "Owner 05.10.2026, 'tee teised mõõtmised': what the two measuring runs of that day left unmeasured (ADR-088, ADR-089). A contact question in Tallinn that names no district (fourteen directories, the closest by its text is opened); 'what changes' in a national law held in two versions (the Child Protection Act from 01.01.2027); and a question about one rule of the act of scenarios-version-change-1, asked so that the selection may keep only the passages that hold that rule, which is how an unchanged subsection came to stand in the new version's passage alone on 04.10.2026. The effect of fewer summaries on other municipal answers is measured in the same run with scenarios-municipal-tone-1 and with the conversation 'my-municipality-after-another' of scenarios-strengthening-1, whose answers of the first run of 05.10 are the comparison. Written before any run with the model. Run with --auto-modes. No person's name, phone or e-mail is in this file.",
+ "expectation_help": {
+  "region": "the municipal scope of the turn; a question about a national law has none",
+  "contacts": "search: the record context shows at least one contact person",
+  "must (no district)": "answer: it speaks of the district, since in Tallinn the benefit is handled by the district of residence; whether it asks for the district or names a contact, and whose, is read from the answer",
+  "evidence / found_versions_from": "search: passages of the act are among the found sources, of the version in force before the asked day and of the one in force from it",
+  "cited / cited_versions_from": "answer: it has source blocks that cite both versions",
+  "must (what changes)": "answer: it names at least one thing the new version really changes; read the whole answer and compare it with both texts, a pattern is a coarse check",
+  "must_not (what changes)": "answer: it does not present an unchanged rule as new. In the Child Protection Act the sentence on who organises child protection is the same in both versions (§ 11 became § 11 lg 1). In Põhja-Sakala's act § 5 lg 5 (a time limit for remedying deficiencies) is the same in both"
+ },
+ "history": [],
+ "scenarios": [
+  {
+   "id": "contacts-tallinn-no-district",
+   "title": "Kontakt Tallinnas: linnaosa nimetamata",
+   "source": "ADR-089, open point: the directory closest to the question by its text need not be the right unit when the question names no district",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Elan Tallinnas ja tahan taotleda toimetulekutoetust. Kelle poole ma pöörduma peaksin?",
+     "expect": {
+      "region": "tallinn",
+      "contacts": true,
+      "must": [
+       "linnaos"
+      ],
+      "must_not": [
+       "ei saa[^.]{0,120}(kinnita|öelda)[^.]{0,120}(praegu|kehti|samasugune|ajakohane|kättesaadav)",
+       "(kogutud|kontrollitud|pärinevad)[^.]{0,40}\\d{1,2}\\.\\d{1,2}\\.\\d{4}"
+      ]
+     },
+     "note": "A good answer asks for the district or says that the district of residence decides; a contact of one district given as if it were the person's own would be a fault that no pattern here catches."
+    }
+   ]
+  },
+  {
+   "id": "what-changes-national-law",
+   "title": "Mis muutub: üleriigilise seaduse kaks redaktsiooni",
+   "source": "ADR-088, unmeasured: two versions of a national law in the evidence",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Mis muutub lastekaitseseaduses alates 1. jaanuarist 2027?",
+     "expect": {
+      "region": null,
+      "evidence": [
+       "Lastekaitseseadus"
+      ],
+      "found_versions_from": [
+       "2026-10-01",
+       "2027-01-01"
+      ],
+      "cited": [
+       "Lastekaitseseadus"
+      ],
+      "cited_versions_from": [
+       "2026-10-01",
+       "2027-01-01"
+      ],
+      "must": [
+       "juhtumikorraldus|võrgustikutöö|haldusjärelevalve"
+      ],
+      "must_not": [
+       "(uus|uuena|lisandu\\p{L}*|nüüdsest)[^.]{0,60}lastekaitset korralda\\p{L}*[^.]{0,40}Vabariigi Valitsus|lastekaitset korralda\\p{L}*[^.]{0,160}(on uus|uuena|lisandu\\p{L}*)"
+      ]
+     },
+     "note": "Between the versions of 01.10.2026 and 01.01.2027 sixteen provisions changed, fifteen were added and one was removed (§ 29 on helping a child in need was rewritten: case management and network work; §§ 36¹ and 41³ are new); the one sentence of § 11 and of § 40¹ became their subsection 1."
+    }
+   ]
+  },
+  {
+   "id": "what-changes-one-rule",
+   "title": "Mis muutub ühes reeglis: valik võib hoida ainult selle reegli lõigud",
+   "source": "ADR-088, unmeasured: the situation of 04.10.2026 (ADR-077 F1), where the selection kept the first passage of § 5 of each version and § 5 lg 5, unchanged, stood in the new version's passage alone",
+   "turns": [
+    {
+     "mode": "new",
+     "text": "Milliseid dokumente tuleb Põhja-Sakala vallas alates 6. oktoobrist sissetulekust sõltuva toetuse taotlusele lisada ja mis selles muutub?",
+     "expect": {
+      "region": "pohja_sakala_vald",
+      "evidence": [
+       "Sotsiaalhoolekandelise abi osutamise kord"
+      ],
+      "found_versions_from": [
+       "2025-09-01",
+       "2026-10-06"
+      ],
+      "cited": [
+       "Sotsiaalhoolekandelise abi osutamise kord"
+      ],
+      "cited_versions_from": [
+       "2025-09-01",
+       "2026-10-06"
+      ],
+      "must": [
+       "eluasemekulu"
+      ],
+      "must_not": [
+       "(nüüd|edaspidi|uuena|uue nõudena|lisandu\\p{L}*)[^.]{0,80}tähtaeg[^.]{0,40}(puudus|parand|kõrvald)|tähtaeg[^.]{0,60}(puudus|parand|kõrvald)[^.]{0,60}(on uus|uuena|lisandu\\p{L}*)|(puudus|parand|kõrvald)[^.]{0,40}tähtaeg[^.]{0,40}(on uus|uuena|lisandu\\p{L}*)"
+      ]
+     },
+     "note": "The rule is § 5 lg 3 p 4: housing costs of the earlier month with proof, for the earlier month's fixed expenses with proof recommended. Whether the selection left the earlier version's second passage of § 5 out, which is what makes this the situation of 04.10, cannot be asked for; it is read from the turn's record and said with the result."
+    }
+   ]
+  }
+ ]
+}

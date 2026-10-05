@@ -19,6 +19,7 @@ Paragrahv lõigatakse lõikudeks pikkuse järgi. Sama säte seisab seetõttu kah
    - `removed`: ainult vanas või uues kehtetuks tunnistatud (number on alles, tekst on „Kehtetu.“ või tühi);
    - `renumbered`: sama sõnastus sama paragrahvi teise numbri all.
    Sõnastust võrreldakse enne numbrit: paragrahvi keskele lisatud lõige ei tee järgmisi lõikeid „muutunuks“.
+   **Täiendus samal päeval (`version-comparison-2`):** paragrahv, mis oli üks tekst ja sai uues redaktsioonis lõiked (või vastupidi), hoiab oma sõnastuse uue numbri all. Enne luges võrdlus sellise paragrahvi „muudetuks“ ja lõike 1 „lisatuks“, kuigi sõnad olid samad: lastekaitseseaduse 01.01.2027 redaktsioonis sai § 11 ainus lause lõikeks 1 (sama § 40¹). Leitud tasuta, enne kui seda seadust mudeliga mõõdeti. Indeksi 41 aktipaarist puudutas see ainult lastekaitseseadust (2 sätet); ristkontroll Riigi Teataja märgetega on endiselt 191/191.
 4. **Mudel saab ploki `version_changes`**, mitte sätete teksti:
    - akti kaks redaktsiooni kehtivusega ja tõendilõikude viidetega;
    - `differences`: tõendites olevad sätted, mis erinevad, igaüks viidetega lõikudele, kus vana ja uus sõnastus seisavad;
