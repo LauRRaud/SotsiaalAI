@@ -144,3 +144,13 @@ Esimene eksport päris andmetel (avaldamata) näitas kaht asja, mida väljamõel
 - **Eksport on hetkeseis:** registris muutunud rida kaob vestlusest kohe, uus jõuab sinna järgmise ekspordi ja korpuse täiendusega. Regulaarset eksporti ei ole.
 - **Kontaktiettepanekud** (355, omaniku ülevaatusel) on rakendamata; pärast rakendamist ja kontrolli tuleb eksport uuesti teha.
 - Registris on sama inimene mitmel real (97 kordust kinnitatud ridade seas); eksport näitab inimest üks kord, register on muutmata.
+
+## Pärast kontaktiettepanekuid: korpus v56 (05.10.2026 kell 9.20)
+
+- Omanik 05.10: „rakenda 355 ettepanekut“; rakendati 349 ([ADR-073](adr-073-kov-staff-from-official-page.md), jaotis „Esimene partii rakendatud“). Kinnitatud ridu on 1194 (enne 869).
+- **Välja jätmise piir tõsteti 60-lt 100 kontaktile** (#372): Tartus on nüüd 74 kontakti ja 60 piir oleks töötava omavalitsuse vestlusest välja jätnud. Tallinn (125) jääb välja.
+- **Eksport:** 1194 kinnitatud rida; 21 ilma telefoni ja e-postita; 105 sama inimese kordust; Tallinn välja jäetud. 76 omavalitsust, 943 inimest (625 jätsid oma dokumendi, 318 uut kontaktikirjet), 125 kontaktide kirjet; neli v55 kirjet, mille nime enam ei teki, eemaldati poliitikast.
+- **Korpus v56:** 443 dokumenti, ostetud 728 sisendit, 90 081 tokenit, 0,0117 USD (usage `pilot_63068127…`); indeks `ebd81311` (7177 dokumenti, 41 919 lõiku), plaan `/etc/sotsiaalai/m4-corpus-chat-20261005a.json`.
+- **Kulu kokku kontaktide tööle:** 0,0164 + 0,0117 = 0,0281 USD (vektorid); mudelijookse ei tehtud.
+- **Tasuta kontroll kirjete rajal** (sama küsimus, sõnaotsingu kanal), näidatud kontakte: Tartu 11 (74 kontaktiga), Pärnu 8, Valga 12, Viljandi linn 11, Saaremaa 13, Kohtla-Järve 9, Võru vald 11, Anija 8, Nõo 7; **Narva 0** (38 kontakti, neli kirjet: selle küsimusega ei avatud ühtegi); Tallinn 0 (välja jäetud).
+- Kirjete raja aeg esimesel päringul 0,8–3,8 s omavalitsuse kohta (Tartu 91 kontaktiotsust 0,94 s).

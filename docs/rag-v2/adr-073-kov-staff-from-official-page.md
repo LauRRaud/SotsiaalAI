@@ -2,7 +2,7 @@
 
 04.10.2026. Teostus Claude Opus 5.5. Omanik 04.10: „kodeering või kontroll peab olema selline, et suudame tuvastada kõik sotsiaalvadkonna töötajad KOV lehelt“ ja samal päeval: „oluline, et uus info võib olla valesti korjatud ja vale, et vana õige üle ei kirjutaks“. Jätkab [ADR-017](adr-017-verified-contact-export.md) ja [ADR-045](adr-045-contact-binding-content.md) kontaktiteemat.
 
-**Seis 04.10.2026 õhtul:** iganädalane kontroll kasutab tuvastajat (omanik 04.10: „võib kasutada jah kord nädalas“; jaotis „Kontroll kasutab tuvastajat“). Registri sisu kontroll ei muuda. Uute inimeste, muutunud numbrite ja kolinud lehtede jaoks on ehitatud ettepanekute kiht (jaotis „Ettepanekute kiht“): see loeb ja pakub, registrisse pole midagi kirjutatud. Esimene partii (355 ettepanekut) on omanikul üle vaadata.
+**Seis 04.10.2026 õhtul:** iganädalane kontroll kasutab tuvastajat (omanik 04.10: „võib kasutada jah kord nädalas“; jaotis „Kontroll kasutab tuvastajat“). Registri sisu kontroll ei muuda. Uute inimeste, muutunud numbrite ja kolinud lehtede jaoks on ehitatud ettepanekute kiht (jaotis „Ettepanekute kiht“): see loeb ja pakub. **Rakendatud 05.10.2026** omaniku korraldusel („rakenda 355 ettepanekut“): partii `bdb99a37-785d-4987-964f-ff17de5c3ee2`, vt jaotis „Esimene partii rakendatud“.
 
 ## Probleem
 
@@ -161,7 +161,7 @@ Omavalitsuste info muutub (töötajad, teenused, hinnakirjad) ja platvorm peab s
 
 Omanik kiitis 04.10 heaks nii ehitamise kui reegli („jah kõigele“): **muudatus jõustub kahe järjestikuse sama tulemusega lugemise järel või omaniku heakskiidul; automaatselt ei kustutata midagi.** Kehtib ka põhimõte ülal: korjatud info on ettepanek, vana väärtus jääb alles, kuni uus on kinnitatud.
 
-**Seis:** kiht loeb lehti ja arvutab ettepanekud; registrisse pole midagi kirjutatud. Esimene partii on omanikul failina üle vaadata. Iganädalane automaatne rakendamine on ühendamata (jaotis „Tegemata“).
+**Seis:** kiht loeb lehti ja arvutab ettepanekud. **Rakendatud 05.10.2026** omaniku korraldusel („rakenda 355 ettepanekut“): partii `bdb99a37-785d-4987-964f-ff17de5c3ee2`, vt jaotis „Esimene partii rakendatud“. Iganädalane automaatne rakendamine on ühendamata (jaotis „Tegemata“).
 
 ### Kood
 
@@ -295,3 +295,13 @@ Kood jooksis ajutises kaustas, mis viitab jooksvale väljalaskele ja hoiab muude
 ## Kus on andmed
 
 Nimedega tabelid on ainult serveris, mitte repos: `rag-v2-work/eval-files/contact-recheck-2026-10-04.csv` (paketikontaktid pärast kontrolli), `contact-diagnose-2026-10-04.csv` (miks rida ei kinnitu) ja `contact-proposals-2026-10-04.json` (esimene ettepanekute partii numbrite ja räsidega). Mõõtmise skriptid on `rag-v2-work/eval-app/` kaustas (`contact-*-1004.mjs`, `kov-*-1004.mjs`).
+
+## Esimene partii rakendatud (05.10.2026)
+
+Omanik 05.10.2026: „rakenda 355 ettepanekut“. Enne seda oli omanikule selgitatud, et 278 ettepanekut on märketa ja 77 märkega (ootavad tema otsust); omanik otsustas rakendada kõik.
+
+- **Alus:** ülevaatusfail 04.10.2026 kell 12.40 (`eval-files/contact-proposals-2026-10-04.json`, 355 ettepanekut: 166 rea muudatust, 189 uut inimest). Käsk luges lehed uuesti ja rakendas ainult selle, mida lehed endiselt andsid.
+- **Tulemus:** 349 rakendatud (161 rida muudetud, 188 inimest lisatud), 0 vahele jäetud; 6 ettepanekut olid vahepeal muutunud ja jäid rakendamata. Iga muudatuse kohta auditikirje `SERVICE_MAP_CONTACT_PROPOSAL_APPLIED`, partii kirje `SERVICE_MAP_CONTACT_PROPOSAL_BATCH` (alus `owner_approval`).
+- **Kontaktikontroll pärast seda:** 1385 rida, **1194 kinnitatud** (enne 869); lehti 156, neist 8 ei vastanud (enne 12).
+- **Tagasivõtmine:** `node scripts/service-map-contact-proposals.mjs --revert bdb99a37-785d-4987-964f-ff17de5c3ee2 [--keys <võti,võti>] --yes` taastab vanad väärtused ja peidab lisatud read.
+- **Märkega ettepanekute hulgas oli lugemisvigu ameti tekstis.** Koondpildis (ilma nimedeta) on vähemalt neli rida, mille „amet“ ei ole amet: „Pank:“, „Ruusal“, „*Ligipääsetav erivajadusega inimesele“, „Eluruumi tagamise teenus“; 12 uuel real ametit ei ole. Need on omanikule nimetatud; parandamata.
