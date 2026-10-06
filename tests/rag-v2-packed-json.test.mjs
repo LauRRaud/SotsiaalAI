@@ -79,7 +79,7 @@ test('a row is opened before its packet is read: a packed packet, a packet store
   // Every way a row leaves the store: an existing turn, a claimed one, a step's result, a dialogue source and a turn
   // awaiting publication.
   const stored = row('needs_recovery');
-  const tx = { $executeRaw: async () => {}, $queryRaw: async () => [], conversation: { findUnique: async () => ({ userId: 'u', metadata: { m4: true } }) },
+  const tx = { $executeRaw: async () => {}, $queryRaw: async () => [], conversation: { findUnique: async () => ({ userId: 'u', metadata: { m4: true } }), update: async () => ({}) },
     chatTurn: { findUnique: async () => ({ m4Pilot: { ...stored, inputHash: 'hash', configHash: 'config' } }) },
     m4PilotTurn: { findUnique: async () => stored, findFirst: async () => ({ ...stored, payload: { ...stored.payload, context: { scopeId: 's' } } }),
       findMany: async () => [stored], update: async ({ data }) => ({ ...stored, ...data }) } };
@@ -109,7 +109,7 @@ test('the store writes a packet packed, and the size limit reads it as the turn 
   const runaway = municipalPacket({ records: 200 });
   assert(auditPacketBytes(runaway) > AUDIT_PACKET_BYTES && bytes(packJson(runaway)) < AUDIT_PACKET_BYTES);
   const stored = { id: 'turn', state: 'claimed', chatTurnId: 'chat', createdAt: new Date(), expiresAt: null, configHash: 'config', payload: { userId: 'u', convId: 'c', events: [], timings: {} } };
-  const tx = { $executeRaw: async () => {}, $queryRaw: async () => [], conversation: { findUnique: async () => ({ userId: 'u', metadata: { m4: true } }) },
+  const tx = { $executeRaw: async () => {}, $queryRaw: async () => [], conversation: { findUnique: async () => ({ userId: 'u', metadata: { m4: true } }), update: async () => ({}) },
     conversationMessage: { create: async () => ({ id: 'message' }) }, chatTurn: { update: async () => ({}) },
     m4PilotTurn: { findUnique: async () => stored, count: async () => 0, update: async ({ data }) => { written.push(data); return { ...stored, ...data }; } } };
   const store = new PilotStore({ $transaction: async fn => fn(tx) }), config = { id: 'm4-plan', tenant: 't', configHash: 'config' };

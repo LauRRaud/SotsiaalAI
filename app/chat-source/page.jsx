@@ -21,5 +21,5 @@ export default async function ChatSourcePage({ searchParams }) {
     <a href={`/vestlus?conversation=${encodeURIComponent(params.convId)}`}>{t('closeSource')}</a>
     <details><summary>{t('version')}</summary><p style={{ overflowWrap: 'anywhere' }}>{source.version}</p>
       {!source.pages.length && source.source_locations?.map((item, index) => <p key={`${item.source_unit_id}/${index}`} style={{ overflowWrap: 'anywhere' }}>{item.path} [{item.start}–{item.end}]</p>)}</details>
-    <p style={{ whiteSpace: 'pre-wrap' }}>{source.text}</p></section>;
+    {source.superseded ? <p>{t(source.links?.length ? 'sourceChanged' : 'sourceGone')}</p> : <p style={{ whiteSpace: 'pre-wrap' }}>{source.text}</p>}</section>;
 }
