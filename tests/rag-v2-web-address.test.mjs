@@ -7,6 +7,8 @@ import { dialogueRequest, WEB_ADDRESS_INSTRUCTIONS, DIALOGUE_PROMPT_VERSION } fr
 import { pilotChatResult } from '../lib/chat/m4PilotClientContract.js';
 import { messageLinks, splitByLinks } from '../lib/chat/messageLinks.js';
 import { municipalPacket } from './fixtures/rag-v2-municipal-packet.mjs';
+import { normalizeSources } from '../components/chat/utils/sources.js';
+import { collectMessageSources } from '../components/chat/hooks/useConversationSources.js';
 
 // ADR-097 (owner, 06.10.2026): "lingid peavad olema sõnumimullides ka" and "Luna võib ju kuidagi loomulikult märkida
 // ära veebilehe aadressi". The answer names a web page's address in a sentence; the chat makes it a link.
@@ -57,6 +59,12 @@ test('the turn\'s view, its durable record and the chat\'s source list carry the
     const result = pilotChatResult(turn, 'conv-1');
     assert.deepEqual(messageLinks(result.sources), [{ address: 'pood.example/laenutus', url: 'https://www.pood.example/laenutus/' }]);
   }
+  // The chat page's own two layers between the reply and the bubble keep both (06.10.2026: the first release of this
+  // lost them there, and the address in the answer stayed plain text).
+  const reply = pilotChatResult(view, 'conv-1'), message = { role: 'ai', text: reply.answer, sources: normalizeSources(reply.sources) };
+  assert.deepEqual([message.sources[0].web, message.sources[0].webUrl], ['pood.example/laenutus', 'https://www.pood.example/laenutus/']);
+  assert.deepEqual(messageLinks(collectMessageSources(message, null)), [{ address: 'pood.example/laenutus', url: 'https://www.pood.example/laenutus/' }]);
+  assert.deepEqual(splitByLinks(reply.answer, messageLinks(collectMessageSources(message, null))).filter(part => typeof part !== 'string'), [{ text: 'pood.example/laenutus', url: 'https://www.pood.example/laenutus/' }]);
   // A source whose target is not a declared https address gives no link.
   const odd = turnRow();
   odd.payload.packet.evidence.find(entry => entry.evidence_id === odd.payload.packet.reference_map.S1.evidence_id).source_metadata.web_address.url = 'javascript:alert(1)';

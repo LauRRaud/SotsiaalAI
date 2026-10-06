@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { collapsePages, formatSourceLabel, isSyntheticEvidenceRef, normalizePageRange, normalizeSourceLabelPages } from "../utils/sources.js";
+import { collapsePages, formatSourceLabel, isSyntheticEvidenceRef, normalizePageRange, normalizeSourceLabelPages, sourceWebAddress } from "../utils/sources.js";
 
 const RAG_SOURCE_TYPE_HINTS = new Set([
   "national_law",
@@ -192,6 +192,8 @@ export function collectMessageSources(message, uploadPreview) {
       pageText,
       section,
       ...trustFields(src, message),
+      // ADR-097: the bubble makes the address a link when the answer names it.
+      ...sourceWebAddress(src),
       allUrls: [],
       occurrences: 0
     };
