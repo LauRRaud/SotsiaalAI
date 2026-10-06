@@ -3,8 +3,8 @@
 // them (lib/rag-v2/assistive-points.js). About 150 polite readings of the map's public table.
 // Writes under --work (git-ignored tmp/): points.json with everything the table gives (also phone and e-mail, which stay
 // out of the repository), points.public.json without contacts, and prints counts only.
-// --sources <dir> also writes the data set as corpus sources (one page per municipality with a point, one overview per
-// county; pointSources). Those pages hold the points' general phone numbers: the directory is for the corpus and must
+// --sources <dir> also writes the data set as corpus sources (one page per municipality: its own points, or its
+// county's when the map shows none in it; one overview per county; pointSources). Those pages hold the points' general phone numbers: the directory is for the corpus and must
 // stay outside the repository. --from <points.json> makes the sources of an earlier reading without asking the table
 // again.
 // No model or embedding call.
