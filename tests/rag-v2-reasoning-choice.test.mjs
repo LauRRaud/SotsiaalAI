@@ -6,12 +6,12 @@ import path from 'node:path';
 import { readPilotConfig, reasoningOffer, validReasoningChoices, REASONING_EFFORTS } from '../lib/rag-v2/pilot/config.js';
 import { approvedChatPlan, approvedScope, newChatPlan, renewChatPlan } from '../lib/rag-v2/pilot/chat-plan.js';
 import { PilotService } from '../lib/rag-v2/pilot/service.js';
-import { answerRequest, digest } from '../lib/rag-v2/pilot/contracts.js';
+import { answerRequest, budgetLedgerId, digest } from '../lib/rag-v2/pilot/contracts.js';
 import { embeddingConfig } from '../lib/rag-v2/search/embedding.js';
 import { initialReasoning, readSavedReasoning, reasoningChoiceAvailable, saveReasoning, toggledReasoning,
   PILOT_REASONING_STORAGE_KEY } from '../lib/chat/m4PilotReasoning.js';
 
-// ADR-092: the chat's menu item "Mõtle põhjalikumalt". The owner-approved plan may offer the answer's reasoning effort
+// ADR-092: the composer's lightning button "Kiire vastus". The owner-approved plan may offer the answer's reasoning effort
 // as a choice (reasoningChoices); a chat request may then name one of them, and the answer is written with it. A plan
 // without the field, and a request without the choice, behave as before.
 
@@ -70,6 +70,15 @@ test('a new plan carries the choice only when it is asked for; it is approved co
   assert.deepEqual(renewed.reasoningChoices, ['low', 'medium']);
   assert.equal(approvedScope(renewed), approvedScope(offering));
   for (const reasoningChoices of [['low', 'high'], ['medium'], ['low', 'medium', 'medium']]) await assert.rejects(make({ reasoningChoices }), { code: 'invalid_reasoning_choices' });
+  // A plan made to change a setting (the effort used unasked, 06.10.2026) is a new approved plan, but it keeps counting
+  // against the ledger of the plan it replaces: the same cap, and the money already spent stays spent.
+  assert.equal('budgetLedger' in offering, false);
+  const lowered = await make({ reasoning: 'low', reasoningChoices: ['low', 'medium'], budgetLedger: budgetLedgerId(renewed), now: new Date('2026-10-06T10:00:00Z') });
+  assert.deepEqual([lowered.reasoning, budgetLedgerId(lowered), budgetLedgerId(renewed)], ['low', offering.id, offering.id]);
+  assert.notEqual(lowered.id, offering.id);
+  assert(approvedChatPlan(lowered));
+  assert.equal(budgetLedgerId(await renewChatPlan(lowered, { release: 'abcdef2', now: new Date('2026-10-06T11:00:00Z') })), offering.id);
+  for (const budgetLedger of ['not a ledger', 'M4-UPPER', 7]) await assert.rejects(make({ budgetLedger }), { code: 'invalid_budget_ledger' });
 });
 
 test('a request may name only an effort the plan offers; a refusal comes before anything is stored or sent', async () => {
@@ -94,7 +103,7 @@ test('a request may name only an effort the plan offers; a refusal comes before 
   assert.notEqual(digest({ tenant: 't', userId: 'u', ...input }), digest({ tenant: 't', userId: 'u', ...input, reasoning: 'low' }));
 });
 
-test('the menu item\'s state: the plan\'s own effort until the user chooses, then the remembered choice while the plan offers it', () => {
+test('the button\'s state: the plan\'s own effort until the user chooses, then the remembered choice while the plan offers it', () => {
   const offer = { quick: 'low', thorough: 'medium', fallback: 'medium' };
   assert.equal(reasoningChoiceAvailable(offer), true);
   for (const none of [null, undefined, {}, { quick: 'medium', thorough: 'medium', fallback: 'medium' }]) {
@@ -112,26 +121,45 @@ test('the menu item\'s state: the plan\'s own effort until the user chooses, the
   saveReasoning(() => storage, 'low');
   assert.deepEqual([...kept], [[PILOT_REASONING_STORAGE_KEY, 'low']]);
   assert.equal(readSavedReasoning(() => storage), 'low');
+  // The default changed from medium to low on 06.10.2026: a choice kept under the earlier key was made against the
+  // other default and is not read, so every browser starts from the plan's effort again.
+  assert.equal(PILOT_REASONING_STORAGE_KEY, 'sotsiaal.chat.reasoning.2');
+  const earlier = { getItem: key => (key === 'sotsiaal.chat.reasoning' ? 'medium' : null) };
+  assert.equal(initialReasoning({ ...offer, fallback: 'low' }, readSavedReasoning(() => earlier)), 'low');
   const blocked = () => { throw new Error('SecurityError'); };
   assert.equal(readSavedReasoning(blocked), null);
   assert.doesNotThrow(() => saveReasoning(blocked, 'low'));
 });
 
-test('the chat sends the choice with a pilot request, and the composer\'s menu has the checkable item in three languages', async () => {
+test('the chat sends the choice with a pilot request, and the composer has the lightning button in three languages', async () => {
   const read = file => fs.readFile(file, 'utf8');
   const stream = await read('components/chat/hooks/useChatStream.js');
   assert.match(stream, /\.\.\.\(cfg\.pilotReasoning \? \{ reasoning: cfg\.pilotReasoning \} : \{\}\)/u);
   const body = await read('components/alalehed/ChatBody.jsx');
   assert.match(body, /usePilotReasoning\(pilotMode && !isRoomMode \? pilotReasoning : null\)/u);
   assert.match(body, /pilotReasoning: reasoningChoice\.effort,/u);
-  assert.match(body, /thinkThoroughly=\{reasoningChoice\.available \? reasoningChoice\.thorough : null\}/u);
+  assert.match(body, /quickAnswer=\{reasoningChoice\.available \? reasoningChoice\.quick : null\}/u);
   assert.match(await read('app/vestlus/page.js'), /pilotReasoning = reasoningOffer\(config\)/u);
+  assert.match(await read('components/chat/hooks/usePilotReasoning.js'), /quick: available && effort === quick,/u);
+  // One control for one setting: the button next to the microphone, pressed = the quick answer; no menu item beside it.
   const composer = await read('components/alalehed/chat/ChatComposer.jsx');
-  assert.match(composer, /thinkThoroughly !== null && !isRoomMode \? <button type="button" role="menuitemcheckbox" aria-checked=\{thinkThoroughly \? "true" : "false"\} onClick=\{onToggleThinkThoroughly\}>/u);
-  assert.match(composer, /t\("chat\.tools\.think_thoroughly"\)/u);
+  assert.match(composer, /quickAnswer !== null && !isRoomMode \? <button type="button" className="conv-quick-answer" aria-label=\{t\("chat\.quick_answer\.button_aria"\)\} aria-pressed=\{quickAnswer \? "true" : "false"\} data-active=\{quickAnswer \? "true" : undefined\} data-tooltip=\{quickAnswer \? t\("chat\.quick_answer\.on"\) : t\("chat\.quick_answer\.off"\)\}[^>]* onClick=\{onToggleQuickAnswer\} \/>/u);
+  assert.doesNotMatch(composer, /menuitemcheckbox|think_thoroughly/u);
   const labels = {};
-  for (const locale of ['et', 'en', 'ru']) labels[locale] = JSON.parse(await read(`messages/${locale}.json`)).chat.tools.think_thoroughly;
-  assert.deepEqual(labels, { et: 'Mõtle põhjalikumalt', en: 'Think more thoroughly', ru: 'Думать основательнее' });
+  for (const locale of ['et', 'en', 'ru']) {
+    const chat = JSON.parse(await read(`messages/${locale}.json`)).chat;
+    assert.equal(chat.tools.think_thoroughly, undefined);
+    labels[locale] = chat.quick_answer;
+  }
+  assert.deepEqual(labels, { et: { button_aria: 'Kiire vastus', on: 'Kiire vastus', off: 'Põhjalik vastus' },
+    en: { button_aria: 'Quick answer', on: 'Quick answer', off: 'Thorough answer' },
+    ru: { button_aria: 'Быстрый ответ', on: 'Быстрый ответ', off: 'Вдумчивый ответ' } });
+  // The glyph is an outline in both states (owner 06.10.2026); the lit one has the text's tone and a firmer line. It
+  // sits on the same button box as the microphone's.
   const css = await read('app/styles/chat.css');
-  assert.match(css, /\[role="menu"\] \[role="menuitemcheckbox"\]\[aria-checked="true"\] > svg \{\s*opacity: 1;/u);
+  assert.match(css, /button\.conv-quick-answer\[data-active="true"\]::before \{\s*--glyph: url\("data:image\/svg\+xml,[^"]*fill='none' stroke='black' stroke-width='2\.1'/u);
+  assert.match(css, /button\.conv-quick-answer\[data-active="true"\] \{\s*color: var\(--text-warm\);/u);
+  assert.doesNotMatch(css.match(/button\.conv-quick-answer[^{]*\{[^}]*\}/gu).join('\n'), /fill='black'/u);
+  assert.match(css, /button\.conv-quick-answer \{[^}]*min-inline-size: var\(--hit-target-min\);/u);
+  assert.doesNotMatch(css, /menuitemcheckbox/u);
 });

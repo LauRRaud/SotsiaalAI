@@ -188,7 +188,7 @@ test('a full run takes the code and the packages from the running release', { sk
   assert.match(run(own, { RESUME: '' }).stdout, /FAILED: \S+\/node_modules is not a link/u);
 });
 
-test('ADR-092: the new plan is asked to offer the efforts the plan it replaces offers; a plan without a choice gets none', { skip: !shell && 'no sh' }, async () => {
+test('ADR-092: the new plan is asked for the effort and the choices of the plan it replaces; a plan without a choice gets none', { skip: !shell && 'no sh' }, async () => {
   const plain = await tree('choice-none');
   assert.equal(run(plain).status, 0);
   const made = (await calls(plain)).find(line => line.startsWith('plan '));
@@ -199,7 +199,17 @@ test('ADR-092: the new plan is asked to offer the efforts the plan it replaces o
     reasoning: 'medium', reasoningChoices: ['low', 'medium'] }));
   const result = run(offering);
   assert.equal(result.status, 0, result.stdout + result.stderr);
-  assert.match((await calls(offering)).find(line => line.startsWith('plan ')), /--budget-usd 4 --reasoning-choices low,medium --basis /u);
+  const kept = (await calls(offering)).find(line => line.startsWith('plan '));
+  assert.match(kept, /--budget-usd 4 --reasoning-choices low,medium --basis /u);
+  assert.match(kept, /--reasoning medium /u);
+  // The owner's default (low since 06.10.2026) is the running plan's own effort: an increment does not put medium back.
+  const quick = await tree('choice-default-low');
+  await fs.writeFile(path.join(quick.etc, 'current.json'), JSON.stringify({ id: 'plan-old', generationId: 'search_generation_prior', documents: { d1: 'v1' },
+    reasoning: 'low', reasoningChoices: ['low', 'medium'] }));
+  assert.equal(run(quick).status, 0);
+  const lowered = (await calls(quick)).find(line => line.startsWith('plan '));
+  assert.match(lowered, /--reasoning low /u);
+  assert.match(lowered, /--reasoning-choices low,medium /u);
   // A running plan that cannot be read stops the run before a plan is made.
   const broken = await tree('choice-unreadable');
   await fs.writeFile(path.join(broken.etc, 'current.json'), 'not json');

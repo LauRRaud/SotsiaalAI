@@ -234,10 +234,13 @@ Indeksi töö aktiveerib uue põlvkonna ise. **Vestlusplaan on seotud põlvkonna
   R=$(systemctl show -p WorkingDirectory --value sotsiaalai-frontend); ENVF=/etc/sotsiaalai/releases/${R##*/}.env
   P=/etc/sotsiaalai/<uus unikaalne nimi>.json; cd $R
   N="sudo -n node --env-file=$ENVF --import ./scripts/register-node-source-loader.mjs"
-  $N scripts/rag-v2-chat-plan.mjs --tenant sotsiaalai-corpus --profile <profiil> --reasoning medium \
+  $N scripts/rag-v2-chat-plan.mjs --tenant sotsiaalai-corpus --profile <profiil> --reasoning <töötava plaani tase> \
     --template /etc/sotsiaalai/m4-luna6-20260923.json --out $P --budget-usd 4 --basis "<alus>" --activate
-  # ADR-092: kui töötav plaan pakub vastuse arutlustaset valikuna (reasoningChoices), lisa --reasoning-choices low,medium,
-  # muidu kaob vestluse menüüst rida "Mõtle põhjalikumalt". rag-v2-corpus-run.sh teeb seda ise.
+  # ADR-092: --reasoning on töötava plaani enda tase (06.10.2026 alates low), muidu pöördub vaikeväärtus tagasi. Kui
+  # töötav plaan pakub taset valikuna (reasoningChoices), lisa --reasoning-choices low,medium, muidu kaob koostajast
+  # välgunupp "Kiire vastus". rag-v2-corpus-run.sh teeb mõlemat ise.
+  # Plaan, mis tehakse ainult seade muutmiseks (mitte uue korpuse jaoks), jätkab asendatava plaani kuluarvestust:
+  # lisa --continue-ledger <asendatav plaan>. Ilma selleta alustab uus plaan arvestust nullist.
   sudo -n chown root:ubuntu $P
   $N scripts/rag-v2-plan-release.mjs activate --plan $P --rag-env $ENVF
   $N scripts/rag-v2-plan-release.mjs ready

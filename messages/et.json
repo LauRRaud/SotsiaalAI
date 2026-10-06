@@ -3340,7 +3340,6 @@
       "exit_mode_aria": "Lõpeta aktiivne režiim",
       "menu_aria": "Vestluse tööriistad",
       "document_analysis": "Dokumendi analüüs",
-      "think_thoroughly": "Mõtle põhjalikumalt",
       "deep_research": "Süvauuring",
       "deep_research_room_only": "Süvauuring on saadaval ainult 1:1 vestluses.",
       "info_mode": "Info assistent",
@@ -3364,6 +3363,11 @@
       "scope_output_label": "Vastus vormistatakse",
       "scope_output_worker": "Spetsialistile",
       "scope_output_client": "Pöördujale"
+    },
+    "quick_answer": {
+      "button_aria": "Kiire vastus",
+      "on": "Kiire vastus",
+      "off": "Põhjalik vastus"
     },
     "ai_toggle": {
       "label": "Saada assistendile",

@@ -526,7 +526,7 @@ html[data-contrast="hc"] .conv-tools-menu[role="menu"] {
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
 }
-[role="menu"] :is([role="menuitem"], [role="menuitemcheckbox"]) {
+[role="menu"] [role="menuitem"] {
   display: flex;
   align-items: center;
   gap: 0.65em;
@@ -547,27 +547,8 @@ html[data-contrast="hc"] .conv-tools-menu[role="menu"] {
 [role="menu"] [role="menuitem"] img {
   display: none;
 }
-[role="menu"] :is([role="menuitem"], [role="menuitemcheckbox"]):hover {
+[role="menu"] [role="menuitem"]:hover {
   background: var(--glass-cell-bg-hover);
-}
-/* Linnukesega valik (ADR-092, "Mõtle põhjalikumalt"): sama rida mis teised, tekst vasakul ja
-   linnuke paremal. Linnukese koht on alati olemas, nii et rida ei nihku, kui valik muutub. */
-[role="menu"] [role="menuitemcheckbox"] {
-  justify-content: space-between;
-}
-/* "+" menüü võib linnukesega rea jagu laiem olla: üldise 15rem piiriga jäi "Mõtle
-   põhjalikumalt" + linnuke 1,3 px lühikeseks ja murdus kahele reale (mõõdetud 06.10). */
-.conv-tools-menu[role="menu"] {
-  max-width: 18rem;
-}
-[role="menu"] [role="menuitemcheckbox"] > svg {
-  flex: none;
-  width: 1.1em;
-  height: 1.1em;
-  opacity: 0;
-}
-[role="menu"] [role="menuitemcheckbox"][aria-checked="true"] > svg {
-  opacity: 1;
 }
 
 /* Vestluse jalus tühi/väike */
@@ -2507,6 +2488,63 @@ form:has(#chat-input) button.conv-ai-target[data-active="true"]:hover {
   height: 2rem;
 }
 form:has(#chat-input) button.conv-ai-target:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring, 0 0 0 2px rgba(255, 255, 255, 0.72));
+}
+
+/* Kiire vastus — välk mikri VASAKUL (ADR-092; omanik 06.10: „paneme ainult välgu"). Sama ring ja
+   sama glüüfikast mis mikril ja häälvestluse päästikul: kolm naabrit on ühte kaalu. Välk on
+   ALATI kontuur (omanik 06.10: „ei peaks olema täidetud, vaid tume servadest"). Olekut kannab
+   JOON: kustunud välk on mikri vaikses toonis ja sama joonega (1.6), põlev välk on teksti
+   toonis ja tugevama joonega (2.1). Taustaketast ei ole: kiire vastus on vaikimisi sees, ketas
+   seisaks mikri kõrval kogu aeg ja oleks naabritest valjem. Hover annab ainult õrna tausta ja
+   värvi EI muuda: muidu näeks äsja välja lülitatud välk hiire all välja nagu sisse lülitatud.
+   Reeglid on kihita nagu .conv-ai-target: kihis olev mikri hover-reegel siia ei ulatu. */
+form:has(#chat-input) button.conv-quick-answer {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  min-inline-size: var(--hit-target-min);
+  min-block-size: var(--hit-target-min);
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--conv-icon-quiet, var(--text-soft));
+  cursor: pointer;
+  transition:
+    color var(--dur-fast) var(--ease-soft),
+    background-color var(--dur-fast) var(--ease-soft);
+}
+form:has(#chat-input) button.conv-quick-answer::before {
+  content: "";
+  width: 1.5rem;
+  height: 1.5rem;
+  background: currentColor;
+  -webkit-mask: var(--glyph) center / contain no-repeat;
+  mask: var(--glyph) center / contain no-repeat;
+  --glyph: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13.2 3 6 13.2h5l-1.2 7.8 8.1-10.4h-5.2z'/%3E%3C/svg%3E");
+}
+form:has(#chat-input) button.conv-quick-answer[data-active="true"] {
+  color: var(--text-warm);
+}
+form:has(#chat-input) button.conv-quick-answer[data-active="true"]::before {
+  --glyph: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13.2 3 6 13.2h5l-1.2 7.8 8.1-10.4h-5.2z'/%3E%3C/svg%3E");
+}
+form:has(#chat-input) button.conv-quick-answer:is(:hover, :focus-visible) {
+  background: rgba(248, 248, 248, 0.055);
+}
+.panel-scrim[data-conversation="1"] form:has(#chat-input) button.conv-quick-answer {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.panel-scrim[data-conversation="1"] form:has(#chat-input) button.conv-quick-answer::before {
+  width: 2rem;
+  height: 2rem;
+}
+form:has(#chat-input) button.conv-quick-answer:focus-visible {
   outline: none;
   box-shadow: var(--focus-ring, 0 0 0 2px rgba(255, 255, 255, 0.72));
 }

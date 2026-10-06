@@ -158,6 +158,10 @@ html.theme-light:not(:has(.room[data-power="standby"])) form:has(#chat-input) bu
   background: rgba(0, 0, 0, 0.11);
   border-color: rgba(0, 0, 0, 0.34);
 }
+/* Välgunupp (kiire vastus): heledal pinnal on hover-täide tume nagu kiirmenüü nupul. */
+html.theme-light:not(:has(.room[data-power="standby"])) form:has(#chat-input) button.conv-quick-answer:is(:hover, :focus-visible) {
+  background: rgba(0, 0, 0, 0.055);
+}
 
 /* ---------- Alalehed ---------- */
 html.theme-light:not(:has(.room[data-power="standby"])) .panel-body article p,

@@ -1272,7 +1272,7 @@ export default function ChatBody({
     getVisibleMessages
   });
   const pilotDialogue = usePilotDialogue({ enabled: pilotDialogueEnabled, convId });
-  // ADR-092: the composer's menu item "Mõtle põhjalikumalt"; null in a room and where the plan offers no choice.
+  // ADR-092: the composer's lightning button "Kiire vastus"; null in a room and where the plan offers no choice.
   const reasoningChoice = usePilotReasoning(pilotMode && !isRoomMode ? pilotReasoning : null);
   const journeyDraftScope = sessionUserId && convId
     ? `${sessionUserId}:${convId}`
@@ -3093,8 +3093,8 @@ export default function ChatBody({
       placeholderText={composerPlaceholderText}
       forcePlaceholderVisible={composerForcePlaceholderVisible}
       hideComposerTools={hideComposerTools}
-      thinkThoroughly={reasoningChoice.available ? reasoningChoice.thorough : null}
-      onToggleThinkThoroughly={reasoningChoice.toggle}
+      quickAnswer={reasoningChoice.available ? reasoningChoice.quick : null}
+      onToggleQuickAnswer={reasoningChoice.toggle}
       documentFlowActive={documentFlowActive}
       suppressCareerCvPreview={suppressCareerCvPreview}
       onPickDocumentFile={analysis.onPickFile}

@@ -16,32 +16,38 @@ import fs from 'node:fs/promises';
 import { parseArgs } from 'node:util';
 import { PostgresCatalog } from '../lib/rag-v2/search/postgres.js';
 import { readPilotConfig, validReasoningChoices } from '../lib/rag-v2/pilot/config.js';
+import { budgetLedgerId } from '../lib/rag-v2/pilot/contracts.js';
 import { activateChatPlan, newChatPlan, preflightChatPlan } from '../lib/rag-v2/pilot/chat-plan.js';
 
 const { values } = parseArgs({ options: { tenant: { type: 'string' }, profile: { type: 'string' }, template: { type: 'string' },
   out: { type: 'string' }, 'budget-usd': { type: 'string' }, basis: { type: 'string' }, reasoning: { type: 'string', default: 'medium' }, 'rag-env': { type: 'string', default: '/etc/sotsiaalai/rag.env' },
   // ADR-092: the efforts a user may choose between in the chat, e.g. "low,medium"; --reasoning stays the one used unasked.
   'reasoning-choices': { type: 'string' },
+  // The plan file this one replaces for a setting only (not for a new corpus): the new plan keeps counting against that
+  // plan's ledger, so --budget-usd stays one cap over both and the money already spent stays spent. Without it the new
+  // plan starts its own count from zero.
+  'continue-ledger': { type: 'string' },
   activate: { type: 'boolean', default: false } } });
 const usd = Number(values['budget-usd']);
 const reasoningChoices = values['reasoning-choices'] ? values['reasoning-choices'].split(',').map(effort => effort.trim()) : null;
 if (!['low', 'medium', 'high'].includes(values.reasoning) || !values.tenant || !values.profile || !values.template || !values.out?.startsWith('/etc/sotsiaalai/') || !(usd > 0 && usd <= 10) || !values.basis
   || reasoningChoices && !validReasoningChoices({ reasoning: values.reasoning, reasoningChoices })) {
-  throw Error('usage: --tenant --profile --template --out /etc/sotsiaalai/<file> --budget-usd <0-10] --basis <text> [--reasoning-choices low,medium] [--activate]');
+  throw Error('usage: --tenant --profile --template --out /etc/sotsiaalai/<file> --budget-usd <0-10] --basis <text> [--reasoning-choices low,medium] [--continue-ledger <plan file>] [--activate]');
 }
 const template = JSON.parse(await fs.readFile(values.template, 'utf8'));
+const budgetLedger = values['continue-ledger'] ? budgetLedgerId(JSON.parse(await fs.readFile(values['continue-ledger'], 'utf8'))) : null;
 const postgres = new PostgresCatalog(process.env.RAG_V2_POSTGRES_URL);
 let plan;
 try {
   const generation = await postgres.active(values.tenant);
   plan = await newChatPlan({ generation, tenant: values.tenant, profileId: values.profile, users: template.users, accountProject: template.accountProject,
-    prices: template.prices, reasoning: values.reasoning, reasoningChoices, nanoUsd: Math.round(usd * 1e9), basis: values.basis });
+    prices: template.prices, reasoning: values.reasoning, reasoningChoices, budgetLedger, nanoUsd: Math.round(usd * 1e9), basis: values.basis });
   // The same checks the chat runs before a turn: active generation, profile, versions and directories.
   await preflightChatPlan(plan);
 } finally { await postgres.close(); }
 await fs.writeFile(values.out, JSON.stringify(plan, null, 2), { flag: 'wx', mode: 0o640 });
 const summary = { out: values.out, id: plan.id, tenant: plan.tenant, generation: plan.generationId, profile: plan.profileId,
-  documents: Object.keys(plan.documents).length, budgetUsd: usd, reasoning: plan.reasoning, reasoningChoices: plan.reasoningChoices ?? null,
+  documents: Object.keys(plan.documents).length, budgetUsd: usd, reasoning: plan.reasoning, reasoningChoices: plan.reasoningChoices ?? null, budgetLedger: plan.budgetLedger ?? null,
   implementationHash: plan.implementationHash.slice(0, 12), activated: false };
 if (values.activate) {
   await activateChatPlan({ ragEnv: values['rag-env'], file: values.out, plan });
