@@ -229,7 +229,8 @@ test('retrieve() selects the same evidence with and without the legal dates in t
   // carries its act's card and its notes), and what the limit reads is what it reads of the bundles without the data.
   const stored = packet => { const { tenant, query_id, generation_id, model_context, reference_map, evidence } = JSON.parse(JSON.stringify(packet).replaceAll(packet.query_id, 'query')); return { tenant, query_id, generation_id, model_context, reference_map, evidence }; };
   const [withDates, without] = [stored(roomy.withDates), stored(roomy.without)], bytes = value => Buffer.byteLength(JSON.stringify(value), 'utf8');
-  assert.equal(AUDIT_PACKET_BYTES, 512000);
+  // 06.10.2026: 512000 stopped a Tallinn turn (records 461 055 bytes, with five knowledge passages 519 264).
+  assert.equal(AUDIT_PACKET_BYTES, 1000000);
   assert.deepEqual([auditPacketBytes(withDates), auditPacketBytes(without)], [bytes(without), bytes(without)]);
   assert(bytes(withDates) > bytes(without) + 1000, `${bytes(withDates)} > ${bytes(without)}`);
   assert.equal(auditPacketBytes({ tenant, model_context: null, evidence: [] }), bytes({ tenant, model_context: null, evidence: [] }));

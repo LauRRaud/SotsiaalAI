@@ -91,3 +91,16 @@ Töötaval versioonil `3e2ac388` ([tõend](../audits/evidence/contact-directory-
 - **Juhise täpsustus** (omaniku otsus): kas Luna pakub kontakti ainult siis, kui inimene küsib, kelle poole pöörduda, või ka esimese sammuna (praegu peaaegu alati); lisalause ärajätmine; ameti valik (pigem see, kes taotlusi vastu võtab või otsustab, või üksuse üldkontakt). Vajab juhise uut versiooni ja paari pöörde mõõtmist.
 - **Kontaktide kirje maht suures omavalitsuses:** Tallinna üldine kirje jättis ruumi ühele kokkuvõttele. Kaaluda piiri (näiteks avada kirje ainult siis, kui pärast seda mahub teatud arv kokkuvõtteid).
 - Kas kokkuvõtete vähenemine jätab vastusest abi liike välja (üks kolmest võrdlusest viitab sellele), vajab mitut jooksu samal küsimusel.
+
+## Auditipaketi piir (06.10.2026)
+
+**Leid päris lehel:** küsimus „Mu eakas isa elab Tallinnas ega saa enam üksi hakkama. Kuhu pöörduda ja mis abi on võimalik?“ lõppes 7,9 sekundiga veaga `audit_packet_too_large`, enne kui vastust küsiti. Leitud 06.10 vestlusaknas mõõtes.
+
+- Pöörde salvestatav pakett tohtis olla kuni 512 000 baiti.
+- Tallinna kirjete kanal üksi võtab 461 055 baiti: 98 kirjet (71 teenust, 14 kontaktide kirjet, 11 kontakti, 2 vormi). Kontaktide kirjed ja kontaktid lisandusid korpusega v57 ([ADR-086](adr-086-compact-linked-contact.md)) ja lähima kirje avamisega (see ADR).
+- Viie teadmislõiguga oli pakett 519 264 baiti. Mõõdetud tasuta kordusega sama pöörde salvestatud päringu ja vektoriga, mudelit kutsumata.
+- Seega katkes Tallinnas iga pööre, kus teadmiskanal andis rohkem kui paar lõiku. 05.10 mõõdetud Tallinna pöörded mahtusid napilt alla piiri.
+
+**Parandus:** piir on 1 000 000 baiti (`AUDIT_PACKET_BYTES`). See peab mahutama suurima omavalitsuse kirjed ja teadmiskanali selle kõrval; teadmis- ja perioodikanal lisavad oma piiride juures umbes 180 000 baiti. Piir on kaitse lahti jooksnud paketi vastu; mudelile mineval kontekstil on omad mahupiirid, mida see ei muuda.
+
+**Lahti:** pakett kannab iga kirje kohta palju korduvat (viitekaart 167 000 baiti, otsinguabi tekstid 45 000). Salvestatava kuju kokkusurumine on eraldi töö; seni kasvab pakett koos omavalitsuse kirjete arvuga.
