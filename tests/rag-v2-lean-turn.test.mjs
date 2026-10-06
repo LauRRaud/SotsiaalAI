@@ -138,7 +138,7 @@ test('a lean turn is not projected again: its answer and state must be the ones 
 test('the store: a plan without an audit time publishes a turn lean; old turns of a plan with one are made lean later', async () => {
   const full = fullPayload(), { answer, packet, messageId: _message, ...claimed } = full, written = [];
   const stored = { id: 'turn', state: 'needs_recovery', chatTurnId: 'chat', createdAt: new Date('2026-09-01T00:00:00Z'), updatedAt: new Date('2026-09-01T00:00:05Z'), expiresAt: null, configHash: 'config', payload: claimed };
-  const tx = { $executeRaw: async () => {}, $queryRaw: async () => [], conversation: { findUnique: async () => ({ userId: 'u', metadata: { m4: true } }) },
+  const tx = { $executeRaw: async () => {}, $queryRaw: async () => [], conversation: { findUnique: async () => ({ userId: 'u', metadata: { m4: true } }), update: async () => ({}) },
     conversationMessage: { create: async () => ({ id: 'message' }) }, chatTurn: { update: async () => ({}) },
     m4PilotTurn: { findUnique: async () => stored, count: async () => 0, update: async ({ data }) => { written.push(data); return { ...stored, ...data }; } } };
   const store = new PilotStore({ $transaction: async fn => fn(tx) }), config = days => ({ id: 'm4-plan', tenant: packet.tenant, configHash: 'config', ...(days === undefined ? {} : { auditDays: days }) });

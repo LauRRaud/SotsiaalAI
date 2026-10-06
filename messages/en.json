@@ -65,6 +65,8 @@
     "closeSource": "Close source",
     "original": "Original source",
     "version": "Document version",
+    "sourceChanged": "This source has changed since the answer was written. The text as it was then is no longer shown; the link above opens the present version.",
+    "sourceGone": "This source can no longer be opened: it has changed or been removed since the answer was written. The text as it was then is not shown.",
     "sourceHint": "Access is checked again when opening a reference. The exact source passage and its location appear here.",
     "error": "Request failed ({code}). Repeating the same intent does not make another model attempt.",
     "metrics": "Attempt timing and usage",

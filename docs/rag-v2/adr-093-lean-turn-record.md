@@ -152,6 +152,8 @@ Mõõdetud 16 rida sekundis (sülearvuti) tähendab, et 60 sekundit neli korda p
 
 ### Järgmise arenduse nõuded
 
+**Töös: [ADR-094](adr-094-durable-conversation-history.md)** (omaniku otsus 06.10 „Jah, kogu töö“; viis sammu, esimene tehtud).
+
 Kõhn kirje on vaheaste. Codexi ülevaate järgi, millega ma nõustun:
 
 1. **Vestlusajalugu on väike ja iseseisev:** küsimus, vastus, ajatemplid, lühikesed allikaviited. Ajalugu ja jätkuvestlus töötavad ka pärast auditi kustumist, plaani vahetust ja korpuse uuendamist. Praegu on vestluse sõnumite tabelis teadlikult kohatäited ja päris tekst on ainult auditikirjes.
@@ -177,12 +179,12 @@ Kõhn rida tekib ainult siis, kui plaanil on `auditDays`. Kuni ühtegi kõhna ri
 
 ## Kõrvalleid: plaani vahetus peidab varasemad pöörded
 
-Vestluse ajalugu ja dialoogi kontekst loevad ainult töötava plaani pöördeid (`configHash`). Plaan uueneb iga väljalaskega, mis vestluse koodi muudab, ja iga korpuse täiendusega. Pärast seda varasemaid pöördeid vestluses ei näidata ja dialoog algab otsast. Arenduses on see teadlik piir; tootmises tähendaks see, et kasutaja ajalugu kaob igal uuendusel. **Enne avamist vajab see eraldi otsust.** Selle muudatusega seda ei puudutatud.
+Vestluse ajalugu ja dialoogi kontekst loevad ainult töötava plaani pöördeid (`configHash`). Plaan uueneb iga väljalaskega, mis vestluse koodi muudab, ja iga korpuse täiendusega. Pärast seda varasemaid pöördeid vestluses ei näidata ja dialoog algab otsast. Arenduses on see teadlik piir; tootmises tähendaks see, et kasutaja ajalugu kaob igal uuendusel. **Enne avamist vajab see eraldi otsust.** Selle muudatusega seda ei puudutatud. **Otsustatud 06.10, [ADR-094](adr-094-durable-conversation-history.md):** pärast selle esimest sammu on uued pöörded plaani vahetuse järel vestluses näha; jätkuvestlus kirjest on teine samm.
 
 ## Lahti
 
 - Päris pööre päris lehel kõhna kirjega (tasuline; luba ei ole küsitud). Praeguse plaaniga tekib esimene kõhn rida alles 7 päeva pärast.
 - Rea ühekordne kirjutamine.
-- Varasemate pöörete nähtavus pärast plaani vahetust (ülal).
-- Püsiv ajalookirje ja ajutine auditikirje (jaotis „Tuhandete kasutajate jaoks sellest ei piisa“): omaniku otsus ja eraldi töö.
+- Varasemate pöörete nähtavus pärast plaani vahetust (ülal): [ADR-094](adr-094-durable-conversation-history.md), esimene samm tehtud.
+- Püsiv ajalookirje ja ajutine auditikirje (jaotis „Tuhandete kasutajate jaoks sellest ei piisa“): omanik otsustas 06.10, töö käib ADR-094 all.
 - Serveri lugemisskriptid (`st/`) avavad nüüd kokkupakitud paketi (ühine klient `st/st-prisma.mjs`, 16 skripti, 06.10). Kõhnas reas puuduvat (vektor, päringu sisu, viitamata tõendus) nad lugeda ei saa: enne lugemist tuleb vaadata `payload.lean`.

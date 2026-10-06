@@ -11,6 +11,8 @@ import { PilotStore, PILOT_TURN_LIMITS, openTurn } from '../lib/rag-v2/pilot/sto
 import { isPackedJson, packJson } from '../lib/rag-v2/pilot/packed-json.js';
 import { auditPacketBytes, isLeanPacket, AUDIT_PACKET_BYTES } from '../lib/rag-v2/search/model-context.js';
 import { isLeanTurn } from '../lib/rag-v2/pilot/lean-turn.js';
+import { conversationTurns, historySourceView, isHistoryMessage } from '../lib/rag-v2/pilot/history.js';
+import { pilotChatMessages } from '../lib/chat/m4PilotClientContract.js';
 import { municipalPacket } from './fixtures/rag-v2-municipal-packet.mjs';
 import { PilotService } from '../lib/rag-v2/pilot/service.js';
 import { digest, buildQuestion, ANSWER_VERSION } from '../lib/rag-v2/pilot/contracts.js';
@@ -59,8 +61,9 @@ test('real DB: concurrent same-key requests share one turn; repeat and refresh r
   assert.equal((await f.service.run(f.user.id, f.input)).state, 'completed');
   await assert.rejects(f.service.run(f.user.id, { ...f.input, question: 'Teine' }), { code: 'idempotency_conflict' });
   assert.equal(await db.conversationMessage.count({ where: { conversationId: f.conv.id } }), 2);
-  const messages = await db.conversationMessage.findMany({ where: { conversationId: f.conv.id } });
-  assert.ok(messages.every(m => !m.content.includes('Allikatekst') && !m.content.includes('Üldküsimus')));
+  // ADR-094: the turn's two messages are the question and the answer themselves (until then they were placeholders).
+  const messages = await db.conversationMessage.findMany({ where: { conversationId: f.conv.id }, orderBy: { createdAt: 'asc' } });
+  assert.deepEqual(messages.map(m => [m.role, m.content]), [['USER', 'Üldküsimus'], ['ASSISTANT', 'Allikatekst [S1]\n\nPiiratud']]);
 });
 test('real DB: permitted cache hit makes zero new embeddings; another user/archived conversation is excluded', async t => {
   const f = await fixture(t);
@@ -785,4 +788,68 @@ test('real DB: with an audit time a turn is stored whole and made lean once it i
   // The turn made lean later restores like any other, without a call.
   const calls = f.calls.length, restored = await f.service.run(f.user.id, f.input);
   assert.deepEqual([restored.id, restored.state, restored.answer, f.calls.length], [first.id, 'completed', first.answer, calls]);
+});
+
+// ADR-094: the conversation is kept with the conversation's own messages, not in the turn's audit row. The chat's
+// history is read from there whenever the row cannot be: after a plan change (a release that changes the chat, a corpus
+// increment) and after the audit row is gone.
+test('real DB: a published turn stays in its conversation\'s history through a plan change and the end of its audit row', async t => {
+  const f = await fixture(t);
+  await db.conversation.update({ where: { id: f.conv.id }, data: { lastActivityAt: new Date(Date.now() - 30 * 86400000) } });
+  const started = Date.now();
+  const first = await f.service.run(f.user.id, f.input);
+  const second = await f.service.run(f.user.id, { ...f.input, clientTurnKey: randomUUID(), question: 'Teine küsimus' });
+  const messages = await db.conversationMessage.findMany({ where: { conversationId: f.conv.id }, orderBy: { createdAt: 'asc' } });
+  assert.deepEqual(messages.map(m => [m.role, m.content, m.metadata.m4TurnId, isHistoryMessage(m)]), [['USER', 'Üldküsimus', first.id, false], ['ASSISTANT', 'Allikatekst [S1]\n\nPiiratud', first.id, true],
+    ['USER', 'Teine küsimus', second.id, false], ['ASSISTANT', 'Allikatekst [S1]\n\nPiiratud', second.id, true]]);
+  assert.equal(messages[0].authorId, f.user.id);
+  // The record: what the chat shows and the dialogue goes on from; of the source a citation and ids, never its text.
+  const record = messages[1].metadata.m4History;
+  assert.deepEqual([record.turnId, record.mode, record.answer, record.language, record.forms], [first.id, 'real', first.answer, 'et', []]);
+  assert.deepEqual(record.sources, [{ ref: 'S1', title: 'Testallikas', pages: [2], version: 'v1', document: 'doc1' }]);
+  assert.equal(record.dialogue.contextMode, 'new');
+  assert(Buffer.byteLength(JSON.stringify(record), 'utf8') < 2000);
+  // A published turn marks its conversation active: the retention time of a conversation runs from its last activity.
+  assert((await db.conversation.findUnique({ where: { id: f.conv.id } })).lastActivityAt.getTime() >= started);
+  const base = { db, service: f.service, config: f.config, userId: f.user.id, convId: f.conv.id };
+  const shown = turns => pilotChatMessages(turns, f.conv.id).map(m => [m.role, m.text]);
+  // The running plan reads its own rows, references checked as before.
+  const live = await conversationTurns(base);
+  assert.deepEqual(live.turns.map(turn => [turn.id, turn.history === true]), [[first.id, false], [second.id, false]]);
+  // Another plan (as after any release that changes the chat's code, or a corpus increment) reads no row of this one:
+  // the conversation is shown from its records, the same messages.
+  const next = { ...f.config, id: randomUUID(), configHash: randomUUID() };
+  const later = await conversationTurns({ ...base, config: next });
+  assert.deepEqual(later.turns.map(turn => [turn.id, turn.history, turn.question, turn.answer]), [[first.id, true, 'Üldküsimus', first.answer], [second.id, true, 'Teine küsimus', second.answer]]);
+  assert.deepEqual(shown(later.turns), shown(live.turns));
+  assert.deepEqual(later.turns[0].sources, [{ ref: 'S1', title: 'Testallikas', pages: [2], version: 'v1', used: true }]);
+  assert.equal(later.rows.size, 0);
+  // A source of such a turn: its citation; the text only when the corpus still holds the same excerpt (here the test
+  // adapters have no corpus lookup, so nothing is claimed).
+  const one = await conversationTurns({ ...base, config: next, turnId: second.id });
+  assert.deepEqual(one.turns.map(turn => turn.id), [second.id]);
+  assert.deepEqual(await historySourceView({ adapters: f.adapters, config: next, record: one.records.get(second.id), ref: 'S1' }),
+    { title: 'Testallikas', version: 'v1', pages: [2], text: null, ref: 'S1', links: [], history: true, superseded: true });
+  // The audit rows end (the plan's retention time, or a sweep): the conversation is still whole.
+  assert.equal((await db.m4PilotTurn.deleteMany({ where: { pilotId: f.config.id } })).count, 2);
+  const after = await conversationTurns(base);
+  assert.deepEqual(shown(after.turns), shown(live.turns));
+  assert.deepEqual(after.turns.map(turn => turn.history), [true, true]);
+  // Another user's request finds nothing of it: rows go by the user, and the route reads records only after the
+  // conversation's owner is checked (store.conversation).
+  await assert.rejects(f.store.locked(f.config, tx => f.store.conversation(tx, 'another-user', f.conv.id)));
+});
+
+test('real DB: a turn that cannot be restored from its row is shown from its record; a stopped turn has none', async t => {
+  const f = await fixture(t);
+  const first = await f.service.run(f.user.id, f.input);
+  f.service.call = async ({ stage }) => { if (stage === 'answer') throw Error('timeout'); return { value: Array.from({ length: 3072 }, (_, i) => i === 0 ? 1 : 0), usage: { input: 50, output: 0 }, requestId: 'fake' }; };
+  await assert.rejects(f.service.run(f.user.id, { ...f.input, clientTurnKey: randomUUID(), question: 'Katkenud küsimus' }));
+  assert.equal(await db.conversationMessage.count({ where: { conversationId: f.conv.id } }), 2, 'a turn without an answer writes no message');
+  const base = { db, service: f.service, config: f.config, userId: f.user.id, convId: f.conv.id };
+  // The source of the first turn leaves the plan: its row no longer restores, the conversation still shows the turn.
+  f.config.documents = {};
+  const listed = await conversationTurns(base);
+  assert.deepEqual(listed.turns.map(turn => [turn.state, turn.history === true]), [['completed', true], ['unknown', false]]);
+  assert.deepEqual([listed.turns[0].id, listed.turns[0].answer, listed.rows.has(first.id)], [first.id, first.answer, false]);
 });

@@ -65,6 +65,8 @@
     "closeSource": "Sulge allikas",
     "original": "Algallikas",
     "version": "Dokumendiversioon",
+    "sourceChanged": "Allikas on pärast seda vastust uuenenud. Vastuse koostamise aegset teksti enam ei näidata; ülal on link allika praegusele versioonile.",
+    "sourceGone": "Seda allikat ei saa enam avada: see on pärast vastust uuenenud või eemaldatud. Vastuse koostamise aegset teksti ei näidata.",
     "sourceHint": "Viite avamisel kontrollitakse ligipääsu uuesti. Siin avaneb täpne algtekst koos allikakohaga.",
     "error": "Päring ebaõnnestus ({code}). Sama kavatsuse kordamine ei tee uut mudelikatset.",
     "metrics": "Katse aeg ja kasutus",
