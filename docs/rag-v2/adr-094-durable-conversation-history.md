@@ -307,6 +307,22 @@ Avamise plaaniga kirjutab pööre endiselt kolm suurt osa ühe korra ja laseb ne
 
 Varasem väljalase loeb osi ainult `payload`-ist ega näe selle sammuga kirjutatud ridade paketti. Väljalaske vahetus uuendab aga plaani (`lib/rag-v2` muutus) ja teise plaani pöördeid loetakse nende kirjetest (teine samm), mitte ridadest. Veerud jäävad tagasipööramisel alles; vana kood neid ei puuduta.
 
+### Päris lehel (06.10.2026, väljalase `a468b63a`, #420)
+
+Migratsioon rakendus juurutusel; plaan uuenes ja on valmis. Varasemad read (vana kuju, osad `payload`-is) avanevad tervena. Üks päris pööre (0,0049 USD), jätkuküsimus vestluses, mille varasemad pöörded on kahe varasema plaani omad:
+
+| | |
+|---|---|
+| `payload` kettal | 14,8 KB (tekstina 33,3 KB) |
+| Veerg `packet` | 13,0 KB |
+| Veerg `requestAudit` | 23,2 KB |
+| Veerg `vector` | 30,2 KB |
+| Suuri osi `payload`-is | ei ole |
+| Rida avaneb tervena | jah (5 viidet, vektor 3072, päringu keha olemas) |
+| Varasem vastus ja olek | kirjest |
+
+Kirjutamise aega ja logi mahtu serveris ei mõõdetud.
+
 ### Serveri abiskriptid
 
 Minu lugemisskriptid kaustas `/home/ubuntu/rag-v2-work` (`hv`, `tm`, `ap`, `rv`) loevad `payload.packet`-i otse. Pärast seda sammu peavad nad rea avama `openTurn`-iga.

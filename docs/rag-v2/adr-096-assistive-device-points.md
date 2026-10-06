@@ -43,10 +43,11 @@ Pärast parandusi: iga punkt on täpselt ühes omavalitsuses ja ühes maakonnas 
 
 ## Andmestikust korpuse allikad
 
-Omanik 06.10: „üld võib olla, pane juhislehega“. `pointSources` teeb andmestikust 83 väikest lehte:
+Omanik 06.10: „üld võib olla, pane juhislehega“. `pointSources` teeb andmestikust 93 väikest lehte (v60-s 83; kümme punktita omavalitsuse lehte lisandus v61-ga):
 
 - **Omavalitsuse leht** (68): kõik selle omavalitsuse punktid abivahendi kategooria kaupa. Iga punkti kohta nimi, aadress, müük või üür, **üldtelefon** ja koduleht. Leht on selle omavalitsuse allikas: otsing kasutab seda siis, kui vestlus on selle omavalitsuse kohta.
-- **Maakonna leht** (15): ülevaade, millises omavalitsuses on millise kategooria punkte, ja millistes omavalitsustes punkte ei ole. Leht on maakonna kõigi omavalitsuste allikas, nii et punktita omavalitsuse inimene saab teada, kus lähimad on. Aadress ja telefon on omavalitsuse lehel.
+- **Punktita omavalitsuse leht** (10, alates v61): omavalitsus, kus kaardil ei ole ühtegi punkti, saab samuti oma lehe. Leht ütleb seda esimeses lõigus ja loetleb **sama maakonna punktid** kategooria kaupa, igaühel aadress koos omavalitsusega, üldtelefon ja koduleht. Kategooria pealkiri ütleb, et punktid on sama maakonna teistes omavalitsustes. Leht ei nimeta neid „lähimateks“: kaugust ei ole mõõdetud.
+- **Maakonna leht** (15): ülevaade, millises omavalitsuses on millise kategooria punkte, ja millistes omavalitsustes punkte ei ole. Leht on maakonna kõigi omavalitsuste allikas. Aadress ja telefon on omavalitsuse lehel. **Punktita omavalitsuse inimeseni see leht ei jõudnud** (vt „Korpus v61“).
 
 Reeglid:
 
@@ -74,6 +75,28 @@ Omanik 06.10: „üld võib olla, pane juhislehega“ (müügipunkti üldtelefon
 
 Kaks pööret on kontroll, et uued allikad jõuavad vastusesse, mitte kvaliteedi mõõtmine.
 
+## Korpus v61 (06.10.2026): punktita omavalitsuste lehed
+
+**Leid päris lehel.** Küsimus „Elan Muhu vallas ja vajan ratastooli. Kust ma selle saan?“ (Muhu vallas kaardil punkti ei ole) sai vastuse tõendi ja tingimuste kohta, kuid ühtegi müügikohta ei nimetatud. Pöörde kirje: valik luges 35 kandidaati ja maakonna ülevaadet nende hulgas ei olnud; viidatud olid määruse lisa ja juhisleht. Maakonna leht oli Muhu valla allikaks märgitud, kuid ei jõudnud kandidaatide hulka.
+
+**Võrdlus.** Sama küsimus Saaremaa vallas (Kuressaare), kus on oma leht, nimetas kaks müügikohta aadressi ja telefoniga ning viitas lehele „Abivahendite müügi- ja üüripunktid: Saaremaa vald“. Sõnavara („ratastool“ ja kategooria „Liikumisabivahendid“) ei olnud seega takistus; puudu oli omavalitsuse enda leht.
+
+**Muudatus.** Kümme punktita omavalitsust (Alutaguse, Häädemeeste, Kastre, Kihnu, Lääne-Nigula, Muhu, Rõuge, Ruhnu, Setomaa ja Vormsi vald) said oma lehe sama maakonna punktidega. Lehed on tehtud 06.10 lugemisest (tabelit uuesti ei loetud); ülejäänud 83 lehte jäid bait-baidilt samaks.
+
+| | |
+|---|---|
+| Uusi allikaid | 10 |
+| Lõike | 147; hoiatusi ja blokeerijaid 0 |
+| Ost | 147 sisendit, 46 852 tokenit, **0,0061 USD** (piir 0,01, seatud omaniku „veidi raha“ loa sees) |
+| Indeks | `e957586c`: 7429 dokumenti, 43 165 lõiku (enne `3b3b1325`: 7419 ja 43 018) |
+| Vestlusplaan | `/etc/sotsiaalai/m4-corpus-chat-20261006e.json` |
+
+**Kontroll pärast (üks pööre, 0,0054 USD).** Sama Muhu valla küsimus: vastus ütles, et Muhu valla jaoks loetletud müügi- ja üürikohad asuvad Saaremaa vallas, nimetas kaks Kuressaare müügikohta aadressi ja telefoniga ning lisas tõendi tee; viidatud olid „Abivahendite müügi- ja üüripunktid: Muhu vald“ ja „Abivahendi vajajale“.
+
+Kolm pööret maksid 0,0054, 0,0039 ja 0,0054 USD. Need on kontroll ühe küsimusega, mitte kvaliteedi mõõtmine: teisi üheksat omavalitsust ja teisi kategooriaid ei proovitud.
+
+**Tähelepanek:** vastus lisas, et seda, kas müügikoht on lepingupartner, saab kontrollida ameti kaardilt. Lehel on ainult lepingupartnerite punktid ja leht ütleb seda; vastus oli siin ettevaatlikum kui allikas.
+
 **Tähelepanek kontrollist:** punkti, mille nimi on ainult „Tartu“, nimetas vastus aadressi järgi („Teguri tn 37b asuvast müügikohast“), mitte ettevõtte järgi. Leht võiks sellise punkti puhul öelda ettevõtte saidi nime ette.
 
 ## Kontroll
@@ -84,7 +107,8 @@ Päris lugemine 06.10.2026: 148 lugemist, 178 sekundit, arvud ülal. Mudeli- ega
 
 ## Tegemata
 
-- Kvaliteeti ei ole mõõdetud: kaks pööret päris lehel on kontroll, mitte mõõtmine. Kontrollimata on punktita omavalitsuse inimese küsimus (maakonna leht) ja kategooriad peale kuulmisabivahendite.
+- Kvaliteeti ei ole mõõdetud: viis pööret päris lehel on kontroll, mitte mõõtmine. Proovitud on kuulmisabivahendid (Tartu linn) ja ratastool (Saaremaa vald, Muhu vald); teised kategooriad ja üheksa punktita omavalitsust on proovimata.
+- Punktita omavalitsuse leht loetleb kogu maakonna punktid. Suure maakonna leht on pikk (Kastre vald: 191 kirjet). Kaugust ei arvestata.
 - Toote nimetuse filter (neljas) on lugemata: see ütleks, kes pakub täpselt seda toodet, mitte ainult kategooriat.
 - Muutuste jälgimine: uus lugemine ettepanekuna, nagu kogutud andmetel ikka.
 - Samad punktid koordinaatidega sobiksid ka platvormi enda kaardile.
