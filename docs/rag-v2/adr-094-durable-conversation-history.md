@@ -165,9 +165,16 @@ Pöörete loend lisab kirjele keskmiselt 0,2 KB (suurim 0,7). Kaks sõnumit kett
 - Ühiktestid (`tests/rag-v2-history.test.mjs`, kolm uut): järgmine pööre võetakse kirjetest vastu nagu ridadest (koos vastuseta pöördega teema keskel, parandusega ja olekuga); täis teema annab edasi kirjetest nagu ridadest; tundmatu pea alustab uut teemat.
 - Andmebaasitestid: pärast plaanivahetust jätkab järgmine sõnum teemat (kasutajapöörded, varasem vastus, olek) ja teeb ühe vastusekutse; dialoog jätkub, kui auditiread on kustutatud, ka vastuseta pöördest mööda; teise olekuversiooniga olek jäetakse kõrvale; aegunud reaga pea jätkub kirjest oma isikuga; kohatäidetega avaldatud pöörded saavad kirje reast ja neid jätkatakse (kuivkäivitus ei kirjuta, muu sisu jääb puutumata, kirje on sama mis avaldamisel).
 
+### Päris lehel (06.10.2026, väljalase `9fd83c37`, #412)
+
+- **Tagasitäide serveris.** Kuivkäivitus: 82 pöördest 82 saaks kirje, vigu 0, muu sisuga sõnumeid 0. Päris käivitus: 82 kirjet tehtud (kokku 467 KB tekstina, suurim 10,7 KB). Kordus: kõik 82 olemas, midagi ei kirjutatud.
+- **Brauseris, omaniku kontoga.** Enne tagasitäidet: 30 vestlust, 0 pööret. Pärast: 30 vestlusel 30-l on pöörded, kokku 33 pööret, kõik kirjest; 33 vastust päris tekstiga; kõigil 30 vestlusel on aktiivne teema (koostaja saadab järgmise sõnumi jätkuna). Kaheksa kirjest näidatud pöörde allikavaade: kõik avanesid tekstiga (korpuses sama lõik) ja lingiga. Vestlusaken näitab kahe pöördega vestlust nelja sõnumina, kohatäiteid ja veateateid ei ole.
+- **Üks päris pööre päris mudeliga (omaniku luba 06.10; kulu 0,0049 USD plaani hindades).** Jätkuküsimus vestluses, mille kaks pööret avaldati hommikul teise plaani all. Tulemus pöörde kirjest: võeti vastu jätkuna (3 kasutajapööret, loendur 3, `headFromEarlierPlan` puudub); varasem vastus ja olek tulid **kirjest**, eelmine olek jäi alles; sõnumites on küsimus ja vastus tekstina (653 märki) ning kirje (3 kasutajapööret, 5 allikat, 7,5 KB); vastuse sõnum on küsimusest 1 ms hilisem; vestluse viimase aktiivsuse aeg uuenes avaldamisel. Vastus tuli umbes 9 sekundiga.
+
 ### Kontrollimata
 
-- Brauseris ja päris mudeliga: tehakse pärast selle sammu jõudmist serverisse (jaotis „Lahti“).
+- Uuenenud allika teade brauseris (kõigil kaheksal vaadatud allikal oli korpuses sama lõik).
+- Täis teema edasiandmine ja vastuseta pööre teema keskel päris lehel (testides kaetud).
 - 12 ühendtesti siin arvutis ei käi (EstNLTK ja kohalikud sisendfailid), nagu esimeses sammus.
 
 ### Tegemata selles sammus
@@ -188,6 +195,6 @@ Varasem väljalase loeb ainult ridu ja jätab sõnumid vahele. Selle sammu saab 
 ## Lahti
 
 - Sammud 3–5.
-- Pärast teise sammu jõudmist serverisse: tagasitäide serveris (enne kuivkäivitus), vanade vestluste kontroll brauseris ja üks päris pööre päris lehel (tasuline; omanik andis 06.10 loa väikesteks kuludeks, ülempiir kogu töö peale 0,50 USD). Tulemus kirjutatakse siia.
+- Kulu selle töö peale seni: 0,0049 USD (üks päris pööre; omaniku luba 06.10 väikesteks kuludeks, minu ülempiir 0,50 USD).
 - Kirje suurus: vastus on kirjes kaks korda ja tunnused (dokument, versioon, lõik, räsi) võtavad allika kohta umbes 0,3 KB. Kui 4,8 KB osutub liiga suureks, on need kohad, kust võtta.
 - Vestluse pealkiri: RAG v2 vestlus luuakse pealkirjaga „M4 sisepiloot“.
