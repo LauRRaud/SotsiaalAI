@@ -9,7 +9,7 @@ import ChatSidebar from "@/components/ChatSidebar";
 import { redirect } from "next/navigation";
 import { localizePath } from "@/lib/localizePath";
 import { requireChatUser } from '@/lib/chat/routeServerUtils';
-import { readPilotConfig } from '@/lib/rag-v2/pilot/config';
+import { readPilotConfig, reasoningOffer } from '@/lib/rag-v2/pilot/config';
 export async function generateMetadata() {
   const cookieStore = await cookies();
   const locale = getLocaleFromCookies(cookieStore);
@@ -40,11 +40,12 @@ export default async function Page({ searchParams }) {
   const emailVerifiedEntry = reason === "email-verified";
   const roomIdRaw = resolvedSearchParams?.roomId;
   const roomId = typeof roomIdRaw === "string" ? roomIdRaw.trim() || null : null;
-  let pilotMode = null, pilotDialogueEnabled = false;
+  // pilotReasoning (ADR-092): the plan's choice of the answer's reasoning effort, for the composer's menu item.
+  let pilotMode = null, pilotDialogueEnabled = false, pilotReasoning = null;
   if (!roomId && process.env.M4_PILOT_ENABLED === '1') {
     const auth = await requireChatUser({ includeSession: true });
     if (auth.ok && !auth.session?.authDegraded) {
-      try { const config = await readPilotConfig(auth.userId, { purpose: 'read' }); pilotMode = config.mode; pilotDialogueEnabled = !!config.dialogueVersion; } catch {}
+      try { const config = await readPilotConfig(auth.userId, { purpose: 'read' }); pilotMode = config.mode; pilotDialogueEnabled = !!config.dialogueVersion; pilotReasoning = reasoningOffer(config); } catch {}
     }
   }
   return <>
@@ -54,6 +55,7 @@ export default async function Page({ searchParams }) {
       <ChatBody
         pilotMode={pilotMode}
         pilotDialogueEnabled={pilotDialogueEnabled}
+        pilotReasoning={pilotReasoning}
         roomId={roomId}
         requestLoginOnOpen={loginRequested || emailVerifiedEntry}
         emailVerifiedEntry={emailVerifiedEntry}

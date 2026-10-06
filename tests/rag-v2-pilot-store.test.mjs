@@ -650,3 +650,29 @@ test('Codex J4 real DB: two recoveries at once publish a waiting answer once', a
   assert.deepEqual([a.state, b.state], ['completed', 'completed']);
   assert.equal(await db.conversationMessage.count({ where: { conversationId: f.conv.id } }), 2);
 });
+
+test('real DB, ADR-092: the answer is written with the effort the user chose among the plan\'s choices and the turn keeps it', async t => {
+  const f = await fixture(t, { reasoning: 'medium', reasoningChoices: ['low', 'medium'] });
+  const answerBodies = () => f.bodies.filter(item => item.stage === 'answer').map(item => item.body);
+  const chosen = await f.service.run(f.user.id, { ...f.input, reasoning: 'low' });
+  assert.equal(chosen.state, 'completed');
+  assert.equal(answerBodies().at(-1).reasoning.effort, 'low');
+  const row = await db.m4PilotTurn.findUnique({ where: { id: chosen.id } });
+  assert.equal(row.payload.reasoning, 'low');
+  assert.equal(row.payload.requestAudit.body.reasoning.effort, 'low');
+  // The same key with another choice is another input; the stored turn is read back only for the same one.
+  await assert.rejects(f.service.run(f.user.id, { ...f.input, reasoning: 'medium' }), { code: 'idempotency_conflict' });
+  await assert.rejects(f.service.run(f.user.id, f.input), { code: 'idempotency_conflict' });
+  assert.equal((await f.service.run(f.user.id, { ...f.input, reasoning: 'low' })).id, chosen.id);
+  // Without a choice the plan's own effort is used and the turn records none.
+  const plain = await f.service.run(f.user.id, { ...f.input, clientTurnKey: randomUUID() });
+  assert.equal(answerBodies().at(-1).reasoning.effort, 'medium');
+  assert.equal('reasoning' in (await db.m4PilotTurn.findUnique({ where: { id: plain.id } })).payload, false);
+  // The plan's own effort named outright gives the same request.
+  await f.service.run(f.user.id, { ...f.input, clientTurnKey: randomUUID(), reasoning: 'medium' });
+  assert.equal(answerBodies().at(-1).reasoning.effort, 'medium');
+  // An effort the plan does not offer is refused before a turn is claimed or a call made.
+  const calls = f.calls.length, turns = await db.m4PilotTurn.count({ where: { pilotId: f.config.id } });
+  await assert.rejects(f.service.run(f.user.id, { ...f.input, clientTurnKey: randomUUID(), reasoning: 'high' }), { code: 'reasoning_not_offered' });
+  assert.deepEqual([f.calls.length, await db.m4PilotTurn.count({ where: { pilotId: f.config.id } })], [calls, turns]);
+});

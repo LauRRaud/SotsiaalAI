@@ -1632,7 +1632,9 @@ export function useChatStream(config) {
           },
           body: JSON.stringify(cfg.pilotEnabled ? {
             question: text, convId: cfg.convId, clientTurnKey, contextMode: 'new', language: cfg.locale || 'et',
-            ...(cfg.pilotDialogueEnabled ? cfg.pilotContext : {})
+            ...(cfg.pilotDialogueEnabled ? cfg.pilotContext : {}),
+            // ADR-092: the user's choice of the answer's reasoning effort, where the chat plan offers one.
+            ...(cfg.pilotReasoning ? { reasoning: cfg.pilotReasoning } : {})
           } : {
             message: text,
             history: cfg.historyPayload,

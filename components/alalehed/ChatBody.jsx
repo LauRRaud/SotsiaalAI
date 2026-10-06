@@ -14,6 +14,7 @@ import { useRealtimeVoice } from "../chat/hooks/useRealtimeVoice";
 import { useChatStream } from "@/components/chat/hooks/useChatStream";
 import { useChatConversationState } from "../chat/hooks/useChatConversationState";
 import { usePilotDialogue } from '../chat/hooks/usePilotDialogue';
+import { usePilotReasoning } from '../chat/hooks/usePilotReasoning';
 import { prettifyFileName } from "@/components/chat/utils/sources";
 import { collectMessageSources, useConversationSources } from "@/components/chat/hooks/useConversationSources";
 import { useChatAnalysisController } from "@/components/chat/hooks/useChatAnalysisController";
@@ -395,6 +396,7 @@ function resolveCssLengthPx(value, contextNode = null) {
 export default function ChatBody({
   pilotMode = null,
   pilotDialogueEnabled = false,
+  pilotReasoning = null,
   roomId = null,
   onBackHome = null,
   embedded = false,
@@ -1270,6 +1272,8 @@ export default function ChatBody({
     getVisibleMessages
   });
   const pilotDialogue = usePilotDialogue({ enabled: pilotDialogueEnabled, convId });
+  // ADR-092: the composer's menu item "Mõtle põhjalikumalt"; null in a room and where the plan offers no choice.
+  const reasoningChoice = usePilotReasoning(pilotMode && !isRoomMode ? pilotReasoning : null);
   const journeyDraftScope = sessionUserId && convId
     ? `${sessionUserId}:${convId}`
     : "";
@@ -2192,6 +2196,7 @@ export default function ChatBody({
     pilotDialogueEnabled,
     pilotContext: pilotDialogue.selection,
     pilotContextReady: pilotDialogue.ready,
+    pilotReasoning: reasoningChoice.effort,
     onPilotSettled: pilotDialogue.refresh,
     convId,
     historyPayload,
@@ -3088,6 +3093,8 @@ export default function ChatBody({
       placeholderText={composerPlaceholderText}
       forcePlaceholderVisible={composerForcePlaceholderVisible}
       hideComposerTools={hideComposerTools}
+      thinkThoroughly={reasoningChoice.available ? reasoningChoice.thorough : null}
+      onToggleThinkThoroughly={reasoningChoice.toggle}
       documentFlowActive={documentFlowActive}
       suppressCareerCvPreview={suppressCareerCvPreview}
       onPickDocumentFile={analysis.onPickFile}

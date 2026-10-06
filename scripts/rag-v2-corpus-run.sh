@@ -47,9 +47,13 @@ chat_plan() {
   [ -n "$CURRENT" ] || fail "no active plan in $ENVF"
   LOG=$S/chat-plan-v$VERSION.log
   NODE="sudo -n node --env-file=$ENVF --import ./scripts/register-node-source-loader.mjs"
+  # ADR-092: the efforts the running plan lets a user choose between stay offered under the new plan; a new plan made
+  # without them would take the item "Mõtle põhjalikumalt" out of the chat's menu.
+  CHOICES=$(sudo -n node -e 'const p=JSON.parse(require("fs").readFileSync(process.argv[1],"utf8"));process.stdout.write((p.reasoningChoices||[]).join(","))' "$CURRENT") \
+    || fail "the running plan $CURRENT cannot be read: $REFUSES"
   (cd $A && $NODE scripts/rag-v2-chat-plan.mjs \
     --tenant sotsiaalai-corpus --profile hybrid-estnltk-chat-v6 --reasoning medium --template $ETC/m4-luna6-20260923.json --out $OUT --budget-usd 4 \
-    --basis "$BASIS_EN" --rag-env $ETC/rag.env --activate) > $LOG 2>&1
+    ${CHOICES:+--reasoning-choices $CHOICES} --basis "$BASIS_EN" --rag-env $ETC/rag.env --activate) > $LOG 2>&1
   STATUS=$?
   tail -2 $LOG
   [ $STATUS -eq 0 ] || fail "chat plan (exit $STATUS, $LOG): index $NEXT is active and the plan $CURRENT is not for it, so the chat refuses turns until a plan exists; run again with RESUME=plan and a new plan file name"

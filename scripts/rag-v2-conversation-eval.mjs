@@ -34,6 +34,9 @@ const { values } = parseArgs({ options: { scenarios: { type: 'string', default: 
   // so the search times are a warm server's and not this new process's (Codex 7.8).
   warm: { type: 'boolean', default: false },
   cold: { type: 'boolean', default: false },
+  // --reasoning low|medium|high (ADR-092): every turn asks for this effort of the answer, as a user's choice in the chat
+  // does; the plan must offer it (reasoningChoices). Without it the plan's own effort is used.
+  reasoning: { type: 'string' },
   legal: { type: 'string', default: 'docs/rag-v2/legal-acts-in-index.json' } } });
 const catalogue = JSON.parse(await fs.readFile(values.scenarios, 'utf8'));
 const problems = validateCatalogue(catalogue);
@@ -62,6 +65,11 @@ const plan = JSON.parse(await fs.readFile(process.env.M4_PILOT_CONFIG, 'utf8'));
 const userId = plan.users[0];
 const readConfig = options => readPilotConfig(userId, options);
 const config = await readConfig({ purpose: 'execute' });
+// An effort the plan does not offer would be refused turn by turn; say so before anything runs.
+if (values.reasoning && !(config.reasoningChoices || []).includes(values.reasoning)) {
+  console.error(JSON.stringify({ ok: false, problem: 'reasoning_not_offered', offered: config.reasoningChoices ?? null }));
+  process.exit(1);
+}
 const { processCatalog } = await import('../lib/rag-v2/search/postgres.js');
 // The server's marks, read only. Without them (--cold, no table, a failed read) the process verifies as before.
 const verifiedMarks = values.cold ? 0 : await processCatalog(process.env.RAG_V2_POSTGRES_URL).inheritVerified({ keep: false }).catch(() => 0);
@@ -183,7 +191,7 @@ function rerankOf(rerank) {
 
 await fs.mkdir(values.out, { recursive: true });
 const report = { schema_version: 'rag-v2/conversation-eval-report-1', started_at: new Date().toISOString(), today, plan: config.id, verified_marks: verifiedMarks,
-  generation: config.generationId, model: config.model, reasoning: config.reasoning, catalogue: values.scenarios, scenarios: [] };
+  generation: config.generationId, model: config.model, reasoning: values.reasoning || config.reasoning, catalogue: values.scenarios, scenarios: [] };
 let spent = 0;
 try {
   for (const scenario of scenarios) {
@@ -196,7 +204,8 @@ try {
         expect: Object.fromEntries(Object.entries(listed.expect || {}).filter(([key]) => key !== 'previous_state_cleared')) } : listed;
       let result = null, error = null, firstText = null;
       const started = performance.now(), streaming = values.stream ? { onAnswerText: () => { firstText ??= performance.now() - started; } } : {};
-      try { result = await service.run(userId, { question: turn.text, contextMode: turn.mode, convId: conversation.id, clientTurnKey: randomUUID(), language: 'et' }, streaming); }
+      try { result = await service.run(userId, { question: turn.text, contextMode: turn.mode, convId: conversation.id, clientTurnKey: randomUUID(), language: 'et',
+        ...(values.reasoning ? { reasoning: values.reasoning } : {}) }, streaming); }
       catch (failure) { error = failure.code || 'turn_failed'; result = failure.pilotTurnId ? { id: failure.pilotTurnId } : null; }
       const row = result?.id ? await prisma.m4PilotTurn.findUnique({ where: { id: result.id } }) : null;
       const observed = observe(row, error);

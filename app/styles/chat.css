@@ -526,7 +526,7 @@ html[data-contrast="hc"] .conv-tools-menu[role="menu"] {
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
 }
-[role="menu"] [role="menuitem"] {
+[role="menu"] :is([role="menuitem"], [role="menuitemcheckbox"]) {
   display: flex;
   align-items: center;
   gap: 0.65em;
@@ -547,8 +547,27 @@ html[data-contrast="hc"] .conv-tools-menu[role="menu"] {
 [role="menu"] [role="menuitem"] img {
   display: none;
 }
-[role="menu"] [role="menuitem"]:hover {
+[role="menu"] :is([role="menuitem"], [role="menuitemcheckbox"]):hover {
   background: var(--glass-cell-bg-hover);
+}
+/* Linnukesega valik (ADR-092, "Mõtle põhjalikumalt"): sama rida mis teised, tekst vasakul ja
+   linnuke paremal. Linnukese koht on alati olemas, nii et rida ei nihku, kui valik muutub. */
+[role="menu"] [role="menuitemcheckbox"] {
+  justify-content: space-between;
+}
+/* "+" menüü võib linnukesega rea jagu laiem olla: üldise 15rem piiriga jäi "Mõtle
+   põhjalikumalt" + linnuke 1,3 px lühikeseks ja murdus kahele reale (mõõdetud 06.10). */
+.conv-tools-menu[role="menu"] {
+  max-width: 18rem;
+}
+[role="menu"] [role="menuitemcheckbox"] > svg {
+  flex: none;
+  width: 1.1em;
+  height: 1.1em;
+  opacity: 0;
+}
+[role="menu"] [role="menuitemcheckbox"][aria-checked="true"] > svg {
+  opacity: 1;
 }
 
 /* Vestluse jalus tühi/väike */
