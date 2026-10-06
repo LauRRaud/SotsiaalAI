@@ -28,11 +28,11 @@ Vastuse arutlustase on `medium`. Omanik otsustas nii 27.09 ja uuesti 29.09, kui 
 
 ## Välgunupp ja kiire vaikimisi (06.10.2026)
 
-Omanik samal päeval, pärast mõõtmist: „et see võiks olla siin paremal ikoonide juures valik?“, siis „okei, paneme ainult välgu ja tee low hetkel ka default“ ning brauseris proovides „ikoon vist ei peaks olema täidetud, vaid tume servadest, kui on valitud low“.
+Omanik samal päeval, pärast mõõtmist: „et see võiks olla siin paremal ikoonide juures valik?“, siis „okei, paneme ainult välgu ja tee low hetkel ka default“ ning brauseris proovides „ikoon vist ei peaks olema täidetud, vaid tume servadest, kui on valitud low“ ja „liiga paksud servad on vist ikoonil […] liiga palju häirib kui on sisse lülitatud“.
 
 1. **Üks lüliti: välgunupp koostaja paremas servas**, mikrofoni vasakul. Menüürida „Mõtle põhjalikumalt“ on eemaldatud, et samal seadel ei oleks kahte kohta. Menüü laiusepiir (18rem) ja linnukese stiilid läksid koos reaga.
    - **Välk põleb = kiire vastus** (madalaim pakutud tase), **kustus = põhjalik** (kõrgeim). Tähendus pöördus: menüüs märkis linnuke põhjalikku.
-   - Välk on mõlemas olekus kontuur. Põlev välk on teksti toonis ja tugevama joonega (2,1), kustunud välk mikrofoni vaikses toonis ja sama joonega mis mikrofon (1,6). Taustaketast ei ole: kiire on vaikimisi sees, ketas seisaks mikrofoni kõrval kogu aeg.
+   - Välk on mõlemas olekus sama kontuur mikrofoni joonega (1,6). Olekut kannab ainult toon: põlev välk on teksti toonis, kustunud välk mikrofoni vaikses toonis. Täidetud välk (esimene katse) ja tugevam joon põleval välgul (2,1; #400) olid omaniku sõnul liiga valjud ja on eemaldatud. Taustaketast ei ole: kiire on vaikimisi sees, ketas seisaks mikrofoni kõrval kogu aeg.
    - Hiire all tekib ainult õrn taust nagu kiirmenüü nupul; värv ei muutu, et äsja välja lülitatud välk ei näeks hiire all välja nagu sisse lülitatud.
    - Nupu nimi on alati „Kiire vastus“ ja olek on `aria-pressed`; kohtspikker ütleb, kumb režiim parajasti sees on („Kiire vastus“ või „Põhjalik vastus“).
    - Nupp on ainult tavavestluses ja ainult siis, kui plaan pakub kahte taset, nagu rida enne.
@@ -50,8 +50,8 @@ Kohalik plaan `reasoning: low`, `reasoningChoices: [low, medium]`. Värvid loetu
 | Nuppude järjekord paremal | „Kiire vastus“, „Alusta dikteerimist“, „Ava häälvestlus“ |
 | Mõõdud | välk 44 × 44 px, glüüf 32 px, sama rida (y) ja sama vahe (4,8 px) mis mikrofonil ja häälvestlusel |
 | Vaikimisi, midagi salvestamata | `aria-pressed="true"`, kohtspikker „Kiire vastus“; vana võtme all olnud `medium` ei mõjunud |
-| Hele teema | põleb: `rgb(21, 21, 21)`, joon 2,1; kustus: `rgba(21, 21, 21, 0.6)`, joon 1,6 (sama mis mikrofon) |
-| Tume teema | põleb: `rgb(250, 250, 250)`, joon 2,1; kustus: `rgba(233, 233, 233, 0.64)`, joon 1,6 (sama mis mikrofon) |
+| Hele teema | põleb: `rgb(21, 21, 21)`; kustus: `rgba(21, 21, 21, 0.6)` (sama mis mikrofon); joon mõlemas 1,6 |
+| Tume teema | põleb: `rgb(250, 250, 250)`; kustus: `rgba(233, 233, 233, 0.64)` (sama mis mikrofon). Mõõdetud joonega 2,1; värvireegel pärast seda ei muutunud |
 | Täidis | mõlemas olekus `fill='none'`, tausta ei ole |
 | Saadetud päring, välk põleb | `reasoning: "low"` |
 | Saadetud päring, välk kustus | `reasoning: "medium"`; brauseris salvestatud `medium` |
@@ -165,5 +165,6 @@ Ebatäpsused selles jaotises parandati 06.10 sõltumatu ülevaatuse järel (oman
 - **Kolm taset:** plaan lubab ka `low, medium, high`, aga lüliti käib ainult madalaima ja kõrgeima vahel. Kui vaikimisi oleks keskmine, näitaks kustunud välk „põhjalikku“, kuigi kasutusel on keskmine, ja pärast esimest klõpsu keskmist enam valida ei saaks. Praegust plaani (`low`, `medium`) see ei puuduta; enne kolmanda taseme pakkumist tuleb lahendada.
 - **Korpuse täienduse plaan** alustab endiselt oma kuluarvestust nullist; kas see peaks jätkama eelmist, on omaniku otsus.
 - **Telefonis** on üherealine kirjutusväli välgu võrra kitsam (122 px 375 px laiusel).
+- **Oleku loetavus:** põlevat ja kustunud välku eristab nüüd ainult toon (hele teema: tume 100% ja 60%). Kui see jääb liiga vaikseks, on see järgmine koht, mida muuta.
 - Inglis- ja venekeelne kohtspikker („Quick answer“ / „Thorough answer“, „Быстрый ответ“ / „Вдумчивый ответ“) on minu valitud; omanik neid üle vaadanud ei ole.
 - Auditipaketi piiri (#397) regressioonikontroll päris suurusega Tallinna paketiga ja salvestusvormi korduste vähendamine on tegemata.
