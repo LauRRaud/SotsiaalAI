@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { PROMPT_VERSION, READABLE_PROMPT_VERSIONS, answerInstructions, answerRequest } from '../lib/rag-v2/pilot/contracts.js';
-import { DIALOGUE_PROMPT_VERSION, READABLE_DIALOGUE_PROMPT_VERSIONS, COMPLETENESS_INSTRUCTIONS, BARE_CORRECTION_INSTRUCTIONS, PRIOR_CLAIM_INSTRUCTIONS, CONTACT_ENTRY_INSTRUCTIONS, CONTACT_DIRECTORY_INSTRUCTIONS, VERSION_CHANGES_INSTRUCTIONS, dialogueRequest } from '../lib/rag-v2/pilot/dialogue.js';
+import { WEB_ADDRESS_INSTRUCTIONS, DIALOGUE_PROMPT_VERSION, READABLE_DIALOGUE_PROMPT_VERSIONS, COMPLETENESS_INSTRUCTIONS, BARE_CORRECTION_INSTRUCTIONS, PRIOR_CLAIM_INSTRUCTIONS, CONTACT_ENTRY_INSTRUCTIONS, CONTACT_DIRECTORY_INSTRUCTIONS, VERSION_CHANGES_INSTRUCTIONS, dialogueRequest } from '../lib/rag-v2/pilot/dialogue.js';
 import { UNIFIED_RETRIEVAL_INSTRUCTIONS, UNIFIED_RETRIEVAL_VERSION } from '../lib/rag-v2/pilot/retrieval-plan.js';
 import { SEARCH_ASSIST_VERSION, PLAN_CORRECTION_INSTRUCTIONS, PLAN_ANSWERED_INSTRUCTIONS, PLAN_DUTY_INSTRUCTIONS, RERANK_ANSWERED_INSTRUCTIONS, RERANK_CHANGE_INSTRUCTIONS, queryPlanRequest, rerankRequest } from '../lib/rag-v2/pilot/search-assist.js';
 import { tokenCount } from '../lib/rag-v2/search/embedding.js';
@@ -29,7 +29,8 @@ test('prompt v10 keeps every v9 guardrail in each answer language, and v9 plans 
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-11'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-10'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-9'));
-  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-27');
+  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-28');
+  assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-27'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-26'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-25'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-24'));
@@ -214,7 +215,7 @@ test('dialogue prompt 24 (ADR-071): a bare correction is confirmed and not turne
   // Everything else is prompt 23: without the first addition and v26's closing one (ADR-088), and with v23's one
   // sentence in place of the second, the dialogue extension is the text of 23 byte for byte.
   const previous = 'If the current packet does not support a prior claim, explain the selected-evidence limit instead of repeating it as fact. ';
-  const restored = extension.replace(BARE_CORRECTION_INSTRUCTIONS, '').replace(PRIOR_CLAIM_INSTRUCTIONS, previous).replace(VERSION_CHANGES_INSTRUCTIONS, '').replace(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-23');
+  const restored = extension.replace(BARE_CORRECTION_INSTRUCTIONS, '').replace(PRIOR_CLAIM_INSTRUCTIONS, previous).replace(VERSION_CHANGES_INSTRUCTIONS, '').replace(WEB_ADDRESS_INSTRUCTIONS, '').replace(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-23');
   assert.equal(hash(restored), 'be57db6b5fd99ffc8e10130d422cbfaadf7267d2fd1848256884e348def4a7e9');
   // A small change: about 150 tokens more in every dialogue turn's instructions.
   assert.ok(tokenCount(BARE_CORRECTION_INSTRUCTIONS) + tokenCount(PRIOR_CLAIM_INSTRUCTIONS) - tokenCount(previous) < 160);
