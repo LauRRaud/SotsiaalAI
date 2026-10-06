@@ -239,6 +239,8 @@ Indeksi töö aktiveerib uue põlvkonna ise. **Vestlusplaan on seotud põlvkonna
   # ADR-092: --reasoning on töötava plaani enda tase (06.10.2026 alates low), muidu pöördub vaikeväärtus tagasi. Kui
   # töötav plaan pakub taset valikuna (reasoningChoices), lisa --reasoning-choices low,medium, muidu kaob koostajast
   # välgunupp "Kiire vastus". rag-v2-corpus-run.sh teeb mõlemat ise.
+  # ADR-093: --audit-days on töötava plaani oma (arenduses 7, tootmises 0); ilma selleta hoiab uus plaan iga pöörde
+  # täisauditit alatiseks. rag-v2-corpus-run.sh kannab selle ise edasi.
   # Plaan, mis tehakse ainult seade muutmiseks (mitte uue korpuse jaoks), jätkab asendatava plaani kuluarvestust:
   # lisa --continue-ledger <asendatav plaan>. Ilma selleta alustab uus plaan arvestust nullist.
   sudo -n chown root:ubuntu $P

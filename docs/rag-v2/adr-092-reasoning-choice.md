@@ -175,7 +175,7 @@ Omaniku korraldus 06.10 („teeb need ära?“ sõltumatu ülevaatuse soovituste
 | Parem vastus (22 paarist; 18 võrdsed) | 3 | 1 |
 | Vastab küsimusele otse | 21 | 17 |
 | Vastab osaliselt | 1 | 5 |
-| Tõenduseta väiteid | 1 | 0 |
+| Kontrollitud väidete seas leitud tõenduseta väiteid | 1 | 0 |
 | Vale omavalitsus, isik või kuupäev | 0 | 0 |
 | Vajalik punkt välja jäetud, kuigi tõenduses olemas | 3 | 2 |
 | Tarbetu täpsustav küsimus | 1 | 0 |
@@ -188,6 +188,8 @@ Omaniku korraldus 06.10 („teeb need ära?“ sõltumatu ülevaatuse soovituste
 **Mida see näitab ja mida mitte:**
 
 - Nendel 22 küsimusel ei leidnud ma, et kiire režiim vastaks halvemini. 29.09 mõõtmise vahet (37/40 ja 39/40) see ei kinnita ega lükka ümber: küsimused on teised ja iga küsimus on küsitud üks kord.
+- **Tõenduseta väidete rida ei ole eksimissagedus.** Kontrollisin väiteid, milles kaks vastust erinesid, ja kuni kaht muud vastuse kohta, mitte iga väidet.
+- **„Võrdne“ võib tähendada, et mõlemad on sarnaselt puudulikud.** Väljajätmiseks loeti punkt, mille teine vastus nimetas; mida kumbki ei öelnud, seda see meetod ei leia. Järgmine võrdlus vajab iga küsimuse kohta ette kirjutatud miinimumvastust.
 - **Hindaja on üks ja ise mudel.** Kaks paari (1. komplekti küsimused 2 ja 8) ei olnud pimedad, sest lugesin neid vastuseid mõõtmise ajal; ilma nendeta on seis kiire 2, põhjalik 1, võrdseid 17.
 - **Võrreldud on terve pööre, mitte arutlustase.** Kummalgi pöördel oli oma otsinguplaan ja tõendus; kahes kiire kasuks läinud paaris oli vahe just seal. Arutlustaseme puhast mõju näitab ainult sama tõendusega võrdlus (allpool „Lahti“).
 - Kiire vastus on tihti pikem; see võis režiimi lugedes reeta.

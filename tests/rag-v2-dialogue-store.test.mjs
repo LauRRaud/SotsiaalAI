@@ -5,6 +5,8 @@ import { PrismaClient } from '../generated/prisma/client.ts';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PilotStore, openTurn } from '../lib/rag-v2/pilot/store.js';
 import { PilotService } from '../lib/rag-v2/pilot/service.js';
+import { isLeanTurn } from '../lib/rag-v2/pilot/lean-turn.js';
+import { digest } from '../lib/rag-v2/pilot/contracts.js';
 import { DIALOGUE_VERSION, DIALOGUE_LIMITS } from '../lib/rag-v2/pilot/dialogue.js';
 import { embeddingConfig } from '../lib/rag-v2/search/embedding.js';
 import { DIALOGUE_STATE_VERSION, PERSON_DIALOGUE_STATE_VERSION, FACT_STATE_VERSION, REGION_STATE_VERSION } from '../lib/rag-v2/pilot/dialogue-state.js';
@@ -614,4 +616,57 @@ test('dialogue state DB (ADR-081): a follow-up that points back is searched wher
   // The user's own request points back at nothing: the residence, with the same kind of plan.
   const own = await turn('Millist abi ma ise saan?', 'same', { queries: ['toimetulekutoetuse taotlemine'], person: 'user', places: [] });
   assert.deepEqual([own.searched.source, own.searched.region, own.query.askedRegions], ['person_region', 'kose_vald', ['harku_vald']]);
+});
+
+// ADR-093: under a plan that keeps no full audit every turn is stored lean when it is published, and the next turn of
+// the conversation is built from those lean rows: the earlier circumstances, the earlier answer and the earlier state.
+test('ADR-093 real DB: a dialogue goes on from lean turns as it does from whole ones', async t => {
+  const f = await fixture(t);
+  f.config.auditDays = 0;
+  const first = await f.run('Olen 67, elan Harkus ja küsin koduteenuse kohta.', 'new');
+  await f.run('Millist abi kirjeldatakse?'); const third = await f.run('Aga teenuse ulatus?');
+  const fourth = await f.run('Selgita teist punkti.');
+  for (const id of [first.id, third.id, fourth.id]) {
+    const stored = await db.m4PilotTurn.findUnique({ where: { id } });
+    assert(isLeanTurn(stored));
+    for (const key of ['vector', 'dialogue', 'previousDialogueState', 'dialogueStateContext']) assert.equal(key in stored.payload, false, key);
+    assert.equal('body' in stored.payload.requestAudit, false);
+  }
+  const row = await f.row(fourth.id);
+  assert.match(row.payload.query.text, /Olen 67, elan Harkus/);
+  assert.doesNotMatch(row.payload.query.text, /Synthetic second point/);
+  // What the model was given for the fourth turn: the third turn's published answer, read from its lean row.
+  const sent = JSON.parse(f.calls.filter(call => call.stage === 'answer').at(-1).body.input[0].content).dialogue;
+  assert.equal(sent.userTurns.length, 4);
+  assert.equal(sent.publishedAssistant.turnId, third.id);
+  assert.equal(sent.publishedAssistant.blocks[1].point, 2);
+  assert.equal(sent.publishedAssistant.blocks[1].historicalReferences[0], `${third.id}/S1`);
+  assert.deepEqual(f.calls.map(c => c.stage), ['embedding', 'answer', 'embedding', 'answer', 'embedding', 'answer', 'embedding', 'answer']);
+  // Each lean turn restores for the history, and a repeat of a request makes no call.
+  assert.equal((await f.service.restore(row)).context.userTurns, 4);
+  assert.deepEqual((await f.service.restore(await f.row(first.id))).sources.map(source => [source.ref, source.used]), [['S1', true]]);
+});
+
+test('ADR-093 real DB: the dialogue state is carried on from a lean turn, and a lean turn with a state restores without being projected again', async t => {
+  const initial = dialogueState([userFact('living', 1, 'Elan üksi.'), userFact('work', 1, 'Tööd ei ole.')]);
+  let draft = initial;
+  const f = await fixture(t, () => draft);
+  f.config.auditDays = 0;
+  const first = await f.run('Elan üksi. Tööd ei ole.', 'new');
+  const corrected = structuredClone(initial);
+  corrected.facts[1].status = 'superseded'; corrected.facts[1].superseded_by = 3;
+  corrected.facts.push(userFact('work', 2, 'Nüüd töötan.'));
+  draft = corrected;
+  const correction = await f.run('Nüüd töötan.', 'correction');
+  const stored = await db.m4PilotTurn.findUnique({ where: { id: first.id } });
+  assert(isLeanTurn(stored));
+  assert.ok(stored.payload.dialogueState, 'the state stays with the lean turn');
+  assert.equal(stored.payload.lean.proved.dialogueState, digest(stored.payload.dialogueState));
+  // The correction's request carried the first turn's state as the previous one, read from the lean row.
+  const sent = JSON.parse(f.calls.filter(call => call.stage === 'answer').at(-1).body.input[0].content).dialogue;
+  assert.ok(sent.previousState, 'a previous state was sent');
+  for (const turn of [first, correction]) assert.equal((await f.service.restore(await f.row(turn.id))).state, 'completed');
+  // A lean turn whose state was changed afterwards is refused.
+  await db.m4PilotTurn.update({ where: { id: first.id }, data: { payload: { ...stored.payload, dialogueState: { ...stored.payload.dialogueState, changed: true } } } });
+  await assert.rejects(async () => f.service.restore(await f.row(first.id)), { code: 'lean_turn_changed' });
 });

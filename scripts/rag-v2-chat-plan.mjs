@@ -15,7 +15,7 @@
 import fs from 'node:fs/promises';
 import { parseArgs } from 'node:util';
 import { PostgresCatalog } from '../lib/rag-v2/search/postgres.js';
-import { readPilotConfig, validReasoningChoices } from '../lib/rag-v2/pilot/config.js';
+import { readPilotConfig, validAuditDays, validReasoningChoices } from '../lib/rag-v2/pilot/config.js';
 import { budgetLedgerId } from '../lib/rag-v2/pilot/contracts.js';
 import { activateChatPlan, newChatPlan, preflightChatPlan } from '../lib/rag-v2/pilot/chat-plan.js';
 
@@ -27,12 +27,16 @@ const { values } = parseArgs({ options: { tenant: { type: 'string' }, profile: {
   // plan's ledger, so --budget-usd stays one cap over both and the money already spent stays spent. Without it the new
   // plan starts its own count from zero.
   'continue-ledger': { type: 'string' },
+  // ADR-093: days a finished turn keeps its full audit before it is made lean (0 = lean when published). Without it a
+  // turn keeps its full audit for good.
+  'audit-days': { type: 'string' },
   activate: { type: 'boolean', default: false } } });
 const usd = Number(values['budget-usd']);
 const reasoningChoices = values['reasoning-choices'] ? values['reasoning-choices'].split(',').map(effort => effort.trim()) : null;
+const auditDays = values['audit-days'] === undefined ? null : Number(values['audit-days']);
 if (!['low', 'medium', 'high'].includes(values.reasoning) || !values.tenant || !values.profile || !values.template || !values.out?.startsWith('/etc/sotsiaalai/') || !(usd > 0 && usd <= 10) || !values.basis
-  || reasoningChoices && !validReasoningChoices({ reasoning: values.reasoning, reasoningChoices })) {
-  throw Error('usage: --tenant --profile --template --out /etc/sotsiaalai/<file> --budget-usd <0-10] --basis <text> [--reasoning-choices low,medium] [--continue-ledger <plan file>] [--activate]');
+  || reasoningChoices && !validReasoningChoices({ reasoning: values.reasoning, reasoningChoices }) || auditDays !== null && !validAuditDays(auditDays)) {
+  throw Error('usage: --tenant --profile --template --out /etc/sotsiaalai/<file> --budget-usd <0-10] --basis <text> [--reasoning-choices low,medium] [--continue-ledger <plan file>] [--audit-days <0-365>] [--activate]');
 }
 const template = JSON.parse(await fs.readFile(values.template, 'utf8'));
 const budgetLedger = values['continue-ledger'] ? budgetLedgerId(JSON.parse(await fs.readFile(values['continue-ledger'], 'utf8'))) : null;
@@ -41,13 +45,13 @@ let plan;
 try {
   const generation = await postgres.active(values.tenant);
   plan = await newChatPlan({ generation, tenant: values.tenant, profileId: values.profile, users: template.users, accountProject: template.accountProject,
-    prices: template.prices, reasoning: values.reasoning, reasoningChoices, budgetLedger, nanoUsd: Math.round(usd * 1e9), basis: values.basis });
+    prices: template.prices, reasoning: values.reasoning, reasoningChoices, budgetLedger, auditDays, nanoUsd: Math.round(usd * 1e9), basis: values.basis });
   // The same checks the chat runs before a turn: active generation, profile, versions and directories.
   await preflightChatPlan(plan);
 } finally { await postgres.close(); }
 await fs.writeFile(values.out, JSON.stringify(plan, null, 2), { flag: 'wx', mode: 0o640 });
 const summary = { out: values.out, id: plan.id, tenant: plan.tenant, generation: plan.generationId, profile: plan.profileId,
-  documents: Object.keys(plan.documents).length, budgetUsd: usd, reasoning: plan.reasoning, reasoningChoices: plan.reasoningChoices ?? null, budgetLedger: plan.budgetLedger ?? null,
+  documents: Object.keys(plan.documents).length, budgetUsd: usd, reasoning: plan.reasoning, reasoningChoices: plan.reasoningChoices ?? null, budgetLedger: plan.budgetLedger ?? null, auditDays: plan.auditDays ?? null,
   implementationHash: plan.implementationHash.slice(0, 12), activated: false };
 if (values.activate) {
   await activateChatPlan({ ragEnv: values['rag-env'], file: values.out, plan });

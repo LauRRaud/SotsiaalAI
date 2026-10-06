@@ -218,3 +218,18 @@ test('ADR-092: the new plan is asked for the effort and the choices of the plan 
   assert.match(failed.stdout, /FAILED: the running plan \S+current\.json cannot be read/u);
   assert.deepEqual((await calls(broken)).filter(line => line.startsWith('plan ')), []);
 });
+
+test('ADR-093: the new plan keeps the running plan\'s audit time; a plan without one gets none', { skip: !shell && 'no sh' }, async () => {
+  const plain = await tree('audit-none');
+  assert.equal(run(plain).status, 0);
+  assert.doesNotMatch((await calls(plain)).find(line => line.startsWith('plan ')), /--audit-days/u);
+  for (const [name, days] of [['audit-week', 7], ['audit-at-once', 0]]) {
+    const kept = await tree(name);
+    await fs.writeFile(path.join(kept.etc, 'current.json'), JSON.stringify({ id: 'plan-old', generationId: 'search_generation_prior', documents: { d1: 'v1' },
+      reasoning: 'low', reasoningChoices: ['low', 'medium'], auditDays: days }));
+    const result = run(kept);
+    assert.equal(result.status, 0, result.stdout + result.stderr);
+    // Zero is a setting too (lean at publication): it is carried, not dropped as empty.
+    assert.match((await calls(kept)).find(line => line.startsWith('plan ')), new RegExp(`--reasoning-choices low,medium --audit-days ${days} --basis `, 'u'));
+  }
+});
