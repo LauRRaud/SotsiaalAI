@@ -17,6 +17,9 @@ import { embeddingConfig } from '../lib/rag-v2/search/embedding.js';
 import { LocalPolicy } from '../lib/rag-v2/search/policy.js';
 import { stable } from '../lib/rag-v2/contracts.js';
 import { municipalPacket } from './fixtures/rag-v2-municipal-packet.mjs';
+import { Prisma } from '../generated/prisma/client.ts';
+
+const landed = data => Object.fromEntries(Object.entries(data).map(([key, value]) => [key, value === Prisma.DbNull ? null : value]));
 
 // ADR-093: a finished turn's row was about 0.4 MB, of which the conversation itself is about 1.3 KB. When its full
 // audit is let go the row keeps what the chat shows and goes on from, and the cited evidence with its references.
@@ -140,22 +143,27 @@ test('the store: a plan without an audit time publishes a turn lean; old turns o
   const stored = { id: 'turn', state: 'needs_recovery', chatTurnId: 'chat', createdAt: new Date('2026-09-01T00:00:00Z'), updatedAt: new Date('2026-09-01T00:00:05Z'), expiresAt: null, configHash: 'config', payload: claimed };
   const tx = { $executeRaw: async () => {}, $queryRaw: async () => [], conversation: { findUnique: async () => ({ userId: 'u', metadata: { m4: true } }), update: async () => ({}) },
     conversationMessage: { create: async () => ({ id: 'message' }) }, chatTurn: { update: async () => ({}) },
-    m4PilotTurn: { findUnique: async () => stored, count: async () => 0, update: async ({ data }) => { written.push(data); return { ...stored, ...data }; } } };
+    // A column the write clears comes back empty, as the database returns it.
+    m4PilotTurn: { findUnique: async () => stored, count: async () => 0, update: async ({ data }) => { written.push(data); return { ...stored, ...landed(data) }; } } };
   const store = new PilotStore({ $transaction: async fn => fn(tx) }), config = days => ({ id: 'm4-plan', tenant: packet.tenant, configHash: 'config', ...(days === undefined ? {} : { auditDays: days }) });
   // No audit time: lean at publication. The caller gets the lean row back, with its packet opened.
   const published = await store.publish(config(0), stored, answer, packet);
   assert.equal(written[0].state, 'completed');
   assert(isLeanTurn({ payload: written[0].payload }));
-  assert(bytes(written[0].payload) < bytes(full) * 0.05);
-  assert.deepEqual(Object.keys(unpackJson(written[0].payload.packet).reference_map), ['S1', 'S7', 'S12']);
-  assert(isLeanTurn(published) && isLeanPacket(published.payload.packet));
+  assert(bytes(written[0].payload) + bytes(written[0].packet) + bytes(written[0].requestAudit) < bytes(full) * 0.05);
+  // ADR-094, step 4: the lean form's packet and request are in their own columns and the vector's column is cleared.
+  assert.deepEqual(Object.keys(unpackJson(written[0].packet).reference_map), ['S1', 'S7', 'S12']);
+  assert.deepEqual([written[0].vector, 'body' in written[0].requestAudit, ['packet', 'requestAudit', 'vector'].some(key => key in written[0].payload)], [Prisma.DbNull, false, false]);
+  assert(isLeanTurn(published) && isLeanPacket(published.payload.packet) && !('vector' in published.payload));
   // An audit time, or no setting: the turn is published whole (packed), as before.
   for (const days of [7, undefined]) {
     await store.publish(config(days), stored, answer, packet);
+    // This row is of the shape before the parts had columns: its vector and request are in the payload and stay
+    // there; the packet it had none of goes to the packet's column.
     const whole = written.at(-1).payload;
     assert.equal('lean' in whole, false);
-    assert(isPackedJson(whole.packet));
-    assert.equal(stable(unpackJson(whole.packet)), stable(packet));
+    assert(isPackedJson(written.at(-1).packet));
+    assert.equal(stable(unpackJson(written.at(-1).packet)), stable(packet));
     assert.equal(whole.vector.length, 3072);
   }
   // Later: completed turns older than the plan's days are made lean, a few a call; a row that changed meanwhile is left.
@@ -172,6 +180,7 @@ test('the store: a plan without an audit time publishes a turn lean; old turns o
   assert.deepEqual(updates.map(update => update.where), [{ id: 'old', state: 'completed', updatedAt: stored.updatedAt }]);
   assert(isLeanTurn({ payload: updates[0].data.payload }));
   assert.equal(updates[0].data.payload.lean.at, now.toISOString());
+  assert.deepEqual([isLeanPacket(unpackJson(updates[0].data.packet)), updates[0].data.vector, 'body' in updates[0].data.requestAudit, 'packet' in updates[0].data.payload], [true, Prisma.DbNull, false, false]);
   // No setting and a wrong value ask nothing of the database.
   for (const days of [undefined, null, -1, 1.5, '7']) assert.equal(await new PilotStore(db).slimOld(days), 0);
   assert.equal(queries.length, 1);

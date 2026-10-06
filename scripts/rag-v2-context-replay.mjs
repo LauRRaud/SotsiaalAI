@@ -21,7 +21,7 @@ import { readActive } from '../lib/rag-v2/catalog.js';
 import { loadSnapshot } from '../lib/rag-v2/search/snapshot.js';
 import { embeddingConfig } from '../lib/rag-v2/search/embedding.js';
 import { replayContext } from '../lib/rag-v2/search/context-replay.js';
-import { unpackJson } from '../lib/rag-v2/pilot/packed-json.js';
+import { unpackJson, openTurn } from '../lib/rag-v2/pilot/packed-json.js';
 
 const { values } = parseArgs({ options: { turn: { type: 'string', multiple: true }, packet: { type: 'string', multiple: true }, store: { type: 'string' } } });
 const failed = code => { console.error(JSON.stringify({ ok: false, code })); process.exit(1); };
@@ -52,7 +52,7 @@ if (values.packet) {
   const postgres = new PostgresCatalog(process.env.RAG_V2_POSTGRES_URL);
   try {
     for (const turn of values.turn) {
-      const row = await prisma.m4PilotTurn.findUnique({ where: { id: turn } }), packet = unpackJson(row?.payload?.packet);
+      const row = openTurn(await prisma.m4PilotTurn.findUnique({ where: { id: turn } })), packet = row?.payload?.packet;
       if (!packet) { reports.push({ turn, error: 'turn_without_packet' }); continue; }
       const generation = await postgres.active(packet.tenant);
       const bundles = await postgres.bundles(packet.tenant, generation.id, documentsOf(packet).filter(doc => generation.snapshot.documents[doc]));

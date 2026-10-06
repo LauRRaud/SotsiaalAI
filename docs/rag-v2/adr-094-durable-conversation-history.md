@@ -2,7 +2,7 @@
 
 06.10.2026. Teostus Claude Opus 5.5. Omanik 06.10: „mul on plaanis platvormile tuua tuhandeid kasutajaid, mul ei tohi paisuda kõvaketta kasutus meeletuks. Peab arvestama, kuidas toimub vestlus, selle talletamine, ajalugu jms.“ Küsimusele, kas alustada püsiva vestlusajaloo ehitamist kehtiva 90 päeva reegli piires, vastas omanik: **„Jah, kogu töö“**: küsimus, vastus ja lühiviited lähevad vestluse sõnumitesse (seni olid seal kohatäited); ajalugu ja jätkuvestlus loevad sealt ega sõltu plaanist; audit aegub ja kustub; vestlus allub 90 päeva reeglile.
 
-See dokument kirjeldab kogu töö viit sammu. **Tehtud on esimene, teine ja kolmas samm.**
+See dokument kirjeldab kogu töö viit sammu. **Kõik viis on tehtud** (06.10.2026); mis jäi kontrollimata, on iga sammu juures.
 
 ## Probleem
 
@@ -114,8 +114,8 @@ Võrdluseks samad pöörded: terve rida 184,8 KB kettal, kõhn rida 17,4 KB.
 | 1 | Ajalookirje kirjutamine avaldamisel; ajalugu ja allikavaade loevad seda, kui rida ei saa lugeda | tehtud (#410) |
 | 2 | Jätkuvestlus kirjest: eelmine vastus, olek, fookus ja küsitud omavalitsus tulevad kirjest, kui rida on kustunud või teise plaani oma. Varem avaldatud pöörded saavad kirje oma reast | tehtud (jaotis „Teine samm“) |
 | 3 | Audit on päriselt ajutine ja vestlus allub 90 päeva reeglile: plaanil `retentionHours`; vestluse aegumine tavalise reegli järgi viimasest aktiivsusest; arendusplaani tähtajatu erand ei jõua säilitusajaga plaani kasutajateni; ka katkenud pöörded aeguvad | tehtud (jaotis „Kolmas samm“) |
-| 4 | Pöörde suured andmed kirjutatakse üks kord (praegu umbes kümme ülekirjutust pöörde kohta) | tegemata |
-| 5 | Mõõdetav koristus ja kasv (kogumaht, päevane juurdekasv, aegunud kirjed, vanim koristamata, vaba ruum) ning vastuvõtt mahukatsega | osaliselt: aruanne tehtud (jaotis „Viies samm“), mahukatse tegemata |
+| 4 | Pöörde suured andmed kirjutatakse üks kord (seni kirjutas pöörde 18 kirjutust need 6–11 korda uuesti) | tehtud (jaotis „Neljas samm“) |
+| 5 | Mõõdetav koristus ja kasv (kogumaht, päevane juurdekasv, aegunud kirjed, vanim koristamata, vaba ruum) ning vastuvõtt mahukatsega | tehtud: aruanne (jaotis „Viies samm, esimene osa“), mahukatse ja kustutamine päringu teelt ära („teine osa“) |
 
 ## Teine samm: jätkuvestlus kirjest
 
@@ -250,7 +250,99 @@ Kontroll: andmebaasitest (aruanne loeb testi enda read vahena, sest testandmebaa
 - **Auditiridade tabelifail on 2,8 korda suurem kui ridade sisu** (42,7 MB ja 15,4 MB). Vahe on ülekirjutuste jälg: pöörde rida kirjutatakse pöörde jooksul umbes kümme korda ümber. See on neljanda sammu (ühekordne kirjutamine) mõõdetud põhjus.
 - **Miski ei aegu veel:** kõik read ja vestlused on tähtajata, sest töötav arendusplaan on tähtajatu (kolmas samm seda ei muutnud).
 
-**Tegemata:** mahukatse (palju sünteetilisi vestlusi päris teed pidi: avaldamine kirjetega, ridade aegumine ja kustutamine, ajalugu ja jätkuvestlus ilma ridadeta, vestluste aegumine, teine ring ja tegelik kettakulu).
+Mahukatse on jaotises „Viies samm, teine osa“.
+
+## Neljas samm: suured osad kirjutatakse üks kord
+
+### Mõõdetud põhjus
+
+Pöörde auditirida kirjutatakse pöörde jooksul 18 korda (iga samm salvestab oma tulemuse enne järgmist kõnet). Rea sisu oli üks väli (`payload`), nii et iga kirjutus kirjutas uuesti ka selle, mis ei muutunud. Serveris (06.10.2026, 85 tervet rida, ainult arvud) on pöörde tekstist 399,7 KB:
+
+| Osa | Keskmiselt | Osakaal | Mitu korda kirjutati |
+|---|---|---|---|
+| Tõendipakett (`packet`) | 235,9 KB | 59% | 6 |
+| Päring nii, nagu see mudelile saadeti (`requestAudit`) | 71,5 KB | 18% | 6 |
+| Päringuvektor (`vector`) | 63,5 KB | 16% | 11 |
+| Kõik muu (sündmused, otsinguplaan, olek, ajad) | 28,7 KB | 7% | iga kord |
+
+### Otsus
+
+Need kolm osa on tabelis **omaette veergudes** (`packet`, `requestAudit`, `vector`; migratsioon `20261006190000_m4_turn_parts`). Kirjutus, mis veergu ei nimeta, jätab selle salvestatud väärtuse paika. Iga osa kirjutab see samm, kellel ta tekib, ja rohkem teda ei kirjutata.
+
+- **Lugejad ei muutunud.** `openTurn` paneb veergude sisu tagasi `payload`-i, kust kõik lugejad seda otsivad. Enne seda sammu kirjutatud rida hoiab osi `payload`-is; loetakse mõlemat kuju.
+- **Sammu enda tulemus on rida ilma suurte osadeta.** Pööre hoiab oma paketti ja vektorit ise, kuni ta käib; avaldamine ja taastamine loevad rea tervena.
+- **Auditi ajata plaan** (`auditDays: 0`) asendab avaldamisel paketi kõhna paketiga, päringu selle kehata kujuga ja tühjendab vektori veeru. Suured osad on siis kirjutatud üks kord ja lastud lahti.
+- **Auditi ajaga plaan** ei kirjuta avaldamisel ühtegi neist uuesti.
+- **Sama küsimuse vektor** leitakse nüüd küsimuse räsi järgi andmebaasis. Seni loeti selleks kasutaja kuni 100 viimast rida tervikuna.
+- **Põhimõte „sisu on kettal enne kõnet“ jäi.** Pakett ja päring kirjutatakse enne vastuse küsimist nagu seni.
+
+### Mõõdetud (kohalik testandmebaas, `scripts/rag-v2-chat-volume.mjs`, mudelikõnesid ei ole)
+
+Sünteetilised vestlused käisid päris teenuse kaudu (otsinguplaan, vektor, valik, vastus, avaldamine kirjega; pakett omavalitsuse pöörde kuju ja suurusega).
+
+| | Enne | Pärast |
+|---|---|---|
+| **Avamise plaan** (`auditDays: 0`), 300 pööret | | |
+| Rea kirjutusi pöörde kohta | 18 | 18 |
+| Andmebaasi logisse pöörde kohta | 1000 KB | 231 KB |
+| Kirjutamise aeg pöördes (mediaan; 95%) | 651 ms; 736 ms | 276 ms; 315 ms |
+| Tabelifaili kasv 300 pöördega | 85,6 MB | 26,1 MB |
+| Sama palju pöördeid teist korda | +44,0 MB | +9,1 MB |
+| Rida pärast avaldamist | 13,6 KB | 13,4 KB |
+| **Auditi ajaga plaan** (`auditDays: 7`), 120 pööret | | |
+| Andmebaasi logisse pöörde kohta | 1101 KB | 216 KB |
+| Kirjutamise aeg pöördes (mediaan; 95%) | 653 ms; 758 ms | 239 ms; 280 ms |
+| Tabelifaili kasv 120 pöördega (ridade sisu 15,3 MB) | 86,2 MB | 16,1 MB |
+
+Avamise plaaniga kirjutab pööre endiselt kolm suurt osa ühe korra ja laseb need avaldamisel lahti, seepärast kasvab fail esimesel ringil rohkem kui ridade sisu (4,0 MB). Vabanenud ruum võetakse uuesti kasutusele: teine ring lisas 9,1 MB.
+
+### Kontroll
+
+- Andmebaasitest: iga rea kirjutus püütakse kinni. Ühegi kirjutuse `payload` ei sisalda suurt osa ja on alla 20 KB; suur kirjutus on üks (pakett koos päringuga) ja vektoril on oma kirjutus; auditi ajaga plaanil nimetatakse iga osa täpselt üks kord, auditi ajata plaanil teine kord avaldamisel väikese kujuga.
+- Andmebaasitest: sama küsimuse vektor leitakse räsi järgi ka siis, kui see on vana kuju real.
+- Ühiktest: `openTurn` loeb veerud, vana kuju ja segakuju; avatud rida teist korda avades ei muutu.
+- Varasemad testid loevad rida sama avaja kaudu nagu päris kood.
+
+### Tagasipööramise piir
+
+Varasem väljalase loeb osi ainult `payload`-ist ega näe selle sammuga kirjutatud ridade paketti. Väljalaske vahetus uuendab aga plaani (`lib/rag-v2` muutus) ja teise plaani pöördeid loetakse nende kirjetest (teine samm), mitte ridadest. Veerud jäävad tagasipööramisel alles; vana kood neid ei puuduta.
+
+### Serveri abiskriptid
+
+Minu lugemisskriptid kaustas `/home/ubuntu/rag-v2-work` (`hv`, `tm`, `ap`, `rv`) loevad `payload.packet`-i otse. Pärast seda sammu peavad nad rea avama `openTurn`-iga.
+
+## Viies samm, teine osa: mahukatse ja kustutamine päringu teelt ära
+
+### Mahukatse
+
+`scripts/rag-v2-chat-volume.mjs` ajab sünteetilised vestlused läbi päris teenuse kohalikus testandmebaasis ja kustutab lõpus kõik, mis ta kirjutas. 06.10.2026, avamise plaan (`auditDays: 0`, read 168 tundi, vestlused 90 päeva), 100 vestlust, igas 3 pööret:
+
+| Samm | Tulemus |
+|---|---|
+| 1. Vestlused teenuse kaudu | 300 pööret, kõik avaldatud; rida 13,4 KB, pöörde kaks sõnumit kirjega 3,5 KB |
+| 2. Ridade aeg möödub, kustutamine | 0 rida alles |
+| 3. Ajalugu ja jätk ilma ridadeta | 300 pööret 300-st nähtav kirjetest (vestluse lugemine 1 ms); 20 vestlust 20-st jätkus kirjest, pööre luges kõiki varasemaid küsimusi oma teemana |
+| 4. Andmebaasi oma koristus ja sama palju pöördeid uuesti | tabelifail kasvas 26,1 MB asemel 9,1 MB |
+| 5. Vestluste aeg möödub, kustutamine | 200 vestlust kustutatud, 0 sõnumit ja 0 rida alles; tabelifailid tagasi algsuuruses |
+
+Sünteetiline kirje on väiksem kui päris vestluse oma (3,5 KB; serveris 4,8 KB), sest vastus on lühem.
+
+### Kustutamine ei ole enam iga päringu teel
+
+Aegunud ridade kustutamine (`purge`) käis iga vestluspäringu alguses: iga sõnum, iga ajaloo ja allikavaate lugemine. Selle hind kasvab tabeliga. **Mõõdetud:** 200 000 elava reaga (umbes nädal 30 000 pöördega päevas) ja mitte ühegi kustutatavaga võttis üks kustutamine 144 ms (kümne mediaan; 95% 302 ms). Väikese tabeliga 0,9 ms.
+
+- **Päring kustutab kõige rohkem kord minutis protsessi kohta** (`purgeDue`, `PURGE_EVERY_MS`). Säilituskoristus kustutab nagu seni.
+- **Ükski lugeja ei sõltu kustutamisest.** Kõik lugemised jätavad aegunud read ja arhiveeritud või aegunud vestlused välja. Ajaloo lugemine seda ei teinud ja toetus eelnevale kustutamisele; nüüd jätab ka tema aegunud read välja. Ilma selleta oleks aegunud vastuseta pöörde rida kuni minutiks katkestanud kogu vestluse ajaloo lugemise.
+- Kasutaja kustutatud vestlus kustub kohe koos ridadega nagu seni (vestluse enda kustutamine, andmebaasi seos).
+
+Kontroll: ühiktest (üks kustutamine minutis, aeg on protsessi oma, ebaõnnestunud kustutamine ei kuluta minutit), andmebaasitest (aegunud, veel kustutamata read ei jõua ajalukku; vastusega pööre on näha kirjest), kaks varasemat andmebaasitesti kontrollivad nüüd, et aegunud rida on pöörde ajal veel alles ja teda ei loeta.
+
+### Kontrollimata ja tegemata
+
+- **Mahukatse on kohalik ja väike** (600 pööret avamise plaaniga, 240 auditi ajaga). Suurt mahtu (sajad tuhanded pöörded) ja serveri ketast ei ole proovitud; 200 000 rea juures on mõõdetud ainult kustutamise hind, väikeste ridadega.
+- **Samaaegseid kasutajaid ei ole mõõdetud.** Katse ajas pöördeid ükshaaval.
+- **Kirjutamise aeg on mõõdetud kohalikul kettal.** Serveris seda eraldi ei mõõdetud.
+- Töötav arendusplaan on endiselt tähtajatu: serveris ükski rida ei aegu. Avamise plaani liiki ei ole.
 
 ## Vastavus avaldatud tingimustele
 
@@ -264,7 +356,8 @@ Varasem väljalase loeb ainult ridu ja jätab sõnumid vahele. Selle sammu saab 
 
 ## Lahti
 
-- Sammud 3–5.
-- Kulu selle töö peale seni: 0,0049 USD (üks päris pööre; omaniku luba 06.10 väikesteks kuludeks, minu ülempiir 0,50 USD).
+- Säilitusajaga plaan päris lehel ja avamise plaani liik (kolmas samm, „Tegemata ja kontrollimata“).
+- Suur maht ja samaaegsed kasutajad (viies samm, „Kontrollimata ja tegemata“).
+- Kulu selle töö peale: 0,0049 USD (üks päris pööre teise sammu kontrolliks; omaniku luba 06.10 väikesteks kuludeks, minu ülempiir 0,50 USD). Neljas ja viies samm mudelikõnesid ei teinud.
 - Kirje suurus: vastus on kirjes kaks korda ja tunnused (dokument, versioon, lõik, räsi) võtavad allika kohta umbes 0,3 KB. Kui 4,8 KB osutub liiga suureks, on need kohad, kust võtta.
 - Vestluse pealkiri: RAG v2 vestlus luuakse pealkirjaga „M4 sisepiloot“.

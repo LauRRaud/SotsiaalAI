@@ -76,6 +76,21 @@ test('a row is opened before its packet is read: a packed packet, a packet store
   assert.equal(openTurn(plain), plain);
   assert.equal(openTurn(none), none);
   assert.equal(openTurn(null), null);
+  // ADR-094, step 4: a row's large parts are in their own columns. An opened row has them in its payload, where every
+  // reader looks, and no longer as columns; a column that holds nothing adds nothing; a row opened twice is the same.
+  const vector = [0.25, -0.5], request = { body: { input: [] }, bodyHash: 'h' };
+  const columns = { id: 'turn', state: 'completed', payload: { userId: 'u', events: [] }, packet: reordered(JSON.parse(JSON.stringify(packJson(packet)))), requestAudit: request, vector };
+  const whole = openTurn(columns);
+  assert.equal(stable(whole.payload.packet), stable(packet));
+  assert.deepEqual([whole.payload.requestAudit, whole.payload.vector, whole.payload.userId, Object.keys(whole).sort()], [request, vector, 'u', ['id', 'payload', 'state']]);
+  assert.equal(openTurn(whole), whole);
+  const lean = openTurn({ id: 'lean', payload: { events: [] }, packet: { tenant: 't', evidence: [] }, requestAudit: { bodyHash: 'h' }, vector: null });
+  assert.deepEqual(['vector' in lean.payload, lean.payload.requestAudit, lean.payload.packet], [false, { bodyHash: 'h' }, { tenant: 't', evidence: [] }]);
+  const empty = { id: 'claimed', payload: { events: [] }, packet: null, requestAudit: null, vector: null };
+  assert.equal(openTurn(empty), empty);
+  // A row written before the parts had columns holds them in its payload; a part written since then is the column's.
+  const mixed = openTurn({ id: 'mixed', payload: { vector: [1], requestAudit: { old: true } }, packet: null, requestAudit: request, vector: null });
+  assert.deepEqual([mixed.payload.vector, mixed.payload.requestAudit], [[1], request]);
   // Every way a row leaves the store: an existing turn, a claimed one, a step's result, a dialogue source and a turn
   // awaiting publication.
   const stored = row('needs_recovery');
@@ -111,22 +126,24 @@ test('the store writes a packet packed, and the size limit reads it as the turn 
   const stored = { id: 'turn', state: 'claimed', chatTurnId: 'chat', createdAt: new Date(), expiresAt: null, configHash: 'config', payload: { userId: 'u', convId: 'c', events: [], timings: {} } };
   const tx = { $executeRaw: async () => {}, $queryRaw: async () => [], conversation: { findUnique: async () => ({ userId: 'u', metadata: { m4: true } }), update: async () => ({}) },
     conversationMessage: { create: async () => ({ id: 'message' }) }, chatTurn: { update: async () => ({}) },
-    m4PilotTurn: { findUnique: async () => stored, count: async () => 0, update: async ({ data }) => { written.push(data); return { ...stored, ...data }; } } };
+    m4PilotTurn: { findUnique: async () => stored, count: async () => 0, update: async ({ data }) => { written.push(data); Object.assign(stored, data); return { ...stored }; } } };
   const store = new PilotStore({ $transaction: async fn => fn(tx) }), config = { id: 'm4-plan', tenant: 't', configHash: 'config' };
   const saved = await store.save(config, stored, 'claimed', { packet, answerVersion: 'v' });
   const published = await store.publish(config, stored, { kind: 'grounded', blocks: [] }, packet);
+  // ADR-094, step 4: the packet is written once, to its own column, by the step that has it. The publication, which
+  // is given the same packet, does not write it again.
   assert.equal(written.length, 2);
-  for (const data of written) {
-    assert(isPackedJson(data.payload.packet));
-    assert(bytes(data.payload.packet) < bytes(packet) * 0.65);
-    assert.equal(stable(unpackJson(data.payload.packet)), stable(packet));
-  }
-  // The caller gets the packet back as it gave it.
+  assert(isPackedJson(written[0].packet) && !('packet' in written[0].payload));
+  assert(bytes(written[0].packet) < bytes(packet) * 0.65);
+  assert.equal(stable(unpackJson(written[0].packet)), stable(packet));
+  assert.deepEqual(['packet' in written[1], 'packet' in written[1].payload, written[1].state], [false, false, 'completed']);
+  // The published row comes back whole, with the packet as the turn gave it. (A step's own result is read without the
+  // large parts; this stand-in returns every column, so both are checked here.)
   for (const row of [saved, published]) assert.equal(stable(row.payload.packet), stable(packet));
   // A step without a packet writes none, and a small packet that has nothing twice is stored as it is.
   const small = { tenant: 't', evidence: [{ evidence_id: 'e1', source_text: 'Allikatekst' }], reference_map: { S1: { evidence_id: 'e1' } }, model_context: { evidence: [{ ref: 'S1', text: 'Allikatekst' }] } };
   await store.save(config, stored, 'claimed', { note: 1 });
   await store.save(config, stored, 'claimed', { packet: small });
-  assert.equal('packet' in written[2].payload, false);
-  assert.deepEqual(written[3].payload.packet, small);
+  assert.deepEqual(['packet' in written[2], 'packet' in written[2].payload], [false, false]);
+  assert.deepEqual([written[3].packet, 'packet' in written[3].payload], [small, false]);
 });

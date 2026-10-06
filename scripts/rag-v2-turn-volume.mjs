@@ -44,6 +44,8 @@ function payload(index, userId, convId) {
 const one = async query => Object.fromEntries(Object.entries((await db.$queryRawUnsafe(query))[0]).map(([key, value]) => [key, typeof value === 'bigint' ? Number(value) : value]));
 const tableBytes = async () => (await one(`SELECT pg_total_relation_size('"M4PilotTurn"') AS bytes`)).bytes;
 const mb = bytes => Math.round(bytes / 1e4) / 100;
+// What a turn's row takes as stored: its payload and its large parts in their own columns (ADR-094, step 4).
+const STORED = '(pg_column_size(payload) + coalesce(pg_column_size(packet), 0) + coalesce(pg_column_size("requestAudit"), 0) + coalesce(pg_column_size(vector), 0))';
 const user = await db.user.create({ data: { email: `m4-volume-${randomUUID()}@example.invalid` } });
 const conv = await db.conversation.create({ data: { userId: user.id, role: 'CLIENT', metadata: { m4: true }, expiresAt: null } });
 const pilotId = `m4-volume-${randomUUID()}`;
@@ -56,7 +58,7 @@ async function write(count, createdAt) {
   }
   return { ids, seconds: (Date.now() - started) / 1000 };
 }
-const stored = async ids => one(`SELECT round(avg(pg_column_size(payload)))::int AS avg_stored, round(avg(octet_length(payload::text)))::int AS avg_text, sum(pg_column_size(payload))::bigint AS sum_stored FROM "M4PilotTurn" WHERE id IN (${ids.map(id => `'${id}'`).join(',')})`);
+const stored = async ids => one(`SELECT round(avg(${STORED}))::int AS avg_stored, round(avg(octet_length(payload::text)))::int AS avg_text, sum(${STORED})::bigint AS sum_stored FROM "M4PilotTurn" WHERE id IN (${ids.map(id => `'${id}'`).join(',')})`);
 const report = { turns, steps: [] };
 try {
   // The sweep reads every plan's turns: what other runs left old and whole in this database is made lean first, so the

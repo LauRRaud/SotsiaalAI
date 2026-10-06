@@ -1577,6 +1577,11 @@ model M4PilotTurn {
   inputHash  String
   state      String
   payload    Json
+  /// ADR-094, step 4: the turn's large parts, each written once. A row's other writes do not rewrite them.
+  /// A row written before 06.10.2026 holds them inside payload; openTurn reads both shapes.
+  packet       Json?
+  requestAudit Json?
+  vector       Json?
   expiresAt  DateTime?
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt

@@ -112,7 +112,10 @@ test('a conversation\'s turns come from the rows the running plan can read and f
   assert.deepEqual([listed.turns[0].question, listed.turns[0].answer, listed.turns[0].messageId], [first.payload.question, first.payload.answer, 'turn-1-a']);
   assert.deepEqual([...listed.rows.keys()], ['turn-3', 'turn-4']);
   assert.deepEqual([...listed.records.keys()], ['turn-1', 'turn-2']);
-  assert.deepEqual(asked.slice(0, 2), [{ configHash: 'plan-b', chatTurn: { userId: 'u', conversationId: 'c' } }, { conversationId: 'c' }]);
+  // The rows asked for are the running plan's live ones: a row past its time is read by no one, purged or not.
+  const { OR: live, ...rows } = asked[0];
+  assert.deepEqual([rows, asked[1]], [{ configHash: 'plan-b', chatTurn: { userId: 'u', conversationId: 'c' } }, { conversationId: 'c' }]);
+  assert.deepEqual([live[0], Object.keys(live[1].expiresAt)], [{ expiresAt: null }, ['gt']]);
   // A row of the running plan that can no longer be restored is shown from its record; without one the failure stands.
   const fallen = await conversationTurns({ ...base, db: db([{ ...second, configHash: 'plan-b' }]), service: service(new Set(['turn-2'])) });
   assert.deepEqual(fallen.turns.map(turn => [turn.id, turn.history === true]), [['turn-1', true], ['turn-2', true]]);
@@ -121,7 +124,8 @@ test('a conversation\'s turns come from the rows the running plan can read and f
   // One turn (the source view): both reads are narrowed to it.
   asked.length = 0;
   await conversationTurns({ ...base, db: db([]), service: service(new Set()), turnId: 'turn-1' });
-  assert.deepEqual(asked, [{ configHash: 'plan-b', chatTurn: { userId: 'u', conversationId: 'c' }, id: 'turn-1' }, { conversationId: 'c', metadata: { path: ['m4TurnId'], equals: 'turn-1' } }]);
+  assert.deepEqual([{ ...asked[0], OR: undefined }, asked[1]].map(where => JSON.parse(JSON.stringify(where))),
+    [{ configHash: 'plan-b', chatTurn: { userId: 'u', conversationId: 'c' }, id: 'turn-1' }, { conversationId: 'c', metadata: { path: ['m4TurnId'], equals: 'turn-1' } }]);
 });
 
 test('a history turn\'s source opens with its text only while the corpus holds the same excerpt', async () => {

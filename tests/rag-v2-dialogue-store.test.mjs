@@ -22,6 +22,10 @@ test.after(() => db.$disconnect());
 const originalFetch = globalThis.fetch;
 globalThis.fetch = async () => { throw Error('NETWORK_FORBIDDEN_IN_TEST'); };
 test.after(() => { globalThis.fetch = originalFetch; });
+// A turn's row as every reader gets it: its large parts read back from their own columns (ADR-094, step 4). A test that
+// checks what a column holds, or writes a payload back, reads the row as it is stored (asStored.find…).
+const asStored = { findFirst: args => db.m4PilotTurn['findFirst'](args), findUnique: args => db.m4PilotTurn['findUnique'](args) };
+const turnRows = { findFirst: async args => openTurn(await asStored.findFirst(args)), findUnique: async args => openTurn(await asStored.findUnique(args)) };
 
 async function fixture(t, stateFor = null, stateVersion = DIALOGUE_STATE_VERSION) {
   const user = await db.user.create({ data: { email: `m4c-${randomUUID()}@example.invalid` } });
@@ -49,7 +53,7 @@ async function fixture(t, stateFor = null, stateVersion = DIALOGUE_STATE_VERSION
   } });
   const input = (question, contextMode = 'same', extra = {}) => ({ question, contextMode, convId: conv.id, clientTurnKey: randomUUID(), language: 'et', ...extra });
   const run = (question, contextMode = 'same', extra = {}) => service.run(user.id, input(question, contextMode, extra));
-  const row = async id => openTurn(await db.m4PilotTurn.findUnique({ where: { id } }));
+  const row = async id => openTurn(await turnRows.findUnique({ where: { id } }));
   t.after(async () => { await db.user.delete({ where: { id: user.id } }); await db.m4PilotLedger.deleteMany({ where: { id: config.id } }); });
   return { user, conv, config, store, service, calls, queries, input, run, row, fail: value => { fail = value; }, deny: () => { denied = true; } };
 }
@@ -409,10 +413,14 @@ test('M4-C real DB: an expired head with an answer goes on from its record, one 
   const newer = await f.run('Uus inimene.', 'new_person');
   const before = await f.row(newer.id);
   assert.equal(before.expiresAt, null);
+  // A request purges at most once a minute (ADR-094, step 5): after this one the next message's request does not.
+  await f.store.purgeDue();
   await db.m4PilotTurn.update({ where: { id: newer.id }, data: { expiresAt: new Date(Date.now() - 1000) } });
   // ADR-094: the head's audit row has expired, its record has not. The message goes on with the head's person, read
-  // from the record, never with the older one.
+  // from the record, never with the older one. The expired row is gone for the turn though it is still stored.
   const next = await f.row((await f.run('Aga hind?')).id);
+  assert.equal(await db.m4PilotTurn.count({ where: { id: newer.id } }), 1, 'the expired row is still stored');
+  await f.store.purge();
   assert.equal(await db.m4PilotTurn.count({ where: { id: newer.id } }), 0, 'the expired row was purged');
   assert.deepEqual(next.payload.dialogue.userTurns.map(turn => turn.text), ['Uus inimene.', 'Aga hind?']);
   assert.deepEqual([next.payload.context.scopeId, next.payload.context.personId], [before.payload.context.scopeId, before.payload.context.personId]);
@@ -423,7 +431,7 @@ test('M4-C real DB: an expired head with an answer goes on from its record, one 
   f.fail(true);
   await assert.rejects(f.run('Kolmas inimene.', 'new_person'));
   f.fail(false);
-  const failed = await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id }, orderBy: { createdAt: 'desc' } });
+  const failed = await turnRows.findFirst({ where: { pilotId: f.config.id }, orderBy: { createdAt: 'desc' } });
   assert.equal(failed.payload.question, 'Kolmas inimene.');
   await db.m4PilotTurn.update({ where: { id: failed.id }, data: { expiresAt: new Date(Date.now() - 1000) } });
   const calls = f.calls.length;
@@ -471,7 +479,7 @@ async function regionConversation(t) {
   const turn = async (question, contextMode, plan) => {
     plans.push({ language: 'et', ...plan });
     const result = await service.run(user.id, { question, contextMode, convId: conv.id, clientTurnKey: randomUUID(), language: 'et' });
-    const saved_ = (await db.m4PilotTurn.findUnique({ where: { id: result.id } })).payload, value = saved_.dialogueState.value;
+    const saved_ = (await turnRows.findUnique({ where: { id: result.id } })).payload, value = saved_.dialogueState.value;
     // Codex 7.8: the answer model reads only the date of the state context; the server keeps the municipalities for its checks.
     assert.deepEqual(Object.keys(JSON.parse(saved_.requestAudit.body.input[0].content).dialogue.stateContext), ['asOfDateUTC']);
     assert.deepEqual(saved_.dialogueStateContext.regions, directory);
@@ -646,7 +654,7 @@ test('ADR-093 real DB: a dialogue goes on from lean turns as it does from whole 
   await f.run('Millist abi kirjeldatakse?'); const third = await f.run('Aga teenuse ulatus?');
   const fourth = await f.run('Selgita teist punkti.');
   for (const id of [first.id, third.id, fourth.id]) {
-    const stored = await db.m4PilotTurn.findUnique({ where: { id } });
+    const stored = await turnRows.findUnique({ where: { id } });
     assert(isLeanTurn(stored));
     for (const key of ['vector', 'dialogue', 'previousDialogueState', 'dialogueStateContext']) assert.equal(key in stored.payload, false, key);
     assert.equal('body' in stored.payload.requestAudit, false);
@@ -677,7 +685,7 @@ test('ADR-093 real DB: the dialogue state is carried on from a lean turn, and a 
   corrected.facts.push(userFact('work', 2, 'Nüüd töötan.'));
   draft = corrected;
   const correction = await f.run('Nüüd töötan.', 'correction');
-  const stored = await db.m4PilotTurn.findUnique({ where: { id: first.id } });
+  const stored = await turnRows.findUnique({ where: { id: first.id } });
   assert(isLeanTurn(stored));
   assert.ok(stored.payload.dialogueState, 'the state stays with the lean turn');
   assert.equal(stored.payload.lean.proved.dialogueState, digest(stored.payload.dialogueState));
@@ -686,7 +694,8 @@ test('ADR-093 real DB: the dialogue state is carried on from a lean turn, and a 
   assert.ok(sent.previousState, 'a previous state was sent');
   for (const turn of [first, correction]) assert.equal((await f.service.restore(await f.row(turn.id))).state, 'completed');
   // A lean turn whose state was changed afterwards is refused.
-  await db.m4PilotTurn.update({ where: { id: first.id }, data: { payload: { ...stored.payload, dialogueState: { ...stored.payload.dialogueState, changed: true } } } });
+  const kept = (await asStored.findUnique({ where: { id: first.id } })).payload;
+  await db.m4PilotTurn.update({ where: { id: first.id }, data: { payload: { ...kept, dialogueState: { ...kept.dialogueState, changed: true } } } });
   await assert.rejects(async () => f.service.restore(await f.row(first.id)), { code: 'lean_turn_changed' });
 });
 
@@ -798,9 +807,13 @@ test('ADR-094 real DB: with a retention time the audit row expires, the conversa
   assert(await life() - started > 89.9 * day && await life() - started < 90.1 * day, 'the conversation: 90 days from the turn');
   // An earlier activity time shows that each published turn renews the conversation's time.
   await db.conversation.update({ where: { id: f.conv.id }, data: { expiresAt: new Date(started + 5 * day), lastActivityAt: new Date(started - 85 * day) } });
-  // The first row's time passes: it is purged when the next message arrives. The conversation is whole.
+  // The first row's time passes: from then on no reader sees it, and a purge removes it (a request purges at most
+  // once a minute; the purge just before means the next message's request does not). The conversation is whole.
+  await f.store.purgeDue();
   await db.m4PilotTurn.update({ where: { id: first.id }, data: { expiresAt: new Date(Date.now() - 1000) } });
   const second = await f.row((await f.run('Millist abi kirjeldatakse?')).id);
+  assert.equal(await db.m4PilotTurn.count({ where: { id: first.id } }), 1, 'still stored, and read by no one');
+  await f.store.purge();
   assert.equal(await db.m4PilotTurn.count({ where: { id: first.id } }), 0);
   assert.deepEqual(second.payload.dialogue.userTurns.map(turn => turn.text), ['Elan üksi.', 'Millist abi kirjeldatakse?']);
   assert.equal(second.payload.dialogue.publishedAssistant.turnId, first.id);
@@ -813,11 +826,13 @@ test('ADR-094 real DB: with a retention time the audit row expires, the conversa
   f.fail(true);
   await assert.rejects(f.run('See ei saa vastust.'));
   f.fail(false);
-  const lost = await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id }, orderBy: { createdAt: 'desc' } });
+  const lost = await turnRows.findFirst({ where: { pilotId: f.config.id }, orderBy: { createdAt: 'desc' } });
   assert.equal(lost.payload.question, 'See ei saa vastust.');
   assert.deepEqual((await conversation()).metadata.m4Dialogue, { configHash: f.config.configHash, turnId: lost.id, revision: 3, scopeId: row.payload.context.scopeId, personId: row.payload.context.personId });
   await db.m4PilotTurn.updateMany({ where: { pilotId: f.config.id }, data: { expiresAt: new Date(Date.now() - 1000) } });
   const fourth = await f.row((await f.run('Aga teenuse ulatus?')).id);
+  // The expired rows are read by no one; the purge (at most once a minute in a request, asked for here) removes them.
+  await f.store.purge();
   assert.equal(await db.m4PilotTurn.count({ where: { pilotId: f.config.id } }), 1, 'every expired row is gone');
   assert.deepEqual(fourth.payload.dialogue.userTurns.map(turn => turn.text), ['Elan üksi.', 'Millist abi kirjeldatakse?', 'Aga teenuse ulatus?']);
   assert.deepEqual([fourth.payload.context.scopeId, fourth.payload.context.revision, fourth.payload.dialogue.publishedAssistant.turnId], [row.payload.context.scopeId, 4, second.id]);

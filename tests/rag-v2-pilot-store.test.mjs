@@ -5,7 +5,7 @@ import { execFileSync } from 'node:child_process';
 import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { PrismaClient } from '../generated/prisma/client.ts';
+import { PrismaClient, Prisma } from '../generated/prisma/client.ts';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PilotStore, PILOT_TURN_LIMITS, openTurn } from '../lib/rag-v2/pilot/store.js';
 import { isPackedJson, packJson } from '../lib/rag-v2/pilot/packed-json.js';
@@ -28,6 +28,10 @@ test.after(() => db.$disconnect());
 const originalFetch = globalThis.fetch;
 globalThis.fetch = async () => { throw Error('NETWORK_FORBIDDEN_IN_TEST'); };
 test.after(() => { globalThis.fetch = originalFetch; });
+// A turn's row as every reader gets it: its large parts read back from their own columns (ADR-094, step 4). A test that
+// checks what a column holds, or writes a payload back, reads the row as it is stored (asStored.find…).
+const asStored = { findFirst: args => db.m4PilotTurn['findFirst'](args), findUnique: args => db.m4PilotTurn['findUnique'](args) };
+const turnRows = { findFirst: async args => openTurn(await asStored.findFirst(args)), findUnique: async args => openTurn(await asStored.findUnique(args)) };
 
 async function fixture(t, overrides = {}) {
   const user = await db.user.create({ data: { email: `m4-${randomUUID()}@example.invalid` } });
@@ -74,7 +78,7 @@ test('real DB: permitted cache hit makes zero new embeddings; another user/archi
   const queryHash = digest('not the actual hash');
   assert.equal(await f.store.cache(f.config, 'other-user', queryHash), undefined);
   await db.conversation.update({ where: { id: f.conv.id }, data: { archivedAt: new Date() } });
-  const row = await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id } });
+  const row = await turnRows.findFirst({ where: { pilotId: f.config.id } });
   assert.equal(await f.store.cache(f.config, f.user.id, row.payload.query.hash), undefined);
   await assert.rejects(f.service.restore(row));
   await f.store.purge();
@@ -108,7 +112,7 @@ test('real DB: timeout/restarted service never resends unknown work and retains 
   // work is never sent again and its reservation stays in the ledger.
   await assert.rejects(restarted.run(f.user.id, { ...f.input, clientTurnKey: randomUUID() }), /timeout/);
   assert.deepEqual(f.calls, ['timeout', 'timeout']);
-  assert.equal((await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id, inputHash: digest({ tenant: f.config.tenant, userId: f.user.id, ...f.input }) } })).state, 'unknown');
+  assert.equal((await turnRows.findFirst({ where: { pilotId: f.config.id, inputHash: digest({ tenant: f.config.tenant, userId: f.user.id, ...f.input }) } })).state, 'unknown');
   assert.ok((await db.m4PilotLedger.findUnique({ where: { id: f.config.id } })).totals.nanoUsd > before.totals.nanoUsd);
 });
 test('ADR-052 real DB: a turn orders its own conversation, the pilot runs a few at once, and a lost turn closes without a resend', async t => {
@@ -152,7 +156,7 @@ function gatedEmbedding(f) {
   f.service.call = async args => { if (args.stage !== 'embedding') return original(args); f.calls.push('embedding'); f.bodies.push({ stage: 'embedding', body: args.body }); return gate.promise; };
   return gate;
 }
-const embeddingEvent = async f => (await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id } })).payload.events.find(event => event.stage === 'embedding');
+const embeddingEvent = async f => (await turnRows.findFirst({ where: { pilotId: f.config.id } })).payload.events.find(event => event.stage === 'embedding');
 
 test('Codex 30.09 real DB: the search starts before the embedding request ends and reads the same vector from one request', async t => {
   const f = await fixture(t), gate = gatedEmbedding(f);
@@ -189,7 +193,7 @@ test('Codex 30.09 real DB: an early search failure ends the turn only after the 
   const event = await embeddingEvent(f);
   assert.equal(event.state, 'response_received');
   assert.deepEqual(event.usage, { input: 50, output: 0 });
-  assert.equal((await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id } })).state, 'stopped');
+  assert.equal((await turnRows.findFirst({ where: { pilotId: f.config.id } })).state, 'stopped');
 });
 
 test('Codex 30.09 real DB: a failed embedding request is the error of the turn though the search failed because of it', async t => {
@@ -241,7 +245,7 @@ test('real DB: publication transaction rollback preserves validated draft; recov
     return result;
   });
   await assert.rejects(f.service.run(f.user.id, f.input));
-  const row = await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id } });
+  const row = await turnRows.findFirst({ where: { pilotId: f.config.id } });
   assert.equal(row.state, 'needs_recovery');
   assert.equal(await db.conversationMessage.count({ where: { conversationId: f.conv.id } }), 0);
   f.store.locked = locked;
@@ -276,7 +280,7 @@ test('real DB: post-commit restore failure cannot downgrade the persisted valida
   let checks = 0;
   f.adapters.canonical = async (...args) => { if (++checks === 3) throw Error('read service temporarily unavailable'); return canonical(...args); };
   await assert.rejects(f.service.run(f.user.id, f.input));
-  const row = await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id } });
+  const row = await turnRows.findFirst({ where: { pilotId: f.config.id } });
   assert.equal(row.state, 'completed');
   f.adapters.canonical = canonical;
   assert.equal((await f.service.restore(row)).state, 'completed');
@@ -309,7 +313,7 @@ test('F01: failed pre-send packet persistence prevents any answer reservation or
   f.store.save = async (config, row, state, values) => { if (values.requestAudit) throw Error('synthetic disk failure'); return save(config, row, state, values); };
   await assert.rejects(f.service.run(f.user.id, f.input));
   assert.deepEqual(f.calls, ['embedding']);
-  const row = await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id } });
+  const row = await turnRows.findFirst({ where: { pilotId: f.config.id } });
   assert.equal(row.state, 'stopped'); assert.equal(row.payload.packet, undefined);
   assert.equal((await db.m4PilotLedger.findUnique({ where: { id: f.config.id } })).totals.answerAttempts, 0);
 });
@@ -319,7 +323,7 @@ test('F02/F04/F06/F09: invalid reference keeps exact bounded audit and terminal 
   f.service.call = async input => {
     const result = await call(input);
     if (input.stage === 'answer') {
-      const before = await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id } });
+      const before = await turnRows.findFirst({ where: { pilotId: f.config.id } });
       assert.deepEqual(before.payload.requestAudit.body, input.body);
       assert.deepEqual(before.payload.packet.model_context, f.packet.model_context);
       result.value.blocks[0].refs = ['S99'];
@@ -329,7 +333,7 @@ test('F02/F04/F06/F09: invalid reference keeps exact bounded audit and terminal 
   const results = await Promise.allSettled([f.service.run(f.user.id, f.input), f.service.run(f.user.id, f.input)]);
   assert.ok(results.some(r => r.status === 'rejected' && r.reason.code === 'invalid_answer_reference'));
   assert.deepEqual(f.calls, ['embedding', 'answer']);
-  const row = await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id } });
+  const row = await turnRows.findFirst({ where: { pilotId: f.config.id } });
   assert.equal(row.state, 'answer_rejected');
   assert.equal(row.payload.responseAudit.validation.path, '$.blocks[0].refs[0]');
   assert.equal(row.payload.responseAudit.validation.received.text, 'S99');
@@ -367,12 +371,12 @@ test('F08: failed audit expires with its turn, cannot be restored after revocati
   const f = await fixture(t), call = f.service.call;
   f.service.call = async input => { const result = await call(input); if (input.stage === 'answer') result.value.blocks[0].refs = ['S99']; return result; };
   await assert.rejects(f.service.run(f.user.id, f.input));
-  const row = await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id } });
+  const row = await turnRows.findFirst({ where: { pilotId: f.config.id } });
   assert.ok(row.payload.responseAudit.draft);
   f.revoke(); await assert.rejects(f.service.restore(row), { code: 'revoked' });
   await db.m4PilotTurn.update({ where: { id: row.id }, data: { expiresAt: new Date(0) } });
   await f.store.purge();
-  assert.equal(await db.m4PilotTurn.findUnique({ where: { id: row.id } }), null);
+  assert.equal(await turnRows.findUnique({ where: { id: row.id } }), null);
   await assert.rejects(f.store.save(f.config, row, 'answer_rejected', { responseAudit: row.payload.responseAudit }), { code: 'turn_expired' });
   assert.equal((await db.m4PilotLedger.findUnique({ where: { id: f.config.id } })).totals.answerAttempts, 1);
 });
@@ -381,7 +385,7 @@ test('F03/F08: source permission lost after response blocks publication while re
   const f = await fixture(t), call = f.service.call;
   f.service.call = async input => { const result = await call(input); if (input.stage === 'answer') f.config.documents = {}; return result; };
   await assert.rejects(f.service.run(f.user.id, f.input));
-  const row = await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id } });
+  const row = await turnRows.findFirst({ where: { pilotId: f.config.id } });
   assert.equal(row.state, 'answer_rejected'); assert.ok(row.payload.responseAudit.draft);
   assert.equal(await db.conversationMessage.count({ where: { conversationId: f.conv.id } }), 0);
   assert.equal((await f.service.restore(row)).answer, undefined);
@@ -391,7 +395,7 @@ test('F03/F08: source permission lost after response blocks publication while re
 test('F16: a separately approved regression reuses only its pinned live query vector and never resets the original ledger', async t => {
   const f = await fixture(t);
   await f.service.run(f.user.id, f.input);
-  const original = await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id } });
+  const original = await turnRows.findFirst({ where: { pilotId: f.config.id } });
   const oldLedger = await db.m4PilotLedger.findUnique({ where: { id: f.config.id } });
   const entry = { turnId: original.id, queryHash: original.payload.query.hash, vectorHash: digest(original.payload.vector),
     embeddingBodyHash: original.payload.events.find(e => e.stage === 'embedding').bodyHash };
@@ -402,7 +406,7 @@ test('F16: a separately approved regression reuses only its pinned live query ve
   const repeated = { ...f.input, clientTurnKey: randomUUID() };
   const restored = await service.run(f.user.id, repeated);
   assert.equal(restored.state, 'completed'); assert.deepEqual(f.calls, ['embedding', 'answer', 'answer']);
-  const row = await db.m4PilotTurn.findFirst({ where: { pilotId: config.id } });
+  const row = await turnRows.findFirst({ where: { pilotId: config.id } });
   assert.equal(row.payload.queryReuse.turnId, original.id);
   assert.equal(row.payload.events.length, 1); assert.equal(row.payload.events[0].stage, 'answer');
   assert.ok(row.expiresAt <= original.expiresAt);
@@ -421,7 +425,7 @@ test('F07: an unknown answer outcome retains its pre-send packet and cannot beco
   const f = await fixture(t), call = f.service.call;
   f.service.call = async input => { if (input.stage === 'answer') { f.calls.push('answer_unknown'); throw Error('connection lost'); } return call(input); };
   await assert.rejects(f.service.run(f.user.id, f.input));
-  const row = await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id } });
+  const row = await turnRows.findFirst({ where: { pilotId: f.config.id } });
   assert.equal(row.state, 'unknown'); assert.ok(row.payload.packet.model_context); assert.ok(row.payload.requestAudit.body);
   assert.equal(row.payload.events.at(-1).state, 'sent_unknown'); assert.equal(row.payload.responseAudit, undefined);
   const totals = (await db.m4PilotLedger.findUnique({ where: { id: f.config.id } })).totals;
@@ -439,7 +443,7 @@ test('v4 real DB: bare citation rejection preserves exact audit and never retrie
     return result;
   };
   await assert.rejects(f.service.run(f.user.id, f.input), { code: 'inline_answer_reference' });
-  const row = await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id } });
+  const row = await turnRows.findFirst({ where: { pilotId: f.config.id } });
   assert.equal(row.state, 'answer_rejected');
   assert.equal(row.payload.answerVersion, ANSWER_VERSION);
   assert.equal(row.payload.responseAudit.validation.path, '$.blocks[0].text');
@@ -479,8 +483,11 @@ test('v2 real DB: recovery of a synthetic historical nonfactual answer keeps its
   const f = await fixture(t);
   const claimed = await f.store.claim(f.config, f.user.id, f.input);
   const answer = { kind: 'unsupported', blocks: [{ text: 'Historical v2 response.', factual: false, refs: [] }], limitations: [], clarification: null };
-  const row = await f.store.save(f.config, claimed.row, 'needs_recovery', { answer, answerVersion: 'm4-text-refs-2', packet: f.packet,
+  const saved = await f.store.save(f.config, claimed.row, 'needs_recovery', { answer, answerVersion: 'm4-text-refs-2', packet: f.packet,
     query: { ...buildQuestion({ question: f.input.question, contextMode: f.input.contextMode }), language: 'et' } });
+  // A step's own result is the row without its large parts (ADR-094, step 4); a recovery reads the row whole.
+  assert.equal('packet' in saved.payload, false);
+  const row = await turnRows.findUnique({ where: { id: saved.id } });
   const result = await f.service.recover(row);
   assert.equal(result.state, 'completed'); assert.equal(result.answerVersion, 'm4-text-refs-2');
   assert.deepEqual(result.answer, answer); assert.deepEqual(f.calls, []);
@@ -499,7 +506,7 @@ test('evidence candidate: one call persists private quote bindings and exposes o
   assert.equal(result.state, 'completed');
   assert.equal(result.answerVersion, ANSWER_VERSION);
   assert.equal(result.answer.blocks[0].evidence, undefined);
-  const row = await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id } });
+  const row = await turnRows.findFirst({ where: { pilotId: f.config.id } });
   assert.equal(row.payload.evidenceDraftAudit.sourceBinding, 'pass');
   assert.equal(row.payload.evidenceDraftAudit.semanticSupport, 'not_evaluated');
   assert.equal(row.payload.evidenceDraftAudit.bindings[0].quotes[0].start, 0);
@@ -509,8 +516,9 @@ test('evidence candidate: one call persists private quote bindings and exposes o
   assert.equal((await f.service.run(f.user.id, f.input)).state, 'completed');
   assert.deepEqual(f.calls, ['embedding', 'answer']);
   assert.equal(JSON.stringify(result).includes('quote'), false);
-  await db.m4PilotTurn.update({ where: { id: row.id }, data: { payload: { ...row.payload, answer: { ...row.payload.answer, blocks: [{ ...row.payload.answer.blocks[0], text: 'Tampered' }] } } } });
-  const tampered = await db.m4PilotTurn.findUnique({ where: { id: row.id } });
+  const kept = (await asStored.findUnique({ where: { id: row.id } })).payload;
+  await db.m4PilotTurn.update({ where: { id: row.id }, data: { payload: { ...kept, answer: { ...kept.answer, blocks: [{ ...kept.answer.blocks[0], text: 'Tampered' }] } } } });
+  const tampered = await turnRows.findUnique({ where: { id: row.id } });
   await assert.rejects(f.service.restore(tampered), { code: 'evidence_projection_mismatch' });
   f.revoke(); await assert.rejects(f.service.restore(row), { code: 'revoked' });
 });
@@ -521,7 +529,7 @@ test('evidence candidate: forged quote stays private, terminal and counted; expi
   Object.assign(f.packet.reference_map.S1, { tenant: f.config.tenant, query_id: f.packet.query_id, generation_id: 'generation', source_text_sha256: hash('Allikatekst') });
   f.service.call = async input => { const result = await call(input); if (input.stage === 'answer') result.value.blocks[0].evidence = [{ ref: 'S1', quote: 'PRIVATE_FORGED_QUOTE' }]; return result; };
   await assert.rejects(f.service.run(f.user.id, f.input), { code: 'evidence_excerpt_not_found' });
-  const row = await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id } });
+  const row = await turnRows.findFirst({ where: { pilotId: f.config.id } });
   assert.equal(row.state, 'answer_rejected'); assert.ok(row.payload.responseAudit.draft.text.includes('PRIVATE_FORGED_QUOTE'));
   const restored = await f.service.run(f.user.id, f.input); assert.equal(restored.state, 'answer_rejected');
   assert.ok(!JSON.stringify(restored).includes('PRIVATE_FORGED_QUOTE')); assert.deepEqual(f.calls, ['embedding', 'answer']);
@@ -534,7 +542,7 @@ test('explicit no-expiry pilot persists a null deadline and still enforces owner
   const f = await fixture(t, { expiresAt: null, retentionHours: null });
   await db.conversation.update({ where: { id: f.conv.id }, data: { expiresAt: null } });
   const answer = await f.service.run(f.user.id, f.input);
-  const row = await db.m4PilotTurn.findUnique({ where: { id: answer.id } });
+  const row = await turnRows.findUnique({ where: { id: answer.id } });
   assert.equal(row.expiresAt, null);
   await db.conversation.update({ where: { id: f.conv.id }, data: { lastActivityAt: new Date(0) } });
   assert.equal(await db.conversation.count({ where: { id: f.conv.id, lastActivityAt: { lt: new Date() }, turns: { none: { m4Pilot: { is: { expiresAt: null } } } } } }), 0);
@@ -581,7 +589,7 @@ test('ADR-040 real DB: a streamed answer shows its text first and is published a
   assert.equal(turn.state, 'completed');
   assert.equal(shown.join(''), 'Allikatekst\n\nPiiratud', 'the provisional text is the visible text without references');
   assert.match(turn.answer.blocks[0].text, /Allikatekst/);
-  const row = await db.m4PilotTurn.findUnique({ where: { id: turn.id } });
+  const row = await turnRows.findUnique({ where: { id: turn.id } });
   assert.equal(row.payload.requestAudit.body.stream, true, 'the audited request says it was streamed');
   const phases = row.payload.timings.phases;
   assert(Number.isInteger(phases.first_text) && phases.first_text <= phases.answered && row.payload.timings.validatedDraftMs >= phases.answered);
@@ -597,7 +605,7 @@ test('ADR-040 real DB: a streamed answer that fails validation is withheld whole
   f.service.call = streamedCall(f, value => ({ ...value, blocks: [{ ...value.blocks[0], refs: ['S99'] }] }));
   await assert.rejects(f.service.run(f.user.id, f.input, { onAnswerText: text => shown.push(text) }), { code: 'invalid_answer_reference' });
   assert.equal(shown.join(''), 'Allikatekst\n\nPiiratud');
-  const row = await db.m4PilotTurn.findFirst({ where: { chatTurn: { conversationId: f.conv.id } } });
+  const row = await turnRows.findFirst({ where: { chatTurn: { conversationId: f.conv.id } } });
   assert.equal(row.state, 'answer_rejected');
   assert.equal(row.payload.answer, undefined);
   assert.equal(await db.conversationMessage.count({ where: { conversationId: f.conv.id } }), 0);
@@ -611,7 +619,7 @@ test('Codex J4 real DB: a validated answer waiting for publication keeps its con
   store.publish = async (...args) => { if (down) { down = false; throw Object.assign(Error('publication down'), { code: 'publish_failed' }); } return publish(...args); };
   const service = new PilotService({ ...f.service, store });
   await assert.rejects(service.run(f.user.id, f.input));
-  const first = await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id } });
+  const first = await turnRows.findFirst({ where: { pilotId: f.config.id } });
   assert.equal(first.state, 'needs_recovery');
   // The same conversation waits for it; nothing else does.
   await assert.rejects(store.claim(f.config, f.user.id, { ...f.input, clientTurnKey: randomUUID() }), { code: 'conversation_recovery_pending' });
@@ -619,7 +627,7 @@ test('Codex J4 real DB: a validated answer waiting for publication keeps its con
   const calls = f.calls.length;
   const second = await service.run(f.user.id, { ...f.input, clientTurnKey: randomUUID(), question: 'Teine küsimus' });
   assert.equal(second.state, 'completed');
-  assert.equal((await db.m4PilotTurn.findUnique({ where: { id: first.id } })).state, 'completed');
+  assert.equal((await turnRows.findUnique({ where: { id: first.id } })).state, 'completed');
   assert.deepEqual(f.calls.slice(calls), ['embedding', 'answer']);
   const messages = await db.conversationMessage.findMany({ where: { conversationId: f.conv.id }, orderBy: [{ createdAt: 'asc' }, { id: 'asc' }] });
   assert.deepEqual(messages.map(message => message.metadata.m4TurnId), [first.id, first.id, second.id, second.id]);
@@ -632,7 +640,7 @@ test('Codex J4 real DB: a failed publication keeps the next question from the mo
   store.publish = async (...args) => { if (down) throw Object.assign(Error('publication down'), { code: 'publish_failed' }); return publish(...args); };
   const service = new PilotService({ ...f.service, store });
   await assert.rejects(service.run(f.user.id, f.input));
-  const first = await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id } });
+  const first = await turnRows.findFirst({ where: { pilotId: f.config.id } });
   const calls = f.calls.length;
   await assert.rejects(service.run(f.user.id, { ...f.input, clientTurnKey: randomUUID(), question: 'Teine küsimus' }), { code: 'conversation_recovery_failed' });
   assert.equal(f.calls.length, calls);
@@ -641,7 +649,7 @@ test('Codex J4 real DB: a failed publication keeps the next question from the mo
   await db.m4PilotTurn.update({ where: { id: first.id }, data: { state: 'stopped' } });
   const second = await service.run(f.user.id, { ...f.input, clientTurnKey: randomUUID(), question: 'Kolmas küsimus' });
   assert.equal(second.state, 'completed');
-  const late = await db.m4PilotTurn.update({ where: { id: first.id }, data: { state: 'needs_recovery' } });
+  const late = openTurn(await db.m4PilotTurn.update({ where: { id: first.id }, data: { state: 'needs_recovery' } }));
   await assert.rejects(service.recover(late), { code: 'turn_superseded' });
   assert.equal(await db.conversationMessage.count({ where: { conversationId: f.conv.id, metadata: { path: ['m4TurnId'], equals: first.id } } }), 0);
 });
@@ -653,7 +661,7 @@ test('Codex J4 real DB: two recoveries at once publish a waiting answer once', a
   store.publish = async (...args) => { if (down) { down = false; throw Object.assign(Error('publication down'), { code: 'publish_failed' }); } return publish(...args); };
   const service = new PilotService({ ...f.service, store });
   await assert.rejects(service.run(f.user.id, f.input));
-  const waiting = await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id } });
+  const waiting = await turnRows.findFirst({ where: { pilotId: f.config.id } });
   const [a, b] = await Promise.all([service.recover(waiting), service.recover(waiting)]);
   assert.deepEqual([a.state, b.state], ['completed', 'completed']);
   assert.equal(await db.conversationMessage.count({ where: { conversationId: f.conv.id } }), 2);
@@ -665,7 +673,7 @@ test('real DB, ADR-092: the answer is written with the effort the user chose amo
   const chosen = await f.service.run(f.user.id, { ...f.input, reasoning: 'low' });
   assert.equal(chosen.state, 'completed');
   assert.equal(answerBodies().at(-1).reasoning.effort, 'low');
-  const row = await db.m4PilotTurn.findUnique({ where: { id: chosen.id } });
+  const row = await turnRows.findUnique({ where: { id: chosen.id } });
   assert.equal(row.payload.reasoning, 'low');
   assert.equal(row.payload.requestAudit.body.reasoning.effort, 'low');
   // The same key with another choice is another input; the stored turn is read back only for the same one.
@@ -675,7 +683,7 @@ test('real DB, ADR-092: the answer is written with the effort the user chose amo
   // Without a choice the plan's own effort is used and the turn records none.
   const plain = await f.service.run(f.user.id, { ...f.input, clientTurnKey: randomUUID() });
   assert.equal(answerBodies().at(-1).reasoning.effort, 'medium');
-  assert.equal('reasoning' in (await db.m4PilotTurn.findUnique({ where: { id: plain.id } })).payload, false);
+  assert.equal('reasoning' in (await turnRows.findUnique({ where: { id: plain.id } })).payload, false);
   // The plan's own effort named outright gives the same request.
   await f.service.run(f.user.id, { ...f.input, clientTurnKey: randomUUID(), reasoning: 'medium' });
   assert.equal(answerBodies().at(-1).reasoning.effort, 'medium');
@@ -700,17 +708,104 @@ test('real DB: a packet the size of the largest municipality\'s goes through a w
   assert.deepEqual(f.calls, ['embedding', 'answer']);
   // The model was given the context as the turn made it, not a packed form.
   assert.deepEqual(JSON.parse(f.bodies.at(-1).body.input[0].content).evidence, packet.model_context);
-  const row = await db.m4PilotTurn.findUnique({ where: { id: result.id } }), bytes = value => Buffer.byteLength(JSON.stringify(value), 'utf8');
-  assert(isPackedJson(row.payload.packet), 'stored packed');
-  assert(bytes(row.payload.packet) < bytes(packet) * 0.7, `${bytes(row.payload.packet)} of ${bytes(packet)}`);
+  const row = await asStored.findUnique({ where: { id: result.id } }), bytes = value => Buffer.byteLength(JSON.stringify(value), 'utf8');
+  assert(isPackedJson(row.packet), 'stored packed');
+  assert(bytes(row.packet) < bytes(packet) * 0.7, `${bytes(row.packet)} of ${bytes(packet)}`);
+  // ADR-094, step 4: the packet, the request and the vector are in their own columns, not in the payload that every
+  // step of the turn writes again.
+  assert.deepEqual(['packet', 'requestAudit', 'vector'].map(key => [key in row.payload, row[key] !== null]), [[false, true], [false, true], [false, true]]);
+  assert(bytes(row.payload) < 20000, String(bytes(row.payload)));
   assert.equal(stable(openTurn(row).payload.packet), stable(packet));
   // A repeat of the same request restores the turn from the stored row: references are checked on the opened packet.
   const again = await f.service.run(f.user.id, f.input);
   assert.deepEqual([again.id, again.state, again.sources.length], [result.id, 'completed', Object.keys(packet.reference_map).length]);
   assert.deepEqual(f.calls, ['embedding', 'answer']);
   // The chat's own source view reads one entry of the opened packet.
-  const opened = openTurn(await db.m4PilotTurn.findUnique({ where: { id: result.id } }));
+  const opened = openTurn(await turnRows.findUnique({ where: { id: result.id } }));
   assert.equal(opened.payload.packet.evidence.find(entry => entry.evidence_id === packet.reference_map.S1.evidence_id).source_text, packet.evidence[0].source_text);
+});
+
+// ADR-094, step 4. A turn's row is written at every step of the turn. Each of those writes used to carry the whole
+// payload, the packet, the request and the vector included: on 06.10.2026 a turn put about 1 MB into the database's
+// log for a row that keeps 13.6 KB under a plan without an audit time (scripts/rag-v2-chat-volume.mjs).
+test('real DB: the turn\'s large parts are written once and its other writes are small', async t => {
+  const bytes = value => Buffer.byteLength(JSON.stringify(value ?? null), 'utf8');
+  const own = (target, key) => { const value = Reflect.get(target, key); return typeof value === 'function' ? value.bind(target) : value; };
+  for (const auditDays of [7, 0]) {
+    const f = await fixture(t, { auditDays, maxInputTokens: 300000, budget: { attempts: 20, embeddingAttempts: 8, answerAttempts: 8, tokens: 2000000, nanoUsd: 2000000 } });
+    const packet = municipalPacket({ tenant: f.config.tenant });
+    f.config.documents = Object.fromEntries(packet.evidence.map(entry => [entry.document_id, entry.document_version_id]));
+    f.adapters.search = async () => packet;
+    // Every write of the turn's row, as the store sends it.
+    const writes = [];
+    const watched = tx => new Proxy(tx, { get: (target, key) => (key !== 'm4PilotTurn' ? own(target, key) : new Proxy(target.m4PilotTurn, { get: (model, method) => (method !== 'update' ? own(model, method)
+      : args => { writes.push(args.data); return model.update(args); }) })) });
+    f.service.store = new PilotStore(new Proxy(db, { get: (target, key) => (key !== '$transaction' ? own(target, key) : (fn, options) => target.$transaction(tx => fn(watched(tx)), options)) }));
+    const result = await f.service.run(f.user.id, f.input);
+    assert.equal(result.state, 'completed');
+    assert(writes.length >= 10, String(writes.length));
+    // No write's payload holds a large part, and every payload is small.
+    for (const data of writes) {
+      assert.deepEqual(['packet', 'requestAudit', 'vector'].filter(key => key in data.payload), []);
+      assert(bytes(data.payload) < 20000, String(bytes(data.payload)));
+    }
+    // One write of the turn is large: the packet's, with the request as sent. The vector has a write of its own (this
+    // fixture's vector is a short one; a real one is about 63 KB).
+    const large = writes.filter(data => bytes(data) > 50000);
+    assert.deepEqual(large.map(data => ['packet', 'requestAudit', 'vector'].filter(key => key in data)), [['packet', 'requestAudit']]);
+    assert.deepEqual([isPackedJson(large[0].packet), large[0].requestAudit.body !== undefined], [true, true]);
+    assert.deepEqual(writes.filter(data => Array.isArray(data.vector)).map(data => [data.vector.length, 'packet' in data]), [[3072, false]]);
+    const last = writes.at(-1), naming = key => writes.filter(data => key in data).length;
+    assert.equal(last.state, 'completed');
+    if (auditDays) {
+      // A plan with an audit time: the publication names none of them, so each is written exactly once.
+      assert.deepEqual(['packet', 'requestAudit', 'vector'].map(naming), [1, 1, 1]);
+    } else {
+      // A plan without one: the publication replaces them with the lean form, which is small, and clears the vector.
+      assert.deepEqual(['packet', 'requestAudit', 'vector'].map(naming), [2, 2, 2]);
+      assert.deepEqual([last.vector, 'body' in last.requestAudit, bytes(last) < 20000], [Prisma.DbNull, false, true]);
+    }
+    // The row reads back as the turn made it.
+    const row = await turnRows.findUnique({ where: { id: result.id } });
+    if (auditDays) assert.deepEqual([stable(row.payload.packet), row.payload.vector.length, row.payload.requestAudit.body !== undefined], [stable(packet), 3072, true]);
+    else assert.deepEqual([isLeanTurn(row), isLeanPacket(row.payload.packet), 'vector' in row.payload], [true, true, false]);
+    assert.equal((await f.service.run(f.user.id, f.input)).id, result.id);
+  }
+});
+
+// A question asked before is not embedded again: its vector is read from the user's own earlier turn, found by the
+// question's hash in the database, so the rows of other questions are not read.
+test('real DB: the cached vector is found by the question among many other turns of the user', async t => {
+  const f = await fixture(t);
+  const first = await f.service.run(f.user.id, f.input);
+  for (let n = 0; n < 3; n++) await f.service.run(f.user.id, { ...f.input, clientTurnKey: randomUUID(), question: `Teine küsimus ${n}` });
+  const row = await turnRows.findUnique({ where: { id: first.id } });
+  const cached = await f.store.cache(f.config, f.user.id, row.payload.query.hash);
+  assert.deepEqual(cached, row.payload.vector);
+  assert.equal(await f.store.cache(f.config, f.user.id, digest('a question never asked')), undefined);
+  // A turn whose vector is in its payload (written before the parts had columns) still serves.
+  const stored = await asStored.findUnique({ where: { id: first.id } });
+  await db.m4PilotTurn.update({ where: { id: first.id }, data: { payload: { ...stored.payload, vector: stored.vector }, vector: Prisma.DbNull } });
+  assert.deepEqual(await f.store.cache(f.config, f.user.id, row.payload.query.hash), row.payload.vector);
+  const calls = f.calls.length;
+  await f.service.run(f.user.id, { ...f.input, clientTurnKey: randomUUID() });
+  assert.deepEqual(f.calls.slice(calls), ['answer']);
+});
+
+// ADR-094, step 5: the purge no longer runs in every request, so a row past its time may still be stored when the
+// history is read. It is read by no one: the turn that has a record is shown from it, the one without is not shown.
+test('real DB: rows past their time that are not purged yet do not reach the history', async t => {
+  const f = await fixture(t), call = f.service.call;
+  const first = await f.service.run(f.user.id, f.input);
+  f.service.call = async () => { throw Error('timeout'); };
+  await assert.rejects(f.service.run(f.user.id, { ...f.input, clientTurnKey: randomUUID(), question: 'Teine küsimus' }));
+  f.service.call = call;
+  await db.m4PilotTurn.updateMany({ where: { pilotId: f.config.id }, data: { expiresAt: new Date(Date.now() - 1000) } });
+  assert.equal(await db.m4PilotTurn.count({ where: { pilotId: f.config.id } }), 2);
+  const read = await conversationTurns({ db, service: f.service, config: f.config, userId: f.user.id, convId: f.conv.id });
+  assert.deepEqual(read.turns.map(turn => [turn.id, turn.history, turn.answer]), [[first.id, true, first.answer]]);
+  await f.store.purge();
+  assert.equal(await db.m4PilotTurn.count({ where: { pilotId: f.config.id } }), 0);
 });
 
 test('real DB: a packet that has run away still stops the turn before an answer is asked for', async t => {
@@ -721,7 +816,7 @@ test('real DB: a packet that has run away still stops the turn before an answer 
   f.adapters.search = async () => packet;
   await assert.rejects(f.service.run(f.user.id, f.input), { code: 'audit_packet_too_large' });
   assert.deepEqual(f.calls, ['embedding']);
-  const row = await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id } });
+  const row = await turnRows.findFirst({ where: { pilotId: f.config.id } });
   assert.equal(row.state, 'stopped'); assert.equal(row.payload.packet, undefined); assert.equal(row.payload.requestAudit, undefined);
   assert.equal((await db.m4PilotLedger.findUnique({ where: { id: f.config.id } })).totals.answerAttempts, 0);
   // The limit counts the packet as the turn made it: packed, this one would be under it, and that must not let it through.
@@ -741,7 +836,7 @@ test('real DB: a plan without an audit time stores a whole turn lean, and the tu
   assert.equal(result.state, 'completed');
   // The answer of the fixture cites S1: the reply lists that one source, as the page shows only cited ones.
   assert.deepEqual(result.sources.map(source => [source.ref, source.used, source.title]), [['S1', true, packet.evidence[0].bibliography.title]]);
-  const stored = await db.m4PilotTurn.findUnique({ where: { id: result.id } }), bytes = value => Buffer.byteLength(JSON.stringify(value), 'utf8');
+  const stored = await turnRows.findUnique({ where: { id: result.id } }), bytes = value => Buffer.byteLength(JSON.stringify(value), 'utf8');
   assert(isLeanTurn(stored));
   assert(bytes(stored.payload) < 20000, String(bytes(stored.payload)));
   for (const key of ['vector', 'dialogue', 'previousDialogueState', 'dialogueStateContext']) assert.equal(key in stored.payload, false, key);
@@ -759,7 +854,10 @@ test('real DB: a plan without an audit time stores a whole turn lean, and the tu
   assert.deepEqual([again.id, again.state, again.answer, again.sources.length], [result.id, 'completed', result.answer, 1]);
   assert.deepEqual(f.calls, ['embedding', 'answer']);
   // A lean row whose answer was changed afterwards is refused, not shown.
-  await db.m4PilotTurn.update({ where: { id: result.id }, data: { payload: { ...stored.payload, answer: { ...stored.payload.answer, limitations: ['muudetud'] } } } });
+  // What the lean row holds: the vector's column is empty, the request is without its body, the packet is the lean one.
+  const columns = await asStored.findUnique({ where: { id: result.id } });
+  assert.deepEqual([columns.vector, 'body' in columns.requestAudit, 'packet' in columns.payload, 'requestAudit' in columns.payload], [null, false, false, false]);
+  await db.m4PilotTurn.update({ where: { id: result.id }, data: { payload: { ...columns.payload, answer: { ...columns.payload.answer, limitations: ['muudetud'] } } } });
   await assert.rejects(f.service.run(f.user.id, f.input), { code: 'lean_turn_changed' });
 });
 
@@ -767,7 +865,7 @@ test('real DB: with an audit time a turn is stored whole and made lean once it i
   const f = await fixture(t, { auditDays: 7 });
   const first = await f.service.run(f.user.id, f.input);
   const second = await f.service.run(f.user.id, { ...f.input, clientTurnKey: randomUUID(), question: 'Teine küsimus' });
-  const whole = await db.m4PilotTurn.findUnique({ where: { id: first.id } });
+  const whole = await turnRows.findUnique({ where: { id: first.id } });
   assert.equal(isLeanTurn(whole), false);
   assert.equal(whole.payload.vector.length, 3072);
   assert.ok(whole.payload.requestAudit.body);
@@ -775,13 +873,13 @@ test('real DB: with an audit time a turn is stored whole and made lean once it i
   // own two. Neither is old enough yet.
   const sweep = async () => { while (await f.store.slimOld(f.config.auditDays, { limit: 50 })); };
   await sweep();
-  assert.equal(isLeanTurn(await db.m4PilotTurn.findUnique({ where: { id: first.id } })), false);
+  assert.equal(isLeanTurn(await turnRows.findUnique({ where: { id: first.id } })), false);
   await db.m4PilotTurn.update({ where: { id: first.id }, data: { createdAt: new Date(Date.now() - 8 * 86400000) } });
   assert.equal(await f.store.slimOld(f.config.auditDays), 1);
-  const lean = await db.m4PilotTurn.findUnique({ where: { id: first.id } }), newer = await db.m4PilotTurn.findUnique({ where: { id: second.id } });
+  const lean = await turnRows.findUnique({ where: { id: first.id } }), newer = await turnRows.findUnique({ where: { id: second.id } });
   // A lean turn is not made lean again: nothing is left for the sweep, and the row keeps its first mark.
   assert.equal(await f.store.slimOld(f.config.auditDays), 0);
-  assert.equal((await db.m4PilotTurn.findUnique({ where: { id: first.id } })).payload.lean.at, lean.payload.lean.at);
+  assert.equal((await turnRows.findUnique({ where: { id: first.id } })).payload.lean.at, lean.payload.lean.at);
   assert(isLeanTurn(lean));
   assert.equal(isLeanTurn(newer), false);
   assert.deepEqual([lean.state, lean.payload.answer, lean.payload.question, 'vector' in lean.payload, 'body' in lean.payload.requestAudit], ['completed', whole.payload.answer, whole.payload.question, false, false]);
@@ -885,7 +983,7 @@ test('real DB: a turn published with placeholders gets its record from its audit
   // The turn is in the history under any plan now, and its audit row is as it was.
   const later = await conversationTurns({ db, service: f.service, config: { ...f.config, id: randomUUID(), configHash: randomUUID() }, userId: f.user.id, convId: f.conv.id });
   assert.deepEqual(later.turns.map(turn => [turn.id, turn.history, turn.question]), [[first.id, true, 'Üldküsimus']]);
-  assert.equal((await db.m4PilotTurn.findUnique({ where: { id: second.id } })).state, 'completed');
+  assert.equal((await turnRows.findUnique({ where: { id: second.id } })).state, 'completed');
   // A second run finds the first turn done.
   const again = await recordStoredTurns(db, { where });
   assert.deepEqual([again.turns, again.already, again.made, again.otherContent], [2, 1, 0, 1]);
