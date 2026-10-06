@@ -1,0 +1,684 @@
+{
+ "schema": "sotsiaalai/reasoning-choice-review-1",
+ "reviewed": "2026-10-06",
+ "material": "the 22 question pairs (44 completed turns) of docs/audits/evidence/reasoning-choice-measured-2026-10-06.json; questions are identified by set and number as there",
+ "method": "One reviewer (Claude Opus 5.5) read each pair as answers A and B in a random order per pair, the effort hidden; scores were written down for all 22 pairs before the key was opened. Concrete claims in which the two answers differ were checked against the stored evidence of the turn that made the claim. No model call was made.",
+ "limits": [
+  "one reviewer, itself a model",
+  "two pairs (set 1 questions 2 and 8) were not blind: their answers had been read during the measurement",
+  "answers of one effort tend to be longer, which can give the effort away",
+  "each turn had its own search plan and evidence, so a difference between two answers is the difference of the whole turn, not of the reasoning effort alone",
+  "22 questions asked once each: no repeat shows how much an answer varies by itself",
+  "answer texts are not in this file; a reason describes the difference without quoting"
+ ],
+ "rubric_written_before_reading": "Material: the 22 question pairs of the measurement of 06.10.2026 (ADR-092). Each pair is one question answered twice,\nonce with reasoning low and once with medium. The export shows the two answers as A and B in a random order per pair;\nthe key (which is which) stays on the server until every pair below has its scores written down.\n\nKnown limits, stated before reading: (1) I am the only reviewer; (2) during the measurement I read both answers of\nset 1 question 8 and one answer of set 1 question 2, so those two pairs are not blind to me; (3) answers of one mode\ntend to be longer, which can give the mode away; (4) each mode's turn had its own evidence (the evidence count differs\nin 15 pairs), so a difference between the answers is the difference of the whole turn, not of the reasoning effort\nalone.\n\nPer answer (A and B separately):\n- answers (0, 1, 2): 2 = answers what was asked, directly; 1 = answers partly, or hedges where its own evidence would\n  allow an answer; 0 = does not answer what was asked.\n- unsupported (count): concrete claims (a number, a deadline, who decides, where to turn, a condition) that the turn's\n  own evidence does not hold. Checked for the claims in which A and B differ and for up to two other concrete claims\n  per answer; a claim both make the same way is checked once.\n- scope (ok / wrong): the municipality, the person and the date the question is about.\n- omission (0 / 1): a point the other answer makes, which that answer's evidence supports and this answer's evidence\n  also holds, and which a person asking would need (not a nicety).\n- needless_question (0 / 1): asks the user to clarify something the question already says or the evidence makes\n  unnecessary.\n\nPer pair: better = A, B or equal. An unsupported claim or a wrong scope outweighs an omission; an omission outweighs\nlength and wording; two answers that differ only in wording or order are equal. One sentence of reason per pair,\nwithout quoting the answer.\n\nAfter unblinding: counts per mode of better/equal, of unsupported claims, wrong scope, omissions, needless questions;\nseparately for the main questions (20) and the follow-ups (2), and with the two non-blind pairs marked.",
+ "a_was_the_quick_answer_in": "12 of 22 pairs",
+ "totals": {
+  "all": {
+   "pairs": 22,
+   "equal": 18,
+   "low": {
+    "better": 3,
+    "answers_fully": 21,
+    "answers_partly": 1,
+    "unsupported_claims": 1,
+    "wrong_scope": 0,
+    "omissions": 3,
+    "needless_questions": 1
+   },
+   "medium": {
+    "better": 1,
+    "answers_fully": 17,
+    "answers_partly": 5,
+    "unsupported_claims": 0,
+    "wrong_scope": 0,
+    "omissions": 2,
+    "needless_questions": 0
+   }
+  },
+  "main_questions": {
+   "pairs": 20,
+   "equal": 16,
+   "low": {
+    "better": 3,
+    "answers_fully": 19,
+    "answers_partly": 1,
+    "unsupported_claims": 1,
+    "wrong_scope": 0,
+    "omissions": 2,
+    "needless_questions": 1
+   },
+   "medium": {
+    "better": 1,
+    "answers_fully": 16,
+    "answers_partly": 4,
+    "unsupported_claims": 0,
+    "wrong_scope": 0,
+    "omissions": 2,
+    "needless_questions": 0
+   }
+  },
+  "follow_ups": {
+   "pairs": 2,
+   "equal": 2,
+   "low": {
+    "better": 0,
+    "answers_fully": 2,
+    "answers_partly": 0,
+    "unsupported_claims": 0,
+    "wrong_scope": 0,
+    "omissions": 1,
+    "needless_questions": 0
+   },
+   "medium": {
+    "better": 0,
+    "answers_fully": 1,
+    "answers_partly": 1,
+    "unsupported_claims": 0,
+    "wrong_scope": 0,
+    "omissions": 0,
+    "needless_questions": 0
+   }
+  },
+  "blind_pairs_only": {
+   "pairs": 20,
+   "equal": 17,
+   "low": {
+    "better": 2,
+    "answers_fully": 19,
+    "answers_partly": 1,
+    "unsupported_claims": 1,
+    "wrong_scope": 0,
+    "omissions": 3,
+    "needless_questions": 1
+   },
+   "medium": {
+    "better": 1,
+    "answers_fully": 16,
+    "answers_partly": 4,
+    "unsupported_claims": 0,
+    "wrong_scope": 0,
+    "omissions": 2,
+    "needless_questions": 0
+   }
+  }
+ },
+ "pairs": [
+  {
+   "set": 1,
+   "question": 1,
+   "follow_up": false,
+   "blind": true,
+   "better": "equal",
+   "low": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "partial",
+    "evidence": 5
+   },
+   "medium": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "partial",
+    "evidence": 5
+   },
+   "reason": "Both give the deadline and its start; the quick answer adds the rule for restoring a missed deadline, the thorough answer asks which field the decision is from. Neither is needed to answer the question."
+  },
+  {
+   "set": 1,
+   "question": 2,
+   "follow_up": false,
+   "blind": false,
+   "better": "low",
+   "cause": "evidence",
+   "low": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "partial",
+    "evidence": 104
+   },
+   "medium": {
+    "answers": 1,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "partial",
+    "evidence": 104
+   },
+   "reason": "The quick answer says where to turn in the city and names both home help and residential care with how it is paid; the thorough answer names home help only and where to turn loosely. The thorough answer's evidence did not hold the city's residential-care provision, so this is a difference of the evidence, not of leaving something out."
+  },
+  {
+   "set": 1,
+   "question": 3,
+   "follow_up": false,
+   "blind": true,
+   "better": "equal",
+   "low": {
+    "answers": 1,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "partial",
+    "evidence": 68
+   },
+   "medium": {
+    "answers": 1,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "partial",
+    "evidence": 69
+   },
+   "reason": "Each names one different money source with its limits and the same local contact; both say no separate grant for adapting the home can be confirmed."
+  },
+  {
+   "set": 1,
+   "question": 4,
+   "follow_up": false,
+   "blind": true,
+   "better": "low",
+   "cause": "answer_and_evidence",
+   "low": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "partial",
+    "evidence": 8
+   },
+   "medium": {
+    "answers": 1,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "partial",
+    "evidence": 6
+   },
+   "reason": "The quick answer states what the person pays, what the municipality covers and up to where, and the order of the maintenance duty; the thorough answer gives the same direction more loosely and as a description of 2023. The quick answer cited the provision of the law, which the thorough answer's evidence held only as a study's text."
+  },
+  {
+   "set": 1,
+   "question": 5,
+   "follow_up": false,
+   "blind": true,
+   "better": "equal",
+   "low": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "partial",
+    "evidence": 9
+   },
+   "medium": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "partial",
+    "evidence": 13
+   },
+   "reason": "Both describe the change correctly from their evidence and name what they cannot describe; each covers a part the other's evidence did not hold."
+  },
+  {
+   "set": 1,
+   "question": 6,
+   "follow_up": false,
+   "blind": true,
+   "better": "equal",
+   "low": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 1,
+    "kind": "grounded",
+    "evidence": 3
+   },
+   "medium": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "grounded",
+    "evidence": 3
+   },
+   "reason": "Both give the new age limit and the transition rules for a child already 16; the quick answer lists one more rule and then treats the general question as one about a particular child."
+  },
+  {
+   "set": 1,
+   "question": 7,
+   "follow_up": false,
+   "blind": true,
+   "better": "equal",
+   "low": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "grounded",
+    "evidence": 56
+   },
+   "medium": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "partial",
+    "evidence": 60
+   },
+   "reason": "The same documents in both; the quick answer adds the form and the time given to complete an application, the thorough answer offers to narrow by benefit."
+  },
+  {
+   "set": 1,
+   "question": 8,
+   "follow_up": false,
+   "blind": false,
+   "better": "equal",
+   "low": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "partial",
+    "evidence": 6
+   },
+   "medium": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "partial",
+    "evidence": 6
+   },
+   "reason": "Both say the amount for the asked year cannot be confirmed and give the known year's amount as such."
+  },
+  {
+   "set": 1,
+   "question": 9,
+   "follow_up": false,
+   "blind": true,
+   "better": "equal",
+   "low": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "grounded",
+    "evidence": 66
+   },
+   "medium": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "grounded",
+    "evidence": 66
+   },
+   "reason": "The same documents, deadline and office in the asked language; the thorough answer adds the documents of a housing loan, which apply only to some."
+  },
+  {
+   "set": 1,
+   "question": 10,
+   "follow_up": false,
+   "blind": true,
+   "better": "medium",
+   "cause": "answer",
+   "low": {
+    "answers": 2,
+    "unsupported": 1,
+    "scope": "ok",
+    "omission": 1,
+    "needless_question": 0,
+    "kind": "grounded",
+    "evidence": 67
+   },
+   "medium": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "grounded",
+    "evidence": 71
+   },
+   "reason": "The quick answer gives the contact a title of another unit than its evidence states and leaves out that the service is paid, which its evidence holds; the thorough answer states both as the evidence does."
+  },
+  {
+   "set": 1,
+   "question": 11,
+   "follow_up": true,
+   "blind": true,
+   "better": "equal",
+   "low": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 1,
+    "needless_question": 0,
+    "kind": "partial",
+    "evidence": 62
+   },
+   "medium": {
+    "answers": 1,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "grounded",
+    "evidence": 47
+   },
+   "reason": "The quick answer gives the price, who gets it free and how to apply but names the contacts without the phone and e-mail its evidence holds; the thorough answer gives those channels and little else, and its evidence did not hold the price. Each lets the person act."
+  },
+  {
+   "set": 2,
+   "question": 1,
+   "follow_up": false,
+   "blind": true,
+   "better": "equal",
+   "low": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "partial",
+    "evidence": 5
+   },
+   "medium": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "partial",
+    "evidence": 6
+   },
+   "reason": "The same answer on who and what; the quick answer adds the right to choose the assistant, the thorough answer the definition of disability."
+  },
+  {
+   "set": 2,
+   "question": 2,
+   "follow_up": false,
+   "blind": true,
+   "better": "equal",
+   "low": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "grounded",
+    "evidence": 10
+   },
+   "medium": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "grounded",
+    "evidence": 7
+   },
+   "reason": "The same distinction, supported in both; they differ in order and length."
+  },
+  {
+   "set": 2,
+   "question": 3,
+   "follow_up": false,
+   "blind": true,
+   "better": "low",
+   "cause": "answer",
+   "low": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "partial",
+    "evidence": 4
+   },
+   "medium": {
+    "answers": 1,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 1,
+    "needless_question": 0,
+    "kind": "partial",
+    "evidence": 5
+   },
+   "reason": "The quick answer answers yes with its stated limit and names the free route for a registered unemployed person; the thorough answer gives neither a yes nor a no and leaves that route out, though its evidence holds it."
+  },
+  {
+   "set": 2,
+   "question": 4,
+   "follow_up": false,
+   "blind": true,
+   "better": "equal",
+   "low": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "grounded",
+    "evidence": 7
+   },
+   "medium": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "partial",
+    "evidence": 7
+   },
+   "reason": "The same figures and the same way of calculating; the quick answer says more about housing costs."
+  },
+  {
+   "set": 2,
+   "question": 5,
+   "follow_up": false,
+   "blind": true,
+   "better": "equal",
+   "low": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "grounded",
+    "evidence": 6
+   },
+   "medium": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "grounded",
+    "evidence": 4
+   },
+   "reason": "The same conditions, time limit and deciders; the quick answer repeats one point."
+  },
+  {
+   "set": 2,
+   "question": 6,
+   "follow_up": false,
+   "blind": true,
+   "better": "equal",
+   "low": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "partial",
+    "evidence": 7
+   },
+   "medium": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "partial",
+    "evidence": 8
+   },
+   "reason": "The same services and the same way to apply; the quick answer explains more, the thorough answer says from which date its list is."
+  },
+  {
+   "set": 2,
+   "question": 7,
+   "follow_up": false,
+   "blind": true,
+   "better": "equal",
+   "low": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "grounded",
+    "evidence": 71
+   },
+   "medium": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "grounded",
+    "evidence": 71
+   },
+   "reason": "The same conditions, amounts and where to apply; the thorough answer adds what to attach for an adult and until when a child may apply."
+  },
+  {
+   "set": 2,
+   "question": 8,
+   "follow_up": false,
+   "blind": true,
+   "better": "equal",
+   "low": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "grounded",
+    "evidence": 6
+   },
+   "medium": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "grounded",
+    "evidence": 5
+   },
+   "reason": "The same duty, the same places to report and the same protection of the reporter; the quick answer adds that one need not verify first."
+  },
+  {
+   "set": 2,
+   "question": 9,
+   "follow_up": false,
+   "blind": true,
+   "better": "equal",
+   "low": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "partial",
+    "evidence": 10
+   },
+   "medium": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "grounded",
+    "evidence": 8
+   },
+   "reason": "The same steps, documents and time for the decision; the thorough answer adds the housing-loan documents, the quick answer what counts as the actual home."
+  },
+  {
+   "set": 2,
+   "question": 10,
+   "follow_up": false,
+   "blind": true,
+   "better": "equal",
+   "low": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 1,
+    "needless_question": 0,
+    "kind": "grounded",
+    "evidence": 46
+   },
+   "medium": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 1,
+    "needless_question": 0,
+    "kind": "grounded",
+    "evidence": 47
+   },
+   "reason": "The thorough answer gives a contact but not the time for the decision or the rule for an urgent case; the quick answer gives those and no contact. Each one's evidence holds what it left out."
+  },
+  {
+   "set": 2,
+   "question": 11,
+   "follow_up": true,
+   "blind": true,
+   "better": "equal",
+   "low": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "grounded",
+    "evidence": 39
+   },
+   "medium": {
+    "answers": 2,
+    "unsupported": 0,
+    "scope": "ok",
+    "omission": 0,
+    "needless_question": 0,
+    "kind": "grounded",
+    "evidence": 40
+   },
+   "reason": "The same payer and the same way to ask for a release from the fee; the quick answer adds that the fee may not keep a person from the service."
+  }
+ ]
+}

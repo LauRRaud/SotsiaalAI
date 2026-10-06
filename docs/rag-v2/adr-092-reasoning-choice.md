@@ -162,12 +162,42 @@ Ebatäpsused selles jaotises parandati 06.10 sõltumatu ülevaatuse järel (oman
 
 **Meetodi märkused:** esimese komplekti põhjaliku režiimi küsimused 1–7 saadeti päris klahvivajutustega, ülejäänud lehel oleva skriptiga läbi sama koostaja ja sama „uus vestlus“ toimingu. Pärast teenuse taaskäivitust tehti üks soojenduspööre, mis arvesse ei lähe.
 
+## Säilinud vastuste läbivaatus (06.10.2026)
+
+Omaniku korraldus 06.10 („teeb need ära?“ sõltumatu ülevaatuse soovituste kohta). Ühtegi mudelikutset ei tehtud. [Tõend](../audits/evidence/reasoning-choice-review-2026-10-06.json): hinded ja põhjendused, ilma vastuste tekstita.
+
+**Kuidas:** mõõtmise 22 küsimusepaari (44 vastust). Serveris tehti fail, kus iga küsimuse kaks vastust on juhuslikus järjekorras A ja B ning režiim on peidetud; võti jäi serverisse. Hindamisreeglid kirjutasin enne lugemist, hinded kõigile 22 paarile enne võtme avamist. Väiteid, milles kaks vastust erinesid, kontrollisin selle pöörde enda salvestatud tõenduse vastu.
+
+**Tulemus:**
+
+| | Kiire (`low`) | Põhjalik (`medium`) |
+|---|---|---|
+| Parem vastus (22 paarist; 18 võrdsed) | 3 | 1 |
+| Vastab küsimusele otse | 21 | 17 |
+| Vastab osaliselt | 1 | 5 |
+| Tõenduseta väiteid | 1 | 0 |
+| Vale omavalitsus, isik või kuupäev | 0 | 0 |
+| Vajalik punkt välja jäetud, kuigi tõenduses olemas | 3 | 2 |
+| Tarbetu täpsustav küsimus | 1 | 0 |
+
+- **18 paari 22-st on sisult võrdsed:** samad faktid, erinev pikkus, järjekord või üks lisapunkt.
+- **Kiire oli parem kolmes** (1. komplekti küsimused 2 ja 4, 2. komplekti küsimus 3). Kahes neist oli põhjus osaliselt või täielikult tõenduses: põhjaliku pöörde tõenduses ei olnud sätet, mida kiire kasutas. Kolmandas jättis põhjalik vastamata jah või ei ja nimetamata tasuta võimaluse, mis tema tõenduses oli.
+- **Põhjalik oli parem ühes** (1. komplekti küsimus 10): kiire andis kontaktisiku ametinimetuses teise üksuse nime kui tõenduses ja jättis ütlemata, et teenus on tasuline.
+- **Vale omavalitsust ega kuupäeva ei olnud kummaski.** Ainus tõenduseta väide, mille kontrollides leidsin, oli see üksuse nimi; kontrollisin väiteid, milles vastused erinesid, ja mõnda muud, mitte iga väidet.
+
+**Mida see näitab ja mida mitte:**
+
+- Nendel 22 küsimusel ei leidnud ma, et kiire režiim vastaks halvemini. 29.09 mõõtmise vahet (37/40 ja 39/40) see ei kinnita ega lükka ümber: küsimused on teised ja iga küsimus on küsitud üks kord.
+- **Hindaja on üks ja ise mudel.** Kaks paari (1. komplekti küsimused 2 ja 8) ei olnud pimedad, sest lugesin neid vastuseid mõõtmise ajal; ilma nendeta on seis kiire 2, põhjalik 1, võrdseid 17.
+- **Võrreldud on terve pööre, mitte arutlustase.** Kummalgi pöördel oli oma otsinguplaan ja tõendus; kahes kiire kasuks läinud paaris oli vahe just seal. Arutlustaseme puhast mõju näitab ainult sama tõendusega võrdlus (allpool „Lahti“).
+- Kiire vastus on tihti pikem; see võis režiimi lugedes reeta.
+
 ## Lahti
 
 - **Järjest ühes vestluses** küsitud küsimuste aeg on mõõtmata. Siis loeb otsinguplaan varasemaid sõnumeid ja kontekst kasvab; omanik küsis, kas see muudab tulemust.
 - **Kvaliteedi võrdlus** vajab ette kirjutatud ootustega kataloogi ja mõlemat režiimi; hindajal on selleks nüüd `--reasoning`.
-- **Sama tõendusega võrdlus:** arutlustaseme puhta mõju nägemiseks peab mõlemale režiimile andma sama salvestatud tõenduse; senine mõõtmine võrdles kogu ahelat.
-- **Säilinud vastuste läbivaatus:** 44 mõõdetud pöörde vastused on kirjetes alles; neid saab hinnata ilma uute mudelikutseteta, režiimi teadmata.
+- **Sama tõendusega võrdlus:** arutlustaseme puhta mõju nägemiseks peab mõlemale režiimile andma sama salvestatud tõenduse; senine mõõtmine ja läbivaatus võrdlesid kogu ahelat. See on tasuline (44 vastusekutset, hinnanguliselt 0,2 USD); omaniku luba on küsitud 06.10.
+- **Teine hindaja:** läbivaatuse tegi üks hindaja; pimefail ja võti on serveris alles (`eval-files/reasoning-choice-2026-10-06/review-blind.json`, `review-key.json`), nii et inimene saab sama faili ise hinnata.
 - **Kolm taset:** plaan lubab ka `low, medium, high`, aga lüliti käib ainult madalaima ja kõrgeima vahel. Kui vaikimisi oleks keskmine, näitaks kustunud välk „põhjalikku“, kuigi kasutusel on keskmine, ja pärast esimest klõpsu keskmist enam valida ei saaks. Praegust plaani (`low`, `medium`) see ei puuduta; enne kolmanda taseme pakkumist tuleb lahendada.
 - **Korpuse täienduse plaan** alustab endiselt oma kuluarvestust nullist; kas see peaks jätkama eelmist, on omaniku otsus.
 - **Telefonis** on üherealine kirjutusväli välgu võrra kitsam (122 px 375 px laiusel).
