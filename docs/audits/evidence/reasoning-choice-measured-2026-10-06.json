@@ -1,0 +1,1755 @@
+{
+ "schema": "sotsiaalai/reasoning-choice-measurement-1",
+ "measured": "2026-10-06",
+ "where": "the chat window of sotsiaal.pro (the owner's account in the in-app browser), every question in a new conversation; the tenth question of a set has a follow-up in the same conversation",
+ "model": "gpt-6-luna",
+ "plan_reasoning": "medium",
+ "plan_reasoning_choices": [
+  "low",
+  "medium"
+ ],
+ "generation": "search_generation_2e4b3572aa6d8768387607cf9e4f6e0438b619809e0e86327a1e34874f4986d4",
+ "note": "server_ms are the server's own phases of each turn; answer texts are not in this file; check is a coarse pattern over the answer, not a judgement of quality",
+ "all_turns_since": 46,
+ "all_turns_plan_price_usd": 0.2341,
+ "summary": [
+  {
+   "set": 1,
+   "mode": "medium",
+   "turns": 12,
+   "completed": 11,
+   "stopped": [
+    "2: audit_packet_too_large"
+   ],
+   "mean_ms": {
+    "plan": 2368,
+    "embedding": 542,
+    "search": 4083,
+    "answer": 11475,
+    "first_text": 16417,
+    "total": 18468
+   },
+   "mean_answer_tokens": {
+    "output": 1878,
+    "reasoning": 1407
+   },
+   "mean_answer_chars": 958,
+   "kinds": {
+    "partial": 7,
+    "grounded": 4
+   },
+   "checks_passed": "10/11",
+   "checks_failed": [
+    2
+   ],
+   "plan_price_usd": 0.0657
+  },
+  {
+   "set": 1,
+   "mode": "low",
+   "turns": 11,
+   "completed": 11,
+   "stopped": [],
+   "mean_ms": {
+    "plan": 2007,
+    "embedding": 497,
+    "search": 3451,
+    "answer": 4023,
+    "first_text": 7462,
+    "total": 9977
+   },
+   "mean_answer_tokens": {
+    "output": 588,
+    "reasoning": 59
+   },
+   "mean_answer_chars": 1193,
+   "kinds": {
+    "partial": 7,
+    "grounded": 4
+   },
+   "checks_passed": "11/11",
+   "checks_failed": [],
+   "plan_price_usd": 0.0557
+  },
+  {
+   "set": 2,
+   "mode": "medium",
+   "turns": 11,
+   "completed": 11,
+   "stopped": [],
+   "mean_ms": {
+    "plan": 2188,
+    "embedding": 578,
+    "search": 3845,
+    "answer": 8950,
+    "first_text": 13658,
+    "total": 15560
+   },
+   "mean_answer_tokens": {
+    "output": 1450,
+    "reasoning": 990
+   },
+   "mean_answer_chars": 944,
+   "kinds": {
+    "partial": 4,
+    "grounded": 7
+   },
+   "plan_price_usd": 0.0565
+  },
+  {
+   "set": 2,
+   "mode": "low",
+   "turns": 11,
+   "completed": 11,
+   "stopped": [],
+   "mean_ms": {
+    "plan": 2053,
+    "embedding": 415,
+    "search": 3493,
+    "answer": 3695,
+    "first_text": 7266,
+    "total": 9657
+   },
+   "mean_answer_tokens": {
+    "output": 546,
+    "reasoning": 48
+   },
+   "mean_answer_chars": 1174,
+   "kinds": {
+    "partial": 4,
+    "grounded": 7
+   },
+   "plan_price_usd": 0.0524
+  }
+ ],
+ "turns": [
+  {
+   "set": 1,
+   "question": 1,
+   "text": "Kui kaua on mul aega valla otsust vaidlustada?",
+   "mode": "medium",
+   "effort_sent": "medium",
+   "at": "2026-10-06T06:05:59.419Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 3059,
+    "embedding": 2118,
+    "search": 3183,
+    "answer": 6786,
+    "first_text": 13920,
+    "total": 15146
+   },
+   "tokens": {
+    "plan_input": 1266,
+    "selection_input": 14702,
+    "answer_input": 9640,
+    "answer_output": 916,
+    "answer_reasoning": 683
+   },
+   "answer": {
+    "kind": "partial",
+    "blocks": 1,
+    "chars": 336,
+    "limitations": 1,
+    "clarification": true,
+    "cited_refs": 1
+   },
+   "evidence": 5,
+   "version_comparison": false,
+   "check": true,
+   "plan_price_usd": 0.00375
+  },
+  {
+   "set": 1,
+   "question": 2,
+   "text": "Mu eakas isa elab Tallinnas ega saa enam üksi hakkama. Kuhu pöörduda ja mis abi on võimalik?",
+   "mode": "medium",
+   "effort_sent": null,
+   "at": "2026-10-06T06:06:44.873Z",
+   "state": "stopped",
+   "error": "audit_packet_too_large",
+   "server_ms": null,
+   "tokens": {
+    "plan_input": 1280,
+    "selection_input": 18969,
+    "answer_input": null,
+    "answer_output": null,
+    "answer_reasoning": null
+   },
+   "answer": null,
+   "evidence": null,
+   "version_comparison": false,
+   "plan_price_usd": 0.002758
+  },
+  {
+   "set": 1,
+   "question": 3,
+   "text": "Olen 67-aastane, elan Kose vallas, mul on raske liikumispuue ja vajan eluruumi kohandamist. Millist rahalist abi saan taotleda ja kust?",
+   "mode": "medium",
+   "effort_sent": "medium",
+   "at": "2026-10-06T06:07:06.627Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 2446,
+    "embedding": 348,
+    "search": 6782,
+    "answer": 14514,
+    "first_text": 21325,
+    "total": 24090
+   },
+   "tokens": {
+    "plan_input": 1297,
+    "selection_input": 16187,
+    "answer_input": 22548,
+    "answer_output": 2240,
+    "answer_reasoning": 1595
+   },
+   "answer": {
+    "kind": "partial",
+    "blocks": 3,
+    "chars": 1233,
+    "limitations": 1,
+    "clarification": false,
+    "cited_refs": 5
+   },
+   "evidence": 69,
+   "version_comparison": false,
+   "check": true,
+   "plan_price_usd": 0.006371
+  },
+  {
+   "set": 1,
+   "question": 2,
+   "text": "Mu eakas isa elab Tallinnas ega saa enam üksi hakkama. Kuhu pöörduda ja mis abi on võimalik?",
+   "mode": "medium",
+   "effort_sent": "medium",
+   "at": "2026-10-06T06:17:23.109Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 2281,
+    "embedding": 376,
+    "search": 5125,
+    "answer": 15989,
+    "first_text": 22204,
+    "total": 23771
+   },
+   "tokens": {
+    "plan_input": 1280,
+    "selection_input": 16972,
+    "answer_input": 23426,
+    "answer_output": 2715,
+    "answer_reasoning": 2304
+   },
+   "answer": {
+    "kind": "partial",
+    "blocks": 2,
+    "chars": 618,
+    "limitations": 0,
+    "clarification": true,
+    "cited_refs": 2
+   },
+   "evidence": 104,
+   "version_comparison": false,
+   "check": false,
+   "plan_price_usd": 0.006735
+  },
+  {
+   "set": 1,
+   "question": 4,
+   "text": "Kas ma pean oma ema hooldekodu koha eest maksma, kui tema pensionist ei piisa?",
+   "mode": "medium",
+   "effort_sent": "medium",
+   "at": "2026-10-06T06:18:04.744Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 2977,
+    "embedding": 701,
+    "search": 2474,
+    "answer": 14662,
+    "first_text": 18587,
+    "total": 20814
+   },
+   "tokens": {
+    "plan_input": 1276,
+    "selection_input": 20030,
+    "answer_input": 10773,
+    "answer_output": 2469,
+    "answer_reasoning": 1988
+   },
+   "answer": {
+    "kind": "partial",
+    "blocks": 3,
+    "chars": 1072,
+    "limitations": 1,
+    "clarification": true,
+    "cited_refs": 5
+   },
+   "evidence": 6,
+   "version_comparison": false,
+   "check": true,
+   "plan_price_usd": 0.005394
+  },
+  {
+   "set": 1,
+   "question": 5,
+   "text": "Mis muutub lastekaitseseaduses alates 1. jaanuarist 2027?",
+   "mode": "medium",
+   "effort_sent": "medium",
+   "at": "2026-10-06T06:18:29.174Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 1528,
+    "embedding": 323,
+    "search": 4630,
+    "answer": 11580,
+    "first_text": 13539,
+    "total": 18061
+   },
+   "tokens": {
+    "plan_input": 1274,
+    "selection_input": 20009,
+    "answer_input": 17597,
+    "answer_output": 2100,
+    "answer_reasoning": 1013
+   },
+   "answer": {
+    "kind": "partial",
+    "blocks": 4,
+    "chars": 2644,
+    "limitations": 1,
+    "clarification": false,
+    "cited_refs": 6
+   },
+   "evidence": 13,
+   "version_comparison": true,
+   "check": true,
+   "plan_price_usd": 0.00613
+  },
+  {
+   "set": 1,
+   "question": 6,
+   "text": "Kui kaua makstakse puudega lapse toetust alates 1. veebruarist 2027 ja mis saab lapsest, kes on juba 16?",
+   "mode": "medium",
+   "effort_sent": "medium",
+   "at": "2026-10-06T06:19:04.920Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 2662,
+    "embedding": 284,
+    "search": 4159,
+    "answer": 17404,
+    "first_text": 22890,
+    "total": 24509
+   },
+   "tokens": {
+    "plan_input": 1286,
+    "selection_input": 22168,
+    "answer_input": 10584,
+    "answer_output": 3042,
+    "answer_reasoning": 2645
+   },
+   "answer": {
+    "kind": "grounded",
+    "blocks": 2,
+    "chars": 814,
+    "limitations": 0,
+    "clarification": false,
+    "cited_refs": 3
+   },
+   "evidence": 3,
+   "version_comparison": true,
+   "check": true,
+   "plan_price_usd": 0.00602
+  },
+  {
+   "set": 1,
+   "question": 7,
+   "text": "Milliseid dokumente tuleb Põhja-Sakala vallas sissetulekust sõltuva toetuse taotlusele lisada?",
+   "mode": "medium",
+   "effort_sent": "medium",
+   "at": "2026-10-06T06:19:33.107Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 2133,
+    "embedding": 375,
+    "search": 4554,
+    "answer": 10520,
+    "first_text": 15562,
+    "total": 17582
+   },
+   "tokens": {
+    "plan_input": 1280,
+    "selection_input": 15943,
+    "answer_input": 23436,
+    "answer_output": 1543,
+    "answer_reasoning": 1237
+   },
+   "answer": {
+    "kind": "partial",
+    "blocks": 1,
+    "chars": 611,
+    "limitations": 1,
+    "clarification": true,
+    "cited_refs": 1
+   },
+   "evidence": 60,
+   "version_comparison": false,
+   "check": true,
+   "plan_price_usd": 0.006106
+  },
+  {
+   "set": 1,
+   "question": 8,
+   "text": "Kui suur on toimetulekupiir 2028. aastal?",
+   "mode": "medium",
+   "effort_sent": "medium",
+   "at": "2026-10-06T06:20:24.097Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 1615,
+    "embedding": 338,
+    "search": 3478,
+    "answer": 6487,
+    "first_text": 11124,
+    "total": 11918
+   },
+   "tokens": {
+    "plan_input": 1267,
+    "selection_input": 18404,
+    "answer_input": 14343,
+    "answer_output": 1082,
+    "answer_reasoning": 869
+   },
+   "answer": {
+    "kind": "partial",
+    "blocks": 1,
+    "chars": 289,
+    "limitations": 1,
+    "clarification": false,
+    "cited_refs": 2
+   },
+   "evidence": 6,
+   "version_comparison": false,
+   "check": true,
+   "plan_price_usd": 0.004903
+  },
+  {
+   "set": 1,
+   "question": 9,
+   "text": "Какие документы нужны для ходатайства о пособии по прожиточному минимуму в Нарве?",
+   "mode": "medium",
+   "effort_sent": "medium",
+   "at": "2026-10-06T06:20:41.373Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 2445,
+    "embedding": 393,
+    "search": 3572,
+    "answer": 11397,
+    "first_text": 15348,
+    "total": 17807
+   },
+   "tokens": {
+    "plan_input": 1275,
+    "selection_input": 16212,
+    "answer_input": 23201,
+    "answer_output": 1846,
+    "answer_reasoning": 1266
+   },
+   "answer": {
+    "kind": "grounded",
+    "blocks": 4,
+    "chars": 1665,
+    "limitations": 0,
+    "clarification": false,
+    "cited_refs": 4
+   },
+   "evidence": 66,
+   "version_comparison": false,
+   "check": true,
+   "plan_price_usd": 0.006198
+  },
+  {
+   "set": 1,
+   "question": 10,
+   "text": "Ema elab Kose vallas ja vajab abi kodus.",
+   "mode": "medium",
+   "effort_sent": "medium",
+   "at": "2026-10-06T06:21:04.659Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 1962,
+    "embedding": 352,
+    "search": 4093,
+    "answer": 9492,
+    "first_text": 13942,
+    "total": 15899
+   },
+   "tokens": {
+    "plan_input": 1268,
+    "selection_input": 18210,
+    "answer_input": 23843,
+    "answer_output": 1492,
+    "answer_reasoning": 1021
+   },
+   "answer": {
+    "kind": "grounded",
+    "blocks": 3,
+    "chars": 800,
+    "limitations": 0,
+    "clarification": false,
+    "cited_refs": 5
+   },
+   "evidence": 71,
+   "version_comparison": false,
+   "check": true,
+   "plan_price_usd": 0.006368
+  },
+  {
+   "set": 1,
+   "question": 11,
+   "text": "Vabandust, ta elab hoopis Harku vallas.",
+   "mode": "medium",
+   "effort_sent": "medium",
+   "at": "2026-10-06T06:21:24.019Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 2940,
+    "embedding": 357,
+    "search": 2864,
+    "answer": 7395,
+    "first_text": 12145,
+    "total": 13556
+   },
+   "tokens": {
+    "plan_input": 1285,
+    "selection_input": 13702,
+    "answer_input": 18608,
+    "answer_output": 1217,
+    "answer_reasoning": 857
+   },
+   "answer": {
+    "kind": "grounded",
+    "blocks": 2,
+    "chars": 459,
+    "limitations": 0,
+    "clarification": false,
+    "cited_refs": 3
+   },
+   "evidence": 47,
+   "version_comparison": false,
+   "check": true,
+   "plan_price_usd": 0.004967
+  },
+  {
+   "set": 1,
+   "question": 1,
+   "text": "Kui kaua on mul aega valla otsust vaidlustada?",
+   "mode": "low",
+   "effort_sent": "low",
+   "at": "2026-10-06T06:22:03.940Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 1899,
+    "embedding": 347,
+    "search": 3741,
+    "answer": 2734,
+    "first_text": 6910,
+    "total": 8721
+   },
+   "tokens": {
+    "plan_input": 1266,
+    "selection_input": 14630,
+    "answer_input": 9831,
+    "answer_output": 276,
+    "answer_reasoning": 0
+   },
+   "answer": {
+    "kind": "partial",
+    "blocks": 2,
+    "chars": 594,
+    "limitations": 1,
+    "clarification": false,
+    "cited_refs": 3
+   },
+   "evidence": 5,
+   "version_comparison": false,
+   "check": true,
+   "plan_price_usd": 0.003524
+  },
+  {
+   "set": 1,
+   "question": 2,
+   "text": "Mu eakas isa elab Tallinnas ega saa enam üksi hakkama. Kuhu pöörduda ja mis abi on võimalik?",
+   "mode": "low",
+   "effort_sent": "low",
+   "at": "2026-10-06T06:22:18.208Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 2619,
+    "embedding": 399,
+    "search": 3559,
+    "answer": 6621,
+    "first_text": 10270,
+    "total": 13198
+   },
+   "tokens": {
+    "plan_input": 1280,
+    "selection_input": 16958,
+    "answer_input": 23186,
+    "answer_output": 1069,
+    "answer_reasoning": 369
+   },
+   "answer": {
+    "kind": "partial",
+    "blocks": 3,
+    "chars": 1489,
+    "limitations": 1,
+    "clarification": true,
+    "cited_refs": 4
+   },
+   "evidence": 104,
+   "version_comparison": false,
+   "check": true,
+   "plan_price_usd": 0.005875
+  },
+  {
+   "set": 1,
+   "question": 3,
+   "text": "Olen 67-aastane, elan Kose vallas, mul on raske liikumispuue ja vajan eluruumi kohandamist. Millist rahalist abi saan taotleda ja kust?",
+   "mode": "low",
+   "effort_sent": "low",
+   "at": "2026-10-06T06:22:37.080Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 1901,
+    "embedding": 564,
+    "search": 3848,
+    "answer": 4249,
+    "first_text": 8196,
+    "total": 10562
+   },
+   "tokens": {
+    "plan_input": 1297,
+    "selection_input": 18423,
+    "answer_input": 21780,
+    "answer_output": 663,
+    "answer_reasoning": 0
+   },
+   "answer": {
+    "kind": "partial",
+    "blocks": 3,
+    "chars": 1161,
+    "limitations": 1,
+    "clarification": false,
+    "cited_refs": 4
+   },
+   "evidence": 68,
+   "version_comparison": false,
+   "check": true,
+   "plan_price_usd": 0.005633
+  },
+  {
+   "set": 1,
+   "question": 4,
+   "text": "Kas ma pean oma ema hooldekodu koha eest maksma, kui tema pensionist ei piisa?",
+   "mode": "low",
+   "effort_sent": "low",
+   "at": "2026-10-06T06:22:53.346Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 2224,
+    "embedding": 1068,
+    "search": 3899,
+    "answer": 4227,
+    "first_text": 8065,
+    "total": 11418
+   },
+   "tokens": {
+    "plan_input": 1276,
+    "selection_input": 21333,
+    "answer_input": 14189,
+    "answer_output": 723,
+    "answer_reasoning": 0
+   },
+   "answer": {
+    "kind": "partial",
+    "blocks": 3,
+    "chars": 1723,
+    "limitations": 1,
+    "clarification": true,
+    "cited_refs": 5
+   },
+   "evidence": 8,
+   "version_comparison": false,
+   "check": true,
+   "plan_price_usd": 0.005231
+  },
+  {
+   "set": 1,
+   "question": 5,
+   "text": "Mis muutub lastekaitseseaduses alates 1. jaanuarist 2027?",
+   "mode": "low",
+   "effort_sent": "low",
+   "at": "2026-10-06T06:23:10.170Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 1510,
+    "embedding": 507,
+    "search": 3547,
+    "answer": 6872,
+    "first_text": 8329,
+    "total": 12436
+   },
+   "tokens": {
+    "plan_input": 1274,
+    "selection_input": 19806,
+    "answer_input": 14326,
+    "answer_output": 1177,
+    "answer_reasoning": 278
+   },
+   "answer": {
+    "kind": "partial",
+    "blocks": 4,
+    "chars": 2581,
+    "limitations": 1,
+    "clarification": false,
+    "cited_refs": 4
+   },
+   "evidence": 9,
+   "version_comparison": true,
+   "check": true,
+   "plan_price_usd": 0.005225
+  },
+  {
+   "set": 1,
+   "question": 6,
+   "text": "Kui kaua makstakse puudega lapse toetust alates 1. veebruarist 2027 ja mis saab lapsest, kes on juba 16?",
+   "mode": "low",
+   "effort_sent": "low",
+   "at": "2026-10-06T06:23:27.969Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 1786,
+    "embedding": 423,
+    "search": 2924,
+    "answer": 3899,
+    "first_text": 6276,
+    "total": 9032
+   },
+   "tokens": {
+    "plan_input": 1286,
+    "selection_input": 22622,
+    "answer_input": 10572,
+    "answer_output": 621,
+    "answer_reasoning": 0
+   },
+   "answer": {
+    "kind": "grounded",
+    "blocks": 2,
+    "chars": 1396,
+    "limitations": 1,
+    "clarification": true,
+    "cited_refs": 2
+   },
+   "evidence": 3,
+   "version_comparison": true,
+   "check": true,
+   "plan_price_usd": 0.004735
+  },
+  {
+   "set": 1,
+   "question": 7,
+   "text": "Milliseid dokumente tuleb Põhja-Sakala vallas sissetulekust sõltuva toetuse taotlusele lisada?",
+   "mode": "low",
+   "effort_sent": "low",
+   "at": "2026-10-06T06:23:42.255Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 1890,
+    "embedding": 393,
+    "search": 3877,
+    "answer": 2470,
+    "first_text": 7238,
+    "total": 8630
+   },
+   "tokens": {
+    "plan_input": 1280,
+    "selection_input": 16243,
+    "answer_input": 19231,
+    "answer_output": 325,
+    "answer_reasoning": 0
+   },
+   "answer": {
+    "kind": "grounded",
+    "blocks": 3,
+    "chars": 769,
+    "limitations": 0,
+    "clarification": false,
+    "cited_refs": 4
+   },
+   "evidence": 56,
+   "version_comparison": false,
+   "check": true,
+   "plan_price_usd": 0.004924
+  },
+  {
+   "set": 1,
+   "question": 8,
+   "text": "Kui suur on toimetulekupiir 2028. aastal?",
+   "mode": "low",
+   "effort_sent": "low",
+   "at": "2026-10-06T06:23:56.506Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 1830,
+    "embedding": 396,
+    "search": 2975,
+    "answer": 1999,
+    "first_text": 6088,
+    "total": 7200
+   },
+   "tokens": {
+    "plan_input": 1267,
+    "selection_input": 17390,
+    "answer_input": 14331,
+    "answer_output": 231,
+    "answer_reasoning": 0
+   },
+   "answer": {
+    "kind": "partial",
+    "blocks": 1,
+    "chars": 370,
+    "limitations": 1,
+    "clarification": false,
+    "cited_refs": 2
+   },
+   "evidence": 6,
+   "version_comparison": false,
+   "check": true,
+   "plan_price_usd": 0.004386
+  },
+  {
+   "set": 1,
+   "question": 9,
+   "text": "Какие документы нужны для ходатайства о пособии по прожиточному минимуму в Нарве?",
+   "mode": "low",
+   "effort_sent": "low",
+   "at": "2026-10-06T06:24:08.777Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 2099,
+    "embedding": 421,
+    "search": 1912,
+    "answer": 3962,
+    "first_text": 5611,
+    "total": 8394
+   },
+   "tokens": {
+    "plan_input": 1275,
+    "selection_input": 16212,
+    "answer_input": 23197,
+    "answer_output": 405,
+    "answer_reasoning": 0
+   },
+   "answer": {
+    "kind": "grounded",
+    "blocks": 4,
+    "chars": 1217,
+    "limitations": 0,
+    "clarification": false,
+    "cited_refs": 4
+   },
+   "evidence": 66,
+   "version_comparison": false,
+   "check": true,
+   "plan_price_usd": 0.005417
+  },
+  {
+   "set": 1,
+   "question": 10,
+   "text": "Ema elab Kose vallas ja vajab abi kodus.",
+   "mode": "low",
+   "effort_sent": "low",
+   "at": "2026-10-06T06:24:22.562Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 2022,
+    "embedding": 601,
+    "search": 3760,
+    "answer": 3423,
+    "first_text": 7460,
+    "total": 9806
+   },
+   "tokens": {
+    "plan_input": 1268,
+    "selection_input": 16928,
+    "answer_input": 21050,
+    "answer_output": 391,
+    "answer_reasoning": 0
+   },
+   "answer": {
+    "kind": "grounded",
+    "blocks": 2,
+    "chars": 582,
+    "limitations": 0,
+    "clarification": false,
+    "cited_refs": 5
+   },
+   "evidence": 67,
+   "version_comparison": false,
+   "check": true,
+   "plan_price_usd": 0.005252
+  },
+  {
+   "set": 1,
+   "question": 11,
+   "text": "Vabandust, ta elab hoopis Harku vallas.",
+   "mode": "low",
+   "effort_sent": "low",
+   "at": "2026-10-06T06:24:35.363Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 2294,
+    "embedding": 347,
+    "search": 3914,
+    "answer": 3798,
+    "first_text": 7634,
+    "total": 10353
+   },
+   "tokens": {
+    "plan_input": 1285,
+    "selection_input": 14928,
+    "answer_input": 23485,
+    "answer_output": 591,
+    "answer_reasoning": 0
+   },
+   "answer": {
+    "kind": "partial",
+    "blocks": 3,
+    "chars": 1245,
+    "limitations": 1,
+    "clarification": true,
+    "cited_refs": 5
+   },
+   "evidence": 62,
+   "version_comparison": false,
+   "check": true,
+   "plan_price_usd": 0.005455
+  },
+  {
+   "set": 2,
+   "question": 1,
+   "text": "Kes saab taotleda isikliku abistaja teenust ja mida abistaja teha tohib?",
+   "mode": "low",
+   "effort_sent": "low",
+   "at": "2026-10-06T06:25:14.693Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 1532,
+    "embedding": 481,
+    "search": 2575,
+    "answer": 4438,
+    "first_text": 7357,
+    "total": 9026
+   },
+   "tokens": {
+    "plan_input": 1275,
+    "selection_input": 17259,
+    "answer_input": 10958,
+    "answer_output": 604,
+    "answer_reasoning": 254
+   },
+   "answer": {
+    "kind": "partial",
+    "blocks": 3,
+    "chars": 903,
+    "limitations": 1,
+    "clarification": false,
+    "cited_refs": 2
+   },
+   "evidence": 5,
+   "version_comparison": false,
+   "plan_price_usd": 0.004052
+  },
+  {
+   "set": 2,
+   "question": 2,
+   "text": "Mis vahe on eestkostel ja hooldusperel, kui laps jääb vanemliku hoolitsuseta?",
+   "mode": "low",
+   "effort_sent": "low",
+   "at": "2026-10-06T06:25:29.344Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 1965,
+    "embedding": 364,
+    "search": 5111,
+    "answer": 2856,
+    "first_text": 8307,
+    "total": 10296
+   },
+   "tokens": {
+    "plan_input": 1278,
+    "selection_input": 18458,
+    "answer_input": 14375,
+    "answer_output": 451,
+    "answer_reasoning": 0
+   },
+   "answer": {
+    "kind": "grounded",
+    "blocks": 3,
+    "chars": 1110,
+    "limitations": 0,
+    "clarification": false,
+    "cited_refs": 6
+   },
+   "evidence": 10,
+   "version_comparison": false,
+   "plan_price_usd": 0.00458
+  },
+  {
+   "set": 2,
+   "question": 3,
+   "text": "Olen töötu ja mul on võlad. Kas kohalik omavalitsus peab mulle võlanõustamist pakkuma?",
+   "mode": "low",
+   "effort_sent": "low",
+   "at": "2026-10-06T06:25:45.131Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 3111,
+    "embedding": 426,
+    "search": 4077,
+    "answer": 4979,
+    "first_text": 10505,
+    "total": 12593
+   },
+   "tokens": {
+    "plan_input": 1280,
+    "selection_input": 18314,
+    "answer_input": 10057,
+    "answer_output": 750,
+    "answer_reasoning": 279
+   },
+   "answer": {
+    "kind": "partial",
+    "blocks": 3,
+    "chars": 822,
+    "limitations": 1,
+    "clarification": true,
+    "cited_refs": 2
+   },
+   "evidence": 4,
+   "version_comparison": false,
+   "plan_price_usd": 0.004385
+  },
+  {
+   "set": 2,
+   "question": 4,
+   "text": "Kuidas arvutatakse toimetulekutoetust kaheliikmelisele perele?",
+   "mode": "low",
+   "effort_sent": "low",
+   "at": "2026-10-06T06:26:02.929Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 1454,
+    "embedding": 381,
+    "search": 3034,
+    "answer": 5331,
+    "first_text": 5771,
+    "total": 10200
+   },
+   "tokens": {
+    "plan_input": 1272,
+    "selection_input": 22395,
+    "answer_input": 15216,
+    "answer_output": 662,
+    "answer_reasoning": 0
+   },
+   "answer": {
+    "kind": "grounded",
+    "blocks": 3,
+    "chars": 1547,
+    "limitations": 1,
+    "clarification": false,
+    "cited_refs": 5
+   },
+   "evidence": 7,
+   "version_comparison": false,
+   "plan_price_usd": 0.005265
+  },
+  {
+   "set": 2,
+   "question": 5,
+   "text": "Millal võib lapse perest eraldada ja kes selle otsustab?",
+   "mode": "low",
+   "effort_sent": "low",
+   "at": "2026-10-06T06:26:18.679Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 2118,
+    "embedding": 417,
+    "search": 2806,
+    "answer": 2530,
+    "first_text": 6200,
+    "total": 7871
+   },
+   "tokens": {
+    "plan_input": 1268,
+    "selection_input": 15829,
+    "answer_input": 11381,
+    "answer_output": 392,
+    "answer_reasoning": 0
+   },
+   "answer": {
+    "kind": "grounded",
+    "blocks": 3,
+    "chars": 1045,
+    "limitations": 0,
+    "clarification": false,
+    "cited_refs": 2
+   },
+   "evidence": 6,
+   "version_comparison": false,
+   "plan_price_usd": 0.003868
+  },
+  {
+   "set": 2,
+   "question": 6,
+   "text": "Mul on raske puudega täiskasvanud poeg. Milliseid erihoolekandeteenuseid riik pakub ja kuidas neid taotleda?",
+   "mode": "low",
+   "effort_sent": "low",
+   "at": "2026-10-06T06:26:31.988Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 1807,
+    "embedding": 393,
+    "search": 4585,
+    "answer": 4560,
+    "first_text": 7646,
+    "total": 11345
+   },
+   "tokens": {
+    "plan_input": 1286,
+    "selection_input": 17389,
+    "answer_input": 12595,
+    "answer_output": 806,
+    "answer_reasoning": 0
+   },
+   "answer": {
+    "kind": "partial",
+    "blocks": 3,
+    "chars": 1891,
+    "limitations": 1,
+    "clarification": false,
+    "cited_refs": 4
+   },
+   "evidence": 7,
+   "version_comparison": false,
+   "plan_price_usd": 0.004515
+  },
+  {
+   "set": 2,
+   "question": 7,
+   "text": "Mis on sotsiaaltransporditeenus ja kes seda Tartu linnas saab?",
+   "mode": "low",
+   "effort_sent": "low",
+   "at": "2026-10-06T06:26:48.751Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 2240,
+    "embedding": 476,
+    "search": 2825,
+    "answer": 3008,
+    "first_text": 6626,
+    "total": 8549
+   },
+   "tokens": {
+    "plan_input": 1272,
+    "selection_input": 17510,
+    "answer_input": 21094,
+    "answer_output": 427,
+    "answer_reasoning": 0
+   },
+   "answer": {
+    "kind": "grounded",
+    "blocks": 4,
+    "chars": 1070,
+    "limitations": 0,
+    "clarification": false,
+    "cited_refs": 5
+   },
+   "evidence": 71,
+   "version_comparison": false,
+   "plan_price_usd": 0.005325
+  },
+  {
+   "set": 2,
+   "question": 8,
+   "text": "Naabri laps tundub olevat hooletusse jäetud. Kas ma pean sellest teatama ja kellele?",
+   "mode": "low",
+   "effort_sent": "low",
+   "at": "2026-10-06T06:27:03.043Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 1763,
+    "embedding": 374,
+    "search": 2547,
+    "answer": 3048,
+    "first_text": 5611,
+    "total": 7732
+   },
+   "tokens": {
+    "plan_input": 1278,
+    "selection_input": 17506,
+    "answer_input": 10073,
+    "answer_output": 471,
+    "answer_reasoning": 0
+   },
+   "answer": {
+    "kind": "grounded",
+    "blocks": 3,
+    "chars": 796,
+    "limitations": 0,
+    "clarification": false,
+    "cited_refs": 4
+   },
+   "evidence": 6,
+   "version_comparison": false,
+   "plan_price_usd": 0.003921
+  },
+  {
+   "set": 2,
+   "question": 9,
+   "text": "How do I apply for subsistence benefit in Estonia and which documents are needed?",
+   "mode": "low",
+   "effort_sent": "low",
+   "at": "2026-10-06T06:27:16.305Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 1461,
+    "embedding": 383,
+    "search": 3687,
+    "answer": 3267,
+    "first_text": 6334,
+    "total": 8798
+   },
+   "tokens": {
+    "plan_input": 1269,
+    "selection_input": 20830,
+    "answer_input": 18930,
+    "answer_output": 496,
+    "answer_reasoning": 0
+   },
+   "answer": {
+    "kind": "partial",
+    "blocks": 4,
+    "chars": 1862,
+    "limitations": 1,
+    "clarification": true,
+    "cited_refs": 3
+   },
+   "evidence": 10,
+   "version_comparison": false,
+   "plan_price_usd": 0.005505
+  },
+  {
+   "set": 2,
+   "question": 10,
+   "text": "Mu ema sai insuldi ja tuleb haiglast koju Viljandi valda. Millist abi saab ta kodus?",
+   "mode": "low",
+   "effort_sent": "low",
+   "at": "2026-10-06T06:27:30.635Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 2368,
+    "embedding": 397,
+    "search": 3941,
+    "answer": 3555,
+    "first_text": 7743,
+    "total": 10261
+   },
+   "tokens": {
+    "plan_input": 1278,
+    "selection_input": 16501,
+    "answer_input": 21645,
+    "answer_output": 572,
+    "answer_reasoning": 0
+   },
+   "answer": {
+    "kind": "grounded",
+    "blocks": 3,
+    "chars": 1104,
+    "limitations": 0,
+    "clarification": false,
+    "cited_refs": 8
+   },
+   "evidence": 46,
+   "version_comparison": false,
+   "plan_price_usd": 0.005418
+  },
+  {
+   "set": 2,
+   "question": 11,
+   "text": "Kes selle eest maksab?",
+   "mode": "low",
+   "effort_sent": "low",
+   "at": "2026-10-06T06:27:43.933Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 2768,
+    "embedding": 477,
+    "search": 3239,
+    "answer": 3068,
+    "first_text": 7830,
+    "total": 9552
+   },
+   "tokens": {
+    "plan_input": 1287,
+    "selection_input": 19392,
+    "answer_input": 20806,
+    "answer_output": 380,
+    "answer_reasoning": 0
+   },
+   "answer": {
+    "kind": "grounded",
+    "blocks": 3,
+    "chars": 762,
+    "limitations": 0,
+    "clarification": false,
+    "cited_refs": 3
+   },
+   "evidence": 39,
+   "version_comparison": false,
+   "plan_price_usd": 0.005516
+  },
+  {
+   "set": 2,
+   "question": 1,
+   "text": "Kes saab taotleda isikliku abistaja teenust ja mida abistaja teha tohib?",
+   "mode": "medium",
+   "effort_sent": "medium",
+   "at": "2026-10-06T06:28:13.354Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 1986,
+    "embedding": 662,
+    "search": 3449,
+    "answer": 8041,
+    "first_text": 12342,
+    "total": 14138
+   },
+   "tokens": {
+    "plan_input": 1275,
+    "selection_input": 17293,
+    "answer_input": 11205,
+    "answer_output": 1225,
+    "answer_reasoning": 850
+   },
+   "answer": {
+    "kind": "partial",
+    "blocks": 2,
+    "chars": 800,
+    "limitations": 1,
+    "clarification": false,
+    "cited_refs": 4
+   },
+   "evidence": 6,
+   "version_comparison": false,
+   "plan_price_usd": 0.00443
+  },
+  {
+   "set": 2,
+   "question": 2,
+   "text": "Mis vahe on eestkostel ja hooldusperel, kui laps jääb vanemliku hoolitsuseta?",
+   "mode": "medium",
+   "effort_sent": "medium",
+   "at": "2026-10-06T06:28:34.040Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 1973,
+    "embedding": 930,
+    "search": 3679,
+    "answer": 8993,
+    "first_text": 13718,
+    "total": 15575
+   },
+   "tokens": {
+    "plan_input": 1278,
+    "selection_input": 17517,
+    "answer_input": 13239,
+    "answer_output": 1427,
+    "answer_reasoning": 1034
+   },
+   "answer": {
+    "kind": "grounded",
+    "blocks": 3,
+    "chars": 809,
+    "limitations": 0,
+    "clarification": false,
+    "cited_refs": 5
+   },
+   "evidence": 7,
+   "version_comparison": false,
+   "plan_price_usd": 0.004819
+  },
+  {
+   "set": 2,
+   "question": 3,
+   "text": "Olen töötu ja mul on võlad. Kas kohalik omavalitsus peab mulle võlanõustamist pakkuma?",
+   "mode": "medium",
+   "effort_sent": "medium",
+   "at": "2026-10-06T06:28:54.991Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 2919,
+    "embedding": 434,
+    "search": 3418,
+    "answer": 10983,
+    "first_text": 16530,
+    "total": 17754
+   },
+   "tokens": {
+    "plan_input": 1280,
+    "selection_input": 16584,
+    "answer_input": 11115,
+    "answer_output": 1800,
+    "answer_reasoning": 1462
+   },
+   "answer": {
+    "kind": "partial",
+    "blocks": 2,
+    "chars": 604,
+    "limitations": 1,
+    "clarification": false,
+    "cited_refs": 2
+   },
+   "evidence": 5,
+   "version_comparison": false,
+   "plan_price_usd": 0.004667
+  },
+  {
+   "set": 2,
+   "question": 4,
+   "text": "Kuidas arvutatakse toimetulekutoetust kaheliikmelisele perele?",
+   "mode": "medium",
+   "effort_sent": "medium",
+   "at": "2026-10-06T06:29:18.339Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 1629,
+    "embedding": 441,
+    "search": 4872,
+    "answer": 13380,
+    "first_text": 18728,
+    "total": 20322
+   },
+   "tokens": {
+    "plan_input": 1272,
+    "selection_input": 22446,
+    "answer_input": 15200,
+    "answer_output": 2230,
+    "answer_reasoning": 1722
+   },
+   "answer": {
+    "kind": "partial",
+    "blocks": 2,
+    "chars": 1192,
+    "limitations": 1,
+    "clarification": false,
+    "cited_refs": 4
+   },
+   "evidence": 7,
+   "version_comparison": false,
+   "plan_price_usd": 0.006146
+  },
+  {
+   "set": 2,
+   "question": 5,
+   "text": "Millal võib lapse perest eraldada ja kes selle otsustab?",
+   "mode": "medium",
+   "effort_sent": "medium",
+   "at": "2026-10-06T06:29:44.190Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 2802,
+    "embedding": 557,
+    "search": 5193,
+    "answer": 4077,
+    "first_text": 11246,
+    "total": 12629
+   },
+   "tokens": {
+    "plan_input": 1268,
+    "selection_input": 15039,
+    "answer_input": 10466,
+    "answer_output": 637,
+    "answer_reasoning": 324
+   },
+   "answer": {
+    "kind": "grounded",
+    "blocks": 2,
+    "chars": 803,
+    "limitations": 0,
+    "clarification": false,
+    "cited_refs": 2
+   },
+   "evidence": 4,
+   "version_comparison": false,
+   "plan_price_usd": 0.003862
+  },
+  {
+   "set": 2,
+   "question": 6,
+   "text": "Mul on raske puudega täiskasvanud poeg. Milliseid erihoolekandeteenuseid riik pakub ja kuidas neid taotleda?",
+   "mode": "medium",
+   "effort_sent": "medium",
+   "at": "2026-10-06T06:30:01.969Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 1925,
+    "embedding": 648,
+    "search": 4954,
+    "answer": 13110,
+    "first_text": 17591,
+    "total": 20637
+   },
+   "tokens": {
+    "plan_input": 1286,
+    "selection_input": 18102,
+    "answer_input": 13626,
+    "answer_output": 2320,
+    "answer_reasoning": 1552
+   },
+   "answer": {
+    "kind": "partial",
+    "blocks": 2,
+    "chars": 1345,
+    "limitations": 2,
+    "clarification": false,
+    "cited_refs": 5
+   },
+   "evidence": 8,
+   "version_comparison": false,
+   "plan_price_usd": 0.005466
+  },
+  {
+   "set": 2,
+   "question": 7,
+   "text": "Mis on sotsiaaltransporditeenus ja kes seda Tartu linnas saab?",
+   "mode": "medium",
+   "effort_sent": "medium",
+   "at": "2026-10-06T06:30:27.843Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 2505,
+    "embedding": 471,
+    "search": 3222,
+    "answer": 6497,
+    "first_text": 10323,
+    "total": 12695
+   },
+   "tokens": {
+    "plan_input": 1272,
+    "selection_input": 18177,
+    "answer_input": 21074,
+    "answer_output": 1118,
+    "answer_reasoning": 516
+   },
+   "answer": {
+    "kind": "grounded",
+    "blocks": 4,
+    "chars": 1333,
+    "limitations": 0,
+    "clarification": false,
+    "cited_refs": 7
+   },
+   "evidence": 71,
+   "version_comparison": false,
+   "plan_price_usd": 0.005744
+  },
+  {
+   "set": 2,
+   "question": 8,
+   "text": "Naabri laps tundub olevat hooletusse jäetud. Kas ma pean sellest teatama ja kellele?",
+   "mode": "medium",
+   "effort_sent": "medium",
+   "at": "2026-10-06T06:30:47.110Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 2239,
+    "embedding": 862,
+    "search": 3331,
+    "answer": 8885,
+    "first_text": 13619,
+    "total": 15317
+   },
+   "tokens": {
+    "plan_input": 1278,
+    "selection_input": 16691,
+    "answer_input": 9615,
+    "answer_output": 1561,
+    "answer_reasoning": 1099
+   },
+   "answer": {
+    "kind": "grounded",
+    "blocks": 2,
+    "chars": 549,
+    "limitations": 0,
+    "clarification": false,
+    "cited_refs": 3
+   },
+   "evidence": 5,
+   "version_comparison": false,
+   "plan_price_usd": 0.004394
+  },
+  {
+   "set": 2,
+   "question": 9,
+   "text": "How do I apply for subsistence benefit in Estonia and which documents are needed?",
+   "mode": "medium",
+   "effort_sent": "medium",
+   "at": "2026-10-06T06:31:08.040Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 1372,
+    "embedding": 437,
+    "search": 3473,
+    "answer": 6838,
+    "first_text": 9635,
+    "total": 12120
+   },
+   "tokens": {
+    "plan_input": 1269,
+    "selection_input": 20863,
+    "answer_input": 15405,
+    "answer_output": 1002,
+    "answer_reasoning": 516
+   },
+   "answer": {
+    "kind": "grounded",
+    "blocks": 4,
+    "chars": 1896,
+    "limitations": 1,
+    "clarification": false,
+    "cited_refs": 3
+   },
+   "evidence": 8,
+   "version_comparison": false,
+   "plan_price_usd": 0.005251
+  },
+  {
+   "set": 2,
+   "question": 10,
+   "text": "Mu ema sai insuldi ja tuleb haiglast koju Viljandi valda. Millist abi saab ta kodus?",
+   "mode": "medium",
+   "effort_sent": "medium",
+   "at": "2026-10-06T06:31:25.799Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 2242,
+    "embedding": 438,
+    "search": 2810,
+    "answer": 10623,
+    "first_text": 13573,
+    "total": 16113
+   },
+   "tokens": {
+    "plan_input": 1278,
+    "selection_input": 15532,
+    "answer_input": 22099,
+    "answer_output": 1624,
+    "answer_reasoning": 1027
+   },
+   "answer": {
+    "kind": "grounded",
+    "blocks": 2,
+    "chars": 733,
+    "limitations": 0,
+    "clarification": false,
+    "cited_refs": 6
+   },
+   "evidence": 47,
+   "version_comparison": false,
+   "plan_price_usd": 0.005792
+  },
+  {
+   "set": 2,
+   "question": 11,
+   "text": "Kes selle eest maksab?",
+   "mode": "medium",
+   "effort_sent": "medium",
+   "at": "2026-10-06T06:31:45.080Z",
+   "state": "completed",
+   "error": null,
+   "server_ms": {
+    "plan": 2471,
+    "embedding": 473,
+    "search": 3894,
+    "answer": 7018,
+    "first_text": 12928,
+    "total": 13856
+   },
+   "tokens": {
+    "plan_input": 1287,
+    "selection_input": 18853,
+    "answer_input": 21375,
+    "answer_output": 1010,
+    "answer_reasoning": 785
+   },
+   "answer": {
+    "kind": "grounded",
+    "blocks": 1,
+    "chars": 317,
+    "limitations": 0,
+    "clarification": false,
+    "cited_refs": 1
+   },
+   "evidence": 40,
+   "version_comparison": false,
+   "plan_price_usd": 0.005913
+  }
+ ]
+}

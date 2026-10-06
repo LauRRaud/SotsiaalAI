@@ -2,7 +2,7 @@
 
 06.10.2026. Teostus Claude Opus 5.5. Omanik 06.10: „kas saaks teha nii, et mul on vestluse aknas lüliti 'kiire' ja 'põhjalikum'“, seejärel ekraanipilt teisest vestlusrakendusest („nt nii“), kus koostaja menüü viimane rida on linnukesega „Mõtle põhjalikumalt“, ja korraldus „Do this task here: Lisa vestluse menüüsse valik 'Mõtle põhjalikumalt'“.
 
-**Kood on töös alates sellest PR-ist. Valik ilmub vestluse menüüsse siis, kui töötav vestlusplaan pakub kahte taset (jaotis „Kasutuselevõtt“). Kontrollitud testidega ja kohalikus brauseris testrežiimis (jaotis „Kontroll“). Kiire ja põhjaliku vastuse erinevus mudeliga on selle PR-i ajal mõõtmata.**
+**Töös alates #396 ja plaanist `m4-corpus-chat-20261006a.json` (06.10.2026): valik on sotsiaal.pro vestluse menüüs. Mõõdetud samal päeval vestlusaknas (jaotis „Mõõtmine vestlusaknas“): kiire vastus tuleb keskmiselt 9,7–10,0 sekundiga, põhjalik 15,6–18,5 sekundiga.**
 
 ## Probleem
 
@@ -32,7 +32,9 @@ Vastuse arutlustase on `medium`. Omanik otsustas nii 27.09 ja uuesti 29.09, kui 
 
 ## Kasutuselevõtt
 
-Töötav plaan valikut ei paku, seega rida ei ole enne näha. Vaja on uut omaniku kinnitatud plaani:
+**Tehtud 06.10.2026:** plaan `m4-corpus-chat-20261006a.json` (alus: omaniku korraldus lisada valik; sama korpus, kasutaja, hinnad ja 4 USD ülempiir nagu senistel plaanidel; ainus seadete erinevus eelmisest on `reasoningChoices`). Rida on päris lehel näha ja vaikimisi linnukesega.
+
+Ilma sellise plaanita valikut ei pakuta ja rida ei ole näha. Plaan tehakse nii:
 
 ```bash
 node scripts/rag-v2-chat-plan.mjs ... --reasoning medium --reasoning-choices low,medium --budget-usd 4 --basis "<omaniku korraldus>" --activate
@@ -61,7 +63,36 @@ ja sama plaani aktiveerimist töötava väljalaske env-failis (`scripts/rag-v2-p
 
 **Kontrollimata:** tume teema (linnuke kasutab teksti värvi), inglise ja vene keele rea laius, päris mudeliga pööre.
 
+## Mõõtmine vestlusaknas (06.10.2026)
+
+Omaniku korraldus 06.10: „10 küsimust küsi vestluse aknas, mõõda aeg. mõõda kõik medium ja siis low, võrdle aegu. Siis mõtle täiesti uued 10 küsimust ja tee test uuesti.“ Ulatus ja ülempiir (0,40 USD) öeldud enne jooksu. **Kulu 0,2341 USD** plaani hindades (46 pööret koos soojenduse ja ühe katkenud pöördega). [Tõend](../audits/evidence/reasoning-choice-measured-2026-10-06.json) ilma vastuste tekstita.
+
+**Kuidas:** sotsiaal.pro vestlusaknas omaniku kontoga, iga küsimus uues vestluses; komplekti 10. küsimusel on samas vestluses jätkusõnum, seega 11 pööret komplekti kohta. Linnuke „Mõtle põhjalikumalt“ sees = `medium`, maas = `low`. Ajad on serveri enda etapiajad pöörde kirjest.
+
+| Komplekt | Režiim | Pööre kokku | Esimene tekst | Vastuse kirjutamine | Vahemik |
+|---|---|---|---|---|---|
+| 1 (tuttavad küsimused) | põhjalik | 18,5 s | 16,4 s | 11,5 s | 11,9–24,5 s |
+| 1 | kiire | 10,0 s | 7,5 s | 4,0 s | 7,2–13,2 s |
+| 2 (uued küsimused) | põhjalik | 15,6 s | 13,7 s | 9,0 s | 12,1–20,6 s |
+| 2 | kiire | 9,7 s | 7,3 s | 3,7 s | 7,7–12,6 s |
+
+- **Kiire on 6–8,5 s kiirem** (38–46%). Kogu vahe tuleb vastuse kirjutamisest: 11,5 → 4,0 s ja 9,0 → 3,7 s. Otsinguplaan (2,0–2,4 s), embedding (0,4–0,6 s) ja otsing koos lõikude valikuga (3,5–4,1 s) on mõlemas samad.
+- **Esimene tekst ilmub kiires režiimis umbes 7,4 s järel**, põhjalikus 13,7–16,4 s järel.
+- **Järjekord ei seletanud vahet.** Esimeses komplektis küsiti põhjalik enne, teises kiire enne; vahe oli mõlemal juhul sama suunaga. Brauseris mõõdetud ajad (päringust voo lõpuni) on serveri omadest 0,4–0,5 s pikemad.
+- **Arutlus:** põhjalik kasutas vastuse kohta keskmiselt 990–1407 arutlustokenit, kiire 48–59 (enamasti 0).
+- **Kiire vastus on pikem, mitte lühem:** keskmiselt 1174–1193 tähemärki, põhjalik 944–958. Põhjalik valib kitsamalt.
+- **Sisu, esimene komplekt** (jämedad mustrid, iga küsimuse kohta üks ootus): põhjalik 10/11, kiire 11/11. Põhjaliku ainus möödalask: Tallinna eaka isa küsimuses nimetas vastus koduteenust ja abivajaduse hindamist, aga mitte üldhooldust; kiire nimetas mõlemat. Toimetulekupiiri 2028 kohta ütlesid mõlemad õigesti, et summat kinnitada ei saa (minu esimene muster oli liiga kitsas; lugesin mõlemad vastused läbi ja parandasin mustri).
+- **Sisu, teine komplekt:** ootusi ei olnud ette kirjutatud, seega sisu ei ole hinnatud. Vastuse liik oli mõlemas režiimis sama (7 täielikku, 4 osalist).
+
+**Mida see ei näita:** kumb režiim vastab paremini. 22 küsimust jämedate mustritega ei ole kvaliteedi mõõt. 29.09 mõõtmine 40 pöördega andis `low` 37/40 ja `medium` 39/40; see mõõtmine seda ei kinnita ega lükka ümber.
+
+**Kõrvalleid:** esimese komplekti teine küsimus (Tallinn) katkes esimesel katsel veaga `audit_packet_too_large`. Põhjus ei olnud arutlustase, vaid salvestatava paketi piir; parandatud samal päeval (#397, [ADR-089](adr-089-closest-contact-directory.md) jaotis „Auditipaketi piir“). Küsimus küsiti pärast parandust uuesti. Esimese komplekti 1. ja 3. küsimus põhjalikus režiimis on mõõdetud enne seda parandust; parandus ajakulu ei puuduta.
+
+**Meetodi märkused:** esimese komplekti põhjaliku režiimi küsimused 1–7 saadeti päris klahvivajutustega, ülejäänud lehel oleva skriptiga läbi sama koostaja ja sama „uus vestlus“ toimingu. Pärast teenuse taaskäivitust tehti üks soojenduspööre, mis arvesse ei lähe.
+
 ## Lahti
 
-- Kiire ja põhjaliku vastuse aja ja kvaliteedi võrdlus vestlusaknas (omaniku korraldus 06.10; tasuline, tulemus lisatakse siia).
+- **Järjest ühes vestluses** küsitud küsimuste aeg on mõõtmata. Siis loeb otsinguplaan varasemaid sõnumeid ja kontekst kasvab; omanik küsis, kas see muudab tulemust.
+- **Kvaliteedi võrdlus** vajab ette kirjutatud ootustega kataloogi ja mõlemat režiimi; hindajal on selleks nüüd `--reasoning`.
 - Inglis- ja venekeelne silt („Think more thoroughly“, „Думать основательнее“) on minu valitud; omanik neid üle vaadanud ei ole.
+- Tume teema ning inglise ja vene sildi laius on brauseris kontrollimata.
