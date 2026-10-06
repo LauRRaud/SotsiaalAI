@@ -236,6 +236,8 @@ Indeksi töö aktiveerib uue põlvkonna ise. **Vestlusplaan on seotud põlvkonna
   N="sudo -n node --env-file=$ENVF --import ./scripts/register-node-source-loader.mjs"
   $N scripts/rag-v2-chat-plan.mjs --tenant sotsiaalai-corpus --profile <profiil> --reasoning medium \
     --template /etc/sotsiaalai/m4-luna6-20260923.json --out $P --budget-usd 4 --basis "<alus>" --activate
+  # ADR-092: kui töötav plaan pakub vastuse arutlustaset valikuna (reasoningChoices), lisa --reasoning-choices low,medium,
+  # muidu kaob vestluse menüüst rida "Mõtle põhjalikumalt". rag-v2-corpus-run.sh teeb seda ise.
   sudo -n chown root:ubuntu $P
   $N scripts/rag-v2-plan-release.mjs activate --plan $P --rag-env $ENVF
   $N scripts/rag-v2-plan-release.mjs ready

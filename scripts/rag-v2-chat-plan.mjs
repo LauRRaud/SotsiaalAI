@@ -15,15 +15,19 @@
 import fs from 'node:fs/promises';
 import { parseArgs } from 'node:util';
 import { PostgresCatalog } from '../lib/rag-v2/search/postgres.js';
-import { readPilotConfig } from '../lib/rag-v2/pilot/config.js';
+import { readPilotConfig, validReasoningChoices } from '../lib/rag-v2/pilot/config.js';
 import { activateChatPlan, newChatPlan, preflightChatPlan } from '../lib/rag-v2/pilot/chat-plan.js';
 
 const { values } = parseArgs({ options: { tenant: { type: 'string' }, profile: { type: 'string' }, template: { type: 'string' },
   out: { type: 'string' }, 'budget-usd': { type: 'string' }, basis: { type: 'string' }, reasoning: { type: 'string', default: 'medium' }, 'rag-env': { type: 'string', default: '/etc/sotsiaalai/rag.env' },
+  // ADR-092: the efforts a user may choose between in the chat, e.g. "low,medium"; --reasoning stays the one used unasked.
+  'reasoning-choices': { type: 'string' },
   activate: { type: 'boolean', default: false } } });
 const usd = Number(values['budget-usd']);
-if (!['low', 'medium', 'high'].includes(values.reasoning) || !values.tenant || !values.profile || !values.template || !values.out?.startsWith('/etc/sotsiaalai/') || !(usd > 0 && usd <= 10) || !values.basis) {
-  throw Error('usage: --tenant --profile --template --out /etc/sotsiaalai/<file> --budget-usd <0-10] --basis <text> [--activate]');
+const reasoningChoices = values['reasoning-choices'] ? values['reasoning-choices'].split(',').map(effort => effort.trim()) : null;
+if (!['low', 'medium', 'high'].includes(values.reasoning) || !values.tenant || !values.profile || !values.template || !values.out?.startsWith('/etc/sotsiaalai/') || !(usd > 0 && usd <= 10) || !values.basis
+  || reasoningChoices && !validReasoningChoices({ reasoning: values.reasoning, reasoningChoices })) {
+  throw Error('usage: --tenant --profile --template --out /etc/sotsiaalai/<file> --budget-usd <0-10] --basis <text> [--reasoning-choices low,medium] [--activate]');
 }
 const template = JSON.parse(await fs.readFile(values.template, 'utf8'));
 const postgres = new PostgresCatalog(process.env.RAG_V2_POSTGRES_URL);
@@ -31,13 +35,14 @@ let plan;
 try {
   const generation = await postgres.active(values.tenant);
   plan = await newChatPlan({ generation, tenant: values.tenant, profileId: values.profile, users: template.users, accountProject: template.accountProject,
-    prices: template.prices, reasoning: values.reasoning, nanoUsd: Math.round(usd * 1e9), basis: values.basis });
+    prices: template.prices, reasoning: values.reasoning, reasoningChoices, nanoUsd: Math.round(usd * 1e9), basis: values.basis });
   // The same checks the chat runs before a turn: active generation, profile, versions and directories.
   await preflightChatPlan(plan);
 } finally { await postgres.close(); }
 await fs.writeFile(values.out, JSON.stringify(plan, null, 2), { flag: 'wx', mode: 0o640 });
 const summary = { out: values.out, id: plan.id, tenant: plan.tenant, generation: plan.generationId, profile: plan.profileId,
-  documents: Object.keys(plan.documents).length, budgetUsd: usd, implementationHash: plan.implementationHash.slice(0, 12), activated: false };
+  documents: Object.keys(plan.documents).length, budgetUsd: usd, reasoning: plan.reasoning, reasoningChoices: plan.reasoningChoices ?? null,
+  implementationHash: plan.implementationHash.slice(0, 12), activated: false };
 if (values.activate) {
   await activateChatPlan({ ragEnv: values['rag-env'], file: values.out, plan });
   Object.assign(process.env, { M4_PILOT_ENABLED: '1', M4_PILOT_CONFIG: values.out });

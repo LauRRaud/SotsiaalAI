@@ -187,3 +187,24 @@ test('a full run takes the code and the packages from the running release', { sk
   await fs.mkdir(path.join(own.work, 'node_modules'));
   assert.match(run(own, { RESUME: '' }).stdout, /FAILED: \S+\/node_modules is not a link/u);
 });
+
+test('ADR-092: the new plan is asked to offer the efforts the plan it replaces offers; a plan without a choice gets none', { skip: !shell && 'no sh' }, async () => {
+  const plain = await tree('choice-none');
+  assert.equal(run(plain).status, 0);
+  const made = (await calls(plain)).find(line => line.startsWith('plan '));
+  assert.match(made, /--reasoning medium /u);
+  assert.doesNotMatch(made, /--reasoning-choices/u);
+  const offering = await tree('choice-kept');
+  await fs.writeFile(path.join(offering.etc, 'current.json'), JSON.stringify({ id: 'plan-old', generationId: 'search_generation_prior', documents: { d1: 'v1' },
+    reasoning: 'medium', reasoningChoices: ['low', 'medium'] }));
+  const result = run(offering);
+  assert.equal(result.status, 0, result.stdout + result.stderr);
+  assert.match((await calls(offering)).find(line => line.startsWith('plan ')), /--budget-usd 4 --reasoning-choices low,medium --basis /u);
+  // A running plan that cannot be read stops the run before a plan is made.
+  const broken = await tree('choice-unreadable');
+  await fs.writeFile(path.join(broken.etc, 'current.json'), 'not json');
+  const failed = run(broken);
+  assert.notEqual(failed.status, 0);
+  assert.match(failed.stdout, /FAILED: the running plan \S+current\.json cannot be read/u);
+  assert.deepEqual((await calls(broken)).filter(line => line.startsWith('plan ')), []);
+});

@@ -164,6 +164,9 @@ export default function ChatComposer({
   onActivateDeepResearchMode,
   onActivateHelpRequestMode,
   onActivateHelpOfferMode,
+  // ADR-092: null = vestluse plaan valikut ei paku; true/false = menüü valiku "Mõtle põhjalikumalt" olek.
+  thinkThoroughly = null,
+  onToggleThinkThoroughly,
   showDocumentAttachButton = false,
   onPickDocumentFile,
   voiceEnabled = true,
@@ -781,6 +784,14 @@ export default function ChatComposer({
             </span>
             <span>{t("chat.tools.document_analysis")}</span>
           </button>
+          {/* ADR-092: vastuse arutlustase. Linnuke sees = põhjalik vastus, maas = kiirem. Menüü jääb
+              lahti, et linnukese muutus oleks näha; valik kehtib järgmisest küsimusest. */}
+          {thinkThoroughly !== null && !isRoomMode ? <button type="button" role="menuitemcheckbox" aria-checked={thinkThoroughly ? "true" : "false"} onClick={onToggleThinkThoroughly}>
+              <span>{t("chat.tools.think_thoroughly")}</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                <path d="M5 12.6 10 17.4 19 7.2" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button> : null}
         </div>, document.body)
     : null;
   const documentAttachDisabled = isGenerating || isRoomMode && (roomBlocked || roomAuthRequired);
