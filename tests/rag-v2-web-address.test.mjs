@@ -89,3 +89,20 @@ test('in the bubble an address is a link only when it is a cited source\'s own, 
   assert.deepEqual(splitByLinks('Vaata pood.example ja pood.example/b.', two), ['Vaata pood.example ja ', { text: 'pood.example/b', url: 'https://pood.example/b' }, '.']);
   assert.deepEqual(splitByLinks('Tekst silmatervis.ee/abivahendid', []), ['Tekst silmatervis.ee/abivahendid']);
 });
+
+test('an address miswritten by a letter is shown as its source gives it and leads there', () => {
+  // The case of 06.10.2026: one letter dropped from the site's name, in two addresses of one answer.
+  const links = messageLinks([{ web: 'viipekeeletolgid.example/teenused', webUrl: 'https://www.viipekeeletolgid.example/teenused' },
+    { web: 'viipekeeletolgid.example/teenused/noustamine', webUrl: 'https://www.viipekeeletolgid.example/teenused/noustamine' }, { web: 'itak.ee/laenutus', webUrl: 'https://www.itak.ee/laenutus' },
+    { web: 'silmatervis.ee/abivahendid', webUrl: 'https://silmatervis.ee/abivahendid/' }]);
+  assert.deepEqual(splitByLinks('Telli: viipekeeltolgid.example/teenused. Nõu: https://www.viipekeeltolgid.example/teenused/noustamine.', links), ['Telli: ',
+    { text: 'viipekeeletolgid.example/teenused', url: 'https://www.viipekeeletolgid.example/teenused' }, '. Nõu: ', { text: 'viipekeeletolgid.example/teenused/noustamine', url: 'https://www.viipekeeletolgid.example/teenused/noustamine' }, '.']);
+  // The site named alone and miswritten leads to its one cited page.
+  assert.deepEqual(splitByLinks('Vaata silmatevis.ee.', links), ['Vaata ', { text: 'silmatervis.ee', url: 'https://silmatervis.ee/abivahendid/' }, '.']);
+  // Not a miswriting: a page that is not cited, a site with two cited pages named alone, another ending, a short name,
+  // three letters off, an e-mail address, and a name near two cited sites.
+  for (const text of ['Vaata silmatevis.ee/hinnad.', 'Vaata viipekeeltolgid.example.', 'Vaata silmatevis.eu.', 'Vaata ital.ee/laenutus.', 'Vaata silmtvis.ee.', 'Kirjuta info@silmatevis.ee.'])
+    assert.deepEqual(splitByLinks(text, links), [text], text);
+  const twins = messageLinks([{ web: 'kopsuliit-a.example', webUrl: 'https://kopsuliit-a.example' }, { web: 'kopsuliit-b.example', webUrl: 'https://kopsuliit-b.example' }]);
+  assert.deepEqual(splitByLinks('Vaata kopsuliit-c.example.', twins), ['Vaata kopsuliit-c.example.']);
+});
