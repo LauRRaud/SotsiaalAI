@@ -3340,7 +3340,6 @@
       "exit_mode_aria": "Завершить активный режим",
       "menu_aria": "Инструменты чата",
       "document_analysis": "Анализ документа",
-      "think_thoroughly": "Думать основательнее",
       "deep_research": "Глубокое исследование",
       "deep_research_room_only": "Глубокое исследование доступно только в чате 1:1.",
       "info_mode": "Инфо-ассистент",
@@ -3364,6 +3363,11 @@
       "scope_output_label": "Формат ответа",
       "scope_output_worker": "Для специалиста",
       "scope_output_client": "Для обратившегося"
+    },
+    "quick_answer": {
+      "button_aria": "Быстрый ответ",
+      "on": "Быстрый ответ",
+      "off": "Вдумчивый ответ"
     },
     "ai_toggle": {
       "label": "Отправить ассистенту",

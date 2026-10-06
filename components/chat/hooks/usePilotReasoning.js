@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { initialReasoning, readSavedReasoning, reasoningChoiceAvailable, saveReasoning, toggledReasoning } from '@/lib/chat/m4PilotReasoning';
 
-// ADR-092: the state of the composer's menu item "Mõtle põhjalikumalt". The page renders with the plan's own effort;
+// ADR-092: the state of the composer's lightning button "Kiire vastus". The page renders with the plan's own effort;
 // the remembered choice is read after mounting, so the server's and the browser's first render agree.
 export function usePilotReasoning(offer) {
   const available = reasoningChoiceAvailable(offer);
@@ -17,5 +17,5 @@ export function usePilotReasoning(offer) {
     saveReasoning(() => window.localStorage, next);
     setEffort(next);
   }, [available, quick, thorough, fallback, effort]);
-  return { available, effort: available ? effort : null, thorough: available && effort === thorough, toggle };
+  return { available, effort: available ? effort : null, quick: available && effort === quick, toggle };
 }

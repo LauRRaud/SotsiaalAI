@@ -40,7 +40,7 @@ export default async function Page({ searchParams }) {
   const emailVerifiedEntry = reason === "email-verified";
   const roomIdRaw = resolvedSearchParams?.roomId;
   const roomId = typeof roomIdRaw === "string" ? roomIdRaw.trim() || null : null;
-  // pilotReasoning (ADR-092): the plan's choice of the answer's reasoning effort, for the composer's menu item.
+  // pilotReasoning (ADR-092): the plan's choice of the answer's reasoning effort, for the composer's lightning button.
   let pilotMode = null, pilotDialogueEnabled = false, pilotReasoning = null;
   if (!roomId && process.env.M4_PILOT_ENABLED === '1') {
     const auth = await requireChatUser({ includeSession: true });
