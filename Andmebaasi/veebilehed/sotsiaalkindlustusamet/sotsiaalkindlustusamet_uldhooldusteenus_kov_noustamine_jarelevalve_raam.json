@@ -1,0 +1,272 @@
+{
+  "document_id": "web-sotsiaalkindlustusamet_uldhooldusteenus_kov_noustamine_jarelevalve_raam",
+  "title": "Väljaspool kodu osutatav üldhooldusteenus",
+  "register_title": "Üldhooldusteenus (KOV nõustamine + järelevalve raam)",
+  "source_id": "sotsiaalkindlustusamet_uldhooldusteenus_kov_noustamine_jarelevalve_raam",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/kohalike-omavalitsuste-noustamine/uldhooldusteenus",
+  "source_path": "sotsiaalkindlustusamet_uldhooldusteenus_kov_noustamine_jarelevalve_raam.html",
+  "source_format": "html",
+  "source_sha256": "91ad0026bdaf55450ec10d5def5b212da8fdc63cd3e9a79d78dfa55276a29542",
+  "content_sha256": "5d9ad0df94aceb17c200d8b97280ec98a174995a33499a772145f3e1c566c07c",
+  "checked_at": "2026-10-06",
+  "retrieved_at": "2026-10-06T14:18:59.319Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-08-11",
+  "jurisdiction_level": "NATIONAL",
+  "tags": [
+    "Kvaliteet, järelevalve ja ohutus"
+  ],
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Tue, 06 Oct 2026 13:49:00 GMT",
+      "etag": null
+    },
+    "raw_sha256": "b984c03fe276f0731f2cb0ac256e8bcfd783b0349f8953bba6996d66e6570c27",
+    "stats": {
+      "words": 9279,
+      "blocks": 316,
+      "headings": 100,
+      "tables": 0,
+      "links": 54,
+      "linksToOtherSites": 17
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-05/HK%20nimekiri%2030.04.2026.xlsx",
+      "text": "Üldhoolekandeteenuse osutajate nimekiri | 43.45 KB | xlsx",
+      "type": "xlsx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.sm.ee/media/3037/download",
+      "text": "infoleht eesti keeles",
+      "type": "download",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.sm.ee/media/3050/download",
+      "text": "vene keeles",
+      "type": "download",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-12/Sotsiaalkaitseministri%20m%C3%A4%C3%A4ruse%2019.06.2023%20nr%2036%20N%C3%B5uded%20v%C3%A4ljaspool%20kodu%20osutatavale%20%C3%B6%C3%B6p%C3%A4evaringsele%20%C3%BCldhooldusteenusele%20seletuskiri%2026.05.2023.pdf",
+      "text": "Sotsiaalkaitseministri 19.06.2023. a määruse nr 36 seletuskiri | 868.33 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-11/Lisa%201.%20Eesti%20sotsiaalteenuste%20kvaliteedijuhis_12.11.2024.pdf",
+      "text": "Eesti sotsiaalteenuste kvaliteedijuhend | 505.21 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-07/%C3%9CHT%20juhend%202026.pdf",
+      "text": "Väljaspool kodu osutatava üldhooldusteenuse juhend | 284.25 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-01/V%C3%A4ljaspool%20kodu%20osutatava%20%C3%BCldhooldusteenuse%20kvaliteedijuhis%2024.pdf",
+      "text": "Väljaspool kodu osutatava üldhooldusteenuse kvaliteedijuhis | 242.33 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-12/Hooldusplaani%20juhend.%20V%C3%A4ljapool%20kodu%20osutatav%20%C3%B6%C3%B6p%C3%A4evaringnee%20%C3%BCldhooldusteenus%202024.docx",
+      "text": "Hooldusplaani juhend. Väljapool kodu osutatav ööpäevaringne üldhooldusteenus | 103.31 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-12/Hooldusplaani%20juhendi%20lisa%201.%20Hooldusplaani%20n%C3%A4idis.xlsx",
+      "text": "Hooldusplaani juhendi lisa 1. Hooldusplaani näidis | 26.2 KB | xlsx",
+      "type": "xlsx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.ravimiamet.ee/media/1080/download",
+      "text": "Juhend hooldekodudes ravimite käitlemiseks",
+      "type": "download",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Hooldekodu%20kulude%20kalkulaator%202026uus_0.xlsx",
+      "text": "Hooldekodu kulude kalkulaator 2026 | 78.08 KB | xlsx",
+      "type": "xlsx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-08/HKhinnaseire_august_2026.xlsx",
+      "text": "Hoolduskulud ja hoolduskoha maksumus | 64.08 KB | xlsx",
+      "type": "xlsx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-10/%C3%9Cldhooldusteenusest%202025.pptx",
+      "text": "Üldhooldusteenusest 2025.pptx | 486.12 KB | pptx",
+      "type": "pptx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-10/V%C3%A4givalla%20m%C3%A4rkamine%20ja%20ennetamine.pdf",
+      "text": "Vägivalla märkamine ja ennetamine.pdf | 846.95 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-10/Vabalt%20ja%20V%C3%A4%C3%A4rikalt_k%C3%A4siraamatu%20tutvustus.pptx",
+      "text": "Vabalt ja Väärikalt_käsiraamatu tutvustus.pptx | 1.94 MB | pptx",
+      "type": "pptx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-10/Uuringu%20esitlus_TEHNOLOOGILISTE%20LAHENDUSTE%20%20KASUTAMINE%20EESTI%20%C3%9CLDHOOLDEKODUDES.pptx",
+      "text": "Uuringu esitlus_TEHNOLOOGILISTE LAHENDUSTE KASUTAMINE EESTI ÜLDHOOLDEKODUDES.pptx | 282.21 KB | pptx",
+      "type": "pptx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-10/Tehnoloogiliste%20lahenduste%20kasutamine%20Eesti%20%C3%BCldhooldekodudes%20uuringu%20tulemused%20ja%20j%C3%A4reldused_uuring.pdf",
+      "text": "Tehnoloogiliste lahenduste kasutamine Eesti üldhooldekodudes uuringu tulemused ja järeldused_uuring.pdf | 492.84 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-10/Riigi%20suunad%20omastehoolduse%20suunal_0.pptx",
+      "text": "Riigi suunad omastehoolduse suunal_0.pptx | 7.53 MB | pptx",
+      "type": "pptx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-10/P%C3%B6%C3%B6rdumised%20SKA-sse%202025.a.%20H%C3%A4id%20n%C3%A4iteid%20%C3%BCldhooldusteenuse%20osutamisest_0.pptx",
+      "text": "Pöördumised SKA-sse 2025.a. Häid näiteid üldhooldusteenuse osutamisest_0.pptx | 14.15 MB | pptx",
+      "type": "pptx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-10/PANELISTID_0.pptx",
+      "text": "PANELISTID_0.pptx | 176.24 KB | pptx",
+      "type": "pptx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-10/L%C3%B5put%C3%B6%C3%B6%20esitlus_Melissa%20Beilmann.pptx",
+      "text": "Lõputöö esitlus_Melissa Beilmann.pptx | 14.16 MB | pptx",
+      "type": "pptx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-10/Juriidilise%20isiku%20vastutus.pptx",
+      "text": "Juriidilise isiku vastutus.pptx | 121.23 KB | pptx",
+      "type": "pptx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-10/Inimesekeskne%20l%C3%A4henemine%20dementsusega%20seotud%20k%C3%A4itumuslikele%20ja%20ps%C3%BChholoogilistele%20s%C3%BCmptomitele.pptx",
+      "text": "Inimesekeskne lähenemine dementsusega seotud käitumuslikele ja psühholoogilistele sümptomitele.pptx | 17.79 MB | pptx",
+      "type": "pptx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-10/Hea%20hooldusjuht%20on%20hooldust%C3%B6%C3%B6%20ja%20%C3%BChtse%20meeskonna%20v%C3%B5ti.pptx",
+      "text": "Hea hooldusjuht on hooldustöö ja ühtse meeskonna võti.pptx | 9.93 MB | pptx",
+      "type": "pptx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-10/Eakatevastane%20v%C3%A4givald%20hooldekodudes%20ja%20selle%20m%C3%A4rkamine.%20MelissaBeilmann.pdf",
+      "text": "Eakatevastane vägivald hooldekodudes ja selle märkamine. MelissaBeilmann.pdf | 444.09 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-07/%C3%9Cldhooldusteenuse%20arvestused%20ja%20arveldused_17.06.2024.pdf",
+      "text": "Üldhooldusteenuse arvestused ja arveldused. Mart-Peeter Erss | 620.9 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-07/%C3%9Cldhooldusteenuse%20korraldus%20ja%20rahastamine%20Tallinna%20linnas.pdf",
+      "text": "Üldhooldusteenuse korraldus ja rahastamine Tallinna linnas | 414.83 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-07/Tallinna%20aruande%20p%C3%B5hi%20%C3%B5igete%20valemitega.xlsx",
+      "text": "Tallinna aruande põhi valemitega | 86.67 KB | xlsx",
+      "type": "xlsx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-07/%C3%9Cldhooldusteenuse%20arved%20Tartus.pdf",
+      "text": "Üldhooldusteenuse arved Tartus | 1.27 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-11/viibimiskoht_ja_elukoht_hoolekandeasutuses%20%281%29_0.docx",
+      "text": "Viibimiskoht ja elukoht hoolekandeasutuses | 21.08 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-02/Teenuseosutajale_viibimiskoha_markimine_STARis_13.02.2026.pdf",
+      "text": "Teenuseosutajale – viibimiskoha märkimine STARis | 886.81 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-08/Hoolduskulu%20mudeli%20j%C3%A4rgi_n%C3%A4idis_24.08.2023.xlsx",
+      "text": "Hoolduskulude näidiskalkulaator | 14.46 KB | xlsx",
+      "type": "xlsx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-05/Hooldereformi%20arveldused.pdf",
+      "text": "Hooldereformi arveldused. Infopäeva slaidid | 650.49 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Hoolduskulude%20katmine%20v%C3%A4ljaspool%20kodu%20osutatava%20%C3%B6%C3%B6p%C3%A4evaringse%20%C3%BCldhooldusteenuse%20korraldamisel.pdf",
+      "text": "Hoolduskulude katmine väljaspool kodu osutatava ööpäevaringse üldhooldusteenuse korraldamisel | 491.6 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-07/%C3%96%C3%B6p%C3%A4evaringse%20hooldusteenuse%20teabeleht_01.07.2026.pdf",
+      "text": "Ööpäevaringse hooldusteenuse teabeleht | 172.03 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

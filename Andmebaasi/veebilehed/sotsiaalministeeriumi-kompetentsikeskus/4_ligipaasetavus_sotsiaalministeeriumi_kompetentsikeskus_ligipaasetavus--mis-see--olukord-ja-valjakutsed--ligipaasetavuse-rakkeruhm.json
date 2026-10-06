@@ -1,0 +1,68 @@
+{
+  "document_id": "web-4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--olukord-ja-valjakutsed--ligipaasetavuse-rakkeruhm",
+  "title": "Ligipääsetavuse rakkerühm",
+  "register_title": "Ligipääsetavuse rakkerühm",
+  "source_id": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--olukord-ja-valjakutsed--ligipaasetavuse-rakkeruhm",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalministeeriumi kompetentsikeskus",
+  "language": "et",
+  "url": "https://kompetentsikeskus.sm.ee/et/vordsed-voimalused/ligipaasetavus/mis-see/olukord-ja-valjakutsed/ligipaasetavuse-rakkeruhm",
+  "source_path": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--olukord-ja-valjakutsed--ligipaasetavuse-rakkeruhm.html",
+  "source_format": "html",
+  "source_sha256": "53e608263bbcab0d4784412539ebf95b6b65dd7864ab06474e84b21e2ad7467c",
+  "content_sha256": "5d8e9c268632899acf251dbd63109dd574ade2cf362e331cd309ce1f33266abb",
+  "checked_at": "2026-10-06",
+  "retrieved_at": "2026-10-06T14:18:53.154Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "tags": [
+    "Ligipääsetavus",
+    "ligipääsetavus"
+  ],
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "6c4e6ca731d54a3f635a7f8084b8e2dfaf3fd61d715f7fa2d03493540376a80a",
+    "stats": {
+      "words": 156,
+      "blocks": 7,
+      "headings": 1,
+      "tables": 0,
+      "links": 1,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://s3-web-1a.tehik.ee/kompetentsikeskus-live-web-prd/s3fs-public/2022-02/Riigikantselei_Ligip%C3%A4%C3%A4setavuse_rakker%C3%BChma_%20lopparuanne%20(2).pdf",
+      "text": "Ligipääsetavuse rakkerühma lõpparuanne",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

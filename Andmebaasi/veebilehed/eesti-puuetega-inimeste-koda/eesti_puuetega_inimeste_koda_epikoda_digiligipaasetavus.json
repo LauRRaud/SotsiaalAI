@@ -1,0 +1,61 @@
+{
+  "document_id": "web-eesti_puuetega_inimeste_koda_epikoda_digiligipaasetavus",
+  "title": "Veebikeskkondade ja e-teenuste ligipääsetavus",
+  "register_title": "EPIKoda: digiligipääsetavus",
+  "source_id": "eesti_puuetega_inimeste_koda_epikoda_digiligipaasetavus",
+  "source_type": "web_page",
+  "publisher": "Eesti Puuetega Inimeste Koda",
+  "language": "et",
+  "url": "https://epikoda.ee/digiligipaasetavus/",
+  "source_path": "eesti_puuetega_inimeste_koda_epikoda_digiligipaasetavus.html",
+  "source_format": "html",
+  "source_sha256": "da800f1c1c427c609adf45c4eb4d3d6e32695573c99fa52d7c82370ad79e2410",
+  "content_sha256": "687d2f133e153106dd96bb20bce80001269557e04c1607d4f9441e2b48a6bffc",
+  "checked_at": "2026-10-06",
+  "retrieved_at": "2026-10-06T14:18:57.460Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "tags": [
+    "Ligipääsetavus",
+    "ligipääsetavus"
+  ],
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "content_id",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "f1602a097eabf4cc6bee5e5c779a76fdb7272bd9329c0b9989645b465070dd54",
+    "stats": {
+      "words": 773,
+      "blocks": 31,
+      "headings": 5,
+      "tables": 0,
+      "links": 12,
+      "linksToOtherSites": 10
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

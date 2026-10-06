@@ -298,3 +298,16 @@ test('a card on several lines goes whole; a hidden address is read and told apar
   assert(odd.html.includes('<p>Küsi lisa aadressilt [e-post eemaldatud].</p>'));
   assert.deepEqual([odd.contacts.personalEmails, odd.needsReview], [1, true]);
 });
+
+// Found on a register's contact page (06.10.2026): each official is a heading, the channels stand under it.
+test('a heading that is nothing but a name, with channels under it, is a contact card; the site\'s own line goes', () => {
+  const page = extractPage(`<html><head><title>Kontaktid | Näidisandmekogu</title></head><body><main><div>Näidisandmekogu</div><h1>Kontaktid</h1><p>Back to list</p>
+    <p>${'Andmekogu kasutamise kohta saab abi tööpäeviti. '.repeat(20)}</p>
+    <h4>Mari Maasikas</h4><p>peaspetsialist</p><p>5555 1234</p>
+    <h4>Jaan-Erik Tamm</h4><ul><li>5555 4321</li></ul>
+    <h3>Üldine abi</h3><p>Infotelefon 612 0000</p><h4>Lahtiolekuajad</h4><p>E–R 9–17</p></main></body></html>`, 'https://andmekogu.example/kontaktid');
+  for (const gone of ['Maasikas', 'Tamm', 'peaspetsialist', '5555', 'Back to list']) assert.equal(page.html.includes(gone), false, gone);
+  assert.equal(page.html.split('Näidisandmekogu').length - 1, 0, 'the site\'s name beside the heading is the site\'s line');
+  assert(page.html.includes(['<h3>Üldine abi</h3>', '<p>Infotelefon 612 0000</p>', '<h4>Lahtiolekuajad</h4>', '<p>E–R 9–17</p>'].join('\n')), 'a heading of two words that is not a name stays with its text');
+  assert.deepEqual([page.contacts.contactCards, page.needsReview, page.warnings], [2, false, ['contact_card_removed']]);
+});

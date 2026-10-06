@@ -1,0 +1,187 @@
+{
+  "document_id": "web-sotsiaalkindlustusamet_ska_abivahendi_ettevottele",
+  "title": "Abivahendi ettevõttele",
+  "register_title": "SKA: Abivahendi ettevõttele",
+  "source_id": "sotsiaalkindlustusamet_ska_abivahendi_ettevottele",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/teenuseosutajale/abivahendi-ettevottele",
+  "source_path": "sotsiaalkindlustusamet_ska_abivahendi_ettevottele.html",
+  "source_format": "html",
+  "source_sha256": "a0692af2418dca6ec708286620ee29a12cbfd129136161d0638c1af2fabe4182",
+  "content_sha256": "d275070deea4dfc9a09c830f1e17f8b425ada998a40bc0cceef9fcd91f2a66f2",
+  "checked_at": "2026-10-06",
+  "retrieved_at": "2026-10-06T14:18:14.856Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-10-06",
+  "jurisdiction_level": "NATIONAL",
+  "tags": [
+    "Abivahendid",
+    "Riiklik info ja otsingud",
+    "abivahendid"
+  ],
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Tue, 06 Oct 2026 14:04:16 GMT",
+      "etag": null
+    },
+    "raw_sha256": "18e7c734f0273acf45de08beeaa59dfa3b57ba34a5591336bc85cfdb252893aa",
+    "stats": {
+      "words": 850,
+      "blocks": 48,
+      "headings": 9,
+      "tables": 0,
+      "links": 41,
+      "linksToOtherSites": 17
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 1,
+      "personLinks": 0,
+      "contactCards": 4,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed",
+      "email_needs_review"
+    ],
+    "needs_review": true
+  },
+  "documents": [
+    {
+      "url": "https://www.riigiteataja.ee/aktilisa/1260/9202/6005/SOM_24092026_m37_lisa.pdf",
+      "text": "Abivahendite määruse lisa: abivahendite loetelu",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-05/Tasu%20maksmise%20kohustuse%20%C3%BClev%C3%B5tmise%20lepingu%20p%C3%B5hi%20tutvumiseks.docx",
+      "text": "Tasu maksmise kohustuse ülevõtmise lepingu põhi tutvumiseks | 53.59 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-12/Taotlus%20lepingu%20s%C3%B5lmimiseks%20abivahendite%20m%C3%BC%C3%BCgi-%20ja%20v%C3%B5i%20%C3%BC%C3%BCriteenuse%20osutamiseks%2001.2025.docx",
+      "text": "Abivahendite müügi- või üüriteenuse osutamise lepingu sõlmimise taotlus | 25.67 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-02/M%C3%BC%C3%BCgipunktide%20ja%20m%C3%BC%C3%BCgipunktis%20t%C3%B6%C3%B6tavate%20abivahendi%20spetsialistide%20info_03.02.2026.xlsx",
+      "text": "Müügipunktide ja müügipunktis töötavate abivahendi spetsialistide info | 12.02 KB | xlsx",
+      "type": "xlsx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-01/Abivahendi%20erandi%20taotlus%2003.01.2025.docx",
+      "text": "Abivahendi erandi taotlus | 36.28 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-11/Lisa%201.%20Eesti%20sotsiaalteenuste%20kvaliteedijuhis_12.11.2024.pdf",
+      "text": "Eesti sotsiaalteenuste kvaliteedijuhend | 505.21 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-11/Lisa%202.%20Hinnapakkumise%20%C3%BCldvorm_12.11.2024.docx",
+      "text": "Lisa 2. Hinnapakkumise üldvorm | 29.94 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-11/Lisa%203.%20Hinnapakkumise%20vorm.%20Manuaalratastool_12.11.2024.docx",
+      "text": "Lisa 3. Hinnapakkumise vorm. Manuaalratastool | 35.11 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-11/Lisa%204.%20Hinnapakkumise%20vorm.%20Elektriline%20ratastool_12.11.2024.docx",
+      "text": "Lisa 4. Hinnapakkumise vorm. Elektriline ratastool | 35.8 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-11/Lisa%205.%20Hinnapakkumise%20vorm.%20Invaroller_12.11.2024.docx",
+      "text": "Lisa 5. Hinnapakkumise vorm. Invaroller | 35.67 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-11/Lisa%206.%20Hinnapakkumise%20vorm.%20Proteesid_12.11.2024.docx",
+      "text": "Lisa 6. Hinnapakkumise vorm. Proteesid | 32.9 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-11/Lisa%207.%20Hinnapakkumise%20vorm.%20Kuulmisabivahendid_12.11.2024.docx",
+      "text": "Lisa 7. Hinnapakkumise vorm. Kuulmisabivahendid | 30.99 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-11/Lisa%208.%20Hinnapakkumise%20vorm.%20Varuosad_12.11.2024.docx",
+      "text": "Lisa 8. Hinnapakkumise vorm. Varuosad | 28.62 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-04/Lisa%209_Isikuandmete%20tootlemise%20leping%20tutvumiseks_0.docx",
+      "text": "Lisa 9. Isikuandmete töötlemise leping tutvumiseks | 24.27 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-08/Abivahendite%20MISP2%20portaali%20kasutusjuhend%20alates%2001.09.2025.pdf",
+      "text": "Lisa 10. Abivahendite MISP2 portaali kasutusjuhend | 2.14 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-08/Juhend%20teenuseosutajate%20liidestamiseks%20%C3%BCle%20X-tee_29.08.2025.pdf",
+      "text": "Juhend teenuseosutajate liidestamiseks üle X-tee | 1.73 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-12/Abivahendi%20e-teenuse%20vigade%20teavitamise%20juhend.docx",
+      "text": "Abivahendi e-teenuse vigade teavitamise juhend | 17.48 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/Abivahendi%20e-teenuse%20vigadest%20teavitamise%20vorm.docx",
+      "text": "Abivahendi e-teenuse vigadest teavitamise vorm | 18.84 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-09/abivahendite-maaruse-seletuskiri_01.10.2026.pdf",
+      "text": "Abivahendite määruse seletuskiri | 870.16 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-10/Infoleht_%20AV-muudatus_01.09.2025.pdf",
+      "text": "Abivahendite muudatuste infoleht 01.09.2025 | 218.72 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

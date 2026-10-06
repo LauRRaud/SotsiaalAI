@@ -1,0 +1,79 @@
+{
+  "document_id": "web-andmekaitse_inspektsioon_aki_kaebus_isikuandmete_kaitse_asjas",
+  "title": "Kaebus isikuandmete kaitse asjas",
+  "register_title": "AKI kaebus isikuandmete kaitse asjas",
+  "source_id": "andmekaitse_inspektsioon_aki_kaebus_isikuandmete_kaitse_asjas",
+  "source_type": "web_page",
+  "publisher": "Andmekaitse Inspektsioon",
+  "language": "et",
+  "url": "https://www.aki.ee/meist/vota-uhendust/kaebus-isikuandmete-kaitse-asjas",
+  "source_path": "andmekaitse_inspektsioon_aki_kaebus_isikuandmete_kaitse_asjas.html",
+  "source_format": "html",
+  "source_sha256": "87ac4e28894fa084daeb2a61db8e6be500e0d0e0ecfcfaa7546d37fcffaa26f4",
+  "content_sha256": "3bb3160dac709d38788719ec79d8bbbb34bac783d47a4278536b8e69c363c0c6",
+  "checked_at": "2026-10-06",
+  "retrieved_at": "2026-10-06T14:19:06.118Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "tags": [
+    "Õiguskaitse ja andmekaitse"
+  ],
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "2493237b11004fde1ef969bd8b1db495df13ecb6f9ffc9b732f948d94e811090",
+    "stats": {
+      "words": 894,
+      "blocks": 40,
+      "headings": 8,
+      "tables": 0,
+      "links": 9,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.aki.ee/sites/default/files/documents/2026-06/Kaebus%20isikuandmete%20kaitse%20asjas.docx",
+      "text": "Kaebus isikuandmete kaitse asjas (pöördumisvorm) | 48.34 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.aki.ee/sites/default/files/documents/2026-06/Infoleht_DPF_kaebuse%20esitamine_0.pdf",
+      "text": "Infoleht DPF kaebuse esitamine | 378.86 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.aki.ee/sites/default/files/documents/2026-06/Kaebuse%20vorm%20RV.docx",
+      "text": "DPF kaebuse vorm | 20.12 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    }
+  ]
+}

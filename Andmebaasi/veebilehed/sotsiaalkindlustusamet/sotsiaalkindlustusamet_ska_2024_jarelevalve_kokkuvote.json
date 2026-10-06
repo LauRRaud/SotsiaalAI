@@ -1,0 +1,67 @@
+{
+  "document_id": "web-sotsiaalkindlustusamet_ska_2024_jarelevalve_kokkuvote",
+  "title": "Sotsiaalkindlustusameti 2024. aasta järelevalves: rohkem rikkumisi, aga ka häid näiteid",
+  "register_title": "SKA 2024 järelevalve kokkuvõte",
+  "source_id": "sotsiaalkindlustusamet_ska_2024_jarelevalve_kokkuvote",
+  "source_type": "research_report",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/uudised/sotsiaalkindlustusameti-2024-aasta-jarelevalves-rohkem-rikkumisi-aga-ka-haid-naiteid",
+  "source_path": "sotsiaalkindlustusamet_ska_2024_jarelevalve_kokkuvote.html",
+  "source_format": "html",
+  "source_sha256": "fbc5b4d4a16b309b09775a072d0156d044c77266619c5c44545a4ddcdfa06a14",
+  "content_sha256": "14ead791c23ea3840d30adce93bab47b5a5fe9cb1bae6c0dc9da2badb4783d4b",
+  "checked_at": "2026-10-06",
+  "retrieved_at": "2026-10-06T14:19:01.010Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "tags": [
+    "Kvaliteet, järelevalve ja ohutus"
+  ],
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Tue, 06 Oct 2026 14:18:59 GMT",
+      "etag": null
+    },
+    "raw_sha256": "2cbe0e1c2d52ee2839e1a276843991536b6791d6d7880f4c5d371e9b3a4ed94d",
+    "stats": {
+      "words": 369,
+      "blocks": 14,
+      "headings": 1,
+      "tables": 0,
+      "links": 1,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-03/2024.%20aasta%20tegevusaruanne%20.pdf",
+      "text": "2024. aasta tegevusaruanne | 726.91 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

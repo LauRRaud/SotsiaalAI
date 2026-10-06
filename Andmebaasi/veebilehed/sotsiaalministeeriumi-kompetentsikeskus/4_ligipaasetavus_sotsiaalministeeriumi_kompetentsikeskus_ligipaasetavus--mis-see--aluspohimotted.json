@@ -1,0 +1,61 @@
+{
+  "document_id": "web-4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--aluspohimotted",
+  "title": "Ligipääsetavus",
+  "register_title": "Ligipääsetavus",
+  "source_id": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--aluspohimotted",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalministeeriumi kompetentsikeskus",
+  "language": "et",
+  "url": "https://kompetentsikeskus.sm.ee/et/vordsed-voimalused/ligipaasetavus/mis-see/aluspohimotted",
+  "source_path": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--aluspohimotted.html",
+  "source_format": "html",
+  "source_sha256": "a1e9bab67810b7b6b5801103e284289494d095b4e83aa8ee4b59a2829e31c2d8",
+  "content_sha256": "b327102e0022af60368f70024d4e92128c6eda00c3dc76827c7947a2b1630fa2",
+  "checked_at": "2026-10-06",
+  "retrieved_at": "2026-10-06T14:18:53.121Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "tags": [
+    "Ligipääsetavus",
+    "ligipääsetavus"
+  ],
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "7bc3817135594c78ee62968b296498a5f04b1a8f2b4f9c795e85dd8003145a63",
+    "stats": {
+      "words": 112,
+      "blocks": 11,
+      "headings": 6,
+      "tables": 0,
+      "links": 5,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

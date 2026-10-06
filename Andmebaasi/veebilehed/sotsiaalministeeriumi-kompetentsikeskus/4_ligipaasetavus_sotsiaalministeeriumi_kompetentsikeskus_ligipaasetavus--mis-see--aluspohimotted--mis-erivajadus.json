@@ -1,0 +1,61 @@
+{
+  "document_id": "web-4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--aluspohimotted--mis-erivajadus",
+  "title": "Mis on erivajadus?",
+  "register_title": "Mis on erivajadus?",
+  "source_id": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--aluspohimotted--mis-erivajadus",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalministeeriumi kompetentsikeskus",
+  "language": "et",
+  "url": "https://kompetentsikeskus.sm.ee/et/vordsed-voimalused/ligipaasetavus/mis-see/aluspohimotted/mis-erivajadus",
+  "source_path": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--aluspohimotted--mis-erivajadus.html",
+  "source_format": "html",
+  "source_sha256": "56e9e085d5a8b8535a11b31dadcff384564dc1f15d969e259482032bb1dc53e7",
+  "content_sha256": "dfd221c39bda272604e3804a0609eda3e292971e99ece8b9a60a71262e889ff8",
+  "checked_at": "2026-10-06",
+  "retrieved_at": "2026-10-06T14:18:53.146Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "tags": [
+    "Ligipääsetavus",
+    "ligipääsetavus"
+  ],
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "2ed6b78aa445232844c1672b538970f3d605915390112395baf86f38bfc63d69",
+    "stats": {
+      "words": 143,
+      "blocks": 4,
+      "headings": 1,
+      "tables": 0,
+      "links": 0,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

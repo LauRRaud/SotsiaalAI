@@ -1,0 +1,61 @@
+{
+  "document_id": "web-4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--pohimoisted--kuulmispuue",
+  "title": "Kuulmispuue",
+  "register_title": "Kuulmispuue",
+  "source_id": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--pohimoisted--kuulmispuue",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalministeeriumi kompetentsikeskus",
+  "language": "et",
+  "url": "https://kompetentsikeskus.sm.ee/et/vordsed-voimalused/ligipaasetavus/mis-see/pohimoisted/kuulmispuue",
+  "source_path": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--pohimoisted--kuulmispuue.html",
+  "source_format": "html",
+  "source_sha256": "d25cf8e88571e4643ec3f00474855569dc31c65224819f7d5ea694a4c28e7b24",
+  "content_sha256": "edee0a46edb2486e601198f808428516b52ad87df294d4686c2c3cfc1ce10b92",
+  "checked_at": "2026-10-06",
+  "retrieved_at": "2026-10-06T14:18:53.164Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "tags": [
+    "Ligipääsetavus",
+    "ligipääsetavus"
+  ],
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "f1d5afcbba2a114fdebc939e0195ebf6ff0ec07aa27c6b303786072f0879480c",
+    "stats": {
+      "words": 187,
+      "blocks": 10,
+      "headings": 1,
+      "tables": 0,
+      "links": 1,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

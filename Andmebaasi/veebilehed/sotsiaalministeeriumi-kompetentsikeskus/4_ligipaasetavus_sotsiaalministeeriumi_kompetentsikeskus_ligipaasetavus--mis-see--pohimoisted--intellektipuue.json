@@ -1,0 +1,68 @@
+{
+  "document_id": "web-4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--pohimoisted--intellektipuue",
+  "title": "Intellektipuue",
+  "register_title": "Intellektipuue",
+  "source_id": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--pohimoisted--intellektipuue",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalministeeriumi kompetentsikeskus",
+  "language": "et",
+  "url": "https://kompetentsikeskus.sm.ee/et/vordsed-voimalused/ligipaasetavus/mis-see/pohimoisted/intellektipuue",
+  "source_path": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--pohimoisted--intellektipuue.html",
+  "source_format": "html",
+  "source_sha256": "f80bd1ee978c9d2afa4151f58f1f5a647190a9e3f7ef1145266bdfe2ea41566b",
+  "content_sha256": "d607d0e32726a3977bcc149ce5c4c6a4434b50c0b838fae9a2e7bfa76cd38cb6",
+  "checked_at": "2026-10-06",
+  "retrieved_at": "2026-10-06T14:18:53.169Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "tags": [
+    "Ligipääsetavus",
+    "ligipääsetavus"
+  ],
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "13dc32f2b31bc949b2dcfd68c18843ed575ca2677a8fbe083827b83c7e53f25e",
+    "stats": {
+      "words": 91,
+      "blocks": 4,
+      "headings": 1,
+      "tables": 0,
+      "links": 1,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.epikoda.ee/wp-content/uploads/2016/12/Teema_INTELLEKTIPUUE_Eesti-Vaimupuudega-Inimeste-Tugiliit.pdf",
+      "text": "teemalehest",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

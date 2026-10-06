@@ -1,0 +1,68 @@
+{
+  "document_id": "web-4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--olukord-ja-valjakutsed--uro-puuetega-inimeste-oiguste-k-4c86dbcf622c",
+  "title": "ÜRO puuetega inimeste õiguste konventsiooni täitmise variraport",
+  "register_title": "ÜRO puuetega inimeste õiguste konventsiooni täitmise variraport",
+  "source_id": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--olukord-ja-valjakutsed--uro-puuetega-inimeste-oiguste-k-4c86dbcf622c",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalministeeriumi kompetentsikeskus",
+  "language": "et",
+  "url": "https://kompetentsikeskus.sm.ee/et/vordsed-voimalused/ligipaasetavus/mis-see/olukord-ja-valjakutsed/uro-puuetega-inimeste-oiguste-konventsiooni-taitmise-variraport",
+  "source_path": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--olukord-ja-valjakutsed--uro-puuetega-inimeste-oiguste-k-4c86dbcf622c.html",
+  "source_format": "html",
+  "source_sha256": "d5b0634b2081afb7335a1161b5a09dac272d0d19703e8e1c7352f8914001e1a8",
+  "content_sha256": "57a8a0b5796bae254793e1c27e698d033f7a398fdd3e6fa98977efc5b6e94308",
+  "checked_at": "2026-10-06",
+  "retrieved_at": "2026-10-06T14:18:53.152Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "tags": [
+    "Ligipääsetavus",
+    "ligipääsetavus"
+  ],
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "ee2f06d5c815fe0f187a9fa17fb901e9632a5f648a01ef78c6383283c8c4f96c",
+    "stats": {
+      "words": 146,
+      "blocks": 5,
+      "headings": 1,
+      "tables": 0,
+      "links": 1,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.epikoda.ee/wp-content/uploads/2018/03/EPIK_variraport_webi.pdf",
+      "text": "Loe rohkem",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

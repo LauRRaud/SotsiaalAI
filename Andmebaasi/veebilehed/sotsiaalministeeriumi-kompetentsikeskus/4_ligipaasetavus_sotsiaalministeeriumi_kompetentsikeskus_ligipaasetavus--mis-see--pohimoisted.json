@@ -1,0 +1,61 @@
+{
+  "document_id": "web-4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--pohimoisted",
+  "title": "Põhimõisted",
+  "register_title": "Põhimõisted",
+  "source_id": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--pohimoisted",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalministeeriumi kompetentsikeskus",
+  "language": "et",
+  "url": "https://kompetentsikeskus.sm.ee/et/vordsed-voimalused/ligipaasetavus/mis-see/pohimoisted",
+  "source_path": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--pohimoisted.html",
+  "source_format": "html",
+  "source_sha256": "26220f0dc07f5c06fa36b0f6309651bb6e5e6cb2a8ac31c1368382848b4eae25",
+  "content_sha256": "5592f5bf75781359084716b7b990a68121cb47bfd722b06a9c4d593b4f2e0ff2",
+  "checked_at": "2026-10-06",
+  "retrieved_at": "2026-10-06T14:18:53.126Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "tags": [
+    "Ligipääsetavus",
+    "ligipääsetavus"
+  ],
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "b3d4216eefdcb6272b5543f0c321435229debcd427a7b3fca8c89327df593afb",
+    "stats": {
+      "words": 108,
+      "blocks": 11,
+      "headings": 6,
+      "tables": 0,
+      "links": 5,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

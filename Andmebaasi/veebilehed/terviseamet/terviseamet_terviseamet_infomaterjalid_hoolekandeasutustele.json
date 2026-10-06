@@ -1,0 +1,189 @@
+{
+  "document_id": "web-terviseamet_terviseamet_infomaterjalid_hoolekandeasutustele",
+  "title": "Infomaterjalid hoolekandeasutustele",
+  "register_title": "Terviseamet / infomaterjalid hoolekandeasutustele",
+  "source_id": "terviseamet_terviseamet_infomaterjalid_hoolekandeasutustele",
+  "source_type": "web_page",
+  "publisher": "Terviseamet",
+  "language": "et",
+  "url": "https://www.terviseamet.ee/nakkushaigused/info-koostoopartneritele/hoolekandeasutused",
+  "source_path": "terviseamet_terviseamet_infomaterjalid_hoolekandeasutustele.html",
+  "source_format": "html",
+  "source_sha256": "22b00b9db3add0a7fe9bf2ec763400e70a93292c7af2dd84390ee429eecbc71c",
+  "content_sha256": "74c3f4277acdb88ab0a6e6e79865bfb68d2a2fd0d69dfe0ac93f1bc442b0438e",
+  "checked_at": "2026-10-06",
+  "retrieved_at": "2026-10-06T14:19:05.033Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-09-17",
+  "jurisdiction_level": "NATIONAL",
+  "tags": [
+    "Kvaliteet, järelevalve ja ohutus",
+    "hoolekanne"
+  ],
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Tue, 06 Oct 2026 14:19:03 GMT",
+      "etag": null
+    },
+    "raw_sha256": "7a8c6907533c2f23a7bcc76675102b334333a77623c9a9824cdf87db0323ad7c",
+    "stats": {
+      "words": 374,
+      "blocks": 18,
+      "headings": 4,
+      "tables": 0,
+      "links": 31,
+      "linksToOtherSites": 9
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.terviseamet.ee/sites/default/files/documents/2026-07/Riiklik%20isolatsioonino%CC%83uete%20juhend_2026.pdf",
+      "text": "Riiklik isolatsiooninõuete juhend (2026) | 996.57 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.terviseamet.ee/sites/default/files/documents/2026-07/Lisa%201.%20Isolatsiooniliigid%20ja%20vastavad%20isolatsioonin%C3%B5uded.pdf",
+      "text": "Lisa 1. Isolatsiooniliigid ja vastavad isolatsiooninõuded | 187.82 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.terviseamet.ee/sites/default/files/documents/2026-07/Lisa%202.%20Infektsioonhaigused%20ja%20mikroorganismid%2C%20mille%20puhul%20tuleb%20rakendada%20haiglas%20isolatsioonin%C3%B5udeid.pdf",
+      "text": "Lisa 2. Infektsioonhaigused ja mikroorganismid, mille puhul tuleb rakendada haiglas isolatsiooninõudeid | 211.41 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.terviseamet.ee/sites/default/files/documents/2026-07/Lisa%203.%20Isolatsiooni%20l%C3%B5petamise%20kriteeriumid%20multiresistentsete%20mikroorganismide%20puhul.pdf",
+      "text": "Lisa 3. Isolatsiooni lõpetamise kriteeriumid multiresistentsete mikroorganismide puhul | 77.68 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.terviseamet.ee/sites/default/files/documents/2026-07/Lisa%204.%20Isikukaitsevahendite%20kasutamise%20ja%20eemaldamise%20j%C3%A4rjekord.pdf",
+      "text": "Lisa 4. Isikukaitsevahendite kasutamise ja eemaldamise järjekord | 67.69 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.terviseamet.ee/sites/default/files/documents/2026-07/Lisa%205.%20Infomaterjal%20multiresistentse%20mikroorganismi.pdf",
+      "text": "Lisa 5. Infomaterjal multiresistentse mikroorganismi kandlusega kliendi lähedasele | 254.09 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.terviseamet.ee/sites/default/files/documents/2025-02/Infektsioonikontrolli%20standardn%C3%B5uded_2022.pdf",
+      "text": "Infektsioonikontrolli standardnõuded (2022) | 1.13 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.terviseamet.ee/sites/default/files/documents/2026-04/Lisa1.%20K%C3%A4teh%C3%BCgieen.pdf",
+      "text": "Lisa 1. Kätehügieen | 376.21 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.terviseamet.ee/sites/default/files/documents/2026-04/Lisa%202.%20Puhastamise%20ja%20desinfitseerimise%20miinimumsagedused.pdf",
+      "text": "Lisa 2. Puhastamise ja desinfitseerimise miinimumsagedused | 174 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.terviseamet.ee/sites/default/files/documents/2026-04/Lisa%203.%20Desinfektantide%20toimivuse%20klassifikatsioon.pdf",
+      "text": "Lisa 3. Desinfektantide toimivuse klassifikatsioon | 150.46 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.terviseamet.ee/sites/default/files/documents/2026-04/Lisa%204.%20Isikukaitsevahendite%20kasutamine.pdf",
+      "text": "Lisa 4. Isikukaitsevahendite kasutamine | 625.35 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.terviseamet.ee/sites/default/files/documents/2024-11/Hoolekandeasutuste%20tegevusjuhis%20COVID-19%20tingimustes.pdf",
+      "text": "Hoolekandeasutuste tegevusjuhis COVID-19 tingimustes (2023) | 224.47 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.terviseamet.ee/sites/default/files/documents/2024-11/hooldekodu_infektsioonijuhend_19.12.2020.pdf",
+      "text": "Infektsiooniga patsiendi käsitlusjuhend hooldekodu töötajatele | 112.07 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.terviseamet.ee/sites/default/files/documents/2024-10/Nakkushaiguste_ennetamise_ja_torjealane_tegevusjuhend_hooldekodudele%20%282017%29.pdf",
+      "text": "Nakkushaiguste ennetamise ja tõrjealane tegevusjuhend hooldekodudele (2017) | 394.66 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.terviseamet.ee/sites/default/files/documents/2024-10/infektsioonikontrollialase_toimepidevuse_ja_riskijuhtimise_juhendmaterjal%20%282023%29.pdf",
+      "text": "Infektsioonikontrollialase toimepidevuse ja riskijuhtimise juhendmaterjal (2023) | 482.04 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.terviseamet.ee/sites/default/files/documents/2024-10/infektsioonikontrollialase_toimepidevuse_ja_riskijuhtimise_metoodika.pdf",
+      "text": "Infektsioonikontrollialase toimepidevuse ja riskijuhtimise metoodika | 667.59 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.terviseamet.ee/sites/default/files/documents/2024-10/Isolatsiooni%20ettevaatusabin%C3%B5ud_plakat.pdf",
+      "text": "Plakat \"Isolatsiooni ettevaatusabinõud\" | 604.24 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.terviseamet.ee/sites/default/files/documents/2024-10/K%C3%A4teh%C3%BCgieeni%20n%C3%A4idustused%20hooldekodus_WHO_EST_RUS.pdf",
+      "text": "Plakat \"Kätehügieeni näidustused hooldekodus\" (EST, RUS) | 1.03 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.terviseamet.ee/sites/default/files/documents/2024-10/K%C3%A4tepesu_plakat.pdf",
+      "text": "Plakat \"Kätepesu\" (EST, RUS) | 21.64 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.terviseamet.ee/sites/default/files/documents/2024-10/Nakkushaigused_info_klientidele_ja_kulalistele_lihtsas_keeles.pdf",
+      "text": "Trükis \"Nakkushaigused – info klientidele ja külalistele lihtsas keeles\" | 4.12 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.terviseamet.ee/sites/default/files/documents/2024-10/Nakkushaigused_info_klientidele_ja_kulalistele_lihtsas_keeles_RUS.pdf",
+      "text": "Trükis \"Nakkushaigused – info klientidele ja külalistele lihtsas keeles\" (RUS) | 4.01 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

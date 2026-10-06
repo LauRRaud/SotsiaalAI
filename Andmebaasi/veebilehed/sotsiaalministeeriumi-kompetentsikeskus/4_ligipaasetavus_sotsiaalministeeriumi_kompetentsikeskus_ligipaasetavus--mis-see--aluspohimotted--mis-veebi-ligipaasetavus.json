@@ -1,0 +1,61 @@
+{
+  "document_id": "web-4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--aluspohimotted--mis-veebi-ligipaasetavus",
+  "title": "Mis on veebi ligipääsetavus?",
+  "register_title": "Mis on veebi ligipääsetavus?",
+  "source_id": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--aluspohimotted--mis-veebi-ligipaasetavus",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalministeeriumi kompetentsikeskus",
+  "language": "et",
+  "url": "https://kompetentsikeskus.sm.ee/et/vordsed-voimalused/ligipaasetavus/mis-see/aluspohimotted/mis-veebi-ligipaasetavus",
+  "source_path": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--aluspohimotted--mis-veebi-ligipaasetavus.html",
+  "source_format": "html",
+  "source_sha256": "1e732eca0e2c258469cc0a787b2ef5ec12a56fe302a38a6ce82ea5bf3c780fff",
+  "content_sha256": "38f4884d72e14945e08d6b54d896691fd6ce017a58f1d91dd7b64e637071f55f",
+  "checked_at": "2026-10-06",
+  "retrieved_at": "2026-10-06T14:18:53.143Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "tags": [
+    "Ligipääsetavus",
+    "ligipääsetavus"
+  ],
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "602c38f086645b22e0a60a874f30d0029cc92e3e2f43b35b01373770a4e4b512",
+    "stats": {
+      "words": 208,
+      "blocks": 8,
+      "headings": 1,
+      "tables": 0,
+      "links": 2,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}
