@@ -21,6 +21,7 @@ import { readActive } from '../lib/rag-v2/catalog.js';
 import { loadSnapshot } from '../lib/rag-v2/search/snapshot.js';
 import { embeddingConfig } from '../lib/rag-v2/search/embedding.js';
 import { replayContext } from '../lib/rag-v2/search/context-replay.js';
+import { unpackJson } from '../lib/rag-v2/pilot/packed-json.js';
 
 const { values } = parseArgs({ options: { turn: { type: 'string', multiple: true }, packet: { type: 'string', multiple: true }, store: { type: 'string' } } });
 const failed = code => { console.error(JSON.stringify({ ok: false, code })); process.exit(1); };
@@ -38,7 +39,8 @@ const documentsOf = packet => [...new Set(packet.evidence.map(entry => entry.doc
 if (values.packet) {
   // A packet as the turn stores it ({ tenant, evidence, model_context, ... }), or a turn's payload that holds one.
   for (const file of values.packet) {
-    const read = JSON.parse(await fs.readFile(file, 'utf8')), packet = read.packet ?? read.payload?.packet ?? read;
+    // A packet copied from a stored row may be packed (packed-json.js).
+    const read = JSON.parse(await fs.readFile(file, 'utf8')), packet = unpackJson(read.packet ?? read.payload?.packet ?? read);
     if (!packet?.tenant || !Array.isArray(packet.evidence)) failed('context_replay_packet_required');
     const active = await readActive(path.resolve(values.store, id('tenant', packet.tenant)));
     const snapshot = await loadSnapshot(values.store, packet.tenant, documentsOf(packet).filter(doc => active.documents[doc]));
@@ -50,7 +52,7 @@ if (values.packet) {
   const postgres = new PostgresCatalog(process.env.RAG_V2_POSTGRES_URL);
   try {
     for (const turn of values.turn) {
-      const row = await prisma.m4PilotTurn.findUnique({ where: { id: turn } }), packet = row?.payload?.packet;
+      const row = await prisma.m4PilotTurn.findUnique({ where: { id: turn } }), packet = unpackJson(row?.payload?.packet);
       if (!packet) { reports.push({ turn, error: 'turn_without_packet' }); continue; }
       const generation = await postgres.active(packet.tenant);
       const bundles = await postgres.bundles(packet.tenant, generation.id, documentsOf(packet).filter(doc => generation.snapshot.documents[doc]));
