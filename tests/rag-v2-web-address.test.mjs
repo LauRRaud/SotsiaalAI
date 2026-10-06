@@ -16,7 +16,7 @@ const field = value => ({ value, provenance: [{ kind: 'metadata', path: '/url' }
 const bundle = (type, urls) => ({ document: { fields: { source_type: field(type), authority: field('Näidispood'), language: field('et'), source_urls: field(urls) } } });
 
 test('a web page\'s source card carries its address as a reader writes it; the declared address stays beside it for the chat', () => {
-  assert.deepEqual(WEB_SOURCE_TYPES, ['web_page', 'vendor_page']);
+  assert.deepEqual(WEB_SOURCE_TYPES, ['web_page', 'vendor_page', 'organization_page']);
   for (const [url, address] of [['https://www.silmatervis.ee/abivahendid/', 'silmatervis.ee/abivahendid'], ['https://pood.example/', 'pood.example'], ['https://pood.example/a/b?x=1#y', 'pood.example/a/b'],
     ['https://pood.example/%C3%BC%C3%BCr', 'pood.example/üür'], ['http://pood.example/a', null], ['mis iganes', null]]) assert.equal(webAddress(url), address, url);
   const page = modelSourceMetadata(bundle('vendor_page', ['https://www.pood.example/laenutus/', 'https://pood.example/muu']));

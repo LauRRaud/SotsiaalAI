@@ -227,6 +227,7 @@ test('a listed page is collected with its sub-pages, breadth first, within the l
   const shop = { source_id: 'pood_laenutus', url: 'https://pood.example/laenutus', title: 'Laenutus', publisher: 'Näidispood', source_type: 'vendor_page' };
   assert.deepEqual([pageTitle(shop, { title: 'LAENUTUS' }), pageTitle(shop, { title: 'Näidispood aitab' }), pageTitle({ ...shop, source_type: 'web_page' }, { title: 'Laenutus' }), pageTitle(shop, { title: '' })],
     ['Näidispood: LAENUTUS', 'Näidispood aitab', 'Laenutus', 'Näidispood: Laenutus']);
+  assert.equal(pageTitle({ ...shop, publisher: 'Näidisühing', source_type: 'organization_page' }, { title: 'Kontakt' }), 'Näidisühing: Kontakt');
   assert.deepEqual((({ title, source_type, publisher }) => [title, source_type, publisher])(pageMetadata({ entry: shop, page: { ...sub.page, title: 'Laenutus' }, fetched: sub.fetched, sourcePath: 'pood_laenutus.html' })),
     ['Näidispood: Laenutus', 'vendor_page', 'Näidispood']);
   // A pattern names the sub-pages worth reading (a company's front page links to its whole shop): by the address or

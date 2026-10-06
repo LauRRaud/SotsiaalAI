@@ -30,7 +30,7 @@
       "sources": 582
     },
     "register": {
-      "files": 4,
+      "files": 5,
       "sources": 0
     },
     "taastatud_allikad": {
@@ -26859,6 +26859,13 @@
       "role": "source_planning_register",
       "sha256": "71a8fd3196461bb87123335316462f58ee6728c46c101ec91c69c3fe662c7930",
       "original_path": "register/web_pages_vendors.json"
+    },
+    {
+      "path": "register/web_pages_organisations.json",
+      "category": "register",
+      "role": "source_planning_register",
+      "sha256": "4cf524315e40be9f905daf724e25b2e499d6d42a2c5a0441fc3067e0d95f2608",
+      "original_path": "register/web_pages_organisations.json"
     }
   ],
   "original_path_base": "../Arhiiv/Andmebaasi_2026-09-07/Andmebaasi"

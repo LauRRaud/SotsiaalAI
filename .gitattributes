@@ -4,6 +4,9 @@
 # code + config in LF
 *.{js,jsx,ts,tsx,mjs,cjs,json,css,scss,md,html,yml,yaml} text eol=lf
 
+# Shell scripts run under sh here and on the server: a CRLF working copy breaks them (ADR-098).
+*.sh text eol=lf
+
 # Deterministic RAG-QM expected-output fixtures
 tests/fixtures/expected/*.json text eol=lf
 tests/fixtures/expected/*.md text eol=lf
