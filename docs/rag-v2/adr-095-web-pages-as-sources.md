@@ -127,9 +127,56 @@ Lehed on repos (`Andmebaasi/veebilehed/`, 62 faili) samade baitidega, mis sisest
 - **`--approve id,id`**: ülevaatuseks märgitud leht pannakse kohale ainult siis, kui inimene on selle nimeliselt kinnitanud.
 - `scripts/rag-v2-export-register.mjs` teeb kogutud allikate kaustast sisestuse registri ja valiku.
 
+## Korpus v62 (06.10.2026): abivahendite müüjate lehed
+
+Omanik 06.10: „mul on vaja, et sa paned ka veebilehed - abivahendite“. Allikaregistris on 21 abivahendite müüja ja teenuseosutaja lehte; varem soovitasin need välja jätta.
+
+### Mida müüja saidilt loetakse
+
+Nimekiri on `Andmebaasi/register/web_pages_vendors.json`. Registris on enamasti saidi avaleht, mille all on terve pood. Seepärast:
+
+- loetakse **üks tase** avalehest allapoole, kuni 8 alalehte;
+- alaleht loetakse ainult siis, kui tema aadress või lingi tekst ütleb, et leht on abivahendi **saamise** kohta: taotlemine, riigi soodustus, tõend, laenutus ja üür, remont, teenused, esindused ja kontakt, ettevõttest (nimekirja väli `subpages.only`, muster);
+- **ei loeta** tootekataloogi, hinnakirju ega müügitingimusi: need on pikad ja vananevad.
+
+Esimene katse laiema mustriga luges 128 lehte, neist suur osa tootekategooriad; kitsama mustriga 75 lehte (72 loetud, 2 sama sisuga, 1 registri aadress andis 404).
+
+### Mis korpusesse läks
+
+72 loetud lehest läks korpusesse **51 lehte 18 ettevõttelt** (16 327 sõna):
+
+- 34 lehte, mida korjaja ülevaatuseks ei märkinud;
+- 17 märgitud lehte, mille vaatasin üle: sisuosa märgistuseta lehed, mille tekst on sisu, ja lehed, mille märgitud e-posti aadressid on kaupluse või teenuse omad (enne @-märki koht või üksus).
+
+Välja jäi 21 märgitud lehte: 13 on liiga õhukesed (alla 80 sõna) ja 8 muul põhjusel (töötajate nimed tekstis või isiklikud aadressid; tõendi vormi tekst; müüja koopia ametlikest sooduskogustest ja piirhindadest; müra tekstis). Valitud lehtedelt otsisin eraldi nimelaadseid sõnapaare ametinimetuse või telefoni kõrval: leide ei olnud.
+
+### Kuidas müüja leht on märgitud
+
+- **Allika liik on `vendor_page`** ja väljaandja on ettevõte. Mõlemad on vastuse mudelile näha.
+- **Pealkirja ees on ettevõtte nimi** („ITAK: ABIVAHENDITE LAENUTAMINE“), kui lehe enda pealkiri seda ei ütle (`pageTitle`). Leht nimega „Laenutus“ või „Kontakt“ ei ütle allikate loendis midagi. Sisselugemine märgib sellise pealkirja hoiatusega (pealkiri tervikuna ei ole lehe tekstis); ülevaatuse reegel lubab selle ühe hoiatuse.
+- **Lehtede tekstid reposse ei lähe.** Need on ettevõtete enda tekstid; avalikku reposse nende koopiat ei pandud. Korpus loeti kaustast, mida git ei jälgi, oma registriga, nagu müügipunktide lehed. Repos on nimekiri ja korjaja.
+
+### Täiendus ja kontroll
+
+| | |
+|---|---|
+| Uusi allikaid | 51 |
+| Lõike | 393 |
+| Ost | 385 sisendit, 60 514 tokenit, **0,0079 USD** (piir 0,03, seatud omaniku „veidi raha“ loa sees) |
+| Indeks | `d058d90b`: 7480 dokumenti, 43 558 lõiku (enne `e957586c`: 7429 ja 43 165) |
+| Vestlusplaan | `/etc/sotsiaalai/m4-corpus-chat-20261006f.json` |
+
+**Kontroll päris lehel (üks pööre, 0,0044 USD).** „Kas rulaatorit saab ostmise asemel ka laenutada? Kes seda teeb ja kuidas see käib?“ Vastus andis esmalt määruse lisa järgi üüri piirmäära ja riigi osa, nimetas siis kolm laenutajat nende enda lehtede järgi (mida kaasa võtta, et saadavus tasub enne üle küsida), tõi ühe ettevõtte laenutuse päevahinna ja ütles, et see on teenusepakkuja hinnakirja hind, ning küsis omavalitsust. Viidatud: määruse lisa, „ITAK: ABIVAHENDITE LAENUTAMINE“, „INVAGO: LAENUTUS“, „Teresa Abivahendikeskus: Rent“.
+
+### Mida tähele panna
+
+- **Müüja leht on ettevõtte kirjeldus, mitte ametlik juhis.** Leht võib olla vananenud (ühel lehel oli veel „Haigekassa“). Õiguse ja piirmäärade alus on määrus ja Sotsiaalkindlustusameti leht; kontrollvastus eristas neid. Rohkem küsimusi ei ole proovitud.
+- **Hinnad:** hinnakirju ei loetud, kuid laenutuse leht võib hinda sisaldada. Hind vananeb; muutust näeb uus korje (ajastamata).
+- Kolm ettevõtet 21-st jäi ilma ühegi leheta (lehed õhukesed või märgitud) ja üks registri aadress on surnud.
+
 ## Kontroll
 
-`tests/rag-v2-web-page.test.mjs` (13 testi): sisuosa eraldamine näidislehelt; isiku kontaktid kõigis neljas kujus ja peidetud aadressid; sisuosata leht ja vihje; salvestatud leht läbib päris vastuvõtu (üks sisuosa, lõikude kohad artikli sees) ja metaandmed läbivad kohandaja; `robots.txt`; alalehtede leidmine; toomine (ümbersuunamised, keelatud aadressid, mitte-HTML, ajapiir, märgistik); lehe ja alalehtede kogumine piiridega; saidi viisakus; muutuse otsus; ploki nime reegli kaks päris juhtumit.
+`tests/rag-v2-web-page.test.mjs` (13 testi; lisandus alalehtede muster ja ettevõtte lehe pealkiri): sisuosa eraldamine näidislehelt; isiku kontaktid kõigis neljas kujus ja peidetud aadressid; sisuosata leht ja vihje; salvestatud leht läbib päris vastuvõtu (üks sisuosa, lõikude kohad artikli sees) ja metaandmed läbivad kohandaja; `robots.txt`; alalehtede leidmine; toomine (ümbersuunamised, keelatud aadressid, mitte-HTML, ajapiir, märgistik); lehe ja alalehtede kogumine piiridega; saidi viisakus; muutuse otsus; ploki nime reegli kaks päris juhtumit.
 
 ## Tegemata
 

@@ -10,7 +10,8 @@
 // (the old one moves to <work>/previous/); a page marked for review is never placed by itself, and nothing is deleted.
 // The list names pages by their id in the master register (Andmebaasi/register/master_sources_final.json), or gives a
 // page of its own with url, title and publisher. A page's sub-pages are read two levels down, 25 at most, unless the
-// list or the options say otherwise ("subpages": false, or { "depth": 1, "max": 10 }).
+// list or the options say otherwise ("subpages": false, or { "depth": 1, "max": 10 }; "only": a pattern over a
+// sub-page's address and link text, for a site whose listed page is its front page).
 // No model or embedding call. Prints counts and addresses, never page text.
 //   node scripts/rag-v2-web-pages.mjs --list Andmebaasi/register/web_pages.json [--only id,id] [--no-subpages]
 //     [--depth 2] [--max 25] [--delay-ms 1500] [--work tmp/rag-v2-web] [--stored Andmebaasi/veebilehed] [--apply]

@@ -1,0 +1,200 @@
+{
+  "version": "web-pages-1",
+  "note": "Abivahendite müüjate ja teenuseosutajate veebilehed allikaregistrist master_sources_final.json (omaniku korraldus 06.10.2026: „mul on vaja, et sa paned ka veebilehed - abivahendite“). Need on ettevõtete enda lehed: ettevõtte kirjeldus oma teenustest, mitte ametlik juhis. Saidi avalehelt loetakse üks tase allapoole ja ainult lehed selle kohta, kuidas abivahendit saada (taotlemine, riigi soodustus, tõend, laenutus ja üür, remont, teenused, esindused ja kontakt). Tootekataloogi, hinnakirju ja müügitingimusi ei loeta: need on pikad ja vananevad.",
+  "pages": [
+    {
+      "source_id": "uldised_pakkujad_invaru",
+      "publisher": "Invaru",
+      "source_type": "vendor_page",
+      "subpages": {
+        "depth": 1,
+        "max": 8,
+        "only": "^(?!.*(tootekat|product-categ|/pood/|/tooted/|kataloog|/toode/|privaats|andmekaits|hinnakiri|tingimused|otsime)).*(taotl|soodus|riikl|riigi|tõend|toend|laenut|rent|üür|remont|kontakt|kauplus|esindus|salong|teenus|meist |ettevottest |vastuv)"
+      }
+    },
+    {
+      "source_id": "uldised_pakkujad_itak",
+      "publisher": "ITAK",
+      "source_type": "vendor_page",
+      "subpages": {
+        "depth": 1,
+        "max": 8,
+        "only": "^(?!.*(tootekat|product-categ|/pood/|/tooted/|kataloog|/toode/|privaats|andmekaits|hinnakiri|tingimused|otsime)).*(taotl|soodus|riikl|riigi|tõend|toend|laenut|rent|üür|remont|kontakt|kauplus|esindus|salong|teenus|meist |ettevottest |vastuv)"
+      }
+    },
+    {
+      "source_id": "uldised_pakkujad_teresa_abivahendikeskus",
+      "publisher": "Teresa Abivahendikeskus",
+      "source_type": "vendor_page",
+      "subpages": {
+        "depth": 1,
+        "max": 8,
+        "only": "^(?!.*(tootekat|product-categ|/pood/|/tooted/|kataloog|/toode/|privaats|andmekaits|hinnakiri|tingimused|otsime)).*(taotl|soodus|riikl|riigi|tõend|toend|laenut|rent|üür|remont|kontakt|kauplus|esindus|salong|teenus|meist |ettevottest |vastuv)"
+      }
+    },
+    {
+      "source_id": "uldised_pakkujad_tervise_abi",
+      "publisher": "Tervise Abi",
+      "source_type": "vendor_page",
+      "subpages": {
+        "depth": 1,
+        "max": 8,
+        "only": "^(?!.*(tootekat|product-categ|/pood/|/tooted/|kataloog|/toode/|privaats|andmekaits|hinnakiri|tingimused|otsime)).*(taotl|soodus|riikl|riigi|tõend|toend|laenut|rent|üür|remont|kontakt|kauplus|esindus|salong|teenus|meist |ettevottest |vastuv)"
+      }
+    },
+    {
+      "source_id": "uldised_pakkujad_egero_invaabivahendid",
+      "publisher": "Egero",
+      "source_type": "vendor_page",
+      "subpages": {
+        "depth": 1,
+        "max": 8,
+        "only": "^(?!.*(tootekat|product-categ|/pood/|/tooted/|kataloog|/toode/|privaats|andmekaits|hinnakiri|tingimused|otsime)).*(taotl|soodus|riikl|riigi|tõend|toend|laenut|rent|üür|remont|kontakt|kauplus|esindus|salong|teenus|meist |ettevottest |vastuv)"
+      }
+    },
+    {
+      "source_id": "uldised_pakkujad_invago",
+      "publisher": "INVAGO",
+      "source_type": "vendor_page",
+      "subpages": {
+        "depth": 1,
+        "max": 8,
+        "only": "^(?!.*(tootekat|product-categ|/pood/|/tooted/|kataloog|/toode/|privaats|andmekaits|hinnakiri|tingimused|otsime)).*(taotl|soodus|riikl|riigi|tõend|toend|laenut|rent|üür|remont|kontakt|kauplus|esindus|salong|teenus|meist |ettevottest |vastuv)"
+      }
+    },
+    {
+      "source_id": "uldised_pakkujad_rol_lift",
+      "publisher": "Rol-Lift",
+      "source_type": "vendor_page",
+      "subpages": {
+        "depth": 1,
+        "max": 8,
+        "only": "^(?!.*(tootekat|product-categ|/pood/|/tooted/|kataloog|/toode/|privaats|andmekaits|hinnakiri|tingimused|otsime)).*(taotl|soodus|riikl|riigi|tõend|toend|laenut|rent|üür|remont|kontakt|kauplus|esindus|salong|teenus|meist |ettevottest |vastuv)"
+      }
+    },
+    {
+      "source_id": "nagemisabivahendid_silmalaegas",
+      "publisher": "Silmalaegas",
+      "source_type": "vendor_page",
+      "subpages": {
+        "depth": 1,
+        "max": 8,
+        "only": "^(?!.*(tootekat|product-categ|/pood/|/tooted/|kataloog|/toode/|privaats|andmekaits|hinnakiri|tingimused|otsime)).*(taotl|soodus|riikl|riigi|tõend|toend|laenut|rent|üür|remont|kontakt|kauplus|esindus|salong|teenus|meist |ettevottest |vastuv)"
+      }
+    },
+    {
+      "source_id": "nagemisabivahendid_eesti_nagemistervisekeskus_abivahendid",
+      "publisher": "Eesti Nägemistervisekeskus",
+      "source_type": "vendor_page",
+      "subpages": false
+    },
+    {
+      "source_id": "kuulmisabivahendid_kuulmisrehabilitatsiooni_keskus",
+      "publisher": "Kuulmisrehabilitatsiooni Keskus",
+      "source_type": "vendor_page",
+      "subpages": {
+        "depth": 1,
+        "max": 8,
+        "only": "^(?!.*(tootekat|product-categ|/pood/|/tooted/|kataloog|/toode/|privaats|andmekaits|hinnakiri|tingimused|otsime)).*(taotl|soodus|riikl|riigi|tõend|toend|laenut|rent|üür|remont|kontakt|kauplus|esindus|salong|teenus|meist |ettevottest |vastuv)"
+      }
+    },
+    {
+      "source_id": "kuulmisabivahendid_audiomed_kuulmiskeskus",
+      "publisher": "Audiomed",
+      "source_type": "vendor_page",
+      "subpages": {
+        "depth": 1,
+        "max": 8,
+        "only": "^(?!.*(tootekat|product-categ|/pood/|/tooted/|kataloog|/toode/|privaats|andmekaits|hinnakiri|tingimused|otsime)).*(taotl|soodus|riikl|riigi|tõend|toend|laenut|rent|üür|remont|kontakt|kauplus|esindus|salong|teenus|meist |ettevottest |vastuv)"
+      }
+    },
+    {
+      "source_id": "kuulmisabivahendid_kuuldeaparaadid_ou",
+      "publisher": "Kuuldeaparaadid OÜ",
+      "source_type": "vendor_page",
+      "subpages": {
+        "depth": 1,
+        "max": 8,
+        "only": "^(?!.*(tootekat|product-categ|/pood/|/tooted/|kataloog|/toode/|privaats|andmekaits|hinnakiri|tingimused|otsime)).*(taotl|soodus|riikl|riigi|tõend|toend|laenut|rent|üür|remont|kontakt|kauplus|esindus|salong|teenus|meist |ettevottest |vastuv)"
+      }
+    },
+    {
+      "source_id": "kuulmisabivahendid_tervise_abi_kuulmisabivahendid",
+      "publisher": "Tervise Abi",
+      "source_type": "vendor_page",
+      "subpages": false
+    },
+    {
+      "source_id": "remont_hooldus_ortoosid_itak_remont_ja_hooldus",
+      "publisher": "ITAK",
+      "source_type": "vendor_page",
+      "subpages": false
+    },
+    {
+      "source_id": "remont_hooldus_ortoosid_e_ratastoolid",
+      "publisher": "E-ratastoolid",
+      "source_type": "vendor_page",
+      "subpages": {
+        "depth": 1,
+        "max": 8,
+        "only": "^(?!.*(tootekat|product-categ|/pood/|/tooted/|kataloog|/toode/|privaats|andmekaits|hinnakiri|tingimused|otsime)).*(taotl|soodus|riikl|riigi|tõend|toend|laenut|rent|üür|remont|kontakt|kauplus|esindus|salong|teenus|meist |ettevottest |vastuv)"
+      }
+    },
+    {
+      "source_id": "remont_hooldus_ortoosid_ortopeediakeskus",
+      "publisher": "Ortopeediakeskus",
+      "source_type": "vendor_page",
+      "subpages": {
+        "depth": 1,
+        "max": 8,
+        "only": "^(?!.*(tootekat|product-categ|/pood/|/tooted/|kataloog|/toode/|privaats|andmekaits|hinnakiri|tingimused|otsime)).*(taotl|soodus|riikl|riigi|tõend|toend|laenut|rent|üür|remont|kontakt|kauplus|esindus|salong|teenus|meist |ettevottest |vastuv)"
+      }
+    },
+    {
+      "source_id": "remont_hooldus_ortoosid_ortopeediakeskus_abivahendite_taotlemine",
+      "publisher": "Ortopeediakeskus",
+      "source_type": "vendor_page",
+      "subpages": false
+    },
+    {
+      "source_id": "remont_hooldus_ortoosid_eesti_ortoosikeskus",
+      "publisher": "Eesti Ortoosikeskus",
+      "source_type": "vendor_page",
+      "subpages": {
+        "depth": 1,
+        "max": 8,
+        "only": "^(?!.*(tootekat|product-categ|/pood/|/tooted/|kataloog|/toode/|privaats|andmekaits|hinnakiri|tingimused|otsime)).*(taotl|soodus|riikl|riigi|tõend|toend|laenut|rent|üür|remont|kontakt|kauplus|esindus|salong|teenus|meist |ettevottest |vastuv)"
+      }
+    },
+    {
+      "source_id": "remont_hooldus_ortoosid_jalaexpert",
+      "publisher": "Jalaexpert",
+      "source_type": "vendor_page",
+      "subpages": {
+        "depth": 1,
+        "max": 8,
+        "only": "^(?!.*(tootekat|product-categ|/pood/|/tooted/|kataloog|/toode/|privaats|andmekaits|hinnakiri|tingimused|otsime)).*(taotl|soodus|riikl|riigi|tõend|toend|laenut|rent|üür|remont|kontakt|kauplus|esindus|salong|teenus|meist |ettevottest |vastuv)"
+      }
+    },
+    {
+      "source_id": "remont_hooldus_ortoosid_jalakabinet",
+      "publisher": "Jalakabinet",
+      "source_type": "vendor_page",
+      "subpages": {
+        "depth": 1,
+        "max": 8,
+        "only": "^(?!.*(tootekat|product-categ|/pood/|/tooted/|kataloog|/toode/|privaats|andmekaits|hinnakiri|tingimused|otsime)).*(taotl|soodus|riikl|riigi|tõend|toend|laenut|rent|üür|remont|kontakt|kauplus|esindus|salong|teenus|meist |ettevottest |vastuv)"
+      }
+    },
+    {
+      "source_id": "remont_hooldus_ortoosid_mediq_eesti",
+      "publisher": "Mediq Eesti",
+      "source_type": "vendor_page",
+      "subpages": {
+        "depth": 1,
+        "max": 8,
+        "only": "^(?!.*(tootekat|product-categ|/pood/|/tooted/|kataloog|/toode/|privaats|andmekaits|hinnakiri|tingimused|otsime)).*(taotl|soodus|riikl|riigi|tõend|toend|laenut|rent|üür|remont|kontakt|kauplus|esindus|salong|teenus|meist |ettevottest |vastuv)"
+      }
+    }
+  ]
+}

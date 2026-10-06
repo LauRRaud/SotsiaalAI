@@ -222,6 +222,17 @@ test('a listed page is collected with its sub-pages, breadth first, within the l
   assert.deepEqual((await collectEntry({ ...entry, subpages: { depth: 1 } }, { ...site, site: manners })).pages.filter(item => item.status === 'read').map(item => item.depth), [0, 1, 1]);
   const capped = await collectEntry({ ...entry, subpages: { max: 2 } }, { ...site, site: manners });
   assert.deepEqual([capped.pages.filter(item => item.depth > 0).length, capped.skipped.length > 0], [2, true]);
+  // A company's own page carries the company's name in its title, unless the title has it already.
+  const { pageTitle, pageMetadata } = await import('../lib/rag-v2/web-page.js');
+  const shop = { source_id: 'pood_laenutus', url: 'https://pood.example/laenutus', title: 'Laenutus', publisher: 'Näidispood', source_type: 'vendor_page' };
+  assert.deepEqual([pageTitle(shop, { title: 'LAENUTUS' }), pageTitle(shop, { title: 'Näidispood aitab' }), pageTitle({ ...shop, source_type: 'web_page' }, { title: 'Laenutus' }), pageTitle(shop, { title: '' })],
+    ['Näidispood: LAENUTUS', 'Näidispood aitab', 'Laenutus', 'Näidispood: Laenutus']);
+  assert.deepEqual((({ title, source_type, publisher }) => [title, source_type, publisher])(pageMetadata({ entry: shop, page: { ...sub.page, title: 'Laenutus' }, fetched: sub.fetched, sourcePath: 'pood_laenutus.html' })),
+    ['Näidispood: Laenutus', 'vendor_page', 'Näidispood']);
+  // A pattern names the sub-pages worth reading (a company's front page links to its whole shop): by the address or
+  // by the link's text. The others are not asked for, and are not what the cap leaves out.
+  const calls = site.calls.length, chosen = await collectEntry({ ...entry, subpages: { depth: 1, only: 'kuidas|^.* Kes$' } }, { ...site, site: manners });
+  assert.deepEqual([chosen.pages.map(item => item.id), chosen.skipped, site.calls.slice(calls)], [['amet_teenus', 'amet_teenus--kes', 'amet_teenus--kuidas'], [], [root, `${root}/kes`, `${root}/kuidas`]]);
   // A listed page that cannot be read is reported, with nothing guessed.
   assert.deepEqual((await collectEntry({ ...entry, url: 'https://amet.example/puudub' }, { ...site, site: manners })).pages.map(item => [item.status, item.error, item.http]), [['failed', 'http_404', 404]]);
 });
