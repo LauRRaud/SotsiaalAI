@@ -97,7 +97,9 @@ Omanik samal päeval: „mul on plaanis platvormile tuua tuhandeid kasutajaid, m
 ### Mida kõhn kirje ei tee
 
 - **Seitse päeva tähendab väiksemaks tegemist, mitte kustutamist.** Kõhn rida jääb alles. Plaani `expiresAt` ja `retentionHours` on `null`, seega ei aegu ükski pööre ja kogumaht kasvab, kuni kasutaja vestluse kustutab.
-- **Platvormi üldine säilitusreegel neid vestlusi ei puuduta.** Muud vestlused kustutab koristus pärast 90 päeva tegevusetust (`DATA_RETENTION_DAYS`). Vestlus, mille pöördel on aegumiseta auditikirje, on sellest reeglist teadlikult välja jäetud (`lib/retention.js`). Praeguse arendusplaaniga on seega iga RAG v2 vestlus tähtajatu.
+- **Platvormi üldine säilitusreegel neid vestlusi ei puuduta.** Muud vestlused kustutab koristus pärast 90 päeva tegevusetust (`DATA_RETENTION_DAYS`). Vestlus, mille pöördel on aegumiseta auditikirje, on sellest reeglist teadlikult välja jäetud (`lib/retention.js`). Praeguse arendusplaaniga on seega iga RAG v2 vestlus tähtajatu. See on ühe kasutaja arendusplaani erand ja **tootmiskasutajatele ei tohi see üle kanduda**: tootmisplaani pöörded peavad aeguma, et vestlus alluks avaldatud 90 päeva reeglile.
+- **Kõhnaks tegemine ei käivita säilituskella uuesti.** Koristus kirjutab pöörde rea üle, aga ükski säilitusreegel ei loe selle rea muutmise aega: vestluse kustutamine lähtub vestluse viimasest aktiivsusest (`lastActivityAt`) ja pöörde rea kustutamine rea aegumisest (`expiresAt`); kumbagi koristus ei muuda.
+- **Kõhn kirje ei ole anonüümne kirje.** Küsimus ja vastus võivad endiselt sisaldada isikuandmeid; väiksem kirje allub samale säilitusreeglile.
 - **Plaani vahetusega nähtamatuks muutunud pööre võtab kettal endiselt ruumi** (vt „Kõrvalleid“).
 
 ### Mõõdetud kettamaht (06.10.2026, päris pöörded)
@@ -154,12 +156,20 @@ Kõhn kirje on vaheaste. Codexi ülevaate järgi, millega ma nõustun:
 
 1. **Vestlusajalugu on väike ja iseseisev:** küsimus, vastus, ajatemplid, lühikesed allikaviited. Ajalugu ja jätkuvestlus töötavad ka pärast auditi kustumist, plaani vahetust ja korpuse uuendamist. Praegu on vestluse sõnumite tabelis teadlikult kohatäited ja päris tekst on ainult auditikirjes.
 2. **Täisaudit on päriselt ajutine:** arenduses 7 päeva, tootmises ilma püsiva täisauditita; ka katkenud ja ebaõnnestunud pöörded aeguvad. Rea aegumine (`retentionHours`, kuni 168 tundi) ja kustutamine on poes olemas; neid ei saa kasutada enne, kui ajalugu ei ela enam auditikirjes.
-3. **Allikat ei kopeerita iga vastuse juurde:** vestlus hoiab allika tunnust, versiooni, kohta ja linki; vana allikaversioon elab korpuses ühe korra.
+3. **Allikat ei kopeerita iga vastuse juurde:** vestlus hoiab allika tunnust, versiooni, kohta ja linki; vana allikaversioon elab korpuses ühe korra. Kui vana vastuse juurest avatakse allika praegune versioon, peab see olema öeldud: see ei ole tõend, et sama tekst kehtis vastuse koostamisel.
 4. **Suuri andmeid ei kirjutata korduvalt üle:** lõplik sisu salvestatakse üks kord.
-5. **Ajalool on säilitustähtaeg või mahupiir.** „Kuni kasutaja kustutab“ lubab tähtajatut kasvu. Platvormi praegune üldreegel on 90 päeva tegevusetust; Codexi soovitus on 12 kuud sõnumi loomisest. **Omaniku otsus.**
+5. **Ajaloo säilitusaeg on avaldatud reegel: üldjuhul kuni 90 päeva.** Privaatsustingimuste punkt 7.3 (versioon 2026-08-13.1): vestlused, sõnumid ja jooksvad olekukirjed säilivad üldjuhul kuni 90 päeva viimasest aktiivsusest või kirje loomisest või uuendamisest. Kettaruumi parandus tehakse selle reegli piires. Varasem pakkumine 12 kuud (minu ja Codexi oma) oleks säilitusreegli sisuline muutus: see vajab eraldi põhjendust, tingimuste uuendamist ja kasutajate teavitamist. „Kuni kasutaja kustutab“ lubaks tähtajatut kasvu.
 6. **Koristus ja kettakasv on mõõdetavad:** vestluste kogumaht, päevane juurdekasv, aegunud kirjete arv, vanim koristamata kirje, vaba ruum.
 
 **Vastuvõtukriteerium on mahukatse, mitte pakkimisprotsent:** testandmebaasis esinduslik hulk sünteetilisi pöördeid; audit ja vana ajalugu aeguvad; ajalugu ja jätkuvestlus töötavad ilma auditita; uuendus ei peida varasemaid sõnumeid; koristusjärjekord ei kasva; tegelik kettakulu vastab kokkulepitud mahueelarvele. Tasulisi mudelikutseid see ei vaja. `scripts/rag-v2-turn-volume.mjs` on selle katse algus.
+
+## Vastavus avaldatud tingimustele
+
+Omaniku edastatud ülevaade (06.10) võrdles muudatusi kasutustingimustega (versioon 2026-07-20) ja privaatsustingimustega (versioon 2026-08-13.1). Privaatsustingimuste punkti 7.3 sõnastuse kontrollisin repost (`messages/et.json`).
+
+- Paketi kokkupakkimine, tarbetute koopiate, vektori ja viitamata tõenduse eemaldamine, eraldi väike vestlusajalugu, ajaloo sõltumatus plaanist ja korduva ülekirjutamise vähendamine sobivad kehtivate tingimustega. Kasutustingimuste punkt 10 näeb ette vestluste salvestamise ajaloo ja jätkamise jaoks; sealt ei tulene kohustust hoida kogu mudelile saadetud paketti ega tõestada vana vastust igal avamisel uuesti.
+- Tarbetu diagnostika eemaldamine seitsme päeva järel mahub „kuni 90 päeva“ raami sisse.
+- Vestlusajaloo pikendamine 12 kuuni või tähtajatuks ei mahu: see on säilitusreegli muutus.
 
 ## Tagasipööramise piir
 
