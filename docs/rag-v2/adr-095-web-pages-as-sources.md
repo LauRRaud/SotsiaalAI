@@ -1,0 +1,102 @@
+# ADR-095 — Veebilehe sisu korpuse allikaks: lehtede korjaja
+
+06.10.2026. Teostus Claude Opus 5.5. Omanik 06.10: „vaata üle andmebaasi masterist, mis veebilehtede sisu on vaja andmebaasi panna ja kuidas“; pärast ülevaadet: „jah, teeks mingi hea info korjanduse skripti lehtedele“ ja „lisaks on lehtedel veel alalehed“.
+
+## Probleem
+
+Allikaregistris (`Andmebaasi/register/master_sources_final.json`, 323 allikat) on 180 PDF-i ja 143 veebilehte. PDF-idest on 174 kogutud ja korpuses. **Veebilehtedest ei ole kogutud ühtegi.** Nende hulgas on ametlikud juhislehed, mis vastavad küsimustele, mida inimesed päriselt küsivad: kuidas abivahendit taotleda, mis on üldhoolduse kord, kuhu kaevata.
+
+Korpuse lugeja oskab HTML-i (ajakirja 43 veebiartiklit on korpuses), kuid lehe toomiseks ei olnud tööriista. Käsitsi salvestatud leht toob kaasa menüüd, küpsiseteate ja jaluse, ning ametnike nimed ja telefonid.
+
+## Otsus
+
+Lehtede korjaja: `scripts/rag-v2-web-pages.mjs`, teegid `lib/rag-v2/web-page.js` (mida lehest hoitakse) ja `lib/rag-v2/web-collect.js` (kuidas lehti tuuakse). Mudeli- ega vektorikutseid ei tee.
+
+### Mida lehest hoitakse
+
+- **Sisuosa** (`main`, `article`), ühe `<article>`-ina väikeses eraldiseisvas HTML-failis: pealkirjad, lõigud, loendid, tabelid, lingid. See on kuju, mille korpuse lugeja võtab vastu sellisena, nagu ta on.
+- **Välja jäävad** saidi osad: menüüd, teekond, küpsiseteade, otsing, vormid, pildid, jalus, märksõnalingid, tagasiside rida, pealkirja kordus.
+- **Akordioni küsimus on pealkiri** ja selle paneel loetakse, kuigi leht seda peidab.
+- **Lehe enda uuendamise kuupäev** („Viimati uuendatud …“) läheb metaandmetesse, mitte teksti.
+- **Dokumendid, millele leht viitab** (vormid, juhendid), loetletakse metaandmetes lingina. Vorm antakse lingina, mitte tekstina (omaniku 30.09 otsus).
+
+Ploki nimi on ainult vihje. Esimene päris käik näitas, et ameti akordionipaneelid kannavad printimise abiklassi (`d-print-block`) ja teise saidi sisuplokk on nimega `content-and-sidebar`: nimepõhine reegel jättis üldhoolduse lehe 9362 sõnast alles 293. Nüüd ei jäeta välja plokki, mida märgistus nimetab sisuks (akordion, vahekaart), ega plokki, mis hoiab üle 30% sisuosa tekstist.
+
+### Isikute kontaktid ei lähe salvestatud koopiasse
+
+Repo on avalik: ametnike nimed, telefonid ja e-postid sinna ei lähe.
+
+- **Kontaktikaart** (lühike plokk, kus on isiku nimi ja telefon või e-post) jäetakse **tervikuna välja**. Kaart võib olla ühes lõigus, loendi real, tabeli real, mitmel real järjest (nimi, amet, telefon, e-post igaüks omaette) või nimi lõigus ja kanalid loendina. Kõik neli kuju tulid päris lehtedelt.
+- **Lauses** olev isiku e-post eemaldatakse koos sama ploki telefoninumbritega; lause jääb. Selline leht märgitakse ülevaatuseks, sest nimi võib tekstis alles olla.
+- **Asutuse üldkanalid jäävad** (`info@`, klienditugi, infotelefon): neid leht lugejal kasutada soovitabki.
+- **Saidi e-posti kaitse taha peidetud aadress** loetakse lahti nii, nagu külastaja brauser seda teeb, ja liigitatakse nagu iga teine. Üldaadress jääb teksti, isiku oma eemaldatakse. Kui lahti lugeda ei saa, loetakse aadress isiku omaks.
+- Pealkiri, mille alt kõik kaardid eemaldati, jäetakse samuti välja.
+
+### Alalehed
+
+Lehe alalehed on sama saidi lehed lehe enda tee all. Lingid võetakse kogu lehelt, ka jaotise menüüst (sisust jääb menüü välja, aga just seal sait alalehti loetleb). Vaikimisi loetakse kaks taset allapoole ja kuni 25 alalehte; nimekirja kirje võib öelda teisiti (`"subpages": false` või `{ "depth": 1, "max": 10 }`). Piirist välja jäänud aadressid nimetatakse aruandes.
+
+- Päringuga link on lehe vaade, mitte leht; dokumendid ja pildid ei ole lehed.
+- Sama sisuga kaks aadressi on üks allikas, ka siis, kui leht on nimekirjas eraldi ja leitakse uuesti teise lehe alalehena.
+- Alaleht, mis suunab jaotisest välja, jäetakse vahele.
+
+### Kuidas lehti tuuakse
+
+- Ainult `https`, avalik nimi; ümbersuunamised käsitsi, iga samm kontrollitud; ajapiir 20 s, suurus kuni 3 MB.
+- Saidi `robots.txt` loetakse üks kord ja seda järgitakse.
+- Ühe saidi kahe päringu vahel on paus (vaikimisi 1,5 s).
+- Päringu nimi on aus: `SotsiaalAI source collector/1.0 (+https://sotsiaal.pro)`.
+- Lehte, mida lugeda ei saa, ei arvata: aruandes on põhjus (`http_403`, `http_404`, `not_html`, `rendered_by_script` jne).
+
+### Muutunud leht ei kirjuta salvestatut üle
+
+Omaniku 04.10 reegel: kogutud andmed ei kirjuta olemasolevat üle; kaks järjestikust võrdset lugemist või omaniku kinnitus; midagi ei kustutata automaatselt.
+
+| Olek | Tähendus |
+|---|---|
+| `new` | salvestatud koopiat ei ole |
+| `unchanged` | sisu on sama (võrreldakse teksti räsi, mitte märgistust) |
+| `proposed` | sisu erineb: kirjutatakse ettepanekuna, salvestatud koopia jääb |
+| `confirmed` | sisu erineb ja on sama mis varasema käigu ettepanek: teine võrdne lugemine |
+
+Ilma `--apply`-ta ei kirjutata `Andmebaasi/` alla midagi: käigu lehed, ettepanekud ja aruanne lähevad `tmp/rag-v2-web/` alla (git ei jälgi). `--apply` paneb uue lehe kohale ja asendab kinnitatud muudatuse (vana koopia läheb `previous/` alla). Ülevaatust vajavat lehte ise kohale ei panda.
+
+### Metaandmed
+
+Lehe kõrvale kirjutatakse metaandmete fail võtmetega, mida korpuse metaandmete kohandaja loeb: tunnus (`web-<registri tunnus>`), pealkiri, väljaandja, aadress, kontrolli kuupäev, räsid, lehe uuendamise kuupäev, viidatud dokumendid, mis eemaldati ja mis hoiatused on. Leht on juhis ja taust, mitte õiguslik alus: `legal_basis: false`, ja keelatud väiteliigid on õigus teenusele, summa, omavalitsuse teenuse olemasolu, tähtaeg ja diagnoos.
+
+### Nimekiri
+
+`Andmebaasi/register/web_pages.json` nimetab lehed nende tunnusega allikaregistris. Esimene valik: **18 ametlikku juhislehte** (SKA abivahendid, üldhooldus ja järelevalve; Terviseamet; Päästeamet; ligipääsetavus; AKI ja õiguskantsleri kaebus).
+
+## Proovikäik päris lehtedel (06.10.2026, `tmp/` alla, midagi ei pandud kohale)
+
+| | Arv |
+|---|---|
+| Nimekirjas | 18 |
+| Loetud lehti kokku (koos alalehtedega) | 37 |
+| Sama sisuga (üks allikas) | 4 |
+| Ei saanud lugeda | 2 |
+| Sõnu kokku | 21 137 |
+| Viidatud dokumente | 107 |
+| Piirist välja jäänud alalehti | 16 |
+| Eemaldatud kontaktikaarte | 7 |
+| Alles jäänud üldaadresse | 5 (`info@` 4, üks tugiaadress) |
+| Ülevaatust vajab | 8 |
+
+Kontroll kõigil 37 salvestatud lehel: 879 plokist ühtegi, kus oleks nimelaadne sõnapaar telefoninumbri kõrval; ühtegi e-posti kaitse linki ei jäänud.
+
+**Ei saanud lugeda:** Terviseameti erihoolekande leht (403) ja Riigikontrolli auditileht (404; aadress on registris aprillist ja enam ei kehti).
+
+**Ülevaatust vajavad:** eesti.ee ligipääsetavuse juhis (lehe teksti kirjutab skript, tavalise päringuga sisu ei tule), kuus lühikest lehte kompetentsikeskuse saidilt (alla 80 sõna; osa on jaotiste avalehed) ja üks SKA leht, kus on tugiaadress, mida korjaja ei oska üldiseks ega isiklikuks liigitada.
+
+## Kontroll
+
+`tests/rag-v2-web-page.test.mjs` (12 testi): sisuosa eraldamine näidislehelt; isiku kontaktid kõigis neljas kujus ja peidetud aadressid; sisuosata leht ja vihje; salvestatud leht läbib päris vastuvõtu (üks sisuosa, lõikude kohad artikli sees) ja metaandmed läbivad kohandaja; `robots.txt`; alalehtede leidmine; toomine (ümbersuunamised, keelatud aadressid, mitte-HTML, ajapiir, märgistik); lehe ja alalehtede kogumine piiridega; saidi viisakus; muutuse otsus; ploki nime reegli kaks päris juhtumit.
+
+## Tegemata
+
+- **Lehed ei ole veel korpuses.** Järgmine samm: ülevaatus, lehtede registreerimine failiregistris (`REGISTER.json`), vastuvõtt, vektorite ost (18 lehe ja alalehtede jaoks hinnanguliselt alla 0,01 USD) ja korpuse täiendus.
+- Skriptiga kirjutatav leht (eesti.ee) vajab teist teed.
+- Kontaktireegel tunneb isikut kahe suurtähega sõna järgi. See võib välja jätta ka asutuse üldkontakti, kui see on kirjas kahe suurtähega sõnana telefoni kõrval; eemaldatud kaartide arv on aruandes.
+- Organisatsioonide lehed (60) lähevad teist rada (organisatsiooni pakett), registrid ja otsingud ainult lingina.
