@@ -784,3 +784,50 @@ test('ADR-094 real DB: turns published with placeholders are continued after a p
   assert.equal(third.payload.dialogue.publishedAssistant.turnId, second.id);
   assert.ok(third.payload.previousDialogueState);
 });
+
+// ADR-094, step 3: a plan gives its audit rows a retention time. The row ends then; the conversation lives by the
+// published rule, 90 days from its last activity, and goes on from its own messages.
+test('ADR-094 real DB: with a retention time the audit row expires, the conversation lives 90 days from its last activity and goes on from its records', async t => {
+  const f = await fixture(t, () => dialogueState([userFact('living', 1, 'Elan üksi.')]));
+  f.config.retentionHours = 24;
+  const hour = 3600000, day = 24 * hour, started = Date.now();
+  const first = await f.run('Elan üksi.', 'new');
+  const row = await f.row(first.id), conversation = () => db.conversation.findUnique({ where: { id: f.conv.id } });
+  const life = async () => (await conversation()).expiresAt.getTime();
+  assert(row.expiresAt.getTime() - started > 23.9 * hour && row.expiresAt.getTime() - started < 24.1 * hour, 'the row: the plan\'s 24 hours');
+  assert(await life() - started > 89.9 * day && await life() - started < 90.1 * day, 'the conversation: 90 days from the turn');
+  // An earlier activity time shows that each published turn renews the conversation's time.
+  await db.conversation.update({ where: { id: f.conv.id }, data: { expiresAt: new Date(started + 5 * day), lastActivityAt: new Date(started - 85 * day) } });
+  // The first row's time passes: it is purged when the next message arrives. The conversation is whole.
+  await db.m4PilotTurn.update({ where: { id: first.id }, data: { expiresAt: new Date(Date.now() - 1000) } });
+  const second = await f.row((await f.run('Millist abi kirjeldatakse?')).id);
+  assert.equal(await db.m4PilotTurn.count({ where: { id: first.id } }), 0);
+  assert.deepEqual(second.payload.dialogue.userTurns.map(turn => turn.text), ['Elan üksi.', 'Millist abi kirjeldatakse?']);
+  assert.equal(second.payload.dialogue.publishedAssistant.turnId, first.id);
+  assert.ok(second.payload.previousDialogueState, 'the state went on from the record');
+  assert(await life() - started > 89.9 * day, 'renewed by the second turn');
+  assert((await conversation()).lastActivityAt.getTime() >= started);
+  assert.equal(await db.conversationMessage.count({ where: { conversationId: f.conv.id } }), 4);
+  // The next message gets no answer, and its row's time passes too. The head named its topic, so the message after it
+  // goes on in that topic from the last turn that has a record.
+  f.fail(true);
+  await assert.rejects(f.run('See ei saa vastust.'));
+  f.fail(false);
+  const lost = await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id }, orderBy: { createdAt: 'desc' } });
+  assert.equal(lost.payload.question, 'See ei saa vastust.');
+  assert.deepEqual((await conversation()).metadata.m4Dialogue, { configHash: f.config.configHash, turnId: lost.id, revision: 3, scopeId: row.payload.context.scopeId, personId: row.payload.context.personId });
+  await db.m4PilotTurn.updateMany({ where: { pilotId: f.config.id }, data: { expiresAt: new Date(Date.now() - 1000) } });
+  const fourth = await f.row((await f.run('Aga teenuse ulatus?')).id);
+  assert.equal(await db.m4PilotTurn.count({ where: { pilotId: f.config.id } }), 1, 'every expired row is gone');
+  assert.deepEqual(fourth.payload.dialogue.userTurns.map(turn => turn.text), ['Elan üksi.', 'Millist abi kirjeldatakse?', 'Aga teenuse ulatus?']);
+  assert.deepEqual([fourth.payload.context.scopeId, fourth.payload.context.revision, fourth.payload.dialogue.publishedAssistant.turnId], [row.payload.context.scopeId, 4, second.id]);
+  assert.equal(fourth.state, 'completed');
+});
+
+test('ADR-094 real DB: a plan without any time limit leaves the conversation\'s time as it is', async t => {
+  const f = await fixture(t);
+  const first = await f.run('Olen 67, elan Harkus ja küsin koduteenuse kohta.', 'new');
+  const conversation = await db.conversation.findUnique({ where: { id: f.conv.id } });
+  assert.deepEqual([conversation.expiresAt, (await f.row(first.id)).expiresAt], [null, null]);
+  assert(conversation.lastActivityAt.getTime() > Date.now() - 60000);
+});

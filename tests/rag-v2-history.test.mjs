@@ -11,6 +11,9 @@ import { completedView, PilotService } from '../lib/rag-v2/pilot/service.js';
 import { PilotStore } from '../lib/rag-v2/pilot/store.js';
 import { publishedDialogue, acceptDialogue, dialogueSummary, DIALOGUE_LIMITS } from '../lib/rag-v2/pilot/dialogue.js';
 import { stateAudit, previousStateFor } from '../lib/rag-v2/pilot/dialogue-state.js';
+import { conversationExpiry, pilotExpiry } from '../lib/rag-v2/pilot/lifetime.js';
+import { newChatPlan, approvedChatPlan, approvedScope } from '../lib/rag-v2/pilot/chat-plan.js';
+import { validRetentionHours } from '../lib/rag-v2/pilot/config.js';
 import { leanPayload } from '../lib/rag-v2/pilot/lean-turn.js';
 import { renderAnswer } from '../lib/rag-v2/pilot/presentation.js';
 import { pilotChatResult, pilotChatMessages } from '../lib/chat/m4PilotClientContract.js';
@@ -221,7 +224,7 @@ function conversation(config = plan) {
     const row = { id, state: answered ? 'completed' : 'stopped', configHash: config.configHash, createdAt: at, expiresAt: null,
       payload: { question, contextMode: mode, context: contextAudit.context, contextAudit, query: { language: 'et', tokens: 1 }, events: [],
         ...(answered ? { answer, answerVersion: 'm4-text-refs-2', packet, dialogueState: stateAudit({ facts: [], note: id }, contextAudit) } : {}) } };
-    rows.push(row); head = { configHash: config.configHash, turnId: id, revision: contextAudit.context.revision };
+    rows.push(row); head = { configHash: config.configHash, turnId: id, revision: contextAudit.context.revision, scopeId: contextAudit.context.scopeId, personId: contextAudit.context.personId };
     if (answered) {
       const pair = historyMessages(historyRecord({ row, view: completedView(row, 'real'), packet }), question);
       messages.push({ id: `${id}-u`, role: 'USER', createdAt: at, ...pair.user }, { id: `${id}-a`, role: 'ASSISTANT', createdAt: new Date(at.getTime() + 1), ...pair.assistant });
@@ -301,4 +304,55 @@ test('a head the dialogue does not know starts a new topic after a plan change; 
   assert.deepEqual(historyRows(early), []);
   // Messages of other kinds and placeholders are not turns.
   assert.deepEqual(historyRows([{ id: 'x', role: 'ASSISTANT', content: 'tere', metadata: null, createdAt: new Date() }, { id: 'y', role: 'ASSISTANT', content: '[Kaitstud M4 sisepiloodi vastus]', metadata: { m4TurnId: 'old' }, createdAt: new Date() }]), []);
+});
+
+// ADR-094, step 3: the audit row is temporary and the conversation follows the published 90-day rule.
+test('a head without an answer whose row is gone stands in its topic\'s last known turn; one that began its own topic leaves nothing to continue', () => {
+  const c = conversation();
+  const first = c.next('Olen 67 ja elan Harkus.', 'new'), second = c.next('Milline abi?');
+  const lost = c.next('See ei saanud vastust.', 'same', false);
+  // The lost turn's row has expired and no record lists it: the dialogue has two turns, and the head names the topic.
+  const recorded = historyRows(c.messages()), head = c.head();
+  assert.deepEqual([recorded.map(row => row.id), head.turnId, head.scopeId], [[first.id, second.id], lost.id, first.payload.context.scopeId]);
+  const accepted = acceptDialogue(plan, { question: 'Aga hind?', contextMode: 'same' }, recorded, head, 'turn-next');
+  assert.deepEqual(accepted.userTurns.map(turn => turn.text), ['Olen 67 ja elan Harkus.', 'Milline abi?', 'Aga hind?']);
+  assert.deepEqual([accepted.context.scopeId, accepted.context.personId, accepted.context.revision, accepted.selection.assistantTurnId], [first.payload.context.scopeId, first.payload.context.personId, 4, second.id]);
+  assert.deepEqual(previousStateFor(recorded[1].payload.dialogueState, accepted), second.payload.dialogueState);
+  const summary = dialogueSummary(recorded, head);
+  assert.deepEqual([summary.active.scopeId, summary.unavailable], [first.payload.context.scopeId, false]);
+  // A head written before the head named its topic gives no such stand-in.
+  assert.throws(() => acceptDialogue(plan, { question: 'Aga hind?', contextMode: 'same' }, recorded, { configHash: head.configHash, turnId: head.turnId, revision: head.revision }, 'turn-next'), { code: 'context_unavailable' });
+  // A lost head that began another person's topic: nothing of that topic is known, and the older person is not taken up.
+  const other = conversation();
+  other.next('Vana inimene.', 'new'); other.next('Uus inimene.', 'new_person', false);
+  assert.throws(() => acceptDialogue(plan, { question: 'Aga hind?', contextMode: 'same' }, historyRows(other.messages()), other.head(), 'turn-next'), { code: 'context_unavailable' });
+  assert.deepEqual([dialogueSummary(historyRows(other.messages()), other.head()).active, dialogueSummary(historyRows(other.messages()), other.head()).unavailable], [null, true]);
+});
+
+test('a conversation lives 90 days from its last activity whatever time the plan gives the audit row; a plan without any limit keeps both', async () => {
+  const at = new Date('2026-10-06T12:00:00Z'), day = 86400000, saved = process.env.CONVERSATION_TTL_DAYS;
+  try {
+    delete process.env.CONVERSATION_TTL_DAYS;
+    assert.equal(conversationExpiry({ expiresAt: null, retentionHours: 24 }, at).getTime(), at.getTime() + 90 * day);
+    assert.equal(conversationExpiry({ expiresAt: '2026-10-07T00:00:00Z', retentionHours: null }, at).getTime(), at.getTime() + 90 * day, 'the plan\'s own end does not end the conversation');
+    assert.equal(conversationExpiry({ expiresAt: null, retentionHours: null }, at), null, 'the explicit absence of a limit');
+    process.env.CONVERSATION_TTL_DAYS = '30';
+    assert.equal(conversationExpiry({ expiresAt: null, retentionHours: 168 }, at).getTime(), at.getTime() + 30 * day);
+  } finally { if (saved === undefined) delete process.env.CONVERSATION_TTL_DAYS; else process.env.CONVERSATION_TTL_DAYS = saved; }
+  // The audit row's time is the plan's, as before.
+  const row = pilotExpiry({ expiresAt: null, retentionHours: 24 }).getTime() - Date.now();
+  assert(row > 23.9 * 3600000 && row <= 24 * 3600000);
+  assert.equal(pilotExpiry({ expiresAt: null, retentionHours: null }), null);
+  // The plan carries the retention time as a checked, approved setting.
+  for (const [value, ok] of [[1, true], [24, true], [168, true], [169, false], [0, false], [1.5, false], ['24', false], [null, false]]) assert.equal(validRetentionHours(value), ok, String(value));
+  const embedding = { embedding_mode: 'real', provider: 'openai', model: 'text-embedding-3-large', dimensions: 3072, endpoint: 'https://api.openai.com/v1/embeddings' };
+  const generation = { id: `search_generation_${'1'.repeat(64)}`, config: { embedding }, snapshot: { documents: { [`document_${'a'.repeat(64)}`]: { version_id: `version_${'b'.repeat(64)}` } } } };
+  const make = extra => newChatPlan({ generation, tenant: 'sotsiaalai-corpus', profileId: 'hybrid-estnltk-chat-v1', users: ['owner-user'], accountProject: 'proj_synthetic',
+    prices: { embeddingInput: 130, answerInput: 125, answerOutput: 500 }, reasoning: 'low', nanoUsd: 4e9, basis: 'Synthetic owner instruction', now: new Date('2026-10-06T08:00:00Z'), ...extra });
+  const kept = await make({}), week = await make({ retentionHours: 168, auditDays: 0 });
+  assert.deepEqual([kept.retentionHours, week.retentionHours, week.auditDays], [null, 168, 0]);
+  assert(approvedChatPlan(kept) && approvedChatPlan(week));
+  assert.notEqual(approvedScope(week), approvedScope(await make({ auditDays: 0 })));
+  assert.equal(approvedChatPlan({ ...week, retentionHours: null }), false, 'changing the setting breaks the approval');
+  await assert.rejects(make({ retentionHours: 200 }), { code: 'invalid_retention_hours' });
 });
