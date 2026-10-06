@@ -227,7 +227,28 @@ Avamise plaaniga on kettal korraga: kõhnad read 7 päeva (17,4 KB pööre) ja k
 - **mis ootab koristust:** aegunud read, mida ei ole veel kustutatud (ja vanim neist); terved read, mis on plaani auditi ajast vanemad ja veel kõhnaks tegemata; vestlused, mille tähtaeg on möödas;
 - **vaba kettaruumi.**
 
-Kontroll: andmebaasitest (aruanne loeb testi enda read vahena, sest testandmebaasis on teiste testide ridu; aruandes ei ole pöörde teksti). Serveris jooksutamata; arvud kirjutatakse siia pärast väljalaset.
+Kontroll: andmebaasitest (aruanne loeb testi enda read vahena, sest testandmebaasis on teiste testide ridu; aruandes ei ole pöörde teksti).
+
+### Serveris (06.10.2026 kell 11.11 UTC, väljalase `d60943d3`)
+
+| | Arv |
+|---|---|
+| Vaba kettaruumi | 9,1 GB 61,3 GB-st |
+| Andmebaas kokku | 108,9 MB |
+| Auditiread | 84 (83 vastusega, 1 vastuseta); kõik terved, kõhnu 0; kõik ilma tähtajata |
+| Auditiridade sisu | 15,4 MB (terve rida keskmiselt 184,5 KB) |
+| Auditiridade tabelifail | 42,7 MB |
+| Vestluse sõnumid | 166, neist 83 kirjega; kohatäiteid 0 |
+| Kirjete sisu | 0,40 MB (pöörde kaks sõnumit 4,8 KB; vastus kirjega keskmiselt 4,7 KB, suurim 6,8 KB) |
+| Sõnumite tabelifail | 2,2 MB (sellest indeksid 1,4 MB) |
+| Vestlusi | 70, kõik ilma tähtajata; pöördeid vestluses keskmiselt 1,2, kõige rohkem 5 |
+| Ootab koristust | aegunud ridu 0; auditi ajast (7 päeva) vanemaid terveid ridu 0; tähtaja ületanud vestlusi 0 |
+| Viimase päeva juurdekasv | 84 rida, 15,4 MB (kõik andmed on pärast 05.10 puhastust) |
+
+**Kaks tähelepanekut:**
+
+- **Auditiridade tabelifail on 2,8 korda suurem kui ridade sisu** (42,7 MB ja 15,4 MB). Vahe on ülekirjutuste jälg: pöörde rida kirjutatakse pöörde jooksul umbes kümme korda ümber. See on neljanda sammu (ühekordne kirjutamine) mõõdetud põhjus.
+- **Miski ei aegu veel:** kõik read ja vestlused on tähtajata, sest töötav arendusplaan on tähtajatu (kolmas samm seda ei muutnud).
 
 **Tegemata:** mahukatse (palju sünteetilisi vestlusi päris teed pidi: avaldamine kirjetega, ridade aegumine ja kustutamine, ajalugu ja jätkuvestlus ilma ridadeta, vestluste aegumine, teine ring ja tegelik kettakulu).
 
