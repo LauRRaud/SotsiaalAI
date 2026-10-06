@@ -167,8 +167,8 @@ test('the store: a plan without an audit time publishes a turn lean; old turns o
       updateMany: async ({ where, data }) => { if (where.id === 'raced') return { count: 0 }; updates.push({ where, data }); return { count: 1 }; } } };
   const now = new Date('2026-10-06T12:00:00Z');
   assert.equal(await new PilotStore(db).slimOld(7, { limit: 5, now }), 1);
-  assert.match(queries[0].sql, /state = 'completed' AND "createdAt" < \?\s+AND NOT jsonb_exists\(payload, 'lean'\) ORDER BY "createdAt" ASC LIMIT \?/u);
-  assert.deepEqual(queries[0].values, [new Date('2026-09-29T12:00:00Z'), 5]);
+  assert.match(queries[0].sql, /state = 'completed' AND "createdAt" >= \? AND "createdAt" < \?\s+AND NOT jsonb_exists\(payload, 'lean'\) ORDER BY "createdAt" ASC LIMIT \?/u);
+  assert.deepEqual(queries[0].values, [new Date(0), new Date('2026-09-29T12:00:00Z'), 5]);
   assert.deepEqual(updates.map(update => update.where), [{ id: 'old', state: 'completed', updatedAt: stored.updatedAt }]);
   assert(isLeanTurn({ payload: updates[0].data.payload }));
   assert.equal(updates[0].data.payload.lean.at, now.toISOString());
@@ -178,7 +178,37 @@ test('the store: a plan without an audit time publishes a turn lean; old turns o
   // Zero days (a plan that publishes lean): every whole turn an earlier plan left is due, whatever its age.
   updates.length = 0;
   assert.equal(await new PilotStore(db).slimOld(0, { now }), 1);
-  assert.deepEqual(queries[1].values, [now, 20]);
+  assert.deepEqual(queries[1].values, [new Date(0), now, 20]);
+});
+
+test('a retention run sweeps batch after batch: until nothing is due, or its time is used, and never in a loop', async () => {
+  const full = fullPayload(), now = new Date('2026-10-06T12:00:00Z'), before = new Date('2026-09-29T12:00:00Z');
+  const make = count => { const rows = new Map(); for (let at = 0; at < count; at++) rows.set(`t${at}`, { id: `t${at}`, state: 'completed', updatedAt: new Date(1), payload: full }); return rows; };
+  const database = (rows, stuck = new Set()) => { const queries = []; return { queries, rows,
+    $queryRaw: async (_strings, from, until, limit) => { queries.push({ from, until, limit }); return [...rows.values()].filter(row => !row.payload.lean).slice(0, limit).map(row => ({ id: row.id })); },
+    m4PilotTurn: { findUnique: async ({ where }) => rows.get(where.id) ?? null,
+      updateMany: async ({ where, data }) => { if (stuck.has(where.id)) return { count: 0 }; rows.set(where.id, { ...rows.get(where.id), payload: data.payload }); return { count: 1 }; } } }; };
+  // 130 due rows in batches of 50: three batches, everything lean, and the time up to which all is lean moves on.
+  const all = database(make(130));
+  assert.deepEqual(await new PilotStore(all).slimDue(7, { batch: 50, now }), { slimmed: 130, more: false, clean: before });
+  assert.deepEqual(all.queries.map(query => query.limit), [50, 50, 50]);
+  assert([...all.rows.values()].every(row => isLeanTurn(row)));
+  // The next run reads only what is newer than that time.
+  const after = before, later = new Date('2026-10-07T12:00:00Z');
+  assert.deepEqual(await new PilotStore(all).slimDue(7, { batch: 50, now: later, after }), { slimmed: 0, more: false, clean: new Date('2026-09-30T12:00:00Z') });
+  assert.deepEqual([all.queries.at(-1).from, all.queries.at(-1).until], [after, new Date('2026-09-30T12:00:00Z')]);
+  // A run whose time is used stops after the batch in hand and says more is left; the time does not move on.
+  const slow = database(make(130));
+  assert.deepEqual(await new PilotStore(slow).slimDue(7, { batch: 50, now, budgetMs: 0 }), { slimmed: 50, more: true, clean: null });
+  // Rows that cannot be made lean (changed under the sweep every time) do not hold the run: one batch, then it ends.
+  const stuck = database(make(60), new Set(Array.from({ length: 60 }, (_, at) => `t${at}`)));
+  assert.deepEqual(await new PilotStore(stuck).slimDue(7, { batch: 50, now }), { slimmed: 0, more: true, clean: null });
+  assert.equal(stuck.queries.length, 1);
+  // A last batch with a row left whole says so and keeps the time where it was.
+  const one = database(make(10), new Set(['t3']));
+  assert.deepEqual(await new PilotStore(one).slimDue(7, { batch: 50, now }), { slimmed: 9, more: true, clean: null });
+  // No setting asks nothing of the database.
+  for (const days of [undefined, null, -1, '7']) assert.deepEqual(await new PilotStore(all).slimDue(days, { after }), { slimmed: 0, more: false, clean: after });
 });
 
 test('the plan says for how long a turn keeps its full audit: a checked, approved setting that a release keeps', async t => {
