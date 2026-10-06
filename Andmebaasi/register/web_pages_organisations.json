@@ -1,15 +1,15 @@
 {
   "version": "web-pages-1",
-  "note": "Puuetega inimeste kodade, ühingute ja patsientide liitude veebilehed allikaregistrist master_sources_final.json (omanik 06.10.2026: organisatsioonide üldkontaktid võivad minna avalikku reposse; „tee asjad lõpuni“). Need on organisatsioonide enda lehed. Saidi avalehelt loetakse üks tase allapoole ja ainult lehed selle kohta, kes organisatsioon on, mida ta teeb ja kuidas temaga ühendust saab; uudiseid, galeriisid, juhatuse ja töötajate lehti ei loeta.",
+  "note": "Puuetega inimeste kodade, ühingute ja patsientide liitude veebilehed allikaregistrist master_sources_final.json (omanik 06.10.2026: organisatsioonide üldkontaktid võivad minna avalikku reposse; „tee asjad lõpuni“; „miks 18 organisatsiooni jäi välja? neil on ju lehed“). Need on organisatsioonide enda lehed. Saidi avalehelt loetakse kaks taset allapoole, kuni 40 alalehte (lehe „Mis on diabeet“ alalehtedele viib ainult see leht ise); ei loeta uudiseid, varasemate aastate postitusi, galeriisid, poodi, foorumit, juhatuse ja töötajate lehti, tegevuskavasid ja aruandeid ega saidi abilehti. Esimene nimekiri (v63) luges ainult lehti, mille aadress nimetas tutvustust, teenuseid või kontakti, ja jättis nii lugemata näiteks patsientide liidu lehed haiguse enda kohta; teine luges kuni 12 alalehte ja see piir sai uudistega täis. Mis loetud lehtedest korpusesse läheb, otsustab valik (scripts/rag-v2-web-select.mjs); „selection.leave_out“ nimetab lehed, mis jäävad välja pealkirja järgi: kolmanda osapoole kokkuvõtted riigi ja omavalitsuste toetustest ja teenustest (ametlikud allikad on korpuses ja kokkuvõte võib olla vananenud), üritused ja kuulutused, võõrkeelsed lehed.",
   "pages": [
     {
       "source_id": "eesti_puuetega_inimeste_koda_eesti_puuetega_inimeste_koda_epikoda",
       "publisher": "Eesti Puuetega Inimeste Koda",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -29,9 +29,9 @@
       "publisher": "Tallinna Puuetega Inimeste Koda",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -45,9 +45,9 @@
       "publisher": "Eesti Puuetega Inimeste Fond",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -55,9 +55,9 @@
       "publisher": "Tartu Puuetega Inimeste Koda",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -65,9 +65,9 @@
       "publisher": "Pärnumaa Puuetega Inimeste Koda",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -75,9 +75,9 @@
       "publisher": "Ida-Virumaa Puuetega Inimeste Koda",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -85,9 +85,9 @@
       "publisher": "Lääne-Virumaa Puuetega Inimeste Koda",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -95,9 +95,9 @@
       "publisher": "Saaremaa Puuetega Inimeste Koda",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -105,9 +105,9 @@
       "publisher": "Viljandimaa Puuetega Inimeste Nõukoda",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -115,9 +115,9 @@
       "publisher": "Võrumaa Puuetega Inimeste Koda",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -131,9 +131,9 @@
       "publisher": "Eesti Pimedate Liit",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -147,9 +147,9 @@
       "publisher": "Põhja-Eesti Pimedate Ühing",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -163,9 +163,9 @@
       "publisher": "Eesti Pimekurtide Tugiliit",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -185,9 +185,9 @@
       "publisher": "NIRK",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -201,9 +201,9 @@
       "publisher": "Eesti Kurtide Liit",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -211,9 +211,9 @@
       "publisher": "Tallinna ja Harjumaa Kurtide Ühing",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -221,9 +221,9 @@
       "publisher": "Eesti Vaegkuuljate Liit",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -237,9 +237,9 @@
       "publisher": "Eesti Kuulmispuuetega Laste Vanemate Liit",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -247,9 +247,9 @@
       "publisher": "Eesti Viipekeeletõlkide Kutseühing",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -257,9 +257,9 @@
       "publisher": "Viipekeeletõlgid OÜ",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -267,9 +267,9 @@
       "publisher": "Eesti Liikumispuudega Inimeste Liit",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -277,9 +277,9 @@
       "publisher": "Tallinna Liikumispuudega Inimeste Ühing",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -287,9 +287,9 @@
       "publisher": "MTÜ Iseseisev Elu",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -297,9 +297,9 @@
       "publisher": "Eesti Paralümpiakomitee",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -307,9 +307,9 @@
       "publisher": "Eesti Vaimupuudega Inimeste Tugiliit",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -317,9 +317,9 @@
       "publisher": "Tugiliisu",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -327,9 +327,9 @@
       "publisher": "Eesti Autismiliit",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -337,9 +337,9 @@
       "publisher": "Põhja-Eesti Autismi Liit",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -347,9 +347,9 @@
       "publisher": "Eesti Psüühikahäiretega Inimeste Lähedaste Liit",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -357,9 +357,9 @@
       "publisher": "Dementsuse Kompetentsikeskus",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -367,9 +367,9 @@
       "publisher": "Elu dementsusega",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -377,9 +377,9 @@
       "publisher": "Eesti Puuetega Naiste Ühenduste Liit",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -387,9 +387,9 @@
       "publisher": "Eesti Afaasialiit",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -397,9 +397,9 @@
       "publisher": "Eesti Kogelejate Ühing",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -407,9 +407,9 @@
       "publisher": "Eesti Sclerosis Multiplexi Ühingute Liit",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -417,9 +417,9 @@
       "publisher": "Eesti Parkinsoniliit",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -427,9 +427,9 @@
       "publisher": "Eesti Insuldipatsientide Selts",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -437,9 +437,9 @@
       "publisher": "Eesti Hemofiiliaühing",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -447,9 +447,9 @@
       "publisher": "Eesti Lihasehaigete Selts",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -457,9 +457,9 @@
       "publisher": "Eesti Allergialiit",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -467,9 +467,9 @@
       "publisher": "Eesti Diabeediliit",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -477,9 +477,9 @@
       "publisher": "Eesti Reumaliit",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -487,9 +487,9 @@
       "publisher": "Eesti Kopsuliit",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -497,9 +497,9 @@
       "publisher": "Eesti Vähiliit",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     },
     {
@@ -507,10 +507,13 @@
       "publisher": "Eesti Neeruhaigete Liit",
       "source_type": "organization_page",
       "subpages": {
-        "depth": 1,
-        "max": 6,
-        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+        "depth": 2,
+        "max": 40,
+        "except": "uudis|blogi|blog|galerii|gallery|pildid|foto|video|sundmus|syndmus|sündmus|kalender|annet|toeta|pood|ostukorv|privaats|kupsis|küpsis|/en/|/ru/|/eng|/fi/|/en$|/ru$|/rus$|english|arhiiv|pohikiri|põhikiri|aastaaruan|majandusaasta|aruan|protokoll|tegevusplaan|tegevuskava|arengukava|juhatus|meeskond|personal|tootajad|töötajad|login|logi-sisse|wp-admin|otsing|search|sisukaart|sitemap|rss|feed|tag/|kategooria|category|author|kommentaar|foorum|forum|/20\\d\\d[-/]|-20[01]\\d|-202[0-5]|/avaleht/"
       }
     }
-  ]
+  ],
+  "selection": {
+    "leave_out": "Teenused ja toetused tallin|Teenused tallinlasele|Õigusloome Tallinnas|Valdade sotsiaalosakondade|Toetused ja soodustused|TEENUSED JA TOETUSED|Kas hooldusteenuse hinnas|Viljandimaa Puuetega Inimeste Nõukoda: (?:Abivahendid|Seadusandlus)|Liikumispuudega Inimeste Liit: (?:Abimaterjalid|Kellel on õigus|Mis on puue|Sotsiaalteenused)|Vaegkuuljate Liit: Soodustused|Lääne-Virumaa Puuetega Inimeste Koda: Teenused|KOV teenused|Töötukassa$|Sotsiaalkindlustusamet$|Seadusandlus|Määrused|Muudatused ja edasiarengud|Invaabivahendite Ost|üritus|spordipäev|alustavad|alustab|algab |hooaja avamine|rokib|Jõulud|laager|suvepäevad|reisile|Koolitusreis|Väljasõit|Lähme|Festival|Teabepäev|tervisepäev|Käimispäev|näitus|juubelkonverents|kutsub|Kutse:|tulge|Tule avatud|võistlus|puhkab|Talendipäev|hemofiiliapäev|Hemofiiliavaba|koolipäev|toimus|toimunud|tähistatakse|projektijuhtimise koolitus|töötaja tööturul|enampakkumine|Aita päästa|Noorteorganisatsiooni loomine|tunnustab|ettepanekud erihoolekande|Manifest|õpirändeprojekt|Aasta tegu|Uurimistööd|Lapsevanemate unistused|Metsalised|Elu mõte on|Seltsi lugu|AJAKIRJANDUSES|tagasiside |Tagasiside$|otsivad ühistele|vajab Eestis|Albu vald|Spread the sign|uus teenus|Projekti kokkuvõte|Uut eriala|Olukorast riigis|Nähtamatu puude|koduleht|Uus projekt|Uus puu|FACEBOOK|Töötajate kontakt|thky@|/(?:en|ru|rus|eng)/? |\\p{Script=Cyrillic}{4}|PROJEKTI TIIM|KÜLASTUS|levib kohutava"
+  }
 }

@@ -223,11 +223,106 @@ Täiendus tehti esimest korda repos olevate abiskriptidega (`rag-v2-review-by-ru
 
 - Organisatsiooni leht ei ole ametlik juhis ega õiguslik alus.
 - Valik on reegli järgi, mitte lehekaupa loetud: reegel võis jätta sisse lehe, mis ei ole kasulik, ja välja lehe, mis oleks olnud.
-- Organisatsioonide lehti igakuine uuendamine ei loe.
+- Organisatsioonide lehti igakuine uuendamine ei lugenud. Alates v64 loeb (ADR-098).
+
+## Korpus v64 (06.10.2026 öösel): organisatsioonide lehed uue valikuga
+
+Omanik küsis pärast v63: „miks 18 organisatsiooni jäi välja? neil on ju lehed“, ja lisas pildi otsingutulemustest, kus ühe patsientide liidu saidil olid lehed haiguse enda kohta.
+
+### Mis v63 reeglites valesti oli
+
+| Reegel | Mida see tegi | Nüüd |
+|---|---|---|
+| Alalehtede muster nimetas tutvustust, teenuseid ja kontakti | patsientide liidu lehti haiguse kohta ei loetud üldse | loetakse kõik alalehed peale nimetatute (`subpages.except`: uudised, varasemate aastate postitused, galerii, pood, foorum, juhatus ja töötajad, kavad ja aruanded) |
+| Kuni 6, siis 12 alalehte, üks tase | ühe liidu avalehelt viis 68 linki uudistele ja piir sai nendega täis; sisulehtedele viis ainult leht „Mis on diabeet“ | kuni 40 alalehte, kaks taset |
+| „Õhuke“ oli alla 80 sõna | avalehed 60–77 sõnaga (kes me oleme, aadress) jäid välja | alla 30 sõna |
+| „Aegunud“ oli varasem aastaarv lehe alguses või postituse kuupäev tekstis | ühe ühingu kõik lehed kandsid malli kuupäeva; „asutatud 2019“ luges vanaks | varasem aasta pealkirjas või aadressis, või postituse kuu aadressis |
+| Nimesarnane sõnapaar ametinimetuse kõrval jättis välja terve lehe | „Eesti Diabeediliit … liikmed“ luges isikuks; 50 lehte jäi välja | isikut nimetav lõik võetakse välja, leht jääb |
+| Leht, millelt korjaja oli isikliku aadressi eemaldanud, jäi tervena välja | aadress oli juba läinud | välja läheb lõik, kus märge seisab |
+| Lingi tekst sai lehe pealkirjaks | ühe liidu 15 lehte kandis pealkirja „LOE EDASI“ | lugema kutsuv lingitekst ei ole pealkiri; võetakse lehe enda oma (`linkTitle`) |
+
+Vahepeal tegin vea ka teises suunas. Kui nimekontrolli leebemaks tegin (isik ainult ametinimetuse, telefoni või aadressi kõrval), vaatasin valitud 207 lehe suurtähelised sõnapaarid üle ja leidsin, et jooksvas tekstis jäid isikunimed sisse. Midagi ei olnud selleks ajaks korpusesse läinud. Sellest tuli praegune reegel.
+
+### Valik on nüüd repos: `lib/rag-v2/web-select.js`, `scripts/rag-v2-web-select.mjs`
+
+v63 valiku tegi ajutine skript. Nüüd on reegel testidega repos, sest sama reegel peab valima ka muutunud lehe igakuisel uuendamisel.
+
+**Isik** on kaks järjestikust suurtähega sõna, mis ei ole millegi muu nimi, kui
+
+- esimene on eesnimi (sõnaloend `web-select-words.js`, käsitsi kirjutatud; ei nimeta kedagi), või
+- kumbagi sõna ei ole kogu lugemises kordagi väikese tähega kirjutatud (tavalist sõna on; nime ei ole), või
+- üht sõna ei ole, ja kõrval on ametinimetus, telefon või aadress.
+
+Millegi muu nimi: koht (omavalitsuste ja maakondade sõnad, ka käändes), asutuse või asja lõpuga sõna (liit, keskus, haigla, teenus …), tavaline pealkirjasõna, ja paarid, mille vaatasin ükshaaval üle ja mis ei ole isikud (`NOT_PERSONS`: asutused, ürituste ja toodete nimed, võõrkeelsed pealkirjad, ajaloo isikud, kelle järgi midagi on nimetatud). Loendist puuduv paar loetakse nimeks: viga maksab lõigu, mitte kellegi privaatsuse.
+
+**Lõik** (lõik, loendi punkt, tabeli rida, pealkiri), mis nimetab isikut, hoiab isikliku moega aadressi või korjaja märget eemaldatud aadressist, võetakse välja. Isikut nimetava pealkirja alt läheb kogu jaotis.
+
+**Leht jääb tervena välja,** kui
+
+- see räägib peamiselt isikutest: välja läks üle veerandi sõnadest, üle 8 lõigu, üle 3 rea, mis on ainult nimi, või lehe enda pealkiri nimetab isikut (nimede eemaldamine jätaks alles selle, mida nende kohta öeldi);
+- nimi seisab tekstis, mis ei ole ühegi lõigu sees;
+- järele jääb alla 30 sõna (märgistuseta sisuosaga lehel alla 80);
+- selle järgi, mis see on (aadress ja pealkiri): foorum, lood, uudised, toetajad, kava, aruanne, ajalugu, postituste loendi leht; nimekirja enda muster (`selection.leave_out`) lisab kolmanda osapoole kokkuvõtted riigi ja omavalitsuste toetustest ja teenustest, üritused ja kuulutused, arvamuslood ja venekeelsed lehed;
+- see on aegunud, skriptiga kirjutatud või pargitud domeen.
+
+### Lugemine ja valik
+
+| | |
+|---|---|
+| Loetud | 1159 lehte 48 organisatsiooni saitidelt (esimene lai lugemine 505 lehte piiriga 12; teine 1146 lehte piiriga 40; neli saiti ei avanenud teisel korral ja loeti uuesti, neli loeti uuesti pealkirjade pärast) |
+| Valitud | **523 lehte 43 organisatsioonilt**: 472 uut, 17 on v63 lehed, mille valitud tekst muutus, 34 on samad mis korpuses |
+| Lõike välja võetud | 252 lõiku 132 lehelt |
+| Välja jäi | 242 selle järgi, mis leht on; 160 peamiselt isikutest; 145 alla 30 sõna; 40 skriptiga kirjutatud; 30 pealkiri nimetab isikut; 28 märgistuseta ja lühike; 5 aegunud; 1 pargitud domeen |
+| Sama sisu teise aadressi all | 2 uut lehte olid bait-baidilt samad mis v63 lehed; jäid välja (korpus võtab ühe sisu ühe korra) |
+| Lehe-ta organisatsioonid (5) | Eesti Parkinsoniliit (avaleht räägib peamiselt isikutest, muu on foorum ja galerii), Põhja-Eesti Autismi Liit (üks leht, peamiselt asutajast), Eesti Puuetega Inimeste Fond (pargitud domeen), Põlvamaa Puuetega Inimeste Koda (sait ei avanenud), Tallinna linna nõustamisleht |
+
+Ühe patsientide liidu, mille kohta omanik küsis, lehti on nüüd 9: mis on diabeet, I ja II tüübi diabeet, toitumissoovitused, diabeet Eestis ja teised. Kontakti- ja avaleht jäid välja, sest need nimetavad ühte isikut paljudes lõikudes.
+
+### Kontroll, et nimesid sisse ei jäänud
+
+Reegel on üks asi, tulemus teine. Vaatasin valitud lehtedelt üle kaks loendit:
+
+- sõnapaarid, mille kumbagi sõna ei ole lugemises väikese tähega (148 + 60 + 7 paari kolmes voorus): asutused, kohad, tooted, võõrkeelsed pealkirjad ja ajaloo isikud (Braille, Koch), isikunimesid ei olnud;
+- sõnapaarid, mille üks sõna on tavaline (312 + 163 + 31): üks päris nimi (eesnimi, mida loend ei tunne, tavalise sõnaga perekonnanimi, „asutajaliikmeks on …“). Selle pärast lisandusid ametisõnadesse „asutaja“ ja „liige“ ning see leht jäi välja.
+
+**Mida see kontroll ei kata:** nime, mille mõlemad sõnad on tavalised sõnad ja eesnime loendis ei ole, kui kõrval ei ole ametinimetust. Sellist ma loenditest otsida ei oska. Üksikut eesnime (allkiri „Mari“) reegel ei eemalda.
+
+### v63 lehed uue reegli all
+
+- 17 lehe valitud tekst muutus (enamasti läks välja lõik, mis nimetab isikut; mõnel oli sait vahepeal muutunud). Need läksid korpusesse **uue versioonina**: see on esimene kord, kui veebilehe muutus asendab korpuses varasema versiooni.
+- **5 lehte võeti korpusest välja** (`package --remove`, ADR-058 tee): kolm räägivad uue reegli järgi peamiselt isikutest, üks on tegevuskava, üks on kuulutus pealkirjaga, mis lõpeb sõnadega „Loe edasi“. See on minu eilse valiku parandus, mitte allika kadumine; lehed on poliitikast väljas, hoidlas alles ja tagasi pandavad. Omanikule öeldud.
+
+### Täiendus
+
+Kohalik vastuvõtt: 487 allikat, 1904 lõiku, ülevaatus reegli järgi (465 korral hoiatus, et pealkirja ei leitud tekstist: pealkirja ees on organisatsiooni nimi; probleeme 0). Poliitikas 8001 dokumenti (7536 + 470 uut − 5).
+
+Serveris `rag-v2-corpus-run-guarded.sh 64 63`: 1825 sisendit, 600 117 tokenit, **0,0780 USD** ülempiiri 0,12 USD all (seadsin ise omaniku 06.10 loa „veidi raha“ ja päeva ülempiiri 0,50 USD sees). Indeks `7d209c63` (8001 dokumenti, 45 596 ühikut); vestluse plaan `m4-corpus-chat-20261006h.json`.
+
+### Kontroll päris lehel
+
+Neli küsimust, igaüks uues vestluses, pärast täiendust (väljalase `6e0630f2`; 4 pööret, 0,0154 USD):
+
+| Küsimus | Mis tagasi tuli |
+|---|---|
+| diagnoositi 2. tüübi diabeet: mida teada ja kust tuge | tsiteeris liidu lehti „Mis on diabeet“ ja „Diabeet Eestis“, kaks linki mullis; ütles, et veresuhkru sihte ja ravimeid kirjelduse põhjal öelda ei saa |
+| isal oli insult ja ta tuli haiglast koju | Insuldipatsientide Seltsi kolm lehte (elu pärast insulti, koduteenused, kümme ideed), kolm linki mullis |
+| laps on kurt: kust tellida viipekeele tõlki | nimetas tõlketeenuse osutajaid ja Tallinna tõlketeenuse korda (Kurtide Liidu leht, link mullis) ning küsis omavalitsust. **Viga:** ühe ettevõtte aadress oli vastuses kahes kohas ühe tähe võrra valesti kirjutatud. Mull seda lingiks ei teinud (lingiks saab ainult tsiteeritud allika enda aadress, ADR-097), kuid tekstis on vale aadress |
+| kaotan nägemist: kust õppida iseseisvalt toime tulema | NIRK-i rehabilitatsiooniteenused (valge kepi ja marsruutide õpe), link mullis |
+
+Isikunimesid vastustes ei olnud. Neli küsimust on kontroll, mitte mõõtmine. Esimese vastuse algus („2. tüüpi …“) läks mullis nummerdatud loendi punktiks; omanik märkas, parandus on PR-is #430.
+
+### Tähele panna
+
+- Valik on reegli järgi, mitte lehekaupa loetud. Pealkirjad vaatasin üle (ligi 500) ja jätsin mustriga välja üritused, kuulutused ja kokkuvõtted; lehtede tekste ma ükshaaval ei lugenud.
+- Kolmanda osapoole kokkuvõtted riigi toetustest ja teenustest (näiteks ühe liidu „Kellel on õigus saada abivahend riigipoolse soodustusega“) on väljas, sest ametlikud allikad on korpuses ja kokkuvõte võib olla vananenud. Kui omanik tahab neid sisse, on see nimekirja mustri muutus.
+- Haiguste kirjeldused patsientide liitude lehtedelt on korpuses taustana; lehe metaandmed keelavad neist diagnoosi- ja raviväiteid teha, nagu teistegi veebilehtede puhul.
+- Lehtede tekstid ei ole repos (organisatsioonide enda tekstid); repos on nimekiri, reegel ja sõnaloendid.
 
 ## Kontroll
 
-`tests/rag-v2-web-page.test.mjs` (13 testi; lisandus alalehtede muster ja ettevõtte lehe pealkiri): sisuosa eraldamine näidislehelt; isiku kontaktid kõigis neljas kujus ja peidetud aadressid; sisuosata leht ja vihje; salvestatud leht läbib päris vastuvõtu (üks sisuosa, lõikude kohad artikli sees) ja metaandmed läbivad kohandaja; `robots.txt`; alalehtede leidmine; toomine (ümbersuunamised, keelatud aadressid, mitte-HTML, ajapiir, märgistik); lehe ja alalehtede kogumine piiridega; saidi viisakus; muutuse otsus; ploki nime reegli kaks päris juhtumit.
+`tests/rag-v2-web-select.test.mjs` (4 testi): isik kui kaks suurtähega sõna kolme tunnuse järgi ja mis ei ole isik; lõigu väljavõtmine ja lehe allesjäämine, organisatsiooni enda aadressid, metaandmed; jaotis isikut nimetava pealkirja all; millal leht jääb tervena välja.
+
+`tests/rag-v2-web-page.test.mjs` (13 testi; lisandus alalehtede muster ja ettevõtte lehe pealkiri, v64-ga alalehtede välistus ja lingiteksti pealkiri): sisuosa eraldamine näidislehelt; isiku kontaktid kõigis neljas kujus ja peidetud aadressid; sisuosata leht ja vihje; salvestatud leht läbib päris vastuvõtu (üks sisuosa, lõikude kohad artikli sees) ja metaandmed läbivad kohandaja; `robots.txt`; alalehtede leidmine; toomine (ümbersuunamised, keelatud aadressid, mitte-HTML, ajapiir, märgistik); lehe ja alalehtede kogumine piiridega; saidi viisakus; muutuse otsus; ploki nime reegli kaks päris juhtumit.
 
 ## Tegemata
 
@@ -235,4 +330,4 @@ Täiendus tehti esimest korda repos olevate abiskriptidega (`rag-v2-review-by-ru
 - Lehtede muutuste jälgimine (uus korje ettepanekuna) on olemas, kuid ajastamata.
 - Skriptiga kirjutatav leht (eesti.ee) vajab teist teed.
 - Kontaktireegel tunneb isikut kahe suurtähega sõna järgi. See võib välja jätta ka asutuse üldkontakti, kui see on kirjas kahe suurtähega sõnana telefoni kõrval; eemaldatud kaartide arv on aruandes.
-- Organisatsioonide lehed (60) lähevad teist rada (organisatsiooni pakett), registrid ja otsingud ainult lingina.
+- Organisatsioonide täispaketid (teenused, kontaktid, dokumendid struktureeritult, nagu `Andmebaasi/organisatsioonid/astangu.*`) on tegemata: see on käsitöö iga organisatsiooni kohta. Lehed on korpuses (v63, v64); registrid ja otsingud ainult lingina.
