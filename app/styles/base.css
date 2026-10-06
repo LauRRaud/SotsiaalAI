@@ -308,11 +308,11 @@ a {
   color: var(--text-warm);
   text-decoration: underline;
   text-underline-offset: 3px;
-  text-decoration-color: rgba(255, 255, 255, 0.35);
+  text-decoration-color: var(--link-underline);
   transition: text-decoration-color var(--dur-fast) var(--ease-soft);
 }
 a:hover {
-  text-decoration-color: rgba(255, 255, 255, 0.75);
+  text-decoration-color: var(--link-underline-hover);
 }
 
 button {

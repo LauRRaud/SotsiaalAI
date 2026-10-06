@@ -1577,7 +1577,8 @@ html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] [role="article"
 }
 /* Vastuse vormi link (omavalitsuse leht, ADR-061) on tavaline allajoonitud link, iga oma real,
    ilma manuse pilli taustata (omanik 30.09). Kiri on vastuse teksti suurune ja joon käitub nagu
-   saidi teistel linkidel (base.css `a`): hele joon, mis hõljutades ainult selgemaks läheb. */
+   saidi teistel linkidel (base.css `a`, --link-underline): vaikne joon, mis hõljutades ainult
+   selgemaks läheb; heledas teemas tume. */
 .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] > div > a[target="_blank"] {
   display: table;
   margin: 0.5rem 0 0;

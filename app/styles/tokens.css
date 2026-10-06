@@ -72,6 +72,9 @@
      jääb neist tumedamaks, et ta ei loeks sisestatud väärtusena. */
   --text-soft: rgba(250, 250, 250, 0.92); /* teisene tekst */
   --text-dim: rgba(250, 250, 250, 0.8); /* summutatud / vihjed */
+  /* Lingi allajoon (base.css `a`): vaikne teksti tooni joon, hõljutades selgem. */
+  --link-underline: rgba(255, 255, 255, 0.35);
+  --link-underline-hover: rgba(255, 255, 255, 0.75);
   --text-ink: #1e1e1e; /* tekst heledal pinnal (primary-nupp) */
   --text-ink-soft: #444444;
 
@@ -439,6 +442,9 @@ html.theme-light:not(:has(.room[data-power="standby"])) {
   --text-warm: #151515;
   --text-soft: rgba(21, 21, 21, 0.86);
   --text-dim: rgba(21, 21, 21, 0.72);
+  /* Heledal pinnal on lingi joon tume nagu tekst (omanik 06.10). */
+  --link-underline: rgba(21, 21, 21, 0.5);
+  --link-underline-hover: rgba(21, 21, 21, 0.9);
 
   /* Klaas: sama retsept (toon + härmatis + valge rant), aga toon on
      piimjas valge. Tume puit riiulis ja akna taga ei tohi musta kirja
