@@ -2,7 +2,7 @@
 
 06.10.2026. Teostus Claude Opus 5.5. Omanik 06.10: „mul on plaanis platvormile tuua tuhandeid kasutajaid, mul ei tohi paisuda kõvaketta kasutus meeletuks. Peab arvestama, kuidas toimub vestlus, selle talletamine, ajalugu jms.“ Küsimusele, kas alustada püsiva vestlusajaloo ehitamist kehtiva 90 päeva reegli piires, vastas omanik: **„Jah, kogu töö“**: küsimus, vastus ja lühiviited lähevad vestluse sõnumitesse (seni olid seal kohatäited); ajalugu ja jätkuvestlus loevad sealt ega sõltu plaanist; audit aegub ja kustub; vestlus allub 90 päeva reeglile.
 
-See dokument kirjeldab kogu töö viit sammu. **Tehtud on esimene ja teine samm.**
+See dokument kirjeldab kogu töö viit sammu. **Tehtud on esimene, teine ja kolmas samm.**
 
 ## Probleem
 
@@ -113,7 +113,7 @@ Võrdluseks samad pöörded: terve rida 184,8 KB kettal, kõhn rida 17,4 KB.
 |---|---|---|
 | 1 | Ajalookirje kirjutamine avaldamisel; ajalugu ja allikavaade loevad seda, kui rida ei saa lugeda | tehtud (#410) |
 | 2 | Jätkuvestlus kirjest: eelmine vastus, olek, fookus ja küsitud omavalitsus tulevad kirjest, kui rida on kustunud või teise plaani oma. Varem avaldatud pöörded saavad kirje oma reast | tehtud (jaotis „Teine samm“) |
-| 3 | Audit on päriselt ajutine ja vestlus allub 90 päeva reeglile: tootmisplaanil `retentionHours`; vestluse aegumine tavalise reegli järgi viimasest aktiivsusest; arendusplaani tähtajatu erand ei jõua tootmiskasutajateni; ka katkenud pöörded aeguvad | tegemata |
+| 3 | Audit on päriselt ajutine ja vestlus allub 90 päeva reeglile: plaanil `retentionHours`; vestluse aegumine tavalise reegli järgi viimasest aktiivsusest; arendusplaani tähtajatu erand ei jõua säilitusajaga plaani kasutajateni; ka katkenud pöörded aeguvad | tehtud (jaotis „Kolmas samm“) |
 | 4 | Pöörde suured andmed kirjutatakse üks kord (praegu umbes kümme ülekirjutust pöörde kohta) | tegemata |
 | 5 | Mõõdetav koristus ja kasv (kogumaht, päevane juurdekasv, aegunud kirjed, vanim koristamata, vaba ruum) ning vastuvõtt mahukatsega | tegemata |
 
@@ -179,8 +179,42 @@ Pöörete loend lisab kirjele keskmiselt 0,2 KB (suurim 0,7). Kaks sõnumit kett
 
 ### Tegemata selles sammus
 
-- **Viimane vastuseta pööre pärast rea aegumist.** Kui vestluse viimane pööre ebaõnnestus ja tema rida on kadunud, alustab järgmine sõnum uut teemat. Parem oleks jätkata teemat, milles ta oli; selleks peab vestluse pea hoidma ka teema tunnust. See kuulub sammu 3, kus read aeguma hakkavad.
+- **Viimane vastuseta pööre pärast rea aegumist** alustas uut teemat. Parandatud kolmandas sammus.
 - Ajaloos ei näidata vastuseta pöördeid, mille rida on kadunud.
+
+## Kolmas samm: audit aegub, vestlus elab 90 päeva
+
+Seni sai pöörde auditirida ja vestlus ühe ja sama tähtaja: plaani oma (`pilotExpiry`). Plaan säilitusajaga 24 tundi oleks kustutanud 24 tunni pärast ka vestluse. Seepärast ei olnud säilitusaega võimalik kasutada ja töötav plaan on tähtajatu.
+
+### Mis muutus
+
+- **Vestluse eluiga on avaldatud reegel, mitte plaani oma.** Vestlus luuakse tähtajaga 90 päeva (`CONVERSATION_TTL_DAYS`, sama mis teistel vestlustel) ja iga avaldatud pööre lükkab seda 90 päeva edasi (`conversationExpiry`, `lib/rag-v2/pilot/lifetime.js`). Plaani lõpp ega auditirea säilitusaeg vestlust ei lõpeta.
+- **Auditirea eluiga on plaani oma.** Plaani `retentionHours` (1–168 tundi) järel rida kustub; vestlus jääb oma sõnumitesse ja dialoog jätkub kirjetest (teine samm). Sama kehtib vastuseta jäänud pöörete ridade kohta.
+- **Erand on ainult plaan, millel ei ole ühtegi tähtaega** (`expiresAt` ja `retentionHours` mõlemad tühjad; praegune arendusplaan): selle vestlused ja read säilivad kustutamiseni nagu seni. Säilitusajaga plaani kasutaja vestlus saab alati 90 päeva tähtaja, ka siis, kui vestlus loodi varem tähtajatu plaani all (järgmisel avaldatud pöördel).
+- **Plaani tegemine:** `scripts/rag-v2-chat-plan.mjs --retention-hours <1-168>`; korpuse täiendus kannab väärtuse uude plaani nagu auditi aja.
+- **Vestluse pea hoiab teema ja isiku tunnust.** Kui viimane pööre jäi vastuseta ja tema rida on aegunud, jätkab järgmine sõnum teemat, milles see pööre oli, viimasest kirjega pöördest. Pea, mis alustas oma teemat või uut isikut, ei anna midagi jätkata ja vanema isiku juurde tagasi ei minda (`context_unavailable`; koostaja saadab uue teema).
+
+### Soovitus plaanidele
+
+| Plaan | Täisaudit | Rida kustub | Vestlus |
+|---|---|---|---|
+| Arendus (praegu) | 7 päeva (`auditDays: 7`), siis kõhn | ei kustu (tähtajatu) | säilib kustutamiseni |
+| Avamisel | ei hoita (`auditDays: 0`, kohe kõhn) | 7 päeva (`retentionHours: 168`) | 90 päeva viimasest aktiivsusest |
+
+Avamise plaaniga on kettal korraga: kõhnad read 7 päeva (17,4 KB pööre) ja kirjed 90 päeva (4,8 KB pööre). 30 000 pöörde juures päevas on see püsivalt umbes 3,7 GB ridu ja 13,0 GB kirjeid (ilma tabeli lisakuluta). Arvutus, mitte mõõtmine: mahukatse on viies samm.
+
+### Kontroll
+
+- Ühiktestid (kaks uut): vestluse tähtaeg plaani eri seadetega ja plaani säilitusaeg kui kontrollitud, kinnitatud seade; aegunud reaga vastuseta pea jätkab oma teemat, oma teemat alustanud pea mitte. Korpuse täienduse test: uus plaan hoiab säilitusaja.
+- Andmebaasitestid (kaks uut): säilitusajaga plaanil saab rida 24 tundi ja vestlus 90 päeva; iga avaldatud pööre uuendab vestluse aega; aegunud rida kustub ja vestlus jätkub kirjetest koos olekuga; vastuseta pöörde aegumise järel jätkab järgmine sõnum sama teemat; tähtajatu plaan vestluse aega ei muuda.
+- Kogu ühiktestide komplekt: 754 testi, 735 läbis, 19 vahele jäetud, 0 ebaõnnestus. Andmebaasitestid: 78/78.
+
+### Tegemata ja kontrollimata
+
+- **Töötavat plaani ei muudetud:** arendusplaan on endiselt tähtajatu, seega serveris veel ükski rida ei aegu ja kettakulu ei vähene. Säilitusajaga plaani ei ole päris lehel proovitud.
+- **Avamise plaani liiki ei ole.** Plaani `usage` saab praegu olla ainult `development_only`. Kui avamise liik tehakse, peab ta säilitusaega nõudma.
+- Olemasolevad 70 arendusvestlust on tähtajata ja jäävad nii.
+- Aegunud ridade kustutamine käib iga päringu alguses (`purge`). Suure mahu juures tuleb see viia koristusse; mõõtmine on viies samm.
 
 ## Vastavus avaldatud tingimustele
 

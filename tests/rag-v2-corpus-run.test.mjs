@@ -233,3 +233,15 @@ test('ADR-093: the new plan keeps the running plan\'s audit time; a plan without
     assert.match((await calls(kept)).find(line => line.startsWith('plan ')), new RegExp(`--reasoning-choices low,medium --audit-days ${days} --basis `, 'u'));
   }
 });
+
+test('ADR-094: the new plan keeps the running plan\'s retention time for audit rows; a plan without one gets none', { skip: !shell && 'no sh' }, async () => {
+  const plain = await tree('retention-none');
+  assert.equal(run(plain).status, 0);
+  assert.doesNotMatch((await calls(plain)).find(line => line.startsWith('plan ')), /--retention-hours/u);
+  const kept = await tree('retention-week');
+  await fs.writeFile(path.join(kept.etc, 'current.json'), JSON.stringify({ id: 'plan-old', generationId: 'search_generation_prior', documents: { d1: 'v1' },
+    reasoning: 'low', reasoningChoices: ['low', 'medium'], auditDays: 0, retentionHours: 168 }));
+  const result = run(kept);
+  assert.equal(result.status, 0, result.stdout + result.stderr);
+  assert.match((await calls(kept)).find(line => line.startsWith('plan ')), /--reasoning-choices low,medium --audit-days 0 --retention-hours 168 --basis /u);
+});
