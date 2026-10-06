@@ -12,6 +12,7 @@ import { isPackedJson, packJson } from '../lib/rag-v2/pilot/packed-json.js';
 import { auditPacketBytes, isLeanPacket, AUDIT_PACKET_BYTES } from '../lib/rag-v2/search/model-context.js';
 import { isLeanTurn } from '../lib/rag-v2/pilot/lean-turn.js';
 import { conversationTurns, historySourceView, isHistoryMessage } from '../lib/rag-v2/pilot/history.js';
+import { recordStoredTurns, PLACEHOLDERS } from '../lib/rag-v2/pilot/history-backfill.js';
 import { pilotChatMessages } from '../lib/chat/m4PilotClientContract.js';
 import { municipalPacket } from './fixtures/rag-v2-municipal-packet.mjs';
 import { PilotService } from '../lib/rag-v2/pilot/service.js';
@@ -852,4 +853,44 @@ test('real DB: a turn that cannot be restored from its row is shown from its rec
   const listed = await conversationTurns(base);
   assert.deepEqual(listed.turns.map(turn => [turn.state, turn.history === true]), [['completed', true], ['unknown', false]]);
   assert.deepEqual([listed.turns[0].id, listed.turns[0].answer, listed.rows.has(first.id)], [first.id, first.answer, false]);
+});
+
+// ADR-094: a turn published before the conversation was kept in its own messages has an audit row and two placeholder
+// messages. Its record is made from the row, as it is made at publication.
+test('real DB: a turn published with placeholders gets its record from its audit row; a dry run writes nothing; other text is left alone', async t => {
+  const f = await fixture(t);
+  const first = await f.service.run(f.user.id, f.input);
+  const second = await f.service.run(f.user.id, { ...f.input, clientTurnKey: randomUUID(), question: 'Teine küsimus' });
+  const read = () => db.conversationMessage.findMany({ where: { conversationId: f.conv.id }, orderBy: [{ createdAt: 'asc' }, { id: 'asc' }] });
+  const published = await read();
+  // As turns were published before: the placeholders and the turn's id.
+  for (const message of published) await db.conversationMessage.update({ where: { id: message.id }, data: { content: PLACEHOLDERS[message.role], metadata: { m4TurnId: message.metadata.m4TurnId } } });
+  // The test database holds other tests' turns too, and test files run side by side: this test works on its own plan's.
+  const where = { pilotId: f.config.id };
+  const mine = async () => (await read()).map(message => [message.role, message.content, isHistoryMessage(message)]);
+  const placeholders = [['USER', PLACEHOLDERS.USER, false], ['ASSISTANT', PLACEHOLDERS.ASSISTANT, false], ['USER', PLACEHOLDERS.USER, false], ['ASSISTANT', PLACEHOLDERS.ASSISTANT, false]];
+  assert.deepEqual(await mine(), placeholders);
+  const counted = await recordStoredTurns(db, { dryRun: true, where });
+  assert.deepEqual([counted.turns, counted.made, counted.already, counted.otherContent, counted.failed, counted.dryRun], [2, 2, 0, 0, {}, true]);
+  assert.deepEqual(await mine(), placeholders, 'a dry run writes nothing');
+  // The second turn's answer message holds some other text: it is not written over.
+  await db.conversationMessage.update({ where: { id: published[3].id }, data: { content: 'Käsitsi muudetud tekst' } });
+  const done = await recordStoredTurns(db, { where });
+  assert.deepEqual([done.turns, done.made, done.otherContent, done.already, done.noMessages], [2, 1, 1, 0, 0]);
+  assert(done.recordBytes.max > 0 && done.recordBytes.sum === done.recordBytes.max);
+  const after = await read();
+  // The first turn's messages are again what publication wrote: the same text, the same record.
+  assert.deepEqual(after.slice(0, 2).map(message => [message.id, message.content, message.metadata]), published.slice(0, 2).map(message => [message.id, message.content, message.metadata]));
+  assert.deepEqual(after.slice(2).map(message => [message.content, isHistoryMessage(message)]), [[PLACEHOLDERS.USER, false], ['Käsitsi muudetud tekst', false]]);
+  // The turn is in the history under any plan now, and its audit row is as it was.
+  const later = await conversationTurns({ db, service: f.service, config: { ...f.config, id: randomUUID(), configHash: randomUUID() }, userId: f.user.id, convId: f.conv.id });
+  assert.deepEqual(later.turns.map(turn => [turn.id, turn.history, turn.question]), [[first.id, true, 'Üldküsimus']]);
+  assert.equal((await db.m4PilotTurn.findUnique({ where: { id: second.id } })).state, 'completed');
+  // A second run finds the first turn done.
+  const again = await recordStoredTurns(db, { where });
+  assert.deepEqual([again.turns, again.already, again.made, again.otherContent], [2, 1, 0, 1]);
+  assert.deepEqual((await read()).map(message => message.content), after.map(message => message.content));
+  // A record of the first step, without the topic's user turns, is completed from the row (here a turn without a
+  // dialogue has no such list, so its record counts as whole).
+  assert.equal(again.completed, 0);
 });

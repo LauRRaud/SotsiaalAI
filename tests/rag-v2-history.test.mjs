@@ -6,10 +6,11 @@ import os from 'node:os';
 import { ingest } from '../lib/rag-v2/ingestion.js';
 import { hash } from '../lib/rag-v2/contracts.js';
 import { runtimeAdapters } from '../lib/rag-v2/pilot/retrieval.js';
-import { historyRecord, historyMessages, historyTurn, isHistoryMessage, conversationTurns, historySourceView, HISTORY_VERSION } from '../lib/rag-v2/pilot/history.js';
+import { historyRecord, historyMessages, historyTurn, isHistoryMessage, conversationTurns, historySourceView, historyRows, historyDialogue, HISTORY_VERSION } from '../lib/rag-v2/pilot/history.js';
 import { completedView, PilotService } from '../lib/rag-v2/pilot/service.js';
 import { PilotStore } from '../lib/rag-v2/pilot/store.js';
-import { publishedDialogue } from '../lib/rag-v2/pilot/dialogue.js';
+import { publishedDialogue, acceptDialogue, dialogueSummary, DIALOGUE_LIMITS } from '../lib/rag-v2/pilot/dialogue.js';
+import { stateAudit, previousStateFor } from '../lib/rag-v2/pilot/dialogue-state.js';
 import { leanPayload } from '../lib/rag-v2/pilot/lean-turn.js';
 import { renderAnswer } from '../lib/rag-v2/pilot/presentation.js';
 import { pilotChatResult, pilotChatMessages } from '../lib/chat/m4PilotClientContract.js';
@@ -55,7 +56,7 @@ test('the record of a turn holds the conversation: the answer, the cited sources
   assert.deepEqual(record.context, view.context);
   // What the next turn takes: the turn's place in its topic, its state, the records in focus, what was asked about.
   assert.deepEqual(record.dialogue, { context: row.payload.context, contextMode: 'new', state: row.payload.dialogueState, recordFocus: publishedDialogue(row).recordFocus,
-    askedRegions: ['naidislinn'], askedPerson: 'isa' });
+    askedRegions: ['naidislinn'], askedPerson: 'isa', userTurns: [{ text: 'Millist abi saab isa kodus?' }] });
   // A few kilobytes for a turn whose packet is more than half a megabyte.
   assert(bytes(record) < 6000 && bytes(row.payload.packet) > 500000, `${bytes(record)} of ${bytes(row.payload.packet)}`);
   // The same record from the turn's lean row is not expected: the record is made once, from the turn as published.
@@ -202,4 +203,102 @@ test('the corpus gives a history source its text for the same version and the sa
     assert(target.startsWith(path.resolve(os.tmpdir()) + path.sep) && path.basename(target).startsWith('rag-v2-history-'));
     await fs.rm(target, { recursive: true, force: true });
   }
+});
+
+// ADR-094, step 2: the dialogue goes on from a turn's record when its audit row cannot be read. The rows made from the
+// records must give the dialogue exactly what the audit rows gave: the state of a topic is bound to its user turns.
+const plan = { configHash: 'plan-a', embedding: { model: 'test' }, model: 'test', maxOutputTokens: 1000, reasoning: 'low' };
+// A conversation accepted turn by turn as the store does it: the plan's rows, and the two messages of each published turn.
+function conversation(config = plan) {
+  const rows = [], messages = [];
+  let head = null;
+  const next = (question, mode = 'same', answered = true) => {
+    const id = `turn-${String(rows.length + 1).padStart(8, '0')}`, at = new Date(1000 * (rows.length + 1));
+    const contextAudit = acceptDialogue(config, { question, contextMode: mode }, rows, head, id);
+    const answer = { kind: 'grounded', blocks: [{ text: `Vastus ${rows.length + 1}.`, factual: true, refs: ['S1'] }, { text: 'Teine punkt.', factual: true, refs: ['S1'] }], limitations: [], clarification: null };
+    const packet = { reference_map: { S1: { document_id: 'doc', document_version_id: 'v1', chunk_id: 'chunk', source_text_sha256: 'a'.repeat(64), evidence_id: 'e1', pdf_pages: [1] } },
+      evidence: [{ evidence_id: 'e1', bibliography: { title: 'Allikas' } }] };
+    const row = { id, state: answered ? 'completed' : 'stopped', configHash: config.configHash, createdAt: at, expiresAt: null,
+      payload: { question, contextMode: mode, context: contextAudit.context, contextAudit, query: { language: 'et', tokens: 1 }, events: [],
+        ...(answered ? { answer, answerVersion: 'm4-text-refs-2', packet, dialogueState: stateAudit({ facts: [], note: id }, contextAudit) } : {}) } };
+    rows.push(row); head = { configHash: config.configHash, turnId: id, revision: contextAudit.context.revision };
+    if (answered) {
+      const pair = historyMessages(historyRecord({ row, view: completedView(row, 'real'), packet }), question);
+      messages.push({ id: `${id}-u`, role: 'USER', createdAt: at, ...pair.user }, { id: `${id}-a`, role: 'ASSISTANT', createdAt: new Date(at.getTime() + 1), ...pair.assistant });
+    }
+    return row;
+  };
+  // What the store reads back: JSON as the database returns it.
+  return { rows, next, head: () => head, messages: () => JSON.parse(JSON.stringify(messages)).map(message => ({ ...message, createdAt: new Date(message.createdAt) })) };
+}
+const withoutTime = accepted => ({ ...accepted, context: { ...accepted.context, acceptedAt: null } });
+
+test('the next turn is accepted from the records as from the audit rows: the same user turns, topic, person and state binding', () => {
+  const c = conversation();
+  c.next('Olen 67 ja elan Harkus.', 'new'); c.next('Milline abi?', 'same', false); const third = c.next('Parandus: elan Tartus.', 'correction');
+  const input = { question: 'Aga hind?', contextMode: 'same' }, other = { ...plan, configHash: 'plan-b' };
+  const fromRows = acceptDialogue(plan, input, c.rows, c.head(), 'turn-next');
+  // Another plan reads none of these rows: every turn comes from the records.
+  const recorded = historyRows(c.messages());
+  assert.deepEqual(recorded.map(row => [row.id, row.state, Boolean(row.history)]).sort(), [['turn-00000001', 'completed', true], ['turn-00000002', 'stopped', false], ['turn-00000003', 'completed', true]]);
+  // The turn that got no answer has no record: it is one of the topic's user turns and comes back from the third's list.
+  const lost = recorded.find(row => row.id === 'turn-00000002');
+  assert.deepEqual([lost.payload.question, lost.payload.context.mode, lost.payload.context.revision > 1 && lost.payload.context.revision < 3], ['Milline abi?', 'same', true]);
+  const fromRecords = acceptDialogue(other, input, recorded, c.head(), 'turn-next');
+  assert.deepEqual(fromRecords.userTurns, fromRows.userTurns);
+  assert.deepEqual(fromRecords.userTurns.map(turn => [turn.text, turn.mode, turn.correctionOf]), [['Olen 67 ja elan Harkus.', 'new', null], ['Milline abi?', 'same', null],
+    ['Parandus: elan Tartus.', 'correction', 'turn-00000002'], ['Aga hind?', 'same', null]]);
+  assert.deepEqual(withoutTime(fromRecords), withoutTime(fromRows));
+  assert.deepEqual([fromRecords.context.revision, fromRecords.context.correctionRevision, fromRecords.selection.assistantTurnId, fromRecords.selection.headFromEarlierPlan], [4, 1, third.id, undefined]);
+  // The state the third turn saved binds to the turns as the records give them.
+  const source = recorded.find(row => row.id === third.id);
+  assert.deepEqual(previousStateFor(source.payload.dialogueState, fromRecords), third.payload.dialogueState);
+  // The earlier answer as the dialogue takes it: the same from the record as from the row.
+  assert.deepEqual(historyDialogue(source.history), publishedDialogue(third));
+  // A turn the plan has a row for is read from the row; its record still brings back the turn its list names.
+  assert.deepEqual(historyRows(c.messages(), new Set([third.id])).map(row => row.id).sort(), ['turn-00000001', 'turn-00000002']);
+  const mixed = acceptDialogue(plan, input, [third, ...historyRows(c.messages(), new Set([third.id]))], c.head(), 'turn-next');
+  assert.deepEqual(withoutTime(mixed), withoutTime(fromRows));
+  // What the composer reads: the active topic is known, so the next message continues it.
+  const summary = dialogueSummary(recorded, c.head());
+  assert.deepEqual([summary.active.scopeId, summary.active.userTurns, summary.unavailable, summary.scopes.length, summary.scopes[0].answers.length], [third.payload.context.scopeId, 3, false, 1, 2]);
+});
+
+test('a full topic hands its last message and answer on from the records as from the rows', () => {
+  const c = conversation();
+  c.next('Esimene.', 'new');
+  for (let turn = 2; turn <= DIALOGUE_LIMITS.scopeTurns; turn++) c.next(`Sõnum ${turn}.`);
+  const ninth = c.next('Üheksas.'), other = { ...plan, configHash: 'plan-b' };
+  assert.equal(ninth.payload.context.mode, 'new');
+  assert.deepEqual(ninth.payload.contextAudit.userTurns.map(turn => [turn.text, turn.carried ?? null]), [[`Sõnum ${DIALOGUE_LIMITS.scopeTurns}.`, 'message'], ['Üheksas.', null]]);
+  const input = { question: 'Kümnes.', contextMode: 'same' }, recorded = historyRows(c.messages());
+  assert.equal(recorded.length, 9);
+  const fromRows = acceptDialogue(plan, input, c.rows, c.head(), 'turn-next'), fromRecords = acceptDialogue(other, input, recorded, c.head(), 'turn-next');
+  assert.deepEqual(withoutTime(fromRecords), withoutTime(fromRows));
+  assert.deepEqual(fromRecords.userTurns.map(turn => turn.text), [`Sõnum ${DIALOGUE_LIMITS.scopeTurns}.`, 'Üheksas.', 'Kümnes.']);
+  assert.deepEqual(fromRecords.selection.carried, ninth.payload.contextAudit.selection.carried);
+  // The same when the full topic itself is read from the records: the ninth message is accepted from them.
+  const eight = conversation();
+  eight.next('Esimene.', 'new');
+  for (let turn = 2; turn <= DIALOGUE_LIMITS.scopeTurns; turn++) eight.next(`Sõnum ${turn}.`);
+  const again = { question: 'Üheksas.', contextMode: 'same' };
+  assert.deepEqual(withoutTime(acceptDialogue(other, again, historyRows(eight.messages()), eight.head(), 'turn-next')), withoutTime(acceptDialogue(plan, again, eight.rows, eight.head(), 'turn-next')));
+});
+
+test('a head the dialogue does not know starts a new topic after a plan change; a record of the first step is shown, not continued', () => {
+  const c = conversation();
+  c.next('Olen 67 ja elan Harkus.', 'new'); const failed = c.next('Uus inimene.', 'new_person', false);
+  const other = { ...plan, configHash: 'plan-b' }, recorded = historyRows(c.messages());
+  // The last turn before the plan change got no answer: nothing names its person, and no later record lists it.
+  assert.deepEqual(recorded.map(row => row.id), ['turn-00000001']);
+  const accepted = acceptDialogue(other, { question: 'Aga hind?', contextMode: 'same' }, recorded, c.head(), 'turn-next');
+  assert.deepEqual([accepted.context.scopeId, accepted.context.personId, accepted.selection.headFromEarlierPlan, accepted.userTurns.length, accepted.context.revision], ['turn-next', 'turn-next', true, 1, 2]);
+  assert.equal(failed.payload.context.revision, 2);
+  assert.deepEqual([dialogueSummary(recorded, c.head()).active, dialogueSummary(recorded, c.head()).unavailable], [null, true]);
+  // A record written before the list of user turns was kept holds no dialogue to go on from.
+  const early = c.messages().map(message => (message.metadata.m4History ? { ...message, metadata: { ...message.metadata,
+    m4History: { ...message.metadata.m4History, dialogue: { ...message.metadata.m4History.dialogue, userTurns: undefined } } } } : message));
+  assert.deepEqual(historyRows(early), []);
+  // Messages of other kinds and placeholders are not turns.
+  assert.deepEqual(historyRows([{ id: 'x', role: 'ASSISTANT', content: 'tere', metadata: null, createdAt: new Date() }, { id: 'y', role: 'ASSISTANT', content: '[Kaitstud M4 sisepiloodi vastus]', metadata: { m4TurnId: 'old' }, createdAt: new Date() }]), []);
 });
