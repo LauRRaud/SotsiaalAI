@@ -9,6 +9,7 @@ import { getRequestIpFromRequest } from "@/lib/request-ip";
 import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
 import { normalizeTartuNlpSpeaker, tartuNlpSupportsLocale } from "@/lib/chat/voiceState";
 import { readAudioDurationSecondsFromBuffer } from "@/lib/audio/duration";
+import { frameToneProfileFor, softenFrameTones } from "@/lib/audio/frameTones";
 import { convertFloat32WavToPcm16, prependWavSilence } from "@/lib/audio/wavPcm";
 import { resolveGoogleApplicationCredentialsPath } from "@/lib/googleCredentials";
 import { safeError } from "@/lib/privacy/safeError";
@@ -173,8 +174,15 @@ async function synthTartuNlp({ text, speaker, signal }) {
       return { ok: false, messageKey: "api.tts.synthesis_failed" };
     }
     // Float32 → PCM16: pool mahtu ja formaadikood, mida iga brauser tunneb.
+    // Enne ümardamist pehmendatakse hääle metalset kaja (sünteesi kaadritoonid);
+    // profiilita hääl läheb läbi muutmata.
+    const toneProfile = frameToneProfileFor(speaker);
     const buf = prependWavSilence(
-      convertFloat32WavToPcm16(raw),
+      await convertFloat32WavToPcm16(raw, {
+        processSamples: toneProfile
+          ? (samples, format) => softenFrameTones(samples, format, toneProfile)
+          : undefined
+      }),
       TARTUNLP_LEADING_SILENCE_MS
     );
     return {
