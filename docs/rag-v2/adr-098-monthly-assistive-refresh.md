@@ -24,6 +24,7 @@ Kaks korda kuus (1. ja 3. kuupäeval) loeb ajastatud töö allikad uuesti. Muutu
 | Müügipunktide lehed | tehakse vastuvõetud punktidest uuesti | leht, mille punktid muutusid (ainult lugemise kuupäeva pärast lehte uuesti ei tehta) |
 | Müüjate lehed korpuses | lehtede korjaja, täpselt need 51 aadressi | lehe sisu erineb salvestatud koopiast |
 | Ameti kaks juhislehte | lehtede korjaja, nimekiri `web_pages.json` | sama |
+| Organisatsioonide lehed korpuses (alates 06.10.2026 õhtust) | lehtede korjaja, täpselt need aadressid, mis korpuses on | lehe sisu erineb sellest, mis viimati loeti |
 
 ### Reeglid
 
@@ -33,6 +34,11 @@ Kaks korda kuus (1. ja 3. kuupäeval) loeb ajastatud töö allikad uuesti. Muutu
 - **Ülevaatuseks märgitud leht** (nimi lingis, märgistuseta sisuosa, õhuke) ei lähe ise kohale; aruanne nimetab selle ja inimene vaatab üle.
 - **Vigane lugemine ei ole uudis:** kui tabelist tuleb alla 80% varasemast punktide arvust või mõni punkt jääb omavalitsuseta, katkestab skript.
 - Müüja saidi uusi lehti ei otsita; loetakse neid, mis korpuses on.
+- **Organisatsiooni leht valitakse uuesti sama reegliga, mis ta korpusesse valis** (ADR-095, `lib/rag-v2/web-select.js`: isikut nimetav lõik võetakse välja). Korjaja ise neid lehti kohale ei pane, sest enamik on ülevaatuseks märgitud just selle pärast, mida valik kontrollib. Teisel samasugusel lugemisel:
+  - leht, mis valiku läbib ja mille valitud tekst erineb, asendab salvestatud koopia ja läheb täiendusse;
+  - leht, mille muutus oli ainult selles osas, mille valik välja võtab, ei muuda korpuses midagi (salvestatakse ainult uus lugemise räsi);
+  - leht, mille valik nüüd välja jätab (näiteks on lehest saanud isikute nimekiri), jääb korpusesse nii, nagu oli, ja aruanne nimetab selle (`changedAndLeftOutByTheChoice`). Eemaldamise otsustab inimene.
+- Organisatsiooni saidi uusi lehti ei otsita; uued lehed tulevad uue korjega (`rag-v2-web-pages.mjs` ja `rag-v2-web-select.mjs`, ADR-095).
 
 ### Kulu
 
@@ -45,7 +51,7 @@ Lugemine, võrdlus ja aruanne on tasuta. Raha kulub ainult siis, kui on mida kor
 - Skript: `scripts/rag-v2-assistive-refresh.mjs` (otsused: `lib/rag-v2/assistive-refresh.js`).
 - Seis on väljaspool repot, sest lehtedel on telefoninumbrid ja ettevõtete enda tekstid: `C:\Users\rauds\Desktop\Sotsiaal.ee\tmp\rag-v2-assistive-refresh\`
   - `accepted/points.json` vastuvõetud tabel; `pending.json` eelmise lugemise ettepanekud;
-  - `accepted/pages/` müüjate lehtede salvestatud koopiad; `ingested/abivahendid/` punktilehed nii, nagu korpuses;
+  - `accepted/pages/` müüjate lehtede salvestatud koopiad; `accepted/organisations/` organisatsioonide lehed nii, nagu valik need korpusesse pani; `ingested/abivahendid/` punktilehed nii, nagu korpuses;
   - `increment/sources/` mis ootab täiendust (koos registriga); `reports/` iga käivituse aruanne.
 - Ametlike lehtede koopiad on repos (`Andmebaasi/veebilehed`); kui selline leht muutub, muutub repo fail ja tema räsi failiregistris (`Andmebaasi/REGISTER.json`) tuleb käsitsi uuendada.
 - Abiskriptid täienduse jaoks: `scripts/rag-v2-review-by-rule.mjs` (ülevaatus reegli järgi), `scripts/rag-v2-upload-parts.sh` (üleslaadimine osade kaupa), `scripts/rag-v2-corpus-run-guarded.sh` (serveri käivitus sisendite piiriga).
@@ -90,6 +96,20 @@ Lugemine, võrdlus ja aruanne on tasuta. Raha kulub ainult siis, kui on mida kor
 | Ameti lehed | 2 loetud, muutmata |
 | Täiendus | ei oota; raha ei kulunud |
 
+## Organisatsioonide lehtede sammu proov (06.10.2026 õhtul)
+
+Omanik viitas 06.10.2026 minu enda loetelule tegemata asjadest („siit saad ka vist midagi edasi teha?“), kus oli kirjas, et organisatsioonide lehti igakuine uuendamine ei loe.
+
+Proov tehti eraldi prooviseisuga (`tmp/` all, päris seisu ei puudutatud): ühe organisatsiooni 13 valitud lehte „korpusena“, kahel neist salvestatud koopia tahtlikult teistsugune kui sait praegu ütleb. Ühel oli tekstist lõik välja võetud, teisel ainult lugemise räsi muudetud.
+
+| Lugemine | Tulemus |
+|---|---|
+| 1. | 11 muutmata, 2 ettepanek; midagi ei pandud kohale |
+| 2. | 2 kinnitatud: üks läks täiendusse (lõik on tagasi, fail on sama mis saidilt valitud leht), teine märgiti „muutus ainult selles, mille valik välja võtab“; täiendus ootab registri ja valikufailiga |
+| 3. | 13 muutmata |
+
+See näitab, et samm teeb, mida reegel ütleb. Muutus oli tehislik (mina muutsin salvestatud koopiat), mitte saidi päris muutus.
+
 ## Kontroll
 
 `tests/rag-v2-assistive-refresh.test.mjs` (3 testi): lugemise muutused (samad andmed teises järjekorras ei ole muutus); muutus on esimesel lugemisel ettepanek ja rakendub teisel; kadunud punkt ootab inimest ja läheb ainult kinnitusega; teistsugune muutus alustab uuesti; punktilehti tehakse uuesti ainult seal, kus punktid muutusid.
@@ -98,8 +118,10 @@ Lugemine, võrdlus ja aruanne on tasuta. Raha kulub ainult siis, kui on mida kor
 
 ## Kontrollimata ja tegemata
 
-- **Muutunud allika viimist korpusesse ei ole proovitud.** Tänased täiendused lisasid uusi dokumente; olemasoleva dokumendi uus versioon selle tee kaudu on esimesel päris muutusel esimene kord.
+- **Muutunud allika viimine korpusesse on proovitud ühe sammu võrra.** Korpus v64 (06.10.2026 öösel) viis 17 muutunud veebilehte korpusesse uue versioonina ja võttis 5 lehte poliitikast välja sama täiendustee kaudu (kohalik vastuvõtt, pakett, serveri käivitus): indeksis 8001 dokumenti, käivitus lõppes veata. Uuendamise skripti enda `increment/` kaustast tulnud täiendust ei ole veel tehtud; see on esimesel päris muutusel esimene kord.
 - **Ajastatud töö jookseb omaniku arvutis** Claude'i rakenduses ja ainult siis, kui rakendus on avatud; kinnise rakenduse korral käivitub ta järgmisel avamisel. Server korpust sisse ei loe.
 - Ajastatud töö ise ei ole veel kordagi käivitunud; esimene kord on 1. novembril.
 - Kontrollküsimus vajab brauseris omaniku seanssi; ilma selleta jääb see tegemata ja aruanne ütleb seda.
 - Hinnad müüjate lehtedel võivad kahe lugemise vahel (kuni kuu) vananeda.
+- Organisatsioonide lehtede lugemine pikendab käivitust (üks päring pooleteise sekundi järel saidi kohta); kui pikaks, näitab esimene päris käivitus.
+- Skripti ja ajastatud töö nimi räägib abivahenditest, kuid loetakse ka organisatsioonide lehti. Nime ei muudetud, et ajastatud töö ja seisukaust jääksid samaks.

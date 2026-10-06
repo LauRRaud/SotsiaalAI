@@ -8,12 +8,16 @@
 //   3. the web pages in the corpus (the vendors' pages, the Board's guidance pages): read again with the page
 //      collector; a changed page is a proposal first and replaces the stored copy on the second equal reading; a page
 //      marked for review is never placed by itself
+//      The organisations' own pages in the corpus (ADR-095) are read again in the same way. Those were chosen by a
+//      rule (lib/rag-v2/web-select.js: a paragraph that names a person is taken out), so a changed page is chosen
+//      again by that rule on its second equal reading; a page the rule now leaves out is reported and stays as it is
 //   4. the changed sources are collected under <state>/increment with their register, and a report says what was
 //      found. --mark-ingested says the increment went into the corpus: the next run compares against it.
 // The state lives outside the repository (the pages hold phone numbers and the companies' own texts):
 //   <state>/accepted/points.json      the accepted reading of the table
 //   <state>/pending.json              the changes the last reading proposed
 //   <state>/accepted/pages/           the stored copies of the vendors' pages
+//   <state>/accepted/organisations/   the organisations' pages as chosen for the corpus
 //   <state>/ingested/abivahendid/     the points' pages as the corpus has them
 //   <state>/increment/sources/        what waits for an increment
 //   <state>/reports/<time>.json       every run's report
@@ -21,6 +25,7 @@
 //   node --import ./scripts/register-node-source-loader.mjs scripts/rag-v2-assistive-refresh.mjs --state <dir>
 //     [--from-reading <points.json>] [--approve-removals key,key] [--skip-points] [--skip-pages] [--dry-run]
 //     [--official-list Andmebaasi/register/web_pages.json] [--official id,id] [--official-stored Andmebaasi/veebilehed]
+//     [--organisations-list Andmebaasi/register/web_pages_organisations.json]
 //   node … scripts/rag-v2-assistive-refresh.mjs --state <dir> --mark-ingested
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -30,13 +35,14 @@ import { parseArgs } from 'node:util';
 import { collectPoints, csvReader, ASSISTIVE_POINTS, SKA_MAP_CSV } from '../lib/rag-v2/assistive-points.js';
 import { COLLECTOR_AGENT } from '../lib/rag-v2/web-collect.js';
 import { ASSISTIVE_REFRESH, decidePoints, refreshedPointPages } from '../lib/rag-v2/assistive-refresh.js';
+import { chosenMetadata, lowerWords, selectPage } from '../lib/rag-v2/web-select.js';
 
 const { values } = parseArgs({ options: { state: { type: 'string' }, municipalities: { type: 'string', default: 'Andmebaasi/KOV' }, 'from-reading': { type: 'string' },
   'approve-removals': { type: 'string', default: '' }, 'skip-points': { type: 'boolean', default: false }, 'skip-pages': { type: 'boolean', default: false },
   'dry-run': { type: 'boolean', default: false }, 'mark-ingested': { type: 'boolean', default: false }, 'delay-ms': { type: 'string', default: '1500' },
   'official-list': { type: 'string', default: 'Andmebaasi/register/web_pages.json' },
   official: { type: 'string', default: 'sotsiaalkindlustusamet_ska_abivahendi_vajajale,sotsiaalkindlustusamet_ska_abivahendi_ettevottele' },
-  'official-stored': { type: 'string', default: 'Andmebaasi/veebilehed' } } });
+  'official-stored': { type: 'string', default: 'Andmebaasi/veebilehed' }, 'organisations-list': { type: 'string', default: 'Andmebaasi/register/web_pages_organisations.json' } } });
 if (!values.state) throw Error('usage: --state <dir outside the repository> [--from-reading <points.json>] [--approve-removals key,key] [--skip-points] [--skip-pages] [--dry-run] | --mark-ingested');
 const state = path.resolve(values.state), dry = values['dry-run'];
 const readJson = async (file, fallback = null) => fs.readFile(file, 'utf8').then(JSON.parse, () => fallback);
@@ -134,6 +140,46 @@ if (!values['skip-pages']) {
     report.pages.push({ list: run.label, read: rows.length, status: run.summary.status, applied: applied.map(row => `${row.status}: ${row.url}`),
       proposed: rows.filter(row => row.status === 'proposed').map(row => row.url),
       changedButMarkedForReview: rows.filter(row => ['confirmed', 'new'].includes(row.status) && !row.applied).map(row => `${row.url} (${(row.warnings || []).join(',')})`),
+      failed: rows.filter(row => ['failed', 'robots_disallowed'].includes(row.status)).map(row => `${row.url} ${row.error || row.status}`) });
+  }
+
+  // The organisations' own pages: read by their own addresses, never placed by the collector (most are marked for
+  // review for the very thing the choice looks after). A change confirmed by a second equal reading is chosen again.
+  const organisations = path.join(state, 'accepted', 'organisations'), kept = [];
+  for (const file of (await walk(organisations)).filter(name => name.endsWith('.json'))) {
+    const meta = await readJson(path.join(organisations, file));
+    if (meta?.source_id && meta.url) kept.push({ rel: file.replace(/\.json$/u, ''), meta });
+  }
+  if (kept.length) {
+    const work = path.join(state, 'web-organisations'), list = path.join(work, 'list.json');
+    await fs.mkdir(work, { recursive: true });
+    await fs.writeFile(list, `${JSON.stringify({ version: 'web-pages-1', note: 'The organisations\' pages in the corpus, for the refresh.',
+      pages: kept.map(({ meta }) => ({ source_id: meta.source_id, url: meta.url, title: meta.register_title || meta.title, publisher: meta.publisher, source_type: meta.source_type, language: meta.language, subpages: false })) }, null, 1)}\n`);
+    const out = execFileSync(process.execPath, ['scripts/rag-v2-web-pages.mjs', '--list', list, '--work', work, '--stored', organisations, '--no-subpages', '--delay-ms', values['delay-ms']], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
+    const summary = JSON.parse(out.trim().split('\n').at(-1)), { rows } = await readJson(path.join(summary.run, 'report.json')), confirmed = rows.filter(row => row.status === 'confirmed');
+    const read = async (base, rel) => ({ html: await fs.readFile(path.join(base, `${rel}.html`), 'utf8'), meta: await readJson(path.join(base, `${rel}.json`)) });
+    const relOf = row => kept.find(item => item.meta.source_id === row.id)?.rel;
+    // The rule's reading: the pages as stored and the confirmed ones as read now.
+    const texts = [];
+    for (const { rel } of kept) texts.push(await fs.readFile(path.join(organisations, `${rel}.html`), 'utf8'));
+    for (const row of confirmed) texts.push((await read(path.join(summary.run, 'pages'), relOf(row))).html);
+    const leaveOut = (await readJson(values['organisations-list']))?.selection?.leave_out;
+    const context = { lower: lowerWords(texts), places: new Set(municipalities.flatMap(item => `${item.name} ${item.county || ''}`.toLowerCase().split(/[\s-]+/u).filter(Boolean))), leaveOut: leaveOut ? new RegExp(leaveOut, 'iu') : null };
+    const applied = [], sameAsChosen = [], leftOut = [];
+    for (const row of confirmed) {
+      const rel = relOf(row), page = await read(path.join(summary.run, 'pages'), rel), before = await read(organisations, rel), chosen = selectPage(page, context);
+      if (!chosen.keep) { leftOut.push(`${row.url} (${chosen.why})`); continue; }
+      const metadata = `${JSON.stringify(chosenMetadata(page.meta, chosen), null, 2)}\n`;
+      for (const ext of ['html', 'json']) await write(path.join(work, 'previous', stamp.replace(/[:.]/gu, '-'), `${rel}.${ext}`), ext === 'html' ? before.html : `${JSON.stringify(before.meta, null, 2)}\n`);
+      await write(path.join(organisations, `${rel}.html`), chosen.html); await write(path.join(organisations, `${rel}.json`), metadata);
+      if (!dry) for (const ext of ['html', 'json']) await fs.rm(path.join(work, 'proposals', `${rel}.${ext}`), { force: true });
+      // A change inside what the choice takes out changes nothing in the corpus.
+      if (chosen.html === before.html) { sameAsChosen.push(row.url); continue; }
+      await write(path.join(increment, 'veebilehed', `${rel}.html`), chosen.html); await write(path.join(increment, 'veebilehed', `${rel}.json`), metadata);
+      changedSources.push(`veebilehed/${rel}.html`); applied.push(`confirmed: ${row.url}`);
+    }
+    report.pages.push({ list: 'organisations', read: rows.length, status: summary.status, applied, proposed: rows.filter(row => row.status === 'proposed').map(row => row.url),
+      changedOnlyInWhatTheChoiceTakesOut: sameAsChosen, changedAndLeftOutByTheChoice: leftOut,
       failed: rows.filter(row => ['failed', 'robots_disallowed'].includes(row.status)).map(row => `${row.url} ${row.error || row.status}`) });
   }
 }

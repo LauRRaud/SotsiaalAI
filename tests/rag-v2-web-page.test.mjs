@@ -4,7 +4,7 @@ import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { extractPage, emailKind, robotsAllows, subpageLinks, pageMetadata, decidePage, WEB_PAGE_COLLECTOR } from '../lib/rag-v2/web-page.js';
-import { fetchPage, collectEntry, subpageId, siteManners, COLLECTOR_AGENT } from '../lib/rag-v2/web-collect.js';
+import { fetchPage, collectEntry, subpageId, linkTitle, siteManners, COLLECTOR_AGENT } from '../lib/rag-v2/web-collect.js';
 import { adaptMetadata } from '../lib/rag-v2/metadata-adapter.js';
 import { ingest } from '../lib/rag-v2/ingestion.js';
 
@@ -164,6 +164,8 @@ test('a page\'s sub-pages are the pages of the same site below its path, also th
     ['https://www.naidisamet.example/puue/abivahendid/abivahendi-vajajale/hinnad/tabel']);
   assert.equal(subpageId('amet_leht', URL_PAGE, `${URL_PAGE}/Taotlemine/Õigus%20abile/`), 'amet_leht--taotlemine--oigus-abile');
   assert(subpageId('amet_leht', URL_PAGE, `${URL_PAGE}/${'a'.repeat(200)}`).length <= 150);
+  // A link that only invites to read on gives the page no title.
+  assert.deepEqual(['LOE EDASI', 'Loe lähemalt »', 'Vaata', 'Read more', '', 'Loe lihtsas keeles', 'Taotlemine'].map(linkTitle), [null, null, null, null, null, 'Loe lihtsas keeles', 'Taotlemine']);
 });
 
 // A made-up site: address → [status, headers, body].
@@ -234,6 +236,9 @@ test('a listed page is collected with its sub-pages, breadth first, within the l
   // by the link's text. The others are not asked for, and are not what the cap leaves out.
   const calls = site.calls.length, chosen = await collectEntry({ ...entry, subpages: { depth: 1, only: 'kuidas|^.* Kes$' } }, { ...site, site: manners });
   assert.deepEqual([chosen.pages.map(item => item.id), chosen.skipped, site.calls.slice(calls)], [['amet_teenus', 'amet_teenus--kes', 'amet_teenus--kuidas'], [], [root, `${root}/kes`, `${root}/kuidas`]]);
+  // The other way round: every sub-page but the ones a pattern names.
+  const others = await collectEntry({ ...entry, subpages: { depth: 1, except: 'kuidas|vana|keelatud' } }, { ...site, site: manners });
+  assert.deepEqual(others.pages.map(item => item.id), ['amet_teenus', 'amet_teenus--kes']);
   // A listed page that cannot be read is reported, with nothing guessed.
   assert.deepEqual((await collectEntry({ ...entry, url: 'https://amet.example/puudub' }, { ...site, site: manners })).pages.map(item => [item.status, item.error, item.http]), [['failed', 'http_404', 404]]);
 });
