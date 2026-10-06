@@ -3509,6 +3509,23 @@ fallbackil millelegi kukkuda. Tõendamine kuulub serveri-QA alla.
 **Omanik kuulas viis häält (mari, albert, kylli, tambet, vesta) ja valis `kylli`.** See on
 nüüd vaikimisi hääl; `TARTUNLP_TTS_SPEAKER` saab teda muuta.
 
+**Kylli metalne kaja pehmendatud 06.10.** Omanik kuulis `kylli` hääles metalset kaja.
+Mõõdetud: süntees jätab iga kaadrisageduse kordse (22 050 / 256 = 86,13 Hz) juurde
+paigalseisva tooni, mis kõigub koos kõnega ja on seetõttu umbes 12 Hz laiune kühm (kahes
+kylli lauses 1–3 kHz riba energiast 10–12%, mari häälel 2%). TartuNLP API võtab ainult
+teksti, hääle ja kiiruse, seega on parandus meie pool: `lib/audio/frameTones.js` on
+summutatud pöördkamm, mille lohk järgib kühmu mõõdetud kuju. Ta rakendub `/api/tts`
+TartuNLP rajal enne 16 bitti ümardamist ja ainult häälele, millel on profiil (praegu
+`kylli`); muu diskreetimissagedus, mitu kanalit või vigane näidis jätab heli puutumata.
+
+Omanik kuulas kahes ringis seitset töötlust. Kõrgete helide kärpimine (8 ja 6,5 kHz) ja
+kitsas sälk toonide keskel kaja ei võtnud; kuju järgi sobitatud filter kahekordse
+sügavusega (`depth: 2`) oli „üsna hea" ja läks sisse. Serveri kood annab kuulatud näidisega
+sama heli (vahe kuni 1 LSB). Viiel lausel langes toon 1–3 kHz ribas +2,3…+3,9 dB pealt
+−3,2…−4,8 dB peale; kuuel lausel valjus ei muutunud, tipp kasvas kuni 1,5 dB (lagi 0,98
+toob lõigu siis alla). 5 minutit heli on 0,6 s tööd, mis tehakse 15 ms juppidena.
+**NOT_PROVEN:** kuulamine päris vestluses pärast deploy'd; teiste häälte profiilid puuduvad.
+
 **Mõõdetud avalikul API-l** (5 häält, sama valdkonnalause, ~10 s kõnet):
 
 | Leid | Number | Mida see tähendab |
