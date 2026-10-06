@@ -244,4 +244,14 @@ test('ADR-094: the new plan keeps the running plan\'s retention time for audit r
   const result = run(kept);
   assert.equal(result.status, 0, result.stdout + result.stderr);
   assert.match((await calls(kept)).find(line => line.startsWith('plan ')), /--reasoning-choices low,medium --audit-days 0 --retention-hours 168 --basis /u);
+  // A plan made for the opening gives an opening plan again; a kind that is not a plain word is not passed on.
+  const opening = await tree('kind-opening');
+  await fs.writeFile(path.join(opening.etc, 'current.json'), JSON.stringify({ id: 'plan-old', generationId: 'search_generation_prior', documents: { d1: 'v1' },
+    reasoning: 'low', reasoningChoices: ['low', 'medium'], auditDays: 0, retentionHours: 168, kind: 'opening' }));
+  assert.equal(run(opening).status, 0);
+  assert.match((await calls(opening)).find(line => line.startsWith('plan ')), /--audit-days 0 --retention-hours 168 --kind opening --basis /u);
+  const odd = await tree('kind-odd');
+  await fs.writeFile(path.join(odd.etc, 'current.json'), JSON.stringify({ id: 'plan-old', generationId: 'search_generation_prior', documents: { d1: 'v1' }, reasoning: 'low', kind: 'opening; rm -rf x' }));
+  assert.equal(run(odd).status, 0);
+  assert.doesNotMatch((await calls(odd)).find(line => line.startsWith('plan ')), /--kind/u);
 });
