@@ -280,7 +280,7 @@ Vastus on plokkidena, millel on tekst, väite liik ja viited. Allikast võetud f
 | completed | Vastus ja seosed on avaldatud; lugemine kontrollib viiteid ning õigusi uuesti. |
 | unknown / stopped / answer_rejected | Tulemus jäi teadmata või kontroll peatati. Automaatne uus tasuline katse ei tohi seda varjata. |
 
-M4PilotTurn hoiab privaatset küsimust, tõendipaketti, vastust ja auditit. Tavalistesse ConversationMessage kirjetesse kirjutati kuni 06.10.2026 kaitstud piloodi kohatäide ja M4 tunnus; sellest alates küsimus, vastus tekstina ja vestluse ajalookirje ([ADR-094](../rag-v2/adr-094-durable-conversation-history.md)). Auditi sisu taastatakse õigustega piiratud M4 raja kaudu. M4PilotLedger sisaldab ühiseid sisuta reserveeringuid; vestluse kustutamine ei lähtesta kasutatud eelarvet. Aegunud/arhiivitud vestluse payload ja päringuvektor eemaldatakse eraldi piloodikoristuses.
+M4PilotTurn hoiab privaatset küsimust, tõendipaketti, vastust ja auditit. Tavalistesse ConversationMessage kirjetesse kirjutati kuni 06.10.2026 kaitstud piloodi kohatäide ja M4 tunnus; sellest alates küsimus, vastus tekstina ja vestluse ajalookirje ([ADR-094](../rag-v2/adr-094-durable-conversation-history.md)). Auditi sisu taastatakse õigustega piiratud M4 raja kaudu. M4PilotLedger sisaldab ühiseid sisuta reserveeringuid; vestluse kustutamine ei lähtesta kasutatud eelarvet. Rea kolm suurt osa (tõendipakett, saadetud päring, päringuvektor) on alates 06.10.2026 omaette veergudes ja kirjutatakse üks kord (ADR-094, neljas samm); lugeja saab need `openTurn` kaudu `payload`-is. Aegunud/arhiivitud vestluse rida eemaldatakse piloodikoristuses: säilituskoristuses ja vestluspäringus kõige rohkem kord minutis; lugejad jätavad aegunud read ise välja.
 
 Jätkuvestlus eristab uut teemat, sama teemat, parandust ja uut inimest. Varasema assistendivastuse valitud punkt on dialoogi osa; see tuleb uuesti allikatega põhjendada. Varasem vastus ei muutu iseseisvaks faktiallikaks. Konteksti mahu ületamisel säilitatavat parandust ei lõigata vaikselt ära.
 
@@ -424,7 +424,7 @@ Admini workRoot sisaldab eraldi tööde kviitungeid, külmutatud plaane, mudeliv
 | rag_v2_vector_cache | Tenant’i/konfiguratsiooni/sisendiräsiga seotud vektorite taaskasutus. |
 | Qdrant | Tenant’i ja põlvkonna kaupa eraldi kollektsioonid; vektorid ja kontrollitavad dokumendi-/versiooni-/sisenditunnused. |
 | Platvormi Prisma: Conversation, ConversationMessage, ChatTurn | SotsiaalAI kasutaja vestlus, sõnumite identiteet ja töö elutsükkel. |
-| M4PilotTurn | Kaitstud M4 küsimus, vastus, tõendid, audit ja aegumine. Vestluse püsiv kirje on alates 06.10.2026 vestluse sõnumites (ADR-094). |
+| M4PilotTurn | Kaitstud M4 küsimus, vastus, tõendid, audit ja aegumine. Vestluse püsiv kirje on alates 06.10.2026 vestluse sõnumites (ADR-094). Veerud `packet`, `requestAudit`, `vector` hoiavad rea suuri osi (ADR-094, neljas samm). |
 | M4PilotLedger | Sisuta ühine API-kulu/katsete reserveering, mis säilib vestluse kustutamisel. |
 
 | Skeemi/käitamise fail | Vastutus |
