@@ -1,0 +1,68 @@
+{
+  "document_id": "web-4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--pohimoisted--liikumispuue",
+  "title": "Liikumispuue",
+  "register_title": "Liikumispuue",
+  "source_id": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--pohimoisted--liikumispuue",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalministeeriumi kompetentsikeskus",
+  "language": "et",
+  "url": "https://kompetentsikeskus.sm.ee/et/vordsed-voimalused/ligipaasetavus/mis-see/pohimoisted/liikumispuue",
+  "source_path": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--pohimoisted--liikumispuue.html",
+  "source_format": "html",
+  "source_sha256": "0628fdc68f337129cad4742bf9a5cf0b052d34a648982b280508cf8e911d7831",
+  "content_sha256": "af768f7386eb639acafaa1b122d2e25809a0e23908507ca978ac92fed1eef30f",
+  "checked_at": "2026-10-06",
+  "retrieved_at": "2026-10-06T14:18:53.161Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "tags": [
+    "Ligipääsetavus",
+    "ligipääsetavus"
+  ],
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "223fc0ebd0300f18a5df0ceecf600b29d0c071fcc83b247dbe9e0f15353dbd61",
+    "stats": {
+      "words": 88,
+      "blocks": 3,
+      "headings": 1,
+      "tables": 0,
+      "links": 1,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "http://www.epikoda.ee/wp-content/uploads/2016/12/Teema_LIIKUMISPUUE_Eesti-Liikumispuudega-Inimeste-Liit.pdf",
+      "text": "Loe edasi",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

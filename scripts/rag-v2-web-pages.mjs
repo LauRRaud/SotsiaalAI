@@ -14,6 +14,7 @@
 // No model or embedding call. Prints counts and addresses, never page text.
 //   node scripts/rag-v2-web-pages.mjs --list Andmebaasi/register/web_pages.json [--only id,id] [--no-subpages]
 //     [--depth 2] [--max 25] [--delay-ms 1500] [--work tmp/rag-v2-web] [--stored Andmebaasi/veebilehed] [--apply]
+//     [--approve id,id]   pages marked for review that a person has looked at: --apply places these too
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
@@ -23,15 +24,17 @@ import { pageMetadata, decidePage, WEB_PAGE_COLLECTOR } from '../lib/rag-v2/web-
 const { values } = parseArgs({ options: { list: { type: 'string' }, master: { type: 'string', default: 'Andmebaasi/register/master_sources_final.json' },
   work: { type: 'string', default: 'tmp/rag-v2-web' }, stored: { type: 'string', default: 'Andmebaasi/veebilehed' }, only: { type: 'string' },
   'no-subpages': { type: 'boolean', default: false }, depth: { type: 'string', default: '2' }, max: { type: 'string', default: '25' }, 'delay-ms': { type: 'string', default: '1500' },
-  apply: { type: 'boolean', default: false } } });
+  approve: { type: 'string' }, apply: { type: 'boolean', default: false } } });
 const depth = Number(values.depth), max = Number(values.max), delayMs = Number(values['delay-ms']);
 if (!values.list || !Number.isInteger(depth) || depth < 0 || depth > 4 || !Number.isInteger(max) || max < 0 || max > 200 || !(delayMs >= 500 && delayMs <= 60000)) {
-  throw Error('usage: --list <file> [--only id,id] [--no-subpages] [--depth <0-4>] [--max <0-200>] [--delay-ms <500-60000>] [--work <dir>] [--stored <dir>] [--apply]');
+  throw Error('usage: --list <file> [--only id,id] [--no-subpages] [--depth <0-4>] [--max <0-200>] [--delay-ms <500-60000>] [--work <dir>] [--stored <dir>] [--apply] [--approve id,id]');
 }
 const readJson = async file => { try { return JSON.parse(await fs.readFile(file, 'utf8')); } catch (error) { if (error.code === 'ENOENT') return null; throw error; } };
 const list = await readJson(values.list), master = new Map((await readJson(values.master) || []).map(entry => [entry.source_id, entry]));
 if (!Array.isArray(list?.pages)) throw Error('the list has no pages');
 const only = values.only ? new Set(values.only.split(',').map(id => id.trim())) : null;
+// Pages a person has looked at and found fit: with --apply these are placed though the collector marked them for review.
+const approved = new Set((values.approve || '').split(',').map(id => id.trim()).filter(Boolean));
 const entries = list.pages.filter(item => !only || only.has(item.source_id)).map(item => {
   const known = master.get(item.source_id), entry = { ...(known ? { source_id: known.source_id, url: known.url, title: known.title, publisher: known.publisher, source_type: known.source_type,
     language: known.language, topic_tags: known.topic_tags } : {}), ...item };
@@ -60,7 +63,7 @@ for (const entry of entries) {
     if (decision === 'unchanged') await dropProposal();
     if (decision === 'proposed') await files(path.join(values.work, 'proposals'));
     // A page that needs review is looked at by a person first; the run's copy and the report say why.
-    if (values.apply && !item.page.needsReview && (decision === 'new' || decision === 'confirmed')) {
+    if (values.apply && (!item.page.needsReview || approved.has(item.id)) && (decision === 'new' || decision === 'confirmed')) {
       if (decision === 'confirmed') for (const ext of ['html', 'json']) await write(path.join(values.work, 'previous', stamp, `${rel}.${ext}`), await fs.readFile(path.join(values.stored, `${rel}.${ext}`)));
       await files(values.stored); await dropProposal(); applied = true;
     }

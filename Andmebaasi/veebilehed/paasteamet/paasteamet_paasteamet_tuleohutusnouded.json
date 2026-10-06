@@ -1,0 +1,98 @@
+{
+  "document_id": "web-paasteamet_paasteamet_tuleohutusnouded",
+  "title": "Tuleohutusnõuded",
+  "register_title": "Päästeamet / tuleohutusnõuded",
+  "source_id": "paasteamet_paasteamet_tuleohutusnouded",
+  "source_type": "web_page",
+  "publisher": "Päästeamet",
+  "language": "et",
+  "url": "https://www.rescue.ee/et/tuleohutusnouded",
+  "source_path": "paasteamet_paasteamet_tuleohutusnouded.html",
+  "source_format": "html",
+  "source_sha256": "8a8cd685bbdc0ad58bf1dd09366a747c5390a6cb4fc8d233629b0a3b22c2c6dd",
+  "content_sha256": "b155929b9558e18b80f8dc0d97431050084e687bc42b4d53f44ab75fd41c28d1",
+  "checked_at": "2026-10-06",
+  "retrieved_at": "2026-10-06T14:19:05.478Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "tags": [
+    "Kvaliteet, järelevalve ja ohutus",
+    "ohutus"
+  ],
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": "Thu, 01 Oct 2026 09:48:47 GMT",
+      "etag": null
+    },
+    "raw_sha256": "ad1d24a3f838971009b1af4de6e71a2b86446706af99cbf50c0ae00e200496f6",
+    "stats": {
+      "words": 126,
+      "blocks": 9,
+      "headings": 1,
+      "tables": 0,
+      "links": 6,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.rescue.ee/files/Materjalid/kortermaja-tuleohutus-2024-est-uus.pdf?e640f12724",
+      "text": "Kortermaja väline ja sisene tuleohutuse materjal",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.rescue.ee/files/Materjalid/kortermaja-tuleohutus-2024-rus-uus.pdf?7ebf1a1b9d",
+      "text": "vene keeles",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.rescue.ee/files/Materjalid/eramu-tuleohutus-2024-est-uus.pdf?a139f358db",
+      "text": "Eramaja väline ja sisene tuleohutuse materjal",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.rescue.ee/files/Materjalid/eramu-tuleohutus-2024-rus-uus1.pdf?949b8be4c0",
+      "text": "vene keeles",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.rescue.ee/files/Materjalid/vingugaas-voldik2024-trykk.pdf?0d6c89d7c4",
+      "text": "Salakaval vingugaas",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.rescue.ee/files/2020-12/evakuatsioon-a65voldik-est-print.pdf?371db30dba",
+      "text": "Mõista evakuatsioonikeelt",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

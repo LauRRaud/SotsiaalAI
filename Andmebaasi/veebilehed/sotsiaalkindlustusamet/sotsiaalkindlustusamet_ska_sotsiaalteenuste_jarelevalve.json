@@ -1,0 +1,61 @@
+{
+  "document_id": "web-sotsiaalkindlustusamet_ska_sotsiaalteenuste_jarelevalve",
+  "title": "Sotsiaalteenuste järelevalve",
+  "register_title": "SKA sotsiaalteenuste järelevalve",
+  "source_id": "sotsiaalkindlustusamet_ska_sotsiaalteenuste_jarelevalve",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/spetsialistile-ja-koostoopartnerile/jarelevalve",
+  "source_path": "sotsiaalkindlustusamet_ska_sotsiaalteenuste_jarelevalve.html",
+  "source_format": "html",
+  "source_sha256": "f084cf163c4cdbc261cb5daabe74d748932d86d0efe4c49cf90c8e6f0b4c590d",
+  "content_sha256": "05b29c7b0cc0d279832629d64072642d77d95411a9e96466b65d82cf0b6bc43f",
+  "checked_at": "2026-10-06",
+  "retrieved_at": "2026-10-06T14:18:58.251Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2025-10-24",
+  "jurisdiction_level": "NATIONAL",
+  "tags": [
+    "Kvaliteet, järelevalve ja ohutus"
+  ],
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Tue, 06 Oct 2026 14:18:56 GMT",
+      "etag": null
+    },
+    "raw_sha256": "2ea376bf0d7d9047d1752f9a181acd8eed714749875085bab3bb5af4b9e62ea1",
+    "stats": {
+      "words": 544,
+      "blocks": 36,
+      "headings": 14,
+      "tables": 0,
+      "links": 8,
+      "linksToOtherSites": 6
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

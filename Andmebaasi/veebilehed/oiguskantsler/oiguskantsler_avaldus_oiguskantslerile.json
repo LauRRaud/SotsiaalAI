@@ -1,0 +1,60 @@
+{
+  "document_id": "web-oiguskantsler_avaldus_oiguskantslerile",
+  "title": "Avaldus õiguskantslerile",
+  "register_title": "Avaldus õiguskantslerile",
+  "source_id": "oiguskantsler_avaldus_oiguskantslerile",
+  "source_type": "web_page",
+  "publisher": "Õiguskantsler",
+  "language": "et",
+  "url": "https://www.oiguskantsler.ee/kontaktid/avaldus-oiguskantslerile",
+  "source_path": "oiguskantsler_avaldus_oiguskantslerile.html",
+  "source_format": "html",
+  "source_sha256": "2992c1e12ffc517db31a692bc6e68f4a6a797b9f6e634d0177b07313c34cbbd2",
+  "content_sha256": "efccd19da1a576a232d124f799dcd02b64bc1734ff3b84dcde35a521a2c4eab3",
+  "checked_at": "2026-10-06",
+  "retrieved_at": "2026-10-06T14:19:05.782Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "tags": [
+    "Õiguskaitse ja andmekaitse"
+  ],
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "49bee3106caafd7c3670bc42dd82abd923ccb7ca4f577fb25c564e571763d8d8",
+    "stats": {
+      "words": 998,
+      "blocks": 39,
+      "headings": 9,
+      "tables": 0,
+      "links": 4,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

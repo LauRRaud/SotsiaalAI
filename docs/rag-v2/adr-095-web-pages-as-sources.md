@@ -90,13 +90,51 @@ Kontroll kõigil 37 salvestatud lehel: 879 plokist ühtegi, kus oleks nimelaadne
 
 **Ülevaatust vajavad:** eesti.ee ligipääsetavuse juhis (lehe teksti kirjutab skript, tavalise päringuga sisu ei tule), kuus lühikest lehte kompetentsikeskuse saidilt (alla 80 sõna; osa on jaotiste avalehed) ja üks SKA leht, kus on tugiaadress, mida korjaja ei oska üldiseks ega isiklikuks liigitada.
 
+## Korpus v60 (06.10.2026)
+
+Omanik 06.10: „üld võib olla, pane juhislehega“ (müügipunkti üldtelefon võib vastuses olla; müügipunktid lähevad korpusesse koos juhislehtedega) ja samal päeval „minu luba antud ka veidi raha kulutada“. Ostu ülempiiri (0,04 USD) seadsin ise selle loa sees.
+
+| | |
+|---|---|
+| Uusi allikaid | 114: 31 juhislehte ([ADR-095](adr-095-web-pages-as-sources.md)) ja 83 müügipunktide lehte ([ADR-096](adr-096-assistive-device-points.md): 68 omavalitsust, 15 maakonda) |
+| Lõike | 864; hoiatusi ja blokeerijaid 0 |
+| Ost | 864 sisendit, 187 635 tokenit, **0,0244 USD** (piir 0,04; kasutuskirje `pilot_4925b6fc…`) |
+| Indeks | `3b3b1325`: 7419 dokumenti, 43 018 lõiku (enne `2e4b3572`: 7305 ja 42 154) |
+| Vestlusplaan | `/etc/sotsiaalai/m4-corpus-chat-20261006d.json` |
+
+**Kontroll päris lehel (kaks pööret päris mudeliga, 0,0035 ja 0,0045 USD):**
+
+- „Kust saan Tartus kuuldeaparaadi?“ Vastus nimetas Tartu linna kuulmisabivahendite punktid aadressidega (viis kuuest; kahel ka telefon), eristas müügi ja üüri ning viitas allikale „Abivahendite müügi- ja üüripunktid: Tartu linn“. Lisas, et Tartu valla kohta ta nende andmete põhjal öelda ei saa.
+- Jätkuküsimus „Mis tõendit mul selleks vaja on ja kes selle annab?“ Vastus viitas määrusele, selle lisale ja uuele juhislehele „Abivahendi vajajale“.
+
+Kaks pööret on kontroll, et uued allikad jõuavad vastusesse, mitte kvaliteedi mõõtmine.
+
+### Mis lehtedest korpusesse läks
+
+Uus korje 06.10 kell 14.18 UTC andis samad 37 lehte. Korpusesse läks **31**:
+
+- 28 lehte, mida korjaja ülevaatuseks ei märkinud;
+- 3 ülevaatuseks märgitud lehte, mille vaatasin üle ja kinnitasin (`--approve`): SKA „Abivahendi ettevõttele“ (tugiaadress on üldaadress) ja kaks lühikest sisulehte (nägemispuue; minuomavalitsus ja LIPS).
+
+Välja jäi 6: eesti.ee juhis (tekst tuleb skriptist), kompetentsikeskuse jaotise avaleht (ainult pealkiri), kolm lehte, mis on ainult alalehtede tutvustuste loend, ja üks interaktiivse tööriista leht.
+
+Lehed on repos (`Andmebaasi/veebilehed/`, 62 faili) samade baitidega, mis sisestati, ja failiregistris (`REGISTER.json`, `REGISTER.md`). Kõigi 31 lehe 856 plokist ühtegi, kus oleks nimelaadne sõnapaar telefoni kõrval; e-posti aadresse on viis, kõik üldaadressid.
+
+### Korjaja täiendused selle käigus
+
+- **Viies kontaktikaardi kuju:** isiku nimi pealkirjana, kanalid selle all (nähtud ühe andmekogu kontaktilehel, mis ei ole nimekirjas).
+- **Saidi oma rida** (saidi nimi lehe pealkirja järel, „Back to list“) jääb välja.
+- **`--approve id,id`**: ülevaatuseks märgitud leht pannakse kohale ainult siis, kui inimene on selle nimeliselt kinnitanud.
+- `scripts/rag-v2-export-register.mjs` teeb kogutud allikate kaustast sisestuse registri ja valiku.
+
 ## Kontroll
 
-`tests/rag-v2-web-page.test.mjs` (12 testi): sisuosa eraldamine näidislehelt; isiku kontaktid kõigis neljas kujus ja peidetud aadressid; sisuosata leht ja vihje; salvestatud leht läbib päris vastuvõtu (üks sisuosa, lõikude kohad artikli sees) ja metaandmed läbivad kohandaja; `robots.txt`; alalehtede leidmine; toomine (ümbersuunamised, keelatud aadressid, mitte-HTML, ajapiir, märgistik); lehe ja alalehtede kogumine piiridega; saidi viisakus; muutuse otsus; ploki nime reegli kaks päris juhtumit.
+`tests/rag-v2-web-page.test.mjs` (13 testi): sisuosa eraldamine näidislehelt; isiku kontaktid kõigis neljas kujus ja peidetud aadressid; sisuosata leht ja vihje; salvestatud leht läbib päris vastuvõtu (üks sisuosa, lõikude kohad artikli sees) ja metaandmed läbivad kohandaja; `robots.txt`; alalehtede leidmine; toomine (ümbersuunamised, keelatud aadressid, mitte-HTML, ajapiir, märgistik); lehe ja alalehtede kogumine piiridega; saidi viisakus; muutuse otsus; ploki nime reegli kaks päris juhtumit.
 
 ## Tegemata
 
-- **Lehed ei ole veel korpuses.** Järgmine samm: ülevaatus, lehtede registreerimine failiregistris (`REGISTER.json`), vastuvõtt, vektorite ost (18 lehe ja alalehtede jaoks hinnanguliselt alla 0,01 USD) ja korpuse täiendus.
+- 16 kompetentsikeskuse alalehte jäi 25 piiri taha ja kaks registri aadressi ei avanenud (403, 404).
+- Lehtede muutuste jälgimine (uus korje ettepanekuna) on olemas, kuid ajastamata.
 - Skriptiga kirjutatav leht (eesti.ee) vajab teist teed.
 - Kontaktireegel tunneb isikut kahe suurtähega sõna järgi. See võib välja jätta ka asutuse üldkontakti, kui see on kirjas kahe suurtähega sõnana telefoni kõrval; eemaldatud kaartide arv on aruandes.
 - Organisatsioonide lehed (60) lähevad teist rada (organisatsiooni pakett), registrid ja otsingud ainult lingina.

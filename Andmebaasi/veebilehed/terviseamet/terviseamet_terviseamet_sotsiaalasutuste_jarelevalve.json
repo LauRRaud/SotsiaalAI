@@ -1,0 +1,116 @@
+{
+  "document_id": "web-terviseamet_terviseamet_sotsiaalasutuste_jarelevalve",
+  "title": "Sotsiaalasutuste järelevalve",
+  "register_title": "Terviseamet / sotsiaalasutuste järelevalve",
+  "source_id": "terviseamet_terviseamet_sotsiaalasutuste_jarelevalve",
+  "source_type": "web_page",
+  "publisher": "Terviseamet",
+  "language": "et",
+  "url": "https://www.terviseamet.ee/keskkonnatervis/ettevotjale-ja-kohalikule-omavalitsusele/sotsiaalasutused",
+  "source_path": "terviseamet_terviseamet_sotsiaalasutuste_jarelevalve.html",
+  "source_format": "html",
+  "source_sha256": "619bf46278570ab877fd0ff3fcb258b158ab29c9d25666688207d5af76754d18",
+  "content_sha256": "1ec06e9bf91c536b1c7a00ecc4d11f14a7a34b99819ee787118def74c9825b83",
+  "checked_at": "2026-10-06",
+  "retrieved_at": "2026-10-06T14:19:01.563Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-09-02",
+  "jurisdiction_level": "NATIONAL",
+  "tags": [
+    "Kvaliteet, järelevalve ja ohutus"
+  ],
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Tue, 06 Oct 2026 13:59:07 GMT",
+      "etag": null
+    },
+    "raw_sha256": "e5cae9c73ad5e17ab4782b7462dc0b5064a2e1a888d5baeae67871f0585d9fde",
+    "stats": {
+      "words": 363,
+      "blocks": 20,
+      "headings": 8,
+      "tables": 0,
+      "links": 22,
+      "linksToOtherSites": 11
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.terviseamet.ee/sites/default/files/documents/2026-04/TA%20teenused%20vs%20EHR-s%20teenuste%20nimed_apr.pdf",
+      "text": "Teenuseliikide vasted Ehitisregistris | 80.23 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.terviseamet.ee/sites/default/files/documents/2026-09/Millal%20ja%20kuidas%20kaasata%20Terviseamet%20EHR-is_0.pdf",
+      "text": "Juhis – millal ja kuidas kaasata Terviseamet EHR-is | 79.15 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.terviseamet.ee/sites/default/files/documents/2024-10/Nakkushaigused_info_klientidele_ja_kulalistele_lihtsas_keeles.pdf",
+      "text": "Trükis \"Nakkushaigused – info klientidele ja külalistele lihtsas keeles\" | 4.12 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.terviseamet.ee/sites/default/files/documents/2024-10/Nakkushaigused_info_klientidele_ja_kulalistele_lihtsas_keeles_RUS.pdf",
+      "text": "Trükis \"Nakkushaigused – info klientidele ja külalistele lihtsas keeles\" (RUS) | 4.01 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.terviseamet.ee/sites/default/files/documents/2024-10/infektsioonikontrollialase_toimepidevuse_ja_riskijuhtimise_juhendmaterjal%20%282023%29.pdf",
+      "text": "Infektsioonikontrollialase toimepidevuse ja riskijuhtimise juhendmaterjal (2023) | 482.04 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.terviseamet.ee/sites/default/files/documents/2024-10/infektsioonikontrollialase_toimepidevuse_ja_riskijuhtimise_metoodika.pdf",
+      "text": "Infektsioonikontrollialase toimepidevuse ja riskijuhtimise metoodika | 667.59 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.terviseamet.ee/sites/default/files/documents/2024-10/Isolatsiooni%20ettevaatusabin%C3%B5ud_plakat.pdf",
+      "text": "Plakat \"Isolatsiooni ettevaatusabinõud\" | 604.24 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.terviseamet.ee/sites/default/files/documents/2024-10/K%C3%A4tepesu_plakat.pdf",
+      "text": "Plakat \"Kätepesu\" (EST, RUS) | 21.64 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.terviseamet.ee/sites/default/files/documents/2024-10/K%C3%A4teh%C3%BCgieeni%20n%C3%A4idustused%20hooldekodus_WHO_EST_RUS.pdf",
+      "text": "Plakat \"Kätehügieeni näidustused hooldekodus\" (EST, RUS) | 1.03 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

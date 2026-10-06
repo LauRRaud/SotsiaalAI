@@ -1,0 +1,61 @@
+{
+  "document_id": "web-4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--pohimoisted--universaalne-disain-ja-kaasav-disain",
+  "title": "Universaalne disain ja kaasav disain",
+  "register_title": "Universaalne disain ja kaasav disain",
+  "source_id": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--pohimoisted--universaalne-disain-ja-kaasav-disain",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalministeeriumi kompetentsikeskus",
+  "language": "et",
+  "url": "https://kompetentsikeskus.sm.ee/et/vordsed-voimalused/ligipaasetavus/mis-see/pohimoisted/universaalne-disain-ja-kaasav-disain",
+  "source_path": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--pohimoisted--universaalne-disain-ja-kaasav-disain.html",
+  "source_format": "html",
+  "source_sha256": "a05b11df9b10f5d3ac3379f57b0475c25f1a53cee7e13738db02656f8c7b9c39",
+  "content_sha256": "aeb4789936a891764bb71cf37443832cbbd1badae38670f8f200ff1ff90495b2",
+  "checked_at": "2026-10-06",
+  "retrieved_at": "2026-10-06T14:18:53.158Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "tags": [
+    "Ligipääsetavus",
+    "ligipääsetavus"
+  ],
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "507c467e8b4ca3862eaff189c4b6d3e1ab58afb428e5fe7f473e1e679cd94982",
+    "stats": {
+      "words": 321,
+      "blocks": 5,
+      "headings": 1,
+      "tables": 0,
+      "links": 0,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

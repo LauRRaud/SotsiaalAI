@@ -1,0 +1,63 @@
+{
+  "document_id": "web-4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--olukord-ja-valjakutsed--minuomavalitsus-ja-lips",
+  "title": "Minuomavalitsus ja LIPS",
+  "register_title": "Minuomavalitsus ja LIPS",
+  "source_id": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--olukord-ja-valjakutsed--minuomavalitsus-ja-lips",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalministeeriumi kompetentsikeskus",
+  "language": "et",
+  "url": "https://kompetentsikeskus.sm.ee/et/vordsed-voimalused/ligipaasetavus/mis-see/olukord-ja-valjakutsed/minuomavalitsus-ja-lips",
+  "source_path": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--olukord-ja-valjakutsed--minuomavalitsus-ja-lips.html",
+  "source_format": "html",
+  "source_sha256": "70e4580a5bb0025d325590338a01a5bbdabb747ad17ce347aeaff7af0bd8cf71",
+  "content_sha256": "a46cc9219dd837f5b83c99ebe4aed65ba2bf3ff8e48486eef4cecc146d493bce",
+  "checked_at": "2026-10-06",
+  "retrieved_at": "2026-10-06T14:19:54.579Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "tags": [
+    "Ligipääsetavus",
+    "ligipääsetavus"
+  ],
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "4f9b88a803e1c93cb357d1ad416a01531b52301d44da3a1ae54745d1e905bcc0",
+    "stats": {
+      "words": 78,
+      "blocks": 3,
+      "headings": 1,
+      "tables": 0,
+      "links": 2,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "thin_content"
+    ],
+    "needs_review": true
+  },
+  "documents": []
+}

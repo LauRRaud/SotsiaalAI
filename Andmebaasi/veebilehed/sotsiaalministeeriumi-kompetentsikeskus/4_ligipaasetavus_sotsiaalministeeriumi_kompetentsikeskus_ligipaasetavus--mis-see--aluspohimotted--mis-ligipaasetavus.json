@@ -1,0 +1,68 @@
+{
+  "document_id": "web-4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--aluspohimotted--mis-ligipaasetavus",
+  "title": "Mis on ligipääsetavus?",
+  "register_title": "Mis on ligipääsetavus?",
+  "source_id": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--aluspohimotted--mis-ligipaasetavus",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalministeeriumi kompetentsikeskus",
+  "language": "et",
+  "url": "https://kompetentsikeskus.sm.ee/et/vordsed-voimalused/ligipaasetavus/mis-see/aluspohimotted/mis-ligipaasetavus",
+  "source_path": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--aluspohimotted--mis-ligipaasetavus.html",
+  "source_format": "html",
+  "source_sha256": "d96883b6d4e6673be7bee7621d9705de7a56773d163dfd46ec3b80ea3c2cef13",
+  "content_sha256": "f58ed6a4c851d931f63dc3832c45a7cf42e648953e63386f2408686f5670a92f",
+  "checked_at": "2026-10-06",
+  "retrieved_at": "2026-10-06T14:18:53.137Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "tags": [
+    "Ligipääsetavus",
+    "ligipääsetavus"
+  ],
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "c3ec609aecf06040e4aa09f86d3b90d607abe0a94ecebb63ce2ebfdfbf0b2992",
+    "stats": {
+      "words": 144,
+      "blocks": 5,
+      "headings": 1,
+      "tables": 0,
+      "links": 2,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://epnu.ee/wp-content/uploads/Riigikantselei_Ligipaasetavuse_rakkeruhma_-lopparuanne.pdf",
+      "text": "ligipääsetavuse rakkerühma lõpparuandest.",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "document_id": "web-4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--oigusaktid--aktid",
+  "title": "Aktid",
+  "register_title": "Aktid",
+  "source_id": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--oigusaktid--aktid",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalministeeriumi kompetentsikeskus",
+  "language": "et",
+  "url": "https://kompetentsikeskus.sm.ee/et/vordsed-voimalused/ligipaasetavus/oigusaktid/aktid",
+  "source_path": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--oigusaktid--aktid.html",
+  "source_format": "html",
+  "source_sha256": "658a3541226bbccc7612342d33e2d0c50d59c970681db05ebd653aee87054970",
+  "content_sha256": "c0a46e084ecf8fac69dd091e936353f24fe12a55666f9342a82a6381b9c36892",
+  "checked_at": "2026-10-06",
+  "retrieved_at": "2026-10-06T14:18:53.128Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "tags": [
+    "Ligipääsetavus",
+    "ligipääsetavus"
+  ],
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "12f7222560893eee6f5219ba90387c778ef0d83de42d6b4e9fe6e979e09870c1",
+    "stats": {
+      "words": 146,
+      "blocks": 15,
+      "headings": 8,
+      "tables": 0,
+      "links": 7,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

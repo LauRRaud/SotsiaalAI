@@ -1,0 +1,73 @@
+{
+  "document_id": "web-andmekaitse_inspektsioon_aki_nousolek",
+  "title": "Nõusolek",
+  "register_title": "AKI nõusolek",
+  "source_id": "andmekaitse_inspektsioon_aki_nousolek",
+  "source_type": "web_page",
+  "publisher": "Andmekaitse Inspektsioon",
+  "language": "et",
+  "url": "https://www.aki.ee/nousolek",
+  "source_path": "andmekaitse_inspektsioon_aki_nousolek.html",
+  "source_format": "html",
+  "source_sha256": "8bdca389262fcb73c25bc1d7e8b81ea926f74cd324785ccebce885430974722f",
+  "content_sha256": "42671bf6cc0d28959515574fde38b300fa0969883703ae0929625b032e7e3dc6",
+  "checked_at": "2026-10-06",
+  "retrieved_at": "2026-10-06T14:19:07.615Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "tags": [
+    "Õiguskaitse ja andmekaitse"
+  ],
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "a60d1428904fff70e18efaf30fa2a5b7aecb9718c2c9ad0cb6b14b221139d9f9",
+    "stats": {
+      "words": 608,
+      "blocks": 46,
+      "headings": 1,
+      "tables": 0,
+      "links": 3,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.aki.ee/sites/default/files/documents/2024-04/Suunis%20n%C3%B5usoleku%20kohta%20%28eesti%20keeles%29.pdf",
+      "text": "Suunis nõusoleku kohta (eesti keeles) | 539.42 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.aki.ee/sites/default/files/documents/2024-04/Suunis%20n%C3%B5usoleku%20kohta%20%28inglise%20keeles%29.pdf",
+      "text": "Suunis nõusoleku kohta (inglise keeles) | 321.3 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "document_id": "web-4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--ligipaasetavuse-parandamine--ligipaasetavus-fuusilisele-keskkonnale",
+  "title": "Ligipääsetavus füüsilisele keskkonnale",
+  "register_title": "Ligipääsetavus füüsilisele keskkonnale",
+  "source_id": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--ligipaasetavuse-parandamine--ligipaasetavus-fuusilisele-keskkonnale",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalministeeriumi kompetentsikeskus",
+  "language": "et",
+  "url": "https://kompetentsikeskus.sm.ee/et/vordsed-voimalused/ligipaasetavus/ligipaasetavuse-parandamine/ligipaasetavus-fuusilisele-keskkonnale",
+  "source_path": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--ligipaasetavuse-parandamine--ligipaasetavus-fuusilisele-keskkonnale.html",
+  "source_format": "html",
+  "source_sha256": "077f935b39ac4c0b01be19b4d0c2eab7358341120b2ef0d28b2a6b8cbea0ddcc",
+  "content_sha256": "537f431bd463ae005b15e8472cb5e0b386dde6663d407b9807c0f3dea84f3981",
+  "checked_at": "2026-10-06",
+  "retrieved_at": "2026-10-06T14:18:53.131Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "tags": [
+    "Ligipääsetavus",
+    "ligipääsetavus"
+  ],
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "da572342d1b9ac77dbce52ca7f07ae686c92bba22d00cad881511e10f28aff95",
+    "stats": {
+      "words": 179,
+      "blocks": 15,
+      "headings": 8,
+      "tables": 0,
+      "links": 7,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

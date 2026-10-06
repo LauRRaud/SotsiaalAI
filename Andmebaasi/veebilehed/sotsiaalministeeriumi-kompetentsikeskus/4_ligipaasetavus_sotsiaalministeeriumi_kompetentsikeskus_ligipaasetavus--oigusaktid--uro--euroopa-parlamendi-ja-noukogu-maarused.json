@@ -1,0 +1,61 @@
+{
+  "document_id": "web-4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--oigusaktid--uro--euroopa-parlamendi-ja-noukogu-maarused",
+  "title": "Euroopa Parlamendi ja Nõukogu määrused",
+  "register_title": "Euroopa Parlamendi ja Nõukogu määrused",
+  "source_id": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--oigusaktid--uro--euroopa-parlamendi-ja-noukogu-maarused",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalministeeriumi kompetentsikeskus",
+  "language": "et",
+  "url": "https://kompetentsikeskus.sm.ee/et/vordsed-voimalused/ligipaasetavus/oigusaktid/uro/euroopa-parlamendi-ja-noukogu-maarused",
+  "source_path": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--oigusaktid--uro--euroopa-parlamendi-ja-noukogu-maarused.html",
+  "source_format": "html",
+  "source_sha256": "b51f869ce3e7867713f63c00377cdd198c886b18922a33457b6bd0a82f78ed6d",
+  "content_sha256": "6359eca1d0cfed3f9dbe9505c04e21be201197a650672c8996c0840906cbfcff",
+  "checked_at": "2026-10-06",
+  "retrieved_at": "2026-10-06T14:18:53.172Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "tags": [
+    "Ligipääsetavus",
+    "ligipääsetavus"
+  ],
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "b54f02c0fa994cdc1544f13082912c0a5d4b39e7f233ceba6cbba1991e9b1f05",
+    "stats": {
+      "words": 154,
+      "blocks": 7,
+      "headings": 1,
+      "tables": 0,
+      "links": 4,
+      "linksToOtherSites": 4
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

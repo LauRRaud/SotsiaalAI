@@ -1,0 +1,84 @@
+{
+  "document_id": "web-sotsiaalkindlustusamet_ska_abivahendi_vajajale",
+  "title": "Abivahendi vajajale",
+  "register_title": "SKA: Abivahendi vajajale",
+  "source_id": "sotsiaalkindlustusamet_ska_abivahendi_vajajale",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/abivahendid/abivahendi-vajajale",
+  "source_path": "sotsiaalkindlustusamet_ska_abivahendi_vajajale.html",
+  "source_format": "html",
+  "source_sha256": "c2d57343e448b09a2ef5eaf990348f004b626bbf8f70cccf39bf23cdae206683",
+  "content_sha256": "d7f5d40a92383995d04936d267f2966fa5d01cd81b6c5f55c60b0aa8115e45c1",
+  "checked_at": "2026-10-06",
+  "retrieved_at": "2026-10-06T14:18:13.266Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-10-06",
+  "jurisdiction_level": "NATIONAL",
+  "tags": [
+    "Abivahendid",
+    "Riiklik info ja otsingud",
+    "abivahendid"
+  ],
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Tue, 06 Oct 2026 14:02:35 GMT",
+      "etag": null
+    },
+    "raw_sha256": "13b44b0cc316c197d0b3ebc7dcb2f8bcee2567c3a0960a2d4a7ce9ad5da9671c",
+    "stats": {
+      "words": 1335,
+      "blocks": 46,
+      "headings": 14,
+      "tables": 0,
+      "links": 16,
+      "linksToOtherSites": 8
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 3,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed"
+    ],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.riigiteataja.ee/aktilisa/1260/9202/6005/SOM_24092026_m37_lisa.pdf",
+      "text": "Abivahendite loetelu, kus on kirjas abivahendid koos hüvitamise tingimustega",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-01/Abivahendi%20erandi%20taotlus%2003.01.2025.docx",
+      "text": "Abivahendi erandi taotlus | 36.28 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-10/Infoleht_%20AV-muudatus_01.09.2025.pdf",
+      "text": "Abivahendite muudatuste infoleht 01.09.2025 | 218.72 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

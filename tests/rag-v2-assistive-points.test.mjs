@@ -81,3 +81,44 @@ test('the table is read politely over the web: the filters in the address, an ho
   assert.equal(waits.length, 2);
   await assert.rejects(csvReader({ agent: 'x', url: 'https://naidis.example/keelatud.csv', fetchImpl: async () => new Response('<html>', { status: 403, headers: { 'content-type': 'text/html' } }) })({}), { code: 'map_table_unreadable', status: 403 });
 });
+
+// The data set as corpus sources: one page per municipality with a point, one overview per county.
+test('a municipality\'s page lists its points by category with what a person needs to reach them; a county\'s page says where the points are', async () => {
+  const { pointSources, companySite, countyName, SKA_MAP_PAGE } = await import('../lib/rag-v2/assistive-points.js');
+  const { extractPage } = await import('../lib/rag-v2/web-page.js');
+  const point = (base, municipality, offers) => ({ ...pointOf(parseCsv(csv([base]))[0]), municipalities: [municipality], counties: ['Tartu maakond'], offers });
+  const tartu = { id: 'tartu_linn', name: 'Tartu linn' }, elva = { id: 'elva_vald', name: 'Elva vald' };
+  const points = [point(HEARING, tartu, [{ category: 'Kuulmisabivahendid', service: 'müük' }]),
+    point(SHOP, elva, [{ category: 'Liikumisabivahendid', service: 'müük ja üür' }, { category: 'Olmeabivahendid', service: 'müük' }]),
+    point({ name: 'Tartu esindus', address: 'Turu tn 9', phone: '555', email: 'tartu@invafirma.example', lat: '58.37', lon: '26.73' }, tartu, [{ category: 'Liikumisabivahendid', service: 'müük' }]),
+    // A point the readings did not place is in no page.
+    { ...point(PHARMACY, tartu, [{ category: 'Olmeabivahendid', service: 'müük' }]), municipalities: [] }];
+  const municipalities = [{ ...tartu, county: 'Tartumaa' }, { ...elva, county: 'Tartumaa' }, { id: 'kastre_vald', name: 'Kastre vald', county: 'Tartu maakond' }, { id: 'voru_linn', name: 'Võru linn', county: 'Võrumaa' }];
+  const sources = pointSources(points, { municipalities, readAt: '2026-10-06T11:59:14.896Z' });
+  assert.deepEqual(sources.map(item => item.path), ['abivahendid/kov/tartu_linn.html', 'abivahendid/kov/elva_vald.html', 'abivahendid/maakond/tartu-maakond.html']);
+  const [city, parish, county] = sources;
+  assert.match(city.html, /^<!doctype html><html lang="et"><meta charset="utf-8"><title>Abivahendite müügi- ja üüripunktid: Tartu linn<\/title><body><article>\n<h1>Abivahendite müügi- ja üüripunktid: Tartu linn<\/h1>/u);
+  assert(city.html.includes('loetud 06.10.2026'));
+  // A category's points, each with its address, the service, the general phone number and the website.
+  assert(city.html.includes('<h2>Kuulmisabivahendid</h2>\n<ul><li>Näidiskuulmiskeskus OÜ Tartus (kuulmine.example). Aadress: Näidise tn 1, Tartu linn. Teenus: müük. Telefon: 55550001. Koduleht: <a href="https://www.kuulmine.example/">kuulmine.example</a>.</li></ul>'));
+  // A point's name says little by itself: the company's site beside it says whose it is (from the e-mail address's
+  // site where there is no website; the address itself is not given). A part of a number is no phone number.
+  assert(city.html.includes('<li>Tartu esindus (invafirma.example). Aadress: Turu tn 9, Tartu linn. Teenus: müük.</li>'));
+  assert.equal(/@|maasikas|555[^0-9]/u.test(city.html + parish.html + county.html), false, 'no e-mail address in any page');
+  assert(parish.html.includes('<h2>Liikumisabivahendid</h2>\n<ul><li>Abivahendipood &quot;Tugi&quot;, Elva esindus') === false && parish.html.includes('Abivahendipood "Tugi", Elva esindus. Aadress: Kesk tn 2, II korrus, Elva vald. Teenus: müük ja üür. Telefon: 55550002.'));
+  assert.equal(city.html.includes('Näidisapteek'), false);
+  // Metadata in the keys the corpus reads: the municipality's page is that municipality's source.
+  assert.deepEqual([city.metadata.document_id, city.metadata.municipality_id, city.metadata.municipality_name, city.metadata.county, city.metadata.url, city.metadata.checked_at, city.metadata.source_type, city.metadata.publisher, city.metadata.collection.points],
+    ['abivahendite-muugipunktid-tartu_linn', 'tartu_linn', 'Tartu linn', 'Tartu maakond', SKA_MAP_PAGE, '2026-10-06', 'registry', 'Sotsiaalkindlustusamet', 2]);
+  // The county's page is a source for every municipality of the county, also the one without a point.
+  assert.deepEqual([county.metadata.document_id, county.metadata.regions, 'municipality_id' in county.metadata], ['abivahendite-muugipunktid-tartu-maakond', ['elva_vald', 'kastre_vald', 'tartu_linn'], false]);
+  assert(county.html.includes('<p>Selle maakonna omavalitsused, kus kaardil ei ole ühtegi müügipunkti: Kastre vald.</p>'));
+  // A name that already says whose point it is gets no site beside it.
+  assert(county.html.includes('<h2>Liikumisabivahendid</h2>\n<ul><li>Elva vald (1): Abivahendipood "Tugi", Elva esindus.</li><li>Tartu linn (1): Tartu esindus (invafirma.example).</li></ul>'));
+  assert.equal(/Telefon|Aadress:/u.test(county.html), false, 'the overview names the points; the address and phone are in the municipality\'s page');
+  // The pages are sources the corpus reader takes: one content region each.
+  for (const item of sources) assert.deepEqual([extractPage(item.html, 'https://x.example/').region, item.html.match(/<article>/gu).length], ['article', 1]);
+  for (const [given, name] of [['Tartumaa', 'Tartu maakond'], ['Saare maakond', 'Saare maakond'], ['Saaremaa', 'Saare maakond'], ['Lääne Virumaa', 'Lääne-Viru maakond'], ['Lääne-Virumaa', 'Lääne-Viru maakond'], ['Läänemaa', 'Lääne maakond'], ['Ida-Virumaa', 'Ida-Viru maakond']]) assert.equal(countyName(given), name, given);
+  assert.deepEqual([companySite({ website: 'https://www.pood.example/x', email: 'a@teine.example' }), companySite({ website: null, email: 'pood@gmail.com' }), companySite({ website: null, email: 'mari@firma.example' }), companySite({ website: null, email: null })],
+    ['pood.example', null, 'firma.example', null]);
+});
