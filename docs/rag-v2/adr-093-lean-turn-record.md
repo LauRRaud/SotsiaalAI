@@ -73,7 +73,13 @@ Kõhna rea suurim osa on viidatud tõendus (keskmiselt 17,6 KB): lõikude tunnus
 
 ## Kasutuselevõtt
 
-Pärast selle muudatuse jõudmist serverisse tehakse arendusplaan `auditDays: 7`-ga, mis jätkab praeguse plaani kuluarvestust. Tehtud plaani nimi ja kontroll lisatakse siia eraldi muudatusega. Tootmisplaan saab `--audit-days 0`.
+**Tehtud 06.10.2026:** arendusplaan `m4-corpus-chat-20261006c.json`, tehtud ja aktiveeritud väljalaskes `78b3d3ab` (#406). Ühtegi mudelikutset ei tehtud.
+
+- **Erinevus asendatud plaanist:** ainult `auditDays: 7`. Tase (`low`, valikuna `medium`), korpus, kasutaja, hinnad ja 4 USD piir on samad; kuluarvestus jätkub (plaani `20261006a` arvestus).
+- **Koristuse päring töötab päris andmebaasis** (sama tingimus, ainult lugedes): praegu on kõhnaks tegemise järjekorras 0 rida ja kõhnu ridu 0. Vanim pööre on 05.10 kell 13.01 UTC, seega esimene rida tehakse kõhnaks 12.10.
+- `ready` läbib, teenus töötab, logis vigu ei ole.
+
+Tootmisplaan saab `--audit-days 0`.
 
 ```bash
 node scripts/rag-v2-chat-plan.mjs ... --audit-days 7 --continue-ledger <asendatav plaan> --basis "<omaniku korraldus>" --activate
@@ -121,4 +127,4 @@ Vestluse ajalugu ja dialoogi kontekst loevad ainult töötava plaani pöördeid 
 - Rea ühekordne kirjutamine.
 - Varasemate pöörete nähtavus pärast plaani vahetust (ülal).
 - Püsiv ajalookirje ja ajutine auditikirje (jaotis „Tuhandete kasutajate jaoks sellest ei piisa“): omaniku otsus ja eraldi töö.
-- Minu serveri lugemisskriptid (`st/`) eeldavad täiskirjet.
+- Serveri lugemisskriptid (`st/`) avavad nüüd kokkupakitud paketi (ühine klient `st/st-prisma.mjs`, 16 skripti, 06.10). Kõhnas reas puuduvat (vektor, päringu sisu, viitamata tõendus) nad lugeda ei saa: enne lugemist tuleb vaadata `payload.lean`.
