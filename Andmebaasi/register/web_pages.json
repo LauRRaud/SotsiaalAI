@@ -1,0 +1,90 @@
+{
+  "version": "web-pages-1",
+  "note": "Veebilehed, mille sisu korjatakse korpuse allikaks (scripts/rag-v2-web-pages.mjs). Leht on nimetatud oma tunnusega allikaregistris master_sources_final.json; alalehed loetakse kaks taset allapoole, kui kirje ei ütle teisiti. Esimene valik 06.10.2026: 18 ametlikku juhislehte.",
+  "pages": [
+    {
+      "source_id": "sotsiaalkindlustusamet_ska_abivahendi_vajajale",
+      "jurisdiction_level": "NATIONAL"
+    },
+    {
+      "source_id": "sotsiaalkindlustusamet_ska_abivahendi_ettevottele",
+      "jurisdiction_level": "NATIONAL"
+    },
+    {
+      "source_id": "4_ligipaasetavus_eesti_ee_ligipaasetavuse_juhis",
+      "publisher": "eesti.ee",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus",
+      "publisher": "Sotsiaalministeeriumi kompetentsikeskus",
+      "jurisdiction_level": "NATIONAL"
+    },
+    {
+      "source_id": "4_ligipaasetavus_mis_on_ligipaasetavus",
+      "publisher": "Sotsiaalministeeriumi kompetentsikeskus",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "4_ligipaasetavus_ligipaasetavuse_tagamine_sotsiaalkaitse_ja_sotsiaalse_kaasat",
+      "publisher": "Sotsiaalministeeriumi kompetentsikeskus",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "eesti_puuetega_inimeste_koda_epikoda_digiligipaasetavus",
+      "jurisdiction_level": "NATIONAL"
+    },
+    {
+      "source_id": "sotsiaalkindlustusamet_ska_sotsiaalteenuste_jarelevalve",
+      "jurisdiction_level": "NATIONAL"
+    },
+    {
+      "source_id": "sotsiaalkindlustusamet_uldhooldusteenus_kov_noustamine_jarelevalve_raam",
+      "jurisdiction_level": "NATIONAL"
+    },
+    {
+      "source_id": "sotsiaalkindlustusamet_ska_2024_jarelevalve_kokkuvote",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "terviseamet_terviseamet_sotsiaalasutuste_jarelevalve",
+      "jurisdiction_level": "NATIONAL"
+    },
+    {
+      "source_id": "terviseamet_terviseamet_erihoolekandeteenused",
+      "jurisdiction_level": "NATIONAL"
+    },
+    {
+      "source_id": "terviseamet_terviseamet_infomaterjalid_hoolekandeasutustele",
+      "jurisdiction_level": "NATIONAL"
+    },
+    {
+      "source_id": "paasteamet_paasteamet_tuleohutusnouded",
+      "jurisdiction_level": "NATIONAL"
+    },
+    {
+      "source_id": "oiguskantsler_avaldus_oiguskantslerile",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "andmekaitse_inspektsioon_aki_kaebus_isikuandmete_kaitse_asjas",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "andmekaitse_inspektsioon_aki_nousolek",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "riigikontroll_riigikontrolli_auditileht_hoolekande_audit",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    }
+  ]
+}
