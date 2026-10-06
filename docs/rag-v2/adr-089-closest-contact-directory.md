@@ -120,7 +120,7 @@ Omaniku korraldus 06.10 („teeb need ära?“ sõltumatu ülevaatuse kahe tehni
 
 **Otsus:** pakett salvestatakse kokkupakitult (`lib/rag-v2/pilot/packed-json.js`). Iga korduv osa (alampuu või pikk tekst) on tabelis üks kord ja tema asemel seisab viide. Midagi ei jäeta välja ega kirjutata ümber: lahtipakkimine annab täpselt sama paketi. Viitekaarti ei arvutata lugemisel uuesti, vaid see taastub salvestatust; nii ei sõltu vana pöörde auditeeritavus hilisemast koodist.
 
-- **Kaks astet.** #403: iga lugeja avab paketi enne lugemist (`openTurn`), salvestus jäi samaks. See muudatus: pood kirjutab paketi kokkupakitult. Nii saab iga väljalaske tagasi pöörata eelmisele, mis oskab juba kirjutatut lugeda. Enne 06.10 salvestatud pöörded on pakkimata ja loetakse nagu enne.
+- **Kaks astet.** #403: rakenduse lugemisteed (pood, vestluse marsruut, kontekstikordus, hindaja) avavad paketi enne lugemist (`openTurn`), salvestus jäi samaks. See muudatus: pood kirjutab paketi kokkupakitult. Kirjutava väljalaske saab tagasi pöörata väljalaskele, mis kokkupakitud kuju loeb. **Alumine piir on #403 (`edde1119`):** sellest vanem väljalase ei loe pärast 06.10 salvestatud pakette, ja juurutuse tagasipööramine andmebaasi tagasi ei pööra. Serveri abiskriptid kaustas `st/` ei kuulu rakenduse lugemisteede hulka (vt „Lahti“). Enne 06.10 salvestatud pöörded on pakkimata ja loetakse nagu enne.
 - **Piir loeb paketti nii, nagu pööre selle tegi**, mitte kokkupakitult. Lahti jooksnud pakett ei pääse läbi sellepärast, et ta pakituna piiri alla mahub.
 - **Mida see ei muuda:** mudelile minev kontekst, päring ja kõik kontrollid loevad pakkimata paketti. Pöörde reas on peale paketi veel saadetud päring (umbes 68 000 baiti pöörde kohta) ja ülejäänud väljad, sealhulgas päringu vektor (kokku umbes 74 000); need jäid samaks. Päringu sees on kontekst tekstina; seda ei saa paketiga ühiseks teha, sest andmebaas järjestab paketi võtmed ümber ja päringu täpne tekst peab säilima.
 
@@ -142,4 +142,4 @@ Pöörde terve rida oli nendel pööretel kokku 16,3 MB; pakkimine võtab selles
 
 **Kontrollimata:** päris pööre päris lehel pärast teist astet (tasuline; luba ei ole küsitud). Kaks integratsioonitesti faili, mis vajavad EstNLTK-d, ei käinud kohalikus keskkonnas (`morphology_unavailable`); nende ridade lugemine on muudetud sama avamise peale.
 
-**Lahti:** saadetud päring ja päringu vektor on nüüd koos pöörde rea suurim osa; vektori osa eraldi ei ole mõõdetud. Minu serveris olevad lugemisskriptid (`st/`) loevad paketti otse ja vajavad uute pöörete jaoks lahtipakkimist.
+**Lahti:** saadetud päring ja päringu vektor on nüüd koos pöörde rea suurim osa (mõõdetud 06.10: päring 72 KB, vektor 64 KB pöörde kohta). Need ja viitamata tõenduse laseb lahti kõhn pöördekirje, [ADR-093](adr-093-lean-turn-record.md). Minu serveris olevad lugemisskriptid (`st/`) loevad paketti otse ja vajavad uute pöörete jaoks lahtipakkimist.

@@ -9,7 +9,8 @@ import { PrismaClient } from '../generated/prisma/client.ts';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PilotStore, PILOT_TURN_LIMITS, openTurn } from '../lib/rag-v2/pilot/store.js';
 import { isPackedJson, packJson } from '../lib/rag-v2/pilot/packed-json.js';
-import { auditPacketBytes, AUDIT_PACKET_BYTES } from '../lib/rag-v2/search/model-context.js';
+import { auditPacketBytes, isLeanPacket, AUDIT_PACKET_BYTES } from '../lib/rag-v2/search/model-context.js';
+import { isLeanTurn } from '../lib/rag-v2/pilot/lean-turn.js';
 import { municipalPacket } from './fixtures/rag-v2-municipal-packet.mjs';
 import { PilotService } from '../lib/rag-v2/pilot/service.js';
 import { digest, buildQuestion, ANSWER_VERSION } from '../lib/rag-v2/pilot/contracts.js';
@@ -721,4 +722,67 @@ test('real DB: a packet that has run away still stops the turn before an answer 
   assert.equal((await db.m4PilotLedger.findUnique({ where: { id: f.config.id } })).totals.answerAttempts, 0);
   // The limit counts the packet as the turn made it: packed, this one would be under it, and that must not let it through.
   assert(Buffer.byteLength(JSON.stringify(packJson(packet)), 'utf8') < AUDIT_PACKET_BYTES);
+});
+
+// ADR-093: a finished turn's row was about 0.4 MB, the conversation in it about 1.3 KB. A plan that keeps no full audit
+// stores a turn lean when it is published; a plan with an audit time makes its older turns lean later.
+test('real DB: a plan without an audit time stores a whole turn lean, and the turn restores with its cited source', async t => {
+  const f = await fixture(t, { auditDays: 0, maxInputTokens: 300000, budget: { attempts: 20, embeddingAttempts: 8, answerAttempts: 8, tokens: 2000000, nanoUsd: 2000000 } });
+  const packet = municipalPacket({ tenant: f.config.tenant });
+  f.config.documents = Object.fromEntries(packet.evidence.map(entry => [entry.document_id, entry.document_version_id]));
+  f.adapters.search = async () => packet;
+  const seen = [];
+  f.adapters.canonical = async (config, checked, ref) => { seen.push(`${isLeanPacket(checked) ? 'lean' : 'full'}:${ref}`); if (!config.documents[checked.reference_map[ref]?.document_id]) throw Error('forbidden'); };
+  const result = await f.service.run(f.user.id, f.input);
+  assert.equal(result.state, 'completed');
+  // The answer of the fixture cites S1: the reply lists that one source, as the page shows only cited ones.
+  assert.deepEqual(result.sources.map(source => [source.ref, source.used, source.title]), [['S1', true, packet.evidence[0].bibliography.title]]);
+  const stored = await db.m4PilotTurn.findUnique({ where: { id: result.id } }), bytes = value => Buffer.byteLength(JSON.stringify(value), 'utf8');
+  assert(isLeanTurn(stored));
+  assert(bytes(stored.payload) < 20000, String(bytes(stored.payload)));
+  for (const key of ['vector', 'dialogue', 'previousDialogueState', 'dialogueStateContext']) assert.equal(key in stored.payload, false, key);
+  assert.equal('body' in stored.payload.requestAudit, false);
+  assert.equal(stored.payload.requestAudit.bodyHash, digest(f.bodies.at(-1).body));
+  const kept = openTurn(stored).payload.packet;
+  assert.deepEqual([Object.keys(kept.reference_map), kept.evidence.length, kept.evidence[0].source_text], [['S1'], 1, packet.evidence[0].source_text]);
+  assert.deepEqual(stored.payload.lean.full, { packet: digest(packet), evidence: 104, references: 104, requestBody: stored.payload.requestAudit.bodyHash, bytes: stored.payload.lean.full.bytes });
+  assert(stored.payload.lean.full.bytes > 600000);
+  // Before publication every reference of the full packet was checked; after it, the lean turn's one.
+  assert.equal(seen.filter(item => item.startsWith('full:')).length >= 104, true);
+  assert.deepEqual(seen.filter(item => item.startsWith('lean:')), ['lean:S1']);
+  // A repeat of the request restores the lean turn: no call, the same answer and source.
+  const again = await f.service.run(f.user.id, f.input);
+  assert.deepEqual([again.id, again.state, again.answer, again.sources.length], [result.id, 'completed', result.answer, 1]);
+  assert.deepEqual(f.calls, ['embedding', 'answer']);
+  // A lean row whose answer was changed afterwards is refused, not shown.
+  await db.m4PilotTurn.update({ where: { id: result.id }, data: { payload: { ...stored.payload, answer: { ...stored.payload.answer, limitations: ['muudetud'] } } } });
+  await assert.rejects(f.service.run(f.user.id, f.input), { code: 'lean_turn_changed' });
+});
+
+test('real DB: with an audit time a turn is stored whole and made lean once it is older; a newer turn stays whole', async t => {
+  const f = await fixture(t, { auditDays: 7 });
+  const first = await f.service.run(f.user.id, f.input);
+  const second = await f.service.run(f.user.id, { ...f.input, clientTurnKey: randomUUID(), question: 'Teine küsimus' });
+  const whole = await db.m4PilotTurn.findUnique({ where: { id: first.id } });
+  assert.equal(isLeanTurn(whole), false);
+  assert.equal(whole.payload.vector.length, 3072);
+  assert.ok(whole.payload.requestAudit.body);
+  // The sweep is over every plan's turns (the test database holds other tests' old rows too), so this test reads its
+  // own two. Neither is old enough yet.
+  const sweep = async () => { while (await f.store.slimOld(f.config.auditDays, { limit: 50 })); };
+  await sweep();
+  assert.equal(isLeanTurn(await db.m4PilotTurn.findUnique({ where: { id: first.id } })), false);
+  await db.m4PilotTurn.update({ where: { id: first.id }, data: { createdAt: new Date(Date.now() - 8 * 86400000) } });
+  assert.equal(await f.store.slimOld(f.config.auditDays), 1);
+  const lean = await db.m4PilotTurn.findUnique({ where: { id: first.id } }), newer = await db.m4PilotTurn.findUnique({ where: { id: second.id } });
+  // A lean turn is not made lean again: nothing is left for the sweep, and the row keeps its first mark.
+  assert.equal(await f.store.slimOld(f.config.auditDays), 0);
+  assert.equal((await db.m4PilotTurn.findUnique({ where: { id: first.id } })).payload.lean.at, lean.payload.lean.at);
+  assert(isLeanTurn(lean));
+  assert.equal(isLeanTurn(newer), false);
+  assert.deepEqual([lean.state, lean.payload.answer, lean.payload.question, 'vector' in lean.payload, 'body' in lean.payload.requestAudit], ['completed', whole.payload.answer, whole.payload.question, false, false]);
+  assert.equal(lean.payload.lean.proved.answer, digest(whole.payload.answer));
+  // The turn made lean later restores like any other, without a call.
+  const calls = f.calls.length, restored = await f.service.run(f.user.id, f.input);
+  assert.deepEqual([restored.id, restored.state, restored.answer, f.calls.length], [first.id, 'completed', first.answer, calls]);
 });
