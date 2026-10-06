@@ -2,7 +2,7 @@
 
 06.10.2026. Teostus Claude Opus 5.5. Omanik 06.10: „mul on plaanis platvormile tuua tuhandeid kasutajaid, mul ei tohi paisuda kõvaketta kasutus meeletuks. Peab arvestama, kuidas toimub vestlus, selle talletamine, ajalugu jms.“ Küsimusele, kas alustada püsiva vestlusajaloo ehitamist kehtiva 90 päeva reegli piires, vastas omanik: **„Jah, kogu töö“**: küsimus, vastus ja lühiviited lähevad vestluse sõnumitesse (seni olid seal kohatäited); ajalugu ja jätkuvestlus loevad sealt ega sõltu plaanist; audit aegub ja kustub; vestlus allub 90 päeva reeglile.
 
-See dokument kirjeldab kogu töö viit sammu. **Tehtud on esimene samm.**
+See dokument kirjeldab kogu töö viit sammu. **Tehtud on esimene ja teine samm.**
 
 ## Probleem
 
@@ -111,15 +111,69 @@ Võrdluseks samad pöörded: terve rida 184,8 KB kettal, kõhn rida 17,4 KB.
 
 | | Samm | Seis |
 |---|---|---|
-| 1 | Ajalookirje kirjutamine avaldamisel; ajalugu ja allikavaade loevad seda, kui rida ei saa lugeda | **see muudatus** |
-| 2 | Jätkuvestlus kirjest: eelmine vastus, olek, fookus ja küsitud omavalitsus tulevad kirjest, kui rida on kustunud või teise plaani oma | tegemata |
-| 3 | Audit on päriselt ajutine ja vestlus allub 90 päeva reeglile: tootmisplaanil `retentionHours`; vestluse aegumine tavalise reegli järgi viimasest aktiivsusest; arendusplaani tähtajatu erand ei jõua tootmiskasutajateni; ka katkenud pöörded aeguvad. Enne seda saavad olemasolevad pöörded kirje oma reast | tegemata |
+| 1 | Ajalookirje kirjutamine avaldamisel; ajalugu ja allikavaade loevad seda, kui rida ei saa lugeda | tehtud (#410) |
+| 2 | Jätkuvestlus kirjest: eelmine vastus, olek, fookus ja küsitud omavalitsus tulevad kirjest, kui rida on kustunud või teise plaani oma. Varem avaldatud pöörded saavad kirje oma reast | tehtud (jaotis „Teine samm“) |
+| 3 | Audit on päriselt ajutine ja vestlus allub 90 päeva reeglile: tootmisplaanil `retentionHours`; vestluse aegumine tavalise reegli järgi viimasest aktiivsusest; arendusplaani tähtajatu erand ei jõua tootmiskasutajateni; ka katkenud pöörded aeguvad | tegemata |
 | 4 | Pöörde suured andmed kirjutatakse üks kord (praegu umbes kümme ülekirjutust pöörde kohta) | tegemata |
 | 5 | Mõõdetav koristus ja kasv (kogumaht, päevane juurdekasv, aegunud kirjed, vanim koristamata, vaba ruum) ning vastuvõtt mahukatsega | tegemata |
 
-Pärast sammu 1 on plaani vahetuse järel varasemad pöörded vestluses näha. **Jätkuküsimus alustab siis veel uut teemat** (nagu seni, `headFromEarlierPlan`): dialoog ei tea varasemast. Selle parandab samm 2.
+## Teine samm: jätkuvestlus kirjest
 
-Enne seda väljalaset avaldatud pööretel on sõnumites kohatäited ja kirjet ei ole. Neid näidatakse reast nagu enne; plaani vahetusel kaovad nad vestlusest nagu enne. Samm 3 annab neile kirje enne, kui read aeguma hakkavad.
+**Leid päris lehel pärast esimest sammu (06.10):** vestluste nimekirja 30 vestlust vastasid päringule (200), kuid kõik olid tühjad. Tänased kolm plaanivahetust peitsid kõik varasemad 82 pööret; nende sõnumites olid kohatäited ja kirjet ei olnud. Esimene samm aitab ainult pöördeid, mis avaldatakse pärast seda.
+
+### Mida dialoog pöördest võtab
+
+Jätkuküsimuse vastuvõtmisel (`acceptDialogue`) loeti seni ainult töötava plaani ridu. Nüüd loetakse lisaks vestluse kirjed: iga pööre, mille rida töötav plaan ei loe, tuleb kirjest tehtud reana (`historyRows`). Plaani enda read on endiselt tõend ja neid eelistatakse.
+
+Kirje hoiab selleks kahte asja juurde:
+
+- **teema kasutajapöörded** nii, nagu pööre nendega vastu võeti (`dialogue.userTurns`). Vestluse olek on seotud täpselt nende pööretega (tunnused ja tekst räsina), seega peab loend olema sama;
+- **mis täis teema edasi andis** (`dialogue.carried`, ADR-070).
+
+**Vastuseta jäänud pöördel kirjet ei ole**, kuid ta on teema kasutajapööre ja olek on ka temaga seotud. Ta tuleb tagasi hilisema kirje loendist (peatatud pöördena, oma tekstiga, õigel kohal). Viimane vastuseta pööre, mida ükski kirje ei loetle, on kadunud.
+
+### Reeglid
+
+- **Vestluse pea** (viimati vastu võetud pööre) kehtib, kui dialoog seda pööret tunneb, olenemata plaanist. Seni kehtis ta ainult sama plaani piires.
+- **Pea, mida dialoog ei tunne** (teise plaani vastuseta pööre): sõnum alustab uut teemat, nagu seni pärast plaanivahetust. Sama plaani tundmatu pea annab endiselt vea `context_unavailable`; koostaja saadab sel juhul ise uue teema.
+- **Varasem vastus kirjest** on sama kujuga kui reast (nummerdatud punktid, „ei ole faktide allikas“). Paketti ei ole, seega viiteid uuesti ei kontrollita.
+- **Olek kirjest** on järgmise pöörde eelmine olek, kui ta on sama olekuversiooniga ja seotud teema pööretega nii, nagu dialoog neid nüüd loeb. Muidu jätkub pööre ilma olekuta ja mudel loeb teema pöörded uuesti (logitakse `[rag-v2] history state not continued`). Pööret see ei katkesta.
+- **Pöörete loendur** (`revision`) jätkub üle plaanide. Vestluse piir 64 pööret loeb nüüd kõiki pöördeid, mida dialoog tunneb, mitte ainult töötava plaani omi.
+- Kirje, mille esimene samm kirjutas ilma pöörete loendita, on ajaloos näha, kuid sealt ei jätkata.
+
+### Varem avaldatud pöörded
+
+`scripts/rag-v2-history-backfill.mjs [--dry-run]` annab igale lõpetatud pöördele, millel on auditirida, aga puudub (terve) kirje, kirje tema enda reast, täpselt nii nagu avaldamisel. Üle kirjutatakse ainult kohatäide või pöörde enda tekst; muu sisuga sõnum jääb puutumata. Auditirida ei muudeta, midagi ei kustutata, mudelikutseid ei tehta.
+
+### Mõõdetud (ainult lugedes, 06.10.2026, serveris)
+
+Kõik 83 salvestatud pööret 70 vestluses võeti kirjetest uuesti vastu (`hs2/hs2-sim.mjs`; kirjed tehti mälus, päris ridu ei muudetud) ja tulemust võrreldi sellega, mille pööre omal ajal salvestas:
+
+| | Tulemus |
+|---|---|
+| Vastuvõtt (kasutajapöörded, teema, isik, valik, allikapöörded) | 83/83 sama |
+| Varasem vastus kirjest võrreldes reaga | 13/13 sama |
+| Varasem vastus kirjest võrreldes sellega, mis omal ajal mudelile saadeti | 13/13 sama |
+| Eelmine olek kirjest võrreldes salvestatuga | 13/13 sama |
+
+Jätkupöördeid on päris andmetes 13; ülejäänud 70 on vestluse esimesed. Täis teema edasiandmist (ADR-070) ja vastuseta pööret teema keskel päris andmetes ei ole: need on kaetud testidega.
+
+Pöörete loend lisab kirjele keskmiselt 0,2 KB (suurim 0,7). Kaks sõnumit kettal: keskmiselt **4,8 KB** (mediaan 4,9; 90% 6,4; suurim 7,0). 30 000 pöörde juures päevas 0,14 GB päevas, 90 päevaga 13,0 GB.
+
+### Kontroll
+
+- Ühiktestid (`tests/rag-v2-history.test.mjs`, kolm uut): järgmine pööre võetakse kirjetest vastu nagu ridadest (koos vastuseta pöördega teema keskel, parandusega ja olekuga); täis teema annab edasi kirjetest nagu ridadest; tundmatu pea alustab uut teemat.
+- Andmebaasitestid: pärast plaanivahetust jätkab järgmine sõnum teemat (kasutajapöörded, varasem vastus, olek) ja teeb ühe vastusekutse; dialoog jätkub, kui auditiread on kustutatud, ka vastuseta pöördest mööda; teise olekuversiooniga olek jäetakse kõrvale; aegunud reaga pea jätkub kirjest oma isikuga; kohatäidetega avaldatud pöörded saavad kirje reast ja neid jätkatakse (kuivkäivitus ei kirjuta, muu sisu jääb puutumata, kirje on sama mis avaldamisel).
+
+### Kontrollimata
+
+- Brauseris ja päris mudeliga: tehakse pärast selle sammu jõudmist serverisse (jaotis „Lahti“).
+- 12 ühendtesti siin arvutis ei käi (EstNLTK ja kohalikud sisendfailid), nagu esimeses sammus.
+
+### Tegemata selles sammus
+
+- **Viimane vastuseta pööre pärast rea aegumist.** Kui vestluse viimane pööre ebaõnnestus ja tema rida on kadunud, alustab järgmine sõnum uut teemat. Parem oleks jätkata teemat, milles ta oli; selleks peab vestluse pea hoidma ka teema tunnust. See kuulub sammu 3, kus read aeguma hakkavad.
+- Ajaloos ei näidata vastuseta pöördeid, mille rida on kadunud.
 
 ## Vastavus avaldatud tingimustele
 
@@ -133,7 +187,7 @@ Varasem väljalase loeb ainult ridu ja jätab sõnumid vahele. Selle sammu saab 
 
 ## Lahti
 
-- Sammud 2–5.
-- Päris pööre päris lehel (tasuline; luba küsimata).
-- Kirje suurus: vastus on kirjes kaks korda ja tunnused (dokument, versioon, lõik, räsi) võtavad allika kohta umbes 0,3 KB. Kui 4,7 KB osutub liiga suureks, on need kohad, kust võtta.
+- Sammud 3–5.
+- Pärast teise sammu jõudmist serverisse: tagasitäide serveris (enne kuivkäivitus), vanade vestluste kontroll brauseris ja üks päris pööre päris lehel (tasuline; omanik andis 06.10 loa väikesteks kuludeks, ülempiir kogu töö peale 0,50 USD). Tulemus kirjutatakse siia.
+- Kirje suurus: vastus on kirjes kaks korda ja tunnused (dokument, versioon, lõik, räsi) võtavad allika kohta umbes 0,3 KB. Kui 4,8 KB osutub liiga suureks, on need kohad, kust võtta.
 - Vestluse pealkiri: RAG v2 vestlus luuakse pealkirjaga „M4 sisepiloot“.

@@ -13,6 +13,7 @@ import { DIALOGUE_STATE_VERSION, PERSON_DIALOGUE_STATE_VERSION, FACT_STATE_VERSI
 import { SEARCH_ASSIST_VERSION } from '../lib/rag-v2/pilot/search-assist.js';
 import { runtimeAdapters } from '../lib/rag-v2/pilot/retrieval.js';
 import { RECORD_RETRIEVAL_VERSION } from '../lib/rag-v2/search/structured-record-source.js';
+import { recordStoredTurns, PLACEHOLDERS } from '../lib/rag-v2/pilot/history-backfill.js';
 
 const url = new URL(process.env.M4_TEST_DATABASE_URL || 'postgres://invalid/invalid');
 if (!['localhost', '127.0.0.1'].includes(url.hostname) || url.pathname !== '/sotsiaal_ai_m4_dev') throw Error('explicit isolated M4_TEST_DATABASE_URL required');
@@ -403,13 +404,31 @@ test('M4-C real DB: source revocation blocks prior-answer reuse before egress; d
   assert.deepEqual((await db.m4PilotLedger.findUnique({ where: { id: f.config.id } })).totals, ledger.totals);
 });
 
-test('M4-C real DB: expired accepted head cannot resurrect an older person; null retention remains null', async t => {
+test('M4-C real DB: an expired head with an answer goes on from its record, one without cannot resurrect an older person; null retention remains null', async t => {
   const f = await fixture(t); await f.run('Vana inimene.', 'new');
   const newer = await f.run('Uus inimene.', 'new_person');
-  assert.equal((await f.row(newer.id)).expiresAt, null);
+  const before = await f.row(newer.id);
+  assert.equal(before.expiresAt, null);
   await db.m4PilotTurn.update({ where: { id: newer.id }, data: { expiresAt: new Date(Date.now() - 1000) } });
+  // ADR-094: the head's audit row has expired, its record has not. The message goes on with the head's person, read
+  // from the record, never with the older one.
+  const next = await f.row((await f.run('Aga hind?')).id);
+  assert.equal(await db.m4PilotTurn.count({ where: { id: newer.id } }), 0, 'the expired row was purged');
+  assert.deepEqual(next.payload.dialogue.userTurns.map(turn => turn.text), ['Uus inimene.', 'Aga hind?']);
+  assert.deepEqual([next.payload.context.scopeId, next.payload.context.personId], [before.payload.context.scopeId, before.payload.context.personId]);
+  assert.equal(next.payload.dialogue.publishedAssistant.turnId, newer.id);
+  assert.equal(f.calls.length, 6);
+  // A head that got no answer has no record. Once its row has expired nothing names its person, and "same" fails
+  // rather than going back to an older one.
+  f.fail(true);
+  await assert.rejects(f.run('Kolmas inimene.', 'new_person'));
+  f.fail(false);
+  const failed = await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id }, orderBy: { createdAt: 'desc' } });
+  assert.equal(failed.payload.question, 'Kolmas inimene.');
+  await db.m4PilotTurn.update({ where: { id: failed.id }, data: { expiresAt: new Date(Date.now() - 1000) } });
+  const calls = f.calls.length;
   await assert.rejects(f.run('Aga hind?'), { code: 'context_unavailable' });
-  assert.equal(f.calls.length, 4);
+  assert.equal(f.calls.length, calls);
   const fresh = await f.run('Alustan uuesti.', 'new_person');
   assert.equal((await f.row(fresh.id)).payload.dialogue.userTurns.length, 1);
 });
@@ -669,4 +688,99 @@ test('ADR-093 real DB: the dialogue state is carried on from a lean turn, and a 
   // A lean turn whose state was changed afterwards is refused.
   await db.m4PilotTurn.update({ where: { id: first.id }, data: { payload: { ...stored.payload, dialogueState: { ...stored.payload.dialogueState, changed: true } } } });
   await assert.rejects(async () => f.service.restore(await f.row(first.id)), { code: 'lean_turn_changed' });
+});
+
+// ADR-094, step 2: the dialogue goes on from the conversation's records when the audit rows cannot be read: after a
+// plan change (a corpus increment, a release that needs a new plan) and after the rows are gone.
+// Another plan takes over as a renewed plan does: a new id and hash, the same ledger.
+const changePlan = (t, f) => {
+  const ledger = f.config.budgetLedger ?? f.config.id;
+  Object.assign(f.config, { id: randomUUID(), configHash: randomUUID(), budgetLedger: ledger });
+  t.after(() => db.m4PilotLedger.deleteMany({ where: { id: ledger } }));
+};
+test('ADR-094 real DB: after a plan change the next message continues the topic from the records: user turns, earlier answer and state', async t => {
+  const initial = dialogueState([userFact('living', 1, 'Elan üksi.'), userFact('work', 1, 'Tööd ei ole.')]);
+  let draft = initial;
+  const f = await fixture(t, () => draft);
+  const first = await f.run('Elan üksi. Tööd ei ole.', 'new');
+  const corrected = structuredClone(initial);
+  corrected.facts[1].status = 'superseded'; corrected.facts[1].superseded_by = 3;
+  corrected.facts.push(userFact('work', 2, 'Nüüd töötan.'));
+  draft = corrected;
+  const correction = await f.run('Nüüd töötan.', 'correction');
+  const scope = (await f.row(first.id)).payload.context;
+  // Another plan: none of the rows above belongs to it.
+  changePlan(t, f);
+  // The composer reads the active topic from the records, so its next message is sent as a continuation.
+  const summary = await f.store.contextSummary(f.config, f.user.id, f.conv.id);
+  assert.deepEqual([summary.active?.scopeId, summary.active?.userTurns, summary.unavailable, summary.scopes.length], [scope.scopeId, 2, false, 1]);
+  const third = await f.row((await f.run('Selgita teist punkti.')).id);
+  assert.deepEqual(third.payload.dialogue.userTurns.map(turn => [turn.text, turn.mode]), [['Elan üksi. Tööd ei ole.', 'new'], ['Nüüd töötan.', 'correction'], ['Selgita teist punkti.', 'same']]);
+  assert.deepEqual([third.payload.context.scopeId, third.payload.context.personId, third.payload.context.revision, third.payload.context.correctionRevision], [scope.scopeId, scope.personId, 3, 1]);
+  assert.equal(third.payload.contextAudit.selection.headFromEarlierPlan, undefined);
+  // The earlier answer and the state came from the correction's record.
+  assert.equal(third.payload.dialogue.publishedAssistant.turnId, correction.id);
+  assert.equal(third.payload.dialogue.publishedAssistant.blocks[1].historicalReferences[0], `${correction.id}/S1`);
+  assert.deepEqual(third.payload.dialogue.previousState, corrected);
+  assert.deepEqual(third.payload.previousDialogueState.value, corrected);
+  assert.match(third.payload.query.text, /Elan üksi\. Tööd ei ole\./u);
+  // One answer call a turn (this fixture's packet needs no embedding): the continuation made no other call.
+  assert.deepEqual(f.calls.map(call => call.stage), ['answer', 'answer', 'answer']);
+  // The turn of the new plan restores, and the one after it goes on from its row and the two records.
+  assert.equal((await f.service.restore(third)).context.userTurns, 3);
+  const fourth = await f.row((await f.run('Aga hind?')).id);
+  assert.deepEqual([fourth.payload.dialogue.userTurns.length, fourth.payload.dialogue.publishedAssistant.turnId, fourth.payload.context.revision], [4, third.id, 4]);
+});
+
+test('ADR-094 real DB: the dialogue goes on when the audit rows are gone, also past a turn that got no answer', async t => {
+  const f = await fixture(t, () => dialogueState([userFact('living', 1, 'Elan üksi.')]));
+  await f.run('Elan üksi.', 'new');
+  f.fail(true);
+  await assert.rejects(f.run('See ebaõnnestub.'));
+  f.fail(false);
+  const third = await f.run('Millist abi kirjeldatakse?');
+  assert.equal((await f.row(third.id)).payload.dialogue.userTurns.length, 3);
+  // Every audit row of the conversation ends (a retention time, a sweep): the records stay with the conversation.
+  assert.equal((await db.m4PilotTurn.deleteMany({ where: { pilotId: f.config.id } })).count, 3);
+  assert.equal(await db.conversationMessage.count({ where: { conversationId: f.conv.id } }), 4);
+  const fourth = await f.row((await f.run('Aga teenuse ulatus?')).id);
+  // The turn without an answer is still one of the topic's user turns: the third turn's record lists it.
+  assert.deepEqual(fourth.payload.dialogue.userTurns.map(turn => turn.text), ['Elan üksi.', 'See ebaõnnestub.', 'Millist abi kirjeldatakse?', 'Aga teenuse ulatus?']);
+  assert.equal(fourth.payload.dialogue.publishedAssistant.turnId, third.id);
+  assert.ok(fourth.payload.previousDialogueState, 'the state went on from the third turn\'s record');
+  assert.equal(fourth.payload.previousDialogueState.sourceTurnIds.length, 3);
+  assert.equal(fourth.state, 'completed');
+});
+
+test('ADR-094 real DB: a record\'s state of another state version is not memory; the turn goes on without it', async t => {
+  const f = await fixture(t, () => dialogueState([userFact('living', 1, 'Elan üksi.')]));
+  const first = await f.run('Elan üksi.', 'new');
+  // The record's state says another version (as after a plan that changes the state's form), and the plan changes.
+  const message = await db.conversationMessage.findFirst({ where: { conversationId: f.conv.id, role: 'ASSISTANT' } });
+  const record = message.metadata.m4History;
+  await db.conversationMessage.update({ where: { id: message.id }, data: { metadata: { ...message.metadata, m4History: { ...record, dialogue: { ...record.dialogue, state: { ...record.dialogue.state, version: 'rag-v2/earlier-state' } } } } } });
+  changePlan(t, f);
+  const second = await f.row((await f.run('Millist abi kirjeldatakse?')).id);
+  assert.deepEqual([second.state, second.payload.dialogue.userTurns.length, second.payload.dialogue.publishedAssistant.turnId, second.payload.previousDialogueState], ['completed', 2, first.id, null]);
+});
+
+test('ADR-094 real DB: turns published with placeholders are continued after a plan change once their records are made from their rows', async t => {
+  const f = await fixture(t, () => dialogueState([userFact('living', 1, 'Elan üksi.')]));
+  const first = await f.run('Elan üksi.', 'new'), second = await f.run('Millist abi kirjeldatakse?');
+  const messages = await db.conversationMessage.findMany({ where: { conversationId: f.conv.id } });
+  // The first turn as published before ADR-094 (placeholders); the second as its first step published it (a record
+  // without the topic's user turns).
+  for (const message of messages.filter(item => item.metadata.m4TurnId === first.id)) await db.conversationMessage.update({ where: { id: message.id }, data: { content: PLACEHOLDERS[message.role], metadata: { m4TurnId: first.id } } });
+  const answer = messages.find(item => item.metadata.m4TurnId === second.id && item.role === 'ASSISTANT'), { userTurns: _turns, ...dialogue } = answer.metadata.m4History.dialogue;
+  await db.conversationMessage.update({ where: { id: answer.id }, data: { metadata: { ...answer.metadata, m4History: { ...answer.metadata.m4History, dialogue } } } });
+  const done = await recordStoredTurns(db, { where: { pilotId: f.config.id } });
+  assert.deepEqual([done.turns, done.made, done.completed, done.already, done.otherContent, done.failed], [2, 1, 1, 0, 0, {}]);
+  const restored = await db.conversationMessage.findMany({ where: { conversationId: f.conv.id } });
+  const byId = list => Object.fromEntries(list.map(message => [message.id, [message.content, message.metadata]]));
+  assert.deepEqual(byId(restored), byId(messages), 'the records are the ones publication writes');
+  changePlan(t, f);
+  const third = await f.row((await f.run('Aga teenuse ulatus?')).id);
+  assert.deepEqual(third.payload.dialogue.userTurns.map(turn => turn.text), ['Elan üksi.', 'Millist abi kirjeldatakse?', 'Aga teenuse ulatus?']);
+  assert.equal(third.payload.dialogue.publishedAssistant.turnId, second.id);
+  assert.ok(third.payload.previousDialogueState);
 });
