@@ -7,12 +7,15 @@ import os from 'node:os';
 import path from 'node:path';
 import { PrismaClient } from '../generated/prisma/client.ts';
 import { PrismaPg } from '@prisma/adapter-pg';
-import { PilotStore, PILOT_TURN_LIMITS } from '../lib/rag-v2/pilot/store.js';
+import { PilotStore, PILOT_TURN_LIMITS, openTurn } from '../lib/rag-v2/pilot/store.js';
+import { isPackedJson, packJson } from '../lib/rag-v2/pilot/packed-json.js';
+import { auditPacketBytes, AUDIT_PACKET_BYTES } from '../lib/rag-v2/search/model-context.js';
+import { municipalPacket } from './fixtures/rag-v2-municipal-packet.mjs';
 import { PilotService } from '../lib/rag-v2/pilot/service.js';
 import { digest, buildQuestion, ANSWER_VERSION } from '../lib/rag-v2/pilot/contracts.js';
 import { embeddingConfig } from '../lib/rag-v2/search/embedding.js';
 import { retrievalProfile } from '../lib/rag-v2/search/profiles.js';
-import { hash } from '../lib/rag-v2/contracts.js';
+import { hash, stable } from '../lib/rag-v2/contracts.js';
 
 const url = new URL(process.env.M4_TEST_DATABASE_URL || 'postgres://invalid/invalid');
 if (!['localhost', '127.0.0.1'].includes(url.hostname) || url.pathname !== '/sotsiaal_ai_m4_dev') throw Error('explicit isolated M4_TEST_DATABASE_URL required');
@@ -675,4 +678,47 @@ test('real DB, ADR-092: the answer is written with the effort the user chose amo
   const calls = f.calls.length, turns = await db.m4PilotTurn.count({ where: { pilotId: f.config.id } });
   await assert.rejects(f.service.run(f.user.id, { ...f.input, clientTurnKey: randomUUID(), reasoning: 'high' }), { code: 'reasoning_not_offered' });
   assert.deepEqual([f.calls.length, await db.m4PilotTurn.count({ where: { pilotId: f.config.id } })], [calls, turns]);
+});
+
+// ADR-089, "Auditipaketi piir": on 06.10.2026 a turn about Tallinn stopped with audit_packet_too_large at the limit of
+// 512 000 bytes, before an answer was asked for (#397). A packet of that municipality's shape and size goes through the
+// whole turn here: the size check, the reference check, the answer call, the store and the read back. Since ADR-089's
+// packed form it is stored with each repeated part once and opened again whole.
+test('real DB: a packet the size of the largest municipality\'s goes through a whole turn, is stored packed and reads back whole', async t => {
+  const f = await fixture(t, { maxInputTokens: 300000, budget: { attempts: 20, embeddingAttempts: 8, answerAttempts: 8, tokens: 2000000, nanoUsd: 2000000 } });
+  const packet = municipalPacket({ tenant: f.config.tenant });
+  assert(auditPacketBytes(packet) > 512000 && auditPacketBytes(packet) < AUDIT_PACKET_BYTES, String(auditPacketBytes(packet)));
+  f.config.documents = Object.fromEntries(packet.evidence.map(entry => [entry.document_id, entry.document_version_id]));
+  f.adapters.search = async () => packet;
+  const result = await f.service.run(f.user.id, f.input);
+  assert.equal(result.state, 'completed');
+  assert.deepEqual(f.calls, ['embedding', 'answer']);
+  // The model was given the context as the turn made it, not a packed form.
+  assert.deepEqual(JSON.parse(f.bodies.at(-1).body.input[0].content).evidence, packet.model_context);
+  const row = await db.m4PilotTurn.findUnique({ where: { id: result.id } }), bytes = value => Buffer.byteLength(JSON.stringify(value), 'utf8');
+  assert(isPackedJson(row.payload.packet), 'stored packed');
+  assert(bytes(row.payload.packet) < bytes(packet) * 0.7, `${bytes(row.payload.packet)} of ${bytes(packet)}`);
+  assert.equal(stable(openTurn(row).payload.packet), stable(packet));
+  // A repeat of the same request restores the turn from the stored row: references are checked on the opened packet.
+  const again = await f.service.run(f.user.id, f.input);
+  assert.deepEqual([again.id, again.state, again.sources.length], [result.id, 'completed', Object.keys(packet.reference_map).length]);
+  assert.deepEqual(f.calls, ['embedding', 'answer']);
+  // The chat's own source view reads one entry of the opened packet.
+  const opened = openTurn(await db.m4PilotTurn.findUnique({ where: { id: result.id } }));
+  assert.equal(opened.payload.packet.evidence.find(entry => entry.evidence_id === packet.reference_map.S1.evidence_id).source_text, packet.evidence[0].source_text);
+});
+
+test('real DB: a packet that has run away still stops the turn before an answer is asked for', async t => {
+  const f = await fixture(t, { maxInputTokens: 300000, budget: { attempts: 20, embeddingAttempts: 8, answerAttempts: 8, tokens: 2000000, nanoUsd: 2000000 } });
+  const packet = municipalPacket({ tenant: f.config.tenant, records: 200 });
+  assert(auditPacketBytes(packet) > AUDIT_PACKET_BYTES, String(auditPacketBytes(packet)));
+  f.config.documents = Object.fromEntries(packet.evidence.map(entry => [entry.document_id, entry.document_version_id]));
+  f.adapters.search = async () => packet;
+  await assert.rejects(f.service.run(f.user.id, f.input), { code: 'audit_packet_too_large' });
+  assert.deepEqual(f.calls, ['embedding']);
+  const row = await db.m4PilotTurn.findFirst({ where: { pilotId: f.config.id } });
+  assert.equal(row.state, 'stopped'); assert.equal(row.payload.packet, undefined); assert.equal(row.payload.requestAudit, undefined);
+  assert.equal((await db.m4PilotLedger.findUnique({ where: { id: f.config.id } })).totals.answerAttempts, 0);
+  // The limit counts the packet as the turn made it: packed, this one would be under it, and that must not let it through.
+  assert(Buffer.byteLength(JSON.stringify(packJson(packet)), 'utf8') < AUDIT_PACKET_BYTES);
 });

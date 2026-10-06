@@ -173,4 +173,4 @@ Ebatäpsused selles jaotises parandati 06.10 sõltumatu ülevaatuse järel (oman
 - **Telefonis** on üherealine kirjutusväli välgu võrra kitsam (122 px 375 px laiusel).
 - **Oleku loetavus:** põlevat ja kustunud välku eristab nüüd ainult toon (hele teema: tume 100% ja 60%). Kui see jääb liiga vaikseks, on see järgmine koht, mida muuta.
 - Inglis- ja venekeelne kohtspikker („Quick answer“ / „Thorough answer“, „Быстрый ответ“ / „Вдумчивый ответ“) on minu valitud; omanik neid üle vaadanud ei ole.
-- Auditipaketi piiri (#397) regressioonikontroll päris suurusega Tallinna paketiga ja salvestusvormi korduste vähendamine on tegemata.
+- ~~Auditipaketi piiri (#397) regressioonikontroll ja salvestusvormi korduste vähendamine~~: tehtud 06.10, [ADR-089](adr-089-closest-contact-directory.md) jaotis „Paketi kokkupakitud salvestuskuju ja piiri regressioonitest“.
