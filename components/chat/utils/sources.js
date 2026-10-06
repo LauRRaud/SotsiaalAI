@@ -117,6 +117,13 @@ export function formatSourceLabel(src) {
   }
   return label;
 }
+/** A source's web address and its declared target (ADR-097), when both are there and the target is an https one. */
+export function sourceWebAddress(src) {
+  return typeof src?.web === "string" && src.web && typeof src?.webUrl === "string" && /^https:\/\/[^\s"<>]+$/.test(src.webUrl)
+    ? { web: src.web, webUrl: src.webUrl }
+    : {};
+}
+
 export function normalizeSources(sources) {
   if (!Array.isArray(sources)) return [];
   return sources.map((src, idx) => {
@@ -197,6 +204,8 @@ export function normalizeSources(sources) {
       municipality_name: municipalityName,
       municipalityName,
       origin: typeof src?.origin === "string" ? src.origin : undefined,
+      // ADR-097: a web page's address as the answer may name it, and the declared address the bubble links it to.
+      ...sourceWebAddress(src),
       short_ref: typeof src?.short_ref === "string" ? src?.short_ref : undefined,
       journalTitle: typeof src?.journalTitle === "string" ? src?.journalTitle : undefined,
       authors,
