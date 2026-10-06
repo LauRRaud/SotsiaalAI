@@ -2494,10 +2494,11 @@ form:has(#chat-input) button.conv-ai-target:focus-visible {
 
 /* Kiire vastus — välk mikri VASAKUL (ADR-092; omanik 06.10: „paneme ainult välgu"). Sama ring ja
    sama glüüfikast mis mikril ja häälvestluse päästikul: kolm naabrit on ühte kaalu. Välk on
-   ALATI kontuur (omanik 06.10: „ei peaks olema täidetud, vaid tume servadest"). Olekut kannab
-   JOON: kustunud välk on mikri vaikses toonis ja sama joonega (1.6), põlev välk on teksti
-   toonis ja tugevama joonega (2.1). Taustaketast ei ole: kiire vastus on vaikimisi sees, ketas
-   seisaks mikri kõrval kogu aeg ja oleks naabritest valjem. Hover annab ainult õrna tausta ja
+   ALATI kontuur (omanik 06.10: „ei peaks olema täidetud, vaid tume servadest") ja ALATI mikri
+   joonega (1.6). Olekut kannab ainult TOON: kustunud välk on mikri vaikses toonis, põlev välk
+   teksti toonis. Tugevam joon (2.1) põleval välgul oli liiga vali (omanik 06.10: „liiga paksud
+   servad", „liiga palju häirib kui on sisse lülitatud"). Taustaketast ei ole samal põhjusel:
+   kiire vastus on vaikimisi sees ja ketas seisaks mikri kõrval kogu aeg. Hover annab ainult õrna tausta ja
    värvi EI muuda: muidu näeks äsja välja lülitatud välk hiire all välja nagu sisse lülitatud.
    Reeglid on kihita nagu .conv-ai-target: kihis olev mikri hover-reegel siia ei ulatu. */
 form:has(#chat-input) button.conv-quick-answer {
@@ -2529,9 +2530,6 @@ form:has(#chat-input) button.conv-quick-answer::before {
 }
 form:has(#chat-input) button.conv-quick-answer[data-active="true"] {
   color: var(--text-warm);
-}
-form:has(#chat-input) button.conv-quick-answer[data-active="true"]::before {
-  --glyph: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13.2 3 6 13.2h5l-1.2 7.8 8.1-10.4h-5.2z'/%3E%3C/svg%3E");
 }
 form:has(#chat-input) button.conv-quick-answer:is(:hover, :focus-visible) {
   background: rgba(248, 248, 248, 0.055);

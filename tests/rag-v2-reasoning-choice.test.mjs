@@ -154,12 +154,15 @@ test('the chat sends the choice with a pilot request, and the composer has the l
   assert.deepEqual(labels, { et: { button_aria: 'Kiire vastus', on: 'Kiire vastus', off: 'Põhjalik vastus' },
     en: { button_aria: 'Quick answer', on: 'Quick answer', off: 'Thorough answer' },
     ru: { button_aria: 'Быстрый ответ', on: 'Быстрый ответ', off: 'Вдумчивый ответ' } });
-  // The glyph is an outline in both states (owner 06.10.2026); the lit one has the text's tone and a firmer line. It
-  // sits on the same button box as the microphone's.
+  // One glyph for both states (owner 06.10.2026): an outline with the microphone's line; a filled one and a firmer
+  // line were both too loud. Only the tone tells the state: the lit one has the text's. It sits on the same button box
+  // as the microphone's.
   const css = await read('app/styles/chat.css');
-  assert.match(css, /button\.conv-quick-answer\[data-active="true"\]::before \{\s*--glyph: url\("data:image\/svg\+xml,[^"]*fill='none' stroke='black' stroke-width='2\.1'/u);
+  const rules = css.match(/button\.conv-quick-answer[^{]*\{[^}]*\}/gu).join('\n');
+  assert.deepEqual(rules.match(/stroke-width='[\d.]+'/gu), ["stroke-width='1.6'"]);
+  assert.match(rules, /button\.conv-quick-answer::before \{[^}]*--glyph: url\("data:image\/svg\+xml,[^"]*fill='none' stroke='black' stroke-width='1\.6'/u);
   assert.match(css, /button\.conv-quick-answer\[data-active="true"\] \{\s*color: var\(--text-warm\);/u);
-  assert.doesNotMatch(css.match(/button\.conv-quick-answer[^{]*\{[^}]*\}/gu).join('\n'), /fill='black'/u);
+  assert.doesNotMatch(rules, /fill='black'|\[data-active="true"\]::before/u);
   assert.match(css, /button\.conv-quick-answer \{[^}]*min-inline-size: var\(--hit-target-min\);/u);
   assert.doesNotMatch(css, /menuitemcheckbox/u);
 });
