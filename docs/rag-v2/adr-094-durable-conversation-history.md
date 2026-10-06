@@ -212,7 +212,7 @@ Avamise plaaniga on kettal korraga: kõhnad read 7 päeva (17,4 KB pööre) ja k
 ### Tegemata ja kontrollimata
 
 - **Töötavat plaani ei muudetud:** arendusplaan on endiselt tähtajatu, seega serveris veel ükski rida ei aegu ja kettakulu ei vähene. Säilitusajaga plaani ei ole päris lehel proovitud.
-- **Avamise plaani liiki ei ole.** Plaani `usage` saab praegu olla ainult `development_only`. Kui avamise liik tehakse, peab ta säilitusaega nõudma.
+- **Avamise plaani liik** tehti 06.10 õhtul (jaotis „Avamise plaani liik“).
 - Olemasolevad 70 arendusvestlust on tähtajata ja jäävad nii.
 - Aegunud ridade kustutamine käib iga päringu alguses (`purge`). Suure mahu juures tuleb see viia koristusse; mõõtmine on viies samm.
 
@@ -359,6 +359,20 @@ Kontroll: ühiktest (üks kustutamine minutis, aeg on protsessi oma, ebaõnnestu
 - **Samaaegseid kasutajaid ei ole mõõdetud.** Katse ajas pöördeid ükshaaval.
 - **Kirjutamise aeg on mõõdetud kohalikul kettal.** Serveris seda eraldi ei mõõdetud.
 - Töötav arendusplaan on endiselt tähtajatu: serveris ükski rida ei aegu. Avamise plaani liiki ei ole.
+
+## Avamise plaani liik
+
+Omaniku otsus 06.10.2026: tehakse plaaniliik, mis nõuab säilitusaega (soovitus: täisauditit ei hoita, read 7 päeva, vestlused 90 päeva).
+
+- Plaanil on väli `kind`: `development` (või puudub; praegune plaan) ja `opening`.
+- **Avamise plaan ei käivitu ilma kahe ajata:** kui kaua pöörde auditirida elab (`retentionHours`, 1–168 tundi) ja mitu päeva hoitakse pöörde täisauditit (`auditDays`). Kui üks puudub, keeldub vestlus plaanist (`opening_plan_requires_retention`), ka siis, kui plaan on kinnitatud. Sama kontroll on plaani tegemisel.
+- **Soovituslikud ajad** on plaani tegija vaikeväärtused: `scripts/rag-v2-chat-plan.mjs --kind opening` annab `auditDays: 0` ja `retentionHours: 168`; mõlemat saab anda ka ise. Vestlus elab 90 päeva viimasest aktiivsusest nagu iga säilitusajaga plaani all.
+- **Liik püsib:** väljalaske uuendus hoiab liigi ja ajad (need on osa kinnitatud plaanist); korpuse täiendus teeb avamise plaani alt jälle avamise plaani.
+- **Liik ei ava vestlust kellelegi.** Kes vestlust kasutada saab, ütleb endiselt plaani kasutajate nimekiri (praegu üks kasutaja). Paljude kasutajate ligipääs, eelarve ja piirangud on eraldi töö.
+
+Kontroll: ühiktestid (liigi reegel tabelina; plaani tegemine keeldub ilma aegadeta; uuendus hoiab liigi; kinnitatud, kuid aegadeta avamise plaani ei loeta; korpuse täiendus kannab liigi edasi ja ei anna edasi liiki, mis ei ole lihtne sõna).
+
+**Töötavat plaani ei muudetud.** Serveris töötab arendusplaan (täisaudit 7 päeva, read ja vestlused tähtajata), sest pöörde täisaudit on arenduses vajalik: 06.10 leiti selle järgi, miks Muhu valla küsimus müügikohti ei saanud. Avamise plaani all muutuks pööre kohe kõhnaks, read kustuksid 7 päeva pärast ja olemasolevad vestlused saaksid järgmise pöördega 90 päeva tähtaja. Avamise plaani ei ole päris lehel proovitud; kohalik mahukatse käis samade aegadega.
 
 ## Vastavus avaldatud tingimustele
 

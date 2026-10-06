@@ -12,8 +12,8 @@ import { PilotStore } from '../lib/rag-v2/pilot/store.js';
 import { publishedDialogue, acceptDialogue, dialogueSummary, DIALOGUE_LIMITS } from '../lib/rag-v2/pilot/dialogue.js';
 import { stateAudit, previousStateFor } from '../lib/rag-v2/pilot/dialogue-state.js';
 import { conversationExpiry, pilotExpiry } from '../lib/rag-v2/pilot/lifetime.js';
-import { newChatPlan, approvedChatPlan, approvedScope } from '../lib/rag-v2/pilot/chat-plan.js';
-import { validRetentionHours } from '../lib/rag-v2/pilot/config.js';
+import { newChatPlan, approvedChatPlan, approvedScope, renewChatPlan } from '../lib/rag-v2/pilot/chat-plan.js';
+import { validRetentionHours, validPlanKind, OPENING_STORAGE } from '../lib/rag-v2/pilot/config.js';
 import { leanPayload } from '../lib/rag-v2/pilot/lean-turn.js';
 import { renderAnswer } from '../lib/rag-v2/pilot/presentation.js';
 import { pilotChatResult, pilotChatMessages } from '../lib/chat/m4PilotClientContract.js';
@@ -359,4 +359,21 @@ test('a conversation lives 90 days from its last activity whatever time the plan
   assert.notEqual(approvedScope(week), approvedScope(await make({ auditDays: 0 })));
   assert.equal(approvedChatPlan({ ...week, retentionHours: null }), false, 'changing the setting breaks the approval');
   await assert.rejects(make({ retentionHours: 200 }), { code: 'invalid_retention_hours' });
+  // A plan made for the opening must state both storage times (owner's decision of 06.10.2026): how long a row lives
+  // and for how many days a finished turn keeps its full audit. A development plan, and a plan without a kind, need
+  // neither.
+  for (const [config, ok] of [[{}, true], [{ kind: 'development', retentionHours: null }, true], [{ kind: 'opening', retentionHours: 168, auditDays: 0 }, true],
+    [{ kind: 'opening', retentionHours: 24, auditDays: 7 }, true], [{ kind: 'opening', retentionHours: null, auditDays: 0 }, false], [{ kind: 'opening', retentionHours: 168 }, false],
+    [{ kind: 'opening' }, false], [{ kind: 'production', retentionHours: 168, auditDays: 0 }, false]]) assert.equal(validPlanKind(config), ok, JSON.stringify(config));
+  assert.deepEqual(OPENING_STORAGE, { auditDays: 0, retentionHours: 168 });
+  for (const extra of [{ kind: 'opening' }, { kind: 'opening', retentionHours: 168 }, { kind: 'opening', auditDays: 0 }]) await assert.rejects(make(extra), { code: 'opening_plan_requires_retention' });
+  await assert.rejects(make({ kind: 'production', retentionHours: 168, auditDays: 0 }), { code: 'invalid_plan_kind' });
+  const opening = await make({ kind: 'opening', ...OPENING_STORAGE });
+  assert.deepEqual([opening.kind, opening.retentionHours, opening.auditDays, approvedChatPlan(opening), 'kind' in kept], ['opening', 168, 0, true, false]);
+  assert.notEqual(approvedScope(opening), approvedScope(week), 'the kind is part of what was approved');
+  // A release's renewal keeps the kind and its times.
+  const renewed = await renewChatPlan(opening, { release: 'abcdef1' });
+  assert.deepEqual([renewed.kind, renewed.retentionHours, renewed.auditDays, approvedScope(renewed) === approvedScope(opening)], ['opening', 168, 0, true]);
+  // An opening plan's conversations follow the published 90 days whatever else it says.
+  assert.equal(conversationExpiry(opening, new Date('2026-10-06T10:00:00Z')).getTime(), Date.parse('2026-10-06T10:00:00Z') + 90 * 86400000);
 });

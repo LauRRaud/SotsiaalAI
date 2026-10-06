@@ -63,6 +63,18 @@ test('pilot switch, per-user grant, expiry, real-model config and approval gates
   assert.equal((await readPilotConfig('tester')).expiresAt, null);
   await fs.writeFile(file, JSON.stringify({ ...noDeadline, expiresAt: undefined }));
   await assert.rejects(readPilotConfig('tester'), { code: 'not_configured' });
+  // ADR-094: a plan made for the opening does not run without its storage times, even when its approval binds it.
+  const signed = plan => ({ ...plan, approval: { ...approved.approval, planHash: digest(plan) } });
+  for (const plan of [{ ...noDeadline, kind: 'opening' }, { ...noDeadline, kind: 'opening', retentionHours: 168 }, { ...noDeadline, kind: 'opening', auditDays: 0 }]) {
+    await fs.writeFile(file, JSON.stringify(signed(plan)));
+    await assert.rejects(readPilotConfig('tester'), { code: 'opening_plan_requires_retention' });
+  }
+  await fs.writeFile(file, JSON.stringify(signed({ ...noDeadline, kind: 'opening', retentionHours: 168, auditDays: 0 })));
+  assert.deepEqual((({ kind, retentionHours, auditDays }) => [kind, retentionHours, auditDays])(await readPilotConfig('tester')), ['opening', 168, 0]);
+  await fs.writeFile(file, JSON.stringify(signed({ ...noDeadline, kind: 'development' })));
+  assert.equal((await readPilotConfig('tester')).kind, 'development');
+  await fs.writeFile(file, JSON.stringify(signed({ ...noDeadline, kind: 'production', retentionHours: 168, auditDays: 0 })));
+  await assert.rejects(readPilotConfig('tester'), { code: 'not_configured' });
   const candidate = { ...real, evidenceDraftVersion: 'm4-evidence-draft-1', evidenceDraftSchemaHash: digest(EVIDENCE_DRAFT_SCHEMA), evidenceDraftPromptVersion: EVIDENCE_DRAFT_PROMPT };
   await fs.writeFile(file, JSON.stringify({ ...candidate, approval: approved.approval }));
   await assert.rejects(readPilotConfig('tester'), { code: 'pilot_approval_required' });

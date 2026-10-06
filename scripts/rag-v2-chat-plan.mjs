@@ -15,7 +15,7 @@
 import fs from 'node:fs/promises';
 import { parseArgs } from 'node:util';
 import { PostgresCatalog } from '../lib/rag-v2/search/postgres.js';
-import { readPilotConfig, validAuditDays, validReasoningChoices, validRetentionHours } from '../lib/rag-v2/pilot/config.js';
+import { readPilotConfig, validAuditDays, validReasoningChoices, validRetentionHours, PLAN_KINDS, OPENING_PLAN, OPENING_STORAGE } from '../lib/rag-v2/pilot/config.js';
 import { budgetLedgerId } from '../lib/rag-v2/pilot/contracts.js';
 import { activateChatPlan, newChatPlan, preflightChatPlan } from '../lib/rag-v2/pilot/chat-plan.js';
 
@@ -33,14 +33,19 @@ const { values } = parseArgs({ options: { tenant: { type: 'string' }, profile: {
   // ADR-094: hours a turn's audit row lives before it is deleted (1-168); the conversation stays in its own messages
   // and follows the 90-day rule. Without it the plan has no time limit: rows and conversations are kept (development).
   'retention-hours': { type: 'string' },
+  // ADR-094: "opening" makes a plan that must state its storage times. Without --audit-days and --retention-hours it
+  // takes the recommended ones: no full audit kept (0 days) and a row for 168 hours; conversations live 90 days from
+  // their last activity. The kind does not change who may use the chat.
+  kind: { type: 'string' },
   activate: { type: 'boolean', default: false } } });
 const usd = Number(values['budget-usd']);
 const reasoningChoices = values['reasoning-choices'] ? values['reasoning-choices'].split(',').map(effort => effort.trim()) : null;
-const auditDays = values['audit-days'] === undefined ? null : Number(values['audit-days']);
-const retentionHours = values['retention-hours'] === undefined ? null : Number(values['retention-hours']);
+const kind = values.kind ?? null, opening = kind === OPENING_PLAN;
+const auditDays = values['audit-days'] === undefined ? opening ? OPENING_STORAGE.auditDays : null : Number(values['audit-days']);
+const retentionHours = values['retention-hours'] === undefined ? opening ? OPENING_STORAGE.retentionHours : null : Number(values['retention-hours']);
 if (!['low', 'medium', 'high'].includes(values.reasoning) || !values.tenant || !values.profile || !values.template || !values.out?.startsWith('/etc/sotsiaalai/') || !(usd > 0 && usd <= 10) || !values.basis
-  || reasoningChoices && !validReasoningChoices({ reasoning: values.reasoning, reasoningChoices }) || auditDays !== null && !validAuditDays(auditDays) || retentionHours !== null && !validRetentionHours(retentionHours)) {
-  throw Error('usage: --tenant --profile --template --out /etc/sotsiaalai/<file> --budget-usd <0-10] --basis <text> [--reasoning-choices low,medium] [--continue-ledger <plan file>] [--audit-days <0-365>] [--retention-hours <1-168>] [--activate]');
+  || reasoningChoices && !validReasoningChoices({ reasoning: values.reasoning, reasoningChoices }) || auditDays !== null && !validAuditDays(auditDays) || retentionHours !== null && !validRetentionHours(retentionHours) || kind !== null && !PLAN_KINDS.includes(kind)) {
+  throw Error('usage: --tenant --profile --template --out /etc/sotsiaalai/<file> --budget-usd <0-10] --basis <text> [--reasoning-choices low,medium] [--continue-ledger <plan file>] [--audit-days <0-365>] [--retention-hours <1-168>] [--kind development|opening] [--activate]');
 }
 const template = JSON.parse(await fs.readFile(values.template, 'utf8'));
 const budgetLedger = values['continue-ledger'] ? budgetLedgerId(JSON.parse(await fs.readFile(values['continue-ledger'], 'utf8'))) : null;
@@ -49,13 +54,13 @@ let plan;
 try {
   const generation = await postgres.active(values.tenant);
   plan = await newChatPlan({ generation, tenant: values.tenant, profileId: values.profile, users: template.users, accountProject: template.accountProject,
-    prices: template.prices, reasoning: values.reasoning, reasoningChoices, budgetLedger, auditDays, retentionHours, nanoUsd: Math.round(usd * 1e9), basis: values.basis });
+    prices: template.prices, reasoning: values.reasoning, reasoningChoices, budgetLedger, auditDays, retentionHours, kind, nanoUsd: Math.round(usd * 1e9), basis: values.basis });
   // The same checks the chat runs before a turn: active generation, profile, versions and directories.
   await preflightChatPlan(plan);
 } finally { await postgres.close(); }
 await fs.writeFile(values.out, JSON.stringify(plan, null, 2), { flag: 'wx', mode: 0o640 });
 const summary = { out: values.out, id: plan.id, tenant: plan.tenant, generation: plan.generationId, profile: plan.profileId,
-  documents: Object.keys(plan.documents).length, budgetUsd: usd, reasoning: plan.reasoning, reasoningChoices: plan.reasoningChoices ?? null, budgetLedger: plan.budgetLedger ?? null, auditDays: plan.auditDays ?? null, retentionHours: plan.retentionHours,
+  documents: Object.keys(plan.documents).length, budgetUsd: usd, reasoning: plan.reasoning, reasoningChoices: plan.reasoningChoices ?? null, budgetLedger: plan.budgetLedger ?? null, auditDays: plan.auditDays ?? null, retentionHours: plan.retentionHours, kind: plan.kind ?? 'development',
   implementationHash: plan.implementationHash.slice(0, 12), activated: false };
 if (values.activate) {
   await activateChatPlan({ ragEnv: values['rag-env'], file: values.out, plan });
