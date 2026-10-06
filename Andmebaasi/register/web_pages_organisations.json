@@ -1,0 +1,516 @@
+{
+  "version": "web-pages-1",
+  "note": "Puuetega inimeste kodade, ühingute ja patsientide liitude veebilehed allikaregistrist master_sources_final.json (omanik 06.10.2026: organisatsioonide üldkontaktid võivad minna avalikku reposse; „tee asjad lõpuni“). Need on organisatsioonide enda lehed. Saidi avalehelt loetakse üks tase allapoole ja ainult lehed selle kohta, kes organisatsioon on, mida ta teeb ja kuidas temaga ühendust saab; uudiseid, galeriisid, juhatuse ja töötajate lehti ei loeta.",
+  "pages": [
+    {
+      "source_id": "eesti_puuetega_inimeste_koda_eesti_puuetega_inimeste_koda_epikoda",
+      "publisher": "Eesti Puuetega Inimeste Koda",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "eesti_puuetega_inimeste_koda_epikoja_liikmed",
+      "publisher": "Eesti Puuetega Inimeste Koda",
+      "source_type": "organization_page",
+      "subpages": false
+    },
+    {
+      "source_id": "eesti_puuetega_inimeste_koda_epikoja_vorgustiku_kontaktid",
+      "publisher": "Eesti Puuetega Inimeste Koda",
+      "source_type": "organization_page",
+      "subpages": false
+    },
+    {
+      "source_id": "1_katusorganisatsioonid_ja_kojad_tallinna_puuetega_inimeste_koda",
+      "publisher": "Tallinna Puuetega Inimeste Koda",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "1_katusorganisatsioonid_ja_kojad_tallinna_koja_liikmesuhingud",
+      "publisher": "Tallinna Puuetega Inimeste Koda",
+      "source_type": "organization_page",
+      "subpages": false
+    },
+    {
+      "source_id": "1_katusorganisatsioonid_ja_kojad_eesti_puuetega_inimeste_fond",
+      "publisher": "Eesti Puuetega Inimeste Fond",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "maakondlikud_kojad_tartu_puuetega_inimeste_koda",
+      "publisher": "Tartu Puuetega Inimeste Koda",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "maakondlikud_kojad_parnumaa_puuetega_inimeste_koda",
+      "publisher": "Pärnumaa Puuetega Inimeste Koda",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "maakondlikud_kojad_ida_virumaa_puuetega_inimeste_koda",
+      "publisher": "Ida-Virumaa Puuetega Inimeste Koda",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "maakondlikud_kojad_laane_virumaa_puuetega_inimeste_koda",
+      "publisher": "Lääne-Virumaa Puuetega Inimeste Koda",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "maakondlikud_kojad_saaremaa_puuetega_inimeste_koda",
+      "publisher": "Saaremaa Puuetega Inimeste Koda",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "maakondlikud_kojad_viljandimaa_puuetega_inimeste_noukoda",
+      "publisher": "Viljandimaa Puuetega Inimeste Nõukoda",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "maakondlikud_kojad_vorumaa_puuetega_inimeste_koda",
+      "publisher": "Võrumaa Puuetega Inimeste Koda",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "maakondlikud_kojad_polvamaa_puuetega_inimeste_koda_kataloogileht",
+      "publisher": "Põlvamaa Puuetega Inimeste Koda",
+      "source_type": "organization_page",
+      "subpages": false
+    },
+    {
+      "source_id": "nagemispuue_ja_liitpuue_eesti_pimedate_liit",
+      "publisher": "Eesti Pimedate Liit",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "nagemispuue_ja_liitpuue_epl_liikmesuhingud",
+      "publisher": "Eesti Pimedate Liit",
+      "source_type": "organization_page",
+      "subpages": false
+    },
+    {
+      "source_id": "nagemispuue_ja_liitpuue_pohja_eesti_pimedate_uhing",
+      "publisher": "Põhja-Eesti Pimedate Ühing",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "nagemispuue_ja_liitpuue_ppu_infoleht_kuukiir",
+      "publisher": "Põhja-Eesti Pimedate Ühing",
+      "source_type": "organization_page",
+      "subpages": false
+    },
+    {
+      "source_id": "nagemispuue_ja_liitpuue_eesti_pimekurtide_tugiliit",
+      "publisher": "Eesti Pimekurtide Tugiliit",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "nagemispuue_ja_liitpuue_pimedate_raamatukogu_rara",
+      "publisher": "Eesti Rahvusraamatukogu",
+      "source_type": "organization_page",
+      "subpages": false
+    },
+    {
+      "source_id": "nagemispuue_ja_liitpuue_tallinna_noustamine_nagemispuudega_inimesele",
+      "publisher": "Tallinna linn",
+      "source_type": "web_page",
+      "subpages": false
+    },
+    {
+      "source_id": "nagemispuue_ja_liitpuue_nirk",
+      "publisher": "NIRK",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "nagemispuue_ja_liitpuue_epl_teemaleht_nagemispuue",
+      "publisher": "Eesti Pimedate Liit",
+      "source_type": "organization_page",
+      "subpages": false
+    },
+    {
+      "source_id": "kuulmispuue_kurtus_ja_viipekeel_eesti_kurtide_liit",
+      "publisher": "Eesti Kurtide Liit",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "kuulmispuue_kurtus_ja_viipekeel_tallinna_ja_harjumaa_kurtide_uhing",
+      "publisher": "Tallinna ja Harjumaa Kurtide Ühing",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "kuulmispuue_kurtus_ja_viipekeel_eesti_vaegkuuljate_liit",
+      "publisher": "Eesti Vaegkuuljate Liit",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "kuulmispuue_kurtus_ja_viipekeel_evl_liidust",
+      "publisher": "Eesti Vaegkuuljate Liit",
+      "source_type": "organization_page",
+      "subpages": false
+    },
+    {
+      "source_id": "kuulmispuue_kurtus_ja_viipekeel_eesti_kuulmispuuetega_laste_vanemate_liit",
+      "publisher": "Eesti Kuulmispuuetega Laste Vanemate Liit",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "kuulmispuue_kurtus_ja_viipekeel_eesti_viipekeeletolkide_kutseuhing",
+      "publisher": "Eesti Viipekeeletõlkide Kutseühing",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "kuulmispuue_kurtus_ja_viipekeel_viipekeeletolgid_ou",
+      "publisher": "Viipekeeletõlgid OÜ",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "liikumispuue_ja_iseseisev_elu_eesti_liikumispuudega_inimeste_liit",
+      "publisher": "Eesti Liikumispuudega Inimeste Liit",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "liikumispuue_ja_iseseisev_elu_tallinna_liikumispuudega_inimeste_uhing",
+      "publisher": "Tallinna Liikumispuudega Inimeste Ühing",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "liikumispuue_ja_iseseisev_elu_mtu_iseseisev_elu",
+      "publisher": "MTÜ Iseseisev Elu",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "liikumispuue_ja_iseseisev_elu_eesti_paralumpiakomitee",
+      "publisher": "Eesti Paralümpiakomitee",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "intellekti_autismi_psuuhikahairete__vaimukad_eesti_vaimupuudega_inimeste_tugiliit",
+      "publisher": "Eesti Vaimupuudega Inimeste Tugiliit",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "intellekti_autismi_psuuhikahairete__tugiliisu",
+      "publisher": "Tugiliisu",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "intellekti_autismi_psuuhikahairete__eesti_autismiliit",
+      "publisher": "Eesti Autismiliit",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "intellekti_autismi_psuuhikahairete__pohja_eesti_autismi_liit",
+      "publisher": "Põhja-Eesti Autismi Liit",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "intellekti_autismi_psuuhikahairete__eppil",
+      "publisher": "Eesti Psüühikahäiretega Inimeste Lähedaste Liit",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "intellekti_autismi_psuuhikahairete__dementsuse_kompetentsikeskus",
+      "publisher": "Dementsuse Kompetentsikeskus",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "intellekti_autismi_psuuhikahairete__elu_dementsusega",
+      "publisher": "Elu dementsusega",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "intellekti_autismi_psuuhikahairete__eesti_puuetega_naiste_uhenduste_liit",
+      "publisher": "Eesti Puuetega Naiste Ühenduste Liit",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "kone_ja_kommunikatsioonihaired_eesti_afaasialiit",
+      "publisher": "Eesti Afaasialiit",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "kone_ja_kommunikatsioonihaired_eesti_kogelejate_uhing",
+      "publisher": "Eesti Kogelejate Ühing",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "neuroloogilised_ja_kroonilised_seis_eesti_sclerosis_multiplexi_uhingute_liit",
+      "publisher": "Eesti Sclerosis Multiplexi Ühingute Liit",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "neuroloogilised_ja_kroonilised_seis_eesti_parkinsoniliit",
+      "publisher": "Eesti Parkinsoniliit",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "neuroloogilised_ja_kroonilised_seis_eesti_insuldipatsientide_selts",
+      "publisher": "Eesti Insuldipatsientide Selts",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "neuroloogilised_ja_kroonilised_seis_eesti_hemofiiliauhing",
+      "publisher": "Eesti Hemofiiliaühing",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "neuroloogilised_ja_kroonilised_seis_eesti_lihasehaigete_selts",
+      "publisher": "Eesti Lihasehaigete Selts",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "neuroloogilised_ja_kroonilised_seis_eesti_allergialiit",
+      "publisher": "Eesti Allergialiit",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "neuroloogilised_ja_kroonilised_seis_eesti_diabeediliit",
+      "publisher": "Eesti Diabeediliit",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "neuroloogilised_ja_kroonilised_seis_eesti_reumaliit",
+      "publisher": "Eesti Reumaliit",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "neuroloogilised_ja_kroonilised_seis_eesti_kopsuliit",
+      "publisher": "Eesti Kopsuliit",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "neuroloogilised_ja_kroonilised_seis_eesti_vahiliit",
+      "publisher": "Eesti Vähiliit",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    },
+    {
+      "source_id": "neuroloogilised_ja_kroonilised_seis_eesti_neeruhaigete_liit",
+      "publisher": "Eesti Neeruhaigete Liit",
+      "source_type": "organization_page",
+      "subpages": {
+        "depth": 1,
+        "max": 6,
+        "only": "^(?!.*(uudis|blogi|galerii|pildid|sundmus|syndmus|kalender|annet|toeta-meid|pood|privaats|kupsis|/en/|/ru/|/eng|arhiiv|ajalug|pohikiri|aastaaruan|juhatus|meeskond|personal|tootajad)).*(meist|kontakt|teenus|tegevus|liikme|nousta|nõusta|toetus|kes-me|organisatsioon|liidust|uhingust|ühingust|kojast|kogemusnous|oigused|õigused|kasulik|kkk|korduma|abi-ja|tugi)"
+      }
+    }
+  ]
+}

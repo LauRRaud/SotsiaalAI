@@ -174,6 +174,57 @@ Välja jäi 21 märgitud lehte: 13 on liiga õhukesed (alla 80 sõna) ja 8 muul 
 - **Hinnad:** hinnakirju ei loetud, kuid laenutuse leht võib hinda sisaldada. Hind vananeb; muutust näeb uus korje (ajastamata).
 - Kolm ettevõtet 21-st jäi ilma ühegi leheta (lehed õhukesed või märgitud) ja üks registri aadress on surnud.
 
+## Korpus v63 (06.10.2026): puuetega inimeste organisatsioonide lehed
+
+Allikaregistris on 58 organisatsiooni kirjet 51 saidil: puuetega inimeste kojad, puudeliikide ühingud ja patsientide liidud. Omanik 06.10: organisatsioonide üldkontaktid võivad minna avalikku reposse („jah“) ja „tee asjad lõpuni“.
+
+Täielik organisatsiooni pakett (nagu `Andmebaasi/organisatsioonid/astangu.*`: teenused, kontaktid, dokumendid) on käsitöö. See samm on esimene aste: organisatsiooni enda lehed korjajaga, nagu müüjatel.
+
+### Mida loetakse
+
+Nimekiri `Andmebaasi/register/web_pages_organisations.json` (55 kirjet; välja jäid äriregistri kirje, vana ajaveeb ja leht, mille jaotis on juba v60-s). Saidi avalehelt loetakse üks tase allapoole, kuni 6 alalehte, ja ainult lehed selle kohta, kes organisatsioon on, mida ta teeb ja kuidas temaga ühendust saab; uudiseid, galeriisid, juhatuse ja töötajate lehti ei loeta. Loeti 249 lehte (95 899 sõna); 3 aadressi ei avanenud.
+
+### Valik reegli järgi
+
+249 lehte on ükshaaval vaatamiseks liiga palju, seepärast on reegel range ja käsitsi ei kinnitatud ühtegi lehte. Korpusesse läks **56 lehte 30 organisatsioonilt** (19 523 sõna). Välja jäi:
+
+| Põhjus | Lehti |
+|---|---|
+| Õhuke (alla 80 sõna) | 83 |
+| Tekstis nimelaadne sõnapaar ametinimetuse või telefoni kõrval | 50 |
+| Aegunud tükk: esimestes ridades varasem aastaarv või postituse ajatempel | 19 |
+| Lehelt eemaldati isiklik e-posti aadress | 14 |
+| Pealkirja järgi: artikkel või uudis, patsientide lood, toetajate ja partnerite leht, kolmanda osapoole kokkuvõte toetustest või omavalitsuste kontaktidest | 11 |
+| Alles jäi aadress, mis võib olla isiku oma | 9 |
+| Sisuosa märgistuseta ja lühike (alla 120 sõna) | 6 |
+| Pargitud domeeni teade | 1 |
+
+Kolmanda osapoole kokkuvõtted toetustest ja teenustest jäid välja, sest need võivad olla vananenud ja ametlikud allikad on korpuses olemas. Sisuosa märgistuseta lehti on valitute hulgas 18; nende algused vaatasin üle (menüüd ei olnud).
+
+**Ilma leheta jäi 18 organisatsiooni 48-st** (17 reegli järgi: lehed olid õhukesed, nimedega või aegunud; ühe aadress ei avanenud), nende hulgas Tartu ja Lääne-Virumaa koda, Vähiliit ja Diabeediliit.
+
+### Märgistus
+
+Allika liik on `organization_page`, väljaandja on organisatsioon ja pealkirja ees on organisatsiooni nimi (`pageTitle`). Liik kuulub nende hulka, mille aadressi Luna võib vastuses nimetada ([ADR-097](adr-097-web-address-in-the-answer.md)). Lehtede tekstid reposse ei lähe (organisatsioonide enda tekstid); repos on nimekiri.
+
+### Täiendus
+
+| | |
+|---|---|
+| Uusi allikaid | 56 |
+| Lõike | 232 |
+| Ost | 232 sisendit, 69 983 tokenit, **0,0091 USD** (piir 0,03, seatud omaniku „veidi raha“ loa sees) |
+| Indeks | `214c8a6d`: 7536 dokumenti, 43 790 lõiku (enne `d058d90b`: 7480 ja 43 558) |
+| Vestlusplaan | `/etc/sotsiaalai/m4-corpus-chat-20261006g.json` |
+
+Täiendus tehti esimest korda repos olevate abiskriptidega (`rag-v2-review-by-rule.mjs`, `rag-v2-upload-parts.sh`, `rag-v2-corpus-run-guarded.sh`, [ADR-098](adr-098-monthly-assistive-refresh.md)). Kontroll päris lehel on üleandmisfailis.
+
+### Tähele panna
+
+- Organisatsiooni leht ei ole ametlik juhis ega õiguslik alus.
+- Valik on reegli järgi, mitte lehekaupa loetud: reegel võis jätta sisse lehe, mis ei ole kasulik, ja välja lehe, mis oleks olnud.
+- Organisatsioonide lehti igakuine uuendamine ei loe.
+
 ## Kontroll
 
 `tests/rag-v2-web-page.test.mjs` (13 testi; lisandus alalehtede muster ja ettevõtte lehe pealkiri): sisuosa eraldamine näidislehelt; isiku kontaktid kõigis neljas kujus ja peidetud aadressid; sisuosata leht ja vihje; salvestatud leht läbib päris vastuvõtu (üks sisuosa, lõikude kohad artikli sees) ja metaandmed läbivad kohandaja; `robots.txt`; alalehtede leidmine; toomine (ümbersuunamised, keelatud aadressid, mitte-HTML, ajapiir, märgistik); lehe ja alalehtede kogumine piiridega; saidi viisakus; muutuse otsus; ploki nime reegli kaks päris juhtumit.

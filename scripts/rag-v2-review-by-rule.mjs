@@ -5,6 +5,8 @@
 //   page    an official web page the collector read
 //   vendor  a page of an assistive device vendor's own website; its title begins with the company's name, so the title
 //           as a whole does not stand in the page text (the one warning expected)
+//   organisation  a page of an organisation's own website (a disability chamber, an association, a patients' union);
+//           titled like a vendor's page
 //   node scripts/rag-v2-review-by-rule.mjs <review-draft.json> <review.json> "<reviewer>"
 import fs from 'node:fs';
 
@@ -15,11 +17,13 @@ const KINDS = {
   page: { note: 'Ametlik veebileht (ADR-095): korjaja loetud sisuosa ilma saidi menüüde ja isikute kontaktideta; lehe tekst on võrdlemata hilisema seisuga, kontrolli kuupäev on metaandmetes. Leht on juhis, mitte õiguslik alus.', expected: [] },
   vendor: { note: 'Abivahendi müüja või teenuseosutaja enda veebileht (ADR-095, allika liik vendor_page): ettevõtte kirjeldus oma teenustest. Ei ole ametlik juhis; tingimused ja summad võivad olla muutunud, õiguse ja piirmäärade alus on määrus ja Sotsiaalkindlustusameti leht. Korjaja loetud sisuosa ilma isikute kontaktideta; kontrolli kuupäev on metaandmetes. Pealkiri on lehe enda pealkiri, mille ette on lisatud ettevõtte nimi.',
     expected: ['title_not_matched_in_pdf'] },
+  organisation: { note: 'Organisatsiooni enda veebileht (ADR-095, allika liik organization_page): puuetega inimeste koja, ühingu või patsientide liidu kirjeldus oma tegevusest, teenustest ja üldkontaktidest. Ei ole ametlik juhis ega õiguslik alus. Korjaja loetud sisuosa ilma isikute kontaktideta; kontrolli kuupäev on metaandmetes. Pealkiri on lehe enda pealkiri, mille ette on lisatud organisatsiooni nimi.',
+    expected: ['title_not_matched_in_pdf'] },
 };
 const value = field => (field && typeof field === 'object' && 'value' in field ? field.value : field);
 const kindOf = item => {
   const type = value(item.fields?.source_type), title = String(value(item.fields?.title) ?? '');
-  return type === 'registry' && title.startsWith('Abivahendite müügi- ja üüripunktid: ') ? 'points' : type === 'vendor_page' ? 'vendor' : type === 'web_page' ? 'page' : null;
+  return type === 'registry' && title.startsWith('Abivahendite müügi- ja üüripunktid: ') ? 'points' : type === 'vendor_page' ? 'vendor' : type === 'organization_page' ? 'organisation' : type === 'web_page' ? 'page' : null;
 };
 const draft = JSON.parse(fs.readFileSync(draftPath, 'utf8')), tally = {}, problems = [];
 for (const item of draft.items) {
