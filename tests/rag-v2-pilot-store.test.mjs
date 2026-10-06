@@ -894,3 +894,26 @@ test('real DB: a turn published with placeholders gets its record from its audit
   // dialogue has no such list, so its record counts as whole).
   assert.equal(again.completed, 0);
 });
+
+// ADR-094, step 5: the storage report reads what the chat takes on disk and what waits for a sweep, in numbers only.
+test('real DB: the storage report counts audit rows by form, the records in the messages and what waits for a sweep', async t => {
+  const { chatStorageReport } = await import('../lib/rag-v2/pilot/storage-report.js');
+  const f = await fixture(t, { auditDays: 7 });
+  const before = await chatStorageReport(db, { auditDays: 7 });
+  const first = await f.service.run(f.user.id, f.input);
+  await f.service.run(f.user.id, { ...f.input, clientTurnKey: randomUUID(), question: 'Teine küsimus' });
+  // The first row is older than the plan's audit time and past its own time; neither sweep has run yet.
+  await db.m4PilotTurn.update({ where: { id: first.id }, data: { createdAt: new Date(Date.now() - 8 * 86400000), expiresAt: new Date(Date.now() - 1000) } });
+  const after = await chatStorageReport(db, { auditDays: 7 });
+  // The test database holds other tests' rows and test files run side by side: the report is read as a difference.
+  const grew = (a, b, path) => path.reduce((value, key) => value[key], b) - path.reduce((value, key) => value[key], a);
+  assert(grew(before, after, ['audit_rows', 'rows']) >= 2 && grew(before, after, ['audit_rows', 'whole']) >= 2);
+  assert(grew(before, after, ['messages', 'with_record']) >= 2 && grew(before, after, ['messages', 'of_chat_turns']) >= 4);
+  assert(after.audit_rows.past_their_time_not_purged >= 1 && after.lean_queue.whole_older_than_audit_time >= 1);
+  assert(after.audit_rows.rows_last_day >= 1 && after.audit_rows.bytes_last_day > 0 && after.audit_rows.whole_avg_bytes > 0);
+  assert(after.messages.answer_with_record_avg_bytes > 0 && after.messages.answer_with_record_max_bytes >= after.messages.answer_with_record_avg_bytes);
+  assert(after.conversations.conversations >= 1 && after.database_bytes > 0 && after.tables.M4PilotTurn.total_bytes > 0 && after.tables.ConversationMessage.total_bytes > 0);
+  assert.equal((await chatStorageReport(db)).lean_queue, null, 'a plan without an audit time has no lean queue');
+  // Numbers and times only: no text of a turn is in the report.
+  assert.doesNotMatch(JSON.stringify(after), /Üldküsimus|Allikatekst|Teine küsimus/u);
+});

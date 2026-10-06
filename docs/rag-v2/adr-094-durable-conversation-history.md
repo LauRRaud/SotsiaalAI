@@ -115,7 +115,7 @@ Võrdluseks samad pöörded: terve rida 184,8 KB kettal, kõhn rida 17,4 KB.
 | 2 | Jätkuvestlus kirjest: eelmine vastus, olek, fookus ja küsitud omavalitsus tulevad kirjest, kui rida on kustunud või teise plaani oma. Varem avaldatud pöörded saavad kirje oma reast | tehtud (jaotis „Teine samm“) |
 | 3 | Audit on päriselt ajutine ja vestlus allub 90 päeva reeglile: plaanil `retentionHours`; vestluse aegumine tavalise reegli järgi viimasest aktiivsusest; arendusplaani tähtajatu erand ei jõua säilitusajaga plaani kasutajateni; ka katkenud pöörded aeguvad | tehtud (jaotis „Kolmas samm“) |
 | 4 | Pöörde suured andmed kirjutatakse üks kord (praegu umbes kümme ülekirjutust pöörde kohta) | tegemata |
-| 5 | Mõõdetav koristus ja kasv (kogumaht, päevane juurdekasv, aegunud kirjed, vanim koristamata, vaba ruum) ning vastuvõtt mahukatsega | tegemata |
+| 5 | Mõõdetav koristus ja kasv (kogumaht, päevane juurdekasv, aegunud kirjed, vanim koristamata, vaba ruum) ning vastuvõtt mahukatsega | osaliselt: aruanne tehtud (jaotis „Viies samm“), mahukatse tegemata |
 
 ## Teine samm: jätkuvestlus kirjest
 
@@ -215,6 +215,21 @@ Avamise plaaniga on kettal korraga: kõhnad read 7 päeva (17,4 KB pööre) ja k
 - **Avamise plaani liiki ei ole.** Plaani `usage` saab praegu olla ainult `development_only`. Kui avamise liik tehakse, peab ta säilitusaega nõudma.
 - Olemasolevad 70 arendusvestlust on tähtajata ja jäävad nii.
 - Aegunud ridade kustutamine käib iga päringu alguses (`purge`). Suure mahu juures tuleb see viia koristusse; mõõtmine on viies samm.
+
+## Viies samm, esimene osa: kettakulu ja kasvu aruanne
+
+`scripts/rag-v2-chat-storage.mjs` (teek `lib/rag-v2/pilot/storage-report.js`) loeb ainult ja trükib ainult arve; ühtegi küsimust, vastust ega allikateksti aruandes ei ole. Ta ütleb:
+
+- **tabelite suurused** (auditiread, vestluse sõnumid, vestlused, pöörete tunnused) ja andmebaasi kogumahu;
+- **auditiread kuju järgi:** terved ja kõhnad, keskmine salvestatud suurus, mitu on ilma tähtajata;
+- **juurdekasvu:** viimase päeva ja nädala read ja baidid, eraldi ridadele ja vestluse kirjetele;
+- **kirjed vestluse sõnumites:** mitu, keskmine ja suurim, mitu kohatäidet on veel alles;
+- **mis ootab koristust:** aegunud read, mida ei ole veel kustutatud (ja vanim neist); terved read, mis on plaani auditi ajast vanemad ja veel kõhnaks tegemata; vestlused, mille tähtaeg on möödas;
+- **vaba kettaruumi.**
+
+Kontroll: andmebaasitest (aruanne loeb testi enda read vahena, sest testandmebaasis on teiste testide ridu; aruandes ei ole pöörde teksti). Serveris jooksutamata; arvud kirjutatakse siia pärast väljalaset.
+
+**Tegemata:** mahukatse (palju sünteetilisi vestlusi päris teed pidi: avaldamine kirjetega, ridade aegumine ja kustutamine, ajalugu ja jätkuvestlus ilma ridadeta, vestluste aegumine, teine ring ja tegelik kettakulu).
 
 ## Vastavus avaldatud tingimustele
 
