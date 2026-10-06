@@ -33,8 +33,8 @@ Lisaks tõestas süsteem iga vana pöörde lugemisel uuesti, et vastus järeldub
    - vastus ja olek on samad, mis avaldamisel tõestati (räsid).
 4. **Mida enam ei korrata:** vastuse ja oleku uut projektsiooni tõendusest. Kõhn pööre on tõestatud üks kord, avaldamisel. Otsingu kataloogi kontroll jääb kõhna paketi puhul vahele, sest otsingu audit läks koos ülejäänuga.
 5. **Plaan ütleb, kui kaua täisaudit kestab.** Uus kinnitatav väli `auditDays`:
-   - `0`: pööre salvestatakse kõhnana kohe avaldamisel (tootmine); varasema plaani ajast jäänud terved pöörded teeb kõhnaks koristus;
-   - päevade arv: pööre salvestatakse tervena ja tehakse kõhnaks, kui see on vanem (arendus; säilituse koristus teeb seda, kuni 200 rida korraga);
+   - `0`: pööre salvestatakse kõhnana kohe avaldamisel (tootmine); varasema plaani ajast jäänud terved pöörded teeb kõhnaks ühekordne `scripts/rag-v2-lean-turns.mjs`;
+   - päevade arv: pööre salvestatakse tervena ja tehakse kõhnaks, kui see on vanem (arendus; säilituse koristus teeb seda partiide kaupa, vt „Koristuse suutlikkus“);
    - väli puudub: täisaudit jääb alles nagu seni.
    Väli on osa sellest, mida omanik kinnitab; väljalaske uuendus ja korpuse täiendus hoiavad selle alles.
 6. **Kõhnaks tegemine on ühesuunaline.** Lahti lastut ei saa reast taastada; räsid lubavad mujal hoitud koopiat sama pöördega siduda.
@@ -63,7 +63,7 @@ Kõhn kuju arvutati mälus iga salvestatud lõpetatud pöörde kohta; midagi ei 
 | Viidete kontroll päris korpuse vastu (51 praeguse indeksi pööret, 194 viidatud viidet) | kõhn 51/51, täiskirje 51/51 |
 | Kontrolli aeg pöörde kohta | kõhn 59 ms, täiskirje 213 ms |
 
-Kõhna rea suurim osa on viidatud tõendus (keskmiselt 17,6 KB): lõikude tunnused ja asukohad, mida viite kontroll vajab, ja lõigu tekst. Kettal on rida andmebaasi tihendamise tõttu väiksem; seda ei ole mõõdetud, sest midagi ei kirjutatud.
+Kõhna rea suurim osa on viidatud tõendus (keskmiselt 17,6 KB): lõikude tunnused ja asukohad, mida viite kontroll vajab, ja lõigu tekst. Kettal on rida andmebaasi tihendamise tõttu väiksem: 17,4 KB (mõõdetud ajutises tabelis, vt „Mõõdetud kettamaht“).
 
 ## Kontroll
 
@@ -92,25 +92,74 @@ node scripts/rag-v2-chat-plan.mjs ... --audit-days 7 --continue-ledger <asendata
 
 ## Tuhandete kasutajate jaoks sellest ei piisa
 
-Omanik samal päeval: „mul on plaanis platvormile tuua tuhandeid kasutajaid, mul ei tohi paisuda kõvaketta kasutus meeletuks. Peab arvestama, kuidas toimub vestlus, selle talletamine, ajalugu.“
+Omanik samal päeval: „mul on plaanis platvormile tuua tuhandeid kasutajaid, mul ei tohi paisuda kõvaketta kasutus meeletuks. Peab arvestama, kuidas toimub vestlus, selle talletamine, ajalugu.“ Codexi ülevaade (#406–407, omaniku edastatud) lisas: kettakasv peab olema ette arvutatav ja piiratud; pöörde mahu vähendamine ei lahenda veel tähtajatut kogunemist.
 
-Arvutus eeldusega 3000 kasutajat ja 10 pööret päevas kasutaja kohta (30 000 pööret päevas). Kettamaht on hinnang: mõõdetud on tekstimaht, ja andmebaas tihendas täiskirjet 2,2 korda.
+### Mida kõhn kirje ei tee
 
-| Kirje kuju | Pöörde kohta kettal | Päevas | Aastas |
-|---|---|---|---|
-| Täiskirje (seni) | 183 KB (mõõdetud) | 5,5 GB | ei mahu |
-| Kõhn kirje (see otsus) | umbes 14 KB (hinnang 30,6 KB tekstist) | 0,4 GB | umbes 150 GB |
-| Ajalookirje ilma tõenduseta (järgmine samm) | umbes 1,5 KB (hinnang 3 KB tekstist) | 45 MB | umbes 16 GB |
+- **Seitse päeva tähendab väiksemaks tegemist, mitte kustutamist.** Kõhn rida jääb alles. Plaani `expiresAt` ja `retentionHours` on `null`, seega ei aegu ükski pööre ja kogumaht kasvab, kuni kasutaja vestluse kustutab.
+- **Platvormi üldine säilitusreegel neid vestlusi ei puuduta.** Muud vestlused kustutab koristus pärast 90 päeva tegevusetust (`DATA_RETENTION_DAYS`). Vestlus, mille pöördel on aegumiseta auditikirje, on sellest reeglist teadlikult välja jäetud (`lib/retention.js`). Praeguse arendusplaaniga on seega iga RAG v2 vestlus tähtajatu.
+- **Plaani vahetusega nähtamatuks muutunud pööre võtab kettal endiselt ruumi** (vt „Kõrvalleid“).
 
-Kõhn kirje on seega vaheaste: see peatab arendusaja kasvu ja teeb vana rea 92% väiksemaks, aga hoiab viidatud tõenduse tervikuna, sest iga lugemine kontrollib viiteid korpuse vastu. Tuhandete kasutajatega on vaja teistsugust jaotust:
+### Mõõdetud kettamaht (06.10.2026, päris pöörded)
 
-1. **Püsiv ajalugu on ainult vestlus:** küsimus, vastuse tekst ja iga viidatud allika kohta lühike viide (pealkiri, koht, link, kontrolli kuupäev). Umbes 3 KB pöörde kohta. Praegu on vestluse sõnumite tabelis kohatäited ja päris tekst on ainult pöörde auditikirjes.
-2. **Auditikirje on ajutine:** täis- või kõhn kirje elab seadistatud arvu päevi ja kustub siis täielikult (rea aegumine on poes olemas).
-3. **Ajalugu ei sõltu plaanist ega korpuse versioonist** (vt „Kõrvalleid“). Vana vastus näitab seda, mis tollal vastati; allika avamine loeb praegust korpust või ütleb, et allikas on uuenenud.
-4. **Vestluste säilitusaeg** on omaniku otsus (näiteks 12 kuud või kuni kasutaja kustutab).
-5. **Rida kirjutatakse üks kord**, mitte kümmekond korda pöörde jooksul.
+Iga kuju tehti mälus 82 salvestatud lõpetatud pöördest ja kirjutati serveri andmebaasis ajutisse tabelisse, mis kadus tehingu lõpus; andmebaasi enda tihendus kehtib seal nagu päris tabelis. Ühtegi päris rida ei muudetud.
 
-See on eraldi otsus ja eraldi töö: see muudab, kust ajalugu loetakse ja mida vana pöörde kohta enam ei tõestata.
+| Kuju | Kettal pöörde kohta | Tekstina |
+|---|---|---|
+| Täiskirje, nagu enne 06.10 | 184,8 KB | 391,6 KB |
+| Täiskirje kokkupakitud paketiga (ADR-089) | 136,1 KB | 294,8 KB |
+| Kõhn kirje (see otsus) | 17,4 KB | 30,6 KB |
+| Ainult vestlus: küsimus, vastus, iga viidatud allika lühiviide, kulu | 2,6 KB | 3,6 KB |
+
+Varasem hinnang (kõhn umbes 14 KB, ainult vestlus umbes 1,5 KB) oli liiga optimistlik: tunnused ja räsid ei tihene.
+
+### Arvutus
+
+Koormusstsenaarium, mitte prognoos: 3000 **iga päev aktiivset** kasutajat ja 10 pööret päevas, 30 000 pööret päevas ehk 10,95 miljonit aastas. Registreeritud kasutaja ei ole päevane kasutaja.
+
+| Kuju | Päevas lisandub | 12 kuu andmed |
+|---|---|---|
+| Täiskirje | 5,5 GB | ei mahu |
+| Kõhn kirje | 0,52 GB | 190 GB |
+| Ainult vestlus | 77 MB | 28 GB |
+
+See on ainult pöörde sisu. Lisanduvad sõnumite ja vestluste read, indeksid, andmebaasi tehingulogi, varukoopiad ja rakenduse logid. Serveris oli 06.10 vaba 8,5 GB: sellest ei piisa selle koormuse juures ühegi kuju 12 kuu ajalooks.
+
+### Mahukatse (kohalik testandmebaas, sünteetilised pöörded)
+
+`scripts/rag-v2-turn-volume.mjs`, 300 pööret päris pöörde kuju ja suurusega (sünteetiline tekst tiheneb paremini kui päris, seega on siinsed read väiksemad kui ülal):
+
+| Samm | Tulemus |
+|---|---|
+| 300 tervet pööret kirjutatud | tabel kasvas 29,6 MB |
+| Koristus tegi need kõhnaks | 300/300, 16 rida sekundis; rida 110,6 → 11,6 KB; tabeli fail **ei kahanenud** (+2,9 MB) |
+| Andmebaasi koristus (`VACUUM`) | fail sama |
+| 300 tervet pööret uuesti | tabel kasvas 1,2 MB: **96% vabanenud ruumist läks taaskasutusse** |
+
+Järeldus: kõhnaks tegemine ei anna operatsioonisüsteemile ruumi tagasi, aga hoiab faili kasvamast. Kettamaht stabiliseerub tasemel „auditiaja sees olevad terved read + kõik kõhnad read“.
+
+### Koristuse suutlikkus
+
+Codexi leid oli õige: esimene teostus tegi kõhnaks kuni 200 rida ühe koristusega ja koristus käib vaikimisi iga kuue tunni tagant, seega 800 rida päevas, sõltumata sellest, kui palju juurde tekib. Parandatud:
+
+- koristus töötab partiide kaupa, kuni tööd jätkub või ajapiir (vaikimisi 60 s, `M4_PILOT_LEAN_SWEEP_MS`) täis saab, ja ütleb, kas midagi jäi järgmiseks korraks (`pilotTurnsLeftWhole`);
+- järgmine koristus ei loe uuesti ridu, mis on teadaolevalt juba kõhnad;
+- plaan, mis avaldab kõhnana (`auditDays: 0`), ei koristata üldse: muidu loeks iga koristus kõik read läbi. Varasema plaani ajast jäänud terved read teeb kõhnaks ühekordne `scripts/rag-v2-lean-turns.mjs`.
+
+Mõõdetud 16 rida sekundis (sülearvuti) tähendab, et 60 sekundit neli korda päevas katab umbes 3800 pööret päevas. **30 000 pööret päevas ja mitmepäevane täisaudit vajaks umbes 31 minutit koristust päevas**: pikemat ajapiiri või tihedamat käivitust. Tootmise `auditDays: 0` seda järjekorda ei tekita.
+
+### Järgmise arenduse nõuded
+
+Kõhn kirje on vaheaste. Codexi ülevaate järgi, millega ma nõustun:
+
+1. **Vestlusajalugu on väike ja iseseisev:** küsimus, vastus, ajatemplid, lühikesed allikaviited. Ajalugu ja jätkuvestlus töötavad ka pärast auditi kustumist, plaani vahetust ja korpuse uuendamist. Praegu on vestluse sõnumite tabelis teadlikult kohatäited ja päris tekst on ainult auditikirjes.
+2. **Täisaudit on päriselt ajutine:** arenduses 7 päeva, tootmises ilma püsiva täisauditita; ka katkenud ja ebaõnnestunud pöörded aeguvad. Rea aegumine (`retentionHours`, kuni 168 tundi) ja kustutamine on poes olemas; neid ei saa kasutada enne, kui ajalugu ei ela enam auditikirjes.
+3. **Allikat ei kopeerita iga vastuse juurde:** vestlus hoiab allika tunnust, versiooni, kohta ja linki; vana allikaversioon elab korpuses ühe korra.
+4. **Suuri andmeid ei kirjutata korduvalt üle:** lõplik sisu salvestatakse üks kord.
+5. **Ajalool on säilitustähtaeg või mahupiir.** „Kuni kasutaja kustutab“ lubab tähtajatut kasvu. Platvormi praegune üldreegel on 90 päeva tegevusetust; Codexi soovitus on 12 kuud sõnumi loomisest. **Omaniku otsus.**
+6. **Koristus ja kettakasv on mõõdetavad:** vestluste kogumaht, päevane juurdekasv, aegunud kirjete arv, vanim koristamata kirje, vaba ruum.
+
+**Vastuvõtukriteerium on mahukatse, mitte pakkimisprotsent:** testandmebaasis esinduslik hulk sünteetilisi pöördeid; audit ja vana ajalugu aeguvad; ajalugu ja jätkuvestlus töötavad ilma auditita; uuendus ei peida varasemaid sõnumeid; koristusjärjekord ei kasva; tegelik kettakulu vastab kokkulepitud mahueelarvele. Tasulisi mudelikutseid see ei vaja. `scripts/rag-v2-turn-volume.mjs` on selle katse algus.
 
 ## Tagasipööramise piir
 
@@ -123,7 +172,6 @@ Vestluse ajalugu ja dialoogi kontekst loevad ainult töötava plaani pöördeid 
 ## Lahti
 
 - Päris pööre päris lehel kõhna kirjega (tasuline; luba ei ole küsitud). Praeguse plaaniga tekib esimene kõhn rida alles 7 päeva pärast.
-- Kõhna rea suurus kettal.
 - Rea ühekordne kirjutamine.
 - Varasemate pöörete nähtavus pärast plaani vahetust (ülal).
 - Püsiv ajalookirje ja ajutine auditikirje (jaotis „Tuhandete kasutajate jaoks sellest ei piisa“): omaniku otsus ja eraldi töö.
