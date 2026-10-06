@@ -2,6 +2,7 @@
 
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { parseAssistantMarkdownBlocks } from "@/lib/chat/messageMarkdown";
+import { messageLinks, splitByLinks } from "@/lib/chat/messageLinks";
 import MessageActionsMenu from "./MessageActionsMenu";
 
 const ICON_PROPS = {
@@ -99,6 +100,15 @@ function renderInlineMarkdown(text, keyPrefix) {
 // A reference group in an answer ("[S37, S21]") opens the sources panel at those sources; the text stays the same, so
 // copying and listening do not change.
 const REF_GROUP = /\[(S\d+(?:\s*,\s*S\d+)*)\]/g;
+// A web address the answer names is a link when it is one of the answer's own sources (ADR-097); the link's target
+// is the source's declared address, never what the text says.
+function renderInlineWithLinks(text, keyPrefix, onRefs, links) {
+  if (!links?.length) return renderInlineWithRefs(text, keyPrefix, onRefs);
+  return splitByLinks(renderInlineMarkdown(text, keyPrefix), links).flatMap((part, index) => (typeof part === "string"
+    ? renderInlineWithRefs(part, `${keyPrefix}-t${index}`, onRefs)
+    : [<a key={`${keyPrefix}-link-${index}`} href={part.url} target="_blank" rel="noopener noreferrer" data-source-link="" onClick={event => event.stopPropagation()}>{part.text}</a>]));
+}
+
 function renderInlineWithRefs(text, keyPrefix, onRefs) {
   const source = renderInlineMarkdown(text, keyPrefix);
   if (!onRefs) return source;
@@ -125,7 +135,7 @@ function renderInlineWithRefs(text, keyPrefix, onRefs) {
   return parts;
 }
 
-function AssistantMarkdown({ text, onRefs = null }) {
+function AssistantMarkdown({ text, onRefs = null, links = null }) {
   const blocks = useMemo(() => parseAssistantMarkdownBlocks(text), [text]);
 
   if (!blocks.length) return null;
@@ -142,7 +152,7 @@ function AssistantMarkdown({ text, onRefs = null }) {
             >
               {block.items.map((item, itemIndex) => (
                 <li key={`${block.type}-${index}-${itemIndex}`}>
-                  {renderInlineWithRefs(item, `${block.type}-${index}-${itemIndex}`, onRefs)}
+                  {renderInlineWithLinks(item, `${block.type}-${index}-${itemIndex}`, onRefs, links)}
                 </li>
               ))}
             </ListTag>
@@ -151,7 +161,7 @@ function AssistantMarkdown({ text, onRefs = null }) {
 
         return (
           <p key={`paragraph-${index}`}>
-            {renderInlineWithRefs(block.text, `paragraph-${index}`, onRefs)}
+            {renderInlineWithLinks(block.text, `paragraph-${index}`, onRefs, links)}
           </p>
         );
       })}
@@ -315,6 +325,7 @@ const ChatMessageItem = memo(function ChatMessageItem({
   const sourcesLabel = tr("chat.sources.heading") || "Allikad";
   const actionsLabel = locale === "en" ? "Message actions" : locale === "ru" ? "Действия с сообщением" : "Sõnumi tegevused";
   const hasMessageSources = Array.isArray(messageSources) && messageSources.length > 0;
+  const sourceLinks = useMemo(() => messageLinks(messageSources), [messageSources]);
   // A pilot source's id ends with its ref ("<turn>/S37") and its label starts with it ("S37 · …").
   const openRefs = useCallback(refs => {
     const picked = messageSources.filter(source => refs.some(ref => String(source?.id || source?.key || "").endsWith(`/${ref}`)
@@ -454,7 +465,7 @@ const ChatMessageItem = memo(function ChatMessageItem({
       </span>
 
       {text ? (
-        <AssistantMarkdown text={visibleText} onRefs={hasMessageSources && onShowSources ? openRefs : null} />
+        <AssistantMarkdown text={visibleText} onRefs={hasMessageSources && onShowSources ? openRefs : null} links={sourceLinks} />
       ) : null}
       {showThinking ? (
         <span role="status" aria-live="polite" aria-label={thinkingLabel} />
