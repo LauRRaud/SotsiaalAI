@@ -72,7 +72,13 @@ Kohalik plaan `reasoning: low`, `reasoningChoices: [low, medium]`. Värvid loetu
 
 **Tehtud 06.10.2026:** plaan `m4-corpus-chat-20261006a.json` (alus: omaniku korraldus lisada valik; sama korpus, kasutaja, hinnad ja 4 USD ülempiir nagu senistel plaanidel; ainus seadete erinevus eelmisest on `reasoningChoices`). Rida oli päris lehel näha ja vaikimisi linnukesega. See plaan alustas oma kuluarvestust nullist (vt „Mõõtmine vestlusaknas“, „Plaani eelarve“).
 
-**Vaikimisi kiire (06.10.2026):** pärast selle muudatuse jõudmist serverisse tehakse plaan, mille enda tase on `low`; see jätkab plaani `m4-corpus-chat-20261006a.json` kuluarvestust. Tehtud plaani nimi ja kontroll lisatakse siia eraldi muudatusega.
+**Vaikimisi kiire, tehtud 06.10.2026:** plaan `m4-corpus-chat-20261006b.json` (alus: omaniku sõnad „paneme ainult välgu ja tee low hetkel ka default“), tehtud ja aktiveeritud väljalaskes `f98be679` (#401). Ühtegi mudelikutset ei tehtud.
+
+- **Erinevus asendatud plaanist:** ainult `reasoning` (`medium` → `low`), plaani tunnus ja kinnituse väljad. Korpus, kasutaja, hinnad, pakutavad tasemed ja 4 USD piir on samad.
+- **Kuluarvestus jätkub:** uus plaan nimetab plaani `20261006a` arvestust. Selles oli enne ja pärast vahetust 1,0763 USD 4-st (183 katset, neist 45 vastust). Arvestus loeb reserveeringuid plaani hindades; see ei ole teenusepakkuja arve.
+- **Mida 06.10 hommikune uus plaan tegelikult muutis:** asendatud plaani `20261005d` arvestuses oli sel hetkel 0,144 USD (24 katset). Selle võrra tekkis piiri alla ruumi juurde; piiri ei ületatud kummaski arvestuses.
+- **Päris lehel:** välk on mikrofoni kõrval ja põleb vaikimisi (`aria-pressed="true"`, toon `rgb(21, 21, 21)`, joon 1,6); brauseris vana võtme all olnud `medium` ei mõjunud; `ready` läbib.
+- **Tegemata:** päris mudeliga pööre pärast muudatust (tasuline; luba ei ole küsitud).
 
 Ilma kahte taset pakkuva plaanita valikut ei pakuta ja nuppu ei ole näha. Plaan tehakse nii:
 
