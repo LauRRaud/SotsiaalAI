@@ -51,7 +51,7 @@ if (!values.out) { console.error(JSON.stringify({ ok: false, code: 'out_required
 
 const { default: prisma } = await import('../lib/prisma.js');
 const { readPilotConfig } = await import('../lib/rag-v2/pilot/config.js');
-const { PilotStore } = await import('../lib/rag-v2/pilot/store.js');
+const { PilotStore, openTurn } = await import('../lib/rag-v2/pilot/store.js');
 const { PilotService } = await import('../lib/rag-v2/pilot/service.js');
 const { runtimeAdapters } = await import('../lib/rag-v2/pilot/retrieval.js');
 const { municipalDirectoryAdapter } = await import('../lib/rag-v2/adapters/municipal-directory.js');
@@ -207,7 +207,7 @@ try {
       try { result = await service.run(userId, { question: turn.text, contextMode: turn.mode, convId: conversation.id, clientTurnKey: randomUUID(), language: 'et',
         ...(values.reasoning ? { reasoning: values.reasoning } : {}) }, streaming); }
       catch (failure) { error = failure.code || 'turn_failed'; result = failure.pilotTurnId ? { id: failure.pilotTurnId } : null; }
-      const row = result?.id ? await prisma.m4PilotTurn.findUnique({ where: { id: result.id } }) : null;
+      const row = result?.id ? openTurn(await prisma.m4PilotTurn.findUnique({ where: { id: result.id } })) : null;
       const observed = observe(row, error);
       // The caller's own view in this process: the first provisional text passed on and the whole turn.
       if (observed.stages) observed.stages.caller = { streamed: values.stream, firstTextMs: firstText === null ? null : Math.round(firstText), totalMs: Math.round(performance.now() - started) };
