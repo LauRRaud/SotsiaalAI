@@ -390,7 +390,7 @@ Uued väljad on väljaspool iga tokenieelarvet ja valikumõõtu. Tõendus valita
 - Saadetav kontekst võib mõõdetud piiri ületada umbes 1500 tokeni võrra (vt „Piirid“: mõne tokeni täpsusega).
 - Viitekaart (`reference_map`) ei muutu.
 - **Pilootteenuse kaks baidikontrolli** (`pilot/service.js`):
-  - **Auditipaketi piir 512 000 baiti loeb paketti ilma kuupäevadeta** (`auditPacketBytes`). Pakett salvestatakse koos nendega.
+  - **Auditipaketi piir 512 000 baiti loeb paketti ilma kuupäevadeta** (`auditPacketBytes`). Pakett salvestatakse koos nendega. (Alates 06.10.2026 on piir 1 000 000 baiti, vt [ADR-089](adr-089-closest-contact-directory.md) jaotis „Auditipaketi piir“.)
     - Põhjus: iga tõenduskirje kannab oma akti kaarti ja oma märkeid (`legal_dates`). Seda osa 1500 tokeni piir ei kata.
     - Ülevaatuse mõõtmine päris aktidel: 12 kirjet +3130 baiti; riigilõivuseaduse 30 raskeimat lõiku +21 482 baiti (8,8%).
     - Kuupäevadega loetuna oleks vahetult piiri all olev pööre lõppenud veaga `audit_packet_too_large`.
