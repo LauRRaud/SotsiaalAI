@@ -27,7 +27,7 @@ import { DIALOGUE_VERSION } from '../lib/rag-v2/pilot/dialogue.js';
 import { TYPED_DIALOGUE_STATE_VERSION } from '../lib/rag-v2/pilot/dialogue-state.js';
 import { UNIFIED_RETRIEVAL_VERSION } from '../lib/rag-v2/pilot/retrieval-plan.js';
 import { PilotService } from '../lib/rag-v2/pilot/service.js';
-import { PilotStore } from '../lib/rag-v2/pilot/store.js';
+import { PilotStore, openTurn } from '../lib/rag-v2/pilot/store.js';
 import { SEARCH_ASSIST_VERSION } from '../lib/rag-v2/pilot/search-assist.js';
 
 const appUrl = new URL(process.env.M4_TEST_DATABASE_URL || 'postgres://invalid/invalid');
@@ -149,7 +149,7 @@ async function fixture(t, { assist = false } = {}) {
   } });
   return { config, service, adapters, calls, inputs, assistCalls, setState: value => { state = value; },
     run: (question, contextMode = 'same') => service.run(user.id, { question, contextMode, convId: conv.id, clientTurnKey: randomUUID(), language: 'et' }),
-    row: id => db.m4PilotTurn.findUnique({ where: { id } }), empty: () => ({ ...state, region: { id: null, status: 'unknown', support: [] }, periods: [] }) };
+    row: async id => openTurn(await db.m4PilotTurn.findUnique({ where: { id } })), empty: () => ({ ...state, region: { id: null, status: 'unknown', support: [] }, periods: [] }) };
 }
 
 test('one dialogue moves from journals to local support to two publication periods; one embedding and answer per turn, canonical links stay valid', async t => {

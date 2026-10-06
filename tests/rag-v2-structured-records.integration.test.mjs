@@ -26,7 +26,7 @@ import { retrievalProfile } from '../lib/rag-v2/search/profiles.js';
 import { resolveRecordScope } from '../lib/rag-v2/pilot/record-scope.js';
 import { DIALOGUE_VERSION } from '../lib/rag-v2/pilot/dialogue.js';
 import { PilotService } from '../lib/rag-v2/pilot/service.js';
-import { PilotStore } from '../lib/rag-v2/pilot/store.js';
+import { PilotStore, openTurn } from '../lib/rag-v2/pilot/store.js';
 import { municipalDirectoryAdapter } from '../lib/rag-v2/adapters/municipal-directory.js';
 import { resolveModelReferences } from '../lib/rag-v2/search/model-context.js';
 import { prepareMunicipalContactExport, CONTACT_MAPPING_SCHEMA } from '../lib/rag-v2/adapters/municipal-contact-export.js';
@@ -389,7 +389,7 @@ test('real local dialogue stores quoted state in one answer call, switches munic
   assert(requests[1].evidence.records.region === 'harku_vald' && requests[1].evidence.records.entries.every(entry => !('region' in entry)));
   assert(requests[2].evidence.records.entries.some(entry => entry.detail === 'selected_detail' && entry.fields.application));
   assert(requests[3].evidence.records.region === 'kose_vald');
-  const first = await db.m4PilotTurn.findUnique({ where: { id: switched.id } }), second = await db.m4PilotTurn.findUnique({ where: { id: simpler.id } });
+  const first = openTurn(await db.m4PilotTurn.findUnique({ where: { id: switched.id } })), second = openTurn(await db.m4PilotTurn.findUnique({ where: { id: simpler.id } }));
   for (const block of first.payload.answer.blocks) for (const ref of block.refs) {
     const old = first.payload.packet.reference_map[ref];
     assert(second.payload.packet.evidence.some(entry => entry.evidence_id === old.evidence_id));

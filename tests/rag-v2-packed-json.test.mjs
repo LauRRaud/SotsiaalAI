@@ -100,3 +100,33 @@ test('a row is opened before its packet is read: a packed packet, a packet store
   assert(isPackedJson(written.payload.packet));
   assert(AUDIT_PACKET_BYTES > auditPacketBytes(packet));
 });
+
+test('the store writes a packet packed, and the size limit reads it as the turn made it', async () => {
+  const packet = municipalPacket(), written = [];
+  // Tallinn's size on 06.10.2026: over the limit the turn stopped at then (512 000), under the present one. A packet
+  // of twice the records is over the limit even though its packed form would be under it.
+  assert(auditPacketBytes(packet) > 512000 && auditPacketBytes(packet) < AUDIT_PACKET_BYTES);
+  const runaway = municipalPacket({ records: 200 });
+  assert(auditPacketBytes(runaway) > AUDIT_PACKET_BYTES && bytes(packJson(runaway)) < AUDIT_PACKET_BYTES);
+  const stored = { id: 'turn', state: 'claimed', chatTurnId: 'chat', createdAt: new Date(), expiresAt: null, configHash: 'config', payload: { userId: 'u', convId: 'c', events: [], timings: {} } };
+  const tx = { $executeRaw: async () => {}, $queryRaw: async () => [], conversation: { findUnique: async () => ({ userId: 'u', metadata: { m4: true } }) },
+    conversationMessage: { create: async () => ({ id: 'message' }) }, chatTurn: { update: async () => ({}) },
+    m4PilotTurn: { findUnique: async () => stored, count: async () => 0, update: async ({ data }) => { written.push(data); return { ...stored, ...data }; } } };
+  const store = new PilotStore({ $transaction: async fn => fn(tx) }), config = { id: 'm4-plan', tenant: 't', configHash: 'config' };
+  const saved = await store.save(config, stored, 'claimed', { packet, answerVersion: 'v' });
+  const published = await store.publish(config, stored, { kind: 'grounded', blocks: [] }, packet);
+  assert.equal(written.length, 2);
+  for (const data of written) {
+    assert(isPackedJson(data.payload.packet));
+    assert(bytes(data.payload.packet) < bytes(packet) * 0.65);
+    assert.equal(stable(unpackJson(data.payload.packet)), stable(packet));
+  }
+  // The caller gets the packet back as it gave it.
+  for (const row of [saved, published]) assert.equal(stable(row.payload.packet), stable(packet));
+  // A step without a packet writes none, and a small packet that has nothing twice is stored as it is.
+  const small = { tenant: 't', evidence: [{ evidence_id: 'e1', source_text: 'Allikatekst' }], reference_map: { S1: { evidence_id: 'e1' } }, model_context: { evidence: [{ ref: 'S1', text: 'Allikatekst' }] } };
+  await store.save(config, stored, 'claimed', { note: 1 });
+  await store.save(config, stored, 'claimed', { packet: small });
+  assert.equal('packet' in written[2].payload, false);
+  assert.deepEqual(written[3].payload.packet, small);
+});

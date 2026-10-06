@@ -103,4 +103,43 @@ Töötaval versioonil `3e2ac388` ([tõend](../audits/evidence/contact-directory-
 
 **Parandus:** piir on 1 000 000 baiti (`AUDIT_PACKET_BYTES`). See peab mahutama suurima omavalitsuse kirjed ja teadmiskanali selle kõrval; teadmis- ja perioodikanal lisavad oma piiride juures umbes 180 000 baiti. Piir on kaitse lahti jooksnud paketi vastu; mudelile mineval kontekstil on omad mahupiirid, mida see ei muuda.
 
-**Lahti:** pakett kannab iga kirje kohta palju korduvat (viitekaart 167 000 baiti, otsinguabi tekstid 45 000). Salvestatava kuju kokkusurumine on eraldi töö; seni kasvab pakett koos omavalitsuse kirjete arvuga.
+**Lahti (lahendatud allpool):** pakett kannab iga kirje kohta palju korduvat. Salvestatava kuju kokkusurumine oli eraldi töö.
+
+## Paketi kokkupakitud salvestuskuju ja piiri regressioonitest (06.10.2026)
+
+Omaniku korraldus 06.10 („teeb need ära?“ sõltumatu ülevaatuse kahe tehnilise soovituse kohta): Tallinna paketi regressioonikontroll ja salvestusvormi korduste vähendamine.
+
+**Mis paketis kordub** (mõõdetud 06.10 suurimal salvestatud paketil: Tallinn, 98 kirjet ja 6 teadmislõiku, 543 578 baiti):
+
+| Osa | Baite | Mis seal kordub |
+|---|---|---|
+| Tõendikirjed (`evidence`) | 279 670 | iga kirje lõikude ja asukohtade loend, päritolumärked |
+| Viitekaart (`reference_map`) | 172 614 | sama kirje tunnused, lõigud ja asukohad teist korda |
+| Mudeli kontekst (`model_context`) | 51 010 | iga lõigu tekst teist korda |
+| Kirjete kontekst (`record_context`) | 33 261 | |
+
+**Otsus:** pakett salvestatakse kokkupakitult (`lib/rag-v2/pilot/packed-json.js`). Iga korduv osa (alampuu või pikk tekst) on tabelis üks kord ja tema asemel seisab viide. Midagi ei jäeta välja ega kirjutata ümber: lahtipakkimine annab täpselt sama paketi. Viitekaarti ei arvutata lugemisel uuesti, vaid see taastub salvestatust; nii ei sõltu vana pöörde auditeeritavus hilisemast koodist.
+
+- **Kaks astet.** #403: iga lugeja avab paketi enne lugemist (`openTurn`), salvestus jäi samaks. See muudatus: pood kirjutab paketi kokkupakitult. Nii saab iga väljalaske tagasi pöörata eelmisele, mis oskab juba kirjutatut lugeda. Enne 06.10 salvestatud pöörded on pakkimata ja loetakse nagu enne.
+- **Piir loeb paketti nii, nagu pööre selle tegi**, mitte kokkupakitult. Lahti jooksnud pakett ei pääse läbi sellepärast, et ta pakituna piiri alla mahub.
+- **Mida see ei muuda:** mudelile minev kontekst, päring ja kõik kontrollid loevad pakkimata paketti. Pöörde reas on peale paketi veel saadetud päring (umbes 68 000 baiti pöörde kohta) ja ülejäänud väljad, sealhulgas päringu vektor (kokku umbes 74 000); need jäid samaks. Päringu sees on kontekst tekstina; seda ei saa paketiga ühiseks teha, sest andmebaas järjestab paketi võtmed ümber ja päringu täpne tekst peab säilima.
+
+**Mõõdetud ainult lugedes, 06.10 mõõtmise 45 lõpetatud pöördel serveris:**
+
+| Mis | Enne | Kokkupakitult |
+|---|---|---|
+| 45 paketti kokku | 9,31 MB | 5,41 MB (42% vähem) |
+| Tallinna pakett | 543 578 baiti | 351 099 baiti (35% vähem) |
+| Iga pakett pärast lahtipakkimist sama | | jah, kõik 45 |
+| Pikim pakkimine / lahtipakkimine | | 33 ms / 6 ms |
+
+Pöörde terve rida oli nendel pööretel kokku 16,3 MB; pakkimine võtab sellest umbes 3,9 MB.
+
+**Regressioonitest.** `tests/fixtures/rag-v2-municipal-packet.mjs` teeb Tallinna paketi kuju ja suurusega sünteetilise paketi (samad võtmed, 98 kirjet ja 6 lõiku, tunnused sama pikad; kontekst ja viitekaart tehakse päris projektsiooniga; ühtegi päris nime ega teksti selles ei ole). See on 572 345 baiti: üle vana piiri (512 000), alla praeguse.
+
+- Andmebaasitest (`tests/rag-v2-pilot-store.test.mjs`, kohalik testandmebaas): selline pakett läbib terve pöörde (mahukontroll, viidete kontroll, vastusekutse, salvestus), on reas kokkupakitult, avaneb täpselt samana ja sama päringu kordus taastab pöörde salvestatust. Kahekordse kirjete arvuga pakett (1 069 165 baiti) peatab pöörde veaga `audit_packet_too_large` enne vastusekutset, kuigi pakituna oleks ta piiri all.
+- Ühiktestid (`tests/rag-v2-packed-json.test.mjs`, käivad tavalises testikomplektis): pakkimine on kadudeta ka pärast andmebaasi võtmete ümberjärjestust; iga tee, mida mööda rida poest väljub, annab avatud paketi; pood kirjutab paketi kokkupakitult; vigane pakitud väärtus annab vea, mitte vale paketi.
+
+**Kontrollimata:** päris pööre päris lehel pärast teist astet (tasuline; luba ei ole küsitud). Kaks integratsioonitesti faili, mis vajavad EstNLTK-d, ei käinud kohalikus keskkonnas (`morphology_unavailable`); nende ridade lugemine on muudetud sama avamise peale.
+
+**Lahti:** saadetud päring ja päringu vektor on nüüd koos pöörde rea suurim osa; vektori osa eraldi ei ole mõõdetud. Minu serveris olevad lugemisskriptid (`st/`) loevad paketti otse ja vajavad uute pöörete jaoks lahtipakkimist.

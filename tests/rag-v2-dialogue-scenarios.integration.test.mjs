@@ -22,7 +22,7 @@ import { DIALOGUE_VERSION } from '../lib/rag-v2/pilot/dialogue.js';
 import { TYPED_DIALOGUE_STATE_VERSION, projectDialogueAnswer } from '../lib/rag-v2/pilot/dialogue-state.js';
 import { UNIFIED_RETRIEVAL_VERSION } from '../lib/rag-v2/pilot/retrieval-plan.js';
 import { PilotService } from '../lib/rag-v2/pilot/service.js';
-import { PilotStore } from '../lib/rag-v2/pilot/store.js';
+import { PilotStore, openTurn } from '../lib/rag-v2/pilot/store.js';
 import { pilotChatResult } from '../lib/chat/m4PilotClientContract.js';
 import { providerCall } from '../lib/rag-v2/pilot/provider.js';
 
@@ -151,7 +151,7 @@ async function conversation(t) {
     let result;
     try { result = await service.run(user.id, { question: turn.text, contextMode: turn.mode, convId: conv.id, clientTurnKey: randomUUID(), language: 'et' }); }
     catch (error) { return { index, error: error.code || 'turn_failed', input: lastInput }; } // A rejected real answer is a finding, not a crash.
-    const row = await db.m4PilotTurn.findUnique({ where: { id: result.id } });
+    const row = openTurn(await db.m4PilotTurn.findUnique({ where: { id: result.id } }));
     return { index, result, row, input: lastInput, approximated, crisis: pilotChatResult(result, conv.id).isCrisis };
   };
 }

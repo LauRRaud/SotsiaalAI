@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
 import { PrismaClient } from '../generated/prisma/client.ts';
 import { PrismaPg } from '@prisma/adapter-pg';
-import { PilotStore } from '../lib/rag-v2/pilot/store.js';
+import { PilotStore, openTurn } from '../lib/rag-v2/pilot/store.js';
 import { PilotService } from '../lib/rag-v2/pilot/service.js';
 import { DIALOGUE_VERSION, DIALOGUE_LIMITS } from '../lib/rag-v2/pilot/dialogue.js';
 import { embeddingConfig } from '../lib/rag-v2/search/embedding.js';
@@ -46,7 +46,7 @@ async function fixture(t, stateFor = null, stateVersion = DIALOGUE_STATE_VERSION
   } });
   const input = (question, contextMode = 'same', extra = {}) => ({ question, contextMode, convId: conv.id, clientTurnKey: randomUUID(), language: 'et', ...extra });
   const run = (question, contextMode = 'same', extra = {}) => service.run(user.id, input(question, contextMode, extra));
-  const row = id => db.m4PilotTurn.findUnique({ where: { id } });
+  const row = async id => openTurn(await db.m4PilotTurn.findUnique({ where: { id } }));
   t.after(async () => { await db.user.delete({ where: { id: user.id } }); await db.m4PilotLedger.deleteMany({ where: { id: config.id } }); });
   return { user, conv, config, store, service, calls, queries, input, run, row, fail: value => { fail = value; }, deny: () => { denied = true; } };
 }
