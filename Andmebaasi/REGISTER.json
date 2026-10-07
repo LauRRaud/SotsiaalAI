@@ -49,11 +49,11 @@
   },
   "corpus": {
     "written_by": "rag-v2/register-corpus-1",
-    "version": "v64",
-    "index_generation": "7d209c63",
+    "version": "v65",
+    "index_generation": "33a3cb2a",
     "read_at": "2026-10-07",
-    "documents": 8001,
-    "units": 45596,
+    "documents": 8105,
+    "units": 50379,
     "note": "What the RAG on the server holds: the documents of the corpus policy by what they are (by_content), and by where the source file is kept (from_repository, outside_repository). One file of the repository may give many documents (a municipality package gives its services, forms and contacts). On a source entry, corpus_documents is the number of corpus documents the file gives; 0 means the file is not in the corpus.",
     "by_content": [
       {
@@ -105,11 +105,11 @@
       {
         "content": "guides",
         "name": "guides, information materials and studies",
-        "documents": 172,
+        "documents": 276,
         "by_source_type": {
-          "information_material": 81,
-          "research_report": 47,
-          "official_guideline": 38,
+          "official_guideline": 106,
+          "information_material": 92,
+          "research_report": 72,
           "policy_analysis": 6
         }
       },
@@ -189,10 +189,10 @@
       }
     },
     "source_files_not_in_corpus": 60,
-    "outside_repository_documents": 1872
+    "outside_repository_documents": 1976
   },
   "outside_repository": {
-    "documents": 1872,
+    "documents": 1976,
     "note": "Sources of the corpus that are not files of the repository. Copies are in the corpus store (the main checkout's git-ignored tmp/ and the server). Of contacts only counts are given: a contact's title is a person's name.",
     "kinds": [
       {
@@ -3691,6 +3691,541 @@
             "title": "Võrumaa Puuetega Inimeste Koda: TASUTA ÕIGUSABI ERIVAJADUSTEGA INIMESTELE",
             "url": "https://www.vorukoda.ee/tasuta-oigusabi-erivajadustega-inimestele",
             "publisher": "Võrumaa Puuetega Inimeste Koda"
+          }
+        ]
+      },
+      {
+        "kind": "official_documents",
+        "name": "official studies and guides taken from the institutions' lists",
+        "documents": 104,
+        "by_source_type": {
+          "official_guideline": 68,
+          "research_report": 25,
+          "information_material": 11
+        },
+        "made_from": "the lists of studies and guides on the institutions' own sites, each downloaded from its official address",
+        "reason": "large files; the official address is the source",
+        "publishers": 2,
+        "sources": [
+          {
+            "title": "Abi- ja toetusvajaduse hindamisvahendi metoodiline juhis 2021",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-11/Abi-%20ja%20toetusvajaduse%20hindamise%20metoodiline%20juhis_01.11.2023.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Abivahendite muudatuste infoleht 01.09.2025",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-10/Infoleht_%20AV-muudatus_01.09.2025.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Asendushooldusel täisealiseks saavate noorte toetamine. Juhend asendus- ja järelhooldusteenuse osutajatele",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-06/Asendushooldusel%20t%C3%A4isealiseks%20saavate%20noorte%20toetamine.%20Juhend%20asendus-%20ja%20j%C3%A4relhooldusteenuse%20osutajatele.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Asendushooldusteenuse kvaliteedijuhend",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/asendushooldusteenuse_kvaliteedijuhis.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Eesti sotsiaalteenuste kvaliteedijuhend",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-11/Lisa%201.%20Eesti%20sotsiaalteenuste%20kvaliteedijuhis_12.11.2024.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Eluasemekulude piirmäärade kehtestamise juhend",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-08/Eluasemekulude%20piirm%C3%A4%C3%A4rade%20kehtestamise%20juhend%2027.08.26.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Eluruumi tagamise teenuse juhend",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-04/Eluruumi%20tagamise%20teenuse%20juhend%2015.04.2024.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Eluruumi tagamise teenuse kvaliteedijuhend",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Eluruumi%20tagamise%20teenuse%20kvaliteedijuhis_07.01.2026_0.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Eluruumi tagamise teenuse kvaliteedijuhis",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/eluruumi_tagamise_teenus_kvaliteedijuhis.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Erihoolekandeteenuste kvaliteedijuhis",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-03/Erihoolekandeteenuste_kvaliteedijuhis.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Hindamisvahendi metoodiline juhend",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/hindamisvahendi_metoodiline_juhis_2023-2024.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Hindamisvahendi metoodiline juhis 2025-2026",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-01/Hindamisvahendi%20metoodiline%20juhis_2025-2026.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Hoolduskoormuse hindamise juhis 2023",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-11/Hoolduskoormuse%20hindamise%20juhis%202023.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Hoolduspere kvaliteedijuhis",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/hoolduspere_kvaliteedijuhis.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Isikliku abistaja teenuse juhend",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-07/Isikliku%20abistaja%20teenuse%20juhend_04.07.2024.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Isikliku abistaja teenuse kvaliteedijuhis",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/isikliku_abistaja_teenuse_kvaliteedijuhis.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Juhend „Traumateadlik ja kiindumuspõhine lähenemine töös lastega“",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Traumateadlik-ja-kiindumispohine-lahenemine-toos-lastega.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Juhend hädaohus oleva lapse perest eraldamiseks ja vanema nõusoleku alusel paigutamiseks",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-04/Juhis%20h%C3%A4daohus%20oleva%20lapse%20perest%20eraldamiseks%20ja%20vanema%20n%C3%B5usoleku%20alusel%20paigutamiseks_03.04.2025.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Juhend lastekaitsetöötajatele lapse üleandmisel ja suhtlemise võimaldamisel täitemenetluses",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Juhis-lastekaitsetootajatele-lapse-uleandmisel-ja-lapsega-suhtlemise-voimaldamisel-taitemenetluses-2025.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Juhend teenuse korraldamiseks esmasesse psühhoosi haigestunutele",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-01/VEEBI%20juhend_srt_teenuse_korraldamine_esmasesse_psuhhoosi_haigestunule%2014.01.2025.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Juhend, kuidas haldusakt vormistada ja põhjendada üldhooldusteenuse näitel mai 2023",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-11/Juhend_kuidas%20haldusakt%20vormistada%20ja%20p%C3%B5hjendada_%C3%BCldhooldusteenuse%20n%C3%A4itel_mai%202023.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Järelhooldusteenuse kvaliteedijuhend",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/jarelhoolduseteenus_kvaliteedijuhis.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Keskkonna kohandamise abimaterjal kohaliku omavalitsuse spetsialistidele",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-11/keskonna_kohandamise_abimaterjal_kohaliku_omavalitsuse_spetsialistidele.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Kinnise lasteasutuse teenuse kvaliteedijuhis",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/kinnise_lasteasutuse_teenuse_kvaliteedijuhis.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Koduteenuse juhend",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-06/Koduteenuse%20juhend_18.06.2024.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Koduteenuse kvaliteedijuhis",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-08/Koduteenuse%20kvaliteedijuhis%2031.07.2024.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Koduteenuse lihtsustatud kulumudeli juhend",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-05/koduteenuse_lihtsustatud_kulumudeli_juhend.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Kolm maja – tööriist lapse kaasamiseks",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-11/Kolm%20maja.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Koondaruande juhendmaterjal",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-07/Koondaruande%20juhendmaterjal_03.07.2026.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Kovisiooni juhend lastekaitsetöötajatele",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Kovisiooni-juhend-lastekaitsetootajatele.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Kovisiooni juhend. Meelespea",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Kovisiooni-juhend-meelespea.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Lapse küsitlemise käsiraamat",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-11/lapse_kusitlemise_kasiraamat_2016_0.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Lapse uni ja erisuste märkamine. Juhendmaterjal unevaeguse kui terviseriski hindamiseks",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-11/lapse_uni_ja_erisuste_markamine_juhendmaterjal_unevaeguse_kui_terviseriski_hindamiseks.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Lapsega vestlemise meelespea",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Meelespea-lapsega-vestlemiseks.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Lapsehoiuteenuse kvaliteedijuhis",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/lapsehoiuteenuse_kvaliteedijuhis.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Lastevastase vägivalla ennetamine ja vähendamine asenduskodudes. Juhend",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-09/Lastevastase%20v%C3%A4givalla%20ennetamine%20ja%20v%C3%A4hendamine%20asenduskodudes.%20Juhend.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "PACT-i riskihindamise täitmise juhend",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-09/pact_riskihindamise_taitmise_juhend%20%281%29.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Psüühilise erivajadusega lapse küsitlemise juhendmaterjal",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-11/psuuhilise_erivajadusega_laste_kusitlemise_juhendmaterjal._koostaja_kristjan_kask.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Põletikuliste polüartropaatiatega täiskasvanu (M05-M14 RHK-10) rehabilitatsioonijuhis",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/P%C3%B5letikuliste%20pol%C3%BCartropaatiatega%20t%C3%A4iskasvanu%20%28M05-M14%20RHK-10%29%20rehabilitatsioonijuhis.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Rehabilitatsiooniplaani lisa koostamise juhend",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-09/Rehabilitatsiooniplaani%20lisa%20koostamise%20juhend_SKA_06.09.2024.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Rehabilitatsiooniteenuse osutajatele: Lisa 1. Rehabilitatsioonijuhis meeleoluhäiretega täiskasvanud rehabilitatsiooniteenuse saajale",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/Lisa%201.%20Rehabilitatsioonijuhis%20meeleoluh%C3%A4iretega%20t%C3%A4iskasvanud%20rehabilitatsiooniteenuse%20saajale.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Rehabilitatsiooniteenuse osutajatele: Lisa 1. Rehabilitatsioonijuhis skisofreenia ja teiste häiretega täiskasvanud rehabilitatsiooniteenuse saajale",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/Lisa%201.%20Rehabilitatsioonijuhis%20skisofreenia%20ja%20teiste%20h%C3%A4iretega%20t%C3%A4iskasvanud%20rehabilitatsiooniteenuse%20saajale.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Rehabilitatsiooniteenuse osutajatele: Lisa 2. Meeleoluhäired. Rehabilitatsioonijuhiste koostamise metoodika",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/Lisa%202.%20Meeleoluh%C3%A4ired.%20Rehabilitatsioonijuhiste%20koostamise%20metoodika.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Rehabilitatsiooniteenuse osutajatele: Lisa 2. Rehabilitatsioonijuhiste koostamise metoodika",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/Lisa%202.%20Rehabilitatsioonijuhiste%20koostamise%20metoodika.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Rehabilitatsiooniteenuse osutajatele: Lisa 5. Juhise lühiversioon",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/Lisa%205.%C2%A0Juhise%20l%C3%BChiversioon.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Rehabilitatsiooniteenuse osutajatele: Lühikokkuvõte soovitustest",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/L%C3%BChikokkuv%C3%B5te%20soovitustest.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Rehabilitatsiooniteenuse osutajatele: Soovituste kokkuvõte",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/Meeleoluh%C3%A4irega%20t%C3%A4iskasvanute%20rehabilitatsioonijuhise%20soovituste%20kokkuv%C3%B5te.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Saatjata alaealise välismaalase juhtumikorralduse juhend spetsialistidele",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-09/SAV%20juhis%202026_01.09.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Sisehindamise juhend asenduskoduteenuse osutajale",
+            "url": "https://www.sm.ee/sites/default/files/content-editors/Lapsed_ja_pered/Asendushooldus/sisehindamise_juhised.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Sotsiaalse rehabilitatsiooni teenuse kvaliteedijuhis",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-11/Sotsiaalse%20rehabilitatsiooni%20teenuse%20kvaliteedijuhis_24.11.2023.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Sotsiaalse rehabilitatsiooni teenuse osutamise juhend",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-07/Sotsiaalse%20rehabilitatsiooni%20teenuse%20osutamise%20juhend_03.07.2026.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Sotsiaaltransporditeenuse juhend",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/Sotsiaaltransporditeenuse%20juhend_2023.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Sotsiaaltransporditeenuse kvaliteedijuhis",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/sotsiaaltransporditeenuse_kvaliteedijuhis.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "STAR kannete juhis 2025-2026",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-01/STAR_kannete%20juhis_2025-2026.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Teenuse komponentide andmekogu juhis",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-01/Teenuse%20komponentide%20andmekogu%20juhis.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Teenuskomponentide andmekogu juhis täitmiseks 2025-2026",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Teenuskomponentide%20andmekogu_juhis_t%C3%A4itmiseks_2025-2026%20%2808.12.2025%29.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Traumast taastumist toetav vaimse tervise abi: Lisa 5. TTTVT teenuse infoleht",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-02/TTTVT%20teenuse%20infoleht_13.02.2026.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Traumateadlik ja kiindumuspõhine lähenemine töös lastega. Meelespea",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Traumateadlik-ja-kiindumuspohine-lahenemine-toos-lastega-meelespea.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Tugigrupi korraldamise tööriistakast",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-08/1_Tugigrupi%20korraldamise%20t%C3%B6%C3%B6riistakast_0.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Tugigrupi töö korraldajale: Lugemissoovitusi",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-08/7_Lugemissoovitusi_0.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Tugiisiku teenuse kvaliteedijuhis",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/tugiisiku_teenuse_kvaliteedijuhis.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Tugiisikuteenuse juhend",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-07/Tugiisikuteenuse%20juhend_04.07.2024.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Turvakoduteenus lapsele kvaliteedijuhis",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/turvakoduteenus_lapsele_kvaliteedijuhis.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Turvakoduteenuse juhend",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Turvakoduteenus%20t%C3%A4iskasvanule%20kvaliteedijuhis_07.01.2026.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Turvaline sport - infomaterjal lapsele",
+            "url": "https://www.oiguskantsler.ee/sites/default/files/Turvaline%20sport.%20Infomaterjal%20lastele.%2031.05.2023.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Turvaline sport - infomaterjal lapsevanemale",
+            "url": "https://www.oiguskantsler.ee/sites/default/files/Turvaline%20sport.%20Infomaterjal%20lapsevanematele.%2031.05.2023.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Täisealise abi- ja toetusvajaduse hindamise juhend 2025",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-01/T%C3%A4isealise%20abi-%20ja%20toetusvajaduse%20hindamise%20juhend%202025.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Täisealise isiku hoolduse juhend",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-08/T%C3%A4isealise%20isiku%20hooldus%20juhend.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Täisealise isiku hooldusteenuse kvaliteedijuhis",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/taisealise_isiku_hooldusteenuse_kvaliteedijuhis_.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Varjupaigateenuse juhend",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Varjupaigateenuse%20juhend_07.01.2026.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Varjupaigateenuse kvaliteedijuhend",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Varjupaigateenuse%20kvaliteedijuhis_07.01.2026.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Võlanõustamisteenuse juhend",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/V%C3%B5lan%C3%B5ustamisteenuse%20juhend_2023.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Võlanõustamisteenuse kvaliteedijuhis",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/volanoustamisteenuse_kvaliteedijuhis.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Võlgade aegumise ja täitemenetluse lõpetamise juhis",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-11/V%C3%B5lgade%20aegumise%20ja%20t%C3%A4itemenetluse%20l%C3%B5petamise%20juhis.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Väljaspool kodu osutatava üldhooldusteenuse juhend",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-07/%C3%9CHT%20juhend%202026.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Väljaspool kodu osutatava üldhooldusteenuse kvaliteedijuhis",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-01/V%C3%A4ljaspool%20kodu%20osutatava%20%C3%BCldhooldusteenuse%20kvaliteedijuhis%202024.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Ökokaart - tööriist lapse lähivõrgustiku ja suhete kaardistamiseks",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-11/okokaart.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Ööpäevaringset sotsiaalteenust osutavate asutuste kriisiplaani juhend",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/%C3%96%C3%B6p%C3%A4evaringset%20sotsiaalteenust%20osutavate%20asutuste%20kriisiplaani%20juhend.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Üldjuhend KOV sotsiaalteenuse korraldamiseks ametnikule",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-01/%C3%9Cldjuhend_31.01.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Analüüs vanemakande süsteemi parendamiseks. Lõpparuanne",
+            "url": "https://sm.ee/sites/default/files/documents/2025-01/Anal%C3%BC%C3%BCs%20vanemakande%20s%C3%BCsteemi%20parendamiseks_L%C3%B5pparuanne.pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Eesti perepoliitiliste meetmete süsteem 2025",
+            "url": "https://sm.ee/sites/default/files/documents/2025-12/Eesti%20perepoliitiliste%20meetmete%20s%C3%BCsteem_sotsiaalministeerium2025.pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Elanikkonna tegevuspiirangute ja hooldusvajaduse uuring 2025. Raport",
+            "url": "https://sm.ee/sites/default/files/documents/2026-04/HOV%20uuringu%20raport%202025.pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Ettepanekud valdkondade ülese laste heaolu näidikulaua väljatöötamiseks Eestis Islandi kogemuse näitel",
+            "url": "https://sm.ee/sites/default/files/documents/2024-11/Islandi%20projekti%20anal%C3%BC%C3%BCtiline%20dokument_Nahkur_24.10.2024_OliverNahkur.pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Inimese elukaart hõlmav valdkondadeülene üldine heaolu kontseptuaalne mudel Eestis",
+            "url": "https://sm.ee/sites/default/files/documents/2026-05/Inimese%20elukaart%20h%C3%B5lmav%20valdkondade%C3%BClene%20%C3%BCldine%20heaolu%20kontseptuaalne%20mudel%20Eestis.pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Isapuhkus ja emaduslõiv",
+            "url": "https://sm.ee/sites/default/files/documents/2025-05/Isapuhkus%20ja%20emadusl%C3%B5iv_Unt%20Aavik%20Taht%202024.pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Kodus elavatele dementsusega inimestele ja nende hoolduskoormusega lähedastele suunatud sekkumispraktikate ning tugisüsteemide analüüs. Lõpparuanne",
+            "url": "https://sm.ee/sites/default/files/documents/2026-09/Kodus%20elavatele%20dementsusega%20inimestele%20ja%20nende%20hoolduskoormusega%20l%C3%A4hedastele%20suunatud%20sekkumispraktikate%20ning%20tugis%C3%BCsteemide%20anal%C3%BC%C3%BCs_L%C3%B5pparuanne%202026.pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Lapse peresisese väärkohtlemise väljaselgitamine ja selle mõju hindamine lastekaitsetöös ja last puudutavas tsiviilkohtumenetluses. Lõppraport",
+            "url": "https://sm.ee/sites/default/files/documents/2026-04/Lapse%20peresisene%20v%C3%A4%C3%A4rkohtlemine_Lo%CC%83ppraport_T%C3%9C_2026.pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Laste arv ja hõive Eestis (Statistikaamet)",
+            "url": "https://sm.ee/sites/default/files/documents/2025-05/Laste%20arv%20ja%20h%C3%B5ive%20Eestis%20-%20Rootalu%2C%20Levenko%2C%20Vill%20%28Statistikaamet%29.pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Laste ja noorte vaimse tervise parandamise ettepanekud. Kokkuvõte",
+            "url": "https://sm.ee/sites/default/files/documents/2025-02/Laste%20ja%20noorte%20vaimse%20tervise%20parandamise%20ettepanekud_kokkuvote.pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Laste saamise ja toetamise analüüs ja ettepanekud 2025",
+            "url": "https://sm.ee/sites/default/files/documents/2025-08/Laste%20saamise%20ja%20toetamise_anal%C3%BC%C3%BCs%20ja%20ettepanekud_0.pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Laste saamise väärtused",
+            "url": "https://sm.ee/sites/default/files/documents/2025-05/Laste%20saamise%20v%C3%A4%C3%A4rtused%20-%20Kasearu_09.04.pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Lastekaitse juhtumikorralduse mudelite võrdlev analüüs",
+            "url": "https://sm.ee/sites/default/files/documents/2024-07/Lastekaitse%20mudelite%20l%C3%B5pparuanne_27.06.2024.pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Majanduslik toimetulek ja laste heaolu 2025",
+            "url": "https://sm.ee/sites/default/files/documents/2025-09/Majanduslik%20toimetulek%20ja%20laste%20heaolu_%202025_0.pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Millisesse perre sünnivad lapsed (Statistikaamet)",
+            "url": "https://sm.ee/sites/default/files/documents/2025-05/Millisesse%20perre%20s%C3%BCnnivad%20lapsed%20-%20Rootalu%2C%20Vill%20%28Statistikaamet%29.pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Pensionitarkuse uuring. Lõpparuanne",
+            "url": "https://sm.ee/sites/default/files/documents/2024-12/Pensionitarkuse%20uuring.%20L%C3%B5pparuanne.pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Puude tuvastamise, toetuste ja hüvede kaasajastamise uuringu lõppraport",
+            "url": "https://sm.ee/sites/default/files/documents/2026-03/Puude%20tuvastamise%2C%20toetuste%20ja%20h%C3%BCvede%20kaasajastamise%20uuringu%20l%C3%B5ppraport_1.pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Suundumused sündimuses ja nende seos perehüvitistega",
+            "url": "https://sm.ee/sites/default/files/documents/2025-04/Suundumused%20s%C3%BCndimuses%20ja%20nende%20seos%20pereh%C3%BCvitistega_1.pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Sündimuse ja perepoliitika tervikanalüüsi teoreetilise osa kokkuvõte",
+            "url": "https://sm.ee/sites/default/files/documents/2025-08/Tervikanal%C3%BC%C3%BCsi%20teoreetilise%20osa%20kokkuv%C3%B5te.pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Tervise ebavõrdsuse sotsiaalsed põhjused Euroopa Sotsiaaluuringu andmete põhjal",
+            "url": "https://sm.ee/sites/default/files/documents/2025-12/T%C3%9C%20aruanne_%20Tervise%20ebav%C3%B5rdsuse%20sotsiaalsed%20p%C3%B5hjused%20ESSi%20andmete%20p%C3%B5hjal.pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Uuring leibkondliku elatusmiinimumi määramise metoodika väljatöötamiseks",
+            "url": "https://sm.ee/sites/default/files/documents/2026-06/Uuring%20leibkondliku%20elatusmiinimumi%20m%C3%A4%C3%A4ramise%20metoodika%20v%C3%A4ljat%C3%B6%C3%B6tamiseks.pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Vabatahtlikud ja vabatahtlikkus Eestis. Hetkeolukord ja tulevikuväljavaated",
+            "url": "https://sm.ee/sites/default/files/documents/2026-04/Vabatahtlikud%20ja%20vabatahtlikkus%20Eestis.%20Hetkeolukord%20ja%20tulevikuv%C3%A4ljavaated.pdf_0.pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Vanemahüvitis ja sündimus",
+            "url": "https://sm.ee/sites/default/files/documents/2025-05/Vanemah%C3%BCvitis%20ja%20s%C3%BCndimus%20-%20Puur%2C%20Abdullayev%20okt%202024.pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Vanemahüvitist jagavate perede kogemused (CentAR)",
+            "url": "https://sm.ee/sites/default/files/documents/2025-04/Vanemah%C3%BCvitist%20jagavate%20perede%20kogemused%20%28CentAR%29.pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Väikelaste emade töötuna arvelolek lapse isa vanemapuhkuse ajal",
+            "url": "https://sm.ee/sites/default/files/documents/2025-05/V%C3%A4ikelaste%20emade%20t%C3%B6%C3%B6tuna%20arvelolek%20lapse%20isa%20vanemapuhkuse%20ajal_TK_2025.pdf",
+            "publisher": "Sotsiaalministeerium"
           }
         ]
       }

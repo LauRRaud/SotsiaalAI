@@ -7,6 +7,12 @@
 //           as a whole does not stand in the page text (the one warning expected)
 //   organisation  a page of an organisation's own website (a disability chamber, an association, a patients' union);
 //           titled like a vendor's page
+//   document  a study or a guide an institution published as a PDF, downloaded from its official address by the
+//           institution's own list (07.10.2026: the Ministry of Social Affairs' completed studies, the Social
+//           Insurance Board's pages for specialists). Its title is the list's, so it need not stand in the text; the
+//           reader's notes on layout (columns, text boxes, pages without a text layer such as covers and images,
+//           a reference list left whole) are expected. A document whose text is only partly readable never gets
+//           here: the ingest holds it for review.
 //   node scripts/rag-v2-review-by-rule.mjs <review-draft.json> <review.json> "<reviewer>"
 import fs from 'node:fs';
 
@@ -19,10 +25,13 @@ const KINDS = {
     expected: ['title_not_matched_in_pdf'] },
   organisation: { note: 'Organisatsiooni enda veebileht (ADR-095, allika liik organization_page): puuetega inimeste koja, ühingu või patsientide liidu kirjeldus oma tegevusest, teenustest ja üldkontaktidest. Ei ole ametlik juhis ega õiguslik alus. Korjaja loetud sisuosa ilma isikute kontaktideta; kontrolli kuupäev on metaandmetes. Pealkiri on lehe enda pealkiri, mille ette on lisatud organisatsiooni nimi.',
     expected: ['title_not_matched_in_pdf'] },
+  document: { note: 'Asutuse avaldatud uuring või juhend (PDF), alla laaditud ametlikult aadressilt asutuse enda loendi järgi (Sotsiaalministeeriumi läbiviidud uuringud; Sotsiaalkindlustusameti lehed spetsialistile ja koostööpartnerile). Pealkiri on asutuse loendist ega pruugi sõna-sõnalt seista dokumendi tekstis. Tekstikihita lehed (kaaned, pildid) ja keerukad tabelid jäävad lugemata; viidete loendit ei tükeldata. Uuring on taust ja tõendus, juhend on asutuse juhis; kumbki ei ole õiguslik alus.',
+    expected: ['layout_coverage_limit', 'pdf_column_order_detected', 'pdf_nul_replaced', 'pdf_pages_without_body_text', 'pdf_pages_without_text_layer', 'pdf_text_box_read_by_cell', 'reference_list_not_chunked', 'title_not_matched_in_pdf'] },
 };
 const value = field => (field && typeof field === 'object' && 'value' in field ? field.value : field);
 const kindOf = item => {
   const type = value(item.fields?.source_type), title = String(value(item.fields?.title) ?? '');
+  if (['research_report', 'official_guideline', 'information_material', 'policy_analysis'].includes(type) && value(item.fields?.source_format) === 'pdf') return 'document';
   return type === 'registry' && title.startsWith('Abivahendite müügi- ja üüripunktid: ') ? 'points' : type === 'vendor_page' ? 'vendor' : type === 'organization_page' ? 'organisation' : type === 'web_page' ? 'page' : null;
 };
 const draft = JSON.parse(fs.readFileSync(draftPath, 'utf8')), tally = {}, problems = [];
