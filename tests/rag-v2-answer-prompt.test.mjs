@@ -1,9 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { PROMPT_VERSION, READABLE_PROMPT_VERSIONS, answerInstructions, answerRequest } from '../lib/rag-v2/pilot/contracts.js';
-import { WEB_ADDRESS_INSTRUCTIONS, TIME_INSTRUCTIONS, DIALOGUE_PROMPT_VERSION, READABLE_DIALOGUE_PROMPT_VERSIONS, COMPLETENESS_INSTRUCTIONS, BARE_CORRECTION_INSTRUCTIONS, PRIOR_CLAIM_INSTRUCTIONS, CONTACT_ENTRY_INSTRUCTIONS, CONTACT_DIRECTORY_INSTRUCTIONS, VERSION_CHANGES_INSTRUCTIONS, dialogueRequest } from '../lib/rag-v2/pilot/dialogue.js';
+import { WEB_ADDRESS_INSTRUCTIONS, TIME_INSTRUCTIONS, ASKING_INSTRUCTIONS, KNOWN_PLACES_INSTRUCTIONS, NAMED_PLACE_INSTRUCTIONS, DIALOGUE_PROMPT_VERSION, READABLE_DIALOGUE_PROMPT_VERSIONS, COMPLETENESS_INSTRUCTIONS, BARE_CORRECTION_INSTRUCTIONS, PRIOR_CLAIM_INSTRUCTIONS, CONTACT_ENTRY_INSTRUCTIONS, CONTACT_DIRECTORY_INSTRUCTIONS, VERSION_CHANGES_INSTRUCTIONS, dialogueRequest } from '../lib/rag-v2/pilot/dialogue.js';
 import { UNIFIED_RETRIEVAL_INSTRUCTIONS, UNIFIED_RETRIEVAL_VERSION } from '../lib/rag-v2/pilot/retrieval-plan.js';
-import { SEARCH_ASSIST_VERSION, PLAN_CORRECTION_INSTRUCTIONS, PLAN_ANSWERED_INSTRUCTIONS, PLAN_DUTY_INSTRUCTIONS, PLAN_SETTLEMENT_INSTRUCTIONS, RERANK_ANSWERED_INSTRUCTIONS, RERANK_CHANGE_INSTRUCTIONS, queryPlanRequest, rerankRequest } from '../lib/rag-v2/pilot/search-assist.js';
+import { SEARCH_ASSIST_VERSION, PLAN_CORRECTION_INSTRUCTIONS, PLAN_ANSWERED_INSTRUCTIONS, PLAN_DUTY_INSTRUCTIONS, PLAN_SETTLEMENT_INSTRUCTIONS, PLAN_WORRY_INSTRUCTIONS, RERANK_ANSWERED_INSTRUCTIONS, RERANK_WORRY_INSTRUCTIONS, RERANK_CHANGE_INSTRUCTIONS, queryPlanRequest, rerankRequest } from '../lib/rag-v2/pilot/search-assist.js';
 import { tokenCount } from '../lib/rag-v2/search/embedding.js';
 import { hash } from '../lib/rag-v2/contracts.js';
 
@@ -29,7 +29,8 @@ test('prompt v10 keeps every v9 guardrail in each answer language, and v9 plans 
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-11'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-10'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-9'));
-  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-33');
+  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-34');
+  assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-33'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-32'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-31'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-30'));
@@ -179,16 +180,16 @@ test('dialogue prompt 22 (ADR-062): valid_from chooses the version and never dat
     en: '012bb27ea0bf8c8eba7db32d2c9ae123ea2edac255695f0eca0b21c5cda27ba3', ru: 'd21da15b0fcb98b0a5c7e98ff2e39ca5dc4a7c6dd574710ab8dbb2901e67c989' });
   const assist = { model: 'gpt-6-luna', searchAssist: SEARCH_ASSIST_VERSION };
   // search-assist-6 (ADR-072) adds one line to the plan's instructions and search-assist-7 (ADR-077) one to the plan's and
-  // two to the selection's, search-assist-8 (ADR-079) one more to the plan's and search-assist-9 (ADR-103) another;
-  // without those six lines both texts are those of search-assist-5.
-  const asFive = text => text.replaceAll('rag-v2/search-assist-9', 'rag-v2/search-assist-5');
+  // two to the selection's, search-assist-8 (ADR-079) one more to the plan's, search-assist-9 (ADR-103) another and
+  // search-assist-10 (ADR-106) one to each; without those eight lines both texts are those of search-assist-5.
+  const asFive = text => text.replaceAll('rag-v2/search-assist-10', 'rag-v2/search-assist-5');
   const without = (text, ...lines) => lines.reduce((rest, line) => { assert.equal(rest.split(`${line}\n`).length, 2, line.slice(0, 40)); return rest.replace(`${line}\n`, ''); }, text);
-  // The line of search-assist-9 is the plan's last one.
-  const planText = queryPlanRequest(assist, ['küsimus'], 'et').instructions;
-  assert.ok(planText.endsWith(`\n${PLAN_SETTLEMENT_INSTRUCTIONS}`));
-  assert.deepEqual([SEARCH_ASSIST_VERSION, hash(asFive(without(planText.slice(0, -PLAN_SETTLEMENT_INSTRUCTIONS.length - 1), PLAN_CORRECTION_INSTRUCTIONS, PLAN_ANSWERED_INSTRUCTIONS, PLAN_DUTY_INSTRUCTIONS))),
-    hash(asFive(without(rerankRequest(assist, ['küsimus'], [{ id: 'P1', title: 't', text: 'x' }], '2026-10-01').instructions, RERANK_ANSWERED_INSTRUCTIONS, RERANK_CHANGE_INSTRUCTIONS)))],
-  ['rag-v2/search-assist-9', 'ac80d12eefde1aa4abce6b0f87f4bd03d395001bd35c347dca35e639fd13f6e7', '100f26ab81538a103a93e34d6f58e79d0156319c51dd6ca0e449a26b2db206d4']);
+  // The lines of search-assist-9 and search-assist-10 are the plan's last two.
+  const planText = queryPlanRequest(assist, ['küsimus'], 'et').instructions, planEnd = `\n${PLAN_SETTLEMENT_INSTRUCTIONS}\n${PLAN_WORRY_INSTRUCTIONS}`;
+  assert.ok(planText.endsWith(planEnd));
+  assert.deepEqual([SEARCH_ASSIST_VERSION, hash(asFive(without(planText.slice(0, -planEnd.length), PLAN_CORRECTION_INSTRUCTIONS, PLAN_ANSWERED_INSTRUCTIONS, PLAN_DUTY_INSTRUCTIONS))),
+    hash(asFive(without(rerankRequest(assist, ['küsimus'], [{ id: 'P1', title: 't', text: 'x' }], '2026-10-01').instructions, RERANK_ANSWERED_INSTRUCTIONS, RERANK_WORRY_INSTRUCTIONS, RERANK_CHANGE_INSTRUCTIONS)))],
+  ['rag-v2/search-assist-10', 'ac80d12eefde1aa4abce6b0f87f4bd03d395001bd35c347dca35e639fd13f6e7', '100f26ab81538a103a93e34d6f58e79d0156319c51dd6ca0e449a26b2db206d4']);
   // The request: a unified-retrieval turn carries A, the sentence and B in that order; every dialogue turn carries C.
   const config = { model: 'gpt-6-luna', maxOutputTokens: 4096, reasoning: 'medium' };
   const unified = dialogueRequest({ ...config, retrievalRouting: UNIFIED_RETRIEVAL_VERSION }, 'Kui suur on toetus?', { evidence: [] }, 'et', {}).instructions;
@@ -223,10 +224,42 @@ test('dialogue prompt 24 (ADR-071): a bare correction is confirmed and not turne
   // Everything else is prompt 23: without the first addition and v26's closing one (ADR-088), and with v23's one
   // sentence in place of the second, the dialogue extension is the text of 23 byte for byte.
   const previous = 'If the current packet does not support a prior claim, explain the selected-evidence limit instead of repeating it as fact. ';
-  const restored = extension.replace(BARE_CORRECTION_INSTRUCTIONS, '').replace(PRIOR_CLAIM_INSTRUCTIONS, previous).replace(VERSION_CHANGES_INSTRUCTIONS, '').replace(WEB_ADDRESS_INSTRUCTIONS, '').replace(TIME_INSTRUCTIONS, '').replace(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-23');
+  const restored = extension.replace(BARE_CORRECTION_INSTRUCTIONS, '').replace(PRIOR_CLAIM_INSTRUCTIONS, previous).replace(VERSION_CHANGES_INSTRUCTIONS, '').replace(WEB_ADDRESS_INSTRUCTIONS, '').replace(TIME_INSTRUCTIONS, '').replace(ASKING_INSTRUCTIONS, '').replace(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-23');
   assert.equal(hash(restored), 'be57db6b5fd99ffc8e10130d422cbfaadf7267d2fd1848256884e348def4a7e9');
   // A small change: about 150 tokens more in every dialogue turn's instructions.
   assert.ok(tokenCount(BARE_CORRECTION_INSTRUCTIONS) + tokenCount(PRIOR_CLAIM_INSTRUCTIONS) - tokenCount(previous) < 160);
+});
+
+test('dialogue prompt 34 and search-assist-10 (ADR-106): a circumstance the user knows is asked, a question is not repeated, a stated worry is searched', () => {
+  const plain = dialogueRequest({ model: 'm', maxOutputTokens: 100, reasoning: 'low' }, 'Küsimus?', { sources: {}, evidence: [] }, 'et', { userTurns: [] }).instructions;
+  // The last thing the dialogue extension says, in every dialogue turn.
+  assert.ok(plain.endsWith(TIME_INSTRUCTIONS + ASKING_INSTRUCTIONS + COMPLETENESS_INSTRUCTIONS));
+  // 1: what the user can tell is asked, and is not also a limitation; limitations are for what the user cannot settle.
+  for (const phrase of ['A circumstance of the person that the user knows and can tell in a few words', 'is asked in clarification, and is not also written in limitations as something you cannot tell',
+    'limitations is for what the user cannot settle either', 'an assessment or a decision that belongs to a specialist, an authority or a court, or evidence that is missing here']) assert.ok(ASKING_INSTRUCTIONS.includes(phrase), phrase);
+  // 2: an unanswered question is not repeated word for word.
+  for (const phrase of ['publishedAssistant.clarification, or a question of previousState.unknowns', 'is not repeated word for word', 'answer the current message with what is known',
+    'ask it again only when this answer cannot be given without it, shortly and saying what depends on it']) assert.ok(ASKING_INSTRUCTIONS.includes(phrase), phrase);
+  // 3: what a user turn states is neither asked nor called unknown; a general request gets no limitation about the user's case.
+  for (const phrase of ['Never ask for, or call unknown, what a user turn already states', 'is answered in general', 'unless the request is about that case']) assert.ok(ASKING_INSTRUCTIONS.includes(phrase), phrase);
+  // The base rule it builds on stays: at most two necessary questions, in clarification.
+  assert.ok(answerInstructions('et').includes('ask at most two short, necessary questions at a time in clarification'));
+  // The places the conversation has named go with the record instructions, after the rule on the named place.
+  const records = dialogueRequest({ model: 'm', maxOutputTokens: 100, reasoning: 'low', recordCatalogue: 'rag-v2/record-catalogue-4' }, 'Küsimus?', { sources: {}, evidence: [] }, 'et', { userTurns: [] }).instructions;
+  assert.equal(plain.includes(KNOWN_PLACES_INSTRUCTIONS), false);
+  assert.ok(records.includes(NAMED_PLACE_INSTRUCTIONS + KNOWN_PLACES_INSTRUCTIONS));
+  for (const phrase of ['records.scope.known_places', 'It is geography, not anyone\'s residence', 'use it when the request depends on where such a place lies',
+    'Say which municipality a place lies in only in the answer whose scope carries named_place, or when the request depends on it']) assert.ok(KNOWN_PLACES_INSTRUCTIONS.includes(phrase), phrase);
+  // The plan and the selection: a message that tells of a situation without asking is a request for the help there is.
+  for (const phrase of ['tells of a worry, an event or a changed situation without asking anything', 'is a request for the help there is in that situation: write queries for it',
+    'The list is empty only for a message that neither asks nor tells of a situation, such as a greeting or a thank-you', 'a message that only corrects a value keeps its own rule above']) assert.ok(PLAN_WORRY_INSTRUCTIONS.includes(phrase), phrase);
+  for (const phrase of ['the request is what help there is in that situation', 'keep the passages that say what can be done, who helps and in what order']) assert.ok(RERANK_WORRY_INSTRUCTIONS.includes(phrase), phrase);
+  const rerank = rerankRequest({ model: 'm', searchAssist: SEARCH_ASSIST_VERSION }, ['küsimus'], [{ id: 'P1', title: 't', text: 'x' }], '2026-10-01').instructions;
+  assert.ok(rerank.includes(`${RERANK_ANSWERED_INSTRUCTIONS}\n${RERANK_WORRY_INSTRUCTIONS}\n`));
+  // General rules: no person, place, illness, service or number of the conversations that showed the faults.
+  assert.doesNotMatch(ASKING_INSTRUCTIONS + KNOWN_PLACES_INSTRUCTIONS + PLAN_WORRY_INSTRUCTIONS + RERANK_WORRY_INSTRUCTIONS, /\d|\bema\b|\bpoeg\b|mother|\bson\b|stroke|insul|autis|puue|disab|Jüri|Rae|Saare|Põlva|guardian|eestkost/iu);
+  // The price: about 330 tokens more in a dialogue turn's instructions, 100 of them only with municipal records.
+  assert.ok(tokenCount(ASKING_INSTRUCTIONS) < 240 && tokenCount(KNOWN_PLACES_INSTRUCTIONS) < 110 && tokenCount(PLAN_WORRY_INSTRUCTIONS) < 100 && tokenCount(RERANK_WORRY_INSTRUCTIONS) < 55);
 });
 
 test('dialogue prompt 29 to 32 (ADR-102): a finding carries its year, an older source is not the present, and evidence of different years is told in the order of time', () => {

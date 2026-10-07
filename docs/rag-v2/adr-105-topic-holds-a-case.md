@@ -51,7 +51,7 @@ Juhiste tekst ei muutu, seega vestluse ja otsinguplaani versioon jäävad samaks
 
 - Ühiktestid: 809, neist 787 läbi ja 22 vahele jäetud. Uus test: tekstilt täis teema läheb edasi uues teemas, midagi ei keelduta ja iga vastu võetud teema jääb otsingu eelarvesse.
 - Kohalik andmebaasitest (`rag-v2-dialogue-store`, `rag-v2-pilot-store`): 82/82. Kaks testi täidavad 30-sõnumilise teema päris andmebaasi ja teenuse kaudu (mudeli asemel kindel vastus): viimase sõnumi fakt ankurdatakse pöördesse 30, järgmine sõnum alustab uut teemat ja saab kaasa faktid, viimase sõnumi ja viimase vastuse.
-- Serveris, tasuta (mudelit ja otsingut kutsumata): mõlema testvestluse 30 sõnumit mängiti läbi ühe teemana, serveri enda sõnavormide lugeja ja omavalitsuste loendiga ning pöörete kirjetes olevate otsinguplaanidega. Mõlemas andis kohalugeja 30 pöördes 30-s sama omavalitsuse mis päris jooksus (Rae vald alates 4. sõnumist, Saaremaa vald alates 22.; Põlva vald samades kolmes pöördes). Läbimäng tehti piiriga 40; piiriga 30 mahub sama 30 sõnumit ühte teemasse.
+- Serveris, tasuta (mudelit ja otsingut kutsumata): mõlema testvestluse 30 sõnumit mängiti läbi ühe teemana, serveri enda sõnavormide lugeja ja omavalitsuste loendiga ning pöörete kirjetes olevate otsinguplaanidega. Mõlemas andis kohalugeja 30 pöördes 30-s sama omavalitsuse mis päris jooksus (Rae vald alates 4. sõnumist, Saaremaa vald alates 22.; Põlva vald samades kolmes pöördes). Läbimäng tehti piiriga 40 ja nii, et muudetud koodist tulid ainult muudetud failid. Sama läbimäng piiriga 30 ja kõigi vestluse moodulitega muudetud koodist on [ADR-106](adr-106-asking-instead-of-a-limit.md) kontrollis: tulemus on sama.
 
 ## Kontrollimata
 
