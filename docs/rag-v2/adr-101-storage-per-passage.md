@@ -140,7 +140,7 @@ sh rag-v2-store-pack.sh unpack $T <versiooni id> # üks versioon
 
 - Pakitakse kaustad, mille versioon on töötava korpuse indeksi plaanis (pitseeritud), ja kaustad, mida hoidla pea üldse ei nimeta. Pea versioon, mis ei ole veel indeksis, jääb lahti: järgmine täiendus loeb seda.
 - Enne lahtise kausta eemaldamist võrreldakse arhiivi iga liiget kettal oleva failiga; mis tahes erinevus jätab kõik nii, nagu oli.
-- Iga käivitus teeb ühe arhiivi `versions-packed/pack-<aeg>.tar.zst` koos versioonide loendi ja räsiga. **Pärast iga täiendust käivitatakse sama käsk uuesti** ja uued kaustad lähevad uude arhiivi.
+- Iga käivitus teeb ühe arhiivi `versions-packed/pack-<aeg>.tar.zst` koos versioonide loendi ja räsiga. **Pärast iga täiendust pakib käivitusskript uued kaustad ise** (`scripts/rag-v2-corpus-run.sh` viimane samm; pakkimise ebaõnnestumine ei tee käivitust ebaõnnestunuks, vaid annab hoiatuse ja sama käsu saab siis käsitsi käivitada).
 - Kaust, mis on arhiivis juba olemas (lahti pakitud kontrolliks), võrreldakse arhiiviga ja eemaldatakse, mitte ei pakita teist korda; erinev kaust jäetakse lahti.
 - Enne indeksi täiskontrolli (`--mode verify`) või indeksi nullist ehitamist tuleb arhiiv lahti pakkida.
 - Sama allika versioonid jagavad lahtiselt oma algfaili kõva lingiga; arhiivis on igal kaustal oma koopia, et ühe versiooni saaks eraldi välja võtta. Täielikult lahti pakituna võtab hoidla seetõttu umbes 1,2 GB rohkem kui enne.

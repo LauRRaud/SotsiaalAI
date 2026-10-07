@@ -17,7 +17,9 @@ const tools = ['tar', 'zstd', 'pgrep', 'sha256sum', 'node'].every(has);
 const id = letter => `version_${letter.repeat(64)}`;
 const SEALED = id('a'), UNSEALED = id('b'), OLD = id('c');
 let dir, tenant, script, plan;
-const run = (...args) => spawnSync('sh', [script, ...args], { encoding: 'utf8' });
+// The run script's own tests start scripts/rag-v2-corpus-run.sh in parallel with this file: the helper would take
+// that for a corpus run and refuse. The check itself is the server's and is not what these tests are about.
+const run = (...args) => spawnSync('sh', [script, ...args], { encoding: 'utf8', env: { ...process.env, RAG_V2_PACK_IN_RUN: '1' } });
 const read = async version => Object.fromEntries(await Promise.all((await fs.readdir(path.join(tenant, 'versions', version))).sort().map(async name => [name, (await fs.readFile(path.join(tenant, 'versions', version, name))).toString('base64')])));
 
 before(async () => {

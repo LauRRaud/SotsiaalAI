@@ -21,5 +21,8 @@ awk -v permitted="$PERMITTED" -v base="$BASE" '{ print } /^echo "external inputs
 [ "$(diff "$R/scripts/rag-v2-corpus-run.sh" "$GUARDED" | grep -c '^[<>]')" = 1 ] || { echo "FAILED: the copy differs from the release's script by more than the guard line"; exit 1; }
 sh "$GUARDED" "$N" "$BASE" "$PLAN" "$CAP" "$BASIS_ET" "$BASIS_EN"
 STATUS=$?
+# A run that failed may be started again (07.10.2026: v66 was refused twice before anything was bought, and the lock
+# had to be removed by hand each time). A run that ended well is kept from a second start by its plan file.
+[ "$STATUS" -eq 0 ] || rmdir "$W/run-v$N.lock" 2>/dev/null
 echo "run-v$N exit: $STATUS"
 exit $STATUS

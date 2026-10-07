@@ -22,7 +22,10 @@ MODE=${1:-}; T=${2:-}
 [ -n "$MODE" ] && [ -n "$T" ] && [ -f "$T/active.json" ] && [ -d "$T/versions" ] || { echo "usage: pack|unpack|list <tenant dir> [...]"; exit 2; }
 P=$T/versions-packed
 ZSTD="zstd --long=27"
-if pgrep -f "rag-v2-corpus-run" >/dev/null 2>&1; then echo "a corpus run is going on"; exit 1; fi
+# The run script packs at its own end, after the index is ready and the chat plan is made (RAG_V2_PACK_IN_RUN).
+# Only a shell that runs a run script counts as a run: a looser pattern also met the test runner that names the run
+# script's test, and any command line that merely mentions the script.
+if [ -z "${RAG_V2_PACK_IN_RUN:-}" ] && pgrep -f "^(sh|dash|bash)( -[a-z]+)* [^ ]*(rag-v2-corpus-run(-guarded)?|corpus-run-v[0-9]+-guarded)[.]sh( |$)" >/dev/null 2>&1; then echo "a corpus run is going on"; exit 1; fi
 
 case "$MODE" in
 list)

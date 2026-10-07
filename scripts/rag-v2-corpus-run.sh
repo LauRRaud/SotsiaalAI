@@ -105,8 +105,11 @@ cp -r $A/lib $A/scripts $A/package.json $S/ || fail "copy the app code"
 # previous one, so this link outlives one deploy during the run, not two.
 [ -L node_modules ] || [ ! -e node_modules ] || fail "$S/node_modules is not a link"
 ln -sfn $A/node_modules node_modules || fail "link the release's packages"
-SHIP=ship-v$VERSION.tgz; INFO=ship-v$VERSION.json
-[ -s "$SHIP" ] && [ -s "$INFO" ] && [ -s "policy-v$VERSION.json" ] || fail "ship-v$VERSION.tgz, ship-v$VERSION.json and policy-v$VERSION.json are needed"
+SHIP=ship-v$VERSION.tgz; INFO=ship-v$VERSION.json; POLICY=tmp/rag-v2-corpus-index-v$VERSION/policy.json
+# A start that the plan refused has already moved the policy to its place; a new policy-v<N>.json replaces that one.
+[ -s "$SHIP" ] && [ -s "$INFO" ] && { [ -s "policy-v$VERSION.json" ] || [ -s "$POLICY" ]; } || fail "ship-v$VERSION.tgz, ship-v$VERSION.json and policy-v$VERSION.json are needed"
+# This run buys once: a purchase of this version that was begun is looked at by a person, not begun again.
+[ -e tmp/rag-v2-corpus-embeddings/run-v$VERSION ] && fail "a purchase of v$VERSION was already begun (tmp/rag-v2-corpus-embeddings/run-v$VERSION); this run does not buy again"
 echo "$(field $INFO sha256)  $SHIP" | sha256sum -c - || fail "package hash"
 BASE=$(field $INFO base_generation) && HEAD=$(field $INFO head_generation) || fail "ship-v$VERSION.json"
 PRIOR=$(field tmp/rag-v2-corpus-index-v$PREVIOUS/index-plan.json generation_id) || fail "index plan v$PREVIOUS"
@@ -114,12 +117,24 @@ step proof-before
 proof $PRIOR || fail "proof of $PRIOR"
 # The store increment: the head (active.json, publications) and the new immutable versions, after a head backup.
 T=$(ls -d tmp/rag-v2-corpus-store-v25/tenant_*)
-[ "$(field $T/active.json generation)" = "$BASE" ] || fail "the server store head is not the base of this increment"
-mkdir -p tmp/store-backup-v$PREVIOUS && cp $T/active.json tmp/store-backup-v$PREVIOUS/ && cp -r $T/publications tmp/store-backup-v$PREVIOUS/ || fail "store head backup"
-tar xzf $SHIP -C $T || fail "unpack $SHIP (the head backup is tmp/store-backup-v$PREVIOUS)"
-[ "$(field $T/active.json generation)" = "$HEAD" ] || fail "the store head after the increment is not $HEAD"
-mkdir -p tmp/rag-v2-corpus-index-v$VERSION && mv policy-v$VERSION.json tmp/rag-v2-corpus-index-v$VERSION/policy.json || fail "policy"
-POLICY=tmp/rag-v2-corpus-index-v$VERSION/policy.json
+NOW=$(field $T/active.json generation) || fail "store head"
+if [ "$NOW" = "$HEAD" ] && [ "$BASE" != "$HEAD" ] && [ -f tmp/store-backup-v$PREVIOUS/active.json ]; then
+  # 07.10.2026 (v66): the free plan refused the increment (index capacity) after the head had been raised, and the next
+  # start stopped here because the head was no longer the base. An earlier start of this same package left the head
+  # where this one would put it, and its copy of the base head is kept: nothing is unpacked or copied again.
+  echo "the store head is already this increment's (an earlier start unpacked the package); the head backup tmp/store-backup-v$PREVIOUS is kept"
+else
+  [ "$NOW" = "$BASE" ] || fail "the server store head is not the base of this increment"
+  mkdir -p tmp/store-backup-v$PREVIOUS && cp $T/active.json tmp/store-backup-v$PREVIOUS/ && cp -r $T/publications tmp/store-backup-v$PREVIOUS/ || fail "store head backup"
+  tar xzf $SHIP -C $T || fail "unpack $SHIP (the head backup is tmp/store-backup-v$PREVIOUS)"
+  [ "$(field $T/active.json generation)" = "$HEAD" ] || fail "the store head after the increment is not $HEAD"
+fi
+if [ -s "policy-v$VERSION.json" ]; then mkdir -p tmp/rag-v2-corpus-index-v$VERSION && mv policy-v$VERSION.json $POLICY || fail "policy"; fi
+# The plan step makes its output folder anew; a start that the plan refused left it empty. A folder that holds a plan
+# is not removed here.
+if [ -d tmp/rag-v2-corpus-embeddings/plan-v$VERSION ]; then
+  rmdir tmp/rag-v2-corpus-embeddings/plan-v$VERSION 2>/dev/null || fail "tmp/rag-v2-corpus-embeddings/plan-v$VERSION holds an earlier plan: look at it and remove it by hand"
+fi
 # The newest price file; the plan refuses one older than 24 hours (price_verification_stale).
 PRICE=$(ls -t tmp/rag-v2-corpus-embeddings/prices/price-*.json | head -1); CONN=$SHARED/tmp/rag-v2-services/connections.json
 # pilot_7e23e68b is not a complete purchase; every other usage dir is reused.
@@ -173,4 +188,10 @@ proof $NEXT || fail "proof of $NEXT; it is active, run RESUME=plan only after ch
 # A new generation needs a new plan (renewal keeps the generation, ADR-037): the owner's controlled path.
 chat_plan
 rm -f $SHIP
+# The folders of the versions now in the index are kept packed (ADR-101). Not packing does not fail the run.
+if [ -f scripts/rag-v2-store-pack.sh ]; then
+  step store-pack
+  RAG_V2_PACK_IN_RUN=1 sh scripts/rag-v2-store-pack.sh pack "$T" tmp/rag-v2-corpus-index-v$VERSION/index-plan.json \
+    || echo "WARNING: the store was not packed; run scripts/rag-v2-store-pack.sh pack by hand"
+fi
 step done
