@@ -31,7 +31,7 @@
       "sources": 582
     },
     "register": {
-      "files": 5,
+      "files": 6,
       "sources": 0
     },
     "taastatud_allikad": {
@@ -49,11 +49,11 @@
   },
   "corpus": {
     "written_by": "rag-v2/register-corpus-1",
-    "version": "v65",
-    "index_generation": "33a3cb2a",
+    "version": "v66",
+    "index_generation": "de3e160f",
     "read_at": "2026-10-07",
-    "documents": 8105,
-    "units": 50379,
+    "documents": 8179,
+    "units": 57860,
     "note": "What the RAG on the server holds: the documents of the corpus policy by what they are (by_content), and by where the source file is kept (from_repository, outside_repository). One file of the repository may give many documents (a municipality package gives its services, forms and contacts). On a source entry, corpus_documents is the number of corpus documents the file gives; 0 means the file is not in the corpus.",
     "by_content": [
       {
@@ -105,11 +105,11 @@
       {
         "content": "guides",
         "name": "guides, information materials and studies",
-        "documents": 276,
+        "documents": 350,
         "by_source_type": {
-          "official_guideline": 106,
-          "information_material": 92,
-          "research_report": 72,
+          "official_guideline": 121,
+          "research_report": 121,
+          "information_material": 102,
           "policy_analysis": 6
         }
       },
@@ -189,10 +189,10 @@
       }
     },
     "source_files_not_in_corpus": 60,
-    "outside_repository_documents": 1976
+    "outside_repository_documents": 2050
   },
   "outside_repository": {
-    "documents": 1976,
+    "documents": 2050,
     "note": "Sources of the corpus that are not files of the repository. Copies are in the corpus store (the main checkout's git-ignored tmp/ and the server). Of contacts only counts are given: a contact's title is a person's name.",
     "kinds": [
       {
@@ -3696,17 +3696,212 @@
       },
       {
         "kind": "official_documents",
-        "name": "official studies and guides taken from the institutions' lists",
-        "documents": 104,
+        "name": "studies and guides taken from their publishers' official addresses",
+        "documents": 178,
         "by_source_type": {
-          "official_guideline": 68,
-          "research_report": 25,
-          "information_material": 11
+          "official_guideline": 83,
+          "research_report": 74,
+          "information_material": 21
         },
-        "made_from": "the lists of studies and guides on the institutions' own sites, each downloaded from its official address",
+        "made_from": "the lists of studies and guides on the institutions' own sites and the documents the newsletter of the journal Sotsiaaltöö pointed to (register/newsletter_documents.json), each downloaded from its publisher's official address",
         "reason": "large files; the official address is the source",
-        "publishers": 2,
+        "publishers": 23,
         "sources": [
+          {
+            "title": "Huvihariduse kättesaadavus Eestis",
+            "url": "https://arenguseire.ee/wp-content/uploads/2025/01/ask_huvihariduse_ka%CC%88ttesaadavus_eestis_a4.pdf",
+            "publisher": "Arenguseire Keskus"
+          },
+          {
+            "title": "Noorte iseseisvus ja otsustusõigus Eestis. Trendid ja stsenaariumid aastani 2050",
+            "url": "https://arenguseire.ee/wp-content/uploads/2026/06/2026_noorte-iseseisvus-ja-otsustusoigus-eestis_uuring.pdf",
+            "publisher": "Arenguseire Keskus"
+          },
+          {
+            "title": "Noortega seotud riskid ja kaitse sotsiaalmeedias",
+            "url": "https://arenguseire.ee/wp-content/uploads/2026/04/ask_lr-11_noortega-seotud-riskid-ja-kaitse-sotsiaalmeedias_parandatud.pdf",
+            "publisher": "Arenguseire Keskus"
+          },
+          {
+            "title": "Usaldus institutsioonide vastu lähisuhtevägivalla olukordades",
+            "url": "https://arenguseire.ee/wp-content/uploads/2026/03/ask_lr-9_usaldus-institutsioonide-vastu-lsv-olukordades.pdf",
+            "publisher": "Arenguseire Keskus"
+          },
+          {
+            "title": "Õppija toevajaduse märkamine ja õppija toetamine kutsekoolis",
+            "url": "https://s3-web-1a.tehik.ee/astangu-live-web-prd/s3fs-public/media/Juhendmaterjal%20-%20oppija%20toevajaduse%20m%C3%A4rkamine%20ja%20oppija%20toetamine%20kutsekoolis.pdf",
+            "publisher": "Astangu Kutserehabilitatsiooni Keskus"
+          },
+          {
+            "title": "Kliimaärevusega toimetuleku käsiraamat noortele ja noorsootöötajatele",
+            "url": "https://calm-ey.eu/wp-content/uploads/2025/07/calmey-handbook-EST_WEB.pdf",
+            "publisher": "CALM-EY"
+          },
+          {
+            "title": "Soovitused dementsusega pereliikme hoolduseks",
+            "url": "https://dementsus.ee/wp-content/uploads/2022/04/Raamat-U.-Linnamagi-M.-Varik-Alzheimeri-tobi-sinu-lahedasel-eesti-keeles.pdf",
+            "publisher": "Dementsuse Kompetentsikeskus"
+          },
+          {
+            "title": "Soovitusi vaimse tervise hoidmiseks väärikas eas",
+            "url": "https://dementsus.ee/wp-content/uploads/2025/04/DKK_Vaimne_tervise_A5_Web_uus.pdf",
+            "publisher": "Dementsuse Kompetentsikeskus"
+          },
+          {
+            "title": "Vabalt ja väärikalt",
+            "url": "https://dementsus.ee/wp-content/uploads/2025/08/Vabalt_vaarikalt_180x250mm_Final_Web_04.07.pdf",
+            "publisher": "Dementsuse Kompetentsikeskus"
+          },
+          {
+            "title": "Empaatia, emotsioonide regulatsiooni ja kaastunde seosed tervishoiutöötajate kaastundeväsimusega",
+            "url": "https://ojs.utlib.ee/index.php/EA/article/download/29713/22958/46846",
+            "publisher": "Eesti Arst"
+          },
+          {
+            "title": "Minu enda elu. Nägemispuudega iseseisvasse ellu. Juhendmaterjal nägemispuudega noortele ja hiljuti nägemise kaotanutele",
+            "url": "https://pimedateliit.ee/wp-content/uploads/2022/05/Juhendmaterjal-2022_A45.pdf",
+            "publisher": "Eesti Pimedate Liit"
+          },
+          {
+            "title": "Noorteinfo käsiraamat",
+            "url": "https://www.teeviit.ee/wp-content/uploads/2025/10/noorteinfo-kasiraamat-2025-1.pdf",
+            "publisher": "Haridus- ja Noorteamet"
+          },
+          {
+            "title": "Haprad ühendusteed: õpirajad ja töölerakendumine madalamate tasemete kutseõppes",
+            "url": "https://www.hm.ee/sites/default/files/documents/2026-06/Madalamate%20tasemete%20kutseo%CC%83ppe%20uuring_Praxis_2026_0.pdf",
+            "publisher": "Haridus- ja Teadusministeerium"
+          },
+          {
+            "title": "Eesti riiklik suunamismehhanism inimkaubanduse ohvri abistamiseks",
+            "url": "https://www.justdigi.ee/sites/default/files/documents/2026-04/RSM_EST_0.pdf",
+            "publisher": "Justiits- ja Digiministeerium"
+          },
+          {
+            "title": "Eestkoste kohtupsühhiaatriliste ekspertiiside õiguslik analüüs",
+            "url": "https://www.justdigi.ee/sites/default/files/documents/2026-01/Eestkoste%20kohtups%C3%BChhiaatriliste%20ekspertiiside%20%C3%B5iguslik%20anal%C3%BC%C3%BCs.pdf",
+            "publisher": "Justiits- ja Digiministeerium"
+          },
+          {
+            "title": "Radikaliseerumise varajane märkamine ja võrgustikutöö. Käsiraamat kohalikele omavalitsustele",
+            "url": "https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/radikaliseerumine_kov_.pdf",
+            "publisher": "Justiits- ja Digiministeerium"
+          },
+          {
+            "title": "Vanusesõbralikkuse hindamisvahend ja juhend",
+            "url": "https://liiga.ee/wp-content/uploads/2024/06/Vanusesobralikkuse-hindamisvahend-ja-juhendmaterjal_loplik.pdf",
+            "publisher": "Kuldne Liiga"
+          },
+          {
+            "title": "Kuidas stressiga toime tulla",
+            "url": "https://iris.who.int/server/api/core/bitstreams/40b1e4ee-e4c3-4e62-8c1c-14514070b9f8/content",
+            "publisher": "Maailma Terviseorganisatsioon"
+          },
+          {
+            "title": "Tööst põhjustatud haiguste ja kutsehaiguste diagnoosimine ja töötamisega seotud tervisekahjude hüvitamine",
+            "url": "https://www.mkm.ee/sites/default/files/documents/2026-05/L%C3%B5ppraport%20.pdf",
+            "publisher": "Majandus- ja Kommunikatsiooniministeerium"
+          },
+          {
+            "title": "8–12-aastaste käitumishäiretega laste vanematele suunatud ennetustegevuste võrdlev analüüs",
+            "url": "https://www.praxis.ee/uploads/2025/02/Ennetustegevuste_v%C3%B5rdlev_anal%C3%BC%C3%BCs-L%C3%B5ppraport.pdf",
+            "publisher": "Mõttekoda Praxis"
+          },
+          {
+            "title": "EUROSTUDENT 9 Eesti tulemuste lühiülevaade",
+            "url": "https://praxis.ee/uploads/2026/05/E9_lo%CC%83pparuanne.pdf",
+            "publisher": "Mõttekoda Praxis"
+          },
+          {
+            "title": "Infoleht vaimse tervise spetsialistidele LGBT+ noortega töötamisel",
+            "url": "https://praxis.ee/uploads/2025/03/LGBTQI_ekspertidele_Praxis_A5_veebi_OK.pdf",
+            "publisher": "Mõttekoda Praxis"
+          },
+          {
+            "title": "Koolide ja koolieelsete lasteasutuste liikumis- ja toitumissekkumiste uuring",
+            "url": "https://www.praxis.ee/uploads/2025/12/Praxis_ToLi_raport_1-12-2025.pdf",
+            "publisher": "Mõttekoda Praxis"
+          },
+          {
+            "title": "LGBTQI+ noorte vaimse tervise abi ja toe otsimise kogemused",
+            "url": "https://praxis.ee/uploads/2025/04/PAR%20uuringu%20aruanne%20ver1.pdf",
+            "publisher": "Mõttekoda Praxis"
+          },
+          {
+            "title": "Meheks olemise pingeväli: maskuliinsuse normid ja narratiivid Eestis",
+            "url": "https://praxis.ee/uploads/2026/03/Maskuliinsus_raport.pdf",
+            "publisher": "Mõttekoda Praxis"
+          },
+          {
+            "title": "Osalustegevusuuringud. Kuidas uurida koos?",
+            "url": "https://www.praxis.ee/uploads/2022/12/Osalustegevusuuringud_Kuidas-uurida-koos_-Kendrali_Valner_2024-1.pdf",
+            "publisher": "Mõttekoda Praxis"
+          },
+          {
+            "title": "Perearstiabi digilahenduste kättesaadavus vanemaealistele",
+            "url": "https://praxis.ee/uploads/2026/01/TP_NOVA_L%C3%B5ppraport.pdf",
+            "publisher": "Mõttekoda Praxis"
+          },
+          {
+            "title": "Programmi „Kohalik areng ja vaesuse vähendamine“ tulemuslikkuse lõpphindamine",
+            "url": "https://www.praxis.ee/uploads/2025/02/L%C3%B5pparuanne.pdf",
+            "publisher": "Mõttekoda Praxis"
+          },
+          {
+            "title": "Sünnitusjärgsete koduvisiitide programmiteooria",
+            "url": "https://www.praxis.ee/uploads/2026/06/2%20-%20Koduvisiitide%20programmiteooria_aruanne.pdf",
+            "publisher": "Mõttekoda Praxis"
+          },
+          {
+            "title": "Ukraina sõja tõttu Eestisse asunud naiste kogemused – lühikokkuvõte",
+            "url": "https://www.praxis.ee/uploads/2025/01/Barriers%20to%20a%20fulfilling%20life%20raport%20-%20est.pdf",
+            "publisher": "Mõttekoda Praxis"
+          },
+          {
+            "title": "Võru linna vanemaealiste rahulolu-uuring",
+            "url": "https://praxis.ee/uploads/2025/12/V%C3%B5ru%20linna%20vanemaealiste%20rahuoluuuring.pdf",
+            "publisher": "Mõttekoda Praxis"
+          },
+          {
+            "title": "Eestlaste ettekujutused ühiskonna kihistumisest",
+            "url": "https://rito.riigikogu.ee/wordpress/wp-content/uploads/2026/05/109-120_Uuring-Ra%CC%88mmer.pdf",
+            "publisher": "Riigikogu Toimetised"
+          },
+          {
+            "title": "NEET-olukorras „tublid tüdrukud“ – nähtamatud nii koolis kui ka tugiteenustes",
+            "url": "https://rito.riigikogu.ee/wordpress/wp-content/uploads/2026/05/121-132_Uuring-Beilmann.pdf",
+            "publisher": "Riigikogu Toimetised"
+          },
+          {
+            "title": "Hooldereform. Riigikontrolli aruanne Riigikogule",
+            "url": "https://www.riigikontroll.ee/sites/default/files/documents/2025-12/19680_RKTR_6596_2-1.4_2342_003-2.pdf",
+            "publisher": "Riigikontroll"
+          },
+          {
+            "title": "Kriisikommunikatsiooni käsiraamat",
+            "url": "https://digiriiul.sisekaitse.ee/bitstream/handle/123456789/3776/2026%2004%20SKA%20kriisikommunikatsioon%20WEB%20%281%29.pdf?isAllowed=y&sequence=3&utm",
+            "publisher": "Sisekaitseakadeemia"
+          },
+          {
+            "title": "Juhtumianalüüs: ametiasutuste tegevus surmaga lõppenud perevägivalla juhtumite lahendamisel",
+            "url": "https://siseministeerium.ee/sites/default/files/documents/2025-06/Ametiasutuste%20tegevus%20surmaga%20lo%CC%83ppenud%20pereva%CC%88givalla%20juhtumite%20lahendamisel%20lo%CC%83pparuanne2%20aprill%202025.pdf",
+            "publisher": "Siseministeerium"
+          },
+          {
+            "title": "Kuidas luua menopausi- ja üleminekueas inimesi arvestav töökeskkond?",
+            "url": "https://www.volinik.ee/volinik-live-web-prd/s3fs-public/2026-02/kuidas-luua-menopausi-ja-uleminekueas-inimesi-arvestav-tookeskkond_s.pdf",
+            "publisher": "Soolise võrdõiguslikkuse ja võrdse kohtlemise volinik"
+          },
+          {
+            "title": "Kuidas luua transsoolisi inimesi arvestavat töökeskkonda?",
+            "url": "https://www.volinik.ee/volinik-live-web-prd/s3fs-public/2025-05/KUIDAS-LUUA-transsoolisi-inimesi-arvestavat-T%C3%96%C3%96KESKKONDA.pdf",
+            "publisher": "Soolise võrdõiguslikkuse ja võrdse kohtlemise volinik"
+          },
+          {
+            "title": "Milline on riiklike maksutõusude ja eelarvekärbete mõju haavatavas olukorras rühmadele?",
+            "url": "https://www.volinik.ee/volinik-live-web-prd/s3fs-public/2025-06/Praxis_Milline-on-riiklike-maksut%C3%B5usude-ja-eelarvek%C3%A4rbete-m%C3%B5ju-haavatavas-olukorras-r%C3%BChmadele.pdf",
+            "publisher": "Soolise võrdõiguslikkuse ja võrdse kohtlemise volinik"
+          },
           {
             "title": "Abi- ja toetusvajaduse hindamisvahendi metoodiline juhis 2021",
             "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-11/Abi-%20ja%20toetusvajaduse%20hindamise%20metoodiline%20juhis_01.11.2023.pdf",
@@ -3715,6 +3910,11 @@
           {
             "title": "Abivahendite muudatuste infoleht 01.09.2025",
             "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-10/Infoleht_%20AV-muudatus_01.09.2025.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Asendushooldusel noorte elluastumiskava kontrollnimekiri ja juhendmaterjal",
+            "url": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-02/Elluastumiskava%20kontrollnimekiri%20ja%20juhendmaterjal_18.02.2026.pdf",
             "publisher": "Sotsiaalkindlustusamet"
           },
           {
@@ -3730,6 +3930,11 @@
           {
             "title": "Eesti sotsiaalteenuste kvaliteedijuhend",
             "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-11/Lisa%201.%20Eesti%20sotsiaalteenuste%20kvaliteedijuhis_12.11.2024.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Elanike teadlikkus ja hoiakud seoses laste vastu suunatud seksuaalvägivalla ennetuse ning abivõimalustega",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-02/Uuring%20elanike%20teadlikkus%20ja%20hoiakud%20seoses%20laste%20seksuaalv%C3%A4givalla%20ennetuse%20ning%20abiv%C3%B5imalustega%202025.pdf",
             "publisher": "Sotsiaalkindlustusamet"
           },
           {
@@ -3888,8 +4093,28 @@
             "publisher": "Sotsiaalkindlustusamet"
           },
           {
+            "title": "Meeleoluhäiretega täiskasvanute rehabilitatsioonijuhise koondaruanne",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/Meeleoluh%C3%A4iretega%20t%C3%A4iskasvanute%20rehabilitatsioonijuhise%20koondaruanne.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
             "title": "PACT-i riskihindamise täitmise juhend",
             "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-09/pact_riskihindamise_taitmise_juhend%20%281%29.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Perevägivalla toimepanijatele suunatud riskihindamisvahendite võrdlev analüüs – Eesti ja Euroopa praktika",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-02/Perevagivalla-riskihindamisvahendite-vordlev-analuus_lopparuanne_12022026.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Praktikad väärkohtlemise ennetamiseks huvihariduses ja lapsevanemate hoiakud",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-08/Huvihariduse%20uuringu%20aruanne%20Emor%202026.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Psühholoogiline esmaabi: juhend otsestele abistajatele",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-06/Ps%C3%BChholoogiline%20esmaabi.%20Juhend%20otsestele%20abistajatele.pdf",
             "publisher": "Sotsiaalkindlustusamet"
           },
           {
@@ -3943,6 +4168,11 @@
             "publisher": "Sotsiaalkindlustusamet"
           },
           {
+            "title": "Riikliku perelepitusteenuse tulemuslikkuse uuring sotsiaalkindlustusametile",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-10/Riikliku%20perelepitusteenuse%20tulemuslikkuse%20uuringu%20l%C3%B5pparuanne.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
             "title": "Saatjata alaealise välismaalase juhtumikorralduse juhend spetsialistidele",
             "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-09/SAV%20juhis%202026_01.09.pdf",
             "publisher": "Sotsiaalkindlustusamet"
@@ -3950,6 +4180,11 @@
           {
             "title": "Sisehindamise juhend asenduskoduteenuse osutajale",
             "url": "https://www.sm.ee/sites/default/files/content-editors/Lapsed_ja_pered/Asendushooldus/sisehindamise_juhised.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Skisofreenia, skisotüüpsete ja luululiste häiretega täiskasvanute rehabilitatsioonijuhise koondaruanne",
+            "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/Skisofreenia%20ja%20teiste%20h%C3%A4irete%20rehabilitatsioonijuhiste%20koondaruanne.pdf",
             "publisher": "Sotsiaalkindlustusamet"
           },
           {
@@ -3975,6 +4210,16 @@
           {
             "title": "STAR kannete juhis 2025-2026",
             "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-01/STAR_kannete%20juhis_2025-2026.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Sünnitusjärgse toe ülevaateuuring",
+            "url": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-05/S%C3%BCnnitusj%C3%A4rgse%20toe%20%C3%BClevaateuuring.pdf",
+            "publisher": "Sotsiaalkindlustusamet"
+          },
+          {
+            "title": "Taastava õiguse taskuraamat",
+            "url": "https://sotsiaalkindlustusamet.ee/media/2520/download",
             "publisher": "Sotsiaalkindlustusamet"
           },
           {
@@ -4138,6 +4383,11 @@
             "publisher": "Sotsiaalministeerium"
           },
           {
+            "title": "Koduses keskkonnas toimunud kukkumisjuhtumid: praegune korraldus ja võimalikud lahendused",
+            "url": "https://sm.ee/sites/default/files/documents/2026-06/Koduses%20keskkonnas%20toimunud%20kukkumisjuhtumid.pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
             "title": "Lapse peresisese väärkohtlemise väljaselgitamine ja selle mõju hindamine lastekaitsetöös ja last puudutavas tsiviilkohtumenetluses. Lõppraport",
             "url": "https://sm.ee/sites/default/files/documents/2026-04/Lapse%20peresisene%20v%C3%A4%C3%A4rkohtlemine_Lo%CC%83ppraport_T%C3%9C_2026.pdf",
             "publisher": "Sotsiaalministeerium"
@@ -4150,6 +4400,11 @@
           {
             "title": "Laste ja noorte vaimse tervise parandamise ettepanekud. Kokkuvõte",
             "url": "https://sm.ee/sites/default/files/documents/2025-02/Laste%20ja%20noorte%20vaimse%20tervise%20parandamise%20ettepanekud_kokkuvote.pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Laste ja noorte vaimse tervise parandamise ettepanekute raport",
+            "url": "https://www.sm.ee/sites/default/files/documents/2025-02/Laste%20ja%20noorte%20ettepanekute%20raport.pdf",
             "publisher": "Sotsiaalministeerium"
           },
           {
@@ -4183,6 +4438,11 @@
             "publisher": "Sotsiaalministeerium"
           },
           {
+            "title": "Pikaajalise hoolduse teenuseid osutava tööjõu tagamise praktika teistes riikides ja soovitused Eestile",
+            "url": "https://www.sm.ee/media/2669/download",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
             "title": "Puude tuvastamise, toetuste ja hüvede kaasajastamise uuringu lõppraport",
             "url": "https://sm.ee/sites/default/files/documents/2026-03/Puude%20tuvastamise%2C%20toetuste%20ja%20h%C3%BCvede%20kaasajastamise%20uuringu%20l%C3%B5ppraport_1.pdf",
             "publisher": "Sotsiaalministeerium"
@@ -4203,6 +4463,16 @@
             "publisher": "Sotsiaalministeerium"
           },
           {
+            "title": "Toidukaardi saajate küsitlusuuring. Tulemuste infograafik",
+            "url": "https://www.sm.ee/sites/default/files/documents/2025-06/Toidukaardi%20saajate%20k%C3%BCsitlusuuring%202025%20kokkuvote.pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Ulatusliku psühhosotsiaalse kriisiabi pakkumise analüüs",
+            "url": "https://www.sm.ee/sites/default/files/documents/2025-06/Ulatusliku%20ps%C3%BChhosotsiaalse%20kriisiabi%20pakkumise%20anal%C3%BC%C3%BCs_05.06.2025.pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
             "title": "Uuring leibkondliku elatusmiinimumi määramise metoodika väljatöötamiseks",
             "url": "https://sm.ee/sites/default/files/documents/2026-06/Uuring%20leibkondliku%20elatusmiinimumi%20m%C3%A4%C3%A4ramise%20metoodika%20v%C3%A4ljat%C3%B6%C3%B6tamiseks.pdf",
             "publisher": "Sotsiaalministeerium"
@@ -4210,6 +4480,21 @@
           {
             "title": "Vabatahtlikud ja vabatahtlikkus Eestis. Hetkeolukord ja tulevikuväljavaated",
             "url": "https://sm.ee/sites/default/files/documents/2026-04/Vabatahtlikud%20ja%20vabatahtlikkus%20Eestis.%20Hetkeolukord%20ja%20tulevikuv%C3%A4ljavaated.pdf_0.pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Vaimse tervise parandamise kogukonna juhend",
+            "url": "https://www.sm.ee/sites/default/files/documents/2023-08/WHO%20vaimse%20tervise%20parandamise%20tegevuskava%20%28mhGAP%29.pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Vaimse tervise valdkonna kvalifikatsiooninõuete hindamine – I aruanne, metoodika",
+            "url": "https://www.sm.ee/sites/default/files/documents/2025-04/I%20aruanne_MetoKval%20(Metoodika)%2027.03%20(1).pdf",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Vaimse tervise valdkonna kvalifikatsiooninõuete hindamine – II aruanne, metoodika rakendamine",
+            "url": "https://www.sm.ee/sites/default/files/documents/2025-04/II%20aruanne_MetoKval%20(Metoodika%20rakendamine)%2027.03.pdf",
             "publisher": "Sotsiaalministeerium"
           },
           {
@@ -4226,6 +4511,91 @@
             "title": "Väikelaste emade töötuna arvelolek lapse isa vanemapuhkuse ajal",
             "url": "https://sm.ee/sites/default/files/documents/2025-05/V%C3%A4ikelaste%20emade%20t%C3%B6%C3%B6tuna%20arvelolek%20lapse%20isa%20vanemapuhkuse%20ajal_TK_2025.pdf",
             "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Välisriikide madala intensiivsusega psühholoogiliste sekkumiste rakendusmudelite analüüs ja soovitused Eestile",
+            "url": "https://www.sm.ee/media/2846/download",
+            "publisher": "Sotsiaalministeerium"
+          },
+          {
+            "title": "Võta jutuks. Internet ja laste seksuaalne väärkohtlemine",
+            "url": "https://www.targaltinternetis.ee/wp-content/uploads/2015/12/Vota_jutuks.pdf",
+            "publisher": "Targalt Internetis"
+          },
+          {
+            "title": "Eesti noorsootöötaja eetikakoodeks",
+            "url": "https://eetika.ee/sites/default/files/2026-06/Noorsoot%C3%B6%C3%B6taja%20eetikakoodeks.pdf",
+            "publisher": "Tartu Ülikool"
+          },
+          {
+            "title": "EU Kids Online’i 2025. aasta uuringu esialgsed tulemused",
+            "url": "https://sisu.ut.ee/wp-content/uploads/sites/289/EUKO-v6rku-summariga-26_02_18.pdf",
+            "publisher": "Tartu Ülikool"
+          },
+          {
+            "title": "Suitsiidimõtete esinemine ja sellega seotud tegurid Eesti 15-aastastel kooliõpilastel aastatel 2006–2022",
+            "url": "https://dspace.ut.ee/server/api/core/bitstreams/c2947b03-24e3-432d-9d86-d2e653cdb5e6/content",
+            "publisher": "Tartu Ülikool"
+          },
+          {
+            "title": "Ennetustegevuse kavandamise, arendamise, kohandamise ja hindamise juhend",
+            "url": "https://tai.ee/sites/default/files/2026-02/tai_ennetustegevus.pdf",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Kanep. Eneseabi töövihik",
+            "url": "https://www.tai.ee/sites/default/files/2022-12/TAI_Kanepi_t%C3%B6%C3%B6vihik_2022_est_online_12.22.pdf",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Lapse heaolu ja vaimse tervise hindamisvahendid: spetsialistide vajadused",
+            "url": "https://tai.ee/sites/default/files/2023-01/Lapse%20heaolu%20ja%20vaimse%20tervise%20hindamisvahendid.pdf",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Maakondlike tervisenõukogude roll ja potentsiaal",
+            "url": "https://www.tai.ee/sites/default/files/2025-09/tervisenoukogud_raport-24.09.pdf",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Narkootikumide tarvitamise olukord Eestis 2024",
+            "url": "https://www.tai.ee/sites/default/files/2025-07/uimastitarvitamise_olukord_2024.pdf",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Narkootikumide tarvitamise olukord Eestis 2025",
+            "url": "https://www.tai.ee/sites/default/files/2026-08/uimastitarvitamise_olukord_2025_18.8.26.pdf",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Noorukite sõeltestimine, lühisekkumine ja ravile suunamine uimastite tarvitamise korral",
+            "url": "https://tai.ee/sites/default/files/2025-09/tai-soeltestimine-veeb_0.pdf",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Nutiseadmete kasutamine: soovitused haridusasutustele, lapsevanematele ja noortele",
+            "url": "https://www.tai.ee/sites/default/files/2025-10/TAI%20Soovitused%20nutiseadmete%20kasutamise%20piiramiseks4.pdf",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Töö alkoholi liigtarvitava kliendiga. Abiks spetsialistile",
+            "url": "https://www.tai.ee/sites/default/files/2021-03/156526502566_Too_alkoholiliigtarvitava_kliendiga%202019aasta_web_.pdf",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Uimasteid tarvitavatele inimestele suunatud teenuste toimimise ja teenustevahelise koostöö korraldus Eestis ja välisriikides: lõpparuanne",
+            "url": "https://www.tai.ee/sites/default/files/2025-09/uimasteid_tarvitavate_inimeste_teenuste_uuringu_aruanne_0.pdf",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Uimasteid tarvitavatele inimestele suunatud tõenduspõhiste väheintensiivsete psühholoogiliste sekkumiste ülevaade",
+            "url": "https://www.tai.ee/sites/default/files/2025-04/vipsid_lopparuanne.pdf",
+            "publisher": "Tervise Arengu Instituut"
+          },
+          {
+            "title": "Uimastite tarvitamine koolinoorte seas: tubakatoodete, alkoholi ja narkootiliste ainete tarvitamine Eesti 15–16-aastaste õpilaste seas",
+            "url": "https://www.tai.ee/sites/default/files/2025-04/espad_raport_2024_25.04.2025.pdf",
+            "publisher": "Tervise Arengu Instituut"
           }
         ]
       }
@@ -32820,6 +33190,13 @@
       "role": "source_planning_register",
       "sha256": "97294bd726859bb04742baeca0eb17aa5aedd91b89a8338915d4fb0c7dddbcdc",
       "original_path": "register/web_pages_organisations.json"
+    },
+    {
+      "path": "register/newsletter_documents.json",
+      "category": "register",
+      "role": "source_planning_register",
+      "sha256": "d9bd521e4aa7d4f6da5b899435affe02efee92c361f5c30c3eed75ced2a1d35a",
+      "original_path": "register/newsletter_documents.json"
     }
   ],
   "original_path_base": "../Arhiiv/Andmebaasi_2026-09-07/Andmebaasi"

@@ -64,8 +64,86 @@ Kolm küsimust on kontroll, mitte mõõtmine. Uuringu ja juhendi aadress ei ole 
 - Testid: \`tests/rag-v2-register-corpus.test.mjs\` (asutuse loendist võetud uuring on registris pealkirja ja ametliku aadressiga).
 - Kulu kokku selle töö jaoks: 0,4200 USD (ost 0,4067 ja kolm kontrollpööret 0,0133) omaniku lae 0,80 USD all.
 
+## Teine partii: korpus v66 (ajakirja Sotsiaaltöö uudiskirjas viidatud dokumendid)
+
+Omanik lasi 07.10.2026 koguda ajakirja Sotsiaaltöö uudiskirjades viidatud dokumendid kausta `Andmebaasi/Sotsiaaltöö uudiskiri` (teise agendi töö, kaust ei ole koodihoidlas): 195 PDF-i, 790 MB, enamiku kõrval koguja metafail. Tema sõnad: „need uudiskirja dokumendid lisa, mida saab kindlasti lisada. need kahtlased kontrolli üle ja see, mis peaks suuruse tõttu välja jääma“.
+
+**Võrdlus RAG-iga (korpus v65) ja kontroll, tasuta:**
+
+| Rühm | Faile | Mis sai |
+|---|---:|---|
+| Samad baidid juba RAG-is | 20 | ei lisata |
+| Sarnase pealkirjaga dokument RAG-is | 3 | kõik kolm on eri dokumendid (variraport, mille kohta RAG-is oli ainult artikkel; kaks hilisemat aastaülevaadet): kandidaadid |
+| Üle vastuvõtu 32 MB piiri | 2 | tekst on loetav (56 lk, 17 691 sõna; 203 lk, 138 685 sõna), suureks teevad pildid; ootavad piltideta koopiat |
+| Tekstikihita (lehed on pildid) | 6 | ootavad tekstituvastust |
+| Ingliskeelsed | 9 | omanik: „inglise keeles hetkel ei pane, aga kirjuta need kuhugi üles“ |
+| Arvutabelite kogumikud (üle poole sisust arvud) | 3 | omanik: „arvutabelid jäta välja“ |
+| Eestikeelsed, tekstiga | 155 | kandidaadid |
+
+Keel on mõõdetud kogu faili sõnadest (ainult ühes keeles esinevad sidesõnad), mitte pealkirjast. Tervisevaldkonna reeglit (otsus 2) siin ei rakendatud: uudiskirja toimetus valis need dokumendid sotsiaaltöötajatele; ütlesin seda omanikule ja ta välja jätta ei palunud.
+
+**Otsused selle partii kohta:**
+
+1. **Väljaandja on organisatsioon, kelle aadressil dokument on avaldatud** (korpusesse läinud 74 dokumendil 23 väljaandjat: ministeeriumid, ametid, Riigikontroll, mõttekojad, ülikoolid, ühingud). Juhend on riigiasutuse väljaandena `official_guideline`, muu väljaandja juhend või infoleht `information_material`, uuring `research_report`.
+2. **Aasta** on koguja märgitud avaldamisaasta; kui seda ei olnud, siis pealkirjas, aadressis või failis seisev aasta. Uudiskirja number ei ole dokumendi aasta.
+3. **Märksõnu dokumendile ei panda.** Dokumendi märksõnad on otsinguabi iga selle lõigu juures; esimeses kohalikus läbimängus oli igal dokumendil märksõna uudiskirja nimega, mis oleks pannud tuhanded lõigud vastama sõnale „sotsiaaltöö“. Viga leitud enne ostu, allikad tehtud uuesti. Kust dokument leiti, seisab metaandmete väljas `collection.collected_from` (uudiskirja number), mis otsinguabi ei ole.
+4. **Uudiskirja lugemislinki ei kirjutata kuhugi** (see kannab tellija tunnust): metaandmetes ja loendis on ainult dokumendi enda ametlik aadress.
+5. **Pealkiri** on koguja metafailist; lõpus sulgudes seisev aasta ei ole pealkirja osa. Pealkirja ei täiendata sõnadega, mida dokumendi tekstis ei ole.
+6. **Omaniku lisatud failil** (psühholoogilise esmaabi juhend, metafailita) leiti ametlik aadress pealkirja järgi ja kontrolliti baitide võrdsust (Sotsiaalkindlustusameti fail, samad baidid).
+7. **Ülevaatuse reegel** (`document`) võtab vastu ka lugeja märkuse, et fondis tähtedeta kodeeritud märgid taastati fondi enda andmetest (`pdf_glyph_char_codes_recovered`): kolme sellise dokumendi tekst loeti läbi, see on tavaline eesti keel.
+8. **Loend on koodihoidlas:** `Andmebaasi/register/newsletter_documents.json`, 175 dokumenti pealkirja, väljaandja ametliku aadressi ja seisuga (RAG-is alates v66; ootab indeksi mahupiiri; ootab kettaruumi; ingliskeelne; tekstikihita; liiga suur; arvutabelid). Failid ise ei ole koodihoidlas.
+
+**Serveri kettaruum otsustas partii suuruse.** Mõõdetud v65 pealt (104 dokumenti, 4783 lõiku): hoidla 741 MB (sellest PDF-id 118 MB), vektorifailid 287 MB, RAG-andmebaas umbes 700 MB (`rag_v2_object` 355 MB, `rag_v2_version` 122 MB, `rag_v2_version_unit` 82 MB, vektorid 143 MB). Kokku umbes **380 KB serveri ketast ühe lõigu kohta**: tekst on salvestatud mitmes koopias (hoidlas kolm korda, andmebaasis kolm korda) ja vektor JSON-ina kaks korda. 155 dokumenti oleks võtnud umbes 7 GB; vaba oli 5,9 GB.
+
+Omanik: „ainult siis mahub kui eemaldad livekit nt, aga seda peab oskama tagasi panna hiljem“, seejärel „livekit võid eemaldada“. Serverist võeti maha **LiveKiti kõnesalvestuse osa** (`livekit-egress`: teenus peatatud ja keelatud, konteiner ja pilt eemaldatud; 4,7 GB). LiveKiti server ise (kõned) jäi puutumata; teenuse fail, `/etc/livekit` ja salvestiste kaust on alles. Teenus on keelatud, mitte ainult peatatud: see käivitub alati uuesti ja laadiks pildi järgmisel taaskäivitusel tagasi. Vaba ruumi sai 11 GB.
+
+Tagasipanek (vajab umbes 5 GB vaba ruumi; juhis on ka serveris failis `/home/ubuntu/livekit-egress-restore.txt`):
+
+```bash
+sudo docker pull livekit/egress:v1.14.1@sha256:bf2b648b947349c3e9ff7aa8c718f00378d5c06af7624652a3653318e00333ce
+sudo systemctl enable --now livekit-egress.service
+```
+
+Sama räsiga pilt oli 07.10.2026 Docker Hubis olemas. Seni kõne salvestamine ei tööta.
+
+**Indeksi mahupiir otsustas lõpuks rohkem kui ketas.** Valmistasin ette 104 dokumenti (juhendid ja käsiraamatud ning uuringud alates 2023; 11 440 lõiku) ja saatsin serverisse. Serveri tasuta plaan keeldus: `local_index_limit`. Ühe indeksipõlvkonna piir on 10 000 dokumenti ja 60 000 lõiku (`lib/rag-v2/search/capacity.js`, ADR-036), korpuses oli 50 379 lõiku ja 104 dokumendiga oleks saanud 61 819. Piir kontrollitakse enne ostu, nii et midagi ei ostetud. Seda piiri ma partiid valides ei kontrollinud; LiveKiti salvestus võeti maha 104 dokumendi jaoks, 74 oleks mahtunud ka ilma.
+
+**Partii on 74 dokumenti:** juhendid ja käsiraamatud (kõik aastad) ning 2025–2026 uuringud; 7481 lõiku, korpuses kokku 57 860 (96% piirist). 30 uuringut aastatest 2023–2024 on vastu võetud ja serveri hoidlas, aga korpuse poliitikast väljas, kuni piir tõstetakse. 51 vanemat uuringut (2017–2022) on vastu võtmata.
+
+Käivitus õnnestus kolmandal korral; ükski katse enne seda midagi ei ostnud:
+
+| Katse | Kuhu jõudis | Mida tegin |
+|---|---|---|
+| 1 | hoidla pea tõsteti (104 versiooni lahti pakitud), plaan keeldus: `local_index_limit` | poliitika tehtud uuesti 74 dokumendiga pakkimise sammu enda funktsiooniga (`nextPolicy`); paki kirje alus seatud pea väärtusele, mis serveril juba oli (sama pakk pakitakse iseenda peale lahti); enne täiendust tehtud pea koopia tõstetud kõrvale (`tmp/store-backup-v65-before`) |
+| 2 | plaan keeldus: väljundkaust `plan-v66` oli esimesest katsest tühjana alles ja samm teeb selle alati uuena | tühi kaust eemaldatud |
+| 3 | plaan läbis, ost ja indeks | |
+
+Käivitusskript ei oska ise jätkata pärast plaani keeldumist, kui pea on juba tõstetud (alus ei klapi) ja tühi väljundkaust on ees; mõlemad on skripti puudused, parandamata.
+
+**Tulemus (07.10.2026 kell 16.04):** serveri tasuta plaan näitas 74 dokumenti, 7473 sisendit ja 4 664 304 tokenit; ost õnnestus kõigi 7473 sisendiga, **0,6064 USD** ülempiiri 0,80 all (ülempiiri panin mina kohaliku tokeniarvutuse 0,61 järgi; omanik: „Raha on piisavalt“, „luba on antud rag andmebaasi panna“). Ost kestis 33 minutit, indeksi töö 6 minutit. Indeks `de3e160f`: **8179 dokumenti, 57 860 lõiku**; vestluse plaan `m4-corpus-chat-20261007b.json`; `ready` läbis 8179 allikaga. Dokumentidest 49 on uuringud, 15 riigiasutuste juhendid ja 10 muude väljaandjate juhendid ja infomaterjalid.
+
+**Kontroll enne ostu (kohalik, tasuta):** 104 ette valmistatud dokumendil on kõik metaandmete väljad (pealkiri, väljaandja, liik, keel, aasta, ametlik aadress, räsi), märksõnu ei ole; 11 440 lõigust igaühel on lehekülje number ja peatüki pealkiri ning iga dokumendi esimene lõik kannab pealkirja; faili sõnadest jõudis lõikudesse 97 dokumendil üle 85% ja seitsmel 74–85% (tükeldamata viidete loendid); 526 lõiku on alla 200 märgi. Sama kontroll v65 kohta: 104 PDF-il on metafail ja räsi klapib, kolmel puudub aasta; 4783 lõigul on lehekülje number ja peatüki pealkiri.
+
+**Kontroll päris lehel**, kolm küsimust, igaüks uues vestluses (0,0096 USD); tsiteeritud allikad on loetud pöörete kirjetest:
+
+| Küsimus | Mida vastus tsiteeris |
+|---|---|
+| mida leidis Riigikontroll hooldereformi kohta | „Hooldereform. Riigikontrolli aruanne Riigikogule“ (uus), neli lõiku |
+| kuidas anda psühholoogilist esmaabi inimesele, kes on just kriisi läbi elanud | „Psühholoogiline esmaabi: juhend otsestele abistajatele“ (uus, omaniku lisatud fail), seitse lõiku; kandidaatide seas veel kolm uut dokumenti |
+| mida näitas uuring riikliku perelepitusteenuse tulemuslikkuse kohta | „Riikliku perelepitusteenuse tulemuslikkuse uuring“ (uus), kaks lõiku |
+
+Kolm küsimust on kontroll, mitte mõõtmine: need küsivad otse uue dokumendi järele. Mõõtmata on, kas 7481 uut uuringulõiku muudavad vastuseid tavalistele küsimustele (teenused, toetused), kus uuringud võistlevad omavalitsuste ja seaduste lõikudega.
+
+**Serveri ketas pärast:** hoidla 5,9 → 7,5 GB (lahti pakiti kõik 104 versiooni), vektorifailid 3,1 → 3,5 GB, RAG-andmebaas 7,5 → 8,8 GB; vaba 7,2 GB (88% täis) pärast käivituse kahe hoidlakoopia eemaldamist (`cmp` järgi võrdsed). Ilma LiveKiti salvestust eemaldamata oleks vaba jäänud umbes 2,5 GB. Kulu selle töö jaoks kokku: **0,6160 USD**.
+
 ## Tegemata
 
+- **Indeksi mahupiir** (60 000 lõiku põlvkonna kohta; korpus on 57 860): enne järgmist suuremat täiendust tuleb piir tõsta, ja selleks mõõta vestluspöörde otsingu kulu suurema põlvkonnaga (kataloog, sõnaline päring, täpne vektoriotsing; ADR-036). Vaba on 2140 lõiku: igakuine uuendamine ja õigusaktide muudatused mahuvad, uuringute partii mitte.
+- **Uudiskirja dokumendid, mis ootavad** (loend `Andmebaasi/register/newsletter_documents.json`): 30 uuringut aastatest 2023–2024 (serveri hoidlas, ootavad mahupiiri; 3959 lõiku, 0,34 USD), 51 vanemat uuringut (mahupiir ja kettaruum), 9 ingliskeelset, 6 tekstikihita, 2 liiga suurt, 13 veebilehena kogutud artiklit (lehtede korjaja tee, ADR-095). Koguja aruandes on veel 12 kättesaamata PDF-i ja 9 muus vormingus allikat.
+- **Käivitusskript** (`scripts/rag-v2-corpus-run.sh`) ei jätka pärast plaani keeldumist: hoidla pea on siis juba tõstetud ja tühi väljundkaust jääb ette.
+- **Serveri ruumikulu lõigu kohta** (umbes 380 KB) on RAG-i kasvu tegelik piir; hoidla ja andmebaasi kordused ning JSON-vektorid on eraldi töö.
+- **LiveKiti kõnesalvestus** on serverist maas, kuni see tagasi pannakse.
+- Kolmel v65 dokumendil puudub metaandmetes aasta.
 - **Ülejäänud loendid:** ministeeriumi sotsiaalvaldkonna vanemad uuringud (122), töövaldkond (65), uuema tabeli tervisevälised jäägid; ameti uuringud ja analüüsid (68). Need on eraldi otsus ja ost.
 - Ameti 34 alalehte jäi lugemata; juhendite loend ei pruugi olla täielik. Ministeeriumi kompetentsikeskuse lehte ei võrreldud.
 - Kaks kinni peetud dokumenti („Rehabilitatsiooni käsiraamat“, „Sotsiaalhoolekande andmepõhise aruandluse mudeli loomine“) ja 62 MB voldik (omanik: „sellega tegeleme hiljem“).
