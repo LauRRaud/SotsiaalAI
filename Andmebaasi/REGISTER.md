@@ -1,6 +1,6 @@
 # Andmebaasi allikad ja failiregister
 
-Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masinloetav faililoend koos SHA-256 kontrollsummadega on [REGISTER.json](REGISTER.json). Mis sellest korpuses (RAG-is) on ja mis on korpuses väljaspool repot, näitavad jaotised „RAG-i seis“ ja „Korpuse allikad väljaspool repot“.
+Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masinloetav faililoend koos SHA-256 kontrollsummadega on [REGISTER.json](REGISTER.json). Mis on serveris RAG-is, näitab jaotis „RAG-i seis: mis on serveris“; lehtede ja kontaktide loend on faili lõpus.
 
 | Kaust | Allikafaile | Faile kokku | Kasutus |
 |---|---:|---:|---|
@@ -8,41 +8,54 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | juhendid_ja_uuringud | 185 | 370 | Unikaalsed PDF-id; JSON säilitab kohaliku ja serveri metaandmevariandid. |
 | KOV | 78 | 234 | 78 KOV-i põhipaketti koos metaandmete ja allikaloenditega. |
 | kontaktid | 0 | 10 | Kontaktide otsingumaterjal; kattuvus KOV-pakettidega vajab ühendamist. |
-| organisatsioonid | 1 | 3 | Ühe organisatsiooni (Astangu) käsitsi koostatud pakett: sisu ja allikad. Korpuses seda ei ole. Organisatsioonide enda veebilehed on korpuses, kuid väljaspool repot (vt „RAG-i seis“). |
+| organisatsioonid | 1 | 3 | Ühe organisatsiooni (Astangu) käsitsi koostatud pakett: sisu ja allikad. RAG-is seda paketti ei ole. Organisatsioonide enda veebilehed on RAG-is (vt „RAG-i seis“). |
 | oigusaktid | 582 | 596 | XML-aktid, sh eri redaktsioonid ja omavalitsuste teised kehtivad sotsiaalaktid (ADR-058); kehtivus tuleb vastuvõtul kontrollida. Aktide lisadest tuletatud allikad (`lisad/`): kaks tabelit (ADR-050) ja kaksteist omavalitsuse lisa teksti (ADR-053); iga tuletatud allikas nimetab oma akti redaktsiooni. Üks akt on allikas ainult nimetatud paragrahvide ulatuses (registrikirje väli `xml_sections`, ADR-076): `103072026024.xml`, 2026. aasta riigieelarve seaduse § 2; fail ise on Riigi Teataja algfail. |
 | teadmised | 0 | 7 | Allikapõhised teadmiskaardid (tingimused, erandid, mõisted ja nende seosed) valitud allikatele; iga fail on seotud oma allika räsiga (ADR-054). |
-| register | 0 | 5 | Kavandatud allikate register ja korjatavate veebilehtede nimekirjad (`web_pages.json` ametlikud juhislehed, `web_pages_vendors.json` abivahendite müüjate lehed, `web_pages_organisations.json` puuetega inimeste organisatsioonide lehed koos mustriga, mis pealkirja järgi välja jääb; ADR-095), mitte teadmistekst. Müüjate ja organisatsioonide lehtede tekste repos ei ole; mis neist korpuses on, näitab „RAG-i seis“. |
+| register | 0 | 5 | Kavandatud allikate register ja korjatavate veebilehtede nimekirjad (`web_pages.json` ametlikud juhislehed, `web_pages_vendors.json` abivahendite müüjate lehed, `web_pages_organisations.json` puuetega inimeste organisatsioonide lehed koos mustriga, mis pealkirja järgi välja jääb; ADR-095), mitte teadmistekst. Mis müüjate ja organisatsioonide lehtedest RAG-is on, näitab „RAG-i seis“. |
 | veebilehed | 31 | 62 | Ametlikud juhislehed, korjatud skriptiga `scripts/rag-v2-web-pages.mjs` (ADR-095): lehe sisuosa ilma saidi menüüde ja isikute kontaktideta, metaandmetes aadress, kontrolli kuupäev ja viidatud dokumendid. |
 | taastatud_allikad | 0 | 22 | Serveri vanast indeksist taastatud tekst. Enne importi võrrelda põhipakettidega. |
 
 <!-- corpus-state:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
-## RAG-i seis: korpus v64
+## RAG-i seis: mis on serveris (korpus v64)
 
-Seis 07.10.2026: korpus **v64** (indeks `7d209c63`), **8 001 dokumenti**, 45 596 lõiku. Arvud on loetud korpuse hoidlast ja poliitikast skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti. Üks repo fail võib anda mitu dokumenti (omavalitsuse pakett annab teenuste, vormide ja kontaktide dokumendid), seepärast ei võrdu dokumentide arvud ülal olevate failide arvudega. `REGISTER.json` näitab iga allikafaili juures, mitu korpuse dokumenti see annab (`corpus_documents`).
+Seis 07.10.2026: serveris töötav RAG (korpus **v64**, indeks `7d209c63`) sisaldab **8 001 dokumenti** (45 596 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
 
-| Kust | Dokumente | Allikaliigid |
+| Mis on RAG-is | Dokumente | Kus on loend |
+|---|---:|---|
+| Omavalitsuste teenused ja toetused | 3195 | jaotis „Sisufailid“ |
+| Taotlusvormid (vastuses antakse lingina) | 872 | jaotis „Sisufailid“ |
+| Omavalitsuste kontaktid | 1638 | faili lõpus arvudena omavalitsuste kaupa (nimesid siia ei kirjutata) |
+| Ajakirja Sotsiaaltöö artiklid | 892 | jaotis „Sisufailid“ |
+| Õigusaktid | 537 | jaotis „Sisufailid“ |
+| Juhendid, infomaterjalid ja uuringud | 172 | jaotis „Sisufailid“ |
+| Ametlikud juhislehed (ametite veebilehed) | 30 | jaotis „Sisufailid“ |
+| Puuetega inimeste organisatsioonide lehed | 521 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
+| Abivahendite müügi- ja üüripunktid | 93 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
+| Abivahendite müüjate lehed | 51 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
+| **Kokku** | **8001** | |
+
+<details><summary>Tehniline jaotus arendajale: kus allikafailid asuvad</summary>
+
+Dokumentide arvud ei võrdu ülal olevate failide arvudega: üks fail võib anda mitu dokumenti (omavalitsuse pakett annab teenuste, vormide ja kontaktide dokumendid). `REGISTER.json` näitab iga allikafaili juures, mitu dokumenti see annab (`corpus_documents`).
+
+| Kaust | Dokumente | Allikaliigid |
 |---|---:|---|
 | `KOV` | 4498 | kov_service_info 3195, application_form 845, official_contact 431, web_form 17, pdf_form 6, official_form 4 |
 | `ajakiri_sotsiaaltoo` | 892 | file 849, web 43 |
 | `oigusaktid` | 537 | legal_act 537 |
 | `juhendid_ja_uuringud` | 171 | information_material 81, research_report 46, official_guideline 38, policy_analysis 6 |
 | `veebilehed` | 31 | web_page 30, research_report 1 |
-| väljaspool repot | 1872 | municipal_contact 691, organization_page 521, official_contact 376, municipal_contact_directory 140, registry 93, vendor_page 51 |
 
-### Korpuses, kuid väljaspool repot
+Koodihoidlas (GitHub) ei ole 1872 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
 
-Neid allikaid repos ei hoita. Koopiad on korpuse hoidlas (sülearvuti põhikausta `tmp/` all, mida git ei jälgi, ja serveris). Lehtede loend on faili lõpus jaotises „Korpuse allikad väljaspool repot“.
-
-| Allikas | Dokumente | Millest tehakse | Miks väljaspool repot |
+| Allikas | Dokumente | Millest tehakse | Miks ei ole koodihoidlas |
 |---|---:|---|---|
 | Omavalitsuste kontaktid ja kontaktikataloogid | 1207 | rakenduse kontaktiregistrist skriptiga `scripts/rag-v2-contact-export.mjs` (ADR-085, ADR-086) | isikute nimed, telefoninumbrid ja e-posti aadressid |
 | Abivahendite müügi- ja üüripunktide lehed | 93 | Sotsiaalkindlustusameti kaarditabelist skriptiga `scripts/rag-v2-assistive-points.mjs`, iga omavalitsuse kohta üks leht (ADR-096) | punktide telefoninumbrid; leht tehakse tabelist uuesti |
 | Abivahendite müüjate lehed | 51 (18 väljaandjat) | nimekiri `register/web_pages_vendors.json`, korjaja `scripts/rag-v2-web-pages.mjs` (ADR-095) | ettevõtete enda tekstid ja telefoninumbrid |
 | Puuetega inimeste organisatsioonide lehed | 521 (43 väljaandjat) | nimekiri `register/web_pages_organisations.json`, korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-095) | organisatsioonide enda tekstid |
 
-### Repo allikafailid, mida korpuses ei ole (60)
-
-<details><summary>Failide loend</summary>
+Koodihoidla allikafailid, mida RAG-is ei ole (60):
 
 - `juhendid_ja_uuringud/sotsiaalkindlustusamet_seksuaalvagivalla_kriisiabikeskusi_tutvustav_voldik_est.pdf`
 - `juhendid_ja_uuringud/epikoda_uro_puuetega_inimeste_oiguste_konventsioon_ja_fakultatiivpro.pdf`
@@ -1949,91 +1962,9 @@ Neid allikaid repos ei hoita. Koopiad on korpuse hoidlas (sülearvuti põhikaust
 | Tallinna kontaktid | [kontaktid/tallinn/tallinn.contacts.json](kontaktid/tallinn/tallinn.contacts.json) |
 
 <!-- corpus-outside:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
-## Korpuse allikad väljaspool repot
+## RAG-is olevad lehed ja kontaktid
 
-Korpus v64, 07.10.2026. Kontaktide kohta on ainult arvud: kontakti pealkiri on isiku nimi ja seda siia ei kirjutata.
-
-### Omavalitsuste kontaktid ja kontaktikataloogid (1207)
-
-| Omavalitsus | Dokumente |
-|---|---:|
-| Alutaguse vald | 9 |
-| Anija vald | 9 |
-| Antsla vald | 10 |
-| Elva vald | 25 |
-| Haapsalu linn | 10 |
-| Haljala vald | 9 |
-| Harku vald | 19 |
-| Hiiumaa vald | 11 |
-| Häädemeeste vald | 8 |
-| Jõelähtme vald | 7 |
-| Jõgeva vald | 17 |
-| Jõhvi vald | 29 |
-| Järva vald | 17 |
-| Kadrina vald | 6 |
-| Kambja vald | 17 |
-| Kanepi vald | 11 |
-| Kastre vald | 16 |
-| Kehtna vald | 8 |
-| Keila linn | 10 |
-| Kihnu vald | 2 |
-| Kiili vald | 8 |
-| Kohila vald | 6 |
-| Kohtla-Järve linn | 30 |
-| Kose vald | 9 |
-| Kuusalu vald | 9 |
-| Loksa linn | 5 |
-| Luunja vald | 8 |
-| Lääne-Harju vald | 18 |
-| Lääne-Nigula vald | 10 |
-| Lääneranna vald | 7 |
-| Lüganuse vald | 9 |
-| Maardu linn | 11 |
-| Muhu vald | 3 |
-| Mulgi vald | 8 |
-| Mustvee vald | 8 |
-| Märjamaa vald | 10 |
-| Narva linn | 38 |
-| Narva-Jõesuu linn | 9 |
-| Nõo vald | 9 |
-| Otepää vald | 18 |
-| Paide linn | 21 |
-| Peipsiääre vald | 13 |
-| Põhja-Pärnumaa vald | 11 |
-| Põhja-Sakala vald | 10 |
-| Põltsamaa vald | 12 |
-| Põlva vald | 11 |
-| Pärnu linn | 49 |
-| Raasiku vald | 7 |
-| Rae vald | 17 |
-| Rakvere linn | 13 |
-| Rakvere vald | 6 |
-| Rapla vald | 11 |
-| Ruhnu vald | 2 |
-| Rõuge vald | 13 |
-| Räpina vald | 7 |
-| Saarde vald | 12 |
-| Saaremaa vald | 40 |
-| Saku vald | 9 |
-| Saue vald | 8 |
-| Setomaa vald | 12 |
-| Sillamäe linn | 8 |
-| Tallinna linn | 133 |
-| Tapa vald | 12 |
-| Tartu linn | 78 |
-| Tartu vald | 11 |
-| Tori vald | 16 |
-| Tõrva vald | 16 |
-| Türi vald | 18 |
-| Valga vald | 44 |
-| Viimsi vald | 13 |
-| Viljandi linn | 21 |
-| Viljandi vald | 18 |
-| Vinni vald | 9 |
-| Viru-Nigula vald | 7 |
-| Vormsi vald | 2 |
-| Võru linn | 12 |
-| Võru vald | 22 |
+Serveris töötav RAG, korpus v64, 07.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
 
 ### Abivahendite müügi- ja üüripunktide lehed (93)
 
@@ -2714,4 +2645,89 @@ Korpus v64, 07.10.2026. Kontaktide kohta on ainult arvud: kontakti pealkiri on i
 | Võrumaa Puuetega Inimeste Koda | Liikmesühingud | <https://www.vorukoda.ee/kojast/liikmesuhingud> |
 | Võrumaa Puuetega Inimeste Koda | PIK ringid | <https://www.vorukoda.ee/tegevused/pik-ringid> |
 | Võrumaa Puuetega Inimeste Koda | TASUTA ÕIGUSABI ERIVAJADUSTEGA INIMESTELE | <https://www.vorukoda.ee/tasuta-oigusabi-erivajadustega-inimestele> |
+
+### Omavalitsuste kontaktid (1638)
+
+Ainult arvud: kontakti pealkiri on isiku nimi ja seda siia ei kirjutata.
+
+| Omavalitsus | Dokumente |
+|---|---:|
+| Alutaguse vald | 16 |
+| Anija vald | 13 |
+| Antsla vald | 14 |
+| Elva vald | 27 |
+| Haapsalu linn | 24 |
+| Haljala vald | 10 |
+| Harku vald | 21 |
+| Hiiumaa vald | 15 |
+| Häädemeeste vald | 19 |
+| Jõelähtme vald | 15 |
+| Jõgeva vald | 32 |
+| Jõhvi vald | 36 |
+| Järva vald | 18 |
+| Kadrina vald | 15 |
+| Kambja vald | 18 |
+| Kanepi vald | 16 |
+| Kastre vald | 20 |
+| Kehtna vald | 17 |
+| Keila linn | 18 |
+| Kihnu vald | 9 |
+| Kiili vald | 15 |
+| Kohila vald | 8 |
+| Kohtla-Järve linn | 37 |
+| Kose vald | 11 |
+| Kuusalu vald | 16 |
+| Loksa linn | 9 |
+| Luunja vald | 11 |
+| Lääne-Harju vald | 24 |
+| Lääne-Nigula vald | 17 |
+| Lääneranna vald | 15 |
+| Lüganuse vald | 12 |
+| Maardu linn | 11 |
+| Muhu vald | 5 |
+| Mulgi vald | 11 |
+| Mustvee vald | 21 |
+| Märjamaa vald | 12 |
+| Narva linn | 42 |
+| Narva-Jõesuu linn | 31 |
+| Nõo vald | 13 |
+| Otepää vald | 21 |
+| Paide linn | 26 |
+| Peipsiääre vald | 20 |
+| Põhja-Pärnumaa vald | 13 |
+| Põhja-Sakala vald | 20 |
+| Põltsamaa vald | 13 |
+| Põlva vald | 16 |
+| Pärnu linn | 62 |
+| Raasiku vald | 15 |
+| Rae vald | 21 |
+| Rakvere linn | 18 |
+| Rakvere vald | 16 |
+| Rapla vald | 23 |
+| Ruhnu vald | 3 |
+| Rõuge vald | 23 |
+| Räpina vald | 15 |
+| Saarde vald | 15 |
+| Saaremaa vald | 47 |
+| Saku vald | 11 |
+| Saue vald | 15 |
+| Setomaa vald | 16 |
+| Sillamäe linn | 9 |
+| Tallinna linn | 133 |
+| Tapa vald | 16 |
+| Tartu linn | 84 |
+| Tartu vald | 13 |
+| Tori vald | 22 |
+| Tõrva vald | 18 |
+| Türi vald | 21 |
+| Valga vald | 49 |
+| Viimsi vald | 17 |
+| Viljandi linn | 25 |
+| Viljandi vald | 22 |
+| Vinni vald | 18 |
+| Viru-Nigula vald | 10 |
+| Vormsi vald | 6 |
+| Võru linn | 15 |
+| Võru vald | 25 |
+| Väike-Maarja vald | 12 |
 <!-- corpus-outside:end -->
