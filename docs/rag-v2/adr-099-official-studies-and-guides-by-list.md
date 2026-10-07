@@ -146,7 +146,7 @@ Pärast v66 tõsteti indeksi mahupiir mõõtmise järgi 80 000 lõigule ([ADR-10
 
 **Uudiskirja dokumentidest on RAG-is nüüd 153** (74 + 30 + 49): kõik eestikeelsed tekstiga dokumendid peale kahe kinni peetu. Kulu kolme täienduse peale **1,4924 USD** (v66 0,6160; v67 0,3484; v68 0,5280, kontrollküsimused sees).
 
-**Serveri ketas pärast v68:** hoidla 8,3 GB, vektorifailid 4,1 GB, RAG-andmebaas 10 GB; **vaba 4,0 GB (94% täis)**. LiveKiti salvestust (vajab 5 GB) ei saa tagasi panna enne, kui ruumi on juurde tehtud; omanik 07.10.2026: „paneme asjad seisma, ostan ruumi juurde“. Kuni selleni uusi täiendusi ei tehta.
+**Serveri ketas pärast v68:** hoidla 8,3 GB, vektorifailid 4,1 GB, RAG-andmebaas 10 GB; **vaba 4,0 GB (94% täis)**. LiveKiti salvestust (vajab 5 GB) ei saa tagasi panna enne, kui ruumi on juurde tehtud; omanik 07.10.2026: „paneme asjad seisma, ostan ruumi juurde“. Kuni selleni uusi täiendusi ei tehta. (Samal õhtul suurendas omanik ketast 77 GB-le, serveri hoidla pakiti kokku (ADR-101) ja LiveKiti salvestus pandi tagasi; vaba on 26 GB.)
 
 Kontrollküsimused küsivad otse uue dokumendi järele. Mõõtmata on, kas 17 420 uut uuringulõiku (korpusest veerand) muudavad vastuseid tavalistele teenuse- ja toetuseküsimustele.
 
@@ -155,7 +155,7 @@ Kontrollküsimused küsivad otse uue dokumendi järele. Mõõtmata on, kas 17 42
 - **Uudiskirja dokumendid, mis ootavad** (loend `Andmebaasi/register/newsletter_documents.json`): 2 vastuvõtu kinni peetud uuringut (liiga paljudel lehekülgedel puudub tekstikiht), 9 ingliskeelset, 6 tekstikihita, 2 liiga suurt, 13 veebilehena kogutud artiklit (lehtede korjaja tee, ADR-095). Koguja aruandes on veel 12 kättesaamata PDF-i ja 9 muus vormingus allikat.
 - **Käivitusskript** (`scripts/rag-v2-corpus-run.sh`) ei jätka pärast plaani keeldumist: hoidla pea on siis juba tõstetud ja tühi väljundkaust jääb ette.
 - **Serveri ruumikulu lõigu kohta** (umbes 380 KB) on RAG-i kasvu tegelik piir; hoidla ja andmebaasi kordused ning JSON-vektorid on eraldi töö. Mõõtmine ja viis ettepanekut (kokku umbes 16 GB): [ADR-101](adr-101-storage-per-passage.md); ükski ei ole tehtud.
-- **LiveKiti kõnesalvestus** on serverist maas, kuni see tagasi pannakse.
+- LiveKiti kõnesalvestus pandi tagasi 07.10.2026 kell 19.40, pärast seda kui omanik ketast suurendas (58 → 77 GB); päris kõne salvestamist ei ole pärast seda proovitud.
 - Kolmel v65 dokumendil puudub metaandmetes aasta.
 - **Ülejäänud loendid:** ministeeriumi sotsiaalvaldkonna vanemad uuringud (122), töövaldkond (65), uuema tabeli tervisevälised jäägid; ameti uuringud ja analüüsid (68). Need on eraldi otsus ja ost.
 - Ameti 34 alalehte jäi lugemata; juhendite loend ei pruugi olla täielik. Ministeeriumi kompetentsikeskuse lehte ei võrreldud.
