@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { modelSourceMetadata, modelProjection, webAddress, WEB_SOURCE_TYPES } from '../lib/rag-v2/search/model-context.js';
 import { completedView } from '../lib/rag-v2/pilot/service.js';
 import { historyRecord, historyTurn, historyMessages } from '../lib/rag-v2/pilot/history.js';
-import { dialogueRequest, WEB_ADDRESS_INSTRUCTIONS, DIALOGUE_PROMPT_VERSION } from '../lib/rag-v2/pilot/dialogue.js';
+import { dialogueRequest, WEB_ADDRESS_INSTRUCTIONS } from '../lib/rag-v2/pilot/dialogue.js';
 import { pilotChatResult } from '../lib/chat/m4PilotClientContract.js';
 import { messageLinks, splitByLinks } from '../lib/chat/messageLinks.js';
 import { municipalPacket } from './fixtures/rag-v2-municipal-packet.mjs';
@@ -43,8 +43,8 @@ test('the model is shown the address, not the declared target; the instructions 
   assert.deepEqual(cards.map(card => card.web_address), ['pood.example/laenutus']);
   assert.equal(JSON.stringify(projected.context).includes('https://www.pood.example'), false, 'the target is the chat\'s, not the model\'s');
   const body = dialogueRequest({ model: 'm', maxOutputTokens: 100, reasoning: 'low' }, 'Küsimus?', projected.context, 'et', { userTurns: [] });
-  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-28');
-  assert(body.instructions.endsWith(WEB_ADDRESS_INSTRUCTIONS) || body.instructions.includes(WEB_ADDRESS_INSTRUCTIONS));
+  // Which prompt version this is belongs to the prompt's own test; later versions add after these instructions.
+  assert(body.instructions.includes(WEB_ADDRESS_INSTRUCTIONS));
   assert.match(WEB_ADDRESS_INSTRUCTIONS, /exactly as web_address gives it/u);
   assert.match(WEB_ADDRESS_INSTRUCTIONS, /never write a web address that neither a web_address nor the evidence text gives/u);
 });
