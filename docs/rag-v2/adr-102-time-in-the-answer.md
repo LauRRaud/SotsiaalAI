@@ -1,6 +1,6 @@
 # ADR-102: aeg vastuses: leid koos aastaga ja eri aastate allikad ajalises järjekorras
 
-Kuupäev: 07.10.2026. Seis: juhis töötab (dialoogi juhise versioon 29, #445); päris lehe kontroll tehtud (allpool); kontrolli põhjal kaks parandust (versioon 30, #446) ja üks täpsustus (versioon 31, #447); töötab versioon 31.
+Kuupäev: 07.10.2026. Seis: juhis töötab (dialoogi juhise versioon 29, #445); päris lehe kontroll tehtud (allpool); kontrolli põhjal kaks parandust (versioon 30, #446) ja üks täpsustus (versioon 31, #447); omaniku sõnastusotsus (versioon 32): aasta üksi.
 
 ## Probleem
 
@@ -21,14 +21,14 @@ Omanik 07.10.2026: „kui nt midagi küsitakse, mingit fakti või mis iganes tee
 
 Dialoogi juhise lõppu lisandub ajareegel (`TIME_INSTRUCTIONS`, `lib/rag-v2/pilot/dialogue.js`). See käib allikate kohta, mis ei ole õigusaktid; õigusaktide reeglid jäävad puutumata.
 
-1. **Leid koos ajaga.** Kui vastus annab uuringust, aruandest või artiklist arvu, osakaalu, summa, leiu või olukorra kirjelduse, ütleb ta samas lauses, mis aja kohta see on: aasta, mille lõik ise andmete kohta nimetab; kui lõik aastat ei nimeta, siis allika ilmumisaasta, ja see öeldakse ilmumise aastana, mitte andmete aastana.
-2. **Luna oma hääl jääb** (answer-11): aasta on lause osa („… aastal …“, „… aastal avaldatud andmetel …“), allikat, autorit ega pealkirja ei nimetata.
+1. **Leid koos ajaga.** Kui vastus annab uuringust, aruandest või artiklist arvu, osakaalu, summa, leiu või olukorra kirjelduse, ütleb ta samas lauses, mis aja kohta see on: aasta, mille lõik ise andmete kohta nimetab; kui lõik aastat ei nimeta, siis allika ilmumisaasta. (Versioonideni 31 öeldi ilmumisaasta eraldi kujul „… aastal avaldatud …“; versioonist 32 öeldakse see nagu iga aasta, nii et ilmumisaasta ja andmete aasta võivad vastuses ühe-kahe aasta võrra erineda. Viide näitab allikat.)
+2. **Luna oma hääl jääb** (answer-11): aasta on lause osa („… aastal …“, „… aasta andmetel …“), allikat, autorit ega pealkirja ei nimetata. **Versioonist 32 ei nimetata aasta juures ka allika liiki** (omanik 07.10.2026: „see võiks olla lihtsalt mainitud tekstis, et „2022. aastal“, ei pea ütlema, et selle aasta uuringus“): mitte „2022. aasta uuringus“, „2022. aastal avaldatud uuringus“, „aruandes“ ega „raporti järgi“. Kust leid pärineb, näitavad viited.
 3. **Vana leid ei ole tänane seis.** Aastat võrreldakse pöörde kuupäevaga (`stateContext.asOfDateUTC`). Kui uusim tõend on sellest selgelt vanem, ütleb vastus, et pilt on selle aja kohta ja võib olla muutunud. Sama või eelmise aasta leiu juurde seda hoiatust ei lisata.
 4. **Ajaline järjekord.** Kui tõendites on sama asja kohta eri aastate allikad või kasutaja küsib, mis on muutunud, räägitakse see osa aja järjekorras: mis oli (aastaga), mis muutus ja millal, mis kehtib nüüd.
 5. **Mis kehtib nüüd,** tuleb uusimast tõendist või kehtivast õigusaktist. Vanem allikas ei kaalu üles uuemat ega seadust; kui need erinevad, öeldakse, kumb on hilisem.
 6. **Ajalugu ei mõelda välja.** Kaks ajahetke ei ole suundumus; kahe uuringu erinevus võib tulla sellest, kuidas kumbki tehti; aastaid, mida tõendid ei kata, ei täideta. Kui kõik tõendid on ühest ajast, ei tehta juurde varasemat ega hilisemat seisu. Praktiline küsimus „mida ma nüüd teen“ saab vastuse sellest, mis kehtib nüüd, mitte ajaloost.
 7. **Juhendi nõuanne aastat ei vaja, juhendi arv vajab** (versioon 30). Summa, määr, piir või tähtaeg, mille annab juhend või infomaterjal, öeldakse koos aastaga („… aasta seisuga …“), sest sellised arvud muutuvad. Aasta tuleb kaardi ilmumisaastast ka siis, kui kaart ütleb, et allikas on aktiivne ja hiljuti kontrollitud (versioon 31): need väljad ütlevad, et leht oli kogumise ajal oma aadressil, mitte et selle arvud täna kehtivad. Kui uuem allikas või kehtiv seadus ütleb teisiti kui juhend, otsustab hilisem ja vastus ütleb, et juhend on vanem.
-8. **Aasta juures võib olla allika liik, mitte „… järgi“** (versioon 30). „… aasta uuringus …“ on lubatud, kui lugejal on seda vaja; kuju „raporti järgi“, „juhendi järgi“ jääb välja nagu seni (answer-11).
+8. **Kuju „… järgi“ jääb välja** (versioon 30): „raporti järgi“, „juhendi järgi“ nagu seni (answer-11). Versioon 30 lubas aasta juurde allika liigi („… aasta uuringus …“); versioon 32 võttis selle omaniku otsusel tagasi (punkt 2).
 
 Juhis on üldine: selles ei ole ühtki aastat, arvu, kohta ega teemat, mida vastus saaks faktina korrata (test kontrollib).
 
@@ -40,7 +40,7 @@ Juhis on üldine: selles ei ole ühtki aastat, arvu, kohta ega teemat, mida vast
 
 ## Kulu
 
-Juhis pikeneb umbes 550 tokeni võrra igas vestluspöördes (versioon 29: 464, versioon 30: 551, versioon 31: umbes 600; mõõdetud `tokenCount`-iga, test hoiab piiri 620). Juhise algus on päringute vahel sama, nii et suurem osa sellest tuleb vahemälust.
+Juhis pikeneb umbes 550 tokeni võrra igas vestluspöördes (versioon 29: 464, versioon 30: 551, versioon 31: 602, versioon 32: 615; mõõdetud `tokenCount`-iga, test hoiab piiri 640). Juhise algus on päringute vahel sama, nii et suurem osa sellest tuleb vahemälust.
 
 ## Kontroll
 

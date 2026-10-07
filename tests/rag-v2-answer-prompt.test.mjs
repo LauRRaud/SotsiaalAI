@@ -29,7 +29,8 @@ test('prompt v10 keeps every v9 guardrail in each answer language, and v9 plans 
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-11'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-10'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-9'));
-  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-31');
+  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-32');
+  assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-31'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-30'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-29'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-28'));
@@ -224,18 +225,19 @@ test('dialogue prompt 24 (ADR-071): a bare correction is confirmed and not turne
   assert.ok(tokenCount(BARE_CORRECTION_INSTRUCTIONS) + tokenCount(PRIOR_CLAIM_INSTRUCTIONS) - tokenCount(previous) < 160);
 });
 
-test('dialogue prompt 29 to 31 (ADR-102): a finding carries its year, an older source is not the present, and evidence of different years is told in the order of time', () => {
+test('dialogue prompt 29 to 32 (ADR-102): a finding carries its year, an older source is not the present, and evidence of different years is told in the order of time', () => {
   const { instructions } = dialogueRequest({ model: 'm', maxOutputTokens: 100, reasoning: 'low' }, 'Küsimus?', { sources: {}, evidence: [] }, 'et', { userTurns: [] });
   // The last thing the dialogue extension says, after the web address rule.
   assert.ok(instructions.includes(WEB_ADDRESS_INSTRUCTIONS + TIME_INSTRUCTIONS));
-  // The time comes from what the source's card carries, and a publication year is not passed off as the year of the data.
+  // The time comes from what the source's card carries: the excerpt's own year first, else the publication year.
   for (const phrase of ['publication_date or publication_year of its card', 'the year the excerpt itself names for the data',
-    'said as the year it was published and not as the year of the data']) assert.ok(TIME_INSTRUCTIONS.includes(phrase), phrase);
+    'when the excerpt names none, the source\'s publication year. ']) assert.ok(TIME_INSTRUCTIONS.includes(phrase), phrase);
   // Luna's own voice stays (answer-11): the year is part of the sentence, the source is not named.
   assert.ok(TIME_INSTRUCTIONS.includes('without naming the source, its author or its title'));
-  // v30: the kind of source may stand with the year, the form "according to ..." may not.
-  assert.ok(TIME_INSTRUCTIONS.includes('A general word for the kind of source may stand with the year when the reader needs it'));
-  assert.ok(TIME_INSTRUCTIONS.includes('but not the form "according to ..." ("... järgi")'));
+  // v32 (owner): the year alone; neither the kind of source nor "according to ..." stands with it.
+  for (const phrase of ['Say it in your own voice as the time alone', 'Do not name the kind of source with the year either', '"<aasta>. aasta uuringus ..."',
+    'and not the form "according to ..." ("... järgi")', 'the refs show where it comes from']) assert.ok(TIME_INSTRUCTIONS.includes(phrase), phrase);
+  assert.equal(TIME_INSTRUCTIONS.includes('may stand with the year'), false);
   // v30: a guide's advice needs no year, a number that it gives does.
   for (const phrase of ['advice needs no year in the sentence, but an amount, a rate, a limit or a deadline that it gives does', 'say which year\'s state it is']) assert.ok(TIME_INSTRUCTIONS.includes(phrase), phrase);
   // v31: that a source is active and was seen lately says nothing of whether its numbers hold today.
@@ -253,6 +255,6 @@ test('dialogue prompt 29 to 31 (ADR-102): a finding carries its year, an older s
   assert.doesNotMatch(TIME_INSTRUCTIONS, /valid_from|valid_to/u);
   // A general rule: no year, number, place or topic that an answer could repeat as a fact.
   assert.doesNotMatch(TIME_INSTRUCTIONS, /\d|Tallinn|hoold|pension|euro/iu);
-  // About 600 tokens more in every dialogue turn's instructions than before v29.
-  assert.ok(tokenCount(TIME_INSTRUCTIONS) < 620, String(tokenCount(TIME_INSTRUCTIONS)));
+  // About 615 tokens more in every dialogue turn's instructions than before v29.
+  assert.ok(tokenCount(TIME_INSTRUCTIONS) < 640, String(tokenCount(TIME_INSTRUCTIONS)));
 });
