@@ -16,9 +16,9 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | taastatud_allikad | 0 | 22 | Serveri vanast indeksist taastatud tekst. Enne importi võrrelda põhipakettidega. |
 
 <!-- corpus-state:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
-## RAG-i seis: mis on serveris (korpus v64)
+## RAG-i seis: mis on serveris (korpus v65)
 
-Seis 07.10.2026: serveris töötav RAG (korpus **v64**, indeks `7d209c63`) sisaldab **8 001 dokumenti** (45 596 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
+Seis 07.10.2026: serveris töötav RAG (korpus **v65**, indeks `33a3cb2a`) sisaldab **8 105 dokumenti** (50 379 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
 
 | Mis on RAG-is | Dokumente | Kus on loend |
 |---|---:|---|
@@ -27,12 +27,12 @@ Seis 07.10.2026: serveris töötav RAG (korpus **v64**, indeks `7d209c63`) sisal
 | Omavalitsuste kontaktid | 1638 | faili lõpus arvudena omavalitsuste kaupa (nimesid siia ei kirjutata) |
 | Ajakirja Sotsiaaltöö artiklid | 892 | jaotis „Sisufailid“ |
 | Õigusaktid | 537 | jaotis „Sisufailid“ |
-| Juhendid, infomaterjalid ja uuringud | 172 | jaotis „Sisufailid“ |
+| Juhendid, infomaterjalid ja uuringud | 276 | jaotis „Sisufailid“; asutuste loenditest lisatud on faili lõpus |
 | Ametlikud juhislehed (ametite veebilehed) | 30 | jaotis „Sisufailid“ |
 | Puuetega inimeste organisatsioonide lehed | 521 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müügi- ja üüripunktid | 93 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müüjate lehed | 51 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
-| **Kokku** | **8001** | |
+| **Kokku** | **8105** | |
 
 <details><summary>Tehniline jaotus arendajale: kus allikafailid asuvad</summary>
 
@@ -46,7 +46,7 @@ Dokumentide arvud ei võrdu ülal olevate failide arvudega: üks fail võib anda
 | `juhendid_ja_uuringud` | 171 | information_material 81, research_report 46, official_guideline 38, policy_analysis 6 |
 | `veebilehed` | 31 | web_page 30, research_report 1 |
 
-Koodihoidlas (GitHub) ei ole 1872 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
+Koodihoidlas (GitHub) ei ole 1976 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
 
 | Allikas | Dokumente | Millest tehakse | Miks ei ole koodihoidlas |
 |---|---:|---|---|
@@ -54,6 +54,7 @@ Koodihoidlas (GitHub) ei ole 1872 dokumendi allikafaile; need on korpuse hoidlas
 | Abivahendite müügi- ja üüripunktide lehed | 93 | Sotsiaalkindlustusameti kaarditabelist skriptiga `scripts/rag-v2-assistive-points.mjs`, iga omavalitsuse kohta üks leht (ADR-096) | punktide telefoninumbrid; leht tehakse tabelist uuesti |
 | Abivahendite müüjate lehed | 51 (18 väljaandjat) | nimekiri `register/web_pages_vendors.json`, korjaja `scripts/rag-v2-web-pages.mjs` (ADR-095) | ettevõtete enda tekstid ja telefoninumbrid |
 | Puuetega inimeste organisatsioonide lehed | 521 (43 väljaandjat) | nimekiri `register/web_pages_organisations.json`, korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-095) | organisatsioonide enda tekstid |
+| Ministeeriumi ja ametite uuringud ja juhendid (ametlikult aadressilt) | 104 (2 väljaandjat) | asutuste veebilehtede uuringute ja juhendite loenditest; iga fail on alla laaditud ametlikult aadressilt | suured failid; allikas on ametlik aadress |
 
 Koodihoidla allikafailid, mida RAG-is ei ole (60):
 
@@ -1964,7 +1965,7 @@ Koodihoidla allikafailid, mida RAG-is ei ole (60):
 <!-- corpus-outside:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
 ## RAG-is olevad lehed ja kontaktid
 
-Serveris töötav RAG, korpus v64, 07.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
+Serveris töötav RAG, korpus v65, 07.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
 
 ### Abivahendite müügi- ja üüripunktide lehed (93)
 
@@ -2066,7 +2067,7 @@ Serveris töötav RAG, korpus v64, 07.10.2026. Siin on loend sellest, mida jaoti
 
 ### Abivahendite müüjate lehed (51)
 
-| Väljaandja | Leht | Aadress |
+| Väljaandja | Pealkiri | Aadress |
 |---|---|---|
 | Audiomed | Broneeri kuulmisuuringu aeg | <https://kuulmiseni.ee/> |
 | Audiomed | Kuuldeaparaatide ostmine riikliku soodustusega | <https://kuulmiseni.ee/patsientidele/kuuldeaparaatide-ostmine-riikliku-soodustusega> |
@@ -2122,7 +2123,7 @@ Serveris töötav RAG, korpus v64, 07.10.2026. Siin on loend sellest, mida jaoti
 
 ### Puuetega inimeste organisatsioonide lehed (521)
 
-| Väljaandja | Leht | Aadress |
+| Väljaandja | Pealkiri | Aadress |
 |---|---|---|
 | Dementsuse Kompetentsikeskus | Dementsuse Kompetentsikeskus | <https://dementsus.ee/dementsuse-kompetentsikeskus> |
 | Dementsuse Kompetentsikeskus | Abivahendid | <https://dementsus.ee/abivahendid> |
@@ -2645,6 +2646,115 @@ Serveris töötav RAG, korpus v64, 07.10.2026. Siin on loend sellest, mida jaoti
 | Võrumaa Puuetega Inimeste Koda | Liikmesühingud | <https://www.vorukoda.ee/kojast/liikmesuhingud> |
 | Võrumaa Puuetega Inimeste Koda | PIK ringid | <https://www.vorukoda.ee/tegevused/pik-ringid> |
 | Võrumaa Puuetega Inimeste Koda | TASUTA ÕIGUSABI ERIVAJADUSTEGA INIMESTELE | <https://www.vorukoda.ee/tasuta-oigusabi-erivajadustega-inimestele> |
+
+### Ministeeriumi ja ametite uuringud ja juhendid (ametlikult aadressilt) (104)
+
+| Väljaandja | Pealkiri | Aadress |
+|---|---|---|
+| Sotsiaalkindlustusamet | Abi- ja toetusvajaduse hindamisvahendi metoodiline juhis 2021 | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-11/Abi-%20ja%20toetusvajaduse%20hindamise%20metoodiline%20juhis_01.11.2023.pdf> |
+| Sotsiaalkindlustusamet | Abivahendite muudatuste infoleht 01.09.2025 | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-10/Infoleht_%20AV-muudatus_01.09.2025.pdf> |
+| Sotsiaalkindlustusamet | Asendushooldusel täisealiseks saavate noorte toetamine. Juhend asendus- ja järelhooldusteenuse osutajatele | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-06/Asendushooldusel%20t%C3%A4isealiseks%20saavate%20noorte%20toetamine.%20Juhend%20asendus-%20ja%20j%C3%A4relhooldusteenuse%20osutajatele.pdf> |
+| Sotsiaalkindlustusamet | Asendushooldusteenuse kvaliteedijuhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/asendushooldusteenuse_kvaliteedijuhis.pdf> |
+| Sotsiaalkindlustusamet | Eesti sotsiaalteenuste kvaliteedijuhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-11/Lisa%201.%20Eesti%20sotsiaalteenuste%20kvaliteedijuhis_12.11.2024.pdf> |
+| Sotsiaalkindlustusamet | Eluasemekulude piirmäärade kehtestamise juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-08/Eluasemekulude%20piirm%C3%A4%C3%A4rade%20kehtestamise%20juhend%2027.08.26.pdf> |
+| Sotsiaalkindlustusamet | Eluruumi tagamise teenuse juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-04/Eluruumi%20tagamise%20teenuse%20juhend%2015.04.2024.pdf> |
+| Sotsiaalkindlustusamet | Eluruumi tagamise teenuse kvaliteedijuhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Eluruumi%20tagamise%20teenuse%20kvaliteedijuhis_07.01.2026_0.pdf> |
+| Sotsiaalkindlustusamet | Eluruumi tagamise teenuse kvaliteedijuhis | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/eluruumi_tagamise_teenus_kvaliteedijuhis.pdf> |
+| Sotsiaalkindlustusamet | Erihoolekandeteenuste kvaliteedijuhis | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-03/Erihoolekandeteenuste_kvaliteedijuhis.pdf> |
+| Sotsiaalkindlustusamet | Hindamisvahendi metoodiline juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/hindamisvahendi_metoodiline_juhis_2023-2024.pdf> |
+| Sotsiaalkindlustusamet | Hindamisvahendi metoodiline juhis 2025-2026 | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-01/Hindamisvahendi%20metoodiline%20juhis_2025-2026.pdf> |
+| Sotsiaalkindlustusamet | Hoolduskoormuse hindamise juhis 2023 | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-11/Hoolduskoormuse%20hindamise%20juhis%202023.pdf> |
+| Sotsiaalkindlustusamet | Hoolduspere kvaliteedijuhis | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/hoolduspere_kvaliteedijuhis.pdf> |
+| Sotsiaalkindlustusamet | Isikliku abistaja teenuse juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-07/Isikliku%20abistaja%20teenuse%20juhend_04.07.2024.pdf> |
+| Sotsiaalkindlustusamet | Isikliku abistaja teenuse kvaliteedijuhis | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/isikliku_abistaja_teenuse_kvaliteedijuhis.pdf> |
+| Sotsiaalkindlustusamet | Juhend „Traumateadlik ja kiindumuspõhine lähenemine töös lastega“ | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Traumateadlik-ja-kiindumispohine-lahenemine-toos-lastega.pdf> |
+| Sotsiaalkindlustusamet | Juhend hädaohus oleva lapse perest eraldamiseks ja vanema nõusoleku alusel paigutamiseks | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-04/Juhis%20h%C3%A4daohus%20oleva%20lapse%20perest%20eraldamiseks%20ja%20vanema%20n%C3%B5usoleku%20alusel%20paigutamiseks_03.04.2025.pdf> |
+| Sotsiaalkindlustusamet | Juhend lastekaitsetöötajatele lapse üleandmisel ja suhtlemise võimaldamisel täitemenetluses | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Juhis-lastekaitsetootajatele-lapse-uleandmisel-ja-lapsega-suhtlemise-voimaldamisel-taitemenetluses-2025.pdf> |
+| Sotsiaalkindlustusamet | Juhend teenuse korraldamiseks esmasesse psühhoosi haigestunutele | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-01/VEEBI%20juhend_srt_teenuse_korraldamine_esmasesse_psuhhoosi_haigestunule%2014.01.2025.pdf> |
+| Sotsiaalkindlustusamet | Juhend, kuidas haldusakt vormistada ja põhjendada üldhooldusteenuse näitel mai 2023 | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-11/Juhend_kuidas%20haldusakt%20vormistada%20ja%20p%C3%B5hjendada_%C3%BCldhooldusteenuse%20n%C3%A4itel_mai%202023.pdf> |
+| Sotsiaalkindlustusamet | Järelhooldusteenuse kvaliteedijuhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/jarelhoolduseteenus_kvaliteedijuhis.pdf> |
+| Sotsiaalkindlustusamet | Keskkonna kohandamise abimaterjal kohaliku omavalitsuse spetsialistidele | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-11/keskonna_kohandamise_abimaterjal_kohaliku_omavalitsuse_spetsialistidele.pdf> |
+| Sotsiaalkindlustusamet | Kinnise lasteasutuse teenuse kvaliteedijuhis | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/kinnise_lasteasutuse_teenuse_kvaliteedijuhis.pdf> |
+| Sotsiaalkindlustusamet | Koduteenuse juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-06/Koduteenuse%20juhend_18.06.2024.pdf> |
+| Sotsiaalkindlustusamet | Koduteenuse kvaliteedijuhis | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-08/Koduteenuse%20kvaliteedijuhis%2031.07.2024.pdf> |
+| Sotsiaalkindlustusamet | Koduteenuse lihtsustatud kulumudeli juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-05/koduteenuse_lihtsustatud_kulumudeli_juhend.pdf> |
+| Sotsiaalkindlustusamet | Kolm maja – tööriist lapse kaasamiseks | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-11/Kolm%20maja.pdf> |
+| Sotsiaalkindlustusamet | Koondaruande juhendmaterjal | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-07/Koondaruande%20juhendmaterjal_03.07.2026.pdf> |
+| Sotsiaalkindlustusamet | Kovisiooni juhend lastekaitsetöötajatele | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Kovisiooni-juhend-lastekaitsetootajatele.pdf> |
+| Sotsiaalkindlustusamet | Kovisiooni juhend. Meelespea | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Kovisiooni-juhend-meelespea.pdf> |
+| Sotsiaalkindlustusamet | Lapse küsitlemise käsiraamat | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-11/lapse_kusitlemise_kasiraamat_2016_0.pdf> |
+| Sotsiaalkindlustusamet | Lapse uni ja erisuste märkamine. Juhendmaterjal unevaeguse kui terviseriski hindamiseks | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-11/lapse_uni_ja_erisuste_markamine_juhendmaterjal_unevaeguse_kui_terviseriski_hindamiseks.pdf> |
+| Sotsiaalkindlustusamet | Lapsega vestlemise meelespea | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Meelespea-lapsega-vestlemiseks.pdf> |
+| Sotsiaalkindlustusamet | Lapsehoiuteenuse kvaliteedijuhis | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/lapsehoiuteenuse_kvaliteedijuhis.pdf> |
+| Sotsiaalkindlustusamet | Lastevastase vägivalla ennetamine ja vähendamine asenduskodudes. Juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-09/Lastevastase%20v%C3%A4givalla%20ennetamine%20ja%20v%C3%A4hendamine%20asenduskodudes.%20Juhend.pdf> |
+| Sotsiaalkindlustusamet | PACT-i riskihindamise täitmise juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-09/pact_riskihindamise_taitmise_juhend%20%281%29.pdf> |
+| Sotsiaalkindlustusamet | Psüühilise erivajadusega lapse küsitlemise juhendmaterjal | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-11/psuuhilise_erivajadusega_laste_kusitlemise_juhendmaterjal._koostaja_kristjan_kask.pdf> |
+| Sotsiaalkindlustusamet | Põletikuliste polüartropaatiatega täiskasvanu (M05-M14 RHK-10) rehabilitatsioonijuhis | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/P%C3%B5letikuliste%20pol%C3%BCartropaatiatega%20t%C3%A4iskasvanu%20%28M05-M14%20RHK-10%29%20rehabilitatsioonijuhis.pdf> |
+| Sotsiaalkindlustusamet | Rehabilitatsiooniplaani lisa koostamise juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-09/Rehabilitatsiooniplaani%20lisa%20koostamise%20juhend_SKA_06.09.2024.pdf> |
+| Sotsiaalkindlustusamet | Rehabilitatsiooniteenuse osutajatele: Lisa 1. Rehabilitatsioonijuhis meeleoluhäiretega täiskasvanud rehabilitatsiooniteenuse saajale | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/Lisa%201.%20Rehabilitatsioonijuhis%20meeleoluh%C3%A4iretega%20t%C3%A4iskasvanud%20rehabilitatsiooniteenuse%20saajale.pdf> |
+| Sotsiaalkindlustusamet | Rehabilitatsiooniteenuse osutajatele: Lisa 1. Rehabilitatsioonijuhis skisofreenia ja teiste häiretega täiskasvanud rehabilitatsiooniteenuse saajale | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/Lisa%201.%20Rehabilitatsioonijuhis%20skisofreenia%20ja%20teiste%20h%C3%A4iretega%20t%C3%A4iskasvanud%20rehabilitatsiooniteenuse%20saajale.pdf> |
+| Sotsiaalkindlustusamet | Rehabilitatsiooniteenuse osutajatele: Lisa 2. Meeleoluhäired. Rehabilitatsioonijuhiste koostamise metoodika | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/Lisa%202.%20Meeleoluh%C3%A4ired.%20Rehabilitatsioonijuhiste%20koostamise%20metoodika.pdf> |
+| Sotsiaalkindlustusamet | Rehabilitatsiooniteenuse osutajatele: Lisa 2. Rehabilitatsioonijuhiste koostamise metoodika | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/Lisa%202.%20Rehabilitatsioonijuhiste%20koostamise%20metoodika.pdf> |
+| Sotsiaalkindlustusamet | Rehabilitatsiooniteenuse osutajatele: Lisa 5. Juhise lühiversioon | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/Lisa%205.%C2%A0Juhise%20l%C3%BChiversioon.pdf> |
+| Sotsiaalkindlustusamet | Rehabilitatsiooniteenuse osutajatele: Lühikokkuvõte soovitustest | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/L%C3%BChikokkuv%C3%B5te%20soovitustest.pdf> |
+| Sotsiaalkindlustusamet | Rehabilitatsiooniteenuse osutajatele: Soovituste kokkuvõte | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/Meeleoluh%C3%A4irega%20t%C3%A4iskasvanute%20rehabilitatsioonijuhise%20soovituste%20kokkuv%C3%B5te.pdf> |
+| Sotsiaalkindlustusamet | Saatjata alaealise välismaalase juhtumikorralduse juhend spetsialistidele | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-09/SAV%20juhis%202026_01.09.pdf> |
+| Sotsiaalkindlustusamet | Sisehindamise juhend asenduskoduteenuse osutajale | <https://www.sm.ee/sites/default/files/content-editors/Lapsed_ja_pered/Asendushooldus/sisehindamise_juhised.pdf> |
+| Sotsiaalkindlustusamet | Sotsiaalse rehabilitatsiooni teenuse kvaliteedijuhis | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-11/Sotsiaalse%20rehabilitatsiooni%20teenuse%20kvaliteedijuhis_24.11.2023.pdf> |
+| Sotsiaalkindlustusamet | Sotsiaalse rehabilitatsiooni teenuse osutamise juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-07/Sotsiaalse%20rehabilitatsiooni%20teenuse%20osutamise%20juhend_03.07.2026.pdf> |
+| Sotsiaalkindlustusamet | Sotsiaaltransporditeenuse juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/Sotsiaaltransporditeenuse%20juhend_2023.pdf> |
+| Sotsiaalkindlustusamet | Sotsiaaltransporditeenuse kvaliteedijuhis | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/sotsiaaltransporditeenuse_kvaliteedijuhis.pdf> |
+| Sotsiaalkindlustusamet | STAR kannete juhis 2025-2026 | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-01/STAR_kannete%20juhis_2025-2026.pdf> |
+| Sotsiaalkindlustusamet | Teenuse komponentide andmekogu juhis | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-01/Teenuse%20komponentide%20andmekogu%20juhis.pdf> |
+| Sotsiaalkindlustusamet | Teenuskomponentide andmekogu juhis täitmiseks 2025-2026 | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Teenuskomponentide%20andmekogu_juhis_t%C3%A4itmiseks_2025-2026%20%2808.12.2025%29.pdf> |
+| Sotsiaalkindlustusamet | Traumast taastumist toetav vaimse tervise abi: Lisa 5. TTTVT teenuse infoleht | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-02/TTTVT%20teenuse%20infoleht_13.02.2026.pdf> |
+| Sotsiaalkindlustusamet | Traumateadlik ja kiindumuspõhine lähenemine töös lastega. Meelespea | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Traumateadlik-ja-kiindumuspohine-lahenemine-toos-lastega-meelespea.pdf> |
+| Sotsiaalkindlustusamet | Tugigrupi korraldamise tööriistakast | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-08/1_Tugigrupi%20korraldamise%20t%C3%B6%C3%B6riistakast_0.pdf> |
+| Sotsiaalkindlustusamet | Tugigrupi töö korraldajale: Lugemissoovitusi | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-08/7_Lugemissoovitusi_0.pdf> |
+| Sotsiaalkindlustusamet | Tugiisiku teenuse kvaliteedijuhis | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/tugiisiku_teenuse_kvaliteedijuhis.pdf> |
+| Sotsiaalkindlustusamet | Tugiisikuteenuse juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-07/Tugiisikuteenuse%20juhend_04.07.2024.pdf> |
+| Sotsiaalkindlustusamet | Turvakoduteenus lapsele kvaliteedijuhis | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/turvakoduteenus_lapsele_kvaliteedijuhis.pdf> |
+| Sotsiaalkindlustusamet | Turvakoduteenuse juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Turvakoduteenus%20t%C3%A4iskasvanule%20kvaliteedijuhis_07.01.2026.pdf> |
+| Sotsiaalkindlustusamet | Turvaline sport - infomaterjal lapsele | <https://www.oiguskantsler.ee/sites/default/files/Turvaline%20sport.%20Infomaterjal%20lastele.%2031.05.2023.pdf> |
+| Sotsiaalkindlustusamet | Turvaline sport - infomaterjal lapsevanemale | <https://www.oiguskantsler.ee/sites/default/files/Turvaline%20sport.%20Infomaterjal%20lapsevanematele.%2031.05.2023.pdf> |
+| Sotsiaalkindlustusamet | Täisealise abi- ja toetusvajaduse hindamise juhend 2025 | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-01/T%C3%A4isealise%20abi-%20ja%20toetusvajaduse%20hindamise%20juhend%202025.pdf> |
+| Sotsiaalkindlustusamet | Täisealise isiku hoolduse juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-08/T%C3%A4isealise%20isiku%20hooldus%20juhend.pdf> |
+| Sotsiaalkindlustusamet | Täisealise isiku hooldusteenuse kvaliteedijuhis | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/taisealise_isiku_hooldusteenuse_kvaliteedijuhis_.pdf> |
+| Sotsiaalkindlustusamet | Varjupaigateenuse juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Varjupaigateenuse%20juhend_07.01.2026.pdf> |
+| Sotsiaalkindlustusamet | Varjupaigateenuse kvaliteedijuhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Varjupaigateenuse%20kvaliteedijuhis_07.01.2026.pdf> |
+| Sotsiaalkindlustusamet | Võlanõustamisteenuse juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/V%C3%B5lan%C3%B5ustamisteenuse%20juhend_2023.pdf> |
+| Sotsiaalkindlustusamet | Võlanõustamisteenuse kvaliteedijuhis | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/volanoustamisteenuse_kvaliteedijuhis.pdf> |
+| Sotsiaalkindlustusamet | Võlgade aegumise ja täitemenetluse lõpetamise juhis | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-11/V%C3%B5lgade%20aegumise%20ja%20t%C3%A4itemenetluse%20l%C3%B5petamise%20juhis.pdf> |
+| Sotsiaalkindlustusamet | Väljaspool kodu osutatava üldhooldusteenuse juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-07/%C3%9CHT%20juhend%202026.pdf> |
+| Sotsiaalkindlustusamet | Väljaspool kodu osutatava üldhooldusteenuse kvaliteedijuhis | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-01/V%C3%A4ljaspool%20kodu%20osutatava%20%C3%BCldhooldusteenuse%20kvaliteedijuhis%202024.pdf> |
+| Sotsiaalkindlustusamet | Ökokaart - tööriist lapse lähivõrgustiku ja suhete kaardistamiseks | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-11/okokaart.pdf> |
+| Sotsiaalkindlustusamet | Ööpäevaringset sotsiaalteenust osutavate asutuste kriisiplaani juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/%C3%96%C3%B6p%C3%A4evaringset%20sotsiaalteenust%20osutavate%20asutuste%20kriisiplaani%20juhend.pdf> |
+| Sotsiaalkindlustusamet | Üldjuhend KOV sotsiaalteenuse korraldamiseks ametnikule | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-01/%C3%9Cldjuhend_31.01.pdf> |
+| Sotsiaalministeerium | Analüüs vanemakande süsteemi parendamiseks. Lõpparuanne | <https://sm.ee/sites/default/files/documents/2025-01/Anal%C3%BC%C3%BCs%20vanemakande%20s%C3%BCsteemi%20parendamiseks_L%C3%B5pparuanne.pdf> |
+| Sotsiaalministeerium | Eesti perepoliitiliste meetmete süsteem 2025 | <https://sm.ee/sites/default/files/documents/2025-12/Eesti%20perepoliitiliste%20meetmete%20s%C3%BCsteem_sotsiaalministeerium2025.pdf> |
+| Sotsiaalministeerium | Elanikkonna tegevuspiirangute ja hooldusvajaduse uuring 2025. Raport | <https://sm.ee/sites/default/files/documents/2026-04/HOV%20uuringu%20raport%202025.pdf> |
+| Sotsiaalministeerium | Ettepanekud valdkondade ülese laste heaolu näidikulaua väljatöötamiseks Eestis Islandi kogemuse näitel | <https://sm.ee/sites/default/files/documents/2024-11/Islandi%20projekti%20anal%C3%BC%C3%BCtiline%20dokument_Nahkur_24.10.2024_OliverNahkur.pdf> |
+| Sotsiaalministeerium | Inimese elukaart hõlmav valdkondadeülene üldine heaolu kontseptuaalne mudel Eestis | <https://sm.ee/sites/default/files/documents/2026-05/Inimese%20elukaart%20h%C3%B5lmav%20valdkondade%C3%BClene%20%C3%BCldine%20heaolu%20kontseptuaalne%20mudel%20Eestis.pdf> |
+| Sotsiaalministeerium | Isapuhkus ja emaduslõiv | <https://sm.ee/sites/default/files/documents/2025-05/Isapuhkus%20ja%20emadusl%C3%B5iv_Unt%20Aavik%20Taht%202024.pdf> |
+| Sotsiaalministeerium | Kodus elavatele dementsusega inimestele ja nende hoolduskoormusega lähedastele suunatud sekkumispraktikate ning tugisüsteemide analüüs. Lõpparuanne | <https://sm.ee/sites/default/files/documents/2026-09/Kodus%20elavatele%20dementsusega%20inimestele%20ja%20nende%20hoolduskoormusega%20l%C3%A4hedastele%20suunatud%20sekkumispraktikate%20ning%20tugis%C3%BCsteemide%20anal%C3%BC%C3%BCs_L%C3%B5pparuanne%202026.pdf> |
+| Sotsiaalministeerium | Lapse peresisese väärkohtlemise väljaselgitamine ja selle mõju hindamine lastekaitsetöös ja last puudutavas tsiviilkohtumenetluses. Lõppraport | <https://sm.ee/sites/default/files/documents/2026-04/Lapse%20peresisene%20v%C3%A4%C3%A4rkohtlemine_Lo%CC%83ppraport_T%C3%9C_2026.pdf> |
+| Sotsiaalministeerium | Laste arv ja hõive Eestis (Statistikaamet) | <https://sm.ee/sites/default/files/documents/2025-05/Laste%20arv%20ja%20h%C3%B5ive%20Eestis%20-%20Rootalu%2C%20Levenko%2C%20Vill%20%28Statistikaamet%29.pdf> |
+| Sotsiaalministeerium | Laste ja noorte vaimse tervise parandamise ettepanekud. Kokkuvõte | <https://sm.ee/sites/default/files/documents/2025-02/Laste%20ja%20noorte%20vaimse%20tervise%20parandamise%20ettepanekud_kokkuvote.pdf> |
+| Sotsiaalministeerium | Laste saamise ja toetamise analüüs ja ettepanekud 2025 | <https://sm.ee/sites/default/files/documents/2025-08/Laste%20saamise%20ja%20toetamise_anal%C3%BC%C3%BCs%20ja%20ettepanekud_0.pdf> |
+| Sotsiaalministeerium | Laste saamise väärtused | <https://sm.ee/sites/default/files/documents/2025-05/Laste%20saamise%20v%C3%A4%C3%A4rtused%20-%20Kasearu_09.04.pdf> |
+| Sotsiaalministeerium | Lastekaitse juhtumikorralduse mudelite võrdlev analüüs | <https://sm.ee/sites/default/files/documents/2024-07/Lastekaitse%20mudelite%20l%C3%B5pparuanne_27.06.2024.pdf> |
+| Sotsiaalministeerium | Majanduslik toimetulek ja laste heaolu 2025 | <https://sm.ee/sites/default/files/documents/2025-09/Majanduslik%20toimetulek%20ja%20laste%20heaolu_%202025_0.pdf> |
+| Sotsiaalministeerium | Millisesse perre sünnivad lapsed (Statistikaamet) | <https://sm.ee/sites/default/files/documents/2025-05/Millisesse%20perre%20s%C3%BCnnivad%20lapsed%20-%20Rootalu%2C%20Vill%20%28Statistikaamet%29.pdf> |
+| Sotsiaalministeerium | Pensionitarkuse uuring. Lõpparuanne | <https://sm.ee/sites/default/files/documents/2024-12/Pensionitarkuse%20uuring.%20L%C3%B5pparuanne.pdf> |
+| Sotsiaalministeerium | Puude tuvastamise, toetuste ja hüvede kaasajastamise uuringu lõppraport | <https://sm.ee/sites/default/files/documents/2026-03/Puude%20tuvastamise%2C%20toetuste%20ja%20h%C3%BCvede%20kaasajastamise%20uuringu%20l%C3%B5ppraport_1.pdf> |
+| Sotsiaalministeerium | Suundumused sündimuses ja nende seos perehüvitistega | <https://sm.ee/sites/default/files/documents/2025-04/Suundumused%20s%C3%BCndimuses%20ja%20nende%20seos%20pereh%C3%BCvitistega_1.pdf> |
+| Sotsiaalministeerium | Sündimuse ja perepoliitika tervikanalüüsi teoreetilise osa kokkuvõte | <https://sm.ee/sites/default/files/documents/2025-08/Tervikanal%C3%BC%C3%BCsi%20teoreetilise%20osa%20kokkuv%C3%B5te.pdf> |
+| Sotsiaalministeerium | Tervise ebavõrdsuse sotsiaalsed põhjused Euroopa Sotsiaaluuringu andmete põhjal | <https://sm.ee/sites/default/files/documents/2025-12/T%C3%9C%20aruanne_%20Tervise%20ebav%C3%B5rdsuse%20sotsiaalsed%20p%C3%B5hjused%20ESSi%20andmete%20p%C3%B5hjal.pdf> |
+| Sotsiaalministeerium | Uuring leibkondliku elatusmiinimumi määramise metoodika väljatöötamiseks | <https://sm.ee/sites/default/files/documents/2026-06/Uuring%20leibkondliku%20elatusmiinimumi%20m%C3%A4%C3%A4ramise%20metoodika%20v%C3%A4ljat%C3%B6%C3%B6tamiseks.pdf> |
+| Sotsiaalministeerium | Vabatahtlikud ja vabatahtlikkus Eestis. Hetkeolukord ja tulevikuväljavaated | <https://sm.ee/sites/default/files/documents/2026-04/Vabatahtlikud%20ja%20vabatahtlikkus%20Eestis.%20Hetkeolukord%20ja%20tulevikuv%C3%A4ljavaated.pdf_0.pdf> |
+| Sotsiaalministeerium | Vanemahüvitis ja sündimus | <https://sm.ee/sites/default/files/documents/2025-05/Vanemah%C3%BCvitis%20ja%20s%C3%BCndimus%20-%20Puur%2C%20Abdullayev%20okt%202024.pdf> |
+| Sotsiaalministeerium | Vanemahüvitist jagavate perede kogemused (CentAR) | <https://sm.ee/sites/default/files/documents/2025-04/Vanemah%C3%BCvitist%20jagavate%20perede%20kogemused%20%28CentAR%29.pdf> |
+| Sotsiaalministeerium | Väikelaste emade töötuna arvelolek lapse isa vanemapuhkuse ajal | <https://sm.ee/sites/default/files/documents/2025-05/V%C3%A4ikelaste%20emade%20t%C3%B6%C3%B6tuna%20arvelolek%20lapse%20isa%20vanemapuhkuse%20ajal_TK_2025.pdf> |
 
 ### Omavalitsuste kontaktid (1638)
 
