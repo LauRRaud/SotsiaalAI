@@ -118,7 +118,7 @@ Käivitus õnnestus kolmandal korral; ükski katse enne seda midagi ei ostnud:
 | 2 | plaan keeldus: väljundkaust `plan-v66` oli esimesest katsest tühjana alles ja samm teeb selle alati uuena | tühi kaust eemaldatud |
 | 3 | plaan läbis, ost ja indeks | |
 
-Käivitusskript ei oska ise jätkata pärast plaani keeldumist, kui pea on juba tõstetud (alus ei klapi) ja tühi väljundkaust on ees; mõlemad on skripti puudused, parandamata.
+Käivitusskript ei osanud ise jätkata pärast plaani keeldumist, kui pea oli juba tõstetud (alus ei klappinud) ja tühi väljundkaust oli ees. Mõlemad on samal õhtul parandatud ja testiga kaetud (`tests/rag-v2-corpus-run.test.mjs`).
 
 **Tulemus (07.10.2026 kell 16.04):** serveri tasuta plaan näitas 74 dokumenti, 7473 sisendit ja 4 664 304 tokenit; ost õnnestus kõigi 7473 sisendiga, **0,6064 USD** ülempiiri 0,80 all (ülempiiri panin mina kohaliku tokeniarvutuse 0,61 järgi; omanik: „Raha on piisavalt“, „luba on antud rag andmebaasi panna“). Ost kestis 33 minutit, indeksi töö 6 minutit. Indeks `de3e160f`: **8179 dokumenti, 57 860 lõiku**; vestluse plaan `m4-corpus-chat-20261007b.json`; `ready` läbis 8179 allikaga. Dokumentidest 49 on uuringud, 15 riigiasutuste juhendid ja 10 muude väljaandjate juhendid ja infomaterjalid.
 
@@ -153,7 +153,7 @@ Kontrollküsimused küsivad otse uue dokumendi järele. Mõõtmata on, kas 17 42
 ## Tegemata
 
 - **Uudiskirja dokumendid, mis ootavad** (loend `Andmebaasi/register/newsletter_documents.json`): 2 vastuvõtu kinni peetud uuringut (liiga paljudel lehekülgedel puudub tekstikiht), 9 ingliskeelset, 6 tekstikihita, 2 liiga suurt, 13 veebilehena kogutud artiklit (lehtede korjaja tee, ADR-095). Koguja aruandes on veel 12 kättesaamata PDF-i ja 9 muus vormingus allikat.
-- **Käivitusskript** (`scripts/rag-v2-corpus-run.sh`) ei jätka pärast plaani keeldumist: hoidla pea on siis juba tõstetud ja tühi väljundkaust jääb ette.
+- Käivitusskript (`scripts/rag-v2-corpus-run.sh`) oskab nüüd pärast plaani keeldumist uuesti alustada (07.10.2026 õhtu): juba tõstetud pead ei pakita teist korda lahti, uus poliitikafail võetakse vana asemele, tühi plaanikaust eemaldatakse ja ebaõnnestunud käivituse lukk vabastatakse. Pärast ostu katkenud käivitust ta endiselt ise ei jätka.
 - **Serveri ruumikulu lõigu kohta** (umbes 380 KB) on RAG-i kasvu tegelik piir; hoidla ja andmebaasi kordused ning JSON-vektorid on eraldi töö. Mõõtmine ja viis ettepanekut (kokku umbes 16 GB): [ADR-101](adr-101-storage-per-passage.md); ükski ei ole tehtud.
 - LiveKiti kõnesalvestus pandi tagasi 07.10.2026 kell 19.40, pärast seda kui omanik ketast suurendas (58 → 77 GB); päris kõne salvestamist ei ole pärast seda proovitud.
 - Kolmel v65 dokumendil puudub metaandmetes aasta.

@@ -188,6 +188,71 @@ test('a full run takes the code and the packages from the running release', { sk
   assert.match(run(own, { RESUME: '' }).stdout, /FAILED: \S+\/node_modules is not a link/u);
 });
 
+// 07.10.2026 (corpus v66): the server's free plan refused an increment (index capacity) after the store head had been
+// raised. The next start stopped because the head was no longer the package's base, the policy had been moved, and the
+// plan step's empty output folder stood in the way. A refused start can now be started again with a new policy.
+test('a start that the plan refused is started again: the head is not unpacked twice, the new policy is taken, the empty plan folder goes', { skip: !shell && 'no sh' }, async () => {
+  const paths = await tree('refused'), { work, etc, release, root } = paths;
+  const BASE = 'generation_base', HEAD = 'generation_head', tenant = path.join(work, 'tmp/rag-v2-corpus-store-v25/tenant_x');
+  await fs.mkdir(path.join(tenant, 'publications'), { recursive: true });
+  await fs.writeFile(path.join(tenant, 'active.json'), JSON.stringify({ generation: BASE }));
+  await fs.mkdir(path.join(work, 'tmp/rag-v2-corpus-index-v44'), { recursive: true });
+  await fs.writeFile(path.join(work, 'tmp/rag-v2-corpus-index-v44/index-plan.json'), JSON.stringify({ generation_id: 'search_generation_prior' }));
+  await fs.mkdir(path.join(work, 'tmp/rag-v2-corpus-embeddings/prices'), { recursive: true });
+  await fs.writeFile(path.join(work, 'tmp/rag-v2-corpus-embeddings/prices/price-1.json'), '{}');
+  // The package: the head the increment brings.
+  const staged = path.join(root, 'staged');
+  await fs.mkdir(path.join(staged, 'publications'), { recursive: true });
+  await fs.writeFile(path.join(staged, 'active.json'), JSON.stringify({ generation: HEAD }));
+  assert.equal(spawnSync('tar', ['czf', 'ship-v45.tgz', '-C', posix(path.relative(work, staged)), 'active.json', 'publications'], { cwd: work }).status, 0);
+  const sha = spawnSync('sha256sum', ['ship-v45.tgz'], { cwd: work, encoding: 'utf8' }).stdout.slice(0, 64);
+  await fs.writeFile(path.join(work, 'ship-v45.json'), JSON.stringify({ sha256: sha, base_generation: BASE, head_generation: HEAD }));
+  await fs.writeFile(path.join(work, 'policy-v45.json'), '{"policy":"first"}');
+  await fs.writeFile(path.join(etc, 'frontend.env'), '');
+  await fs.writeFile(path.join(root, 'eval/version-proof.mjs'), 'console.log("{}");\n');
+  // The plan step as the real one behaves: it makes its output folder, then refuses or writes a plan with nothing to buy.
+  await fs.writeFile(path.join(release, 'scripts/rag-v2-corpus-embeddings.mjs'), `import fs from 'node:fs';
+const out = process.argv[process.argv.indexOf('--output') + 1];
+fs.mkdirSync(out);
+if (process.env.FAKE_PLAN_REFUSES) { console.error(JSON.stringify({ ok: false, code: 'local_index_limit' })); process.exit(1); }
+fs.writeFileSync(out + '/embedding-plan.json', '{}');
+console.log(JSON.stringify({ mode: 'plan', external_inputs: 0 }));
+`);
+  await fs.writeFile(path.join(release, 'scripts/rag-v2-index-batch.mjs'), 'process.exit(1);\n');
+  const head = async () => JSON.parse(await fs.readFile(path.join(tenant, 'active.json'), 'utf8')).generation;
+  // Where ln -s makes a copy (a Windows checkout), the second start would refuse the packages as "not a link".
+  const unlinkCopy = async () => { if (!(await fs.lstat(path.join(work, 'node_modules'))).isSymbolicLink()) await fs.rm(path.join(work, 'node_modules'), { recursive: true }); };
+
+  const first = run(paths, { RESUME: '', FAKE_PLAN_REFUSES: '1' });
+  assert.notEqual(first.status, 0);
+  assert.match(first.stdout, /FAILED: embedding plan/u);
+  assert.equal(await head(), HEAD);
+  assert.equal(await fs.readFile(path.join(work, 'tmp/rag-v2-corpus-index-v45/policy.json'), 'utf8'), '{"policy":"first"}');
+  assert.deepEqual(await fs.readdir(path.join(work, 'tmp/rag-v2-corpus-embeddings/plan-v45')), []);
+
+  await unlinkCopy();
+  await fs.writeFile(path.join(work, 'policy-v45.json'), '{"policy":"second"}');
+  const second = run(paths, { RESUME: '' });
+  assert.match(second.stdout, /the store head is already this increment's/u);
+  assert.match(second.stdout, /== embedding-plan-done/u);
+  assert.match(second.stdout, /FAILED: index plan/u);
+  assert.equal(await fs.readFile(path.join(work, 'tmp/rag-v2-corpus-index-v45/policy.json'), 'utf8'), '{"policy":"second"}');
+  // The copy of the head from before the increment is the first start's, not overwritten with the raised head.
+  assert.equal(JSON.parse(await fs.readFile(path.join(work, 'tmp/store-backup-v44/active.json'), 'utf8')).generation, BASE);
+
+  // A plan folder that holds a plan is not removed by a later start.
+  await unlinkCopy();
+  const third = run(paths, { RESUME: '' });
+  assert.match(third.stdout, /plan-v45 holds an earlier plan/u);
+  await fs.access(path.join(work, 'tmp/rag-v2-corpus-embeddings/plan-v45/embedding-plan.json'));
+
+  // A head that is neither the base nor this increment's is refused as before.
+  await unlinkCopy();
+  await fs.rm(path.join(work, 'tmp/rag-v2-corpus-embeddings/plan-v45'), { recursive: true });
+  await fs.writeFile(path.join(tenant, 'active.json'), JSON.stringify({ generation: 'generation_other' }));
+  assert.match(run(paths, { RESUME: '' }).stdout, /FAILED: the server store head is not the base of this increment/u);
+});
+
 test('ADR-092: the new plan is asked for the effort and the choices of the plan it replaces; a plan without a choice gets none', { skip: !shell && 'no sh' }, async () => {
   const plain = await tree('choice-none');
   assert.equal(run(plain).status, 0);
