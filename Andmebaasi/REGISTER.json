@@ -49,11 +49,11 @@
   },
   "corpus": {
     "written_by": "rag-v2/register-corpus-1",
-    "version": "v68",
-    "index_generation": "c49c1d5c",
+    "version": "v69",
+    "index_generation": "8b1e1008",
     "read_at": "2026-10-07",
-    "documents": 8258,
-    "units": 67799,
+    "documents": 8337,
+    "units": 68408,
     "note": "What the RAG on the server holds: the documents of the corpus policy by what they are (by_content), and by where the source file is kept (from_repository, outside_repository). One file of the repository may give many documents (a municipality package gives its services, forms and contacts). On a source entry, corpus_documents is the number of corpus documents the file gives; 0 means the file is not in the corpus.",
     "by_content": [
       {
@@ -130,6 +130,14 @@
         }
       },
       {
+        "content": "care_prices",
+        "name": "care homes' monthly prices by municipality",
+        "documents": 79,
+        "by_source_type": {
+          "registry": 79
+        }
+      },
+      {
         "content": "assistive_points",
         "name": "assistive device sales and rental points",
         "documents": 93,
@@ -189,10 +197,10 @@
       }
     },
     "source_files_not_in_corpus": 60,
-    "outside_repository_documents": 2129
+    "outside_repository_documents": 2208
   },
   "outside_repository": {
-    "documents": 2129,
+    "documents": 2208,
     "note": "Sources of the corpus that are not files of the repository. Copies are in the corpus store (the main checkout's git-ignored tmp/ and the server). Of contacts only counts are given: a contact's title is a person's name.",
     "kinds": [
       {
@@ -514,6 +522,255 @@
           {
             "municipality": "Võru vald",
             "documents": 22
+          }
+        ]
+      },
+      {
+        "kind": "care_prices",
+        "name": "care homes' monthly prices by municipality",
+        "documents": 79,
+        "by_source_type": {
+          "registry": 79
+        },
+        "made_from": "the Social Insurance Board's price monitoring table of general care homes, read with scripts/rag-v2-care-prices.mjs: one page for every municipality and an overview (ADR-104)",
+        "reason": "the pages hold the homes' phone numbers and are made again from the table",
+        "sources": [
+          {
+            "title": "Hooldekodude kohamaksumus Eestis: ülevaade maakondade kaupa"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Alutaguse vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Anija vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Antsla vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Elva vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Haapsalu linn"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Haljala vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Harku vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Hiiumaa vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Häädemeeste vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Jõelähtme vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Jõgeva vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Jõhvi vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Järva vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Kadrina vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Kambja vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Kanepi vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Kastre vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Kehtna vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Keila linn"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Kihnu vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Kiili vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Kohila vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Kohtla-Järve linn"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Kose vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Kuusalu vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Loksa linn"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Luunja vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Lääne-Harju vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Lääne-Nigula vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Lääneranna vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Lüganuse vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Maardu linn"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Muhu vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Mulgi vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Mustvee vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Märjamaa vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Narva linn"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Narva-Jõesuu linn"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Nõo vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Otepää vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Paide linn"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Peipsiääre vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Põhja-Pärnumaa vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Põhja-Sakala vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Põltsamaa vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Põlva vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Pärnu linn"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Raasiku vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Rae vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Rakvere linn"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Rakvere vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Rapla vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Ruhnu vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Rõuge vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Räpina vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Saarde vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Saaremaa vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Saku vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Saue vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Setomaa vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Sillamäe linn"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Tallinna linn"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Tapa vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Tartu linn"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Tartu vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Tori vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Tõrva vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Türi vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Valga vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Viimsi vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Viljandi linn"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Viljandi vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Vinni vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Viru-Nigula vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Vormsi vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Võru linn"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Võru vald"
+          },
+          {
+            "title": "Hooldekodude kohamaksumus: Väike-Maarja vald"
           }
         ]
       },
