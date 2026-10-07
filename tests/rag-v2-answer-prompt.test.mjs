@@ -29,7 +29,8 @@ test('prompt v10 keeps every v9 guardrail in each answer language, and v9 plans 
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-11'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-10'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-9'));
-  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-30');
+  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-31');
+  assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-30'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-29'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-28'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-27'));
@@ -223,7 +224,7 @@ test('dialogue prompt 24 (ADR-071): a bare correction is confirmed and not turne
   assert.ok(tokenCount(BARE_CORRECTION_INSTRUCTIONS) + tokenCount(PRIOR_CLAIM_INSTRUCTIONS) - tokenCount(previous) < 160);
 });
 
-test('dialogue prompt 29 and 30 (ADR-102): a finding carries its year, an older source is not the present, and evidence of different years is told in the order of time', () => {
+test('dialogue prompt 29 to 31 (ADR-102): a finding carries its year, an older source is not the present, and evidence of different years is told in the order of time', () => {
   const { instructions } = dialogueRequest({ model: 'm', maxOutputTokens: 100, reasoning: 'low' }, 'Küsimus?', { sources: {}, evidence: [] }, 'et', { userTurns: [] });
   // The last thing the dialogue extension says, after the web address rule.
   assert.ok(instructions.includes(WEB_ADDRESS_INSTRUCTIONS + TIME_INSTRUCTIONS));
@@ -237,6 +238,9 @@ test('dialogue prompt 29 and 30 (ADR-102): a finding carries its year, an older 
   assert.ok(TIME_INSTRUCTIONS.includes('but not the form "according to ..." ("... järgi")'));
   // v30: a guide's advice needs no year, a number that it gives does.
   for (const phrase of ['advice needs no year in the sentence, but an amount, a rate, a limit or a deadline that it gives does', 'say which year\'s state it is']) assert.ok(TIME_INSTRUCTIONS.includes(phrase), phrase);
+  // v31: that a source is active and was seen lately says nothing of whether its numbers hold today.
+  for (const phrase of ['by the card\'s publication_year or publication_date', 'This holds also when the card says the source is active or gives a recent source_checked_at',
+    'not that its numbers hold today']) assert.ok(TIME_INSTRUCTIONS.includes(phrase), phrase);
   // An older finding is not today's situation; the turn's own date decides what is older.
   for (const phrase of ['Never present what an older source found as the situation today', 'stateContext.asOfDateUTC', 'may have changed since']) assert.ok(TIME_INSTRUCTIONS.includes(phrase), phrase);
   // The order of time, and what decides the present.
@@ -249,6 +253,6 @@ test('dialogue prompt 29 and 30 (ADR-102): a finding carries its year, an older 
   assert.doesNotMatch(TIME_INSTRUCTIONS, /valid_from|valid_to/u);
   // A general rule: no year, number, place or topic that an answer could repeat as a fact.
   assert.doesNotMatch(TIME_INSTRUCTIONS, /\d|Tallinn|hoold|pension|euro/iu);
-  // About 550 tokens more in every dialogue turn's instructions than before v29.
-  assert.ok(tokenCount(TIME_INSTRUCTIONS) < 560, String(tokenCount(TIME_INSTRUCTIONS)));
+  // About 600 tokens more in every dialogue turn's instructions than before v29.
+  assert.ok(tokenCount(TIME_INSTRUCTIONS) < 620, String(tokenCount(TIME_INSTRUCTIONS)));
 });

@@ -1,6 +1,6 @@
 # ADR-102: aeg vastuses: leid koos aastaga ja eri aastate allikad ajalises järjekorras
 
-Kuupäev: 07.10.2026. Seis: juhis töötab (dialoogi juhise versioon 29, #445); päris lehe kontroll tehtud (allpool); kontrolli põhjal kaks parandust (versioon 30).
+Kuupäev: 07.10.2026. Seis: juhis töötab (dialoogi juhise versioon 29, #445); päris lehe kontroll tehtud (allpool); kontrolli põhjal kaks parandust (versioon 30, #446) ja üks täpsustus (versioon 31).
 
 ## Probleem
 
@@ -27,7 +27,7 @@ Dialoogi juhise lõppu lisandub ajareegel (`TIME_INSTRUCTIONS`, `lib/rag-v2/pilo
 4. **Ajaline järjekord.** Kui tõendites on sama asja kohta eri aastate allikad või kasutaja küsib, mis on muutunud, räägitakse see osa aja järjekorras: mis oli (aastaga), mis muutus ja millal, mis kehtib nüüd.
 5. **Mis kehtib nüüd,** tuleb uusimast tõendist või kehtivast õigusaktist. Vanem allikas ei kaalu üles uuemat ega seadust; kui need erinevad, öeldakse, kumb on hilisem.
 6. **Ajalugu ei mõelda välja.** Kaks ajahetke ei ole suundumus; kahe uuringu erinevus võib tulla sellest, kuidas kumbki tehti; aastaid, mida tõendid ei kata, ei täideta. Kui kõik tõendid on ühest ajast, ei tehta juurde varasemat ega hilisemat seisu. Praktiline küsimus „mida ma nüüd teen“ saab vastuse sellest, mis kehtib nüüd, mitte ajaloost.
-7. **Juhendi nõuanne aastat ei vaja, juhendi arv vajab** (versioon 30). Summa, määr, piir või tähtaeg, mille annab juhend või infomaterjal, öeldakse koos aastaga („… aasta seisuga …“), sest sellised arvud muutuvad. Kui uuem allikas või kehtiv seadus ütleb teisiti kui juhend, otsustab hilisem ja vastus ütleb, et juhend on vanem.
+7. **Juhendi nõuanne aastat ei vaja, juhendi arv vajab** (versioon 30). Summa, määr, piir või tähtaeg, mille annab juhend või infomaterjal, öeldakse koos aastaga („… aasta seisuga …“), sest sellised arvud muutuvad. Aasta tuleb kaardi ilmumisaastast ka siis, kui kaart ütleb, et allikas on aktiivne ja hiljuti kontrollitud (versioon 31): need väljad ütlevad, et leht oli kogumise ajal oma aadressil, mitte et selle arvud täna kehtivad. Kui uuem allikas või kehtiv seadus ütleb teisiti kui juhend, otsustab hilisem ja vastus ütleb, et juhend on vanem.
 8. **Aasta juures võib olla allika liik, mitte „… järgi“** (versioon 30). „… aasta uuringus …“ on lubatud, kui lugejal on seda vaja; kuju „raporti järgi“, „juhendi järgi“ jääb välja nagu seni (answer-11).
 
 Juhis on üldine: selles ei ole ühtki aastat, arvu, kohta ega teemat, mida vastus saaks faktina korrata (test kontrollib).
@@ -40,7 +40,7 @@ Juhis on üldine: selles ei ole ühtki aastat, arvu, kohta ega teemat, mida vast
 
 ## Kulu
 
-Juhis pikeneb umbes 550 tokeni võrra igas vestluspöördes (versioon 29: 464, versioon 30: 551; mõõdetud `tokenCount`-iga, test hoiab piiri 560). Juhise algus on päringute vahel sama, nii et suurem osa sellest tuleb vahemälust.
+Juhis pikeneb umbes 550 tokeni võrra igas vestluspöördes (versioon 29: 464, versioon 30: 551, versioon 31: umbes 600; mõõdetud `tokenCount`-iga, test hoiab piiri 620). Juhise algus on päringute vahel sama, nii et suurem osa sellest tuleb vahemälust.
 
 ## Kontroll
 
@@ -67,4 +67,13 @@ Viis küsimust päris vestluses, igaüks uues vestluses; kõik pöörded jooksid
 - **Kaks viga, parandatud versioonis 30:** juhendi summa jäi aastata (juhis küsis aastat ainult uuringu, aruande ja artikli arvule); aasta tuli ühes vastuses kujul „2025. aastal avaldatud raporti järgi …“.
 - Vana leiu juurde hoiatust „võib olla muutunud“ 2022. aasta uuringu puhul ei lisandunud; aasta oli lauses. Seda ei ole muudetud.
 
-Kontrollimata: versiooni 30 mõju (kontroll pärast juurutust üleandmisfailis), vene- ja ingliskeelne vastus, järjestikused küsimused samas vestluses.
+## Kontroll päris lehel (juhis 30) ja versioon 31
+
+Kaks küsimust juhisega 30 (0,0081 USD plaani hinna järgi).
+
+- **Asendushoolduselt lahkuvad noored** (sama küsimus): leiud kujul „2022. aastal avaldatud uuringus kirjeldati …“, ühtki „… järgi“ lauset ei olnud. Juhendi summasid see vastus ei kasutanud.
+- **Kui palju raha saab järelhooldusel olev noor isiklike kulude katteks?** Vastus andis 2023. aasta juhendi kuu- ja aastasumma **endiselt ilma aastata**. Ta ütles küll, et summa tuleb juhendist ja et seadusesättest seda kinnitada ei saa. Mudelile näidatud kaardil oli `publication_year` 2023, aga ka `source_status: active` ja `source_checked_at` sama päeva kuupäevaga: need loevad nagu „kehtib täna“, kuigi ütlevad ainult, et leht oli kogumise päeval oma aadressil.
+
+Versioon 31 ütleb selle juhises välja ja nimetab välja, kust aasta tuleb.
+
+Kontrollimata: vene- ja ingliskeelne vastus, järjestikused küsimused samas vestluses. Versiooni 31 kontroll on üleandmisfailis.
