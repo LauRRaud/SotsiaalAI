@@ -136,10 +136,23 @@ Kolm küsimust on kontroll, mitte mõõtmine: need küsivad otse uue dokumendi j
 
 **Serveri ketas pärast:** hoidla 5,9 → 7,5 GB (lahti pakiti kõik 104 versiooni), vektorifailid 3,1 → 3,5 GB, RAG-andmebaas 7,5 → 8,8 GB; vaba 7,2 GB (88% täis) pärast käivituse kahe hoidlakoopia eemaldamist (`cmp` järgi võrdsed). Ilma LiveKiti salvestust eemaldamata oleks vaba jäänud umbes 2,5 GB. Kulu selle töö jaoks kokku: **0,6160 USD**.
 
+## Korpus v67 ja v68: ülejäänud eestikeelsed uuringud
+
+Pärast v66 tõsteti indeksi mahupiir mõõtmise järgi 80 000 lõigule ([ADR-100](adr-100-index-capacity-80000.md)). Omanik: „jätka“, seejärel „kui tehtud need dokumendid, siis võtaks nendest järgmised“ ja „jah“ kolmele arvule, mille enne ütlesin (lõike umbes 68 400 80 000-st; ketast umbes 2,5 GB, vaba jääb umbes 3,8 GB ja LiveKiti salvestust ei saa enne ruumi tegemist tagasi panna; ülempiir 0,70 USD).
+
+**v67 (07.10.2026 kell 17.55): 30 uuringut aastatest 2023–2024.** Versioonid olid serveri hoidlas esimesest v66 katsest saadik, nii et versioonide pakki üles ei laaditud: pakk tehti serveris hoidla enda peast (`active.json` ja `publications`), paki kirje alus ja pea on mõlemad pea, mis serveril oli, ja poliitika on sülearvutis tehtud 104 dokumendi poliitika (8209 dokumenti; kontrollitud, et see on töötav 74 dokumendi poliitika pluss need 30). Serveri plaan: 3957 sisendit, 2 632 745 tokenit; ost õnnestus, **0,3423 USD** ülempiiri 0,45 all. Indeks `9120d524`: 8209 dokumenti, 61 819 lõiku; plaan `m4-corpus-chat-20261007c.json`. Kaks kontrollküsimust päris lehel (0,0061 USD): Lasteabi tulemuslikkuse uuring ja täisealiste eestkostekorralduse uuring; mõlemad vastused tsiteerisid uut uuringut ja selle kohta varem korpuses olnud ajakirjaartiklit.
+
+**v68 (07.10.2026 kell 18.36): 49 vanemat uuringut aastatest 2017–2022** (17 väljaandjat). Vastuvõtt hoidis 51-st kaks kinni (`partial_text_needs_review`: liiga paljudel lehekülgedel puudub tekstikiht); need on loendis seisuga `held_partial_text`. Kohalik kontroll enne ostu: 49 dokumendil kõik metaandmete väljad, märksõnu ei ole; 5980 lõigul lehekülje number ja peatüki pealkiri; faili sõnadest jõudis lõikudesse 44 dokumendil üle 85% ja viiel 73–85%. Serveri plaan: 5978 sisendit, 4 010 172 tokenit; ost õnnestus, **0,5213 USD** ülempiiri 0,70 all. Indeks `c49c1d5c`: **8258 dokumenti, 67 799 lõiku** (mahupiirist 85%); plaan `m4-corpus-chat-20261007d.json`; `ready` läbis 8258 allikaga. Kaks kontrollküsimust päris lehel (0,0067 USD): elanikkonna hoolduskoormuse uuring ja asendushoolduselt iseseisvasse ellu astuvate noorte uuring; mõlemad vastused tsiteerisid uut uuringut.
+
+**Uudiskirja dokumentidest on RAG-is nüüd 153** (74 + 30 + 49): kõik eestikeelsed tekstiga dokumendid peale kahe kinni peetu. Kulu kolme täienduse peale **1,4924 USD** (v66 0,6160; v67 0,3484; v68 0,5280, kontrollküsimused sees).
+
+**Serveri ketas pärast v68:** hoidla 8,3 GB, vektorifailid 4,1 GB, RAG-andmebaas 10 GB; **vaba 4,0 GB (94% täis)**. LiveKiti salvestust (vajab 5 GB) ei saa tagasi panna enne, kui ruumi on juurde tehtud; omanik 07.10.2026: „paneme asjad seisma, ostan ruumi juurde“. Kuni selleni uusi täiendusi ei tehta.
+
+Kontrollküsimused küsivad otse uue dokumendi järele. Mõõtmata on, kas 17 420 uut uuringulõiku (korpusest veerand) muudavad vastuseid tavalistele teenuse- ja toetuseküsimustele.
+
 ## Tegemata
 
-- **Indeksi mahupiir** (60 000 lõiku põlvkonna kohta; korpus on 57 860): enne järgmist suuremat täiendust tuleb piir tõsta, ja selleks mõõta vestluspöörde otsingu kulu suurema põlvkonnaga (kataloog, sõnaline päring, täpne vektoriotsing; ADR-036). Vaba on 2140 lõiku: igakuine uuendamine ja õigusaktide muudatused mahuvad, uuringute partii mitte.
-- **Uudiskirja dokumendid, mis ootavad** (loend `Andmebaasi/register/newsletter_documents.json`): 30 uuringut aastatest 2023–2024 (serveri hoidlas, ootavad mahupiiri; 3959 lõiku, 0,34 USD), 51 vanemat uuringut (mahupiir ja kettaruum), 9 ingliskeelset, 6 tekstikihita, 2 liiga suurt, 13 veebilehena kogutud artiklit (lehtede korjaja tee, ADR-095). Koguja aruandes on veel 12 kättesaamata PDF-i ja 9 muus vormingus allikat.
+- **Uudiskirja dokumendid, mis ootavad** (loend `Andmebaasi/register/newsletter_documents.json`): 2 vastuvõtu kinni peetud uuringut (liiga paljudel lehekülgedel puudub tekstikiht), 9 ingliskeelset, 6 tekstikihita, 2 liiga suurt, 13 veebilehena kogutud artiklit (lehtede korjaja tee, ADR-095). Koguja aruandes on veel 12 kättesaamata PDF-i ja 9 muus vormingus allikat.
 - **Käivitusskript** (`scripts/rag-v2-corpus-run.sh`) ei jätka pärast plaani keeldumist: hoidla pea on siis juba tõstetud ja tühi väljundkaust jääb ette.
 - **Serveri ruumikulu lõigu kohta** (umbes 380 KB) on RAG-i kasvu tegelik piir; hoidla ja andmebaasi kordused ning JSON-vektorid on eraldi töö.
 - **LiveKiti kõnesalvestus** on serverist maas, kuni see tagasi pannakse.
