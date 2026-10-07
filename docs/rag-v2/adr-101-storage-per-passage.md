@@ -2,7 +2,7 @@
 
 Kuupäev: 07.10.2026. Seotud: ADR-036 (versioonipõhine indeks), ADR-060 (versioonide koristus), ADR-099 (uudiskirja dokumendid), ADR-100 (indeksi mahupiir).
 
-**Seis: ettepanek. Serveris ei ole selle töö käigus midagi kustutatud ega muudetud.** Iga samm allpool on omaniku otsus.
+**Seis: viis ettepanekut allpool on tegemata ja omanik jättis need 07.10.2026 kõrvale („ära siis tee seda üldse“). Selle asemel on serveri hoidla kokku pakitud (jaotis „Tehtud: serveri hoidla pakkimine“), ilma süsteemi muutmata.** Ettepanekud jäävad kirja juhuks, kui ketas uuesti piiriks saab.
 
 ## Probleem
 
@@ -82,8 +82,10 @@ Pärast kõiki viit oleks RAG serveris umbes 8 GB 24 GB asemel ja lõik võtaks 
 
 Tabel on versiooni paki teine koopia samas andmebaasis. Ainus lugeja on võrdlus `bundles()` sees: kas read on samad, mis pakis. Pakki ennast kontrollitakse juba räsiga (`bundle_hash`). Võrdlus kaitseb seega ainult tabelit, mida keegi muu ei loe.
 
-- Muudatus: import ei kirjuta enam objekte, `bundles()` ei võrdle; testid, mis ootavad viga `source_object_integrity_failed`, lähevad kaasa. Pärast juurutust `DROP TABLE` (ruum vabaneb kohe).
-- Järjekord on oluline: praegune kood annab vea, kui tabel on tühi. Enne kood, siis tabel.
+- **Parandus (07.10.2026, leitud enne tegema hakkamist): tabelit ei saa tervikuna kustutada.** Otsingulõikude tabelitel `rag_v2_unit` ja `rag_v2_version_unit` on võõrvõti selle tabeli lõiguridadele (`prisma/rag-v2/migrations/202609050001_local_search`, `202609270001_version_index`). Turvaline kuju on jätta alles read liigiga `chunk` (umbes 0,4 GB) ja eemaldada ülejäänud; sääst on siis umbes **4,4 GB**, mitte 4,9. Lugemiskontroll peab siis võrdlema ainult lõiguridu ja töötama nii enne kui pärast ridade eemaldamist.
+- 3,1 miljoni rea kustutamine tuleb teha osade kaupa, kontrollpunktidega vahel, et eelkirjutuslogi ketast täis ei kirjutaks; ruum vabaneb pärast tabeli ümberkirjutamist (`VACUUM FULL`).
+- Muudatus: import kirjutab ainult lõiguread, `bundles()` võrdleb ainult neid; testid, mis rikuvad viiterida ja ootavad viga `source_object_integrity_failed`, lähevad kaasa.
+- Järjekord on oluline: praegune kood annab vea, kui read puuduvad. Enne kood, siis read.
 - Tagasi: tabel on täielikult pakkidest tuletatav (sama sisestuskood); vana väljalase koos uuesti täidetud tabeliga töötab.
 - Risk: kaob teine kontroll. Jääb paki räsi kontroll igal lugemisel.
 
@@ -119,6 +121,37 @@ Andmebaasis on 22 põlvkonda; vestlus kasutab ühte. Põlvkonna eemaldamise tö�
 
 - Muudatus: tööriist, mis jätab alles viimased N põlvkonda (ettepanek: töötav ja eelmine); seejärel olemasolev `rag-v2-prune-versions.mjs --execute` (ADR-060).
 - Risk: eelmisele põlvkonnale tagasi minna saab ainult siis, kui see on alles; vanematele mitte.
+
+## Tehtud: serveri hoidla pakkimine
+
+Omanik küsis ettepanekuid nähes: „aga kokku pakkida hoidla serveris?“ ja „väga hea ju. Ja kui lisandub süsteemi veel faile, siis saad need ka millalgi kokku pakkida“. See ei muuda süsteemi: failide vorming jääb samaks, juba indekseeritud versioonide kaustad hoitakse lihtsalt ühe kokkupakitud arhiivina.
+
+**Miks see on ohutu.** Vestlus hoidla faile ei loe. Täienduse plaanisammud jätavad juba pitseeritud versiooni vahele enne selle failide avamist (`buildCorpusEmbeddingPlan`, `planIndexJob`). Enne pakkimist proovitud serveris: versioonide kaust tõsteti kõrvale ja töötava poliitika (v68) mõlemad plaanisammud jooksid läbi (ostuplaan: 0 dokumenti, 8258 valmis; indeksi plaan: 0 indekseerida); pärast pakkimist uuesti, sama tulemus.
+
+**Tööriist:** `scripts/rag-v2-store-pack.sh` (serveris `/home/ubuntu/rag-v2-work/`).
+
+```bash
+T=$(ls -d /home/ubuntu/rag-v2-work/rag-v2-v25/tmp/rag-v2-corpus-store-v25/tenant_*)
+sh rag-v2-store-pack.sh pack   $T /home/ubuntu/rag-v2-work/rag-v2-v25/tmp/rag-v2-corpus-index-v<N>/index-plan.json
+sh rag-v2-store-pack.sh list   $T
+sh rag-v2-store-pack.sh unpack $T                # kõik tagasi lahti
+sh rag-v2-store-pack.sh unpack $T <versiooni id> # üks versioon
+```
+
+- Pakitakse kaustad, mille versioon on töötava korpuse indeksi plaanis (pitseeritud), ja kaustad, mida hoidla pea üldse ei nimeta. Pea versioon, mis ei ole veel indeksis, jääb lahti: järgmine täiendus loeb seda.
+- Enne lahtise kausta eemaldamist võrreldakse arhiivi iga liiget kettal oleva failiga; mis tahes erinevus jätab kõik nii, nagu oli.
+- Iga käivitus teeb ühe arhiivi `versions-packed/pack-<aeg>.tar.zst` koos versioonide loendi ja räsiga. **Pärast iga täiendust käivitatakse sama käsk uuesti** ja uued kaustad lähevad uude arhiivi.
+- Kaust, mis on arhiivis juba olemas (lahti pakitud kontrolliks), võrreldakse arhiiviga ja eemaldatakse, mitte ei pakita teist korda; erinev kaust jäetakse lahti.
+- Enne indeksi täiskontrolli (`--mode verify`) või indeksi nullist ehitamist tuleb arhiiv lahti pakkida.
+- Sama allika versioonid jagavad lahtiselt oma algfaili kõva lingiga; arhiivis on igal kaustal oma koopia, et ühe versiooni saaks eraldi välja võtta. Täielikult lahti pakituna võtab hoidla seetõttu umbes 1,2 GB rohkem kui enne.
+
+**Esimene pakkimine tehti kaks korda.** Esimene arhiiv salvestas jagatud algfaili lingina teise versiooni kausta; terve arhiivi lahtipakkimine töötas, aga üksiku versiooni väljavõtmine ebaõnnestus. Leitud kohe pärast pakkimist pistelise kontrolliga. Tööriist parandatud (`--hard-dereference`), test täiendatud jagatud failiga, arhiiv pakitud lahti (võrreldud failidega) ja uuesti kokku.
+
+**Tulemus (07.10.2026 õhtu):** 8650 versioonikausta (7999 MiB) on ühes arhiivis `pack-20261007T162941Z.tar.zst`, 1,48 GB; lahti jäi 42 kausta (60 MiB: pea versioonid, mida korpuse poliitikas ei ole). Hoidla kaust serveris 8,3 GB → **2,0 GB**. Kontroll pärast pakkimist: arhiivi räsi vastab kirjele; arhiivist ajutisse kausta võetud kolme versiooni 21 faili vastavad oma manifestide räsidele (kahel neist on jagatud algfail); mõlemad plaanisammud jooksid ilma vanade kaustadeta; `ready` läbis ja vestluse leht vastas. Tööriista test (`tests/rag-v2-store-pack.test.mjs`) jooksis serveris 3/3; Windowsi arvutis jääb see vahele, sest seal ei ole `zstd`-d.
+
+Samal õhtul suurendas omanik serveri ketast (58 → 77 GB). Pärast pakkimist on vaba **30 GB (62% täis)**.
+
+**Mida see ei tee:** andmebaasi ja vektorifaile see ei puuduta; sülearvuti hoidla jääb lahti (see on algallikas). Lõigu ruumikulu serveris langes umbes 365 KB-lt umbes 270 KB-le.
 
 ## Mida mitte teha
 
