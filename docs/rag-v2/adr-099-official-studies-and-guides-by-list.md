@@ -148,9 +148,47 @@ Pärast v66 tõsteti indeksi mahupiir mõõtmise järgi 80 000 lõigule ([ADR-10
 
 **Serveri ketas pärast v68:** hoidla 8,3 GB, vektorifailid 4,1 GB, RAG-andmebaas 10 GB; **vaba 4,0 GB (94% täis)**. LiveKiti salvestust (vajab 5 GB) ei saa tagasi panna enne, kui ruumi on juurde tehtud; omanik 07.10.2026: „paneme asjad seisma, ostan ruumi juurde“. Kuni selleni uusi täiendusi ei tehta. (Samal õhtul suurendas omanik ketast 77 GB-le, serveri hoidla pakiti kokku (ADR-101) ja LiveKiti salvestus pandi tagasi; vaba on 26 GB.)
 
-Kontrollküsimused küsivad otse uue dokumendi järele. Mõõtmata on, kas 17 420 uut uuringulõiku (korpusest veerand) muudavad vastuseid tavalistele teenuse- ja toetuseküsimustele.
+Kontrollküsimused küsivad otse uue dokumendi järele. Kui palju lisatud dokumendid tavaliste küsimuste otsingut muudavad, on mõõdetud allpool (jaotis „Mõõtmine“); kas vastused muutuvad, on mõõtmata.
+
+## Mõõtmine: kui palju lisatud dokumendid otsingu tulemust muudavad (tasuta, 07.10.2026 õhtu)
+
+07.10.2026 lisandus korpusesse 257 dokumenti (v65–v68: 106 juhendit ja infomaterjali, 151 uuringut), 22 203 lõiku ehk kolmandik korpusest. Kontrollküsimused näitasid ainult, et uus dokument leitakse, kui selle kohta küsida. Küsimus oli, mis juhtub tavaliste küsimustega.
+
+**Meetod.** Salvestatud pöörete otsingud korrati vestluse enda otsinguga (`runtimeAdapters`), iga pöörde salvestatud päringu ja küsimuse vektoriga, mudelit ja embedding-teenust kutsumata. Iga küsimus kaks korda: töötava korpusega ja sama korpusega ilma lisatud 257 dokumendita (poliitika dokumendiloend on otsingu filter). Tõendivaliku asemel oli asendaja, mis jättis kandidaadid meelde ega valinud midagi; nii on näha kandidaadid, mida valik saab, ja üheksa lõiku, mille otsingu enda järjestus ette paneb, kui valikut ei ole. Plaani päringud otsisid oma sõnadega; nende endi vektoreid ei salvestata, nii et vektorina oli küsimuse vektor. Küsimused: 78 eri küsimust 05.–07.10 pööretest (minu mõõtmisküsimused ja omaniku proovid), ilma seitsme kontrollküsimuseta uute dokumentide kohta. Loeti ainult arvud ja lisatud dokumentide pealkirjad.
+
+| | Kõik 78 | Omavalitsusega 27 | Omavalitsuseta 51 |
+|---|---:|---:|---:|
+| Kandidaate valikule kokku | 2838 | 975 | 1863 |
+| neist lisatud dokumentidest | 535 (19%) | 157 (16%) | 378 (20%) |
+| Varasemaid kandidaate, mis enam kandidaatide seas ei ole | 560 | 159 | 401 |
+| Esimesi lõike otsingu järjestuses kokku | 759 | 259 | 500 |
+| neist lisatud dokumentidest | 152 (20%) | 45 (17%) | 107 (21%) |
+| Küsimusi, kus ükski kandidaat ei ole lisatud dokumendist | 14 | 7 | 7 |
+| Küsimusi, kus esimesed lõigud ei muutunud | 28 | 11 | 17 |
+| Küsimusi, kus pool või rohkem esimestest lõikudest muutus | 11 | 2 | 9 |
+
+Kandidaatide hulk on mõlemal juhul sama suur (36 enamasti), nii et iga lisatud kandidaat võtab ühe varasema koha.
+
+**Mis liiki lisatud dokumendid ette jõuavad** (kolmas läbijooks, 71 küsimust, sest osa vanemaid pöördeid oli vahepeal säilitusaja lõpu tõttu kustunud; 135 esimest lõiku lisatud dokumentidest):
+
+| Liik | Lisatud dokumente | Esimesi lõike |
+|---|---:|---:|
+| Juhendid ja infomaterjalid | 106 (41%) | 66 (49%) |
+| Uuringud 2023–2026 | 99 (39%) | 36 (27%) |
+| Uuringud 2015–2022 | 52 (20%) | 33 (24%) |
+
+Esimeste lõikude sekka jõudis 39 dokumenti 257-st. Täienduste kaupa: v65 61 lõiku, v66 34, v67 7, v68 33.
+
+**Mida see ütleb ja mida mitte.**
+
+- Lisatud dokumendid ei ole otsingus kõrvaline lisa: tavalise küsimuse kandidaatidest ja esimestest lõikudest on neist umbes viiendik, ja iga seitsmenda küsimuse esimestest lõikudest on pool või rohkem uued.
+- Ette jõuavad sagedamini juhendid kui uuringud, mis on soovitud suund; vanemad uuringud (2015–2022) annavad siiski veerandi lisatud esimestest lõikudest.
+- **See ei ütle, kas vastused läksid paremaks või halvemaks.** Mõõdetud on otsingu järjestus ilma tõendivalikuta; päris pöördes valib mudel kandidaatide seast ise ja võib uuringulõigu kõrvale jätta või eelistada. Selle teadasaamiseks tuleb samad küsimused küsida kahe korpusega ja vastuseid pimesi võrrelda (tasuline, tegemata).
+- Vektorina oli plaani päringute juures küsimuse vektor, nii et päris pöörde kandidaadid võivad erineda.
 
 ## Tegemata
+
+- **Vastuste võrdlus lisatud dokumentidega ja ilma** (tasuline): otsingu kordus näitab muutuse suurust, mitte suunda.
 
 - **Uudiskirja dokumendid, mis ootavad** (loend `Andmebaasi/register/newsletter_documents.json`): 2 vastuvõtu kinni peetud uuringut (liiga paljudel lehekülgedel puudub tekstikiht), 9 ingliskeelset, 6 tekstikihita, 2 liiga suurt, 13 veebilehena kogutud artiklit (lehtede korjaja tee, ADR-095). Koguja aruandes on veel 12 kättesaamata PDF-i ja 9 muus vormingus allikat.
 - Käivitusskript (`scripts/rag-v2-corpus-run.sh`) oskab nüüd pärast plaani keeldumist uuesti alustada (07.10.2026 õhtu): juba tõstetud pead ei pakita teist korda lahti, uus poliitikafail võetakse vana asemele, tühi plaanikaust eemaldatakse ja ebaõnnestunud käivituse lukk vabastatakse. Pärast ostu katkenud käivitust ta endiselt ise ei jätka.
