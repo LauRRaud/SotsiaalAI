@@ -130,7 +130,7 @@ Codexi ülevaatus (27.09.2026, PR-id #209–#211) leidis, et kirjutamine on muud
 
 ## Piirid ja järgmised sammud
 
-- **Mahupiir** (`capacity.js`): 10 000 dokumenti ja 60 000 tekstiosa põlvkonna kohta, seatud 25.09 vana viisi mõõtmiste järgi. Mitusada pikka õigusakti (nt 300 × 250 tekstiosa) sinna ei mahu. Piiri tõstmiseks tuleb mõõta vestluspöörde kulu suurema põlvkonnaga: kataloog, sõnaline päring ja täpne vektoriotsing (`exact: true`) kasvavad põlvkonna suurusega.
+- **Mahupiir** (`capacity.js`): 10 000 dokumenti ja 60 000 tekstiosa põlvkonna kohta, seatud 25.09 vana viisi mõõtmiste järgi. Mitusada pikka õigusakti (nt 300 × 250 tekstiosa) sinna ei mahu. Piiri tõstmiseks tuleb mõõta vestluspöörde kulu suurema põlvkonnaga: kataloog, sõnaline päring ja täpne vektoriotsing (`exact: true`) kasvavad põlvkonna suurusega. **07.10.2026: lõikude piir tõsteti 80 000-le pärast seda mõõtmist ([ADR-100](adr-100-index-capacity-80000.md)); dokumentide piir jäi.**
 - Vanade versioonide read ja punktid jäävad jagatud tabelisse ja kollektsiooni, kuni koristus need eemaldab. Koristus (versioonid, mida ükski säilitatav põlvkond ei loetle) on tegemata.
 - Valmis versioonidele jäävad lugemisaegsed kontrollid. Täielik kontroll on `--mode verify`; seda tasub käivitada hooldustööna.
 - Vestlus võtab uue põlvkonna kasutusse alles plaani ümberehituse ja taaskäivitusega (järgmine etapp).
