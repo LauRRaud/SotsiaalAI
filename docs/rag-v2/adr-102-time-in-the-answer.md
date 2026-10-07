@@ -1,6 +1,6 @@
 # ADR-102: aeg vastuses: leid koos aastaga ja eri aastate allikad ajalises järjekorras
 
-Kuupäev: 07.10.2026. Seis: juhis töötab (dialoogi juhise versioon 29, #445); päris lehe kontroll tehtud (allpool); kontrolli põhjal kaks parandust (versioon 30, #446) ja üks täpsustus (versioon 31).
+Kuupäev: 07.10.2026. Seis: juhis töötab (dialoogi juhise versioon 29, #445); päris lehe kontroll tehtud (allpool); kontrolli põhjal kaks parandust (versioon 30, #446) ja üks täpsustus (versioon 31, #447); töötab versioon 31.
 
 ## Probleem
 
@@ -76,4 +76,14 @@ Kaks küsimust juhisega 30 (0,0081 USD plaani hinna järgi).
 
 Versioon 31 ütleb selle juhises välja ja nimetab välja, kust aasta tuleb.
 
-Kontrollimata: vene- ja ingliskeelne vastus, järjestikused küsimused samas vestluses. Versiooni 31 kontroll on üleandmisfailis.
+## Kontroll päris lehel (juhis 31)
+
+Kolm küsimust juhisega 31 (0,0145 USD plaani hinna järgi). Kogu kontroll kolme versiooniga: 10 pööret, 0,0452 USD (lagi 0,05).
+
+- **Kuidas on lähedaste hoolduskoormus aastate jooksul muutunud?** (sama küsimus kui versiooniga 29): aja järjekorras 2009, 2016, 2019, 2022, 2025, iga arv oma aastaga, ühtki „… järgi“ lauset; ütles, et mõõdikud ei ole võrreldavad ja et uusimad andmed on 2025. aasta seis.
+- **Kui palju raha saab järelhooldusel olev noor isiklike kulude katteks?** Summa tuli seekord kehtivast seadusest (viidatud sotsiaalhoolekande seaduse lõigud), juhendile toetus ainult korralduse kirjeldus. Aastat ei olnud ja ei pidanudki olema.
+- **Kui palju maksab hooldekodu koht ja kui suure osa peab inimene ise maksma?** Vastus ei andnud ühtki arvu: jaotus seadusest, hinnad ametliku lehe aadressiga.
+
+**Juhendi arvu reeglit (versioonid 30 ja 31) ei ole päris vastuses töötamas nähtud:** kahes katses võttis vastus arvu kehtivast seadusest või ei andnud arvu. See, et reegel on juhises, ei tõesta, et mudel seda järgib.
+
+Kontrollimata: vene- ja ingliskeelne vastus, järjestikused küsimused samas vestluses.
