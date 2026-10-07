@@ -1,6 +1,6 @@
 # ADR-102: aeg vastuses: leid koos aastaga ja eri aastate allikad ajalises järjekorras
 
-Kuupäev: 07.10.2026. Seis: juhis tehtud (dialoogi juhise versioon 29); päris lehe kontroll pärast juurutust on üleandmisfailis (S1.0).
+Kuupäev: 07.10.2026. Seis: juhis töötab (dialoogi juhise versioon 29, #445); päris lehe kontroll tehtud (allpool); kontrolli põhjal kaks parandust (versioon 30).
 
 ## Probleem
 
@@ -27,7 +27,8 @@ Dialoogi juhise lõppu lisandub ajareegel (`TIME_INSTRUCTIONS`, `lib/rag-v2/pilo
 4. **Ajaline järjekord.** Kui tõendites on sama asja kohta eri aastate allikad või kasutaja küsib, mis on muutunud, räägitakse see osa aja järjekorras: mis oli (aastaga), mis muutus ja millal, mis kehtib nüüd.
 5. **Mis kehtib nüüd,** tuleb uusimast tõendist või kehtivast õigusaktist. Vanem allikas ei kaalu üles uuemat ega seadust; kui need erinevad, öeldakse, kumb on hilisem.
 6. **Ajalugu ei mõelda välja.** Kaks ajahetke ei ole suundumus; kahe uuringu erinevus võib tulla sellest, kuidas kumbki tehti; aastaid, mida tõendid ei kata, ei täideta. Kui kõik tõendid on ühest ajast, ei tehta juurde varasemat ega hilisemat seisu. Praktiline küsimus „mida ma nüüd teen“ saab vastuse sellest, mis kehtib nüüd, mitte ajaloost.
-7. **Juhendi nõuanne aastat ei vaja.** Kui uuem allikas või kehtiv seadus ütleb teisiti kui juhend, otsustab hilisem ja vastus ütleb, et juhend on vanem.
+7. **Juhendi nõuanne aastat ei vaja, juhendi arv vajab** (versioon 30). Summa, määr, piir või tähtaeg, mille annab juhend või infomaterjal, öeldakse koos aastaga („… aasta seisuga …“), sest sellised arvud muutuvad. Kui uuem allikas või kehtiv seadus ütleb teisiti kui juhend, otsustab hilisem ja vastus ütleb, et juhend on vanem.
+8. **Aasta juures võib olla allika liik, mitte „… järgi“** (versioon 30). „… aasta uuringus …“ on lubatud, kui lugejal on seda vaja; kuju „raporti järgi“, „juhendi järgi“ jääb välja nagu seni (answer-11).
 
 Juhis on üldine: selles ei ole ühtki aastat, arvu, kohta ega teemat, mida vastus saaks faktina korrata (test kontrollib).
 
@@ -39,11 +40,31 @@ Juhis on üldine: selles ei ole ühtki aastat, arvu, kohta ega teemat, mida vast
 
 ## Kulu
 
-Juhis pikeneb umbes 460 tokeni võrra igas vestluspöördes (mõõdetud `tokenCount`-iga, test hoiab piiri 480). Juhise algus on päringute vahel sama, nii et suurem osa sellest tuleb vahemälust.
+Juhis pikeneb umbes 550 tokeni võrra igas vestluspöördes (versioon 29: 464, versioon 30: 551; mõõdetud `tokenCount`-iga, test hoiab piiri 560). Juhise algus on päringute vahel sama, nii et suurem osa sellest tuleb vahemälust.
 
 ## Kontroll
 
 - `tests/rag-v2-answer-prompt.test.mjs`: versioon 29, versioon 28 on loetavate hulgas, ajareegli laused ja koht juhises; ilma lisatud osadeta on dialoogi laiendus endiselt versiooni 23 tekst bait-baidilt.
 - `tests/rag-v2-web-address.test.mjs` ei seo enam juhise versiooni numbrit; see kuulub juhise enda testile.
 - Väljalase uuendab vestluse plaani uue juhise versiooniga ise (nagu versiooniga 28, #424).
-- **Mõõtmata enne juurutust:** kuidas vastused päriselt muutuvad. Kontroll päris lehel mõne küsimusega tehakse pärast juurutust (lagi 0,05 USD).
+
+## Kontroll päris lehel (07.10.2026 õhtu, juhis 29)
+
+Viis küsimust päris vestluses, igaüks uues vestluses; kõik pöörded jooksid juhisega 29. Kulu plaani hinna järgi 0,0226 USD (lagi 0,05).
+
+| Küsimus | Tõendite aastad | Mida vastus tegi |
+|---|---|---|
+| Kuidas on lähedaste hoolduskoormus aastate jooksul muutunud? | 2009, 2016, 2019, 2021, 2022, 2023, 2025 | Rääkis aja järjekorras (2009, 2014, 2020, 2022, 2025), iga arv oma aastaga; ütles, et uuringud küsisid eri moodi ja arvud ei ole ühtne suundumus |
+| Mis on lastekaitsetöös kümne aastaga muutunud? | 2016 (3), 2022 (2), 2024, 2026 (3) | 2016 seadus ja rakendusüksus, 2022 kirjeldatud arengud, 2024, 2026 kavandatav muudatus (jõustumine 2027, pöörde päeval veel jõustumata); ütles, et ülevaade ei ole ammendav |
+| Kui suur osa tööealistest puudega inimestest töötab? | 2026, 2009 | Andis 2024. aasta näitaja ja 2009. aastal avaldatud uuringu näitaja; ütles, et need ei ole võrreldavad ja et 2009. aasta tulemus ei näita praegust olukorda |
+| Kuidas saavad hakkama asendushoolduselt lahkuvad noored? | 2022 (7), 2023 (2) | Leiud kujul „2022. aastal avaldatud uuringus“; **2023. aasta juhendi kuu- ja aastasumma ilma aastata** |
+| Hooldan dementsusega ema, kuidas vastu pidada? | 2020, 2024, 2026 | Praktiline vastus, ajalugu ei lisandunud; üks lause kujul „2026. aasta aruandes kirjeldatud intervjuudes …“ |
+
+**Mida see näitab.**
+
+- Ajaline ülesehitus töötab, kui küsitakse muutuse kohta, ja praktiline küsimus ei muutu ajalooks.
+- Otsing tõi kahe muutuseküsimuse juurde lõike viiest kuni seitsmest eri aastast ilma eraldi ajalise sammuta. Valim on kaks küsimust: see ei tõesta, et nii on iga teemaga.
+- **Kaks viga, parandatud versioonis 30:** juhendi summa jäi aastata (juhis küsis aastat ainult uuringu, aruande ja artikli arvule); aasta tuli ühes vastuses kujul „2025. aastal avaldatud raporti järgi …“.
+- Vana leiu juurde hoiatust „võib olla muutunud“ 2022. aasta uuringu puhul ei lisandunud; aasta oli lauses. Seda ei ole muudetud.
+
+Kontrollimata: versiooni 30 mõju (kontroll pärast juurutust üleandmisfailis), vene- ja ingliskeelne vastus, järjestikused küsimused samas vestluses.
