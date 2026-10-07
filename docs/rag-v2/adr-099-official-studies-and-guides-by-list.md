@@ -154,7 +154,7 @@ Kontrollküsimused küsivad otse uue dokumendi järele. Mõõtmata on, kas 17 42
 
 - **Uudiskirja dokumendid, mis ootavad** (loend `Andmebaasi/register/newsletter_documents.json`): 2 vastuvõtu kinni peetud uuringut (liiga paljudel lehekülgedel puudub tekstikiht), 9 ingliskeelset, 6 tekstikihita, 2 liiga suurt, 13 veebilehena kogutud artiklit (lehtede korjaja tee, ADR-095). Koguja aruandes on veel 12 kättesaamata PDF-i ja 9 muus vormingus allikat.
 - **Käivitusskript** (`scripts/rag-v2-corpus-run.sh`) ei jätka pärast plaani keeldumist: hoidla pea on siis juba tõstetud ja tühi väljundkaust jääb ette.
-- **Serveri ruumikulu lõigu kohta** (umbes 380 KB) on RAG-i kasvu tegelik piir; hoidla ja andmebaasi kordused ning JSON-vektorid on eraldi töö.
+- **Serveri ruumikulu lõigu kohta** (umbes 380 KB) on RAG-i kasvu tegelik piir; hoidla ja andmebaasi kordused ning JSON-vektorid on eraldi töö. Mõõtmine ja viis ettepanekut (kokku umbes 16 GB): [ADR-101](adr-101-storage-per-passage.md); ükski ei ole tehtud.
 - **LiveKiti kõnesalvestus** on serverist maas, kuni see tagasi pannakse.
 - Kolmel v65 dokumendil puudub metaandmetes aasta.
 - **Ülejäänud loendid:** ministeeriumi sotsiaalvaldkonna vanemad uuringud (122), töövaldkond (65), uuema tabeli tervisevälised jäägid; ameti uuringud ja analüüsid (68). Need on eraldi otsus ja ost.
