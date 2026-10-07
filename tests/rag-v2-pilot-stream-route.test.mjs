@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { pilotPost } from '../lib/chat/m4PilotServer.js';
+import { pilotPost, pilotRole } from '../lib/chat/m4PilotServer.js';
 import { createSSEReader } from '../components/chat/utils/sse.js';
 
 // ADR-040: the real POST handler with local test adapters for the authentication, the RAG session, the service and
@@ -15,6 +15,28 @@ const answer = { kind: 'grounded', blocks: [{ text: 'Vaide esitad 30 päeva jook
 const completed = question => ({ id: 't1', state: 'completed', mode: 'real', question, answer, sources: [{ ref: 'S1', title: 'Haldusmenetluse seadus', pages: [1], used: true }] });
 const events = async response => { const out = []; for await (const ev of createSSEReader(response.body)) out.push({ event: ev.event, data: JSON.parse(ev.data) }); return out; };
 const gate = () => { let open; const promise = new Promise(resolve => { open = resolve; }); return { promise, open }; };
+
+test('ADR-107: the turn carries the role of the session, an administrator the chosen view role, and never a role of the request body', async () => {
+  const cookies = value => ({ cookies: { get: name => (name === 'sotsiaalai_admin_view_role' && value ? { value } : undefined) } });
+  // The platform's roles by their model names; an administrator without a chosen view answers as a specialist.
+  assert.deepEqual([pilotRole({ user: { id: 'u', role: 'SOCIAL_WORKER' } }, cookies()), pilotRole({ user: { id: 'u', role: 'CLIENT' } }, cookies()), pilotRole({ user: { id: 'u', role: 'SERVICE_PROVIDER' } }, cookies())],
+    ['specialist', 'help_seeker', 'service_provider']);
+  assert.deepEqual([pilotRole({ user: { id: 'a', role: 'ADMIN', isAdmin: true } }, cookies()), pilotRole({ user: { id: 'a', role: 'ADMIN', isAdmin: true } }, cookies('CLIENT')),
+    pilotRole({ user: { id: 'a', role: 'ADMIN', isAdmin: true } }, cookies('SERVICE_PROVIDER'))], ['specialist', 'help_seeker', 'service_provider']);
+  // The view cookie is an administrator's: for anyone else it changes nothing. Without a session there is no role.
+  assert.equal(pilotRole({ user: { id: 'u', role: 'CLIENT' } }, cookies('SOCIAL_WORKER')), 'help_seeker');
+  assert.equal(pilotRole(undefined, cookies('SOCIAL_WORKER')), null);
+  // The handler: the body's own "userRole" is dropped and the session's goes to the service.
+  const seen = [];
+  const session = async () => ({ config: {}, store: {}, service: { run: async (user, input) => { seen.push(input.userRole); return completed(input.question); } } });
+  const post = (auth, body) => pilotPost(new Request('http://localhost:3000/api/chat', { method: 'POST',
+    headers: { 'content-type': 'application/json', origin: new URL(process.env.NEXTAUTH_URL || 'http://localhost:3000').origin, 'sec-fetch-site': 'same-origin', 'x-rag-pilot-format': 'chat' },
+    body: JSON.stringify({ question: 'Küsimus?', convId: 'synthetic-conv', clientTurnKey: 'synthetic-key', contextMode: 'new', ...body }) }), { authenticate: async () => auth, session });
+  assert.equal((await post({ userId: 'u', session: { user: { id: 'u', role: 'SOCIAL_WORKER' } } }, { userRole: 'help_seeker' })).status, 200);
+  assert.equal((await post({ userId: 'u', session: { user: { id: 'u', role: 'CLIENT' } } }, { userRole: 'specialist' })).status, 200);
+  assert.equal((await post({ userId: 'u' }, { userRole: 'specialist' })).status, 200);
+  assert.deepEqual(seen, ['specialist', 'help_seeker', undefined]);
+});
 
 test('the answer streams its provisional text, then one done event with the checked reply', async () => {
   const session = async () => ({ config: {}, store: {}, service: { run: async (user, input, options) => {

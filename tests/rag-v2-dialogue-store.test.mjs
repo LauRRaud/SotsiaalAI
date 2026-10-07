@@ -84,6 +84,19 @@ test('M4-C real DB: four turns retain first circumstances; old S1 is dialogue on
 const userFact = (topic, turn, quote) => ({ topic, subject: 'self', status: 'current', support: [{ turn, quote }], superseded_by: null });
 const dialogueState = facts => ({ facts, needs: [], unknowns: [], region: { id: null, status: 'unknown', support: [] }, period: null, language_hint: 'et' });
 
+test('ADR-107 real DB: the turn keeps the signed-in role and the answer model reads it; a role outside the list is refused', async t => {
+  const f = await fixture(t);
+  const first = await f.run('Olen valla sotsiaaltöötaja. Kust ma alustan?', 'new', { userRole: 'specialist' });
+  const row = await f.row(first.id), sent = JSON.parse(f.calls.find(call => call.stage === 'answer').body.input[0].content);
+  assert.deepEqual([row.payload.userRole, row.payload.dialogue.userRole, sent.dialogue.userRole], ['specialist', 'specialist', 'specialist']);
+  // A turn without a role says nothing of it, as before.
+  const second = await f.run('Aga edasi?'), plain = await f.row(second.id);
+  assert.deepEqual([plain.payload.userRole, 'userRole' in plain.payload.dialogue], [undefined, false]);
+  await assert.rejects(f.run('Kes ma olen?', 'same', { userRole: 'admin' }), { code: 'invalid_user_role' });
+  // "role" itself is still no field of a turn.
+  await assert.rejects(f.run('Kes ma olen?', 'same', { role: 'specialist' }), { code: 'invalid_shape' });
+});
+
 test('dialogue state DB: one call per turn, old answer selection keeps newer corrections, topic/person switches clear state', async t => {
   const initial = dialogueState([userFact('living', 1, 'Elan üksi.'), userFact('work', 1, 'Tööd ei ole.')]);
   let draft = initial;
