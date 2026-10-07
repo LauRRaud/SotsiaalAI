@@ -1,6 +1,6 @@
 # Andmebaasi allikad ja failiregister
 
-Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masinloetav faililoend koos SHA-256 kontrollsummadega on [REGISTER.json](REGISTER.json).
+Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masinloetav faililoend koos SHA-256 kontrollsummadega on [REGISTER.json](REGISTER.json). Mis sellest korpuses (RAG-is) on ja mis on korpuses väljaspool repot, näitavad jaotised „RAG-i seis“ ja „Korpuse allikad väljaspool repot“.
 
 | Kaust | Allikafaile | Faile kokku | Kasutus |
 |---|---:|---:|---|
@@ -8,12 +8,105 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | juhendid_ja_uuringud | 185 | 370 | Unikaalsed PDF-id; JSON säilitab kohaliku ja serveri metaandmevariandid. |
 | KOV | 78 | 234 | 78 KOV-i põhipaketti koos metaandmete ja allikaloenditega. |
 | kontaktid | 0 | 10 | Kontaktide otsingumaterjal; kattuvus KOV-pakettidega vajab ühendamist. |
-| organisatsioonid | 1 | 3 | Organisatsiooni korjatud sisu ja allikad. |
+| organisatsioonid | 1 | 3 | Ühe organisatsiooni (Astangu) käsitsi koostatud pakett: sisu ja allikad. Korpuses seda ei ole. Organisatsioonide enda veebilehed on korpuses, kuid väljaspool repot (vt „RAG-i seis“). |
 | oigusaktid | 582 | 596 | XML-aktid, sh eri redaktsioonid ja omavalitsuste teised kehtivad sotsiaalaktid (ADR-058); kehtivus tuleb vastuvõtul kontrollida. Aktide lisadest tuletatud allikad (`lisad/`): kaks tabelit (ADR-050) ja kaksteist omavalitsuse lisa teksti (ADR-053); iga tuletatud allikas nimetab oma akti redaktsiooni. Üks akt on allikas ainult nimetatud paragrahvide ulatuses (registrikirje väli `xml_sections`, ADR-076): `103072026024.xml`, 2026. aasta riigieelarve seaduse § 2; fail ise on Riigi Teataja algfail. |
 | teadmised | 0 | 7 | Allikapõhised teadmiskaardid (tingimused, erandid, mõisted ja nende seosed) valitud allikatele; iga fail on seotud oma allika räsiga (ADR-054). |
-| register | 0 | 5 | Kavandatud allikate register ja korjatavate veebilehtede nimekirjad (`web_pages.json` ametlikud juhislehed, `web_pages_vendors.json` abivahendite müüjate lehed, `web_pages_organisations.json` puuetega inimeste organisatsioonide lehed; ADR-095), mitte teadmistekst. |
+| register | 0 | 5 | Kavandatud allikate register ja korjatavate veebilehtede nimekirjad (`web_pages.json` ametlikud juhislehed, `web_pages_vendors.json` abivahendite müüjate lehed, `web_pages_organisations.json` puuetega inimeste organisatsioonide lehed koos mustriga, mis pealkirja järgi välja jääb; ADR-095), mitte teadmistekst. Müüjate ja organisatsioonide lehtede tekste repos ei ole; mis neist korpuses on, näitab „RAG-i seis“. |
 | veebilehed | 31 | 62 | Ametlikud juhislehed, korjatud skriptiga `scripts/rag-v2-web-pages.mjs` (ADR-095): lehe sisuosa ilma saidi menüüde ja isikute kontaktideta, metaandmetes aadress, kontrolli kuupäev ja viidatud dokumendid. |
 | taastatud_allikad | 0 | 22 | Serveri vanast indeksist taastatud tekst. Enne importi võrrelda põhipakettidega. |
+
+<!-- corpus-state:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
+## RAG-i seis: korpus v64
+
+Seis 07.10.2026: korpus **v64** (indeks `7d209c63`), **8 001 dokumenti**, 45 596 lõiku. Arvud on loetud korpuse hoidlast ja poliitikast skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti. Üks repo fail võib anda mitu dokumenti (omavalitsuse pakett annab teenuste, vormide ja kontaktide dokumendid), seepärast ei võrdu dokumentide arvud ülal olevate failide arvudega. `REGISTER.json` näitab iga allikafaili juures, mitu korpuse dokumenti see annab (`corpus_documents`).
+
+| Kust | Dokumente | Allikaliigid |
+|---|---:|---|
+| `KOV` | 4498 | kov_service_info 3195, application_form 845, official_contact 431, web_form 17, pdf_form 6, official_form 4 |
+| `ajakiri_sotsiaaltoo` | 892 | file 849, web 43 |
+| `oigusaktid` | 537 | legal_act 537 |
+| `juhendid_ja_uuringud` | 171 | information_material 81, research_report 46, official_guideline 38, policy_analysis 6 |
+| `veebilehed` | 31 | web_page 30, research_report 1 |
+| väljaspool repot | 1872 | municipal_contact 691, organization_page 521, official_contact 376, municipal_contact_directory 140, registry 93, vendor_page 51 |
+
+### Korpuses, kuid väljaspool repot
+
+Neid allikaid repos ei hoita. Koopiad on korpuse hoidlas (sülearvuti põhikausta `tmp/` all, mida git ei jälgi, ja serveris). Lehtede loend on faili lõpus jaotises „Korpuse allikad väljaspool repot“.
+
+| Allikas | Dokumente | Millest tehakse | Miks väljaspool repot |
+|---|---:|---|---|
+| Omavalitsuste kontaktid ja kontaktikataloogid | 1207 | rakenduse kontaktiregistrist skriptiga `scripts/rag-v2-contact-export.mjs` (ADR-085, ADR-086) | isikute nimed, telefoninumbrid ja e-posti aadressid |
+| Abivahendite müügi- ja üüripunktide lehed | 93 | Sotsiaalkindlustusameti kaarditabelist skriptiga `scripts/rag-v2-assistive-points.mjs`, iga omavalitsuse kohta üks leht (ADR-096) | punktide telefoninumbrid; leht tehakse tabelist uuesti |
+| Abivahendite müüjate lehed | 51 (18 väljaandjat) | nimekiri `register/web_pages_vendors.json`, korjaja `scripts/rag-v2-web-pages.mjs` (ADR-095) | ettevõtete enda tekstid ja telefoninumbrid |
+| Puuetega inimeste organisatsioonide lehed | 521 (43 väljaandjat) | nimekiri `register/web_pages_organisations.json`, korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-095) | organisatsioonide enda tekstid |
+
+### Repo allikafailid, mida korpuses ei ole (60)
+
+<details><summary>Failide loend</summary>
+
+- `juhendid_ja_uuringud/sotsiaalkindlustusamet_seksuaalvagivalla_kriisiabikeskusi_tutvustav_voldik_est.pdf`
+- `juhendid_ja_uuringud/epikoda_uro_puuetega_inimeste_oiguste_konventsioon_ja_fakultatiivpro.pdf`
+- `juhendid_ja_uuringud/oiguskantsler_lapse_oigused.pdf`
+- `juhendid_ja_uuringud/sotsiaalkindlustusamet_evaluation_of_the_impact_of_the_marac_networking_model.pdf`
+- `juhendid_ja_uuringud/sotsiaalkindlustusamet_riskihindamine_lahisuhtevagivalla_juhtumites_tervishoiutoota.pdf`
+- `juhendid_ja_uuringud/sotsiaalkindlustusamet_rus.pdf`
+- `juhendid_ja_uuringud/sotsiaalkindlustusamet_seksuaalivakivallan_kriisikeskukset_fin.pdf`
+- `juhendid_ja_uuringud/sotsiaalkindlustusamet_seksuaalsest_ahistamisest_vaba_ooelu_juhend.pdf`
+- `juhendid_ja_uuringud/sotsiaalkindlustusamet_sexual_assault_crisis_centre_eng.pdf`
+- `juhendid_ja_uuringud/sotsiaalkindlustusamet_ua.pdf`
+- `juhendid_ja_uuringud/tarkvanem_tooleht_rahunemispaus.pdf`
+- `juhendid_ja_uuringud/tarkvanem_tooleht_suhtekonto.pdf`
+- `juhendid_ja_uuringud/vordoigusvolinik_arvamus_toovoimetuslehe_teemal.pdf`
+- `juhendid_ja_uuringud/sotsiaalkindlustusamet_puue_ja_hoolekanne_ska_aastaraamatu_pdf_osa_2025-124cbc105c.pdf`
+- `organisatsioonid/astangu.json`
+- `oigusaktid/401112019012.xml`
+- `oigusaktid/402022024018.xml`
+- `oigusaktid/402062023117.xml`
+- `oigusaktid/403042025006.xml`
+- `oigusaktid/403042025042.xml`
+- `oigusaktid/403102019005.xml`
+- `oigusaktid/404052016003.xml`
+- `oigusaktid/404122020026.xml`
+- `oigusaktid/405022022004.xml`
+- `oigusaktid/405042018002.xml`
+- `oigusaktid/405042025021.xml`
+- `oigusaktid/406022026039.xml`
+- `oigusaktid/406032025001.xml`
+- `oigusaktid/406062023011.xml`
+- `oigusaktid/406102021036.xml`
+- `oigusaktid/407052021021.xml`
+- `oigusaktid/409052018051.xml`
+- `oigusaktid/410042018010.xml`
+- `oigusaktid/412062018006.xml`
+- `oigusaktid/416022022003.xml`
+- `oigusaktid/418112020001.xml`
+- `oigusaktid/418122021013.xml`
+- `oigusaktid/420112024006.xml`
+- `oigusaktid/421062023039.xml`
+- `oigusaktid/423112023018.xml`
+- `oigusaktid/425032026041.xml`
+- `oigusaktid/425042025025.xml`
+- `oigusaktid/425092025018.xml`
+- `oigusaktid/428042022001.xml`
+- `oigusaktid/429082017013.xml`
+- `oigusaktid/429122020017.xml`
+- `oigusaktid/429122022021.xml`
+- `oigusaktid/107052025017-0c660ae84a.xml`
+- `oigusaktid/109042026003-c32621b97f.xml`
+- `oigusaktid/129082025009-2df81da69b.xml`
+- `oigusaktid/130122025036-cb751d4e16.xml`
+- `oigusaktid/131122024023-ebfb6d1124.xml`
+- `oigusaktid/410092025031-4add815064.xml`
+- `oigusaktid/410092025033-4e1a686799.xml`
+- `oigusaktid/412042025007-d607c4383a.xml`
+- `oigusaktid/412042025015-cc7e755330.xml`
+- `oigusaktid/413022026026-16d4366028.xml`
+- `oigusaktid/425042025047-0a444c65d3.xml`
+- `oigusaktid/426022025038-f9529b7eb7.xml`
+- `oigusaktid/428122024033-efb23621fc.xml`
+
+</details>
+<!-- corpus-state:end -->
 
 ## Kasutamine
 
@@ -1854,3 +1947,771 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | Infomaterjalid hoolekandeasutustele | [veebilehed/terviseamet/terviseamet_terviseamet_infomaterjalid_hoolekandeasutustele.html](<veebilehed/terviseamet/terviseamet_terviseamet_infomaterjalid_hoolekandeasutustele.html>) |
 | Sotsiaalasutuste järelevalve | [veebilehed/terviseamet/terviseamet_terviseamet_sotsiaalasutuste_jarelevalve.html](<veebilehed/terviseamet/terviseamet_terviseamet_sotsiaalasutuste_jarelevalve.html>) |
 | Tallinna kontaktid | [kontaktid/tallinn/tallinn.contacts.json](kontaktid/tallinn/tallinn.contacts.json) |
+
+<!-- corpus-outside:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
+## Korpuse allikad väljaspool repot
+
+Korpus v64, 07.10.2026. Kontaktide kohta on ainult arvud: kontakti pealkiri on isiku nimi ja seda siia ei kirjutata.
+
+### Omavalitsuste kontaktid ja kontaktikataloogid (1207)
+
+| Omavalitsus | Dokumente |
+|---|---:|
+| Alutaguse vald | 9 |
+| Anija vald | 9 |
+| Antsla vald | 10 |
+| Elva vald | 25 |
+| Haapsalu linn | 10 |
+| Haljala vald | 9 |
+| Harku vald | 19 |
+| Hiiumaa vald | 11 |
+| Häädemeeste vald | 8 |
+| Jõelähtme vald | 7 |
+| Jõgeva vald | 17 |
+| Jõhvi vald | 29 |
+| Järva vald | 17 |
+| Kadrina vald | 6 |
+| Kambja vald | 17 |
+| Kanepi vald | 11 |
+| Kastre vald | 16 |
+| Kehtna vald | 8 |
+| Keila linn | 10 |
+| Kihnu vald | 2 |
+| Kiili vald | 8 |
+| Kohila vald | 6 |
+| Kohtla-Järve linn | 30 |
+| Kose vald | 9 |
+| Kuusalu vald | 9 |
+| Loksa linn | 5 |
+| Luunja vald | 8 |
+| Lääne-Harju vald | 18 |
+| Lääne-Nigula vald | 10 |
+| Lääneranna vald | 7 |
+| Lüganuse vald | 9 |
+| Maardu linn | 11 |
+| Muhu vald | 3 |
+| Mulgi vald | 8 |
+| Mustvee vald | 8 |
+| Märjamaa vald | 10 |
+| Narva linn | 38 |
+| Narva-Jõesuu linn | 9 |
+| Nõo vald | 9 |
+| Otepää vald | 18 |
+| Paide linn | 21 |
+| Peipsiääre vald | 13 |
+| Põhja-Pärnumaa vald | 11 |
+| Põhja-Sakala vald | 10 |
+| Põltsamaa vald | 12 |
+| Põlva vald | 11 |
+| Pärnu linn | 49 |
+| Raasiku vald | 7 |
+| Rae vald | 17 |
+| Rakvere linn | 13 |
+| Rakvere vald | 6 |
+| Rapla vald | 11 |
+| Ruhnu vald | 2 |
+| Rõuge vald | 13 |
+| Räpina vald | 7 |
+| Saarde vald | 12 |
+| Saaremaa vald | 40 |
+| Saku vald | 9 |
+| Saue vald | 8 |
+| Setomaa vald | 12 |
+| Sillamäe linn | 8 |
+| Tallinna linn | 133 |
+| Tapa vald | 12 |
+| Tartu linn | 78 |
+| Tartu vald | 11 |
+| Tori vald | 16 |
+| Tõrva vald | 16 |
+| Türi vald | 18 |
+| Valga vald | 44 |
+| Viimsi vald | 13 |
+| Viljandi linn | 21 |
+| Viljandi vald | 18 |
+| Vinni vald | 9 |
+| Viru-Nigula vald | 7 |
+| Vormsi vald | 2 |
+| Võru linn | 12 |
+| Võru vald | 22 |
+
+### Abivahendite müügi- ja üüripunktide lehed (93)
+
+| Leht |
+|---|
+| Abivahendite müügi- ja üüripunktid: Alutaguse vald |
+| Abivahendite müügi- ja üüripunktid: Anija vald |
+| Abivahendite müügi- ja üüripunktid: Antsla vald |
+| Abivahendite müügi- ja üüripunktid: Elva vald |
+| Abivahendite müügi- ja üüripunktid: Haapsalu linn |
+| Abivahendite müügi- ja üüripunktid: Haljala vald |
+| Abivahendite müügi- ja üüripunktid: Harju maakond |
+| Abivahendite müügi- ja üüripunktid: Harku vald |
+| Abivahendite müügi- ja üüripunktid: Hiiu maakond |
+| Abivahendite müügi- ja üüripunktid: Hiiumaa vald |
+| Abivahendite müügi- ja üüripunktid: Häädemeeste vald |
+| Abivahendite müügi- ja üüripunktid: Ida-Viru maakond |
+| Abivahendite müügi- ja üüripunktid: Jõelähtme vald |
+| Abivahendite müügi- ja üüripunktid: Jõgeva maakond |
+| Abivahendite müügi- ja üüripunktid: Jõgeva vald |
+| Abivahendite müügi- ja üüripunktid: Jõhvi vald |
+| Abivahendite müügi- ja üüripunktid: Järva maakond |
+| Abivahendite müügi- ja üüripunktid: Järva vald |
+| Abivahendite müügi- ja üüripunktid: Kadrina vald |
+| Abivahendite müügi- ja üüripunktid: Kambja vald |
+| Abivahendite müügi- ja üüripunktid: Kanepi vald |
+| Abivahendite müügi- ja üüripunktid: Kastre vald |
+| Abivahendite müügi- ja üüripunktid: Kehtna vald |
+| Abivahendite müügi- ja üüripunktid: Keila linn |
+| Abivahendite müügi- ja üüripunktid: Kihnu vald |
+| Abivahendite müügi- ja üüripunktid: Kiili vald |
+| Abivahendite müügi- ja üüripunktid: Kohila vald |
+| Abivahendite müügi- ja üüripunktid: Kohtla-Järve linn |
+| Abivahendite müügi- ja üüripunktid: Kose vald |
+| Abivahendite müügi- ja üüripunktid: Kuusalu vald |
+| Abivahendite müügi- ja üüripunktid: Loksa linn |
+| Abivahendite müügi- ja üüripunktid: Luunja vald |
+| Abivahendite müügi- ja üüripunktid: Lääne maakond |
+| Abivahendite müügi- ja üüripunktid: Lääne-Harju vald |
+| Abivahendite müügi- ja üüripunktid: Lääne-Nigula vald |
+| Abivahendite müügi- ja üüripunktid: Lääne-Viru maakond |
+| Abivahendite müügi- ja üüripunktid: Lääneranna vald |
+| Abivahendite müügi- ja üüripunktid: Lüganuse vald |
+| Abivahendite müügi- ja üüripunktid: Maardu linn |
+| Abivahendite müügi- ja üüripunktid: Muhu vald |
+| Abivahendite müügi- ja üüripunktid: Mulgi vald |
+| Abivahendite müügi- ja üüripunktid: Mustvee vald |
+| Abivahendite müügi- ja üüripunktid: Märjamaa vald |
+| Abivahendite müügi- ja üüripunktid: Narva linn |
+| Abivahendite müügi- ja üüripunktid: Narva-Jõesuu linn |
+| Abivahendite müügi- ja üüripunktid: Nõo vald |
+| Abivahendite müügi- ja üüripunktid: Otepää vald |
+| Abivahendite müügi- ja üüripunktid: Paide linn |
+| Abivahendite müügi- ja üüripunktid: Peipsiääre vald |
+| Abivahendite müügi- ja üüripunktid: Põhja-Pärnumaa vald |
+| Abivahendite müügi- ja üüripunktid: Põhja-Sakala vald |
+| Abivahendite müügi- ja üüripunktid: Põltsamaa vald |
+| Abivahendite müügi- ja üüripunktid: Põlva maakond |
+| Abivahendite müügi- ja üüripunktid: Põlva vald |
+| Abivahendite müügi- ja üüripunktid: Pärnu linn |
+| Abivahendite müügi- ja üüripunktid: Pärnu maakond |
+| Abivahendite müügi- ja üüripunktid: Raasiku vald |
+| Abivahendite müügi- ja üüripunktid: Rae vald |
+| Abivahendite müügi- ja üüripunktid: Rakvere linn |
+| Abivahendite müügi- ja üüripunktid: Rakvere vald |
+| Abivahendite müügi- ja üüripunktid: Rapla maakond |
+| Abivahendite müügi- ja üüripunktid: Rapla vald |
+| Abivahendite müügi- ja üüripunktid: Ruhnu vald |
+| Abivahendite müügi- ja üüripunktid: Rõuge vald |
+| Abivahendite müügi- ja üüripunktid: Räpina vald |
+| Abivahendite müügi- ja üüripunktid: Saarde vald |
+| Abivahendite müügi- ja üüripunktid: Saare maakond |
+| Abivahendite müügi- ja üüripunktid: Saaremaa vald |
+| Abivahendite müügi- ja üüripunktid: Saku vald |
+| Abivahendite müügi- ja üüripunktid: Saue vald |
+| Abivahendite müügi- ja üüripunktid: Setomaa vald |
+| Abivahendite müügi- ja üüripunktid: Sillamäe linn |
+| Abivahendite müügi- ja üüripunktid: Tallinna linn |
+| Abivahendite müügi- ja üüripunktid: Tapa vald |
+| Abivahendite müügi- ja üüripunktid: Tartu linn |
+| Abivahendite müügi- ja üüripunktid: Tartu maakond |
+| Abivahendite müügi- ja üüripunktid: Tartu vald |
+| Abivahendite müügi- ja üüripunktid: Tori vald |
+| Abivahendite müügi- ja üüripunktid: Tõrva vald |
+| Abivahendite müügi- ja üüripunktid: Türi vald |
+| Abivahendite müügi- ja üüripunktid: Valga maakond |
+| Abivahendite müügi- ja üüripunktid: Valga vald |
+| Abivahendite müügi- ja üüripunktid: Viimsi vald |
+| Abivahendite müügi- ja üüripunktid: Viljandi linn |
+| Abivahendite müügi- ja üüripunktid: Viljandi maakond |
+| Abivahendite müügi- ja üüripunktid: Viljandi vald |
+| Abivahendite müügi- ja üüripunktid: Vinni vald |
+| Abivahendite müügi- ja üüripunktid: Viru-Nigula vald |
+| Abivahendite müügi- ja üüripunktid: Vormsi vald |
+| Abivahendite müügi- ja üüripunktid: Võru linn |
+| Abivahendite müügi- ja üüripunktid: Võru maakond |
+| Abivahendite müügi- ja üüripunktid: Võru vald |
+| Abivahendite müügi- ja üüripunktid: Väike-Maarja vald |
+
+### Abivahendite müüjate lehed (51)
+
+| Väljaandja | Leht | Aadress |
+|---|---|---|
+| Audiomed | Broneeri kuulmisuuringu aeg | <https://kuulmiseni.ee/> |
+| Audiomed | Kuuldeaparaatide ostmine riikliku soodustusega | <https://kuulmiseni.ee/patsientidele/kuuldeaparaatide-ostmine-riikliku-soodustusega> |
+| E-ratastoolid | E-ratastoolid | <https://www.e-ratastoolid.eu/> |
+| E-ratastoolid | Remont ja hooldus | <https://www.e-ratastoolid.eu/remont-ja-hooldus> |
+| Eesti Nägemistervisekeskus | Abivahendid | <https://silmatervis.ee/abivahendid/> |
+| Eesti Ortoosikeskus | Eesti Ortoosikeskus | <https://www.ortoosikeskus.ee/> |
+| Egero | Ettevõttest | <https://www.invaabivahendid.ee/ettevottest> |
+| INVAGO | INVAGO | <https://invago.ee/> |
+| INVAGO | LAENUTUS | <https://invago.ee/teenused/laenutus> |
+| INVAGO | MEIST | <https://invago.ee/ettevottest> |
+| INVAGO | SOODUSTUS | <https://invago.ee/kasulikku/riigisoodustuse-info> |
+| INVAGO | TRANSPORT | <https://invago.ee/teenused/transport> |
+| Invaru | Invaru toetab | <https://www.invaru.ee/> |
+| Invaru | Abivahendi tõend | <https://www.invaru.ee/ee/abivahendi-toend> |
+| Invaru | Esindused ja kontaktid | <https://www.invaru.ee/ee/invaru-esindused> |
+| Invaru | Ettevõttest | <https://www.invaru.ee/ee/ettevottest> |
+| Invaru | Remont | <https://www.invaru.ee/ee/remont> |
+| Invaru | Üürimine | <https://www.invaru.ee/ee/abivahendi-uurimine> |
+| Invaru | Meil on häid uudiseid! Invaru e-poes saab abivahendeid osta nüüd riikliku soodustusega! | <https://www.invaru.ee/ee/meil-on-haid-uudiseid-invaru-e-poes-saab-abivahendeid-osta-nuud-riikliku-soodustusega> |
+| ITAK | ITAK Terviseabivahendid | <https://www.itak.ee/> |
+| ITAK | ABIVAHENDITE LAENUTAMINE | <https://www.itak.ee/invaabivahendite-laenutus> |
+| ITAK | ABIVAHENDITE REMONT JA HOOLDUS | <https://www.itak.ee/invaabivahendite-remont-ja-hooldus> |
+| Jalaexpert | Vastuvõtt | <https://jalaexpert.ee/vastuvott> |
+| Jalakabinet | Individuaalsed sisetallad lastele ja täiskasvanutele | <https://jalakabinet.ee/individuaalsed-sisetallad> |
+| Jalakabinet | Ortoosid, ravijalanõud, geeltooted, kompressioonsukad ja -sokid | <https://jalakabinet.ee/> |
+| Jalakabinet | Soodustused | <https://jalakabinet.ee/soodustused> |
+| Kuuldeaparaadid OÜ | Kontakt | <https://kuuldeaparaadid.ee/kontakt> |
+| Kuuldeaparaadid OÜ | Naudi enda ümbritsevat keskkonda | <https://kuuldeaparaadid.ee/> |
+| Kuulmisrehabilitatsiooni Keskus | Ettevõttest | <https://heakuulmine.ee/ettevottest> |
+| Kuulmisrehabilitatsiooni Keskus | Kuuldeaparaadi soetamine riigipoolse toetusega | <https://heakuulmine.ee/kuuldeaparaadi-soetamine-riigipoolse-toetusega> |
+| Kuulmisrehabilitatsiooni Keskus | Meie eesmärk on luua maailm, kus kuulmislangus ei piira suhtlemist ega elurõõmu. | <https://heakuulmine.ee/> |
+| Kuulmisrehabilitatsiooni Keskus | Teenused | <https://heakuulmine.ee/teenused> |
+| Mediq Eesti | Mediq Eesti | <https://mediq.ee/> |
+| Mediq Eesti | Mediq Eesti OÜ | <https://mediq.ee/et/meist> |
+| Ortopeediakeskus | Kontakt | <https://ortopeediakeskus.ee/> |
+| Ortopeediakeskus | Vastuvõtu ajad | <https://ortopeediakeskus.ee/vastuvotu-ajad> |
+| Rol-Lift | Firmast/kontakt | <https://www.rol-lift.ee/et/> |
+| Silmalaegas | Silmalaegas | <https://silmalaegas.laegas.ee/> |
+| Teresa Abivahendikeskus | Teresa Abivahendikeskus | <https://teresa.ee/> |
+| Teresa Abivahendikeskus | Ettevõttest | <https://teresa.ee/ettevottest> |
+| Teresa Abivahendikeskus | Muretu ja aktiivne igapäev: Kuidas leida sobivad mähkmed ning kasutada riigisoodustust? | <https://teresa.ee/muretu-ja-aktiivne-igapaev-kuidas-leida-sobivad-mahkmed-ning-kasutada-riigisoodustust> |
+| Teresa Abivahendikeskus | Rent | <https://teresa.ee/rent> |
+| Teresa Abivahendikeskus | Teenused | <https://teresa.ee/teenused/abivahendite-hooldus-ja-remont> |
+| Tervise Abi | Tervise Abi | <https://terviseabi.ee/> |
+| Tervise Abi | Abivahendite rent | <https://terviseabi.ee/teenused/abivahendite-rent> |
+| Tervise Abi | Abivahendite rent | <https://terviseabi.ee/abivahendite-rent> |
+| Tervise Abi | Häirenupu täisteenus | <https://terviseabi.ee/hairenupu-taisteenus> |
+| Tervise Abi | Kauplused | <https://terviseabi.ee/kauplused> |
+| Tervise Abi | Koolitused | <https://terviseabi.ee/teenused/koolitused> |
+| Tervise Abi | Kuulmisabivahendid, häiresüsteemid ja lisad | <https://terviseabi.ee/tootekategooria/kuulmisabivahendid/> |
+| Tervise Abi | Tallinna sotsiaalvalveteenus | <https://terviseabi.ee/teenused/sotsiaalvalveteenus> |
+
+### Puuetega inimeste organisatsioonide lehed (521)
+
+| Väljaandja | Leht | Aadress |
+|---|---|---|
+| Dementsuse Kompetentsikeskus | Dementsuse Kompetentsikeskus | <https://dementsus.ee/dementsuse-kompetentsikeskus> |
+| Dementsuse Kompetentsikeskus | Abivahendid | <https://dementsus.ee/abivahendid> |
+| Dementsuse Kompetentsikeskus | Dementsus | <https://dementsus.ee/dementsus> |
+| Dementsuse Kompetentsikeskus | Dementsus õppekavades | <https://dementsus.ee/dementsus-oppekavades> |
+| Dementsuse Kompetentsikeskus | Dementsuse diagnoosimine | <https://dementsus.ee/dementsuse-diagnoosimine> |
+| Dementsuse Kompetentsikeskus | Dementsuse Sõprade liikumine | <https://dementsus.ee/dementsuse-soprade-liikumine> |
+| Dementsuse Kompetentsikeskus | Dementsuse sümptomid ja staadiumid | <https://dementsus.ee/dementsuse-sumptomid> |
+| Dementsuse Kompetentsikeskus | Dementsusesõbralik asutus | <https://dementsus.ee/dementsusesobralik-asutus> |
+| Dementsuse Kompetentsikeskus | Dementsusesõbralik ühiskond | <https://dementsus.ee/dementsusesobralik-uhiskond> |
+| Dementsuse Kompetentsikeskus | Eneseabi | <https://dementsus.ee/eneseabi> |
+| Dementsuse Kompetentsikeskus | Hooldekodu | <https://dementsus.ee/hooldekodu> |
+| Dementsuse Kompetentsikeskus | Info ja usaldusliin 644 6440 | <https://dementsus.ee/teenused-2> |
+| Dementsuse Kompetentsikeskus | Kadumise ennetamine | <https://dementsus.ee/kadumise-ennetamine> |
+| Dementsuse Kompetentsikeskus | Kodu kohandamine | <https://dementsus.ee/kodu-kohandamine> |
+| Dementsuse Kompetentsikeskus | Kohaliku omavalitsuse abi | <https://dementsus.ee/kohaliku-omavalitsuse-abi> |
+| Dementsuse Kompetentsikeskus | Konverentsid ja seminarid | <https://dementsus.ee/konverentsid-ja-seminarid> |
+| Dementsuse Kompetentsikeskus | Korduma kippuvad küsimused | <https://dementsus.ee/korduma-kippuvad-kusimused> |
+| Dementsuse Kompetentsikeskus | Koroonaviirus ja dementsus | <https://dementsus.ee/koroonaviirus-ja-dementsus> |
+| Dementsuse Kompetentsikeskus | Liikumine | <https://dementsus.ee/liikumine> |
+| Dementsuse Kompetentsikeskus | Normaalne vananemine | <https://dementsus.ee/normaalne-vananemine> |
+| Dementsuse Kompetentsikeskus | Ohjeldamise alternatiivid | <https://dementsus.ee/ohjeldamise-alternatiivid> |
+| Dementsuse Kompetentsikeskus | Oleme Teile abiks ja toeks lahenduste leidmisel | <https://dementsus.ee/> |
+| Dementsuse Kompetentsikeskus | Palliatiivne ravi dementsusega inimesele | <https://dementsus.ee/palliatiivne-ravi-dementsusega-inimesele> |
+| Dementsuse Kompetentsikeskus | Partnerid | <https://dementsus.ee/partnerid> |
+| Dementsuse Kompetentsikeskus | Pöördumatud dementsussündroomid | <https://dementsus.ee/poordumatud-dementsussundroomid> |
+| Dementsuse Kompetentsikeskus | Pöörduvad dementsussündroomid | <https://dementsus.ee/poorduvad-dementsussundroomid> |
+| Dementsuse Kompetentsikeskus | Rahvusvaheline teadus- ja arendustöö | <https://dementsus.ee/rahvusvaheline-teadus-ja-arendustoo> |
+| Dementsuse Kompetentsikeskus | Rehabilitatsiooniteenus | <https://dementsus.ee/rehabilitatsiooniteenus> |
+| Dementsuse Kompetentsikeskus | Riietumine | <https://dementsus.ee/riietumine> |
+| Dementsuse Kompetentsikeskus | Statistika | <https://dementsus.ee/statistika> |
+| Dementsuse Kompetentsikeskus | Suhtlemine dementsusega inimesega | <https://dementsus.ee/suhtlemine-dementsusega-inimesega> |
+| Dementsuse Kompetentsikeskus | Teadus- ja arendustööd Eestis | <https://dementsus.ee/teadus-ja-arendustood-eestis> |
+| Dementsuse Kompetentsikeskus | Testi ennast | <https://dementsus.ee/testi-ennast> |
+| Dementsuse Kompetentsikeskus | Toitumine | <https://dementsus.ee/toitumine> |
+| Dementsuse Kompetentsikeskus | Tugigrupid lähedastele | <https://dementsus.ee/tugigrupid-lahedastele> |
+| Dementsuse Kompetentsikeskus | Töötamine | <https://dementsus.ee/tootamine> |
+| Dementsuse Kompetentsikeskus | Õiguslikud küsimused | <https://dementsus.ee/oiguslikud-kusimused> |
+| Eesti Afaasialiit | AFAASIA | <https://afaasia.ee/afaasia> |
+| Eesti Afaasialiit | Afaasialiidu suhtlusklubi | <https://afaasia.ee/afaasialiidu-suhtlusklubi> |
+| Eesti Afaasialiit | Eesti Afaasialiidu eetikakoodeks | <https://afaasia.ee/organisatsioon/eetikakoodeks> |
+| Eesti Afaasialiit | Infolehed | <https://afaasia.ee/organisatsioon/infolehed> |
+| Eesti Afaasialiit | Juuni – afaasia teadlikustamise kuu! | <https://afaasia.ee/afaasia/juuni-afaasia-teadlikustamise-kuu> |
+| Eesti Afaasialiit | Kust saada abi? | <https://afaasia.ee/afaasia/kust-saada-abi> |
+| Eesti Afaasialiit | Mis on afaasia? | <https://afaasia.ee/afaasia/mis-on-afaasia> |
+| Eesti Afaasialiit | Nõuandeid suhtlemiseks inimesega, kellel on afaasia. | <https://afaasia.ee/afaasia/nouandeid-suhtlemiseks-inimesega-kellel-on-afaasia> |
+| Eesti Afaasialiit | PROJEKTID | <https://afaasia.ee/projektid> |
+| Eesti Afaasialiit | TEENUSED/HINNAKIRI | <https://afaasia.ee/teenused-hinnakiri> |
+| Eesti Allergialiit | Ajakirjad | <https://allergialiit.ee/ajakirjad> |
+| Eesti Allergialiit | Allergia | <https://allergialiit.ee/allergia> |
+| Eesti Allergialiit | Allergia ja rasedus | <https://allergialiit.ee/allergia/allergia-ja-rasedus> |
+| Eesti Allergialiit | Allergia ja reisimine | <https://allergialiit.ee/allergia/allergia-ja-reisimine> |
+| Eesti Allergialiit | Allergiku elukeskkond | <https://allergialiit.ee/allergiku-elukeskkond> |
+| Eesti Allergialiit | Allergiku ravi | <https://allergialiit.ee/ravi> |
+| Eesti Allergialiit | Artiklid | <https://allergialiit.ee/artiklid> |
+| Eesti Allergialiit | Astma | <https://allergialiit.ee/astma> |
+| Eesti Allergialiit | Ehted | <https://allergialiit.ee/ehted> |
+| Eesti Allergialiit | Inhalaator | <https://allergialiit.ee/ravi/inhalaator> |
+| Eesti Allergialiit | Keskkond | <https://allergialiit.ee/keskkond> |
+| Eesti Allergialiit | Kodu | <https://allergialiit.ee/kodu> |
+| Eesti Allergialiit | Kodukeemia | <https://allergialiit.ee/kodu/kodukeemia> |
+| Eesti Allergialiit | Kodukoristus | <https://allergialiit.ee/kodu/kodukoristus> |
+| Eesti Allergialiit | Kosmeetika ja hooldusvahendid | <https://allergialiit.ee/kosmeetika> |
+| Eesti Allergialiit | Liidust | <https://allergialiit.ee/liidust> |
+| Eesti Allergialiit | Liikmed | <https://allergialiit.ee/liidust/liikmed> |
+| Eesti Allergialiit | Pesupesemine | <https://allergialiit.ee/kodu/pesupesemine> |
+| Eesti Allergialiit | Pollinoos | <https://allergialiit.ee/keskkond/pollinoos> |
+| Eesti Allergialiit | Putukad | <https://allergialiit.ee/keskkond/putukad> |
+| Eesti Allergialiit | Teabematerjal | <https://allergialiit.ee/teabematerjal> |
+| Eesti Allergialiit | Tegevused | <https://allergialiit.ee/liidust/tegevused> |
+| Eesti Allergialiit | Viimati lisatud teabematerjalid | <https://allergialiit.ee/> |
+| Eesti Allergialiit | Vooditarbed | <https://allergialiit.ee/kodu/vooditarbed> |
+| Eesti Allergialiit | Õietolmu seire | <https://allergialiit.ee/oietolmu-seire> |
+| Eesti Allergialiit | Õietolmuallergia | <https://allergialiit.ee/keskkond/oietolmuallergia> |
+| Eesti Autismiliit | Eesti Autismiliit | <https://www.autismiliit.ee/> |
+| Eesti Autismiliit | Artiklid | <https://www.autismiliit.ee/publikatsioon/artikleid> |
+| Eesti Autismiliit | Autismispektri häired | <https://www.autismiliit.ee/autismist/autismihairete-spekter> |
+| Eesti Autismiliit | Autismist | <https://www.autismiliit.ee/autismist> |
+| Eesti Autismiliit | Dokumendid | <https://www.autismiliit.ee/meist/dokumendid> |
+| Eesti Autismiliit | Eetilised põhimõtted | <https://www.autismiliit.ee/meist/eetilised-pohimotted> |
+| Eesti Autismiliit | Epilepsia | <https://www.autismiliit.ee/autismist/kaasnevaid-probleeme/epilepsia> |
+| Eesti Autismiliit | Intellektipuue | <https://www.autismiliit.ee/autismist/kaasnevaid-probleeme/intellektipuue> |
+| Eesti Autismiliit | Juhendmaterjale lapsevanematele | <https://www.autismiliit.ee/autismist/lapsevanematele/juhendmaterjale-lapsevanematele> |
+| Eesti Autismiliit | Kaasuvad häired ja probleemid | <https://www.autismiliit.ee/autismist/kaasnevaid-probleeme> |
+| Eesti Autismiliit | Kuidas saada liikmeks | <https://www.autismiliit.ee/meist/liikmed> |
+| Eesti Autismiliit | Lapsevanematele | <https://www.autismiliit.ee/autismist/lapsevanematele> |
+| Eesti Autismiliit | Lingid | <https://www.autismiliit.ee/lingid> |
+| Eesti Autismiliit | Meist | <https://www.autismiliit.ee/meist> |
+| Eesti Autismiliit | Mida teha, kui laps saab ASH diagnoosi? | <https://www.autismiliit.ee/autismist/lapsevanematele/mida-teha-kui-laps-saab-ash-diagnoosi> |
+| Eesti Autismiliit | Nõustamisvõimalused | <https://www.autismiliit.ee/autismist/lapsevanematele/noustamisvoimalused> |
+| Eesti Autismiliit | Publikatsioon | <https://www.autismiliit.ee/publikatsioon> |
+| Eesti Autismiliit | Põhjused | <https://www.autismiliit.ee/autismist/pohjused> |
+| Eesti Autismiliit | Teatmikud | <https://www.autismiliit.ee/publikatsioon/teatmikud> |
+| Eesti Autismiliit | Tourette´i sündroom | <https://www.autismiliit.ee/autismist/kaasnevaid-probleeme/tourettei-sundroom> |
+| Eesti Diabeediliit | Diabeet Eestis | <https://www.diabetes.ee/organisatsioon/diabeet-eestis> |
+| Eesti Diabeediliit | Eesti Diabeediliidu struktuur | <https://www.diabetes.ee/organisatsioon/eesti-diabeediliidu-struktuur> |
+| Eesti Diabeediliit | I tüübi diabeet | <https://www.diabetes.ee/organisatsioon/i-tueuebi-diabeet> |
+| Eesti Diabeediliit | II tüübi diabeet | <https://www.diabetes.ee/organisatsioon/ii-tuubi-diabeet> |
+| Eesti Diabeediliit | Kodanikuühenduste eetikakoodeks | <https://www.diabetes.ee/organisatsioon/kodanikuuehenduste-eetikakoodeks> |
+| Eesti Diabeediliit | MIS ON DIABEET? | <https://www.diabetes.ee/mis-on-diabeet> |
+| Eesti Diabeediliit | Mis on suhkruhaigus? | <https://www.diabetes.ee/organisatsioon/mis-on-suhkruhaigus> |
+| Eesti Diabeediliit | Toitumissoovitused diabeetikule | <https://www.diabetes.ee/organisatsioon/toitumissoovitused-diabeetikule> |
+| Eesti Hemofiiliaühing | Eesti Hemofiiliaühing | <https://www.hemofiilia.ee/> |
+| Eesti Hemofiiliaühing | 7-2-1 | <https://www.hemofiilia.ee/7-2-1> |
+| Eesti Hemofiiliaühing | Haiglad Eestis | <https://www.hemofiilia.ee/haiglad-eestis> |
+| Eesti Hemofiiliaühing | Infomaterjalid | <https://www.hemofiilia.ee/meist/infomaterjalid> |
+| Eesti Hemofiiliaühing | Tegevused | <https://www.hemofiilia.ee/tegevused> |
+| Eesti Hemofiiliaühing | Veritsushäiretest | <https://www.hemofiilia.ee/meist/veritsushairetest> |
+| Eesti Insuldipatsientide Selts | 10 praktilist ideed insuldist taastumise teekonnal | <https://www.insuldiselts.ee/elu-parast-insulti/10-ideed-insuldist-taastumise-teekonnal> |
+| Eesti Insuldipatsientide Selts | 4 olulist A-d | <https://www.insuldiselts.ee/mis-on-insult/4-olulist-a-d> |
+| Eesti Insuldipatsientide Selts | Elu pärast insulti | <https://www.insuldiselts.ee/elu-parast-insulti> |
+| Eesti Insuldipatsientide Selts | Igapäevaelu ja iseseisvumine | <https://www.insuldiselts.ee/elu-parast-insulti/igapaevaelu-ja-iseseisvumine> |
+| Eesti Insuldipatsientide Selts | Insuldi alaliigid | <https://www.insuldiselts.ee/mis-on-insult/insuldi-alaliigid> |
+| Eesti Insuldipatsientide Selts | Insuldi riskitegurid | <https://www.insuldiselts.ee/mis-on-insult/insuldi-riskitegurid> |
+| Eesti Insuldipatsientide Selts | Insuldi statistika | <https://www.insuldiselts.ee/mis-on-insult/insuldi-statistika> |
+| Eesti Insuldipatsientide Selts | Insuldi tagajärjed | <https://www.insuldiselts.ee/mis-on-insult/insuldi-tagajarjed> |
+| Eesti Insuldipatsientide Selts | Insuldijärgne rehabilitatsioon | <https://www.insuldiselts.ee/elu-parast-insulti/insuldijargne-rehabilitatsioon> |
+| Eesti Insuldipatsientide Selts | Insuldijärgne taastusravi | <https://www.insuldiselts.ee/elu-parast-insulti/insuldijargne-taastusravi> |
+| Eesti Insuldipatsientide Selts | Insuldipatsiendi elukorraldus | <https://www.insuldiselts.ee/elu-parast-insulti/insuldipatsiendi-elukorraldus> |
+| Eesti Insuldipatsientide Selts | Insuldiseltsi koostööpanus | <https://www.insuldiselts.ee/seltsist/koostoopanus> |
+| Eesti Insuldipatsientide Selts | Kodu kohandamine pärast insulti | <https://www.insuldiselts.ee/elu-parast-insulti/kodu-kohandamine-parast-insulti> |
+| Eesti Insuldipatsientide Selts | Konverentsid | <https://www.insuldiselts.ee/seltsist/konverentsid> |
+| Eesti Insuldipatsientide Selts | Kvalifitseeritud spetsialistid | <https://www.insuldiselts.ee/infomaterjalid/kvalifitseeritud-spetsialistid> |
+| Eesti Insuldipatsientide Selts | Mis on insult? | <https://www.insuldiselts.ee/mis-on-insult> |
+| Eesti Insuldipatsientide Selts | Mobiilirakendused | <https://www.insuldiselts.ee/infomaterjalid/mobiilirakendused> |
+| Eesti Insuldipatsientide Selts | Seltsist | <https://www.insuldiselts.ee/seltsist> |
+| Eesti Insuldipatsientide Selts | Taastusravi asutused üle Eesti | <https://www.insuldiselts.ee/infomaterjalid/taastusravi-asutused-ule-eesti> |
+| Eesti Insuldipatsientide Selts | Taastusravi koduteenused | <https://www.insuldiselts.ee/elu-parast-insulti/taastusravi-koduteenused> |
+| Eesti Insuldipatsientide Selts | Teadus ja uuringud | <https://www.insuldiselts.ee/infomaterjalid/teadus-ja-uuringud> |
+| Eesti Insuldipatsientide Selts | Toetame insuldipatsiendi heaolu , positiivset mõtlemist ja taastumisprotsessi . | <https://www.insuldiselts.ee/> |
+| Eesti Insuldipatsientide Selts | Toitumine pärast insulti | <https://www.insuldiselts.ee/elu-parast-insulti/toitumine-parast-insulti> |
+| Eesti Insuldipatsientide Selts | Tööle naasmine pärast insulti | <https://www.insuldiselts.ee/elu-parast-insulti/toole-naasmine-parast-insulti> |
+| Eesti Insuldipatsientide Selts | Uue insuldi vältimine | <https://www.insuldiselts.ee/elu-parast-insulti/uue-insuldi-valtimine> |
+| Eesti Insuldipatsientide Selts | Vaimne tervis pärast insulti | <https://www.insuldiselts.ee/elu-parast-insulti/vaimne-tervis-parast-insulti> |
+| Eesti Kogelejate Ühing | Eesti Kogelejate Ühing | <https://kogelus.ee/> |
+| Eesti Kogelejate Ühing | Kõneravi lastele | <https://kogelus.ee/koneravi-lastele> |
+| Eesti Kogelejate Ühing | Kõneravi täiskasvanutele | <https://kogelus.ee/koneravi-taiskasvanutele> |
+| Eesti Kogelejate Ühing | Mis on kogelus? | <https://kogelus.ee/mis-kogelus> |
+| Eesti Kogelejate Ühing | Noorsotöötajatele | <https://kogelus.ee/noorsotootajatele> |
+| Eesti Kogelejate Ühing | Soovitused õpetajale | <https://kogelus.ee/soovitused-opetajale> |
+| Eesti Kogelejate Ühing | Suurimad projektid | <https://kogelus.ee/projektid/suurimad-projektid> |
+| Eesti Kogelejate Ühing | Vabaühenduste eetikakoodeks | <https://kogelus.ee/vabauhenduste-eetikakoodeks> |
+| Eesti Kopsuliit | Eesti Kopsuliit | <https://www.kopsuliit.ee/> |
+| Eesti Kopsuliit | ALLERGIA | <https://www.kopsuliit.ee/haigused/allergia> |
+| Eesti Kopsuliit | ASTMA | <https://www.kopsuliit.ee/haigused/astma> |
+| Eesti Kopsuliit | Astma ravi | <https://www.kopsuliit.ee/ravi/astma-ravi> |
+| Eesti Kopsuliit | Astma test | <https://www.kopsuliit.ee/kasulik/astma-test> |
+| Eesti Kopsuliit | Astu liikmeks | <https://www.kopsuliit.ee/kontakt/astu-liikmeks> |
+| Eesti Kopsuliit | EKL trükised | <https://www.kopsuliit.ee/kasulik/ekl-trukised> |
+| Eesti Kopsuliit | Fagerströmi Test | <https://www.kopsuliit.ee/kasulik/fagerstromi-test> |
+| Eesti Kopsuliit | Haigused | <https://www.kopsuliit.ee/haigused> |
+| Eesti Kopsuliit | Hapnikravi | <https://www.kopsuliit.ee/ravi/hapnikravi> |
+| Eesti Kopsuliit | INTERSTITSIAARSED KOPSUHAIGUSED | <https://www.kopsuliit.ee/haigused/interstitsiaarsed-kopsuhaigused> |
+| Eesti Kopsuliit | KOK | <https://www.kopsuliit.ee/haigused/kok> |
+| Eesti Kopsuliit | KOK-test | <https://www.kopsuliit.ee/kasulik/kok-test> |
+| Eesti Kopsuliit | KOPSUVÄHK | <https://www.kopsuliit.ee/haigused/kopsuvahk> |
+| Eesti Kopsuliit | Muud trükised | <https://www.kopsuliit.ee/kasulik/muud-trukised> |
+| Eesti Kopsuliit | OBSTRUKTIIVNE UNEAPNOE | <https://www.kopsuliit.ee/haigused/obstruktiivne-uneapnoe> |
+| Eesti Kopsuliit | Organisatsioonist | <https://www.kopsuliit.ee/organisatsioonist/kes-me-oleme> |
+| Eesti Kopsuliit | Ravivõimlemine | <https://www.kopsuliit.ee/ravi/-ravivoimlemine> |
+| Eesti Kopsuliit | SARKOIDOOS | <https://www.kopsuliit.ee/haigused/sarkoidoos> |
+| Eesti Kopsuliit | Struktuur | <https://www.kopsuliit.ee/organisatsioonist/struktuur> |
+| Eesti Kopsuliit | Suitsetad? | <https://www.kopsuliit.ee/suitsetad> |
+| Eesti Kopsuliit | Terved kopsud | <https://www.kopsuliit.ee/haigused/terved-kopsud> |
+| Eesti Kopsuliit | TUBERKULOOS | <https://www.kopsuliit.ee/haigused/tuberkuloos> |
+| Eesti Kurtide Liit | EKL | <https://www.ead.ee/kirjakast> |
+| Eesti Kurtide Liit | Ettevõtted | <https://www.ead.ee/uhingud-ja-partnerid/ettevotted/eesti-kurtide-liidu-ettevotted> |
+| Eesti Kurtide Liit | Kaks lähenemisviisi kurtusele | <https://www.ead.ee/haridus-ja-kultuur/kurtus/kaks-lahenemisviisi-kurtusele> |
+| Eesti Kurtide Liit | Missioon ja väärtused | <https://www.ead.ee/organisatsioon/missioon-ja-vaartused/missioon-ja-pohivaartused> |
+| Eesti Kurtide Liit | Organisatsioon | <https://www.ead.ee/organisatsioon/kontaktandmed/organisatsiooni-uldandmed> |
+| Eesti Kurtide Liit | Organisatsioonid | <https://www.ead.ee/olulised-lingid/oluliste-liikmete-ja-partnerite-lingid> |
+| Eesti Kurtide Liit | Ruumide rent | <https://www.ead.ee/organisatsioon/ruumide-rent/eesti-kurtide-liidu-maja-ruumide-rentimise-voimalused> |
+| Eesti Kurtide Liit | Tallinna sotsiaalnõustamise teenus | <https://www.ead.ee/uhingud-ja-partnerid/tallinna-sotsiaalnoustamise-teenus/noustamisteenus-tallinna-kurtidele-ja-viipekeelsetele-vaegkuuljatele> |
+| Eesti Kurtide Liit | Tallinna viipekeele tõlketeenus | <https://www.ead.ee/uhingud-ja-partnerid/tallinna-viipekeele-tolketeenus/tallinna-viipekeele-tolketeenuse-osutamine-kuulmispuudega-inimestele> |
+| Eesti Kurtide Liit | Tõlkekeskused | <https://www.ead.ee/uhingud-ja-partnerid/tolkekeskused/tolkekeskused-ule-eesti> |
+| Eesti Kurtide Liit | Viipekeel - iseseisev keel või abikeel? | <https://www.ead.ee/haridus-ja-kultuur/viipekeel/viipekeel-iseseisev-keel-voi-abikeel> |
+| Eesti Kurtide Liit | Viipekeele e-sõnastikud | <https://www.ead.ee/haridus-ja-kultuur/viipekeele-e-sonastikud/viipekeele-e-sonastikud> |
+| Eesti Kurtide Liit | Õppemeetodid ja tulemused | <https://www.ead.ee/haridus-ja-kultuur/haridus/oppemeetodid-ja-tulemused> |
+| Eesti Kurtide Liit | Õppimisvõimalused | <https://www.ead.ee/haridus-ja-kultuur/haridus/oppimisvoimalused> |
+| Eesti Kuulmispuuetega Laste Vanemate Liit | EKLVL | <https://www.eklvl.ee/eklvl/liidust/eklvl> |
+| Eesti Kuulmispuuetega Laste Vanemate Liit | Haridus | <https://www.eklvl.ee/kuulmispuudest/haridus> |
+| Eesti Kuulmispuuetega Laste Vanemate Liit | Infoleht | <https://www.eklvl.ee/eklvl/infoleht> |
+| Eesti Kuulmispuuetega Laste Vanemate Liit | Kuulmisabivahendid | <https://www.eklvl.ee/kuulmispuudest/kuulmisabivahendid> |
+| Eesti Kuulmispuuetega Laste Vanemate Liit | Kuulmispuudega laste õpetamine | <https://www.eklvl.ee/eklvl/projektid/konverentsid/kuulmispuudega-laste-opetamine> |
+| Eesti Kuulmispuuetega Laste Vanemate Liit | Kuulmispuudest | <https://www.eklvl.ee/kuulmispuudest> |
+| Eesti Kuulmispuuetega Laste Vanemate Liit | Muud abivahendid | <https://www.eklvl.ee/kuulmispuudest/muud-abivahendid> |
+| Eesti Kuulmispuuetega Laste Vanemate Liit | Teatmik puudega laste peredele | <https://www.eklvl.ee/kuulmispuudest/kasulik-info/teatmik-puudega-laste-peredele> |
+| Eesti Lihasehaigete Selts | Eesti Lihasehaigete Selts (ELS) | <https://www.els.ee/> |
+| Eesti Lihasehaigete Selts | ELS infolehed | <https://www.els.ee/infolehed> |
+| Eesti Lihasehaigete Selts | Kaasnähud | <https://www.els.ee/kaasnahud> |
+| Eesti Lihasehaigete Selts | Lihasdüstroofiad | <https://www.els.ee/lihasdustroofiad-2> |
+| Eesti Lihasehaigete Selts | Müasteeniline sündroom | <https://www.els.ee/muasteeniline-sundroom> |
+| Eesti Lihasehaigete Selts | Müopaatiad | <https://www.els.ee/muopaatiad> |
+| Eesti Lihasehaigete Selts | Müotoonia | <https://www.els.ee/muotoonia> |
+| Eesti Lihasehaigete Selts | Neuropaatiad | <https://www.els.ee/neuropaatiad> |
+| Eesti Lihasehaigete Selts | Perioodiline paralüüs | <https://www.els.ee/perioodiline-paraluus> |
+| Eesti Lihasehaigete Selts | Tähetabelid | <https://www.els.ee/tahetabelid> |
+| Eesti Liikumispuudega Inimeste Liit | Artiklid ja ettekanded meist | <https://elil.ee/et/varia/artiklid-ja-ettekanded-meist> |
+| Eesti Liikumispuudega Inimeste Liit | ELIL eetikakoodeks | <https://elil.ee/et/eesti-liikumispuudega-inimeste-liit/elil-eetikakoodeks> |
+| Eesti Liikumispuudega Inimeste Liit | Liikmete listiga liitumine | <https://elil.ee/et/liikmete-listiga-liitumine> |
+| Eesti Neeruhaigete Liit | Kõik neerudest. | <https://www.neer.ee/> |
+| Eesti Paralümpiakomitee | Eesti Paralümpiakomitee | <https://www.paralympic.ee/> |
+| Eesti Paralümpiakomitee | Boccia | <https://www.paralympic.ee/et/spordialad/boccia/2> |
+| Eesti Paralümpiakomitee | EPK Dokumendid | <https://www.paralympic.ee/et/epk-dokumendid> |
+| Eesti Paralümpiakomitee | I'mPOSSIBLE | <https://www.paralympic.ee/et/impossible> |
+| Eesti Paralümpiakomitee | Istevõrkpall | <https://www.paralympic.ee/et/spordialad/istevorkpall/11> |
+| Eesti Paralümpiakomitee | Laskmine | <https://www.paralympic.ee/et/spordialad/laskmine/5> |
+| Eesti Paralümpiakomitee | Liikmed | <https://www.paralympic.ee/et/liikmed-1> |
+| Eesti Paralümpiakomitee | Parajudo | <https://www.paralympic.ee/et/spordialad/parajudo/3> |
+| Eesti Paralümpiakomitee | Spordialad | <https://www.paralympic.ee/et/spordialad> |
+| Eesti Paralümpiakomitee | Sport | <https://www.paralympic.ee/et/sporditurvalisus> |
+| Eesti Pimedate Liit | Abivahendid | <https://pimedateliit.ee/abivahendid> |
+| Eesti Pimedate Liit | Arvutid ja nutiseadmed | <https://pimedateliit.ee/arvutid-ja-nutiseadmed> |
+| Eesti Pimedate Liit | Eesti Pimedate Liidust | <https://pimedateliit.ee/> |
+| Eesti Pimedate Liit | Füüsiline ligipääsetavus | <https://pimedateliit.ee/fuusiline-ligipaasetavus> |
+| Eesti Pimedate Liit | Haridus | <https://pimedateliit.ee/haridus> |
+| Eesti Pimedate Liit | Juhtkoer | <https://pimedateliit.ee/juhtkoer> |
+| Eesti Pimedate Liit | Kirjeldustõlge | <https://pimedateliit.ee/kirjeldustolge> |
+| Eesti Pimedate Liit | Kuidas kasutada ja alla laadida Zoomi konverentsitarkvara | <https://pimedateliit.ee/kuidas-kasutada-ja-alla-laadida-zoomi-konverentsitarkvara> |
+| Eesti Pimedate Liit | Ligipääsetavus veebis | <https://pimedateliit.ee/veebi-ligipaasetavus> |
+| Eesti Pimedate Liit | Meililistid | <https://pimedateliit.ee/meililistid> |
+| Eesti Pimedate Liit | Meist | <https://pimedateliit.ee/meist> |
+| Eesti Pimedate Liit | Muuseumid | <https://pimedateliit.ee/muuseumid> |
+| Eesti Pimedate Liit | Nägemispuue | <https://pimedateliit.ee/nagemispuue/> |
+| Eesti Pimedate Liit | Otsid abi? | <https://pimedateliit.ee/otsid-abi> |
+| Eesti Pimedate Liit | Projekt Minu Enda Elu | <https://pimedateliit.ee/projekt-minu-enda-elu> |
+| Eesti Pimedate Liit | Projekteerimisjuhend | <https://pimedateliit.ee/projekteerimisjuhend> |
+| Eesti Pimedate Liit | Punktkiri | <https://pimedateliit.ee/punktkiri-2> |
+| Eesti Pimedate Liit | Rehabilitatsioon | <https://pimedateliit.ee/rehabilitatsioon> |
+| Eesti Pimedate Liit | Televisioon | <https://pimedateliit.ee/televisioon> |
+| Eesti Pimekurtide Tugiliit | Definitsioon | <https://www.pimekurdid.ee/lisainfo/pimekurtusest/definitsioon> |
+| Eesti Pimekurtide Tugiliit | Dokumendid | <https://www.pimekurdid.ee/organisatsioon/dokumendid> |
+| Eesti Pimekurtide Tugiliit | Eesti Pimekurtide Liit | <https://www.pimekurdid.ee/> |
+| Eesti Pimekurtide Tugiliit | Hinnakiri | <https://www.pimekurdid.ee/teenused/hinnakiri> |
+| Eesti Pimekurtide Tugiliit | Laste arendamine | <https://www.pimekurdid.ee/lisainfo/pimekurtusest/laste-arendamine> |
+| Eesti Pimekurtide Tugiliit | Lingid | <https://www.pimekurdid.ee/lisainfo/lingid> |
+| Eesti Pimekurtide Tugiliit | Organisatsioon | <https://www.pimekurdid.ee/organisatsioon> |
+| Eesti Pimekurtide Tugiliit | Pimekurtusest | <https://www.pimekurdid.ee/lisainfo/pimekurtusest> |
+| Eesti Pimekurtide Tugiliit | Rahastamine | <https://www.pimekurdid.ee/organisatsioon/tegevus/rahastamine> |
+| Eesti Pimekurtide Tugiliit | Teenused | <https://www.pimekurdid.ee/teenused> |
+| Eesti Pimekurtide Tugiliit | Tegevus | <https://www.pimekurdid.ee/organisatsioon/tegevus> |
+| Eesti Pimekurtide Tugiliit | Tegevusvaldkonnad | <https://www.pimekurdid.ee/organisatsioon/tegevus/tegevusvaldkonnad> |
+| Eesti Psüühikahäiretega Inimeste Lähedaste Liit | Liitu meiega | <https://epill.ee/> |
+| Eesti Psüühikahäiretega Inimeste Lähedaste Liit | Psüühikahäiretest | <https://epill.ee/psuuhikahairetest> |
+| Eesti Psüühikahäiretega Inimeste Lähedaste Liit | Tegevused | <https://epill.ee/tegevused> |
+| Eesti Puuetega Inimeste Koda | Eesti Puuetega Inimeste Koda | <https://epikoda.ee/> |
+| Eesti Puuetega Inimeste Koda | Ametlikud arvamused ja pöördumised | <https://epikoda.ee/tegevusvaldkonnad/huvikaitse/ametlikud-arvamused-ja-poordumised> |
+| Eesti Puuetega Inimeste Koda | Andmekaitse tingimused | <https://epikoda.ee/vota-uhendust/andmekaitse> |
+| Eesti Puuetega Inimeste Koda | Asukoht ja ligipääsetavus | <https://epikoda.ee/vota-uhendust/asukoht> |
+| Eesti Puuetega Inimeste Koda | Dokumendid | <https://epikoda.ee/meist/dokumendid> |
+| Eesti Puuetega Inimeste Koda | EPIKoja juhtimine | <https://epikoda.ee/meist/epikoja-juhtimine> |
+| Eesti Puuetega Inimeste Koda | EPIKoja liikmed | <https://epikoda.ee/epikoja-liikmed> |
+| Eesti Puuetega Inimeste Koda | EPIKoja partnerid strateegilises partnerluses | <https://epikoda.ee/tegevusvaldkonnad/strateegiline-partnerlus-2026/huvikaitse-organisatsioonide-ostumenetlus> |
+| Eesti Puuetega Inimeste Koda | EPIKoja tutvustus | <https://epikoda.ee/meist/tutvustus> |
+| Eesti Puuetega Inimeste Koda | Erivajadusega inimesele | <https://epikoda.ee/sihtgrupid/erivajadusega-inimesele> |
+| Eesti Puuetega Inimeste Koda | Huvikaitse | <https://epikoda.ee/tegevusvaldkonnad/huvikaitse> |
+| Eesti Puuetega Inimeste Koda | Huvikaitse valdkonnad | <https://epikoda.ee/tegevusvaldkonnad/huvikaitse/huvikaitse-valdkonnad> |
+| Eesti Puuetega Inimeste Koda | Koolitused | <https://epikoda.ee/tegevusvaldkonnad/koolitused> |
+| Eesti Puuetega Inimeste Koda | Lapsevanemale või lähedasele | <https://epikoda.ee/sihtgrupid/lapsevanemale-voi-lahedasele> |
+| Eesti Puuetega Inimeste Koda | Ligipääsetavuse teatis | <https://epikoda.ee/vota-uhendust/ligipaasetavuse-teatis> |
+| Eesti Puuetega Inimeste Koda | Meist | <https://epikoda.ee/meist> |
+| Eesti Puuetega Inimeste Koda | Nõustamine ja õigusabi | <https://epikoda.ee/tegevusvaldkonnad/noustamine> |
+| Eesti Puuetega Inimeste Koda | Projektid | <https://epikoda.ee/tegevusvaldkonnad/projektid> |
+| Eesti Puuetega Inimeste Koda | Ruumide rent | <https://epikoda.ee/vota-uhendust/ruumide-rent> |
+| Eesti Puuetega Inimeste Koda | Sotsiaalkaitse | <https://epikoda.ee/tegevusvaldkonnad/huvikaitse/huvikaitse-valdkonnad/sotsiaal> |
+| Eesti Puuetega Inimeste Koda | Sotsiaalkaitse | <https://epikoda.ee/tegevusvaldkonnad/huvikaitse/huvikaitse-valdkonnad/sotsiaal/materjalid> |
+| Eesti Puuetega Inimeste Koda | Strateegiline partnerlus 2026 | <https://epikoda.ee/tegevusvaldkonnad/strateegiline-partnerlus-2026> |
+| Eesti Puuetega Inimeste Koda | Tervishoid | <https://epikoda.ee/tegevusvaldkonnad/huvikaitse/huvikaitse-valdkonnad/tervishoid/patsiendiharidus> |
+| Eesti Puuetega Inimeste Koda | Tervishoid | <https://epikoda.ee/tegevusvaldkonnad/huvikaitse/huvikaitse-valdkonnad/tervishoid> |
+| Eesti Puuetega Inimeste Koda | Tugirühmad ja kogemusnõustamine | <https://epikoda.ee/tugiruhmad-ja-kogemusnoustamine> |
+| Eesti Puuetega Inimeste Koda | Tule liikmeks | <https://epikoda.ee/epikoja-liikmed/tule-liikmeks> |
+| Eesti Puuetega Inimeste Koda | Võrdne kohtlemine | <https://epikoda.ee/tegevusvaldkonnad/huvikaitse/huvikaitse-valdkonnad/vordsed-voimalused> |
+| Eesti Puuetega Inimeste Koda | Võta ühendust | <https://epikoda.ee/vota-uhendust> |
+| Eesti Puuetega Inimeste Koda | Väliskoostöö | <https://epikoda.ee/tegevusvaldkonnad/valiskoostoo> |
+| Eesti Puuetega Inimeste Koda | Ühiskonnale | <https://epikoda.ee/sihtgrupid/uhiskonnale> |
+| Eesti Puuetega Naiste Ühenduste Liit | COFACE | <https://epnu.ee/koostoo/coface> |
+| Eesti Puuetega Naiste Ühenduste Liit | EPNÜL | <https://epnu.ee/meist/organisatsioonist> |
+| Eesti Puuetega Naiste Ühenduste Liit | Hea eestkoste tava | <https://epnu.ee/epnuli-hea-eestkoste-tava> |
+| Eesti Puuetega Naiste Ühenduste Liit | Tegevused | <https://epnu.ee/koostoo> |
+| Eesti Puuetega Naiste Ühenduste Liit | Uuringud ja raportid | <https://epnu.ee/meist/uuringud> |
+| Eesti Rahvusraamatukogu | Pimedate raamatukogu | <https://www.rara.ee/meist/rara/pimedate-raamatukogu/> |
+| Eesti Reumaliit | Eesti Reumaliit | <https://reumaliit.ee/> |
+| Eesti Reumaliit | EESTI REUMALIIT | <https://reumaliit.ee/kes-me-oleme/tutvustus> |
+| Eesti Reumaliit | Andmekaitse | <https://reumaliit.ee/kontakt/andmekaitse> |
+| Eesti Reumaliit | HUVIKAITSE | <https://reumaliit.ee/mida-me-teeme/huvikaitse> |
+| Eesti Reumaliit | Kasulik info | <https://reumaliit.ee/patsiendile/info> |
+| Eesti Reumaliit | Koostöö | <https://reumaliit.ee/mida-me-teeme/huvikaitse/koostoo> |
+| Eesti Reumaliit | LIITU EESTI REUMALIIDUGA! | <https://reumaliit.ee/kes-me-oleme/astu-liikmeks> |
+| Eesti Reumaliit | Reumaatilised haigused | <https://reumaliit.ee/patsiendile/haigused> |
+| Eesti Reumaliit | REUMASAADIKUTE KOOLITUSPROGRAMMI PILOOTPROJEKT | <https://reumaliit.ee/mida-me-teeme/reumasaadikud> |
+| Eesti Reumaliit | TÖÖGRUPID | <https://reumaliit.ee/mida-me-teeme/huvikaitse/toogrupid> |
+| Eesti Reumaliit | TÖÖVÕIME | <https://reumaliit.ee/patsiendile/toovoime> |
+| Eesti Sclerosis Multiplexi Ühingute Liit | Diagnoosimine | <https://smk.ee/diagnoosimine> |
+| Eesti Sclerosis Multiplexi Ühingute Liit | Kontakt | <https://smk.ee/kontakt> |
+| Eesti Sclerosis Multiplexi Ühingute Liit | Liidust | <https://smk.ee/liidust> |
+| Eesti Sclerosis Multiplexi Ühingute Liit | Liitumine | <https://smk.ee/liitumine> |
+| Eesti Sclerosis Multiplexi Ühingute Liit | Mis on SM | <https://smk.ee/mis-on-sm> |
+| Eesti Sclerosis Multiplexi Ühingute Liit | Noorteklubi | <https://smk.ee/noorteklubi> |
+| Eesti Sclerosis Multiplexi Ühingute Liit | Rahvusvaheline tegevus | <https://smk.ee/rahvusvaheline-tegevus> |
+| Eesti Sclerosis Multiplexi Ühingute Liit | SA Sclerosis multiplexi register | <https://smk.ee/sa-sclerosis-multiplexi-register> |
+| Eesti Sclerosis Multiplexi Ühingute Liit | Sümptomid | <https://smk.ee/sumptomid> |
+| Eesti Sclerosis Multiplexi Ühingute Liit | Teavitusmaterjalid | <https://smk.ee/teavitusmaterjalid> |
+| Eesti Vaegkuuljate Liit | Aparaadi taotlemine | <https://vaegkuuljad.ee/kuulmisabi/aparaadi-taotlemine> |
+| Eesti Vaegkuuljate Liit | Dokumendid | <https://vaegkuuljad.ee/liidust/dokumendid> |
+| Eesti Vaegkuuljate Liit | Kirjutustõlketeenus | <https://vaegkuuljad.ee/teenused/kirjutustolketeenus> |
+| Eesti Vaegkuuljate Liit | Kogemusnõustamine | <https://vaegkuuljad.ee/teenused/kogemusnoustamine> |
+| Eesti Vaegkuuljate Liit | Kontakt | <https://vaegkuuljad.ee/kontakt> |
+| Eesti Vaegkuuljate Liit | Koolitused | <https://vaegkuuljad.ee/koolitused> |
+| Eesti Vaegkuuljate Liit | Kuulmisbuss | <https://vaegkuuljad.ee/kuulmisabi/kuulmisbuss> |
+| Eesti Vaegkuuljate Liit | Kuulmiskeskused | <https://vaegkuuljad.ee/kuulmisabi/kuulmiskeskused> |
+| Eesti Vaegkuuljate Liit | Kuulmisklubi | <https://vaegkuuljad.ee/kuulmisklubi> |
+| Eesti Vaegkuuljate Liit | Kuulmisnõustaja koolituskava | <https://vaegkuuljad.ee/koolitused/kuulmisnoustaja-koolituskava> |
+| Eesti Vaegkuuljate Liit | KÕKU | <https://vaegkuuljad.ee/liidust/koku> |
+| Eesti Vaegkuuljate Liit | Liidust | <https://vaegkuuljad.ee/liidust> |
+| Eesti Vaegkuuljate Liit | Liikmesühingud | <https://vaegkuuljad.ee/liidust/liikmesuhingud> |
+| Eesti Vaegkuuljate Liit | Liitu meiega | <https://vaegkuuljad.ee/liidust/liitu-meiega> |
+| Eesti Vaegkuuljate Liit | Lugemist | <https://vaegkuuljad.ee/lugemist> |
+| Eesti Vaegkuuljate Liit | Mis on kuulmispuue? | <https://vaegkuuljad.ee/kuulmisabi/mis-on-kuulmispuue> |
+| Eesti Vaegkuuljate Liit | Projektid | <https://vaegkuuljad.ee/liidust/projektid> |
+| Eesti Vaegkuuljate Liit | Puue ja töövõime | <https://vaegkuuljad.ee/kuulmisabi/puue-ja-toovoime> |
+| Eesti Vaegkuuljate Liit | Silmusvõimendi | <https://vaegkuuljad.ee/teenused/silmusvoimendus> |
+| Eesti Vaegkuuljate Liit | SMS-112 lühisõnumi teenus | <https://vaegkuuljad.ee/sms-112-luhisonumi-teenus> |
+| Eesti Vaegkuuljate Liit | Subtiitrid | <https://vaegkuuljad.ee/kuulmisabi/subtiitrid> |
+| Eesti Vaegkuuljate Liit | Sõrmendid | <https://vaegkuuljad.ee/kuulmisabi/sormendid> |
+| Eesti Vaegkuuljate Liit | Õppekorralduse alused | <https://vaegkuuljad.ee/koolitused/oppekorralduse-alused> |
+| Eesti Vaimupuudega Inimeste Tugiliit | Koos olles oleme tugevad! | <https://vaimukad.ee/> |
+| Eesti Vaimupuudega Inimeste Tugiliit | Kunst kõigile | <https://vaimukad.ee/kunst-koigile> |
+| Eesti Vaimupuudega Inimeste Tugiliit | Ligipääsetavuse parandamine | <https://vaimukad.ee/ligipaasetavuse-parandamine> |
+| Eesti Vaimupuudega Inimeste Tugiliit | Mis on lihtne keel? | <https://vaimukad.ee/mis-on-lihtne-keel> |
+| Eesti Vaimupuudega Inimeste Tugiliit | Mis on Tugiliit? | <https://vaimukad.ee/mis-on-tugiliit> |
+| Eesti Vaimupuudega Inimeste Tugiliit | Mis on vaimupuue? | <https://vaimukad.ee/mis-on-vaimupuue> |
+| Eesti Vaimupuudega Inimeste Tugiliit | MTFD | <https://vaimukad.ee/mtfd> |
+| Eesti Vaimupuudega Inimeste Tugiliit | NEGAVATT | <https://vaimukad.ee/meie-kohta/rohevaim-negavati-ii-koht> |
+| Eesti Vaimupuudega Inimeste Tugiliit | Operatiivne ekperimentaalõpe õues | <https://vaimukad.ee/operatiivne-ekperimentaalope-oues> |
+| Eesti Vaimupuudega Inimeste Tugiliit | Partnerid | <https://vaimukad.ee/projektid> |
+| Eesti Vaimupuudega Inimeste Tugiliit | Projektid | <https://vaimukad.ee/projekti-kirjeldus-2> |
+| Eesti Vaimupuudega Inimeste Tugiliit | TÖÖANDJAD | <https://vaimukad.ee/tooandjad> |
+| Eesti Viipekeeletõlkide Kutseühing | Koolitused | <https://evkty.ee/koolitused> |
+| Eesti Viipekeeletõlkide Kutseühing | Kutse andmine | <https://evkty.ee/kutse-omistamine> |
+| Eesti Vähiliit | Eesti Vähiliit | <https://cancer.ee/> |
+| Eesti Vähiliit | Eesnäärmevähk | <https://cancer.ee/info-vahist/vahipaikmed/eesnaarmevahk> |
+| Eesti Vähiliit | Emakakaelavähk | <https://cancer.ee/info-vahist/vahipaikmed/emakakaelavahk> |
+| Eesti Vähiliit | Ennetamine | <https://cancer.ee/ennetamine> |
+| Eesti Vähiliit | Ettekanded | <https://cancer.ee/teavitusmaterjalid/ettekanded> |
+| Eesti Vähiliit | Filmid ja klipid | <https://cancer.ee/teavitusmaterjalid/filmid-ja-klipid> |
+| Eesti Vähiliit | Info vähist | <https://cancer.ee/info-vahist> |
+| Eesti Vähiliit | Kesknärvisüsteemi kasvajad | <https://cancer.ee/info-vahist/vahipaikmed/kesknarvisusteemi-kasvajad> |
+| Eesti Vähiliit | Kopsuvähk | <https://cancer.ee/info-vahist/vahipaikmed/kopsuvahk> |
+| Eesti Vähiliit | Kusepõievähk | <https://cancer.ee/info-vahist/vahipaikmed/kusepoievahk> |
+| Eesti Vähiliit | Kõhunäärmevähk | <https://cancer.ee/info-vahist/vahipaikmed/kohunaarmevahk> |
+| Eesti Vähiliit | Käär- ja pärasoolevähk | <https://cancer.ee/info-vahist/vahipaikmed/kaar-ja-parasoolevahk> |
+| Eesti Vähiliit | Lapseea kasvajad | <https://cancer.ee/info-vahist/vahipaikmed/lapseea-kasvajad> |
+| Eesti Vähiliit | Maovähk | <https://cancer.ee/info-vahist/vahipaikmed/maovahk> |
+| Eesti Vähiliit | Melanoom | <https://cancer.ee/info-vahist/vahipaikmed/melanoom> |
+| Eesti Vähiliit | Mis on vähk? | <https://cancer.ee/info-vahist/mis-on-vahk> |
+| Eesti Vähiliit | Mobiilne kompuutertomograaf | <https://cancer.ee/ennetamine/vahiliidu-mobiilsed-diagnoosikabinetid/mobiilne-kompuutertomograaft> |
+| Eesti Vähiliit | Mobiilne mammograafiakabinet | <https://cancer.ee/ennetamine/vahiliidu-mobiilsed-diagnoosikabinetid/mobiilne-mammograafiakabinet> |
+| Eesti Vähiliit | Munandivähk | <https://cancer.ee/info-vahist/vahipaikmed/munandivahk> |
+| Eesti Vähiliit | Munasarjavähk | <https://cancer.ee/info-vahist/vahipaikmed/munasarjavahk> |
+| Eesti Vähiliit | Nahavähk | <https://cancer.ee/info-vahist/vahipaikmed/nahavahk> |
+| Eesti Vähiliit | Neeruvähk | <https://cancer.ee/info-vahist/vahipaikmed/neeruvahk> |
+| Eesti Vähiliit | Pea- ja kaelapiirkonna kasvajad | <https://cancer.ee/info-vahist/vahipaikmed/pea-ja-kaelapiirkonna-kasvajad> |
+| Eesti Vähiliit | Peensoolevähk | <https://cancer.ee/info-vahist/vahipaikmed/peensoolevahk> |
+| Eesti Vähiliit | Rinnavähk | <https://cancer.ee/info-vahist/vahipaikmed/rinnavahk> |
+| Eesti Vähiliit | Riskide vähendamine | <https://cancer.ee/ennetamine/riskide-vahendamine> |
+| Eesti Vähiliit | Sarkoomid | <https://cancer.ee/info-vahist/vahipaikmed/sarkoomid> |
+| Eesti Vähiliit | Teavitusmaterjalid | <https://cancer.ee/teavitusmaterjalid> |
+| Eesti Vähiliit | Uuringud | <https://cancer.ee/info-vahist/uuringud> |
+| Eesti Vähiliit | Vere- ja lümfisüsteemi kasvajad | <https://cancer.ee/info-vahist/vahipaikmed/vere-ja-lumfisusteemi-kasvajad> |
+| Eesti Vähiliit | Vähi avastamine | <https://cancer.ee/info-vahist/vahi-avastamine> |
+| Eesti Vähiliit | Vähiliidu mobiilsed diagnoosikabinetid | <https://cancer.ee/ennetamine/vahiliidu-mobiilsed-diagnoosikabinetid> |
+| Eesti Vähiliit | Vähipaikmed | <https://cancer.ee/info-vahist/vahipaikmed> |
+| Elu dementsusega | Elu dementsusega | <https://eludementsusega.ee/> |
+| Elu dementsusega | Armastan aidata | <https://eludementsusega.ee/armastan-aidata> |
+| Elu dementsusega | Dementsuse tunnused | <https://eludementsusega.ee/dementsuse-tunnused> |
+| Elu dementsusega | Huvikaitse | <https://eludementsusega.ee/huvikaitse> |
+| Elu dementsusega | Jaga oma kogemust | <https://eludementsusega.ee/jaga-oma-kogemust> |
+| Elu dementsusega | Kuidas Eesti inimesed täna dementsust mõistavad ja mida tuleks muuta, loe kõigest lähemalt SIIT. | <https://eludementsusega.ee/kuidas-eesti-inimesed-tana-dementsust-moistavad-ja-mida-tuleks-muuta-loe-koigest-lahemalt-siit> |
+| Elu dementsusega | Liitu meiega | <https://eludementsusega.ee/liitu-meiega> |
+| Elu dementsusega | Meist | <https://eludementsusega.ee/mtu-elu-dementsusega> |
+| Elu dementsusega | Tark lähedane | <https://eludementsusega.ee/tark-lahedane> |
+| Elu dementsusega | Tunne dementsust! | <https://eludementsusega.ee/tunne-dementsust> |
+| Ida-Virumaa Puuetega Inimeste Koda | Igapäevaelu toetamine | <https://erivajadus.ee/teenused/igapaeva-elu-toetamine> |
+| Ida-Virumaa Puuetega Inimeste Koda | Isikukeskse erihoolekande teenuse mudeli (ISTE) rakendamine kohalikus omavalitsuses – Jõhvi vallavalitsus | <https://erivajadus.ee/teenused/pilootprojekt-isikukeskse-erihoolekande-teenusmudeli-rakendamine-kohalikus-omavalitsuses-johvi-vallavalitsus> |
+| Ida-Virumaa Puuetega Inimeste Koda | Isikukeskse erihoolekande teenuse mudeli (ISTE) rakendamine kohalikus omavalitsuses – Kohtla-Järve linnavalitsus | <https://erivajadus.ee/teenused/pilootprojekt-isikukeskse-erihoolekande-teenusmudeli-rakendamine-kohalikus-omavalitsuses-kohtla-jarve> |
+| Ida-Virumaa Puuetega Inimeste Koda | Kasulikud Lingid | <https://erivajadus.ee/hea-teada/kasulikud-lingid> |
+| Ida-Virumaa Puuetega Inimeste Koda | Projektid | <https://erivajadus.ee/organisatsioon/projektid/page/2> |
+| Ida-Virumaa Puuetega Inimeste Koda | Projektid | <https://erivajadus.ee/organisatsioon/projektid> |
+| Ida-Virumaa Puuetega Inimeste Koda | Teenused | <https://erivajadus.ee/teenused> |
+| Ida-Virumaa Puuetega Inimeste Koda | Tegevused | <https://erivajadus.ee/organisatsioon/tegevused> |
+| Ida-Virumaa Puuetega Inimeste Koda | Toetatud elamine | <https://erivajadus.ee/teenused/toetatud-elamine> |
+| Ida-Virumaa Puuetega Inimeste Koda | Üheskoos ületame kõik tõkked | <https://www.erivajadus.ee/> |
+| Lääne-Virumaa Puuetega Inimeste Koda | Rahastatud projektid | <https://www.virukoda.ee/Projektid> |
+| Lääne-Virumaa Puuetega Inimeste Koda | Ühingust | <https://www.virukoda.ee/Meist> |
+| MTÜ Iseseisev Elu | Eetika | <https://www.iseseisev-elu.ee/iseseisev-elu/eetika> |
+| MTÜ Iseseisev Elu | Igapäevaelu toetamise teenus | <https://www.iseseisev-elu.ee/teenused/iet> |
+| MTÜ Iseseisev Elu | Igapäevaelu toetamise teenusele saamine ja teenuse lõppemine | <https://www.iseseisev-elu.ee/teenused/iet/iet-teenus> |
+| MTÜ Iseseisev Elu | Klientide õigused ja kohustused | <https://www.iseseisev-elu.ee/iseseisev-elu/klientide-oigused-ja-kohustused> |
+| MTÜ Iseseisev Elu | Kogukonnas elamise teenus | <https://www.iseseisev-elu.ee/teenused/kogukonnas-elamise-teenus> |
+| MTÜ Iseseisev Elu | Meist | <https://www.iseseisev-elu.ee/meist> |
+| MTÜ Iseseisev Elu | Projektid | <https://www.iseseisev-elu.ee/projektid> |
+| MTÜ Iseseisev Elu | Teenused | <https://www.iseseisev-elu.ee/teenused> |
+| MTÜ Iseseisev Elu | Tere tulemast! | <https://www.iseseisev-elu.ee/> |
+| MTÜ Iseseisev Elu | Toetatud elamise teenus | <https://www.iseseisev-elu.ee/teenused/elamine> |
+| MTÜ Iseseisev Elu | Toetatud elamise teenusele saamine ja teenuse lõppemine | <https://www.iseseisev-elu.ee/teenused/elamine/elamise-teenus> |
+| MTÜ Iseseisev Elu | Tooted | <https://www.iseseisev-elu.ee/tooted> |
+| MTÜ Iseseisev Elu | Töötamise toetamise teenus | <https://www.iseseisev-elu.ee/teenused/tootamine> |
+| MTÜ Iseseisev Elu | Visioon, missioon | <https://www.iseseisev-elu.ee/iseseisev-elu/visioon-missioon> |
+| NIRK | NIRK pakub üle Eesti nägemispuudega inimestele järgmisi teenuseid: | <https://www.nirkkeskus.ee/Rehabilitatsiooniteenused> |
+| NIRK | Andmekaitse | <https://www.nirkkeskus.ee/Andmekaitse> |
+| NIRK | Andmetöötluspõhimõtted | <https://www.nirkkeskus.ee/Andmet%C3%B6%C3%B6tlusp%C3%B5him%C3%B5tted> |
+| NIRK | Asukoht | <https://www.nirkkeskus.ee/NIRKist/asukoht> |
+| NIRK | Kliendi õigused ja kohustused | <https://www.nirkkeskus.ee/Kliendi_%C3%B5igused_ja_kohustused> |
+| NIRK | Koolituste ja konsultatsioonide hinnakiri | <https://www.nirkkeskus.ee/Koolituste_ja_konsultatsioonide_hinnakiri> |
+| NIRK | Kuidas tulla | <https://www.nirkkeskus.ee/Kuidas_tulla> |
+| NIRK | Nägemispuudega inimeste rehabilitatsioon | <https://www.nirkkeskus.ee/Rehabilitatsioon> |
+| NIRK | Teenusele registreerumine | <https://www.nirkkeskus.ee/Teenustele_registreerumine> |
+| NIRK | Teenuste kirjeldused | <https://www.nirkkeskus.ee/NIRKist/teenuste_kirjeldused> |
+| Põhja-Eesti Pimedate Ühing | Dokumendid | <https://ppy.ee/est/meist/folder1963/dokumendid> |
+| Põhja-Eesti Pimedate Ühing | Innovaatilised lahendid nägemispuudega inimestele ettevõtluse arendamisel | <https://ppy.ee/est/meie-tegemised/projektid/innovaatilised-lahendid-nagemispuudega-inimestele-ettevotluse-arendamisel> |
+| Põhja-Eesti Pimedate Ühing | Kuidas suhelda nägemispuudega inimesega?Nägemispuudest tingitud suhtlemistakistused. | <https://ppy.ee/est/nagemispuue/kuidas-suhelda-nagemispuudega-inimesega> |
+| Põhja-Eesti Pimedate Ühing | Liikmed | <https://ppy.ee/est/meist/folder1963/liikmed> |
+| Põhja-Eesti Pimedate Ühing | Missioon ja visioon | <https://ppy.ee/est/meist/folder1963/missioon-ja-visioon> |
+| Põhja-Eesti Pimedate Ühing | Nägemispuue | <https://ppy.ee/est/nagemispuue> |
+| Põhja-Eesti Pimedate Ühing | Organisatsioon | <https://ppy.ee/est/meist> |
+| Põhja-Eesti Pimedate Ühing | Pimedad ja vaegnägijad valmistavad tooteid ja pakuvad teenuseid | <https://ppy.ee/est/meiepakume> |
+| Põhja-Eesti Pimedate Ühing | Struktuur ja Töökorraldus | <https://ppy.ee/est/meist/folder1963/struktuur-ja-tookorraldus> |
+| Põhja-Eesti Pimedate Ühing | Tulevikuplaanid | <https://ppy.ee/est/meist/tulevik> |
+| Pärnumaa Puuetega Inimeste Koda | MTÜ Pärnumaa Puuetega Inimeste Koda | <https://xn--prnukoda-0za.ee/kontakt> |
+| Pärnumaa Puuetega Inimeste Koda | Pärnumaa Puuetega Inimeste Koda | <https://xn--prnukoda-0za.ee/> |
+| Pärnumaa Puuetega Inimeste Koda | MTÜ PPIK liikmesühingud | <https://xn--prnukoda-0za.ee/liikmesuhingud-2> |
+| Saaremaa Puuetega Inimeste Koda | Asukoht | <https://www.saarekoda.ee/7ca6c-about/asukoht> |
+| Saaremaa Puuetega Inimeste Koda | Eetikakoodeks | <https://www.saarekoda.ee/dokumendid/eetikakoodeks> |
+| Saaremaa Puuetega Inimeste Koda | Erihoolekandeteenused | <https://www.saarekoda.ee/7ca6c-about/teenused/riiklikud-teenused> |
+| Saaremaa Puuetega Inimeste Koda | Invatranspordi teenus | <https://www.saarekoda.ee/7ca6c-about/teenused/invatranspordi-teenus> |
+| Saaremaa Puuetega Inimeste Koda | Kultuur ja traditsioonid | <https://www.saarekoda.ee/7ca6c-about/kultuur-ja-traditisoonid> |
+| Saaremaa Puuetega Inimeste Koda | Projektid 2026 | <https://www.saarekoda.ee/projektid/projektid-2026> |
+| Saaremaa Puuetega Inimeste Koda | Sotsiaalse rehabilitatsiooniteenus | <https://www.saarekoda.ee/7ca6c-about/teenused/rehabilitatsioon> |
+| Saaremaa Puuetega Inimeste Koda | SPIK TEENUSED | <https://www.saarekoda.ee/7ca6c-about/teenused/spik-teenused> |
+| Saaremaa Puuetega Inimeste Koda | Teenused | <https://www.saarekoda.ee/7ca6c-about/teenused> |
+| Saaremaa Puuetega Inimeste Koda | Uurimused | <https://www.saarekoda.ee/dokumendid/uurimused> |
+| Tallinna ja Harjumaa Kurtide Ühing | Tallinna ja Harjumaa Kurtide Ühing | <https://www.thky.ee/> |
+| Tallinna ja Harjumaa Kurtide Ühing | Avaleht | <https://www.thky.ee/avaleht> |
+| Tallinna ja Harjumaa Kurtide Ühing | Kontakt | <https://www.thky.ee/organisatsioonist/kontakt> |
+| Tallinna ja Harjumaa Kurtide Ühing | Lingid | <https://www.thky.ee/lingid/kasulikud-lingid> |
+| Tallinna ja Harjumaa Kurtide Ühing | THKÜ eesmärgiks on | <https://www.thky.ee/organisatsioonist/meie-eesm%C3%A4rgid> |
+| Tallinna Liikumispuudega Inimeste Ühing | Ühingust | <https://www.tliy.ee/> |
+| Tallinna Puuetega Inimeste Koda | Tallinna Puuetega Inimeste Koda | <https://tallinnakoda.ee/> |
+| Tallinna Puuetega Inimeste Koda | Avalik internetipunkt | <https://tallinnakoda.ee/avalik-internetipunkt> |
+| Tallinna Puuetega Inimeste Koda | Avatud kontoriruum | <https://tallinnakoda.ee/avatud-kontoriruum> |
+| Tallinna Puuetega Inimeste Koda | Huvitegevused Tallinna Puuetega Inimeste Kojas 2026. aastal | <https://tallinnakoda.ee/huvitegevused-tallinna-puuetega-inimeste-kojas-2026-aastal> |
+| Tallinna Puuetega Inimeste Koda | Liikmesühingud | <https://tallinnakoda.ee/liikmesuhingud> |
+| Tallinna Puuetega Inimeste Koda | Meelte aed | <https://tallinnakoda.ee/meelte-aed> |
+| Tallinna Puuetega Inimeste Koda | Ruumide rent | <https://tallinnakoda.ee/ruumide-rent> |
+| Tallinna Puuetega Inimeste Koda | Tallinna Koja liikmesühingud | <https://tallinnakoda.ee/liikmesuhingud/> |
+| Tallinna Puuetega Inimeste Koda | Tegevuskeskus | <https://tallinnakoda.ee/tegevuskeskus> |
+| Tallinna Puuetega Inimeste Koda | Võta ühendust! | <https://tallinnakoda.ee/kontakt> |
+| Tartu Puuetega Inimeste Koda | Tartu Puuetega Inimeste Koda | <https://tartukoda.ee/> |
+| Tartu Puuetega Inimeste Koda | Elva Puuetega Inimeste Ühing | <https://tartukoda.ee/liikmed/elva-puuetega-inimeste-uhing> |
+| Tartu Puuetega Inimeste Koda | Kojast | <https://tartukoda.ee/kojast> |
+| Tartu Puuetega Inimeste Koda | Kontakt | <https://tartukoda.ee/kontakt> |
+| Tartu Puuetega Inimeste Koda | Liigesehaigete Laste Ühing | <https://tartukoda.ee/liikmed/liigesehaigete-laste-uhing> |
+| Tartu Puuetega Inimeste Koda | Liikmed | <https://tartukoda.ee/liikmed> |
+| Tartu Puuetega Inimeste Koda | Lõuna-Eesti Pimedate Ühing | <https://tartukoda.ee/liikmed/louna-eesti-pimedate-uhing> |
+| Tartu Puuetega Inimeste Koda | Lõuna-Eesti Vähiühing | <https://tartukoda.ee/liikmed/louna-eesti-vahiuhing> |
+| Tartu Puuetega Inimeste Koda | MTÜ CP & Liitpuudega Inimeste Perede Ühing | <https://tartukoda.ee/liikmed/mtu-cp-ja-liitpuudega-inimeste-perede-uhing> |
+| Tartu Puuetega Inimeste Koda | Projektid | <https://tartukoda.ee/projektid> |
+| Tartu Puuetega Inimeste Koda | Ropka-Karlova päevakeskus | <https://tartukoda.ee/ropka-karlova-paevakeskus> |
+| Tartu Puuetega Inimeste Koda | Ropka-Karlova Päevakeskuse juubeli tähistamine | <https://tartukoda.ee/ropka-karlova-paevakeskuse-juubeli-tahistamine> |
+| Tartu Puuetega Inimeste Koda | TARTU ALLERGIA- JA ASTMAÜHENDUS | <https://tartukoda.ee/liikmed/tartu-allergia-ja-astmauhendus> |
+| Tartu Puuetega Inimeste Koda | Tartu Autismiühing | <https://tartukoda.ee/liikmed/tartu-autismiuhing> |
+| Tartu Puuetega Inimeste Koda | Tartu Diabeetikute Selts | <https://tartukoda.ee/liikmed/tartu-diabeetikute-selts> |
+| Tartu Puuetega Inimeste Koda | Tartu Kardioühing | <https://tartukoda.ee/liikmed/tartu-reumauhing> |
+| Tartu Puuetega Inimeste Koda | Tartu Parkinsoni Haiguse Selts | <https://tartukoda.ee/liikmed/tartu-parkinsoni-haiguse-selts> |
+| Tartu Puuetega Inimeste Koda | TARTU SCLEROSIS MULTIPLEX`I ÜHING | <https://tartukoda.ee/liikmed/tartu-sclerosis-multiplex-uhing> |
+| Tartu Puuetega Inimeste Koda | Tartumaa Kurtide Ühing | <https://tartukoda.ee/liikmed/tartumaa-kurtide-uhing> |
+| Tartu Puuetega Inimeste Koda | TARTUMAA PUUETEGA LASTE, NOORTE JA NENDE VANEMATE ÜHENDUS | <https://tartukoda.ee/liikmed/tartumaa-puudega-laste-noorte-ja-nende-vanemate-uhendus> |
+| Tugiliisu | Erivajadustega Inimeste Toetusühing Tugiliisu | <https://tugiliisu.ee/> |
+| Tugiliisu | MEIE ERIPÄRA ehk MIKS JUST TUGILIISU? | <https://tugiliisu.ee/asutus-ja-eesmargid/meie-eripara> |
+| Tugiliisu | Tugiliisu KOOLITAB! | <https://tugiliisu.ee/proovikas> |
+| Tugiliisu | EETIKA | <https://tugiliisu.ee/asutus-ja-eesmargid/eetilise-tegutsemise-pohimotted> |
+| Tugiliisu | Ettepanekute, kiituste ja kaebuste esitamise ja lahendamise kord | <https://tugiliisu.ee/asutus-ja-eesmargid/ettepanekute-kiituste-ja-kaebuste-esitamise-ja-lahendamise-kord> |
+| Tugiliisu | IGAPÄEVAELU TOETAMISE TEENUS | <https://tugiliisu.ee/teenused/igapaevaelu-toetamise-teenus> |
+| Tugiliisu | Kakumäe Kodu ( KE teenus Kakumäel ) | <https://tugiliisu.ee/teenused/kogukonnas-elamise-teenus/kakumae-kodu> |
+| Tugiliisu | KE korter Sõpruse pst 208 | <https://tugiliisu.ee/ke-korter-sopruse-pst-208> |
+| Tugiliisu | KOGUKONNAS ELAMISE TEENUS | <https://tugiliisu.ee/teenused/kogukonnas-elamise-teenus> |
+| Tugiliisu | KUIDAS SAAN TEENUSELE? | <https://tugiliisu.ee/teenused/kuidas-saab-meie-teenusele> |
+| Tugiliisu | KVALITEET | <https://tugiliisu.ee/asutus-ja-eesmargid/meie-kvaliteet> |
+| Tugiliisu | MEIST | <https://tugiliisu.ee/asutus-ja-eesmargid> |
+| Tugiliisu | TEENUSED | <https://tugiliisu.ee/teenused> |
+| Tugiliisu | TOETATUD ELAMISE TEENUS | <https://tugiliisu.ee/teenused/toetatud-elamise-teenus> |
+| Tugiliisu | TÖÖTAMISE TOETAMISE TEENUS | <https://tugiliisu.ee/teenused/tootamise-toetamise-teenus> |
+| Tugiliisu | Villa Liisu (KE teenus Nõmmel) | <https://tugiliisu.ee/teenused/kogukonnas-elamise-teenus/villa-liisu-ke-teenus-nommel> |
+| Tugiliisu | VÄÄRTUSED | <https://tugiliisu.ee/asutus-ja-eesmargid/meie-vaartused> |
+| Viipekeeletõlgid OÜ | Hinnakiri aastal 2026 | <https://www.viipekeeletolgid.ee/hinnakiri> |
+| Viipekeeletõlgid OÜ | Kirjutustõlketeenus | <https://www.viipekeeletolgid.ee/teenused/kirjutustolketeenus> |
+| Viipekeeletõlgid OÜ | Koolitusteenused | <https://www.viipekeeletolgid.ee/teenused/koolitusteenused> |
+| Viipekeeletõlgid OÜ | Meist | <https://www.viipekeeletolgid.ee/meist> |
+| Viipekeeletõlgid OÜ | Nõustamisteenused | <https://www.viipekeeletolgid.ee/teenused/noustamisteenused> |
+| Viipekeeletõlgid OÜ | Tasuta kirjutustõlketeenus | <https://www.viipekeeletolgid.ee/teenused/tasuta-kirjutustolketeenus> |
+| Viipekeeletõlgid OÜ | Teenused | <https://www.viipekeeletolgid.ee/teenused> |
+| Viipekeeletõlgid OÜ | Tellimuste menetlemise kord | <https://www.viipekeeletolgid.ee/telli-tolk/tellimuste-menetlemise-kord> |
+| Viipekeeletõlgid OÜ | Tõlketeenused | <https://www.viipekeeletolgid.ee/teenused/tolketeenuse> |
+| Viljandimaa Puuetega Inimeste Nõukoda | VILJANDIMAA PUUETEGA INIMESTE NÕUKODA | <https://viljandipin.eu/> |
+| Viljandimaa Puuetega Inimeste Nõukoda | Diabeetikute Selts | <https://viljandipin.eu/diabeetikute-selts> |
+| Viljandimaa Puuetega Inimeste Nõukoda | Epilepsia Ühing | <https://viljandipin.eu/epilepsia-uhing> |
+| Viljandimaa Puuetega Inimeste Nõukoda | Kontakt | <https://viljandipin.eu/kontakt> |
+| Viljandimaa Puuetega Inimeste Nõukoda | Liikmesorganisatsioonid | <https://viljandipin.eu/liikmesorganisatsioonid> |
+| Viljandimaa Puuetega Inimeste Nõukoda | Lõuna-Mulgimaa Puuetega Inimeste Ühing | <https://viljandipin.eu/louna-mulgimaa-puuetega-inimeste-uhing> |
+| Viljandimaa Puuetega Inimeste Nõukoda | Nõukojast | <https://viljandipin.eu/noukojast> |
+| Viljandimaa Puuetega Inimeste Nõukoda | Projektid | <https://viljandipin.eu/projektid> |
+| Viljandimaa Puuetega Inimeste Nõukoda | Rahvusvaheline patsiendiohutuse päev | <https://viljandipin.eu/rahvusvaheline-patsiendiohutuse-paev> |
+| Viljandimaa Puuetega Inimeste Nõukoda | Trükised | <https://viljandipin.eu/trukised> |
+| Võrumaa Puuetega Inimeste Koda | Võrumaa Puuetega Inimeste Koda | <https://www.vorukoda.ee/> |
+| Võrumaa Puuetega Inimeste Koda | Kasulikke viiteid | <https://www.vorukoda.ee/kasulikku/kasulikke-viiteid> |
+| Võrumaa Puuetega Inimeste Koda | Kasulikku | <https://www.vorukoda.ee/kasulikku> |
+| Võrumaa Puuetega Inimeste Koda | Kojast | <https://www.vorukoda.ee/kojast> |
+| Võrumaa Puuetega Inimeste Koda | Kontakt | <https://www.vorukoda.ee/kontakt> |
+| Võrumaa Puuetega Inimeste Koda | Ligipääsetavus Võru linnas | <https://www.vorukoda.ee/kasulikku/ligipaasetavus-voru-linnas> |
+| Võrumaa Puuetega Inimeste Koda | Liikmesühingud | <https://www.vorukoda.ee/kojast/liikmesuhingud> |
+| Võrumaa Puuetega Inimeste Koda | PIK ringid | <https://www.vorukoda.ee/tegevused/pik-ringid> |
+| Võrumaa Puuetega Inimeste Koda | TASUTA ÕIGUSABI ERIVAJADUSTEGA INIMESTELE | <https://www.vorukoda.ee/tasuta-oigusabi-erivajadustega-inimestele> |
+<!-- corpus-outside:end -->
