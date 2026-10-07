@@ -148,7 +148,7 @@ Pärast v66 tõsteti indeksi mahupiir mõõtmise järgi 80 000 lõigule ([ADR-10
 
 **Serveri ketas pärast v68:** hoidla 8,3 GB, vektorifailid 4,1 GB, RAG-andmebaas 10 GB; **vaba 4,0 GB (94% täis)**. LiveKiti salvestust (vajab 5 GB) ei saa tagasi panna enne, kui ruumi on juurde tehtud; omanik 07.10.2026: „paneme asjad seisma, ostan ruumi juurde“. Kuni selleni uusi täiendusi ei tehta. (Samal õhtul suurendas omanik ketast 77 GB-le, serveri hoidla pakiti kokku (ADR-101) ja LiveKiti salvestus pandi tagasi; vaba on 26 GB.)
 
-Kontrollküsimused küsivad otse uue dokumendi järele. Kui palju lisatud dokumendid tavaliste küsimuste otsingut muudavad, on mõõdetud allpool (jaotis „Mõõtmine“); kas vastused muutuvad, on mõõtmata.
+Kontrollküsimused küsivad otse uue dokumendi järele. Kui palju lisatud dokumendid tavaliste küsimuste otsingut muudavad, on mõõdetud allpool (jaotis „Mõõtmine“); kas vastused muutuvad, on võrreldud jaotises „Vastuste võrdlus“.
 
 ## Mõõtmine: kui palju lisatud dokumendid otsingu tulemust muudavad (tasuta, 07.10.2026 õhtu)
 
@@ -186,9 +186,39 @@ Esimeste lõikude sekka jõudis 39 dokumenti 257-st. Täienduste kaupa: v65 61 l
 - **See ei ütle, kas vastused läksid paremaks või halvemaks.** Mõõdetud on otsingu järjestus ilma tõendivalikuta; päris pöördes valib mudel kandidaatide seast ise ja võib uuringulõigu kõrvale jätta või eelistada. Selle teadasaamiseks tuleb samad küsimused küsida kahe korpusega ja vastuseid pimesi võrrelda (tasuline, tegemata).
 - Vektorina oli plaani päringute juures küsimuse vektor, nii et päris pöörde kandidaadid võivad erineda.
 
+## Vastuste võrdlus lisatud dokumentidega ja ilma (07.10.2026 hilisõhtu)
+
+Otsingu kordus näitas muutuse suurust, mitte suunda. Omanik andis võrdluseks loa („jah sõna antud“, lagi 0,25 USD).
+
+**Meetod.** 14 tavalist küsimust (toimetulekutoetus, hooldajatoetus, koduteenus, lapse tugiisik, puude tuvastamine, erihoolekanne, laps hädaohus, võlanõustamine, dementsus, asendushoolduselt lahkuv noor, otsuse vaidlustamine, lähisuhtevägivald, kodu kohandamine, isiklik abistaja), ükski ei nimeta omavalitsust. Iga küsimus küsiti päris vestlusteenuse kaudu (`rag-v2-conversation-eval.mjs`) kaks korda: korpusega nagu see on (8337 dokumenti) ja sama indeksiga ilma 07.10 lisatud 257 dokumendita (8080). Selleks tehti kaks mitteaktiivset plaani, mis erinevad ainult dokumentide loendi poolest (väljalase `df2855d2`, dialoogi juhis 33, kiire arutlus); pärast käiku need eemaldati. Vastused pandi paari juhuslikus järjekorras (A ja B), hindamise alused ja hinnangud kirjutati üles enne võtme avamist. Hindas üks lugeja (abiline), mudelit hindamiseks ei kutsutud.
+
+| | Lisatud dokumentidega | Ilma |
+|---|---:|---:|
+| Vastuseid (tagasilükatuid) | 14 (0) | 14 (0) |
+| Parem vastus | **6** | **0** |
+| Sisult võrdsed | 8 | 8 |
+| Vastuseid, mis viitavad lisatud dokumendile | 8 | 0 |
+| Viidatud dokumente kokku (neist lisatud) | 39 (11) | 31 |
+| Vastuse keskmine pikkus, tähemärki | 1130 | 928 |
+| Kulu plaani hinna järgi, USD | 0,0625 | 0,0604 |
+
+**Kuus paremat vastust** viitasid kõik lisatud dokumendile, viiel juhul juhendile: hooldajatoetus (täisealise isiku hoolduse juhend, hoolduskoormuse uuring), erihoolekanne, asendushoolduselt lahkuv noor (elluastumiskava juhendmaterjal, noorte uuring), otsuse vaidlustamine (üldjuhend omavalitsuse ametnikule: vaide esitamise tähtaeg ja sisu), kodu kohandamine (eluruumi tagamise juhend, keskkonna kohandamise abimaterjal), isiklik abistaja (teenuse juhend: puude raskusastet ei ole vaja). Parem tähendas siin: vastus ütles, kes otsustab ja mida teha, mitte ei jäänud ajaloo või ühe valla näite juurde.
+
+**Kaheksast võrdsest** neljal ei olnud lisatud dokumente tõendite hulgas üldse: nende erinevus on kahe käigu vaheline erinevus (kolm kallutas ühele, kolm teisele poole).
+
+**Mida see ei tõesta.**
+
+- Üks hindaja, kes kirjutas ka küsimused; iga küsimus küsiti üks kord; 14 küsimust.
+- Fakte allikatega ei võrreldud: hinnati, mida vastus küsijale annab, mitte iga summa õigsust.
+- Omavalitsusega küsimusi ei olnud; seal konkureerivad lisatud dokumendid valla enda tekstidega.
+- **Leitud viga:** ühe vastuse tekstis (lisatud dokumentidega, asendushoolduselt lahkuv noor) oli viis korda märge „[citations omitted]“. Sama liiki märge („[Remove?]“) leiti 07.10 hommikul teises vastuses. Põhjus on uurimata.
+
+Tõend: `docs/audits/evidence/added-documents-answers-2026-10-07.json` (hinnangud, võti, viidatud lisatud dokumentide pealkirjad; vastuste tekste hoidlas ei ole, need on serveris kaustas `eval-files/added-docs-2026-10-07`).
+
 ## Tegemata
 
-- **Vastuste võrdlus lisatud dokumentidega ja ilma** (tasuline): otsingu kordus näitab muutuse suurust, mitte suunda.
+- **Sama võrdlus omavalitsusega küsimustega** ja teise hindajaga.
+- **Märked „[citations omitted]“ ja „[Remove?]“ vastuse tekstis:** põhjus leidmata.
 
 - **Uudiskirja dokumendid, mis ootavad** (loend `Andmebaasi/register/newsletter_documents.json`): 2 vastuvõtu kinni peetud uuringut (liiga paljudel lehekülgedel puudub tekstikiht), 9 ingliskeelset, 6 tekstikihita, 2 liiga suurt, 13 veebilehena kogutud artiklit (lehtede korjaja tee, ADR-095). Koguja aruandes on veel 12 kättesaamata PDF-i ja 9 muus vormingus allikat.
 - Käivitusskript (`scripts/rag-v2-corpus-run.sh`) oskab nüüd pärast plaani keeldumist uuesti alustada (07.10.2026 õhtu): juba tõstetud pead ei pakita teist korda lahti, uus poliitikafail võetakse vana asemele, tühi plaanikaust eemaldatakse ja ebaõnnestunud käivituse lukk vabastatakse. Pärast ostu katkenud käivitust ta endiselt ise ei jätka.

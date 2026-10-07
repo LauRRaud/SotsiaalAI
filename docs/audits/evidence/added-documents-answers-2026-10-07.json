@@ -1,0 +1,435 @@
+{
+ "schema_version": "rag-v2/added-documents-answers-1",
+ "date": "2026-10-07",
+ "question": "Do the 257 studies and guides added on 07.10.2026 (corpus v65-v68) make ordinary answers better or worse?",
+ "method": {
+  "questions": 14,
+  "asked": "each once per corpus, a conversation of one turn, through the real chat service (scripts/rag-v2-conversation-eval.mjs) on release df2855d2: dialogue prompt 33, search-assist-9, reasoning low",
+  "corpora": {
+   "with": "index 8b1e1008, every document (8337)",
+   "without": "the same index without the 257 documents the policy of v68 has and the policy of v64 does not (8080)"
+  },
+  "plans": "two inactive plans made for the run, alike but for the documents; removed after",
+  "review": "blind: the two answers of a question as A and B in a random order; rubric and verdicts written before the key was opened; one reviewer (the assistant); no model call for the review",
+  "rubric": [
+   "directness: does it answer the practical question (what to do, where, on what conditions)",
+   "substance: rules, steps, who decides; an essential point the other answer has and this one lacks",
+   "noise: study findings, statistics or history that do not help the asker",
+   "red flags: a claim that looks unsupported or wrong, an old state given as the present, a defect in the text"
+  ]
+ },
+ "result": {
+  "verdicts": {
+   "equal": 8,
+   "with": 6
+  },
+  "leans_among_equal": {
+   "with": 3,
+   "without": 3,
+   "none": 2
+  },
+  "with_better_and_cites_an_added_document": 6,
+  "answers_citing_an_added_document": 8,
+  "cited_documents": {
+   "with": 39,
+   "of_them_added": 11,
+   "without": 31
+  },
+  "average_chars": {
+   "with": 1130,
+   "without": 928
+  },
+  "rejected_answers": 0,
+  "estimated_usd": {
+   "with": 0.0626,
+   "without": 0.0604,
+   "total": 0.123,
+   "ceiling": 0.25
+  }
+ },
+ "limits": [
+  "one reviewer, who also wrote the questions",
+  "each question asked once: four of the eight equal pairs had no added document in the evidence, so their differences are the difference between two runs",
+  "fourteen questions, none naming a municipality",
+  "facts were not checked against the sources: the review compares what the answers give the asker, not whether each amount is right",
+  "one answer with the added documents holds the mark \"[citations omitted]\" five times in its text (cmp-jarelhooldus); it was still the more useful of the two"
+ ],
+ "kept_on_the_server": "/home/ubuntu/rag-v2-work/eval-files/added-docs-2026-10-07 (the two reports, blind.json, key.json; answers are not in the repository)",
+ "pairs": [
+  {
+   "id": "cmp-toimetulekutoetus",
+   "blind": {
+    "A": "with",
+    "B": "without"
+   },
+   "verdict": "equal",
+   "lean": "with",
+   "note": "both complete and practical; A adds the family coefficients and housing loan papers, B the payment within three working days",
+   "with": {
+    "kind": "partial",
+    "chars": 2539,
+    "usd": 0.0059,
+    "evidence_documents": 2,
+    "of_them_added": 0,
+    "cited_documents": 1,
+    "cited_added": []
+   },
+   "without": {
+    "kind": "partial",
+    "chars": 1816,
+    "usd": 0.0057,
+    "evidence_documents": 2,
+    "cited_documents": 1
+   }
+  },
+  {
+   "id": "cmp-hooldajatoetus",
+   "blind": {
+    "A": "without",
+    "B": "with"
+   },
+   "verdict": "with",
+   "note": "A gives history (2005) and one municipality's 2018 example and little else; B says it depends on the municipality, who assesses and how a carer is appointed, with a dated range marked as past",
+   "with": {
+    "kind": "partial",
+    "chars": 793,
+    "usd": 0.004,
+    "evidence_documents": 3,
+    "of_them_added": 2,
+    "cited_documents": 3,
+    "cited_added": [
+     "Elanikkonna hoolduskoormuse uuring",
+     "Täisealise isiku hoolduse juhend"
+    ]
+   },
+   "without": {
+    "kind": "partial",
+    "chars": 703,
+    "usd": 0.0038,
+    "evidence_documents": 2,
+    "cited_documents": 2
+   }
+  },
+  {
+   "id": "cmp-koduteenus",
+   "blind": {
+    "A": "without",
+    "B": "with"
+   },
+   "verdict": "equal",
+   "lean": "without",
+   "note": "same substance; A adds what the fee depends on",
+   "with": {
+    "kind": "partial",
+    "chars": 695,
+    "usd": 0.0045,
+    "evidence_documents": 3,
+    "of_them_added": 1,
+    "cited_documents": 3,
+    "cited_added": [
+     "Koduteenuse juhend"
+    ]
+   },
+   "without": {
+    "kind": "partial",
+    "chars": 957,
+    "usd": 0.0044,
+    "evidence_documents": 2,
+    "cited_documents": 1
+   }
+  },
+  {
+   "id": "cmp-tugiisik",
+   "blind": {
+    "A": "without",
+    "B": "with"
+   },
+   "verdict": "equal",
+   "note": "same substance in another order",
+   "with": {
+    "kind": "partial",
+    "chars": 893,
+    "usd": 0.0041,
+    "evidence_documents": 4,
+    "of_them_added": 1,
+    "cited_documents": 2,
+    "cited_added": []
+   },
+   "without": {
+    "kind": "partial",
+    "chars": 735,
+    "usd": 0.0039,
+    "evidence_documents": 4,
+    "cited_documents": 3
+   }
+  },
+  {
+   "id": "cmp-puue",
+   "blind": {
+    "A": "with",
+    "B": "without"
+   },
+   "verdict": "equal",
+   "lean": "without",
+   "note": "A has the 30 working days; B the doctor's visit within six months, the 15 days and the web address; B says '2026. aasta ülevaate järgi'",
+   "with": {
+    "kind": "partial",
+    "chars": 1420,
+    "usd": 0.0047,
+    "evidence_documents": 3,
+    "of_them_added": 1,
+    "cited_documents": 2,
+    "cited_added": []
+   },
+   "without": {
+    "kind": "grounded",
+    "chars": 1273,
+    "usd": 0.0046,
+    "evidence_documents": 3,
+    "cited_documents": 2
+   }
+  },
+  {
+   "id": "cmp-erihoolekanne",
+   "blind": {
+    "A": "without",
+    "B": "with"
+   },
+   "verdict": "with",
+   "note": "B names the services and the ways to apply plainly; A hedges the ways to apply as 2019 information it cannot confirm",
+   "with": {
+    "kind": "grounded",
+    "chars": 857,
+    "usd": 0.0042,
+    "evidence_documents": 5,
+    "of_them_added": 1,
+    "cited_documents": 4,
+    "cited_added": [
+     "Töö alkoholi liigtarvitava kliendiga. Abiks spetsialistile"
+    ]
+   },
+   "without": {
+    "kind": "grounded",
+    "chars": 980,
+    "usd": 0.004,
+    "evidence_documents": 4,
+    "cited_documents": 3
+   }
+  },
+  {
+   "id": "cmp-laps-hadaohus",
+   "blind": {
+    "A": "with",
+    "B": "without"
+   },
+   "verdict": "equal",
+   "lean": "with",
+   "note": "both right; A adds that the reporter is not disclosed",
+   "with": {
+    "kind": "grounded",
+    "chars": 877,
+    "usd": 0.0043,
+    "evidence_documents": 4,
+    "of_them_added": 0,
+    "cited_documents": 2,
+    "cited_added": []
+   },
+   "without": {
+    "kind": "grounded",
+    "chars": 476,
+    "usd": 0.0041,
+    "evidence_documents": 4,
+    "cited_documents": 2
+   }
+  },
+  {
+   "id": "cmp-volanoustamine",
+   "blind": {
+    "A": "with",
+    "B": "without"
+   },
+   "verdict": "equal",
+   "note": "same steps; B adds an unemployment fund note in the past tense, A asks the municipality",
+   "with": {
+    "kind": "partial",
+    "chars": 840,
+    "usd": 0.0043,
+    "evidence_documents": 5,
+    "of_them_added": 1,
+    "cited_documents": 3,
+    "cited_added": [
+     "Võlanõustamisteenuse juhend"
+    ]
+   },
+   "without": {
+    "kind": "partial",
+    "chars": 800,
+    "usd": 0.0042,
+    "evidence_documents": 5,
+    "cited_documents": 3
+   }
+  },
+  {
+   "id": "cmp-dementsus",
+   "blind": {
+    "A": "with",
+    "B": "without"
+   },
+   "verdict": "equal",
+   "lean": "without",
+   "note": "same services; B adds the pension-age disability allowance with amounts and a caution",
+   "with": {
+    "kind": "partial",
+    "chars": 1075,
+    "usd": 0.0043,
+    "evidence_documents": 7,
+    "of_them_added": 0,
+    "cited_documents": 3,
+    "cited_added": []
+   },
+   "without": {
+    "kind": "partial",
+    "chars": 1287,
+    "usd": 0.0042,
+    "evidence_documents": 5,
+    "cited_documents": 3
+   }
+  },
+  {
+   "id": "cmp-jarelhooldus",
+   "blind": {
+    "A": "without",
+    "B": "with"
+   },
+   "verdict": "with",
+   "note": "the question asks for rights and benefits: B adds the personal costs amount, the scholarship and subsistence benefit, each dated; but B's text holds the mark '[citations omitted]' five times, a defect",
+   "with": {
+    "kind": "partial",
+    "chars": 2393,
+    "usd": 0.0054,
+    "evidence_documents": 4,
+    "of_them_added": 3,
+    "cited_documents": 3,
+    "cited_added": [
+     "Asendushoolduselt iseseisvasse ellu astuvate noorte uuring. Lõpparuanne",
+     "Asendushooldusel noorte elluastumiskava kontrollnimekiri ja juhendmaterjal"
+    ]
+   },
+   "without": {
+    "kind": "partial",
+    "chars": 1180,
+    "usd": 0.0047,
+    "evidence_documents": 5,
+    "cited_documents": 1
+   }
+  },
+  {
+   "id": "cmp-vaidlustamine",
+   "blind": {
+    "A": "with",
+    "B": "without"
+   },
+   "verdict": "with",
+   "note": "A gives the 30 days to file, what to write and the court directly; B lacks the filing deadline and says it cannot tell it",
+   "with": {
+    "kind": "grounded",
+    "chars": 1002,
+    "usd": 0.0044,
+    "evidence_documents": 6,
+    "of_them_added": 1,
+    "cited_documents": 5,
+    "cited_added": [
+     "Üldjuhend KOV sotsiaalteenuse korraldamiseks ametnikule"
+    ]
+   },
+   "without": {
+    "kind": "partial",
+    "chars": 720,
+    "usd": 0.0041,
+    "evidence_documents": 4,
+    "cited_documents": 3
+   }
+  },
+  {
+   "id": "cmp-lahisuhtevagivald",
+   "blind": {
+    "A": "without",
+    "B": "with"
+   },
+   "verdict": "equal",
+   "lean": "with",
+   "note": "same help; B adds two web addresses",
+   "with": {
+    "kind": "partial",
+    "chars": 1113,
+    "usd": 0.004,
+    "evidence_documents": 2,
+    "of_them_added": 0,
+    "cited_documents": 2,
+    "cited_added": []
+   },
+   "without": {
+    "kind": "partial",
+    "chars": 1008,
+    "usd": 0.0042,
+    "evidence_documents": 3,
+    "cited_documents": 3
+   }
+  },
+  {
+   "id": "cmp-kodukohandus",
+   "blind": {
+    "A": "without",
+    "B": "with"
+   },
+   "verdict": "with",
+   "note": "B tells how to prepare (describe the obstacles, photos) and that the municipality weighs need and means; A leans on a stroke society's guide",
+   "with": {
+    "kind": "partial",
+    "chars": 784,
+    "usd": 0.0043,
+    "evidence_documents": 5,
+    "of_them_added": 2,
+    "cited_documents": 4,
+    "cited_added": [
+     "Eluruumi tagamise teenuse juhend",
+     "Keskkonna kohandamise abimaterjal kohaliku omavalitsuse spetsialistidele"
+    ]
+   },
+   "without": {
+    "kind": "partial",
+    "chars": 634,
+    "usd": 0.0043,
+    "evidence_documents": 4,
+    "cited_documents": 3
+   }
+  },
+  {
+   "id": "cmp-isiklik-abistaja",
+   "blind": {
+    "A": "without",
+    "B": "with"
+   },
+   "verdict": "with",
+   "note": "same definition; B adds that a determined degree of disability is not required",
+   "with": {
+    "kind": "grounded",
+    "chars": 540,
+    "usd": 0.0042,
+    "evidence_documents": 3,
+    "of_them_added": 1,
+    "cited_documents": 2,
+    "cited_added": [
+     "Isikliku abistaja teenuse juhend"
+    ]
+   },
+   "without": {
+    "kind": "grounded",
+    "chars": 425,
+    "usd": 0.0042,
+    "evidence_documents": 3,
+    "cited_documents": 1
+   }
+  }
+ ]
+}
