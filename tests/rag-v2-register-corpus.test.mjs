@@ -62,8 +62,8 @@ test('the register and its page carry the state, without a contact\'s name, and 
   assert.match(written, /Seis 07\.10\.2026: serveris töötav RAG \(korpus \*\*v64\*\*, indeks `7d209c63`\) sisaldab \*\*13 dokumenti\*\* \(45 596 lõiku\)\./u);
   assert.match(written, /\| Omavalitsuste teenused ja toetused \| 1 \| jaotis „Sisufailid“ \|\n\| Taotlusvormid \(vastuses antakse lingina\) \| 1 \| jaotis „Sisufailid“ \|\n\| Omavalitsuste kontaktid \| 4 \| faili lõpus arvudena/u);
   assert.match(written, /\| Muu \(new_kind\) \| 1 \|  \|\n\| \*\*Kokku\*\* \| \*\*13\*\* \| \|/u);
-  assert.match(written, /\| Juhendid, infomaterjalid ja uuringud \| 1 \| jaotis „Sisufailid“; asutuste loenditest lisatud on faili lõpus \|/u);
-  assert.match(written, /### Ministeeriumi ja ametite uuringud ja juhendid \(ametlikult aadressilt\) \(1\)\n\n\| Väljaandja \| Pealkiri \| Aadress \|\n\|---\|---\|---\|\n\| Näidisamet \| Näidisuuring\. Lõpparuanne \| <https:\/\/amet\.example\/uuring\.pdf> \|/u);
+  assert.match(written, /\| Juhendid, infomaterjalid ja uuringud \| 1 \| jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus \|/u);
+  assert.match(written, /### Uuringud ja juhendid väljaandja ametlikult aadressilt \(1\)\n\n\| Väljaandja \| Pealkiri \| Aadress \|\n\|---\|---\|---\|\n\| Näidisamet \| Näidisuuring\. Lõpparuanne \| <https:\/\/amet\.example\/uuring\.pdf> \|/u);
   // Where the source files are kept is a developer's matter, folded away.
   assert.match(written, /<details><summary>Tehniline jaotus arendajale: kus allikafailid asuvad<\/summary>/u);
   assert.match(written, /\| `KOV` \| 3 \| application_form 1, kov_service_info 1, official_contact 1 \|/u);
