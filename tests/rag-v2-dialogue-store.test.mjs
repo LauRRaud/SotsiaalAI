@@ -27,14 +27,17 @@ test.after(() => { globalThis.fetch = originalFetch; });
 const asStored = { findFirst: args => db.m4PilotTurn['findFirst'](args), findUnique: args => db.m4PilotTurn['findUnique'](args) };
 const turnRows = { findFirst: async args => openTurn(await asStored.findFirst(args)), findUnique: async args => openTurn(await asStored.findUnique(args)) };
 
-async function fixture(t, stateFor = null, stateVersion = DIALOGUE_STATE_VERSION) {
+// fullTopic (ADR-105): a test that fills a topic of 30 messages needs a budget for them, and its earlier turns are moved
+// out of the last minute so that the chat's limit of twelve turns a minute does not stop it.
+async function fixture(t, stateFor = null, stateVersion = DIALOGUE_STATE_VERSION, { fullTopic = false } = {}) {
   const user = await db.user.create({ data: { email: `m4c-${randomUUID()}@example.invalid` } });
   const conv = await db.conversation.create({ data: { userId: user.id, role: 'CLIENT', metadata: { m4: true }, expiresAt: null } });
   const config = { id: randomUUID(), configHash: randomUUID(), tenant: 'm4c-test', mode: 'real', users: [user.id], documents: { doc: 'v1' },
     dialogueVersion: DIALOGUE_VERSION, ...(stateFor ? { dialogueStateVersion: stateVersion } : {}),
     embedding: embeddingConfig({ embedding_mode: 'real', provider: 'openai', model: 'text-embedding-3-large', dimensions: 3072, endpoint: 'https://api.openai.com/v1/embeddings' }),
     model: 'gpt-5.6-luna', reasoning: 'low', maxInputTokens: 64000, maxOutputTokens: 1000, expiresAt: null, retentionHours: null,
-    prices: { embeddingInput: 1, answerInput: 1, answerOutput: 1 }, budget: { attempts: 24, embeddingAttempts: 12, answerAttempts: 12, tokens: 1000000, nanoUsd: 1000000 } };
+    prices: { embeddingInput: 1, answerInput: 1, answerOutput: 1 }, budget: fullTopic ? { attempts: 4 * DIALOGUE_LIMITS.scopeTurns, embeddingAttempts: 2 * DIALOGUE_LIMITS.scopeTurns, answerAttempts: 2 * DIALOGUE_LIMITS.scopeTurns, tokens: 10000000, nanoUsd: 10000000 }
+      : { attempts: 24, embeddingAttempts: 12, answerAttempts: 12, tokens: 1000000, nanoUsd: 1000000 } };
   const calls = [], queries = [];
   let fail = false, denied = false, generation = 0;
   const adapters = { preflight: async () => {}, search: async (c, query) => {
@@ -52,7 +55,10 @@ async function fixture(t, stateFor = null, stateVersion = DIALOGUE_STATE_VERSION
     usage: { input: 20, output: stage === 'answer' ? 30 : 0 }, requestId: 'synthetic-transport' };
   } });
   const input = (question, contextMode = 'same', extra = {}) => ({ question, contextMode, convId: conv.id, clientTurnKey: randomUUID(), language: 'et', ...extra });
-  const run = (question, contextMode = 'same', extra = {}) => service.run(user.id, input(question, contextMode, extra));
+  const run = async (question, contextMode = 'same', extra = {}) => {
+    if (fullTopic) await db.chatTurn.updateMany({ where: { userId: user.id }, data: { startedAt: new Date(Date.now() - 120000) } });
+    return service.run(user.id, input(question, contextMode, extra));
+  };
   const row = async id => openTurn(await turnRows.findUnique({ where: { id } }));
   t.after(async () => { await db.user.delete({ where: { id: user.id } }); await db.m4PilotLedger.deleteMany({ where: { id: config.id } }); });
   return { user, conv, config, store, service, calls, queries, input, run, row, fail: value => { fail = value; }, deny: () => { denied = true; } };
@@ -339,28 +345,29 @@ test('M4-C real DB: context summary restores latest correction and failed person
   assert.deepEqual((await f.store.contextSummary(f.config, f.user.id, randomUUID())).scopes, []);
 });
 
-test('M4-C real DB: eighth turn is retained, ninth goes on in a new topic of the same person without clipping', async t => {
-  const f = await fixture(t);
+test('M4-C real DB: the last turn of a full topic is retained, the next goes on in a new topic of the same person without clipping', async t => {
+  const f = await fixture(t, null, DIALOGUE_STATE_VERSION, { fullTopic: true });
   for (let i = 0; i < DIALOGUE_LIMITS.scopeTurns; i++) await f.run(`Pööre ${i}`, i ? 'same' : 'new');
   const before = await f.store.contextSummary(f.config, f.user.id, f.conv.id);
   await f.run('Liiga pikk jätk.');
   const after = await f.store.contextSummary(f.config, f.user.id, f.conv.id);
-  assert.equal(f.calls.filter(c => c.stage === 'answer').length, 9);
+  assert.equal(f.calls.filter(c => c.stage === 'answer').length, DIALOGUE_LIMITS.scopeTurns + 1);
   assert.deepEqual([before.scopes.length, after.scopes.length, after.scopes[1].userTurns, after.scopes[1].person, after.active.mode],
     [1, 2, 1, before.scopes[0].person, 'new']);
   assert.equal(after.scopes[0].userTurns, DIALOGUE_LIMITS.scopeTurns);
 });
 
-// ADR-070: the ninth message begins a new topic with the user's earlier statements, the last message, the full topic's
-// last answer and its state, and the turn is stored, restored and continued like any other.
-test('M4-C real DB (ADR-070): the ninth message carries the facts, the last message and the last answer into the new topic', async t => {
+// ADR-070: the message after a full topic begins a new topic with the user's earlier statements, the last message, the
+// full topic's last answer and its state, and the turn is stored, restored and continued like any other. "eighth" and
+// "ninth" are the names the topic of eight messages gave them: the full topic's last message and the one after it.
+test('M4-C real DB (ADR-070): the message after a full topic carries the facts, the last message and the last answer into the new topic', async t => {
   const inputs = [];
   let draft = { new_facts: [{ topic: 'elukoht', person: 'ema', support: [{ turn: 1, quote: 'Minu ema elab Kose vallas' }] }], superseded: [], needs: [], unknowns: [], periods: [], language_hint: 'et' };
-  const f = await fixture(t, dialogue => { inputs.push(dialogue); return draft; }, FACT_STATE_VERSION);
+  const f = await fixture(t, dialogue => { inputs.push(dialogue); return draft; }, FACT_STATE_VERSION, { fullTopic: true });
   const first = await f.run('Minu ema elab Kose vallas.', 'new');
   draft = { new_facts: [], superseded: [], needs: [], unknowns: [], periods: [], language_hint: 'et' };
   for (let i = 1; i < DIALOGUE_LIMITS.scopeTurns - 1; i++) await f.run(`Küsimus ${i}?`);
-  draft = { new_facts: [{ topic: 'pension', person: 'ema', support: [{ turn: 8, quote: 'Ema pension on 600 eurot' }] }], superseded: [], needs: [{ candidate: 'Hooldekodu koht', based_on: ['F1'] }], unknowns: [], periods: [], language_hint: 'et' };
+  draft = { new_facts: [{ topic: 'pension', person: 'ema', support: [{ turn: DIALOGUE_LIMITS.scopeTurns, quote: 'Ema pension on 600 eurot' }] }], superseded: [], needs: [{ candidate: 'Hooldekodu koht', based_on: ['F1'] }], unknowns: [], periods: [], language_hint: 'et' };
   const eighth = await f.run('Ema pension on 600 eurot.');
   draft = { new_facts: [{ topic: 'küsimus', person: 'ema', support: [{ turn: 3, quote: 'kui palju see maksab' }] }], superseded: [], needs: [], unknowns: [], periods: [], language_hint: 'et' };
   const ninth = await f.run('Aga kui palju see maksab?');
@@ -383,7 +390,7 @@ test('M4-C real DB (ADR-070): the ninth message carries the facts, the last mess
   const tenth = (await f.row((await f.run('Ja kes selle otsustab?')).id)).payload;
   assert.deepEqual([tenth.dialogue.userTurns.length, tenth.dialogue.publishedAssistant.turnId, tenth.previousDialogueState.sourceTurnIds.length, tenth.context.scopeId],
     [4, ninth.id, 3, row.context.scopeId]);
-  assert.equal(f.calls.filter(c => c.stage === 'answer').length, 10);
+  assert.equal(f.calls.filter(c => c.stage === 'answer').length, DIALOGUE_LIMITS.scopeTurns + 2);
 });
 
 test('M4-C real DB: equal questions in different scopes do not share vectors; legacy cache cannot supply a dialogue vector', async t => {

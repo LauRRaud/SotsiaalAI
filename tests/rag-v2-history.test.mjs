@@ -279,7 +279,7 @@ test('a full topic hands its last message and answer on from the records as from
   assert.equal(ninth.payload.context.mode, 'new');
   assert.deepEqual(ninth.payload.contextAudit.userTurns.map(turn => [turn.text, turn.carried ?? null]), [[`Sõnum ${DIALOGUE_LIMITS.scopeTurns}.`, 'message'], ['Üheksas.', null]]);
   const input = { question: 'Kümnes.', contextMode: 'same' }, recorded = historyRows(c.messages());
-  assert.equal(recorded.length, 9);
+  assert.equal(recorded.length, DIALOGUE_LIMITS.scopeTurns + 1);
   const fromRows = acceptDialogue(plan, input, c.rows, c.head(), 'turn-next'), fromRecords = acceptDialogue(other, input, recorded, c.head(), 'turn-next');
   assert.deepEqual(withoutTime(fromRecords), withoutTime(fromRows));
   assert.deepEqual(fromRecords.userTurns.map(turn => turn.text), [`Sõnum ${DIALOGUE_LIMITS.scopeTurns}.`, 'Üheksas.', 'Kümnes.']);
