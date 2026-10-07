@@ -54,7 +54,98 @@
     "read_at": "2026-10-07",
     "documents": 8001,
     "units": 45596,
-    "note": "Documents of the corpus policy by where the source file is kept and by source type. One file of the repository may give many documents (a municipality package gives its services, forms and contacts). On a source entry, corpus_documents is the number of corpus documents the file gives; 0 means the file is not in the corpus.",
+    "note": "What the RAG on the server holds: the documents of the corpus policy by what they are (by_content), and by where the source file is kept (from_repository, outside_repository). One file of the repository may give many documents (a municipality package gives its services, forms and contacts). On a source entry, corpus_documents is the number of corpus documents the file gives; 0 means the file is not in the corpus.",
+    "by_content": [
+      {
+        "content": "municipal_services",
+        "name": "municipal services and benefits",
+        "documents": 3195,
+        "by_source_type": {
+          "kov_service_info": 3195
+        }
+      },
+      {
+        "content": "forms",
+        "name": "application forms (given by link)",
+        "documents": 872,
+        "by_source_type": {
+          "application_form": 845,
+          "web_form": 17,
+          "pdf_form": 6,
+          "official_form": 4
+        }
+      },
+      {
+        "content": "contacts",
+        "name": "municipal contacts",
+        "documents": 1638,
+        "by_source_type": {
+          "official_contact": 807,
+          "municipal_contact": 691,
+          "municipal_contact_directory": 140
+        }
+      },
+      {
+        "content": "journal",
+        "name": "articles of the journal Sotsiaaltöö",
+        "documents": 892,
+        "by_source_type": {
+          "file": 849,
+          "web": 43
+        }
+      },
+      {
+        "content": "acts",
+        "name": "legal acts",
+        "documents": 537,
+        "by_source_type": {
+          "legal_act": 537
+        }
+      },
+      {
+        "content": "guides",
+        "name": "guides, information materials and studies",
+        "documents": 172,
+        "by_source_type": {
+          "information_material": 81,
+          "research_report": 47,
+          "official_guideline": 38,
+          "policy_analysis": 6
+        }
+      },
+      {
+        "content": "official_pages",
+        "name": "official guidance pages",
+        "documents": 30,
+        "by_source_type": {
+          "web_page": 30
+        }
+      },
+      {
+        "content": "organisation_pages",
+        "name": "disability organisations' own pages",
+        "documents": 521,
+        "by_source_type": {
+          "organization_page": 521
+        }
+      },
+      {
+        "content": "assistive_points",
+        "name": "assistive device sales and rental points",
+        "documents": 93,
+        "by_source_type": {
+          "registry": 93
+        }
+      },
+      {
+        "content": "vendor_pages",
+        "name": "assistive device vendors' own pages",
+        "documents": 51,
+        "by_source_type": {
+          "vendor_page": 51
+        }
+      }
+    ],
     "from_repository": {
       "KOV": {
         "documents": 4498,
