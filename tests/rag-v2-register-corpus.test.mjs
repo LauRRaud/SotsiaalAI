@@ -79,3 +79,17 @@ test('the register and its page carry the state, without a contact\'s name, and 
   assert.equal(markdownWithCorpus(written, state), written);
   assert.throws(() => markdownWithCorpus('# Register\n', state), /no "## Kasutamine"/u);
 });
+
+test('ADR-104: a care price page is a kind of its own, although the assistive pages have the same source type', () => {
+  const more = [...documents, { source_type: 'registry', title: 'Hooldekodude kohamaksumus: Näidise vald', registry_path: 'hooldekodud/kov/naidise_vald.html', municipality: 'Näidise vald' },
+    { source_type: 'registry', title: 'Hooldekodude kohamaksumus Eestis: ülevaade maakondade kaupa', registry_path: 'hooldekodud/ulevaade.html' }];
+  const state = corpusState(register, more, about), rows = Object.fromEntries(state.content.map(row => [row.key, row])), kinds = Object.fromEntries(state.outside.map(found => [found.kind.key, found]));
+  // The titled row takes its pages; the row of the type alone keeps the rest, and nothing is counted twice.
+  assert.deepEqual([rows.care_prices.documents, rows.care_prices.by_source_type, rows.assistive_points.documents], [2, { registry: 2 }, 1]);
+  assert.equal(state.content.reduce((sum, row) => sum + row.documents, 0), state.documents);
+  assert.deepEqual([kinds.care_prices.documents, kinds.assistive_points.documents], [2, 1]);
+  assert.deepEqual(kinds.care_prices.sources.map(source => source.title), ['Hooldekodude kohamaksumus Eestis: ülevaade maakondade kaupa', 'Hooldekodude kohamaksumus: Näidise vald']);
+  assert.deepEqual(kinds.assistive_points.sources.map(source => source.title), ['Abivahendite müügi- ja üüripunktid: Näidise vald']);
+  const written = registerWithCorpus(register, state);
+  assert.ok(written.outside_repository.kinds.some(kind => kind.kind === 'care_prices' && kind.documents === 2));
+});

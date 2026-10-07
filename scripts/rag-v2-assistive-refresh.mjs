@@ -5,6 +5,10 @@
 //      point is applied when the reading before this one showed the same change; a point that is gone is never
 //      removed by itself (--approve-removals names the keys a person has approved)
 //   2. the points' pages (a municipality's, a county's): made again where the accepted points changed
+//   2b. the Social Insurance Board's price table of general care homes (ADR-104): its link is read from the Board's
+//      page, the table is read again, and the same rule holds for each home (a new or changed home on the second equal
+//      reading; a home that is gone waits for --approve-care-removals). The municipalities' price pages are made again
+//      where the accepted table changed. Skipped with a note until the state is seeded (accepted/care-homes.json)
 //   3. the web pages in the corpus (the vendors' pages, the Board's guidance pages): read again with the page
 //      collector; a changed page is a proposal first and replaces the stored copy on the second equal reading; a page
 //      marked for review is never placed by itself
@@ -19,11 +23,15 @@
 //   <state>/accepted/pages/           the stored copies of the vendors' pages
 //   <state>/accepted/organisations/   the organisations' pages as chosen for the corpus
 //   <state>/ingested/abivahendid/     the points' pages as the corpus has them
+//   <state>/accepted/care-homes.json  the accepted reading of the care homes' price table
+//   <state>/pending-care.json         the changes its last reading proposed
+//   <state>/ingested/hooldekodud/     the care homes' price pages as the corpus has them
 //   <state>/increment/sources/        what waits for an increment
 //   <state>/reports/<time>.json       every run's report
 // Prints counts, names of sales points and page addresses; never a phone number, an e-mail address or page text.
 //   node --import ./scripts/register-node-source-loader.mjs scripts/rag-v2-assistive-refresh.mjs --state <dir>
 //     [--from-reading <points.json>] [--approve-removals key,key] [--skip-points] [--skip-pages] [--dry-run]
+//     [--skip-care] [--care-from <table.xlsx>] [--approve-care-removals key,key]
 //     [--official-list Andmebaasi/register/web_pages.json] [--official id,id] [--official-stored Andmebaasi/veebilehed]
 //     [--organisations-list Andmebaasi/register/web_pages_organisations.json]
 //   node … scripts/rag-v2-assistive-refresh.mjs --state <dir> --mark-ingested
@@ -35,11 +43,13 @@ import { parseArgs } from 'node:util';
 import { collectPoints, csvReader, ASSISTIVE_POINTS, SKA_MAP_CSV } from '../lib/rag-v2/assistive-points.js';
 import { COLLECTOR_AGENT } from '../lib/rag-v2/web-collect.js';
 import { ASSISTIVE_REFRESH, decidePoints, refreshedPointPages } from '../lib/rag-v2/assistive-refresh.js';
+import { CARE_PRICES, SKA_CARE_PAGE, tableLink, sheetRows, careTable, decideHomes, refreshedCarePages } from '../lib/rag-v2/care-prices.js';
 import { chosenMetadata, lowerWords, selectPage } from '../lib/rag-v2/web-select.js';
 
 const { values } = parseArgs({ options: { state: { type: 'string' }, municipalities: { type: 'string', default: 'Andmebaasi/KOV' }, 'from-reading': { type: 'string' },
   'approve-removals': { type: 'string', default: '' }, 'skip-points': { type: 'boolean', default: false }, 'skip-pages': { type: 'boolean', default: false },
   'dry-run': { type: 'boolean', default: false }, 'mark-ingested': { type: 'boolean', default: false }, 'delay-ms': { type: 'string', default: '1500' },
+  'skip-care': { type: 'boolean', default: false }, 'care-from': { type: 'string' }, 'approve-care-removals': { type: 'string', default: '' },
   'official-list': { type: 'string', default: 'Andmebaasi/register/web_pages.json' },
   official: { type: 'string', default: 'sotsiaalkindlustusamet_ska_abivahendi_vajajale,sotsiaalkindlustusamet_ska_abivahendi_ettevottele' },
   'official-stored': { type: 'string', default: 'Andmebaasi/veebilehed' }, 'organisations-list': { type: 'string', default: 'Andmebaasi/register/web_pages_organisations.json' } } });
@@ -57,7 +67,7 @@ const stamp = new Date().toISOString(), increment = path.join(state, 'increment'
 if (values['mark-ingested']) {
   // The increment went into the corpus: its points' pages are what the corpus has now, and the folder is put away.
   const files = await walk(increment);
-  for (const file of files.filter(name => name.startsWith('abivahendid/'))) await write(path.join(state, 'ingested', file), await fs.readFile(path.join(increment, file)));
+  for (const file of files.filter(name => name.startsWith('abivahendid/') || name.startsWith('hooldekodud/'))) await write(path.join(state, 'ingested', file), await fs.readFile(path.join(increment, file)));
   if (files.length && !dry) await fs.rename(path.join(state, 'increment'), path.join(state, 'increments-done', stamp.replace(/[:.]/gu, '-')));
   console.log(JSON.stringify({ refresh: ASSISTIVE_REFRESH, markedIngested: files.filter(name => name.endsWith('.html')).length }));
   process.exit(0);
@@ -68,7 +78,7 @@ for (const slug of (await fs.readdir(values.municipalities)).sort()) {
   const meta = await readJson(path.join(values.municipalities, slug, `${slug}.meta.json`));
   if (meta?.municipality_id && meta?.municipality_name) municipalities.push({ id: meta.municipality_id, name: meta.municipality_name, county: meta.county ?? null });
 }
-const report = { refresh: ASSISTIVE_REFRESH, at: stamp, dryRun: dry, points: null, pointPages: null, pages: null, increment: null };
+const report = { refresh: ASSISTIVE_REFRESH, at: stamp, dryRun: dry, points: null, pointPages: null, care: null, carePages: null, pages: null, increment: null };
 const changedSources = [];
 
 if (!values['skip-points']) {
@@ -103,6 +113,48 @@ if (!values['skip-points']) {
     changedSources.push(page.path);
   }
   report.pointPages = { unchanged: pages.unchanged, changed: pages.changed.map(page => `${page.state}: ${page.path}`), noLongerMade: pages.gone };
+}
+
+if (!values['skip-care']) {
+  const acceptedFile = path.join(state, 'accepted', 'care-homes.json'), accepted = await readJson(acceptedFile);
+  if (!accepted?.homes) report.care = { skipped: `no accepted reading at ${acceptedFile}: seed the state first` };
+  else {
+    const fetched = async address => {
+      const response = await fetch(address, { headers: { 'user-agent': COLLECTOR_AGENT }, signal: AbortSignal.timeout(60000) });
+      if (!response.ok) throw Error(`${address} answered ${response.status}`);
+      return Buffer.from(await response.arrayBuffer());
+    };
+    let xlsx, tableUrl = accepted.source?.table ?? null;
+    if (values['care-from']) xlsx = await fs.readFile(values['care-from']);
+    else {
+      tableUrl = tableLink((await fetched(SKA_CARE_PAGE)).toString('utf8'));
+      if (!tableUrl) throw Error('the care price table\'s link was not found on the Board\'s page');
+      await new Promise(resolve => setTimeout(resolve, Number(values['delay-ms'])));
+      xlsx = await fetched(tableUrl);
+    }
+    const read = careTable(sheetRows(xlsx), municipalities);
+    // A reading that left homes without a municipality, or lost a large part of the table, is a fault of the reading, not news.
+    if (read.problems.withoutMunicipality.length || read.homes.length < accepted.homes.length * 0.8) throw Error(`the care table's reading is not usable: ${read.homes.length} homes, ${read.problems.withoutMunicipality.length} without a municipality (accepted: ${accepted.homes.length})`);
+    await write(path.join(state, 'readings', `care-${stamp.replace(/[:.]/gu, '-')}.json`), `${JSON.stringify({ source: { collector: CARE_PRICES, page: SKA_CARE_PAGE, table: tableUrl, sha256: sha(xlsx), read_at: stamp }, ...read }, null, 1)}\n`);
+    const decided = decideHomes({ accepted, read, pending: await readJson(path.join(state, 'pending-care.json'), []), approveRemovals: values['approve-care-removals'].split(',').map(key => key.trim()).filter(Boolean) });
+    const named = list => list.map(change => `${change.kind}: ${change.name} (${change.where})`);
+    report.care = { table: tableUrl, asOfRead: read.asOf, asOfAccepted: accepted.asOf, read: read.homes.length, accepted: accepted.homes.length, applied: named(decided.applied),
+      proposed: named(decided.proposed.filter(change => !decided.removalsWaiting.includes(change))),
+      removalsWaitingForApproval: decided.removalsWaiting.map(change => ({ key: change.key, name: change.name, where: change.where })), acceptedAfter: decided.table.homes.length, asOfAfter: decided.table.asOf };
+    await write(path.join(state, 'pending-care.json'), `${JSON.stringify(decided.proposed, null, 1)}\n`);
+    const source = decided.applied.length ? { collector: CARE_PRICES, page: SKA_CARE_PAGE, table: tableUrl, sha256: sha(xlsx), read_at: stamp, accepted_at: stamp } : accepted.source;
+    if (decided.applied.length) await write(acceptedFile, `${JSON.stringify({ source, ...decided.table }, null, 1)}\n`);
+    // The pages of the accepted table against the ones the corpus has (and against an increment that still waits).
+    const ingested = new Map();
+    for (const root of [path.join(state, 'ingested'), increment]) for (const file of (await walk(root)).filter(name => name.startsWith('hooldekodud/') && name.endsWith('.html'))) ingested.set(file, await fs.readFile(path.join(root, file), 'utf8'));
+    const pages = refreshedCarePages({ table: decided.table, municipalities, readAt: source.read_at, tableUrl: source.table, ingested });
+    for (const page of pages.changed) {
+      await write(path.join(increment, page.path), page.html);
+      await write(path.join(increment, page.path.replace(/\.html$/u, '.json')), `${JSON.stringify({ ...page.metadata, source_sha256: sha(page.html) }, null, 2)}\n`);
+      changedSources.push(page.path);
+    }
+    report.carePages = { unchanged: pages.unchanged, changed: pages.changed.map(page => `${page.state}: ${page.path}`), noLongerMade: pages.gone };
+  }
 }
 
 if (!values['skip-pages']) {

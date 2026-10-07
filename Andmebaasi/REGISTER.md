@@ -16,9 +16,9 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | taastatud_allikad | 0 | 22 | Serveri vanast indeksist taastatud tekst. Enne importi võrrelda põhipakettidega. |
 
 <!-- corpus-state:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
-## RAG-i seis: mis on serveris (korpus v68)
+## RAG-i seis: mis on serveris (korpus v69)
 
-Seis 07.10.2026: serveris töötav RAG (korpus **v68**, indeks `c49c1d5c`) sisaldab **8 258 dokumenti** (67 799 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
+Seis 07.10.2026: serveris töötav RAG (korpus **v69**, indeks `8b1e1008`) sisaldab **8 337 dokumenti** (68 408 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
 
 | Mis on RAG-is | Dokumente | Kus on loend |
 |---|---:|---|
@@ -30,9 +30,10 @@ Seis 07.10.2026: serveris töötav RAG (korpus **v68**, indeks `c49c1d5c`) sisal
 | Juhendid, infomaterjalid ja uuringud | 429 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
 | Ametlikud juhislehed (ametite veebilehed) | 30 | jaotis „Sisufailid“ |
 | Puuetega inimeste organisatsioonide lehed | 521 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
+| Hooldekodude kohamaksumus omavalitsuste kaupa | 79 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müügi- ja üüripunktid | 93 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müüjate lehed | 51 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
-| **Kokku** | **8258** | |
+| **Kokku** | **8337** | |
 
 <details><summary>Tehniline jaotus arendajale: kus allikafailid asuvad</summary>
 
@@ -46,11 +47,12 @@ Dokumentide arvud ei võrdu ülal olevate failide arvudega: üks fail võib anda
 | `juhendid_ja_uuringud` | 171 | information_material 81, research_report 46, official_guideline 38, policy_analysis 6 |
 | `veebilehed` | 31 | web_page 30, research_report 1 |
 
-Koodihoidlas (GitHub) ei ole 2129 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
+Koodihoidlas (GitHub) ei ole 2208 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
 
 | Allikas | Dokumente | Millest tehakse | Miks ei ole koodihoidlas |
 |---|---:|---|---|
 | Omavalitsuste kontaktid ja kontaktikataloogid | 1207 | rakenduse kontaktiregistrist skriptiga `scripts/rag-v2-contact-export.mjs` (ADR-085, ADR-086) | isikute nimed, telefoninumbrid ja e-posti aadressid |
+| Hooldekodude kohamaksumuse lehed | 79 | Sotsiaalkindlustusameti hinnaseire tabelist skriptiga `scripts/rag-v2-care-prices.mjs`, iga omavalitsuse kohta üks leht ja üks ülevaade (ADR-104) | hooldekodude telefoninumbrid; leht tehakse tabelist uuesti |
 | Abivahendite müügi- ja üüripunktide lehed | 93 | Sotsiaalkindlustusameti kaarditabelist skriptiga `scripts/rag-v2-assistive-points.mjs`, iga omavalitsuse kohta üks leht (ADR-096) | punktide telefoninumbrid; leht tehakse tabelist uuesti |
 | Abivahendite müüjate lehed | 51 (18 väljaandjat) | nimekiri `register/web_pages_vendors.json`, korjaja `scripts/rag-v2-web-pages.mjs` (ADR-095) | ettevõtete enda tekstid ja telefoninumbrid |
 | Puuetega inimeste organisatsioonide lehed | 521 (43 väljaandjat) | nimekiri `register/web_pages_organisations.json`, korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-095) | organisatsioonide enda tekstid |
@@ -1965,7 +1967,91 @@ Koodihoidla allikafailid, mida RAG-is ei ole (60):
 <!-- corpus-outside:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
 ## RAG-is olevad lehed ja kontaktid
 
-Serveris töötav RAG, korpus v68, 07.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
+Serveris töötav RAG, korpus v69, 07.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
+
+### Hooldekodude kohamaksumuse lehed (79)
+
+| Leht |
+|---|
+| Hooldekodude kohamaksumus Eestis: ülevaade maakondade kaupa |
+| Hooldekodude kohamaksumus: Alutaguse vald |
+| Hooldekodude kohamaksumus: Anija vald |
+| Hooldekodude kohamaksumus: Antsla vald |
+| Hooldekodude kohamaksumus: Elva vald |
+| Hooldekodude kohamaksumus: Haapsalu linn |
+| Hooldekodude kohamaksumus: Haljala vald |
+| Hooldekodude kohamaksumus: Harku vald |
+| Hooldekodude kohamaksumus: Hiiumaa vald |
+| Hooldekodude kohamaksumus: Häädemeeste vald |
+| Hooldekodude kohamaksumus: Jõelähtme vald |
+| Hooldekodude kohamaksumus: Jõgeva vald |
+| Hooldekodude kohamaksumus: Jõhvi vald |
+| Hooldekodude kohamaksumus: Järva vald |
+| Hooldekodude kohamaksumus: Kadrina vald |
+| Hooldekodude kohamaksumus: Kambja vald |
+| Hooldekodude kohamaksumus: Kanepi vald |
+| Hooldekodude kohamaksumus: Kastre vald |
+| Hooldekodude kohamaksumus: Kehtna vald |
+| Hooldekodude kohamaksumus: Keila linn |
+| Hooldekodude kohamaksumus: Kihnu vald |
+| Hooldekodude kohamaksumus: Kiili vald |
+| Hooldekodude kohamaksumus: Kohila vald |
+| Hooldekodude kohamaksumus: Kohtla-Järve linn |
+| Hooldekodude kohamaksumus: Kose vald |
+| Hooldekodude kohamaksumus: Kuusalu vald |
+| Hooldekodude kohamaksumus: Loksa linn |
+| Hooldekodude kohamaksumus: Luunja vald |
+| Hooldekodude kohamaksumus: Lääne-Harju vald |
+| Hooldekodude kohamaksumus: Lääne-Nigula vald |
+| Hooldekodude kohamaksumus: Lääneranna vald |
+| Hooldekodude kohamaksumus: Lüganuse vald |
+| Hooldekodude kohamaksumus: Maardu linn |
+| Hooldekodude kohamaksumus: Muhu vald |
+| Hooldekodude kohamaksumus: Mulgi vald |
+| Hooldekodude kohamaksumus: Mustvee vald |
+| Hooldekodude kohamaksumus: Märjamaa vald |
+| Hooldekodude kohamaksumus: Narva linn |
+| Hooldekodude kohamaksumus: Narva-Jõesuu linn |
+| Hooldekodude kohamaksumus: Nõo vald |
+| Hooldekodude kohamaksumus: Otepää vald |
+| Hooldekodude kohamaksumus: Paide linn |
+| Hooldekodude kohamaksumus: Peipsiääre vald |
+| Hooldekodude kohamaksumus: Põhja-Pärnumaa vald |
+| Hooldekodude kohamaksumus: Põhja-Sakala vald |
+| Hooldekodude kohamaksumus: Põltsamaa vald |
+| Hooldekodude kohamaksumus: Põlva vald |
+| Hooldekodude kohamaksumus: Pärnu linn |
+| Hooldekodude kohamaksumus: Raasiku vald |
+| Hooldekodude kohamaksumus: Rae vald |
+| Hooldekodude kohamaksumus: Rakvere linn |
+| Hooldekodude kohamaksumus: Rakvere vald |
+| Hooldekodude kohamaksumus: Rapla vald |
+| Hooldekodude kohamaksumus: Ruhnu vald |
+| Hooldekodude kohamaksumus: Rõuge vald |
+| Hooldekodude kohamaksumus: Räpina vald |
+| Hooldekodude kohamaksumus: Saarde vald |
+| Hooldekodude kohamaksumus: Saaremaa vald |
+| Hooldekodude kohamaksumus: Saku vald |
+| Hooldekodude kohamaksumus: Saue vald |
+| Hooldekodude kohamaksumus: Setomaa vald |
+| Hooldekodude kohamaksumus: Sillamäe linn |
+| Hooldekodude kohamaksumus: Tallinna linn |
+| Hooldekodude kohamaksumus: Tapa vald |
+| Hooldekodude kohamaksumus: Tartu linn |
+| Hooldekodude kohamaksumus: Tartu vald |
+| Hooldekodude kohamaksumus: Tori vald |
+| Hooldekodude kohamaksumus: Tõrva vald |
+| Hooldekodude kohamaksumus: Türi vald |
+| Hooldekodude kohamaksumus: Valga vald |
+| Hooldekodude kohamaksumus: Viimsi vald |
+| Hooldekodude kohamaksumus: Viljandi linn |
+| Hooldekodude kohamaksumus: Viljandi vald |
+| Hooldekodude kohamaksumus: Vinni vald |
+| Hooldekodude kohamaksumus: Viru-Nigula vald |
+| Hooldekodude kohamaksumus: Vormsi vald |
+| Hooldekodude kohamaksumus: Võru linn |
+| Hooldekodude kohamaksumus: Võru vald |
+| Hooldekodude kohamaksumus: Väike-Maarja vald |
 
 ### Abivahendite müügi- ja üüripunktide lehed (93)
 
