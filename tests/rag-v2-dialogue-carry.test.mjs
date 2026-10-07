@@ -26,40 +26,43 @@ function conversation(settings = config) {
 const fact = (id, topic, person, support, status = 'current', by = null) => ({ id, topic, person, status, support, superseded_by: by });
 const reported = (id, support) => ({ id, status: 'reported', candidates: [], excluded: [], support });
 const unknown = () => ({ id: null, status: 'unknown', candidates: [], excluded: [], support: [] });
+// A full topic (ADR-105: thirty messages, eight before): the seven messages the tests read, questions that add nothing, and
+// the last message. LAST is the last message's place in the rows.
+const FULL = DIALOGUE_LIMITS.scopeTurns, LAST = FULL - 1;
 const MESSAGES = ['Minu ema elab Kose vallas ja ta on 82-aastane.', 'Ta ei saa enam üksi hakkama.', 'Kas vald aitab?', 'Mis teenuseid on?', 'Kuidas taotleda?',
-  'Kes otsustab?', 'Kui kaua see võtab?', 'Ema pension on 600 eurot.'];
-// The full topic's state after its eighth message: a replaced amount, a need, the mother's municipality.
+  'Kes otsustab?', 'Kui kaua see võtab?', ...Array.from({ length: FULL - 8 }, (_, index) => `Vahepealne küsimus ${index + 1}?`), 'Ema pension on 600 eurot.'];
+// The full topic's state after its last message: a replaced amount, a need, the mother's municipality.
 const fullState = () => ({
   facts: [fact('F1', 'vanus', 'ema', [{ turn: 1, quote: 'ta on 82-aastane' }]),
     fact('F2', 'toimetulek', 'ema', [{ turn: 2, quote: 'Ta ei saa enam üksi hakkama' }]),
     fact('F3', 'pension', 'ema', [{ turn: 5, quote: 'Kuidas taotleda?' }], 'superseded', 'F4'),
-    fact('F4', 'pension', 'ema', [{ turn: 8, quote: 'Ema pension on 600 eurot' }])],
+    fact('F4', 'pension', 'ema', [{ turn: FULL, quote: 'Ema pension on 600 eurot' }])],
   needs: [{ candidate: 'ööpäevaringne hooldus', based_on: ['F2'] }, { candidate: 'vana summa', based_on: ['F3'] }],
   unknowns: [{ question: 'Kas emal on sääste?', based_on: [] }], periods: [], language_hint: 'et',
   people: [{ person: 'user', region: unknown() }, { person: 'ema', region: reported('kose_vald', [{ turn: 1, quote: 'Minu ema elab Kose vallas ja ta on 82-aastane' }]) }],
   focus: 'ema', model: { accepted: true, dropped: [] } });
 function fullTopic(settings = config, last = fullState()) {
   const c = conversation(settings);
-  MESSAGES.forEach((text, index) => c.next(text, index ? 'same' : 'new', index === MESSAGES.length - 1 ? last : index === 6 ? null : undefined));
+  MESSAGES.forEach((text, index) => c.next(text, index ? 'same' : 'new', index === LAST ? last : index === LAST - 1 ? null : undefined));
   return c;
 }
 const STATEMENTS = 'ema: Minu ema elab Kose vallas ja ta on 82-aastane\nema: Ta ei saa enam üksi hakkama';
 
-test('the ninth message begins a new topic with the user\'s earlier statements, the last message and the full topic\'s state', async () => {
-  const c = fullTopic(), first = c.rows[0], eighth = c.rows[7];
+test('the message after a full topic begins a new topic with the user\'s earlier statements, the last message and the full topic\'s state', async () => {
+  const c = fullTopic(), first = c.rows[0], eighth = c.rows[LAST];
   const ninth = c.next('Aga kui palju see maksab?');
   assert.deepEqual([ninth.context.mode, ninth.context.personId, ninth.selection.previousScopeFull], ['new', first.payload.context.personId, first.payload.context.scopeId]);
   assert.notEqual(ninth.context.scopeId, first.payload.context.scopeId);
   // A statement the mother's place sentence already holds is not repeated, nor one of the last message, which is carried whole.
   assert.deepEqual(ninth.userTurns.map(turn => [turn.text, turn.carried ?? null, turn.mode]),
-    [[STATEMENTS, 'statements', 'same'], [MESSAGES[7], 'message', 'same'], ['Aga kui palju see maksab?', null, 'new']]);
+    [[STATEMENTS, 'statements', 'same'], [MESSAGES[LAST], 'message', 'same'], ['Aga kui palju see maksab?', null, 'new']]);
   assert.deepEqual(ninth.selection.carried, { scopeId: first.payload.context.scopeId, turnIds: [eighth.id], stateTurnId: eighth.id, assistantTurnId: eighth.id, read: 2 });
   assert.deepEqual([ninth.selection.stateTurnId, ninth.selection.assistantTurnId, ninth.selection.assistantSelection], [eighth.id, eighth.id, 'carried_published_answer']);
   assert.deepEqual(ninth.selection.selected.map(entry => entry.reason), ['carried_from_full_scope', 'carried_from_full_scope', 'active_scope', 'carried_published_answer']);
-  assert.ok(!ninth.selection.excluded.some(entry => entry.turnId === eighth.id) && ninth.selection.excluded.length === 7);
+  assert.ok(!ninth.selection.excluded.some(entry => entry.turnId === eighth.id) && ninth.selection.excluded.length === LAST);
   assert.deepEqual(ninth.sourceTurnIds, [eighth.id]);
   // The search text and the plan's messages have the earlier circumstances and the last question.
-  assert.equal(buildDialogueQuery(ninth, config).text, [STATEMENTS, MESSAGES[7], 'Aga kui palju see maksab?'].join('\n\n'));
+  assert.equal(buildDialogueQuery(ninth, config).text, [STATEMENTS, MESSAGES[LAST], 'Aga kui palju see maksab?'].join('\n\n'));
 
   // The state: the current facts with their ids, anchored where the carried turns hold their words; the replaced fact and
   // the need that named it are gone; the mother keeps her municipality.
@@ -92,7 +95,7 @@ test('the ninth message begins a new topic with the user\'s earlier statements, 
 });
 
 test('the continuing topic keeps its carried turns, uses its own answer and state once it has them, and hands over again when it is full', () => {
-  const c = fullTopic(), eighth = c.rows[7];
+  const c = fullTopic(), eighth = c.rows[LAST];
   const ninth = c.next('Aga kui palju see maksab?');                // not published: no answer or state of its own yet
   const tenth = c.next('Ja kes maksab puuduoleva osa?', 'same', { ...fullState(), facts: [], needs: [], people: [], focus: 'ema' });
   assert.deepEqual(tenth.userTurns.map(turn => turn.carried ?? turn.text), ['statements', 'message', 'Aga kui palju see maksab?', 'Ja kes maksab puuduoleva osa?']);
@@ -100,42 +103,42 @@ test('the continuing topic keeps its carried turns, uses its own answer and stat
     [ninth.context.scopeId, undefined, ninth.selection.carried, eighth.id, 'carried_published_answer']);
   assert.equal(previousStateFor(carriedState(eighth.payload.dialogueState, tenth), tenth).sourceTurnIds.length, 2);
   const eleventh = c.next('Selge.');
-  assert.deepEqual([eleventh.selection.stateTurnId, eleventh.selection.assistantTurnId, eleventh.selection.assistantSelection], [c.rows[9].id, c.rows[9].id, 'latest_published_answer']);
-  assert.deepEqual(eleventh.sourceTurnIds, [eighth.id, c.rows[8].id, c.rows[9].id]);
-  // Two carried turns and six of its own make eight: the seventh own message goes on in a third topic.
-  for (let i = 0; i < 3; i++) c.next(`Veel üks küsimus ${i}`);
+  assert.deepEqual([eleventh.selection.stateTurnId, eleventh.selection.assistantTurnId, eleventh.selection.assistantSelection], [c.rows[LAST + 2].id, c.rows[LAST + 2].id, 'latest_published_answer']);
+  assert.deepEqual(eleventh.sourceTurnIds, [eighth.id, c.rows[LAST + 1].id, c.rows[LAST + 2].id]);
+  // Two carried turns and the rest of its own make a full topic: its next message goes on in a third topic.
+  for (let i = 0; i < FULL - 5; i++) c.next(`Veel üks küsimus ${i}`);
   assert.equal(c.rows.at(-1).payload.contextAudit.userTurns.length, DIALOGUE_LIMITS.scopeTurns);
   const third = c.next('Ja edasi?', 'same', { ...fullState(), facts: [], needs: [], people: [], focus: 'ema' });
   assert.deepEqual([third.context.scopeId === ninth.context.scopeId, third.selection.previousScopeFull, third.userTurns.at(-2).text, third.userTurns.at(-2).carried],
-    [false, ninth.context.scopeId, 'Veel üks küsimus 2', 'message']);
+    [false, ninth.context.scopeId, `Veel üks küsimus ${FULL - 6}`, 'message']);
   // The message that went on was sent as 'same' and accepted as 'new'; the state saved with it still fits the next turn
   // (on 02.10 the tenth message of a conversation failed here with dialogue_state_scope_mismatch).
   const after = c.next('Ja siis?');
   assert.equal(after.userTurns.at(-2).mode, 'new');
   assert.equal(previousStateFor(c.rows.at(-2).payload.dialogueState, after).sourceTurnIds.length, after.userTurns.length - 1);
   // An explicit choice of a full topic is still refused.
-  assert.throws(() => c.next('Tagasi', 'same', undefined, { contextTurnId: c.rows[8].id }), { code: 'context_window_full' });
+  assert.throws(() => c.next('Tagasi', 'same', undefined, { contextTurnId: c.rows[LAST + 1].id }), { code: 'context_window_full' });
   assert.throws(() => c.next('Tagasi', 'same', undefined, { contextTurnId: c.rows[0].id }), { code: 'context_window_full' });
 });
 
 test('what the full topic\'s state has not read is carried as an unread message; without a state only the last message goes over', () => {
-  // The eighth message did not finish: the state is the seventh message's, which has not read it.
+  // The last message did not finish: the state is the message's before it, which has not read it.
   const c = conversation();
   const seventh = { ...fullState(), facts: fullState().facts.slice(0, 2), needs: [], unknowns: [] };
-  MESSAGES.forEach((text, index) => c.next(text, index ? 'same' : 'new', index === 6 ? seventh : undefined));
-  const ninth = c.next('Aga kui palju see maksab?'), state = carriedState(c.rows[6].payload.dialogueState, ninth);
-  assert.deepEqual([ninth.selection.carried.read, ninth.selection.carried.stateTurnId, ninth.userTurns.map(turn => turn.carried ?? null)], [1, c.rows[6].id, ['statements', 'message', null]]);
+  MESSAGES.forEach((text, index) => c.next(text, index ? 'same' : 'new', index === LAST - 1 ? seventh : undefined));
+  const ninth = c.next('Aga kui palju see maksab?'), state = carriedState(c.rows[LAST - 1].payload.dialogueState, ninth);
+  assert.deepEqual([ninth.selection.carried.read, ninth.selection.carried.stateTurnId, ninth.userTurns.map(turn => turn.carried ?? null)], [1, c.rows[LAST - 1].id, ['statements', 'message', null]]);
   assert.deepEqual([state.sourceTurnIds.length, state.value.facts.map(entry => entry.id)], [1, ['F1', 'F2']]);
   // No published turn at all: the last message alone, and no state.
   const bare = conversation();
   MESSAGES.forEach((text, index) => bare.next(text, index ? 'same' : 'new'));
   const plain = bare.next('Aga kui palju see maksab?');
   assert.deepEqual([plain.userTurns.map(turn => turn.text), plain.selection.carried.read, plain.selection.stateTurnId, plain.selection.assistantTurnId],
-    [[MESSAGES[7], 'Aga kui palju see maksab?'], 0, null, null]);
+    [[MESSAGES[LAST], 'Aga kui palju see maksab?'], 0, null, null]);
   // A plan without a dialogue state: the same.
   const stateless = fullTopic({ ...config, dialogueStateVersion: undefined }, null).next('Aga kui palju see maksab?');
   assert.deepEqual([stateless.userTurns.map(turn => turn.text), stateless.selection.stateTurnId, stateless.selection.assistantTurnId !== null],
-    [[MESSAGES[7], 'Aga kui palju see maksab?'], undefined, true]);
+    [[MESSAGES[LAST], 'Aga kui palju see maksab?'], undefined, true]);
 });
 
 test('the statements keep to their room, newest facts first; a state that is not the full topic\'s own is refused', () => {
@@ -151,7 +154,7 @@ test('the statements keep to their room, newest facts first; a state that is not
   assert.equal(carriedStatements({ ...audit, hash: 'changed' }, []), null);
   assert.equal(carriedStatements({ ...audit, value: { ...many, facts: [], people: [] }, hash: digest({ ...audit, value: { ...many, facts: [], people: [] } }) }, []), null);
 
-  const c = fullTopic(), ninth = c.next('Aga kui palju see maksab?'), own = c.rows[7].payload.dialogueState;
+  const c = fullTopic(), ninth = c.next('Aga kui palju see maksab?'), own = c.rows[LAST].payload.dialogueState;
   const { hash: _hash, ...content } = own;
   const other = { ...content, scopeId: 'another-scope' }, person = { ...content, personId: 'another-person' };
   for (const foreign of [{ ...own, hash: 'changed' }, { ...other, hash: digest(other) }, { ...person, hash: digest(person) }, null]) {

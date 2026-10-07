@@ -52,13 +52,16 @@ test('dialogue contract: a full topic goes on in a new topic of the same person,
   // The chat has no topic choice (02.10.2026): the next message of a full topic starts a new one for the same person and
   // says which topic was full. ADR-070: the new topic begins with the full one's last message (and, with a saved state, the
   // user's earlier statements: tests/rag-v2-dialogue-carry.test.mjs); the older messages stay behind.
+  // ADR-105: a topic holds 30 messages (8 before), so the message after the thirtieth is the one too many.
+  assert.equal(DIALOGUE_LIMITS.scopeTurns, 30);
+  const last = 'Turn ' + (DIALOGUE_LIMITS.scopeTurns - 1);
   const ninth = f.next('One too many');
   assert.deepEqual([ninth.context.mode, ninth.userTurns.map(turn => [turn.text, turn.carried ?? null]), ninth.context.personId, ninth.selection.previousScopeFull],
-    ['new', [['Turn 7', 'message'], ['One too many', null]], first.context.personId, first.context.scopeId]);
+    ['new', [[last, 'message'], ['One too many', null]], first.context.personId, first.context.scopeId]);
   assert.notEqual(ninth.context.scopeId, first.context.scopeId);
   assert.equal(f.rows.length, DIALOGUE_LIMITS.scopeTurns + 1);
   const tenth = f.next('Tenth');
-  assert.deepEqual([tenth.context.scopeId, tenth.userTurns.map(turn => turn.text)], [ninth.context.scopeId, ['Turn 7', 'One too many', 'Tenth']]);
+  assert.deepEqual([tenth.context.scopeId, tenth.userTurns.map(turn => turn.text)], [ninth.context.scopeId, [last, 'One too many', 'Tenth']]);
   // An explicit choice of the full topic is still refused: it would have to clip it.
   assert.throws(() => f.next('Back to the full one', 'same', { contextTurnId: f.rows[0].id }), { code: 'context_window_full' });
   const head = { configHash: config.configHash, turnId: 'missing-turn', revision: 50 };
@@ -67,6 +70,28 @@ test('dialogue contract: a full topic goes on in a new topic of the same person,
   const full = { context: f.rows[0].payload.context, userTurns: [{ text: 'a '.repeat(4600), mode: 'new' }], selection: {} };
   assert.throws(() => buildDialogueQuery(full, config), { code: 'context_search_budget_exceeded' });
   assert.throws(() => dialogueInput({ ...full, userTurns: [{ text: 'a '.repeat(9100) }], selection: {} }), { code: 'context_dialogue_budget_exceeded' });
+});
+
+test('ADR-105: a topic whose text is over its budget goes on in a new topic like one over its messages, and nothing is refused', () => {
+  // The chat has no control to start a topic with, so a long topic must never end in "the context is full". Long
+  // messages reach the text budget (scopeTokens) well before the thirtieth message.
+  const f = accepted('et'), long = n => `Sõnum ${n}: ` + 'pikk kirjeldus juhtumist '.repeat(110);
+  const first = f.next(long(1), 'new'), tokens = buildDialogueQuery(first, config).tokens;
+  assert.ok(tokens > 600 && tokens * 2 < DIALOGUE_LIMITS.scopeTokens, String(tokens));
+  let turns = 1, result = first;
+  while (result.context.scopeId === first.context.scopeId) { turns++; result = f.next(long(turns)); }
+  // The topic took as many messages as fit the budget; the next one began a new topic with the last message carried.
+  assert.equal(turns, Math.floor(DIALOGUE_LIMITS.scopeTokens / tokens) + 1);
+  assert.ok(turns < DIALOGUE_LIMITS.scopeTurns);
+  assert.deepEqual([result.context.mode, result.context.personId, result.selection.previousScopeFull, result.userTurns.map(turn => turn.carried ?? null)],
+    ['new', first.context.personId, first.context.scopeId, ['message', null]]);
+  assert.equal(result.userTurns[0].text, long(turns - 1));
+  // Every accepted topic stays inside the search budget, and so does a conversation that goes on like this.
+  for (let i = 0; i < 12; i++) { turns++; result = f.next(long(turns)); assert.ok(buildDialogueQuery(result, config).tokens <= DIALOGUE_LIMITS.searchTokens); }
+  // A short message in a topic that has room is an ordinary continuation.
+  const g = accepted('et'); g.next('Elan Harkus.', 'new');
+  const short = g.next('Aga hind?');
+  assert.deepEqual([short.context.mode, short.userTurns.length, short.selection.previousScopeFull], ['same', 2, undefined]);
 });
 
 test('dialogue contract: after a chat plan rebuild "same" starts a new topic, while an expired head of this plan still fails', () => {

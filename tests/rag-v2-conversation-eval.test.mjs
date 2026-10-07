@@ -147,13 +147,15 @@ test('the fact lifecycle (Codex 7.6): each check has its failing pair, and an ac
 });
 
 // ADR-070 with two people (owner 03.10.2026: one paid run). The catalogue is fixed before the run; these checks are local.
-test('the two-people boundary catalogue: the ninth message crosses the topic\'s eight, and mixed people or amounts fail it', async () => {
+test('the two-people catalogue: nine messages, the last one a correction, and mixed people or amounts fail it', async () => {
   const catalogue = JSON.parse(await fs.readFile('tests/evaluation/dialogue/scenarios-two-people-boundary-1.json', 'utf8'));
   assert.deepEqual(validateCatalogue(catalogue), []);
   const turns = catalogue.scenarios[0].turns, last = turns.at(-1).expect;
-  // Eight messages fill a topic; the first is a lone greeting (the cheap route), the ninth the correction.
-  assert.deepEqual([catalogue.scenarios.length, turns.length, DIALOGUE_LIMITS.scopeTurns + 1, Boolean(loneGreeting(turns[0].text)), turns.slice(1).some(turn => loneGreeting(turn.text))],
-    [1, 9, 9, true, false]);
+  // The first message is a lone greeting (the cheap route), the ninth the correction. Until ADR-105 eight messages
+  // filled a topic and the ninth crossed its boundary; a topic now holds 30, so a run of this catalogue stays in one
+  // topic and the boundary itself is covered by tests/rag-v2-dialogue-carry.test.mjs alone.
+  assert.deepEqual([catalogue.scenarios.length, turns.length, turns.length < DIALOGUE_LIMITS.scopeTurns, Boolean(loneGreeting(turns[0].text)), turns.slice(1).some(turn => loneGreeting(turn.text))],
+    [1, 9, true, true, false]);
   assert.ok(turns[8].text.includes('700') && turns[1].text.includes('600') && turns[3].text.includes('450'));
   const fact = (id, person, quote, status = 'current') => ({ id, person, status, support: [{ turn: 1, quote }] });
   const run = (facts, extra = {}) => checkTurn(last, observed({ region: 'kose_vald', person: 'ema', queries: [], personRegions: { ema: 'kose_vald', isa: 'harku_vald' }, facts, dropped: [], stateFallback: null,
