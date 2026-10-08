@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_peretoetused_ajateenija_lapse_toetus",
+  "title": "Ajateenija lapse toetus",
+  "register_title": "Ajateenija lapse toetus",
+  "source_id": "ska_peretoetused_ajateenija_lapse_toetus",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/peretoetused/ajateenija-lapse-toetus",
+  "source_path": "ska_peretoetused_ajateenija_lapse_toetus.html",
+  "source_format": "html",
+  "source_sha256": "072c8a78fc3d5c924a7e288660e0fd4f84e2ad57811603cfbac474010ccd37f4",
+  "content_sha256": "c0f50252adae20b15874035966e9de83b9ebc657a5c58dc3f115063f40b5f1f2",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:25:41.138Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2024-09-24",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:00:34 GMT",
+      "etag": null
+    },
+    "raw_sha256": "001702ff42a97d92dbd75abeea1ce2718a1f3bbb334f08ec1c075dc1db15aa7e",
+    "stats": {
+      "words": 130,
+      "blocks": 9,
+      "headings": 4,
+      "tables": 0,
+      "links": 2,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

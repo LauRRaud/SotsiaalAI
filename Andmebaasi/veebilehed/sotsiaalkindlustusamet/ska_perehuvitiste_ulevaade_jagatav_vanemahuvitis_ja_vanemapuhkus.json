@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_perehuvitiste_ulevaade_jagatav_vanemahuvitis_ja_vanemapuhkus",
+  "title": "Jagatav vanemahüvitis ja vanemapuhkus",
+  "register_title": "Jagatav vanemahüvitis ja vanemapuhkus",
+  "source_id": "ska_perehuvitiste_ulevaade_jagatav_vanemahuvitis_ja_vanemapuhkus",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/perehuvitiste-ulevaade/jagatav-vanemahuvitis-ja-vanemapuhkus",
+  "source_path": "ska_perehuvitiste_ulevaade_jagatav_vanemahuvitis_ja_vanemapuhkus.html",
+  "source_format": "html",
+  "source_sha256": "23c38e4e0cf2dd805b2fe906bbde434ff7fbeba0f9d90b89dab1523c417aeac8",
+  "content_sha256": "d93b31aa094f8920eed77c6749fc48e4c041f5d42fa3caf2bd22ddf9e3c9f6c6",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:25:08.526Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-04-20",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:05:08 GMT",
+      "etag": null
+    },
+    "raw_sha256": "9a6342356c297101434fc500900d44a50faa0e76e436d682052243627b4a8b7c",
+    "stats": {
+      "words": 3713,
+      "blocks": 170,
+      "headings": 30,
+      "tables": 1,
+      "links": 11,
+      "linksToOtherSites": 3
+    },
+    "contacts": {
+      "generalEmails": 2,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

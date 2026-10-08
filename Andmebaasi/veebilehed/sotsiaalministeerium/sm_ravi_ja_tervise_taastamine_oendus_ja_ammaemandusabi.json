@@ -1,0 +1,77 @@
+{
+  "document_id": "web-sm_ravi_ja_tervise_taastamine_oendus_ja_ammaemandusabi",
+  "title": "Õendus ja ämmaemandus",
+  "register_title": "Õendus ja ämmaemandus",
+  "source_id": "sm_ravi_ja_tervise_taastamine_oendus_ja_ammaemandusabi",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalministeerium",
+  "language": "et",
+  "url": "https://www.sm.ee/tervise-edendamine-ravi-ja-ravimid/ravi-ja-tervise-taastamine/oendus-ja-ammaemandusabi",
+  "source_path": "sm_ravi_ja_tervise_taastamine_oendus_ja_ammaemandusabi.html",
+  "source_format": "html",
+  "source_sha256": "f17b41d32944a0285f4fa8d59db640a37acd5a6063b3cae70b8236667be47fd3",
+  "content_sha256": "46544199a2b7b6db83b812b64ceda75aa8b49c321282305786edb32d9c30c766",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:26:36.703Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-05-21",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:16:00 GMT",
+      "etag": null
+    },
+    "raw_sha256": "3463bb0e6c701c1ca6a564f60892a87249ccd6ac3af5e9af5716658386a6d479",
+    "stats": {
+      "words": 586,
+      "blocks": 25,
+      "headings": 12,
+      "tables": 0,
+      "links": 19,
+      "linksToOtherSites": 18
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.ens.ee/ravijuhendid/synnitusabi/raseduse-jaelgimise-juhend/download",
+      "text": "Raseduse jälgimise juhend",
+      "type": "download",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.haigekassa.ee/sites/default/files/perearstid/2018_05_22_kodu6endus_ETTK_rakendusjuhend.pdf",
+      "text": "Rakendusjuhend koduõendusteenustele esmatasandi tervisekeskuses",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.haigekassa.ee/sites/default/files/trykised/hk_oendusteenus_voldik_final.pdf",
+      "text": "Õendusabiteenuste infovoldik",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

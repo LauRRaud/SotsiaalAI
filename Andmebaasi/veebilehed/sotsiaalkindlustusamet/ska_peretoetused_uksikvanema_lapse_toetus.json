@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_peretoetused_uksikvanema_lapse_toetus",
+  "title": "Üksikvanema lapse toetus",
+  "register_title": "Üksikvanema lapse toetus",
+  "source_id": "ska_peretoetused_uksikvanema_lapse_toetus",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/peretoetused/uksikvanema-lapse-toetus",
+  "source_path": "ska_peretoetused_uksikvanema_lapse_toetus.html",
+  "source_format": "html",
+  "source_sha256": "089398f1cffe8fcdd85ef9bc9cd486273d0d13520eedf950bcdfe1578bb2c704",
+  "content_sha256": "0911369b1df9062a70b335383aaa7637afacd97d75d6e14a367c8a5ca9c221fa",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:26:01.204Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-09-18",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:09:08 GMT",
+      "etag": null
+    },
+    "raw_sha256": "0ddfcb50f9afa47e98b100d2292afd827a3113290804033e603f9bdd252354fe",
+    "stats": {
+      "words": 196,
+      "blocks": 10,
+      "headings": 4,
+      "tables": 0,
+      "links": 2,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

@@ -38,8 +38,12 @@ test('the committed register names § 2 of the State Budget Act, and the file is
   const entry = register.entries.find(item => item.path === `oigusaktid/${BUDGET}.xml`);
   assert.deepEqual([entry.role, entry.xml_sections, entry.xml_units, entry.original_path], ['source', ['2'], 'point', `riigiteataja.ee/et/akt/${BUDGET}.xml`]);
   assert.equal(hash(await fs.readFile(path.join('Andmebaasi', entry.path))), entry.sha256);
-  // No other registered source selects sections: every other act is read whole, as before.
-  assert.deepEqual(register.entries.filter(item => item.xml_sections !== undefined).map(item => item.path), [entry.path]);
+  // The only other sources that select sections are seven large acts, of which the chapters on help are read
+  // (ADR-111: the number of sections chosen of each); every other act is read whole, as before.
+  const CODES = { '103062026067': 45, '103072026006': 2, '109072026028': 41, '111072026066': 28, '130062026001': 42, '130062026132': 60, '131122024048': 82 };
+  const selected = register.entries.filter(item => item.xml_sections !== undefined && item.path !== entry.path);
+  assert.deepEqual(Object.fromEntries(selected.map(item => [item.path.replace(/^oigusaktid\/|\.xml$/gu, ''), item.xml_sections.length])), CODES);
+  assert(selected.every(item => item.xml_units === undefined && xmlSections({ source_selector: { xml_sections: item.xml_sections } })));
 });
 
 test('only the selected section is read; identity, validity and jurisdiction are the act\'s own', async () => {

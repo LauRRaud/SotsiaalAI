@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_peretoetused_sunnitoetus",
+  "title": "Sünnitoetus",
+  "register_title": "Sünnitoetus",
+  "source_id": "ska_peretoetused_sunnitoetus",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/peretoetused/sunnitoetus",
+  "source_path": "ska_peretoetused_sunnitoetus.html",
+  "source_format": "html",
+  "source_sha256": "d458fe863ceeeb427ae633d66a602a90b656e506a0171be7fc3f2caab8e608db",
+  "content_sha256": "3af4657d23eb7496611848ce28555ca30db466ecff72926b0ff0165c8ff6df5b",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:25:56.207Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-09-18",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:09:03 GMT",
+      "etag": null
+    },
+    "raw_sha256": "b0b2c3c752f60de5701a5bd8d144f890fa508c1b34cc208860737aa3ea18a6eb",
+    "stats": {
+      "words": 168,
+      "blocks": 10,
+      "headings": 4,
+      "tables": 0,
+      "links": 5,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

@@ -31,7 +31,7 @@
       "sources": 609
     },
     "register": {
-      "files": 6,
+      "files": 7,
       "sources": 0
     },
     "taastatud_allikad": {
@@ -43,17 +43,17 @@
       "sources": 0
     },
     "veebilehed": {
-      "files": 62,
-      "sources": 31
+      "files": 228,
+      "sources": 114
     }
   },
   "corpus": {
     "written_by": "rag-v2/register-corpus-1",
-    "version": "v69",
-    "index_generation": "8b1e1008",
+    "version": "v71",
+    "index_generation": "b5a7a39b",
     "read_at": "2026-10-08",
-    "documents": 8337,
-    "units": 68408,
+    "documents": 8446,
+    "units": 72198,
     "note": "What the RAG on the server holds: the documents of the corpus policy by what they are (by_content), and by where the source file is kept (from_repository, outside_repository). One file of the repository may give many documents (a municipality package gives its services, forms and contacts). On a source entry, corpus_documents is the number of corpus documents the file gives; 0 means the file is not in the corpus.",
     "by_content": [
       {
@@ -97,9 +97,9 @@
       {
         "content": "acts",
         "name": "legal acts",
-        "documents": 537,
+        "documents": 563,
         "by_source_type": {
-          "legal_act": 537
+          "legal_act": 563
         }
       },
       {
@@ -116,9 +116,9 @@
       {
         "content": "official_pages",
         "name": "official guidance pages",
-        "documents": 30,
+        "documents": 113,
         "by_source_type": {
-          "web_page": 30
+          "web_page": 113
         }
       },
       {
@@ -174,9 +174,9 @@
         }
       },
       "oigusaktid": {
-        "documents": 537,
+        "documents": 563,
         "by_source_type": {
-          "legal_act": 537
+          "legal_act": 563
         }
       },
       "juhendid_ja_uuringud": {
@@ -189,14 +189,14 @@
         }
       },
       "veebilehed": {
-        "documents": 31,
+        "documents": 114,
         "by_source_type": {
-          "web_page": 30,
+          "web_page": 113,
           "research_report": 1
         }
       }
     },
-    "source_files_not_in_corpus": 87,
+    "source_files_not_in_corpus": 61,
     "outside_repository_documents": 2208
   },
   "outside_repository": {
@@ -33271,7 +33271,54 @@
       "sha256": "f6b0797d2bba19d0c5305d1bbf91c6f411646e7ba426e1759bcd0999452cb3c7",
       "original_path": "riigiteataja.ee/et/akt/103062026067.xml",
       "review_status": "version_and_jurisdiction_validation_pending",
-      "corpus_documents": 0
+      "xml_sections": [
+        "1",
+        "2",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "49",
+        "101",
+        "102",
+        "103",
+        "104",
+        "105",
+        "106",
+        "108",
+        "109",
+        "110",
+        "111",
+        "112",
+        "113",
+        "114",
+        "115",
+        "116",
+        "117",
+        "118",
+        "119",
+        "120",
+        "121",
+        "122",
+        "123",
+        "124",
+        "125",
+        "249",
+        "250",
+        "251",
+        "252",
+        "253",
+        "254"
+      ],
+      "corpus_documents": 1
     },
     {
       "path": "oigusaktid/103072026006.xml",
@@ -33280,7 +33327,11 @@
       "sha256": "95c5d37560cd207bdb44b8f3ebd0b6db74b0f1b66b317f1f32982bc26a661051",
       "original_path": "riigiteataja.ee/et/akt/103072026006.xml",
       "review_status": "version_and_jurisdiction_validation_pending",
-      "corpus_documents": 0
+      "xml_sections": [
+        "126",
+        "127"
+      ],
+      "corpus_documents": 1
     },
     {
       "path": "oigusaktid/103072026035.xml",
@@ -33289,7 +33340,7 @@
       "sha256": "a3d6507deca974cb14b255ea36b414fbd429b602534f2a1e74c44bea04f04765",
       "original_path": "riigiteataja.ee/et/akt/103072026035.xml",
       "review_status": "version_and_jurisdiction_validation_pending",
-      "corpus_documents": 0
+      "corpus_documents": 1
     },
     {
       "path": "oigusaktid/109072026017.xml",
@@ -33298,7 +33349,7 @@
       "sha256": "ca26939c38f379236b6b0eba492809a7873a63d0c7a4d71bf9ab1b9562d895d1",
       "original_path": "riigiteataja.ee/et/akt/109072026017.xml",
       "review_status": "version_and_jurisdiction_validation_pending",
-      "corpus_documents": 0
+      "corpus_documents": 1
     },
     {
       "path": "oigusaktid/109072026028.xml",
@@ -33307,7 +33358,50 @@
       "sha256": "8b862f860555de36d5e98fdb77fd1362d3fb072cddbe4ae34888d912f7ec4b49",
       "original_path": "riigiteataja.ee/et/akt/109072026028.xml",
       "review_status": "version_and_jurisdiction_validation_pending",
-      "corpus_documents": 0
+      "xml_sections": [
+        "120",
+        "121",
+        "123",
+        "124",
+        "133",
+        "133¹",
+        "133²",
+        "133³",
+        "136",
+        "141",
+        "141¹",
+        "143",
+        "143²",
+        "144",
+        "145",
+        "145¹",
+        "147",
+        "153¹",
+        "157²",
+        "157³",
+        "169",
+        "170",
+        "171",
+        "172",
+        "173",
+        "174",
+        "175",
+        "175¹",
+        "178",
+        "178¹",
+        "179",
+        "179¹",
+        "180",
+        "182",
+        "182¹",
+        "199",
+        "201",
+        "209",
+        "213",
+        "214",
+        "217²"
+      ],
+      "corpus_documents": 1
     },
     {
       "path": "oigusaktid/109072026046.xml",
@@ -33316,7 +33410,7 @@
       "sha256": "848f1c1ce42c33b0e9885ef09f8e778a9ea4683dc671069efb594d8c81c49ba8",
       "original_path": "riigiteataja.ee/et/akt/109072026046.xml",
       "review_status": "version_and_jurisdiction_validation_pending",
-      "corpus_documents": 0
+      "corpus_documents": 1
     },
     {
       "path": "oigusaktid/111072026059.xml",
@@ -33325,7 +33419,7 @@
       "sha256": "fcab9fde5e6ef94b70ee39c0731d2c056ec9241bfa7987a1f546b95c2671ab05",
       "original_path": "riigiteataja.ee/et/akt/111072026059.xml",
       "review_status": "version_and_jurisdiction_validation_pending",
-      "corpus_documents": 0
+      "corpus_documents": 1
     },
     {
       "path": "oigusaktid/111072026061.xml",
@@ -33334,7 +33428,7 @@
       "sha256": "3a58c6a067e43285f4a0328c017f0044f717376c2e1ce5e6f8ad78d95e90a9ea",
       "original_path": "riigiteataja.ee/et/akt/111072026061.xml",
       "review_status": "version_and_jurisdiction_validation_pending",
-      "corpus_documents": 0
+      "corpus_documents": 1
     },
     {
       "path": "oigusaktid/111072026066.xml",
@@ -33343,7 +33437,37 @@
       "sha256": "5d436f7ef85d9e21a23e7b7252de212d5ff343971e2c10e9d743f1b0caf7d32c",
       "original_path": "riigiteataja.ee/et/akt/111072026066.xml",
       "review_status": "version_and_jurisdiction_validation_pending",
-      "corpus_documents": 0
+      "xml_sections": [
+        "23",
+        "23¹",
+        "24",
+        "25",
+        "25¹",
+        "26",
+        "27",
+        "28",
+        "28¹",
+        "29",
+        "30",
+        "31",
+        "31¹",
+        "32",
+        "32¹",
+        "33",
+        "57",
+        "59",
+        "60",
+        "61",
+        "62",
+        "73",
+        "74",
+        "74¹",
+        "75",
+        "76",
+        "76¹",
+        "76²"
+      ],
+      "corpus_documents": 1
     },
     {
       "path": "oigusaktid/111072026097.xml",
@@ -33352,7 +33476,7 @@
       "sha256": "81ac5a9988d313588103a89c1f01785520efb871fc6b0e891156374cf6a45d59",
       "original_path": "riigiteataja.ee/et/akt/111072026097.xml",
       "review_status": "version_and_jurisdiction_validation_pending",
-      "corpus_documents": 0
+      "corpus_documents": 1
     },
     {
       "path": "oigusaktid/114032025014.xml",
@@ -33361,7 +33485,7 @@
       "sha256": "45d56de1292f73dbb7a985dab6fa5ef55a8048c7a1077b596afcc447f629ce84",
       "original_path": "riigiteataja.ee/et/akt/114032025014.xml",
       "review_status": "version_and_jurisdiction_validation_pending",
-      "corpus_documents": 0
+      "corpus_documents": 1
     },
     {
       "path": "oigusaktid/114032025019.xml",
@@ -33370,7 +33494,7 @@
       "sha256": "204d9691b17225aab3bd9ade2c5592567600a2e47cc6069ba6f0b201204982b3",
       "original_path": "riigiteataja.ee/et/akt/114032025019.xml",
       "review_status": "version_and_jurisdiction_validation_pending",
-      "corpus_documents": 0
+      "corpus_documents": 1
     },
     {
       "path": "oigusaktid/114032025025.xml",
@@ -33379,7 +33503,7 @@
       "sha256": "10cb041c80e73eda8476b3754c7f80233a241ad5676e052f622c280fba5cfb92",
       "original_path": "riigiteataja.ee/et/akt/114032025025.xml",
       "review_status": "version_and_jurisdiction_validation_pending",
-      "corpus_documents": 0
+      "corpus_documents": 1
     },
     {
       "path": "oigusaktid/120062026021.xml",
@@ -33388,7 +33512,7 @@
       "sha256": "4ac4171017f1cfa7e1c67ac9b29b37ecb4ea70b7f00d704552e6f0c2e9f4e739",
       "original_path": "riigiteataja.ee/et/akt/120062026021.xml",
       "review_status": "version_and_jurisdiction_validation_pending",
-      "corpus_documents": 0
+      "corpus_documents": 1
     },
     {
       "path": "oigusaktid/130062026001.xml",
@@ -33397,7 +33521,51 @@
       "sha256": "7bfab0e9e59d20d3ae071de06bc6cfd5bb09308ca7dfda31de0a50b08753734f",
       "original_path": "riigiteataja.ee/et/akt/130062026001.xml",
       "review_status": "version_and_jurisdiction_validation_pending",
-      "corpus_documents": 0
+      "xml_sections": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "81",
+        "82",
+        "83",
+        "84",
+        "85",
+        "86",
+        "87",
+        "88",
+        "89",
+        "90",
+        "91",
+        "92",
+        "93",
+        "94",
+        "95",
+        "96",
+        "97",
+        "98"
+      ],
+      "corpus_documents": 1
     },
     {
       "path": "oigusaktid/130062026009.xml",
@@ -33406,7 +33574,7 @@
       "sha256": "bcd7037411380b9182350c52f0d2c212cfc5f4815c8dced4d54dcc6dd8c73662",
       "original_path": "riigiteataja.ee/et/akt/130062026009.xml",
       "review_status": "version_and_jurisdiction_validation_pending",
-      "corpus_documents": 0
+      "corpus_documents": 1
     },
     {
       "path": "oigusaktid/130062026028.xml",
@@ -33415,7 +33583,7 @@
       "sha256": "9e7a280560546c41139dc6dc455c633c56b8508431045ace699522986aca85d7",
       "original_path": "riigiteataja.ee/et/akt/130062026028.xml",
       "review_status": "version_and_jurisdiction_validation_pending",
-      "corpus_documents": 0
+      "corpus_documents": 1
     },
     {
       "path": "oigusaktid/130062026034.xml",
@@ -33424,7 +33592,7 @@
       "sha256": "d90a8ae4b2ec0921231dfaa8b1be816eb34b454458957d04adb54f01bcd9b879",
       "original_path": "riigiteataja.ee/et/akt/130062026034.xml",
       "review_status": "version_and_jurisdiction_validation_pending",
-      "corpus_documents": 0
+      "corpus_documents": 1
     },
     {
       "path": "oigusaktid/130062026038.xml",
@@ -33433,7 +33601,7 @@
       "sha256": "9fd854f2dc7e633e63bdf99b8d54e7db517e877ab17909d53f99c3a7d2f73e5a",
       "original_path": "riigiteataja.ee/et/akt/130062026038.xml",
       "review_status": "version_and_jurisdiction_validation_pending",
-      "corpus_documents": 0
+      "corpus_documents": 1
     },
     {
       "path": "oigusaktid/130062026040.xml",
@@ -33442,7 +33610,7 @@
       "sha256": "d94b2501df439a6a3cc2508a8bdddf4a73db2e9c4670714c8135a0792b21fdb3",
       "original_path": "riigiteataja.ee/et/akt/130062026040.xml",
       "review_status": "version_and_jurisdiction_validation_pending",
-      "corpus_documents": 0
+      "corpus_documents": 1
     },
     {
       "path": "oigusaktid/130062026052.xml",
@@ -33451,7 +33619,7 @@
       "sha256": "89b2112319a0c4282aa0ab1ff85174abfcc6b1d7a827c32fdd6f2ca2aba8f387",
       "original_path": "riigiteataja.ee/et/akt/130062026052.xml",
       "review_status": "version_and_jurisdiction_validation_pending",
-      "corpus_documents": 0
+      "corpus_documents": 1
     },
     {
       "path": "oigusaktid/130062026102.xml",
@@ -33460,7 +33628,7 @@
       "sha256": "afd2af189c47752df4fbd75c9bac9e63dd10bfb4ef57639b9bff138085b2f7e1",
       "original_path": "riigiteataja.ee/et/akt/130062026102.xml",
       "review_status": "version_and_jurisdiction_validation_pending",
-      "corpus_documents": 0
+      "corpus_documents": 1
     },
     {
       "path": "oigusaktid/130062026103.xml",
@@ -33478,7 +33646,69 @@
       "sha256": "7ac50bc944f10e946aecc05661e3bc7ddbc1e2f00ca743164242c213eaad8f08",
       "original_path": "riigiteataja.ee/et/akt/130062026132.xml",
       "review_status": "version_and_jurisdiction_validation_pending",
-      "corpus_documents": 0
+      "xml_sections": [
+        "1",
+        "2",
+        "3",
+        "3¹",
+        "3²",
+        "3³",
+        "3⁴",
+        "3⁵",
+        "3⁶",
+        "3⁷",
+        "4",
+        "4¹",
+        "4²",
+        "4³",
+        "4⁴",
+        "4⁵",
+        "5",
+        "6",
+        "6¹",
+        "7",
+        "8",
+        "8¹",
+        "9",
+        "9¹",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "15¹",
+        "16",
+        "16¹",
+        "17",
+        "17¹",
+        "17²",
+        "17³",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "23¹",
+        "23²",
+        "23³",
+        "23⁴",
+        "23⁵",
+        "23⁶",
+        "23⁷",
+        "23⁸",
+        "23⁹",
+        "24",
+        "25",
+        "25¹",
+        "26",
+        "26¹",
+        "26²",
+        "26³",
+        "26⁴"
+      ],
+      "corpus_documents": 1
     },
     {
       "path": "oigusaktid/131032022015.xml",
@@ -33487,7 +33717,7 @@
       "sha256": "47665a6f75aa8b4bae046adc4388ffd991838f97bee95cf3c4ae10a747ef8d5d",
       "original_path": "riigiteataja.ee/et/akt/131032022015.xml",
       "review_status": "version_and_jurisdiction_validation_pending",
-      "corpus_documents": 0
+      "corpus_documents": 1
     },
     {
       "path": "oigusaktid/131122024024.xml",
@@ -33496,7 +33726,7 @@
       "sha256": "e56b3e951e9386e5d4189883042b31c0afa1ef3f95b7b2b8ec6ae1ea1a53c1fb",
       "original_path": "riigiteataja.ee/et/akt/131122024024.xml",
       "review_status": "version_and_jurisdiction_validation_pending",
-      "corpus_documents": 0
+      "corpus_documents": 1
     },
     {
       "path": "oigusaktid/131122024048.xml",
@@ -33505,7 +33735,91 @@
       "sha256": "b8da42e31ac19f3ff81ae65e59f330cc9d41c3eb9e0fa25038b7fdae5cfe16a1",
       "original_path": "riigiteataja.ee/et/akt/131122024048.xml",
       "review_status": "version_and_jurisdiction_validation_pending",
-      "corpus_documents": 0
+      "xml_sections": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "84",
+        "85",
+        "86",
+        "87",
+        "88",
+        "89",
+        "90",
+        "91",
+        "92",
+        "93",
+        "94",
+        "95",
+        "96",
+        "98",
+        "99",
+        "100",
+        "101",
+        "115",
+        "116",
+        "117",
+        "118",
+        "119",
+        "120",
+        "121",
+        "122",
+        "123",
+        "124",
+        "125",
+        "126",
+        "127",
+        "128",
+        "129",
+        "130",
+        "131",
+        "142",
+        "143",
+        "144",
+        "145",
+        "145¹",
+        "146",
+        "147",
+        "148",
+        "149",
+        "150",
+        "151",
+        "152",
+        "153",
+        "154",
+        "155",
+        "156",
+        "157",
+        "158",
+        "159",
+        "160",
+        "160¹",
+        "161",
+        "162",
+        "163",
+        "164",
+        "165",
+        "166",
+        "167",
+        "167¹",
+        "168",
+        "169"
+      ],
+      "corpus_documents": 1
     },
     {
       "path": "veebilehed/andmekaitse-inspektsioon/andmekaitse_inspektsioon_aki_kaebus_isikuandmete_kaitse_asjas.html",
@@ -33598,6 +33912,1374 @@
       "original_path": "veebilehed/paasteamet/paasteamet_paasteamet_tuleohutusnouded.json"
     },
     {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_ii_samba.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "f5195e823a977b2109e75c4f99e31f98b4ee8f2f7848a8e733426e8e4a70e11b",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_ii_samba.html",
+      "title": "II samba pensionikindlustusmaksed ERGO ja SEB klientidele",
+      "document_id": "web-ska_muud_pensioniga_seotud_huvitised_ja_toetused_ii_samba",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_ii_samba.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_ii_samba.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "0bfba93783d0c4c6ab403ad5d14623e86d98874cefa75aca61396bb6d29c279f",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_ii_samba.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_kahjuhuvitis_tooonnetuse.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "8a8da35963f341252cccd6120a62e117e51fd03699ddd75cfd7979f7fc4a4e03",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_kahjuhuvitis_tooonnetuse.html",
+      "title": "Kahjuhüvitis",
+      "document_id": "web-ska_muud_pensioniga_seotud_huvitised_ja_toetused_kahjuhuvitis_tooonnetuse",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_kahjuhuvitis_tooonnetuse.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_kahjuhuvitis_tooonnetuse.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "3fe10bc7a451187c9519ccbc956a80275c964823386b28620204c45da855e6f4",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_kahjuhuvitis_tooonnetuse.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_olumpiavoitja_riiklik.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "ac1dd7d84062f87f9bdd72957c403bedf6f8dd09ae7faf1fb8f12b64062006aa",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_olumpiavoitja_riiklik.html",
+      "title": "Olümpiavõitja toetus",
+      "document_id": "web-ska_muud_pensioniga_seotud_huvitised_ja_toetused_olumpiavoitja_riiklik",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_olumpiavoitja_riiklik.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_olumpiavoitja_riiklik.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "9782291a7c8ab86e38917f2756532c52879abfb55ed6c58df75dbdbf6c93ab96",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_olumpiavoitja_riiklik.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_represseeritu_toetused.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "ab9fb72f054caf477ed08ed9180775feaf88acd3f6995143c41b893cf020f781",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_represseeritu_toetused.html",
+      "title": "Represseeritu toetus",
+      "document_id": "web-ska_muud_pensioniga_seotud_huvitised_ja_toetused_represseeritu_toetused",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_represseeritu_toetused.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_represseeritu_toetused.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "d34aaff626b98a2822b1cc55046b67cfea6f163b1d64e792aba0dbcc39102ca2",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_represseeritu_toetused.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_tagasipoorduja_toetus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "4ec4b31876b509e180f7d786ffdaaf8b664fd4c572555963a2b409ac8a359a0b",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_tagasipoorduja_toetus.html",
+      "title": "Tagasipöörduja toetus",
+      "document_id": "web-ska_muud_pensioniga_seotud_huvitised_ja_toetused_tagasipoorduja_toetus",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_tagasipoorduja_toetus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_tagasipoorduja_toetus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "d648bd87298939c893332a356efa761e196049d6209462c369689f2677d1af28",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_tagasipoorduja_toetus.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_toetus_tsornoboli_aej.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "a0a0fd8e975ffaf1b1605a5c5ef8d15627fb9c84043e6743bcaa11d6059672fd",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_toetus_tsornoboli_aej.html",
+      "title": "Sotsiaaltoetus Tšornobõli AEJ avarii likvideerijale",
+      "document_id": "web-ska_muud_pensioniga_seotud_huvitised_ja_toetused_toetus_tsornoboli_aej",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_toetus_tsornoboli_aej.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_toetus_tsornoboli_aej.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "36d25d704164eb24752e0eca16da110d3364fe83b7a8ca85d607cd28460e29cb",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_toetus_tsornoboli_aej.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_uksi_elava_pensionari.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "a52d22b0899eb64ab5ab677c112105e5bc09e02d633bd98ae5ec69d377a12a8f",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_uksi_elava_pensionari.html",
+      "title": "Üksi elava pensionäri toetus",
+      "document_id": "web-ska_muud_pensioniga_seotud_huvitised_ja_toetused_uksi_elava_pensionari",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_uksi_elava_pensionari.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_uksi_elava_pensionari.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "71f0caf8199604377ff50946a2cd213fd3293e2740c2915818fed4c59ae5918c",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_uksi_elava_pensionari.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_muud_pensioniga_seotud_huvitised_ja_toetused.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "4433a46fb38c43f43cb5da24dae25eb04953e5a128921ffe8742e3edd1da1cf0",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_muud_pensioniga_seotud_huvitised_ja_toetused.html",
+      "title": "Muud pensioniga seotud hüvitised ja toetused",
+      "document_id": "web-ska_pension_ja_seotud_huvitised_muud_pensioniga_seotud_huvitised_ja_toetused",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_muud_pensioniga_seotud_huvitised_ja_toetused.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_muud_pensioniga_seotud_huvitised_ja_toetused.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "8c95f25e98bc3eaf6f20677b4f139db518691d847cf8114275509dd83fd864ea",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_muud_pensioniga_seotud_huvitised_ja_toetused.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pension_valismaal_ja_valisriigi_pension_eestis.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "3f28c75647c819ad0509e72b4d08fdad39a00dcf8f42083c1c64ca6d783377c7",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pension_valismaal_ja_valisriigi_pension_eestis.html",
+      "title": "Pension välismaal ja välisriigi pension Eestis",
+      "document_id": "web-ska_pension_ja_seotud_huvitised_pension_valismaal_ja_valisriigi_pension_eestis",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pension_valismaal_ja_valisriigi_pension_eestis.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pension_valismaal_ja_valisriigi_pension_eestis.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "ff8be8ba49d833f9af0ee6f5612953545d975361dd8be1de63a49166e3cd7e48",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pension_valismaal_ja_valisriigi_pension_eestis.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pensioni_liigid.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "97262d2b80bcca7f022cd0ff43990b607c0bb377383ca507fa0d67d5822f19ca",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pensioni_liigid.html",
+      "title": "Pensioni liigid",
+      "document_id": "web-ska_pension_ja_seotud_huvitised_pensioni_liigid",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pensioni_liigid.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pensioni_liigid.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "eb7ee667daf5388093aea46b8fb676eb27ed9ca30f13d78e8560f43c48946abf",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pensioni_liigid.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pensioni_suurus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "35ffbdc437eaa9a3a86b7784e75aabe1c5e449c0f573ab34fb9f21d08207f463",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pensioni_suurus.html",
+      "title": "Pensioni suurus",
+      "document_id": "web-ska_pension_ja_seotud_huvitised_pensioni_suurus",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pensioni_suurus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pensioni_suurus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "7bc704cb1cf30fe64a710f0502916262661d2f328832d47018e5cf19d98a1d52",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pensioni_suurus.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pensioniks_valmistumine.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "7072c8bd48336a11a344497d8c7ec8ef888b3dfb46caeab38b5e14734b9531bc",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pensioniks_valmistumine.html",
+      "title": "Pensioniks valmistumine",
+      "document_id": "web-ska_pension_ja_seotud_huvitised_pensioniks_valmistumine",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pensioniks_valmistumine.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pensioniks_valmistumine.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "394e6cb2fd056ff3349c178f60097a5e0220d9a0036633f4b690a86b1acedfc8",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pensioniks_valmistumine.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_elusolekutoend.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "45b1c6fbf9b0de1afc9b37b551a909dc15fae012a1ede0f1a636a0de2447abb7",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_elusolekutoend.html",
+      "title": "Elusolekutõend",
+      "document_id": "web-ska_pension_valismaal_ja_valisriigi_pension_eestis_elusolekutoend",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_elusolekutoend.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_elusolekutoend.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "331e366d8aa9e48711e0550b713b3196bd35ea07a7e8d8066c70faef2fbc9f58",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_elusolekutoend.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_euroopa_liidu_pensionid.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "53f97d898f008ced6f17ab20a4d9097b06eb1041dcd0f70ef5c67bfb3f9d4064",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_euroopa_liidu_pensionid.html",
+      "title": "Euroopa Liidu pensionid ja lepinguriigid",
+      "document_id": "web-ska_pension_valismaal_ja_valisriigi_pension_eestis_euroopa_liidu_pensionid",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_euroopa_liidu_pensionid.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_euroopa_liidu_pensionid.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "1644cdc937d13d3d1838af3640768f4e969215066e239306d0233000df516742",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_euroopa_liidu_pensionid.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_pensioni_maksmine.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "52ae34ffc206f7a5f4e69df31ee0a2439627ec6c6215aa92755a8b790daa68c2",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_pensioni_maksmine.html",
+      "title": "Pensioni maksmine välisriiki",
+      "document_id": "web-ska_pension_valismaal_ja_valisriigi_pension_eestis_pensioni_maksmine",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_pensioni_maksmine.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_pensioni_maksmine.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "4ec2765c49901193a9adc95d1dc59c4657ba2970da2b9445bec0eca3e479ebbc",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_pensioni_maksmine.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_pensioni_saamine.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "d43cb5b0265f65719821c0c8ab663f90129bd751182066f7297405fb9b81a787",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_pensioni_saamine.html",
+      "title": "Pensioni saamine välisriigist",
+      "document_id": "web-ska_pension_valismaal_ja_valisriigi_pension_eestis_pensioni_saamine",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_pensioni_saamine.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_pensioni_saamine.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "16aa2668bc7bf11dac68423b690639c51cb6953b40736f53d2d28b279603169f",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_pensioni_saamine.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_toendite_taotlemine.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "aa7d170816793cc1fd9a2b67a733aa108d6c90ebcf345fcba1469f601932d8ce",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_toendite_taotlemine.html",
+      "title": "Tõendite taotlemine",
+      "document_id": "web-ska_pension_valismaal_ja_valisriigi_pension_eestis_toendite_taotlemine",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_toendite_taotlemine.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_toendite_taotlemine.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "65e23e904da1c6df55917503016b144226e6c802c776a6fa4853d29134486477",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_toendite_taotlemine.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_valispensioni_ja.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "dc1308a2710966b1a851c5a3d88f1df9143adf7a142ed1c33132cf8dca18fc7b",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_valispensioni_ja.html",
+      "title": "Välispensioni ja rahvapensioni määra vahe",
+      "document_id": "web-ska_pension_valismaal_ja_valisriigi_pension_eestis_valispensioni_ja",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_valispensioni_ja.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_valispensioni_ja.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "62fef2cd3292169879595339f52156de8554cd5b0010a94f21f8b31e77cf7620",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_valispensioni_ja.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_edasilukatud_vanaduspension.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "4a8ccbdbfb0c766dc5eb427071352bff5fe245a2ef29b9691dde166a9eeb527f",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_edasilukatud_vanaduspension.html",
+      "title": "Edasilükatud vanaduspension",
+      "document_id": "web-ska_pensioni_liigid_edasilukatud_vanaduspension",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_edasilukatud_vanaduspension.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_edasilukatud_vanaduspension.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "d3df03a0987454549af2817376a2af6a6aae63c764efb4c533ee88382f23c013",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_edasilukatud_vanaduspension.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_eripensionid.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "4a27a0bb795a7582c71bbbee95e2f483182c31e9ca60f450466951a391f7119e",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_eripensionid.html",
+      "title": "Eripensionid, kutsealade ja ametikohtade sooduspensionid",
+      "document_id": "web-ska_pensioni_liigid_eripensionid",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_eripensionid.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_eripensionid.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "cf23e189e3f364c87c8dc8ea66a3db54c2b9964b267f15741bf9216bd4cf755c",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_eripensionid.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_paindlik_pension.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "a619fba4cc5b7d9cf33114c503644d603a6b0417b04859e2c838a7f85b549d69",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_paindlik_pension.html",
+      "title": "Paindlik pension",
+      "document_id": "web-ska_pensioni_liigid_paindlik_pension",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_paindlik_pension.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_paindlik_pension.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "1951a6ae57581c10df0b224829a8d86f5be228e87c27c3d77260ed0acb8ac799",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_paindlik_pension.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_rahvapension.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "d757c012df6c73996f35c555d7912c63bfeb8849880d49b549916b17565fb275",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_rahvapension.html",
+      "title": "Rahvapension",
+      "document_id": "web-ska_pensioni_liigid_rahvapension",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_rahvapension.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_rahvapension.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "a0a71cb80c26d5d03de3ccc009ffcb4966ca3fae6ad3b888a323686bd8cf1a73",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_rahvapension.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_soodustingimustel_vanaduspension.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "844340e2b5c21f51cee47e752b86a7bca36b67928f559889b965e49d7b866f09",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_soodustingimustel_vanaduspension.html",
+      "title": "Soodustingimustel vanaduspension",
+      "document_id": "web-ska_pensioni_liigid_soodustingimustel_vanaduspension",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_soodustingimustel_vanaduspension.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_soodustingimustel_vanaduspension.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "d4d0c747d55c1c3facfdf39dc364ed21155a855073f7a7b64dd8cbd1b69ec935",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_soodustingimustel_vanaduspension.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_toitjakaotuspension.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "3977e0399cc9e1db2ff43c654eb7ae82fba48bd83b27ccb18dd806acca259565",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_toitjakaotuspension.html",
+      "title": "Toitjakaotuspension",
+      "document_id": "web-ska_pensioni_liigid_toitjakaotuspension",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_toitjakaotuspension.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_toitjakaotuspension.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "7fe8a8f57288a0617c6fb2831b45d96d356b21d82b98552cd1c5febd5e971dd9",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_toitjakaotuspension.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_vanaduspension.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "2437461780bbdf240fe5326e94b028ca9ce1977d2ff8faf1720faa99e409c375",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_vanaduspension.html",
+      "title": "Vanaduspension",
+      "document_id": "web-ska_pensioni_liigid_vanaduspension",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_vanaduspension.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_vanaduspension.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "8f2d14fba47fc0b57c23730203108c59844a63d102c0c91afffc40392430abe5",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_vanaduspension.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_laste_kasvatamine_ja_pension.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "64f4b41b7cd10b527521e64303406f8185d3f0cbfa4e932cfbb4b1efc8c403d6",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_laste_kasvatamine_ja_pension.html",
+      "title": "Laste kasvatamine ja pension",
+      "document_id": "web-ska_pensioni_suurus_laste_kasvatamine_ja_pension",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_laste_kasvatamine_ja_pension.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_laste_kasvatamine_ja_pension.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "491d95994f6a374b3d604e453800d666132d7c2f43e659b4f3dfd3e150aa625e",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_laste_kasvatamine_ja_pension.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensioni_indekseerimine_ja_umberarvutus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "47207f72f342caa61145a3a3ae4c9ad2275f33a4b70d244a6a56c6a194701ae4",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensioni_indekseerimine_ja_umberarvutus.html",
+      "title": "Pensioni indekseerimine ja ümberarvutamine",
+      "document_id": "web-ska_pensioni_suurus_pensioni_indekseerimine_ja_umberarvutus",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensioni_indekseerimine_ja_umberarvutus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensioni_indekseerimine_ja_umberarvutus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "825c6a9748dc3787a8459148186d3d516c187a7eac87a34bce8eb7c37aac5c4e",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensioni_indekseerimine_ja_umberarvutus.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensioni_suuruse_arvutamine.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "c178c53435c2f659f65357bad54b20e317cecb6511a128adbece42117e3defb3",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensioni_suuruse_arvutamine.html",
+      "title": "Pensioni suuruse arvutamine",
+      "document_id": "web-ska_pensioni_suurus_pensioni_suuruse_arvutamine",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensioni_suuruse_arvutamine.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensioni_suuruse_arvutamine.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "6b5d5be458e412b85a03e1fc958d3d857f9ad77eb637e5f736e39eca6324627b",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensioni_suuruse_arvutamine.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensioni_tulumaksustamine.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "9bb994711654e12c3b3c168521fdd56f37771781e66430a4d54008378943d5f5",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensioni_tulumaksustamine.html",
+      "title": "Hüvitiste, toetuste ja pensionide tulumaksustamine",
+      "document_id": "web-ska_pensioni_suurus_pensioni_tulumaksustamine",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensioni_tulumaksustamine.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensioni_tulumaksustamine.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "6bce3f7c73bf0178b69a52f2efce36d88509af9cc2a445d72b4f890bdfc36ef1",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensioni_tulumaksustamine.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensionide_toetuste_ja_huvitiste_maarad.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "4b3c5e3b6360c48c159a2da7d783991d0ce47cfdaeacc7dc526b0413b4dbff7d",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensionide_toetuste_ja_huvitiste_maarad.html",
+      "title": "Pensionide, toetuste ja hüvitiste määrad",
+      "document_id": "web-ska_pensioni_suurus_pensionide_toetuste_ja_huvitiste_maarad",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensionide_toetuste_ja_huvitiste_maarad.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensionide_toetuste_ja_huvitiste_maarad.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "2483a78c070e00e0eb2c528dfff80e397ea3061e653af1eb78d493a4ea916f4a",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensionide_toetuste_ja_huvitiste_maarad.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensionilisad.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "cafa1c6aa25ca6f6fe2fdd70db9bda0c785dd8a6f34db4a1dc27b8e992f5f9f8",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensionilisad.html",
+      "title": "Pensionilisad",
+      "document_id": "web-ska_pensioni_suurus_pensionilisad",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensionilisad.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensionilisad.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "5982f328eb53c53a2a74a12ea3fd7f49a0892daf7a634bcb36c3c8e1aaca4fc5",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensionilisad.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_tootamine_pensioni_saamise_ajal.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "5f4035fb01b02d2db0711219a3aeb365bc7e14070ae5b60305a6743ff69fcdfa",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_tootamine_pensioni_saamise_ajal.html",
+      "title": "Töötamine pensioni saamise ajal",
+      "document_id": "web-ska_pensioni_suurus_tootamine_pensioni_saamise_ajal",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_tootamine_pensioni_saamise_ajal.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_tootamine_pensioni_saamise_ajal.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "7194f524cc81aecfd1fb9d3149e3e1be3a2b288c59efe9ad2b5c739f36e1bb91",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_tootamine_pensioni_saamise_ajal.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensioni_peatamine_ja_jatkamine.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "d0b8f3f6975d3bd1a51d3553eba7f67adc40108aaf8deeb42c72ee5a4992d215",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensioni_peatamine_ja_jatkamine.html",
+      "title": "Pensioni peatamine ja jätkamine",
+      "document_id": "web-ska_pensioni_taotlemine_pensioni_peatamine_ja_jatkamine",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensioni_peatamine_ja_jatkamine.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensioni_peatamine_ja_jatkamine.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "7800e949dac7797e0792afd633dc16bff4185fe7182586c26f93233fc4a7d113",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensioni_peatamine_ja_jatkamine.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensioniavalduse_esitamine.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "368309669847dc4b7a10e429e842b1f4b0365029c5eae4d365423c8dd5bb868a",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensioniavalduse_esitamine.html",
+      "title": "Pensioniavalduse esitamine",
+      "document_id": "web-ska_pensioni_taotlemine_pensioniavalduse_esitamine",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensioniavalduse_esitamine.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensioniavalduse_esitamine.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "dd27a6a8b5312df07f01adc7448caad3455ccb962d6b9618691159ba4e2e1f58",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensioniavalduse_esitamine.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensioniiga.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "b48b4759b86f30d33c529a9657b5be75b95697d397dffb6a8379545f406bfd0b",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensioniiga.html",
+      "title": "Pensioniiga",
+      "document_id": "web-ska_pensioni_taotlemine_pensioniiga",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensioniiga.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensioniiga.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "e51b2649a045f5d0fc9a3b8e6a67907886a3be59b36982d495fe8943fb07a6ac",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensioniiga.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensionistaaz.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "8f7e20fcb24429a08533dd0366635567a3dc29b1c70226c96cddc663903c1f82",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensionistaaz.html",
+      "title": "Pensionistaaž",
+      "document_id": "web-ska_pensioni_taotlemine_pensionistaaz",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensionistaaz.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensionistaaz.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "7f2520c9e52483beb13a5e5ab4ae95cb6a5eba9b05e1e03bfe46b6331ba86dd9",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensionistaaz.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensionitunnistus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "108f8e403699903aa8d56e6d4db08e25b85b23d0becd8e78f52cc9bba076eb71",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensionitunnistus.html",
+      "title": "Pensionitunnistus",
+      "document_id": "web-ska_pensioni_taotlemine_pensionitunnistus",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensionitunnistus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensionitunnistus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "da341667a234c6fe3618b47df30aac9c6c0dab91a2a06195c26ade8efbe0a3fe",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensionitunnistus.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_taotlemiseks_vajalikud_dokumendid.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "82e2abe9cda8341076a5b332dc3514509849f6252c75ca99261c1bd6b04fdbcb",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_taotlemiseks_vajalikud_dokumendid.html",
+      "title": "Pensioni taotlemisel vajalikud dokumendid",
+      "document_id": "web-ska_pensioni_taotlemine_taotlemiseks_vajalikud_dokumendid",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_taotlemiseks_vajalikud_dokumendid.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_taotlemiseks_vajalikud_dokumendid.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "8f34c6bb5b5128cf1a0ff7c5d8e79abaf1e8d3063d5f2b4969bae1a1f88442e4",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_taotlemiseks_vajalikud_dokumendid.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioniks_valmistumine_eesti_pensionisusteem.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "d89914a4163eb4d5f50f762f92dfb28d799a31d80c68c7d3383774ecb1f1ad5c",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioniks_valmistumine_eesti_pensionisusteem.html",
+      "title": "Eesti pensionisüsteem",
+      "document_id": "web-ska_pensioniks_valmistumine_eesti_pensionisusteem",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioniks_valmistumine_eesti_pensionisusteem.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioniks_valmistumine_eesti_pensionisusteem.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "7d7dc2f8866090bf02f208fb3d5dd79693e28c05b7b76e85b9746de62b10fc11",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioniks_valmistumine_eesti_pensionisusteem.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioniks_valmistumine_pensioni_planeerimine.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "9391f1ca868d93e46544a7cef3e41d26ea226ff89ce467b873c6493609e352c5",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioniks_valmistumine_pensioni_planeerimine.html",
+      "title": "Pensioni planeerimine",
+      "document_id": "web-ska_pensioniks_valmistumine_pensioni_planeerimine",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioniks_valmistumine_pensioni_planeerimine.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioniks_valmistumine_pensioni_planeerimine.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "716aad2b58a22e9f49c64cce497579bd4d355ad8ff376a9f01c5940f4787e210",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioniks_valmistumine_pensioni_planeerimine.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioniks_valmistumine_tooraamatu_esitamine.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "ad314d7acfbc0c238ba8c7599ddee1d2ddd78d9bc7453b412a52a4a40c881333",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioniks_valmistumine_tooraamatu_esitamine.html",
+      "title": "Tööraamat",
+      "document_id": "web-ska_pensioniks_valmistumine_tooraamatu_esitamine",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioniks_valmistumine_tooraamatu_esitamine.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_pensioniks_valmistumine_tooraamatu_esitamine.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "bc9bd7e3ab58f288757ca801c83595e4f8328c9798019cac937d14948abff71b",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_pensioniks_valmistumine_tooraamatu_esitamine.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_elatisabi.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "8a05d62dbd7a02f9e534532d1200fb58151d7520d6212238087204e433d10b0e",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_elatisabi.html",
+      "title": "Elatisabi",
+      "document_id": "web-ska_perehuvitised_ja_muud_toetused_elatisabi",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_elatisabi.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_elatisabi.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "0452c31baf2899ea3edb2cefaf9bc1befecf63e87618afbd7c83c0ac60b9fe1c",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_elatisabi.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_lisapuhkepaevad.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "4b56fe0dd58a1079e23d40c85f4f0285a64d3d69933a174840fb6b97e82b8de6",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_lisapuhkepaevad.html",
+      "title": "Lisapuhkepäevad",
+      "document_id": "web-ska_perehuvitised_ja_muud_toetused_lisapuhkepaevad",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_lisapuhkepaevad.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_lisapuhkepaevad.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "6e2d2fe20397a6e25cdefb7fbe4c4be506fc527ea6c70c8f0ae53b71eeca2067",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_lisapuhkepaevad.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_perehuvitiste_ulevaade.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "5f2f545d4e9af5229bc95f126f025d6f6bc5609f11d4c5e65c57d30540ece2ba",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_perehuvitiste_ulevaade.html",
+      "title": "Perehüvitiste ülevaade",
+      "document_id": "web-ska_perehuvitised_ja_muud_toetused_perehuvitiste_ulevaade",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_perehuvitiste_ulevaade.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_perehuvitiste_ulevaade.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "42d4cd166dffdb03d0a0927ea4e1c99472561def57c570f5fd083153a203f94f",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_perehuvitiste_ulevaade.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_perekondlikud_olukorrad.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "4cab86cbe570994068b0b0d887779512b3610ebd62416f05bddc2225f213b6ad",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_perekondlikud_olukorrad.html",
+      "title": "Perekondlikud olukorrad",
+      "document_id": "web-ska_perehuvitised_ja_muud_toetused_perekondlikud_olukorrad",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_perekondlikud_olukorrad.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_perekondlikud_olukorrad.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "1c98c45b8dba9f2dff36b98c5b6fa76b46bc3d34ddd856f58cb3043541d373dd",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_perekondlikud_olukorrad.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_peretoetused.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "0aa287fd774a77265552af1df901d3a8783511e7b5e63d1fd440d1aae0123c51",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_peretoetused.html",
+      "title": "Peretoetused",
+      "document_id": "web-ska_perehuvitised_ja_muud_toetused_peretoetused",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_peretoetused.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_peretoetused.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "a4490024fe1297fe2f8ec28755b9262a7bd6dd902ee0340bec504fd74eba620d",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_peretoetused.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "2c9108750982ecf08429e638b3cf7e61e5a948621fda7544ff1c58f5731f2968",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele.html",
+      "title": "Sotsiaalkindlustus Euroopa Liidus",
+      "document_id": "web-ska_perehuvitised_ja_muud_toetused_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "ef96f3e28d1644bce7d80bee323924fcb4f1ba96c1cb732f64ff2131d909f24e",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_toetused_huvitised_ukraina_pogenikele.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "8116d36a3d846910884caa414261305e5bd44d11eb512ea69923bd17b868a1d4",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_toetused_huvitised_ukraina_pogenikele.html",
+      "title": "Toetused ja hüvitised Ukraina põgenikele",
+      "document_id": "web-ska_perehuvitised_ja_muud_toetused_toetused_huvitised_ukraina_pogenikele",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_toetused_huvitised_ukraina_pogenikele.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_toetused_huvitised_ukraina_pogenikele.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "e7d32f4ef2ba76e208ee5dfd4f4d60ccca2411e2dce04440f286ac0fc4c1996e",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_toetused_huvitised_ukraina_pogenikele.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_ema_vanemahuvitis_ja_emapuhkus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "b96265fb94a1cba7bdefa811a9a2cc31c536c345a66841410824e84e13328eeb",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_ema_vanemahuvitis_ja_emapuhkus.html",
+      "title": "Ema vanemahüvitis ja emapuhkus",
+      "document_id": "web-ska_perehuvitiste_ulevaade_ema_vanemahuvitis_ja_emapuhkus",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_ema_vanemahuvitis_ja_emapuhkus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_ema_vanemahuvitis_ja_emapuhkus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "746f47b25e17740337a63a087dd52ea6ce1940f229569e254f04f7815f536517",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_ema_vanemahuvitis_ja_emapuhkus.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_isa_vanemahuvitis_ja_isapuhkus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "507b66c136973784dbc9622a60d4204eb159a753305abb64e229aaaf8d7615cf",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_isa_vanemahuvitis_ja_isapuhkus.html",
+      "title": "Isa vanemahüvitis ja isapuhkus",
+      "document_id": "web-ska_perehuvitiste_ulevaade_isa_vanemahuvitis_ja_isapuhkus",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_isa_vanemahuvitis_ja_isapuhkus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_isa_vanemahuvitis_ja_isapuhkus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "87ae6afe47e617fdc839f7327449780aeb0c5967cc789f4792974b7e08e0340e",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_isa_vanemahuvitis_ja_isapuhkus.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_jagatav_vanemahuvitis_ja_vanemapuhkus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "23c38e4e0cf2dd805b2fe906bbde434ff7fbeba0f9d90b89dab1523c417aeac8",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_jagatav_vanemahuvitis_ja_vanemapuhkus.html",
+      "title": "Jagatav vanemahüvitis ja vanemapuhkus",
+      "document_id": "web-ska_perehuvitiste_ulevaade_jagatav_vanemahuvitis_ja_vanemapuhkus",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_jagatav_vanemahuvitis_ja_vanemapuhkus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_jagatav_vanemahuvitis_ja_vanemapuhkus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "8893e3f509831b80dcd33b2d7b3a7adfe291f2cdbe573be2fe06d36a31fd9b63",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_jagatav_vanemahuvitis_ja_vanemapuhkus.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_lapsendaja_vanemahuvitis_ja_lapsendajapuhkus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "1e759e1cfe382a01c38c1cf502cadc6d60867542c74a8338d121d5a96f04d75b",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_lapsendaja_vanemahuvitis_ja_lapsendajapuhkus.html",
+      "title": "Lapsendaja vanemahüvitis ja lapsendajapuhkus",
+      "document_id": "web-ska_perehuvitiste_ulevaade_lapsendaja_vanemahuvitis_ja_lapsendajapuhkus",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_lapsendaja_vanemahuvitis_ja_lapsendajapuhkus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_lapsendaja_vanemahuvitis_ja_lapsendajapuhkus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "b616bb08a845a00ab9fdb4842000f85b53aee265266cd35cb610db85901b08dd",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_lapsendaja_vanemahuvitis_ja_lapsendajapuhkus.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_lapsepuhkus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "7ac432b94be22e927bdd8e6d1566afb4542e0d4fcdf230c31fadfb4936ccec5e",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_lapsepuhkus.html",
+      "title": "Lapsepuhkus ja puudega lapse vanema lapsepuhkus",
+      "document_id": "web-ska_perehuvitiste_ulevaade_lapsepuhkus",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_lapsepuhkus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_lapsepuhkus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "76768c3202b515f0c8987fa0a11f1eb2b791fbf51a4e7dd5cd9c94d9b1b55289",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_lapsepuhkus.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_perehuvitiste_maarad_ja_maksmine.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "b4c45e217bdb45052fd043cb42e7d7788ba1870e5a2bdd0fff1ea18b0b68b415",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_perehuvitiste_maarad_ja_maksmine.html",
+      "title": "Perehüvitiste määrad",
+      "document_id": "web-ska_perehuvitiste_ulevaade_perehuvitiste_maarad_ja_maksmine",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_perehuvitiste_maarad_ja_maksmine.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_perehuvitiste_maarad_ja_maksmine.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "52237ac019cc495aaeb54b38f1b4d3ce96d6cb3b79f43a589a359576bfd71542",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_perehuvitiste_maarad_ja_maksmine.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_perehuvitistest_loobumine.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "47191ff89cf749e3ad900a8723b992cf311d590f63a14cbcd5523b7dfa960f09",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_perehuvitistest_loobumine.html",
+      "title": "Perehüvitistest loobumine",
+      "document_id": "web-ska_perehuvitiste_ulevaade_perehuvitistest_loobumine",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_perehuvitistest_loobumine.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_perehuvitistest_loobumine.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "1c64fa164b6732b8424cedeef077422feae6bd1dc151e0af144df8423dadf6a3",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_perehuvitistest_loobumine.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_laps_ei_ela_koos_oma_vanematega.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "744c58bca6bf24cd2fea7fdb2e4345a46b343ac4a2a3a62087b0c3352f35c2c4",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_laps_ei_ela_koos_oma_vanematega.html",
+      "title": "Laps ei ela koos oma vanematega",
+      "document_id": "web-ska_perekondlikud_olukorrad_laps_ei_ela_koos_oma_vanematega",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_laps_ei_ela_koos_oma_vanematega.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_laps_ei_ela_koos_oma_vanematega.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "a29b55d654093ea208993ff812d83261eabe8b8a5644a93d66b31e6836ebea2c",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_laps_ei_ela_koos_oma_vanematega.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_lapse_vanemad_ei_ela_koos.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "a9ed98dd5f469fabc326b4549000a0c0bd3a3d0e94ec1fb5c71bc73b879bec01",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_lapse_vanemad_ei_ela_koos.html",
+      "title": "Lapse vanemad ei ela enam koos",
+      "document_id": "web-ska_perekondlikud_olukorrad_lapse_vanemad_ei_ela_koos",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_lapse_vanemad_ei_ela_koos.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_lapse_vanemad_ei_ela_koos.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "3c41bcb8c5d82c2ffe1dccc9f4808c187b6214bb0bcbbacb59182d0171b51cc8",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_lapse_vanemad_ei_ela_koos.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_lapse_vanemal_puue.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "a40981934142285c1042b9b88028de77d6dc1aaed3340d15d8b80e68362266b0",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_lapse_vanemal_puue.html",
+      "title": "Puudega vanem",
+      "document_id": "web-ska_perekondlikud_olukorrad_lapse_vanemal_puue",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_lapse_vanemal_puue.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_lapse_vanemal_puue.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "731fc645e56ecaace617a092a66e7e68ee466d4b1b90bd1cfd345980bff7680e",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_lapse_vanemal_puue.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_peres_kasvavad_koos_mitme_eri_vanema_lapsed.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "d8ef7b5cb4e3e68d3da9a4cb9ab65019148b91d0e95a000843e0e11126504aa4",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_peres_kasvavad_koos_mitme_eri_vanema_lapsed.html",
+      "title": "Peres kasvavad koos mitme eri vanema lapsed",
+      "document_id": "web-ska_perekondlikud_olukorrad_peres_kasvavad_koos_mitme_eri_vanema_lapsed",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_peres_kasvavad_koos_mitme_eri_vanema_lapsed.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_peres_kasvavad_koos_mitme_eri_vanema_lapsed.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "758305f047b2d906b4008d16ca767c8e270ce67d56633902c67defa3561bee76",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_peres_kasvavad_koos_mitme_eri_vanema_lapsed.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_peres_puudega_laps.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "03879154dbdf93a97b76bb56b567bd3119c457265c397f0c5729246aba8188a1",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_peres_puudega_laps.html",
+      "title": "Puudega laps",
+      "document_id": "web-ska_perekondlikud_olukorrad_peres_puudega_laps",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_peres_puudega_laps.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_peres_puudega_laps.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "6118f68b01b6f0c57eaa65e481223897fcfb3301f517b14ed71b3790fec60507",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_peres_puudega_laps.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_varakult_lahkunud_laps.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "2b36ff7e976627cabee6b8cc75084c476bcd0a94cc1d19489a1c0d63169ef8e6",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_varakult_lahkunud_laps.html",
+      "title": "Varakult lahkunud laps",
+      "document_id": "web-ska_perekondlikud_olukorrad_varakult_lahkunud_laps",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_varakult_lahkunud_laps.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_varakult_lahkunud_laps.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "1c2fd5177a54091d4770e1ce0ff39b032f4fb4904b6267d59c516477cbdab789",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_varakult_lahkunud_laps.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perelepitus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "00bfd45f020e7439472208860072c95798eedc74e752879eb4d8e926b55fc1b9",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perelepitus.html",
+      "title": "Perelepitus",
+      "document_id": "web-ska_perelepitus",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_perelepitus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_perelepitus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "b04ed2acd244ad2f46cbf1d7adb2f8fa9383023c16a96f071f73467880271bc9",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_perelepitus.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_ajateenija_lapse_toetus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "072c8a78fc3d5c924a7e288660e0fd4f84e2ad57811603cfbac474010ccd37f4",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_ajateenija_lapse_toetus.html",
+      "title": "Ajateenija lapse toetus",
+      "document_id": "web-ska_peretoetused_ajateenija_lapse_toetus",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_ajateenija_lapse_toetus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_ajateenija_lapse_toetus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "a3cc8a6d2d9768fb499c6c20934f9d8b2f065ce34f4abeb156df4ea9d5f0298f",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_ajateenija_lapse_toetus.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_eestkostetava_lapse_toetus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "f655768c431455746d106fa8f7fcc13e686028fd695c89bcd48081d89e406353",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_eestkostetava_lapse_toetus.html",
+      "title": "Eestkostetava toetus",
+      "document_id": "web-ska_peretoetused_eestkostetava_lapse_toetus",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_eestkostetava_lapse_toetus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_eestkostetava_lapse_toetus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "78355a74873ee00ca6f56c44633d929f6d2ada3fe7378c56c387eed56fb9f3d6",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_eestkostetava_lapse_toetus.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_lapsendamistoetus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "f7b6fa3dc719a112e3c3886b2718b80e5ca270aa1cdbea79447849aecad52c05",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_lapsendamistoetus.html",
+      "title": "Lapsendamistoetus",
+      "document_id": "web-ska_peretoetused_lapsendamistoetus",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_lapsendamistoetus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_lapsendamistoetus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "3d044d16defc676ef6dc0c1bab8c5043f857ad998263d031c3f2587248468c98",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_lapsendamistoetus.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_lapsetoetus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "4236e541d79fd277274d0d17d819db2a7a9eb62aac53d6b920582d20c0cccd0e",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_lapsetoetus.html",
+      "title": "Lapsetoetus",
+      "document_id": "web-ska_peretoetused_lapsetoetus",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_lapsetoetus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_lapsetoetus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "f0407df6f2426b7054908ade5b7c4da9554ae276980932993da106d3bc5ec84e",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_lapsetoetus.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_lasterikka_pere_toetus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "629b6dde2364fb0154836a75b5e702ba82215f9afd7093214bd515f44e850001",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_lasterikka_pere_toetus.html",
+      "title": "Lasterikka pere toetus",
+      "document_id": "web-ska_peretoetused_lasterikka_pere_toetus",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_lasterikka_pere_toetus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_lasterikka_pere_toetus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "ff6e8c9b85ead4fdd998b329f742f2fade60d1177c8f389b422159c070283cf5",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_lasterikka_pere_toetus.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_mitmike_toetus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "629cd224c2b2a0bb3a8921d61b43254b029fbe4347c225dd5a8e0c2be06111a2",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_mitmike_toetus.html",
+      "title": "Mitmike toetus",
+      "document_id": "web-ska_peretoetused_mitmike_toetus",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_mitmike_toetus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_mitmike_toetus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "ce858587be46fc70b6f0c997a8a097fb9f64258da1f2420bd652aeaf3058dec6",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_mitmike_toetus.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_sunnitoetus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "d458fe863ceeeb427ae633d66a602a90b656e506a0171be7fc3f2caab8e608db",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_sunnitoetus.html",
+      "title": "Sünnitoetus",
+      "document_id": "web-ska_peretoetused_sunnitoetus",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_sunnitoetus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_sunnitoetus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "4efef235a2700859ac670bfe76f0a31950763186e3fe142773fe3e91d0e7b4a4",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_sunnitoetus.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_toitjakaotustoetus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "05589988b879a267dbd0cd5dbbf3a04d83a2c1916e9e39793d6530c83e99ff80",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_toitjakaotustoetus.html",
+      "title": "Toitjakaotustoetus",
+      "document_id": "web-ska_peretoetused_toitjakaotustoetus",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_toitjakaotustoetus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_toitjakaotustoetus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "f1e3e5cdf4e1fa682cdab7dc0176578b722d24d00894556b748b816d4eeaf2a8",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_toitjakaotustoetus.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_uksikvanema_lapse_toetus.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "089398f1cffe8fcdd85ef9bc9cd486273d0d13520eedf950bcdfe1578bb2c704",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_uksikvanema_lapse_toetus.html",
+      "title": "Üksikvanema lapse toetus",
+      "document_id": "web-ska_peretoetused_uksikvanema_lapse_toetus",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_uksikvanema_lapse_toetus.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_uksikvanema_lapse_toetus.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "2fb553605d814ae3159c5d3b03c64d114bd35024ceab042fff17674a084e5a8f",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_peretoetused_uksikvanema_lapse_toetus.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_praktiline_teave_pensionide_toetuste_ja_huvitiste_valjamaksmine.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "28fe2c05440ef90bd3bf5025d38158636aa2924546e802da717cb4aee0ba08fe",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_praktiline_teave_pensionide_toetuste_ja_huvitiste_valjamaksmine.html",
+      "title": "Pensionide, toetuste ja hüvitiste väljamaksmine",
+      "document_id": "web-ska_praktiline_teave_pensionide_toetuste_ja_huvitiste_valjamaksmine",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_praktiline_teave_pensionide_toetuste_ja_huvitiste_valjamaksmine.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_praktiline_teave_pensionide_toetuste_ja_huvitiste_valjamaksmine.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "fa87b30d7ef14f671408622e8581cb591c8df9f344d865d2af187dd4663ff77b",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_praktiline_teave_pensionide_toetuste_ja_huvitiste_valjamaksmine.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_ravi_ja_pensionikindlustus_kogumispensioni_taiendavad_sissemaksed.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "7fcf95050658a4f82e2eeebce67155bed3bd33de85e9baa36073dc27b6a8be9c",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_ravi_ja_pensionikindlustus_kogumispensioni_taiendavad_sissemaksed.html",
+      "title": "Kogumispensioni täiendavad sissemaksed",
+      "document_id": "web-ska_ravi_ja_pensionikindlustus_kogumispensioni_taiendavad_sissemaksed",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_ravi_ja_pensionikindlustus_kogumispensioni_taiendavad_sissemaksed.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_ravi_ja_pensionikindlustus_kogumispensioni_taiendavad_sissemaksed.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "aa5be8ca49bf62e033da3f63babc051fc3df6a2b68c312b3a3e452b89d22ad77",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_ravi_ja_pensionikindlustus_kogumispensioni_taiendavad_sissemaksed.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_perehuvitised.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "ac0a6e9afb221b765052f4fe7fc8fbadee4867e6fccfd7f7ae592121bfdd0567",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_perehuvitised.html",
+      "title": "Perehüvitised Euroopa Liidus",
+      "document_id": "web-ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_perehuvitised",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_perehuvitised.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_perehuvitised.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "eb90c016ed01570f7918247a4807fa8440dd850399e2125450a1ac238c10698f",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_perehuvitised.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_valjastpoolt.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "5386452bbae78daffbe6fb22c28e72bcbcae01c64294235e0c828501c11c4369",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_valjastpoolt.html",
+      "title": "Väljastpoolt Euroopa Liitu tulijate perehüvitised",
+      "document_id": "web-ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_valjastpoolt",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_valjastpoolt.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_valjastpoolt.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "0f4cb5311ff756953ee1bef87051845b05ed67e9d973a87cea01e06a63bd38f2",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_valjastpoolt.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_toetused_huvitised_ukraina_pogenikele_perehuvitised_ukraina.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "7d67be348ce0885bac53cfb85894d0dfdcdd5b73f068342e0cc3d19bc04441d7",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_toetused_huvitised_ukraina_pogenikele_perehuvitised_ukraina.html",
+      "title": "Perehüvitised Ukraina põgenikele",
+      "document_id": "web-ska_toetused_huvitised_ukraina_pogenikele_perehuvitised_ukraina",
+      "metadata_path": "veebilehed/sotsiaalkindlustusamet/ska_toetused_huvitised_ukraina_pogenikele_perehuvitised_ukraina.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalkindlustusamet/ska_toetused_huvitised_ukraina_pogenikele_perehuvitised_ukraina.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "226c75f328a3c95b9d044ec4f292a16b2635b17fa80592410d746765d8d4f8ee",
+      "original_path": "veebilehed/sotsiaalkindlustusamet/ska_toetused_huvitised_ukraina_pogenikele_perehuvitised_ukraina.json"
+    },
+    {
       "path": "veebilehed/sotsiaalkindlustusamet/sotsiaalkindlustusamet_ska_2024_jarelevalve_kokkuvote.html",
       "category": "veebilehed",
       "role": "source",
@@ -33686,6 +35368,132 @@
       "role": "metadata",
       "sha256": "5dc6419464ef34126943c5692e2f16f45b8c8a2601864cc1f5985746c62c3367",
       "original_path": "veebilehed/sotsiaalkindlustusamet/sotsiaalkindlustusamet_uldhooldusteenus_kov_noustamine_jarelevalve_raam.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalministeerium/sm_elatisabi.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "cb9afc7cd8234671da61d835e2b6446dd1be2d435781a63d6f9b1c83ba30d563",
+      "original_path": "veebilehed/sotsiaalministeerium/sm_elatisabi.html",
+      "title": "Elatisabi",
+      "document_id": "web-sm_elatisabi",
+      "metadata_path": "veebilehed/sotsiaalministeerium/sm_elatisabi.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalministeerium/sm_elatisabi.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "5f4a14e165c9b22ddb8384442ce3fd56297341ae38388d49f2412ca5f7762925",
+      "original_path": "veebilehed/sotsiaalministeerium/sm_elatisabi.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalministeerium/sm_lapsed_ja_pered_perehuvitised_ja_vanemapuhkused.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "b228c010cf2a0868b5c18b1eefbda9943774ee30f174895fd35d18e23dce931d",
+      "original_path": "veebilehed/sotsiaalministeerium/sm_lapsed_ja_pered_perehuvitised_ja_vanemapuhkused.html",
+      "title": "Perehüvitised ja vanemapuhkused",
+      "document_id": "web-sm_lapsed_ja_pered_perehuvitised_ja_vanemapuhkused",
+      "metadata_path": "veebilehed/sotsiaalministeerium/sm_lapsed_ja_pered_perehuvitised_ja_vanemapuhkused.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalministeerium/sm_lapsed_ja_pered_perehuvitised_ja_vanemapuhkused.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "23c0a2eef5d90930e72de2aa9ab0353aeff1e1bb307087e4301516ab682d0fbf",
+      "original_path": "veebilehed/sotsiaalministeerium/sm_lapsed_ja_pered_perehuvitised_ja_vanemapuhkused.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalministeerium/sm_pension.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "a485a472cb400a2114a3a36e3684bf9ee164eca46dfd2ba2b8a7663b5ddba36d",
+      "original_path": "veebilehed/sotsiaalministeerium/sm_pension.html",
+      "title": "Pension",
+      "document_id": "web-sm_pension",
+      "metadata_path": "veebilehed/sotsiaalministeerium/sm_pension.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalministeerium/sm_pension.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "b1cc6ec466255cdff603acb875e857fb45848f06c6208b7a59223c5b0699dc7c",
+      "original_path": "veebilehed/sotsiaalministeerium/sm_pension.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalministeerium/sm_pension_sooduspensionid.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "cfe382c318fffdbf32aecbfb2bd0d8f1bcdac93e5e62847b09907b235a969124",
+      "original_path": "veebilehed/sotsiaalministeerium/sm_pension_sooduspensionid.html",
+      "title": "Sooduspensionid",
+      "document_id": "web-sm_pension_sooduspensionid",
+      "metadata_path": "veebilehed/sotsiaalministeerium/sm_pension_sooduspensionid.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalministeerium/sm_pension_sooduspensionid.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "73912906c68165d6dea8063cf912908b3860cd5afce390d0da60cb2489de4d8c",
+      "original_path": "veebilehed/sotsiaalministeerium/sm_pension_sooduspensionid.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalministeerium/sm_ravi_ja_tervise_taastamine_oendus_ja_ammaemandusabi.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "f17b41d32944a0285f4fa8d59db640a37acd5a6063b3cae70b8236667be47fd3",
+      "original_path": "veebilehed/sotsiaalministeerium/sm_ravi_ja_tervise_taastamine_oendus_ja_ammaemandusabi.html",
+      "title": "Õendus ja ämmaemandus",
+      "document_id": "web-sm_ravi_ja_tervise_taastamine_oendus_ja_ammaemandusabi",
+      "metadata_path": "veebilehed/sotsiaalministeerium/sm_ravi_ja_tervise_taastamine_oendus_ja_ammaemandusabi.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalministeerium/sm_ravi_ja_tervise_taastamine_oendus_ja_ammaemandusabi.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "11f0d7cbe0fe6be3bc3feaadaf257b72f809dd4e5aa3870312b340cc0753ef11",
+      "original_path": "veebilehed/sotsiaalministeerium/sm_ravi_ja_tervise_taastamine_oendus_ja_ammaemandusabi.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalministeerium/sm_tootus_ja_ravikindlustushuvitised.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "91807dfc57f09474cd10d40c1e1912b5386e9b2b419ac13a440e1eca507d2b42",
+      "original_path": "veebilehed/sotsiaalministeerium/sm_tootus_ja_ravikindlustushuvitised.html",
+      "title": "Töötus- ja ravikindlustushüvitised",
+      "document_id": "web-sm_tootus_ja_ravikindlustushuvitised",
+      "metadata_path": "veebilehed/sotsiaalministeerium/sm_tootus_ja_ravikindlustushuvitised.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalministeerium/sm_tootus_ja_ravikindlustushuvitised.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "b3a0a89b4c57b3a1b8794491da1d6d92ca58cca5e27fa004fbe2a83bc358e053",
+      "original_path": "veebilehed/sotsiaalministeerium/sm_tootus_ja_ravikindlustushuvitised.json"
+    },
+    {
+      "path": "veebilehed/sotsiaalministeerium/sm_vanemahuvitis.html",
+      "category": "veebilehed",
+      "role": "source",
+      "sha256": "b049fe04332c28ebd1cfaf2d0ff70910fce9d338b49b645d3206ef5db6bba2aa",
+      "original_path": "veebilehed/sotsiaalministeerium/sm_vanemahuvitis.html",
+      "title": "Vanemahüvitis",
+      "document_id": "web-sm_vanemahuvitis",
+      "metadata_path": "veebilehed/sotsiaalministeerium/sm_vanemahuvitis.json",
+      "corpus_documents": 1
+    },
+    {
+      "path": "veebilehed/sotsiaalministeerium/sm_vanemahuvitis.json",
+      "category": "veebilehed",
+      "role": "metadata",
+      "sha256": "d7966f93783f3174b457fcbfe7fe22c0c27a0088d887913fcc26a958b4be8ece",
+      "original_path": "veebilehed/sotsiaalministeerium/sm_vanemahuvitis.json"
     },
     {
       "path": "veebilehed/sotsiaalministeeriumi-kompetentsikeskus/4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--ligipaasetavuse-parandamine--ligipaasetavus-fuusilisele-keskkonnale.html",
@@ -34085,6 +35893,13 @@
       "role": "source_planning_register",
       "sha256": "97294bd726859bb04742baeca0eb17aa5aedd91b89a8338915d4fb0c7dddbcdc",
       "original_path": "register/web_pages_organisations.json"
+    },
+    {
+      "path": "register/web_pages_state_help.json",
+      "category": "register",
+      "role": "source_planning_register",
+      "sha256": "ab327c8f04e7b2e3c57e6230f6c85733ae12885de85742d7fac8b5bcd7b5b0c4",
+      "original_path": "register/web_pages_state_help.json"
     },
     {
       "path": "register/newsletter_documents.json",

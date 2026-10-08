@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_perehuvitiste_ulevaade_perehuvitiste_maarad_ja_maksmine",
+  "title": "Perehüvitiste määrad",
+  "register_title": "Perehüvitiste määrad",
+  "source_id": "ska_perehuvitiste_ulevaade_perehuvitiste_maarad_ja_maksmine",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/perehuvitiste-ulevaade/perehuvitiste-maarad-ja-maksmine",
+  "source_path": "ska_perehuvitiste_ulevaade_perehuvitiste_maarad_ja_maksmine.html",
+  "source_format": "html",
+  "source_sha256": "b4c45e217bdb45052fd043cb42e7d7788ba1870e5a2bdd0fff1ea18b0b68b415",
+  "content_sha256": "2bfdf549937ba73581f8f222eb4009331eff0ba1e3f2644618a6adba84c1c6f7",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:25:16.053Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-09-18",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:01:02 GMT",
+      "etag": null
+    },
+    "raw_sha256": "b4a72b5b4e923c22427bcf545a7cb82c4279dcc9a39da5f558279797a08c6844",
+    "stats": {
+      "words": 505,
+      "blocks": 4,
+      "headings": 1,
+      "tables": 1,
+      "links": 1,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_pensioni_suurus_pensionilisad",
+  "title": "Pensionilisad",
+  "register_title": "Pensionilisad",
+  "source_id": "ska_pensioni_suurus_pensionilisad",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-suurus/pensionilisad",
+  "source_path": "ska_pensioni_suurus_pensionilisad.html",
+  "source_format": "html",
+  "source_sha256": "cafa1c6aa25ca6f6fe2fdd70db9bda0c785dd8a6f34db4a1dc27b8e992f5f9f8",
+  "content_sha256": "f5e7952248b0c96bd1f2c91bede43da35451c553dc7ac1bf1a81969a7ac68b88",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:24:25.877Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2024-12-11",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:07:32 GMT",
+      "etag": null
+    },
+    "raw_sha256": "c6219530624e6dc604215a714ebcc63ee254dbe2e07f8db82d4a391d98760e49",
+    "stats": {
+      "words": 166,
+      "blocks": 14,
+      "headings": 4,
+      "tables": 0,
+      "links": 2,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

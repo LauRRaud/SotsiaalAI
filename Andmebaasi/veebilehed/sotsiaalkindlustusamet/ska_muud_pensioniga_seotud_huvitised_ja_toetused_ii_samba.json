@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_muud_pensioniga_seotud_huvitised_ja_toetused_ii_samba",
+  "title": "II samba pensionikindlustusmaksed ERGO ja SEB klientidele",
+  "register_title": "II samba pensionikindlustusmaksed ERGO ja SEB klientidele",
+  "source_id": "ska_muud_pensioniga_seotud_huvitised_ja_toetused_ii_samba",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/muud-pensioniga-seotud-huvitised-ja-toetused/ii-samba",
+  "source_path": "ska_muud_pensioniga_seotud_huvitised_ja_toetused_ii_samba.html",
+  "source_format": "html",
+  "source_sha256": "f5195e823a977b2109e75c4f99e31f98b4ee8f2f7848a8e733426e8e4a70e11b",
+  "content_sha256": "4c1299d9e82161c98be1a4f9c71b20c4065f8652bd50e45ff35d8e616b0dec2a",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:23:15.692Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2023-10-17",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:06:22 GMT",
+      "etag": null
+    },
+    "raw_sha256": "e7cf726320dd6a4de4ccbf34f9dc6a208e68eb462a025c63d76b1cdb8815cda3",
+    "stats": {
+      "words": 273,
+      "blocks": 10,
+      "headings": 2,
+      "tables": 0,
+      "links": 1,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

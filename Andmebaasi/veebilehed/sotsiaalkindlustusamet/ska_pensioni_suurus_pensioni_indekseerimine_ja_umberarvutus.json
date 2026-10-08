@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_pensioni_suurus_pensioni_indekseerimine_ja_umberarvutus",
+  "title": "Pensioni indekseerimine ja ümberarvutamine",
+  "register_title": "Pensioni indekseerimine ja ümberarvutamine",
+  "source_id": "ska_pensioni_suurus_pensioni_indekseerimine_ja_umberarvutus",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-suurus/pensioni-indekseerimine-ja-umberarvutus",
+  "source_path": "ska_pensioni_suurus_pensioni_indekseerimine_ja_umberarvutus.html",
+  "source_format": "html",
+  "source_sha256": "47207f72f342caa61145a3a3ae4c9ad2275f33a4b70d244a6a56c6a194701ae4",
+  "content_sha256": "41eb4a32430fbf3f5fbf87f3b9f96163df8c80e9b46eadd86008f8680cec60ca",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:24:15.876Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-06-03",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:07:22 GMT",
+      "etag": null
+    },
+    "raw_sha256": "46d8eb764fde030c947134d76e617ab32e48c6789dc7a13aadd13cae6475199a",
+    "stats": {
+      "words": 5381,
+      "blocks": 228,
+      "headings": 8,
+      "tables": 1,
+      "links": 5,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 11,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

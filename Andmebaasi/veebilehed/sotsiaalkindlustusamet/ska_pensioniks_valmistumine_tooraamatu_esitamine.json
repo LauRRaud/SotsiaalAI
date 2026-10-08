@@ -1,0 +1,65 @@
+{
+  "document_id": "web-ska_pensioniks_valmistumine_tooraamatu_esitamine",
+  "title": "Tööraamat",
+  "register_title": "Tööraamat",
+  "source_id": "ska_pensioniks_valmistumine_tooraamatu_esitamine",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioniks-valmistumine/tooraamatu-esitamine",
+  "source_path": "ska_pensioniks_valmistumine_tooraamatu_esitamine.html",
+  "source_format": "html",
+  "source_sha256": "ad314d7acfbc0c238ba8c7599ddee1d2ddd78d9bc7453b412a52a4a40c881333",
+  "content_sha256": "0830eb3f1a76b4bbf88d2c8d4967c12885d8da32f1a6eec2f03945caad4450e7",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:24:53.497Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-05-25",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:08:00 GMT",
+      "etag": null
+    },
+    "raw_sha256": "33d9e6b9d49f0b3cc1dbd012ec941f523cb277b8f62d0bfd0c4e776fc3330fde",
+    "stats": {
+      "words": 859,
+      "blocks": 50,
+      "headings": 16,
+      "tables": 0,
+      "links": 8,
+      "linksToOtherSites": 4
+    },
+    "contacts": {
+      "generalEmails": 2,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-12/T%C3%B6%C3%B6raamatu%20tagastamise%20taotlus%2001.2025.docx",
+      "text": "Tööraamatu tagastamise taotlus | 20.23 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    }
+  ]
+}

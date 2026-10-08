@@ -1,0 +1,58 @@
+{
+  "document_id": "web-sm_vanemahuvitis",
+  "title": "Vanemahüvitis",
+  "register_title": "Vanemahüvitis",
+  "source_id": "sm_vanemahuvitis",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalministeerium",
+  "language": "et",
+  "url": "https://www.sm.ee/vanemahuvitis",
+  "source_path": "sm_vanemahuvitis.html",
+  "source_format": "html",
+  "source_sha256": "b049fe04332c28ebd1cfaf2d0ff70910fce9d338b49b645d3206ef5db6bba2aa",
+  "content_sha256": "fb23dbd6601d40ac0fb3f47e61c745af491ed09cad7d127c20742d27b071e521",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:26:29.170Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2025-07-14",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 16:44:02 GMT",
+      "etag": null
+    },
+    "raw_sha256": "119f10c24edc7fb2d55190bd6921e2310ce1a78f8fcd5d53f4eef171649251d4",
+    "stats": {
+      "words": 186,
+      "blocks": 7,
+      "headings": 1,
+      "tables": 0,
+      "links": 1,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

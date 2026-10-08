@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_perehuvitised",
+  "title": "Perehüvitised Euroopa Liidus",
+  "register_title": "Perehüvitised Euroopa Liidus",
+  "source_id": "ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_perehuvitised",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/sotsiaalkindlustus-valismaal-ja-valismaalt-tulijatele/perehuvitised",
+  "source_path": "ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_perehuvitised.html",
+  "source_format": "html",
+  "source_sha256": "ac0a6e9afb221b765052f4fe7fc8fbadee4867e6fccfd7f7ae592121bfdd0567",
+  "content_sha256": "4908141c86f1878cfb1aad23c67cc38b0f189dc3e5815ae3a48ac95a59b66238",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:26:08.762Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-06-11",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:09:15 GMT",
+      "etag": null
+    },
+    "raw_sha256": "4a1902a563b70a86d1d4365efbe33f7afa0771877292e2e1631bb25c81b5666f",
+    "stats": {
+      "words": 3339,
+      "blocks": 112,
+      "headings": 26,
+      "tables": 0,
+      "links": 16,
+      "linksToOtherSites": 5
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

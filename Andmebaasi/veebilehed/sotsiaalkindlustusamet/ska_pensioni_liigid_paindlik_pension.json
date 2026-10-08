@@ -1,0 +1,65 @@
+{
+  "document_id": "web-ska_pensioni_liigid_paindlik_pension",
+  "title": "Paindlik pension",
+  "register_title": "Paindlik pension",
+  "source_id": "ska_pensioni_liigid_paindlik_pension",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-liigid/paindlik-pension",
+  "source_path": "ska_pensioni_liigid_paindlik_pension.html",
+  "source_format": "html",
+  "source_sha256": "a619fba4cc5b7d9cf33114c503644d603a6b0417b04859e2c838a7f85b549d69",
+  "content_sha256": "1c0c83d35e14dbb76a3f723a83d781b6e5fc86a5c90b9aa9a6af297822802b0f",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:23:58.317Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-06-15",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 16:30:00 GMT",
+      "etag": null
+    },
+    "raw_sha256": "373b044feabe812535fe98a7dba5a9080e558e7674789fb48502fa8ebd1795b6",
+    "stats": {
+      "words": 353,
+      "blocks": 23,
+      "headings": 3,
+      "tables": 0,
+      "links": 8,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-06/Pensionitaotlus%20EST%20juhistega_18_06_26.docx",
+      "text": "Pensioniavaldus | 72.69 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    }
+  ]
+}

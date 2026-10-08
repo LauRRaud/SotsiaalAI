@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_muud_pensioniga_seotud_huvitised_ja_toetused_olumpiavoitja_riiklik",
+  "title": "Olümpiavõitja toetus",
+  "register_title": "Olümpiavõitja toetus",
+  "source_id": "ska_muud_pensioniga_seotud_huvitised_ja_toetused_olumpiavoitja_riiklik",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/muud-pensioniga-seotud-huvitised-ja-toetused/olumpiavoitja-riiklik",
+  "source_path": "ska_muud_pensioniga_seotud_huvitised_ja_toetused_olumpiavoitja_riiklik.html",
+  "source_format": "html",
+  "source_sha256": "ac1dd7d84062f87f9bdd72957c403bedf6f8dd09ae7faf1fb8f12b64062006aa",
+  "content_sha256": "2aa3d02aebad62e1b289f3b9e7068df74188f129883ef5facae9805f482d363a",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:23:20.716Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-01-02",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:06:27 GMT",
+      "etag": null
+    },
+    "raw_sha256": "8d2cb96ab512d07c40f31492822f1282c9f252e717802cc074c7c9e21f86c3b0",
+    "stats": {
+      "words": 284,
+      "blocks": 26,
+      "headings": 4,
+      "tables": 0,
+      "links": 3,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

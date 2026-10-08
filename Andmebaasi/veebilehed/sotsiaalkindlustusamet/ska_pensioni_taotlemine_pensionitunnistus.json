@@ -1,0 +1,71 @@
+{
+  "document_id": "web-ska_pensioni_taotlemine_pensionitunnistus",
+  "title": "Pensionitunnistus",
+  "register_title": "Pensionitunnistus",
+  "source_id": "ska_pensioni_taotlemine_pensionitunnistus",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-taotlemine/pensionitunnistus",
+  "source_path": "ska_pensioni_taotlemine_pensionitunnistus.html",
+  "source_format": "html",
+  "source_sha256": "108f8e403699903aa8d56e6d4db08e25b85b23d0becd8e78f52cc9bba076eb71",
+  "content_sha256": "060e457db4e38fae60f10b187f438ebc456cd516faa1b1bdb109afc6b4ccd390",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:24:40.916Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-06-15",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:07:47 GMT",
+      "etag": null
+    },
+    "raw_sha256": "a75b49efe5353f7399e3f667a04cbe3007a644f125773efcb3114810b16d30da",
+    "stats": {
+      "words": 184,
+      "blocks": 14,
+      "headings": 3,
+      "tables": 0,
+      "links": 4,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-05/Taotlus%20pensionikaardi%20duplikaadi%20v%C3%A4ljastamiseks_05.2025.docx",
+      "text": "Pensionitunnistuse taotlus | 25.2 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-05/Taotlus%20pensionikaardi%20duplikaadi%20v%C3%A4ljastamiseks_05.2025.pdf",
+      "text": "Pensionitunnistuse taotlus | 96.05 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

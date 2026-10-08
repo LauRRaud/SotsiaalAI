@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_perehuvitised_ja_muud_toetused_lisapuhkepaevad",
+  "title": "Lisapuhkepäevad",
+  "register_title": "Lisapuhkepäevad",
+  "source_id": "ska_perehuvitised_ja_muud_toetused_lisapuhkepaevad",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/lisapuhkepaevad",
+  "source_path": "ska_perehuvitised_ja_muud_toetused_lisapuhkepaevad.html",
+  "source_format": "html",
+  "source_sha256": "4b56fe0dd58a1079e23d40c85f4f0285a64d3d69933a174840fb6b97e82b8de6",
+  "content_sha256": "834234d43e6e301295883edb950bce949612d03665d1031a5872291b8122a1ec",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:24:58.469Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-04-01",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:08:05 GMT",
+      "etag": null
+    },
+    "raw_sha256": "7f777abce0e9524900588ffa5dcfbef81f4114bd3f99c029f0f1afb1635968c9",
+    "stats": {
+      "words": 141,
+      "blocks": 8,
+      "headings": 3,
+      "tables": 0,
+      "links": 1,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

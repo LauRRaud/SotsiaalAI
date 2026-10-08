@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_pensioni_suurus_pensioni_suuruse_arvutamine",
+  "title": "Pensioni suuruse arvutamine",
+  "register_title": "Pensioni suuruse arvutamine",
+  "source_id": "ska_pensioni_suurus_pensioni_suuruse_arvutamine",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-suurus/pensioni-suuruse-arvutamine",
+  "source_path": "ska_pensioni_suurus_pensioni_suuruse_arvutamine.html",
+  "source_format": "html",
+  "source_sha256": "c178c53435c2f659f65357bad54b20e317cecb6511a128adbece42117e3defb3",
+  "content_sha256": "d78ecc70515e2c634e1d8cdcc93a40e5d1b467ed4763b40b798783995cafcecf",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:24:18.374Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-05-28",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:07:25 GMT",
+      "etag": null
+    },
+    "raw_sha256": "e10c6c0bc5e06dad671cfd454bf4ad67d06816dff011518573de86b7de440f34",
+    "stats": {
+      "words": 872,
+      "blocks": 36,
+      "headings": 8,
+      "tables": 0,
+      "links": 7,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

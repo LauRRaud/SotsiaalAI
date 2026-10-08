@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_perekondlikud_olukorrad_varakult_lahkunud_laps",
+  "title": "Varakult lahkunud laps",
+  "register_title": "Varakult lahkunud laps",
+  "source_id": "ska_perekondlikud_olukorrad_varakult_lahkunud_laps",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/perekondlikud-olukorrad/varakult-lahkunud-laps",
+  "source_path": "ska_perekondlikud_olukorrad_varakult_lahkunud_laps.html",
+  "source_format": "html",
+  "source_sha256": "2b36ff7e976627cabee6b8cc75084c476bcd0a94cc1d19489a1c0d63169ef8e6",
+  "content_sha256": "3dc5925263385672a32dc7b7f337600515494f3c24c07fd1390548a96ab07a3e",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:25:36.126Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2025-02-07",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:08:43 GMT",
+      "etag": null
+    },
+    "raw_sha256": "58e6c699bf55acfe7e49f96aa3caf06ba3ccd2d3bebde36e6a61b624b88bf31c",
+    "stats": {
+      "words": 460,
+      "blocks": 15,
+      "headings": 6,
+      "tables": 0,
+      "links": 4,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

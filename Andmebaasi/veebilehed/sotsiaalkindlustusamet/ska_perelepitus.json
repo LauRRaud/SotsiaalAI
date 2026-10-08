@@ -1,0 +1,104 @@
+{
+  "document_id": "web-ska_perelepitus",
+  "title": "Perelepitus",
+  "register_title": "Perelepitus",
+  "source_id": "ska_perelepitus",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/perelepitus",
+  "source_path": "ska_perelepitus.html",
+  "source_format": "html",
+  "source_sha256": "00bfd45f020e7439472208860072c95798eedc74e752879eb4d8e926b55fc1b9",
+  "content_sha256": "00b53eb0d608ef9f4f4d115463c8f419324362f6e1befdf9706ad2e6316823e8",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:26:18.772Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-09-01",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 16:58:31 GMT",
+      "etag": null
+    },
+    "raw_sha256": "5ea1cc47cdfb1f9db8928fb0d2b6f8f80d6ba097b2f0b2bc82520b6cd4b12c65",
+    "stats": {
+      "words": 2058,
+      "blocks": 100,
+      "headings": 24,
+      "tables": 1,
+      "links": 43,
+      "linksToOtherSites": 26
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 1,
+      "personLinks": 0,
+      "contactCards": 5,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed",
+      "email_needs_review"
+    ],
+    "needs_review": true
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-01/TAOTLUS%20RIIKLIKU%20PERELEPITUSTEENUSE%20M%C3%84%C3%84RAMISEKS%2001.2025_PABER.pdf",
+      "text": "Taotlus riikliku perelepitusteenuse määramiseks | 125.91 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-01/TAOTLUS%20RIIKLIKU%20PERELEPITUSTEENUSE%20M%C3%84%C3%84RAMISEKS_01.2025.docx",
+      "text": "Taotlus riikliku perelepitusteenuse määramiseks | 36.27 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-01/Perelepituse-ABC_08.01.2024.pdf",
+      "text": "Perelepituse ABC | 3.2 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-01/Vanema-juhend-lahkuminek_08.01.2024.pdf",
+      "text": "Vanema juhend: lahkuminek | 8.03 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-01/perelepitus-lyhiinfo_08.01.2024.pdf",
+      "text": "Perelepituse lühiinfo | 3.04 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-01/Lapse-kaasamine-perelepitusse_08.01.2024.pdf",
+      "text": "Lapse kaasamine perelepitusse | 2.65 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-01/teavik-lapsele-mis-on-perelepitus_08.01.2024.pdf",
+      "text": "Teavik lapsele: mis on perelepitus? | 1.68 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

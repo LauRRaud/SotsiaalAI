@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_perehuvitised_ja_muud_toetused_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele",
+  "title": "Sotsiaalkindlustus Euroopa Liidus",
+  "register_title": "Sotsiaalkindlustus Euroopa Liidus",
+  "source_id": "ska_perehuvitised_ja_muud_toetused_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/sotsiaalkindlustus-valismaal-ja-valismaalt-tulijatele",
+  "source_path": "ska_perehuvitised_ja_muud_toetused_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele.html",
+  "source_format": "html",
+  "source_sha256": "2c9108750982ecf08429e638b3cf7e61e5a948621fda7544ff1c58f5731f2968",
+  "content_sha256": "5d0d34227d4b026ce477b5455be90c235e1c122bfdd98f65f2155eabdc418ea8",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:26:06.220Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-03-10",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 16:57:27 GMT",
+      "etag": null
+    },
+    "raw_sha256": "227cdf8ba8bd4440c088fb658c2f289c775e769c70e4d6556cd6275d9527661b",
+    "stats": {
+      "words": 1765,
+      "blocks": 87,
+      "headings": 25,
+      "tables": 0,
+      "links": 30,
+      "linksToOtherSites": 25
+    },
+    "contacts": {
+      "generalEmails": 2,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

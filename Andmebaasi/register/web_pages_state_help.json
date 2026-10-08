@@ -1,0 +1,836 @@
+{
+  "version": 1,
+  "note": "Riigi tasandi abi ametlikud juhislehed (katvuskaart 08.10.2026, docs/audits/rag-v2-coverage-map-2026-10-08.md, lüngad 2 kuni 5: pension, peretoetused ja elatis, ravikindlustus, haiglast koju). Lehed on väljaandja enda saidilt, saidikaardi järgi (08.10.2026); kalkulaatorid, uudised ja kontaktide loendid jäävad välja. Töötukassa ja Tervisekassa lehti siin ei ole (08.10.2026): Töötukassa sait joonistab teksti skriptiga ja aadress, kust skript sisu võtab (/web/), on saidi robots.txt-s kogujatele keelatud; Tervisekassa sait vastas korjajale ja tavalisele brauserile veaga 503.",
+  "pages": [
+    {
+      "source_id": "ska_pension_ja_seotud_huvitised_muud_pensioniga_seotud_huvitised_ja_toetused",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/muud-pensioniga-seotud-huvitised-ja-toetused",
+      "title": "Muud pensioniga seotud hüvitised ja toetused",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_muud_pensioniga_seotud_huvitised_ja_toetused_ii_samba",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/muud-pensioniga-seotud-huvitised-ja-toetused/ii-samba",
+      "title": "II samba pensionikindlustusmaksed ERGO ja SEB klientidele",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_muud_pensioniga_seotud_huvitised_ja_toetused_kahjuhuvitis_tooonnetuse",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/muud-pensioniga-seotud-huvitised-ja-toetused/kahjuhuvitis-tooonnetuse",
+      "title": "Kahjuhüvitis",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_muud_pensioniga_seotud_huvitised_ja_toetused_olumpiavoitja_riiklik",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/muud-pensioniga-seotud-huvitised-ja-toetused/olumpiavoitja-riiklik",
+      "title": "Olümpiavõitja toetus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_muud_pensioniga_seotud_huvitised_ja_toetused_represseeritu_toetused",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/muud-pensioniga-seotud-huvitised-ja-toetused/represseeritu-toetused",
+      "title": "Represseeritu toetus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_muud_pensioniga_seotud_huvitised_ja_toetused_tagasipoorduja_toetus",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/muud-pensioniga-seotud-huvitised-ja-toetused/tagasipoorduja-toetus",
+      "title": "Tagasipöörduja toetus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_muud_pensioniga_seotud_huvitised_ja_toetused_toetus_tsornoboli_aej",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/muud-pensioniga-seotud-huvitised-ja-toetused/toetus-tsornoboli-aej",
+      "title": "Sotsiaaltoetus Tšornobõli AEJ avarii likvideerijale",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_muud_pensioniga_seotud_huvitised_ja_toetused_uksi_elava_pensionari",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/muud-pensioniga-seotud-huvitised-ja-toetused/uksi-elava-pensionari",
+      "title": "Üksi elava pensionäri toetus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pension_ja_seotud_huvitised_pension_valismaal_ja_valisriigi_pension_eestis",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pension-valismaal-ja-valisriigi-pension-eestis",
+      "title": "Pension välismaal ja välisriigi pension Eestis",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pension_valismaal_ja_valisriigi_pension_eestis_elusolekutoend",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pension-valismaal-ja-valisriigi-pension-eestis/elusolekutoend",
+      "title": "Elusolekutõend",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pension_valismaal_ja_valisriigi_pension_eestis_euroopa_liidu_pensionid",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pension-valismaal-ja-valisriigi-pension-eestis/euroopa-liidu-pensionid",
+      "title": "Euroopa Liidu pensionid ja lepinguriigid",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pension_valismaal_ja_valisriigi_pension_eestis_pensioni_maksmine",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pension-valismaal-ja-valisriigi-pension-eestis/pensioni-maksmine",
+      "title": "Pensioni maksmine välisriiki",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pension_valismaal_ja_valisriigi_pension_eestis_pensioni_saamine",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pension-valismaal-ja-valisriigi-pension-eestis/pensioni-saamine",
+      "title": "Pensioni saamine välisriigist",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pension_valismaal_ja_valisriigi_pension_eestis_toendite_taotlemine",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pension-valismaal-ja-valisriigi-pension-eestis/toendite-taotlemine",
+      "title": "Tõendite taotlemine",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pension_valismaal_ja_valisriigi_pension_eestis_valispensioni_ja",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pension-valismaal-ja-valisriigi-pension-eestis/valispensioni-ja",
+      "title": "Välispensioni ja rahvapensioni määra vahe",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pension_ja_seotud_huvitised_pensioni_liigid",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-liigid",
+      "title": "Pensioni liigid",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pensioni_liigid_edasilukatud_vanaduspension",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-liigid/edasilukatud-vanaduspension",
+      "title": "Edasilükatud vanaduspension",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pensioni_liigid_eripensionid",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-liigid/eripensionid",
+      "title": "Eripensionid, kutsealade ja ametikohtade sooduspensionid",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pensioni_liigid_paindlik_pension",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-liigid/paindlik-pension",
+      "title": "Paindlik pension",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pensioni_liigid_rahvapension",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-liigid/rahvapension",
+      "title": "Rahvapension",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pensioni_liigid_soodustingimustel_vanaduspension",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-liigid/soodustingimustel-vanaduspension",
+      "title": "Soodustingimustel vanaduspension",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pensioni_liigid_toitjakaotuspension",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-liigid/toitjakaotuspension",
+      "title": "Toitjakaotuspension",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pensioni_liigid_vanaduspension",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-liigid/vanaduspension",
+      "title": "Vanaduspension",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pension_ja_seotud_huvitised_pensioni_suurus",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-suurus",
+      "title": "Pensioni suurus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pensioni_suurus_laste_kasvatamine_ja_pension",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-suurus/laste-kasvatamine-ja-pension",
+      "title": "Laste kasvatamine ja pension",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pensioni_suurus_pensioni_indekseerimine_ja_umberarvutus",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-suurus/pensioni-indekseerimine-ja-umberarvutus",
+      "title": "Pensioni indekseerimine ja ümberarvutamine",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pensioni_suurus_pensioni_suuruse_arvutamine",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-suurus/pensioni-suuruse-arvutamine",
+      "title": "Pensioni suuruse arvutamine",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pensioni_suurus_pensioni_tulumaksustamine",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-suurus/pensioni-tulumaksustamine",
+      "title": "Hüvitiste, toetuste ja pensionide tulumaksustamine",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pensioni_suurus_pensionide_toetuste_ja_huvitiste_maarad",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-suurus/pensionide-toetuste-ja-huvitiste-maarad",
+      "title": "Pensionide, toetuste ja hüvitiste määrad",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pensioni_suurus_pensionilisad",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-suurus/pensionilisad",
+      "title": "Pensionilisad",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pensioni_suurus_tootamine_pensioni_saamise_ajal",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-suurus/tootamine-pensioni-saamise-ajal",
+      "title": "Töötamine pensioni saamise ajal",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pensioni_taotlemine_pensioni_peatamine_ja_jatkamine",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-taotlemine/pensioni-peatamine-ja-jatkamine",
+      "title": "Pensioni peatamine ja jätkamine",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pensioni_taotlemine_pensioniavalduse_esitamine",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-taotlemine/pensioniavalduse-esitamine",
+      "title": "Pensioniavalduse esitamine",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pensioni_taotlemine_pensioniiga",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-taotlemine/pensioniiga",
+      "title": "Pensioniiga",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pensioni_taotlemine_pensionistaaz",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-taotlemine/pensionistaaz",
+      "title": "Pensionistaaž",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pensioni_taotlemine_pensionitunnistus",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-taotlemine/pensionitunnistus",
+      "title": "Pensionitunnistus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pensioni_taotlemine_taotlemiseks_vajalikud_dokumendid",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-taotlemine/taotlemiseks-vajalikud-dokumendid",
+      "title": "Pensioni taotlemisel vajalikud dokumendid",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pension_ja_seotud_huvitised_pensioniks_valmistumine",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioniks-valmistumine",
+      "title": "Pensioniks valmistumine",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pensioniks_valmistumine_eesti_pensionisusteem",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioniks-valmistumine/eesti-pensionisusteem",
+      "title": "Eesti pensionisüsteem",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pensioniks_valmistumine_pensioni_planeerimine",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioniks-valmistumine/pensioni-planeerimine",
+      "title": "Pensioni planeerimine",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_pensioniks_valmistumine_tooraamatu_esitamine",
+      "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioniks-valmistumine/tooraamatu-esitamine",
+      "title": "Tööraamat",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_perehuvitised_ja_muud_toetused_elatisabi",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/elatisabi",
+      "title": "Elatisabi",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_perehuvitised_ja_muud_toetused_lisapuhkepaevad",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/lisapuhkepaevad",
+      "title": "Lisapuhkepäevad",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_perehuvitised_ja_muud_toetused_perehuvitiste_ulevaade",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/perehuvitiste-ulevaade",
+      "title": "Perehüvitiste ülevaade",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_perehuvitiste_ulevaade_ema_vanemahuvitis_ja_emapuhkus",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/perehuvitiste-ulevaade/ema-vanemahuvitis-ja-emapuhkus",
+      "title": "Ema vanemahüvitis ja emapuhkus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_perehuvitiste_ulevaade_isa_vanemahuvitis_ja_isapuhkus",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/perehuvitiste-ulevaade/isa-vanemahuvitis-ja-isapuhkus",
+      "title": "Isa vanemahüvitis ja isapuhkus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_perehuvitiste_ulevaade_jagatav_vanemahuvitis_ja_vanemapuhkus",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/perehuvitiste-ulevaade/jagatav-vanemahuvitis-ja-vanemapuhkus",
+      "title": "Jagatav vanemahüvitis ja vanemapuhkus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_perehuvitiste_ulevaade_lapsendaja_vanemahuvitis_ja_lapsendajapuhkus",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/perehuvitiste-ulevaade/lapsendaja-vanemahuvitis-ja-lapsendajapuhkus",
+      "title": "Lapsendaja vanemahüvitis ja lapsendajapuhkus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_perehuvitiste_ulevaade_lapsepuhkus",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/perehuvitiste-ulevaade/lapsepuhkus",
+      "title": "Lapsepuhkus ja puudega lapse vanema lapsepuhkus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_perehuvitiste_ulevaade_perehuvitiste_maarad_ja_maksmine",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/perehuvitiste-ulevaade/perehuvitiste-maarad-ja-maksmine",
+      "title": "Perehüvitiste määrad",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_perehuvitiste_ulevaade_perehuvitistest_loobumine",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/perehuvitiste-ulevaade/perehuvitistest-loobumine",
+      "title": "Perehüvitistest loobumine",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_perehuvitised_ja_muud_toetused_perekondlikud_olukorrad",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/perekondlikud-olukorrad",
+      "title": "Perekondlikud olukorrad",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_perekondlikud_olukorrad_laps_ei_ela_koos_oma_vanematega",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/perekondlikud-olukorrad/laps-ei-ela-koos-oma-vanematega",
+      "title": "Laps ei ela koos oma vanematega",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_perekondlikud_olukorrad_lapse_vanemad_ei_ela_koos",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/perekondlikud-olukorrad/lapse-vanemad-ei-ela-koos",
+      "title": "Lapse vanemad ei ela enam koos",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_perekondlikud_olukorrad_lapse_vanemal_puue",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/perekondlikud-olukorrad/lapse-vanemal-puue",
+      "title": "Puudega vanem",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_perekondlikud_olukorrad_peres_kasvavad_koos_mitme_eri_vanema_lapsed",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/perekondlikud-olukorrad/peres-kasvavad-koos-mitme-eri-vanema-lapsed",
+      "title": "Peres kasvavad koos mitme eri vanema lapsed",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_perekondlikud_olukorrad_peres_puudega_laps",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/perekondlikud-olukorrad/peres-puudega-laps",
+      "title": "Puudega laps",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_perekondlikud_olukorrad_varakult_lahkunud_laps",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/perekondlikud-olukorrad/varakult-lahkunud-laps",
+      "title": "Varakult lahkunud laps",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_perehuvitised_ja_muud_toetused_peretoetused",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/peretoetused",
+      "title": "Peretoetused",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_peretoetused_ajateenija_lapse_toetus",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/peretoetused/ajateenija-lapse-toetus",
+      "title": "Ajateenija lapse toetus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_peretoetused_eestkostetava_lapse_toetus",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/peretoetused/eestkostetava-lapse-toetus",
+      "title": "Eestkostetava toetus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_peretoetused_lapsendamistoetus",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/peretoetused/lapsendamistoetus",
+      "title": "Lapsendamistoetus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_peretoetused_lapsetoetus",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/peretoetused/lapsetoetus",
+      "title": "Lapsetoetus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_peretoetused_lasterikka_pere_toetus",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/peretoetused/lasterikka-pere-toetus",
+      "title": "Lasterikka pere toetus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_peretoetused_mitmike_toetus",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/peretoetused/mitmike-toetus",
+      "title": "Mitmike toetus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_peretoetused_sunnitoetus",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/peretoetused/sunnitoetus",
+      "title": "Sünnitoetus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_peretoetused_toitjakaotustoetus",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/peretoetused/toitjakaotustoetus",
+      "title": "Toitjakaotustoetus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_peretoetused_uksikvanema_lapse_toetus",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/peretoetused/uksikvanema-lapse-toetus",
+      "title": "Üksikvanema lapse toetus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_ravi_ja_pensionikindlustus_kogumispensioni_taiendavad_sissemaksed",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/ravi-ja-pensionikindlustus/kogumispensioni-taiendavad-sissemaksed",
+      "title": "Kogumispensioni täiendavad sissemaksed",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_perehuvitised_ja_muud_toetused_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/sotsiaalkindlustus-valismaal-ja-valismaalt-tulijatele",
+      "title": "Sotsiaalkindlustus Euroopa Liidus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_perehuvitised",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/sotsiaalkindlustus-valismaal-ja-valismaalt-tulijatele/perehuvitised",
+      "title": "Perehüvitised Euroopa Liidus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_valjastpoolt",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/sotsiaalkindlustus-valismaal-ja-valismaalt-tulijatele/valjastpoolt",
+      "title": "Väljastpoolt Euroopa Liitu tulijate perehüvitised",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_perehuvitised_ja_muud_toetused_toetused_huvitised_ukraina_pogenikele",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/toetused-huvitised-ukraina-pogenikele",
+      "title": "Toetused ja hüvitised Ukraina põgenikele",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_toetused_huvitised_ukraina_pogenikele_perehuvitised_ukraina",
+      "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/toetused-huvitised-ukraina-pogenikele/perehuvitised-ukraina",
+      "title": "Perehüvitised Ukraina põgenikele",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_perelepitus",
+      "url": "https://sotsiaalkindlustusamet.ee/perelepitus",
+      "title": "Perelepitus",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "ska_praktiline_teave_pensionide_toetuste_ja_huvitiste_valjamaksmine",
+      "url": "https://sotsiaalkindlustusamet.ee/asutus-uudised-ja-kontakt/praktiline-teave/pensionide-toetuste-ja-huvitiste-valjamaksmine",
+      "title": "Pensionide, toetuste ja hüvitiste väljamaksmine",
+      "publisher": "Sotsiaalkindlustusamet",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "sm_pension",
+      "url": "https://www.sm.ee/pension",
+      "title": "Pension",
+      "publisher": "Sotsiaalministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "sm_pension_sooduspensionid",
+      "url": "https://www.sm.ee/pension-ja-tulevikuks-valmistumine/pension/sooduspensionid",
+      "title": "Sooduspensionid",
+      "publisher": "Sotsiaalministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "sm_lapsed_ja_pered_perehuvitised_ja_vanemapuhkused",
+      "url": "https://www.sm.ee/lapsed-ja-hoolekanne/lapsed-ja-pered/perehuvitised-ja-vanemapuhkused",
+      "title": "Perehüvitised ja vanemapuhkused",
+      "publisher": "Sotsiaalministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "sm_vanemahuvitis",
+      "url": "https://www.sm.ee/vanemahuvitis",
+      "title": "Vanemahüvitis",
+      "publisher": "Sotsiaalministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "sm_elatisabi",
+      "url": "https://www.sm.ee/elatisabi",
+      "title": "Elatisabi",
+      "publisher": "Sotsiaalministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "sm_tootus_ja_ravikindlustushuvitised",
+      "url": "https://www.sm.ee/tootus-ja-ravikindlustushuvitised",
+      "title": "Töötus- ja ravikindlustushüvitised",
+      "publisher": "Sotsiaalministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    },
+    {
+      "source_id": "sm_ravi_ja_tervise_taastamine_oendus_ja_ammaemandusabi",
+      "url": "https://www.sm.ee/tervise-edendamine-ravi-ja-ravimid/ravi-ja-tervise-taastamine/oendus-ja-ammaemandusabi",
+      "title": "Õendus ja ämmaemandus",
+      "publisher": "Sotsiaalministeerium",
+      "source_type": "web_page",
+      "language": "et",
+      "jurisdiction_level": "NATIONAL",
+      "subpages": false
+    }
+  ]
+}

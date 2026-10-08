@@ -1,0 +1,77 @@
+{
+  "document_id": "web-ska_pensioni_liigid_toitjakaotuspension",
+  "title": "Toitjakaotuspension",
+  "register_title": "Toitjakaotuspension",
+  "source_id": "ska_pensioni_liigid_toitjakaotuspension",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-liigid/toitjakaotuspension",
+  "source_path": "ska_pensioni_liigid_toitjakaotuspension.html",
+  "source_format": "html",
+  "source_sha256": "3977e0399cc9e1db2ff43c654eb7ae82fba48bd83b27ccb18dd806acca259565",
+  "content_sha256": "59f31103b81faf22d7d1e403dd90bbdf27740d5c10707a1fae05777892b062b8",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:24:05.872Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-09-29",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:07:12 GMT",
+      "etag": null
+    },
+    "raw_sha256": "b7cdc902747a9209428cb7739f754c2f7b01c7b268441c2dc0d1c15016ac01a8",
+    "stats": {
+      "words": 733,
+      "blocks": 59,
+      "headings": 13,
+      "tables": 0,
+      "links": 11,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-06/Pensionitaotlus%20EST%20juhistega_18_06_26.docx",
+      "text": "Pensioniavaldus | 72.69 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-02/Pensionitaotluse%20t%C3%A4itmise%20juhend_27.02.2025.pdf",
+      "text": "Pensionitaotluse täitmise juhend | 251.22 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Pangakonto_muutmise_avaldus_01.2026.docx",
+      "text": "Pangakonto muutmise avaldus | 33.51 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    }
+  ]
+}

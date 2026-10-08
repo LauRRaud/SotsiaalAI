@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_pension_ja_seotud_huvitised_pensioni_suurus",
+  "title": "Pensioni suurus",
+  "register_title": "Pensioni suurus",
+  "source_id": "ska_pension_ja_seotud_huvitised_pensioni_suurus",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-suurus",
+  "source_path": "ska_pension_ja_seotud_huvitised_pensioni_suurus.html",
+  "source_format": "html",
+  "source_sha256": "35ffbdc437eaa9a3a86b7784e75aabe1c5e449c0f573ab34fb9f21d08207f463",
+  "content_sha256": "95db856cd15981b6144c1506e20c3f1d486f4c0964281f5f67cac66ad526e4d5",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:24:10.846Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-04-01",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:07:17 GMT",
+      "etag": null
+    },
+    "raw_sha256": "d0c803d25ad966a371b25ad24bc4f4389e5d799af77b0b1aa86a2dd7fbfb7aca",
+    "stats": {
+      "words": 322,
+      "blocks": 23,
+      "headings": 10,
+      "tables": 0,
+      "links": 2,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

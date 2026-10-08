@@ -1,0 +1,65 @@
+{
+  "document_id": "web-ska_peretoetused_toitjakaotustoetus",
+  "title": "Toitjakaotustoetus",
+  "register_title": "Toitjakaotustoetus",
+  "source_id": "ska_peretoetused_toitjakaotustoetus",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/peretoetused/toitjakaotustoetus",
+  "source_path": "ska_peretoetused_toitjakaotustoetus.html",
+  "source_format": "html",
+  "source_sha256": "05589988b879a267dbd0cd5dbbf3a04d83a2c1916e9e39793d6530c83e99ff80",
+  "content_sha256": "6d6fd2c6cc26560b522a84dcd6c6fa384e3f397614ce1ea547f9322c8fef458b",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:25:58.716Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-09-24",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:09:05 GMT",
+      "etag": null
+    },
+    "raw_sha256": "70441c5ffa33280409b625d42c3e597c1ad9b64c89dc2563764e97b3bc15ec25",
+    "stats": {
+      "words": 1639,
+      "blocks": 74,
+      "headings": 18,
+      "tables": 0,
+      "links": 8,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-09/TOITJAKAOTUSTOETUSE%20TAOTLUS.docx",
+      "text": "Toitjakaotustoetuse taotlus | 39.35 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    }
+  ]
+}

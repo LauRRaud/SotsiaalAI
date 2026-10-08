@@ -1,0 +1,71 @@
+{
+  "document_id": "web-ska_pensioni_taotlemine_taotlemiseks_vajalikud_dokumendid",
+  "title": "Pensioni taotlemisel vajalikud dokumendid",
+  "register_title": "Pensioni taotlemisel vajalikud dokumendid",
+  "source_id": "ska_pensioni_taotlemine_taotlemiseks_vajalikud_dokumendid",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-taotlemine/taotlemiseks-vajalikud-dokumendid",
+  "source_path": "ska_pensioni_taotlemine_taotlemiseks_vajalikud_dokumendid.html",
+  "source_format": "html",
+  "source_sha256": "82e2abe9cda8341076a5b332dc3514509849f6252c75ca99261c1bd6b04fdbcb",
+  "content_sha256": "e7236f2a8de453ce1e43a692e46b83ec65d9c1ec3ca07b74b50f49cc723a50a4",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:24:43.430Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-06-15",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:07:50 GMT",
+      "etag": null
+    },
+    "raw_sha256": "41be89ceb97694c81dd6938188a130612a1097786a1ddffc783aee003a7b97d7",
+    "stats": {
+      "words": 605,
+      "blocks": 25,
+      "headings": 6,
+      "tables": 0,
+      "links": 7,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-10/tooraamat_naidis.pdf",
+      "text": "Tööraamatu näidis | 208.98 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-02/Avaldus%20arhiivip%C3%A4ringu%20tegemiseks_13.02.2025.docx",
+      "text": "Arhiivipäringu avaldus | 22.03 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    }
+  ]
+}

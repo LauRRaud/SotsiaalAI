@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_perehuvitised_ja_muud_toetused_perehuvitiste_ulevaade",
+  "title": "Perehüvitiste ülevaade",
+  "register_title": "Perehüvitiste ülevaade",
+  "source_id": "ska_perehuvitised_ja_muud_toetused_perehuvitiste_ulevaade",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/perehuvitiste-ulevaade",
+  "source_path": "ska_perehuvitised_ja_muud_toetused_perehuvitiste_ulevaade.html",
+  "source_format": "html",
+  "source_sha256": "5f2f545d4e9af5229bc95f126f025d6f6bc5609f11d4c5e65c57d30540ece2ba",
+  "content_sha256": "f42dda37d0366961400fcfecd3907949c717979c4aef61e17aa5c92ddd68979d",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:25:01.017Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-09-16",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:08:07 GMT",
+      "etag": null
+    },
+    "raw_sha256": "c0b198a577e8299f2f666cb273c4d34c11a6689c074347142a19b1d67e63020b",
+    "stats": {
+      "words": 1993,
+      "blocks": 129,
+      "headings": 35,
+      "tables": 0,
+      "links": 31,
+      "linksToOtherSites": 9
+    },
+    "contacts": {
+      "generalEmails": 7,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

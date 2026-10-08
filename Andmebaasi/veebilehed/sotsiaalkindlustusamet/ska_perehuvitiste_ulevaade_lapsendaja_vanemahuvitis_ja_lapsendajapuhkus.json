@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_perehuvitiste_ulevaade_lapsendaja_vanemahuvitis_ja_lapsendajapuhkus",
+  "title": "Lapsendaja vanemahüvitis ja lapsendajapuhkus",
+  "register_title": "Lapsendaja vanemahüvitis ja lapsendajapuhkus",
+  "source_id": "ska_perehuvitiste_ulevaade_lapsendaja_vanemahuvitis_ja_lapsendajapuhkus",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/perehuvitiste-ulevaade/lapsendaja-vanemahuvitis-ja-lapsendajapuhkus",
+  "source_path": "ska_perehuvitiste_ulevaade_lapsendaja_vanemahuvitis_ja_lapsendajapuhkus.html",
+  "source_format": "html",
+  "source_sha256": "1e759e1cfe382a01c38c1cf502cadc6d60867542c74a8338d121d5a96f04d75b",
+  "content_sha256": "bcddf702d8f486188885fe61a690998f92880fa6069774dd62d7ef5a201b7135",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:25:11.030Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-01-05",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:08:17 GMT",
+      "etag": null
+    },
+    "raw_sha256": "dd5623edbfc677ec05233b67c7e328a4f6f29d0eda16b0628f75526cf685aa3b",
+    "stats": {
+      "words": 778,
+      "blocks": 26,
+      "headings": 3,
+      "tables": 0,
+      "links": 3,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}
