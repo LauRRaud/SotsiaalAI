@@ -108,8 +108,24 @@ ln -sfn $A/node_modules node_modules || fail "link the release's packages"
 SHIP=ship-v$VERSION.tgz; INFO=ship-v$VERSION.json; POLICY=tmp/rag-v2-corpus-index-v$VERSION/policy.json
 # A start that the plan refused has already moved the policy to its place; a new policy-v<N>.json replaces that one.
 [ -s "$SHIP" ] && [ -s "$INFO" ] && { [ -s "policy-v$VERSION.json" ] || [ -s "$POLICY" ]; } || fail "ship-v$VERSION.tgz, ship-v$VERSION.json and policy-v$VERSION.json are needed"
-# This run buys once: a purchase of this version that was begun is looked at by a person, not begun again.
-[ -e tmp/rag-v2-corpus-embeddings/run-v$VERSION ] && fail "a purchase of v$VERSION was already begun (tmp/rag-v2-corpus-embeddings/run-v$VERSION); this run does not buy again"
+# This run buys once: a purchase of this version that completed, or whose record does not say how it ended, is looked
+# at by a person, not begun again. One that stopped on a call whose outcome stayed unknown is set aside under a
+# numbered name with its plan, approval and logs (ADR-113, 08.10.2026: v72 stopped after 1063 of 1826 inputs and the
+# whole batch had to be bought anew). The vectors it bought stay under usage/, the plan below counts them as bought,
+# and only the other inputs are bought. Nothing is deleted.
+EMB=tmp/rag-v2-corpus-embeddings
+if [ -e $EMB/run-v$VERSION ]; then
+  grep -q '"state": "stopped_unknown"' $EMB/run-v$VERSION/run.json 2>/dev/null \
+    || fail "a purchase of v$VERSION was already begun ($EMB/run-v$VERSION) and did not stop on an unknown outcome; this run does not buy again"
+  K=1; while [ -e $EMB/run-v$VERSION-stopped-$K ]; do K=$((K + 1)); done
+  mv $EMB/run-v$VERSION $EMB/run-v$VERSION-stopped-$K || fail "set the stopped purchase of v$VERSION aside"
+  for item in $EMB/plan-v$VERSION $EMB/approval-v$VERSION; do
+    [ ! -e $item ] || mv $item $item-stopped-$K || fail "set $item aside"
+  done
+  [ ! -e plan-v$VERSION.json ] || mv plan-v$VERSION.json plan-v$VERSION-stopped-$K.json || fail "set plan-v$VERSION.json aside"
+  [ ! -e purchase-v$VERSION.log ] || mv purchase-v$VERSION.log purchase-v$VERSION-stopped-$K.log || fail "set purchase-v$VERSION.log aside"
+  echo "an earlier purchase of v$VERSION stopped on an unknown outcome: set aside as run-v$VERSION-stopped-$K; the vectors it bought are reused"
+fi
 echo "$(field $INFO sha256)  $SHIP" | sha256sum -c - || fail "package hash"
 BASE=$(field $INFO base_generation) && HEAD=$(field $INFO head_generation) || fail "ship-v$VERSION.json"
 PRIOR=$(field tmp/rag-v2-corpus-index-v$PREVIOUS/index-plan.json generation_id) || fail "index plan v$PREVIOUS"
@@ -137,8 +153,9 @@ if [ -d tmp/rag-v2-corpus-embeddings/plan-v$VERSION ]; then
 fi
 # The newest price file; the plan refuses one older than 24 hours (price_verification_stale).
 PRICE=$(ls -t tmp/rag-v2-corpus-embeddings/prices/price-*.json | head -1); CONN=$SHARED/tmp/rag-v2-services/connections.json
-# pilot_7e23e68b is not a complete purchase; every other usage dir is reused.
-USAGE=$(ls -d tmp/rag-v2-corpus-embeddings/usage/pilot_* | grep -v pilot_7e23e68b | sort)
+# Every usage dir is reused. One that is not a complete purchase gives the inputs it did buy (ADR-113; until then
+# pilot_7e23e68b, the stopped first purchase of 26.09.2026, was left out here by name).
+USAGE=$(ls -d tmp/rag-v2-corpus-embeddings/usage/pilot_* | sort)
 REUSE=""; VECTORS=""; for d in $USAGE; do REUSE="$REUSE --reuse $d"; VECTORS="$VECTORS --vectors $d"; done
 step embedding-plan
 node scripts/rag-v2-corpus-embeddings.mjs --mode plan --development-only --store tmp/rag-v2-corpus-store-v25 --tenant sotsiaalai-corpus --subject operator \

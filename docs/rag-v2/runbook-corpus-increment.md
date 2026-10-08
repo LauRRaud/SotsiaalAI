@@ -201,6 +201,7 @@ sudo -n grep "^OPENAI_API_KEY=" /etc/sotsiaalai/frontend.env | node --env-file=/
 
 - **Lõks:** ilma `--reuse`-ta ei ühti uuesti arvutatud plaan kinnitatuga (`approved_unchanged_baseline_required`). Siis ei osteta midagi, aga `--output` kaust on juba loodud ja järgmine katse vajab uut nime.
 - Kontrolli `<output>/run.json`: seal peab olema `"state": "complete"` ja `usage.succeeded` peab võrduma plaani uute sisendite arvuga. Uue usage-kausta tee on väljal `vectors`. v26-s oli see `pilot_3053…`.
+- **Kui ost peatus poole peal** (`"state": "stopped_unknown"`: ühe päringu tulemus jäi teadmata; [ADR-113](adr-113-stopped-purchase-vectors-count.md)): käivita sama `rag-v2-corpus-run.sh` käsk uuesti. Jooks tõstab peatunud ostu ise kõrvale (`run-v<N>-stopped-<k>` koos plaani, kinnituse ja logidega), loeb selle ostetud vektorid olemasolevaks ja ostab ainult ülejäänud sisendid. Kaustu käsitsi tõsta ei ole vaja. Teise käivituse kulupiir kehtib ainult teisele ostule: liida summad ise ja küsi omanikult, kui kogusumma läheb üle lubatu. Lõpetatud ostu ei alusta jooks kunagi uuesti.
 
 ## 8. Indeksi ehitus
 
