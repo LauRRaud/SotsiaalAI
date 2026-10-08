@@ -90,13 +90,13 @@ test('search-assist-2: the plan names the message language, and the answer follo
   // A plan approved for search-assist-1 keeps the interface language.
   assert.equal(planLanguage({ searchAssist: 'rag-v2/search-assist-1' }, { queries: [], language: 'en' }), null);
   assert.equal(planLanguage({ searchAssist: 'rag-v2/search-assist-2' }, { queries: [], language: 'en' }), 'en');
-  assert.deepEqual(SEARCH_ASSIST_VERSIONS, ['rag-v2/search-assist-1', 'rag-v2/search-assist-2', 'rag-v2/search-assist-3', 'rag-v2/search-assist-4', 'rag-v2/search-assist-5', 'rag-v2/search-assist-6', 'rag-v2/search-assist-7', 'rag-v2/search-assist-8', 'rag-v2/search-assist-9', 'rag-v2/search-assist-10', 'rag-v2/search-assist-11']);
+  assert.deepEqual(SEARCH_ASSIST_VERSIONS, ['rag-v2/search-assist-1', 'rag-v2/search-assist-2', 'rag-v2/search-assist-3', 'rag-v2/search-assist-4', 'rag-v2/search-assist-5', 'rag-v2/search-assist-6', 'rag-v2/search-assist-7', 'rag-v2/search-assist-8', 'rag-v2/search-assist-9', 'rag-v2/search-assist-10', 'rag-v2/search-assist-11', 'rag-v2/search-assist-12']);
 });
 
 test('search-assist-6 (ADR-072): a bare correction is about the person its fact belongs to and does not reopen an earlier question', async () => {
   const { planPerson, planPlaces, PLAN_CORRECTION_INSTRUCTIONS } = await import('../lib/rag-v2/pilot/search-assist.js');
   // The line of search-assist-6 is kept as it was in the later versions.
-  assert.equal(SEARCH_ASSIST_VERSION, 'rag-v2/search-assist-11');
+  assert.equal(SEARCH_ASSIST_VERSION, 'rag-v2/search-assist-12');
   const plan = queryPlanRequest(config, ['Kas A võib taotleda toetust?', 'Kui kiiresti otsustatakse?', 'Vabandust, B sissetulek on hoopis teine.'], 'et', ['user', 'A', 'B']);
   const lines = plan.instructions.split('\n');
   // One line, after the rule on person and before the rule on places; the rest of the instructions is unchanged.
@@ -213,7 +213,7 @@ test('ADR-077: the catalogue fails the stored plans that searched answered quest
 test('search-assist-7 (ADR-077): the plan searches the current message only; a question about what changes keeps both versions', async () => {
   const { PLAN_ANSWERED_INSTRUCTIONS, RERANK_ANSWERED_INSTRUCTIONS, RERANK_CHANGE_INSTRUCTIONS, PLAN_CORRECTION_INSTRUCTIONS, candidateRecord, CANDIDATE_LEAD_CHARS } = await import('../lib/rag-v2/pilot/search-assist.js');
   // The lines of search-assist-7 stay in search-assist-8; the plan's line got one more sentence there (ADR-079).
-  assert.equal(SEARCH_ASSIST_VERSION, 'rag-v2/search-assist-11');
+  assert.equal(SEARCH_ASSIST_VERSION, 'rag-v2/search-assist-12');
   const messages = ['Mis on A?', 'Kes otsustab B üle?', 'Kuidas taotleda C-d?'];
   const plan = queryPlanRequest(config, messages, 'et'), lines = plan.instructions.split('\n');
   // One line, right after the rule on what the queries are for; the correction's line stays where it was.
@@ -311,7 +311,7 @@ test('ADR-077 measured: the follow-up and both versions hold; in the five-questi
 
 test('search-assist-8 (ADR-079): the plan does not fill its list with earlier questions, and a duty gets a query of its own', async () => {
   const { PLAN_ANSWERED_INSTRUCTIONS, PLAN_DUTY_INSTRUCTIONS, planPerson } = await import('../lib/rag-v2/pilot/search-assist.js');
-  assert.equal(SEARCH_ASSIST_VERSION, 'rag-v2/search-assist-11');
+  assert.equal(SEARCH_ASSIST_VERSION, 'rag-v2/search-assist-12');
   const plan = queryPlanRequest(config, ['Mis on A?', 'Kas B-lt võib nõuda C tasumist?'], 'et'), lines = plan.instructions.split('\n');
   // The measured plans (docs/audits/evidence/search-assist-7-measured-2026-10-04.json and the run after ADR-078): the third
   // question needs one query and got it with two for the earlier questions; the last sentence of the line is about that.

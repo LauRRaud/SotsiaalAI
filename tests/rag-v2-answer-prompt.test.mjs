@@ -1,9 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { PROMPT_VERSION, READABLE_PROMPT_VERSIONS, answerInstructions, answerRequest } from '../lib/rag-v2/pilot/contracts.js';
-import { WEB_ADDRESS_INSTRUCTIONS, TIME_INSTRUCTIONS, ASKING_INSTRUCTIONS, ROLE_INSTRUCTIONS, dialogueInput, KNOWN_PLACES_INSTRUCTIONS, NAMED_PLACE_INSTRUCTIONS, DIALOGUE_PROMPT_VERSION, READABLE_DIALOGUE_PROMPT_VERSIONS, COMPLETENESS_INSTRUCTIONS, BARE_CORRECTION_INSTRUCTIONS, PRIOR_CLAIM_INSTRUCTIONS, CONTACT_ENTRY_INSTRUCTIONS, CONTACT_DIRECTORY_INSTRUCTIONS, VERSION_CHANGES_INSTRUCTIONS, dialogueRequest } from '../lib/rag-v2/pilot/dialogue.js';
+import { ANSWER_SCHEMA, PROMPT_VERSION, READABLE_PROMPT_VERSIONS, answerInstructions, answerRequest, validateAnswer } from '../lib/rag-v2/pilot/contracts.js';
+import { REGION_STATE_VERSION, dialogueStateContract } from '../lib/rag-v2/pilot/dialogue-state.js';
+import { FEE_QUALIFICATION_INSTRUCTIONS, WEB_ADDRESS_INSTRUCTIONS, TIME_INSTRUCTIONS, ASKING_INSTRUCTIONS, ROLE_INSTRUCTIONS, roleWorkInstructions, dialogueInput, KNOWN_PLACES_INSTRUCTIONS, NAMED_PLACE_INSTRUCTIONS, DIALOGUE_PROMPT_VERSION, READABLE_DIALOGUE_PROMPT_VERSIONS, COMPLETENESS_INSTRUCTIONS, BARE_CORRECTION_INSTRUCTIONS, PRIOR_CLAIM_INSTRUCTIONS, CONTACT_ENTRY_INSTRUCTIONS, CONTACT_DIRECTORY_INSTRUCTIONS, VERSION_CHANGES_INSTRUCTIONS, dialogueRequest } from '../lib/rag-v2/pilot/dialogue.js';
 import { UNIFIED_RETRIEVAL_INSTRUCTIONS, UNIFIED_RETRIEVAL_VERSION } from '../lib/rag-v2/pilot/retrieval-plan.js';
-import { SEARCH_ASSIST_VERSION, PLAN_CORRECTION_INSTRUCTIONS, PLAN_ANSWERED_INSTRUCTIONS, PLAN_DUTY_INSTRUCTIONS, PLAN_SETTLEMENT_INSTRUCTIONS, PLAN_WORRY_INSTRUCTIONS, PLAN_ROLE_INSTRUCTIONS, RERANK_ANSWERED_INSTRUCTIONS, RERANK_WORRY_INSTRUCTIONS, RERANK_CHANGE_INSTRUCTIONS, queryPlanRequest, rerankRequest } from '../lib/rag-v2/pilot/search-assist.js';
+import { SEARCH_ASSIST_VERSION, PLAN_ELIGIBILITY_INSTRUCTIONS, RERANK_SAFEGUARD_INSTRUCTIONS, PLAN_CORRECTION_INSTRUCTIONS, PLAN_ANSWERED_INSTRUCTIONS, PLAN_DUTY_INSTRUCTIONS, PLAN_SETTLEMENT_INSTRUCTIONS, PLAN_WORRY_INSTRUCTIONS, PLAN_ROLE_INSTRUCTIONS, RERANK_ANSWERED_INSTRUCTIONS, RERANK_WORRY_INSTRUCTIONS, RERANK_CHANGE_INSTRUCTIONS, queryPlanRequest, rerankRequest } from '../lib/rag-v2/pilot/search-assist.js';
 import { tokenCount } from '../lib/rag-v2/search/embedding.js';
 import { hash } from '../lib/rag-v2/contracts.js';
 
@@ -24,12 +25,61 @@ const GUARDRAILS = [
   'Never invent a citation or source claim', 'Your kind is a model declaration, not an independently validated quality grade',
 ];
 
+test('each response reference is limited to this packet; a joined identifier remains rejected and schema objects are never shared', () => {
+  const config = { model: 'm', maxOutputTokens: 4096, reasoning: 'medium', dialogueStateVersion: REGION_STATE_VERSION };
+  const schemaBefore = JSON.stringify(dialogueStateContract(config).schema);
+  const evidence = { evidence: [{ ref: 'S1', text: 'Üks' }, { ref: 'S7', text: 'Teine' }] };
+  const first = dialogueRequest(config, 'Võrdle', evidence, 'et', { userRole: 'specialist' });
+  const items = first.text.format.schema.properties.blocks.items.properties.refs.items;
+  assert.deepEqual(items, { type: 'string', enum: ['S1', 'S7'] });
+  assert.ok(!items.enum.includes("S7','S8','S10','S11"));
+  const second = dialogueRequest(config, 'Järgmine', { evidence: [{ ref: 'S2', text: 'Kolmas' }] }, 'et', {});
+  assert.deepEqual(second.text.format.schema.properties.blocks.items.properties.refs.items.enum, ['S2']);
+  assert.deepEqual(items.enum, ['S1', 'S7']);
+  assert.equal(JSON.stringify(dialogueStateContract(config).schema), schemaBefore);
+  assert.deepEqual(ANSWER_SCHEMA.properties.blocks.items.properties.refs.items, { type: 'string' });
+  assert.throws(() => validateAnswer({ kind: 'grounded', blocks: [{ text: 'Väide.', factual: true, refs: ["S7','S8','S10','S11"] }], limitations: [], clarification: null }, ['S1', 'S7']), { code: 'invalid_answer_reference' });
+});
+
+test('prompt 37 selects the authenticated recipient instructions while preserving evidence, permissions and guardrails', () => {
+  const config = { model: 'gpt-6-luna', maxOutputTokens: 4096, reasoning: 'medium' };
+  const evidence = { evidence: [{ id: 'P1', text: 'Kasutaja roll ei muuda allikat.' }] };
+  const expected = { specialist: 'Address a colleague', service_provider: 'service planning, delivery', help_seeker: 'next action they can take' };
+  for (const [role, phrase] of Object.entries(expected)) {
+    const body = dialogueRequest(config, 'Mis edasi?', evidence, 'et', { userRole: role });
+    const specific = roleWorkInstructions(role);
+    assert.deepEqual(body.input.at(-1), { role: 'developer', content: specific });
+    assert.ok(!body.instructions.includes(specific));
+    assert.ok(specific.includes(phrase));
+    assert.ok(specific.includes('explicitly stated different capacity') && specific.includes('never source support or permissions'));
+    assert.ok(!body.instructions.includes(ROLE_INSTRUCTIONS));
+    assert.ok(body.instructions.includes(FEE_QUALIFICATION_INSTRUCTIONS));
+    assert.ok(FEE_QUALIFICATION_INSTRUCTIONS.includes('does not explicitly say they cannot afford it'));
+    assert.ok(FEE_QUALIFICATION_INSTRUCTIONS.includes('conditional on the other counted income'));
+    for (const guardrail of GUARDRAILS) assert.ok(body.instructions.includes(guardrail), guardrail);
+    assert.deepEqual(JSON.parse(body.input[0].content).evidence, evidence);
+  }
+  assert.ok(roleWorkInstructions('specialist').includes('confirmed residence'));
+  assert.ok(roleWorkInstructions('service_provider').includes('unless an explicit mandate'));
+  const fallback = dialogueRequest(config, 'Mis edasi?', evidence, 'et', {}).instructions;
+  assert.ok(fallback.includes(ROLE_INSTRUCTIONS));
+  const rerank = rerankRequest({ ...config, searchAssist: SEARCH_ASSIST_VERSION }, ['Mida tuleb maksta?'], [{ id: 'P1', title: 't', text: 'Kogu allikatekst' }], '2026-10-08');
+  assert.ok(rerank.instructions.includes(RERANK_SAFEGUARD_INSTRUCTIONS));
+  assert.ok(RERANK_SAFEGUARD_INSTRUCTIONS.includes('access despite inability to pay'));
+  assert.ok(RERANK_SAFEGUARD_INSTRUCTIONS.includes('Never substitute another municipality'));
+  const plan = queryPlanRequest({ ...config, searchAssist: SEARCH_ASSIST_VERSION }, ['Kas ta võib teenust osutada?'], 'et');
+  assert.ok(plan.instructions.includes(PLAN_ELIGIBILITY_INSTRUCTIONS));
+  assert.ok(PLAN_ELIGIBILITY_INSTRUCTIONS.includes('Within the existing query limit'));
+  assert.doesNotMatch(PLAN_ELIGIBILITY_INSTRUCTIONS, /vanaema|grandmother|SHS|Tartu|§|P13/);
+});
+
 test('prompt v10 keeps every v9 guardrail in each answer language, and v9 plans stay readable only', () => {
   assert.equal(PROMPT_VERSION, 'm4-grounded-answer-12');
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-11'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-10'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-9'));
-  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-36');
+  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-37');
+  assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-36'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-35'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-34'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-33'));
@@ -185,14 +235,14 @@ test('dialogue prompt 22 (ADR-062): valid_from chooses the version and never dat
   // two to the selection's, search-assist-8 (ADR-079) one more to the plan's, search-assist-9 (ADR-103) another and
   // search-assist-10 (ADR-106) one to each and search-assist-11 (ADR-107) one to the plan's; without those nine lines
   // both texts are those of search-assist-5.
-  const asFive = text => text.replaceAll('rag-v2/search-assist-11', 'rag-v2/search-assist-5');
+  const asFive = text => text.replaceAll(SEARCH_ASSIST_VERSION, 'rag-v2/search-assist-5');
   const without = (text, ...lines) => lines.reduce((rest, line) => { assert.equal(rest.split(`${line}\n`).length, 2, line.slice(0, 40)); return rest.replace(`${line}\n`, ''); }, text);
   // The lines of search-assist-9, search-assist-10 and search-assist-11 are the plan's last three.
   const planText = queryPlanRequest(assist, ['küsimus'], 'et').instructions, planEnd = `\n${PLAN_SETTLEMENT_INSTRUCTIONS}\n${PLAN_WORRY_INSTRUCTIONS}\n${PLAN_ROLE_INSTRUCTIONS}`;
   assert.ok(planText.endsWith(planEnd));
-  assert.deepEqual([SEARCH_ASSIST_VERSION, hash(asFive(without(planText.slice(0, -planEnd.length), PLAN_CORRECTION_INSTRUCTIONS, PLAN_ANSWERED_INSTRUCTIONS, PLAN_DUTY_INSTRUCTIONS))),
-    hash(asFive(without(rerankRequest(assist, ['küsimus'], [{ id: 'P1', title: 't', text: 'x' }], '2026-10-01').instructions, RERANK_ANSWERED_INSTRUCTIONS, RERANK_WORRY_INSTRUCTIONS, RERANK_CHANGE_INSTRUCTIONS)))],
-  ['rag-v2/search-assist-11', 'ac80d12eefde1aa4abce6b0f87f4bd03d395001bd35c347dca35e639fd13f6e7', '100f26ab81538a103a93e34d6f58e79d0156319c51dd6ca0e449a26b2db206d4']);
+  assert.deepEqual([SEARCH_ASSIST_VERSION, hash(asFive(without(planText.slice(0, -planEnd.length), PLAN_CORRECTION_INSTRUCTIONS, PLAN_ANSWERED_INSTRUCTIONS, PLAN_DUTY_INSTRUCTIONS, PLAN_ELIGIBILITY_INSTRUCTIONS))),
+    hash(asFive(without(rerankRequest(assist, ['küsimus'], [{ id: 'P1', title: 't', text: 'x' }], '2026-10-01').instructions, RERANK_ANSWERED_INSTRUCTIONS, RERANK_WORRY_INSTRUCTIONS, RERANK_CHANGE_INSTRUCTIONS, RERANK_SAFEGUARD_INSTRUCTIONS)))],
+  ['rag-v2/search-assist-12', 'ac80d12eefde1aa4abce6b0f87f4bd03d395001bd35c347dca35e639fd13f6e7', '100f26ab81538a103a93e34d6f58e79d0156319c51dd6ca0e449a26b2db206d4']);
   // The request: a unified-retrieval turn carries A, the sentence and B in that order; every dialogue turn carries C.
   const config = { model: 'gpt-6-luna', maxOutputTokens: 4096, reasoning: 'medium' };
   const unified = dialogueRequest({ ...config, retrievalRouting: UNIFIED_RETRIEVAL_VERSION }, 'Kui suur on toetus?', { evidence: [] }, 'et', {}).instructions;
@@ -204,7 +254,7 @@ test('dialogue prompt 22 (ADR-062): valid_from chooses the version and never dat
 test('dialogue prompt 24 (ADR-071): a bare correction is confirmed and not turned into a second answer; a prior claim is examined only on request or need', () => {
   const config = { model: 'gpt-6-luna', maxOutputTokens: 4096, reasoning: 'medium' };
   const all = dialogueRequest(config, 'Vabandust, pension on hoopis 700 eurot.', { evidence: [] }, 'et', {}).instructions;
-  const extension = all.slice(answerInstructions('et').length, all.length - COMPLETENESS_INSTRUCTIONS.length);
+  const extension = all.slice(answerInstructions('et').length, all.length - COMPLETENESS_INSTRUCTIONS.length - FEE_QUALIFICATION_INSTRUCTIONS.length);
   // The three situations the instructions tell apart. 1: a bare correction.
   for (const phrase of ['first sentence confirms the corrected value', 'even when it does not change the advice', 'never answer from the replaced value']) assert.ok(extension.includes(phrase), phrase);
   for (const phrase of ['only corrects such a fact and asks nothing new', 'what the corrected value changes for the person it concerns', 'as far as the current evidence shows it', 'and nothing else',
@@ -236,7 +286,7 @@ test('dialogue prompt 24 (ADR-071): a bare correction is confirmed and not turne
 test('dialogue prompt 34 and search-assist-10 (ADR-106): a circumstance the user knows is asked, a question is not repeated, a stated worry is searched', () => {
   const plain = dialogueRequest({ model: 'm', maxOutputTokens: 100, reasoning: 'low' }, 'Küsimus?', { sources: {}, evidence: [] }, 'et', { userTurns: [] }).instructions;
   // The last thing the dialogue extension says, in every dialogue turn.
-  assert.ok(plain.endsWith(TIME_INSTRUCTIONS + ASKING_INSTRUCTIONS + ROLE_INSTRUCTIONS + COMPLETENESS_INSTRUCTIONS));
+  assert.ok(plain.endsWith(TIME_INSTRUCTIONS + ASKING_INSTRUCTIONS + ROLE_INSTRUCTIONS + COMPLETENESS_INSTRUCTIONS + FEE_QUALIFICATION_INSTRUCTIONS));
   // 1: what the user can tell is asked, and is not also a limitation; limitations are for what the user cannot settle.
   for (const phrase of ['A circumstance of the person that the user knows and can tell in a few words', 'is asked in clarification, and is not also written in limitations as something you cannot tell',
     'limitations is for what the user cannot settle either', 'an assessment or a decision that belongs to a specialist, an authority or a court, or evidence that is missing here']) assert.ok(ASKING_INSTRUCTIONS.includes(phrase), phrase);
