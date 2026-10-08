@@ -241,11 +241,15 @@ test('the pure parts: admitted names of a directory, the limits, and what the sc
   assert.equal(namedPlace({ state: 'person_region', region: 'harku_vald' }, [{ ...item, via: 'state' }], 2).named_place, undefined);
   // A unit whose name ends with its kind word is not given the word twice.
   assert.equal(namedPlace({ state: 'reply_region', region: 'turi_vald' }, [{ ...item, name: 'Mäeküla', kind: 'k', regions: ['turi_vald'] }], 2).named_place.name, 'Mäeküla');
-  // ADR-106: the conversation's other places go with every later scope as known_places, whatever municipality the turn
-  // is about (the user's village while the request is about the mother's town), each once and with one municipality.
+  // ADR-106: the conversation's places of other municipalities go with the scope as known_places (the user's village
+  // while the request is about the mother's town), each once and with one municipality. A place of the turn's own
+  // municipality is not listed: the answer works with that municipality already and need not say again where it lies.
   const village = { name: 'Jüri', kind: 'a', word: 'Jüris', regions: ['rae_vald'], turn: 1, via: 'state' }, town = { name: 'Kuressaare', kind: 'l', word: 'Kuressaares', regions: ['saaremaa_vald'], turn: 1, via: 'state' };
   assert.deepEqual(namedPlace({ state: 'person_region', region: 'saaremaa_vald', person: 'ema' }, [village, town, village], 8),
-    { state: 'person_region', region: 'saaremaa_vald', person: 'ema', known_places: [{ name: 'Jüri alevik', municipality: 'rae_vald' }, { name: 'Kuressaare linn', municipality: 'saaremaa_vald' }] });
+    { state: 'person_region', region: 'saaremaa_vald', person: 'ema', known_places: [{ name: 'Jüri alevik', municipality: 'rae_vald' }] });
+  const own = { state: 'person_region', region: 'rae_vald', person: 'poeg' };
+  assert.equal(namedPlace(own, [village], 6), own);
+  assert.deepEqual(namedPlace({ state: 'region_required', region: null }, [village, town], 21).known_places, [{ name: 'Jüri alevik', municipality: 'rae_vald' }, { name: 'Kuressaare linn', municipality: 'saaremaa_vald' }]);
   // The place the turn itself names is the named place and not a known one; a name of several municipalities is not known.
   const named = namedPlace({ state: 'reply_region', region: 'harku_vald' }, [item, village, { ...village, name: 'Nõmme', kind: 'k', regions: ['a_vald', 'b_vald'] }], 2);
   assert.deepEqual([named.named_place, named.known_places], [{ name: 'Tabasalu alevik', municipality: 'harku_vald' }, [{ name: 'Jüri alevik', municipality: 'rae_vald' }]]);
