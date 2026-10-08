@@ -1,0 +1,57 @@
+{
+  "document_id": "web-ppa_laste_seksuaalne_vaeaerkohtlemine_veebis_digipadevuse_materjalid",
+  "title": "Laste seksuaalne väärkohtlemine veebis",
+  "register_title": "Laste seksuaalne väärkohtlemine veebis",
+  "source_id": "ppa_laste_seksuaalne_vaeaerkohtlemine_veebis_digipadevuse_materjalid",
+  "source_type": "web_page",
+  "publisher": "Politsei- ja Piirivalveamet",
+  "language": "et",
+  "url": "https://www.politsei.ee/et/juhend/laste-seksuaalne-vaeaerkohtlemine-veebis/digipadevuse-materjalid",
+  "source_path": "ppa_laste_seksuaalne_vaeaerkohtlemine_veebis_digipadevuse_materjalid.html",
+  "source_format": "html",
+  "source_sha256": "65ecb6b64ca30d766f2acca437c73a17e0fc106ed6c08ef9a0c0e2d7fcfdb5c5",
+  "content_sha256": "327a303871d823bd7a65ed7eabf4ed0096b8ef28c4fb8e1cba070d7ca39b4749",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:38:35.842Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": "Thu, 08 Oct 2026 17:07:49 GMT",
+      "etag": null
+    },
+    "raw_sha256": "36e241ba1d96549a3151272d720695e82121d76cb56ed255535f75f1840d00f5",
+    "stats": {
+      "words": 188,
+      "blocks": 11,
+      "headings": 3,
+      "tables": 0,
+      "links": 1,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

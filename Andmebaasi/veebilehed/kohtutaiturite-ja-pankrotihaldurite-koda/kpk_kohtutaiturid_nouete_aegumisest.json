@@ -1,0 +1,70 @@
+{
+  "document_id": "web-kpk_kohtutaiturid_nouete_aegumisest",
+  "title": "Nõuete aegumisest",
+  "register_title": "Nõuete aegumisest",
+  "source_id": "kpk_kohtutaiturid_nouete_aegumisest",
+  "source_type": "web_page",
+  "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+  "language": "et",
+  "url": "https://kpkoda.ee/kohtutaiturid/nouete-aegumisest/",
+  "source_path": "kpk_kohtutaiturid_nouete_aegumisest.html",
+  "source_format": "html",
+  "source_sha256": "d03b03f562b7fb5c15226a652aff45c2248d647d27149a207b87d2b2d93c3f68",
+  "content_sha256": "441c99f2f2a09ff0691110f8ffc4e1e43ac9b24229f0ba155d1a61f4c509ef3f",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:40:22.810Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "bb193c2a9810226ddf0b91c0b8149a0350889cdb76828df03c4554b56ebedb7d",
+    "stats": {
+      "words": 2743,
+      "blocks": 87,
+      "headings": 14,
+      "tables": 0,
+      "links": 13,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://kpkoda.ee/wp-content/uploads/public/aegumise-avaldus-eesti-keeles.doc",
+      "text": "Blankett asub siin",
+      "type": "doc",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://kpkoda.ee/wp-content/uploads/2021/03/%C3%9Cldine-skeem.pdf",
+      "text": "Üldine skeem sissenõudjale",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

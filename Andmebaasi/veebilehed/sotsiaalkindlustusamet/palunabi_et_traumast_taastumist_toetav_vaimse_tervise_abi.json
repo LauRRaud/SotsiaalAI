@@ -1,0 +1,64 @@
+{
+  "document_id": "web-palunabi_et_traumast_taastumist_toetav_vaimse_tervise_abi",
+  "title": "Traumast taastumist toetav vaimse tervise abi",
+  "register_title": "Traumast taastumist toetav vaimse tervise abi",
+  "source_id": "palunabi_et_traumast_taastumist_toetav_vaimse_tervise_abi",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://www.palunabi.ee/et/traumast-taastumist-toetav-vaimse-tervise-abi",
+  "source_path": "palunabi_et_traumast_taastumist_toetav_vaimse_tervise_abi.html",
+  "source_format": "html",
+  "source_sha256": "925d2fdbd68f058073b667a7a1d5425ab07d546be5c99295af9b638134d6fe09",
+  "content_sha256": "90af7275cf2c95fd28c70f5edab4f2ebcd430cba97bd7f20fdc4b058194b271c",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:37:21.963Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "48a0fcb1a26fba1f0083f3e4f7a6a8dfb5480caee52fcc64136badcb4d407bfa",
+    "stats": {
+      "words": 213,
+      "blocks": 4,
+      "headings": 1,
+      "tables": 0,
+      "links": 2,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://s3-web-1a.tehik.ee/palunabi-live-web-prd/s3fs-public/2026-09/Vaimse-tervise-spetsialistid--24.09.2026-seisuga.xlsx",
+      "text": "Vaimse tervise spetsialistid 24.09.2026 seisuga XLSX (5.46 MB)",
+      "type": "xlsx",
+      "status": "referenced_only"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "document_id": "web-tek_ravimid_taiendav_ravimi_ja_meditsiiniseadmehuvitis",
+  "title": "Täiendav ravimi- ja meditsiiniseadmehüvitis",
+  "register_title": "Täiendav ravimi- ja meditsiiniseadmehüvitis",
+  "source_id": "tek_ravimid_taiendav_ravimi_ja_meditsiiniseadmehuvitis",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/ravimid/taiendav-ravimi-ja-meditsiiniseadmehuvitis",
+  "source_path": "tek_ravimid_taiendav_ravimi_ja_meditsiiniseadmehuvitis.html",
+  "source_format": "html",
+  "source_sha256": "4f85cdd8ab4e34caf7b105bc25faf311940fc704618f2ed5e12c8c811997833c",
+  "content_sha256": "629606a0bd0010293c97832820d43acb0696cbfdfa281b3c39002ec0e51426fe",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:38:49.999Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:26:06 GMT",
+      "etag": null
+    },
+    "raw_sha256": "4eaa7f442b9fc2afa8943302c827c3cf9636153a7312edbd8ef9dc492f58c772",
+    "stats": {
+      "words": 857,
+      "blocks": 21,
+      "headings": 6,
+      "tables": 2,
+      "links": 0,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

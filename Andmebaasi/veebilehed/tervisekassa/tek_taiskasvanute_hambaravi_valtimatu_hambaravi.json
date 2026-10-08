@@ -1,0 +1,57 @@
+{
+  "document_id": "web-tek_taiskasvanute_hambaravi_valtimatu_hambaravi",
+  "title": "Vältimatu hambaravi",
+  "register_title": "Vältimatu hambaravi",
+  "source_id": "tek_taiskasvanute_hambaravi_valtimatu_hambaravi",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/hambaravi/taiskasvanute-hambaravi/valtimatu-hambaravi",
+  "source_path": "tek_taiskasvanute_hambaravi_valtimatu_hambaravi.html",
+  "source_format": "html",
+  "source_sha256": "0ceb394ebda5b0f40f468846bd6e6c58c26c9aa7c83020fe735e96a339240822",
+  "content_sha256": "d518e7680b4e28f5ec0ece0853496e6e5b6d59a31b6962165972997fcd27ef8f",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:37:59.856Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:25:13 GMT",
+      "etag": null
+    },
+    "raw_sha256": "7825a60d1f722c20a91448d04cf295fc5ba18e2e10c2aa0a99f004802fd7a2b3",
+    "stats": {
+      "words": 198,
+      "blocks": 11,
+      "headings": 2,
+      "tables": 0,
+      "links": 1,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

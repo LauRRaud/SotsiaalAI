@@ -1,0 +1,65 @@
+{
+  "document_id": "web-ska_abi_vagivalla_ohvrile_kuriteoohvri_huvitis",
+  "title": "Kuriteoohvri hüvitis",
+  "register_title": "Kuriteoohvri hüvitis",
+  "source_id": "ska_abi_vagivalla_ohvrile_kuriteoohvri_huvitis",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/abi-vagivalla-ohvrile/kuriteoohvri-huvitis",
+  "source_path": "ska_abi_vagivalla_ohvrile_kuriteoohvri_huvitis.html",
+  "source_format": "html",
+  "source_sha256": "95c894c4d6f38cc5dcac071eca46d9358eebf30a1be88270754390d90b99b0bd",
+  "content_sha256": "ad69061dfd33f959ffe11005cb69c7625f3a46d608a5c9945a2d186e2b2904f4",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:34:25.869Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-04-20",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:34:24 GMT",
+      "etag": null
+    },
+    "raw_sha256": "50eff641d9c15285163ce79a607383890f9b1c29c67b4d07ec20ce09c2632ee4",
+    "stats": {
+      "words": 355,
+      "blocks": 18,
+      "headings": 5,
+      "tables": 0,
+      "links": 8,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-11/Kuriteo%20h%C3%BCvitis%20flaier%20A5%2Bbl3mm_EST.PDF",
+      "text": "Abistav infomaterjal hüvitise taotlejale | 146.65 KB | PDF",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

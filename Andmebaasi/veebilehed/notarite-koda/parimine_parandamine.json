@@ -1,0 +1,58 @@
+{
+  "document_id": "web-parimine_parandamine",
+  "title": "Pärandamine",
+  "register_title": "Pärandamine",
+  "source_id": "parimine_parandamine",
+  "source_type": "web_page",
+  "publisher": "Notarite Koda",
+  "language": "et",
+  "url": "https://parimine.notar.ee/parandamine/",
+  "url_final": "https://parimine.notar.ee/parandamine/erinevad-voimalused/",
+  "source_path": "parimine_parandamine.html",
+  "source_format": "html",
+  "source_sha256": "384a774769429db34c8961375af360e5ff00d3e5de8a916e88201ef63ffaa3c0",
+  "content_sha256": "35e670706a4d775ea4fe279a8214f3280dd60ab2238631d5287a21f612e695be",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:40:09.264Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "168f5564a84acee79f528b7e143b27dd33d6bd15910bb48517f5197cb08efd8c",
+    "stats": {
+      "words": 439,
+      "blocks": 23,
+      "headings": 7,
+      "tables": 1,
+      "links": 5,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

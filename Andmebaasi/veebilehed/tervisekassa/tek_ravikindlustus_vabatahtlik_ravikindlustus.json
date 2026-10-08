@@ -1,0 +1,64 @@
+{
+  "document_id": "web-tek_ravikindlustus_vabatahtlik_ravikindlustus",
+  "title": "Vabatahtlik ravikindlustus",
+  "register_title": "Vabatahtlik ravikindlustus",
+  "source_id": "tek_ravikindlustus_vabatahtlik_ravikindlustus",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/ravikindlustus/vabatahtlik-ravikindlustus",
+  "source_path": "tek_ravikindlustus_vabatahtlik_ravikindlustus.html",
+  "source_format": "html",
+  "source_sha256": "b0835e0ed2e105fffd9f9ca0a68fd6513084b783cb599116f1f1cfbb0334f527",
+  "content_sha256": "9ee49f195add26143abcf8737d818cdde9604641585d4a175d9b723254209cf3",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:38:37.452Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:07:25 GMT",
+      "etag": null
+    },
+    "raw_sha256": "27703eb127801eecfaed727d5985e53007b9add04b6f194587d6ca9673695652",
+    "stats": {
+      "words": 339,
+      "blocks": 30,
+      "headings": 9,
+      "tables": 0,
+      "links": 3,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/tyyptingimused_plankil.docx",
+      "text": "tüüptingimustega",
+      "type": "docx",
+      "status": "referenced_only"
+    }
+  ]
+}

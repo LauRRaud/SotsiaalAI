@@ -1,0 +1,60 @@
+{
+  "document_id": "web-ska_abivajav_laps_ja_taiskasvanu_asendushooldus_ja_kasuvanemlus",
+  "title": "Asendushooldus ja kasuvanemlus",
+  "register_title": "Asendushooldus ja kasuvanemlus",
+  "source_id": "ska_abivajav_laps_ja_taiskasvanu_asendushooldus_ja_kasuvanemlus",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/asendushooldus-ja-kasuvanemlus",
+  "source_path": "ska_abivajav_laps_ja_taiskasvanu_asendushooldus_ja_kasuvanemlus.html",
+  "source_format": "html",
+  "source_sha256": "b80e32cfab500cd7720c503e0653b28552b44c3c857359a4180fea1906d22d7e",
+  "content_sha256": "f7b829a3f2cc52fd8bf9b41873732ffe152e9564ede3de3d1dae0ea99fe78e3a",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:34:38.502Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-10-08",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:34:37 GMT",
+      "etag": null
+    },
+    "raw_sha256": "9438ee373ca83a506197ce2b9198b3ec25fd4561d2afde173b4e6c07b4015c8f",
+    "stats": {
+      "words": 1107,
+      "blocks": 44,
+      "headings": 13,
+      "tables": 5,
+      "links": 6,
+      "linksToOtherSites": 3
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 10,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed"
+    ],
+    "needs_review": false
+  },
+  "documents": []
+}

@@ -1,0 +1,70 @@
+{
+  "document_id": "web-tek_inimesele_ukraina_sojapogenikele",
+  "title": "Ukraina sõjapõgenikele",
+  "register_title": "Ukraina sõjapõgenikele",
+  "source_id": "tek_inimesele_ukraina_sojapogenikele",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/ukraina-sojapogenikele",
+  "source_path": "tek_inimesele_ukraina_sojapogenikele.html",
+  "source_format": "html",
+  "source_sha256": "c16f38d1b493971b551d9884238ecc0a5b4d3ccd4ecc92f3f9f4289b303d7291",
+  "content_sha256": "e60cf1103c529b2e2ec2de58676d0e3697f98f8cfecd93996dc015fe4c097f54",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:38:57.481Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:26:13 GMT",
+      "etag": null
+    },
+    "raw_sha256": "7ee6da6143fb02ac48cb1a0ffb68f9d2782aaed4ba1744ad808ec615f096abe2",
+    "stats": {
+      "words": 446,
+      "blocks": 17,
+      "headings": 5,
+      "tables": 0,
+      "links": 16,
+      "linksToOtherSites": 3
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/a4_infokiri_ukrainlastele_210x297_5mm_ukr.pdf",
+      "text": "Можливості медичної допомоги для біженця, людини, яка клопоче про захист, емігранта, отримувача додаткового захисту та отримувача міжнародного захисту",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/perearstid/avaldus_perearsti_nimistusse_registreerumiseks_2024.rtf",
+      "text": "siin",
+      "type": "rtf",
+      "status": "referenced_only"
+    }
+  ]
+}

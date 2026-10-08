@@ -1,0 +1,59 @@
+{
+  "document_id": "web-kpk_elatisevolgnik_ja_pankrotimenetlus",
+  "title": "Elatisevõlgnik ja pankrotimenetlus",
+  "register_title": "Elatisevõlgnik ja pankrotimenetlus",
+  "source_id": "kpk_elatisevolgnik_ja_pankrotimenetlus",
+  "source_type": "web_page",
+  "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+  "language": "et",
+  "url": "https://kpkoda.ee/elatisevolgnik-ja-pankrotimenetlus/",
+  "source_path": "kpk_elatisevolgnik_ja_pankrotimenetlus.html",
+  "source_format": "html",
+  "source_sha256": "5c59c45d168cbcd970e1424fe7ef85a58c1583cbfbe43d6425023ab4229b1322",
+  "content_sha256": "fb6c38d2098a0c36e9e10557db41ec96752ce8286b80845427f209d6a677f53c",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:40:40.359Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "6b3f444fcbcf7b04d53d501c3a4824dc6bec3102e1c9b19b306eba098fc3b0a3",
+    "stats": {
+      "words": 1746,
+      "blocks": 32,
+      "headings": 5,
+      "tables": 0,
+      "links": 4,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 1,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed"
+    ],
+    "needs_review": false
+  },
+  "documents": []
+}

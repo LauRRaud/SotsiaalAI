@@ -1,0 +1,57 @@
+{
+  "document_id": "web-tek_huvitised_haigestumine_valisriigis",
+  "title": "Haigestumine välisriigis",
+  "register_title": "Haigestumine välisriigis",
+  "source_id": "tek_huvitised_haigestumine_valisriigis",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/huvitised/haigestumine-valisriigis",
+  "source_path": "tek_huvitised_haigestumine_valisriigis.html",
+  "source_format": "html",
+  "source_sha256": "3882789ba5aeabc5d7cb1397e4187173f2b3acd542d5e4273a865c14009f568f",
+  "content_sha256": "eea0a8abf49adf4b1f26ddb3c2d6093ed309757b2b70959f9d4b31cbb75f460c",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:38:07.372Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:25:21 GMT",
+      "etag": null
+    },
+    "raw_sha256": "6fbcecbe8e021e2c89ea35c9372a72a0e8908737ef2ce80140b5ae62fe887211",
+    "stats": {
+      "words": 134,
+      "blocks": 10,
+      "headings": 2,
+      "tables": 0,
+      "links": 1,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

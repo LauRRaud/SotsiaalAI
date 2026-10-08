@@ -1,0 +1,61 @@
+{
+  "document_id": "web-ska_asendushooldus_ja_kasuvanemlus_lapsendamine",
+  "title": "Lapsendamine",
+  "register_title": "Lapsendamine",
+  "source_id": "ska_asendushooldus_ja_kasuvanemlus_lapsendamine",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/asendushooldus-ja-kasuvanemlus/lapsendamine",
+  "source_path": "ska_asendushooldus_ja_kasuvanemlus_lapsendamine.html",
+  "source_format": "html",
+  "source_sha256": "ee534c13bfbc0e684413c57eb9dc70135bbe98b503bb00c5f74ccfd3780bb25b",
+  "content_sha256": "ea384efd2b2ea52ad1db7f42fa0a08e5fac6e72366bcee058007c8b83cc74c09",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:34:46.096Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-10-08",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:34:44 GMT",
+      "etag": null
+    },
+    "raw_sha256": "57e147f36321e153eab385e899249a56b12ff4627f3ce08b1fca4e210b04e9cf",
+    "stats": {
+      "words": 1381,
+      "blocks": 44,
+      "headings": 11,
+      "tables": 1,
+      "links": 9,
+      "linksToOtherSites": 4
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 1,
+      "personLinks": 0,
+      "contactCards": 1,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed",
+      "email_needs_review"
+    ],
+    "needs_review": true
+  },
+  "documents": []
+}

@@ -1,0 +1,103 @@
+{
+  "document_id": "web-ska_asendushooldus_ja_kasuvanemlus_kasuperede_toetamine",
+  "title": "Kasuperede toetamine",
+  "register_title": "Kasuperede toetamine",
+  "source_id": "ska_asendushooldus_ja_kasuvanemlus_kasuperede_toetamine",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/asendushooldus-ja-kasuvanemlus/kasuperede-toetamine",
+  "source_path": "ska_asendushooldus_ja_kasuvanemlus_kasuperede_toetamine.html",
+  "source_format": "html",
+  "source_sha256": "6f05fe0f825974eb71df45bd8e393f86f8bc74018ef413d45f7272fd6caa0935",
+  "content_sha256": "6d630d006b30d29c453ca5919cbddb19bce8291431abbc6258e2290d2bac5413",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:34:43.451Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-08-07",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:34:42 GMT",
+      "etag": null
+    },
+    "raw_sha256": "a7f704fd489257dedd22f5b14693a580b53c28c431fb138d803f5a7174bc3c23",
+    "stats": {
+      "words": 541,
+      "blocks": 22,
+      "headings": 4,
+      "tables": 0,
+      "links": 10,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 9,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed"
+    ],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-08/Peretoetajate%20nimekiri.pdf",
+      "text": "Peretoetajate nimekiri | 93.04 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-09/Pereterapeutide%20nimekiri.pdf",
+      "text": "Pereterapeutide nimekiri | 203.69 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-08/Ps%C3%BChholoogide%20nimekiri.pdf",
+      "text": "Psühholoogide nimekiri | 216.96 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-10/Kogemusn%C3%B5ustajate%20nimekiri.pdf",
+      "text": "Kogemusnõustajate nimekiri | 224.18 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-03/Perep%C3%B5hise%20asendushoolduse%20tugiteenuste%20taotlus_25.03.2026.docx",
+      "text": "Perepõhise asendushoolduse tugiteenuste taotlus | 21.07 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-12/Kohanemistoe%20ja%20peretoe%20teenuse%20suunamisvorm%20kohalikule%20omavalitsusele.docx",
+      "text": "Kohanemistoe ja peretoe teenuse suunamisvorm KOVile | 21.58 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-05/Juhend%20kohalikule%20omavalitsusele%20kuidas%20suunata%20kasuvanem%20teenustele_26.05.2026.pdf",
+      "text": "Kasuvanema teenustele suunamise juhend KOVile | 87.25 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

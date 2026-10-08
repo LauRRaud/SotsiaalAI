@@ -1,0 +1,57 @@
+{
+  "document_id": "web-kpk_tasud",
+  "title": "Kohtutäituri tasud",
+  "register_title": "Kohtutäituri tasud",
+  "source_id": "kpk_tasud",
+  "source_type": "web_page",
+  "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+  "language": "et",
+  "url": "https://kpkoda.ee/tasud/",
+  "source_path": "kpk_tasud.html",
+  "source_format": "html",
+  "source_sha256": "02d8f62592671d4e48069b4c84b6b2b9e1e7d488c39052156eff7eaeb0d4c166",
+  "content_sha256": "166bc5c374535752e33f77d60667c2fd26cd47a746d69b8f86f715be409dc512",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:40:37.789Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "7c99f20fd1fe9f2b45d6958ae5b645e0ddb51dc006a1619f828b38f686aefcbd",
+    "stats": {
+      "words": 308,
+      "blocks": 15,
+      "headings": 5,
+      "tables": 0,
+      "links": 16,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

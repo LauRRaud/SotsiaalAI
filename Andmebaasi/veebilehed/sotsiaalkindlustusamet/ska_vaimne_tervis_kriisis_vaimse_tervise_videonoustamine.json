@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_vaimne_tervis_kriisis_vaimse_tervise_videonoustamine",
+  "title": "Vaimse tervise videonõustamine",
+  "register_title": "Vaimse tervise videonõustamine",
+  "source_id": "ska_vaimne_tervis_kriisis_vaimse_tervise_videonoustamine",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/vaimne-tervis-kriisis/vaimse-tervise-videonoustamine",
+  "source_path": "ska_vaimne_tervis_kriisis_vaimse_tervise_videonoustamine.html",
+  "source_format": "html",
+  "source_sha256": "d00e1fe2d9e1bf239aca89530b80ed87b68efb010e19161a1d00bb69f23c91c2",
+  "content_sha256": "75c2bf035904728ea58fc71ff809207ef7a29b2143714cfb7ed3c69b4783b886",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:35:11.133Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-08-19",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:35:09 GMT",
+      "etag": null
+    },
+    "raw_sha256": "92be6cfd2f93ef797277df1cb032e1f678f698f61c143590941a59ca58d0d585",
+    "stats": {
+      "words": 102,
+      "blocks": 11,
+      "headings": 3,
+      "tables": 0,
+      "links": 1,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

@@ -1,0 +1,57 @@
+{
+  "document_id": "web-palunabi_et_ahistav_jalitamine",
+  "title": "Ahistav jälitamine",
+  "register_title": "Ahistav jälitamine",
+  "source_id": "palunabi_et_ahistav_jalitamine",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://www.palunabi.ee/et/ahistav-jalitamine",
+  "source_path": "palunabi_et_ahistav_jalitamine.html",
+  "source_format": "html",
+  "source_sha256": "404cadd254c6de7e20cbb286fd0bacbfc2f3b75a7531551fbf44ca43440bed8e",
+  "content_sha256": "9b229c17bedc89f2f42eafd64e351b93a5b3e7767d0a17956d07ee06c205d8f5",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:36:56.874Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "74ef948c2f10836ac953dd5ed9d589534884dad860d3d6e9ca9da4dd3400d541",
+    "stats": {
+      "words": 135,
+      "blocks": 3,
+      "headings": 1,
+      "tables": 0,
+      "links": 2,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

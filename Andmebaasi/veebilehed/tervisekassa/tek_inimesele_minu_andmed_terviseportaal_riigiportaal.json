@@ -1,0 +1,57 @@
+{
+  "document_id": "web-tek_inimesele_minu_andmed_terviseportaal_riigiportaal",
+  "title": "Minu andmed: Terviseportaal; Riigiportaal",
+  "register_title": "Minu andmed: Terviseportaal; Riigiportaal",
+  "source_id": "tek_inimesele_minu_andmed_terviseportaal_riigiportaal",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/minu-andmed-terviseportaal-riigiportaal",
+  "source_path": "tek_inimesele_minu_andmed_terviseportaal_riigiportaal.html",
+  "source_format": "html",
+  "source_sha256": "a852b11898c9b059a7c6acc7d94fbbd6282008cbfbbba753ac6b1bf5e275f9da",
+  "content_sha256": "233163e7a0d958ae9b46940e0735d4fa6bd51ec0f3e13ef9c09de624a935627f",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:38:27.412Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:03:48 GMT",
+      "etag": null
+    },
+    "raw_sha256": "77f0cd4bb847b7319a5186c85ad5c6ace94c9b9f6953f16ab51287870c6a4b5b",
+    "stats": {
+      "words": 211,
+      "blocks": 22,
+      "headings": 8,
+      "tables": 0,
+      "links": 12,
+      "linksToOtherSites": 11
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

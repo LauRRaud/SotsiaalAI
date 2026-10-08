@@ -1,0 +1,57 @@
+{
+  "document_id": "web-palunabi_et_psuhhosotsiaalne_kriisiabi",
+  "title": "Psühhosotsiaalne kriisiabi",
+  "register_title": "Psühhosotsiaalne kriisiabi",
+  "source_id": "palunabi_et_psuhhosotsiaalne_kriisiabi",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://www.palunabi.ee/et/psuhhosotsiaalne-kriisiabi",
+  "source_path": "palunabi_et_psuhhosotsiaalne_kriisiabi.html",
+  "source_format": "html",
+  "source_sha256": "828504ba80cd6bb08ac2480f9065accba86459cf365ad8da79194bc438b14203",
+  "content_sha256": "9386bb9577b3cb7d5029b180400a00d80a4229d68408687506145366f3f87f9b",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:36:41.846Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "468b517252f25d936be5bc743626e294cf0f681d282d45ae7cb559d07ddfe85f",
+    "stats": {
+      "words": 438,
+      "blocks": 10,
+      "headings": 1,
+      "tables": 0,
+      "links": 5,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

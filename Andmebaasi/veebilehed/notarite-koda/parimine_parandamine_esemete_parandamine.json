@@ -1,0 +1,57 @@
+{
+  "document_id": "web-parimine_parandamine_esemete_parandamine",
+  "title": "Pärandamine",
+  "register_title": "Pärandamine",
+  "source_id": "parimine_parandamine_esemete_parandamine",
+  "source_type": "web_page",
+  "publisher": "Notarite Koda",
+  "language": "et",
+  "url": "https://parimine.notar.ee/parandamine/esemete-parandamine/",
+  "source_path": "parimine_parandamine_esemete_parandamine.html",
+  "source_format": "html",
+  "source_sha256": "2f1f0cccc3f3691ad80efa009f05bcce51a5601c94e31696a53be594e34b1b1b",
+  "content_sha256": "87137081759cf4ba343e0d69de0d7e07722e0e8e37cac08a41955d68e46a79f2",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:40:11.561Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "3561307a876e4d6ccc3145ce0ba912c30ac80ce70fad6201da11fbd98a31bbd5",
+    "stats": {
+      "words": 934,
+      "blocks": 40,
+      "headings": 15,
+      "tables": 0,
+      "links": 3,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

@@ -1,0 +1,57 @@
+{
+  "document_id": "web-tek_arsti_ja_oendusabi_tervishoid_koolis",
+  "title": "Tervishoid koolis",
+  "register_title": "Tervishoid koolis",
+  "source_id": "tek_arsti_ja_oendusabi_tervishoid_koolis",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/arsti-ja-oendusabi/tervishoid-koolis",
+  "source_path": "tek_arsti_ja_oendusabi_tervishoid_koolis.html",
+  "source_format": "html",
+  "source_sha256": "600a40e06bcbc5b19f7296df4b9178eec8dd9e0060445e20c7681c879c4e0eb0",
+  "content_sha256": "4a5ee2fb7cc7e3584a201539554701b52c1e1d2c4ca12acb2e2952f4fd08ae4b",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:37:27.230Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:24:41 GMT",
+      "etag": null
+    },
+    "raw_sha256": "4789aed9551bbd0acb0ad9e16cca1ea8da203292276f019d76fbb9e5c2ed2a4d",
+    "stats": {
+      "words": 812,
+      "blocks": 24,
+      "headings": 5,
+      "tables": 0,
+      "links": 2,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

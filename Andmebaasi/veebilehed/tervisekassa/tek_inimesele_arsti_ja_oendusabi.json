@@ -1,0 +1,57 @@
+{
+  "document_id": "web-tek_inimesele_arsti_ja_oendusabi",
+  "title": "Arsti- ja õendusabi",
+  "register_title": "Arsti- ja õendusabi",
+  "source_id": "tek_inimesele_arsti_ja_oendusabi",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/arsti-ja-oendusabi",
+  "source_path": "tek_inimesele_arsti_ja_oendusabi.html",
+  "source_format": "html",
+  "source_sha256": "3b8d703664fbe23dd6a639f3134ce85a1888377818fad60d3ef798a7d0cab02b",
+  "content_sha256": "8f3998c2e2913ec71dc499cd869e8b7d32ddf1af23cc8e3eadee88ddde35bb62",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:37:24.713Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:05:10 GMT",
+      "etag": null
+    },
+    "raw_sha256": "e6648562b4ceb159583265e8cf32a597a426351a92c2e45b5209ea4efdb43415",
+    "stats": {
+      "words": 255,
+      "blocks": 12,
+      "headings": 3,
+      "tables": 0,
+      "links": 6,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

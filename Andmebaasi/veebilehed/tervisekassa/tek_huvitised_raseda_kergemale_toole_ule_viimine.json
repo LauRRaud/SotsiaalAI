@@ -1,0 +1,57 @@
+{
+  "document_id": "web-tek_huvitised_raseda_kergemale_toole_ule_viimine",
+  "title": "Raseda kergemale tööle üle viimine",
+  "register_title": "Raseda kergemale tööle üle viimine",
+  "source_id": "tek_huvitised_raseda_kergemale_toole_ule_viimine",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/huvitised/raseda-kergemale-toole-ule-viimine",
+  "source_path": "tek_huvitised_raseda_kergemale_toole_ule_viimine.html",
+  "source_format": "html",
+  "source_sha256": "1960072b62aa2ddc90f77f2a9584760d220e7ec9e91a39acd3a473ada11a2ee9",
+  "content_sha256": "f9f5b05e42d9c9400d126704ba7258183956fa4635479fefa43cf43ff2431e6c",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:38:14.888Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:25:28 GMT",
+      "etag": null
+    },
+    "raw_sha256": "ac59d112f17d9e76969967d9f4a8b344aa15ca92d5461fbb4c9989cbf3265a8b",
+    "stats": {
+      "words": 251,
+      "blocks": 12,
+      "headings": 1,
+      "tables": 0,
+      "links": 0,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

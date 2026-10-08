@@ -1,0 +1,70 @@
+{
+  "document_id": "web-palunabi_et_perevagivald_ja_lahisuhtevagivald",
+  "title": "Perevägivald ja lähisuhtevägivald",
+  "register_title": "Perevägivald ja lähisuhtevägivald",
+  "source_id": "palunabi_et_perevagivald_ja_lahisuhtevagivald",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://www.palunabi.ee/et/perevagivald-ja-lahisuhtevagivald",
+  "source_path": "palunabi_et_perevagivald_ja_lahisuhtevagivald.html",
+  "source_format": "html",
+  "source_sha256": "0294acb630a884edcfd2f67c0d08e5ed171d8d45084693a30aeda043bada7fd4",
+  "content_sha256": "242994affa6834c465c808f5760a4fb356534ae2f9b841df047113a73b17eaa0",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:36:44.343Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "ffc681663a11dbcc4a252551db95e0129837e22bea418efa7edd808d87811fc0",
+    "stats": {
+      "words": 911,
+      "blocks": 19,
+      "headings": 5,
+      "tables": 0,
+      "links": 4,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://s3-web-1a.tehik.ee/palunabi-live-web-prd/s3fs-public/2024-11/toendite_kogumise_juhend.pdf",
+      "text": "Lähisuhtevägivalla toendite kogumise juhend.pdf PDF (4.56 MB)",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://s3-web-1a.tehik.ee/palunabi-live-web-prd/s3fs-public/2023-03/kak_sobrat_dokazatelstva_perezhitogo_nasiliya_v_blizkikh_otnosheniyakh_0.pdf",
+      "text": "kak_sobrat_dokazatelstva_perezhitogo_nasiliya_v_blizkikh_otnosheniyakh_0.pdf PDF (4.48 MB)",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

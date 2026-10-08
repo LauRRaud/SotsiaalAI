@@ -1,0 +1,64 @@
+{
+  "document_id": "web-kohus_kohtusse_poordujale_menetluskulud_ja_menetlusabi",
+  "title": "Menetluskulud ja menetlusabi",
+  "register_title": "Menetluskulud ja menetlusabi",
+  "source_id": "kohus_kohtusse_poordujale_menetluskulud_ja_menetlusabi",
+  "source_type": "web_page",
+  "publisher": "Eesti kohtud",
+  "language": "et",
+  "url": "https://www.kohus.ee/kohtusse-poordujale/menetluskulud-ja-menetlusabi",
+  "source_path": "kohus_kohtusse_poordujale_menetluskulud_ja_menetlusabi.html",
+  "source_format": "html",
+  "source_sha256": "65ba077191fa45274d5489f4a136be2c4a1c658b7c90c7fa067831b700dea336",
+  "content_sha256": "ca61a06e104227510a546abcb6fb866c57cc3118befee14450ea88431c32e2e1",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:39:25.316Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "2121b33282c91444ea412861d879714dc8d9dd20e6d61a877f41cd8d7295bd47",
+    "stats": {
+      "words": 800,
+      "blocks": 16,
+      "headings": 5,
+      "tables": 0,
+      "links": 8,
+      "linksToOtherSites": 7
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.kohus.ee/sites/default/files/inline-files/fuusilise_isiku_menetlusabi_taotlus_0_2.docx",
+      "text": "taotlus ja andmed oma majandusliku seisundi kohta",
+      "type": "docx",
+      "status": "referenced_only"
+    }
+  ]
+}

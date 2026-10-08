@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_abi_vagivalla_ohvrile_ohvriabi_kriisitelefon_116006",
+  "title": "Ohvriabi kriisitelefon 116 006",
+  "register_title": "Ohvriabi kriisitelefon 116 006",
+  "source_id": "ska_abi_vagivalla_ohvrile_ohvriabi_kriisitelefon_116006",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/abi-vagivalla-ohvrile/ohvriabi-kriisitelefon-116006",
+  "source_path": "ska_abi_vagivalla_ohvrile_ohvriabi_kriisitelefon_116006.html",
+  "source_format": "html",
+  "source_sha256": "df3e2d3568a682c351c2307004780bcf00ae20e235627fd0110ed3a22ab7ca3d",
+  "content_sha256": "a6597fe8295d0affcab8005f5a329671f604f8ec77a2df812be0bfd9801debd6",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:34:30.518Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2024-04-29",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:15:31 GMT",
+      "etag": null
+    },
+    "raw_sha256": "431bd244f56ef63529a85a0f4373e4fc47cd6e4acba08f79dd78ce9b1f610910",
+    "stats": {
+      "words": 195,
+      "blocks": 12,
+      "headings": 5,
+      "tables": 0,
+      "links": 9,
+      "linksToOtherSites": 5
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

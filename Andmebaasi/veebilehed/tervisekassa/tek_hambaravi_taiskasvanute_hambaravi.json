@@ -1,0 +1,59 @@
+{
+  "document_id": "web-tek_hambaravi_taiskasvanute_hambaravi",
+  "title": "Täiskasvanute hambaravi",
+  "register_title": "Täiskasvanute hambaravi",
+  "source_id": "tek_hambaravi_taiskasvanute_hambaravi",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/hambaravi/taiskasvanute-hambaravi",
+  "source_path": "tek_hambaravi_taiskasvanute_hambaravi.html",
+  "source_format": "html",
+  "source_sha256": "ad456a373b8526372b6c28e7d491fe62a5cca02039054f295145df02883f05cb",
+  "content_sha256": "a7619a267ea98d68b43dacdf21731ddd98a21012e81108a7a4f8784d289b6512",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:37:47.405Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:25:01 GMT",
+      "etag": null
+    },
+    "raw_sha256": "42adf167bb0c165d8912b3b7f217262e2c52c166403c9533b3f3ffee94ce6160",
+    "stats": {
+      "words": 66,
+      "blocks": 10,
+      "headings": 1,
+      "tables": 0,
+      "links": 6,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "thin_content"
+    ],
+    "needs_review": true
+  },
+  "documents": []
+}

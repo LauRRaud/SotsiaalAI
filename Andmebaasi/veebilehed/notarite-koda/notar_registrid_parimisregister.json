@@ -1,0 +1,57 @@
+{
+  "document_id": "web-notar_registrid_parimisregister",
+  "title": "Pärimisregister",
+  "register_title": "Pärimisregister",
+  "source_id": "notar_registrid_parimisregister",
+  "source_type": "web_page",
+  "publisher": "Notarite Koda",
+  "language": "et",
+  "url": "https://www.notar.ee/registrid/parimisregister/",
+  "source_path": "notar_registrid_parimisregister.html",
+  "source_format": "html",
+  "source_sha256": "23248f8d71ce4ad2f65663bf1fa114cc8fa5208b72a6d9cc10751a0162399735",
+  "content_sha256": "970f656802348ef09470a9c3a705d4322e87b4e5ba37dd5d6dac6e9fedc30e1b",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:39:58.632Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 10:20:41 GMT",
+      "etag": null
+    },
+    "raw_sha256": "2c498b33661cc915ed2a7cad78b179bae094d0091cf347d6c2c3701d315aef26",
+    "stats": {
+      "words": 400,
+      "blocks": 41,
+      "headings": 14,
+      "tables": 0,
+      "links": 5,
+      "linksToOtherSites": 3
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

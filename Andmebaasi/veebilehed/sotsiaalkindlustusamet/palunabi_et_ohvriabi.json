@@ -1,0 +1,64 @@
+{
+  "document_id": "web-palunabi_et_ohvriabi",
+  "title": "Ohvriabi",
+  "register_title": "Ohvriabi",
+  "source_id": "palunabi_et_ohvriabi",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://www.palunabi.ee/et/ohvriabi",
+  "source_path": "palunabi_et_ohvriabi.html",
+  "source_format": "html",
+  "source_sha256": "4ff419a8e3472db7ebef2bcb22dd53cb29c6ed45f2e911762a86f60c08ac80dd",
+  "content_sha256": "3b48a19d8bafba707dfd8c96a617989fd092e1fa28e9f714937d4eb1617aa00a",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:36:26.900Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "3ead9e939fd2d01f5b88d33df934af36db7c4fc5c38cf957d3b67bacc00dd13e",
+    "stats": {
+      "words": 421,
+      "blocks": 12,
+      "headings": 1,
+      "tables": 0,
+      "links": 5,
+      "linksToOtherSites": 3
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://s3-web-1a.tehik.ee/palunabi-live-web-prd/s3fs-public/2026-09/OA-t%C3%B6%C3%B6tajate-kontaktid_2.docx",
+      "text": "OA töötajate kontaktid DOCX (20.7 KB)",
+      "type": "docx",
+      "status": "referenced_only"
+    }
+  ]
+}
