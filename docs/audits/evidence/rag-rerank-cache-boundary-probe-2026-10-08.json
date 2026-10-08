@@ -1,0 +1,90 @@
+{
+  "synthetic": true,
+  "limitNanoUsd": 10000000,
+  "sourceHash": "3400dbde6dd07c9d81e0a14ed98220be475d083334ebddcf9719ff1ff7fa8056",
+  "calls": [
+    {
+      "role": "help_seeker",
+      "elapsedMs": 1695,
+      "requestId": "req_443fa8c747a84bdc833d4aa47b64aace",
+      "usage": {
+        "input": 15142,
+        "output": 17,
+        "cachedInput": 0,
+        "cacheWriteInput": 15096,
+        "reasoning": 0
+      },
+      "billing": {
+        "model": "gpt-6-luna",
+        "responseId": "resp_0c4e6966d7279591016ac76bb9ce8887d2bebd11616ba67fc9",
+        "serviceTier": "default"
+      },
+      "pricing": {
+        "status": "priced",
+        "currency": "USD",
+        "nanoUsd": 1900100,
+        "rateVersion": "openai-2026-10-08-v1",
+        "model": "gpt-6-luna",
+        "serviceTier": "default",
+        "longContext": false,
+        "rates": {
+          "input": 100,
+          "cachedInput": 10,
+          "cacheWriteInput": 125,
+          "output": 500
+        },
+        "components": {
+          "input": 4600,
+          "cachedInput": 0,
+          "cacheWriteInput": 1887000,
+          "output": 8500
+        }
+      },
+      "selection": [
+        "P32"
+      ]
+    },
+    {
+      "role": "specialist",
+      "elapsedMs": 2151,
+      "requestId": "req_3b0c6f36fa9b4fe9b44596afcf0e48bd",
+      "usage": {
+        "input": 15142,
+        "output": 100,
+        "cachedInput": 15096,
+        "cacheWriteInput": 0,
+        "reasoning": 81
+      },
+      "billing": {
+        "model": "gpt-6-luna",
+        "responseId": "resp_0383c4c8501b11e7016ac76bbb755c87d2885a3c5b876f2f4b",
+        "serviceTier": "default"
+      },
+      "pricing": {
+        "status": "priced",
+        "currency": "USD",
+        "nanoUsd": 205560,
+        "rateVersion": "openai-2026-10-08-v1",
+        "model": "gpt-6-luna",
+        "serviceTier": "default",
+        "longContext": false,
+        "rates": {
+          "input": 100,
+          "cachedInput": 10,
+          "cacheWriteInput": 125,
+          "output": 500
+        },
+        "components": {
+          "input": 4600,
+          "cachedInput": 150960,
+          "cacheWriteInput": 0,
+          "output": 50000
+        }
+      },
+      "selection": [
+        "P32"
+      ]
+    }
+  ],
+  "nanoUsd": 2105660
+}

@@ -1,0 +1,57 @@
+✔ cache classes partition input; reasoning is already in output (0.9954ms)
+✔ 272K boundary applies to each full request, including all cache and output tokens (0.3396ms)
+✔ unknown usage, unknown tiers and inconsistent accounting cannot look free or priced (0.2158ms)
+✔ flex rate rounds once at nano-USD precision and reserve covers the higher long tariff (0.1652ms)
+✔ search assist rejects oversized input before reserving or calling a provider (0.7481ms)
+✔ ECB freshness and exact integer EUR conversion; decimal form values round trip (0.5068ms)
+✔ all response stages preserve cache fields and billing metadata, including rejected output (15.399ms)
+✔ two real synthetic receipts reproduce cache write/read costs without another API call (1.4765ms)
+✔ prompt v10 keeps every v9 guardrail in each answer language, and v9 plans stay readable only (1.8906ms)
+✔ prompt v10 states the voice for the answer language, a good answer, and the separate crisis notice (0.6156ms)
+✔ answer and dialogue requests carry the same v10 base instructions; the question never enters them (0.3588ms)
+✔ dialogue prompt v9: numbers keep their conditions, limitations add no facts, and Estonian advice stays in the sina form (0.3377ms)
+✔ answer-11: Luna answers in her own voice and names scope, not sources (0.1523ms)
+✔ answer-12: a person or author question is answered from what the evidence shows; a stated circumstance gets its conditional conclusion (0.2956ms)
+✔ dialogue prompt 22 (ADR-062): valid_from chooses the version and never dates a rule; the comparison sentence and everything else stay (3.6048ms)
+✔ dialogue prompt 24 (ADR-071): a bare correction is confirmed and not turned into a second answer; a prior claim is examined only on request or need (0.9133ms)
+✔ dialogue prompt 34 and search-assist-10 (ADR-106): a circumstance the user knows is asked, a question is not repeated, a stated worry is searched (1.9844ms)
+✔ dialogue prompt 35 and search-assist-11 (ADR-107): the answer and the plan are told how the user is signed in (2.2734ms)
+✔ dialogue prompt 29 to 32 (ADR-102): a finding carries its year, an older source is not the present, and evidence of different years is told in the order of time (1.7549ms)
+✖ pilot switch, per-user grant, expiry, real-model config and approval gates fail closed despite key presence (1655.1261ms)
+✔ the opt-in cost policy preserves every request field except cache controls, including full text, versions and dialogue (3.6132ms)
+✔ default and unknown policies retain implicit caching and the same request (0.2955ms)
+✔ uncached full text is cheaper than a cache write, while a cache read is cheaper than either (0.4607ms)
+✔ search assist: both model calls are strict, low-effort, unstored JSON requests; the selection can only name offered passages (1.9253ms)
+✔ search assist: planned queries are trimmed, distinct and differ from the search text; malformed plans and selections are refused (0.7428ms)
+✔ query variants are bounded and trimmed; each variant has its own channels, weighted by channel kind (0.9308ms)
+✔ a chunk excerpt is an ordered subset of the chunk and rebuilds the same text and locations (0.4106ms)
+✔ the chat profile keeps the vector2 fast-lexical choices with nine seeds in a 10000-token budget (0.3542ms)
+✔ search-assist-2: the plan names the message language, and the answer follows it (0.9674ms)
+✔ search-assist-6 (ADR-072): a bare correction is about the person its fact belongs to and does not reopen an earlier question (1.2828ms)
+✔ search-assist-4 (ADR-051): the plan names whose need the message is about and whose each named place is (0.7901ms)
+✔ ADR-077: the catalogue fails the stored plans that searched answered questions again and passes the clean ones (31.1674ms)
+✔ search-assist-7 (ADR-077): the plan searches the current message only; a question about what changes keeps both versions (1.5078ms)
+✔ ADR-077 measured: the follow-up and both versions hold; in the five-question conversation the plan reopened once and the reserved law places went to earlier subjects (4.8904ms)
+✔ search-assist-8 (ADR-079): the plan does not fill its list with earlier questions, and a duty gets a query of its own (1.0845ms)
+ℹ tests 35
+ℹ suites 0
+ℹ pass 34
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2657.0964
+
+✖ failing tests:
+
+test at tests\rag-v2-pilot-config.test.mjs:13:1
+✖ pilot switch, per-user grant, expiry, real-model config and approval gates fail closed despite key presence (1655.1261ms)
+  Error: pilot_approval_required
+      at reject (file:///C:/Users/rauds/Desktop/Sotsiaal.ee/lib/rag-v2/pilot/contracts.js:21:66)
+      at readPilotConfig (file:///C:/Users/rauds/Desktop/Sotsiaal.ee/lib/rag-v2/pilot/config.js:153:109)
+      at async TestContext.<anonymous> (file:///C:/Users/rauds/Desktop/Sotsiaal.ee/tests/rag-v2-pilot-config.test.mjs:82:17)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    code: 'pilot_approval_required',
+    status: 403
+  }

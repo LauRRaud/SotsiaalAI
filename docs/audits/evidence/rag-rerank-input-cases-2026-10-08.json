@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "rag-rerank-input-evaluation-1",
+  "writtenBeforeMeasurement": true,
+  "roles": [["CLIENT", "help_seeker"], ["SOCIAL_WORKER", "specialist"], ["SERVICE_PROVIDER", "service_provider"]],
+  "scenarios": [
+    {
+      "id": "relative-support-person",
+      "turns": [{"mode": "new", "text": "Kas vanaema võib olla lapse ametlik tugiisik? Milline piirang kehtib?"}],
+      "check": "SHS § 25 sugulase piirang peab säilima tõendis ja vastuse järelduses; teenuse nimi üksi ei kata tingimust."
+    },
+    {
+      "id": "version-change",
+      "turns": [{"mode": "new", "text": "Mis muutub Põhja-Sakala valla sotsiaalabi korras alates 6. oktoobrist?"}],
+      "check": "Vastus peab võrdlema 2025-09-01 ja 2026-10-06 redaktsioone; mõlemad tõendis ja viidetes, muutumatut nõuet ei nimetata uueks."
+    },
+    {
+      "id": "home-care-dialogue",
+      "turns": [
+        {"mode": "new", "text": "Olukord on Tartu linnas: üksi elav eakas vajab kodus toimetulemiseks kõrvalabi. Selgita minu järgmisi samme. Ära lisa kontaktisikuid ega telefoninumbreid."},
+        {"mode": "same", "text": "Tema pension on 700 eurot kuus. Millised tasud võivad koduteenuse eest tulla?"}
+      ],
+      "check": "Jätk peab käsitlema sama eakat Tartu linnas ja 700 EUR pensioni; hinna alus, omaosalus ja võimalikud erandid vajavad tõendit. Rolli ei tohi segi ajada omavalitsuse otsustuspädevusega."
+    },
+    {
+      "id": "work-wellbeing-research",
+      "turns": [{"mode": "new", "text": "Milliseid tööheaolu riske ja toetavaid tegureid kirjeldavad Eesti sotsiaaltöötajate uuringud? Too kokku olulisemad järeldused ning nende aastad."}],
+      "check": "Mitme allika süntees, järelduste aastad ja tegelikud viited; vanemat uuringut ei esitata tänase olukorrana."
+    }
+  ]
+}
