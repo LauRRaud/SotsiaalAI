@@ -13,6 +13,29 @@ const accepted = texts => ({ context: { scopeId: 'topic', personId: 'person' }, 
 const fact = (topic, person, turn, quote) => ({ topic, person, support: [{ turn, quote }] });
 const answer = { kind: 'clarification', blocks: [], limitations: [], clarification: 'Kus sa elad?' };
 
+test('a rejected paraphrase retains the original turn as unresolved wording, never as a fact', () => {
+  const original = 'Ema vajab kõrvalabi, isa ei vaja. Ema pension on 600 eurot.';
+  const draft = { new_facts: [fact('abi', 'ema', 1, 'Ema vajab kõrvalist abi'), fact('pension', 'ema', 1, 'Ema pension on 600 eurot.')],
+    recovery: { turns: [{ turn: 1, quote: 'Isa vajab abi.' }] } };
+  const server = { people: [], focus: 'ema' };
+  const first = mergeFactState(null, draft, turns([original]), server);
+  assert.deepEqual(first.facts.map(item => item.topic), ['pension']);
+  assert.deepEqual(first.model.dropped.map(item => item.reason), ['fact_not_quoted']);
+  assert.deepEqual(first.recovery, { turns: [{ turn: 1, quote: original }], omitted: false });
+  assert.deepEqual(activeView(first).recovery, { turns: [1], omitted: false, interpretation: 'UNPROCESSED_USER_WORDS_NOT_FACTS' });
+  assert.ok(!JSON.stringify(activeView(first)).includes('Isa vajab abi.'));
+  // Later valid extraction recovers the need without changing the quotation validator or inventing the father's need.
+  const texts = [original, 'Parandus: ema pension on 700 eurot.'];
+  const second = mergeFactState(first, { new_facts: [fact('abi', 'ema', 1, 'Ema vajab kõrvalabi'), fact('pension', 'ema', 2, 'ema pension on 700 eurot.')],
+    superseded: [{ fact: 'F1', by: 'N2' }] }, turns(texts), server);
+  assert.deepEqual(activeView(second).facts.map(item => item.support[0].quote), ['Ema vajab kõrvalabi', 'ema pension on 700 eurot.']);
+  assert.deepEqual(second.recovery, first.recovery);
+  // Absence of a whole model state is recoverable too; previous facts still survive.
+  const missing = mergeFactState(second, null, turns([...texts, 'Isa kukkus eile.']), server);
+  assert.deepEqual(missing.recovery.turns.map(item => item.turn), [1, 3]);
+  assert.deepEqual(missing.facts, second.facts);
+});
+
 test('the model records only changes; facts get stable ids, a correction replaces, a retraction ends a fact', () => {
   const t = ['Elan üksi. Tööd ei ole.', 'Nüüd töötan. Tegelikult ma ei ela üksi.'];
   const first = mergeFactState(null, { new_facts: [fact('elukorraldus', 'user', 1, 'Elan üksi.'), fact('töö', 'user', 1, 'Tööd ei ole.')],
