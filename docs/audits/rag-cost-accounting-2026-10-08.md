@@ -4,7 +4,7 @@
 
 ## Tulemuse ulatus
 
-Uute RAG-vestluste planeerimine, päringuvektorid, allikavalik ja vastamine salvestatakse eraldi teenusepakkuja kulukirjetena. Pöörduja kuupiir on 3,60 EUR, spetsialistil 6,75 EUR ja teenuseosutajal 9,00 EUR. Administraatori sisepiir on 12 EUR. Paketiversioonide olemasolevaid muid õigusi migratsioon ei kirjuta üle; uutele tasulistele versioonidele arvutatakse lisamisel 45% nende tegelikust eurohinnast. Administraator saab rahalimiiti paketis ja kasutaja erandiga muuta eurodes.
+Uute RAG-vestluste planeerimine, päringuvektorid, allikavalik ja vastamine salvestatakse eraldi teenusepakkuja kulukirjetena. Pöörduja kuupiir on 3,60 EUR, spetsialistil 6,75 EUR ja teenuseosutajal 9,00 EUR. Administraatori sisepiir on 12 EUR. Paketiversioonide olemasolevaid muid õigusi migratsioon ei kirjuta üle; migratsioon lisab olemasolevatele tasulistele paketiversioonidele 45% nende tegelikust eurohinnast. Hilisem hinnamuutus vajab ka administraatori rahalimiidi muudatust. Administraator saab rahalimiiti paketis ja kasutaja erandiga muuta eurodes.
 
 Vestluse raha piirab server, enne iga tasulist API-kutset. Vestluse vastuste arv ei ole selle RAG-raja rahalimiit. Teiste funktsioonide ühikupiirid jäävad alles. **See arvestus ei hõlma varasemaid vestlusi ega STT, TTS, dokumenditöö või süvauuringute teisi mudeliradu.** Nende olemasolev arvestus jääb eraldi; kogu platvormi ühine AI-kulupiir ei ole selle muudatusega tõendatud. Liides ütleb sama piiri välja.
 
@@ -53,3 +53,20 @@ Kaks sünteetilist Luna standardkutset, `store: false`, 128 väljundtokeni piir.
 | Kokku | 3610 | 1802 | 1802 | 26 | **0,00025687** |
 
 Erinevus kinnitab, miks kõigi sisendtokenite 0,125 USD/miljoniga korrutamine ei ole täpne kuluarvestus. Need kaks kutset kontrollivad provider'i kasutusandmeid ja kalkulaatorit; kogu RAG-i pärismõõtmine ning avaldamise tulemus lisatakse pärast väljalaset.
+
+## Avaldamine ja kolme rolli pärismõõtmine
+
+Rahaarvestus avaldatud versioonis `10495045e78d32d57918c6f4ef70854b061f37f7`. [GitHubi build](https://github.com/LauRRaud/SotsiaalAI/actions/runs/37744907244) ja [deploy](https://github.com/LauRRaud/SotsiaalAI/actions/runs/37745109614) läbisid. Kolm migratsiooni rakendusid ning töötava teenuse kataloog kinnitas sama SHA.
+
+Kolm eraldatud testkontot, üks sünteetiline juhtum rolli kohta, päris allikabaas ja avaldatud `PilotService` koos EUR-arvestuse adapteriga. Avaliku API kasutajate lubatud loendit ei muudetud. See on teenuse pärisrada; HTTP autentimise rolliedastus on kaetud kohalike rajatestidega. [Täielik anonüümne mõõtmistõend](evidence/rag-cost-roles-live-2026-10-08.json).
+
+| Roll | API-kutseid | USD | EUR | Reserv pärast vastust |
+|---|---:|---:|---:|---:|
+| Pöörduja | 4 | 0,004491165 | 0,004018222 | 0 |
+| Sotsiaaltöötaja | 4 | 0,005431890 | 0,004859884 | 0 |
+| Teenuseosutaja | 4 | 0,003816610 | 0,003414702 | 0 |
+| Kokku | 12 | **0,013739665** | **0,012292808** | **0** |
+
+Kõik kolm vastust avaldati, kõik 12 kutset on hinnastatud. Kasutuskonto summa võrdub kviitungite EUR-summaga, USD-summa võrdub RAG-i eelarve pearaamatuga. Iga sama võtmega korduspäring taastas vastuse ilma ühegi uue API-kutseta. Testkontod ja nende vestlused kustutati; 12 sisuvaba kulukirjet säilisid kasutajaseoseta. Mõõteprotsessi taustal töötanud allikate soojendus hoidis protsessi pärast tulemuse ja puhastuse valmimist elus; lõpetati ainult see mõõteprotsess, mitte rakenduse teenus.
+
+**Rolli sisuline leid:** pöörduja sai juhise omavalitsusse pöördumiseks, spetsialist enda töö sammud. Teenuseosutaja vastus käskis tal aga teenuseosutajaga kokku leppida ja haldusakti vormistada, omistades talle korraldaja ülesande. Dialoogi juhis v36 eristab nüüd teenuseosutaja teenuse planeerimist, osutamist ja koostööd ametiasutuse otsustuspädevusest ning nimetab sammu eest vastutaja. Juhis ei sisalda mõõtejuhtumi asukohta, teenust ega oodatud vastust. V35 jääb loetavaks. Juhise, dialoogi ja plaanilepingu 18 sihttesti ning sihtlint läbisid. Paranduse avaldamine ja kordusmõõtmine on pooleli.

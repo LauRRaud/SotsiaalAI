@@ -29,7 +29,8 @@ test('prompt v10 keeps every v9 guardrail in each answer language, and v9 plans 
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-11'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-10'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-9'));
-  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-35');
+  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-36');
+  assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-35'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-34'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-33'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-32'));
@@ -290,7 +291,7 @@ test('dialogue prompt 35 and search-assist-11 (ADR-107): the answer and the plan
     'stays the specialist\'s place with the relation other in places; it is nobody\'s residence', 'For other roles nothing changes']) assert.ok(PLAN_ROLE_INSTRUCTIONS.includes(phrase), phrase);
   // General rules: no municipality, person or service of the conversation that showed the fault.
   assert.doesNotMatch(ROLE_INSTRUCTIONS + PLAN_ROLE_INSTRUCTIONS, /\d|Põlva|Rae|\bmees\b|\bman\b|eestkost|guardian|koduteenus|home service/iu);
-  assert.ok(tokenCount(ROLE_INSTRUCTIONS) < 240 && tokenCount(PLAN_ROLE_INSTRUCTIONS) < 120, `${tokenCount(ROLE_INSTRUCTIONS)} ${tokenCount(PLAN_ROLE_INSTRUCTIONS)}`);
+  assert.ok(tokenCount(ROLE_INSTRUCTIONS) < 320 && tokenCount(PLAN_ROLE_INSTRUCTIONS) < 120, `${tokenCount(ROLE_INSTRUCTIONS)} ${tokenCount(PLAN_ROLE_INSTRUCTIONS)}`);
 });
 
 test('dialogue prompt 29 to 32 (ADR-102): a finding carries its year, an older source is not the present, and evidence of different years is told in the order of time', () => {

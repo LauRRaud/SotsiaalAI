@@ -1,6 +1,6 @@
 # RAG-i tervikaudit: sisendikulu, kvaliteet ja käituskindlus
 
-08.10.2026. Audit: Codex. Käituskoodi ei muudetud.
+08.10.2026. Audit: Codex. Selle algse auditi käigus käituskoodi ei muudetud. Järgnenud rahaarvestuse teostus, avaldamine ja rollide pärismõõtmine on [eraldi tõendatud](rag-cost-accounting-2026-10-08.md).
 
 ## Järeldus
 
