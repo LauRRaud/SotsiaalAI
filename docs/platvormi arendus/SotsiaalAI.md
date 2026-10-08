@@ -92,6 +92,20 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**08.10 eesti hääl serveris: Meelis + omaniku kümneribaline EQ** (`e0d906ca`).
+Omaniku korraldus „vii serverisse” täidetud: GitHub ehitas tootmisartefakti ühe korra
+ja sama SHA paigaldati serverisse 08.10 kell 23.21 (Europe/Tallinn).
+Töötava frontendi protsessi ning väljalaske env-i häälevalik on kontrollitult
+`TARTUNLP_TTS_SPEAKER=meelis`; serveri EQ-failide SHA256 vastab avaldatud koodile.
+Ettelugemine ja häälvestlus kasutavad sama `/api/tts` rada. Omaniku kümme EQ-riba
+rakenduvad enne PCM16-t; lisamadalpääsu ega valjuse normaliseerimist ei lisata.
+12 sihttesti ja sihitud lint läbisid varem sama muutumatu koodiga; sõltumatu
+kuuldud võrdlusheli vahe kuni 1 PCM16 samm. Avalik tervisekontroll HTTP 200.
+Uue väljalaske autentitud ettelugemise/häälvestluse kuulamine on **NOT_RUN**.
+RAG-i avaldamata kohalikud muudatused jäid sellest väljalaskest välja.
+[GitHubi build](https://github.com/LauRRaud/SotsiaalAI/actions/runs/37838316860) · [deploy](https://github.com/LauRRaud/SotsiaalAI/actions/runs/37838630133) ·
+[kuuldud võrdlus ja sihttesti alus](../../tests/fixtures/audio/README.md).
+
 **08.10 RAG-i rahaarvestus ja rollid:** serveris `eb684d22`, juhis v36. API tegeliku kasutuse USD-arvestus ja kuupäevaga EKP kursi EUR-konto; kuupiirid pöördujal 3,60, spetsialistil 6,75 ja teenuseosutajal 9,00 EUR (45% paketist). Seitse pärispööret kõigi kolme rolliga, sh voogvastus: kviitungid ja konto võrdsed, korduspäringud tasuta, kustutamine säilitab kulu. Mõõtmine leidis teenuseosutajale omavalitsuse ülesannete andmise; juhis parandatud ja kordus kontrollitud. Kõik 30 mõõtekutset maksid 0,030712790 USD. Avalik kasutus on endiselt ühe konto ja 4 USD arendusplaani piires; teiste AI-funktsioonide ühine rahapiir ja auditi kontekstimahu/kvaliteedi leiud on eraldi lahti. [Teostus ja tõendid](../audits/rag-cost-accounting-2026-10-08.md), [tervikaudit](../audits/rag-system-audit-2026-10-08.md).
 
 **05.10: omaniku ülesanne „teeme need tugevaks“ — viis nõrka kohta. Kõik viis on tehtud ja mõõdetud kolme jooksuga (kokku 31 pööret, 0,171 USD). Üleriigilise seaduse „mis muutub“ on 05.10 õhtul tehtud ja mõõdetud ([ADR-091](../rag-v2/adr-091-version-change-places.md), 6 pööret, 0,0350 USD): muudetud paragrahvide lõigud jõuavad valiku kandidaatide hulka, server lisab alles jäetud paragrahvi teise redaktsiooni ise ja lastekaitseseaduse vastus võrdleb redaktsioone. Lahti on kolm asja: (1) Luna pakub nüüd kontakti peaaegu igas omavalitsuse vastuses, ka küsimata, mis on omaniku otsus ([ADR-089](../rag-v2/adr-089-closest-contact-directory.md), jaotis „Lahti“); (2) Tallinna üldine kontaktide kirje jätab ruumi ühele kokkuvõttele; (3) kirjete asjakohasuse järjestus Tallinnas eaka hoolduse küsimusele (stsenaariumide ühendtesti kuues stsenaarium).**
@@ -3505,7 +3519,21 @@ ei ole enam lahtist viga.
   Erinevus on nüüd hinnaotsus, mitte tehniline puudus, ja avaneb päeval, mil keegi on nõus
   RU/EN häälekulu kandma (kasutaja kvoodist või meie omast).
 
-### Eesti TTS — TEEMA LUKUS 03.08
+### Eesti TTS — Meelis + omaniku EQ (08.10)
+
+**08.10 eesti hääl serveris: Meelis + omaniku kümneribaline EQ** (`e0d906ca`).
+Omaniku korraldus „vii serverisse” täidetud: GitHub ehitas tootmisartefakti ühe korra
+ja sama SHA paigaldati serverisse 08.10 kell 23.21 (Europe/Tallinn).
+Töötava frontendi protsessi ning väljalaske env-i häälevalik on kontrollitult
+`TARTUNLP_TTS_SPEAKER=meelis`; serveri EQ-failide SHA256 vastab avaldatud koodile.
+Ettelugemine ja häälvestlus kasutavad sama `/api/tts` rada. Omaniku kümme EQ-riba
+rakenduvad enne PCM16-t; lisamadalpääsu ega valjuse normaliseerimist ei lisata.
+12 sihttesti ja sihitud lint läbisid varem sama muutumatu koodiga; sõltumatu
+kuuldud võrdlusheli vahe kuni 1 PCM16 samm. Avalik tervisekontroll HTTP 200.
+Uue väljalaske autentitud ettelugemise/häälvestluse kuulamine on **NOT_RUN**.
+RAG-i avaldamata kohalikud muudatused jäid sellest väljalaskest välja.
+[GitHubi build](https://github.com/LauRRaud/SotsiaalAI/actions/runs/37838316860) · [deploy](https://github.com/LauRRaud/SotsiaalAI/actions/runs/37838630133) ·
+[kuuldud võrdlus ja sihttesti alus](../../tests/fixtures/audio/README.md).
 
 Küsimus oli: **kas eestikeelse ettelugemise saab teha tasuta?** Brauseri hääl vastuseks ei
 kõlba — brauserites ei ole eesti häält, seega loetaks eesti tekst inglise häälega ette.
