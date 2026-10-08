@@ -13,9 +13,12 @@ test('index capacity is one shared bound for planning, purchase and indexing', (
   assert.throws(() => assertIndexCapacity({ documents: -1, units: 1 }), /local_index_limit/);
 });
 
-test('the capacity is a measured decision (ADR-100): 80,000 units holds corpus v66 and the documents that waited for it', () => {
+test('the capacity is a measured decision (ADR-100, ADR-108): 100,000 units, 10,000 documents', () => {
   // A change of these numbers needs a new measurement of a turn's search cost (ADR-036), written into an ADR.
-  assert.deepEqual({ ...INDEX_CAPACITY }, { documents: 10000, units: 80000 });
+  // ADR-108 (08.10.2026): 80,000 -> 100,000 units, measured with six generations up to the live 68,408 units.
+  assert.deepEqual({ ...INDEX_CAPACITY }, { documents: 10000, units: 100000 });
+  assert.doesNotThrow(() => assertIndexCapacity({ documents: 8337, units: 68408 + 31592 }));
+  assert.throws(() => assertIndexCapacity({ documents: 8337, units: 100001 }), /local_index_limit/);
   // Corpus v66 (8179 documents, 57 860 units) with the 30 studies the first attempt of v66 was refused for (3959 units).
   assert.doesNotThrow(() => assertIndexCapacity({ documents: 8209, units: 57860 + 3959 }));
 });
