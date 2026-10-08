@@ -47,6 +47,12 @@ See läbimäng asendab ka ADR-105 serverikontrolli: seal olid muudetud koodist a
 
 Kõik, mis sõltub mudelist: kas assistent nüüd küsib, kas ta ei korda küsimust, kas insuldi sõnum saab päringud ja õiged lõigud, kas Jüri valda öeldakse ühe korra. Selleks on vaja mudeliga jooksu; kahe stsenaariumi kordus maksab umbes 0,32 USD ja ootab omaniku sõna.
 
+## Täpsustus 08.10.2026 õhtul: oma valla asulat ei loetleta
+
+Väike tasuline kontroll pärast [ADR-110](adr-110-place-by-its-quote.md) parandust (lapsevanema vestluse kuus esimest pööret, 0,031 USD): „Elame Jüris.“ andis Rae valla ja vastus ütles ühe korra, et Jüri alevik kuulub Rae valda. Kaks pööret hiljem, kui ulatus oli juba Rae vald ja `known_places` loetles sama asula, algas vastus sama lausega uuesti.
+
+`namedPlace` jätab nüüd `known_places` loendist välja asula, mille omavalitsus on pöörde enda ulatus: vastus töötab selle valla kirjetega niigi. Loend jääb teiste valdade asulate jaoks (kasutaja küla, kui jutt käib ema linnast). Kas kordamine sellega kaob, on mudeliga mõõtmata.
+
 ## Mis jääb lahti
 
 - Roll ei jõua mudelini (testi viga 4): spetsialistile vastatakse nagu abivajajale ja valla, kus ta töötab, korda ei kasutata. See on eraldi muudatus.
