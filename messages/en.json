@@ -1691,7 +1691,8 @@
         "RAG_SEARCH": "Knowledge base searches",
         "STT_SECONDS": "Audio transcription",
         "TTS_CHARS": "Text to speech",
-        "STORAGE_BYTES": "File storage"
+        "STORAGE_BYTES": "File storage",
+        "AI_COST_NANO_EUR": "AI chat cost (EUR)"
       },
       "periods": {
         "DAILY": "Daily limit",
@@ -1707,6 +1708,17 @@
       "units": {
         "minutes": "{count} min",
         "characters": "{count} characters"
+      },
+      "cost_breakdown": "Used {spent}; reserved {reserved}.",
+      "cost_details": "API cost details",
+      "cost_basis": "Measured cost this month: {amount} ({count} API calls).",
+      "cost_scope": "This covers new RAG chats: query planning, embeddings, source selection and answers. EUR amounts use the ECB rate saved when each request starts. Earlier chats and other AI features are not included.",
+      "cost_pending": "Cost pending",
+      "cost_stages": {
+        "plan": "Query planning",
+        "embedding": "Embeddings",
+        "rerank": "Source selection",
+        "answer": "Answer"
       }
     },
     "email": "Email",

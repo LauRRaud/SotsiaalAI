@@ -1,0 +1,47 @@
+{
+  "measuredAt": "2026-10-08T07:15:46.63Z",
+  "synthetic": true,
+  "limitUsd": 0.01,
+  "calls": [
+    {
+      "httpStatus": 200,
+      "requestId": "req_8fc5ee50fa14467996868b01ef7c14ad",
+      "model": "gpt-6-luna",
+      "status": "completed",
+      "responseId": "resp_05bb1b38f571412e016ac743238a0887d2b6e1f3ea68151002",
+      "serviceTier": "default",
+      "usage": {
+        "input_tokens": 1805,
+        "input_tokens_details": {
+          "cache_write_tokens": 1802,
+          "cached_tokens": 0
+        },
+        "output_tokens": 13,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 1818
+      }
+    },
+    {
+      "httpStatus": 200,
+      "requestId": "req_3a52aa8c1e73401e8ebc1e43165559f2",
+      "model": "gpt-6-luna",
+      "status": "completed",
+      "responseId": "resp_04e3aa9ef3c095e8016ac743258acc87d29872a02727732f07",
+      "serviceTier": "default",
+      "usage": {
+        "input_tokens": 1805,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 1802
+        },
+        "output_tokens": 13,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 1818
+      }
+    }
+  ]
+}

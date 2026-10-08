@@ -7,6 +7,7 @@ import { authConfig } from "@/auth";
 import { assertAdmin } from "@/lib/authz";
 import { prisma } from "@/lib/prisma";
 import { safeError } from "@/lib/privacy/safeError";
+import { getPlatformCostSnapshot } from "@/lib/usage/costSnapshot";
 import {
   normalizeEntitlementInput,
   normalizePrice,
@@ -40,7 +41,7 @@ export async function GET() {
   const { authz } = await requireAdmin();
   if (!authz.ok) return json({ ok: false, messageKey: authz.message }, authz.status || 403);
   try {
-    const [plans, audit] = await Promise.all([
+    const [plans, audit, costs] = await Promise.all([
       prisma.planDefinition.findMany({
         where: { active: true },
         include: { entitlements: { orderBy: { metric: "asc" } }, _count: { select: { subscriptions: true } } },
@@ -51,9 +52,10 @@ export async function GET() {
         orderBy: { createdAt: "desc" },
         take: 20,
         select: { id: true, createdAt: true, actorUserId: true, resourceId: true, meta: true }
-      })
+      }),
+      getPlatformCostSnapshot(prisma)
     ]);
-    return json({ ok: true, plans: plans.map(serializePlan), audit });
+    return json({ ok: true, plans: plans.map(serializePlan), audit, costs });
   } catch (error) {
     console.error("[admin/usage/plans GET]", safeError(error));
     return json({ ok: false, messageKey: "api.admin.usage.plans_load_failed" }, 500);

@@ -1,0 +1,369 @@
+{
+  "measuredAt": "2026-10-08T06:50:51.318Z",
+  "release": "e499edfb1cb30bc4056979e2feddc74cf9f9bdb6",
+  "method": "SQL aggregate only; READ ONLY; no message, question, answer or identity selected",
+  "plan": {
+    "model": "gpt-6-luna",
+    "reasoning": "low",
+    "profileId": "hybrid-estnltk-chat-v6",
+    "maxInputTokens": 300000,
+    "maxOutputTokens": 8192,
+    "searchAssist": "rag-v2/search-assist-11",
+    "promptVersion": "m4-grounded-dialogue-35",
+    "dialogueStateVersion": "m4-dialogue-state-5",
+    "recordCatalogue": "rag-v2/record-catalogue-4",
+    "generationId": "search_generation_8b1e1008745bd98857dc603021261255a7044685ddca764ae6db5fb46e8d39f8",
+    "retentionHours": null,
+    "auditDays": 7,
+    "prices": {
+      "embeddingInput": 130,
+      "answerInput": 125,
+      "answerOutput": 500,
+      "unit": "nano_USD_per_token",
+      "note": "Public standard pricing candidate; answer input conservatively includes 1.25x cache-write rate. Account agreement and approved budget still required.",
+      "checkedAt": "2026-09-23",
+      "references": [
+        "https://developers.openai.com/api/docs/models/gpt-6-luna"
+      ]
+    },
+    "budget": {
+      "attempts": 4000,
+      "embeddingAttempts": 2000,
+      "answerAttempts": 2000,
+      "tokens": 400000000,
+      "nanoUsd": 4000000000
+    }
+  },
+  "documents": 8337,
+  "stages": [
+    {
+      "stage": "answer",
+      "calls": 232,
+      "measured_calls": 232,
+      "input": "3737517",
+      "output": "197008",
+      "mean_input": "16110.0",
+      "median_input": 14205.5,
+      "p95_input": 24633.399999999998,
+      "max_input": "27077",
+      "measured_cache_calls": 232,
+      "cached_input": "1357777",
+      "cache_write": "2379044",
+      "reasoning_output": "92175",
+      "estimated_usd": "0.56569362500000000000",
+      "reserved_usd": "2.9336225000000000",
+      "mean_ms": "5595"
+    },
+    {
+      "stage": "embedding",
+      "calls": 233,
+      "measured_calls": 233,
+      "input": "13627",
+      "output": "0",
+      "mean_input": "58.5",
+      "median_input": 52,
+      "p95_input": 103.39999999999998,
+      "max_input": "266",
+      "measured_cache_calls": 0,
+      "cached_input": null,
+      "cache_write": null,
+      "reasoning_output": null,
+      "estimated_usd": "0.00177151000000000000",
+      "reserved_usd": "0.00177151000000000000",
+      "mean_ms": "519"
+    },
+    {
+      "stage": "plan",
+      "calls": 233,
+      "measured_calls": 233,
+      "input": "315861",
+      "output": "43478",
+      "mean_input": "1355.6",
+      "median_input": 1286,
+      "p95_input": 1623.1999999999998,
+      "max_input": "1698",
+      "measured_cache_calls": 0,
+      "cached_input": null,
+      "cache_write": null,
+      "reasoning_output": "27504",
+      "estimated_usd": "0.06122162500000000000",
+      "reserved_usd": "0.45694212500000000000",
+      "mean_ms": "2285"
+    },
+    {
+      "stage": "rerank",
+      "calls": 233,
+      "measured_calls": 233,
+      "input": "4043520",
+      "output": "25038",
+      "mean_input": "17354.2",
+      "median_input": 17523,
+      "p95_input": 21468.999999999996,
+      "max_input": "27241",
+      "measured_cache_calls": 0,
+      "cached_input": null,
+      "cache_write": null,
+      "reasoning_output": "18125",
+      "estimated_usd": "0.51795900000000000000",
+      "reserved_usd": "2.0608293750000000",
+      "mean_ms": "1879"
+    }
+  ],
+  "daily": [
+    {
+      "day": "2026-10-05",
+      "stage": "answer",
+      "calls": 37,
+      "input": "665417",
+      "output": "64986",
+      "estimated_usd": "0.11567012500000000000"
+    },
+    {
+      "day": "2026-10-05",
+      "stage": "embedding",
+      "calls": 37,
+      "input": "1919",
+      "output": "0",
+      "estimated_usd": "0.00024947000000000000"
+    },
+    {
+      "day": "2026-10-05",
+      "stage": "plan",
+      "calls": 37,
+      "input": "47482",
+      "output": "6169",
+      "estimated_usd": "0.00901975000000000000"
+    },
+    {
+      "day": "2026-10-05",
+      "stage": "rerank",
+      "calls": 37,
+      "input": "623854",
+      "output": "3559",
+      "estimated_usd": "0.07976125000000000000"
+    },
+    {
+      "day": "2026-10-06",
+      "stage": "answer",
+      "calls": 63,
+      "input": "966972",
+      "output": "60231",
+      "estimated_usd": "0.15098700000000000000"
+    },
+    {
+      "day": "2026-10-06",
+      "stage": "embedding",
+      "calls": 64,
+      "input": "3743",
+      "output": "0",
+      "estimated_usd": "0.00048659000000000000"
+    },
+    {
+      "day": "2026-10-06",
+      "stage": "plan",
+      "calls": 64,
+      "input": "81759",
+      "output": "10975",
+      "estimated_usd": "0.01570737500000000000"
+    },
+    {
+      "day": "2026-10-06",
+      "stage": "rerank",
+      "calls": 64,
+      "input": "1115903",
+      "output": "7515",
+      "estimated_usd": "0.14324537500000000000"
+    },
+    {
+      "day": "2026-10-07",
+      "stage": "answer",
+      "calls": 132,
+      "input": "2105128",
+      "output": "71791",
+      "estimated_usd": "0.29903650000000000000"
+    },
+    {
+      "day": "2026-10-07",
+      "stage": "embedding",
+      "calls": 132,
+      "input": "7965",
+      "output": "0",
+      "estimated_usd": "0.00103545000000000000"
+    },
+    {
+      "day": "2026-10-07",
+      "stage": "plan",
+      "calls": 132,
+      "input": "186620",
+      "output": "26334",
+      "estimated_usd": "0.03649450000000000000"
+    },
+    {
+      "day": "2026-10-07",
+      "stage": "rerank",
+      "calls": 132,
+      "input": "2303763",
+      "output": "13964",
+      "estimated_usd": "0.29495237500000000000"
+    }
+  ],
+  "turns": [
+    {
+      "state": "answer_rejected",
+      "turns": 1,
+      "mean_input": "47054.0",
+      "median_input": 47054,
+      "p95_input": 47054,
+      "max_input": "47054",
+      "mean_output": "815.0",
+      "mean_estimated_usd": "0.00629523000000000000"
+    },
+    {
+      "state": "completed",
+      "turns": 231,
+      "mean_input": "34760.2",
+      "median_input": 34297,
+      "p95_input": 43954,
+      "max_input": "49167",
+      "mean_output": "1144.1",
+      "mean_estimated_usd": "0.00492464512987012987"
+    },
+    {
+      "state": "stopped",
+      "turns": 1,
+      "mean_input": "20249.0",
+      "median_input": 20249,
+      "p95_input": 20249,
+      "max_input": "20249",
+      "mean_output": "433.0",
+      "mean_estimated_usd": "0.00275750500000000000"
+    }
+  ],
+  "conversations": [
+    {
+      "conversations": 150,
+      "min_turns": 1,
+      "max_turns": 30,
+      "median_turns": 1,
+      "median_input": 33001,
+      "max_input": "1250753",
+      "max_estimated_usd": "0.17030213500000000000"
+    }
+  ],
+  "largestConversations": [
+    {
+      "turns": 30,
+      "input": "1250753",
+      "output": "27324",
+      "estimated_usd": "0.17030213500000000000"
+    },
+    {
+      "turns": 30,
+      "input": "1049497",
+      "output": "29349",
+      "estimated_usd": "0.14613878500000000000"
+    },
+    {
+      "turns": 6,
+      "input": "244329",
+      "output": "5777",
+      "estimated_usd": "0.03347629500000000000"
+    }
+  ],
+  "states": [
+    {
+      "state": "answer_rejected",
+      "turns": 1
+    },
+    {
+      "state": "completed",
+      "turns": 231
+    },
+    {
+      "state": "stopped",
+      "turns": 1
+    }
+  ],
+  "failures": [
+    {
+      "error": "audit_packet_too_large",
+      "turns": 1
+    },
+    {
+      "error": "invalid_answer",
+      "turns": 1
+    }
+  ],
+  "fallbacks": [],
+  "storage": [
+    {
+      "rows": 233,
+      "mean_row_bytes": "145169",
+      "table_bytes": "64397312",
+      "no_expiry": 233,
+      "lean": 0
+    }
+  ],
+  "currentLedger": [
+    {
+      "totals": {
+        "tokens": 11255613,
+        "nanoUsd": 1748319135,
+        "attempts": 276,
+        "planAttempts": 69,
+        "answerAttempts": 69,
+        "rerankAttempts": 69,
+        "embeddingAttempts": 69
+      }
+    }
+  ],
+  "versions": [
+    {
+      "search_assist": "rag-v2/search-assist-8",
+      "turns": 136,
+      "first_at": "2026-10-05T10:01:31.257Z",
+      "last_at": "2026-10-07T15:25:04.255Z"
+    },
+    {
+      "search_assist": "rag-v2/search-assist-9",
+      "turns": 97,
+      "first_at": "2026-10-07T16:28:56.925Z",
+      "last_at": "2026-10-07T17:59:31.854Z"
+    }
+  ],
+  "index": [
+    {
+      "id": "search_generation_8b1e1008745bd98857dc603021261255a7044685ddca764ae6db5fb46e8d39f8",
+      "state": "ready",
+      "expected_count": 68408,
+      "documents": 8337,
+      "matches_plan": true
+    }
+  ],
+  "directory": [
+    {
+      "documents": 8337,
+      "journal_documents": 892,
+      "structured_documents": 5705,
+      "has_valid_from": 537,
+      "has_publication_date_or_year": 1821,
+      "incoming_dependencies": "158",
+      "directory_units": "68408"
+    }
+  ],
+  "generations": [
+    {
+      "state": "ready",
+      "generations": 23
+    }
+  ],
+  "chunkTokens": [
+    {
+      "units": 68408,
+      "mean": "497.8",
+      "median": 525,
+      "p95": 891,
+      "max": 1872
+    }
+  ]
+}

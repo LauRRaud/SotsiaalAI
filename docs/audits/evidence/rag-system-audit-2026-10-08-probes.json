@@ -1,0 +1,67 @@
+{
+  "revision": "e499edfb1cb30bc4056979e2feddc74cf9f9bdb6",
+  "tokenizer": "js-tiktoken@1.0.21/cl100k_base",
+  "caveat": "Local token estimates; synthetic content; not provider billing counts or quality proof",
+  "dialogueLimits": {
+    "conversationTurns": 90,
+    "scopeTurns": 30,
+    "scopeTokens": 3000,
+    "searchTokens": 4500,
+    "dialogueTokens": 9000
+  },
+  "requestParts": {
+    "plan": {
+      "instructions": 1381,
+      "schema": 183,
+      "input": 33,
+      "serialized_body": 1670,
+      "reservation_input_bound": 8560
+    },
+    "rerank36": {
+      "instructions": 578,
+      "schema": 164,
+      "input": 42332,
+      "serialized_body": 43171,
+      "reservation_input_bound": 117855
+    },
+    "answerEmptyEvidence": {
+      "instructions": 6954,
+      "schema": 1144,
+      "input": 92,
+      "serialized_body": 8283,
+      "reservation_input_bound": 41112
+    }
+  },
+  "checks": {
+    "cache_fields_lost_in_assist_stages": true,
+    "assist_input_cap_not_enforced": true,
+    "reference_validation_is_not_factual_verification": true,
+    "dynamic_question_precedes_evidence_and_no_explicit_cache_boundary": true,
+    "collector_reads_entire_body_before_byte_cap": {
+      "configured": 32,
+      "consumed": 4096
+    },
+    "collector_body_error_escapes_structured_result": true
+  },
+  "cacheAccounting": {
+    "plan": {
+      "input": 1000,
+      "output": 10
+    },
+    "rerank": {
+      "input": 1000,
+      "output": 10
+    },
+    "answer": {
+      "input": 1000,
+      "output": 10,
+      "cachedInput": 300,
+      "cacheWriteInput": 600
+    }
+  },
+  "memoryCarry": {
+    "before": 12,
+    "carried": 8,
+    "chars": 1705
+  }
+}

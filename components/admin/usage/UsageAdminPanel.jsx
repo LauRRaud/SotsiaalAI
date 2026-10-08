@@ -9,9 +9,11 @@ import Input from "@/components/ui/Input";
 import AdminHelpButton from "@/components/admin/AdminHelpButton";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
+import { displayUsageAmount, storeUsageAmount } from "@/lib/usage/amounts";
 
 const PERIODS = ["DAILY", "WEEKLY", "MONTHLY", "LIFETIME"];
 const METRICS = [
+  "AI_COST_NANO_EUR",
   "CHAT_ASSISTANT_REPLY", "DOCUMENT_GENERATE", "DOCUMENT_REFINE", "FILE_ANALYZE",
   "DEEP_RESEARCH_RUN", "RAG_SEARCH", "STT_SECONDS", "TTS_CHARS", "STORAGE_BYTES"
 ];
@@ -23,8 +25,8 @@ function clonePlan(plan) {
     entitlements: (plan.entitlements || []).map(item => ({
       ...item,
       enabled: item.enabled !== false,
-      softLimit: item.softLimit ?? "",
-      hardLimit: item.hardLimit ?? ""
+      softLimit: displayUsageAmount(item.metric, item.softLimit),
+      hardLimit: displayUsageAmount(item.metric, item.hardLimit)
     }))
   } : null;
 }
@@ -43,6 +45,7 @@ export default function UsageAdminPanel() {
   const { t, locale } = useI18n();
   const [plans, setPlans] = useState([]);
   const [planAudit, setPlanAudit] = useState([]);
+  const [costs, setCosts] = useState(null);
   const [selectedPlanId, setSelectedPlanId] = useState("");
   const [draft, setDraft] = useState(null);
   const [planReason, setPlanReason] = useState("");
@@ -73,6 +76,7 @@ export default function UsageAdminPanel() {
       if (!response.ok || payload?.ok === false) throw new Error(resolveApiMessage({ payload, t }));
       setPlans(payload.plans || []);
       setPlanAudit(payload.audit || []);
+      setCosts(payload.costs || null);
       setSelectedPlanId(current => current || payload.plans?.[0]?.id || "");
     } catch (error) {
       setNotice({ tone: "error", text: error?.message || t("admin.usage.errors.plans_load") });
@@ -116,7 +120,8 @@ export default function UsageAdminPanel() {
           planId: draft.id,
           price: draft.price,
           reason: planReason,
-          entitlements: METRICS.map(metric => entitlementFor(draft, metric))
+          entitlements: METRICS.map(metric => { const item = entitlementFor(draft, metric); return { ...item,
+            softLimit: storeUsageAmount(metric, item.softLimit), hardLimit: storeUsageAmount(metric, item.hardLimit) }; })
         })
       });
       const payload = await response.json().catch(() => ({}));
@@ -183,6 +188,8 @@ export default function UsageAdminPanel() {
         headers: { "Content-Type": "application/json", "Accept-Language": locale },
         body: JSON.stringify({
           ...overrideDraft,
+          softLimit: storeUsageAmount(overrideDraft.metric, overrideDraft.softLimit),
+          hardLimit: storeUsageAmount(overrideDraft.metric, overrideDraft.hardLimit),
           userId: userResult.user.id,
           validUntil: overrideDraft.validUntil ? new Date(overrideDraft.validUntil).toISOString() : null
         })
@@ -234,6 +241,14 @@ export default function UsageAdminPanel() {
       </header>
 
       {notice ? <div className="usage-admin__notice" data-tone={notice.tone} role="status">{notice.text}</div> : null}
+
+      {costs ? <section className="usage-admin__surface">
+        <h3>{t("profile.usage.cost_details")}</h3>
+        <p>{t("profile.usage.cost_basis", { amount: `${(Number(costs.billedNanoUsd) / 1e9).toFixed(6)} USD`, count: costs.calls })}</p>
+        <p>{t("profile.usage.cost_breakdown", { spent: `${(Number(costs.billedNanoUsd) / 1e9).toFixed(6)} USD`,
+          reserved: `${(Number(costs.pendingNanoUsd) / 1e9).toFixed(6)} USD` })}</p>
+        <p>{t("profile.usage.cost_scope")}</p>
+      </section> : null}
 
       <div className="usage-admin__layout">
         <section className="usage-admin__surface" aria-labelledby="usage-plans-title">
@@ -303,7 +318,7 @@ export default function UsageAdminPanel() {
                 </div>
               ) : null}
               <div className="usage-admin__metric-strip">
-                {(userResult.snapshot?.metrics || []).filter(item => item.metric !== "RAG_SEARCH").map(item => <span key={item.metric} data-state={item.state}>{t(`profile.usage.metrics.${item.metric}`)} {item.consumed}/{item.hardLimit}</span>)}
+                {(userResult.snapshot?.metrics || []).filter(item => item.metric !== "RAG_SEARCH").map(item => <span key={item.metric} data-state={item.state}>{t(`profile.usage.metrics.${item.metric}`)} {displayUsageAmount(item.metric, item.consumed)}/{displayUsageAmount(item.metric, item.hardLimit)}</span>)}
               </div>
               <Form className="usage-admin__override-form" onSubmit={saveOverride}>
                 <label>{t("admin.usage.metric")}<Dropdown ariaLabel={t("admin.usage.metric")} value={overrideDraft.metric} onChange={metric => setOverrideDraft({ ...overrideDraft, metric })} options={METRICS.map(metric => ({ value: metric, label: t(`profile.usage.metrics.${metric}`) }))} /></label>
@@ -317,7 +332,7 @@ export default function UsageAdminPanel() {
               <div className="usage-admin__override-list">
                 {(userResult.overrides || []).map(item => {
                   const active = !item.validUntil || new Date(item.validUntil) > new Date();
-                  return <article key={item.id} data-active={active ? "true" : "false"}><div><strong>{t(`profile.usage.metrics.${item.metric}`)}</strong><p>{item.reason}</p></div><span>{item.hardLimit ?? "-"} · {item.period}</span>{active ? <Button type="button" onClick={() => endOverride(item.id)} disabled={savingOverride}>{t("admin.usage.end_override")}</Button> : null}</article>;
+                  return <article key={item.id} data-active={active ? "true" : "false"}><div><strong>{t(`profile.usage.metrics.${item.metric}`)}</strong><p>{item.reason}</p></div><span>{displayUsageAmount(item.metric, item.hardLimit) || "-"} · {item.period}</span>{active ? <Button type="button" onClick={() => endOverride(item.id)} disabled={savingOverride}>{t("admin.usage.end_override")}</Button> : null}</article>;
                 })}
               </div>
             </div>

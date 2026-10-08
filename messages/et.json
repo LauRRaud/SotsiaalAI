@@ -1691,7 +1691,8 @@
         "RAG_SEARCH": "Teadmubaasi otsingud",
         "STT_SECONDS": "Heli transkribeerimine",
         "TTS_CHARS": "Teksti ettelugemine",
-        "STORAGE_BYTES": "Failide salvestusruum"
+        "STORAGE_BYTES": "Failide salvestusruum",
+        "AI_COST_NANO_EUR": "AI-vestluste kulu (EUR)"
       },
       "periods": {
         "DAILY": "Päevane limiit",
@@ -1707,6 +1708,17 @@
       "units": {
         "minutes": "{count} min",
         "characters": "{count} märki"
+      },
+      "cost_breakdown": "Kasutatud {spent}; broneeritud {reserved}.",
+      "cost_details": "API-kulu üksikasjad",
+      "cost_basis": "Selle kuu mõõdetud kulu: {amount} ({count} API-kutset).",
+      "cost_scope": "Arvestus hõlmab uusi RAG-vestlusi: otsinguplaani, päringuvektoreid, allikavalikut ja vastamist. Eurosumma kasutab päringu alustamisel salvestatud EKP kurssi. Varasemad vestlused ja teiste AI-funktsioonide kulu ei sisaldu selles arvestuses.",
+      "cost_pending": "Kulu selgitamisel",
+      "cost_stages": {
+        "plan": "Otsinguplaan",
+        "embedding": "Päringuvektorid",
+        "rerank": "Allikavalik",
+        "answer": "Vastus"
       }
     },
     "email": "E-post",

@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Button from "@/components/ui/Button";
 import { useI18n } from "@/components/i18n/I18nProvider";
 
-const HIDDEN_METRICS = new Set(["RAG_SEARCH"]);
+const HIDDEN_METRICS = new Set(["RAG_SEARCH", "CHAT_ASSISTANT_REPLY"]);
 const LOCALE_TAGS = { et: "et-EE", en: "en-GB", ru: "ru-RU" };
 
 function asNumber(value) {
@@ -18,6 +18,8 @@ function formatCount(value, locale) {
 
 function formatMetricValue(metric, value, locale, t) {
   const amount = asNumber(value);
+  if (metric === "AI_COST_NANO_EUR") return new Intl.NumberFormat(LOCALE_TAGS[locale] || locale,
+    { style: "currency", currency: "EUR", minimumFractionDigits: 2, maximumFractionDigits: 4 }).format(amount / 1e9);
   if (metric === "STORAGE_BYTES") {
     const units = ["B", "KB", "MB", "GB", "TB"];
     let unitIndex = 0;
@@ -175,6 +177,12 @@ export default function UsageOverview({ active = true, onManageSubscription }) {
                   <span>{t(`profile.usage.periods.${item.period}`)}</span>
                   {item.resetAt ? <span>{t("profile.usage.resets", { date: formatDate(item.resetAt, locale) })}</span> : null}
                 </div>
+                {item.metric === "AI_COST_NANO_EUR" ? (
+                  <p className="usage-meter__notice">{t("profile.usage.cost_breakdown", {
+                    spent: formatMetricValue(item.metric, item.used, locale, t),
+                    reserved: formatMetricValue(item.metric, item.reserved, locale, t)
+                  })}</p>
+                ) : null}
                 {item.state !== "normal" ? (
                   <p className="usage-meter__notice">{t(`profile.usage.states.${item.state}`)}</p>
                 ) : null}
@@ -187,6 +195,22 @@ export default function UsageOverview({ active = true, onManageSubscription }) {
           <p>{t("profile.usage.free_description")}</p>
         </div>
       )}
+
+      {snapshot.costs ? (
+        <details className="usage-meter">
+          <summary>{t("profile.usage.cost_details")}</summary>
+          <p>{t("profile.usage.cost_basis", { amount: new Intl.NumberFormat(LOCALE_TAGS[locale] || locale,
+            { style: "currency", currency: "USD", minimumFractionDigits: 4, maximumFractionDigits: 6 })
+            .format(asNumber(snapshot.costs.billedNanoUsd) / 1e9), count: snapshot.costs.calls })}</p>
+          <p>{t("profile.usage.cost_scope")}</p>
+          {snapshot.costs.recent.map(call => (
+            <p key={call.id}>
+              {formatDate(call.createdAt, locale)} · {t(`profile.usage.cost_stages.${call.stage}`)} · {call.billedNanoUsd == null
+                ? t("profile.usage.cost_pending") : `${(asNumber(call.billedNanoUsd) / 1e9).toFixed(6)} USD`}
+            </p>
+          ))}
+        </details>
+      ) : null}
 
       {plan.key !== "admin_internal" ? (
         <div className="usage-overview__action">

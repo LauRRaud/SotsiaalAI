@@ -16,6 +16,18 @@ const completed = question => ({ id: 't1', state: 'completed', mode: 'real', que
 const events = async response => { const out = []; for await (const ev of createSSEReader(response.body)) out.push({ event: ev.event, data: JSON.parse(ev.data) }); return out; };
 const gate = () => { let open; const promise = new Promise(resolve => { open = resolve; }); return { promise, open }; };
 
+test('a monetary quota failure remains a 429 with the EUR metric, even when a stopped turn exists', async () => {
+  for (const stream of [false,true]) {
+    const session = async () => ({ config: {}, store: { existing: async () => { throw Error('must not turn quota into validation failure'); } },
+      service: { run: async () => { throw failure('USAGE_LIMIT_EXCEEDED', { pilotTurnId: 't1', details: { bucket: {
+        metric: 'AI_COST_NANO_EUR', used: 3600000000n, reserved: 0n, hardLimit: 3600000000n, remaining: 0n,
+        periodEnd: new Date(Date.now()+86400000) } } }); } } });
+    const response = await pilotPost(request('Synthetic cost test?',{stream}),{authenticate,session});
+    const result = stream ? (await events(response)).at(-1).data : {status:response.status,body:await response.json()};
+    assert.equal(result.status,429); assert.equal(result.body.usage.metric,'AI_COST_NANO_EUR');
+  }
+});
+
 test('ADR-107: the turn carries the role of the session, an administrator the chosen view role, and never a role of the request body', async () => {
   const cookies = value => ({ cookies: { get: name => (name === 'sotsiaalai_admin_view_role' && value ? { value } : undefined) } });
   // The platform's roles by their model names; an administrator without a chosen view answers as a specialist.
