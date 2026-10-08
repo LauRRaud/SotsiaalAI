@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_pensioni_taotlemine_pensioniiga",
+  "title": "Pensioniiga",
+  "register_title": "Pensioniiga",
+  "source_id": "ska_pensioni_taotlemine_pensioniiga",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-taotlemine/pensioniiga",
+  "source_path": "ska_pensioni_taotlemine_pensioniiga.html",
+  "source_format": "html",
+  "source_sha256": "b48b4759b86f30d33c529a9657b5be75b95697d397dffb6a8379545f406bfd0b",
+  "content_sha256": "848fb6e9ce58a4850f30875aee6ac1cfe9ae2078ea1406e0f5ee1f8f88537d41",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:24:35.927Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-10-05",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:02:00 GMT",
+      "etag": null
+    },
+    "raw_sha256": "eef4e1eea22c9a9abec41676da0461cbb806c50c1f149b129af319407b230cc4",
+    "stats": {
+      "words": 129,
+      "blocks": 10,
+      "headings": 2,
+      "tables": 0,
+      "links": 4,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

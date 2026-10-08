@@ -11,14 +11,14 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | organisatsioonid | 1 | 3 | Ühe organisatsiooni (Astangu) käsitsi koostatud pakett: sisu ja allikad. RAG-is seda paketti ei ole. Organisatsioonide enda veebilehed on RAG-is (vt „RAG-i seis“). |
 | oigusaktid | 609 | 623 | XML-aktid, sh eri redaktsioonid ja omavalitsuste teised kehtivad sotsiaalaktid (ADR-058); kehtivus tuleb vastuvõtul kontrollida. Aktide lisadest tuletatud allikad (`lisad/`): kaks tabelit (ADR-050) ja kaksteist omavalitsuse lisa teksti (ADR-053); iga tuletatud allikas nimetab oma akti redaktsiooni. Üks akt on allikas ainult nimetatud paragrahvide ulatuses (registrikirje väli `xml_sections`, ADR-076): `103072026024.xml`, 2026. aasta riigieelarve seaduse § 2; fail ise on Riigi Teataja algfail. |
 | teadmised | 0 | 7 | Allikapõhised teadmiskaardid (tingimused, erandid, mõisted ja nende seosed) valitud allikatele; iga fail on seotud oma allika räsiga (ADR-054). |
-| register | 0 | 6 | Kavandatud allikate register ja korjatavate veebilehtede nimekirjad (`web_pages.json` ametlikud juhislehed, `web_pages_vendors.json` abivahendite müüjate lehed, `web_pages_organisations.json` puuetega inimeste organisatsioonide lehed koos mustriga, mis pealkirja järgi välja jääb; ADR-095), mitte teadmistekst. Mis müüjate ja organisatsioonide lehtedest RAG-is on, näitab „RAG-i seis“. `newsletter_documents.json` on ajakirja Sotsiaaltöö uudiskirjas viidatud dokumentide loend (ADR-099): pealkiri, väljaandja ametlik aadress ja seis, sh need, mida RAG-is ei ole (ingliskeelsed, tekstikihita, liiga suured, vastuvõtu kinni peetud, arvutabelid). |
-| veebilehed | 31 | 62 | Ametlikud juhislehed, korjatud skriptiga `scripts/rag-v2-web-pages.mjs` (ADR-095): lehe sisuosa ilma saidi menüüde ja isikute kontaktideta, metaandmetes aadress, kontrolli kuupäev ja viidatud dokumendid. |
+| register | 0 | 7 | Kavandatud allikate register ja korjatavate veebilehtede nimekirjad (`web_pages.json` ametlikud juhislehed, `web_pages_state_help.json` riigi tasandi abi juhislehed (pension, perehüvitised, elatisabi, perelepitus; ADR-111), `web_pages_vendors.json` abivahendite müüjate lehed, `web_pages_organisations.json` puuetega inimeste organisatsioonide lehed koos mustriga, mis pealkirja järgi välja jääb; ADR-095), mitte teadmistekst. Mis müüjate ja organisatsioonide lehtedest RAG-is on, näitab „RAG-i seis“. `newsletter_documents.json` on ajakirja Sotsiaaltöö uudiskirjas viidatud dokumentide loend (ADR-099): pealkiri, väljaandja ametlik aadress ja seis, sh need, mida RAG-is ei ole (ingliskeelsed, tekstikihita, liiga suured, vastuvõtu kinni peetud, arvutabelid). |
+| veebilehed | 114 | 228 | Ametlikud juhislehed, korjatud skriptiga `scripts/rag-v2-web-pages.mjs` (ADR-095): lehe sisuosa ilma saidi menüüde ja isikute kontaktideta, metaandmetes aadress, kontrolli kuupäev ja viidatud dokumendid. |
 | taastatud_allikad | 0 | 22 | Serveri vanast indeksist taastatud tekst. Enne importi võrrelda põhipakettidega. |
 
 <!-- corpus-state:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
-## RAG-i seis: mis on serveris (korpus v69)
+## RAG-i seis: mis on serveris (korpus v71)
 
-Seis 08.10.2026: serveris töötav RAG (korpus **v69**, indeks `8b1e1008`) sisaldab **8 337 dokumenti** (68 408 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
+Seis 08.10.2026: serveris töötav RAG (korpus **v71**, indeks `b5a7a39b`) sisaldab **8 446 dokumenti** (72 198 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
 
 | Mis on RAG-is | Dokumente | Kus on loend |
 |---|---:|---|
@@ -26,14 +26,14 @@ Seis 08.10.2026: serveris töötav RAG (korpus **v69**, indeks `8b1e1008`) sisal
 | Taotlusvormid (vastuses antakse lingina) | 872 | jaotis „Sisufailid“ |
 | Omavalitsuste kontaktid | 1638 | faili lõpus arvudena omavalitsuste kaupa (nimesid siia ei kirjutata) |
 | Ajakirja Sotsiaaltöö artiklid | 892 | jaotis „Sisufailid“ |
-| Õigusaktid | 537 | jaotis „Sisufailid“ |
+| Õigusaktid | 563 | jaotis „Sisufailid“ |
 | Juhendid, infomaterjalid ja uuringud | 429 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
-| Ametlikud juhislehed (ametite veebilehed) | 30 | jaotis „Sisufailid“ |
+| Ametlikud juhislehed (ametite veebilehed) | 113 | jaotis „Sisufailid“ |
 | Puuetega inimeste organisatsioonide lehed | 521 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Hooldekodude kohamaksumus omavalitsuste kaupa | 79 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müügi- ja üüripunktid | 93 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müüjate lehed | 51 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
-| **Kokku** | **8337** | |
+| **Kokku** | **8446** | |
 
 <details><summary>Tehniline jaotus arendajale: kus allikafailid asuvad</summary>
 
@@ -43,9 +43,9 @@ Dokumentide arvud ei võrdu ülal olevate failide arvudega: üks fail võib anda
 |---|---:|---|
 | `KOV` | 4498 | kov_service_info 3195, application_form 845, official_contact 431, web_form 17, pdf_form 6, official_form 4 |
 | `ajakiri_sotsiaaltoo` | 892 | file 849, web 43 |
-| `oigusaktid` | 537 | legal_act 537 |
+| `oigusaktid` | 563 | legal_act 563 |
 | `juhendid_ja_uuringud` | 171 | information_material 81, research_report 46, official_guideline 38, policy_analysis 6 |
-| `veebilehed` | 31 | web_page 30, research_report 1 |
+| `veebilehed` | 114 | web_page 113, research_report 1 |
 
 Koodihoidlas (GitHub) ei ole 2208 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
 
@@ -58,7 +58,7 @@ Koodihoidlas (GitHub) ei ole 2208 dokumendi allikafaile; need on korpuse hoidlas
 | Puuetega inimeste organisatsioonide lehed | 521 (43 väljaandjat) | nimekiri `register/web_pages_organisations.json`, korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-095) | organisatsioonide enda tekstid |
 | Uuringud ja juhendid väljaandja ametlikult aadressilt | 257 (30 väljaandjat) | asutuste veebilehtede uuringute ja juhendite loenditest ning ajakirja Sotsiaaltöö uudiskirjas viidatud dokumentidest (`register/newsletter_documents.json`); iga fail on alla laaditud väljaandja ametlikult aadressilt | suured failid; allikas on ametlik aadress |
 
-Koodihoidla allikafailid, mida RAG-is ei ole (87):
+Koodihoidla allikafailid, mida RAG-is ei ole (61):
 
 - `juhendid_ja_uuringud/sotsiaalkindlustusamet_seksuaalvagivalla_kriisiabikeskusi_tutvustav_voldik_est.pdf`
 - `juhendid_ja_uuringud/epikoda_uro_puuetega_inimeste_oiguste_konventsioon_ja_fakultatiivpro.pdf`
@@ -120,33 +120,7 @@ Koodihoidla allikafailid, mida RAG-is ei ole (87):
 - `oigusaktid/425042025047-0a444c65d3.xml`
 - `oigusaktid/426022025038-f9529b7eb7.xml`
 - `oigusaktid/428122024033-efb23621fc.xml`
-- `oigusaktid/103062026067.xml`
-- `oigusaktid/103072026006.xml`
-- `oigusaktid/103072026035.xml`
-- `oigusaktid/109072026017.xml`
-- `oigusaktid/109072026028.xml`
-- `oigusaktid/109072026046.xml`
-- `oigusaktid/111072026059.xml`
-- `oigusaktid/111072026061.xml`
-- `oigusaktid/111072026066.xml`
-- `oigusaktid/111072026097.xml`
-- `oigusaktid/114032025014.xml`
-- `oigusaktid/114032025019.xml`
-- `oigusaktid/114032025025.xml`
-- `oigusaktid/120062026021.xml`
-- `oigusaktid/130062026001.xml`
-- `oigusaktid/130062026009.xml`
-- `oigusaktid/130062026028.xml`
-- `oigusaktid/130062026034.xml`
-- `oigusaktid/130062026038.xml`
-- `oigusaktid/130062026040.xml`
-- `oigusaktid/130062026052.xml`
-- `oigusaktid/130062026102.xml`
 - `oigusaktid/130062026103.xml`
-- `oigusaktid/130062026132.xml`
-- `oigusaktid/131032022015.xml`
-- `oigusaktid/131122024024.xml`
-- `oigusaktid/131122024048.xml`
 
 </details>
 <!-- corpus-state:end -->
@@ -1990,11 +1964,94 @@ Koodihoidla allikafailid, mida RAG-is ei ole (87):
 | Veebikeskkondade ja e-teenuste ligipääsetavus | [veebilehed/eesti-puuetega-inimeste-koda/eesti_puuetega_inimeste_koda_epikoda_digiligipaasetavus.html](<veebilehed/eesti-puuetega-inimeste-koda/eesti_puuetega_inimeste_koda_epikoda_digiligipaasetavus.html>) |
 | Avaldus õiguskantslerile | [veebilehed/oiguskantsler/oiguskantsler_avaldus_oiguskantslerile.html](<veebilehed/oiguskantsler/oiguskantsler_avaldus_oiguskantslerile.html>) |
 | Tuleohutusnõuded | [veebilehed/paasteamet/paasteamet_paasteamet_tuleohutusnouded.html](<veebilehed/paasteamet/paasteamet_paasteamet_tuleohutusnouded.html>) |
+| II samba pensionikindlustusmaksed ERGO ja SEB klientidele | [veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_ii_samba.html](<veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_ii_samba.html>) |
+| Kahjuhüvitis | [veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_kahjuhuvitis_tooonnetuse.html](<veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_kahjuhuvitis_tooonnetuse.html>) |
+| Olümpiavõitja toetus | [veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_olumpiavoitja_riiklik.html](<veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_olumpiavoitja_riiklik.html>) |
+| Represseeritu toetus | [veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_represseeritu_toetused.html](<veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_represseeritu_toetused.html>) |
+| Tagasipöörduja toetus | [veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_tagasipoorduja_toetus.html](<veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_tagasipoorduja_toetus.html>) |
+| Sotsiaaltoetus Tšornobõli AEJ avarii likvideerijale | [veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_toetus_tsornoboli_aej.html](<veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_toetus_tsornoboli_aej.html>) |
+| Üksi elava pensionäri toetus | [veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_uksi_elava_pensionari.html](<veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_uksi_elava_pensionari.html>) |
+| Muud pensioniga seotud hüvitised ja toetused | [veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_muud_pensioniga_seotud_huvitised_ja_toetused.html](<veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_muud_pensioniga_seotud_huvitised_ja_toetused.html>) |
+| Pension välismaal ja välisriigi pension Eestis | [veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pension_valismaal_ja_valisriigi_pension_eestis.html](<veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pension_valismaal_ja_valisriigi_pension_eestis.html>) |
+| Pensioni liigid | [veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pensioni_liigid.html](<veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pensioni_liigid.html>) |
+| Pensioni suurus | [veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pensioni_suurus.html](<veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pensioni_suurus.html>) |
+| Pensioniks valmistumine | [veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pensioniks_valmistumine.html](<veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pensioniks_valmistumine.html>) |
+| Elusolekutõend | [veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_elusolekutoend.html](<veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_elusolekutoend.html>) |
+| Euroopa Liidu pensionid ja lepinguriigid | [veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_euroopa_liidu_pensionid.html](<veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_euroopa_liidu_pensionid.html>) |
+| Pensioni maksmine välisriiki | [veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_pensioni_maksmine.html](<veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_pensioni_maksmine.html>) |
+| Pensioni saamine välisriigist | [veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_pensioni_saamine.html](<veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_pensioni_saamine.html>) |
+| Tõendite taotlemine | [veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_toendite_taotlemine.html](<veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_toendite_taotlemine.html>) |
+| Välispensioni ja rahvapensioni määra vahe | [veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_valispensioni_ja.html](<veebilehed/sotsiaalkindlustusamet/ska_pension_valismaal_ja_valisriigi_pension_eestis_valispensioni_ja.html>) |
+| Edasilükatud vanaduspension | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_edasilukatud_vanaduspension.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_edasilukatud_vanaduspension.html>) |
+| Eripensionid, kutsealade ja ametikohtade sooduspensionid | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_eripensionid.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_eripensionid.html>) |
+| Paindlik pension | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_paindlik_pension.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_paindlik_pension.html>) |
+| Rahvapension | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_rahvapension.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_rahvapension.html>) |
+| Soodustingimustel vanaduspension | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_soodustingimustel_vanaduspension.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_soodustingimustel_vanaduspension.html>) |
+| Toitjakaotuspension | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_toitjakaotuspension.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_toitjakaotuspension.html>) |
+| Vanaduspension | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_vanaduspension.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_liigid_vanaduspension.html>) |
+| Laste kasvatamine ja pension | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_laste_kasvatamine_ja_pension.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_laste_kasvatamine_ja_pension.html>) |
+| Pensioni indekseerimine ja ümberarvutamine | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensioni_indekseerimine_ja_umberarvutus.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensioni_indekseerimine_ja_umberarvutus.html>) |
+| Pensioni suuruse arvutamine | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensioni_suuruse_arvutamine.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensioni_suuruse_arvutamine.html>) |
+| Hüvitiste, toetuste ja pensionide tulumaksustamine | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensioni_tulumaksustamine.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensioni_tulumaksustamine.html>) |
+| Pensionide, toetuste ja hüvitiste määrad | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensionide_toetuste_ja_huvitiste_maarad.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensionide_toetuste_ja_huvitiste_maarad.html>) |
+| Pensionilisad | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensionilisad.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_pensionilisad.html>) |
+| Töötamine pensioni saamise ajal | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_tootamine_pensioni_saamise_ajal.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_suurus_tootamine_pensioni_saamise_ajal.html>) |
+| Pensioni peatamine ja jätkamine | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensioni_peatamine_ja_jatkamine.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensioni_peatamine_ja_jatkamine.html>) |
+| Pensioniavalduse esitamine | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensioniavalduse_esitamine.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensioniavalduse_esitamine.html>) |
+| Pensioniiga | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensioniiga.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensioniiga.html>) |
+| Pensionistaaž | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensionistaaz.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensionistaaz.html>) |
+| Pensionitunnistus | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensionitunnistus.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_pensionitunnistus.html>) |
+| Pensioni taotlemisel vajalikud dokumendid | [veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_taotlemiseks_vajalikud_dokumendid.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioni_taotlemine_taotlemiseks_vajalikud_dokumendid.html>) |
+| Eesti pensionisüsteem | [veebilehed/sotsiaalkindlustusamet/ska_pensioniks_valmistumine_eesti_pensionisusteem.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioniks_valmistumine_eesti_pensionisusteem.html>) |
+| Pensioni planeerimine | [veebilehed/sotsiaalkindlustusamet/ska_pensioniks_valmistumine_pensioni_planeerimine.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioniks_valmistumine_pensioni_planeerimine.html>) |
+| Tööraamat | [veebilehed/sotsiaalkindlustusamet/ska_pensioniks_valmistumine_tooraamatu_esitamine.html](<veebilehed/sotsiaalkindlustusamet/ska_pensioniks_valmistumine_tooraamatu_esitamine.html>) |
+| Elatisabi | [veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_elatisabi.html](<veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_elatisabi.html>) |
+| Lisapuhkepäevad | [veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_lisapuhkepaevad.html](<veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_lisapuhkepaevad.html>) |
+| Perehüvitiste ülevaade | [veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_perehuvitiste_ulevaade.html](<veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_perehuvitiste_ulevaade.html>) |
+| Perekondlikud olukorrad | [veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_perekondlikud_olukorrad.html](<veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_perekondlikud_olukorrad.html>) |
+| Peretoetused | [veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_peretoetused.html](<veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_peretoetused.html>) |
+| Sotsiaalkindlustus Euroopa Liidus | [veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele.html](<veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele.html>) |
+| Toetused ja hüvitised Ukraina põgenikele | [veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_toetused_huvitised_ukraina_pogenikele.html](<veebilehed/sotsiaalkindlustusamet/ska_perehuvitised_ja_muud_toetused_toetused_huvitised_ukraina_pogenikele.html>) |
+| Ema vanemahüvitis ja emapuhkus | [veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_ema_vanemahuvitis_ja_emapuhkus.html](<veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_ema_vanemahuvitis_ja_emapuhkus.html>) |
+| Isa vanemahüvitis ja isapuhkus | [veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_isa_vanemahuvitis_ja_isapuhkus.html](<veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_isa_vanemahuvitis_ja_isapuhkus.html>) |
+| Jagatav vanemahüvitis ja vanemapuhkus | [veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_jagatav_vanemahuvitis_ja_vanemapuhkus.html](<veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_jagatav_vanemahuvitis_ja_vanemapuhkus.html>) |
+| Lapsendaja vanemahüvitis ja lapsendajapuhkus | [veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_lapsendaja_vanemahuvitis_ja_lapsendajapuhkus.html](<veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_lapsendaja_vanemahuvitis_ja_lapsendajapuhkus.html>) |
+| Lapsepuhkus ja puudega lapse vanema lapsepuhkus | [veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_lapsepuhkus.html](<veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_lapsepuhkus.html>) |
+| Perehüvitiste määrad | [veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_perehuvitiste_maarad_ja_maksmine.html](<veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_perehuvitiste_maarad_ja_maksmine.html>) |
+| Perehüvitistest loobumine | [veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_perehuvitistest_loobumine.html](<veebilehed/sotsiaalkindlustusamet/ska_perehuvitiste_ulevaade_perehuvitistest_loobumine.html>) |
+| Laps ei ela koos oma vanematega | [veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_laps_ei_ela_koos_oma_vanematega.html](<veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_laps_ei_ela_koos_oma_vanematega.html>) |
+| Lapse vanemad ei ela enam koos | [veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_lapse_vanemad_ei_ela_koos.html](<veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_lapse_vanemad_ei_ela_koos.html>) |
+| Puudega vanem | [veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_lapse_vanemal_puue.html](<veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_lapse_vanemal_puue.html>) |
+| Peres kasvavad koos mitme eri vanema lapsed | [veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_peres_kasvavad_koos_mitme_eri_vanema_lapsed.html](<veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_peres_kasvavad_koos_mitme_eri_vanema_lapsed.html>) |
+| Puudega laps | [veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_peres_puudega_laps.html](<veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_peres_puudega_laps.html>) |
+| Varakult lahkunud laps | [veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_varakult_lahkunud_laps.html](<veebilehed/sotsiaalkindlustusamet/ska_perekondlikud_olukorrad_varakult_lahkunud_laps.html>) |
+| Perelepitus | [veebilehed/sotsiaalkindlustusamet/ska_perelepitus.html](<veebilehed/sotsiaalkindlustusamet/ska_perelepitus.html>) |
+| Ajateenija lapse toetus | [veebilehed/sotsiaalkindlustusamet/ska_peretoetused_ajateenija_lapse_toetus.html](<veebilehed/sotsiaalkindlustusamet/ska_peretoetused_ajateenija_lapse_toetus.html>) |
+| Eestkostetava toetus | [veebilehed/sotsiaalkindlustusamet/ska_peretoetused_eestkostetava_lapse_toetus.html](<veebilehed/sotsiaalkindlustusamet/ska_peretoetused_eestkostetava_lapse_toetus.html>) |
+| Lapsendamistoetus | [veebilehed/sotsiaalkindlustusamet/ska_peretoetused_lapsendamistoetus.html](<veebilehed/sotsiaalkindlustusamet/ska_peretoetused_lapsendamistoetus.html>) |
+| Lapsetoetus | [veebilehed/sotsiaalkindlustusamet/ska_peretoetused_lapsetoetus.html](<veebilehed/sotsiaalkindlustusamet/ska_peretoetused_lapsetoetus.html>) |
+| Lasterikka pere toetus | [veebilehed/sotsiaalkindlustusamet/ska_peretoetused_lasterikka_pere_toetus.html](<veebilehed/sotsiaalkindlustusamet/ska_peretoetused_lasterikka_pere_toetus.html>) |
+| Mitmike toetus | [veebilehed/sotsiaalkindlustusamet/ska_peretoetused_mitmike_toetus.html](<veebilehed/sotsiaalkindlustusamet/ska_peretoetused_mitmike_toetus.html>) |
+| Sünnitoetus | [veebilehed/sotsiaalkindlustusamet/ska_peretoetused_sunnitoetus.html](<veebilehed/sotsiaalkindlustusamet/ska_peretoetused_sunnitoetus.html>) |
+| Toitjakaotustoetus | [veebilehed/sotsiaalkindlustusamet/ska_peretoetused_toitjakaotustoetus.html](<veebilehed/sotsiaalkindlustusamet/ska_peretoetused_toitjakaotustoetus.html>) |
+| Üksikvanema lapse toetus | [veebilehed/sotsiaalkindlustusamet/ska_peretoetused_uksikvanema_lapse_toetus.html](<veebilehed/sotsiaalkindlustusamet/ska_peretoetused_uksikvanema_lapse_toetus.html>) |
+| Pensionide, toetuste ja hüvitiste väljamaksmine | [veebilehed/sotsiaalkindlustusamet/ska_praktiline_teave_pensionide_toetuste_ja_huvitiste_valjamaksmine.html](<veebilehed/sotsiaalkindlustusamet/ska_praktiline_teave_pensionide_toetuste_ja_huvitiste_valjamaksmine.html>) |
+| Kogumispensioni täiendavad sissemaksed | [veebilehed/sotsiaalkindlustusamet/ska_ravi_ja_pensionikindlustus_kogumispensioni_taiendavad_sissemaksed.html](<veebilehed/sotsiaalkindlustusamet/ska_ravi_ja_pensionikindlustus_kogumispensioni_taiendavad_sissemaksed.html>) |
+| Perehüvitised Euroopa Liidus | [veebilehed/sotsiaalkindlustusamet/ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_perehuvitised.html](<veebilehed/sotsiaalkindlustusamet/ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_perehuvitised.html>) |
+| Väljastpoolt Euroopa Liitu tulijate perehüvitised | [veebilehed/sotsiaalkindlustusamet/ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_valjastpoolt.html](<veebilehed/sotsiaalkindlustusamet/ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_valjastpoolt.html>) |
+| Perehüvitised Ukraina põgenikele | [veebilehed/sotsiaalkindlustusamet/ska_toetused_huvitised_ukraina_pogenikele_perehuvitised_ukraina.html](<veebilehed/sotsiaalkindlustusamet/ska_toetused_huvitised_ukraina_pogenikele_perehuvitised_ukraina.html>) |
 | Sotsiaalkindlustusameti 2024. aasta järelevalves: rohkem rikkumisi, aga ka häid näiteid | [veebilehed/sotsiaalkindlustusamet/sotsiaalkindlustusamet_ska_2024_jarelevalve_kokkuvote.html](<veebilehed/sotsiaalkindlustusamet/sotsiaalkindlustusamet_ska_2024_jarelevalve_kokkuvote.html>) |
 | Abivahendi ettevõttele | [veebilehed/sotsiaalkindlustusamet/sotsiaalkindlustusamet_ska_abivahendi_ettevottele.html](<veebilehed/sotsiaalkindlustusamet/sotsiaalkindlustusamet_ska_abivahendi_ettevottele.html>) |
 | Abivahendi vajajale | [veebilehed/sotsiaalkindlustusamet/sotsiaalkindlustusamet_ska_abivahendi_vajajale.html](<veebilehed/sotsiaalkindlustusamet/sotsiaalkindlustusamet_ska_abivahendi_vajajale.html>) |
 | Sotsiaalteenuste järelevalve | [veebilehed/sotsiaalkindlustusamet/sotsiaalkindlustusamet_ska_sotsiaalteenuste_jarelevalve.html](<veebilehed/sotsiaalkindlustusamet/sotsiaalkindlustusamet_ska_sotsiaalteenuste_jarelevalve.html>) |
 | Väljaspool kodu osutatav üldhooldusteenus | [veebilehed/sotsiaalkindlustusamet/sotsiaalkindlustusamet_uldhooldusteenus_kov_noustamine_jarelevalve_raam.html](<veebilehed/sotsiaalkindlustusamet/sotsiaalkindlustusamet_uldhooldusteenus_kov_noustamine_jarelevalve_raam.html>) |
+| Elatisabi | [veebilehed/sotsiaalministeerium/sm_elatisabi.html](<veebilehed/sotsiaalministeerium/sm_elatisabi.html>) |
+| Perehüvitised ja vanemapuhkused | [veebilehed/sotsiaalministeerium/sm_lapsed_ja_pered_perehuvitised_ja_vanemapuhkused.html](<veebilehed/sotsiaalministeerium/sm_lapsed_ja_pered_perehuvitised_ja_vanemapuhkused.html>) |
+| Pension | [veebilehed/sotsiaalministeerium/sm_pension.html](<veebilehed/sotsiaalministeerium/sm_pension.html>) |
+| Sooduspensionid | [veebilehed/sotsiaalministeerium/sm_pension_sooduspensionid.html](<veebilehed/sotsiaalministeerium/sm_pension_sooduspensionid.html>) |
+| Õendus ja ämmaemandus | [veebilehed/sotsiaalministeerium/sm_ravi_ja_tervise_taastamine_oendus_ja_ammaemandusabi.html](<veebilehed/sotsiaalministeerium/sm_ravi_ja_tervise_taastamine_oendus_ja_ammaemandusabi.html>) |
+| Töötus- ja ravikindlustushüvitised | [veebilehed/sotsiaalministeerium/sm_tootus_ja_ravikindlustushuvitised.html](<veebilehed/sotsiaalministeerium/sm_tootus_ja_ravikindlustushuvitised.html>) |
+| Vanemahüvitis | [veebilehed/sotsiaalministeerium/sm_vanemahuvitis.html](<veebilehed/sotsiaalministeerium/sm_vanemahuvitis.html>) |
 | Ligipääsetavus füüsilisele keskkonnale | [veebilehed/sotsiaalministeeriumi-kompetentsikeskus/4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--ligipaasetavuse-parandamine--ligipaasetavus-fuusilisele-keskkonnale.html](<veebilehed/sotsiaalministeeriumi-kompetentsikeskus/4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--ligipaasetavuse-parandamine--ligipaasetavus-fuusilisele-keskkonnale.html>) |
 | Mis on erivajadus? | [veebilehed/sotsiaalministeeriumi-kompetentsikeskus/4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--aluspohimotted--mis-erivajadus.html](<veebilehed/sotsiaalministeeriumi-kompetentsikeskus/4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--aluspohimotted--mis-erivajadus.html>) |
 | Mis on ligipääsetavus? | [veebilehed/sotsiaalministeeriumi-kompetentsikeskus/4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--aluspohimotted--mis-ligipaasetavus.html](<veebilehed/sotsiaalministeeriumi-kompetentsikeskus/4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--mis-see--aluspohimotted--mis-ligipaasetavus.html>) |
@@ -2021,7 +2078,7 @@ Koodihoidla allikafailid, mida RAG-is ei ole (87):
 <!-- corpus-outside:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
 ## RAG-is olevad lehed ja kontaktid
 
-Serveris töötav RAG, korpus v69, 08.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
+Serveris töötav RAG, korpus v71, 08.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
 
 ### Hooldekodude kohamaksumuse lehed (79)
 

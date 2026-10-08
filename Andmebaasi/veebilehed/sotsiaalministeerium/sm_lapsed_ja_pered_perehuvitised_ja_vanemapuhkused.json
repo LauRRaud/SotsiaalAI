@@ -1,0 +1,65 @@
+{
+  "document_id": "web-sm_lapsed_ja_pered_perehuvitised_ja_vanemapuhkused",
+  "title": "Perehüvitised ja vanemapuhkused",
+  "register_title": "Perehüvitised ja vanemapuhkused",
+  "source_id": "sm_lapsed_ja_pered_perehuvitised_ja_vanemapuhkused",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalministeerium",
+  "language": "et",
+  "url": "https://www.sm.ee/lapsed-ja-hoolekanne/lapsed-ja-pered/perehuvitised-ja-vanemapuhkused",
+  "source_path": "sm_lapsed_ja_pered_perehuvitised_ja_vanemapuhkused.html",
+  "source_format": "html",
+  "source_sha256": "b228c010cf2a0868b5c18b1eefbda9943774ee30f174895fd35d18e23dce931d",
+  "content_sha256": "34c919e325bee21b66f02e045c032301e80983eccd7c08c7f272f88d072f9a0b",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:26:26.974Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-07-28",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:26:25 GMT",
+      "etag": null
+    },
+    "raw_sha256": "359b2bf0bec9e76dda6b9a68054c06f51ad19fed7e624c18f19e8372074ce48f",
+    "stats": {
+      "words": 833,
+      "blocks": 40,
+      "headings": 15,
+      "tables": 0,
+      "links": 8,
+      "linksToOtherSites": 7
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sm.ee/sites/default/files/content-editors/eesmargid_ja_tegevused/Too/Toolepingu_seadus/selgitused_toolepingu_seaduse_juurde.pdf",
+      "text": "Selgitus töölepingu seaduse juurde",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

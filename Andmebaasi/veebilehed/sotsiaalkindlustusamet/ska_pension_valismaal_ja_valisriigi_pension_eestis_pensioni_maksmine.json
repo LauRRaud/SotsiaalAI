@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_pension_valismaal_ja_valisriigi_pension_eestis_pensioni_maksmine",
+  "title": "Pensioni maksmine välisriiki",
+  "register_title": "Pensioni maksmine välisriiki",
+  "source_id": "ska_pension_valismaal_ja_valisriigi_pension_eestis_pensioni_maksmine",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pension-valismaal-ja-valisriigi-pension-eestis/pensioni-maksmine",
+  "source_path": "ska_pension_valismaal_ja_valisriigi_pension_eestis_pensioni_maksmine.html",
+  "source_format": "html",
+  "source_sha256": "52ae34ffc206f7a5f4e69df31ee0a2439627ec6c6215aa92755a8b790daa68c2",
+  "content_sha256": "6fe1a8b5c6815b7e2a5a8736c7fec850505ce992f4482224f765d0dc1956ee37",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:23:40.786Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-06-16",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:06:47 GMT",
+      "etag": null
+    },
+    "raw_sha256": "6518664b27e2ae82e94df2c6cb293f2b60bb931781e30715b8c9daabfe55f883",
+    "stats": {
+      "words": 564,
+      "blocks": 28,
+      "headings": 9,
+      "tables": 0,
+      "links": 6,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

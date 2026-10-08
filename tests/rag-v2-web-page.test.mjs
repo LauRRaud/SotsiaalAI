@@ -328,3 +328,26 @@ test('a heading that is nothing but a name, with channels under it, is a contact
   assert(page.html.includes(['<h3>Üldine abi</h3>', '<p>Infotelefon 612 0000</p>', '<h4>Lahtiolekuajad</h4>', '<p>E–R 9–17</p>'].join('\n')), 'a heading of two words that is not a name stays with its text');
   assert.deepEqual([page.contacts.contactCards, page.needsReview, page.warnings], [2, false, ['contact_card_removed']]);
 });
+
+test('a contact table whose cells hold paragraphs: a row that names a person beside a channel goes whole', () => {
+  // The shape of an official page read on 08.10.2026: the name is a link, the phone number stands in a paragraph of its
+  // cell, the address in a plain cell. A row with a block in a cell was no unit, so nothing read it and the whole table
+  // went into the collected copy. Invented names.
+  const page = extractPage(`<html><head><title>Teenus | Näidisamet</title></head><body><main><h1>Teenus</h1>
+    <p>${'Teenust saab taotleda iseteeninduses ja see on tasuta. '.repeat(20)}</p>
+    <h2>Kontaktid</h2>
+    <table><thead><tr><th>Nimi</th><th>Ametikoht</th><th>Üksus</th><th>Telefon</th><th>E-post</th></tr></thead><tbody>
+      <tr><td><a href="/teenus">Mari Maasikas</a></td><td>peaspetsialist (teenus)</td><td>Teenuse tiim</td><td><p>5555 1234</p></td><td>Mari.Maasikas@amet.example</td></tr>
+      <tr><td><a href="/teenus">Jaan-Erik Tamm</a></td><td>peaspetsialist (teenus)</td><td>Teenuse tiim</td><td><p>5555 4321</p></td><td>Jaan-Erik.Tamm@amet.example</td></tr>
+      <tr><td>Infotelefon</td><td></td><td></td><td><p>612 0000</p></td><td>info@amet.example</td></tr>
+    </tbody></table>
+    <table><tr><td><p>Tingimus</p></td><td>Kirjuta aadressil mari.maasikas@amet.example, kui vajad selgitust teenuse tingimuste, taotlemise, tähtaegade, otsuse vaidlustamise või muu teenusega seotud küsimuse kohta ning lisa oma kirjale kindlasti taotluse number ja kuupäev, et saaksime sinu pöördumise üles leida ja sulle vastata kümne tööpäeva jooksul alates kirja saamisest või kokkulepitud ajal.</td></tr></table>
+  </main></body></html>`, 'https://amet.example/teenus');
+  for (const gone of ['Maasikas', 'Tamm', '5555', 'peaspetsialist', '@amet.example</td></tr><tr><td><a']) assert.equal(page.html.includes(gone), false, gone);
+  // The general row stays as it is, and the table keeps its head.
+  assert.ok(page.html.includes('Infotelefon') && page.html.includes('612 0000') && page.html.includes('info@amet.example') && page.html.includes('<th>Telefon</th>'));
+  // A long row is no card: its plain cell is read by itself and the person's address in it removed.
+  assert.ok(page.html.includes('Kirjuta aadressil [e-post eemaldatud], kui vajad selgitust'));
+  assert.deepEqual(page.contacts, { generalEmails: 1, otherEmails: 0, personLinks: 0, contactCards: 2, personalEmails: 1, phonesBesideThem: 0 });
+  assert.deepEqual(page.warnings, ['contact_card_removed', 'personal_contact_removed']);
+});

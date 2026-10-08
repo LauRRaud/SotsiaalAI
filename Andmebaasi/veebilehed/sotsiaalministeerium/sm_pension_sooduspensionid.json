@@ -1,0 +1,58 @@
+{
+  "document_id": "web-sm_pension_sooduspensionid",
+  "title": "Sooduspensionid",
+  "register_title": "Sooduspensionid",
+  "source_id": "sm_pension_sooduspensionid",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalministeerium",
+  "language": "et",
+  "url": "https://www.sm.ee/pension-ja-tulevikuks-valmistumine/pension/sooduspensionid",
+  "source_path": "sm_pension_sooduspensionid.html",
+  "source_format": "html",
+  "source_sha256": "cfe382c318fffdbf32aecbfb2bd0d8f1bcdac93e5e62847b09907b235a969124",
+  "content_sha256": "307c1bf60f24a61e4096c17fbbec96a2944ffadc2473a25dbe119fa01fb636be",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:26:24.403Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-05-18",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:26:23 GMT",
+      "etag": null
+    },
+    "raw_sha256": "489148377f6174b7af5c0dcca8c97b6061409dc7d38cefffba92c0dbce1ea3b4",
+    "stats": {
+      "words": 291,
+      "blocks": 18,
+      "headings": 7,
+      "tables": 0,
+      "links": 3,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

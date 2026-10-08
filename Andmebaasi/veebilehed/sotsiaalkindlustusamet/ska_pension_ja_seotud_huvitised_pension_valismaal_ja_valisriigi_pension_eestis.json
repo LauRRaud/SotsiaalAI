@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_pension_ja_seotud_huvitised_pension_valismaal_ja_valisriigi_pension_eestis",
+  "title": "Pension välismaal ja välisriigi pension Eestis",
+  "register_title": "Pension välismaal ja välisriigi pension Eestis",
+  "source_id": "ska_pension_ja_seotud_huvitised_pension_valismaal_ja_valisriigi_pension_eestis",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pension-valismaal-ja-valisriigi-pension-eestis",
+  "source_path": "ska_pension_ja_seotud_huvitised_pension_valismaal_ja_valisriigi_pension_eestis.html",
+  "source_format": "html",
+  "source_sha256": "3f28c75647c819ad0509e72b4d08fdad39a00dcf8f42083c1c64ca6d783377c7",
+  "content_sha256": "797b1b26eb3c46a9b34adf928a5b5817e429671c004c70508b6803b68175160e",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:23:33.254Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2025-03-19",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:06:40 GMT",
+      "etag": null
+    },
+    "raw_sha256": "fb28fed34bc3c1b0ba8b808b948481e3509edebe3e2eb82f8eb137d70103e827",
+    "stats": {
+      "words": 302,
+      "blocks": 17,
+      "headings": 8,
+      "tables": 0,
+      "links": 2,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

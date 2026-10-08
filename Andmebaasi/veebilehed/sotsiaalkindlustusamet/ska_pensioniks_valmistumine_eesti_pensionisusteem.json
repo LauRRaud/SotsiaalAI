@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_pensioniks_valmistumine_eesti_pensionisusteem",
+  "title": "Eesti pensionisüsteem",
+  "register_title": "Eesti pensionisüsteem",
+  "source_id": "ska_pensioniks_valmistumine_eesti_pensionisusteem",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioniks-valmistumine/eesti-pensionisusteem",
+  "source_path": "ska_pensioniks_valmistumine_eesti_pensionisusteem.html",
+  "source_format": "html",
+  "source_sha256": "d89914a4163eb4d5f50f762f92dfb28d799a31d80c68c7d3383774ecb1f1ad5c",
+  "content_sha256": "6de083a613e20217b9be90f96a87d2694463167ee508365ef2df9cbd66098c33",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:24:48.451Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2024-10-30",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 16:50:16 GMT",
+      "etag": null
+    },
+    "raw_sha256": "bdd5dce9dc73f9915d807394543881e08a17f2cbc9fe5a7f250e47e940643084",
+    "stats": {
+      "words": 217,
+      "blocks": 13,
+      "headings": 1,
+      "tables": 0,
+      "links": 2,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

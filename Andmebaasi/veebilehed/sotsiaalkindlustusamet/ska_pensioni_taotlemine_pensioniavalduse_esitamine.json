@@ -1,0 +1,65 @@
+{
+  "document_id": "web-ska_pensioni_taotlemine_pensioniavalduse_esitamine",
+  "title": "Pensioniavalduse esitamine",
+  "register_title": "Pensioniavalduse esitamine",
+  "source_id": "ska_pensioni_taotlemine_pensioniavalduse_esitamine",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/pensioni-taotlemine/pensioniavalduse-esitamine",
+  "source_path": "ska_pensioni_taotlemine_pensioniavalduse_esitamine.html",
+  "source_format": "html",
+  "source_sha256": "368309669847dc4b7a10e429e842b1f4b0365029c5eae4d365423c8dd5bb868a",
+  "content_sha256": "5c54a0e9de3b08c3810eef8adcbcb430c1e8f2c71ac0eabfe6fb4735ecde906a",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:24:33.407Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-07-28",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:07:40 GMT",
+      "etag": null
+    },
+    "raw_sha256": "b5b53967aed2c21d4d9547be85643ab85057a9e99076eaf4bb35507d688f8b01",
+    "stats": {
+      "words": 600,
+      "blocks": 24,
+      "headings": 4,
+      "tables": 0,
+      "links": 6,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 2,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-06/Pensionitaotlus%20EST%20juhistega_18_06_26.docx",
+      "text": "Pensioniavaldus | 72.69 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_peretoetused_eestkostetava_lapse_toetus",
+  "title": "Eestkostetava toetus",
+  "register_title": "Eestkostetava toetus",
+  "source_id": "ska_peretoetused_eestkostetava_lapse_toetus",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/peretoetused/eestkostetava-lapse-toetus",
+  "source_path": "ska_peretoetused_eestkostetava_lapse_toetus.html",
+  "source_format": "html",
+  "source_sha256": "f655768c431455746d106fa8f7fcc13e686028fd695c89bcd48081d89e406353",
+  "content_sha256": "2e617cae8e232bdcee0524b9a8d0a13138b543b17e76a2a9de8d7fea21f7b5db",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:25:43.637Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-01-05",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:08:50 GMT",
+      "etag": null
+    },
+    "raw_sha256": "5936a5fa1a9dc3648715b9be62de9582007427426d7dd0e8fdc995ba3a289330",
+    "stats": {
+      "words": 317,
+      "blocks": 17,
+      "headings": 5,
+      "tables": 0,
+      "links": 2,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

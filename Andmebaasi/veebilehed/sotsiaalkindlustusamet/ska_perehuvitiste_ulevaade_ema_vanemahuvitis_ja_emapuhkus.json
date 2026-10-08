@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_perehuvitiste_ulevaade_ema_vanemahuvitis_ja_emapuhkus",
+  "title": "Ema vanemahüvitis ja emapuhkus",
+  "register_title": "Ema vanemahüvitis ja emapuhkus",
+  "source_id": "ska_perehuvitiste_ulevaade_ema_vanemahuvitis_ja_emapuhkus",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/perehuvitiste-ulevaade/ema-vanemahuvitis-ja-emapuhkus",
+  "source_path": "ska_perehuvitiste_ulevaade_ema_vanemahuvitis_ja_emapuhkus.html",
+  "source_format": "html",
+  "source_sha256": "b96265fb94a1cba7bdefa811a9a2cc31c536c345a66841410824e84e13328eeb",
+  "content_sha256": "df4b19a93558f1755a46e101a7bbbd0b30d78591ea0fb20bcbb3e762a26e4a5f",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:25:03.522Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-09-18",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 16:45:08 GMT",
+      "etag": null
+    },
+    "raw_sha256": "1839188861109b41cf909a39d93ffa64575ed86214c26530fd29b8f9a54e7467",
+    "stats": {
+      "words": 4895,
+      "blocks": 176,
+      "headings": 29,
+      "tables": 0,
+      "links": 8,
+      "linksToOtherSites": 3
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

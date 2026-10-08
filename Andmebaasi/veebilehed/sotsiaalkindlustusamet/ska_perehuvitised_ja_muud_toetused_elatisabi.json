@@ -1,0 +1,71 @@
+{
+  "document_id": "web-ska_perehuvitised_ja_muud_toetused_elatisabi",
+  "title": "Elatisabi",
+  "register_title": "Elatisabi",
+  "source_id": "ska_perehuvitised_ja_muud_toetused_elatisabi",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/perehuvitised-ja-muud-toetused/elatisabi",
+  "source_path": "ska_perehuvitised_ja_muud_toetused_elatisabi.html",
+  "source_format": "html",
+  "source_sha256": "8a05d62dbd7a02f9e534532d1200fb58151d7520d6212238087204e433d10b0e",
+  "content_sha256": "f9a11b7da3edc923deea0cc3c1e5ff9233be1e86522347c51fc7776f4ce69d73",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:24:56.005Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-05-25",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:08:02 GMT",
+      "etag": null
+    },
+    "raw_sha256": "bbda227cb1d4002fd42acaa09b0cac1ade23441cd9b05a69bb474a1e3187b3a3",
+    "stats": {
+      "words": 2801,
+      "blocks": 105,
+      "headings": 16,
+      "tables": 1,
+      "links": 13,
+      "linksToOtherSites": 9
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-01/KOHTUMENETLUSAEGSE%20ELATISABI%20TAOTLUS_01.2025.docx",
+      "text": "Kohtumenetlusaegse elatisabi taotlus | 35.12 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-01/PABER_KOHTUMENETLUSAEGSE%20ELATISABI%20TAOTLUS_01.2025.pdf",
+      "text": "Kohtumenetlusaegse elatisabi taotlus | 111.96 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "document_id": "web-ska_muud_pensioniga_seotud_huvitised_ja_toetused_toetus_tsornoboli_aej",
+  "title": "Sotsiaaltoetus Tšornobõli AEJ avarii likvideerijale",
+  "register_title": "Sotsiaaltoetus Tšornobõli AEJ avarii likvideerijale",
+  "source_id": "ska_muud_pensioniga_seotud_huvitised_ja_toetused_toetus_tsornoboli_aej",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/muud-pensioniga-seotud-huvitised-ja-toetused/toetus-tsornoboli-aej",
+  "source_path": "ska_muud_pensioniga_seotud_huvitised_ja_toetused_toetus_tsornoboli_aej.html",
+  "source_format": "html",
+  "source_sha256": "a0a0fd8e975ffaf1b1605a5c5ef8d15627fb9c84043e6743bcaa11d6059672fd",
+  "content_sha256": "a53fb887e499ef524db40cef2d09f5add2b828c69354199af3543b4ca2a5f8e9",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:23:28.243Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-06-16",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:06:35 GMT",
+      "etag": null
+    },
+    "raw_sha256": "0f17e20d7e7dd987045e00e6ec4c38e51e36055fca2235914d2522d2834bb77f",
+    "stats": {
+      "words": 226,
+      "blocks": 19,
+      "headings": 5,
+      "tables": 0,
+      "links": 3,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-07/tsernoboli_toetuse_taotlus.docx",
+      "text": "Tšornobõli toetuse taotlus | 20.15 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    }
+  ]
+}

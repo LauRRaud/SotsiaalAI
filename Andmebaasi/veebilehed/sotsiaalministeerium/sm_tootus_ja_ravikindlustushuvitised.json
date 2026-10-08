@@ -1,0 +1,58 @@
+{
+  "document_id": "web-sm_tootus_ja_ravikindlustushuvitised",
+  "title": "Töötus- ja ravikindlustushüvitised",
+  "register_title": "Töötus- ja ravikindlustushüvitised",
+  "source_id": "sm_tootus_ja_ravikindlustushuvitised",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalministeerium",
+  "language": "et",
+  "url": "https://www.sm.ee/tootus-ja-ravikindlustushuvitised",
+  "source_path": "sm_tootus_ja_ravikindlustushuvitised.html",
+  "source_format": "html",
+  "source_sha256": "91807dfc57f09474cd10d40c1e1912b5386e9b2b419ac13a440e1eca507d2b42",
+  "content_sha256": "d625a1d175c9613e0db65e8215a2cabaf84c63c420df837a2b8d70dd81bafa58",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:26:34.188Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2025-07-10",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:05:52 GMT",
+      "etag": null
+    },
+    "raw_sha256": "f11cb385f77cfee2a3bfb7048b272f4894bfee3fef6300f1413da820bce7e14d",
+    "stats": {
+      "words": 168,
+      "blocks": 13,
+      "headings": 3,
+      "tables": 0,
+      "links": 3,
+      "linksToOtherSites": 3
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

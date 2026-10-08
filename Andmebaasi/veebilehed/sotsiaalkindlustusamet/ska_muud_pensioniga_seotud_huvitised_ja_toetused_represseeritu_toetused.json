@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_muud_pensioniga_seotud_huvitised_ja_toetused_represseeritu_toetused",
+  "title": "Represseeritu toetus",
+  "register_title": "Represseeritu toetus",
+  "source_id": "ska_muud_pensioniga_seotud_huvitised_ja_toetused_represseeritu_toetused",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/muud-pensioniga-seotud-huvitised-ja-toetused/represseeritu-toetused",
+  "source_path": "ska_muud_pensioniga_seotud_huvitised_ja_toetused_represseeritu_toetused.html",
+  "source_format": "html",
+  "source_sha256": "ab9fb72f054caf477ed08ed9180775feaf88acd3f6995143c41b893cf020f781",
+  "content_sha256": "9fc1599d70bdf5181b15d80fbfa60189c4dfa5c194418163e6378fa09cdd50f6",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:23:23.235Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2024-03-19",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:06:30 GMT",
+      "etag": null
+    },
+    "raw_sha256": "52cc37fa5745dc3b14f493e61e95b2c63d4e4a5a185572d2c1ea02c5047b576b",
+    "stats": {
+      "words": 583,
+      "blocks": 32,
+      "headings": 8,
+      "tables": 0,
+      "links": 5,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 2,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

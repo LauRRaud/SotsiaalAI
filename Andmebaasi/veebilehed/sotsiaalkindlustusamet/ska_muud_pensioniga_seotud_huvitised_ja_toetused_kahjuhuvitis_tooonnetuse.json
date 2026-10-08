@@ -1,0 +1,60 @@
+{
+  "document_id": "web-ska_muud_pensioniga_seotud_huvitised_ja_toetused_kahjuhuvitis_tooonnetuse",
+  "title": "Kahjuhüvitis",
+  "register_title": "Kahjuhüvitis",
+  "source_id": "ska_muud_pensioniga_seotud_huvitised_ja_toetused_kahjuhuvitis_tooonnetuse",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/pension-ja-seotud-huvitised/muud-pensioniga-seotud-huvitised-ja-toetused/kahjuhuvitis-tooonnetuse",
+  "source_path": "ska_muud_pensioniga_seotud_huvitised_ja_toetused_kahjuhuvitis_tooonnetuse.html",
+  "source_format": "html",
+  "source_sha256": "8a8da35963f341252cccd6120a62e117e51fd03699ddd75cfd7979f7fc4a4e03",
+  "content_sha256": "fe8980b32c23c314b24673a31d701aa82c9af18de911cfe7c3647e0eea1072b2",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T17:23:18.220Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-06-16",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 17:06:25 GMT",
+      "etag": null
+    },
+    "raw_sha256": "aa98a859d1b7a1d5fcbbdfb355aa7925bba87db2107c4e787eb9a62702d87af1",
+    "stats": {
+      "words": 3008,
+      "blocks": 123,
+      "headings": 25,
+      "tables": 0,
+      "links": 11,
+      "linksToOtherSites": 5
+    },
+    "contacts": {
+      "generalEmails": 2,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 1,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed"
+    ],
+    "needs_review": false
+  },
+  "documents": []
+}
