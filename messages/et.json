@@ -1575,7 +1575,7 @@
         "gate": "Kinnitus",
         "success": "Valmis"
       },
-      "worker_framework_signed_version_note": "Veebitekst ja DOCX kasutavad nime Sotsiaal.pro ning ettevõttenime Küberloome OÜ. Allkirjastatud DigiDoc on varasem dokument vana nimega; see ei ole siin avaldatud versiooni allkirjastatud koopia."
+      "worker_framework_signed_version_note": "Veebitekst ja DOCX kasutavad nime Sotsiaal.pro ning ettevõttenime OÜ Küberloome. Allkirjastatud DigiDoc on varasem dokument vana nimega; see ei ole siin avaldatud versiooni allkirjastatud koopia."
     },
     "reset": {
       "title": "Uuenda PIN",
@@ -1988,7 +1988,7 @@
     "title": "Privaatsus",
     "section1": {
       "heading": "1. Vastutav töötleja ja ulatus",
-      "paragraph1": "<p><strong>Küberloome OÜ</strong> on veebiplatvormi <strong>Sotsiaal.pro</strong> vastutav töötleja nende töötluste osas, mille eesmärgid ja vahendid määrab Sotsiaal.pro ise. Meie üldine kontakt e-posti aadress on <strong>info@sotsiaal.pro</strong>. Sama aadressi kaudu saad esitada andmekaitsealaseid küsimusi ja kasutada oma andmesubjekti õigusi.</p><p>See privaatsuspoliitika selgitab, milliseid andmeid kogume, milleks neid kasutame, kui kaua neid säilitame, kuidas kasutus- ja salvestuspiirid võivad säilitamist mõjutada ning milliseid automatiseeritud süsteeme kasutame vastuste, mustandite, liigituste või otsingutulemuste loomiseks.</p>",
+      "paragraph1": "<p><strong>OÜ Küberloome</strong> on veebiplatvormi <strong>Sotsiaal.pro</strong> vastutav töötleja nende töötluste osas, mille eesmärgid ja vahendid määrab Sotsiaal.pro ise. Meie üldine kontakt e-posti aadress on <strong>info@sotsiaal.pro</strong>. Sama aadressi kaudu saad esitada andmekaitsealaseid küsimusi ja kasutada oma andmesubjekti õigusi.</p><p>See privaatsuspoliitika selgitab, milliseid andmeid kogume, milleks neid kasutame, kui kaua neid säilitame, kuidas kasutus- ja salvestuspiirid võivad säilitamist mõjutada ning milliseid automatiseeritud süsteeme kasutame vastuste, mustandite, liigituste või otsingutulemuste loomiseks.</p>",
       "paragraph2": "<p>Käesolev privaatsuspoliitika selgitab, kuidas töötleme isikuandmeid konto loomisel, sisselogimisel, tellimuste haldamisel, vestlustes, ruumides, abiandmete töövoogudes, dokumentide halduses, dokumendi koostamises, dokumendi analüüsis, süvauuringus ning häälfunktsioonides. Töötleme andmeid kooskõlas Eesti isikuandmete kaitse <aLawEst>seadusega</aLawEst> ja Euroopa Liidu isikuandmete kaitse <aGdpr>üldmäärusega</aGdpr>. Õiguste kasutamise taotlustele vastame üldjuhul ühe kuu jooksul.</p><p>Käesolev poliitika kirjeldab eelkõige Sotsiaal.pro tavapärast kasutust, kus platvormi kasutatakse isikliku konto alt. Kui kasutaja kasutab Sotsiaal.pro platvormi tööalases rollis või organisatsiooni nimel, võivad teatud töövoogude suhtes lisaks kohalduda tööandja või organisatsiooni sisereeglid ning eraldi tööalase kasutuse või andmetöötluse raamistik.</p>"
     },
     "section2": {
@@ -2052,7 +2052,7 @@
     "title": "Tingimused",
     "section1": {
       "heading": "1. Üldsätted",
-      "body": "<p>Käesolevad kasutustingimused reguleerivad <strong>Küberloome OÜ</strong> hallatava platvormi <strong>Sotsiaal.pro</strong> kasutamist. Registreerudes või platvormi kasutades kinnitad, et oled tingimustega tutvunud ja nõustud nendega.</p><p>Platvormi stabiilse, turvalise ja mõistliku kasutamise tagamiseks võivad teenuses kehtida teatud tehnilised piirangud ja kasutusreeglid. Need võivad puudutada näiteks vestluste mahtu, süvauuringu kasutamist, dokumentide korduvalt täiendamist või parandamist ning failide arvu, mahtu ja säilitamist. Piirangud võivad sõltuda kasutatavast funktsioonist või paketist ning need on kirjeldatud käesolevates tingimustes või kuvatud vajaduse korral kasutajaliideses.</p><p>Platvormi kasutamine eeldab nende tingimustega nõustumist. Kui sa nendega ei nõustu, palume platvormi mitte kasutada. Kasutustingimused ja privaatsuspoliitika moodustavad koos teenuse kasutamise aluse.</p>"
+      "body": "<p>Käesolevad kasutustingimused reguleerivad <strong>OÜ Küberloome</strong> hallatava platvormi <strong>Sotsiaal.pro</strong> kasutamist. Registreerudes või platvormi kasutades kinnitad, et oled tingimustega tutvunud ja nõustud nendega.</p><p>Platvormi stabiilse, turvalise ja mõistliku kasutamise tagamiseks võivad teenuses kehtida teatud tehnilised piirangud ja kasutusreeglid. Need võivad puudutada näiteks vestluste mahtu, süvauuringu kasutamist, dokumentide korduvalt täiendamist või parandamist ning failide arvu, mahtu ja säilitamist. Piirangud võivad sõltuda kasutatavast funktsioonist või paketist ning need on kirjeldatud käesolevates tingimustes või kuvatud vajaduse korral kasutajaliideses.</p><p>Platvormi kasutamine eeldab nende tingimustega nõustumist. Kui sa nendega ei nõustu, palume platvormi mitte kasutada. Kasutustingimused ja privaatsuspoliitika moodustavad koos teenuse kasutamise aluse.</p>"
     },
     "section2": {
       "heading": "2. Teenuse kirjeldus",
@@ -4291,10 +4291,10 @@
     "contact": {
       "title": "Kontakt",
       "email_value": "info@sotsiaal.pro",
-      "company": "Küberloome OÜ",
+      "company": "OÜ Küberloome",
       "registry_value": "14206225",
       "address_value": "Harju maakond, Harku vald, Tabasalu, Kolde tn 6/1, 76901, Eesti",
-      "modal_body": "<p><strong>Küberloome OÜ</strong><br />Registrikood 14206225<br />Aadress: Harju maakond, Harku vald, Tabasalu, Kolde tn 6/1, 76901, Eesti<br /><a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a></p>"
+      "modal_body": "<p><strong>OÜ Küberloome</strong><br />Registrikood 14206225<br />Aadress: Harju maakond, Harku vald, Tabasalu, Kolde tn 6/1, 76901, Eesti<br /><a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a></p>"
     },
     "cta": {
       "title": "sotsiaal.pro"

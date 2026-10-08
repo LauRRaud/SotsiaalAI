@@ -26,13 +26,13 @@ Käesolev raamleping ei anna iseenesest õigust töödelda kõiki tööga seotud
 
 1. Lepingu eesmärk ja pooled
 
-1.1. Käesolev raamleping määrab kindlaks Sotsiaal.pro platvormi tööalase kasutamise põhimõtted ning organisatsiooni ja Küberloome OÜ kohustused isikuandmete töötlemisel.
+1.1. Käesolev raamleping määrab kindlaks Sotsiaal.pro platvormi tööalase kasutamise põhimõtted ning organisatsiooni ja OÜ Küberloome kohustused isikuandmete töötlemisel.
 
-1.2. Lepingu pooled on organisatsioon või kohalik omavalitsus ning Küberloome OÜ.
+1.2. Lepingu pooled on organisatsioon või kohalik omavalitsus ning OÜ Küberloome.
 
 1.3. Töötaja, ametnik, lepinguline töötaja või muu lõppkasutaja ei ole käesoleva lepingu pool. Organisatsioon võib lepingu kasutusreegleid kasutada oma sisemise kinnituse, juhise või töötaja teavituse alusena.
 
-1.4. Käesolev leping on ühtlasi isikuandmete töötlemise kokkulepe ulatuses, milles Küberloome OÜ töötleb isikuandmeid organisatsiooni nimel.
+1.4. Käesolev leping on ühtlasi isikuandmete töötlemise kokkulepe ulatuses, milles OÜ Küberloome töötleb isikuandmeid organisatsiooni nimel.
 
 1.5. Sotsiaal.pro toetab kasutajat töö tegemisel, kuid ei tee inimese eest siduvaid otsuseid. Olulised vastused, kokkuvõtted ja dokumendimustandid tuleb enne kasutamist inimese poolt üle kontrollida.
 
@@ -52,11 +52,11 @@ Käesolev raamleping ei anna iseenesest õigust töödelda kõiki tööga seotud
 
 3.1. Organisatsioon on vastutav töötleja nende isikuandmete suhtes, mida tema kasutajad töötlevad Sotsiaal.pro-s tööülesannete täitmiseks.
 
-3.2. Küberloome OÜ on volitatud töötleja ulatuses, milles ta töötleb organisatsiooni tööandmeid organisatsiooni nimel ja organisatsiooni dokumenteeritud juhiste alusel.
+3.2. OÜ Küberloome on volitatud töötleja ulatuses, milles ta töötleb organisatsiooni tööandmeid organisatsiooni nimel ja organisatsiooni dokumenteeritud juhiste alusel.
 
 3.3. Dokumenteeritud juhisteks loetakse käesolev leping, lepingu lisad, organisatsiooni kirjalikud juhised, teenuse seadistused, kasutaja tegevused platvormis ning muud poolte vahel kokku lepitud tingimused.
 
-3.4. Küberloome OÜ võib olla eraldi vastutav töötleja andmete suhtes, mida ta töötleb enda teenuse haldamiseks, näiteks kasutajakontode haldamiseks, arveldamiseks, turvalisuse tagamiseks, lepingu täitmiseks või seadusest tulenevate kohustuste täitmiseks. Sellist töötlemist kirjeldatakse Sotsiaal.pro privaatsustingimustes.
+3.4. OÜ Küberloome võib olla eraldi vastutav töötleja andmete suhtes, mida ta töötleb enda teenuse haldamiseks, näiteks kasutajakontode haldamiseks, arveldamiseks, turvalisuse tagamiseks, lepingu täitmiseks või seadusest tulenevate kohustuste täitmiseks. Sellist töötlemist kirjeldatakse Sotsiaal.pro privaatsustingimustes.
 
 4. Lubatud kasutus
 
@@ -98,19 +98,19 @@ muude organisatsiooni lubatud töövoogude toetamiseks.
 
 6. Isikuandmete töötlemise kokkulepe
 
-6.1. Käesolev punkt on organisatsiooni ja Küberloome OÜ vaheline isikuandmete töötlemise kokkulepe ulatuses, milles Küberloome OÜ töötleb isikuandmeid organisatsiooni nimel.
+6.1. Käesolev punkt on organisatsiooni ja OÜ Küberloome vaheline isikuandmete töötlemise kokkulepe ulatuses, milles OÜ Küberloome töötleb isikuandmeid organisatsiooni nimel.
 
-6.2. Küberloome OÜ töötleb organisatsiooni tööandmeid ainult organisatsiooni dokumenteeritud juhiste alusel ja teenuse osutamiseks vajalikus ulatuses.
+6.2. OÜ Küberloome töötleb organisatsiooni tööandmeid ainult organisatsiooni dokumenteeritud juhiste alusel ja teenuse osutamiseks vajalikus ulatuses.
 
 6.3. Töötlemise eesmärk, ese, kestus, laad, andmekategooriad, andmesubjektide kategooriad, säilitamise põhimõtted ning poolte õigused ja kohustused on kirjeldatud käesolevas lepingus ja selle lisades.
 
-6.4. Küberloome OÜ tagab, et organisatsiooni andmetega kokku puutuvad isikud on seotud konfidentsiaalsuskohustusega või neile kohaldub seadusest tulenev konfidentsiaalsuskohustus.
+6.4. OÜ Küberloome tagab, et organisatsiooni andmetega kokku puutuvad isikud on seotud konfidentsiaalsuskohustusega või neile kohaldub seadusest tulenev konfidentsiaalsuskohustus.
 
-6.5. Küberloome OÜ rakendab organisatsiooni andmete kaitsmiseks asjakohaseid tehnilisi ja korralduslikke meetmeid, arvestades töötlemise laadi, ulatust, konteksti, eesmärke ja andmesubjektide õigustele ja vabadustele tekkivat riski. Meetmete kokkuvõte on esitatud lisas 4.
+6.5. OÜ Küberloome rakendab organisatsiooni andmete kaitsmiseks asjakohaseid tehnilisi ja korralduslikke meetmeid, arvestades töötlemise laadi, ulatust, konteksti, eesmärke ja andmesubjektide õigustele ja vabadustele tekkivat riski. Meetmete kokkuvõte on esitatud lisas 4.
 
-6.6. Kui Küberloome OÜ leiab, et organisatsiooni juhis võib olla vastuolus kohaldatava andmekaitseõigusega, teavitab ta sellest organisatsiooni mõistliku aja jooksul, välja arvatud juhul, kui selline teavitamine on seadusega keelatud.
+6.6. Kui OÜ Küberloome leiab, et organisatsiooni juhis võib olla vastuolus kohaldatava andmekaitseõigusega, teavitab ta sellest organisatsiooni mõistliku aja jooksul, välja arvatud juhul, kui selline teavitamine on seadusega keelatud.
 
-6.7. Küberloome OÜ ei kasuta organisatsiooni tööandmeid muul eesmärgil kui teenuse osutamiseks, lepingu täitmiseks või muul käesolevas lepingus, privaatsustingimustes või poolte vahel kokkulepitud alusel lubatud eesmärgil.
+6.7. OÜ Küberloome ei kasuta organisatsiooni tööandmeid muul eesmärgil kui teenuse osutamiseks, lepingu täitmiseks või muul käesolevas lepingus, privaatsustingimustes või poolte vahel kokkulepitud alusel lubatud eesmärgil.
 
 7. Tehisintellekti teenuse kasutamine
 
@@ -130,9 +130,9 @@ transkriptsiooniks vajalik helifail või kõnesünteesiks vajalik tekst.
 
 7.3. Organisatsioon ja kasutaja peavad arvestama, et vestlusesse, dokumenti või faili sisestatud tööalane sisu võib vastuse, kokkuvõtte, analüüsi, transkriptsiooni või dokumendimustandi koostamiseks liikuda tehisintellekti teenusepakkujale.
 
-7.4. Küberloome OÜ tagab, et tehisintellekti teenusepakkujale kohalduvad asjakohased konfidentsiaalsus-, turbe- ja andmekaitsekohustused ning vajaduse korral andmeedastuse kaitsemeetmed.
+7.4. OÜ Küberloome tagab, et tehisintellekti teenusepakkujale kohalduvad asjakohased konfidentsiaalsus-, turbe- ja andmekaitsekohustused ning vajaduse korral andmeedastuse kaitsemeetmed.
 
-7.5. Kui organisatsioon vajab konkreetse tehisintellekti teenusepakkuja, andmeedastuse või alltöötleja kohta täpsemat infot, teeb Küberloome OÜ selle mõistlikus ulatuses kättesaadavaks lepingu lisa, veebilehe või kirjaliku päringu kaudu.
+7.5. Kui organisatsioon vajab konkreetse tehisintellekti teenusepakkuja, andmeedastuse või alltöötleja kohta täpsemat infot, teeb OÜ Küberloome selle mõistlikus ulatuses kättesaadavaks lepingu lisa, veebilehe või kirjaliku päringu kaudu.
 
 8. Ligipääs, haldusligipääs ja konfidentsiaalsus
 
@@ -140,7 +140,7 @@ transkriptsiooniks vajalik helifail või kõnesünteesiks vajalik tekst.
 
 8.2. Käesolev leping ei anna organisatsiooni esindajale automaatset õigust näha kasutajate vestlusi, dokumente või faile, kui selline ligipääs ei ole platvormis eraldi tehniliselt loodud, lepinguliselt kokku lepitud ja organisatsiooni sisereeglitega lubatud.
 
-8.3. Teenuse haldamiseks, turvalisuse tagamiseks, tehnilise toe osutamiseks, vea või turbeintsidendi uurimiseks, kuritarvituse vältimiseks või õiguskohustuse täitmiseks võib Küberloome OÜ töödelda piiratud tehnilisi metaandmeid või teha põhjendatud andmetoiminguid üksnes vajalikus ulatuses.
+8.3. Teenuse haldamiseks, turvalisuse tagamiseks, tehnilise toe osutamiseks, vea või turbeintsidendi uurimiseks, kuritarvituse vältimiseks või õiguskohustuse täitmiseks võib OÜ Küberloome töödelda piiratud tehnilisi metaandmeid või teha põhjendatud andmetoiminguid üksnes vajalikus ulatuses.
 
 8.4. Platvormi administraatori võimalik ligipääs vestluste, ruumide, dokumentide või failide sisule on erandlik tehniline haldusligipääs. Sellist ligipääsu võib kasutada ainult põhjendatud vajaduse korral ning ulatuses, mis on vajalik konkreetse eesmärgi täitmiseks.
 
@@ -156,19 +156,19 @@ transkriptsiooniks vajalik helifail või kõnesünteesiks vajalik tekst.
 
 10. Alltöötlejad, andmete asukoht ja edastamine
 
-10.1. Küberloome OÜ võib teenuse osutamiseks kasutada vajalikke alltöötlejaid ja teenusepakkujaid, näiteks majutuse, tehisintellekti, kõneteenuste, e-posti, logimise, monitooringu, autentimise, varundamise või tehnilise taristu teenusepakkujaid.
+10.1. OÜ Küberloome võib teenuse osutamiseks kasutada vajalikke alltöötlejaid ja teenusepakkujaid, näiteks majutuse, tehisintellekti, kõneteenuste, e-posti, logimise, monitooringu, autentimise, varundamise või tehnilise taristu teenusepakkujaid.
 
-10.2. Organisatsioon annab Küberloome OÜ-le üldise loa kasutada teenuse osutamiseks vajalikke alltöötlejaid.
+10.2. Organisatsioon annab ettevõttele OÜ Küberloome üldise loa kasutada teenuse osutamiseks vajalikke alltöötlejaid.
 
 10.3. Ajakohane alltöötlejate nimekiri tehakse organisatsioonile kättesaadavaks lepingu lisa, veebilehe või kirjaliku päringu kaudu.
 
-10.4. Küberloome OÜ tagab, et alltöötlejatele pannakse asjakohases ulatuses samaväärsed andmekaitsekohustused, mis kohalduvad Küberloome OÜ-le käesoleva lepingu alusel.
+10.4. OÜ Küberloome tagab, et alltöötlejatele pannakse asjakohases ulatuses samaväärsed andmekaitsekohustused, mis kohalduvad ettevõttele OÜ Küberloome käesoleva lepingu alusel.
 
-10.5. Kui Küberloome OÜ lisab uue olulise alltöötleja või asendab olemasoleva olulise alltöötleja, teavitab ta sellest organisatsiooni mõistliku aja jooksul. Organisatsioonil on õigus esitada põhjendatud vastuväide.
+10.5. Kui OÜ Küberloome lisab uue olulise alltöötleja või asendab olemasoleva olulise alltöötleja, teavitab ta sellest organisatsiooni mõistliku aja jooksul. Organisatsioonil on õigus esitada põhjendatud vastuväide.
 
 10.6. Platvormi põhimajutus toimub Euroopa Majanduspiirkonnas, sealhulgas Eestis, kui pooled ei lepi kirjalikult kokku teisiti.
 
-10.7. Kui teenuse osutamiseks on vaja edastada isikuandmeid väljapoole Euroopa Liitu või Euroopa Majanduspiirkonda, teeb Küberloome OÜ seda ainult kohaldatava õiguse alusel ja kasutab asjakohaseid kaitsemeetmeid.
+10.7. Kui teenuse osutamiseks on vaja edastada isikuandmeid väljapoole Euroopa Liitu või Euroopa Majanduspiirkonda, teeb OÜ Küberloome seda ainult kohaldatava õiguse alusel ja kasutab asjakohaseid kaitsemeetmeid.
 
 10.8. Alltöötlejate ülevaade on esitatud lisas 3.
 
@@ -176,15 +176,15 @@ transkriptsiooniks vajalik helifail või kõnesünteesiks vajalik tekst.
 
 11.1. Organisatsioon vastutab andmesubjektide taotluste lahendamise eest ulatuses, milles organisatsioon on vastutav töötleja.
 
-11.2. Küberloome OÜ aitab mõistlikus ulatuses organisatsiooni andmesubjektide taotluste lahendamisel, rikkumiste hindamisel, mõjuhinnangu koostamisel ning muude andmekaitsealaste kohustuste täitmisel ulatuses, milles see on seotud Sotsiaal.pro teenusega.
+11.2. OÜ Küberloome aitab mõistlikus ulatuses organisatsiooni andmesubjektide taotluste lahendamisel, rikkumiste hindamisel, mõjuhinnangu koostamisel ning muude andmekaitsealaste kohustuste täitmisel ulatuses, milles see on seotud Sotsiaal.pro teenusega.
 
 11.3. Abi võib hõlmata näiteks andmete leidmist, eksportimist, parandamist, kustutamist või ligipääsu piiramist ulatuses, mis on tehniliselt võimalik ja kooskõlas seaduse, säilitamiskohustuste ning organisatsiooni juhistega.
 
-11.4. Kui Küberloome OÜ saab teada isikuandmetega seotud rikkumisest, mis puudutab organisatsiooni andmeid, teavitab ta organisatsiooni põhjendamatu viivituseta ning võimaluse korral 24 tunni jooksul pärast rikkumisest teada saamist.
+11.4. Kui OÜ Küberloome saab teada isikuandmetega seotud rikkumisest, mis puudutab organisatsiooni andmeid, teavitab ta organisatsiooni põhjendamatu viivituseta ning võimaluse korral 24 tunni jooksul pärast rikkumisest teada saamist.
 
-11.5. Teavitus sisaldab esialgselt teadaolevat infot rikkumise olemuse, puudutatud andmete, võimaliku mõju, võetud või kavandatavate meetmete ning kontaktpunkti kohta. Kui kogu info ei ole esialgu kättesaadav, võib Küberloome OÜ esitada info osade kaupa.
+11.5. Teavitus sisaldab esialgselt teadaolevat infot rikkumise olemuse, puudutatud andmete, võimaliku mõju, võetud või kavandatavate meetmete ning kontaktpunkti kohta. Kui kogu info ei ole esialgu kättesaadav, võib OÜ Küberloome esitada info osade kaupa.
 
-11.6. Küberloome OÜ teeb organisatsioonile mõistlikus ulatuses kättesaadavaks teabe, mis on vajalik käesoleva andmetöötluskokkuleppe täitmise tõendamiseks.
+11.6. OÜ Küberloome teeb organisatsioonile mõistlikus ulatuses kättesaadavaks teabe, mis on vajalik käesoleva andmetöötluskokkuleppe täitmise tõendamiseks.
 
 11.7. Täiendava kontrolli või auditi vajaduse korral lepivad pooled selle ulatuse, aja, viisi, konfidentsiaalsuse ja võimaliku kulu eraldi kokku.
 
@@ -208,7 +208,7 @@ transkriptsiooniks vajalik helifail või kõnesünteesiks vajalik tekst.
 
 13. Töötlemise lõppemine
 
-13.1. Teenuse kasutamise lõppemisel kustutab või tagastab Küberloome OÜ organisatsiooni tööandmed organisatsiooni juhiste kohaselt ulatuses, mis on tehniliselt võimalik ja kooskõlas kohaldatavate säilitamiskohustustega.
+13.1. Teenuse kasutamise lõppemisel kustutab või tagastab OÜ Küberloome organisatsiooni tööandmed organisatsiooni juhiste kohaselt ulatuses, mis on tehniliselt võimalik ja kooskõlas kohaldatavate säilitamiskohustustega.
 
 13.2. Kui teatud andmeid tuleb säilitada seadusest tuleneva kohustuse, raamatupidamisnõude, dokumendihalduse, arhiveerimisnõude, turvalisuse, vaidluse või õigusnõude tõttu, säilitatakse neid ainult vajalikus ulatuses ja piiratud juurdepääsuga.
 
@@ -218,7 +218,7 @@ transkriptsiooniks vajalik helifail või kõnesünteesiks vajalik tekst.
 
 14.2. Organisatsioon vastutab eelkõige töötlemise eesmärgi ja õigusliku aluse määramise, kasutajatele juhiste andmise, lubatud ja keelatud andmekategooriate määramise, vajaduse korral mõjuhinnangu tegemise, andmesubjektide õiguste tagamise ning lõplike tööalaste hinnangute, dokumentide ja otsuste eest.
 
-14.3. Küberloome OÜ vastutab teenuse osutamise, organisatsiooni dokumenteeritud juhiste järgimise, kokkulepitud turvameetmete rakendamise ning käesolevas lepingus kirjeldatud volitatud töötleja kohustuste täitmise eest.
+14.3. OÜ Küberloome vastutab teenuse osutamise, organisatsiooni dokumenteeritud juhiste järgimise, kokkulepitud turvameetmete rakendamise ning käesolevas lepingus kirjeldatud volitatud töötleja kohustuste täitmise eest.
 
 15. Muud tingimused
 
@@ -226,7 +226,7 @@ transkriptsiooniks vajalik helifail või kõnesünteesiks vajalik tekst.
 
 16. Jõustumine ja allkirjad
 
-16.1. Käesolev leping jõustub siis, kui organisatsioon ja Küberloome OÜ on selle allkirjastanud või muul kirjalikku taasesitamist võimaldaval viisil kinnitanud selle kohaldumist.
+16.1. Käesolev leping jõustub siis, kui organisatsioon ja OÜ Küberloome on selle allkirjastanud või muul kirjalikku taasesitamist võimaldaval viisil kinnitanud selle kohaldumist.
 
 16.2. Lepingu lisad moodustavad lepingu lahutamatu osa, kui pooled ei lepi kirjalikult kokku teisiti.
 
@@ -246,7 +246,7 @@ Allkiri:
 
 Sotsiaal.pro
 
-Küberloome OÜ
+OÜ Küberloome
 
 14206225
 
@@ -284,7 +284,7 @@ Organisatsioon.
 
 Volitatud töötleja
 
-Küberloome OÜ.
+OÜ Küberloome.
 
 Andmesubjektid
 

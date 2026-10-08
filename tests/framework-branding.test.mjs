@@ -10,7 +10,7 @@ for (const locale of ['et', 'en', 'ru']) {
   test(`framework ${locale}: rendered content and download use the current brand`, async () => {
     const document = await loadFrameworkDocument(locale);
     assert.match(document.title, /Sotsiaal\.pro/);
-    assert.match(document.html, /Küberloome OÜ/);
+    assert.match(document.html, /OÜ Küberloome/);
     assert.doesNotMatch(JSON.stringify(document), /SotsiaalAI|Sotsiaal\.pro OÜ/);
     assert.ok(document.documentBlocks.length > 10);
     const href = getWorkerFrameworkDocxHref(locale);

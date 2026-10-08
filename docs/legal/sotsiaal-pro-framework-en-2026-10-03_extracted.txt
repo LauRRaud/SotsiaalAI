@@ -26,13 +26,13 @@ This framework agreement does not in itself grant the right to process all work-
 
 1. Purpose and parties of the agreement
 
-1.1. This framework agreement establishes the principles for the professional use of the Sotsiaal.pro platform and the obligations of the organisation and Küberloome OÜ in the processing of personal data.
+1.1. This framework agreement establishes the principles for the professional use of the Sotsiaal.pro platform and the obligations of the organisation and OÜ Küberloome in the processing of personal data.
 
-1.2. The parties to the agreement are the organisation or local government and Küberloome OÜ.
+1.2. The parties to the agreement are the organisation or local government and OÜ Küberloome.
 
 1.3. An employee, official, contractual worker or other end user is not a party to this agreement. The organisation may use the usage rules of this agreement as the basis for its internal approval, instructions or employee notifications.
 
-1.4. This agreement also constitutes a data processing agreement to the extent that Küberloome OÜ processes personal data on behalf of the organisation.
+1.4. This agreement also constitutes a data processing agreement to the extent that OÜ Küberloome processes personal data on behalf of the organisation.
 
 1.5. Sotsiaal.pro supports the user in carrying out their work but does not make binding decisions on behalf of a person. Important responses, summaries and document drafts must be reviewed by a person before use.
 
@@ -52,11 +52,11 @@ This framework agreement does not in itself grant the right to process all work-
 
 3.1. The organisation is the controller with respect to the personal data that its users process in Sotsiaal.pro for the performance of work tasks.
 
-3.2. Küberloome OÜ is the processor to the extent that it processes the organisation's work data on behalf of the organisation and on the basis of the organisation's documented instructions.
+3.2. OÜ Küberloome is the processor to the extent that it processes the organisation's work data on behalf of the organisation and on the basis of the organisation's documented instructions.
 
 3.3. Documented instructions include this agreement, its annexes, the organisation's written instructions, service settings, user actions on the platform and other conditions agreed between the parties.
 
-3.4. Küberloome OÜ may be a separate controller with respect to data that it processes for the administration of its own service, for example for managing user accounts, billing, ensuring security, performing the agreement or fulfilling statutory obligations. Such processing is described in the Sotsiaal.pro privacy terms.
+3.4. OÜ Küberloome may be a separate controller with respect to data that it processes for the administration of its own service, for example for managing user accounts, billing, ensuring security, performing the agreement or fulfilling statutory obligations. Such processing is described in the Sotsiaal.pro privacy terms.
 
 4. Permitted use
 
@@ -98,19 +98,19 @@ supporting other workflows permitted by the organisation.
 
 6. Data processing agreement
 
-6.1. This clause constitutes the data processing agreement between the organisation and Küberloome OÜ to the extent that Küberloome OÜ processes personal data on behalf of the organisation.
+6.1. This clause constitutes the data processing agreement between the organisation and OÜ Küberloome to the extent that OÜ Küberloome processes personal data on behalf of the organisation.
 
-6.2. Küberloome OÜ processes the organisation's work data only on the basis of the organisation's documented instructions and to the extent necessary for providing the service.
+6.2. OÜ Küberloome processes the organisation's work data only on the basis of the organisation's documented instructions and to the extent necessary for providing the service.
 
 6.3. The purpose, subject matter, duration and nature of the processing, the data categories, the categories of data subjects, the retention principles and the rights and obligations of the parties are described in this agreement and its annexes.
 
-6.4. Küberloome OÜ ensures that persons who come into contact with the organisation's data are bound by a confidentiality obligation or are subject to a statutory confidentiality obligation.
+6.4. OÜ Küberloome ensures that persons who come into contact with the organisation's data are bound by a confidentiality obligation or are subject to a statutory confidentiality obligation.
 
-6.5. Küberloome OÜ implements appropriate technical and organisational measures to protect the organisation's data, taking into account the nature, scope, context and purposes of the processing and the risk to the rights and freedoms of data subjects. A summary of the measures is provided in Annex 4.
+6.5. OÜ Küberloome implements appropriate technical and organisational measures to protect the organisation's data, taking into account the nature, scope, context and purposes of the processing and the risk to the rights and freedoms of data subjects. A summary of the measures is provided in Annex 4.
 
-6.6. If Küberloome OÜ considers that an instruction of the organisation may be contrary to applicable data protection law, it will inform the organisation thereof within a reasonable time, unless such notification is prohibited by law.
+6.6. If OÜ Küberloome considers that an instruction of the organisation may be contrary to applicable data protection law, it will inform the organisation thereof within a reasonable time, unless such notification is prohibited by law.
 
-6.7. Küberloome OÜ does not use the organisation's work data for any purpose other than providing the service, performing the agreement or another purpose permitted under this agreement, the privacy terms or a basis agreed between the parties.
+6.7. OÜ Küberloome does not use the organisation's work data for any purpose other than providing the service, performing the agreement or another purpose permitted under this agreement, the privacy terms or a basis agreed between the parties.
 
 7. Use of artificial intelligence services
 
@@ -130,9 +130,9 @@ an audio file needed for transcription or text needed for speech synthesis.
 
 7.3. The organisation and the user must take into account that work-related content entered into a conversation, document or file may be transmitted to an artificial intelligence service provider for the preparation of a response, summary, analysis, transcription or document draft.
 
-7.4. Küberloome OÜ ensures that appropriate confidentiality, security and data protection obligations, and where necessary data transfer safeguards, apply to the artificial intelligence service provider.
+7.4. OÜ Küberloome ensures that appropriate confidentiality, security and data protection obligations, and where necessary data transfer safeguards, apply to the artificial intelligence service provider.
 
-7.5. If the organisation requires more detailed information about a specific artificial intelligence service provider, data transfer or sub-processor, Küberloome OÜ will make it available to a reasonable extent through an annex to the agreement, the website or a written enquiry.
+7.5. If the organisation requires more detailed information about a specific artificial intelligence service provider, data transfer or sub-processor, OÜ Küberloome will make it available to a reasonable extent through an annex to the agreement, the website or a written enquiry.
 
 8. Access, administrative access and confidentiality
 
@@ -140,7 +140,7 @@ an audio file needed for transcription or text needed for speech synthesis.
 
 8.2. This agreement does not give the organisation's representative an automatic right to see users' conversations, documents or files unless such access has been separately technically created on the platform, contractually agreed and permitted by the organisation's internal rules.
 
-8.3. For administering the service, ensuring security, providing technical support, investigating an error or security incident, preventing misuse or fulfilling a legal obligation, Küberloome OÜ may process limited technical metadata or carry out justified data operations only to the extent necessary.
+8.3. For administering the service, ensuring security, providing technical support, investigating an error or security incident, preventing misuse or fulfilling a legal obligation, OÜ Küberloome may process limited technical metadata or carry out justified data operations only to the extent necessary.
 
 8.4. Any access by the platform administrator to the content of conversations, rooms, documents or files is an exceptional technical administrative access. Such access may be used only in the event of a justified need and to the extent necessary for fulfilling a specific purpose.
 
@@ -156,19 +156,19 @@ an audio file needed for transcription or text needed for speech synthesis.
 
 10. Sub-processors, data location and transfers
 
-10.1. Küberloome OÜ may use necessary sub-processors and service providers for providing the service, for example providers of hosting, artificial intelligence, speech services, e-mail, logging, monitoring, authentication, backup or technical infrastructure services.
+10.1. OÜ Küberloome may use necessary sub-processors and service providers for providing the service, for example providers of hosting, artificial intelligence, speech services, e-mail, logging, monitoring, authentication, backup or technical infrastructure services.
 
-10.2. The organisation grants Küberloome OÜ a general authorisation to use sub-processors necessary for providing the service.
+10.2. The organisation grants OÜ Küberloome a general authorisation to use sub-processors necessary for providing the service.
 
 10.3. An up-to-date list of sub-processors is made available to the organisation through an annex to the agreement, the website or a written enquiry.
 
-10.4. Küberloome OÜ ensures that sub-processors are, to the appropriate extent, subject to data protection obligations equivalent to those applying to Küberloome OÜ under this agreement.
+10.4. OÜ Küberloome ensures that sub-processors are, to the appropriate extent, subject to data protection obligations equivalent to those applying to OÜ Küberloome under this agreement.
 
-10.5. If Küberloome OÜ adds a new significant sub-processor or replaces an existing significant sub-processor, it will inform the organisation thereof within a reasonable time. The organisation has the right to raise a justified objection.
+10.5. If OÜ Küberloome adds a new significant sub-processor or replaces an existing significant sub-processor, it will inform the organisation thereof within a reasonable time. The organisation has the right to raise a justified objection.
 
 10.6. The primary hosting of the platform takes place in the European Economic Area, including Estonia, unless the parties agree otherwise in writing.
 
-10.7. If the provision of the service requires the transfer of personal data outside the European Union or the European Economic Area, Küberloome OÜ does so only on the basis of applicable law and uses appropriate safeguards.
+10.7. If the provision of the service requires the transfer of personal data outside the European Union or the European Economic Area, OÜ Küberloome does so only on the basis of applicable law and uses appropriate safeguards.
 
 10.8. An overview of sub-processors is provided in Annex 3.
 
@@ -176,15 +176,15 @@ an audio file needed for transcription or text needed for speech synthesis.
 
 11.1. The organisation is responsible for resolving data subjects' requests to the extent that the organisation is the controller.
 
-11.2. Küberloome OÜ assists the organisation to a reasonable extent in resolving data subjects' requests, assessing breaches, preparing impact assessments and fulfilling other data protection obligations to the extent that this relates to the Sotsiaal.pro service.
+11.2. OÜ Küberloome assists the organisation to a reasonable extent in resolving data subjects' requests, assessing breaches, preparing impact assessments and fulfilling other data protection obligations to the extent that this relates to the Sotsiaal.pro service.
 
 11.3. Assistance may include, for example, locating, exporting, rectifying, deleting or restricting access to data to the extent that this is technically possible and consistent with the law, retention obligations and the organisation's instructions.
 
-11.4. If Küberloome OÜ becomes aware of a personal data breach affecting the organisation's data, it will notify the organisation without undue delay and, where possible, within 24 hours of becoming aware of the breach.
+11.4. If OÜ Küberloome becomes aware of a personal data breach affecting the organisation's data, it will notify the organisation without undue delay and, where possible, within 24 hours of becoming aware of the breach.
 
-11.5. The notification includes the initially known information about the nature of the breach, the data affected, the possible impact, the measures taken or planned and the contact point. If all the information is not initially available, Küberloome OÜ may provide the information in stages.
+11.5. The notification includes the initially known information about the nature of the breach, the data affected, the possible impact, the measures taken or planned and the contact point. If all the information is not initially available, OÜ Küberloome may provide the information in stages.
 
-11.6. Küberloome OÜ makes available to the organisation, to a reasonable extent, the information necessary to demonstrate compliance with this data processing agreement.
+11.6. OÜ Küberloome makes available to the organisation, to a reasonable extent, the information necessary to demonstrate compliance with this data processing agreement.
 
 11.7. If an additional inspection or audit is required, the parties will separately agree on its scope, timing, manner, confidentiality and possible costs.
 
@@ -208,7 +208,7 @@ an audio file needed for transcription or text needed for speech synthesis.
 
 13. End of processing
 
-13.1. Upon termination of the use of the service, Küberloome OÜ deletes or returns the organisation's work data in accordance with the organisation's instructions, to the extent technically possible and consistent with applicable retention obligations.
+13.1. Upon termination of the use of the service, OÜ Küberloome deletes or returns the organisation's work data in accordance with the organisation's instructions, to the extent technically possible and consistent with applicable retention obligations.
 
 13.2. If certain data must be retained due to a statutory obligation, accounting requirement, records management, archiving requirement, security, dispute or legal claim, they are retained only to the necessary extent and with restricted access.
 
@@ -218,7 +218,7 @@ an audio file needed for transcription or text needed for speech synthesis.
 
 14.2. The organisation is responsible in particular for determining the purpose and legal basis of the processing, providing instructions to users, defining permitted and prohibited data categories, carrying out an impact assessment where necessary, ensuring data subjects' rights, and for the final professional assessments, documents and decisions.
 
-14.3. Küberloome OÜ is responsible for providing the service, following the organisation's documented instructions, implementing the agreed security measures and fulfilling the processor obligations described in this agreement.
+14.3. OÜ Küberloome is responsible for providing the service, following the organisation's documented instructions, implementing the agreed security measures and fulfilling the processor obligations described in this agreement.
 
 15. Other terms
 
@@ -226,7 +226,7 @@ an audio file needed for transcription or text needed for speech synthesis.
 
 16. Entry into force and signatures
 
-16.1. This agreement enters into force when the organisation and Küberloome OÜ have signed it or have otherwise confirmed its application in a format that can be reproduced in writing.
+16.1. This agreement enters into force when the organisation and OÜ Küberloome have signed it or have otherwise confirmed its application in a format that can be reproduced in writing.
 
 16.2. The annexes to the agreement form an integral part of the agreement, unless the parties agree otherwise in writing.
 
@@ -246,7 +246,7 @@ Signature:
 
 Sotsiaal.pro
 
-Küberloome OÜ
+OÜ Küberloome
 
 14206225
 
@@ -284,7 +284,7 @@ The organisation.
 
 Processor
 
-Küberloome OÜ.
+OÜ Küberloome.
 
 Data subjects
 

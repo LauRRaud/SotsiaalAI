@@ -1575,7 +1575,7 @@
         "gate": "Confirmation",
         "success": "Done"
       },
-      "worker_framework_signed_version_note": "The web text and DOCX use the name Sotsiaal.pro and the company name Küberloome OÜ. The signed DigiDoc is an earlier document bearing the old name; it is not a signed copy of the version published here."
+      "worker_framework_signed_version_note": "The web text and DOCX use the name Sotsiaal.pro and the company name OÜ Küberloome. The signed DigiDoc is an earlier document bearing the old name; it is not a signed copy of the version published here."
     },
     "reset": {
       "title": "Update PIN",
@@ -1988,7 +1988,7 @@
     "title": "Privacy",
     "section1": {
       "heading": "1. General Provisions",
-      "paragraph1": "<p>This Privacy Policy explains how <strong>Küberloome OÜ</strong> processes personal data when you use the <strong>Sotsiaal.pro</strong> web platform. It covers account creation, sign-in, subscriptions, chats, rooms, help requests and offers, documents, deep research, file uploads, logs, and other platform workflows. It also explains what data is stored, for how long, how feature limits and storage quotas can affect retention, and which automated systems are used to generate responses, drafts, classifications, or search results.</p>",
+      "paragraph1": "<p>This Privacy Policy explains how <strong>OÜ Küberloome</strong> processes personal data when you use the <strong>Sotsiaal.pro</strong> web platform. It covers account creation, sign-in, subscriptions, chats, rooms, help requests and offers, documents, deep research, file uploads, logs, and other platform workflows. It also explains what data is stored, for how long, how feature limits and storage quotas can affect retention, and which automated systems are used to generate responses, drafts, classifications, or search results.</p>",
       "paragraph2": "<p>Sotsiaal.pro processes personal data in accordance with the Estonian Personal Data Protection <aLawEst>Act</aLawEst> and the EU General Data Protection <aGdpr>Regulation</aGdpr>. If you have questions about data processing, contact us before continuing to use the service.</p>"
     },
     "section2": {
@@ -2052,7 +2052,7 @@
     "title": "Terms",
     "section1": {
       "heading": "1. General Provisions",
-      "body": "<p>These Terms of Use govern the use of the <strong>Sotsiaal.pro</strong> platform operated by <strong>Küberloome OÜ</strong>. By using the platform, you confirm that you have read and accepted these Terms.</p><p>To keep the service stable, secure, and reasonably usable, the platform may apply technical limits and usage rules. These may cover chat volume, deep research usage, repeated document refinement, and limits on file count, file size, and storage. The applicable limits may depend on the feature or package and are described in these Terms or shown in the product UI where needed.</p><p>If you do not agree with these Terms, you must not use the platform. The Privacy Policy and these Terms together form the basis for using the service.</p>"
+      "body": "<p>These Terms of Use govern the use of the <strong>Sotsiaal.pro</strong> platform operated by <strong>OÜ Küberloome</strong>. By using the platform, you confirm that you have read and accepted these Terms.</p><p>To keep the service stable, secure, and reasonably usable, the platform may apply technical limits and usage rules. These may cover chat volume, deep research usage, repeated document refinement, and limits on file count, file size, and storage. The applicable limits may depend on the feature or package and are described in these Terms or shown in the product UI where needed.</p><p>If you do not agree with these Terms, you must not use the platform. The Privacy Policy and these Terms together form the basis for using the service.</p>"
     },
     "section2": {
       "heading": "2. Service Description",
@@ -4291,10 +4291,10 @@
     "contact": {
       "title": "Contact",
       "email_value": "info@sotsiaal.pro",
-      "company": "Küberloome OÜ",
+      "company": "OÜ Küberloome",
       "registry_value": "14206225",
       "address_value": "Harju maakond, Harku vald, Tabasalu, Kolde tn 6/1, 76901, Estonia",
-      "modal_body": "<p><strong>Küberloome OÜ</strong><br />Registry code 14206225<br />Address: Harju maakond, Harku vald, Tabasalu, Kolde tn 6/1, 76901, Estonia<br /><a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a></p>"
+      "modal_body": "<p><strong>OÜ Küberloome</strong><br />Registry code 14206225<br />Address: Harju maakond, Harku vald, Tabasalu, Kolde tn 6/1, 76901, Estonia<br /><a href=\"mailto:info@sotsiaal.pro\">info@sotsiaal.pro</a></p>"
     },
     "cta": {
       "title": "sotsiaal.pro"
