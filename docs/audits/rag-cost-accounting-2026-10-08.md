@@ -52,7 +52,7 @@ Kaks sünteetilist Luna standardkutset, `store: false`, 128 väljundtokeni piir.
 | 2 | 1805 | 1802 | 0 | 13 | 0,00002482 |
 | Kokku | 3610 | 1802 | 1802 | 26 | **0,00025687** |
 
-Erinevus kinnitab, miks kõigi sisendtokenite 0,125 USD/miljoniga korrutamine ei ole täpne kuluarvestus. Need kaks kutset kontrollivad provider'i kasutusandmeid ja kalkulaatorit; kogu RAG-i pärismõõtmine ning avaldamise tulemus lisatakse pärast väljalaset.
+Erinevus kinnitab, miks kõigi sisendtokenite 0,125 USD/miljoniga korrutamine ei ole täpne kuluarvestus. Need kaks kutset kontrollivad provider'i kasutusandmeid ja kalkulaatorit; kogu RAG-i pärismõõtmine ning avaldamise tulemus on järgmistes jaotistes.
 
 ## Avaldamine ja kolme rolli pärismõõtmine
 
@@ -69,4 +69,24 @@ Kolm eraldatud testkontot, üks sünteetiline juhtum rolli kohta, päris allikab
 
 Kõik kolm vastust avaldati, kõik 12 kutset on hinnastatud. Kasutuskonto summa võrdub kviitungite EUR-summaga, USD-summa võrdub RAG-i eelarve pearaamatuga. Iga sama võtmega korduspäring taastas vastuse ilma ühegi uue API-kutseta. Testkontod ja nende vestlused kustutati; 12 sisuvaba kulukirjet säilisid kasutajaseoseta. Mõõteprotsessi taustal töötanud allikate soojendus hoidis protsessi pärast tulemuse ja puhastuse valmimist elus; lõpetati ainult see mõõteprotsess, mitte rakenduse teenus.
 
-**Rolli sisuline leid:** pöörduja sai juhise omavalitsusse pöördumiseks, spetsialist enda töö sammud. Teenuseosutaja vastus käskis tal aga teenuseosutajaga kokku leppida ja haldusakti vormistada, omistades talle korraldaja ülesande. Dialoogi juhis v36 eristab nüüd teenuseosutaja teenuse planeerimist, osutamist ja koostööd ametiasutuse otsustuspädevusest ning nimetab sammu eest vastutaja. Juhis ei sisalda mõõtejuhtumi asukohta, teenust ega oodatud vastust. V35 jääb loetavaks. Juhise, dialoogi ja plaanilepingu 18 sihttesti ning sihtlint läbisid. Paranduse avaldamine ja kordusmõõtmine on pooleli.
+**Rolli sisuline leid:** pöörduja sai juhise omavalitsusse pöördumiseks, spetsialist enda töö sammud. Teenuseosutaja vastus käskis tal aga teenuseosutajaga kokku leppida ja haldusakti vormistada, omistades talle korraldaja ülesande. Dialoogi juhis v36 eristab nüüd teenuseosutaja teenuse planeerimist, osutamist ja koostööd ametiasutuse otsustuspädevusest ning nimetab sammu eest vastutaja. Juhis ei sisalda mõõtejuhtumi asukohta, teenust ega oodatud vastust. V35 jääb loetavaks. Juhise, dialoogi ja plaanilepingu 18 sihttesti ning sihtlint läbisid. Paranduse avaldamine ja kordusmõõtmine on allpool tõendatud.
+
+### Rolliparanduse kordusmõõtmine
+
+Parandus avaldatud versioonis `eb684d22e830377a47faeb924572967d223bd435`, [build](https://github.com/LauRRaud/SotsiaalAI/actions/runs/37746236595) ja [deploy](https://github.com/LauRRaud/SotsiaalAI/actions/runs/37746458214) edukad. Serveri töötava teenuse SHA kontrollitud, avalik `/api/health` tagastas 200.
+
+[Sama kolme rolli kordus](evidence/rag-cost-roles-recheck-2026-10-08.json): 12 hinnastatud API-kutset, 0,013191980 USD / 0,011802798 EUR. Kõigi rollide EUR-konto ja kviitungite summa võrdsed, reserv null, vastuse taastamine olemasolevast tulemusest ilma uue API-kutseta, testkontod kustutatud ja kulukirjed alles. Pöördujale anti abi taotlemise juhised, sotsiaaltöötajale hindamise töö, teenuseosutajale koostöö omavalitsusega; viimasele ei antud enam korraldust ametiasutuse nimel haldusakti teha.
+
+See kinnitab rolli edastamist ja nimetatud vea parandust mõõdetud näidetes. Kolm näidet ei tõenda kõigi võimalike vastuste rolli- ega faktitäpsust. Vabalt sõnastatud „Tartus” sai eri kordadel linna ja valla täpsustuse või linnapõhise vastuse; asukohatõlgenduse järjekindlus ning auditist pärinev väidete sisulise tõendatuse piir jäävad eraldi kvaliteediküsimusteks.
+
+Esimese kolme pöörde kulu jaotus: plaan 0,000387750 USD, päringuvektorid 0,000037960, allikavalik 0,007132525, vastus 0,006181430. Sisendi osa (koos embedding'uga) 87,3%. Sisendikulu põhjus pole selle tööga eemaldatud: täistekstide valiku ja vastuse konteksti vähendamine vajab auditis kirjeldatud eraldi kvaliteediga võrreldavat parandust.
+
+### Voogvastus ja lõppseis
+
+[Päris voogvastuse tõend](evidence/rag-cost-stream-live-2026-10-08.json): üks teenuseosutaja pööre täpsustatud asukohaga Tartu linn, 273 tekstiosa, kõik neli kutset `settled`, 0,003524275 USD / 0,003153152 EUR. EUR-konto võrdub kviitungite summaga, reserv 0, sama pöörde taastamine ei teinud uut kutset. Vastus jättis koduteenuse täpse sisu ja korralduse omavalitsusele; teenuseosutajale ei omistatud ametiasutuse otsust. Testkonto kustutati, kulukirjed jäid alles.
+
+Kõik tasulised mõõtmised kokku: **30 API-kutset, 0,030712790 USD**, sealhulgas seitse RAG-pööret (28 kutset, 0,030455920 USD) ja kaks cache-hinnakontrolli. Ükski seitsmest sama võtmega korduspäringust ei teinud uut API-kutset. Teatatud 1 USD piir jäi suure varuga täitmata. Mõõtmine ei ürita selle väikese valimi põhjal ennustada kõigi pärisvestluste hinda.
+
+[Serveri lõppkontroll](evidence/rag-cost-release-final-2026-10-08.json): SHA `eb684d22`, dialoogi juhis v36, `gpt-6-luna`, health 200. RAG-i olemasolev avaliku kasutuse luba hõlmab praegu endiselt ainult ühte kontot. Selle arendusplaani 4 USD ühine eelarve on eraldi kaitsepiir, mis võib rakenduda enne kasutaja kuupiiri; seda ei tõstetud ega avatud vestlust kõigile kontodele. Rollipõhised rahalimiidid on pärisandmebaasis tõendatud eraldatud testkontodega. Täielikku avalikku mitme kasutaja avamist või kõigi AI-funktsioonide ühist rahalimiiti see töö ei tähista.
+
+Lõplikud kontrollid: rahaarvestuse andmebaasitestid 10/10, hinna/provider'i viimased sihttestid 16/16, rolliparanduse juhise/dialoogi/plaani sihttestid 18/18; varasemad selles raportis nimetatud sihttestid, liidese kontrollid, lint ja tõlked läbisid. Koodi muutumise tõttu tehti GitHubis kummalegi avaldatud koodiversioonile üks tootmisbuild; serveris build'i ega testikomplekte ei käivitatud. Dokumentatsiooni järel samu muutumatu koodi kontrolle ei korratud.

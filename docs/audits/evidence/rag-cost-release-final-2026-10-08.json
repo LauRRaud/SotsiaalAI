@@ -1,0 +1,8 @@
+{
+  "release": "eb684d22e830377a47faeb924572967d223bd435",
+  "promptVersion": "m4-grounded-dialogue-36",
+  "allowedUsers": 1,
+  "planBudgetNanoUsd": 4000000000,
+  "model": "gpt-6-luna",
+  "healthStatus": "200"
+}

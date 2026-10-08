@@ -1,0 +1,583 @@
+{
+  "measuredAt": "2026-10-08T07:57:41.732Z",
+  "release": "eb684d22e830377a47faeb924572967d223bd435",
+  "synthetic": true,
+  "limitNanoUsd": 986003465,
+  "method": "Actual deployed RAG service, public corpus, synthetic accounts; existing public allowlist unchanged",
+  "roles": [
+    {
+      "role": "CLIENT",
+      "userRole": "help_seeker",
+      "limitNanoEur": "3600000000",
+      "state": "completed",
+      "answer": {
+        "kind": "grounded",
+        "blocks": [
+          {
+            "refs": [
+              "S1",
+              "S3"
+            ],
+            "text": "Tartu koduteenuse taotlemiseks võib pöörduda eakas ise või tema seaduslik esindaja; abivajajast võib teada anda ka keegi teine. Taotlus võib olla vabas vormis. Hindamine tehakse eaka kodus ning selgitatakse välja, millistes igapäevatoimingutes ta abi vajab. Abi osutatakse tema soovi korral.",
+            "factual": true
+          },
+          {
+            "refs": [
+              "S59",
+              "S35",
+              "S36"
+            ],
+            "text": "Järgmise sammuna pöördu Tartu koduteenuse saamiseks piirkonnakeskuse sotsiaaltöö spetsialisti poole või esita üldtaotlus või linnaportaali taotlus. Vajadust hindab spetsialist ja korraldab teenuse. Vaata lähemalt: tartu.ee/et/koduhooldusteenus. Üldtaotlus: linnaportaal.tartu.ee.",
+            "factual": true
+          },
+          {
+            "refs": [
+              "S4"
+            ],
+            "text": "Tartu linnas on koduteenus tasuline: tasu on 1 euro koduskäigu eest ning sissetulekust sõltuv lisatasu võib olla 6,50 eurot tunnis, kui arvestatav kuusissetulek on 601–800 eurot, või 13 eurot tunnis, kui see on üle 801 euro. Arvestatava sissetuleku hulka kuuluvad riiklik pension, kogumispension, töövõimetoetus ja sotsiaalmaksuga maksustatav tulu.",
+            "factual": true
+          }
+        ],
+        "limitations": [],
+        "clarification": null
+      },
+      "replayNoNewCalls": true,
+      "elapsedMs": 48085,
+      "calls": [
+        {
+          "stage": "plan",
+          "state": "settled",
+          "requestId": "req_137d756ec2bc418d974022e885db0b37",
+          "responseId": "resp_0fde4d6fa9e960b1016ac74cf8a16887d2ada5f171ff8dd1ef",
+          "usage": {
+            "input": 1555,
+            "output": 87,
+            "reasoning": 0,
+            "cachedInput": 1552,
+            "cacheWriteInput": 0
+          },
+          "pricing": {
+            "model": "gpt-6-luna",
+            "rates": {
+              "input": 100,
+              "output": 500,
+              "cachedInput": 10,
+              "cacheWriteInput": 125
+            },
+            "status": "priced",
+            "nanoUsd": 59320,
+            "currency": "USD",
+            "components": {
+              "input": 300,
+              "output": 43500,
+              "cachedInput": 15520,
+              "cacheWriteInput": 0
+            },
+            "longContext": false,
+            "rateVersion": "openai-2026-10-08-v1",
+            "serviceTier": "default"
+          },
+          "billedNanoUsd": "59320",
+          "billedNanoEur": "53074",
+          "reservedNanoUsd": "2089625"
+        },
+        {
+          "stage": "embedding",
+          "state": "settled",
+          "requestId": "req_43757a087f8e47f7875a43a23b84b78f",
+          "responseId": null,
+          "usage": {
+            "input": 97,
+            "output": 0
+          },
+          "pricing": {
+            "model": "text-embedding-3-large",
+            "rates": {
+              "input": 130
+            },
+            "status": "priced",
+            "nanoUsd": 12610,
+            "currency": "USD",
+            "components": {
+              "input": 12610
+            },
+            "longContext": false,
+            "rateVersion": "openai-2026-10-08-v1"
+          },
+          "billedNanoUsd": "12610",
+          "billedNanoEur": "11283",
+          "reservedNanoUsd": "12610"
+        },
+        {
+          "stage": "rerank",
+          "state": "settled",
+          "requestId": "req_d093bc2a339b41e08d138271f811348e",
+          "responseId": "resp_0f22d5777bc166a5016ac74d1c061487d281899ac96481ffeb",
+          "usage": {
+            "input": 18941,
+            "output": 29,
+            "reasoning": 0,
+            "cachedInput": 0,
+            "cacheWriteInput": 18938
+          },
+          "pricing": {
+            "model": "gpt-6-luna",
+            "rates": {
+              "input": 100,
+              "output": 500,
+              "cachedInput": 10,
+              "cacheWriteInput": 125
+            },
+            "status": "priced",
+            "nanoUsd": 2382050,
+            "currency": "USD",
+            "components": {
+              "input": 300,
+              "output": 14500,
+              "cachedInput": 0,
+              "cacheWriteInput": 2367250
+            },
+            "longContext": false,
+            "rateVersion": "openai-2026-10-08-v1",
+            "serviceTier": "default"
+          },
+          "billedNanoUsd": "2382050",
+          "billedNanoEur": "2131207",
+          "reservedNanoUsd": "9538000"
+        },
+        {
+          "stage": "answer",
+          "state": "settled",
+          "requestId": "req_bcaecd1159c54b85b23d60bc99703fc9",
+          "responseId": "resp_00863a6ea1750a8a016ac74d1fed3c87d2803fe0fe9e9cf3f4",
+          "usage": {
+            "input": 23172,
+            "output": 516,
+            "reasoning": 0,
+            "cachedInput": 0,
+            "cacheWriteInput": 23169
+          },
+          "pricing": {
+            "model": "gpt-6-luna",
+            "rates": {
+              "input": 100,
+              "output": 500,
+              "cachedInput": 10,
+              "cacheWriteInput": 125
+            },
+            "status": "priced",
+            "nanoUsd": 3154425,
+            "currency": "USD",
+            "components": {
+              "input": 300,
+              "output": 258000,
+              "cachedInput": 0,
+              "cacheWriteInput": 2896125
+            },
+            "longContext": false,
+            "rateVersion": "openai-2026-10-08-v1",
+            "serviceTier": "default"
+          },
+          "billedNanoUsd": "3154425",
+          "billedNanoEur": "2822247",
+          "reservedNanoUsd": "15881125"
+        }
+      ],
+      "bucket": {
+        "used": "5017811",
+        "reserved": "0",
+        "hardLimit": "3600000000"
+      },
+      "billedNanoUsd": "5608405",
+      "billedNanoEur": "5017811",
+      "costMatchesBucket": true
+    },
+    {
+      "role": "SOCIAL_WORKER",
+      "userRole": "specialist",
+      "limitNanoEur": "6750000000",
+      "state": "completed",
+      "answer": {
+        "kind": "partial",
+        "blocks": [
+          {
+            "refs": [
+              "S2"
+            ],
+            "text": "Alusta inimese abivajaduse väljaselgitamisest. Koduteenuse taotlemine algab omavalitsusse pöördumisest; taotluse võib esitada inimene ise või tema seaduslik esindaja, abivajajast võib teada anda ka keegi teine. Taotlus võib olla vabas vormis. Koduteenuse hindamine tee inimese kodus, et selgitada välja, millistes igapäevatoimingutes ta kõrvalabi vajab. Kaasa hindamisse võimalusel lähedased ning küsi vajaduse korral nõu vastava valdkonna spetsialistilt.",
+            "factual": true
+          },
+          {
+            "refs": [
+              "S1",
+              "S3"
+            ],
+            "text": "Kui tegemist on Tartu linnaga, on koduteenuse eesmärk toetada täisealise inimese iseseisvat ja turvalist toimetulekut kodus. Teenuse saamise tingimus on, et inimese rahvastikuregistrijärgne elukoht on Tartu linn ja ta elab Tartu linnas. Tartu linnas hindab abivajadust üldjuhul linnavalitsuse vastav teenistuja; hindaja võib vajaduse korral teha kodukülastuse ning küsida inimeselt selgitusi ja andmeid. Teenuse tasu on 1 euro koduskäigu eest ning sissetuleku vahemikus 601–800 eurot kuus lisandub 6 eurot ja 50 senti tunnis, üle 801 euro suuruse sissetuleku korral 13 eurot tunnis. Sissetulekuna arvestatakse määruses nimetatud pensione ja sissetulekut; nende tasude rakendumise erandeid siinne säte ei kirjelda.",
+            "factual": true
+          }
+        ],
+        "limitations": [
+          "Ma ei saa sinu kirjelduse põhjal otsustada, kas mõtled Tartu linna või Tartu valda. Seetõttu ei saa ma kinnitada, et Tartu linna kord sellele juhtumile kehtib."
+        ],
+        "clarification": "Kas mõtled Tartu linna või Tartu valda?"
+      },
+      "replayNoNewCalls": true,
+      "elapsedMs": 47648,
+      "calls": [
+        {
+          "stage": "plan",
+          "state": "settled",
+          "requestId": "req_308c84fb2e9b4e7bbf0ba5aee24f4b00",
+          "responseId": "resp_0a3fd050d4574f6a016ac74d2782a087d2bd2c4ea9f86eb461",
+          "usage": {
+            "input": 1554,
+            "output": 356,
+            "reasoning": 273,
+            "cachedInput": 1551,
+            "cacheWriteInput": 0
+          },
+          "pricing": {
+            "model": "gpt-6-luna",
+            "rates": {
+              "input": 100,
+              "output": 500,
+              "cachedInput": 10,
+              "cacheWriteInput": 125
+            },
+            "status": "priced",
+            "nanoUsd": 193810,
+            "currency": "USD",
+            "components": {
+              "input": 300,
+              "output": 178000,
+              "cachedInput": 15510,
+              "cacheWriteInput": 0
+            },
+            "longContext": false,
+            "rateVersion": "openai-2026-10-08-v1",
+            "serviceTier": "default"
+          },
+          "billedNanoUsd": "193810",
+          "billedNanoEur": "173401",
+          "reservedNanoUsd": "2089500"
+        },
+        {
+          "stage": "embedding",
+          "state": "settled",
+          "requestId": "req_8dc59c767adc43ba808eeaaa6b0b3fbb",
+          "responseId": null,
+          "usage": {
+            "input": 79,
+            "output": 0
+          },
+          "pricing": {
+            "model": "text-embedding-3-large",
+            "rates": {
+              "input": 130
+            },
+            "status": "priced",
+            "nanoUsd": 10270,
+            "currency": "USD",
+            "components": {
+              "input": 10270
+            },
+            "longContext": false,
+            "rateVersion": "openai-2026-10-08-v1"
+          },
+          "billedNanoUsd": "10270",
+          "billedNanoEur": "9189",
+          "reservedNanoUsd": "10270"
+        },
+        {
+          "stage": "rerank",
+          "state": "settled",
+          "requestId": "req_de09fd2160af40e9b15d5f3a8a293f63",
+          "responseId": "resp_0a41b56b45c57e07016ac74d43504c87d29b14f0dfcaf3586b",
+          "usage": {
+            "input": 18837,
+            "output": 284,
+            "reasoning": 247,
+            "cachedInput": 0,
+            "cacheWriteInput": 18834
+          },
+          "pricing": {
+            "model": "gpt-6-luna",
+            "rates": {
+              "input": 100,
+              "output": 500,
+              "cachedInput": 10,
+              "cacheWriteInput": 125
+            },
+            "status": "priced",
+            "nanoUsd": 2496550,
+            "currency": "USD",
+            "components": {
+              "input": 300,
+              "output": 142000,
+              "cachedInput": 0,
+              "cacheWriteInput": 2354250
+            },
+            "longContext": false,
+            "rateVersion": "openai-2026-10-08-v1",
+            "serviceTier": "default"
+          },
+          "billedNanoUsd": "2496550",
+          "billedNanoEur": "2233650",
+          "reservedNanoUsd": "9450500"
+        },
+        {
+          "stage": "answer",
+          "state": "settled",
+          "requestId": "req_b90341b0f82f4ae881049e0a2d3ea344",
+          "responseId": "resp_085ba21d7aad639c016ac74d4a78c887d2942bca03f4b982d1",
+          "usage": {
+            "input": 13444,
+            "output": 896,
+            "reasoning": 272,
+            "cachedInput": 7668,
+            "cacheWriteInput": 5773
+          },
+          "pricing": {
+            "model": "gpt-6-luna",
+            "rates": {
+              "input": 100,
+              "output": 500,
+              "cachedInput": 10,
+              "cacheWriteInput": 125
+            },
+            "status": "priced",
+            "nanoUsd": 1246605,
+            "currency": "USD",
+            "components": {
+              "input": 300,
+              "output": 448000,
+              "cachedInput": 76680,
+              "cacheWriteInput": 721625
+            },
+            "longContext": false,
+            "rateVersion": "openai-2026-10-08-v1",
+            "serviceTier": "default"
+          },
+          "billedNanoUsd": "1246605",
+          "billedNanoEur": "1115331",
+          "reservedNanoUsd": "11646875"
+        }
+      ],
+      "bucket": {
+        "used": "3531571",
+        "reserved": "0",
+        "hardLimit": "6750000000"
+      },
+      "billedNanoUsd": "3947235",
+      "billedNanoEur": "3531571",
+      "costMatchesBucket": true
+    },
+    {
+      "role": "SERVICE_PROVIDER",
+      "userRole": "service_provider",
+      "limitNanoEur": "9000000000",
+      "state": "completed",
+      "answer": {
+        "kind": "partial",
+        "blocks": [
+          {
+            "refs": [
+              "S1"
+            ],
+            "text": "Kui eakas vajab kodus igapäevatoiminguteks kõrvalabi, tee järgmise sammuna koostööd Tartu linna sotsiaaltöötajaga, et inimese abivajadus välja selgitataks. Hindamine peaks toimuma tema kodus ning arvestama tema igapäevaseid tegevusi ja elukeskkonda. Vajaduse korral kaasatakse lähedased või küsitakse nõu teiselt spetsialistilt.",
+            "factual": true
+          },
+          {
+            "refs": [
+              "S3"
+            ],
+            "text": "Hindamise järel otsustatakse koduteenuse osutamine või sellest keeldumine 10 tööpäeva jooksul. Kui abi on vaja kohe, tehakse otsus esimesel võimalusel. Kui teenus määratakse, lepitakse inimese ja teenuseosutajaga kokku teenuse toimingud ja korraldus haldusaktis või -lepingus; vajaduse muutudes uuendatakse kokkulepet.",
+            "factual": true
+          },
+          {
+            "refs": [
+              "S3",
+              "S2",
+              "S5"
+            ],
+            "text": "Hindamisel vaadake läbi ka kodu ohutus ja see, milliseid ülesandeid inimene ise teha suudab. Koduteenus võib hõlmata näiteks abi toidu valmistamisel, eluruumi korrastamisel ja asjaajamisel. Kui ilmneb vajadus meditsiinilise õendusabi järele, tuleb seda eraldi arvestada.",
+            "factual": true
+          }
+        ],
+        "limitations": [
+          "Mul ei ole siin Tartu linna kohalikke teenuse tingimusi ega taotlemise juhiseid, seega saan kirjeldada üldist töökorraldust, mitte Tartu täpseid samme."
+        ],
+        "clarification": null
+      },
+      "replayNoNewCalls": true,
+      "elapsedMs": 24426,
+      "calls": [
+        {
+          "stage": "plan",
+          "state": "settled",
+          "requestId": "req_1482930d83e54c06914c5550b791522c",
+          "responseId": "resp_0cbb6dab25a98e7e016ac74d561a6c87d29ecf183d50da5868",
+          "usage": {
+            "input": 1554,
+            "output": 69,
+            "reasoning": 0,
+            "cachedInput": 1551,
+            "cacheWriteInput": 0
+          },
+          "pricing": {
+            "model": "gpt-6-luna",
+            "rates": {
+              "input": 100,
+              "output": 500,
+              "cachedInput": 10,
+              "cacheWriteInput": 125
+            },
+            "status": "priced",
+            "nanoUsd": 50310,
+            "currency": "USD",
+            "components": {
+              "input": 300,
+              "output": 34500,
+              "cachedInput": 15510,
+              "cacheWriteInput": 0
+            },
+            "longContext": false,
+            "rateVersion": "openai-2026-10-08-v1",
+            "serviceTier": "default"
+          },
+          "billedNanoUsd": "50310",
+          "billedNanoEur": "45013",
+          "reservedNanoUsd": "2090250"
+        },
+        {
+          "stage": "embedding",
+          "state": "settled",
+          "requestId": "req_0e5e125002d64cdcb95d393ce8ba8dd9",
+          "responseId": null,
+          "usage": {
+            "input": 75,
+            "output": 0
+          },
+          "pricing": {
+            "model": "text-embedding-3-large",
+            "rates": {
+              "input": 130
+            },
+            "status": "priced",
+            "nanoUsd": 9750,
+            "currency": "USD",
+            "components": {
+              "input": 9750
+            },
+            "longContext": false,
+            "rateVersion": "openai-2026-10-08-v1"
+          },
+          "billedNanoUsd": "9750",
+          "billedNanoEur": "8724",
+          "reservedNanoUsd": "9750"
+        },
+        {
+          "stage": "rerank",
+          "state": "settled",
+          "requestId": "req_9a18dc6782b349eb95ca3a856edc6d07",
+          "responseId": "resp_05b8400ad9de8fb1016ac74d612c7087d299cf1ccf8390ea66",
+          "usage": {
+            "input": 19845,
+            "output": 29,
+            "reasoning": 0,
+            "cachedInput": 0,
+            "cacheWriteInput": 19842
+          },
+          "pricing": {
+            "model": "gpt-6-luna",
+            "rates": {
+              "input": 100,
+              "output": 500,
+              "cachedInput": 10,
+              "cacheWriteInput": 125
+            },
+            "status": "priced",
+            "nanoUsd": 2495050,
+            "currency": "USD",
+            "components": {
+              "input": 300,
+              "output": 14500,
+              "cachedInput": 0,
+              "cacheWriteInput": 2480250
+            },
+            "longContext": false,
+            "rateVersion": "openai-2026-10-08-v1",
+            "serviceTier": "default"
+          },
+          "billedNanoUsd": "2495050",
+          "billedNanoEur": "2232308",
+          "reservedNanoUsd": "9904125"
+        },
+        {
+          "stage": "answer",
+          "state": "settled",
+          "requestId": "req_b49b32c575b64437b0a072c2e6efe59e",
+          "responseId": "resp_049fb8a6e65dc8df016ac74d645b0887d2a0f3965470706667",
+          "usage": {
+            "input": 12353,
+            "output": 838,
+            "reasoning": 284,
+            "cachedInput": 7668,
+            "cacheWriteInput": 4682
+          },
+          "pricing": {
+            "model": "gpt-6-luna",
+            "rates": {
+              "input": 100,
+              "output": 500,
+              "cachedInput": 10,
+              "cacheWriteInput": 125
+            },
+            "status": "priced",
+            "nanoUsd": 1081230,
+            "currency": "USD",
+            "components": {
+              "input": 300,
+              "output": 419000,
+              "cachedInput": 76680,
+              "cacheWriteInput": 585250
+            },
+            "longContext": false,
+            "rateVersion": "openai-2026-10-08-v1",
+            "serviceTier": "default"
+          },
+          "billedNanoUsd": "1081230",
+          "billedNanoEur": "967371",
+          "reservedNanoUsd": "11222250"
+        }
+      ],
+      "bucket": {
+        "used": "3253416",
+        "reserved": "0",
+        "hardLimit": "9000000000"
+      },
+      "billedNanoUsd": "3636340",
+      "billedNanoEur": "3253416",
+      "costMatchesBucket": true
+    }
+  ],
+  "exchangeRate": {
+    "date": "2026-10-07",
+    "usdPerEurMicros": 1117700,
+    "source": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml"
+  },
+  "ledger": {
+    "tokens": 114610,
+    "nanoUsd": 13191980,
+    "attempts": 12,
+    "planAttempts": 3,
+    "answerAttempts": 3,
+    "rerankAttempts": 3,
+    "embeddingAttempts": 3
+  },
+  "billedNanoUsd": "13191980",
+  "cleanup": {
+    "syntheticUsersRemaining": 0,
+    "receiptsRetained": 12
+  }
+}
