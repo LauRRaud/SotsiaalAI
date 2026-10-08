@@ -63,7 +63,33 @@ Juhiste tekst ei muutu, seega vestluse ja otsinguplaani versioon jäävad samaks
 - Kontrollkataloogid `scenarios-two-people-boundary-1.json` (9 sõnumit) ja `scenarios-long-topic-1.json` (11 sõnumit) ei ületa enam teema piiri: nad mõõdavad nüüd tavalist pikemat teemat. Üleandmist ennast katavad ühik- ja andmebaasitestid; mudeliga piiriületust mõõdaks 31 sõnumiga stsenaarium.
 - Assistendi varasemaid vastuseid peale viimase mudel endiselt ei näe (varasem vastus ei ole allikas). Kokkuvõte „mis on tehtud“ saab toetuda kasutaja sõnumitele, mitte sellele, mida assistent varem soovitas.
 
-## Testis leitud vead, mis on veel parandamata
+## Kordustest 08.10.2026
+
+Omanik: „sina oled boss, tegutse“. Samad 60 sõnumit samas järjekorras, pärast ADR-105 kuni ADR-109 muudatusi (vestluse juhised 37, otsinguplaan 12, teema 30 sõnumit). Jooks käis serveris väljalaske enda teenuse kaudu (päris otsing, mudel ja rahaarvestus) kahe ajutise kontoga, rollides pöörduja ja spetsialist; kontod kustutati pärast jooksu. Lagi 0,40 USD, kulus **0,2767 USD** (240 kutset, kõik arveldatud).
+
+| | Esimene test | Kordustest |
+|---|---|---|
+| Vastatud pöördeid | 60/60 | 60/60 |
+| Teemasid vestluse kohta | 5 | 1 |
+| Spetsialisti 20. pöörde kokkuvõte | „sa pole veel kirjeldanud …“ | kogu juhtum, ka „mees ütles, et saab ise hakkama“ |
+| Sama küsimus sõna-sõnalt uuesti | 4 pöördes | 1 pöördes |
+| Pöördeid ilma otsingupäringuta | 1 (insuldi sõnum, 1 lõik) | 0 (insuldi sõnum, 5 lõiku) |
+| Spetsialist: pöördeid tema vallaga | 3 | 15 |
+| Spetsialist: „võta ühendust valla spetsialistiga“ | 2 | 0 |
+| Lapsevanem: pöördeid vallaga | 26 | 4 |
+| Vastuseid piiranguga „ei saa öelda“ | 13 ja 21 | 16 ja 24 |
+| Vastuseid oma küsimusega | 3 ja 11 | 5 ja 5 |
+| Sisendtokeneid | 1 250 753 ja 1 049 497 | 1 080 089 ja 1 216 072 |
+| Kulu pöörde kohta (kviitungite järgi) | umbes 0,0041–0,0045 USD | 0,0046 USD |
+
+Mida see näitab:
+
+- **Paranes:** ajalugu (üks teema, kokkuvõte teab kogu juhtumit), korduvad küsimused, mure ilma küsimuseta, spetsialisti roll ja tema valla kord. Võrgustikukohtumise küsimus, mis esimeses testis jäi vastuseta, sai sisulise vastuse.
+- **Ei paranenud:** „ei saa öelda“ vastuste arv. Reegel „küsi, mida kasutaja teab“ vähendas korduvaid küsimusi, aga piiranguid on sama palju või rohkem; enamik neist on ausad piirid (spetsialisti hinnang, kohtu otsus).
+- **Läks halvemaks:** lapsevanema vestluses jäi vald leidmata, sest otsinguplaan pani kohale vale sõnuminumbri. Parandus on [ADR-110](adr-110-place-by-its-quote.md). Üks spetsialisti pööre (kas õega peab ühendust võtma) sai 0 lõiku ja vastuse „ei saa öelda“; esimeses testis oli sellel vastus.
+- **Aeg ei ole võrreldav:** jooks käis eraldi protsessis ja mudelikutsed olid seal umbes kaks korda aeglasemad kui vestluse enda pööretes (mediaan 22–24 s). Sõnaline otsing oli 2,0–2,4 s; enne statistika parandust (ADR-108) oli see samal indeksil 3,7 s.
+
+## Testis leitud vead (seis enne ADR-106 kuni ADR-110 parandusi)
 
 1. Assistent paneb küsimuse mällu lahtiseks, aga ei küsi seda, vaid kirjutab piiranguks („ei saa öelda, kas pojale on puue määratud“).
 2. Vastamata jäänud küsimust kordab ta järgmistes vastustes sõna-sõnalt (kolm korda järjest „Kas mees on praegu vahetus ohus või vajab kohe abi?“).

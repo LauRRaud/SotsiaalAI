@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { resolvePersonRegions, regionTarget, askedRegions, askedPerson } from '../lib/rag-v2/pilot/person-places.js';
+import { resolvePersonRegions, regionTarget, askedRegions, askedPerson, placedTurns } from '../lib/rag-v2/pilot/person-places.js';
 import { shortReply } from '../lib/rag-v2/pilot/record-scope.js';
 import { runtimeAdapters } from '../lib/rag-v2/pilot/retrieval.js';
 import { REGION_STATE_VERSION, validateStateRegion, validateStateContext, modelStateContext } from '../lib/rag-v2/pilot/dialogue-state.js';
@@ -95,6 +95,38 @@ test('the conversation of 07.10.2026: "Tabasalu" is Harku vald, and the short re
   const before = adapters([]);
   const old = await turn({ texts: CONVERSATION.slice(0, 2), plan: PLANS[1], unknowns: ASKED, after: first, using: before });
   assert.deepEqual([old.source.state, old.places, keptTexts(old.source)], ['region_required', [], []]);
+});
+
+test('ADR-110: a place the plan numbers wrongly is read in the message that holds its quote', async () => {
+  // The re-test of 08.10.2026: the fourth message of a conversation, with the plan's places as its turn record holds
+  // them. Both attributions name message 1; the clause stands in message 4. Before, the place was left out (message 1
+  // was read), the turn had no municipality and the answer asked which municipality "Jüri" meant.
+  const texts = ['Mu poeg on 4-aastane ja ei räägi peaaegu üldse.', 'Mis see olla võib?', 'Kelle poole ma kõigepealt pöörduma peaksin?', 'Elame Jüris.'];
+  const before = { people: [], focus: 'poeg' }, queries = ['lapse kõne arengu hindamine kelle poole pöörduda'];
+  const numbered = number => ({ person: 'poeg', queries, places: [place(number, 'Elame Jüris', 'Jüri alevik', 'user', 'lives'), place(number, 'Elame Jüris', 'Jüri alevik', 'poeg', 'lives')] });
+  const wrong = await turn({ before, texts, plan: numbered(1) }), right = await turn({ before, texts, plan: numbered(4) });
+  assert.deepEqual(wrong.settlements.map(item => [item.name, item.regions, item.turn, item.via]), [['Jüri', ['rae_vald'], 4, 'plan']]);
+  assert.deepEqual(wrong.places.map(item => [item.person, item.region, item.relation, item.turn]), [['user', 'rae_vald', 'lives', 4], ['poeg', 'rae_vald', 'lives', 4]]);
+  assert.deepEqual([wrong.source.region, wrong.source.named_place, wrong.people], ['rae_vald', { name: 'Jüri alevik', municipality: 'rae_vald' }, { poeg: ['rae_vald', 'reported'], user: ['rae_vald', 'reported'] }]);
+  // The reading is the one the right number gives.
+  assert.deepEqual([wrong.places, wrong.settlements, wrong.source, wrong.people], [right.places, right.settlements, right.source, right.people]);
+
+  // The rule by itself: the quote decides only where exactly one unread message holds it.
+  const messages = [{ turn: 1, text: 'Elan Tabasalus.', read: true }, { turn: 2, text: 'Aga hind?', read: true }, { turn: 3, text: 'Ema elab Jüris.', read: false }, { turn: 4, text: 'Ja mina elan Tabasalus.', read: false }];
+  const moved = placedTurns([place(1, 'Ema elab Jüris', 'Jüri alevik', 'ema', 'lives')], messages);
+  assert.deepEqual(moved, [place(3, 'Ema elab Jüris', 'Jüri alevik', 'ema', 'lives')]);
+  // A right number is left alone (the same object), also when another message repeats the clause.
+  const kept = place(4, 'elan Tabasalus', 'Tabasalu', 'user', 'lives');
+  assert.equal(placedTurns([kept], messages)[0], kept);
+  // A clause only a read message holds stays with its number: what the state has read is not read again.
+  const read = place(2, 'Elan Tabasalus', 'Tabasalu', 'user', 'lives');
+  assert.equal(placedTurns([read], messages.slice(0, 3))[0], read);
+  // A clause two unread messages hold names neither.
+  const twice = [{ turn: 1, text: 'Elan Jüris.', read: false }, { turn: 2, text: 'Jah, elan Jüris.', read: false }], unclear = place(5, 'lan Jüris', 'Jüri alevik', 'user', 'lives');
+  assert.equal(placedTurns([unclear], twice)[0], unclear);
+  // What is not a place of the plan's shape passes through untouched.
+  assert.deepEqual(placedTurns([null, { turn: 'x', quote: 'Elan Jüris' }, { turn: 1, quote: '' }], twice), [null, { turn: 'x', quote: 'Elan Jüris' }, { turn: 1, quote: '' }]);
+  assert.equal(placedTurns(null, twice), null);
 });
 
 test('the plan\'s attribution: a settlement in a clause is read like a municipality, in any case form', async () => {
