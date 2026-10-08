@@ -9,6 +9,8 @@
 //   node scripts/rag-v2-corpus-embeddings.mjs --mode execute ... --baseline tmp/DIR/embedding-plan.json --approval F --price F --output tmp/DIR2
 // --indexed (with --connections, --lexical): documents whose version is already sealed in the versions-v1 index under
 // the target search config are left out (ADR-036); plan and execute must both use it.
+// A --reuse folder may be a purchase that stopped part-way: the inputs it did buy are reused and only the others are
+// planned (ADR-113); the summary says how many of the reused inputs come from stopped purchases.
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
@@ -52,7 +54,7 @@ try {
   const { documents } = await policy.allowed(context);
   const questionSets = await Promise.all(values.questions.map(async file => ({ name: path.basename(file, path.extname(file)), questions: await readJson(file) })));
   const reuseDirectories = values.reuse.map(value => path.resolve(value));
-  const reuseCatalog = reuseDirectories.length ? await reusableEmbeddingCatalog(reuseDirectories, context.tenant) : null;
+  const reuseCatalog = reuseDirectories.length ? await reusableEmbeddingCatalog(reuseDirectories, context.tenant, { stopped: true }) : null;
   const price = values.price ? await readJson(values.price) : null, baseline = values.baseline ? await readJson(values.baseline) : null;
   // Reads only which versions are sealed; nothing is written to the index database.
   if (values.indexed) catalog = new IndexJobStore((await readJson(values.connections)).postgresUrl);
@@ -61,6 +63,7 @@ try {
   const prepared = await buildCorpusEmbeddingPlan({ storeRoot, tenant: context.tenant, documents, questionSets, reuseCatalog, price, baseline, indexed });
   const summary = { schema_version: 'rag-v2/corpus-embedding-run-1', mode: values.mode, state: 'prepared_not_authorized_not_run',
     documents: prepared.plan.document_count, indexed_documents: prepared.plan.indexed_document_count ?? 0, all_inputs: prepared.plan.all_input_count, reusable_inputs: prepared.plan.reusable_input_count,
+    reusable_inputs_from_stopped_purchases: prepared.reusable_inputs.filter(input => reuseCatalog?.stoppedManifests.has(input.receipt.source_manifest_sha256)).length,
     external_inputs: prepared.plan.external_input_count, max_external_input_tokens: prepared.plan.max_total_input_tokens,
     max_api_attempts: prepared.plan.max_api_attempts, estimated_external_cost_usd: prepared.plan.estimated_external_cost_usd,
     egress_manifest_sha256: prepared.manifest_sha256, matches_baseline: prepared.matches_baseline, differences: prepared.differences,

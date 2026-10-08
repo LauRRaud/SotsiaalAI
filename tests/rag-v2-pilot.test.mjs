@@ -355,3 +355,69 @@ test('Audit: Qdrant timeout remains a service failure eligible for explicit lexi
   try {await assert.rejects(new QdrantIndex('http://127.0.0.1:56333','synthetic-qdrant-key-long-enough').request('/'),e=>e.code==='qdrant_request_failed');}
   finally {globalThis.fetch=previous;}
 });
+
+// ADR-113 (08.10.2026): the purchase of corpus v72 stopped after 1063 of 1826 inputs on one call whose outcome stayed
+// unknown, and the 1063 paid vectors could not be used: only a complete purchase was read. A stopped purchase is now
+// read for the inputs it did buy, when the caller asks for it.
+const failingSecond = async args => { if (args.text !== 'hello world') throw Object.assign(new Error('timeout'), { code: 'ETIMEDOUT' }); return success(args); };
+test('ADR-113: the inputs a stopped purchase did buy are reusable, the one with an unknown outcome is not', async () => {
+  const opts = await options('stopped-reuse'), [bought, unknown] = opts.prepared.inputs;
+  const run = await runPilot({ ...opts, transport: failingSecond });
+  assert.equal(run.state, 'stopped_unknown');
+  assert.deepEqual(run.ledger.entries.map(entry => entry.status), ['succeeded', 'unknown']);
+  const journal = path.join(run.directory, 'ledger.jsonl'), before = await fs.readFile(journal, 'utf8');
+  // Unasked, a folder that is not a complete purchase is refused as before.
+  await assert.rejects(StoredEmbedding.load(run.directory, context.tenant), /complete_real_pilot_required/);
+  await assert.rejects(reusableEmbeddingCatalog([run.directory], context.tenant), /complete_real_pilot_required/);
+  const store = await StoredEmbedding.load(run.directory, context.tenant, { stopped: true });
+  assert.deepEqual([store.stopped, store.vectors.size, store.bought.map(entry => entry.input_id)], [true, 1, [bought.id]]);
+  const catalog = await reusableEmbeddingCatalog([run.directory], context.tenant, { stopped: true });
+  assert.deepEqual([[...catalog.receipts.keys()], catalog.stoppedInputs, [...catalog.stoppedManifests]], [[bought.input_hash], 1, [opts.prepared.manifest_sha256]]);
+  assert.deepEqual([catalog.sources[0].state, catalog.sources[0].bought_inputs], ['stopped_unknown', 1]);
+  assert.equal((await catalog.embedding.embed(bought.text))[0], 1);
+  // The input whose outcome is unknown has no receipt, so a plan lists it to be bought, and no vector stands in for it.
+  await assert.rejects(catalog.embedding.embed(unknown.text), /stored_embedding_missing/);
+  // The stopped purchase is only read: its journal is not extended, and a later run of the same plan does not go on.
+  assert.equal(await fs.readFile(journal, 'utf8'), before);
+  assert.equal((await runPilot(opts)).api_attempts_this_run, 0);
+  // A bought vector is still checked against the hash its success line recorded.
+  const file = path.join(run.directory, run.ledger.entries[0].vector_file), record = JSON.parse(await fs.readFile(file, 'utf8'));
+  record.vector[1] = 1; await fs.writeFile(file, JSON.stringify(record));
+  await assert.rejects(StoredEmbedding.load(run.directory, context.tenant, { stopped: true }), /stored_vector_integrity_failed/);
+  const lazy = await reusableEmbeddingCatalog([run.directory], context.tenant, { stopped: true });
+  await assert.rejects(lazy.embedding.embed(bought.text), /stored_vector_integrity_failed/);
+});
+test('ADR-113: a complete purchase of the same input stands before a stopped one, and their vectors are not compared', async () => {
+  const complete = await runPilot(await options('stopped-beside-complete'));
+  const other = await options('stopped-other-answer'), [bought] = other.prepared.inputs;
+  // The provider's second answer to the same text differs in the last place, as it may.
+  const stopped = await runPilot({ ...other, transport: async args => { const answer = await failingSecond(args); answer.body.data[0].embedding[1] = 1e-7; return answer; } });
+  assert.equal(stopped.state, 'stopped_unknown');
+  const catalog = await reusableEmbeddingCatalog([stopped.directory, complete.directory], context.tenant, { stopped: true });
+  assert.deepEqual([catalog.receipts.size, catalog.stoppedInputs, catalog.sources.map(source => source.state ?? 'complete')], [2, 0, ['stopped_unknown', 'complete']]);
+  assert.equal(catalog.receipts.get(bought.input_hash).source_ledger_sha256, hash(stable(complete.ledger)));
+  assert.equal((await catalog.embedding.embed(bought.text))[1], 0);
+  // Two complete purchases that disagree are refused as before.
+  const second = await options('complete-other-answer');
+  const disagreeing = await runPilot({ ...second, transport: async args => { const answer = await success(args); answer.body.data[0].embedding[1] = 1e-7; return answer; } });
+  await assert.rejects(reusableEmbeddingCatalog([complete.directory, disagreeing.directory], context.tenant, { stopped: true }), /stored_embedding_collision/);
+});
+test('ADR-113: a purchase cut off by a hard stop is read too, a folder a live process is writing is not', async () => {
+  const done = await runPilot(await options('cut-off-purchase')), journal = path.join(done.directory, 'ledger.jsonl');
+  // The last line (the purchase's end) never got written: every entry succeeded, the purchase is not complete.
+  const lines = (await fs.readFile(journal, 'utf8')).trimEnd().split('\n');
+  assert.equal(JSON.parse(lines.at(-1)).event, 'complete');
+  await fs.writeFile(journal, `${lines.slice(0, -1).join('\n')}\n`);
+  await assert.rejects(StoredEmbedding.load(done.directory, context.tenant), /complete_real_pilot_required/);
+  const store = await StoredEmbedding.load(done.directory, context.tenant, { stopped: true });
+  assert.deepEqual([store.stopped, store.ledger.state, store.vectors.size], [true, 'running', 2]);
+  const lock = path.join(done.directory, 'pilot.lock');
+  await fs.writeFile(lock, JSON.stringify({ pid: process.pid, host: os.hostname(), at: new Date().toISOString() }));
+  await assert.rejects(StoredEmbedding.load(done.directory, context.tenant, { stopped: true }), /pilot_busy/);
+  await fs.writeFile(lock, 'not a lock');
+  await assert.rejects(StoredEmbedding.load(done.directory, context.tenant, { stopped: true }), /pilot_busy/);
+  // A lock a stopped process left behind does not stand in the way of reading.
+  await fs.writeFile(lock, JSON.stringify({ pid: 2147483646, host: os.hostname(), at: new Date().toISOString() }));
+  assert.equal((await StoredEmbedding.load(done.directory, context.tenant, { stopped: true })).vectors.size, 2);
+  await fs.rm(lock);
+});
