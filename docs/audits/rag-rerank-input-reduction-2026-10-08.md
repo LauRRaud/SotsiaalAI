@@ -2,6 +2,8 @@
 
 08.10.2026. Lähtedokumendid: [Astra tervikaudit](rag-system-audit-2026-10-08.md) ja [rahaarvestuse teostus](rag-cost-accounting-2026-10-08.md). Omanik palus sama küsimuste valimiga tokenite, hinna, kiiruse ja kvaliteedi võrdlust kõigis kolmes rollis. Varasem kulu oli 0,030712790 USD; kogu kokkulepitud piir 1 USD.
 
+**Astra järelkontroll tehtud:** [audit, rollide võrdlus ja tasuta kordusarvutus](rag-rerank-cache-review-2026-10-08.md). Koodis uut blokeerivat viga ei leitud; üldist aktiveerimist ei soovitata. Koondsummad klapivad, kuid spetsialisti allikavaliku sisendikulu kasvas 4,2% ja teenuseosutaja kogu RAG-i kulu 5,7%. Lisaks allpool nimetatud rolliveale leiti teenuseosutaja struktureeritud mälust kõrvalabi vajaduse kadumine ning ühe hinnavastuse kitsam kaitsetingimuste käsitlus. Need ei tõenda vahemälupoliitika põhjuslikku mõju, kuid välistavad laiema kvaliteedivõrdsuse järelduse.
+
 ## Teostuse valik
 
 Lõplik kandidaat säilitab mudelile saadetava allikavaliku päringu täielikult. Kõik tekstid, kandidaatide ID-d, juhised, aastad, redaktsioonid, küsimus ja dialoogisõnumid jäävad samaks. Muutub ainult API vahemälupoliitika: omaniku konfiguratsioonivälja `rerankCachePolicy: "uncached-full-text-1"` korral lisatakse `prompt_cache_options: { mode: "explicit", ttl: "30m" }` ilma kirjutamispunktideta. Vaikimisi jääb olemasolev implicit-vahemälu. Poliitika ja sisendi/juhise räsi salvestatakse pöörde `searchAssist.rerank.inputCostPolicy` mõõdikusse.
@@ -69,4 +71,4 @@ Enne-jooks kasutas serveri `eb684d22` väljalaset. Lõpliku jooksu ajaks oli tei
 
 35 kulu/päringu/juhise/poliitika sihttesti kontrollitud; esimeses partiis üks plaanilepingu test andis `pilot_approval_required`, muutmata koodi eraldi kordus läbis. Sama aja repositooriumimuudatuse võimalikku seost ei ole tõendatud. Selle töö raames plaanilepingu käitumist ei muudetud. Varasemad 45 dialoogi/rahaarvestuse andmebaasitesti läbisid; lõplik poliitika säilitab nende päringud vaikimisi. Muudetud JS-i sihtlint ja `git diff --check` läbisid. Kohalikku build'i ega serveri testikomplekte ei käivitatud.
 
-Kood on kohalik muudatus Astra auditiks. Poliitika on vaikimisi välja lülitatud, serveri seadistusse seda ei lisatud ning seda tööd tootmisse ei avaldatud. Avaldamisotsusele peab eelnema järelkontroll, eriti cache-tasuvuse ja rolli semantilise sobivuse kohta.
+Soli üleandmise ajal oli kood kohalik muudatus Astra auditiks; poliitika vaikimisi välja lülitatud, serveri seadistusse lisamata ja tootmisse avaldamata. [Järelkontroll on nüüd tehtud](rag-rerank-cache-review-2026-10-08.md): teadlikult valitavas koodis uut blokeerivat viga ei leitud, üldist aktiveerimist nende tõendite põhjal ei soovitata. Auditi käigus avaldamist ega aktiveerimist ei tehtud.
