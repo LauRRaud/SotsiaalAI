@@ -1,5 +1,5 @@
 {
-  "version": "rag-v2/coverage-grid-3",
+  "version": "rag-v2/coverage-grid-4",
   "note": "Rows: life situations of help-seekers (group A) and work themes of a social work specialist (group B). Columns: the kinds of help. Terms are Estonian word beginnings matched on lowercased passage text (syntax: scripts/lib/rag-v2-coverage-map.mjs); a row's terms name the situation itself, not an agency or a general word. 'opening' is a first message in the person's own words, used for the free word-search probe. 'acts' are the national laws the situation rests on and 'owners' the publishers responsible for it (a part of the publisher's name): the count tells which of them the corpus holds. The rows, acts and owners are the owner's field: change them here and run the count again.",
   "rules": { "about_share": 0.34, "about_passages": 3, "about_body_share": 0.5, "about_body_passages": 3, "enough_documents": 3, "enough_municipalities": 40, "near": 300 },
   "columns": [
@@ -210,7 +210,7 @@
       "terms": ["eetikakoodeks", "kutse-eetika", "kutse eetika", "eetiline dilemma", "eetilise dilemma", "eetilised dilemmad", "supervisioon", "kovisioon", "töönõustami", "läbipõlemi", "tööstress", "töökoorm", "töötaja turvalisus", "kutsestandard", "enesehoid", "kaastundeväsimus", "sekundaarne trauma"] },
     { "id": "B15", "group": "B", "name": "Kriisiabi ja hädaolukord (elanikkonnakaitse)",
       "opening": "Mida peab omavalitsuse sotsiaaltöötaja tegema ulatusliku elektrikatkestuse või evakuatsiooni korral?",
-      "acts": ["hädaolukorra seadus", "sotsiaalhoolekande seadus"], "owners": ["päästeamet", "sotsiaalkindlustusamet"],
+      "acts": ["kriisiolukorra ja riigikaitse seadus", "sotsiaalhoolekande seadus"], "owners": ["päästeamet", "sotsiaalkindlustusamet"],
       "terms": ["hädaolukor", "elanikkonnakaitse", "evakuatsioon", "evakueeri", "kriisiplaan", "kriisivalmidus", "kriisireguleerimi", "vältimatu sotsiaalabi", "vältimatut sotsiaalabi", "kriisikomisjon", "elutähtsa teenus", "psühhosotsiaalne kriisiabi", "psühhosotsiaalse kriisiabi", "kriisiolukor", "toimepidevus"] }
   ]
 }

@@ -182,3 +182,43 @@ Tulemus: `coverage-map.md` (tabelid) ja `coverage-map.json` (arvud ja dokumentid
 ## Read, mille juures seadust RAG-is ei ole
 
 Puuduvad 27 (ridade järgi): põhikooli- ja gümnaasiumiseadus; perehüvitiste seadus; riikliku perelepitusteenuse seadus; ohvriabi seadus; töötuskindlustuse seadus; tööturumeetmete seadus; töölepingu seadus; täitemenetluse seadustik; füüsilise isiku maksejõuetuse seadus; ravikindlustuse seadus; töövõimetoetuse seadus; tervishoiuteenuste korraldamise seadus; tsiviilseadustiku üldosa seadus; tsiviilkohtumenetluse seadustik; karistusseadustik; psühhiaatrilise abi seadus; pärimisseadus; riikliku pensionikindlustuse seadus; vangistusseadus; kriminaalhooldusseadus; välismaalasele rahvusvahelise kaitse andmise seadus; välismaalaste seadus; isikuandmete kaitse seadus; avaliku teabe seadus; halduskohtumenetluse seadustik; riigihangete seadus; hädaolukorra seadus.
+
+## Täiendus 08.10.2026 õhtul: puuduvad seadused on alla laaditud
+
+Omanik: „otsi internetist ja lae alla, pane lokaalselt Andmebaas/i kausta“. Riigi Teatajast (avalik otsing ja XML, samad päringud mis skriptil `scripts/rag-v2-law-validity.mjs`) on toodud iga seaduse 08.10.2026 kehtiv terviktekst, kokku 27 faili (13,4 MB), ja kantud registrisse (`scripts/rag-v2-corpus-refresh.mjs register`). **RAG-is neid ei ole:** vastuvõtt ja indekseerimine on omaniku järgmine otsus ja maksab.
+
+**Parandus loendisse:** hädaolukorra seadus on alates 01.10.2026 kehtetu; selle asemel kehtib kriisiolukorra ja riigikaitse seadus, mis on alla laaditud. Ruudustiku rea B15 seaduse nimi on parandatud.
+
+| Seadus | Fail `Andmebaasi/oigusaktid/` | Kehtib alates | Kehtib kuni | Paragrahve | Juba avaldatud järgmine redaktsioon |
+|---|---|---|---|---:|---|
+| Põhikooli- ja gümnaasiumiseadus | `109072026017.xml` | 01.09.2026 | 31.12.2026 | 131 | 01.01.2027 |
+| Perehüvitiste seadus | `111072026059.xml` | 01.10.2026 |  | 88 |  |
+| Riikliku perelepitusteenuse seadus | `131032022015.xml` | 01.09.2022 |  | 21 |  |
+| Ohvriabi seadus | `109072026046.xml` | 01.10.2026 |  | 63 |  |
+| Töötuskindlustuse seadus | `130062026040.xml` | 01.10.2026 | 31.12.2026 | 75 | 01.01.2027 |
+| Tööturumeetmete seadus | `130062026038.xml` | 01.10.2026 | 31.12.2026 | 39 | 01.01.2027 |
+| Töölepingu seadus | `103072026035.xml` | 01.10.2026 | 31.12.2026 | 164 | 01.01.2027 |
+| Täitemenetluse seadustik | `111072026097.xml` | 01.10.2026 | 31.12.2026 | 259 | 01.01.2027, 01.07.2027 |
+| Füüsilise isiku maksejõuetuse seadus | `114032025014.xml` | 01.01.2025 |  | 73 |  |
+| Ravikindlustuse seadus | `130062026028.xml` | 01.10.2026 | 31.01.2027 | 99 | 01.02.2027 |
+| Töövõimetoetuse seadus | `130062026034.xml` | 01.10.2026 | 31.01.2027 | 38 | 01.02.2027 |
+| Tervishoiuteenuste korraldamise seadus | `130062026132.xml` | 01.10.2026 | 31.12.2026 | 161 | 01.01.2027 |
+| Tsiviilseadustiku üldosa seadus | `131122024048.xml` | 01.01.2025 |  | 175 |  |
+| Tsiviilkohtumenetluse seadustik | `120062026021.xml` | 30.06.2026 | 31.12.2026 | 844 | 01.01.2027, 01.07.2027 |
+| Karistusseadustik | `109072026028.xml` | 01.10.2026 | 31.12.2026 | 576 | 01.01.2027 |
+| Psühhiaatrilise abi seadus | `131122024024.xml` | 10.01.2025 |  | 28 |  |
+| Pärimisseadus | `114032025019.xml` | 01.01.2025 |  | 193 |  |
+| Riikliku pensionikindlustuse seadus | `111072026061.xml` | 01.10.2026 | 31.12.2026 | 110 | 01.01.2027, 01.01.2031, 01.01.2037 |
+| Vangistusseadus | `111072026066.xml` | 01.10.2026 | 31.12.2026 | 242 | 01.01.2027 |
+| Kriminaalhooldusseadus | `114032025025.xml` | 01.01.2025 |  | 42 |  |
+| Välismaalasele rahvusvahelise kaitse andmise seadus | `130062026102.xml` | 01.10.2026 | 31.12.2026 | 116 | 01.01.2027 |
+| Välismaalaste seadus | `130062026103.xml` | 01.10.2026 | 31.12.2026 | 457 | 01.01.2027, 01.01.2028, 01.01.2029, 31.10.2029 |
+| Isikuandmete kaitse seadus | `130062026052.xml` | 01.10.2026 |  | 78 |  |
+| Avaliku teabe seadus | `130062026009.xml` | 01.10.2026 | 30.11.2026 | 85 | 01.12.2026, 01.01.2027, 24.04.2030 |
+| Halduskohtumenetluse seadustik | `103062026067.xml` | 12.06.2026 | 31.12.2026 | 306 | 01.01.2027, 01.07.2027, 01.01.2033 |
+| Riigihangete seadus | `103072026006.xml` | 01.10.2026 | 31.10.2026 | 235 | 01.11.2026, 01.01.2027 |
+| Kriisiolukorra ja riigikaitse seadus (hädaolukorra seaduse asemel) | `130062026001.xml` | 01.10.2026 |  | 286 |  |
+
+17 seadusel on Riigi Teatajas juba avaldatud järgmine redaktsioon (enamasti alates 01.01.2027); neid ei ole alla laaditud. Riigihangete seaduse praegune redaktsioon kehtib 31.10.2026-ni ja avaliku teabe seaduse oma 30.11.2026-ni.
+
+Kontrollitud: iga faili pealkiri ja tunnus vastavad otsingu omale, Riigi Teataja märgib redaktsiooni kehtivaks, failis on paragrahvid; registri räsi võrdub alla laaditud baitidega (27/27). Kontrollimata: seaduste lugemine korpuse lugejaga (struktuur, lõikude arv) ja see, millised osad suurtest seadustikest tasub RAG-i võtta.
