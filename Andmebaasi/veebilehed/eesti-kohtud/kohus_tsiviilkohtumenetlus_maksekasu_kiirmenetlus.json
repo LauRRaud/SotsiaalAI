@@ -1,0 +1,57 @@
+{
+  "document_id": "web-kohus_tsiviilkohtumenetlus_maksekasu_kiirmenetlus",
+  "title": "Maksekäsu kiirmenetlus",
+  "register_title": "Maksekäsu kiirmenetlus",
+  "source_id": "kohus_tsiviilkohtumenetlus_maksekasu_kiirmenetlus",
+  "source_type": "web_page",
+  "publisher": "Eesti kohtud",
+  "language": "et",
+  "url": "https://www.kohus.ee/kohtusse-poordujale/tsiviilkohtumenetlus/maksekasu-kiirmenetlus",
+  "source_path": "kohus_tsiviilkohtumenetlus_maksekasu_kiirmenetlus.html",
+  "source_format": "html",
+  "source_sha256": "644901c6cfc324c0d895bd95b2415172e425b78d05671904892f41858317f52e",
+  "content_sha256": "6cd75767d88e5ed6ea7bc071ce079dde3c5fce81999a733eedfb9226fd8df1b7",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:39:10.287Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "dea26e37c837a37814d335d875d11ae48fa5f2e833f34084f60d3c097f252a47",
+    "stats": {
+      "words": 950,
+      "blocks": 25,
+      "headings": 5,
+      "tables": 0,
+      "links": 2,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

@@ -1,0 +1,57 @@
+{
+  "document_id": "web-ppa_juhend_kaitse_ennast_kelmide_eest",
+  "title": "Kaitse ennast kelmide eest",
+  "register_title": "Kaitse ennast kelmide eest",
+  "source_id": "ppa_juhend_kaitse_ennast_kelmide_eest",
+  "source_type": "web_page",
+  "publisher": "Politsei- ja Piirivalveamet",
+  "language": "et",
+  "url": "https://www.politsei.ee/et/juhend/kaitse-ennast-kelmide-eest",
+  "source_path": "ppa_juhend_kaitse_ennast_kelmide_eest.html",
+  "source_format": "html",
+  "source_sha256": "668dcce24d4db6a54c7530462a50678211d2cdd034e8f6efdfb1be0b55fe2e11",
+  "content_sha256": "804d198cbf024a5af05aa3a12b9299357efaa782aef13c1e7633a34c23dddc1a",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:37:45.819Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": "Thu, 08 Oct 2026 17:07:49 GMT",
+      "etag": null
+    },
+    "raw_sha256": "81309df3a713421c725746dbcc4bfe6c8395a0e4cd60db277b7bc7a862aed29e",
+    "stats": {
+      "words": 560,
+      "blocks": 23,
+      "headings": 12,
+      "tables": 0,
+      "links": 1,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

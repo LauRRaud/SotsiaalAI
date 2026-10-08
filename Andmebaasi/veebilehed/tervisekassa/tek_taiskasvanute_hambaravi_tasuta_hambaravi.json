@@ -1,0 +1,64 @@
+{
+  "document_id": "web-tek_taiskasvanute_hambaravi_tasuta_hambaravi",
+  "title": "Tasuta hambaravi",
+  "register_title": "Tasuta hambaravi",
+  "source_id": "tek_taiskasvanute_hambaravi_tasuta_hambaravi",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/hambaravi/taiskasvanute-hambaravi/tasuta-hambaravi",
+  "source_path": "tek_taiskasvanute_hambaravi_tasuta_hambaravi.html",
+  "source_format": "html",
+  "source_sha256": "c5b45332b0caedec13b65631ef497ccef9d95d2590effd8b434131988abffcc0",
+  "content_sha256": "216d3b4be6e1a7e036d072792e3e3e9c91d70fa0ef7b2e2e5bea43146ca1420f",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:37:57.339Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:20:35 GMT",
+      "etag": null
+    },
+    "raw_sha256": "3d67c7f48a4a21d99d3317e0cbc211b1f4096a4836f3bb09d28c1c797fd701e4",
+    "stats": {
+      "words": 733,
+      "blocks": 31,
+      "headings": 5,
+      "tables": 0,
+      "links": 6,
+      "linksToOtherSites": 4
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.haigekassa.ee/sites/default/files/2019-08/haigekassa_hambaravi_vodik_WEB.pdf",
+      "text": "Infomaterjal puuetega inimeste hambaravi kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

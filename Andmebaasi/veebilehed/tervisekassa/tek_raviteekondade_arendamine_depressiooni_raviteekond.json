@@ -1,0 +1,94 @@
+{
+  "document_id": "web-tek_raviteekondade_arendamine_depressiooni_raviteekond",
+  "title": "Depressiooni raviteekond",
+  "register_title": "Depressiooni raviteekond",
+  "source_id": "tek_raviteekondade_arendamine_depressiooni_raviteekond",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/raviteekondade-arendamine/depressiooni-raviteekond",
+  "source_path": "tek_raviteekondade_arendamine_depressiooni_raviteekond.html",
+  "source_format": "html",
+  "source_sha256": "39218fcbc16312b6da13d47f361fac7f5908586d06f8614b94a4b22a0a91e359",
+  "content_sha256": "612a5d88552b1f686004e1d2741a420a8642f19d28d038caf158772fa9315129",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:39:07.503Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:26:23 GMT",
+      "etag": null
+    },
+    "raw_sha256": "5904189c95dce4c906d6532bcd33e5129566bb6584b557d972547fcb7c9c82a0",
+    "stats": {
+      "words": 321,
+      "blocks": 18,
+      "headings": 3,
+      "tables": 0,
+      "links": 7,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Raviasutused/Depressiooni%20raviteekond/depressiooniga_tooealise_inimese_raviteekond.pdf",
+      "text": "Lõppraport",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Raviasutused/Depressiooni%20raviteekond/lisa_1_persoonad_ja_nende_praegused_teekonnad.pdf",
+      "text": "Lisa 1. Persoonad ja nende praegused teekonnad",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Raviasutused/Depressiooni%20raviteekond/an285_vaimse_tervise_teekonna_kaardistamine_2021-09-24.pdf",
+      "text": "Lisa 2. Depressiooniga patsiendi raviteekonna kaardistamine haigekassa andmete alusel",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Raviasutused/Depressiooni%20raviteekond/lisa_3_30_augustil_2021_toimunud_tootoas_osalenute_nimekiri.pdf",
+      "text": "Lisa 3. 30. augustil 2021 toimunud valideerimistöötoas osalenute nimekiri",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Raviasutused/Depressiooni%20raviteekond/depressiooniga_tooealise_inimese_raviteekond_kaardistuse_ja_analuusi_tulemused.pdf",
+      "text": "Slaidid",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://tervisekassa.ee/sites/default/files/Raviasutused/Depressiooni%20raviteekond/ulevaade_tuvastatud_probleemidest.pdf",
+      "text": "Slaidid",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

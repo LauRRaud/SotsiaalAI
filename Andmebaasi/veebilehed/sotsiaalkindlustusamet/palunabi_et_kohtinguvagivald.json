@@ -1,0 +1,57 @@
+{
+  "document_id": "web-palunabi_et_kohtinguvagivald",
+  "title": "Kohtinguvägivald",
+  "register_title": "Kohtinguvägivald",
+  "source_id": "palunabi_et_kohtinguvagivald",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://www.palunabi.ee/et/kohtinguvagivald",
+  "source_path": "palunabi_et_kohtinguvagivald.html",
+  "source_format": "html",
+  "source_sha256": "2dd871171f47833460f45885a0f96fa686c37fbb557ba6dfe5be5db96044e722",
+  "content_sha256": "22e07a358506a9a49b46566463cbb1851f5da4034743c42f3f664e76ee17d40e",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:36:54.366Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "4aaac8146e09adfe9040192e16f6d29adede65eff0e4e0e487a5bdf14a81d45f",
+    "stats": {
+      "words": 664,
+      "blocks": 4,
+      "headings": 1,
+      "tables": 0,
+      "links": 1,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

@@ -1,0 +1,59 @@
+{
+  "document_id": "web-kpk_usaldusisiku_roll_fuusilise_isiku_maksejouetusmenetluses",
+  "title": "Usaldusisiku roll füüsilise isiku maksejõuetus-menetluses",
+  "register_title": "Usaldusisiku roll füüsilise isiku maksejõuetus-menetluses",
+  "source_id": "kpk_usaldusisiku_roll_fuusilise_isiku_maksejouetusmenetluses",
+  "source_type": "web_page",
+  "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+  "language": "et",
+  "url": "https://kpkoda.ee/usaldusisiku-roll-fuusilise-isiku-maksejouetusmenetluses/",
+  "source_path": "kpk_usaldusisiku_roll_fuusilise_isiku_maksejouetusmenetluses.html",
+  "source_format": "html",
+  "source_sha256": "8034222a8ed871ba2492cb0f16abb5e6be1e4c2a322c5db4faec049057c459e0",
+  "content_sha256": "e5689ad241530df0c7c34394de0093a434819f962298dad72ae33d2c2c6c5c94",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:40:52.781Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "8bd8d2c2aeb920d6ab551e678c3a00f8d48d742ac26e53af8d05f297e7cff115",
+    "stats": {
+      "words": 779,
+      "blocks": 20,
+      "headings": 5,
+      "tables": 0,
+      "links": 4,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 1,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed"
+    ],
+    "needs_review": false
+  },
+  "documents": []
+}

@@ -1,0 +1,60 @@
+{
+  "document_id": "web-ska_abi_vagivalla_ohvrile_tugi_vagivallast_loobumiseks",
+  "title": "Tugi vägivallast loobumiseks",
+  "register_title": "Tugi vägivallast loobumiseks",
+  "source_id": "ska_abi_vagivalla_ohvrile_tugi_vagivallast_loobumiseks",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/abi-vagivalla-ohvrile/tugi-vagivallast-loobumiseks",
+  "source_path": "ska_abi_vagivalla_ohvrile_tugi_vagivallast_loobumiseks.html",
+  "source_format": "html",
+  "source_sha256": "f7b51c9ae31ffc6b9bcd2ceda5673400c23a0c09bc1abff6054f6e427362918e",
+  "content_sha256": "1754bfc5791ef748b53ac9521aed10f3c1a86f3eed3627d3710962dba299f6e1",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:34:35.875Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2025-07-22",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:34:34 GMT",
+      "etag": null
+    },
+    "raw_sha256": "b841381dd3345eb1899392ac5dde3805edb2dba5db39be172ae7ac603af00c1b",
+    "stats": {
+      "words": 178,
+      "blocks": 11,
+      "headings": 3,
+      "tables": 0,
+      "links": 0,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 2,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "email_needs_review"
+    ],
+    "needs_review": true
+  },
+  "documents": []
+}

@@ -1,0 +1,72 @@
+{
+  "document_id": "web-palunabi_et_taastav_oigus",
+  "title": "Taastav õigus",
+  "register_title": "Taastav õigus",
+  "source_id": "palunabi_et_taastav_oigus",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://www.palunabi.ee/et/taastav-oigus",
+  "source_path": "palunabi_et_taastav_oigus.html",
+  "source_format": "html",
+  "source_sha256": "7a1dcf927f8accc414947b1956dd9d845f83714cc884eeb973f4b9560f3de45b",
+  "content_sha256": "f9ca31e6cd8be70f18b266c66909624675d3673c77f50250a3c5868eeb079408",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:37:24.480Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "4fa49eaab87874b37d582b0389409b54cf9d1836a1993ce3717c3f49849c7a54",
+    "stats": {
+      "words": 1091,
+      "blocks": 10,
+      "headings": 1,
+      "tables": 0,
+      "links": 3,
+      "linksToOtherSites": 3
+    },
+    "contacts": {
+      "generalEmails": 2,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 3,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed"
+    ],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://s3-web-1a.tehik.ee/palunabi-live-web-prd/s3fs-public/2025-11/taastava-oiguse-vahendusteenusele-suunamise-ankeet.docx",
+      "text": "Taastava õiguse vahendusteenusele suunamise ankeet.docx DOCX (293.12 KB)",
+      "type": "docx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/media/2520/download",
+      "text": "Taastava õiguse taskuraamat | 7.26 MB | pdf",
+      "type": "download",
+      "status": "referenced_only"
+    }
+  ]
+}

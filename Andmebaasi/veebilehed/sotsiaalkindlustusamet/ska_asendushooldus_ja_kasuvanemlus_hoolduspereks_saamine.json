@@ -1,0 +1,80 @@
+{
+  "document_id": "web-ska_asendushooldus_ja_kasuvanemlus_hoolduspereks_saamine",
+  "title": "Hoolduspere vanemaks saamine",
+  "register_title": "Hoolduspere vanemaks saamine",
+  "source_id": "ska_asendushooldus_ja_kasuvanemlus_hoolduspereks_saamine",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/asendushooldus-ja-kasuvanemlus/hoolduspereks-saamine",
+  "source_path": "ska_asendushooldus_ja_kasuvanemlus_hoolduspereks_saamine.html",
+  "source_format": "html",
+  "source_sha256": "ddc0db601417688257b049cc892ca87adbdff12ac5b2473a5526b4f42b3e9600",
+  "content_sha256": "e1c9add349cc27940bf3bd1bb30851cae7ff248ead9aae3d7757379a81adc0b4",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:34:40.989Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-10-08",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:34:39 GMT",
+      "etag": null
+    },
+    "raw_sha256": "4c2b556b1463a7c1601e5d117106c1a3be1536e56088c9879d5b1cf09c8867b4",
+    "stats": {
+      "words": 1446,
+      "blocks": 43,
+      "headings": 10,
+      "tables": 0,
+      "links": 16,
+      "linksToOtherSites": 6
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 1,
+      "personLinks": 0,
+      "contactCards": 1,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed",
+      "email_needs_review"
+    ],
+    "needs_review": true
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-11/heleni_lugu.pdf",
+      "text": "Heleni lugu | 8.86 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-01/hoolduspere_vanema_kompetentsimudel.pdf",
+      "text": "Hoolduspere vanema kompetentsimudel | 480.09 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-11/Hoolduspere%20vanema%20kompetentsimudeli%20selgitused.pdf",
+      "text": "Hoolduspere vanema kompetentsimudeli selgitused | 300.23 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

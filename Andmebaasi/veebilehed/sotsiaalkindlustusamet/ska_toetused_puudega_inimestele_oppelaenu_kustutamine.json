@@ -1,0 +1,71 @@
+{
+  "document_id": "web-ska_toetused_puudega_inimestele_oppelaenu_kustutamine",
+  "title": "Õppelaenu kustutamine",
+  "register_title": "Õppelaenu kustutamine",
+  "source_id": "ska_toetused_puudega_inimestele_oppelaenu_kustutamine",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/toetused-puudega-inimestele/oppelaenu-kustutamine",
+  "source_path": "ska_toetused_puudega_inimestele_oppelaenu_kustutamine.html",
+  "source_format": "html",
+  "source_sha256": "bdee76e36c90bf9690c3c9da47b7b3b033c2a8e8217c2105675bc06609e69238",
+  "content_sha256": "9e20f277c005b670866927f65f2f3009b0668a9b621d1e3c7b663281d41ef411",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:35:56.174Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2024-02-06",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:35:54 GMT",
+      "etag": null
+    },
+    "raw_sha256": "957626df796a884a74c6a87cb4bea7fcb8950b1ae5cfff04c7ddd64b51225de3",
+    "stats": {
+      "words": 410,
+      "blocks": 14,
+      "headings": 1,
+      "tables": 0,
+      "links": 3,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-07/oppelaenu_kustutamise_taotlus%20%283%29.rtf",
+      "text": "Õppelaenu kustutamise taotlus | 114.05 KB | rtf",
+      "type": "rtf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-07/laenusaaja_nousolek_andmete_edastamiseks.docx",
+      "text": "Õppelaenu saaja nõusolek andmete edastamiseks | 17.09 KB | docx",
+      "type": "docx",
+      "status": "referenced_only"
+    }
+  ]
+}

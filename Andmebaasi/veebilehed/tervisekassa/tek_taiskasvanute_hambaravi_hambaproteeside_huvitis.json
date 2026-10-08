@@ -1,0 +1,59 @@
+{
+  "document_id": "web-tek_taiskasvanute_hambaravi_hambaproteeside_huvitis",
+  "title": "Hambaproteeside hüvitis",
+  "register_title": "Hambaproteeside hüvitis",
+  "source_id": "tek_taiskasvanute_hambaravi_hambaproteeside_huvitis",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/hambaravi/taiskasvanute-hambaravi/hambaproteeside-huvitis",
+  "source_path": "tek_taiskasvanute_hambaravi_hambaproteeside_huvitis.html",
+  "source_format": "html",
+  "source_sha256": "b3da400a54aaf2e0d04c4a78766390333127601b787fecfbaadc2a3f306bd233",
+  "content_sha256": "ff1fb45a70c52427fe40a19a0c48ef38438ac789ce2036005e08d84afd206ff2",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:37:49.811Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:14:52 GMT",
+      "etag": null
+    },
+    "raw_sha256": "bf1124ab797236acfd6ad2b2ab6473ee191c72fc206ae3009c9774abb5f5d8c4",
+    "stats": {
+      "words": 224,
+      "blocks": 15,
+      "headings": 4,
+      "tables": 0,
+      "links": 3,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 1,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed"
+    ],
+    "needs_review": false
+  },
+  "documents": []
+}

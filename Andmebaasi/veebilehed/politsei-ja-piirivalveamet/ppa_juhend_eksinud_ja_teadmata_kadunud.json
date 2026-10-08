@@ -1,0 +1,57 @@
+{
+  "document_id": "web-ppa_juhend_eksinud_ja_teadmata_kadunud",
+  "title": "Eksinud ja teadmata kadunud",
+  "register_title": "Eksinud ja teadmata kadunud",
+  "source_id": "ppa_juhend_eksinud_ja_teadmata_kadunud",
+  "source_type": "web_page",
+  "publisher": "Politsei- ja Piirivalveamet",
+  "language": "et",
+  "url": "https://www.politsei.ee/et/juhend/eksinud-ja-teadmata-kadunud",
+  "source_path": "ppa_juhend_eksinud_ja_teadmata_kadunud.html",
+  "source_format": "html",
+  "source_sha256": "45181f31e2a876cae527a5348b382222a9c3a3557c7254ffe34c8d6ff630065c",
+  "content_sha256": "d78144243446b33cd21ceb8b5754afb96016bcd31f68ea8cf2af72036b93191a",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:34:25.714Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": "Thu, 08 Oct 2026 17:07:49 GMT",
+      "etag": null
+    },
+    "raw_sha256": "444202490ed98f33f3d4252364e42c359a1a135668bedc3edb6ae315e1943ece",
+    "stats": {
+      "words": 524,
+      "blocks": 10,
+      "headings": 3,
+      "tables": 0,
+      "links": 1,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

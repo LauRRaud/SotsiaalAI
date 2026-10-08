@@ -1,0 +1,58 @@
+{
+  "document_id": "web-ska_abi_pogenikule_saatjata_alaealised_valismaalased",
+  "title": "Saatjata alaealised välismaalased",
+  "register_title": "Saatjata alaealised välismaalased",
+  "source_id": "ska_abi_pogenikule_saatjata_alaealised_valismaalased",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/abi-pogenikule/saatjata-alaealised-valismaalased",
+  "source_path": "ska_abi_pogenikule_saatjata_alaealised_valismaalased.html",
+  "source_format": "html",
+  "source_sha256": "f0490c9335f0e5b054b0c0a212062d84f449e8ffbdfb5f40790dc2ae3536c8d5",
+  "content_sha256": "2b3dbc2cf013ab8362c88a88ca7b8ebd598cb74f5cb8faa2e1b9ea0e9a3dc39e",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:34:18.436Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-08-13",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:34:17 GMT",
+      "etag": null
+    },
+    "raw_sha256": "277461a4c2545e21be79cff8538f538f2686bba5795d93c67ad1be1c9f69258a",
+    "stats": {
+      "words": 399,
+      "blocks": 17,
+      "headings": 6,
+      "tables": 0,
+      "links": 4,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

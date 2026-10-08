@@ -1,0 +1,57 @@
+{
+  "document_id": "web-tek_ravimid_kehavalise_viljastamisega_seotud_ravimid",
+  "title": "Kehavälise viljastamisega seotud ravimid",
+  "register_title": "Kehavälise viljastamisega seotud ravimid",
+  "source_id": "tek_ravimid_kehavalise_viljastamisega_seotud_ravimid",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/ravimid/kehavalise-viljastamisega-seotud-ravimid",
+  "source_path": "tek_ravimid_kehavalise_viljastamisega_seotud_ravimid.html",
+  "source_format": "html",
+  "source_sha256": "e5ca10f9eed71772a797e0b229355d50d8d2f0b5c01f166962145c891c36985c",
+  "content_sha256": "dcf476ccec016994ccd17d5084234e4bb866f11603dc66372e47df5a256137df",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:38:44.976Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:26:01 GMT",
+      "etag": null
+    },
+    "raw_sha256": "c1516b50aef792b1bd0fdc1a1968b3b4727b013a3cab3893c00d3e8f9be312f9",
+    "stats": {
+      "words": 368,
+      "blocks": 12,
+      "headings": 4,
+      "tables": 1,
+      "links": 1,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

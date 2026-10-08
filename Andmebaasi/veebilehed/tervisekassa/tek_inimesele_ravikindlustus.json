@@ -1,0 +1,57 @@
+{
+  "document_id": "web-tek_inimesele_ravikindlustus",
+  "title": "Ravikindlustus",
+  "register_title": "Ravikindlustus",
+  "source_id": "tek_inimesele_ravikindlustus",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/ravikindlustus",
+  "source_path": "tek_inimesele_ravikindlustus.html",
+  "source_format": "html",
+  "source_sha256": "b3b62f0f8a0988887264490b52d43ab84a47c5fe794bf39131b27f03f8ec14f3",
+  "content_sha256": "45f6792210e99ba342fce833a43a66fcf914a3ae759a9645393c6ab502bbf964",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:38:29.919Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:06:46 GMT",
+      "etag": null
+    },
+    "raw_sha256": "4505ac47220b57a4c2c13161ab6bcd16482aa0be4c09c0cf73c6364c9ba3b241",
+    "stats": {
+      "words": 119,
+      "blocks": 11,
+      "headings": 2,
+      "tables": 0,
+      "links": 2,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

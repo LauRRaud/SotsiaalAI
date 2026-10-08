@@ -1,0 +1,70 @@
+{
+  "document_id": "web-kpk_kkk",
+  "title": "KKK",
+  "register_title": "KKK",
+  "source_id": "kpk_kkk",
+  "source_type": "web_page",
+  "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+  "language": "et",
+  "url": "https://kpkoda.ee/kkk/",
+  "source_path": "kpk_kkk.html",
+  "source_format": "html",
+  "source_sha256": "de2ec903e582eab1372c0d29ffcdd5ab54b27b46768fabc2df64877c2428c299",
+  "content_sha256": "430545ac8597b8436adc651cd6fc90367e36e2846b453a4cd698dbd669cd9dd8",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:40:35.375Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "1a318abd21489dd5a98a885815028b447da115ea3b6638a0d1badb9df90a5967",
+    "stats": {
+      "words": 6171,
+      "blocks": 147,
+      "headings": 42,
+      "tables": 0,
+      "links": 9,
+      "linksToOtherSites": 4
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.just.ee/sites/www.just.ee/files/volgnike_oigustest_taitemenetluses.pdf",
+      "text": "infovoldik võlgnike õigustest täitemenetluses",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.just.ee/sites/www.just.ee/files/volgnike_oigustest_taitemenetluses_ru.pdf",
+      "text": "infovoldik võlgnike õigustest täitemenetluses (vene keeles, RU",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

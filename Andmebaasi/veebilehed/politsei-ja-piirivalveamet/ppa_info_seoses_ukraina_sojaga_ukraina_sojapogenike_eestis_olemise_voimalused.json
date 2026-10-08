@@ -1,0 +1,57 @@
+{
+  "document_id": "web-ppa_info_seoses_ukraina_sojaga_ukraina_sojapogenike_eestis_olemise_voimalused",
+  "title": "Info seoses sõjaga Ukrainas",
+  "register_title": "Info seoses sõjaga Ukrainas",
+  "source_id": "ppa_info_seoses_ukraina_sojaga_ukraina_sojapogenike_eestis_olemise_voimalused",
+  "source_type": "web_page",
+  "publisher": "Politsei- ja Piirivalveamet",
+  "language": "et",
+  "url": "https://www.politsei.ee/et/juhend/info-seoses-ukraina-sojaga/ukraina-sojapogenike-eestis-olemise-voimalused",
+  "source_path": "ppa_info_seoses_ukraina_sojaga_ukraina_sojapogenike_eestis_olemise_voimalused.html",
+  "source_format": "html",
+  "source_sha256": "1771aead7cd90560698362b1c1908fd369c14e2204d474f46db9af64ed61053d",
+  "content_sha256": "2b43a0cc90445048d21b2c3213af9a684dac080f0cee3a86acd7f67f7c08e54a",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:36:25.756Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": "Thu, 08 Oct 2026 17:07:49 GMT",
+      "etag": null
+    },
+    "raw_sha256": "b487f2b2c38d8f46af40da0b950dbcee5d2c7d84aaac018bd37e5e292d9d206e",
+    "stats": {
+      "words": 872,
+      "blocks": 51,
+      "headings": 22,
+      "tables": 0,
+      "links": 9,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

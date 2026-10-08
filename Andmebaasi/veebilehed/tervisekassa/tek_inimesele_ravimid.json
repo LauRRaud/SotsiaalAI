@@ -1,0 +1,57 @@
+{
+  "document_id": "web-tek_inimesele_ravimid",
+  "title": "Ravimid",
+  "register_title": "Ravimid",
+  "source_id": "tek_inimesele_ravimid",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/ravimid",
+  "source_path": "tek_inimesele_ravimid.html",
+  "source_format": "html",
+  "source_sha256": "8dd04a1fc49a40bff6d42b506d0801e111d57071f1d6aa93af85695e26ce4fc3",
+  "content_sha256": "68e4b007777f85b0d96bb0ff87f47679b0427c897766ef878d0fcf42906eb0bf",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:38:39.955Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:25:56 GMT",
+      "etag": null
+    },
+    "raw_sha256": "5caf414d2cd41e9b2f4a1073e00c63afdad5bb8c1d62751aa562add9257c8369",
+    "stats": {
+      "words": 1952,
+      "blocks": 71,
+      "headings": 18,
+      "tables": 0,
+      "links": 8,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

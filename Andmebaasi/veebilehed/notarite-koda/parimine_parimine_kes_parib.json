@@ -1,0 +1,57 @@
+{
+  "document_id": "web-parimine_parimine_kes_parib",
+  "title": "Pärimine",
+  "register_title": "Pärimine",
+  "source_id": "parimine_parimine_kes_parib",
+  "source_type": "web_page",
+  "publisher": "Notarite Koda",
+  "language": "et",
+  "url": "https://parimine.notar.ee/parimine/kes-parib/",
+  "source_path": "parimine_parimine_kes_parib.html",
+  "source_format": "html",
+  "source_sha256": "6e03d1ab24db05b8953aa230a0d25e061f27ca05301256d0c7dbe5d03419a46a",
+  "content_sha256": "27c96f29e43bb699fe0b5d1dc5e688c707ec800e3acfcbb5bf34be310cf8d524",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:40:01.593Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "cd98159d639a98bc39c5a247a4c89de49d51e27345f3e4ffa6706671218e0948",
+    "stats": {
+      "words": 1337,
+      "blocks": 114,
+      "headings": 21,
+      "tables": 0,
+      "links": 7,
+      "linksToOtherSites": 3
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

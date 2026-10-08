@@ -1,0 +1,70 @@
+{
+  "document_id": "web-ppa_info_seoses_ukraina_sojaga_rahvusvahelise_kaitse_taotlemine",
+  "title": "Info seoses sõjaga Ukrainas",
+  "register_title": "Info seoses sõjaga Ukrainas",
+  "source_id": "ppa_info_seoses_ukraina_sojaga_rahvusvahelise_kaitse_taotlemine",
+  "source_type": "web_page",
+  "publisher": "Politsei- ja Piirivalveamet",
+  "language": "et",
+  "url": "https://www.politsei.ee/et/juhend/info-seoses-ukraina-sojaga/rahvusvahelise-kaitse-taotlemine",
+  "source_path": "ppa_info_seoses_ukraina_sojaga_rahvusvahelise_kaitse_taotlemine.html",
+  "source_format": "html",
+  "source_sha256": "7ee4e9e1a584cee965a152f528fd900a88097d224afe06f88ca86aaf52fd0500",
+  "content_sha256": "9011b9877042f0364060f6fd7198ed7d0137c5dbe45dc3d2afc5d094176f527e",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:36:05.770Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": "Thu, 08 Oct 2026 17:07:48 GMT",
+      "etag": null
+    },
+    "raw_sha256": "d3e5dbb9eba25f446d1935de52ec7377f983f9db1b8056c5ee01eac422cfd6d9",
+    "stats": {
+      "words": 259,
+      "blocks": 18,
+      "headings": 6,
+      "tables": 0,
+      "links": 2,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/08_2026/taotlusankeet-est.pdf?4bd9c71a27",
+      "text": "Taotlusankeet",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.politsei.ee/files/dokumendid/ankeedid/2026_06/andmed-laehedaste-ja-pereliikmete-kohta-est.pdf?cda1189e98",
+      "text": "Andmed lähedaste ja pereliikmete kohta",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

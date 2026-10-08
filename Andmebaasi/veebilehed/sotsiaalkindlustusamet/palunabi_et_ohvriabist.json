@@ -1,0 +1,57 @@
+{
+  "document_id": "web-palunabi_et_ohvriabist",
+  "title": "Ohvriabist",
+  "register_title": "Ohvriabist",
+  "source_id": "palunabi_et_ohvriabist",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://www.palunabi.ee/et/ohvriabist",
+  "source_path": "palunabi_et_ohvriabist.html",
+  "source_format": "html",
+  "source_sha256": "6eabec186017e75eb92c45ad8acbbbea059d6a80f4149529c8727c66b62ae1f5",
+  "content_sha256": "5aa520557685667d548d35beaf72c1930ef87d500522395341f3384667a0c321",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:36:29.285Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "47fb42e658eaef5fa2dd2d9f0342c248d33df7c4ed4308c8f405fcea27ec9d04",
+    "stats": {
+      "words": 165,
+      "blocks": 7,
+      "headings": 1,
+      "tables": 0,
+      "links": 5,
+      "linksToOtherSites": 4
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

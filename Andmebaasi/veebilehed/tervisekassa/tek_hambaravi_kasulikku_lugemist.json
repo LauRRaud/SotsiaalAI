@@ -1,0 +1,57 @@
+{
+  "document_id": "web-tek_hambaravi_kasulikku_lugemist",
+  "title": "Kasulikku lugemist",
+  "register_title": "Kasulikku lugemist",
+  "source_id": "tek_hambaravi_kasulikku_lugemist",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/hambaravi/kasulikku-lugemist",
+  "source_path": "tek_hambaravi_kasulikku_lugemist.html",
+  "source_format": "html",
+  "source_sha256": "47102b5d26cc9a856b05918b31620fe8ec568fc3617da190a21d0b6e7dcdd597",
+  "content_sha256": "f5b2c00e4b4cb67356bad23f7d39d5efe9bdf4cb9c4859fb4de9f9f6d60412e9",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:37:39.789Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:24:53 GMT",
+      "etag": null
+    },
+    "raw_sha256": "e4c4615488923082ee3347806a3a000317c94f025af8b30c4ab4f6eb49c45ef2",
+    "stats": {
+      "words": 148,
+      "blocks": 6,
+      "headings": 3,
+      "tables": 0,
+      "links": 23,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

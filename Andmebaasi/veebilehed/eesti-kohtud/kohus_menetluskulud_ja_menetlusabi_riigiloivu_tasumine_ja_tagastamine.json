@@ -1,0 +1,72 @@
+{
+  "document_id": "web-kohus_menetluskulud_ja_menetlusabi_riigiloivu_tasumine_ja_tagastamine",
+  "title": "Riigilõivu tasumine ja tagastamine",
+  "register_title": "Riigilõivu tasumine ja tagastamine",
+  "source_id": "kohus_menetluskulud_ja_menetlusabi_riigiloivu_tasumine_ja_tagastamine",
+  "source_type": "web_page",
+  "publisher": "Eesti kohtud",
+  "language": "et",
+  "url": "https://www.kohus.ee/kohtusse-poordujale/menetluskulud-ja-menetlusabi/riigiloivu-tasumine-ja-tagastamine",
+  "source_path": "kohus_menetluskulud_ja_menetlusabi_riigiloivu_tasumine_ja_tagastamine.html",
+  "source_format": "html",
+  "source_sha256": "b01c1eb00182768610b463031a65ce4d5aedb5ca845204fb5b7138838bb7aebc",
+  "content_sha256": "c010c374bb6ed7b5531ba8d8498bca41a488f17c71d0cf4475c61e5677bf7a68",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:39:27.808Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "add6833c66aed4a6de92c9fdaddc1a93f49742b7106a4a4fb4f44d1f295be457",
+    "stats": {
+      "words": 690,
+      "blocks": 30,
+      "headings": 4,
+      "tables": 0,
+      "links": 8,
+      "linksToOtherSites": 7
+    },
+    "contacts": {
+      "generalEmails": 8,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 3,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed"
+    ],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.riigiteataja.ee/aktilisa/1030/1202/2024/RLS_lisa1_01012022.pdf",
+      "text": "riigilõivuseaduse Lisas 1",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.kohus.ee/sites/default/files/UUS_taotlus_riigiloivu_tagastamiseks.rtf",
+      "text": "vormis",
+      "type": "rtf",
+      "status": "referenced_only"
+    }
+  ]
+}

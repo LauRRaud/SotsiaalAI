@@ -1,0 +1,57 @@
+{
+  "document_id": "web-palunabi_et_vagivalla_pealtnagijale",
+  "title": "Vägivalla märkajale",
+  "register_title": "Vägivalla märkajale",
+  "source_id": "palunabi_et_vagivalla_pealtnagijale",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://www.palunabi.ee/et/vagivalla-pealtnagijale",
+  "source_path": "palunabi_et_vagivalla_pealtnagijale.html",
+  "source_format": "html",
+  "source_sha256": "f498858a585a8426db35010a61a1af141750625170b7c558a205b59f36b46b09",
+  "content_sha256": "f034dee4c9a439c24894b18728da1b2a9d9f1cb31e1e57df81023e45403bac10",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:37:14.459Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "c8f2ca3ac01e93415975c3ba37b93d2d34b93d972841628db34c058e35a0c278",
+    "stats": {
+      "words": 749,
+      "blocks": 4,
+      "headings": 1,
+      "tables": 0,
+      "links": 0,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

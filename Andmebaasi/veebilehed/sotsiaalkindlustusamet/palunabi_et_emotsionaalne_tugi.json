@@ -1,0 +1,57 @@
+{
+  "document_id": "web-palunabi_et_emotsionaalne_tugi",
+  "title": "Emotsionaalne tugi",
+  "register_title": "Emotsionaalne tugi",
+  "source_id": "palunabi_et_emotsionaalne_tugi",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://www.palunabi.ee/et/emotsionaalne-tugi",
+  "source_path": "palunabi_et_emotsionaalne_tugi.html",
+  "source_format": "html",
+  "source_sha256": "4eba4952c3102a0cf1de5c1b70651ff0a895b9d34e92f4c315b3a4f825f7612d",
+  "content_sha256": "914a447973d1e8c5dc976a802551d54803913f9a47969cecaf08c082706f1fe6",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:36:39.355Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "92162eddfbcd5bc579d8d3a3d87760c2f5716fb76e5ac30997c8157f7b5d4f19",
+    "stats": {
+      "words": 2038,
+      "blocks": 9,
+      "headings": 1,
+      "tables": 0,
+      "links": 20,
+      "linksToOtherSites": 18
+    },
+    "contacts": {
+      "generalEmails": 1,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

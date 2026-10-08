@@ -1,0 +1,60 @@
+{
+  "document_id": "web-ska_erihoolekanne_isikukeskse_erihoolekande_teenusmudel",
+  "title": "Isikukeskse erihoolekande teenusmudel kohalikus omavalitsuses",
+  "register_title": "Isikukeskse erihoolekande teenusmudel kohalikus omavalitsuses",
+  "source_id": "ska_erihoolekanne_isikukeskse_erihoolekande_teenusmudel",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/erihoolekanne/isikukeskse-erihoolekande-teenusmudel",
+  "source_path": "ska_erihoolekanne_isikukeskse_erihoolekande_teenusmudel.html",
+  "source_format": "html",
+  "source_sha256": "e5791000becaca413ee09f3dfdea59234e4eaf0be4901daa87634231d9179a6b",
+  "content_sha256": "62e934b39aa87b09072086902c6759bebdadb3ea7234109a600fd85b47ad2203",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:35:18.580Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-10-02",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:35:17 GMT",
+      "etag": null
+    },
+    "raw_sha256": "a56cb73454c3ad84ed9ffd61977e5aae030292c2608d9b1a3b3f18f233284e01",
+    "stats": {
+      "words": 300,
+      "blocks": 20,
+      "headings": 4,
+      "tables": 0,
+      "links": 8,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 2,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed"
+    ],
+    "needs_review": false
+  },
+  "documents": []
+}

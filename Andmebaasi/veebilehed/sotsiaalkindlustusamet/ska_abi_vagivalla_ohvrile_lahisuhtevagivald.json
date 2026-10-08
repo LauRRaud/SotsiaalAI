@@ -1,0 +1,77 @@
+{
+  "document_id": "web-ska_abi_vagivalla_ohvrile_lahisuhtevagivald",
+  "title": "Lähisuhtevägivald",
+  "register_title": "Lähisuhtevägivald",
+  "source_id": "ska_abi_vagivalla_ohvrile_lahisuhtevagivald",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/abi-vagivalla-ohvrile/lahisuhtevagivald",
+  "source_path": "ska_abi_vagivalla_ohvrile_lahisuhtevagivald.html",
+  "source_format": "html",
+  "source_sha256": "13e3df384c720b3020c6af0158bf948179cb205515ef8594ee2fef58aa77554f",
+  "content_sha256": "2acd8fd79b294b0b1f60fb5dcbc8822df3cddc4358725583500430a06f71ad95",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:34:28.028Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-04-20",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:21:29 GMT",
+      "etag": null
+    },
+    "raw_sha256": "346e7a2afbb137ab1da43f2e672eca3af59b82f244c318c50631903a60016e0d",
+    "stats": {
+      "words": 2733,
+      "blocks": 72,
+      "headings": 11,
+      "tables": 0,
+      "links": 9,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/lsv_toendite_kogumise_juhend.pdf",
+      "text": "Lähisuhtevägivalla tõendite kogumise juhend | 4.56 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/lsv_toendite_kogumise_juhend_eng.pdf",
+      "text": "lsv_toendite_kogumise_juhend_eng.pdf | 4.48 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/lsv_toendite_kogumise_juhend_rus.pdf",
+      "text": "lsv_toendite_kogumise_juhend_rus.pdf | 4.47 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

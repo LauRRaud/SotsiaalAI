@@ -1,0 +1,77 @@
+{
+  "document_id": "web-ska_puue_ja_hoolekanne_sotsiaalne_rehabilitatsioon",
+  "title": "Sotsiaalse rehabilitatsiooni teenus",
+  "register_title": "Sotsiaalse rehabilitatsiooni teenus",
+  "source_id": "ska_puue_ja_hoolekanne_sotsiaalne_rehabilitatsioon",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/puue-ja-hoolekanne/sotsiaalne-rehabilitatsioon",
+  "source_path": "ska_puue_ja_hoolekanne_sotsiaalne_rehabilitatsioon.html",
+  "source_format": "html",
+  "source_sha256": "429aabc510cfe18c0e8e2ecaa94cce98fe38dc98e38ce22716e5b4821d7168c0",
+  "content_sha256": "ed5f4aed4f9ecb6d08c8af66c4b5d320e899e882561401370fc71545d0af5524",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:35:28.579Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2026-09-11",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:35:27 GMT",
+      "etag": null
+    },
+    "raw_sha256": "f8837d782e63befe3843cf1c8ede94604b49d5396187fdc27f13cda61643a3d3",
+    "stats": {
+      "words": 1750,
+      "blocks": 62,
+      "headings": 14,
+      "tables": 0,
+      "links": 19,
+      "linksToOtherSites": 7
+    },
+    "contacts": {
+      "generalEmails": 2,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.riigiteataja.ee/aktilisa/1190/1202/4010/SOM_m2_lisa1.pdf",
+      "text": "Teenuste täpse loetelu ja sisu kirjelduse leiad siit.",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://www.sotsiaalkindlustusamet.ee/media/2536/download",
+      "text": "Rehabilitatsiooniasutuse vahetamise avaldus| 27.96 KB | docx",
+      "type": "download",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-01/VEEBI%20juhend_srt_teenuse_korraldamine_esmasesse_psuhhoosi_haigestunule%2014.01.2025.pdf",
+      "text": "Juhend teenuse korraldamiseks esmasesse psühhoosi haigestunutele | 74.59 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "document_id": "web-palunabi_et_inimkaubandus_0",
+  "title": "Inimkaubandus",
+  "register_title": "Inimkaubandus",
+  "source_id": "palunabi_et_inimkaubandus_0",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://www.palunabi.ee/et/inimkaubandus-0",
+  "source_path": "palunabi_et_inimkaubandus_0.html",
+  "source_format": "html",
+  "source_sha256": "eea1c0168877e0ce8876f99d2e5a8631e9e262c5222fa0343783fabb44d5b5b4",
+  "content_sha256": "afa0d135e08b8333d2eb57a4b00f617bd496bbc653d5226965e214250fcf5a28",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:37:09.416Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "806f7c42e6195031404e770683793cb61f353b83028223f3a8ead5e95cf3b96d",
+    "stats": {
+      "words": 121,
+      "blocks": 6,
+      "headings": 1,
+      "tables": 0,
+      "links": 1,
+      "linksToOtherSites": 0
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

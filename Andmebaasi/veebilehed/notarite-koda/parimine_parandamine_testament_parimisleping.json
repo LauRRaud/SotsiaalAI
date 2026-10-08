@@ -1,0 +1,57 @@
+{
+  "document_id": "web-parimine_parandamine_testament_parimisleping",
+  "title": "Pärandamine",
+  "register_title": "Pärandamine",
+  "source_id": "parimine_parandamine_testament_parimisleping",
+  "source_type": "web_page",
+  "publisher": "Notarite Koda",
+  "language": "et",
+  "url": "https://parimine.notar.ee/parandamine/testament-parimisleping/",
+  "source_path": "parimine_parandamine_testament_parimisleping.html",
+  "source_format": "html",
+  "source_sha256": "a97d42f1b24c5d6dba5d3c261789341f48704efef51459bef7bc56ce8a649add",
+  "content_sha256": "ad9abdffee762bd548acf99d15c4cb6f516ce4f79faa6610f8474ebb2ad3ebfc",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:40:14.096Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "d8f30d38448799132155497af913c6f12662c6965e26d417bd1034ba0a65a888",
+    "stats": {
+      "words": 1562,
+      "blocks": 74,
+      "headings": 28,
+      "tables": 0,
+      "links": 5,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

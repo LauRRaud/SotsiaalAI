@@ -1,0 +1,57 @@
+{
+  "document_id": "web-tek_inimesele_huvitised",
+  "title": "Tervisekassa hüvitised",
+  "register_title": "Tervisekassa hüvitised",
+  "source_id": "tek_inimesele_huvitised",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/huvitised",
+  "source_path": "tek_inimesele_huvitised.html",
+  "source_format": "html",
+  "source_sha256": "49945c20de941ea83b9775231ac68bd024a1b223b24bbdaef5cef11adf8e67e2",
+  "content_sha256": "68e39e49284dbe30f3e6044165fb326e87ef03fd63c938fc66a92e4f805f39a3",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:38:02.378Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:12:20 GMT",
+      "etag": null
+    },
+    "raw_sha256": "15f0d7cd74e1f4c08ee341bc8e30c174c82de720f60ce9e50130aff20a0eae58",
+    "stats": {
+      "words": 273,
+      "blocks": 12,
+      "headings": 5,
+      "tables": 0,
+      "links": 10,
+      "linksToOtherSites": 2
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

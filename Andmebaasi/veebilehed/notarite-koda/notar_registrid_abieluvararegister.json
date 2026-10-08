@@ -1,0 +1,57 @@
+{
+  "document_id": "web-notar_registrid_abieluvararegister",
+  "title": "Abieluvararegister",
+  "register_title": "Abieluvararegister",
+  "source_id": "notar_registrid_abieluvararegister",
+  "source_type": "web_page",
+  "publisher": "Notarite Koda",
+  "language": "et",
+  "url": "https://www.notar.ee/registrid/abieluvararegister/",
+  "source_path": "notar_registrid_abieluvararegister.html",
+  "source_format": "html",
+  "source_sha256": "765fb5944e946874c93a0c2ad04ab8281f7ff6104485cb3da6de09666c48e96e",
+  "content_sha256": "2306cdbf3a99fec7fc756f777ddd4b8845eea46a78fc760b44ddf349bc5b2448",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:40:01.132Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 12:39:22 GMT",
+      "etag": null
+    },
+    "raw_sha256": "f20533d870d071ef034cb57a0e0eef03b1cd16fdb3afce17bb34a8da87003af5",
+    "stats": {
+      "words": 290,
+      "blocks": 33,
+      "headings": 13,
+      "tables": 0,
+      "links": 4,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

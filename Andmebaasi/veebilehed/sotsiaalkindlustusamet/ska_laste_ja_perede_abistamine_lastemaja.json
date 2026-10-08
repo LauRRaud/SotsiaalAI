@@ -1,0 +1,97 @@
+{
+  "document_id": "web-ska_laste_ja_perede_abistamine_lastemaja",
+  "title": "Lastemaja",
+  "register_title": "Lastemaja",
+  "source_id": "ska_laste_ja_perede_abistamine_lastemaja",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://sotsiaalkindlustusamet.ee/abivajav-laps-ja-taiskasvanu/laste-ja-perede-abistamine/lastemaja",
+  "source_path": "ska_laste_ja_perede_abistamine_lastemaja.html",
+  "source_format": "html",
+  "source_sha256": "276524ca1b5b1115666f89e579ec8b35a55ec299a882e7f7580af2eff99a76ab",
+  "content_sha256": "e14ee35078bdcb6985d3b2b654f5a93ef50dda6f9b7c1dd5ff6485fce47a08a6",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:34:58.563Z",
+  "source_status": "active",
+  "country": "EE",
+  "page_updated": "2025-10-17",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:34:57 GMT",
+      "etag": null
+    },
+    "raw_sha256": "bfc0eee961a3f8735432fda37fe4c7abacb28ead57c22f203d932c572d77b333",
+    "stats": {
+      "words": 213,
+      "blocks": 16,
+      "headings": 4,
+      "tables": 1,
+      "links": 12,
+      "linksToOtherSites": 7
+    },
+    "contacts": {
+      "generalEmails": 2,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 12,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "contact_card_removed"
+    ],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "http://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/murebaromeeter_probleemse_ja_normaalse_seksuaalkaitumise_tunnused.pdf",
+      "text": "Murebaromeeter",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/Kuidas%20r%C3%A4%C3%A4kida%20lapsega%20seksuaalsusest%20ja%20seksualasest%20v%C3%A4%C3%A4rkohtlemisest_08.02.2024.pdf",
+      "text": "Kuidas rääkida lapsega seksuaalsusest ja seksuaalsest väärkohtlemisest | 162.2 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/Seistes%20silmitsi%20lapse%20sobimatu%20seksuaalk%C3%A4itumisega_08.02.2024.pdf",
+      "text": "Seistes silmitsi lapse sobimatu seksuaalkäitumisega | 214.45 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-12/minu_keha_ja_turvalisus.pdf",
+      "text": "Minu keha ja turvalisus – plakat | 1.52 MB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-06/barnahusi_kvaliteedinouded.pdf",
+      "text": "Kvaliteedistandard | 789.7 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-12/Lastemaja%20majajuht_0.pdf",
+      "text": "Lastemaja majajuht | 175.43 KB | pdf",
+      "type": "pdf",
+      "status": "referenced_only"
+    }
+  ]
+}

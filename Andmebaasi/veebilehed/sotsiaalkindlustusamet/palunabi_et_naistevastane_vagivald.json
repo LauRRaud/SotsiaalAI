@@ -1,0 +1,57 @@
+{
+  "document_id": "web-palunabi_et_naistevastane_vagivald",
+  "title": "Naistevastane vägivald",
+  "register_title": "Naistevastane vägivald",
+  "source_id": "palunabi_et_naistevastane_vagivald",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://www.palunabi.ee/et/naistevastane-vagivald",
+  "source_path": "palunabi_et_naistevastane_vagivald.html",
+  "source_format": "html",
+  "source_sha256": "9830c23735526dbe191b55a411e96c77c1f04b02be967df840c72c1f3b338cdd",
+  "content_sha256": "fc22df475daef8b113d059939694b43867415cbd9ee5971bdca3d91412a7dd95",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:36:46.929Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "3f4905ca23b6016485606bf5a97b0c713f599a496eafc39141c4677f396a0f0f",
+    "stats": {
+      "words": 243,
+      "blocks": 12,
+      "headings": 1,
+      "tables": 0,
+      "links": 7,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

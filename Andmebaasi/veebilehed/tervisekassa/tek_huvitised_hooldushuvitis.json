@@ -1,0 +1,57 @@
+{
+  "document_id": "web-tek_huvitised_hooldushuvitis",
+  "title": "Hooldushüvitis",
+  "register_title": "Hooldushüvitis",
+  "source_id": "tek_huvitised_hooldushuvitis",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/inimesele/huvitised/hooldushuvitis",
+  "source_path": "tek_huvitised_hooldushuvitis.html",
+  "source_format": "html",
+  "source_sha256": "8a27205aeea7357329d25a610097ca389cc42ed9e9b377c11766a4f1f5068e65",
+  "content_sha256": "e4f1e4f297e9b8cdea63b79104dfd9ab59e4a48cd1d1a45aa0696c095689ea0d",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:38:12.374Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:25:26 GMT",
+      "etag": null
+    },
+    "raw_sha256": "67902c48976cb1fd72184ea89529197e8533a6920a5633432575543e5138aae7",
+    "stats": {
+      "words": 670,
+      "blocks": 43,
+      "headings": 11,
+      "tables": 0,
+      "links": 4,
+      "linksToOtherSites": 3
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

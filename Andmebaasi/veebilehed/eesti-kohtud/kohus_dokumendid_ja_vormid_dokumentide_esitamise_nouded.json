@@ -1,0 +1,57 @@
+{
+  "document_id": "web-kohus_dokumendid_ja_vormid_dokumentide_esitamise_nouded",
+  "title": "Dokumentide esitamise nõuded",
+  "register_title": "Dokumentide esitamise nõuded",
+  "source_id": "kohus_dokumendid_ja_vormid_dokumentide_esitamise_nouded",
+  "source_type": "web_page",
+  "publisher": "Eesti kohtud",
+  "language": "et",
+  "url": "https://www.kohus.ee/kohtusse-poordujale/dokumendid-ja-vormid/dokumentide-esitamise-nouded",
+  "source_path": "kohus_dokumendid_ja_vormid_dokumentide_esitamise_nouded.html",
+  "source_format": "html",
+  "source_sha256": "cf95eeedc6abaa19a1d2ade50daa18476b4bfcad1758252871aa5afddf7a4711",
+  "content_sha256": "fb415d480c3f15fc5165aac2fd2ab26bbcfd722df2c0f06946e63e6a9620669c",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:39:42.854Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "aeb911f9521eafffc7a70aea161539fa5d238cbf7e695459962b3b8f7b3bde15",
+    "stats": {
+      "words": 305,
+      "blocks": 10,
+      "headings": 1,
+      "tables": 0,
+      "links": 3,
+      "linksToOtherSites": 3
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

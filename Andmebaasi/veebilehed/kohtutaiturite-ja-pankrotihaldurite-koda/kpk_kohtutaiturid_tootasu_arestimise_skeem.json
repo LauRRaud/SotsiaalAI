@@ -1,0 +1,76 @@
+{
+  "document_id": "web-kpk_kohtutaiturid_tootasu_arestimise_skeem",
+  "title": "Töötasu arestimise skeem",
+  "register_title": "Töötasu arestimise skeem",
+  "source_id": "kpk_kohtutaiturid_tootasu_arestimise_skeem",
+  "source_type": "web_page",
+  "publisher": "Kohtutäiturite ja Pankrotihaldurite Koda",
+  "language": "et",
+  "url": "https://kpkoda.ee/kohtutaiturid/tootasu-arestimise-skeem/",
+  "source_path": "kpk_kohtutaiturid_tootasu_arestimise_skeem.html",
+  "source_format": "html",
+  "source_sha256": "96f8560a81d504ec28b3e68381449a8be4f7e011c7ef6dbd55571d45bfbdb6b3",
+  "content_sha256": "74984aaf7a7cb594ea4ec26ebf6240563b2120ee5db13993c2f835dd35459bb9",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:40:25.359Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "8c110eaa8a8f8a89b05278fc0022c8b65f7fd17ddc2335b87c1b74044fa3809e",
+    "stats": {
+      "words": 325,
+      "blocks": 13,
+      "headings": 4,
+      "tables": 0,
+      "links": 14,
+      "linksToOtherSites": 1
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://kpkoda.ee/wp-content/uploads/public/tootasu-arestimise-skeem-av-2019-elatis.xlsx",
+      "text": "Töötasu arestimise skeem elatisnõudes",
+      "type": "xlsx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://kpkoda.ee/wp-content/uploads/public/tootasu-arestimise-skeem-av-2019.xlsx",
+      "text": "Töötasu arestimise skeem",
+      "type": "xlsx",
+      "status": "referenced_only"
+    },
+    {
+      "url": "https://kpkoda.ee/wp-content/uploads/public/tootasu-arestimise-skeem-av-2019-ilma-tootuskindlustuseta.xlsx",
+      "text": "Töötasu arestimise skeem (kui sissetulekult ei peeta kinni töötuskindlustusmakset)",
+      "type": "xlsx",
+      "status": "referenced_only"
+    }
+  ]
+}

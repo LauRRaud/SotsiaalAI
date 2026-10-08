@@ -1,0 +1,57 @@
+{
+  "document_id": "web-tek_patsientide_oigused_ja_kaebevoimalused_patsientide_oigused",
+  "title": "Patsientide õigused",
+  "register_title": "Patsientide õigused",
+  "source_id": "tek_patsientide_oigused_ja_kaebevoimalused_patsientide_oigused",
+  "source_type": "web_page",
+  "publisher": "Tervisekassa",
+  "language": "et",
+  "url": "https://tervisekassa.ee/kontaktpunkt/patsientide-oigused-ja-kaebevoimalused/patsientide-oigused",
+  "source_path": "tek_patsientide_oigused_ja_kaebevoimalused_patsientide_oigused.html",
+  "source_format": "html",
+  "source_sha256": "728d27344083433e4877f3b0c0912088ab014a1c0e65cc79b86f67557dba6751",
+  "content_sha256": "06ba86356c8ed614c4fb305190e51ad65f0dc0ecb54edc32645804fe18777ece",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:38:59.993Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 18:26:16 GMT",
+      "etag": null
+    },
+    "raw_sha256": "a796f45d72fba87a41338f109dc80666f73bb67393a208e1b8b9407382bf3f10",
+    "stats": {
+      "words": 446,
+      "blocks": 10,
+      "headings": 1,
+      "tables": 0,
+      "links": 6,
+      "linksToOtherSites": 5
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": []
+}

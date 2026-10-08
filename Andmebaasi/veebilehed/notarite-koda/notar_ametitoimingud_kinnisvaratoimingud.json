@@ -1,0 +1,64 @@
+{
+  "document_id": "web-notar_ametitoimingud_kinnisvaratoimingud",
+  "title": "Kinnisvaratoimingud",
+  "register_title": "Kinnisvaratoimingud",
+  "source_id": "notar_ametitoimingud_kinnisvaratoimingud",
+  "source_type": "web_page",
+  "publisher": "Notarite Koda",
+  "language": "et",
+  "url": "https://www.notar.ee/ametitoimingud/kinnisvaratoimingud/",
+  "source_path": "notar_ametitoimingud_kinnisvaratoimingud.html",
+  "source_format": "html",
+  "source_sha256": "b3758ac72296b1a2b6bad0bbd5f1597dd76f2e0cab4a36babb90dbaef6ca3a75",
+  "content_sha256": "2b56cdaafb262726686c0e3964e5b91a1b84c07faef2e144b9c0b2a53cc60d52",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:39:51.128Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Thu, 08 Oct 2026 10:16:55 GMT",
+      "etag": null
+    },
+    "raw_sha256": "f79d5c78eaa4d73f0bb71120f99ab441cee6725a2883ee90e7d4aedb34c6c9e4",
+    "stats": {
+      "words": 1939,
+      "blocks": 117,
+      "headings": 37,
+      "tables": 0,
+      "links": 10,
+      "linksToOtherSites": 7
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 0,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [],
+    "needs_review": false
+  },
+  "documents": [
+    {
+      "url": "https://www.notar.ee/wp-content/uploads/2026/05/notari-nouanded-kinnisvaratehinguteks-viljandi-notar-virgi-ojapi-artikkel-postimehes.docx",
+      "text": "Notari nõuanded kinnisvaratehinguteks",
+      "type": "docx",
+      "status": "referenced_only"
+    }
+  ]
+}

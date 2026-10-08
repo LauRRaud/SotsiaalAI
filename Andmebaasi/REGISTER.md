@@ -11,14 +11,14 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | organisatsioonid | 1 | 3 | Ühe organisatsiooni (Astangu) käsitsi koostatud pakett: sisu ja allikad. RAG-is seda paketti ei ole. Organisatsioonide enda veebilehed on RAG-is (vt „RAG-i seis“). |
 | oigusaktid | 609 | 623 | XML-aktid, sh eri redaktsioonid ja omavalitsuste teised kehtivad sotsiaalaktid (ADR-058); kehtivus tuleb vastuvõtul kontrollida. Aktide lisadest tuletatud allikad (`lisad/`): kaks tabelit (ADR-050) ja kaksteist omavalitsuse lisa teksti (ADR-053); iga tuletatud allikas nimetab oma akti redaktsiooni. Üks akt on allikas ainult nimetatud paragrahvide ulatuses (registrikirje väli `xml_sections`, ADR-076): `103072026024.xml`, 2026. aasta riigieelarve seaduse § 2; fail ise on Riigi Teataja algfail. |
 | teadmised | 0 | 7 | Allikapõhised teadmiskaardid (tingimused, erandid, mõisted ja nende seosed) valitud allikatele; iga fail on seotud oma allika räsiga (ADR-054). |
-| register | 0 | 7 | Kavandatud allikate register ja korjatavate veebilehtede nimekirjad (`web_pages.json` ametlikud juhislehed, `web_pages_state_help.json` riigi tasandi abi juhislehed (pension, perehüvitised, elatisabi, perelepitus; ADR-111), `web_pages_vendors.json` abivahendite müüjate lehed, `web_pages_organisations.json` puuetega inimeste organisatsioonide lehed koos mustriga, mis pealkirja järgi välja jääb; ADR-095), mitte teadmistekst. Mis müüjate ja organisatsioonide lehtedest RAG-is on, näitab „RAG-i seis“. `newsletter_documents.json` on ajakirja Sotsiaaltöö uudiskirjas viidatud dokumentide loend (ADR-099): pealkiri, väljaandja ametlik aadress ja seis, sh need, mida RAG-is ei ole (ingliskeelsed, tekstikihita, liiga suured, vastuvõtu kinni peetud, arvutabelid). |
-| veebilehed | 114 | 228 | Ametlikud juhislehed, korjatud skriptiga `scripts/rag-v2-web-pages.mjs` (ADR-095): lehe sisuosa ilma saidi menüüde ja isikute kontaktideta, metaandmetes aadress, kontrolli kuupäev ja viidatud dokumendid. |
+| register | 0 | 8 | Kavandatud allikate register ja korjatavate veebilehtede nimekirjad (`web_pages.json` ametlikud juhislehed, `web_pages_state_help.json` riigi tasandi abi juhislehed (pension, perehüvitised, elatisabi, perelepitus; ADR-111), `web_pages_state_help_2.json` riigi tasandi abi teine partii (ravikindlustus, kohtusse pöördumine, võlad, pärimine, ohvriabi, puue ja hoolekanne, politsei juhised; ADR-112), `web_pages_vendors.json` abivahendite müüjate lehed, `web_pages_organisations.json` puuetega inimeste organisatsioonide lehed koos mustriga, mis pealkirja järgi välja jääb; ADR-095), mitte teadmistekst. Mis müüjate ja organisatsioonide lehtedest RAG-is on, näitab „RAG-i seis“. `newsletter_documents.json` on ajakirja Sotsiaaltöö uudiskirjas viidatud dokumentide loend (ADR-099): pealkiri, väljaandja ametlik aadress ja seis, sh need, mida RAG-is ei ole (ingliskeelsed, tekstikihita, liiga suured, vastuvõtu kinni peetud, arvutabelid). |
+| veebilehed | 324 | 648 | Ametlikud juhislehed, korjatud skriptiga `scripts/rag-v2-web-pages.mjs` (ADR-095): lehe sisuosa ilma saidi menüüde ja isikute kontaktideta, metaandmetes aadress, kontrolli kuupäev ja viidatud dokumendid. |
 | taastatud_allikad | 0 | 22 | Serveri vanast indeksist taastatud tekst. Enne importi võrrelda põhipakettidega. |
 
 <!-- corpus-state:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
-## RAG-i seis: mis on serveris (korpus v71)
+## RAG-i seis: mis on serveris (korpus v72)
 
-Seis 08.10.2026: serveris töötav RAG (korpus **v71**, indeks `b5a7a39b`) sisaldab **8 446 dokumenti** (72 198 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
+Seis 08.10.2026: serveris töötav RAG (korpus **v72**, indeks `87d4f55c`) sisaldab **8 656 dokumenti** (74 066 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
 
 | Mis on RAG-is | Dokumente | Kus on loend |
 |---|---:|---|
@@ -28,12 +28,12 @@ Seis 08.10.2026: serveris töötav RAG (korpus **v71**, indeks `b5a7a39b`) sisal
 | Ajakirja Sotsiaaltöö artiklid | 892 | jaotis „Sisufailid“ |
 | Õigusaktid | 563 | jaotis „Sisufailid“ |
 | Juhendid, infomaterjalid ja uuringud | 429 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
-| Ametlikud juhislehed (ametite veebilehed) | 113 | jaotis „Sisufailid“ |
+| Ametlikud juhislehed (ametite veebilehed) | 323 | jaotis „Sisufailid“ |
 | Puuetega inimeste organisatsioonide lehed | 521 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Hooldekodude kohamaksumus omavalitsuste kaupa | 79 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müügi- ja üüripunktid | 93 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müüjate lehed | 51 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
-| **Kokku** | **8446** | |
+| **Kokku** | **8656** | |
 
 <details><summary>Tehniline jaotus arendajale: kus allikafailid asuvad</summary>
 
@@ -44,8 +44,8 @@ Dokumentide arvud ei võrdu ülal olevate failide arvudega: üks fail võib anda
 | `KOV` | 4498 | kov_service_info 3195, application_form 845, official_contact 431, web_form 17, pdf_form 6, official_form 4 |
 | `ajakiri_sotsiaaltoo` | 892 | file 849, web 43 |
 | `oigusaktid` | 563 | legal_act 563 |
+| `veebilehed` | 324 | web_page 323, research_report 1 |
 | `juhendid_ja_uuringud` | 171 | information_material 81, research_report 46, official_guideline 38, policy_analysis 6 |
-| `veebilehed` | 114 | web_page 113, research_report 1 |
 
 Koodihoidlas (GitHub) ei ole 2208 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
 
@@ -1961,9 +1961,148 @@ Koodihoidla allikafailid, mida RAG-is ei ole (61):
 | Tallinna linn sotsiaalteenused ja toetused | [taastatud_allikad/kov-tallinn.json](<taastatud_allikad/kov-tallinn.json>) |
 | Kaebus isikuandmete kaitse asjas | [veebilehed/andmekaitse-inspektsioon/andmekaitse_inspektsioon_aki_kaebus_isikuandmete_kaitse_asjas.html](<veebilehed/andmekaitse-inspektsioon/andmekaitse_inspektsioon_aki_kaebus_isikuandmete_kaitse_asjas.html>) |
 | Nõusolek | [veebilehed/andmekaitse-inspektsioon/andmekaitse_inspektsioon_aki_nousolek.html](<veebilehed/andmekaitse-inspektsioon/andmekaitse_inspektsioon_aki_nousolek.html>) |
+| Dokumentide esitamise nõuded | [veebilehed/eesti-kohtud/kohus_dokumendid_ja_vormid_dokumentide_esitamise_nouded.html](<veebilehed/eesti-kohtud/kohus_dokumendid_ja_vormid_dokumentide_esitamise_nouded.html>) |
+| Dokumendid ja vormid | [veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_dokumendid_ja_vormid.html](<veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_dokumendid_ja_vormid.html>) |
+| Halduskohtumenetlus | [veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_halduskohtumenetlus.html](<veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_halduskohtumenetlus.html>) |
+| Kriminaalmenetlus | [veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_kriminaalmenetlus.html](<veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_kriminaalmenetlus.html>) |
+| Kuidas kohtuga ühendust võtta? | [veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_kuidas_kohtuga_uhendust_votta.html](<veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_kuidas_kohtuga_uhendust_votta.html>) |
+| Meelespea kohtumajja saabudes | [veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_meelespea_kohtumajja_saabudes.html](<veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_meelespea_kohtumajja_saabudes.html>) |
+| Menetluskulud ja menetlusabi | [veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_menetluskulud_ja_menetlusabi.html](<veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_menetluskulud_ja_menetlusabi.html>) |
+| Millega erinevad kohtud tegelevad? | [veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_millega_erinevad_kohtud_tegelevad.html](<veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_millega_erinevad_kohtud_tegelevad.html>) |
+| Sõnaseletusraamat | [veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_sonaseletusraamat.html](<veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_sonaseletusraamat.html>) |
+| Tsiviilkohtumenetlus | [veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_tsiviilkohtumenetlus.html](<veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_tsiviilkohtumenetlus.html>) |
+| Väärteomenetlus | [veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_vaarteomenetlus.html](<veebilehed/eesti-kohtud/kohus_kohtusse_poordujale_vaarteomenetlus.html>) |
+| Info kannatanule | [veebilehed/eesti-kohtud/kohus_kriminaalmenetlus_info_kannatanule.html](<veebilehed/eesti-kohtud/kohus_kriminaalmenetlus_info_kannatanule.html>) |
+| Info tunnistajale | [veebilehed/eesti-kohtud/kohus_kriminaalmenetlus_info_tunnistajale.html](<veebilehed/eesti-kohtud/kohus_kriminaalmenetlus_info_tunnistajale.html>) |
+| Riigilõivu tasumine ja tagastamine | [veebilehed/eesti-kohtud/kohus_menetluskulud_ja_menetlusabi_riigiloivu_tasumine_ja_tagastamine.html](<veebilehed/eesti-kohtud/kohus_menetluskulud_ja_menetlusabi_riigiloivu_tasumine_ja_tagastamine.html>) |
+| Maksekäsu kiirmenetlus | [veebilehed/eesti-kohtud/kohus_tsiviilkohtumenetlus_maksekasu_kiirmenetlus.html](<veebilehed/eesti-kohtud/kohus_tsiviilkohtumenetlus_maksekasu_kiirmenetlus.html>) |
 | Veebikeskkondade ja e-teenuste ligipääsetavus | [veebilehed/eesti-puuetega-inimeste-koda/eesti_puuetega_inimeste_koda_epikoda_digiligipaasetavus.html](<veebilehed/eesti-puuetega-inimeste-koda/eesti_puuetega_inimeste_koda_epikoda_digiligipaasetavus.html>) |
+| Kooliväline nõustamismeeskond | [veebilehed/haridus-ja-noorteamet-rajaleidja/rajaleidja_kvm.html](<veebilehed/haridus-ja-noorteamet-rajaleidja/rajaleidja_kvm.html>) |
+| Elatisevõlgnik ja pankrotimenetlus | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_elatisevolgnik_ja_pankrotimenetlus.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_elatisevolgnik_ja_pankrotimenetlus.html>) |
+| Elatisabi taotlemine | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_elatisvolgnevused_elatisabi_taotlemine.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_elatisvolgnevused_elatisabi_taotlemine.html>) |
+| KKK | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_kkk.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_kkk.html>) |
+| Elatise nõudmine | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_kohtutaiturid_elatisvolgnevused.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_kohtutaiturid_elatisvolgnevused.html>) |
+| Kaebuse esitamine | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_kohtutaiturid_kaebuse_esitamine.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_kohtutaiturid_kaebuse_esitamine.html>) |
+| Nõuete aegumisest | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_kohtutaiturid_nouete_aegumisest.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_kohtutaiturid_nouete_aegumisest.html>) |
+| Täitemenetlusest | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_kohtutaiturid_taitemenetlusest.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_kohtutaiturid_taitemenetlusest.html>) |
+| Töötasu arestimise skeem | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_kohtutaiturid_tootasu_arestimise_skeem.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_kohtutaiturid_tootasu_arestimise_skeem.html>) |
+| Kuidas elatisenõuet täitmisele esitada | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_kuidas_elatisenouet_taitmisele_esitada.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_kuidas_elatisenouet_taitmisele_esitada.html>) |
+| Mida kujutab endast pärandvara pankrot? | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_mida_kujutab_endast_parandvara_pankrot.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_mida_kujutab_endast_parandvara_pankrot.html>) |
+| Hüvitised töötajatele | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_pankrotihaldurid_huvitised_tootajatele.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_pankrotihaldurid_huvitised_tootajatele.html>) |
+| Suhtluskordade praktikast | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_suhtluskordade_praktika.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_suhtluskordade_praktika.html>) |
+| Täite- ja pankrotimenetluse aegsest elatisabist | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_taite_ja_pankrotimenetluse_aegsest_elatisabist.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_taite_ja_pankrotimenetluse_aegsest_elatisabist.html>) |
+| Kohtutäituri tasud | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_tasud.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_tasud.html>) |
+| Töötaja võimalused töötasu sissenõudmiseks püsivalt maksejõuetult ühingult | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_tootaja_voimalused_tootasu_sissenoudmiseks_pusivalt_maksejouetult_uhingult.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_tootaja_voimalused_tootasu_sissenoudmiseks_pusivalt_maksejouetult_uhingult.html>) |
+| Usaldusisiku roll füüsilise isiku maksejõuetus-menetluses | [veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_usaldusisiku_roll_fuusilise_isiku_maksejouetusmenetluses.html](<veebilehed/kohtutaiturite-ja-pankrotihaldurite-koda/kpk_usaldusisiku_roll_fuusilise_isiku_maksejouetusmenetluses.html>) |
+| Ametitoimingud – notariaalsed teenused ühes kohas | [veebilehed/notarite-koda/notar_ametitoimingud.html](<veebilehed/notarite-koda/notar_ametitoimingud.html>) |
+| Kaugtõestamine | [veebilehed/notarite-koda/notar_ametitoimingud_kaugtoestamine.html](<veebilehed/notarite-koda/notar_ametitoimingud_kaugtoestamine.html>) |
+| Kinnisvaratoimingud | [veebilehed/notarite-koda/notar_ametitoimingud_kinnisvaratoimingud.html](<veebilehed/notarite-koda/notar_ametitoimingud_kinnisvaratoimingud.html>) |
+| Notari tasu arvestamine | [veebilehed/notarite-koda/notar_ametitoimingud_notari_tasu_arvestamine.html](<veebilehed/notarite-koda/notar_ametitoimingud_notari_tasu_arvestamine.html>) |
+| Pärimistoimingud | [veebilehed/notarite-koda/notar_ametitoimingud_parimistoimingud.html](<veebilehed/notarite-koda/notar_ametitoimingud_parimistoimingud.html>) |
+| Perekonnaõiguslikud toimingud | [veebilehed/notarite-koda/notar_ametitoimingud_perekonnaoiguslikud_toimingud.html](<veebilehed/notarite-koda/notar_ametitoimingud_perekonnaoiguslikud_toimingud.html>) |
+| Abieluvararegister | [veebilehed/notarite-koda/notar_registrid_abieluvararegister.html](<veebilehed/notarite-koda/notar_registrid_abieluvararegister.html>) |
+| Pärimisregister | [veebilehed/notarite-koda/notar_registrid_parimisregister.html](<veebilehed/notarite-koda/notar_registrid_parimisregister.html>) |
+| Lisainfo | [veebilehed/notarite-koda/parimine_lisainfo.html](<veebilehed/notarite-koda/parimine_lisainfo.html>) |
+| Notaritasud | [veebilehed/notarite-koda/parimine_notaritasud.html](<veebilehed/notarite-koda/parimine_notaritasud.html>) |
+| Pärandamine | [veebilehed/notarite-koda/parimine_parandamine.html](<veebilehed/notarite-koda/parimine_parandamine.html>) |
+| Pärandamine | [veebilehed/notarite-koda/parimine_parandamine_esemete_parandamine.html](<veebilehed/notarite-koda/parimine_parandamine_esemete_parandamine.html>) |
+| Pärandamine | [veebilehed/notarite-koda/parimine_parandamine_testament_parimisleping.html](<veebilehed/notarite-koda/parimine_parandamine_testament_parimisleping.html>) |
+| Pärimine | [veebilehed/notarite-koda/parimine_parimine_kes_parib.html](<veebilehed/notarite-koda/parimine_parimine_kes_parib.html>) |
+| Pärimine | [veebilehed/notarite-koda/parimine_parimine_mida_parib.html](<veebilehed/notarite-koda/parimine_parimine_mida_parib.html>) |
+| Pärimine | [veebilehed/notarite-koda/parimine_parimine_parimise_protsess.html](<veebilehed/notarite-koda/parimine_parimine_parimise_protsess.html>) |
 | Avaldus õiguskantslerile | [veebilehed/oiguskantsler/oiguskantsler_avaldus_oiguskantslerile.html](<veebilehed/oiguskantsler/oiguskantsler_avaldus_oiguskantslerile.html>) |
 | Tuleohutusnõuded | [veebilehed/paasteamet/paasteamet_paasteamet_tuleohutusnouded.html](<veebilehed/paasteamet/paasteamet_paasteamet_tuleohutusnouded.html>) |
+| Eksinud ja teadmata kadunud | [veebilehed/politsei-ja-piirivalveamet/ppa_eksinud_ja_teadmata_kadunud_loodusesse_minnes.html](<veebilehed/politsei-ja-piirivalveamet/ppa_eksinud_ja_teadmata_kadunud_loodusesse_minnes.html>) |
+| Eksinud ja teadmata kadunud | [veebilehed/politsei-ja-piirivalveamet/ppa_eksinud_ja_teadmata_kadunud_politseitoo_abivajajate_otsingutel.html](<veebilehed/politsei-ja-piirivalveamet/ppa_eksinud_ja_teadmata_kadunud_politseitoo_abivajajate_otsingutel.html>) |
+| Eksinud ja teadmata kadunud | [veebilehed/politsei-ja-piirivalveamet/ppa_eksinud_ja_teadmata_kadunud_vabatahtlike_kaasamine.html](<veebilehed/politsei-ja-piirivalveamet/ppa_eksinud_ja_teadmata_kadunud_vabatahtlike_kaasamine.html>) |
+| Politseile süüteo avalduse esitamine | [veebilehed/politsei-ja-piirivalveamet/ppa_et_avaldus_politseile.html](<veebilehed/politsei-ja-piirivalveamet/ppa_et_avaldus_politseile.html>) |
+| Info seoses sõjaga Ukrainas | [veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_ajutine_kaitse_ukraina_kodanikele_ja_nende_pereliikmetele.html](<veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_ajutine_kaitse_ukraina_kodanikele_ja_nende_pereliikmetele.html>) |
+| Info seoses sõjaga Ukrainas | [veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_ajutise_kaitse_pikendamine.html](<veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_ajutise_kaitse_pikendamine.html>) |
+| Info seoses sõjaga Ukrainas | [veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_olukord_piiril.html](<veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_olukord_piiril.html>) |
+| Info seoses sõjaga Ukrainas | [veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_politsei_kodulehel_vaheneb_venekeelne_sisu.html](<veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_politsei_kodulehel_vaheneb_venekeelne_sisu.html>) |
+| Info seoses sõjaga Ukrainas | [veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_rahvusvahelise_kaitse_pikendamine.html](<veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_rahvusvahelise_kaitse_pikendamine.html>) |
+| Info seoses sõjaga Ukrainas | [veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_rahvusvahelise_kaitse_taotlemine.html](<veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_rahvusvahelise_kaitse_taotlemine.html>) |
+| Info seoses sõjaga Ukrainas | [veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_ukraina_kodanike_viibimisoiguse_ajutine_pikendamine.html](<veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_ukraina_kodanike_viibimisoiguse_ajutine_pikendamine.html>) |
+| Info seoses sõjaga Ukrainas | [veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_ukraina_sojapogenike_eestis_olemise_voimalused.html](<veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_ukraina_sojapogenike_eestis_olemise_voimalused.html>) |
+| Info seoses sõjaga Ukrainas | [veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_venemaa_ei_luba_ukraina_kodanikel_siseneda_venemaale.html](<veebilehed/politsei-ja-piirivalveamet/ppa_info_seoses_ukraina_sojaga_venemaa_ei_luba_ukraina_kodanikel_siseneda_venemaale.html>) |
+| Isikut tõendava dokumendi taotlemine liikumisvõimetule inimesele | [veebilehed/politsei-ja-piirivalveamet/ppa_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele_kattesaamine.html](<veebilehed/politsei-ja-piirivalveamet/ppa_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele_kattesaamine.html>) |
+| Isikut tõendava dokumendi taotlemine liikumisvõimetule inimesele | [veebilehed/politsei-ja-piirivalveamet/ppa_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele_liikumis_ja_allkirjavoimetule_inimese_dok.html](<veebilehed/politsei-ja-piirivalveamet/ppa_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele_liikumis_ja_allkirjavoimetule_inimese_dok.html>) |
+| Isikut tõendava dokumendi taotlemine liikumisvõimetule inimesele | [veebilehed/politsei-ja-piirivalveamet/ppa_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele_liikumisvoimetule_inimesele_elamisloakaar.html](<veebilehed/politsei-ja-piirivalveamet/ppa_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele_liikumisvoimetule_inimesele_elamisloakaar.html>) |
+| Isikut tõendava dokumendi taotlemine liikumisvõimetule inimesele | [veebilehed/politsei-ja-piirivalveamet/ppa_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele_liikumisvoimetule_inimesele_id_kaardi_tao.html](<veebilehed/politsei-ja-piirivalveamet/ppa_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele_liikumisvoimetule_inimesele_id_kaardi_tao.html>) |
+| Isikut tõendava dokumendi taotlemine liikumisvõimetule inimesele | [veebilehed/politsei-ja-piirivalveamet/ppa_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele_liikumisvoimetule_inimesele_pin_koodide_t.html](<veebilehed/politsei-ja-piirivalveamet/ppa_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele_liikumisvoimetule_inimesele_pin_koodide_t.html>) |
+| Eksinud ja teadmata kadunud | [veebilehed/politsei-ja-piirivalveamet/ppa_juhend_eksinud_ja_teadmata_kadunud.html](<veebilehed/politsei-ja-piirivalveamet/ppa_juhend_eksinud_ja_teadmata_kadunud.html>) |
+| Info seoses sõjaga Ukrainas | [veebilehed/politsei-ja-piirivalveamet/ppa_juhend_info_seoses_ukraina_sojaga.html](<veebilehed/politsei-ja-piirivalveamet/ppa_juhend_info_seoses_ukraina_sojaga.html>) |
+| Isikut tõendava dokumendi taotlemine liikumisvõimetule inimesele | [veebilehed/politsei-ja-piirivalveamet/ppa_juhend_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele.html](<veebilehed/politsei-ja-piirivalveamet/ppa_juhend_isikut_toendava_dokumendi_taotlemine_liikumisvoimetule_inimesele.html>) |
+| Kaitse ennast kelmide eest | [veebilehed/politsei-ja-piirivalveamet/ppa_juhend_kaitse_ennast_kelmide_eest.html](<veebilehed/politsei-ja-piirivalveamet/ppa_juhend_kaitse_ennast_kelmide_eest.html>) |
+| Laste seksuaalne väärkohtlemine veebis | [veebilehed/politsei-ja-piirivalveamet/ppa_juhend_laste_seksuaalne_vaeaerkohtlemine_veebis.html](<veebilehed/politsei-ja-piirivalveamet/ppa_juhend_laste_seksuaalne_vaeaerkohtlemine_veebis.html>) |
+| Politseile avalduse esitamine | [veebilehed/politsei-ja-piirivalveamet/ppa_juhend_politseile_avalduse_esitamine.html](<veebilehed/politsei-ja-piirivalveamet/ppa_juhend_politseile_avalduse_esitamine.html>) |
+| Rahvusvaheline kaitse | [veebilehed/politsei-ja-piirivalveamet/ppa_juhend_rahvusvaheline_kaitse.html](<veebilehed/politsei-ja-piirivalveamet/ppa_juhend_rahvusvaheline_kaitse.html>) |
+| Taga enda ja oma laste turvalisus | [veebilehed/politsei-ja-piirivalveamet/ppa_juhend_taga_enda_ja_oma_laste_turvalisus.html](<veebilehed/politsei-ja-piirivalveamet/ppa_juhend_taga_enda_ja_oma_laste_turvalisus.html>) |
+| Kaitse ennast kelmide eest | [veebilehed/politsei-ja-piirivalveamet/ppa_kaitse_ennast_kelmide_eest_kelmuse_tuubid_mis_eestis_tana_ringlevad.html](<veebilehed/politsei-ja-piirivalveamet/ppa_kaitse_ennast_kelmide_eest_kelmuse_tuubid_mis_eestis_tana_ringlevad.html>) |
+| Kaitse ennast kelmide eest | [veebilehed/politsei-ja-piirivalveamet/ppa_kaitse_ennast_kelmide_eest_kuhu_poorduda.html](<veebilehed/politsei-ja-piirivalveamet/ppa_kaitse_ennast_kelmide_eest_kuhu_poorduda.html>) |
+| Kaitse ennast kelmide eest | [veebilehed/politsei-ja-piirivalveamet/ppa_kaitse_ennast_kelmide_eest_teavita_petulehest.html](<veebilehed/politsei-ja-piirivalveamet/ppa_kaitse_ennast_kelmide_eest_teavita_petulehest.html>) |
+| Laste seksuaalne väärkohtlemine veebis | [veebilehed/politsei-ja-piirivalveamet/ppa_laste_seksuaalne_vaeaerkohtlemine_veebis_digipadevuse_materjalid.html](<veebilehed/politsei-ja-piirivalveamet/ppa_laste_seksuaalne_vaeaerkohtlemine_veebis_digipadevuse_materjalid.html>) |
+| Politseile avalduse esitamine | [veebilehed/politsei-ja-piirivalveamet/ppa_politseile_avalduse_esitamine_avalduse_esitamine_e_postiga.html](<veebilehed/politsei-ja-piirivalveamet/ppa_politseile_avalduse_esitamine_avalduse_esitamine_e_postiga.html>) |
+| Politseile avalduse esitamine | [veebilehed/politsei-ja-piirivalveamet/ppa_politseile_avalduse_esitamine_avalduse_esitamine_postiga.html](<veebilehed/politsei-ja-piirivalveamet/ppa_politseile_avalduse_esitamine_avalduse_esitamine_postiga.html>) |
+| Rahvusvaheline kaitse | [veebilehed/politsei-ja-piirivalveamet/ppa_rahvusvaheline_kaitse_elamisloa_pikendamine.html](<veebilehed/politsei-ja-piirivalveamet/ppa_rahvusvaheline_kaitse_elamisloa_pikendamine.html>) |
+| Rahvusvaheline kaitse | [veebilehed/politsei-ja-piirivalveamet/ppa_rahvusvaheline_kaitse_kasulikud_kontaktid.html](<veebilehed/politsei-ja-piirivalveamet/ppa_rahvusvaheline_kaitse_kasulikud_kontaktid.html>) |
+| Rahvusvaheline kaitse | [veebilehed/politsei-ja-piirivalveamet/ppa_rahvusvaheline_kaitse_kasulikud_materjalid.html](<veebilehed/politsei-ja-piirivalveamet/ppa_rahvusvaheline_kaitse_kasulikud_materjalid.html>) |
+| Taga enda ja oma laste turvalisus | [veebilehed/politsei-ja-piirivalveamet/ppa_taga_enda_ja_oma_laste_turvalisus_autosoit.html](<veebilehed/politsei-ja-piirivalveamet/ppa_taga_enda_ja_oma_laste_turvalisus_autosoit.html>) |
+| Taga enda ja oma laste turvalisus | [veebilehed/politsei-ja-piirivalveamet/ppa_taga_enda_ja_oma_laste_turvalisus_digiturvalisus.html](<veebilehed/politsei-ja-piirivalveamet/ppa_taga_enda_ja_oma_laste_turvalisus_digiturvalisus.html>) |
+| Taga enda ja oma laste turvalisus | [veebilehed/politsei-ja-piirivalveamet/ppa_taga_enda_ja_oma_laste_turvalisus_kodus.html](<veebilehed/politsei-ja-piirivalveamet/ppa_taga_enda_ja_oma_laste_turvalisus_kodus.html>) |
+| Taga enda ja oma laste turvalisus | [veebilehed/politsei-ja-piirivalveamet/ppa_taga_enda_ja_oma_laste_turvalisus_kuidas_saab_noor_valtida_pahandustesse_sattumist.html](<veebilehed/politsei-ja-piirivalveamet/ppa_taga_enda_ja_oma_laste_turvalisus_kuidas_saab_noor_valtida_pahandustesse_sattumist.html>) |
+| Taga enda ja oma laste turvalisus | [veebilehed/politsei-ja-piirivalveamet/ppa_taga_enda_ja_oma_laste_turvalisus_nouanded_vanematele_laste_turvalisuse_tagamiseks.html](<veebilehed/politsei-ja-piirivalveamet/ppa_taga_enda_ja_oma_laste_turvalisus_nouanded_vanematele_laste_turvalisuse_tagamiseks.html>) |
+| Taga enda ja oma laste turvalisus | [veebilehed/politsei-ja-piirivalveamet/ppa_taga_enda_ja_oma_laste_turvalisus_ohutus_avalikus_kohas.html](<veebilehed/politsei-ja-piirivalveamet/ppa_taga_enda_ja_oma_laste_turvalisus_ohutus_avalikus_kohas.html>) |
+| Taga enda ja oma laste turvalisus | [veebilehed/politsei-ja-piirivalveamet/ppa_taga_enda_ja_oma_laste_turvalisus_taksosoit_ja_uhistransport.html](<veebilehed/politsei-ja-piirivalveamet/ppa_taga_enda_ja_oma_laste_turvalisus_taksosoit_ja_uhistransport.html>) |
+| Ahistav jälitamine | [veebilehed/sotsiaalkindlustusamet/palunabi_et_ahistav_jalitamine.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_ahistav_jalitamine.html>) |
+| Emotsionaalne tugi | [veebilehed/sotsiaalkindlustusamet/palunabi_et_emotsionaalne_tugi.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_emotsionaalne_tugi.html>) |
+| Inimkaubandus | [veebilehed/sotsiaalkindlustusamet/palunabi_et_inimkaubandus.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_inimkaubandus.html>) |
+| Inimkaubandus | [veebilehed/sotsiaalkindlustusamet/palunabi_et_inimkaubandus_0.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_inimkaubandus_0.html>) |
+| Kohtinguvägivald | [veebilehed/sotsiaalkindlustusamet/palunabi_et_kohtinguvagivald.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_kohtinguvagivald.html>) |
+| Kriis | [veebilehed/sotsiaalkindlustusamet/palunabi_et_kriis.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_kriis.html>) |
+| Kriisijuhtumid | [veebilehed/sotsiaalkindlustusamet/palunabi_et_kriisijuhtumid.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_kriisijuhtumid.html>) |
+| Kuriteoohvri hüvitis | [veebilehed/sotsiaalkindlustusamet/palunabi_et_kuriteoohvri_huvitis.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_kuriteoohvri_huvitis.html>) |
+| Lapse väärkohtlemine | [veebilehed/sotsiaalkindlustusamet/palunabi_et_lastevastane_vagivald.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_lastevastane_vagivald.html>) |
+| Mis juhtus? | [veebilehed/sotsiaalkindlustusamet/palunabi_et_mis_juhtus.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_mis_juhtus.html>) |
+| Naiste tugikeskused | [veebilehed/sotsiaalkindlustusamet/palunabi_et_naiste_tugikeskused.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_naiste_tugikeskused.html>) |
+| Naistevastane vägivald | [veebilehed/sotsiaalkindlustusamet/palunabi_et_naistevastane_vagivald.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_naistevastane_vagivald.html>) |
+| Ohvriabi | [veebilehed/sotsiaalkindlustusamet/palunabi_et_ohvriabi.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_ohvriabi.html>) |
+| Ohvriabist | [veebilehed/sotsiaalkindlustusamet/palunabi_et_ohvriabist.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_ohvriabist.html>) |
+| Perevägivald ja lähisuhtevägivald | [veebilehed/sotsiaalkindlustusamet/palunabi_et_perevagivald_ja_lahisuhtevagivald.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_perevagivald_ja_lahisuhtevagivald.html>) |
+| Psühhosotsiaalne kriisiabi | [veebilehed/sotsiaalkindlustusamet/palunabi_et_psuhhosotsiaalne_kriisiabi.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_psuhhosotsiaalne_kriisiabi.html>) |
+| Seksuaalne ahistamine ööelus | [veebilehed/sotsiaalkindlustusamet/palunabi_et_seksuaalne_ahistamine_ooelus.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_seksuaalne_ahistamine_ooelus.html>) |
+| Seksuaalvägivald | [veebilehed/sotsiaalkindlustusamet/palunabi_et_seksuaalvagivald.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_seksuaalvagivald.html>) |
+| Seksuaalvägivalla kriisiabi | [veebilehed/sotsiaalkindlustusamet/palunabi_et_seksuaalvagivalla_kriisiabi.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_seksuaalvagivalla_kriisiabi.html>) |
+| Taastav õigus | [veebilehed/sotsiaalkindlustusamet/palunabi_et_taastav_oigus.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_taastav_oigus.html>) |
+| Traumast taastumist toetav vaimse tervise abi | [veebilehed/sotsiaalkindlustusamet/palunabi_et_traumast_taastumist_toetav_vaimse_tervise_abi.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_traumast_taastumist_toetav_vaimse_tervise_abi.html>) |
+| Vaenukuritegu | [veebilehed/sotsiaalkindlustusamet/palunabi_et_vaenukuritegu.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_vaenukuritegu.html>) |
+| Vägivalla märkajale | [veebilehed/sotsiaalkindlustusamet/palunabi_et_vagivalla_pealtnagijale.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_vagivalla_pealtnagijale.html>) |
+| Vägivallast loobumise toetamine | [veebilehed/sotsiaalkindlustusamet/palunabi_et_vagivallast_loobumise_toetamine.html](<veebilehed/sotsiaalkindlustusamet/palunabi_et_vagivallast_loobumise_toetamine.html>) |
+| Rahvusvaheline kaitse | [veebilehed/sotsiaalkindlustusamet/ska_abi_pogenikule_rahvusvahelise_kaitse_taotlemine.html](<veebilehed/sotsiaalkindlustusamet/ska_abi_pogenikule_rahvusvahelise_kaitse_taotlemine.html>) |
+| Saatjata alaealised välismaalased | [veebilehed/sotsiaalkindlustusamet/ska_abi_pogenikule_saatjata_alaealised_valismaalased.html](<veebilehed/sotsiaalkindlustusamet/ska_abi_pogenikule_saatjata_alaealised_valismaalased.html>) |
+| Tõlketeenus rahvusvahelise ja ajutise kaitse saajale | [veebilehed/sotsiaalkindlustusamet/ska_abi_pogenikule_tolketeenus_rahvusvahelise_ja_ajutise_kaitse_saajale.html](<veebilehed/sotsiaalkindlustusamet/ska_abi_pogenikule_tolketeenus_rahvusvahelise_ja_ajutise_kaitse_saajale.html>) |
+| Kuriteoohvri hüvitis | [veebilehed/sotsiaalkindlustusamet/ska_abi_vagivalla_ohvrile_kuriteoohvri_huvitis.html](<veebilehed/sotsiaalkindlustusamet/ska_abi_vagivalla_ohvrile_kuriteoohvri_huvitis.html>) |
+| Lähisuhtevägivald | [veebilehed/sotsiaalkindlustusamet/ska_abi_vagivalla_ohvrile_lahisuhtevagivald.html](<veebilehed/sotsiaalkindlustusamet/ska_abi_vagivalla_ohvrile_lahisuhtevagivald.html>) |
+| Ohvriabi kriisitelefon 116 006 | [veebilehed/sotsiaalkindlustusamet/ska_abi_vagivalla_ohvrile_ohvriabi_kriisitelefon_116006.html](<veebilehed/sotsiaalkindlustusamet/ska_abi_vagivalla_ohvrile_ohvriabi_kriisitelefon_116006.html>) |
+| Traumast taastumist toetav vaimse tervise abi | [veebilehed/sotsiaalkindlustusamet/ska_abi_vagivalla_ohvrile_traumast_taastumist_toetav_vaimse_tervise_abi.html](<veebilehed/sotsiaalkindlustusamet/ska_abi_vagivalla_ohvrile_traumast_taastumist_toetav_vaimse_tervise_abi.html>) |
+| Tugi vägivallast loobumiseks | [veebilehed/sotsiaalkindlustusamet/ska_abi_vagivalla_ohvrile_tugi_vagivallast_loobumiseks.html](<veebilehed/sotsiaalkindlustusamet/ska_abi_vagivalla_ohvrile_tugi_vagivallast_loobumiseks.html>) |
+| Abi põgenikule | [veebilehed/sotsiaalkindlustusamet/ska_abivajav_laps_ja_taiskasvanu_abi_pogenikule.html](<veebilehed/sotsiaalkindlustusamet/ska_abivajav_laps_ja_taiskasvanu_abi_pogenikule.html>) |
+| Abi vägivalla ohvritele | [veebilehed/sotsiaalkindlustusamet/ska_abivajav_laps_ja_taiskasvanu_abi_vagivalla_ohvrile.html](<veebilehed/sotsiaalkindlustusamet/ska_abivajav_laps_ja_taiskasvanu_abi_vagivalla_ohvrile.html>) |
+| Asendushooldus ja kasuvanemlus | [veebilehed/sotsiaalkindlustusamet/ska_abivajav_laps_ja_taiskasvanu_asendushooldus_ja_kasuvanemlus.html](<veebilehed/sotsiaalkindlustusamet/ska_abivajav_laps_ja_taiskasvanu_asendushooldus_ja_kasuvanemlus.html>) |
+| Laste ja perede abistamine | [veebilehed/sotsiaalkindlustusamet/ska_abivajav_laps_ja_taiskasvanu_laste_ja_perede_abistamine.html](<veebilehed/sotsiaalkindlustusamet/ska_abivajav_laps_ja_taiskasvanu_laste_ja_perede_abistamine.html>) |
+| Vaimne tervis kriisis | [veebilehed/sotsiaalkindlustusamet/ska_abivajav_laps_ja_taiskasvanu_vaimne_tervis_kriisis.html](<veebilehed/sotsiaalkindlustusamet/ska_abivajav_laps_ja_taiskasvanu_vaimne_tervis_kriisis.html>) |
+| Abivõimalused seksuaalvägivalla üleelanule | [veebilehed/sotsiaalkindlustusamet/ska_abivoimalused_seksuaalvagivalla_uleelanule.html](<veebilehed/sotsiaalkindlustusamet/ska_abivoimalused_seksuaalvagivalla_uleelanule.html>) |
+| Hoolduspere vanemaks saamine | [veebilehed/sotsiaalkindlustusamet/ska_asendushooldus_ja_kasuvanemlus_hoolduspereks_saamine.html](<veebilehed/sotsiaalkindlustusamet/ska_asendushooldus_ja_kasuvanemlus_hoolduspereks_saamine.html>) |
+| Kasuperede toetamine | [veebilehed/sotsiaalkindlustusamet/ska_asendushooldus_ja_kasuvanemlus_kasuperede_toetamine.html](<veebilehed/sotsiaalkindlustusamet/ska_asendushooldus_ja_kasuvanemlus_kasuperede_toetamine.html>) |
+| Lapsendamine | [veebilehed/sotsiaalkindlustusamet/ska_asendushooldus_ja_kasuvanemlus_lapsendamine.html](<veebilehed/sotsiaalkindlustusamet/ska_asendushooldus_ja_kasuvanemlus_lapsendamine.html>) |
+| Lapsendatu päritoluandmete otsimine | [veebilehed/sotsiaalkindlustusamet/ska_asendushooldus_ja_kasuvanemlus_lapsendatu_paritoluandmete_otsimine.html](<veebilehed/sotsiaalkindlustusamet/ska_asendushooldus_ja_kasuvanemlus_lapsendatu_paritoluandmete_otsimine.html>) |
+| Erihoolekandeteenused | [veebilehed/sotsiaalkindlustusamet/ska_erihoolekanne_erihoolekandeteenused.html](<veebilehed/sotsiaalkindlustusamet/ska_erihoolekanne_erihoolekandeteenused.html>) |
+| Isikukeskse erihoolekande teenusmudel kohalikus omavalitsuses | [veebilehed/sotsiaalkindlustusamet/ska_erihoolekanne_isikukeskse_erihoolekande_teenusmudel.html](<veebilehed/sotsiaalkindlustusamet/ska_erihoolekanne_isikukeskse_erihoolekande_teenusmudel.html>) |
+| Inimkaubandus | [veebilehed/sotsiaalkindlustusamet/ska_inimkaubandus.html](<veebilehed/sotsiaalkindlustusamet/ska_inimkaubandus.html>) |
+| Kui laps vajab rohkem tuge | [veebilehed/sotsiaalkindlustusamet/ska_laste_ja_perede_abistamine_kui_laps_vajab_rohkem_tuge.html](<veebilehed/sotsiaalkindlustusamet/ska_laste_ja_perede_abistamine_kui_laps_vajab_rohkem_tuge.html>) |
+| Lapsevanemate toetamine | [veebilehed/sotsiaalkindlustusamet/ska_laste_ja_perede_abistamine_lapsevanemate_toetamine.html](<veebilehed/sotsiaalkindlustusamet/ska_laste_ja_perede_abistamine_lapsevanemate_toetamine.html>) |
+| Lastemaja | [veebilehed/sotsiaalkindlustusamet/ska_laste_ja_perede_abistamine_lastemaja.html](<veebilehed/sotsiaalkindlustusamet/ska_laste_ja_perede_abistamine_lastemaja.html>) |
+| Täisealise abivajaja toetamine | [veebilehed/sotsiaalkindlustusamet/ska_laste_ja_perede_abistamine_taisealise_abivajaja_toetamine.html](<veebilehed/sotsiaalkindlustusamet/ska_laste_ja_perede_abistamine_taisealise_abivajaja_toetamine.html>) |
 | II samba pensionikindlustusmaksed ERGO ja SEB klientidele | [veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_ii_samba.html](<veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_ii_samba.html>) |
 | Kahjuhüvitis | [veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_kahjuhuvitis_tooonnetuse.html](<veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_kahjuhuvitis_tooonnetuse.html>) |
 | Olümpiavõitja toetus | [veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_olumpiavoitja_riiklik.html](<veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_olumpiavoitja_riiklik.html>) |
@@ -1971,6 +2110,9 @@ Koodihoidla allikafailid, mida RAG-is ei ole (61):
 | Tagasipöörduja toetus | [veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_tagasipoorduja_toetus.html](<veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_tagasipoorduja_toetus.html>) |
 | Sotsiaaltoetus Tšornobõli AEJ avarii likvideerijale | [veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_toetus_tsornoboli_aej.html](<veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_toetus_tsornoboli_aej.html>) |
 | Üksi elava pensionäri toetus | [veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_uksi_elava_pensionari.html](<veebilehed/sotsiaalkindlustusamet/ska_muud_pensioniga_seotud_huvitised_ja_toetused_uksi_elava_pensionari.html>) |
+| Naiste tugikeskused | [veebilehed/sotsiaalkindlustusamet/ska_naiste_tugikeskused.html](<veebilehed/sotsiaalkindlustusamet/ska_naiste_tugikeskused.html>) |
+| Ohvriabi | [veebilehed/sotsiaalkindlustusamet/ska_ohvriabi.html](<veebilehed/sotsiaalkindlustusamet/ska_ohvriabi.html>) |
+| Ohvriabi lihtsas keeles | [veebilehed/sotsiaalkindlustusamet/ska_ohvriabi_lihtsas_keeles.html](<veebilehed/sotsiaalkindlustusamet/ska_ohvriabi_lihtsas_keeles.html>) |
 | Muud pensioniga seotud hüvitised ja toetused | [veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_muud_pensioniga_seotud_huvitised_ja_toetused.html](<veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_muud_pensioniga_seotud_huvitised_ja_toetused.html>) |
 | Pension välismaal ja välisriigi pension Eestis | [veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pension_valismaal_ja_valisriigi_pension_eestis.html](<veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pension_valismaal_ja_valisriigi_pension_eestis.html>) |
 | Pensioni liigid | [veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pensioni_liigid.html](<veebilehed/sotsiaalkindlustusamet/ska_pension_ja_seotud_huvitised_pensioni_liigid.html>) |
@@ -2036,10 +2178,36 @@ Koodihoidla allikafailid, mida RAG-is ei ole (61):
 | Toitjakaotustoetus | [veebilehed/sotsiaalkindlustusamet/ska_peretoetused_toitjakaotustoetus.html](<veebilehed/sotsiaalkindlustusamet/ska_peretoetused_toitjakaotustoetus.html>) |
 | Üksikvanema lapse toetus | [veebilehed/sotsiaalkindlustusamet/ska_peretoetused_uksikvanema_lapse_toetus.html](<veebilehed/sotsiaalkindlustusamet/ska_peretoetused_uksikvanema_lapse_toetus.html>) |
 | Pensionide, toetuste ja hüvitiste väljamaksmine | [veebilehed/sotsiaalkindlustusamet/ska_praktiline_teave_pensionide_toetuste_ja_huvitiste_valjamaksmine.html](<veebilehed/sotsiaalkindlustusamet/ska_praktiline_teave_pensionide_toetuste_ja_huvitiste_valjamaksmine.html>) |
+| Lapse puude raskusastme tuvastamine | [veebilehed/sotsiaalkindlustusamet/ska_puude_raskusastme_tuvastamine_lapse_puude_raskusastme_tuvastamine.html](<veebilehed/sotsiaalkindlustusamet/ska_puude_raskusastme_tuvastamine_lapse_puude_raskusastme_tuvastamine.html>) |
+| Vanaduspensioniealise puude raskusastme tuvastamine | [veebilehed/sotsiaalkindlustusamet/ska_puude_raskusastme_tuvastamine_vanaduspensioniealise_puude_raskusastme.html](<veebilehed/sotsiaalkindlustusamet/ska_puude_raskusastme_tuvastamine_vanaduspensioniealise_puude_raskusastme.html>) |
+| Erihoolekanne | [veebilehed/sotsiaalkindlustusamet/ska_puue_ja_hoolekanne_erihoolekanne.html](<veebilehed/sotsiaalkindlustusamet/ska_puue_ja_hoolekanne_erihoolekanne.html>) |
+| Puude raskusastme tuvastamine | [veebilehed/sotsiaalkindlustusamet/ska_puue_ja_hoolekanne_puude_raskusastme_tuvastamine.html](<veebilehed/sotsiaalkindlustusamet/ska_puue_ja_hoolekanne_puude_raskusastme_tuvastamine.html>) |
+| Sotsiaalse rehabilitatsiooni teenus | [veebilehed/sotsiaalkindlustusamet/ska_puue_ja_hoolekanne_sotsiaalne_rehabilitatsioon.html](<veebilehed/sotsiaalkindlustusamet/ska_puue_ja_hoolekanne_sotsiaalne_rehabilitatsioon.html>) |
+| Toetused puudega inimestele | [veebilehed/sotsiaalkindlustusamet/ska_puue_ja_hoolekanne_toetused_puudega_inimestele.html](<veebilehed/sotsiaalkindlustusamet/ska_puue_ja_hoolekanne_toetused_puudega_inimestele.html>) |
 | Kogumispensioni täiendavad sissemaksed | [veebilehed/sotsiaalkindlustusamet/ska_ravi_ja_pensionikindlustus_kogumispensioni_taiendavad_sissemaksed.html](<veebilehed/sotsiaalkindlustusamet/ska_ravi_ja_pensionikindlustus_kogumispensioni_taiendavad_sissemaksed.html>) |
+| Seksuaalvägivalla ohvrile | [veebilehed/sotsiaalkindlustusamet/ska_seksuaalvagivalla_ohvrite_kriisiabi.html](<veebilehed/sotsiaalkindlustusamet/ska_seksuaalvagivalla_ohvrite_kriisiabi.html>) |
 | Perehüvitised Euroopa Liidus | [veebilehed/sotsiaalkindlustusamet/ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_perehuvitised.html](<veebilehed/sotsiaalkindlustusamet/ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_perehuvitised.html>) |
 | Väljastpoolt Euroopa Liitu tulijate perehüvitised | [veebilehed/sotsiaalkindlustusamet/ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_valjastpoolt.html](<veebilehed/sotsiaalkindlustusamet/ska_sotsiaalkindlustus_valismaal_ja_valismaalt_tulijatele_valjastpoolt.html>) |
+| Laste sotsiaalne rehabilitatsioon | [veebilehed/sotsiaalkindlustusamet/ska_sotsiaalne_rehabilitatsioon_laste_sotsiaalne_rehabilitatsioon.html](<veebilehed/sotsiaalkindlustusamet/ska_sotsiaalne_rehabilitatsioon_laste_sotsiaalne_rehabilitatsioon.html>) |
+| Rehabilitatsiooniteenuse reform | [veebilehed/sotsiaalkindlustusamet/ska_sotsiaalne_rehabilitatsioon_rehabilitatsiooniteenuse_reform.html](<veebilehed/sotsiaalkindlustusamet/ska_sotsiaalne_rehabilitatsioon_rehabilitatsiooniteenuse_reform.html>) |
+| Sotsiaalse rehabilitatsiooni teenus tööealistele ja pensioniealistele | [veebilehed/sotsiaalkindlustusamet/ska_sotsiaalne_rehabilitatsioon_too_ja_pensioniealiste_sotsiaalne_rehabilitatsioon.html](<veebilehed/sotsiaalkindlustusamet/ska_sotsiaalne_rehabilitatsioon_too_ja_pensioniealiste_sotsiaalne_rehabilitatsioon.html>) |
+| Juhtkoer vaegnägijale | [veebilehed/sotsiaalkindlustusamet/ska_toetavad_teenused_juhtkoer_vaegnagijale.html](<veebilehed/sotsiaalkindlustusamet/ska_toetavad_teenused_juhtkoer_vaegnagijale.html>) |
+| Kaugtõlge | [veebilehed/sotsiaalkindlustusamet/ska_toetavad_teenused_kaugtolge.html](<veebilehed/sotsiaalkindlustusamet/ska_toetavad_teenused_kaugtolge.html>) |
+| Kirjutustõlge | [veebilehed/sotsiaalkindlustusamet/ska_toetavad_teenused_kirjutustolge.html](<veebilehed/sotsiaalkindlustusamet/ska_toetavad_teenused_kirjutustolge.html>) |
+| Parkimiskaart | [veebilehed/sotsiaalkindlustusamet/ska_toetavad_teenused_parkimiskaart.html](<veebilehed/sotsiaalkindlustusamet/ska_toetavad_teenused_parkimiskaart.html>) |
+| Puudega laste tugiteenused | [veebilehed/sotsiaalkindlustusamet/ska_toetavad_teenused_puudega_lapse_tugiteenused.html](<veebilehed/sotsiaalkindlustusamet/ska_toetavad_teenused_puudega_lapse_tugiteenused.html>) |
 | Perehüvitised Ukraina põgenikele | [veebilehed/sotsiaalkindlustusamet/ska_toetused_huvitised_ukraina_pogenikele_perehuvitised_ukraina.html](<veebilehed/sotsiaalkindlustusamet/ska_toetused_huvitised_ukraina_pogenikele_perehuvitised_ukraina.html>) |
+| Harvikhaigusega lapse toetus | [veebilehed/sotsiaalkindlustusamet/ska_toetused_puudega_inimestele_harvikhaigusega_lapse_toetus.html](<veebilehed/sotsiaalkindlustusamet/ska_toetused_puudega_inimestele_harvikhaigusega_lapse_toetus.html>) |
+| Õppelaenu kustutamine | [veebilehed/sotsiaalkindlustusamet/ska_toetused_puudega_inimestele_oppelaenu_kustutamine.html](<veebilehed/sotsiaalkindlustusamet/ska_toetused_puudega_inimestele_oppelaenu_kustutamine.html>) |
+| Õppetoetus | [veebilehed/sotsiaalkindlustusamet/ska_toetused_puudega_inimestele_oppetoetus.html](<veebilehed/sotsiaalkindlustusamet/ska_toetused_puudega_inimestele_oppetoetus.html>) |
+| Puudega lapse toetus | [veebilehed/sotsiaalkindlustusamet/ska_toetused_puudega_inimestele_puudega_lapse_toetus.html](<veebilehed/sotsiaalkindlustusamet/ska_toetused_puudega_inimestele_puudega_lapse_toetus.html>) |
+| Puudega vanaduspensioniealise inimese toetus | [veebilehed/sotsiaalkindlustusamet/ska_toetused_puudega_inimestele_puudega_vanaduspensioniealise_inimese_toetus.html](<veebilehed/sotsiaalkindlustusamet/ska_toetused_puudega_inimestele_puudega_vanaduspensioniealise_inimese_toetus.html>) |
+| Puudega vanema toetus | [veebilehed/sotsiaalkindlustusamet/ska_toetused_puudega_inimestele_puudega_vanema_toetus.html](<veebilehed/sotsiaalkindlustusamet/ska_toetused_puudega_inimestele_puudega_vanema_toetus.html>) |
+| Täienduskoolitustoetus | [veebilehed/sotsiaalkindlustusamet/ska_toetused_puudega_inimestele_taienduskoolitustoetus.html](<veebilehed/sotsiaalkindlustusamet/ska_toetused_puudega_inimestele_taienduskoolitustoetus.html>) |
+| Vaide esitamine | [veebilehed/sotsiaalkindlustusamet/ska_vaie.html](<veebilehed/sotsiaalkindlustusamet/ska_vaie.html>) |
+| Ohvriabi emotsionaalse toe telefon 116123 | [veebilehed/sotsiaalkindlustusamet/ska_vaimne_tervis_kriisis_emotsionaalse_toe_telefon_116123.html](<veebilehed/sotsiaalkindlustusamet/ska_vaimne_tervis_kriisis_emotsionaalse_toe_telefon_116123.html>) |
+| Psühhosotsiaalne kriisiabi | [veebilehed/sotsiaalkindlustusamet/ska_vaimne_tervis_kriisis_psuhhosotsiaalne_kriisiabi.html](<veebilehed/sotsiaalkindlustusamet/ska_vaimne_tervis_kriisis_psuhhosotsiaalne_kriisiabi.html>) |
+| Vaimse tervise videonõustamine | [veebilehed/sotsiaalkindlustusamet/ska_vaimne_tervis_kriisis_vaimse_tervise_videonoustamine.html](<veebilehed/sotsiaalkindlustusamet/ska_vaimne_tervis_kriisis_vaimse_tervise_videonoustamine.html>) |
 | Sotsiaalkindlustusameti 2024. aasta järelevalves: rohkem rikkumisi, aga ka häid näiteid | [veebilehed/sotsiaalkindlustusamet/sotsiaalkindlustusamet_ska_2024_jarelevalve_kokkuvote.html](<veebilehed/sotsiaalkindlustusamet/sotsiaalkindlustusamet_ska_2024_jarelevalve_kokkuvote.html>) |
 | Abivahendi ettevõttele | [veebilehed/sotsiaalkindlustusamet/sotsiaalkindlustusamet_ska_abivahendi_ettevottele.html](<veebilehed/sotsiaalkindlustusamet/sotsiaalkindlustusamet_ska_abivahendi_ettevottele.html>) |
 | Abivahendi vajajale | [veebilehed/sotsiaalkindlustusamet/sotsiaalkindlustusamet_ska_abivahendi_vajajale.html](<veebilehed/sotsiaalkindlustusamet/sotsiaalkindlustusamet_ska_abivahendi_vajajale.html>) |
@@ -2073,12 +2241,54 @@ Koodihoidla allikafailid, mida RAG-is ei ole (61):
 | ÜRO puuetega inimeste õiguste konventsioon | [veebilehed/sotsiaalministeeriumi-kompetentsikeskus/4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--oigusaktid--uro--uro-puuetega-inimeste-oiguste-konventsioon.html](<veebilehed/sotsiaalministeeriumi-kompetentsikeskus/4_ligipaasetavus_sotsiaalministeeriumi_kompetentsikeskus_ligipaasetavus--oigusaktid--uro--uro-puuetega-inimeste-oiguste-konventsioon.html>) |
 | Infomaterjalid hoolekandeasutustele | [veebilehed/terviseamet/terviseamet_terviseamet_infomaterjalid_hoolekandeasutustele.html](<veebilehed/terviseamet/terviseamet_terviseamet_infomaterjalid_hoolekandeasutustele.html>) |
 | Sotsiaalasutuste järelevalve | [veebilehed/terviseamet/terviseamet_terviseamet_sotsiaalasutuste_jarelevalve.html](<veebilehed/terviseamet/terviseamet_terviseamet_sotsiaalasutuste_jarelevalve.html>) |
+| Tervishoid koolis | [veebilehed/tervisekassa/tek_arsti_ja_oendusabi_tervishoid_koolis.html](<veebilehed/tervisekassa/tek_arsti_ja_oendusabi_tervishoid_koolis.html>) |
+| Tervishoiuteenused | [veebilehed/tervisekassa/tek_arsti_ja_oendusabi_tervishoiuteenused.html](<veebilehed/tervisekassa/tek_arsti_ja_oendusabi_tervishoiuteenused.html>) |
+| Vaktsiinikahjude hüvitamine Eestis toimunud vaktsineerimise korral | [veebilehed/tervisekassa/tek_haigekassa_huvitised_vaktsiinikahjude_huvitamine.html](<veebilehed/tervisekassa/tek_haigekassa_huvitised_vaktsiinikahjude_huvitamine.html>) |
+| Kasulikku lugemist | [veebilehed/tervisekassa/tek_hambaravi_kasulikku_lugemist.html](<veebilehed/tervisekassa/tek_hambaravi_kasulikku_lugemist.html>) |
+| Laste hambaravi | [veebilehed/tervisekassa/tek_hambaravi_laste_hambaravi.html](<veebilehed/tervisekassa/tek_hambaravi_laste_hambaravi.html>) |
+| Täiskasvanute hambaravi | [veebilehed/tervisekassa/tek_hambaravi_taiskasvanute_hambaravi.html](<veebilehed/tervisekassa/tek_hambaravi_taiskasvanute_hambaravi.html>) |
+| Ajutise töövõimetuse hüvitise saamise piirangud | [veebilehed/tervisekassa/tek_huvitised_ajutise_toovoimetuse_huvitise_saamise_piirangud.html](<veebilehed/tervisekassa/tek_huvitised_ajutise_toovoimetuse_huvitise_saamise_piirangud.html>) |
+| Haigestumine välisriigis | [veebilehed/tervisekassa/tek_huvitised_haigestumine_valisriigis.html](<veebilehed/tervisekassa/tek_huvitised_haigestumine_valisriigis.html>) |
+| Haigushüvitis | [veebilehed/tervisekassa/tek_huvitised_haigushuvitis.html](<veebilehed/tervisekassa/tek_huvitised_haigushuvitis.html>) |
+| Hooldushüvitis | [veebilehed/tervisekassa/tek_huvitised_hooldushuvitis.html](<veebilehed/tervisekassa/tek_huvitised_hooldushuvitis.html>) |
+| Raseda kergemale tööle üle viimine | [veebilehed/tervisekassa/tek_huvitised_raseda_kergemale_toole_ule_viimine.html](<veebilehed/tervisekassa/tek_huvitised_raseda_kergemale_toole_ule_viimine.html>) |
+| Ravimite hüvitamine | [veebilehed/tervisekassa/tek_huvitised_ravimite_huvitamine.html](<veebilehed/tervisekassa/tek_huvitised_ravimite_huvitamine.html>) |
+| Töötingimuste ajutine kergendamine | [veebilehed/tervisekassa/tek_huvitised_tootingimuste_ajutine_kergendamine.html](<veebilehed/tervisekassa/tek_huvitised_tootingimuste_ajutine_kergendamine.html>) |
+| Arsti- ja õendusabi | [veebilehed/tervisekassa/tek_inimesele_arsti_ja_oendusabi.html](<veebilehed/tervisekassa/tek_inimesele_arsti_ja_oendusabi.html>) |
+| Avaldused | [veebilehed/tervisekassa/tek_inimesele_avaldused.html](<veebilehed/tervisekassa/tek_inimesele_avaldused.html>) |
+| Hambaravi | [veebilehed/tervisekassa/tek_inimesele_hambaravi.html](<veebilehed/tervisekassa/tek_inimesele_hambaravi.html>) |
+| Tervisekassa hüvitised | [veebilehed/tervisekassa/tek_inimesele_huvitised.html](<veebilehed/tervisekassa/tek_inimesele_huvitised.html>) |
+| Minu andmed: Terviseportaal; Riigiportaal | [veebilehed/tervisekassa/tek_inimesele_minu_andmed_terviseportaal_riigiportaal.html](<veebilehed/tervisekassa/tek_inimesele_minu_andmed_terviseportaal_riigiportaal.html>) |
+| Ravikindlustus | [veebilehed/tervisekassa/tek_inimesele_ravikindlustus.html](<veebilehed/tervisekassa/tek_inimesele_ravikindlustus.html>) |
+| Ravimid | [veebilehed/tervisekassa/tek_inimesele_ravimid.html](<veebilehed/tervisekassa/tek_inimesele_ravimid.html>) |
+| Teenustasud ja omaosalus | [veebilehed/tervisekassa/tek_inimesele_teenustasud_ja_omaosalus.html](<veebilehed/tervisekassa/tek_inimesele_teenustasud_ja_omaosalus.html>) |
+| Ukraina sõjapõgenikele | [veebilehed/tervisekassa/tek_inimesele_ukraina_sojapogenikele.html](<veebilehed/tervisekassa/tek_inimesele_ukraina_sojapogenikele.html>) |
+| Lastega seotud hüvitised | [veebilehed/tervisekassa/tek_lapse_saamine_ja_lapse_tervis_lastega_seotud_huvitised.html](<veebilehed/tervisekassa/tek_lapse_saamine_ja_lapse_tervis_lastega_seotud_huvitised.html>) |
+| Rase | [veebilehed/tervisekassa/tek_lapse_saamine_ja_lapse_tervis_rase.html](<veebilehed/tervisekassa/tek_lapse_saamine_ja_lapse_tervis_rase.html>) |
+| Laste ortodontia | [veebilehed/tervisekassa/tek_laste_hambaravi_laste_ortodontia.html](<veebilehed/tervisekassa/tek_laste_hambaravi_laste_ortodontia.html>) |
+| Kaebevõimalused ja hüvitamine | [veebilehed/tervisekassa/tek_patsientide_oigused_ja_kaebevoimalused_kaebevoimalused_ja_huvitamine.html](<veebilehed/tervisekassa/tek_patsientide_oigused_ja_kaebevoimalused_kaebevoimalused_ja_huvitamine.html>) |
+| Patsientide õigused | [veebilehed/tervisekassa/tek_patsientide_oigused_ja_kaebevoimalused_patsientide_oigused.html](<veebilehed/tervisekassa/tek_patsientide_oigused_ja_kaebevoimalused_patsientide_oigused.html>) |
+| Inimesed, kelle eest makstakse või kes ise maksab sotsiaalmaksu | [veebilehed/tervisekassa/tek_ravikindlustus_inimesed_kelle_eest_makstakse_voi_kes_ise_maksab_sotsiaalmaksu.html](<veebilehed/tervisekassa/tek_ravikindlustus_inimesed_kelle_eest_makstakse_voi_kes_ise_maksab_sotsiaalmaksu.html>) |
+| Kindlustatuga võrdustatud inimesed | [veebilehed/tervisekassa/tek_ravikindlustus_kindlustatuga_vordustatud_inimesed.html](<veebilehed/tervisekassa/tek_ravikindlustus_kindlustatuga_vordustatud_inimesed.html>) |
+| Vabatahtlik ravikindlustus | [veebilehed/tervisekassa/tek_ravikindlustus_vabatahtlik_ravikindlustus.html](<veebilehed/tervisekassa/tek_ravikindlustus_vabatahtlik_ravikindlustus.html>) |
+| Digiretsept | [veebilehed/tervisekassa/tek_ravimid_digiretsept.html](<veebilehed/tervisekassa/tek_ravimid_digiretsept.html>) |
+| Kehavälise viljastamisega seotud ravimid | [veebilehed/tervisekassa/tek_ravimid_kehavalise_viljastamisega_seotud_ravimid.html](<veebilehed/tervisekassa/tek_ravimid_kehavalise_viljastamisega_seotud_ravimid.html>) |
+| Ravimite erandkorras hüvitamine | [veebilehed/tervisekassa/tek_ravimid_ravimite_erandkorras_huvitamine.html](<veebilehed/tervisekassa/tek_ravimid_ravimite_erandkorras_huvitamine.html>) |
+| Täiendav ravimi- ja meditsiiniseadmehüvitis | [veebilehed/tervisekassa/tek_ravimid_taiendav_ravimi_ja_meditsiiniseadmehuvitis.html](<veebilehed/tervisekassa/tek_ravimid_taiendav_ravimi_ja_meditsiiniseadmehuvitis.html>) |
+| Toimeainepõhine retsept | [veebilehed/tervisekassa/tek_ravimid_toimeainepohine_retsept.html](<veebilehed/tervisekassa/tek_ravimid_toimeainepohine_retsept.html>) |
+| Depressiooni raviteekond | [veebilehed/tervisekassa/tek_raviteekondade_arendamine_depressiooni_raviteekond.html](<veebilehed/tervisekassa/tek_raviteekondade_arendamine_depressiooni_raviteekond.html>) |
+| Insuldi raviteekond | [veebilehed/tervisekassa/tek_raviteekondade_arendamine_insuldi_raviteekond.html](<veebilehed/tervisekassa/tek_raviteekondade_arendamine_insuldi_raviteekond.html>) |
+| Hambaproteeside hüvitis | [veebilehed/tervisekassa/tek_taiskasvanute_hambaravi_hambaproteeside_huvitis.html](<veebilehed/tervisekassa/tek_taiskasvanute_hambaravi_hambaproteeside_huvitis.html>) |
+| Hambaravihüvitis | [veebilehed/tervisekassa/tek_taiskasvanute_hambaravi_hambaravihuvitis.html](<veebilehed/tervisekassa/tek_taiskasvanute_hambaravi_hambaravihuvitis.html>) |
+| Täiskasvanute ortodontia | [veebilehed/tervisekassa/tek_taiskasvanute_hambaravi_taiskasvanute_ortodontia.html](<veebilehed/tervisekassa/tek_taiskasvanute_hambaravi_taiskasvanute_ortodontia.html>) |
+| Tasuta hambaravi | [veebilehed/tervisekassa/tek_taiskasvanute_hambaravi_tasuta_hambaravi.html](<veebilehed/tervisekassa/tek_taiskasvanute_hambaravi_tasuta_hambaravi.html>) |
+| Vältimatu hambaravi | [veebilehed/tervisekassa/tek_taiskasvanute_hambaravi_valtimatu_hambaravi.html](<veebilehed/tervisekassa/tek_taiskasvanute_hambaravi_valtimatu_hambaravi.html>) |
 | Tallinna kontaktid | [kontaktid/tallinn/tallinn.contacts.json](kontaktid/tallinn/tallinn.contacts.json) |
 
 <!-- corpus-outside:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
 ## RAG-is olevad lehed ja kontaktid
 
-Serveris töötav RAG, korpus v71, 08.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
+Serveris töötav RAG, korpus v72, 08.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
 
 ### Hooldekodude kohamaksumuse lehed (79)
 

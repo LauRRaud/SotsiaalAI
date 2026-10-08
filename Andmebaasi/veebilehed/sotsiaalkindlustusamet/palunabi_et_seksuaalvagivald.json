@@ -1,0 +1,59 @@
+{
+  "document_id": "web-palunabi_et_seksuaalvagivald",
+  "title": "Seksuaalvägivald",
+  "register_title": "Seksuaalvägivald",
+  "source_id": "palunabi_et_seksuaalvagivald",
+  "source_type": "web_page",
+  "publisher": "Sotsiaalkindlustusamet",
+  "language": "et",
+  "url": "https://www.palunabi.ee/et/seksuaalvagivald",
+  "source_path": "palunabi_et_seksuaalvagivald.html",
+  "source_format": "html",
+  "source_sha256": "8ace88d85cda4b957139d1d7d78cb06201be41493e206388304e8382b91ecdf5",
+  "content_sha256": "29963796e03f7e678f5614101674a39cd149c5523db1aa9aa1276d0d8f724225",
+  "checked_at": "2026-10-08",
+  "retrieved_at": "2026-10-08T18:36:59.410Z",
+  "source_status": "active",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "legal_basis": false,
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "collection": {
+    "collector": "rag-v2/web-page-1",
+    "region": "main",
+    "http": {
+      "status": 200,
+      "content_type": "text/html",
+      "last_modified": null,
+      "etag": null
+    },
+    "raw_sha256": "9208039a8b9a70670f47ef7d66328d64117411c20b2c74d3aa2bcafc3ce3aff9",
+    "stats": {
+      "words": 1522,
+      "blocks": 9,
+      "headings": 1,
+      "tables": 0,
+      "links": 13,
+      "linksToOtherSites": 8
+    },
+    "contacts": {
+      "generalEmails": 0,
+      "otherEmails": 3,
+      "personLinks": 0,
+      "contactCards": 0,
+      "personalEmails": 0,
+      "phonesBesideThem": 0
+    },
+    "warnings": [
+      "email_needs_review"
+    ],
+    "needs_review": true
+  },
+  "documents": []
+}
