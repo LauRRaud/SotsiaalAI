@@ -227,7 +227,7 @@ export default function SupervisionCreatePage() {
   return (
     <section className={styles.shell}>
       <h1 className="sr-only">{t("supervision.create.title")}</h1>
-      <StepFlight
+      <StepFlight flat
         label={t("supervision.create.title")}
         steps={steps}
         activeKey={view}

@@ -1,0 +1,34 @@
+/* Privaatsusmärgis: PÜSIELEMENT, mitte tooltip (Q2.6 ühisreegel, SUP-P10).
+   Reeglid on samad, mis vanas ühises failis (SupervisionPage.module.css): märgi
+   välimus ei muutunud, muutus ainult see, et märk kannab oma kujundust ise ja
+   ükski leht ei pea selle pärast vana kesta importima. */
+
+.privacy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  width: fit-content;
+  padding: 0.15rem 0.62rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.privacyPrivate {
+  background: rgba(206, 206, 206, 0.16);
+  border: 1px solid rgba(206, 206, 206, 0.55);
+  color: var(--text-warm);
+}
+
+.privacyShared {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--glass-border-soft);
+  color: var(--text-soft);
+}
+
+.privacyPersistent {
+  background: rgba(193, 193, 193, 0.14);
+  border: 1px solid rgba(193, 193, 193, 0.45);
+  color: var(--text-warm);
+}

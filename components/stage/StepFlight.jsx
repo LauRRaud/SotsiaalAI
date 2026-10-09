@@ -49,6 +49,12 @@
  * nimi, `position(current, total, label)`: ekraanilugeja teade) ja `wideLead`
  * on laia vaate sissejuhatus plaatide kohal.
  *
+ * LAME LAVA. `flat` jätab sügavuslennu ära: vaated vahetuvad kohapeal
+ * ristsulandusega (sama rada, mille saab vähendatud liikumise soovija). Kõik
+ * muu on sama: üks vaade korraga, sammud või osad kiirmenüüs, lai vaade.
+ * Kasutab supervisioon, kus leping (SUP-P10) ruumilist liikumist ei taha ja
+ * omanik ütles 09.10, et seal ei pea 3D olema.
+ *
  * JUHITUD KASUTUS. Kui lehe enda olek otsustab, milline samm on ees (nt pärast
  * salvestamist „mine eelvaatesse"), anna `activeKey` (sammu võti) ja kuula
  * `onStepChange(index, step)`. Võtme muutus lennutab selle sammu juurde;
@@ -107,7 +113,7 @@ function naturalHeight(plane) {
   return height;
 }
 
-export default function StepFlight({ steps, children, label, initialIndex = 0, activeKey, onStepChange, startWide = false, parts = false, texts = null, wideLead = null }) {
+export default function StepFlight({ steps, children, label, initialIndex = 0, activeKey, onStepChange, startWide = false, parts = false, texts = null, wideLead = null, flat = false }) {
   const { t } = useI18n();
   const count = steps.length;
   const { dollyRef, planeProps, activeIndex, mode, flyTo } = useStationFlight({
@@ -117,7 +123,8 @@ export default function StepFlight({ steps, children, label, initialIndex = 0, a
        pikemalt, enne kui kaamera temani jõuab. */
     fadeLength: 420,
     smoothFade: true,
-    durationScale: 1.1
+    durationScale: 1.1,
+    flat
   });
   const [wide, setWide] = useState(Boolean(startWide));
   const allText = texts?.all || t("stage.all_steps");

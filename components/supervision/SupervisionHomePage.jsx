@@ -25,7 +25,8 @@
  * SUPERVISIOONI V0 LEPING ütles „EI uut lõuendimootorit, EI Flight/3D" (SUP-P10).
  * Omanik otsustas 09.10, et kõik alamlehed lähevad sammulavale. Uut mootorit
  * siin ei ole: lava on platvormi olemasolev lend, mis vähendatud liikumise
- * korral vahetab vaateid ristsulandusega. Protsessi leht ise on veel vanal kujul.
+ * korral vahetab vaateid ristsulandusega. Protsessi leht on samal laval
+ * (./SupervisionProcessPage.jsx).
  */
 
 import { useMemo } from "react";
@@ -101,7 +102,7 @@ export default function SupervisionHomePage({ initialPart = "" }) {
   return (
     <section className={styles.shell}>
       <h1 className="sr-only">{t("supervision.home.title")}</h1>
-      <StepFlight
+      <StepFlight flat
         label={t("supervision.home.title")}
         steps={parts}
         parts

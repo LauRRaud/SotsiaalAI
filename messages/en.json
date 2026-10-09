@@ -10245,12 +10245,10 @@
     "common": {
       "loading": "Loading…",
       "retry": "Try again",
-      "back": "Back",
       "cancel": "Cancel",
       "save": "Save",
       "saving": "Saving…",
       "edit": "Edit",
-      "confirm": "Confirm",
       "loginRequired": "Please sign in.",
       "notFound": "Not found or you don't have access.",
       "conflictReload": "Someone changed this in the meantime. Reloading."
@@ -10351,28 +10349,17 @@
       "titleNone": "Missing",
       "goalNone": "Not added"
     },
-    "nav": {
-      "contract": "Contract",
-      "eeskamber": "Antechamber",
-      "meetings": "Meetings",
-      "summaries": "Summaries",
-      "kapp": "Cabinet"
-    },
     "contract": {
-      "title": "Contract and invitations",
-      "activeVersion": "Active version",
       "noActive": "No active contract version yet.",
       "versionN": "Version {n}",
       "newVersion": "New contract version",
       "bodyLabel": "Contract text",
       "createVersion": "Save version",
       "activate": "Activate version",
-      "participants": "Participants",
       "inviteLabel": "Invite a participant",
       "invite": "Send invite",
       "withdraw": "Withdraw invite",
       "acceptContract": "I confirm the new contract version",
-      "invitePlaceholder": "user ID",
       "pendingContract": "A new contract version is awaiting your confirmation."
     },
     "invited": {
@@ -10405,10 +10392,8 @@
       "toHome": "Back to supervision"
     },
     "eeskamber": {
-      "title": "Private antechamber",
       "hint": "Prepare topics and notes here. Only you can see them until you deliberately share them.",
       "new": "New draft",
-      "kindLabel": "Type",
       "kind_PREP_TOPIC": "Topic preparation",
       "kind_PRIVATE_NOTE": "Private note",
       "kind_CLOSING_REFLECTION": "Closing reflection",
@@ -10417,22 +10402,43 @@
       "delete": "Delete",
       "share": "Share deliberately",
       "empty": "The antechamber is empty. Create your first draft.",
-      "shared": "Shared",
-      "deleteConfirm": "Delete this private item?"
+      "shared": "Shared"
     },
     "share": {
       "title": "Sharing preview",
-      "intro": "Review EXACTLY what is shared and with whom. Sharing is deliberate and can be withdrawn.",
       "audienceLabel": "Audience",
       "audience_SUPERVISOR_ONLY": "Supervisor only",
       "audience_PROCESS": "All participants",
       "willSee": "After sharing, these will see it",
       "confirm": "Share deliberately",
       "back": "Back to antechamber",
-      "notReady": "You don't have a valid contract confirmation to share."
+      "notReady": "You don't have a valid contract confirmation to share.",
+      "titleLabel": "Title",
+      "derivedTitle": "The item has no title. The beginning of the content is used as the title.",
+      "noNames": "No names are available.",
+      "alreadyShared": "This item has already been shared. One item can become one shared topic.",
+      "toTopics": "Open shared topics",
+      "confirmAgain": "Press again to share",
+      "confirmConsequence": "The second press shares the topic: the chosen people see it at once.",
+      "views": {
+        "content": {
+          "title": "What is shared",
+          "short": "Content",
+          "lead": "Exactly this title and content are shared. The shared topic is a copy: a later change in the antechamber does not change it."
+        },
+        "audience": {
+          "title": "Who will see it",
+          "short": "Audience",
+          "question": "Who will see this topic?"
+        },
+        "confirm": {
+          "title": "Sharing",
+          "short": "Share",
+          "lead": "You can withdraw the sharing later in the shared topics part. The same item cannot then be shared again."
+        }
+      }
     },
     "meetings": {
-      "title": "Meetings",
       "plan": "Plan a meeting",
       "plannedAt": "Time",
       "markHeld": "Mark as held",
@@ -10441,17 +10447,13 @@
       "cancelled": "Cancelled",
       "note": "Working note",
       "meetingN": "Meeting {n}",
-      "empty": "No meetings planned yet.",
-      "heldConfirm": "Mark the meeting as held? This cannot be undone."
+      "empty": "No meetings planned yet."
     },
     "summaries": {
-      "title": "Summaries",
-      "newFinal": "New final summary",
       "bodyLabel": "Summary text",
       "submit": "Send for approval",
       "approve": "I approve",
       "discard": "Withdraw and discard",
-      "discardConfirm": "Withdraw this summary from approval? Existing approvals will be removed and pending notifications closed. A replacement summary starts approval from zero.",
       "waitingApprovals": "Awaiting {done}/{total} approvals",
       "empty": "No summaries yet.",
       "draftOnlyYou": "Only you can see this (supervisor)",
@@ -10459,7 +10461,6 @@
       "meeting": "Meeting summary"
     },
     "kapp": {
-      "title": "Cabinet of confirmed outputs",
       "intro": "Confirmed summaries and the active contract. These are kept even after closing.",
       "empty": "No confirmed outputs yet."
     },
@@ -10479,10 +10480,35 @@
       "closureFacts": "Closure record and aggregate facts",
       "privateItems": "Your private antechamber",
       "personalOutcomes": "Personal retained outcomes: {count}",
-      "generalizedTitleLabel": "Generalized title (replaces the current one)",
       "confirm": "Close the process permanently",
       "pendingBlock": "Confirm or discard pending summaries before closing.",
-      "onlySupervisor": "Only the supervisor can close the process."
+      "onlySupervisor": "Only the supervisor can close the process.",
+      "views": {
+        "effect": {
+          "title": "Deleted and kept",
+          "short": "Deleted and kept"
+        },
+        "title": {
+          "title": "Generalized title",
+          "short": "Title"
+        },
+        "close": {
+          "title": "Closing",
+          "short": "Close",
+          "lead": "Closing cannot be undone. Shared topics, summary drafts and meeting working notes are deleted at once."
+        }
+      },
+      "titleField": "Generalized title",
+      "titleHint": "Replaces the current title and also stays on the personal packs. Do not write names or anything else a person could be recognised by.",
+      "currentTitle": "Current title: {title}",
+      "titleMissing": "The generalized title is missing.",
+      "newTitle": "New title",
+      "titleNone": "Missing",
+      "confirmAgain": "Press again to close",
+      "consequence": "The second press closes the process permanently and deletes the shared raw content.",
+      "toProcess": "Back to the process",
+      "pendingOne": "Summary awaiting approval",
+      "titleQuestion": "Under what title does the process remain?"
     },
     "closed": {
       "banner": "The process is closed; raw content has been deleted.",
@@ -10525,6 +10551,210 @@
           "title": "Meeting summary ({n}/{total})",
           "short": "Summary {n}/{total}"
         }
+      }
+    },
+    "process": {
+      "all": "Whole process",
+      "position": "Part {current}/{total}: {label}",
+      "toHome": "My processes",
+      "back": "Back to the list",
+      "openContract": "Open the contract",
+      "views": {
+        "suletud": {
+          "title": "Closed process",
+          "short": "Closed"
+        },
+        "protsess": {
+          "title": "Process",
+          "short": "Process"
+        },
+        "kontrakt": {
+          "title": "Contract",
+          "short": "Contract"
+        },
+        "osalejad": {
+          "title": "Participants",
+          "short": "Participants"
+        },
+        "eeskamber": {
+          "title": "Private antechamber",
+          "short": "Antechamber"
+        },
+        "teemad": {
+          "title": "Shared topics",
+          "short": "Topics"
+        },
+        "kohtumised": {
+          "title": "Meetings",
+          "short": "Meetings"
+        },
+        "kokkuvotted": {
+          "title": "Summaries",
+          "short": "Summaries"
+        },
+        "kapp": {
+          "title": "Cabinet of confirmed outputs",
+          "short": "Cabinet"
+        },
+        "sulgemine": {
+          "title": "Closing",
+          "short": "Closing"
+        },
+        "lahkumine": {
+          "title": "Leaving",
+          "short": "Leaving"
+        }
+      },
+      "tiles": {
+        "closedOn": "Closed on {date}",
+        "contractActive": "Version {n} is in force",
+        "contractPending": "Version {n} awaits your confirmation",
+        "joined": "Joined: {count}",
+        "invited": "Invitations pending: {count}",
+        "nextMeeting": "Next: {time}",
+        "meetingsCount": "Held: {held} · Planned: {planned}",
+        "summaryWaitsYou": "A summary awaits your approval",
+        "summariesPending": "Awaiting approval: {count}",
+        "summariesDraft": "Drafts: {count}",
+        "approvedSummaries": "Confirmed summaries: {count}",
+        "close": "First see what is deleted and what is kept.",
+        "leave": "You can leave the process."
+      },
+      "facts": {
+        "status": "Status",
+        "goalNone": "No goal has been added.",
+        "goalClosed": "The goal was deleted when the process was closed."
+      },
+      "contract": {
+        "inForceSince": "In force since {date}",
+        "createdOn": "Written on {date}",
+        "svLead": "Before joining, an invited person sees the process title, your name and the contract in force.",
+        "noneSv": "There is no contract in force yet. Write the first version and activate it.",
+        "versions": "Versions",
+        "backToContract": "Back to the contract",
+        "newVersion": "New version",
+        "newLead": "The version is saved as a draft. It comes into force when you activate it.",
+        "versionsLead": "One version is in force at a time. The text of a saved draft is not shown here.",
+        "versionStatus": {
+          "DRAFT": "Draft",
+          "ACTIVE": "In force",
+          "SUPERSEDED": "Replaced"
+        },
+        "activateConfirm": "Press again to activate",
+        "activateConsequence": "Activation cannot be undone. The current version is replaced and every joined participant must confirm the new version.",
+        "acceptHint": "Until you confirm the version in force, you cannot share topics or approve summaries."
+      },
+      "participants": {
+        "leadSupervisor": "Participants of the process and the invitations sent.",
+        "leadMember": "You see those who have joined the process or left it.",
+        "status": {
+          "INVITED": "Invitation pending",
+          "ACCEPTED": "Joined",
+          "DECLINED": "Declined",
+          "LEFT": "Left",
+          "WITHDRAWN": "Invitation withdrawn"
+        },
+        "unnamed": "Unnamed participant",
+        "empty": "No participants yet.",
+        "inviteLead": "The invited person gets a notification and, before joining, sees the process title, your name and the contract in force.",
+        "inviteField": "User ID of the person to invite",
+        "inviteHint": "You can invite a social worker or a service provider. The same person can be invited to this process only once.",
+        "withdrawConfirm": "Press again to withdraw",
+        "withdrawConsequence": "A withdrawn invitation cannot be restored, and the same person cannot be invited to this process again.",
+        "alreadyInvited": "This person already has an invitation or a part in this process."
+      },
+      "antechamber": {
+        "emptyReadOnly": "The antechamber is empty.",
+        "shareWithdrawn": "Sharing withdrawn",
+        "fromWellbeing": "Brought from Work wellbeing",
+        "deleteConfirm": "Press again to delete",
+        "deleteConsequence": "A deleted item cannot be restored.",
+        "deleteConsequenceShared": "A deleted item cannot be restored. The topic shared from it stays shared.",
+        "editSharedLead": "The shared topic is a copy made at the moment of sharing. A change here does not change it.",
+        "conflictKept": "The item was changed elsewhere in the meantime. Your text is kept: save again if you want to overwrite that change.",
+        "withdrawnNote": "The sharing of this item was withdrawn. The same item cannot be shared again.",
+        "kindQuestion": "What do you want to write down?",
+        "kindHint": {
+          "PREP_TOPIC": "A topic or case you want to bring to a meeting.",
+          "PRIVATE_NOTE": "A note to yourself.",
+          "CLOSING_REFLECTION": "A look back at the process: what you take with you."
+        },
+        "changeKind": "Change the kind"
+      },
+      "topics": {
+        "lead": "Topics deliberately shared from the antechamber. A shared topic is a copy made at the moment of sharing. Shared topics are deleted when the process is closed.",
+        "empty": "There are no shared topics.",
+        "toAntechamber": "Open the antechamber",
+        "byYou": "Shared by you",
+        "bySupervisor": "Shared by the supervisor",
+        "byName": "Shared by {name}",
+        "byParticipant": "Shared by a participant",
+        "byDeleted": "The sharer is no longer known",
+        "sharedOn": "Shared on {date}",
+        "withdraw": "Withdraw sharing",
+        "withdrawConfirm": "Press again to withdraw",
+        "withdrawConsequence": "The topic disappears from everyone's view. The same antechamber item cannot be shared again."
+      },
+      "meetings": {
+        "plannedCount": "Planned number of meetings: {count}",
+        "noTime": "No time set",
+        "plannedAtLabel": "Meeting time",
+        "planHint": "You can leave the time empty and change it later.",
+        "timeInvalid": "The time cannot be read. Choose the date and time again.",
+        "noteQuestion": "Working note for meeting {n}",
+        "noteLead": "Members of the process see the working note. The note is deleted when the process is closed.",
+        "noNote": "There is no working note.",
+        "addNote": "Add a working note",
+        "editNote": "Edit the working note",
+        "heldConfirm": "Press again to confirm",
+        "heldConsequence": "A meeting marked as held cannot be changed back.",
+        "timeHint": "You can leave the time empty.",
+        "changeOrCancel": "Change or cancel",
+        "timeQuestion": "When does meeting {n} take place?",
+        "saveTime": "Save the time",
+        "cancelMeeting": "Cancel the meeting",
+        "cancelConfirm": "Press again to cancel it",
+        "cancelConsequence": "A cancelled meeting stays in the list marked “Cancelled”. For a new time, plan a new meeting.",
+        "backToMeeting": "Back to the meeting",
+        "noTimeShort": "Not set"
+      },
+      "summaries": {
+        "leadSupervisor": "Only you see a draft. Joined participants see a summary sent for approval.",
+        "leadMember": "A summary is confirmed once every joined participant has approved it.",
+        "status": {
+          "DRAFT": "Draft",
+          "PENDING_APPROVAL": "Awaiting approval",
+          "APPROVED": "Confirmed",
+          "DISCARDED": "Discarded"
+        },
+        "meetingN": "Summary of meeting {n}",
+        "new": "New summary",
+        "newLead": "The summary is saved as a draft that only you see.",
+        "kindQuestion": "What is the summary about?",
+        "meetingQuestion": "Which meeting?",
+        "noneLeft": "A new summary cannot be made right now: the final summary exists and there are no meetings without a summary.",
+        "youApproved": "You have given your approval.",
+        "submitConfirm": "Press again to send",
+        "submitConsequence": "After sending, the text cannot be edited. Joined participants are notified and the summary waits for their approval.",
+        "approveConfirm": "Press again to approve",
+        "approveConsequence": "An approval cannot be withdrawn. Once every joined participant has approved, the summary is kept unchanged.",
+        "discardDraft": "Discard the draft",
+        "discardConfirm": "Press again to discard",
+        "discardConsequenceDraft": "A discarded draft cannot be restored.",
+        "discardConsequencePending": "Existing approvals are removed and pending notifications are closed. A discarded summary cannot be restored: a new summary starts approval from the beginning.",
+        "toWrite": "Write the summary",
+        "changeTarget": "Change the choice"
+      },
+      "end": {
+        "toPreview": "Open the closing preview",
+        "closeHint": "The preview shows what is deleted and what is kept. You confirm the closing there.",
+        "factMeetings": "Meetings held: {held}, meetings recorded: {planned}",
+        "factParticipants": "Joined participants at closing: {count}"
+      },
+      "busy": {
+        "closing": "Closing…",
+        "sharing": "Sharing…",
+        "leaving": "Leaving…"
       }
     }
   },

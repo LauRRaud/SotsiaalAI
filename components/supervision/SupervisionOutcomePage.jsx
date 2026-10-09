@@ -59,7 +59,7 @@ export default function SupervisionOutcomePage({ outcomeId }) {
             {back}
           </div>
         ) : parts.length ? (
-          <StepFlight
+          <StepFlight flat
             key={parts.map((part) => part.key).join("|")}
             label={t("supervision.outcome.title")}
             steps={parts}

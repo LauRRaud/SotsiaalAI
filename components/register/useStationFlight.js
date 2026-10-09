@@ -131,6 +131,10 @@ export default function useStationFlight({
   fadeLength = FADE_OUT_LEN,
   smoothFade = false,
   durationScale = 1,
+  /* `flat`: leht ise ei taha sügavuslendu (supervisioon: rahulik privaatne
+     töö, leping SUP-P10). Sama jaamamudel, jaamad vahetuvad ristsulandusega
+     nagu vähendatud liikumise korral. */
+  flat = false,
 }) {
   const dollyRef = useRef(null);
   const planesRef = useRef(new Map());
@@ -309,7 +313,7 @@ export default function useStationFlight({
     const reduced =
       typeof window !== "undefined" &&
       window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
-    const works = !reduced && perspectiveWorks(dollyRef.current);
+    const works = !flat && !reduced && perspectiveWorks(dollyRef.current);
     const nextMode = works ? "3d" : "flat";
     modeRef.current = nextMode;
     setMode(nextMode);
