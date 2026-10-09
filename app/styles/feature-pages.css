@@ -384,41 +384,6 @@ html[data-reduce-transparency="1"] .feature-page__surface {
   font-size: var(--fs-small, 0.9rem);
 }
 
-/* Dokumendi koostamine. (Faili ja koostatud teksti detaililehed on oma
-   moodulis: components/documents/detail ja components/documents/workspace.) */
-.feature-page--agent {
-  --feature-content-max: 76rem;
-}
-
-.agent-mode-page,
-.agent-mode-workspace,
-.agent-mode-workspace > div {
-  display: grid;
-  gap: var(--feature-gap);
-}
-
-.agent-mode-workspace > div {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: start;
-}
-
-.agent-mode-workspace > div > section,
-.agent-mode-workspace > div > .ui-panel {
-  min-width: 0;
-}
-
-.agent-mode-workspace > div > section:has(.chat-window),
-.agent-mode-workspace > div > section:has(textarea[rows="14"]) {
-  grid-column: 1 / -1;
-}
-
-.agent-mode-page .ui-panel :where(article) {
-  min-width: 0;
-  padding: 0.8rem;
-  border-radius: 0.8rem;
-  background: color-mix(in srgb, var(--text-warm) 5%, transparent);
-}
-
 /* Pöördumised ja teenuseprofiil */
 .feature-page--workspace {
   --feature-content-max: 70rem;
@@ -1042,14 +1007,6 @@ html[data-reduce-transparency="1"] .feature-page__surface {
 }
 
 @container feature-page (max-width: 42rem) {
-  .agent-mode-workspace > div {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .agent-mode-workspace > div > section:has(.chat-window),
-  .agent-mode-workspace > div > section:has(textarea[rows="14"]) {
-    grid-column: 1;
-  }
 }
 
 @container feature-page (max-width: 28rem) {

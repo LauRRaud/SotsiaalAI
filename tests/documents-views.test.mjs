@@ -309,7 +309,8 @@ test('leht on sammulaval osadena ja ei kasuta enam vana ühist kihti', () => {
   /* Vanad üldreeglid on eemaldatud; teiste lehtede reegel samas plokis jäi alles. */
   const featureCss = read('../app/styles/feature-pages.css');
   assert.ok(!/\.documents-(entry|upload|list|item|provenance|notice|error|page)/.test(featureCss) && !featureCss.includes('feature-page--documents'));
-  assert.ok(featureCss.includes('.feature-page--agent {'), 'koostamise lehe reegel jäi alles');
+  /* Koostamisruum on nüüd oma moodulis (components/agent/drafting): ka selle üldreeglid on läinud. */
+  assert.ok(!featureCss.includes('.feature-page--agent') && !featureCss.includes('.agent-mode'), 'koostamise lehe üldreeglid on eemaldatud');
   assert.ok(!read('../app/styles/workspace.css').includes('.documents-dropzone'));
   /* Kujundus on mooduli klassidega: paljaste siltide peale reegleid ei kirjutata. */
   const css = read(STYLES).replace(/\/\*[\s\S]*?\*\//g, '');

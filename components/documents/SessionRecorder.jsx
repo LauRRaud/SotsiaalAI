@@ -319,7 +319,7 @@ export default function SessionRecorder({
   const startLabel = phase === "starting" ? t("documents.recorder.starting") : t("documents.recorder.start")
 
   return (
-    <div className={classNames.root} data-recorder-phase={phase}>
+    <div className={classNames.root} data-recorder-phase={phase} data-recorder-busy={busy ? "1" : "0"}>
       <label className={classNames.consent}>
         <input
           type="checkbox"

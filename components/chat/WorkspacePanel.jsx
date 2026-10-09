@@ -183,7 +183,7 @@ function dispatchWorkspaceEvent(eventName, detail = {}) {
    mõni teine töölaua leht ümber tehakse, lisa see siia. Abisoovide ja
    abipakkumiste loend ei ole töölaua enda leht, vaid tuleb vestluselt
    (`embeddedPanelNode`): selle võti on paneeli kirjelduses (`embeddedPanelMeta.infoId`). */
-const EMBEDDED_TITLE_IN_DOCK = new Set(["documents", "pre_inquiries", "service_profile", "invite", "materials", "help_requests", "help_offers"]);
+const EMBEDDED_TITLE_IN_DOCK = new Set(["documents", "document_drafting", "pre_inquiries", "service_profile", "invite", "materials", "help_requests", "help_offers"]);
 
 export default function WorkspacePanel({
   t,
