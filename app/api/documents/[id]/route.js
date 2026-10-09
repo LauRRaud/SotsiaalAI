@@ -1,5 +1,5 @@
 import { logDocumentsAudit } from "@/lib/documents/audit"
-import { deleteDocumentRecordAndFile } from "@/lib/documents/deleteDocumentRecord"
+import { deleteDocumentFileAndRecord } from "@/lib/documents/deleteDocumentRecord"
 import { purgeMeetingSummarySnapshotsForDocument } from "@/lib/documents/meetingSummaryJobs"
 import { prisma } from "@/lib/prisma"
 import { isFrameworkAcceptanceSchemaError } from "@/lib/frameworkAcceptanceCompat"
@@ -431,6 +431,32 @@ export async function DELETE(request, { params }) {
       auditResourceType: "UserDocument"
     })
 
+    /* Audit F-ERR-03: fail kustutatakse ENNE rida. Kui faili kustutus (või selle
+       jälgimise töö loomine) ebaõnnestub, jääb rida alles ja vastus on aus viga;
+       varem kustutati rida ikkagi ja fail jäi kettale ilma jäljeta. */
+    const deletedDocument = await deleteDocumentFileAndRecord({
+      deleteFile: () => deleteTrackedStorageFile({
+        actorUserId: auth.userId,
+        targetUserId: auth.userId,
+        resourceType: "UserDocument",
+        resourceId: existing.id,
+        storagePath: existing.storagePath,
+        deleteFile: deleteStoredDocument
+      }),
+      deleteRecord: () => prisma.userDocument.delete({
+        where: { id },
+        select: {
+          id: true,
+          title: true,
+          originalName: true,
+          kind: true,
+          storagePath: true
+        }
+      })
+    })
+
+    /* Auditiread kirjutatakse pärast kustutust: need ütlevad „kustutatud" ja peavad
+       seda ütlema ainult siis, kui see on tõsi. */
     await logDataAudit({
       actorUserId: auth.userId,
       targetUserId: auth.userId,
@@ -454,37 +480,6 @@ export async function DELETE(request, { params }) {
       kind: existing.kind
     })
 
-    const deletedDocument = await deleteDocumentRecordAndFile({
-      deleteRecord: () => prisma.userDocument.delete({
-        where: { id },
-        select: {
-          id: true,
-          title: true,
-          originalName: true,
-          kind: true,
-          storagePath: true
-        }
-      }),
-      deleteFile: async (document) => {
-        const result = await deleteTrackedStorageFile({
-          actorUserId: auth.userId,
-          targetUserId: auth.userId,
-          resourceType: "UserDocument",
-          resourceId: document.id,
-          storagePath: document.storagePath,
-          deleteFile: deleteStoredDocument
-        })
-        if (!result.ok) throw result.error
-      },
-      onFileDeleteError: (cleanupError, document) => {
-        console.error("[documents] delete cleanup failed", {
-          documentId: document?.id,
-          storagePath: document?.storagePath,
-          error: safeError(cleanupError)
-        })
-      }
-    })
-
     return json({
       ok: true,
       id: deletedDocument.id
@@ -495,6 +490,14 @@ export async function DELETE(request, { params }) {
     }
     if (error?.status === 403) {
       return errorJson("api.common.forbidden", 403, locale)
+    }
+    if (error?.status === 503) {
+      /* Faili ei saanud kustutada: rida on alles ja kustutamist saab uuesti proovida. */
+      console.error("[documents] delete blocked: file cleanup failed", {
+        documentId: id,
+        error: safeError(error?.cause || error)
+      })
+      return errorJson("documents.errors.delete_failed", 503, locale)
     }
     console.error("[documents] delete failed", safeError(error))
     return errorJson("documents.errors.delete_failed", 500, locale)
