@@ -12,6 +12,11 @@
  * ja uue kohtumise vorm seisis lõpus (selle nupp lõi kohtumise ka tühja ajaga).
  * Nüüd on osas üks asi korraga: loend, avatud kohtumine, töömärge või uue
  * kohtumise aeg. Vaade on failis ./process/WorkViews.jsx.
+ *
+ * AEG JA TÜHISTAMINE. Esimeses versioonis ei saanud plaanitud kohtumise aega
+ * muuta ega kohtumist tühistada, kuigi server lubab mõlemat (PATCH `plannedAt`,
+ * `status: CANCELLED`): ekslikult plaanitud kohtumine jäi loendisse ja
+ * sulgemise faktidesse. Nüüd on avatud kohtumisel vaade „Muuda või tühista".
  */
 
 import { useCallback, useMemo, useState } from "react";
@@ -28,6 +33,7 @@ export default function MeetingsPanel({ process, onReload, onConflict, glow }) {
   const [openId, setOpenId] = useState("");
   const [plannedAt, setPlannedAt] = useState("");
   const [noteDraft, setNoteDraft] = useState("");
+  const [timeDraft, setTimeDraft] = useState("");
   const { busy, message, setMessage, run } = usePartRequest({ t, onReload, onConflict });
 
   const canPlan = Boolean(process.capabilities?.canPlanMeeting);
@@ -68,13 +74,37 @@ export default function MeetingsPanel({ process, onReload, onConflict, glow }) {
     if (ok) setMode("meeting");
   }, [noteDraft, opened, run]);
 
+  const saveTime = useCallback(async () => {
+    if (!opened) return;
+    const time = plannedAtValue(timeDraft);
+    if (!time.ok) {
+      setMessage(t("supervision.process.meetings.timeInvalid"));
+      return;
+    }
+    const ok = await run(`time:${opened.id}`, `/api/supervision/meetings/${encodeURIComponent(opened.id)}`, {
+      method: "PATCH",
+      body: { plannedAt: time.value, expectedVersion: opened.version }
+    });
+    if (ok) setMode("meeting");
+  }, [opened, run, setMessage, t, timeDraft]);
+
+  /* Tühistatud kohtumine jääb loendisse oma märkega; siia jõuab alles teine vajutus. */
+  const cancelMeeting = useCallback(async () => {
+    if (!opened) return;
+    const ok = await run(`cancel:${opened.id}`, `/api/supervision/meetings/${encodeURIComponent(opened.id)}`, {
+      method: "PATCH",
+      body: { status: "CANCELLED", expectedVersion: opened.version }
+    });
+    if (ok) setMode("meeting");
+  }, [opened, run]);
+
   const count = Number(process.plannedMeetingCount);
 
   return (
     <MeetingsView
       t={t}
       glow={glow}
-      mode={meetingsMode({ mode, canPlan, hasMeeting: Boolean(opened) })}
+      mode={meetingsMode({ mode, canPlan, hasMeeting: Boolean(opened), canChange: Boolean(opened?.canChange) })}
       rows={rows}
       meeting={opened}
       canPlan={canPlan}
@@ -90,6 +120,7 @@ export default function MeetingsPanel({ process, onReload, onConflict, glow }) {
         setMessage("");
         /* Töömärkme vorm algab alati salvestatud märkmest, mitte eelmise korra pooleli tekstist. */
         if (next === "note" && opened) setNoteDraft(opened.note);
+        if (next === "time" && opened) setTimeDraft(opened.plannedAtInput);
         setMode(next);
       }}
       onOpen={(meetingId) => {
@@ -98,6 +129,10 @@ export default function MeetingsPanel({ process, onReload, onConflict, glow }) {
         setMode("meeting");
       }}
       onPlan={plan}
+      timeDraft={timeDraft}
+      onTimeDraft={setTimeDraft}
+      onSaveTime={saveTime}
+      onCancelMeeting={cancelMeeting}
       onSaveNote={saveNote}
       onMarkHeld={markHeld}
     />

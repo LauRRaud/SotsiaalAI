@@ -511,16 +511,23 @@ export function meetingRows(process, { t, locale }) {
         note,
         hasNote: Boolean(note.trim()),
         version: meeting.version,
+        status: String(meeting.status || ""),
+        plannedAtInput: plannedAtInput(meeting.plannedAt),
         canEditNote: canPlan,
-        canMarkHeld: canPlan && meeting.status !== "HELD"
+        canMarkHeld: canPlan && meeting.status !== "HELD",
+        /* Kavandatud kohtumise aega saab muuta ja kohtumise tühistada (server
+           lubab mõlemat sama PATCH-teega); toimunud ja tühistatud kohtumisel
+           neid tegusid ei ole. */
+        canChange: canPlan && meeting.status === "PLANNED"
       };
     });
 }
 
 /** Mida kohtumiste osa näitab: loendit, avatud kohtumist, töömärkme vormi või uue kohtumise vormi. */
-export function meetingsMode({ mode, canPlan, hasMeeting }) {
+export function meetingsMode({ mode, canPlan, hasMeeting, canChange = false }) {
   if (mode === "plan") return canPlan ? "plan" : "list";
   if (mode === "list" || !hasMeeting) return "list";
+  if (mode === "time") return canChange ? "time" : "meeting";
   if (mode === "note") return canPlan ? "note" : "meeting";
   return "meeting";
 }
@@ -536,6 +543,16 @@ export function plannedAtValue(input) {
   if (!raw) return { ok: true, value: null };
   const date = new Date(raw);
   return Number.isNaN(date.getTime()) ? { ok: false, value: null } : { ok: true, value: date.toISOString() };
+}
+
+/** Kavandatud aeg serverist (ISO) välja (`datetime-local`, kohalik aeg); puuduv või loetamatu on tühi väli. */
+export function plannedAtInput(iso) {
+  const raw = text(iso);
+  if (!raw) return "";
+  const date = new Date(raw);
+  if (Number.isNaN(date.getTime())) return "";
+  const pad = (value) => String(value).padStart(2, "0");
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
 }
 
 /**

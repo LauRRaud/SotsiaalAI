@@ -10507,7 +10507,8 @@
       "confirmAgain": "Vajuta uuesti, et sulgeda",
       "consequence": "Teine vajutus sulgeb protsessi lõplikult ja kustutab jagatud toorsisu.",
       "toProcess": "Tagasi protsessi juurde",
-      "pendingOne": "Kinnitamist ootav kokkuvõte"
+      "pendingOne": "Kinnitamist ootav kokkuvõte",
+      "titleQuestion": "Mis pealkirja all protsess alles jääb?"
     },
     "closed": {
       "banner": "Protsess on suletud; toorsisu on kustutatud.",
@@ -10659,7 +10660,8 @@
         "inviteField": "Kutsutava kasutaja ID",
         "inviteHint": "Kutsuda saab sotsiaaltöötajat või teenuseosutajat. Sama inimest saab sellesse protsessi kutsuda ühe korra.",
         "withdrawConfirm": "Vajuta uuesti, et tagasi võtta",
-        "withdrawConsequence": "Tagasi võetud kutset ei saa taastada ja sama inimest ei saa sellesse protsessi uuesti kutsuda."
+        "withdrawConsequence": "Tagasi võetud kutset ei saa taastada ja sama inimest ei saa sellesse protsessi uuesti kutsuda.",
+        "alreadyInvited": "Sellel inimesel on selles protsessis juba kutse või osalus."
       },
       "antechamber": {
         "emptyReadOnly": "Eeskamber on tühi.",
@@ -10697,7 +10699,7 @@
         "plannedCount": "Kavandatud kohtumiste arv: {count}",
         "noTime": "Aeg määramata",
         "plannedAtLabel": "Kohtumise aeg",
-        "planHint": "Aja võib jätta tühjaks. Hiljem siin aega muuta ei saa.",
+        "planHint": "Aja võib jätta tühjaks ja hiljem muuta.",
         "timeInvalid": "Aega ei saa lugeda. Vali kuupäev ja kellaaeg uuesti.",
         "noteQuestion": "Kohtumise {n} töömärge",
         "noteLead": "Töömärget näevad protsessi liikmed. Protsessi sulgemisel töömärge kustub.",
@@ -10705,7 +10707,14 @@
         "addNote": "Lisa töömärge",
         "editNote": "Muuda töömärget",
         "heldConfirm": "Vajuta uuesti, et kinnitada",
-        "heldConsequence": "Toimunuks märgitud kohtumist ei saa tagasi muuta."
+        "heldConsequence": "Toimunuks märgitud kohtumist ei saa tagasi muuta.",
+        "timeHint": "Aja võib jätta tühjaks.",
+        "changeOrCancel": "Muuda või tühista",
+        "timeQuestion": "Mis ajal kohtumine {n} toimub?",
+        "saveTime": "Salvesta aeg",
+        "cancelMeeting": "Tühista kohtumine",
+        "cancelConfirm": "Vajuta uuesti, et tühistada",
+        "cancelConsequence": "Tühistatud kohtumine jääb loendisse märkega „Tühistatud”. Uue aja jaoks plaani uus kohtumine."
       },
       "summaries": {
         "leadSupervisor": "Mustandit näed ainult sina. Kinnitamisele saadetud kokkuvõtet näevad liitunud osalejad.",
@@ -10739,6 +10748,11 @@
         "closeHint": "Eelvaade näitab, mis kustub ja mis jääb. Sulgemise kinnitad seal.",
         "factMeetings": "Toimunud kohtumisi: {held}, kirja pandud kohtumisi: {planned}",
         "factParticipants": "Liitunud osalejaid sulgemise ajal: {count}"
+      },
+      "busy": {
+        "closing": "Sulgen…",
+        "sharing": "Jagan…",
+        "leaving": "Lahkun…"
       }
     }
   },

@@ -102,7 +102,7 @@ export default function SupervisionHomePage({ initialPart = "" }) {
   return (
     <section className={styles.shell}>
       <h1 className="sr-only">{t("supervision.home.title")}</h1>
-      <StepFlight
+      <StepFlight flat
         label={t("supervision.home.title")}
         steps={parts}
         parts

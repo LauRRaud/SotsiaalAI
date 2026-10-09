@@ -119,6 +119,7 @@ export function ShareConfirmView({ t, glow, facts, privacy, names, note, busy, o
             cancelLabel={t("supervision.common.cancel")}
             consequence={t("supervision.share.confirmConsequence")}
             disabled={busy}
+            busyLabel={t("supervision.process.busy.sharing")}
             onConfirm={onShare}
           />
         </>
@@ -167,7 +168,9 @@ export function CloseTitleView({ t, value, onChange, error, currentTitle, onEnte
   const id = useId();
   const hint = t("supervision.close.titleHint");
   return (
-    <StepPanel title={t("supervision.close.views.title.title")}>
+    /* Vaate nimi on kiirmenüüs; paneel algab küsimusega ja välja silt jääb
+       ekraanilugejale (muidu kordaks väli vaate nime). */
+    <StepPanel title={t("supervision.close.views.title.title")} question={t("supervision.close.titleQuestion")}>
       <form
         className={styles.fields}
         noValidate
@@ -176,7 +179,7 @@ export function CloseTitleView({ t, value, onChange, error, currentTitle, onEnte
           onEnter();
         }}
       >
-        <Field id={`${id}-title`} label={t("supervision.close.titleField")} hint={hint} error={error}>
+        <Field id={`${id}-title`} label={t("supervision.close.titleField")} labelHidden hint={hint} error={error}>
           <Input
             id={`${id}-title`}
             className={styles.input}
@@ -218,6 +221,7 @@ export function CloseConfirmView({ t, facts, note, busy, onClose, onBack }) {
             cancelLabel={t("supervision.common.cancel")}
             consequence={t("supervision.close.consequence")}
             disabled={busy}
+            busyLabel={t("supervision.process.busy.closing")}
             onConfirm={onClose}
           />
         </>

@@ -205,6 +205,15 @@
   justify-content: flex-end;
   gap: 0.4rem;
 }
+/* Rea tagasivõtmatu teo tagajärg: terve rea laiuselt nupu all, et see oleks
+   näha ka siis, kui loend on paneelist pikem ja vaate jalus jääb alla. */
+.rowConsequence {
+  grid-column: 1 / -1;
+  min-width: 0;
+  color: var(--text-warm);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.4;
+}
 
 /* Avatud kirje: märgid ühel real, nimi ja tekst. */
 .line {

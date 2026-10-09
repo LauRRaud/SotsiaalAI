@@ -230,6 +230,7 @@ export function AntechamberView({
                 cancelLabel={t("supervision.common.cancel")}
                 consequence={t(item.shared === "shared" ? "supervision.process.antechamber.deleteConsequenceShared" : "supervision.process.antechamber.deleteConsequence")}
                 disabled={busy}
+                busyLabel={t("supervision.common.saving")}
                 onConfirm={() => onDelete(item.id)}
               />
             ) : null}
@@ -325,6 +326,7 @@ export function TopicsView({ t, rows, topic, canShare, note, busy, onOpen, onBac
                 cancelLabel={t("supervision.common.cancel")}
                 consequence={t("supervision.process.topics.withdrawConsequence")}
                 disabled={busy}
+                busyLabel={t("supervision.common.saving")}
                 onConfirm={() => onWithdraw(topic.id)}
               />
             ) : null}
@@ -374,7 +376,7 @@ export function TopicsView({ t, rows, topic, canShare, note, busy, onOpen, onBac
 }
 
 /**
- * Kohtumised (`mode`: `list`, `meeting`, `note`, `plan`).
+ * Kohtumised (`mode`: `list`, `meeting`, `note`, `plan`, `time`).
  *
  * Kohtumine on faktikirje; kirjutab ainult superviisor, loevad liikmed.
  * „Toimunud" on lõplik (server keeldub seda tagasi pööramast), seepärast küsib
@@ -399,10 +401,16 @@ export function MeetingsView({
   onMode,
   onOpen,
   onPlan,
+  timeDraft,
+  onTimeDraft,
+  onSaveTime,
+  onCancelMeeting,
   onSaveNote,
   onMarkHeld
 }) {
-  const swapRef = useSwapFocus(mode === "meeting" ? `meeting:${meeting?.id}` : mode);
+  /* Võtmes on ka kohtumise seis: pärast „märgi toimunuks" kaob vajutatud nupp
+     ja fookus peab minema osa pealkirjale, mitte kaduma. */
+  const swapRef = useSwapFocus(mode === "meeting" ? `meeting:${meeting?.id}:${meeting?.status}` : mode);
   const press = useTwoPress(`${mode}:${meeting?.id || ""}`);
   const id = useId();
   const title = t("supervision.process.views.kohtumised.title");
@@ -442,6 +450,60 @@ export function MeetingsView({
               value={plannedAt}
               describedBy={describedBy(`${id}-time`, { hint })}
               onChange={(event) => onPlannedAt(event.target.value)}
+            />
+          </Field>
+        </form>
+      </StepPanel>
+    );
+  }
+
+  if (mode === "time" && meeting) {
+    const hint = t("supervision.process.meetings.timeHint");
+    return (
+      <StepPanel
+        title={title}
+        question={t("supervision.process.meetings.timeQuestion", { n: meeting.seq })}
+        note={press.note || note}
+        actions={
+          <>
+            <Button type="button" size="sm" variant="secondary" onClick={() => onMode("meeting")}>
+              {t("supervision.process.back")}
+            </Button>
+            <TwoPress
+              press={press}
+              name="cancel"
+              label={t("supervision.process.meetings.cancelMeeting")}
+              confirmLabel={t("supervision.process.meetings.cancelConfirm")}
+              cancelLabel={t("supervision.common.cancel")}
+              consequence={t("supervision.process.meetings.cancelConsequence")}
+              busyLabel={t("supervision.common.saving")}
+              disabled={busy}
+              onConfirm={onCancelMeeting}
+            />
+            <Button type="submit" form={`${id}-newtime`} size="sm" variant="primary" glow={glow} disabled={busy}>
+              {t("supervision.process.meetings.saveTime")}
+            </Button>
+          </>
+        }
+      >
+        <form
+          id={`${id}-newtime`}
+          className={styles.fields}
+          noValidate
+          ref={swapRef}
+          onSubmit={(event) => {
+            event.preventDefault();
+            onSaveTime();
+          }}
+        >
+          <Field id={`${id}-retime`} label={t("supervision.process.meetings.plannedAtLabel")} labelHidden hint={hint} size="sm">
+            <Input
+              id={`${id}-retime`}
+              className={styles.input}
+              type="datetime-local"
+              value={timeDraft}
+              describedBy={describedBy(`${id}-retime`, { hint })}
+              onChange={(event) => onTimeDraft(event.target.value)}
             />
           </Field>
         </form>
@@ -492,6 +554,11 @@ export function MeetingsView({
                 {t(meeting.hasNote ? "supervision.process.meetings.editNote" : "supervision.process.meetings.addNote")}
               </Button>
             ) : null}
+            {meeting.canChange ? (
+              <Button type="button" size="sm" variant="secondary" onClick={() => onMode("time")}>
+                {t("supervision.process.meetings.changeOrCancel")}
+              </Button>
+            ) : null}
             {meeting.canMarkHeld ? (
               <TwoPress
                 press={press}
@@ -501,6 +568,7 @@ export function MeetingsView({
                 cancelLabel={t("supervision.common.cancel")}
                 consequence={t("supervision.process.meetings.heldConsequence")}
                 disabled={busy}
+                busyLabel={t("supervision.common.saving")}
                 onConfirm={() => onMarkHeld(meeting.id)}
               />
             ) : null}
@@ -611,7 +679,7 @@ export function SummariesView({
   onApprove,
   onDiscard
 }) {
-  const swapRef = useSwapFocus(mode === "summary" ? `summary:${summary?.id}` : mode);
+  const swapRef = useSwapFocus(mode === "summary" ? `summary:${summary?.id}:${summary?.statusText || ""}` : mode);
   const press = useTwoPress(`${mode}:${summary?.id || ""}:${summary?.statusText || ""}`);
   const title = t("supervision.process.views.kokkuvotted.title");
   const cancel = t("supervision.common.cancel");
@@ -752,6 +820,7 @@ export function SummariesView({
                 cancelLabel={cancel}
                 consequence={t(draftKind ? "supervision.process.summaries.discardConsequenceDraft" : "supervision.process.summaries.discardConsequencePending")}
                 disabled={busy}
+                busyLabel={t("supervision.common.saving")}
                 onConfirm={() => onDiscard(summary.id)}
               />
             ) : null}
@@ -766,6 +835,7 @@ export function SummariesView({
                 cancelLabel={cancel}
                 consequence={t("supervision.process.summaries.submitConsequence")}
                 disabled={busy}
+                busyLabel={t("supervision.common.saving")}
                 onConfirm={() => onSubmit(summary.id)}
               />
             ) : null}
@@ -780,6 +850,7 @@ export function SummariesView({
                 cancelLabel={cancel}
                 consequence={t("supervision.process.summaries.approveConsequence")}
                 disabled={busy}
+                busyLabel={t("supervision.common.saving")}
                 onConfirm={() => onApprove(summary.id)}
               />
             ) : null}

@@ -23,6 +23,10 @@ vaja.
   laia vaate juurde ning avatud osa nimi. Kõik valikud on kohe näha, midagi ei
   ole vajutuse taga peidus. Lehe enda sõnad annab `texts`, laia vaate
   sissejuhatuse `wideLead`.
+- **Lame lava, kui leht ruumilist liikumist ei taha.** `StepFlight flat` jätab
+  sügavuslennu ära ja vahetab vaated kohapeal ristsulandusega; kõik muu on sama.
+  Supervisiooni lehed kasutavad seda (leping SUP-P10; omanik 09.10: „siin ei pea
+  olema 3D, kui on mõni teine hea lahendus”).
 - **Paneel algab küsimusega.** Sammu pealkirja paneelil ei korrata: sammu nimi
   on kiirmenüüs. Paneelis ei ole ka „Edasi” nuppu ega kerimise vihjet. Edasi
   liigutakse kiirmenüü noolest või kerides, ja vaade, kus on ainult valikud,

@@ -148,6 +148,13 @@ export default function SupervisionProcessPage({ processId }) {
     return () => controller.abort();
   }, [load]);
 
+  /* Õnnestunud tegu: vana teade (konflikt, mis ammu lahenes) ei jää lava
+     kohale seisma. Konflikt ise laeb `load`-iga ja jätab oma teate ette. */
+  const reload = useCallback(async () => {
+    setNotice("");
+    await load();
+  }, [load]);
+
   /** 409: ütle lava kohal, mis juhtus, ja too värske seis (Q2.6 konfliktiseis). */
   const handleConflict = useCallback(
     async (payload) => {
@@ -279,22 +286,22 @@ export default function SupervisionProcessPage({ processId }) {
       case PART.PROCESS:
         return <ProcessView t={t} facts={processFacts(process, { t })} />;
       case PART.CONTRACT:
-        return <ContractPanel process={process} onReload={load} onConflict={handleConflict} glow={glow} />;
+        return <ContractPanel process={process} onReload={reload} onConflict={handleConflict} glow={glow} />;
       case PART.PARTICIPANTS:
-        return <ParticipantsPanel process={process} onReload={load} onConflict={handleConflict} glow={glow} />;
+        return <ParticipantsPanel process={process} onReload={reload} onConflict={handleConflict} glow={glow} />;
       /* Eeskamber hoiab OMA kirjeloendit ja lahendab CAS-konflikti ise:
          protsessi vastust see ei puuduta, seega onConflict siia ei kuulu. */
       case PART.ANTECHAMBER:
         return <EeskamberPanel process={process} items={privateItems} glow={glow} />;
       case PART.TOPICS:
-        return <TopicsPanel process={process} onReload={load} onConflict={handleConflict} onAntechamber={() => setPart(PART.ANTECHAMBER)} />;
+        return <TopicsPanel process={process} onReload={reload} onConflict={handleConflict} onAntechamber={() => setPart(PART.ANTECHAMBER)} />;
       case PART.MEETINGS:
-        return <MeetingsPanel process={process} onReload={load} onConflict={handleConflict} glow={glow} />;
+        return <MeetingsPanel process={process} onReload={reload} onConflict={handleConflict} glow={glow} />;
       case PART.SUMMARIES:
         return (
           <SummariesPanel
             process={process}
-            onReload={load}
+            onReload={reload}
             onConflict={handleConflict}
             selectedSummaryId={summaryId}
             active={Boolean(flight?.isActive)}
@@ -337,7 +344,7 @@ export default function SupervisionProcessPage({ processId }) {
         ) : null}
       </div>
 
-      <StepFlight
+      <StepFlight flat
         /* Osade loend muutub, kui protsess suletakse või osaleja lahkub: siis
            ehitatakse lava uuesti ja avatakse samas osas, kui see on alles. */
         key={partKeys}

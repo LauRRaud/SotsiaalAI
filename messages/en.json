@@ -10507,7 +10507,8 @@
       "confirmAgain": "Press again to close",
       "consequence": "The second press closes the process permanently and deletes the shared raw content.",
       "toProcess": "Back to the process",
-      "pendingOne": "Summary awaiting approval"
+      "pendingOne": "Summary awaiting approval",
+      "titleQuestion": "Under what title does the process remain?"
     },
     "closed": {
       "banner": "The process is closed; raw content has been deleted.",
@@ -10659,7 +10660,8 @@
         "inviteField": "User ID of the person to invite",
         "inviteHint": "You can invite a social worker or a service provider. The same person can be invited to this process only once.",
         "withdrawConfirm": "Press again to withdraw",
-        "withdrawConsequence": "A withdrawn invitation cannot be restored, and the same person cannot be invited to this process again."
+        "withdrawConsequence": "A withdrawn invitation cannot be restored, and the same person cannot be invited to this process again.",
+        "alreadyInvited": "This person already has an invitation or a part in this process."
       },
       "antechamber": {
         "emptyReadOnly": "The antechamber is empty.",
@@ -10697,7 +10699,7 @@
         "plannedCount": "Planned number of meetings: {count}",
         "noTime": "No time set",
         "plannedAtLabel": "Meeting time",
-        "planHint": "You may leave the time empty. The time cannot be changed here later.",
+        "planHint": "You can leave the time empty and change it later.",
         "timeInvalid": "The time cannot be read. Choose the date and time again.",
         "noteQuestion": "Working note for meeting {n}",
         "noteLead": "Members of the process see the working note. The note is deleted when the process is closed.",
@@ -10705,7 +10707,14 @@
         "addNote": "Add a working note",
         "editNote": "Edit the working note",
         "heldConfirm": "Press again to confirm",
-        "heldConsequence": "A meeting marked as held cannot be changed back."
+        "heldConsequence": "A meeting marked as held cannot be changed back.",
+        "timeHint": "You can leave the time empty.",
+        "changeOrCancel": "Change or cancel",
+        "timeQuestion": "When does meeting {n} take place?",
+        "saveTime": "Save the time",
+        "cancelMeeting": "Cancel the meeting",
+        "cancelConfirm": "Press again to cancel it",
+        "cancelConsequence": "A cancelled meeting stays in the list marked “Cancelled”. For a new time, plan a new meeting."
       },
       "summaries": {
         "leadSupervisor": "Only you see a draft. Joined participants see a summary sent for approval.",
@@ -10739,6 +10748,11 @@
         "closeHint": "The preview shows what is deleted and what is kept. You confirm the closing there.",
         "factMeetings": "Meetings held: {held}, meetings recorded: {planned}",
         "factParticipants": "Joined participants at closing: {count}"
+      },
+      "busy": {
+        "closing": "Closing…",
+        "sharing": "Sharing…",
+        "leaving": "Leaving…"
       }
     }
   },

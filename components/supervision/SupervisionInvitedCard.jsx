@@ -162,7 +162,7 @@ export default function SupervisionInvitedCard({ process, onDone }) {
   return (
     <section className={styles.shell}>
       <h1 className="sr-only">{t("supervision.invited.title")}</h1>
-      <StepFlight
+      <StepFlight flat
         label={t("supervision.invited.title")}
         steps={steps}
         activeKey={view}

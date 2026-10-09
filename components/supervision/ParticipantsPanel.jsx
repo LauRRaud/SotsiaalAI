@@ -25,20 +25,38 @@ export default function ParticipantsPanel({ process, onReload, onConflict, glow 
   const { t } = useI18n();
   const [mode, setMode] = useState("list");
   const [inviteUserId, setInviteUserId] = useState("");
+  /* Kutse 409 ei tähenda, et keegi vahepeal midagi muutis: sellel inimesel on
+     selles protsessis juba kutse või osalus (ka tagasi võetud või tagasi lükatud
+     kutse loeb). See on lause vormi juures, mitte lehe konfliktiteade. Suletud
+     protsessi 409 läheb endiselt lehele. */
+  const [inviteTaken, setInviteTaken] = useState(false);
+  const handleInviteConflict = useCallback(
+    async (payload) => {
+      if (payload?.messageKey === "supervision.errors.conflict") {
+        setInviteTaken(true);
+        return;
+      }
+      await onConflict?.(payload);
+    },
+    [onConflict]
+  );
   const { busy, message, setMessage, run } = usePartRequest({ t, onReload, onConflict });
+  const inviting = usePartRequest({ t, onReload, onConflict: handleInviteConflict });
+  const runInvite = inviting.run;
 
   const canInvite = Boolean(process.capabilities?.canInvite);
 
   const invite = useCallback(async () => {
     const userId = inviteUserId.trim();
     if (!userId) return;
-    const ok = await run("invite", `/api/supervision/processes/${encodeURIComponent(process.id)}/invites`, { body: { userId } });
+    setInviteTaken(false);
+    const ok = await runInvite("invite", `/api/supervision/processes/${encodeURIComponent(process.id)}/invites`, { body: { userId } });
     if (!ok) return;
     setInviteUserId("");
     /* Kutse on saadetud: vorm annab koha loendile tagasi. Keeldumise korral
        jääb vorm ette ja sisestatud tunnus alles. */
     setMode("list");
-  }, [inviteUserId, process.id, run]);
+  }, [inviteUserId, process.id, runInvite]);
 
   const withdrawInvite = useCallback(
     (participationId) => run(`withdraw:${participationId}`, `/api/supervision/participations/${encodeURIComponent(participationId)}/withdraw-invite`),
@@ -55,12 +73,17 @@ export default function ParticipantsPanel({ process, onReload, onConflict, glow 
       rows={rows}
       canInvite={canInvite}
       lead={participantsLead(process, t)}
-      note={message}
+      note={inviteTaken ? t("supervision.process.participants.alreadyInvited") : inviting.message || message}
       userId={inviteUserId}
-      onUserId={setInviteUserId}
-      busy={Boolean(busy)}
+      onUserId={(value) => {
+        setInviteTaken(false);
+        setInviteUserId(value);
+      }}
+      busy={Boolean(busy || inviting.busy)}
       onMode={(next) => {
         setMessage("");
+        inviting.setMessage("");
+        setInviteTaken(false);
         setMode(next);
       }}
       onInvite={invite}

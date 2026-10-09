@@ -61,7 +61,9 @@ export function ProcessView({ t, facts }) {
  * sest senist versiooni tagasi tuua ei saa.
  */
 export function ContractView({ t, glow, mode, view, versions, note, draft, onDraft, busy, onMode, onAccept, onActivate, onCreate }) {
-  const swapRef = useSwapFocus(mode);
+  /* Võtmes on ka see, mis pärast kinnitatud tegu muutub (kinnitamise nupp
+     kaob): fookus läheb siis osa pealkirjale, mitte ei kao. */
+  const swapRef = useSwapFocus(mode === "read" ? `read:${view?.needsAcceptance ? 1 : 0}` : mode);
   const press = useTwoPress(mode);
   const title = t("supervision.process.views.kontrakt.title");
 
@@ -95,7 +97,9 @@ export function ContractView({ t, glow, mode, view, versions, note, draft, onDra
       <StepPanel
         title={title}
         lead={t("supervision.process.contract.versionsLead")}
-        note={press.note || note}
+        /* Rea teo tagajärg seisab rea enda juures (pika loendi korral on jalus
+           paneeli all nähtamatu); jalusesse jääb ainult osa enda teade. */
+        note={note}
         actions={
           <>
             <Button type="button" size="sm" variant="secondary" onClick={() => onMode("read")}>
@@ -125,8 +129,14 @@ export function ContractView({ t, glow, mode, view, versions, note, draft, onDra
                     cancelLabel={t("supervision.common.cancel")}
                     consequence={t("supervision.process.contract.activateConsequence")}
                     disabled={busy}
+                    busyLabel={t("supervision.common.saving")}
                     onConfirm={() => onActivate(row.id)}
                   />
+                </span>
+              ) : null}
+              {row.canActivate && press.key === `activate:${row.id}` ? (
+                <span className={styles.rowConsequence} aria-live="polite">
+                  {press.note}
                 </span>
               ) : null}
             </li>
@@ -186,7 +196,7 @@ export function ContractView({ t, glow, mode, view, versions, note, draft, onDra
  * küsib teist vajutust: sama inimest ei saa samasse protsessi uuesti kutsuda.
  */
 export function ParticipantsView({ t, glow, mode, rows, canInvite, lead, note, userId, onUserId, busy, onMode, onInvite, onWithdraw }) {
-  const swapRef = useSwapFocus(mode);
+  const swapRef = useSwapFocus(mode === "list" ? `list:${rows.filter((row) => row.canWithdraw).length}` : mode);
   const press = useTwoPress(mode);
   const id = useId();
   const title = t("supervision.process.views.osalejad.title");
@@ -239,7 +249,7 @@ export function ParticipantsView({ t, glow, mode, rows, canInvite, lead, note, u
     <StepPanel
       title={title}
       lead={lead}
-      note={press.note || note}
+      note={note}
       actions={
         canInvite ? (
           <Button type="button" size="sm" variant="primary" glow={glow} onClick={() => onMode("invite")}>
@@ -267,8 +277,14 @@ export function ParticipantsView({ t, glow, mode, rows, canInvite, lead, note, u
                       cancelLabel={t("supervision.common.cancel")}
                       consequence={t("supervision.process.participants.withdrawConsequence")}
                       disabled={busy}
+                      busyLabel={t("supervision.common.saving")}
                       onConfirm={() => onWithdraw(row.id)}
                     />
+                  </span>
+                ) : null}
+                {row.canWithdraw && press.key === `withdraw:${row.id}` ? (
+                  <span className={styles.rowConsequence} aria-live="polite">
+                    {press.note}
                   </span>
                 ) : null}
               </li>
@@ -378,6 +394,7 @@ export function LeaveView({ t, note, busy, onLeave }) {
           cancelLabel={t("supervision.common.cancel")}
           consequence={t("supervision.leave.confirmHint")}
           disabled={busy}
+          busyLabel={t("supervision.process.busy.leaving")}
           onConfirm={onLeave}
         />
       }

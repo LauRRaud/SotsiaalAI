@@ -74,14 +74,21 @@ export function useTwoPress(resetKey = "") {
  * käib), kinnituse ootus nullitakse: muidu jääks see ripakile.
  *
  * `press`: `useTwoPress()` vaatest. `name`: selle nupu võti vaates.
+ * `busyLabel`: nupu tekst, kuni selle teo päring käib („Sulgen…").
  * `data-danger`: fookuse viimine osa sisu vahetumisel jätab selle nupu vahele.
  */
-export function TwoPress({ press, name, label, confirmLabel, cancelLabel, consequence, onConfirm, disabled = false, variant = "secondary", glow }) {
+export function TwoPress({ press, name, label, confirmLabel, cancelLabel, consequence, onConfirm, disabled = false, busyLabel = "", variant = "secondary", glow }) {
   const armed = press.key === name;
   const { disarm } = press;
   useEffect(() => {
     if (disabled && armed) disarm();
   }, [armed, disabled, disarm]);
+  /* Kas just SEE nupp kinnitati: päringu ajal on osa kõik nupud keelatud, aga
+     „Salvestan…" kuulub ainult vajutatud nupule. */
+  const [fired, setFired] = useState(false);
+  useEffect(() => {
+    if (fired && !disabled) setFired(false);
+  }, [disabled, fired]);
 
   return (
     <>
@@ -103,10 +110,12 @@ export function TwoPress({ press, name, label, confirmLabel, cancelLabel, conseq
           }
           if (!press.settled()) return;
           press.disarm();
+          setFired(true);
           onConfirm();
         }}
       >
-        {armed ? confirmLabel : label}
+        {/* `busyLabel`: päringu ajal ei tohi nupp näida vajutamata. */}
+        {armed ? confirmLabel : fired && disabled && busyLabel ? busyLabel : label}
       </Button>
       {armed ? (
         <Button type="button" size="sm" variant="secondary" disabled={disabled} onClick={press.disarm}>
@@ -200,11 +209,12 @@ export function Facts({ facts }) {
   );
 }
 
-/** Väli sildi, vihje ja veaga; lapseks on väli ise. `size="sm"` on lühike väli (kellaaeg, tunnus). */
-export function Field({ id, label, hint, error, size, children }) {
+/** Väli sildi, vihje ja veaga; lapseks on väli ise. `size="sm"` on lühike väli (kellaaeg, tunnus).
+    `labelHidden`: vaate küsimus ütleb juba, mida väli küsib; silt jääb ekraanilugejale. */
+export function Field({ id, label, labelHidden = false, hint, error, size, children }) {
   return (
     <div className={styles.field} data-size={size}>
-      <label className={styles.fieldLabel} htmlFor={id}>
+      <label className={labelHidden ? "sr-only" : styles.fieldLabel} htmlFor={id}>
         {label}
       </label>
       {hint ? (

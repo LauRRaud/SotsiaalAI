@@ -126,6 +126,9 @@ export default function SupervisionClosePage({ processId }) {
           setMessage(t("supervision.close.pendingBlock"));
           return;
         }
+        /* Vananenud versioon: ilma värske seisuta ebaõnnestuks iga järgmine
+           vajutus samamoodi, kuni brauseri leht uuesti laetakse. */
+        if (isConflict(status)) await load();
         setMessage(supervisionMessage({ status, payload, t, fallbackKey: "supervision.errors.save_failed" }));
         return;
       }
@@ -230,7 +233,7 @@ export default function SupervisionClosePage({ processId }) {
       }
     };
     content = (
-      <StepFlight
+      <StepFlight flat
         label={t("supervision.close.title")}
         steps={steps}
         activeKey={view}

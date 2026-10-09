@@ -245,7 +245,7 @@ export default function SupervisionSharePage({ processId }) {
       }
     };
     content = (
-      <StepFlight label={t("supervision.share.title")} steps={steps}>
+      <StepFlight flat label={t("supervision.share.title")} steps={steps}>
         {renderView}
       </StepFlight>
     );
