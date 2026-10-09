@@ -272,25 +272,6 @@
   color: #9a3d1f;
 }
 
-/* Vana kihiga sektsioon (ettevalmistus, märge, STAR2 järjekord) lava osana:
-   ilma oma kaardi ja pealkirjata, ainult sisu vahedega. */
-.section {
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-/* Sektsiooni sees avatud ettevalmistus, märge või element: loendist eraldab
-   seda joon, mitte teine kaart klaaspaneeli sees. */
-.editor {
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  padding-top: 0.9rem;
-  border-top: 1px solid color-mix(in srgb, var(--text-warm) 12%, transparent);
-}
-
 @media (max-width: 640px) {
   .row {
     grid-template-columns: minmax(0, 1fr) auto;
@@ -315,4 +296,25 @@
   .buttons {
     justify-content: flex-start;
   }
+}
+
+/* Salvesti seis lava kohal: vaikne rida ja tekstinupp helisalvestuse juurde. */
+.recorderLine {
+  margin: 0 0 0.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 0.9rem;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+}
+.recorderOpen {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-warm);
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
 }

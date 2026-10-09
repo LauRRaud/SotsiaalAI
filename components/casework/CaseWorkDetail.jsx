@@ -28,23 +28,26 @@
  * (`components/stage/StepFlight.jsx`) laua kujul, nagu Juhtumitöö laud: juhtum
  * avaneb ülevaates (kõik osad plaatidena, igaühel oma seis ühe reaga) ja osa
  * avaneb omaette vaates. Osad ei ole sammud, seepärast annab leht lavale oma
- * sõnad („Kogu juhtum", „Osa 3/11"). Päis lava kohal ütleb igas osas, milline
+ * sõnad („Kogu juhtum", „Osa 3/12"). Päis lava kohal ütleb igas osas, milline
  * juhtum on lahti ja kas sinna saab kirjutada.
  *
  * Juhtumi enda osade vaated on failis ./cases/CaseDetailViews.jsx, kujundus
  * selle kõrval, osade loend ja ridade sisu failis ./caseViews.js. Siin on
- * andmed, päringud ja see, mis vaateid olekuga seob.
+ * andmed, päringud ja see, mis vaateid olekuga seob. Kohtumise ettevalmistus,
+ * märge, heli, STAR2 järjekord ja ülekandeajalugu on omaette sektsioonid oma
+ * andmetega (`MeetingPrepSection.jsx` jt): nende osa annab neile juhtumi seisu
+ * ja nad joonistavad oma väikesed vaated ise (./sections).
  */
 
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import StepFlight from "@/components/stage/StepFlight";
-import StepPanel from "@/components/stage/StepPanel";
 import Button from "@/components/ui/Button";
 import { PROVENANCES, provenanceLabelKey } from "@/lib/workspaces/provenance";
 
 import DraftSection from "./DraftSection";
+import MeetingAudioSection from "./MeetingAudioSection";
 import MeetingNoteSection from "./MeetingNoteSection";
 import MeetingPrepSection from "./MeetingPrepSection";
 import { TransferHistory } from "./TransferPanel";
@@ -129,6 +132,15 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
   const [retentionReason, setRetentionReason] = useState("");
 
   const [sectionLists, setSectionLists] = useState(NO_SECTION_LISTS);
+  /* Kohtumise heli salvesti jääb tööle ka siis, kui ees on juhtumi teine osa:
+     tema plaat ülevaates ütleb, kas salvestus käib. */
+  const [recording, setRecording] = useState(false);
+  /* Salvesti elab oma osas. Kui töötaja kirjutab samal ajal märget, ei näe ta
+     sealt, et mikrofon on sees või et osa jäi salvestamata: rida lava kohal
+     ütleb seda igas teises osas ja viib helisalvestuse juurde. */
+  const [recorderAlert, setRecorderAlert] = useState(false);
+  const [herePart, setHerePart] = useState("");
+  const [goPart, setGoPart] = useState(null);
   /* Ülekandeajalugu on oma osa, aga teod sünnivad STAR2 järjekorra osas: märk
      ütleb ajaloole, et ta peab end uuesti laadima. */
   const [transferToken, setTransferToken] = useState(0);
@@ -425,8 +437,8 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
   const noteTransfer = useCallback(() => setTransferToken((value) => value + 1), []);
 
   const parts = useMemo(
-    () => (record ? caseParts({ record, counts, lists: sectionLists, t, locale }) : []),
-    [counts, locale, record, sectionLists, t]
+    () => (record ? caseParts({ record, counts, lists: sectionLists, recording, t, locale }) : []),
+    [counts, locale, record, recording, sectionLists, t]
   );
   const linkRows = useMemo(() => itemRows(items, { t, locale }), [items, locale, t]);
   const points = useMemo(() => missingRows(missingInfo, { t }), [missingInfo, t]);
@@ -449,7 +461,10 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
   const lifecycle = retentionView({ record, retentionClock, t, locale });
   const landIndex = parts.findIndex((part) => part.key === landPartRef.current);
 
-  const renderPart = (part) => {
+  const renderPart = (part, _index, flight) => {
+    /* Sektsioonide põhinupp joonistab oma helgi ainult siis, kui osa on ees:
+       lava hoiab kõik osad alles ja iga helk on oma joonistuspind. */
+    const active = flight?.isActive !== false;
     switch (part.key) {
       case "basics":
         return (
@@ -576,9 +591,14 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
          koopiat ei tehta) ja kliendiviite kustutus on juhtumi lõpupunkt. */
       case "prep":
         return (
-          <StepPanel title={part.label} lead={t("casework.prep.section_hint", "")}>
-            <MeetingPrepSection caseId={caseId} writeDisabled={writeDisabled} onChanged={loadCase} onListLoaded={reportList.prep} />
-          </StepPanel>
+          <MeetingPrepSection
+            caseId={caseId}
+            locked={!isActive}
+            caseBusy={busy}
+            active={active}
+            onChanged={loadCase}
+            onListLoaded={reportList.prep}
+          />
         );
 
       /* JTA-V1 E4 — kohtumise märge. Ta seisab ettevalmistuse JÄREL, sest
@@ -586,15 +606,31 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
          kirjutatakse üles. */
       case "notes":
         return (
-          <StepPanel title={part.label} lead={t("casework.note.section_hint", "")}>
-            <MeetingNoteSection
-              caseId={caseId}
-              writeDisabled={writeDisabled}
-              onChanged={loadCase}
-              onLinked={refreshLinkedItems}
-              onListLoaded={reportList.notes}
-            />
-          </StepPanel>
+          <MeetingNoteSection
+            caseId={caseId}
+            locked={!isActive}
+            caseBusy={busy}
+            active={active}
+            onChanged={loadCase}
+            onListLoaded={reportList.notes}
+          />
+        );
+
+      /* Kohtumise heli seisab märkme KÕRVAL, omaette osana: salvestis on
+         dokument, mitte märkme rida, ja salvesti peab töötama edasi ka siis,
+         kui töötaja kirjutab samal ajal märget. Salvestatud osa seotakse
+         juhtumiga ja ilmub seotud materjali alla. */
+      case "audio":
+        return (
+          <MeetingAudioSection
+            caseId={caseId}
+            locked={!isActive}
+            caseBusy={busy}
+            active={active}
+            onLinked={refreshLinkedItems}
+            onRecording={setRecording}
+            onAlert={setRecorderAlert}
+          />
         );
 
       /* JTA-V1 E5 — STAR2 mustandi ahel. Seisab märkme JÄREL, sest ajaline
@@ -602,26 +638,22 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
          kantakse. */
       case "drafts":
         return (
-          <StepPanel title={part.label} lead={t("casework.draft.section_hint", "")}>
-            <DraftSection
-              caseId={caseId}
-              writeDisabled={writeDisabled}
-              onChanged={loadCase}
-              onListLoaded={reportList.drafts}
-              onTransferRecorded={noteTransfer}
-            />
-          </StepPanel>
+          <DraftSection
+            caseId={caseId}
+            locked={!isActive}
+            caseBusy={busy}
+            active={active}
+            onChanged={loadCase}
+            onListLoaded={reportList.drafts}
+            onTransferRecorded={noteTransfer}
+          />
         );
 
       /* Ajalugu on JUHTUMI oma, mitte avatud mustandi oma: ülekanne on juhtumi
          sündmus ja töötaja peab teda nägema ka siis, kui ükski element ei ole
          lahti. Seepärast on ta omaette osa, mitte STAR2 järjekorra lõpp. */
       case "transfer":
-        return (
-          <StepPanel title={part.label} lead={t("casework.transfer.history_hint", "")}>
-            <TransferHistory caseId={caseId} locale={locale} t={t} refreshToken={transferToken} onListLoaded={reportList.transfer} />
-          </StepPanel>
-        );
+        return <TransferHistory caseId={caseId} locale={locale} t={t} refreshToken={transferToken} onListLoaded={reportList.transfer} />;
 
       /* L7: LOENDUS ON NÄHTAV KOGU 12 KUU JOOKSUL, mitte alles siis, kui
          hoiatus saabub. Kuupäev tuleb serverist sama valemiga, millega
@@ -695,6 +727,15 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
         </p>
       ) : null}
 
+      {(recording || recorderAlert) && herePart !== "audio" ? (
+        <p className={styles.recorderLine} role={recorderAlert ? "alert" : undefined}>
+          <span>{t(recorderAlert ? "casework.page.recorder_alert_line" : "casework.page.recording_line", "")}</span>
+          <button type="button" className={styles.recorderOpen} onClick={() => setGoPart("audio")}>
+            {t("casework.page.open_audio", "")}
+          </button>
+        </p>
+      ) : null}
+
       <StepFlight
         /* Osade loend muutub, kui juhtum läheb kirjutuskaitse alla: siis
            ehitatakse lava uuesti. */
@@ -702,6 +743,11 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
         label={t("casework.page.title", "")}
         steps={parts}
         parts
+        activeKey={goPart}
+        onStepChange={(index, step) => {
+          setGoPart(null);
+          setHerePart(step?.key || "");
+        }}
         /* Juhtum avaneb ülevaates: kõik osad korraga, igaühel oma seis. */
         startWide={landIndex < 0}
         initialIndex={Math.max(0, landIndex)}

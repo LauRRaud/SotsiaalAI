@@ -38,6 +38,10 @@ export const CASE_FILTER_LABEL_KEYS = Object.freeze({
  * puuduv info, siis kohtumise ettevalmistus, märge ja STAR2-sse kantav (samas
  * järjekorras, nagu töö ajas kulgeb), ning lõpus see, mis juhtumit sulgeb.
  * Kliendiviite kustutamine on viimane: see on juhtumi kõige pöördumatum tegu.
+ *
+ * Kohtumise heli seisab märkme kõrval omaette osana: salvestis on dokument,
+ * mitte märkme rida, ja salvesti peab töötama edasi ka siis, kui märkmete osa
+ * vahetab oma sisu (loend, avatud märge).
  */
 export const CASE_PART_ORDER = Object.freeze([
   "basics",
@@ -46,6 +50,7 @@ export const CASE_PART_ORDER = Object.freeze([
   "missing",
   "prep",
   "notes",
+  "audio",
   "drafts",
   "transfer",
   "retention",
@@ -53,8 +58,9 @@ export const CASE_PART_ORDER = Object.freeze([
   "client"
 ]);
 
-/* Loend või terve sektsioon võib olla pikk: nende järgi lava ühist kõrgust ei võeta. */
-const FREE_PARTS = new Set(["items", "missing", "prep", "notes", "drafts", "transfer"]);
+/* Loend või avatud kirje võib olla pikk ja salvesti teated tulevad ja lähevad:
+   nende järgi lava ühist kõrgust ei võeta. */
+const FREE_PARTS = new Set(["items", "missing", "prep", "notes", "audio", "drafts", "transfer"]);
 
 const RETENTION_TONES = Object.freeze({ ACTIVE: "ok", READ_ONLY: "wait", ARCHIVED: "quiet" });
 const MISSING_TONES = Object.freeze({ OPEN: "wait", RESOLVED: "ok", NOT_APPLICABLE: "quiet" });
@@ -182,6 +188,13 @@ const PART_SUMMARIES = {
       title: (row) => timeText(row?.meetingAt, locale) || t("casework.note.no_meeting_time", "")
     });
   },
+  /* Salvesti jääb tööle ka siis, kui ees on juhtumi teine osa: plaat ütleb,
+     kas salvestus käib. */
+  audio({ recording, t }) {
+    return recording
+      ? { state: "done", summary: t("casework.page.parts.audio.summary_recording", "") }
+      : { state: "empty", summary: t("casework.page.parts.audio.summary", "") };
+  },
   /* Tüüp ja seis on kataloogi sõnad; mustandi VÄLJU plaadil ei ole, sest väljad
      kannavad kliendi teksti (sama piir mis Juhtumitöö laual). */
   drafts({ lists, t }) {
@@ -222,12 +235,12 @@ const PART_SUMMARIES = {
  * Avatud juhtumi osad lava jaoks: nimi, lühinimi kiirmenüüsse, kokkuvõte
  * ülevaate plaadile ja see, kas osas on midagi (`done`) või mitte (`empty`).
  *
- * @param {{ record: object, counts?: object, lists?: Record<string, unknown[]|null>, t: Function, locale?: string }} input
+ * @param {{ record: object, counts?: object, lists?: Record<string, unknown[]|null>, recording?: boolean, t: Function, locale?: string }} input
  */
-export function caseParts({ record, counts = null, lists = null, t, locale }) {
+export function caseParts({ record, counts = null, lists = null, recording = false, t, locale }) {
   const isActive = record?.retentionState === "ACTIVE";
   return casePartKeys({ isActive }).map((key) => {
-    const { state, summary } = PART_SUMMARIES[key]({ record, counts, lists, t, locale });
+    const { state, summary } = PART_SUMMARIES[key]({ record, counts, lists, recording, t, locale });
     return {
       key,
       label: t(`casework.page.parts.${key}.title`, ""),

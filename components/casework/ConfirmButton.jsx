@@ -16,10 +16,10 @@
  * eelmine päring käib): muidu jääks „kinnita" ripakile ja järgmine klõps
  * käivitaks teo, mille kasutaja juba unustas.
  *
- * KAKS VÄLIMUST, ÜKS LOOGIKA. Vana kihi sektsioonid (ettevalmistus, märge,
- * STAR2 järjekord) kasutavad vaikimisi `cw-*` nuppe. Sammulava vaated annavad
- * platvormi nupu (`as`, `buttonProps`) ja oma klassid: teine aste ja selle
- * nullimine jäävad samaks, muutub ainult see, mis nupp joonistatakse.
+ * VÄLIMUS TULEB KUTSUJALT, LOOGIKA ON SIIN. Sammulava vaated annavad platvormi
+ * nupu (`as`, `buttonProps`) ja oma klassid: teine aste ja selle nullimine on
+ * igal pool samad, muutub ainult see, mis nupp joonistatakse. Vana ühise kihi
+ * (`cw-*`) vaikeklasse enam ei ole: seda kihti ei kasuta ükski vaade.
  */
 
 import { useEffect, useRef, useState } from "react";
@@ -37,8 +37,8 @@ export default function ConfirmButton({
   cancelLabel,
   onConfirm,
   disabled = false,
-  className = "cw-button cw-button--danger",
-  cancelClassName = "cw-button",
+  className,
+  cancelClassName,
   as: Tag = "button",
   buttonProps = null
 }) {

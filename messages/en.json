@@ -1291,7 +1291,6 @@
       "create": "Add element",
       "empty": "There are no elements.",
       "open": "Open",
-      "close": "Close",
       "load_more": "Show more",
       "open_draft": "Open element",
       "choose_type": "Choose the element",
@@ -1301,7 +1300,6 @@
       "save_field": "Save field",
       "remove_field": "Remove field",
       "confirm_remove_field": "Confirm: remove field",
-      "cancel": "Cancel",
       "fields_empty": "There are no fields.",
       "transition": "Move to the next state",
       "transition_to": "New state",
@@ -1317,7 +1315,23 @@
       "type_VASTUTAJA_JA_TAHTAEG": "Responsible person and deadline",
       "type_KOHTUMISE_MARGE": "Meeting note",
       "type_TEENUSE_SUUNAMISE_ALUS": "Basis for the service referral",
-      "purge_due_at": "The content of this transferred draft is deleted 12 calendar months after transfer, on {date}. The draft row, transfer fact and list of fields remain until the end of the case lifecycle."
+      "purge_due_at": "The content of this transferred draft is deleted 12 calendar months after transfer, on {date}. The draft row, transfer fact and list of fields remain until the end of the case lifecycle.",
+      "create_title": "New element",
+      "back_to_list": "Back to the elements",
+      "back_to_fields": "Back to the fields",
+      "tabs_label": "Parts of the element",
+      "tabs": {
+        "fields": "Fields",
+        "state": "State",
+        "transfer": "Transfer to STAR2"
+      },
+      "fields_title": "Fields of the element",
+      "state_title": "State of the element",
+      "add_field": "Add field",
+      "field_key_hint": "Latin capital letters, digits and underscore, starting with a letter. For example GOAL.",
+      "provenance_label": "Provenance",
+      "review_kind_none": "Not specified",
+      "confirm_not_transferred": "Confirm: not transferred, the content is no longer edited"
     },
     "star2": {
       "MUSTAND": "Draft",
@@ -1332,7 +1346,6 @@
     "note": {
       "load_more": "Show more",
       "provenance_required": "Choose the provenance",
-      "cancel": "Cancel",
       "open_note": "Open note",
       "section_hint": "The eight layers are not merged: the client's own words, the facts and your interpretation are different things. Each line also carries its provenance.",
       "meeting_at": "Meeting time",
@@ -1340,9 +1353,7 @@
       "empty": "There are no notes.",
       "no_meeting_time": "Time not recorded",
       "open": "Open",
-      "close": "Close",
       "entries_empty": "This layer has no entries.",
-      "entry_text": "Entry text",
       "add_entry": "Add entry",
       "linked_prep": "Linked to a preparation",
       "private_locked_hint": "Entries in this layer cannot be moved to another layer — that is a promise, not a restriction.",
@@ -1365,18 +1376,32 @@
       "revision_kind_CORRECTION": "Correction",
       "revision_kind_RETRACTION": "Retraction",
       "revision_reason": "Reason",
-      "audio_title": "Meeting audio",
       "audio_hint": "Record a meeting in person. The recording goes to your documents and is linked to this case. It writes no note lines: transcribe it on the documents page and enter what is needed yourself.",
       "audio_linked": "A part of the recording is in your documents and linked to the case.",
       "audio_link_failed": "The recording is in your documents, but linking it to the case failed. Add the link by hand under linked items.",
-      "audio_open_documents": "Open the documents page"
+      "audio_open_documents": "Open the documents page",
+      "create_title": "New note",
+      "create_hint": "You can leave the meeting time empty.",
+      "back_to_list": "Back to the notes",
+      "back_to_layer": "Back to the layer",
+      "tabs_label": "Layers of the note",
+      "tabs": {
+        "KLIENDI_VAADE": "Client's view",
+        "FAKTID": "Facts",
+        "TOOTAJA_TAHELEPANEK": "Observation",
+        "KONTROLLIMATA": "Unverified",
+        "KOKKULEPPED": "Agreements",
+        "JARGMISED_SAMMUD": "Next steps",
+        "STAR2_KANTAV": "For STAR2",
+        "PRIVAATNE_REFLEKSIOON": "Reflection",
+        "history": "Corrections"
+      }
     },
     "prep": {
       "load_more": "Show more",
       "provenance_required": "Choose the provenance",
       "confirm_delete": "Confirm: delete preparation",
       "confirm_remove": "Confirm: remove",
-      "cancel": "Cancel",
       "open_prep": "Open preparation",
       "section_hint": "Every field and every question carries its own provenance. An AI-drafted marker cannot be removed by editing the text — confirming is a separate act.",
       "meeting_at": "Meeting time",
@@ -1384,10 +1409,8 @@
       "empty": "There are no preparations.",
       "no_meeting_time": "Time not agreed yet",
       "open": "Open",
-      "close": "Close",
-      "delete": "Delete",
+      "delete": "Delete the preparation",
       "remove": "Remove",
-      "editor_title": "Preparation content",
       "save_field": "Save",
       "confirm_provenance": "Confirm provenance",
       "questions_title": "Clarifying questions and claims to verify",
@@ -1402,7 +1425,34 @@
       "field_LIFE_DOMAINS": "Life domains",
       "field_AGENDA": "Agenda",
       "field_PLAIN_LANGUAGE_NOTES": "Plain-language explanations",
-      "content_purged": "The content of this preparation was archived on {date}. The fields and questions are deleted; no new content is written here — start a new preparation."
+      "content_purged": "The content of this preparation was archived on {date}. The fields and questions are deleted; no new content is written here — start a new preparation.",
+      "purged_chip": "Content archived",
+      "create_title": "New preparation",
+      "create_hint": "You can leave the time empty if the meeting has not been agreed yet.",
+      "back_to_list": "Back to the preparations",
+      "back_to_questions": "Back to the questions",
+      "tabs_label": "Parts of the preparation",
+      "tab_ai_pending": "An AI draft awaits confirmation",
+      "tabs": {
+        "overview": "Overview",
+        "GOAL": "Goal",
+        "REQUIRED_DOCUMENTS": "Documents",
+        "LIFE_DOMAINS": "Life domains",
+        "AGENDA": "Agenda",
+        "PLAIN_LANGUAGE_NOTES": "Plain language",
+        "questions": "Questions"
+      },
+      "overview_title": "Overview of the preparation",
+      "overview_fields": "Fields filled in: {filled}/{total}",
+      "overview_questions": "Questions and claims: {count}",
+      "overview_ai_pending": "AI drafts not confirmed: {count}",
+      "provenance_label": "Provenance",
+      "provenance_kept": "Saving the text does not change the provenance.",
+      "provenance_now": "Current provenance",
+      "confirm_as": "What is the provenance of this text?",
+      "add_kind_CLARIFYING_QUESTION": "Add a question",
+      "add_kind_CLAIM_TO_VERIFY": "Add a claim",
+      "choose_provenance": "Choose the provenance and save"
     },
     "workbench": {
       "title": "Casework desk",
@@ -1698,8 +1748,17 @@
           "short": "Client reference",
           "summary": "Erasing the reference for good",
           "account": "The client is a platform user. Their reference cannot be changed here."
+        },
+        "audio": {
+          "title": "Meeting audio",
+          "short": "Meeting audio",
+          "summary": "Recording a meeting in person",
+          "summary_recording": "Recording in progress"
         }
-      }
+      },
+      "recording_line": "Recording is running.",
+      "recorder_alert_line": "The recording part has a notice that needs your attention.",
+      "open_audio": "Open the recording"
     },
     "info": {
       "title": "My cases",
@@ -1744,7 +1803,6 @@
       "retry_audit": "Save the trace again",
       "mark_transferred": "Mark as transferred",
       "confirm_mark_transferred": "Confirm: the information is in STAR",
-      "cancel": "Cancel",
       "content_purged": "The content of this draft was deleted after the retention period. The transfer fact and the list of fields remain.",
       "history_hint": "The history carries the action, the time and the field names — the copied text is not here.",
       "history_empty": "No transfers yet.",
@@ -1752,7 +1810,11 @@
       "load_more": "Show more",
       "kind_COPIED_FOR_STAR2": "Copied for STAR2",
       "kind_MARKED_AS_TRANSFERRED": "Marked as transferred",
-      "block_warning": "PREPARATORY DRAFT. This text is not an official entry — the official entry is made in STAR."
+      "block_warning": "PREPARATORY DRAFT. This text is not an official entry — the official entry is made in STAR.",
+      "copy_hint": "Copying puts the fields of the element on the clipboard and leaves a trace in the transfer history. It does not change the state of the element.",
+      "copy_empty": "The element has no fields to copy.",
+      "block_label": "Text to copy",
+      "audit_pending_chip": "Trace not saved"
     }
   },
   "common": {

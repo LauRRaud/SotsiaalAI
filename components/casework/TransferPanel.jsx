@@ -5,8 +5,8 @@
  *
  * L16 JÄRJEKORD ELAB `transferFlow.js`-is, mitte siin, ja see on tahtlik: ainus
  * koht, kus on teada, kas lõikelauale kirjutus õnnestus, on brauser — aga
- * JSX-failis ei saaks seda otsust ühegi testiga tõendada. Siin on ainult see,
- * mis on päriselt liides: nupud, teated ja olek.
+ * JSX-failis ei saaks seda otsust ühegi testiga tõendada. Siin on päringud ja
+ * olek; nupud ja teated joonistab ./sections/DraftViews.jsx.
  *
  * KAKS TÕRGET SAAVAD ERI TEATE ja teine neist on tahtlikult ebamugav:
  *
@@ -15,16 +15,20 @@
  *   lõikelaud võttis, audit ei  → „kopeeritud, AGA jälge ei salvestatud"
  *
  * L8 järgi on audit tõend, ja vaikne tõendi kadu on halvem kui nähtav.
+ *
+ * KUJU (09.10). Ülekandeteod olid avatud elemendi lõpus oma paneelina; nüüd on
+ * need elemendi üks vaade („STAR2-sse viimine") ja ajalugu on juhtumi lava oma
+ * osa. Teod elavad konksus (`useTransferActions`), mitte vaates: vaade vahetub
+ * saki vahetusega, aga kopeerimise seis ei tohi sellega kaduda.
  */
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 
-import ConfirmButton from "./ConfirmButton";
-import styles from "./cases/cases.module.css";
 import { caseWorkRequest, newClientActionKey } from "./caseWorkClient";
+import { TransferHistoryView } from "./sections/DraftViews";
+import { transferRows } from "./sections/sectionRows";
+import { useCaseList, useSectionRun } from "./sections/useSectionData";
 import { COPY_PHASE, flushPendingAudits, queuePendingAudit, runCopyForStar2 } from "./transferFlow";
-
-const HISTORY_PAGE_SIZE = 25;
 
 async function writeClipboard(text) {
   if (typeof navigator === "undefined" || !navigator.clipboard?.writeText) return false;
@@ -36,15 +40,26 @@ async function writeClipboard(text) {
   }
 }
 
-export function TransferActions({ caseId, draft, locale, disabled, t, onChanged }) {
+/**
+ * Avatud elemendi ülekandeteod: kopeerimine, jälje korduskatse ja ülekantuks
+ * märkimine.
+ *
+ * `pendingAudits` ja `setPendingAudits` tulevad sektsioonist (`DraftSection`),
+ * mitte ei ela siin. Ootel auditid HOIAVAD OMA VÕTIT (L22) ja varem kadusid
+ * need koos avatud elemendi sulgemisega: kopeerimine oli toimunud, jälg
+ * salvestamata ja hoiatus läinud. Sektsiooni käes elab järjekord üle elemendi
+ * sulgemise ja teise elemendi avamise.
+ *
+ * @returns vaate mudel (vt `DraftTransferView`)
+ */
+export function useTransferActions({ caseId, draft, locale, disabled, pendingAudits, setPendingAudits, onChanged, t }) {
   const [phase, setPhase] = useState(null);
   const [block, setBlock] = useState(null);
   const [errorKey, setErrorKey] = useState(null);
   const [busy, setBusy] = useState(false);
-  /* Ootel auditid HOIAVAD OMA VÕTIT (L22) — „proovi uuesti" ei tohi teha uut.
-     JÄRJEKORD, mitte üks pesa (SOL-CW-05): uus kopeerimine ei tohi eelmise
-     kirjutamata jälge üle kirjutada, sest mõlemad teod toimusid päriselt. */
-  const [pendingAudits, setPendingAudits] = useState([]);
+  /* Teine vajutus samal ajal ei tee teist kopeerimist ega teist auditirida. */
+  const busyRef = useRef(false);
+  const queue = useMemo(() => (Array.isArray(pendingAudits) ? pendingAudits : []), [pendingAudits]);
 
   const postCopyEvent = useCallback(
     ({ fieldKeys, clientActionId, contentHash }) =>
@@ -56,137 +71,98 @@ export function TransferActions({ caseId, draft, locale, disabled, t, onChanged 
     [caseId, draft.id, locale]
   );
 
-  /** Korduskatse SAMA võtmetega (L22) — uus võti oleks andmebaasi jaoks teine tegu. */
-  const retryAudit = useCallback(async () => {
-    if (!pendingAudits.length) return;
+  const guarded = useCallback(async (task) => {
+    if (busyRef.current) return;
+    busyRef.current = true;
     setBusy(true);
     try {
-      const { remaining, flushed, errorKey: failureKey } = await flushPendingAudits(pendingAudits, postCopyEvent);
-      setPendingAudits(remaining);
+      await task();
+    } finally {
+      busyRef.current = false;
+      setBusy(false);
+    }
+  }, []);
+
+  /** Korduskatse SAMA võtmetega (L22) — uus võti oleks andmebaasi jaoks teine tegu. */
+  const retryAudit = useCallback(() => {
+    if (!queue.length) return undefined;
+    return guarded(async () => {
+      const { remaining, flushed, errorKey: failureKey } = await flushPendingAudits(queue, postCopyEvent);
+      setPendingAudits(() => remaining);
       setErrorKey(remaining.length ? failureKey : null);
       if (!remaining.length) setPhase(COPY_PHASE.COPIED);
       if (flushed > 0) onChanged?.();
-    } finally {
-      setBusy(false);
-    }
-  }, [onChanged, pendingAudits, postCopyEvent]);
+    });
+  }, [guarded, onChanged, postCopyEvent, queue, setPendingAudits]);
 
-  const copyForStar2 = useCallback(async () => {
-    setBusy(true);
-    setErrorKey(null);
-    setBlock(null);
-    try {
-      const result = await runCopyForStar2({
-        createActionKey: newClientActionKey,
-        loadBlock: async () => {
-          const body = await caseWorkRequest(
-            `/cases/${encodeURIComponent(caseId)}/drafts/${encodeURIComponent(draft.id)}/star2-block`,
-            { locale }
-          );
-          return body?.block || null;
-        },
-        writeClipboard,
-        recordCopy: postCopyEvent
-      });
+  const copyForStar2 = useCallback(
+    () =>
+      guarded(async () => {
+        setErrorKey(null);
+        setBlock(null);
+        const result = await runCopyForStar2({
+          createActionKey: newClientActionKey,
+          loadBlock: async () => {
+            const body = await caseWorkRequest(
+              `/cases/${encodeURIComponent(caseId)}/drafts/${encodeURIComponent(draft.id)}/star2-block`,
+              { locale }
+            );
+            return body?.block || null;
+          },
+          writeClipboard,
+          recordCopy: postCopyEvent
+        });
 
-      setPhase(result.phase);
-      setBlock(result.block);
-      setErrorKey(result.errorKey);
-      /* LISAB, ei asenda: eelmise kopeerimise kirjutamata jälg jääb alles. */
-      setPendingAudits((queue) => queuePendingAudit(queue, result.pendingAudit));
-      if (result.phase === COPY_PHASE.COPIED) onChanged?.();
-    } finally {
-      setBusy(false);
-    }
-  }, [caseId, draft.id, locale, onChanged, postCopyEvent]);
-
-  const markTransferred = useCallback(async () => {
-    setBusy(true);
-    setErrorKey(null);
-    try {
-      await caseWorkRequest(
-        `/cases/${encodeURIComponent(caseId)}/drafts/${encodeURIComponent(draft.id)}/mark-transferred`,
-        {
-          method: "POST",
-          locale,
-          /* `expectedFrom` tuleb AVATUD elemendi seisust: vahepealne muutus annab
-             ausa 409, mitte vaikse ülekirjutuse. */
-          body: { expectedFrom: draft.transferState }
-        }
-      );
-      setPhase(null);
-      onChanged?.();
-    } catch (error) {
-      setErrorKey(error?.messageKey || "casework.errors.unexpected");
-    } finally {
-      setBusy(false);
-    }
-  }, [caseId, draft.id, draft.transferState, locale, onChanged]);
-
-  const working = disabled || busy;
-  const purged = Boolean(draft.contentPurgedAt);
-
-  return (
-    <div className="cw-transfer">
-      <h4 className="cw-section-title">{t("casework.transfer.actions_title", "")}</h4>
-
-      {purged ? <p className="cw-notice">{t("casework.transfer.content_purged", "")}</p> : null}
-
-      <button className="cw-button" type="button" disabled={working || purged} onClick={copyForStar2}>
-        {t("casework.transfer.copy", "")}
-      </button>
-
-      {/* „Märgi üle kantuks" on OMA TEGU (L9) ja ta ei sünni kopeerimisest.
-          Ta on nähtav ainult `VALMIS_ULEKANDEKS` juures, sest ainult sealt viib
-          olekumasinas tee edasi — ja ta on kaheastmeline, sest `ULE_KANTUD` on
-          terminaalne ja käivitab säilituskella. */}
-      {draft.transferState === "VALMIS_ULEKANDEKS" ? (
-        <ConfirmButton
-          className="cw-button"
-          label={t("casework.transfer.mark_transferred", "")}
-          confirmLabel={t("casework.transfer.confirm_mark_transferred", "")}
-          cancelLabel={t("casework.transfer.cancel", "")}
-          disabled={working}
-          onConfirm={markTransferred}
-        />
-      ) : null}
-
-      {phase === COPY_PHASE.COPIED && !pendingAudits.length ? (
-        <p className="cw-notice">{t("casework.transfer.copy_ok", "")}</p>
-      ) : null}
-
-      {phase === COPY_PHASE.CLIPBOARD_FAILED ? (
-        <div className="cw-transfer-fallback">
-          <p className="cw-error" role="alert">
-            {t("casework.transfer.copy_failed", "")}
-          </p>
-          {/* Tekst on TEKST: sisu tuleb `value`-na, mitte HTML-ina. */}
-          <textarea className="cw-input" readOnly rows={8} value={block?.text || ""} />
-        </div>
-      ) : null}
-
-      {/* Hoiatust juhib JÄRJEKORD, mitte viimane faas (SOL-CW-05): pärast uut
-          õnnestunud kopeerimist läheb `phase` väärtusele `COPIED`, aga eelmise
-          teo jälg on endiselt salvestamata ja seda ei tohi ekraanilt kaotada. */}
-      {pendingAudits.length ? (
-        <div className="cw-transfer-fallback">
-          <p className="cw-error" role="alert">
-            {t("casework.transfer.copy_audit_failed", "")}
-            {pendingAudits.length > 1 ? ` (${pendingAudits.length})` : ""}
-          </p>
-          <button className="cw-button" type="button" disabled={working} onClick={retryAudit}>
-            {t("casework.transfer.retry_audit", "")}
-          </button>
-        </div>
-      ) : null}
-
-      {errorKey && phase !== COPY_PHASE.CLIPBOARD_FAILED && !pendingAudits.length ? (
-        <p className="cw-error" role="alert">
-          {t(errorKey, "")}
-        </p>
-      ) : null}
-    </div>
+        setPhase(result.phase);
+        setBlock(result.block);
+        setErrorKey(result.errorKey);
+        /* LISAB, ei asenda: eelmise kopeerimise kirjutamata jälg jääb alles. */
+        setPendingAudits((current) => queuePendingAudit(current, result.pendingAudit));
+        if (result.phase === COPY_PHASE.COPIED) onChanged?.();
+      }),
+    [caseId, draft.id, guarded, locale, onChanged, postCopyEvent, setPendingAudits]
   );
+
+  const markTransferred = useCallback(
+    () =>
+      guarded(async () => {
+        setErrorKey(null);
+        try {
+          await caseWorkRequest(
+            `/cases/${encodeURIComponent(caseId)}/drafts/${encodeURIComponent(draft.id)}/mark-transferred`,
+            {
+              method: "POST",
+              locale,
+              /* `expectedFrom` tuleb AVATUD elemendi seisust: vahepealne muutus annab
+                 ausa 409, mitte vaikse ülekirjutuse. */
+              body: { expectedFrom: draft.transferState }
+            }
+          );
+          setPhase(null);
+          onChanged?.();
+        } catch (error) {
+          setErrorKey(error?.messageKey || "casework.errors.unexpected");
+        }
+      }),
+    [caseId, draft.id, draft.transferState, guarded, locale, onChanged]
+  );
+
+  const clipboardFailed = phase === COPY_PHASE.CLIPBOARD_FAILED;
+  return {
+    working: disabled || busy,
+    purged: Boolean(draft.contentPurgedAt),
+    canMark: draft.transferState === "VALMIS_ULEKANDEKS",
+    copied: phase === COPY_PHASE.COPIED && !queue.length,
+    clipboardFailed,
+    blockText: block?.text || "",
+    pendingCount: queue.length,
+    /* Üldine tõrge on näha siis, kui kumbki erijuht (lõikelaud, ootel jälg)
+       oma teadet ei kanna. */
+    errorText: errorKey && !clipboardFailed && !queue.length ? t(errorKey, "") : "",
+    onCopy: copyForStar2,
+    onMark: markTransferred,
+    onRetry: retryAudit
+  };
 }
 
 /**
@@ -198,86 +174,43 @@ export function TransferActions({ caseId, draft, locale, disabled, t, onChanged 
  * kopeeriti.
  *
  * LAVA OSA (09.10): ajalugu on juhtumi lava oma osa (`CaseWorkDetail.jsx`).
- * Pealkirja ja juhise annab osa vaade; siin on loend.
+ * Siin on laadimine; vaade on failis ./sections/DraftViews.jsx.
+ * `refreshToken` muutub iga ülekandeteo järel: ajalugu on TÕEND ja vananenud
+ * ajalugu ütleks, et jälge ei tekkinud.
  */
 export function TransferHistory({ caseId, locale, t, refreshToken, onListLoaded }) {
-  /* Juhtumi ülevaade näitab selle osa esimest rida. Viide, mitte sõltuvus:
-     muidu laadiks vanema iga uus funktsioon ajaloo uuesti. */
-  const listLoadedRef = useRef(onListLoaded);
-  useEffect(() => {
-    listLoadedRef.current = onListLoaded;
-  }, [onListLoaded]);
+  const { busy, errorKey, setErrorKey, run } = useSectionRun();
 
-  const [items, setItems] = useState([]);
-  const [cursor, setCursor] = useState(null);
-  const [errorKey, setErrorKey] = useState(null);
-  const [busy, setBusy] = useState(false);
+  /* Juhtumi ülevaade näitab selle osa esimest rida. Õnnestunud täislaadimine
+     võtab maha ka eelmise katse teate. Funktsioon võib iga joonistusega uus
+     olla: loend hoiab teda viitena ega laadi selle pärast uuesti. */
+  const onLoaded = (rows) => {
+    setErrorKey(null);
+    onListLoaded?.(rows);
+  };
 
-  const load = useCallback(
-    async ({ next = null, append = false } = {}) => {
-      setBusy(true);
-      try {
-        const params = new URLSearchParams({ limit: String(HISTORY_PAGE_SIZE) });
-        if (next) params.set("cursor", next);
-        const body = await caseWorkRequest(
-          `/cases/${encodeURIComponent(caseId)}/transfer-events?${params.toString()}`,
-          { locale }
-        );
-        setItems((previous) => (append ? [...previous, ...(body.items || [])] : body.items || []));
-        setCursor(body.nextCursor || null);
-        setErrorKey(null);
-        if (!append) listLoadedRef.current?.(body.items || []);
-      } catch (error) {
-        setErrorKey(error?.messageKey || "casework.errors.unexpected");
-      } finally {
-        setBusy(false);
-      }
-    },
-    [caseId, locale]
-  );
+  const { items, cursor, status, load, retry } = useCaseList({
+    path: `/cases/${encodeURIComponent(caseId)}/transfer-events`,
+    locale,
+    reloadKey: refreshToken,
+    onLoaded,
+    onError: setErrorKey
+  });
 
-  useEffect(() => {
-    load();
-  }, [load, refreshToken]);
+  const rows = useMemo(() => transferRows(items, { t, locale }), [items, locale, t]);
 
   return (
-    <div className={styles.section}>
-      {errorKey ? (
-        <p className="cw-error" role="alert">
-          {t(errorKey, "")}
-        </p>
-      ) : null}
-
-      {!items.length && !errorKey ? <p className="cw-empty">{t("casework.transfer.history_empty", "")}</p> : null}
-
-      <ul className="cw-list">
-        {items.map((event) => (
-          <li className="cw-item" key={event.id}>
-            <span className="cw-item-text">
-              {t(`casework.transfer.kind_${event.kind}`, "")} · {t(`casework.draft.type_${event.draftType}`, "")}
-            </span>
-            <span className="cw-item-meta">
-              <span className="cw-badge">
-                {new Date(event.createdAt).toLocaleString(locale || "et", {
-                  dateStyle: "short",
-                  timeStyle: "short"
-                })}
-              </span>
-              {event.fieldKeys?.length ? (
-                <span className="cw-muted">
-                  {t("casework.transfer.fields_label", "")}: {event.fieldKeys.join(", ")}
-                </span>
-              ) : null}
-            </span>
-          </li>
-        ))}
-      </ul>
-
-      {cursor ? (
-        <button className="cw-button" type="button" disabled={busy} onClick={() => load({ next: cursor, append: true })}>
-          {t("casework.transfer.load_more", "")}
-        </button>
-      ) : null}
-    </div>
+    <TransferHistoryView
+      t={t}
+      title={t("casework.page.parts.transfer.title", "")}
+      status={status}
+      rows={rows}
+      errorText={errorKey ? t(errorKey, "") : ""}
+      more={cursor ? { busy, onClick: () => run(() => load({ cursor, append: true })) } : null}
+      onRetry={() => {
+        setErrorKey(null);
+        retry();
+      }}
+    />
   );
 }

@@ -12,8 +12,9 @@
  * enam loendi all: osa vahetab loendi vormi vastu ja tagasi.
  *
  * Siin on ainult kuju. Andmed, päringud ja olek on failis ../CaseWorkDetail.jsx,
- * ridade sisu failis ../caseViews.js. Kohtumise ettevalmistus, märge ja STAR2
- * järjekord on veel vanal kihil oma failides ja lähevad lava osadeks tervikuna.
+ * ridade sisu failis ../caseViews.js. Kohtumise ettevalmistuse, märkme, heli ja
+ * STAR2 järjekorra vaated on kaustas ../sections: need sektsioonid hoiavad oma
+ * andmeid ise ja vahetavad oma väikesi vaateid osa sees.
  *
  * Kujundus: cases.module.css (siin kõrval).
  */
