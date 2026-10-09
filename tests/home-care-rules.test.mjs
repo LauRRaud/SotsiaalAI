@@ -936,6 +936,10 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
         { id: 'ea1', entryId: 'n1', clientId: 'c1', planLineId: 'pl1', activityId: 'act1' },
         { id: 'ea2', entryId: 'n1', clientId: 'c1', planLineId: null, activityId: null }
       ],
+      visitSlots: [
+        { id: 'vs1', clientId: 'c1', workerMembershipId: 'm1', createdByMembershipId: 'm1' },
+        { id: 'vs2', clientId: 'c1', workerMembershipId: null, createdByMembershipId: 'm1' }
+      ],
       auditEvents: [{ id: 'x1', actorMembershipId: 'm1' }]
     };
     doc.totals = Object.fromEntries(HOME_CARE_EXPORT_KEYS.map((key) => [key, doc[key].length]));
@@ -974,6 +978,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
     'carePlanLines',
     'decisions',
     'entryActivities',
+    'visitSlots',
     'auditEvents',
     'people'
   ]);
@@ -992,7 +997,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
      failis on sama kogu puudumine viga. */
   const older = make();
   older.version = 1;
-  for (const key of ['clientStatusChanges', 'activities', 'carePlans', 'carePlanLines', 'decisions', 'entryActivities']) {
+  for (const key of ['clientStatusChanges', 'activities', 'carePlans', 'carePlanLines', 'decisions', 'entryActivities', 'visitSlots']) {
     delete older[key];
     delete older.totals[key];
   }
@@ -1000,7 +1005,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 2 tunneb seisu ajalugu, aga mitte veel toimingute kataloogi. */
   const second = make();
   second.version = 2;
-  for (const key of ['activities', 'carePlans', 'carePlanLines', 'decisions', 'entryActivities']) {
+  for (const key of ['activities', 'carePlans', 'carePlanLines', 'decisions', 'entryActivities', 'visitSlots']) {
     delete second[key];
     delete second.totals[key];
   }
@@ -1008,7 +1013,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 3 tunneb kataloogi, aga mitte veel hoolduskavasid. */
   const third = make();
   third.version = 3;
-  for (const key of ['carePlans', 'carePlanLines', 'decisions', 'entryActivities']) {
+  for (const key of ['carePlans', 'carePlanLines', 'decisions', 'entryActivities', 'visitSlots']) {
     delete third[key];
     delete third.totals[key];
   }
@@ -1016,7 +1021,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 4 tunneb hoolduskavasid, aga mitte veel otsuseid. */
   const fourth = make();
   fourth.version = 4;
-  for (const key of ['decisions', 'entryActivities']) {
+  for (const key of ['decisions', 'entryActivities', 'visitSlots']) {
     delete fourth[key];
     delete fourth.totals[key];
   }
@@ -1024,9 +1029,20 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 5 tunneb otsuseid, aga mitte veel käigul tehtud toiminguid. */
   const fifth = make();
   fifth.version = 5;
-  delete fifth.entryActivities;
-  delete fifth.totals.entryActivities;
+  for (const key of ['entryActivities', 'visitSlots']) {
+    delete fifth[key];
+    delete fifth.totals[key];
+  }
   assert.deepEqual([checkHomeCareExport(fifth).ok, checkHomeCareExport(fifth).problems], [true, []]);
+  /* Versioon 6 tunneb tehtud toiminguid, aga mitte veel käigumustrit. */
+  const sixth = make();
+  sixth.version = 6;
+  delete sixth.visitSlots;
+  delete sixth.totals.visitSlots;
+  assert.deepEqual([checkHomeCareExport(sixth).ok, checkHomeCareExport(sixth).problems], [true, []]);
+  /* Käigumustri rida, mis viitab olematule kliendile, on viga; uue versiooni failis on kogu puudumine viga. */
+  assert.match(problems((doc) => { doc.visitSlots[0].clientId = 'olematu'; }).join(' '), /visitSlots/);
+  assert.match(problems((doc) => { delete doc.visitSlots; }).join(' '), /visitSlots/);
   /* Tehtud toiming, mis viitab olematule kirjele, on viga; tühi kava- ja toiminguviide ei ole. */
   assert.match(problems((doc) => { doc.entryActivities[0].entryId = 'olematu'; }).join(' '), /entryActivities/);
   assert.match(problems((doc) => { delete doc.entryActivities; }).join(' '), /entryActivities/);

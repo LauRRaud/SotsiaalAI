@@ -77,6 +77,7 @@ import {
 } from '../lib/homeCare/doorTags.js';
 import { getCoordinatorOverview } from '../lib/homeCare/overview.js';
 import { getMonthSummary } from '../lib/homeCare/provided.js';
+import { changeSlot, createSlots, endSlot, getClientSlots, getMyDay, getSlotEditor } from '../lib/homeCare/slots.js';
 import { assertNotificationRecipient, serializeNotificationEvent } from '../lib/notifications.js';
 
 const url = new URL(process.env.HOME_CARE_TEST_DATABASE_URL || 'postgres://invalid/invalid');
@@ -1837,6 +1838,8 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
   await activateCarePlan(lead, northClient.id, { version: exportDraft.version }, deps());
   /* Käigu kirje (K2-d): tehtud toiming kirje küljes, et väljavõttes oleks ka see kogu. */
   await createEntry(lead, northClient.id, { visitMinutes: 30, activities: [{ activityId: exportCatalogue[0].id, mode: 'TOGETHER' }] }, deps());
+  /* Käigumuster (K3-a): korduv käik meeskonna liikmele, et väljavõttes oleks ka see kogu. */
+  await createSlots(lead, northClient.id, { weekdays: [1], startTime: '09:00', plannedMinutes: 45, workerMembershipId: f.members.cover.id }, deps());
   /* Otsus ja maht (K2-c), et väljavõttes oleks ka see kogu. */
   await createDecision(lead, northClient.id, { kind: 'ACT', validFrom: '2026-09-01', volumeHours: '6,5', volumePeriod: 'WEEK' }, deps());
   /* Seisu ajalugu (K1-j): ära ja tagasi, et väljavõttes oleks ka see kogu. */
@@ -1929,6 +1932,7 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
     carePlanLines: await db.carePlanLine.count({ where: { plan: ofOrg } }),
     decisions: await db.careDecision.count({ where: ofOrg }),
     entryActivities: await db.careEntryActivity.count({ where: ofOrg }),
+    visitSlots: await db.careVisitSlot.count({ where: ofOrg }),
     auditEvents: await db.dataAuditLog.count({
       where: { action: { startsWith: 'org.home_care_' }, meta: { path: ['organizationId'], equals: f.orgA.id }, createdAt: { lt: (await exportRows())[0].createdAt } }
     })
@@ -2982,4 +2986,149 @@ test('käigu lõpetamine erandite kaudu: tegemata toiming põhjusega, parandus, 
   await assert.rejects(raw({ outcome: 'REFUSED', outsidePlan: true }), /CareEntryActivity_outcome_plan_check/);
   /* Vaikeväärtus: rida ilma tulemuseta (eelmine rakenduse versioon) on tehtud. */
   assert.equal((await raw({})).outcome, 'DONE');
+});
+
+test('käigumuster: korduvad käigud, muudatus tänasest, lõpetamine, õigused ja hooldaja tänane päev', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  const { client } = await createClient(lead, { displayName: 'Linda Tamm', address: 'Kase 3' }, deps());
+  await addTeamMember(lead, client.id, { membershipId: f.members.anu.id }, deps());
+  const input = { weekdays: [5, 1, 3], startTime: '09:00', plannedMinutes: 45, workerMembershipId: f.members.anu.id, note: 'Hommikune käik' };
+
+  /* Algus: mustrit ei ole. Täna on reede 09.10.2026. */
+  assert.deepEqual(await getClientSlots(anu, client.id, deps()), { today: '2026-10-09', slots: [], canEdit: false });
+  assert.deepEqual([(await openClient(anu, client.id, deps())).today, (await openClient(anu, client.id, deps())).slots], ['2026-10-09', []]);
+
+  /* Lisab ainult hooldusjuht; meeskonda mittekuuluv ja teise asutuse juht klienti ei näe. */
+  await expectError(createSlots(anu, client.id, input, deps()), 403, 'org.errors.missing_capability');
+  await expectError(getClientSlots(bert, client.id, deps()), 404);
+  await expectError(createSlots(leadB, client.id, input, deps()), 404);
+
+  /* Vigane sisend ei salvestu. */
+  const bad = (patch, key) => expectError(createSlots(lead, client.id, { ...input, ...patch }, deps()), 400, key);
+  await bad({ weekdays: [] }, 'home_care.errors.slot_weekday_required');
+  await bad({ weekdays: [0] }, 'home_care.errors.slot_weekday_required');
+  await bad({ weekdays: [1, 8] }, 'home_care.errors.slot_weekday_required');
+  await bad({ startTime: '9:00' }, 'home_care.errors.slot_time_invalid');
+  await bad({ startTime: '24:00' }, 'home_care.errors.slot_time_invalid');
+  await bad({ plannedMinutes: 4 }, 'home_care.errors.slot_minutes_invalid');
+  await bad({ plannedMinutes: 721 }, 'home_care.errors.slot_minutes_invalid');
+  await bad({ workerMembershipId: f.members.bert.id }, 'home_care.errors.slot_worker_not_in_team');
+  await bad({ validFrom: '2026-10-08' }, 'home_care.errors.slot_from_past');
+  await bad({ validFrom: '2026-11-01', validUntil: '2026-10-31' }, 'home_care.errors.slot_period_invalid');
+  assert.equal(await db.careVisitSlot.count({ where: { clientId: client.id } }), 0);
+
+  /* LISAMINE: üks rida iga valitud nädalapäeva kohta, nädalapäevade järjekorras. */
+  const made = await createSlots(lead, client.id, input, deps());
+  assert.deepEqual(
+    made.slots.map((slot) => [slot.weekday, slot.startTime, slot.startMinute, slot.plannedMinutes, slot.worker.membershipId, slot.worker.active, slot.note, slot.validFrom, slot.validUntil, slot.version]),
+    [1, 3, 5].map((weekday) => [weekday, '09:00', 540, 45, f.members.anu.id, true, 'Hommikune käik', '2026-10-09', null, 1])
+  );
+  assert.ok(made.slots[0].worker.name);
+  assert.deepEqual(made.team.map((member) => [member.membershipId, member.recentVisits]), [[f.members.anu.id, 0]]);
+  assert.equal((await openClient(anu, client.id, deps())).slots.length, 3);
+  /* Reede õhtune käik ilma töötajata. */
+  const evening = (await createSlots(lead, client.id, { weekdays: [5], startTime: '17:30', plannedMinutes: 30 }, deps())).slots.find((slot) => slot.startTime === '17:30');
+  assert.deepEqual([evening.weekday, evening.worker, evening.note], [5, null, null]);
+
+  /* TÄNANE PÄEV: hooldajale määratud tänased käigud; tehtud ei ole veel midagi. */
+  const mine = async (now) => (await getMyDay(anu, deps(now))).visits.map((visit) => [visit.startTime, visit.done]);
+  const day = await getMyDay(anu, deps());
+  assert.deepEqual(
+    [day.today, day.weekday, day.visits.map((visit) => [visit.startTime, visit.plannedMinutes, visit.client.displayName, visit.client.address, visit.note, visit.done])],
+    ['2026-10-09', 5, [['09:00', 45, 'Linda Tamm', 'Kase 3', 'Hommikune käik', false]]]
+  );
+  /* Käigu kirje täna (ka kolleegi kirjutatud) teeb päeva esimese plaanitud käigu tehtuks. */
+  await createEntry(lead, client.id, { text: 'Käidud.', visitMinutes: 40, occurredAt: '2026-10-09T06:10:00Z' }, deps());
+  assert.deepEqual(await mine(), [['09:00', true]]);
+  /* Õhtune käik määratakse samale hooldajale (rida algas täna: muudetakse kohapeal). Üks kirje katab ainult esimese käigu. */
+  const assigned = await changeSlot(lead, client.id, evening.id, { version: 1, startTime: '17:30', plannedMinutes: 30, workerMembershipId: f.members.anu.id }, deps());
+  assert.deepEqual(
+    assigned.slots.filter((slot) => slot.weekday === 5).map((slot) => [slot.id === evening.id || slot.startTime === '09:00', slot.startTime, slot.version]),
+    [
+      [true, '09:00', 1],
+      [true, '17:30', 2]
+    ]
+  );
+  assert.deepEqual(await mine(), [
+    ['09:00', true],
+    ['17:30', false]
+  ]);
+  /* Määramise juures on näha, mitu käigu kirjet töötaja selle kliendi juures 28 päeva jooksul kirjutas. */
+  await createEntry(anu, client.id, { text: 'Õhtune käik.', visitMinutes: 25, occurredAt: '2026-10-09T07:30:00Z' }, deps());
+  assert.deepEqual((await getSlotEditor(lead, client.id, deps())).team.map((member) => member.recentVisits), [1]);
+  assert.deepEqual(await mine(), [
+    ['09:00', true],
+    ['17:30', true]
+  ]);
+  await expectError(getSlotEditor(anu, client.id, deps()), 403, 'org.errors.missing_capability');
+  /* Kellel täna käike ei ole, saab tühja päeva; ajutiselt ära oleva kliendi käike tänases päevas ei ole. */
+  assert.deepEqual((await getMyDay(bert, deps())).visits, []);
+  const clientVersion = (await db.careClient.findUnique({ where: { id: client.id }, select: { version: true } })).version;
+  await setClientStatus(lead, client.id, { version: clientVersion, status: 'AWAY', statusReason: 'HOSPITAL' }, deps());
+  assert.deepEqual(await mine(), []);
+  await setClientStatus(lead, client.id, { version: clientVersion + 1, status: 'ACTIVE' }, deps());
+
+  /* MUUDATUS TÄNASEST, kui rida on juba kehtinud (kolmapäev 14.10): vana rida lõpeb eilsega, uus algab täna. */
+  const later = at('2026-10-14T08:00:00Z');
+  const monday = made.slots.find((slot) => slot.weekday === 1);
+  const change = { startTime: '10:00', plannedMinutes: 60, workerMembershipId: null };
+  await expectError(changeSlot(lead, client.id, monday.id, change, deps(later)), 400, 'home_care.errors.version_required');
+  await expectError(changeSlot(lead, client.id, monday.id, { ...change, version: 9 }, deps(later)), 409, 'home_care.errors.version_conflict');
+  await expectError(changeSlot(anu, client.id, monday.id, { ...change, version: 1 }, deps(later)), 403, 'org.errors.missing_capability');
+  const moved = await changeSlot(lead, client.id, monday.id, { ...change, version: 1 }, deps(later));
+  assert.deepEqual(
+    (await db.careVisitSlot.findMany({ where: { clientId: client.id, weekday: 1 }, orderBy: { validFrom: 'asc' } })).map((row) => [row.startMinute, row.plannedMinutes, row.workerMembershipId, row.validFrom, row.validUntil]),
+    [
+      [540, 45, f.members.anu.id, '2026-10-09', '2026-10-13'],
+      [600, 60, null, '2026-10-14', null]
+    ]
+  );
+  /* Vaade näitab ainult kehtivat rida; möödunud esmaspäeva (12.10) plaan on endine, järgmisel esmaspäeval hooldajal käiku ei ole. */
+  assert.deepEqual(moved.slots.filter((slot) => slot.weekday === 1).map((slot) => [slot.startTime, slot.worker]), [['10:00', null]]);
+  assert.deepEqual(await mine(at('2026-10-12T05:00:00Z')), [['09:00', false]]);
+  assert.deepEqual(await mine(at('2026-10-19T05:00:00Z')), []);
+
+  /* LÕPETAMINE: tagasiulatuvalt ei saa; vaikimisi on viimane päev eile; lõpetatud rida ei muudeta. */
+  const wednesday = made.slots.find((slot) => slot.weekday === 3);
+  await expectError(endSlot(lead, client.id, wednesday.id, { version: 1, lastDay: '2026-10-10' }, deps(later)), 400, 'home_care.errors.slot_end_past');
+  await expectError(endSlot(anu, client.id, wednesday.id, { version: 1 }, deps(later)), 403, 'org.errors.missing_capability');
+  const ended = await endSlot(lead, client.id, wednesday.id, { version: 1 }, deps(later));
+  assert.deepEqual(ended.slots.filter((slot) => slot.weekday === 3), []);
+  assert.equal((await db.careVisitSlot.findUnique({ where: { id: wednesday.id } })).validUntil, '2026-10-13');
+  await expectError(endSlot(lead, client.id, wednesday.id, { version: 2 }, deps(later)), 409, 'home_care.errors.slot_ended');
+  await expectError(changeSlot(lead, client.id, wednesday.id, { ...change, version: 2 }, deps(later)), 409, 'home_care.errors.slot_ended');
+  /* Rida, mis ei ole veel alanud, kustub lõpetamisel: see ei ole kunagi kehtinud. */
+  const saturday = (await createSlots(lead, client.id, { weekdays: [6], startTime: '11:00', plannedMinutes: 30, validFrom: '2026-11-01' }, deps(later))).slots.find((slot) => slot.weekday === 6);
+  assert.equal(saturday.validFrom, '2026-11-01');
+  await endSlot(lead, client.id, saturday.id, { version: 1 }, deps(later));
+  assert.equal(await db.careVisitSlot.count({ where: { id: saturday.id } }), 0);
+  /* Teise kliendi kaudu rida muuta ei saa. */
+  const { client: other } = await createClient(lead, { displayName: 'Teine Klient' }, deps());
+  await expectError(endSlot(lead, other.id, evening.id, { version: 2 }, deps(later)), 404, 'home_care.errors.slot_not_found');
+
+  /* Meeskonnast eemaldatud hooldaja tänases päevas seda klienti enam ei ole, kuigi rida on talle määratud. */
+  await removeTeamMember(lead, client.id, f.members.anu.id, deps(at('2026-10-16T05:00:00Z')));
+  assert.deepEqual(await mine(at('2026-10-16T06:00:00Z')), []);
+  await expectError(createSlots(lead, client.id, { ...input, weekdays: [2] }, deps(at('2026-10-16T06:00:00Z'))), 400, 'home_care.errors.slot_worker_not_in_team');
+
+  /* Andmebaas hoiab vigase rea eemal ka siis, kui rakendus eksib. */
+  const raw = (data) =>
+    db.careVisitSlot.create({ data: { organizationId: f.orgA.id, clientId: client.id, weekday: 1, startMinute: 540, plannedMinutes: 30, validFrom: '2026-10-09', ...data } });
+  await assert.rejects(raw({ weekday: 8 }), /CareVisitSlot_weekday_check/);
+  await assert.rejects(raw({ startMinute: 1440 }), /CareVisitSlot_startMinute_check/);
+  await assert.rejects(raw({ plannedMinutes: 4 }), /CareVisitSlot_plannedMinutes_check/);
+  await assert.rejects(raw({ validFrom: '09.10.2026' }), /CareVisitSlot_days_check/);
+  await assert.rejects(raw({ validUntil: '2026-10-08' }), /CareVisitSlot_days_check/);
+
+  /* AUDIT: iga muutus jätab rea ainult ID-de ja muutuse liigiga. */
+  const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_slot_changed', meta: { path: ['organizationId'], equals: f.orgA.id } } });
+  assert.deepEqual(
+    audit.map((entry) => entry.meta.change).sort(),
+    ['changed', 'created', 'created', 'created', 'created', 'created', 'created', 'ended', 'ended', 'removed']
+  );
+  for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['change', 'clientId', 'organizationId', 'slotId']);
 });
