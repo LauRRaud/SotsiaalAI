@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import OrgHeader from "@/components/org/OrgHeader";
@@ -12,38 +12,31 @@ import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import HomeCareOutbox from "./HomeCareOutbox";
 import { formatDateTime, homeCareBase, useHomeCareApi } from "./homeCareClient";
 
-/** Üle selle suuruse brauser kontrollsummat ei arvuta: fail oleks mälus kaks korda. */
-const VERIFY_MAX_BYTES = 256 * 1024 * 1024;
-
 function fileNameFrom(disposition) {
   const match = /filename="([^"]+)"/.exec(String(disposition || ""));
   return match ? match[1].replace(/[^A-Za-z0-9._-]/g, "") : "";
 }
 
+/** Tühi vastus tähendab, et brauser ei saa kontrollsummat arvutada (ebaturvaline aadress). */
 async function sha256Hex(blob) {
   const subtle = globalThis.crypto?.subtle;
-  if (!subtle || blob.size > VERIFY_MAX_BYTES) return "";
+  if (!subtle) return "";
   const digest = await subtle.digest("SHA-256", await blob.arrayBuffer());
   return [...new Uint8Array(digest)].map((byte) => byte.toString(16).padStart(2, "0")).join("");
-}
-
-function saveBlob(blob, fileName) {
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = fileName;
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 60_000);
 }
 
 /**
  * Koduteenuse täielik väljavõte: kõik andmed ühe failina asutuse enda nupust.
  *
  * Kaks sammu, sest fail sisaldab kõigi klientide andmeid: põhjus ja „Koosta",
- * siis kinnitus. Brauser arvutab alla laaditud faili kontrollsumma ise üle ja
- * salvestab faili ainult siis, kui see klapib serveri omaga.
+ * siis kinnitus. Brauser võrdleb saadud faili suurust ja kontrollsummat serveri
+ * omadega ja annab faili salvestada ainult siis, kui need klapivad. Kui summat
+ * ei saa arvutada, öeldakse seda välja, mitte ei näidata serveri summat nagu
+ * kontrollitut.
+ *
+ * Salvestamine algab ise, aga link „Salvesta fail" jääb lehele: brauser võib
+ * pika koostamise järel automaatse allalaadimise keelata ja siis ei tohi leht
+ * väita, et fail on alla laaditud.
  */
 export default function HomeCareExport({ context, initial }) {
   const { t, locale } = useI18n();
@@ -57,7 +50,10 @@ export default function HomeCareExport({ context, initial }) {
   /* "" | "confirm" | "working" */
   const [step, setStep] = useState("");
   const [error, setError] = useState("");
+  /* { url, name, rows, bytes, sha, verified } */
   const [done, setDone] = useState(null);
+  const fileUrlRef = useRef("");
+  const saveLinkRef = useRef(null);
   /* Topeltklõps ei tohi teha kahte väljavõtet: olek uueneb alles järgmisel joonistusel. */
   const runningRef = useRef(false);
 
@@ -69,12 +65,24 @@ export default function HomeCareExport({ context, initial }) {
     return t("home_care.export.size_mb", { n: text });
   };
 
+  const releaseFile = () => {
+    if (fileUrlRef.current) URL.revokeObjectURL(fileUrlRef.current);
+    fileUrlRef.current = "";
+  };
+  /* Lehelt lahkudes ei jää fail brauseri mällu. */
+  useEffect(() => releaseFile, []);
+  /* Valmis fail hakkab ise salvestuma; kui brauser seda ei luba, jääb link. */
+  useEffect(() => {
+    if (done?.url) saveLinkRef.current?.click();
+  }, [done?.url]);
+
   const download = async () => {
     if (runningRef.current || !reason) return;
     runningRef.current = true;
     setStep("working");
     setError("");
     setDone(null);
+    releaseFile();
     try {
       const response = await fetch(`${homeCareBase(organizationId)}/valjavote`, {
         method: "POST",
@@ -89,13 +97,23 @@ export default function HomeCareExport({ context, initial }) {
       }
       const blob = await response.blob();
       const expected = response.headers.get("X-Home-Care-Export-Sha256") || "";
+      const expectedBytes = Number(response.headers.get("X-Home-Care-Export-Bytes"));
+      /* Suurus ja summa peavad klappima. Puuduv päis on sama mis mitteklappiv:
+         server saadab need alati, seega on vastus teel muudetud või poolik. */
       const actual = await sha256Hex(blob);
-      if (expected && actual && expected !== actual) {
+      if (!expected || !Number.isFinite(expectedBytes) || blob.size !== expectedBytes || (actual && actual !== expected)) {
         setError(t("home_care.export.mismatch"));
         return;
       }
-      saveBlob(blob, fileNameFrom(response.headers.get("Content-Disposition")) || "koduteenus-valjavote.json");
-      setDone({ rows: Number(response.headers.get("X-Home-Care-Export-Rows")) || 0, bytes: blob.size, sha: expected });
+      fileUrlRef.current = URL.createObjectURL(blob);
+      setDone({
+        url: fileUrlRef.current,
+        name: fileNameFrom(response.headers.get("Content-Disposition")) || "koduteenus-valjavote.json",
+        rows: Number(response.headers.get("X-Home-Care-Export-Rows")) || 0,
+        bytes: blob.size,
+        sha: expected,
+        verified: Boolean(actual)
+      });
       setReason("");
       const fresh = await call(`${homeCareBase(organizationId)}/valjavote`, { quiet: true });
       if (fresh.ok) setData(fresh.data);
@@ -206,10 +224,17 @@ export default function HomeCareExport({ context, initial }) {
         ) : null}
 
         {done ? (
-          <div role="status">
-            <p className="hc-ok">{t("home_care.export.done", { rows: done.rows, size: size(done.bytes) })}</p>
-            {done.sha ? <p className="hc-entry__meta">{t("home_care.export.checksum", { sha: done.sha })}</p> : null}
-            <p className="hc-hint">{t("home_care.export.checksum_hint")}</p>
+          <div className="hc-field" role="status">
+            <p className="hc-ok">{t("home_care.export.ready", { rows: done.rows, size: size(done.bytes) })}</p>
+            <div className="hc-row">
+              <a ref={saveLinkRef} className="hc-btn hc-btn--primary hc-btn--link" href={done.url} download={done.name}>
+                {t("home_care.export.save_file")}
+              </a>
+            </div>
+            <p className="hc-entry__meta">{t("home_care.export.checksum", { sha: done.sha })}</p>
+            <p className={done.verified ? "hc-hint" : "hc-notice hc-notice--warn"}>
+              {t(done.verified ? "home_care.export.checksum_hint" : "home_care.export.not_verified")}
+            </p>
           </div>
         ) : null}
       </section>

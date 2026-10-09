@@ -11128,7 +11128,8 @@
       "export_whole_org_only": "Täieliku väljavõtte saab teha ainult kogu asutuse hooldusjuht.",
       "export_too_large": "Väljavõte on ühe faili jaoks liiga suur. Võta ühendust platvormi toega, et see osade kaupa kätte saada.",
       "invalid_export_reason": "Vali, milleks väljavõte tehakse.",
-      "export_failed": "Väljavõtte koostamine ei õnnestunud. Proovi uuesti."
+      "export_failed": "Väljavõtte koostamine ei õnnestunud. Proovi uuesti.",
+      "export_in_progress": "Selle asutuse väljavõte on juba koostamisel. Oota, kuni see valmis saab."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -11413,10 +11414,12 @@
       "confirm_notice": "Fail sisaldab kõigi klientide nimesid, aadresse ja päevikuid. Salvesta see ainult kohta, kus tohib hoida kliendi toimikuid, ja ära saada seda e-postiga.",
       "confirm": "Jah, koosta ja laadi alla",
       "working": "Koostan väljavõtet. See võib võtta kuni paar minutit; ära sulge lehte.",
-      "done": "Väljavõte on alla laaditud: {rows} rida, {size}.",
+      "ready": "Väljavõte on valmis: {rows} rida, {size}. Kui allalaadimine ise ei alanud, vajuta „Salvesta fail”.",
+      "save_file": "Salvesta fail",
       "checksum": "Kontrollsumma (SHA-256): {sha}",
-      "checksum_hint": "Sama summa on asutuse tööloendis. Kui tahad hiljem tõendada, et fail on muutmata, arvuta faili SHA-256 ja võrdle.",
-      "mismatch": "Alla laaditud fail ei klapi serveri kontrollsummaga. Faili ei salvestatud; proovi uuesti.",
+      "checksum_hint": "Brauser arvutas faili kontrollsumma üle ja see klapib serveri omaga. Sama summa on asutuse tööloendis: kui tahad hiljem tõendada, et fail on muutmata, arvuta faili SHA-256 ja võrdle.",
+      "not_verified": "Brauser ei saanud faili kontrollsummat üle arvutada; suurus klapib. Arvuta faili SHA-256 ise ja võrdle ülal oleva summaga, enne kui failile toetud.",
+      "mismatch": "Alla laaditud fail ei klapi serveri andmetega (suurus või kontrollsumma). Faili ei antud salvestada; proovi uuesti.",
       "recent_title": "Viimased väljavõtted",
       "recent_empty": "Ühtegi väljavõtet ei ole veel tehtud.",
       "rows": "{count} rida",

@@ -11128,7 +11128,8 @@
       "export_whole_org_only": "Only the coordinator of the whole organisation can make a complete export.",
       "export_too_large": "The export is too large for one file. Contact platform support to get it in parts.",
       "invalid_export_reason": "Choose what the export is for.",
-      "export_failed": "Making the export failed. Try again."
+      "export_failed": "Making the export failed. Try again.",
+      "export_in_progress": "An export for this organisation is already being made. Wait until it is ready."
     },
     "incidents": {
       "title": "Incident register",
@@ -11413,10 +11414,12 @@
       "confirm_notice": "The file holds the names, addresses and diaries of all clients. Save it only where client files may be kept and do not send it by e-mail.",
       "confirm": "Yes, make and download",
       "working": "Making the export. This can take up to a couple of minutes; do not close the page.",
-      "done": "The export has been downloaded: {rows} rows, {size}.",
+      "ready": "The export is ready: {rows} rows, {size}. If the download did not start by itself, press \"Save file\".",
+      "save_file": "Save file",
       "checksum": "Checksum (SHA-256): {sha}",
-      "checksum_hint": "The same sum is in the organisation's work log. To prove later that the file is unchanged, compute the file's SHA-256 and compare.",
-      "mismatch": "The downloaded file does not match the server's checksum. The file was not saved; try again.",
+      "checksum_hint": "The browser recomputed the file's checksum and it matches the server's. The same sum is in the organisation's work log: to prove later that the file is unchanged, compute the file's SHA-256 and compare.",
+      "not_verified": "The browser could not recompute the file's checksum; the size matches. Compute the file's SHA-256 yourself and compare it with the sum above before you rely on the file.",
+      "mismatch": "The downloaded file does not match the server's data (size or checksum). The file was not offered for saving; try again.",
       "recent_title": "Recent exports",
       "recent_empty": "No export has been made yet.",
       "rows": "{count} rows",

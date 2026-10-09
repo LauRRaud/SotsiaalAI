@@ -59,7 +59,7 @@ import {
   listChronologyReleases
 } from '../lib/homeCare/chronology.js';
 import { getCallCounts } from '../lib/homeCare/calls.js';
-import { createHomeCareExport, getHomeCareExportOverview } from '../lib/homeCare/export.js';
+import { createHomeCareExport, getHomeCareExportOverview, prepareHomeCareExport } from '../lib/homeCare/export.js';
 import { HOME_CARE_EXPORT_KEYS, checkHomeCareExport } from '../lib/homeCare/exportFormat.js';
 import { applyClientImport, previewClientImport } from '../lib/homeCare/clientImport.js';
 import { importHistory, readHistory, removeHistory, searchHistory } from '../lib/homeCare/importedHistory.js';
@@ -2001,6 +2001,50 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
   /* Liiga suur fail: viga, mitte poolik fail, ja tööloendisse rida ei teki. */
   await expectError(createHomeCareExport(lead, { reasonCode: 'BACKUP' }, { ...deps(), maxPackedBytes: 64 }), 413, 'home_care.errors.export_too_large');
   assert.equal((await exportRows()).length, 2);
+  await expectError(createHomeCareExport(lead, { reasonCode: 'BACKUP' }, { ...deps(), maxRawBytes: 1000 }), 413, 'home_care.errors.export_too_large');
+  /* Tehingu ajapiir on sama teade, mitte „proovi uuesti". */
+  const expired = new Proxy(db, {
+    get(target, prop) {
+      if (prop !== '$transaction') return Reflect.get(target, prop);
+      return async () => {
+        throw Object.assign(new Error('Transaction already closed'), { code: 'P2028' });
+      };
+    }
+  });
+  await expectError(createHomeCareExport(lead, { reasonCode: 'BACKUP' }, { ...deps(), db: expired }), 413, 'home_care.errors.export_too_large');
+  /* Küsija katkestas: tööd ei viida lõpuni ja jälge faili kohta, mida keegi ei saanud, ei teki. */
+  await assert.rejects(createHomeCareExport(lead, { reasonCode: 'BACKUP' }, { ...deps(), signal: AbortSignal.abort() }), { name: 'AbortError' });
+  assert.equal((await exportRows()).length, 2);
+
+  /* Värav ilma koostamata (marsruut teeb selle enne sageduspiiri): sama otsus mis koostamisel. */
+  assert.deepEqual(prepareHomeCareExport(lead, { reasonCode: 'authority' }, { env: ENV }), { reasonCode: 'AUTHORITY' });
+  assert.throws(() => prepareHomeCareExport(bert, { reasonCode: 'BACKUP' }, { env: ENV }), (error) => error.status === 403 && error.messageKey === 'home_care.errors.export_whole_org_only');
+  assert.throws(() => prepareHomeCareExport(lead, {}, { env: ENV }), (error) => error.status === 400);
+
+  /* ÜKS KORRAGA asutuse kohta: teine samaaegne katse saab vea, mitte teist ühendust ja mälu.
+     Pärast esimese lõppu (ka pärast viga) saab jälle teha. */
+  const together = await Promise.allSettled([
+    createHomeCareExport(lead, { reasonCode: 'BACKUP' }, deps()),
+    createHomeCareExport(lead, { reasonCode: 'BACKUP' }, deps())
+  ]);
+  assert.deepEqual(together.map((outcome) => outcome.status), ['fulfilled', 'rejected']);
+  assert.deepEqual([together[1].reason.status, together[1].reason.messageKey], [409, 'home_care.errors.export_in_progress']);
+  assert.equal((await exportRows()).length, 3);
+  /* Teise asutuse väljavõte samal ajal on lubatud. */
+  const both = await Promise.allSettled([
+    createHomeCareExport(lead, { reasonCode: 'BACKUP' }, deps()),
+    createHomeCareExport(leadB, { reasonCode: 'BACKUP' }, deps())
+  ]);
+  assert.deepEqual(both.map((outcome) => outcome.status), ['fulfilled', 'fulfilled']);
+
+  /* Ilma etteantud kellata on `generatedAt` võetud hetktõmmise ajal: midagi hilisemat failis ei ole. */
+  const before = Date.now();
+  const timed = read(await createHomeCareExport(lead, { reasonCode: 'BACKUP' }, { db, env: ENV }));
+  const stamp = Date.parse(timed.doc.generatedAt);
+  assert.ok(stamp >= before && stamp <= Date.now());
+  for (const key of ['clients', 'entries', 'accessLog', 'auditEvents']) {
+    assert.ok(timed.doc[key].every((row) => Date.parse(row.createdAt) <= stamp), key);
+  }
 
   /* Teise asutuse fail on tema oma. */
   const other = read(await createHomeCareExport(leadB, { reasonCode: 'BACKUP' }, deps()));

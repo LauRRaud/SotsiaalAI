@@ -12,13 +12,7 @@ import { orgErrorResponse, orgJson, readJsonBody, readParam, requireOrgContext }
  * Marsruudis ei ole äriloogikat ega andmebaasipäringuid.
  */
 export async function homeCareRoute(request, context, options, handler) {
-  const {
-    write = false,
-    rateScope = null,
-    rateLimit = 120,
-    rateWindowMs = 60_000,
-    fallbackKey = "home_care.errors.request_failed"
-  } = options;
+  const { write = false, rateScope = null, rateLimit = 120, fallbackKey = "home_care.errors.request_failed" } = options;
   const auth = await requireOrgContext(request, context);
   if (!auth.ok) return auth.response;
 
@@ -27,7 +21,7 @@ export async function homeCareRoute(request, context, options, handler) {
       scope: `home_care_${rateScope}`,
       userId: auth.userId,
       limit: rateLimit,
-      windowMs: rateWindowMs
+      windowMs: 60_000
     });
     if (limited) return limited;
   }
