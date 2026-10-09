@@ -12278,7 +12278,14 @@
       "work_nature_kinds_required": "Choose at least one kind.",
       "work_nature_reason_required": "Write why the work here is like this.",
       "work_nature_review_past": "The review day cannot be in the past.",
-      "work_nature_not_found": "This client has no mark in force."
+      "work_nature_not_found": "This client has no mark in force.",
+      "precondition_kind_required": "Choose what must be in order first.",
+      "precondition_note_required": "For other, write what must be in order.",
+      "precondition_responsible_required": "Write who arranges it.",
+      "precondition_not_found": "This precondition was not found.",
+      "precondition_closed": "This precondition is already closed.",
+      "precondition_outcome_invalid": "Choose whether the precondition is met or no longer needed.",
+      "precondition_too_many": "A client can have up to {limit} open preconditions at a time."
     },
     "incidents": {
       "title": "Incident register",
@@ -12767,7 +12774,9 @@
         "ago": "{count} days ago"
       },
       "work_nature_due_title": "Work marks that need a review",
-      "work_nature_due_empty": "No mark is due for review within 30 days."
+      "work_nature_due_empty": "No mark is due for review within 30 days.",
+      "preconditions_open_title": "Service waiting for a precondition",
+      "preconditions_open_empty": "No preconditions are open."
     },
     "visit": {
       "title": "What you did",
@@ -13062,6 +13071,33 @@
       "clear": "Remove the mark",
       "heavy_visits": "visits to clients marked as heavy work {count}",
       "worker_option": "{name} (visits in 28 days: {count}; at clients marked as heavy work in total: {heavy})"
+    },
+    "precondition": {
+      "title": "Before the service starts",
+      "waiting": "The service is waiting for a precondition: it does not start before this is met.",
+      "none": "No preconditions. Add one when the service cannot start before something at home has been put right.",
+      "badge": "waiting for a precondition",
+      "kinds": {
+        "CLEANING": "deep cleaning",
+        "PEST_CONTROL": "pest control",
+        "HEATING": "unsafe heating",
+        "ELECTRICITY": "unsafe electrical system",
+        "OTHER": "other"
+      },
+      "kind_label": "What must be in order first",
+      "note_label": "Details",
+      "note_hint": "For other, write what must be in order.",
+      "responsible_label": "Who arranges it",
+      "responsible_hint": "By the home care guide the municipality arranges this. Write a name or a position.",
+      "due_label": "Deadline",
+      "arranged_by": "arranged by {name}",
+      "due_on": "deadline {date} ({when})",
+      "no_due": "no deadline",
+      "add": "Add a precondition",
+      "save": "Save",
+      "cancel": "Cancel",
+      "done": "Mark as met",
+      "drop": "No longer needed"
     }
   },
   "stage": {

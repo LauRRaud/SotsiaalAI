@@ -82,6 +82,7 @@ import { cancelVisit, getDayPlan, getMyDay, getWeekPlan, moveVisit, restoreVisit
 import { changeSlot, createSlots, endSlot, getClientSlots, getSlotEditor } from '../lib/homeCare/slots.js';
 import { handleObstacle, reportObstacle, withdrawObstacle } from '../lib/homeCare/obstacles.js';
 import { clearWorkNature, setWorkNature } from '../lib/homeCare/workNature.js';
+import { addPrecondition, closePrecondition } from '../lib/homeCare/preconditions.js';
 import { assertNotificationRecipient, serializeNotificationEvent } from '../lib/notifications.js';
 
 const url = new URL(process.env.HOME_CARE_TEST_DATABASE_URL || 'postgres://invalid/invalid');
@@ -1847,6 +1848,7 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
   /* Puudumine (K3-c): meeskonna liikme tulevane plaaniline puudumine. */
   await createAbsence(lead, { membershipId: f.members.cover.id, fromDay: '2026-10-20', toDay: '2026-10-21', kind: 'PLANNED' }, deps());
   await setWorkNature(lead, client.id, { kinds: ['PHYSICAL'], reason: 'Tõstmine ilma tõstukita.' }, deps());
+  await addPrecondition(lead, client.id, { kind: 'CLEANING', responsible: 'Linna sotsiaaltöötaja' }, deps());
   const obstacleOfAnu = await reportObstacle(anu, { kind: 'LATE_30' }, deps());
   await handleObstacle(lead, obstacleOfAnu.obstacle.id, {}, deps());
   /* Ühe päeva erand (K3-b): järgmise esmaspäeva käik jääb ära. */
@@ -1948,6 +1950,7 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
     absences: await db.careAbsence.count({ where: ofOrg }),
     obstacles: await db.careObstacle.count({ where: ofOrg }),
     workNatures: await db.careWorkNature.count({ where: ofOrg }),
+    preconditions: await db.carePrecondition.count({ where: ofOrg }),
     auditEvents: await db.dataAuditLog.count({
       where: { action: { startsWith: 'org.home_care_' }, meta: { path: ['organizationId'], equals: f.orgA.id }, createdAt: { lt: (await exportRows())[0].createdAt } }
     })
@@ -3965,4 +3968,111 @@ test('töö iseloom: märge kliendi juures, õigused ja raske töö käikude loe
   const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_work_nature_changed', meta: { path: ['organizationId'], equals: f.orgA.id } } });
   assert.deepEqual(audit.map((entry) => entry.meta.change).sort(), ['cleared', 'set', 'set', 'set']);
   for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['change', 'clientId', 'organizationId', 'workNatureId']);
+});
+
+test('eeltingimus enne teenuse algust: lisamine, lõpetamine, märk loendis ja tähtaegade nimekiri', async (t) => {
+  const f = await fixture(t);
+  const north = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Põhi ${f.tag}`, type: 'TEAM' } });
+  await db.organizationCapabilityGrant.create({
+    data: { membershipId: f.members.cover.id, capability: 'HOME_CARE_COORDINATOR', scopeType: 'UNIT', scopeUnitId: north.id, validFrom: at('2026-01-01T00:00:00Z') }
+  });
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const unitLead = await f.ctx(f.users.cover, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, deps())).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi', unitId: north.id }, deps())).client;
+  await addTeamMember(lead, linda.id, { membershipId: f.members.anu.id }, deps());
+  const input = { kind: 'CLEANING', responsible: '  Linna   sotsiaaltöötaja Mari ', dueOn: '2026-10-16' };
+
+  /* Algus: eeltingimusi ei ole ja loendis märki ei ole. */
+  assert.deepEqual((await openClient(anu, linda.id, deps())).preconditions, []);
+  assert.deepEqual((await listClients(lead, {}, deps())).clients.map((row) => [row.displayName, row.waiting]), [['Linda Tamm', false], ['Peeter Põhi', false]]);
+
+  /* Lisab ainult hooldusjuht, kelle skoobis klient on; vigane sisend ei salvestu. */
+  await expectError(addPrecondition(anu, linda.id, input, deps()), 403, 'org.errors.missing_capability');
+  await expectError(addPrecondition(unitLead, linda.id, input, deps()), 403);
+  await expectError(addPrecondition(leadB, linda.id, input, deps()), 404, 'home_care.errors.client_not_found');
+  const bad = (patch, key) => expectError(addPrecondition(lead, linda.id, { ...input, ...patch }, deps()), 400, key);
+  await bad({ kind: '' }, 'home_care.errors.precondition_kind_required');
+  await bad({ kind: 'PAINTING' }, 'home_care.errors.precondition_kind_required');
+  await bad({ kind: 'OTHER' }, 'home_care.errors.precondition_note_required');
+  await bad({ responsible: '  ' }, 'home_care.errors.precondition_responsible_required');
+  await bad({ responsible: 'x'.repeat(201) }, 'home_care.errors.text_too_long');
+  await bad({ dueOn: 'varsti' }, 'home_care.errors.invalid_date');
+  assert.equal(await db.carePrecondition.count({ where: { organizationId: f.orgA.id } }), 0);
+
+  /* LISAMINE: korraldaja ühe reana, tähtajani jäänud päevad tänase suhtes; näeb igaüks, kes tohib lehte avada. */
+  const added = await addPrecondition(lead, linda.id, input, deps());
+  assert.deepEqual(added.preconditions, [
+    { id: added.preconditionId, kind: 'CLEANING', note: null, responsible: 'Linna sotsiaaltöötaja Mari', dueOn: '2026-10-16', daysLeft: 7, overdue: false, setByName: 'Juta Juht' }
+  ]);
+  assert.deepEqual((await openClient(anu, linda.id, deps())).preconditions, added.preconditions);
+  /* Teine eeltingimus samale kliendile, ilma tähtajata; „muu" kannab täpsustust. */
+  const second = await addPrecondition(lead, linda.id, { kind: 'OTHER', note: 'Trepikäsipuu on lahti', responsible: 'Poeg Jaan' }, deps(at('2026-10-09T09:00:00Z')));
+  assert.deepEqual(second.preconditions.map((row) => [row.kind, row.note, row.dueOn, row.daysLeft, row.overdue]), [
+    ['CLEANING', null, '2026-10-16', 7, false],
+    ['OTHER', 'Trepikäsipuu on lahti', null, null, false]
+  ]);
+  /* Üksuse hooldusjuht lisab oma üksuse kliendile juba möödunud tähtajaga eeltingimuse. */
+  const late = await addPrecondition(unitLead, peeter.id, { kind: 'HEATING', responsible: 'Vallavalitsus', dueOn: '2026-10-05' }, deps());
+  assert.deepEqual(late.preconditions.map((row) => [row.daysLeft, row.overdue]), [[-4, true]]);
+
+  /* LOEND: kliendil on märk, kuni mõni eeltingimus on täitmata. */
+  assert.deepEqual((await listClients(lead, {}, deps())).clients.map((row) => [row.displayName, row.waiting]), [['Linda Tamm', true], ['Peeter Põhi', true]]);
+
+  /* TÄHTAJAD: kõik täitmata eeltingimused; tähtajaga enne (varasem ees), tähtajata lõpus. Üksuse juht näeb oma üksust. */
+  const deadlines = await getDeadlines(lead, deps());
+  assert.deepEqual(
+    deadlines.preconditionsOpen.map((item) => [item.client.displayName, item.kind, item.responsible, item.dueOn, item.daysLeft, item.overdue]),
+    [
+      ['Peeter Põhi', 'HEATING', 'Vallavalitsus', '2026-10-05', -4, true],
+      ['Linda Tamm', 'CLEANING', 'Linna sotsiaaltöötaja Mari', '2026-10-16', 7, false],
+      ['Linda Tamm', 'OTHER', 'Poeg Jaan', null, null, false]
+    ]
+  );
+  assert.deepEqual((await getDeadlines(unitLead, deps())).preconditionsOpen.map((item) => item.client.displayName), ['Peeter Põhi']);
+
+  /* LÕPETAMINE: täidetud või ei ole enam vaja; ainult hooldusjuht; lõpetatut teist korda lõpetada ei saa. */
+  await expectError(closePrecondition(anu, linda.id, added.preconditionId, { outcome: 'DONE' }, deps()), 403, 'org.errors.missing_capability');
+  await expectError(closePrecondition(lead, linda.id, added.preconditionId, {}, deps()), 400, 'home_care.errors.precondition_outcome_invalid');
+  await expectError(closePrecondition(lead, linda.id, added.preconditionId, { outcome: 'LOST' }, deps()), 400, 'home_care.errors.precondition_outcome_invalid');
+  /* Teise kliendi eeltingimust selle kliendi kaudu ei leia. */
+  await expectError(closePrecondition(lead, linda.id, late.preconditionId, { outcome: 'DONE' }, deps()), 404, 'home_care.errors.precondition_not_found');
+  const done = await closePrecondition(lead, linda.id, added.preconditionId, { outcome: 'DONE' }, deps(at('2026-10-09T10:00:00Z')));
+  assert.deepEqual(done.preconditions.map((row) => row.kind), ['OTHER']);
+  await expectError(closePrecondition(lead, linda.id, added.preconditionId, { outcome: 'DROPPED' }, deps()), 409, 'home_care.errors.precondition_closed');
+  assert.deepEqual((await listClients(lead, {}, deps())).clients.map((row) => row.waiting), [true, true]);
+  const dropped = await closePrecondition(lead, linda.id, second.preconditionId, { outcome: 'DROPPED' }, deps(at('2026-10-09T10:05:00Z')));
+  assert.deepEqual(dropped.preconditions, []);
+  assert.deepEqual((await listClients(lead, {}, deps())).clients.map((row) => [row.displayName, row.waiting]), [['Linda Tamm', false], ['Peeter Põhi', true]]);
+  /* Rida jääb alles koos tulemuse ja lõpetajaga. */
+  assert.deepEqual(
+    (await db.carePrecondition.findMany({ where: { clientId: linda.id }, orderBy: { createdAt: 'asc' } })).map((row) => [row.kind, row.outcome, row.closedByName, row.closedAt.toISOString()]),
+    [
+      ['CLEANING', 'DONE', 'Juta Juht', '2026-10-09T10:00:00.000Z'],
+      ['OTHER', 'DROPPED', 'Juta Juht', '2026-10-09T10:05:00.000Z']
+    ]
+  );
+
+  /* Korraga lahti olevate eeltingimuste arv kliendi kohta on piiratud. */
+  for (let index = 0; index < 10; index += 1) await addPrecondition(lead, linda.id, { kind: 'PEST_CONTROL', responsible: `Korraldaja ${index}` }, deps());
+  await expectError(addPrecondition(lead, linda.id, input, deps()), 400, 'home_care.errors.precondition_too_many');
+
+  /* Andmebaas hoiab vigase rea eemal ka siis, kui rakendus eksib. */
+  const raw = (data) => db.carePrecondition.create({ data: { organizationId: f.orgA.id, clientId: peeter.id, kind: 'CLEANING', responsible: 'Keegi', ...data } });
+  await assert.rejects(raw({ kind: 'PAINTING' }), /CarePrecondition_kind_check/);
+  await assert.rejects(raw({ kind: 'OTHER' }), /CarePrecondition_note_check/);
+  await assert.rejects(raw({ note: '   ' }), /CarePrecondition_note_check/);
+  await assert.rejects(raw({ responsible: '  ' }), /CarePrecondition_responsible_check/);
+  await assert.rejects(raw({ dueOn: '16.10.2026' }), /CarePrecondition_dueOn_check/);
+  await assert.rejects(raw({ closedAt: NOW }), /CarePrecondition_outcome_check/);
+  await assert.rejects(raw({ outcome: 'DONE' }), /CarePrecondition_outcome_check/);
+  await assert.rejects(raw({ closedAt: NOW, outcome: 'LOST' }), /CarePrecondition_outcome_check/);
+
+  /* AUDIT: ainult ID-d ja muutuse liik (liiki, täpsustust, korraldajat ega tähtaega seal ei ole). */
+  const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_precondition_changed', meta: { path: ['organizationId'], equals: f.orgA.id } } });
+  assert.deepEqual([...new Set(audit.map((entry) => entry.meta.change))].sort(), ['added', 'done', 'dropped']);
+  assert.equal(audit.filter((entry) => entry.meta.change === 'added').length, 13);
+  for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['change', 'clientId', 'organizationId', 'preconditionId']);
 });

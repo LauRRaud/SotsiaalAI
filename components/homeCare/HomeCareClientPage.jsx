@@ -18,6 +18,7 @@ import HomeCareHistory from "./HomeCareHistory";
 import HomeCareOutbox from "./HomeCareOutbox";
 import HomeCarePlanView from "./HomeCarePlanView";
 import HomeCareReasonForm from "./HomeCareReasonForm";
+import HomeCarePreconditions from "./HomeCarePreconditions";
 import HomeCareSlotList from "./HomeCareSlotList";
 import HomeCareWorkNature from "./HomeCareWorkNature";
 import HomeCareTeam from "./HomeCareTeam";
@@ -326,6 +327,14 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
         lines={card}
         canEdit={canWrite && access.canEditCard}
         onChange={(next) => setData((current) => ({ ...current, card: next }))}
+      />
+
+      {/* Eeltingimus enne teenuse algust (K4-a): kuni see on täitmata, teenust ei alustata. */}
+      <HomeCarePreconditions
+        organizationId={organizationId}
+        clientId={client.id}
+        initial={data.preconditions || []}
+        canEdit={canWrite && access.isCoordinator}
       />
 
       {/* Töö iseloom (K3-g): kohe püsikaardi järel, sest „ainult kahekesi" peab olema näha enne minekut. */}

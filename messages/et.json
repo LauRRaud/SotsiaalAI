@@ -12278,7 +12278,14 @@
       "work_nature_kinds_required": "Vali vähemalt üks töö iseloomu liik.",
       "work_nature_reason_required": "Kirjuta, miks töö siin selline on.",
       "work_nature_review_past": "Ülevaatuse päev ei saa olla minevikus.",
-      "work_nature_not_found": "Sellel kliendil ei ole kehtivat märget."
+      "work_nature_not_found": "Sellel kliendil ei ole kehtivat märget.",
+      "precondition_kind_required": "Vali, mis peab enne korras olema.",
+      "precondition_note_required": "Muu puhul kirjuta, mis peab korras olema.",
+      "precondition_responsible_required": "Kirjuta, kes selle korraldab.",
+      "precondition_not_found": "Seda eeltingimust ei leitud.",
+      "precondition_closed": "See eeltingimus on juba lõpetatud.",
+      "precondition_outcome_invalid": "Vali, kas eeltingimus on täidetud või ei ole enam vaja.",
+      "precondition_too_many": "Ühel kliendil võib korraga olla kuni {limit} täitmata eeltingimust."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -12767,7 +12774,9 @@
         "ago": "{count} päeva tagasi"
       },
       "work_nature_due_title": "Töö iseloomu märked, mis vajavad ülevaatust",
-      "work_nature_due_empty": "Ühegi märke ülevaatus ei ole 30 päeva sees."
+      "work_nature_due_empty": "Ühegi märke ülevaatus ei ole 30 päeva sees.",
+      "preconditions_open_title": "Teenus ootab eeltingimust",
+      "preconditions_open_empty": "Täitmata eeltingimusi ei ole."
     },
     "visit": {
       "title": "Mida tegid",
@@ -13062,6 +13071,33 @@
       "clear": "Võta märge maha",
       "heavy_visits": "raske töö märgiga kliendi käike {count}",
       "worker_option": "{name} (käike 28 päeva jooksul: {count}; raske töö märgiga klientide juures kokku: {heavy})"
+    },
+    "precondition": {
+      "title": "Enne teenuse algust",
+      "waiting": "Teenus ootab eeltingimust: teenust ei alustata enne, kui see on täidetud.",
+      "none": "Eeltingimusi ei ole. Lisa, kui teenust ei saa alustada enne, kui kodus on midagi korda tehtud.",
+      "badge": "ootab eeltingimust",
+      "kinds": {
+        "CLEANING": "suurpuhastus",
+        "PEST_CONTROL": "putukatõrje",
+        "HEATING": "ohtlik küttekolle",
+        "ELECTRICITY": "ohtlik elektrisüsteem",
+        "OTHER": "muu"
+      },
+      "kind_label": "Mis peab enne korras olema",
+      "note_label": "Täpsustus",
+      "note_hint": "Muu puhul kirjuta, mis peab korras olema.",
+      "responsible_label": "Kes korraldab",
+      "responsible_hint": "Koduteenuse juhendi järgi korraldab selle omavalitsus. Kirjuta nimi või amet.",
+      "due_label": "Tähtaeg",
+      "arranged_by": "korraldab {name}",
+      "due_on": "tähtaeg {date} ({when})",
+      "no_due": "tähtaega ei ole",
+      "add": "Lisa eeltingimus",
+      "save": "Salvesta",
+      "cancel": "Loobu",
+      "done": "Märgi täidetuks",
+      "drop": "Ei ole enam vaja"
     }
   },
   "stage": {

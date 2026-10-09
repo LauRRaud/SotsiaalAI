@@ -8,6 +8,7 @@ import OrgHeader from "@/components/org/OrgHeader";
 
 import { daysLabel } from "./HomeCareDecisionView";
 import HomeCareOutbox from "./HomeCareOutbox";
+import { preconditionLine } from "./HomeCarePreconditions";
 import { planDayLabel } from "./HomeCarePlanView";
 import { clientHref } from "./homeCareClient";
 
@@ -26,8 +27,8 @@ export default function HomeCareDeadlines({ context, deadlines }) {
   const organizationId = context.organization.id;
   const timeZone = context.organization.timezone || "Europe/Tallinn";
 
-  const clientLine = (item, meta, badge) => (
-    <li key={item.client.id}>
+  const clientLine = (item, meta, badge, key = item.client.id) => (
+    <li key={key}>
       <Link className="hc-client" href={clientHref(organizationId, item.client.id)} prefetch={false}>
         <span className="hc-client__name">
           {item.client.displayName}
@@ -102,6 +103,15 @@ export default function HomeCareDeadlines({ context, deadlines }) {
       )}
 
       {section("no_plan", deadlines.noPlan, (item) => clientLine(item, null))}
+
+      {section("preconditions_open", deadlines.preconditionsOpen || [], (item) =>
+        clientLine(
+          item,
+          preconditionLine(t, item),
+          item.overdue ? <span className="hc-badge hc-badge--danger">{t("home_care.deadlines.overdue_badge")}</span> : null,
+          item.id
+        )
+      )}
 
       {section("work_nature_due", deadlines.workNatureDue || [], (item) =>
         clientLine(
