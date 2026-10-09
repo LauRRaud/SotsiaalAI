@@ -328,7 +328,7 @@ test('pöördumatu tegu küsib teist vajutust', () => {
   const button = read('../components/casework/ConfirmButton.jsx');
   const click = button.slice(button.indexOf('onClick={async () => {'), button.indexOf('{armed ? confirmLabel : label}'));
   assert.ok(click.indexOf('if (!armed)') >= 0 && click.indexOf('if (!armed)') < click.indexOf('await onConfirm()'), 'kinnitamata vajutus ei jõua teoni');
-  assert.ok(/if \(!armed\) \{\s*setArmed\(true\);\s*return;/.test(click), 'esimene vajutus lõpeb küsimusega');
+  assert.ok(/if \(!armed\) \{\s*armedAt\.current = Date\.now\(\);\s*setArmed\(true\);\s*return;/.test(click), 'esimene vajutus lõpeb küsimusega');
   assert.equal(button.split('onConfirm()').length - 1, 1, 'tegu käivitub ühest kohast');
   assert.ok(/if \(disabled\) setArmed\(false\)/.test(button), 'keelatud nupp nullib teise astme');
 });
@@ -352,6 +352,21 @@ test('leht on sammulaval: osad, mitte vana ühine kiht, ja teated ilma status-ro
   assert.ok(detail.includes('startWide={landIndex < 0}'), 'juhtum avaneb ülevaates');
   for (const key of CASE_PART_ORDER) assert.ok(detail.includes(`case "${key}":`), `osa ${key} on joonistatud`);
   for (const key of CASE_LIST_VIEWS) assert.ok(shell.includes(`"${key}"`), `loendileht kasutab vaadet ${key}`);
+  /* Loend ja vorm vahetuvad kohapeal: need ei ole kaks järjestikust sammu. */
+  assert.ok(!shell.includes('StepFlight'), 'loendileht ei ole sammulaval');
+  assert.ok(shell.includes('onCancel={() => setView("list")}'), 'vormist saab loendisse tagasi');
+  /* Põhiandmed ja STAR-i viide salvestavad kumbki ainult oma väljad ja värskendavad ainult oma osa. */
+  const saveBasics = detail.slice(detail.indexOf('const saveBasics = useCallback('), detail.indexOf('const saveStar = useCallback('));
+  const saveStar = detail.slice(detail.indexOf('const saveStar = useCallback('), detail.indexOf('const linkItem = useCallback('));
+  assert.ok(saveBasics.includes('nextContactAt') && !saveBasics.includes('externalSystem') && !saveBasics.includes('externalReference'));
+  assert.ok(saveBasics.includes('loadCase({ form: "basics" })'));
+  assert.ok(saveStar.includes('externalSystem') && saveStar.includes('externalReference') && !saveStar.includes('clientDisplayName') && !saveStar.includes('nextContactAt'));
+  assert.ok(saveStar.includes('loadCase({ form: "star" })'));
+  /* Kaheastmeline nupp: klahvikordus ja topeltklõps ei läbi mõlemat astet ühe liigutusega. */
+  const confirm = read('../components/casework/ConfirmButton.jsx');
+  assert.ok(confirm.includes('event.repeat') && confirm.includes('Date.now() - armedAt.current < MIN_GAP_MS'));
+  /* Fookust ei viida pöördumatu teo nupule. */
+  assert.ok(read('../components/casework/cases/CaseDetailViews.jsx').includes(':not([data-danger])'));
   /* Teise juhtumi avamine ehitab detaili uuesti: pooleli tekst ei lähe kaasa. */
   assert.ok(shell.includes('<CaseWorkDetail key={selectedId}'), 'detail on juhtumi kaupa võtmega');
 

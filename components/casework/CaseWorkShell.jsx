@@ -17,25 +17,25 @@
  * numbrit — sama ajatempliga read ei tohi korduda ega kaduda.
  *
  * KUJU (09.10). Leht oli üks veerg: pealkiri, loomise vorm ja selle all loend.
- * Nüüd on loendileht kaks vaadet platvormi sammulaval
- * (`components/stage/StepFlight.jsx`): juhtumite loend seisu filtriga ja uue
- * juhtumi loomine. Lehe nimi on kiirmenüüs. Vaated on failis
- * ./cases/CaseListViews.jsx, kujundus selle kõrval, ridade sisu failis
- * ./caseViews.js. Siin on andmed, päringud ja see, mis vaateid olekuga seob.
+ * Nüüd on korraga ees üks asi: juhtumite loend seisu filtriga või uue juhtumi
+ * vorm. Need vahetuvad kohapeal (nagu välitöö avalehel), mitte sammulaval:
+ * loend ja vorm ei ole kaks järjestikust sammu. Lehe nimi on kiirmenüüs. Vaated
+ * on failis ./cases/CaseListViews.jsx, kujundus selle kõrval, ridade sisu
+ * failis ./caseViews.js. Siin on andmed, päringud ja see, mis vaateid olekuga
+ * seob. Avatud juhtum (`CaseWorkDetail`) on osadena sammulaval.
  */
 
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
 import { useI18n } from "@/components/i18n/I18nProvider";
-import StepFlight from "@/components/stage/StepFlight";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 
 import CaseWorkDetail from "./CaseWorkDetail";
 import { CaseCreateView, CaseListView } from "./cases/CaseListViews";
 import styles from "./cases/cases.module.css";
 import { mergeCaseRows, planCaseNavigation, readCaseIdFromSearch } from "./caseListState";
-import { CASE_LIST_VIEWS, caseFilterOptions, caseListQuery, caseListRows } from "./caseViews";
+import { caseFilterOptions, caseListQuery, caseListRows } from "./caseViews";
 import { caseWorkRequest, fromLocalInputValue, newClientActionKey } from "./caseWorkClient";
 
 const PAGE_SIZE = 25;
@@ -74,8 +74,19 @@ export default function CaseWorkShell() {
      kirjutada ega „näita rohkem" lisada ridu teise filtri loendile. */
   const loadSeqRef = useRef(0);
 
-  /* Milline vaade on ees: `list` või `create`. */
+  /* Milline vaade on ees: "list" või "create". */
   const [view, setView] = useState("list");
+  /* Vaate vahetusel kaob nupp, mida vajutati („Loo juhtum", „Loobu"), ja
+     klaviatuuri fookus koos sellega: fookus läheb vormi esimesele väljale või
+     loendi pealkirjale. Esimesel joonistusel fookust ei võeta. */
+  const shellRef = useRef(null);
+  const shownView = useRef(view);
+  useEffect(() => {
+    if (shownView.current === view) return;
+    shownView.current = view;
+    const target = shellRef.current?.querySelector(view === "create" ? "input:not(:disabled)" : "[data-step-heading]");
+    target?.focus({ preventScroll: true });
+  }, [view]);
 
   const [displayName, setDisplayName] = useState("");
   const [externalRef, setExternalRef] = useState("");
@@ -252,66 +263,47 @@ export default function CaseWorkShell() {
     );
   }
 
-  const hasDraft = Boolean(displayName.trim() || externalRef.trim() || nextContact);
-  const steps = CASE_LIST_VIEWS.map((key) => ({
-    key,
-    label: t(`casework.page.views.${key}.title`, ""),
-    short: t(`casework.page.views.${key}.short`, ""),
-    /* Loend ei ole samm, mis saab „tehtud”: kiirmenüü nool ei kutsu iga kord uut
-       juhtumit looma. Loomise vaade on pooleli, kui mõni väli on täidetud. */
-    state: key === "create" && hasDraft ? "partial" : "empty",
-    /* Loend kasvab juhtumite, mitte ekraani mõõtu: tema järgi ühist kõrgust ei võeta. */
-    free: key === "list"
-  }));
-
+  /* LOEND JA UUE JUHTUMI VORM VAHETUVAD KOHAPEAL, ilma sammulavata: need ei ole
+     kaks järjestikust sammu (kiirmenüü „1/2" ja nool viiksid loendist otse
+     tühja vormi). Nii teeb ka välitöö avaleht. Pooleli vorm jääb alles, kui
+     inimene vahepeal loendit vaatab. */
   return (
-    <section className={styles.shell}>
+    <section className={styles.shell} ref={shellRef}>
       {/* Lehe nimi on kiirmenüüs; pealkiri jääb ekraanilugejale. */}
       <h1 className="sr-only">{t("casework.page.title", "")}</h1>
 
-      <StepFlight
-        label={t("casework.page.title", "")}
-        steps={steps}
-        initialIndex={Math.max(0, CASE_LIST_VIEWS.indexOf(view))}
-        activeKey={view}
-        onStepChange={(index, step) => {
-          if (step) setView(step.key);
-        }}
-      >
-        {(step) =>
-          step.key === "create" ? (
-            <CaseCreateView
-              t={t}
-              formId={createFormId}
-              fields={{
-                displayName,
-                onDisplayName: changeField(setDisplayName),
-                externalRef,
-                onExternalRef: changeField(setExternalRef),
-                nextContact,
-                onNextContact: changeField(setNextContact)
-              }}
-              onSubmit={createCase}
-              busy={creating}
-              errorText={createErrorKey ? t(createErrorKey, "") : ""}
-            />
-          ) : (
-            <CaseListView
-              t={t}
-              filter={{ value: filter, options: filterOptions, onChange: changeFilter }}
-              status={state}
-              rows={rows}
-              emptyText={t(filter === "ALL" ? "casework.page.empty" : "casework.page.empty_filtered", "")}
-              errorText={errorKey ? t(errorKey, "") : ""}
-              onRetry={() => load()}
-              /* „Näita rohkem" kannab serveri cursor'it ja on laadimise ajal
-                 keelatud (SOL-CW-10). */
-              more={nextCursor ? { busy: state === "loading", onClick: () => load({ cursor: nextCursor, append: true }) } : null}
-              onCreate={() => setView("create")}
-            />
-          )
-        }
-      </StepFlight>
+      {view === "create" ? (
+        <CaseCreateView
+          t={t}
+          formId={createFormId}
+          fields={{
+            displayName,
+            onDisplayName: changeField(setDisplayName),
+            externalRef,
+            onExternalRef: changeField(setExternalRef),
+            nextContact,
+            onNextContact: changeField(setNextContact)
+          }}
+          onSubmit={createCase}
+          onCancel={() => setView("list")}
+          busy={creating}
+          errorText={createErrorKey ? t(createErrorKey, "") : ""}
+        />
+      ) : (
+        <CaseListView
+          t={t}
+          filter={{ value: filter, options: filterOptions, onChange: changeFilter }}
+          status={state}
+          rows={rows}
+          emptyText={t(filter === "ALL" ? "casework.page.empty" : "casework.page.empty_filtered", "")}
+          errorText={errorKey ? t(errorKey, "") : ""}
+          onRetry={() => load()}
+          /* „Näita rohkem" kannab serveri cursor'it ja on laadimise ajal
+             keelatud (SOL-CW-10). */
+          more={nextCursor ? { busy: state === "loading", onClick: () => load({ cursor: nextCursor, append: true }) } : null}
+          onCreate={() => setView("create")}
+        />
+      )}
     </section>
   );
 }

@@ -98,8 +98,10 @@ export function CaseListView({ t, filter, status, rows, emptyText, errorText, on
           </ul>
         ) : null}
 
-        {/* Ebaõnnestunud laadimise järel peab pinnal olema tee uuesti proovida. */}
-        {status === "error" ? (
+        {/* Ebaõnnestunud laadimise järel peab pinnal olema tee uuesti proovida.
+            Kui read on juba ees (ebaõnnestus „Näita rohkem"), on uus katse seesama
+            nupp: „Proovi uuesti" laeks esimese lehe ja viskaks laaditud read ära. */}
+        {status === "error" && !rows.length ? (
           <Button type="button" size="sm" variant="secondary" className={styles.more} onClick={onRetry}>
             {t("casework.page.retry", "")}
           </Button>
@@ -124,15 +126,20 @@ export function CaseListView({ t, filter, status, rows, emptyText, errorText, on
  * Nupp on paneeli all servas, aga kuulub vormi juurde (`form`): nii loob ka
  * Enter väljal juhtumi, nagu vanas vormis.
  */
-export function CaseCreateView({ t, formId, fields, onSubmit, busy, errorText }) {
+export function CaseCreateView({ t, formId, fields, onSubmit, onCancel, busy, errorText }) {
   return (
     <StepPanel
       title={t("casework.page.views.create.title", "")}
       lead={t("casework.page.create_hint", "")}
       actions={
-        <Button type="submit" form={formId} size="sm" variant="primary" disabled={busy}>
-          {t("casework.page.create_submit", "")}
-        </Button>
+        <>
+          <Button type="button" size="sm" variant="secondary" onClick={onCancel}>
+            {t("casework.page.cancel", "")}
+          </Button>
+          <Button type="submit" form={formId} size="sm" variant="primary" disabled={busy}>
+            {t("casework.page.create_submit", "")}
+          </Button>
+        </>
       }
     >
       <div className={styles.stack}>

@@ -141,19 +141,26 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
   const isTrackA = Boolean(record?.clientUserId);
   const isErased = Boolean(record?.clientErasedAt);
 
-  const loadCase = useCallback(async () => {
+  const loadCase = useCallback(async ({ form = "all" } = {}) => {
     const body = await caseWorkRequest(`/cases/${encodeURIComponent(caseId)}`, { locale });
     setRecord(body.case || null);
     setCounts(body.counts || { items: 0, openMissingInfo: 0 });
     setRetentionClock(body.retentionClock || null);
     /* Vormiväljad tulevad ALATI serveri vastusest, mitte kohalikust mälust:
        kustutatud kliendiviide peab tühjendama ka välja, mille sisse töötaja
-       parasjagu vaatab. */
-    setDisplayName(body.case?.clientDisplayName || "");
-    setExternalRef(body.case?.clientExternalRef || "");
-    setNextContact(toLocalInputValue(body.case?.nextContactAt));
-    setExternalSystem(body.case?.externalSystem || "");
-    setExternalReference(body.case?.externalReference || "");
+       parasjagu vaatab.
+       ERAND: põhiandmete ja STAR-i viite salvestamine värskendab ainult oma
+       osa välju (`form`). Teise, parasjagu peidetud osa pooleli muudatus ei
+       tohi ühe osa salvestamisega vaikselt kaduda. */
+    if (form !== "star") {
+      setDisplayName(body.case?.clientDisplayName || "");
+      setExternalRef(body.case?.clientExternalRef || "");
+      setNextContact(toLocalInputValue(body.case?.nextContactAt));
+    }
+    if (form !== "basics") {
+      setExternalSystem(body.case?.externalSystem || "");
+      setExternalReference(body.case?.externalReference || "");
+    }
   }, [caseId, locale]);
 
   const loadItems = useCallback(
@@ -233,8 +240,13 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
     [onChanged]
   );
 
-  /* Põhiandmete ja STAR-i viite vaade salvestavad SAMA päringuga: väljad on
-     kahes vaates, aga juhtumi põhiandmed on serveris üks tervik. */
+  /* Põhiandmete ja STAR-i viite vaade salvestavad KUMBKI AINULT OMA VÄLJAD.
+     Vanal lehel oli üks nähtav vorm ja üks päring kõigi viie väljaga. Kahe
+     vaatega kirjutaks ühe vaate „Salvesta" vaikselt serverisse ka teise,
+     peidetud vaate salvestamata muudatused, ja pooleli STAR-i paar (süsteem
+     valitud, number puudu) annaks põhiandmete salvestamisel vea, mida inimene
+     seal ei näe. Server võtab vastu osalise sisu: väli, mida päringus ei ole,
+     jääb muutmata (`app/api/casework/cases/[caseId]/route.js`). */
   const saveBasics = useCallback(
     (event) => {
       event.preventDefault();
@@ -244,22 +256,39 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
           locale,
           body: {
             /* Rada A juhtumil ei saadeta vabatekstivälju üldse: nende
-               saatmine — ka tühjana — tähendaks kliendiraja vaikset vahetust. */
+               saatmine, ka tühjana, tähendaks kliendiraja vaikset vahetust. */
             ...(isTrackA || isErased
               ? {}
               : {
                   clientDisplayName: displayName.trim() || null,
                   clientExternalRef: externalRef.trim() || null
                 }),
-            externalSystem: externalSystem || null,
-            externalReference: externalReference.trim() || null,
             nextContactAt: fromLocalInputValue(nextContact)
           }
         });
-        await loadCase();
+        await loadCase({ form: "basics" });
       });
     },
-    [caseId, displayName, externalRef, externalReference, externalSystem, isErased, isTrackA, loadCase, locale, nextContact, run]
+    [caseId, displayName, externalRef, isErased, isTrackA, loadCase, locale, nextContact, run]
+  );
+
+  const saveStar = useCallback(
+    (event) => {
+      event.preventDefault();
+      return run(async () => {
+        await caseWorkRequest(`/cases/${encodeURIComponent(caseId)}`, {
+          method: "PATCH",
+          locale,
+          /* Süsteem ja viide käivad koos (server keeldub poolikust paarist). */
+          body: {
+            externalSystem: externalSystem || null,
+            externalReference: externalReference.trim() || null
+          }
+        });
+        await loadCase({ form: "star" });
+      });
+    },
+    [caseId, externalReference, externalSystem, loadCase, locale, run]
   );
 
   const linkItem = useCallback(
@@ -466,7 +495,7 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
             reference={externalReference}
             onReference={(event) => setExternalReference(event.target.value)}
             disabled={writeDisabled}
-            onSubmit={saveBasics}
+            onSubmit={saveStar}
           />
         );
 

@@ -254,7 +254,7 @@ export function TransferHistory({ caseId, locale, t, refreshToken, onListLoaded 
         {items.map((event) => (
           <li className="cw-item" key={event.id}>
             <span className="cw-item-text">
-              {t(`casework.transfer.kind_${event.kind}`, "")} — {t(`casework.draft.type_${event.draftType}`, "")}
+              {t(`casework.transfer.kind_${event.kind}`, "")} · {t(`casework.draft.type_${event.draftType}`, "")}
             </span>
             <span className="cw-item-meta">
               <span className="cw-badge">

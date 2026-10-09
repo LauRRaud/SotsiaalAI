@@ -1135,11 +1135,11 @@
   "casework": {
     "preparation": {
       "title": "Kohtumise ettevalmistus",
-      "intro": "See vaade koondab eelinfo kohtumise või järgmise kontakti ettevalmistuseks. Kõik siin on töömustand — mitte ametlik menetlusdokument.",
+      "intro": "See vaade koondab eelinfo kohtumise või järgmise kontakti ettevalmistuseks. Kõik siin on töömustand, mitte ametlik menetlusdokument.",
       "sources_title": "Mille põhjal valmistud",
       "drafts_title": "Ettevalmistuse mustandid",
       "drafts_hint": "Neist saad koostada ettevalmistava mustandi. Mustand jääb sinu töövaatesse ega ole ametlik kandja.",
-      "reflection_hint": "Pärast kohtumist saad siit avada oma refleksiooni — see jääb ainult sulle.",
+      "reflection_hint": "Pärast kohtumist saad siit avada oma refleksiooni. See jääb ainult sulle.",
       "reflection_open": "Ava refleksioon",
       "legend_title": "Päritolumärgised",
       "sources": {
@@ -1184,7 +1184,7 @@
       "untitled": "Nimetu juhtum"
     },
     "draft": {
-      "section_hint": "Iga element liigub ühes suunas: mustand → vajab kontrollimist → kontrollitud → valmis kandmiseks. „Ei kanta” on teadlik lõpp, mitte seisma jäämine. Ülekantuks märkimine on eraldi tegu.",
+      "section_hint": "Iga element liigub ühes suunas: mustand → vajab kontrollimist → kontrollitud → valmis kandmiseks. „Ei kanta“ on teadlik lõpp, mitte seisma jäämine. Ülekantuks märkimine on eraldi tegu.",
       "create": "Lisa element",
       "empty": "Elemente ei ole.",
       "open": "Ava",
@@ -1203,7 +1203,7 @@
       "transition": "Vii järgmisse seisu",
       "transition_to": "Uus seis",
       "review_kind": "Kontrollimise viis",
-      "terminal_notice": "See element on lõppseisus — sisu enam ei muudeta.",
+      "terminal_notice": "See element on lõppseisus: sisu enam ei muudeta.",
       "transferred_at": "Üle kantud",
       "mark_transferred_elsewhere": "Seisu „üle kantud“ paneb ainult eraldi tegevus „Märgi üle kantuks“, mis loob samas tehingus ka jälje ülekandeajalukku.",
       "type_POORDUMISE_KOKKUVOTE": "Pöördumise kokkuvõte",
@@ -1242,7 +1242,7 @@
       "entry_text": "Kirje tekst",
       "add_entry": "Lisa kirje",
       "linked_prep": "Seotud ettevalmistusega",
-      "private_locked_hint": "Selle kihi kirjeid ei saa teise kihti tõsta — see on lubadus, mitte piirang.",
+      "private_locked_hint": "Selle kihi kirjeid ei saa teise kihti tõsta. See on lubadus, mitte piirang.",
       "layer_KLIENDI_VAADE": "Kliendi enda vaade",
       "layer_FAKTID": "Faktilised asjaolud",
       "layer_TOOTAJA_TAHELEPANEK": "Töötaja tähelepanek",
@@ -1299,7 +1299,7 @@
       "field_LIFE_DOMAINS": "Eluvaldkonnad",
       "field_AGENDA": "Päevakord",
       "field_PLAIN_LANGUAGE_NOTES": "Selgitused lihtsas keeles",
-      "content_purged": "Selle ettevalmistuse sisu arhiveeriti {date}. Väljad ja küsimused on kustutatud; uut sisu siia ei kirjutata — alusta uus ettevalmistus."
+      "content_purged": "Selle ettevalmistuse sisu arhiveeriti {date}. Väljad ja küsimused on kustutatud; uut sisu siia ei kirjutata. Alusta uus ettevalmistus."
     },
     "workbench": {
       "title": "Juhtumitöö laud",
@@ -1443,7 +1443,7 @@
       "transfer_action_key_invalid": "Kopeerimise tunnus on vigase kujuga.",
       "transfer_action_key_conflict": "Sama kopeerimise tunnus on juba kasutusel teiste väljadega. Alusta kopeerimist uuesti.",
       "transfer_content_hash_invalid": "Kopeeritud sisu tunnus puudub või on vigase kujuga.",
-      "transfer_block_stale": "Mustandi sisu muutus pärast kopeerimist. Kopeeri uuesti — nii jääb jälg õige tekstiversiooni külge.",
+      "transfer_block_stale": "Mustandi sisu muutus pärast kopeerimist. Kopeeri uuesti: nii jääb jälg õige tekstiversiooni külge.",
       "create_action_key_invalid": "Juhtumi loomistunnus on vigase kujuga.",
       "create_action_key_conflict": "Sama loomistunnus on juba kasutusel teise sisuga. Alusta juhtumi loomist uuesti.",
       "working_material_empty": "Kandmata mustandeid, mille sisu kustutada, ei ole.",
@@ -1605,13 +1605,13 @@
       "what_own": "See on SINU töökorraldus, mitte ametlik toimik. Ametlik kandja jääb STAR-i ja platvorm ei saada sinna midagi.",
       "what_manual": "Juhtumi loob alati inimene. Ükski pöördumine ega vestlus ei tekita juhtumit sinu eest.",
       "fields_title": "Mis juhtumi küljes on",
-      "fields_client": "Kliendiviide: kas platvormi kasutaja või sinu enda lühike märge — näiteks initsiaal, roll või välise registri tunnus. Ta võib ka puududa.",
+      "fields_client": "Kliendiviide: kas platvormi kasutaja või sinu enda lühike märge, näiteks initsiaal, roll või välise registri tunnus. Ta võib ka puududa.",
       "fields_next_contact": "Järgmine kontakt: kuupäev ja kellaaeg, mille saab ka tühjaks jätta või hiljem eemaldada.",
       "fields_star": "STAR-i viide: süsteemi nimi ja viitenumber käivad alati koos. Sama viide tohib olla mitmel juhtumil.",
       "fields_items": "Seotud materjal: dokumendid, mustandid ja välitöökäigud.",
       "fields_missing": "Puuduv ja kontrollimist vajav info: loend, mis ütleb, mis on veel lahtine.",
       "links_title": "Seosed: juhtum seob, ei kopeeri",
-      "links_binds": "Siduda saab dokumendi, mustandi või välitöökäigu. Ühtegi rida ei kopeerita — juhtum viitab originaalile.",
+      "links_binds": "Siduda saab dokumendi, mustandi või välitöökäigu. Ühtegi rida ei kopeerita: juhtum viitab originaalile.",
       "links_access": "Siduda saab ainult seda, mida sa niikuinii juba näed, ja seos ise ei ava kunagi ligipääsu millelegi uuele.",
       "links_cascade": "Kui algobjekt kustub, kaob ka seos. Rippuvat viidet ei jää.",
       "missing_title": "Puuduv ja kontrollimist vajav info",
@@ -1621,13 +1621,13 @@
       "lifecycle_title": "Elutsükkel",
       "lifecycle_states": "Juhtum liigub ühes suunas: aktiivne → kirjutuskaitstud → arhiveeritud. Tagasiteed ei ole.",
       "lifecycle_reason": "Seisu muutmiseks tuleb kirjutada põhjus ja see jääb auditisse.",
-      "lifecycle_children": "Kirjutuskaitse katab ka seosed ja puuduva info — lugeda saab edasi, muuta mitte.",
+      "lifecycle_children": "Kirjutuskaitse katab ka seosed ja puuduva info: lugeda saab edasi, muuta mitte.",
       "client_title": "Kliendiviide ja tema kustutamine",
       "client_two_tracks": "Kontoga klient ja käsitsi kirjutatud viide on kaks eri rada ja neid ei ole korraga.",
       "client_no_search": "Kliendiotsingut ei ole: kontoga kliendiks saab märkida ainult inimese, kes selle pöördumise ise saatis.",
       "client_erase": "Kliendiviite saab kustutada igas seisus, ka kirjutuskaitstud ja arhiveeritud juhtumis. Väljad tühjenevad jäädavalt ja juhtumi nimeks jääb „Kustutatud kliendiviide“.",
       "privacy_title": "Mida siin EI ole",
-      "privacy_personal": "Juhtum on rangelt isiklik. Teine töötaja ei näe sinu juhtumit ega saa teada, kas ta üldse olemas on — ka admin ei näe sisu.",
+      "privacy_personal": "Juhtum on rangelt isiklik. Teine töötaja ei näe sinu juhtumit ega saa teada, kas ta üldse olemas on. Ka admin ei näe sisu.",
       "privacy_no_transfer": "Juhtumit ei saa kolleegile üle anda ega kustutada.",
       "privacy_no_register": "See ei ole kliendiregister ega STAR-i koopia. Kirjuta siia nii vähe isikuandmeid, kui sinu enda töö nõuab.",
       "privacy_no_notifications": "Juhtum ei saada teavitusi ega jaga midagi automaatselt kellelegi teisele."
@@ -1649,7 +1649,7 @@
       "load_more": "Näita rohkem",
       "kind_COPIED_FOR_STAR2": "Kopeeritud STAR2 jaoks",
       "kind_MARKED_AS_TRANSFERRED": "Märgitud üle kantuks",
-      "block_warning": "ETTEVALMISTAV MUSTAND. See tekst ei ole ametlik kanne — ametlik kanne sünnib STAR-is."
+      "block_warning": "ETTEVALMISTAV MUSTAND. See tekst ei ole ametlik kanne: ametlik kanne sünnib STAR-is."
     }
   },
   "common": {

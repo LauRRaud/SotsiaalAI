@@ -31,6 +31,8 @@ import { Chip } from "./CaseListViews";
 import styles from "./cases.module.css";
 
 const SMALL_BUTTON = Object.freeze({ size: "sm", variant: "secondary" });
+/* Pöördumatu teo nupp kannab märget, mille järgi fookuse viimine selle vahele jätab. */
+const DANGER_BUTTON = Object.freeze({ ...SMALL_BUTTON, "data-danger": "true" });
 
 /**
  * Pöördumatu tegu platvormi nupuga. Esimene vajutus ei tee midagi peale selle,
@@ -40,7 +42,7 @@ function TwoStep({ t, label, confirmLabel, disabled, onConfirm }) {
   return (
     <ConfirmButton
       as={Button}
-      buttonProps={SMALL_BUTTON}
+      buttonProps={DANGER_BUTTON}
       className={styles.danger}
       cancelClassName=""
       label={label}
@@ -55,7 +57,9 @@ function TwoStep({ t, label, confirmLabel, disabled, onConfirm }) {
 /**
  * Kui osa vahetab oma sisu (loend → vorm → loend), kaob vajutatud nupp ja
  * klaviatuuri fookus koos sellega. Fookus läheb uue sisu esimesele väljale või
- * nupule; kui seal midagi ei ole, siis osa pealkirjale.
+ * nupule; kui seal midagi ei ole, siis osa pealkirjale. Pöördumatu teo nupule
+ * (`data-danger`) fookust ei viida: all hoitud Enter jõuaks muidu vormi
+ * „Loobu" nupult otse esimese rea „Eemalda" nupule.
  */
 function useSwapFocus(mode) {
   const ref = useRef(null);
@@ -68,7 +72,7 @@ function useSwapFocus(mode) {
     /* Valikurühmas on tabulatsioonis üks lahter (valitud või esimene); teised
        jäävad vahele, muidu satuks fookus lahtrile, kuhu Tab ei vii. */
     const target =
-      node.querySelector('textarea:not(:disabled), input:not(:disabled), button:not(:disabled):not([tabindex="-1"])') ||
+      node.querySelector('textarea:not(:disabled), input:not(:disabled), button:not(:disabled):not([tabindex="-1"]):not([data-danger])') ||
       node.closest("section")?.querySelector("[data-step-heading]");
     target?.focus({ preventScroll: true });
   }, [mode]);
