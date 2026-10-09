@@ -15,6 +15,7 @@ import HomeCareEntryForm from "./HomeCareEntryForm";
 import HomeCareEntryItem from "./HomeCareEntryItem";
 import HomeCareHistory from "./HomeCareHistory";
 import HomeCareOutbox from "./HomeCareOutbox";
+import HomeCarePlanView from "./HomeCarePlanView";
 import HomeCareReasonForm from "./HomeCareReasonForm";
 import HomeCareTeam from "./HomeCareTeam";
 import {
@@ -323,6 +324,23 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
         canEdit={canWrite && access.canEditCard}
         onChange={(next) => setData((current) => ({ ...current, card: next }))}
       />
+
+      {/* Kehtiv hoolduskava (K2-b): mida siin tehakse, kui sageli ja kuidas. Kogu meeskonnale lugemiseks. */}
+      <section className="hc-section" aria-labelledby={`${fieldId}-plan`}>
+        <h2 className="hc-section-title" id={`${fieldId}-plan`}>
+          {t("home_care.plan.title")}
+        </h2>
+        {data.plan ? <HomeCarePlanView plan={data.plan} /> : <p className="hc-hint">{t("home_care.plan.none")}</p>}
+        {access.isCoordinator ? (
+          <Link
+            className="hc-btn hc-btn--quiet hc-btn--link"
+            href={`/org/${organizationId}/koduteenus/kliendid/${client.id}/kava`}
+            prefetch={false}
+          >
+            {t(data.plan ? "home_care.plan.edit_link" : "home_care.plan.create_link")}
+          </Link>
+        ) : null}
+      </section>
 
       {canAddEntry ? (
         <section className="hc-section" aria-labelledby={`${fieldId}-new`}>

@@ -11646,7 +11646,16 @@
       "activity_not_found": "Toimingut ei leitud.",
       "activity_limit_reached": "Kataloogis on juba väga palju toiminguid. Arhiveeri mõni, enne kui uue lisad.",
       "activity_catalogue_not_empty": "Kataloogis on juba toiminguid. Algset loendit saab lisada ainult tühja kataloogi.",
-      "activity_position_invalid": "Järjekorranumber ei sobi."
+      "activity_position_invalid": "Järjekorranumber ei sobi.",
+      "plan_activity_required": "Kava real puudub toiming.",
+      "plan_activity_unknown": "Kavas on toiming, mida kataloogis enam ei ole. Laadi leht uuesti.",
+      "plan_activity_repeated": "Sama toiming on kavas kaks korda.",
+      "plan_frequency_required": "Vali, kui sageli toimingut tehakse.",
+      "plan_frequency_count_invalid": "Kordade arv peab olema 1 kuni {limit}.",
+      "plan_mode_required": "Vali, kuidas toimingut tehakse.",
+      "plan_too_many_lines": "Kavas on liiga palju toiminguid (kuni {limit}).",
+      "plan_draft_not_found": "Mustandit ei ole. Laadi leht uuesti.",
+      "plan_empty": "Tühja kava ei saa kehtestada. Vali vähemalt üks toiming."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -11985,6 +11994,63 @@
       "group": "Rühm",
       "archived_title": "Arhiveeritud toimingud",
       "source": "Rühmad on sotsiaalkaitseministri 29.06.2023 määrusest nr 40 „Nõuded koduteenusele” (§ 2)."
+    },
+    "plan": {
+      "title": "Hoolduskava",
+      "none": "Hoolduskava ei ole veel kehtestatud.",
+      "create_link": "Koosta hoolduskava",
+      "edit_link": "Muuda hoolduskava",
+      "back": "Tagasi kliendi lehele",
+      "editor_title": "Hoolduskava: {name}",
+      "editor_intro": "Muudad mustandit. Kehtiv kava jääb samaks, kuni mustandi kehtestad; siis jääb eelmine kava alles varasemate kavade loendis.",
+      "active_title": "Kehtiv kava",
+      "none_yet": "Sellel kliendil ei ole veel kehtivat hoolduskava.",
+      "catalogue_empty": "Asutuse toimingute kataloog on tühi. Kava read valitakse kataloogist: lisa kõigepealt toimingud.",
+      "new_title": "Uus kava",
+      "draft_title": "Mustand (kava nr {number})",
+      "goals": "Eesmärgid",
+      "goals_label": "Teenuse eesmärgid kliendi jaoks (pane kirja koos kliendiga)",
+      "frequency_label": "Kui sageli",
+      "frequency": {
+        "DAILY": "päevas",
+        "WEEKLY": "nädalas",
+        "MONTHLY": "kuus",
+        "AS_NEEDED": "vajadusel"
+      },
+      "frequency_count": {
+        "DAILY": "{count}× päevas",
+        "WEEKLY": "{count}× nädalas",
+        "MONTHLY": "{count}× kuus"
+      },
+      "count_label": "Mitu korda",
+      "frequency_note": "Millal täpsemalt (võid jätta tühjaks)",
+      "mode_label": "Kuidas tehakse",
+      "modes": {
+        "GUIDE": "teeb ise, juhendan",
+        "TOGETHER": "teeme koos",
+        "ASSIST": "aitan osaliselt",
+        "FOR": "teen tema eest"
+      },
+      "critical": "peab toimuma",
+      "critical_badge": "peab toimuma",
+      "line_note": "Märkus selle toimingu kohta (võid jätta tühjaks)",
+      "review_label": "Järgmine ülevaatus",
+      "review_on": "järgmine ülevaatus {date}",
+      "review_missing": "ülevaatuse päev on määramata",
+      "note_label": "Märkus kogu kava kohta (võid jätta tühjaks)",
+      "number": "kava nr {number}",
+      "chosen": "Kavas on {count} toimingut.",
+      "save_draft": "Salvesta mustand",
+      "draft_saved": "Mustand on salvestatud. Kehtiv kava ei ole muutunud.",
+      "activate": "Kehtesta kava",
+      "activate_confirm": "Kinnita: see kava hakkab kehtima",
+      "activate_confirm_replace": "Kinnita: see asendab kehtiva kava",
+      "activated": "Kava kehtib. Meeskond näeb seda kliendi lehel.",
+      "discard": "Viska mustand ära",
+      "discard_confirm": "Kinnita: viska mustand ära",
+      "draft_discarded": "Mustand on ära visatud. Kehtiv kava ei muutunud.",
+      "history_title": "Varasemad kavad",
+      "history_line": "kava nr {number}: {from} kuni {to}, toiminguid {count}"
     }
   },
   "stage": {

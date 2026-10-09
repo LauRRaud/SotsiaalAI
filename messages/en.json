@@ -11646,7 +11646,16 @@
       "activity_not_found": "The activity was not found.",
       "activity_limit_reached": "The catalogue already has a great many activities. Archive one before you add a new one.",
       "activity_catalogue_not_empty": "The catalogue already has activities. The starting list can be added only to an empty catalogue.",
-      "activity_position_invalid": "The position number is not valid."
+      "activity_position_invalid": "The position number is not valid.",
+      "plan_activity_required": "A plan line has no activity.",
+      "plan_activity_unknown": "The plan has an activity that is no longer in the catalogue. Reload the page.",
+      "plan_activity_repeated": "The same activity is in the plan twice.",
+      "plan_frequency_required": "Choose how often the activity is done.",
+      "plan_frequency_count_invalid": "The number of times must be 1 to {limit}.",
+      "plan_mode_required": "Choose how the activity is done.",
+      "plan_too_many_lines": "The plan has too many activities (up to {limit}).",
+      "plan_draft_not_found": "There is no draft. Reload the page.",
+      "plan_empty": "An empty plan cannot be put into force. Choose at least one activity."
     },
     "incidents": {
       "title": "Incident register",
@@ -11985,6 +11994,63 @@
       "group": "Group",
       "archived_title": "Archived activities",
       "source": "The groups come from regulation no 40 of the Minister of Social Protection of 29.06.2023, \"Requirements for home care\" (§ 2)."
+    },
+    "plan": {
+      "title": "Care plan",
+      "none": "No care plan is in force yet.",
+      "create_link": "Draw up a care plan",
+      "edit_link": "Change the care plan",
+      "back": "Back to the client's page",
+      "editor_title": "Care plan: {name}",
+      "editor_intro": "You are changing a draft. The plan in force stays the same until you put the draft into force; the earlier plan then stays in the list of earlier plans.",
+      "active_title": "Plan in force",
+      "none_yet": "This client has no care plan in force yet.",
+      "catalogue_empty": "The organisation's catalogue of activities is empty. Plan lines are chosen from the catalogue: add the activities first.",
+      "new_title": "New plan",
+      "draft_title": "Draft (plan no {number})",
+      "goals": "Goals",
+      "goals_label": "Goals of the service for the client (write them down together with the client)",
+      "frequency_label": "How often",
+      "frequency": {
+        "DAILY": "a day",
+        "WEEKLY": "a week",
+        "MONTHLY": "a month",
+        "AS_NEEDED": "as needed"
+      },
+      "frequency_count": {
+        "DAILY": "{count}× a day",
+        "WEEKLY": "{count}× a week",
+        "MONTHLY": "{count}× a month"
+      },
+      "count_label": "How many times",
+      "frequency_note": "When exactly (you may leave this empty)",
+      "mode_label": "How it is done",
+      "modes": {
+        "GUIDE": "does it themselves, I guide",
+        "TOGETHER": "we do it together",
+        "ASSIST": "I help in part",
+        "FOR": "I do it for them"
+      },
+      "critical": "must happen",
+      "critical_badge": "must happen",
+      "line_note": "Note on this activity (you may leave this empty)",
+      "review_label": "Next review",
+      "review_on": "next review {date}",
+      "review_missing": "no review day set",
+      "note_label": "Note on the whole plan (you may leave this empty)",
+      "number": "plan no {number}",
+      "chosen": "The plan has {count} activities.",
+      "save_draft": "Save the draft",
+      "draft_saved": "The draft is saved. The plan in force has not changed.",
+      "activate": "Put the plan into force",
+      "activate_confirm": "Confirm: this plan comes into force",
+      "activate_confirm_replace": "Confirm: this replaces the plan in force",
+      "activated": "The plan is in force. The team sees it on the client's page.",
+      "discard": "Discard the draft",
+      "discard_confirm": "Confirm: discard the draft",
+      "draft_discarded": "The draft is discarded. The plan in force did not change.",
+      "history_title": "Earlier plans",
+      "history_line": "plan no {number}: {from} to {to}, activities {count}"
     }
   },
   "stage": {

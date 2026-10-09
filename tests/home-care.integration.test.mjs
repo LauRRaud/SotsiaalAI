@@ -60,6 +60,7 @@ import {
 } from '../lib/homeCare/chronology.js';
 import { getCallCounts } from '../lib/homeCare/calls.js';
 import { createActivity, listActivities, seedDefaultActivities, updateActivity } from '../lib/homeCare/activities.js';
+import { activateCarePlan, discardCarePlanDraft, getCarePlanEditor, getCarePlans, saveCarePlanDraft } from '../lib/homeCare/carePlans.js';
 import { CARE_ACTIVITY_GROUPS } from '../lib/homeCare/constants.js';
 import { createHomeCareExport, getHomeCareExportOverview, prepareHomeCareExport } from '../lib/homeCare/export.js';
 import { HOME_CARE_EXPORT_KEYS, checkHomeCareExport } from '../lib/homeCare/exportFormat.js';
@@ -1825,8 +1826,12 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
   );
   await issueDoorTag(lead, client.id, deps());
   const tag = await db.careClientDoorTag.findFirst({ where: { clientId: client.id }, select: { token: true } });
-  /* Toimingute kataloog (K2-a), et väljavõttes oleks ka see kogu. */
-  await seedDefaultActivities(lead, deps());
+  /* Toimingute kataloog (K2-a) ja hoolduskava (K2-b), et väljavõttes oleksid ka need kogud. */
+  const exportCatalogue = (await seedDefaultActivities(lead, deps())).activities;
+  const exportDraft = (
+    await saveCarePlanDraft(lead, northClient.id, { goals: 'Kodus edasi elada.', lines: [{ activityId: exportCatalogue[0].id, frequencyKind: 'WEEKLY', frequencyCount: 1, mode: 'TOGETHER' }] }, deps())
+  ).draft;
+  await activateCarePlan(lead, northClient.id, { version: exportDraft.version }, deps());
   /* Seisu ajalugu (K1-j): ära ja tagasi, et väljavõttes oleks ka see kogu. */
   const northVersion = (await db.careClient.findUnique({ where: { id: northClient.id }, select: { version: true } })).version;
   await setClientStatus(lead, northClient.id, { version: northVersion, status: 'AWAY', statusReason: 'HOSPITAL' }, deps());
@@ -1913,6 +1918,8 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
     doorTags: await db.careClientDoorTag.count({ where: ofOrg }),
     clientStatusChanges: await db.careClientStatusChange.count({ where: ofOrg }),
     activities: await db.careActivity.count({ where: ofOrg }),
+    carePlans: await db.carePlan.count({ where: ofOrg }),
+    carePlanLines: await db.carePlanLine.count({ where: { plan: ofOrg } }),
     auditEvents: await db.dataAuditLog.count({
       where: { action: { startsWith: 'org.home_care_' }, meta: { path: ['organizationId'], equals: f.orgA.id }, createdAt: { lt: (await exportRows())[0].createdAt } }
     })
@@ -2177,4 +2184,144 @@ test('toimingute kataloog: määruse rühmad, asutuse oma sõnastus, õigused ja
     assert.ok(Object.keys(row.meta).every((key) => ['organizationId', 'activityId', 'change'].includes(key)), JSON.stringify(row.meta));
     assert.equal(JSON.stringify(row.meta).includes('Puude'), false);
   }
+});
+
+test('hoolduskava: mustand, kehtestamine, asendamine, õigused ja lugemine', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const leadB = await f.ctx(f.users.leadB, f.orgB);
+  const { client } = await createClient(lead, { displayName: 'Linda Tamm' }, deps());
+  await addTeamMember(lead, client.id, { membershipId: f.members.anu.id }, deps());
+  const catalogue = (await seedDefaultActivities(lead, deps())).activities;
+  const byGroup = (group) => catalogue.find((item) => item.group === group);
+  const heating = byGroup('HEATING');
+  const hygiene = byGroup('HYGIENE');
+  const medication = byGroup('MEDICATION');
+  const line = (activity, extra = {}) => ({ activityId: activity.id, frequencyKind: 'WEEKLY', frequencyCount: 3, mode: 'TOGETHER', ...extra });
+
+  /* Algus: kava ei ole; meeskond loeb, mustandit ei näe ega tee. */
+  assert.deepEqual(await getCarePlans(anu, client.id, deps()), { active: null, draft: null, history: [], canEdit: false });
+  assert.equal((await openClient(anu, client.id, deps())).plan, null);
+  await expectError(saveCarePlanDraft(anu, client.id, { lines: [line(heating)] }, deps()), 403, 'org.errors.missing_capability');
+  /* Meeskonda mittekuuluv hooldaja ja teise asutuse hooldusjuht klienti ei näe. */
+  await expectError(getCarePlans(bert, client.id, deps()), 404);
+  await expectError(getCarePlans(leadB, client.id, deps()), 404);
+  await expectError(saveCarePlanDraft(leadB, client.id, { lines: [] }, deps()), 404);
+
+  /* Vigane rida ei salvestu. */
+  await expectError(saveCarePlanDraft(lead, client.id, { lines: [{ activityId: heating.id, frequencyKind: 'WEEKLY', mode: 'TOGETHER' }] }, deps()), 400, 'home_care.errors.plan_frequency_count_invalid');
+  await expectError(saveCarePlanDraft(lead, client.id, { lines: [line(heating, { frequencyCount: 61 })] }, deps()), 400, 'home_care.errors.plan_frequency_count_invalid');
+  await expectError(saveCarePlanDraft(lead, client.id, { lines: [line(heating, { mode: 'ALONE' })] }, deps()), 400, 'home_care.errors.plan_mode_required');
+  await expectError(saveCarePlanDraft(lead, client.id, { lines: [line(heating, { frequencyKind: 'YEARLY' })] }, deps()), 400, 'home_care.errors.plan_frequency_required');
+  await expectError(saveCarePlanDraft(lead, client.id, { lines: [line(heating), line(heating)] }, deps()), 400, 'home_care.errors.plan_activity_repeated');
+  await expectError(saveCarePlanDraft(lead, client.id, { lines: [{ ...line(heating), activityId: 'cmolematutoiming000000000' }] }, deps()), 400, 'home_care.errors.plan_activity_unknown');
+  assert.equal(await db.carePlan.count({ where: { clientId: client.id } }), 0);
+
+  /* MUSTAND: eesmärgid, ülevaatuse päev ja read; toimingu nimi ja rühm tulevad kataloogist. */
+  let draft = (
+    await saveCarePlanDraft(
+      lead,
+      client.id,
+      {
+        goals: '  Linda tahab kodus edasi elada ja ise süüa teha. ',
+        reviewOn: '2027-04-01',
+        lines: [
+          line(heating, { frequencyNote: 'E, K, R hommikul', critical: true, note: 'Talvel iga käik.' }),
+          line(hygiene, { frequencyKind: 'DAILY', frequencyCount: 1, mode: 'GUIDE' }),
+          { activityId: medication.id, frequencyKind: 'AS_NEEDED', frequencyCount: 9, mode: 'GUIDE' }
+        ]
+      },
+      deps()
+    )
+  ).draft;
+  assert.deepEqual([draft.number, draft.status, draft.version, draft.goals, draft.reviewOn], [1, 'DRAFT', 1, 'Linda tahab kodus edasi elada ja ise süüa teha.', '2027-04-01']);
+  assert.deepEqual(
+    draft.lines.map((item) => [item.activityName, item.activityGroup, item.frequencyKind, item.frequencyCount, item.mode, item.critical]),
+    [
+      [heating.name, 'HEATING', 'WEEKLY', 3, 'TOGETHER', true],
+      [hygiene.name, 'HYGIENE', 'DAILY', 1, 'GUIDE', false],
+      /* „Vajadusel" on ilma arvuta, ka siis, kui arv saadeti. */
+      [medication.name, 'MEDICATION', 'AS_NEEDED', null, 'GUIDE', false]
+    ]
+  );
+  /* Mustand ei ole meeskonnale näha ja kliendi lehel kava veel ei ole. */
+  assert.equal((await getCarePlans(anu, client.id, deps())).draft, null);
+  assert.equal((await openClient(anu, client.id, deps())).plan, null);
+
+  /* Muutmine nõuab nähtud versiooni; salvestus asendab read tervikuna. */
+  await expectError(saveCarePlanDraft(lead, client.id, { lines: [line(heating)] }, deps()), 400, 'home_care.errors.version_required');
+  await expectError(saveCarePlanDraft(lead, client.id, { version: 7, lines: [line(heating)] }, deps()), 409, 'home_care.errors.version_conflict');
+  draft = (await saveCarePlanDraft(lead, client.id, { version: 1, goals: draft.goals, reviewOn: draft.reviewOn, lines: [line(heating), line(hygiene, { frequencyKind: 'DAILY', frequencyCount: 1, mode: 'GUIDE' })] }, deps())).draft;
+  assert.deepEqual([draft.version, draft.lines.length], [2, 2]);
+  assert.equal(await db.carePlan.count({ where: { clientId: client.id } }), 1);
+
+  /* KEHTESTAMINE: mustandist saab kehtiv kava; meeskond näeb seda kliendi lehel. */
+  await expectError(activateCarePlan(anu, client.id, { version: 2 }, deps()), 403, 'org.errors.missing_capability');
+  await expectError(activateCarePlan(lead, client.id, { version: 1 }, deps()), 409, 'home_care.errors.version_conflict');
+  const first = await activateCarePlan(lead, client.id, { version: 2 }, deps());
+  assert.deepEqual([first.active.number, first.active.status, first.draft, first.history.length], [1, 'ACTIVE', null, 0]);
+  assert.ok(first.active.activatedAt && first.active.activatedByName);
+  const seen = (await openClient(anu, client.id, deps())).plan;
+  assert.deepEqual([seen.number, seen.goals, seen.lines.length], [1, 'Linda tahab kodus edasi elada ja ise süüa teha.', 2]);
+  await expectError(activateCarePlan(lead, client.id, { version: 3 }, deps()), 404, 'home_care.errors.plan_draft_not_found');
+
+  /* Kataloogis ümber nimetatud toiming ei muuda kehtivat kava. */
+  await updateActivity(lead, heating.id, { version: heating.version, name: 'Puude toomine ja ahju kütmine' }, deps());
+  assert.equal((await openClient(anu, client.id, deps())).plan.lines[0].activityName, heating.name);
+
+  /* UUS KAVA: mustand number 2; tühja kava ei kehtestata; kehtestamine asendab eelmise, mis jääb alles. */
+  const empty = (await saveCarePlanDraft(lead, client.id, { lines: [] }, deps())).draft;
+  assert.deepEqual([empty.number, empty.lines.length], [2, 0]);
+  await expectError(activateCarePlan(lead, client.id, { version: 1 }, deps()), 400, 'home_care.errors.plan_empty');
+  const second = (await saveCarePlanDraft(lead, client.id, { version: 1, reviewOn: '2027-10-01', lines: [line(heating, { frequencyKind: 'DAILY', frequencyCount: 2, mode: 'FOR' })] }, deps())).draft;
+  /* Uus rida kannab toimingu uut nime. */
+  assert.equal(second.lines[0].activityName, 'Puude toomine ja ahju kütmine');
+  const replaced = await activateCarePlan(lead, client.id, { version: 2 }, deps());
+  assert.deepEqual([replaced.active.number, replaced.active.lines.length, replaced.history.map((item) => [item.number, item.lineCount])], [2, 1, [[1, 2]]]);
+  assert.ok(replaced.history[0].replacedAt);
+  assert.deepEqual(
+    (await db.carePlan.findMany({ where: { clientId: client.id }, orderBy: { number: 'asc' }, select: { number: true, status: true } })).map((row) => [row.number, row.status]),
+    [[1, 'REPLACED'], [2, 'ACTIVE']]
+  );
+
+  /* Arhiveeritud toimingut uude kavasse panna ei saa. */
+  await updateActivity(lead, hygiene.id, { version: hygiene.version, archived: true }, deps());
+  await expectError(saveCarePlanDraft(lead, client.id, { lines: [line(hygiene)] }, deps()), 400, 'home_care.errors.plan_activity_unknown');
+
+  /* MUSTANDI ÄRAVISKAMINE ei puuduta kehtivat kava. */
+  const third = (await saveCarePlanDraft(lead, client.id, { lines: [line(medication)] }, deps())).draft;
+  await expectError(discardCarePlanDraft(anu, client.id, { version: third.version }, deps()), 403, 'org.errors.missing_capability');
+  assert.deepEqual(await discardCarePlanDraft(lead, client.id, { version: third.version }, deps()), { draft: null });
+  assert.equal((await getCarePlans(lead, client.id, deps())).active.number, 2);
+
+  /* Kava koostamise vaade: klient, kehtiv kava, varasemad ja kehtivad toimingud (arhiveeritut ei ole). */
+  const editor = await getCarePlanEditor(lead, client.id, deps());
+  assert.deepEqual([editor.client.displayName, editor.active.number, editor.draft, editor.history.length, editor.activities.length], ['Linda Tamm', 2, null, 1, 15]);
+  await expectError(getCarePlanEditor(anu, client.id, deps()), 403, 'org.errors.missing_capability');
+
+  /* Andmebaas hoiab vigase rea eemal ka siis, kui rakendus eksib. */
+  const plan = (data) => db.carePlan.create({ data: { organizationId: f.orgA.id, clientId: client.id, number: 9, ...data } });
+  await assert.rejects(plan({ status: 'ACTIVE', activatedAt: new Date() }), /CarePlan_clientId_active_key|Unique constraint/);
+  await assert.rejects(plan({ status: 'ACTIVE' }), /CarePlan_state_check/);
+  await assert.rejects(plan({ status: 'DRAFT', activatedAt: new Date() }), /CarePlan_state_check/);
+  await assert.rejects(plan({ status: 'REPLACED', activatedAt: new Date() }), /CarePlan_state_check/);
+  await assert.rejects(plan({ status: 'CLOSED' }), /CarePlan_(status|state)_check/);
+  const activeId = (await db.carePlan.findFirst({ where: { clientId: client.id, status: 'ACTIVE' }, select: { id: true } })).id;
+  const row = (data) => db.carePlanLine.create({ data: { planId: activeId, clientId: client.id, activityName: 'Proov', activityGroup: 'HEATING', frequencyKind: 'WEEKLY', frequencyCount: 1, mode: 'FOR', ...data } });
+  await assert.rejects(row({ frequencyCount: null }), /CarePlanLine_frequency_check/);
+  await assert.rejects(row({ frequencyKind: 'AS_NEEDED' }), /CarePlanLine_frequency_check/);
+  await assert.rejects(row({ frequencyCount: 61 }), /CarePlanLine_frequency_check/);
+  await assert.rejects(row({ mode: 'ALONE' }), /CarePlanLine_mode_check/);
+  await assert.rejects(row({ activityGroup: 'KÜTE' }), /CarePlanLine_activityGroup_check/);
+  await assert.rejects(row({ activityId: heating.id }), /CarePlanLine_planId_activityId_key|Unique constraint/);
+
+  /* AUDIT: kehtestamine jätab rea ainult ID-dega. */
+  const audit = await db.dataAuditLog.findMany({
+    where: { action: 'org.home_care_plan_activated', meta: { path: ['organizationId'], equals: f.orgA.id } },
+    orderBy: { createdAt: 'asc' }
+  });
+  assert.equal(audit.length, 2);
+  for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['clientId', 'organizationId', 'planId']);
 });
