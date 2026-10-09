@@ -224,7 +224,13 @@
       "onlinePending": "Võrgus — {count} üksust ootab saatmist.",
       "offline": "Võrguta — kõik salvestub sellesse seadmesse.",
       "needsLogin": "Saatmine vajab sisselogimist; andmed on seadmes alles.",
-      "failed": "{count} üksust vajab tähelepanu"
+      "failed": "{count} üksust vajab tähelepanu",
+      "short": {
+        "online": "Võrgus",
+        "pending": "Saatmata {count}",
+        "offline": "Võrguta",
+        "failed": "Tähelepanu {count}"
+      }
     },
     "prepare": {
       "open": "Valmista külastus ette",

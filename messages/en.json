@@ -224,7 +224,13 @@
       "onlinePending": "Online — {count} items waiting to send.",
       "offline": "Offline — everything is saved on this device.",
       "needsLogin": "Sending requires signing in; the data stays on the device.",
-      "failed": "{count} items need attention"
+      "failed": "{count} items need attention",
+      "short": {
+        "online": "Online",
+        "pending": "Unsent {count}",
+        "offline": "Offline",
+        "failed": "Attention {count}"
+      }
     },
     "prepare": {
       "open": "Prepare a visit",

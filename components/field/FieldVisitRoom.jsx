@@ -28,6 +28,7 @@ import {
   FIELD_MARKER_STATE,
   FIELD_MARKERS
 } from "@/lib/field/visitMarkers";
+import FieldConnection from "./FieldConnection";
 import { useFieldSync } from "./useFieldSync";
 import { isServiceLogUiEnabled } from "@/lib/serviceLog/flags";
 import { mergeVisibleFieldNotes } from "@/lib/field/continuity";
@@ -619,18 +620,9 @@ export default function FieldVisitRoom({ visitId }) {
 
   return (
     <main className="fld-page fld-page--visit">
-      <div
-        className={`fld-connection ${offline ? "fld-connection--offline" : "fld-connection--online"}`}
-        role="status"
-        aria-live="polite"
-      >
-        {offline
-          ? t("field.sync.offline")
-          : sync.pendingCount
-            ? t("field.sync.onlinePending").replace("{count}", String(sync.pendingCount))
-            : t("field.sync.online")}
-        {sync.failedCount ? ` · ${t("field.sync.failed").replace("{count}", String(sync.failedCount))}` : ""}
-      </div>
+      {/* Ühenduse seis on kiirmenüüs ja vajadusel teatena sisu alguses; varem
+          oli see kleepuv riba, mis kerides jäi sisu peale (kujundusaudit K04). */}
+      <FieldConnection t={t} online={!offline} pendingCount={sync.pendingCount} failedCount={sync.failedCount} />
 
       {loadState === "loading" && !view ? <p className="fld-muted">{t("field.loading")}</p> : null}
       {loadState === "offline-empty" && !view ? (
