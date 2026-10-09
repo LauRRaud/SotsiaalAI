@@ -38,6 +38,7 @@ import { useI18n } from "@/components/i18n/I18nProvider"
 import StepFlight from "@/components/stage/StepFlight"
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot"
 import { SubpageHeader } from "@/components/ui/SubpageHeader"
+import { setPanelLeaveGuard, twoPressLeaveGuard } from "@/lib/panelLeaveGuard"
 import { pushWithTransition } from "@/lib/routeTransition"
 
 import MeetingSummaryRoomShare from "./MeetingSummaryRoomShare"
@@ -131,8 +132,8 @@ export default function ArtifactDetailPage({ artifactId }) {
   const dirty = Boolean(artifact) && draft && draftDirty(artifact, { title, content })
 
   /* Salvestamata tekst: brauser küsib enne vahelehe sulgemist või lehe uuesti
-     laadimist. Platvormi sees teisele lehele minekut see ei peata; seal ütleb
-     lahkumise vaadete märkus, et tekst on salvestamata. */
+     laadimist. Platvormi sees lahkumise (kiirmenüü tagasi-nool, Esc) peab kinni
+     ühine värav allpool; lehe enda nupud küsivad teist vajutust ise (`leaving`). */
   useEffect(() => {
     if (!dirty) return undefined
     const warn = (event) => {
@@ -142,6 +143,22 @@ export default function ArtifactDetailPage({ artifactId }) {
     window.addEventListener("beforeunload", warn)
     return () => window.removeEventListener("beforeunload", warn)
   }, [dirty])
+
+  /* Kiirmenüü tagasi-nool ja Esc ei ole selle lehe nupud: varem viisid need
+     salvestamata mustandi juurest ära ilma küsimata ja tekst oli läinud. Esimene
+     vajutus jääb nüüd kinni ja lava kohal seisab põhjus; teine vajutus lahkub. */
+  useEffect(() => {
+    if (!dirty) return undefined
+    const leave = twoPressLeaveGuard({
+      onAsk: () => setStay({ key: "leave", tone: "risk", text: t("documents.detail.leave_asked") }),
+      onClear: () => setStay((current) => (current?.key === "leave" ? null : current))
+    })
+    const release = setPanelLeaveGuard(leave)
+    return () => {
+      release()
+      leave.clear()
+    }
+  }, [dirty, t])
 
   /* Kinnitamine muudab osade loendit ja lava ehitatakse uuesti: nupp, millel
      fookus oli, kaob. Fookus läheb avaneva vaate pealkirjale. */
