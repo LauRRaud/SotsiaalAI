@@ -36,8 +36,10 @@ import {
   listEntries,
   listEntryRevisions,
   retractEntry,
+  searchEntries,
   setIncidentStatus
 } from '../lib/homeCare/entries.js';
+import { searchWords } from '../lib/homeCare/search.js';
 import {
   addIncidentUpdate,
   assignIncident,
@@ -152,9 +154,15 @@ async function fixture(t) {
   return { tag, orgA, orgB, users, members, ctx, org, member, user };
 }
 
-/* Vaikimisi ilma teavitusteta: teavituste test annab saatja ise ette. */
-const deps = (now = NOW) => ({ db, now, env: ENV, notify: null });
-const depsWithNotify = (now = NOW) => ({ db, now, env: ENV });
+/* Vaikimisi ilma teavitusteta ja ilma morfoloogiata (selles masinas seda ei
+   ole): teavituste ja otsingu testid annavad need ise ette. */
+const deps = (now = NOW) => ({ db, now, env: ENV, notify: null, analyzer: null });
+const depsWithNotify = (now = NOW) => ({ db, now, env: ENV, analyzer: null });
+/* Morfoloogia asendaja: annab algvormi nagu päris analüsaator (`vmet<lemma>`).
+   Tõendab meie poolt: kui algvorm on olemas, leiab otsing kõik sõnavormid. */
+const LEMMAS = { võtme: 'võti', võtmed: 'võti', tütre: 'tütar', tütrele: 'tütar', andsin: 'andma', lekib: 'lekkima' };
+const lemmaAnalyzer = { analyze: async (texts) => texts.map((text) => searchWords(text).map((word) => `vmet${LEMMAS[word] || word}`).join(' ')) };
+const depsWithLemmas = (now = NOW) => ({ db, now, env: ENV, notify: null, analyzer: lemmaAnalyzer });
 
 test('hooldusjuht loob kliendi; hooldaja ei saa; võõras asutus ei näe', async (t) => {
   const f = await fixture(t);
@@ -1006,4 +1014,71 @@ test('teavitused: hooldusjuht saab teate ilma sisuta, kirjutaja ise mitte', asyn
     (error) => error.status === 404
   );
   assert.equal((await locateEntryForViewer(lead, fall.entry.id, deps())).retracted, true);
+});
+
+test('päeviku otsing: sõnavormid, sõna algus, nähtavus, parandus ja tühistus', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const clerk = await f.ctx(f.users.clerk, f.orgA);
+  const { client } = await createClient(lead, { displayName: 'Linda Tamm' }, deps());
+  await addTeamMember(lead, client.id, { membershipId: f.members.anu.id }, deps());
+  await addTeamMember(lead, client.id, { membershipId: f.members.bert.id }, deps());
+
+  const key = await createEntry(anu, client.id, { text: 'Võti on naabri käes.', occurredAt: '2026-10-09T07:00:00Z' }, depsWithLemmas());
+  const keys = await createEntry(anu, client.id, { text: 'Andsin võtmed tütrele.', occurredAt: '2026-10-09T07:10:00Z' }, depsWithLemmas());
+  const machine = await createEntry(anu, client.id, { kind: 'HANDOVER', text: 'Pesumasin lekib.', occurredAt: '2026-10-08T10:00:00Z' }, depsWithLemmas());
+  const concern = await createEntry(anu, client.id, { kind: 'CONCERN', text: 'Tütar võtab raha ära.', occurredAt: '2026-10-09T07:20:00Z' }, depsWithLemmas());
+  const ids = (page) => page.items.map((row) => row.id);
+  const find = (who, q, extra = {}) => searchEntries(who, client.id, { q, ...extra }, depsWithLemmas());
+
+  /* Algvorm leiab kõik sõnavormid ja vastupidi. */
+  assert.deepEqual(ids(await find(bert, 'võti')), [keys.entry.id, key.entry.id]);
+  assert.deepEqual(ids(await find(bert, 'võtmed')), [keys.entry.id, key.entry.id]);
+  /* Mitu sõna: kõik peavad kirjes olema. */
+  assert.deepEqual(ids(await find(bert, 'võti tütar')), [keys.entry.id]);
+  /* Sõna algus leiab pikema sõna. */
+  assert.deepEqual(ids(await find(bert, 'pesu')), [machine.entry.id]);
+  /* Nähtavus on sama mis päevikus: muret näevad autor ja hooldusjuht. */
+  assert.deepEqual(ids(await find(bert, 'tütar')), [keys.entry.id]);
+  assert.deepEqual(ids(await find(lead, 'tütar')), [concern.entry.id, keys.entry.id]);
+  assert.deepEqual(ids(await find(anu, 'raha')), [concern.entry.id]);
+  /* Liigi ja päeva filter kehtivad koos otsinguga. */
+  assert.deepEqual(ids(await find(bert, 'pesu', { kind: 'HANDOVER' })), [machine.entry.id]);
+  assert.deepEqual(ids(await find(bert, 'pesu', { kind: 'NOTE' })), []);
+  assert.deepEqual(ids(await find(bert, 'võti', { from: '2026-10-08', to: '2026-10-08' })), []);
+  assert.deepEqual(ids(await find(bert, 'olematusõna')), []);
+
+  /* Otsing on päeviku lugemine: jätab avamisjälje ja märgib teate loetuks. */
+  assert.ok((await db.careClientAccess.count({ where: { clientId: client.id, membershipId: f.members.bert.id } })) >= 1);
+  assert.equal(await db.careClientEntryRead.count({ where: { entryId: machine.entry.id, membershipId: f.members.bert.id } }), 1);
+
+  /* Ligipääs ja sisend. */
+  await expectError(find(clerk, 'võti'), 404, 'home_care.errors.client_not_found');
+  await expectError(find(bert, 'v'), 400, 'home_care.errors.search_too_short');
+  await expectError(searchEntries(bert, client.id, null, depsWithLemmas()), 400, 'home_care.errors.search_too_short');
+
+  /* Parandus teeb otsinguabi uue teksti järgi; numbrid on samuti otsitavad. */
+  await correctEntry(anu, client.id, key.entry.id, { text: 'Uksekood on 4321.', reason: 'Võtit enam ei ole', revision: 1 }, depsWithLemmas());
+  assert.deepEqual(ids(await find(bert, 'võti')), [keys.entry.id]);
+  assert.deepEqual(ids(await find(bert, '4321')), [key.entry.id]);
+  /* Tühistatud kirjet otsing ei leia ja selle otsinguabi kustub. */
+  await retractEntry(lead, client.id, keys.entry.id, { reason: 'Vale klient', revision: 1 }, deps());
+  assert.deepEqual(ids(await find(bert, 'võti')), []);
+  const gone = await db.careClientEntry.findUnique({ where: { id: keys.entry.id }, select: { searchText: true, searchVersion: true } });
+  assert.deepEqual(gone, { searchText: null, searchVersion: null });
+
+  /* Ilma morfoloogiata salvestub kirje ikka ja on leitav sõna, sõna alguse ja
+     tüve järgi; märge ütleb, et algvorme ei ole. */
+  const plain = await createEntry(anu, client.id, { text: 'Leidsin võtmed riiulilt.' }, deps());
+  const stored = await db.careClientEntry.findUnique({ where: { id: plain.entry.id }, select: { searchVersion: true, searchText: true } });
+  assert.equal(stored.searchVersion, 'sb1');
+  assert.equal(stored.searchText.includes('vmet'), false);
+  const noMorph = (q) => searchEntries(bert, client.id, { q }, deps());
+  assert.deepEqual(ids(await noMorph('võtmed')), [plain.entry.id]);
+  assert.deepEqual(ids(await noMorph('võtme')), [plain.entry.id]);
+  assert.deepEqual(ids(await noMorph('riiul')), [plain.entry.id]);
+  const withLemmas = await db.careClientEntry.findUnique({ where: { id: machine.entry.id }, select: { searchVersion: true } });
+  assert.equal(withLemmas.searchVersion, 'vm1');
 });

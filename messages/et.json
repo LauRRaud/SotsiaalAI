@@ -10896,7 +10896,10 @@
       "apply": "Näita",
       "clear": "Tühjenda",
       "more": "Näita vanemaid",
-      "empty": "Kirjeid ei ole."
+      "empty": "Kirjeid ei ole.",
+      "search_label": "Otsi päevikust",
+      "search_hint": "Otsing arvestab sõnavorme ja sõna algust: „võti” leiab ka „võtme” ja „võtmed”.",
+      "search_empty": "Selliseid kirjeid ei leitud."
     },
     "reason": {
       "title": "Lehe avamiseks on vaja põhjust",

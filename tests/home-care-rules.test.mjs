@@ -8,6 +8,7 @@ import { HOME_CARE_LIMITS } from '../lib/homeCare/constants.js';
 import { serializeEntry } from '../lib/homeCare/entries.js';
 import { assertHomeCareEnabled, isHomeCareEnabled } from '../lib/homeCare/flags.js';
 import { startOfYesterday } from '../lib/homeCare/overview.js';
+import { entrySearchText, entrySearchWhere, searchWords } from '../lib/homeCare/search.js';
 import {
   entryRequestHash,
   normalizeCardLineInput,
@@ -274,4 +275,42 @@ test('vigane sisend on 400, mitte erind: objektita keha, NUL-märk, seadme kell'
     () => normalizeEntryInput({ kind: 'INCIDENT', incidentType: 'FALL', text: 'x', incidentActions: [{ code: 'CALLED_112', at: '2026-10-09T09:00:00Z' }] }, { now: NOW }),
     'home_care.errors.invalid_incident_actions'
   );
+});
+
+test('otsinguabi: sõna, tüvi ja algvorm; morfoloogia puudumine ei takista', async () => {
+  const lemmas = { võtmed: 'võti', käes: 'käsi' };
+  const analyzer = { analyze: async (texts) => texts.map((text) => searchWords(text).map((word) => `vmet${lemmas[word] || word}`).join(' ')) };
+
+  assert.deepEqual(searchWords('Võtmed, VÕTMED ja korter 4a!'), ['võtmed', 'ja', 'korter', '4a']);
+  const full = await entrySearchText(['Võtmed on naabri käes', null, '  '], { analyzer });
+  assert.equal(full.searchVersion, 'vm1');
+  for (const token of [' wvõtmed ', ' sbetvõtme ', ' vmetvõti ', ' vmetkäsi ']) assert.ok(full.searchText.includes(token), token);
+  assert.ok(full.searchText.startsWith(' ') && full.searchText.endsWith(' '));
+
+  /* Morfoloogia puudub, viskab või ei vasta ajapiiri sees: tüved jäävad. */
+  const none = await entrySearchText(['Võtmed on naabri käes'], { analyzer: null });
+  assert.equal(none.searchVersion, 'sb1');
+  assert.equal(none.searchText.includes('vmet'), false);
+  assert.ok(none.searchText.includes(' wvõtmed '));
+  const broken = await entrySearchText(['Võtmed'], { analyzer: { analyze: async () => { throw new Error('maas'); } } });
+  assert.equal(broken.searchVersion, 'sb1');
+  const slow = await entrySearchText(['Võtmed'], { analyzer: { analyze: () => new Promise(() => {}) }, timeoutMs: 20 });
+  assert.equal(slow.searchVersion, 'sb1');
+  /* Vigase kujuga vastus (vale ridade arv, võõras žetoon) jäetakse kõrvale. */
+  const odd = await entrySearchText(['Võtmed'], { analyzer: { analyze: async () => ['vmetvõti DROP', 'liigne'] } });
+  assert.equal(odd.searchVersion, 'sb1');
+  assert.deepEqual(await entrySearchText(['', null], { analyzer }), { searchText: null, searchVersion: null });
+
+  /* Päring: iga sõna kohta rühm; sõna algus ilma lõputühikuta, tüvi ja algvorm täpselt. */
+  const where = await entrySearchWhere('  võtmed   naabri ', { analyzer });
+  assert.equal(where.length, 2);
+  const first = where[0].OR.map((item) => item.searchText.contains);
+  assert.ok(first.includes(' wvõtmed'));
+  assert.ok(first.includes(' sbetvõtme '));
+  assert.ok(first.includes(' vmetvõti '));
+  await assert.rejects(entrySearchWhere('v', { analyzer }), (error) => error.status === 400 && error.messageKey === 'home_care.errors.search_too_short');
+  await assert.rejects(entrySearchWhere('!!', { analyzer }), (error) => error.status === 400);
+  await assert.rejects(entrySearchWhere(null, { analyzer }), (error) => error.status === 400);
+  /* Kuni kuus otsisõna. */
+  assert.equal((await entrySearchWhere('aa bb cc dd ee ff gg hh', { analyzer: null })).length, 6);
 });
