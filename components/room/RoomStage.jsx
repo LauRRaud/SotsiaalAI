@@ -173,6 +173,9 @@ const CARDLESS_DOCK_LABELS = {
    jääks otselingi leht dokis nimeta, ja leht ise pealkirja ei kanna. */
 const DOCK_CARD_ALIASES = {
   "/eelpoordumised": "/vestlus?workspace=pre_inquiries",
+  /* Kaart „Dokumendid" avab vestluse töölaua tee; leht ise ja avatud dokument
+     elavad teel /documents. */
+  "/documents": "/vestlus?workspace=documents",
 };
 
 /* Tellija otsus: saabumiskõnd toimub IGAL platvormi laadimisel —
