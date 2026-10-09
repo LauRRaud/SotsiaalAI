@@ -21,7 +21,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
 import { collectEntry, siteManners } from '../lib/rag-v2/web-collect.js';
-import { pageMetadata, decidePage, WEB_PAGE_COLLECTOR } from '../lib/rag-v2/web-page.js';
+import { pageMetadata, decidePage, pageActions, WEB_PAGE_COLLECTOR } from '../lib/rag-v2/web-page.js';
 
 const { values } = parseArgs({ options: { list: { type: 'string' }, master: { type: 'string', default: 'Andmebaasi/register/master_sources_final.json' },
   work: { type: 'string', default: 'tmp/rag-v2-web' }, stored: { type: 'string', default: 'Andmebaasi/veebilehed' }, only: { type: 'string' },
@@ -61,12 +61,14 @@ for (const entry of entries) {
     const files = async dir => { await write(path.join(dir, `${rel}.html`), item.page.html); await write(path.join(dir, `${rel}.json`), `${JSON.stringify(metadata, null, 2)}\n`); };
     const dropProposal = async () => { for (const ext of ['html', 'json']) await fs.rm(path.join(values.work, 'proposals', `${rel}.${ext}`), { force: true }); };
     let applied = false;
-    if (decision !== 'unchanged') await files(path.join(run, 'pages'));
-    if (decision === 'unchanged') await dropProposal();
-    if (decision === 'proposed') await files(path.join(values.work, 'proposals'));
+    // What happens to the reading is the rule's (pageActions): the same rule the refresh of official pages runs by.
+    const act = pageActions(decision, { apply: values.apply, needsReview: item.page.needsReview, approved: approved.has(item.id) });
+    if (act.keepRunCopy) await files(path.join(run, 'pages'));
+    if (act.dropProposal && !act.place) await dropProposal();
+    if (act.propose) await files(path.join(values.work, 'proposals'));
     // A page that needs review is looked at by a person first; the run's copy and the report say why.
-    if (values.apply && (!item.page.needsReview || approved.has(item.id)) && (decision === 'new' || decision === 'confirmed')) {
-      if (decision === 'confirmed') for (const ext of ['html', 'json']) await write(path.join(values.work, 'previous', stamp, `${rel}.${ext}`), await fs.readFile(path.join(values.stored, `${rel}.${ext}`)));
+    if (act.place) {
+      if (act.keepPrevious) for (const ext of ['html', 'json']) await write(path.join(values.work, 'previous', stamp, `${rel}.${ext}`), await fs.readFile(path.join(values.stored, `${rel}.${ext}`)));
       await files(values.stored); await dropProposal(); applied = true;
     }
     rows.push({ ...row, status: decision, applied, title: item.page.title, region: item.page.region, ...item.page.stats, documents: item.page.documents.length, contacts: item.page.contacts,
