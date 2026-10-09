@@ -9,10 +9,11 @@
  * üks loend. Osad ei ole sammud, seepärast annab leht lavale `parts`: kiirmenüüs
  * on nupp „Kõik osad" ja avatud osa nimi.
  *
- * LEHT AVANEB SISUGA, mitte kõigi osade vaates: enamasti tullakse siia
- * protsessi avama. Kui mõni kutse ootab vastust, avaneb leht kutsete osas:
- * vanal lehel seisis kutse teiste kaartide vahel ja erines neist ühe märgiga. Tee
- * `/supervisioon/valjundid` avab sama laua pakkide osas (`initialPart`).
+ * LEHT AVANEB KÕIGI OSADE VAATES (`startWide`), nagu juhtumitöö laud: kolm osa
+ * on kohe näha ja ükski ei ole vajutuse taga (lava reegel: osad ei ole sammud).
+ * Ootel kutse on näha oma plaadilt: vanal lehel seisis kutse teiste kaartide
+ * vahel ja erines neist ühe märgiga. Tee `/supervisioon/valjundid` avab sama laua
+ * kohe pakkide osas (`initialPart`): tee ise ütleb, mida inimene vaatama tuli.
  *
  * KAKS PÄRINGUT. Protsessid ja kutsed tulevad ühest loendist
  * (`/api/supervision/processes`), paketid teisest (`/api/supervision/outcomes`).
@@ -27,7 +28,7 @@
  * korral vahetab vaateid ristsulandusega. Protsessi leht ise on veel vanal kujul.
  */
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useRouter } from "next/navigation";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
@@ -58,14 +59,10 @@ export default function SupervisionHomePage({ initialPart = "" }) {
     };
   }, [locale, outcomes.data, processes.data, t]);
 
-  /* Maandumine otsustatakse üks kord, kui protsesside loend on kohal (või
-     ebaõnnestus): lava saab avatud osa ainult loomisel ja hilisem hüpe teise
-     ossa viiks inimese sealt ära, kuhu ta just läks. */
-  const [landing, setLanding] = useState(HOME_PART_KEYS.includes(initialPart) ? initialPart : "");
-  useEffect(() => {
-    if (landing || processes.status === "loading") return;
-    setLanding(rows.invites.length ? "invites" : "processes");
-  }, [landing, processes.status, rows.invites.length]);
+  /* Tee, mis nimetab osa (`/supervisioon/valjundid`), avab laua selles osas;
+     muidu avaneb kõigi osade vaade. Lava ei oota päringut: iga plaat ja osa
+     näitab oma laadimist ise. */
+  const openPart = HOME_PART_KEYS.includes(initialPart) ? initialPart : "";
 
   const sources = { processes, invites: processes, outcomes };
   const noneText = {
@@ -104,31 +101,28 @@ export default function SupervisionHomePage({ initialPart = "" }) {
   return (
     <section className={styles.shell}>
       <h1 className="sr-only">{t("supervision.home.title")}</h1>
-      {landing ? (
-        <StepFlight
-          label={t("supervision.home.title")}
-          steps={parts}
-          parts
-          initialIndex={HOME_PART_KEYS.indexOf(landing)}
-          texts={{
-            all: t("supervision.home.all"),
-            position: (current, total, label) => t("supervision.home.position", { current, total, label })
-          }}
-          wideLead={<DeskLead t={t} action={newProcess} />}
-        >
-          {(part) =>
-            part.key === "invites" ? (
-              <InvitesView t={t} source={processes} rows={rows.invites} />
-            ) : part.key === "outcomes" ? (
-              <OutcomesView t={t} source={outcomes} rows={rows.outcomes} />
-            ) : (
-              <ProcessesView t={t} source={processes} rows={rows.processes} action={newProcess} />
-            )
-          }
-        </StepFlight>
-      ) : (
-        <p className={styles.quiet}>{t("supervision.common.loading")}</p>
-      )}
+      <StepFlight
+        label={t("supervision.home.title")}
+        steps={parts}
+        parts
+        startWide={!openPart}
+        initialIndex={openPart ? HOME_PART_KEYS.indexOf(openPart) : 0}
+        texts={{
+          all: t("supervision.home.all"),
+          position: (current, total, label) => t("supervision.home.position", { current, total, label })
+        }}
+        wideLead={<DeskLead t={t} action={newProcess} />}
+      >
+        {(part) =>
+          part.key === "invites" ? (
+            <InvitesView t={t} source={processes} rows={rows.invites} />
+          ) : part.key === "outcomes" ? (
+            <OutcomesView t={t} source={outcomes} rows={rows.outcomes} />
+          ) : (
+            <ProcessesView t={t} source={processes} rows={rows.processes} action={newProcess} />
+          )
+        }
+      </StepFlight>
     </section>
   );
 }

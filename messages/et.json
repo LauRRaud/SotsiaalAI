@@ -9841,7 +9841,8 @@
         "goal": {
           "title": "Eesmärk",
           "short": "Eesmärk",
-          "hint": "Eesmärki näevad protsessi liikmed."
+          "hint": "Valikuline. Eesmärki näevad protsessi liikmed.",
+          "question": "Mis on selle protsessi eesmärk?"
         },
         "create": {
           "title": "Ülevaade ja loomine",

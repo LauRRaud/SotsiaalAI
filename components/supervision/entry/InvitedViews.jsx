@@ -21,6 +21,8 @@
  * Kujundus: entry.module.css (siin kõrval).
  */
 
+import { useEffect, useRef } from "react";
+
 import ActionCard, { ActionCardGrid } from "@/components/stage/ActionCard";
 import StepPanel from "@/components/stage/StepPanel";
 
@@ -54,8 +56,11 @@ export function ContractView({ t, contract, note }) {
     <StepPanel title={t("supervision.invited.views.contract.title")} lead={t("supervision.invited.readContract")} note={note}>
       {contract ? (
         <div className={styles.stack}>
+          {/* Privaatsusmärk seisab ka kontrakti juures: kutsutu ei ole veel liige
+              ja näeb ainult seda teksti (vanal lehel olid märk ja tekst koos). */}
           <p className={styles.line}>
             <Chip>{t("supervision.contract.versionN", { n: contract.versionNumber })}</Chip>
+            <PrivacyBadge scope="invited" />
           </p>
           <p className={styles.text}>{contract.body}</p>
         </div>
@@ -82,11 +87,19 @@ export function AnswerView({ t, accept, decline, note }) {
   );
 }
 
-/** Pärast keeldumist: lause ja tee tagasi. */
+/**
+ * Pärast keeldumist: lause ja tee tagasi. Keeldumise nupp kaob koos lavaga,
+ * seepärast viiakse fookus lausele: muidu jääks klaviatuuri fookus lehe algusse
+ * ja ekraanilugeja ei ütleks kinnitust välja.
+ */
 export function DeclinedNote({ t, action }) {
+  const ref = useRef(null);
+  useEffect(() => {
+    ref.current?.focus();
+  }, []);
   return (
     <div className={styles.state}>
-      <p className={styles.quiet} aria-live="polite">
+      <p className={styles.quiet} ref={ref} tabIndex={-1}>
         {t("supervision.invited.declined")}
       </p>
       {action}

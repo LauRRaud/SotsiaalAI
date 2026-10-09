@@ -9841,7 +9841,8 @@
         "goal": {
           "title": "Goal",
           "short": "Goal",
-          "hint": "The members of the process see the goal."
+          "hint": "Optional. The members of the process see the goal.",
+          "question": "What is the goal of this process?"
         },
         "create": {
           "title": "Review and create",

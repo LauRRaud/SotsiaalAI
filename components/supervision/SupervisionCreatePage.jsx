@@ -134,7 +134,10 @@ export default function SupervisionCreatePage() {
       key === "type" ? typeLabel(form.type, t) : key === "title" ? title : key === "goal" ? excerpt(goal, 90) : undefined
   }));
 
-  /* Loobumine viib tagasi supervisiooni lauale (kiirmenüü nool viib Töölauale). */
+  /* Loobumine viib tagasi supervisiooni lauale (kiirmenüü nool viib Töölauale).
+     Nupp on ainult esimeses ja viimases vaates: vahepealsetes oleks see paneeli
+     ainus nupp just seal, kust inimene otsib teed edasi, ja üks vajutus viskaks
+     kirjutatud pealkirja ja eesmärgi ära. */
   const cancel = (
     <Button type="button" size="sm" variant="secondary" onClick={() => router.push(SUPERVISION_HOME_HREF)}>
       {t("supervision.common.cancel")}
@@ -154,11 +157,10 @@ export default function SupervisionCreatePage() {
             titleError={titleError}
             meetingsError={meetingsError}
             onEnter={flight.next}
-            actions={cancel}
           />
         );
       case "goal":
-        return <GoalView t={t} value={form.goal} onChange={(value) => update("goal", value)} actions={cancel} />;
+        return <GoalView t={t} value={form.goal} onChange={(value) => update("goal", value)} />;
       case "create":
         return (
           <ReviewView

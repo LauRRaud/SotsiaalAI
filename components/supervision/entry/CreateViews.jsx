@@ -58,8 +58,11 @@ export function TypeView({ t, value, options, onChange, note, actions }) {
  */
 export function TitleView({ t, title, onTitle, meetings, onMeetings, titleError, meetingsError, onEnter, actions }) {
   const id = useId();
+  /* Viga seisab oma välja all ja on väljaga seotud (`aria-describedby`): kui
+     mõlemad väljad on valed, on näha mõlemad laused. */
+  const described = (name, error) => `${id}-${name}-hint${error ? ` ${id}-${name}-error` : ""}`;
   return (
-    <StepPanel title={t("supervision.create.views.title.title")} note={titleError || meetingsError} actions={actions}>
+    <StepPanel title={t("supervision.create.views.title.title")} actions={actions}>
       <form
         className={styles.fields}
         noValidate
@@ -85,9 +88,14 @@ export function TitleView({ t, title, onTitle, meetings, onMeetings, titleError,
             maxLength={TITLE_MAX}
             placeholder={t("supervision.create.titlePlaceholder")}
             invalid={Boolean(titleError)}
-            describedBy={`${id}-title-hint`}
+            describedBy={described("title", titleError)}
             onChange={(event) => onTitle(event.target.value)}
           />
+          {titleError ? (
+            <span className={styles.fieldError} id={`${id}-title-error`} aria-live="polite">
+              {titleError}
+            </span>
+          ) : null}
         </div>
         <div className={styles.field} data-size="sm">
           <label className={styles.fieldLabel} htmlFor={`${id}-meetings`}>
@@ -106,22 +114,35 @@ export function TitleView({ t, title, onTitle, meetings, onMeetings, titleError,
             maxLength={String(MEETING_COUNT_MAX).length}
             value={meetings}
             invalid={Boolean(meetingsError)}
-            describedBy={`${id}-meetings-hint`}
+            describedBy={described("meetings", meetingsError)}
             onChange={(event) => onMeetings(event.target.value)}
           />
+          {meetingsError ? (
+            <span className={styles.fieldError} id={`${id}-meetings-error`} aria-live="polite">
+              {meetingsError}
+            </span>
+          ) : null}
         </div>
       </form>
     </StepPanel>
   );
 }
 
-/** Eesmärk: valikuline pikk tekst. */
+/**
+ * Eesmärk: valikuline pikk tekst. Paneel algab küsimusega; välja silt jääb
+ * ekraanilugejale, et vaate nimi („Eesmärk") ei seisaks paneelil teist korda.
+ */
 export function GoalView({ t, value, onChange, actions }) {
   return (
-    <StepPanel title={t("supervision.create.views.goal.title")} actions={actions}>
+    <StepPanel
+      title={t("supervision.create.views.goal.title")}
+      question={t("supervision.create.views.goal.question")}
+      lead={t("supervision.create.views.goal.hint")}
+      actions={actions}
+    >
       <TextAreaField
         label={t("supervision.create.goalLabel")}
-        hint={t("supervision.create.views.goal.hint")}
+        labelHidden
         value={value}
         onChange={onChange}
         rows={7}

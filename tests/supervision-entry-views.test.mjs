@@ -298,7 +298,8 @@ test('paki osad: kontrakt ja iga kokkuvõte omaette, järjekord pakis ja mitte �
   assert.deepEqual(parts.map((part) => part.kind), ['contract', 'meeting', 'meeting', 'final']);
   assert.deepEqual(parts.map((part) => part.label), ['Kinnitatud kontrakt', 'Kohtumise kokkuvõte (1/2)', 'Kohtumise kokkuvõte (2/2)', 'Lõpukokkuvõte']);
   assert.deepEqual(parts.map((part) => part.short), ['Kontrakt', 'Kokkuvõte 1/2', 'Kokkuvõte 2/2', 'Lõpukokkuvõte']);
-  assert.deepEqual(parts.map((part) => part.chip), ['Kinnitatud kontrakt', 'Kohtumise kokkuvõte', 'Kohtumise kokkuvõte', 'Lõpukokkuvõte']);
+  /* Vaate nime paneelil ei korrata: osal ei ole märki, mis ütleks sama mis kiirmenüü. */
+  for (const part of parts) assert.equal('chip' in part, false);
   assert.equal(parts[0].body, outcome.content.lastAcceptedContractBody);
   assert.equal(parts[0].summary, 'Kohtume kord kuus. Konfidentsiaalsus kehtib.');
   assert.ok(parts[1].meta.startsWith('Kinnitatud ') && parts[1].meta.includes('2026'));
@@ -308,7 +309,7 @@ test('paki osad: kontrakt ja iga kokkuvõte omaette, järjekord pakis ja mitte �
     assert.equal(part.free, true);
     assert.equal(part.state, 'done');
     assert.ok(part.short.length <= 18, part.short);
-    assert.ok(!/MEETING|FINAL|supervision\./.test(`${part.label} ${part.short} ${part.chip} ${part.meta}`), 'toorest liiki ega võtit ei ole');
+    assert.ok(!/MEETING|FINAL|supervision\./.test(`${part.label} ${part.short} ${part.meta}`), 'toorest liiki ega võtit ei ole');
   }
   assert.equal(hasSummaries(parts), true);
 
@@ -356,8 +357,8 @@ test('lehed on sammulaval: ei teist klaaskasti, ei status-rolli, ei toorest ankr
   const home = read(PAGES.home);
   const lines = (text) => text.split(/\r?\n/).map((line) => line.trim());
   assert.ok(lines(home).includes('parts'), 'laud annab lavale `parts`');
-  assert.ok(!home.includes('startWide'), 'laud avaneb sisuga, mitte kõigi osade vaates');
-  assert.ok(home.includes('rows.invites.length ? "invites" : "processes"'), 'ootel kutse korral avaneb laud kutsete osas');
+  assert.ok(home.includes('startWide={!openPart}'), 'laud avaneb kõigi osade vaates, kui tee osa ei nimeta');
+  assert.ok(!home.includes('supervision.common.loading")}</p>'), 'laud ei oota päringut: iga osa näitab oma laadimist ise');
   assert.ok(read(PAGES.outcomeList).includes('initialPart="outcomes"'), 'pakkide tee avab sama laua pakkide osas');
 
   const outcome = read(PAGES.outcome);

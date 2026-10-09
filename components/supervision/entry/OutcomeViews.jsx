@@ -23,7 +23,6 @@
 import StepPanel from "@/components/stage/StepPanel";
 
 import PrivacyBadge from "../PrivacyBadge";
-import { Chip } from "./EntryBits";
 import styles from "./entry.module.css";
 
 /** `note`: mis pakist puudub (nt kokkuvõtteid ei ole). `back`: tee pakkide loendisse. */
@@ -41,13 +40,16 @@ export function PackLead({ t, title, note, back }) {
   );
 }
 
-/** `part`: { label, chip, meta, body } (vt `packParts`). */
+/**
+ * `part`: { label, meta, body } (vt `packParts`). Vaate nime paneelil ei korrata:
+ * see on kiirmenüüs ja kõigi osade vaate plaadil. Paneelil on kinnitamise kuupäev
+ * ja privaatsusmärk.
+ */
 export function PackTextView({ part }) {
   return (
     <StepPanel title={part.label}>
       <div className={styles.stack}>
         <p className={styles.line}>
-          <Chip>{part.chip}</Chip>
           {part.meta ? <span className={styles.time}>{part.meta}</span> : null}
           <PrivacyBadge scope="private" />
         </p>

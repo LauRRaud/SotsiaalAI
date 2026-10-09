@@ -158,6 +158,11 @@
   color: var(--text-dim);
   font-size: var(--fs-small, 0.875rem);
 }
+/* Välja viga seisab välja all, sama väikeses kirjas kui vihje. */
+.fieldError {
+  color: var(--status-error, #eb9a76);
+  font-size: var(--fs-small, 0.875rem);
+}
 .input {
   width: 100%;
   min-width: 0;

@@ -229,7 +229,6 @@ export function packParts(outcome, { t, locale }) {
       kind: "contract",
       label: t("supervision.outcome.views.contract.title"),
       short: t("supervision.outcome.views.contract.short"),
-      chip: t("supervision.outcome.contract"),
       meta: "",
       body: contract
     });
@@ -253,7 +252,6 @@ export function packParts(outcome, { t, locale }) {
       kind: final ? "final" : "meeting",
       label: t(`supervision.outcome.views.${group}.title`, vars),
       short: t(`supervision.outcome.views.${group}.short`, vars),
-      chip: t(final ? "supervision.summaries.final" : "supervision.summaries.meeting"),
       meta,
       body: row.body
     });
