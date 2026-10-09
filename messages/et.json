@@ -12274,7 +12274,11 @@
       "obstacle_handled": "Hooldusjuht on teate juba üle vaadanud. Kui midagi muutus, teata uuesti.",
       "obstacle_withdrawn": "Töötaja võttis teate tagasi.",
       "obstacle_absence_invalid": "Puudumise saab siit märkida ainult teate „ei saa täna töötada” juurest.",
-      "obstacle_busy": "Teade oli juba saatmisel. Vaata, kas see on kirjas, ja proovi vajadusel uuesti."
+      "obstacle_busy": "Teade oli juba saatmisel. Vaata, kas see on kirjas, ja proovi vajadusel uuesti.",
+      "work_nature_kinds_required": "Vali vähemalt üks töö iseloomu liik.",
+      "work_nature_reason_required": "Kirjuta, miks töö siin selline on.",
+      "work_nature_review_past": "Ülevaatuse päev ei saa olla minevikus.",
+      "work_nature_not_found": "Sellel kliendil ei ole kehtivat märget."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -12761,7 +12765,9 @@
         "in": "{count} päeva pärast",
         "yesterday": "eile",
         "ago": "{count} päeva tagasi"
-      }
+      },
+      "work_nature_due_title": "Töö iseloomu märked, mis vajavad ülevaatust",
+      "work_nature_due_empty": "Ühegi märke ülevaatus ei ole 30 päeva sees."
     },
     "visit": {
       "title": "Mida tegid",
@@ -13032,6 +13038,30 @@
       "absent_short": "puudub",
       "empty": "Sellel nädalal plaanitud käike ei ole.",
       "legend": "Arv on käikude arv sel päeval. „puudub” tähendab, et töötajal on puudumine märgitud; kui lahtris on siis arv, on see tema katmata käikude arv. „lahti” on käigud, millel ei ole tegijat või mille tegija puudub."
+    },
+    "work_nature": {
+      "title": "Töö iseloom",
+      "none": "Märget ei ole. Märgi, kui töö on siin raske, et selliste käikude jaotust töötajate vahel saaks jälgida.",
+      "kinds": {
+        "PHYSICAL": "füüsiliselt raske",
+        "MENTAL": "vaimselt kurnav",
+        "ENVIRONMENT": "raske kodukeskkond",
+        "PAIR_ONLY": "ainult kahekesi"
+      },
+      "kinds_label": "Milline on töö siin",
+      "kinds_hint": "Märge kirjeldab tööd, mitte inimest. Vali kõik, mis sobivad.",
+      "reason_label": "Miks",
+      "reason_hint": "Näiteks: tõstmine voodist ratastooli ilma tõstukita; ahiküte ja vesi kaevust.",
+      "review_label": "Vaata üle hiljemalt",
+      "review_on": "Ülevaatus {date}",
+      "set_by": "märkis {name}",
+      "add": "Lisa märge",
+      "edit": "Muuda märget",
+      "save": "Salvesta",
+      "cancel": "Loobu",
+      "clear": "Võta märge maha",
+      "heavy_visits": "raske töö märgiga kliendi käike {count}",
+      "worker_option": "{name} (käike 28 päeva jooksul: {count}; raske töö märgiga klientide juures kokku: {heavy})"
     }
   },
   "stage": {

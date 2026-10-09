@@ -12274,7 +12274,11 @@
       "obstacle_handled": "The coordinator has already looked at the notice. If something changed, report again.",
       "obstacle_withdrawn": "The worker withdrew the notice.",
       "obstacle_absence_invalid": "An absence can be marked here only from the notice “cannot work today”.",
-      "obstacle_busy": "The notice was already being sent. Check whether it is recorded and try again if needed."
+      "obstacle_busy": "The notice was already being sent. Check whether it is recorded and try again if needed.",
+      "work_nature_kinds_required": "Choose at least one kind.",
+      "work_nature_reason_required": "Write why the work here is like this.",
+      "work_nature_review_past": "The review day cannot be in the past.",
+      "work_nature_not_found": "This client has no mark in force."
     },
     "incidents": {
       "title": "Incident register",
@@ -12761,7 +12765,9 @@
         "in": "in {count} days",
         "yesterday": "yesterday",
         "ago": "{count} days ago"
-      }
+      },
+      "work_nature_due_title": "Work marks that need a review",
+      "work_nature_due_empty": "No mark is due for review within 30 days."
     },
     "visit": {
       "title": "What you did",
@@ -13032,6 +13038,30 @@
       "absent_short": "absent",
       "empty": "No visits are planned for this week.",
       "legend": "The number is the count of visits on that day. “absent” means an absence is marked for the worker; a number in that cell is the count of their uncovered visits. “open” are visits with no worker or whose worker is absent."
+    },
+    "work_nature": {
+      "title": "Nature of the work",
+      "none": "No mark. Add one when the work here is heavy, so that the sharing of such visits between workers can be followed.",
+      "kinds": {
+        "PHYSICAL": "physically heavy",
+        "MENTAL": "mentally draining",
+        "ENVIRONMENT": "hard home environment",
+        "PAIR_ONLY": "only in pairs"
+      },
+      "kinds_label": "What the work is like here",
+      "kinds_hint": "The mark describes the work, not the person. Choose all that apply.",
+      "reason_label": "Why",
+      "reason_hint": "For example: lifting from bed to wheelchair without a hoist; stove heating and water from a well.",
+      "review_label": "Review no later than",
+      "review_on": "Review {date}",
+      "set_by": "marked by {name}",
+      "add": "Add a mark",
+      "edit": "Change the mark",
+      "save": "Save",
+      "cancel": "Cancel",
+      "clear": "Remove the mark",
+      "heavy_visits": "visits to clients marked as heavy work {count}",
+      "worker_option": "{name} (visits in 28 days: {count}; at clients marked as heavy work in total: {heavy})"
     }
   },
   "stage": {

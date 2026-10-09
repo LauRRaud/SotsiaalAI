@@ -149,6 +149,7 @@ export default function HomeCareMonth({ context, initial }) {
                   {" "}
                   {[
                     row.visits ? t("home_care.month.worker_line", { visits: row.visits, amount: minutesLabel(t, row.minutes) }) : null,
+                    row.heavy ? t("home_care.work_nature.heavy_visits", { count: row.heavy }) : null,
                     row.companionVisits
                       ? t("home_care.month.worker_companion", { visits: row.companionVisits, amount: minutesLabel(t, row.companionMinutes) })
                       : null

@@ -8233,6 +8233,7 @@ model CareClient {
   decisions          CareDecision[]
   visitSlots         CareVisitSlot[]
   visitChanges       CareVisitChange[]
+  workNatures        CareWorkNature[]
 
   @@unique([organizationId, internalCode])
   @@index([organizationId, status, displayName])
@@ -8489,6 +8490,32 @@ model CareVisitChange {
   @@index([organizationId, day])
   @@index([clientId, day])
   @@index([workerMembershipId, day])
+}
+
+/// Töö iseloom kliendi juures (kiht 3, K3-g, kava II.6.3): märge kirjeldab tööd, mitte
+/// inimest. Rida ei muudeta ega kustutata: uus märge lõpetab eelmise (`endedAt`).
+/// Kliendil on korraga üks kehtiv märge (osaline unikaalindeks migratsioonis).
+model CareWorkNature {
+  id             String   @id @default(cuid())
+  organizationId String
+  clientId       String
+  /// PHYSICAL | MENTAL | ENVIRONMENT | PAIR_ONLY (`CareWorkNatureKind`), vähemalt üks.
+  kinds          String[]
+  reason         String
+  /// Ülevaatuse päev kujul AAAA-KK-PP või NULL.
+  reviewOn       String?
+
+  createdByMembershipId String?
+  createdByName         String?
+  createdAt             DateTime  @default(now())
+  endedAt               DateTime?
+  endedByMembershipId   String?
+  endedByName           String?
+
+  client CareClient @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId, endedAt])
+  @@index([clientId, createdAt])
 }
 
 /// Töötaja puudumine (kiht 3, K3-c): päevast päevani (AAAA-KK-PP, mõlemad kaasa

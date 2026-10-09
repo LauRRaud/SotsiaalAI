@@ -943,6 +943,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
       visitChanges: [{ id: 'vc1', slotId: 'vs1', clientId: 'c1', workerMembershipId: null, createdByMembershipId: 'm1' }],
       absences: [{ id: 'ab1', membershipId: 'm1', createdByMembershipId: 'm1' }],
       obstacles: [{ id: 'ob1', membershipId: 'm1', handledByMembershipId: null }],
+      workNatures: [{ id: 'wn1', clientId: 'c1', createdByMembershipId: 'm1', endedByMembershipId: null }],
       auditEvents: [{ id: 'x1', actorMembershipId: 'm1' }]
     };
     doc.totals = Object.fromEntries(HOME_CARE_EXPORT_KEYS.map((key) => [key, doc[key].length]));
@@ -985,6 +986,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
     'visitChanges',
     'absences',
     'obstacles',
+    'workNatures',
     'auditEvents',
     'people'
   ]);
@@ -1003,7 +1005,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
      failis on sama kogu puudumine viga. */
   const older = make();
   older.version = 1;
-  for (const key of ['clientStatusChanges', 'activities', 'carePlans', 'carePlanLines', 'decisions', 'entryActivities', 'visitSlots', 'visitChanges', 'absences', 'obstacles']) {
+  for (const key of ['clientStatusChanges', 'activities', 'carePlans', 'carePlanLines', 'decisions', 'entryActivities', 'visitSlots', 'visitChanges', 'absences', 'obstacles', 'workNatures']) {
     delete older[key];
     delete older.totals[key];
   }
@@ -1011,7 +1013,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 2 tunneb seisu ajalugu, aga mitte veel toimingute kataloogi. */
   const second = make();
   second.version = 2;
-  for (const key of ['activities', 'carePlans', 'carePlanLines', 'decisions', 'entryActivities', 'visitSlots', 'visitChanges', 'absences', 'obstacles']) {
+  for (const key of ['activities', 'carePlans', 'carePlanLines', 'decisions', 'entryActivities', 'visitSlots', 'visitChanges', 'absences', 'obstacles', 'workNatures']) {
     delete second[key];
     delete second.totals[key];
   }
@@ -1019,7 +1021,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 3 tunneb kataloogi, aga mitte veel hoolduskavasid. */
   const third = make();
   third.version = 3;
-  for (const key of ['carePlans', 'carePlanLines', 'decisions', 'entryActivities', 'visitSlots', 'visitChanges', 'absences', 'obstacles']) {
+  for (const key of ['carePlans', 'carePlanLines', 'decisions', 'entryActivities', 'visitSlots', 'visitChanges', 'absences', 'obstacles', 'workNatures']) {
     delete third[key];
     delete third.totals[key];
   }
@@ -1027,7 +1029,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 4 tunneb hoolduskavasid, aga mitte veel otsuseid. */
   const fourth = make();
   fourth.version = 4;
-  for (const key of ['decisions', 'entryActivities', 'visitSlots', 'visitChanges', 'absences', 'obstacles']) {
+  for (const key of ['decisions', 'entryActivities', 'visitSlots', 'visitChanges', 'absences', 'obstacles', 'workNatures']) {
     delete fourth[key];
     delete fourth.totals[key];
   }
@@ -1035,7 +1037,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 5 tunneb otsuseid, aga mitte veel käigul tehtud toiminguid. */
   const fifth = make();
   fifth.version = 5;
-  for (const key of ['entryActivities', 'visitSlots', 'visitChanges', 'absences', 'obstacles']) {
+  for (const key of ['entryActivities', 'visitSlots', 'visitChanges', 'absences', 'obstacles', 'workNatures']) {
     delete fifth[key];
     delete fifth.totals[key];
   }
@@ -1043,7 +1045,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 6 tunneb tehtud toiminguid, aga mitte veel käigumustrit. */
   const sixth = make();
   sixth.version = 6;
-  for (const key of ['visitSlots', 'visitChanges', 'absences', 'obstacles']) {
+  for (const key of ['visitSlots', 'visitChanges', 'absences', 'obstacles', 'workNatures']) {
     delete sixth[key];
     delete sixth.totals[key];
   }
@@ -1051,7 +1053,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 7 tunneb käigumustrit, aga mitte veel ühe päeva erandeid. */
   const seventh = make();
   seventh.version = 7;
-  for (const key of ['visitChanges', 'absences', 'obstacles']) {
+  for (const key of ['visitChanges', 'absences', 'obstacles', 'workNatures']) {
     delete seventh[key];
     delete seventh.totals[key];
   }
@@ -1059,7 +1061,7 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 8 tunneb ühe päeva erandeid, aga mitte veel puudumisi. */
   const eighth = make();
   eighth.version = 8;
-  for (const key of ['absences', 'obstacles']) {
+  for (const key of ['absences', 'obstacles', 'workNatures']) {
     delete eighth[key];
     delete eighth.totals[key];
   }
@@ -1067,9 +1069,20 @@ test('täieliku väljavõtte kontroll: kuju, koguarvud, kordumatud ID-d ja viite
   /* Versioon 9 tunneb puudumisi, aga mitte veel takistuse teateid. */
   const ninth = make();
   ninth.version = 9;
-  delete ninth.obstacles;
-  delete ninth.totals.obstacles;
+  for (const key of ['obstacles', 'workNatures']) {
+    delete ninth[key];
+    delete ninth.totals[key];
+  }
   assert.deepEqual([checkHomeCareExport(ninth).ok, checkHomeCareExport(ninth).problems], [true, []]);
+  /* Versioon 10 tunneb takistuse teateid, aga mitte veel töö iseloomu märkeid. */
+  const tenth = make();
+  tenth.version = 10;
+  delete tenth.workNatures;
+  delete tenth.totals.workNatures;
+  assert.deepEqual([checkHomeCareExport(tenth).ok, checkHomeCareExport(tenth).problems], [true, []]);
+  /* Uue versiooni failis on märgete kogu puudumine viga; märge, mis viitab olematule kliendile, samuti. */
+  assert.match(problems((doc) => { delete doc.workNatures; }).join(' '), /workNatures/);
+  assert.match(problems((doc) => { doc.workNatures[0].clientId = 'olematu'; }).join(' '), /workNatures/);
   /* Uue versiooni failis on puudumiste ja takistuste kogu puudumine viga. */
   assert.match(problems((doc) => { delete doc.absences; }).join(' '), /absences/);
   assert.match(problems((doc) => { delete doc.obstacles; }).join(' '), /obstacles/);
