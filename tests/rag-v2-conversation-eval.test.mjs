@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
-import { checkTurn, turnPassages, validateCatalogue } from '../lib/rag-v2/pilot/conversation-eval.js';
+import { checkTurn, turnPassages, validateCatalogue, SCENARIO_ROLES } from '../lib/rag-v2/pilot/conversation-eval.js';
+import { USER_ROLES } from '../lib/rag-v2/pilot/contracts.js';
 import { DIALOGUE_LIMITS } from '../lib/rag-v2/pilot/dialogue.js';
 import { loneGreeting } from '../lib/rag-v2/pilot/greeting.js';
 
@@ -562,4 +563,13 @@ test('ADR-062: the provision-date patterns fail the 30.09 answers and pass an an
   for (const text of ['Arvesse läheb 480 eurot. Piirmäär kehtib alates 15.09.2026, määrust rakendatakse alates 01.05.2026.', 'Arvesse läheb 480 eurot alates 11. maist 2026.', 'Arvesse läheb 480 eurot alates 31.05.2026.']) {
     assert.equal(failed('provision-date-kuusalu', text).length, 1, text);
   }
+});
+
+// ADR-107 left open that the runner could not set the user's role, so no specialist's or provider's conversation could be
+// replayed. A scenario may name one of the chat service's roles; the runner sends it with every turn.
+test('a scenario may name the role of its user: one of the roles of the chat service or none', () => {
+  assert.deepEqual(SCENARIO_ROLES, USER_ROLES);
+  const scenario = role => ({ scenarios: [{ id: 'x', ...(role === undefined ? {} : { role }), turns: [{ mode: 'new', text: 'a' }] }] });
+  for (const role of [undefined, ...USER_ROLES]) assert.deepEqual(validateCatalogue(scenario(role)), [], String(role));
+  for (const role of ['admin', 'SPECIALIST', '', null, 7]) assert.deepEqual(validateCatalogue(scenario(role)), [`x: role ${role}`], String(role));
 });
