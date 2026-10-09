@@ -1,0 +1,115 @@
+/* Teenusekaardi kontaktipaneeli (kaardi popupi) sisu paigutus.
+ *
+ * MIKS SIIN, MITTE ÜLDFAILIS. Leafleti enda CSS laaditakse brauseris hiljem ja
+ * on kihistamata; platvormi üldfailid on kihis. Kihistamata reegel võidab iga
+ * kihis oleva reegli, nii et Leafleti „.leaflet-popup-content p { margin: 17px 0 }”
+ * ja tema kirjatüüp kehtisid paneelis hoolimata sellest, mida workspace.css
+ * ütles: iga rea ümber oli 35 px tühja ja ühe kontakti paneel oli üle 1200 px
+ * kõrge (kujundusaudit K13). Moodul on samuti kihistamata ja täpsem, seega
+ * võidab siin.
+ *
+ * Paneeli sisu ehitab ServiceMapLeaflet.jsx käsitsi (DOM, mitte React), seepärast
+ * on klassinimed siin `:global`; kohalik on ainult kest, mille sees need kehtivad.
+ */
+
+/* Tekst on lehe enda väikese teksti mõõdus (sama mis juhtriba lahtritel).
+   Lõigud pärisid muidu platvormi põhiteksti mõõdu (17,9 px) ja iga rida oli
+   34 px kõrge. */
+.shell :global(.leaflet-popup-content) {
+  font-family: var(--font-ui);
+  font-size: var(--fs-small);
+  line-height: 1.4;
+}
+
+.shell :global(.leaflet-popup-content) p,
+.shell :global(.leaflet-popup-content) h3,
+.shell :global(.leaflet-popup-content) h4 {
+  margin: 0;
+}
+
+.shell :global(.leaflet-popup-content) p {
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* Rühma paneelis on korraga üks vaade: kontaktide loend VÕI üks kontakt. */
+.shell :global(.service-map-popup__group-list),
+.shell :global(.service-map-popup__contact-detail),
+.shell :global(.service-map-popup__access-path),
+.shell :global(.service-map-popup__services),
+.shell :global(.service-map-popup__service) {
+  display: grid;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.shell :global(.service-map-popup__group-list[hidden]) {
+  display: none;
+}
+
+/* Rühma loendi rida on madal: nimi ja roll nupul, telefon ja e-post ühel real. */
+.shell :global(.service-map-popup__contact) {
+  padding: 0.35rem 0 0.4rem;
+}
+
+.shell :global(.service-map-popup__contact-meta) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.75rem;
+}
+
+.shell :global(.service-map-popup__contact-back) {
+  justify-self: start;
+  margin: 0;
+  padding: 0.15rem 0;
+  border: 0;
+  background: none;
+  color: #f5f1e8;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  cursor: pointer;
+}
+
+.shell :global(.service-map-popup__meta-link) {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: #f5f1e8;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.shell :global(.service-map-popup__access-path),
+.shell :global(.service-map-popup__services) {
+  padding-top: 0.6rem;
+  border-top: 1px solid rgba(245, 241, 232, 0.11);
+}
+
+.shell :global(.leaflet-popup-content) :global(.service-map-popup__access-path-title),
+.shell :global(.leaflet-popup-content) :global(.service-map-popup__services-title),
+.shell :global(.leaflet-popup-content) :global(.service-map-popup__service-title) {
+  color: #f5f1e8;
+  font-size: var(--fs-small);
+  font-weight: 650;
+  line-height: 1.25;
+}
+
+.shell :global(.service-map-popup__access-path-meta) {
+  display: grid;
+  gap: 0.1rem;
+}
+
+.shell :global(.leaflet-popup-content) :global(.service-map-popup__access-path-note),
+.shell :global(.leaflet-popup-content) :global(.service-map-popup__service-meta) {
+  color: #a9a195;
+  font-size: var(--fs-micro);
+}
+
+.shell :global(.service-map-popup__availability) {
+  margin-top: 0;
+}
+
+.shell :global(.service-map-popup__availability) p + p {
+  margin-top: 0.25rem;
+}

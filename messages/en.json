@@ -8492,13 +8492,46 @@
       "notDecision": "This information is not an official assessment, decision, or service assignment.",
       "yes": "Yes",
       "no": "No",
-      "unknownShort": "Unknown"
+      "unknownShort": "Unknown",
+      "firstSteps": {
+        "CONTACT_KOV": "Contact the local government",
+        "CONTACT_PROVIDER": "Contact the service provider",
+        "CREATE_PRE_INQUIRY": "Write a pre-inquiry",
+        "OPEN_SERVICE_MAP": "Find a contact on the Service map",
+        "ANALYZE_DOCUMENT": "Review the document",
+        "CHECK_SOURCE": "Check the official source",
+        "CONTACT_HEALTH_PROVIDER": "Contact the health care provider",
+        "UNKNOWN": "Unknown"
+      },
+      "accessTypes": {
+        "DIRECT_CONTACT": "Direct contact",
+        "KOV_ASSESSMENT": "Local government assessment",
+        "KOV_DECISION": "Local government decision",
+        "PROVIDER_CONTACT": "Contacting the service provider",
+        "DOCUMENT_REVIEW": "Document review",
+        "HEALTH_CONTACT_FIRST": "Health contact first",
+        "UNKNOWN": "Unknown"
+      },
+      "decisionByValues": {
+        "KOV": "Local government",
+        "SERVICE_PROVIDER": "Service provider",
+        "HEALTHCARE_PROVIDER": "Health care provider",
+        "OTHER_AUTHORITY": "Another authority",
+        "UNKNOWN": "Unknown"
+      },
+      "sourceStatuses": {
+        "CONFIRMED": "Confirmed",
+        "PARTIAL": "Partly confirmed",
+        "NEEDS_CHECK": "Needs checking",
+        "UNKNOWN": "Unknown"
+      }
     },
     "healthContact": {
       "title": "Health contact",
       "description": "This contact may be suitable for first clarification of a health-related question.",
       "notMedicalPlatform": "Sotsiaal.pro does not provide medical assessment, diagnosis, or treatment advice."
-    }
+    },
+    "contactCheckedAt": "Contact checked"
   },
   "wellbeing": {
     "checkpoint": {

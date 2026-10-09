@@ -1262,6 +1262,9 @@
   overflow: hidden;
   border: 1px solid var(--glass-cell-border);
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  /* Kontaktipaneeli kõrgus arvutatakse SELLE ala kõrgusest (`cqh` allpool),
+     mitte akna kõrgusest: 640 px aknas on kaardiala umbes 350 px. */
+  container-type: size;
 }
 .service-map-canvas .service-map-leaflet-shell {
   position: relative;
@@ -1295,6 +1298,12 @@
   border: 1px solid var(--glass-border-soft);
   font-size: var(--fs-micro);
   color: var(--text-soft);
+}
+/* Legend on kaardikihtide kohal ja kattis avatud kontaktipaneeli alumise osa
+   koos selle nuppudega (kujundusaudit K13). Kuni paneel on lahti, legendi ei
+   näidata: paneeli lugedes ei ole seda vaja. */
+.service-map-leaflet-shell:has(.leaflet-popup) .service-map-leaflet__legend {
+  visibility: hidden;
 }
 .service-map-leaflet__legend-item {
   display: inline-flex;
@@ -1448,17 +1457,29 @@
   backdrop-filter: blur(14px) saturate(0.86);
 }
 .service-map-canvas .leaflet-popup-content {
-  margin: 0.9rem 1rem 0.85rem !important;
+  margin: 0.65rem 0.95rem 0.65rem !important;
   max-height: min(65vh, 32rem);
+  /* Paneel peab mahtuma kaardialasse, muidu lõikab ala serv ta ära ja sisu
+     ega nuppudeni ei pääse. Maha läheb paneeli enda ülemine ja alumine serv
+     (1.3rem, vt `margin` siin ülal) ning 46 px: raam (4), nool (20), vaba äär
+     mõlemal pool (2 × `POPUP_EDGE_PADDING` failis ServiceMapLeaflet.jsx) ja
+     2 px varu. Esimene rida jääb brauserile, mis `cqh` ühikut ei tunne. */
+  max-height: min(65vh, 32rem, calc(100cqh - 1.3rem - 46px));
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-gutter: stable;
 }
+/* Laius on seotud kaardiala laiusega (`cqw`), mitte akna laiusega: telefonis
+   on kaardiala aknast kitsam ja paneel ulatus üle selle serva. 3.4rem katab
+   paneeli küljeservad, raami ja vaba ääre mõlemal pool. Esimene rida jääb
+   brauserile, mis `cqw` ühikut ei tunne. */
 .service-map-canvas .service-map-leaflet__popup--group .leaflet-popup-content {
   width: min(20rem, calc(100vw - 3rem)) !important;
+  width: min(20rem, calc(100cqw - 3.4rem)) !important;
 }
 .service-map-canvas .service-map-leaflet__popup--single .leaflet-popup-content {
   width: min(18.5rem, calc(100vw - 3rem)) !important;
+  width: min(18.5rem, calc(100cqw - 3.4rem)) !important;
 }
 .service-map-canvas .leaflet-popup-tip {
   background: rgba(18, 20, 19, 0.94) !important;

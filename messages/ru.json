@@ -8492,13 +8492,46 @@
       "notDecision": "Эта информация не является официальной оценкой, решением или назначением услуги.",
       "yes": "Да",
       "no": "Нет",
-      "unknownShort": "Неизвестно"
+      "unknownShort": "Неизвестно",
+      "firstSteps": {
+        "CONTACT_KOV": "Свяжитесь с местным самоуправлением",
+        "CONTACT_PROVIDER": "Свяжитесь с поставщиком услуги",
+        "CREATE_PRE_INQUIRY": "Составьте предварительное обращение",
+        "OPEN_SERVICE_MAP": "Найдите контакт на Карте услуг",
+        "ANALYZE_DOCUMENT": "Проверьте документ",
+        "CHECK_SOURCE": "Проверьте официальный источник",
+        "CONTACT_HEALTH_PROVIDER": "Свяжитесь с поставщиком медицинских услуг",
+        "UNKNOWN": "Неизвестно"
+      },
+      "accessTypes": {
+        "DIRECT_CONTACT": "Прямое обращение",
+        "KOV_ASSESSMENT": "Оценка местного самоуправления",
+        "KOV_DECISION": "Решение местного самоуправления",
+        "PROVIDER_CONTACT": "Обращение к поставщику услуги",
+        "DOCUMENT_REVIEW": "Рассмотрение документа",
+        "HEALTH_CONTACT_FIRST": "Сначала медицинский контакт",
+        "UNKNOWN": "Неизвестно"
+      },
+      "decisionByValues": {
+        "KOV": "Местное самоуправление",
+        "SERVICE_PROVIDER": "Поставщик услуги",
+        "HEALTHCARE_PROVIDER": "Поставщик медицинских услуг",
+        "OTHER_AUTHORITY": "Другое учреждение",
+        "UNKNOWN": "Неизвестно"
+      },
+      "sourceStatuses": {
+        "CONFIRMED": "Подтверждён",
+        "PARTIAL": "Подтверждён частично",
+        "NEEDS_CHECK": "Требует проверки",
+        "UNKNOWN": "Неизвестно"
+      }
     },
     "healthContact": {
       "title": "Медицинский контакт",
       "description": "Этот контакт может подойти для первичного уточнения вопроса, связанного со здоровьем.",
       "notMedicalPlatform": "Sotsiaal.pro не дает медицинскую оценку, диагноз или рекомендации по лечению."
-    }
+    },
+    "contactCheckedAt": "Контакт проверен"
   },
   "wellbeing": {
     "checkpoint": {
