@@ -463,7 +463,7 @@ test('M4-C real DB: an expired head with an answer goes on from its record, one 
 
 // State v5 through the service: the real place check and scope of the retrieval adapter in one conversation, a planned
 // answer per turn. Each turn checks that both search lanes and the saved state read one region for the person searched.
-async function regionConversation(t) {
+async function regionConversation(t, { clarifications = [], requests = null, select = false } = {}) {
   const user = await db.user.create({ data: { email: `m4c-${randomUUID()}@example.invalid` } });
   const conv = await db.conversation.create({ data: { userId: user.id, role: 'CLIENT', metadata: { m4: true }, expiresAt: null } });
   const config = { id: randomUUID(), configHash: randomUUID(), tenant: 'm4c-test', mode: 'real', users: [user.id], documents: { doc: 'v1' },
@@ -485,6 +485,9 @@ async function regionConversation(t) {
       const { scope, knowledgeRegion } = await runtime.searchScope(c, query, directory, assist?.variants || []);
       scopes.push({ person: scope.person ?? query.person, region: knowledgeRegion.region ?? null, state: scope.state,
         own: scope.region ?? null, source: knowledgeRegion.state });
+      // The selection, as the real search asks for it: after the vectors have come, once the candidates are fused (only
+      // where a test asks for it).
+      if (select) { await vector; await assist?.vectors; await assist?.rerank?.([{ id: 'P1', title: 'Source', text: 'Source' }]); }
       // As the retrieval adapter saves it: the turn's source scope with the catalogue (the next turn's follow-up reads it).
       return { ...packet, query_id: randomUUID(), record_context: { entries: [], scope: knowledgeRegion } };
     } };
@@ -492,8 +495,10 @@ async function regionConversation(t) {
   const service = new PilotService({ store: new PilotStore(db), readConfig: async () => config, adapters, call: async ({ stage, body }) => {
     const usage = { input: 20, output: stage === 'embedding' ? 0 : 10 };
     if (stage === 'embedding') return { value: Array.isArray(body.input) ? body.input.map(() => unit) : unit, usage, requestId: 'synthetic' };
+    if (stage === 'plan' || stage === 'rerank') requests?.push({ stage, input: JSON.parse(body.input[0].content) });
     if (stage === 'plan') return { value: plans.shift(), usage, requestId: 'synthetic' };
-    return { value: { kind: 'grounded', blocks: [{ text: 'Synthetic point', factual: true, refs: ['S1'] }], limitations: [], clarification: null,
+    if (stage === 'rerank') return { value: { useful: ['P1'] }, usage, requestId: 'synthetic' };
+    return { value: { kind: 'grounded', blocks: [{ text: 'Synthetic point', factual: true, refs: ['S1'] }], limitations: [], clarification: clarifications.shift() ?? null,
       dialogue_state: { new_facts: [], superseded: [], needs: [], unknowns: [], periods: [], language_hint: 'et' } }, usage, requestId: 'synthetic' };
   } });
   const turn = async (question, contextMode, plan) => {
@@ -865,4 +870,36 @@ test('ADR-094 real DB: a plan without any time limit leaves the conversation\'s 
   const conversation = await db.conversation.findUnique({ where: { id: f.conv.id } });
   assert.deepEqual([conversation.expiresAt, (await f.row(first.id)).expiresAt], [null, null]);
   assert(conversation.lastActivityAt.getTime() > Date.now() - 60000);
+});
+
+// ADR-119: through the service and the database. The plan and the selection of a short reply are given the question
+// the assistant asked at the end of the answer before it; a longer message, and a message after an answer that asked
+// nothing, are planned as before.
+test('dialogue state DB (ADR-119): a short reply is planned and selected with the assistant\'s own question; a longer message is not', async t => {
+  const requests = [], question = 'Kas küsid hooldajatoetuse või hooldusteenuse kohta?';
+  const turn = await regionConversation(t, { clarifications: [question, null, null], requests, select: true });
+  const of = (stage, index) => requests.filter(request => request.stage === stage)[index].input;
+  const first = await turn('Elan Kose vallas. Kas hooldamise eest saab abi?', 'new', { queries: ['hooldajatoetus Kose vald'], person: 'user',
+    places: [{ turn: 1, quote: 'Elan Kose vallas', name: 'Kose vald', person: 'user', relation: 'lives' }] });
+  // The first message follows no answer.
+  assert.deepEqual(['assistant_question' in of('plan', 0), 'assistant_question' in of('rerank', 0), first.assist.assistantQuestion ?? null], [false, false, null]);
+  // The reply to the question: both calls are given it, and the turn's record says so.
+  const reply = await turn('toetuse kohta', 'same', { queries: ['hooldajatoetuse tingimused'], person: 'user', places: [] });
+  assert.deepEqual([of('plan', 1).assistant_question, of('rerank', 1).assistant_question, reply.assist.assistantQuestion], [question, question, true]);
+  assert.deepEqual(of('plan', 1).messages, ['Elan Kose vallas. Kas hooldamise eest saab abi?', 'toetuse kohta']);
+  // The question is in no search text and no query: the search is made from the user's words and the plan's.
+  assert.doesNotMatch([reply.query.text, ...reply.assist.queries].join(' | '), /Kas küsid/u);
+  assert.deepEqual(reply.people.user, ['kose_vald', 'reported']);
+  // The answer to the reply asked nothing: the next short message is planned as before.
+  const next = await turn('Ja kui palju?', 'same', { queries: ['hooldajatoetuse suurus'], person: 'user', places: [] });
+  assert.deepEqual(['assistant_question' in of('plan', 2), 'assistant_question' in of('rerank', 2), next.assist.assistantQuestion ?? null], [false, false, null]);
+});
+
+test('dialogue state DB (ADR-119): a long message after a question is planned without it', async t => {
+  const requests = [];
+  const turn = await regionConversation(t, { clarifications: ['Kas elad Kose vallas?'], requests, select: true });
+  await turn('Kas hooldamise eest saab abi?', 'new', { queries: ['hooldajatoetus'], person: 'user', places: [] });
+  const long = await turn('Tegelikult tahan teada hoopis seda, kuidas taotleda puudega lapse hooldajale toetust ja kes selle üle otsustab.', 'same', { queries: ['puudega lapse hooldajatoetuse taotlemine'], person: 'user', places: [] });
+  assert.deepEqual(requests.filter(request => request.stage !== 'embedding').slice(-2).map(request => 'assistant_question' in request.input), [false, false]);
+  assert.equal('assistantQuestion' in long.assist, false);
 });

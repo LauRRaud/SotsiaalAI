@@ -266,10 +266,10 @@ test('the adapter builds the rows once for a set of municipalities; the instruct
   assert.equal((await loadRegions()).length, directory.length);
   assert.deepEqual([built.length, built.filter(row => row.preferred).length], [rows.length, LOCATION_ALIAS_ENTRIES.length]);
   assert.ok(built.some(row => row.name === 'Tabasalu' && row.region === 'harku_vald' && row.preferred && row.kind === 'a'));
-  // search-assist-9: the plan's line on settlements (its last one until search-assist-10 and -11 added theirs after it).
+  // search-assist-9: the plan's line on settlements (its last one until search-assist-10, -11 and -13 added theirs after it).
   const plan = queryPlanRequest({ model: 'm', searchAssist: SEARCH_ASSIST_VERSION }, ['küsimus'], 'et').instructions;
-  assert.equal(SEARCH_ASSIST_VERSION, 'rag-v2/search-assist-12');
-  assert.equal(plan.split('\n').at(-3), PLAN_SETTLEMENT_INSTRUCTIONS);
+  assert.equal(SEARCH_ASSIST_VERSION, 'rag-v2/search-assist-13');
+  assert.equal(plan.split('\n').at(-4), PLAN_SETTLEMENT_INSTRUCTIONS);
   for (const phrase of ['A village, a small town (alevik) or a town district is a place like a municipality', 'also when the message is nothing but that name']) assert.ok(PLAN_SETTLEMENT_INSTRUCTIONS.includes(phrase), phrase);
   // Dialogue prompt 33: the record instructions end with the rule on a named place; a turn without the catalogue has none.
   const body = dialogueRequest({ model: 'm', maxOutputTokens: 100, reasoning: 'low', recordCatalogue: RECORD_RETRIEVAL_VERSION }, 'Küsimus?', { sources: {}, evidence: [] }, 'et', { userTurns: [] });

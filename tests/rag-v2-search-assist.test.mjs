@@ -90,13 +90,13 @@ test('search-assist-2: the plan names the message language, and the answer follo
   // A plan approved for search-assist-1 keeps the interface language.
   assert.equal(planLanguage({ searchAssist: 'rag-v2/search-assist-1' }, { queries: [], language: 'en' }), null);
   assert.equal(planLanguage({ searchAssist: 'rag-v2/search-assist-2' }, { queries: [], language: 'en' }), 'en');
-  assert.deepEqual(SEARCH_ASSIST_VERSIONS, ['rag-v2/search-assist-1', 'rag-v2/search-assist-2', 'rag-v2/search-assist-3', 'rag-v2/search-assist-4', 'rag-v2/search-assist-5', 'rag-v2/search-assist-6', 'rag-v2/search-assist-7', 'rag-v2/search-assist-8', 'rag-v2/search-assist-9', 'rag-v2/search-assist-10', 'rag-v2/search-assist-11', 'rag-v2/search-assist-12']);
+  assert.deepEqual(SEARCH_ASSIST_VERSIONS, ['rag-v2/search-assist-1', 'rag-v2/search-assist-2', 'rag-v2/search-assist-3', 'rag-v2/search-assist-4', 'rag-v2/search-assist-5', 'rag-v2/search-assist-6', 'rag-v2/search-assist-7', 'rag-v2/search-assist-8', 'rag-v2/search-assist-9', 'rag-v2/search-assist-10', 'rag-v2/search-assist-11', 'rag-v2/search-assist-12', 'rag-v2/search-assist-13']);
 });
 
 test('search-assist-6 (ADR-072): a bare correction is about the person its fact belongs to and does not reopen an earlier question', async () => {
   const { planPerson, planPlaces, PLAN_CORRECTION_INSTRUCTIONS } = await import('../lib/rag-v2/pilot/search-assist.js');
   // The line of search-assist-6 is kept as it was in the later versions.
-  assert.equal(SEARCH_ASSIST_VERSION, 'rag-v2/search-assist-12');
+  assert.equal(SEARCH_ASSIST_VERSION, 'rag-v2/search-assist-13');
   const plan = queryPlanRequest(config, ['Kas A võib taotleda toetust?', 'Kui kiiresti otsustatakse?', 'Vabandust, B sissetulek on hoopis teine.'], 'et', ['user', 'A', 'B']);
   const lines = plan.instructions.split('\n');
   // One line, after the rule on person and before the rule on places; the rest of the instructions is unchanged.
@@ -213,7 +213,7 @@ test('ADR-077: the catalogue fails the stored plans that searched answered quest
 test('search-assist-7 (ADR-077): the plan searches the current message only; a question about what changes keeps both versions', async () => {
   const { PLAN_ANSWERED_INSTRUCTIONS, RERANK_ANSWERED_INSTRUCTIONS, RERANK_CHANGE_INSTRUCTIONS, PLAN_CORRECTION_INSTRUCTIONS, candidateRecord, CANDIDATE_LEAD_CHARS } = await import('../lib/rag-v2/pilot/search-assist.js');
   // The lines of search-assist-7 stay in search-assist-8; the plan's line got one more sentence there (ADR-079).
-  assert.equal(SEARCH_ASSIST_VERSION, 'rag-v2/search-assist-12');
+  assert.equal(SEARCH_ASSIST_VERSION, 'rag-v2/search-assist-13');
   const messages = ['Mis on A?', 'Kes otsustab B üle?', 'Kuidas taotleda C-d?'];
   const plan = queryPlanRequest(config, messages, 'et'), lines = plan.instructions.split('\n');
   // One line, right after the rule on what the queries are for; the correction's line stays where it was.
@@ -311,7 +311,7 @@ test('ADR-077 measured: the follow-up and both versions hold; in the five-questi
 
 test('search-assist-8 (ADR-079): the plan does not fill its list with earlier questions, and a duty gets a query of its own', async () => {
   const { PLAN_ANSWERED_INSTRUCTIONS, PLAN_DUTY_INSTRUCTIONS, planPerson } = await import('../lib/rag-v2/pilot/search-assist.js');
-  assert.equal(SEARCH_ASSIST_VERSION, 'rag-v2/search-assist-12');
+  assert.equal(SEARCH_ASSIST_VERSION, 'rag-v2/search-assist-13');
   const plan = queryPlanRequest(config, ['Mis on A?', 'Kas B-lt võib nõuda C tasumist?'], 'et'), lines = plan.instructions.split('\n');
   // The measured plans (docs/audits/evidence/search-assist-7-measured-2026-10-04.json and the run after ADR-078): the third
   // question needs one query and got it with two for the earlier questions; the last sentence of the line is about that.
@@ -328,4 +328,59 @@ test('search-assist-8 (ADR-079): the plan does not fill its list with earlier qu
   assert.deepEqual(plan.text.format.schema.required, ['queries', 'language', 'person', 'places']);
   assert.deepEqual(JSON.parse(plan.input[0].content), { language: 'et', messages: ['Mis on A?', 'Kas B-lt võib nõuda C tasumist?'], people: ['user'], place_messages: 1 });
   assert.equal(planPerson({ searchAssist: 'rag-v2/search-assist-7' }, { person: 'B' }), 'B');
+});
+
+// ADR-119 (09.10.2026): the plan and the selection read the user's messages only. When the assistant's last answer ended
+// with a question and the user replied "jah" or "toetuse kohta", both were made without knowing what had been asked.
+test('search-assist-13 (ADR-119): the assistant\'s own question reaches the plan and the selection with a short reply to it, and nothing else changes', async () => {
+  const { PLAN_ASKED_INSTRUCTIONS, RERANK_ASKED_INSTRUCTIONS, RERANK_WORRY_INSTRUCTIONS, PLAN_ROLE_INSTRUCTIONS, askedQuestion, ASKED_REPLY_WORDS } = await import('../lib/rag-v2/pilot/search-assist.js');
+  assert.equal(SEARCH_ASSIST_VERSION, 'rag-v2/search-assist-13');
+  const messages = ['Kas saan hooldamise eest toetust?', 'toetuse kohta'], question = 'Kas küsid hooldajatoetuse või hooldusteenuse kohta?';
+  const passages = [{ id: 'P1', title: 'Pealkiri', text: 'Tekst' }];
+  // The plan: the question stands beside the messages; without one the input is what it was.
+  const plan = queryPlanRequest(config, messages, 'et', ['user'], 1, null, question), plain = queryPlanRequest(config, messages, 'et', ['user'], 1, null);
+  assert.deepEqual(JSON.parse(plan.input[0].content), { language: 'et', messages, assistant_question: question, people: ['user'], place_messages: 1 });
+  assert.deepEqual(JSON.parse(plain.input[0].content), { language: 'et', messages, people: ['user'], place_messages: 1 });
+  assert.equal(plain.input[0].content, queryPlanRequest(config, messages, 'et', ['user'], 1).input[0].content);
+  for (const none of [null, undefined, '']) assert.equal(queryPlanRequest(config, messages, 'et', ['user'], 1, null, none).input[0].content, plain.input[0].content);
+  // The selection likewise, between the messages and the passages.
+  const selection = rerankRequest(config, messages, passages, '2026-10-09', question);
+  assert.deepEqual(JSON.parse(selection.input[0].content), { today: '2026-10-09', messages, assistant_question: question, passages });
+  assert.equal(rerankRequest(config, messages, passages, '2026-10-09', null).input[0].content, rerankRequest(config, messages, passages, '2026-10-09').input[0].content);
+  // The instructions are the same with and without the question: one line each, the plan's last and the selection's
+  // after the line on a worry. The schemas do not change: the model can give no place or person it could not before.
+  assert.deepEqual([plan.instructions, plan.text], [plain.instructions, plain.text]);
+  const planLines = plan.instructions.split('\n'), rules = selection.instructions.split('\n');
+  assert.deepEqual(planLines.slice(-2), [PLAN_ROLE_INSTRUCTIONS, PLAN_ASKED_INSTRUCTIONS]);
+  assert.equal(rules.indexOf(RERANK_ASKED_INSTRUCTIONS) - rules.indexOf(RERANK_WORRY_INSTRUCTIONS), 1);
+  assert.deepEqual([planLines.filter(line => line === PLAN_ASKED_INSTRUCTIONS).length, rules.filter(line => line === RERANK_ASKED_INSTRUCTIONS).length], [1, 1]);
+  // The question is the assistant's own words: no fact, no request, no source of a place.
+  for (const phrase of ['is the question the assistant itself asked at the end of its last answer', 'not a fact, not a request and never something the user said',
+    'write the queries for what the user\'s earlier request becomes with that reply', 'When the current message does not reply to it, ignore it.',
+    'Never write a query about the question itself, never treat as true what it only asks, and take the person and every place from the user\'s messages only.'])
+    assert.ok(PLAN_ASKED_INSTRUCTIONS.includes(phrase), phrase);
+  for (const phrase of ['not a fact and not the user\'s', 'the request is what the user\'s earlier request becomes with that reply: keep the passages for that request', 'When the current message does not reply to it, ignore it.'])
+    assert.ok(RERANK_ASKED_INSTRUCTIONS.includes(phrase), phrase);
+
+  // When the question is given: it closed the answer to the message right before the current one, and the current
+  // message is short.
+  const accepted = (text, more = {}) => ({ userTurns: [{ turnId: 't1', text: 'Esimene.' }, { turnId: 't2', text: messages[0] }, { turnId: 't3', text }], selection: { assistantSelection: 'latest_published_answer' }, ...more });
+  const answer = (turnId, clarification) => ({ role: 'published_assistant_dialogue', turnId, blocks: [], limitations: [], clarification });
+  assert.equal(askedQuestion(answer('t2', question), accepted('toetuse kohta')), question);
+  assert.equal(askedQuestion(answer('t2', `  Kas elad\n Tallinnas?  `), accepted('jah')), 'Kas elad Tallinnas?');
+  assert.equal(ASKED_REPLY_WORDS, 12);
+  const words = count => Array.from({ length: count }, (_, i) => `sõna${i}`).join(' ');
+  assert.equal(askedQuestion(answer('t2', question), accepted(words(12))), question);
+  // A longer message says what it asks by itself; its plan is what it was.
+  assert.equal(askedQuestion(answer('t2', question), accepted(words(13))), null);
+  // The answer is not the one the message follows: the message before the current one got no answer (a stopped turn),
+  // so the latest published answer is an older one.
+  assert.equal(askedQuestion(answer('t1', question), accepted('jah')), null);
+  // An answer the user replies to explicitly is the one the message follows, whichever turn it was.
+  assert.equal(askedQuestion(answer('t1', question), accepted('jah', { selection: { assistantSelection: 'explicit_published_answer' } })), question);
+  // No question, no answer, no messages: nothing.
+  for (const [assistant, context] of [[answer('t2', null), accepted('jah')], [answer('t2', '   '), accepted('jah')], [answer('t2', 7), accepted('jah')], [null, accepted('jah')],
+    [answer('t2', question), accepted('  ')], [answer('t2', question), { userTurns: [], selection: {} }], [answer('t2', question), null],
+    [answer('t2', question), { userTurns: [{ turnId: 't2', text: 'jah' }], selection: { assistantSelection: 'latest_published_answer' } }]]) assert.equal(askedQuestion(assistant, context), null);
+  assert.equal(askedQuestion(answer('t2', `${'k'.repeat(2500)}?`), accepted('jah')).length, 2000);
 });
