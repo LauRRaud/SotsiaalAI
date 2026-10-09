@@ -89,9 +89,36 @@ export default function HomeCareHome({ context, initial, unitOptions, myDay = nu
                         <span className="hc-badge">{t("home_care.slots.done_badge")}</span>
                       </>
                     ) : null}
+                    {/* Päeva erandid (K3-b): ära jäetud käik, asendus ja muudetud kellaaeg. */}
+                    {visit.state === "CANCELLED" ? (
+                      <>
+                        {" "}
+                        <span className="hc-badge hc-badge--warn">{t("home_care.day.states.CANCELLED")}</span>
+                      </>
+                    ) : null}
+                    {visit.covering ? (
+                      <>
+                        {" "}
+                        <span className="hc-badge">{t("home_care.day.covering")}</span>
+                      </>
+                    ) : null}
+                    {visit.change?.timeChanged ? (
+                      <>
+                        {" "}
+                        <span className="hc-badge">{t("home_care.day.changed_time")}</span>
+                      </>
+                    ) : null}
                   </span>
                   <span className="hc-client__meta">
-                    {[minutesLabel(t, visit.plannedMinutes), visit.client.address, visit.note].filter(Boolean).join(" · ")}
+                    {[
+                      minutesLabel(t, visit.plannedMinutes),
+                      visit.client.address,
+                      visit.note,
+                      visit.state === "CANCELLED" && visit.change?.reason ? t(`home_care.day.cancel_reasons.${visit.change.reason}`) : null,
+                      visit.change?.note
+                    ]
+                      .filter(Boolean)
+                      .join(" · ")}
                   </span>
                 </Link>
               </li>
@@ -107,6 +134,9 @@ export default function HomeCareHome({ context, initial, unitOptions, myDay = nu
           </Link>
           <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/erijuhtumid`}>
             {t("home_care.incidents.link")}
+          </Link>
+          <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/paev`}>
+            {t("home_care.day.link")}
           </Link>
           <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/tahtajad`}>
             {t("home_care.deadlines.link")}

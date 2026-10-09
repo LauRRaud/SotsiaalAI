@@ -11686,7 +11686,14 @@
       "slot_too_many": "One client can have up to {limit} recurring visits.",
       "slot_not_found": "The visit was not found. Reload the page.",
       "slot_ended": "This visit has already ended.",
-      "slot_end_past": "A visit cannot be ended retroactively."
+      "slot_end_past": "A visit cannot be ended retroactively.",
+      "visit_not_on_day": "This visit is not planned for that day.",
+      "visit_day_required": "The day is missing.",
+      "visit_day_past": "A visit that far in the past can no longer be changed.",
+      "visit_day_far": "A visit that far ahead cannot be changed.",
+      "visit_worker_invalid": "A visit can be moved only to a care worker of the organisation.",
+      "visit_cancel_reason_required": "Choose why the visit is cancelled.",
+      "visit_change_not_found": "This visit has no change on that day."
     },
     "incidents": {
       "title": "Incident register",
@@ -12242,7 +12249,8 @@
       "missed_title": "Missed visits",
       "missed_empty": "No missed visits are on record for this month.",
       "how": "The incidents \"did not open the door\" and \"refused help\" are counted as missed visits. When two workers were on a visit, the client's time is counted once and each worker gets it. There are no kilometres here: the home care diary does not measure trips.",
-      "not_done": "activities not done: refused {refused}, not needed {notNeeded}, could not be done {couldNot}"
+      "not_done": "activities not done: refused {refused}, not needed {notNeeded}, could not be done {couldNot}",
+      "cancelled_count": "{count} planned visits cancelled"
     },
     "slots": {
       "title": "Visits in a week",
@@ -12293,6 +12301,50 @@
       "ended": "The visit is ended. The plan of past days was kept.",
       "today_title": "Today",
       "done_badge": "done"
+    },
+    "day": {
+      "link": "Day plan",
+      "title": "Day plan",
+      "intro": "The pattern of visits with this day's changes. A visit is done when the client has a visit record that day; it is not ticked here by hand.",
+      "previous": "Previous day",
+      "next": "Next day",
+      "today_button": "Go to today",
+      "week_label": "Days of the week",
+      "week_day": "{weekday} {date}: {planned} visits, {unassigned} not assigned, {missing} without a record",
+      "totals": "{planned} visits, planned time {amount}. Done {done}, no record {missing}, cancelled {cancelled}, not assigned {unassigned}.",
+      "empty": "No visits are planned for this day.",
+      "unassigned_title": "Not assigned",
+      "away_title": "The client is temporarily away",
+      "away_hint": "The pattern holds, but the visit is not made while the client is away.",
+      "states": {
+        "PLANNED": "ahead",
+        "DONE": "done",
+        "MISSING": "no record",
+        "CANCELLED": "cancelled"
+      },
+      "changed_worker": "moved",
+      "changed_time": "time changed",
+      "covering": "covering",
+      "cancel_reasons": {
+        "CLIENT_AWAY": "the client is not at home",
+        "CLIENT_CANCELLED": "the client cancelled",
+        "WORKER_ABSENT": "the worker is absent, no replacement found",
+        "OTHER": "another reason"
+      },
+      "move": "Move",
+      "move_title": "Move the visit: {client}",
+      "worker_label": "Who goes on this day",
+      "worker_none": "Not assigned",
+      "time_label": "Start time on this day",
+      "note_label": "Note (may be left empty)",
+      "move_save": "Save the change",
+      "cancel": "Cancel the visit",
+      "cancel_title": "Cancel the visit: {client}",
+      "reason_label": "Why the visit is cancelled",
+      "cancel_save": "Cancel the visit",
+      "restore": "Undo the change",
+      "close_form": "Close",
+      "saved": "The day plan is changed. The pattern of visits stayed the same."
     }
   },
   "stage": {

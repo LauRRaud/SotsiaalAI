@@ -50,6 +50,7 @@ export default function HomeCareMonth({ context, initial }) {
       decisionVolumeLabel(t, row) ? t("home_care.month.decision_volume", { volume: decisionVolumeLabel(t, row) }) : null,
       row.withoutLength ? t("home_care.provided.without_length", { count: row.withoutLength }) : null,
       row.missed ? t("home_care.month.missed_count", { count: row.missed }) : null,
+      row.cancelled ? t("home_care.month.cancelled_count", { count: row.cancelled }) : null,
       row.notDone && row.notDone.REFUSED + row.notDone.NOT_NEEDED + row.notDone.COULD_NOT > 0
         ? t("home_care.month.not_done", { refused: row.notDone.REFUSED, notNeeded: row.notDone.NOT_NEEDED, couldNot: row.notDone.COULD_NOT })
         : null
