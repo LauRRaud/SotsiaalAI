@@ -407,3 +407,32 @@ test('leht teeb samad päringud ja admini töövaate valik ei hõlju sisu kohal'
     }
   }
 });
+
+// Kolme kategooria nimes on koma. Loend on vormis komadega tekst: lihtne tükeldamine
+// tegi ühest kategooriast kaks olematut ja lahter ei jäänud valituks (viga oli juba vanal lehel).
+test('komaga valikuväärtus jääb loendis üheks tervikuks', () => {
+  const withComma = SERVICE_PROFILE_OPTIONS.category.map((option) => option[0]).filter((value) => value.includes(','));
+  assert.equal(withComma.length, 3, 'kolm kategooriat sisaldavad koma');
+  for (const value of withComma) {
+    const picked = toggleListValue('', value);
+    assert.deepEqual(splitList(picked), [value], value);
+    /* Teine valik kõrvale ja esimene uuesti maha: kumbki ei lagune. */
+    const both = toggleListValue(picked, 'Muu teenus');
+    assert.deepEqual(splitList(both), [value, 'Muu teenus']);
+    assert.deepEqual(splitList(toggleListValue(both, value)), ['Muu teenus']);
+  }
+  /* Kõik kolm korraga, nagu server need massiivina tagasi annab. */
+  assert.deepEqual(splitList(joinList(withComma)), withComma);
+  /* Inimese kirjutatud loend töötab edasi: koma, semikoolon ja reavahetus eraldavad. */
+  assert.deepEqual(splitList('eesti, vene; inglise\nsoome'), ['eesti', 'vene', 'inglise', 'soome']);
+  assert.deepEqual(splitList(''), []);
+  /* Salvestamise sisu kannab kategooria tervikuna. */
+  const form = createServiceProfileForm(null);
+  const item = { ...(form.serviceItems[0] || {}), name: 'Proov', categories: toggleListValue('', withComma[0]) };
+  const payload = serviceProfileSavePayload({ ...form, serviceItems: [item] });
+  const saved = (payload.serviceItems || [])[0];
+  if (saved) {
+    assert.deepEqual(saved.categories, [withComma[0]]);
+    assert.equal(saved.category, withComma[0]);
+  }
+});

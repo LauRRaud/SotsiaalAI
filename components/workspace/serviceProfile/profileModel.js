@@ -32,11 +32,46 @@ export function joinList(value) {
   return Array.isArray(value) ? value.join(", ") : String(value || "");
 }
 
+/**
+ * KOMAGA VALIKUVÄÄRTUSED. Kolme kategooria nimes on koma („Pere, lapse ja noore
+ * tugi", „Puue, rehabilitatsioon ja abivahendid", „Töö, õppimine ja
+ * osalemine"), aga loend hoitakse vormis komadega tekstina. Lihtne tükeldamine
+ * tegi neist kaks või kolm olematut kategooriat („Pere" ja „lapse ja noore
+ * tugi"): lahter ei jäänud valituks ja serverisse läks vale kategooria. See
+ * viga oli juba vanal lehel. Tükeldamine tunneb nüüd valikute täisväärtused ära
+ * enne, kui teksti komade kohalt lõikab; inimese käsitsi kirjutatud loendid
+ * (komaga eraldatud) töötavad edasi.
+ */
+let commaValues = null;
+function valuesWithComma() {
+  if (!commaValues) {
+    commaValues = Object.values(SERVICE_PROFILE_OPTIONS)
+      .flat()
+      .map((option) => option[0])
+      .filter((optionValue) => /[,;]/.test(optionValue))
+      /* Pikem enne: lühem väärtus ei tohi pikema seest tükki ära võtta. */
+      .sort((a, b) => b.length - a.length);
+  }
+  return commaValues;
+}
+
 export function splitList(value) {
-  return String(value || "")
+  let text = String(value || "");
+  const kept = [];
+  for (const optionValue of valuesWithComma()) {
+    if (!text.includes(optionValue)) continue;
+    /* Kohatäide (erakasutuse märgid) ei sisalda eraldajaid ega teki inimese kirjutatud tekstist. */
+    text = text.split(optionValue).join(`\uE000${kept.length}\uE001`);
+    kept.push(optionValue);
+  }
+  return text
     .split(/[,;\n\r]/)
     .map((part) => part.trim())
-    .filter(Boolean);
+    .filter(Boolean)
+    .map((part) => {
+      const match = /^\uE000(\d+)\uE001$/.exec(part);
+      return match ? kept[Number(match[1])] : part.replace(/\uE000\d+\uE001/g, (token) => kept[Number(token.slice(1, -1))]);
+    });
 }
 
 export function toggleListValue(value, optionValue) {
