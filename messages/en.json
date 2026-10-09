@@ -9235,6 +9235,15 @@
       "section_unavailable": "This sharing section could not be loaded. Your other data remains visible.",
       "section_timeout": "This sharing section took too long to load. Your other data remains visible."
     },
+    "share_errors": {
+      "content_changed": "The worker has changed the text in the meantime. Read the new text and then decide.",
+      "content_hash_required": "The page was out of date and we loaded your sharings again. Read the text and then decide.",
+      "not_awaiting_client": "This sharing no longer waits for your decision.",
+      "concurrent_change": "The sharing was changed at the same moment. Read the text again and then decide.",
+      "forbidden": "This sharing is not yours to decide.",
+      "not_found": "The sharing was not found.",
+      "invalid_decision": "The decision could not be saved. Try again."
+    },
     "info": {
       "title": "My shares",
       "what_title": "What this is for",

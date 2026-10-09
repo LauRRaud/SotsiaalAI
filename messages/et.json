@@ -9235,6 +9235,15 @@
       "section_unavailable": "Seda jagamiste osa ei saanud praegu laadida. Ülejäänud andmed on endiselt nähtavad.",
       "section_timeout": "Selle jagamiste osa laadimine võttis liiga kaua. Ülejäänud andmed on endiselt nähtavad."
     },
+    "share_errors": {
+      "content_changed": "Töötaja on teksti vahepeal muutnud. Loe uus tekst läbi ja otsusta siis.",
+      "content_hash_required": "Leht oli aegunud ja laadisime jagamised uuesti. Loe tekst läbi ja otsusta siis.",
+      "not_awaiting_client": "See jagamine ei oota enam sinu otsust.",
+      "concurrent_change": "Jagamist muudeti samal ajal. Loe tekst uuesti läbi ja otsusta siis.",
+      "forbidden": "See jagamine ei ole sulle otsustamiseks.",
+      "not_found": "Jagamist ei leitud.",
+      "invalid_decision": "Otsust ei saanud salvestada. Proovi uuesti."
+    },
     "info": {
       "title": "Minu jagamised",
       "what_title": "Milleks see on",
