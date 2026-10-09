@@ -23,6 +23,13 @@ import {
 import { HOME_CARE_LIMITS } from '../lib/homeCare/constants.js';
 import { appendDictatedText } from '../lib/homeCare/dictation.js';
 import { serializeEntry } from '../lib/homeCare/entries.js';
+import {
+  HISTORY_BLOCK_MAX,
+  HISTORY_BLOCK_TARGET,
+  historyContentHash,
+  normalizeHistoryText,
+  splitHistoryText
+} from '../lib/homeCare/historyBlocks.js';
 import { assertHomeCareEnabled, isHomeCareEnabled } from '../lib/homeCare/flags.js';
 import {
   DRAFT_MAX_AGE_MS,
@@ -695,4 +702,45 @@ test('klientide tabel: kava ütleb iga rea kohta, mis sellest saab', () => {
   /* Kliendiks saavad uued read ja need samanimelised, mille hooldusjuht kinnitas. */
   assert.deepEqual(rowsToCreate(plan).map((row) => row.line), [2, 4]);
   assert.deepEqual(rowsToCreate(plan, [9, 3, 5, 'x']).map((row) => row.line), [2, 4, 9]);
+});
+
+test('imporditud ajalugu: tekst jagatakse lõikudeks, midagi ei kao ega muutu', () => {
+  const squash = (value) => value.replace(/\s+/g, '');
+
+  /* Lühike tekst on üks lõige; tühi tekst ei anna midagi. */
+  assert.deepEqual(splitHistoryText('  Esimene rida.\r\nTeine rida.  '), ['Esimene rida.\nTeine rida.']);
+  assert.deepEqual(splitHistoryText(''), []);
+  assert.deepEqual(splitHistoryText('   \n\n  '), []);
+  assert.deepEqual(splitHistoryText(null), []);
+  /* Reavahetused ühtseks, realõpu tühikud ära, NUL välja. */
+  assert.equal(normalizeHistoryText(`a  \r\nb\rc${String.fromCharCode(0)}d`), 'a\nb\ncd');
+
+  /* Lühikesed lõigud pannakse kokku kuni sihtpikkuseni, järjekord säilib. */
+  const paragraphs = Array.from({ length: 12 }, (_, index) => `Kuupäev ${index + 1}. ${'Käik tehtud, kõik korras. '.repeat(12).trim()}`);
+  const text = paragraphs.join('\n\n');
+  const blocks = splitHistoryText(text);
+  assert.ok(blocks.length > 1 && blocks.length < paragraphs.length);
+  assert.ok(blocks.every((block) => block.length <= HISTORY_BLOCK_TARGET));
+  assert.equal(blocks.join('\n\n'), text);
+  assert.ok(blocks[0].startsWith('Kuupäev 1.'));
+  assert.ok(blocks[blocks.length - 1].includes('Kuupäev 12.'));
+
+  /* Dokument ilma tühjade ridadeta: lõigatakse lause lõpu kohalt, ükski lõige ei ületa piiri. */
+  const wall = 'Linda oli täna rõõmus ja sõi hästi. '.repeat(400).trim();
+  const cut = splitHistoryText(wall);
+  assert.ok(cut.length > 1);
+  assert.ok(cut.every((block) => block.length <= HISTORY_BLOCK_MAX));
+  assert.ok(cut.slice(0, -1).every((block) => block.endsWith('.')));
+  assert.equal(squash(cut.join(' ')), squash(wall));
+
+  /* Üks hiigelsõna (tühikuteta): lõigatakse piiri kohalt, märke ei kao. */
+  const blob = 'x'.repeat(HISTORY_BLOCK_MAX * 2 + 17);
+  const pieces = splitHistoryText(blob);
+  assert.equal(pieces.join(''), blob);
+  assert.ok(pieces.every((block) => block.length <= HISTORY_BLOCK_MAX));
+
+  /* Sama tekst annab sama räsi, ka teiste reavahetustega; teine tekst teise. */
+  assert.equal(historyContentHash(splitHistoryText('a\r\n\r\nb')), historyContentHash(splitHistoryText('a\n\nb  ')));
+  assert.notEqual(historyContentHash(splitHistoryText('a\n\nb')), historyContentHash(splitHistoryText('a\n\nc')));
+  assert.match(historyContentHash(['a']), /^[a-f0-9]{64}$/);
 });
