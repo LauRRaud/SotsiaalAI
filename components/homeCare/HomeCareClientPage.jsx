@@ -21,6 +21,7 @@ import HomeCareHistory from "./HomeCareHistory";
 import HomeCareOutbox from "./HomeCareOutbox";
 import HomeCarePlanView from "./HomeCarePlanView";
 import HomeCareReasonForm from "./HomeCareReasonForm";
+import HomeCareRelatives from "./HomeCareRelatives";
 import HomeCareKeys from "./HomeCareKeys";
 import HomeCareNearMiss from "./HomeCareNearMiss";
 import HomeCareNoAnswer from "./HomeCareNoAnswer";
@@ -460,6 +461,9 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
         canWrite={canWrite && !ended}
         isCoordinator={access.isCoordinator}
       />
+
+      {/* Lähedased ja jagamisaste (K5-k): kellele ja mida klient on lubanud rääkida. */}
+      <HomeCareRelatives organizationId={organizationId} clientId={client.id} initial={data.relatives || []} canEdit={canWrite && access.isCoordinator} />
 
       {/* Kriisivalmidus (K5-b): kui palju tuge klient kriisis vajab ja millest ta sõltub. */}
       <HomeCareCrisis organizationId={organizationId} clientId={client.id} initial={data.crisis || null} canEdit={canWrite && access.isCoordinator} />

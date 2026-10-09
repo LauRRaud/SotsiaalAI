@@ -13013,7 +13013,12 @@
       "worker_record_day_future": "Päev ei saa olla tulevikus.",
       "worker_record_period_invalid": "Kehtivus ei saa lõppeda enne tegemise päeva.",
       "worker_record_title_required": "Kirjuta koolituse teema.",
-      "worker_records_too_many": "Töötajal võib olla kuni {limit} rida."
+      "worker_records_too_many": "Töötajal võib olla kuni {limit} rida.",
+      "relative_name_required": "Kirjuta lähedase nimi.",
+      "relative_level_required": "Vali, mida klient lubab talle rääkida.",
+      "relative_day_future": "Kinnitamise päev ei saa olla tulevikus.",
+      "relative_not_found": "Lähedast ei leitud.",
+      "relatives_too_many": "Kliendil võib olla kuni {limit} lähedast."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -13526,7 +13531,10 @@
       "workers_due_empty": "Midagi ei aegu.",
       "risk_lines_due_title": "Ohuread, mis vajavad ülevaatust",
       "risk_lines_due_empty": "Üle aasta vanu ohuridu ei ole.",
-      "risk_lines_line": "ohuridu {count}, vanim kirjas alates {date}: vaata koos meeskonnaga üle, kas need kehtivad"
+      "risk_lines_line": "ohuridu {count}, vanim kirjas alates {date}: vaata koos meeskonnaga üle, kas need kehtivad",
+      "relatives_due_title": "Lähedaste jagamiskokkulepped, mis tuleb kliendilt üle küsida",
+      "relatives_due_empty": "Üle poole aasta vanu kokkuleppeid ei ole.",
+      "relatives_line": "{name}, viimati kinnitatud {date}"
     },
     "visit": {
       "title": "Mida tegid",
@@ -14190,6 +14198,30 @@
       "incidents": "Lahtisi erijuhtumeid selles kuus: {count}",
       "signals": "Vastuseta märkamisi selles kuus: {count}",
       "medication": "Ravimitoiminguid ilma märketa, mida tehti: {count}. Küsi hooldajalt ja lase kirje parandada."
+    },
+    "relatives": {
+      "title": "Lähedased ja mida neile räägime",
+      "none": "Lähedasi ei ole kirjas. Ilma kliendi loata ei räägi me tema kohta kellelegi.",
+      "rule": "Räägi lähedasele ainult seda, mida tema aste lubab. Päeviku teksti lähedasele ette ei loeta.",
+      "add": "Lisa lähedane",
+      "edit": "Muuda või kinnita uuesti",
+      "remove": "Eemalda",
+      "save": "Salvesta",
+      "cancel": "Loobu",
+      "edit_hint": "Lepi see kokku kliendiga ilma lähedaseta. Salvestamine kinnitab kokkuleppe tänase päevaga.",
+      "name_label": "Nimi",
+      "relation_label": "Kes ta kliendile on",
+      "phone_label": "Telefon",
+      "level_label": "Mida klient lubab talle rääkida",
+      "levels": {
+        "1": "aste 1: kas käidi",
+        "2": "aste 2: ka mida koos tehti",
+        "3": "aste 3: lisaks võtame ühendust, kui märkame muutust"
+      },
+      "no_tell_label": "Sellest klient ei taha, et räägitaks",
+      "no_tell_line": "mitte rääkida: {text}",
+      "agreed_on": "kinnitatud {date}",
+      "review_due": "küsi kliendilt üle"
     }
   },
   "stage": {
