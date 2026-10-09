@@ -5922,7 +5922,7 @@
       "workspace_created": "A journey was created",
       "workspace_updated": "A journey was updated",
       "workspace_activated": "A journey was reopened",
-      "workspace_archived": "A journey was archived",
+      "workspace_archived": "A journey was set aside",
       "workspace_deleted": "A journey was deleted",
       "pre_inquiry_arrived": "A pre-inquiry has arrived for you",
       "org_support_share_received": "A support message was sent to you",
@@ -7464,7 +7464,7 @@
       "archive_failed": "Archiving the journey failed.",
       "updated": "Journey updated.",
       "archived": "Journey archived.",
-      "archived_readonly": "An archived Journey is read-only. Reopen it before editing.",
+      "archived_readonly": "A journey that is set aside is read-only. Open it again before editing.",
       "reopened": "Journey reopened.",
       "reopen_failed": "Failed to reopen the Journey.",
       "delete_failed": "Failed to delete the Journey.",
@@ -7682,7 +7682,7 @@
       "suggested_title": "Steps suggested by the platform",
       "suggested_hint": "These are suggestions. A suggestion becomes a step only when you take it.",
       "take": "Take as a step",
-      "archived": "The steps of an archived journey can be viewed, not changed.",
+      "archived": "The steps of a journey that is set aside can be viewed, not changed.",
       "failed": "Saving the step failed. Try again."
     },
     "assessment": {
@@ -7715,7 +7715,7 @@
         "HARDER": "harder than at the start"
       },
       "history_title": "All marks ({count})",
-      "archived": "The marks of an archived journey can be viewed, not added.",
+      "archived": "The marks of a journey that is set aside can be viewed, not added.",
       "failed": "Saving the mark failed. Try again."
     },
     "paper": {
@@ -7752,6 +7752,47 @@
       "never": "Cautious observations are never put on the sheet. The sheet always has room for handwritten notes.",
       "open": "Open the printable sheet",
       "none": "Choose at least one part."
+    },
+    "closure": {
+      "title": "Pause and finishing",
+      "intro": "You can pause or finish your journey at any time. Nothing is deleted and you can always open it again.",
+      "pause": "Pause",
+      "finish": "Finish the journey",
+      "pause_title": "Pausing the journey",
+      "pause_note_label": "Why are you pausing? (you may leave this empty)",
+      "resume_label": "When do you plan to continue? (you may leave this empty)",
+      "resume_hint": "The date is for you. The platform does not remind you of it.",
+      "finish_title": "Finishing the journey",
+      "outcome_question": "How did this journey end for you?",
+      "outcomes": {
+        "RESOLVED": "the worry is resolved",
+        "HELP_CONTINUES": "the help works and continues",
+        "OWN_WAY": "I found another solution",
+        "CHANGED": "the situation changed and this is no longer needed",
+        "UNRESOLVED": "it was not resolved, but I finish here"
+      },
+      "unresolved_hint": "If the worry was left unresolved, you can open the journey again later and write a new pre-inquiry.",
+      "level_question": "How are you coping with your situation now? (you may leave this unanswered)",
+      "level_none": "I prefer not to answer",
+      "finish_note_label": "Add a few words if you wish",
+      "paused_line": "The journey has been paused since {date}.",
+      "resume_line": "You planned to continue on {date}.",
+      "resume_due": "That day has come.",
+      "finished_line": "The journey was finished on {date}: {outcome}.",
+      "archived_line": "The journey is archived.",
+      "closed_hint": "A journey that is set aside can be viewed, not changed. When you open it again you continue from the same place.",
+      "resume": "Continue the journey",
+      "reopen": "Open the journey again",
+      "history_title": "Earlier pauses and finishes ({count})",
+      "history_paused": "{from} to {to}: paused",
+      "history_finished": "{from} to {to}: finished, {outcome}",
+      "failed": "Saving failed. Try again.",
+      "paused_notice": "The journey is paused.",
+      "finished_notice": "The journey is finished.",
+      "status": {
+        "PAUSED": "paused",
+        "FINISHED": "finished"
+      }
     },
     "activity": {
       "title": "Completed steps",
@@ -7850,7 +7891,7 @@
       "create_limit_reached": "You already have a great many journeys. Archive or delete one before you create a new one.",
       "version_required": "The page is out of date. Reload it and try again.",
       "conflict": "The journey was changed elsewhere in the meantime and this change was not saved. Reload the page to see the latest state.",
-      "archived": "An archived journey cannot be changed. Reopen it first.",
+      "archived": "A journey that is set aside cannot be changed. Open it again first.",
       "delete_confirmation_required": "Deleting needs a confirmation.",
       "page_limit_invalid": "Loading the list failed.",
       "cursor_invalid": "Continuing the list failed. Reload the page.",
@@ -7869,7 +7910,11 @@
       "step_limit_reached": "This journey already has a great many steps. Delete one before you add a new one.",
       "assessment_level_required": "Choose how you are coping right now.",
       "assessment_not_found": "The mark was not found. Reload the page.",
-      "assessment_limit_reached": "This journey already has a great many marks. Delete one before you add a new one."
+      "assessment_limit_reached": "This journey already has a great many marks. Delete one before you add a new one.",
+      "closure_kind_required": "Choose whether you pause the journey or finish it.",
+      "closure_outcome_required": "Choose how the journey ended for you.",
+      "closure_resume_in_past": "The day to continue must be today or later.",
+      "closure_limit_reached": "This journey has already been set aside a great many times. You can archive it from the list of journeys."
     }
   },
   "serviceMap": {

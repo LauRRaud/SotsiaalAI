@@ -286,7 +286,7 @@ export default function JourneySteps({ journey, onStepsChange, t }) {
           </div>
         )
       ) : (
-        <p>{t("journey.own_steps.archived", "Arhiveeritud Teekonna samme saab vaadata, mitte muuta.")}</p>
+        <p>{t("journey.own_steps.archived", "Kõrvale pandud Teekonna samme saab vaadata, mitte muuta.")}</p>
       )}
 
       {!archived && suggestions.length ? (
