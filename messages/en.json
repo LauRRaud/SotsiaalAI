@@ -13152,7 +13152,10 @@
       "relative_level_required": "Choose what the client allows us to tell them.",
       "relative_day_future": "The day of confirmation cannot be in the future.",
       "relative_not_found": "The relative was not found.",
-      "relatives_too_many": "A client can have up to {limit} relatives."
+      "relatives_too_many": "A client can have up to {limit} relatives.",
+      "safety_topic_invalid": "Unknown safety card topic.",
+      "safety_answer_invalid": "The answer can be yes or no.",
+      "safety_answer_required": "A note needs an answer: choose yes or no."
     },
     "incidents": {
       "title": "Incident register",
@@ -13668,7 +13671,11 @@
       "risk_lines_line": "{count} risk lines, the oldest on the card since {date}: go through them with the team and see whether they still hold",
       "relatives_due_title": "Sharing agreements with relatives to ask the client about again",
       "relatives_due_empty": "No agreement is over half a year old.",
-      "relatives_line": "{name}, last confirmed {date}"
+      "relatives_line": "{name}, last confirmed {date}",
+      "safety_due_title": "Safety cards that are empty or due for review",
+      "safety_due_empty": "Every safety card is filled in and under a year old.",
+      "safety_none": "the safety card is empty",
+      "safety_old": "the safety card was assessed {date}: review it"
     },
     "visit": {
       "title": "What you did",
@@ -14362,6 +14369,48 @@
       "today": "Today",
       "away": "the client was not on the service",
       "none": "no visit was planned"
+    },
+    "safety": {
+      "title": "Safety: the home as a workplace",
+      "none": "The safety card is empty. Go through the ten questions before somebody who does not know the home goes there.",
+      "add": "Fill in the safety card",
+      "edit": "Change or review",
+      "save": "Save",
+      "cancel": "Cancel",
+      "edit_hint": "Answer what you know. In the note write a fact, not a judgement about the person: the client may see the card. An unanswered question stays open.",
+      "note_label": "Note",
+      "answers": {
+        "YES": "Yes",
+        "NO": "No"
+      },
+      "review_due": "review",
+      "no_line": "Not present: {list}",
+      "open_line": "Unanswered questions: {count}",
+      "assessed_on": "assessed {date}",
+      "questions": {
+        "ANIMALS": "Are there animals at home or outside that have to be taken into account?",
+        "SMOKING": "Is there smoking indoors?",
+        "FIRE": "Is there a stove, gas or another fire risk?",
+        "WINTER_ACCESS": "Is access hard in winter or in the dark (stairs, ice, an unlit path)?",
+        "LIFTING": "Is lifting or supporting needed without an aid?",
+        "OTHER_PEOPLE": "Are there other people at home who have to be taken into account?",
+        "AGGRESSION": "Has there been aggression or threats before?",
+        "PROTECTIVE_GEAR": "Is protective gear needed (gloves, mask, footwear)?",
+        "PAIR_ONLY": "May workers go here only in pairs?",
+        "NO_SIGNAL": "Is there no phone signal or a poor one?"
+      },
+      "topics": {
+        "ANIMALS": "Animals",
+        "SMOKING": "Smoking indoors",
+        "FIRE": "Heating and fire risk",
+        "WINTER_ACCESS": "Hard access",
+        "LIFTING": "Lifting without an aid",
+        "OTHER_PEOPLE": "Other people at home",
+        "AGGRESSION": "Earlier aggression",
+        "PROTECTIVE_GEAR": "Protective gear",
+        "PAIR_ONLY": "Only in pairs",
+        "NO_SIGNAL": "No signal"
+      }
     }
   },
   "stage": {

@@ -13152,7 +13152,10 @@
       "relative_level_required": "Vali, mida klient lubab talle rääkida.",
       "relative_day_future": "Kinnitamise päev ei saa olla tulevikus.",
       "relative_not_found": "Lähedast ei leitud.",
-      "relatives_too_many": "Kliendil võib olla kuni {limit} lähedast."
+      "relatives_too_many": "Kliendil võib olla kuni {limit} lähedast.",
+      "safety_topic_invalid": "Tundmatu ohutuskaardi teema.",
+      "safety_answer_invalid": "Vastus saab olla jah või ei.",
+      "safety_answer_required": "Märkus vajab vastust: vali jah või ei."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -13668,7 +13671,11 @@
       "risk_lines_line": "ohuridu {count}, vanim kirjas alates {date}: vaata koos meeskonnaga üle, kas need kehtivad",
       "relatives_due_title": "Lähedaste jagamiskokkulepped, mis tuleb kliendilt üle küsida",
       "relatives_due_empty": "Üle poole aasta vanu kokkuleppeid ei ole.",
-      "relatives_line": "{name}, viimati kinnitatud {date}"
+      "relatives_line": "{name}, viimati kinnitatud {date}",
+      "safety_due_title": "Ohutuskaardid, mis on täitmata või vajavad ülevaatust",
+      "safety_due_empty": "Kõik ohutuskaardid on täidetud ja alla aasta vanad.",
+      "safety_none": "ohutuskaart on täitmata",
+      "safety_old": "ohutuskaart on hinnatud {date}: vaata üle"
     },
     "visit": {
       "title": "Mida tegid",
@@ -14362,6 +14369,48 @@
       "today": "Täna",
       "away": "klient ei olnud teenusel",
       "none": "käiku plaanis ei olnud"
+    },
+    "safety": {
+      "title": "Ohutus: kodu kui töökoht",
+      "none": "Ohutuskaart on täitmata. Käi kümme küsimust läbi enne, kui siia läheb keegi, kes kodu ei tunne.",
+      "add": "Täida ohutuskaart",
+      "edit": "Muuda või vaata üle",
+      "save": "Salvesta",
+      "cancel": "Loobu",
+      "edit_hint": "Vasta sellele, mida tead. Märkusesse kirjuta fakt, mitte hinnang inimese kohta: klient võib kaarti näha. Vastamata küsimus jääb lahti.",
+      "note_label": "Märkus",
+      "answers": {
+        "YES": "Jah",
+        "NO": "Ei"
+      },
+      "review_due": "vaata üle",
+      "no_line": "Ei ole: {list}",
+      "open_line": "Vastamata küsimusi: {count}",
+      "assessed_on": "hinnatud {date}",
+      "questions": {
+        "ANIMALS": "Kas kodus või õues on loomi, kellega peab arvestama?",
+        "SMOKING": "Kas toas suitsetatakse?",
+        "FIRE": "Kas on küttekolle, gaas või muu tuleoht?",
+        "WINTER_ACCESS": "Kas talvel või pimedas on ligipääs raske (trepp, jää, valgustamata tee)?",
+        "LIFTING": "Kas on vaja tõsta või toetada ilma abivahendita?",
+        "OTHER_PEOPLE": "Kas kodus on teisi inimesi, kellega peab arvestama?",
+        "AGGRESSION": "Kas varem on olnud agressiivsust või ähvardamist?",
+        "PROTECTIVE_GEAR": "Kas on vaja kaitsevahendeid (kindad, mask, jalanõud)?",
+        "PAIR_ONLY": "Kas siia tohib minna ainult kahekesi?",
+        "NO_SIGNAL": "Kas telefonilevi puudub või on halb?"
+      },
+      "topics": {
+        "ANIMALS": "Loomad",
+        "SMOKING": "Suitsetamine toas",
+        "FIRE": "Küte ja tuleoht",
+        "WINTER_ACCESS": "Raske ligipääs",
+        "LIFTING": "Tõstmine ilma abivahendita",
+        "OTHER_PEOPLE": "Teised inimesed kodus",
+        "AGGRESSION": "Varasem agressiivsus",
+        "PROTECTIVE_GEAR": "Kaitsevahendid",
+        "PAIR_ONLY": "Ainult kahekesi",
+        "NO_SIGNAL": "Levi puudub"
+      }
     }
   },
   "stage": {
