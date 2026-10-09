@@ -519,3 +519,12 @@
     grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
   }
 }
+
+/* Uksesildi QR-kood: alati must valgel, et kaamera seda loeks ka tumedas teemas. */
+.hc-qr {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  background: #fff;
+  border-radius: 0.5rem;
+}

@@ -11066,7 +11066,8 @@
       "history_text_required": "Tekst on tühi.",
       "history_too_large": "Tekst on liiga pikk (üle miljoni märgi). Too see üle osade kaupa.",
       "history_already_imported": "See tekst on sellele kliendile juba üle toodud.",
-      "history_not_found": "Seda ajalugu ei leitud."
+      "history_not_found": "Seda ajalugu ei leitud.",
+      "door_tag_missing": "Sellel kliendil ei ole kehtivat uksesilti."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -11240,6 +11241,34 @@
       "hits_title": "Leitud varasemast ajaloost",
       "hits_hint": "Need lõigud on imporditud tekstist; liigi ja ajavahemiku filter neile ei kehti.",
       "hits_more": "Tabamusi on rohkem. Täpsusta otsingut."
+    },
+    "door_tag": {
+      "link": "Uksesilt",
+      "title": "Uksesilt",
+      "intro": "Silt käib kliendi koju ukse kõrvale, seespoole. Hooldaja skannib koodi telefoni kaameraga ja jõuab otse selle kliendi lehele.",
+      "safe": "Silt ei anna ligipääsu: aadressis on juhuslik tunnus, millest nime välja ei loe, ja kliendi leht avaneb ainult sisse logitud töötajale, kes seda klienti näeb.",
+      "qr_label": "Uksesildi QR-kood",
+      "made_at": "Silt on tehtud {time}",
+      "open_print": "Ava prinditav silt",
+      "print_hint": "Silt avaneb uuel vahelehel. Prindi see ja lõika katkendjoont mööda välja; kliendi nime sildil ei ole.",
+      "url_label": "Sildi aadress",
+      "copy": "Kopeeri",
+      "copied": "Kopeeritud",
+      "nfc_hint": "Sama aadressi võib kirjutada ka NFC-kleebisele: siis piisab telefoni kleebise vastu panemisest.",
+      "none": "Sellel kliendil ei ole veel uksesilti.",
+      "make": "Tee silt",
+      "replace": "Tee uus silt",
+      "replace_confirm": "Tee uus silt, praegune lakkab töötamast",
+      "revoke": "Tühista silt",
+      "revoke_confirm": "Tühista silt, see lakkab töötamast",
+      "doc": {
+        "title": "Uksesilt",
+        "print_hint": "Prindi see leht ja lõika silt katkendjoont mööda välja. Seda rida trükis ei ole.",
+        "for_client": "Silt kliendile:",
+        "qr_label": "QR-kood",
+        "what": "Koduteenuse töötaja: skanni kood telefoni kaameraga.",
+        "safe": "Kood ei ava kellegi andmeid ilma sisselogimiseta."
+      }
     }
   },
   "stage": {

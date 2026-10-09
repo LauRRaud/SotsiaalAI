@@ -530,6 +530,13 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
             >
               {t("home_care.chronology.link")}
             </Link>
+            <Link
+              className="hc-btn hc-btn--quiet hc-btn--link"
+              href={`/org/${organizationId}/koduteenus/kliendid/${client.id}/silt`}
+              prefetch={false}
+            >
+              {t("home_care.door_tag.link")}
+            </Link>
           </div>
 
           {canWrite && panel === null ? (
