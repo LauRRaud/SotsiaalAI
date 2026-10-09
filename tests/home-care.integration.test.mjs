@@ -3219,7 +3219,8 @@ test('päevaplaan: käigud töötaja kaupa, ümbertõstmine, ärajätmine, tagas
   const peeterMorning = await slotOf(peeter, '10:00', 60, f.members.bert);
   const peeterNoon = await slotOf(peeter, '14:00', 30, null);
   await slotOf(mari, '12:00', 30, f.members.anu);
-  await setClientStatus(lead, mari.id, { version: (await db.careClient.findUnique({ where: { id: mari.id } })).version, status: 'AWAY', statusReason: 'HOSPITAL' }, deps());
+  /* Ära juba enne möödunud reedet (02.10): möödunud päeva kohta loeb tolle päeva seis (K5-m). */
+  await setClientStatus(lead, mari.id, { version: (await db.careClient.findUnique({ where: { id: mari.id } })).version, status: 'AWAY', statusReason: 'HOSPITAL' }, deps(at('2026-09-25T08:00:00Z')));
   await createEntry(anu, linda.id, { text: 'Käidud.', visitMinutes: 40, occurredAt: '2026-10-09T06:10:00Z' }, deps());
 
   const rows = (visits) => visits.map((visit) => [visit.startTime, visit.client.displayName, visit.state]);
@@ -3821,7 +3822,8 @@ test('nädalaplaan: käigud töötaja ja päeva kaupa, puudumised ette, skoop ja
   /* Ajutiselt ära oleva kliendi käigud ei ole kellegi koormus. */
   await add(mari, [1, 2, 3, 4, 5], '08:00', 30, f.members.bert);
   const mariNow = await db.careClient.findUnique({ where: { id: mari.id }, select: { version: true } });
-  await setClientStatus(lead, mari.id, { version: mariNow.version, status: 'AWAY', statusReason: 'HOSPITAL' }, deps());
+  /* Ära juba enne mustri algust (01.10): möödunud päevade kohta loeb tolle päeva seis (K5-m). */
+  await setClientStatus(lead, mari.id, { version: mariNow.version, status: 'AWAY', statusReason: 'HOSPITAL' }, deps(at('2026-09-30T08:00:00Z')));
 
   /* Ainult hooldusjuht; teise asutuse juht näeb oma tühja nädalat; vigane päev on viga. */
   await expectError(getWeekPlan(anu, {}, deps()), 403, 'org.errors.missing_capability');
@@ -5379,4 +5381,52 @@ test('kõnele vastamine: otsing lähedase nime ja numbri järgi ning eilne ja t�
     { day: '2026-10-08', away: false, visits: [{ startTime: '09:00', state: 'DONE' }] },
     { day: '2026-10-09', away: true, visits: [] }
   ]);
+});
+
+test('möödunud päeva plaan loeb kliendi tolle päeva seisu: ära olnud päev ei ole tegemata käik, lõppenud teenusega klient oli enne lõppu teenusel', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const made = deps(at('2026-09-20T08:00:00Z'));
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, made)).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi' }, made)).client;
+  const mari = (await createClient(lead, { displayName: 'Mari Mets' }, made)).client;
+  for (const client of [linda, peeter, mari]) {
+    await addTeamMember(lead, client.id, { membershipId: f.members.anu.id }, deps());
+    /* Iga tööpäev kell 9, 10 ja 11; muster algab esmaspäeval 05.10. */
+    await createSlots(lead, client.id, { weekdays: [1, 2, 3, 4, 5], startTime: client === linda ? '09:00' : client === peeter ? '10:00' : '11:00', plannedMinutes: 30, workerMembershipId: f.members.anu.id, validFrom: '2026-10-05' }, made);
+  }
+  const version = async (client) => (await db.careClient.findUnique({ where: { id: client.id }, select: { version: true } })).version;
+  const setStatus = async (client, input, when) => setClientStatus(lead, client.id, { version: await version(client), ...input }, deps(at(when)));
+  /* Linda oli haiglas teisipäevast (06.10) neljapäevani (tagasi 08.10); Peetri teenus lõppes kolmapäeval (07.10). */
+  await setStatus(linda, { status: 'AWAY', statusReason: 'HOSPITAL' }, '2026-10-06T05:00:00Z');
+  await setStatus(linda, { status: 'ACTIVE' }, '2026-10-08T05:00:00Z');
+  await setStatus(peeter, { status: 'ENDED', statusReason: 'MOVED' }, '2026-10-07T05:00:00Z');
+  const names = (list) => list.map((visit) => visit.client.displayName).sort();
+  const dayOf = async (day) => {
+    const plan = await getDayPlan(lead, { day }, deps());
+    return { planned: names(plan.workers.flatMap((worker) => worker.visits)), away: names(plan.away), missing: plan.totals.missing };
+  };
+
+  /* NOW on reede 09.10. Esmaspäeval (05.10) olid kõik kolm teenusel: ka Peeter, kelle teenus on täna lõppenud. */
+  assert.deepEqual(await dayOf('2026-10-05'), { planned: ['Linda Tamm', 'Mari Mets', 'Peeter Põhi'], away: [], missing: 3 });
+  /* Teisipäeval (06.10) oli Linda ära: tema käik on „ära" all, mitte tegemata käik. */
+  assert.deepEqual(await dayOf('2026-10-06'), { planned: ['Mari Mets', 'Peeter Põhi'], away: ['Linda Tamm'], missing: 2 });
+  /* Kolmapäeval (07.10) oli Linda ikka ära ja Peetri teenus lõppenud: Peetrit ei näidata kummaski. */
+  assert.deepEqual(await dayOf('2026-10-07'), { planned: ['Mari Mets'], away: ['Linda Tamm'], missing: 1 });
+  /* Neljapäeval (08.10) on Linda tagasi. Täna (reede) loeb tänane seis. */
+  assert.deepEqual(await dayOf('2026-10-08'), { planned: ['Linda Tamm', 'Mari Mets'], away: [], missing: 2 });
+  assert.deepEqual((await dayOf('2026-10-09')).planned, ['Linda Tamm', 'Mari Mets']);
+  /* Nädala riba päevaplaanis: plaanitud käike päeva kaupa E 3, T 2, K 1, N 2, R 2. */
+  const week = (await getDayPlan(lead, { day: '2026-10-09' }, deps())).week;
+  assert.deepEqual(week.slice(0, 5).map((item) => item.planned), [3, 2, 1, 2, 2]);
+
+  /* NÄDALAPLAAN samast nädalast: käike kokku 3 + 2 + 1 + 2 + 2 = 10, kliente kolm (Peeter esmaspäeva ja teisipäevaga). */
+  const weekPlan = await getWeekPlan(lead, { week: '2026-10-07' }, deps());
+  assert.deepEqual([weekPlan.totals.visits, weekPlan.clients, weekPlan.days.slice(0, 5).map((item) => item.visits)], [10, 3, [3, 2, 1, 2, 2]]);
+  /* Tulevase nädala kohta loeb tänane seis: Linda ja Mari iga tööpäev, Peetrit ei ole. */
+  const nextWeek = await getWeekPlan(lead, { week: '2026-10-14' }, deps());
+  assert.deepEqual([nextWeek.totals.visits, nextWeek.clients], [10, 2]);
+  /* Hooldaja enda päev (täna) ei muutunud: Peetri käiku seal ei ole. */
+  assert.deepEqual(names((await getMyDay(anu, deps())).visits), ['Linda Tamm', 'Mari Mets']);
 });
