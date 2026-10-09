@@ -7753,7 +7753,66 @@
       "privacy": "Quick check is saved privately. Share conclusions from it only after you have reviewed the content.",
       "saving": "Saving...",
       "saved": "Quick check saved privately.",
-      "save_failed": "Saving failed. Please try again."
+      "save_failed": "Saving failed. Please try again.",
+      "steps": {
+        "demands": {
+          "title": "Work demands",
+          "short": "Demands",
+          "lead": "Think of the last two weeks. Choose one on each row."
+        },
+        "resources": {
+          "title": "Work resources",
+          "short": "Resources",
+          "lead": "What supports you under this load? Choose one on each row."
+        },
+        "risks": {
+          "title": "Risk markers",
+          "short": "Risks",
+          "lead": "Mark what applies right now. You may leave this empty."
+        },
+        "result": {
+          "title": "Result",
+          "short": "Result",
+          "lead": "A work-organisation signal based on your answers."
+        },
+        "support": {
+          "title": "Support",
+          "short": "Support",
+          "lead": "Everything stays private by default. You ask for support when you choose to."
+        }
+      },
+      "progress": "{done}/{total} answered",
+      "next_to": "Next: {label}",
+      "next": "Next",
+      "state": {
+        "empty": "not answered",
+        "done": "answered",
+        "optional": "optional",
+        "marked": "marked {count}",
+        "waiting": "waiting for answers",
+        "saved": "saved"
+      },
+      "summary": {
+        "questions_empty": "{total} questions, one tap each.",
+        "questions_left": "{left} still unanswered.",
+        "no_high_load": "No high loads.",
+        "resources_ok": "The main resources are in place.",
+        "no_marks": "Nothing is marked.",
+        "result_waiting": "The result appears when the questions are answered.",
+        "support": "Everything stays private until you decide otherwise."
+      },
+      "result": {
+        "none_title": "No result yet",
+        "none_text": "I show the signal when the questions are answered. Until then I do not guess.",
+        "missing": "{label}: {left} unanswered",
+        "next_steps": "Suggested next steps"
+      },
+      "risk_hints": {
+        "difficult_case": "The case needs to be shared with a colleague or manager.",
+        "covision": "A group's view would help.",
+        "support": "Something in the work arrangement needs an agreement."
+      },
+      "risks_note": "The marks stay private like the whole quick check."
     },
     "hard_case": {
       "title": "Difficult case",
@@ -11108,5 +11167,10 @@
       "hint": "Speech is turned into text by the platform's speech recognition and added to the end of the field; the recording is not kept. Read the text before saving.",
       "cut": "The entry's length limit ({limit} characters) was reached and the end of the dictated text was left out. Save this entry and continue in a new one."
     }
+  },
+  "stage": {
+    "rail_label": "Steps",
+    "all_steps": "All steps",
+    "step_position": "Step {current} of {total}: {label}"
   }
 }

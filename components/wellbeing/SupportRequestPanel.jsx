@@ -3,6 +3,7 @@
 import { useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useI18n } from "@/components/i18n/I18nProvider";
+import ActionCard, { ActionCardGrid } from "@/components/stage/ActionCard";
 import Button from "@/components/ui/Button";
 import Checkbox from "@/components/ui/Checkbox";
 import ContentTrustBadge from "@/components/ui/ContentTrustBadge";
@@ -70,7 +71,10 @@ export default function SupportRequestPanel({
   sourceWorkflowType = "quick-check",
   sourceRecordId = null,
   context,
-  onNavigate
+  onNavigate,
+  /* Sammulaval annab pealkirja ja sissejuhatuse samm ise; siis jätab paneel
+     oma päise ära, et sama tekst ei korduks. */
+  headless = false
 }) {
   const { t } = useI18n();
   const router = useRouter();
@@ -336,51 +340,51 @@ export default function SupportRequestPanel({
   }
 
   return (
-    <section aria-labelledby="support-request-heading">
+    <section
+      aria-labelledby={headless ? undefined : "support-request-heading"}
+      aria-label={headless ? t("wellbeing.support.title", "Soovin tuge küsida") : undefined}
+    >
       <div>
-        <div>
-          <h3 id="support-request-heading">{t("wellbeing.support.title", "Soovin tuge küsida")}</h3>
-          <p>
-            {t(
-              "wellbeing.support.intro",
-              "Midagi ei saadeta automaatselt. Mustand jääb privaatseks, kuni oled teksti üle vaadanud ja kinnitanud."
-            )}
-          </p>
-        </div>
+        {headless ? null : (
+          <div>
+            <h3 id="support-request-heading">{t("wellbeing.support.title", "Soovin tuge küsida")}</h3>
+            <p>
+              {t(
+                "wellbeing.support.intro",
+                "Midagi ei saadeta automaatselt. Mustand jääb privaatseks, kuni oled teksti üle vaadanud ja kinnitanud."
+              )}
+            </p>
+          </div>
+        )}
         <Button type="button" size="sm" onClick={leavePrivate} disabled={isBusy}>
           {t("wellbeing.support.leave_private", "Jäta privaatseks")}
         </Button>
       </div>
 
-      <div aria-label={t("wellbeing.support.options_label", "Toe küsimise valikud")}>
+      {/* Pealkiri ja selgitus eraldi ridadel (ActionCard). Varem olid need ühe
+          pillnupu järjestikused tekstiosad ja jooksid kokku (kujundusaudit K03);
+          paneel on ühine kõigile tööheaolu töövormidele. */}
+      <ActionCardGrid label={t("wellbeing.support.options_label", "Toe küsimise valikud")}>
         {supportOptions.map((option) => (
-          <Button
+          <ActionCard
             key={`${option.outputType}:${option.recipientType}`}
-            type="button"
-            className="wellbeing-choice-btn"
-            aria-pressed={selected?.outputType === option.outputType && selected?.recipientType === option.recipientType}
+            title={t(option.labelKey, option.labelFallback)}
+            description={t(option.descriptionKey, option.descriptionFallback)}
+            pressed={selected?.outputType === option.outputType && selected?.recipientType === option.recipientType}
             onClick={() => chooseOption(option)}
             disabled={isBusy}
-          >
-            <span>{t(option.labelKey, option.labelFallback)}</span>
-            <span>{t(option.descriptionKey, option.descriptionFallback)}</span>
-          </Button>
+          />
         ))}
-        <Button
-          type="button"
-          className="wellbeing-choice-btn"
+        <ActionCard
+          title={t("wellbeing.support.open_recovery", "Ava Taastumine")}
+          description={t("wellbeing.support.recovery_meta", "Taastumisplaan jääb enne jagamist sinu kontrolli alla")}
           onClick={() => {
             requestGateRef.current.invalidate();
             onNavigate?.("/tooheaolu/taastumine");
           }}
           disabled={isBusy}
-        >
-          <span>{t("wellbeing.support.open_recovery", "Ava Taastumine")}</span>
-          <span>
-            {t("wellbeing.support.recovery_meta", "Taastumisplaan jääb enne jagamist sinu kontrolli alla")}
-          </span>
-        </Button>
-      </div>
+        />
+      </ActionCardGrid>
 
       {selected ? (
         <div>

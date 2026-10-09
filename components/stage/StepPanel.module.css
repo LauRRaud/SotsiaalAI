@@ -1,0 +1,54 @@
+/* StepPanel: sammu pealkiri, juhis, sisu ja tegevusrida. */
+
+.panel {
+  min-width: 0;
+  display: grid;
+  gap: clamp(0.45rem, 1.2cqi, 0.8rem);
+}
+.head {
+  display: grid;
+  gap: 0.25rem;
+}
+.title {
+  margin: 0;
+  font-size: clamp(1.15rem, 2.4cqi, 1.4rem);
+  font-weight: 520;
+  line-height: 1.25;
+  color: var(--text-warm);
+  text-wrap: balance;
+}
+.title:focus-visible {
+  outline: none;
+  border-radius: 0.35rem;
+  box-shadow: var(--focus-ring);
+}
+.lead {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--text-soft);
+}
+.body {
+  min-width: 0;
+}
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem 1rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid color-mix(in srgb, var(--text-warm) 12%, transparent);
+}
+.note {
+  flex: 1 1 14rem;
+  min-width: 0;
+  margin: 0;
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-left: auto;
+}

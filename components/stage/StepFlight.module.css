@@ -1,0 +1,218 @@
+/* StepFlight: sammuriba, lennulava ja „Kõik sammud". Vaata StepFlight.jsx. */
+
+.root {
+  min-width: 0;
+  display: grid;
+  gap: clamp(0.65rem, 1.5cqi, 1rem);
+}
+
+/* --- Sammuriba: kiirmenüü DNA (carousel.css .gc-shortcut-*) ------------ */
+.rail {
+  justify-self: center;
+  max-width: 100%;
+}
+.track {
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.track::-webkit-scrollbar {
+  display: none;
+}
+/* Aktiivse sammu nimi on näha ka telefonis: riba on siin sammu pealkiri, mitte
+   ainult otseteede rida (ruumi dokk peidab mobiilis teksti). */
+.rail :global(.gc-shortcut-text) {
+  display: block;
+}
+.rail :global(.gc-shortcut[data-on="1"] .gc-shortcut-text) {
+  max-width: min(11rem, 42vw);
+}
+.wideToggle[data-on="1"] {
+  padding: 0;
+}
+
+/* Sammu number ringis; tehtud samm on täidetud. */
+.num {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 1px solid color-mix(in srgb, currentColor 55%, transparent);
+  border-radius: 50%;
+  font-size: 0.8rem;
+  font-weight: 560;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.num[data-state="partial"] {
+  border-color: currentColor;
+}
+.num[data-state="done"] {
+  border-color: transparent;
+  background: var(--text-warm);
+  /* Täidetud ringi peal on tekst vastupidist tooni: tumedas teemas tume,
+     heledas hele (seal on --text-warm ise tume). */
+  color: var(--text-ink, #1e1e1e);
+}
+:global(html.theme-light) .num[data-state="done"] {
+  color: #f6f4f0;
+}
+
+/* --- Lava: jaamad sügavuses (flight-effect.md §3) ----------------------- */
+.stage {
+  position: relative;
+  min-width: 0;
+  min-height: 12rem;
+  height: var(--step-stage-h, auto);
+  /* Lahkuv samm kasvab kaamerast mööda lennates; lõige hoiab ta lava sees,
+     muidu tekiks paneeli kerimisriba. */
+  overflow: hidden;
+  transition: height 360ms var(--ease-soft);
+}
+.stage[data-wide="1"] {
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+}
+/* Perspektiiv jaamade OTSESEL vanemal; kaamera käib muutujana --cam. */
+.dolly {
+  --cam: 0px;
+  position: absolute;
+  inset: 0;
+  perspective: 1100px;
+  perspective-origin: 50% 40%;
+}
+.stage[data-wide="1"] .dolly {
+  display: none;
+}
+.plane {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-width: 0;
+  visibility: hidden; /* mootor ja flat-reeglid lülitavad sisse */
+}
+.stage[data-mode="3d"] .plane {
+  transform: translateZ(calc(var(--z) + var(--cam, 0px)));
+  opacity: var(--o, 0);
+  will-change: transform, opacity;
+}
+/* Vähendatud liikumine või lame 3D: sama sammumudel, ainult ristsulandus. */
+.stage[data-mode="flat"] .plane {
+  opacity: 0;
+  transition:
+    opacity 260ms var(--ease-soft),
+    visibility 0s linear 260ms;
+}
+.stage[data-mode="flat"] .plane[data-active="1"] {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 260ms var(--ease-soft);
+}
+
+/* --- Kõik sammud: lai vaade --------------------------------------------- */
+.overview {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 0.75rem;
+  /* Kaamera tõmbub tagasi: sisu tuleb suuremast väiksemaks. */
+  animation: step-pull-back 320ms var(--ease-soft) both;
+}
+@keyframes step-pull-back {
+  from {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.tile {
+  width: 100%;
+  min-height: 6.25rem;
+  display: grid;
+  align-content: start;
+  gap: 0.45rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 1rem;
+  background: var(--glass-cell-bg);
+  color: var(--text-warm);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color 160ms var(--ease-soft),
+    border-color 160ms var(--ease-soft);
+}
+.tile:hover {
+  background: var(--glass-cell-bg-hover);
+}
+.tile:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.tile[data-current="1"] {
+  border-color: color-mix(in srgb, var(--text-warm) 62%, transparent);
+}
+.tileTop {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.tileTitle {
+  min-width: 0;
+  font-weight: 560;
+  overflow-wrap: anywhere;
+}
+.chip {
+  flex: none;
+  margin-left: auto;
+  padding: 0.12rem 0.5rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 999px;
+  color: var(--text-dim);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.chip[data-state="done"] {
+  color: var(--status-success, #c5cf9b);
+}
+.tileSummary {
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.45;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage {
+    transition: none;
+  }
+  .overview {
+    animation: none;
+  }
+}
+/* Platvormi enda „vähenda animatsioone" lüliti: mootor vaatab ainult brauseri
+   eelistust, seega sunnime siin sama ristsulanduse, mis flat-režiimis. */
+:global(html[data-reduce-motion="1"]) .stage[data-mode="3d"] .plane {
+  transform: none;
+  opacity: 0;
+  transition: opacity 260ms var(--ease-soft);
+}
+:global(html[data-reduce-motion="1"]) .stage[data-mode="3d"] .plane[data-active="1"] {
+  opacity: 1;
+}
+:global(html[data-reduce-motion="1"]) .stage {
+  transition: none;
+}
+:global(html[data-reduce-motion="1"]) .overview {
+  animation: none;
+}

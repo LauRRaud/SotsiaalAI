@@ -1,0 +1,68 @@
+/* ChoiceRow: küsimuse silt vasakul, vastusevariandid paremal. */
+
+.row {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.4rem 1.1rem;
+  padding-block: 0.22rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--text-warm) 10%, transparent);
+}
+.row:last-child {
+  border-bottom: 0;
+}
+.label {
+  min-width: 0;
+  color: var(--text-warm);
+}
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.4rem;
+}
+.option {
+  composes: cell from "./cell.module.css";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.1rem;
+  padding: 0 0.85rem;
+  border-radius: 999px;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  white-space: nowrap;
+}
+.option[aria-checked="true"] {
+  color: var(--text-warm);
+  font-weight: 560;
+}
+
+/* Kitsas pind: silt üles, variandid selle alla vasakule. Puutesiht suuremaks.
+   Konteineripäring kehtib seal, kus lehel on konteiner (`.feature-page`);
+   meediapäring on varu lehtedele, kus seda ei ole. */
+@container (max-width: 40rem) {
+  .row {
+    grid-template-columns: minmax(0, 1fr);
+    padding-block: 0.6rem;
+  }
+  .options {
+    justify-content: flex-start;
+  }
+  .option {
+    min-height: var(--hit-target-min, 2.75rem);
+  }
+}
+@media (max-width: 640px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr);
+    padding-block: 0.6rem;
+  }
+  .options {
+    justify-content: flex-start;
+  }
+  .option {
+    min-height: var(--hit-target-min, 2.75rem);
+  }
+}

@@ -1,0 +1,97 @@
+/* Kiirkontrolli enda kujundus. Sammulava, valikuread ja kaardid tulevad
+   kaustast components/stage; siin on ainult see, mis on kiirkontrollile omane. */
+
+.checks {
+  display: grid;
+  gap: 0.6rem;
+}
+
+/* --- Tulemus -------------------------------------------------------------- */
+.result,
+.waiting {
+  display: grid;
+  gap: clamp(0.8rem, 1.8cqi, 1.1rem);
+}
+.signal {
+  --signal: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 1rem;
+  background: var(--glass-cell-bg);
+}
+.signal[data-level="green"] {
+  --signal: var(--status-success, #c5cf9b);
+}
+.signal[data-level="yellow"] {
+  --signal: #e6c27a;
+}
+.signal[data-level="red"] {
+  --signal: var(--status-error, #eb9a76);
+}
+.signalDot {
+  flex: none;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  background: var(--signal);
+}
+.signal[data-level="none"] .signalDot {
+  background: none;
+  border: 1px solid var(--signal);
+}
+.signalTitle {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 560;
+  color: var(--text-warm);
+}
+.signalText {
+  margin: 0.1rem 0 0;
+  color: var(--text-soft);
+}
+.factors {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: 0.9rem 1.2rem;
+}
+.subheading {
+  margin: 0 0 0.3rem;
+  color: var(--text-dim);
+  font-size: 0.74rem;
+  font-weight: 560;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.2rem;
+  color: var(--text-warm);
+}
+.quiet {
+  margin: 0;
+  color: var(--text-soft);
+}
+.nextSteps {
+  display: grid;
+  gap: 0.2rem;
+}
+.missing {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+/* --- Tugi ------------------------------------------------------------------
+   Ühine toe paneel joonistab enda ümber kasti; sammu sees on see liigne. */
+.support > section {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+}

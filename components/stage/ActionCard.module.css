@@ -1,0 +1,31 @@
+/* ActionCard: pealkiri ja selgitus eraldi ridadel, vasakule joondatud. */
+
+.grid {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  /* Ühe rea kaardid on ühe kõrgusega, ka siis, kui selgitused on eri pikkusega. */
+  align-items: stretch;
+  gap: 0.6rem;
+}
+.card {
+  composes: cell from "./cell.module.css";
+  width: 100%;
+  min-height: var(--hit-target-min, 2.75rem);
+  display: grid;
+  align-content: start;
+  gap: 0.2rem;
+  padding: 0.8rem 0.95rem;
+  border-radius: 1rem;
+  text-align: left;
+}
+.title {
+  font-weight: 560;
+  overflow-wrap: anywhere;
+}
+.description {
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}

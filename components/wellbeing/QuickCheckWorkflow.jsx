@@ -1,151 +1,42 @@
 "use client";
 
+/**
+ * Kiirkontroll sammudena.
+ *
+ * Viis sammu lennulaval (StepFlight): töö nõudmised, tööressursid, riskimärgid,
+ * tulemus, tugi. Ekraanil on üks samm korraga; „Kõik sammud" näitab tervikut.
+ *
+ * MIS ON TEISITI KUI VAREM (kujundusaudit 08.10):
+ *  - küsimused on vastamata, kuni inimene valib (enne olid eeltäidetud ja
+ *    „Kollane" paistis tema hinnanguna enne ühtki vastust);
+ *  - signaal ilmub alles siis, kui kõik küsimused on vastatud;
+ *  - rippvalikute asemel on vastusevariandid kohe näha (üks puudutus);
+ *  - toe küsimine on eraldi viimane samm, mitte pikk nupurida lehe lõpus.
+ *
+ * Arvutus, salvestamine ja toe mustandid on samad mis enne
+ * (`lib/wellbeing/quickCheck.js`, `/api/wellbeing/quick-check`,
+ * `SupportRequestPanel`).
+ *
+ * Kujundus: QuickCheckWorkflow.module.css (selle faili kõrval); ühised osad
+ * tulevad kaustast components/stage.
+ */
+
 import { useMemo, useState } from "react";
+
 import { useI18n } from "@/components/i18n/I18nProvider";
+import ActionCard, { ActionCardGrid } from "@/components/stage/ActionCard";
+import CheckCard from "@/components/stage/CheckCard";
+import ChoiceRow from "@/components/stage/ChoiceRow";
+import StepFlight from "@/components/stage/StepFlight";
+import StepPanel from "@/components/stage/StepPanel";
 import Button from "@/components/ui/Button";
-import Checkbox from "@/components/ui/Checkbox";
-import { buildQuickCheckRecord, formatQuickCheckFactor } from "@/lib/wellbeing/quickCheck";
+import { buildQuickCheckRecord, computeQuickCheckResult, formatQuickCheckFactor } from "@/lib/wellbeing/quickCheck";
+
+import { QUICK_CHECK_EMPTY, QUICK_CHECK_GROUPS, QUICK_CHECK_RISKS, QUICK_CHECK_WORKFLOW_SLUGS } from "./quickCheckFields";
+import styles from "./QuickCheckWorkflow.module.css";
 import SupportRequestPanel from "./SupportRequestPanel";
-import WellbeingActionList from "./WellbeingActionList";
-import { WellbeingSelectField } from "./WellbeingControls";
 
-const fieldGroups = [
-  {
-    title: "Töö nõudmised",
-    fields: [
-      {
-        key: "workloadLevel",
-        label: "Töömaht",
-        options: [
-          ["low", "Madal"],
-          ["moderate", "Mõõdukas"],
-          ["high", "Kõrge"],
-          ["critical", "Kriitiline"]
-        ]
-      },
-      {
-        key: "caseComplexityLevel",
-        label: "Juhtumite keerukus",
-        options: [
-          ["routine", "Rutiinne"],
-          ["moderate", "Mõõdukas"],
-          ["complex", "Keerukas"],
-          ["very_complex", "Väga keerukas"]
-        ]
-      },
-      {
-        key: "emotionalLoad",
-        label: "Emotsionaalne koormus",
-        options: [
-          ["low", "Madal"],
-          ["moderate", "Mõõdukas"],
-          ["high", "Kõrge"],
-          ["very_high", "Väga kõrge"]
-        ]
-      },
-      {
-        key: "documentationLoad",
-        label: "Dokumenteerimise koormus",
-        options: [
-          ["low", "Madal"],
-          ["moderate", "Mõõdukas"],
-          ["high", "Kõrge"],
-          ["very_high", "Väga kõrge"]
-        ]
-      },
-      {
-        key: "interruptionsLevel",
-        label: "Katkestused",
-        options: [
-          ["low", "Madalad"],
-          ["moderate", "Mõõdukad"],
-          ["high", "Kõrged"],
-          ["very_high", "Väga kõrged"]
-        ]
-      },
-      {
-        key: "afterHoursImpact",
-        label: "Töövälise kättesaadavuse mõju",
-        options: [
-          ["none", "Puudub"],
-          ["low", "Madal"],
-          ["moderate", "Mõõdukas"],
-          ["high", "Kõrge"]
-        ]
-      }
-    ]
-  },
-  {
-    title: "Tööressursid",
-    fields: [
-      {
-        key: "recoveryLevel",
-        label: "Taastumisvõimalus",
-        options: [
-          ["sufficient", "Piisav"],
-          ["partial", "Osaline"],
-          ["low", "Vähene"],
-          ["none", "Puudub"]
-        ]
-      },
-      {
-        key: "decisionControl",
-        label: "Otsustusruum töö üle",
-        options: [
-          ["high", "Kõrge"],
-          ["moderate", "Mõõdukas"],
-          ["low", "Madal"],
-          ["none", "Puudub"]
-        ]
-      },
-      {
-        key: "priorityClarity",
-        label: "Prioriteetide selgus",
-        options: [
-          ["clear", "Selge"],
-          ["partly_clear", "Osaliselt selge"],
-          ["unclear", "Ebaselge"]
-        ]
-      },
-      {
-        key: "supportAvailability",
-        label: "Juhi või kolleegi tugi",
-        options: [
-          ["available", "Kättesaadav"],
-          ["partial", "Osaline"],
-          ["unclear", "Ebaselge"],
-          ["not_available", "Pole kättesaadav"]
-        ]
-      },
-      {
-        key: "workBoundaryClarity",
-        label: "Tööpiiride selgus",
-        options: [
-          ["clear", "Selge"],
-          ["partly_clear", "Osaliselt selge"],
-          ["unclear", "Ebaselge"]
-        ]
-      }
-    ]
-  }
-];
-
-const initialFields = {
-  workloadLevel: "moderate",
-  caseComplexityLevel: "moderate",
-  emotionalLoad: "moderate",
-  documentationLoad: "moderate",
-  interruptionsLevel: "moderate",
-  recoveryLevel: "partial",
-  afterHoursImpact: "low",
-  decisionControl: "moderate",
-  priorityClarity: "partly_clear",
-  supportAvailability: "partial",
-  covisionNeed: false,
-  workBoundaryClarity: "partly_clear",
-  difficultCaseMarker: false,
-  supportNeed: false
-};
+const QUESTION_STEPS = ["demands", "resources"];
 
 const signalCopy = {
   green: {
@@ -162,21 +53,34 @@ const signalCopy = {
   }
 };
 
+const lowerFirst = (text) => (text ? text.charAt(0).toLocaleLowerCase() + text.slice(1) : "");
+const answeredIn = (group, fields) => group.filter((field) => fields[field.key]).length;
+
 export default function QuickCheckWorkflow({ onNavigate }) {
   const { t } = useI18n();
-  const [fields, setFields] = useState(initialFields);
+  const [fields, setFields] = useState(QUICK_CHECK_EMPTY);
   const [saveState, setSaveState] = useState("idle");
   const [savedRecordId, setSavedRecordId] = useState(null);
+
+  const answered = {
+    demands: answeredIn(QUICK_CHECK_GROUPS.demands, fields),
+    resources: answeredIn(QUICK_CHECK_GROUPS.resources, fields)
+  };
+  const missing = {
+    demands: QUICK_CHECK_GROUPS.demands.length - answered.demands,
+    resources: QUICK_CHECK_GROUPS.resources.length - answered.resources
+  };
+  const complete = missing.demands + missing.resources === 0;
+  const marks = QUICK_CHECK_RISKS.filter((risk) => fields[risk.key]).length;
+
+  /* Tegurid juba antud vastuste põhjal (vastamata väli ei anna tegurit). */
+  const factors = useMemo(() => computeQuickCheckResult(fields), [fields]);
+  /* Terviklik kirje ainult siis, kui kõik küsimused on vastatud. */
   const record = useMemo(
-    () => buildQuickCheckRecord({
-      period: "current",
-      roleGroup: "SOCIAL_WORKER",
-      standardizedFields: fields
-    }),
-    [fields]
+    () => (complete ? buildQuickCheckRecord({ period: "current", roleGroup: "SOCIAL_WORKER", standardizedFields: fields }) : null),
+    [complete, fields]
   );
-  const signal = record.computedSignal.signalLevel;
-  const signalText = signalCopy[signal] || signalCopy.yellow;
+  const signal = record ? signalCopy[record.computedSignal.signalLevel] || signalCopy.yellow : null;
 
   function updateField(key, value) {
     setFields((current) => ({ ...current, [key]: value }));
@@ -184,6 +88,7 @@ export default function QuickCheckWorkflow({ onNavigate }) {
   }
 
   async function saveQuickCheck() {
+    if (!complete) return;
     setSaveState("saving");
     try {
       const response = await fetch("/api/wellbeing/quick-check", {
@@ -204,148 +109,279 @@ export default function QuickCheckWorkflow({ onNavigate }) {
     }
   }
 
-  return (
-    <div>
-      <section aria-labelledby="quick-check-heading">
-        <div>
-          <h2 id="quick-check-heading">{t("wellbeing.quick_check.title", "Kiirkontroll")}</h2>
-          <p>
-            {t(
-              "wellbeing.quick_check.intro",
-              "Töökoormuse radar kasutab standardvälju, et anda roheline, kollane või punane töökorralduslik signaal."
-            )}
-          </p>
-        </div>
-        <div>
-          <span>{signalText.title}</span>
-          <p>{signalText.text}</p>
-        </div>
-      </section>
+  const stepText = (key, part) => t(`wellbeing.quick_check.steps.${key}.${part}`);
+  const questionStep = (key, factorKeys, emptySummaryKey) => {
+    const total = QUICK_CHECK_GROUPS[key].length;
+    const done = answered[key];
+    const state = done === 0 ? "empty" : done === total ? "done" : "partial";
+    const summary =
+      done === 0
+        ? t("wellbeing.quick_check.summary.questions_empty", { total })
+        : done < total
+          ? t("wellbeing.quick_check.summary.questions_left", { left: total - done })
+          : factorKeys.length
+            ? factorKeys.map(formatQuickCheckFactor).join(" · ")
+            : t(emptySummaryKey);
+    return {
+      key,
+      label: stepText(key, "title"),
+      short: stepText(key, "short"),
+      state,
+      stateLabel:
+        state === "done"
+          ? t("wellbeing.quick_check.state.done")
+          : state === "partial"
+            ? `${done}/${total}`
+            : t("wellbeing.quick_check.state.empty"),
+      summary
+    };
+  };
 
-      <div>
-        {fieldGroups.map((group) => (
-          <fieldset key={group.title}>
-            <legend>{group.title}</legend>
-            {group.fields.map((field) => (
-              <WellbeingSelectField key={field.key} field={field} value={fields[field.key]} onChange={updateField} />
-            ))}
-          </fieldset>
-        ))}
+  const steps = [
+    questionStep("demands", factors.loadFactors, "wellbeing.quick_check.summary.no_high_load"),
+    questionStep("resources", factors.resourceFactors, "wellbeing.quick_check.summary.resources_ok"),
+    {
+      key: "risks",
+      label: stepText("risks", "title"),
+      short: stepText("risks", "short"),
+      state: marks ? "done" : "empty",
+      stateLabel: marks ? t("wellbeing.quick_check.state.marked", { count: marks }) : t("wellbeing.quick_check.state.optional"),
+      summary: marks
+        ? QUICK_CHECK_RISKS.filter((risk) => fields[risk.key])
+            .map((risk) => t(risk.labelKey))
+            .join(" · ")
+        : t("wellbeing.quick_check.summary.no_marks")
+    },
+    {
+      key: "result",
+      label: stepText("result", "title"),
+      short: stepText("result", "short"),
+      state: saveState === "saved" ? "done" : complete ? "partial" : "empty",
+      stateLabel:
+        saveState === "saved"
+          ? t("wellbeing.quick_check.state.saved")
+          : signal
+            ? lowerFirst(signal.title)
+            : t("wellbeing.quick_check.state.waiting"),
+      summary: signal ? signal.text : t("wellbeing.quick_check.summary.result_waiting")
+    },
+    {
+      key: "support",
+      label: stepText("support", "title"),
+      short: stepText("support", "short"),
+      state: "empty",
+      stateLabel: t("wellbeing.quick_check.state.optional"),
+      summary: t("wellbeing.quick_check.summary.support")
+    }
+  ];
+
+  const nextButton = (flight) => (
+    <Button type="button" onClick={flight.next}>
+      {t("wellbeing.quick_check.next_to", { label: lowerFirst(steps[flight.index + 1]?.label) })}
+    </Button>
+  );
+
+  /* Kui küsimusi on vastamata: ütle seda ja vii puuduva sammu juurde. */
+  const waitingForAnswers = (flight) => (
+    <div className={styles.waiting}>
+      <div className={styles.signal} data-level="none">
+        <span className={styles.signalDot} aria-hidden="true" />
+        <div>
+          <strong className={styles.signalTitle}>{t("wellbeing.quick_check.result.none_title")}</strong>
+          <p className={styles.signalText}>{t("wellbeing.quick_check.result.none_text")}</p>
+        </div>
       </div>
+      <div className={styles.missing}>
+        {QUESTION_STEPS.map((key, index) =>
+          missing[key] ? (
+            <Button key={key} type="button" variant="secondary" onClick={() => flight.goTo(index)}>
+              {t("wellbeing.quick_check.result.missing", { label: steps[index].label, left: missing[key] })}
+            </Button>
+          ) : null
+        )}
+      </div>
+    </div>
+  );
 
-      <fieldset>
-        <legend>{t("wellbeing.quick_check.risk_support", "Riskimärgid ja toe vajadus")}</legend>
-        <Checkbox
-          checked={fields.difficultCaseMarker}
-          onChange={(checked) => updateField("difficultCaseMarker", checked)}
-          label={t("wellbeing.quick_check.difficult_case_marker", "Raske juhtum, mida ei peaks üksi kandma")}
-        />
-        <Checkbox
-          checked={fields.covisionNeed}
-          onChange={(checked) => updateField("covisionNeed", checked)}
-          label={t("wellbeing.quick_check.covision_need", "Vajab kovisiooni või kolleegituge")}
-        />
-        <Checkbox
-          checked={fields.supportNeed}
-          onChange={(checked) => updateField("supportNeed", checked)}
-          label={t("wellbeing.quick_check.support_need", "Vajab juhiga toe kokkulepet")}
-        />
-      </fieldset>
+  const renderStep = (step, index, flight) => {
+    if (step.key === "demands" || step.key === "resources") {
+      const group = QUICK_CHECK_GROUPS[step.key];
+      return (
+        <StepPanel
+          title={step.label}
+          lead={stepText(step.key, "lead")}
+          note={t("wellbeing.quick_check.progress", { done: answered[step.key], total: group.length })}
+          actions={nextButton(flight)}
+        >
+          {group.map((field) => (
+            <ChoiceRow
+              key={field.key}
+              label={field.label}
+              options={field.options}
+              value={fields[field.key]}
+              onChange={(value) => updateField(field.key, value)}
+            />
+          ))}
+        </StepPanel>
+      );
+    }
 
-      <section aria-labelledby="quick-check-output-heading">
-        <h3 id="quick-check-output-heading">{t("wellbeing.quick_check.output_heading", "Praktiline väljund")}</h3>
-        <div>
-          <OutputList
-            title={t("wellbeing.quick_check.load_factors", "Koormustegurid")}
-            items={record.loadFactors}
-            emptyText={t("wellbeing.quick_check.no_load_factors", "Kõrgeid koormustegureid ei ilmnenud.")}
-          />
-          <OutputList
-            title={t("wellbeing.quick_check.resource_factors", "Puuduvad ressursid")}
-            items={record.resourceFactors}
-            emptyText={t("wellbeing.quick_check.no_resource_factors", "Põhiressursid paistavad olemas.")}
-          />
-          <OutputList
-            title={t("wellbeing.quick_check.risk_markers", "Riskimärgid")}
-            items={record.riskMarkers}
-            emptyText={t("wellbeing.quick_check.no_risk_markers", "Eraldi riskimärki ei märgitud.")}
-          />
-        </div>
+    if (step.key === "risks") {
+      return (
+        <StepPanel
+          title={step.label}
+          lead={stepText("risks", "lead")}
+          note={t("wellbeing.quick_check.risks_note")}
+          actions={nextButton(flight)}
+        >
+          <div className={styles.checks}>
+            {QUICK_CHECK_RISKS.map((risk) => (
+              <CheckCard
+                key={risk.key}
+                title={t(risk.labelKey)}
+                description={t(risk.hintKey)}
+                checked={Boolean(fields[risk.key])}
+                onChange={(checked) => updateField(risk.key, checked)}
+              />
+            ))}
+          </div>
+        </StepPanel>
+      );
+    }
 
-        <div>
-          <Button
-            type="button"
-           
-            onClick={saveQuickCheck}
-            disabled={saveState === "saving"}
-          >
-            {saveState === "saving"
-              ? t("wellbeing.quick_check.saving", "Salvestan...")
-              : t("wellbeing.quick_check.save", "Salvesta kiirkontroll")}
-          </Button>
-          {record.recommendedActions.length > 0 ? (
-            <WellbeingActionList
-              actions={record.recommendedActions}
-              actionRoutes={Object.fromEntries(
-                record.recommendedActions.map((action) => [
-                  action.workflowType,
-                  action.workflowType === "covision" ? "/kovisioon" : `/tooheaolu/${workflowSlug(action.workflowType)}`
-                ])
+    if (step.key === "result") {
+      if (!record) {
+        return (
+          <StepPanel title={step.label} lead={stepText("result", "lead")}>
+            {waitingForAnswers(flight)}
+          </StepPanel>
+        );
+      }
+      const note =
+        saveState === "saved"
+          ? t("wellbeing.quick_check.saved", "Kiirkontroll salvestati privaatselt.")
+          : saveState === "error"
+            ? t("wellbeing.quick_check.save_failed", "Salvestamine ebaõnnestus. Proovi uuesti.")
+            : t(
+                "wellbeing.quick_check.privacy",
+                "Sisestus on vaikimisi privaatne. Seda ei jagata juhile, kolleegile ega kovisiooni ilma sinu kinnituse ja eraldi jagatava versioonita."
+              );
+      return (
+        <StepPanel
+          title={step.label}
+          lead={stepText("result", "lead")}
+          note={note}
+          actions={
+            <>
+              <Button type="button" variant="secondary" onClick={flight.next}>
+                {t("wellbeing.quick_check.next_to", { label: lowerFirst(steps[index + 1].label) })}
+              </Button>
+              <Button type="button" onClick={saveQuickCheck} disabled={saveState === "saving"}>
+                {saveState === "saving"
+                  ? t("wellbeing.quick_check.saving", "Salvestan...")
+                  : t("wellbeing.quick_check.save", "Salvesta kiirkontroll")}
+              </Button>
+            </>
+          }
+        >
+          <div className={styles.result}>
+            <div className={styles.signal} data-level={record.computedSignal.signalLevel}>
+              <span className={styles.signalDot} aria-hidden="true" />
+              <div>
+                <strong className={styles.signalTitle}>{signal.title}</strong>
+                <p className={styles.signalText}>{signal.text}</p>
+              </div>
+            </div>
+
+            <div className={styles.factors}>
+              <FactorList
+                title={t("wellbeing.quick_check.load_factors", "Koormustegurid")}
+                items={record.loadFactors}
+                emptyText={t("wellbeing.quick_check.no_load_factors", "Kõrgeid koormustegureid ei ilmnenud.")}
+              />
+              <FactorList
+                title={t("wellbeing.quick_check.resource_factors", "Puuduvad ressursid")}
+                items={record.resourceFactors}
+                emptyText={t("wellbeing.quick_check.no_resource_factors", "Põhiressursid paistavad olemas.")}
+              />
+              <FactorList
+                title={t("wellbeing.quick_check.risk_markers", "Riskimärgid")}
+                items={record.riskMarkers}
+                emptyText={t("wellbeing.quick_check.no_risk_markers", "Eraldi riskimärki ei märgitud.")}
+              />
+            </div>
+
+            <div className={styles.nextSteps}>
+              <h4 className={styles.subheading}>{t("wellbeing.quick_check.result.next_steps")}</h4>
+              {record.recommendedActions.length > 0 ? (
+                <ActionCardGrid label={t("wellbeing.quick_check.result.next_steps")}>
+                  {record.recommendedActions.map((action) => (
+                    <ActionCard
+                      key={action.workflowType}
+                      title={action.label}
+                      description={action.reason}
+                      onClick={() =>
+                        onNavigate?.(
+                          action.workflowType === "covision"
+                            ? "/kovisioon"
+                            : `/tooheaolu/${QUICK_CHECK_WORKFLOW_SLUGS[action.workflowType] || action.workflowType}`
+                        )
+                      }
+                    />
+                  ))}
+                </ActionCardGrid>
+              ) : (
+                <p className={styles.quiet}>
+                  {t("wellbeing.quick_check.no_actions", "Jätka praeguste kokkulepete hoidmist ja tee uus kiirkontroll hiljem.")}
+                </p>
               )}
+            </div>
+          </div>
+        </StepPanel>
+      );
+    }
+
+    return (
+      <StepPanel title={step.label} lead={stepText("support", "lead")}>
+        {record ? (
+          /* Toe paneel on ühine kõigile tööheaolu töövormidele ja kannab veel
+             vana ühist kujunduskihti; `wellbeing-workflow` hoiab selle siin kehtivana. */
+          <div className={`wellbeing-workflow ${styles.support}`}>
+            <SupportRequestPanel
+              headless
+              sourceWorkflowType="quick-check"
+              sourceRecordId={saveState === "saved" ? savedRecordId : null}
+              context={record}
               onNavigate={onNavigate}
             />
-          ) : (
-            <p>{t("wellbeing.quick_check.no_actions", "Jätka praeguste kokkulepete hoidmist ja tee uus kiirkontroll hiljem.")}</p>
-          )}
-        </div>
-        <p role="status">
-          {saveState === "saved"
-            ? t("wellbeing.quick_check.saved", "Kiirkontroll salvestati privaatselt.")
-            : saveState === "error"
-              ? t("wellbeing.quick_check.save_failed", "Salvestamine ebaõnnestus. Proovi uuesti.")
-              : ""}
-        </p>
-      </section>
-
-      <p>
-        {t(
-          "wellbeing.quick_check.privacy",
-          "Sisestus on vaikimisi privaatne. Seda ei jagata juhile, kolleegile ega kovisiooni ilma sinu kinnituse ja eraldi jagatava versioonita."
+          </div>
+        ) : (
+          waitingForAnswers(flight)
         )}
-      </p>
+      </StepPanel>
+    );
+  };
 
-      <SupportRequestPanel
-        sourceWorkflowType="quick-check"
-        sourceRecordId={saveState === "saved" ? savedRecordId : null}
-        context={record}
-        onNavigate={onNavigate}
-      />
-    </div>
+  return (
+    <StepFlight label={t("wellbeing.quick_check.title", "Kiirkontroll")} steps={steps}>
+      {renderStep}
+    </StepFlight>
   );
 }
 
-function OutputList({ title, items, emptyText }) {
+function FactorList({ title, items, emptyText }) {
   return (
     <div>
-      <h4>{title}</h4>
+      <h4 className={styles.subheading}>{title}</h4>
       {items.length > 0 ? (
-        <ul>
-          {items.map((item) => <li key={item}>{formatQuickCheckFactor(item)}</li>)}
+        <ul className={styles.list}>
+          {items.map((item) => (
+            <li key={item}>{formatQuickCheckFactor(item)}</li>
+          ))}
         </ul>
       ) : (
-        <p>{emptyText}</p>
+        <p className={styles.quiet}>{emptyText}</p>
       )}
     </div>
   );
-}
-
-function workflowSlug(workflowType) {
-  return {
-    "hard-case": "raske-juhtum",
-    "work-processes": "tooprotsessid",
-    interruptions: "katkestused",
-    recovery: "taastumine",
-    "work-boundaries": "toopiirid",
-    "role-boundaries": "rollipiirid"
-  }[workflowType] || workflowType;
 }
