@@ -22,7 +22,7 @@ import {
   useHomeCareApi
 } from "./homeCareClient";
 
-const NO_FILTER = Object.freeze({ kind: "", from: "", to: "" });
+const NO_FILTER = Object.freeze({ kind: "", from: "", to: "", q: "" });
 
 function sortEntries(items) {
   return [...items].sort((a, b) => {
@@ -84,18 +84,28 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
     return result.ok;
   };
 
-  const entriesUrl = (query, cursor) => {
+  /* Päeviku leht. Otsisõnaga päring läheb POST-iga (otsisõna ei tohi jääda
+     aadressi ega logidesse); ilma otsisõnata on see tavaline loend. */
+  const fetchEntries = (query, cursor) => {
+    const q = (query.q || "").trim();
+    if (q) {
+      return diary.call(`${base}/kirjed/otsing`, {
+        method: "POST",
+        body: { q, kind: query.kind || "", from: query.from || "", to: query.to || "", cursor: cursor || "" },
+        fallbackKey: "home_care.errors.search_failed"
+      });
+    }
     const params = new URLSearchParams();
     if (query.kind) params.set("kind", query.kind);
     if (query.from) params.set("from", query.from);
     if (query.to) params.set("to", query.to);
     if (cursor) params.set("cursor", cursor);
     const text = params.toString();
-    return `${base}/kirjed${text ? `?${text}` : ""}`;
+    return diary.call(`${base}/kirjed${text ? `?${text}` : ""}`, { fallbackKey: "home_care.errors.list_failed" });
   };
 
   const applyFilter = async (next) => {
-    const result = await diary.call(entriesUrl(next), { fallbackKey: "home_care.errors.list_failed" });
+    const result = await fetchEntries(next);
     if (result.ok) {
       setEntries(result.data.entries);
       setApplied(next);
@@ -107,9 +117,7 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
 
   const loadMore = async () => {
     if (!entries.nextCursor) return;
-    const result = await diary.call(entriesUrl(applied, entries.nextCursor), {
-      fallbackKey: "home_care.errors.list_failed"
-    });
+    const result = await fetchEntries(applied, entries.nextCursor);
     if (!result.ok) {
       if (result.messageKey === ACCESS_REASON_REQUIRED) setLapsed(true);
       return;
@@ -130,7 +138,7 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
      kirje sinna kuulub: laeme filtreeritud lehe uuesti, selle asemel et
      liigi- ja kuupäevareegleid brauseris korrata. */
   const upsertEntry = (entry) => {
-    if (applied.kind || applied.from || applied.to) {
+    if (applied.kind || applied.from || applied.to || applied.q) {
       applyFilter(applied);
       return;
     }
@@ -195,7 +203,7 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
   const ended = client.status === CareClientStatus.ENDED;
   const canWrite = Boolean(access.canWrite);
   const canAddEntry = canWrite && (!ended || access.isCoordinator);
-  const filterActive = Boolean(applied.kind || applied.from || applied.to);
+  const filterActive = Boolean(applied.kind || applied.from || applied.to || applied.q);
   const activeTeam = team.filter((member) => member.active);
 
   return (
@@ -272,6 +280,40 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
           {t("home_care.filter.title")}
         </h2>
         <form
+          className="hc-form"
+          role="search"
+          onSubmit={(event) => {
+            event.preventDefault();
+            applyFilter(filter);
+          }}
+        >
+          <div className="hc-field">
+            <label className="hc-label" htmlFor={`${fieldId}-search`}>
+              {t("home_care.filter.search_label")}
+            </label>
+            <div className="hc-row hc-row--search">
+              <input
+                id={`${fieldId}-search`}
+                className="hc-input"
+                type="search"
+                value={filter.q}
+                onChange={(event) => setFilter((current) => ({ ...current, q: event.target.value }))}
+                maxLength={80}
+                autoComplete="off"
+                enterKeyHint="search"
+                aria-describedby={`${fieldId}-search-hint`}
+              />
+              <button className="hc-btn" type="submit" disabled={diary.busy}>
+                {t("home_care.home.search_button")}
+              </button>
+            </div>
+            <p className="hc-hint" id={`${fieldId}-search-hint`}>
+              {t("home_care.filter.search_hint")}
+            </p>
+          </div>
+        </form>
+
+        <form
           className="hc-filter"
           onSubmit={(event) => {
             event.preventDefault();
@@ -316,7 +358,7 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
               <button
                 className="hc-btn hc-btn--quiet"
                 type="button"
-                onClick={() => applyFilter({ kind: "", from: "", to: "" })}
+                onClick={() => applyFilter(NO_FILTER)}
                 disabled={diary.busy}
               >
                 {t("home_care.filter.clear")}
@@ -332,7 +374,9 @@ export default function HomeCareClientPage({ context, clientId, initial, needsRe
         ) : null}
 
         {entries.items.length === 0 ? (
-          <p className="hc-sub">{t("home_care.filter.empty")}</p>
+          <p className="hc-sub" role="status">
+            {applied.q ? t("home_care.filter.search_empty") : t("home_care.filter.empty")}
+          </p>
         ) : (
           <ul className="hc-list hc-list--plain">
             {entries.items.map((entry) => (

@@ -8230,6 +8230,14 @@ model CareClientEntry {
   clientRequestId String?
   requestSha256   String?
 
+  /// OTSINGUABI (K1-c): kirje teksti sõnad kolmel kujul (sõna ise, tüvi,
+  /// algvorm), tühikutega eraldatult. Tuletatud `text`-ist ja kirjutatakse koos
+  /// sellega; allikas on alati `text`. Tühistatud kirjel tühi.
+  searchText    String? @db.Text
+  /// Millise tööriistaga abi tehti: `vm1` (algvormid olemas) või `sb1` (ainult
+  /// tüved, sest morfoloogia ei vastanud). `sb1` read saab hiljem üle teha.
+  searchVersion String?
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

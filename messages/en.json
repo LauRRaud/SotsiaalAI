@@ -10896,7 +10896,10 @@
       "apply": "Show",
       "clear": "Clear",
       "more": "Show older",
-      "empty": "There are no entries."
+      "empty": "There are no entries.",
+      "search_label": "Search the diary",
+      "search_hint": "The search follows word forms and the beginning of a word: “võti” also finds “võtme” and “võtmed”.",
+      "search_empty": "No such entries were found."
     },
     "reason": {
       "title": "A reason is needed to open this page",
