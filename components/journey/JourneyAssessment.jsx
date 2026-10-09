@@ -133,7 +133,7 @@ export default function JourneyAssessment({ journey, onAssessmentsChange, t }) {
       )}
 
       {archived ? (
-        <p>{t("journey.assessment.archived", "Arhiveeritud Teekonna märkeid saab vaadata, mitte lisada.")}</p>
+        <p>{t("journey.assessment.archived", "Kõrvale pandud Teekonna märkeid saab vaadata, mitte lisada.")}</p>
       ) : adding ? (
         <Form onSubmit={submit}>
           <fieldset>

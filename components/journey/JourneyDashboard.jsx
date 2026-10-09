@@ -99,8 +99,18 @@ function formatDate(value, locale = "et") {
   }
 }
 
-function statusLabel(t, status) {
+function statusLabel(t, status, closure = null) {
+  /* Kõrvale pandud Teekond ütleb, kas see on paus või lõpetamine (K1-f). */
+  if (status === "ARCHIVED" && closure?.kind) {
+    return t(`journey.closure.status.${closure.kind}`, t("journey.status.ARCHIVED", "Archived"));
+  }
   return t(`journey.status.${status || "ACTIVE"}`, t("journey.status.ACTIVE", "Active"));
+}
+
+/** Kalendripäev `2026-10-15` → `15.10.2026`. */
+function plainDayLabel(day) {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(day || ""));
+  return match ? `${match[3]}.${match[2]}.${match[1]}` : "";
 }
 
 function primaryPathLabel(t, value) {
@@ -124,7 +134,7 @@ function JourneyCard({ journey, onArchive, busy, t, locale }) {
               {t("journey.labels.private", "Private")}
             </span>
             <span>
-              {statusLabel(t, journey.status)}
+              {statusLabel(t, journey.status, journey.closure)}
             </span>
             <span>
               {primaryPathLabel(t, journey.primaryPath)}
@@ -152,6 +162,13 @@ function JourneyCard({ journey, onArchive, busy, t, locale }) {
       <p>
         {journey.summary}
       </p>
+
+      {archived && journey.closure?.kind === "PAUSED" && journey.closure.resumeOn ? (
+        <p>
+          {t("journey.closure.resume_line", { date: plainDayLabel(journey.closure.resumeOn) }, "Plaanisid jätkata {date}.")}
+          {journey.closure.resumeDue ? ` ${t("journey.closure.resume_due", "See päev on käes.")}` : ""}
+        </p>
+      ) : null}
 
       {journey.domains?.length ? (
         <div>

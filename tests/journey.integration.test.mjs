@@ -20,9 +20,11 @@ import { PrismaPg } from '@prisma/adapter-pg';
 import { journeyRoadmap } from '../lib/journey/roadmap.js';
 import { renderPaperSheetHtml } from '../lib/journey/paperSheet.js';
 import {
+  closeJourneyForUser,
   createJourneyForUser,
   exportJourneyForUser,
   getJourneyDetailForUser,
+  listJourneysForUser,
   listLinkedPreInquiriesForJourney,
   updateJourneyForUser
 } from '../lib/journey/service.js';
@@ -493,4 +495,143 @@ test('enda hinnang muutusele: algseis, muutus, omaniku piir, arhiveeritud Teekon
   /* Kaskaad: Teekonna kustutus viib märked kaasa. */
   await db.journey.delete({ where: { id: other.id } });
   assert.equal(await db.journeyAssessment.count({ where: { journeyId: other.id } }), 0);
+});
+
+test('paus ja lõpetamine: seis, ajalugu, lõpphinnang, omaniku piir, loend ja väljavõtted', async (t) => {
+  const tag = randomUUID().slice(0, 8);
+  const user = (name) => db.user.create({ data: { email: `jc-${tag}-${name}@example.invalid`, role: 'CLIENT', profile: { create: { firstName: name, lastName: 'Proov' } } } });
+  const person = await user('inimene');
+  const stranger = await user('teine');
+  const journeyIds = [];
+  t.after(async () => {
+    await db.journey.deleteMany({ where: { id: { in: journeyIds } } });
+    await db.user.deleteMany({ where: { id: { in: [person.id, stranger.id] } } });
+  });
+  const make = async (owner, title) => {
+    const journey = await createJourneyForUser(owner.id, { title, summary: 'Kokkuvõte.', status: 'ACTIVE', sharingStatus: 'PRIVATE', clientActionId: randomUUID() }, { db });
+    journeyIds.push(journey.id);
+    return journey;
+  };
+  const journey = await make(person, 'Ema vajab abi');
+  const other = await make(person, 'Teine Teekond');
+  const foreign = await make(stranger, 'Võõra Teekond');
+  const refused = (promise, status, message) =>
+    assert.rejects(promise, (error) => error.status === status && (!message || error.message === message));
+  const fresh = (id, owner = person) => getJourneyDetailForUser(owner.id, id, { db });
+
+  /* Avatud Teekonnal pausi ega lõpetamist ei ole. */
+  let view = await fresh(journey.id);
+  assert.deepEqual(view.closure, { current: null, history: [] });
+
+  /* Versioon on kohustuslik ja vana versioon ei kehti; vigane sisend ei muuda midagi. */
+  await refused(closeJourneyForUser(person.id, journey.id, { kind: 'PAUSED' }, { db }), 409, 'journeys.errors.version_required');
+  await refused(closeJourneyForUser(person.id, journey.id, { kind: 'PAUSED', expectedUpdatedAt: '2020-01-01T00:00:00.000Z' }, { db }), 409, 'journeys.errors.conflict');
+  await refused(closeJourneyForUser(person.id, journey.id, { kind: 'FINISHED', expectedUpdatedAt: view.updatedAt }, { db }), 400, 'journeys.errors.closure_outcome_required');
+  await refused(closeJourneyForUser(person.id, journey.id, { kind: 'PAUSED', resumeOn: '2020-01-01', expectedUpdatedAt: view.updatedAt }, { db }), 400, 'journeys.errors.closure_resume_in_past');
+  /* VÕÕRA PIIR: teine inimene ei saa Teekonda kõrvale panna; olematu ja võõras on eristamatud. */
+  await refused(closeJourneyForUser(stranger.id, journey.id, { kind: 'PAUSED', expectedUpdatedAt: view.updatedAt }, { db }), 404, 'journeys.errors.not_found');
+  await refused(closeJourneyForUser(person.id, 'jrn_olematu', { kind: 'PAUSED', expectedUpdatedAt: view.updatedAt }, { db }), 404, 'journeys.errors.not_found');
+  assert.equal((await fresh(journey.id)).status, 'ACTIVE');
+  assert.equal(await db.journeyClosure.count({ where: { journeyId: journey.id } }), 0);
+
+  /* PAUS: Teekond on kõrvale pandud, märkus ja jätkamise päev on alles. */
+  view = await closeJourneyForUser(person.id, journey.id, { kind: 'PAUSED', note: ' Ootan  arsti aega. ', resumeOn: '2099-01-01', expectedUpdatedAt: view.updatedAt }, { db });
+  assert.equal(view.status, 'ARCHIVED');
+  assert.deepEqual(
+    [view.closure.current.kind, view.closure.current.outcome, view.closure.current.note, view.closure.current.resumeOn, view.closure.current.resumeDue, view.closure.current.reopenedAt],
+    ['PAUSED', null, 'Ootan arsti aega.', '2099-01-01', false, null]
+  );
+  assert.equal(view.closure.history.length, 0);
+  /* Pausil Teekond on kirjutuskaitstud ja teist pausi või lõpetamist peale ei saa. */
+  await refused(updateJourneyForUser(person.id, journey.id, { title: 'Uus pealkiri', expectedUpdatedAt: view.updatedAt }, { db }), 409, 'journeys.errors.archived');
+  await refused(createJourneyStep(person.id, journey.id, { title: 'Samm' }, { db }), 409, 'journeys.errors.archived');
+  await refused(closeJourneyForUser(person.id, journey.id, { kind: 'FINISHED', outcome: 'RESOLVED', expectedUpdatedAt: view.updatedAt }, { db }), 409, 'journeys.errors.archived');
+  assert.equal(await db.journeyClosure.count({ where: { journeyId: journey.id } }), 1);
+
+  /* LOEND: kõrvale pandud Teekonna juures on liik ja jätkamise päev; avatud Teekonnal ei ole midagi. */
+  let list = await listJourneysForUser(person.id, { db });
+  const inList = (id) => list.items.find((item) => item.id === id);
+  assert.deepEqual([inList(journey.id).closure.kind, inList(journey.id).closure.resumeOn, inList(journey.id).closure.resumeDue], ['PAUSED', '2099-01-01', false]);
+  assert.equal(inList(other.id).closure, null);
+  assert.equal((await listJourneysForUser(stranger.id, { db })).items.some((item) => item.id === journey.id), false);
+
+  /* JÄTKAMINE: Teekond on jälle avatud ja paus jääb ajalukku koos uuesti avamise ajaga. */
+  view = await updateJourneyForUser(person.id, journey.id, { status: 'ACTIVE', expectedUpdatedAt: view.updatedAt }, { db });
+  assert.equal(view.status, 'ACTIVE');
+  assert.equal(view.closure.current, null);
+  assert.deepEqual(view.closure.history.map((row) => [row.kind, Boolean(row.reopenedAt), row.resumeDue]), [['PAUSED', true, false]]);
+  assert.equal(inList(journey.id).closure.kind, 'PAUSED');
+  list = await listJourneysForUser(person.id, { db });
+  assert.equal(inList(journey.id).closure, null);
+
+  /* LÕPETAMINE oma hinnanguga: tulemus inimese sõnaga ja viimane märge „kuidas mul läheb" samas tehingus. */
+  await createJourneyAssessment(person.id, journey.id, { level: 2 }, { db, now: new Date(Date.now() - 3600_000) });
+  view = await fresh(journey.id);
+  view = await closeJourneyForUser(
+    person.id,
+    journey.id,
+    { kind: 'FINISHED', outcome: 'HELP_CONTINUES', level: 4, note: 'Koduteenus käib kaks korda nädalas.', expectedUpdatedAt: view.updatedAt },
+    { db }
+  );
+  assert.deepEqual(
+    [view.status, view.closure.current.kind, view.closure.current.outcome, view.closure.current.resumeOn, view.closure.current.resumeDue],
+    ['ARCHIVED', 'FINISHED', 'HELP_CONTINUES', null, false]
+  );
+  assert.equal(view.closure.history.length, 1);
+  assert.deepEqual([view.assessments.baseline.level, view.assessments.latest.level, view.assessments.change], [2, 4, 'BETTER']);
+  /* Lõpphinnanguta lõpetamine märget ei lisa; „ei lahenenud" on lubatud lõpp. */
+  let second = await fresh(other.id);
+  second = await closeJourneyForUser(person.id, other.id, { kind: 'FINISHED', outcome: 'UNRESOLVED', expectedUpdatedAt: second.updatedAt }, { db });
+  assert.equal(second.closure.current.outcome, 'UNRESOLVED');
+  assert.equal(second.assessments.baseline, null);
+
+  /* Andmebaas hoiab vigase rea eemal ka siis, kui rakendus eksib. */
+  const raw = (data) => db.journeyClosure.create({ data: { journeyId: journey.id, ownerUserId: person.id, ...data } });
+  await assert.rejects(raw({ kind: 'DELETED' }), /JourneyClosure_kind_check/);
+  await assert.rejects(raw({ kind: 'FINISHED' }), /JourneyClosure_outcome_check/);
+  await assert.rejects(raw({ kind: 'PAUSED', outcome: 'RESOLVED' }), /JourneyClosure_outcome_check/);
+  await assert.rejects(raw({ kind: 'FINISHED', outcome: 'RESOLVED', resumeOn: '2099-01-01' }), /JourneyClosure_resumeOn_check/);
+  await assert.rejects(raw({ kind: 'PAUSED', closedAt: new Date('2026-10-02T00:00:00Z'), reopenedAt: new Date('2026-10-01T00:00:00Z') }), /JourneyClosure_reopenedAt_check/);
+
+  /* VÄLJAVÕTTED: inimese Teekonna fail ja andmekoopia kannavad tema pause ja lõpetamisi; võõra omi mitte. */
+  const exported = await exportJourneyForUser(person.id, journey.id, { db });
+  assert.deepEqual(
+    exported.closures.map((item) => [item.kind, item.outcome, Boolean(item.reopenedAt)]),
+    [['FINISHED', 'HELP_CONTINUES', false], ['PAUSED', null, true]]
+  );
+  assert.ok(JSON.stringify(exported).includes('Ootan arsti aega.'));
+  const theirs = await fresh(foreign.id, stranger);
+  await closeJourneyForUser(stranger.id, foreign.id, { kind: 'PAUSED', note: 'Võõra paus.', expectedUpdatedAt: theirs.updatedAt }, { db });
+  const entry = DATA_EXPORT_REGISTRY.find((item) => item.name === 'journeys');
+  const file = (await entry.collect({ db, userId: person.id })).find((item) => item.name === 'journey_closures.ndjson');
+  assert.equal(file.count, 3);
+  assert.ok(file.content.toString('utf8').includes('Koduteenus käib kaks korda nädalas.'));
+  assert.equal(file.content.toString('utf8').includes('Võõra paus.'), false);
+  assert.equal(file.content.toString('utf8').includes('ownerUserId'), false);
+
+  /* VANA NUPP: lihtsalt arhiveeritud Teekonnal liiki ei ole ja uuesti avamine töötab nagu enne. */
+  const plain = await make(person, 'Kolmas Teekond');
+  let third = await updateJourneyForUser(person.id, plain.id, { status: 'ARCHIVED', expectedUpdatedAt: (await fresh(plain.id)).updatedAt }, { db });
+  assert.deepEqual(third.closure, { current: null, history: [] });
+  list = await listJourneysForUser(person.id, { db });
+  assert.equal(inList(plain.id).closure, null);
+  third = await updateJourneyForUser(person.id, plain.id, { status: 'ACTIVE', expectedUpdatedAt: third.updatedAt }, { db });
+  assert.equal(third.status, 'ACTIVE');
+
+  /* Piir: 100 pausi ja lõpetamist Teekonna kohta. Keeldumine on tervik: Teekond ei jää kõrvale pandud seisu. */
+  await db.journeyClosure.createMany({
+    data: Array.from({ length: 100 }, () => ({
+      journeyId: plain.id,
+      ownerUserId: person.id,
+      kind: 'PAUSED',
+      closedAt: new Date('2026-01-01T00:00:00Z'),
+      reopenedAt: new Date('2026-01-02T00:00:00Z')
+    }))
+  });
+  await refused(closeJourneyForUser(person.id, plain.id, { kind: 'PAUSED', expectedUpdatedAt: third.updatedAt }, { db }), 409, 'journeys.errors.closure_limit_reached');
+  assert.equal((await fresh(plain.id)).status, 'ACTIVE');
+
+  /* Kaskaad: Teekonna kustutus viib pausid ja lõpetamised kaasa. */
+  await db.journey.delete({ where: { id: other.id } });
+  assert.equal(await db.journeyClosure.count({ where: { journeyId: other.id } }), 0);
 });

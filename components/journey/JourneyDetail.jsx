@@ -12,6 +12,7 @@ import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import Form from "@/components/ui/Form";
 import Input from "@/components/ui/Input";
 import JourneyAssessment from "@/components/journey/JourneyAssessment";
+import JourneyClosure from "@/components/journey/JourneyClosure";
 import JourneyPaperSheet from "@/components/journey/JourneyPaperSheet";
 import JourneySteps from "@/components/journey/JourneySteps";
 import { localizePath } from "@/lib/localizePath";
@@ -71,7 +72,11 @@ function primaryPathLabel(t, value) {
   return t(`journey.primary_paths.${value || "UNKNOWN"}`, t("journey.primary_paths.UNKNOWN", "Not clear yet"));
 }
 
-function statusLabel(t, status) {
+function statusLabel(t, status, closure = null) {
+  /* Kõrvale pandud Teekond ütleb, kas see on paus või lõpetamine (K1-f). */
+  if (status === "ARCHIVED" && closure?.kind) {
+    return t(`journey.closure.status.${closure.kind}`, t("journey.status.ARCHIVED", "arhiveeritud"));
+  }
   const fallback = status === "ARCHIVED"
     ? "arhiveeritud"
     : status === "DRAFT"
@@ -407,7 +412,7 @@ function JourneyRoadmap({ journey, t }) {
         <h2>
           {t("journey.roadmap.title", "Teekonnarada")}
         </h2>
-        <span>{statusLabel(t, journey?.status)}</span>
+        <span>{statusLabel(t, journey?.status, journey?.closure?.current)}</span>
       </div>
       <ol aria-label={t("journey.roadmap.title", "Teekonnarada")}>
         {steps.map((step, index) => {
@@ -1027,36 +1032,18 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
     }
   }, [form, journey?.suggestedActions, journey?.updatedAt, journeyId, t]);
 
-  const handleArchive = useCallback(async () => {
-    if (!journeyId || journey?.status === "ARCHIVED") return;
-    setBusy(true);
+  /* Paus või lõpetamine (K1-f): jaotis saadab päringu ise ja annab siia uue seisu. */
+  const handleClosed = useCallback((nextJourney, kind) => {
+    setJourney(nextJourney);
+    setForm(createFormState(nextJourney));
+    setContinuityForm(createServiceContinuityState(nextJourney));
+    setEditing(false);
+    setContinuityOpen(false);
     setError("");
-    setNotice("");
-
-    try {
-      const response = await fetch(`/api/journeys/${encodeURIComponent(journeyId)}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ status: "ARCHIVED", expectedUpdatedAt: journey.updatedAt })
-      });
-      const payload = await response.json().catch(() => ({}));
-      if (!response.ok || !payload.ok) {
-        throw new Error(journeyErrorText(t, payload.message, t("journey.messages.archive_failed", "Archiving the journey failed.")));
-      }
-      setJourney(payload.journey);
-      setForm(createFormState(payload.journey));
-      setContinuityForm(createServiceContinuityState(payload.journey));
-      setEditing(false);
-      setContinuityOpen(false);
-      setNotice(t("journey.messages.archived", "Journey archived."));
-    } catch (archiveError) {
-      setError(archiveError.message || t("journey.messages.archive_failed", "Archiving the journey failed."));
-    } finally {
-      setBusy(false);
-    }
-  }, [journey?.status, journey?.updatedAt, journeyId, t]);
+    setNotice(kind === "FINISHED"
+      ? t("journey.closure.finished_notice", "Teekond on lõpetatud.")
+      : t("journey.closure.paused_notice", "Teekond on pausil."));
+  }, [t]);
 
   const handleReopen = useCallback(async () => {
     if (!journeyId || journey?.status !== "ARCHIVED") return;
@@ -1348,7 +1335,7 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
                       <span>
                         {t("journey.labels.private", "Private")}
                       </span>
-                      <span>{statusLabel(t, journey.status)}</span>
+                      <span>{statusLabel(t, journey.status, journey.closure?.current)}</span>
                       <span>{primaryPathLabel(t, journey.primaryPath)}</span>
                       {updatedAt ? (
                         <span>
@@ -1365,15 +1352,11 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
                     ) : (
                       <p>{t("journey.messages.archived_readonly", "An archived Journey is read-only. Reopen it before editing.")}</p>
                     )}
-                    {journey.status !== "ARCHIVED" ? (
-                      <Button variant="danger" onClick={handleArchive} disabled={busy}>
-                        {t("journey.actions.archive", "Archive")}
-                      </Button>
-                    ) : (
+                    {journey.status === "ARCHIVED" ? (
                       <Button onClick={handleReopen} disabled={busy}>
                         {t("journey.actions.reopen", "Taasava")}
                       </Button>
-                    )}
+                    ) : null}
                     <Button onClick={handleExport} disabled={busy}>
                       {t("journey.actions.export", "Ekspordi JSON-failina")}
                     </Button>
@@ -1426,6 +1409,8 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
               />
 
               <JourneyPaperSheet journey={journey} locale={locale} t={t} />
+
+              <JourneyClosure journey={journey} busy={busy} onClosed={handleClosed} onReopen={handleReopen} t={t} />
 
               <JourneyRoadmap journey={journey} t={t} />
 

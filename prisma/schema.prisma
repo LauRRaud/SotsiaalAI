@@ -1686,6 +1686,7 @@ model Journey {
   preInquiries PreInquiry[]
   steps        JourneyStep[]
   assessments  JourneyAssessment[]
+  closures     JourneyClosure[]
 
   @@index([ownerUserId, updatedAt])
   @@index([ownerUserId, status, updatedAt])
@@ -1754,6 +1755,34 @@ model JourneyAssessment {
   @@unique([ownerUserId, clientActionId])
   @@index([journeyId, createdAt])
   @@index([ownerUserId, createdAt])
+}
+
+/// Teekonna paus või lõpetamine (K1-f). Teekonna enda seis on ARCHIVED; rida ütleb,
+/// kumb see on, ja jääb pärast uuesti avamist ajalooks. Rida, mille `reopenedAt`
+/// on NULL, on praegune. Ainult omaniku näha.
+model JourneyClosure {
+  id          String @id @default(cuid())
+  journeyId   String
+  ownerUserId String
+
+  /// PAUSED | FINISHED (CHECK migratsioonis).
+  kind     String
+  /// Lõpetamisel inimese enda öeldud tulemus: RESOLVED | HELP_CONTINUES | OWN_WAY |
+  /// CHANGED | UNRESOLVED. Pausil NULL.
+  outcome  String?
+  /// Inimese enda sõnad: miks paus või mida lõpu kohta lisada.
+  note     String? @db.Text
+  /// Pausil: päev, mil inimene plaanib jätkata (AAAA-KK-PP). Platvorm seda meelde ei tuleta.
+  resumeOn String?
+
+  closedAt   DateTime  @default(now())
+  /// Millal Teekond uuesti avati; lahtisel real NULL.
+  reopenedAt DateTime?
+
+  journey Journey @relation(fields: [journeyId], references: [id], onDelete: Cascade)
+
+  @@index([journeyId, closedAt])
+  @@index([ownerUserId, closedAt])
 }
 
 model WellbeingRecord {
