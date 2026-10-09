@@ -1,0 +1,513 @@
+/* KODUTEENUS K1 — kliendinimekiri, kliendi leht ja hooldusjuhi ülevaade (`hc-*`).
+ *
+ * TELEFON ESIMESENA. Hooldaja avab kliendi lehe ukse taga, ühe käega: üks
+ * veerg, puutesiht vähemalt 2.75rem, püsikaart „enne kui lähed" kohe üleval.
+ * Laiemal ekraanil muutub ainult laius, sisu järjekord ei muutu.
+ *
+ * Sama keel mis `ow-*` ja `cw-*` failidel: üks prefiks, ei ühtegi globaalset
+ * elemendiselektorit, värvid `currentColor` segudena, et hele ja tume teema
+ * töötaksid ilma eraldi reegliteta.
+ */
+
+.hc-shell {
+  --hc-gap: 1rem;
+  --hc-pad: 1rem;
+  --hc-inner: 0.625rem;
+  --hc-radius: 0.875rem;
+  --hc-border: color-mix(in srgb, currentColor 14%, transparent);
+  --hc-surface: color-mix(in srgb, currentColor 5%, transparent);
+  --hc-strong: color-mix(in srgb, currentColor 9%, transparent);
+  --hc-muted: color-mix(in srgb, currentColor 64%, transparent);
+  /* Puutesiht peab EKRAANIL olema vähemalt 44 px. Platvormi paneel on telefonis
+     skaleeritud (mõõdetud: `.panel` transform 0,955), seega 44 px CSS-is annaks
+     ekraanil 42. 47 px annab 44,9. */
+  --hc-touch: max(2.9375rem, 47px);
+  /* Platvormi märgid: heledas teemas tume merevaik, tumedas hele (vt tokens.css). */
+  --hc-warn: var(--warn-fg, #ffcd78);
+  --hc-danger: var(--danger-fg, #ff9a9a);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--hc-gap);
+  width: 100%;
+  max-width: 48rem;
+  margin-inline: auto;
+  /* Telefonis annab külgveerise platvormi paneel; teine polster sööks laiust. */
+  padding: var(--hc-pad) 0;
+  color: var(--documents-page-text, inherit);
+}
+
+.hc-head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.hc-title {
+  margin: 0;
+  font-size: clamp(1.25rem, 1.05rem + 1vw, 1.625rem);
+  font-weight: 600;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.hc-sub,
+.hc-hint {
+  margin: 0;
+  max-width: none;
+  color: var(--hc-muted);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.hc-back {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  min-height: var(--hc-touch);
+  color: inherit;
+  font-size: 0.9375rem;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.hc-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hc-inner);
+  padding: var(--hc-pad);
+  border: 1px solid var(--hc-border);
+  border-radius: var(--hc-radius);
+  background: var(--hc-surface);
+}
+
+/* Püsikaart on lehe kõige tähtsam plokk: tugevam pind ja serv. */
+.hc-section--card {
+  border-color: color-mix(in srgb, currentColor 26%, transparent);
+  background: var(--hc-strong);
+}
+
+.hc-section-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.hc-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hc-row--between {
+  justify-content: space-between;
+}
+
+/* Otsinguväli ja nupp ühes reas: väli võtab ülejäänud laiuse. */
+.hc-row--search {
+  flex-wrap: nowrap;
+  align-items: stretch;
+}
+
+.hc-row--search > .hc-input,
+.hc-row--search > .hc-field {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.hc-row--search > .hc-btn {
+  flex: 0 0 auto;
+}
+
+.hc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hc-list > li {
+  max-width: none;
+}
+
+.hc-list--plain {
+  gap: 0;
+}
+
+.hc-sub--pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.hc-history {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid var(--hc-border);
+  border-radius: 0.625rem;
+}
+
+.hc-client {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-height: var(--hc-touch);
+  padding: 0.75rem 0.875rem;
+  border: 1px solid var(--hc-border);
+  border-radius: 0.75rem;
+  background: var(--hc-surface);
+  color: inherit;
+  text-decoration: none;
+}
+
+.hc-client:hover,
+.hc-client:focus-visible {
+  background: var(--hc-strong);
+}
+
+.hc-client__name {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.hc-client__meta {
+  color: var(--hc-muted);
+  font-size: 0.875rem;
+  overflow-wrap: anywhere;
+}
+
+.hc-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.5rem;
+  border: 1px solid var(--hc-border);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.hc-badge--warn {
+  border-color: var(--hc-warn);
+  color: var(--hc-warn);
+}
+
+.hc-badge--danger {
+  border-color: var(--hc-danger);
+  color: var(--hc-danger);
+}
+
+.hc-notice {
+  margin: 0;
+  max-width: none;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid var(--hc-border);
+  border-radius: 0.625rem;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+
+.hc-notice--warn {
+  border-color: var(--hc-warn);
+}
+
+.hc-cardline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.375rem 0.625rem;
+  padding: 0.5rem 0;
+  border-top: 1px solid var(--hc-border);
+}
+
+.hc-cardline:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+/* Rea muutmise vorm võtab rea täislaiuse. */
+.hc-cardline > .hc-form {
+  flex: 1 1 100%;
+}
+
+.hc-cardline__text {
+  flex: 1 1 12rem;
+  min-width: 0;
+  font-size: 1rem;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.hc-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.hc-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.hc-label {
+  font-size: 0.875rem;
+  color: var(--hc-muted);
+}
+
+.hc-input,
+.hc-textarea {
+  width: 100%;
+  min-height: var(--hc-touch);
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--hc-border);
+  border-radius: 0.625rem;
+  background: color-mix(in srgb, currentColor 6%, transparent);
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+.hc-textarea {
+  min-height: 6rem;
+  resize: vertical;
+  line-height: 1.45;
+}
+
+.hc-textarea--short {
+  min-height: 4rem;
+}
+
+.hc-fieldset {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.hc-field--grow {
+  flex: 1 1 12rem;
+}
+
+/* Filter: telefonis üksteise all, laiemal ekraanil ühes reas. */
+.hc-filter {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.625rem;
+  align-items: end;
+}
+
+.hc-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.hc-chip {
+  min-height: var(--hc-touch);
+  padding: 0.375rem 0.875rem;
+  border: 1px solid var(--hc-border);
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 0.9375rem;
+  cursor: pointer;
+}
+
+.hc-chip[aria-pressed="true"] {
+  border-color: currentColor;
+  background: var(--hc-strong);
+  font-weight: 600;
+}
+
+.hc-btn {
+  min-height: var(--hc-touch);
+  padding: 0.375rem 0.875rem;
+  border: 1px solid var(--hc-border);
+  border-radius: 0.625rem;
+  background: color-mix(in srgb, currentColor 6%, transparent);
+  color: inherit;
+  font: inherit;
+  font-size: 0.9375rem;
+  cursor: pointer;
+}
+
+.hc-btn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Põhitegevus on täidetud pinnaga; teised nupud jäävad vaikseks. */
+.hc-btn--primary {
+  border-color: currentColor;
+  background: color-mix(in srgb, currentColor 16%, transparent);
+  font-weight: 600;
+}
+
+.hc-btn--link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.hc-btn:hover:not([disabled]),
+.hc-chip:hover {
+  background: var(--hc-strong);
+}
+
+.hc-btn:focus-visible,
+.hc-chip:focus-visible,
+.hc-input:focus-visible,
+.hc-textarea:focus-visible,
+.hc-back:focus-visible,
+.hc-client:focus-visible,
+.hc-entry__link:focus-visible,
+.hc-tel:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.hc-btn--quiet {
+  padding: 0.25rem 0.75rem;
+  background: transparent;
+  font-size: 0.875rem;
+}
+
+.hc-btn--danger {
+  border-color: var(--hc-danger);
+  color: var(--hc-danger);
+}
+
+.hc-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: var(--hc-touch);
+  font-size: 0.9375rem;
+  cursor: pointer;
+}
+
+.hc-check > input {
+  flex: 0 0 auto;
+  width: 1.25rem;
+  height: 1.25rem;
+  accent-color: currentColor;
+}
+
+.hc-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--hc-border);
+}
+
+.hc-entry:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.hc-entry__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.375rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+.hc-entry__author {
+  font-weight: 600;
+}
+
+.hc-entry__time {
+  color: var(--hc-muted);
+}
+
+.hc-entry__text {
+  margin: 0;
+  max-width: none;
+  font-size: 1rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.hc-entry__text--muted {
+  color: var(--hc-muted);
+  font-style: italic;
+}
+
+.hc-entry__meta {
+  margin: 0;
+  max-width: none;
+  color: var(--hc-muted);
+  font-size: 0.875rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.hc-entry__link {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+/* Telefoninumber on ukse taga kõige sagedamini vajutatav link. */
+.hc-tel {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  min-height: var(--hc-touch);
+  color: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.hc-error {
+  margin: 0;
+  max-width: none;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--hc-danger);
+  border-radius: 0.625rem;
+  color: var(--hc-danger);
+  font-size: 0.9375rem;
+}
+
+.hc-ok {
+  margin: 0;
+  max-width: none;
+  font-size: 0.9375rem;
+}
+
+.hc-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.75rem;
+}
+
+@media (min-width: 40rem) {
+  .hc-shell {
+    --hc-pad: 1.25rem;
+    padding: var(--hc-pad);
+  }
+
+  .hc-grid--two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hc-filter {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+  }
+}

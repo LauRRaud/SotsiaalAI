@@ -7,7 +7,13 @@ import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
 import Form from "@/components/ui/Form";
 import Input from "@/components/ui/Input";
-import { CAPABILITY_TEMPLATE_KEYS, CAPABILITY_TEMPLATES, ORGANIZATION_SEAT_ROLES } from "@/lib/org/constants";
+import {
+  CAPABILITY_TEMPLATE_KEYS,
+  CAPABILITY_TEMPLATES,
+  ORGANIZATION_SEAT_ROLES,
+  OWNER_ONLY_INVITE_TEMPLATES,
+  isTemplateOffered
+} from "@/lib/org/constants";
 
 import OrgHeader from "./OrgHeader";
 import { useOrgApi } from "./useOrgApi";
@@ -33,6 +39,13 @@ export default function OrgInvitesClient({ context, initialPage, units }) {
   const organizationId = context.organization.id;
   const writable = context?.writable !== false;
   const templateNeedsUnit = CAPABILITY_TEMPLATES[templateKey]?.scope === "UNIT";
+  /* Vorm pakub ainult malle, mida see kutsuja tohib anda ja mille moodul on
+     aktiivne. Server kontrollib omaniku nõuet ise uuesti. */
+  const isOwner = (context.capabilities || []).some((grant) => grant.capability === "ORG_OWNER");
+  const templateKeys = CAPABILITY_TEMPLATE_KEYS.filter(
+    (key) =>
+      (isOwner || !OWNER_ONLY_INVITE_TEMPLATES.includes(key)) && isTemplateOffered(key, context.activeModules || [])
+  );
 
   const reload = useCallback(async () => {
     const payload = await call(`/api/org/${organizationId}/invites`);
@@ -129,7 +142,7 @@ export default function OrgInvitesClient({ context, initialPage, units }) {
                 value={templateKey}
                 onChange={setTemplateKey}
                 ariaLabel={t("org.invites.template")}
-                options={CAPABILITY_TEMPLATE_KEYS.map((key) => ({
+                options={templateKeys.map((key) => ({
                   value: key,
                   label: t(CAPABILITY_TEMPLATES[key].labelKey)
                 }))}

@@ -1,5 +1,5 @@
 import { assertCapability, assertWritable } from "@/lib/org/accessContext";
-import { CAPABILITY_TEMPLATES, OrganizationCapability } from "@/lib/org/constants";
+import { OWNER_ONLY_INVITE_TEMPLATES, OrganizationCapability } from "@/lib/org/constants";
 import { createInvite, listInvitePage } from "@/lib/org/inviteService";
 import { orgErrorResponse, orgJson, readJsonBody, requireOrgContext } from "../../_shared";
 
@@ -43,7 +43,9 @@ export async function POST(request, context) {
     assertWritable(auth.context);
     assertCapability(auth.context, OrganizationCapability.MEMBER_ADMIN);
     const body = await readJsonBody(request);
-    if (body?.capabilityTemplate === CAPABILITY_TEMPLATES.ORG_OWNER.key) {
+    /* Kutse ei tohi anda rohkem, kui kutsuja saaks anda otse: omaniku ja
+       hooldusjuhi malli annab ainult `ORG_OWNER`. */
+    if (OWNER_ONLY_INVITE_TEMPLATES.includes(body?.capabilityTemplate)) {
       assertCapability(auth.context, OrganizationCapability.ORG_OWNER);
     }
     const { invite, rawToken } = await createInvite(auth.organizationId, {

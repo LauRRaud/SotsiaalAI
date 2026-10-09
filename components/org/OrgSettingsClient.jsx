@@ -5,6 +5,7 @@ import { useCallback, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import { isHomeCareUiEnabled } from "@/lib/homeCare/flags";
 import { ORGANIZATION_MODULE_KEYS } from "@/lib/org/constants";
 
 import OrgHeader from "./OrgHeader";
@@ -64,7 +65,11 @@ export default function OrgSettingsClient({ context, isPlatformAdmin }) {
         </h2>
         <p className="ow-subtitle">{t("org.settings.modulesIntro")}</p>
         <ul className="ow-chips">
-          {ORGANIZATION_MODULE_KEYS.map((moduleKey) => {
+          {ORGANIZATION_MODULE_KEYS.filter(
+            /* Koduteenus ilmub alles siis, kui pind on lipuga avatud; server
+               keeldub aktiveerimisest niikuinii. */
+            (moduleKey) => moduleKey !== "HOME_CARE" || activeModules.includes(moduleKey) || isHomeCareUiEnabled()
+          ).map((moduleKey) => {
             const isActive = activeModules.includes(moduleKey);
             return (
               <li key={moduleKey} className="ow-chip">

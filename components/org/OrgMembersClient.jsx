@@ -5,6 +5,7 @@ import { useCallback, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
+import { ORGANIZATION_CAPABILITIES, requiredModulesForCapability } from "@/lib/org/constants";
 
 import OrgHeader from "./OrgHeader";
 import { useOrgApi } from "./useOrgApi";
@@ -75,6 +76,34 @@ export default function OrgMembersClient({ context, initialMembers, units, canGr
     },
     [call, organizationId, reload]
   );
+
+  const grant = useCallback(
+    async (membershipId, capability) => {
+      if (!capability) return;
+      const payload = await call(`/api/org/${organizationId}/members/${membershipId}/capabilities`, {
+        method: "POST",
+        body: { capability, scopeType: "ORGANIZATION" },
+        fallbackKey: "org.errors.capability_grant_failed"
+      });
+      if (payload) await reload();
+    },
+    [call, organizationId, reload]
+  );
+
+  /* Mida sellele liikmele veel anda saab: kogu asutuse skoobis õigused, mida tal
+     ei ole ja mille moodul on aktiivne. Moodulita õigus ei avaks ühtegi vaadet
+     ja jääks loendisse segadust tekitama. Üksusega piiratud õigus käib kutse
+     rollimalli kaudu. */
+  const activeModules = new Set(context.activeModules || []);
+  const grantableFor = (member) => {
+    const held = new Set(
+      member.capabilities.filter((item) => item.scopeType !== "UNIT").map((item) => item.capability)
+    );
+    return ORGANIZATION_CAPABILITIES.filter(
+      (capability) =>
+        !held.has(capability) && requiredModulesForCapability(capability).every((key) => activeModules.has(key))
+    );
+  };
 
   return (
     <section className="ow-shell">
@@ -175,6 +204,25 @@ export default function OrgMembersClient({ context, initialMembers, units, canGr
                         </li>
                       ))}
                     </ul>
+                    {canGrant && writable && member.status === "ACTIVE" && grantableFor(member).length ? (
+                      <label>
+                        <span className="ow-meta__term">{t("org.members.grantCapability")}</span>
+                        {/* Toimingumenüü nagu põhiüksuse määramine: valik annab
+                            õiguse ja loend ülal uueneb. Õiguse andmist lubab
+                            server ainult `ORG_OWNER`-ile. */}
+                        <Dropdown
+                          value=""
+                          onChange={(capability) => grant(member.membershipId, capability)}
+                          disabled={busy}
+                          ariaLabel={t("org.members.grantCapability")}
+                          placeholder="—"
+                          options={grantableFor(member).map((capability) => ({
+                            value: capability,
+                            label: t(`org.capability.${capability}`)
+                          }))}
+                        />
+                      </label>
+                    ) : null}
                   </td>
                   <td data-label={t("org.members.status")}>
                     {t(`org.membershipStatus.${member.status}`)}

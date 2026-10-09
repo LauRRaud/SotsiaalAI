@@ -1,6 +1,8 @@
 import { assertCapability, assertWritable } from "@/lib/org/accessContext";
 import { OrganizationCapability } from "@/lib/org/constants";
 import { activateModule, suspendModule } from "@/lib/org/organizations";
+import { HOME_CARE_MODULE } from "@/lib/homeCare/constants";
+import { assertHomeCareEnabled } from "@/lib/homeCare/flags";
 import { orgErrorResponse, orgJson, readJsonBody, requireOrgContext } from "../../_shared";
 
 export const runtime = "nodejs";
@@ -27,6 +29,9 @@ export async function POST(request, context) {
     assertWritable(auth.context);
     assertCapability(auth.context, OrganizationCapability.ORG_OWNER);
     const body = await readJsonBody(request);
+    /* Koduteenuse moodul on lisaks globaalse lipu taga: ilma selleta saaks iga
+       asutuse omanik poolvalmis pinna sisse lülitada kohe, kui võti on enumis. */
+    if (body?.moduleKey === HOME_CARE_MODULE) assertHomeCareEnabled();
     const activated = await activateModule(auth.organizationId, {
       actorUserId: auth.userId,
       moduleKey: body?.moduleKey,

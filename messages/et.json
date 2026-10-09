@@ -9359,7 +9359,8 @@
       "support": "Tugi",
       "profile": "Teenuseprofiil",
       "service_reports": "Aruanded",
-      "dispatch": "Graafik"
+      "dispatch": "Graafik",
+      "home_care": "Koduteenus"
     },
     "overview": {
       "heading": "Ülevaade",
@@ -9489,7 +9490,8 @@
       "KOV_INTAKE": "Vastuvõtt",
       "SERVICE_DELIVERY": "Teenuse osutamine",
       "PROFESSIONAL_SUPPORT": "Professionaalne tugi",
-      "ORG_KNOWLEDGE": "Organisatsiooni teadmus"
+      "ORG_KNOWLEDGE": "Organisatsiooni teadmus",
+      "HOME_CARE": "Koduteenus"
     },
     "capability": {
       "ORG_OWNER": "Organisatsiooni omanik",
@@ -9500,14 +9502,16 @@
       "SERVICE_PROFILE_EDITOR": "Teenuseprofiili toimetaja",
       "SUPPORT_CONTACT_ADMIN": "Tugikontaktide haldus",
       "BILLING_MANAGER": "Arvelduse haldus",
-      "AUDIT_VIEWER": "Auditi vaataja"
+      "AUDIT_VIEWER": "Auditi vaataja",
+      "HOME_CARE_COORDINATOR": "Hooldusjuht"
     },
     "capabilityTemplate": {
       "orgOwner": "Omanik",
       "memberAdmin": "Liikmete haldaja",
       "unitLead": "Osakonnajuht",
       "inboxCoordinator": "Vastuvõtu koordinaator",
-      "member": "Tavaline liige"
+      "member": "Tavaline liige",
+      "homeCareCoordinator": "Hooldusjuht"
     },
     "scope": {
       "ORGANIZATION": "Kogu organisatsioon",
@@ -10701,6 +10705,265 @@
       "history_shown": "Ajaloost näidatud",
       "history_more": "Näita vanemat ajalugu",
       "history_reset": "Tagasi algusesse"
+    }
+  },
+  "home_care": {
+    "meta": {
+      "title": "Koduteenus",
+      "description": "Kliendid, päevik ja meeskond"
+    },
+    "home": {
+      "title": "Koduteenus",
+      "intro_worker": "Sinu kliendid. Ava klient, et näha kokkuleppeid ja kirjutada päevikusse.",
+      "intro_coordinator": "Kõik kliendid. Ülevaates on uued kirjed, lugemata teated ja lahtised erijuhtumid.",
+      "my_clients": "Minu kliendid",
+      "all_clients": "Kliendid",
+      "empty_worker": "Sa ei ole veel ühegi kliendi meeskonnas. Hooldusjuht lisab sind kliendi juurde.",
+      "empty_coordinator": "Kliente veel ei ole. Lisa esimene klient.",
+      "search_label": "Otsi klienti nime järgi",
+      "search_button": "Otsi",
+      "search_empty": "Sellise nimega klienti ei leitud.",
+      "search_hint": "Otsing näitab ainult nime. Väljaspool oma meeskonda küsitakse lehe avamiseks põhjust.",
+      "needs_reason": "avaneb põhjusega",
+      "add_client": "Lisa klient",
+      "overview_link": "Hooldusjuhi ülevaade",
+      "show_ended": "Näita lõpetatuid",
+      "show_active": "Näita aktiivseid",
+      "empty_ended": "Lõpetatud kliente ei ole."
+    },
+    "status": {
+      "ACTIVE": "Aktiivne",
+      "AWAY": "Ajutiselt ära",
+      "ENDED": "Lõpetatud"
+    },
+    "client": {
+      "back": "Tagasi klientide juurde",
+      "name": "Nimi",
+      "internal_code": "Tunnus",
+      "internal_code_hint": "Asutuse sisemine tunnus, näiteks sama nimekuju, mida kasutate praeguses töövahendis.",
+      "address": "Aadress",
+      "phone": "Telefon",
+      "contact_note": "Kontaktid ja märkused",
+      "save": "Salvesta",
+      "cancel": "Loobu",
+      "edit": "Muuda andmeid",
+      "details": "Andmed",
+      "create_title": "Uus klient",
+      "status_title": "Seis",
+      "status_note": "Selgitus (näiteks „haiglas alates 9.10”)",
+      "status_save": "Muuda seisu",
+      "opened_recently": "Viimati avasid",
+      "basis": {
+        "TEAM": "meeskond",
+        "COORDINATOR": "hooldusjuht",
+        "REASON": "põhjusega"
+      },
+      "talk_to_coordinator": "Enne käiku räägi hooldusjuhiga.",
+      "away_notice": "Klient on ajutiselt ära.",
+      "ended_notice": "Teenus on lõpetatud. Leht on loetav.",
+      "read_only": "Organisatsioon ei ole praegu kirjutatav; leht on ainult lugemiseks.",
+      "manage": "Hooldusjuhile",
+      "unit": "Üksus",
+      "unit_none": "Üksuseta (kogu asutus)"
+    },
+    "card": {
+      "title": "Enne kui lähed",
+      "empty": "Kaardil ei ole veel midagi. Lisa siia see, mida asendaja peab enne ukse taha jõudmist teadma.",
+      "add": "Lisa rida",
+      "kind_label": "Liik",
+      "text_label": "Tekst",
+      "save": "Salvesta",
+      "edit": "Muuda",
+      "remove": "Eemalda",
+      "cancel": "Loobu",
+      "limit": "Kaardil on kuni {limit} rida.",
+      "kinds": {
+        "ACCESS": "Ligipääs",
+        "AGREEMENT": "Kokkulepe",
+        "RISK": "Oht",
+        "ALARM": "Häirenupp",
+        "OTHER": "Muu"
+      }
+    },
+    "team": {
+      "title": "Meeskond",
+      "empty": "Meeskonnas ei ole veel kedagi.",
+      "add_label": "Lisa töötaja",
+      "add": "Lisa",
+      "remove": "Eemalda",
+      "inactive": "ei ole enam aktiivne",
+      "hint": "Meeskond näeb klienti ilma põhjust andmata. Teised hooldajad avavad lehe põhjusega."
+    },
+    "entry": {
+      "new_title": "Uus kirje",
+      "text_label": "Mida nägid ja tegid",
+      "kind_label": "Liik",
+      "kinds": {
+        "NOTE": "Tavaline",
+        "AGREEMENT": "Kokkulepe",
+        "HANDOVER": "Teade järgmisele",
+        "INCIDENT": "Erijuhtum",
+        "CONCERN": "Mure hooldusjuhile"
+      },
+      "contact_label": "Kontakt",
+      "contact": {
+        "VISIT": "Käik",
+        "PHONE": "Telefon",
+        "OTHER": "Muu"
+      },
+      "occurred_label": "Millal see juhtus",
+      "companion_label": "Kaasas",
+      "companion_none": "Üksi",
+      "save": "Salvesta kirje",
+      "saved": "Kirje on salvestatud.",
+      "visibility_team": "Näeb: kliendi meeskond ({count}) ja hooldusjuht. Perele seda teksti ei näidata.",
+      "visibility_coordinator": "Näeb ainult hooldusjuht. Meeskond näeb märget „enne käiku räägi hooldusjuhiga”.",
+      "write_what_you_saw": "Kirjuta, mida nägid ja tegid, mitte hinnanguid: klient võib oma andmeid küsida.",
+      "written_later": "kirjutatud hiljem",
+      "corrected": "parandatud",
+      "retracted": "Kirje on tühistatud.",
+      "coordinator_only": "ainult hooldusjuhile",
+      "with_companion": "kaasas {name}",
+      "correct": "Paranda",
+      "retract": "Tühista",
+      "history": "Ajalugu",
+      "reason_label": "Põhjus",
+      "correct_title": "Kirje parandamine",
+      "retract_title": "Kirje tühistamine",
+      "retract_hint": "Kirjet ei kustutata: tühistatud kirje jääb ajalukku koos põhjusega.",
+      "correct_save": "Salvesta parandus",
+      "retract_save": "Tühista kirje",
+      "cancel": "Loobu",
+      "history_title": "Varasem sisu",
+      "history_empty": "Parandusi ei ole.",
+      "revision_kind": {
+        "CORRECTION": "Parandus",
+        "RETRACTION": "Tühistus"
+      },
+      "read_count": "loetud: {count}",
+      "unread": "keegi ei ole veel lugenud",
+      "occurred_hint": "Jäta tühjaks, kui kirjutad kohe pärast käiku."
+    },
+    "incident": {
+      "type_label": "Mis juhtus",
+      "types": {
+        "FALL": "Kukkumine või maast leidmine",
+        "DOOR_NOT_OPENED": "Uks ei avanenud",
+        "MISSING": "Inimene on kadunud",
+        "HEALTH_DECLINE": "Tervise järsk halvenemine",
+        "REFUSED_HELP": "Keeldus abist",
+        "AGGRESSION": "Agressiivsus või oht töötajale",
+        "ABUSE_SUSPICION": "Väärkohtlemise või hooletuse kahtlus",
+        "MONEY_DISCREPANCY": "Raha või vara lahknevus",
+        "UNSAFE_HOME": "Ohtlik kodukeskkond",
+        "ACCESS_PROBLEM": "Võtme või ligipääsu mure",
+        "WORK_ACCIDENT": "Tööõnnetus",
+        "COMPLAINT": "Kaebus",
+        "THANKS": "Tänu",
+        "OTHER": "Muu"
+      },
+      "text_label": "Mida nägin või kuulsin",
+      "assessment_label": "Mida arvan",
+      "actions_label": "Mida tegin",
+      "actions": {
+        "CALLED_112": "Helistasin 112",
+        "INFORMED_COORDINATOR": "Teatasin hooldusjuhile",
+        "INFORMED_RELATIVE": "Teatasin lähedasele",
+        "WAITED_FOR_HELP": "Jäin abi ootama",
+        "LEFT_FOR_SAFETY": "Lahkusin ohutuse pärast"
+      },
+      "notice": "Kirje ei asenda abi kutsumist ega abivajavast inimesest teatamist. Ohu korral helista 112.",
+      "status": {
+        "OPEN": "Uus",
+        "IN_REVIEW": "Ülevaatamisel",
+        "CLOSED": "Suletud"
+      },
+      "set_in_review": "Võtan ülevaatamisele",
+      "close": "Sulge",
+      "reopen": "Ava uuesti",
+      "resolution_label": "Mida tehti"
+    },
+    "filter": {
+      "title": "Päevik",
+      "kind_all": "Kõik liigid",
+      "from": "Alates",
+      "to": "Kuni",
+      "apply": "Näita",
+      "clear": "Tühjenda",
+      "more": "Näita vanemaid",
+      "empty": "Kirjeid ei ole."
+    },
+    "reason": {
+      "title": "Lehe avamiseks on vaja põhjust",
+      "intro": "Sa ei ole selle kliendi meeskonnas. Vali põhjus; luba kehtib tänase päeva lõpuni ja avamine jääb kirja.",
+      "code_label": "Põhjus",
+      "codes": {
+        "COVERING": "Asendan täna",
+        "PAIRED_VISIT": "Paariskülastus",
+        "URGENT": "Kiire olukord",
+        "OTHER": "Muu"
+      },
+      "text_label": "Täpsustus (valikuline)",
+      "submit": "Ava leht"
+    },
+    "overview": {
+      "title": "Hooldusjuhi ülevaade",
+      "back": "Tagasi klientide juurde",
+      "recent_title": "Kirjed pärast eilset",
+      "recent_empty": "Uusi kirjeid ei ole.",
+      "recent_more": "Näidatud on viimased 100 kirjet.",
+      "unread_title": "Teated, mida keegi ei ole lugenud",
+      "unread_empty": "Kõik teated on loetud.",
+      "unread_hint": "Viimase 14 päeva teated järgmisele, mida ükski teine hooldaja ei ole avanud.",
+      "incidents_title": "Lahtised erijuhtumid",
+      "incidents_empty": "Lahtisi erijuhtumeid ei ole."
+    },
+    "errors": {
+      "request_failed": "Päring ebaõnnestus. Proovi uuesti.",
+      "list_failed": "Andmete laadimine ebaõnnestus.",
+      "save_failed": "Salvestamine ebaõnnestus. Sinu tekst on alles; proovi uuesti.",
+      "open_failed": "Kliendi lehe avamine ebaõnnestus.",
+      "search_failed": "Otsing ebaõnnestus.",
+      "client_not_found": "Klienti ei leitud.",
+      "entry_not_found": "Kirjet ei leitud.",
+      "card_line_not_found": "Kaardi rida ei leitud.",
+      "access_reason_required": "Selle kliendi lehe avamiseks vali põhjus.",
+      "card_team_only": "Kaarti saavad muuta kliendi meeskond ja hooldusjuht.",
+      "card_full": "Kaart on täis. Eemalda või muuda mõnda rida.",
+      "card_changed": "Kaarti muudeti vahepeal. Laadi leht uuesti.",
+      "card_text_required": "Kirjuta rea tekst.",
+      "invalid_card_kind": "Vali rea liik.",
+      "name_required": "Kirjuta kliendi nimi.",
+      "text_required": "See väli on kohustuslik.",
+      "text_too_long": "Tekst on liiga pikk.",
+      "entry_text_required": "Kirjuta kirje tekst.",
+      "invalid_entry_kind": "Vali kirje liik.",
+      "invalid_contact_mode": "Vali kontakti viis.",
+      "invalid_occurred_at": "Sündmuse aeg ei ole arusaadav.",
+      "occurred_at_in_future": "Sündmuse aeg ei saa olla tulevikus.",
+      "invalid_date": "Kuupäev ei ole arusaadav.",
+      "invalid_companion": "Kaasas olnud töötajat ei leitud.",
+      "invalid_incident_type": "Vali, mis juhtus.",
+      "invalid_incident_actions": "Tehtud sammude loend ei ole arusaadav.",
+      "invalid_incident_status": "Vali erijuhtumi seis.",
+      "not_an_incident": "See kirje ei ole erijuhtum.",
+      "incident_kind_fixed": "Erijuhtumit ei saa muuta tavaliseks kirjeks ega vastupidi. Tühista kirje ja kirjuta uus.",
+      "reason_required": "Kirjuta põhjus.",
+      "entry_not_editable": "Kirjet saavad parandada autor ja hooldusjuht.",
+      "entry_retracted": "Kirje on juba tühistatud.",
+      "entry_changed": "Kirjet muudeti vahepeal. Laadi leht uuesti.",
+      "idempotency_conflict": "See kirje on juba salvestatud teise sisuga. Laadi leht uuesti.",
+      "version_required": "Laadi leht uuesti ja proovi siis.",
+      "version_conflict": "Keegi muutis neid andmeid vahepeal. Laadi leht uuesti.",
+      "internal_code_taken": "See tunnus on juba teisel kliendil.",
+      "invalid_unit": "Üksust ei leitud.",
+      "invalid_member": "Töötajat ei leitud.",
+      "invalid_status": "Vali seis.",
+      "invalid_id": "Vigane viide.",
+      "invalid_request_id": "Vigane päringu võti.",
+      "search_too_short": "Kirjuta vähemalt kaks tähte.",
+      "client_ended": "Teenus on lõpetatud. Uue kirje saab lisada hooldusjuht.",
+      "incident_retract_coordinator": "Erijuhtumi tühistab hooldusjuht. Vea korral paranda kirjet või räägi hooldusjuhiga."
     }
   }
 }

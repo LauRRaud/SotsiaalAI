@@ -5398,6 +5398,8 @@ enum OrganizationModuleKey {
   SERVICE_DELIVERY
   PROFESSIONAL_SUPPORT
   ORG_KNOWLEDGE
+  // KODUTEENUS K1: kliendid, meeskonnad ja päevik (plokk faili lõpus).
+  HOME_CARE
 }
 
 enum OrganizationModuleStatus {
@@ -5441,6 +5443,9 @@ enum OrganizationCapability {
   SUPPORT_CONTACT_ADMIN
   BILLING_MANAGER
   AUDIT_VIEWER
+  // KODUTEENUS K1: hooldusjuht. EI OLE `UNIT_LEAD`, sest see mall ei anna
+  // teadlikult ühtegi sisuõigust; siin on sisuõigus kogu mõte.
+  HOME_CARE_COORDINATOR
 }
 
 enum OrganizationCapabilityScopeType {
@@ -5501,6 +5506,9 @@ model Organization {
   preInquiries           PreInquiry[]                    @relation("PreInquiryRecipientOrganization")
   sponsoredSubscriptions Subscription[]                  @relation("SubscriptionSponsorOrganization")
   serviceReportShares    ServiceReportShare[]
+  // KODUTEENUS K1
+  careClients            CareClient[]
+  careClientEntries      CareClientEntry[]
 
   @@unique([createdByUserId, creationClientActionId], name: "Organization_creation_action_unique")
   @@index([status])
@@ -5556,6 +5564,8 @@ model OrganizationUnit {
   invites          OrganizationInvite[]
   inboxItems       OrganizationInboxItem[]
   supportContacts  OrganizationSupportContact[]
+  // KODUTEENUS K1
+  careClients      CareClient[]
 
   @@index([organizationId, status, sortOrder])
   @@index([organizationId, parentUnitId])
@@ -5592,6 +5602,10 @@ model OrganizationMembership {
   reportingAsManager    OrganizationReportingLine[]   @relation("OrganizationReportingManager")
   supportContacts       OrganizationSupportContact[]
   receivedSupportShares WellbeingSupportShare[]       @relation("WellbeingSupportShareRecipient")
+  // KODUTEENUS K1
+  careClientTeams       CareClientTeamMember[]
+  careEntriesAuthored   CareClientEntry[]             @relation("CareClientEntryAuthor")
+  careEntriesCompanion  CareClientEntry[]             @relation("CareClientEntryCompanion")
 
   // Üks AKTIIVNE liikmesus org + kasutaja kohta → osaline unikaalindeks migratsioonis.
   @@index([organizationId, status])
@@ -8035,4 +8049,275 @@ model CaseWorkClientErasureAudit {
 
   @@index([caseWorkAssistId, createdAt])
   @@index([ownerUserId, createdAt])
+}
+
+// ---------------------------------------------------------------------------
+// KODUTEENUS K1 — klient organisatsioonis, meeskond, püsikaart, päevik ja
+// avamiste jälg.
+//
+// MIS SEE ON. Hoolekandeasutuse (organisatsiooni) OMA kliendikirje. Seni oli
+// klient vaba tekst töötaja isikliku teenuseprofiili objektidel (`ServiceVisit`,
+// `ServiceEntry`): kaks hooldajat kirjutasid nime erinevalt ja süsteemi jaoks
+// oli see kaks klienti; asendaja ei näinud kolleegi kirjeid. Need mudelid
+// annavad kliendile ühe kirje, mille külge käivad meeskond ja ühine päevik.
+//
+// MIS SEE EI OLE. Kliendil ei ole platvormi kontot ja siin ei ole ühtegi
+// `User`-viidet: töötajale viidatakse `OrganizationMembership.id` kaudu, sest
+// õigus tuleb liikmesusest ja liikmesus jääb konto kustutamisel alles
+// (tombstone). Teenuspäeviku arvestuskirjeid (`ServiceEntry`) need mudelid ei
+// asenda: päevik on kliendilugu, mitte arve alus.
+//
+// ÕIGUS. Klienti näeb tema meeskond ja hooldusjuht (`HOME_CARE_COORDINATOR`).
+// Sama asutuse teine hooldaja avab lehe põhjusega; iga avamine jätab rea
+// `CareClientAccess`-i. Otsus tehakse teenuskihis (`lib/homeCare/access.js`),
+// iga päring filtreerib `organizationId` järgi.
+//
+// LIIGID JA SEISUD on String + rakenduse sõnastik (`lib/homeCare/constants.js`),
+// mitte Postgres-enum: loendid kasvavad (erijuhtumi liigid, põhjuse koodid) ja
+// enumiväärtust ei saa eemaldada.
+//
+// Osalised unikaalindeksid, CHECK-id ja muutumatuse triggerid on migratsiooni
+// SQL-is (20261009040000_home_care_k1), sest skeemikeel neid ei väljenda.
+// ---------------------------------------------------------------------------
+
+model CareClient {
+  id             String  @id @default(cuid())
+  organizationId String
+  /// Valikuline üksus hooldusjuhi üksuse-skoobi jaoks. NULL = kogu asutus.
+  unitId         String?
+
+  displayName  String
+  /// Asutuse sisemine tunnus (nt sama nimekuju, mida kasutab senine tööriist).
+  /// Nimi EI OLE `externalRef`: see muster tähistab isikuandmete registris
+  /// välise süsteemi koopiavälja.
+  internalCode String?
+  address      String?
+  contactPhone String?
+  contactNote  String? @db.Text
+
+  /// ACTIVE | AWAY | ENDED.
+  status          String    @default("ACTIVE")
+  /// Lühike selgitus seisu juurde („haiglas alates 3.11").
+  statusNote      String?
+  statusChangedAt DateTime?
+
+  /// Samaaegse muutmise kaitse: muutja saadab nähtud versiooni.
+  version Int @default(1)
+
+  /// Kliendi isikuandmete kustutamise jälg (nimi, tunnus, aadress ja kontakt
+  /// nullitakse; kirjed jäävad asutuse dokumentatsioonina alles).
+  clientErasedAt DateTime?
+
+  /// FK-ta: looja liikmesus. Jälg, mitte õiguse alus.
+  createdByMembershipId String?
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  organization Organization      @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  /// SetNull: üksuse kadumine ei tohi klienti kaotada; klient jääb asutuse alla.
+  unit         OrganizationUnit? @relation(fields: [unitId], references: [id], onDelete: SetNull)
+
+  team      CareClientTeamMember[]
+  cardLines CareClientCardLine[]
+  entries   CareClientEntry[]
+  accesses  CareClientAccess[]
+
+  @@unique([organizationId, internalCode])
+  @@index([organizationId, status, displayName])
+  @@index([unitId])
+}
+
+/// Kliendi meeskond: töötajad, kes tohivad klienti näha ilma põhjust andmata.
+/// Eemaldamine = `endedAt`, mitte DELETE. Üks aktiivne rida (klient, liikmesus)
+/// kohta → osaline unikaalindeks migratsioonis.
+model CareClientTeamMember {
+  id           String    @id @default(cuid())
+  clientId     String
+  membershipId String
+  startedAt    DateTime  @default(now())
+  endedAt      DateTime?
+
+  /// FK-ta jäljed.
+  addedByMembershipId String?
+  endedByMembershipId String?
+  createdAt           DateTime @default(now())
+
+  client     CareClient             @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  membership OrganizationMembership @relation(fields: [membershipId], references: [id], onDelete: Cascade)
+
+  @@index([clientId, endedAt])
+  @@index([membershipId, endedAt])
+}
+
+/// Püsikaardi „enne kui lähed" rida. Kuni viis aktiivset rida kliendi kohta
+/// (piir teenuskihis). Rea muutmine lõpetab vana rea ja loob uue, nii et on
+/// näha, mis kaardil varem kirjas oli ja kes seda muutis.
+model CareClientCardLine {
+  id       String @id @default(cuid())
+  clientId String
+  /// ACCESS | AGREEMENT | RISK | ALARM | OTHER.
+  kind     String
+  text     String
+  position Int    @default(0)
+
+  addedByMembershipId String?
+  createdAt           DateTime  @default(now())
+  endedAt             DateTime?
+  endedByMembershipId String?
+
+  client CareClient @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@index([clientId, endedAt, position])
+}
+
+/// Päevikukirje. Kirjet ei kustutata: parandus ja tühistus jätavad rea
+/// `CareClientEntryRevision`-i ja suurendavad `revision`-it.
+model CareClientEntry {
+  id             String @id @default(cuid())
+  /// Denormaliseeritud hooldusjuhi ülevaate päringute jaoks.
+  organizationId String
+  clientId       String
+
+  /// SetNull: liikmesust tavakäigus ei kustutata; kui see siiski juhtub, peab
+  /// kirje alles jääma. Nimi säilib `authorName`-is.
+  authorMembershipId String?
+  /// Autori nime hetkekoopia: konto kustutamisel kaob profiil, aga leht peab
+  /// näitama, kes kirje kirjutas (sama muster mis `ServiceEntry.workerName`).
+  authorName         String
+
+  /// NOTE | AGREEMENT | HANDOVER | INCIDENT | CONCERN.
+  kind        String
+  /// VISIT | PHONE | OTHER.
+  contactMode String @default("VISIT")
+  text        String @db.Text
+
+  /// TRUE = näevad ainult autor ja hooldusjuht (liik CONCERN ning erijuhtumi
+  /// liigid, mis puudutavad väärkohtlemise kahtlust või raha). Veerg, mitte
+  /// tuletis, sest see on päringu filter.
+  coordinatorOnly Boolean @default(false)
+
+  /// Sündmuse aeg (millal see juhtus), eraldi kirjutamise ajast.
+  occurredAt      DateTime
+  /// Millal kirje seadmes kirjutati. Võrguta töö korral on serveri `createdAt`
+  /// hilisem; „hiljem kirjutatud" arvutatakse selle ja `occurredAt` vahest.
+  deviceCreatedAt DateTime?
+
+  /// „Kaasas": teine töötaja samal käigul.
+  companionMembershipId String?
+  companionName         String?
+
+  /// Erijuhtum (kind = INCIDENT). `text` on „mida nägin või kuulsin".
+  incidentType                   String?
+  incidentAssessment             String?   @db.Text
+  /// Tehtud sammud: [{ code, at }]. JSON, sest selle järgi ei filtreerita.
+  incidentActions                Json?
+  /// OPEN | IN_REVIEW | CLOSED.
+  incidentStatus                 String?
+  incidentAssigneeMembershipId   String?
+  incidentResolvedAt             DateTime?
+  incidentResolvedByMembershipId String?
+  incidentResolutionNote         String?   @db.Text
+
+  revision    Int       @default(1)
+  retractedAt DateTime?
+
+  /// Seadmes genereeritud võti: kordussaatmine (nõrk levi, võrguta järjekord)
+  /// ei tekita teist kirjet. Unikaalne autori kaupa.
+  clientRequestId String?
+  requestSha256   String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  organization Organization            @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  client       CareClient              @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  author       OrganizationMembership? @relation("CareClientEntryAuthor", fields: [authorMembershipId], references: [id], onDelete: SetNull)
+  companion    OrganizationMembership? @relation("CareClientEntryCompanion", fields: [companionMembershipId], references: [id], onDelete: SetNull)
+
+  revisions CareClientEntryRevision[]
+  reads     CareClientEntryRead[]
+
+  @@unique([authorMembershipId, clientRequestId])
+  @@index([clientId, occurredAt])
+  @@index([clientId, kind, occurredAt])
+  @@index([organizationId, createdAt])
+  @@index([organizationId, kind, incidentStatus])
+}
+
+/// Kirje parandus või tühistus: asendatud sisu koopia ja kohustuslik põhjus.
+/// MUUTUMATU (BEFORE UPDATE trigger migratsioonis). Seepärast ei ole siin
+/// ühtegi SetNull-viidet: SetNull on samuti UPDATE ja trigger keelaks selle.
+model CareClientEntryRevision {
+  id       String @id @default(cuid())
+  entryId  String
+  clientId String
+
+  /// CORRECTION | RETRACTION.
+  kind        String
+  /// Asendatud sisu.
+  text        String   @db.Text
+  entryKind   String
+  contactMode String
+  occurredAt  DateTime
+  /// Asendatud lisaväljad (erijuhtumi osa, „kaasas"), kui neid muudeti.
+  snapshot    Json?
+
+  /// Kirje versioon, mille see rida asendas.
+  revision Int
+  reason   String @db.Text
+
+  /// FK-ta: tegija liikmesus ja nime hetkekoopia.
+  actorMembershipId String
+  actorName         String
+  createdAt         DateTime @default(now())
+
+  entry CareClientEntry @relation(fields: [entryId], references: [id], onDelete: Cascade)
+
+  @@index([entryId, revision])
+  @@index([clientId, createdAt])
+}
+
+/// Lugemismärk: kes ja millal nägi kirjet. Kirjutatakse liigi HANDOVER („teade
+/// järgmisele") kohta, et hooldusjuht näeks teateid, mida keegi pole avanud.
+model CareClientEntryRead {
+  id           String   @id @default(cuid())
+  entryId      String
+  /// FK-ta: lugeja liikmesus.
+  membershipId String
+  readAt       DateTime @default(now())
+
+  entry CareClientEntry @relation(fields: [entryId], references: [id], onDelete: Cascade)
+
+  @@unique([entryId, membershipId])
+  @@index([membershipId, readAt])
+}
+
+/// Kliendi lehe avamise jälg („viimati avasid") ja põhjusega avamise luba.
+/// MUUTUMATU, ainult lisatav. `DataAuditLog` selleks ei sobi: tal ei ole
+/// ressursiindeksit ja ta on admini, mitte asutuse loetav.
+model CareClientAccess {
+  id             String @id @default(cuid())
+  organizationId String
+  clientId       String
+
+  /// FK-ta: avaja liikmesus ja nime hetkekoopia.
+  membershipId String
+  actorName    String
+
+  /// TEAM | COORDINATOR | REASON.
+  basis      String
+  /// Ainult basis = REASON: valitud põhjus ja valikuline täpsustus.
+  reasonCode String?
+  reason     String?
+  /// Ainult põhjusega avamise loal: mis ajani tohib sama töötaja lehte uuesti
+  /// avada (asutuse kalendripäeva lõpp). NULL = tavaline avamise jälg.
+  validUntil DateTime?
+
+  createdAt DateTime @default(now())
+
+  client CareClient @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@index([clientId, createdAt])
+  @@index([organizationId, createdAt])
+  @@index([clientId, membershipId, createdAt])
 }

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 import { REGISTRATION_OPEN } from "@/lib/publicRegistration";
 import { isCaseWorkEnabled } from "@/lib/casework/flags";
+import { isHomeCareEnabled } from "@/lib/homeCare/flags";
 import { isServiceLogEnabled } from "@/lib/serviceLog/flags";
 import { prisma } from "@/lib/prisma";
 import { authorizeCurrentAdminToken } from "@/lib/auth/jwtAuthorization";
@@ -47,6 +48,21 @@ export const FLAGGED_PAGE_REWRITES = [
   { pathname: "/toolaud/juhtumitoo", isEnabled: isCaseWorkEnabled }
 ];
 
+/**
+ * Sama reegel teedele, kus on muutuv osa (organisatsiooni ID). Koduteenuse
+ * lehed asuvad `/org/<id>/koduteenus/...`; väljas lipuga peavad need vastama
+ * nagu `/org/<id>/olematu`, mitte 200-ga, mille kehas on 404-leht.
+ */
+export const FLAGGED_PAGE_PREFIXES = [
+  { parent: "/org/", segment: "koduteenus", isEnabled: isHomeCareEnabled }
+];
+
+function matchesFlaggedPrefix(entry, pathname) {
+  if (!pathname.startsWith(entry.parent)) return false;
+  const parts = pathname.slice(entry.parent.length).split("/");
+  return parts.length >= 2 && parts[0].length > 0 && parts[1] === entry.segment;
+}
+
 /** Olematu tee, mille peale suletud pind kirjutatakse. */
 const MISSING_ROUTE_PATHNAME = "/_puudub";
 
@@ -68,7 +84,9 @@ export async function proxy(req) {
      ÜMBERKIRJUTUS OLEMATULE TEELE, mitte `new NextResponse(null, {status:404})`:
      tühi keha oleks omaette sõrmejälg. Nii tuleb TÄPSELT seesama 404-leht, mille
      annab iga muu olematu marsruut. */
-  const flaggedPage = FLAGGED_PAGE_REWRITES.find(entry => entry.pathname === pathname);
+  const flaggedPage =
+    FLAGGED_PAGE_REWRITES.find(entry => entry.pathname === pathname) ||
+    FLAGGED_PAGE_PREFIXES.find(entry => matchesFlaggedPrefix(entry, pathname));
   if (flaggedPage && !flaggedPage.isEnabled()) {
     const gone = req.nextUrl.clone();
     gone.pathname = MISSING_ROUTE_PATHNAME;
@@ -121,6 +139,8 @@ export const config = {
     "/teenuspaevik",
     "/juhtumid",
     "/toolaud/juhtumitoo",
+    "/org/:orgId/koduteenus",
+    "/org/:orgId/koduteenus/:path*",
     "/(et|ru|en)",
     "/(et|ru|en)/:path*"
   ]
