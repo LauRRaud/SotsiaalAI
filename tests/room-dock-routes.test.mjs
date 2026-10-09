@@ -8,7 +8,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { dockLabelRoutes, isWorkspaceHubRoute, panelHasRoomDock, WORKSPACE_HUB_ROUTES } from '../lib/roomDock.js';
+import { dockLabelRoutes, isWorkspaceHubRoute, panelHasRoomDock, pickDockLabel, WORKSPACE_HUB_ROUTES } from '../lib/roomDock.js';
 
 test('Töölaua menüü on kolm teed; sisulehed selle all saavad paneeli ja doki', () => {
   assert.deepEqual(WORKSPACE_HUB_ROUTES, ['/toolaud', '/toolaud/tooheaolu', '/toolaud/kovisioon']);
@@ -68,10 +68,36 @@ test('dokk otsib lehe nime täpse tee, aliase, päringuta tee ja vanema tee jär
 test('ruum kasutab doki nime otsimisel sama järjekorda ja oma komplekti kaart on esimene', () => {
   const stage = fs.readFileSync(new URL('../components/room/RoomStage.jsx', import.meta.url), 'utf8');
   assert.ok(stage.includes('dockLabelRoutes(normalized, search, DOCK_CARD_ALIASES)'));
+  assert.ok(stage.includes('const byRoute = pickDockLabel('), 'kaardita nimi käib sama järjekorda mööda');
+  assert.ok(stage.includes('"/teenuseprofiil": "chat.workspace.cards.service_profile.title"'));
   const own = stage.indexOf('cards.find((item) => item.href === here) ||');
   const byRoute = stage.indexOf('byRoute ||', own);
   const cardless = stage.indexOf('(cardless ? {', own);
   assert.ok(own > 0 && byRoute > own && cardless > byRoute, 'järjekord: oma komplekt, tee järgi, kaardita lehe nimi');
   assert.ok(stage.includes('"/documents": "/vestlus?workspace=documents"'), 'dokumentide leht kannab oma kaardi nime');
   assert.ok(stage.includes('"/vestlus?workspace=service_profile": "/teenuseprofiil"'), 'töölaua sees avatud teenuseprofiil kannab oma kaardi nime');
+});
+
+// Kaart võib olla ainult ühel rollil. Teise rolliga vaataja (administraator
+// teenuseprofiilil) ei leidnud lehele nime ja töölaua sees võttis leht nime „Vestlus".
+test('doki nimi: kaart enne, siis kaardita lehe nimi, mõlemad teede järjekorras', () => {
+  const cards = new Map([['/vestlus', { key: 'vestlus', label: 'Vestlus', href: '/vestlus' }]]);
+  const labels = { '/teenuseprofiil': 'Teenuseprofiil' };
+  const pick = (path, search, cardMap = cards) =>
+    pickDockLabel(
+      dockLabelRoutes(path, search, { '/vestlus?workspace=service_profile': '/teenuseprofiil' }),
+      (href) => cardMap.get(href),
+      (href) => labels[href] || ''
+    );
+  /* Roll ilma kaardita: otsetee ja töölaua sees avatud leht kannavad lehe nime. */
+  assert.deepEqual(pick('/teenuseprofiil', ''), { key: '/teenuseprofiil', label: 'Teenuseprofiil', href: '/teenuseprofiil' });
+  assert.equal(pick('/vestlus', 'workspace=service_profile').label, 'Teenuseprofiil');
+  /* Roll, kellel kaart on: kaart võidab (ikoon tuleb kaardilt). */
+  const withCard = new Map([...cards, ['/teenuseprofiil', { key: 'teenuseprofiil', label: 'Teenuseprofiil', href: '/teenuseprofiil', icon: 'x' }]]);
+  assert.equal(pick('/vestlus', 'workspace=service_profile', withCard).icon, 'x');
+  /* Muu vestluse tee jääb vestluseks; tundmatu tee jääb nimeta. */
+  assert.equal(pick('/vestlus', '').label, 'Vestlus');
+  assert.equal(pick('/vestlus', 'workspace=materials').label, 'Vestlus');
+  assert.equal(pick('/tundmatu', ''), null);
+  assert.equal(pickDockLabel(null), null);
 });
