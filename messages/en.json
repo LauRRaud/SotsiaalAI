@@ -5251,7 +5251,8 @@
         "lead": "The files this text was drafted from.",
         "opens_new_tab": "The draft has unsaved changes. The file opens in a new tab so the text you are working on stays here."
       },
-      "leave_confirm": "Press again to leave without saving"
+      "leave_confirm": "Press again to leave without saving",
+      "leave_asked": "The text has unsaved changes. Press again to leave without saving."
     }
   },
   "research": {

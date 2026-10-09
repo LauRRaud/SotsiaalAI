@@ -109,6 +109,7 @@ import { isServiceLogUiEnabled } from "@/lib/serviceLog/flags";
 import { isOrgWorkspaceUiEnabled } from "@/lib/org/flags";
 import GlassCarousel from "@/components/room/GlassCarousel";
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
+import { panelLeaveAllowed } from "@/lib/panelLeaveGuard";
 import RoleViewSwitcher from "@/components/workspace/RoleViewSwitcher";
 import PendingInviteBanner from "@/components/invites/PendingInviteBanner";
 import RoomQuickbar from "@/components/room/RoomQuickbar";
@@ -1624,6 +1625,9 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
          sama mis kaardikomplekti "Tagasi" (mis viib hierarhias sammu üles):
          avatud aknas tähendab tagasi "pane aken kinni". */
       if (item.action === "panel-close") {
+        /* Leht, millel on salvestamata tekst, võib esimese vajutuse kinni
+           pidada ja ise öelda miks (lib/panelLeaveGuard.js). */
+        if (!panelLeaveAllowed("dock")) return;
         router.push(localizePath(item.href || "/", locale));
         return;
       }

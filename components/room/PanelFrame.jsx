@@ -23,6 +23,7 @@ import {
   panelHasRoomDock
 } from "@/lib/roomDock";
 import { PanelExitProvider } from "@/components/room/PanelExit";
+import { panelLeaveAllowed } from "@/lib/panelLeaveGuard";
 import IconButton from "@/components/glass/IconButton";
 import CloseIcon from "@/components/brand/icons/CloseIcon";
 import MenuIcon from "@/components/brand/icons/MenuIcon";
@@ -284,6 +285,9 @@ export default function PanelFrame({ children }) {
     normalized === "/tellimus";
 
   const closePanel = useCallback(() => {
+    /* Salvestamata tekstiga leht võib esimese sulgemise kinni pidada
+       (lib/panelLeaveGuard.js); ta ütleb siis ise ekraanil, miks. */
+    if (!panelLeaveAllowed("close")) return;
     // pin/e-post sulgub profiili-karusselli
     if (isProfileCardPage || isProfileSectionPage) {
       router.push(localizePath("/profiil", locale));

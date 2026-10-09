@@ -5251,7 +5251,8 @@
         "lead": "Failid, millest see tekst koostati.",
         "opens_new_tab": "Mustandis on salvestamata muudatusi. Fail avaneb uues vahelehes, et pooleli tekst jääks siia alles."
       },
-      "leave_confirm": "Vajuta uuesti, et lahkuda salvestamata"
+      "leave_confirm": "Vajuta uuesti, et lahkuda salvestamata",
+      "leave_asked": "Tekstis on salvestamata muudatusi. Vajuta uuesti, et lahkuda salvestamata."
     }
   },
   "research": {
