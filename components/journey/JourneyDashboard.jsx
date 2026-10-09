@@ -11,6 +11,7 @@ import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import Form from "@/components/ui/Form";
 import Input from "@/components/ui/Input";
 import { JOURNEY_TEXT_LIMITS } from "@/lib/journey/constants";
+import { journeyErrorText } from "@/lib/journey/errorText";
 import { localizePath } from "@/lib/localizePath";
 import { openOwnerScopedStore, purgeUnscopedRows } from "@/lib/device/ownerScopedStorage";
 import { pushWithTransition } from "@/lib/routeTransition";
@@ -510,7 +511,7 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
     });
     const payload = await response.json().catch(() => ({}));
     if (!response.ok || !payload.ok) {
-      throw new Error(payload.message || t("journey.messages.load_failed", "Loading the journey failed."));
+      throw new Error(journeyErrorText(t, payload.message, t("journey.messages.load_failed", "Loading the journey failed.")));
     }
     const items = Array.isArray(payload.journeys) ? payload.journeys : [];
     setJourneys((current) => append ? [...current, ...items] : items);
@@ -613,7 +614,7 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload.ok) {
-        throw new Error(payload.message || t("journey.messages.draft_failed", "Teekonna ülevaate koostamine ebaõnnestus."));
+        throw new Error(journeyErrorText(t, payload.message, t("journey.messages.draft_failed", "Teekonna ülevaate koostamine ebaõnnestus.")));
       }
       const clientActionId = createJourneyActionId();
       createActionIdRef.current = clientActionId;
@@ -657,7 +658,7 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload.ok) {
-        throw new Error(payload.message || t("journey.messages.save_failed", "Saving the journey failed."));
+        throw new Error(journeyErrorText(t, payload.message, t("journey.messages.save_failed", "Saving the journey failed.")));
       }
       setSituation("");
       setDraft(DEFAULT_DRAFT);
@@ -689,7 +690,7 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload.ok) {
-        throw new Error(payload.message || t("journey.messages.archive_failed", "Archiving the journey failed."));
+        throw new Error(journeyErrorText(t, payload.message, t("journey.messages.archive_failed", "Archiving the journey failed.")));
       }
       setNotice(t("journey.messages.archived", "Journey archived."));
       await loadJourneys();

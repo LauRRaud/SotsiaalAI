@@ -15,6 +15,7 @@ import { localizePath } from "@/lib/localizePath";
 import { buildServiceMapHandoff } from "@/lib/journey/serviceMapHandoff";
 import { buildAssistiveDevicesHandoff } from "@/lib/journey/assistiveDevices";
 import { JOURNEY_TEXT_LIMITS } from "@/lib/journey/constants";
+import { journeyErrorText } from "@/lib/journey/errorText";
 import { buildHelpMediationHandoff } from "@/lib/journey/helpMediationHandoff";
 import { buildHealthContactQuestionsDraft, hasHealthContactSignal } from "@/lib/journey/healthContact";
 import { linkedPreInquiryState } from "@/lib/journey/linkedPreInquiryState";
@@ -917,7 +918,7 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
       return;
     }
     if (!response.ok || !payload.ok) {
-      throw new Error(payload.message || t("journey.messages.load_failed", "Loading the journey failed."));
+      throw new Error(journeyErrorText(t, payload.message, t("journey.messages.load_failed", "Loading the journey failed.")));
     }
     setJourney(payload.journey || null);
     setForm(createFormState(payload.journey));
@@ -1002,7 +1003,7 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload.ok) {
-        throw new Error(payload.message || t("journey.messages.save_failed", "Saving the journey failed."));
+        throw new Error(journeyErrorText(t, payload.message, t("journey.messages.save_failed", "Saving the journey failed.")));
       }
       setJourney(payload.journey);
       setForm(createFormState(payload.journey));
@@ -1032,7 +1033,7 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload.ok) {
-        throw new Error(payload.message || t("journey.messages.archive_failed", "Archiving the journey failed."));
+        throw new Error(journeyErrorText(t, payload.message, t("journey.messages.archive_failed", "Archiving the journey failed.")));
       }
       setJourney(payload.journey);
       setForm(createFormState(payload.journey));
@@ -1057,7 +1058,7 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
         body: JSON.stringify({ status: "ACTIVE", expectedUpdatedAt: journey.updatedAt })
       });
       const payload = await response.json().catch(() => ({}));
-      if (!response.ok || !payload.ok) throw new Error(payload.message || t("journey.messages.reopen_failed", "Teekonna taasavamine ebaõnnestus."));
+      if (!response.ok || !payload.ok) throw new Error(journeyErrorText(t, payload.message, t("journey.messages.reopen_failed", "Teekonna taasavamine ebaõnnestus.")));
       setJourney(payload.journey); setDeleteArmed(false);
       setNotice(t("journey.messages.reopened", "Teekond taasavati."));
     } catch (reopenError) { setError(reopenError.message); } finally { setBusy(false); }
@@ -1073,7 +1074,7 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
         body: JSON.stringify({ confirmation: "DELETE" })
       });
       const payload = await response.json().catch(() => ({}));
-      if (!response.ok || !payload.ok) throw new Error(payload.message || t("journey.messages.delete_failed", "Teekonna kustutamine ebaõnnestus."));
+      if (!response.ok || !payload.ok) throw new Error(journeyErrorText(t, payload.message, t("journey.messages.delete_failed", "Teekonna kustutamine ebaõnnestus.")));
       pushWithTransition(router, localizePath("/teekond", locale));
     } catch (deleteError) { setError(deleteError.message); setBusy(false); }
   }, [journeyId, locale, router, t]);
@@ -1091,7 +1092,7 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
     try {
       await downloadJourneyExport(journey, `teekond-${journey.id}.json`);
     } catch (exportError) {
-      setError(exportError.message || t("journey.messages.export_failed", "Eksport ebaõnnestus."));
+      setError(journeyErrorText(t, exportError.message, t("journey.messages.export_failed", "Eksport ebaõnnestus.")));
     } finally {
       setBusy(false);
     }
@@ -1116,7 +1117,7 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload.ok) {
-        throw new Error(payload.message ? t(payload.message, payload.message) : t("journey.messages.save_failed", "Saving the journey failed."));
+        throw new Error(journeyErrorText(t, payload.message, t("journey.messages.save_failed", "Saving the journey failed.")));
       }
       setJourney(payload.journey);
       setForm(createFormState(payload.journey));
@@ -1198,7 +1199,7 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload.ok) {
-        throw new Error(payload.message || t("journey.messages.save_failed", "Saving the journey failed."));
+        throw new Error(journeyErrorText(t, payload.message, t("journey.messages.save_failed", "Saving the journey failed.")));
       }
       setJourney(payload.journey);
       setForm(createFormState(payload.journey));

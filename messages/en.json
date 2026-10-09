@@ -7624,6 +7624,36 @@
       }
     }
   },
+  "journeys": {
+    "errors": {
+      "not_found": "The journey was not found.",
+      "list_too_long": "The list has too many rows.",
+      "field_too_long": "The text is too long.",
+      "summary_required": "The summary is required.",
+      "title_required": "The title is required.",
+      "situation_required": "Describe your situation before you continue.",
+      "client_action_id_required": "Saving failed. Reload the page and try again.",
+      "client_action_id_invalid": "Saving failed. Reload the page and try again.",
+      "idempotency_conflict": "This save has already been made with different content. Reload the page.",
+      "conversation_not_found": "The conversation the journey was started from was not found.",
+      "status_invalid": "This state cannot be chosen.",
+      "create_limit_reached": "You already have a great many journeys. Archive or delete one before you create a new one.",
+      "version_required": "The page is out of date. Reload it and try again.",
+      "conflict": "The journey was changed elsewhere in the meantime and this change was not saved. Reload the page to see the latest state.",
+      "archived": "An archived journey cannot be changed. Reopen it first.",
+      "delete_confirmation_required": "Deleting needs a confirmation.",
+      "page_limit_invalid": "Loading the list failed.",
+      "cursor_invalid": "Continuing the list failed. Reload the page.",
+      "load_failed": "Loading the journey failed.",
+      "save_failed": "Saving the journey failed.",
+      "delete_failed": "Deleting the journey failed.",
+      "pre_inquiry_draft_failed": "Making the pre-inquiry preview failed.",
+      "rate_limited": "Too many requests. Try again in a while.",
+      "draft_failed": "Making the journey overview failed.",
+      "help_request_draft_failed": "Making the help request preview failed.",
+      "export_failed": "Downloading the journey failed."
+    }
+  },
   "serviceMap": {
     "accessPath": {
       "title": "How to move forward?",
