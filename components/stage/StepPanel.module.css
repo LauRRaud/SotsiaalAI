@@ -26,6 +26,14 @@
 .body {
   min-width: 0;
 }
+/* VÄLJADE TEKST ON VASAKUL. Platvormi ühine reegel (app/styles/glass.css)
+   joondab iga üherealise välja teksti keskele: see on sisselogimise välja ilme
+   ja sinna see jääb. Töölehe vaates, kus inimene kirjutab nime, pealkirja või
+   e-posti, on keskel seisev tekst võõras (omanik 09.10: väljade sees oli
+   keskjoondus). Vaate sees on väljade ja valikute tekst vasakul. */
+.body :is(:global(input):not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]), :global(select), :global(.dd-trigger)) {
+  text-align: start;
+}
 /* Veniv vahe: täidab lava kõrguse, nii et tegevusrida seisab all servas. */
 .spacer {
   flex: 1 1 0;

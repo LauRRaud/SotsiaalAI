@@ -1,89 +1,180 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+/**
+ * Mentorlussuhe: mentori ja mentee ühine tööruum.
+ *
+ * KUJU (09.10). Leht oli üks pikk veerg klaaspaneeli sees olevas tumedas
+ * kaardis. Nüüd on see sammulava (`components/stage/StepFlight.jsx`) laua
+ * kujul, nagu avatud juhtum: suhe avaneb kõigi osade ülevaates (igal plaadil
+ * esimene rida või tühjuse põhjus) ja osa avaneb omaette vaates. Osad ei ole
+ * sammud, seepärast annab leht lavale `parts` ja oma sõnad („Kogu suhe”). Päis
+ * lava kohal ütleb igas osas, kellega suhe on ja mis seisus see on.
+ *
+ * Vaated on failis ./relation/RelationViews.jsx, read ja otsused failis
+ * ./relation/relationRows.js. Siin on andmed, päringud ja see, mis vaateid
+ * olekuga seob.
+ *
+ * MIS ON TEISITI KUI ENNE (ja miks):
+ *  - Osa näitab korraga üht asja: loendit, avatud kirjet või vormi. Varem
+ *    seisis iga loendi all kohe selle vorm ja iga kirje küljes rida nuppe.
+ *  - Kohtumise tühistamine, mustandi kõrvale jätmine ja suhte lõpetamine on
+ *    lõplikud, seepärast küsib nupp teist vajutust. Lõpetamise ülevaates
+ *    asendab see märkeruutu „saan aru”.
+ *  - Teade seisab selle osa all, kus tegu tehti. Varem oli see lehe ülaservas,
+ *    kuhu lehe lõpus vajutanud inimene ei näinud.
+ *  - Pooleli eesmärkide tekst jääb alles, kui mõni teine tegu lehe uuesti
+ *    laeb. Varem kirjutas iga laadimine välja üle.
+ *  - Kui seis on mujal muutunud (vastus 409), loeb leht värske seisu ise:
+ *    veateade palus vaadet värskendada, aga lehel ei olnud selleks nuppu.
+ *  - Seisu sõna tuleb loendist (`relationWord`): tundmatu kood ei jõua
+ *    ekraanile. Automaatselt lõppenud suhte kohta ei öelda enam, et selle
+ *    lõpetas teine pool.
+ *  - Uue kokkuleppe versiooni ja kokkuvõtte paranduse väli algab kehtivast
+ *    tekstist: parandus on enamasti paar sõna, mitte terve tekst uuesti.
+ */
+
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
+
 import { useI18n } from "@/components/i18n/I18nProvider";
-import Button from "@/components/ui/Button";
-import Checkbox from "@/components/ui/Checkbox";
-import Dropdown from "@/components/ui/Dropdown";
-import Input from "@/components/ui/Input";
-import Textarea from "@/components/ui/Textarea";
-import { SubpageHeader } from "@/components/ui/SubpageHeader";
-import Form from "@/components/ui/Form";
+import StepFlight from "@/components/stage/StepFlight";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import { localizePath } from "@/lib/localizePath";
-import { localDateTimeToIso } from "@/lib/mentoring/time";
-import styles from "./MentoringPage.module.css";
 
-const CLOSE_REASONS = ["completed", "changed_mentor", "other"];
+import { EntryShell, TextLink } from "./entry/EntryParts";
+import entry from "./entry/entry.module.css";
+import {
+  CLOSE_REASON_CHOICES,
+  EMPTY_MEETING,
+  LIST_CAPS,
+  MEETING_MODES,
+  TEXT_LIMIT,
+  agreementModel,
+  candidateRows,
+  closeLists,
+  closeReasonText,
+  closedLine,
+  goalDirty,
+  isClosed,
+  isRunning,
+  meetingBody,
+  meetingRows,
+  meetingsEmptyText,
+  noteRows,
+  preparationRows,
+  progressLine,
+  relationHead,
+  relationParts,
+  relationWord,
+  summaryRows
+} from "./relation/relationRows";
+import {
+  AgreementView,
+  GoalView,
+  MeetingsView,
+  NotesView,
+  PreparationView,
+  RelationHead,
+  StateView,
+  SummariesView
+} from "./relation/RelationViews";
 
-function Section({ title, help, children }) {
-  return (
-    <section className={styles.section}>
-      <div className={styles.sectionHeading}>
-        <h2>{title}</h2>
-        {help ? <p>{help}</p> : null}
-      </div>
-      {children}
-    </section>
-  );
+/* Osa, mis näitab loendit (mitte avatud kirjet ega vormi). */
+const LIST_VIEW = Object.freeze({ mode: "list", id: "" });
+const JSON_POST = Object.freeze({ method: "POST", headers: { "Content-Type": "application/json" } });
+
+function dateFormatter(locale, options) {
+  const formatter = new Intl.DateTimeFormat(locale || "et", options);
+  return (value) => {
+    if (!value) return "";
+    const date = new Date(value);
+    return Number.isFinite(date.getTime()) ? formatter.format(date) : "";
+  };
 }
 
 export default function MentoringRelationPage({ relationId }) {
   const { t, locale } = useI18n();
+  const formId = useId();
+  const relationUrl = `/api/mentoring/relations/${encodeURIComponent(relationId)}`;
+
   const [relation, setRelation] = useState(null);
   const [notFound, setNotFound] = useState(false);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState("");
-  const [feedback, setFeedback] = useState("");
+  /* Teade selle osa kohta, kus tegu tehti: `{ part, text }`. */
+  const [feedback, setFeedback] = useState(null);
   const [busy, setBusy] = useState(false);
+  const busyRef = useRef(false);
+  /* Osa, kus viimati midagi tehti: kui osade loend muutub (suhe lõppes) ja lava
+     ehitatakse uuesti, jääb inimene sinna, mitte ei kuku ülevaatesse. */
+  const landRef = useRef(null);
 
   const [goalDraft, setGoalDraft] = useState("");
+  /* Eesmärke muudeti mujal ajal, mil siin oli muudatus pooleli. */
+  const [goalStale, setGoalStale] = useState(false);
+  const goalDraftRef = useRef("");
+  const goalSavedRef = useRef("");
+
   const [agreementDraft, setAgreementDraft] = useState("");
-  const [meetingForm, setMeetingForm] = useState({ occurredAt: "", mode: "EXTERNAL", roomId: "", topicSummary: "" });
+  const [proposing, setProposing] = useState(false);
+  const [meetingForm, setMeetingForm] = useState({ ...EMPTY_MEETING });
+  const [meetingView, setMeetingView] = useState(LIST_VIEW);
   const [summaryDraft, setSummaryDraft] = useState("");
-  const [correctionBySummary, setCorrectionBySummary] = useState({});
+  /* Paranduse tekst kokkuvõtte kaupa: teise kokkuvõtte avamine ei vii pooleli teksti kaasa. */
+  const [corrections, setCorrections] = useState({});
+  const [summaryView, setSummaryView] = useState(LIST_VIEW);
   const [noteDraft, setNoteDraft] = useState("");
-  const [handoffCandidates, setHandoffCandidates] = useState([]);
+  const [noteView, setNoteView] = useState(LIST_VIEW);
+  /* Kinnitus „tekstis ei ole kliendiandmeid” ettevalmistuse kaupa. */
+  const [shareConfirmed, setShareConfirmed] = useState({});
+  const [prepView, setPrepView] = useState(LIST_VIEW);
+  const [candidates, setCandidates] = useState([]);
+  const [candidatesFailed, setCandidatesFailed] = useState(false);
+  const [closing, setClosing] = useState(false);
   const [closePreview, setClosePreview] = useState(null);
-  const [closeReason, setCloseReason] = useState("completed");
-  const [closeConfirmed, setCloseConfirmed] = useState(false);
-  const [shareConfirmed, setShareConfirmed] = useState(false);
+  const [previewState, setPreviewState] = useState("idle");
+  const [closeReason, setCloseReason] = useState(CLOSE_REASON_CHOICES[0]);
 
-  const formatter = useMemo(
-    () => new Intl.DateTimeFormat(locale || "et", { dateStyle: "medium", timeStyle: "short" }),
-    [locale]
-  );
-  const formatDate = useCallback((value) => {
-    if (!value) return t("mentoring.labels.unknown_time");
-    const date = new Date(value);
-    return Number.isFinite(date.getTime()) ? formatter.format(date) : t("mentoring.labels.unknown_time");
-  }, [formatter, t]);
+  const formatDate = useMemo(() => dateFormatter(locale, { dateStyle: "medium", timeStyle: "short" }), [locale]);
+  const formatDay = useMemo(() => dateFormatter(locale, { dateStyle: "medium" }), [locale]);
 
-  const load = useCallback(async (signal) => {
+  /** Loeb suhte. Tagastab, kas värske seis saadi kätte. */
+  const load = useCallback(async (signal, { resetGoal = false } = {}) => {
     setLoadError("");
     try {
-      const response = await fetch(`/api/mentoring/relations/${encodeURIComponent(relationId)}`, {
-        cache: "no-store",
-        signal
-      });
+      const response = await fetch(relationUrl, { cache: "no-store", signal });
       const payload = await response.json().catch(() => ({}));
-      if (response.status === 404) {
+      /* Vastus ilma suhteta jättis lehe varem tühjaks: see on sama seis mis
+         „suhet ei leitud”. */
+      if (response.status === 404 || (response.ok && payload?.ok !== false && !payload?.relation)) {
         setNotFound(true);
-        return;
+        return false;
       }
       if (!response.ok || payload?.ok === false) {
         throw new Error(resolveApiMessage({ payload, t, fallbackKey: "mentoring.errors.load_failed" }));
       }
-      const next = payload?.relation || null;
+      const next = payload.relation;
+      const fresh = next.goalSummary || "";
       setRelation(next);
-      setGoalDraft(next?.goalSummary || "");
+      /* Eesmärkide väli saab serveri teksti ainult siis, kui seal ei ole
+         salvestamata muudatust (või kui just see salvestati). Muidu kirjutaks
+         näiteks kohtumise lisamine pooleli teksti üle. */
+      if (resetGoal || !goalDirty(goalDraftRef.current, goalSavedRef.current)) {
+        goalDraftRef.current = fresh;
+        setGoalDraft(fresh);
+        setGoalStale(false);
+      } else if (goalDirty(fresh, goalSavedRef.current)) {
+        setGoalStale(true);
+      }
+      goalSavedRef.current = fresh;
+      return true;
     } catch (error) {
-      if (error?.name === "AbortError") return;
+      if (error?.name === "AbortError") return false;
       setLoadError(error?.message || t("mentoring.errors.load_failed"));
+      return false;
     } finally {
       if (!signal?.aborted) setLoading(false);
     }
-  }, [relationId, t]);
+  }, [relationUrl, t]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -91,769 +182,657 @@ export default function MentoringRelationPage({ relationId }) {
     return () => controller.abort();
   }, [load]);
 
-  useEffect(() => {
-    if (relation?.position !== "mentee" || !relation?.can?.handoffPreparation) return;
-    const controller = new AbortController();
-    (async () => {
-      try {
-        const response = await fetch(`/api/mentoring/relations/${encodeURIComponent(relationId)}/preparation`, {
-          cache: "no-store",
-          signal: controller.signal
-        });
-        const payload = await response.json().catch(() => ({}));
-        if (response.ok && payload?.ok !== false) setHandoffCandidates(payload?.candidates || []);
-      } catch {
-        /* valikute laadimise viga ei blokeeri suhtevaadet */
-      }
-    })();
-    return () => controller.abort();
-  }, [relation?.position, relation?.can?.handoffPreparation, relationId]);
-
-  const call = useCallback(async (url, body, doneKey = null) => {
-    setBusy(true);
-    setFeedback("");
+  /* Tööheaolus kinnitatud tekstid, mida mentee saab suhtesse tuua. Laadimise
+     viga ei blokeeri suhet, aga ei tohi ka paista väitena „sul ei ole
+     väljundeid”: osa ütleb, et laadimine ei õnnestunud. */
+  const canHandoff = relation?.position === "mentee" && relation?.can?.handoffPreparation === true;
+  const loadCandidates = useCallback(async (signal) => {
+    setCandidatesFailed(false);
     try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body)
-      });
+      const response = await fetch(`${relationUrl}/preparation`, { cache: "no-store", signal });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || payload?.ok === false) throw new Error("candidates");
+      setCandidates(Array.isArray(payload?.candidates) ? payload.candidates : []);
+    } catch (error) {
+      if (error?.name === "AbortError") return;
+      setCandidatesFailed(true);
+    }
+  }, [relationUrl]);
+
+  useEffect(() => {
+    if (!canHandoff) return undefined;
+    const controller = new AbortController();
+    void loadCandidates(controller.signal);
+    return () => controller.abort();
+  }, [canHandoff, loadCandidates]);
+
+  /**
+   * Üks koht, kus tegu õnnestub või annab lausega vea. `part` on osa, kus tegu
+   * tehti: teade läheb selle osa alla. `done` on õnnestumise lause või
+   * funktsioon, mis teeb selle vastusest. Tagastab vastuse või `null`.
+   *
+   * Väljad jäävad päringu ajal kirjutatavaks (lukus väli kaotaks fookuse),
+   * seepärast hoiab topeltsaatmise ära see kontroll, mitte välja lukustamine.
+   */
+  const run = useCallback(async (part, url, body, done = "") => {
+    if (busyRef.current) return null;
+    busyRef.current = true;
+    setBusy(true);
+    setFeedback(null);
+    landRef.current = part;
+    try {
+      const response = await fetch(url, { ...JSON_POST, body: JSON.stringify(body) });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || payload?.ok === false) {
-        throw new Error(resolveApiMessage({ payload, t, fallbackKey: "mentoring.errors.save_failed" }));
+        const error = new Error(resolveApiMessage({ payload, t, fallbackKey: "mentoring.errors.save_failed" }));
+        error.status = response.status;
+        error.messageKey = String(payload?.messageKey || "");
+        throw error;
       }
-      if (doneKey) setFeedback(t(doneKey));
-      await load();
+      await load(undefined, { resetGoal: part === "goal" });
+      const text = typeof done === "function" ? done(payload) : done;
+      if (text) setFeedback({ part, text });
       return payload;
     } catch (error) {
-      setFeedback(error?.message || t("mentoring.errors.save_failed"));
+      let text = error?.message || t("mentoring.errors.save_failed");
+      /* Seis muutus mujal (teine pool tegi midagi või sama suhe on lahti teises
+         aknas): loeme värske seisu, et järgmine katse ei põrkaks vana versiooni
+         taha. Üldine lause „värskenda vaadet” asendub siis lausega, mis ütleb,
+         et värske seis on juba ees. */
+      if (error?.status === 409 || error?.status === 404) {
+        const fresh = await load();
+        if (fresh && error.messageKey === "mentoring.errors.conflict") text = t("mentoring.labels.conflict_reloaded");
+      }
+      setFeedback({ part, text });
       return null;
     } finally {
+      busyRef.current = false;
       setBusy(false);
     }
   }, [load, t]);
 
-  const relationUrl = `/api/mentoring/relations/${encodeURIComponent(relationId)}`;
-
+  /* Lõpetamise ülevaade: arvud tulevad serverist. Ilma ülevaateta lõpetada ei saa. */
   const loadClosePreview = useCallback(async () => {
-    setBusy(true);
+    setClosePreview(null);
+    setPreviewState("loading");
     try {
-      const response = await fetch(relationUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "close_preview" })
-      });
+      const response = await fetch(relationUrl, { ...JSON_POST, body: JSON.stringify({ action: "close_preview" }) });
       const payload = await response.json().catch(() => ({}));
-      if (response.ok && payload?.ok !== false) setClosePreview(payload);
-    } finally {
-      setBusy(false);
+      if (!response.ok || payload?.ok === false) {
+        /* Suhe on vahepeal mujal lõpetatud: loeme värske seisu. */
+        if (response.status === 409 || response.status === 404) await load();
+        throw new Error("preview");
+      }
+      setClosePreview(payload);
+      setPreviewState("ready");
+    } catch {
+      setPreviewState("failed");
     }
-  }, [relationUrl]);
+  }, [load, relationUrl]);
 
-  if (notFound) {
+  const backHref = localizePath("/mentorlus");
+  const shellProps = {
+    title: t("mentoring.relation.title"),
+    loadingText: loading ? t("mentoring.labels.loading") : "",
+    error: loadError,
+    retryText: t("mentoring.labels.retry"),
+    onRetry: () => {
+      setLoading(true);
+      void load();
+    }
+  };
+
+  if (notFound || !relation) {
     return (
-      <main className={styles.page}>
-        <div className={styles.shell} data-glass-back-anchor="">
-          <SubpageHeader title={t("mentoring.relation.title")} />
-          <div className={styles.empty}>
-            <p>{t("mentoring.relation.not_found")}</p>
-            <Button as="a" href={localizePath("/mentorlus")} variant="secondary">
-              {t("mentoring.labels.back_to_mentoring")}
-            </Button>
+      <EntryShell {...shellProps}>
+        {notFound ? (
+          <div className={entry.fault}>
+            <p className={entry.quiet}>{t("mentoring.relation.not_found")}</p>
+            <TextLink href={backHref}>{t("mentoring.labels.back_to_mentoring")}</TextLink>
           </div>
-        </div>
-      </main>
+        ) : null}
+      </EntryShell>
     );
   }
 
-  const closed = relation?.status === "CLOSED";
-  const confirmedSummaries = (relation?.summaries || []).filter((summary) => summary.status === "CONFIRMED");
-  const workingSummaries = (relation?.summaries || []).filter(
-    (summary) => summary.status === "DRAFT" || summary.status === "PENDING_CONFIRM"
-  );
-  const otherName = relation?.position === "mentor"
-    ? relation?.mentee?.name || (relation?.mentee?.deleted ? t("mentoring.labels.deleted_user") : "")
-    : relation?.mentor?.name || (relation?.mentor?.deleted ? t("mentoring.labels.deleted_user") : "");
+  const closed = isClosed(relation);
+  const draftRelation = String(relation.status || "").toUpperCase() === "DRAFT";
+  const context = { t, formatDate, formatDay };
+  const head = relationHead(relation, t);
+  const shownCandidates = canHandoff ? candidates : [];
+  const parts = relationParts({ relation, candidates: shownCandidates, ...context });
+  const landIndex = parts.findIndex((part) => part.key === landRef.current);
+  const progress = progressLine(relation, context);
+  const capText = (key, rows) => (Array.isArray(rows) && rows.length >= LIST_CAPS[key] ? t("mentoring.relation.capped", { count: LIST_CAPS[key] }) : "");
+  const noteFor = (part, fallback = "") => (feedback?.part === part ? feedback.text : fallback);
+  /* Osa, kus tegu tehti, võib pärast värskendust kaduda (teine pool lõpetas
+     suhte, mentee võttis ettevalmistuse tagasi). Teade ei tohi siis vaikselt
+     kaduda: see seisab lava kohal. */
+  const orphanNote = feedback?.text && !parts.some((part) => part.key === feedback.part) ? feedback.text : "";
+  const clearNote = () => setFeedback(null);
+
+  const renderPart = (step, index, flight) => {
+    /* Peamise nupu helk on oma joonistuspind ja lava hoiab kõik osad
+       monteerituna: helk on ainult sellel osal, mis on ees. */
+    const glow = flight?.isActive !== false;
+
+    switch (step.key) {
+      case "goal": {
+        const dirty = goalDirty(goalDraft, relation.goalSummary);
+        return (
+          <GoalView
+            t={t}
+            value={goalDraft}
+            onChange={(value) => {
+              goalDraftRef.current = value;
+              setGoalDraft(value);
+              clearNote();
+            }}
+            locked={relation.can?.editShared !== true}
+            dirty={dirty}
+            stale={goalStale}
+            busy={busy}
+            glow={glow}
+            maxLength={TEXT_LIMIT}
+            note={noteFor(
+              "goal",
+              dirty ? (goalStale ? t("mentoring.relation.views.goal.stale") : t("mentoring.relation.views.goal.unsaved")) : ""
+            )}
+            onSave={() =>
+              void run(
+                "goal",
+                relationUrl,
+                { action: "goal", goalSummary: goalDraft, expectedVersion: relation.version },
+                t("mentoring.relation.goal_saved")
+              )
+            }
+            onTakeFresh={() => {
+              goalDraftRef.current = goalSavedRef.current;
+              setGoalDraft(goalSavedRef.current);
+              setGoalStale(false);
+            }}
+          />
+        );
+      }
+
+      case "agreement": {
+        const model = agreementModel(relation, t);
+        /* Kui kokkulepet veel ei ole, on osa sisu kohe tekstiväli. */
+        const mode = model.canPropose && (proposing || !model.hasText) ? "propose" : "read";
+        const text = agreementDraft.trim();
+        const same = model.hasText && text === model.text.trim();
+        return (
+          <AgreementView
+            t={t}
+            mode={mode}
+            model={model}
+            closed={closed}
+            draft={agreementDraft}
+            onDraft={(value) => {
+              setAgreementDraft(value);
+              clearNote();
+            }}
+            canSubmit={Boolean(text) && !same}
+            busy={busy}
+            glow={glow}
+            maxLength={TEXT_LIMIT}
+            note={noteFor("agreement", mode === "propose" && text && same ? t("mentoring.relation.views.agreement.unchanged") : "")}
+            onStart={() => {
+              /* Uus versioon algab kehtivast tekstist. */
+              setAgreementDraft((current) => current || model.text);
+              setProposing(true);
+              clearNote();
+            }}
+            onCancel={() => setProposing(false)}
+            onPropose={async () => {
+              const done = await run(
+                "agreement",
+                `${relationUrl}/agreement`,
+                { action: "propose", agreementText: agreementDraft, expectedVersion: relation.version },
+                t("mentoring.relation.agreement_proposed_feedback")
+              );
+              if (done) {
+                setAgreementDraft("");
+                setProposing(false);
+              }
+            }}
+            onAccept={() =>
+              void run(
+                "agreement",
+                `${relationUrl}/agreement`,
+                { action: "accept", agreementVersion: relation.agreementVersion },
+                t("mentoring.relation.agreement_accepted_feedback")
+              )
+            }
+          />
+        );
+      }
+
+      case "meetings": {
+        const rows = meetingRows(relation.meetings, { ...context, closed });
+        const opened = meetingView.mode === "meeting" ? rows.find((row) => row.id === meetingView.id) || null : null;
+        const canAdd = relation.can?.createMeeting === true;
+        const rooms = (relation.commonRooms || []).map((room) => ({
+          value: String(room.id),
+          label: room.title || t("mentoring.relation.meeting_room_untitled")
+        }));
+        const roomKnown = meetingForm.mode !== "PLATFORM_ROOM" || rooms.some((room) => room.value === meetingForm.roomId);
+        const meetingUrl = (row) => `${relationUrl}/meetings/${encodeURIComponent(row.id)}`;
+        return (
+          <MeetingsView
+            t={t}
+            mode={meetingView.mode === "add" && canAdd ? "add" : opened ? "meeting" : "list"}
+            lead={closed ? undefined : t("mentoring.relation.meetings_help")}
+            rows={rows}
+            opened={opened}
+            emptyText={meetingsEmptyText(relation, t)}
+            capText={capText("meetings", relation.meetings)}
+            canAdd={canAdd}
+            roomHref={opened?.roomId ? localizePath(`/vestlus?roomId=${encodeURIComponent(opened.roomId)}`) : ""}
+            busy={busy}
+            glow={glow}
+            note={noteFor("meetings", meetingView.mode === "add" && canAdd ? t("mentoring.relation.meeting_mode_hint") : "")}
+            form={{
+              id: `${formId}-meeting`,
+              values: meetingForm,
+              maxLength: TEXT_LIMIT,
+              modes: MEETING_MODES.map((value) => ({ value, label: relationWord("meeting_mode", value, t).text })),
+              rooms,
+              ready: Boolean(meetingBody(meetingForm)) && roomKnown,
+              onField: (key, value) => {
+                setMeetingForm((previous) => {
+                  const next = { ...previous, [key]: value };
+                  /* Ainus ühine ruum on ainus valik: see on kohe valitud. */
+                  if (key === "mode" && value === "PLATFORM_ROOM" && !previous.roomId && rooms.length === 1) next.roomId = rooms[0].value;
+                  return next;
+                });
+                clearNote();
+              },
+              onSubmit: async (event) => {
+                event.preventDefault();
+                const body = meetingBody(meetingForm);
+                if (!body || !roomKnown) return;
+                const done = await run("meetings", `${relationUrl}/meetings`, body, t("mentoring.relation.meeting_created_feedback"));
+                if (done) {
+                  setMeetingForm({ ...EMPTY_MEETING });
+                  setMeetingView(LIST_VIEW);
+                }
+              }
+            }}
+            onAdd={() => {
+              setMeetingView({ mode: "add", id: "" });
+              clearNote();
+            }}
+            onCancel={() => setMeetingView(LIST_VIEW)}
+            onOpen={(id) => {
+              setMeetingView({ mode: "meeting", id });
+              clearNote();
+            }}
+            onBack={() => setMeetingView(LIST_VIEW)}
+            onHeld={(row) =>
+              void run("meetings", meetingUrl(row), { action: "held", expectedVersion: row.version }, t("mentoring.relation.meeting_held_feedback"))
+            }
+            onCancelMeeting={(row) =>
+              run("meetings", meetingUrl(row), { action: "cancel", expectedVersion: row.version }, t("mentoring.relation.meeting_cancelled_feedback"))
+            }
+          />
+        );
+      }
+
+      case "summaries": {
+        const rows = summaryRows(relation.summaries, { ...context, closed });
+        const opened = summaryView.id ? rows.find((row) => row.id === summaryView.id) || null : null;
+        const canAdd = relation.can?.createSummary === true;
+        const mode =
+          summaryView.mode === "add" && canAdd
+            ? "add"
+            : summaryView.mode === "correct" && opened?.canCorrect
+              ? "correct"
+              : opened
+                ? "summary"
+                : "list";
+        const correction = opened ? (corrections[opened.id] ?? opened.text) : "";
+        const correctionSame = Boolean(opened) && correction.trim() === opened.text.trim();
+        const summaryUrl = (row) => `${relationUrl}/summaries/${encodeURIComponent(row.id)}`;
+        /* Uus mustand või parandus avaneb kohe: järgmine tegu on see kinnitamisele saata. */
+        const openCreated = (payload) => setSummaryView(payload?.summary?.id ? { mode: "summary", id: String(payload.summary.id) } : LIST_VIEW);
+        return (
+          <SummariesView
+            t={t}
+            mode={mode}
+            lead={closed ? t("mentoring.relation.summaries_closed_help") : t("mentoring.relation.summaries_help")}
+            rows={rows}
+            opened={opened}
+            capText={capText("summaries", relation.summaries)}
+            canAdd={canAdd}
+            draft={summaryDraft}
+            onDraft={(value) => {
+              setSummaryDraft(value);
+              clearNote();
+            }}
+            correction={correction}
+            onCorrection={(value) => {
+              if (opened) setCorrections((previous) => ({ ...previous, [opened.id]: value }));
+              clearNote();
+            }}
+            correctionReady={Boolean(correction.trim()) && !correctionSame}
+            busy={busy}
+            glow={glow}
+            maxLength={TEXT_LIMIT}
+            note={noteFor(
+              "summaries",
+              mode === "correct" && correction.trim() && correctionSame ? t("mentoring.relation.views.summaries.correct_unchanged") : ""
+            )}
+            onAdd={() => {
+              setSummaryView({ mode: "add", id: "" });
+              clearNote();
+            }}
+            onCancel={() => setSummaryView((current) => (current.mode === "correct" ? { mode: "summary", id: current.id } : LIST_VIEW))}
+            onOpen={(id) => {
+              setSummaryView({ mode: "summary", id });
+              clearNote();
+            }}
+            onBack={() => setSummaryView(LIST_VIEW)}
+            onCreate={async () => {
+              const done = await run(
+                "summaries",
+                `${relationUrl}/summaries`,
+                { content: summaryDraft },
+                t("mentoring.relation.summary_created_feedback")
+              );
+              if (done) {
+                setSummaryDraft("");
+                openCreated(done);
+              }
+            }}
+            onSubmit={(row) =>
+              void run(
+                "summaries",
+                summaryUrl(row),
+                { action: "submit", expectedVersion: row.version },
+                t("mentoring.relation.summary_submitted_feedback")
+              )
+            }
+            onConfirm={(row) =>
+              void run("summaries", summaryUrl(row), { action: "confirm" }, t("mentoring.relation.summary_confirmed_feedback"))
+            }
+            onDiscard={async (row) => {
+              const done = await run("summaries", summaryUrl(row), { action: "discard" }, t("mentoring.relation.summary_discarded_feedback"));
+              if (done) setSummaryView(LIST_VIEW);
+            }}
+            onStartCorrect={(row) => {
+              setSummaryView({ mode: "correct", id: row.id });
+              clearNote();
+            }}
+            onCorrect={async (row) => {
+              const done = await run(
+                "summaries",
+                summaryUrl(row),
+                { action: "supersede", content: correction },
+                t("mentoring.relation.summary_correction_created_feedback")
+              );
+              if (done) {
+                setCorrections((previous) => {
+                  const next = { ...previous };
+                  delete next[row.id];
+                  return next;
+                });
+                openCreated(done);
+              }
+            }}
+          />
+        );
+      }
+
+      case "preparation": {
+        const rows = preparationRows(relation.preparations, {
+          ...context,
+          position: relation.position,
+          running: isRunning(relation)
+        });
+        const candidateList = candidateRows(shownCandidates);
+        const opened = prepView.mode === "item" ? rows.find((row) => row.id === prepView.id) || null : null;
+        const openedCandidate = prepView.mode === "candidate" ? candidateList.find((row) => row.id === prepView.id) || null : null;
+        const preparationUrl = `${relationUrl}/preparation`;
+        const nothing = !rows.length && !candidateList.length && !(canHandoff && candidatesFailed);
+        return (
+          <PreparationView
+            t={t}
+            mode={opened ? "item" : openedCandidate ? "candidate" : "list"}
+            lead={relation.position === "mentee" ? t("mentoring.relation.preparation_help_mentee") : t("mentoring.relation.preparation_help_mentor")}
+            rows={rows}
+            opened={opened}
+            candidates={candidateList}
+            openedCandidate={openedCandidate}
+            candidatesFailed={canHandoff && candidatesFailed}
+            emptyText={
+              nothing
+                ? canHandoff
+                  ? t("mentoring.relation.handoff_empty")
+                  : t("mentoring.relation.views.preparation.summary_empty")
+                : ""
+            }
+            capText={capText("preparations", relation.preparations)}
+            confirmed={opened ? shareConfirmed[opened.id] === true : false}
+            onConfirmed={(value) => {
+              if (opened) setShareConfirmed((previous) => ({ ...previous, [opened.id]: value === true }));
+              clearNote();
+            }}
+            busy={busy}
+            glow={glow}
+            note={noteFor("preparation")}
+            onOpen={(id) => {
+              setPrepView({ mode: "item", id });
+              clearNote();
+            }}
+            onOpenCandidate={(id) => {
+              setPrepView({ mode: "candidate", id });
+              clearNote();
+            }}
+            onBack={() => setPrepView(LIST_VIEW)}
+            onRetryCandidates={() => void loadCandidates()}
+            onShare={async (row) => {
+              const done = await run(
+                "preparation",
+                preparationUrl,
+                { action: "share", noteId: row.id, confirmedNoClientData: shareConfirmed[row.id] === true },
+                t("mentoring.relation.preparation_shared_feedback")
+              );
+              /* Kinnitus käis selle jagamise kohta: uus jagamine küsib seda uuesti. */
+              if (done) setShareConfirmed((previous) => ({ ...previous, [row.id]: false }));
+            }}
+            onRecall={(row) =>
+              void run("preparation", preparationUrl, { action: "recall", noteId: row.id }, t("mentoring.relation.preparation_recalled_feedback"))
+            }
+            onMarkOpened={(row) =>
+              void run("preparation", preparationUrl, { action: "open", noteId: row.id }, t("mentoring.relation.preparation_open_feedback"))
+            }
+            onHandoff={async (candidate) => {
+              const done = await run(
+                "preparation",
+                preparationUrl,
+                { action: "handoff", draftId: candidate.id, expectedUpdatedAt: candidate.updatedAt },
+                t("mentoring.relation.handoff_done_feedback")
+              );
+              if (done) {
+                /* Toodud tekst kaob valikust ainult siis, kui toomine õnnestus,
+                   ja avaneb kohe: järgmine tegu on see mentorile jagada. */
+                setCandidates((previous) => previous.filter((item) => String(item?.id) !== candidate.id));
+                setPrepView(done.preparation?.id ? { mode: "item", id: String(done.preparation.id) } : LIST_VIEW);
+              } else {
+                /* Tekst võis vahepeal Tööheaolus muutuda või olla juba toodud. */
+                void loadCandidates();
+              }
+            }}
+          />
+        );
+      }
+
+      case "notes": {
+        const rows = noteRows(relation.notes, context);
+        const opened = noteView.mode === "note" ? rows.find((row) => row.id === noteView.id) || null : null;
+        const canAdd = relation.can?.addNote === true;
+        return (
+          <NotesView
+            t={t}
+            mode={noteView.mode === "add" && canAdd ? "add" : opened ? "note" : "list"}
+            rows={rows}
+            opened={opened}
+            capText={capText("notes", relation.notes)}
+            canAdd={canAdd}
+            draft={noteDraft}
+            onDraft={(value) => {
+              setNoteDraft(value);
+              clearNote();
+            }}
+            busy={busy}
+            glow={glow}
+            maxLength={TEXT_LIMIT}
+            note={noteFor("notes")}
+            onAdd={() => {
+              setNoteView({ mode: "add", id: "" });
+              clearNote();
+            }}
+            onCancel={() => setNoteView(LIST_VIEW)}
+            onOpen={(id) => {
+              setNoteView({ mode: "note", id });
+              clearNote();
+            }}
+            onBack={() => setNoteView(LIST_VIEW)}
+            onCreate={async () => {
+              const done = await run("notes", `${relationUrl}/notes`, { content: noteDraft }, t("mentoring.relation.note_added_feedback"));
+              if (done) {
+                setNoteDraft("");
+                setNoteView(LIST_VIEW);
+              }
+            }}
+          />
+        );
+      }
+
+      default: {
+        const lists = closeLists(closePreview, t);
+        const cards = closed
+          ? []
+          : [
+              relation.can?.pause
+                ? {
+                    key: "pause",
+                    title: t("mentoring.relation.pause"),
+                    description: t("mentoring.relation.views.state.pause_hint"),
+                    disabled: busy,
+                    onClick: () => void run("state", relationUrl, { action: "pause" }, t("mentoring.relation.paused_feedback"))
+                  }
+                : null,
+              relation.can?.resume
+                ? {
+                    key: "resume",
+                    title: t("mentoring.relation.resume"),
+                    description: t("mentoring.relation.views.state.resume_hint"),
+                    disabled: busy,
+                    onClick: () => void run("state", relationUrl, { action: "resume" }, t("mentoring.relation.resumed_feedback"))
+                  }
+                : null,
+              {
+                key: "alive",
+                title: t("mentoring.relation.views.state.alive"),
+                description: t("mentoring.relation.views.state.alive_hint"),
+                disabled: busy,
+                /* Server ütleb, kas küsimus oli ootel: lause ei luba rohkem, kui juhtus. */
+                onClick: () =>
+                  void run("state", relationUrl, { action: "alive" }, (payload) =>
+                    payload?.cleared ? t("mentoring.relation.views.state.alive_cleared") : t("mentoring.relation.views.state.alive_none")
+                  )
+              },
+              relation.can?.close
+                ? {
+                    key: "close",
+                    title: t("mentoring.relation.close_confirm_action"),
+                    description: t("mentoring.relation.views.state.close_hint"),
+                    disabled: busy,
+                    onClick: () => {
+                      setClosing(true);
+                      clearNote();
+                      void loadClosePreview();
+                    }
+                  }
+                : null
+            ].filter(Boolean);
+        return (
+          <StateView
+            t={t}
+            mode={closing && !closed ? "close" : "read"}
+            lines={
+              closed
+                ? [closedLine(relation, context), progress, t("mentoring.relation.views.state.after_keeps")].filter(Boolean)
+                : [progress, draftRelation ? t("mentoring.relation.draft_hint") : ""].filter(Boolean)
+            }
+            cards={cards}
+            hint={!closed && relation.position === "mentee" ? t("mentoring.relation.change_mentor_hint") : ""}
+            busy={busy}
+            note={noteFor("state")}
+            gate={{
+              loading: previewState === "loading",
+              failed: previewState === "failed",
+              ready: previewState === "ready" && Boolean(closePreview),
+              keeps: lists.keeps,
+              purges: lists.purges,
+              reasons: CLOSE_REASON_CHOICES.map((value) => ({ value, label: closeReasonText(value, t) })),
+              reason: closeReason,
+              onReason: setCloseReason,
+              onRetry: () => void loadClosePreview()
+            }}
+            onLeaveGate={() => setClosing(false)}
+            /* Teine vajutus on kinnitus, mida server lõpetamiseks nõuab. */
+            onClose={async () => {
+              const done = await run(
+                "state",
+                relationUrl,
+                { action: "close", reasonKey: closeReason, confirmed: true },
+                t("mentoring.relation.closed_feedback")
+              );
+              if (done) {
+                setClosing(false);
+                setClosePreview(null);
+                setPreviewState("idle");
+              }
+            }}
+          />
+        );
+      }
+    }
+  };
 
   return (
-    <main className={styles.page}>
-      <div className={styles.shell} data-glass-back-anchor="">
-        <SubpageHeader title={t("mentoring.relation.title")} />
-        <p aria-live="polite" className={styles.liveRegion} role="status" tabIndex={-1}>
-          {feedback}
+    <EntryShell {...shellProps}>
+      <RelationHead t={t} who={head.who} chip={head.chip} reason={head.reason} backHref={backHref} />
+      {orphanNote ? (
+        <p className={entry.notice} role="alert">
+          {orphanNote}
         </p>
-
-        {loading ? <p className={styles.loading}>{t("mentoring.labels.loading")}</p> : null}
-        {loadError ? (
-          <div className={styles.loadError}>
-            <p>{loadError}</p>
-            <Button onClick={() => { setLoading(true); void load(); }} variant="secondary">
-              {t("mentoring.labels.retry")}
-            </Button>
-          </div>
-        ) : null}
-
-        {relation ? (
-          <>
-            <section className={styles.section}>
-              <div className={styles.sectionHeading}>
-                <h2>
-                  {relation.position === "mentor"
-                    ? t("mentoring.home.relation_as_mentor", { name: otherName || t("mentoring.labels.deleted_user") })
-                    : t("mentoring.home.relation_as_mentee", { name: otherName || t("mentoring.labels.deleted_user") })}
-                </h2>
-              </div>
-              <p className={styles.statusLine}>
-                <span className={styles.badge}>{t(`mentoring.relation_status.${relation.status.toLowerCase()}`)}</span>
-                {closed && relation.closeReasonKey ? (
-                  <span> {t(`mentoring.close_reason.${relation.closeReasonKey}`)}</span>
-                ) : null}
-              </p>
-              <p className={styles.statusLine}>
-                {t("mentoring.relation.progress_line", {
-                  meetings: (relation.meetings || []).filter((meeting) => meeting.status === "HELD").length,
-                  summaries: confirmedSummaries.length,
-                  date: formatDate(relation.lastActivityAt)
-                })}
-              </p>
-              {relation.status === "DRAFT" ? (
-                <p className={styles.statusLine}>{t("mentoring.relation.draft_hint")}</p>
-              ) : null}
-            </section>
-
-            {!closed ? (
-              <Section help={t("mentoring.relation.goal_help")} title={t("mentoring.relation.goal_title")}>
-                <Form
-                  className={styles.form}
-                  onSubmit={(event) => {
-                    event.preventDefault();
-                    void call(relationUrl, {
-                      action: "goal",
-                      goalSummary: goalDraft,
-                      expectedVersion: relation.version
-                    }, "mentoring.relation.goal_saved");
-                  }}
-                >
-                  <label>
-                    <span>{t("mentoring.relation.goal_label")}</span>
-                    <Textarea
-                      disabled={!relation.can.editShared || busy}
-                      maxLength={4000}
-                      onChange={(event) => setGoalDraft(event.target.value)}
-                      rows={3}
-                      value={goalDraft}
-                    />
-                    <span className={styles.fieldHint}>{t("mentoring.relation.no_client_data")}</span>
-                  </label>
-                  <div className={styles.actions}>
-                    <Button disabled={!relation.can.editShared || busy} size="sm" type="submit" variant="secondary">
-                      {t("mentoring.relation.goal_save")}
-                    </Button>
-                  </div>
-                </Form>
-              </Section>
-            ) : null}
-
-            <Section
-              help={closed ? null : t("mentoring.relation.agreement_help")}
-              title={t("mentoring.relation.agreement_title")}
-            >
-              {relation.agreementText ? (
-                <div className={styles.card}>
-                  <p className={styles.noteText}>{relation.agreementText}</p>
-                  <p className={styles.statusLine}>
-                    {t("mentoring.relation.agreement_version", { version: relation.agreementVersion })}
-                    {" · "}
-                    {relation.myAgreementAccepted
-                      ? t("mentoring.relation.agreement_accepted_me")
-                      : t("mentoring.relation.agreement_pending_me")}
-                    {" · "}
-                    {relation.otherAgreementAccepted
-                      ? t("mentoring.relation.agreement_accepted_other")
-                      : t("mentoring.relation.agreement_pending_other")}
-                  </p>
-                  {relation.can.acceptAgreement ? (
-                    <div className={styles.actions}>
-                      <Button
-                        disabled={busy}
-                        onClick={() => call(`${relationUrl}/agreement`, {
-                          action: "accept",
-                          agreementVersion: relation.agreementVersion
-                        }, "mentoring.relation.agreement_accepted_feedback")}
-                        size="sm"
-                      >
-                        {t("mentoring.relation.agreement_accept")}
-                      </Button>
-                    </div>
-                  ) : null}
-                </div>
-              ) : (
-                !closed ? <p className={styles.empty}>{t("mentoring.relation.agreement_empty")}</p> : null
-              )}
-              {relation.can.proposeAgreement ? (
-                <Form
-                  className={styles.form}
-                  onSubmit={(event) => {
-                    event.preventDefault();
-                    void call(`${relationUrl}/agreement`, {
-                      action: "propose",
-                      agreementText: agreementDraft,
-                      expectedVersion: relation.version
-                    }, "mentoring.relation.agreement_proposed_feedback").then((ok) => {
-                      if (ok) setAgreementDraft("");
-                    });
-                  }}
-                >
-                  <label>
-                    <span>{t("mentoring.relation.agreement_new")}</span>
-                    <Textarea
-                      maxLength={4000}
-                      onChange={(event) => setAgreementDraft(event.target.value)}
-                      rows={5}
-                      value={agreementDraft}
-                    />
-                    <span className={styles.fieldHint}>{t("mentoring.relation.agreement_hint")}</span>
-                  </label>
-                  <div className={styles.actions}>
-                    <Button disabled={busy || !agreementDraft.trim()} size="sm" type="submit" variant="secondary">
-                      {t("mentoring.relation.agreement_propose")}
-                    </Button>
-                  </div>
-                </Form>
-              ) : null}
-            </Section>
-
-            <Section
-              help={closed ? null : t("mentoring.relation.meetings_help")}
-              title={t("mentoring.relation.meetings_title")}
-            >
-              {(relation.meetings || []).length ? (
-                <div className={styles.timeline}>
-                  {relation.meetings.map((meeting) => (
-                    <div key={meeting.id} className={styles.noteItem}>
-                      <p className={styles.noteText}>
-                        {formatDate(meeting.occurredAt)}
-                        {" · "}
-                        {t(`mentoring.meeting_mode.${meeting.mode.toLowerCase()}`)}
-                        {meeting.topicSummary ? ` · ${meeting.topicSummary}` : ""}
-                      </p>
-                      <p className={styles.statusLine}>
-                        <span className={styles.badge}>{t(`mentoring.meeting_status.${meeting.status.toLowerCase()}`)}</span>
-                        {meeting.roomId ? (
-                          <Button
-                            as="a"
-                            href={localizePath(`/vestlus?roomId=${encodeURIComponent(meeting.roomId)}`)}
-                            size="sm"
-                            variant="ghost"
-                          >
-                            {t("mentoring.relation.open_room")}
-                          </Button>
-                        ) : null}
-                      </p>
-                      {!closed && meeting.status === "PLANNED" ? (
-                        <div className={styles.actions}>
-                          <Button
-                            disabled={busy}
-                            onClick={() => call(`${relationUrl}/meetings/${encodeURIComponent(meeting.id)}`, {
-                              action: "held",
-                              expectedVersion: meeting.version
-                            }, "mentoring.relation.meeting_held_feedback")}
-                            size="sm"
-                            variant="secondary"
-                          >
-                            {t("mentoring.relation.meeting_mark_held")}
-                          </Button>
-                          <Button
-                            disabled={busy}
-                            onClick={() => call(`${relationUrl}/meetings/${encodeURIComponent(meeting.id)}`, {
-                              action: "cancel",
-                              expectedVersion: meeting.version
-                            }, "mentoring.relation.meeting_cancelled_feedback")}
-                            size="sm"
-                            variant="secondary"
-                          >
-                            {t("mentoring.relation.meeting_cancel")}
-                          </Button>
-                        </div>
-                      ) : null}
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <p className={styles.empty}>{t("mentoring.relation.meetings_empty")}</p>
-              )}
-              {relation.can.createMeeting ? (
-                <Form
-                  className={styles.form}
-                  onSubmit={(event) => {
-                    event.preventDefault();
-                    const occurredAt = localDateTimeToIso(meetingForm.occurredAt);
-                    if (!occurredAt) return;
-                    void call(`${relationUrl}/meetings`, {
-                      occurredAt,
-                      mode: meetingForm.mode,
-                      roomId: meetingForm.mode === "PLATFORM_ROOM" ? meetingForm.roomId : null,
-                      topicSummary: meetingForm.topicSummary
-                    }, "mentoring.relation.meeting_created_feedback").then((ok) => {
-                      if (ok) setMeetingForm({ occurredAt: "", mode: "EXTERNAL", roomId: "", topicSummary: "" });
-                    });
-                  }}
-                >
-                  <label>
-                    <span>{t("mentoring.relation.meeting_time")}</span>
-                    <Input
-                      onChange={(event) => setMeetingForm((prev) => ({ ...prev, occurredAt: event.target.value }))}
-                      required
-                      type="datetime-local"
-                      value={meetingForm.occurredAt}
-                    />
-                  </label>
-                  {meetingForm.mode === "PLATFORM_ROOM" ? (
-                    <label>
-                      <span>{t("mentoring.relation.meeting_room")}</span>
-                      <Dropdown
-                        ariaLabel={t("mentoring.relation.meeting_room")}
-                        onChange={(next) => setMeetingForm((prev) => ({ ...prev, roomId: next }))}
-                        options={(relation.commonRooms || []).map((room) => ({
-                          value: room.id,
-                          label: room.title || t("mentoring.relation.meeting_room_untitled")
-                        }))}
-                        value={meetingForm.roomId}
-                      />
-                      {!(relation.commonRooms || []).length ? (
-                        <span className={styles.fieldHint}>{t("mentoring.relation.meeting_room_empty")}</span>
-                      ) : null}
-                    </label>
-                  ) : null}
-                  <label>
-                    <span>{t("mentoring.relation.meeting_mode")}</span>
-                    <Dropdown
-                      onChange={(next) => setMeetingForm((prev) => ({ ...prev, mode: next }))}
-                      value={meetingForm.mode}
-                      ariaLabel={t("mentoring.relation.meeting_mode")}
-                      options={[
-                        { value: "EXTERNAL", label: t("mentoring.meeting_mode.external") },
-                        { value: "PLATFORM_ROOM", label: t("mentoring.meeting_mode.platform_room") }
-                      ]}
-                    />
-                    <span className={styles.fieldHint}>{t("mentoring.relation.meeting_mode_hint")}</span>
-                  </label>
-                  <label>
-                    <span>{t("mentoring.relation.meeting_topic")}</span>
-                    <Input
-                      maxLength={4000}
-                      onChange={(event) => setMeetingForm((prev) => ({ ...prev, topicSummary: event.target.value }))}
-                      value={meetingForm.topicSummary}
-                    />
-                  </label>
-                  <div className={styles.actions}>
-                    <Button
-                      disabled={busy || !meetingForm.occurredAt
-                        || (meetingForm.mode === "PLATFORM_ROOM" && !meetingForm.roomId)}
-                      size="sm"
-                      type="submit"
-                      variant="secondary"
-                    >
-                      {t("mentoring.relation.meeting_create")}
-                    </Button>
-                  </div>
-                </Form>
-              ) : null}
-            </Section>
-
-            <Section
-              help={closed ? t("mentoring.relation.summaries_closed_help") : t("mentoring.relation.summaries_help")}
-              title={t("mentoring.relation.summaries_title")}
-            >
-              {confirmedSummaries.length || workingSummaries.length ? (
-                <div className={styles.timeline}>
-                  {[...workingSummaries, ...confirmedSummaries].map((summary) => (
-                    <div key={summary.id} className={styles.noteItem}>
-                      <p className={styles.noteText}>{summary.content}</p>
-                      <p className={styles.statusLine}>
-                        <span className={styles.badge}>{t(`mentoring.summary_status.${summary.status.toLowerCase()}`)}</span>
-                        {summary.supersededById ? <span> {t("mentoring.relation.summary_superseded")}</span> : null}
-                        {summary.confirmedAt ? <span> {formatDate(summary.confirmedAt)}</span> : null}
-                      </p>
-                      {!closed ? (
-                        <div className={styles.actions}>
-                          {summary.status === "DRAFT" && summary.createdByMe ? (
-                            <Button
-                              disabled={busy}
-                              onClick={() => call(`${relationUrl}/summaries/${encodeURIComponent(summary.id)}`, {
-                                action: "submit",
-                                expectedVersion: summary.version
-                              }, "mentoring.relation.summary_submitted_feedback")}
-                              size="sm"
-                              variant="secondary"
-                            >
-                              {t("mentoring.relation.summary_submit")}
-                            </Button>
-                          ) : null}
-                          {summary.status === "PENDING_CONFIRM" && !summary.myConfirmation ? (
-                            <Button
-                              disabled={busy}
-                              onClick={() => call(`${relationUrl}/summaries/${encodeURIComponent(summary.id)}`, {
-                                action: "confirm"
-                              }, "mentoring.relation.summary_confirmed_feedback")}
-                              size="sm"
-                            >
-                              {t("mentoring.relation.summary_confirm")}
-                            </Button>
-                          ) : null}
-                          {summary.status === "PENDING_CONFIRM" && summary.myConfirmation ? (
-                            <span className={styles.statusLine}>{t("mentoring.relation.summary_waiting_other")}</span>
-                          ) : null}
-                          {(summary.status === "DRAFT" || summary.status === "PENDING_CONFIRM") ? (
-                            <Button
-                              disabled={busy}
-                              onClick={() => call(`${relationUrl}/summaries/${encodeURIComponent(summary.id)}`, {
-                                action: "discard"
-                              }, "mentoring.relation.summary_discarded_feedback")}
-                              size="sm"
-                              variant="secondary"
-                            >
-                              {t("mentoring.relation.summary_discard")}
-                            </Button>
-                          ) : null}
-                          {summary.status === "CONFIRMED" && !summary.supersededById ? (
-                            <div className={styles.form}>
-                              <label>
-                                <span>{t("mentoring.relation.summary_correction")}</span>
-                                <Textarea
-                                  maxLength={4000}
-                                  onChange={(event) => setCorrectionBySummary((prev) => ({
-                                    ...prev,
-                                    [summary.id]: event.target.value
-                                  }))}
-                                  rows={3}
-                                  value={correctionBySummary[summary.id] || ""}
-                                />
-                              </label>
-                              <Button
-                                disabled={busy || !(correctionBySummary[summary.id] || "").trim()}
-                                onClick={() => call(`${relationUrl}/summaries/${encodeURIComponent(summary.id)}`, {
-                                  action: "supersede",
-                                  content: correctionBySummary[summary.id]
-                                }, "mentoring.relation.summary_correction_created_feedback").then((ok) => {
-                                  if (ok) setCorrectionBySummary((prev) => ({ ...prev, [summary.id]: "" }));
-                                })}
-                                size="sm"
-                                variant="secondary"
-                              >
-                                {t("mentoring.relation.summary_correction_create")}
-                              </Button>
-                            </div>
-                          ) : null}
-                        </div>
-                      ) : null}
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <p className={styles.empty}>{t("mentoring.relation.summaries_empty")}</p>
-              )}
-              {relation.can.createSummary ? (
-                <Form
-                  className={styles.form}
-                  onSubmit={(event) => {
-                    event.preventDefault();
-                    void call(`${relationUrl}/summaries`, { content: summaryDraft }, "mentoring.relation.summary_created_feedback")
-                      .then((ok) => { if (ok) setSummaryDraft(""); });
-                  }}
-                >
-                  <label>
-                    <span>{t("mentoring.relation.summary_new")}</span>
-                    <Textarea
-                      maxLength={4000}
-                      onChange={(event) => setSummaryDraft(event.target.value)}
-                      rows={4}
-                      value={summaryDraft}
-                    />
-                  </label>
-                  <div className={styles.actions}>
-                    <Button disabled={busy || !summaryDraft.trim()} size="sm" type="submit" variant="secondary">
-                      {t("mentoring.relation.summary_create")}
-                    </Button>
-                  </div>
-                </Form>
-              ) : null}
-            </Section>
-
-            {(relation.preparations || []).length || relation.can.handoffPreparation ? (
-              <Section
-                help={relation.position === "mentee"
-                  ? t("mentoring.relation.preparation_help_mentee")
-                  : t("mentoring.relation.preparation_help_mentor")}
-                title={t("mentoring.relation.preparation_title")}
-              >
-                {(relation.preparations || []).filter(Boolean).map((preparation) => (
-                  <div key={preparation.id} className={styles.noteItem}>
-                    {preparation.own ? (
-                      <>
-                        <p className={styles.noteText}>{preparation.content}</p>
-                        <p className={styles.statusLine}>
-                          {preparation.sharedAt && !preparation.recalledAt
-                            ? (preparation.openedAt
-                              ? t("mentoring.relation.preparation_opened", { date: formatDate(preparation.openedAt) })
-                              : t("mentoring.relation.preparation_shared", { date: formatDate(preparation.sharedAt) }))
-                            : t("mentoring.relation.preparation_private")}
-                        </p>
-                        <div className={styles.actions}>
-                          {preparation.canShare ? (
-                            <>
-                              <label className={styles.inlineForm}>
-                                <Checkbox
-                                  bare
-                                  checked={shareConfirmed}
-                                  onChange={setShareConfirmed}
-                                />
-                                <span className={styles.fieldHint}>{t("mentoring.relation.preparation_confirm_no_clients")}</span>
-                              </label>
-                              <Button
-                                disabled={busy || !shareConfirmed}
-                                onClick={() => call(`${relationUrl}/preparation`, {
-                                  action: "share",
-                                  noteId: preparation.id,
-                                  confirmedNoClientData: shareConfirmed
-                                }, "mentoring.relation.preparation_shared_feedback")}
-                                size="sm"
-                                variant="secondary"
-                              >
-                                {t("mentoring.relation.preparation_share")}
-                              </Button>
-                            </>
-                          ) : null}
-                          {preparation.canRecall ? (
-                            <Button
-                              disabled={busy}
-                              onClick={() => call(`${relationUrl}/preparation`, {
-                                action: "recall",
-                                noteId: preparation.id
-                              }, "mentoring.relation.preparation_recalled_feedback")}
-                              size="sm"
-                              variant="secondary"
-                            >
-                              {t("mentoring.relation.preparation_recall")}
-                            </Button>
-                          ) : null}
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        <p className={styles.noteText}>{preparation.sharedContent}</p>
-                        <p className={styles.statusLine}>
-                          {preparation.openedAt
-                            ? t("mentoring.relation.preparation_opened", { date: formatDate(preparation.openedAt) })
-                            : t("mentoring.relation.preparation_new_from_mentee")}
-                        </p>
-                        {!preparation.openedAt && relation.position === "mentor" ? (
-                          <div className={styles.actions}>
-                            <Button
-                              disabled={busy}
-                              onClick={() => call(`${relationUrl}/preparation`, {
-                                action: "open",
-                                noteId: preparation.id
-                              }, "mentoring.relation.preparation_open_feedback")}
-                              size="sm"
-                              variant="secondary"
-                            >
-                              {t("mentoring.relation.preparation_mark_opened")}
-                            </Button>
-                          </div>
-                        ) : null}
-                      </>
-                    )}
-                  </div>
-                ))}
-                {relation.can.handoffPreparation && handoffCandidates.length ? (
-                  <div className={styles.card}>
-                    <h3 className={styles.cardTitle}>{t("mentoring.relation.handoff_title")}</h3>
-                    <p className={styles.cardMeta}>{t("mentoring.relation.handoff_help")}</p>
-                    {handoffCandidates.map((candidate) => (
-                      <div key={candidate.id} className={styles.noteItem}>
-                        <p className={styles.noteText}>{candidate.preview}</p>
-                        <div className={styles.actions}>
-                          <Button
-                            disabled={busy}
-                            onClick={() => call(`${relationUrl}/preparation`, {
-                              action: "handoff",
-                              draftId: candidate.id,
-                              expectedUpdatedAt: candidate.updatedAt
-                            }, "mentoring.relation.handoff_done_feedback").then(() => {
-                              setHandoffCandidates((prev) => prev.filter((item) => item.id !== candidate.id));
-                            })}
-                            size="sm"
-                            variant="secondary"
-                          >
-                            {t("mentoring.relation.handoff_action")}
-                          </Button>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                ) : null}
-                {relation.position === "mentee" && relation.can.handoffPreparation && !handoffCandidates.length && !(relation.preparations || []).length ? (
-                  <p className={styles.empty}>{t("mentoring.relation.handoff_empty")}</p>
-                ) : null}
-              </Section>
-            ) : null}
-
-            <Section title={t("mentoring.relation.notes_title")}>
-              <div className={styles.privatePanel}>
-                <span className={styles.privateBadge}>{t("mentoring.relation.notes_private_badge")}</span>
-                {(relation.notes || []).length ? (
-                  relation.notes.map((note) => (
-                    <div key={note.id} className={styles.noteItem}>
-                      <p className={styles.noteText}>{note.content}</p>
-                      <p className={styles.statusLine}>{formatDate(note.updatedAt)}</p>
-                    </div>
-                  ))
-                ) : (
-                  <p className={styles.empty}>{t("mentoring.relation.notes_empty")}</p>
-                )}
-                {relation.can.addNote ? (
-                  <Form
-                    className={styles.form}
-                    onSubmit={(event) => {
-                      event.preventDefault();
-                      void call(`${relationUrl}/notes`, { content: noteDraft }, "mentoring.relation.note_added_feedback")
-                        .then((ok) => { if (ok) setNoteDraft(""); });
-                    }}
-                  >
-                    <label>
-                      <span>{t("mentoring.relation.note_new")}</span>
-                      <Textarea
-                        maxLength={4000}
-                        onChange={(event) => setNoteDraft(event.target.value)}
-                        rows={3}
-                        value={noteDraft}
-                      />
-                    </label>
-                    <div className={styles.actions}>
-                      <Button disabled={busy || !noteDraft.trim()} size="sm" type="submit" variant="secondary">
-                        {t("mentoring.relation.note_add")}
-                      </Button>
-                    </div>
-                  </Form>
-                ) : null}
-              </div>
-            </Section>
-
-            {!closed ? (
-              <div className={styles.dangerZone}>
-                <div className={styles.sectionHeading}>
-                  <h2>{t("mentoring.relation.lifecycle_title")}</h2>
-                </div>
-                <div className={styles.actions}>
-                  {relation.can.pause ? (
-                    <Button
-                      disabled={busy}
-                      onClick={() => call(relationUrl, { action: "pause" }, "mentoring.relation.paused_feedback")}
-                      variant="secondary"
-                    >
-                      {t("mentoring.relation.pause")}
-                    </Button>
-                  ) : null}
-                  {relation.can.resume ? (
-                    <Button
-                      disabled={busy}
-                      onClick={() => call(relationUrl, { action: "resume" }, "mentoring.relation.resumed_feedback")}
-                      variant="secondary"
-                    >
-                      {t("mentoring.relation.resume")}
-                    </Button>
-                  ) : null}
-                  <Button
-                    disabled={busy}
-                    onClick={() => call(relationUrl, { action: "alive" }, "mentoring.relation.alive_feedback")}
-                    variant="secondary"
-                  >
-                    {t("mentoring.relation.mark_alive")}
-                  </Button>
-                  {!closePreview ? (
-                    <Button disabled={busy} onClick={loadClosePreview} variant="secondary">
-                      {t("mentoring.relation.close_start")}
-                    </Button>
-                  ) : null}
-                </div>
-
-                {closePreview ? (
-                  <div className={styles.card}>
-                    <h3 className={styles.cardTitle}>{t("mentoring.relation.close_gate_title")}</h3>
-                    <div className={styles.keepPurgeGrid}>
-                      <div>
-                        <strong>{t("mentoring.relation.close_keeps")}</strong>
-                        <ul className={styles.keepList}>
-                          <li>{t("mentoring.relation.close_keep_summaries", { count: closePreview.keeps?.confirmedSummaries ?? 0 })}</li>
-                          <li>{t("mentoring.relation.close_keep_meetings", { count: closePreview.keeps?.meetingFacts ?? 0 })}</li>
-                          <li>{t("mentoring.relation.close_keep_agreements")}</li>
-                          <li>{t("mentoring.relation.close_keep_notes", { count: closePreview.keeps?.myPrivateNotes ?? 0 })}</li>
-                        </ul>
-                      </div>
-                      <div>
-                        <strong>{t("mentoring.relation.close_purges")}</strong>
-                        <ul className={styles.purgeList}>
-                          <li>{t("mentoring.relation.close_purge_drafts", { count: closePreview.purges?.unconfirmedSummaries ?? 0 })}</li>
-                          <li>{t("mentoring.relation.close_purge_goal")}</li>
-                          <li>{t("mentoring.relation.close_purge_topics")}</li>
-                        </ul>
-                      </div>
-                    </div>
-                    <label>
-                      <span>{t("mentoring.relation.close_reason")}</span>
-                      <Dropdown
-                        onChange={setCloseReason}
-                        value={closeReason}
-                        ariaLabel={t("mentoring.relation.close_reason")}
-                        options={CLOSE_REASONS.map((reason) => ({
-                          value: reason,
-                          label: t(`mentoring.close_reason.${reason}`)
-                        }))}
-                      />
-                    </label>
-                    <label className={styles.inlineForm}>
-                      <Checkbox
-                        bare
-                        checked={closeConfirmed}
-                        onChange={setCloseConfirmed}
-                      />
-                      <span>{t("mentoring.relation.close_confirm_label")}</span>
-                    </label>
-                    <div className={styles.actions}>
-                      <Button
-                        disabled={busy || !closeConfirmed}
-                        onClick={() => call(relationUrl, {
-                          action: "close",
-                          reasonKey: closeReason,
-                          confirmed: closeConfirmed
-                        }, "mentoring.relation.closed_feedback")}
-                      >
-                        {t("mentoring.relation.close_confirm_action")}
-                      </Button>
-                      <Button disabled={busy} onClick={() => setClosePreview(null)} variant="secondary">
-                        {t("mentoring.labels.cancel")}
-                      </Button>
-                    </div>
-                  </div>
-                ) : null}
-                {relation.position === "mentee" ? (
-                  <p className={styles.fieldHint}>{t("mentoring.relation.change_mentor_hint")}</p>
-                ) : null}
-              </div>
-            ) : (
-              <Section title={t("mentoring.relation.after_view_title")}>
-                <p className={styles.cardMeta}>
-                  {t("mentoring.relation.after_view_help", {
-                    date: formatDate(relation.closedAt),
-                    by: relation.closedByMe ? t("mentoring.relation.closed_by_me") : otherName || t("mentoring.labels.deleted_user")
-                  })}
-                </p>
-              </Section>
-            )}
-          </>
-        ) : null}
-      </div>
-    </main>
+      ) : null}
+      <StepFlight
+        /* Osade loend muutub, kui suhe lõpeb (eesmärkide osa kaob) või kui
+           mentorile jõuab esimene ettevalmistus: siis ehitatakse lava uuesti. */
+        key={parts.map((part) => part.key).join("|")}
+        label={t("mentoring.relation.title")}
+        steps={parts}
+        parts
+        /* Suhe avaneb ülevaates: kõik osad korraga, igaühel oma seis. */
+        startWide={landIndex < 0}
+        initialIndex={Math.max(0, landIndex)}
+        texts={{
+          all: t("mentoring.relation.all_parts"),
+          position: (current, total, label) => t("mentoring.labels.part_position", { current, total, label })
+        }}
+        wideLead={
+          <p className={entry.lead}>{closed ? closedLine(relation, context) : draftRelation ? t("mentoring.relation.draft_hint") : progress}</p>
+        }
+        /* Teade käib selle osa kohta, kus tegu tehti: teises osas see enam ei kehti. */
+        onStepChange={() => setFeedback(null)}
+      >
+        {renderPart}
+      </StepFlight>
+    </EntryShell>
   );
 }

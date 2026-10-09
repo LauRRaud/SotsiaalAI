@@ -1,0 +1,97 @@
+/* Mentorlussuhte leht: päis lava kohal, kohtumise vormi väljad ja lõpetamise
+   loendid.
+   Lava, plaadid ja kiirmenüü tulevad components/stage-ist; vaate kuju (juhis,
+   tegevusrida) StepPanel-ist. Märk, laused, loendi kuju ja lingid on ühised
+   mentorluse avalehtedega (../entry/entry.module.css), avatav rida ja lõpliku
+   teo nupp halduse lehega (../desk/desk.module.css). Lehe pind on klaaspaneel
+   ise: siin ei ole ühtegi kasti, mis kogu sisu veel kord ümbritseks. */
+
+/* --- Päis: kes on teine pool, suhte seis ja tee tagasi ----------------------- */
+/* Nimi ei ole lehe pealkiri (see on kiirmenüüs), vaid ütleb, milline suhe on
+   lahti; seepärast on see tavalise teksti suurune. */
+.head {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 0.8rem;
+}
+.who {
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  color: var(--text-warm);
+  font-weight: 560;
+  overflow-wrap: anywhere;
+}
+.headLink {
+  margin-left: auto;
+}
+
+/* --- Kohtumise vorm ----------------------------------------------------------- */
+/* Väljad on nii laiad, kui sisu vajab (kellaaeg ei ole paneeli laiune), ja
+   kõrvuti seni, kuni mahuvad. */
+.fields {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.6rem 0.8rem;
+}
+.field {
+  min-width: 0;
+  flex: 1 1 15rem;
+  max-width: 22rem;
+  display: grid;
+  gap: 0.3rem;
+}
+.field[data-size="sm"] {
+  flex: 0 1 14rem;
+  max-width: 15rem;
+}
+.field[data-size="lg"] {
+  flex-basis: 18rem;
+  max-width: 30rem;
+}
+.fieldLabel {
+  color: var(--text-warm);
+  font-size: var(--fs-small, 0.875rem);
+}
+
+/* Kinnitus enne jagamist: kaart on lause laiune, mitte paneeli laiune. */
+.check {
+  min-width: 0;
+  max-width: 34rem;
+}
+
+/* --- Lõpetamise ülevaade: mis säilib ja mis kustub --------------------------- */
+/* Ühine paneelikiht annab loendile taande, täpid ja ridade vahe. */
+.plainList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.2rem;
+}
+.plainItem {
+  max-width: none;
+  margin: 0;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.4;
+}
+
+@media (max-width: 640px) {
+  .headLink {
+    margin-left: 0;
+    flex-basis: 100%;
+  }
+  .field,
+  .field[data-size] {
+    flex-basis: 100%;
+    max-width: none;
+  }
+  .check {
+    max-width: none;
+  }
+}
