@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "created_at": "2026-09-07T20:16:49.778Z",
-  "updated_at": "2026-10-08",
+  "updated_at": "2026-10-09",
   "path_base": "Andmebaasi",
   "archive": "../Arhiiv/Andmebaasi_2026-09-07",
   "import_rule": "Use source entries with their metadata. reference_lookup and review_source require reconciliation; metadata, source_register and source_planning_register are not independent knowledge documents. Folder organisation does not assert ingest acceptance.",
@@ -27,8 +27,8 @@
       "sources": 1
     },
     "oigusaktid": {
-      "files": 623,
-      "sources": 609
+      "files": 626,
+      "sources": 612
     },
     "register": {
       "files": 8,
@@ -49,11 +49,11 @@
   },
   "corpus": {
     "written_by": "rag-v2/register-corpus-1",
-    "version": "v72",
-    "index_generation": "87d4f55c",
-    "read_at": "2026-10-08",
-    "documents": 8656,
-    "units": 74066,
+    "version": "v73",
+    "index_generation": "d0aa63f4",
+    "read_at": "2026-10-09",
+    "documents": 8659,
+    "units": 75102,
     "note": "What the RAG on the server holds: the documents of the corpus policy by what they are (by_content), and by where the source file is kept (from_repository, outside_repository). One file of the repository may give many documents (a municipality package gives its services, forms and contacts). On a source entry, corpus_documents is the number of corpus documents the file gives; 0 means the file is not in the corpus.",
     "by_content": [
       {
@@ -97,9 +97,9 @@
       {
         "content": "acts",
         "name": "legal acts",
-        "documents": 563,
+        "documents": 566,
         "by_source_type": {
-          "legal_act": 563
+          "legal_act": 566
         }
       },
       {
@@ -174,9 +174,9 @@
         }
       },
       "oigusaktid": {
-        "documents": 563,
+        "documents": 566,
         "by_source_type": {
-          "legal_act": 563
+          "legal_act": 566
         }
       },
       "veebilehed": {
@@ -33819,6 +33819,33 @@
         "168",
         "169"
       ],
+      "corpus_documents": 1
+    },
+    {
+      "path": "oigusaktid/103062026035.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "7ec21be2dceeb2035ed7898e2c8d66fdb6940336fec8eb1c10c0cfe6ddca668f",
+      "original_path": "riigiteataja.ee/et/akt/103062026035.xml",
+      "review_status": "version_and_jurisdiction_validation_pending",
+      "corpus_documents": 1
+    },
+    {
+      "path": "oigusaktid/109072026055.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "4ef4020ee4777fd8922b13250d0a575f1ec60821b1f69ab3db2ca17d629c9d90",
+      "original_path": "riigiteataja.ee/et/akt/109072026055.xml",
+      "review_status": "version_and_jurisdiction_validation_pending",
+      "corpus_documents": 1
+    },
+    {
+      "path": "oigusaktid/111072026078.xml",
+      "category": "oigusaktid",
+      "role": "source",
+      "sha256": "9fd0f789694fc62d5966359897680202df3cf7e94a47a06bc3c87b7435f02756",
+      "original_path": "riigiteataja.ee/et/akt/111072026078.xml",
+      "review_status": "version_and_jurisdiction_validation_pending",
       "corpus_documents": 1
     },
     {

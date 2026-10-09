@@ -78,7 +78,8 @@ test('prompt v10 keeps every v9 guardrail in each answer language, and v9 plans 
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-11'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-10'));
   assert.ok(READABLE_PROMPT_VERSIONS.includes('m4-grounded-answer-9'));
-  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-37');
+  assert.equal(DIALOGUE_PROMPT_VERSION, 'm4-grounded-dialogue-38');
+  assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-37'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-36'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-35'));
   assert.ok(READABLE_DIALOGUE_PROMPT_VERSIONS.includes('m4-grounded-dialogue-34'));
@@ -374,6 +375,9 @@ test('dialogue prompt 29 to 32 (ADR-102): a finding carries its year, an older s
   assert.doesNotMatch(TIME_INSTRUCTIONS, /valid_from|valid_to/u);
   // A general rule: no year, number, place or topic that an answer could repeat as a fact.
   assert.doesNotMatch(TIME_INSTRUCTIONS, /\d|Tallinn|hoold|pension|euro/iu);
-  // About 615 tokens more in every dialogue turn's instructions than before v29.
-  assert.ok(tokenCount(TIME_INSTRUCTIONS) < 640, String(tokenCount(TIME_INSTRUCTIONS)));
+  // v38 (ADR-114): what holds now is said also when the event asked about lies ahead; the future is not a limitation.
+  for (const phrase of ['When what the user asks about still lies ahead', 'state it with the time of its state and add shortly that it may differ by then',
+    'a future event is no reason to leave such a figure out and is not a limitation by itself']) assert.ok(TIME_INSTRUCTIONS.includes(phrase), phrase);
+  // About 615 tokens more in every dialogue turn's instructions than before v29, and about 60 more since v38.
+  assert.ok(tokenCount(TIME_INSTRUCTIONS) < 700, String(tokenCount(TIME_INSTRUCTIONS)));
 });
