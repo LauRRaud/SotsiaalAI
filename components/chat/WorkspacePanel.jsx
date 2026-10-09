@@ -176,6 +176,12 @@ function dispatchWorkspaceEvent(eventName, detail = {}) {
   }
 }
 
+/* Töölaua sees avanevad lehed, mis on ümber tehtud nii, et lehe nimi on all
+   kiirmenüüs. Otseteel (/documents, /eelpoordumised) neil nähtavat pealkirja ei
+   ole; siin, kaardilt avatuna, joonistas töölaud selle paneelile tagasi. Kui
+   mõni teine töölaua leht ümber tehakse, lisa see siia. */
+const EMBEDDED_TITLE_IN_DOCK = new Set(["documents", "pre_inquiries"]);
+
 export default function WorkspacePanel({
   t,
   locale = "et",
@@ -607,6 +613,9 @@ export default function WorkspacePanel({
             anchorBack={false}
             holdPressedVisualDisabled
             titleId={activeTitleId}
+            /* Ümber tehtud lehe nimi on kiirmenüüs: paneelil seda ei korrata,
+               pealkiri jääb ekraanilugejale (vt EMBEDDED_TITLE_IN_DOCK). */
+            headerClassName={EMBEDDED_TITLE_IN_DOCK.has(activeEmbeddedFeature) ? "sr-only" : undefined}
             /* ⓘ elab paneeli nurgas × kõrval (PanelFrame); sisu antakse
                usePanelInfoSlot'iga ülalpool. */
           >

@@ -48,6 +48,11 @@ test('dokk otsib lehe nime täpse tee, aliase, päringuta tee ja vanema tee jär
   );
   /* Töölaua sisuleht ja tööheaolu töövorm leiavad oma kaardi täpse tee järgi; vanem on alles viimane. */
   assert.deepEqual(dockLabelRoutes('/toolaud/juhtumitoo'), ['/toolaud/juhtumitoo', '/toolaud']);
+  /* Alamtee kannab ka vanema aliast: avatud dokument saab kaardi „Dokumendid" nime. */
+  const aliases = { '/documents': '/vestlus?workspace=documents' };
+  assert.deepEqual(dockLabelRoutes('/documents', '', aliases), ['/documents', '/vestlus?workspace=documents']);
+  assert.deepEqual(dockLabelRoutes('/documents/abc', '', aliases), ['/documents/abc', '/documents', '/vestlus?workspace=documents']);
+  assert.deepEqual(dockLabelRoutes('/documents', 'artifacts=all', aliases), ['/documents?artifacts=all', '/vestlus?workspace=documents', '/documents']);
   assert.deepEqual(dockLabelRoutes('/'), ['/']);
   assert.deepEqual(dockLabelRoutes(''), ['/']);
 });
@@ -59,4 +64,5 @@ test('ruum kasutab doki nime otsimisel sama järjekorda ja oma komplekti kaart o
   const byRoute = stage.indexOf('byRoute ||', own);
   const cardless = stage.indexOf('(cardless ? {', own);
   assert.ok(own > 0 && byRoute > own && cardless > byRoute, 'järjekord: oma komplekt, tee järgi, kaardita lehe nimi');
+  assert.ok(stage.includes('"/documents": "/vestlus?workspace=documents"'), 'dokumentide leht kannab oma kaardi nime');
 });

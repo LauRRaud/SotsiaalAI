@@ -1855,34 +1855,6 @@
   color: var(--text-dim);
 }
 
-/* Dokumentide üleslaadimise kukutusala — katkendjoonega klaaslahter */
-.documents-dropzone {
-  display: block;
-  width: 100%;
-  padding: 1.1rem 1.2rem;
-  border-radius: 16px;
-  border: 1.5px dashed var(--glass-cell-border);
-  background: var(--glass-cell-bg);
-  color: var(--text-soft);
-  text-align: center;
-  cursor: var(--cursor-pointer);
-  transition:
-    background-color var(--dur-fast) var(--ease-soft),
-    border-color var(--dur-fast) var(--ease-soft),
-    color var(--dur-fast) var(--ease-soft);
-}
-.documents-dropzone:hover,
-.documents-dropzone[data-drag-active="true"] {
-  background: var(--glass-cell-bg-hover);
-  border-color: rgba(255, 255, 255, 0.4);
-  color: var(--text-warm);
-}
-.documents-dropzone p {
-  margin: 0.35em 0 0;
-  font-size: var(--fs-micro);
-  color: var(--text-dim);
-}
-
 /* Kutse-vaate väljad = kanooniline input-baas (glass.css) — kehtib ka
    portaalis renderduvas modaalis, sest baas on globaalne :where(input).
    Eraldi look-reeglit enam pole (tellija 07.07: üks input-kujundus). */
