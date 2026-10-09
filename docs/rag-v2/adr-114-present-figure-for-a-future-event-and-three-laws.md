@@ -1,6 +1,6 @@
 # ADR-114: tulevase sündmuse korral öeldakse praegune summa; kolm puuduvat seadust (korpus v73)
 
-Kuupäev: 09.10.2026. Teostus Claude Opus 5.5. Omanik 09.10.2026: „nii, on meil veel RAG süsteemi arendust. Jätka“ ja „luba on antud raha kulutada“; ulatuse ja kulupiiri (selle töölõigu peale 0,30 USD) määras tegija ja ütles need omanikule. Seis: **korpus v73 on ostetud ja töös** (indeks `d0aa63f4`, 8659 dokumenti, 75 102 lõiku, kulu 0,0620 USD); juhised 38 ja lugeja piir lähevad tööle selle muudatuse paigaldusega. Mudeliga mõõtmine järgneb paigaldusele; tulemus lisatakse kontrolli aruandesse.
+Kuupäev: 09.10.2026. Teostus Claude Opus 5.5. Omanik 09.10.2026: „nii, on meil veel RAG süsteemi arendust. Jätka“ ja „luba on antud raha kulutada“; ulatuse ja kulupiiri (selle töölõigu peale 0,30 USD) määras tegija ja ütles need omanikule. Seis: **korpus v73 on ostetud ja töös** (indeks `d0aa63f4`, 8659 dokumenti, 75 102 lõiku, kulu 0,0620 USD); juhised 38 ja lugeja piir on töös ja mõõdetud kuue küsimusega (0,0247 USD, jaotis „Mõõtmine“): summad tulevad, kolm seadust jõuavad vastustesse. Juhised 39 (märkus teksti, mitte piirangute alla) on mõõtmata.
 
 Lähtekoht on [vastuste kontroll 08.10.2026](../audits/rag-v2-state-content-check-2026-10-08.md): 14 küsimusest viis andsid leiu. Siin on neist kolm; kaks jäävad lahti (jaotis „Mis jääb lahti“).
 
@@ -51,6 +51,21 @@ Kontrolli leid 2 („eestkoste küsimus ei leidnud uusi allikaid“) on pöörde
 
 - Vastused mudeliga: kas tulevase sündmuse küsimus saab nüüd summad ja kas kolm seadust jõuavad vastustesse. Mõõdetakse pärast paigaldust samade küsimustega.
 - Kas uus lause muudab teisi vastuseid (näiteks lisab asjatu märkuse „võib muutuda“ sinna, kus küsimus tuleviku kohta ei käi).
+
+## Mõõtmine 09.10.2026 ja juhised 39
+
+Pärast paigaldust (väljalase `03ee35cc`, juhised 38, korpus v73) kuus küsimust serveri enda vestlusteenusest läbi; kõik lõppesid, kulu **0,0247 USD** (lagi 0,05).
+
+| Küsimus | Tulemus |
+|---|---|
+| Meil sünnib kevadel laps, mis raha pere saab | summad on nüüd vastuses: „2026. aastal on sünnitoetus 320 eurot ühekordselt ja lapsetoetus esimesele ning teisele lapsele 80 eurot kuus“; enne ei olnud ühtegi summat |
+| Kui suur on praegu lapsetoetus esimese lapse eest (võrdluseks, olevik) | „Praegu on lapsetoetus pere esimese lapse eest 80 eurot.“ Asjatut märkust muutumise kohta ei lisatud |
+| Jään kahe aasta pärast pensionile, kui suur on rahvapension | „2026. aasta 1. aprillist on rahvapension 414,10 eurot kuus“ ja lause, et kahe aasta pärast võib see olla teistsugune |
+| Advokaadi jaoks raha ei ole, kas riik aitab | viitab riigi õigusabi seadusele ja kohtute lehele; kes abi saab, mida taotlusse kirjutada, et taotlus tähtaega ei peata |
+| Elukaaslane lööb, mida politsei teha saab | viitab korrakaitseseadusele ja kriminaalmenetluse seadustikule: viibimiskeeld perevägivalla ohvri kaitseks kuni 72 tundi (võrreldud seaduse tekstiga, klapib), ajutine lähenemiskeeld prokuratuuri taotlusel; 2016. aasta artiklit enam ei kasutatud |
+| Kutsuti kannatanuna ütlusi andma, mis õigused | kriminaalmenetluse seadustikust: tõendid, taotlused ja kaebused, protokolliga tutvumine, saatja, samast soost küsitleja, ohvriabi |
+
+**Mis jäi viltu.** Kahes tuleviku-küsimuses kirjutas vastus märkuse „summa võib selleks ajaks muutuda“ nii teksti kui ka piirangute alla, mistõttu vastus sai sildi „osaline“. Juhised 39 (`m4-grounded-dialogue-39`) ütlevad, et märkus käib ploki tekstis ja seda ei kirjutata piirangute alla. Kas see mõjub, mõõdetakse pärast järgmist paigaldust ja kirjutatakse [kontrolli aruandesse](../audits/rag-v2-state-content-check-2026-10-08.md).
 
 ## Mis jääb lahti
 
