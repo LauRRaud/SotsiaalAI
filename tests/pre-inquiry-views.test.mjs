@@ -15,8 +15,10 @@ const SOURCES = [
   '../components/workspace/preInquiry/CollectViews.jsx',
   '../components/workspace/preInquiry/DomainsView.jsx',
   '../components/workspace/preInquiry/FlowViews.jsx',
+  '../components/workspace/preInquiry/ReceiverViews.jsx',
   '../components/workspace/WorkspaceFeaturePage.jsx'
 ];
+const RECEIVER_KEYS = ['queue', 'inquiry', 'info', 'check', 'plan', 'prepare', 'network', 'settings'];
 const FLOW_KEYS = ['journey', 'path', 'situation', 'who', 'urgency', 'domains', 'context', 'assistant', 'review', 'recipient', 'text', 'send', 'saved'];
 
 test('vaadete tekstivõtmed on kataloogis kolmes keeles', () => {
@@ -42,6 +44,26 @@ test('igal töövoo vaatel on nimi ja lühinimi kiirmenüü jaoks', () => {
       assert.ok(steps[key]?.title && steps[key]?.short, `${lang}: ${key}`);
     }
   }
+});
+
+test('vastuvõtja vaadetel on nimi ja lühinimi ning seisu sõnad kannavad oma kohatäitjaid', () => {
+  const page = read('../components/workspace/WorkspaceFeaturePage.jsx');
+  for (const key of RECEIVER_KEYS) assert.ok(page.includes(`"${key}"`), `leht kasutab vaadet ${key}`);
+  for (const lang of ['et', 'en', 'ru']) {
+    const receiver = catalog(lang).views.receiver;
+    for (const key of RECEIVER_KEYS) {
+      assert.ok(receiver.steps[key]?.title && receiver.steps[key]?.short, `${lang}: ${key}`);
+    }
+    assert.ok(receiver.state.new.includes('{days}'), lang);
+    for (const key of ['accepted', 'contact_later', 'contact_due']) assert.ok(receiver.state[key].includes('{date}'), `${lang}: ${key}`);
+    for (const key of ['group_new', 'group_mine', 'group_archived']) assert.ok(receiver.queue[key].includes('{count}'), `${lang}: ${key}`);
+  }
+});
+
+test('vastuvõtja vaade ei näita töövoo koodi ega ava esimest pöördumist ise', () => {
+  const page = read('../components/workspace/WorkspaceFeaturePage.jsx');
+  assert.ok(!page.includes('{inquiry.status || "DRAFT"}'), 'loend ei trüki olekukoodi');
+  assert.ok(!page.includes(': receiverInquiries[0] || null'), 'esimest pöördumist ei avata vaikimisi');
 });
 
 test('pöörduja seisu sõnad on kataloogis iga seisu jaoks', () => {

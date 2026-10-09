@@ -1,0 +1,100 @@
+/* Vastuvõtja vaated: see, mis on omane tööjärjele ja avatud pöördumisele.
+   Loendikaart ja märk tulevad lists.module.css-ist, väljad views.module.css-ist. */
+
+/* Tööjärje rida: sisu vasakul, tegevused paremal ühes veerus. Nii on rida madal
+   ja paneeli mahub rohkem pöördumisi. */
+.row {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 1rem;
+}
+.rowMain {
+  min-width: 0;
+  display: grid;
+  gap: 0.25rem;
+}
+/* Seis ja saabumise rida kõrvuti pealkirja all: märk ei võistle pealkirjaga ruumi pärast. */
+.rowState {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 0.6rem;
+}
+.rowActions {
+  display: grid;
+  gap: 0.4rem;
+}
+
+/* Loendireal üks rida inimese kirjeldusest; terve tekst on avatud pöördumise vaates. */
+.excerpt {
+  margin: 0;
+  color: var(--text-soft);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+
+/* Avatud pöördumine: seisu märk omaette real, siis inimese kirjeldus loetava laiusega. */
+.state {
+  margin: 0;
+  display: flex;
+}
+.situation,
+.text {
+  margin: 0;
+  max-width: 68ch;
+  color: var(--text-warm);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.text {
+  color: var(--text-soft);
+}
+
+/* Kontrollnimekiri: read on laused, seega üks veerg loetava laiusega. */
+.checks {
+  min-width: 0;
+  max-width: 68ch;
+  display: grid;
+  gap: 0.3rem;
+}
+
+/* Märge (pikk tekst) ja kuupäev (lühike väli) kõrvuti. */
+.planFields {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(11rem, 14rem);
+  align-items: start;
+  gap: 0.6rem 1rem;
+}
+
+@container (max-width: 40rem) {
+  .row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .rowActions {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 0.3rem;
+  }
+  .planFields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .rowActions {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 0.3rem;
+  }
+  .planFields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
