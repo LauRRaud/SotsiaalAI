@@ -334,7 +334,7 @@ test('ülevaatuse parandused: raamistiku vaade ei korda oma nime, otsing ei vaju
 
 test('töölaua sees avatud lehel ei korrata paneelil lehe pealkirja', () => {
   const panel = read('../components/chat/WorkspacePanel.jsx');
-  assert.ok(panel.includes('const EMBEDDED_TITLE_IN_DOCK = new Set(["documents", "pre_inquiries"]);'));
+  assert.match(panel, /const EMBEDDED_TITLE_IN_DOCK = new Set\(\[[^\]]*"documents"[^\]]*"pre_inquiries"[^\]]*\]\);/);
   assert.ok(panel.includes('headerClassName={EMBEDDED_TITLE_IN_DOCK.has(activeEmbeddedFeature) ? "sr-only" : undefined}'));
 });
 

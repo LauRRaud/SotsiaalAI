@@ -1582,8 +1582,7 @@
   overflow-wrap: anywhere;
 }
 
-.service-map-popup__availability,
-.service-profile-availability {
+.service-map-popup__availability {
   margin-top: 0.65rem;
   padding: 0.7rem 0.8rem;
   border: 1px solid color-mix(in srgb, #9aa6a0 55%, transparent);
@@ -1592,46 +1591,33 @@
   color: #292929;
 }
 
-.service-map-popup__availability p,
-.service-profile-availability p {
+.service-map-popup__availability p {
   color: inherit;
 }
 
-.service-map-popup__availability[data-tone="warning"],
-.service-profile-availability[data-tone="warning"] {
+.service-map-popup__availability[data-tone="warning"] {
   border-color: #a56828;
   background: #fff6e8;
 }
 
-.service-map-popup__availability[data-tone="positive"],
-.service-profile-availability[data-tone="positive"] {
+.service-map-popup__availability[data-tone="positive"] {
   border-color: #3f725b;
   background: #edf7f1;
 }
 
-.service-map-popup__availability-status,
-.service-profile-availability__status {
+.service-map-popup__availability-status {
   margin: 0;
   font-weight: 700;
 }
 
 .service-map-popup__availability-age,
 .service-map-popup__availability-wait,
-.service-map-popup__availability-warning,
-.service-profile-availability p {
+.service-map-popup__availability-warning {
   margin: 0.25rem 0 0;
 }
 
-.service-map-popup__availability > p,
-.service-profile-availability > p {
+.service-map-popup__availability > p {
   color: #292929;
-}
-
-.panel .service-profile-availability > button[data-variant] {
-  border-color: rgba(41, 41, 41, 0.32);
-  background: rgba(255, 255, 255, 0.92);
-  color: #292929;
-  box-shadow: 0 0.3rem 0.8rem rgba(41, 41, 41, 0.12);
 }
 
 .pre-inquiry-recipient-card {

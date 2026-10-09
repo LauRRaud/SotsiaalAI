@@ -3018,15 +3018,10 @@
         "map_not_ready": "Kaardil kuvamata"
       },
       "sections": {
-        "profile": "Teenuseosutaja põhainfo",
-        "services": "Teenused",
         "services_locations": "Teenused ja teeninduskohad",
-        "locations": "Teeninduskohad",
         "map_profile": "Kaardiprofiil",
         "outputs": "Väljundid",
-        "area": "Teeninduspiirkond ja asukoht",
-        "contact": "Kontakt ja eelpöördumised",
-        "publish": "Avaldamine"
+        "area": "Teeninduspiirkond ja asukoht"
       },
       "fields": {
         "organization": "Organisatsiooni nimi",
@@ -3078,7 +3073,6 @@
         "assistant_recommendation_help": "Avaldatud teenusekirjed lisatakse AI teadmuskihile ainult selle valiku korral."
       },
       "service_items": {
-        "item_title": "Teenus",
         "name": "Teenuse nimi",
         "status": "Teenuse olek",
         "category": "Kategooria",
@@ -3107,7 +3101,6 @@
         "contact_name": "Kontaktisik",
         "visible_in_profile": "Nähtav kaardimarkeri all",
         "add": "Lisa teenus",
-        "remove": "Eemalda",
         "empty": "Eraldi teenuseid ei ole veel lisatud.",
         "requester_roles": "Kes võib pöörduda",
         "need_tags": "Vajadused ja olukorrad",
@@ -3128,13 +3121,11 @@
         "address": "Aadress",
         "visible_on_map": "Näita teenusekaardil",
         "add": "Lisa teeninduskoht",
-        "remove": "Eemalda",
         "empty": "Teeninduskohti ei ole veel lisatud.",
         "opening_hours": "Lahtiolekuajad",
         "new_item_title": "Uus teeninduskoht"
       },
       "map_status": {
-        "title": "Aadressi seis",
         "empty": "Kaardiasukoha saab ette valmistada pärast aadressi salvestamist.",
         "pending": "Aadress ootab vaste leidmist.",
         "matched": "Aadressil on vaste ja avaldatud profiili saab teenusekaardil kuvada.",
@@ -3293,7 +3284,9 @@
       },
       "actions": {
         "save": "Salvesta muudatused",
-        "saving": "Salvestan..."
+        "saving": "Salvestan...",
+        "keep_local_changes": "Säilita kohalikud muudatused ja proovi uuesti",
+        "use_server_version": "Kasuta serveri versiooni"
       },
       "loading": "Laen teenuseprofiili...",
       "save_success": "Teenuseprofiil salvestatud.",
@@ -3305,7 +3298,9 @@
         "address_suggestions_failed": "Aadressisoovitusi ei saanud laadida.",
         "availability_conflict": "Kättesaadavuse info muutus vahepeal. Värske seis laaditi; vaata see üle ja kinnita uuesti.",
         "availability_confirmation_failed": "Kättesaadavust ei saanud kinnitada.",
-        "availability_status_invalid": "Vali üks kolmest kättesaadavuse olekust."
+        "availability_status_invalid": "Vali üks kolmest kättesaadavuse olekust.",
+        "profile_conflict": "Profiili muudeti vahepeal. Sinu vorm on alles. Võrdle seda värske versiooniga või laadi värske versioon vormile.",
+        "profile_conflict_detail": "Serveris on uuem versioon. Kohalikud muudatused on vormil alles."
       },
       "availability": {
         "legacy": "Varasem kinnitamata väärtus",
@@ -3315,19 +3310,13 @@
         "confirming": "Kinnitan...",
         "confirmed": "Kättesaadavuse info kinnitati."
       },
-      "choice_summary": {
-        "selected": "Valitud",
-        "empty": "-"
-      },
       "contact_strategy": {
         "label": "Teenuse kontakt",
         "organization": "Kasuta organisatsiooni põhikontakti",
         "custom": "Määra teenusele eraldi kontakt",
-        "inherited_help": "Eelpöördumise kontaktivalik kasutab järjekorda: teenuse kontakt, teeninduskoha kontakt, organisatsiooni põhikontakt. Selle teenuse puhul kasutatakse praegu organisatsiooni põhikontakti.",
-        "priority_help": "Eelpöördumise kontaktivalik kasutab järjekorda: teenuse kontakt, teeninduskoha kontakt, organisatsiooni põhikontakt. Põhikontakti andmed sisesta organisatsiooni põhiinfos."
+        "inherited_help": "Eelpöördumise kontaktivalik kasutab järjekorda: teenuse kontakt, teeninduskoha kontakt, organisatsiooni põhikontakt. Selle teenuse puhul kasutatakse praegu organisatsiooni põhikontakti."
       },
       "publish_checks": {
-        "title": "Avaldamise kontroll",
         "status_published": "Profiili staatus on avaldatud.",
         "status_not_published": "Muuda profiili staatus avaldatuks, kui soovid seda avalikus vaates kuvada.",
         "map_visible": "Profiil on teenusekaardil nähtavaks märgitud.",
@@ -3336,10 +3325,188 @@
         "service_missing": "Lisa vähemalt üks avaldatav teenus.",
         "location_ready": "Vähemalt üks teeninduskoht on kaardil nähtav ja aadressiga.",
         "location_missing": "Lisa teeninduskoht koos aadressiga, kui soovid kaardimarkerit.",
-        "contact_ready": "Üldine e-post või telefon on olemas.",
-        "contact_missing": "Lisa üldine e-post või telefon.",
+        "contact_ready": "Kontakt või platvormisisene pöördumisviis on olemas.",
+        "contact_missing": "Lisa kontakt või luba platvormisisesed eelpöördumised.",
         "assistant_allowed": "Assistent võib avaldatud teenuseid soovitada.",
         "assistant_blocked": "Assistent ei soovita neid teenuseid enne eraldi loa andmist."
+      },
+      "views": {
+        "who": {
+          "title": "Organisatsioon",
+          "short": "Organisatsioon"
+        },
+        "about": {
+          "title": "Tutvustus",
+          "short": "Tutvustus"
+        },
+        "contact": {
+          "title": "Kontakt",
+          "short": "Kontakt",
+          "lead": "Organisatsiooni põhikontakt. Teenusele ja teeninduskohale saad lisada oma kontakti."
+        },
+        "inquiries": {
+          "title": "Eelpöördumiste vastuvõtt",
+          "short": "Eelpöördumised",
+          "lead": "Eelpöördumine jõuab kontaktile selles järjekorras: teenuse kontakt, teeninduskoha kontakt, organisatsiooni põhikontakt."
+        },
+        "area": {
+          "title": "Tegevuspiirkond",
+          "short": "Piirkond",
+          "lead": "Kirjelda, millises piirkonnas teenust osutatakse. Kaardimarkerite aadressid lisa teeninduskohtade vaates."
+        },
+        "access": {
+          "title": "Ligipääsetavus",
+          "short": "Ligipääsetavus"
+        },
+        "services": {
+          "title": "Teenused",
+          "short": "Teenused",
+          "unnamed": "Nimeta teenus",
+          "not_saved": "nimi puudub, ei salvestu",
+          "count": "Teenuseid {count}, kuni {max}",
+          "summary": "Teenuseid {count}, avaldatud {published}"
+        },
+        "locations": {
+          "title": "Teeninduskohad",
+          "short": "Teeninduskohad",
+          "not_saved": "tühi, ei salvestu",
+          "not_on_map": "kaardil ei ole",
+          "count": "Teeninduskohti {count}, kuni {max}",
+          "summary": "Teeninduskohti {count}"
+        },
+        "visibility": {
+          "title": "Avaldamine",
+          "short": "Avaldamine"
+        },
+        "check": {
+          "title": "Avaldamise kontroll",
+          "short": "Kontroll",
+          "ok": "Korras",
+          "review": "Vaata üle",
+          "missing": "Puudu",
+          "summary_ok": "Kõik on korras",
+          "summary_open": "Üle vaadata: {count}",
+          "optional": "Sinu valik"
+        },
+        "service": {
+          "title": "Teenus",
+          "short": "Teenus",
+          "name_hint": "Nimeta teenust ei salvestata."
+        },
+        "describe": {
+          "title": "Teenuse kirjeldus",
+          "short": "Kirjeldus"
+        },
+        "scope": {
+          "title": "Mida teenus sisaldab",
+          "short": "Sisu"
+        },
+        "category": {
+          "title": "Teenuse kategooriad",
+          "short": "Kategooriad"
+        },
+        "target": {
+          "title": "Sihtrühmad",
+          "short": "Sihtrühmad"
+        },
+        "people": {
+          "title": "Vanus ja pöörduja",
+          "short": "Vanus ja pöörduja"
+        },
+        "needs": {
+          "title": "Vajadused ja eluvaldkonnad",
+          "short": "Vajadused"
+        },
+        "delivery": {
+          "title": "Osutamise viis",
+          "short": "Osutamise viis"
+        },
+        "languages": {
+          "title": "Keeled",
+          "short": "Keeled"
+        },
+        "places": {
+          "title": "Teenuse teeninduskohad",
+          "short": "Teenuse kohad",
+          "manage": "Halda teeninduskohti"
+        },
+        "reach": {
+          "title": "Teenuse piirkond",
+          "short": "Teenuse piirkond"
+        },
+        "reach_note": {
+          "title": "Piirkonna täpsustus",
+          "short": "Täpsem piirkond"
+        },
+        "price": {
+          "title": "Hind",
+          "short": "Hind"
+        },
+        "availability": {
+          "title": "Kättesaadavus",
+          "short": "Kättesaadavus"
+        },
+        "confirm": {
+          "title": "Kättesaadavuse kinnitus",
+          "short": "Kinnitus",
+          "lead": "Kinnita, kui kättesaadavuse info kehtib. Inimene näeb teenusekaardil, millal infot viimati kinnitati.",
+          "unsaved": "Kinnitada saab pärast teenuse salvestamist.",
+          "save_first": "Salvesta muudatused enne kinnitamist: kinnitamine laadib profiili serverist uuesti."
+        },
+        "direct": {
+          "title": "Otsepöördumine ja suunamine",
+          "short": "Suunamine"
+        },
+        "kov": {
+          "title": "KOV hindamine ja otsus",
+          "short": "KOV"
+        },
+        "terms": {
+          "title": "Tingimused ja dokumendid",
+          "short": "Tingimused"
+        },
+        "channels": {
+          "title": "Pöördumise viisid",
+          "short": "Pöördumise viisid"
+        },
+        "service_contact": {
+          "title": "Teenuse kontakt",
+          "short": "Teenuse kontakt"
+        },
+        "licence": {
+          "title": "Tegevusluba",
+          "short": "Tegevusluba",
+          "lead": "Kontroll käib kõigi teenuste kohta korraga.",
+          "empty": "Tegevusloa seis ilmub siia pärast teenuse salvestamist."
+        },
+        "place": {
+          "title": "Teeninduskoht",
+          "short": "Teeninduskoht"
+        },
+        "address": {
+          "title": "Aadress",
+          "short": "Aadress",
+          "suggestions": "Aadressivasted"
+        },
+        "place_contact": {
+          "title": "Koha kontakt ja lahtiolek",
+          "short": "Koha kontakt"
+        },
+        "open": "Ava",
+        "back_to_list": "Tagasi loendisse: {list}",
+        "go_to": "Ava vaade: {view}",
+        "unsaved": "Muudatused on salvestamata.",
+        "name_required": "Salvestamiseks lisa organisatsiooni nimi.",
+        "publish_blocked": "Avaldatud profiili ei saa salvestada, kuni puuduv on lisatud.",
+        "confirm_remove": "Vajuta uuesti, et eemaldada",
+        "remove_service": "Eemalda teenus",
+        "remove_location": "Eemalda teeninduskoht",
+        "no_name": "nimi puudub",
+        "confirm_replace": "Vajuta uuesti: kohalikud muudatused lähevad kaotsi"
+      },
+      "conflict": {
+        "local_version": "Kohalik vorm",
+        "server_version": "Serveri uuem versioon"
       }
     },
     "admin_role": {

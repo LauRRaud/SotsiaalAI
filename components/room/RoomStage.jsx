@@ -176,6 +176,9 @@ const DOCK_CARD_ALIASES = {
   /* Kaart „Dokumendid" avab vestluse töölaua tee; leht ise ja avatud dokument
      elavad teel /documents. */
   "/documents": "/vestlus?workspace=documents",
+  /* Vastupidi: kaart „Teenuseprofiil" avab lehe oma tee, aga töölaua seest
+     avatuna elab sama leht vestluse teel ega kanna seal pealkirja. */
+  "/vestlus?workspace=service_profile": "/teenuseprofiil",
 };
 
 /* Tellija otsus: saabumiskõnd toimub IGAL platvormi laadimisel —

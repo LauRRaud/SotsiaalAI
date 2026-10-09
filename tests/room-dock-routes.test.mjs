@@ -53,6 +53,14 @@ test('dokk otsib lehe nime täpse tee, aliase, päringuta tee ja vanema tee jär
   assert.deepEqual(dockLabelRoutes('/documents', '', aliases), ['/documents', '/vestlus?workspace=documents']);
   assert.deepEqual(dockLabelRoutes('/documents/abc', '', aliases), ['/documents/abc', '/documents', '/vestlus?workspace=documents']);
   assert.deepEqual(dockLabelRoutes('/documents', 'artifacts=all', aliases), ['/documents?artifacts=all', '/vestlus?workspace=documents', '/documents']);
+  /* Päringuga tee alias: töölaua sees avatud leht kannab oma kaardi nime, mitte „Vestlus". */
+  const embedded = { '/vestlus?workspace=service_profile': '/teenuseprofiil' };
+  assert.deepEqual(
+    dockLabelRoutes('/vestlus', 'workspace=service_profile', embedded),
+    ['/vestlus?workspace=service_profile', '/teenuseprofiil', '/vestlus']
+  );
+  assert.deepEqual(dockLabelRoutes('/vestlus', 'workspace=documents', embedded), ['/vestlus?workspace=documents', '/vestlus']);
+  assert.deepEqual(dockLabelRoutes('/vestlus', '', embedded), ['/vestlus']);
   assert.deepEqual(dockLabelRoutes('/'), ['/']);
   assert.deepEqual(dockLabelRoutes(''), ['/']);
 });
@@ -65,4 +73,5 @@ test('ruum kasutab doki nime otsimisel sama järjekorda ja oma komplekti kaart o
   const cardless = stage.indexOf('(cardless ? {', own);
   assert.ok(own > 0 && byRoute > own && cardless > byRoute, 'järjekord: oma komplekt, tee järgi, kaardita lehe nimi');
   assert.ok(stage.includes('"/documents": "/vestlus?workspace=documents"'), 'dokumentide leht kannab oma kaardi nime');
+  assert.ok(stage.includes('"/vestlus?workspace=service_profile": "/teenuseprofiil"'), 'töölaua sees avatud teenuseprofiil kannab oma kaardi nime');
 });

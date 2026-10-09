@@ -3018,15 +3018,10 @@
         "map_not_ready": "Not shown on map"
       },
       "sections": {
-        "profile": "Provider basics",
-        "services": "Services",
         "services_locations": "Services and locations",
-        "locations": "Service locations",
         "map_profile": "Map profile",
         "outputs": "Outputs",
-        "area": "Service area and location",
-        "contact": "Contact and pre-inquiries",
-        "publish": "Publishing"
+        "area": "Service area and location"
       },
       "fields": {
         "organization": "Organization name",
@@ -3078,7 +3073,6 @@
         "assistant_recommendation_help": "Published service records are added to the AI knowledge layer only when this is enabled."
       },
       "service_items": {
-        "item_title": "Service",
         "name": "Service name",
         "status": "Service status",
         "category": "Category",
@@ -3117,7 +3111,6 @@
         "contact_name": "Contact person",
         "visible_in_profile": "Visible under map marker",
         "add": "Add service",
-        "remove": "Remove",
         "empty": "No separate services have been added yet.",
         "location_empty_hint": "Add a service location first if you want to show this service on the map. A service can also exist without a physical location when it is delivered online, by phone, at the person's home, or regionally."
       },
@@ -3129,12 +3122,10 @@
         "opening_hours": "Opening hours",
         "visible_on_map": "Show on service map",
         "add": "Add service location",
-        "remove": "Remove",
         "empty": "No service locations have been added yet.",
         "new_item_title": "New service location"
       },
       "map_status": {
-        "title": "Address status",
         "empty": "A map location can be prepared after the address is saved.",
         "pending": "The address is waiting for matching.",
         "matched": "Address has been matched and can be shown on the service map when the profile is published.",
@@ -3293,7 +3284,9 @@
       },
       "actions": {
         "save": "Save changes",
-        "saving": "Saving..."
+        "saving": "Saving...",
+        "keep_local_changes": "Keep local changes and try again",
+        "use_server_version": "Use the server version"
       },
       "loading": "Loading service profile...",
       "save_success": "Service profile saved.",
@@ -3305,7 +3298,9 @@
         "address_suggestions_failed": "Address suggestions could not be loaded.",
         "availability_conflict": "Availability changed in the meantime. The latest state was loaded; review it and confirm again.",
         "availability_confirmation_failed": "Availability could not be confirmed.",
-        "availability_status_invalid": "Choose one of the three availability states."
+        "availability_status_invalid": "Choose one of the three availability states.",
+        "profile_conflict": "The profile was changed in the meantime. Your form is kept. Compare it with the latest version or load the latest version into the form.",
+        "profile_conflict_detail": "The server has a newer version. Your local changes are still in the form."
       },
       "availability": {
         "legacy": "Previous unconfirmed value",
@@ -3315,19 +3310,13 @@
         "confirming": "Confirming...",
         "confirmed": "Availability was confirmed."
       },
-      "choice_summary": {
-        "selected": "Selected",
-        "empty": "-"
-      },
       "contact_strategy": {
         "label": "Service contact",
         "organization": "Use organization primary contact",
         "custom": "Set a separate service contact",
-        "inherited_help": "Pre-inquiry contact selection uses this order: service contact, service location contact, organization primary contact. This service currently uses the organization primary contact.",
-        "priority_help": "Pre-inquiry contact selection uses this order: service contact, service location contact, organization primary contact. Enter primary contact details in organization information."
+        "inherited_help": "Pre-inquiry contact selection uses this order: service contact, service location contact, organization primary contact. This service currently uses the organization primary contact."
       },
       "publish_checks": {
-        "title": "Publishing check",
         "status_published": "Profile status is published.",
         "status_not_published": "Set profile status to published if you want to show it publicly.",
         "map_visible": "Profile is marked visible on the service map.",
@@ -3336,10 +3325,188 @@
         "service_missing": "Add at least one publishable service.",
         "location_ready": "At least one service location is map-visible and has an address.",
         "location_missing": "Add a service location with an address if you want a map marker.",
-        "contact_ready": "General email or phone is present.",
-        "contact_missing": "Add a general email or phone.",
+        "contact_ready": "A contact or the platform pre-inquiry channel is present.",
+        "contact_missing": "Add a contact or allow platform pre-inquiries.",
         "assistant_allowed": "The assistant may recommend published services.",
         "assistant_blocked": "The assistant will not recommend these services until permission is enabled."
+      },
+      "views": {
+        "who": {
+          "title": "Organization",
+          "short": "Organization"
+        },
+        "about": {
+          "title": "Introduction",
+          "short": "Introduction"
+        },
+        "contact": {
+          "title": "Contact",
+          "short": "Contact",
+          "lead": "The primary contact of the organization. A service and a service location can have their own contact."
+        },
+        "inquiries": {
+          "title": "Receiving pre-inquiries",
+          "short": "Pre-inquiries",
+          "lead": "A pre-inquiry reaches a contact in this order: service contact, service location contact, organization primary contact."
+        },
+        "area": {
+          "title": "Service area",
+          "short": "Area",
+          "lead": "Describe the area where the service is provided. Add map marker addresses in the service locations view."
+        },
+        "access": {
+          "title": "Accessibility",
+          "short": "Accessibility"
+        },
+        "services": {
+          "title": "Services",
+          "short": "Services",
+          "unnamed": "Unnamed service",
+          "not_saved": "no name, will not be saved",
+          "count": "Services: {count} of up to {max}",
+          "summary": "Services: {count}, published: {published}"
+        },
+        "locations": {
+          "title": "Service locations",
+          "short": "Locations",
+          "not_saved": "empty, will not be saved",
+          "not_on_map": "not on the map",
+          "count": "Service locations: {count} of up to {max}",
+          "summary": "Service locations: {count}"
+        },
+        "visibility": {
+          "title": "Publishing",
+          "short": "Publishing"
+        },
+        "check": {
+          "title": "Publishing check",
+          "short": "Check",
+          "ok": "OK",
+          "review": "Review",
+          "missing": "Missing",
+          "summary_ok": "Everything is in order",
+          "summary_open": "To review: {count}",
+          "optional": "Your choice"
+        },
+        "service": {
+          "title": "Service",
+          "short": "Service",
+          "name_hint": "A service without a name is not saved."
+        },
+        "describe": {
+          "title": "Service description",
+          "short": "Description"
+        },
+        "scope": {
+          "title": "What the service includes",
+          "short": "Scope"
+        },
+        "category": {
+          "title": "Service categories",
+          "short": "Categories"
+        },
+        "target": {
+          "title": "Target groups",
+          "short": "Target groups"
+        },
+        "people": {
+          "title": "Age and who may contact",
+          "short": "Age and contact"
+        },
+        "needs": {
+          "title": "Needs and life domains",
+          "short": "Needs"
+        },
+        "delivery": {
+          "title": "Delivery mode",
+          "short": "Delivery mode"
+        },
+        "languages": {
+          "title": "Languages",
+          "short": "Languages"
+        },
+        "places": {
+          "title": "Locations of this service",
+          "short": "Service places",
+          "manage": "Manage service locations"
+        },
+        "reach": {
+          "title": "Service region",
+          "short": "Service region"
+        },
+        "reach_note": {
+          "title": "Region details",
+          "short": "Region details"
+        },
+        "price": {
+          "title": "Price",
+          "short": "Price"
+        },
+        "availability": {
+          "title": "Availability",
+          "short": "Availability"
+        },
+        "confirm": {
+          "title": "Availability confirmation",
+          "short": "Confirmation",
+          "lead": "Confirm when the availability information is current. People see on the service map when it was last confirmed.",
+          "unsaved": "You can confirm after the service has been saved.",
+          "save_first": "Save your changes before confirming: confirming reloads the profile from the server."
+        },
+        "direct": {
+          "title": "Direct contact and referral",
+          "short": "Referral"
+        },
+        "kov": {
+          "title": "Municipal assessment and decision",
+          "short": "Municipality"
+        },
+        "terms": {
+          "title": "Conditions and documents",
+          "short": "Conditions"
+        },
+        "channels": {
+          "title": "Ways to contact",
+          "short": "Ways to contact"
+        },
+        "service_contact": {
+          "title": "Service contact",
+          "short": "Service contact"
+        },
+        "licence": {
+          "title": "Activity licence",
+          "short": "Licence",
+          "lead": "The check covers all services at once.",
+          "empty": "The licence status appears here after the service has been saved."
+        },
+        "place": {
+          "title": "Service location",
+          "short": "Location"
+        },
+        "address": {
+          "title": "Address",
+          "short": "Address",
+          "suggestions": "Address matches"
+        },
+        "place_contact": {
+          "title": "Location contact and opening hours",
+          "short": "Location contact"
+        },
+        "open": "Open",
+        "back_to_list": "Back to the list: {list}",
+        "go_to": "Open the view: {view}",
+        "unsaved": "Changes are not saved.",
+        "name_required": "Add the organization name to save.",
+        "publish_blocked": "A published profile cannot be saved until what is missing has been added.",
+        "confirm_remove": "Press again to remove",
+        "remove_service": "Remove service",
+        "remove_location": "Remove service location",
+        "no_name": "no name",
+        "confirm_replace": "Press again: local changes will be lost"
+      },
+      "conflict": {
+        "local_version": "Local form",
+        "server_version": "Newer version on the server"
       }
     },
     "admin_role": {
