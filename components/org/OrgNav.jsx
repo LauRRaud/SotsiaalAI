@@ -51,6 +51,15 @@ export default function OrgNav({ organizationId, capabilities = [], activeModule
        õiguseta), mitte lingi olemasolu — muidu peaks nav teadma sedasama
        reeglistikku, mida teab juba `dispatchBoard.js`. */
     { key: "dispatch", href: `/org/${organizationId}/graafik`, label: t("org.nav.dispatch") },
+    /* Koduteenus sõltub MOODULIST, mitte capability'st: hooldajal ei ole
+       ühtegi capability't, aga ta peab oma kliente nägema. Loend on serveris
+       skoobitud (meeskond või hooldusjuht). */
+    {
+      key: "home_care",
+      href: `/org/${organizationId}/koduteenus`,
+      label: t("org.nav.home_care"),
+      requiresModule: "HOME_CARE"
+    },
     {
       key: "profile",
       href: `/org/${organizationId}/teenusprofiil`,

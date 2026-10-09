@@ -9359,7 +9359,8 @@
       "support": "Support",
       "profile": "Service profile",
       "service_reports": "Reports",
-      "dispatch": "Schedule"
+      "dispatch": "Schedule",
+      "home_care": "Home care"
     },
     "overview": {
       "heading": "Overview",
@@ -9489,7 +9490,8 @@
       "KOV_INTAKE": "Intake",
       "SERVICE_DELIVERY": "Service delivery",
       "PROFESSIONAL_SUPPORT": "Professional support",
-      "ORG_KNOWLEDGE": "Organisation knowledge"
+      "ORG_KNOWLEDGE": "Organisation knowledge",
+      "HOME_CARE": "Home care"
     },
     "capability": {
       "ORG_OWNER": "Organisation owner",
@@ -9500,14 +9502,16 @@
       "SERVICE_PROFILE_EDITOR": "Service profile editor",
       "SUPPORT_CONTACT_ADMIN": "Support contact administration",
       "BILLING_MANAGER": "Billing administration",
-      "AUDIT_VIEWER": "Audit viewer"
+      "AUDIT_VIEWER": "Audit viewer",
+      "HOME_CARE_COORDINATOR": "Care coordinator"
     },
     "capabilityTemplate": {
       "orgOwner": "Owner",
       "memberAdmin": "Member administrator",
       "unitLead": "Department lead",
       "inboxCoordinator": "Intake coordinator",
-      "member": "Ordinary member"
+      "member": "Ordinary member",
+      "homeCareCoordinator": "Care coordinator"
     },
     "scope": {
       "ORGANIZATION": "Whole organisation",
@@ -10701,6 +10705,264 @@
       "history_shown": "Shown from history",
       "history_more": "Show older history",
       "history_reset": "Back to the start"
+    }
+  },
+  "home_care": {
+    "meta": {
+      "title": "Home care",
+      "description": "Clients, diary and team"
+    },
+    "home": {
+      "title": "Home care",
+      "intro_worker": "Your clients. Open a client to see the agreements and write in the diary.",
+      "intro_coordinator": "All clients. The overview shows new entries, unread handover notes and open incidents.",
+      "my_clients": "My clients",
+      "all_clients": "Clients",
+      "empty_worker": "You are not on any client's team yet. The care coordinator adds you to a client.",
+      "empty_coordinator": "There are no clients yet. Add the first client.",
+      "search_label": "Search for a client by name",
+      "search_button": "Search",
+      "search_empty": "No client with that name was found.",
+      "search_hint": "The search shows only the name. Outside your own team you are asked for a reason before the page opens.",
+      "needs_reason": "opens with a reason",
+      "add_client": "Add client",
+      "overview_link": "Coordinator overview",
+      "show_ended": "Show ended",
+      "show_active": "Show active",
+      "empty_ended": "There are no ended clients."
+    },
+    "status": {
+      "ACTIVE": "Active",
+      "AWAY": "Temporarily away",
+      "ENDED": "Ended"
+    },
+    "client": {
+      "back": "Back to clients",
+      "name": "Name",
+      "internal_code": "Code",
+      "internal_code_hint": "Your organisation's internal code, for example the same name form you use in your current tool.",
+      "address": "Address",
+      "phone": "Phone",
+      "contact_note": "Contacts and notes",
+      "save": "Save",
+      "cancel": "Cancel",
+      "edit": "Edit details",
+      "details": "Details",
+      "create_title": "New client",
+      "status_title": "Status",
+      "status_note": "Note (for example “in hospital since 9 Oct”)",
+      "status_save": "Change status",
+      "opened_recently": "Recently opened by",
+      "basis": {
+        "TEAM": "team",
+        "COORDINATOR": "coordinator",
+        "REASON": "with a reason"
+      },
+      "talk_to_coordinator": "Talk to the care coordinator before the visit.",
+      "away_notice": "The client is temporarily away.",
+      "ended_notice": "The service has ended. The page can still be read.",
+      "read_only": "The organisation is not writable at the moment; the page is read-only.",
+      "manage": "For the coordinator",
+      "unit": "Unit",
+      "unit_none": "No unit (whole organisation)"
+    },
+    "card": {
+      "title": "Before you go",
+      "empty": "The card is empty. Add what a substitute needs to know before reaching the door.",
+      "add": "Add line",
+      "kind_label": "Kind",
+      "text_label": "Text",
+      "save": "Save",
+      "edit": "Edit",
+      "remove": "Remove",
+      "cancel": "Cancel",
+      "limit": "The card holds up to {limit} lines.",
+      "kinds": {
+        "ACCESS": "Access",
+        "AGREEMENT": "Agreement",
+        "RISK": "Risk",
+        "ALARM": "Alarm button",
+        "OTHER": "Other"
+      }
+    },
+    "team": {
+      "title": "Team",
+      "empty": "Nobody is on the team yet.",
+      "add_label": "Add a worker",
+      "add": "Add",
+      "remove": "Remove",
+      "inactive": "no longer active",
+      "hint": "The team sees the client without giving a reason. Other carers open the page with a reason."
+    },
+    "entry": {
+      "new_title": "New entry",
+      "text_label": "What you saw and did",
+      "kind_label": "Kind",
+      "kinds": {
+        "NOTE": "Note",
+        "AGREEMENT": "Agreement",
+        "HANDOVER": "Note for the next carer",
+        "INCIDENT": "Incident",
+        "CONCERN": "Concern for the coordinator"
+      },
+      "contact_label": "Contact",
+      "contact": {
+        "VISIT": "Visit",
+        "PHONE": "Phone",
+        "OTHER": "Other"
+      },
+      "occurred_label": "When it happened",
+      "companion_label": "Together with",
+      "companion_none": "Alone",
+      "save": "Save entry",
+      "saved": "The entry is saved.",
+      "visibility_team": "Seen by: the client's team ({count}) and the coordinator. This text is not shown to the family.",
+      "visibility_coordinator": "Seen only by the coordinator. The team sees the line “talk to the coordinator before the visit”.",
+      "write_what_you_saw": "Write what you saw and did, not opinions: the client may ask for their data.",
+      "written_later": "written later",
+      "corrected": "corrected",
+      "retracted": "The entry has been retracted.",
+      "coordinator_only": "coordinator only",
+      "with_companion": "with {name}",
+      "correct": "Correct",
+      "retract": "Retract",
+      "history": "History",
+      "reason_label": "Reason",
+      "correct_title": "Correcting the entry",
+      "retract_title": "Retracting the entry",
+      "retract_hint": "The entry is not deleted: a retracted entry stays in the history with the reason.",
+      "correct_save": "Save correction",
+      "retract_save": "Retract entry",
+      "cancel": "Cancel",
+      "history_title": "Earlier content",
+      "history_empty": "There are no corrections.",
+      "revision_kind": {
+        "CORRECTION": "Correction",
+        "RETRACTION": "Retraction"
+      },
+      "read_count": "read: {count}",
+      "unread": "nobody has read it yet",
+      "occurred_hint": "Leave empty if you are writing right after the visit."
+    },
+    "incident": {
+      "type_label": "What happened",
+      "types": {
+        "FALL": "Fall or found on the floor",
+        "DOOR_NOT_OPENED": "The door was not opened",
+        "MISSING": "The person is missing",
+        "HEALTH_DECLINE": "Sudden decline in health",
+        "REFUSED_HELP": "Refused help",
+        "AGGRESSION": "Aggression or danger to the worker",
+        "ABUSE_SUSPICION": "Suspected abuse or neglect",
+        "MONEY_DISCREPANCY": "Money or property discrepancy",
+        "UNSAFE_HOME": "Unsafe home environment",
+        "ACCESS_PROBLEM": "Key or access problem",
+        "WORK_ACCIDENT": "Accident at work",
+        "COMPLAINT": "Complaint",
+        "THANKS": "Thanks",
+        "OTHER": "Other"
+      },
+      "text_label": "What I saw or heard",
+      "assessment_label": "What I think",
+      "actions_label": "What I did",
+      "actions": {
+        "CALLED_112": "Called 112",
+        "INFORMED_COORDINATOR": "Informed the coordinator",
+        "INFORMED_RELATIVE": "Informed a relative",
+        "WAITED_FOR_HELP": "Stayed to wait for help",
+        "LEFT_FOR_SAFETY": "Left for safety"
+      },
+      "notice": "An entry does not replace calling for help or reporting a person in need. In danger, call 112.",
+      "status": {
+        "OPEN": "New",
+        "IN_REVIEW": "In review",
+        "CLOSED": "Closed"
+      },
+      "set_in_review": "Take into review",
+      "close": "Close",
+      "reopen": "Reopen",
+      "resolution_label": "What was done"
+    },
+    "filter": {
+      "title": "Diary",
+      "kind_all": "All kinds",
+      "from": "From",
+      "to": "To",
+      "apply": "Show",
+      "clear": "Clear",
+      "more": "Show older",
+      "empty": "There are no entries."
+    },
+    "reason": {
+      "title": "A reason is needed to open this page",
+      "intro": "You are not on this client's team. Choose a reason; the permission lasts until the end of today and the opening is recorded.",
+      "code_label": "Reason",
+      "codes": {
+        "COVERING": "Covering today",
+        "PAIRED_VISIT": "Paired visit",
+        "URGENT": "Urgent situation",
+        "OTHER": "Other"
+      },
+      "text_label": "Details (optional)",
+      "submit": "Open the page"
+    },
+    "overview": {
+      "title": "Coordinator overview",
+      "back": "Back to clients",
+      "recent_title": "Entries since yesterday",
+      "recent_empty": "There are no new entries.",
+      "recent_more": "The latest 100 entries are shown.",
+      "unread_title": "Notes nobody has read",
+      "unread_empty": "All notes have been read.",
+      "unread_hint": "Notes for the next carer from the last 14 days that no other carer has opened.",
+      "incidents_title": "Open incidents",
+      "incidents_empty": "There are no open incidents."
+    },
+    "errors": {
+      "request_failed": "The request failed. Try again.",
+      "list_failed": "Loading the data failed.",
+      "save_failed": "Saving failed. Your text is still here; try again.",
+      "open_failed": "Opening the client page failed.",
+      "search_failed": "The search failed.",
+      "client_not_found": "The client was not found.",
+      "entry_not_found": "The entry was not found.",
+      "card_line_not_found": "The card line was not found.",
+      "access_reason_required": "Choose a reason to open this client's page.",
+      "card_team_only": "The card can be changed by the client's team and the coordinator.",
+      "card_full": "The card is full. Remove or change a line.",
+      "card_changed": "The card was changed in the meantime. Reload the page.",
+      "card_text_required": "Write the text of the line.",
+      "invalid_card_kind": "Choose the kind of the line.",
+      "name_required": "Write the client's name.",
+      "text_required": "This field is required.",
+      "text_too_long": "The text is too long.",
+      "entry_text_required": "Write the text of the entry.",
+      "invalid_entry_kind": "Choose the kind of the entry.",
+      "invalid_contact_mode": "Choose the kind of contact.",
+      "invalid_occurred_at": "The time of the event is not understood.",
+      "occurred_at_in_future": "The time of the event cannot be in the future.",
+      "invalid_date": "The date is not understood.",
+      "invalid_companion": "The accompanying worker was not found.",
+      "invalid_incident_type": "Choose what happened.",
+      "invalid_incident_actions": "The list of steps taken is not understood.",
+      "invalid_incident_status": "Choose the status of the incident.",
+      "not_an_incident": "This entry is not an incident.",
+      "incident_kind_fixed": "An incident cannot be changed into an ordinary entry or the other way round. Retract the entry and write a new one.",
+      "reason_required": "Write the reason.",
+      "entry_not_editable": "An entry can be corrected by its author and the coordinator.",
+      "entry_retracted": "The entry has already been retracted.",
+      "entry_changed": "The entry was changed in the meantime. Reload the page.",
+      "idempotency_conflict": "This entry has already been saved with different content. Reload the page.",
+      "version_required": "Reload the page and try again.",
+      "version_conflict": "Someone changed these details in the meantime. Reload the page.",
+      "internal_code_taken": "Another client already has this code.",
+      "invalid_unit": "The unit was not found.",
+      "invalid_member": "The worker was not found.",
+      "invalid_status": "Choose a status.",
+      "invalid_id": "Invalid reference.",
+      "invalid_request_id": "Invalid request key.",
+      "search_too_short": "Type at least two letters.",
+      "client_ended": "The service has ended. A new entry can be added by the care coordinator."
     }
   }
 }
