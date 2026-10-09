@@ -16,17 +16,28 @@ export const workBoundariesForm = {
   text: formText("work_boundaries"),
   steps: [
     {
+      key: "focus",
+      title: "Kokkuleppe fookus",
+      short: "Fookus",
+      lead: flowLead("choose_one"),
+      fields: enumFields(selectFields, ["agreementType"])
+    },
+    {
       key: "situation",
       title: ["wellbeing.work_boundaries.situation", "Olukord"],
-      lead: ["wellbeing.work_boundaries.intro", ""],
-      fields: enumFields(selectFields, ["agreementType", "boundaryClarity", "afterHoursPressure", "pauseProtection", "replacementCoverage"])
+      fields: enumFields(selectFields, [
+        "boundaryClarity",
+        "afterHoursPressure",
+        "pauseProtection",
+        "replacementCoverage",
+        "urgentExceptionClarity"
+      ])
     },
     {
       key: "agreement",
       title: ["wellbeing.work_boundaries.agreement", "Kokkuleppe raam"],
       short: "Raam",
-      lead: flowLead("choose_one"),
-      fields: enumFields(selectFields, ["urgentExceptionClarity", "counterpart", "reviewTime", "supportNeed"])
+      fields: enumFields(selectFields, ["counterpart", "reviewTime", "supportNeed"])
     },
     {
       key: "wording",
@@ -35,9 +46,15 @@ export const workBoundariesForm = {
       lead: flowLead("own_words"),
       fields: [
         textField("currentConcern", "Praegune mure", undefined, 2),
-        textField("desiredPrinciple", "Soovitud põhimõte", undefined, 2),
-        textField("exceptions", "Kriisiolukorra erandid", undefined, 2)
+        textField("desiredPrinciple", "Soovitud põhimõte", undefined, 2)
       ]
+    },
+    {
+      key: "exceptions",
+      title: "Kriisiolukorra erandid",
+      short: "Erandid",
+      lead: flowLead("own_words"),
+      fields: [textField("exceptions", "Kriisiolukorra erandid", undefined, 4)]
     }
   ],
   signals: signals(signalCopy, { clear: "ok", needs_clarification: "warn", needs_agreement: "risk" }),

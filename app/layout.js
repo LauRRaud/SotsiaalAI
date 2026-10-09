@@ -8,6 +8,7 @@ import ServiceWorkerRegistrar from "@/components/pwa/ServiceWorkerRegistrar";
 import RoomStage from "@/components/room/RoomStage";
 import PanelFrame from "@/components/room/PanelFrame";
 import { PanelInfoSlotProvider } from "@/components/ui/PanelInfoSlot";
+import { DockStepsProvider } from "@/components/stage/DockSteps";
 import SkipLink from "@/components/room/SkipLink";
 import AmbientAudio from "@/components/room/AmbientAudio";
 import LiquidCursor from "@/components/brand/LiquidCursor";
@@ -400,10 +401,14 @@ export default async function RootLayout({
               (components/ui/PanelInfoSlot). Ruum on siin sees just seetõttu —
               dokk on temas ja peab sama olekut nägema. */}
           <PanelInfoSlotProvider>
-            <RoomStage initiallyCompletedArrival={initiallyCompletedRoomArrival} />
-            <main id="main" role="main" tabIndex={-1}>
-              <PanelFrame>{children}</PanelFrame>
-            </main>
+            {/* Sama põhjus: sammudega leht joonistab oma sammud doki sisse
+                (components/stage/DockSteps), dokk on ruumis ja leht paneelis. */}
+            <DockStepsProvider>
+              <RoomStage initiallyCompletedArrival={initiallyCompletedRoomArrival} />
+              <main id="main" role="main" tabIndex={-1}>
+                <PanelFrame>{children}</PanelFrame>
+              </main>
+            </DockStepsProvider>
           </PanelInfoSlotProvider>
         </Providers>
       </body>

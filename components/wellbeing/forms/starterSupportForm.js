@@ -21,15 +21,15 @@ export const starterSupportForm = {
       key: "stage",
       title: ["wellbeing.starter_support.stage", "Etapp ja roll"],
       short: "Etapp",
-      lead: ["wellbeing.starter_support.intro", ""],
-      fields: enumFields(selectFields, ["experienceStage", "roleArea", "supportUrgency"])
+      lead: flowLead("choose_one"),
+      fields: enumFields(selectFields, ["experienceStage", "roleArea"])
     },
     {
       key: "talks",
-      title: "Vajalikud arutelud",
+      title: "Toe kiireloomulisus ja arutelud",
       short: "Arutelud",
-      lead: flowLead("mark_all"),
       fields: [
+        ...enumFields(selectFields, ["supportUrgency"]),
         checkField("mentorDiscussionNeed", ["wellbeing.starter_support.mentor_discussion_need", "Vaja on mentori arutelu"]),
         checkField("managerDiscussionNeed", ["wellbeing.starter_support.manager_discussion_need", "Vaja on juhiga arutelu"]),
         checkField("workBoundaryNeed", [

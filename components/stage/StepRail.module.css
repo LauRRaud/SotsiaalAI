@@ -1,0 +1,88 @@
+/* StepRail: sammud kiirmenüüs. Pilli ja nuppude välimus tuleb kiirmenüü
+   klassidest (carousel.css .gc-shortcut-*); siin on ainult see, mis on
+   sammuribale omane. */
+
+.track {
+  flex: 0 1 auto;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.track::-webkit-scrollbar {
+  display: none;
+}
+/* Aktiivse sammu nimi on näha ka telefonis: riba ütleb, millisel sammul inimene
+   on (ruumi dokk peidab mobiilis otseteede teksti). */
+.track :global(.gc-shortcut-text) {
+  display: block;
+}
+.track :global(.gc-shortcut[data-on="1"] .gc-shortcut-text) {
+  max-width: min(11rem, 38vw);
+}
+.step {
+  scroll-snap-align: center;
+}
+/* Kümme sammu peab kiirmenüüsse ära mahtuma: hiirega ekraanil on ootel samm
+   kitsam. Puuteekraanil jääb täismõõdus puutesiht ja riba kerib. */
+@media (hover: hover) and (pointer: fine) {
+  .step:not([data-on="1"]) {
+    min-width: 2.15rem;
+  }
+}
+
+/* Sammu number ringis; tehtud samm on täidetud. */
+.num {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 1px solid color-mix(in srgb, currentColor 55%, transparent);
+  border-radius: 50%;
+  font-size: 0.8rem;
+  font-weight: 560;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.num[data-state="partial"] {
+  border-color: currentColor;
+}
+.num[data-state="done"] {
+  border-color: transparent;
+  background: var(--text-warm);
+  /* Täidetud ringi peal on tekst vastupidist tooni: tumedas teemas tume,
+     heledas hele (seal on --text-warm ise tume). */
+  color: var(--text-ink, #1e1e1e);
+}
+:global(html.theme-light) .num[data-state="done"] {
+  color: #f6f4f0;
+}
+
+/* Telefonis ei mahu lehe nimi ja sammud korraga kiirmenüüsse: sammude ajal
+   jääb lehe nimi dokist välja (leht näitab seda siis ise sammu kohal). */
+@media (max-width: 768px) {
+  :global(.gc-shortcut-menu):has(.track) :global(.gc-shortcut--current) {
+    display: none;
+  }
+  :global(.gc-shortcut-menu):has(:global(.gc-shortcut--current)) .lead {
+    display: none;
+  }
+}
+
+/* --- Dokita leht: riba seisab omaette pillina seal, kus dokk muidu on -------- */
+.own {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + var(--dock-bottom, 1.5rem));
+  z-index: calc(var(--z-panel, 30) + 5);
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+.ownMenu {
+  pointer-events: auto;
+  max-width: calc(100vw - 2rem);
+}
+.own .lead {
+  display: none;
+}

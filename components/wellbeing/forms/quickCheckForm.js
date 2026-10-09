@@ -29,7 +29,14 @@ export const quickCheckForm = {
     noActions: ["wellbeing.quick_check.no_actions", "Jätka praeguste kokkulepete hoidmist ja tee uus kiirkontroll hiljem."]
   },
   steps: [
-    { key: "demands", ...step("demands"), fields: questions(QUICK_CHECK_GROUPS.demands) },
+    /* Kuus nõudmiste küsimust on kaks vaadet (3 + 3): üks vaade mahub paneeli ära. */
+    { key: "demands", ...step("demands"), fields: questions(QUICK_CHECK_GROUPS.demands.slice(0, 3)) },
+    {
+      key: "pressure",
+      title: ["wellbeing.quick_check.steps.pressure.title", ""],
+      short: ["wellbeing.quick_check.steps.pressure.short", ""],
+      fields: questions(QUICK_CHECK_GROUPS.demands.slice(3))
+    },
     { key: "resources", ...step("resources"), fields: questions(QUICK_CHECK_GROUPS.resources) },
     {
       key: "risks",

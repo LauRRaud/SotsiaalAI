@@ -19,23 +19,27 @@ export const roleBoundariesForm = {
       key: "expectation",
       title: ["wellbeing.role_boundaries.expectation", "Ootus ja roll"],
       short: "Ootus",
-      lead: ["wellbeing.role_boundaries.intro", ""],
+      lead: flowLead("choose_one"),
       fields: enumFields(selectFields, ["expectationSource", "expectedAction"])
     },
     {
       key: "role",
-      title: "Minu roll ja vastutus",
+      title: "Minu roll ja selle piir",
       short: "Roll",
-      lead: flowLead("choose_one"),
-      fields: enumFields(selectFields, ["myRole", "outsideRole", "neededResponsibility"])
+      fields: enumFields(selectFields, ["myRole", "outsideRole"])
+    },
+    {
+      key: "parties",
+      title: "Panus ja osapool",
+      short: "Osapooled",
+      fields: enumFields(selectFields, ["neededResponsibility", "counterpart"])
     },
     {
       key: "clarification",
       title: ["wellbeing.role_boundaries.clarification", "Selgituse vajadus"],
       short: "Selgitus",
-      lead: flowLead("choose_one"),
       fields: [
-        ...enumFields(selectFields, ["roleConflict", "availabilityPressure", "ethicalComplexity", "counterpart"]),
+        ...enumFields(selectFields, ["roleConflict", "availabilityPressure", "ethicalComplexity"]),
         checkField("partnerExplanationNeed", [
           "wellbeing.role_boundaries.partner_explanation_need",
           "Vaja on partnerile rolliselgitust"

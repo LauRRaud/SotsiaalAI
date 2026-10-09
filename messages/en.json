@@ -7769,6 +7769,10 @@
           "title": "Risk markers",
           "short": "Risks",
           "lead": "Mark what applies right now. You may leave this empty."
+        },
+        "pressure": {
+          "title": "Interruptions and availability",
+          "short": "Interruptions"
         }
       },
       "risk_hints": {
@@ -8012,7 +8016,7 @@
       "saved": "Recovery plan saved privately.",
       "save_failed": "Saving failed. Please try again.",
       "steps": {
-        "situation": "Where are you right now? Choose one on each row.",
+        "situation": "Where are you right now? Choose one answer for each question.",
         "load": "Mark everything that weighs on you most right now.",
         "tasks": "Split the coming days' work into three. One line is one task."
       }
@@ -8021,20 +8025,13 @@
       "progress": "{done}/{total} answered",
       "next_to": "Next: {label}",
       "privacy": "What you enter is private. It is not shared without your confirmation.",
-      "state": {
-        "empty": "not answered",
-        "done": "answered",
-        "optional": "optional",
-        "marked": "filled {count}",
-        "waiting": "waiting for answers",
-        "saved": "saved"
-      },
       "summary": {
         "questions_empty": "{total} questions, one tap each.",
         "questions_left": "{left} still unanswered.",
         "nothing_marked": "Nothing has been added.",
         "result_waiting": "The result appears when the questions are answered.",
-        "support": "Everything stays private until you decide otherwise."
+        "support": "Everything stays private until you decide otherwise.",
+        "next": "Where to go from here."
       },
       "result": {
         "title": "Result",
@@ -8050,10 +8047,23 @@
         "lead": "Everything stays private by default. You ask for support when you choose to."
       },
       "leads": {
-        "choose_one": "Choose one on each row.",
+        "choose_one": "Choose one answer for each question.",
         "mark_all": "Mark everything that applies. You may leave this empty.",
         "general_text": "Describe in general terms. Do not write names or details by which a person can be recognised.",
         "own_words": "Put it in your own words. Where you leave a gap, the draft keeps a reminder."
+      },
+      "texts": {
+        "title": "Ready texts",
+        "short": "Texts",
+        "lead": "Choose a text, check it and copy it to where you need it. Nothing is sent.",
+        "choose": "Choose a text",
+        "show_all": "Show the whole text",
+        "show_less": "Show less"
+      },
+      "next": {
+        "title": "Suggestions",
+        "lead": "Based on your answers. None of these steps is required.",
+        "none": "There are no separate suggestions right now."
       }
     }
   },

@@ -1,19 +1,25 @@
-/* StepPanel: sammu pealkiri, juhis, sisu ja tegevusrida. */
+/* StepPanel: sammu pealkiri, juhis, sisu ja tegevusrida all servas. */
 
 .panel {
+  --step-gap: clamp(0.7rem, 1.6cqi, 1rem);
   min-width: 0;
-  display: grid;
-  gap: clamp(0.45rem, 1.2cqi, 0.8rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--step-gap);
 }
 .head {
   display: grid;
-  gap: 0.25rem;
+  gap: 0.3rem;
 }
+/* Sammu pealkiri on lehe pealkirja mõõtu ja kaaluga (feature-pages.css
+   .glass-subpage-title): leht ise pealkirja ei kanna, selle nimi on kiirmenüüs. */
 .title {
   margin: 0;
-  font-size: clamp(1.15rem, 2.4cqi, 1.4rem);
-  font-weight: 520;
-  line-height: 1.25;
+  font-family: var(--font-display, inherit);
+  font-size: clamp(1.45rem, 1.15rem + 1.2cqi, 2rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.018em;
   color: var(--text-warm);
   text-wrap: balance;
 }
@@ -32,13 +38,19 @@
 .body {
   min-width: 0;
 }
+/* Veniv vahe: täidab lava kõrguse, nii et tegevusrida seisab all servas. */
+.spacer {
+  flex: 1 1 0;
+  min-height: 0;
+  margin-top: calc(var(--step-gap) * -1);
+}
 .foot {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 0.6rem 1rem;
-  padding-top: 0.5rem;
+  padding-top: 0.7rem;
   border-top: 1px solid color-mix(in srgb, var(--text-warm) 12%, transparent);
 }
 .note {

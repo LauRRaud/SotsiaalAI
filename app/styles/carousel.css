@@ -1852,6 +1852,11 @@ html[data-reduce-motion="1"] .gc-shortcut-menu > * {
 .gc-shortcut--back .gc-shortcut-text {
   display: none;
 }
+/* Pesa, kuhu sammudega leht joonistab oma sammud (components/stage/DockSteps,
+   StepRail). Pesa ise kasti ei tee: sammud on doki rea otsesed liikmed. */
+.gc-dock-steps {
+  display: contents;
+}
 .gc-shortcut-divider {
   width: 1px;
   height: 1.2rem;

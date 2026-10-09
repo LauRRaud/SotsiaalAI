@@ -5,8 +5,31 @@
   display: grid;
   gap: clamp(0.8rem, 1.8cqi, 1.1rem);
 }
-.checkField + .checkField {
-  margin-top: 0.6rem;
+/* Märkekaardid kõrvuti, et kolm kaarti ei oleks kolm täislaiuses riba. */
+.checks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 0.5rem;
+  padding-block: 0.4rem;
+}
+.checks > div {
+  display: grid;
+}
+/* Sammu väljad kõrvuti (kirjelduse `columns`); kitsal pinnal üksteise all. */
+.columns {
+  display: grid;
+  grid-template-columns: repeat(var(--columns, 2), minmax(0, 1fr));
+  gap: 0 0.8rem;
+}
+@container (max-width: 40rem) {
+  .columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 /* --- Signaal ----------------------------------------------------------------- */
@@ -96,56 +119,55 @@
   margin: 0;
   color: var(--text-soft);
 }
-.outputs,
-.nextSteps {
-  display: grid;
-  gap: 0.4rem;
-}
-/* Valmis tekst avaneb pealkirja vajutusel: korraga ei ole ekraanil viit pikka teksti. */
+/* Valmis tekst: üks korraga, valik tehakse selle kohal. Pikk tekst näitab algul
+   ainult algust (alt hajub), et vaade mahuks paneeli; lüliti avab terve teksti. */
 .output {
   border: 1px solid var(--glass-cell-border);
   border-radius: 1rem;
   background: var(--glass-cell-bg);
 }
-.outputTitle {
-  min-height: var(--hit-target-min, 2.75rem);
-  display: flex;
-  align-items: center;
-  padding: 0.4rem 1rem;
-  font-weight: 560;
-  color: var(--text-warm);
-  cursor: pointer;
-  list-style: none;
-}
-.outputTitle::-webkit-details-marker {
-  display: none;
-}
-.outputTitle::after {
-  content: "";
-  margin-left: auto;
-  width: 0.5rem;
-  height: 0.5rem;
-  border-right: 1.5px solid currentColor;
-  border-bottom: 1.5px solid currentColor;
-  transform: rotate(45deg);
-  transition: transform 160ms var(--ease-soft);
-}
-.output[open] > .outputTitle::after {
-  transform: rotate(-135deg);
-}
-.outputTitle:focus-visible {
-  outline: none;
-  border-radius: 1rem;
-  box-shadow: var(--focus-ring);
-}
 .outputText {
   margin: 0;
-  padding: 0 1rem 0.9rem;
+  padding: 0.85rem 1rem;
+  border-radius: inherit;
   color: var(--text-soft);
   font: inherit;
   line-height: 1.55;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
+}
+.outputText[data-clamped="1"] {
+  max-height: calc(1.55em * var(--preview-lines, 6) + 0.85rem);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(#000 55%, transparent);
+  mask-image: linear-gradient(#000 55%, transparent);
+}
+.outputToggle {
+  width: 100%;
+  min-height: 2.5rem;
+  padding: 0 1rem;
+  border: 0;
+  border-top: 1px solid var(--glass-cell-border);
+  border-radius: 0 0 1rem 1rem;
+  background: none;
+  box-shadow: none;
+  color: var(--text-warm);
+  font: inherit;
+  font-size: var(--fs-small, 0.875rem);
+  font-weight: 560;
+  text-align: left;
+  cursor: pointer;
+}
+.outputToggle:hover {
+  background: var(--glass-cell-bg-hover);
+}
+.outputToggle:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.outputText:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
 }
 .buttons {
   display: flex;
@@ -160,10 +182,4 @@
   border: 0;
   border-radius: 0;
   background: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .outputTitle::after {
-    transition: none;
-  }
 }

@@ -1,61 +1,29 @@
-/* StepFlight: sammuriba, lennulava ja „Kõik sammud". Vaata StepFlight.jsx. */
+/* StepFlight: lennulava, „Keri" vihje ja „Kõik sammud". Vaata StepFlight.jsx. */
 
 .root {
   min-width: 0;
   display: grid;
-  gap: clamp(0.65rem, 1.5cqi, 1rem);
+  gap: 0.5rem;
 }
 
-/* --- Sammuriba: kiirmenüü DNA (carousel.css .gc-shortcut-*) ------------ */
-.rail {
-  justify-self: center;
-  max-width: 100%;
-}
-.track {
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.track::-webkit-scrollbar {
-  display: none;
-}
-/* Aktiivse sammu nimi on näha ka telefonis: riba on siin sammu pealkiri, mitte
-   ainult otseteede rida (ruumi dokk peidab mobiilis teksti). */
-.rail :global(.gc-shortcut-text) {
-  display: block;
-}
-.rail :global(.gc-shortcut[data-on="1"] .gc-shortcut-text) {
-  max-width: min(11rem, 42vw);
-}
+/* Sammuriba ise elab kiirmenüüs (StepRail). Siin on ainult „Kõik sammud" lüliti
+   kuju ja telefonis lehe nimi sammu kohal. */
 .wideToggle[data-on="1"] {
   padding: 0;
 }
-
-/* Sammu number ringis; tehtud samm on täidetud. */
-.num {
-  flex: none;
-  display: grid;
-  place-items: center;
-  width: 1.6rem;
-  height: 1.6rem;
-  border: 1px solid color-mix(in srgb, currentColor 55%, transparent);
-  border-radius: 50%;
-  font-size: 0.8rem;
+.kicker {
+  display: none;
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 0.74rem;
   font-weight: 560;
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
-.num[data-state="partial"] {
-  border-color: currentColor;
-}
-.num[data-state="done"] {
-  border-color: transparent;
-  background: var(--text-warm);
-  /* Täidetud ringi peal on tekst vastupidist tooni: tumedas teemas tume,
-     heledas hele (seal on --text-warm ise tume). */
-  color: var(--text-ink, #1e1e1e);
-}
-:global(html.theme-light) .num[data-state="done"] {
-  color: #f6f4f0;
+@media (max-width: 768px) {
+  .kicker {
+    display: block;
+  }
 }
 
 /* --- Lava: jaamad sügavuses (flight-effect.md §3) ----------------------- */
@@ -67,7 +35,7 @@
   position: relative;
   margin: calc(var(--step-bleed) * -1);
   min-width: 0;
-  min-height: 12rem;
+  min-height: 10rem;
   height: var(--step-stage-h, auto);
   /* Lahkuv samm kasvab kaamerast mööda lennates; lõige hoiab ta lava sees,
      muidu tekiks paneeli kerimisriba. */
@@ -97,8 +65,17 @@
   box-sizing: border-box;
   width: 100%;
   min-width: 0;
+  /* Samm täidab lava kõrguse: `StepPanel` hoiab siis tegevusrea all servas ja
+     see on igal sammul samas kohas. */
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
   padding: var(--step-bleed);
   visibility: hidden; /* mootor ja flat-reeglid lülitavad sisse */
+}
+.plane > * {
+  flex: 1 0 auto;
+  min-width: 0;
 }
 .stage[data-mode="3d"] .plane {
   transform: translateZ(calc(var(--z) + var(--cam, 0px)));
@@ -118,14 +95,51 @@
   transition: opacity 260ms var(--ease-soft);
 }
 
+/* --- „Keri" vihje ----------------------------------------------------------
+   Samad sügavusse taanduvad raamid mis avalehel ja ligipääsetavuse vaates
+   (room.css .scroll-frames), väiksemana. Seisab tegevusrea keskel: vasakul on
+   seal märge, paremal „Edasi". Kitsal ekraanil ruumi ei ole ja vihjet ei näita;
+   seal on sammud kiirmenüüs ja „Edasi" nupp käe all. */
+.hint {
+  position: absolute;
+  left: 50%;
+  bottom: calc(var(--step-bleed) + 0.1rem);
+  z-index: 2;
+  translate: -50% 0;
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  pointer-events: none;
+}
+.hint :global(.scroll-frames) {
+  scale: 0.5;
+  margin: -0.5rem -0.6rem;
+}
+.hintLabel {
+  color: var(--text-dim);
+  font-size: 0.74rem;
+  font-weight: 560;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+@media (max-width: 640px) {
+  .hint {
+    display: none;
+  }
+}
+:global(html[data-reduce-motion="1"]) .hint :global(.scroll-frames) {
+  display: none;
+}
+
 /* --- Kõik sammud: lai vaade --------------------------------------------- */
 .overview {
   list-style: none;
   margin: 0;
   padding: var(--step-bleed);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
-  gap: 0.75rem;
+  /* Kolm veergu tavalises paneelis: kümme sammu mahub nii kerimata ära. */
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 12.5rem), 1fr));
+  gap: 0.4rem;
   /* Kaamera tõmbub tagasi: sisu tuleb suuremast väiksemaks. */
   animation: step-pull-back 320ms var(--ease-soft) both;
 }
@@ -141,11 +155,12 @@
 }
 .tile {
   width: 100%;
-  min-height: 6.25rem;
+  height: 100%;
+  min-height: 4.75rem;
   display: grid;
   align-content: start;
-  gap: 0.45rem;
-  padding: 0.9rem 1rem;
+  gap: 0.2rem;
+  padding: 0.55rem 0.8rem;
   border: 1px solid var(--glass-cell-border);
   border-radius: 1rem;
   background: var(--glass-cell-bg);
@@ -171,32 +186,23 @@
   min-width: 0;
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.55rem;
 }
 .tileTitle {
   min-width: 0;
   font-weight: 560;
+  line-height: 1.25;
   overflow-wrap: anywhere;
-}
-.chip {
-  flex: none;
-  margin-left: auto;
-  padding: 0.12rem 0.5rem;
-  border: 1px solid var(--glass-cell-border);
-  border-radius: 999px;
-  color: var(--text-dim);
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-.chip[data-state="done"] {
-  color: var(--status-success, #c5cf9b);
 }
 .tileSummary {
   color: var(--text-soft);
   font-size: var(--fs-small, 0.875rem);
-  line-height: 1.45;
+  line-height: 1.35;
+  /* Kokkuvõte on kuni kaks rida: plaat on ülevaade, mitte sammu sisu. */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {

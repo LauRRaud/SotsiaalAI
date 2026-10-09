@@ -21,8 +21,14 @@ export const workProcessesForm = {
       key: "overview",
       title: ["wellbeing.work_processes.situation", "Töövoo üldpilt"],
       short: "Üldpilt",
-      lead: ["wellbeing.work_processes.intro", ""],
-      fields: enumFields(selectFields, ["analysisFocus", "documentationDuplication", "switchingLoad", "processImpact", "counterpart"])
+      lead: flowLead("choose_one"),
+      fields: enumFields(selectFields, ["analysisFocus", "counterpart"])
+    },
+    {
+      key: "load",
+      title: "Koormus ja mõju",
+      short: "Koormus",
+      fields: enumFields(selectFields, ["documentationDuplication", "switchingLoad", "processImpact"])
     },
     {
       key: "categories",
@@ -37,11 +43,16 @@ export const workProcessesForm = {
       fields: [multi("timeCostSources"), multi("lowValueActivities")]
     },
     {
-      key: "simplify",
-      title: "Takistused ja lihtsustamine",
-      short: "Lihtsustamine",
+      key: "blockers",
+      title: "Takistused",
       lead: flowLead("mark_all"),
-      fields: [multi("informationBlockers"), multi("unfinishedWork"), multi("simplificationNeeds")]
+      fields: [multi("informationBlockers"), multi("unfinishedWork")]
+    },
+    {
+      key: "simplify",
+      title: "Lihtsustamine",
+      lead: flowLead("mark_all"),
+      fields: [multi("simplificationNeeds")]
     }
   ],
   signals: signals(signalCopy, { manageable: "ok", needs_simplification: "warn", needs_organizational_change: "risk" }),

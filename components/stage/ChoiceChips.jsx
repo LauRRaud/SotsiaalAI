@@ -3,11 +3,13 @@
 /**
  * ChoiceChips — mitu valikut korraga (märgi kõik, mis sobivad).
  *
- * Sama välimus mis `ChoiceRow` variantidel, aga iga variant on eraldi lüliti:
- * vajutus märgib, teine vajutus võtab märke maha. Kasuta loendi jaoks, kust
- * inimene valib mitu (nt „peamised koormustegurid").
+ * Sama ühelaiuste lahtrite võrk mis `ChoiceRow` paigutusel „stack", aga iga
+ * lahter on eraldi lüliti: vajutus märgib, teine vajutus võtab märke maha.
+ * Lahtris on märkekast, et mitme valiku küsimus eristuks ühe valiku omast.
+ * Kasuta loendi jaoks, kust inimene valib mitu (nt „peamised koormustegurid").
  *
  * Ligipääsetavus: rühm (`group`) nimega, iga variant on `checkbox`.
+ * `labelHidden`: silt on ainult ekraanilugejale (sammu pealkiri ütleb sama).
  *
  * Kujundus: ChoiceChips.module.css.
  */
@@ -16,11 +18,11 @@ import { useId } from "react";
 
 import styles from "./ChoiceChips.module.css";
 
-export default function ChoiceChips({ label, hint, options, values = [], onToggle, disabled = false }) {
+export default function ChoiceChips({ label, hint, options, values = [], onToggle, labelHidden = false, disabled = false }) {
   const labelId = useId();
   return (
     <div className={styles.field} role="group" aria-labelledby={labelId}>
-      <span className={styles.label} id={labelId}>
+      <span className={labelHidden ? "sr-only" : styles.label} id={labelId}>
         {label}
       </span>
       {hint ? <span className={styles.hint}>{hint}</span> : null}
@@ -35,7 +37,12 @@ export default function ChoiceChips({ label, hint, options, values = [], onToggl
             disabled={disabled}
             onClick={() => onToggle?.(option.value)}
           >
-            {option.label}
+            <span className={styles.box} aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M6 12.5l4 4 8-8" />
+              </svg>
+            </span>
+            <span className={styles.text}>{option.label}</span>
           </button>
         ))}
       </div>

@@ -18,22 +18,33 @@ export const workplaceViolenceForm = {
     {
       key: "situation",
       title: ["wellbeing.workplace_violence.situation", "Olukord"],
-      lead: ["wellbeing.workplace_violence.intro", ""],
-      fields: enumFields(selectFields, ["violenceType", "dangerStatus"])
+      lead: flowLead("choose_one"),
+      fields: enumFields(selectFields, ["violenceType"])
+    },
+    {
+      /* Ohu küsimus on omaette vaates: ohutusteade ilmub kohe selle alla ja
+         peab sinna ära mahtuma. */
+      key: "safety",
+      title: "Ohutus",
+      fields: enumFields(selectFields, ["dangerStatus"])
     },
     {
       key: "impact",
       title: "Koht ja mõju",
       short: "Mõju",
-      lead: flowLead("choose_one"),
-      fields: enumFields(selectFields, ["locationOrChannel", "documentedStatus", "workImpact"])
+      fields: enumFields(selectFields, ["locationOrChannel", "workImpact", "safetyImpact"])
     },
     {
       key: "followup",
       title: ["wellbeing.workplace_violence.followup", "Järeltegevus"],
-      lead: flowLead("choose_one"),
+      fields: enumFields(selectFields, ["documentedStatus", "nextStepNeed", "safetyAgreementNeed"])
+    },
+    {
+      key: "support",
+      title: "Taastumine ja tugi",
+      short: "Taastumine",
       fields: [
-        ...enumFields(selectFields, ["safetyImpact", "nextStepNeed", "safetyAgreementNeed", "recoveryNeed"]),
+        ...enumFields(selectFields, ["recoveryNeed"]),
         checkField("covisionNeed", ["wellbeing.workplace_violence.covision_need", "Vajan kovisiooni sisendit"])
       ]
     },
