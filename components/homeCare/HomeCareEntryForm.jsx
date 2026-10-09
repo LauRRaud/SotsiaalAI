@@ -6,12 +6,14 @@ import { newClientActionKey } from "@/components/casework/caseWorkClient";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Dropdown from "@/components/ui/Dropdown";
 import {
+  CARE_ACTIVITY_SKIP_REASONS,
   CARE_CONTACT_MODES,
   CARE_ENTRY_KINDS,
   CARE_INCIDENT_ACTIONS,
   CARE_INCIDENT_TYPES,
   CARE_PLAN_MODES,
   COORDINATOR_ONLY_INCIDENT_TYPES,
+  CareActivityOutcome,
   CareContactMode,
   CareEntryKind,
   CarePlanMode,
@@ -45,6 +47,12 @@ const VISIT_MINUTE_CHOICES = Object.freeze([15, 30, 45, 60, 90]);
 function restoredDone(value) {
   if (!value || typeof value !== "object" || Array.isArray(value)) return {};
   return Object.fromEntries(Object.entries(value).filter(([, mode]) => CARE_PLAN_MODES.includes(mode)));
+}
+
+/** Mustandist loetud „toiming → miks jäi tegemata": tuntud põhjus või tühi (põhjus veel valimata). */
+function restoredSkipped(value) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return {};
+  return Object.fromEntries(Object.entries(value).filter(([, reason]) => reason === "" || CARE_ACTIVITY_SKIP_REASONS.includes(reason)));
 }
 
 /** Mustandist loetud kavavälised toimingud: ainult ID ja nimi. */
@@ -92,6 +100,11 @@ function restoredExtra(value) {
  * tekst tühjaks jääda. Need väljad lähevad uuel kirjel kaasa ainult siis, kui need
  * on täidetud; parandus saadab need alati, et ka eemaldamine jõuaks serverisse.
  *
+ * ERANDITE KAUDU (K2-f). Kava toimingu saab märkida ka tegemata jäänuks koos
+ * põhjusega (keeldus, polnud vaja, ei saanud teha). Nupp „Märgi ülejäänud tehtuks"
+ * märgib korraga kõik kava toimingud, mille kohta veel midagi ei ole öeldud:
+ * üks teadlik vajutus, loend silme ees. Ühtegi toimingut ei märgita tehtuks vaikimisi.
+ *
  * SALVESTAMISE AJAL ON VORM LUKUS (`inert`). Pärast päringut tühjendatakse
  * vorm; kui inimene saaks vahepeal edasi kirjutada, kaoks lisatud lause koos
  * tühjendamisega. Nõrga leviga võib päring kesta kümneid sekundeid, seepärast
@@ -132,7 +145,19 @@ export default function HomeCareEntryForm({
   /* Käigu kirje: kestus minutites ja tehtud toimingud kujul „toiming → kuidas tehti". */
   const [visitMinutes, setVisitMinutes] = useState(entry?.visit?.minutes ? String(entry.visit.minutes) : "");
   const [done, setDone] = useState(() =>
-    Object.fromEntries((entry?.visit?.activities || []).filter((item) => item.activityId).map((item) => [item.activityId, item.mode]))
+    Object.fromEntries(
+      (entry?.visit?.activities || [])
+        .filter((item) => item.activityId && (item.outcome || CareActivityOutcome.DONE) === CareActivityOutcome.DONE)
+        .map((item) => [item.activityId, item.mode])
+    )
+  );
+  /* Tegemata jäänud kava toimingud kujul „toiming → põhjus"; tühi põhjus = veel valimata. */
+  const [skipped, setSkipped] = useState(() =>
+    Object.fromEntries(
+      (entry?.visit?.activities || [])
+        .filter((item) => item.activityId && item.outcome && item.outcome !== CareActivityOutcome.DONE)
+        .map((item) => [item.activityId, item.outcome])
+    )
   );
   /* Toimingud, mida kehtivas kavas ei ole: kataloogist lisatud või parandataval kirjel juba olemas. */
   const [extra, setExtra] = useState(() =>
@@ -175,11 +200,21 @@ export default function HomeCareEntryForm({
       .filter((item) => !planChoices.some((choice) => choice.activityId === item.activityId))
       .map((item) => ({ activityId: item.activityId, name: item.name, mode: CarePlanMode.TOGETHER, critical: false }))
   ];
+  /* Tehtud toimingud tegemise viisiga ja tegemata jäänud toimingud põhjusega, loendi järjekorras. */
   const doneList = isVisit
-    ? visitChoices.filter((choice) => done[choice.activityId]).map((choice) => ({ activityId: choice.activityId, mode: done[choice.activityId] }))
+    ? visitChoices.flatMap((choice) => {
+        if (done[choice.activityId]) return [{ activityId: choice.activityId, mode: done[choice.activityId] }];
+        if (skipped[choice.activityId]) return [{ activityId: choice.activityId, outcome: skipped[choice.activityId] }];
+        return [];
+      })
     : [];
-  /* Tavaline käik märgitud toimingutega ei vaja teksti; muu liigi kirje on tekst. */
-  const textRequired = !(kind === CareEntryKind.NOTE && doneList.length > 0);
+  /* Tegemata märgitud toiming, mille põhjus on veel valimata: sellega salvestada ei saa. */
+  const reasonMissing = isVisit && planChoices.some((choice) => skipped[choice.activityId] === "");
+  /* Tavaline käik märgitud toimingutega ei vaja teksti; muu liigi kirje on tekst. Valimata põhjusega
+     märge loeb samuti: muidu küsiks brauser teksti ja inimene ei näeks, et puudu on põhjus. */
+  const textRequired = !(kind === CareEntryKind.NOTE && (doneList.length > 0 || reasonMissing));
+  /* Kava toimingud, mille kohta ei ole veel midagi öeldud. */
+  const unmarked = planChoices.filter((choice) => !done[choice.activityId] && !(choice.activityId in skipped));
   const otherOptions = (catalogue || [])
     .filter((activity) => !visitChoices.some((choice) => choice.activityId === activity.id))
     .map((activity) => ({ value: activity.id, label: activity.name }));
@@ -224,7 +259,7 @@ export default function HomeCareEntryForm({
   }, []);
 
   useEffect(() => {
-    latestRef.current = { kind, contactMode, text, occurredLocal, companion, incidentType, assessment, actions, visitMinutes, done, extra };
+    latestRef.current = { kind, contactMode, text, occurredLocal, companion, incidentType, assessment, actions, visitMinutes, done, skipped, extra };
   });
 
   /* Mustandi salvestus: kohe (leht läheb peitu, vorm suletakse) või viitega (kirjutamise ajal). */
@@ -266,6 +301,7 @@ export default function HomeCareEntryForm({
         setActions(state.actions && typeof state.actions === "object" ? state.actions : {});
         setVisitMinutes(typeof state.visitMinutes === "string" ? state.visitMinutes : "");
         setDone(restoredDone(state.done));
+        setSkipped(restoredSkipped(state.skipped));
         setExtra(restoredExtra(state.extra));
         const typedTime = typeof state.occurredLocal === "string" ? state.occurredLocal : "";
         const age = Date.now() - Number(draft.savedAtMs);
@@ -303,7 +339,7 @@ export default function HomeCareEntryForm({
     if (!device || !touchedRef.current) return undefined;
     const timer = setTimeout(saveDraftNow, DRAFT_SAVE_DELAY_MS);
     return () => clearTimeout(timer);
-  }, [device, saveDraftNow, kind, contactMode, text, occurredLocal, companion, incidentType, assessment, actions, visitMinutes, done, extra]);
+  }, [device, saveDraftNow, kind, contactMode, text, occurredLocal, companion, incidentType, assessment, actions, visitMinutes, done, skipped, extra]);
 
   const toggleAction = (code) => {
     touch();
@@ -315,14 +351,34 @@ export default function HomeCareEntryForm({
     });
   };
 
+  const without = (current, activityId) => {
+    const next = { ...current };
+    delete next[activityId];
+    return next;
+  };
+
   const toggleDone = (choice) => {
     touch();
-    setDone((current) => {
-      const next = { ...current };
-      if (next[choice.activityId]) delete next[choice.activityId];
-      else next[choice.activityId] = choice.mode;
-      return next;
-    });
+    setDone((current) => (current[choice.activityId] ? without(current, choice.activityId) : { ...current, [choice.activityId]: choice.mode }));
+    setSkipped((current) => without(current, choice.activityId));
+  };
+
+  /* „Jäi tegemata": põhjus valitakse eraldi sammuga, vaikimisi põhjust ei ole. */
+  const toggleSkipped = (choice) => {
+    touch();
+    setSkipped((current) => (choice.activityId in current ? without(current, choice.activityId) : { ...current, [choice.activityId]: "" }));
+    setDone((current) => without(current, choice.activityId));
+  };
+
+  const setSkipReason = (activityId, value) => {
+    touch();
+    setSkipped((current) => ({ ...current, [activityId]: value }));
+  };
+
+  /* Üks teadlik vajutus: kõik kava toimingud, mille kohta veel midagi ei ole öeldud, kava enda viisiga. */
+  const markRest = () => {
+    touch();
+    setDone((current) => ({ ...current, ...Object.fromEntries(unmarked.map((choice) => [choice.activityId, choice.mode])) }));
   };
 
   const setDoneMode = (activityId, mode) => {
@@ -359,6 +415,7 @@ export default function HomeCareEntryForm({
     setActions({});
     setVisitMinutes("");
     setDone({});
+    setSkipped({});
     setExtra([]);
     setReason("");
   };
@@ -459,6 +516,10 @@ export default function HomeCareEntryForm({
     /* Üks salvestamine korraga: teine vajutus järjekorda panemise ajal ei tohi
        alustada uut katset, mille lõpp tühjendaks vahepeal alustatud kirje. */
     if (sendingRef.current) return;
+    if (reasonMissing) {
+      setError(t("home_care.visit.reason_missing"));
+      return;
+    }
     sendingRef.current = true;
     setSending(true);
     setSaved(false);
@@ -545,11 +606,45 @@ export default function HomeCareEntryForm({
               >
                 {choice.name}
               </button>
+              {planChoices.includes(choice) ? (
+                <>
+                  {" "}
+                  <button
+                    type="button"
+                    className="hc-chip"
+                    aria-pressed={choice.activityId in skipped}
+                    aria-label={t("home_care.visit.skip_label", { name: choice.name })}
+                    onClick={() => toggleSkipped(choice)}
+                  >
+                    {t("home_care.visit.skip")}
+                  </button>
+                </>
+              ) : null}
               {choice.critical && !done[choice.activityId] ? (
                 <>
                   {" "}
                   <span className="hc-badge hc-badge--warn">{t("home_care.plan.critical_badge")}</span>
                 </>
+              ) : null}
+              {choice.activityId in skipped ? (
+                <div className="hc-chips" role="group" aria-label={t("home_care.visit.skip_reason_label", { name: choice.name })}>
+                  {CARE_ACTIVITY_SKIP_REASONS.map((value) => (
+                    <button
+                      key={value}
+                      type="button"
+                      className="hc-chip"
+                      aria-pressed={skipped[choice.activityId] === value}
+                      onClick={() => setSkipReason(choice.activityId, value)}
+                    >
+                      {t(`home_care.visit.outcomes.${value}`)}
+                    </button>
+                  ))}
+                </div>
+              ) : null}
+              {skipped[choice.activityId] === "" ? (
+                <p className="hc-hint" role="status">
+                  {t("home_care.visit.reason_pick")}
+                </p>
               ) : null}
               {done[choice.activityId] ? (
                 <div className="hc-chips" role="group" aria-label={t("home_care.visit.mode_label", { name: choice.name })}>
@@ -568,6 +663,11 @@ export default function HomeCareEntryForm({
               ) : null}
             </div>
           ))}
+          {unmarked.length > 0 ? (
+            <button className="hc-btn hc-btn--quiet" type="button" onClick={markRest}>
+              {t("home_care.visit.mark_rest", { count: unmarked.length })}
+            </button>
+          ) : null}
           {catalogue ? (
             otherOptions.length > 0 ? (
               <Dropdown

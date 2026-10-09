@@ -11674,7 +11674,9 @@
       "visit_activity_unknown": "The activity was not found in the client's care plan or the organisation's catalogue. Reload the page.",
       "visit_activity_repeated": "The same activity is on the entry twice.",
       "visit_mode_required": "Choose how the activity was done.",
-      "visit_too_many_activities": "One entry can hold up to {limit} activities."
+      "visit_too_many_activities": "One entry can hold up to {limit} activities.",
+      "visit_outcome_invalid": "The outcome of the activity is not valid.",
+      "visit_outcome_plan_only": "Only an activity of the care plan in force can be marked as not done."
     },
     "incidents": {
       "title": "Incident register",
@@ -12184,8 +12186,21 @@
       "outside_plan": "outside the plan",
       "doc": {
         "minutes": "The visit lasted {minutes} min.",
-        "done": "Done: {list}."
-      }
+        "done": "Done: {list}.",
+        "not_done": "Not done: {list}."
+      },
+      "outcomes": {
+        "DONE": "done",
+        "REFUSED": "refused",
+        "NOT_NEEDED": "was not needed",
+        "COULD_NOT": "could not be done"
+      },
+      "skip": "not done",
+      "skip_label": "Not done: {name}",
+      "skip_reason_label": "Why it was not done: {name}",
+      "reason_missing": "Choose why the activity was not done, or remove the mark.",
+      "mark_rest": "Mark the rest as done ({count})",
+      "reason_pick": "Choose the reason."
     },
     "provided": {
       "week": "This week: {visits} visits, {amount} in total",
@@ -12216,7 +12231,8 @@
       "worker_companion": "accompanied on {visits} visits, {amount}",
       "missed_title": "Missed visits",
       "missed_empty": "No missed visits are on record for this month.",
-      "how": "The incidents \"did not open the door\" and \"refused help\" are counted as missed visits. When two workers were on a visit, the client's time is counted once and each worker gets it. There are no kilometres here: the home care diary does not measure trips."
+      "how": "The incidents \"did not open the door\" and \"refused help\" are counted as missed visits. When two workers were on a visit, the client's time is counted once and each worker gets it. There are no kilometres here: the home care diary does not measure trips.",
+      "not_done": "activities not done: refused {refused}, not needed {notNeeded}, could not be done {couldNot}"
     }
   },
   "stage": {

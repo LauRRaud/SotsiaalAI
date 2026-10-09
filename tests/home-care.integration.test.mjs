@@ -2795,7 +2795,7 @@ test('osutatud aeg: kliendi lehe nädal ja kuu ning hooldusjuhi kuu kokkuvõte',
     [view.month, view.previousMonth, view.nextMonth, view.today, view.fromDay, view.untilDay, view.complete, view.truncated],
     ['2026-10', '2026-09', null, '2026-10-09', '2026-10-01', '2026-10-09', false, false]
   );
-  assert.deepEqual(view.totals, { visits: 5, minutes: 245, withoutLength: 1, missed: 1 });
+  assert.deepEqual(view.totals, { visits: 5, minutes: 245, withoutLength: 1, missed: 1, notDone: 0 });
   assert.deepEqual(
     view.clients.map((row) => [row.client.displayName, row.client.status, row.visits, row.minutes, row.withoutLength, row.missed, row.volumeMinutes, row.volumePeriod, row.expectedMinutes]),
     [
@@ -2829,7 +2829,7 @@ test('osutatud aeg: kliendi lehe nädal ja kuu ning hooldusjuhi kuu kokkuvõte',
   const september = await getMonthSummary(lead, { month: '2026-09' }, deps());
   assert.deepEqual(
     [september.month, september.nextMonth, september.untilDay, september.complete, september.totals],
-    ['2026-09', '2026-10', '2026-09-30', true, { visits: 1, minutes: 30, withoutLength: 0, missed: 0 }]
+    ['2026-09', '2026-10', '2026-09-30', true, { visits: 1, minutes: 30, withoutLength: 0, missed: 0, notDone: 0 }]
   );
   const row = (summary, name) => summary.clients.find((item) => item.client.displayName === name);
   assert.deepEqual([row(september, 'Linda Tamm').minutes, row(september, 'Linda Tamm').expectedMinutes], [30, 1671]);
@@ -2849,10 +2849,137 @@ test('osutatud aeg: kliendi lehe nädal ja kuu ning hooldusjuhi kuu kokkuvõte',
   const scoped = await getMonthSummary(bert, {}, deps());
   assert.deepEqual(
     [scoped.clients.map((item) => item.client.displayName), scoped.totals, scoped.workers.map((item) => item.membershipId), scoped.missed],
-    [['Peeter Põhi'], { visits: 1, minutes: 120, withoutLength: 0, missed: 0 }, [f.members.lead.id], []]
+    [['Peeter Põhi'], { visits: 1, minutes: 120, withoutLength: 0, missed: 0, notDone: 0 }, [f.members.lead.id], []]
   );
   /* Hooldaja ei ole hooldusjuht; teise asutuse juht näeb oma tühja asutust. */
   await expectError(getMonthSummary(anu, {}, deps()), 403, 'org.errors.missing_capability');
   const foreign = await getMonthSummary(leadB, {}, deps());
   assert.deepEqual([foreign.clients, foreign.workers, foreign.missed, foreign.totals.visits], [[], [], [], 0]);
+});
+
+test('käigu lõpetamine erandite kaudu: tegemata toiming põhjusega, parandus, kuu kokkuvõte ja kronoloogia', async (t) => {
+  const f = await fixture(t);
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const { client } = await createClient(lead, { displayName: 'Linda Tamm' }, deps());
+  await addTeamMember(lead, client.id, { membershipId: f.members.anu.id }, deps());
+  const catalogue = (await seedDefaultActivities(lead, deps())).activities;
+  const byGroup = (group) => catalogue.find((item) => item.group === group);
+  const heating = byGroup('HEATING');
+  const hygiene = byGroup('HYGIENE');
+  const nutrition = byGroup('NUTRITION');
+  const shopping = byGroup('SHOPPING');
+  const { draft } = await saveCarePlanDraft(
+    lead,
+    client.id,
+    {
+      lines: [
+        { activityId: heating.id, frequencyKind: 'DAILY', frequencyCount: 1, mode: 'FOR', critical: true },
+        { activityId: hygiene.id, frequencyKind: 'WEEKLY', frequencyCount: 2, mode: 'ASSIST' },
+        { activityId: nutrition.id, frequencyKind: 'DAILY', frequencyCount: 1, mode: 'GUIDE' }
+      ]
+    },
+    deps()
+  );
+  await activateCarePlan(lead, client.id, { version: draft.version }, deps());
+  const shape = (entry) => entry.visit.activities.map((item) => [item.name, item.mode, item.outcome, item.outsidePlan]);
+
+  /* Vigane: tundmatu tulemus; tegemata saab jääda ainult kava toiming. */
+  const bad = (activities, key) => expectError(createEntry(anu, client.id, { activities }, deps()), 400, key);
+  await bad([{ activityId: hygiene.id, outcome: 'MAYBE' }], 'home_care.errors.visit_outcome_invalid');
+  await bad([{ activityId: shopping.id, outcome: 'REFUSED' }], 'home_care.errors.visit_outcome_plan_only');
+  assert.equal(await db.careClientEntry.count({ where: { clientId: client.id } }), 0);
+
+  /* KÄIK ERANDITEGA: üks tehtud, üks keeldus, üks polnud vaja. Tegemata real on kava rea viis. */
+  const made = (
+    await createEntry(
+      anu,
+      client.id,
+      {
+        visitMinutes: 40,
+        occurredAt: '2026-10-08T07:00:00Z',
+        activities: [
+          { activityId: heating.id, mode: 'FOR' },
+          { activityId: hygiene.id, outcome: 'REFUSED', mode: 'GUIDE' },
+          { activityId: nutrition.id, outcome: 'NOT_NEEDED' }
+        ]
+      },
+      deps()
+    )
+  ).entry;
+  assert.deepEqual(shape(made), [
+    [heating.name, 'FOR', 'DONE', false],
+    [hygiene.name, 'ASSIST', 'REFUSED', false],
+    [nutrition.name, 'GUIDE', 'NOT_NEEDED', false]
+  ]);
+  assert.equal(made.text, '');
+  /* Ainult tegemata jäänud toimingutega käik on samuti käigu kirje. */
+  const none = (await createEntry(anu, client.id, { occurredAt: '2026-10-07T07:00:00Z', activities: [{ activityId: hygiene.id, outcome: 'COULD_NOT' }] }, deps())).entry;
+  assert.deepEqual(shape(none), [[hygiene.name, 'ASSIST', 'COULD_NOT', false]]);
+  /* Tulemuseta päring (varasem vorm, seadme järjekord) on tehtud toiming. */
+  const legacy = (await createEntry(anu, client.id, { occurredAt: '2026-10-06T07:00:00Z', activities: [{ activityId: shopping.id, mode: 'TOGETHER' }] }, deps())).entry;
+  assert.deepEqual(shape(legacy), [[shopping.name, 'TOGETHER', 'DONE', true]]);
+
+  /* PARANDUS: keeldumine osutus tehtuks ja tehtu jäi tegelikult tegemata; kirjel olev rida hoiab oma viisi. */
+  const fixed = (
+    await correctEntry(
+      anu,
+      client.id,
+      made.id,
+      {
+        text: '',
+        reason: 'Märkisin valesti.',
+        revision: 1,
+        activities: [
+          { activityId: heating.id, outcome: 'COULD_NOT' },
+          { activityId: hygiene.id, mode: 'TOGETHER' },
+          { activityId: nutrition.id, outcome: 'NOT_NEEDED' }
+        ]
+      },
+      deps()
+    )
+  ).entry;
+  assert.deepEqual(shape(fixed), [
+    [heating.name, 'FOR', 'COULD_NOT', false],
+    [hygiene.name, 'TOGETHER', 'DONE', false],
+    [nutrition.name, 'GUIDE', 'NOT_NEEDED', false]
+  ]);
+  /* Kirjel olevat kavavälist toimingut tegemata jäänuks parandada ei saa. */
+  await expectError(
+    correctEntry(anu, client.id, legacy.id, { text: '', reason: 'Proov.', revision: 1, activities: [{ activityId: shopping.id, outcome: 'REFUSED' }] }, deps()),
+    400,
+    'home_care.errors.visit_outcome_plan_only'
+  );
+  /* Parandusjälg hoiab tulemused sellisena, nagu need enne parandust olid. */
+  const { revisions } = await listEntryRevisions(anu, client.id, made.id, deps());
+  assert.deepEqual(revisions[0].visit.activities.map((item) => [item.name, item.outcome]), [
+    [heating.name, 'DONE'],
+    [hygiene.name, 'REFUSED'],
+    [nutrition.name, 'NOT_NEEDED']
+  ]);
+
+  /* KUU KOKKUVÕTE: tegemata toimingud põhjuse kaupa; tühistatud kirje toiminguid ei loeta. */
+  const wrong = (await createEntry(anu, client.id, { occurredAt: '2026-10-05T07:00:00Z', activities: [{ activityId: hygiene.id, outcome: 'REFUSED' }] }, deps())).entry;
+  await retractEntry(anu, client.id, wrong.id, { reason: 'Vale klient.', revision: 1 }, deps());
+  const summary = await getMonthSummary(lead, {}, deps());
+  const row = summary.clients.find((item) => item.client.id === client.id);
+  assert.deepEqual([row.visits, row.minutes, row.withoutLength, row.notDone], [3, 40, 2, { REFUSED: 0, NOT_NEEDED: 1, COULD_NOT: 2 }]);
+  assert.equal(summary.totals.notDone, 3);
+
+  /* KRONOLOOGIA: tehtud ja tegemata toimingud on eraldi lausetes. */
+  const chronology = await draftChronology(lead, client.id, { from: '2026-10-08', to: '2026-10-08' }, deps());
+  assert.equal(
+    chronology.items.find((item) => item.entryId === made.id).text,
+    `Käik kestis 40 min. Tehtud: ${hygiene.name} (tegime koos). Tegemata: ${heating.name} (ei saanud teha); ${nutrition.name} (polnud vaja).`
+  );
+
+  /* Andmebaas hoiab vigase rea eemal ka siis, kui rakendus eksib. */
+  const raw = (data) =>
+    db.careEntryActivity.create({
+      data: { organizationId: f.orgA.id, entryId: none.id, clientId: client.id, activityName: 'Proov', activityGroup: 'HEATING', mode: 'FOR', ...data }
+    });
+  await assert.rejects(raw({ outcome: 'MAYBE' }), /CareEntryActivity_outcome_check/);
+  await assert.rejects(raw({ outcome: 'REFUSED', outsidePlan: true }), /CareEntryActivity_outcome_plan_check/);
+  /* Vaikeväärtus: rida ilma tulemuseta (eelmine rakenduse versioon) on tehtud. */
+  assert.equal((await raw({})).outcome, 'DONE');
 });

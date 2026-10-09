@@ -11674,7 +11674,9 @@
       "visit_activity_unknown": "Toimingut ei leitud kliendi hoolduskavast ega asutuse kataloogist. Laadi leht uuesti.",
       "visit_activity_repeated": "Sama toiming on kirjel kaks korda.",
       "visit_mode_required": "Vali, kuidas toiming tehti.",
-      "visit_too_many_activities": "Ühel kirjel saab olla kuni {limit} toimingut."
+      "visit_too_many_activities": "Ühel kirjel saab olla kuni {limit} toimingut.",
+      "visit_outcome_invalid": "Toimingu tulemus ei sobi.",
+      "visit_outcome_plan_only": "Tegemata saab märkida ainult kehtivas hoolduskavas oleva toimingu."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -12184,8 +12186,21 @@
       "outside_plan": "väljaspool kava",
       "doc": {
         "minutes": "Käik kestis {minutes} min.",
-        "done": "Tehtud: {list}."
-      }
+        "done": "Tehtud: {list}.",
+        "not_done": "Tegemata: {list}."
+      },
+      "outcomes": {
+        "DONE": "tehtud",
+        "REFUSED": "keeldus",
+        "NOT_NEEDED": "polnud vaja",
+        "COULD_NOT": "ei saanud teha"
+      },
+      "skip": "jäi tegemata",
+      "skip_label": "Jäi tegemata: {name}",
+      "skip_reason_label": "Miks jäi tegemata: {name}",
+      "reason_missing": "Vali, miks toiming tegemata jäi, või võta märge maha.",
+      "mark_rest": "Märgi ülejäänud tehtuks ({count})",
+      "reason_pick": "Vali põhjus."
     },
     "provided": {
       "week": "Sel nädalal: käike {visits}, kokku {amount}",
@@ -12216,7 +12231,8 @@
       "worker_companion": "kaasas {visits} käigul, {amount}",
       "missed_title": "Ära jäänud käigud",
       "missed_empty": "Selles kuus ära jäänud käike kirjas ei ole.",
-      "how": "Ära jäänud käiguks loetakse erijuhtumid „ei avanud ust” ja „keeldus abist”. Kui käigul oli kaks töötajat, on kliendi aeg loetud üks kord ja töötajate juures kummalgi. Kilomeetreid siin ei ole: sõite koduteenuse päevik ei mõõda."
+      "how": "Ära jäänud käiguks loetakse erijuhtumid „ei avanud ust” ja „keeldus abist”. Kui käigul oli kaks töötajat, on kliendi aeg loetud üks kord ja töötajate juures kummalgi. Kilomeetreid siin ei ole: sõite koduteenuse päevik ei mõõda.",
+      "not_done": "tegemata toiminguid: keeldus {refused}, polnud vaja {notNeeded}, ei saanud teha {couldNot}"
     }
   },
   "stage": {

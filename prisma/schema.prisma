@@ -8348,8 +8348,11 @@ model CareEntryActivity {
   activityId     String?
   activityName   String
   activityGroup  String
-  /// GUIDE | TOGETHER | ASSIST | FOR.
+  /// GUIDE | TOGETHER | ASSIST | FOR. Tegemata toimingu real kava rea viis.
   mode           String
+  /// DONE | REFUSED | NOT_NEEDED | COULD_NOT (`CareActivityOutcome`, K2-f).
+  /// Tegemata saab jääda ainult kava toiming (CHECK migratsioonis).
+  outcome        String  @default("DONE")
   outsidePlan    Boolean @default(false)
   position       Int     @default(0)
   createdAt      DateTime @default(now())
