@@ -180,7 +180,7 @@ function dispatchWorkspaceEvent(eventName, detail = {}) {
    kiirmenüüs. Otseteel (/documents, /eelpoordumised) neil nähtavat pealkirja ei
    ole; siin, kaardilt avatuna, joonistas töölaud selle paneelile tagasi. Kui
    mõni teine töölaua leht ümber tehakse, lisa see siia. */
-const EMBEDDED_TITLE_IN_DOCK = new Set(["documents", "pre_inquiries"]);
+const EMBEDDED_TITLE_IN_DOCK = new Set(["documents", "pre_inquiries", "service_profile"]);
 
 export default function WorkspacePanel({
   t,

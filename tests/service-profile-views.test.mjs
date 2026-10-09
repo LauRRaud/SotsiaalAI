@@ -452,3 +452,8 @@ test('assistendi koopia hoiatus jääb pärast salvestamist lava kohale', () => 
   /* Hoiatus kustub alles järgmise salvestamise alguses, mitte esimese muudatusega. */
   assert.equal(page.split('setSaveWarning("")').length - 1, 1);
 });
+
+test('töölaua sees avatud teenuseprofiilil ei korrata paneelil lehe pealkirja', () => {
+  const panel = read('../components/chat/WorkspacePanel.jsx');
+  assert.match(panel, /const EMBEDDED_TITLE_IN_DOCK = new Set\(\[[^\]]*"service_profile"[^\]]*\]\);/);
+});
