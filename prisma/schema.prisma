@@ -5706,6 +5706,7 @@ model OrganizationMembership {
   careVisitSlots        CareVisitSlot[]
   careVisitChanges      CareVisitChange[]
   careAbsences          CareAbsence[]
+  careWorkerRecords     CareWorkerRecord[]
   careObstacles         CareObstacle[]
 
   // Üks AKTIIVNE liikmesus org + kasutaja kohta → osaline unikaalindeks migratsioonis.
@@ -8632,6 +8633,33 @@ model CareReferralContact {
   organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 
   @@index([organizationId, endedAt, position])
+}
+
+/// KODUTEENUS K5-e — TÖÖTAJA KAART (kava II.6.10): taustakontroll (ainult kuupäev; tulemust
+/// ega sisu ei hoita) ja koolitused (teema, kuupäev, soovi korral kehtivuse lõpp). Näeb ja
+/// täidab kogu asutuse hooldusjuht. Ridu ei muudeta; eemaldatud rida saab lõpu.
+model CareWorkerRecord {
+  id             String  @id @default(cuid())
+  organizationId String
+  membershipId   String
+  /// BACKGROUND_CHECK | TRAINING (`CareWorkerRecordKind`).
+  kind           String
+  /// Koolituse teema; taustakontrollil NULL (CHECK migratsioonis).
+  title          String?
+  /// Päevad kujul AAAA-KK-PP.
+  doneOn         String
+  validUntil     String?
+
+  createdByMembershipId String?
+  createdByName         String?
+  createdAt             DateTime  @default(now())
+  endedAt               DateTime?
+  endedByMembershipId   String?
+
+  membership OrganizationMembership @relation(fields: [membershipId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId, endedAt])
+  @@index([membershipId, endedAt])
 }
 
 model CareClientSupply {

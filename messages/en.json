@@ -12905,7 +12905,15 @@
       "referral_name_required": "A row has a phone or an explanation but no name.",
       "referral_phone_invalid": "A phone number may hold digits, spaces, a plus, brackets and a hyphen.",
       "medication_action_invalid": "Unknown medication mark.",
-      "medication_action_not_allowed": "A medication mark can be put only on a medication activity."
+      "medication_action_not_allowed": "A medication mark can be put only on a medication activity.",
+      "worker_not_found": "The worker was not found.",
+      "worker_record_not_found": "The row was not found.",
+      "worker_record_kind_required": "Choose whether this is a background check or a training.",
+      "worker_record_day_required": "Choose a day.",
+      "worker_record_day_future": "The day cannot be in the future.",
+      "worker_record_period_invalid": "The validity cannot end before the day it was done.",
+      "worker_record_title_required": "Write the training topic.",
+      "worker_records_too_many": "A worker can have up to {limit} rows."
     },
     "incidents": {
       "title": "Incident register",
@@ -13413,7 +13421,9 @@
       "away_long_empty": "Nobody has been away for over a month.",
       "away_since": "away since {date} ({days} days)",
       "changes_open_title": "Noticed changes waiting for an answer",
-      "changes_open_empty": "No noticed change is waiting for an answer."
+      "changes_open_empty": "No noticed change is waiting for an answer.",
+      "workers_due_title": "Workers' trainings and background checks",
+      "workers_due_empty": "Nothing expires."
     },
     "visit": {
       "title": "What you did",
@@ -14000,6 +14010,30 @@
         "MISSED": "medication visit not done"
       },
       "open_count": "The medication mark is missing on {count} visits. Ask the care worker."
+    },
+    "workers": {
+      "title": "Workers",
+      "link": "Workers",
+      "intro": "Each care worker's background check and trainings. Only the coordinator of the whole organisation sees this.",
+      "empty": "No care workers yet: a worker appears here once on a client's team.",
+      "no_records": "No rows.",
+      "add": "Add a row",
+      "remove": "Remove",
+      "save": "Save",
+      "cancel": "Cancel",
+      "kind_label": "What",
+      "kinds": {
+        "BACKGROUND_CHECK": "Background check",
+        "TRAINING": "Training"
+      },
+      "background_hint": "Only the date of the check is recorded and, if you wish, when to check again. The result and its content are not written here.",
+      "background_missing": "no background check row",
+      "title_label": "Training topic",
+      "done_label": "Done on",
+      "valid_label": "Valid until or repeat by (if any)",
+      "done_on": "done {date}",
+      "valid_until": "valid until {date} ({when})",
+      "expired": "expired"
     }
   },
   "stage": {
