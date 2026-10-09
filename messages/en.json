@@ -12336,7 +12336,13 @@
       "money_holder_required": "Money can be recorded by a member of the organisation.",
       "money_not_found": "This line was not found.",
       "money_retracted": "This line is already cancelled.",
-      "money_retract_negative": "This line cannot be cancelled: the balance would go below zero. Cancel the later spending or return first."
+      "money_retract_negative": "This line cannot be cancelled: the balance would go below zero. Cancel the later spending or return first.",
+      "supply_kind_required": "Choose which supply to follow.",
+      "supply_responsible_required": "Write who refills the supply.",
+      "supply_already_tracked": "This supply is already followed for this client.",
+      "supply_not_found": "This supply was not found.",
+      "supply_ended": "Following this supply has ended.",
+      "supply_state_required": "Choose the state of the supply."
     },
     "incidents": {
       "title": "Incident register",
@@ -12837,7 +12843,9 @@
       "feedback_never": "no feedback recorded",
       "feedback_at_end_title": "Service ended, feedback not asked",
       "feedback_at_end_empty": "Feedback is recorded for the services that ended in the last three months.",
-      "feedback_ended_on": "service ended {date}"
+      "feedback_ended_on": "service ended {date}",
+      "supplies_open_title": "Supplies running low or run out",
+      "supplies_open_empty": "No followed supply is running low."
     },
     "visit": {
       "title": "What you did",
@@ -13215,6 +13223,36 @@
       "holder_line": "{name}: {amount} (last line {date})",
       "mine_title": "Clients' money I hold",
       "open_line": "{name} holds {amount}, last line {date}"
+    },
+    "supplies": {
+      "title": "Supplies",
+      "none": "No supplies are followed. Switch on those whose running out would leave the client in trouble, for example firewood or drinking water.",
+      "kinds": {
+        "FIREWOOD": "firewood",
+        "WATER": "drinking water",
+        "FOOD": "food",
+        "HYGIENE": "hygiene items"
+      },
+      "states": {
+        "ENOUGH": "enough",
+        "LOW": "running low",
+        "OUT": "run out"
+      },
+      "state_label": "{kind}: state",
+      "unchecked": "state not marked yet",
+      "checked": "marked by {name} {when}",
+      "responsible": "refilled by {name}",
+      "note_button": "Add a note",
+      "note_label": "Note (for example: enough for about three days)",
+      "note_save": "Save the note",
+      "track": "Follow another supply",
+      "kind_label": "Which supply",
+      "responsible_label": "Who refills it",
+      "responsible_hint": "Write a name or a role: relative, care worker, municipality.",
+      "save": "Save",
+      "cancel": "Cancel",
+      "untrack": "Stop following",
+      "open_line": "{kind}: {state} · refilled by {name} · marked {when}"
     }
   },
   "stage": {

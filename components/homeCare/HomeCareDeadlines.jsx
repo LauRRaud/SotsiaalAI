@@ -11,7 +11,7 @@ import { euroText } from "./HomeCareMoney";
 import HomeCareOutbox from "./HomeCareOutbox";
 import { preconditionLine } from "./HomeCarePreconditions";
 import { planDayLabel } from "./HomeCarePlanView";
-import { clientHref } from "./homeCareClient";
+import { clientHref, formatDateTime } from "./homeCareClient";
 
 /**
  * Tähtajad hooldusjuhile: neli nimekirja, mida muidu peab ise meeles pidama.
@@ -120,6 +120,20 @@ export default function HomeCareDeadlines({ context, deadlines }) {
           t("home_care.money.open_line", { name: item.holderName || "—", amount: euroText(item.balanceCents, locale), date: planDayLabel(item.lastOn) }),
           null,
           item.key
+        )
+      )}
+
+      {section("supplies_open", deadlines.suppliesOpen || [], (item) =>
+        clientLine(
+          item,
+          t("home_care.supplies.open_line", {
+            kind: t(`home_care.supplies.kinds.${item.kind}`),
+            state: t(`home_care.supplies.states.${item.state}`),
+            name: item.responsible,
+            when: formatDateTime(item.checkedAt, timeZone)
+          }),
+          item.state === "OUT" ? <span className="hc-badge hc-badge--danger">{t("home_care.supplies.states.OUT")}</span> : null,
+          item.id
         )
       )}
 

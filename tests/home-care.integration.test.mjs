@@ -85,6 +85,7 @@ import { clearWorkNature, setWorkNature } from '../lib/homeCare/workNature.js';
 import { addPrecondition, closePrecondition } from '../lib/homeCare/preconditions.js';
 import { addKey, closeKey, getKeyRegister, handOverKey } from '../lib/homeCare/keys.js';
 import { addMoneyEntry, retractMoneyEntry } from '../lib/homeCare/money.js';
+import { markSupply, trackSupply, untrackSupply } from '../lib/homeCare/supplies.js';
 import { assertNotificationRecipient, serializeNotificationEvent } from '../lib/notifications.js';
 
 const url = new URL(process.env.HOME_CARE_TEST_DATABASE_URL || 'postgres://invalid/invalid');
@@ -1853,6 +1854,8 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
   await addPrecondition(lead, client.id, { kind: 'CLEANING', responsible: 'Linna sotsiaaltöötaja' }, deps());
   await addKey(lead, client.id, { tag: '5', holderMembershipId: f.members.anu.id }, deps());
   await addMoneyEntry(anu, client.id, { kind: 'RECEIVED', amount: '10' }, deps());
+  const trackedSupply = await trackSupply(lead, client.id, { kind: 'FIREWOOD', responsible: 'Poeg' }, deps());
+  await markSupply(anu, client.id, trackedSupply.supplyId, { state: 'LOW' }, deps());
   const obstacleOfAnu = await reportObstacle(anu, { kind: 'LATE_30' }, deps());
   await handleObstacle(lead, obstacleOfAnu.obstacle.id, {}, deps());
   /* Ühe päeva erand (K3-b): järgmise esmaspäeva käik jääb ära. */
@@ -1958,6 +1961,8 @@ test('täielik väljavõte: üks hetk andmebaasist, arvud ja viited klapivad, ai
     keys: await db.careKey.count({ where: ofOrg }),
     keyHandovers: await db.careKeyHandover.count({ where: ofOrg }),
     moneyEntries: await db.careMoneyEntry.count({ where: ofOrg }),
+    supplies: await db.careClientSupply.count({ where: ofOrg }),
+    supplyChecks: await db.careSupplyCheck.count({ where: ofOrg }),
     auditEvents: await db.dataAuditLog.count({
       where: { action: { startsWith: 'org.home_care_' }, meta: { path: ['organizationId'], equals: f.orgA.id }, createdAt: { lt: (await exportRows())[0].createdAt } }
     })
@@ -4405,4 +4410,116 @@ test('tagasiside küsimine: kellelt on aeg küsida ja mis lõppenud teenuste koh
   assert.deepEqual((await getDeadlines(lead, deps())).feedbackAtEnd, []);
   const later = await getDeadlines(lead, deps(at('2027-02-01T08:00:00Z')));
   assert.deepEqual(later.feedbackAtEnd, []);
+});
+
+test('varud kliendi kodus: jälgimine, seisu märkimine ja lõppevad varud hooldusjuhile', async (t) => {
+  const f = await fixture(t);
+  const north = await db.organizationUnit.create({ data: { organizationId: f.orgA.id, name: `Põhi ${f.tag}`, type: 'TEAM' } });
+  await db.organizationCapabilityGrant.create({
+    data: { membershipId: f.members.cover.id, capability: 'HOME_CARE_COORDINATOR', scopeType: 'UNIT', scopeUnitId: north.id, validFrom: at('2026-01-01T00:00:00Z') }
+  });
+  const lead = await f.ctx(f.users.lead, f.orgA);
+  const anu = await f.ctx(f.users.anu, f.orgA);
+  const bert = await f.ctx(f.users.bert, f.orgA);
+  const clerk = await f.ctx(f.users.clerk, f.orgA);
+  const unitLead = await f.ctx(f.users.cover, f.orgA);
+  const linda = (await createClient(lead, { displayName: 'Linda Tamm' }, deps())).client;
+  const peeter = (await createClient(lead, { displayName: 'Peeter Põhi', unitId: north.id }, deps())).client;
+  await addTeamMember(lead, linda.id, { membershipId: f.members.anu.id }, deps());
+  await addTeamMember(lead, peeter.id, { membershipId: f.members.bert.id }, deps());
+
+  /* Algus: varusid ei jälgita. */
+  assert.deepEqual((await openClient(anu, linda.id, deps())).supplies, []);
+
+  /* Jälgimise lülitab sisse hooldusjuht, kelle skoobis klient on; ravimivaru valikus ei ole. */
+  await expectError(trackSupply(anu, linda.id, { kind: 'FIREWOOD', responsible: 'Poeg' }, deps()), 403, 'org.errors.missing_capability');
+  await expectError(trackSupply(unitLead, linda.id, { kind: 'FIREWOOD', responsible: 'Poeg' }, deps()), 403);
+  await expectError(trackSupply(lead, linda.id, { kind: 'MEDICINE', responsible: 'Poeg' }, deps()), 400, 'home_care.errors.supply_kind_required');
+  await expectError(trackSupply(lead, linda.id, { kind: 'FIREWOOD', responsible: '  ' }, deps()), 400, 'home_care.errors.supply_responsible_required');
+  assert.equal(await db.careClientSupply.count({ where: { organizationId: f.orgA.id } }), 0);
+
+  const wood = await trackSupply(lead, linda.id, { kind: 'FIREWOOD', responsible: ' Poeg   Jaan ' }, deps());
+  assert.deepEqual(wood.supplies, [{ id: wood.supplyId, kind: 'FIREWOOD', responsible: 'Poeg Jaan', state: null, stateNote: null, checkedAt: null, checkedByName: null }]);
+  await expectError(trackSupply(lead, linda.id, { kind: 'FIREWOOD', responsible: 'Keegi teine' }, deps()), 409, 'home_care.errors.supply_already_tracked');
+  /* Varud on alati sõnastiku järjekorras, mitte lisamise järjekorras. */
+  const hygiene = await trackSupply(lead, linda.id, { kind: 'HYGIENE', responsible: 'Tütar' }, deps());
+  const water = await trackSupply(lead, linda.id, { kind: 'WATER', responsible: 'Hooldaja' }, deps());
+  assert.deepEqual(water.supplies.map((row) => row.kind), ['FIREWOOD', 'WATER', 'HYGIENE']);
+  const food = await trackSupply(unitLead, peeter.id, { kind: 'FOOD', responsible: 'Vald' }, deps());
+
+  /* SEISU MÄRGIB igaüks, kes tohib kliendi lehte avada; teise kliendi varu selle kliendi kaudu ei leia. */
+  await expectError(markSupply(clerk, linda.id, wood.supplyId, { state: 'LOW' }, deps()), 404, 'home_care.errors.client_not_found');
+  await expectError(markSupply(anu, peeter.id, food.supplyId, { state: 'LOW' }, deps()), 403, 'home_care.errors.access_reason_required');
+  await expectError(markSupply(anu, linda.id, wood.supplyId, { state: 'EMPTY' }, deps()), 400, 'home_care.errors.supply_state_required');
+  await expectError(markSupply(anu, linda.id, food.supplyId, { state: 'LOW' }, deps()), 404, 'home_care.errors.supply_not_found');
+  const low = await markSupply(anu, linda.id, wood.supplyId, { state: 'LOW', note: ' Jätkub umbes   kolmeks päevaks ' }, deps(at('2026-10-09T08:10:00Z')));
+  assert.deepEqual(low.supplies[0], {
+    id: wood.supplyId,
+    kind: 'FIREWOOD',
+    responsible: 'Poeg Jaan',
+    state: 'LOW',
+    stateNote: 'Jätkub umbes kolmeks päevaks',
+    checkedAt: '2026-10-09T08:10:00.000Z',
+    checkedByName: 'Anu Hooldaja'
+  });
+  await markSupply(anu, linda.id, water.supplyId, { state: 'OUT' }, deps(at('2026-10-09T08:20:00Z')));
+  await markSupply(lead, linda.id, hygiene.supplyId, { state: 'ENOUGH' }, deps());
+  await markSupply(bert, peeter.id, food.supplyId, { state: 'LOW' }, deps(at('2026-10-09T08:05:00Z')));
+  assert.deepEqual((await openClient(anu, linda.id, deps())).supplies.map((row) => [row.kind, row.state, row.checkedByName]), [
+    ['FIREWOOD', 'LOW', 'Anu Hooldaja'],
+    ['WATER', 'OUT', 'Anu Hooldaja'],
+    ['HYGIENE', 'ENOUGH', 'Juta Juht']
+  ]);
+
+  /* TÄHTAJAD: otsas varu enne, siis lõppevad varem märgitud enne; piisav varu nimekirjas ei ole. Üksuse juht näeb oma üksust. */
+  const open = (list) => list.map((item) => [item.client.displayName, item.kind, item.state, item.responsible]);
+  assert.deepEqual(open((await getDeadlines(lead, deps())).suppliesOpen), [
+    ['Linda Tamm', 'WATER', 'OUT', 'Hooldaja'],
+    ['Peeter Põhi', 'FOOD', 'LOW', 'Vald'],
+    ['Linda Tamm', 'FIREWOOD', 'LOW', 'Poeg Jaan']
+  ]);
+  assert.deepEqual(open((await getDeadlines(unitLead, deps())).suppliesOpen), [['Peeter Põhi', 'FOOD', 'LOW', 'Vald']]);
+
+  /* UUS MÄRKIMINE asendab seisu ja märkuse; iga märkimine jääb ajalukku. */
+  const refilled = await markSupply(anu, linda.id, wood.supplyId, { state: 'ENOUGH' }, deps(at('2026-10-09T09:00:00Z')));
+  assert.deepEqual([refilled.supplies[0].state, refilled.supplies[0].stateNote], ['ENOUGH', null]);
+  assert.deepEqual(
+    (await db.careSupplyCheck.findMany({ where: { supplyId: wood.supplyId }, orderBy: { createdAt: 'asc' } })).map((row) => [row.state, row.note, row.checkedByName]),
+    [['LOW', 'Jätkub umbes kolmeks päevaks', 'Anu Hooldaja'], ['ENOUGH', null, 'Anu Hooldaja']]
+  );
+  /* Lõppenud teenusega kliendi varu hooldusjuhi nimekirjas ei ole. */
+  const peeterNow = await db.careClient.findUnique({ where: { id: peeter.id }, select: { version: true } });
+  await setClientStatus(lead, peeter.id, { version: peeterNow.version, status: 'ENDED', statusReason: 'MOVED' }, deps());
+  assert.deepEqual(open((await getDeadlines(lead, deps())).suppliesOpen), [['Linda Tamm', 'WATER', 'OUT', 'Hooldaja']]);
+
+  /* JÄLGIMISE LÕPETAMINE: ainult hooldusjuht; lõpetatud varu ei saa märkida; sama varu saab uuesti sisse lülitada. */
+  await expectError(untrackSupply(anu, linda.id, water.supplyId, deps()), 403, 'org.errors.missing_capability');
+  const stopped = await untrackSupply(lead, linda.id, water.supplyId, deps(at('2026-10-09T10:00:00Z')));
+  assert.deepEqual(stopped.supplies.map((row) => row.kind), ['FIREWOOD', 'HYGIENE']);
+  await expectError(markSupply(anu, linda.id, water.supplyId, { state: 'ENOUGH' }, deps()), 409, 'home_care.errors.supply_ended');
+  await expectError(untrackSupply(lead, linda.id, water.supplyId, deps()), 409, 'home_care.errors.supply_ended');
+  assert.deepEqual((await getDeadlines(lead, deps())).suppliesOpen, []);
+  const again = await trackSupply(lead, linda.id, { kind: 'WATER', responsible: 'Naaber' }, deps());
+  assert.deepEqual(again.supplies.map((row) => [row.kind, row.state, row.responsible]), [['FIREWOOD', 'ENOUGH', 'Poeg Jaan'], ['WATER', null, 'Naaber'], ['HYGIENE', 'ENOUGH', 'Tütar']]);
+  assert.equal(await db.careClientSupply.count({ where: { clientId: linda.id } }), 4);
+
+  /* Andmebaas hoiab vigase rea eemal ka siis, kui rakendus eksib. */
+  const raw = (data) => db.careClientSupply.create({ data: { organizationId: f.orgA.id, clientId: linda.id, kind: 'FOOD', responsible: 'Keegi', ...data } });
+  await assert.rejects(raw({ kind: 'MEDICINE' }), /CareClientSupply_kind_check/);
+  await assert.rejects(raw({ responsible: '  ' }), /CareClientSupply_responsible_check/);
+  await assert.rejects(raw({ state: 'EMPTY', checkedAt: NOW }), /CareClientSupply_state_check/);
+  await assert.rejects(raw({ state: 'LOW' }), /CareClientSupply_state_check/);
+  await assert.rejects(raw({ checkedAt: NOW }), /CareClientSupply_state_check/);
+  await assert.rejects(raw({ stateNote: '  ' }), /CareClientSupply_stateNote_check/);
+  await assert.rejects(raw({ kind: 'FIREWOOD' }), (error) => error.code === 'P2002');
+  await assert.rejects(
+    db.careSupplyCheck.create({ data: { organizationId: f.orgA.id, supplyId: wood.supplyId, clientId: linda.id, state: 'EMPTY' } }),
+    /CareSupplyCheck_state_check/
+  );
+
+  /* AUDIT: ainult ID-d ja muutuse liik (varu liiki, seisu, märkust ega täiendajat seal ei ole). */
+  const audit = await db.dataAuditLog.findMany({ where: { action: 'org.home_care_supply_changed', meta: { path: ['organizationId'], equals: f.orgA.id } } });
+  const count = (change) => audit.filter((entry) => entry.meta.change === change).length;
+  assert.deepEqual([count('tracked'), count('marked'), count('untracked')], [5, 5, 1]);
+  for (const entry of audit) assert.deepEqual(Object.keys(entry.meta).sort(), ['change', 'clientId', 'organizationId', 'supplyId']);
 });
