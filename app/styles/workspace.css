@@ -56,82 +56,65 @@
     scroll-padding-bottom: var(--room-dock-reserve);
   }
 }
-/* Admini S/P/T vaatevalik lehtedel — ⓘ-nupust vahetult VASAKUL samal real.
-   Komponent portaalib end .panel-i otseseks lapseks, seega absoluutne ankur
-   on täpselt sama mis ⓘ ja × nuppudel ning lehe sisu kerimine seda ei liiguta. */
-.admin-role-view-cycle {
-  position: absolute;
-  top: calc(clamp(0.8rem, 1.6vw, 1.3rem) + 0.25rem);
-  left: auto;
-  right: calc(clamp(0.8rem, 1.6vw, 1.3rem) + 6.2rem);
-  bottom: auto;
-  transform: none;
-  z-index: 30;
-}
-.panel-scrim[data-conversation="1"] .admin-role-view-cycle {
-  top: calc(clamp(1.1rem, 2.8lvh, 1.8rem) + 0.45rem);
-  right: calc(clamp(1.1rem, 2.8vw, 2rem) + 7rem);
-}
-@media (min-width: 769px) {
-  .panel-scrim[data-conversation="1"] .admin-role-view-cycle {
-    right: calc(50% - min(31rem, 47vw) + 7rem);
-  }
-}
+/* Admini S/P/T vaatevalik lehtedel: EKRAANI alumises paremas nurgas, doki
+   kõrgusel, samas kohas ja samas näos mis peamenüüs (carousel.css
+   .admin-role-view-cycle--cards). Omanik 25.07 vestluse kohta („rolli nupud
+   peavad all paremas nurgas olema, nagu mujal"), 23.09 („ühtlusta") ja 10.10
+   kõigi lehtede kohta: paneeli ülanurgas ⓘ kõrval hõljus valik lehe sisu peal.
 
-/* Vestluses elab rollilüliti EKRAANI alumises paremas nurgas, nagu töölaual
-   (omanik 25.07: "rolli nupud peavad all paremas nurgas olema, nagu mujal").
-   Ta on ADMINI tööriist: tavakasutaja ei näe teda üldse, seega ta ei tohi
-   istuda ülaservas päris juhtnuppude kõrval ega dikteerida nende paigutust.
+   Ta on ADMINI tööriist: tavakasutaja ei näe teda üldse, seega ei tohi ta
+   istuda päris juhtnuppude kõrval ega dikteerida nende paigutust.
 
-   position: fixed, sest paneel on ekraani servadest sissepoole ja "nurk"
-   tähendab siin ekraani nurka, mitte paneeli oma.
-
-   ASUKOHT FAILIS ON KANDEV: vestluse scrim kannab KORRAGA data-chat="1" ja
-   data-conversation="1", ning ülalolev conversation-reegel on täpselt sama
-   kaaluga (0,3,0). Kui see plokk oleks enne, võidaks conversation-reegel
-   top/right'i ja lüliti veniks üle terve ekraani (top JA bottom korraga).
-   Seepärast siin, mõlemast conversation-reeglist — ka meediapäringust —
-   ALLPOOL. */
-.panel-scrim[data-chat="1"] .admin-role-view-cycle {
+   Komponent portaalib end <body>-sse (vt AdminRoleViewCycleButton): klaaspaneel
+   on `backdrop-filter`-iga ja oleks muidu `position: fixed` sisaldusplokk.
+   Kiht on doki oma (room.css .room-dock-wrap): akna kohal, modaalide all. */
+.admin-role-view-cycle--corner {
   position: fixed;
   top: auto;
   left: auto;
-  /* Sama koht ja välimus mis menüüs (carousel.css
-     .admin-role-view-cycle--cards) — omanik 23.09: „ühtlusta". */
   right: max(1.2vw, 0.9rem);
   bottom: max(5.2%, env(safe-area-inset-bottom, 0px) + 3.2%);
-  z-index: var(--z-floating);
+  z-index: calc(var(--z-panel) + 5);
   padding: 0.22rem;
   border-radius: 999px;
-  background: none;
-  box-shadow: none;
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
-  /* Vaikne, kuni teda vaja läheb — täpselt nagu laual. */
+  /* Vaikne, kuni teda vaja läheb: täpselt nagu laual. */
   opacity: 0.42;
   transition: opacity 260ms var(--ease-soft);
 }
-.panel-scrim[data-chat="1"] .admin-role-view-cycle:hover,
-.panel-scrim[data-chat="1"] .admin-role-view-cycle:focus-within {
+.admin-role-view-cycle--corner:hover,
+.admin-role-view-cycle--corner:focus-within {
   opacity: 1;
 }
-.panel-scrim[data-chat="1"] .admin-role-view-cycle .workspace-role-switch {
+.admin-role-view-cycle--corner .workspace-role-switch {
   gap: 0.12rem;
 }
-.panel-scrim[data-chat="1"] .admin-role-view-cycle .workspace-role-switch button {
+.admin-role-view-cycle--corner .workspace-role-switch button {
   width: 1.85rem;
   height: 1.85rem;
   min-inline-size: var(--hit-target-min);
   min-block-size: var(--hit-target-min);
 }
-/* MOBIILIS ei ole alumine parem nurk vaba: seal hõljub komposer (absoluutne,
-   üle veeru põhja) ja S/P/T maandus otse tema peale, sisestusvälja ja saatmis-
-   noole vahele (omanik 25.07: "rolli nupud peaks mobiilis olema nt sulge nupu
-   kõrval"). Ülemine parem serv on mobiilis ainus vaba juhtnuppude riba, seega
-   lüliti läheb sinna — sulgemisristist VASAKULE, sama vertikaali peale.
-
-   Nihe = risti laius (3rem, panel.css `:is(.panel-menu, .panel-close)`) +
-   0.5rem vahe, täpselt sama arvutus mis ⓘ-nupul (`.panel-menu--info`). */
+/* Lugeja süveneb ja dokk vajub ruumi tagasi (room.css `data-dock-recessed`):
+   valik läheb temaga kaasa, et ta ei jääks üksi loetava teksti kõrvale. */
+html[data-dock-recessed="1"] .admin-role-view-cycle--corner:not(.admin-role-view-cycle--inline) {
+  opacity: 0;
+  pointer-events: none;
+}
+/* Kaardileht: valik kaardi enda alumises paremas nurgas, aluskaardi
+   allikaviite kohal (viide peab jääma loetavaks). Kuni kontaktipaneel on
+   lahti, valikut ei ole, nagu legendigi: paneel võib ulatuda kaardi servani. */
+.service-map-canvas {
+  position: relative;
+}
+.admin-role-view-cycle--corner.service-map-role {
+  position: absolute;
+  right: 0.45rem;
+  bottom: 1.75rem;
+  z-index: var(--service-map-layer-legend, 500);
+}
+.service-map-canvas:has(.leaflet-popup) .service-map-role {
+  display: none;
+}
 @media (max-width: 768px) {
   /* `/vestlus?workspace=…` kannab korraga data-chat ja data-dock märki.
      chat.css-i hilisem data-chat polsterdus lähtestab PanelFrame'i üldise
@@ -141,15 +124,28 @@
     padding-bottom: var(--room-dock-reserve);
   }
 
-  .panel-scrim[data-chat="1"] .admin-role-view-cycle {
+  /* Kitsal ekraanil ei jagu alumises reas kahele asjale ruumi: valik seisab
+     doki KOHAL, nagu peamenüüs (carousel.css sama meediapäring). */
+  .admin-role-view-cycle--corner {
+    bottom: max(13%, env(safe-area-inset-bottom, 0px) + 10.5%);
+  }
+  /* PÄRIS VESTLUSES (dokita) ei ole alumine parem nurk vaba: seal hõljub
+     komposer ja S/P/T maandus otse tema peale, sisestusvälja ja saatmisnoole
+     vahele (omanik 25.07: „rolli nupud peaks mobiilis olema nt sulge nupu
+     kõrval"). Ülemine parem serv on seal ainus vaba juhtnuppude riba, seega
+     läheb valik sulgemisristist VASAKULE, sama vertikaali peale.
+
+     Nihe = risti laius (3rem, panel.css `:is(.panel-menu, .panel-close)`) +
+     0.5rem vahe, täpselt sama arvutus mis ⓘ-nupul (`.panel-menu--info`). */
+  body:has(.panel-scrim[data-chat="1"]:not([data-dock="1"])) .admin-role-view-cycle--corner {
     top: clamp(1.1rem, 2.8lvh, 1.8rem);
     bottom: auto;
     right: calc(clamp(1.1rem, 2.8vw, 2rem) + 3.5rem);
   }
-  /* ⓘ istub juba risti kõrval — siis astub lüliti temast omakorda vasakule,
+  /* ⓘ istub juba risti kõrval: siis astub valik temast omakorda vasakule,
      et kaks juhtnuppu ei kattuks. ☰ ja ⓘ ei esine kunagi koos (PanelFrame
      renderdab kas-või), seega ☰ (vasakus servas) siia ei puutu. */
-  .panel-scrim[data-chat="1"]:has(.panel-menu--info) .admin-role-view-cycle {
+  body:has(.panel-scrim[data-chat="1"]:not([data-dock="1"]) .panel-menu--info) .admin-role-view-cycle--corner {
     right: calc(clamp(1.1rem, 2.8vw, 2rem) + 7rem);
   }
 }
@@ -1249,9 +1245,6 @@
 .service-map-toggle svg {
   width: 1rem;
   height: 1rem;
-}
-.service-map-admin {
-  flex: none;
 }
 /* Kaart täidab kogu ülejäänud ala */
 .service-map-canvas {

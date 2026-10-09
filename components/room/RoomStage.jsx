@@ -109,6 +109,7 @@ import { isServiceLogUiEnabled } from "@/lib/serviceLog/flags";
 import { isOrgWorkspaceUiEnabled } from "@/lib/org/flags";
 import GlassCarousel from "@/components/room/GlassCarousel";
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
+import RoleViewSwitcher from "@/components/workspace/RoleViewSwitcher";
 import PendingInviteBanner from "@/components/invites/PendingInviteBanner";
 import RoomQuickbar from "@/components/room/RoomQuickbar";
 import HandGestures, { HandGestureGuide } from "@/components/room/HandGestures";
@@ -166,9 +167,13 @@ const ROOM_ARRIVAL_COMPLETE_COOKIE = "sotsiaalai_room_arrival_complete";
    ja tühja riba peale. Tee → i18n-võti (vt panelDock allpool). */
 const CARDLESS_DOCK_LABELS = {
   "/autorilt": "about.links.author",
-  /* Kaart on ainult teenuseosutaja rollil; teise rolliga vaataja
-     (administraator) saab lehe nime siit. */
-  "/teenuseprofiil": "chat.workspace.cards.service_profile.title",
+  /* Lehed, kuhu viib link või teine leht, mitte kaart. Töölaua kaartide lehed
+     saavad nime kaardilt ka siis, kui vaataja rollil seda kaarti ei ole
+     (`workspaceAllCards` allpool). */
+  "/kiireloomuline-abi": "urgent.title",
+  "/toimetulekutoetus": "subsistence.title",
+  "/join": "join.heading",
+  "/chat-source": "m4Pilot.source",
 };
 /* Leht, mille kaart avab teise tee: kaart „Pöördumised" viib vestluse töölaua
    teele, aga otselink (Teekonnast, „ava pöördumine") avab /eelpoordumised.
@@ -182,6 +187,11 @@ const DOCK_CARD_ALIASES = {
   /* Vastupidi: kaart „Teenuseprofiil" avab lehe oma tee, aga töölaua seest
      avatuna elab sama leht vestluse teel ega kanna seal pealkirja. */
   "/vestlus?workspace=service_profile": "/teenuseprofiil",
+  /* Kaardid „Koosta dokument" ja „Materjalid" avavad vestluse töölaua tee;
+     samad lehed elavad ka oma teel (pöörduja vaates suunab /documents teele
+     /dokreziim) ja jäid seal dokis nimeta. */
+  "/dokreziim": "/vestlus?workspace=document_drafting",
+  "/materjalid": "/vestlus?workspace=materials",
 };
 
 /* Tellija otsus: saabumiskõnd toimub IGAL platvormi laadimisel —
@@ -1185,7 +1195,11 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
      workspaceDashboardCards ajalugu). Tavakasutaja näeb oma rolli kaarte;
      admin vahetab vaadet doki S/P/T-lülitiga (effectiveRole). Süvalingid
      avavad tööriista vestluspinnal (/vestlus?workspace=<võti>). */
-  const workspaceItems = useMemo(() => {
+  /* `workspaceAllCards` on sama loend ENNE rollifiltrit: sealt saab dokk lehe
+     nime ja ikooni ka siis, kui vaataja rollil seda kaarti ei ole
+     (administraator teises vaates, otselingiga tulnu). Ilma selleta seisis
+     dokis ainult tagasi-nool, ja leht ise pealkirja ei kanna. */
+  const { workspaceItems, workspaceAllCards } = useMemo(() => {
     const role = String(effectiveRole || "CLIENT").toUpperCase();
     const isClient = role === "CLIENT";
     const ALL = "CLIENT SOCIAL_WORKER SERVICE_PROVIDER".split(" ");
@@ -1261,7 +1275,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
          ole "Töö" ja "Mina" tsoonid, vaid "Minu tee" ja "Leian abi". */
       .map((card) => (isClient ? { ...card, zone: CLIENT_ZONE[card.key] || "leian_abi" } : card));
     cards.push({ key: "tagasi", label: t("room.back_card"), action: "toolaud-tagasi", icon: <BackArrowIcon /> });
-    return cards;
+    return { workspaceItems: cards, workspaceAllCards: all };
   }, [t, effectiveRole]);
 
   /* Tööheaolu komplekt — tööriistad otse marsruutidele. Ikoon tuleb
@@ -1442,6 +1456,8 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       kovisionItems,
       adminItems,
       profileItems,
+      /* Viimasena: rolli enda kaart võidab, teiste rollide kaardid täidavad augud. */
+      workspaceAllCards,
     ].forEach((set) => {
       set.forEach((item) => {
         if (item.href && !map.has(item.href)) map.set(item.href, item);
@@ -1453,6 +1469,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     teaveItems,
     workItems,
     workspaceItems,
+    workspaceAllCards,
     wellbeingItems,
     kovisionItems,
     adminItems,
@@ -1997,6 +2014,12 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
             t={t}
           />
         </div>
+      ) : null}
+      {/* Administraatori S/P/T valik igal dokiga lehel, samas nurgas kus
+          peamenüüs (omanik 10.10). Lehel, millel on oma lüliti, jääb see
+          varuvalik ära (lib/viewRoleSignal.js). Tavakasutajale ei renderdu. */}
+      {panelDock && !isLoginOpen && !openInfoModal && !a11y?.isModalOpen ? (
+        <RoleViewSwitcher fallback />
       ) : null}
       {/* Kontakti/Paigalda dokk. Eraldi mähisemärgis, sest see dokk peab
           seisma MODAALIST KÕRGEMAL: GlassModal'i kiht on `inset: 0`

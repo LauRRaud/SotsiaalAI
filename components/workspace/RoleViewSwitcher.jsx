@@ -10,15 +10,15 @@
  * vastuse pikkus), seega piisab küpsisest + refresh'ist. See mähis hoiab
  * ChatBodyView' propsid puutumata.
  *
- * Paigutuse annab .admin-role-view-cycle (app/styles/workspace.css):
- * lehel ⓘ-st vasakul, kaardivaates alumise menüüdoki paremal küljel.
+ * Paigutuse annab .admin-role-view-cycle (app/styles/workspace.css): lehel ja
+ * kaardivaates ekraani alumises paremas nurgas, doki kõrgusel.
  */
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
 import AdminRoleViewCycleButton from "./AdminRoleViewCycleButton";
 
-export default function RoleViewSwitcher({ ariaLabel = "", className, placement = "panel", onRoleChanged }) {
+export default function RoleViewSwitcher({ ariaLabel = "", className, placement = "corner", fallback = false, onRoleChanged }) {
   const { t, locale } = useI18n();
   const { effectiveRole, isAdmin, isRoleResolved, refresh } = useEffectiveRole();
 
@@ -41,6 +41,7 @@ export default function RoleViewSwitcher({ ariaLabel = "", className, placement 
       ariaLabel={ariaLabel || undefined}
       className={className}
       placement={placement}
+      fallback={fallback}
     />
   );
 }

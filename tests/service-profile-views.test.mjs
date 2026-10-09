@@ -391,7 +391,7 @@ test('lehe lubadused: kaks vajutust eemaldamiseks, loendur välja all, valikud l
   assert.deepEqual([SERVICE_PROFILE_LIMITS.services, SERVICE_PROFILE_LIMITS.locations], [40, 30]);
   assert.ok(surface.includes('SERVICE_PROFILE_LIMITS.services') && surface.includes('SERVICE_PROFILE_LIMITS.locations'));
   const css = read('../components/workspace/serviceProfile/profile.module.css');
-  for (const name of ['counter', 'field', 'row', 'check', 'textButton', 'roleSlot', 'roleInline']) assert.ok(css.includes(`.${name} {`), `kujundusfailis on .${name}`);
+  for (const name of ['counter', 'field', 'row', 'check', 'textButton']) assert.ok(css.includes(`.${name} {`), `kujundusfailis on .${name}`);
 });
 
 test('leht teeb samad päringud ja admini töövaate valik ei hõlju sisu kohal', () => {
@@ -409,9 +409,12 @@ test('leht teeb samad päringud ja admini töövaate valik ei hõlju sisu kohal'
   assert.ok(surface.includes('serviceProfileSaveNotice(t, savedProfile)'), 'salvestamise teade tuleb samast otsustajast');
   assert.ok(surface.includes('<StepFlight') && surface.includes('validate={false}'), 'pind on sammulaval');
   assert.equal(SERVICE_PROFILE_KEY, 'workspace_feature_pages.service_profile');
-  /* K08: valik on voos oma real, mitte paneeli nurgas keriva sisu kohal. */
-  assert.ok(page.includes('placement={featureKey === "service_profile" ? "inline" : "panel"}'));
-  assert.ok(read('../components/workspace/AdminRoleViewCycleButton.jsx').includes('placement === "inline"'));
+  /* K08 ja omanik 10.10: valik ei hõlju paneeli nurgas sisu kohal, vaid
+     seisab ekraani alumises paremas nurgas, väljaspool paneeli. */
+  const roleSwitch = read('../components/workspace/AdminRoleViewCycleButton.jsx');
+  assert.ok(roleSwitch.includes('placement === "corner" ? document.body : null'), 'lüliti portaalitakse paneelist välja');
+  assert.ok(!roleSwitch.includes('document.querySelector(".panel")'), 'lüliti ei lähe enam paneeli sisse');
+  assert.ok(!page.includes('profileStyles.roleSlot'), 'teenuseprofiilil ei ole valikul oma rida');
   assert.ok(page.includes('featureKey === "pre_inquiries" || featureKey === "service_profile" ? "sr-only"'), 'lehe pealkiri on ainult ekraanilugejale');
   /* Vana vormi ühised reeglid on kustutatud, sest keegi neid enam ei kasuta. */
   for (const file of ['../app/styles/feature-pages.css', '../app/styles/workspace.css']) {

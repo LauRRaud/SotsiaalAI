@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { cn } from "@/components/ui/cn";
+import { announceViewRole, claimPageSwitch, hasPageSwitch, watchPageSwitch } from "@/lib/viewRoleSignal";
 import WorkspaceRoleCycleButton, { normalizeWorkspaceRole } from "./WorkspaceRoleCycleButton";
 
 export default function AdminRoleViewCycleButton({
@@ -14,7 +15,8 @@ export default function AdminRoleViewCycleButton({
   onRoleChanged,
   className,
   ariaLabel,
-  placement = "panel"
+  placement = "corner",
+  fallback = false
 }) {
   const i18n = useI18n();
   const router = useRouter();
@@ -23,25 +25,32 @@ export default function AdminRoleViewCycleButton({
   const [optimisticRole, setOptimisticRole] = useState("");
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
-  /* Lehesiseses vaates tõstetakse lüliti otse PanelFrame'i .panel-i alla.
-     Nii jagab ta ⓘ ja × nuppudega sama sisaldusplokki ning püsib igas
-     paneelimõõdus täpselt ⓘ-st vasakul. Kaardivaates renderdatakse lüliti
-     kohapeal alumise menüüdoki kõrval.
-     `placement="inline"`: lüliti jääb lehe enda reale, kuhu leht ta paneb
-     (koha ja kuju annab `className`). Nii ei hõlju ta keriva sisu kohal
-     (teenuseprofiil, kujundusaudit K08). */
+  /* Lehtedel elab lüliti EKRAANI alumises paremas nurgas, samas kohas kus
+     peamenüüs (omanik 10.10: „rolli vahetuse nupud peaks olema lehe enda all
+     nurgas, nii nagu on peamenüüs"). Varem portaaliti ta paneeli ülanurka ⓘ
+     kõrvale ja hõljus seal lehe sisu peal.
+     Portaal läheb <body>-sse, mitte paneeli: klaaspaneelil on
+     `backdrop-filter`, mis teeb paneelist `position: fixed` lapse
+     sisaldusploki, ja „nurk" oleks siis paneeli, mitte ekraani oma.
+     `placement="cards"`: peamenüü, lüliti renderdatakse kohapeal doki kõrval.
+     `placement="inline"`: leht paneb lüliti ise oma pinnale (koha annab
+     `className`): kaardilehel ei ole ekraani nurk vaba.
+     `fallback`: ruumi varuvalik dokiga lehtedel; jääb ära, kui lehel on oma
+     lüliti (vt lib/viewRoleSignal.js). */
   const [portalHost, setPortalHost] = useState(null);
+  const pageHasSwitch = useSyncExternalStore(watchPageSwitch, hasPageSwitch, () => true);
+
+  useEffect(() => {
+    if (fallback || placement === "cards") return undefined;
+    return claimPageSwitch();
+  }, [fallback, placement]);
 
   useEffect(() => {
     setOptimisticRole("");
   }, [value]);
 
   useEffect(() => {
-    if (placement !== "panel") {
-      setPortalHost(null);
-      return;
-    }
-    setPortalHost(document.querySelector(".panel"));
+    setPortalHost(placement === "corner" ? document.body : null);
   }, [placement]);
 
   async function handleChange(nextRole) {
@@ -65,6 +74,7 @@ export default function AdminRoleViewCycleButton({
         throw new Error(payload?.error || payload?.message || "Role view switch failed.");
       }
       onRoleChanged?.(payload?.user || {});
+      announceViewRole(payload?.user || {});
       /* Vaateroll elab küpsises, mida loevad serveri-komponendid
          (resolveSessionRoleState). Ilma refresh'ita jääks leht vana rolli
          serverisisuga: nt /documents suunab CLIENT-vaate /dokreziim'i alles
@@ -87,7 +97,8 @@ export default function AdminRoleViewCycleButton({
     <div
       className={cn(
         "admin-role-view-cycle",
-        placement === "cards" && "admin-role-view-cycle--cards",
+        placement === "cards" ? "admin-role-view-cycle--cards" : "admin-role-view-cycle--corner",
+        placement === "inline" && "admin-role-view-cycle--inline",
         className
       )}
     >
@@ -107,7 +118,8 @@ export default function AdminRoleViewCycleButton({
     </div>
   );
 
-  if (placement === "cards" || placement === "inline") return control;
+  if (fallback && pageHasSwitch) return null;
+  if (placement !== "corner") return control;
   if (!portalHost) return null;
   return createPortal(control, portalHost);
 }

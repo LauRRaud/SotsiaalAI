@@ -356,25 +356,24 @@ function PreInquiryAssessmentReviewSection({ t, title, review, situation = "", n
   );
 }
 
-/* `placement="inline"` jätab valiku lehe enda reale (`className` on rea,
-   `controlClassName` valiku enda kujundus); vaikimisi elab see paneeli nurgas. */
-function AdminRoleSelector({ t, locale = "et", value, onChange, className, placement = "panel", controlClassName }) {
+/* Valik elab ekraani alumises paremas nurgas (AdminRoleViewCycleButton
+   portaalib end sinna ise); see mähis seob ta ainult lehe rolliolekuga.
+   `placement="inline"` + `className`: leht paneb valiku oma pinnale. */
+function AdminRoleSelector({ t, locale = "et", value, onChange, placement, className }) {
   const handleRoleChanged = (user = {}) => {
     onChange(normalizeWorkspaceRole(user?.effectiveRole || user?.adminViewRole));
   };
 
   return (
-    <div className={className}>
-      <AdminRoleViewCycleButton
-        t={t}
-        locale={locale}
-        value={value}
-        onRoleChanged={handleRoleChanged}
-        ariaLabel={readText(t, "workspace_feature_pages.admin_role.label", "Admini tööroll")}
-        placement={placement}
-        className={controlClassName}
-      />
-    </div>
+    <AdminRoleViewCycleButton
+      t={t}
+      locale={locale}
+      value={value}
+      onRoleChanged={handleRoleChanged}
+      ariaLabel={readText(t, "workspace_feature_pages.admin_role.label", "Admini tööroll")}
+      placement={placement}
+      className={className}
+    />
   );
 }
 
@@ -3606,16 +3605,7 @@ function ServiceMapSurface({
         >
           <ServiceMapPanelToggleIcon open={panelOpen} />
         </button>
-        {isAdmin ? (
-          <div className="service-map-admin">
-            <AdminRoleSelector
-              t={t}
-              locale={locale}
-              value={activeRole}
-              onChange={onRoleChange}
-            />
-          </div>
-        ) : null}
+
       </div>
 
       {error ? (
@@ -3667,6 +3657,19 @@ function ServiceMapSurface({
           locale={locale}
           t={t}
         />
+        {/* Kaardilehel ei ole ekraani nurk vaba: aken ulatub servani ja kaardi
+            all paremas nurgas seisab aluskaardi allikaviide. Valik seisab
+            kaardi enda nurgas viite kohal, nagu legend vasakul. */}
+        {isAdmin ? (
+          <AdminRoleSelector
+            t={t}
+            locale={locale}
+            value={activeRole}
+            onChange={onRoleChange}
+            placement="inline"
+            className="service-map-role"
+          />
+        ) : null}
       </div>
     </div>
   );
@@ -4523,11 +4526,6 @@ export default function WorkspaceFeaturePage({ feature, embedded = false, onBack
           locale={locale}
           value={activeWorkspaceRole}
           onChange={handleAdminWorkspaceRoleChange}
-          /* Teenuseprofiilil on valikul oma rida sisu ees: paneeli nurgas
-             hõljudes kattis see kerides avaldamise kontrolli (kujundusaudit K08). */
-          placement={featureKey === "service_profile" ? "inline" : "panel"}
-          className={featureKey === "service_profile" ? profileStyles.roleSlot : undefined}
-          controlClassName={featureKey === "service_profile" ? profileStyles.roleInline : undefined}
         />
       ) : null}
       <div
