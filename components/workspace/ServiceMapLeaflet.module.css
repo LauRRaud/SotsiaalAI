@@ -12,6 +12,40 @@
  * on klassinimed siin `:global`; kohalik on ainult kest, mille sees need kehtivad.
  */
 
+/* VÄRVID. Tume klaas heleda kirjaga on vaikimisi; hele teema annab oma
+   väärtused failis app/styles/theme-light.css (seal sunnitud reeglitega, mis
+   võidavad siinsed tavalised). Varem olid taust ja kirja värv üldfailis
+   sunnitud (`!important` kihis), mis võitis ka heleda teema reegli: heledas
+   teemas oli paneel tume klaas tumeda kirjaga. Siinsed värvid, mida hele
+   teema ei tunne, käivad muutujate kaudu ja vahetuvad allpool koos teemaga. */
+.shell {
+  --popup-ink: #f5f1e8;
+  --popup-ink-dim: #a9a195;
+  --popup-rule: rgba(245, 241, 232, 0.11);
+}
+
+:global(html.theme-light:not(:has(.room[data-power="standby"]))) .shell {
+  --popup-ink: var(--text-warm);
+  --popup-ink-dim: var(--text-dim);
+  --popup-rule: rgba(0, 0, 0, 0.12);
+}
+
+.shell :global(.leaflet-popup-content-wrapper),
+.shell :global(.leaflet-popup-tip) {
+  background: rgba(18, 20, 19, 0.94);
+}
+
+.shell :global(.leaflet-popup-content-wrapper) {
+  color: var(--popup-ink);
+}
+
+/* Leaflet värvib iga kaardi lingi siniseks ja sulgemisnupu halliks. */
+.shell :global(.leaflet-popup-content) :global(.service-map-popup__action),
+.shell :global(.leaflet-container) :global(a.leaflet-popup-close-button),
+.shell :global(.leaflet-container) :global(a.leaflet-popup-close-button):is(:hover, :focus) {
+  color: var(--popup-ink);
+}
+
 /* Tekst on lehe enda väikese teksti mõõdus (sama mis juhtriba lahtritel).
    Lõigud pärisid muidu platvormi põhiteksti mõõdu (17,9 px) ja iga rida oli
    34 px kõrge. */
@@ -32,6 +66,17 @@
   line-height: inherit;
 }
 
+/* Suumi nupud on kõigi kaardikihtide kohal. Laial kaardil hoiab kaart paneeli
+   neist paremal (`popupTopLeftPadding`); kitsal kaardil on paneel peaaegu
+   kaardi laiune ja nupud jääksid selle vasaku ülanurga peale, nii et „tagasi"
+   asemel vajutaks inimene suumi. Seal peidetakse nupud avatud paneeli ajaks
+   (suumida saab sõrmedega). Piir on sama mis `NARROW_MAP_WIDTH`. */
+@container (max-width: 479.98px) {
+  .shell:has(:global(.leaflet-popup)) :global(.leaflet-control-zoom) {
+    visibility: hidden;
+  }
+}
+
 /* Rühma paneelis on korraga üks vaade: kontaktide loend VÕI üks kontakt. */
 .shell :global(.service-map-popup__group-list),
 .shell :global(.service-map-popup__contact-detail),
@@ -43,8 +88,9 @@
   min-width: 0;
 }
 
-.shell :global(.service-map-popup__group-list[hidden]) {
-  display: none;
+/* Ühe kontakti vaade on tihe, et ta mahuks madalasse kaardialasse kerimata. */
+.shell :global(.service-map-popup__contact-detail) {
+  gap: 0.3rem;
 }
 
 /* Rühma loendi rida on madal: nimi ja roll nupul, telefon ja e-post ühel real. */
@@ -64,7 +110,7 @@
   padding: 0.15rem 0;
   border: 0;
   background: none;
-  color: #f5f1e8;
+  color: var(--popup-ink);
   font: inherit;
   font-weight: 600;
   text-decoration: underline;
@@ -75,7 +121,7 @@
 .shell :global(.service-map-popup__meta-link) {
   min-width: 0;
   overflow-wrap: anywhere;
-  color: #f5f1e8;
+  color: var(--popup-ink);
   text-decoration: underline;
   text-underline-offset: 0.18em;
 }
@@ -83,13 +129,13 @@
 .shell :global(.service-map-popup__access-path),
 .shell :global(.service-map-popup__services) {
   padding-top: 0.6rem;
-  border-top: 1px solid rgba(245, 241, 232, 0.11);
+  border-top: 1px solid var(--popup-rule);
 }
 
 .shell :global(.leaflet-popup-content) :global(.service-map-popup__access-path-title),
 .shell :global(.leaflet-popup-content) :global(.service-map-popup__services-title),
 .shell :global(.leaflet-popup-content) :global(.service-map-popup__service-title) {
-  color: #f5f1e8;
+  color: var(--popup-ink);
   font-size: var(--fs-small);
   font-weight: 650;
   line-height: 1.25;
@@ -102,7 +148,7 @@
 
 .shell :global(.leaflet-popup-content) :global(.service-map-popup__access-path-note),
 .shell :global(.leaflet-popup-content) :global(.service-map-popup__service-meta) {
-  color: #a9a195;
+  color: var(--popup-ink-dim);
   font-size: var(--fs-micro);
 }
 

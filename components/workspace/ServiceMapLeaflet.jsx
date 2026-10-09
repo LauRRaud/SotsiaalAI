@@ -5,6 +5,17 @@ import { normalizeServiceMapAccessPath, serviceMapAccessPathHasDetails } from "@
 import { serviceAvailabilityPresentation } from "@/lib/serviceAvailabilityUi";
 
 import styles from "./ServiceMapLeaflet.module.css";
+import {
+  POPUP_EDGE_PADDING,
+  accessPathWord,
+  addressNamesMunicipality,
+  groupPopupView,
+  popupDateLocale,
+  popupSourceLink,
+  popupTopLeftPadding,
+  serviceEmailHref,
+  servicePhoneHref
+} from "./serviceMapPopupRules";
 
 const ESTONIA_BOUNDS = [
   [57.45, 21.35],
@@ -22,8 +33,6 @@ const DEFAULT_ATTRIBUTION = "Aluskaart: Maa- ja Ruumiamet";
 const DEFAULT_LEAFLET_SCRIPT_URL = "/vendor/leaflet/leaflet.js";
 const DEFAULT_LEAFLET_CSS_URL = "/vendor/leaflet/leaflet.css";
 const SERVICE_MAP_MIN_ZOOM = 8;
-/* Vaba serv avatud kontaktipaneeli ja kaardiala ääre vahel. */
-const POPUP_EDGE_PADDING = 10;
 
 let leafletLoadPromise = null;
 
@@ -166,17 +175,6 @@ function keepFromMap(element) {
   element.addEventListener("touchstart", stop, { passive: true });
 }
 
-function phoneHref(value) {
-  const match = String(value || "").match(/\+?\d(?:[\s()-]*\d){6,11}/u);
-  const normalized = match ? match[0].replace(/[^\d+]/gu, "") : "";
-  return normalized ? `tel:${normalized}` : "";
-}
-
-function emailHref(value) {
-  const email = String(value || "").trim();
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/u.test(email) ? `mailto:${email}` : "";
-}
-
 /* `href`: telefon ja e-post on lingid, et number oleks telefonis ühe vajutusega
    valitav. Avatakse nagu teised paneeli lingid: aadress antakse brauserile otse. */
 function appendMeta(parent, label, value, href = "") {
@@ -278,16 +276,12 @@ function feeLabel(value, t) {
   return "";
 }
 
-/* Sisemist koodi ekraanile ei lasta: väärtus, millel kataloogis sõna ei ole,
-   on „Teadmata". Enne oli varuväärtus kood ise ja nelja rühma sõnad puudusid
-   kataloogist üldse, nii et iga kontakti juures seisis „CHECK_SOURCE" ja
-   „UNKNOWN" (kujundusaudit K13). */
+/* Sõna valib `accessPathWord` (serviceMapPopupRules.js): sisemist koodi
+   ekraanile ei lasta. Enne oli varuväärtus kood ise ja nelja rühma sõnad
+   puudusid kataloogist üldse, nii et iga kontakti juures seisis „CHECK_SOURCE"
+   ja „UNKNOWN" (kujundusaudit K13). */
 function accessPathValueLabel(t, group, value) {
-  const normalized = String(value || "UNKNOWN").toUpperCase();
-  return (
-    readText(t, `serviceMap.accessPath.${group}.${normalized}`, "") ||
-    readText(t, "serviceMap.accessPath.unknownShort", "Teadmata")
-  );
+  return accessPathWord(t, group, value);
 }
 
 function yesNoLabel(value, t) {
@@ -426,22 +420,16 @@ function appendLicenceBadge(parent, badge, t) {
   return block;
 }
 
-function addressNamesMunicipality(entry) {
-  const address = String(entry?.address || "").toLowerCase();
-  const municipality = String(entry?.municipalityName || "").trim().toLowerCase();
-  return Boolean(address && municipality && address.includes(municipality));
-}
-
 function isKovContactEntry(entry) {
   const type = String(entry?.type || "").toUpperCase();
   return type === "KOV_SOCIAL_CONTACT" || type === "KOV_GENERAL_CONTACT";
 }
 
-function formatLicenceDate(value) {
+function formatLicenceDate(value, locale = "et") {
   if (!value) return "";
   const date = value instanceof Date ? value : new Date(value);
   if (Number.isNaN(date.getTime())) return "";
-  return new Intl.DateTimeFormat("et-EE", { dateStyle: "long", timeZone: "Europe/Tallinn" }).format(date);
+  return new Intl.DateTimeFormat(popupDateLocale(locale), { dateStyle: "long", timeZone: "Europe/Tallinn" }).format(date);
 }
 
 function appendServiceItems(parent, entry, t, onStartPreInquiry) {
@@ -573,7 +561,7 @@ function createHelpListingPopupContent(entry, t, onConnectHelpEntry) {
   return root;
 }
 
-function createPopupContent(entry, t, onConnectHelpEntry, onStartPreInquiry) {
+function createPopupContent(entry, t, onConnectHelpEntry, onStartPreInquiry, options = {}) {
   if (isHelpMapEntry(entry)) {
     return createHelpListingPopupContent(entry, t, onConnectHelpEntry);
   }
@@ -593,12 +581,12 @@ function createPopupContent(entry, t, onConnectHelpEntry, onStartPreInquiry) {
       entryRegionText(entry)
     );
   }
-  appendMeta(root, readText(t, "workspace_feature_pages.service_map.popup.phone", "Telefon"), entry.phone, phoneHref(entry.phone));
-  appendMeta(root, readText(t, "workspace_feature_pages.service_map.popup.email", "E-post"), entry.email, emailHref(entry.email));
+  appendMeta(root, readText(t, "workspace_feature_pages.service_map.popup.phone", "Telefon"), entry.phone, servicePhoneHref(entry.phone));
+  appendMeta(root, readText(t, "workspace_feature_pages.service_map.popup.email", "E-post"), entry.email, serviceEmailHref(entry.email));
   /* KOV-kontakti allikalehte kontrollitakse kord nädalas; kuupäev ütleb, kui
      värske see kontakt on. Teenuseosutaja kirjel on oma saadavuse ja loa read. */
   if (isKovContactEntry(entry)) {
-    appendMeta(root, readText(t, "serviceMap.contactCheckedAt", "Kontakt kontrollitud"), formatLicenceDate(entry.checkedAt));
+    appendMeta(root, readText(t, "serviceMap.contactCheckedAt", "Kontakt kontrollitud"), formatLicenceDate(entry.checkedAt, options.locale));
   }
   appendServiceItems(root, entry, t, onStartPreInquiry);
   const accessSection = appendAccessPath(root, entry, t);
@@ -606,10 +594,13 @@ function createPopupContent(entry, t, onConnectHelpEntry, onStartPreInquiry) {
   const websiteUrl = safeWebsiteUrl(entry.website);
   /* Ligipääsutee plokil on oma allikalink. Kui plokki ei ole, on link siin
      tegevuste reas; sama aadressi kahe nime all ei näidata. */
-  const sourceUrl = accessSection ? "" : safeWebsiteUrl(entry?.accessPath?.sourceUrl || entry?.sourceUrl);
-  const showSource = Boolean(sourceUrl && sourceUrl !== websiteUrl);
+  const sourceUrl = popupSourceLink({
+    accessShown: Boolean(accessSection),
+    sourceUrl: safeWebsiteUrl(entry?.accessPath?.sourceUrl || entry?.sourceUrl),
+    websiteUrl
+  });
   const hasServiceActions = Array.isArray(entry.serviceActions);
-  if (websiteUrl || showSource || entry.email || (!hasServiceActions && onStartPreInquiry)) {
+  if (websiteUrl || sourceUrl || entry.email || (!hasServiceActions && onStartPreInquiry)) {
     const actions = document.createElement("div");
     actions.className = "service-map-popup__actions";
 
@@ -639,7 +630,7 @@ function createPopupContent(entry, t, onConnectHelpEntry, onStartPreInquiry) {
       );
     }
 
-    if (showSource) {
+    if (sourceUrl) {
       appendActionLink(actions, sourceUrl, readText(t, "serviceMap.accessPath.source", "Ametlik allikas"), {
         target: "_blank",
         rel: "noreferrer"
@@ -661,6 +652,8 @@ function appendGroupedPopupContact(parent, entry, onOpen) {
   const button = document.createElement("button");
   button.type = "button";
   button.className = "service-map-popup__contact-button";
+  /* Tunnus on fookuse tagasitoomiseks pärast „tagasi" (vt `refreshPopup`). */
+  button.dataset.entryId = String(entry?.id || "");
   keepFromMap(button);
   button.addEventListener("click", (event) => {
     event.preventDefault();
@@ -683,18 +676,43 @@ function appendGroupedPopupContact(parent, entry, onOpen) {
  * ÜKS VAADE KORRAGA: kontaktide loend VÕI üks avatud kontakt. Varem avanes
  * kontakt loendi sisse oma rea alla, nii et üheteistkümne kontaktiga paneel
  * kasvas mitme ekraani kõrguseks ja avatud kontakti nuppudeni tuli kerida
- * (kujundusaudit K13). Avatud kontakti vaates on ülal „tagasi", mis toob loendi
- * tagasi ja fookuse samale reale.
+ * (kujundusaudit K13).
+ *
+ * Kumb vaade on ees, otsustab `groupPopupView` valiku ja komponendi käes oleva
+ * märke järgi (`view.listForced`: inimene vajutas „tagasi"). See funktsioon
+ * ISE VAADET EI VAHETA: „tagasi" ja sama kontakti uuesti avamine teatavad
+ * komponendile (`view.onBack`, `view.onReopen`), kes laseb kaardil paneeli
+ * uuesti ehitada. Nii mõõdab kaart paneeli iga vahetuse järel uuesti ja nihutab
+ * ta nähtavale; kohapeal vahetades kasvas loend kaardi ülaservast välja.
  */
-function createGroupedPopupContent(group, t, onSelectEntry, selectedEntryId, onConnectHelpEntry, onStartPreInquiry) {
+function createGroupedPopupContent(group, t, onSelectEntry, selectedEntryId, onConnectHelpEntry, onStartPreInquiry, view = {}) {
   if (!group || group.entries.length <= 1) {
-    return createPopupContent(group?.primaryEntry || group?.entries?.[0] || {}, t, onConnectHelpEntry, onStartPreInquiry);
+    return createPopupContent(group?.primaryEntry || group?.entries?.[0] || {}, t, onConnectHelpEntry, onStartPreInquiry, { locale: view.locale });
   }
 
   const root = document.createElement("article");
   root.className = "service-map-popup service-map-popup--group";
-  const primaryEntry = group.primaryEntry || group.entries[0];
+  const shown = groupPopupView(group, selectedEntryId, view.listForced ? group.id : "");
 
+  if (shown.view === "contact") {
+    const detail = createPopupContent(shown.entry, t, onConnectHelpEntry, onStartPreInquiry, { locale: view.locale });
+    detail.classList.add("service-map-popup__contact-detail");
+    const back = document.createElement("button");
+    back.type = "button";
+    back.className = "service-map-popup__contact-back";
+    back.textContent = `‹ ${readText(t, "workspace_feature_pages.service_map.popup.back_to_group", "Tagasi kontaktide juurde")}`;
+    keepFromMap(back);
+    back.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      view.onBack?.(shown.entry.id);
+    });
+    detail.insertBefore(back, detail.firstChild);
+    root.appendChild(detail);
+    return root;
+  }
+
+  const primaryEntry = group.primaryEntry || group.entries[0];
   const listView = document.createElement("div");
   listView.className = "service-map-popup__group-list";
   appendText(
@@ -705,51 +723,22 @@ function createGroupedPopupContent(group, t, onSelectEntry, selectedEntryId, onC
       .replace("{count}", String(group.entries.length))
   );
   appendMeta(listView, readText(t, "workspace_feature_pages.service_map.popup.address", "Aadress"), primaryEntry.address);
-  appendMeta(listView, readText(t, "workspace_feature_pages.service_map.popup.region", "Piirkond"), entryRegionText(primaryEntry));
+  if (!addressNamesMunicipality(primaryEntry)) {
+    appendMeta(listView, readText(t, "workspace_feature_pages.service_map.popup.region", "Piirkond"), entryRegionText(primaryEntry));
+  }
 
   const list = document.createElement("div");
   list.className = "service-map-popup__contacts";
-  const buttons = new Map();
-  let detailView = null;
-
-  const showDetail = (entry, { focus = false } = {}) => {
-    detailView?.remove();
-    detailView = createPopupContent(entry, t, onConnectHelpEntry, onStartPreInquiry);
-    detailView.classList.add("service-map-popup__contact-detail");
-    const back = document.createElement("button");
-    back.type = "button";
-    back.className = "service-map-popup__contact-back";
-    back.textContent = `‹ ${readText(t, "workspace_feature_pages.service_map.popup.back_to_group", "Tagasi kontaktide juurde")}`;
-    keepFromMap(back);
-    back.addEventListener("click", (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      detailView?.remove();
-      detailView = null;
-      listView.hidden = false;
-      buttons.get(entry.id)?.focus();
-    });
-    detailView.insertBefore(back, detailView.firstChild);
-    listView.hidden = true;
-    root.appendChild(detailView);
-    if (focus) back.focus();
-  };
-
   for (const entry of group.entries) {
-    const button = appendGroupedPopupContact(list, entry, (opened) => {
-      /* Sama kontakti uuesti avamine (pärast „tagasi") käib kohapeal: valik ei
-         muutunud, nii et leht paneeli uuesti ei joonista ja vajutus ei teeks
-         muidu midagi. */
-      if (opened.id === selectedEntryId) showDetail(opened, { focus: true });
+    appendGroupedPopupContact(list, entry, (opened) => {
+      /* Sama kontakti uuesti avamine (pärast „tagasi"): valik ei muutunud, nii
+         et lehe olek paneeli ise uuesti ei joonistaks. */
+      if (opened.id === selectedEntryId) view.onReopen?.(opened.id);
       else onSelectEntry?.(opened.id);
     });
-    buttons.set(entry.id, button);
   }
   listView.appendChild(list);
   root.appendChild(listView);
-
-  const selected = group.entries.find((entry) => entry?.id === selectedEntryId);
-  if (selected) showDetail(selected);
 
   return root;
 }
@@ -847,12 +836,29 @@ function loadLeafletFromPublicAssets() {
   return leafletLoadPromise;
 }
 
+/* Laseb kaardil avatud paneeli uuesti ehitada (seotud funktsioon loeb valiku
+   ja vaate värskelt), mõõta ja nähtavale nihutada. `focus`: kuhu fookus pärast
+   läheb, sest vana sisu koos fookuses olnud nupuga kaob. */
+function refreshPopup(marker, focus = null) {
+  const popup = marker?.getPopup?.();
+  if (!popup || !marker.isPopupOpen?.()) return;
+  popup.update();
+  if (!focus) return;
+  const element = popup.getElement?.();
+  if (!element) return;
+  const target = focus.back
+    ? element.querySelector(".service-map-popup__contact-back")
+    : [...element.querySelectorAll(".service-map-popup__contact-button")].find((button) => button.dataset.entryId === String(focus.entryId || ""));
+  target?.focus?.({ preventScroll: false });
+}
+
 export default function ServiceMapLeaflet({
   entries = [],
   selectedEntryId = "",
   onSelectEntry,
   onConnectHelpEntry,
   onStartPreInquiry,
+  locale = "et",
   t
 }) {
   const containerRef = useRef(null);
@@ -866,6 +872,11 @@ export default function ServiceMapLeaflet({
   const onConnectHelpEntryRef = useRef(onConnectHelpEntry);
   const onStartPreInquiryRef = useRef(onStartPreInquiry);
   const tRef = useRef(t);
+  const localeRef = useRef(locale);
+  /* Rühm, mille paneelis inimene vajutas „tagasi": seal on ees loend, kuigi
+     valik püsib. Uus valik tühjendab selle. */
+  const groupListRef = useRef("");
+  const lastSelectedRef = useRef(selectedEntryId);
   const [leaflet, setLeaflet] = useState(null);
   const [ready, setReady] = useState(false);
   const [mapError, setMapError] = useState("");
@@ -873,6 +884,10 @@ export default function ServiceMapLeaflet({
   useEffect(() => {
     tRef.current = t;
   }, [t]);
+
+  useEffect(() => {
+    localeRef.current = locale;
+  }, [locale]);
 
   useEffect(() => {
     selectedEntryIdRef.current = selectedEntryId;
@@ -1028,14 +1043,36 @@ export default function ServiceMapLeaflet({
           : group.primaryEntry?.title || ""
       });
 
-      marker.bindPopup(() => createGroupedPopupContent(
-        group,
-        tRef.current,
-        onSelectEntryRef.current,
-        selectedEntryIdRef.current,
-        onConnectHelpEntryRef.current,
-        onStartPreInquiryRef.current
-      ), {
+      /* Paneeli sisu ehitab ALATI see funktsioon: kaart kutsub teda igal
+         avamisel ja igal `update()` kutsel ning ta loeb valiku ja vaate
+         värskelt. Valmis ehitatud sõlme kaardile ei anta: kaart jätaks selle
+         meelde ja näitaks järgmisel avamisel vana kontakti. */
+      marker.bindPopup(() => {
+        const popup = marker.getPopup?.();
+        /* Vaba äär vasakul sõltub kaardi laiusest (suumi nupud); kaart loeb
+           selle kohe pärast sisu ehitamist, kui ta paneeli nähtavale nihutab. */
+        if (popup) popup.options.autoPanPaddingTopLeft = popupTopLeftPadding(mapRef.current?.getSize?.().x);
+        return createGroupedPopupContent(
+          group,
+          tRef.current,
+          onSelectEntryRef.current,
+          selectedEntryIdRef.current,
+          onConnectHelpEntryRef.current,
+          onStartPreInquiryRef.current,
+          {
+            locale: localeRef.current,
+            listForced: groupListRef.current === group.id,
+            onBack: (entryId) => {
+              groupListRef.current = group.id;
+              refreshPopup(marker, { entryId });
+            },
+            onReopen: () => {
+              groupListRef.current = "";
+              refreshPopup(marker, { back: true });
+            }
+          }
+        );
+      }, {
         className: [
           "service-map-leaflet__popup",
           group.entries.length > 1 ? "service-map-leaflet__popup--group" : "service-map-leaflet__popup--single"
@@ -1050,7 +1087,7 @@ export default function ServiceMapLeaflet({
            all) pärinesid ajast, kui riba hõljus kaardi peal: 346 px kõrguses
            kaardialas jäi paneelile nendega 134 px ja ta ei mahtunud kunagi ära.
            Paneeli enda kõrgus on seotud kaardiala kõrgusega samas failis. */
-        autoPanPaddingTopLeft: [POPUP_EDGE_PADDING, POPUP_EDGE_PADDING],
+        autoPanPaddingTopLeft: popupTopLeftPadding(mapRef.current?.getSize?.().x),
         autoPanPaddingBottomRight: [POPUP_EDGE_PADDING, POPUP_EDGE_PADDING]
       });
       marker.on("click", () => {
@@ -1099,6 +1136,8 @@ export default function ServiceMapLeaflet({
     }
 
     if (!selectedEntryId) {
+      lastSelectedRef.current = "";
+      groupListRef.current = "";
       mapRef.current.closePopup?.();
       return;
     }
@@ -1108,15 +1147,18 @@ export default function ServiceMapLeaflet({
     const selectedCoordinates = entryCoordinates(selectedEntry);
     if (selectedMarker && selectedCoordinates) {
       const selectedGroup = groupForEntryId(entries, selectedEntryId);
+      /* Uus valik toob valitud kontakti ette; sama valikuga kordus (kirjed või
+         keel muutusid) jätab inimese valitud vaate alles. */
+      if (lastSelectedRef.current !== selectedEntryId) {
+        lastSelectedRef.current = selectedEntryId;
+        groupListRef.current = "";
+      }
       if (selectedMarker.isPopupOpen?.() && selectedGroup) {
-        selectedMarker.setPopupContent(createGroupedPopupContent(
-          selectedGroup,
-          tRef.current,
-          onSelectEntryRef.current,
-          selectedEntryId,
-          onConnectHelpEntryRef.current,
-          onStartPreInquiryRef.current
-        ));
+        /* Kui valik tehti paneeli seest, oli fookus seal: pärast uuesti
+           ehitamist läheb see „tagasi" nupule, mitte ei kao lehe algusesse. */
+        const element = selectedMarker.getPopup?.()?.getElement?.();
+        const hadFocus = Boolean(element && element.contains(document.activeElement));
+        refreshPopup(selectedMarker, hadFocus ? { back: true } : null);
         return;
       }
 

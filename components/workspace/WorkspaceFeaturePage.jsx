@@ -98,6 +98,7 @@ import {
 } from "./serviceProfile/profileModel";
 import HelpMatchDecisionPanel from "./HelpMatchDecisionPanel";
 import ServiceMapLeaflet from "./ServiceMapLeaflet";
+import { servicePhoneHref } from "@/components/workspace/serviceMapPopupRules";
 import ServiceLicenceStatus, { useServiceLicenceStatuses } from "@/components/service-provider/ServiceLicenceStatus";
 import { SERVICE_PROFILE_LIMITS } from "@/lib/serviceProviderProfileLimits";
 
@@ -3086,13 +3087,6 @@ function safeServiceMapWebsiteUrl(value) {
   }
 }
 
-function serviceMapPhoneHref(value) {
-  const match = String(value || "").match(/\+?\d(?:[\s()-]*\d){6,11}/u);
-  if (!match) return "";
-  const normalized = String(match[0] || "").replace(/[^\d+]/gu, "");
-  return normalized ? `tel:${normalized}` : "";
-}
-
 function readInitialServiceMapFilters() {
   if (typeof window === "undefined") {
     return { keyword: "", region: "", entryType: "KOV_SOCIAL_CONTACT" };
@@ -3341,7 +3335,7 @@ function ServiceMapSurface({
     [selectedUnlocatedEntry]
   );
   const selectedUnlocatedPhoneHref = useMemo(
-    () => serviceMapPhoneHref(selectedUnlocatedEntry?.phone),
+    () => servicePhoneHref(selectedUnlocatedEntry?.phone),
     [selectedUnlocatedEntry]
   );
   const selectedUnlocatedEmail = useMemo(() => {
@@ -3670,6 +3664,7 @@ function ServiceMapSurface({
           onSelectEntry={handleSelectEntry}
           onConnectHelpEntry={handleConnectHelpMapEntry}
           onStartPreInquiry={handleStartPreInquiry}
+          locale={locale}
           t={t}
         />
       </div>

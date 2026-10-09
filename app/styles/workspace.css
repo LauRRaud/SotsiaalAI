@@ -1446,10 +1446,11 @@
 }
 /* Popupid klaasikeeles */
 .service-map-canvas .leaflet-popup-content-wrapper {
-  /* Leafleti CSS lisatakse brauseris hiljem ja on kihistamata. Need kaks
-     väärtust peavad seepärast võitma ka tema valge vaike-popupi. */
-  background: rgba(18, 20, 19, 0.94) !important;
-  color: #f5f1e8 !important;
+  /* Paneeli tausta ja kirja värv on failis
+     components/workspace/ServiceMapLeaflet.module.css: Leafleti CSS on
+     kihistamata ja võidab siinse (kihis oleva) reegli, sundimine aga võitis
+     ka heleda teema reegli ja jättis heledas teemas tumeda klaasi tumeda
+     kirjaga. */
   border-radius: 12px;
   border: 1px solid rgba(245, 241, 232, 0.18);
   box-shadow: 0 1rem 2.6rem rgba(8, 10, 9, 0.32), inset 0 1px rgba(255, 255, 255, 0.06);
@@ -1458,31 +1459,42 @@
 }
 .service-map-canvas .leaflet-popup-content {
   margin: 0.65rem 0.95rem 0.65rem !important;
-  max-height: min(65vh, 32rem);
   /* Paneel peab mahtuma kaardialasse, muidu lõikab ala serv ta ära ja sisu
      ega nuppudeni ei pääse. Maha läheb paneeli enda ülemine ja alumine serv
      (1.3rem, vt `margin` siin ülal) ning 46 px: raam (4), nool (20), vaba äär
-     mõlemal pool (2 × `POPUP_EDGE_PADDING` failis ServiceMapLeaflet.jsx) ja
-     2 px varu. Esimene rida jääb brauserile, mis `cqh` ühikut ei tunne. */
+     mõlemal pool (2 × `POPUP_EDGE_PADDING` failis serviceMapPopupRules.js) ja
+     2 px varu. Brauser, mis `cqh` ühikut ei tunne, saab akna järgi arvutatud
+     piiri allpool (`@supports not`). */
   max-height: min(65vh, 32rem, calc(100cqh - 1.3rem - 46px));
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-gutter: stable;
 }
-/* Laius on seotud kaardiala laiusega (`cqw`), mitte akna laiusega: telefonis
+/* Paneel on 24rem lai, et tavaline aadress mahuks ühele reale (iga murtud rida
+   teeb paneeli kõrgemaks ja 640 px aknas on kaardiala madal); rühma loend ja
+   üks kontakt on sama laiad, et vaate vahetus paneeli ei hüpitaks.
+   Laius on seotud kaardiala laiusega (`cqw`), mitte akna laiusega: telefonis
    on kaardiala aknast kitsam ja paneel ulatus üle selle serva. 3.4rem katab
-   paneeli küljeservad, raami ja vaba ääre mõlemal pool. Esimene rida jääb
-   brauserile, mis `cqw` ühikut ei tunne. */
+   paneeli küljeservad, raami ja vaba ääre mõlemal pool. */
 .service-map-canvas .service-map-leaflet__popup--group .leaflet-popup-content {
-  width: min(20rem, calc(100vw - 3rem)) !important;
-  width: min(20rem, calc(100cqw - 3.4rem)) !important;
+  width: min(24rem, calc(100cqw - 3.4rem)) !important;
 }
 .service-map-canvas .service-map-leaflet__popup--single .leaflet-popup-content {
-  width: min(18.5rem, calc(100vw - 3rem)) !important;
-  width: min(18.5rem, calc(100cqw - 3.4rem)) !important;
+  width: min(24rem, calc(100cqw - 3.4rem)) !important;
 }
-.service-map-canvas .leaflet-popup-tip {
-  background: rgba(18, 20, 19, 0.94) !important;
+/* Brauser, mis konteineri ühikuid ei tunne (vanem Safari): piirid akna järgi,
+   nagu enne. Kaks järjestikust deklaratsiooni samas reeglis ei sobi varuks,
+   sest ehitus jätab neist alles ainult viimase. */
+@supports not (height: 1cqh) {
+  .service-map-canvas .leaflet-popup-content {
+    max-height: min(65vh, 32rem);
+  }
+  .service-map-canvas .service-map-leaflet__popup--group .leaflet-popup-content {
+    width: min(20rem, calc(100vw - 3rem)) !important;
+  }
+  .service-map-canvas .service-map-leaflet__popup--single .leaflet-popup-content {
+    width: min(18.5rem, calc(100vw - 3rem)) !important;
+  }
 }
 .service-map-popup {
   display: grid;
@@ -1538,7 +1550,6 @@
   margin: 0;
   padding: 0.35em 0.85em;
   border-radius: 999px;
-  color: #f5f1e8 !important;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.28);
   text-decoration: none;
@@ -1684,7 +1695,6 @@
 }
 
 .service-map-canvas .leaflet-container a.leaflet-popup-close-button {
-  color: #f5f1e8 !important;
   top: 0.35rem;
   right: 0.38rem;
 }
