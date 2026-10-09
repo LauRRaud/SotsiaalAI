@@ -1,0 +1,318 @@
+/* „Minu juhtumid": loendi read ja märgid, väljad, avatud juhtumi päis ning
+   juhtumi osade read. Vaate kuju (juhis, tegevusrida) tuleb StepPanel-ist,
+   valikud ChoiceRow-st, lava ja ülevaate plaadid components/stage-ist. */
+
+.shell {
+  min-width: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+.stack {
+  min-width: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+.quiet {
+  margin: 0;
+  color: var(--text-soft);
+}
+.notice {
+  margin: 0;
+  max-width: none;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.9rem;
+  background: var(--glass-cell-bg);
+  color: var(--text-soft);
+}
+.notice[data-tone="risk"] {
+  border-color: color-mix(in srgb, var(--status-error, #eb9a76) 60%, transparent);
+  border-inline-start-width: 3px;
+  background: color-mix(in srgb, var(--status-error, #eb9a76) 10%, transparent);
+  color: var(--text-warm);
+}
+
+/* Märk: juhtumi või punkti seis, seose liik, päritolu. */
+.chip {
+  flex: none;
+  padding: 0.12rem 0.6rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 999px;
+  color: var(--text-soft);
+  font-size: 0.78rem;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.chip[data-tone="ok"] {
+  border-color: color-mix(in srgb, var(--status-success, #c5cf9b) 55%, transparent);
+  color: var(--status-success, #c5cf9b);
+}
+.chip[data-tone="wait"] {
+  border-color: color-mix(in srgb, #e6c27a 55%, transparent);
+  color: #e6c27a;
+}
+:global(html.theme-light) .chip[data-tone="ok"] {
+  color: #2f6a3f;
+}
+:global(html.theme-light) .chip[data-tone="wait"] {
+  color: #7a5a12;
+}
+
+/* Loendi kohal: seisu filter vasakul, uus juhtum paremal. Kitsal pinnal läheb
+   nupp filtri alla. Joondus ülaserva järgi: filtrireal on all oma vahe. */
+.bar {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.4rem 1rem;
+}
+.filter {
+  min-width: 0;
+}
+
+/* Loend: rida on üks vajutatav lahter (nimi, seis ja aeg, tee edasi). */
+.rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+/* Ühine lehekiht annab igale loendireale alumise vahe ja proosa laiuse. */
+.rowItem {
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+}
+.row {
+  composes: cell from "../../stage/cell.module.css";
+  width: 100%;
+  min-height: var(--hit-target-min, 2.75rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 0.3rem 1rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.9rem;
+  text-align: left;
+}
+.rowTitle {
+  min-width: 0;
+  font-weight: 560;
+  color: var(--text-warm);
+  overflow-wrap: anywhere;
+}
+/* Punkti tekst loendis: kuni kaks rida, terve tekst on avatud punktis. */
+.rowText {
+  min-width: 0;
+  color: var(--text-warm);
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.rowMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 0.3rem 0.6rem;
+}
+.time,
+.rowOpen {
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.more {
+  justify-self: start;
+}
+
+/* Väljad: nii laiad, kui sisu vajab (kliendi viide ei ole paneeli laiune),
+   kõrvuti seni, kuni mahuvad. */
+.fields {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.6rem 0.8rem;
+}
+.field {
+  min-width: 0;
+  flex: 1 1 15rem;
+  max-width: 22rem;
+  display: grid;
+  gap: 0.3rem;
+}
+.field[data-size="sm"] {
+  flex-basis: 12rem;
+  max-width: 15rem;
+}
+.field[data-size="lg"] {
+  flex-basis: 100%;
+  max-width: 38rem;
+}
+.fieldLabel {
+  color: var(--text-warm);
+  font-size: var(--fs-small, 0.875rem);
+}
+
+/* Avatud juhtumi päis: nimi ja seis vasakul, tee tagasi loendisse paremal.
+   Nimi ei ole lehe pealkiri (see on kiirmenüüs), vaid ütleb, milline juhtum on
+   lahti; seepärast on ta tavalise teksti suurune. */
+.head {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 0.8rem;
+}
+.caseName {
+  min-width: 0;
+  margin: 0;
+  color: var(--text-warm);
+  font-size: var(--fs-body, 1rem);
+  font-weight: 560;
+  letter-spacing: normal;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.back {
+  margin-left: auto;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-soft);
+  font: inherit;
+  font-size: var(--fs-small, 0.875rem);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.back:hover {
+  color: var(--text-warm);
+}
+.back:focus-visible {
+  outline: none;
+  border-radius: 0.3rem;
+  box-shadow: var(--focus-ring);
+}
+
+/* Seos või punkt, mida ei avata: sisu vasakul, tegevus paremal. */
+.item {
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.3rem 1rem;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.9rem;
+  background: var(--glass-cell-bg);
+}
+.itemMain {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 0.7rem;
+}
+/* Objekti tunnus: pikk kleebitud string peab murduma, mitte rida laiaks ajama. */
+.ref {
+  min-width: 0;
+  color: var(--text-warm);
+  font-size: var(--fs-small, 0.875rem);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.4rem;
+}
+
+/* Rida sildiga (nt „Seis" ja märk). */
+.line {
+  margin: 0;
+  max-width: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 0.7rem;
+}
+.lineLabel {
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+}
+
+/* Avatud punkti tekst. Sisestatud tekst on plain text ja võib kanda ka HTML-i
+   välja nägevat sisu: reavahed jäävad alles ja pikk string murdub. */
+.pointText {
+  margin: 0;
+  max-width: 68ch;
+  color: var(--text-warm);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* Pöördumatu tegu ei tohi näha välja nagu „Salvesta": sama nupp, hoiatav toon. */
+.danger {
+  border-color: color-mix(in srgb, var(--status-error, #eb9a76) 60%, transparent);
+  color: var(--status-error, #eb9a76);
+}
+:global(html.theme-light) .danger {
+  color: #9a3d1f;
+}
+
+/* Vana kihiga sektsioon (ettevalmistus, märge, STAR2 järjekord) lava osana:
+   ilma oma kaardi ja pealkirjata, ainult sisu vahedega. */
+.section {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+/* Sektsiooni sees avatud ettevalmistus, märge või element: loendist eraldab
+   seda joon, mitte teine kaart klaaspaneeli sees. */
+.editor {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid color-mix(in srgb, var(--text-warm) 12%, transparent);
+}
+
+@media (max-width: 640px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .rowMeta {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: flex-start;
+  }
+  /* Telefonis on filtri lahtrid kahes veerus terve laiuse peale. */
+  .filter {
+    flex-basis: 100%;
+  }
+  .field,
+  .field[data-size] {
+    flex-basis: 100%;
+    max-width: none;
+  }
+  .item {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .buttons {
+    justify-content: flex-start;
+  }
+}

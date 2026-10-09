@@ -56,25 +56,35 @@ export function caseLabelText(label, t) {
   return t(label?.labelKey || "casework.label.untitled", "");
 }
 
-/** `retentionState` → tõlkevõti. Tundmatu seis ei kuva toorest enum'i nime. */
+/**
+ * `retentionState` → tõlkevõti. Tundmatu seis ei kuva toorest enum'i nime.
+ *
+ * TUNDMATU SEIS ON „TUNDMATU", MITTE „AKTIIVNE". Varem langes iga tundmatu
+ * väärtus aktiivse sildi peale: märk ütles „Aktiivne", aga kirjutusnupud olid
+ * väljas, sest kirjutamist lubab ainult täpne `ACTIVE`. Sama reegel kehtib
+ * kahel järgmisel sõnastikul.
+ */
 export function retentionLabelKey(state) {
+  if (state === "ACTIVE") return "casework.page.retention_active";
   if (state === "READ_ONLY") return "casework.page.retention_read_only";
   if (state === "ARCHIVED") return "casework.page.retention_archived";
-  return "casework.page.retention_active";
+  return "casework.page.retention_unknown";
 }
 
 /** Puuduva info staatus → tõlkevõti. */
 export function missingInfoStatusKey(status) {
+  if (status === "OPEN") return "casework.page.status_open";
   if (status === "RESOLVED") return "casework.page.status_resolved";
   if (status === "NOT_APPLICABLE") return "casework.page.status_not_applicable";
-  return "casework.page.status_open";
+  return "casework.page.status_unknown";
 }
 
 /** Seose sihttüüp → tõlkevõti. */
 export function targetTypeKey(targetType) {
+  if (targetType === "USER_DOCUMENT") return "casework.page.target_user_document";
   if (targetType === "AGENT_ARTIFACT") return "casework.page.target_agent_artifact";
   if (targetType === "FIELD_VISIT") return "casework.page.target_field_visit";
-  return "casework.page.target_user_document";
+  return "casework.page.target_unknown";
 }
 
 /**

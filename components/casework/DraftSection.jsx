@@ -14,6 +14,12 @@
  *
  * TERMINAALSE ELEMENDI SISU EI MUUDETA. `ULE_KANTUD` ja `EI_KANTA` on ptk 2.2
  * lõpp-punktid — vorm on kinni ja lause ütleb, miks.
+ *
+ * LAVA OSA (09.10). Sektsioon on juhtumi lava üks osa (`CaseWorkDetail.jsx`):
+ * oma raamitud kaarti, pealkirja ega juhist ta enam ei joonista, need annab
+ * osa vaade. Ülekandeajalugu on juhtumi lava OMA osa: siit teatatakse ainult,
+ * et ülekandetegu toimus (`onTransferRecorded`). Sisu on veel vanal `cw-*`
+ * kihil ja ootab oma ümbertegemist.
  */
 
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -22,7 +28,8 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import { PROVENANCES, provenanceLabelKey } from "@/lib/workspaces/provenance";
 
 import ConfirmButton from "./ConfirmButton";
-import { TransferActions, TransferHistory } from "./TransferPanel";
+import { TransferActions } from "./TransferPanel";
+import styles from "./cases/cases.module.css";
 import { caseWorkRequest } from "./caseWorkClient";
 
 /**
@@ -64,8 +71,16 @@ function isTerminal(state) {
   return (ALLOWED_TRANSITIONS[state] || []).length === 0;
 }
 
-export default function DraftSection({ caseId, writeDisabled, onChanged }) {
+export default function DraftSection({ caseId, writeDisabled, onChanged, onListLoaded, onTransferRecorded }) {
   const { t, locale } = useI18n();
+
+  /* Juhtumi ülevaade näitab selle osa esimest rida: loend teatatakse üles
+     pärast iga täislaadimist. Viide, mitte sõltuvus: muidu laadiks vanema iga
+     uus funktsioon loendi uuesti. */
+  const listLoadedRef = useRef(onListLoaded);
+  useEffect(() => {
+    listLoadedRef.current = onListLoaded;
+  }, [onListLoaded]);
 
   const [drafts, setDrafts] = useState([]);
   const [draftsCursor, setDraftsCursor] = useState(null);
@@ -73,9 +88,6 @@ export default function DraftSection({ caseId, writeDisabled, onChanged }) {
   const [errorKey, setErrorKey] = useState(null);
   const [busy, setBusy] = useState(false);
   const [draftType, setDraftType] = useState("");
-  /* Ülekandeajalugu laetakse uuesti iga teo järel — ta on TÕEND ja vananenud
-     ajalugu ütleks, et jälge ei tekkinud. */
-  const [transferToken, setTransferToken] = useState(0);
 
   const requestedDraftId = useRef(null);
 
@@ -102,6 +114,7 @@ export default function DraftSection({ caseId, writeDisabled, onChanged }) {
         });
         setDrafts((previous) => (append ? [...previous, ...(body.items || [])] : body.items || []));
         setDraftsCursor(body.nextCursor || null);
+        if (!append) listLoadedRef.current?.(body.items || []);
       } catch (error) {
         setErrorKey(error?.messageKey || "casework.errors.unexpected");
       }
@@ -210,18 +223,18 @@ export default function DraftSection({ caseId, writeDisabled, onChanged }) {
    * liiguta olekumasinat, L9) — just seepärast on tal oma märk.
    */
   const onTransferChanged = useCallback(async () => {
-    setTransferToken((value) => value + 1);
+    /* Ülekandeajalugu laetakse uuesti iga teo järel — ta on TÕEND ja vananenud
+       ajalugu ütleks, et jälge ei tekkinud. Ajalugu ise on juhtumi lava oma
+       osa, seega märk läheb üles juhtumile. */
+    onTransferRecorded?.();
     if (openDraft?.id) await Promise.all([loadDraft(openDraft.id), loadDrafts()]);
     onChanged?.();
-  }, [loadDraft, loadDrafts, onChanged, openDraft]);
+  }, [loadDraft, loadDrafts, onChanged, onTransferRecorded, openDraft]);
 
   const disabled = writeDisabled || busy;
 
   return (
-    <section className="cw-section">
-      <h2 className="cw-section-title">{t("casework.draft.section_title", "")}</h2>
-      <p className="cw-hint">{t("casework.draft.section_hint", "")}</p>
-
+    <div className={styles.section}>
       {errorKey ? (
         <p className="cw-error" role="alert">
           {t(errorKey, "")}
@@ -297,12 +310,7 @@ export default function DraftSection({ caseId, writeDisabled, onChanged }) {
           }}
         />
       ) : null}
-
-      {/* Ajalugu on JUHTUMI oma, mitte avatud mustandi oma: ülekanne on juhtumi
-          sündmus ja töötaja peab teda nägema ka siis, kui ükski element ei ole
-          lahti. */}
-      <TransferHistory caseId={caseId} locale={locale} t={t} refreshToken={transferToken} />
-    </section>
+    </div>
   );
 }
 
@@ -323,7 +331,7 @@ function DraftEditor({
   const writable = disabled || terminal;
 
   return (
-    <div className="cw-section">
+    <div className={styles.editor}>
       <h3 className="cw-section-title">
         {t("casework.draft.open_draft", "")}: {t(`casework.draft.type_${draft.draftType}`, "")} —{" "}
         {t(`casework.star2.${draft.transferState}`, "")}

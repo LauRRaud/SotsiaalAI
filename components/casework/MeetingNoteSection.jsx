@@ -12,6 +12,10 @@
  * PRIVAATNE REFLEKSIOON SEISAB LÕPUS ja kannab oma selgitust. Tema kirjeid ei
  * saa teise kihti tõsta (server annab 409) ja liides ei paku selleks nuppu —
  * lubadust ei tohi saada tühistada ümbernimetamisega.
+ *
+ * LAVA OSA (09.10). Sektsioon on juhtumi lava üks osa (`CaseWorkDetail.jsx`):
+ * oma raamitud kaarti, pealkirja ega juhist ta enam ei joonista, need annab
+ * osa vaade. Sisu on veel vanal `cw-*` kihil ja ootab oma ümbertegemist.
  */
 
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -22,6 +26,7 @@ import { localizePath } from "@/lib/localizePath";
 import { PROVENANCES, provenanceLabelKey } from "@/lib/workspaces/provenance";
 
 import ConfirmButton from "./ConfirmButton";
+import styles from "./cases/cases.module.css";
 import { caseWorkRequest, fromLocalInputValue } from "./caseWorkClient";
 
 /**
@@ -45,8 +50,16 @@ export const NOTE_LAYER_ORDER = Object.freeze([
 const PRIVATE_LAYER = "PRIVAATNE_REFLEKSIOON";
 const PAGE_SIZE = 25;
 
-export default function MeetingNoteSection({ caseId, writeDisabled, onChanged, onLinked }) {
+export default function MeetingNoteSection({ caseId, writeDisabled, onChanged, onLinked, onListLoaded }) {
   const { t, locale } = useI18n();
+
+  /* Juhtumi ülevaade näitab selle osa esimest rida: loend teatatakse üles
+     pärast iga täislaadimist. Viide, mitte sõltuvus: muidu laadiks vanema iga
+     uus funktsioon loendi uuesti. */
+  const listLoadedRef = useRef(onListLoaded);
+  useEffect(() => {
+    listLoadedRef.current = onListLoaded;
+  }, [onListLoaded]);
 
   const [notes, setNotes] = useState([]);
   const [notesCursor, setNotesCursor] = useState(null);
@@ -99,6 +112,7 @@ export default function MeetingNoteSection({ caseId, writeDisabled, onChanged, o
         );
         setNotes((previous) => (append ? [...previous, ...(body.items || [])] : body.items || []));
         setNotesCursor(body.nextCursor || null);
+        if (!append) listLoadedRef.current?.(body.items || []);
       } catch (error) {
         setErrorKey(error?.messageKey || "casework.errors.unexpected");
       }
@@ -220,10 +234,7 @@ export default function MeetingNoteSection({ caseId, writeDisabled, onChanged, o
   const disabled = writeDisabled || busy;
 
   return (
-    <section className="cw-section">
-      <h2 className="cw-section-title">{t("casework.note.section_title", "")}</h2>
-      <p className="cw-hint">{t("casework.note.section_hint", "")}</p>
-
+    <div className={styles.section}>
       {errorKey ? (
         <p className="cw-error" role="alert">
           {t(errorKey, "")}
@@ -258,7 +269,9 @@ export default function MeetingNoteSection({ caseId, writeDisabled, onChanged, o
           onPartSaved={linkRecordedPart}
         />
         {audioNoticeKey ? (
-          <p className="cw-hint" role="status">
+          /* `aria-live`, mitte status-roll: ühine lehekiht joonistab iga
+             status-rolliga elemendi oma teatena. */
+          <p className="cw-hint" aria-live="polite">
             {t(audioNoticeKey, "")}{" "}
             <a href={localizePath("/dokreziim", locale)}>{t("casework.note.audio_open_documents", "")}</a>
           </p>
@@ -325,7 +338,7 @@ export default function MeetingNoteSection({ caseId, writeDisabled, onChanged, o
           }}
         />
       ) : null}
-    </section>
+    </div>
   );
 }
 
@@ -334,7 +347,7 @@ function NoteEditor({ note, revisions, locale, disabled, t, onAddEntry, onRetrac
   const history = Array.isArray(revisions) ? revisions : [];
 
   return (
-    <div className="cw-section">
+    <div className={styles.editor}>
       {/* AVATUD MÄRKME IDENTITEET ON NÄHTAV. Ilma selleta ei ütle ükski asi
           ekraanil, MILLISE kohtumise alla parasjagu kirjutatakse — ja märkmeid
           on juhtumil mitu. */}
