@@ -1684,10 +1684,47 @@ model Journey {
   owner        User          @relation(fields: [ownerUserId], references: [id], onDelete: Cascade)
   conversation Conversation? @relation(fields: [conversationId], references: [id], onDelete: SetNull)
   preInquiries PreInquiry[]
+  steps        JourneyStep[]
 
   @@index([ownerUserId, updatedAt])
   @@index([ownerUserId, status, updatedAt])
   @@index([conversationId])
+}
+
+/// TEEKOND K1-b — järgmine samm: mida tehakse, kes teeb, mis ajaks ja kas tehtud.
+/// Inimese enda kokkulepe iseendaga või kellegagi. Privaatne nagu Teekond ise:
+/// iga päring filtreerib `ownerUserId` järgi (denormaliseeritud just selleks).
+/// Seisu, tähtaja kuju ja lõpetamise aja reeglid on CHECK-idena migratsioonis
+/// (20261009210000_journey_steps), sest skeemikeel neid ei väljenda.
+model JourneyStep {
+  id          String  @id @default(cuid())
+  journeyId   String
+  ownerUserId String
+
+  title String
+  /// Kes teeb, inimese enda sõnadega („mina", „tütar Mari", „sotsiaaltöötaja").
+  /// Vaba tekst: päris osaline koos vastuvõtmisega tuleb ühise plaani kihis.
+  doer  String?
+  /// Tähtaeg kalendripäevana (AAAA-KK-PP), ilma kellaaja ja ajavööndita.
+  dueOn String?
+  /// TODO | DONE | DROPPED.
+  state String  @default("TODO")
+  /// Inimese märge („helistasin, lubati tagasi helistada").
+  note  String? @db.Text
+  /// Millal samm tehtuks märgiti või ära jäeti; tegemata sammul NULL.
+  doneAt DateTime?
+
+  /// Seadmes genereeritud võti: kordussaatmine ei tekita teist sammu.
+  clientActionId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  journey Journey @relation(fields: [journeyId], references: [id], onDelete: Cascade)
+
+  @@unique([ownerUserId, clientActionId])
+  @@index([journeyId, state])
+  @@index([ownerUserId, state, dueOn])
 }
 
 model WellbeingRecord {

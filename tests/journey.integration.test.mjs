@@ -26,6 +26,8 @@ import {
   updateJourneyForUser
 } from '../lib/journey/service.js';
 import { buildPreInquiryPrefillFromJourney } from '../lib/journey/preInquiryHandoff.js';
+import { createJourneyStep, deleteJourneyStep, listJourneySteps, updateJourneyStep } from '../lib/journey/steps.js';
+import { DATA_EXPORT_REGISTRY } from '../lib/dataExport/registry.js';
 import { acceptPreInquiry } from '../lib/preInquiries.js';
 
 const url = new URL(process.env.JOURNEY_TEST_DATABASE_URL || process.env.HOME_CARE_TEST_DATABASE_URL || 'postgres://invalid/invalid');
@@ -72,7 +74,7 @@ test('Teekond ja eelpöördumine: seis saatja silmade läbi, raja faktid ja võ�
   let view = await detail();
   assert.deepEqual(view.linkedPreInquiries, []);
   assert.deepEqual(view.preInquiryFacts, { total: 0, sent: 0, opened: 0 });
-  assert.deepEqual(roadmapOf(view), { situation: 'done', saved: 'done', pre_inquiry: 'next', response: 'todo' });
+  assert.deepEqual(roadmapOf(view), { situation: 'done', saved: 'done', pre_inquiry: 'next', response: 'todo', steps: 'todo' });
 
   const inquiry = (data) =>
     db.preInquiry.create({
@@ -214,4 +216,146 @@ test('Teekond ja eelpöördumine: seis saatja silmade läbi, raja faktid ja võ�
   const cleared = await updateJourneyForUser(person.id, journey.id, { context: rest, expectedUpdatedAt: current.updatedAt }, { db });
   assert.equal(Object.hasOwn(cleared.context, 'personWish'), false);
   assert.equal(cleared.context.contextNote, 'Arsti kiri on olemas.');
+});
+
+test('Teekonna sammud: omaniku piir, seisud, kordussaatmine, arhiveeritud Teekond, kaskaad ja väljavõtted', async (t) => {
+  const tag = randomUUID().slice(0, 8);
+  const user = (name) => db.user.create({ data: { email: `js-${tag}-${name}@example.invalid`, role: 'CLIENT', profile: { create: { firstName: name, lastName: 'Proov' } } } });
+  const person = await user('inimene');
+  const stranger = await user('teine');
+  const journeyIds = [];
+  t.after(async () => {
+    await db.journey.deleteMany({ where: { id: { in: journeyIds } } });
+    await db.user.deleteMany({ where: { id: { in: [person.id, stranger.id] } } });
+  });
+  const make = async (owner, title) => {
+    const journey = await createJourneyForUser(owner.id, { title, summary: 'Kokkuvõte.', status: 'ACTIVE', sharingStatus: 'PRIVATE', clientActionId: randomUUID() }, { db });
+    journeyIds.push(journey.id);
+    return journey;
+  };
+  const journey = await make(person, 'Ema vajab abi');
+  const other = await make(person, 'Teine Teekond');
+  const foreign = await make(stranger, 'Võõra Teekond');
+  const NOW = new Date('2026-10-09T08:00:00Z');
+  const deps = (now = NOW) => ({ db, now });
+  const refused = (promise, status, message) =>
+    assert.rejects(promise, (error) => error.status === status && (!message || error.message === message));
+  const rowOf = async (id) => (await getJourneyDetailForUser(person.id, id, { db }));
+  const stepsRow = (detail) => journeyRoadmap(detail).find((row) => row.key === 'steps').state;
+
+  /* Tühi algus: samme ei ole ja rada ütleb „mitte alustatud". */
+  assert.deepEqual((await listJourneySteps(person.id, journey.id, deps())).steps, []);
+  assert.equal(stepsRow(await rowOf(journey.id)), 'todo');
+
+  /* Lisamine: väljad salvestuvad korrastatult; kordussaatmine sama võtmega ei tee teist rida. */
+  const key = randomUUID();
+  const first = await createJourneyStep(person.id, journey.id, { title: '  Helistan   vallavalitsusse ', doer: 'mina', dueOn: '2026-10-08', clientActionId: key }, deps());
+  assert.equal(first.steps.length, 1);
+  assert.deepEqual(
+    [first.steps[0].title, first.steps[0].doer, first.steps[0].dueOn, first.steps[0].state, first.steps[0].doneAt, first.steps[0].overdue],
+    ['Helistan vallavalitsusse', 'mina', '2026-10-08', 'TODO', null, true]
+  );
+  const replay = await createJourneyStep(person.id, journey.id, { title: 'Helistan vallavalitsusse', doer: 'mina', dueOn: '2026-10-08', clientActionId: key }, deps());
+  assert.equal(replay.stepId, first.stepId);
+  assert.equal(replay.steps.length, 1);
+  /* Sama võti teisel Teekonnal on viga, mitte vaikne teine samm. */
+  await refused(createJourneyStep(person.id, other.id, { title: 'Sama võti', clientActionId: key }, deps()), 409, 'journeys.errors.idempotency_conflict');
+  /* Kaks samaaegset sama võtmega päringut: üks rida. */
+  const racing = randomUUID();
+  const both = await Promise.all([
+    createJourneyStep(person.id, journey.id, { title: 'Küsin arstilt tõendit', clientActionId: racing }, deps()),
+    createJourneyStep(person.id, journey.id, { title: 'Küsin arstilt tõendit', clientActionId: racing }, deps())
+  ]);
+  assert.equal(both[0].stepId, both[1].stepId);
+  assert.equal(await db.journeyStep.count({ where: { journeyId: journey.id } }), 2);
+  await createJourneyStep(person.id, journey.id, { title: 'Tütar toob ravimid', doer: 'tütar Mari', dueOn: '2026-10-20' }, deps());
+
+  /* Järjekord: tähtajaga enne (varasem ees), tähtajata lõpus. Tähtpäeval endal ei ole samm veel hiljaks jäänud. */
+  let list = (await listJourneySteps(person.id, journey.id, deps())).steps;
+  assert.deepEqual(list.map((step) => step.title), ['Helistan vallavalitsusse', 'Tütar toob ravimid', 'Küsin arstilt tõendit']);
+  assert.deepEqual(list.map((step) => step.overdue), [true, false, false]);
+  assert.equal((await listJourneySteps(person.id, journey.id, deps(new Date('2026-10-08T08:00:00Z')))).steps[0].overdue, false);
+
+  /* Sisendi kontroll jõuab teenusest läbi. */
+  await refused(createJourneyStep(person.id, journey.id, { title: '  ' }, deps()), 400, 'journeys.errors.step_title_required');
+  await refused(createJourneyStep(person.id, journey.id, { title: 'x', dueOn: '2026-02-30' }, deps()), 400, 'journeys.errors.step_date_invalid');
+
+  /* VÕÕRA PIIR: teine inimene ei näe, ei lisa, ei muuda ega kustuta. */
+  const stepId = first.stepId;
+  await refused(listJourneySteps(stranger.id, journey.id, deps()), 404, 'journeys.errors.not_found');
+  await refused(createJourneyStep(stranger.id, journey.id, { title: 'Võõra samm' }, deps()), 404, 'journeys.errors.not_found');
+  await refused(updateJourneyStep(stranger.id, journey.id, stepId, { state: 'DONE' }, deps()), 404, 'journeys.errors.not_found');
+  await refused(deleteJourneyStep(stranger.id, journey.id, stepId, deps()), 404, 'journeys.errors.not_found');
+  /* Oma Teekonna kaudu võõra või teise Teekonna sammu kätte ei saa. */
+  await refused(updateJourneyStep(stranger.id, foreign.id, stepId, { state: 'DONE' }, deps()), 404, 'journeys.errors.step_not_found');
+  await refused(updateJourneyStep(person.id, other.id, stepId, { title: 'Vale Teekond' }, deps()), 404, 'journeys.errors.step_not_found');
+  await refused(deleteJourneyStep(person.id, other.id, stepId, deps()), 404, 'journeys.errors.step_not_found');
+  assert.equal((await db.journeyStep.findUnique({ where: { id: stepId } })).title, 'Helistan vallavalitsusse');
+
+  /* TEHTUD koos märkega: aeg läheb kirja, samm liigub lõpetatute hulka. */
+  const doneAt = new Date('2026-10-09T09:30:00Z');
+  list = (await updateJourneyStep(person.id, journey.id, stepId, { state: 'DONE', note: 'Helistasin, lubati tagasi helistada.' }, deps(doneAt))).steps;
+  const done = list.find((step) => step.id === stepId);
+  assert.deepEqual([done.state, done.note, done.doneAt, done.overdue], ['DONE', 'Helistasin, lubati tagasi helistada.', doneAt.toISOString(), false]);
+  assert.equal(list.at(-1).id, stepId);
+  /* Uuesti avamine võtab aja ära; ära jätmine paneb selle uuesti. */
+  list = (await updateJourneyStep(person.id, journey.id, stepId, { state: 'TODO' }, deps())).steps;
+  assert.deepEqual([list.find((step) => step.id === stepId).state, list.find((step) => step.id === stepId).doneAt], ['TODO', null]);
+  list = (await updateJourneyStep(person.id, journey.id, stepId, { state: 'DROPPED' }, deps(doneAt))).steps;
+  assert.deepEqual([list.find((step) => step.id === stepId).state, list.find((step) => step.id === stepId).doneAt], ['DROPPED', doneAt.toISOString()]);
+  /* Andmebaas ise ei luba tegemata sammu lõpetamise ajaga, tundmatut seisu ega vale kujuga tähtaega. */
+  await assert.rejects(db.journeyStep.update({ where: { id: stepId }, data: { state: 'TODO' } }), /JourneyStep_doneAt_check/);
+  await assert.rejects(db.journeyStep.update({ where: { id: stepId }, data: { state: 'PAUSED' } }), /JourneyStep_state_check/);
+  await assert.rejects(db.journeyStep.update({ where: { id: stepId }, data: { dueOn: '15.10.2026' } }), /JourneyStep_dueOn_check/);
+  /* Väljade muutmine ei puuduta seisu; tühi tekst tühjendab välja. */
+  const edited = (await updateJourneyStep(person.id, journey.id, both[0].stepId, { title: 'Küsin perearstilt tõendit', doer: '', dueOn: '2026-10-12' }, deps())).steps.find((step) => step.id === both[0].stepId);
+  assert.deepEqual([edited.title, edited.doer, edited.dueOn, edited.state], ['Küsin perearstilt tõendit', null, '2026-10-12', 'TODO']);
+
+  /* Sammu muutmine ei muuda Teekonna enda muutmise aega (avatud muutmisvorm ei tohi saada konflikti). */
+  const before = await db.journey.findUnique({ where: { id: journey.id }, select: { updatedAt: true } });
+  await updateJourneyStep(person.id, journey.id, both[0].stepId, { note: 'Aeg on kinni pandud.' }, deps());
+  assert.equal((await db.journey.findUnique({ where: { id: journey.id }, select: { updatedAt: true } })).updatedAt.getTime(), before.updatedAt.getTime());
+
+  /* Teekonna leht ja rada: sammud on kaasas; tegemata samm teeb rea pooleliolevaks. */
+  let detail = await rowOf(journey.id);
+  assert.equal(detail.steps.length, 3);
+  assert.equal(stepsRow(detail), 'current');
+  /* Uuendamise vastus kannab samme kaasa. */
+  const updated = await updateJourneyForUser(person.id, journey.id, { title: 'Ema vajab kodus abi', expectedUpdatedAt: detail.updatedAt }, { db });
+  assert.equal(updated.steps.length, 3);
+
+  /* VÄLJAVÕTTED: inimese Teekonna fail ja andmekoopia kannavad samme; võõra omi mitte. */
+  const exported = JSON.stringify(await exportJourneyForUser(person.id, journey.id, { db }));
+  assert.ok(exported.includes('Küsin perearstilt tõendit') && exported.includes('Helistasin, lubati tagasi helistada.'));
+  await createJourneyStep(stranger.id, foreign.id, { title: 'Võõra enda samm' }, deps());
+  const entry = DATA_EXPORT_REGISTRY.find((item) => item.name === 'journeys');
+  const files = await entry.collect({ db, userId: person.id });
+  const stepsFile = files.find((file) => file.name === 'journey_steps.ndjson');
+  assert.equal(stepsFile.count, 3);
+  const stepsText = stepsFile.content.toString('utf8');
+  assert.ok(stepsText.includes('Tütar toob ravimid'));
+  assert.equal(stepsText.includes('Võõra enda samm'), false);
+  assert.equal(stepsText.includes('clientActionId'), false);
+
+  /* Piir: Teekonnal on kuni 40 sammu. */
+  await db.journeyStep.createMany({ data: Array.from({ length: 40 }, (_, index) => ({ journeyId: other.id, ownerUserId: person.id, title: `Samm ${index + 1}` })) });
+  await refused(createJourneyStep(person.id, other.id, { title: 'Neljakümne esimene' }, deps()), 409, 'journeys.errors.step_limit_reached');
+  /* Kõik lõpetatud: rada ütleb „tehtud". */
+  await db.journeyStep.updateMany({ where: { journeyId: other.id }, data: { state: 'DONE', doneAt: NOW } });
+  assert.equal(stepsRow(await rowOf(other.id)), 'done');
+
+  /* ARHIVEERITUD Teekond: samme saab lugeda, mitte muuta. */
+  detail = await rowOf(journey.id);
+  await updateJourneyForUser(person.id, journey.id, { status: 'ARCHIVED', expectedUpdatedAt: detail.updatedAt }, { db });
+  assert.equal((await listJourneySteps(person.id, journey.id, deps())).steps.length, 3);
+  await refused(createJourneyStep(person.id, journey.id, { title: 'Pärast arhiveerimist' }, deps()), 409, 'journeys.errors.archived');
+  await refused(updateJourneyStep(person.id, journey.id, stepId, { state: 'TODO' }, deps()), 409, 'journeys.errors.archived');
+  await refused(deleteJourneyStep(person.id, journey.id, stepId, deps()), 409, 'journeys.errors.archived');
+
+  /* Kustutamine ja kaskaad: valesti lisatud samm kaob; Teekonna kustutus viib sammud kaasa. */
+  const victim = await db.journeyStep.findFirst({ where: { journeyId: other.id }, select: { id: true } });
+  assert.equal((await deleteJourneyStep(person.id, other.id, victim.id, deps())).steps.length, 39);
+  await refused(deleteJourneyStep(person.id, other.id, victim.id, deps()), 404, 'journeys.errors.step_not_found');
+  await db.journey.delete({ where: { id: other.id } });
+  assert.equal(await db.journeyStep.count({ where: { journeyId: other.id } }), 0);
 });

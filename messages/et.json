@@ -7531,7 +7531,8 @@
       "done": "tehtud",
       "current": "pooleli",
       "next_recommended": "järgmine soovitatud samm",
-      "todo": "mitte alustatud"
+      "todo": "mitte alustatud",
+      "steps": "Sinu sammud"
     },
     "wish": {
       "title": "Sinu soov",
@@ -7544,6 +7545,40 @@
       "save": "Salvesta soov",
       "saved": "Sinu soov on salvestatud.",
       "removed": "Soov on eemaldatud."
+    },
+    "own_steps": {
+      "title": "Järgmised sammud",
+      "intro": "Pane kirja, mida on vaja teha, kes seda teeb ja mis ajaks. Sammud on ainult sinu näha.",
+      "empty": "Ühtegi tegemata sammu ei ole kirjas.",
+      "open_list": "Tegemata sammud",
+      "add": "Lisa samm",
+      "title_label": "Mida on vaja teha",
+      "doer_label": "Kes teeb (võid jätta tühjaks)",
+      "due_label": "Mis ajaks (võid jätta tühjaks)",
+      "note_label": "Märkus (võid jätta tühjaks)",
+      "doer_value": "Teeb: {name}",
+      "due_value": "Tähtaeg: {date}",
+      "overdue": "tähtaeg on möödas",
+      "done": "Tehtud",
+      "drop": "Jätan ära",
+      "edit": "Muuda",
+      "what_happened": "Mis juhtus? (võid jätta tühjaks)",
+      "confirm_done": "Märgi tehtuks",
+      "confirm_dropped": "Jäta samm ära",
+      "save": "Salvesta samm",
+      "delete": "Kustuta samm",
+      "reopen": "Ava uuesti",
+      "closed_title": "Lõpetatud sammud ({count})",
+      "states": {
+        "TODO": "tegemata",
+        "DONE": "tehtud",
+        "DROPPED": "ära jäetud"
+      },
+      "suggested_title": "Platvormi pakutud sammud",
+      "suggested_hint": "Need on ettepanekud. Sammuks saab ettepanek alles siis, kui sa selle võtad.",
+      "take": "Võta sammuks",
+      "archived": "Arhiveeritud Teekonna samme saab vaadata, mitte muuta.",
+      "failed": "Sammu salvestamine ei õnnestunud. Proovi uuesti."
     },
     "activity": {
       "title": "Tehtud sammud",
@@ -7651,7 +7686,12 @@
       "rate_limited": "Liiga palju päringuid. Proovi mõne aja pärast uuesti.",
       "draft_failed": "Teekonna ülevaate koostamine ei õnnestunud.",
       "help_request_draft_failed": "Abisoovi eelvaate koostamine ei õnnestunud.",
-      "export_failed": "Teekonna allalaadimine ei õnnestunud."
+      "export_failed": "Teekonna allalaadimine ei õnnestunud.",
+      "step_title_required": "Kirjuta, mida on vaja teha.",
+      "step_date_invalid": "Tähtaeg ei ole õige kuupäev.",
+      "step_state_invalid": "Seda seisu ei saa sammule panna.",
+      "step_not_found": "Sammu ei leitud. Laadi leht uuesti.",
+      "step_limit_reached": "Sellel Teekonnal on juba väga palju samme. Kustuta mõni, enne kui uue lisad."
     }
   },
   "serviceMap": {
