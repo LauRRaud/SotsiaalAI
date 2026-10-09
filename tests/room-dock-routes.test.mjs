@@ -69,7 +69,9 @@ test('ruum kasutab doki nime otsimisel sama järjekorda ja oma komplekti kaart o
   const stage = fs.readFileSync(new URL('../components/room/RoomStage.jsx', import.meta.url), 'utf8');
   assert.ok(stage.includes('dockLabelRoutes(normalized, search, DOCK_CARD_ALIASES)'));
   assert.ok(stage.includes('const byRoute = pickDockLabel('), 'kaardita nimi käib sama järjekorda mööda');
-  assert.ok(stage.includes('"/teenuseprofiil": "chat.workspace.cards.service_profile.title"'));
+  /* Teise rolli kaart annab lehele nime ka siis, kui vaataja rollil seda kaarti ei ole. */
+  assert.ok(stage.includes('return { workspaceItems: cards, workspaceAllCards: all };'));
+  assert.ok(/profileItems,\s+\/\*[^*]*\*\/\s+workspaceAllCards,\s+\]\.forEach/.test(stage), 'rollifiltrita loend on nimeotsingus viimane');
   const own = stage.indexOf('cards.find((item) => item.href === here) ||');
   const byRoute = stage.indexOf('byRoute ||', own);
   const cardless = stage.indexOf('(cardless ? {', own);
@@ -100,4 +102,48 @@ test('doki nimi: kaart enne, siis kaardita lehe nimi, mõlemad teede järjekorra
   assert.equal(pick('/vestlus', 'workspace=materials').label, 'Vestlus');
   assert.equal(pick('/tundmatu', ''), null);
   assert.equal(pickDockLabel(null), null);
+});
+
+/* Omanik 10.10: alumine kiirmenüü peab igal lehel ütlema, mis leht lahti on.
+   Loeme kõik lehed kaustast app/ ja kõik nimeallikad RoomStage'ist (kaardid
+   rollist sõltumata, kaardita lehtede sildid, aliased): dokiga leht, millel
+   nime ei ole, peab olema siin nimeliselt lubatud. */
+test('igal dokiga lehel on dokis lehe nimi', () => {
+  const stage = fs.readFileSync(new URL('../components/room/RoomStage.jsx', import.meta.url), 'utf8');
+  const tools = fs.readFileSync(new URL('../lib/wellbeingTools.js', import.meta.url), 'utf8');
+  const block = (name) => stage.slice(stage.indexOf(`const ${name} = {`), stage.indexOf('};', stage.indexOf(`const ${name} = {`)));
+  const named = new Set([
+    ...[...stage.matchAll(/href:\s*"([^"]+)"/g)].map((match) => match[1]),
+    ...[...tools.matchAll(/route:\s*"([^"]+)"/g)].map((match) => match[1]),
+    ...[...block('CARDLESS_DOCK_LABELS').matchAll(/^\s*"([^"]+)":/gm)].map((match) => match[1]),
+  ]);
+  const aliases = Object.fromEntries([...block('DOCK_CARD_ALIASES').matchAll(/^\s*"([^"]+)":\s*"([^"]+)"/gm)].map((match) => [match[1], match[2]]));
+  assert.ok(named.size > 50 && Object.keys(aliases).length >= 5, 'nimeallikad loeti välja');
+
+  const routes = [];
+  const walk = (dir, route) => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (entry.isDirectory()) {
+        if (['api', 'styles'].includes(entry.name) || entry.name.startsWith('_')) continue;
+        const segment = entry.name.startsWith('(') ? '' : entry.name.startsWith('[') ? 'x1' : entry.name;
+        walk(new URL(`${entry.name}/`, dir), segment ? `${route}/${segment}` : route);
+      } else if (/^page\.(js|jsx)$/.test(entry.name)) {
+        routes.push(route || '/');
+      }
+    }
+  };
+  walk(new URL('../app/', import.meta.url), '');
+  assert.ok(routes.length > 100, 'lehed loeti välja');
+
+  /* Nimeta tohivad olla: ümbersuunajad (/rooms, /tooheaolu), sisemised
+     tööriistad (/logo-eksport, /rag-pilot, KOV piloodi koondvaade), videoruum
+     oma kestaga ja PIN-i taastamine (sisselogimata, oma pealkirjaga vorm).
+     `/tooheaolu/x1` on tööriista tee: päris teed on tööriistade loendis. */
+  const allowed = new Set(['/logo-eksport', '/rag-pilot', '/room/x1', '/rooms', '/taasta-parool', '/taasta-parool/x1', '/tooheaolu', '/tooheaolu/piloot', '/tooheaolu/x1']);
+  const nameless = routes
+    .filter((route) => !isWorkspaceHubRoute(route) && panelHasRoomDock(route))
+    .filter((route) => !dockLabelRoutes(route, '', aliases).some((href) => named.has(href)))
+    .sort();
+  assert.deepEqual(nameless.filter((route) => !allowed.has(route)), [], 'dokiga leht ilma nimeta: lisa kaart, alias või silt (CARDLESS_DOCK_LABELS)');
+  assert.deepEqual([...allowed].filter((route) => !nameless.includes(route)), [], 'lubatud loendis on tee, millel on nüüd nimi: võta see loendist välja');
 });

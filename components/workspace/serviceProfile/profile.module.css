@@ -392,21 +392,6 @@
    avaldamise kontrolli teksti. Siin on tal oma rida lehe sisu ees, paneeli
    ülaserva vabas ribas (PanelFrame'i ülapolster). Rida on voos, seega kerib
    see sisuga kaasa ega saa midagi katta. */
-.roleSlot {
-  display: flex;
-  justify-content: flex-end;
-  min-height: 2.1rem;
-  margin-top: calc(0.3rem - var(--panel-pad, 1.25rem));
-  margin-bottom: 0.4rem;
-}
-/* Ühine reegel (.admin-role-view-cycle failis app/styles/workspace.css) ankurdab
-   valiku paneeli nurka; siin seisab see oma real. */
-.roleInline {
-  position: static;
-  inset: auto;
-  z-index: auto;
-  transform: none;
-}
 
 @container (max-width: 40rem) {
   .field,

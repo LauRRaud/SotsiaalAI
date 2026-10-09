@@ -12,6 +12,7 @@ import JourneyDashboard from "@/components/journey/JourneyDashboard";
 import InviteModal from "@/components/invite/InviteModal";
 import { localizePath } from "@/lib/localizePath";
 import { createWorkspaceDashboardRows, WORKSPACE_ROUTE_PREFETCH_PATHS } from "@/lib/workspaceDashboardCards";
+import { claimPageSwitch, onViewRoleChanged } from "@/lib/viewRoleSignal";
 import AdminRoleViewCycleButton from "@/components/workspace/AdminRoleViewCycleButton";
 import WorkspaceFeaturePage from "@/components/workspace/WorkspaceFeaturePage";
 import WorkspaceContinuity from "@/components/workspace/WorkspaceContinuity";
@@ -462,6 +463,19 @@ export default function WorkspacePanel({
     reloadWorkbench();
   }, [reloadWorkbench, t]);
 
+  /* Vahetus tuleb teatena, mitte lüliti tagasikutsena: avatud tööriista ajal
+     on nurgas ruumi varuvalik, mitte selle paneeli oma lüliti. */
+  useEffect(() => {
+    if (!isAdmin) return undefined;
+    return onViewRoleChanged(handleDashboardRoleChanged);
+  }, [handleDashboardRoleChanged, isAdmin]);
+
+  /* Teekonnal vaadet ei vahetata (see on pöörduja oma tee): varuvalik jääb ära. */
+  useEffect(() => {
+    if (!isAdmin || !visible || activeEmbeddedFeature !== "journey") return undefined;
+    return claimPageSwitch();
+  }, [activeEmbeddedFeature, isAdmin, visible]);
+
   useEffect(() => {
     if (typeof window === "undefined") return undefined;
     const onKeyDown = event => {
@@ -562,18 +576,17 @@ export default function WorkspacePanel({
     active: Boolean(activeInfoSlot)
   });
 
-  /* S/P/T vaatelülitid: paigutuse annab .admin-role-view-cycle (workspace.css)
-     — ekraani alumine parem nurk, sama koht mis kõigil rollilehtedel. Element
-     portaalitakse <body>'sse, seega paneeli `data-visible="false"` display:none
-     EI peida teda enam: väravame `visible`-lipuga käsitsi, et lüliti ei vilguks
-     nurgas ajal, mil töölaud alles morfib kohale. */
+  /* S/P/T vaatelülitid: paigutuse annab .admin-role-view-cycle--corner
+     (workspace.css): ekraani alumine parem nurk, sama koht mis kõigil lehtedel
+     ja peamenüüs. Element portaalitakse <body>'sse, seega paneeli
+     `data-visible="false"` display:none EI peida teda: väravame `visible`-lipuga
+     käsitsi, et lüliti ei vilguks nurgas ajal, mil töölaud alles morfib kohale. */
   const showRoleMenu = isAdmin && visible && activeEmbeddedFeature !== "journey";
   const roleMenu = showRoleMenu ? (
     <AdminRoleViewCycleButton
       t={t}
       locale={locale}
       value={dashboardRole}
-      onRoleChanged={handleDashboardRoleChanged}
       ariaLabel={text(t, "chat.workspace.view_role.label", "Töölaua vaade")}
     />
   ) : null;
