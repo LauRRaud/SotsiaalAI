@@ -12742,7 +12742,10 @@
       "change_text_required": "Kirjuta ühe lausega, mis oli teisiti.",
       "change_outcome_required": "Vali, mida tegid.",
       "change_signal_not_found": "Märkamist ei leitud.",
-      "change_signal_handled": "Sellele märkamisele on juba vastatud."
+      "change_signal_handled": "Sellele märkamisele on juba vastatud.",
+      "crisis_level_required": "Vali, kui palju tuge klient kriisi ajal vajab.",
+      "crisis_dependency_invalid": "Tundmatu sõltuvus.",
+      "crisis_not_found": "Hinnangut ei ole."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -13752,6 +13755,58 @@
       "note_label": "Märkus (kui vaja)",
       "answer_save": "Märgi vastatuks",
       "answered_by": "{name}, {date}"
+    },
+    "crisis": {
+      "title": "Kriisivalmidus",
+      "link": "Kriisinimekiri",
+      "none": "Kriisivalmidust ei ole hinnatud.",
+      "add": "Hinda kriisivalmidust",
+      "edit": "Muuda",
+      "save": "Salvesta",
+      "cancel": "Loobu",
+      "clear": "Võta hinnang maha",
+      "level_label": "Kui palju tuge vajab kriisi ajal",
+      "levels": {
+        "DAILY": "Vajab hooldaja tuge iga päev",
+        "WEEKLY": "Vajab tuge kord või kaks nädalas",
+        "SELF": "Saab varudega seitse päeva ise hakkama"
+      },
+      "dependencies_label": "Millest sõltub",
+      "dependencies_hint": "Märgi see, mille katkemine teeb olukorra kiiresti halvemaks. Võib jääda tühjaks.",
+      "dependencies": {
+        "ELECTRICITY": "elekter (seade või häirenupp)",
+        "HEATING": "küte",
+        "WATER": "vesi",
+        "COMMUNICATION": "side",
+        "MOBILITY": "liikumine",
+        "MEDICINE": "ravimid"
+      },
+      "helper_label": "Kes lähedastest saab aidata",
+      "note_label": "Märkus",
+      "depends_on": "sõltub: {list}",
+      "helper_line": "aitab: {name}",
+      "weekly": "plaanis nädalas {time}",
+      "no_visits": "käigumustrit ei ole",
+      "list_title": "Kriisinimekiri",
+      "list_intro": "Kliente nimekirjas: {count}. Seis {date}. Laadi nimekiri kord kuus alla ja prindi välja: kriisis ei pruugi rakendus, side ega elekter töötada.",
+      "truncated": "Näidatud on esimesed {count} klienti.",
+      "download": "Laadi alla tabelina",
+      "download_hint": "Fail avaneb tabelarvutuses. Hoia väljaprinti kohas, kust selle leiab ka ilma arvutita.",
+      "group_time": "Nädala plaanitud käiguaeg kokku {time}",
+      "group_empty": "Selles rühmas kliente ei ole.",
+      "unset_title": "Hindamata",
+      "unset_empty": "Kõik kliendid on hinnatud.",
+      "sheet": {
+        "level": "Rühm",
+        "name": "Nimi",
+        "address": "Aadress",
+        "phone": "Telefon",
+        "dependencies": "Sõltub",
+        "helper": "Kes saab aidata",
+        "note": "Märkus",
+        "weekly_hours": "Käike nädalas (tundi)",
+        "unset": "Hindamata"
+      }
     }
   },
   "stage": {

@@ -235,6 +235,9 @@ export default function HomeCareHome({ context, initial, unitOptions, myDay = nu
           <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/votmed`}>
             {t("home_care.keys.link")}
           </Link>
+          <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/kriis`}>
+            {t("home_care.crisis.link")}
+          </Link>
           <Link className="hc-btn hc-btn--link" href={`/org/${organizationId}/koduteenus/tahtajad`}>
             {t("home_care.deadlines.link")}
           </Link>
