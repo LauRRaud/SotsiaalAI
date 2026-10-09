@@ -177,7 +177,12 @@ export default function HomeCareEntryItem({
             <ul className="hc-list hc-list--plain">
               {entry.visit.activities.map((activity) => (
                 <li key={activity.id}>
-                  {activity.name} · {t(`home_care.visit.modes.${activity.mode}`)}
+                  {activity.name} ·{" "}
+                  {activity.outcome && activity.outcome !== "DONE" ? (
+                    <span className="hc-badge hc-badge--warn">{t(`home_care.visit.outcomes.${activity.outcome}`)}</span>
+                  ) : (
+                    t(`home_care.visit.modes.${activity.mode}`)
+                  )}
                   {activity.outsidePlan ? (
                     <>
                       {" "}
@@ -379,7 +384,12 @@ export default function HomeCareEntryItem({
                       {[
                         revision.visit.minutes ? t("home_care.visit.lasted", { minutes: revision.visit.minutes }) : null,
                         ...(revision.visit.activities || []).map(
-                          (activity) => `${activity.name} · ${t(`home_care.visit.modes.${activity.mode}`)}`
+                          (activity) =>
+                            `${activity.name} · ${
+                              activity.outcome && activity.outcome !== "DONE"
+                                ? t(`home_care.visit.outcomes.${activity.outcome}`)
+                                : t(`home_care.visit.modes.${activity.mode}`)
+                            }`
                         )
                       ]
                         .filter(Boolean)

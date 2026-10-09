@@ -39,7 +39,11 @@ test('käigu kirje sisend: kestus ja toimingud ainult käigul; märgitud toiming
   /* Märgitud toimingutega käik: tekst võib puududa ja salvestub tühjana. */
   const visit = normalize({ visitMinutes: '45', activities: [{ activityId: A, mode: 'FOR' }, { activityId: B, mode: 'TOGETHER' }] });
   assert.deepEqual([visit.visitMinutes, visit.text, visit.contactMode], [45, '', 'VISIT']);
-  assert.deepEqual(visit.visitActivities, [{ activityId: A, mode: 'FOR' }, { activityId: B, mode: 'TOGETHER' }]);
+  /* Tulemus puudub = tehtud (nii saatis kirjeid varasem vorm ja seadme järjekord). */
+  assert.deepEqual(visit.visitActivities, [
+    { activityId: A, mode: 'FOR', outcome: 'DONE' },
+    { activityId: B, mode: 'TOGETHER', outcome: 'DONE' }
+  ]);
   /* Teade järgmisele, kokkulepe, mure ja erijuhtum on tekst ka siis, kui toimingud on märgitud. */
   for (const kind of ['HANDOVER', 'AGREEMENT', 'CONCERN']) {
     failsWith({ kind, activities: [{ activityId: A, mode: 'FOR' }] }, 'home_care.errors.entry_text_required');
