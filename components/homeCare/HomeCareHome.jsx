@@ -337,6 +337,12 @@ export default function HomeCareHome({ context, initial, unitOptions, myDay = nu
                         <span className="hc-badge hc-badge--warn">{t("home_care.status.AWAY")}</span>
                       </>
                     ) : null}
+                    {client.waiting ? (
+                      <>
+                        {" "}
+                        <span className="hc-badge hc-badge--warn">{t("home_care.precondition.badge")}</span>
+                      </>
+                    ) : null}
                   </span>
                   {client.address || client.statusNote || client.statusReason ? (
                     <span className="hc-client__meta">

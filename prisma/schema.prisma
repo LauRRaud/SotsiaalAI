@@ -8234,6 +8234,7 @@ model CareClient {
   visitSlots         CareVisitSlot[]
   visitChanges       CareVisitChange[]
   workNatures        CareWorkNature[]
+  preconditions      CarePrecondition[]
 
   @@unique([organizationId, internalCode])
   @@index([organizationId, status, displayName])
@@ -8490,6 +8491,37 @@ model CareVisitChange {
   @@index([organizationId, day])
   @@index([clientId, day])
   @@index([workerMembershipId, day])
+}
+
+/// Eeltingimus enne teenuse algust (K4-a, kava II.3.7 punkt 3): mida oodatakse, kes
+/// korraldab ja mis ajaks. Rida ei kustutata: eeltingimus täidetakse (`DONE`) või jäetakse
+/// ära (`DROPPED`). Lahtisel real on `closedAt` ja `outcome` tühjad.
+model CarePrecondition {
+  id             String  @id @default(cuid())
+  organizationId String
+  clientId       String
+  /// CLEANING | PEST_CONTROL | HEATING | ELECTRICITY | OTHER (`CarePreconditionKind`).
+  kind           String
+  /// Täpsustus; „muu" puhul kohustuslik.
+  note           String?
+  /// Kes korraldab (nimi või amet); juhendi järgi omavalitsus.
+  responsible    String
+  /// Tähtaeg kujul AAAA-KK-PP või NULL.
+  dueOn          String?
+
+  createdByMembershipId String?
+  createdByName         String?
+  createdAt             DateTime  @default(now())
+  closedAt              DateTime?
+  /// DONE | DROPPED (`CarePreconditionOutcome`).
+  outcome               String?
+  closedByMembershipId  String?
+  closedByName          String?
+
+  client CareClient @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId, closedAt])
+  @@index([clientId, closedAt])
 }
 
 /// Töö iseloom kliendi juures (kiht 3, K3-g, kava II.6.3): märge kirjeldab tööd, mitte
