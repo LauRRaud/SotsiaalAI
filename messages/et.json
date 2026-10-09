@@ -12745,7 +12745,11 @@
       "change_signal_handled": "Sellele märkamisele on juba vastatud.",
       "crisis_level_required": "Vali, kui palju tuge klient kriisi ajal vajab.",
       "crisis_dependency_invalid": "Tundmatu sõltuvus.",
-      "crisis_not_found": "Hinnangut ei ole."
+      "crisis_not_found": "Hinnangut ei ole.",
+      "referrals_invalid": "Loend ei ole arusaadav.",
+      "referrals_too_many": "Loendis võib olla kuni {limit} rida.",
+      "referral_name_required": "Real on telefon või selgitus, aga nimi puudub.",
+      "referral_phone_invalid": "Telefoninumbris võivad olla numbrid, tühikud, pluss, sulud ja sidekriips."
     },
     "incidents": {
       "title": "Erijuhtumite register",
@@ -13807,6 +13811,21 @@
         "weekly_hours": "Käike nädalas (tundi)",
         "unset": "Hindamata"
       }
+    },
+    "referrals": {
+      "title": "Kuhu suunata",
+      "none": "Loendit ei ole veel. Pane siia kohad, kuhu hooldaja saab inimese suunata, kui küsimus ei ole hooldaja töö.",
+      "emergency": "Kui inimene on ohus, helista 112.",
+      "add": "Koosta loend",
+      "edit": "Muuda loendit",
+      "edit_hint": "Kirjuta iga koha nimi, telefon ja millal sinna pöörduda. Kontrolli numbrid enne salvestamist üle: loend on hooldajal telefonis käepärast. Tühja nimega rida jäetakse välja.",
+      "row": "Rida {number}",
+      "name_label": "Nimi",
+      "phone_label": "Telefon",
+      "note_label": "Millal pöörduda",
+      "add_row": "Lisa rida",
+      "save": "Salvesta",
+      "cancel": "Loobu"
     }
   },
   "stage": {

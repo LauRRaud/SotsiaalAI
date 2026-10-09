@@ -13,6 +13,7 @@ import { euroText } from "./HomeCareMoney";
 import HomeCareObstacle from "./HomeCareObstacle";
 import { minutesLabel } from "./HomeCareDecisionView";
 import HomeCareOutbox from "./HomeCareOutbox";
+import HomeCareReferrals from "./HomeCareReferrals";
 import { planDayLabel } from "./HomeCarePlanView";
 import { clientHref, homeCareBase, useHomeCareApi } from "./homeCareClient";
 
@@ -77,7 +78,7 @@ function MyVisit({ organizationId, visit }) {
  * OTSING näitab ainult nime ja seisu. Meeskonnast väljas oleva kliendi leht
  * küsib avamisel põhjust (asendaja tee).
  */
-export default function HomeCareHome({ context, initial, unitOptions, myDay = null }) {
+export default function HomeCareHome({ context, initial, unitOptions, myDay = null, referrals = null }) {
   const { t, locale } = useI18n();
   const router = useRouter();
   const organizationId = context.organization.id;
@@ -214,6 +215,13 @@ export default function HomeCareHome({ context, initial, unitOptions, myDay = nu
           ))}
         </div>
       ) : null}
+
+      {/* „Kuhu suunata" (K5-c): asutuse loend kohtadest, kuhu inimene suunata, kui küsimus ei ole hooldaja töö. */}
+      <HomeCareReferrals
+        organizationId={organizationId}
+        initial={referrals?.referrals || []}
+        canEdit={Boolean(context.writable && referrals?.canEditReferrals)}
+      />
 
       {isCoordinator ? (
         <div className="hc-row">
