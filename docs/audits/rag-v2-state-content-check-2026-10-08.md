@@ -56,3 +56,27 @@ Kontrollimata: teiste vastuste arvud allikate vastu ükshaaval; küsimused koos 
 ## Mida edasi
 
 Omaniku otsustada: leid 1 on juhiste muudatus; leiud 3 ja 4 on kolme seaduse lisamine (riigi õigusabi seadus, korrakaitseseadus, kriminaalmenetluse seadustiku lähenemiskeelu osa), paari sendi suurune ost; leid 2 vajab esmalt põhjuse uurimist (tasuta).
+
+## Täiendus 09.10.2026: parandused ja kordusmõõtmine
+
+Omanik 09.10.2026: „on meil veel RAG süsteemi arendust. Jätka“ ja „luba on antud raha kulutada“. Kolm leidu on parandatud ([ADR-114](../rag-v2/adr-114-present-figure-for-a-future-event-and-three-laws.md)), üks osutus mitte-veaks, üks jääb lahti.
+
+| Leid | Mis tehti | Mõõdetud tulemus |
+|---|---|---|
+| 1. Tulevase sündmuse korral jäid summad ütlemata | vestluse juhised 38 → 40: praegu kehtiv summa öeldakse koos seisu ajaga; veebilehe kaart kannab lehe enda viimase muutmise päeva (`page_updated`) | „meil sünnib kevadel laps“ sai juhistega 40 kahel jooksul kahest summad: „18. septembri seisuga on sünnitoetus 320 eurot ühekordselt“, lapsetoetus 80 eurot kuus, vanemahüvitise alam- ja ülempiir; ühes vastuses lause, et summad võivad kevadeks muutuda, piiranguid ei olnud |
+| 2. Eestkoste küsimus ei leidnud uusi allikaid | pöörde kirje vaadati üle | viga ei olnud: kaks tsiviilkohtumenetluse seadustiku lõiku oli kandidaatide hulgas, valik jättis alles praktilisemad; üks uuring võttis 36 kandidaadikohast 10 (tähelepanek) |
+| 3. Riigi õigusabi seadust ei ole | korpus v73: seadus tervikuna | „advokaadi jaoks raha ei ole“ viitab nüüd seadusele ja kohtute lehele; asjasse mittepuutuvat juhendit enam ei viidatud |
+| 4. Politsei tegevus lähisuhtevägivalla korral | korpus v73: korrakaitseseadus ja kriminaalmenetluse seadustik tervikuna | vastus nimetab viibimiskeelu perevägivalla ohvri kaitseks kuni 72 tundi (võrreldud seaduse tekstiga) ja ajutise lähenemiskeelu; 2016. aasta artiklit enam ei kasutatud |
+| 5. Töö kaotus ainult seadustest | ei tehtud | Töötukassa lehti ei saa korjata; jääb lahti |
+
+Mõõtmised (serveri enda vestlusteenusest läbi, ajutiste kasutajatega):
+
+| Juhised | Küsimusi | Kulu, USD | Mis selgus |
+|---|---:|---:|---|
+| 38 | 6 | 0,0247 | summad tulid; kolm seadust jõudsid vastustesse; oleviku küsimus ei saanud asjatut märkust; märkus „võib muutuda“ oli kahes vastuses ka piirangute all |
+| 39 | 3 | 0,0129 | sama lapse sünni küsimus jäi seekord summadeta: lehe kaardil ei olnud kuupäeva, millega summat öelda |
+| 40 | 5 | 0,0168 | lapse sünni küsimus sai summad mõlemal jooksul, lehe enda kuupäevaga; rahvapensioni küsimus („jään kahe aasta pärast pensionile“) sai summa mõlemal jooksul, aga hoidis piirangut, et kahe aasta pärast kehtivat määra ei saa öelda |
+
+Kokku 14 pööret, 0,0544 USD; korpuse v73 ost 0,0620 USD.
+
+**Mida see ei tõenda.** Sama küsimus andis juhistega 38 ja 39 erineva tulemuse, nii et üks jooks ei ole tõend; juhistega 40 on kaks jooksu kahest korras, mis on vähe. Rahvapensioni vastuse piirang on kaitstav (inimene küsis tuleviku summat), aga näitab, et „ei saa öelda“ ei kao juhisega täielikult. Teisi vastuseid (kas uus lause lisab kuhugi asjatu märkuse) vaadati ainult kahe oleviku küsimusega.
