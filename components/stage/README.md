@@ -17,6 +17,12 @@ vaja.
   rida ega lehe lisanuppe seal ei seisa. Vajutus sammu nimele avab kõik sammud
   kiirmenüüs endas (numbrite rida) ja valik tõmbab selle tagasi lühikeseks.
   Numbrite ümber ei ole rõngast: tehtud samm on heledam, ootel samm tuhmim.
+- **Laua osad ei ole sammud.** Leht, mille osad ei ole järjestikused (Juhtumitöö
+  laud), annab lavale `parts`: siis ei ole numbreid ega noolt „järgmine”, leht
+  avaneb laias vaates (`startWide`: kõik osad korraga) ja kiirmenüüs on nupp
+  laia vaate juurde ning avatud osa nimi. Kõik valikud on kohe näha, midagi ei
+  ole vajutuse taga peidus. Lehe enda sõnad annab `texts`, laia vaate
+  sissejuhatuse `wideLead`.
 - **Paneel algab küsimusega.** Sammu pealkirja paneelil ei korrata: sammu nimi
   on kiirmenüüs. Paneelis ei ole ka „Edasi” nuppu ega kerimise vihjet. Edasi
   liigutakse kiirmenüü noolest või kerides, ja vaade, kus on ainult valikud,

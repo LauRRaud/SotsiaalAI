@@ -18,81 +18,75 @@
  * võrdlust eelmise perioodiga, ei kogusummat sektsioonide üleselt. Ainus arv
  * pinnal on `openMissingInfoCount` ja ta on SELLE juhtumi oma. Ptk 8.8 keeld
  * („ei tohi kasutada töötajate hindamiseks") peab olema arhitektuuris — ja laud
- * on täpselt see koht, kus koormuse mõõdik tekiks kogemata.
+ * on täpselt see koht, kus koormuse mõõdik tekiks kogemata. Sama kehtib
+ * ülevaate kohta: plaat näitab sektsiooni esimest rida, mitte ridade arvu.
+ *
+ * KUJU (09.10): KOGU LAUD ja SEKTSIOON ERALDI. Varem oli laud üks pikk
+ * sektsioonide rida, mida tuli alla kerida. Nüüd avaneb leht ülevaates (kõik
+ * sektsioonid plaatidena, igaühel esimene rida või tühjuse põhjus) ja
+ * sektsioon avaneb omaette vaates. See on platvormi sammulava
+ * (`components/stage/StepFlight.jsx`) laias vaates: sektsioonid on kiirmenüüs,
+ * välja kerides jõuab tagasi kogu lauale. Sektsioonid ei ole sammud, seepärast
+ * annab leht lavale oma sõnad („Kogu laud", „Osa 3/10").
  *
  * TEENUSKIHTI SIIA EI IMPORDITA. `lib/casework/workbench.js` toob endaga Prisma
- * kliendi, seega sektsioonide järjekord on siin oma konstandina — ja et kaks
- * loendit ei saaks lahku minna, kontrollib neid `workbenchUi.test.js` teineteise
- * vastu. Kaks tõde ilma testita on ainult aja küsimus.
+ * kliendi, seega sektsioonide järjekord on siin oma konstandina
+ * (`workbenchView.js`) — ja et kaks loendit ei saaks lahku minna, kontrollib
+ * neid `tests/casework-workbench-view.test.mjs` teineteise vastu.
+ *
+ * Kujundus: workbench.module.css (selle faili kõrval). Read: workbenchRows.js.
  */
 
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
 import { useI18n } from "@/components/i18n/I18nProvider";
+import StepFlight from "@/components/stage/StepFlight";
+import StepPanel from "@/components/stage/StepPanel";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
-import { provenanceLabelKey } from "@/lib/workspaces/provenance";
 
-import { caseLabelText, caseWorkRequest } from "./caseWorkClient";
-import { resolveSection, WORKBENCH_SECTION_ORDER } from "./workbenchView";
+import { caseWorkRequest } from "./caseWorkClient";
+import { workbenchRows } from "./workbenchRows";
+import { resolveSection, sectionSummary, WORKBENCH_SECTION_ORDER } from "./workbenchView";
+import styles from "./workbench.module.css";
 
 /** Töötaja rollid — sama hulk mis `lib/casework/routes.js` väraval. */
 const WORKER_ROLES = new Set(["SOCIAL_WORKER", "SERVICE_PROVIDER"]);
 
-function timeText(value, locale) {
-  if (!value) return "";
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return "";
-  return date.toLocaleString(locale || "et", { dateStyle: "short", timeStyle: "short" });
-}
-
 /**
- * K1 tööruumi liik → pind, kus tegu tehakse.
+ * Rida = pealkiri + märk + aeg + tee edasi.
  *
- * DESKRIPTORI `href` EI OLE URL: ta on `{ action: "open_workspace", target }`
- * ehk kavatsus, mille lahendab iga pind ise. Laud peab seetõttu teadma, kuhu
- * ta viib — ja ta teab seda NIMELISELT, mitte liigist tuletades. Tuletus
- * (`/vestlus?workspace=${kind}`) andis esimeses läbisõidus katkise lingi, sest
- * tööruumi liik (`pre_inquiry`) ja töölaua võti (`pre_inquiries`) ei ole sama
- * string.
+ * `Link`, MITTE `<a>`: toores ankur teeb täisdokumendi-navigatsiooni, laadib
+ * rakenduse uuesti ja viskab ära sessiooni-, i18n- ja rollikonteksti, mille
+ * pind just üles ehitas. Tundmatu liigi rida jääb nähtavaks ILMA teeta.
  */
-const WORKSPACE_ROUTES = Object.freeze({
-  pre_inquiry: "/eelpoordumised",
-  practice_reflection: "/refleksioon"
-});
-
-/**
- * Rida = pealkiri + meta + tee edasi.
- *
- * TEE ON L1 OTSENE TAGAJÄRG: laud ütleb „see ootab sinu tegu" ja tegu tehakse
- * mujal. Tundmatu liigi puhul jääb rida siiski nähtavaks, aga ILMA lingita —
- * katkine link on halvem kui puuduv, sest ta lubab teed, mida ei ole.
- */
-function Row({ href, title, meta, badge, t }) {
+function Row({ row, openText }) {
+  const body = (
+    <>
+      <span className={styles.rowTitle}>{row.title}</span>
+      <span className={styles.rowMeta}>
+        {row.badge ? <span className={styles.badge}>{row.badge}</span> : null}
+        {row.meta ? <span className={styles.time}>{row.meta}</span> : null}
+      </span>
+      {row.href ? (
+        <span className={styles.rowOpen} aria-hidden="true">
+          {openText} ›
+        </span>
+      ) : null}
+    </>
+  );
   return (
-    <li className="cw-case">
-      {href ? (
-        /* `Link`, MITTE `<a>`: toores ankur teeb täisdokumendi-navigatsiooni,
-           laadib rakenduse uuesti ja viskab ära sessiooni-, i18n- ja
-           rollikonteksti, mille pind just üles ehitas. Platvormi ülejäänud
-           sisenavigatsioon käib `Link`-i või `router.push`-i kaudu.
-
-           Teed on siin LOKAALINEUTRAALSED ja see on õige: `localizePath()`
-           EEMALDAB keeleprefiksi ja `proxy.js` suunab `/et|/ru|/en` teed
-           308-ga neutraalsele kujule, pannes keele küpsisesse. Prefiksi
-           lisamine oleks siin viga, mitte parandus. */
-        <Link className="cw-case-label" href={href}>
-          {title}
+    <li>
+      {row.href ? (
+        <Link className={styles.row} href={row.href}>
+          {body}
         </Link>
       ) : (
-        <span className="cw-case-label">{title}</span>
+        <div className={styles.row} data-static="1">
+          {body}
+        </div>
       )}
-      <span className="cw-case-meta">
-        {badge ? <span className="cw-badge">{badge}</span> : null}
-        {meta ? <span className="cw-muted">{meta}</span> : null}
-      </span>
-      {href ? <span className="cw-muted">{t("casework.workbench.open", "")}</span> : null}
     </li>
   );
 }
@@ -141,220 +135,123 @@ export default function CaseWorkbenchShell() {
     load();
   }, [allowed, load]);
 
-  const renderRows = useCallback(
-    (key, items) => {
-      switch (key) {
-        /* K1 deskriptor (`receivedPreInquiries`, `practiceReflection`). `goal` ja
-           `progress` EI lähe lauale: nad on tööruumi sisu ja avanevad tööruumis.
-
-           `title` ON KAS TÕLKEVÕTI VÕI TEKST — adapterid on siin teadlikult
-           erinevad: sisuta tööruum (eelpöördumine, meetodipeegel) annab võtme,
-           sest pealkiri ei tohi kanda kliendi sisu, ja nimega tööruum (teekond,
-           ruum) annab teksti. `t(title, title)` katab mõlemat: puuduv võti
-           annab varuks sama stringi. Esimene läbisõit kuvas siin
-           „workspace.kind.pre_inquiry" — võti lekkis pinnale. */
-        case "receivedPreInquiries":
-        case "practiceReflection":
-          return items.map((row) => (
-            <Row
-              key={row?.ref?.id}
-              href={WORKSPACE_ROUTES[row?.ref?.kind] || null}
-              title={row?.title ? t(row.title, row.title) : t("casework.label.untitled", "")}
-              meta={timeText(row?.lastMeaningfulActivityAt, locale)}
-              badge={row?.nextAction?.labelKey ? t(row.nextAction.labelKey, "") : null}
-              t={t}
-            />
-          ));
-
-        case "todaysContacts":
-        case "upcomingContacts":
-          return items.map((row) => (
-            <Row
-              key={row.caseId}
-              href={`/juhtumid?juhtum=${encodeURIComponent(row.caseId)}`}
-              title={caseLabelText(row.label, t)}
-              meta={timeText(row.nextContactAt, locale)}
-              t={t}
-            />
-          ));
-
-        /* L3: arv on SELLE juhtumi lahtiste punktide oma. Ta ei summeeru
-           sektsiooni peale kokku ja tal ei ole „liiga palju" läve.
-
-           Võti on `prepId`, mitte `caseId` (SOL-CW-13): ühel juhtumil võib olla
-           mitu kohtumist ja `caseId` annaks React'ile korduva võtme. Aeg on
-           KOHTUMISE oma. */
-        case "activePreparations":
-          return items.map((row) => (
-            <Row
-              key={row.prepId}
-              href={`/juhtumid?juhtum=${encodeURIComponent(row.caseId)}`}
-              title={caseLabelText(row.label, t)}
-              meta={timeText(row.meetingAt, locale)}
-              badge={
-                row.openMissingInfoCount
-                  ? t("casework.workbench.missing_count", "").replace("{count}", String(row.openMissingInfoCount))
-                  : null
-              }
-              t={t}
-            />
-          ));
-
-        /* Punkti tekst ON sektsiooni mõte, seega ta jääb. Renderdatakse
-           tekstina — `dangerouslySetInnerHTML`-i siin ei ole ega tule. */
-        case "openMissingInfo":
-          return items.map((row) => (
-            <Row
-              key={row.itemId}
-              href={`/juhtumid?juhtum=${encodeURIComponent(row.caseId)}`}
-              title={row.text}
-              meta={timeText(row.createdAt, locale)}
-              badge={t(provenanceLabelKey(row.provenance) || "casework.errors.provenance_unknown", "")}
-              t={t}
-            />
-          ));
-
-        /* Staatus tuleb VÕRGUSTIKUJAGAMISE oma sõnastikust, mitte lauast: sama
-           seis on juba nimetatud „Minu jagamistes" ja teine sõnastus tähendaks,
-           et sama rida loeb kahel pinnal kaht eri asja. */
-        case "networkPreparation":
-          return items.map((row) => (
-            <Row
-              key={row.shareId}
-              href="/eelpoordumised"
-              title={t("casework.workbench.share_row", "")}
-              meta={timeText(row.updatedAt, locale)}
-              badge={t(`network_share.status.${row.status}`, "")}
-              t={t}
-            />
-          ));
-
-        case "covisionPreparation":
-          return items.map((row) => (
-            <Row
-              key={row.seedId}
-              href="/teemaseemned"
-              title={row.title || t("casework.workbench.seed_untitled", "")}
-              meta={timeText(row.updatedAt, locale)}
-              /* Teemaseemne seisul EI OLE mujal sõnastikku (kontrollitud
-                 06→08.08: `TopicSeedStatus` viis väärtust ei esine üheski
-                 messages-failis), seega ta sünnib siin. Toorest enum'i nime
-                 pinnale ei kuvata — tundmatu väärtus annab tühja silti. */
-              badge={t(`casework.workbench.seed_status_${row.status}`, "")}
-              t={t}
-            />
-          ));
-
-        /* #4 (E6). Siht on JUHTUM, mitte mustand: mustandil ei ole oma
-           marsruuti ja tema koht on juhtumi detailvaates. Tüüp ja seis on
-           tõlkevõtmed — laual ei ole ühtegi mustandi VÄLJA, sest väljad
-           kannavad kliendi teksti. */
-        case "draftsAwaitingTransfer":
-          return items.map((row) => (
-            <Row
-              key={row.draftId}
-              href={`/juhtumid?juhtum=${encodeURIComponent(row.caseId)}`}
-              title={t(`casework.draft.type_${row.draftType}`, "")}
-              meta={timeText(row.updatedAt, locale)}
-              badge={t(`casework.star2.${row.transferState}`, "")}
-              t={t}
-            />
-          ));
-
-        /* #10 (E6). Ajalugu kannab TEGU ja aega. Väljade võtmed on auditis
-           olemas, aga laual neid ei ole (L20): siin on küsimus „mis juhtus",
-           mitte „mis täpselt kopeeriti". */
-        case "transferHistory":
-          return items.map((row) => (
-            <Row
-              key={row.eventId}
-              href={`/juhtumid?juhtum=${encodeURIComponent(row.caseId)}`}
-              title={t(`casework.transfer.kind_${row.kind}`, "")}
-              meta={timeText(row.createdAt, locale)}
-              badge={t(`casework.draft.type_${row.draftType}`, "")}
-              t={t}
-            />
-          ));
-
-        default:
-          return null;
-      }
-    },
-    [locale, t]
-  );
+  /* Sektsioon → lava osa. Sektsiooni PUUDUMINE ei ole tühi sektsioon (L2): kui
+     koondlugeja teda ei saatnud, ei ole seda tööriista veel olemas ja tühi
+     plaat väidaks vastupidist. OLEK OTSUSTAB, mitte ridade arv — otsus ise on
+     `workbenchView.js`-is, et teda saaks päriselt testida. */
+  const parts = useMemo(() => {
+    if (!sections) return [];
+    return WORKBENCH_SECTION_ORDER.filter((key) => sections[key]).map((key) => {
+      const data = sections[key];
+      const { showItems, noticeKey, items } = resolveSection(data);
+      const rows = showItems ? workbenchRows(key, items, { t, locale }) : [];
+      const noticeText = noticeKey ? t(noticeKey, "") : "";
+      const label = t(`casework.workbench.section_${key}`, "");
+      return {
+        key,
+        label,
+        short: t(`casework.workbench.short_${key}`, label),
+        /* Hele number = sektsioonis on ridu; see on olemasolu märk, mitte loendur. */
+        state: rows.length ? "done" : "empty",
+        summary: sectionSummary({ rows, noticeText, moreText: t("casework.workbench.more_rows", "") }),
+        /* Sektsioon võib olla pikk loend: tema järgi ühist kõrgust ei võeta. */
+        free: true,
+        rows,
+        noticeText,
+        /* `notice` käib kaasa ka siis, kui ridu ON. Praegu ei kasuta seda ükski
+           sektsioon — `activePreparations` hoiatus kadus koos põhjusega
+           (SOL-CW-13) — aga mehhanism jääb: sektsioon, mis kuvab midagi muud
+           kui oma nimi lubab, peab saama seda välja öelda ka ridade kõrval. */
+        hint: data.notice ? t(data.notice, "") : ""
+      };
+    });
+  }, [sections, t, locale]);
 
   if (!isRoleResolved) return null;
 
   if (!allowed) {
     return (
-      <section className="cw-shell">
-        <p className="cw-empty">{t("casework.workbench.not_allowed", "")}</p>
+      <section className={styles.shell}>
+        <p className={styles.quiet}>{t("casework.workbench.not_allowed", "")}</p>
       </section>
     );
   }
 
+  /* Nupp on olemas MÕLEMAS lõppseisus. Varem kuvati ta ainult `ready` peal,
+     seega ebaõnnestunud laadimise järel ei olnud pinnal ühtegi teed uuesti
+     proovida — ainus väljapääs oli lehe taaslaadimine. */
+  const refresh = (
+    <button className={styles.refresh} type="button" disabled={state === "loading"} onClick={() => load()}>
+      {t(state === "error" ? "casework.workbench.retry" : "casework.workbench.refresh", "")}
+    </button>
+  );
+
   return (
-    <section className="cw-shell">
-      <header className="cw-intro">
-        <h1 className="cw-title">{t("casework.workbench.title", "")}</h1>
-        {/* TOOTEPIIR ON PEALKIRJA KÕRVAL, mitte abitekstis: laud ei ole koormuse
-            mõõdik ja seda peab lugema enne, kui numbreid vaadatakse. */}
-        <p className="cw-subtitle">{t("casework.workbench.subtitle", "")}</p>
-      </header>
+    <section className={styles.shell}>
+      {/* Lehe nimi on kiirmenüüs; pealkiri jääb ekraanilugejale. */}
+      <h1 className="sr-only">{t("casework.workbench.title", "")}</h1>
 
       {errorKey ? (
-        <p className="cw-error" role="alert">
+        <p className={styles.notice} data-tone="risk" role="alert">
           {t(errorKey, "")}
         </p>
       ) : null}
 
-      {/* Vana laud on ekraanil ja värskendus kukkus — seda ei tohi vaikida. */}
+      {/* Vana laud on ekraanil ja värskendus kukkus — seda ei tohi vaikida.
+          `aria-live`, mitte role="status": ühine lehekiht joonistab iga
+          status-rolliga elemendi teatekastina. */}
       {state === "error" && sections ? (
-        <p className="cw-hint" role="status">
+        <p className={styles.notice} aria-live="polite">
           {t("casework.workbench.stale_notice", "")}
         </p>
       ) : null}
 
-      {state === "loading" && !sections ? <p className="cw-empty">{t("casework.workbench.loading", "")}</p> : null}
+      {state === "loading" && !sections ? <p className={styles.quiet}>{t("casework.workbench.loading", "")}</p> : null}
 
-      {sections
-        ? WORKBENCH_SECTION_ORDER.map((key) => {
-            const data = sections[key];
-            /* Sektsiooni PUUDUMINE ei ole tühi sektsioon (L2): kui koondlugeja
-               teda ei saatnud, ei ole seda tööriista veel olemas ja tühi kast
-               väidaks vastupidist. */
-            if (!data) return null;
-
-            /* OLEK OTSUSTAB, mitte ridade arv — otsus ise on
-               `workbenchView.js`-is, et teda saaks päriselt testida. */
-            const { showItems, noticeKey, items } = resolveSection(data);
-
-            return (
-              <section className="cw-section" key={key}>
-                <h2 className="cw-section-title">{t(`casework.workbench.section_${key}`, "")}</h2>
-
-                {/* `notice` käib kaasa ka siis, kui ridu ON. Praegu ei kasuta
-                    seda ükski sektsioon — `activePreparations` hoiatus kadus
-                    koos põhjusega (SOL-CW-13) — aga mehhanism jääb: sektsioon,
-                    mis kuvab midagi muud kui oma nimi lubab, peab saama seda
-                    välja öelda ka siis, kui read on olemas. */}
-                {data.notice ? <p className="cw-hint">{t(data.notice, "")}</p> : null}
-
-                {showItems ? <ul className="cw-list">{renderRows(key, items)}</ul> : null}
-                {noticeKey ? <p className="cw-empty">{t(noticeKey, "")}</p> : null}
-              </section>
-            );
-          })
-        : null}
-
-      {/* Nupp on olemas MÕLEMAS lõppseisus. Varem kuvati ta ainult `ready`
-          peal, seega ebaõnnestunud laadimise järel ei olnud pinnal ühtegi teed
-          uuesti proovida — ainus väljapääs oli lehe taaslaadimine. */}
-      {state !== "loading" ? (
-        <button className="cw-button" type="button" onClick={() => load()}>
-          {t(state === "error" ? "casework.workbench.retry" : "casework.workbench.refresh", "")}
-        </button>
+      {parts.length ? (
+        <StepFlight
+          key={parts.map((part) => part.key).join("|")}
+          label={t("casework.workbench.title", "")}
+          steps={parts}
+          startWide
+          parts
+          texts={{
+            all: t("casework.workbench.all_sections", ""),
+            position: (current, total, label) =>
+              t("casework.workbench.section_position", "")
+                .replace("{current}", String(current))
+                .replace("{total}", String(total))
+                .replace("{label}", label)
+          }}
+          wideLead={
+            /* TOOTEPIIR ON KOGU LAUA KOHAL, mitte abitekstis: laud ei ole
+               koormuse mõõdik ja seda peab lugema enne, kui ridu vaadatakse. */
+            <div className={styles.lead}>
+              <p className={styles.leadText}>{t("casework.workbench.subtitle", "")}</p>
+              {refresh}
+            </div>
+          }
+        >
+          {(part) => (
+            <StepPanel title={part.label}>
+              <div className={styles.part}>
+                {part.hint ? <p className={styles.quiet}>{part.hint}</p> : null}
+                {part.rows.length ? (
+                  <ul className={styles.rows}>
+                    {part.rows.map((row) => (
+                      <Row key={row.id} row={row} openText={t("casework.workbench.open", "")} />
+                    ))}
+                  </ul>
+                ) : null}
+                {part.noticeText ? <p className={styles.quiet}>{part.noticeText}</p> : null}
+              </div>
+            </StepPanel>
+          )}
+        </StepFlight>
       ) : null}
+
+      {/* Laadimine ebaõnnestus ja lauda ei ole: tee uuesti proovida peab olema. */}
+      {!parts.length && state !== "loading" ? refresh : null}
     </section>
   );
 }

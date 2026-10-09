@@ -264,6 +264,16 @@ export const NextArrowIcon = (props) => (
   </Svg>
 );
 
+/* Kõik korraga — neli ruutu (sammudega lehe lai vaade, dokis avatud sammurea alguses) */
+export const OverviewGridIcon = (props) => (
+  <Svg {...props}>
+    <rect {...P} x="5" y="5" width="5.6" height="5.6" rx="1.4" />
+    <rect {...P} x="13.4" y="5" width="5.6" height="5.6" rx="1.4" />
+    <rect {...P} x="5" y="13.4" width="5.6" height="5.6" rx="1.4" />
+    <rect {...P} x="13.4" y="13.4" width="5.6" height="5.6" rx="1.4" />
+  </Svg>
+);
+
 /* Meist / Teave — info-ring */
 export const AboutInfoIcon = (props) => (
   <Svg {...props}>

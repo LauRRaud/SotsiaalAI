@@ -41,6 +41,14 @@
  *   `free` märgib vaate, mis võib olla pikk ja mille järgi ühist kõrgust ei võeta)
  * `flight`: { index, count, isActive, goTo(index), next(), prev() }
  *
+ * LAUD, MITTE SAMMUD. Sama lava kannab ka lehte, mille osad ei ole järjestikused
+ * sammud, vaid ühe laua osad (Juhtumitöö laud): `parts` ütleb seda. Siis ei ole
+ * osadel numbreid (ei plaatidel ega kiirmenüüs) ega noolt „järgmine": kiirmenüüs
+ * on nupp laia vaate juurde ja avatud osa nimi. `startWide` avab lehe laias
+ * vaates (kõik osad korraga), `texts` annab lehe enda sõnad (`all`: laia vaate
+ * nimi, `position(current, total, label)`: ekraanilugeja teade) ja `wideLead`
+ * on laia vaate sissejuhatus plaatide kohal.
+ *
  * JUHITUD KASUTUS. Kui lehe enda olek otsustab, milline samm on ees (nt pärast
  * salvestamist „mine eelvaatesse"), anna `activeKey` (sammu võti) ja kuula
  * `onStepChange(index, step)`. Võtme muutus lennutab selle sammu juurde;
@@ -99,7 +107,7 @@ function naturalHeight(plane) {
   return height;
 }
 
-export default function StepFlight({ steps, children, label, initialIndex = 0, activeKey, onStepChange }) {
+export default function StepFlight({ steps, children, label, initialIndex = 0, activeKey, onStepChange, startWide = false, parts = false, texts = null, wideLead = null }) {
   const { t } = useI18n();
   const count = steps.length;
   const { dollyRef, planeProps, activeIndex, mode, flyTo } = useStationFlight({
@@ -111,7 +119,15 @@ export default function StepFlight({ steps, children, label, initialIndex = 0, a
     smoothFade: true,
     durationScale: 1.1
   });
-  const [wide, setWide] = useState(false);
+  const [wide, setWide] = useState(Boolean(startWide));
+  const allText = texts?.all || t("stage.all_steps");
+  const positionText = useCallback(
+    (index, step) =>
+      texts?.position
+        ? texts.position(index + 1, count, step?.label || "")
+        : t("stage.step_position", { current: index + 1, total: count, label: step?.label || "" }),
+    [count, t, texts]
+  );
   const [stageHeight, setStageHeight] = useState(null);
   const infoOpen = usePanelInfoView().open;
 
@@ -302,10 +318,9 @@ export default function StepFlight({ steps, children, label, initialIndex = 0, a
   };
 
   const position = useMemo(() => {
-    const step = steps[activeIndex] || steps[0];
-    if (wide) return t("stage.all_steps");
-    return t("stage.step_position", { current: activeIndex + 1, total: count, label: step?.label || "" });
-  }, [activeIndex, count, steps, t, wide]);
+    if (wide) return allText;
+    return positionText(activeIndex, steps[activeIndex] || steps[0]);
+  }, [activeIndex, allText, positionText, steps, wide]);
 
   return (
     <div className={styles.root} ref={rootRef} onKeyDown={onKeyDown}>
@@ -319,10 +334,12 @@ export default function StepFlight({ steps, children, label, initialIndex = 0, a
         wide={wide}
         hidden={infoOpen}
         label={label ? `${label}: ${t("stage.rail_label")}` : t("stage.rail_label")}
-        allLabel={t("stage.all_steps")}
-        stepLabel={(step, index) => t("stage.step_position", { current: index + 1, total: count, label: step?.label || "" })}
+        allLabel={allText}
+        stepLabel={(step, index) => positionText(index, step)}
         onSelect={(index) => goTo(index, { user: true, arrive: true })}
-        next={{
+        onOverview={openWide}
+        parts={parts}
+        next={parts ? null : {
           label: t("stage.next_step"),
           disabled: !wide && activeIndex >= count - 1,
           ready: !wide && steps[activeIndex]?.state === "done",
@@ -334,7 +351,7 @@ export default function StepFlight({ steps, children, label, initialIndex = 0, a
           siis see rida. Ekraanilugeja kuuleb sama ülalolevast teatest. */}
       <p className={styles.kicker} aria-hidden="true">
         {label ? `${label} · ` : ""}
-        {wide ? t("stage.all_steps") : `${steps[activeIndex]?.short || steps[activeIndex]?.label || ""} · ${activeIndex + 1}/${count}`}
+        {wide ? allText : `${steps[activeIndex]?.short || steps[activeIndex]?.label || ""}${parts ? "" : ` · ${activeIndex + 1}/${count}`}`}
       </p>
 
       <div
@@ -372,14 +389,17 @@ export default function StepFlight({ steps, children, label, initialIndex = 0, a
           })}
         </div>
 
+        {wide && wideLead ? <div className={styles.wideLead}>{wideLead}</div> : null}
         {wide ? (
-          <ol className={styles.overview} aria-label={t("stage.all_steps")}>
+          <ol className={styles.overview} aria-label={allText}>
             {steps.map((step, index) => (
               <li key={step.key}>
                 <button
                   type="button"
                   className={styles.tile}
-                  data-current={index === activeIndex ? "1" : "0"}
+                  data-current={index === activeIndex && !parts ? "1" : "0"}
+                  data-state={step.state || "empty"}
+                  data-parts={parts ? "1" : undefined}
                   onPointerEnter={() => {
                     hoverRef.current = index;
                   }}
@@ -389,7 +409,7 @@ export default function StepFlight({ steps, children, label, initialIndex = 0, a
                   onClick={() => goTo(index, { user: true, arrive: true })}
                 >
                   <span className={styles.tileTop}>
-                    <StepNumber index={index} state={step.state || "empty"} />
+                    {parts ? null : <StepNumber index={index} state={step.state || "empty"} />}
                     <span className={styles.tileTitle}>{step.label}</span>
                   </span>
                   {step.summary ? <span className={styles.tileSummary}>{step.summary}</span> : null}
