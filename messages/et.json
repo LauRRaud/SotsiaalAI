@@ -14179,6 +14179,16 @@
       "recorded": "Märge on salvestatud. Kui oht võib korduda, lisa see püsikaardile.",
       "text": "Peaaegu juhtus: {what}.",
       "text_with_note": "Peaaegu juhtus: {what}. {note}"
+    },
+    "month_open": {
+      "title": "Enne kuu numbrite saatmist",
+      "clear": "Selle kuu kohta ei ole midagi lahti.",
+      "missing": "Plaanitud käike ilma kirje ja ära jätmise märketa: {count}. Kirjuta käik tagantjärele sisse või märgi päevaplaanis ära jäetuks.",
+      "missing_line": "{date} kell {time}: kirjet ega ära jätmise märget ei ole",
+      "missing_more": "Näidatud on esimesed {shown} käiku {count}-st.",
+      "incidents": "Lahtisi erijuhtumeid selles kuus: {count}",
+      "signals": "Vastuseta märkamisi selles kuus: {count}",
+      "medication": "Ravimitoiminguid ilma märketa, mida tehti: {count}. Küsi hooldajalt ja lase kirje parandada."
     }
   },
   "stage": {

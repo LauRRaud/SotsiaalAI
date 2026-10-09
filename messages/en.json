@@ -14179,6 +14179,16 @@
       "recorded": "The mark is saved. If the danger may repeat, add it to the standing card.",
       "text": "Near miss: {what}.",
       "text_with_note": "Near miss: {what}. {note}"
+    },
+    "month_open": {
+      "title": "Before sending the month's figures",
+      "clear": "Nothing is open for this month.",
+      "missing": "Planned visits with no record and no cancellation: {count}. Write the visit in afterwards or mark it cancelled in the day plan.",
+      "missing_line": "{date} at {time}: no record and no cancellation",
+      "missing_more": "The first {shown} of {count} visits are shown.",
+      "incidents": "Open incidents in this month: {count}",
+      "signals": "Noticed changes without an answer in this month: {count}",
+      "medication": "Medication activities with no mark of what was done: {count}. Ask the care worker and have the entry corrected."
     }
   },
   "stage": {
