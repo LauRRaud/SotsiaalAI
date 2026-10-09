@@ -7531,7 +7531,8 @@
       "done": "done",
       "current": "in progress",
       "next_recommended": "next recommended step",
-      "todo": "not started"
+      "todo": "not started",
+      "steps": "Your steps"
     },
     "wish": {
       "title": "Your wish",
@@ -7544,6 +7545,40 @@
       "save": "Save the wish",
       "saved": "Your wish has been saved.",
       "removed": "The wish has been removed."
+    },
+    "own_steps": {
+      "title": "Next steps",
+      "intro": "Write down what needs to be done, who does it and by when. Only you see the steps.",
+      "empty": "No open step is written down.",
+      "open_list": "Open steps",
+      "add": "Add a step",
+      "title_label": "What needs to be done",
+      "doer_label": "Who does it (may be left empty)",
+      "due_label": "By when (may be left empty)",
+      "note_label": "Note (may be left empty)",
+      "doer_value": "Done by: {name}",
+      "due_value": "Due: {date}",
+      "overdue": "the due date has passed",
+      "done": "Done",
+      "drop": "Not doing it",
+      "edit": "Change",
+      "what_happened": "What happened? (may be left empty)",
+      "confirm_done": "Mark as done",
+      "confirm_dropped": "Drop the step",
+      "save": "Save the step",
+      "delete": "Delete the step",
+      "reopen": "Reopen",
+      "closed_title": "Finished steps ({count})",
+      "states": {
+        "TODO": "open",
+        "DONE": "done",
+        "DROPPED": "dropped"
+      },
+      "suggested_title": "Steps suggested by the platform",
+      "suggested_hint": "These are suggestions. A suggestion becomes a step only when you take it.",
+      "take": "Take as a step",
+      "archived": "The steps of an archived journey can be viewed, not changed.",
+      "failed": "Saving the step failed. Try again."
     },
     "activity": {
       "title": "Completed steps",
@@ -7651,7 +7686,12 @@
       "rate_limited": "Too many requests. Try again in a while.",
       "draft_failed": "Making the journey overview failed.",
       "help_request_draft_failed": "Making the help request preview failed.",
-      "export_failed": "Downloading the journey failed."
+      "export_failed": "Downloading the journey failed.",
+      "step_title_required": "Write what needs to be done.",
+      "step_date_invalid": "The due date is not a real date.",
+      "step_state_invalid": "A step cannot have this state.",
+      "step_not_found": "The step was not found. Reload the page.",
+      "step_limit_reached": "This journey already has a great many steps. Delete one before you add a new one."
     }
   },
   "serviceMap": {

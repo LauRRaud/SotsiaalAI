@@ -11,6 +11,7 @@ import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import Form from "@/components/ui/Form";
 import Input from "@/components/ui/Input";
+import JourneySteps from "@/components/journey/JourneySteps";
 import { localizePath } from "@/lib/localizePath";
 import { buildServiceMapHandoff } from "@/lib/journey/serviceMapHandoff";
 import { buildAssistiveDevicesHandoff } from "@/lib/journey/assistiveDevices";
@@ -385,7 +386,8 @@ function JourneyRoadmap({ journey, t }) {
     situation: t("journey.roadmap.situation", "Olukord kirjeldatud"),
     saved: t("journey.roadmap.saved", "Ülevaade salvestatud"),
     pre_inquiry: t("journey.roadmap.pre_inquiry", "Eelpöördumine saadetud"),
-    response: t("journey.roadmap.response", "Saaja on pöördumise avanud")
+    response: t("journey.roadmap.response", "Saaja on pöördumise avanud"),
+    steps: t("journey.roadmap.steps", "Sinu sammud")
   };
   const steps = journeyRoadmap(journey).map((step) => ({ title: titles[step.key], state: step.state }));
 
@@ -1402,6 +1404,12 @@ export default function JourneyDetail({ journeyId, startWith: requestedStart = "
               </section>
 
               <JourneyWish journey={journey} busy={busy} onSave={handleSaveWish} t={t} />
+
+              <JourneySteps
+                journey={journey}
+                t={t}
+                onStepsChange={(steps) => setJourney((current) => (current ? { ...current, steps } : current))}
+              />
 
               <JourneyRoadmap journey={journey} t={t} />
 

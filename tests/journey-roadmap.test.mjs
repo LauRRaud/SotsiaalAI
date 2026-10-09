@@ -12,8 +12,14 @@ test('teekonnarada: eelpöördumise ja vastuse seis tuleb faktidest', () => {
     situation: 'done',
     saved: 'done',
     pre_inquiry: 'todo',
-    response: 'todo'
+    response: 'todo',
+    steps: 'todo'
   });
+  /* Inimese enda sammud: tegemata samm teeb rea pooleliolevaks, kõik lõpetatud teeb tehtuks. */
+  assert.equal(states({ steps: [{ state: 'TODO' }, { state: 'DONE' }] }).steps, 'current');
+  assert.equal(states({ steps: [{ state: 'DONE' }, { state: 'DROPPED' }] }).steps, 'done');
+  assert.equal(states({ steps: [] }).steps, 'todo');
+  assert.equal(states({ steps: 'x' }).steps, 'todo');
   /* Valitud suund teeb eelpöördumisest soovituse, mitte tehtud töö. */
   assert.equal(states({ primaryPath: 'PRE_INQUIRY' }).pre_inquiry, 'next');
   assert.equal(states({ primaryPath: 'pre_inquiry' }).pre_inquiry, 'next');
@@ -34,7 +40,7 @@ test('teekonnarada: eelpöördumise ja vastuse seis tuleb faktidest', () => {
   assert.equal(states(null).pre_inquiry, 'todo');
 
   /* Rajal ei ole ühtegi rida, mille seis ei saa kunagi muutuda. */
-  assert.deepEqual(journeyRoadmap({}).map((step) => step.key), ['situation', 'saved', 'pre_inquiry', 'response']);
+  assert.deepEqual(journeyRoadmap({}).map((step) => step.key), ['situation', 'saved', 'pre_inquiry', 'response', 'steps']);
   /* Igal real on pealkiri kõigis kolmes keeles. */
   for (const locale of ['et', 'en', 'ru']) {
     const roadmap = JSON.parse(readFileSync(new URL(`../messages/${locale}.json`, import.meta.url), 'utf8')).journey.roadmap;
