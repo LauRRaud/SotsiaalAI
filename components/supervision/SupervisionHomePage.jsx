@@ -1,124 +1,134 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+/**
+ * Supervisiooni laud: minu protsessid, kutsed ja isiklikud paketid.
+ *
+ * KUJU (09.10). Avaleht oli klaaskast klaaspaneeli sees, suure pealkirja ja
+ * kõrgete kaartide võrguga; pakkide loend oli eraldi samasugune leht. Nüüd on
+ * see üks laud sammulaval (`components/stage/StepFlight.jsx`): kolm osa, igas
+ * üks loend. Osad ei ole sammud, seepärast annab leht lavale `parts`: kiirmenüüs
+ * on nupp „Kõik osad" ja avatud osa nimi.
+ *
+ * LEHT AVANEB SISUGA, mitte kõigi osade vaates: enamasti tullakse siia
+ * protsessi avama. Kui mõni kutse ootab vastust, avaneb leht kutsete osas:
+ * vanal lehel seisis kutse teiste kaartide vahel ja erines neist ühe märgiga. Tee
+ * `/supervisioon/valjundid` avab sama laua pakkide osas (`initialPart`).
+ *
+ * KAKS PÄRINGUT. Protsessid ja kutsed tulevad ühest loendist
+ * (`/api/supervision/processes`), paketid teisest (`/api/supervision/outcomes`).
+ * Kumbki osa näitab oma laadimist ja viga ise: pakkide viga ei peida protsesse.
+ *
+ * Lehe nimi on all kiirmenüüs (kaart „Supervisioon"); pealkiri jääb
+ * ekraanilugejale. Vaated on failis ./entry/HomeViews.jsx, read ./entry/entryRows.js.
+ *
+ * SUPERVISIOONI V0 LEPING ütles „EI uut lõuendimootorit, EI Flight/3D" (SUP-P10).
+ * Omanik otsustas 09.10, et kõik alamlehed lähevad sammulavale. Uut mootorit
+ * siin ei ole: lava on platvormi olemasolev lend, mis vähendatud liikumise
+ * korral vahetab vaateid ristsulandusega. Protsessi leht ise on veel vanal kujul.
+ */
+
+import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
+
 import { useI18n } from "@/components/i18n/I18nProvider";
+import StepFlight from "@/components/stage/StepFlight";
 import Button from "@/components/ui/Button";
-import { SubpageHeader } from "@/components/ui/SubpageHeader";
-import { localizePath } from "@/lib/localizePath";
-import PrivacyBadge from "./PrivacyBadge";
-import styles from "./SupervisionPage.module.css";
-import { supervisionMessage, supervisionRequest } from "./supervisionClient";
 
-/** Vaade 1 „Minu protsessid" (Q2.6). Kerge loend — EI kanna protsessi sisu. */
-export default function SupervisionHomePage() {
+import { DeskLead, InvitesView, OutcomesView, ProcessesView } from "./entry/HomeViews";
+import { HOME_PART_KEYS, SUPERVISION_CREATE_HREF, outcomeRows, processRows, splitProcesses, tileSummary } from "./entry/entryRows";
+import styles from "./entry/entry.module.css";
+import useSupervisionLoad from "./entry/useSupervisionLoad";
+
+const pickProcesses = (payload) => (Array.isArray(payload?.processes) ? payload.processes : []);
+const pickOutcomes = (payload) => (Array.isArray(payload?.outcomes) ? payload.outcomes : []);
+
+export default function SupervisionHomePage({ initialPart = "" }) {
   const { t, locale } = useI18n();
-  const [processes, setProcesses] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [loadError, setLoadError] = useState("");
+  const router = useRouter();
+  const processes = useSupervisionLoad("/api/supervision/processes", pickProcesses, t);
+  const outcomes = useSupervisionLoad("/api/supervision/outcomes", pickOutcomes, t);
 
-  const formatter = useMemo(
-    () => new Intl.DateTimeFormat(locale || "et", { dateStyle: "medium" }),
-    [locale]
-  );
-  const formatDate = useCallback((value) => {
-    if (!value) return "";
-    const date = new Date(value);
-    return Number.isFinite(date.getTime()) ? formatter.format(date) : "";
-  }, [formatter]);
+  const rows = useMemo(() => {
+    const context = { t, locale };
+    const split = splitProcesses(processes.data);
+    return {
+      processes: processRows(split.mine, context),
+      invites: processRows(split.invites, context),
+      outcomes: outcomeRows(outcomes.data, context)
+    };
+  }, [locale, outcomes.data, processes.data, t]);
 
-  const load = useCallback(async (signal) => {
-    setLoadError("");
-    try {
-      const { ok, status, payload } = await supervisionRequest("/api/supervision/processes", { signal });
-      if (!ok) {
-        setLoadError(supervisionMessage({ status, payload, t }));
-        setProcesses([]);
-        return;
-      }
-      setProcesses(payload?.processes || []);
-    } catch (error) {
-      if (error?.name === "AbortError") return;
-      setLoadError(t("supervision.errors.load_failed"));
-    } finally {
-      if (!signal?.aborted) setLoading(false);
-    }
-  }, [t]);
-
+  /* Maandumine otsustatakse üks kord, kui protsesside loend on kohal (või
+     ebaõnnestus): lava saab avatud osa ainult loomisel ja hilisem hüpe teise
+     ossa viiks inimese sealt ära, kuhu ta just läks. */
+  const [landing, setLanding] = useState(HOME_PART_KEYS.includes(initialPart) ? initialPart : "");
   useEffect(() => {
-    const controller = new AbortController();
-    void load(controller.signal);
-    return () => controller.abort();
-  }, [load]);
+    if (landing || processes.status === "loading") return;
+    setLanding(rows.invites.length ? "invites" : "processes");
+  }, [landing, processes.status, rows.invites.length]);
+
+  const sources = { processes, invites: processes, outcomes };
+  const noneText = {
+    processes: t("supervision.home.views.processes.none"),
+    invites: t("supervision.home.views.invites.empty"),
+    outcomes: t("supervision.outcome.empty")
+  };
+  const parts = HOME_PART_KEYS.map((key) => {
+    const source = sources[key];
+    return {
+      key,
+      label: t(`supervision.home.views.${key}.title`),
+      short: t(`supervision.home.views.${key}.short`),
+      /* Selge plaat = osas on ridu. See on olemasolu märk, mitte loendur. */
+      state: rows[key].length ? "done" : "empty",
+      summary:
+        source.status === "loading"
+          ? t("supervision.common.loading")
+          : source.status === "error"
+            ? source.error
+            : tileSummary({ rows: rows[key], emptyText: noneText[key], moreText: t("supervision.home.moreRows") }),
+      /* Loend võib olla pikk: tema järgi ühist kõrgust ei võeta. */
+      free: true
+    };
+  });
+
+  /* Uue protsessi alustamine on protsesside loendi enda tegevus ja seisab ka
+     kõigi osade vaate kohal. Nupp, mitte toores ankur: vana `Button as="a"`
+     laadis kogu rakenduse uuesti. */
+  const newProcess = (
+    <Button type="button" size="sm" variant="secondary" onClick={() => router.push(SUPERVISION_CREATE_HREF)}>
+      {t("supervision.home.newProcess")}
+    </Button>
+  );
 
   return (
-    <main className={styles.page}>
-      <div className={styles.shell} data-glass-back-anchor="">
-        <SubpageHeader title={t("supervision.home.title")} />
-        <p className={styles.lead}>{t("supervision.home.subtitle")}</p>
-
-        <div className={styles.actions}>
-          <Button as="a" href={localizePath("/supervisioon/uus", locale)} size="sm">
-            {t("supervision.home.newProcess")}
-          </Button>
-          <Button as="a" href={localizePath("/supervisioon/valjundid", locale)} size="sm" variant="secondary">
-            {t("supervision.outcome.list")}
-          </Button>
-        </div>
-
-        {loading ? <p className={styles.loading}>{t("supervision.common.loading")}</p> : null}
-
-        {loadError ? (
-          <div aria-live="polite" className={styles.loadError} role="status">
-            <p>{loadError}</p>
-            <Button variant="secondary" onClick={() => { setLoading(true); void load(); }}>
-              {t("supervision.common.retry")}
-            </Button>
-          </div>
-        ) : null}
-
-        {!loading && !loadError && !processes.length ? (
-          <section className={styles.section}>
-            <div className={styles.sectionHeading}>
-              <h2>{t("supervision.home.emptyTitle")}</h2>
-              <p>{t("supervision.home.emptyBody")}</p>
-            </div>
-          </section>
-        ) : null}
-
-        {!loading && !loadError && processes.length ? (
-          <section className={styles.section}>
-            <div className={styles.cards}>
-              {processes.map((process) => (
-                <article key={process.id} className={styles.card}>
-                  <h2 className={styles.cardTitle}>{process.title}</h2>
-                  <div className={styles.badgeRow}>
-                    <span className={styles.badge}>
-                      {t("supervision.home.roleLabel")}
-                      {": "}
-                      {t(`supervision.roles.${process.viewerRole}`)}
-                    </span>
-                    <span className={styles.badge}>{t(`supervision.status.${process.status}`)}</span>
-                    <span className={styles.badge}>{t(`supervision.type.${process.type}`)}</span>
-                  </div>
-                  {process.viewerRole === "KUT" ? <PrivacyBadge scope="invited" /> : null}
-                  <p className={styles.cardMeta}>{process.supervisorName}</p>
-                  <p className={styles.cardMeta}>{formatDate(process.lastActivityAt)}</p>
-                  <div className={styles.actions}>
-                    <Button
-                      as="a"
-                      href={localizePath(`/supervisioon/${process.id}`, locale)}
-                      size="sm"
-                      variant="secondary"
-                    >
-                      {t("supervision.home.open")}
-                    </Button>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </section>
-        ) : null}
-      </div>
-    </main>
+    <section className={styles.shell}>
+      <h1 className="sr-only">{t("supervision.home.title")}</h1>
+      {landing ? (
+        <StepFlight
+          label={t("supervision.home.title")}
+          steps={parts}
+          parts
+          initialIndex={HOME_PART_KEYS.indexOf(landing)}
+          texts={{
+            all: t("supervision.home.all"),
+            position: (current, total, label) => t("supervision.home.position", { current, total, label })
+          }}
+          wideLead={<DeskLead t={t} action={newProcess} />}
+        >
+          {(part) =>
+            part.key === "invites" ? (
+              <InvitesView t={t} source={processes} rows={rows.invites} />
+            ) : part.key === "outcomes" ? (
+              <OutcomesView t={t} source={outcomes} rows={rows.outcomes} />
+            ) : (
+              <ProcessesView t={t} source={processes} rows={rows.processes} action={newProcess} />
+            )
+          }
+        </StepFlight>
+      ) : (
+        <p className={styles.quiet}>{t("supervision.common.loading")}</p>
+      )}
+    </section>
   );
 }

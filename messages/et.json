@@ -9766,7 +9766,7 @@
       "seenBySupervisor": "Näeb: superviisor",
       "seenByProcess": "Näevad: superviisor + {count} osalejat",
       "persistent": "Püsiv — jääb alles ka pärast sulgemist",
-      "invitedHint": "Sa ei ole veel liige — näed ainult kontrakti"
+      "invitedHint": "Sa ei ole veel liige ja näed ainult kontrakti"
     },
     "roles": {
       "SV": "Superviisor",
@@ -9789,20 +9789,72 @@
       "subtitle": "Protsessid, kus oled superviisor või osaleja.",
       "newProcess": "Uus protsess",
       "open": "Ava",
-      "emptyTitle": "Ühtegi protsessi veel pole",
-      "emptyBody": "Superviisori õigusega saad luua uue protsessi. Muidu ilmuvad siia protsessid, kuhu sind kutsutakse.",
-      "roleLabel": "Sinu roll"
+      "roleLabel": "Sinu roll",
+      "all": "Kõik osad",
+      "position": "Osa {current}/{total}: {label}",
+      "wideLead": "Sinu protsessid, vastamata kutsed ja isiklikud paketid.",
+      "moreRows": "ja teised",
+      "supervisor": "Superviisor: {name}",
+      "untitled": "Pealkirjata protsess",
+      "views": {
+        "processes": {
+          "title": "Minu protsessid",
+          "short": "Protsessid",
+          "none": "Protsesse veel ei ole.",
+          "empty": "Ühtegi protsessi veel ei ole. Uue protsessi saad luua superviisori õigusega. Kui võtad kutse vastu, ilmub protsess siia."
+        },
+        "invites": {
+          "title": "Kutsed",
+          "short": "Kutsed",
+          "lead": "Kutsed, millele sa ei ole veel vastanud. Enne vastamist näed ainult kontrakti.",
+          "empty": "Vastamata kutseid ei ole."
+        },
+        "outcomes": {
+          "title": "Minu paketid",
+          "short": "Paketid",
+          "lead": "Isiklik koopia kinnitatud kontraktist ja kokkuvõtetest. Pakk tekib protsessi sulgemisel ja jääb sulle alles."
+        }
+      }
     },
     "create": {
       "title": "Uus supervisiooni protsess",
-      "draftHint": "Mustand — näed ainult sina, kuni kutsud osalejaid.",
       "typeLabel": "Tüüp",
       "titleLabel": "Pealkiri",
       "titlePlaceholder": "nt Kevadgrupp",
       "goalLabel": "Eesmärk (valikuline)",
       "meetingsLabel": "Kavandatud kohtumiste arv",
       "submit": "Loo protsess",
-      "grantRequired": "Protsessi loomiseks on vaja superviisori õigust. Pöördu administraatori poole."
+      "grantRequired": "Protsessi loomiseks on vaja superviisori õigust. Pöördu administraatori poole.",
+      "views": {
+        "type": {
+          "title": "Tüüp",
+          "short": "Tüüp",
+          "question": "Kas supervisioon on ühele inimesele või grupile?",
+          "lead": "Protsessi saab luua superviisori õigusega. Tüüpi hiljem muuta ei saa."
+        },
+        "title": {
+          "title": "Pealkiri ja kohtumised",
+          "short": "Pealkiri",
+          "titleHint": "Pealkirja näevad ka need, keda protsessi kutsud.",
+          "meetingsHint": "Täisarv 1 kuni 100."
+        },
+        "goal": {
+          "title": "Eesmärk",
+          "short": "Eesmärk",
+          "hint": "Eesmärki näevad protsessi liikmed."
+        },
+        "create": {
+          "title": "Ülevaade ja loomine",
+          "short": "Loo",
+          "lead": "Protsess luuakse mustandina. Näed seda ainult sina, kuni kutsud osalejaid."
+        }
+      },
+      "typeMissing": "Tüüp on valimata.",
+      "titleMissing": "Pealkiri on puudu.",
+      "meetingsInvalid": "Kohtumiste arv peab olema täisarv 1 kuni 100.",
+      "typeNone": "Valimata",
+      "titleNone": "Puudub",
+      "goalNone": "Lisamata"
     },
     "nav": {
       "contract": "Kontrakt",
@@ -9833,7 +9885,29 @@
       "readContract": "Loe kontrakti enne kinnitamist.",
       "accept": "Kinnitan kontrakti ja liitun",
       "decline": "Keeldun",
-      "declined": "Oled kutsest keeldunud."
+      "declined": "Oled kutsest keeldunud.",
+      "views": {
+        "invite": {
+          "title": "Kutse",
+          "short": "Kutse",
+          "lead": "Sind on kutsutud supervisiooni protsessi. Loe kontrakt läbi ja vasta kutsele."
+        },
+        "contract": {
+          "title": "Kontrakt",
+          "short": "Kontrakt"
+        },
+        "answer": {
+          "title": "Vastus",
+          "short": "Vastus",
+          "question": "Kas liitud selle protsessiga?"
+        }
+      },
+      "acceptHint": "Kinnitad kontraktiversiooni {n} ja sinust saab protsessi liige.",
+      "acceptWaits": "Kinnitada saab siis, kui superviisor on kontrakti aktiveerinud.",
+      "declineHint": "Kutse kaob. Keeldumist ei saa tagasi võtta.",
+      "declineConfirm": "Vajuta uuesti, et keelduda",
+      "declineConfirmHint": "Teine vajutus keeldub kutsest lõplikult.",
+      "toHome": "Tagasi supervisiooni"
     },
     "eeskamber": {
       "title": "Privaatne eeskamber",
@@ -9931,9 +10005,32 @@
       "title": "Minu isiklik pakk",
       "intro": "See on sinu isiklik koopia kinnitatud väljunditest. See kuulub ainult sulle.",
       "contract": "Kinnitatud kontrakt",
-      "summaries": "Kinnitatud kokkuvõtted",
       "empty": "Sul pole veel ühtki isiklikku pakki.",
-      "list": "Minu paketid"
+      "list": "Minu paketid",
+      "all": "Kogu pakk",
+      "position": "Osa {current}/{total}: {label}",
+      "approvedOn": "Kinnitatud {date}",
+      "untitled": "Pealkirjata pakk",
+      "noContent": "Selles pakis ei ole kinnitatud kontrakti ega kokkuvõtteid.",
+      "noSummaries": "Selles pakis ei ole kinnitatud kokkuvõtteid.",
+      "views": {
+        "contract": {
+          "title": "Kinnitatud kontrakt",
+          "short": "Kontrakt"
+        },
+        "final": {
+          "title": "Lõpukokkuvõte",
+          "short": "Lõpukokkuvõte"
+        },
+        "meeting": {
+          "title": "Kohtumise kokkuvõte",
+          "short": "Kokkuvõte"
+        },
+        "meetingNth": {
+          "title": "Kohtumise kokkuvõte ({n}/{total})",
+          "short": "Kokkuvõte {n}/{total}"
+        }
+      }
     }
   },
   "org": {

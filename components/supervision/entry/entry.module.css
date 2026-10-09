@@ -1,0 +1,247 @@
+/* Supervisiooni avalehed: laud (protsessid, kutsed, paketid), uue protsessi
+   sammud, kutse ja isiklik pakk. Lava, plaadid ja kiirmenüü tulevad
+   components/stage-ist; vaate kuju (juhis, tegevusrida) StepPanel-ist.
+
+   Lehe kest on ainult paigutus: klaaspind on juba PanelFrame. Vana kest
+   (SupervisionPage.module.css `.page` + `.shell`) joonistas selle sisse teise
+   klaaskasti ja suure ülapolstri. */
+
+.shell {
+  min-width: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+.stack {
+  min-width: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+
+/* Vaate algus: juhis vasakul, vaate tegevus (nt „Uus protsess") paremal. */
+.head {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 0.5rem 1rem;
+}
+.lead {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--text-soft);
+}
+.quiet {
+  margin: 0;
+  color: var(--text-soft);
+}
+/* Viga või puuduv ligipääs on lause paneelis, mitte tume kaart: serva joon
+   ütleb, et see on takistus. */
+.problem {
+  margin: 0;
+  max-width: 62ch;
+  padding-inline-start: 0.7rem;
+  border-inline-start: 3px solid color-mix(in srgb, var(--status-error, #eb9a76) 60%, transparent);
+  color: var(--text-warm);
+}
+.state {
+  min-width: 0;
+  display: grid;
+  justify-items: start;
+  gap: 0.6rem;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Märk: roll, seis või teksti liik. */
+.chip {
+  flex: none;
+  padding: 0.12rem 0.6rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 999px;
+  color: var(--text-soft);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+.chip[data-tone="ok"] {
+  border-color: color-mix(in srgb, var(--status-success, #c5cf9b) 55%, transparent);
+  color: var(--status-success, #c5cf9b);
+}
+.chip[data-tone="wait"] {
+  border-color: color-mix(in srgb, #e6c27a 55%, transparent);
+  color: #e6c27a;
+}
+:global(html.theme-light) .chip[data-tone="ok"] {
+  color: #2f6a3f;
+}
+:global(html.theme-light) .chip[data-tone="wait"] {
+  color: #7a5a12;
+}
+
+/* Loend: rida on üks vajutatav lahter (pealkiri ja täpsustus, märgid ja
+   kuupäev, tee edasi). */
+.rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+.row {
+  composes: cell from "../../stage/cell.module.css";
+  width: 100%;
+  min-height: var(--hit-target-min, 2.75rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 0.3rem 1rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.9rem;
+  text-align: left;
+  text-decoration: none;
+}
+.rowMain {
+  min-width: 0;
+  display: grid;
+  gap: 0.05rem;
+}
+.rowTitle {
+  min-width: 0;
+  font-weight: 560;
+  color: var(--text-warm);
+  overflow-wrap: anywhere;
+}
+.rowSub {
+  min-width: 0;
+  color: var(--text-soft);
+  font-size: var(--fs-small, 0.875rem);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+.rowMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 0.3rem 0.6rem;
+}
+.time,
+.rowOpen {
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Uue protsessi väljad: väli on nii lai, kui sisu vajab (pealkiri on lühike
+   nimi, kohtumiste arv kuni kolm numbrit), mitte paneeli laiune. */
+.fields {
+  min-width: 0;
+  display: grid;
+  gap: 0.8rem;
+}
+.field {
+  min-width: 0;
+  display: grid;
+  gap: 0.35rem;
+  max-width: 30rem;
+}
+.field[data-size="sm"] {
+  max-width: 9rem;
+}
+.fieldLabel {
+  color: var(--text-warm);
+}
+.fieldHint {
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+}
+.input {
+  width: 100%;
+  min-width: 0;
+}
+
+/* Ülevaade enne loomist: nimetus vasakul, väärtus paremal. */
+.facts {
+  margin: 0;
+  display: grid;
+  gap: 0;
+}
+.fact {
+  display: grid;
+  grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
+  gap: 0.2rem 1rem;
+  padding-block: 0.45rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--text-warm) 10%, transparent);
+}
+.fact:last-child {
+  border-bottom: 0;
+}
+.factLabel {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+}
+.factValue {
+  margin: 0;
+  color: var(--text-warm);
+  overflow-wrap: anywhere;
+}
+.factValue[data-missing="true"] {
+  color: var(--text-soft);
+}
+
+/* Kutse ja pakk: nimi, märgid ühel real ja külmutatud tekst. */
+.name {
+  margin: 0;
+  color: var(--text-warm);
+  font-weight: 560;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+.line {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.8rem;
+}
+.text {
+  margin: 0;
+  max-width: 68ch;
+  color: var(--text-warm);
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+/* Paki sissejuhatus kogu paki vaates: nimi ja märk, selgitus, tee tagasi. */
+.packLead {
+  min-width: 0;
+  display: grid;
+  justify-items: start;
+  gap: 0.45rem;
+}
+
+@media (max-width: 640px) {
+  /* Ühes veerus ei venitata vaate nuppu rea laiuseks. */
+  .head {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: start;
+  }
+  .row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .rowMeta {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: flex-start;
+  }
+  .field {
+    max-width: none;
+  }
+  .fact {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

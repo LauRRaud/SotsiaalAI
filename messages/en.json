@@ -9766,7 +9766,7 @@
       "seenBySupervisor": "Seen by: supervisor",
       "seenByProcess": "Seen by: supervisor + {count} participants",
       "persistent": "Persistent — kept even after closing",
-      "invitedHint": "You are not a member yet — you only see the contract"
+      "invitedHint": "You are not a member yet and only see the contract"
     },
     "roles": {
       "SV": "Supervisor",
@@ -9789,20 +9789,72 @@
       "subtitle": "Processes where you are a supervisor or participant.",
       "newProcess": "New process",
       "open": "Open",
-      "emptyTitle": "No processes yet",
-      "emptyBody": "With a supervisor grant you can create a new process. Otherwise processes you are invited to will appear here.",
-      "roleLabel": "Your role"
+      "roleLabel": "Your role",
+      "all": "All parts",
+      "position": "Part {current}/{total}: {label}",
+      "wideLead": "Your processes, unanswered invitations and personal packs.",
+      "moreRows": "and others",
+      "supervisor": "Supervisor: {name}",
+      "untitled": "Untitled process",
+      "views": {
+        "processes": {
+          "title": "My processes",
+          "short": "Processes",
+          "none": "No processes yet.",
+          "empty": "There are no processes yet. You can create a new process with a supervisor grant. When you accept an invitation, the process appears here."
+        },
+        "invites": {
+          "title": "Invitations",
+          "short": "Invitations",
+          "lead": "Invitations you have not answered yet. Until you answer, you only see the contract.",
+          "empty": "There are no unanswered invitations."
+        },
+        "outcomes": {
+          "title": "My packs",
+          "short": "Packs",
+          "lead": "Your personal copy of the confirmed contract and summaries. A pack is made when a process is closed, and it stays with you."
+        }
+      }
     },
     "create": {
       "title": "New supervision process",
-      "draftHint": "Draft — only you can see it until you invite participants.",
       "typeLabel": "Type",
       "titleLabel": "Title",
       "titlePlaceholder": "e.g. Spring group",
       "goalLabel": "Goal (optional)",
       "meetingsLabel": "Planned number of meetings",
       "submit": "Create process",
-      "grantRequired": "Creating a process requires a supervisor grant. Contact an administrator."
+      "grantRequired": "Creating a process requires a supervisor grant. Contact an administrator.",
+      "views": {
+        "type": {
+          "title": "Type",
+          "short": "Type",
+          "question": "Is the supervision for one person or for a group?",
+          "lead": "Creating a process requires a supervisor grant. The type cannot be changed later."
+        },
+        "title": {
+          "title": "Title and meetings",
+          "short": "Title",
+          "titleHint": "The people you invite to the process also see the title.",
+          "meetingsHint": "A whole number from 1 to 100."
+        },
+        "goal": {
+          "title": "Goal",
+          "short": "Goal",
+          "hint": "The members of the process see the goal."
+        },
+        "create": {
+          "title": "Review and create",
+          "short": "Create",
+          "lead": "The process is created as a draft. Only you see it until you invite participants."
+        }
+      },
+      "typeMissing": "The type is not chosen.",
+      "titleMissing": "The title is missing.",
+      "meetingsInvalid": "The number of meetings must be a whole number from 1 to 100.",
+      "typeNone": "Not chosen",
+      "titleNone": "Missing",
+      "goalNone": "Not added"
     },
     "nav": {
       "contract": "Contract",
@@ -9833,7 +9885,29 @@
       "readContract": "Read the contract before confirming.",
       "accept": "I confirm the contract and join",
       "decline": "Decline",
-      "declined": "You have declined the invitation."
+      "declined": "You have declined the invitation.",
+      "views": {
+        "invite": {
+          "title": "Invitation",
+          "short": "Invitation",
+          "lead": "You have been invited to a supervision process. Read the contract and answer the invitation."
+        },
+        "contract": {
+          "title": "Contract",
+          "short": "Contract"
+        },
+        "answer": {
+          "title": "Answer",
+          "short": "Answer",
+          "question": "Will you join this process?"
+        }
+      },
+      "acceptHint": "You confirm contract version {n} and become a member of the process.",
+      "acceptWaits": "You can confirm once the supervisor has activated a contract.",
+      "declineHint": "The invitation disappears. Declining cannot be undone.",
+      "declineConfirm": "Press again to decline",
+      "declineConfirmHint": "A second press declines the invitation for good.",
+      "toHome": "Back to supervision"
     },
     "eeskamber": {
       "title": "Private antechamber",
@@ -9931,9 +10005,32 @@
       "title": "My personal pack",
       "intro": "This is your personal copy of the confirmed outputs. It belongs only to you.",
       "contract": "Confirmed contract",
-      "summaries": "Confirmed summaries",
       "empty": "You don't have any personal packs yet.",
-      "list": "My packs"
+      "list": "My packs",
+      "all": "Whole pack",
+      "position": "Part {current}/{total}: {label}",
+      "approvedOn": "Confirmed {date}",
+      "untitled": "Untitled pack",
+      "noContent": "This pack has no confirmed contract or summaries.",
+      "noSummaries": "This pack has no confirmed summaries.",
+      "views": {
+        "contract": {
+          "title": "Confirmed contract",
+          "short": "Contract"
+        },
+        "final": {
+          "title": "Final summary",
+          "short": "Final summary"
+        },
+        "meeting": {
+          "title": "Meeting summary",
+          "short": "Summary"
+        },
+        "meetingNth": {
+          "title": "Meeting summary ({n}/{total})",
+          "short": "Summary {n}/{total}"
+        }
+      }
     }
   },
   "org": {
