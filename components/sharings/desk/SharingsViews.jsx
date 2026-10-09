@@ -157,7 +157,12 @@ export function PartSwap({ mode, children }) {
     const node = ref.current;
     if (!node || node.offsetParent === null || node.closest("[data-active]")?.getAttribute("data-active") !== "1") return;
     const target = (mode === "correction" ? node.querySelector("input:not(:disabled), textarea:not(:disabled)") : null) || node.querySelector("[data-step-heading]");
-    target?.focus({ preventScroll: true });
+    /* Kui fookus on juba mujal kui kaduval sisul (teade laua kohal pärast
+       ruumist lahkumist või kutse tagasivõtmist), jääb see sinna: fookuse
+       äraviimine katkestaks teate ettelugemise. */
+    const focused = document.activeElement;
+    const elsewhere = focused && focused !== document.body && !node.contains(focused);
+    if (!elsewhere) target?.focus({ preventScroll: true });
     const scroller = scrollerOf(node);
     if (!scroller) return;
     const top = node.getBoundingClientRect().top - scroller.getBoundingClientRect().top + scroller.scrollTop;
@@ -260,7 +265,12 @@ export function PartView({ t, title, lead, error, unavailable, rows, emptyText, 
  * Nuppe päringu ajaks välja ei lülitata (väljalülitatud nupp kaotaks
  * klaviatuuri fookuse): topeltsaatmist hoiab lehe enda lukk.
  */
-export function ItemView({ t, title, error, sheet, factLabels, confirm, actions, busy, glow, onBack }) {
+export function ItemView({ t, title, error, sheet, factLabels, confirm, actions, busy, glow, onInactive, onBack }) {
+  /* Kui osa ei ole enam ees (inimene läks ülevaatesse või teise ossa), ei jää
+     pooleli kinnitus ootama: tagasi tulles on nupp jälle esimeses astmes. */
+  useEffect(() => {
+    if (!glow) onInactive?.();
+  }, [glow, onInactive]);
   return (
     <StepPanel
       title={title}
@@ -343,7 +353,7 @@ export function ItemView({ t, title, error, sheet, factLabels, confirm, actions,
  * üksteise all). Väljad on mõlemad pikk tekst, seepärast on need veeru laiused.
  * Väljasid saatmise ajaks ei lukustata (lukustamine viiks fookuse ära).
  */
-export function CorrectionView({ t, title, error, form, limits, busy, glow }) {
+export function CorrectionView({ t, title, error, form, limits, busy, glow, who }) {
   return (
     <Form className={styles.form} validate={false} onSubmit={form.onSubmit}>
       <StepPanel
@@ -363,15 +373,16 @@ export function CorrectionView({ t, title, error, form, limits, busy, glow }) {
       >
         {/* Saatmise ajal on sisu tuhmim; väljad jäävad kirjutatavaks. */}
         <div className={styles.stack} aria-busy={busy ? "true" : undefined}>
+          {who ? <p className={styles.who}>{who}</p> : null}
           <div className={styles.correction}>
             <div className={styles.correctionSide}>
               <label className={styles.field}>
                 <span className={styles.fieldLabel}>{t("my_sharings.correction.topic")}</span>
                 <Input value={form.topic} maxLength={limits.topic} autoComplete="off" onChange={(event) => form.onTopic(event.target.value)} />
               </label>
-              <TextAreaField label={t("my_sharings.correction.situation")} value={form.situation} onChange={form.onSituation} rows={5} maxLength={limits.situation} />
+              <TextAreaField label={t("my_sharings.correction.situation")} value={form.situation} onChange={form.onSituation} rows={4} maxLength={limits.situation} />
             </div>
-            <TextAreaField label={t("my_sharings.correction.text")} value={form.text} onChange={form.onText} rows={9} maxLength={limits.text} />
+            <TextAreaField label={t("my_sharings.correction.text")} value={form.text} onChange={form.onText} rows={7} maxLength={limits.text} />
           </div>
           <ViewError text={error} />
         </div>
@@ -385,7 +396,8 @@ export function CorrectionView({ t, title, error, form, limits, busy, glow }) {
  * sama mis enne; valikud on: tagasi teksti muutma, varjatud versioon või
  * teadlik algse teksti saatmine (ainult siis, kui server seda lubab).
  */
-export function PrivacyView({ t, title, error, prompt, busy }) {
+export function PrivacyView({ t, title, error, prompt, busy, who, texts = [] }) {
+  const shown = texts.filter((entry) => String(entry.value || "").trim());
   return (
     <StepPanel
       title={title}
@@ -411,6 +423,19 @@ export function PrivacyView({ t, title, error, prompt, busy }) {
         <p className={styles.privacy} role="alert">
           {t("my_sharings.correction.privacy_body")}
         </p>
+        {who ? <p className={styles.who}>{who}</p> : null}
+        {/* Tekst, mille kohta küsitakse, on valiku juures näha. Tekst on TEKST:
+            sisu tuleb React'i lapsena, mitte HTML-ina. */}
+        {shown.length ? (
+          <dl className={styles.details}>
+            {shown.map((entry) => (
+              <div key={entry.key} className={styles.detail}>
+                <dt className={styles.detailLabel}>{entry.label}</dt>
+                <dd className={`${styles.detailValue} ${styles.sentText}`}>{entry.value}</dd>
+              </div>
+            ))}
+          </dl>
+        ) : null}
         <ViewError text={error} />
       </div>
     </StepPanel>

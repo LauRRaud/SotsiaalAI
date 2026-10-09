@@ -10218,7 +10218,8 @@
         "urgent_recall": "Kas võtta abipalve tagasi? Vastuvõtulaud ei saa seda siis enam töösse võtta ja tagasivõttu ei saa tühistada.",
         "share_confirm": "Pärast kinnitamist saab töötaja selle kokkuvõtte saata. Otsust ei saa siin hiljem muuta.",
         "share_decline": "Pärast keeldumist seda kokkuvõtet ei saadeta. Otsust ei saa siin hiljem muuta."
-      }
+      },
+      "untitled_room": "Nimeta ruum"
     }
   },
   "effective_practices": {

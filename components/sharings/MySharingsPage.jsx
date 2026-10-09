@@ -57,9 +57,16 @@ import {
   opensItems,
   shareErrorText,
   sharingParts,
+  sharingRow,
   sharingRows,
   sharingSheet
 } from "./desk/sharingRows";
+
+/* Lause, mille leht ise kokku pani (serveri vastusest või kataloogist). Kõik
+   muu, mis püütakse (võrk katkes, brauseri enda ingliskeelne tekst), saab
+   kataloogi üldise lause: brauseri teksti ekraanile ei lasta. */
+class SaidError extends Error {}
+const said = (error, fallback) => (error instanceof SaidError && error.message ? error.message : fallback);
 
 const EMPTY_SHARINGS = Object.freeze({
   preInquiries: [],
@@ -204,7 +211,7 @@ export default function MySharingsPage() {
         : await fetch("/api/my-sharings", { cache: "no-store", signal });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || payload?.ok === false) {
-        throw new Error(resolveApiMessage({
+        throw new SaidError(resolveApiMessage({
           payload,
           t,
           fallbackKey: "my_sharings.errors.load_failed"
@@ -238,7 +245,7 @@ export default function MySharingsPage() {
     } catch (error) {
       if (error?.name === "AbortError") return false;
       if (!preserveData) {
-        setLoadError(error?.message || t("my_sharings.errors.load_failed"));
+        setLoadError(said(error, t("my_sharings.errors.load_failed")));
       }
       return false;
     } finally {
@@ -303,7 +310,7 @@ export default function MySharingsPage() {
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || payload?.ok === false) {
-        throw new Error(resolveApiMessage({
+        throw new SaidError(resolveApiMessage({
           payload,
           t,
           fallbackKey: "my_sharings.errors.action_failed"
@@ -311,7 +318,7 @@ export default function MySharingsPage() {
       }
       await finishAction(t("my_sharings.notice.urgent_recalled"));
     } catch (error) {
-      setActionError(error?.message || t("my_sharings.errors.action_failed"));
+      setActionError(said(error, t("my_sharings.errors.action_failed")));
     } finally {
       if (mutationInFlightRef.current === key) {
         mutationInFlightRef.current = "";
@@ -348,11 +355,11 @@ export default function MySharingsPage() {
         /* Tekst või seis on vahepeal muutunud: laadime jagamised uuesti, et inimene
            näeks seda, mille üle ta nüüd otsustab. */
         if (response.status === 409 || response.status === 428) await loadSharings({ preserveData: true });
-        throw new Error(sentence || t("my_sharings.errors.action_failed"));
+        throw new SaidError(sentence || t("my_sharings.errors.action_failed"));
       }
       await finishAction(t(decision === "CONFIRMED" ? "my_sharings.notice.share_confirmed" : "my_sharings.notice.share_declined"));
     } catch (error) {
-      setActionError(error?.message || t("my_sharings.errors.action_failed"));
+      setActionError(said(error, t("my_sharings.errors.action_failed")));
     } finally {
       if (mutationInFlightRef.current === key) {
         mutationInFlightRef.current = "";
@@ -391,11 +398,11 @@ export default function MySharingsPage() {
           setActionError(message);
           return;
         }
-        throw new Error(message);
+        throw new SaidError(message);
       }
       await finishAction(t(CONFIRMED_ACTIONS[action.kind].done));
     } catch (error) {
-      setActionError(error?.message || t("my_sharings.errors.action_failed"));
+      setActionError(said(error, t("my_sharings.errors.action_failed")));
     } finally {
       if (mutationInFlightRef.current === key) {
         mutationInFlightRef.current = "";
@@ -454,7 +461,7 @@ export default function MySharingsPage() {
           setPrivacyPrompt(payload);
           return;
         }
-        throw new Error(resolveApiMessage({
+        throw new SaidError(resolveApiMessage({
           payload,
           t,
           fallbackKey: "my_sharings.errors.action_failed"
@@ -464,7 +471,7 @@ export default function MySharingsPage() {
       setPrivacyPrompt(null);
       await finishAction(t("my_sharings.notice.corrected"));
     } catch (error) {
-      setActionError(error?.message || t("my_sharings.errors.action_failed"));
+      setActionError(said(error, t("my_sharings.errors.action_failed")));
     } finally {
       if (mutationInFlightRef.current === key) {
         mutationInFlightRef.current = "";
@@ -585,6 +592,7 @@ export default function MySharingsPage() {
         actions={actions}
         busy={Boolean(busyKey)}
         glow={active}
+        onInactive={disarm}
         onBack={closeItem}
       />
     );
@@ -599,6 +607,12 @@ export default function MySharingsPage() {
     const error = active ? actionError : "";
 
     if (section === "preInquiries" && correction) {
+      /* Vanal lehel seisis paranduse vorm kirje kaardi sees, rea „Kes näeb"
+         all. Vaade on nüüd omaette, seepärast ütleb see ise, kellele parandus
+         läheb; isikuandmete küsimuse juures on ka tekst, mille kohta küsitakse. */
+      const corrected = (Array.isArray(sharings.preInquiries) ? sharings.preInquiries : []).find((item) => String(item.id) === String(correction.id));
+      const visibility = corrected ? sharingRow("preInquiries", corrected, rowContext).facts?.visibility : "";
+      const who = visibility ? `${factLabels.visibility}: ${visibility}` : "";
       if (privacyPrompt) {
         return (
           <PartSwap mode="privacy">
@@ -607,6 +621,12 @@ export default function MySharingsPage() {
               title={step.label}
               error={error}
               busy={Boolean(busyKey)}
+              who={who}
+              texts={[
+                { key: "topic", label: t("my_sharings.correction.topic"), value: correction.topic },
+                { key: "situation", label: t("my_sharings.correction.situation"), value: correction.situation },
+                { key: "text", label: t("my_sharings.correction.text"), value: correction.text }
+              ]}
               prompt={{
                 onEdit: () => {
                   setActionError("");
@@ -628,6 +648,7 @@ export default function MySharingsPage() {
             limits={CORRECTION_LIMITS}
             busy={Boolean(busyKey)}
             glow={active}
+            who={who}
             form={{
               topic: correction.topic,
               situation: correction.situation,

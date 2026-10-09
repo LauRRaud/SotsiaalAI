@@ -290,7 +290,7 @@ test('avatava osa rida kannab pealkirja, seisu ja „kes näeb"; otsust ootav ri
   assert.equal(member.facts.validity, '[my_sharings.ownership.active]');
   assert.equal(owner.chip, '[my_sharings.labels.room_owner]');
   assert.equal(owner.facts.validity, '[my_sharings.ownership.owner]');
-  assert.equal(owner.title, '[my_sharings.sections.rooms]');
+  assert.equal(owner.title, '[my_sharings.views.untitled_room]');
 
   const [invite] = sharingRows('invites', SAMPLES.invites, context);
   assert.equal(invite.time, invite.facts.validity);

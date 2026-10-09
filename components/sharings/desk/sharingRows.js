@@ -359,7 +359,8 @@ export function sharingRow(section, item, { t, formatDate, formatMonth, formatDa
       const visibility = t("my_sharings.ownership.room_members");
       return {
         ...base,
-        title: text(item.title) || t("my_sharings.sections.rooms"),
+        /* Nimeta ruum ei tohi kanda osa enda nime („Aktiivsed ruumid"). */
+        title: text(item.title) || t("my_sharings.views.untitled_room"),
         sub: visibility,
         chip: word.text,
         facts: {

@@ -10218,7 +10218,8 @@
         "urgent_recall": "Take this request back? The intake desk can then no longer take it on, and taking it back cannot be undone.",
         "share_confirm": "After you confirm, the worker can send this summary. You cannot change the decision here later.",
         "share_decline": "After you decline, this summary will not be sent. You cannot change the decision here later."
-      }
+      },
+      "untitled_room": "Untitled room"
     }
   },
   "effective_practices": {

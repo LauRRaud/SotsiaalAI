@@ -410,6 +410,17 @@
 .fieldLabel {
   color: var(--text-warm);
 }
+/* Kellele parandus läheb: vaikne rida vaate alguses. */
+.who {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: var(--fs-small, 0.875rem);
+}
+/* Saadetav tekst isikuandmete küsimuse juures: reavahetused nagu kirjutati. */
+.sentText {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
 /* Isikuandmete kontrolli lause: ühine paneelikiht joonistaks hoiatuse rolli
    kastina, siin on see vaate juhis. */
 .privacy {
