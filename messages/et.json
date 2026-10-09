@@ -7533,6 +7533,18 @@
       "next_recommended": "järgmine soovitatud samm",
       "todo": "mitte alustatud"
     },
+    "wish": {
+      "title": "Sinu soov",
+      "review_title": "Mida sina soovid?",
+      "label": "Kirjuta oma sõnadega, mida sa tahad, et juhtuks või muutuks.",
+      "hint": "Seda teksti platvorm ei muuda ega sõnasta ümber. Teised näevad seda ainult siis, kui sa selle jagamiseks ise valid.",
+      "empty": "Sa ei ole oma soovi veel kirja pannud.",
+      "add": "Lisa oma soov",
+      "edit": "Muuda soovi",
+      "save": "Salvesta soov",
+      "saved": "Sinu soov on salvestatud.",
+      "removed": "Soov on eemaldatud."
+    },
     "activity": {
       "title": "Tehtud sammud",
       "created": "teekond loodud",

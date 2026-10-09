@@ -7533,6 +7533,18 @@
       "next_recommended": "next recommended step",
       "todo": "not started"
     },
+    "wish": {
+      "title": "Your wish",
+      "review_title": "What do you want?",
+      "label": "Write in your own words what you want to happen or change.",
+      "hint": "The platform does not change or rephrase this text. Others see it only if you choose to share it.",
+      "empty": "You have not written down your wish yet.",
+      "add": "Add your wish",
+      "edit": "Change the wish",
+      "save": "Save the wish",
+      "saved": "Your wish has been saved.",
+      "removed": "The wish has been removed."
+    },
     "activity": {
       "title": "Completed steps",
       "created": "journey created",
