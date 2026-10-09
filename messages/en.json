@@ -11347,6 +11347,23 @@
       "AWAY": "Temporarily away",
       "ENDED": "Ended"
     },
+    "status_reason": {
+      "AWAY": {
+        "HOSPITAL": "in hospital or rehabilitation",
+        "WITH_FAMILY": "with family or away from home",
+        "SAFETY": "visits paused for safety or cooperation",
+        "OTHER": "another reason"
+      },
+      "ENDED": {
+        "NO_LONGER_NEEDED": "no longer needs the service",
+        "MORE_CARE": "needs more help than can be given at home",
+        "DIED": "death",
+        "MOVED": "moved to another municipality",
+        "OWN_WISH": "gave it up themselves",
+        "COOPERATION": "cooperation was not possible, or safety",
+        "OTHER": "another reason"
+      }
+    },
     "client": {
       "back": "Back to clients",
       "name": "Name",
@@ -11375,7 +11392,10 @@
       "read_only": "The organisation is not writable at the moment; the page is read-only.",
       "manage": "For the coordinator",
       "unit": "Unit",
-      "unit_none": "No unit (whole organisation)"
+      "unit_none": "No unit (whole organisation)",
+      "status_reason": "Why",
+      "status_ended_hint": "An ended client can be made active again later. The diary and the state history stay.",
+      "status_history": "State history"
     },
     "card": {
       "title": "Before you go",
@@ -11477,7 +11497,9 @@
         "WORK_ACCIDENT": "Accident at work",
         "COMPLAINT": "Complaint",
         "THANKS": "Thanks",
-        "OTHER": "Other"
+        "OTHER": "Other",
+        "GIFT_OFFERED": "A gift or money was offered",
+        "FEEDBACK": "Feedback"
       },
       "text_label": "What I saw or heard",
       "assessment_label": "What I think",
@@ -11616,7 +11638,8 @@
       "export_too_large": "The export is too large for one file. Contact platform support to get it in parts.",
       "invalid_export_reason": "Choose what the export is for.",
       "export_failed": "Making the export failed. Try again.",
-      "export_in_progress": "An export for this organisation is already being made. Wait until it is ready."
+      "export_in_progress": "An export for this organisation is already being made. Wait until it is ready.",
+      "status_reason_required": "Choose why the client is away or why the service ended."
     },
     "incidents": {
       "title": "Incident register",

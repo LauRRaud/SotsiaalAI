@@ -8192,6 +8192,9 @@ model CareClient {
 
   /// ACTIVE | AWAY | ENDED.
   status          String    @default("ACTIVE")
+  /// Peatamise või lõpetamise alus (K1-j): `CareAwayReason` või `CareEndReason`
+  /// failis `lib/homeCare/constants.js`. Aktiivsel kliendil NULL.
+  statusReason    String?
   /// Lühike selgitus seisu juurde („haiglas alates 3.11").
   statusNote      String?
   statusChangedAt DateTime?
@@ -8220,10 +8223,36 @@ model CareClient {
   chronologyReleases CareChronologyRelease[]
   importedHistories  CareImportedHistory[]
   doorTags           CareClientDoorTag[]
+  statusChanges      CareClientStatusChange[]
 
   @@unique([organizationId, internalCode])
   @@index([organizationId, status, displayName])
   @@index([unitId])
+}
+
+/// Kliendi seisu muutuste ajalugu (K1-j): millal teenus peatati, lõpetati või
+/// uuesti algas, mis alusel ja kes selle märkis. Read on muutmatud; uuesti
+/// teenusele tulek ei kirjuta varasemat lõpetamist üle. Seisu ja aluse sobivust
+/// kontrollib CHECK migratsioonis.
+model CareClientStatusChange {
+  id             String @id @default(cuid())
+  organizationId String
+  clientId       String
+
+  fromStatus String
+  toStatus   String
+  reason     String?
+  note       String?
+
+  actorMembershipId String?
+  /// Nimi muutmise hetkel: ajalugu jääb loetavaks ka pärast töötaja lahkumist.
+  actorName         String?
+  changedAt         DateTime @default(now())
+
+  client CareClient @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@index([clientId, changedAt])
+  @@index([organizationId, changedAt])
 }
 
 /// Kliendi meeskond: töötajad, kes tohivad klienti näha ilma põhjust andmata.

@@ -223,9 +223,15 @@ export default function HomeCareHome({ context, initial, unitOptions }) {
                       </>
                     ) : null}
                   </span>
-                  {client.address || client.statusNote ? (
+                  {client.address || client.statusNote || client.statusReason ? (
                     <span className="hc-client__meta">
-                      {[client.address, client.status !== "ACTIVE" ? client.statusNote : null]
+                      {[
+                        client.address,
+                        client.status !== "ACTIVE" && client.statusReason
+                          ? t(`home_care.status_reason.${client.status}.${client.statusReason}`)
+                          : null,
+                        client.status !== "ACTIVE" ? client.statusNote : null
+                      ]
                         .filter(Boolean)
                         .join(" · ")}
                     </span>
